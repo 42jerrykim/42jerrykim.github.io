@@ -1,0 +1,196 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+
+$background-color: #232326 !default;
+$text-color: #eaeaea !default;
+$primary-color: #0a84ff !default;
+
+$max-width: 100%;
+
+$serif      : Georgia, Times, serif;
+$sans-serif : "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+$monospace  : Consolas, D2Coding, 'D2 coding', Monaco, "Lucida Console", monospace;
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
+
+div.highlighter-rouge{
+    background: mix($background-color, $primary-color, 80%);
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+code.language-plaintext.highlighter-rouge {
+    background: mix($background-color, $primary-color, 80%);
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+    font-size: 1em;
+    font-family: $monospace;
+}
+
+.breadcrumbs {
+    @include clearfix;
+    margin: 0 auto;
+    max-width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-family: $sans-serif;
+    -webkit-animation: $intro-transition;
+    animation: $intro-transition;
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+
+    @include breakpoint($x-large) {
+        max-width: $max-width;
+    }
+
+    ol {
+        padding: 0;
+        list-style: none;
+        font-size: $type-size-6;
+
+        @include breakpoint($large) {
+        float: right;
+        width: calc(100% - #{$right-sidebar-width-narrow});
+        }
+
+        @include breakpoint($x-large) {
+        width: calc(100% - #{$right-sidebar-width});
+        }
+    }
+
+    li {
+        display: inline;
+    }
+
+    .current {
+        font-weight: bold;
+    }
+}
+
+.image-caption {
+    text-align: center;
+    font-size: small;
+}
+
+table {
+    display: revert;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+img {
+    width: 100%;
+}
+
+a.page_date_saperator {
+    margin-bottom: 13px;
+    padding: 5px 10px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+time.dt-published {
+    margin-left: 10px;
+}
+
+.grid__item {
+    .archive__item-teaser {
+        max-height: 500px;
+    }
+}
+
+img.u-photo {
+    max-width: 100%
+}
+.author__avatar img{
+    padding: 0%;
+    border: 0em;
+}
+.author__avatar {
+    display: table-cell;
+    vertical-align: top;
+    width: 80px;
+    height: 80px;
+    
+    @include breakpoint($large) {
+        display: block;
+        width: auto;
+        height: auto;
+    }
+}
+
+mjx-container {
+    background:  mix($background-color, $primary-color, 80%);
+    padding: 0.1em;
+}
+
+.page__content {
+    h1, h2, h3, h4, h5, h6  {
+        margin: 2em 0 0.5em;
+        padding-bottom: 0.5em;
+        border-bottom: 2px solid $border-color;
+    }
+
+    h1 {
+       font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    h3 {
+        font-size: 1.6em;
+    }
+
+    h4 {
+        font-size: 1.4em;
+    }
+
+    h5 {
+        font-size: 1.2em;
+    }
+
+    h6 {
+        font-size: 1em;
+    }
+
+    .nav__title {
+        margin: 0;
+    }
+}
+
+strong {
+    font-size: 1.2em;
+    color: white;
+}
+
+pre.highlight {
+    .copy {
+        color: $text-color;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        opacity: 20%;
+        background:  $primary-color;
+    }
+
+    &:active .copy,
+    &:focus .copy,
+    &:hover .copy {
+      opacity: 1;
+    }
+}
+
+h2.archive__subtitle{
+    font-size: 1.3em;
+}
+
+a.site-title{
+    font-family: 'Press Start 2P', cursive;
+}

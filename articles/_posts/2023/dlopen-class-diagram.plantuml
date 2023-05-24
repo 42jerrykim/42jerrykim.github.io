@@ -1,0 +1,16 @@
+@startuml
+
+Class "Executable" {
+-char* lib_name
++main()
+}
+
+Class "Library" {
++dlopen()
++dlclose()
++dlerror()
+}
+
+Executable  -->  Library
+
+@enduml

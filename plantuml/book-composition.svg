@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="590px" preserveAspectRatio="none" style="width:1137px;height:590px;background:#FFFFFF;" version="1.1" viewBox="0 0 1137 590" width="1137px" zoomAndPan="magnify"><defs/><g><!--MD5=[79a2e8d74ef440211f0b3534f35db448]
+entity 테스트 정확도\n(4장)--><g id="elem_테스트 정확도\n(4장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="108" x="7" y="446"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="88" x="17" y="468.9951">테스트 정확도</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="17" y="485.292">(4장)</text></g><!--MD5=[cdde0f0c6e93eb3c2ca06b8961aa2f45]
+entity 거짓 음성\n(4장)--><g id="elem_거짓 음성\n(4장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="80" x="262" y="385"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="272" y="407.9951">거짓 음성</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="272" y="424.292">(4장)</text></g><!--MD5=[002971c645d4f13d45c5f2080e73ad3b]
+entity 거짓 양성\n(4장)--><g id="elem_거짓 양성\n(4장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="80" x="418" y="520.0005"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="428" y="542.9956">거짓 양성</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="428" y="559.2925">(4장)</text></g><!--MD5=[1d8a82e1b28cbba297e9f4614b0b6094]
+entity 회기 방지\n(4장)--><g id="elem_회기 방지\n(4장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="80" x="565" y="346"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="575" y="368.9951">회기 방지</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="575" y="385.292">(4장)</text></g><!--MD5=[b53fb65792f4fea868df609061e60d5c]
+entity 리팩터링 내성\n(4장)--><g id="elem_리팩터링 내성\n(4장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="108" x="783" y="513.0005"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="88" x="793" y="535.9956">리팩터링 내성</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="793" y="552.2925">(4장)</text></g><!--MD5=[7a45d42ff33ca0437a7ec27deee23ad8]
+entity 통합 테스트--><g id="elem_통합 테스트"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="94" x="790" y="425.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="800" y="448.4951">통합 테스트</text></g><!--MD5=[fd9036a16d87265e0189dc7606adfe44]
+entity 컨트롤러\n(4장)--><g id="elem_컨트롤러\n(4장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="76" x="567" y="434"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56" x="577" y="456.9951">컨트롤러</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="577" y="473.292">(4장)</text></g><!--MD5=[872ba77114cc3240ff7fde7c786e48a4]
+entity 목\n(5장)--><g id="elem_목\n(5장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="53" x="1078" y="300"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="14" x="1088" y="322.9951">목</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="1088" y="339.292">(5장)</text></g><!--MD5=[b95e73200123f8687f8fcf20b753ee18]
+entity 관리 의존성\n(8장)--><g id="elem_관리 의존성\n(8장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="94" x="790" y="56"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="800" y="78.9951">관리 의존성</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="800" y="95.292">(8장)</text></g><!--MD5=[cc28760489fb1f83f7d9763eab6bbfa7]
+entity 비관리 의존성\n(8장)--><g id="elem_비관리 의존성\n(8장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="108" x="783" y="144"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="88" x="793" y="166.9951">비관리 의존성</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="793" y="183.292">(8장)</text></g><!--MD5=[e2979dc68adca908f8f1bc9cfd7a4ea3]
+entity 프로세스 외부 의존성\n(2장)--><g id="elem_프로세스 외부 의존성\n(2장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="154" x="528" y="144"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134" x="538" y="166.9951">프로세스 외부 의존성</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="538" y="183.292">(2장)</text></g><!--MD5=[9671206f8c5f998f25512042524c266a]
+entity 협력자\n(2장)--><g id="elem_협력자\n(2장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="62" x="806" y="337"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="816" y="359.9951">협력자</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="816" y="376.292">(2장)</text></g><!--MD5=[108cb9513a53d7a4b742b59d2794c419]
+entity 컨트롤러\n(7장)--><g id="elem_컨트롤러\n(7장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="76" x="799" y="232"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56" x="809" y="254.9951">컨트롤러</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="809" y="271.292">(7장)</text></g><!--MD5=[59000407222a756bf5f0df6154a7a5e6]
+entity 프로세스 내부 의존성\n(2장)--><g id="elem_프로세스 내부 의존성\n(2장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="154" x="528" y="258"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134" x="538" y="280.9951">프로세스 내부 의존성</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="538" y="297.292">(2장)</text></g><!--MD5=[fe4e5597d37675bea39234c61e9ce3b8]
+entity 단위테스트--><g id="elem_단위테스트"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="90" x="16" y="208.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70" x="26" y="231.4951">단위테스트</text></g><!--MD5=[b447bdd07cb1b40fd01bc667c17156f0]
+entity 빠른 피드백\n(4장)--><g id="elem_빠른 피드백\n(4장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="94" x="255" y="200"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="265" y="222.9951">빠른 피드백</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="265" y="239.292">(4장)</text></g><!--MD5=[fe3ff3e8f6d58bbb91f7c2d9de973f1c]
+entity 유지 보수성\n(4장)--><g id="elem_유지 보수성\n(4장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="94" x="255" y="288"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="265" y="310.9951">유지 보수성</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="32" x="265" y="327.292">(4장)</text></g><!--MD5=[fd037611f423b39aa410ff85fbd6b777]
+entity 도메인 모델 및 알고리즘\n(7장)--><g id="elem_도메인 모델 및 알고리즘\n(7장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="172" x="216" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="152" x="226" y="29.9951">도메인 모델 및 알고리즘</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="226" y="46.292">(7장)</text></g><!--MD5=[b012dff70c7e6a036e0ce80fe6c53600]
+entity 복잡도\n(7장)--><g id="elem_복잡도\n(7장)"><rect fill="#F1F1F1" height="52.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="62" x="271" y="112"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="281" y="134.9951">복잡도</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="33" x="281" y="151.292">(7장)</text></g><!--MD5=[bf0e55aacbb592f03cffeb477fc0a8aa]
+link 테스트 정확도\n(4장) to 거짓 음성\n(4장)--><g id="link_테스트 정확도\n(4장)_거짓 음성\n(4장)"><path d="M100.9539,445.919 C114.358,438.027 129.824,430.234 145,425.5 C181.44,414.133 224.824,411.023 256.579,410.532 " fill="none" id="테스트 정확도\n(4장)-to-거짓 음성\n(4장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="261.97,410.472,252.926,406.5725,256.9703,410.5277,253.0151,414.572,261.97,410.472" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="152.5" y="412.5669">정의</text></g><!--MD5=[bf0e55aacbb592f03cffeb477fc0a8aa]
+link 테스트 정확도\n(4장) to 거짓 음성\n(4장)--><g id="link_테스트 정확도\n(4장)_거짓 음성\n(4장)"><path d="M115.175,464.881 C137.248,461.249 163.023,456.399 186,450.5 C209.825,444.385 235.821,435.742 257.06,428.147 " fill="none" id="테스트 정확도\n(4장)-to-거짓 음성\n(4장)-1" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="261.794,426.443,251.9712,425.7267,257.0893,428.136,254.68,433.2541,261.794,426.443" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="152.5" y="446.5669">정의</text></g><!--MD5=[aea431ba1e5ff8b4c8ad34406a4d0709]
+link 테스트 정확도\n(4장) to 거짓 양성\n(4장)--><g id="link_테스트 정확도\n(4장)_거짓 양성\n(4장)"><path d="M103.1757,499.0257 C116.204,506.6703 130.891,514.5446 145,520.5005 C234.132,558.127 350.15,555.9997 412.577,551.2099 " fill="none" id="테스트 정확도\n(4장)-to-거짓 양성\n(4장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="417.713,550.8005,408.4237,547.528,412.7288,551.1976,409.0592,555.5027,417.713,550.8005" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="152.5" y="516.5674">정의</text></g><!--MD5=[aea431ba1e5ff8b4c8ad34406a4d0709]
+link 테스트 정확도\n(4장) to 거짓 양성\n(4장)--><g id="link_테스트 정확도\n(4장)_거짓 양성\n(4장)"><path d="M115.271,482.4804 C193.931,497.2167 339.705,524.5262 412.798,538.2196 " fill="none" id="테스트 정확도\n(4장)-to-거짓 양성\n(4장)-1" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="417.933,539.1816,409.8242,533.5916,413.0186,538.2602,408.35,541.4546,417.933,539.1816" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="152.5" y="483.5669">정의</text></g><!--MD5=[56bb2a7b70a1f97a4ab71bc4017d897e]
+link 거짓 음성\n(4장) to 회기 방지\n(4장)--><g id="link_거짓 음성\n(4장)_회기 방지\n(4장)"><path d="M342.042,406.442 C397.938,399.2 500.5,385.911 559.343,378.287 " fill="none" id="거짓 음성\n(4장)-to-회기 방지\n(4장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="564.549,377.612,555.1094,374.8023,559.5905,378.2548,556.138,382.7359,564.549,377.612" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="445" y="382.5669">해결</text></g><!--MD5=[56bb2a7b70a1f97a4ab71bc4017d897e]
+link 거짓 음성\n(4장) to 회기 방지\n(4장)--><g id="link_거짓 음성\n(4장)_회기 방지\n(4장)"><path d="M342.325,418.77 C382.051,424.799 444.964,430.731 498,419.5 C519.242,415.002 541.401,405.951 559.933,396.982 " fill="none" id="거짓 음성\n(4장)-to-회기 방지\n(4장)-1" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="564.564,394.707,554.7224,395.0851,560.0763,396.9116,558.2497,402.2654,564.564,394.707" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="445" y="415.5669">해결</text></g><!--MD5=[d4bdb1e874778c9c7fab6e81d9b2d41a]
+link 거짓 양성\n(4장) to 리팩터링 내성\n(4장)--><g id="link_거짓 양성\n(4장)_리팩터링 내성\n(4장)"><path d="M498.221,561.9898 C507.813,565.1006 518.153,567.9026 528,569.5005 C614.399,583.5211 715.572,567.5457 777.722,554.0751 " fill="none" id="거짓 양성\n(4장)-to-리팩터링 내성\n(4장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="782.87,552.9457,773.2219,550.9672,777.9861,554.0171,774.9362,558.7814,782.87,552.9457" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="592" y="565.5674">해결</text></g><!--MD5=[d4bdb1e874778c9c7fab6e81d9b2d41a]
+link 거짓 양성\n(4장) to 리팩터링 내성\n(4장)--><g id="link_거짓 양성\n(4장)_리팩터링 내성\n(4장)"><path d="M498.279,545.7712 C564.898,544.5342 700.348,542.0192 777.942,540.5785 " fill="none" id="거짓 양성\n(4장)-to-리팩터링 내성\n(4장)-1" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="782.968,540.4852,773.8953,536.653,777.9689,540.5781,774.0438,544.6517,782.968,540.4852" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="592" y="537.5674">해결</text></g><!--MD5=[45f0b9300db6bd05bba481bd97a7c02e]
+reverse link 회기 방지\n(4장) to 통합 테스트--><g id="link_회기 방지\n(4장)_통합 테스트"><path d="M649.801,386.022 C689.831,398.379 748.835,416.593 789.646,429.191 " fill="none" id="회기 방지\n(4장)-backto-통합 테스트" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="645.016,384.545,652.4368,391.0205,649.7938,386.019,654.7952,383.3761,645.016,384.545" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="713" y="401.5669">극대화</text></g><!--MD5=[d37fbf688b8d160eae40cff592ee7178]
+link 통합 테스트 to 리팩터링 내성\n(4장)--><g id="link_통합 테스트_리팩터링 내성\n(4장)"><path d="M837,461.605 C837,474.567 837,492.363 837,507.6729 " fill="none" id="통합 테스트-to-리팩터링 내성\n(4장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="837,512.7591,841,503.7591,837,507.7591,833,503.7591,837,512.7591" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="806" y="491.8174">극대화</text></g><!--MD5=[d8c4a5a098da715ed6d29c030d831bdc]
+reverse link 컨트롤러\n(4장) to 통합 테스트--><g id="link_컨트롤러\n(4장)_통합 테스트"><path d="M648.482,457.36 C688.547,454.399 748.45,449.972 789.714,446.922 " fill="none" id="컨트롤러\n(4장)-backto-통합 테스트" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="643.209,457.75,652.4803,461.0731,648.1953,457.3801,651.8884,453.0951,643.209,457.75" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="719.5" y="445.5669">처리</text></g><!--MD5=[0e8f6acc47fb2eefdcb948c61629eeea]
+reverse link 리팩터링 내성\n(4장) to 목\n(5장)--><g id="link_리팩터링 내성\n(4장)_목\n(5장)"><path d="M896.309,520.1843 C942.072,502.6475 1005.019,472.993 1048,430.5 C1070.12,408.63 1085.54,376.067 1094.42,353.218 " fill="none" id="리팩터링 내성\n(4장)-backto-목\n(5장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="891.377,522.053,901.2104,522.605,896.0527,520.2816,898.3761,515.1239,891.377,522.053" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="125" x="922" y="426.5669">잘못 사용하면 떨어짐</text></g><!--MD5=[3616290e868f8b53bb2dced4e05be23a]
+reverse link 통합 테스트 to 목\n(5장)--><g id="link_통합 테스트_목\n(5장)"><path d="M883.541,423.432 C939.606,398.725 1032.89,357.615 1077.8,337.826 " fill="none" id="통합 테스트-backto-목\n(5장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="878.903,425.476,888.7518,425.5057,883.4782,423.4591,885.5248,418.1855,878.903,425.476" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="971.5" y="347.5669">사용</text></g><!--MD5=[29e52c506f08c01a1c19326b542bd1f6]
+reverse link 관리 의존성\n(8장) to 목\n(5장)--><g id="link_관리 의존성\n(8장)_목\n(5장)"><path d="M889.06,98.857 C935.915,116.186 1004.463,147.717 1048,195.5 C1075.37,225.535 1090.48,271.061 1097.79,299.768 " fill="none" id="관리 의존성\n(8장)-backto-목\n(5장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="884.311,97.122,891.3923,103.9671,889.0075,98.8375,894.1371,96.4527,884.311,97.122" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="82" x="943.5" y="108.5669">사용하면 안됨</text></g><!--MD5=[01748a47c2a1aa040e17139851cd8999]
+reverse link 비관리 의존성\n(8장) to 목\n(5장)--><g id="link_비관리 의존성\n(8장)_목\n(5장)"><path d="M887.675,199.688 C944.031,232.801 1033.79,285.539 1077.66,311.316 " fill="none" id="비관리 의존성\n(8장)-backto-목\n(5장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="883.339,197.141,889.0717,205.1495,887.6497,199.6743,893.125,198.2523,883.339,197.141" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="69" x="950" y="216.5669">사용해야 함</text></g><!--MD5=[78d12cb5702ca72724e078afb976a017]
+reverse link 프로세스 외부 의존성\n(2장) to 비관리 의존성\n(8장)--><g id="link_프로세스 외부 의존성\n(2장)_비관리 의존성\n(8장)"><path d="M687.323,170.5 C719.034,170.5 754.492,170.5 782.825,170.5 " fill="none" id="프로세스 외부 의존성\n(2장)-backto-비관리 의존성\n(8장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="682.267,170.5,691.267,174.5,687.267,170.5,691.267,166.5,682.267,170.5" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="719.5" y="166.5669">같음</text></g><!--MD5=[6bb2bbaa5f5c700bf26072df28a94d37]
+reverse link 프로세스 외부 의존성\n(2장) to 관리 의존성\n(8장)--><g id="link_프로세스 외부 의존성\n(2장)_관리 의존성\n(8장)"><path d="M680.134,142.136 C716.164,128.351 758.347,112.211 789.737,100.201 " fill="none" id="프로세스 외부 의존성\n(2장)-backto-관리 의존성\n(8장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="675.319,143.978,685.1542,144.4971,679.9887,142.191,682.2949,137.0255,675.319,143.978" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="719.5" y="112.5669">같음</text></g><!--MD5=[a3bec347da9abce1cdbeda57071c9455]
+link 프로세스 외부 의존성\n(2장) to 협력자\n(2장)--><g id="link_프로세스 외부 의존성\n(2장)_협력자\n(2장)"><path d="M637.981,197.336 C681.115,233.531 757.614,297.724 801.84,334.836 " fill="none" id="프로세스 외부 의존성\n(2장)-to-협력자\n(2장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="805.754,338.12,801.4315,329.2704,801.924,334.9057,796.2887,335.3983,805.754,338.12" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="719.5" y="256.5669">같음</text></g><!--MD5=[82e3440eef69ca922845fb2ff22be3dd]
+link 컨트롤러\n(7장) to 협력자\n(2장)--><g id="link_컨트롤러\n(7장)_협력자\n(2장)"><path d="M837,285.219 C837,299.281 837,316.626 837,331.412 " fill="none" id="컨트롤러\n(7장)-to-협력자\n(2장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="837,336.733,841,327.733,837,331.733,833,327.733,837,336.733" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="812.5" y="315.5669">많음</text></g><!--MD5=[a91b96192de48c2817a3ff5672d8ea6c]
+link 프로세스 내부 의존성\n(2장) to 협력자\n(2장)--><g id="link_프로세스 내부 의존성\n(2장)_협력자\n(2장)"><path d="M682.267,310.697 C722.359,324.467 769.562,340.68 800.983,351.473 " fill="none" id="프로세스 내부 의존성\n(2장)-to-협력자\n(2장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="805.887,353.157,798.6747,346.4501,801.1582,351.5326,796.0757,354.0162,805.887,353.157" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="719.5" y="317.5669">같음</text></g><!--MD5=[8f915ba86ec5c384e26b9face0a84498]
+link 단위테스트 to 빠른 피드백\n(4장)--><g id="link_단위테스트_빠른 피드백\n(4장)"><path d="M106.1148,226.5 C146.683,226.5 206.841,226.5 249.574,226.5 " fill="none" id="단위테스트-to-빠른 피드백\n(4장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="254.696,226.5,245.696,222.5,249.696,226.5,245.696,230.5,254.696,226.5" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="146" y="222.5669">극대화</text></g><!--MD5=[6f103d9b1efd1a622cd415af9ccda371]
+link 단위테스트 to 유지 보수성\n(4장)--><g id="link_단위테스트_유지 보수성\n(4장)"><path d="M106.1148,242.744 C146.765,257.711 207.086,279.921 249.834,295.661 " fill="none" id="단위테스트-to-유지 보수성\n(4장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="254.696,297.451,247.6321,290.588,250.0039,295.7236,244.8682,298.0954,254.696,297.451" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="39" x="146" y="252.5669">극대화</text></g><!--MD5=[67928a7363e09a3296b4d9c77df3bbfb]
+link 단위테스트 to 도메인 모델 및 알고리즘\n(7장)--><g id="link_단위테스트_도메인 모델 및 알고리즘\n(7장)"><path d="M81.9594,208.422 C110.883,182.45 166.42,133.422 216,94.5 C229.466,83.929 244.538,72.874 258.208,63.124 " fill="none" id="단위테스트-to-도메인 모델 및 알고리즘\n(7장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="262.402,60.141,252.7493,62.0967,258.3272,63.0385,257.3853,68.6164,262.402,60.141" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="152.5" y="115.5669">처리</text></g><!--MD5=[42b75042efba44468fe98d379027107c]
+link 도메인 모델 및 알고리즘\n(7장) to 복잡도\n(7장)--><g id="link_도메인 모델 및 알고리즘\n(7장)_복잡도\n(7장)"><path d="M302,60.219 C302,74.281 302,91.626 302,106.412 " fill="none" id="도메인 모델 및 알고리즘\n(7장)-to-복잡도\n(7장)" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="302,111.733,306,102.733,302,106.733,298,102.733,302,111.733" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="26" x="277.5" y="90.5669">높음</text></g><!--MD5=[5edb46dfd1f3e8703db7873ac475dde0]
+@startuml
+skinparam componentStyle rectangle
+left to right direction
+
+[테스트 정확도\n(4장)]- ->[거짓 음성\n(4장)] : 정의
+[테스트 정확도\n(4장)]- ->[거짓 양성\n(4장)] : 정의
+
+[거짓 음성\n(4장)]- ->[회기 방지\n(4장)] : 해결
+
+[거짓 양성\n(4장)]- ->[리팩터링 내성\n(4장)] : 해결
+
+[통합 테스트]-u->[회기 방지\n(4장)] : 극대화
+[통합 테스트]->[리팩터링 내성\n(4장)] : 극대화
+[통합 테스트]-u->[컨트롤러\n(4장)] : 처리
+
+[목\n(5장)]-u->[리팩터링 내성\n(4장)] : 잘못 사용하면 떨어짐
+[목\n(5장)]-u->[통합 테스트] : 사용
+[목\n(5장)]-u->[관리 의존성\n(8장)] : 사용하면 안됨
+[목\n(5장)]-u->[비관리 의존성\n(8장)] : 사용해야 함
+
+[비관리 의존성\n(8장)]-u->[프로세스 외부 의존성\n(2장)] : 같음
+[관리 의존성\n(8장)]-u->[프로세스 외부 의존성\n(2장)] : 같음
+
+
+[프로세스 외부 의존성\n(2장)]- ->[협력자\n(2장)] : 같음
+
+[컨트롤러\n(7장)]->[협력자\n(2장)] : 많음
+[프로세스 내부 의존성\n(2장)]- ->[협력자\n(2장)] : 같음
+
+[단위테스트]- ->[빠른 피드백\n(4장)] : 극대화
+[단위테스트]- ->[유지 보수성\n(4장)] : 극대화
+[단위테스트]- ->[도메인 모델 및 알고리즘\n(7장)] : 처리
+
+[도메인 모델 및 알고리즘\n(7장)] -> [복잡도\n(7장)] : 높음
+
+[테스트 정확도\n(4장)]- ->[거짓 음성\n(4장)] : 정의
+[테스트 정확도\n(4장)]-r->[거짓 양성\n(4장)] : 정의
+
+[거짓 음성\n(4장)]- ->[회기 방지\n(4장)] : 해결
+
+[거짓 양성\n(4장)]-r->[리팩터링 내성\n(4장)] : 해결
+
+' [통합 테스트]- ->[회기 방지\n(4장)] : 극대화
+' [통합 테스트]->[리팩터링 내성\n(4장)] : 극대화
+' [통합 테스트]- ->[컨트롤러\n(4장)] : 처리
+
+' [목\n(5장)]-u->[리팩터링 내성\n(4장)] : 잘못 사용하면 떨어짐
+' [목\n(5장)]-u->[통합 테스트] : 사용
+' [목\n(5장)]-d->[관리 의존성\n(8장)] : 사용하면 안됨
+' [목\n(5장)]-d->[비관리 의존성\n(8장)] : 사용해야 함
+
+' [비관리 의존성\n(8장)]- ->[프로세스 외부 의존성\n(2장)] : 같음
+' [관리 의존성\n(8장)]- ->[프로세스 외부 의존성\n(2장)] : 같음
+
+
+' [프로세스 외부 의존성\n(2장)]- ->[협력자\n(2장)] : 같음
+
+' [컨트롤러\n(7장)]->[협력자\n(2장)] : 많음
+' [프로세스 내부 의존성\n(2장)]- ->[협력자\n(2장)] : 같음
+
+' [단위테스트]- ->[빠른 피드백\n(4장)] : 극대화
+' [단위테스트]- ->[유지 보수성\n(4장)] : 극대화
+' [단위테스트]-u->[도메인 모델 및 알고리즘\n(7장)] : 처리
+
+' [도메인 모델 및 알고리즘\n(7장)] -> [복잡도\n(7장)] : 높음
+@enduml
+
+@startuml
+skinparam componentStyle rectangle
+left to right direction
+
+[테스트 정확도\n(4장)]- ->[거짓 음성\n(4장)] : 정의
+[테스트 정확도\n(4장)]- ->[거짓 양성\n(4장)] : 정의
+
+[거짓 음성\n(4장)]- ->[회기 방지\n(4장)] : 해결
+
+[거짓 양성\n(4장)]- ->[리팩터링 내성\n(4장)] : 해결
+
+[통합 테스트]-u->[회기 방지\n(4장)] : 극대화
+[통합 테스트]->[리팩터링 내성\n(4장)] : 극대화
+[통합 테스트]-u->[컨트롤러\n(4장)] : 처리
+
+[목\n(5장)]-u->[리팩터링 내성\n(4장)] : 잘못 사용하면 떨어짐
+[목\n(5장)]-u->[통합 테스트] : 사용
+[목\n(5장)]-u->[관리 의존성\n(8장)] : 사용하면 안됨
+[목\n(5장)]-u->[비관리 의존성\n(8장)] : 사용해야 함
+
+[비관리 의존성\n(8장)]-u->[프로세스 외부 의존성\n(2장)] : 같음
+[관리 의존성\n(8장)]-u->[프로세스 외부 의존성\n(2장)] : 같음
+
+
+[프로세스 외부 의존성\n(2장)]- ->[협력자\n(2장)] : 같음
+
+[컨트롤러\n(7장)]->[협력자\n(2장)] : 많음
+[프로세스 내부 의존성\n(2장)]- ->[협력자\n(2장)] : 같음
+
+[단위테스트]- ->[빠른 피드백\n(4장)] : 극대화
+[단위테스트]- ->[유지 보수성\n(4장)] : 극대화
+[단위테스트]- ->[도메인 모델 및 알고리즘\n(7장)] : 처리
+
+[도메인 모델 및 알고리즘\n(7장)] -> [복잡도\n(7장)] : 높음
+
+[테스트 정확도\n(4장)]- ->[거짓 음성\n(4장)] : 정의
+[테스트 정확도\n(4장)]-r->[거짓 양성\n(4장)] : 정의
+
+[거짓 음성\n(4장)]- ->[회기 방지\n(4장)] : 해결
+
+[거짓 양성\n(4장)]-r->[리팩터링 내성\n(4장)] : 해결
+
+
+
+
+
+
+
+
+@enduml
+
+PlantUML version 1.2022.3beta2(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

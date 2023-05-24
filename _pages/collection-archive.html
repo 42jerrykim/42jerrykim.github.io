@@ -1,0 +1,52 @@
+---
+layout: archive
+title: "Posts by Collection"
+permalink: /collections/
+author_profile: true
+---
+
+블로그 포스팅과는 다르게 주제별로 정리한 글 입니다.
+
+{% for collection in site.collections %}
+  {% unless collection.output == false %}
+    {% if collection.label != "posts" %}
+      <section id="{{ collection.label | slugify | downcase }}" class="taxonomy__section">
+        <h2 class="archive__subtitle" id="{{ label | slugify }}">Posts of <a href="{{ collection.label }}">{{ collection.Title }}</a></h2>
+          {% for item in collection.docs %}
+            <a href="{{ item.url | relative_url }}" rel="permalink">{{ item.title }}</a>&nbsp&nbsp|&nbsp
+          {% endfor %}
+        <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+      </section>
+    {% endif %}
+  {% endunless %}
+{% endfor %}
+
+{% for collection in site.collections %}
+  {% unless collection.output == false %}
+    {% if collection.label == "posts" %}
+    <section id="{{ collection.label | slugify | downcase }}" class="taxonomy__section">
+      <h2 class="archive__subtitle" id="{{ label | slugify }}"><a href="/posts">Posts</a> not in the collection</h2>
+        {% for item in collection.docs %}
+          <a href="{{ item.url | relative_url }}" rel="permalink">{{ item.title }}</a>&nbsp&nbsp|&nbsp
+        {% endfor %}
+      <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+    </section>
+    {% endif %}
+  {% endunless %}
+{% endfor %}
+
+{% for collection in site.collections %}
+  {% unless collection.output == false or collection.label == "posts" %}
+    <section id="{{ collection.label | slugify | downcase }}" class="taxonomy__section">
+      {% capture label %}{{ collection.Title }}{% endcapture %}
+      {% if label != written_label %}
+        <h2 class="archive__subtitle" id="{{ label | slugify }}">Posts of <a href="{{ collection.label }}">{{ label }}</a></h2>
+        {% capture written_label %}{{ label }}{% endcapture %}
+      {% endif %}
+      {% for post in collection.docs %}
+        {% include archive-single.html  type=entries_layout %}
+      {% endfor %}
+      <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
+    </section>
+  {% endunless %}
+{% endfor %}

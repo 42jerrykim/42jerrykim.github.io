@@ -1,0 +1,348 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: Jerry
+email: 42jerrykim@gmail.com
+description: Jerry의 개발 블로그입니다. .NET, C/C++, Linux, Clean Code, Test 관련 글을 업로드하고 있습니다.
+github_username: 42jerrykim
+minimal_mistakes_skin: dark
+search: true
+
+repository               : "42jerrykim/42jerrykim.github.io"
+
+# logo: /assets/images/undefined/KakaoTalk_20220210_094951700.png
+
+# Build settings
+markdown: kramdown
+remote_theme: mmistakes/minimal-mistakes
+
+kramdown:
+  highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# Outputting
+permalink: /:categories/:title/
+paginate: 10 # amount of posts to show
+paginate_path: /page:num/
+timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+breadcrumbs: true  # disabled by default
+collections_dir: articles
+
+# search_full_content: true
+google:
+  search_engine_id: a881cb1a9fa9b3278
+
+google_site_verification : "E-IZOpjA4x43YPBULfdhFQ3XQF0sHaCOHtUxo2ODDB4"
+naver_site_verification: "4b02ffa47d254e19822fdb25d0655a823faf52f3"
+
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "G-ESFX2F44J5"
+    anonymize_ip: false # default
+
+teaser: https://pilbox.themuse.com/image.jpg?filter=antialias&h=422&opt=1&pos=top-left&prog=1&q=keep&url=https%3A%2F%2Fcms-assets.themuse.com%2Fmedia%2Flead%2F01212022-1047259374-coding-classes_scanrail.jpg%3Fv%3D1cc61016a54a7e07475549aca7c39b38545e3ed6&w=767
+og_image: /assets/images/undefined/KakaoTalk_20220210_094951700.png
+
+include:
+  - _pages
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
+
+# Plugins (previously gems:)
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+  - jekyll-redirect-from
+  
+author:
+  name   : "Jerry"
+  avatar : "/assets/images/undefined/KakaoTalk_20220210_095101080.png"
+  bio    : ".NET, C/C++, Linux, Clean Code, Test 관련 글을 업로드하고 있습니다."
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/Reevid/"
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+      url: "https://www.instagram.com/reevidkim/"
+
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/Reevid/"
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+      url: "https://www.instagram.com/reevidkim/"
+    - label: "Mail"
+      icon: "fa-regular fa-envelope"
+      url: "mailto:reevid7@gmail.com"
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+      toc: true  
+      toc_sticky: true
+      toc_icon: "align-left"
+      show_date: true
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+  # _bashshell
+  - scope:
+      path: ""
+      type: bashshell
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      toc: true  
+      toc_sticky: true
+      toc_icon: "align-left"
+      comments: true
+      read_time: true
+      show_date: true
+  # _cycle
+  - scope:
+      path: ""
+      type: cycle
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      toc: true  
+      toc_sticky: true
+      toc_icon: "align-left"
+      comments: true
+      read_time: true
+      show_date: true
+  #_designpattern
+  - scope:
+      path: ""
+      type: designpattern
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      toc: true  
+      toc_sticky: true
+      toc_icon: "align-left"
+      comments: true
+      read_time: true
+      show_date: true
+  #_baekjoon
+  - scope:
+      path: ""
+      type: baekjoon
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      toc: true  
+      toc_sticky: true
+      toc_icon: "align-left"
+      comments: true
+      read_time: true
+      show_date: true
+  # _cleanarchitecture
+  - scope:
+      path: ""
+      type: cleanarchitecture
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      toc: true  
+      toc_sticky: true
+      toc_icon: "align-left"
+      comments: true
+      read_time: true
+      show_date: true
+  # _algorithm
+  - scope:
+      path: ""
+      type: algorithm
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      toc: true  
+      toc_sticky: true
+      toc_icon: "align-left"
+      comments: true
+      read_time: true
+      show_date: true
+  # _testing
+  - scope:
+      path: ""
+      type: testing
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      toc: true  
+      toc_sticky: true
+      toc_icon: "align-left"
+      comments: true
+      read_time: true
+      show_date: true
+  # _cmd
+  - scope:
+      path: ""
+      type: cmd
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      toc: true  
+      toc_sticky: true
+      toc_icon: "align-left"
+      comments: true
+      read_time: true
+      show_date: true
+  # _unittesting
+  - scope:
+      path: ""
+      type: unittesting
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      toc: true  
+      toc_sticky: true
+      toc_icon: "align-left"
+      comments: true
+      read_time: true
+      show_date: true
+  # _computerterms
+  - scope:
+      path: ""
+      type: computerterms
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      toc: true  
+      toc_sticky: true
+      toc_icon: "align-left"
+      comments: true
+      read_time: true
+      show_date: true
+  # _pythoncheatsheet
+  - scope:
+      path: ""
+      type: pythoncheatsheet
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      toc: true  
+      toc_sticky: true
+      toc_icon: "align-left"
+      comments: true
+      read_time: true
+      show_date: true
+
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
+
+# Collections
+collections:
+  bashshell:
+    Title: "Bash Shell"
+    output: true
+    permalink: /collections/:collection/:path/
+  testing:
+    Title: "Testing"
+    output: true
+    permalink: /collections/:collection/:path/
+  cycle:
+    Title: "Cycle"
+    output: true
+    permalink: /collections/:collection/:path/
+  designpattern:
+    Title: "Design Pattern"
+    output: true
+    permalink: /collections/:collection/:path/
+  algorithm:
+    Title: "Algorithm"
+    output: true
+    permalink: /collections/:collection/:path/
+  cmd:
+    Title: "CMD"
+    output: true
+    permalink: /collections/:collection/:path/
+  cleanarchitecture:
+    Title: "Clean Architecture"
+    output: true
+    permalink: /collections/:collection/:path/
+  unittesting:
+    Title: "Unit Testing"
+    output: true
+    permalink: /collections/:collection/:path/
+  computerterms:
+    Title: "컴퓨터 용어집"
+    output: true
+    permalink: /collections/:collection/:path/
+  baekjoon:
+    Title: "백준"
+    output: true
+    permalink: /collections/:collection/:path/
+  pythoncheatsheet:
+    Title: "Python Cheat Sheet"
+    output: true
+    permalink: /collections/:collection/:path/
+
+
+comments:
+  provider: "utterances"
+  utterances:
+    theme                : photon-dark
+    issue_term           : pathname
