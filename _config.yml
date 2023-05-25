@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: JerryKim
+title: 42JerryKim
 email: 42jerrykim@gmail.com
 description: Jerry의 개발 블로그입니다. .NET, C/C++, Linux, Clean Code, Test 관련 글을 업로드하고 있습니다.
 github_username: 42jerrykim
