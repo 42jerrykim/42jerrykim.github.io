@@ -44,36 +44,15 @@ timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 breadcrumbs: true  # disabled by default
 collections_dir: articles
 
-# search_full_content: true
-# google:
-#   search_engine_id: a881cb1a9fa9b3278
-
-# google_site_verification : "0xN3mc1JrG7QQ-wdrmWkkP7pqHsVjlVj9Cxs9h6wgOg"
 # naver_site_verification: "4b02ffa47d254e19822fdb25d0655a823faf52f3"
 google-site-verification: googleb84d4a34dffafade.html
-# analytics:
-#   provider: "google-gtag"
-#   google:
-#     tracking_id: "G-ESFX2F44J5"
-#     anonymize_ip: false # default
+
 
 teaser: https://pilbox.themuse.com/image.jpg?filter=antialias&h=422&opt=1&pos=top-left&prog=1&q=keep&url=https%3A%2F%2Fcms-assets.themuse.com%2Fmedia%2Flead%2F01212022-1047259374-coding-classes_scanrail.jpg%3Fv%3D1cc61016a54a7e07475549aca7c39b38545e3ed6&w=767
 og_image: /assets/images/undefined/KakaoTalk_20220210_094951700.png
 
 include:
   - _pages
-
-# Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
 
 # Plugins (previously gems:)
 plugins:
