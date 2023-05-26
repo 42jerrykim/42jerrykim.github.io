@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: 42 Jerry Kim
+title: JerryKim
 email: 42jerrykim@gmail.com
 description: Jerry Kim의 개발 블로그입니다.
 github_username: 42jerrykim
@@ -23,6 +23,7 @@ search: true
 repository               : "42jerrykim/42jerrykim.github.io"
 
 # logo: /assets/images/undefined/KakaoTalk_20220210_094951700.png
+logo: https://upload.wikimedia.org/wikipedia/commons/5/56/Answer_to_Life.png
 
 # Build settings
 markdown: kramdown
