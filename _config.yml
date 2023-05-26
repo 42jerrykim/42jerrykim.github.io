@@ -87,7 +87,7 @@ plugins:
 author:
   name   : "Jerry Kim"
   avatar : "/assets/images/undefined/KakaoTalk_20220210_095101080.png"
-  bio    : "Programming 관련한 다양한 주제로 글을 포스팅하고 있습니다. 이름에 사용한 숫자 42는 다음과 같은 의미를 항상 마음에 담기 위해서 사용하였습니다. ASCII 코드에서 숫자 42는 '*'(Astarisk, 별표)를 의미합니다. '*'는 Java, Python, SQL 등의 프로그래밍 언어에서는 '모든 것'을 뜻하는 일종의 Wild Card로 사용됩니다. 또한, 'The Hitchhiker's Guide to the Galaxy'라는 SF 소설에서 삶, 우주, 그리고 모든 것에 대한 궁극적인 질문에 대한 해답(The ultimate answer to life, the universe and everything)으로 42를 제시하였다."
+  bio    : "Programming 관련한 다양한 주제로 글을 포스팅하고 있습니다. 이름에 사용한 숫자 42는 다음과 같은 의미를 항상 마음에 담기 위해서 사용하였습니다. ASCII 코드에서 숫자 42는 '```*```'(Astarisk, 별표)를 의미합니다. '```*```'는 Java, Python, SQL 등의 프로그래밍 언어에서는 '모든 것'을 뜻하는 일종의 Wild Card로 사용됩니다. 또한, 'The Hitchhiker's Guide to the Galaxy'라는 SF 소설에서 삶, 우주, 그리고 모든 것에 대한 궁극적인 질문에 대한 해답(The ultimate answer to life, the universe and everything)으로 42를 제시하였다."
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
