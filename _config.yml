@@ -88,7 +88,7 @@ plugins:
 author:
   name   : "Jerry Kim"
   avatar : "/assets/images/undefined/KakaoTalk_20220210_095101080.png"
-  bio    : "[![42](https://upload.wikimedia.org/wikipedia/commons/5/56/Answer_to_Life.png)](https://simple.wikipedia.org/wiki/42_(answer))는 'The Hitchhiker's Guide to the Galaxy'라는 SF 소설에서 삶, 우주, 그리고 모든 것에 대한 궁극적인 질문에 대한 해답이다."
+  bio    : "[42](https://simple.wikipedia.org/wiki/42_(answer))는 'The Hitchhiker's Guide to the Galaxy'라는 SF 소설에서 삶, 우주, 그리고 모든 것에 대한 궁극적인 질문에 대한 해답이다."
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
