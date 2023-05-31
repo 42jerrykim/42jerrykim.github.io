@@ -78,7 +78,7 @@ author:
       url: "https://github.com/42jerrykim/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      url: "https://www.instagram.com/reevidkim/"
+      url: "https://www.instagram.com/42jerrykim/"
 
 footer:
   links:
@@ -87,7 +87,7 @@ footer:
       url: "https://github.com/42jerrykim/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      url: "https://www.instagram.com/reevidkim/"
+      url: "https://www.instagram.com/42jerrykim/"
     - label: "Mail"
       icon: "fa-regular fa-envelope"
       url: "mailto:42jerrykim@gmail.com"
