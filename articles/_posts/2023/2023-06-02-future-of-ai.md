@@ -1,5 +1,5 @@
 ---
-title: "[AI] AI의 미래: 기회, 위험, 오픈 소스 연구의 필요성"
+title: "[AI] AI의 미래 - 기회, 위험, 오픈 소스 연구의 필요성"
 categories: AI
 tags:
 - Artificial Intelligence
