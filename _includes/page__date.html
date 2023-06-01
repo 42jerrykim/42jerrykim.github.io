@@ -1,6 +1,6 @@
 {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
 
-<p class="page__date "><strong><i class="fab fa-fw fa-github"></i> Source File:</strong> <a class="page_date_saperator" href="https://github.com/Reevid/Reevid.github.io/blob/master/articles/{{ page.path }}">{{ page.path | split: "/" | last }}</a></p>
+<p class="page__date "><strong><i class="fab fa-fw fa-github"></i> Source File:</strong> <a class="page_date_saperator" href="https://github.com/42jerrykim/42jerrykim.github.io/blob/master/articles/{{ page.path }}">{{ page.path | split: "/" | last }}</a></p>
 
 {% if page.last_modified_at %}
   <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Updated:" }}</strong> <time class="dt-published" datetime="{{ page.last_modified_at | date: date_format }}">{{ page.last_modified_at | date: date_format }}</time></p>
