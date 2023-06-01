@@ -23,7 +23,7 @@ tags:
 - Scaling issues
 - Ethical way
 header:
-  teaser: /assets/images/2023/LyftMaps_ImageHeader_01.jpg
+  teaser: /assets/images/2023/2023-06-chatgpt-tile_tcm7-315735.jpg
 ---
 
 인공지능(AI)은 기술 업계의 판도를 바꾸어 왔으며, OpenAI의 GPT-4도 예외는 아닙니다. 그러나 최근 해커 뉴스 플랫폼에서 이 AI 모델을 둘러싼 몇 가지 우려와 논쟁에 대한 논의가 있었습니다. 이 블로그 게시물은 이러한 논의를 자세히 살펴보고 당면한 문제에 대한 포괄적인 개요를 제공하는 것을 목표로 합니다.
