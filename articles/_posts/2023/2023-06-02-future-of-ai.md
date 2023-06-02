@@ -91,3 +91,10 @@ AI의 힘과 영향력이 계속 커짐에 따라 AI 연구에 대한 민주화�
 하지만 AI의 미래는 이미 정해진 결론이 아닙니다. 우리 사회가 아직 개척해 나가고 있는 길입니다. 따라서 독자 여러분께서도 오픈소스 AI 연구 시설에 대한 청원을 지지해 주시기 바랍니다. 그렇게 함으로써 누구나 AI 기술에 접근할 수 있고, 혁신과 발전이 소수의 강력한 기업에 의해 제한되지 않으며, 모든 인류가 AI의 혜택을 누릴 수 있는 미래를 만드는 데 도움을 줄 수 있습니다.
 
 복잡한 AI 환경을 계속 탐색해 나가면서 투명성, 책임성, 포용성의 원칙에 따라 개발이 이루어질 수 있도록 노력합시다. AI의 미래는 엄청난 잠재력을 가지고 있지만, 이러한 잠재력이 모두를 위해 활용될 수 있도록 하는 것은 우리의 몫입니다.
+
+# 참고
+
+* https://news.ycombinator.com/item?id=36134249
+* https://www.technologyreview.com/2023/05/03/1072589/video-geoffrey-hinton-google-ai-risk-ethics/
+* https://www.openpetition.eu/petition/online/securing-our-digital-future-a-cern-for-open-source-large-scale-ai-research-and-its-safety
+* https://www.bigtechnology.com/p/he-helped-train-chatgpt-it-traumatized
