@@ -121,5 +121,5 @@ header:
 3. [Roger Ebert](https://www.rogerebert.com/reviews/bicentennial-man-1999) - 유명한 영화 평론가 Roger Ebert의 리뷰를 볼 수 있습니다.
 4. [Rotten Tomatoes](https://www.rottentomatoes.com/m/bicentennial_man) - 다양한 평론가들의 의견과 관객들의 평점을 볼 수 있습니다.
 5. [The Movie Database (TMDB)](https://www.themoviedb.org/movie/2277-bicentennial-man) - 영화에 대한 개요와 세부 정보를 확인할 수 있습니다.
-6. [Disney Wiki | Fandom](https://disney.fandom.com/wiki/Bicentennial_Man) - 영화에 대한 상세한 정보와 배경 스토리를 볼 수 있습니다.
+6. [Disney Wiki](https://disney.fandom.com/wiki/Bicentennial_Man) - 영화에 대한 상세한 정보와 배경 스토리를 볼 수 있습니다.
 7. [Metacritic](https://www.metacritic.com/movie/bicentennial-man) - 다양한 소스에서의 평점을 평균낸 메타스코어를 확인하고, 사용자들의 평가와 리뷰를 볼 수 있습니다.
