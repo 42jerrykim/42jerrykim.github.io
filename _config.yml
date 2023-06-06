@@ -43,7 +43,7 @@ kramdown:
 permalink: /:categories/:title/
 paginate: 10 # amount of posts to show
 paginate_path: /page:num/
-timezone: KST
+timezone: Asia/Seoul
 
 breadcrumbs: true  # disabled by default
 collections_dir: articles
