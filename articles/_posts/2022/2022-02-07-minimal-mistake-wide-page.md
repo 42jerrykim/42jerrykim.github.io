@@ -11,13 +11,13 @@ header:
 
 [Minimal Mistakes Jekyll theme](https://github.com/mmistakes/minimal-mistakes)을 사용하여 Gibhub 페이지를 구성한 경우에는 최대 너비가 지정되어 있어 일정 크기 이상으로 넓어지지 않는다. [Sample Post](https://mmistakes.github.io/minimal-mistakes/year-archive/)에서 [Minimal Mistakes Jekyll theme](https://github.com/mmistakes/minimal-mistakes)가 어떻게 동작하는지 확인 할 수 있다. 이런 경우에 더 넓은 페이지를 구성하고 싶은 사람들을 위한 가이드이다. 
 
-# 적용 방법
-## 1. main.scss 추가 하기
+## 적용 방법
+### 1. main.scss 추가 하기
 [Customizing](https://mmistakes.github.io/minimal-mistakes/docs/stylesheets/#customizing)의 내용 중에서 2번을 참고하여 assets/css/main.scss 파일을 생성하고 아래의 내용으로 main.scss를 채운다.
 
 ```scss
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
+## Only the main Sass file needs front matter (the dashes are enough)
 ---
 
 @charset "utf-8";
@@ -25,7 +25,7 @@ header:
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 ```
-## 2. 최대 넓이 확장하기
+### 2. 최대 넓이 확장하기
 
 추가된 main.scss에 아래의 내용을 추가하면 웹사이트의 최대 너비 제한이 풀린다.
 
@@ -37,7 +37,7 @@ $max-width: 100%;
 
 ```scss
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
+## Only the main Sass file needs front matter (the dashes are enough)
 ---
 
 @charset "utf-8";
@@ -48,7 +48,7 @@ $max-width: 100%;
 @import "minimal-mistakes"; // main partials
 ```
 
-## 3. breadcrumbs 정렬 오류 수정하기
+### 3. breadcrumbs 정렬 오류 수정하기
 
 [Breadcrumbs (beta)](https://mmistakes.github.io/minimal-mistakes/docs/navigation/#breadcrumbs-beta)를 설정한경우 최대 너비가 달라지는것에 대응을 못하는것을 확인 할 수 있을것이다.
 
@@ -98,11 +98,11 @@ $max-width: 100%;
 
 ```@import```의 아래쪽에 선언한다.
 
-# 최종 코드
+## 최종 코드
 
 ```scss
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
+## Only the main Sass file needs front matter (the dashes are enough)
 ---
 
 @charset "utf-8";

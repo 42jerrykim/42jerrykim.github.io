@@ -11,9 +11,9 @@ tags:
 
 Custom Signal Handler를 만들어서 사용하는 방법에 대해서 알아본다. 
 
-# 시그널의 종류
+## 시그널의 종류
 
-# Sigaction을 사용하여 Custom Signal Handler 등록하기
+## Sigaction을 사용하여 Custom Signal Handler 등록하기
 
 ``` c
 #include <signal.h>
@@ -47,6 +47,6 @@ int main(void)
     raise(SIGSEGV);
 }
 ```
-# async-signal-safe function을 사용해야 한다.
+## async-signal-safe function을 사용해야 한다.
 
 [signal-safety(7) — Linux manual page](https://man7.org/linux/man-pages/man7/signal-safety.7.html)

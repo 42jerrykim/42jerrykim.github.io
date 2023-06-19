@@ -54,7 +54,7 @@ COMMAND1
 
 COMMAND_LAST
 
-# Will exit with status of last command.
+## Will exit with status of last command.
 ```
 
 `$?` reads the exit status of the last command executed. After a function returns, $? gives the exit status of the last command executed in the function. This is Bash's way of giving functions a **return value.**[^1]
@@ -63,7 +63,7 @@ Following the execution of a pipe, a $? gives the exit status of the last comman
 
 After a script terminates, a $? from the command-line gives the exit status of the script, that is, the last command executed in the script, which is, by convention, 0 on success or an integer in the range 1 - 255 on error.
 
-# Example exit / exit status
+## Example exit / exit status
 ``` bash
 #!/bin/bash
 
@@ -85,7 +85,7 @@ By convention, an `exit 0` indicates success, while a non-zero exit value means 
 
 The !, the logical not qualifier, reverses the outcome of a test or command, and this affects its exit status.
 
-# Negating a condition using !
+## Negating a condition using !
 ``` bash
 true    # The "true" builtin.
 echo "exit status of \"true\" = $?" # 0

@@ -10,8 +10,8 @@ redirect_from:
 
 
 
-# Extract directory path
-## Use sed
+## Extract directory path
+### Use sed
 `sed` (stream editor) is a Unix utility that parses and transforms text
 ~~~ shell
 function extract_directory_path() {
@@ -24,11 +24,11 @@ RES=`extract_directory_path ${FILE_PATH}`
 echo RES
 ~~~
 
-## About sed
+### About sed
 `sed` (stream editor) is a Unix utility that parses and transforms text, using a simple, compact programming language. sed was developed from 1973 to 1974 by Lee E. McMahon of Bell Labs,[1] and is available today for most operating systems.[2] sed was based on the scripting features of the interactive editor ed ("editor", 1971) and the earlier qed ("quick editor", 1965?66). sed was one of the earliest tools to support regular expressions, and remains in use for text processing, most notably with the substitution command. Popular alternative tools for plaintext string manipulation and "stream editing" include AWK and Perl.
 
-# Extract file name
-## Use sed
+## Extract file name
+### Use sed
 ``` shell
 #!/bin/bash
 function extract_file_name() {
@@ -41,7 +41,7 @@ RES=`extract_file_name ${FILE_PATH}`
 echo RES
 ```
 
-## Use basename
+### Use basename
 Use the `basename` command to extract the filename from the path
 ``` shell
 #!/bin/bash
@@ -50,9 +50,9 @@ RES=`extract_file_name ${FILE_PATH}`
 
 echo RES`
 ```
-## About basename
+### About basename
 basename is a standard computer program on Unix and Unix-like operating systems. When basename is given a pathname, it will delete any prefix up to the last slash ('/') character and return the result. basename is described in the Single UNIX Specification and is primarily used in shell scripts.
-### Usage
+#### Usage
 The Single UNIX Specification specification for basename is.
 ~~~ bash
 $ basename string [suffix]
@@ -60,7 +60,7 @@ $ basename string [suffix]
 * string : A pathname
 * suffix : If specified, basename will also delete the suffix.
 
-### Examples
+#### Examples
 
 basename will retrieve the last name from a pathname ignoring any trailing slashes
 ~~~ bash

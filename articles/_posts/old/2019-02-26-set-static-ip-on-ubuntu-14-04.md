@@ -11,7 +11,7 @@ last_modified_at : 2022-04-15
 
 
 
-# Use shell command
+## Use shell command
 If the Ubuntu Server installer has set your server to use DHCP, you will want to change it to a static IP address so that people can actually use it.
 
 Changing this setting without a GUI will require some text editing, but that ?s classic linux, right?
@@ -32,7 +32,7 @@ iface eth0 inet dhcp
 As you can see, it ?s using DHCP right now. We are going to change dhcp to static, and then there are a number of options that should be added below it. Obviously you ?d customize this to your network.
 
 ``` bash
-# The primary network interface
+## The primary network interface
 auto eth0
 iface eth0 inet static
 address xxx.xxx.xxx.xxx

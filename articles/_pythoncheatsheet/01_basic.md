@@ -12,7 +12,7 @@ header:
 > 
 > 파이썬은 배우기 쉬운 언어이면서 강력한 언어이다. 파이썬은 우아한 문법과 다이나믹 파입을 지원한다. 이것들은 자연스럽게 어우러져 스크립팅과 빠른 어플리케이션 개발하는데 있어서 이상적인 언어로 만든다.
 
-# 산술 연산자
+## 산술 연산자
 
 우선 순위가 높은 순서로 나열 하였다.
 
@@ -28,25 +28,25 @@ header:
 
 ```python
 >>> 2 + 3 * 6
-# 20
+## 20
 
 >>> (2 + 3) * 6
-# 30
+## 30
 
 >>> 2 ** 8
 #256
 
 >>> 23 // 7
-# 3
+## 3
 
 >>> 23 % 7
-# 2
+## 2
 
 >>> (5 - 1) * ((7 + 1) / (3 - 1))
-# 16.0
+## 16.0
 ```
 
-# 증강 연산자
+## 증강 연산자
 
 |Operator|Equivalent|
 |:---|:---|
@@ -60,20 +60,20 @@ header:
 >>> greeting = 'Hello'
 >>> greeting += ' world!'
 >>> greeting
-# 'Hello world!'
+## 'Hello world!'
 
 >>> number = 1
 >>> number += 1
 >>> number
-# 2
+## 2
 
 >>> my_list = ['item']
 >>> my_list *= 3
 >>> my_list
-# ['item', 'item', 'item']
+## ['item', 'item', 'item']
 ```
 
-# 자료형
+## 자료형
 
 |Data Type|Examples
 |:---|:---|
@@ -81,7 +81,7 @@ header:
 |Floating-point numbers|-1.25, -1.0, --0.5, 0.0, 0.5, 1.0, 1.25|
 |Strings|'a', 'aa', 'aaa', 'Hello!', '11 cats'|
 
-# 결합(Concatenation)과 복사
+## 결합(Concatenation)과 복사
 
 * 문자열 결합
     ```python
@@ -94,7 +94,7 @@ header:
     # 'AliceAliceAliceAliceAlice'
     ```
 
-# 변수
+## 변수
 
 1. 한 단어로 변수를 지정할 수 있다.
     ```python
@@ -123,7 +123,7 @@ header:
     >>> 23_var = 'hello'
     ```
 
-# 주석
+## 주석
 
 * 내장 주석
     ```python
@@ -152,20 +152,20 @@ header:
         """
     ```
 
-# print() 함수
+## print() 함수
 
 `print()`함수는 파라미터로 들어온 변수를 출력한다. 다중 변수를 처리 할 수 있으며, 부동 소수점 숫자와 문자열을 포함한다. 문자열은 쌍따옴표 없지 출력하며, 파라미터 사이에 띄어쓰기를 포함하여 출력하기 때문에 출력 형식을 조절하기 편하다.
 
 ```python
 >>> print('Hello world!')
-# Hello world!
+## Hello world!
 
 >>> a = 1
 >>> print('Hello world!', a)
-# Hello world! 1
+## Hello world! 1
 ```
 
-## end 키워드
+### end 키워드
 
 `end` 키워드는 출력된 결과물에서 줄바꿈을 다른 문자로 변경 할 수 있다.
 
@@ -174,19 +174,19 @@ phrase = ['printed', 'with', 'a', 'dash', 'in', 'between']
 >>> for word in phrase:
 ...     print(word, end='-')
 ...
-# printed-with-a-dash-in-between-
+## printed-with-a-dash-in-between-
 ```
 
-## sep 키워드
+### sep 키워드
 
 `sep` 키워드는 구분자를 바꿀수 있다.
 
 ```python
 print('cats', 'dogs', 'mice', sep=',')
-# cats,dogs,mice
+## cats,dogs,mice
 ```
 
-# input() 함수
+## input() 함수
 
 `input()` 함수는 사용자의 입력을 문자열로 받아드린다.
 
@@ -194,9 +194,9 @@ print('cats', 'dogs', 'mice', sep=',')
 >>> print('What is your name?')   # ask for their name
 >>> my_name = input()
 >>> print('Hi, {}'.format(my_name))
-# What is your name?
-# Martha
-# Hi, Martha
+## What is your name?
+## Martha
+## Hi, Martha
 ```
 
 `input()` 함수는 `print()` 함수를 사용하지 않고 기본 메시지를 출력 할 수 있다.
@@ -204,20 +204,20 @@ print('cats', 'dogs', 'mice', sep=',')
 ```python
 >>> my_name = input('What is your name? ')  # default message
 >>> print('Hi, {}'.format(my_name))
-# What is your name? Martha
-# Hi, Martha
+## What is your name? Martha
+## Hi, Martha
 ```
 
-# len() 함수
+## len() 함수
 
 문자열, 리스트(List), 사전(Dictionary)등 변수의 길이를 반환한다.
 
 ```python
 >>> len('hello')
-# 5
+## 5
 
 >>> len(['cat', 3, 'dog'])
-# 3
+## 3
 ```
 
 > 비어 있음을 테스트 할때는 len()을 사용하지 않고 변수를 바로 사용하는것이 좋다.
@@ -227,37 +227,37 @@ print('cats', 'dogs', 'mice', sep=',')
 ```python
 >>> a = [1, 2, 3]
 
-# bad
+## bad
 >>> if len(a) > 0:  # evaluates to True
 ...     print("the list is not empty!")
 ...
-# the list is not empty!
+## the list is not empty!
 
-# good
+## good
 >>> if a: # evaluates to True
 ...     print("the list is not empty!")
 ...
-# the list is not empty!
+## the list is not empty!
 ```
 
-# str(), int(), and float() 함수
+## str(), int(), and float() 함수
 
 이 함수들은 변수의 타입을 바꾸는데 사용한다. 예를 들어 실수나 정수를 문자열로 바꿀때 사용한다.
 
 ```python
 >>> str(29)
-# '29'
+## '29'
 
 >>> str(-3.14)
-# '-3.14'
+## '-3.14'
 ```
 
 또는 문자열을 실수나 정수로 바꿀수 있다.
 
 ```python
 >>> int('11')
-# 11
+## 11
 
 >>> float('3.14')
-# 3.14
+## 3.14
 ```

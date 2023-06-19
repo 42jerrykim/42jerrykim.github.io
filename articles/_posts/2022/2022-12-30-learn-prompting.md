@@ -12,7 +12,7 @@ AI(Artificial Intelligence)와 소통을 위한 오픈소스 강의
 
 [Learn Prompting](https://learnprompting.org/) 에서 내용을 확인 할 수 있다.
 
-# 목차
+## 목차
 
 * Basics: 프롬프트 엔지니어링(PE) 소개와 간단한 PE 테크닉
 * Advanced Applications: 좀 더 강력하고 발전된 PE 응용

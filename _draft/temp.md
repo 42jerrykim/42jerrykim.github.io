@@ -6,7 +6,7 @@
 * https://refactoring.guru/design-patterns/strategy/cpp/example
 * https://modoocode.com/
 * https://docs.microsoft.com/ko-kr/dotnet/standard/design-guidelines/choosing-between-class-and-struct
-# 파일에서 문자열 검색
+## 파일에서 문자열 검색
 grep -r 검색할_문자열 파일이름
 
 * https://m.blog.naver.com/njuhb/220983631282

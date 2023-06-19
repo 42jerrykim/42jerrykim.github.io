@@ -8,7 +8,7 @@ header:
 
 추상 팩토리 패턴은 여러개의 개별적인 팩토리를 캡슐화하는 방법을 제공한다. 각각의 팩토리는 구현 클래스(Concrete Class) 없이 공통의 기능을 가지고 있어야 한다. 보통의 경우에는 클라이언트 프로그램에서 추상 팩토리에 대한 구현체(Concrete Implementation)를 생성하고 팩토리의 제너릭 인터페이스를 사용하여 구현체를 사용한다. 클라이언트는 결과물(Product)의 제너릭 인터페이스(Generic Interfaces)만 사용하기 때문에 팩토리 내부에서 어떤 객체(Concrete Objects)가 반환되는지 모른다. 팩토리에서 객체를 생성하는 메소드를 인터페이스로 노출하기 때문에 추상 팩토리 패턴은 객체가 어떻게 구현되어 있는지와 객체를 사용하는 일반적인 방법을 분리 할 수 있다. 그리고 추상 팩토리 패턴은 객체 합성(Object Composition)에 의존한다.
 
-# 개요
+## 개요
 
 |![](/plantuml/abstract_factory.svg)|
 |:---:|
@@ -27,15 +27,15 @@ header:
 * 객체를 생성하는 인터페이스를 정의하고 구현하는것을 분리된 팩토리에서 처리하는것으로 객체 생성을 캡슐화한다.
 * 객체를 직접 생성하는 대신에 팩토리에서 생성할 수 있도록 객체 생성을 위임한다.
 
-# 정의
+## 정의
 
 추상 팩토리 패턴은 객체에 대한 구현 클래스 없이, 관련되거나 의존성이 있는 객체들을 생성하는 인터페이스다.
 
-# 사용법
+## 사용법
 
-# 구조
+## 구조
 
-# 예시
+## 예시
 
 ```csharp
 using System;
@@ -197,7 +197,7 @@ namespace RefactoringGuru.DesignPatterns.AbstractFactory.Conceptual
     }
 }
 ```
-# 구체적인 구현클래스가 없는 팩토리 예시
+## 구체적인 구현클래스가 없는 팩토리 예시
 
 아래의 코드에서 WinFactory는 IButton을 반환하는 메소드만 가지고 있기 때문에 구현 클래스(Concrete Classes)가 없다고 말할 수 있다.
 
@@ -221,7 +221,7 @@ class WinFactory : IGUIFactory
 }
 ```
 
-# 영문 단어 번역 사전
+## 영문 단어 번역 사전
 
 |영문|한글|
 |:---|:---|
@@ -230,7 +230,7 @@ class WinFactory : IGUIFactory
 |Concrete Classes|구현 클래스|
 |Object Composition|객체 합성 (Composition 의 경우 구성으로 번역할지, 합성으로 번역할지 애매하다.)|
 
-# 참고
+## 참고
 
 * [https://en.wikipedia.org/wiki/Abstract_factory_pattern](https://en.wikipedia.org/wiki/Abstract_factory_pattern)
 * [객체지향 프로그래밍(OOP) – 2 : Composition and Inheritance](https://actruce.com/copy-object-oriented-programming-2/)

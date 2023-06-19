@@ -5,7 +5,7 @@ date: 2022-01-01
 
 > 본 글은 [Bill Wake](https://xp123.com/articles/contact/)의 [3A – Arrange, Act, Assert](https://xp123.com/articles/3a-arrange-act-assert/)내용을 번역한 글 입니다.
 
-# 어떻게 좋은 테스트를 만들 것인가?
+## 어떻게 좋은 테스트를 만들 것인가?
 
 몇몇의 테스트는 명확해 보이지만 다른 테스트들은 구문을 실행하는것처럼 보인다. 어떻게 하면 내용이 잘 전달되면서 명확하게 정의된 테스트를 만들 수 있을까?
 
@@ -29,7 +29,7 @@ date: 2022-01-01
 
 * Assert: collaborators, 파리미터, 드물게는 전역 변수에 관련된 오브젝트에 대한 요구를 만든다. 
 
-# 어디서 부터 시작해야 하는가?
+## 어디서 부터 시작해야 하는가?
 
 Arrange가 먼저 나오기 때문에 먼저 쓰는 것이 자연스러운 것이라고 생각할 수 있다.
 
@@ -38,7 +38,7 @@ Arrange가 먼저 나오기 때문에 먼저 쓰는 것이 자연스러운 것�
 하지만 
 But a useful technique I learned from Jim Newkirk is that writing the Assert first is a great place to start. When you have a new behavior you know you want to test, Assert First lets you start by asking “Suppose it worked; how would I be able to tell?” With the Assert in place, you can do what Industrial Logic calls “Frame First” and lean on the IDE to “fill in the blanks.”
 
-# FAQ
+## FAQ
 
 Aren’t some things easier to test with a sequence of actions and assertions?
 

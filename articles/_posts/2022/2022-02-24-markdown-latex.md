@@ -19,7 +19,7 @@ header:
 
 수학자들이 사용할 것만 같은 화려한 수식이 아니더라도 분수나 제곱근과 같이 수식으로 표현해야 좋은 내용이 있다. 본 게시글에서는 여러분의 웹 페이지에 [MathJax](https://www.mathjax.org/)를 사용하여 수식을 표시하는 방법에 대해서 알아볼 것이다.
 
-# MathJax? Latex?
+## MathJax? Latex?
 
 | ![](/assets/images/2022/2022-02-24-145445.png) |
 |:--:|
@@ -38,7 +38,7 @@ header:
 
 표기법에 따라서 원하는 내용을 작성하고, 적절한 엔진을 선택해서 아름답게 표시 할 수 있다.
 
-# MathJax 적용 방법 
+## MathJax 적용 방법 
 
 [MathJax.org](https://www.mathjax.org/)의 [Getting Started](https://www.mathjax.org/#docs) 페이지에서 제공하는 설명대로 다음의 코드를 자신의 웹 페이지에 추가하면 된다.
 
@@ -49,7 +49,7 @@ header:
 
 나는 Web Integration을 사용하여 MathJax를 적용하였다.
 
-## MathJax 적용 방법 - Web Integration
+### MathJax 적용 방법 - Web Integration
 
 ```js
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -60,7 +60,7 @@ header:
 
 코드만 추가하면 끝이다. 엄청 간단하다.
 
-# 수식 작성하기
+## 수식 작성하기
 
 앞서 코드를 적용하고 나면 해당 웹 페이지에 있는 텍스트 중, `$$`로 좌우가 감싸진 문자열은 LaTeX 문법으로 인식하여 수식으로 변환해준다.
 
@@ -75,11 +75,11 @@ $$( a^2 )$$
 $( a^2 )$
 ```
 
-# LaTex 문법
+## LaTex 문법
 
 [Typesetting mathematics](https://www.latex-project.org/help/documentation/#typesetting-complex-mathematics)에서 LaTeX의 여러 문법중 수식과 관련된 내용을 확인 할 수 있다.
 
-## 이차방정식의 근의 공식
+### 이차방정식의 근의 공식
 
 ```latex
 $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
@@ -87,7 +87,7 @@ $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
 
 $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
 
-## 첨자
+### 첨자
 
 ```latex
 $$a_1, a^2, a_1^2$$
@@ -98,7 +98,7 @@ $$a_1, a^2, a_1^2$$
 
 $$y_i=x_i^3+x_{i-1}^2+x_{i-2}$$
 
-## 분수
+### 분수
 
 분수 표기법에는 두 가지 방법이 있습니다.
 
@@ -114,7 +114,7 @@ $$s^2+2s+s\over s+\sqrt s+1$$
 
 $$\frac{1+s}{s(s+2)}$$
 
-## 절대값 표기법
+### 절대값 표기법
 
 일반적으로 절대값을 표기할 때는 키보드 위의 | 문자를 사용하게 됩니다.
 하지만 이렇게 하면 분수와 같이 큰 객체에 맞게 resizable한 기호를 사용할 수 없습니다.
@@ -129,11 +129,11 @@ $$\vert x \vert$$
 
 $$\left\lvert \frac{s^2+1}{s^3+2s^2+3s+1} \right\rvert$$
 
-# Cheat Sheet
+## Cheat Sheet
 
 매번 문법에 관련된 문서를 보고 작성하는것은 어려우니 [Cheat Sheet](https://drive.google.com/file/d/1dEEAXMhHo9TgmZmXSNWSVlG6YOeWp_gj/view)를 보는것도 괜찮은 방법이다.
 
-# 참고
+## 참고
 
 * [The Latex Project](https://www.latex-project.org/)
 * [MathJax Documentation](http://docs.mathjax.org/en/latest/)

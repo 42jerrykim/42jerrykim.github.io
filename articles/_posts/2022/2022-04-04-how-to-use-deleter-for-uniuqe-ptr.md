@@ -13,7 +13,7 @@ tag:
 
 C/C++언어를 사용하다 보면 동적으로 할당한 자원을 해제 하지 않이서 문제가 발생하는 경우가 많다. 이럴때 `unique_ptr`을 사용하면 함수에서 빠져나갈때 자원을 자동으로 해제 할 수 있도록 만들수 있다.
 
-# 스마트 포인터
+## 스마트 포인터
 
 우선은 스마트 포인터에서 대해서 알아 보자
 
@@ -29,7 +29,7 @@ C/C++언어를 사용하다 보면 동적으로 할당한 자원을 해제 하�
 |:---:|
 |두 unique_ptr 인스턴스 사이의 소유권 이전 관계도|
 
-# Custom Deleter (커스텀 삭제자)
+## Custom Deleter (커스텀 삭제자)
 
 `unique_ptr`이 소유하던 포인터를 소멸시킬 때, 그 객체를 `delete` 하는 방식으로 소멸시킨다. 다른 방식의 소멸 구현이 필요할 때는 그 객체만을 위한 Deleter를 만들어 지정할 수 있다. Custom Deleter 는 Functor가 될 수도 있고, 아래 예제와 같이 Lambda 함수가 될 수도 있다.
 
@@ -62,7 +62,7 @@ auto deleter = [](tzplatform_context* tc) { tzplatform_context_destroy(tc); };
 std::unique_ptr<tzplatform_context, decltype(deleter)> ptr(context, deleter); // context에 new 없이 그냥 사용한다.
 ```
 
-# Deleter를 등록하는 여러 방법
+## Deleter를 등록하는 여러 방법
 
 ```cpp
 #include <iostream>
@@ -115,7 +115,7 @@ int main()
 }
 ```
 
-# 참고
+## 참고
 
 * [방법: unique_ptr 인스턴스 만들기 및 사용](https://docs.microsoft.com/ko-kr/cpp/cpp/how-to-create-and-use-unique-ptr-instances)
 * [스마트 포인터(Smart Pointer) 란?](https://dydtjr1128.github.io/cpp/2019/05/10/Cpp-smart-pointer.html)

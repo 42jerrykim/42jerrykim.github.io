@@ -17,7 +17,7 @@ header:
 | 코드 카피 버튼 |
 
 
-# 적용 코드
+## 적용 코드
 
 성격이 급한 사람들을 위한 코드이다.
 
@@ -74,11 +74,11 @@ pre.highlight {
 
 [GitHub Commit](https://github.com/Reevid/Reevid.github.io/commit/4173b700ae7252bfb5d10860295d888bdaf023d6)을 참조 하는것도 괜찮은 방법이다.
 
-# 결론
+## 결론
 
 다른 방법도 있겠지만 Markdown으로 작성된 글을 다른곳에서도 사용 할수 있도록 하기 위해서 JS를 이용하여 처리 하였다.
 
-# 참고
+## 참고
 
 * [Jekyll: Copy code to clipboard](https://remarkablemark.org/blog/2021/06/01/add-copy-code-to-clipboard-button-to-jeyll-site/)
 * [jekyll-clipboardjs](https://github.com/marcoaugustoandrade/jekyll-clipboardjs)

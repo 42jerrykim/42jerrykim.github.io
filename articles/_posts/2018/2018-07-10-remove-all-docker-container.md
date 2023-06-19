@@ -7,7 +7,7 @@ tags: [Docker, Container, Delete, Stop]
 
 도커에서 컨테이너를 사용하는 방법에 대해서 알아 본다.
 
-# 1. Remove a container
+## 1. Remove a container
 To delete a container, you first need to know the ID of the container. The ID of the container can be obtained through ```docker ps -a```
 
 You can delete one or more containers by typing ```docker rm [CONTAINER]``` in the terminal
@@ -26,7 +26,7 @@ Options:
   -v, --volumes   Remove the volumes associated with the container
 ```
 
-# 2. List up containers
+## 2. List up containers
 To see active docker container, type below shell script to terminal
 ```
 docker ps
@@ -38,7 +38,7 @@ docker ps -a
 docker ps --all
 ```
 
-# 3. Remove all container
+## 3. Remove all container
 You can delete the container one by one using the above command, but you can delete all containers at once by using the ```-q``` option and ```$( ... )```
 
 Since the container will not be deleted while it is in operation, use ```docker stop [CONTAINER]``` to stop the container and remove it.

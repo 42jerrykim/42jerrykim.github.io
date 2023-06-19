@@ -11,7 +11,7 @@ header:
 
 아는 사람만 알고 있다는 숨어있는(?) github.dev 서비스를 알고 있으신가요?
 
-# 소개
+## 소개
 
 |![](/assets/images/2022/2022-07-07-135907.png)|
 |:---:|
@@ -21,7 +21,7 @@ header:
 
 github.com의 특정 repository에서 키보드의 `.` 키를 누르면 IDE로 연결된다.
 
-# 참고
+## 참고
 
 * [https://github.dev/](https://github.dev/)
 * [https://docs.github.com/en/codespaces/the-githubdev-web-based-editor](https://docs.github.com/en/codespaces/the-githubdev-web-based-editor)

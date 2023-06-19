@@ -13,6 +13,8 @@ header:
 
 API는 모든 곳에서 사용한다. 온라인에서 피자를 주문하고 요금을 걸재 하는것 부터, 음악을 듣고, 드라마를 보는 것처럼, 세계를 연결된 상태로 유지 시키고 있다.
 
+# REST API 모범 사례
+
 > 본 글은 다음의 글을 번역한 글이다. [Best Practices for rest api](https://medium.com/chegg/best-practices-for-rest-api-df7417ea07e5)
 
 > Q. 나는 소프트웨어의 양 끝을 이어주는 역활을 한다. 또한 누군가가 나를 건드리면 반응하는 역활도 수행한다.
@@ -20,7 +22,7 @@ API는 모든 곳에서 사용한다. 온라인에서 피자를 주문하고 요
 
 최근에는 API는 모든 곳에서 사용한다. 온라인에서 피자를 주문하고 요금을 지불하는것 부더, 티켓을 예매하고, 음악을 듣고, 더 나아가 애플리케이션을 만들 때 산업 표준으로 자리를 잡아가고 있다. 간단히 말해서, 세계를 연결된 상태로 유지 시키고 있다.
 
-# API란 무엇인가?
+## API란 무엇인가?
 
 API는 Application Programming Interface의 축약어이다.
 
@@ -28,17 +30,17 @@ API는 제공자(Provider)와 클라이언트(Client) 사이의 통신(Communica
 
 ![](../assets/images/best-practices-for-rest-api/KsUEzeSac2mDzGxa16mJ4A.png)
 
-# Rest API란 무엇인가?
+## Rest API란 무엇인가?
 
 SOAP 기반의 웹 서비스와는 다르게 Restful API에는 공식적인 표준이 없다. REST는 아키텍처 스타일이고, SOAP은 프로토콜이기 때문이다. REST 자체로는 표준이 아니고, Restful은 HTTP, URI, JSON, and XML과 같은 표준을 사용하는 것을 구현한다.
 
 REST는 performance, scalability, simplicity, modifiability, visibility, portability, and reliability를 향상하는데 목표를 두고 있다. client-server architecture, statelessness, cacheability, use of a layered system, support for code on demand, and using a uniform interface와 같은 REST 원칙을 따랏을때 이것들을 달성 할 수 있다. 
 
-# Rest API 모범 사례
+## Rest API 모범 사례
 
 앞으로의 내용은 개발자와 테스터가 REST API를 개발하거나 테스트 할 때 좋은 사례이다.
 
-## API Endpoint 이름 정하기
+### API Endpoint 이름 정하기
 
 ![](../assets/images/best-practices-for-rest-api/eMjBjY0cwqRs5pqf8fsyEw.png)
 
@@ -53,7 +55,7 @@ REST는 performance, scalability, simplicity, modifiability, visibility, portabi
 
 또한 이것은 API Endpoint 문서를 유지 보수의 노력을 줄이는데도 도움을 준다.
 
-## 최소한의 권한과 올바른 메소드 사용
+### 최소한의 권한과 올바른 메소드 사용
 
 ![](../assets/images/best-practices-for-rest-api/DB2QdU8QTjR5v9U-UgMKKA.png)
 
@@ -62,7 +64,7 @@ You should always give the minimum number of permissions for an endpoint. For ex
 ![](../assets/images/best-practices-for-rest-api/Hfrzezt6IqE17TY-zmzqHA.png)
 Using Proper Versioning in API
 
-### 1. Standard HTTP status codes
+#### 1. Standard HTTP status codes
 
 As we know, REST API is built on top of the HTTP protocol. It is always better to use a unified standard response status so that all team members will understand.
 

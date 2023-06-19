@@ -17,7 +17,7 @@ header:
 
 다른 위치에 있는 dll을 pligin으로 사용하려고 할때 dll을 못 찾는 이슈가 발생 할 수 있다.
 
-# 배경
+## 배경
 3가지 Dll이 있다고 가정해보자.
 
 * Core.dll
@@ -29,9 +29,9 @@ header:
 
 이때 Library.dll을 못 찾는 문제가 발생 한다.
 
-# 해결 방법
+## 해결 방법
 
-## AssemblyDependencyResolver를 사용하는 방법
+### AssemblyDependencyResolver를 사용하는 방법
 
 [.NET Core에서 어셈블리 언로드 기능을 사용하고 디버그하는 방법](https://docs.microsoft.com/ko-kr/dotnet/standard/assembly/unloadability)을 참고해서 Custom으로 어셈블리 로더를 작성 할 수 있다.
 
@@ -68,7 +68,7 @@ namespace complex
 
 부가적인 문제가 발생 하는 경우에는 아래처럼 Custom으로 resolver를 작성해야 사용하자
 
-## Custom으로 reslover를 작성하는 방법
+### Custom으로 reslover를 작성하는 방법
 
 [AssemblyLoadContext](https://docs.microsoft.com/ko-kr/dotnet/api/system.runtime.loader.assemblyloadcontext) 클래스에는 [Resolving](https://docs.microsoft.com/ko-kr/dotnet/api/system.runtime.loader.assemblyloadcontext.resolving) 이벤트가 있다. 해당 이벤트는 AssemblyLoadContext에 로드 하려고 할 때 어셈블리를 확인하는데 실패하는 경우에 발생 한다.
 
