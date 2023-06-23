@@ -13,7 +13,7 @@ tags:
 - SoftwareArchitecture
 - SystemDesign 
 header:
-  teaser: https://miro.medium.com/v2/resize%253Afit%253A1400/format%253Awebp/1%252A5h5WIpLjdlh2Iiu_WG2_AA.jpeg
+  teaser: https://miro.medium.com/v2/resize:fit:1400/format:webp/1*5h5WIpLjdlh2Iiu_WG2_AA.jpeg
 ---
 
 "API 게이트웨이"와 "로드 밸런서"는 언뜻 보기에는 비슷한 기능을 수행하는 것처럼 보일 수 있습니다. 둘 다 네트워크 트래픽을 관리하고 요청이 효율적으로 처리되도록 하는 데 관여합니다. 그러나 이들은 매우 다른 용도로 사용되며 네트워크 아키텍처의 서로 다른 계층에서 작동합니다. 효과적이고 효율적인 시스템을 설계하려면 API 게이트웨이와 로드 밸런서의 차이점, 역할, 네트워크의 다른 구성 요소와 상호 작용하는 방식을 이해하는 것이 중요합니다.
