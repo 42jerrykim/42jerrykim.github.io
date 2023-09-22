@@ -1,6 +1,6 @@
 ---
-title: "[DesignPatterns] Abstract Factory Pattern - 추상팩토리 패턴"
-categories: DesignPatterns
+title: "[DesignPattern] Abstract Factory Pattern - 추상팩토리 패턴"
+categories: DesignPattern
 tags:
 - Abstract Factory Pattern
 - Design Patterns
