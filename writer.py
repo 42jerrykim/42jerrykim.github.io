@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import tiktoken
 import openai
+from datetime import datetime
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -134,31 +135,59 @@ def generate_section_content(toc, table):
     )
     return response.choices[0].message.content
 
+current_datetime = datetime.now().strftime("%Y-%m-%d %H-%M-%S ")
 def save_to_file(file_path, content):
+    file_path = current_datetime + file_path
     with open(file_path, 'a', encoding='utf-8') as file:
+        file.write("<!--\n")
         file.write(content)
+        file.write("\n-->\n\n")
 
 sources = """
-
+https://en.wikipedia.org/wiki/Abstract_factory_pattern
+https://dotnettutorials.net/lesson/abstract-factory-design-pattern-csharp/
+https://www.dotnettricks.com/learn/designpatterns/abstract-factory-design-pattern-dotnet
+https://refactoring.guru/design-patterns/abstract-factory/csharp/example
+https://www.dofactory.com/net/abstract-factory-design-pattern
+https://hongjinhyeon.tistory.com/43
 """
 
+format = """
+-->
+---
+title: "[] "
+categories: 
+tags:
+header:
+  teaser: /assets/images/undefined/teaser.jpg
+---
+
+<!--
+|![]()|
+|:---:|
+||
+-->
+<!--
+"""
 if __name__ == "__main__":
-    
+    save_to_file("result.md", format)
+
     urls = sources.strip().split('\n')
     contents = [get_web_content(url) for url in urls]
     summaries = [summarize_content(content) for content in contents]
     blog_post_outline = generate_blog_post_outline(summaries)
-    save_to_file("result.md", "<!-- ##### Outline ##### -->\n")
-    save_to_file("result.md", blog_post_outline + "\n\n")
-
     blog_post_introduction = generate_blog_post_introduction(summaries)
-    save_to_file("result.md", "<!-- ##### Intro ##### -->\n")
-    save_to_file("result.md", blog_post_introduction + "\n\n")
-
     tags = gernerate_tags(summaries)
-    # print(tags)
-    save_to_file("result.md", "<!-- ##### Tags ##### -->\n")
-    save_to_file("result.md", tags + "\n\n")
+    
+    save_to_file("result.md", "##### Tags #####")
+    save_to_file("result.md", tags)
+
+    save_to_file("result.md", "##### Intro #####")
+    save_to_file("result.md", blog_post_introduction)
+
+    save_to_file("result.md", "##### Outline #####")
+    save_to_file("result.md", blog_post_outline)
+
 
     toc = blog_post_outline.strip().split('\n\n')
     for table in toc:
@@ -169,11 +198,14 @@ if __name__ == "__main__":
         print(section_content)
         print("##################################################")
 
-        save_to_file("result.md", "<!-- ##### Table ##### -->\n")
-        save_to_file("result.md", table + "\n")
-        save_to_file("result.md", "<!-- ##### Content ##### -->\n")
-        save_to_file("result.md", section_content + "\n\n")
-    save_to_file("result.md", "<!-- ##### Reference ##### -->\n")
-    save_to_file("result.md", "## Reference\n")
+        save_to_file("result.md", "##### Table #####")
+        save_to_file("result.md", table)
+        save_to_file("result.md", "##### Content #####")
+        save_to_file("result.md", section_content)
+    
+    reference = ""
     for url in urls:
-        save_to_file("result.md", "* [" + url + "](" + url + ")\n")
+        reference += "* [" + url + "](" + url + ")\n"
+    save_to_file("result.md", "##### Reference #####")
+    save_to_file("result.md", "## Reference\n")
+    save_to_file("result.md", reference)
