@@ -31,8 +31,8 @@ tag:
 - Lombok @Builder annotation
 - Maze game
 - Text and HTML documents
-header:
-  teaser: https://miro.medium.com/v2/resize:fit:1400/format:webp/1*5h5WIpLjdlh2Iiu_WG2_AA.jpeg
+# header:
+#   teaser: https://miro.medium.com/v2/resize:fit:1400/format:webp/1*5h5WIpLjdlh2Iiu_WG2_AA.jpeg
 ---
 
 소프트웨어 개발 분야에서 복잡한 객체를 생성하는 것은 종종 어려운 작업일 수 있습니다. 선택적 속성이 많은 객체는 구성 프로세스가 번거롭고 오류가 발생하기 쉽습니다. 이때 빌더 패턴이 도움이 됩니다.
