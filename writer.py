@@ -2,10 +2,10 @@ import os
 import requests
 from bs4 import BeautifulSoup
 import tiktoken
-import openai
+from openai import OpenAI
 from datetime import datetime
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI()
 
 GPT_35_TURBO = "gpt-3.5-turbo"
 GPT_35_TURBO_16K = "gpt-3.5-turbo-16k"
@@ -22,7 +22,7 @@ def get_web_content(url):
     return soup.get_text()
 
 def summarize_content(content):
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model=GPT_35_TURBO_16K,
         messages=[
             {"role": "system", "content": "Summarize content"},
@@ -45,7 +45,7 @@ def gernerate_tags(contents):
     2. Tags should be in a format suitable for a blog.
     3. Format the tags in markdown list format.
     """
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model=GPT_35_TURBO_16K,
         messages=[
             {"role": "assistant", "content": prompt},
@@ -71,7 +71,7 @@ def generate_blog_post_introduction(contents):
     I need you to write an introduction
     """
 
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model=GPT_35_TURBO,
         messages=[
             {"role": "system", "content": prompt},
@@ -96,7 +96,7 @@ def generate_blog_post_outline(contents):
     Write a blog post outline using markdown format.
     """
 
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model=GPT_35_TURBO,
         messages=[
             {"role": "system", "content": prompt},
@@ -123,7 +123,7 @@ def generate_section_content(toc, table):
 
     ```{table}```
     """
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model=GPT_35_TURBO,
         messages=[
             {"role": "system", "content": system_prompt},
@@ -144,12 +144,6 @@ def save_to_file(file_path, content):
         file.write("\n-->\n\n")
 
 sources = """
-https://en.wikipedia.org/wiki/Abstract_factory_pattern
-https://dotnettutorials.net/lesson/abstract-factory-design-pattern-csharp/
-https://www.dotnettricks.com/learn/designpatterns/abstract-factory-design-pattern-dotnet
-https://refactoring.guru/design-patterns/abstract-factory/csharp/example
-https://www.dofactory.com/net/abstract-factory-design-pattern
-https://hongjinhyeon.tistory.com/43
 """
 
 format = """
