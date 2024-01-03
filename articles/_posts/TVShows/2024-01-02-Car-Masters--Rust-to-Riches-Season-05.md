@@ -1,5 +1,5 @@
 ---
-title: "[TVShows] Car Masters: Rust to Riches (Season 05 (2023))"
+title: "[TVShows] Car Masters: Rust to Riches - Season 05 (2023)"
 categories: TVShows
 tags:
 - Car
