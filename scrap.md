@@ -122,3 +122,109 @@ int main() {
 본 프로젝트의 목적은 다음과 같다. 첫째, 환경 친화적이면서도 경제적인 옥외 광고 솔루션을 제공하여, 전통적인 LED나 LCD 방식 대비 운영 비용을 절감한다. 둘째, e-paper의 장점을 최대한 활용하여, 모든 조명 조건에서도 명확한 정보 전달이 가능하도록 한다. 셋째, 빠르게 변화하는 광고 내용을 신속하게 업데이트할 수 있는 효율적인 시스템을 개발한다.
 
 이 프로젝트는 지속 가능한 옥외 광고의 새로운 모델을 제시할 뿐만 아니라, 광고 산업에 있어서 에너지 효율성과 경제성의 새로운 기준을 설정하는 것을 목표로 한다. e-paper 기술의 장단점을 면밀히 분석하고, 이를 바탕으로 실용적이면서도 혁신적인 옥외 광고 장치를 설계하여, 광고의 미래를 형성하는 데 기여하고자 한다.
+
+
+```
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <cstdint>
+
+using namespace std;
+
+#pragma pack(push, 1)
+struct BMPHeader {
+    uint16_t file_type{0x4D42};
+    uint32_t file_size{0};
+    uint16_t reserved1{0};
+    uint16_t reserved2{0};
+    uint32_t offset_data{0};
+};
+
+struct BMPInfoHeader {
+    uint32_t size{0};
+    int32_t width{0};
+    int32_t height{0};
+    uint16_t planes{1};
+    uint16_t bit_count{0};
+    uint32_t compression{0};
+    uint32_t size_image{0};
+    int32_t x_pixels_per_meter{0};
+    int32_t y_pixels_per_meter{0};
+    uint32_t colors_used{0};
+    uint32_t colors_important{0};
+};
+#pragma pack(pop)
+
+struct BMPColorHeader {
+    uint32_t red_mask{0x00ff0000};
+    uint32_t green_mask{0x0000ff00};
+    uint32_t blue_mask{0x000000ff};
+    uint32_t alpha_mask{0xff000000};
+    uint32_t color_space_type{0x73524742};
+    uint32_t unused[16]{0};
+};
+
+struct BMP {
+    BMPHeader header;
+    BMPInfoHeader info_header;
+    BMPColorHeader color_header;
+    vector<uint8_t> data;
+
+    void read(const string& filename) {
+        ifstream inp{filename, ios_base::binary};
+        if (inp) {
+            inp.read((char*)&header, sizeof(header));
+            if (header.file_type != 0x4D42) {
+                throw runtime_error("Unsupported file format.");
+            }
+            inp.read((char*)&info_header, sizeof(info_header));
+
+            // The BMPColorHeader is used only for BMP files with transparency information
+            if(info_header.bit_count == 32) {
+                inp.read((char*)&color_header, sizeof(color_header));
+            }
+
+            // Move the read position to the start of the pixel data
+            inp.seekg(header.offset_data, ios_base::beg);
+
+            // Resize the vector to hold the pixel data
+            data.resize(info_header.width * info_header.height * info_header.bit_count / 8);
+
+            // Read the pixel data
+            inp.read((char*)data.data(), data.size());
+            // If the bitmap is upside down (common in BMP files), reverse it.
+            if(info_header.height < 0) {
+                reverse(data.begin(), data.end());
+                info_header.height = abs(info_header.height);
+            }
+        } else {
+            throw runtime_error("Unable to open the file.");
+        }
+    }
+
+    void dither() {
+        // Simple threshold-based dithering
+        for (int y = 0; y < info_header.height; ++y) {
+            for (int x = 0; x < info_header.width; ++x) {
+                size_t index = (y * info_header.width + x) * (info_header.bit_count / 8);
+                uint8_t& pixel = data[index]; // Assuming grayscale, so we take one of the RGB values
+
+                uint8_t oldPixel = pixel;
+                uint8_t newPixel = oldPixel > 127 ? 255 : 0;
+                pixel = newPixel;
+
+                int error = oldPixel - newPixel;
+
+                // Spread the error to neighboring pixels
+                // Note: This example does not handle edge pixels for simplicity
+                if (x < info_header.width - 1) data[index + 1] += error * 7 / 16;
+                if (y < info_header.height - 1) {
+                    if (x > 0) data[index + info_header.width - 1] += error * 3 / 16;
+                    data[index + info_header.width] += error * 5 / 16;
+                    if (x < info_header.width - 1) data[index + info_header.width + 1] += error * 1 / 16;
+                }
+            }
+       
+
+```
