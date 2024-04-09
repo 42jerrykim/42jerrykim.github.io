@@ -23,6 +23,102 @@ e-paper 기반 옥외 광고 장치 프로젝트의 목적은 다음과 같다. 
 
 이 프로젝트는 e-paper 기술을 기반으로 한 옥외 광고 장치 개발을 목표로 하고 있다. e-paper는 저전력 소비의 전자 디스플레이 기술로, 이미지를 변경할 때만 에너지를 소비하며, 표시된 내용을 전력 공급 없이 유지할 수 있다는 점에서 특별하다. 이 기술의 주요 장점은 햇빛 아래에서도 뛰어난 가독성을 제공하고, 눈의 피로를 줄여주며, 얇고 가벼워 다양한 환경에 적용 가능하다는 것이다. 이러한 특성은 e-paper를 옥외 광고 장치에 이상적인 선택으로 만든다.
 
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+using namespace std;
+
+#pragma pack(push, 1)
+struct BMPHeader {
+    uint16_t file_type{0x4D42};          // File type always BM which is 0x4D42
+    uint32_t file_size{0};               // Size of the file (in bytes)
+    uint16_t reserved1{0};               // Reserved, always 0
+    uint16_t reserved2{0};               // Reserved, always 0
+    uint32_t offset_data{0};             // Start position of pixel data (bytes from the beginning of the file)
+};
+
+struct BMPInfoHeader {
+    uint32_t size{0};                      // Size of this header (in bytes)
+    int32_t width{0};                      // width of bitmap in pixels
+    int32_t height{0};                     // width of bitmap in pixels
+    uint16_t planes{1};                    // No. of planes for the target device, this is always 1
+    uint16_t bit_count{0};                 // No. of bits per pixel
+    uint32_t compression{0};               // 0 or 3 - uncompressed. This program can only deal with uncompressed bmp.
+    uint32_t size_image{0};                // 0 - for uncompressed images
+    int32_t x_pixels_per_meter{0};
+    int32_t y_pixels_per_meter{0};
+    uint32_t colors_used{0};               // No. color indexes in the color table. Use 0 for the max number of colors allowed by bit_count
+    uint32_t colors_important{0};          // No. of colors used for displaying the bitmap. If 0 all colors are required
+};
+
+#pragma pack(pop)
+
+struct BMP {
+    BMPHeader header;
+    BMPInfoHeader info_header;
+    vector<uint8_t> data;
+
+    void read(const string &filename) {
+        ifstream inp{filename, ios_base::binary};
+        if (inp) {
+            inp.read((char*)&header, sizeof(header));
+            if(header.file_type != 0x4D42) {
+                throw runtime_error("Error! Unrecognized file format.");
+            }
+            inp.read((char*)&info_header, sizeof(info_header));
+
+            // Move read position to start of pixel data
+            inp.seekg(header.offset_data, ios_base::beg);
+
+            // Adjust the header fields for output
+            if(info_header.bit_count == 24) {
+                info_header.size = sizeof(BMPInfoHeader);
+                header.offset_data = sizeof(BMPHeader) + sizeof(BMPInfoHeader);
+            }
+
+            // Reading the data
+            data.resize(info_header.width * info_header.height * info_header.bit_count / 8);
+            inp.read((char*)data.data(), data.size());
+        } else {
+            throw runtime_error("Unable to open the input file.");
+        }
+    }
+
+    void write(const string &filename) {
+        ofstream out{filename, ios_base::binary};
+        if(out) {
+            out.write((char*)&header, sizeof(header));
+            out.write((char*)&info_header, sizeof(info_header));
+            out.write((char*)data.data(), data.size());
+        } else {
+            throw runtime_error("Unable to open the output file.");
+        }
+    }
+};
+
+int main() {
+    try {
+        BMP bmp;
+        bmp.read("input.bmp");
+
+        // Change color: Here you can insert the code to modify BMP colors
+        // Example: Convert to grayscale
+        for (auto &pixel : bmp.data) {
+            // Simple example: average the colors (not accurate for true grayscale)
+            pixel = static_cast<uint8_t>((pixel + pixel + pixel) / 3);
+        }
+
+        bmp.write("output.bmp");
+    } catch (const exception &e) {
+        cerr << e.what() << endl;
+    }
+
+    return 0;
+}
+
+
 본 프로젝트의 목적은 다음과 같다. 첫째, 환경 친화적이면서도 경제적인 옥외 광고 솔루션을 제공하여, 전통적인 LED나 LCD 방식 대비 운영 비용을 절감한다. 둘째, e-paper의 장점을 최대한 활용하여, 모든 조명 조건에서도 명확한 정보 전달이 가능하도록 한다. 셋째, 빠르게 변화하는 광고 내용을 신속하게 업데이트할 수 있는 효율적인 시스템을 개발한다.
 
 이 프로젝트는 지속 가능한 옥외 광고의 새로운 모델을 제시할 뿐만 아니라, 광고 산업에 있어서 에너지 효율성과 경제성의 새로운 기준을 설정하는 것을 목표로 한다. e-paper 기술의 장단점을 면밀히 분석하고, 이를 바탕으로 실용적이면서도 혁신적인 옥외 광고 장치를 설계하여, 광고의 미래를 형성하는 데 기여하고자 한다.
