@@ -228,3 +228,86 @@ struct BMP {
        
 
 ```
+
+
+```
+#include <iostream>
+using namespace std;
+
+struct Ball {
+    int index;
+    int color;
+    int size;
+};
+
+// 삽입 정렬 함수
+void insertionSort(Ball arr[], int left, int right) {
+    for (int i = left + 1; i <= right; ++i) {
+        Ball key = arr[i];
+        int j = i - 1;
+        while (j >= left && arr[j].size > key.size) {
+            arr[j + 1] = arr[j];
+            --j;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+// 퀵소트 함수
+void quicksort(Ball arr[], int left, int right) {
+    if (right - left <= 16) {
+        // 배열의 크기가 16 이하일 경우 삽입 정렬 사용
+        insertionSort(arr, left, right);
+        return;
+    }
+    int i = left, j = right;
+    Ball pivot = arr[(left + right) / 2];
+    while (i <= j) {
+        while (arr[i].size < pivot.size) i++;
+        while (arr[j].size > pivot.size) j--;
+        if (i <= j) {
+            swap(arr[i], arr[j]);
+            i++;
+            j--;
+        }
+    }
+    if (left < j) quicksort(arr, left, j);
+    if (i < right) quicksort(arr, i, right);
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int N;
+    cin >> N;
+    Ball balls[N];
+    for (int i = 0; i < N; ++i) {
+        cin >> balls[i].color >> balls[i].size;
+        balls[i].index = i;
+    }
+
+    // 공을 크기 순서대로 정렬한다.
+    quicksort(balls, 0, N - 1);
+
+    int scores[N] = {0};
+    int color_sizes[200001] = {0};  // 색깔별 사이즈 합계를 저장
+    int total_size = 0;
+    int j = 0;
+
+    for (int i = 0; i < N; ++i) {
+        while (balls[j].size < balls[i].size) {
+            total_size += balls[j].size;
+            color_sizes[balls[j].color] += balls[j].size;
+            ++j;
+        }
+        scores[balls[i].index] = total_size - color_sizes[balls[i].color];
+    }
+
+    for (int i = 0; i < N; ++i) {
+        cout << scores[i] << '\n';
+    }
+
+    return 0;
+}
+```
