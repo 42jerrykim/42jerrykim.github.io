@@ -54,3 +54,9 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = PlantUMLApp()
     sys.exit(app.exec_())
+
+
+buffalo_l
+min detection score  0.5
+max recog distance 0.3
+min recog faces: 2
