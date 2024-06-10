@@ -60,3 +60,95 @@ buffalo_l
 min detection score  0.5
 max recog distance 0.3
 min recog faces: 2
+
+
+#include <windows.h>
+#include <tchar.h>
+
+// 전역 변수
+HBITMAP hBitmap;
+
+// 함수 선언
+LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+// WinMain: 프로그램의 진입점
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+    const TCHAR CLASS_NAME[] = _T("Sample Window Class");
+
+    WNDCLASS wc = { };
+
+    wc.lpfnWndProc = WindowProc;
+    wc.hInstance = hInstance;
+    wc.lpszClassName = CLASS_NAME;
+
+    RegisterClass(&wc);
+
+    HWND hwnd = CreateWindowEx(
+        0,
+        CLASS_NAME,
+        _T("Learn to Program Windows"),
+        WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+        NULL,
+        NULL,
+        hInstance,
+        NULL
+    );
+
+    if (hwnd == NULL) {
+        return 0;
+    }
+
+    ShowWindow(hwnd, nCmdShow);
+
+    // 메시지 루프
+    MSG msg = { };
+    while (GetMessage(&msg, NULL, 0, 0)) {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
+
+    return 0;
+}
+
+// 윈도우 프로시저 함수
+LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    switch (uMsg) {
+    case WM_CREATE:
+        // 비트맵 로드
+        hBitmap = (HBITMAP)LoadImage(NULL, _T("sample.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+        if (hBitmap == NULL) {
+            MessageBox(hwnd, _T("Failed to load bitmap"), _T("Error"), MB_OK);
+            PostQuitMessage(0);
+        }
+        break;
+    case WM_PAINT: {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hwnd, &ps);
+
+        HDC hdcMem = CreateCompatibleDC(hdc);
+        HGDIOBJ oldBitmap = SelectObject(hdcMem, hBitmap);
+
+        BITMAP bitmap;
+        GetObject(hBitmap, sizeof(bitmap), &bitmap);
+
+        BitBlt(hdc, 0, 0, bitmap.bmWidth, bitmap.bmHeight, hdcMem, 0, 0, SRCCOPY);
+
+        SelectObject(hdcMem, oldBitmap);
+        DeleteDC(hdcMem);
+
+        EndPaint(hwnd, &ps);
+        break;
+    }
+    case WM_DESTROY:
+        if (hBitmap) {
+            DeleteObject(hBitmap);
+        }
+        PostQuitMessage(0);
+        break;
+    default:
+        return DefWindowProc(hwnd, uMsg, wParam, lParam);
+    }
+    return 0;
+}
+
