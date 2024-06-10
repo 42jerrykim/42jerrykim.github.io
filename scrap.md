@@ -272,3 +272,152 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
     return DefWindowProc(hwnd, message, wParam, lParam);
 }
 ```
+
+```
+#include <windows.h>
+#include <tchar.h>
+#include <cstdlib>
+#include <ctime>
+
+LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+{
+    static TCHAR szAppName[] = _T("RandomBitmapApp");
+    HWND hwnd;
+    MSG msg;
+    WNDCLASS wndclass;
+
+    wndclass.style = CS_HREDRAW | CS_VREDRAW;
+    wndclass.lpfnWndProc = WndProc;
+    wndclass.cbClsExtra = 0;
+    wndclass.cbWndExtra = 0;
+    wndclass.hInstance = hInstance;
+    wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+    wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
+    wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
+    wndclass.lpszMenuName = NULL;
+    wndclass.lpszClassName = szAppName;
+
+    if (!RegisterClass(&wndclass))
+    {
+        MessageBox(NULL, _T("This program requires Windows NT!"), szAppName, MB_ICONERROR);
+        return 0;
+    }
+
+    hwnd = CreateWindow(szAppName, _T("Random Bitmap Display Program"),
+        WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
+        CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL, hInstance, NULL);
+
+    ShowWindow(hwnd, nCmdShow);
+    UpdateWindow(hwnd);
+
+    while (GetMessage(&msg, NULL, 0, 0))
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
+
+    return (int)msg.wParam;
+}
+
+LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    static HBITMAP hBitmap;
+    static BITMAP bm;
+    static HDC hdcMem;
+    static PAINTSTRUCT ps;
+    HDC hdc;
+    static int width = 800;
+    static int height = 600;
+    static HWND hwndButton;
+
+    switch (message)
+    {
+    case WM_CREATE:
+        {
+            hwndButton = CreateWindow(
+                _T("BUTTON"), _T("Change to Red"), 
+                WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+                10, 10, 150, 30, 
+                hwnd, (HMENU)1, (HINSTANCE)GetWindowLongPtr(hwnd, GWLP_HINSTANCE), NULL);
+
+            srand((unsigned int)time(NULL)); // Seed the random number generator
+
+            BITMAPINFO bmi;
+            ZeroMemory(&bmi, sizeof(BITMAPINFO));
+            bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+            bmi.bmiHeader.biWidth = width;
+            bmi.bmiHeader.biHeight = -height; // Negative to indicate a top-down DIB
+            bmi.bmiHeader.biPlanes = 1;
+            bmi.bmiHeader.biBitCount = 24; // 24-bit bitmap
+            bmi.bmiHeader.biCompression = BI_RGB;
+
+            hdc = GetDC(hwnd);
+            hBitmap = CreateDIBSection(hdc, &bmi, DIB_RGB_COLORS, NULL, NULL, 0);
+            ReleaseDC(hwnd, hdc);
+
+            if (hBitmap == NULL)
+            {
+                MessageBox(hwnd, _T("Could not create bitmap!"), _T("Error"), MB_OK | MB_ICONEXCLAMATION);
+                return -1;
+            }
+
+            GetObject(hBitmap, sizeof(BITMAP), &bm);
+
+            // Fill bitmap with random colors
+            HDC hdcMem = CreateCompatibleDC(NULL);
+            SelectObject(hdcMem, hBitmap);
+
+            for (int y = 0; y < height; ++y)
+            {
+                for (int x = 0; x < width; ++x)
+                {
+                    COLORREF color = RGB(rand() % 256, rand() % 256, rand() % 256);
+                    SetPixel(hdcMem, x, y, color);
+                }
+            }
+
+            DeleteDC(hdcMem);
+        }
+        return 0;
+
+    case WM_COMMAND:
+        if (LOWORD(wParam) == 1) // Button was clicked
+        {
+            // Change bitmap to red
+            HDC hdcMem = CreateCompatibleDC(NULL);
+            SelectObject(hdcMem, hBitmap);
+
+            for (int y = 0; y < height; ++y)
+            {
+                for (int x = 0; x < width; ++x)
+                {
+                    SetPixel(hdcMem, x, y, RGB(255, 0, 0));
+                }
+            }
+
+            DeleteDC(hdcMem);
+            InvalidateRect(hwnd, NULL, TRUE); // Request redraw
+        }
+        return 0;
+
+    case WM_PAINT:
+        hdc = BeginPaint(hwnd, &ps);
+        hdcMem = CreateCompatibleDC(hdc);
+        SelectObject(hdcMem, hBitmap);
+        BitBlt(hdc, 0, 50, bm.bmWidth, bm.bmHeight, hdcMem, 0, 0, SRCCOPY); // Adjusted y-position for the button
+        DeleteDC(hdcMem);
+        EndPaint(hwnd, &ps);
+        return 0;
+
+    case WM_DESTROY:
+        DeleteObject(hBitmap);
+        PostQuitMessage(0);
+        return 0;
+    }
+
+    return DefWindowProc(hwnd, message, wParam, lParam);
+}
+
+```
