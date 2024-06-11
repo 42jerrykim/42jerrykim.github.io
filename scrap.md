@@ -3,6 +3,8 @@ https://comsmart.co.kr/cmart/shop/item.php?it_id=1644305465&num=19&ca_id2=
 
 https://blog.naver.com/yally23232/220793048885
 
+https://humber.tistory.com/entry/%EB%9D%BC%EC%A6%88%EB%B2%A0%EB%A6%AC%ED%8C%8C%EC%9D%B4Raspberry-Pi-%ED%95%9C%EA%B8%80-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0
+
 import sys
 import os
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QTextEdit, QPushButton, QLabel, QFileDialog
