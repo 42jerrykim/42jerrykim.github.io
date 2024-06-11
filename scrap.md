@@ -331,3 +331,50 @@ bool Timer::UnsubscribeEvent(int id, Handler* receiver) {
 5. `Handler::t_OnHandler` 메서드는 이벤트가 발생했을 때 호출되며, 각 Handler 클래스에서 구현되어야 한다.
 
 이제 Timer 클래스는 독립적으로 동작하며, 이벤트를 구독하고 발생시키는 기능을 제대로 수행할 것이다. 각 Handler는 `t_OnHandler` 메서드를 통해 이벤트를 처리할 수 있다.
+
+
+```cpp
+#include <iostream>
+#include <filesystem>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+
+namespace fs = std::filesystem;
+
+std::string getRandomFile(const std::string& directory) {
+    std::vector<fs::path> files;
+
+    // Iterate through the directory and store file paths
+    for (const auto& entry : fs::directory_iterator(directory)) {
+        if (entry.is_regular_file()) {
+            files.push_back(entry.path());
+        }
+    }
+
+    // Check if the directory contains any files
+    if (files.empty()) {
+        return "No files found in the directory.";
+    }
+
+    // Seed the random number generator
+    std::srand(std::time(nullptr));
+    
+    // Get a random index
+    int randomIndex = std::rand() % files.size();
+
+    // Return the randomly selected file path
+    return files[randomIndex].string();
+}
+
+int main() {
+    std::string directory = "./sample";
+    std::string randomFile = getRandomFile(directory);
+
+    std::cout << "Random file: " << randomFile << std::endl;
+
+    return 0;
+}
+```
+
+이 코드는 C++17 이상을 필요로 한다. `std::filesystem` 라이브러리를 사용하여 디렉터리 내의 파일을 나열하고, 그 중 하나를 무작위로 선택하여 반환한다. `getRandomFile` 함수는 주어진 디렉터리 경로에서 임의의 파일을 선택하여 해당 파일의 경로를 문자열로 반환한다. `main` 함수는 이 함수를 호출하여 결과를 출력한다.
