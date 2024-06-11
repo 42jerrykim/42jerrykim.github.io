@@ -68,5 +68,86 @@ public:
 	bool SubscribeEvent(int id, Handler* receiver, int ms);
 	bool UnsubscribeEvent(int id, Handler* receiver);
 };
+struct TTimerNode
+{
+	int id;
+	int ms;
+	Handler* receiver;
+};
 
+struct TTimer
+{
+	Semaphore sem;
+	int remain;
+	List list;
+	Mutex mutex;
+};
+
+
+void Timer::t_OnThread()
+{
+	_ENTRY();
+	while (true)
+	{
+		m->sem.Take(m->remain);
+
+		// TODO
+	}
+}
+
+bool Timer::Create()
+{
+	_ENTRY();
+	m = new TTimer;
+	m->list.Create();
+	m->sem.Create(0);
+	m->mutex.Create();
+	return false;
+}
+
+
+void Timer::Destroy()
+{
+	_ENTRY();
+	m->mutex.Destroy();
+	m->sem.Destroy();
+	m->list.Destroy();
+	delete m;
+	m = NULL;
+}
+
+
+bool Timer::SubscribeEvent(int id, Handler* receiver, int ms)
+{
+	_ENTRY();
+	m->mutex.Lock();
+	TTimerNode* node = new TTimerNode;
+	node->id = id;
+	node->receiver = receiver;
+	node->ms = ms;
+	m->list.Add(node);
+	m->mutex.Unlock();
+	return false;
+}
+
+
+bool Timer::UnsubscribeEvent(int id, Handler* receiver)
+{
+	_ENTRY();
+	bool ret = false;
+	m->mutex.Lock();
+	for (int a = m->list.Size() - 1; a >= 0; a--)
+	{
+		TTimerNode* node = (TTimerNode*)m->list.GetAt(a);
+		if (node->id == id && node->receiver == receiver)
+		{
+			delete node;
+			m->list.RemoveAt(a);
+			ret = true;
+			break;
+		}
+	}
+	m->mutex.Unlock();
+	return true;
+}
 ```
