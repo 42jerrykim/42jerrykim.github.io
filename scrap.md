@@ -1,6 +1,8 @@
 https://comsmart.co.kr/cmart/shop/item.php?it_id=1644305465&num=19&ca_id2=
 [https://plantuml.com/ko/link#google_vignette](https://plantuml.com/ko/link)
 
+https://blog.naver.com/yally23232/220793048885
+
 import sys
 import os
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QTextEdit, QPushButton, QLabel, QFileDialog
