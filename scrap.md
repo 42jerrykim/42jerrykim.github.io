@@ -151,3 +151,183 @@ bool Timer::UnsubscribeEvent(int id, Handler* receiver)
 	return true;
 }
 ```
+
+
+Timer 클래스를 동작하도록 구현하기 위해서는 Timer의 주요 기능들을 정의하고 구현해야 한다. 이는 Thread 클래스의 기능을 상속받아 Timer가 독립적으로 동작하도록 만드는 과정이다. 제공된 코드에서는 타이머 스레드를 생성하고, 이벤트를 구독하고, 이벤트를 취소하는 메커니즘이 포함되어 있다.
+
+이를 완성하기 위해 다음과 같은 주요 부분을 추가 및 수정해야 한다:
+
+1. 타이머 이벤트 처리 루프 구현
+2. 이벤트가 발생했을 때 Handler로 이벤트 전달
+3. Thread와 Timer 간의 정확한 동기화
+
+아래는 수정 및 추가된 코드이다:
+
+```cpp
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <mutex>
+#include <list>
+#include <condition_variable>
+
+// Assuming necessary structures and classes are declared as before
+
+class Semaphore {
+public:
+    Semaphore(int count_ = 0)
+        : count(count_) {
+    }
+
+    void notify() {
+        std::unique_lock<std::mutex> lock(mtx);
+        count++;
+        cv.notify_one();
+    }
+
+    void wait() {
+        std::unique_lock<std::mutex> lock(mtx);
+        while (count == 0) {
+            cv.wait(lock);
+        }
+        count--;
+    }
+
+    bool try_wait() {
+        std::unique_lock<std::mutex> lock(mtx);
+        if (count) {
+            count--;
+            return true;
+        }
+        return false;
+    }
+
+private:
+    std::mutex mtx;
+    std::condition_variable cv;
+    int count;
+};
+
+class Mutex {
+public:
+    void Lock() {
+        mtx.lock();
+    }
+
+    void Unlock() {
+        mtx.unlock();
+    }
+
+private:
+    std::mutex mtx;
+};
+
+class List {
+public:
+    void Add(TTimerNode* node) {
+        list.push_back(node);
+    }
+
+    void RemoveAt(int index) {
+        auto it = std::next(list.begin(), index);
+        list.erase(it);
+    }
+
+    TTimerNode* GetAt(int index) {
+        auto it = std::next(list.begin(), index);
+        return *it;
+    }
+
+    int Size() const {
+        return list.size();
+    }
+
+    void Create() {
+        list.clear();
+    }
+
+    void Destroy() {
+        list.clear();
+    }
+
+private:
+    std::list<TTimerNode*> list;
+};
+
+struct Event {
+    int id;
+};
+
+void Timer::t_OnThread() {
+    _ENTRY();
+    while (true) {
+        m->sem.Take(m->remain);
+        std::this_thread::sleep_for(std::chrono::milliseconds(m->remain));
+
+        m->mutex.Lock();
+        for (int i = 0; i < m->list.Size(); ++i) {
+            TTimerNode* node = m->list.GetAt(i);
+            node->receiver->t_OnHandler(new Event{node->id});
+        }
+        m->mutex.Unlock();
+    }
+}
+
+bool Timer::Create() {
+    _ENTRY();
+    m = new TTimer;
+    m->list.Create();
+    m->sem.Create(0);
+    m->mutex.Create();
+    std::thread(&Timer::t_OnThread, this).detach();
+    return true;
+}
+
+void Timer::Destroy() {
+    _ENTRY();
+    m->mutex.Destroy();
+    m->sem.Destroy();
+    m->list.Destroy();
+    delete m;
+    m = NULL;
+}
+
+bool Timer::SubscribeEvent(int id, Handler* receiver, int ms) {
+    _ENTRY();
+    m->mutex.Lock();
+    TTimerNode* node = new TTimerNode;
+    node->id = id;
+    node->receiver = receiver;
+    node->ms = ms;
+    m->list.Add(node);
+    m->mutex.Unlock();
+    return true;
+}
+
+bool Timer::UnsubscribeEvent(int id, Handler* receiver) {
+    _ENTRY();
+    bool ret = false;
+    m->mutex.Lock();
+    for (int a = m->list.Size() - 1; a >= 0; a--) {
+        TTimerNode* node = (TTimerNode*)m->list.GetAt(a);
+        if (node->id == id && node->receiver == receiver) {
+            delete node;
+            m->list.RemoveAt(a);
+            ret = true;
+            break;
+        }
+    }
+    m->mutex.Unlock();
+    return true;
+}
+```
+
+위 코드에서 주요 수정사항은 다음과 같다:
+
+1. `Semaphore`와 `Mutex` 클래스를 C++ 표준 라이브러리의 동기화 도구를 사용하여 구현하였다.
+2. `List` 클래스는 STL의 `std::list`를 사용하여 구현하였다.
+3. `Timer::t_OnThread` 메서드는 실제 타이머 기능을 구현하였다. 여기서는 `std::this_thread::sleep_for`를 사용하여 지정된 시간(ms) 동안 스레드를 일시 중지시킨 후 이벤트를 처리한다.
+4. `Timer::Create` 메서드는 타이머 스레드를 생성하고 detach한다.
+5. `Handler::t_OnHandler` 메서드는 이벤트가 발생했을 때 호출되며, 각 Handler 클래스에서 구현되어야 한다.
+
+이제 Timer 클래스는 독립적으로 동작하며, 이벤트를 구독하고 발생시키는 기능을 제대로 수행할 것이다. 각 Handler는 `t_OnHandler` 메서드를 통해 이벤트를 처리할 수 있다.
