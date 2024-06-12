@@ -496,3 +496,125 @@ int main() {
 이 코드에서는 입력 이미지를 3x3 크기로 예시로 하여 `Color` 구조체를 사용해 각 픽셀의 RGB 값을 저장하고, Floyd-Steinberg 디더링을 적용하였다. `findClosestColor` 함수는 주어진 색상에 가장 가까운 팔레트 색상을 찾고, `floydSteinbergDithering` 함수는 디더링 알고리즘을 적용한다. 마지막으로 결과를 출력한다.
 
 이 코드를 확장하여 더 큰 이미지 파일을 처리할 수도 있으며, 이미지 입출력 관련 라이브러리를 추가하여 실제 이미지 파일을 처리할 수 있다.
+
+
+
+
+다음은 `struct PaletteColor`를 제거하고, 이미지 크기를 800x480으로 설정하여 Floyd-Steinberg 디더링을 적용하는 C++ 코드이다. 각 팔레트 색상은 개별 배열로 처리된다.
+
+```cpp
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+
+using namespace std;
+
+// 팔레트 색상 정의
+uint8_t palette[7][4] = {
+    {0, 0, 0, 0x0},        // black
+    {255, 255, 255, 0x1},  // white
+    {0, 255, 0, 0x2},      // green
+    {0, 0, 255, 0x3},      // blue
+    {255, 0, 0, 0x4},      // red
+    {255, 255, 0, 0x5},    // yellow
+    {255, 165, 0, 0x6}     // orange
+};
+
+const int paletteSize = sizeof(palette) / sizeof(palette[0]);
+const int width = 800;
+const int height = 480;
+
+// 유클리드 거리 계산 함수
+double colorDistance(const uint8_t cell[3], const uint8_t color[3]) {
+    return sqrt(pow(cell[0] - color[0], 2) + pow(cell[1] - color[1], 2) + pow(cell[2] - color[2], 2));
+}
+
+// 주어진 색상에 가장 가까운 팔레트 색상 찾기
+int findClosestColor(const uint8_t cell[3]) {
+    int closestIndex = 0;
+    double minDist = colorDistance(cell, palette[0]);
+
+    for (int i = 1; i < paletteSize; ++i) {
+        double dist = colorDistance(cell, palette[i]);
+        if (dist < minDist) {
+            closestIndex = i;
+            minDist = dist;
+        }
+    }
+
+    return closestIndex;
+}
+
+// RGB 값 범위 제한 함수
+uint8_t clamp(int value) {
+    return value < 0 ? 0 : (value > 255 ? 255 : value);
+}
+
+// Floyd-Steinberg 디더링 적용 함수
+void floydSteinbergDithering(uint8_t image[][3], int width, int height) {
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            uint8_t *oldColor = image[y * width + x];
+            int closestColorIndex = findClosestColor(oldColor);
+            uint8_t *newColor = palette[closestColorIndex];
+
+            int errR = oldColor[0] - newColor[0];
+            int errG = oldColor[1] - newColor[1];
+            int errB = oldColor[2] - newColor[2];
+
+            oldColor[0] = newColor[0];
+            oldColor[1] = newColor[1];
+            oldColor[2] = newColor[2];
+
+            if (x + 1 < width) {
+                image[y * width + (x + 1)][0] = clamp(image[y * width + (x + 1)][0] + errR * 7 / 16);
+                image[y * width + (x + 1)][1] = clamp(image[y * width + (x + 1)][1] + errG * 7 / 16);
+                image[y * width + (x + 1)][2] = clamp(image[y * width + (x + 1)][2] + errB * 7 / 16);
+            }
+            if (x - 1 >= 0 && y + 1 < height) {
+                image[(y + 1) * width + (x - 1)][0] = clamp(image[(y + 1) * width + (x - 1)][0] + errR * 3 / 16);
+                image[(y + 1) * width + (x - 1)][1] = clamp(image[(y + 1) * width + (x - 1)][1] + errG * 3 / 16);
+                image[(y + 1) * width + (x - 1)][2] = clamp(image[(y + 1) * width + (x - 1)][2] + errB * 3 / 16);
+            }
+            if (y + 1 < height) {
+                image[(y + 1) * width + x][0] = clamp(image[(y + 1) * width + x][0] + errR * 5 / 16);
+                image[(y + 1) * width + x][1] = clamp(image[(y + 1) * width + x][1] + errG * 5 / 16);
+                image[(y + 1) * width + x][2] = clamp(image[(y + 1) * width + x][2] + errB * 5 / 16);
+            }
+            if (x + 1 < width && y + 1 < height) {
+                image[(y + 1) * width + (x + 1)][0] = clamp(image[(y + 1) * width + (x + 1)][0] + errR * 1 / 16);
+                image[(y + 1) * width + (x + 1)][1] = clamp(image[(y + 1) * width + (x + 1)][1] + errG * 1 / 16);
+                image[(y + 1) * width + (x + 1)][2] = clamp(image[(y + 1) * width + (x + 1)][2] + errB * 1 / 16);
+            }
+        }
+    }
+}
+
+int main() {
+    // 예제 이미지 초기화 (800x480 크기의 이미지)
+    uint8_t image[width * height][3];
+
+    // 임의의 이미지 데이터를 초기화 (단순히 그레이스케일 패턴으로 채운다)
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            image[y * width + x][0] = (x + y) % 256;
+            image[y * width + x][1] = (x + y) % 256;
+            image[y * width + x][2] = (x + y) % 256;
+        }
+    }
+
+    // 디더링 적용
+    floydSteinbergDithering(image, width, height);
+
+    // 결과 출력 (간단히 첫 행만 출력)
+    for (int x = 0; x < width; ++x) {
+        int closestColorIndex = findClosestColor(image[x]);
+        cout << "0x" << hex << (int)palette[closestColorIndex][3] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+```
+
+이 코드는 `struct PaletteColor`를 제거하고, 팔레트 색상을 2차원 배열 `palette`로 정의하였다. 또한, 이미지 크기를 800x480으로 설정하고, Floyd-Steinberg 디더링 알고리즘을 적용하여 결과를 출력한다. 이미지 초기화 부분에서는 간단한 그레이스케일 패턴을 사용하여 초기값을 설정하였다.
