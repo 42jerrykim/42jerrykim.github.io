@@ -378,3 +378,121 @@ int main() {
 ```
 
 이 코드는 C++17 이상을 필요로 한다. `std::filesystem` 라이브러리를 사용하여 디렉터리 내의 파일을 나열하고, 그 중 하나를 무작위로 선택하여 반환한다. `getRandomFile` 함수는 주어진 디렉터리 경로에서 임의의 파일을 선택하여 해당 파일의 경로를 문자열로 반환한다. `main` 함수는 이 함수를 호출하여 결과를 출력한다.
+
+
+
+Floyd-Steinberg 디더링 알고리즘은 이미지를 보다 적은 색상으로 변환하면서도 시각적으로 자연스럽게 보이도록 만들어주는 기법이다. 다음은 주어진 7가지 색상을 사용하여 Floyd-Steinberg 디더링을 적용하는 C++ 코드이다. 이 코드는 이미지를 7가지 색상 중 하나로 디더링하여 표현한다.
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+struct Color {
+    uint8_t r, g, b;
+    uint8_t value;
+};
+
+vector<Color> palette = {
+    {0, 0, 0, 0x0},        // black
+    {255, 255, 255, 0x1},  // white
+    {0, 255, 0, 0x2},      // green
+    {0, 0, 255, 0x3},      // blue
+    {255, 0, 0, 0x4},      // red
+    {255, 255, 0, 0x5},    // yellow
+    {255, 165, 0, 0x6}     // orange
+};
+
+// 유클리드 거리 계산 함수
+double colorDistance(const Color &c1, const Color &c2) {
+    return sqrt(pow(c1.r - c2.r, 2) + pow(c1.g - c2.g, 2) + pow(c1.b - c2.b, 2));
+}
+
+// 주어진 색상에 가장 가까운 팔레트 색상 찾기
+Color findClosestColor(const Color &color) {
+    Color closest = palette[0];
+    double minDist = colorDistance(color, closest);
+
+    for (const auto &p : palette) {
+        double dist = colorDistance(color, p);
+        if (dist < minDist) {
+            closest = p;
+            minDist = dist;
+        }
+    }
+
+    return closest;
+}
+
+// Floyd-Steinberg 디더링 적용 함수
+void floydSteinbergDithering(vector<vector<Color>> &image) {
+    int height = image.size();
+    int width = image[0].size();
+
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            Color oldColor = image[y][x];
+            Color newColor = findClosestColor(oldColor);
+            image[y][x] = newColor;
+
+            int errR = oldColor.r - newColor.r;
+            int errG = oldColor.g - newColor.g;
+            int errB = oldColor.b - newColor.b;
+
+            if (x + 1 < width) {
+                image[y][x + 1].r = clamp(image[y][x + 1].r + errR * 7 / 16);
+                image[y][x + 1].g = clamp(image[y][x + 1].g + errG * 7 / 16);
+                image[y][x + 1].b = clamp(image[y][x + 1].b + errB * 7 / 16);
+            }
+            if (x - 1 >= 0 && y + 1 < height) {
+                image[y + 1][x - 1].r = clamp(image[y + 1][x - 1].r + errR * 3 / 16);
+                image[y + 1][x - 1].g = clamp(image[y + 1][x - 1].g + errG * 3 / 16);
+                image[y + 1][x - 1].b = clamp(image[y + 1][x - 1].b + errB * 3 / 16);
+            }
+            if (y + 1 < height) {
+                image[y + 1][x].r = clamp(image[y + 1][x].r + errR * 5 / 16);
+                image[y + 1][x].g = clamp(image[y + 1][x].g + errG * 5 / 16);
+                image[y + 1][x].b = clamp(image[y + 1][x].b + errB * 5 / 16);
+            }
+            if (x + 1 < width && y + 1 < height) {
+                image[y + 1][x + 1].r = clamp(image[y + 1][x + 1].r + errR * 1 / 16);
+                image[y + 1][x + 1].g = clamp(image[y + 1][x + 1].g + errG * 1 / 16);
+                image[y + 1][x + 1].b = clamp(image[y + 1][x + 1].b + errB * 1 / 16);
+            }
+        }
+    }
+}
+
+// RGB 값 범위 제한 함수
+uint8_t clamp(int value) {
+    return value < 0 ? 0 : (value > 255 ? 255 : value);
+}
+
+int main() {
+    // 예제 이미지 초기화 (3x3 크기의 이미지)
+    vector<vector<Color>> image = {
+        {{255, 0, 0}, {0, 255, 0}, {0, 0, 255}},
+        {{255, 255, 0}, {255, 165, 0}, {0, 0, 0}},
+        {{255, 255, 255}, {128, 128, 128}, {64, 64, 64}}
+    };
+
+    // 디더링 적용
+    floydSteinbergDithering(image);
+
+    // 결과 출력
+    for (const auto &row : image) {
+        for (const auto &color : row) {
+            cout << "0x" << hex << (int)color.value << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+```
+
+이 코드에서는 입력 이미지를 3x3 크기로 예시로 하여 `Color` 구조체를 사용해 각 픽셀의 RGB 값을 저장하고, Floyd-Steinberg 디더링을 적용하였다. `findClosestColor` 함수는 주어진 색상에 가장 가까운 팔레트 색상을 찾고, `floydSteinbergDithering` 함수는 디더링 알고리즘을 적용한다. 마지막으로 결과를 출력한다.
+
+이 코드를 확장하여 더 큰 이미지 파일을 처리할 수도 있으며, 이미지 입출력 관련 라이브러리를 추가하여 실제 이미지 파일을 처리할 수 있다.
