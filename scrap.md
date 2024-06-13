@@ -618,3 +618,112 @@ int main() {
 ```
 
 이 코드는 `struct PaletteColor`를 제거하고, 팔레트 색상을 2차원 배열 `palette`로 정의하였다. 또한, 이미지 크기를 800x480으로 설정하고, Floyd-Steinberg 디더링 알고리즘을 적용하여 결과를 출력한다. 이미지 초기화 부분에서는 간단한 그레이스케일 패턴을 사용하여 초기값을 설정하였다.
+
+
+
+
+JPEG 이미지를 BGRA 형식으로 변환하려면 먼저 이미지를 로드하고 디코딩한 후, 픽셀 데이터를 BGRA 형식으로 변환하는 과정을 거쳐야 한다. 이를 위해 `libjpeg`과 같은 라이브러리를 사용할 수 있다. 아래는 C++로 작성된 예제 코드이다:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <jpeglib.h>
+#include <cstring>
+
+// Function to read JPEG file
+bool readJPEG(const char* filename, std::vector<unsigned char>& imageData, int& width, int& height) {
+    FILE* infile = fopen(filename, "rb");
+    if (!infile) {
+        std::cerr << "Error opening JPEG file " << filename << std::endl;
+        return false;
+    }
+
+    jpeg_decompress_struct cinfo;
+    jpeg_error_mgr jerr;
+
+    cinfo.err = jpeg_std_error(&jerr);
+    jpeg_create_decompress(&cinfo);
+    jpeg_stdio_src(&cinfo, infile);
+    jpeg_read_header(&cinfo, TRUE);
+    jpeg_start_decompress(&cinfo);
+
+    width = cinfo.output_width;
+    height = cinfo.output_height;
+    int pixelSize = cinfo.output_components;
+
+    imageData.resize(width * height * pixelSize);
+
+    while (cinfo.output_scanline < cinfo.output_height) {
+        unsigned char* rowptr = &imageData[cinfo.output_scanline * width * pixelSize];
+        jpeg_read_scanlines(&cinfo, &rowptr, 1);
+    }
+
+    jpeg_finish_decompress(&cinfo);
+    jpeg_destroy_decompress(&cinfo);
+    fclose(infile);
+
+    return true;
+}
+
+// Function to convert RGB to BGRA
+void convertRGBtoBGRA(const std::vector<unsigned char>& rgbData, std::vector<unsigned char>& bgraData, int width, int height) {
+    bgraData.resize(width * height * 4); // 4 bytes per pixel (BGRA)
+
+    for (int i = 0; i < width * height; ++i) {
+        int rgbIndex = i * 3;
+        int bgraIndex = i * 4;
+
+        bgraData[bgraIndex] = rgbData[rgbIndex + 2];       // B
+        bgraData[bgraIndex + 1] = rgbData[rgbIndex + 1];   // G
+        bgraData[bgraIndex + 2] = rgbData[rgbIndex];       // R
+        bgraData[bgraIndex + 3] = 255;                     // A (opaque)
+    }
+}
+
+// Function to write BGRA data to a binary file
+void writeBGRA(const char* filename, const std::vector<unsigned char>& bgraData) {
+    std::ofstream outfile(filename, std::ios::binary);
+    if (!outfile) {
+        std::cerr << "Error opening output file " << filename << std::endl;
+        return;
+    }
+    outfile.write(reinterpret_cast<const char*>(bgraData.data()), bgraData.size());
+    outfile.close();
+}
+
+int main() {
+    const char* inputFilename = "input.jpg";
+    const char* outputFilename = "output.bgra";
+
+    std::vector<unsigned char> rgbData;
+    int width, height;
+
+    if (!readJPEG(inputFilename, rgbData, width, height)) {
+        return -1;
+    }
+
+    std::vector<unsigned char> bgraData;
+    convertRGBtoBGRA(rgbData, bgraData, width, height);
+
+    writeBGRA(outputFilename, bgraData);
+
+    std::cout << "Conversion completed successfully." << std::endl;
+
+    return 0;
+}
+```
+
+이 코드는 다음과 같은 단계로 구성되어 있다:
+
+1. `readJPEG`: libjpeg을 사용하여 JPEG 파일을 읽고 디코드하여 RGB 형식의 데이터를 가져온다.
+2. `convertRGBtoBGRA`: RGB 데이터를 BGRA 형식으로 변환한다.
+3. `writeBGRA`: 변환된 BGRA 데이터를 바이너리 파일로 저장한다.
+
+JPEG 파일을 읽기 위해서는 `libjpeg` 라이브러리가 필요하다. 이를 사용하려면 컴파일 시 `-ljpeg` 플래그를 추가해야 한다. 예를 들어, `g++`을 사용하여 코드를 컴파일할 때는 다음과 같이 한다:
+
+```bash
+g++ -o jpeg_to_bgra jpeg_to_bgra.cpp -ljpeg
+```
+
+이후 실행하면 `input.jpg` 파일을 읽고 `output.bgra` 파일로 변환된 BGRA 데이터를 저장하게 된다.
