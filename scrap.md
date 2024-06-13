@@ -727,3 +727,68 @@ g++ -o jpeg_to_bgra jpeg_to_bgra.cpp -ljpeg
 ```
 
 이후 실행하면 `input.jpg` 파일을 읽고 `output.bgra` 파일로 변환된 BGRA 데이터를 저장하게 된다.
+
+
+다른 방법으로는 OpenCV 라이브러리를 사용하는 것이다. OpenCV는 이미지 처리에 많이 사용되는 라이브러리로, 다양한 이미지 형식을 손쉽게 변환할 수 있다. 아래는 OpenCV를 사용하여 JPEG 이미지를 BGRA 형식으로 변환하는 C++ 코드이다:
+
+```cpp
+#include <opencv2/opencv.hpp>
+#include <iostream>
+
+int main() {
+    // Input and output file names
+    std::string inputFilename = "input.jpg";
+    std::string outputFilename = "output.bgra";
+
+    // Read the JPEG image
+    cv::Mat image = cv::imread(inputFilename, cv::IMREAD_COLOR);
+    if (image.empty()) {
+        std::cerr << "Error: Could not open or find the image" << std::endl;
+        return -1;
+    }
+
+    // Convert the image to BGRA format
+    cv::Mat imageBGRA;
+    cv::cvtColor(image, imageBGRA, cv::COLOR_BGR2BGRA);
+
+    // Write the BGRA image data to a binary file
+    std::ofstream outfile(outputFilename, std::ios::binary);
+    if (!outfile) {
+        std::cerr << "Error: Could not open the output file" << std::endl;
+        return -1;
+    }
+    outfile.write(reinterpret_cast<const char*>(imageBGRA.data), imageBGRA.total() * imageBGRA.elemSize());
+    outfile.close();
+
+    std::cout << "Conversion completed successfully." << std::endl;
+
+    return 0;
+}
+```
+
+이 코드는 다음과 같은 단계로 구성되어 있다:
+
+1. `cv::imread`: OpenCV를 사용하여 JPEG 이미지를 읽는다.
+2. `cv::cvtColor`: BGR 형식의 이미지를 BGRA 형식으로 변환한다.
+3. 변환된 BGRA 데이터를 바이너리 파일로 저장한다.
+
+### 요구 라이브러리 설치
+
+OpenCV를 사용하려면 OpenCV 라이브러리를 설치해야 한다. Ubuntu에서 설치하는 방법은 다음과 같다:
+
+```bash
+sudo apt update
+sudo apt install libopencv-dev
+```
+
+### 컴파일 및 실행
+
+OpenCV 라이브러리를 사용하여 코드를 컴파일할 때는 `pkg-config`를 사용하여 컴파일 플래그를 추가해야 한다:
+
+```bash
+g++ -o jpeg_to_bgra jpeg_to_bgra.cpp `pkg-config --cflags --libs opencv4`
+```
+
+이후 실행하면 `input.jpg` 파일을 읽고 `output.bgra` 파일로 변환된 BGRA 데이터를 저장하게 된다.
+
+이 방법은 OpenCV 라이브러리를 사용하여 간단하게 이미지를 처리할 수 있는 장점이 있다. OpenCV는 이미지 처리에 강력한 기능을 제공하므로, 다양한 이미지 처리 작업에 유용하다.
