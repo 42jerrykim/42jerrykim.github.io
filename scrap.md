@@ -858,3 +858,61 @@ g++ -o jpeg_to_bgra jpeg_to_bgra.cpp `pkg-config --cflags --libs opencv4`
 ```
 
 이후 실행하면 `input.jpg` 파일을 읽고 `output.raw` 파일로 변환된 BGRA 데이터를 순수한 픽셀 데이터로 저장하게 된다. 이 데이터는 이미지의 메타데이터 없이 순수한 픽셀 값만 포함하고 있다.
+
+
+RGB 값을 순차적으로 적혀있는 파일에서 읽어와 출력하는 함수는 다음과 같이 작성할 수 있다. 이 함수는 파일을 열고 RGB 값을 읽은 후, 이를 출력하는 역할을 한다.
+
+```cpp
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+// Structure to hold RGB values
+struct RGB {
+    unsigned char r;
+    unsigned char g;
+    unsigned char b;
+};
+
+// Function to read RGB values from a file and print them
+void readAndPrintRGB(const std::string& filename) {
+    std::ifstream infile(filename, std::ios::binary);
+    if (!infile.is_open()) {
+        std::cerr << "Error: Could not open the file: " << filename << std::endl;
+        return;
+    }
+
+    std::vector<RGB> rgbValues;
+    RGB rgb;
+
+    while (infile.read(reinterpret_cast<char*>(&rgb), sizeof(RGB))) {
+        rgbValues.push_back(rgb);
+    }
+
+    infile.close();
+
+    for (const auto& color : rgbValues) {
+        std::cout << "R: " << static_cast<int>(color.r)
+                  << " G: " << static_cast<int>(color.g)
+                  << " B: " << static_cast<int>(color.b) << std::endl;
+    }
+}
+
+int main() {
+    std::string filename = "rgb_data.raw";
+    readAndPrintRGB(filename);
+    return 0;
+}
+```
+
+이 코드에서 `RGB` 구조체는 RGB 값을 저장하기 위한 용도로 사용된다. `readAndPrintRGB` 함수는 다음 단계를 따른다:
+
+1. 주어진 파일을 바이너리 모드로 연다.
+2. 파일을 읽을 수 없으면 오류 메시지를 출력하고 종료한다.
+3. 파일에서 RGB 값을 순차적으로 읽어 `rgbValues` 벡터에 저장한다.
+4. 파일을 닫는다.
+5. 벡터에 저장된 RGB 값을 출력한다.
+
+이 함수를 사용하려면 `rgb_data.raw`와 같은 파일에 RGB 값이 순차적으로 기록되어 있어야 한다. 예를 들어, 각 픽셀이 3바이트로 구성되어 있고, 첫 번째 바이트는 빨강, 두 번째 바이트는 녹색, 세 번째 바이트는 파랑 값을 나타내는 형식이다. 
+
+`readAndPrintRGB` 함수는 모든 RGB 값을 순차적으로 읽고, 이를 출력하는 역할을 한다. 파일에 여러 픽셀의 RGB 값이 포함되어 있으면, 모든 값을 한 번에 읽어와 출력할 수 있다.
