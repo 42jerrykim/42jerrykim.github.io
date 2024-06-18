@@ -184,3 +184,26 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
    - 창의 클라이언트 영역과 이미지의 비율을 비교하여 비율을 유지한 상태로 이미지를 중앙에 배치한다.
 
 이 예제는 기본적으로 메모리에서 생성된 비트맵을 사용하지만, 실제로는 파일에서 비트맵을 로드하여 사용할 수 있다. 파일에서 비트맵을 로드하는 경우, `LoadImage` 함수나 다른 비트맵 로드 함수를 사용할 수 있다.
+
+
+```
+ case WM_SIZING:
+        {
+            RECT* rect = (RECT*)lParam;
+            int width = rect->right - rect->left;
+            int height = rect->bottom - rect->top;
+            float currentAspectRatio = (float)width / (float)height;
+
+            if (currentAspectRatio > aspectRatio) {
+                // 너비에 비례하여 높이를 조정
+                width = (int)(height * aspectRatio);
+                rect->right = rect->left + width;
+            } else {
+                // 높이에 비례하여 너비를 조정
+                height = (int)(width / aspectRatio);
+                rect->bottom = rect->top + height;
+            }
+
+            return TRUE;
+        }
+```
