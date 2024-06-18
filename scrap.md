@@ -623,3 +623,114 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
    - 창의 클라이언트 영역과 이미지의 비율을 비교하여 비율을 유지한 상태로 이미지를 중앙에 배치한다.
 
 이 코드는 사용자가 창 크기를 변경할 때 내부 비율을 유지하도록 하며, 이미지가 올바르게 비율을 유지하며 표시되도록 한다.
+
+
+
+
+
+
+
+Stucki 디더링 알고리즘을 사용한 C++ 코드를 작성해보겠다. Stucki 디더링은 오류를 더 넓은 범위에 걸쳐 분산시켜 부드러운 결과를 제공하는 디더링 알고리즘이다.
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <algorithm>
+
+struct Color {
+    int r, g, b;
+};
+
+Color closestColor(const Color& c) {
+    std::vector<Color> palette = {
+        {255, 255, 255},  // White
+        {0, 0, 0},        // Black
+        {0, 255, 0},      // Green
+        {0, 0, 255},      // Blue
+        {255, 0, 0},      // Red
+        {255, 255, 0}     // Yellow
+    };
+
+    Color closest = palette[0];
+    int minDistance = INT_MAX;
+
+    for (const auto& p : palette) {
+        int distance = std::pow(c.r - p.r, 2) + std::pow(c.g - p.g, 2) + std::pow(c.b - p.b, 2);
+        if (distance < minDistance) {
+            minDistance = distance;
+            closest = p;
+        }
+    }
+
+    return closest;
+}
+
+void applyDithering(std::vector<std::vector<Color>>& image) {
+    int height = image.size();
+    int width = image[0].size();
+
+    std::vector<std::vector<int>> errorR(height, std::vector<int>(width, 0));
+    std::vector<std::vector<int>> errorG(height, std::vector<int>(width, 0));
+    std::vector<std::vector<int>> errorB(height, std::vector<int>(width, 0));
+
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            Color oldColor = {
+                std::clamp(image[y][x].r + errorR[y][x], 0, 255),
+                std::clamp(image[y][x].g + errorG[y][x], 0, 255),
+                std::clamp(image[y][x].b + errorB[y][x], 0, 255)
+            };
+
+            Color newColor = closestColor(oldColor);
+            image[y][x] = newColor;
+
+            int errR = oldColor.r - newColor.r;
+            int errG = oldColor.g - newColor.g;
+            int errB = oldColor.b - newColor.b;
+
+            std::vector<std::pair<int, int>> offsets = {
+                {1, 0}, {2, 0}, {-2, 1}, {-1, 1}, {0, 1}, {1, 1}, {2, 1}, {-2, 2}, {-1, 2}, {0, 2}, {1, 2}, {2, 2}
+            };
+            std::vector<int> coefficients = {8, 4, 2, 4, 8, 4, 2, 1, 2, 4, 2, 1};
+
+            for (int k = 0; k < offsets.size(); ++k) {
+                int newX = x + offsets[k].first;
+                int newY = y + offsets[k].second;
+                if (newX >= 0 && newX < width && newY >= 0 && newY < height) {
+                    errorR[newY][newX] += errR * coefficients[k] / 42;
+                    errorG[newY][newX] += errG * coefficients[k] / 42;
+                    errorB[newY][newX] += errB * coefficients[k] / 42;
+                }
+            }
+        }
+    }
+}
+
+int main() {
+    int width = 5;
+    int height = 5;
+    std::vector<std::vector<Color>> image(height, std::vector<Color>(width));
+
+    // 예시 RGB 데이터 초기화
+    image[0] = {{100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}};
+    image[1] = {{100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}};
+    image[2] = {{100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}};
+    image[3] = {{100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}};
+    image[4] = {{100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}};
+
+    applyDithering(image);
+
+    // 결과 출력
+    for (const auto& row : image) {
+        for (const auto& pixel : row) {
+            std::cout << "(" << pixel.r << ", " << pixel.g << ", " << pixel.b << ") ";
+        }
+        std::cout << "\n";
+    }
+
+    return 0;
+}
+```
+
+이 코드는 Stucki 디더링 알고리즘을 사용하여 입력된 RGB 데이터를 처리한다. Stucki 디더링은 오류를 넓게 분산시켜 매우 부드러운 이미지를 생성한다. `closestColor` 함수는 주어진 색상에 가장 가까운 팔레트 색상을 찾고, `applyDithering` 함수는 전체 이미지를 처리하여 디더링을 적용한다. 각 픽셀의 색상 오류를 주변 픽셀에 분산시켜 처리한다.
