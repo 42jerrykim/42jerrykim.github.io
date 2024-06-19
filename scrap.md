@@ -1,3 +1,165 @@
+주어진 색상 팔레트를 사용하여 Jarvis-Judice-Ninke 디더링을 C++로 구현하는 예제를 제공하겠다. 사용할 수 있는 색상 팔레트는 다음과 같다:
+
+- 흰색: (255, 255, 255)
+- 검은색: (0, 0, 0)
+- 노란색: (255, 255, 0)
+- 파란색: (0, 0, 255)
+- 빨간색: (255, 0, 0)
+- 초록색: (0, 255, 0)
+- 오렌지색: (255, 165, 0)
+
+### 1. 헤더 파일 및 유틸리티 함수 정의
+
+먼저, 필요한 헤더 파일을 포함하고 이미지 데이터 처리를 위한 유틸리티 함수를 정의한다.
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <algorithm>
+#include <cstdint>
+
+using namespace std;
+
+struct Pixel {
+    uint8_t b, g, r;
+};
+
+// 이미지 데이터를 1차원 벡터로 저장
+using Image = vector<Pixel>;
+
+// 이미지 크기
+struct Size {
+    int width;
+    int height;
+};
+
+// 색상 팔레트
+const vector<Pixel> palette = {
+    {255, 255, 255}, // 흰색
+    {0, 0, 0},       // 검은색
+    {255, 255, 0},   // 노란색
+    {0, 0, 255},     // 파란색
+    {255, 0, 0},     // 빨간색
+    {0, 255, 0},     // 초록색
+    {255, 165, 0}    // 오렌지색
+};
+
+// 픽셀 값을 클램핑
+uint8_t clamp(int value, int min = 0, int max = 255) {
+    return static_cast<uint8_t>(std::max(min, std::min(value, max)));
+}
+
+// 두 픽셀 간의 유클리드 거리 계산
+int colorDistance(const Pixel& p1, const Pixel& p2) {
+    return (p1.r - p2.r) * (p1.r - p2.r) +
+           (p1.g - p2.g) * (p1.g - p2.g) +
+           (p1.b - p2.b) * (p1.b - p2.b);
+}
+
+// 가장 가까운 팔레트 색상 찾기
+Pixel findClosestPaletteColor(const Pixel& pixel) {
+    Pixel closestColor = palette[0];
+    int minDistance = colorDistance(pixel, palette[0]);
+
+    for (const auto& color : palette) {
+        int distance = colorDistance(pixel, color);
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestColor = color;
+        }
+    }
+
+    return closestColor;
+}
+
+// 픽셀의 색상 차이를 계산
+Pixel colorDifference(const Pixel& p1, const Pixel& p2) {
+    return Pixel {
+        static_cast<uint8_t>(p1.b - p2.b),
+        static_cast<uint8_t>(p1.g - p2.g),
+        static_cast<uint8_t>(p1.r - p2.r)
+    };
+}
+
+// 픽셀에 색상 차이를 적용
+Pixel applyColorDifference(const Pixel& p, const Pixel& diff, double factor) {
+    return Pixel {
+        clamp(static_cast<int>(p.b) + static_cast<int>(diff.b * factor)),
+        clamp(static_cast<int>(p.g) + static_cast<int>(diff.g * factor)),
+        clamp(static_cast<int>(p.r) + static_cast<int>(diff.r * factor))
+    };
+}
+```
+
+### 2. Jarvis-Judice-Ninke 디더링 구현
+
+다음으로, Jarvis-Judice-Ninke 알고리즘을 사용하여 이미지에 디더링을 적용하는 함수를 정의한다.
+
+```cpp
+void jarvisJudiceNinkeDithering(Image& img, Size size) {
+    const int matrix[3][5] = {
+        { 0, 0, 0, 7, 5 },
+        { 3, 5, 7, 5, 3 },
+        { 1, 3, 5, 3, 1 }
+    };
+    const int matrixSum = 48; // 3 + 5 + 7 + 5 + 3 + 1 + 3 + 5 + 3 + 1 = 48
+
+    for (int y = 0; y < size.height; ++y) {
+        for (int x = 0; x < size.width; ++x) {
+            int index = y * size.width + x;
+            Pixel oldPixel = img[index];
+            
+            // 가장 가까운 팔레트 색상으로 양자화
+            Pixel newPixel = findClosestPaletteColor(oldPixel);
+
+            img[index] = newPixel;
+            Pixel quantError = colorDifference(oldPixel, newPixel);
+
+            // 오류 확산
+            for (int dy = 0; dy < 3; ++dy) {
+                for (int dx = -2; dx <= 2; ++dx) {
+                    if (x + dx >= 0 && x + dx < size.width && y + dy < size.height) {
+                        int neighborIndex = (y + dy) * size.width + (x + dx);
+                        img[neighborIndex] = applyColorDifference(img[neighborIndex], quantError, matrix[dy][dx + 2] / static_cast<double>(matrixSum));
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+### 3. 메인 함수 및 테스트
+
+마지막으로, 메인 함수에서 이미지를 로드하고 디더링을 적용한 후 결과를 저장하는 코드를 작성한다.
+
+```cpp
+int main() {
+    // 예제 이미지 데이터 (단순히 1차원 벡터로 초기화)
+    Size size = { 5, 5 }; // 5x5 크기의 이미지
+    Image img(size.width * size.height, { 128, 128, 128 });
+
+    // Jarvis-Judice-Ninke 디더링 적용
+    jarvisJudiceNinkeDithering(img, size);
+
+    // 결과 출력 (예시)
+    for (int y = 0; y < size.height; ++y) {
+        for (int x = 0; x < size.width; ++x) {
+            Pixel p = img[y * size.width + x];
+            cout << "(" << (int)p.r << "," << (int)p.g << "," << (int)p.b << ") ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+```
+
+이 코드는 5x5 크기의 예제 이미지를 Jarvis-Judice-Ninke 디더링 알고리즘을 사용하여 처리하고 결과를 출력한다. 실제 이미지 파일을 처리하려면 이미지 파일을 읽고 쓰는 코드를 추가해야 한다. 이 예제에서는 단순화된 구조로 디더링의 동작 원리를 이해하는 데 집중하였다.
+
+
+
 JPEG 이미지를 RGB 데이터의 나열로 변경하여 1차원 벡터에 저장하는 C++ 코드를 작성하기 위해 OpenCV 라이브러리를 사용할 수 있다. 다음은 이미지의 RGB 데이터를 1차원 벡터로 저장하는 예제 코드이다:
 
 ```cpp
