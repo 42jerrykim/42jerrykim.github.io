@@ -1,3 +1,85 @@
+Pillow 라이브러리를 사용하여 이미지에 글자를 추가할 때, 글자에 테두리를 주는 방법을 설명하겠다. 아래 단계별로 코드를 작성하여 설명하겠다.
+
+1. Pillow 라이브러리 설치
+2. 기본적인 글자 추가 방법
+3. 글자에 테두리 추가 방법
+
+### 1. Pillow 라이브러리 설치
+
+먼저 Pillow 라이브러리를 설치해야 한다. 아래 명령어를 사용하여 설치할 수 있다.
+
+```bash
+pip install pillow
+```
+
+### 2. 기본적인 글자 추가 방법
+
+기본적으로 Pillow를 사용하여 이미지를 생성하고 글자를 추가하는 방법은 다음과 같다.
+
+```python
+from PIL import Image, ImageDraw, ImageFont
+
+# 빈 이미지 생성
+image = Image.new('RGB', (200, 100), (255, 255, 255))
+draw = ImageDraw.Draw(image)
+
+# 글꼴 설정
+font = ImageFont.truetype("arial.ttf", 40)
+
+# 텍스트 위치 설정
+text = "Hello"
+text_position = (50, 25)
+
+# 텍스트 추가
+draw.text(text_position, text, font=font, fill=(0, 0, 0))
+
+# 이미지 저장
+image.save('text_image.png')
+```
+
+### 3. 글자에 테두리 추가 방법
+
+글자에 테두리를 추가하려면, 글자를 여러 번 그려서 테두리 효과를 만들어야 한다. 테두리 색상으로 여러 번 그리고, 마지막에 원래 색상으로 글자를 그리면 된다.
+
+```python
+from PIL import Image, ImageDraw, ImageFont
+
+# 빈 이미지 생성
+image = Image.new('RGB', (200, 100), (255, 255, 255))
+draw = ImageDraw.Draw(image)
+
+# 글꼴 설정
+font = ImageFont.truetype("arial.ttf", 40)
+
+# 텍스트 설정
+text = "Hello"
+text_position = (50, 25)
+text_color = (0, 0, 0)  # 텍스트 색상
+border_color = (255, 0, 0)  # 테두리 색상
+border_thickness = 2  # 테두리 두께
+
+# 테두리를 그리는 함수
+def draw_text_with_border(draw, position, text, font, text_color, border_color, border_thickness):
+    x, y = position
+    # 테두리를 그린다
+    for dx in range(-border_thickness, border_thickness+1):
+        for dy in range(-border_thickness, border_thickness+1):
+            if dx != 0 or dy != 0:
+                draw.text((x+dx, y+dy), text, font=font, fill=border_color)
+    # 원래 텍스트를 그린다
+    draw.text((x, y), text, font=font, fill=text_color)
+
+# 텍스트와 테두리를 그린다
+draw_text_with_border(draw, text_position, text, font, text_color, border_color, border_thickness)
+
+# 이미지 저장
+image.save('text_image_with_border.png')
+```
+
+위 코드에서 `draw_text_with_border` 함수는 텍스트 주위에 여러 번 테두리 색상으로 그린 다음, 가운데에 원래 색상으로 텍스트를 그려 테두리 효과를 만들어낸다.
+
+이 코드를 실행하면 "Hello" 텍스트에 빨간색 테두리가 추가된 이미지를 생성할 수 있다.
+---
 이미지를 일차원 벡터로 저장할 때 `Image` 타입을 `vector<unsigned char>`로 사용하는 코드 예제는 다음과 같다. 이 경우, 각 픽셀은 B, G, R 순서로 저장된다고 가정한다.
 
 ### 1. 헤더 파일 및 유틸리티 함수 정의
