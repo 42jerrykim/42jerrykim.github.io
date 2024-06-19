@@ -1,3 +1,85 @@
+JPEG 이미지를 RGB 데이터의 나열로 변경하여 1차원 벡터에 저장하는 C++ 코드를 작성하기 위해 OpenCV 라이브러리를 사용할 수 있다. 다음은 이미지의 RGB 데이터를 1차원 벡터로 저장하는 예제 코드이다:
+
+```cpp
+#include <opencv2/opencv.hpp>
+#include <vector>
+#include <iostream>
+
+// JPEG 이미지를 RGB 데이터로 변환하여 1차원 벡터에 저장하는 함수
+std::vector<int> jpegToRgb1DArray(const std::string& imagePath) {
+    // 이미지 로드
+    cv::Mat img = cv::imread(imagePath, cv::IMREAD_COLOR);
+
+    if (img.empty()) {
+        std::cerr << "Could not open or find the image" << std::endl;
+        return {};
+    }
+
+    // 1차원 벡터 초기화
+    std::vector<int> rgbArray;
+
+    // RGB 데이터 추출 및 1차원 벡터에 저장
+    for (int i = 0; i < img.rows; ++i) {
+        for (int j = 0; j < img.cols; ++j) {
+            cv::Vec3b pixel = img.at<cv::Vec3b>(i, j);
+            rgbArray.push_back(pixel[2]); // R
+            rgbArray.push_back(pixel[1]); // G
+            rgbArray.push_back(pixel[0]); // B
+        }
+    }
+
+    return rgbArray;
+}
+
+int main() {
+    // 예제 이미지 파일 경로
+    std::string imagePath = "path_to_your_image.jpeg";
+
+    // 함수 호출
+    std::vector<int> rgbArray = jpegToRgb1DArray(imagePath);
+
+    // RGB 데이터 출력 (일부 픽셀만 출력)
+    for (size_t i = 0; i < 15; i += 3) {
+        std::cout << "Pixel " << i / 3 << ": R=" 
+                  << rgbArray[i] << ", G=" 
+                  << rgbArray[i + 1] << ", B=" 
+                  << rgbArray[i + 2] << std::endl;
+    }
+
+    return 0;
+}
+```
+
+이 코드는 OpenCV를 사용하여 JPEG 이미지를 로드하고, 각 픽셀의 RGB 값을 추출하여 1차원 벡터에 저장한다. 각 픽셀의 RGB 값은 연속적인 세 개의 요소로 저장된다. 예를 들어, 첫 번째 픽셀의 R 값은 `rgbArray[0]`, G 값은 `rgbArray[1]`, B 값은 `rgbArray[2]`에 저장된다.
+
+CMakeLists.txt 파일은 다음과 같이 작성할 수 있다:
+
+```cmake
+cmake_minimum_required(VERSION 3.10)
+project(JpegToRgb1DArray)
+
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+add_executable(JpegToRgb1DArray main.cpp)
+target_link_libraries(JpegToRgb1DArray ${OpenCV_LIBS})
+```
+
+위의 C++ 코드와 CMakeLists.txt 파일을 사용하여 프로젝트를 설정하고 빌드할 수 있다. `path_to_your_image.jpeg`를 실제 이미지 파일 경로로 변경하는 것을 잊지 말자. CMake 빌드 및 실행 방법은 다음과 같다:
+
+```bash
+mkdir build
+cd build
+cmake ..
+make
+./JpegToRgb1DArray
+```
+
+이렇게 하면 JPEG 이미지의 RGB 데이터를 1차원 벡터로 변환하고 출력할 수 있다.
+
+
+
+
 
 `GDI+` 대신 `BITMAPINFO`를 사용하여 비트맵 이미지를 표시하고, 윈도우의 크기에 따라 이미지를 동적으로 조정하는 코드를 작성할 수 있다. 이를 위해 `StretchBlt` 함수를 사용하여 비트맵을 그릴 때 크기를 조정하고, `WM_SIZE` 메시지를 처리하여 윈도우 크기가 변경될 때 이미지를 다시 그리도록 한다.
 
