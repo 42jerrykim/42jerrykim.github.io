@@ -1,3 +1,156 @@
+이미지를 일차원 벡터로 저장할 때 `Image` 타입을 `vector<unsigned char>`로 사용하는 코드 예제는 다음과 같다. 이 경우, 각 픽셀은 B, G, R 순서로 저장된다고 가정한다.
+
+### 1. 헤더 파일 및 유틸리티 함수 정의
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <algorithm>
+#include <cstdint>
+
+using namespace std;
+
+// 이미지 데이터를 1차원 벡터로 저장
+using Image = vector<unsigned char>;
+
+// 이미지 크기
+struct Size {
+    int width;
+    int height;
+};
+
+// 색상 팔레트
+const vector<vector<unsigned char>> palette = {
+    {255, 255, 255}, // 흰색
+    {0, 0, 0},       // 검은색
+    {255, 255, 0},   // 노란색
+    {0, 0, 255},     // 파란색
+    {255, 0, 0},     // 빨간색
+    {0, 255, 0},     // 초록색
+    {255, 165, 0}    // 오렌지색
+};
+
+// 픽셀 값을 클램핑
+unsigned char clamp(int value, int min = 0, int max = 255) {
+    return static_cast<unsigned char>(std::max(min, std::min(value, max)));
+}
+
+// 두 픽셀 간의 유클리드 거리 계산
+int colorDistance(const vector<unsigned char>& p1, const vector<unsigned char>& p2) {
+    return (p1[2] - p2[2]) * (p1[2] - p2[2]) +
+           (p1[1] - p2[1]) * (p1[1] - p2[1]) +
+           (p1[0] - p2[0]) * (p1[0] - p2[0]);
+}
+
+// 가장 가까운 팔레트 색상 찾기
+vector<unsigned char> findClosestPaletteColor(const vector<unsigned char>& pixel) {
+    vector<unsigned char> closestColor = palette[0];
+    int minDistance = colorDistance(pixel, palette[0]);
+
+    for (const auto& color : palette) {
+        int distance = colorDistance(pixel, color);
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestColor = color;
+        }
+    }
+
+    return closestColor;
+}
+
+// 픽셀의 색상 차이를 계산
+vector<int> colorDifference(const vector<unsigned char>& p1, const vector<unsigned char>& p2) {
+    return vector<int>{
+        static_cast<int>(p1[0] - p2[0]),
+        static_cast<int>(p1[1] - p2[1]),
+        static_cast<int>(p1[2] - p2[2])
+    };
+}
+
+// 픽셀에 색상 차이를 적용
+void applyColorDifference(vector<unsigned char>& p, const vector<int>& diff, double factor) {
+    p[0] = clamp(static_cast<int>(p[0]) + static_cast<int>(diff[0] * factor));
+    p[1] = clamp(static_cast<int>(p[1]) + static_cast<int>(diff[1] * factor));
+    p[2] = clamp(static_cast<int>(p[2]) + static_cast<int>(diff[2] * factor));
+}
+```
+
+### 2. Jarvis-Judice-Ninke 디더링 구현
+
+다음으로, Jarvis-Judice-Ninke 알고리즘을 사용하여 이미지에 디더링을 적용하는 함수를 정의한다.
+
+```cpp
+void jarvisJudiceNinkeDithering(Image& img, Size size) {
+    const int matrix[3][5] = {
+        { 0, 0, 0, 7, 5 },
+        { 3, 5, 7, 5, 3 },
+        { 1, 3, 5, 3, 1 }
+    };
+    const int matrixSum = 48; // 3 + 5 + 7 + 5 + 3 + 1 + 3 + 5 + 3 + 1 = 48
+
+    for (int y = 0; y < size.height; ++y) {
+        for (int x = 0; x < size.width; ++x) {
+            int index = (y * size.width + x) * 3;
+            vector<unsigned char> oldPixel = { img[index], img[index + 1], img[index + 2] };
+
+            // 가장 가까운 팔레트 색상으로 양자화
+            vector<unsigned char> newPixel = findClosestPaletteColor(oldPixel);
+
+            img[index] = newPixel[0];
+            img[index + 1] = newPixel[1];
+            img[index + 2] = newPixel[2];
+
+            vector<int> quantError = colorDifference(oldPixel, newPixel);
+
+            // 오류 확산
+            for (int dy = 0; dy < 3; ++dy) {
+                for (int dx = -2; dx <= 2; ++dx) {
+                    int newX = x + dx;
+                    int newY = y + dy;
+                    if (newX >= 0 && newX < size.width && newY < size.height) {
+                        int neighborIndex = (newY * size.width + newX) * 3;
+                        vector<unsigned char> neighborPixel = { img[neighborIndex], img[neighborIndex + 1], img[neighborIndex + 2] };
+                        applyColorDifference(neighborPixel, quantError, matrix[dy][dx + 2] / static_cast<double>(matrixSum));
+                        img[neighborIndex] = neighborPixel[0];
+                        img[neighborIndex + 1] = neighborPixel[1];
+                        img[neighborIndex + 2] = neighborPixel[2];
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+### 3. 메인 함수 및 테스트
+
+마지막으로, 메인 함수에서 이미지를 로드하고 디더링을 적용한 후 결과를 저장하는 코드를 작성한다.
+
+```cpp
+int main() {
+    // 예제 이미지 데이터 (단순히 1차원 벡터로 초기화)
+    Size size = { 5, 5 }; // 5x5 크기의 이미지
+    Image img(size.width * size.height * 3, 128); // 초기화된 그레이스케일 이미지
+
+    // Jarvis-Judice-Ninke 디더링 적용
+    jarvisJudiceNinkeDithering(img, size);
+
+    // 결과 출력 (예시)
+    for (int y = 0; y < size.height; ++y) {
+        for (int x = 0; x < size.width; ++x) {
+            int index = (y * size.width + x) * 3;
+            cout << "(" << (int)img[index + 2] << "," << (int)img[index + 1] << "," << (int)img[index] << ") ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+```
+
+이 코드는 5x5 크기의 예제 이미지를 Jarvis-Judice-Ninke 디더링 알고리즘을 사용하여 처리하고 결과를 출력한다. 실제 이미지 파일을 처리하려면 이미지 파일을 읽고 쓰는 코드를 추가해야 한다. 이 예제에서는 단순화된 구조로 디더링의 동작 원리를 이해하는 데 집중하였다.
+---
 주어진 색상 팔레트를 사용하여 Jarvis-Judice-Ninke 디더링을 C++로 구현하는 예제를 제공하겠다. 사용할 수 있는 색상 팔레트는 다음과 같다:
 
 - 흰색: (255, 255, 255)
