@@ -734,3 +734,93 @@ int main() {
 ```
 
 이 코드는 Stucki 디더링 알고리즘을 사용하여 입력된 RGB 데이터를 처리한다. Stucki 디더링은 오류를 넓게 분산시켜 매우 부드러운 이미지를 생성한다. `closestColor` 함수는 주어진 색상에 가장 가까운 팔레트 색상을 찾고, `applyDithering` 함수는 전체 이미지를 처리하여 디더링을 적용한다. 각 픽셀의 색상 오류를 주변 픽셀에 분산시켜 처리한다.
+
+
+JPEG 이미지를 RGB 데이터의 나열로 변경하는 C++ 코드를 작성하기 위해 OpenCV 라이브러리를 사용할 수 있다. OpenCV는 이미지 처리를 위한 강력한 라이브러리로, JPEG 이미지를 로드하고 RGB 데이터를 추출하는 작업을 쉽게 할 수 있다.
+
+다음은 C++ 코드 예제이다:
+
+```cpp
+#include <opencv2/opencv.hpp>
+#include <vector>
+#include <iostream>
+
+// JPEG 이미지를 RGB 데이터로 변환하는 함수
+std::vector<std::vector<std::vector<int>>> jpegToRgbArray(const std::string& imagePath) {
+    // 이미지 로드
+    cv::Mat img = cv::imread(imagePath, cv::IMREAD_COLOR);
+
+    if (img.empty()) {
+        std::cerr << "Could not open or find the image" << std::endl;
+        return {};
+    }
+
+    // 이미지 크기 가져오기
+    int rows = img.rows;
+    int cols = img.cols;
+
+    // RGB 데이터를 저장할 벡터 초기화
+    std::vector<std::vector<std::vector<int>>> rgbArray(rows, std::vector<std::vector<int>>(cols, std::vector<int>(3)));
+
+    // RGB 데이터 추출
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            cv::Vec3b pixel = img.at<cv::Vec3b>(i, j);
+            rgbArray[i][j][0] = pixel[2]; // R
+            rgbArray[i][j][1] = pixel[1]; // G
+            rgbArray[i][j][2] = pixel[0]; // B
+        }
+    }
+
+    return rgbArray;
+}
+
+int main() {
+    // 예제 이미지 파일 경로
+    std::string imagePath = "path_to_your_image.jpeg";
+
+    // 함수 호출
+    std::vector<std::vector<std::vector<int>>> rgbArray = jpegToRgbArray(imagePath);
+
+    // RGB 데이터 출력 (일부 픽셀만 출력)
+    if (!rgbArray.empty()) {
+        for (int i = 0; i < 5; ++i) {
+            for (int j = 0; j < 5; ++j) {
+                std::cout << "Pixel (" << i << ", " << j << "): R=" 
+                          << rgbArray[i][j][0] << ", G=" 
+                          << rgbArray[i][j][1] << ", B=" 
+                          << rgbArray[i][j][2] << std::endl;
+            }
+        }
+    }
+
+    return 0;
+}
+```
+
+이 코드는 OpenCV를 사용하여 JPEG 이미지를 로드하고, 이미지의 각 픽셀에 대해 RGB 값을 추출하여 3차원 벡터에 저장한다. 이 벡터는 이미지의 각 픽셀에 대한 RGB 값을 포함한다. 코드에서 `path_to_your_image.jpeg`를 실제 이미지 파일 경로로 변경해야 한다.
+
+OpenCV를 설치하지 않았다면, 다음과 같이 설치할 수 있다:
+1. OpenCV를 설치하려면, 패키지 매니저를 사용하거나 소스 코드에서 직접 컴파일할 수 있다.
+2. CMakeLists.txt 파일에 OpenCV 라이브러리를 링크하여 프로젝트를 설정해야 한다.
+
+CMakeLists.txt 예제:
+```cmake
+cmake_minimum_required(VERSION 3.10)
+project(JpegToRgbArray)
+
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+add_executable(JpegToRgbArray main.cpp)
+target_link_libraries(JpegToRgbArray ${OpenCV_LIBS})
+```
+
+이제 `main.cpp` 파일과 `CMakeLists.txt` 파일이 있는 디렉토리에서 CMake를 사용하여 빌드할 수 있다:
+```bash
+mkdir build
+cd build
+cmake ..
+make
+./JpegToRgbArray
+```
