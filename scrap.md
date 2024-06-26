@@ -1,3 +1,13 @@
+#!/bin/bash
+
+base_url="http://example.com/path/to/files/"
+files=$(wget -qO- "$base_url" | grep -oP 'href="\K[^"]+' | grep '^core-.*\.rpm$')
+
+for file in $files; do
+    wget "$base_url$file"
+done
+
+---
 `wget` 명령어에서 `*`(애스터리스크)를 사용하는 방법은 일반적으로 와일드카드 기능을 통해 다수의 파일을 한꺼번에 다운로드하거나 특정 패턴에 맞는 파일들을 다운로드할 때 사용된다. `wget`은 기본적으로 FTP 서버나 HTTP 서버에서 파일을 다운로드하는데 주로 사용되며, `*`를 포함한 와일드카드 기능을 지원하는 방법은 FTP 서버와 함께 사용될 때 주로 적용된다.
 
 아래는 `wget` 명령어에서 `*`를 사용하는 몇 가지 예시이다.
