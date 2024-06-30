@@ -1,3 +1,66 @@
+C++에서 UDP 패킷을 보내기 위해서는 소켓 프로그래밍을 사용해야 한다. 이를 위해 C++의 소켓 라이브러리를 사용하여 UDP 소켓을 생성하고 데이터를 전송할 수 있다. 아래는 기본적인 UDP 패킷을 보내는 방법을 단계별로 설명한 예제이다.
+
+1. **소켓 라이브러리 포함**
+   ```cpp
+   #include <iostream>
+   #include <cstring>  // for memset
+   #include <arpa/inet.h>  // for sockaddr_in and inet_addr
+   #include <sys/socket.h>  // for socket functions
+   #include <unistd.h>  // for close function
+   ```
+
+2. **UDP 소켓 생성**
+   ```cpp
+   int main() {
+       int sockfd;
+       struct sockaddr_in server_addr;
+
+       // 소켓 생성
+       sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+       if (sockfd < 0) {
+           std::cerr << "Error creating socket!" << std::endl;
+           return 1;
+       }
+
+       // 서버 주소 설정
+       memset(&server_addr, 0, sizeof(server_addr));
+       server_addr.sin_family = AF_INET;
+       server_addr.sin_port = htons(8080);  // 포트 번호 설정
+       server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");  // IP 주소 설정
+
+       // 전송할 메시지
+       const char *message = "Hello, UDP server!";
+   ```
+
+3. **UDP 패킷 전송**
+   ```cpp
+       // 메시지 전송
+       int n = sendto(sockfd, message, strlen(message), 0, (struct sockaddr *)&server_addr, sizeof(server_addr));
+       if (n < 0) {
+           std::cerr << "Error sending message!" << std::endl;
+           close(sockfd);
+           return 1;
+       }
+
+       std::cout << "Message sent!" << std::endl;
+
+       // 소켓 닫기
+       close(sockfd);
+       return 0;
+   }
+   ```
+
+위 코드는 UDP 패킷을 보내는 기본적인 예제이다. 다음은 단계별 설명이다:
+
+1. `#include` 부분에서 필요한 헤더 파일들을 포함한다. 이 헤더 파일들은 소켓 함수, 주소 구조체 등을 제공한다.
+2. `socket()` 함수를 사용하여 UDP 소켓을 생성한다. 여기서 `AF_INET`은 IPv4 주소 체계를, `SOCK_DGRAM`은 UDP 소켓을 의미한다.
+3. `sockaddr_in` 구조체를 사용하여 서버 주소를 설정한다. `sin_family`는 주소 체계를 설정하고, `sin_port`는 포트 번호를 네트워크 바이트 순서로 설정한다. `sin_addr.s_addr`는 서버의 IP 주소를 설정한다.
+4. `sendto()` 함수를 사용하여 메시지를 서버로 전송한다. 이 함수는 소켓 파일 디스크립터, 전송할 메시지, 메시지 길이, 플래그, 서버 주소 및 주소 길이를 인자로 받는다.
+5. 메시지 전송이 완료되면 소켓을 닫고 프로그램을 종료한다.
+
+이 코드는 로컬에서 실행될 서버가 127.0.0.1 IP 주소와 8080 포트에서 수신 대기하고 있다고 가정한다. 실제 네트워크 환경에서는 적절한 IP 주소와 포트 번호를 사용해야 한다.
+
+---
 #!/bin/bash
 
 base_url="http://example.com/path/to/files/"
