@@ -1,3 +1,82 @@
+Windows 환경에서 C++로 UDP 소켓을 사용하는 방법을 설명하겠다. Windows에서는 소켓 프로그래밍을 위해 Winsock 라이브러리를 사용해야 한다. Winsock을 초기화하고 UDP 소켓을 생성하여 데이터를 전송하는 과정을 단계별로 설명한 예제이다.
+
+1. **필요한 헤더 파일 포함 및 초기화**
+   ```cpp
+   #include <iostream>
+   #include <winsock2.h>
+   #include <ws2tcpip.h>
+
+   #pragma comment(lib, "ws2_32.lib")
+
+   int main() {
+       WSADATA wsaData;
+
+       // Winsock 초기화
+       int result = WSAStartup(MAKEWORD(2, 2), &wsaData);
+       if (result != 0) {
+           std::cerr << "WSAStartup failed: " << result << std::endl;
+           return 1;
+       }
+   ```
+
+2. **UDP 소켓 생성**
+   ```cpp
+       // 소켓 생성
+       SOCKET sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+       if (sockfd == INVALID_SOCKET) {
+           std::cerr << "Error creating socket: " << WSAGetLastError() << std::endl;
+           WSACleanup();
+           return 1;
+       }
+
+       // 서버 주소 설정
+       sockaddr_in server_addr;
+       memset(&server_addr, 0, sizeof(server_addr));
+       server_addr.sin_family = AF_INET;
+       server_addr.sin_port = htons(8080);  // 포트 번호 설정
+       inet_pton(AF_INET, "127.0.0.1", &server_addr.sin_addr);  // IP 주소 설정
+
+       // 전송할 메시지
+       const char* message = "Hello, UDP server!";
+   ```
+
+3. **UDP 패킷 전송**
+   ```cpp
+       // 메시지 전송
+       int send_result = sendto(sockfd, message, strlen(message), 0, (sockaddr*)&server_addr, sizeof(server_addr));
+       if (send_result == SOCKET_ERROR) {
+           std::cerr << "Error sending message: " << WSAGetLastError() << std::endl;
+           closesocket(sockfd);
+           WSACleanup();
+           return 1;
+       }
+
+       std::cout << "Message sent!" << std::endl;
+
+       // 소켓 닫기
+       closesocket(sockfd);
+       WSACleanup();
+       return 0;
+   }
+   ```
+
+위 코드는 Windows 환경에서 UDP 패킷을 보내는 기본적인 예제이다. 다음은 단계별 설명이다:
+
+1. **필요한 헤더 파일 포함 및 초기화**
+   - `#include <winsock2.h>` 및 `#include <ws2tcpip.h>`는 Winsock 라이브러리와 주소 변환 함수를 사용하기 위해 필요하다.
+   - `#pragma comment(lib, "ws2_32.lib")`는 ws2_32.lib 라이브러리를 링크하도록 한다.
+   - `WSAStartup()` 함수를 호출하여 Winsock을 초기화한다.
+
+2. **UDP 소켓 생성**
+   - `socket()` 함수를 사용하여 UDP 소켓을 생성한다.
+   - `sockaddr_in` 구조체를 사용하여 서버 주소를 설정한다. `sin_family`는 주소 체계를 설정하고, `sin_port`는 포트 번호를 네트워크 바이트 순서로 설정한다. `inet_pton()` 함수는 IP 주소를 설정한다.
+
+3. **UDP 패킷 전송**
+   - `sendto()` 함수를 사용하여 메시지를 서버로 전송한다. 이 함수는 소켓, 메시지, 메시지 길이, 플래그, 서버 주소 및 주소 길이를 인자로 받는다.
+   - 메시지 전송이 완료되면 소켓을 닫고 Winsock을 정리한다.
+
+이 코드는 로컬에서 실행될 서버가 127.0.0.1 IP 주소와 8080 포트에서 수신 대기하고 있다고 가정한다. 실제 네트워크 환경에서는 적절한 IP 주소와 포트 번호를 사용해야 한다.
+---
 C++에서 UDP 패킷을 보내기 위해서는 소켓 프로그래밍을 사용해야 한다. 이를 위해 C++의 소켓 라이브러리를 사용하여 UDP 소켓을 생성하고 데이터를 전송할 수 있다. 아래는 기본적인 UDP 패킷을 보내는 방법을 단계별로 설명한 예제이다.
 
 1. **소켓 라이브러리 포함**
