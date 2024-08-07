@@ -2,7 +2,7 @@
 title: "[C#] C#에서 변수와 상수의 이해"
 categories: csharp
 tags:
-- C#
+- CSharp
 - variables
 - constants
 - programming
