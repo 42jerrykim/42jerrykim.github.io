@@ -1,314 +1,1517 @@
-https://www.codeproject.com/script/Articles/ViewDownloads.aspx?aid=5378622
+Windows 환경에서 C++로 UDP 소켓을 사용하는 방법을 설명하겠다. Windows에서는 소켓 프로그래밍을 위해 Winsock 라이브러리를 사용해야 한다. Winsock을 초기화하고 UDP 소켓을 생성하여 데이터를 전송하는 과정을 단계별로 설명한 예제이다.
 
+1. **필요한 헤더 파일 포함 및 초기화**
+   ```cpp
+   #include <iostream>
+   #include <winsock2.h>
+   #include <ws2tcpip.h>
 
-e-paper, 즉 전자종이 기술을 사용하는 것은 다양한 장단점을 가지고 있다.
+   #pragma comment(lib, "ws2_32.lib")
 
-### 장점
+   int main() {
+       WSADATA wsaData;
 
-1. **저전력 소비**: e-paper는 이미지를 변경할 때만 전력을 소비하며, 이미지를 유지하는 데 추가적인 전력을 필요로 하지 않는다. 이는 장기적으로 에너지 비용을 절감하고 배터리 수명을 연장하는 효과가 있다.
-2. **햇빛 아래에서의 가독성**: e-paper는 반사형 디스플레이이기 때문에 직사광선 아래에서도 뛰어난 가독성을 제공한다. 이는 옥외 환경에서 특히 유용하다.
-3. **눈의 피로 감소**: e-paper는 백라이트를 사용하지 않기 때문에 장시간 독서나 화면을 바라보아도 눈의 피로가 덜하다.
-4. **얇고 가벼움**: e-paper 디스플레이는 일반적으로 얇고 가벼워 이동성이 뛰어나며 다양한 제품에 쉽게 통합될 수 있다.
+       // Winsock 초기화
+       int result = WSAStartup(MAKEWORD(2, 2), &wsaData);
+       if (result != 0) {
+           std::cerr << "WSAStartup failed: " << result << std::endl;
+           return 1;
+       }
+   ```
 
-### 단점
+2. **UDP 소켓 생성**
+   ```cpp
+       // 소켓 생성
+       SOCKET sockfd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+       if (sockfd == INVALID_SOCKET) {
+           std::cerr << "Error creating socket: " << WSAGetLastError() << std::endl;
+           WSACleanup();
+           return 1;
+       }
 
-1. **색상과 동적 콘텐츠 표현의 한계**: 대부분의 e-paper 디스플레이는 흑백 또는 제한된 색상만을 지원하며, 동영상과 같은 동적 콘텐츠의 표현에 있어 LCD나 OLED와 같은 다른 디스플레이 기술에 비해 뒤떨어진다.
-2. **갱신 속도**: e-paper 디스플레이의 페이지 갱신 속도는 전통적인 디스플레이 기술보다 느리다. 이는 실시간으로 빠르게 변하는 정보를 표시하는 데 제한을 줄 수 있다.
-3. **비용**: 초기 설치 비용이 높을 수 있으며, 특히 대형 e-paper 디스플레이의 경우 비용이 더욱 상승한다.
-4. **온도에 따른 성능 변화**: 극단적인 온도에서 e-paper의 성능이 저하될 수 있으며, 특히 추운 환경에서는 페이지 전환 속도가 더욱 느려질 수 있다.
+       // 서버 주소 설정
+       sockaddr_in server_addr;
+       memset(&server_addr, 0, sizeof(server_addr));
+       server_addr.sin_family = AF_INET;
+       server_addr.sin_port = htons(8080);  // 포트 번호 설정
+       inet_pton(AF_INET, "127.0.0.1", &server_addr.sin_addr);  // IP 주소 설정
 
-e-paper 기술을 사용함으로써 얻을 수 있는 환경적 이점과 장기적인 비용 절감 효과는 매우 크지만, 적용하려는 프로젝트의 요구 사항에 따라 단점들도 고려해야 한다.
+       // 전송할 메시지
+       const char* message = "Hello, UDP server!";
+   ```
 
-e-paper 기반 옥외 광고 장치 프로젝트의 목적은 다음과 같다. 첫째, 전력 소비가 적은 e-paper 기술을 활용하여 환경 친화적이면서도 효율적인 옥외 광고 솔루션을 개발하는 것이다. 둘째, 기존의 LED나 LCD 방식에 비해 유지 관리 비용이 적게 드는 광고 장치를 제작함으로써 장기적인 경제성을 제공한다. 셋째, e-paper의 장점인 뛰어난 가독성과 넓은 시야각을 살려, 어떤 환경에서도 사용자가 명확하게 정보를 인식할 수 있도록 한다. 넷째, 변화하는 광고 내용을 신속하고 원활하게 업데이트할 수 있는 시스템을 구축하여, 빠르게 변화하는 시장 환경에 능동적으로 대응할 수 있도록 한다. 이 프로젝트를 통해 지속 가능한 옥외 광고의 새로운 패러다임을 제시하고자 한다.
+3. **UDP 패킷 전송**
+   ```cpp
+       // 메시지 전송
+       int send_result = sendto(sockfd, message, strlen(message), 0, (sockaddr*)&server_addr, sizeof(server_addr));
+       if (send_result == SOCKET_ERROR) {
+           std::cerr << "Error sending message: " << WSAGetLastError() << std::endl;
+           closesocket(sockfd);
+           WSACleanup();
+           return 1;
+       }
 
-이 프로젝트는 e-paper 기술을 기반으로 한 옥외 광고 장치 개발을 목표로 하고 있다. e-paper는 저전력 소비의 전자 디스플레이 기술로, 이미지를 변경할 때만 에너지를 소비하며, 표시된 내용을 전력 공급 없이 유지할 수 있다는 점에서 특별하다. 이 기술의 주요 장점은 햇빛 아래에서도 뛰어난 가독성을 제공하고, 눈의 피로를 줄여주며, 얇고 가벼워 다양한 환경에 적용 가능하다는 것이다. 이러한 특성은 e-paper를 옥외 광고 장치에 이상적인 선택으로 만든다.
+       std::cout << "Message sent!" << std::endl;
+
+       // 소켓 닫기
+       closesocket(sockfd);
+       WSACleanup();
+       return 0;
+   }
+   ```
+
+위 코드는 Windows 환경에서 UDP 패킷을 보내는 기본적인 예제이다. 다음은 단계별 설명이다:
+
+1. **필요한 헤더 파일 포함 및 초기화**
+   - `#include <winsock2.h>` 및 `#include <ws2tcpip.h>`는 Winsock 라이브러리와 주소 변환 함수를 사용하기 위해 필요하다.
+   - `#pragma comment(lib, "ws2_32.lib")`는 ws2_32.lib 라이브러리를 링크하도록 한다.
+   - `WSAStartup()` 함수를 호출하여 Winsock을 초기화한다.
+
+2. **UDP 소켓 생성**
+   - `socket()` 함수를 사용하여 UDP 소켓을 생성한다.
+   - `sockaddr_in` 구조체를 사용하여 서버 주소를 설정한다. `sin_family`는 주소 체계를 설정하고, `sin_port`는 포트 번호를 네트워크 바이트 순서로 설정한다. `inet_pton()` 함수는 IP 주소를 설정한다.
+
+3. **UDP 패킷 전송**
+   - `sendto()` 함수를 사용하여 메시지를 서버로 전송한다. 이 함수는 소켓, 메시지, 메시지 길이, 플래그, 서버 주소 및 주소 길이를 인자로 받는다.
+   - 메시지 전송이 완료되면 소켓을 닫고 Winsock을 정리한다.
+
+이 코드는 로컬에서 실행될 서버가 127.0.0.1 IP 주소와 8080 포트에서 수신 대기하고 있다고 가정한다. 실제 네트워크 환경에서는 적절한 IP 주소와 포트 번호를 사용해야 한다.
+---
+C++에서 UDP 패킷을 보내기 위해서는 소켓 프로그래밍을 사용해야 한다. 이를 위해 C++의 소켓 라이브러리를 사용하여 UDP 소켓을 생성하고 데이터를 전송할 수 있다. 아래는 기본적인 UDP 패킷을 보내는 방법을 단계별로 설명한 예제이다.
+
+1. **소켓 라이브러리 포함**
+   ```cpp
+   #include <iostream>
+   #include <cstring>  // for memset
+   #include <arpa/inet.h>  // for sockaddr_in and inet_addr
+   #include <sys/socket.h>  // for socket functions
+   #include <unistd.h>  // for close function
+   ```
+
+2. **UDP 소켓 생성**
+   ```cpp
+   int main() {
+       int sockfd;
+       struct sockaddr_in server_addr;
+
+       // 소켓 생성
+       sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+       if (sockfd < 0) {
+           std::cerr << "Error creating socket!" << std::endl;
+           return 1;
+       }
+
+       // 서버 주소 설정
+       memset(&server_addr, 0, sizeof(server_addr));
+       server_addr.sin_family = AF_INET;
+       server_addr.sin_port = htons(8080);  // 포트 번호 설정
+       server_addr.sin_addr.s_addr = inet_addr("127.0.0.1");  // IP 주소 설정
+
+       // 전송할 메시지
+       const char *message = "Hello, UDP server!";
+   ```
+
+3. **UDP 패킷 전송**
+   ```cpp
+       // 메시지 전송
+       int n = sendto(sockfd, message, strlen(message), 0, (struct sockaddr *)&server_addr, sizeof(server_addr));
+       if (n < 0) {
+           std::cerr << "Error sending message!" << std::endl;
+           close(sockfd);
+           return 1;
+       }
+
+       std::cout << "Message sent!" << std::endl;
+
+       // 소켓 닫기
+       close(sockfd);
+       return 0;
+   }
+   ```
+
+위 코드는 UDP 패킷을 보내는 기본적인 예제이다. 다음은 단계별 설명이다:
+
+1. `#include` 부분에서 필요한 헤더 파일들을 포함한다. 이 헤더 파일들은 소켓 함수, 주소 구조체 등을 제공한다.
+2. `socket()` 함수를 사용하여 UDP 소켓을 생성한다. 여기서 `AF_INET`은 IPv4 주소 체계를, `SOCK_DGRAM`은 UDP 소켓을 의미한다.
+3. `sockaddr_in` 구조체를 사용하여 서버 주소를 설정한다. `sin_family`는 주소 체계를 설정하고, `sin_port`는 포트 번호를 네트워크 바이트 순서로 설정한다. `sin_addr.s_addr`는 서버의 IP 주소를 설정한다.
+4. `sendto()` 함수를 사용하여 메시지를 서버로 전송한다. 이 함수는 소켓 파일 디스크립터, 전송할 메시지, 메시지 길이, 플래그, 서버 주소 및 주소 길이를 인자로 받는다.
+5. 메시지 전송이 완료되면 소켓을 닫고 프로그램을 종료한다.
+
+이 코드는 로컬에서 실행될 서버가 127.0.0.1 IP 주소와 8080 포트에서 수신 대기하고 있다고 가정한다. 실제 네트워크 환경에서는 적절한 IP 주소와 포트 번호를 사용해야 한다.
+
+---
+#!/bin/bash
+
+base_url="http://example.com/path/to/files/"
+files=$(wget -qO- "$base_url" | grep -oP 'href="\K[^"]+' | grep '^core-.*\.rpm$')
+
+for file in $files; do
+    wget "$base_url$file"
+done
+
+---
+`wget` 명령어에서 `*`(애스터리스크)를 사용하는 방법은 일반적으로 와일드카드 기능을 통해 다수의 파일을 한꺼번에 다운로드하거나 특정 패턴에 맞는 파일들을 다운로드할 때 사용된다. `wget`은 기본적으로 FTP 서버나 HTTP 서버에서 파일을 다운로드하는데 주로 사용되며, `*`를 포함한 와일드카드 기능을 지원하는 방법은 FTP 서버와 함께 사용될 때 주로 적용된다.
+
+아래는 `wget` 명령어에서 `*`를 사용하는 몇 가지 예시이다.
+
+### FTP 서버에서 와일드카드 사용
+
+FTP 서버에서 와일드카드를 사용하여 여러 파일을 다운로드하려면 다음과 같이 사용할 수 있다.
+
+```bash
+wget ftp://example.com/path/to/files/*
+```
+
+이 명령어는 FTP 서버의 `path/to/files` 디렉터리에 있는 모든 파일을 다운로드한다.
+
+### HTTP 서버에서 와일드카드 사용
+
+HTTP 서버의 경우, 기본적인 `wget`은 와일드카드를 직접적으로 지원하지 않는다. 이를 해결하기 위해서 `wget`과 함께 특정 스크립트나 다른 도구들을 사용할 수 있다. 예를 들어, `wget`과 `grep`을 사용하여 특정 패턴에 맞는 파일들을 다운로드할 수 있다.
+
+1. 먼저, 특정 디렉토리의 내용을 리스트로 가져온다.
+
+```bash
+wget -qO- http://example.com/path/to/files/ | grep -oP 'href="\K[^"]+'
+```
+
+2. 필요한 파일들을 다운로드한다. 예를 들어, `.jpg` 파일들을 모두 다운로드하려면 다음과 같이 한다.
+
+```bash
+wget -r -l1 --no-parent -A ".jpg" http://example.com/path/to/files/
+```
+
+### 파일 목록을 사용하여 다운로드
+
+여러 파일을 한꺼번에 다운로드해야 할 때, 파일 목록을 작성하여 `wget`에 입력으로 사용할 수 있다.
+
+1. `files.txt` 파일을 만든다. 이 파일에는 다운로드할 파일의 URL 목록이 포함된다.
 
 ```
+http://example.com/path/to/files/file1.jpg
+http://example.com/path/to/files/file2.jpg
+http://example.com/path/to/files/file3.jpg
+```
+
+2. `wget`을 사용하여 목록에 있는 파일들을 다운로드한다.
+
+```bash
+wget -i files.txt
+```
+
+이 방법을 사용하면 `*` 와일드카드를 사용할 필요 없이 여러 파일을 한꺼번에 다운로드할 수 있다.
+
+### 요약
+
+- FTP 서버에서 `*` 와일드카드를 사용하여 다수의 파일을 다운로드할 수 있다.
+- HTTP 서버의 경우 `wget`은 기본적으로 와일드카드를 지원하지 않지만, 다른 도구와 결합하여 사용할 수 있다.
+- 파일 목록을 작성하여 여러 파일을 다운로드하는 방법도 있다.
+
+이와 같은 방법들을 통해 `wget`에서 `*`를 사용하는 다양한 시나리오를 다룰 수 있다.
+
+---
+
+Pillow 라이브러리를 사용하여 이미지에 글자를 추가할 때, 글자에 테두리를 주는 방법을 설명하겠다. 아래 단계별로 코드를 작성하여 설명하겠다.
+
+1. Pillow 라이브러리 설치
+2. 기본적인 글자 추가 방법
+3. 글자에 테두리 추가 방법
+
+### 1. Pillow 라이브러리 설치
+
+먼저 Pillow 라이브러리를 설치해야 한다. 아래 명령어를 사용하여 설치할 수 있다.
+
+```bash
+pip install pillow
+```
+
+### 2. 기본적인 글자 추가 방법
+
+기본적으로 Pillow를 사용하여 이미지를 생성하고 글자를 추가하는 방법은 다음과 같다.
+
+```python
+from PIL import Image, ImageDraw, ImageFont
+
+# 빈 이미지 생성
+image = Image.new('RGB', (200, 100), (255, 255, 255))
+draw = ImageDraw.Draw(image)
+
+# 글꼴 설정
+font = ImageFont.truetype("arial.ttf", 40)
+
+# 텍스트 위치 설정
+text = "Hello"
+text_position = (50, 25)
+
+# 텍스트 추가
+draw.text(text_position, text, font=font, fill=(0, 0, 0))
+
+# 이미지 저장
+image.save('text_image.png')
+```
+
+### 3. 글자에 테두리 추가 방법
+
+글자에 테두리를 추가하려면, 글자를 여러 번 그려서 테두리 효과를 만들어야 한다. 테두리 색상으로 여러 번 그리고, 마지막에 원래 색상으로 글자를 그리면 된다.
+
+```python
+from PIL import Image, ImageDraw, ImageFont
+
+# 빈 이미지 생성
+image = Image.new('RGB', (200, 100), (255, 255, 255))
+draw = ImageDraw.Draw(image)
+
+# 글꼴 설정
+font = ImageFont.truetype("arial.ttf", 40)
+
+# 텍스트 설정
+text = "Hello"
+text_position = (50, 25)
+text_color = (0, 0, 0)  # 텍스트 색상
+border_color = (255, 0, 0)  # 테두리 색상
+border_thickness = 2  # 테두리 두께
+
+# 테두리를 그리는 함수
+def draw_text_with_border(draw, position, text, font, text_color, border_color, border_thickness):
+    x, y = position
+    # 테두리를 그린다
+    for dx in range(-border_thickness, border_thickness+1):
+        for dy in range(-border_thickness, border_thickness+1):
+            if dx != 0 or dy != 0:
+                draw.text((x+dx, y+dy), text, font=font, fill=border_color)
+    # 원래 텍스트를 그린다
+    draw.text((x, y), text, font=font, fill=text_color)
+
+# 텍스트와 테두리를 그린다
+draw_text_with_border(draw, text_position, text, font, text_color, border_color, border_thickness)
+
+# 이미지 저장
+image.save('text_image_with_border.png')
+```
+
+위 코드에서 `draw_text_with_border` 함수는 텍스트 주위에 여러 번 테두리 색상으로 그린 다음, 가운데에 원래 색상으로 텍스트를 그려 테두리 효과를 만들어낸다.
+
+이 코드를 실행하면 "Hello" 텍스트에 빨간색 테두리가 추가된 이미지를 생성할 수 있다.
+---
+이미지를 일차원 벡터로 저장할 때 `Image` 타입을 `vector<unsigned char>`로 사용하는 코드 예제는 다음과 같다. 이 경우, 각 픽셀은 B, G, R 순서로 저장된다고 가정한다.
+
+### 1. 헤더 파일 및 유틸리티 함수 정의
+
+```cpp
 #include <iostream>
-#include <fstream>
 #include <vector>
-
-using namespace std;
-
-#pragma pack(push, 1)
-struct BMPHeader {
-    uint16_t file_type{0x4D42};          // File type always BM which is 0x4D42
-    uint32_t file_size{0};               // Size of the file (in bytes)
-    uint16_t reserved1{0};               // Reserved, always 0
-    uint16_t reserved2{0};               // Reserved, always 0
-    uint32_t offset_data{0};             // Start position of pixel data (bytes from the beginning of the file)
-};
-
-struct BMPInfoHeader {
-    uint32_t size{0};                      // Size of this header (in bytes)
-    int32_t width{0};                      // width of bitmap in pixels
-    int32_t height{0};                     // width of bitmap in pixels
-    uint16_t planes{1};                    // No. of planes for the target device, this is always 1
-    uint16_t bit_count{0};                 // No. of bits per pixel
-    uint32_t compression{0};               // 0 or 3 - uncompressed. This program can only deal with uncompressed bmp.
-    uint32_t size_image{0};                // 0 - for uncompressed images
-    int32_t x_pixels_per_meter{0};
-    int32_t y_pixels_per_meter{0};
-    uint32_t colors_used{0};               // No. color indexes in the color table. Use 0 for the max number of colors allowed by bit_count
-    uint32_t colors_important{0};          // No. of colors used for displaying the bitmap. If 0 all colors are required
-};
-
-#pragma pack(pop)
-
-struct BMP {
-    BMPHeader header;
-    BMPInfoHeader info_header;
-    vector<uint8_t> data;
-
-    void read(const string &filename) {
-        ifstream inp{filename, ios_base::binary};
-        if (inp) {
-            inp.read((char*)&header, sizeof(header));
-            if(header.file_type != 0x4D42) {
-                throw runtime_error("Error! Unrecognized file format.");
-            }
-            inp.read((char*)&info_header, sizeof(info_header));
-
-            // Move read position to start of pixel data
-            inp.seekg(header.offset_data, ios_base::beg);
-
-            // Adjust the header fields for output
-            if(info_header.bit_count == 24) {
-                info_header.size = sizeof(BMPInfoHeader);
-                header.offset_data = sizeof(BMPHeader) + sizeof(BMPInfoHeader);
-            }
-
-            // Reading the data
-            data.resize(info_header.width * info_header.height * info_header.bit_count / 8);
-            inp.read((char*)data.data(), data.size());
-        } else {
-            throw runtime_error("Unable to open the input file.");
-        }
-    }
-
-    void write(const string &filename) {
-        ofstream out{filename, ios_base::binary};
-        if(out) {
-            out.write((char*)&header, sizeof(header));
-            out.write((char*)&info_header, sizeof(info_header));
-            out.write((char*)data.data(), data.size());
-        } else {
-            throw runtime_error("Unable to open the output file.");
-        }
-    }
-};
-
-int main() {
-    try {
-        BMP bmp;
-        bmp.read("input.bmp");
-
-        // Change color: Here you can insert the code to modify BMP colors
-        // Example: Convert to grayscale
-        for (auto &pixel : bmp.data) {
-            // Simple example: average the colors (not accurate for true grayscale)
-            pixel = static_cast<uint8_t>((pixel + pixel + pixel) / 3);
-        }
-
-        bmp.write("output.bmp");
-    } catch (const exception &e) {
-        cerr << e.what() << endl;
-    }
-
-    return 0;
-}
-```
-
-본 프로젝트의 목적은 다음과 같다. 첫째, 환경 친화적이면서도 경제적인 옥외 광고 솔루션을 제공하여, 전통적인 LED나 LCD 방식 대비 운영 비용을 절감한다. 둘째, e-paper의 장점을 최대한 활용하여, 모든 조명 조건에서도 명확한 정보 전달이 가능하도록 한다. 셋째, 빠르게 변화하는 광고 내용을 신속하게 업데이트할 수 있는 효율적인 시스템을 개발한다.
-
-이 프로젝트는 지속 가능한 옥외 광고의 새로운 모델을 제시할 뿐만 아니라, 광고 산업에 있어서 에너지 효율성과 경제성의 새로운 기준을 설정하는 것을 목표로 한다. e-paper 기술의 장단점을 면밀히 분석하고, 이를 바탕으로 실용적이면서도 혁신적인 옥외 광고 장치를 설계하여, 광고의 미래를 형성하는 데 기여하고자 한다.
-
-
-```
-#include <iostream>
-#include <fstream>
-#include <vector>
+#include <cmath>
+#include <algorithm>
 #include <cstdint>
 
 using namespace std;
 
-#pragma pack(push, 1)
-struct BMPHeader {
-    uint16_t file_type{0x4D42};
-    uint32_t file_size{0};
-    uint16_t reserved1{0};
-    uint16_t reserved2{0};
-    uint32_t offset_data{0};
+// 이미지 데이터를 1차원 벡터로 저장
+using Image = vector<unsigned char>;
+
+// 이미지 크기
+struct Size {
+    int width;
+    int height;
 };
 
-struct BMPInfoHeader {
-    uint32_t size{0};
-    int32_t width{0};
-    int32_t height{0};
-    uint16_t planes{1};
-    uint16_t bit_count{0};
-    uint32_t compression{0};
-    uint32_t size_image{0};
-    int32_t x_pixels_per_meter{0};
-    int32_t y_pixels_per_meter{0};
-    uint32_t colors_used{0};
-    uint32_t colors_important{0};
-};
-#pragma pack(pop)
-
-struct BMPColorHeader {
-    uint32_t red_mask{0x00ff0000};
-    uint32_t green_mask{0x0000ff00};
-    uint32_t blue_mask{0x000000ff};
-    uint32_t alpha_mask{0xff000000};
-    uint32_t color_space_type{0x73524742};
-    uint32_t unused[16]{0};
+// 색상 팔레트
+const vector<vector<unsigned char>> palette = {
+    {255, 255, 255}, // 흰색
+    {0, 0, 0},       // 검은색
+    {255, 255, 0},   // 노란색
+    {0, 0, 255},     // 파란색
+    {255, 0, 0},     // 빨간색
+    {0, 255, 0},     // 초록색
+    {255, 165, 0}    // 오렌지색
 };
 
-struct BMP {
-    BMPHeader header;
-    BMPInfoHeader info_header;
-    BMPColorHeader color_header;
-    vector<uint8_t> data;
+// 픽셀 값을 클램핑
+unsigned char clamp(int value, int min = 0, int max = 255) {
+    return static_cast<unsigned char>(std::max(min, std::min(value, max)));
+}
 
-    void read(const string& filename) {
-        ifstream inp{filename, ios_base::binary};
-        if (inp) {
-            inp.read((char*)&header, sizeof(header));
-            if (header.file_type != 0x4D42) {
-                throw runtime_error("Unsupported file format.");
-            }
-            inp.read((char*)&info_header, sizeof(info_header));
+// 두 픽셀 간의 유클리드 거리 계산
+int colorDistance(const vector<unsigned char>& p1, const vector<unsigned char>& p2) {
+    return (p1[2] - p2[2]) * (p1[2] - p2[2]) +
+           (p1[1] - p2[1]) * (p1[1] - p2[1]) +
+           (p1[0] - p2[0]) * (p1[0] - p2[0]);
+}
 
-            // The BMPColorHeader is used only for BMP files with transparency information
-            if(info_header.bit_count == 32) {
-                inp.read((char*)&color_header, sizeof(color_header));
-            }
+// 가장 가까운 팔레트 색상 찾기
+vector<unsigned char> findClosestPaletteColor(const vector<unsigned char>& pixel) {
+    vector<unsigned char> closestColor = palette[0];
+    int minDistance = colorDistance(pixel, palette[0]);
 
-            // Move the read position to the start of the pixel data
-            inp.seekg(header.offset_data, ios_base::beg);
-
-            // Resize the vector to hold the pixel data
-            data.resize(info_header.width * info_header.height * info_header.bit_count / 8);
-
-            // Read the pixel data
-            inp.read((char*)data.data(), data.size());
-            // If the bitmap is upside down (common in BMP files), reverse it.
-            if(info_header.height < 0) {
-                reverse(data.begin(), data.end());
-                info_header.height = abs(info_header.height);
-            }
-        } else {
-            throw runtime_error("Unable to open the file.");
+    for (const auto& color : palette) {
+        int distance = colorDistance(pixel, color);
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestColor = color;
         }
     }
 
-    void dither() {
-        // Simple threshold-based dithering
-        for (int y = 0; y < info_header.height; ++y) {
-            for (int x = 0; x < info_header.width; ++x) {
-                size_t index = (y * info_header.width + x) * (info_header.bit_count / 8);
-                uint8_t& pixel = data[index]; // Assuming grayscale, so we take one of the RGB values
+    return closestColor;
+}
 
-                uint8_t oldPixel = pixel;
-                uint8_t newPixel = oldPixel > 127 ? 255 : 0;
-                pixel = newPixel;
+// 픽셀의 색상 차이를 계산
+vector<int> colorDifference(const vector<unsigned char>& p1, const vector<unsigned char>& p2) {
+    return vector<int>{
+        static_cast<int>(p1[0] - p2[0]),
+        static_cast<int>(p1[1] - p2[1]),
+        static_cast<int>(p1[2] - p2[2])
+    };
+}
 
-                int error = oldPixel - newPixel;
+// 픽셀에 색상 차이를 적용
+void applyColorDifference(vector<unsigned char>& p, const vector<int>& diff, double factor) {
+    p[0] = clamp(static_cast<int>(p[0]) + static_cast<int>(diff[0] * factor));
+    p[1] = clamp(static_cast<int>(p[1]) + static_cast<int>(diff[1] * factor));
+    p[2] = clamp(static_cast<int>(p[2]) + static_cast<int>(diff[2] * factor));
+}
+```
 
-                // Spread the error to neighboring pixels
-                // Note: This example does not handle edge pixels for simplicity
-                if (x < info_header.width - 1) data[index + 1] += error * 7 / 16;
-                if (y < info_header.height - 1) {
-                    if (x > 0) data[index + info_header.width - 1] += error * 3 / 16;
-                    data[index + info_header.width] += error * 5 / 16;
-                    if (x < info_header.width - 1) data[index + info_header.width + 1] += error * 1 / 16;
+### 2. Jarvis-Judice-Ninke 디더링 구현
+
+다음으로, Jarvis-Judice-Ninke 알고리즘을 사용하여 이미지에 디더링을 적용하는 함수를 정의한다.
+
+```cpp
+void jarvisJudiceNinkeDithering(Image& img, Size size) {
+    const int matrix[3][5] = {
+        { 0, 0, 0, 7, 5 },
+        { 3, 5, 7, 5, 3 },
+        { 1, 3, 5, 3, 1 }
+    };
+    const int matrixSum = 48; // 3 + 5 + 7 + 5 + 3 + 1 + 3 + 5 + 3 + 1 = 48
+
+    for (int y = 0; y < size.height; ++y) {
+        for (int x = 0; x < size.width; ++x) {
+            int index = (y * size.width + x) * 3;
+            vector<unsigned char> oldPixel = { img[index], img[index + 1], img[index + 2] };
+
+            // 가장 가까운 팔레트 색상으로 양자화
+            vector<unsigned char> newPixel = findClosestPaletteColor(oldPixel);
+
+            img[index] = newPixel[0];
+            img[index + 1] = newPixel[1];
+            img[index + 2] = newPixel[2];
+
+            vector<int> quantError = colorDifference(oldPixel, newPixel);
+
+            // 오류 확산
+            for (int dy = 0; dy < 3; ++dy) {
+                for (int dx = -2; dx <= 2; ++dx) {
+                    int newX = x + dx;
+                    int newY = y + dy;
+                    if (newX >= 0 && newX < size.width && newY < size.height) {
+                        int neighborIndex = (newY * size.width + newX) * 3;
+                        vector<unsigned char> neighborPixel = { img[neighborIndex], img[neighborIndex + 1], img[neighborIndex + 2] };
+                        applyColorDifference(neighborPixel, quantError, matrix[dy][dx + 2] / static_cast<double>(matrixSum));
+                        img[neighborIndex] = neighborPixel[0];
+                        img[neighborIndex + 1] = neighborPixel[1];
+                        img[neighborIndex + 2] = neighborPixel[2];
+                    }
                 }
             }
-       
-
-```
-
-
-```
-#include <iostream>
-using namespace std;
-
-struct Ball {
-    int index;
-    int color;
-    int size;
-};
-
-// 삽입 정렬 함수
-void insertionSort(Ball arr[], int left, int right) {
-    for (int i = left + 1; i <= right; ++i) {
-        Ball key = arr[i];
-        int j = i - 1;
-        while (j >= left && arr[j].size > key.size) {
-            arr[j + 1] = arr[j];
-            --j;
-        }
-        arr[j + 1] = key;
-    }
-}
-
-// 퀵소트 함수
-void quicksort(Ball arr[], int left, int right) {
-    if (right - left <= 16) {
-        // 배열의 크기가 16 이하일 경우 삽입 정렬 사용
-        insertionSort(arr, left, right);
-        return;
-    }
-    int i = left, j = right;
-    Ball pivot = arr[(left + right) / 2];
-    while (i <= j) {
-        while (arr[i].size < pivot.size) i++;
-        while (arr[j].size > pivot.size) j--;
-        if (i <= j) {
-            swap(arr[i], arr[j]);
-            i++;
-            j--;
         }
     }
-    if (left < j) quicksort(arr, left, j);
-    if (i < right) quicksort(arr, i, right);
 }
+```
 
+### 3. 메인 함수 및 테스트
+
+마지막으로, 메인 함수에서 이미지를 로드하고 디더링을 적용한 후 결과를 저장하는 코드를 작성한다.
+
+```cpp
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
+    // 예제 이미지 데이터 (단순히 1차원 벡터로 초기화)
+    Size size = { 5, 5 }; // 5x5 크기의 이미지
+    Image img(size.width * size.height * 3, 128); // 초기화된 그레이스케일 이미지
 
-    int N;
-    cin >> N;
-    Ball balls[N];
-    for (int i = 0; i < N; ++i) {
-        cin >> balls[i].color >> balls[i].size;
-        balls[i].index = i;
-    }
+    // Jarvis-Judice-Ninke 디더링 적용
+    jarvisJudiceNinkeDithering(img, size);
 
-    // 공을 크기 순서대로 정렬한다.
-    quicksort(balls, 0, N - 1);
-
-    int scores[N] = {0};
-    int color_sizes[200001] = {0};  // 색깔별 사이즈 합계를 저장
-    int total_size = 0;
-    int j = 0;
-
-    for (int i = 0; i < N; ++i) {
-        while (balls[j].size < balls[i].size) {
-            total_size += balls[j].size;
-            color_sizes[balls[j].color] += balls[j].size;
-            ++j;
+    // 결과 출력 (예시)
+    for (int y = 0; y < size.height; ++y) {
+        for (int x = 0; x < size.width; ++x) {
+            int index = (y * size.width + x) * 3;
+            cout << "(" << (int)img[index + 2] << "," << (int)img[index + 1] << "," << (int)img[index] << ") ";
         }
-        scores[balls[i].index] = total_size - color_sizes[balls[i].color];
-    }
-
-    for (int i = 0; i < N; ++i) {
-        cout << scores[i] << '\n';
+        cout << endl;
     }
 
     return 0;
 }
 ```
-test
+
+이 코드는 5x5 크기의 예제 이미지를 Jarvis-Judice-Ninke 디더링 알고리즘을 사용하여 처리하고 결과를 출력한다. 실제 이미지 파일을 처리하려면 이미지 파일을 읽고 쓰는 코드를 추가해야 한다. 이 예제에서는 단순화된 구조로 디더링의 동작 원리를 이해하는 데 집중하였다.
+---
+주어진 색상 팔레트를 사용하여 Jarvis-Judice-Ninke 디더링을 C++로 구현하는 예제를 제공하겠다. 사용할 수 있는 색상 팔레트는 다음과 같다:
+
+- 흰색: (255, 255, 255)
+- 검은색: (0, 0, 0)
+- 노란색: (255, 255, 0)
+- 파란색: (0, 0, 255)
+- 빨간색: (255, 0, 0)
+- 초록색: (0, 255, 0)
+- 오렌지색: (255, 165, 0)
+
+### 1. 헤더 파일 및 유틸리티 함수 정의
+
+먼저, 필요한 헤더 파일을 포함하고 이미지 데이터 처리를 위한 유틸리티 함수를 정의한다.
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <algorithm>
+#include <cstdint>
+
+using namespace std;
+
+struct Pixel {
+    uint8_t b, g, r;
+};
+
+// 이미지 데이터를 1차원 벡터로 저장
+using Image = vector<Pixel>;
+
+// 이미지 크기
+struct Size {
+    int width;
+    int height;
+};
+
+// 색상 팔레트
+const vector<Pixel> palette = {
+    {255, 255, 255}, // 흰색
+    {0, 0, 0},       // 검은색
+    {255, 255, 0},   // 노란색
+    {0, 0, 255},     // 파란색
+    {255, 0, 0},     // 빨간색
+    {0, 255, 0},     // 초록색
+    {255, 165, 0}    // 오렌지색
+};
+
+// 픽셀 값을 클램핑
+uint8_t clamp(int value, int min = 0, int max = 255) {
+    return static_cast<uint8_t>(std::max(min, std::min(value, max)));
+}
+
+// 두 픽셀 간의 유클리드 거리 계산
+int colorDistance(const Pixel& p1, const Pixel& p2) {
+    return (p1.r - p2.r) * (p1.r - p2.r) +
+           (p1.g - p2.g) * (p1.g - p2.g) +
+           (p1.b - p2.b) * (p1.b - p2.b);
+}
+
+// 가장 가까운 팔레트 색상 찾기
+Pixel findClosestPaletteColor(const Pixel& pixel) {
+    Pixel closestColor = palette[0];
+    int minDistance = colorDistance(pixel, palette[0]);
+
+    for (const auto& color : palette) {
+        int distance = colorDistance(pixel, color);
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestColor = color;
+        }
+    }
+
+    return closestColor;
+}
+
+// 픽셀의 색상 차이를 계산
+Pixel colorDifference(const Pixel& p1, const Pixel& p2) {
+    return Pixel {
+        static_cast<uint8_t>(p1.b - p2.b),
+        static_cast<uint8_t>(p1.g - p2.g),
+        static_cast<uint8_t>(p1.r - p2.r)
+    };
+}
+
+// 픽셀에 색상 차이를 적용
+Pixel applyColorDifference(const Pixel& p, const Pixel& diff, double factor) {
+    return Pixel {
+        clamp(static_cast<int>(p.b) + static_cast<int>(diff.b * factor)),
+        clamp(static_cast<int>(p.g) + static_cast<int>(diff.g * factor)),
+        clamp(static_cast<int>(p.r) + static_cast<int>(diff.r * factor))
+    };
+}
+```
+
+### 2. Jarvis-Judice-Ninke 디더링 구현
+
+다음으로, Jarvis-Judice-Ninke 알고리즘을 사용하여 이미지에 디더링을 적용하는 함수를 정의한다.
+
+```cpp
+void jarvisJudiceNinkeDithering(Image& img, Size size) {
+    const int matrix[3][5] = {
+        { 0, 0, 0, 7, 5 },
+        { 3, 5, 7, 5, 3 },
+        { 1, 3, 5, 3, 1 }
+    };
+    const int matrixSum = 48; // 3 + 5 + 7 + 5 + 3 + 1 + 3 + 5 + 3 + 1 = 48
+
+    for (int y = 0; y < size.height; ++y) {
+        for (int x = 0; x < size.width; ++x) {
+            int index = y * size.width + x;
+            Pixel oldPixel = img[index];
+            
+            // 가장 가까운 팔레트 색상으로 양자화
+            Pixel newPixel = findClosestPaletteColor(oldPixel);
+
+            img[index] = newPixel;
+            Pixel quantError = colorDifference(oldPixel, newPixel);
+
+            // 오류 확산
+            for (int dy = 0; dy < 3; ++dy) {
+                for (int dx = -2; dx <= 2; ++dx) {
+                    if (x + dx >= 0 && x + dx < size.width && y + dy < size.height) {
+                        int neighborIndex = (y + dy) * size.width + (x + dx);
+                        img[neighborIndex] = applyColorDifference(img[neighborIndex], quantError, matrix[dy][dx + 2] / static_cast<double>(matrixSum));
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+### 3. 메인 함수 및 테스트
+
+마지막으로, 메인 함수에서 이미지를 로드하고 디더링을 적용한 후 결과를 저장하는 코드를 작성한다.
+
+```cpp
+int main() {
+    // 예제 이미지 데이터 (단순히 1차원 벡터로 초기화)
+    Size size = { 5, 5 }; // 5x5 크기의 이미지
+    Image img(size.width * size.height, { 128, 128, 128 });
+
+    // Jarvis-Judice-Ninke 디더링 적용
+    jarvisJudiceNinkeDithering(img, size);
+
+    // 결과 출력 (예시)
+    for (int y = 0; y < size.height; ++y) {
+        for (int x = 0; x < size.width; ++x) {
+            Pixel p = img[y * size.width + x];
+            cout << "(" << (int)p.r << "," << (int)p.g << "," << (int)p.b << ") ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+```
+
+이 코드는 5x5 크기의 예제 이미지를 Jarvis-Judice-Ninke 디더링 알고리즘을 사용하여 처리하고 결과를 출력한다. 실제 이미지 파일을 처리하려면 이미지 파일을 읽고 쓰는 코드를 추가해야 한다. 이 예제에서는 단순화된 구조로 디더링의 동작 원리를 이해하는 데 집중하였다.
+
+
+
+JPEG 이미지를 RGB 데이터의 나열로 변경하여 1차원 벡터에 저장하는 C++ 코드를 작성하기 위해 OpenCV 라이브러리를 사용할 수 있다. 다음은 이미지의 RGB 데이터를 1차원 벡터로 저장하는 예제 코드이다:
+
+```cpp
+#include <opencv2/opencv.hpp>
+#include <vector>
+#include <iostream>
+
+// JPEG 이미지를 RGB 데이터로 변환하여 1차원 벡터에 저장하는 함수
+std::vector<int> jpegToRgb1DArray(const std::string& imagePath) {
+    // 이미지 로드
+    cv::Mat img = cv::imread(imagePath, cv::IMREAD_COLOR);
+
+    if (img.empty()) {
+        std::cerr << "Could not open or find the image" << std::endl;
+        return {};
+    }
+
+    // 1차원 벡터 초기화
+    std::vector<int> rgbArray;
+
+    // RGB 데이터 추출 및 1차원 벡터에 저장
+    for (int i = 0; i < img.rows; ++i) {
+        for (int j = 0; j < img.cols; ++j) {
+            cv::Vec3b pixel = img.at<cv::Vec3b>(i, j);
+            rgbArray.push_back(pixel[2]); // R
+            rgbArray.push_back(pixel[1]); // G
+            rgbArray.push_back(pixel[0]); // B
+        }
+    }
+
+    return rgbArray;
+}
+
+int main() {
+    // 예제 이미지 파일 경로
+    std::string imagePath = "path_to_your_image.jpeg";
+
+    // 함수 호출
+    std::vector<int> rgbArray = jpegToRgb1DArray(imagePath);
+
+    // RGB 데이터 출력 (일부 픽셀만 출력)
+    for (size_t i = 0; i < 15; i += 3) {
+        std::cout << "Pixel " << i / 3 << ": R=" 
+                  << rgbArray[i] << ", G=" 
+                  << rgbArray[i + 1] << ", B=" 
+                  << rgbArray[i + 2] << std::endl;
+    }
+
+    return 0;
+}
+```
+
+이 코드는 OpenCV를 사용하여 JPEG 이미지를 로드하고, 각 픽셀의 RGB 값을 추출하여 1차원 벡터에 저장한다. 각 픽셀의 RGB 값은 연속적인 세 개의 요소로 저장된다. 예를 들어, 첫 번째 픽셀의 R 값은 `rgbArray[0]`, G 값은 `rgbArray[1]`, B 값은 `rgbArray[2]`에 저장된다.
+
+CMakeLists.txt 파일은 다음과 같이 작성할 수 있다:
+
+```cmake
+cmake_minimum_required(VERSION 3.10)
+project(JpegToRgb1DArray)
+
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+add_executable(JpegToRgb1DArray main.cpp)
+target_link_libraries(JpegToRgb1DArray ${OpenCV_LIBS})
+```
+
+위의 C++ 코드와 CMakeLists.txt 파일을 사용하여 프로젝트를 설정하고 빌드할 수 있다. `path_to_your_image.jpeg`를 실제 이미지 파일 경로로 변경하는 것을 잊지 말자. CMake 빌드 및 실행 방법은 다음과 같다:
+
+```bash
+mkdir build
+cd build
+cmake ..
+make
+./JpegToRgb1DArray
+```
+
+이렇게 하면 JPEG 이미지의 RGB 데이터를 1차원 벡터로 변환하고 출력할 수 있다.
+
+
+
+
+
+`GDI+` 대신 `BITMAPINFO`를 사용하여 비트맵 이미지를 표시하고, 윈도우의 크기에 따라 이미지를 동적으로 조정하는 코드를 작성할 수 있다. 이를 위해 `StretchBlt` 함수를 사용하여 비트맵을 그릴 때 크기를 조정하고, `WM_SIZE` 메시지를 처리하여 윈도우 크기가 변경될 때 이미지를 다시 그리도록 한다.
+
+### 주요 단계
+
+1. **비트맵 로드 및 초기화**
+2. **윈도우 클래스 등록 및 창 생성**
+3. **윈도우 프로시저에서 `WM_SIZE` 메시지 처리**
+4. **비율 유지하며 비트맵 그리기**
+
+### 코드 예제
+
+```cpp
+#include <windows.h>
+#include <stdio.h>
+
+BITMAPINFOHEADER createBitmapHeader(int width, int height)
+{
+    BITMAPINFOHEADER bi;
+
+    bi.biSize = sizeof(BITMAPINFOHEADER);
+    bi.biWidth = width;
+    bi.biHeight = -height;  // top-down DIB
+    bi.biPlanes = 1;
+    bi.biBitCount = 24;
+    bi.biCompression = BI_RGB;
+    bi.biSizeImage = 0;
+    bi.biXPelsPerMeter = 0;
+    bi.biYPelsPerMeter = 0;
+    bi.biClrUsed = 0;
+    bi.biClrImportant = 0;
+
+    return bi;
+}
+
+LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+    static HBITMAP hBitmap = NULL;
+    static BITMAPINFOHEADER bi;
+    static int imageWidth = 2560;
+    static int imageHeight = 1440;
+
+    switch (uMsg)
+    {
+        case WM_CREATE:
+        {
+            // 비트맵 로드 (여기서는 파일에서 로드하지 않고 메모리에서 직접 생성)
+            bi = createBitmapHeader(imageWidth, imageHeight);
+
+            // 예제용으로 빨간색으로 채운 비트맵 생성
+            HDC hdc = GetDC(hwnd);
+            HDC hdcMem = CreateCompatibleDC(hdc);
+            hBitmap = CreateCompatibleBitmap(hdc, imageWidth, imageHeight);
+            SelectObject(hdcMem, hBitmap);
+
+            // 비트맵을 빨간색으로 초기화
+            RECT rect = {0, 0, imageWidth, imageHeight};
+            HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 0));
+            FillRect(hdcMem, &rect, hBrush);
+
+            DeleteObject(hBrush);
+            DeleteDC(hdcMem);
+            ReleaseDC(hwnd, hdc);
+
+            return 0;
+        }
+        case WM_SIZE:
+        {
+            InvalidateRect(hwnd, NULL, TRUE); // 창 크기 변경 시 화면 갱신
+            return 0;
+        }
+        case WM_PAINT:
+        {
+            PAINTSTRUCT ps;
+            HDC hdc = BeginPaint(hwnd, &ps);
+
+            if (hBitmap)
+            {
+                RECT clientRect;
+                GetClientRect(hwnd, &clientRect);
+
+                int winWidth = clientRect.right;
+                int winHeight = clientRect.bottom;
+
+                // 이미지 비율 유지
+                float imageRatio = static_cast<float>(imageWidth) / imageHeight;
+                float windowRatio = static_cast<float>(winWidth) / winHeight;
+
+                int drawWidth, drawHeight;
+
+                if (windowRatio > imageRatio)
+                {
+                    drawHeight = winHeight;
+                    drawWidth = static_cast<int>(drawHeight * imageRatio);
+                }
+                else
+                {
+                    drawWidth = winWidth;
+                    drawHeight = static_cast<int>(drawWidth / imageRatio);
+                }
+
+                int offsetX = (winWidth - drawWidth) / 2;
+                int offsetY = (winHeight - drawHeight) / 2;
+
+                HDC hdcMem = CreateCompatibleDC(hdc);
+                SelectObject(hdcMem, hBitmap);
+
+                StretchBlt(hdc, offsetX, offsetY, drawWidth, drawHeight, hdcMem, 0, 0, imageWidth, imageHeight, SRCCOPY);
+
+                DeleteDC(hdcMem);
+            }
+
+            EndPaint(hwnd, &ps);
+            return 0;
+        }
+        case WM_DESTROY:
+        {
+            if (hBitmap)
+            {
+                DeleteObject(hBitmap);
+            }
+            PostQuitMessage(0);
+            return 0;
+        }
+        default:
+            return DefWindowProc(hwnd, uMsg, wParam, lParam);
+    }
+}
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+{
+    const wchar_t CLASS_NAME[]  = L"Sample Window Class";
+
+    WNDCLASS wc = {};
+    wc.lpfnWndProc   = WindowProc;
+    wc.hInstance     = hInstance;
+    wc.lpszClassName = CLASS_NAME;
+
+    RegisterClass(&wc);
+
+    HWND hwnd = CreateWindowEx(
+        0,
+        CLASS_NAME,
+        L"Display Bitmap",
+        WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+        NULL,
+        NULL,
+        hInstance,
+        NULL
+    );
+
+    if (hwnd == NULL)
+    {
+        return 0;
+    }
+
+    ShowWindow(hwnd, nCmdShow);
+
+    MSG msg = {};
+    while (GetMessage(&msg, NULL, 0, 0))
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
+
+    return 0;
+}
+```
+
+### 설명
+
+1. **비트맵 로드 및 초기화**
+   - `createBitmapHeader` 함수를 통해 비트맵 헤더를 생성하고, 메모리에서 직접 빨간색으로 채워진 비트맵을 생성한다.
+
+2. **윈도우 클래스 등록 및 창 생성**
+   - 윈도우 클래스를 등록하고 창을 생성한다.
+
+3. **윈도우 프로시저에서 `WM_SIZE` 메시지 처리**
+   - `WM_SIZE` 메시지를 처리하여 창 크기가 변경될 때 화면을 갱신한다.
+
+4. **비율 유지하며 비트맵 그리기**
+   - `WM_PAINT` 메시지에서 `StretchBlt` 함수를 사용하여 비트맵을 그리며, 창의 크기에 따라 비트맵의 크기를 조정한다.
+   - 창의 클라이언트 영역과 이미지의 비율을 비교하여 비율을 유지한 상태로 이미지를 중앙에 배치한다.
+
+이 예제는 기본적으로 메모리에서 생성된 비트맵을 사용하지만, 실제로는 파일에서 비트맵을 로드하여 사용할 수 있다. 파일에서 비트맵을 로드하는 경우, `LoadImage` 함수나 다른 비트맵 로드 함수를 사용할 수 있다.
+
+
+윈도우 창의 크기를 변경할 때 초기 비율(예: 2560x1440)을 유지하면서 크기를 조정하려면 `WM_SIZING` 메시지를 처리하여 사용자가 창 크기를 조정할 때 비율이 유지되도록 해야 한다. 이를 위해 사용자가 크기를 조정할 때 새로운 크기를 계산하고 설정하는 코드를 작성할 수 있다.
+
+다음은 그 방법을 보여주는 코드 예제이다.
+
+### 코드 예제
+
+```cpp
+#include <windows.h>
+#include <stdio.h>
+
+BITMAPINFOHEADER createBitmapHeader(int width, int height)
+{
+    BITMAPINFOHEADER bi;
+
+    bi.biSize = sizeof(BITMAPINFOHEADER);
+    bi.biWidth = width;
+    bi.biHeight = -height;  // top-down DIB
+    bi.biPlanes = 1;
+    bi.biBitCount = 24;
+    bi.biCompression = BI_RGB;
+    bi.biSizeImage = 0;
+    bi.biXPelsPerMeter = 0;
+    bi.biYPelsPerMeter = 0;
+    bi.biClrUsed = 0;
+    bi.biClrImportant = 0;
+
+    return bi;
+}
+
+LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+    static HBITMAP hBitmap = NULL;
+    static BITMAPINFOHEADER bi;
+    static int imageWidth = 2560;
+    static int imageHeight = 1440;
+    static float aspectRatio = 2560.0f / 1440.0f;
+
+    switch (uMsg)
+    {
+        case WM_CREATE:
+        {
+            // 비트맵 로드 (여기서는 파일에서 로드하지 않고 메모리에서 직접 생성)
+            bi = createBitmapHeader(imageWidth, imageHeight);
+
+            // 예제용으로 빨간색으로 채운 비트맵 생성
+            HDC hdc = GetDC(hwnd);
+            HDC hdcMem = CreateCompatibleDC(hdc);
+            hBitmap = CreateCompatibleBitmap(hdc, imageWidth, imageHeight);
+            SelectObject(hdcMem, hBitmap);
+
+            // 비트맵을 빨간색으로 초기화
+            RECT rect = {0, 0, imageWidth, imageHeight};
+            HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 0));
+            FillRect(hdcMem, &rect, hBrush);
+
+            DeleteObject(hBrush);
+            DeleteDC(hdcMem);
+            ReleaseDC(hwnd, hdc);
+
+            return 0;
+        }
+        case WM_SIZE:
+        {
+            InvalidateRect(hwnd, NULL, TRUE); // 창 크기 변경 시 화면 갱신
+            return 0;
+        }
+        case WM_SIZING:
+        {
+            RECT* rect = (RECT*)lParam;
+            int width = rect->right - rect->left;
+            int height = rect->bottom - rect->top;
+            float currentAspectRatio = (float)width / (float)height;
+
+            if (currentAspectRatio > aspectRatio) {
+                // 너비에 비례하여 높이를 조정
+                width = (int)(height * aspectRatio);
+                rect->right = rect->left + width;
+            } else {
+                // 높이에 비례하여 너비를 조정
+                height = (int)(width / aspectRatio);
+                rect->bottom = rect->top + height;
+            }
+
+            return TRUE;
+        }
+        case WM_PAINT:
+        {
+            PAINTSTRUCT ps;
+            HDC hdc = BeginPaint(hwnd, &ps);
+
+            if (hBitmap)
+            {
+                RECT clientRect;
+                GetClientRect(hwnd, &clientRect);
+
+                int winWidth = clientRect.right;
+                int winHeight = clientRect.bottom;
+
+                // 이미지 비율 유지
+                float imageRatio = static_cast<float>(imageWidth) / imageHeight;
+                float windowRatio = static_cast<float>(winWidth) / winHeight;
+
+                int drawWidth, drawHeight;
+
+                if (windowRatio > imageRatio)
+                {
+                    drawHeight = winHeight;
+                    drawWidth = static_cast<int>(drawHeight * imageRatio);
+                }
+                else
+                {
+                    drawWidth = winWidth;
+                    drawHeight = static_cast<int>(drawWidth / imageRatio);
+                }
+
+                int offsetX = (winWidth - drawWidth) / 2;
+                int offsetY = (winHeight - drawHeight) / 2;
+
+                HDC hdcMem = CreateCompatibleDC(hdc);
+                SelectObject(hdcMem, hBitmap);
+
+                StretchBlt(hdc, offsetX, offsetY, drawWidth, drawHeight, hdcMem, 0, 0, imageWidth, imageHeight, SRCCOPY);
+
+                DeleteDC(hdcMem);
+            }
+
+            EndPaint(hwnd, &ps);
+            return 0;
+        }
+        case WM_DESTROY:
+        {
+            if (hBitmap)
+            {
+                DeleteObject(hBitmap);
+            }
+            PostQuitMessage(0);
+            return 0;
+        }
+        default:
+            return DefWindowProc(hwnd, uMsg, wParam, lParam);
+    }
+}
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+{
+    const wchar_t CLASS_NAME[]  = L"Sample Window Class";
+
+    WNDCLASS wc = {};
+    wc.lpfnWndProc   = WindowProc;
+    wc.hInstance     = hInstance;
+    wc.lpszClassName = CLASS_NAME;
+
+    RegisterClass(&wc);
+
+    // 클라이언트 영역의 크기를 2560x1440으로 설정
+    RECT clientRect = { 0, 0, 2560, 1440 };
+    AdjustWindowRectEx(&clientRect, WS_OVERLAPPEDWINDOW, FALSE, 0);
+
+    HWND hwnd = CreateWindowEx(
+        0,
+        CLASS_NAME,
+        L"Display Bitmap",
+        WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, CW_USEDEFAULT, 
+        clientRect.right - clientRect.left, // 조정된 너비
+        clientRect.bottom - clientRect.top, // 조정된 높이
+        NULL,
+        NULL,
+        hInstance,
+        NULL
+    );
+
+    if (hwnd == NULL)
+    {
+        return 0;
+    }
+
+    ShowWindow(hwnd, nCmdShow);
+
+    MSG msg = {};
+    while (GetMessage(&msg, NULL, 0, 0))
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
+
+    return 0;
+}
+```
+
+### 설명
+
+1. **비트맵 로드 및 초기화**
+   - 비트맵 헤더를 생성하고, 메모리에서 빨간색으로 채워진 비트맵을 생성한다.
+
+2. **윈도우 클래스 등록 및 창 생성**
+   - 윈도우 클래스를 등록하고, `AdjustWindowRectEx` 함수를 사용하여 클라이언트 영역의 크기를 2560x1440으로 맞추기 위해 전체 윈도우 크기를 조정한다.
+
+3. **윈도우 프로시저에서 `WM_SIZE` 및 `WM_SIZING` 메시지 처리**
+   - `WM_SIZE` 메시지를 처리하여 창 크기 변경 시 화면을 갱신한다.
+   - `WM_SIZING` 메시지를 처리하여 사용자가 창의 크기를 변경할 때, 초기 비율을 유지하도록 한다. 사용자가 크기를 조정할 때 새로운 크기를 계산하고 설정한다.
+
+4. **비율 유지하며 비트맵 그리기**
+   - `WM_PAINT` 메시지에서 `StretchBlt` 함수를 사용하여 비트맵을 그리며, 창의 크기에 따라 비트맵의 크기를 조정한다.
+   - 창의 클라이언트 영역과 이미지의 비율을 비교하여 비율을 유지한 상태로 이미지를 중앙에 배치한다.
+
+이 코드는 사용자가 창 크기를 변경할 때 초기 비율을 유지하도록 하며, 이미지가 올바르게 비율을 유지하며 표시되도록 한다.
+
+
+
+
+
+
+윈도우 내부의 비율을 유지하도록 변경하기 위해 `WM_SIZING` 메시지를 처리하여 사용자가 창 크기를 조정할 때 내부 비율을 유지하도록 할 수 있다. 이를 위해 창의 크기 조정 범위 내에서 비율을 유지하면서 클라이언트 영역의 크기를 조정하는 코드를 작성할 수 있다.
+
+### 코드 예제
+
+```cpp
+#include <windows.h>
+#include <stdio.h>
+
+BITMAPINFOHEADER createBitmapHeader(int width, int height)
+{
+    BITMAPINFOHEADER bi;
+
+    bi.biSize = sizeof(BITMAPINFOHEADER);
+    bi.biWidth = width;
+    bi.biHeight = -height;  // top-down DIB
+    bi.biPlanes = 1;
+    bi.biBitCount = 24;
+    bi.biCompression = BI_RGB;
+    bi.biSizeImage = 0;
+    bi.biXPelsPerMeter = 0;
+    bi.biYPelsPerMeter = 0;
+    bi.biClrUsed = 0;
+    bi.biClrImportant = 0;
+
+    return bi;
+}
+
+LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+    static HBITMAP hBitmap = NULL;
+    static BITMAPINFOHEADER bi;
+    static int imageWidth = 2560;
+    static int imageHeight = 1440;
+    static float aspectRatio = 2560.0f / 1440.0f;
+
+    switch (uMsg)
+    {
+        case WM_CREATE:
+        {
+            // 비트맵 로드 (여기서는 파일에서 로드하지 않고 메모리에서 직접 생성)
+            bi = createBitmapHeader(imageWidth, imageHeight);
+
+            // 예제용으로 빨간색으로 채운 비트맵 생성
+            HDC hdc = GetDC(hwnd);
+            HDC hdcMem = CreateCompatibleDC(hdc);
+            hBitmap = CreateCompatibleBitmap(hdc, imageWidth, imageHeight);
+            SelectObject(hdcMem, hBitmap);
+
+            // 비트맵을 빨간색으로 초기화
+            RECT rect = {0, 0, imageWidth, imageHeight};
+            HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 0));
+            FillRect(hdcMem, &rect, hBrush);
+
+            DeleteObject(hBrush);
+            DeleteDC(hdcMem);
+            ReleaseDC(hwnd, hdc);
+
+            return 0;
+        }
+        case WM_SIZE:
+        {
+            InvalidateRect(hwnd, NULL, TRUE); // 창 크기 변경 시 화면 갱신
+            return 0;
+        }
+        case WM_SIZING:
+        {
+            RECT* rect = (RECT*)lParam;
+            int width = rect->right - rect->left;
+            int height = rect->bottom - rect->top;
+
+            // 클라이언트 영역의 크기를 가져옴
+            RECT clientRect;
+            GetClientRect(hwnd, &clientRect);
+            int clientWidth = clientRect.right - clientRect.left;
+            int clientHeight = clientRect.bottom - clientRect.top;
+
+            // 현재 창 스타일을 가져옴
+            DWORD dwStyle = GetWindowLong(hwnd, GWL_STYLE);
+            DWORD dwExStyle = GetWindowLong(hwnd, GWL_EXSTYLE);
+
+            // 창 크기를 조정하여 클라이언트 영역의 크기를 얻음
+            RECT newRect = {0, 0, clientWidth, clientHeight};
+            AdjustWindowRectEx(&newRect, dwStyle, FALSE, dwExStyle);
+
+            // 조정된 창 크기를 사용하여 비율을 유지하도록 조정
+            int newWidth = newRect.right - newRect.left;
+            int newHeight = newRect.bottom - newRect.top;
+
+            float currentAspectRatio = (float)newWidth / (float)newHeight;
+
+            if (currentAspectRatio > aspectRatio) {
+                // 높이에 비례하여 너비를 조정
+                newWidth = (int)(newHeight * aspectRatio);
+                rect->right = rect->left + newWidth;
+            } else {
+                // 너비에 비례하여 높이를 조정
+                newHeight = (int)(newWidth / aspectRatio);
+                rect->bottom = rect->top + newHeight;
+            }
+
+            return TRUE;
+        }
+        case WM_PAINT:
+        {
+            PAINTSTRUCT ps;
+            HDC hdc = BeginPaint(hwnd, &ps);
+
+            if (hBitmap)
+            {
+                RECT clientRect;
+                GetClientRect(hwnd, &clientRect);
+
+                int winWidth = clientRect.right;
+                int winHeight = clientRect.bottom;
+
+                // 이미지 비율 유지
+                float imageRatio = static_cast<float>(imageWidth) / imageHeight;
+                float windowRatio = static_cast<float>(winWidth) / winHeight;
+
+                int drawWidth, drawHeight;
+
+                if (windowRatio > imageRatio)
+                {
+                    drawHeight = winHeight;
+                    drawWidth = static_cast<int>(drawHeight * imageRatio);
+                }
+                else
+                {
+                    drawWidth = winWidth;
+                    drawHeight = static_cast<int>(drawWidth / imageRatio);
+                }
+
+                int offsetX = (winWidth - drawWidth) / 2;
+                int offsetY = (winHeight - drawHeight) / 2;
+
+                HDC hdcMem = CreateCompatibleDC(hdc);
+                SelectObject(hdcMem, hBitmap);
+
+                StretchBlt(hdc, offsetX, offsetY, drawWidth, drawHeight, hdcMem, 0, 0, imageWidth, imageHeight, SRCCOPY);
+
+                DeleteDC(hdcMem);
+            }
+
+            EndPaint(hwnd, &ps);
+            return 0;
+        }
+        case WM_DESTROY:
+        {
+            if (hBitmap)
+            {
+                DeleteObject(hBitmap);
+            }
+            PostQuitMessage(0);
+            return 0;
+        }
+        default:
+            return DefWindowProc(hwnd, uMsg, wParam, lParam);
+    }
+}
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+{
+    const wchar_t CLASS_NAME[]  = L"Sample Window Class";
+
+    WNDCLASS wc = {};
+    wc.lpfnWndProc   = WindowProc;
+    wc.hInstance     = hInstance;
+    wc.lpszClassName = CLASS_NAME;
+
+    RegisterClass(&wc);
+
+    // 클라이언트 영역의 크기를 2560x1440으로 설정
+    RECT clientRect = { 0, 0, 2560, 1440 };
+    AdjustWindowRectEx(&clientRect, WS_OVERLAPPEDWINDOW, FALSE, 0);
+
+    HWND hwnd = CreateWindowEx(
+        0,
+        CLASS_NAME,
+        L"Display Bitmap",
+        WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, CW_USEDEFAULT, 
+        clientRect.right - clientRect.left, // 조정된 너비
+        clientRect.bottom - clientRect.top, // 조정된 높이
+        NULL,
+        NULL,
+        hInstance,
+        NULL
+    );
+
+    if (hwnd == NULL)
+    {
+        return 0;
+    }
+
+    ShowWindow(hwnd, nCmdShow);
+
+    MSG msg = {};
+    while (GetMessage(&msg, NULL, 0, 0))
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
+
+    return 0;
+}
+```
+
+### 설명
+
+1. **비트맵 로드 및 초기화**
+   - 비트맵 헤더를 생성하고, 메모리에서 빨간색으로 채워진 비트맵을 생성한다.
+
+2. **윈도우 클래스 등록 및 창 생성**
+   - 윈도우 클래스를 등록하고, `AdjustWindowRectEx` 함수를 사용하여 클라이언트 영역의 크기를 2560x1440으로 맞추기 위해 전체 윈도우 크기를 조정한다.
+
+3. **윈도우 프로시저에서 `WM_SIZE` 및 `WM_SIZING` 메시지 처리**
+   - `WM_SIZE` 메시지를 처리하여 창 크기 변경 시 화면을 갱신한다.
+   - `WM_SIZING` 메시지를 처리하여 사용자가 창의 크기를 변경할 때, 내부 비율을 유지하도록 한다. 사용자가 크기를 조정할 때 새로운 크기를 계산하고 설정한다.
+
+4. **비율 유지하며 비트맵 그리기**
+   - `WM_PAINT` 메시지에서 `StretchBlt` 함수를 사용하여 비트맵을 그리며, 창의 크기에 따라 비트맵의 크기를 조정한다.
+   - 창의 클라이언트 영역과 이미지의 비율을 비교하여 비율을 유지한 상태로 이미지를 중앙에 배치한다.
+
+이 코드는 사용자가 창 크기를 변경할 때 내부 비율을 유지하도록 하며, 이미지가 올바르게 비율을 유지하며 표시되도록 한다.
+
+
+
+
+
+
+
+Stucki 디더링 알고리즘을 사용한 C++ 코드를 작성해보겠다. Stucki 디더링은 오류를 더 넓은 범위에 걸쳐 분산시켜 부드러운 결과를 제공하는 디더링 알고리즘이다.
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <algorithm>
+
+struct Color {
+    int r, g, b;
+};
+
+Color closestColor(const Color& c) {
+    std::vector<Color> palette = {
+        {255, 255, 255},  // White
+        {0, 0, 0},        // Black
+        {0, 255, 0},      // Green
+        {0, 0, 255},      // Blue
+        {255, 0, 0},      // Red
+        {255, 255, 0}     // Yellow
+    };
+
+    Color closest = palette[0];
+    int minDistance = INT_MAX;
+
+    for (const auto& p : palette) {
+        int distance = std::pow(c.r - p.r, 2) + std::pow(c.g - p.g, 2) + std::pow(c.b - p.b, 2);
+        if (distance < minDistance) {
+            minDistance = distance;
+            closest = p;
+        }
+    }
+
+    return closest;
+}
+
+void applyDithering(std::vector<std::vector<Color>>& image) {
+    int height = image.size();
+    int width = image[0].size();
+
+    std::vector<std::vector<int>> errorR(height, std::vector<int>(width, 0));
+    std::vector<std::vector<int>> errorG(height, std::vector<int>(width, 0));
+    std::vector<std::vector<int>> errorB(height, std::vector<int>(width, 0));
+
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            Color oldColor = {
+                std::clamp(image[y][x].r + errorR[y][x], 0, 255),
+                std::clamp(image[y][x].g + errorG[y][x], 0, 255),
+                std::clamp(image[y][x].b + errorB[y][x], 0, 255)
+            };
+
+            Color newColor = closestColor(oldColor);
+            image[y][x] = newColor;
+
+            int errR = oldColor.r - newColor.r;
+            int errG = oldColor.g - newColor.g;
+            int errB = oldColor.b - newColor.b;
+
+            std::vector<std::pair<int, int>> offsets = {
+                {1, 0}, {2, 0}, {-2, 1}, {-1, 1}, {0, 1}, {1, 1}, {2, 1}, {-2, 2}, {-1, 2}, {0, 2}, {1, 2}, {2, 2}
+            };
+            std::vector<int> coefficients = {8, 4, 2, 4, 8, 4, 2, 1, 2, 4, 2, 1};
+
+            for (int k = 0; k < offsets.size(); ++k) {
+                int newX = x + offsets[k].first;
+                int newY = y + offsets[k].second;
+                if (newX >= 0 && newX < width && newY >= 0 && newY < height) {
+                    errorR[newY][newX] += errR * coefficients[k] / 42;
+                    errorG[newY][newX] += errG * coefficients[k] / 42;
+                    errorB[newY][newX] += errB * coefficients[k] / 42;
+                }
+            }
+        }
+    }
+}
+
+int main() {
+    int width = 5;
+    int height = 5;
+    std::vector<std::vector<Color>> image(height, std::vector<Color>(width));
+
+    // 예시 RGB 데이터 초기화
+    image[0] = {{100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}};
+    image[1] = {{100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}};
+    image[2] = {{100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}};
+    image[3] = {{100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}};
+    image[4] = {{100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}, {100, 150, 200}};
+
+    applyDithering(image);
+
+    // 결과 출력
+    for (const auto& row : image) {
+        for (const auto& pixel : row) {
+            std::cout << "(" << pixel.r << ", " << pixel.g << ", " << pixel.b << ") ";
+        }
+        std::cout << "\n";
+    }
+
+    return 0;
+}
+```
+
+이 코드는 Stucki 디더링 알고리즘을 사용하여 입력된 RGB 데이터를 처리한다. Stucki 디더링은 오류를 넓게 분산시켜 매우 부드러운 이미지를 생성한다. `closestColor` 함수는 주어진 색상에 가장 가까운 팔레트 색상을 찾고, `applyDithering` 함수는 전체 이미지를 처리하여 디더링을 적용한다. 각 픽셀의 색상 오류를 주변 픽셀에 분산시켜 처리한다.
+
+
+JPEG 이미지를 RGB 데이터의 나열로 변경하는 C++ 코드를 작성하기 위해 OpenCV 라이브러리를 사용할 수 있다. OpenCV는 이미지 처리를 위한 강력한 라이브러리로, JPEG 이미지를 로드하고 RGB 데이터를 추출하는 작업을 쉽게 할 수 있다.
+
+다음은 C++ 코드 예제이다:
+
+```cpp
+#include <opencv2/opencv.hpp>
+#include <vector>
+#include <iostream>
+
+// JPEG 이미지를 RGB 데이터로 변환하는 함수
+std::vector<std::vector<std::vector<int>>> jpegToRgbArray(const std::string& imagePath) {
+    // 이미지 로드
+    cv::Mat img = cv::imread(imagePath, cv::IMREAD_COLOR);
+
+    if (img.empty()) {
+        std::cerr << "Could not open or find the image" << std::endl;
+        return {};
+    }
+
+    // 이미지 크기 가져오기
+    int rows = img.rows;
+    int cols = img.cols;
+
+    // RGB 데이터를 저장할 벡터 초기화
+    std::vector<std::vector<std::vector<int>>> rgbArray(rows, std::vector<std::vector<int>>(cols, std::vector<int>(3)));
+
+    // RGB 데이터 추출
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            cv::Vec3b pixel = img.at<cv::Vec3b>(i, j);
+            rgbArray[i][j][0] = pixel[2]; // R
+            rgbArray[i][j][1] = pixel[1]; // G
+            rgbArray[i][j][2] = pixel[0]; // B
+        }
+    }
+
+    return rgbArray;
+}
+
+int main() {
+    // 예제 이미지 파일 경로
+    std::string imagePath = "path_to_your_image.jpeg";
+
+    // 함수 호출
+    std::vector<std::vector<std::vector<int>>> rgbArray = jpegToRgbArray(imagePath);
+
+    // RGB 데이터 출력 (일부 픽셀만 출력)
+    if (!rgbArray.empty()) {
+        for (int i = 0; i < 5; ++i) {
+            for (int j = 0; j < 5; ++j) {
+                std::cout << "Pixel (" << i << ", " << j << "): R=" 
+                          << rgbArray[i][j][0] << ", G=" 
+                          << rgbArray[i][j][1] << ", B=" 
+                          << rgbArray[i][j][2] << std::endl;
+            }
+        }
+    }
+
+    return 0;
+}
+```
+
+이 코드는 OpenCV를 사용하여 JPEG 이미지를 로드하고, 이미지의 각 픽셀에 대해 RGB 값을 추출하여 3차원 벡터에 저장한다. 이 벡터는 이미지의 각 픽셀에 대한 RGB 값을 포함한다. 코드에서 `path_to_your_image.jpeg`를 실제 이미지 파일 경로로 변경해야 한다.
+
+OpenCV를 설치하지 않았다면, 다음과 같이 설치할 수 있다:
+1. OpenCV를 설치하려면, 패키지 매니저를 사용하거나 소스 코드에서 직접 컴파일할 수 있다.
+2. CMakeLists.txt 파일에 OpenCV 라이브러리를 링크하여 프로젝트를 설정해야 한다.
+
+CMakeLists.txt 예제:
+```cmake
+cmake_minimum_required(VERSION 3.10)
+project(JpegToRgbArray)
+
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+add_executable(JpegToRgbArray main.cpp)
+target_link_libraries(JpegToRgbArray ${OpenCV_LIBS})
+```
+
+이제 `main.cpp` 파일과 `CMakeLists.txt` 파일이 있는 디렉토리에서 CMake를 사용하여 빌드할 수 있다:
+```bash
+mkdir build
+cd build
+cmake ..
+make
+./JpegToRgbArray
+```
