@@ -5,13 +5,17 @@ tags:
 - Science Fiction
 - Action
 - Cyberpunk
+- AI
+- Technology
+- Identity
+- Philosophy
 header:
   teaser: /assets/images/2024/ghostintheshell.jpg
 ---
 
 **Ghost in the Shell (2017)**은 미래 사회를 배경으로 인간과 기술의 융합을 탐구하는 사이버펑크 SF 영화로, 스칼렛 요한슨이 연기하는 메이저는 인간의 뇌를 제외한 모든 것이 기계로 대체된 최초의 사이보그로서 사이버 범죄와 싸운다. 영화는 시각적 스타일과 액션이 뛰어나며 미래지향적인 음악과 세트 디자인이 돋보이지만, 원작 애니메이션의 철학적 깊이를 충분히 담아내지 못해 일부 팬들에게는 아쉬움을 남겼다. 화이트워싱 논란과 캐릭터 개발의 부족함이 비판받았지만, 사이버펑크 장르의 매력을 다시 한 번 확인시키며 비주얼 표현 면에서는 높은 평가를 받았다.
 
-|![/assets/images/2024/ghostintheshell.jpg]()|
+|![](/assets/images/2024/ghostintheshell.jpg)|
 |:---:|
 |Poster|
 
