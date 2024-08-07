@@ -191,11 +191,7 @@ def save_to_file_no_commant(file_path, content):
         file.write("\n\n")
 
 sources = """
-https://www.csharpstudy.com/CSharp/CSharp-variable.aspx
-https://learn.microsoft.com/ko-kr/dotnet/csharp/programming-guide/classes-and-structs/how-to-define-constants
-https://learn.microsoft.com/ko-kr/dotnet/csharp/programming-guide/classes-and-structs/constants
-https://learn.microsoft.com/ko-kr/dotnet/csharp/language-reference/statements/declarations
-https://learn.microsoft.com/ko-kr/dotnet/csharp/programming-guide/classes-and-structs/implicitly-typed-local-variables
+
 """
 
 format = """
@@ -235,12 +231,16 @@ if __name__ == "__main__":
 
     toc = blog_post_outline.strip().split('\n\n')
     for table in toc:
-        print(table)
-        section_content = generate_section_content(blog_post_outline, table)
-        print("##### section_content ############################")
-        save_to_file("result.md", table)
-        save_to_file_no_commant("result.md", section_content)
-        print("##################################################")
+        # table의 줄 수를 확인
+        table_lines = table.split('\n')
+        # table이 3줄 이상일 때만 generate_section_content을 수행
+        if len(table_lines) >= 3:
+            print("##### section_content ############################")
+            print(table)
+            save_to_file("result.md", table)
+            section_content = generate_section_content(blog_post_outline, table)
+            save_to_file_no_commant("result.md", section_content)
+            print("##################################################")
 
 
     reference = ""
