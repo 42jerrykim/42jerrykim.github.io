@@ -65,7 +65,7 @@ def gernerate_header(contents):
     prompt = """
     Please perform the following tasks:
     1. 주어진 내용을 활용하여 포멧에 내용을 작성해줘
-    2. TAG는 블로그에서 사용할 만한 영어 단어로 10개 이상 작성해줘
+    2. TAG는 블로그에서 사용할 만한 영어 단어로 50개 이상 작성해줘
     3. CATEGORY는 띄어쓰기가 없는 영어 단어로 작성해줘
     4. TITLE은 한글로 적어줘
     
@@ -102,7 +102,6 @@ def generate_blog_post_outline(contents):
 
     prompt = """
     You're a software developer who works on a wide variety of topics.
-    You are a developer familiar with python or csharp.
     The blog post should be informative and engaging.
     It should have an introduction, several sections, Practical Examples, Frequently Asked Questions, Related Technologies, and a conclusion summarizing the main points.
     Write a blog post outline in korean.
@@ -144,10 +143,9 @@ def generate_blog_post_outline(contents):
 
 def generate_section_content(toc, table):
     system_prompt = f"""
-    You are a developer familiar with python or csharp.
     Write an article in korean about the table of contents entered by the user by referring to the table of contents entered by the assistant 
     The content to be written must have titles using markdown format
-    Please write sample code in python or csharp if possible
+    Please write sample code
     
     문어체와 평어체를 사용하고 "~이다."로 문장이 끝나도록 작성해
     100000글자 정도로 작성해
