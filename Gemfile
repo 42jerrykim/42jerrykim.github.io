@@ -5,7 +5,7 @@ source "https://rubygems.org"
 
 # gem "tzinfo-data"
 # gem "wdm", "~> 0.1.0" if Gem.win_platform?
-gem "jekyll", "~> 3.10.0"
+gem "jekyll"
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
@@ -17,7 +17,7 @@ group :jekyll_plugins do
   gem "jekyll-include-cache"
   gem "jekyll-algolia"
   gem "jekyll-redirect-from"
-  gem "jekyll-timeago", "~> 0.13.1"
+  gem "jekyll-timeago"
 end
 
 
