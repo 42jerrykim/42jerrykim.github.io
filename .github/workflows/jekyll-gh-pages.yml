@@ -29,7 +29,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Generate Plantuml
-        uses: grassedge/generate-plantuml-action@v1.5
+        uses: kolchurinvv/generate-plantuml-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup Pages
