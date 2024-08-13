@@ -30,6 +30,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Generate Plantuml
         uses: grassedge/generate-plantuml-action@v1.5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build with Jekyll
