@@ -1,4 +1,4 @@
-@startuml test2
+@startuml test3
 actor User as 사용자
 boundary Browser as 브라우저
 control BroadcastChannel as 채널
