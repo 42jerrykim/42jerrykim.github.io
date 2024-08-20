@@ -1,5 +1,5 @@
 ---
-title: "[CSharp] C# 인터페이스와 추상클래스의 차이점"
+title: "[C#] C# 인터페이스와 추상클래스의 차이점"
 categories: CSharp
 tags:
 - C#

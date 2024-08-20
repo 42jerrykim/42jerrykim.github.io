@@ -1,5 +1,5 @@
 ---
-title: "[CSharp] 배열 (Array)"
+title: "[C#] 배열 (Array)"
 categories: CSharp
 tags:
 - CSharp

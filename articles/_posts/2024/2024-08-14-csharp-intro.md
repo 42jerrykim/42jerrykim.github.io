@@ -1,5 +1,5 @@
 ---
-title: "[CSharp] C# 언어 둘러보기"
+title: "[C#] C# 언어 둘러보기"
 categories: CSharp
 tags:
 - C#
