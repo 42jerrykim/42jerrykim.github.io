@@ -14,7 +14,7 @@ tags:
 - DoubleCheckedLocking
 - EnumSingleton
 - Java
-- C++
+- Cpp
 - Kotlin
 - ThreadSafety
 - RaceCondition

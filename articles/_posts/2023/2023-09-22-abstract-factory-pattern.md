@@ -16,8 +16,8 @@ tags:
 - Inheritance
 - Abstract Classes
 - Interfaces
-- C++
-- C#
+- Cpp
+- CSharp
 - MazeGame
 - MazeFactory
 - UML Diagram

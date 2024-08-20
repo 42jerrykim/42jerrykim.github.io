@@ -2,7 +2,7 @@
 title: "[C#] C# 언어 둘러보기"
 categories: CSharp
 tags:
-- C#
+- CSharp
 - .NET
 - programming
 - software development

@@ -2,7 +2,7 @@
 title: "[C#] C# 프로그램의 일반적인 구조체"
 categories: csharp
 tags:
-- C#
+- CSharp
 - programming
 - .NET
 - software development

@@ -4,7 +4,7 @@ category:
 - Cpp
 tags:
 - Dynamic Loading
-- C++
+- Cpp
 - dlopen API
 - Programming
 - Shared Libraries
