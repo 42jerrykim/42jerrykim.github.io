@@ -1,7 +1,7 @@
 ---
 title: "Singleton"
-last_modified_at: 2022-03-01
-date: 2024-08-20
+last_modified_at: 2024-08-20
+date: 2022-01-01
 header:
   teaser: /plantuml/designpattern_singleton.svg
 ---
