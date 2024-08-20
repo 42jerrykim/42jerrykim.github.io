@@ -1,4 +1,4 @@
-name: generate plantuml
+name: Generate plantuml
 on:
   push:
     branches: ["main"]
