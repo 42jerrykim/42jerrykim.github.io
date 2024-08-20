@@ -1,0 +1,29 @@
+@startuml
+
+class Singleton {
+    - static Singleton instance
+    - static readonly object lockObject
+    - Singleton()
+    + static Singleton Instance
+    + void DoSomething()
+    + void SomeOtherMethod()
+}
+
+Singleton --> Singleton : <<create>> instance
+
+class SingletonHolder {
+    - static readonly Singleton instance
+    + static Singleton Instance
+}
+
+SingletonHolder -down-> Singleton : Holds reference to
+
+Singleton . SingletonHolder : <<uses>> Singleton.Instance
+
+class Program {
+    + void Main(string[] args)
+}
+
+Program --> Singleton : calls
+
+@enduml
