@@ -1,6 +1,6 @@
 ---
 title: "[C#] C# 프로그램의 일반적인 구조체"
-categories: csharp
+categories: CSharp
 tags:
 - CSharp
 - programming

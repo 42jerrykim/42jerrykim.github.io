@@ -1,6 +1,6 @@
 ---
 title: "[C#] C# 데이터 타입"
-categories: csharp
+categories: CSharp
 tags:
 - CSharp
 - DataTypes
