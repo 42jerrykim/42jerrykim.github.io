@@ -64,6 +64,13 @@ teaser: /assets/images/undefined/teaser.jpg
 |:---:|
 ||
 
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
 
 <!--
 ##### Outline #####
