@@ -101,12 +101,15 @@ def generate_blog_post_outline(contents):
     all_contents = ' '.join(contents)
 
     prompt = """
-    You're a software developer who works on a wide variety of topics.
-    The blog post should be informative and engaging.
-    It should have an introduction, several sections, Practical Examples, Frequently Asked Questions, Related Technologies, and a conclusion summarizing the main points.
-    Write a blog post outline in korean.
+    너는 블로그에 사용할 목차를 만드는 시스템이야
+    주어진 내용이외에도 관련이 있을만한 내용을 추가해서 목차를 작성해야해
+    목차의 구성은 개요, 여러 섹션, 예제, FAQ, 관련 기술, 결론으로 구성하면 좋을것 같아
+    """
 
-    아래의 형식을 준수해서 100000글자 분량으로 작성해줘
+    user_prompt = f"""
+    ```{all_contents}```
+
+    위 내용을 바탕으로 아래의 형식을 준수해서 목차를 작성해줘
     ---
     ## Section1_title
     **sub section title of section01**
@@ -132,7 +135,7 @@ def generate_blog_post_outline(contents):
         model=GPT_4O_MINI,
         messages=[
             {"role": "system", "content": prompt},
-            {"role": "user", "content": all_contents}
+            {"role": "user", "content": user_prompt}
         ],
         temperature=0
     )
@@ -143,20 +146,19 @@ def generate_blog_post_outline(contents):
 
 def generate_section_content(toc, table):
     system_prompt = f"""
-    Write an article in korean about the table of contents entered by the user by referring to the table of contents entered by the assistant 
-    The content to be written must have titles using markdown format
-    Please write sample code
-    
+    너는 코딩 블로그를 작성해 주는 시스템이야
     문어체와 평어체를 사용하고 "~이다."로 문장이 끝나도록 작성해
-    100000글자 정도로 작성해
-    다이어 그램을 그릴 수 있는 경우 plantuml을 사용해
+    전체 목차중에서 일부 목차에 대해서 글을 작성할 예정이야.
     """
 
     user_prompt = f"""
-    The content separated by (```) is the table of contents of the blog post to be written.
-    Please provide detailed information based on the given table of contents.
-    하위 제목은 Header 대신 double asterisks를 사용하고, 하위제목 다음 줄에 줄바꿈을 추가해줘
-    ```{table}```
+    전체 목차: ```{toc}```
+
+    이번에 작성할 목차: ```{table}```
+
+    이번에 작성할 목차에 대해서 내용을 작성하는데 다른 목차에서 작성할만한 내용을 제외하고 작성해줘.
+    샘플 코드와 다이어그램(mermaid)도 추가하면 더 좋을 것 같아.
+    
     """
 
     assistant_prompt = f"""
@@ -166,7 +168,7 @@ def generate_section_content(toc, table):
         model=GPT_4O_MINI,
         messages=[
             {"role": "system", "content": system_prompt},
-            {"role": "assistant", "content": toc},
+            # {"role": "assistant", "content": toc},
             {"role": "assistant", "content": assistant_prompt},
             {"role": "user", "content": user_prompt}
         ],
@@ -189,7 +191,12 @@ def save_to_file_no_commant(file_path, content):
         file.write("\n\n")
 
 sources = """
-
+https://en.wikipedia.org/wiki/Factory_method_pattern
+https://refactoring.guru/design-patterns/factory-method
+https://velog.io/@chojs28/Factory-Method-%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9C
+https://readystory.tistory.com/117
+https://gdtbgl93.tistory.com/19
+https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9CFactory-Method-%ED%8C%A8%ED%84%B4-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90
 """
 
 format = """
