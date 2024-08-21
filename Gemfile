@@ -16,4 +16,5 @@ group :jekyll_plugins do
   gem "jekyll-include-cache"
   gem "jekyll-algolia"
   gem "jekyll-redirect-from"
+  gem 'jekyll-plantuml', '~> 1.4', '>= 1.4.2'
 end
