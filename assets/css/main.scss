@@ -205,8 +205,6 @@ a.site-title{
 }
 
 svg {
-    position: absolute;
-    top: 50%;
+    position: sticky;
     left: 50%;
-    transform: translate(-50%, -50%); /* 실제 중앙으로 이동 */
 }
