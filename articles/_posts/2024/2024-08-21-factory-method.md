@@ -920,12 +920,9 @@ classDiagram
     class ConcreteCreator {
         +Product factoryMethod()
     }
-    class Product {
-    }
-    class ConcreteProductA {
-    }
-    class ConcreteProductB {
-    }
+    class Product 
+    class ConcreteProductA 
+    class ConcreteProductB 
 
     Creator <|-- ConcreteCreator
     Product <|-- ConcreteProductA
