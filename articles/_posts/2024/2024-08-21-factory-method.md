@@ -874,8 +874,8 @@ classDiagram
         +createProductA()
         +createProductB()
     }
-    class ProductA {}
-    class ProductB {}
+    class ProductA
+    class ProductB
     AbstractFactory <|-- ConcreteFactory1
     AbstractFactory <|-- ConcreteFactory2
     ConcreteFactory1 --> ProductA
