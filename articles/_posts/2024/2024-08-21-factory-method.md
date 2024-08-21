@@ -136,10 +136,8 @@ classDiagram
     class ConcreteCreator {
         +Product factoryMethod()
     }
-    class Product {
-    }
-    class ConcreteProduct {
-    }
+    class Product
+    class ConcreteProduct
 
     Creator <|-- ConcreteCreator
     Creator --> Product
