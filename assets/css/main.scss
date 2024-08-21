@@ -203,3 +203,10 @@ h2.archive__subtitle{
 a.site-title{
     font-family: 'Press Start 2P', cursive;
 }
+
+svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 실제 중앙으로 이동 */
+}
