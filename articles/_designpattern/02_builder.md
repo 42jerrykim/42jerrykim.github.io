@@ -1,10 +1,11 @@
 ---
 title: "Builder"
-last_modified_at: 2022-03-01
+last_modified_at: 2024-08-22
 date: 2022-01-01
 header:
   teaser: /assets/images/2024/2024-08-22-designpattern-builder.png
 ---
+
 
 빌더 패턴은 복잡한 객체를 단계별로 생성할 수 있도록 해주는 생성 디자인 패턴이다. 이 패턴은 동일한 생성 코드를 사용하여 다양한 유형과 표현의 객체를 생성할 수 있게 해준다. 예를 들어, 집을 짓는 과정을 생각해보자. 집을 짓기 위해서는 여러 단계가 필요하다. 벽을 세우고, 문을 설치하고, 창문을 달고, 지붕을 올리는 등의 과정이 있다. 이러한 복잡한 과정을 단순한 생성자 호출로 처리하기에는 한계가 있다. 빌더 패턴을 사용하면 각 단계별로 필요한 메소드를 호출하여 객체를 생성할 수 있으며, 필요한 단계만 선택적으로 호출할 수 있다. 이로 인해 코드의 가독성이 높아지고, 유지보수성이 향상된다. 또한, 빌더 패턴은 객체의 불변성을 보장할 수 있어, 멀티스레드 환경에서도 안전하게 사용할 수 있다. 이러한 이유로 빌더 패턴은 소프트웨어 개발에서 매우 유용하게 사용된다.
 
@@ -544,7 +545,7 @@ UriComponents uriComponents = UriComponentsBuilder
 
 ## FAQ
 
-** 빌더 패턴은 언제 사용해야 하나요?**
+**빌더 패턴은 언제 사용해야 하나요?**
 
 빌더 패턴은 복잡한 객체를 생성할 때 유용하다. 특히, 생성자가 많은 매개변수를 필요로 하거나, 매개변수의 조합이 다양할 경우에 적합하다. 예를 들어, 설정할 속성이 많은 객체를 생성할 때, 각 속성을 설정하는 메서드를 제공하여 가독성을 높이고, 객체 생성 과정을 명확하게 할 수 있다. 또한, 불변 객체를 생성할 때도 빌더 패턴을 활용할 수 있다.
 
@@ -857,7 +858,7 @@ classDiagram
 4. [Refactoring Guru - Builder Pattern](https://refactoring.guru/design-patterns/builder)  
    빌더 패턴에 대한 명확한 설명과 예제를 제공하는 웹사이트이다.
 
-** 관련 동영상 강의 **  
+**관련 동영상 강의**  
 다음의 동영상 강의는 빌더 패턴을 이해하는 데 큰 도움이 될 것이다.
 
 1. **YouTube - "Builder Pattern in Java"**  
@@ -869,7 +870,7 @@ classDiagram
 3. **Coursera - "Object-Oriented Design"**  
    객체 지향 설계의 기초를 다루며, 빌더 패턴을 포함한 여러 디자인 패턴을 학습할 수 있다.
 
-** 빌더 패턴에 대한 심화 학습 자료 **  
+**빌더 패턴에 대한 심화 학습 자료**  
 빌더 패턴을 더 깊이 있게 학습하고자 하는 개발자들을 위해 다음의 자료를 추천한다.
 
 1. **"Java Design Patterns"** - Vaskaran Sarcar  
@@ -897,3 +898,4 @@ classDiagram
 * [https://dev-youngjun.tistory.com/197](https://dev-youngjun.tistory.com/197)
 * [https://mangkyu.tistory.com/163](https://mangkyu.tistory.com/163)
 * [https://velog.io/@ch200203/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%B3%B5%ED%95%98%EA%B8%B03-%EB%B9%8C%EB%8D%94-%ED%8C%A8%ED%84%B4-Builder-Pattern](https://velog.io/@ch200203/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%B3%B5%ED%95%98%EA%B8%B03-%EB%B9%8C%EB%8D%94-%ED%8C%A8%ED%84%B4-Builder-Pattern)
+
