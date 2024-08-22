@@ -103,15 +103,15 @@ def generate_blog_post_outline(contents):
     all_contents = ' '.join(contents)
 
     prompt = """
-    너는 소프트웨어 기술 블로그의 목차를 작성하는 시스템이야
-    목차의 구성은 개요, 여러 섹션들, 예제, FAQ, 관련 기술, 결론으로 구성하면 좋을것 같아
-    주어진 입력과 관련된 주제도 목차에 포함시켜서 풍부한 정보를 제공해
+    너는 소프트웨어 기술 블로그의 목차를 작성하는 시스템이다. 
+    목차는 개요, 여러 섹션들, 예제, FAQ, 관련 기술, 결론으로 구성하면 좋을 것 같다. 
+    주어진 입력과 관련된 주제도 목차에 포함시켜서 풍부한 정보를 제공하자.
     """
 
     user_prompt = f"""
     ```{all_contents}```
 
-    위 내용을 바탕으로 목차를 작성하는데, 위 내용과 관련된 내용도 같이 추가해서 풍부한 목차를 작성해
+    위의 내용을 바탕으로 목차를 작성할 때, 관련된 내용도 함께 추가하여 더 풍부한 목차를 한글로 작성해줘.
 
     """
 
@@ -206,14 +206,7 @@ def create_wordcloud_from_file(file_path, output_image_path, font_path, stopword
     wordcloud.to_file(output_image_path)
 
 sources = """
-https://refactoring.guru/design-patterns/prototype
-https://refactoring.guru/ko/design-patterns/prototype/csharp/example
-https://en.wikipedia.org/wiki/Prototype_pattern
-https://velog.io/@newtownboy/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%ED%8C%A8%ED%84%B4Prototype-Pattern
-https://readystory.tistory.com/122
-https://johngrib.github.io/wiki/pattern/prototype/
-https://shan0325.tistory.com/26
-https://math-development-geometry.tistory.com/62
+
 """
 
 format = """
@@ -267,7 +260,7 @@ if __name__ == "__main__":
 
     # Word Cloud 생성
     custom_stopwords = set(STOPWORDS)
-    custom_stopwords.update(['있다', '수', '은', '는', '이', '가', '을', '를'])
+    custom_stopwords.update(['있다', '수', '은', '는', '이', '가', '을', '를', '및', '통해', '더', '따라', '두', '가지'])
     input_text_file = current_datetime + "result.md"  # 읽을 텍스트 파일 경로
     output_image_file = current_datetime + 'wc.png'  # 저장할 그림 파일 경로
     create_wordcloud_from_file(input_text_file, output_image_file, font_path, stopwords=custom_stopwords)
