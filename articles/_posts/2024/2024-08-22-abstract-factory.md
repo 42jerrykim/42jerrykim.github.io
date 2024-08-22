@@ -1,11 +1,58 @@
 ---
-title: "Abstract Factory"
-last_modified_at: 2023-01-12
-date: 2022-01-01
+title: "[DesignPattern] 추상 팩토리 패턴"
+categories: designpattern
+tags:
+- AbstractFactory
+- DesignPattern
+- FactoryMethod
+- CreationalPattern
+- SoftwareDesign
+- ObjectOriented
+- Programming
+- DesignPatterns
+- CodeReuse
+- Interface
+- Encapsulation
+- DependencyInjection
+- ObjectCreation
+- ProductFamily
+- Variants
+- Consistency
+- Compatibility
+- ClientCode
+- Factory
+- ConcreteFactory
+- AbstractProduct
+- ConcreteProduct
+- GUIFactory
+- UIComponents
+- CrossPlatform
+- Application
+- Initialization
+- Configuration
+- Environment
+- Pseudocode
+- UML
+- SoftwareEngineering
+- DesignPrinciples
+- CodeMaintainability
+- Extensibility
+- ModularDesign
+- SystemArchitecture
+- ObjectComposition
+- DesignPatternsInJava
+- Java
+- C++
+- ProgrammingLanguages
+- SoftwareDevelopment
+- Refactoring
+- CodeQuality
+- BestPractices
+- DesignPatternExamples
+- SoftwareArchitecture
 header:
   teaser: /assets/images/2024/2024-08-22-abstract-factory.png
 ---
-
 
 추상 팩토리 패턴은 객체 생성의 복잡성을 줄이고, 관련된 객체들을 일관된 방식으로 생성할 수 있도록 도와주는 디자인 패턴이다. 이 패턴은 특정 클래스에 의존하지 않고, 서로 연관된 객체들의 조합을 생성하는 인터페이스를 제공한다. 예를 들어, 가구 쇼핑몰 시뮬레이터를 생각해보자. 이 시뮬레이터는 의자, 소파, 커피 테이블과 같은 다양한 가구 제품을 다룬다. 각 제품은 현대적, 빅토리안, 아르데코와 같은 여러 스타일의 변형이 있을 수 있다. 고객은 서로 다른 스타일의 가구가 조화를 이루기를 원하기 때문에, 이러한 제품들을 생성할 때는 반드시 같은 스타일의 제품들끼리만 조합해야 한다. 
 
