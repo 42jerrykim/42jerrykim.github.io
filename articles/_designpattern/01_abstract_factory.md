@@ -3,14 +3,14 @@ title: "Abstract Factory"
 last_modified_at: 2023-01-12
 date: 2022-01-01
 header:
-  teaser: /plantuml/abstract_factory.svg
+  teaser: /plantuml/designpattern_abstract_factory.svg
 ---
 
 추상 팩토리 패턴은 여러개의 개별적인 팩토리를 캡슐화하는 방법을 제공한다. 각각의 팩토리는 구현 클래스(Concrete Class) 없이 공통의 기능을 가지고 있어야 한다. 보통의 경우에는 클라이언트 프로그램에서 추상 팩토리에 대한 구현체(Concrete Implementation)를 생성하고 팩토리의 제너릭 인터페이스를 사용하여 구현체를 사용한다. 클라이언트는 결과물(Product)의 제너릭 인터페이스(Generic Interfaces)만 사용하기 때문에 팩토리 내부에서 어떤 객체(Concrete Objects)가 반환되는지 모른다. 팩토리에서 객체를 생성하는 메소드를 인터페이스로 노출하기 때문에 추상 팩토리 패턴은 객체가 어떻게 구현되어 있는지와 객체를 사용하는 일반적인 방법을 분리 할 수 있다. 그리고 추상 팩토리 패턴은 객체 합성(Object Composition)에 의존한다.
 
 ## 개요
 
-|![](/plantuml/abstract_factory.svg)|
+|![](/plantuml/designpattern_abstract_factory.svg)|
 |:---:|
 |클래스 다이어그램|
 
