@@ -206,7 +206,14 @@ def create_wordcloud_from_file(file_path, output_image_path, font_path, stopword
     wordcloud.to_file(output_image_path)
 
 sources = """
-
+https://refactoring.guru/design-patterns/prototype
+https://refactoring.guru/ko/design-patterns/prototype/csharp/example
+https://en.wikipedia.org/wiki/Prototype_pattern
+https://velog.io/@newtownboy/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4-%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%ED%8C%A8%ED%84%B4Prototype-Pattern
+https://readystory.tistory.com/122
+https://johngrib.github.io/wiki/pattern/prototype/
+https://shan0325.tistory.com/26
+https://math-development-geometry.tistory.com/62
 """
 
 format = """
