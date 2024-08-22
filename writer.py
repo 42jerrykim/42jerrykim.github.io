@@ -9,6 +9,8 @@ from urllib.parse import urljoin
 import sys
 from readability import Document
 import html2text
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 
 client = OpenAI()
 
@@ -78,7 +80,7 @@ def gernerate_header(contents):
     - TAG2
     - TAG3
     header:
-    teaser: /assets/images/undefined/teaser.jpg
+      teaser: /assets/images/undefined/teaser.jpg
     ---
 
     한문단으로 작성된 도입글(1000자 분량, 문어체와 평어체를 사용하고 "~이다."로 문장이 끝나도록 작성)
@@ -173,8 +175,27 @@ def save_to_file_no_commant(file_path, content):
         file.write(content)
         file.write("\n\n")
 
-sources = """
+# 한글 폰트 설정
+# 폰트 경로는 시스템에 설치된 폰트를 참조해야 합니다.
+# 여기서는 예를 들어 나눔고딕 폰트를 사용합니다.
+font_path = './font.ttf'  # 이 경로는 OS에 따라 다를 수 있습니다.
 
+# 텍스트 파일 읽기
+def read_text_file(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        text = file.read()
+    return text
+
+# Word Cloud 생성 및 저장
+def create_wordcloud_from_file(file_path, output_image_path, font_path):
+    # 텍스트 파일에서 텍스트 읽기
+    text = read_text_file(file_path)
+
+    # Word Cloud 생성
+    wordcloud = WordCloud(font_path=font_path, width=1200, height=600).generate(text)
+    wordcloud.to_file(output_image_path)
+
+sources = """
 """
 
 format = """
@@ -182,6 +203,7 @@ format = """
 |:---:|
 ||
 """
+
 if __name__ == "__main__":
     # save_to_file_no_commant("result.md", format)
 
@@ -225,6 +247,10 @@ if __name__ == "__main__":
             save_to_file_no_commant("result.md", section_content)
             print("##################################################")
 
+    # Word Cloud 생성
+    input_text_file = current_datetime + "result.md"  # 읽을 텍스트 파일 경로
+    output_image_file = current_datetime + 'wc.png'  # 저장할 그림 파일 경로
+    create_wordcloud_from_file(input_text_file, output_image_file, font_path)
 
     reference = ""
     for url in urls:
@@ -236,3 +262,6 @@ if __name__ == "__main__":
     for content in contents:
         save_to_file("result.md", content)
         save_to_file("result.md", "\n\n\n\n\n")
+
+
+
