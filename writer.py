@@ -101,34 +101,16 @@ def generate_blog_post_outline(contents):
     all_contents = ' '.join(contents)
 
     prompt = """
-    너는 블로그에 사용할 목차를 만드는 시스템이야
-    주어진 내용이외에도 관련이 있을만한 내용을 추가해서 목차를 작성해야해
-    목차의 구성은 개요, 여러 섹션, 예제, FAQ, 관련 기술, 결론으로 구성하면 좋을것 같아
+    너는 소프트웨어 기술 블로그의 목차를 작성하는 시스템이야
+    목차의 구성은 개요, 여러 섹션들, 예제, FAQ, 관련 기술, 결론으로 구성하면 좋을것 같아
+    주어진 입력과 관련된 주제도 목차에 포함시켜서 풍부한 정보를 제공해
     """
 
     user_prompt = f"""
     ```{all_contents}```
 
-    위 내용을 바탕으로 아래의 형식을 준수해서 목차를 작성해줘
-    ---
-    ## Section1_title
-    **sub section title of section01**
-    **sub section title of section01**
-    **sub section title of section01**
-    **sub section title of section01**
+    위 내용을 바탕으로 목차를 작성하는데, 위 내용과 관련된 내용도 같이 추가해서 풍부한 목차를 작성해
 
-    ## Section02_title
-    **sub section title of section02**
-    **sub section title of section02**
-    
-    ## Section03_title
-    **sub section title of section03**
-    **sub section title of section03**
-    **sub section title of section03**
-
-    ...
-
-    ---
     """
 
     response = client.chat.completions.create(
@@ -146,7 +128,7 @@ def generate_blog_post_outline(contents):
 
 def generate_section_content(toc, table):
     system_prompt = f"""
-    너는 코딩 블로그를 작성해 주는 시스템이야
+    너는 소프트웨어 기술 블로그의 글을 작성하는 시스템이야
     문어체와 평어체를 사용하고 "~이다."로 문장이 끝나도록 작성해
     전체 목차중에서 일부 목차에 대해서 글을 작성할 예정이야.
     """
@@ -159,6 +141,7 @@ def generate_section_content(toc, table):
     이번에 작성할 목차에 대해서 내용을 작성하는데 다른 목차에서 작성할만한 내용을 제외하고 작성해줘.
     샘플 코드와 다이어그램(mermaid)도 추가하면 더 좋을 것 같아.
     
+    제목은 ```##```를 사용하고 소제목은 ```###```대신 ```**```를 사용해서 강조만 해줘
     """
 
     assistant_prompt = f"""
@@ -169,7 +152,7 @@ def generate_section_content(toc, table):
         messages=[
             {"role": "system", "content": system_prompt},
             # {"role": "assistant", "content": toc},
-            {"role": "assistant", "content": assistant_prompt},
+            # {"role": "assistant", "content": assistant_prompt},
             {"role": "user", "content": user_prompt}
         ],
         temperature=0
@@ -191,12 +174,7 @@ def save_to_file_no_commant(file_path, content):
         file.write("\n\n")
 
 sources = """
-https://en.wikipedia.org/wiki/Factory_method_pattern
-https://refactoring.guru/design-patterns/factory-method
-https://velog.io/@chojs28/Factory-Method-%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9C
-https://readystory.tistory.com/117
-https://gdtbgl93.tistory.com/19
-https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9CFactory-Method-%ED%8C%A8%ED%84%B4-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90
+
 """
 
 format = """
