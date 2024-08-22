@@ -8,6 +8,6 @@ entries_layout: grid
 
 Sample document listing for the collection `designpattern`.
 
-|![](/assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg) | 
+|![](/assets/images/2024/2024-08-22-designpattern-overview.png) | 
 |:--:| 
 |디자인 패턴|

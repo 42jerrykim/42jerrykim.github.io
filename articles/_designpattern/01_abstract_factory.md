@@ -3,7 +3,7 @@ title: "Abstract Factory"
 last_modified_at: 2023-01-12
 date: 2022-01-01
 header:
-  teaser: /assets/images/2024/2024-08-22-abstract-factory.png
+  teaser: /assets/images/2024/2024-08-22-designpattern-abstract-factory.png
 ---
 
 
@@ -14,7 +14,7 @@ header:
 결론적으로, 추상 팩토리 패턴은 객체 생성의 복잡성을 줄이고, 관련된 객체들을 일관된 방식으로 생성할 수 있도록 도와주는 강력한 도구이다. 이 패턴을 통해 소프트웨어의 유지보수성과 확장성을 높일 수 있으며, 다양한 제품군을 효과적으로 관리할 수 있다.
 
 
-|![/assets/images/2024/2024-08-22-abstract-factory.png](/assets/images/2024/2024-08-22-abstract-factory.png)|
+|![/assets/images/2024/2024-08-22-designpattern-abstract-factory.png](/assets/images/2024/2024-08-22-designpattern-abstract-factory.png)|
 |:---:|
 ||
 

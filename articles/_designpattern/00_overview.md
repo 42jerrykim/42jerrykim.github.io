@@ -3,7 +3,7 @@ title: "Overview"
 last_modified_at: 2024-08-20
 date: 2022-01-01
 header:
-  teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
+  teaser: /assets/images/2024/2024-08-22-designpattern-overview.png
 ---
 
 소프트웨어 개발은 반복적이고 복잡한 문제를 해결해야 하는 과정이다. 이러한 문제를 해결하는데 있어, 이미 검증된 해결책을 사용하면 시간과 노력을 절약할 수 있다. 이처럼 특정 맥락에서 자주 발생하는 문제에 대해, 경험적으로 검증된 해결책을 **디자인 패턴(Design Pattern)**이라 한다. 디자인 패턴은 소프트웨어 설계의 모범 사례를 축적한 결과물로, 문제 해결의 효율성을 높이고, 코드의 재사용성을 극대화하며, 팀원 간의 의사소통을 원활하게 해주는 중요한 도구이다.
