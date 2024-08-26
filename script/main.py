@@ -6,15 +6,10 @@ from wordcloud_generator import create_wordcloud_image
 from file_utils import save_to_file, save_to_file_no_commant, get_current_datetime
 
 sources = """
-https://docs.python.org/ko/3/howto/functional.html
-https://www.defmacro.org/2006/06/19/fp.html
-https://en.wikipedia.org/wiki/Functional_programming
-https://en.wikipedia.org/wiki/Coroutine
-https://en.wikipedia.org/wiki/Partial_application
-https://en.wikipedia.org/wiki/Currying
+
 """
 
-mandatory_words = ['Python','Functional']
+mandatory_words = ['']
 
 format = """
 |![]()|
