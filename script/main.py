@@ -6,14 +6,10 @@ from wordcloud_generator import create_wordcloud_image
 from file_utils import save_to_file, save_to_file_no_commant, get_current_datetime
 
 sources = """
-https://42jerrykim.github.io/collections/computerterms/algotithm_classify/
-http://www.ktword.co.kr/test/view/view.php?no=5735
-https://namu.wiki/w/%EB%B6%84%EB%A5%98:%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98
-https://namu.wiki/w/%EC%BD%94%EB%94%A9%20%ED%85%8C%EC%8A%A4%ED%8A%B8
-https://school.programmers.co.kr/learn/challenges?tab=algorithm_practice_kit
+
 """
 
-mandatory_text = "Algorothm CodingTest"
+mandatory_text = ""
 
 format = """
 |![]()|
