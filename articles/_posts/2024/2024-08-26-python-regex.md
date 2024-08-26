@@ -1,6 +1,6 @@
 ---
 title: "[Regex] 정규 표현식의 기초(Python)"
-categories: Regex
+categories: Regex, Python
 tags:
 - Regular Expressions
 - Regex
@@ -775,7 +775,7 @@ graph TD;
 ```
 
 **Python에서 정규 표현식을 사용할 때 주의할 점은 무엇인가요?** 
- 
+
 Python에서 정규 표현식을 사용할 때는 다음과 같은 점에 주의해야 한다.
 
 1. **백슬래시 문제**: 정규 표현식에서 백슬래시(`\`)는 이스케이프 문자로 사용되므로, 문자열 앞에 `r`을 붙여 Raw String으로 사용하는 것이 좋다.
