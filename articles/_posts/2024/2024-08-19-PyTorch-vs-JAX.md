@@ -1,6 +1,6 @@
 ---
 title: "[MachineLearning] PyTorch vs JAX: A Critical Analysis"
-categories: machinelearning
+categories: MachineLearning
 tags:
 - PyTorch
 - JAX

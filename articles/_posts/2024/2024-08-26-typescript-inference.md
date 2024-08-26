@@ -1,6 +1,6 @@
 ---
 title: "[TypeScript] 타입 추론의 모든 것"
-categories: typescript
+categories: TypeScript
 tags:
 - TypeScript
 - Type Inference

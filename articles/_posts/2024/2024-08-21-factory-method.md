@@ -1,6 +1,6 @@
 ---
 title: "[DesignPattern] 팩토리 메소드 패턴"
-categories: designpattern
+categories: DesignPattern
 tags:
 - FactoryMethod
 - DesignPattern

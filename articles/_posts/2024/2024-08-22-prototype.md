@@ -1,6 +1,6 @@
 ---
 title: "[DesignPattern] 프로토타입 패턴"
-categories: designpattern
+categories: DesignPattern
 tags:
 - Prototype
 - Design Pattern

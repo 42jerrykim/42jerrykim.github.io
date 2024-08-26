@@ -1,6 +1,6 @@
 ---
 title: "[CollisionDetection] 충돌 감지 알고리즘"
-categories: collisiondetection
+categories: CollisionDetection
 tags:
 - collision
 - detection

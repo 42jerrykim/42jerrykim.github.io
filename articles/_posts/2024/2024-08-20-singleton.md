@@ -1,6 +1,6 @@
 ---
 title: "[DesignPattern] 싱글턴 패턴"
-categories: designpattern
+categories: DesignPattern
 tags:
 - Singleton
 - DesignPattern

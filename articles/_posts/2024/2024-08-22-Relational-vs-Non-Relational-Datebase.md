@@ -1,6 +1,6 @@
 ---
 title: "[Database] 관계형 데이터베이스와 비관계형 데이터베이스의 차이"
-categories: database
+categories: Database
 tags:
 - Relational Database
 - Non-Relational Database

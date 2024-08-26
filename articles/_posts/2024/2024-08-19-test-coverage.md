@@ -1,6 +1,6 @@
 ---
 title: "[SoftwareTesting] 소스 코드 테스트를 위한 메트릭"
-categories: softwaretesting
+categories: SoftwareTesting
 tags:
 - code coverage
 - test coverage

@@ -1,6 +1,6 @@
 ---
 title: "[DeepLearning] JAX vs PyTorch: Comparing Two Deep Learning Frameworks"
-categories: deeplearning
+categories: DeepLearning
 tags:
 - JAX
 - PyTorch

@@ -1,6 +1,6 @@
 ---
 title: "[Sorting] 버블 정렬(Bubble Sort) 이해하기"
-categories: Sorting
+categories: Sorting, Algorithm
 tags:
 - Bubble Sort
 - Sorting Algorithm
