@@ -1,6 +1,8 @@
 ---
 title: "[Regex] 정규 표현식의 기초(Python)"
-categories: Regex, Python
+categories: 
+- Regex
+- Python
 tags:
 - Regular Expressions
 - Regex
