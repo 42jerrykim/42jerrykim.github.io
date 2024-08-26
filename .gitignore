@@ -1,3 +1,5 @@
 _site
 Gemfile.lock
-result.md
+*result.md
+*wc.png
+__pycache__
