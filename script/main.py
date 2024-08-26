@@ -9,7 +9,7 @@ sources = """
 
 """
 
-mandatory_words = ['']
+mandatory_text = ""
 
 format = """
 |![]()|
@@ -60,4 +60,4 @@ if __name__ == "__main__":
 
     input_text_file = get_current_datetime() + "result.md"
     output_image_file = get_current_datetime() + 'wc.png'
-    create_wordcloud_image(input_text_file, output_image_file, mandatory_words)
+    create_wordcloud_image(input_text_file, output_image_file, mandatory_text)
