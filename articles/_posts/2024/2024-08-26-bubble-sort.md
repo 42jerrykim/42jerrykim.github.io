@@ -1,11 +1,63 @@
 ---
-title: "Bubble Sort"
-last_modified_at: 2024-08-26
-date: 2022-01-01
+title: "[Sorting] 버블 정렬(Bubble Sort) 이해하기"
+categories: sorting
+tags:
+- Bubble Sort
+- Sorting Algorithm
+- Time Complexity
+- C Programming
+- C++
+- Java
+- Python
+- JavaScript
+- PHP
+- C#
+- Algorithm
+- Data Structures
+- In-Place Sorting
+- Stable Sort
+- Optimization
+- Comparison Sort
+- Educational
+- Computer Science
+- Programming
+- Coding
+- Software Development
+- Algorithm Analysis
+- Performance
+- Efficiency
+- Array
+- Swapping
+- Adjacent Elements
+- Iteration
+- Passes
+- Complexity
+- Best Case
+- Worst Case
+- Average Case
+- Implementation
+- Code Example
+- Visual Explanation
+- Learning
+- Tutorial
+- Beginner
+- Concepts
+- Software Engineering
+- Development
+- Debugging
+- Testing
+- Algorithm Design
+- Problem Solving
+- Technical Skills
+- Computer Programming
+- Software Solutions
+- Programming Languages
+- Educational Resources
+- Online Learning
+- Coding Challenges
 header:
   teaser: /assets/images/2024/2024-08-26-bubble-sort.png
 ---
-
 
 버블 정렬(Bubble Sort)은 가장 간단한 정렬 알고리즘 중 하나로, 인접한 두 요소를 비교하여 정렬하는 방식이다. 이 알고리즘은 리스트의 모든 요소를 반복적으로 순회하면서, 두 인접한 요소의 크기를 비교하고, 순서가 잘못된 경우 이들을 교환하는 방식으로 작동한다. 이러한 과정을 통해 가장 큰 요소가 리스트의 끝으로 "거품처럼" 떠오르게 되며, 이 과정을 여러 번 반복하여 모든 요소가 정렬될 때까지 진행된다. 버블 정렬은 구현이 간단하고 이해하기 쉬운 장점이 있지만, 평균 및 최악의 경우 시간 복잡도가 O(N^2)로, 대량의 데이터에 대해서는 비효율적이다. 따라서, 버블 정렬은 주로 교육적인 목적으로 사용되며, 실제 프로덕션 환경에서는 더 효율적인 정렬 알고리즘이 선호된다. 이 글에서는 버블 정렬의 개념, 작동 방식, 시간 복잡도, 그리고 다양한 프로그래밍 언어에서의 구현 예제를 살펴보겠다.
 
