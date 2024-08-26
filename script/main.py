@@ -32,11 +32,12 @@ if __name__ == "__main__":
         print(f"전체 문자열의 토큰 수가 128,000을 초과하여 프로그램을 중단합니다. (토큰 수: {total_tokens})")
         sys.exit(1)
 
-    blog_post_outline = generate_blog_post_outline(contents)
+    
     header = gernerate_header(contents)
     save_to_file_no_commant("result.md", header)
     save_to_file_no_commant("result.md", format)
     save_to_file("result.md", "##### Outline #####")
+    blog_post_outline = generate_blog_post_outline(contents)
     save_to_file("result.md", blog_post_outline)
 
     toc = blog_post_outline.strip().split('\n\n')
