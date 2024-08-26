@@ -1,6 +1,8 @@
 ---
 title: "[Regex] 정규 표현식의 이해와 활용(C#)"
-categories: Regex, CSharp
+categories: 
+- Regex
+- CSharp
 tags:
 - RegularExpression
 - Regex
