@@ -203,3 +203,10 @@ h2.archive__subtitle{
 a.site-title{
     font-family: 'Press Start 2P', cursive;
 }
+
+@media (max-width: 6000px) {
+    .adsbygoogle {
+        width: 100%;
+        height: auto;
+    }
+}
