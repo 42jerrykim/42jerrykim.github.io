@@ -20,9 +20,11 @@ github_username: 42jerrykim
 minimal_mistakes_skin: dark
 
 search: true
-lunr:
-  search_within_pages: true
-search_full_content: true
+# lunr:
+#   search_within_pages: true
+# search_full_content: true
+google:
+  search_engine_id: 377f46c571dd54b13
 
 repository               : "42jerrykim/42jerrykim.github.io"
 
@@ -350,5 +352,3 @@ comments:
     issue_term           : pathname
     label                : BlodComment
 
-google:
-  search_engine_id: 377f46c571dd54b13
