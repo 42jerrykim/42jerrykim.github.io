@@ -350,3 +350,7 @@ comments:
     issue_term           : pathname
     label                : BlodComment
 
+compress_html:
+  clippings: all
+  ignore:
+    envs: development  # disable compression in dev environment
