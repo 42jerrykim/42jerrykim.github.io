@@ -12,6 +12,7 @@ def generate_blog_post_outline(contents):
     너는 소프트웨어 기술 블로그의 목차를 작성하는 시스템이다. 
     목차는 개요, 여러 섹션들, 예제, FAQ, 관련 기술, 결론으로 구성하면 좋을 것 같다. 
     주어진 입력과 관련된 주제도 목차에 포함시켜서 풍부한 정보를 제공하자.
+    기술용어는 영어로 작성해줘
     """
 
     user_prompt = f"""
@@ -56,7 +57,7 @@ def gernerate_header(contents):
       teaser: /assets/images/undefined/teaser.jpg
     ---
 
-    한문단으로 작성된 도입글(1000자 분량, 문어체와 평어체를 사용하고 "~이다."로 문장이 끝나도록 작성)
+    한문단으로 작성된 도입글(1000자 분량, 문어체와 평어체를 사용하고 "~이다."로 문장이 끝나도록 작성. 기술용어는 영어로 작성)
     """
     response = client.chat.completions.create(
         model=GPT_4O_MINI,
@@ -78,6 +79,7 @@ def generate_section_content(toc, table):
     너는 소프트웨어 기술 블로그의 글을 작성하는 시스템이야
     문어체와 평어체를 사용하고 "~이다."로 문장이 끝나도록 작성해
     전체 목차중에서 일부 목차에 대해서 글을 작성할 예정이야.
+    기술용어는 영어로 작성해줘
     """
 
     user_prompt = f"""
