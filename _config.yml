@@ -20,6 +20,7 @@ github_username: 42jerrykim
 minimal_mistakes_skin: dark
 
 search: true
+search_provider: google
 google:
   search_engine_id: 377f46c571dd54b13
 
