@@ -19,7 +19,7 @@ description: Jerry Kim의 개발 블로그입니다.
 github_username: 42jerrykim
 minimal_mistakes_skin: dark
 
-search: true
+# search: true
 # lunr:
 #   search_within_pages: true
 # search_full_content: true
