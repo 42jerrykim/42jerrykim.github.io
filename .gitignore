@@ -3,3 +3,4 @@ Gemfile.lock
 *result.md
 *wc.png
 __pycache__
+.jekyll-metadata
