@@ -26,6 +26,24 @@
 <!-- Adsense inline -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // 현재 페이지 URL 확인
+    var currentUrl = window.location.href;
+
+    // 특정 URL들이 포함된 경우 동작하지 않도록 설정
+    var excludedUrls = [
+        "/about/",
+        "/posts/"
+    ];
+
+    // URL이 제외된 페이지라면 코드 실행하지 않음
+    var shouldExclude = excludedUrls.some(function(url) {
+        return currentUrl.includes(url);
+    });
+
+    if (shouldExclude) {
+        return;
+    }
+
     // 삽입할 코드
     var adElement = document.createElement('ins');
     adElement.className = 'adsbygoogle';
@@ -51,4 +69,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 </script>
