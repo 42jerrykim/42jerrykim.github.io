@@ -45,8 +45,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 각 h2 요소에 대해 코드 삽입
     h2Elements.forEach(function(h2Element) {
-        h2Element.insertAdjacentElement('beforebegin', adElement.cloneNode(true));
-        h2Element.insertAdjacentElement('beforebegin', scriptElement.cloneNode(true));
+        if (h2Element.id.trim() !== '') { // id 값이 비어 있지 않은 경우에만 실행
+            h2Element.insertAdjacentElement('beforebegin', adElement.cloneNode(true));
+            h2Element.insertAdjacentElement('beforebegin', scriptElement.cloneNode(true));
+        }
     });
 });
 </script>
