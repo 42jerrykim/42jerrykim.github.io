@@ -25,26 +25,28 @@
 
 <!-- Adsense inline -->
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-      // 삽입할 코드
-      var codeToInsert = `
-<ins class="adsbygoogle" 
-     style="display:flex;justify-content:center;border-bottom-width:0px;" 
-     data-ad-format="fluid" 
-     data-ad-layout-key="-fb+5w+4e-db+86" 
-     data-ad-client="ca-pub-1523508823345999" 
-     data-ad-slot="6448570532">
-</ins> 
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-<\/script>`;
+document.addEventListener('DOMContentLoaded', function() {
+    // 삽입할 코드
+    var adElement = document.createElement('ins');
+    adElement.className = 'adsbygoogle';
+    adElement.style.display = 'flex';
+    adElement.style.justifyContent = 'center';
+    adElement.style.borderBottomWidth = '0px';
+    adElement.setAttribute('data-ad-format', 'fluid');
+    adElement.setAttribute('data-ad-layout-key', '-fb+5w+4e-db+86');
+    adElement.setAttribute('data-ad-client', 'ca-pub-1523508823345999');
+    adElement.setAttribute('data-ad-slot', '6448570532');
 
-      // id 속성이 있는 모든 <h2> 요소 선택
-      var h2Elements = document.querySelectorAll('h2[id]');
+    var scriptElement = document.createElement('script');
+    scriptElement.textContent = '(adsbygoogle = window.adsbygoogle || []).push({});';
 
-      // 각 h2 요소에 대해 코드 삽입
-      h2Elements.forEach(function(h2Element) {
-          h2Element.insertAdjacentHTML('beforebegin', codeToInsert);
-      });
-  });
+    // id 속성이 있는 모든 <h2> 요소 선택
+    var h2Elements = document.querySelectorAll('h2[id]');
+
+    // 각 h2 요소에 대해 코드 삽입
+    h2Elements.forEach(function(h2Element) {
+        h2Element.insertAdjacentElement('beforebegin', adElement.cloneNode(true));
+        h2Element.insertAdjacentElement('beforebegin', scriptElement.cloneNode(true));
+    });
+});
 </script>
