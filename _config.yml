@@ -23,7 +23,7 @@ search: true
 search_provider: google
 google:
   search_engine_id: 377f46c571dd54b13
-
+  instant_search: true
 repository               : "42jerrykim/42jerrykim.github.io"
 
 # logo: /assets/images/undefined/KakaoTalk_20220210_094951700.png
@@ -33,11 +33,27 @@ logo: https://upload.wikimedia.org/wikipedia/commons/5/56/Answer_to_Life.png
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
 
+enable_copy_code_button: true
+
+# Conversion
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+
+# Markdown Processing
 kramdown:
-  highlighter: rouge
-  syntax_highlighter_opts:
-    block:
-      line_numbers: true
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
 
 # Outputting
 permalink: /:categories/:title/
