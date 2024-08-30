@@ -23,10 +23,21 @@
   gtag('config', 'G-E99XGK8V2Y');
 </script>
 
+<!-- Adsense inline -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
       // 삽입할 코드
-      var codeToInsert = '<ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-1523508823345999" data-ad-slot="6448570532"></ins>';
+      var codeToInsert = `
+<ins class="adsbygoogle" 
+     style="display:flex;justify-content:center;border-bottom-width:0px;" 
+     data-ad-format="fluid" 
+     data-ad-layout-key="-fb+5w+4e-db+86" 
+     data-ad-client="ca-pub-1523508823345999" 
+     data-ad-slot="6448570532">
+</ins> 
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>`;
 
       // id 속성이 있는 모든 <h2> 요소 선택
       var h2Elements = document.querySelectorAll('h2[id]');
