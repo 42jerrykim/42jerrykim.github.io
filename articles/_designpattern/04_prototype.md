@@ -607,8 +607,7 @@ classDiagram
     class ConcreteCreator {
         +createProduct()
     }
-    class Product {
-    }
+    class Product
     class ConcreteProduct {
     }
 
@@ -631,8 +630,7 @@ classDiagram
     class ConcreteBuilder {
         +buildPart()
     }
-    class Product {
-    }
+    class Product
 
     Director --> Builder
     Builder --> Product
