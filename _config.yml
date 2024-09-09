@@ -71,7 +71,7 @@ google-site-verification: googleb84d4a34dffafade.html
 
 
 teaser: https://pilbox.themuse.com/image.jpg?filter=antialias&h=422&opt=1&pos=top-left&prog=1&q=keep&url=https%3A%2F%2Fcms-assets.themuse.com%2Fmedia%2Flead%2F01212022-1047259374-coding-classes_scanrail.jpg%3Fv%3D1cc61016a54a7e07475549aca7c39b38545e3ed6&w=767
-og_image: KakaoTalk_20220210_095101080.webp
+og_image: /assets/images/undefined/KakaoTalk_20220210_094951700.png
 
 include:
   - _pages
@@ -88,7 +88,7 @@ plugins:
   
 author:
   name   : "Jerry Kim"
-  avatar : "/assets/images/undefined/KakaoTalk_20220210_095101080.png"
+  avatar : "/assets/images/undefined/KakaoTalk_20220210_095101080.webp"
   bio    : "[42](https://simple.wikipedia.org/wiki/42_(answer))는 'The Hitchhiker's Guide to the Galaxy'라는 SF 소설에서 삶, 우주, 그리고 모든 것에 대한 궁극적인 질문에 대한 해답이다."
   links:
     - label: "GitHub"
