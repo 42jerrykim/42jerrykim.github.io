@@ -1,6 +1,6 @@
 ---
-title: "[SoftwareDevelopment] 코드 리팩토링의 중요성과 모범 사례"
-categories: softwaredevelopment
+title: "[Refactoring] 코드 리팩토링의 중요성과 모범 사례"
+categories: Refactoring
 tags:
 - Refactoring
 - CodeQuality
