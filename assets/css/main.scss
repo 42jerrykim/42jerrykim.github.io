@@ -17,6 +17,27 @@ $monospace: "D2Coding", "D2 coding", "Consolas", "Monaco", "Courier New", "Lucid
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
+@font-face {
+    font-family: 'D2 coding';
+    font-style: normal;
+    font-weight: 400;
+    src: url('D2Coding.woff2') format('x-woff2'),
+         url('D2Coding.eot?#iefix') format('embedded-opentype'),
+         url('D2Coding.woff') format('woff'),
+         url('D2Coding.ttf') format('truetype'),
+         url('D2Coding.svg') format('svg');
+  }
+  @font-face {
+    font-family: 'D2 coding';
+    font-style: normal;
+    font-weight: 700;
+    src: url('D2CodingBold.woff2') format('x-woff2'),
+         url('D2CodingBold.eot?#iefix') format('embedded-opentype'),
+         url('D2CodingBold.woff') format('woff'),
+         url('D2CodingBold.ttf') format('truetype'),
+         url('D2CodingBold.svg') format('svg');
+  }
+  
 
 div.highlighter-rouge{
     background: mix($background-color, $primary-color, 80%);
