@@ -21,6 +21,7 @@ $monospace  : D2Coding, 'D2 coding', Monaco, Consolas, "Lucida Console", monospa
     font-family: 'D2 coding';
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
     src: url('D2Coding.eot');
     src: local('※'), local('D2Coding'),
          url('D2Coding.eot?#iefix') format('embedded-opentype'),
@@ -33,6 +34,7 @@ $monospace  : D2Coding, 'D2 coding', Monaco, Consolas, "Lucida Console", monospa
     font-family: 'D2 coding';
     font-style: normal;
     font-weight: 700;
+    font-display: swap;
     src: url('D2CodingBold.eot');
     src: local('※'), local('D2Coding Bold'),
          url('D2CodingBold.eot?#iefix') format('embedded-opentype'),
@@ -42,6 +44,27 @@ $monospace  : D2Coding, 'D2 coding', Monaco, Consolas, "Lucida Console", monospa
          url('D2CodingBold.svg') format('svg');
   }
 
+.nanum-gothic-regular {
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+.nanum-gothic-bold {
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+.nanum-gothic-extrabold {
+    font-family: "Nanum Gothic", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+  
 div.highlighter-rouge{
     background: mix($background-color, $primary-color, 80%);
     font-size: 1em;
