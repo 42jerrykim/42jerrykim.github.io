@@ -21,22 +21,22 @@ $monospace: "D2Coding", "D2 coding", "Consolas", "Monaco", "Courier New", "Lucid
     font-family: 'D2 coding';
     font-style: normal;
     font-weight: 400;
-    src: url('D2Coding.woff2') format('x-woff2'),
-         url('D2Coding.eot?#iefix') format('embedded-opentype'),
-         url('D2Coding.woff') format('woff'),
-         url('D2Coding.ttf') format('truetype'),
-         url('D2Coding.svg') format('svg');
-  }
-  @font-face {
+    src: url('/assets/fonts/D2Coding.woff2') format('x-woff2'),
+         url('/assets/fonts/D2Coding.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/D2Coding.woff') format('woff'),
+         url('/assets/fonts/D2Coding.ttf') format('truetype'),
+         url('/assets/fonts/D2Coding.svg') format('svg');
+}
+@font-face {
     font-family: 'D2 coding';
     font-style: normal;
     font-weight: 700;
-    src: url('D2CodingBold.woff2') format('x-woff2'),
-         url('D2CodingBold.eot?#iefix') format('embedded-opentype'),
-         url('D2CodingBold.woff') format('woff'),
-         url('D2CodingBold.ttf') format('truetype'),
-         url('D2CodingBold.svg') format('svg');
-  }
+    src: url('/assets/fonts/D2CodingBold.woff2') format('x-woff2'),
+         url('/assets/fonts/D2CodingBold.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/D2CodingBold.woff') format('woff'),
+         url('/assets/fonts/D2CodingBold.ttf') format('truetype'),
+         url('/assets/fonts/D2CodingBold.svg') format('svg');
+}
   
 
 div.highlighter-rouge{
