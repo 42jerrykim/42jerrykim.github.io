@@ -10,61 +10,14 @@ $primary-color: #0a84ff !default;
 
 $max-width: 100%;
 
-$serif      : Georgia, Times, serif;
-$sans-serif : "Nanum Gothic", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
-$monospace  : D2Coding, 'D2 coding', Monaco, Consolas, "Lucida Console", monospace;
+$serif: "Nanum Myeongjo", Georgia, "Times New Roman", Times, serif;
+$sans-serif: "Nanum Gothic", "Roboto", "Apple SD Gothic Neo", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+$monospace: "D2Coding", "D2 coding", "Consolas", "Monaco", "Courier New", "Lucida Console", monospace;
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
-@font-face {
-    font-family: 'D2 coding';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('D2Coding.eot');
-    src: local('※'), local('D2Coding'),
-         url('D2Coding.eot?#iefix') format('embedded-opentype'),
-         url('D2Coding.woff2') format('x-woff2'),
-         url('D2Coding.woff') format('woff'),
-         url('D2Coding.ttf') format('truetype'),
-         url('D2Coding.svg') format('svg');
-  }
-  @font-face {
-    font-family: 'D2 coding';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url('D2CodingBold.eot');
-    src: local('※'), local('D2Coding Bold'),
-         url('D2CodingBold.eot?#iefix') format('embedded-opentype'),
-         url('D2CodingBold.woff2') format('x-woff2'),
-         url('D2CodingBold.woff') format('woff'),
-         url('D2CodingBold.ttf') format('truetype'),
-         url('D2CodingBold.svg') format('svg');
-  }
 
-.nanum-gothic-regular {
-    font-family: "Nanum Gothic", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-.nanum-gothic-bold {
-    font-family: "Nanum Gothic", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-.nanum-gothic-extrabold {
-    font-family: "Nanum Gothic", sans-serif;
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
-}
-  
 div.highlighter-rouge{
     background: mix($background-color, $primary-color, 80%);
     font-size: 1em;
