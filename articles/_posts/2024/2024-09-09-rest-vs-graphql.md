@@ -379,7 +379,7 @@ graph TD;
     A -->|POST /users| B
     A -->|POST /posts| B
     A -->|POST /comments| B
-    A -->|Query { users { name } }| C[GraphQL API]
+    A -->|"Query { users { name } }"| C[GraphQL API]
 ```
 
 **5.2 버전 관리**  
