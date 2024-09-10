@@ -626,7 +626,7 @@ cat example.txt | grep "keyword" | sort
 
 ```mermaid
 graph TD;
-    A[cat example.txt] -->|출력| B[grep "keyword"];
+    A[cat example.txt] -->|출력| B[grep keyword];
     B -->|출력| C[sort];
 ```
 
