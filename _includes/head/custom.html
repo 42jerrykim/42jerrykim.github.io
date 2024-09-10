@@ -4,15 +4,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet"> <!-- Contents font -->
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> <!-- Title font -->
 
-<!-- Plugin -->
-<script defer id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.js"></script>
-
 <!-- Favicon -->
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-<!-- Adsense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1523508823345999" crossorigin="anonymous"></script>
 
 <!-- Google tag (gtag.js) -->
 <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-E99XGK8V2Y"></script>
@@ -24,51 +18,3 @@
   gtag('config', 'G-E99XGK8V2Y');
 </script> -->
 
-<!-- Adsense inline -->
-<script async>
-document.addEventListener('DOMContentLoaded', function() {
-    // 현재 페이지 URL 확인
-    var currentUrl = window.location.href;
-
-    // 특정 URL들이 포함된 경우 동작하지 않도록 설정
-    var excludedUrls = [
-        "/about/",
-        "/posts/"
-    ];
-
-    // URL이 제외된 페이지라면 코드 실행하지 않음
-    var shouldExclude = excludedUrls.some(function(url) {
-        return currentUrl.includes(url);
-    });
-
-    if (shouldExclude) {
-        return;
-    }
-
-    // 삽입할 코드
-    var adElement = document.createElement('ins');
-    adElement.className = 'adsbygoogle';
-    adElement.style.display = 'flex';
-    adElement.style.justifyContent = 'center';
-    adElement.style.borderBottomWidth = '0px';
-    adElement.setAttribute('data-ad-format', 'fluid');
-    adElement.setAttribute('data-ad-layout-key', '-fb+5w+4e-db+86');
-    adElement.setAttribute('data-ad-client', 'ca-pub-1523508823345999');
-    adElement.setAttribute('data-ad-slot', '6448570532');
-
-    var scriptElement = document.createElement('script');
-    scriptElement.textContent = '(adsbygoogle = window.adsbygoogle || []).push({});';
-
-    // id 속성이 있는 모든 <h2> 요소 선택
-    var h2Elements = document.querySelectorAll('h2[id]');
-
-    // 각 h2 요소에 대해 코드 삽입
-    h2Elements.forEach(function(h2Element) {
-        if (h2Element.id.trim() !== '') { // id 값이 비어 있지 않은 경우에만 실행
-            h2Element.insertAdjacentElement('beforebegin', adElement.cloneNode(true));
-            h2Element.insertAdjacentElement('beforebegin', scriptElement.cloneNode(true));
-        }
-    });
-});
-
-</script>
