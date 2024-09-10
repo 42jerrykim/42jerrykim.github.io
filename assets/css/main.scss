@@ -18,6 +18,20 @@ $monospace: "D2Coding", "Consolas", "Monaco", "Courier New", "Lucida Console", m
 @import "minimal-mistakes"; // main partials
 
 @font-face {
+    font-family: 'Nanum Gothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/assets/fonts/NanumGothic-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Press Start 2P';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/assets/fonts/PressStart2P-Regular.ttf') format('truetype');
+}
+
+@font-face {
     font-family: 'D2Coding';
     font-style: normal;
     font-weight: 400;
