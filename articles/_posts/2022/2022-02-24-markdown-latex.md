@@ -79,6 +79,8 @@ $( a^2 )$
 
 이차방정식 \(ax^2 + bx + c = 0\)의 근의 공식은 \[x=\frac{-b\pm\sqrt{b^2 -4ac}}{2a}\] 이다. (단, \(a \ne 0\)이고, \(a,\) \(b,\) \(c\)는 실수.) 
 
+이차방정식 \(ax^2 + bx + c = 0\)의 근의 공식은 $$x=\frac{-b\pm\sqrt{b^2 -4ac}}{2a}$$ 이다. (단, $a \ne 0$이고, $$a,$$ \(b,\) \(c\)는 실수.) 
+
 ## LaTex 문법
 
 [Typesetting mathematics](https://www.latex-project.org/help/documentation/#typesetting-complex-mathematics)에서 LaTeX의 여러 문법중 수식과 관련된 내용을 확인 할 수 있다.
