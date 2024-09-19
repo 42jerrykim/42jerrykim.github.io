@@ -75,6 +75,8 @@ $$( a^2 )$$
 $( a^2 )$
 ```
 
+결과 $( a^2 )$
+
 ## LaTex 문법
 
 [Typesetting mathematics](https://www.latex-project.org/help/documentation/#typesetting-complex-mathematics)에서 LaTeX의 여러 문법중 수식과 관련된 내용을 확인 할 수 있다.
