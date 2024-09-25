@@ -92,19 +92,19 @@ author:
   bio    : "[42](https://simple.wikipedia.org/wiki/42_(answer))는 'The Hitchhiker's Guide to the Galaxy'라는 SF 소설에서 삶, 우주, 그리고 모든 것에 대한 궁극적인 질문에 대한 해답이다."
   links:
     - label: "GitHub"
-      icon: "fab fa-fw fa-github"
+      icon: "fab fa fa-github"
       url: "https://github.com/42jerrykim/"
     - label: "Mail"
-      icon: "fa-fw fa-envelope"
+      icon: "fa fa-envelope"
       url: "mailto:42jerrykim@gmail.com"
 
 footer:
   links:
     - label: "GitHub"
-      icon: "fab fa-fw fa-github"
+      icon: "fab fa fa-github"
       url: "https://github.com/42jerrykim/"
     - label: "Mail"
-      icon: "fa-fw fa-envelope-o"
+      icon: "fa fa-envelope"
       url: "mailto:42jerrykim@gmail.com"
 
 defaults:
