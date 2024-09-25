@@ -95,7 +95,7 @@ author:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/42jerrykim/"
     - label: "Mail"
-      icon: "fa-regular fa-envelope"
+      icon: "fab fa-fw fa-envelope"
       url: "mailto:42jerrykim@gmail.com"
 
 footer:
@@ -104,7 +104,7 @@ footer:
       icon: "fab fa-fw fa-github"
       url: "https://github.com/42jerrykim/"
     - label: "Mail"
-      icon: "fa-regular fa-envelope"
+      icon: "fab fa-fw fa-envelope"
       url: "mailto:42jerrykim@gmail.com"
 
 defaults:
