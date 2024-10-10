@@ -12,7 +12,6 @@ tag:
   - dotnet new
 header:
   teaser: https://media.vlpt.us/images/jinuku/post/e62f8f63-4001-46f9-b811-dc6f62f0828e/40cc3e52-745d-48b8-8a09-02c21efc36e5.png
-## last_modified_at: 2022-01-16
 ---
 
 새롭게 선보인 .NET 7 Preview 2에는 아래와 같은 기능이 소개 되었다.
