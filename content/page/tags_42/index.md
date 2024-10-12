@@ -4,7 +4,7 @@ layout: "tags_42"
 
 menu:
     main: 
-        weight: 6
+        weight: 5
         params:
             icon: tag
 

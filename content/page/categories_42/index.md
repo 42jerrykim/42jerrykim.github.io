@@ -4,7 +4,7 @@ layout: "categories_42"
 
 menu:
     main: 
-        weight: 5
+        weight: 4
         params:
             icon: categories
 

@@ -11,7 +11,7 @@ links:
     image: https://stack.jimmycai.com/logo.png
 menu:
     main: 
-        weight: 4
+        weight: 8
         params:
             icon: link
 
