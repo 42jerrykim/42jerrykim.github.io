@@ -1694,7 +1694,7 @@ feature to ensure that excessive backtracking doesn't severely degrade regular
 expression performance. For more information, see the  Use time-out values
 section.
 
-For example, the regular expression pattern ` ^[0-9A-Z]([-.\w]*[0-9A-Z])*\$$ `
+For example, the regular expression pattern ` ^[0-9A-Z]([-.\w]*[0-9A-Z])*\$ `
 is intended to match a part number that consists of at least one alphanumeric
 character. Any additional characters can consist of an alphanumeric character,
 a hyphen, an underscore, or a period, though the last character must be
@@ -1709,7 +1709,7 @@ lookahead or lookbehind assertion. Lookahead and lookbehind assertions are
 anchors. They don't move the pointer in the input string but instead look
 ahead or behind to check whether a specified condition is met. For example,
 the part number regular expression can be rewritten as `
-^[0-9A-Z][-.\w]*(?<=[0-9A-Z])\$$ ` . This regular expression pattern is
+^[0-9A-Z][-.\w]*(?<=[0-9A-Z])\$ ` . This regular expression pattern is
 defined as shown in the following table:
 
 Pattern  |  Description   
@@ -1733,7 +1733,7 @@ an array containing possible part numbers:
     {
         public static void Main()
         {
-            string pattern = @"^[0-9A-Z][-.\w]*(?<=[0-9A-Z])\$$";
+            string pattern = @"^[0-9A-Z][-.\w]*(?<=[0-9A-Z])\$";
             string[] partNos = { "A1C$", "A4", "A4$", "A1603D$", "A1603D#" };
     
             foreach (var input in partNos)
@@ -1759,7 +1759,7 @@ an array containing possible part numbers:
     
     Module Example
         Public Sub Main()
-            Dim pattern As String = "^[0-9A-Z][-.\w]*(?<=[0-9A-Z])\$$"
+            Dim pattern As String = "^[0-9A-Z][-.\w]*(?<=[0-9A-Z])\$"
             Dim partNos() As String = {"A1C$", "A4", "A4$", "A1603D$",
                                         "A1603D#"}
     

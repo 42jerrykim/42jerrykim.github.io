@@ -61,20 +61,20 @@ title: '[MathJax] Markdown에서 LaTeX로 수식 작성하기'
 
 ## 수식 작성하기
 
-앞서 코드를 적용하고 나면 해당 웹 페이지에 있는 텍스트 중, `$$`로 좌우가 감싸진 문자열은 LaTeX 문법으로 인식하여 수식으로 변환해준다.
+앞서 코드를 적용하고 나면 해당 웹 페이지에 있는 텍스트 중, `$`로 좌우가 감싸진 문자열은 LaTeX 문법으로 인식하여 수식으로 변환해준다.
 
 ```latex
-$$( a^2 )$$
+$( a^2 )$
 ```
 위의 코드를 게시글에 추가하면 아래와 같은 수식이 표시되는것을 확인할 수 있다.
 
-$$( a^2 )$$
+$( a^2 )$
 
 ```latex
 $( a^2 )$
 ```
 
-결과 $$a^2$$
+결과 $a^2$
 
 ## LaTex 문법
 
@@ -83,21 +83,21 @@ $( a^2 )$
 ### 이차방정식의 근의 공식
 
 ```latex
-$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
+$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$
 ```
 
-$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
+$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$
 
 ### 첨자
 
 ```latex
-$$a_1, a^2, a_1^2$$
-$$y_i=x_i^3+x_{i-1}^2+x_{i-2}$$
+$a_1, a^2, a_1^2$
+$y_i=x_i^3+x_{i-1}^2+x_{i-2}$
 ```
 
-$$a_1, a^2, a_1^2$$
+$a_1, a^2, a_1^2$
 
-$$y_i=x_i^3+x_{i-1}^2+x_{i-2}$$
+$y_i=x_i^3+x_{i-1}^2+x_{i-2}$
 
 ### 분수
 
@@ -107,13 +107,13 @@ $$y_i=x_i^3+x_{i-1}^2+x_{i-2}$$
 1. `\frac`을 사용하게 되면 첫 번째 문자는 분자, 두 번째 문자는 분모로 들어가게 됩니다. 두 문자 이상이라면 중괄호{ }를 통하여 묶어주면 됩니다.
 
 ```latex
-$$s^2+2s+s\over s+\sqrt s+1$$
-$$\frac{1+s}{s(s+2)}$$
+$s^2+2s+s\over s+\sqrt s+1$
+$\frac{1+s}{s(s+2)}$
 ```
 
-$$s^2+2s+s\over s+\sqrt s+1$$
+$s^2+2s+s\over s+\sqrt s+1$
 
-$$\frac{1+s}{s(s+2)}$$
+$\frac{1+s}{s(s+2)}$
 
 ### 절대값 표기법
 
@@ -122,13 +122,13 @@ $$\frac{1+s}{s(s+2)}$$
 그럴 땐 `\vert`와 `\left`, `\right`를 통하여 좌우 기호를 명시해주면 됩니다.
 
 ```latex
-$$\vert x \vert$$
-$$\left\lvert \frac{s^2+1}{s^3+2s^2+3s+1} \right\rvert$$
+$\vert x \vert$
+$\left\lvert \frac{s^2+1}{s^3+2s^2+3s+1} \right\rvert$
 ```
 
-$$\vert x \vert$$
+$\vert x \vert$
 
-$$\left\lvert \frac{s^2+1}{s^3+2s^2+3s+1} \right\rvert$$
+$\left\lvert \frac{s^2+1}{s^3+2s^2+3s+1} \right\rvert$
 
 ## Cheat Sheet
 
