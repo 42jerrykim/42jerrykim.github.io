@@ -1,0 +1,11 @@
+{{ define "main" }}
+
+<div class="categories-menu">
+    <h1>Categories</h1>
+    <ul>
+      {{ range sort .Site.Taxonomies.categories ".Count" "desc" }}
+        <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ .Count }})</li>
+      {{ end }}
+    </ul>
+</div>
+{{ end }}

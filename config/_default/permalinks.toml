@@ -1,0 +1,3 @@
+# Permalinks format of each content section
+post = "/:sections/:filename/"
+page = "/:slug/"
