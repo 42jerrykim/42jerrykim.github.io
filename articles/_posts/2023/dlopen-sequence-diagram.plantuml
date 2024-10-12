@@ -1,7 +1,0 @@
-@startuml
-
-Executable  ->  Library: dlopen()
-Executable  <-  Library: library handle
-Executable  ->  Library: dlclose()
-
-@enduml

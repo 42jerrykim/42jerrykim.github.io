@@ -6,7 +6,13 @@ from wordcloud_generator import create_wordcloud_image
 from file_utils import save_to_file, save_to_file_no_commant, get_current_datetime
 
 sources = """
-
+https://learn.microsoft.com/en-us/dotnet/standard/base-types/best-practices-regex
+https://stackoverflow.com/questions/1252194/regex-performance-optimization-tips-and-tricks
+https://blog.aliencube.org/ko/2013/10/15/improving-performances-while-using-regular-expressions/
+https://www.syncfusion.com/succinctly-free-ebooks/regularexpressions/optimizing-your-regex
+https://www.loggly.com/blog/five-invaluable-techniques-to-improve-regex-performance/
+https://library.humio.com/kb/kb-regex-vs-string-performance.html
+https://jack-vanlightly.com/blog/2016/2/25/optimizing-regex-performance-with-regexoptionsrighttoleft
 """
 
 mandatory_text = ""
