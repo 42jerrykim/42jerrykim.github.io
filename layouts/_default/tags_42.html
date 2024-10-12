@@ -1,0 +1,17 @@
+{{ define "main" }}
+
+<section class="widget tagCloud">
+  <div class="widget-icon">
+      {{ partial "helper/icon" "tag" }}
+  </div>
+  <h2 class="widget-title section-title">{{ T "widget.tagCloud.title" }}</h2>
+
+  <div class="tagCloud-tags">
+    {{ range sort .Site.Taxonomies.tags ".Count" "desc" }}
+          <a href="{{ .Page.RelPermalink }}" class="font_size_{{ .Count }}">
+              {{ .Page.Title }} ({{ .Count }})
+          </a>
+      {{ end }}
+  </div>
+</section>
+{{ end }}

@@ -1,11 +1,28 @@
 {{ define "main" }}
 
-<div class="categories-menu">
-    <h1>Categories</h1>
+{{/*  <div class="categories-menu">
+    <h2 class="section-title">Categories</h2>
     <ul>
       {{ range sort .Site.Taxonomies.categories ".Count" "desc" }}
         <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ .Count }})</li>
       {{ end }}
     </ul>
-</div>
+</div>  */}}
+
+<section class="widget tagCloud">
+  <div class="widget-icon">
+      {{ partial "helper/icon" "categories" }}
+  </div>
+  <h2 class="widget-title section-title">Categories</h2>
+
+  <div class="tagCloud-tags">
+    {{ range sort .Site.Taxonomies.categories ".Count" "desc" }}
+          <a href="{{ .Page.RelPermalink }}" class="font_size_{{ .Count }}">
+              {{ .Page.Title }} ({{ .Count }})
+          </a>
+      {{ end }}
+  </div>
+</section>
+
+
 {{ end }}
