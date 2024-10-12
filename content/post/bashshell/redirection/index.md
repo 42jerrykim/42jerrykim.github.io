@@ -1,7 +1,7 @@
 ---
 image: "tmp_wordcloud.png"
 title: "I/O Redirection - 명령어의 입력과 출력을 다루는 방법"
-date: 2022-01-01
+date: 2022-01-03
 categories: "Shell"
 header:
   teaser: /assets/images/2024/2024-09-10-Shell-Redirection.png

@@ -1,14 +1,5 @@
 {{ define "main" }}
 
-{{/*  <div class="categories-menu">
-    <h2 class="section-title">Categories</h2>
-    <ul>
-      {{ range sort .Site.Taxonomies.categories ".Count" "desc" }}
-        <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ .Count }})</li>
-      {{ end }}
-    </ul>
-</div>  */}}
-
 <section class="widget tagCloud">
   <div class="widget-icon">
       {{ partial "helper/icon" "categories" }}
