@@ -5,6 +5,10 @@ links:
     description: GitHub is the world's largest software development platform.
     website: https://github.com
     image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+  - title: Stack Theme
+    description: Stack Card-style theme designed for bloggers
+    website: https://stack.jimmycai.com/
+    image: https://stack.jimmycai.com/logo.png
 menu:
     main: 
         weight: 4
