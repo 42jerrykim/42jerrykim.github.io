@@ -1,6 +1,6 @@
 ---
 title: Tags
-layout: "tags_42"
+layout: "customtags"
 
 menu:
     main: 
