@@ -1,6 +1,6 @@
 ---
-title: Tags
 layout: "customtags"
+title: Tags
 
 menu:
     main: 
