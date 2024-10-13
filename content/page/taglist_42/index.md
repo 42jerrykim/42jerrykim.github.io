@@ -1,7 +1,6 @@
 ---
-layout: "customtags"
-title: Tags
-
+layout: "taglist_42"
+title: All Tags
 menu:
     main: 
         weight: 5
