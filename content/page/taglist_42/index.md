@@ -1,6 +1,7 @@
 ---
 layout: "taglist_42"
-title: All Tags
+title: Tags
+slug: "All Tags"
 menu:
     main: 
         weight: 5
