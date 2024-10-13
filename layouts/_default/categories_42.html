@@ -7,7 +7,20 @@
   <h2 class="widget-title section-title">Categories</h2>
 
   <div class="tagCloud-tags">
-    {{ range sort .Site.Taxonomies.categories ".Count" "desc" }}
+    {{ range where (sort .Site.Taxonomies.categories ".Count" "desc") ".Count" "ge" 5 }}
+          <a href="{{ .Page.RelPermalink }}" class="font_size_{{ .Count }}">
+              {{ .Page.Title }} ({{ .Count }})
+          </a>
+      {{ end }}
+  </div>
+  &nbsp;
+  <div class="widget-icon">
+    {{ partial "helper/icon" "categories" }}
+  </div>
+  <h2 class="widget-title section-title">Categories</h2>
+
+  <div class="tagCloud-tags">
+    {{ range where (sort .Site.Taxonomies.categories ".Count" "desc") ".Count" "le" 4 }}
           <a href="{{ .Page.RelPermalink }}" class="font_size_{{ .Count }}">
               {{ .Page.Title }} ({{ .Count }})
           </a>
