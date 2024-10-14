@@ -15,6 +15,14 @@ url = "https://github.com/42jerrykim"
 [social.params]
 icon = "brand-github"
 
+[[social]]
+identifier = "mail"
+name = "Mail"
+url = "mailto:42jerrykim@gmail.com"
+
+[social.params]
+icon = "messages"
+
 # [[social]]
 # identifier = "twitter"
 # name = "Twitter"
