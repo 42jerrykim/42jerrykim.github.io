@@ -53,8 +53,7 @@ def gernerate_header(contents):
     - TAG1
     - TAG2
     - TAG3
-    header:
-      teaser: /assets/images/undefined/teaser.jpg
+    image: "tmp_wordcloud.png"
     ---
 
     한문단으로 작성된 도입글(1000자 분량, 문어체와 평어체를 사용하고 "~이다."로 문장이 끝나도록 작성. 기술용어는 영어로 작성)
@@ -90,7 +89,7 @@ def generate_section_content(toc, table):
     이번에 작성할 목차에 대해서 내용을 작성하는데 다른 목차에서 작성할만한 내용을 제외하고 작성해줘.
     샘플 코드와 다이어그램(mermaid)도 추가하면 더 좋을 것 같아.
     
-    제목은 ```##```를 사용하고, 소제목은 ```###```대신 ```**```를 사용해서 강조만 해줘
+    제목은 ```##```를 사용해줘
     """
 
     response = client.chat.completions.create(
