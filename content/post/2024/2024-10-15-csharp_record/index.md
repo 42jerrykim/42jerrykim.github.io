@@ -1,7 +1,9 @@
 ---
 date: 2024-10-15
 title: "[CSharp] C#의 레코드 형식 소개"
-categories: CSharp
+categories: 
+- CSharp 
+- Record
 tags:
 - C#
 - Record
