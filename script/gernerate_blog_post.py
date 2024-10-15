@@ -14,10 +14,11 @@ sources = """
 
 mandatory_text = ""
 
-if __name__ == "__main__":
+def fetch_content_from_urls(sources):
     urls = sources.strip().split('\n')
-    contents = [get_web_content(url) for url in urls]
+    return [get_web_content(url) for url in urls]
 
+def calculate_tokens(contents):
     for string in contents:
         num_tokens = num_tokens_from_string(string)
         print(f"토큰 수: {num_tokens}")
@@ -29,7 +30,7 @@ if __name__ == "__main__":
         print(f"전체 문자열의 토큰 수가 128,000을 초과하여 프로그램을 중단합니다. (토큰 수: {total_tokens})")
         sys.exit(1)
 
-    
+def generate_blog_structure(contents):
     header = gernerate_header(contents)
     save_to_file_no_commant("index.md", header)
     save_to_file("index.md", "##### Outline #####")
@@ -44,6 +45,7 @@ if __name__ == "__main__":
             section_content = generate_section_content(blog_post_outline, table)
             save_to_file_no_commant("index.md", section_content)
 
+def save_reference_and_content(urls, contents):
     reference = ""
     for url in urls:
         reference += "* [" + url + "](" + url + ")\n"
@@ -55,12 +57,7 @@ if __name__ == "__main__":
         save_to_file("index.md", content)
         save_to_file("index.md", "\n\n\n\n\n")
 
-    input_text_file = "index.md"
-    output_image_file = 'tmp_wordcloud.png'
-    create_wordcloud_image(input_text_file, output_image_file, mandatory_text)
-
-    format_markdown_with_newline(input_text_file)
-
+def add_date_to_file(input_text_file):
     with open(input_text_file, 'r+', encoding='utf-8') as file:
         lines = file.readlines()
 
@@ -73,6 +70,11 @@ if __name__ == "__main__":
         file.seek(0)  # 파일 시작 지점으로 이동
         file.writelines(lines)  # 수정된 내용을 파일에 다시 씀
 
+def generate_wordcloud(input_text_file, output_image_file, mandatory_text):
+    create_wordcloud_image(input_text_file, output_image_file, mandatory_text)
+    format_markdown_with_newline(input_text_file)
+
+def move_files_to_folder():
     # 현재 날짜 가져오기 (예: 2024-10-15 형식)
     current_date = datetime.now().strftime('%Y-%m-%d-%H_%M_%S')
 
@@ -100,3 +102,16 @@ if __name__ == "__main__":
             print(f"{file_name} 파일이 존재하지 않습니다.")
 
     print("폴더 생성 및 파일 이동이 완료되었습니다.")
+
+def gernerate_blog_post(sources):
+    urls = sources.strip().split('\n')
+    contents = fetch_content_from_urls(sources)
+    calculate_tokens(contents)
+    generate_blog_structure(contents)
+    save_reference_and_content(urls, contents)
+    add_date_to_file("index.md")
+    generate_wordcloud("index.md", 'tmp_wordcloud.png', mandatory_text)
+    move_files_to_folder()
+
+if __name__ == "__main__":
+    gernerate_blog_post(sources)
