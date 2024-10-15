@@ -230,12 +230,12 @@ print(f"Total: {usage.total}, Used: {usage.used}, Free: {usage.free}")
 ```
 
 ```mermaid
-graph TD;
-    A[shutil 모듈] --> B[파일 복사 (copy)]
-    A --> C[디렉토리 복사 (copytree)]
-    A --> D[파일 이동 (move)]
-    A --> E[디렉토리 삭제 (rmtree)]
-    A --> F[디스크 사용량 확인 (disk_usage)]
+graph LR;
+    A[shutil 모듈] --> B["파일 복사 (copy)"]
+    A --> C["디렉토리 복사 (copytree)"]
+    A --> D["파일 이동 (move)"]
+    A --> E["디렉토리 삭제 (rmtree)"]
+    A --> F["디스크 사용량 확인 (disk_usage)"]
 ```
 
 shutil 모듈은 파일 및 디렉토리 관리에 있어 매우 유용한 도구이다. 위에서 설명한 기능들을 활용하면 다양한 파일 시스템 작업을 효율적으로 수행할 수 있다.
