@@ -19,6 +19,7 @@ def generate_blog_post_outline(contents):
     ```{all_contents}```
 
     위의 내용을 바탕으로 목차를 작성할 때, 관련된 내용도 함께 추가하여 더 풍부한 목차를 한글로 작성해줘.
+    목차에 넘버링은 하지 말아줘
     """
 
     response = client.chat.completions.create(
