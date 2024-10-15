@@ -5,6 +5,7 @@ from openai_blog_generator import generate_blog_post_outline, gernerate_header, 
 from wordcloud_generator import create_wordcloud_image
 from file_utils import save_to_file, save_to_file_no_commant, get_current_datetime
 from datetime import datetime
+from formatter import format_markdown_with_newline
 import os
 import shutil
 
@@ -57,6 +58,8 @@ if __name__ == "__main__":
     input_text_file = "index.md"
     output_image_file = 'tmp_wordcloud.png'
     create_wordcloud_image(input_text_file, output_image_file, mandatory_text)
+
+    format_markdown_with_newline(input_text_file)
 
     with open(input_text_file, 'r+', encoding='utf-8') as file:
         lines = file.readlines()

@@ -19,7 +19,6 @@ def generate_blog_post_outline(contents):
     ```{all_contents}```
 
     위의 내용을 바탕으로 목차를 작성할 때, 관련된 내용도 함께 추가하여 더 풍부한 목차를 한글로 작성해줘.
-    목차에 넘버링은 하지 말아줘
     """
 
     response = client.chat.completions.create(
@@ -90,7 +89,8 @@ def generate_section_content(toc, table):
     이번에 작성할 목차에 대해서 내용을 작성하는데 다른 목차에서 작성할만한 내용을 제외하고 작성해줘.
     샘플 코드와 다이어그램(mermaid)도 추가하면 더 좋을 것 같아.
     
-    제목은 ```##```를 사용해줘
+    제목은 ```##```과 ```###```를 사용하고, 소제목은 ```####```대신 ```**```를 사용해서 강조만 해줘
+    제목에 숫자는 제거해줘
     """
 
     response = client.chat.completions.create(
