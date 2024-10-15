@@ -47,8 +47,11 @@ def gernerate_header(contents):
     
     아래는 포멧이야
     ---
-    title: "[CATEGORY] TITLE"
-    categories: CATEGORY
+    title: "[CATEGORY1] TITLE"
+    categories: 
+    - CATEGORY1
+    - CATEGORY2
+    - CATEGORY3
     tags:
     - TAG1
     - TAG2
