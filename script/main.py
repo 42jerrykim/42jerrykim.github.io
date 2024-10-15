@@ -66,9 +66,9 @@ if __name__ == "__main__":
 
         # 두 번째 줄에 'date: ' 추가
         if len(lines) >= 2:
-            lines.insert(1, f'date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S+0900 ")}\n')  # 두 번째 줄에 삽입
+            lines.insert(1, f'date: {datetime.now().strftime("%Y-%m-%d")}\n')  # 두 번째 줄에 삽입
         else:
-            lines.append(f'date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S+0900 ")}\n')  # 파일이 두 줄 미만일 경우 추가
+            lines.append(f'date: {datetime.now().strftime("%Y-%m-%d")}\n')  # 파일이 두 줄 미만일 경우 추가
 
         file.seek(0)  # 파일 시작 지점으로 이동
         file.writelines(lines)  # 수정된 내용을 파일에 다시 씀
