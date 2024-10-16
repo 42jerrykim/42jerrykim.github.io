@@ -1,6 +1,6 @@
 위 코드를 참고하여 다음 작업을 수행해줘
 
-https://www.acmicpc.net/problem/11505
+https://www.acmicpc.net/problem/1384
 
 위 링크에 있는 문제를 설명하고 풀이하는 블로그 글을 작성하려고 한다.
 다음 형식에 맞춰 블로그 글을 작성해줘.
@@ -18,17 +18,13 @@ tags:
 - 자료 구조 (e.g., Stack, Queue, Tree)
 - 특정 개념 (e.g., 수학적 아이디어, 그래프 이론, 정렬 알고리즘)
 - 문제 유형 (e.g., Dynamic Programming, Graph Traversal, Geometry)
-header:
-  teaser: /assets/images/undefined/algorithm.png
+image: "tmp_wordcloud.png"
+date: {오늘 날짜(2024-01-01)}
 ---
 
 {도입글(아래의 문제 설명과 중복되더라도 도입글을 작성한다.)}
 
 문제 : [https://www.acmicpc.net/problem/{문제 번호}](https://www.acmicpc.net/problem/{문제 번호})
-
-|![](/assets/images/undefined/algorithm.png)|
-|:---:|
-||
 
 ## 문제 설명
 
