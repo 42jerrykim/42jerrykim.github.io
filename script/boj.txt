@@ -1,6 +1,6 @@
 위 코드를 참고하여 다음 작업을 수행해줘
 
-https://www.acmicpc.net/problem/3830
+https://www.acmicpc.net/problem/11689
 
 위 링크에 있는 문제를 설명하고 풀이하는 블로그 글을 작성하려고 한다.
 다음 형식에 맞춰 블로그 글을 작성해줘.
