@@ -1,6 +1,9 @@
 ---
 title: "[Algorithm] C++/Python 백준 4225번 : 쓰레기 슈트"
-categories: Algorithm
+categories: 
+- Algorithm
+- Geometry
+- Convex Hull
 tags:
 - Convex Hull
 - Rotating Calipers
