@@ -12,6 +12,7 @@ tags:
 - Divide and Conquer
 - Mathematics
 date: 2024-10-24
+image: "tmp_wordcloud.png"
 ---
 
 안녕하세요! 오늘은 백준 온라인 저지의 1533번 문제인 "길의 개수"를 함께 살펴보도록 하겠습니다.
