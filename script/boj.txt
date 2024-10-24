@@ -1,6 +1,6 @@
 위 코드를 참고하여 다음 작업을 수행해줘
 
-https://www.acmicpc.net/problem/11266
+https://www.acmicpc.net/problem/10828
 
 위 링크에 있는 문제를 설명하고 풀이하는 블로그 글을 작성하려고 한다.
 다음 형식에 맞춰 블로그 글을 작성해줘.
@@ -8,7 +8,10 @@ https://www.acmicpc.net/problem/11266
 형식: """
 ---
 title: "[Algorithm] C++/Python 백준 {문제 번호}번 : {문제 제목}"
-categories: Algorithm
+categories: 
+- Algorithm
+- {알고리즘 분류1}
+- {알고리즘 분류2}
 tags:
 - {사용한 알고리즘1}
 - {사용한 알고리즘2}
