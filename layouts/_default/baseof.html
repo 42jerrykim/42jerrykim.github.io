@@ -10,6 +10,17 @@
         <!-- End Google Tag Manager (noscript) -->
         {{- partial "head/colorScheme" . -}}
 
+        
+        <!-- Google tag (gtag.js) for Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-E99XGK8V2Y"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-E99XGK8V2Y');
+        </script>
+
         {{/* The container is wider when there's any activated widget */}}
         {{- $hasWidget := false -}}
         {{- range .Site.Params.widgets -}}
