@@ -9,6 +9,10 @@ links:
     description: Stack Card-style theme designed for bloggers
     website: https://stack.jimmycai.com/
     image: https://stack.jimmycai.com/logo.png
+  - title: Tabler Icons
+    description: Free and open source icons designed to make your website or app attractive, visually consistent and simply beautiful.
+    website: https://tabler.io/icons
+    image: https://tabler.io/favicon.ico
 menu:
     main: 
         weight: 8
