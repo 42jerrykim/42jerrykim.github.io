@@ -21,7 +21,15 @@ name = "Mail"
 url = "mailto:42jerrykim@gmail.com"
 
 [social.params]
-icon = "messages"
+icon = "envelope-regular"
+
+[[social]]
+identifier = "kakao"
+name = "Kakao"
+url = "https://open.kakao.com/o/s5FFkQWg"
+
+[social.params]
+icon = "kakao"
 
 # [[social]]
 # identifier = "twitter"
