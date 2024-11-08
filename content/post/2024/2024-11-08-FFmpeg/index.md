@@ -1,10 +1,9 @@
 ---
 date: "2024-11-08T00:00:00+09:00"
-title: "[Programming] 최신 AVX-512 최적화로 FFmpeg 성능 향상"
+title: "[FFmpeg] 최신 AVX-512 최적화로 FFmpeg 성능 향상"
 categories: 
-- Programming
+- FFmpeg
 - Technology
-- SoftwareDevelopment
 tags:
 - FFmpeg
 - AVX512
