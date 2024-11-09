@@ -63,7 +63,7 @@ def add_date_to_file(input_text_file):
 
         # 두 번째 줄에 'date: ' 추가
         if len(lines) >= 2:
-            lines.insert(1, f'date: {datetime.now().strftime("%Y-%m-%d")}\n')  # 두 번째 줄에 삽입
+            lines.insert(1, f'date: \"{datetime.now().strftime("%Y-%m-%dT%H:%M:%S")}+09:00\"\n')  # 두 번째 줄에 삽입
         else:
             lines.append(f'date: {datetime.now().strftime("%Y-%m-%d")}\n')  # 파일이 두 줄 미만일 경우 추가
 
