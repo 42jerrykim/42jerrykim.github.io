@@ -11,6 +11,7 @@ tags:
 - Simulation
 - Stack
 title: '[Algorithm] C++/Python 백준 3653번 : 영화 수집'
+aliases: ["/algorithm/BOJ-3653/"]
 ---
 
 상근이는 영화 DVD를 수집하는 열성적인 수집가이다. 그는 자신의 DVD 콜렉션을 탑처럼 쌓아 보관한다. 영화를 보고 싶을 때마다 DVD의 위치를 찾아서, 쌓여 있는 콜렉션이 무너지지 않도록 조심스럽게 해당 DVD를 꺼낸다. 영화를 다 본 후에는 그 DVD를 가장 위에 놓는다.
