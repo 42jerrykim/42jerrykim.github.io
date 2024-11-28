@@ -213,11 +213,11 @@ RCU(Read-Copy-Update)는 동시성 제어를 위한 메커니즘으로, 주로 �
 
 ```mermaid
 graph TD;
-    A[rcu_read_lock()] --> B[읽기 작업];
+    A["rcu_read_lock()"] --> B[읽기 작업];
     B --> C[데이터 복사];
-    C --> D[rcu_assign_pointer()];
+    C --> D["rcu_assign_pointer()"];
     D --> E[업데이트 완료];
-    E --> F[synchronize_rcu()];
+    E --> F["synchronize_rcu()"];
     F --> G[이전 데이터 해제];
 ```
 
@@ -346,12 +346,12 @@ void update_list(int new_data) {
 
 ```mermaid
 graph TD;
-    A[rcu_read_lock()] --> B[데이터 읽기];
-    B --> C[rcu_read_unlock()];
-    C --> D[synchronize_rcu()];
-    D --> E[call_rcu()];
-    E --> F[rcu_assign_pointer()];
-    F --> G[rcu_dereference()];
+    A["rcu_read_lock()"] --> B[데이터 읽기];
+    B --> C["rcu_read_unlock()"];
+    C --> D["synchronize_rcu()"];
+    D --> E["call_rcu()"];
+    E --> F["rcu_assign_pointer()"];
+    F --> G["rcu_dereference()"];
 ```
 
 위의 다이어그램은 RCU API의 흐름을 시각적으로 나타낸 것이다. 각 API의 호출 순서를 통해 RCU의 작동 방식을 이해할 수 있다. RCU API는 동시성 프로그래밍에서 안전하고 효율적인 데이터 접근을 가능하게 해준다.
@@ -558,7 +558,7 @@ void update_data_and_free(struct my_data *data) {
 
 ```mermaid
 graph TD;
-    A[업데이트 스레드] -->|데이터 업데이트| B[call_rcu() 호출]
+    A[업데이트 스레드] -->|데이터 업데이트| B["call_rcu() 호출"]
     B --> C[RCU 동기화 대기]
     C -->|동기화 완료| D[콜백 호출]
     D --> E[메모리 해제]
@@ -839,11 +839,11 @@ graph TD;
     A[RCU API] --> B[읽기 API]
     A --> C[쓰기 API]
     A --> D[유틸리티 API]
-    B --> E[rcu_dereference()]
-    B --> F[rcu_read_lock()/rcu_read_unlock()]
-    C --> G[rcu_assign_pointer()]
-    C --> H[call_rcu()]
-    C --> I[synchronize_rcu()]
+    B --> E["rcu_dereference()"]
+    B --> F["rcu_read_lock()/rcu_read_unlock()"]
+    C --> G["rcu_assign_pointer()"]
+    C --> H["call_rcu()"]
+    C --> I["synchronize_rcu()"]
 ```
 
 이와 같이 RCU API는 데이터 구조의 안전한 탐색과 업데이트를 위한 다양한 기능을 제공한다. 각 API는 특정한 상황에서 유용하게 사용될 수 있으며, RCU의 장점을 극대화하는 데 기여한다.
@@ -870,9 +870,9 @@ graph TD;
     A[RCU 사용] --> B[읽기 작업 최적화]
     A --> C[비동기 메모리 해제]
     A --> D[업데이트 패턴 분석]
-    B --> E[rcu_read_lock() 사용]
-    B --> F[rcu_read_unlock() 사용]
-    C --> G[synchronize_rcu() 사용]
+    B --> E["rcu_read_lock() 사용"]
+    B --> F["rcu_read_unlock() 사용"]
+    C --> G["synchronize_rcu() 사용"]
     D --> H[불필요한 업데이트 줄이기]
 ```
 
@@ -1087,78 +1087,6 @@ graph TD;
    - RCU 관련 커뮤니티 및 포럼
 -->
 
-## 참고 자료
-
-### RCU 관련 논문 및 자료
-
-RCU에 대한 깊이 있는 이해를 위해 다음과 같은 논문과 자료를 추천한다. 
-
-- **"Read-Copy Update: A Scalable Synchronization Mechanism for Multicore Systems"**: 이 논문은 RCU의 기본 개념과 그 구현 방법에 대해 설명하고 있으며, RCU가 멀티코어 시스템에서 어떻게 동작하는지를 다룬다.
-- **"Understanding the Linux Kernel"**: 이 책은 리눅스 커널의 다양한 동기화 메커니즘을 설명하며, RCU에 대한 장과 예제를 포함하고 있다.
-- **Linux Kernel Documentation**: 리눅스 커널의 공식 문서에서 RCU에 대한 상세한 설명과 API 문서를 찾아볼 수 있다.
-
-### RCU에 대한 추가 학습 자료
-
-RCU를 더 깊이 이해하기 위해 다음의 온라인 자료를 참고할 수 있다.
-
-- **Linux Kernel Development**: 이 온라인 강의는 리눅스 커널의 동기화 메커니즘을 포함하여 RCU에 대한 실용적인 예제를 제공한다.
-- **RCU Tutorial**: RCU의 기본 개념과 사용법을 설명하는 튜토리얼로, 실습을 통해 RCU를 이해하는 데 도움을 준다.
-- **YouTube 강의**: RCU에 대한 다양한 강의가 업로드되어 있으며, 시각적으로 RCU의 작동 원리를 이해하는 데 유용하다.
-
-### RCU 관련 커뮤니티 및 포럼
-
-RCU에 대한 질문이나 논의를 위해 다음의 커뮤니티와 포럼을 활용할 수 있다.
-
-- **Stack Overflow**: RCU와 관련된 질문을 올리거나 다른 개발자들의 경험을 공유할 수 있는 플랫폼이다.
-- **Linux Kernel Mailing List**: 리눅스 커널 개발자들이 모여 RCU를 포함한 다양한 주제에 대해 논의하는 곳이다.
-- **Reddit - r/linux**: 리눅스 관련 다양한 주제를 다루는 커뮤니티로, RCU에 대한 질문이나 정보를 공유할 수 있다.
-
-### 샘플 코드
-
-아래는 RCU를 사용하는 간단한 예제 코드이다. 이 코드는 RCU를 사용하여 링크드 리스트의 노드를 안전하게 업데이트하는 방법을 보여준다.
-
-```c
-#include <linux/rcupdate.h>
-#include <linux/slab.h>
-
-struct node {
-    int data;
-    struct rcu_head rcu;
-    struct node *next;
-};
-
-void update_node(struct node *old_node, int new_data) {
-    struct node *new_node;
-
-    new_node = kmalloc(sizeof(struct node), GFP_KERNEL);
-    new_node->data = new_data;
-    new_node->next = old_node->next;
-
-    rcu_assign_pointer(old_node->next, new_node);
-    call_rcu(&old_node->rcu, free_node);
-}
-
-void free_node(struct rcu_head *head) {
-    struct node *node = container_of(head, struct node, rcu);
-    kfree(node);
-}
-```
-
-### 다이어그램
-
-아래는 RCU의 작동 원리를 설명하는 다이어그램이다. 이 다이어그램은 RCU의 읽기 및 쓰기 작업이 어떻게 동작하는지를 시각적으로 나타낸다.
-
-```mermaid
-graph TD;
-    A[Reader] -->|Read Lock| B[RCU Read Side]
-    B -->|Read Data| C[Data Structure]
-    A -->|Read Unlock| D[RCU Read Unlock]
-    E[Updater] -->|Update Data| F[RCU Write Side]
-    F -->|Synchronize| G[RCU Synchronization]
-    G -->|Free Old Data| H[Free Old Data]
-```
-
-이 자료들은 RCU에 대한 이해를 높이고, 실제 구현에 도움이 될 것이다. RCU를 활용하여 성능을 최적화하는 방법을 배우는 데 유용한 자료들이다.
 
 <!--
 ##### Reference #####
