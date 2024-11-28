@@ -3,6 +3,7 @@ image: "tmp_wordcloud.png"
 categories: CSharp
 date: "2024-08-14T00:00:00Z"
 header: null
+aliases: ["/csharp/csharp-intro/"]
 tags:
 - CSharp
 - .NET

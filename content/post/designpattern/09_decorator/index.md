@@ -2,6 +2,7 @@
 image: "tmp_wordcloud.png"
 title: "Decorator"
 last_modified_at: 2022-03-01
+aliases: ["/designpattern/09_decorator/"]
 date: 2022-01-01
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg

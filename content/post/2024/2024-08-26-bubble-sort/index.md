@@ -2,6 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: Sorting, Algorithm
 date: "2024-08-26T00:00:00Z"
+aliases: ["/sorting,/algorithm/bubble-sort/", "/collections/algorithm/bubblesort/"]
 header:
   teaser: /assets/images/2024/2024-08-26-bubble-sort.png
 tags:

@@ -2,6 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: LangGraph
 date: "2024-09-10T00:00:00Z"
+aliases: ["/langgraph/LangGraph/"]
 header:
   teaser: /assets/images/2024/2024-09-10-LangGraph.png
 tags:

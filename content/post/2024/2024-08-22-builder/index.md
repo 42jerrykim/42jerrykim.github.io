@@ -2,6 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: DesignPattern
 date: "2024-08-22T00:00:00Z"
+aliases: ["/designpattern/builder/"]
 header:
   teaser: /assets/images/2024/2024-08-22-builder.png
 tags:

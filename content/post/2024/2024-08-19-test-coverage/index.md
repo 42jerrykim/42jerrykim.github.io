@@ -3,6 +3,7 @@ image: "tmp_wordcloud.png"
 categories: SoftwareTesting
 date: "2024-08-19T00:00:00Z"
 header: null
+aliases: ["/softwaretesting/test-coverage/"]
 tags:
 - code coverage
 - test coverage

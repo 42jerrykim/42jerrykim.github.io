@@ -2,6 +2,8 @@
 image: "tmp_wordcloud.png"
 categories: Algorithm
 date: "2024-08-27T00:00:00Z"
+aliases: ["/algorithm/algorithm/", "/2024-08-26-algorithm/"]
+date: "2024-08-27T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-27-algorithm.png
 tags:

@@ -15,6 +15,7 @@ tags:
 - CSharp
 - .NET
 title: '[C#] Plugin 구조를 위한 Custom AssemblyLoadContext 만들기'
+aliases: ["/.net/custom-loader/"]
 ---
 
 다른 위치에 있는 dll을 pligin으로 사용하려고 할때 dll을 못 찾는 이슈가 발생 할 수 있다.

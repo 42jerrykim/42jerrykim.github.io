@@ -2,6 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: DesignPattern
 date: "2024-08-20T00:00:00Z"
+aliases: ["/designpattern/singleton/"]
 header:
   teaser: /assets/images/2024/2024-08-20-singleton.png
 tags:

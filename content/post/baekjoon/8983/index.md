@@ -3,6 +3,7 @@ image: "tmp_wordcloud.png"
 title : "[C/C++] 8983번: 사냥꾼 - 백준"
 date: 2022-07-07T00:00:00Z
 categories: Algorithm
+aliases: ["/collections/baekjoon/8983/"]
 ---
 
 [8983번: 사냥꾼](https://www.acmicpc.net/problem/8983) 문제는 2차원 평면의 공간에 N마리의 동물이 자리잡고 있고, X축에 M개의 사대(총을 쏘는 장소)가 있다. 사정거리 L이 주어질때 잡을 수 있는 동물의 수를 출력하는 문제이다.

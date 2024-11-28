@@ -9,6 +9,7 @@ tag:
 - Jekyll
 - Markdown
 title: '[Jekyll] 이미지에 캡션 추가하기'
+aliases: ["/jekyll/markdown/add-image-caption/"]
 ---
 
 이미지를 사용하여 포스팅하는 경우에 이미지에 캡션을 추가하고 싶은 욕구가 막 생길 때가 있다. 이럴 때 사용할 수 있는 방법을 알아보도록 한다. Jekyll을 사용하여 웹사이트를 구성한 경우에는 크게 Markdown만을 사용하여 캡션을 추가하도록 하거나 Jekyll의 기능을 사용하여 추가하는 방법이 있을 것이다.

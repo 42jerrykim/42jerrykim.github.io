@@ -4,6 +4,7 @@ title: "Prototype"
 last_modified_at: 2022-08-22
 date: 2022-01-01
 categories: DesignPattern
+aliases: ["/collections/designpattern/04_prototype/", "/designpattern/prototype/"]
 header:
   teaser: /assets/images/2024/2024-08-22-prototype.png
 ---

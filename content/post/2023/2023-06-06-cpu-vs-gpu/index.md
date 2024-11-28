@@ -26,6 +26,8 @@ tags:
 - ComputerHardware
 - TechEducation
 title: '[Processor] Understanding the Differences: CPU vs GPU'
+
+aliases: ["/processor/cpu-vs-gpu/"]
 ---
 
 컴퓨팅 세계에서는 중앙 처리 장치(CPU)와 그래픽 처리 장치(GPU)라는 두 가지 핵심 구성 요소가 시스템 성능에 중요한 역할을 합니다. 비슷해 보일 수 있지만, 이 둘은 고유한 기능과 성능을 가지고 있습니다. 

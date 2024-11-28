@@ -2,6 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: Performance
 date: "2024-09-09T00:00:00Z"
+aliases: ["/performance/latency-metrics/"]
 header:
   teaser: /assets/images/2024/2024-09-09-latency-metrics.png
 tags:

@@ -2,6 +2,7 @@
 date: 2024-10-15
 title: "[CSharp] 클래스 소개"
 categories: CSharp
+aliases: ["/csharp/CSharp-interface-and-abstact-class/"]
 tags:
 - CSharp
 - class

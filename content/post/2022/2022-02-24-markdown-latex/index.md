@@ -14,6 +14,7 @@ tag:
 - GitHub Page
 - GitHub
 title: '[MathJax] Markdown에서 LaTeX로 수식 작성하기'
+aliases: ["/mathjax/markdown-latex/"]
 ---
 
 수학자들이 사용할 것만 같은 화려한 수식이 아니더라도 분수나 제곱근과 같이 수식으로 표현해야 좋은 내용이 있다. 본 게시글에서는 여러분의 웹 페이지에 [MathJax](https://www.mathjax.org/)를 사용하여 수식을 표시하는 방법에 대해서 알아볼 것이다.

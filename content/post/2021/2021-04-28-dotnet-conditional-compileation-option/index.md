@@ -11,6 +11,7 @@ tags:
 - compilation
 - option
 title: '[.NET] Conditioanal compilation option 적용하기'
+aliases: ["/.net/dotnet-conditional-compileation-option/"]
 ---
 
 https://docs.microsoft.com/ko-kr/dotnet/csharp/language-reference/preprocessor-directives

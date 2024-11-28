@@ -3,6 +3,7 @@ image: "tmp_wordcloud.png"
 categories: webdevelopment
 date: "2024-08-13T00:00:00Z"
 header: null
+aliases: ["/webdevelopment/Broadcast-Channel-API/"]
 tags:
 - BroadcastChannel
 - WebAPI

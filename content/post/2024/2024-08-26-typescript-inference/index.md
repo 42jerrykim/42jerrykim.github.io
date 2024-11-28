@@ -2,6 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: TypeScript
 date: "2024-08-26T00:00:00Z"
+aliases: ["/typescript/typescript-inference/"]
 header:
   teaser: /assets/images/2024/2024-08-26-typescript-inference.png
 tags:

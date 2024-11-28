@@ -2,6 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: Linux
 date: "2024-09-09T00:00:00Z"
+aliases: ["/linux/file-system/", "/linux/linux-filesystem/"]
 header:
   teaser: /assets/images/2024/2024-09-09-file-system.png
 tags:

@@ -4,6 +4,7 @@ categories: DeepLearning
 date: "2024-08-22T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-22-JAX-vs-PyTorch.png
+aliases: ["/deeplearning/JAX-vs-PyTorch/"]
 tags:
 - JAX
 - PyTorch
@@ -56,6 +57,7 @@ tags:
 - Data Loading
 - Visualization
 title: '[DeepLearning] JAX vs PyTorch: Comparing Two Deep Learning Frameworks'
+aliases: ["/machinelearning/PyTorch-vs-JAX/"]
 ---
 
 딥러닝은 머신러닝 분야에서 점점 더 중요한 역할을 하고 있으며, 이를 위한 다양한 프레임워크가 존재한다. 그 중에서도 JAX와 PyTorch는 가장 인기 있는 두 가지 딥러닝 프레임워크로, 각각의 장점과 특징이 있다. JAX는 구글에서 개발한 비교적 새로운 프레임워크로, NumPy와 유사한 API를 제공하여 사용자가 쉽게 접근할 수 있도록 설계되었다. 반면, PyTorch는 페이스북에서 개발한 오랜 역사를 가진 프레임워크로, 동적 계산 그래프를 통해 유연성과 디버깅의 용이성을 제공한다. 두 프레임워크 모두 자동 미분 기능을 제공하지만, JAX는 함수의 조합 가능성을 강조하는 함수형 프로그래밍 모델을 채택하고 있으며, PyTorch는 동적 계산 그래프를 통해 모델 구축의 유연성을 제공한다. 이러한 차이점은 사용자가 특정 요구 사항에 따라 적합한 프레임워크를 선택하는 데 중요한 요소가 된다. JAX는 GPU와 TPU를 활용하여 빠른 성능을 제공하며, PyTorch는 방대한 커뮤니티와 다양한 리소스를 통해 사용자에게 지원을 제공한다. 따라서, 두 프레임워크의 비교를 통해 사용자는 자신의 프로젝트에 가장 적합한 도구를 선택할 수 있을 것이다.

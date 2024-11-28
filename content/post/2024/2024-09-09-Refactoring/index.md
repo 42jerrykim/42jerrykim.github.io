@@ -2,6 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: Refactoring
 date: "2024-09-09T00:00:00Z"
+aliases: ["/refactoring/Refactoring/"]
 header:
   teaser: /assets/images/2024/2024-09-09-Refactoring.png
 tags:

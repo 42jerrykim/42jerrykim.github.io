@@ -1,6 +1,7 @@
 ---
 image: "tmp_wordcloud.png"
 categories: Database
+aliases: ["/database/sql-index/"]
 date: "2024-08-28T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-28-sql-index.png

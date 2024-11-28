@@ -13,6 +13,7 @@ tag:
 - Tool
 - Util
 title: '[Automation] Nut.js - 오픈소스 데스크탑 오토메이션 툴킷'
+aliases: ["/automation/nut.js/"]
 ---
 
 [Nut.js](https://nutjs.dev/)는 Node.js를 사용하는 데스크톱 오토메이션 프레임워크이다. 해당 프레임워크는 JavaScript나 TypeScript으로 마우스나 키보드를 컨트롤 할 수 있도록 해준다.

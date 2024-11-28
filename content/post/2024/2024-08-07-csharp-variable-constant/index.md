@@ -1,6 +1,7 @@
 ---
 image: "tmp_wordcloud.png"
 categories: CSharp
+aliases: ["/csharp/csharp-variable-constant/"]
 date: "2024-08-07T00:00:00Z"
 header: null
 tags:

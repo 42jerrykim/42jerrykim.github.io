@@ -15,6 +15,7 @@ tag:
 - built-in
 - Protection
 title: '[Windows] 설정만 잘 한다면 Windows Defender로도 충분하다.'
+aliases: ["/windows/windows-defender-is-enough/"]
 ---
 
 > 원문 : [Windows Defender is enough, if you harden it](https://0ut3r.space/2022/03/06/windows-defender/)

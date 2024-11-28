@@ -2,6 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: Database
 date: "2024-09-01T00:00:00Z"
+aliases: ["/database/aicd/"]
 header:
   teaser: /assets/images/2024/2024-09-01-aicd.png
 tags:

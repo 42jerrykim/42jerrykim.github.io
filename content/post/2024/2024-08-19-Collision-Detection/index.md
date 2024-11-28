@@ -67,6 +67,7 @@ tags:
 - efficient
 - real-time
 teaser: /assets/images/undefined/teaser.jpg
+aliases: ["/collisiondetection/Collision-Detection/"]
 title: '[CollisionDetection] 충돌 감지 알고리즘'
 ---
 

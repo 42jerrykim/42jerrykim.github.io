@@ -2,6 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: Cpp
 date: "2024-08-27T00:00:00Z"
+aliases: ["/cpp/cpp-safty/"]
 header:
   teaser: /assets/images/2024/2024-08-27-cpp-safty.png
 tags:

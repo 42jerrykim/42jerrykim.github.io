@@ -15,6 +15,7 @@ tag:
 - Gernerator
 - Source Generators
 title: '[C#] Source Generators'
+aliases: ["/csharp/source-gernerator/"]
 ---
 
 Source Generators를 사용하면 C# 개발자가 컴파일되는 사용자 코드를 검사(Inspect)할 수 있다. Source Generators는 컴파일 과정중에 새 C# 코드를 추가 할 수 있다. 이러한 방식으로 컴파일 과정둥에 동작하는 코드가 있다면, 해당 코드는 프로그램을 검사(Inspect)하고 새로운 코드를 생성하여 기존에 있는 코드와 같이 컴파일 되도록 한다.
