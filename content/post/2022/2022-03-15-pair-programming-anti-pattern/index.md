@@ -13,6 +13,7 @@ tag:
 - Pattern
 - Anti Pattern
 title: '[Pair Programming] 페어 프로그래밍 안티 패턴들'
+aliases: ["/programming/pair-programming-anti-pattern/"]
 ---
 
 페어 프로그래밍은 애자일 개발 방법론 중의 하나로 하나의 개발 가능한 PC 에서 두 명의 개발자가 함께 작업하는 것을 말합니다. 네비게이터(navigator)가 전략을 제시하고 드라이버(driver)가 실제 코드를 작성하며, 이 열할을 각자 번갈아가며 수행합니다.
