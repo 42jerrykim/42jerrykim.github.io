@@ -2,6 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: CSharp
 date: "2024-10-10T00:00:00Z"
+aliases: ["/csharp/optimizing-regex"]
 header:
   teaser: /assets/images/2024/2024-10-10-optimizing-regex.png
 tags:
