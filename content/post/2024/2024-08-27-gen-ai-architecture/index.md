@@ -2,6 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: Architecture
 date: "2024-08-27T00:00:00Z"
+aliases: ["/architecture/gen-ai-architecture/"]
 header:
   teaser: /assets/images/2024/2024-08-27-gen-ai-architecture.png
 tags:
