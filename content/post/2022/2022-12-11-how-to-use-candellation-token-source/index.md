@@ -4,6 +4,7 @@ date: "2022-12-11T00:00:00Z"
 marp: true
 tag:
 - CSharp
+aliases: ["/csharp/how-to-use-candellation-token-source/"]
 title: '[C#] CancellationTokenSource 클래스 사용법'
 ---
 
