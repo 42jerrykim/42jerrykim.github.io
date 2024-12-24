@@ -129,6 +129,15 @@ function setupScrollspy() {
 
     const resizeObserver = new ResizeObserver(entries => resizeHandler);
     resizeObserver.observe(document.querySelector(".article-content"));
+
+    // ResizeObserver를 이용하여 .article-content의 크기 변화를 감지
+    const articleContent = document.querySelector(".article-content");
+    if (articleContent) {
+        const resizeObserver = new ResizeObserver(() => {
+            resizeHandler();
+        });
+        resizeObserver.observe(articleContent);
+    }
 }
 
 export { setupScrollspy };
