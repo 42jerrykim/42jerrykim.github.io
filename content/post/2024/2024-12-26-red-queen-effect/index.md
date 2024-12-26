@@ -56,13 +56,13 @@ tags:
 - evolutioninbiology
 - hostimmunity
 - environmentalpressures
-image: "1520122499360.jpg"
+image: "maxresdefault.png"
 date: "2024-12-26"
 ---
 
 ## 붉은 여왕 효과 (Red Queen Effect)란?
 
-|![](1520122499360.jpg)|
+|![The Red Queen Effect](maxresdefault.png)|
 |:---:|
 |The Red Queen Effect|
 
