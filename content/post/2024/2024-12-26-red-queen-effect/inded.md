@@ -57,6 +57,7 @@ tags:
 - hostimmunity
 - environmentalpressures
 image: "1520122499360.jpg"
+date: "2024-12-26"
 ---
 
 ## 붉은 여왕 효과 (Red Queen Effect)란?

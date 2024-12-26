@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] C++/Python 백준 5542번 : JOI 국가의 행사 다국어"
+title: "[Algorithm] C++/Python 백준 5542번 : JOI 국가의 행사"
 categories: 
 - Algorithm
 - Graph
