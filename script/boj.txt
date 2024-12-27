@@ -1,6 +1,6 @@
 위 코드를 참고하여 다음 작업을 수행해줘
 
-https://www.acmicpc.net/problem/10828
+https://www.acmicpc.net/problem/1671
 
 위 링크에 있는 문제를 설명하고 풀이하는 블로그 글을 작성하려고 한다.
 다음 형식에 맞춰 블로그 글을 작성해줘.
@@ -14,7 +14,7 @@ categories:
 - {알고리즘 분류2}
 tags:
 - {사용한 알고리즘1}
-- {사용한 알고리즘2}
+- {사용한 알고리즘2}d
 - 구현 방식 (e.g., Brute Force, Greedy)
 - 최적화 기법 (e.g., Memoization, Pruning)
 - 시간 복잡도 (e.g., O(N), O(log N))
@@ -22,7 +22,7 @@ tags:
 - 특정 개념 (e.g., 수학적 아이디어, 그래프 이론, 정렬 알고리즘)
 - 문제 유형 (e.g., Dynamic Programming, Graph Traversal, Geometry)
 image: "tmp_wordcloud.png"
-date: {오늘 날짜(2024-01-01)}
+date: {오늘 날짜(예, 2024-01-01)}
 ---
 
 {도입글(아래의 문제 설명과 중복되더라도 도입글을 작성한다.)}
@@ -40,11 +40,6 @@ date: {오늘 날짜(2024-01-01)}
 ## C++ 코드와 설명
 
 {최적화된 C++ 코드(+라인별 주석)를 작성해줘.}
-{코드의 동작을 단계별로 상세하게 설명해줘.}
-
-## C++ without library 코드와 설명
-
-{stdio.h와 malloc.h만 사용할 수 있는 최적화된 c++코드(+라인별 주석)를 작성한다.}
 {코드의 동작을 단계별로 상세하게 설명해줘.}
 
 ## Python 코드와 설명

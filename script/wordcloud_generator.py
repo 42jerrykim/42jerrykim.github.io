@@ -10,7 +10,9 @@ import re
 
 # 필요한 리소스 다운로드
 nltk.download('averaged_perceptron_tagger')
+nltk.download('averaged_perceptron_tagger_eng')
 nltk.download('punkt')
+nltk.download('punkt_tab')
 
 # 한글 폰트 설정
 font_path = './font.ttf'  # 이 경로는 OS에 따라 다를 수 있습니다.
@@ -64,7 +66,7 @@ def create_wordcloud_image(file_path, output_image_path, mandatory_text = "", fo
 
 if __name__ == "__main__":
     mandatory_text = ""
-    file_name = r"content\post\Algorithm\2024-10-23-BOJ-11689\index"
+    file_name = r"content\post\Algorithm\2024-12-26-BOJ-1671\index"
     
     input_text_file = file_name + ".md"  # 읽을 텍스트 파일 경로
     output_image_file = file_name + '.png'  # 저장할 그림 파일 경로
