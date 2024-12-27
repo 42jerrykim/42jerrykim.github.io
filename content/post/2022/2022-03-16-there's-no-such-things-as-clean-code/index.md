@@ -10,7 +10,7 @@ tag:
 - Clean Code
 - Programming
 title: '[Clean Code] 클린 코드와 같은 건 없다.'
-aliases: ["/clean code/there's-no-such-things-as-clean-code/"]
+
 ---
 
 > [There’s No Such Thing as Clean Code](https://www.steveonstuff.com/2022/01/27/no-such-thing-as-clean-code)을 번역하고 추가적인 내용을 적은 글입니다.

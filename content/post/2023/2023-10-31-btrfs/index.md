@@ -2,7 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: FileSystem
 date: "2023-10-31T00:00:00Z"
-aliases: ["/filesystem/btrfs/"]
+
 header:
   teaser: /assets/images/2024/png-transparent-btrfs-file-system-linux-kernel-raid-logical-volume-manager-linux-text-hand-logo.png
 tags:

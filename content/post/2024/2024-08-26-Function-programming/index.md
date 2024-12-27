@@ -4,7 +4,7 @@ categories: Python
 date: "2024-08-26T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-26-Function-programming.png
-aliases: ["/python/Function-programming/"]
+
 tags:
 - functional programming
 - Python

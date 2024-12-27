@@ -5,7 +5,6 @@ last_modified_at: 2023-01-12
 date: 2022-01-01
 categories: DesignPattern
 desctiption: test
-aliases: ["/designpattern/abstract-factory-pattern/", "/collections/designpattern/01_abstract_factory/"]
 header:
   teaser: /assets/images/2024/2024-08-22-abstract-factory.png
 ---

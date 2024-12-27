@@ -12,7 +12,7 @@ tag:
 - 실수
 - 개발자
 title: '[C#] string 객체 사용에서 흔히 하는 실수 '
-aliases: ["/.net/csharp/mistake-when-using-string/"]
+
 ---
 
 한 메서드 안의 로컬 변수들은 그 메서드가 끝날 때 해제되게 된다. Value 타입의 변수는 함수 리턴과 동시에 스택에서 해제되고, Reference 타입의 변수는 GC (Garbage Collector)에 의해 힙상에서 자동 해제되게 된다. 프로그래머들이 흔히 범하는 실수중의 하나는 레퍼런스 타입의 객체를 불필요하게 너무 많이 만드는 것이다.

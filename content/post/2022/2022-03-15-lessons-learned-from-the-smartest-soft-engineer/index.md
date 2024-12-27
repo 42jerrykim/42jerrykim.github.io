@@ -11,7 +11,7 @@ tag:
 - knowledge
 - Automated testing
 title: '[Programming] 가장 똑똑한 소프트웨어 엔지니어에게 배운 10가지 교훈'
-aliases: ["/programming/lessons-learned-from-the-smartest-soft-engineer/"]
+
 ---
 
 > 원문 : [Lessons learned from the smartest Software Engineer I’ve met](https://svpino.com/lessons-learned-from-the-smartest-software-engineer-ive-met-35895ac9fe3a)

@@ -2,7 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: Algorithm
 date: "2024-09-23T00:00:00Z"
-aliases: ["/algorithm/BOJ-1014/"]
+
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:

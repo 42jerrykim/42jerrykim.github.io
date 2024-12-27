@@ -2,7 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: Database
 date: "2024-08-27T00:00:00Z"
-aliases: ["/database/Database/"]
+
 header:
   teaser: /assets/images/2024/2024-08-27-Database.png
 tags:

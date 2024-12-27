@@ -3,7 +3,7 @@ image: "tmp_wordcloud.png"
 categories: MachineLearning
 date: "2024-08-19T00:00:00Z"
 header: null
-aliases: ["/deeplearning/JAX-vs-PyTorch/"]
+
 tags:
 - PyTorch
 - JAX

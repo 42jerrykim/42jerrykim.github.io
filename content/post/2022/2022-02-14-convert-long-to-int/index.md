@@ -11,7 +11,7 @@ tag:
 - long
 - int
 title: '[C#] long -> int 변환하기'
-aliases: ["/.net/csharp/convert-long-to-int/"]
+
 ---
 
 기본 데이터 형식을 다른 데이터 형식으로 변환하는 방법에 대해서 알아본다.

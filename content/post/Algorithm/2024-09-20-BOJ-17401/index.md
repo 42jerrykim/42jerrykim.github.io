@@ -12,7 +12,7 @@ tags:
 - Graph Theory
 - Optimization
 title: '[Algorithm] C++/Python 백준 17401번 : 일하는 세포'
-aliases: ["/algorithm/BOJ-17401/"]
+
 ---
 
 백준 17401번 문제인 "Red Blood Cell"은 적혈구가 변화하는 혈관 지도를 바탕으로 특정 시간 후에 특정 지점에 도달할 수 있는 경로의 수를 구하는 문제이다. 주어진 문제에서 우리는 N개의 거점과 그 사이의 변동하는 혈관 연결 정보를 이용하여 D초 후 특정 거점에 도달하는 경로 수를 계산해야 한다. 

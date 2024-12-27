@@ -1,7 +1,7 @@
 ---
 image: "tmp_wordcloud.png"
 date: "2023-06-02T00:00:00Z"
-aliases: ["/cpp/dynamic-loading-in-cpp/"]
+
 tags:
 - Dynamic Loading
 - Cpp

@@ -10,7 +10,7 @@ tags:
 - tar
 - tar.gz
 title: '[Shell] 리눅스 zip, tar, tar.gz 파일 압축 & 풀기'
-aliases: ["/shell/linux-unzip/"]
+
 ---
 
 ## zip 압축하기

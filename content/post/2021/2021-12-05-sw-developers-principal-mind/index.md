@@ -7,7 +7,7 @@ tags:
 - SW
 - 개발자
 title: SW 개발자 필수 마인드
-aliases: ["/sw/sw-developers-principal-mind/"]
+
 ---
 
 SW 개발자가 가슴에 품고 있어야 하는 기본적인 마음가짐에 대해서 다루어 본다.

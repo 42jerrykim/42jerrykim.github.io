@@ -3,7 +3,7 @@ image: "tmp_wordcloud.png"
 title: "Chain of Responsibility"
 last_modified_at: 2022-03-01
 date: 2022-01-01
-aliases: ["/collections/designpattern/15_chain_of_responsibility/"]
+
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 ---

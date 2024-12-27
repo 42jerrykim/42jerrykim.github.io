@@ -2,7 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: Movie
 date: "2023-06-06T00:00:00Z"
-aliases: ["/movie/Bicentennial-Man/"]
+
 header:
   teaser: https://upload.wikimedia.org/wikipedia/en/f/fc/Bicentennial_man_film_poster.jpg
 tags:

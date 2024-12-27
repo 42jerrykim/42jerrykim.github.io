@@ -14,7 +14,7 @@ tags:
 - Engine
 - 미디어
 title: '[SearchEngine] OpenVerse - 오픈 라이센스 미디어 검색엔진'
-aliases: ["/searchengine/openverse/"]
+
 ---
 
 워드프레스에 조인한 CC Search를 리브랜딩한 검색엔진이다. 무료로 사용가능한 이미지/사진, 오디오(음악,팟캐스트,샘플링 등) 등의 콘텐츠를 검색할 수 있다.

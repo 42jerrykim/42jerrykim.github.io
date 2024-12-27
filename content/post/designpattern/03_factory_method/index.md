@@ -4,7 +4,7 @@ title: "Factory Method"
 last_modified_at: 2024-08-22
 date: 2022-01-01
 categories: DesignPattern
-aliases: ["/designpattern/factory-method/"]
+
 header:
   teaser: /assets/images/2024/2024-08-21-factory-method.png
 ---

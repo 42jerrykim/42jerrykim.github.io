@@ -2,7 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: Python
 date: "2024-09-23T00:00:00Z"
-aliases: ["/python/advenced-python"]
+
 header:
   teaser: /assets/images/2024/2024-09-23-advenced-python.png
 tags:

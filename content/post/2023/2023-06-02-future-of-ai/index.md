@@ -2,7 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: AI
 date: "2023-06-02T00:00:00Z"
-aliases: ["/ai/future-of-ai/"]
+
 header:
   teaser: /assets/images/2023/GettyImages-676338286-1-scaled.jpg
 tags:

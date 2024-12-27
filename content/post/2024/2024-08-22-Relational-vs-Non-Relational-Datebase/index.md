@@ -3,7 +3,7 @@ image: "tmp_wordcloud.png"
 categories: Database
 date: "2024-08-22T00:00:00Z"
 header: null
-aliases: ["/database/Relational-vs-Non-Relational-Datebase/"]
+
 tags:
 - Relational Database
 - Non-Relational Database

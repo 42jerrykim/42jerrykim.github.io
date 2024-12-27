@@ -11,7 +11,7 @@ tags:
 - Reflection
 - 리플렉션
 title: '[C#] 왜 리플렉션은 느린가?'
-aliases: ["/.net/why-reflection-is-slow/"]
+
 ---
 
 ## Reflection이 느린 이유

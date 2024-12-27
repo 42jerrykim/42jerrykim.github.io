@@ -8,7 +8,7 @@ tags:
 - Car
 - GothamGarage
 title: '[TVShows] Car Masters: Rust to Riches - Season 05 (2023)'
-aliases: ["/tvshows/Car-Masters-Rust-to-Riches-Season-05/"]
+
 ---
 
 Car Masters: Rust to Riches"는 넷플릭스에서 방영되는 미국의 리얼리티 텔레비전 시리즈이다. 이 프로그램은 고담 개러지 팀이 주도하는데, 이들은 영화 스튜디오와 텔레비전 쇼를 위한 다양한 소품을 제작해 왔다. 주요 인물로는 마크 타울, 토니 퀴노네스, 콘스탄스 누네스, 숀 파일럿, 마이클 "케이브맨" 파일이 있다. 각 에피소드는 고전적인 자동차를 현대적으로 변신시켜 가치를 높이고 큰 이익을 창출하는 독특한 프로젝트를 다룬다. 이 시리즈는 총 5시즌으로 구성되어 있으며, 각 시즌은 독특한 자동차 복원 프로젝트를 선보였다.​

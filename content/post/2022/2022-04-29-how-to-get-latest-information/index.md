@@ -16,7 +16,7 @@ tags:
 - 개발
 - 최신
 title: '[Util] Google Alart, Blogtrottr, 개발과 관련된 최신 정보를 얻을수 있는 방법 소개'
-aliases: ["/google alart/blogtrottr/util/how-to-get-latest-information/"]
+
 ---
 
 새로운 소식을 접하기 위해서는 어떤 방법이 있는지 생각해 보자. 먼저 떠오르는 방법은 뉴스일 것이다. 아니면 포탈 페이지에서 볼 수 있는 광고들? 단톡방에서 공유되는 링크들? 여러 방법을 통해서 새로운 소식을 접하고 있는 것을 알 수 있을 것이다.

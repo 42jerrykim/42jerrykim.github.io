@@ -2,7 +2,7 @@
 image: "tmp_wordcloud.png"
 categories: Kubernetes
 date: "2024-08-27T00:00:00Z"
-aliases: ["/kubernetes/kubernetes-gateway-api/"]
+
 header:
   teaser: /assets/images/2024/2024-08-27-kubernetes-gateway-api.png
 tags:
