@@ -55,7 +55,7 @@ tags:
 - RegexPatterns
 - BuildAutomation
 image: "tmp_wordcloud.png"
-data: 2024-12-27 00:24:31
+data: 2024-12-27 17:24:31
 ---
 
 VS Code(Visual Studio Code)는 다양한 언어와 도구를 지원하는 강력한 코드 에디터이다. 여러 기능 중에서도 정규식(Regular Expression)을 활용하여 효율적으로 텍스트를 검색하고 수정할 수 있다는 점은 많은 개발자들에게 유용한 기능이다. 본 블로그 글에서는 VS Code에서 정규식을 통해 텍스트를 찾아 바꾸는 방법을 간단히 살펴보고, 예시로 제시된 ```^- ([a-zA-Z]+)\s([a-zA-Z]+)\s([a-zA-Z]+)$```와 ```- \u$1\u$2\u$3``` 구문을 활용하여 변경하는 방안을 구체적으로 알아보도록 하겠다.
