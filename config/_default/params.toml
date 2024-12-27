@@ -53,6 +53,9 @@ type = "archives"
 limit = 5
 
 [[widgets.page]]
+type = "search"
+
+[[widgets.page]]
 type = "toc"
 
 [opengraph.twitter]
