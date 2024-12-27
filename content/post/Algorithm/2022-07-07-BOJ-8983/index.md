@@ -1,6 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
-title : "[C/C++] 8983번: 사냥꾼 - 백준"
+title : "[Algorithm] C++ 백준 8983번 : 사냥꾼"
 date: 2022-07-07T00:00:00Z
 categories: Algorithm
 
