@@ -55,7 +55,7 @@ tags:
 - industry-trends
 - technical-skills
 - resource-recommendations
-image: "tmp_wordcloud.png"
+image: "Screenshot-2024-12-27-094857.png"
 date: 2024-12-18
 ---
 
@@ -70,6 +70,10 @@ Chip Huyen의 개인 웹사이트인 huyenchip.com은 머신러닝 및 인공지
 블로그에는 머신러닝과 인공지능 시스템의 실제 적용 사례, 최신 연구 동향, 그리고 교육과 엔터테인먼트 분야에서의 창의적인 AI 활용 방안 등에 대한 글들이 다수 포함되어 있다. 또한, 그녀의 새로운 저서 'AI Engineering'이 2024년 말에 출간될 예정이므로, 관련 분야에 관심 있는 독자들에게 유용한 정보를 제공할 것이다.
 
 추가로, 그녀는 GitHub, Goodreads, Google Scholar 등 다양한 플랫폼에서 활동하며, 기술적 도전 과제에 대한 학습과 우수한 팀과의 협업을 즐기고 있다. 관심 있는 이들은 그녀의 블로그를 통해 최신 글과 이벤트 정보를 확인할 수 있다.
+
+|![](Screenshot-2024-12-27-094857.png)|
+|:---:|
+|블로그 메인 페이지|
 
 ## 블로그의 주요 섹션
 
