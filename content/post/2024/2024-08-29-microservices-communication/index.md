@@ -8,54 +8,54 @@ tags:
 - microservices
 - orchestration
 - choreography
-- distributed systems
-- software architecture
+- DistributedSystems
+- SoftwareArchitecture
 - event-driven
 - command-driven
-- workflow management
-- service decoupling
+- WorkflowManagement
+- ServiceDecoupling
 - scalability
-- fault tolerance
-- error handling
-- centralized control
-- decentralized control
-- system autonomy
+- FaultTolerance
+- ErrorHandling
+- CentralizedControl
+- DecentralizedControl
+- SystemAutonomy
 - resilience
-- service communication
-- workflow orchestration
-- microservices architecture
-- software design patterns
-- system integration
-- process management
-- service orchestration
-- event sourcing
-- message queues
-- API management
-- system monitoring
-- business process
-- software development
-- agile architecture
-- cloud computing
-- application design
-- service management
-- data flow
-- system performance
-- application scalability
-- software engineering
-- architecture patterns
-- service interaction
-- system complexity
-- software reliability
-- process orchestration
-- microservices communication
-- software lifecycle
-- system dependencies
-- service coordination
-- software solutions
-- technology stack
-- software innovation
-- development practices
-- architecture design
+- ServiceCommunication
+- WorkflowOrchestration
+- MicroservicesArchitecture
+- SoftwareDesignPatterns
+- SystemIntegration
+- ProcessManagement
+- ServiceOrchestration
+- EventSourcing
+- MessageQueues
+- APIManagement
+- SystemMonitoring
+- BusinessProcess
+- SoftwareDevelopment
+- AgileArchitecture
+- CloudComputing
+- ApplicationDesign
+- ServiceManagement
+- DataFlow
+- SystemPerformance
+- ApplicationScalability
+- SoftwareEngineering
+- ArchitecturePatterns
+- ServiceInteraction
+- SystemComplexity
+- SoftwareReliability
+- ProcessOrchestration
+- MicroservicesCommunication
+- SoftwareLifecycle
+- SystemDependencies
+- ServiceCoordination
+- SoftwareSolutions
+- TechnologyStack
+- SoftwareInnovation
+- DevelopmentPractices
+- ArchitectureDesign
 title: '[Microservices] 분산 아키텍처에서의 조정 패턴'
 ---
 

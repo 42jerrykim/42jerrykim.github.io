@@ -8,21 +8,21 @@ tags:
 - Serverless
 - Monoliths
 - Microservices
-- Software Architecture
-- Cloud Computing
-- AWS Lambda
+- SoftwareArchitecture
+- CloudComputing
+- AWSLambda
 - Scalability
 - Maintainability
 - Deployment
-- Development Process
-- Code Reusability
-- Performance Optimization
+- DevelopmentProcess
+- CodeReusability
+- PerformanceOptimization
 - Security
 - Testing
 - Event-Driven Workflows
-- Code Decomposition
-- Software Development Trends
-- Serverless Monoliths
+- CodeDecomposition
+- SoftwareDevelopmentTrends
+- ServerlessMonoliths
 - CloudFormation
 - DevOps
 title: '[Serverless] 서버리스 모놀리스의 등장: 소프트웨어 아키텍처의 새로운 패러다임'

@@ -8,57 +8,57 @@ tags:
 - CRLF
 - newline
 - linefeed
-- carriage return
+- CarriageReturn
 - programming
-- software development
+- SoftwareDevelopment
 - coding
-- text processing
-- operating systems
+- TextProcessing
+- OperatingSystems
 - Windows
 - Unix
 - Linux
 - MacOS
-- text editors
+- TextEditors
 - compatibility
-- software engineering
-- data formats
+- SoftwareEngineering
+- DataFormats
 - ASCII
-- character encoding
-- software bugs
-- version control
+- CharacterEncoding
+- SoftwareBugs
+- VersionControl
 - collaboration
-- coding standards
-- best practices
-- file formats
-- text files
-- programming languages
-- escape characters
+- CodingStandards
+- BestPractices
+- FileFormats
+- TextFiles
+- ProgrammingLanguages
+- EscapeCharacters
 - teletype
-- history of computing
-- mechanical keyboards
+- HistoryOfComputing
+- MechanicalKeyboards
 - typewriters
-- software maintenance
-- error handling
+- SoftwareMaintenance
+- ErrorHandling
 - debugging
-- software testing
-- code quality
+- SoftwareTesting
+- CodeQuality
 - performance
 - bandwidth
 - efficiency
-- legacy systems
-- modern programming
-- software architecture
-- system design
-- user experience
-- developer tools
+- LegacySystems
+- ModernProgramming
+- SoftwareArchitecture
+- SystemDesign
+- UserExperience
+- DeveloperTools
 - IDE
-- VS Code
+- VSCode
 - IntelliJ
 - Git
 - linting
-- code style
-- project setup
-- team collaboration
+- CodeStyle
+- ProjectSetup
+- TeamCollaboration
 image: "tmp_wordcloud.png"
 ---
 

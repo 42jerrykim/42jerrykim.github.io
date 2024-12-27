@@ -24,40 +24,40 @@ tags:
 - technology
 - softwareengineering
 - algorithms
-- data structures
-- problem solving
-- online judging
+- DataStructures
+- ProblemSolving
+- OnlineJudging
 - assessment
 - career
-- job market
+- JobMarket
 - internships
 - qualifications
-- tech industry
-- software development
-- coding challenges
-- technical interviews
-- hiring process
-- job applications
-- computer science
-- programming languages
-- software testing
-- tech companies
+- TechIndustry
+- SoftwareDevelopment
+- CodingChallenges
+- TechnicalInterviews
+- HiringProcess
+- JobApplications
+- ComputerScience
+- ProgrammingLanguages
+- SoftwareTesting
+- TechCompanies
 - recruitment
-- job seekers
-- coding skills
-- technical skills
-- software jobs
-- coding interviews
-- programming tests
-- tech recruitment
-- software engineering jobs
-- coding assessments
-- job readiness
-- skill evaluation
-- tech talent
-- coding proficiency
-- software careers
-- job competition
+- JobSeekers
+- CodingSkills
+- TechnicalSkills
+- SoftwareJobs
+- CodingInterviews
+- ProgrammingTests
+- TechRecruitment
+- SoftwareEngineeringJobs
+- CodingAssessments
+- JobReadiness
+- SkillEvaluation
+- TechTalent
+- CodingProficiency
+- SoftwareCareers
+- JobCompetition
 title: '[Algorithm] 코딩 테스트의 역사와 현황'
 ---
 

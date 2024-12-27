@@ -8,18 +8,18 @@ tags:
 - Lyft
 - Maps
 - OpenStreetMap
-- Google Maps
+- GoogleMaps
 - In-house development
 - Navigation
 - Drivers
 - Passengers
 - Experience
 - Features
-- Cost efficiency
+- CostEfficiency
 - Safety
 - Real-time updates
 - Feedback
-- Route optimization
+- RouteOptimization
 title: '[Lyft] Lyft의 비밀스러운 계획: 자체 지도와 미래를 통제하다'
 
 ---

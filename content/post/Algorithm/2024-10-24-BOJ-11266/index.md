@@ -3,13 +3,13 @@
 title: "[Algorithm] C++/Python 백준 11266번 : 단절점"
 categories: 
 - Algorithm
-- Graph Theory
+- GraphTheory
 tags:
-- Graph Theory
+- GraphTheory
 - Depth-First Search
-- Articulation Points
+- ArticulationPoints
 - Tarjan's Algorithm
-- Time Complexity O(V+E)
+- O(V+E)
 image: "tmp_wordcloud.png"
 date: 2024-10-24
 ---

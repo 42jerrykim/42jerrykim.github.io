@@ -2,19 +2,19 @@
 title: "[Algorithm] C++/Python 백준 15995번 : 잉여역수 구하기"
 categories: 
 - Algorithm
-- Number Theory
+- NumberTheory
 - Bruteforce
-- Modular Inverse
+- ModularInverse
 tags:
-- Number Theory
-- Extended Euclidean Algorithm
+- NumberTheory
+- ExtendedEuclideanAlgorithm
 - Implementation
-- Optimization Techniques
+- OptimizationTechniques
 - O(log N)
-- Mathematical Concepts
-- Modular Arithmetic
+- MathematicalConcepts
+- ModularArithmetic
 - Bruteforce
-- Modular Inverse
+- ModularInverse
 image: "tmp_wordcloud.png"
 date: 2024-01-01
 ---

@@ -12,11 +12,11 @@ tags:
 - family
 - music
 - adventure
-- Mexican culture
+- MexicanCulture
 - Dia de los Muertos
 - afterlife
 - ancestors
-- coming of age
+- ComingOfAge
 - friendship
 - heritage
 - tradition
@@ -27,35 +27,35 @@ tags:
 - discovery
 - emotional
 - colorful
-- cultural celebration
-- Latin America
+- CulturalCelebration
+- LatinAmerica
 - Miguel
 - Ernesto de la Cruz
-- spirit world
-- visual effects
+- SpiritWorld
+- VisualEffects
 - award-winning
 - Oscar
 - skeletons
 - vibrant
 - Mariachi
 - folklore
-- family values
+- FamilyValues
 - loyalty
 - tradition
 - legacy
 - remembrance
 - music
 - Hector
-- Mexican music
-- beloved characters
-- fantastical world
+- MexicanMusic
+- BelovedCharacters
+- FantasticalWorld
 - inspiration
 - multi-generational
 - memorable
 - heartwarming
 - family-friendly
 - iconic
-- life after death
+- LifeAfterDeath
 image: MV5BMDIyM2E2NTAtMzlhNy00ZGUxLWI1NjgtZDY5MzhiMDc5NGU3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg
 ---
 

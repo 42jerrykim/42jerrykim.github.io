@@ -1,12 +1,12 @@
 ---
 image: "tmp_wordcloud.png"
 categories:
-- Github Desktop
+- GithubDesktop
 date: "2021-04-07T00:00:00Z"
 tags:
-- Github Desktop
+- GithubDesktop
 - Git
-- Git Client
+- GitClient
 title: '[Github Desktop] 이제는 commit과 push가 빨라졌어요'
 ---
 

@@ -6,8 +6,8 @@ tags:
 - Implementation
 - Optimization
 - O(V+E)
-- Graph Theory
-- Graph Traversal
+- GraphTheory
+- GraphTraversal
 image: "tmp_wordcloud.png"
 date: 2024-12-26
 ---

@@ -8,7 +8,7 @@ tags:
 - Combinatorics
 - Inclusion-Exclusion Principle
 - Mathematics
-- Modular Arithmetic
+- ModularArithmetic
 title: '[Algorithm] C++/Python 백준 16565번 : N포커'
 ---
 

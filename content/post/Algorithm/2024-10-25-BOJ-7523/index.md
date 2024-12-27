@@ -6,14 +6,14 @@ categories:
 - Arithmetic
 tags:
 - Mathematics
-- Gauss Sum
+- GaussSum
 - Implementation
 - Arithmetic
 - Optimization
 - O(1)
 - Summation
-- Mathematical Concepts
-- Mathematical Problem
+- MathematicalConcepts
+- MathematicalProblem
 image: "tmp_wordcloud.png"
 date: 2024-10-25
 ---

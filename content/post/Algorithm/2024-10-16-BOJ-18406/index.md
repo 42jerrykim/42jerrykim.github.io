@@ -3,10 +3,10 @@ title: "[Algorithm] C++/Python 백준 18406번 : 럭키 스트레이트"
 categories: Algorithm
 tags:
 - Implementation
-- String Manipulation
+- StringManipulation
 - Mathematics
 - Simulation
-- Time Complexity O(N)
+- O(N)
 image: "tmp_wordcloud.png"
 date: 2024-10-16
 ---

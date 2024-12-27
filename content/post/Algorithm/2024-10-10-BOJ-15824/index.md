@@ -8,8 +8,8 @@ tags:
 - Mathematics
 - Sorting
 - Combinatorics
-- Exponentiation by Squaring
-- Modulo Arithmetic
+- ExponentiationBySquaring
+- ModuloArithmetic
 - O(NlogN)
 title: '[Algorithm] C++/Python 백준 15824번 : 너 봄에는 캡사이신이 맛있단다'
 ---

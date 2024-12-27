@@ -4,8 +4,8 @@ title: "[Algorithm] C++/Python 백준 23808번 : 골뱅이 찍기 - ㅂ"
 categories: Algorithm
 tags:
 - Implementation
-- Pattern Printing
-- String Manipulation
+- PatternPrinting
+- StringManipulation
 - Loops
 image: "tmp_wordcloud.png"
 date: 2024-10-16

@@ -5,12 +5,12 @@ categories:
 - Sweeping
 - Segment-Tree
 tags:
-- Segment Tree
-- Coordinate Compression
-- Maximum Subarray
+- SegmentTree
+- CoordinateCompression
+- MaximumSubarray
 - Sweeping
 - O(N² log N)
-- Data Structure
+- DataStructure
 - Geometry
 - Optimization
 image: "tmp_wordcloud.png"

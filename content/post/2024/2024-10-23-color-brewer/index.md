@@ -7,54 +7,54 @@ categories:
 - tools
 tags:
 - ColorBrewer
-- map color schemes
-- Cynthia Brewer
-- sequential colors
-- diverging colors
-- qualitative colors
-- colorblind safe
-- data visualization
-- climate science
-- warming stripes
-- color palettes
-- online tools
-- Apache license
-- geographic information
-- cartographic design
-- visual communication
-- color theory
-- mapping tools
-- user experience
+- MapColorSchemes
+- CynthiaBrewer
+- SequentialColors
+- DivergingColors
+- QualitativeColors
+- ColorblindSafe
+- DataVisualization
+- ClimateScience
+- WarmingStripes
+- ColorPalettes
+- OnlineTools
+- ApacheLicense
+- GeographicInformation
+- CartographicDesign
+- VisualCommunication
+- ColorTheory
+- MappingTools
+- UserExperience
 - accessibility
-- environmental data
-- research tools
-- academic resources
-- color selection
-- data representation
-- visual design
-- information design
-- graphic design
-- color contrast
-- data analysis
-- geographic data
-- mapping software
-- interactive tools
-- educational resources
-- design principles
-- color perception
-- visual aesthetics
-- data storytelling
-- user interface
-- digital mapping
-- color coding
-- thematic mapping
-- visual hierarchy
-- design innovation
-- data interpretation
-- scientific communication
-- visual literacy
-- color differentiation
-- mapping aesthetics
+- EnvironmentalData
+- ResearchTools
+- AcademicResources
+- ColorSelection
+- DataRepresentation
+- VisualDesign
+- InformationDesign
+- GraphicDesign
+- ColorContrast
+- DataAnalysis
+- GeographicData
+- MappingSoftware
+- InteractiveTools
+- EducationalResources
+- DesignPrinciples
+- ColorPerception
+- VisualAesthetics
+- DataStorytelling
+- UserInterface
+- DigitalMapping
+- ColorCoding
+- ThematicMapping
+- VisualHierarchy
+- DesignInnovation
+- DataInterpretation
+- ScientificCommunication
+- VisualLiteracy
+- ColorDifferentiation
+- MappingAesthetics
 image: "tmp_wordcloud.png"
 ---
 

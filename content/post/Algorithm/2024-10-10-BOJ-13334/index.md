@@ -5,11 +5,11 @@ date: "2024-10-10T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- Priority Queue
+- PriorityQueue
 - Greedy
 - Sorting
 - Sweeping
-- Data Structure
+- DataStructure
 title: '[Algorithm] C++/Python 백준 13334번 : 철로'
 ---
 

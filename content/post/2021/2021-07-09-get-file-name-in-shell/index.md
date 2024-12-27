@@ -5,7 +5,7 @@ categories:
 date: "2021-07-09T00:00:00Z"
 tags:
 - Shell
-- file name
+- FileName
 - path
 - extract
 - bash

@@ -8,7 +8,7 @@ header:
 tags:
 - Trie
 - Recursion
-- String Processing
+- StringProcessing
 - Optimization
 - O(N)
 title: '[Algorithm] C++/Python 백준 5670번 : 휴대폰 자판'

@@ -20,46 +20,46 @@ tags:
 - warning
 - error
 - critical
-- logging levels
-- log record
-- console output
-- file logging
-- logging configuration
-- logging formatter
-- logging handler
-- logging flow
-- logging methods
-- logging best practices
-- logging cookbook
-- logging example
-- logging setup
-- logging in Python
-- logging library
-- logging features
-- logging techniques
-- logging practices
-- logging messages
-- logging output
-- logging events
-- logging system
-- logging framework
-- logging tools
-- logging strategies
-- logging applications
-- logging performance
-- logging standards
-- logging guidelines
-- logging architecture
-- logging principles
-- logging utilities
-- logging mechanisms
-- logging capabilities
-- logging enhancements
-- logging customization
-- logging integration
-- logging analysis
-- logging monitoring
-- logging troubleshooting
+- LoggingLevels
+- LogRecord
+- ConsoleOutput
+- FileLogging
+- LoggingConfiguration
+- LoggingFormatter
+- LoggingHandler
+- LoggingFlow
+- LoggingMethods
+- LoggingBestPractices
+- LoggingCookbook
+- LoggingExample
+- LoggingSetup
+- LoggingInPython
+- LoggingLibrary
+- LoggingFeatures
+- LoggingTechniques
+- LoggingPractices
+- LoggingMessages
+- LoggingOutput
+- LoggingEvents
+- LoggingSystem
+- LoggingFramework
+- LoggingTools
+- LoggingStrategies
+- LoggingApplications
+- LoggingPerformance
+- LoggingStandards
+- LoggingGuidelines
+- LoggingArchitecture
+- LoggingPrinciples
+- LoggingUtilities
+- LoggingMechanisms
+- LoggingCapabilities
+- LoggingEnhancements
+- LoggingCustomization
+- LoggingIntegration
+- LoggingAnalysis
+- LoggingMonitoring
+- LoggingTroubleshooting
 title: '[Python] 기초 로깅 자습서'
 ---
 

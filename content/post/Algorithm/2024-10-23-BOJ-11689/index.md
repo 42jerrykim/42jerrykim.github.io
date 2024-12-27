@@ -2,19 +2,19 @@
 title: "[Algorithm] C++/Python 백준 11689번 : GCD(n, k) = 1"
 categories: 
 - Algorithm
-- Number Theory
+- NumberTheory
 - Euler's Totient Function
 tags:
 - Euler's Totient Function
 - Pollard's Rho Algorithm
-- Primality Testing
-- Integer Factorization
-- Number Theory
+- PrimalityTesting
+- IntegerFactorization
+- NumberTheory
 - Mathematics
 - Optimization
 - O(log N)
-- Modular Arithmetic
-- Greatest Common Divisor
+- ModularArithmetic
+- GreatestCommonDivisor
 image: "tmp_wordcloud.png"
 date: 2024-10-23
 ---

@@ -8,52 +8,52 @@ tags:
 - CSharp
 - programming
 - .NET
-- software development
+- SoftwareDevelopment
 - coding
-- console application
-- Main method
+- ConsoleApplication
+- MainMethod
 - namespaces
 - classes
 - structs
 - interfaces
 - enums
 - delegates
-- command line arguments
-- async programming
+- CommandLineArguments
+- AsyncProgramming
 - top-level statements
-- error handling
+- ErrorHandling
 - factorial
-- data types
+- DataTypes
 - variables
 - methods
-- return values
-- exception handling
-- Visual Studio
+- ReturnValues
+- ExceptionHandling
+- VisualStudio
 - .NET Core
-- command line tools
-- application structure
-- programming concepts
-- software engineering
-- development environment
-- coding standards
-- best practices
+- CommandLineTools
+- ApplicationStructure
+- ProgrammingConcepts
+- SoftwareEngineering
+- DevelopmentEnvironment
+- CodingStandards
+- BestPractices
 - debugging
 - performance
-- code organization
-- project management
-- software architecture
-- user input
-- string manipulation
-- data conversion
-- task management
-- asynchronous programming
-- code examples
+- CodeOrganization
+- ProjectManagement
+- SoftwareArchitecture
+- UserInput
+- StringManipulation
+- DataConversion
+- TaskManagement
+- AsynchronousProgramming
+- CodeExamples
 - tutorials
-- learning resources
-- programming languages
-- software lifecycle
-- application design
-- system architecture
+- LearningResources
+- ProgrammingLanguages
+- SoftwareLifecycle
+- ApplicationDesign
+- SystemArchitecture
 teaser: /assets/images/undefined/teaser.jpg
 title: '[C#] C# 프로그램의 일반적인 구조체'
 ---

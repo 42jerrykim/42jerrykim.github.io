@@ -7,51 +7,51 @@ header:
   teaser: /assets/images/2024/png-transparent-btrfs-file-system-linux-kernel-raid-logical-volume-manager-linux-text-hand-logo.png
 tags:
 - Btrfs
-- File system
+- FileSystem
 - B-tree file system
-- Butter file system
+- ButterFileSystem
 - Facebook
-- Dynamic inode allocation
-- Writable snapshots
+- DynamicInodeAllocation
+- WritableSnapshots
 - Subvolumes
 - Mirroring
 - Striping
-- Object level
+- ObjectLevel
 - Compression
-- File system checks
-- Linux operating systems
+- FileSystemChecks
+- LinuxOperatingSystems
 - GNU General Public License
-- Data integrity
-- Efficient snapshots
-- Metadata mirroring
+- DataIntegrity
+- EfficientSnapshots
+- MetadataMirroring
 - Self-healing
 - Snapshot and data protection
 - Checksums
-- Data corruption
-- Customizable backups
-- Instant snapshots
+- DataCorruption
+- CustomizableBackups
+- InstantSnapshots
 - Self-service recovery
-- Drive storage
-- Data consistency
-- Quota allocation
-- Synology NAS models
+- DriveStorage
+- DataConsistency
+- QuotaAllocation
+- SynologyNASModels
 - Oracle
 - Fujitsu
-- Red Hat
+- RedHat
 - Unix/Linux systems
 - Lightweight
 - B-Tree-based Copy-On-Write
-- Automatic defragmentation
-- Space compression
-- Data compression
-- SSD optimization
-- Subvolume management
-- Snapshot management
-- NAS devices
-- Mount options
+- AutomaticDefragmentation
+- SpaceCompression
+- DataCompression
+- SSDOptimization
+- SubvolumeManagement
+- SnapshotManagement
+- NASDevices
+- MountOptions
 - Benchmarking
-- Disk alignment
-- Swap file functionality
+- DiskAlignment
+- SwapFileFunctionality
 title: '[FileSystem] Btrfs: 데이터 보호 및 백업을 위한 차세대 파일 시스템'
 ---
 
@@ -248,51 +248,51 @@ Btrfs는 다양한 시나리오에서 데이터를 관리하고 보호할 수 �
 <!--
 Tags:
 - Btrfs
-- File system
+- FileSystem
 - B-tree file system
-- Butter file system
+- ButterFileSystem
 - Facebook
-- Dynamic inode allocation
-- Writable snapshots
+- DynamicInodeAllocation
+- WritableSnapshots
 - Subvolumes
 - Mirroring
 - Striping
-- Object level
+- ObjectLevel
 - Compression
-- File system checks
-- Linux operating systems
+- FileSystemChecks
+- LinuxOperatingSystems
 - GNU General Public License
-- Data integrity
-- Efficient snapshots
-- Metadata mirroring
+- DataIntegrity
+- EfficientSnapshots
+- MetadataMirroring
 - Self-healing
 - Snapshot and data protection
 - Checksums
-- Data corruption
-- Customizable backups
-- Instant snapshots
+- DataCorruption
+- CustomizableBackups
+- InstantSnapshots
 - Self-service recovery
-- Drive storage
-- Data consistency
-- Quota allocation
-- Synology NAS models
+- DriveStorage
+- DataConsistency
+- QuotaAllocation
+- SynologyNASModels
 - Oracle
 - Fujitsu
-- Red Hat
+- RedHat
 - Unix/Linux systems
 - Lightweight
 - B-Tree-based Copy-On-Write
-- Automatic defragmentation
-- Space compression
-- Data compression
-- SSD optimization
-- Subvolume management
-- Snapshot management
-- NAS devices
-- Mount options
+- AutomaticDefragmentation
+- SpaceCompression
+- DataCompression
+- SSDOptimization
+- SubvolumeManagement
+- SnapshotManagement
+- NASDevices
+- MountOptions
 - Benchmarking
-- Disk alignment
-- Swap file functionality
+- DiskAlignment
+- SwapFileFunctionality
 -->
 
 <!--

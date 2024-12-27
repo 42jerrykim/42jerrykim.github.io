@@ -62,7 +62,7 @@ header:
 
 ## 관련 기술
 - Lombok
-- Java Beans
+- JavaBeans
 - Factory Method 패턴
 - Singleton 패턴
 - Composite 패턴
@@ -628,7 +628,7 @@ classDiagram
 <!--
 ## 관련 기술
 - Lombok
-- Java Beans
+- JavaBeans
 - Factory Method 패턴
 - Singleton 패턴
 - Composite 패턴

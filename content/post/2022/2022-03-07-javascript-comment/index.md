@@ -13,7 +13,7 @@ tag:
 - 웹
 - 웹 브라우저
 - 브라우저
-- Web Browser
+- WebBrowser
 - Web
 - Browser
 - JS

@@ -5,57 +5,57 @@ date: "2024-08-08T00:00:00Z"
 header: null
 tags:
 - TypeScript
-- reverse mapped types
-- mapped types
-- type inference
+- ReverseMappedTypes
+- MappedTypes
+- TypeInference
 - generics
 - programming
-- software development
+- SoftwareDevelopment
 - JavaScript
-- Type Safety
-- Type Checking
-- TypeScript features
-- advanced TypeScript
-- function types
-- type parameters
-- context sensitive types
-- object types
-- array types
+- TypeSafety
+- TypeChecking
+- TypeScriptFeatures
+- AdvancedTypeScript
+- FunctionTypes
+- TypeParameters
+- ContextSensitiveTypes
+- ObjectTypes
+- ArrayTypes
 - tuples
 - constraints
 - compiler
-- source code
-- homomorphic mapped types
+- SourceCode
+- HomomorphicMappedTypes
 - inference
-- type constraints
-- excess property checking
+- TypeConstraints
+- ExcessPropertyChecking
 - recursion
-- state management
-- event handling
+- StateManagement
+- EventHandling
 - type safety in functions
-- utility types
-- type manipulation
-- programming patterns
-- functional programming
-- software engineering
-- code quality
-- developer tools
-- TypeScript community
-- TypeScript Congress
+- UtilityTypes
+- TypeManipulation
+- ProgrammingPatterns
+- FunctionalProgramming
+- SoftwareEngineering
+- CodeQuality
+- DeveloperTools
+- TypeScriptCommunity
+- TypeScriptCongress
 - Mateusz Burzyński
-- TypeScript documentation
-- advanced programming
-- software architecture
-- type system
-- programming languages
-- web development
-- frontend development
-- backend development
-- coding best practices
-- learning TypeScript
-- TypeScript tutorials
-- TypeScript tips
-- TypeScript tricks
+- TypeScriptDocumentation
+- AdvancedProgramming
+- SoftwareArchitecture
+- TypeSystem
+- ProgrammingLanguages
+- WebDevelopment
+- FrontendDevelopment
+- BackendDevelopment
+- CodingBestPractices
+- LearningTypeScript
+- TypeScriptTutorials
+- TypeScriptTips
+- TypeScriptTricks
 teaser: /assets/images/2024/2024-08-08-reverse-mapped-types.png
 title: '[TypeScript] 리버스 맵핑 타입의 이해'
 ---

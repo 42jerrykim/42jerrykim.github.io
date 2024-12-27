@@ -5,63 +5,63 @@ date: "2024-09-23T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-09-23-distrubute-system.png
 tags:
-- Distributed Systems
+- DistributedSystems
 - Microservices
 - Scalability
-- Fault Tolerance
-- Data Consistency
-- Load Balancing
+- FaultTolerance
+- DataConsistency
+- LoadBalancing
 - Caching
-- Event Sourcing
+- EventSourcing
 - CQRS
-- Leader Election
-- Circuit Breaker
+- LeaderElection
+- CircuitBreaker
 - Bulkhead
-- Retry Pattern
+- RetryPattern
 - Sharding
-- Service Registry
-- Hinted Handoff
-- Read Repair
+- ServiceRegistry
+- HintedHandoff
+- ReadRepair
 - Write-Ahead Log
 - Split-Brain
 - Patterns
 - Architecture
-- Cloud Computing
-- API Gateway
-- Performance Optimization
-- Resource Management
-- Data Partitioning
-- Asynchronous Processing
-- Network Protocols
-- Data Structures
+- CloudComputing
+- APIGateway
+- PerformanceOptimization
+- ResourceManagement
+- DataPartitioning
+- AsynchronousProcessing
+- NetworkProtocols
+- DataStructures
 - Algorithms
-- High Availability
+- HighAvailability
 - Monitoring
 - Logging
-- Error Handling
-- System Design
+- ErrorHandling
+- SystemDesign
 - Event-Driven Architecture
-- Messaging Systems
-- Data Replication
-- Consistency Models
-- Distributed Transactions
-- Resource Isolation
-- Application Resilience
-- System Complexity
+- MessagingSystems
+- DataReplication
+- ConsistencyModels
+- DistributedTransactions
+- ResourceIsolation
+- ApplicationResilience
+- SystemComplexity
 - Client-Server Model
-- Network Latency
-- Data Synchronization
-- Performance Metrics
-- System Recovery
-- Application Architecture
-- Software Engineering
-- Technology Trends
-- Cloud Services
-- Data Storage
-- System Integration
-- Application Development
-- Software Patterns
-- Best Practices
+- NetworkLatency
+- DataSynchronization
+- PerformanceMetrics
+- SystemRecovery
+- ApplicationArchitecture
+- SoftwareEngineering
+- TechnologyTrends
+- CloudServices
+- DataStorage
+- SystemIntegration
+- ApplicationDevelopment
+- SoftwarePatterns
+- BestPractices
 title: '[DistributedSystems] 분산 시스템 패턴'
 ---
 

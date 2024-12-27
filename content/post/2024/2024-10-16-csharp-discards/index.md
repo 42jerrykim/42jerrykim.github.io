@@ -8,51 +8,51 @@ tags:
 - Discards
 - Tuples
 - Variables
-- Code Readability
-- Lambda Expressions
-- Pattern Matching
-- Switch Expressions
-- Out Parameters
-- Null Coalescing
-- Async Programming
-- Error Handling
-- Code Maintenance
+- CodeReadability
+- LambdaExpressions
+- PatternMatching
+- SwitchExpressions
+- OutParameters
+- NullCoalescing
+- AsyncProgramming
+- ErrorHandling
+- CodeMaintenance
 - Deconstruct
 - IFormatProvider
 - ArgumentNullException
 - Task
 - Console
-- Population Data
-- City Information
-- Method Calls
-- Code Examples
-- Programming Concepts
-- Software Development
+- PopulationData
+- CityInformation
+- MethodCalls
+- CodeExamples
+- ProgrammingConcepts
+- SoftwareDevelopment
 - C# Features
-- Language Reference
-- Code Efficiency
-- Variable Naming
-- Compiler Errors
+- LanguageReference
+- CodeEfficiency
+- VariableNaming
+- CompilerErrors
 - Debugging
-- Code Structure
-- Object Deconstruction
-- Data Types
-- Programming Best Practices
-- Code Optimization
+- CodeStructure
+- ObjectDeconstruction
+- DataTypes
+- ProgrammingBestPractices
+- CodeOptimization
 - C# Syntax
-- Programming Languages
-- Software Engineering
-- Application Development
-- Code Quality
+- ProgrammingLanguages
+- SoftwareEngineering
+- ApplicationDevelopment
+- CodeQuality
 - Readability
 - Maintainability
 - Performance
-- Development Tools
-- Coding Standards
-- Software Design
-- Clean Code
+- DevelopmentTools
+- CodingStandards
+- SoftwareDesign
+- CleanCode
 - Object-Oriented Programming
-- Functional Programming
+- FunctionalProgramming
 - C# 7.0
 - C# 8.0
 - C# 9.0

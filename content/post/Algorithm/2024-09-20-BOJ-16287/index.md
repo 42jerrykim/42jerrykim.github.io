@@ -5,15 +5,15 @@ date: "2024-09-20T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- Two Pointers
+- TwoPointers
 - Sorting
 - Hashing
 - Pruning
 - O(N²)
 - Array
 - Combinatorics
-- Brute Force
-- Problem Solving
+- BruteForce
+- ProblemSolving
 title: '[Algorithm] C++/Python 백준 16287번 : Parcel'
 
 ---

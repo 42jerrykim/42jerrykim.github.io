@@ -2,9 +2,9 @@
 title: "[Algorithm] C++/Python 백준 1214번 : 쿨한 물건 구매"
 categories: Algorithm
 tags:
-- Number Theory
+- NumberTheory
 - Mathematics
-- Brute Force
+- BruteForce
 - Greedy
 - Optimization
 - Time Complexity: O(√N)

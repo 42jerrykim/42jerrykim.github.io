@@ -6,10 +6,10 @@ date: "2022-03-15T00:00:00Z"
 header:
   teaser: /assets/images/undefined/image001.jpg
 tag:
-- Technical Debt
+- TechnicalDebt
 - Communication
 - knowledge
-- Automated testing
+- AutomatedTesting
 title: '[Programming] 가장 똑똑한 소프트웨어 엔지니어에게 배운 10가지 교훈'
 
 ---

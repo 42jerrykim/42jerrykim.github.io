@@ -8,19 +8,19 @@ tags:
 - CSharp
 - .NET
 - programming
-- software development
+- SoftwareDevelopment
 - object-oriented
 - cross-platform
 - open-source
 - coding
-- programming languages
-- software engineering
-- application development
+- ProgrammingLanguages
+- SoftwareEngineering
+- ApplicationDevelopment
 - performance
 - productivity
-- memory management
-- garbage collection
-- asynchronous programming
+- MemoryManagement
+- GarbageCollection
+- AsynchronousProgramming
 - LINQ
 - C# features
 - C# history

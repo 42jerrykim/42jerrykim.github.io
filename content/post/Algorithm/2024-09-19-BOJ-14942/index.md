@@ -5,14 +5,14 @@ date: "2024-09-19T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- Binary Lifting
-- Tree Traversal
+- BinaryLifting
+- TreeTraversal
 - Implementation
 - Optimization
 - O(NlogN)
-- Graph Theory
-- Dynamic Programming
-- Graph Traversal
+- GraphTheory
+- DynamicProgramming
+- GraphTraversal
 title: '[Algorithm] C++/Python 백준 14942번 : 개미'
 ---
 

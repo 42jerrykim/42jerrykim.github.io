@@ -8,53 +8,53 @@ header:
 tags:
 - JAX
 - PyTorch
-- Deep Learning
-- Machine Learning
-- Neural Networks
-- Automatic Differentiation
-- GPU Acceleration
-- TPU Support
-- Functional Programming
-- Dynamic Computation Graph
-- Performance Comparison
-- Model Training
-- Research Frameworks
+- DeepLearning
+- MachineLearning
+- NeuralNetworks
+- AutomaticDifferentiation
+- GPUAcceleration
+- TPUSupport
+- FunctionalProgramming
+- DynamicComputationGraph
+- PerformanceComparison
+- ModelTraining
+- ResearchFrameworks
 - TensorFlow
 - NumPy
 - High-Performance Computing
-- Gradient Calculation
+- GradientCalculation
 - Just-In-Time Compilation
 - Ecosystem
-- Community Support
+- CommunitySupport
 - Flexibility
 - Usability
-- Code Optimization
-- Data Science
-- AI Research
-- Model Deployment
+- CodeOptimization
+- DataScience
+- AIResearch
+- ModelDeployment
 - Prototyping
-- Computer Vision
-- Natural Language Processing
+- ComputerVision
+- NaturalLanguageProcessing
 - Libraries
 - Frameworks
-- Open Source
-- Programming Paradigms
-- Performance Metrics
+- OpenSource
+- ProgrammingParadigms
+- PerformanceMetrics
 - Scalability
-- Memory Efficiency
-- Research Models
-- Production Systems
+- MemoryEfficiency
+- ResearchModels
+- ProductionSystems
 - Pre-trained Models
-- Code Readability
+- CodeReadability
 - Experimentation
 - API
-- Libraries Integration
-- Learning Resources
+- LibrariesIntegration
+- LearningResources
 - Tutorials
 - Documentation
-- User Experience
-- Model Architecture
-- Data Loading
+- UserExperience
+- ModelArchitecture
+- DataLoading
 - Visualization
 title: '[DeepLearning] JAX vs PyTorch: Comparing Two Deep Learning Frameworks'
 

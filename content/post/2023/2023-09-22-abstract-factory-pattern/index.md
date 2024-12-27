@@ -5,40 +5,40 @@ date: "2023-09-22T00:00:00Z"
 header:
   teaser: /assets/images/undefined/teaser.jpg
 tags:
-- Abstract Factory Pattern
-- Design Patterns
-- Software Engineering
-- Object Creation
-- Concrete Classes
-- Generic Interfaces
-- Object Composition
-- Interchangeable Implementations
+- AbstractFactoryPattern
+- DesignPatterns
+- SoftwareEngineering
+- ObjectCreation
+- ConcreteClasses
+- GenericInterfaces
+- ObjectComposition
+- InterchangeableImplementations
 - Complexity
 - Debugging
 - Maintenance
 - Inheritance
-- Abstract Classes
+- AbstractClasses
 - Interfaces
 - Cpp
 - CSharp
 - MazeGame
 - MazeFactory
-- UML Diagram
-- Implementation Code
+- UMLDiagram
+- ImplementationCode
 - Benefits
-- Use Cases
-- Product Families
+- UseCases
+- ProductFamilies
 - Compatibility
 - Participants
 - ConcreteFactory
 - AbstractProduct
 - Product
 - Client
-- UML Class Diagram
+- UMLClassDiagram
 - Dofactory .NET Product
-- Pattern Architectures
+- PatternArchitectures
 - Low-Code Development
-- Rapid Application Development
+- RapidApplicationDevelopment
 title: '[DesignPattern] Abstract Factory Pattern - 추상팩토리 패턴'
 ---
 
@@ -86,10 +86,10 @@ So, let's dive into the world of the Abstract Factory pattern and see how it can
 - Making the class independent of how its objects are created
 
 ## Implementing the Abstract Factory Pattern in C#
-- Creating abstract products
-- Creating concrete products
-- Creating abstract factories
-- Creating concrete factories
+- CreatingAbstractProducts
+- CreatingConcreteProducts
+- CreatingAbstractFactories
+- CreatingConcreteFactories
 
 ## Practical Examples
 - Creating a MazeGame using a MazeFactory
@@ -101,8 +101,8 @@ So, let's dive into the world of the Abstract Factory pattern and see how it can
 - Can the Abstract Factory pattern be used with dependency injection frameworks?
 
 ## Related Technologies
-- Factory Method pattern
-- Dependency Injection
+- FactoryMethodPattern
+- DependencyInjection
 
 ## Conclusion
 - Summary of the main points discussed
@@ -345,10 +345,10 @@ In summary, the Abstract Factory pattern works by encapsulating object creation 
 
 <!--
 ## Implementing the Abstract Factory Pattern in C#
-- Creating abstract products
-- Creating concrete products
-- Creating abstract factories
-- Creating concrete factories
+- CreatingAbstractProducts
+- CreatingConcreteProducts
+- CreatingAbstractFactories
+- CreatingConcreteFactories
 -->
 
 <!--
@@ -670,8 +670,8 @@ Using the Abstract Factory pattern with a DI framework promotes loose coupling, 
 
 <!--
 ## Related Technologies
-- Factory Method pattern
-- Dependency Injection
+- FactoryMethodPattern
+- DependencyInjection
 -->
 
 <!--

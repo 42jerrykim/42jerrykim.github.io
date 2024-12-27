@@ -3,9 +3,9 @@ title: "[Algorithm] C++/Python 백준 15025번 : Judging Moose"
 categories: Algorithm
 tags:
 - Implementation
-- Conditional Statements
+- ConditionalStatements
 - Comparison
-- Simple Logic
+- SimpleLogic
 image: "tmp_wordcloud.png"
 date: 2024-10-16
 ---

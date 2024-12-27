@@ -3,63 +3,63 @@ date: 2024-10-15 16:29:53+0900
 title: "[MemorySafety] 메모리 안전성을 위한 C++의 새로운 접근"
 categories: memorysafety
 tags:
-- memory safety
+- MemorySafety
 - C++
 - Rust
-- software security
-- programming languages
+- SoftwareSecurity
+- ProgrammingLanguages
 - cybersecurity
-- memory corruption
+- MemoryCorruption
 - vulnerabilities
-- software development
-- critical infrastructure
+- SoftwareDevelopment
+- CriticalInfrastructure
 - Microsoft
 - Google
 - CISA
 - NSA
 - memory-safe languages
-- software quality
-- code safety
-- programming best practices
-- software engineering
-- secure coding
+- SoftwareQuality
+- CodeSafety
+- ProgrammingBestPractices
+- SoftwareEngineering
+- SecureCoding
 - interop
 - C++ standards
-- software architecture
-- technical report
-- software vulnerabilities
-- memory management
-- safe programming
-- software design
-- compiler design
-- static analysis
-- dynamic analysis
-- software maintenance
-- software testing
-- software reliability
-- software performance
-- software lifecycle
-- programming paradigms
+- SoftwareArchitecture
+- TechnicalReport
+- SoftwareVulnerabilities
+- MemoryManagement
+- SafeProgramming
+- SoftwareDesign
+- CompilerDesign
+- StaticAnalysis
+- DynamicAnalysis
+- SoftwareMaintenance
+- SoftwareTesting
+- SoftwareReliability
+- SoftwarePerformance
+- SoftwareLifecycle
+- ProgrammingParadigms
 - object-oriented programming
-- functional programming
-- systems programming
-- type safety
-- thread safety
+- FunctionalProgramming
+- SystemsProgramming
+- TypeSafety
+- ThreadSafety
 - concurrency
-- data races
-- software frameworks
-- software libraries
-- software tools
-- software methodologies
-- software practices
-- software innovation
-- software evolution
-- software trends
-- software community
-- software collaboration
-- software research
-- software education
-- software documentation
+- DataRaces
+- SoftwareFrameworks
+- SoftwareLibraries
+- SoftwareTools
+- SoftwareMethodologies
+- SoftwarePractices
+- SoftwareInnovation
+- SoftwareEvolution
+- SoftwareTrends
+- SoftwareCommunity
+- SoftwareCollaboration
+- SoftwareResearch
+- SoftwareEducation
+- SoftwareDocumentation
 image: "tmp_wordcloud.png"
 ---
 

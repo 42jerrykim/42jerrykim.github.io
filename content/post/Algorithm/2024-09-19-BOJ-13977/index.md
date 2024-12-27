@@ -7,13 +7,13 @@ header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
 - Combinatorics
-- Number Theory
-- Fast Exponentiation
-- Modular Inverse
+- NumberTheory
+- FastExponentiation
+- ModularInverse
 - Factorial
 - Implementation
-- Mathematical Idea
-- Dynamic Programming
+- MathematicalIdea
+- DynamicProgramming
 title: '[Algorithm] C++/Python 백준 13977번 : 이항 계수와 쿼리'
 ---
 

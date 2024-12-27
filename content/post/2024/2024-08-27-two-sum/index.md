@@ -8,53 +8,53 @@ tags:
 - TwoSum
 - coding
 - algorithm
-- data structures
-- problem solving
+- DataStructures
+- ProblemSolving
 - JavaScript
 - Python
 - Java
 - C++
 - C#
 - efficiency
-- hash map
-- brute force
+- HashMap
+- BruteForce
 - optimization
-- coding challenge
-- interview questions
-- software engineering
+- CodingChallenge
+- InterviewQuestions
+- SoftwareEngineering
 - arrays
 - indices
-- target sum
-- complexity analysis
-- time complexity
-- space complexity
-- coding skills
-- algorithm design
+- TargetSum
+- ComplexityAnalysis
+- TimeComplexity
+- SpaceComplexity
+- CodingSkills
+- AlgorithmDesign
 - programming
-- tech interview
-- competitive programming
-- coding interview
-- algorithmic thinking
+- TechInterview
+- CompetitiveProgramming
+- CodingInterview
+- AlgorithmicThinking
 - problem-solving skills
-- software development
-- coding best practices
-- data manipulation
-- algorithm efficiency
-- code optimization
-- software architecture
-- algorithm implementation
-- coding techniques
-- software testing
+- SoftwareDevelopment
+- CodingBestPractices
+- DataManipulation
+- AlgorithmEfficiency
+- CodeOptimization
+- SoftwareArchitecture
+- AlgorithmImplementation
+- CodingTechniques
+- SoftwareTesting
 - debugging
-- code review
-- performance tuning
-- algorithm analysis
-- coding standards
-- software design
-- programming languages
-- algorithm challenges
-- coding exercises
-- algorithm tutorials
+- CodeReview
+- PerformanceTuning
+- AlgorithmAnalysis
+- CodingStandards
+- SoftwareDesign
+- ProgrammingLanguages
+- AlgorithmChallenges
+- CodingExercises
+- AlgorithmTutorials
 title: '[Algorithm] 두 수의 합(TwoSum)'
 ---
 

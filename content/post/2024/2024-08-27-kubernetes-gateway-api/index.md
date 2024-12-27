@@ -7,59 +7,59 @@ header:
   teaser: /assets/images/2024/2024-08-27-kubernetes-gateway-api.png
 tags:
 - Kubernetes
-- Gateway API
+- GatewayAPI
 - Multi-cluster
 - Multi-cloud
 - Istio
 - EKS
 - GKE
-- High Availability
-- Traffic Management
-- Load Balancing
+- HighAvailability
+- TrafficManagement
+- LoadBalancing
 - HTTPRoute
 - Gateway
-- Service Mesh
-- Cloud Native
-- Container Orchestration
-- API Gateway
-- Traffic Splitting
+- ServiceMesh
+- CloudNative
+- ContainerOrchestration
+- APIGateway
+- TrafficSplitting
 - Deployment
-- Kubernetes Services
+- KubernetesServices
 - Networking
-- Cloud Infrastructure
+- CloudInfrastructure
 - DevOps
 - CI/CD
-- Kubernetes Best Practices
-- Kubernetes Tutorial
-- Kubernetes Cluster
-- Kubernetes Resources
-- Kubernetes Networking
-- Kubernetes Ingress
-- Kubernetes Load Balancer
-- Kubernetes API
-- Kubernetes Configuration
-- Kubernetes Management
-- Kubernetes Security
-- Kubernetes Monitoring
-- Kubernetes Performance
-- Kubernetes Scalability
-- Kubernetes Automation
-- Kubernetes Architecture
-- Kubernetes Ecosystem
-- Kubernetes Community
-- Kubernetes Documentation
-- Kubernetes Use Cases
-- Kubernetes Challenges
-- Kubernetes Solutions
-- Kubernetes Tools
-- Kubernetes Updates
-- Kubernetes Features
-- Kubernetes Concepts
-- Kubernetes Learning
-- Kubernetes Training
-- Kubernetes Workshops
-- Kubernetes Events
-- Kubernetes Blogs
+- KubernetesBestPractices
+- KubernetesTutorial
+- KubernetesCluster
+- KubernetesResources
+- KubernetesNetworking
+- KubernetesIngress
+- KubernetesLoadBalancer
+- KubernetesAPI
+- KubernetesConfiguration
+- KubernetesManagement
+- KubernetesSecurity
+- KubernetesMonitoring
+- KubernetesPerformance
+- KubernetesScalability
+- KubernetesAutomation
+- KubernetesArchitecture
+- KubernetesEcosystem
+- KubernetesCommunity
+- KubernetesDocumentation
+- KubernetesUseCases
+- KubernetesChallenges
+- KubernetesSolutions
+- KubernetesTools
+- KubernetesUpdates
+- KubernetesFeatures
+- KubernetesConcepts
+- KubernetesLearning
+- KubernetesTraining
+- KubernetesWorkshops
+- KubernetesEvents
+- KubernetesBlogs
 title: '[Kubernetes] 멀티 클러스터 게이트웨이 API 설정하기'
 ---
 

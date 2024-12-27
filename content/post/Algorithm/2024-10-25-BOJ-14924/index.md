@@ -10,7 +10,7 @@ tags:
 - Math
 - Simulation
 - Greedy
-- Time Complexity O(1)
+- O(1)
 - Problem Type: Implementation
 image: "tmp_wordcloud.png"
 date: 2024-10-25

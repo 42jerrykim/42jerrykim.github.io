@@ -11,7 +11,7 @@ tag:
 - Jekyll
 - 수학
 - 수식
-- GitHub Page
+- GitHubPage
 - GitHub
 title: '[MathJax] Markdown에서 LaTeX로 수식 작성하기'
 

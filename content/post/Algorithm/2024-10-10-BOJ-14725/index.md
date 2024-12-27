@@ -8,8 +8,8 @@ tags:
 - Trie
 - DFS
 - Recursion
-- Data Structures
-- String Processing
+- DataStructures
+- StringProcessing
 title: '[Algorithm] C++/Python 백준 14725번 : 개미굴'
 ---
 

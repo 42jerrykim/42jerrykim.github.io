@@ -11,51 +11,51 @@ tags:
 - Latency
 - Videoconferencing
 - ISP
-- Remote Work
+- RemoteWork
 - Bufferbloat
 - QoS
-- Network Performance
-- Home Office
-- Router Software
-- Active Queue Management
-- Fair Queuing
-- Network Contention
-- High Latency
+- NetworkPerformance
+- HomeOffice
+- RouterSoftware
+- ActiveQueueManagement
+- FairQueuing
+- NetworkContention
+- HighLatency
 - LibreQoS
 - CAKE
 - fq_codel
-- Packet Management
-- Data Transmission
-- Internet Speed
-- Network Optimization
-- Performance Metrics
+- PacketManagement
+- DataTransmission
+- InternetSpeed
+- NetworkOptimization
+- PerformanceMetrics
 - Throughput
-- Network Topology
-- Congestion Control
+- NetworkTopology
+- CongestionControl
 - Real-time Monitoring
-- Home Networking
-- Smart Router
-- Internet Service Providers
-- Customer Satisfaction
-- Network Solutions
-- Technology Upgrades
-- Software Updates
-- Performance Improvement
-- Data Flow
-- Communication Technology
-- Remote Employees
-- Internet Issues
-- Network Bottlenecks
-- Video Calls
+- HomeNetworking
+- SmartRouter
+- InternetServiceProviders
+- CustomerSatisfaction
+- NetworkSolutions
+- TechnologyUpgrades
+- SoftwareUpdates
+- PerformanceImprovement
+- DataFlow
+- CommunicationTechnology
+- RemoteEmployees
+- InternetIssues
+- NetworkBottlenecks
+- VideoCalls
 - Streaming
-- Home Internet
-- Internet Connectivity
-- Digital Communication
-- Network Management
-- Internet Troubleshooting
-- Packet Loss
-- Network Latency
-- Internet Reliability
+- HomeInternet
+- InternetConnectivity
+- DigitalCommunication
+- NetworkManagement
+- InternetTroubleshooting
+- PacketLoss
+- NetworkLatency
+- InternetReliability
 image: "tmp_wordcloud.png"
 ---
 

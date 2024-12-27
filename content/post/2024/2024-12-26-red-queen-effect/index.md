@@ -1,7 +1,7 @@
 ---
 title: "[EvolutionaryBiology] 붉은 여왕 효과: 끊임없는 진화의 경쟁"
 categories: 
-- Evolutionary Biology
+- EvolutionaryBiology
 - Ecology
 - Competition
 tags:

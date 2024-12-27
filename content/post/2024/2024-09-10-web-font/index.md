@@ -5,8 +5,8 @@ date: "2024-09-10T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-09-10-web-font.png
 tags:
-- web fonts
-- font loading
+- WebFonts
+- FontLoading
 - FOUT
 - FOIT
 - FOFT
@@ -18,48 +18,48 @@ tags:
 - JavaScript
 - performance
 - typography
-- web design
-- user experience
-- font optimization
-- Google Fonts
-- Adobe Fonts
+- WebDesign
+- UserExperience
+- FontOptimization
+- GoogleFonts
+- AdobeFonts
 - Typekit
-- font formats
+- FontFormats
 - woff2
 - woff
-- font licensing
-- critical CSS
+- FontLicensing
+- CriticalCSS
 - unicode-range
-- data URI
+- DataURI
 - preload
 - sessionStorage
 - FontFaceObserver
-- asynchronous loading
-- system fonts
-- fallback fonts
-- web performance
-- loading strategies
-- web development
+- AsynchronousLoading
+- SystemFonts
+- FallbackFonts
+- WebPerformance
+- LoadingStrategies
+- WebDevelopment
 - front-end development
-- design tips
-- coding best practices
-- web accessibility
-- responsive design
-- browser support
-- font rendering
-- font styles
-- font weights
-- font management
-- web typography
-- design resources
-- web standards
-- CSS tricks
-- performance optimization
-- user preferences
-- web design trends
-- font integration
-- web application
-- website performance
+- DesignTips
+- CodingBestPractices
+- WebAccessibility
+- ResponsiveDesign
+- BrowserSupport
+- FontRendering
+- FontStyles
+- FontWeights
+- FontManagement
+- WebTypography
+- DesignResources
+- WebStandards
+- CSSTricks
+- PerformanceOptimization
+- UserPreferences
+- WebDesignTrends
+- FontIntegration
+- WebApplication
+- WebsitePerformance
 title: '[WebDevelopment] 웹 폰트 로딩 전략'
 ---
 

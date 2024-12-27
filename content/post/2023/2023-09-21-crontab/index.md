@@ -4,30 +4,30 @@ date: "2023-09-21T00:00:00Z"
 header:
   teaser: /assets/images/2023/crontab.png
 tag:
-- Linux Crontab
-- Crontab usage
-- Editing Crontab
-- Viewing Crontab
-- Deleting Crontab
-- Scheduling options
-- Running commands
-- Crontab tips
-- Logging Crontab output
-- Backup Crontab entries
-- Automating tasks
-- System maintenance
-- Disk space monitoring
-- Scheduled backups
-- System administrators
-- Web developers
-- Customizing Crontab behavior
-- Disabling email notifications
-- Saving command output
+- LinuxCrontab
+- CrontabUsage
+- EditingCrontab
+- ViewingCrontab
+- DeletingCrontab
+- SchedulingOptions
+- RunningCommands
+- CrontabTips
+- LoggingCrontabOutput
+- BackupCrontabEntries
+- AutomatingTasks
+- SystemMaintenance
+- DiskSpaceMonitoring
+- ScheduledBackups
+- SystemAdministrators
+- WebDevelopers
+- CustomizingCrontabBehavior
+- DisablingEmailNotifications
+- SavingCommandOutput
 - Scheduling tasks on system reboot
-- Time setting expressions
+- TimeSettingExpressions
 - Special characters in Crontab
-- Logging options
-- Backup options
+- LoggingOptions
+- BackupOptions
 title: '[Linux] Crontab 사용법'
 ---
 

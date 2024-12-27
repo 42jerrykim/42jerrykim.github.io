@@ -7,10 +7,10 @@ header:
 tags:
 - Geometry
 - Sorting
-- Convex Hull
+- ConvexHull
 - Implementation
 - O(N log N)
-- Computational Geometry
+- ComputationalGeometry
 title: '[Algorithm] C++/Python 백준 3679번 : 단순 다각형'
 ---
 

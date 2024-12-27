@@ -5,8 +5,8 @@ date: "2024-09-25T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- Fenwick Tree
-- Data Structures
+- FenwickTree
+- DataStructures
 - O(log N)
 - Simulation
 - Stack

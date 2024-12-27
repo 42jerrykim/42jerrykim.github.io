@@ -2,12 +2,12 @@
 title: "[Algorithm] C++ 백준 14572번 : 스터디 그룹"
 categories: Algorithm
 tags:
-- Two Pointers
-- Sliding Window
+- TwoPointers
+- SlidingWindow
 - Greedy
 - Optimization
-- Time Complexity O(NK)
-- Data Structures
+- O(NK)
+- DataStructures
 - Algorithm
 image: "tmp_wordcloud.png"
 date: 2024-10-16

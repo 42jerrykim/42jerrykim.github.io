@@ -5,7 +5,7 @@ date: "2024-08-05T00:00:00Z"
 header:
   teaser: /assets/images/2024/ghostintheshell.jpg
 tags:
-- Science Fiction
+- ScienceFiction
 - Action
 - Cyberpunk
 - AI

@@ -4,11 +4,11 @@ title: "[Python] itertools 모듈"
 categories: Python
 tags:
 - itertools
-- functional programming
+- FunctionalProgramming
 - higher-order functions
-- lazy evaluation
+- LazyEvaluation
 - currying
-- partial functions
+- PartialFunctions
 - takewhile
 - dropwhile
 - groupby
@@ -17,46 +17,46 @@ tags:
 - coding
 - efficiency
 - iterators
-- data processing
+- DataProcessing
 - algorithms
-- code reusability
+- CodeReusability
 - modularity
-- functional composition
+- FunctionalComposition
 - performance
 - collections
-- itertools module
-- Python features
-- programming concepts
-- software development
-- data structures
-- Python libraries
-- coding techniques
-- Python tips
-- advanced Python
-- Python programming
-- Python iterators
-- functional programming concepts
-- Python itertools functions
-- Python examples
-- Python tutorials
-- Python best practices
-- Python coding
-- Python efficiency
-- Python performance
-- Python data manipulation
-- Python collections
-- Python algorithms
-- Python design patterns
-- Python functional programming
-- Python programming techniques
-- Python code optimization
+- ItertoolsModule
+- PythonFeatures
+- ProgrammingConcepts
+- SoftwareDevelopment
+- DataStructures
+- PythonLibraries
+- CodingTechniques
+- PythonTips
+- AdvancedPython
+- PythonProgramming
+- PythonIterators
+- FunctionalProgrammingConcepts
+- PythonItertoolsFunctions
+- PythonExamples
+- PythonTutorials
+- PythonBestPractices
+- PythonCoding
+- PythonEfficiency
+- PythonPerformance
+- PythonDataManipulation
+- PythonCollections
+- PythonAlgorithms
+- PythonDesignPatterns
+- PythonFunctionalProgramming
+- PythonProgrammingTechniques
+- PythonCodeOptimization
 - Python programming best practices
-- Python coding standards
-- Python programming resources
-- Python learning
-- Python community
-- Python developers
-- Python enthusiasts
+- PythonCodingStandards
+- PythonProgrammingResources
+- PythonLearning
+- PythonCommunity
+- PythonDevelopers
+- PythonEnthusiasts
 image: "tmp_wordcloud.png"
 ---
 

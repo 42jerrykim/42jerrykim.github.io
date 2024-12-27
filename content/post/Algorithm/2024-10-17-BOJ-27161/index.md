@@ -7,7 +7,7 @@ categories:
 tags:
 - Implementation
 - Simulation
-- Brute Force
+- BruteForce
 - O(N)
 - Implementation Strategy: Simulation
 image: "tmp_wordcloud.png"

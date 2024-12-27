@@ -2,17 +2,17 @@
 title: "[Algorithm] C++/Python 백준 1671번 : 상어의 저녁식사"
 categories: 
 - Algorithm
-- Bipartite Matching
-- Maximum Flow
+- BipartiteMatching
+- MaximumFlow
 tags:
 - bipartite
 - matching
 - maxflow
 - optimization
 - O(N^2)
-- data structure
-- graph theory
-- dynamic programming
+- DataStructure
+- GraphTheory
+- DynamicProgramming
 image: "tmp_wordcloud.png"
 date: 2024-12-26
 ---

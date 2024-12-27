@@ -6,59 +6,59 @@ header:
   teaser: /assets/images/2024/2024-09-10-api-strategy.png
 tags:
 - API
-- API Strategy
-- Digital Transformation
-- API Management
-- API Governance
-- API Design
+- APIStrategy
+- DigitalTransformation
+- APIManagement
+- APIGovernance
+- APIDesign
 - REST
 - GraphQL
 - Microservices
-- API Security
-- Developer Experience
-- API Documentation
-- API Lifecycle
-- API Ecosystem
-- API Gateway
-- API Monetization
-- API Analytics
-- API Performance
-- API Integration
-- API Standards
-- API Best Practices
-- API Testing
-- API Development
-- API Tools
-- API Framework
-- API Portal
-- API Catalog
-- API Community
-- API Collaboration
-- API Adoption
-- API Scalability
-- API Reliability
-- API Efficiency
-- API Innovation
-- API Monitoring
-- API Versioning
-- API Access Control
-- API Authentication
-- API Authorization
-- API Rate Limiting
-- API Caching
-- API Throttling
-- API Documentation Tools
-- API User Experience
-- API Feedback Loop
-- API Lifecycle Management
-- API Use Cases
-- API Business Objectives
-- API Technology Stack
-- API Budgeting
-- API Change Management
-- API Challenges
-- API Solutions
-- API Future
+- APISecurity
+- DeveloperExperience
+- APIDocumentation
+- APILifecycle
+- APIEcosystem
+- APIGateway
+- APIMonetization
+- APIAnalytics
+- APIPerformance
+- APIIntegration
+- APIStandards
+- APIBestPractices
+- APITesting
+- APIDevelopment
+- APITools
+- APIFramework
+- APIPortal
+- APICatalog
+- APICommunity
+- APICollaboration
+- APIAdoption
+- APIScalability
+- APIReliability
+- APIEfficiency
+- APIInnovation
+- APIMonitoring
+- APIVersioning
+- APIAccessControl
+- APIAuthentication
+- APIAuthorization
+- APIRateLimiting
+- APICaching
+- APIThrottling
+- APIDocumentationTools
+- APIUserExperience
+- APIFeedbackLoop
+- APILifecycleManagement
+- APIUseCases
+- APIBusinessObjectives
+- APITechnologyStack
+- APIBudgeting
+- APIChangeManagement
+- APIChallenges
+- APISolutions
+- APIFuture
 title: '[API] API Strategy의 중요성과 구현 방법'
 ---
 

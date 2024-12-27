@@ -13,7 +13,7 @@ tag:
 - Model
 - Source
 - Gernerator
-- Source Generators
+- SourceGenerators
 title: '[C#] Source Generators'
 
 ---

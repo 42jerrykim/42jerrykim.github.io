@@ -5,54 +5,54 @@ date: "2024-08-19T00:00:00Z"
 header: null
 tags:
 - quadtree
-- data structure
-- spatial data
-- image processing
+- DataStructure
+- SpatialData
+- ImageProcessing
 - compression
 - algorithm
-- computer graphics
+- ComputerGraphics
 - terrain
-- spatial partitioning
-- path planning
-- collision detection
-- hierarchical data
-- raster graphics
-- data compression
-- point quadtree
-- region quadtree
+- SpatialPartitioning
+- PathPlanning
+- CollisionDetection
+- HierarchicalData
+- RasterGraphics
+- DataCompression
+- PointQuadtree
+- RegionQuadtree
 - octree
-- binary tree
-- spatial indexing
-- data retrieval
-- recursive subdivision
-- grid mapping
-- mesh generation
-- connected components
+- BinaryTree
+- SpatialIndexing
+- DataRetrieval
+- RecursiveSubdivision
+- GridMapping
+- MeshGeneration
+- ConnectedComponents
 - adjacency
-- bounding box
-- dynamic environment
-- efficient searching
-- data representation
-- computer vision
+- BoundingBox
+- DynamicEnvironment
+- EfficientSearching
+- DataRepresentation
+- ComputerVision
 - robotics
-- environmental mapping
-- data organization
-- spatial analysis
-- geographic information systems
+- EnvironmentalMapping
+- DataOrganization
+- SpatialAnalysis
+- GeographicInformationSystems
 - 2D graphics
-- game development
-- performance optimization
+- GameDevelopment
+- PerformanceOptimization
 - data structures and algorithms
-- hierarchical structures
-- data visualization
-- point location
-- insertion and deletion
-- tree traversal
-- data management
-- algorithm efficiency
-- computational geometry
-- data representation techniques
-- spatial queries
+- HierarchicalStructures
+- DataVisualization
+- PointLocation
+- InsertionAndDeletion
+- TreeTraversal
+- DataManagement
+- AlgorithmEfficiency
+- ComputationalGeometry
+- DataRepresentationTechniques
+- SpatialQueries
 teaser: /assets/images/undefined/teaser.jpg
 title: '[DataStructure] 쿼드 트리(Quad Tree) 개념 정리'
 ---

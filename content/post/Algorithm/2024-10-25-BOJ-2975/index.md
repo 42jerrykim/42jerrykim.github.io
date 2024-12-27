@@ -8,8 +8,8 @@ tags:
 - Implementation
 - Simulation
 - I/O Optimization
-- Conditional Logic
-- Basic Math
+- ConditionalLogic
+- BasicMath
 image: "tmp_wordcloud.png"
 date: 2024-10-25
 ---

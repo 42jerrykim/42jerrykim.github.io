@@ -6,7 +6,7 @@ date: "2023-06-06T00:00:00Z"
 header:
   teaser: https://upload.wikimedia.org/wikipedia/en/f/fc/Bicentennial_man_film_poster.jpg
 tags:
-- Artificial Intelligence
+- ArtificialIntelligence
 - Humanity
 - Emotion
 - Transformation
@@ -17,8 +17,8 @@ tags:
 - Mortality
 - Time
 - Relationships
-- Robin Williams
-- Isaac Asimov
+- RobinWilliams
+- IsaacAsimov
 - Future
 - Android
 - Recognition

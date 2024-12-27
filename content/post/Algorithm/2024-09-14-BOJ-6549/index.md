@@ -6,10 +6,10 @@ header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
 - Stack
-- Divide and Conquer
+- DivideAndConquer
 - O(N)
-- Data Structure
-- Largest Rectangle
+- DataStructure
+- LargestRectangle
 - Histogram
 title: '[Algorithm] C++/Python 백준 6549번 : 히스토그램에서 가장 큰 직사각형'
 ---

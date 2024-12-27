@@ -7,18 +7,18 @@ tags:
 - CSharp
 - class
 - object
-- reference type
+- ReferenceType
 - instance
 - constructor
 - inheritance
 - encapsulation
 - polymorphism
-- garbage collection
+- GarbageCollection
 - fields
 - properties
 - methods
 - events
-- access modifier
+- AccessModifier
 - public
 - internal
 - sealed
@@ -28,34 +28,34 @@ tags:
 - C#
 - .NET
 - initialization
-- object initializer
-- default value
-- parameterized constructor
-- derived class
-- base class
+- ObjectInitializer
+- DefaultValue
+- ParameterizedConstructor
+- DerivedClass
+- BaseClass
 - member
 - type
 - variable
-- memory management
+- MemoryManagement
 - heap
 - null
-- type safety
-- programming language
-- software development
+- TypeSafety
+- ProgrammingLanguage
+- SoftwareDevelopment
 - coding
 - syntax
-- design pattern
-- software engineering
+- DesignPattern
+- SoftwareEngineering
 - application
 - framework
 - CLR
 - runtime
-- method overriding
-- partial class
-- language specification
-- programming concepts
-- software architecture
-- data structure
+- MethodOverriding
+- PartialClass
+- LanguageSpecification
+- ProgrammingConcepts
+- SoftwareArchitecture
+- DataStructure
 - algorithm
 - development
 - debugging
@@ -63,8 +63,8 @@ tags:
 - performance
 - scalability
 - maintainability
-- code quality
-- best practices
+- CodeQuality
+- BestPractices
 image: "tmp_wordcloud.png"
 ---
 

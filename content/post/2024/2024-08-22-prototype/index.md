@@ -6,61 +6,61 @@ header:
   teaser: /assets/images/2024/2024-08-22-prototype.png
 tags:
 - Prototype
-- Design Pattern
-- Creational Pattern
-- Object Cloning
-- Shallow Copy
-- Deep Copy
+- DesignPattern
+- CreationalPattern
+- ObjectCloning
+- ShallowCopy
+- DeepCopy
 - Java
 - C#
-- Software Development
+- SoftwareDevelopment
 - Object-Oriented Programming
-- Design Principles
-- Code Reusability
-- Factory Method
-- Abstract Factory
-- Builder Pattern
+- DesignPrinciples
+- CodeReusability
+- FactoryMethod
+- AbstractFactory
+- BuilderPattern
 - Singleton
 - UML
 - Cloning
-- Object Creation
-- Performance Optimization
-- Memory Management
-- Circular References
+- ObjectCreation
+- PerformanceOptimization
+- MemoryManagement
+- CircularReferences
 - Interface
 - Inheritance
 - Encapsulation
 - Polymorphism
-- Code Duplication
+- CodeDuplication
 - Configuration
 - Registry
-- Prototype Registry
-- Client Code
+- PrototypeRegistry
+- ClientCode
 - Third-Party Code
 - Initialization
-- Object State
-- Dynamic Loading
-- Graphic Design
-- Drawing Application
-- Music Editor
-- Circuit Design
-- Application Development
-- Software Architecture
-- System Design
-- Object Lifecycle
-- Object Management
-- Prototype Manager
-- Object Composition
-- Object Behavior
-- Object State Management
-- Object Reference
-- Object Identity
-- Object Modification
-- Object Sharing
-- Object Duplication
-- Object Instantiation
-- Object Factory
-- Object Registry
+- ObjectState
+- DynamicLoading
+- GraphicDesign
+- DrawingApplication
+- MusicEditor
+- CircuitDesign
+- ApplicationDevelopment
+- SoftwareArchitecture
+- SystemDesign
+- ObjectLifecycle
+- ObjectManagement
+- PrototypeManager
+- ObjectComposition
+- ObjectBehavior
+- ObjectStateManagement
+- ObjectReference
+- ObjectIdentity
+- ObjectModification
+- ObjectSharing
+- ObjectDuplication
+- ObjectInstantiation
+- ObjectFactory
+- ObjectRegistry
 title: '[DesignPattern] 프로토타입 패턴'
 ---
 

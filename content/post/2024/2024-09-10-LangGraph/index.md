@@ -9,72 +9,72 @@ tags:
 - LangChain
 - LLM
 - AI
-- Machine Learning
+- MachineLearning
 - Graphs
-- State Management
+- StateManagement
 - Multi-Agent Systems
 - Workflows
-- Directed Acyclic Graphs
+- DirectedAcyclicGraphs
 - Human-in-the-loop
 - Persistence
 - Customization
 - Python
 - Programming
-- Software Development
-- Data Science
+- SoftwareDevelopment
+- DataScience
 - Automation
-- AI Agents
+- AIAgents
 - Chatbots
-- Natural Language Processing
+- NaturalLanguageProcessing
 - OpenAI
-- LangGraph Features
-- LangGraph Basics
-- LangGraph Applications
-- LangGraph vs CrewAI
-- Error Handling
+- LangGraphFeatures
+- LangGraphBasics
+- LangGraphApplications
+- LangGraphVsCrewAI
+- ErrorHandling
 - SQL
-- Data Analysis
-- Documentation Generation
-- API Integration
-- User Interaction
-- Feedback Loop
+- DataAnalysis
+- DocumentationGeneration
+- APIIntegration
+- UserInteraction
+- FeedbackLoop
 - Visualization
-- Performance Metrics
-- Decision Trees
-- Data Preprocessing
-- Model Evaluation
+- PerformanceMetrics
+- DecisionTrees
+- DataPreprocessing
+- ModelEvaluation
 - F1 Score
-- Parameter Tuning
-- Graph Visualization
-- Memory Management
-- Tool Integration
+- ParameterTuning
+- GraphVisualization
+- MemoryManagement
+- ToolIntegration
 - Real-time Processing
-- Event Streaming
-- Token Streaming
-- System Design
-- Software Architecture
-- Framework Comparison
-- Development Best Practices
-- Code Examples
+- EventStreaming
+- TokenStreaming
+- SystemDesign
+- SoftwareArchitecture
+- FrameworkComparison
+- DevelopmentBestPractices
+- CodeExamples
 - Tutorials
 - How-to Guides
-- API Reference
-- Community Contributions
-- Open Source
+- APIReference
+- CommunityContributions
+- OpenSource
 - Collaboration
 - Scalability
-- Fault Tolerance
+- FaultTolerance
 - Flexibility
-- Simplified Development
-- Advanced Applications
-- Custom Tools
-- User Experience
-- Conversational Agents
+- SimplifiedDevelopment
+- AdvancedApplications
+- CustomTools
+- UserExperience
+- ConversationalAgents
 - Retrieval-Augmented Generation
-- Agent Collaboration
-- Task Automation
-- Data Retrieval
-- Knowledge Management
+- AgentCollaboration
+- TaskAutomation
+- DataRetrieval
+- KnowledgeManagement
 title: '[LangGraph] LangGraph를 활용한 LLM 기반 애플리케이션 구축'
 ---
 

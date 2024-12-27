@@ -5,12 +5,12 @@ date: "2024-10-10T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- Segment Tree
-- Range Query
-- Modular Arithmetic
-- Data Structures
-- Efficient Algorithms
-- Time Complexity
+- SegmentTree
+- RangeQuery
+- ModularArithmetic
+- DataStructures
+- EfficientAlgorithms
+- TimeComplexity
 - O(log N)
 title: '[Algorithm] C++/Python 백준 11505번 : 구간 곱 구하기'
 ---

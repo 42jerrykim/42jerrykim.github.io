@@ -4,17 +4,17 @@ categories:
 - Algorithm
 - Graph
 - 2-SAT
-- Strongly Connected Components
+- StronglyConnectedComponents
 tags:
 - 2-SAT
 - SCC
-- Implication Graph
-- Kosaraju Algorithm
+- ImplicationGraph
+- KosarajuAlgorithm
 - O(N)
 - Graph
 - Logic
-- Satisfiability Problem
-- Strongly Connected Components
+- SatisfiabilityProblem
+- StronglyConnectedComponents
 image: "tmp_wordcloud.png"
 date: 2024-01-01
 ---

@@ -12,53 +12,53 @@ tags:
 - P95
 - P99
 - performance
-- user experience
+- UserExperience
 - API
 - SLA
-- response time
-- mean latency
-- median latency
-- max latency
+- ResponseTime
+- MeanLatency
+- MedianLatency
+- MaxLatency
 - bottlenecks
 - optimization
 - monitoring
 - percentile
-- service level agreement
+- ServiceLevelAgreement
 - backend
-- system performance
-- load testing
-- request count
-- error rate
-- web server
-- operating system
-- Elastic Beanstalk
+- SystemPerformance
+- LoadTesting
+- RequestCount
+- ErrorRate
+- WebServer
+- OperatingSystem
+- ElasticBeanstalk
 - Prometheus
 - PromQL
-- HTTP requests
-- performance metrics
-- user satisfaction
-- application performance
-- response latency
-- data analysis
-- performance optimization
-- system monitoring
-- request latency
-- performance evaluation
-- service provider
-- customer satisfaction
-- performance insights
-- performance thresholds
-- latency analysis
-- performance reporting
-- system metrics
-- performance benchmarks
-- response time analysis
-- user load
-- application metrics
-- performance trends
-- latency measurement
-- performance standards
-- performance improvement
+- HTTPRequests
+- PerformanceMetrics
+- UserSatisfaction
+- ApplicationPerformance
+- ResponseLatency
+- DataAnalysis
+- PerformanceOptimization
+- SystemMonitoring
+- RequestLatency
+- PerformanceEvaluation
+- ServiceProvider
+- CustomerSatisfaction
+- PerformanceInsights
+- PerformanceThresholds
+- LatencyAnalysis
+- PerformanceReporting
+- SystemMetrics
+- PerformanceBenchmarks
+- ResponseTimeAnalysis
+- UserLoad
+- ApplicationMetrics
+- PerformanceTrends
+- LatencyMeasurement
+- PerformanceStandards
+- PerformanceImprovement
 title: '[Performance] 지연 시간 메트릭 마스터하기: P90, P95, P99'
 ---
 

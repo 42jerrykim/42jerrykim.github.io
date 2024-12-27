@@ -6,12 +6,12 @@ date: "2022-03-15T00:00:00Z"
 header:
   teaser: /assets/images/undefined/ewsLyNGXWFsUNt6P.jpg
 tag:
-- Pair Programming
+- PairProgramming
 - Programming
 - Pair
 - Anti
 - Pattern
-- Anti Pattern
+- AntiPattern
 title: '[Pair Programming] 페어 프로그래밍 안티 패턴들'
 
 ---
