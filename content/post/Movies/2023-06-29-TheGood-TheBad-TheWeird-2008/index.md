@@ -5,7 +5,7 @@ date: "2023-06-29T00:00:00Z"
 header:
   teaser: null
 tags:
-- Korean Cinema
+- KoreanCinema
 - Action
 - Thriller
 - Adventure

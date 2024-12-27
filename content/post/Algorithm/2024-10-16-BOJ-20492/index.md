@@ -5,7 +5,7 @@ tags:
 - Mathematics
 - Arithmetic
 - Implementation
-- Time Complexity O(1)
+- O(1)
 image: "tmp_wordcloud.png"
 date: 2024-10-16
 ---

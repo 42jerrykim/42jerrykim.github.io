@@ -5,8 +5,8 @@ tags:
 - Implementation
 - Math
 - Arithmetic
-- Basic Calculation
-- Problem Solving
+- BasicCalculation
+- ProblemSolving
 image: "tmp_wordcloud.png"
 date: 2024-10-16
 ---

@@ -6,61 +6,61 @@ date: "2024-08-27T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-27-gen-ai-architecture.png
 tags:
-- Enterprise Architecture
-- IT Systems
-- Generative AI
-- Large Language Models
+- EnterpriseArchitecture
+- ITSystems
+- GenerativeAI
+- LargeLanguageModels
 - Domain-Specific Fine Tuning
-- Fine Tuning
+- FineTuning
 - RAG
-- Retrieval Augmented Generation
-- Knowledge Graph
-- Data Processing
-- Vector Database
-- AI Applications
-- Machine Learning
-- Natural Language Processing
-- Business Strategy
-- Engineering Team
-- Architecture Patterns
-- AI Integration
-- Data Management
-- Cloud Computing
-- Software Development
-- Digital Transformation
+- RetrievalAugmentedGeneration
+- KnowledgeGraph
+- DataProcessing
+- VectorDatabase
+- AIApplications
+- MachineLearning
+- NaturalLanguageProcessing
+- BusinessStrategy
+- EngineeringTeam
+- ArchitecturePatterns
+- AIIntegration
+- DataManagement
+- CloudComputing
+- SoftwareDevelopment
+- DigitalTransformation
 - Automation
-- Data Analytics
-- Performance Optimization
-- User Experience
-- Technical Support
-- Customer Service
-- HR Applications
-- Healthcare AI
-- Marketing Automation
-- Recommendation Systems
+- DataAnalytics
+- PerformanceOptimization
+- UserExperience
+- TechnicalSupport
+- CustomerService
+- HRApplications
+- HealthcareAI
+- MarketingAutomation
+- RecommendationSystems
 - Chatbots
-- Virtual Assistants
-- Data Retrieval
-- Semantic Search
-- Information Retrieval
-- Knowledge Management
-- Data Annotation
-- Data Labeling
-- Model Training
-- Supervised Learning
-- Reinforcement Learning
+- VirtualAssistants
+- DataRetrieval
+- SemanticSearch
+- InformationRetrieval
+- KnowledgeManagement
+- DataAnnotation
+- DataLabeling
+- ModelTraining
+- SupervisedLearning
+- ReinforcementLearning
 - Parameter Efficient Fine Tuning
-- Low Rank Adaptation
+- LowRankAdaptation
 - Quantized Low-Rank Adaptation
-- AI Strategy
-- Business Intelligence
-- Decision Making
-- Operational Efficiency
+- AIStrategy
+- BusinessIntelligence
+- DecisionMaking
+- OperationalEfficiency
 - Cost-Effectiveness
 - Scalability
 - Flexibility
 - Innovation
-- Competitive Advantage
+- CompetitiveAdvantage
 title: '[Architecture] Generative AI 기업 아키텍처 설계'
 ---
 

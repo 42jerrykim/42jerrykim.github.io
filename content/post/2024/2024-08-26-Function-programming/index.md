@@ -6,58 +6,58 @@ header:
   teaser: /assets/images/2024/2024-08-26-Function-programming.png
 
 tags:
-- functional programming
+- FunctionalProgramming
 - Python
-- programming paradigms
-- lambda calculus
+- ProgrammingParadigms
+- LambdaCalculus
 - higher-order functions
-- pure functions
-- side effects
+- PureFunctions
+- SideEffects
 - recursion
 - currying
-- partial application
+- PartialApplication
 - immutability
 - closures
 - monads
-- data structures
+- DataStructures
 - algorithms
 - concurrency
 - parallelism
 - debugging
 - testing
-- software development
-- programming languages
-- software engineering
-- code optimization
+- SoftwareDevelopment
+- ProgrammingLanguages
+- SoftwareEngineering
+- CodeOptimization
 - performance
 - modularity
 - abstraction
-- declarative programming
-- imperative programming
+- DeclarativeProgramming
+- ImperativeProgramming
 - object-oriented programming
-- type systems
-- functional data structures
-- lazy evaluation
-- strict evaluation
+- TypeSystems
+- FunctionalDataStructures
+- LazyEvaluation
+- StrictEvaluation
 - coroutines
 - generators
 - iterators
 - map
 - filter
 - reduce
-- list comprehensions
-- functional interfaces
-- software architecture
-- design patterns
-- software reliability
-- formal verification
-- mathematical proofs
-- category theory
-- programming theory
-- software testing
-- software maintenance
-- software quality
-- programming education
+- ListComprehensions
+- FunctionalInterfaces
+- SoftwareArchitecture
+- DesignPatterns
+- SoftwareReliability
+- FormalVerification
+- MathematicalProofs
+- CategoryTheory
+- ProgrammingTheory
+- SoftwareTesting
+- SoftwareMaintenance
+- SoftwareQuality
+- ProgrammingEducation
 title: '[Python] 함수형 프로그래밍 HOWTO'
 ---
 

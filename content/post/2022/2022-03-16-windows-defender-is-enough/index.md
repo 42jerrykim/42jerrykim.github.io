@@ -8,7 +8,7 @@ header:
 tag:
 - Windows
 - Defender
-- Windows Defender
+- WindowsDefender
 - Antivirus
 - Virus
 - Program

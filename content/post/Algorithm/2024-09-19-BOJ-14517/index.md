@@ -6,7 +6,7 @@ date: "2024-09-19T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- Dynamic Programming
+- DynamicProgramming
 - Inclusion-Exclusion
 - Implementation
 - Optimization

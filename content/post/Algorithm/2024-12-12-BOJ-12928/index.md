@@ -12,7 +12,7 @@ tags:
 - Optimization
 - O(N^3)
 - Combinatorics
-- Dynamic Programming
+- DynamicProgramming
 - Implementation
 image: "tmp_wordcloud.png"
 date: 2024-12-12

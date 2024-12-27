@@ -8,55 +8,55 @@ tags:
 - CRDT
 - OT
 - Conflict-Free
-- Replicated Data Types
-- Operational Transformation
-- Distributed Systems
-- Collaborative Editing
+- ReplicatedDataTypes
+- OperationalTransformation
+- DistributedSystems
+- CollaborativeEditing
 - Real-time Collaboration
-- Data Structures
+- DataStructures
 - Peer-to-Peer
 - Consistency
 - Merging
 - State-based CRDTs
 - Operation-based CRDTs
-- Last Write Wins
-- LWW Register
-- LWW Map
-- Data Integrity
-- Network Protocols
+- LastWriteWins
+- LWWRegister
+- LWWMap
+- DataIntegrity
+- NetworkProtocols
 - Timestamping
-- Merging Algorithms
+- MergingAlgorithms
 - Commutativity
 - Associativity
 - Idempotence
-- Collaborative Applications
-- Version Control
-- Data Synchronization
-- Eventual Consistency
-- Performance Optimization
-- Memory Management
+- CollaborativeApplications
+- VersionControl
+- DataSynchronization
+- EventualConsistency
+- PerformanceOptimization
+- MemoryManagement
 - JavaScript
 - TypeScript
 - WebRTC
 - Redis
 - Figma
-- Google Docs
+- GoogleDocs
 - SoundCloud
 - Real-time Editing
-- User Experience
-- Application Development
-- Software Engineering
-- Data Integrity
-- Data Replication
-- Data Consistency
-- Data Merging
-- Data Types
-- Distributed Databases
+- UserExperience
+- ApplicationDevelopment
+- SoftwareEngineering
+- DataIntegrity
+- DataReplication
+- DataConsistency
+- DataMerging
+- DataTypes
+- DistributedDatabases
 - NoSQL
-- Cloud Computing
-- Software Architecture
-- System Design
-- Algorithm Design
+- CloudComputing
+- SoftwareArchitecture
+- SystemDesign
+- AlgorithmDesign
 title: '[Technology] CRDT(Conflict-Free Replicated Data Types)란'
 ---
 

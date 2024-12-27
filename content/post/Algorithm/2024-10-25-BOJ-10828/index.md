@@ -2,14 +2,14 @@
 title: "[Algorithm] C++/Python 백준 10828번 : 스택"
 categories: 
 - Algorithm
-- Data Structures
+- DataStructures
 tags:
 - Stack
 - Implementation
 - Fast I/O
 - O(N)
-- Data Structures
-- Problem Solving
+- DataStructures
+- ProblemSolving
 image: "tmp_wordcloud.png"
 date: 2024-10-25
 ---

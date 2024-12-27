@@ -11,7 +11,7 @@ tag:
 - Code
 - LineNumber
 - Highlight
-- Auto Wrapping
+- AutoWrapping
 - Warp
 - Auto
 title: '[Kramdown] Kramdown으로 랜더링되는 code 영역에 줄번호 표시하기'

@@ -17,48 +17,48 @@ tags:
 - Abstraction
 - Methods
 - Attributes
-- Code Reusability
-- Software Design
-- Programming Paradigms
-- Data Hiding
-- Class Hierarchy
+- CodeReusability
+- SoftwareDesign
+- ProgrammingParadigms
+- DataHiding
+- ClassHierarchy
 - Constructors
-- Instance Methods
-- Class Attributes
-- Instance Attributes
-- Method Overriding
-- Super Function
-- Data Protection
-- Modular Programming
-- Code Maintenance
+- InstanceMethods
+- ClassAttributes
+- InstanceAttributes
+- MethodOverriding
+- SuperFunction
+- DataProtection
+- ModularProgramming
+- CodeMaintenance
 - Real-World Modeling
-- Software Development
-- Programming Concepts
-- Python Basics
-- Python Classes
-- Python Objects
-- Python Inheritance
-- Python Encapsulation
-- Python Polymorphism
-- Python Abstraction
-- Python Methods
-- Python Attributes
-- Python Programming
-- Python Tutorial
-- Python Guide
-- Python for Beginners
-- Object Creation
-- Class Definition
-- Object Manipulation
-- Software Engineering
-- Code Structure
-- Code Organization
-- Code Efficiency
-- Code Quality
-- Python Community
-- Learning Python
-- Python Resources
-- Python Documentation
+- SoftwareDevelopment
+- ProgrammingConcepts
+- PythonBasics
+- PythonClasses
+- PythonObjects
+- PythonInheritance
+- PythonEncapsulation
+- PythonPolymorphism
+- PythonAbstraction
+- PythonMethods
+- PythonAttributes
+- PythonProgramming
+- PythonTutorial
+- PythonGuide
+- PythonForBeginners
+- ObjectCreation
+- ClassDefinition
+- ObjectManipulation
+- SoftwareEngineering
+- CodeStructure
+- CodeOrganization
+- CodeEfficiency
+- CodeQuality
+- PythonCommunity
+- LearningPython
+- PythonResources
+- PythonDocumentation
 image: "tmp_wordcloud.png"
 ---
 

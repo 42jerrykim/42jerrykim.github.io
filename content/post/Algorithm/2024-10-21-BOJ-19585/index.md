@@ -2,20 +2,20 @@
 title: "[Algorithm] C++/Python 백준 19585번 : 전설"
 categories: 
 - Algorithm
-- Data Structures
+- DataStructures
 - Trie
 - Hash
 tags:
 - Trie
-- String Processing
-- Hash Table
+- StringProcessing
+- HashTable
 - Hash
-- Hash Map
-- Hash Set
+- HashMap
+- HashSet
 - String
-- String Matching
-- Data Structures
-- Efficient Algorithms
+- StringMatching
+- DataStructures
+- EfficientAlgorithms
 image: "tmp_wordcloud.png"
 date: 2024-10-21
 ---

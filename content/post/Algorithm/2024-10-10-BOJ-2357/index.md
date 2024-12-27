@@ -5,11 +5,11 @@ date: "2024-10-10T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- Sparse Table
-- Range Query
+- SparseTable
+- RangeQuery
 - Preprocessing
-- Data Structures
-- Segment Tree
+- DataStructures
+- SegmentTree
 - RMQ
 title: '[Algorithm] C++/Python 백준 2357번 : 최솟값과 최댓값'
 ---

@@ -6,10 +6,10 @@ categories:
 - Implementation
 tags:
 - Arithmetic
-- Simple Math
+- SimpleMath
 - Input/Output
 - O(1) Time Complexity
-- Conditional Statements
+- ConditionalStatements
 image: "tmp_wordcloud.png"
 date: 2024-11-26
 ---

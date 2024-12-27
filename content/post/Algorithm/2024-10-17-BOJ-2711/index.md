@@ -6,14 +6,14 @@ categories:
 - String 
 tags:
 - Implementation
-- String Manipulation
+- StringManipulation
 - C++
 - Python
-- Brute Force
-- Time Complexity O(T * N)
+- BruteForce
+- O(T * N)
 - Array
-- Input Parsing
-- Problem Solving
+- InputParsing
+- ProblemSolving
 image: "tmp_wordcloud.png"
 date: 2024-10-17
 ---

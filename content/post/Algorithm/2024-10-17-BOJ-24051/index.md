@@ -6,13 +6,13 @@ categories:
 - Implementation
 - Simulation
 tags:
-- Insertion Sort
+- InsertionSort
 - Implementation
 - Simulation
-- Time Complexity O(N^2)
+- O(N^2)
 - Array
-- Sorting Algorithm
-- Problem Solving
+- SortingAlgorithm
+- ProblemSolving
 image: "tmp_wordcloud.png"
 date: 2024-10-17
 ---

@@ -11,57 +11,57 @@ tags:
 - Consistency
 - Isolation
 - Durability
-- Database Transactions
-- Data Integrity
-- Concurrency Control
-- Transaction Management
-- Database Systems
-- Data Validity
-- Error Handling
-- Power Failures
-- Transaction Rollback
+- DatabaseTransactions
+- DataIntegrity
+- ConcurrencyControl
+- TransactionManagement
+- DatabaseSystems
+- DataValidity
+- ErrorHandling
+- PowerFailures
+- TransactionRollback
 - SQL
 - NoSQL
 - MongoDB
-- Distributed Transactions
+- DistributedTransactions
 - Two-Phase Commit
 - Write-Ahead Logging
-- Shadow Paging
-- Data Consistency
-- Referential Integrity
-- Integrity Constraints
-- Cascading Rollback
+- ShadowPaging
+- DataConsistency
+- ReferentialIntegrity
+- IntegrityConstraints
+- CascadingRollback
 - Triggers
 - Non-Volatile Memory
-- Disk Buffer
-- Snapshot Isolation
-- Multiversion Concurrency Control
-- Locking Mechanisms
+- DiskBuffer
+- SnapshotIsolation
+- MultiversionConcurrencyControl
+- LockingMechanisms
 - Write-Write Contention
-- Transaction Isolation Levels
-- Database Recovery
-- Data Corruption
-- Transaction Failures
-- System Crashes
-- Data Management
-- Data Architecture
-- Data Modeling
-- Database Design
-- Performance Overhead
-- Scalability Issues
-- Complexity in DBMS
-- Data Lakes
-- Delta Lake
-- ETL Processes
-- Machine Learning
-- Data Analytics
+- TransactionIsolationLevels
+- DatabaseRecovery
+- DataCorruption
+- TransactionFailures
+- SystemCrashes
+- DataManagement
+- DataArchitecture
+- DataModeling
+- DatabaseDesign
+- PerformanceOverhead
+- ScalabilityIssues
+- ComplexityInDBMS
+- DataLakes
+- DeltaLake
+- ETLProcesses
+- MachineLearning
+- DataAnalytics
 - Real-Time Data Processing
-- Transaction Logs
-- Data Warehouse
-- Data Governance
-- Data Quality
-- Data Reliability
-- Data Operations
+- TransactionLogs
+- DataWarehouse
+- DataGovernance
+- DataQuality
+- DataReliability
+- DataOperations
 title: '[Database] 트랜잭션과 ACID의 이해'
 ---
 

@@ -3,26 +3,26 @@ image: "tmp_wordcloud.png"
 date: "2023-06-02T00:00:00Z"
 
 tags:
-- Dynamic Loading
+- DynamicLoading
 - Cpp
-- dlopen API
+- DlopenAPI
 - Programming
-- Shared Libraries
-- Name Mangling
+- SharedLibraries
+- NameMangling
 - Extern "C"
-- dlsym Function
+- DlsymFunction
 - Polymorphism
-- Class Factory Functions
-- Code Examples
-- Software Development
-- Runtime Code Loading
-- Function Overloading
+- ClassFactoryFunctions
+- CodeExamples
+- SoftwareDevelopment
+- RuntimeCodeLoading
+- FunctionOverloading
 - Object-Oriented Programming
-- Coding Challenges
-- Coding Solutions
-- Practical Programming Examples
-- Dynamic Linking
-- Software Modularity
+- CodingChallenges
+- CodingSolutions
+- PracticalProgrammingExamples
+- DynamicLinking
+- SoftwareModularity
 title: '[C/C++] C++의 동적 로딩(Dynamic loading) 이해하기'
 ---
 동적 로딩(Dynamic loading)은 런타임에 프로그램에서 코드 모듈을 로드하고 언로드할 수 있는 C++의 강력한 기능입니다. 이 기능은 공유 라이브러리의 동적 로딩을 가능하게 하는 함수 집합인 dlopen API를 통해 제공됩니다.

@@ -7,10 +7,10 @@ categories:
 tags:
 - Implementation
 - Sorting
-- Brute Force
-- Time Complexity O(N²)
+- BruteForce
+- O(N²)
 - Array
-- Problem Solving
+- ProblemSolving
 - Ranking
 image: "tmp_wordcloud.png"
 date: 2024-10-25

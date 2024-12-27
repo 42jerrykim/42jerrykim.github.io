@@ -1,16 +1,16 @@
 ---
 image: "tmp_wordcloud.png"
 categories:
-- Google Alart
+- GoogleAlart
 - Blogtrottr
 - Util
 date: "2022-04-29T00:00:00Z"
 tags:
-- Google Alart
+- GoogleAlart
 - Blogtrottr
 - Util
 - RSS
-- News Latter
+- NewsLatter
 - 뉴스
 - 소식
 - 개발

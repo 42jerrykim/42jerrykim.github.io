@@ -10,56 +10,56 @@ tags:
 - Redirection
 - Input
 - Output
-- Standard Input
-- Standard Output
-- File Descriptor
-- Command Line
-- Shell Scripting
-- Here Documents
-- Here Strings
+- StandardInput
+- StandardOutput
+- FileDescriptor
+- CommandLine
+- ShellScripting
+- HereDocuments
+- HereStrings
 - Filters
 - Pipelines
-- Command Substitution
-- Tilde Expansion
-- Parameter Expansion
-- Arithmetic Expansion
-- Filename Expansion
-- Word Splitting
-- File Handling
-- Error Handling
-- TCP Socket
-- UDP Socket
-- File Creation
-- File Appending
-- Command Line Tools
+- CommandSubstitution
+- TildeExpansion
+- ParameterExpansion
+- ArithmeticExpansion
+- FilenameExpansion
+- WordSplitting
+- FileHandling
+- ErrorHandling
+- TCPSocket
+- UDPSocket
+- FileCreation
+- FileAppending
+- CommandLineTools
 - Linux
 - Unix
 - Programming
 - Scripting
-- System Administration
-- Command Line Interface
-- Text Processing
-- Data Manipulation
-- File Management
-- Process Management
-- Shell Programming
-- Command Line Arguments
-- Output Redirection
-- Input Redirection
-- File Operations
-- Command Execution
-- Shell Options
-- File Management Commands
-- System Commands
-- Command Line Utilities
-- Text Editors
-- Data Streams
-- Data Filtering
-- Data Sorting
-- Data Uniqueness
-- Data Formatting
-- Data Pagination
-- Data Translation
+- SystemAdministration
+- CommandLineInterface
+- TextProcessing
+- DataManipulation
+- FileManagement
+- ProcessManagement
+- ShellProgramming
+- CommandLineArguments
+- OutputRedirection
+- InputRedirection
+- FileOperations
+- CommandExecution
+- ShellOptions
+- FileManagementCommands
+- SystemCommands
+- CommandLineUtilities
+- TextEditors
+- DataStreams
+- DataFiltering
+- DataSorting
+- DataUniqueness
+- DataFormatting
+- DataPagination
+- DataTranslation
 title: '[Shell] 명령어의 입력과 출력을 다루는 방법(I/O Redirection)'
 
 ---

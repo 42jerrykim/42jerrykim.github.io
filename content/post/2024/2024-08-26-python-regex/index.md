@@ -8,63 +8,63 @@ date: "2024-08-26T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-26-python-regex.png
 tags:
-- Regular Expressions
+- RegularExpressions
 - Regex
 - Python
 - Programming
 - Coding
-- Data Processing
-- Text Manipulation
-- String Matching
-- Pattern Matching
+- DataProcessing
+- TextManipulation
+- StringMatching
+- PatternMatching
 - Search
 - Replace
 - Findall
 - Finditer
 - Metacharacters
-- Character Classes
+- CharacterClasses
 - Dot
 - Repetition
 - Greedy
 - Non-Greedy
 - Flags
 - Compile
-- Match Object
+- MatchObject
 - Substitution
-- Escape Characters
-- Raw Strings
+- EscapeCharacters
+- RawStrings
 - Multiline
-- Ignore Case
+- IgnoreCase
 - Verbose
 - Tokenization
-- Email Validation
-- Data Validation
-- String Operations
-- Text Analysis
-- Data Cleaning
-- Data Extraction
+- EmailValidation
+- DataValidation
+- StringOperations
+- TextAnalysis
+- DataCleaning
+- DataExtraction
 - Scripting
 - Automation
-- Software Development
+- SoftwareDevelopment
 - Debugging
-- Code Optimization
+- CodeOptimization
 - Performance
 - Unicode
 - ASCII
 - Locale
-- String Formatting
-- Regular Expression Syntax
-- Pattern Recognition
-- Text Processing
-- Data Science
-- Machine Learning
-- Natural Language Processing
-- Web Scraping
-- Data Mining
-- Information Retrieval
-- Text Search
-- Text Replacement
-- Data Transformation
+- StringFormatting
+- RegularExpressionSyntax
+- PatternRecognition
+- TextProcessing
+- DataScience
+- MachineLearning
+- NaturalLanguageProcessing
+- WebScraping
+- DataMining
+- InformationRetrieval
+- TextSearch
+- TextReplacement
+- DataTransformation
 title: '[Regex] 정규 표현식의 기초(Python)'
 ---
 

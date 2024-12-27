@@ -5,12 +5,12 @@ date: "2024-09-23T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- Dynamic Programming
+- DynamicProgramming
 - Optimization
 - Memoization
 - O(N^2)
-- Grid Movement
-- Police Dispatch
+- GridMovement
+- PoliceDispatch
 - DP
 - BFS
 title: '[Algorithm] C++/Python 백준 2618번 : 경찰차'

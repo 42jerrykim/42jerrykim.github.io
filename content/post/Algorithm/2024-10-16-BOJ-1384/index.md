@@ -4,9 +4,9 @@ categories: Algorithm
 tags:
 - Implementation
 - Simulation
-- String Manipulation
-- Brute Force
-- Data Structures
+- StringManipulation
+- BruteForce
+- DataStructures
 - O(N^2)
 date: 2024-10-16
 image: "tmp_wordcloud.png"

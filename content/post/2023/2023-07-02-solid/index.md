@@ -5,26 +5,26 @@ date: "2023-07-02T00:00:00Z"
 header:
   teaser: https://images.velog.io/images/haero_kim/post/169ef81a-0c8c-4241-a73a-135d5b67ffea/1_XOMTPWTpDLypkp079p9XXg.png
 tags:
-- SOLID Principles
-- Software Development
+- SOLIDPrinciples
+- SoftwareDevelopment
 - Object-Oriented Programming
-- Code Quality
-- Software Design
-- Programming Best Practices
-- Code Maintainability
-- Scalable Code
+- CodeQuality
+- SoftwareDesign
+- ProgrammingBestPractices
+- CodeMaintainability
+- ScalableCode
 - Robert C. Martin
-- Uncle Bob
-- Software Engineering
-- Coding Principles
-- Code Reusability
-- Code Readability
-- Dependency Inversion
-- Interface Segregation
-- Liskov Substitution
+- UncleBob
+- SoftwareEngineering
+- CodingPrinciples
+- CodeReusability
+- CodeReadability
+- DependencyInversion
+- InterfaceSegregation
+- LiskovSubstitution
 - Open/Closed Principle
-- Single Responsibility Principle
-- Code Refactoring
+- SingleResponsibilityPrinciple
+- CodeRefactoring
 title: '[Software] SOLID 원칙 이해 - 유지 관리가 가능하고 확장 가능한 코드의 핵심'
 ---
 

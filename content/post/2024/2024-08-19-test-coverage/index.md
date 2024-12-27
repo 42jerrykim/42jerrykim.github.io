@@ -5,56 +5,56 @@ date: "2024-08-19T00:00:00Z"
 header: null
 
 tags:
-- code coverage
-- test coverage
-- software engineering
-- software testing
-- unit testing
-- integration testing
-- regression testing
-- test suite
-- requirements coverage
-- statement coverage
-- branch coverage
-- condition coverage
-- edge coverage
-- function coverage
-- path coverage
-- risk coverage
-- compatibility coverage
-- boundary value coverage
-- parameter value coverage
-- fault injection
+- CodeCoverage
+- TestCoverage
+- SoftwareEngineering
+- SoftwareTesting
+- UnitTesting
+- IntegrationTesting
+- RegressionTesting
+- TestSuite
+- RequirementsCoverage
+- StatementCoverage
+- BranchCoverage
+- ConditionCoverage
+- EdgeCoverage
+- FunctionCoverage
+- PathCoverage
+- RiskCoverage
+- CompatibilityCoverage
+- BoundaryValueCoverage
+- ParameterValueCoverage
+- FaultInjection
 - modified condition/decision coverage
-- multiple condition coverage
+- MultipleConditionCoverage
 - data-flow coverage
-- static analysis
-- test planning
-- test design
-- test execution
-- test metrics
-- test automation
-- continuous integration
-- quality assurance
-- software quality
-- agile testing
-- test case management
-- test strategy
-- test results
-- test scenarios
-- test data
-- test environment
-- test documentation
-- test optimization
-- test maintenance
-- software reliability
-- software performance
-- software scalability
-- software security
-- software defects
-- software bugs
-- software quality assurance
-- software development lifecycle
+- StaticAnalysis
+- TestPlanning
+- TestDesign
+- TestExecution
+- TestMetrics
+- TestAutomation
+- ContinuousIntegration
+- QualityAssurance
+- SoftwareQuality
+- AgileTesting
+- TestCaseManagement
+- TestStrategy
+- TestResults
+- TestScenarios
+- TestData
+- TestEnvironment
+- TestDocumentation
+- TestOptimization
+- TestMaintenance
+- SoftwareReliability
+- SoftwarePerformance
+- SoftwareScalability
+- SoftwareSecurity
+- SoftwareDefects
+- SoftwareBugs
+- SoftwareQualityAssurance
+- SoftwareDevelopmentLifecycle
 teaser: /assets/images/undefined/teaser.jpg
 title: '[SoftwareTesting] 소스 코드 테스트를 위한 메트릭'
 ---

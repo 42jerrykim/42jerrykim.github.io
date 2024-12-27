@@ -5,7 +5,7 @@ date: "2024-09-09T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-09-09-zkp.png
 tags:
-- Zero Knowledge Proof
+- ZeroKnowledgeProof
 - ZKP
 - Blockchain
 - Cryptography
@@ -14,46 +14,46 @@ tags:
 - Ethereum
 - zk-SNARK
 - zk-STARK
-- Digital Identity
-- Private Transactions
-- Decentralized Applications
-- Smart Contracts
+- DigitalIdentity
+- PrivateTransactions
+- DecentralizedApplications
+- SmartContracts
 - Layer 2 Solutions
 - Scalability
 - Confidentiality
-- Data Integrity
-- Cryptographic Protocols
-- Proof of Knowledge
-- Interactive Proofs
+- DataIntegrity
+- CryptographicProtocols
+- ProofOfKnowledge
+- InteractiveProofs
 - Non-Interactive Proofs
-- Trusted Setup
-- Verifiable Computation
-- Decentralized Finance
-- Identity Verification
-- Secure Voting
-- Data Ownership
+- TrustedSetup
+- VerifiableComputation
+- DecentralizedFinance
+- IdentityVerification
+- SecureVoting
+- DataOwnership
 - Cross-Chain Communication
-- Privacy Coins
+- PrivacyCoins
 - Zcash
 - Monero
 - StarkWare
 - zkSync
 - Loopring
-- Aleph Zero
+- AlephZero
 - Railgun
-- Mystiko Network
+- MystikoNetwork
 - Nulink
 - Gevulot
 - zkLink
-- Blockchain Interoperability
-- Cryptographic Hash Functions
-- Commitment Schemes
-- Digital Signatures
-- Public Key Cryptography
-- Private Key
-- Proof Generation
-- Proof Verification
-- Computational Overhead
+- BlockchainInteroperability
+- CryptographicHashFunctions
+- CommitmentSchemes
+- DigitalSignatures
+- PublicKeyCryptography
+- PrivateKey
+- ProofGeneration
+- ProofVerification
+- ComputationalOverhead
 - Usability
 - Accessibility
 title: '[Blockchain] 제로 지식 증명(ZKP) 완벽 가이드'

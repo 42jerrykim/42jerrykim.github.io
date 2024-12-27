@@ -5,20 +5,20 @@ tag:
 - DesignPattern
 - Reusable
 - programmers
-- Creational patterns
-- Structural patterns
-- Behavioral patterns
-- Abstract Factory
+- CreationalPatterns
+- StructuralPatterns
+- BehavioralPatterns
+- AbstractFactory
 - Builder
-- Factory Method
+- FactoryMethod
 - Adapter
 - Composite
 - Observer
 - Strategy
 - abstractions
 - Singleton
-- Eager Instantiation
-- Lazy Instantiation
+- EagerInstantiation
+- LazyInstantiation
 - Thread-safe Instantiation
 - Decorator
 - Command

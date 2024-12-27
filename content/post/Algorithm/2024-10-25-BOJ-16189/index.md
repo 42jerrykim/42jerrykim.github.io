@@ -7,7 +7,7 @@ tags:
 - String
 - Palindrome
 - Implementation
-- Time Complexity O(N)
+- O(N)
 - Problem Type: Implementation
 image: "tmp_wordcloud.png"
 date: 2024-10-25

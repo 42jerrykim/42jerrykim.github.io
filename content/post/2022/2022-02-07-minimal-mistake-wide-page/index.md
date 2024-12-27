@@ -5,7 +5,7 @@ header:
   teaser: /assets/images/2022/2022-02-09-214522.png
 tag:
 - Jekyll
-- Minimal Mistakes
+- MinimalMistakes
 - Theme
 title: '[Minimal Mistakes] Minimal Mistakes 페이지 넓게 보기'
 ---

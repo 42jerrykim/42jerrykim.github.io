@@ -7,55 +7,55 @@ header: null
 tags:
 - PyTorch
 - JAX
-- Machine Learning
-- Deep Learning
-- Scientific Computing
-- Framework Comparison
+- MachineLearning
+- DeepLearning
+- ScientificComputing
+- FrameworkComparison
 - Performance
 - Scalability
 - Flexibility
-- Technical Debt
+- TechnicalDebt
 - Compiler
 - XLA
-- Functional Programming
+- FunctionalProgramming
 - Reproducibility
-- Distributed Computing
+- DistributedComputing
 - GPU
 - TPU
 - Research
 - Development
-- API Design
-- Code Quality
+- APIDesign
+- CodeQuality
 - Optimization
 - Auto-Parallelization
 - Ecosystem
 - Community
-- Open Source
+- OpenSource
 - Governance
-- Software Engineering
-- Technical Challenges
-- User Experience
-- Code Portability
+- SoftwareEngineering
+- TechnicalChallenges
+- UserExperience
+- CodePortability
 - Multi-Backend
 - Debugging
 - Experimentation
 - Innovation
 - Productivity
-- Research Workloads
-- Development Hours
-- Code Maintenance
+- ResearchWorkloads
+- DevelopmentHours
+- CodeMaintenance
 - Integration
 - Documentation
-- User Adoption
-- Best Practices
-- Software Architecture
-- Design Philosophy
-- Code Complexity
-- Error Handling
-- Community Support
-- Ecosystem Fragmentation
-- Development Tools
-- Research Efficiency
+- UserAdoption
+- BestPractices
+- SoftwareArchitecture
+- DesignPhilosophy
+- CodeComplexity
+- ErrorHandling
+- CommunitySupport
+- EcosystemFragmentation
+- DevelopmentTools
+- ResearchEfficiency
 teaser: /assets/images/undefined/teaser.jpg
 title: '[MachineLearning] PyTorch vs JAX: A Critical Analysis'
 ---

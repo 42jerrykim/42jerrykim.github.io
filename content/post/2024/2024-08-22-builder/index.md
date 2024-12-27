@@ -7,55 +7,55 @@ header:
   teaser: /assets/images/2024/2024-08-22-builder.png
 tags:
 - Builder
-- Design Pattern
-- Creational Pattern
-- Object Creation
+- DesignPattern
+- CreationalPattern
+- ObjectCreation
 - Step-by-Step Construction
-- Complex Objects
-- Builder Pattern
+- ComplexObjects
+- BuilderPattern
 - Java
-- Software Design
+- SoftwareDesign
 - Programming
 - Object-Oriented Design
-- Design Principles
-- Code Reusability
+- DesignPrinciples
+- CodeReusability
 - Flexibility
 - Maintainability
 - Readability
 - Immutability
-- Construction Process
-- Fluent Interface
-- API Design
+- ConstructionProcess
+- FluentInterface
+- APIDesign
 - Lombok
-- Java Beans
-- Factory Method
-- Abstract Factory
+- JavaBeans
+- FactoryMethod
+- AbstractFactory
 - Singleton
 - Prototype
 - Composite
 - Encapsulation
-- Separation of Concerns
-- Dependency Injection
+- SeparationOfConcerns
+- DependencyInjection
 - Testability
-- Code Smell
-- Long Parameter List
-- Telescoping Constructor
-- Client Code
+- CodeSmell
+- LongParameterList
+- TelescopingConstructor
+- ClientCode
 - Director
-- Concrete Builder
+- ConcreteBuilder
 - Product
 - Interface
-- Method Chaining
-- Optional Parameters
+- MethodChaining
+- OptionalParameters
 - Configuration
-- User Experience
-- Software Development
-- Agile Development
+- UserExperience
+- SoftwareDevelopment
+- AgileDevelopment
 - Refactoring
-- Clean Code
-- Best Practices
-- Code Quality
-- Software Engineering
+- CleanCode
+- BestPractices
+- CodeQuality
+- SoftwareEngineering
 title: '[DesignPattern] 빌더 패턴'
 ---
 
@@ -112,7 +112,7 @@ title: '[DesignPattern] 빌더 패턴'
 
 ## 관련 기술
 - Lombok
-- Java Beans
+- JavaBeans
 - Factory Method 패턴
 - Singleton 패턴
 - Composite 패턴
@@ -678,7 +678,7 @@ classDiagram
 <!--
 ## 관련 기술
 - Lombok
-- Java Beans
+- JavaBeans
 - Factory Method 패턴
 - Singleton 패턴
 - Composite 패턴

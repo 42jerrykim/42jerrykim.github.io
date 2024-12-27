@@ -20,8 +20,8 @@ tags:
 - Compatibility
 - Port
 - VFS
-- Virtual Filesystem Switch
-- Virtual Filesystem
+- VirtualFilesystemSwitch
+- VirtualFilesystem
 title: '[Linux] File System 종류- DebugFS, SecurityFS, PipeFS, SockFS'
 ---
 

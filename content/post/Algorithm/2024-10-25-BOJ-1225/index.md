@@ -5,14 +5,14 @@ categories:
 - Math
 - Implementation
 tags:
-- Mathematical Concepts
+- MathematicalConcepts
 - Implementation
-- Brute Force
-- Time Complexity
-- String Processing
-- Sum of Digits
-- Integer Multiplication
-- Number Theory
+- BruteForce
+- TimeComplexity
+- StringProcessing
+- SumOfDigits
+- IntegerMultiplication
+- NumberTheory
 image: "tmp_wordcloud.png"
 date: 2024-10-25
 ---

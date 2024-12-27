@@ -7,57 +7,57 @@ header:
   teaser: /assets/images/2024/2024-08-26-typescript-inference.png
 tags:
 - TypeScript
-- Type Inference
-- Type Safety
+- TypeInference
+- TypeSafety
 - JavaScript
-- Code Readability
+- CodeReadability
 - Conciseness
-- Best Common Type
-- Contextual Typing
+- BestCommonType
+- ContextualTyping
 - Generics
-- Union Types
-- Intersection Types
-- Type Checking
-- Error Prevention
-- Function Return Types
-- Variable Initialization
-- Parameter Default Values
-- Object Types
-- Array Types
-- Type Annotations
-- TypeScript Compiler
-- TypeScript Features
-- Clean Code
-- Development Best Practices
-- TypeScript Examples
-- TypeScript Guide
-- TypeScript Basics
-- Advanced TypeScript
-- TypeScript Tips
-- TypeScript for Beginners
-- TypeScript Resources
-- TypeScript Documentation
-- TypeScript Community
-- TypeScript Tutorials
-- TypeScript Applications
-- TypeScript Development
-- TypeScript Programming
-- TypeScript Code Examples
-- TypeScript Functions
-- TypeScript Variables
-- TypeScript Types
-- TypeScript Syntax
-- TypeScript Concepts
-- TypeScript Patterns
-- TypeScript Best Practices
-- TypeScript Performance
-- TypeScript Tools
-- TypeScript Libraries
-- TypeScript Frameworks
-- TypeScript Ecosystem
-- TypeScript Projects
-- TypeScript Development Environment
-- TypeScript IDE
+- UnionTypes
+- IntersectionTypes
+- TypeChecking
+- ErrorPrevention
+- FunctionReturnTypes
+- VariableInitialization
+- ParameterDefaultValues
+- ObjectTypes
+- ArrayTypes
+- TypeAnnotations
+- TypeScriptCompiler
+- TypeScriptFeatures
+- CleanCode
+- DevelopmentBestPractices
+- TypeScriptExamples
+- TypeScriptGuide
+- TypeScriptBasics
+- AdvancedTypeScript
+- TypeScriptTips
+- TypeScriptForBeginners
+- TypeScriptResources
+- TypeScriptDocumentation
+- TypeScriptCommunity
+- TypeScriptTutorials
+- TypeScriptApplications
+- TypeScriptDevelopment
+- TypeScriptProgramming
+- TypeScriptCodeExamples
+- TypeScriptFunctions
+- TypeScriptVariables
+- TypeScriptTypes
+- TypeScriptSyntax
+- TypeScriptConcepts
+- TypeScriptPatterns
+- TypeScriptBestPractices
+- TypeScriptPerformance
+- TypeScriptTools
+- TypeScriptLibraries
+- TypeScriptFrameworks
+- TypeScriptEcosystem
+- TypeScriptProjects
+- TypeScriptDevelopmentEnvironment
+- TypeScriptIDE
 title: '[TypeScript] 타입 추론의 모든 것'
 ---
 

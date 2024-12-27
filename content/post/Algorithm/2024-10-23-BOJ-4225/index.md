@@ -3,11 +3,11 @@ title: "[Algorithm] C++/Python 백준 4225번 : 쓰레기 슈트"
 categories: 
 - Algorithm
 - Geometry
-- Convex Hull
+- ConvexHull
 tags:
-- Convex Hull
-- Rotating Calipers
-- Computational Geometry
+- ConvexHull
+- RotatingCalipers
+- ComputationalGeometry
 - O(N log N)
 - Geometry
 image: "tmp_wordcloud.png"

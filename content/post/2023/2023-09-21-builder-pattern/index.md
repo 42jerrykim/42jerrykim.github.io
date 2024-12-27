@@ -2,33 +2,33 @@
 image: "tmp_wordcloud.png"
 date: "2023-09-21T00:00:00Z"
 tag:
-- Builder pattern
-- Creational design pattern
+- BuilderPattern
+- CreationalDesignPattern
 - Construction of complex objects
 - Separation of construction and representation
-- Optional attributes
-- Java implementation
-- Builder class
-- Computer object
+- OptionalAttributes
+- JavaImplementation
+- BuilderClass
+- ComputerObject
 - Retrofit
 - Okhttp
-- Object creation problems
+- ObjectCreationProblems
 - Flexibility
-- Object initialization
-- Nested objects
-- Director class
-- Telescoping constructor
-- Different representations
+- ObjectInitialization
+- NestedObjects
+- DirectorClass
+- TelescopingConstructor
+- DifferentRepresentations
 - Clean and flexible object creation
-- Effective Java
-- GoF Design Patterns
-- Coding style
-- Maintainable code
-- Construction algorithm
-- Assembly method
-- JavaBean pattern
+- EffectiveJava
+- GoFDesignPatterns
+- CodingStyle
+- MaintainableCode
+- ConstructionAlgorithm
+- AssemblyMethod
+- JavaBeanPattern
 - Lombok @Builder annotation
-- Maze game
+- MazeGame
 - Text and HTML documents
 title: '[DesignPattern] Builder pattern - 생성과 표현의 분리'
 ---

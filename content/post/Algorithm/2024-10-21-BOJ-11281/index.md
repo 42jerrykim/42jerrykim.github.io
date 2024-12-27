@@ -2,16 +2,16 @@
 title: "[Algorithm] C++/Python 백준 11281번 : 2-SAT - 4"
 categories: 
 - Algorithm
-- Graph Theory
+- GraphTheory
 - 2-SAT
 tags:
 - 2-SAT
-- Strongly Connected Components
+- StronglyConnectedComponents
 - Kosaraju's Algorithm
-- Graph Theory
-- Implication Graph
-- Time Complexity O(N+M)
-- Graph Traversal
+- GraphTheory
+- ImplicationGraph
+- O(N+M)
+- GraphTraversal
 image: "tmp_wordcloud.png"
 date: 2024-10-21
 ---

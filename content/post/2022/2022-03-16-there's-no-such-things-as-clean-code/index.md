@@ -1,13 +1,13 @@
 ---
 image: "tmp_wordcloud.png"
 categories:
-- Clean Code
+- CleanCode
 date: "2022-03-16T00:00:00Z"
 header:
   teaser: /assets/images/undefined/cleancode.jpg
 last_modified_at: "2022-01-16"
 tag:
-- Clean Code
+- CleanCode
 - Programming
 title: '[Clean Code] 클린 코드와 같은 건 없다.'
 

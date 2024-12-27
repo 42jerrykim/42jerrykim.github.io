@@ -2,14 +2,14 @@
 title: "[Algorithm] C++/Python 백준 1533번 : 길의 개수"
 categories: 
 - Algorithm
-- Graph Theory
-- Matrix Exponentiation
+- GraphTheory
+- MatrixExponentiation
 tags:
-- Graph Theory
-- Matrix Exponentiation
-- Linear Algebra
-- Dynamic Programming
-- Divide and Conquer
+- GraphTheory
+- MatrixExponentiation
+- LinearAlgebra
+- DynamicProgramming
+- DivideAndConquer
 - Mathematics
 date: 2024-10-24
 image: "tmp_wordcloud.png"

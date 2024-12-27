@@ -7,13 +7,13 @@ categories:
 tags:
 - Implementation
 - String
-- Hash Map
-- Data Structures
-- Input Processing
-- Brute Force
+- HashMap
+- DataStructures
+- InputProcessing
+- BruteForce
 - Optimization
 - O(N)
-- Problem Solving
+- ProblemSolving
 image: "tmp_wordcloud.png"
 date: 2024-10-17
 ---

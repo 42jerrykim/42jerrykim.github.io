@@ -5,8 +5,8 @@ tags:
 - Implementation
 - Simulation
 - Arithmetic
-- Time Complexity O(1)
-- Input Parsing
+- O(1)
+- InputParsing
 image: "tmp_wordcloud.png"
 date: 2024-10-16
 ---

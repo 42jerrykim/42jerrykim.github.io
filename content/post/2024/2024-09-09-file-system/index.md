@@ -17,54 +17,54 @@ tags:
 - POSIX
 - Inode
 - Mount
-- File Permissions
-- Hierarchical Structure
+- FilePermissions
+- HierarchicalStructure
 - Superblock
-- Block Group
+- BlockGroup
 - Metadata
 - Journaling
-- Data Integrity
-- Virtual Filesystem
-- Device Files
-- Configuration Files
-- User Home Directories
-- Shared Libraries
-- Temporary Files
-- System Binaries
-- Variable Data
-- Network File System
-- Filesystem Check
-- Disk Usage
+- DataIntegrity
+- VirtualFilesystem
+- DeviceFiles
+- ConfigurationFiles
+- UserHomeDirectories
+- SharedLibraries
+- TemporaryFiles
+- SystemBinaries
+- VariableData
+- NetworkFileSystem
+- FilesystemCheck
+- DiskUsage
 - Backup
-- Disk Quotas
-- File Types
-- Read Write Execute
+- DiskQuotas
+- FileTypes
+- ReadWriteExecute
 - Mounting
 - Unmounting
-- Special Files
-- Virtual Filesystems
-- Character Devices
-- Block Devices
+- SpecialFiles
+- VirtualFilesystems
+- CharacterDevices
+- BlockDevices
 - Pipes
 - Sockets
-- Disk Management
-- System Performance
-- Data Recovery
-- System Security
-- File Ownership
-- User Groups
-- Command Line
-- System Administration
-- Data Blocks
-- File Types
-- File Structure
-- File Access
-- File System Types
-- File System Management
-- File System Hierarchy
-- File System Standards
-- File System Integrity
-- File System Monitoring
+- DiskManagement
+- SystemPerformance
+- DataRecovery
+- SystemSecurity
+- FileOwnership
+- UserGroups
+- CommandLine
+- SystemAdministration
+- DataBlocks
+- FileTypes
+- FileStructure
+- FileAccess
+- FileSystemTypes
+- FileSystemManagement
+- FileSystemHierarchy
+- FileSystemStandards
+- FileSystemIntegrity
+- FileSystemMonitoring
 title: '[Linux] Linux(리눅스) 파일 시스템의 종류와 특징'
 ---
 

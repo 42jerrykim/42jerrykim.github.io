@@ -4,8 +4,8 @@ title: "[CSharp] C# 형식 시스템"
 categories: CSharp
 tags:
 - C#
-- type system
-- strong typing
+- TypeSystem
+- StrongTyping
 - .NET
 - variables
 - constants
@@ -15,48 +15,48 @@ tags:
 - enums
 - interfaces
 - generics
-- value types
-- reference types
+- ValueTypes
+- ReferenceTypes
 - metadata
 - CLR
 - casting
 - boxing
 - unboxing
 - literals
-- nullable types
-- anonymous types
+- NullableTypes
+- AnonymousTypes
 - collections
 - arrays
 - inheritance
 - object-oriented
 - programming
-- software development
+- SoftwareDevelopment
 - coding
 - syntax
-- programming languages
-- software engineering
-- data types
-- type safety
-- type inference
-- type conversion
-- type parameters
-- type hierarchy
-- type checking
-- type casting
-- type definitions
-- type constraints
-- type annotations
-- type declarations
-- type compatibility
-- type system design
-- type system principles
-- type system features
-- type system rules
-- type system implementation
-- type system overview
-- type system concepts
-- type system examples
-- type system applications
+- ProgrammingLanguages
+- SoftwareEngineering
+- DataTypes
+- TypeSafety
+- TypeInference
+- TypeConversion
+- TypeParameters
+- TypeHierarchy
+- TypeChecking
+- TypeCasting
+- TypeDefinitions
+- TypeConstraints
+- TypeAnnotations
+- TypeDeclarations
+- TypeCompatibility
+- TypeSystemDesign
+- TypeSystemPrinciples
+- TypeSystemFeatures
+- TypeSystemRules
+- TypeSystemImplementation
+- TypeSystemOverview
+- TypeSystemConcepts
+- TypeSystemExamples
+- TypeSystemApplications
 - type system in C#
 - type system in .NET
 - type system in programming

@@ -5,14 +5,14 @@ categories:
 - Math
 - Implementation
 tags:
-- Harmonic Series
+- HarmonicSeries
 - Greedy
 - Implementation
-- Iterative Summation
-- Time Complexity O(N)
+- IterativeSummation
+- O(N)
 - Math
-- Mathematical Concept
-- Implementation Problem
+- MathematicalConcept
+- ImplementationProblem
 image: "tmp_wordcloud.png"
 date: 2024-01-01
 ---

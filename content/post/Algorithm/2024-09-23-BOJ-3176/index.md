@@ -6,12 +6,12 @@ header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
 - LCA
-- Sparse Table
-- Binary Lifting
+- SparseTable
+- BinaryLifting
 - DFS
 - Tree
-- Data Structures
-- Graph Traversal
+- DataStructures
+- GraphTraversal
 title: '[Algorithm] C++/Python 백준 3176번 : 도로 네트워크'
 ---
 

@@ -2,8 +2,8 @@
 title: "[Algorithm] C++/Python 백준 4792번 : 레드 블루 스패닝 트리"
 categories: 
 - Algorithm
-- Graph Theory
-- Minimum Spanning Tree
+- GraphTheory
+- MinimumSpanningTree
 tags:
 - MST
 - Graph
@@ -11,7 +11,7 @@ tags:
 - Union-Find
 - O(M log N)
 - Implementation
-- Graph Theory
+- GraphTheory
 image: "tmp_wordcloud.png"
 date: 2024-12-12
 ---

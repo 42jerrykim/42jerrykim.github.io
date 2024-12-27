@@ -2,15 +2,15 @@
 title: "[Algorithm] C++/Python 백준 3830번 : 교수님은 기다리지 않는다"
 categories: 
 - Algorithm
-- Union Find
-- Disjoint Set
+- UnionFind
+- DisjointSet
 tags:
-- Union Find
-- Disjoint Set
-- Weighted Union Find
-- Path Compression
-- Data Structures
-- Time Complexity O(M log N)
+- UnionFind
+- DisjointSet
+- WeightedUnionFind
+- PathCompression
+- DataStructures
+- O(M log N)
 image: "tmp_wordcloud.png"
 date: 2024-10-23
 ---

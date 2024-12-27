@@ -5,7 +5,7 @@ tags:
 - Mathematics
 - Strings
 - Simulation
-- Brute Force
+- BruteForce
 - Modulo
 - FizzBuzz
 image: "tmp_wordcloud.png"
