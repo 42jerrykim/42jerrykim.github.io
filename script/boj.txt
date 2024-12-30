@@ -1,6 +1,6 @@
 위 코드를 참고하여 다음 작업을 수행해줘
 
-https://www.acmicpc.net/problem/1671
+https://www.acmicpc.net/problem/16163
 
 위 링크에 있는 문제를 설명하고 풀이하는 블로그 글을 작성하려고 한다.
 다음 형식에 맞춰 블로그 글을 작성해줘.
@@ -21,7 +21,7 @@ tags:
 - 자료 구조 (e.g., Stack, Queue, Tree)
 - 특정 개념 (e.g., 수학적 아이디어, 그래프 이론, 정렬 알고리즘)
 - 문제 유형 (e.g., Dynamic Programming, Graph Traversal, Geometry)
-image: "tmp_wordcloud.png"
+image: "index.png"
 date: {오늘 날짜(예, 2024-01-01)}
 ---
 
