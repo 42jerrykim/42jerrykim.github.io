@@ -2,6 +2,7 @@
 title: "[Algorithm] C++/Python 백준 1605번 : Non-boring sequences"
 categories: 
 - Algorithm
+- Platinum III
 - Divide and Conquer
 - Segment Tree
 tags:

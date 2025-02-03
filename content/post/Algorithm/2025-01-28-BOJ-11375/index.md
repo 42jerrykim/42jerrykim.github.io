@@ -2,6 +2,7 @@
 title: "[Algorithm] C++/Python 백준 11375번 : 열혈강호"
 categories: 
 - Algorithm
+- Platinum IV
 - Graph Theory
 - Bipartite Matching
 tags:

@@ -2,7 +2,7 @@
 title: "[Algorithm] C++/Python 백준 2336번 : 굉장한 학생"
 categories: 
 - Algorithm
-- Platinum-II
+- Platinum II
 - Data Structures
 - Binary Indexed Tree
 tags:
