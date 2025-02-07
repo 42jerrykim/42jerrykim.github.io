@@ -56,7 +56,7 @@ tags:
 - 업무자동화
 - 원격근무
 - IT가이드
-image: "rdp-clipboard.png"
+image: "image2.png"
 date: 2025-02-04
 ---
 
@@ -96,7 +96,6 @@ date: 2025-02-04
 |![](image3.png)|
 |:---:|
 |Task Manager의 Processes 탭|
-
 
 
 ## 결론
