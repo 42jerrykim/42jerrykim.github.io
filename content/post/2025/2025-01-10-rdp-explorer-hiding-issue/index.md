@@ -1,9 +1,11 @@
 ---
-title: "RDP 원격 세션에서 작업 표시줄이 사라지는 문제 해결하기"
-author: "42jerrykim"
+title: "[Windows] RDP 원격 세션에서 작업 표시줄이 사라지는 문제 해결하기"
 categories:
-- WindowsTips
-- TechTips
+- Windows
+tags:
+- Windows
+- RDP
+- RemoteDesktop
 - RemoteSecurity
 - WindowsGuide
 - TechGuide
