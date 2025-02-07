@@ -2,6 +2,7 @@
 title: "[Algorithm] C++/Python 백준 13907번 : 세금"
 categories: 
 - Algorithm
+- Platinum IV
 - Dynamic Programming
 - Graph Theory
 tags:
