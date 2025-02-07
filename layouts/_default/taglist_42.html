@@ -13,12 +13,12 @@
       {{ end }}
   </div>
   &nbsp;
-  <div class="widget-icon">
+  <div class="widget-icon" onclick="toggleExpend(this)" style="cursor: pointer;">
     {{ partial "helper/icon" "tag" }}
   </div>
-  <h2 class="widget-title section-title">{{ T "widget.tagCloud.title" }}</h2>
+  <h2 class="widget-title section-title" onclick="toggleExpend(this.previousElementSibling)" style="cursor: pointer;">더 많은 {{ T "widget.tagCloud.title" }}를 보려면 클릭하세요.</h2>
 
-  <div class="tagCloud-tags">
+  <div class="tagCloud-tags" style="display: none;">
     {{ range where (sort .Site.Taxonomies.tags ".Count" "desc") ".Count" "le" 4 }}
           <a href="{{ .Page.RelPermalink }}" class="font_size_{{ .Count }}">
               {{ .Page.Title }} ({{ .Count }})
@@ -28,5 +28,13 @@
 </section>
 
 {{ partialCached "footer/footer" . }}
+
+<script>
+function toggleExpend(element) {
+  const tagCloud = element.nextElementSibling.nextElementSibling;
+  const isExpanded = tagCloud.style.display === 'none';
+  tagCloud.style.display = isExpanded ? 'flex' : 'none';
+}
+</script>
 
 {{ end }}
