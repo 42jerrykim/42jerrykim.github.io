@@ -1,5 +1,5 @@
 ---
-title: "[Quote] Does a bird trust the branch or its own wings?"
+title: "[Quote] 새는 나뭇가지를 믿을까, 자신의 날개를 믿을까?"
 categories:
 - Quote
 tags:
@@ -33,16 +33,11 @@ tags:
 - Philosophy
 - Contemplation
 - Meditation
-image: "wildlife_nature_tree_sitting_feather_brown_branch_spring-804272.jpg"
+image: "wildlife_nature_tree_sitting_feather_brown_branch_spring-804272.png"
 date: 2025-02-07
 ---
 
 새가 나뭇가지에 앉을 때 과연 새는 나뭇가지를 믿을까, 아니면 자신의 날개를 믿을까? 이는 우리의 삶에 대한 깊은 통찰을 제공하는 질문이다.
-
-|![새가 나뭇가지에 앉아있는 모습](wildlife_nature_tree_sitting_feather_brown_branch_spring-804272.jpg)|
-|:---:|
-|새가 나뭇가지에 앉아 자신의 날개를 접고 있는 모습|
-
 
 ## 새와 나뭇가지의 교훈
 
