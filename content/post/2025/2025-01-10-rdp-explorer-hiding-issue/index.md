@@ -25,7 +25,7 @@ tags:
 - 업무자동화
 - 원격근무
 - IT가이드
-image: "index.png"
+image: "Screenshot-2025-01-10-152606.png"
 date: 2025-01-10
 ---
 
