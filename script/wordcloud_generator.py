@@ -66,7 +66,7 @@ def create_wordcloud_image(file_path, output_image_path, mandatory_text = "", fo
 
 if __name__ == "__main__":
     mandatory_text = ""
-    file_name = r"content\post\Algorithm\2024-12-26-BOJ-1671\index"
+    file_name = r"content\post\Algorithm\2025-02-10-BOJ-15504\index"
     
     input_text_file = file_name + ".md"  # 읽을 텍스트 파일 경로
     output_image_file = file_name + '.png'  # 저장할 그림 파일 경로
