@@ -14,6 +14,8 @@ image: image.png
 
 최근 computer scientist들과 전직 health reporter가 6개월간의 조사를 통해 매우 충격적인 사실을 발견했다. 수천 개의 가짜 학술 논문들이 특히 암(cancer)과 Covid-19 research 분야에서 발견되고 있으며, 이는 실제 과학 연구를 방해하고 있다는 것이다.
 
+[Why thousands of fake scientific papers are flooding academic journals](https://blog.medium.com/why-thousands-of-fake-scientific-papers-are-flooding-academic-journals-0ca31aa9882a)
+
 ## AI가 작성한 가짜 논문의 문제점
 
 여기서 "가짜"란 AI에 의해 작성되었거나 AI의 도움을 많이 받아 작성된 논문을 의미한다. 학계에서는 더 많은 논문 발표가 더 많은 funding으로 이어지기 때문에, journal editor들의 검토를 통과할 수 있는 논문을 대량 생산하려는 암묵적인 incentive가 존재한다. 이는 "publish or perish" 현상으로 이어진다.
