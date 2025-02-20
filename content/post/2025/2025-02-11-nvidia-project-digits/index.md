@@ -10,13 +10,63 @@ tags:
   - Project DIGITS
   - Grace Blackwell
   - Supercomputer
-draft: false
-featured_image: "project-digits.png"
+  - Deep Learning
+  - Machine Learning
+  - GPU Acceleration
+  - Neural Networks
+  - HPC (High-Performance Computing)
+  - CUDA Cores
+  - Tensor Cores
+  - NVLink-C2C
+  - Model Training
+  - Inference Engine
+  - Natural Language Processing
+  - Computer Vision
+  - Edge Computing
+  - Quantum Computing
+  - Federated Learning
+  - Explainable AI
+  - Autonomous Systems
+  - Robotics
+  - Data Science
+  - Model Optimization
+  - Hyperconverged Infrastructure
+  - Multi-Instance GPU
+  - Power Efficiency
+  - Thermal Design
+  - NVMe Storage
+  - Memory Bandwidth
+  - Parallel Computing
+  - Distributed Training
+  - Cloud Integration
+  - Hybrid Architecture
+  - AI Workflows
+  - Developer Tools
+  - Research Tools
+  - Educational Technology
+  - Prototyping
+  - Fine-Tuning
+  - Parameter Optimization
+  - Software Stack
+  - Containerization
+  - Virtualization
+  - CUDA Toolkit
+  - DGX Platform
+  - NGC Catalog
+  - AI Enterprise
+  - Blackwell Architecture
+  - Grace CPU
+  - Superchip Design
+  - Energy Efficiency
+  - Desktop Supercomputing
+  - Developer Ecosystem
+image: "nvidia-project-digits-exploded-vew-ari-22.png"
+description: "NVIDIA가 CES 2025에서 혁신적인 개인용 AI supercomputer인 Project DIGITS를 공개했다. 이는 AI 연구원, data scientist, 그리고 학생들에게 NVIDIA Grace Blackwell platform의 강력한 성능을 제공하는 획기적인 제품이다."
 ---
 
 NVIDIA가 CES 2025에서 혁신적인 개인용 AI supercomputer인 Project DIGITS를 공개했다. 이는 AI 연구원, data scientist, 그리고 학생들에게 NVIDIA Grace Blackwell platform의 강력한 성능을 제공하는 획기적인 제품이다.
 
-[NVIDIA Project DIGITS]([project-digits.png](https://www.nvidia.com/en-us/project-digits/#project-digits-notifyme))
+[![NVIDIA Project DIGITS](project-digits.png)](https://www.nvidia.com/en-us/project-digits/)
 
 ## Project DIGITS의 핵심 특징
 
