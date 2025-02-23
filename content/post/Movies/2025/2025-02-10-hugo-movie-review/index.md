@@ -3,8 +3,16 @@ title: "Hugo (2011) - 시계공의 아들이 전하는 영화의 마법"
 date: 2025-02-10
 description: "Martin Scorsese가 선사하는 마법 같은 모험, 영화 Hugo에 대한 리뷰"
 image: "MV5BMjAzNzk5MzgyNF5BMl5BanBnXkFtZTcwOTE4NDU5Ng@@._V1_.jpg"
-categories: ["Movies"]
-tags: ["Drama", "Adventure", "Family", "Fantasy", "Martin Scorsese", "Asa Butterfield", "Chloë Grace Moretz"]
+categories: 
+  - Movies
+tags: 
+  - Drama
+  - Adventure
+  - Family
+  - Fantasy
+  - Martin Scorsese
+  - Asa Butterfield
+  - Chloë Grace Moretz
 ---
 
 1930년대 파리 기차역에서 고아 소년 Hugo는 아버지의 유산인 자동인형을 수리하기 위해 고군분투한다. 장난감 가게 주인 Georges Méliès와 그의 대녀 Isabelle을 만나면서, Hugo는 단순한 자동인형 수리를 넘어 영화의 마법과 역사를 발견하는 놀라운 모험을 시작한다. 이 과정에서 그는 잊혀진 영화의 선구자를 재발견하고, 자신의 인생에도 새로운 의미를 찾게 된다.
@@ -48,9 +56,11 @@ Georges Méliès의 대녀. 책을 사랑하고 모험을 꿈꾸는 활발한 �
 기차역의 경비원. 전쟁에서 다리를 잃은 과거가 있으며, 엄격한 성격 뒤에 따뜻한 마음을 지니고 있다. Hugo를 쫓는 역할을 하지만, 점차 그를 이해하게 된다.
 
 ### Papa Georges (Ray Winstone)
+
 Hugo의 숙부. 시계를 관리하는 일을 하며, Hugo를 시계탑에서 키운다. 냉정하고 무뚝뚝한 성격이지만, Hugo에 대한 책임감을 가지고 있다.
 
 ### Mama Jeanne (Helen McCrory)
+
 Georges Méliès의 아내. 남편의 과거를 알고 있으며, 그를 지지하고 보호하려는 모습을 보인다. 따뜻하고 현명한 캐릭터로, 이야기의 중요한 연결고리 역할을 한다.
 
 ## 상세 줄거리
