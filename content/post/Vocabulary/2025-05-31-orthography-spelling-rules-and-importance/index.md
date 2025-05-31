@@ -41,7 +41,7 @@ Orthography는 그리스어 ‘ὀρθός(orthós)’와 ‘γραφή(graphḗ
 이어서 Orthography 개념을 시각적으로 이해하기 쉽게 그림으로 살펴본다.
 다음 이미지는 Orthography가 글자를 어떻게 올바르게 배열하고 표기하는지 보여준다.
 
-[![Greek and Latin Roots Unit 3 week 11 definitions - ppt download](https://tse3.mm.bing.net/th?id=OIP.-phGzyxLl7tNInqxiESPgAHaEK\&pid=Api)](https://slideplayer.com/slide/15315598/)
+[![Greek and Latin Roots Unit 3 week 11 definitions - ppt download](image.png)](https://slideplayer.com/slide/15315598/)
 
 ## Orthography 학습 방법
 
