@@ -71,7 +71,7 @@ tags:
 categories: 
 - Orthography
 - Spell Checking
-image: index02.png
+image: image02.png
 ---
 
 2025년 5월, 나라맞춤법검사기([https://nara-speller.co.kr/speller)](https://nara-speller.co.kr/speller)가 전면 리뉴얼되었다. 이번 업데이트는 디자인부터 기능까지 전반적인 개선을 목표로 하여, 사용자 편의성과 검사 정확도를 모두 높이는 데 중점을 두었다.
