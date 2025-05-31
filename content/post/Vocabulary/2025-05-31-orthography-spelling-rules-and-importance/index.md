@@ -21,7 +21,7 @@ tags:
 categories:
   - Vocabulary
   - Language
-image: image.png
+image: index.png
 ---
 
 Orthography는 글을 올바르게 표기하는 규칙을 의미한다. 언어마다 정해진 철자법과 맞춤법, 문장 부호의 사용법을 통칭하는 개념이다. 문자와 단어를 정확하게 쓰기 위한 일련의 규칙 체계를 나타내는 용어이다.
