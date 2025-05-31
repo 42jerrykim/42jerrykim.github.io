@@ -9,6 +9,8 @@ tags:
 - Vocabulary Learning
 image: "index.png"
 date: 2025-02-07
+url: "vocabulary-aid-meaning-and-usage"
+description: "영어 단어 'aid'의 다양한 의미와 활용법을 다룬다. '도움, 원조', '보조 장치', '지원하다' 등 문맥에 따른 다양한 의미와 예문을 통해 이해를 돕는다. First aid, Foreign aid 등 관련 표현과 Help, Assist, Support 등 유의어의 차이점도 함께 설명하여 실용적인 영어 학습 자료로 활용할 수 있다."
 ---
 
 오늘은 영어 단어 'aid'의 다양한 의미와 활용법에 대해 알아보고자 한다. 'Aid'는 일상 생활에서 자주 접할 수 있는 다의어로, 문맥에 따라 다른 의미로 사용된다. 이 글에서는 'aid'의 주요 의미와 예문, 그리고 관련 표현들을 살펴볼 것이다.

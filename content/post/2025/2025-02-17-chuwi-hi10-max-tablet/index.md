@@ -9,7 +9,7 @@ tags:
   - Tablet
   - 2-in-1
   - Windows Tablet
-description: CHUWI의 새로운 2-in-1 태블릿 Hi10 Max의 특징과 장점을 소개하는 글이다.
+description: "CHUWI Hi10 Max는 Windows 11을 탑재한 2-in-1 태블릿으로, 10.1인치 2K 디스플레이와 Intel N100 프로세서를 장착했다. 12GB RAM과 256GB SSD를 탑재하여 생산성 작업이 가능하며, 7.9mm 두께와 560g 무게로 휴대성이 뛰어나다. 키보드와 스타일러스 펜을 지원하여 업무와 학습에 활용하기 적합하며, 최대 6시간의 배터리 사용이 가능하다."
 image: p_3-new.webp
 ---
 
