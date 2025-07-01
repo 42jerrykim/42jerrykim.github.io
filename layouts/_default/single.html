@@ -1,0 +1,162 @@
+{{ define "body-class" }}
+    article-page
+    {{/* 
+        Enable the right sidebar if
+            - Widget different from 'TOC' is enabled
+            - TOC is enabled and not empty
+    */}}
+    {{- $HasWidgetNotTOC := false -}}
+    {{- $TOCWidgetEnabled := false -}}
+    {{- range .Site.Params.widgets.page -}}
+        {{- if ne .type "toc" -}}
+            {{ $HasWidgetNotTOC = true -}}
+        {{- else -}}
+            {{ $TOCWidgetEnabled = true -}}
+        {{- end -}}
+    {{- end -}}
+
+    {{- $TOCManuallyDisabled := eq .Params.toc false -}}
+    {{- $TOCEnabled := and (not $TOCManuallyDisabled) $TOCWidgetEnabled -}}
+    {{- $hasTOC := ge (len .TableOfContents) 100 -}}
+    {{- .Scratch.Set "TOCEnabled" (and $TOCEnabled $hasTOC) -}}
+    
+    {{- .Scratch.Set "hasWidget" (or $HasWidgetNotTOC (and $TOCEnabled $hasTOC)) -}}
+{{ end }}
+
+{{ define "main" }}
+    {{ partial "article/article.html" . }}
+
+    {{ if .Params.links }}
+        {{ partial "article/components/links" . }}
+    {{ end }}
+
+    {{/* Collection 포스트인 경우 처음 5개만 표시 (디버깅용) */}}
+    {{- if eq .Section "collection" -}}
+        {{- $currentCollection := .Parent -}}
+        {{- $allPosts := $currentCollection.Pages -}}
+        {{- $currentPageURL := .RelPermalink -}}
+        
+        {{- if gt (len $allPosts) 1 -}}
+        <section class="widget related">
+            <h2 class="widget-title section-title">{{ $currentCollection.Title }}의 관련 글들</h2>
+            
+            <div class="widget-body">
+                <div class="article-list--compact">
+                    {{/* 현재 글을 중심으로 앞뒤 2개씩 표시 */}}
+                    {{- $currentIndex := 0 -}}
+                    {{- range $idx, $post := $allPosts -}}
+                        {{- if eq $post.RelPermalink $currentPageURL -}}
+                            {{- $currentIndex = $idx -}}
+                        {{- end -}}
+                    {{- end -}}
+                    
+                    {{- $start := 0 -}}
+                    {{- $end := 4 -}}
+                    {{- $totalPosts := len $allPosts -}}
+                    
+                    {{/* 현재 글 중심으로 범위 계산 */}}
+                    {{- if ge $currentIndex 2 -}}
+                        {{- $start = sub $currentIndex 2 -}}
+                    {{- end -}}
+                    {{- if ge $totalPosts 5 -}}
+                        {{- $end = add $start 4 -}}
+                        {{- if ge $end $totalPosts -}}
+                            {{- $end = sub $totalPosts 1 -}}
+                            {{- $start = sub $end 4 -}}
+                            {{- if lt $start 0 -}}
+                                {{- $start = 0 -}}
+                            {{- end -}}
+                        {{- end -}}
+                    {{- else -}}
+                        {{- $end = sub $totalPosts 1 -}}
+                    {{- end -}}
+                    
+                    {{- range $idx, $post := $allPosts -}}
+                        {{- if and (ge $idx $start) (le $idx $end) -}}
+                            {{- $isCurrentPage := eq $post.RelPermalink $currentPageURL -}}
+                            <article{{ if $isCurrentPage }} class="current-page"{{ end }}>
+                                <a href="{{ $post.RelPermalink }}">
+                                    <div class="article-details">
+                                        <h2 class="article-title">
+                                            {{- $post.Title -}}{{ if $isCurrentPage }} <span class="current-indicator">📍 현재 글</span>{{ end }}
+                                        </h2>
+                                        <footer class="article-time">
+                                            <time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "2006.01.02" }}</time>
+                                            <span class="article-description">{{ $post.Params.description | default $post.Title }}</span>
+                                        </footer>
+                                    </div>
+
+                                    {{- $image := partialCached "helper/image" (dict "Context" $post "Type" "articleList") $post.RelPermalink "articleList" -}}
+                                    {{ if $image.exists }}
+                                        <div class="article-image">
+                                            {{ if $image.resource }}
+                                                {{- $Permalink := $image.resource.RelPermalink -}}
+                                                {{- $Width := $image.resource.Width -}}
+                                                {{- $Height := $image.resource.Height -}}
+
+                                                {{- if (default true $.Page.Site.Params.imageProcessing.cover.enabled) -}}
+                                                    {{- $thumbnail := $image.resource.Fill "120x120" -}}
+                                                    {{- $Permalink = $thumbnail.RelPermalink -}}
+                                                    {{- $Width = $thumbnail.Width -}}
+                                                    {{- $Height = $thumbnail.Height -}}
+                                                {{- end -}}
+                                                
+                                                <img src="{{ $Permalink }}" 
+                                                    width="{{ $Width }}"
+                                                    height="{{ $Height }}" 
+                                                    alt="{{ $post.Title }}"
+                                                    loading="lazy">
+                                            {{ else }}
+                                                <img src="{{ $image.permalink }}" loading="lazy" alt="Featured image of post {{ $post.Title }}" />
+                                            {{ end }}
+                                        </div>
+                                    {{ end }}
+                                </a>
+                            </article>
+                        {{- end -}}
+                    {{- end -}}
+                </div>
+                
+                {{/* 전체 목록 링크 */}}
+                <div class="collection-navigation">
+                    <a href="{{ $currentCollection.RelPermalink }}" class="view-all-link">
+                        📚 {{ $currentCollection.Title }} 전체 보기 ({{ len $allPosts }}개)
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <style>
+            .collection-navigation {
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+                border-top: 1px solid var(--card-separator-color, #ddd);
+                text-align: center;
+            }
+            
+            .view-all-link {
+                display: inline-block;
+                padding: 0.75rem 1.5rem;
+                text-decoration: none;
+                border-radius: 6px;
+                font-weight: 500;
+                transition: all 0.2s ease;
+            }
+        </style>
+        {{- end -}}
+    {{- end -}}
+
+    {{ partial "article/components/related-content" . }}
+     
+    {{ if not (eq .Params.comments false) }}
+        {{ partial "comments/include" . }}
+    {{ end }}
+
+    {{ partialCached "footer/footer" . }}
+
+    {{ partialCached "article/components/photoswipe" . }}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ if .Scratch.Get "hasWidget" }}{{ partial "sidebar/right.html" (dict "Context" . "Scope" "page") }}{{ end}}
+{{ end }} 

@@ -1,0 +1,15 @@
+{{- $related := (.Site.RegularPages.Related . | first 5) -}}
+{{- with $related -}}
+<section class="widget related">
+    
+    <h2 class="widget-title section-title">Related Content</h2>
+    
+    <div class="widget-body">
+        <div class="article-list--compact">
+            {{- range . -}}
+                {{ partial "article-list/compact" . }}
+            {{- end -}}
+        </div>
+    </div>
+</section>
+{{- end -}} 
