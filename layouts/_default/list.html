@@ -44,7 +44,11 @@
         </div>
     </header>
 
-    {{- $paginator := .Paginate .Pages }}
+    {{- $pages := .Pages -}}
+    {{- if or (eq .Section "collection") (hasPrefix .RelPermalink "/collection/") -}}
+        {{- $pages = .Pages.ByParam "collection_order" -}}
+    {{- end -}}
+    {{- $paginator := .Paginate $pages }}
     <section class="article-list--compact">
         {{ range $paginator.Pages }}
             {{- if eq .Section "collection" -}}

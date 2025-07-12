@@ -1,0 +1,233 @@
+{{ define "body-class" }}template-search{{ end }}
+{{ define "head" }}
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+    <script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+{{ end }}
+{{ define "main" }}
+<form class="search-form" onsubmit="return false;">
+    <p>
+        <label>{{ T "search.title" }}</label>
+        <input id="pagefind-search-input" name="keyword" placeholder="{{ T `search.placeholder` }}" />
+    </p>
+
+    <button type="button" title="{{ T `search.title` }}" onclick="triggerSearch()">
+        {{ partial "helper/icon" "search" }}
+    </button>
+</form>
+
+<div class="search-result">
+    <h3 class="search-result--title section-title"></h3>
+    <div class="search-result--list article-list--compact">
+        <div id="search"></div>
+    </div>
+</div>
+
+<script>
+    let pagefindInstance;
+    
+    window.addEventListener('DOMContentLoaded', (event) => {
+        // PagefindUI 초기화 시 검색 입력 숨기기
+        pagefindInstance = new PagefindUI({ 
+            element: "#search", 
+            showSubResults: true,
+            showEmptyFilters: true,
+            resetStyles: false,
+            autofocus: false,
+            translations: {
+                placeholder: "검색어를 입력하세요...",
+                clear_search: "검색 지우기",
+                load_more: "더 보기",
+                search_label: "사이트 검색",
+                filters_label: "필터",
+                zero_results: "검색 결과가 없습니다: [SEARCH_TERM]",
+                many_results: "[COUNT]개의 결과가 있습니다: [SEARCH_TERM]",
+                one_result: "1개의 결과가 있습니다: [SEARCH_TERM]",
+                alt_search: "검색: [SEARCH_TERM]",
+                search_suggestion: "검색어를 입력하세요",
+                searching: "검색 중..."
+            }
+        });
+        
+        // PagefindUI의 기본 검색 입력 숨기기
+        setTimeout(() => {
+            const pagefindInput = document.querySelector('.pagefind-ui__search-input');
+            if (pagefindInput) {
+                pagefindInput.style.display = 'none';
+            }
+        }, 100);
+        
+        // URL 파라미터에서 검색어 추출
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('keyword') || urlParams.get('q') || urlParams.get('search');
+        
+        if (searchQuery) {
+            document.getElementById('pagefind-search-input').value = searchQuery;
+            // 잠시 후 검색 실행 (PagefindUI가 완전히 로드된 후)
+            setTimeout(() => {
+                triggerSearch();
+            }, 500);
+        }
+        
+        // 커스텀 검색 입력과 PagefindUI 연결
+        const customInput = document.getElementById('pagefind-search-input');
+        customInput.addEventListener('input', function() {
+            const pagefindInput = document.querySelector('.pagefind-ui__search-input');
+            if (pagefindInput) {
+                pagefindInput.value = this.value;
+                pagefindInput.dispatchEvent(new Event('input'));
+            }
+            updateSearchResultTitle(this.value);
+        });
+        
+        // 엔터 키 검색 지원
+        customInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                triggerSearch();
+            }
+        });
+    });
+    
+    function triggerSearch() {
+        const searchTerm = document.getElementById('pagefind-search-input').value;
+        const pagefindInput = document.querySelector('.pagefind-ui__search-input');
+        if (pagefindInput) {
+            pagefindInput.value = searchTerm;
+            pagefindInput.dispatchEvent(new Event('input'));
+        }
+        updateSearchResultTitle(searchTerm);
+    }
+    
+    function updateSearchResultTitle(searchTerm) {
+        const resultTitle = document.querySelector('.search-result--title');
+        if (searchTerm.trim()) {
+            resultTitle.textContent = `"${searchTerm}"에 대한 검색 결과`;
+            resultTitle.style.display = 'block';
+        } else {
+            resultTitle.style.display = 'none';
+        }
+    }
+</script>
+
+<style>
+    /* PagefindUI 기본 검색 입력 숨기기 */
+    .pagefind-ui__search-input {
+        display: none !important;
+    }
+    
+    /* PagefindUI 결과를 article-list--compact 스타일로 변환 */
+    .pagefind-ui__results {
+        margin-top: 0;
+    }
+    
+    .pagefind-ui__result {
+        display: block;
+        margin-bottom: 1rem;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        transition: none;
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .pagefind-ui__result:hover {
+        box-shadow: none;
+        transform: none;
+    }
+    
+    /* PagefindUI 결과를 article 스타일로 변환 */
+    .pagefind-ui__result {
+        border-bottom: 1px solid var(--card-separator-color, #ddd);
+        padding-bottom: 1rem;
+    }
+    
+    .pagefind-ui__result:last-child {
+        border-bottom: none;
+    }
+    
+    .pagefind-ui__result-link {
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        line-height: 1.4;
+        display: block;
+        margin-bottom: 0.5rem;
+        transition: color 0.3s ease;
+    }
+    
+    .pagefind-ui__result-link:hover {
+        color: var(--accent-color-darker);
+        text-decoration: underline;
+    }
+    
+    .pagefind-ui__result-excerpt {
+        color: var(--card-text-color-secondary);
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .pagefind-ui__result-excerpt mark {
+        background-color: var(--accent-color-lighter);
+        color: var(--accent-color-darker);
+        padding: 0.1em 0.2em;
+        border-radius: 3px;
+        font-weight: 600;
+    }
+    
+    .pagefind-ui__result-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    
+    .pagefind-ui__result-tag {
+        background: var(--tag-background-color);
+        color: var(--tag-text-color);
+        padding: 0.2em 0.6em;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    .pagefind-ui__button {
+        background: var(--accent-color);
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+    }
+    
+    .pagefind-ui__button:hover {
+        background: var(--accent-color-darker);
+        transform: translateY(-1px);
+    }
+    
+    .pagefind-ui__message {
+        text-align: center;
+        color: var(--card-text-color-secondary);
+        font-style: italic;
+        margin: 2rem 0;
+    }
+    
+    /* 검색 결과 제목 스타일 */
+    .search-result--title {
+        display: none;
+    }
+    
+    .search-result--title.show {
+        display: block;
+    }
+</style>
+
+{{ partialCached "footer/footer" . }}
+{{ end }}
+

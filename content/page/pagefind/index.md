@@ -1,10 +1,10 @@
 ---
-title: Search by Google
-layout: "search_google"
-draft: true
+title: Search
+layout: "search_pagefind"
+slug: "search"
 menu:
     main: 
-        weight: 7
+        weight: 3
         params:
             icon: search
 

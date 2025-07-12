@@ -34,6 +34,10 @@
             </main>
         </div>
         {{ partial "footer/include.html" . }}
+        
+        {{/* Search widget redirect script */}}
+        {{- $searchWidgetScript := resources.Get "ts/search-widget-redirect.ts" | js.Build (dict "minify" hugo.IsProduction) -}}
+        <script type="text/javascript" src="{{ $searchWidgetScript.RelPermalink }}" defer></script>
     </body>
 </html>
 
