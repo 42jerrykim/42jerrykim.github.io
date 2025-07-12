@@ -48,8 +48,16 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+
+      # Node.js 설치 (pagefind CLI via npx 사용)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'            # 원하는 LTS 버전 선택
+
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
+      
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
@@ -59,7 +67,13 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"          
+            --baseURL "${{ steps.pages.outputs.base_url }}/"   
+                   
+      # Pagefind 인덱스 생성
+      #    public 폴더(기본 Hugo 출력)에 인덱스를 추가
+      - name: Run Pagefind
+        run: npx pagefind --site public :contentReference[oaicite:0]{index=0}
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
