@@ -1,4 +1,4 @@
 # Permalinks format of each content section
-post = "/:sections/:filename/"
-collection = "/post/:sections[1:]/:filename/"
+post = "/:sections/:contentbasename/"
+collection = "/post/:sections[1:]/:contentbasename/"
 page = "/:slug/"
