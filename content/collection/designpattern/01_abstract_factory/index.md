@@ -1,9 +1,9 @@
 ---
 image: "tmp_wordcloud.png"
-title: "Abstract Factory"
+title: "[Design Pattern] Abstract Factory"
 last_modified_at: 2023-01-12
 date: 2022-01-01
-categories: DesignPattern
+categories: Design Pattern
 desctiption: test
 header:
   teaser: /assets/images/2024/2024-08-22-abstract-factory.png

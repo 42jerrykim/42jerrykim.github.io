@@ -1,6 +1,8 @@
 ---
 image: "tmp_wordcloud.png"
-title: "Chain of Responsibility"
+title: "[Design Pattern] Chain of Responsibility"
+categories:
+- Design Patterns
 last_modified_at: 2022-03-01
 date: 2022-01-01
 

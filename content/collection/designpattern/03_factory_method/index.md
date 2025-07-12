@@ -1,9 +1,9 @@
 ---
 image: "tmp_wordcloud.png"
-title: "Factory Method"
+title: "[Design Pattern] Factory Method"
 last_modified_at: 2024-08-22
 date: 2022-01-01
-categories: DesignPattern
+categories: Design Pattern
 
 header:
   teaser: /assets/images/2024/2024-08-21-factory-method.png

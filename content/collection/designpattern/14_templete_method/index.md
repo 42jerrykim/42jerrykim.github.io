@@ -1,6 +1,8 @@
 ---
 image: "tmp_wordcloud.png"
-title: "Templete Method"
+title: "[Design Pattern] Templete Method"
+categories:
+- Design Patterns
 last_modified_at: 2022-03-01
 date: 2022-01-01
 header:

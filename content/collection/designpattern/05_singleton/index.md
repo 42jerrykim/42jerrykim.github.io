@@ -1,9 +1,9 @@
 ---
 image: "tmp_wordcloud.png"
-title: "Singleton"
+title: "[Design Pattern] Singleton"
 last_modified_at: 2024-08-20
 date: 2022-01-01
-categories: DesignPattern
+categories: Design Pattern
 
 header:
   teaser: /assets/images/2024/2024-08-20-singleton.png
