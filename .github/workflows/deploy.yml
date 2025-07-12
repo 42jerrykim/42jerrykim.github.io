@@ -68,11 +68,10 @@ jobs:
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"   
-                   
+
       # Pagefind 인덱스 생성
-      #    public 폴더(기본 Hugo 출력)에 인덱스를 추가
       - name: Run Pagefind
-        run: npx pagefind --site public :contentReference[oaicite:0]{index=0}
+        run: npx pagefind --site public
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
