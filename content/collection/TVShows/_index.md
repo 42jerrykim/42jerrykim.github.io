@@ -1,12 +1,5 @@
 ---
-title: TVShows
-summary: 다양한 TVShows 리뷰 및 정보 모음
+title: "TV Shows"
+description: "다양한 장르의 TV 프로그램 리뷰 및 분석 모음입니다. 드라마, 예능, 다큐멘터리, 시리즈 등 흥미로운 TV 콘텐츠들의 깊이 있는 감상평과 추천 정보를 제공합니다."
+featured_image: "/images/home-banner.jpg"
 ---
-
-이 컬렉션은 다양한 TVShows(드라마, 예능, 다큐멘터리 등)에 대한 리뷰와 정보를 정리한 공간이다.
-
-- 최신 TVShows 감상 후기
-- 추천작 및 명작 소개
-- 각 시즌별 특징 및 감상 포인트
-
-TVShows에 관심 있는 사람들에게 유용한 정보를 제공하는 것이 목적이다.
