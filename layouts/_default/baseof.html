@@ -10,12 +10,44 @@
         <!-- End Google Tag Manager --> 
         {{- partial "head/head.html" . -}}
         {{- block "head" . -}}{{ end }}
+        
+        <!-- Pagefind 메타데이터 설정 -->
+        <meta name="pagefind-title" content="{{ .Title }}" data-pagefind-meta="title">
+        {{ if .Params.description }}
+        <meta name="pagefind-description" content="{{ .Params.description }}" data-pagefind-meta="description">
+        {{ end }}
+        {{ if .Date }}
+        <meta name="pagefind-date" content="{{ .Date.Format "2006-01-02" }}" data-pagefind-meta="date">
+        {{ end }}
+        
+        <!-- 헤더 이미지 메타데이터 -->
+        {{ if .Params.header.teaser }}
+        <meta name="pagefind-image" content="{{ .Params.header.teaser }}" data-pagefind-meta="image">
+        {{ else if .Params.image }}
+        <meta name="pagefind-image" content="{{ .Params.image }}" data-pagefind-meta="image">
+        {{ end }}
     </head>
-    <body class="{{ block `body-class` . }}{{ end }}">
+    <body class="{{ block `body-class` . }}{{ end }}" data-pagefind-body>
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4GSZLPB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
         {{- partial "head/colorScheme" . -}}
+
+        <!-- Pagefind 제목 메타데이터 (숨겨진 요소) -->
+        <div class="pagefind-title-hidden" data-pagefind-meta="title" data-pagefind-weight="100" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
+            {{ .Title }}
+        </div>
+        
+        <!-- Pagefind 이미지 메타데이터 (숨겨진 요소) - 워드클라우드 우선 -->
+        {{ if .Params.image }}
+        <div class="pagefind-image-hidden" data-pagefind-meta="image" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
+            {{ .Params.image }}
+        </div>
+        {{ else if .Params.header.teaser }}
+        <div class="pagefind-image-hidden" data-pagefind-meta="image" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
+            {{ .Params.header.teaser }}
+        </div>
+        {{ end }}
 
         {{/* The container is wider when there's any activated widget */}}
         {{- $hasWidget := false -}}
