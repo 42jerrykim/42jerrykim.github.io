@@ -317,6 +317,19 @@
         // 최초 1회도 실행
         removePagefindThumbs();
     }
+
+    // 검색 입력 클리어 버튼(pagefind-ui__search-clear) 완전 삭제 (강력 버전)
+    function removePagefindClearButtons() {
+        document.querySelectorAll('.pagefind-ui__search-clear.svelte-e9gkc3').forEach(el => el.remove());
+    }
+    // 페이지 전체에서 감시
+    const bodyObserver = new MutationObserver(removePagefindClearButtons);
+    bodyObserver.observe(document.body, { childList: true, subtree: true });
+    // 최초 1회, 그리고 0.5초 간격으로 여러 번 시도(동적 렌더링 대응)
+    removePagefindClearButtons();
+    for (let i = 1; i <= 5; i++) {
+        setTimeout(removePagefindClearButtons, i * 200);
+    }
 </script>
 
 <style>
@@ -343,6 +356,7 @@
         box-shadow: none;
         border-bottom: 1px solid var(--card-separator-color, #ddd);
         padding-bottom: 1.5rem;
+        --pagefind-ui-border-width: 0 !important;
     }
     
     .pagefind-ui__result:hover {
@@ -359,7 +373,9 @@
         flex-shrink: 0;
         width: 120px;
         height: 120px;
-        margin-right: 1rem;
+        margin-top: 1.5rem;
+        margin-left: 2.5rem;
+        margin-right: 0;
         border-radius: 8px;
         overflow: hidden;
         background: var(--card-background, #ffffff);
@@ -562,7 +578,7 @@
         .search-result-image {
             width: 100%;
             height: 200px;
-            margin-right: 0;
+            margin-left: 0;
             margin-bottom: 1rem;
         }
         
@@ -578,6 +594,16 @@
     .search-result-image--placeholder {
         background: transparent !important;
         border: none !important;
+    }
+
+    .pagefind-ui__form.svelte-e9gkc3:before {
+        display: none !important;
+        content: none !important;
+    }
+
+    .pagefind-ui__message.svelte-e9gkc3 {
+        margin-left: 2rem;
+        font-size: 1.3rem;
     }
 </style>
 
