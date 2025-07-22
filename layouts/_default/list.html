@@ -1,9 +1,5 @@
 {{ define "main" }}
     <header>
-        <!-- Pagefind용 제목 메타데이터 -->
-        <div class="pagefind-page-title" data-pagefind-meta="title" data-pagefind-weight="100" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
-            {{ .Title }}
-        </div>
         <h3 class="section-title">
             {{ if eq .Parent (.GetPage "/") }}
                 {{ T "list.section" }}
@@ -15,9 +11,9 @@
         <div class="section-card">
             <div class="section-details">
                 <h3 class="section-count">{{ T "list.page" (len .Pages) }}</h3>
-                <h1 class="section-term" data-pagefind-meta="title" data-pagefind-weight="80">{{ .Title }}</h1>
+                <h1 class="section-term">{{ .Title }}</h1>
                 {{ with .Params.description }}
-                    <h2 class="section-description" data-pagefind-weight="60">{{ . }}</h2>
+                    <h2 class="section-description" >{{ . }}</h2>
                 {{ end }}
             </div>
     
