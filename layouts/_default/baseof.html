@@ -11,9 +11,7 @@
         {{- partial "head/head.html" . -}}
         {{- block "head" . -}}{{ end }}
         
-        <div class="pagefind-title-hidden" data-pagefind-meta="title">
-            {{ .Title }}
-        </div>
+      
 
     </head>
     <body class="{{ block `body-class` . }}{{ end }}">
@@ -22,7 +20,9 @@
         <!-- End Google Tag Manager (noscript) -->
         {{- partial "head/colorScheme" . -}}
 
-     
+        <div class="pagefind-title-hidden" data-pagefind-meta="title" style="display:none;visibility:hidden">
+            {{ .Title }}
+        </div>
 
         {{/* The container is wider when there's any activated widget */}}
         {{- $hasWidget := false -}}
