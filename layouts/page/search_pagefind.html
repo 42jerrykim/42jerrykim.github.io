@@ -99,13 +99,33 @@
             addImagesToResults();
         }, 100);
         
+        // debounce 유틸 함수 추가
+        function debounce(func, wait) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        }
+
+        // 이미지 삽입을 debounce 처리
+        const debouncedAddImagesToResults = debounce(addImagesToResults, 200);
+        
         // 검색 결과 변경 감지
         const observer = new MutationObserver(function(mutations) {
+            let needUpdate = false;
             mutations.forEach(function(mutation) {
                 if (mutation.type === 'childList') {
-                    setTimeout(() => addImagesToResults(), 100);
+                    needUpdate = true;
                 }
             });
+            if (needUpdate) {
+                debouncedAddImagesToResults();
+                // 1초 동안 3회 반복적으로 이미지 삽입 시도 (비동기 fetch 보완)
+                setTimeout(addImagesToResults, 400);
+                setTimeout(addImagesToResults, 800);
+                setTimeout(addImagesToResults, 1200);
+            }
         });
         
         const searchContainer = document.getElementById('search');
@@ -162,6 +182,8 @@
 
             // 실제 페이지에서 헤더 이미지 추출 시도
             fetchHeaderImage(url).then(headerImageUrl => {
+                // result가 여전히 DOM에 존재하는지 확인 (비동기 fetch 중 DOM 변경 방지)
+                if (!document.body.contains(result)) return;
                 if (headerImageUrl) {
                     // 이미지 컨테이너 생성 (헤더 이미지가 있을 때만)
                     const imageContainer = document.createElement('div');
@@ -208,6 +230,7 @@
                 }
             }).catch(() => {
                 // 에러 시에도 placeholder로 빈 .search-result-image 추가
+                if (!document.body.contains(result)) return;
                 const imageContainer = document.createElement('div');
                 imageContainer.className = 'search-result-image search-result-image--placeholder';
                 const resultContent = document.createElement('div');
