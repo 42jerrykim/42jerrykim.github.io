@@ -148,55 +148,75 @@
         const results = document.querySelectorAll('.pagefind-ui__result:not(.image-processed)');
         results.forEach(result => {
             result.classList.add('image-processed');
-            
+
             // 이미 이미지가 있는 결과는 건너뛰기
             if (result.querySelector('.search-result-image')) {
                 return;
             }
-            
+
             // 검색 결과에서 이미지 메타데이터 찾기
             const link = result.querySelector('.pagefind-ui__result-link');
             if (!link) return;
-            
+
             const url = link.href;
-            
+
             // 실제 페이지에서 헤더 이미지 추출 시도
             fetchHeaderImage(url).then(headerImageUrl => {
                 if (headerImageUrl) {
                     // 이미지 컨테이너 생성 (헤더 이미지가 있을 때만)
                     const imageContainer = document.createElement('div');
                     imageContainer.className = 'search-result-image';
-                    
+
                     const img = document.createElement('img');
                     img.alt = link.textContent;
                     img.loading = 'lazy';
                     img.src = headerImageUrl;
-                    
+
                     img.onerror = function() {
                         // 이미지 로드 실패 시 이미지 컨테이너 제거
                         if (imageContainer.parentNode) {
                             imageContainer.parentNode.removeChild(imageContainer);
                         }
                     };
-                    
+
                     imageContainer.appendChild(img);
-                    
+
                     // 검색 결과 구조 변경
                     const resultContent = document.createElement('div');
                     resultContent.className = 'search-result-content';
-                    
+
                     // 기존 내용을 새 컨테이너로 이동
                     while (result.firstChild) {
                         resultContent.appendChild(result.firstChild);
                     }
-                    
+
                     // 이미지와 내용을 결과에 추가
                     result.appendChild(imageContainer);
                     result.appendChild(resultContent);
+                } else {
+                    // 이미지가 없으면 placeholder로 빈 .search-result-image 추가
+                    const imageContainer = document.createElement('div');
+                    imageContainer.className = 'search-result-image search-result-image--placeholder';
+                    // (내용 없음)
+                    const resultContent = document.createElement('div');
+                    resultContent.className = 'search-result-content';
+                    while (result.firstChild) {
+                        resultContent.appendChild(result.firstChild);
+                    }
+                    result.appendChild(imageContainer);
+                    result.appendChild(resultContent);
                 }
-                // 헤더 이미지가 없으면 아무것도 추가하지 않음
             }).catch(() => {
-                // 에러 시에도 아무것도 추가하지 않음 (아바타 제거)
+                // 에러 시에도 placeholder로 빈 .search-result-image 추가
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'search-result-image search-result-image--placeholder';
+                const resultContent = document.createElement('div');
+                resultContent.className = 'search-result-content';
+                while (result.firstChild) {
+                    resultContent.appendChild(result.firstChild);
+                }
+                result.appendChild(imageContainer);
+                result.appendChild(resultContent);
             });
         });
     }
@@ -214,7 +234,10 @@
             const imageElement = doc.querySelector('[data-pagefind-meta="image"]');
             if (imageElement && imageElement.textContent) {
                 let imageUrl = imageElement.textContent.trim();
-                
+                // 아바타 이미지 경로면 무조건 null 반환
+                if (imageUrl.includes('avatar')) return null;
+                if (imageUrl.endsWith('img/avatar.png')) return null;
+                if (imageUrl.endsWith('/avatar.png')) return null;
                 // 상대 경로 처리
                 if (imageUrl.startsWith('/')) {
                     imageUrl = window.location.origin + imageUrl;
@@ -227,33 +250,33 @@
                     }
                     imageUrl = window.location.origin + imageUrl;
                 }
-                
-                // 워드클라우드 이미지를 찾았으면 바로 반환 (다른 이미지 무시)
                 return imageUrl;
             }
-            
             // Open Graph 이미지 찾기
             const ogImage = doc.querySelector('meta[property="og:image"]');
             if (ogImage && ogImage.content) {
                 let imageUrl = ogImage.content.trim();
+                if (imageUrl.includes('avatar')) return null;
+                if (imageUrl.endsWith('img/avatar.png')) return null;
+                if (imageUrl.endsWith('/avatar.png')) return null;
                 if (imageUrl.startsWith('/')) {
                     imageUrl = window.location.origin + imageUrl;
                 }
                 return imageUrl;
             }
-            
             // 첫 번째 이미지 찾기 (article 내에서)
             const articleImages = doc.querySelectorAll('article img, .article-content img');
             for (const articleImg of articleImages) {
                 let src = articleImg.src || articleImg.getAttribute('src');
-                if (src && !src.includes('avatar')) {
-                    if (src.startsWith('/')) {
-                        src = window.location.origin + src;
-                    }
-                    return src;
+                if (!src) continue;
+                if (src.includes('avatar')) continue;
+                if (src.endsWith('img/avatar.png')) continue;
+                if (src.endsWith('/avatar.png')) continue;
+                if (src.startsWith('/')) {
+                    src = window.location.origin + src;
                 }
+                return src;
             }
-            
             return null;
         } catch (error) {
             console.log('Failed to fetch header image for:', pageUrl, error);
@@ -279,6 +302,20 @@
         } else {
             resultTitle.style.display = 'none';
         }
+    }
+
+    // 검색 결과 썸네일(pagefind-ui__result-thumb) 완전 삭제
+    function removePagefindThumbs() {
+        document.querySelectorAll('.pagefind-ui__result-thumb').forEach(el => el.remove());
+    }
+
+    // 검색 결과가 갱신될 때마다 썸네일 제거
+    const searchResultNode = document.getElementById('search');
+    if (searchResultNode) {
+        const observer = new MutationObserver(removePagefindThumbs);
+        observer.observe(searchResultNode, { childList: true, subtree: true });
+        // 최초 1회도 실행
+        removePagefindThumbs();
     }
 </script>
 
@@ -327,6 +364,9 @@
         overflow: hidden;
         background: var(--card-background, #ffffff);
         border: 1px solid var(--card-separator-color, #ddd);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .search-result-image img {
@@ -340,6 +380,9 @@
     .search-result-content {
         flex: 1;
         min-width: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     
     .pagefind-ui__result-link {
@@ -513,6 +556,7 @@
     @media (max-width: 768px) {
         .pagefind-ui__result {
             flex-direction: column;
+            align-items: stretch;
         }
         
         .search-result-image {
@@ -522,9 +566,18 @@
             margin-bottom: 1rem;
         }
         
+        .search-result-content {
+            align-items: flex-start;
+        }
+        
         .pagefind-ui__result-link {
             font-size: 1.5rem;
         }
+    }
+
+    .search-result-image--placeholder {
+        background: transparent !important;
+        border: none !important;
     }
 </style>
 
