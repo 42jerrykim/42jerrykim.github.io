@@ -4,7 +4,7 @@
 # 2. Pagefind 검색 인덱스 생성
 # 3. Hugo 개발 서버 시작
 
-Write-Host "Hugo 빌드를 시작합니다..." -ForegroundColor Green
+Write-Host "Hugo 빌드를 시작합니다..." -ForegroundColor Yellow
 hugo build
 
 if ($LASTEXITCODE -eq 0) {
@@ -17,10 +17,8 @@ if ($LASTEXITCODE -eq 0) {
         Write-Host "Pagefind 검색 인덱스가 성공적으로 생성되었습니다." -ForegroundColor Green
         
         Write-Host "Hugo 개발 서버를 시작합니다..." -ForegroundColor Cyan
-        Write-Host "서버는 http://localhost:1313 에서 실행됩니다." -ForegroundColor Cyan
-        Write-Host "서버를 중지하려면 Ctrl+C를 누르세요." -ForegroundColor Yellow
         
-        hugo serve
+        hugo serve -D
     } else {
         Write-Host "Pagefind 검색 인덱스 생성에 실패했습니다." -ForegroundColor Red
         exit 1
