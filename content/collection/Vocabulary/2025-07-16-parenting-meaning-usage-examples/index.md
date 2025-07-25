@@ -26,10 +26,9 @@ tags:
 - Well-being
 - Growth
 - Behavior
-image: "index.png"
-date: 2025-07-16
+image: index.png
+date: 2025-07-24
 description: "영어 단어 'parenting'의 의미와 용법, 관련 표현, 유의어와의 차이점을 다룬다. '양육, 부모 역할' 등 다양한 맥락에서의 사용법과 예문을 통해 이해를 돕는다. Child-rearing, Upbringing 등 유사 표현과 함께 실용적인 영어 학습 자료로 활용할 수 있다."
-draft: true
 ---
 
 오늘은 영어 단어 'parenting'의 의미와 활용법에 대해 알아보고자 한다. 'Parenting'은 주로 자녀를 양육하고 돌보는 부모의 역할과 관련된 단어로, 현대 사회에서 자주 사용된다. 이 글에서는 'parenting'의 주요 의미와 예문, 그리고 관련 표현들을 살펴볼 것이다.
