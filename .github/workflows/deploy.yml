@@ -71,7 +71,7 @@ jobs:
 
       # Pagefind 인덱스 생성
       - name: Run Pagefind
-        run: npx pagefind --site public
+        run: npx pagefind --site public --glob "post/**/*.html" --verbose
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
