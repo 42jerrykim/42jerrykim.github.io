@@ -19,7 +19,7 @@ if ($LASTEXITCODE -eq 0) {
         
         Write-Host "Hugo 개발 서버를 시작합니다..." -ForegroundColor Cyan
         
-        hugo serve -D
+        hugo serve -D --templateMetrics --templateMetricsHints
     } else {
         Write-Host "Pagefind 검색 인덱스 생성에 실패했습니다." -ForegroundColor Red
         exit 1
