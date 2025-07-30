@@ -66,8 +66,12 @@ def create_wordcloud_image(file_path, output_image_path, mandatory_text = "", fo
 
 if __name__ == "__main__":
     mandatory_text = ""
-    file_name = r"content\post\Vocabulary\2025-02-17-illegitimate\index"
-    
-    input_text_file = file_name + ".md"  # 읽을 텍스트 파일 경로
-    output_image_file = file_name + '.png'  # 저장할 그림 파일 경로
+    import sys
+
+    if len(sys.argv) < 2:
+        print("사용법: python wordcloud_generator.py <file_name(확장자 없는 경로)>")
+        sys.exit(1)
+    file_name = sys.argv[1]
+    input_text_file = file_name + "/index.md"  # 읽을 텍스트 파일 경로
+    output_image_file = file_name + '/wordcloud.png'  # 저장할 그림 파일 경로
     create_wordcloud_image(input_text_file, output_image_file, mandatory_text, font_path)
