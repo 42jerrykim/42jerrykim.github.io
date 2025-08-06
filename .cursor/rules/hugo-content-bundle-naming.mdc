@@ -4,6 +4,8 @@
 
 This document defines the standardized naming conventions for Hugo Content Bundles (Leaf Bundles) to ensure SEO optimization and maintainable content structure.
 
+**Current Date for New Posts: Use command line to get today's date**
+
 ## Content Bundle Definition
 
 A **Content Bundle** in Hugo is a folder containing an `index.md` file along with associated assets (images, documents, etc.). When creating new content bundles, strict naming conventions must be followed for optimal SEO and content organization.
@@ -19,15 +21,70 @@ A **Content Bundle** in Hugo is a folder containing an `index.md` file along wit
 YYYY-MM-DD-title-with-keywords
 ```
 
+### Special Format for English Word Posts
+```
+YYYY-MM-DD-{english-word}-{meaning-or-characteristic}
+```
+
+Examples:
+- `2025-08-06-juvenile-relating-to-young-person-not-yet-adult`
+- `2025-08-06-sophisticated-having-worldly-knowledge-and-refinement`
+- `2025-08-06-ubiquitous-present-existing-or-being-everywhere`
+- `2025-08-06-perseverance-persistence-in-doing-something-despite-difficulty`
+- `2025-08-06-eloquent-fluent-or-persuasive-in-speaking-or-writing`
+
 ### Format Breakdown
-- **YYYY-MM-DD**: Publication date in ISO format
+- **YYYY-MM-DD**: Publication date in ISO format (use today's date from command line)
 - **title-with-keywords**: SEO-optimized title with relevant keywords
 - **Separator**: Use hyphens (-) between words
 - **Length**: Keep folder name under 60 characters when possible
 
+### Date Guidelines
+- **Current Date**: Always use today's date in YYYY-MM-DD format
+- **Future Posts**: Use planned publication date
+- **Backdated Posts**: Use actual publication date (not creation date)
+- **Date Format**: Must be YYYY-MM-DD (4-digit year, 2-digit month, 2-digit day)
+
+### English Word Post Guidelines
+- **Format**: `YYYY-MM-DD-{english-word}-{core-meaning-description}`
+- **Word Selection**: Use the actual English word as the primary keyword
+- **Core Meaning**: Include the essential definition or concept of the word
+- **SEO Focus**: Include the English word prominently for better search visibility
+- **Descriptive Elements**: Use words that capture the fundamental meaning of the word
+
+### Core Meaning Description Strategies
+- **Definition**: Use the key concept from the word's definition (e.g., juvenile → relating-to-young-person-not-yet-adult)
+- **Essential Concept**: Focus on the core idea (e.g., sophisticated → having-worldly-knowledge-and-refinement)
+- **Primary Usage**: Emphasize main usage context (e.g., ubiquitous → present-existing-or-being-everywhere)
+- **Fundamental Trait**: Capture the basic characteristic (e.g., perseverance → persistence-in-doing-something-despite-difficulty)
+- **Length Target**: Aim for approximately 60 characters total length
+
 ### Examples
 
-#### Correct Examples
+#### Correct Examples (Using Today's Date)
+```
+# Example with today's date (run: Get-Date -Format "yyyy-MM-dd")
+2025-08-06-juvenile-english-word-introduction
+2025-08-06-ai-chatbot-development-guide
+2025-08-06-windows-11-performance-optimization
+2025-08-06-python-data-analysis-tutorial
+2025-08-06-gaming-hardware-review-comparison
+```
+
+#### English Word Post Examples
+```
+# English word introduction posts with core meaning descriptions (60 chars target)
+2025-08-06-juvenile-relating-to-young-person-not-yet-adult
+2025-08-06-sophisticated-having-worldly-knowledge-and-refinement
+2025-08-06-ubiquitous-present-existing-or-being-everywhere
+2025-08-06-perseverance-persistence-in-doing-something-despite-difficulty
+2025-08-06-eloquent-fluent-or-persuasive-in-speaking-or-writing
+2025-08-06-resilient-able-to-withstand-or-recover-quickly-from-difficulties
+2025-08-06-innovative-featuring-new-methods-advanced-or-original-ideas
+2025-08-06-authentic-of-undisputed-origin-and-not-a-copy-genuine
+```
+
+#### Historical Examples
 ```
 2025-08-06-thrustmaster-sol-r-2-hosas-space-sim-duo-review
 2025-08-04-pyinstaller-python-executable-deployment-guide
@@ -71,6 +128,7 @@ thrustmaster-sol-r-2-hosas-space-sim-duo-review-2025-08-06 (date at end)
 {date}-{product-name}-{version}-{review-type}
 {date}-{topic}-{technique}-{application}
 {date}-{software-name}-{feature}-{guide-type}
+{date}-{english-word}-{core-meaning-from-definition}
 ```
 
 #### Keyword Strategy
@@ -92,6 +150,34 @@ content/post/YYYY/YYYY-MM-DD-title-with-keywords/
 
 ## Implementation Guidelines
 
+### Quick Start Template
+When creating a new content bundle, use this template with today's date:
+
+```powershell
+# Get today's date in YYYY-MM-DD format
+$today = Get-Date -Format "yyyy-MM-dd"
+$year = Get-Date -Format "yyyy"
+
+# Create directory with today's date
+mkdir -p "content/post/$year/$today-your-title-here"
+
+# Create index.md with proper front matter
+```
+
+#### Alternative Commands
+```bash
+# Windows CMD
+for /f "tokens=2 delims==" %a in ('wmic OS Get localdatetime /value') do set "dt=%a"
+set "YYYY=%dt:~0,4%"
+set "MM=%dt:~4,2%"
+set "DD=%dt:~6,2%"
+set "today=%YYYY%-%MM%-%DD%"
+
+# Linux/Mac
+today=$(date +%Y-%m-%d)
+year=$(date +%Y)
+```
+
 ### Front Matter Alignment
 
 #### Required Front Matter Fields
@@ -99,8 +185,8 @@ content/post/YYYY/YYYY-MM-DD-title-with-keywords/
 ---
 title: "[Category] Human-Readable Title - Subtitle"
 description: "SEO-optimized description (150-160 characters)"
-date: YYYY-MM-DD
-lastmod: YYYY-MM-DD
+date: 2025-08-06  # Use today's date from: Get-Date -Format "yyyy-MM-dd"
+lastmod: 2025-08-06  # Use today's date from: Get-Date -Format "yyyy-MM-dd"
 categories: 
 - "Primary Category"
 - "Secondary Category"
@@ -117,3 +203,64 @@ image: "featured-image.jpg"
 - **Main Title**: Human-readable, SEO-optimized title
 - **Subtitle**: Additional context or clarification
 - **Length**: Keep total title under 70 characters
+
+### Date Management Best Practices
+- **Current Date**: Always use today's date obtained via command line
+- **Date Consistency**: Ensure folder name date matches front matter date
+- **Time Zone**: Use local timezone for date determination
+- **Date Updates**: Update `lastmod` when content is significantly revised
+
+### Date Retrieval Commands
+```powershell
+# PowerShell (Windows)
+Get-Date -Format "yyyy-MM-dd"
+
+# CMD (Windows)
+for /f "tokens=2 delims==" %a in ('wmic OS Get localdatetime /value') do set "dt=%a"
+set "today=%dt:~0,4%-%dt:~4,2%-%dt:~6,2%"
+
+# Bash (Linux/Mac)
+date +%Y-%m-%d
+```
+
+### Automated Content Bundle Creation
+```powershell
+# Complete script for creating a new content bundle
+$today = Get-Date -Format "yyyy-MM-dd"
+$year = Get-Date -Format "yyyy"
+$title = "your-seo-optimized-title-here"
+$folderName = "$today-$title"
+
+# For English word posts
+$englishWord = "juvenile"  # Replace with actual word
+$coreMeaning = "relating-to-young-person-not-yet-adult"  # Replace with core meaning from definition
+$wordFolderName = "$today-$englishWord-$coreMeaning"
+
+# Create directory structure
+New-Item -ItemType Directory -Path "content/post/$year/$folderName" -Force
+
+# For English word posts
+# New-Item -ItemType Directory -Path "content/post/$year/$wordFolderName" -Force
+
+# Create index.md with proper front matter
+$frontMatter = @"
+---
+title: "[Category] Human-Readable Title - Subtitle"
+description: "SEO-optimized description (150-160 characters)"
+date: $today
+lastmod: $today
+categories: 
+- "Primary Category"
+- "Secondary Category"
+tags: 
+- "primary-keyword"
+- "secondary-keyword"
+- "long-tail-keyword"
+image: "featured-image.jpg"
+---
+
+Your content here...
+"@
+
+$frontMatter | Out-File -FilePath "content/post/$year/$folderName/index.md" -Encoding UTF8
+```
