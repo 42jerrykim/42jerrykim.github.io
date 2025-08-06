@@ -1,0 +1,119 @@
+# Hugo Content Bundle Naming Convention Rules
+
+## Overview
+
+This document defines the standardized naming conventions for Hugo Content Bundles (Leaf Bundles) to ensure SEO optimization and maintainable content structure.
+
+## Content Bundle Definition
+
+A **Content Bundle** in Hugo is a folder containing an `index.md` file along with associated assets (images, documents, etc.). When creating new content bundles, strict naming conventions must be followed for optimal SEO and content organization.
+
+### Types of Content Bundles
+- **Leaf Bundle**: Contains `index.md` with no sub-pages (most common for blog posts)
+- **Branch Bundle**: Contains `_index.md` with sub-pages (for sections)
+
+## Folder Naming Convention
+
+### Required Format
+```
+YYYY-MM-DD-title-with-keywords
+```
+
+### Format Breakdown
+- **YYYY-MM-DD**: Publication date in ISO format
+- **title-with-keywords**: SEO-optimized title with relevant keywords
+- **Separator**: Use hyphens (-) between words
+- **Length**: Keep folder name under 60 characters when possible
+
+### Examples
+
+#### Correct Examples
+```
+2025-08-06-thrustmaster-sol-r-2-hosas-space-sim-duo-review
+2025-08-04-pyinstaller-python-executable-deployment-guide
+2025-08-01-faststone-image-viewer-8-1-review
+2025-07-30-chatgpt-study-mode-introduction
+2025-07-29-windowing-techniques-stream-processing-data-analysis-guide
+```
+
+#### Incorrect Examples
+```
+thrustmaster-review (missing date)
+2025-08-06_Thrustmaster_Review (wrong separators)
+2025-8-6-thrustmaster-sol-r-2-hosas-space-sim-duo-review (inconsistent date format)
+thrustmaster-sol-r-2-hosas-space-sim-duo-review-2025-08-06 (date at end)
+```
+
+## SEO Optimization Guidelines
+
+### Title Selection Principles
+
+#### **Keyword-Rich Titles**
+- Include primary target keywords naturally
+- Use long-tail keywords for better ranking
+- Avoid keyword stuffing
+
+#### **Descriptive and Specific**
+- Be specific about the content topic
+- Include product names, versions, or specific features
+- Use action words when appropriate
+
+#### **Length Considerations**
+- Optimal length: 30-50 characters
+- Maximum length: 60 characters
+- Avoid overly short or generic titles
+
+### SEO Best Practices
+
+#### Recommended Patterns
+```
+{date}-{primary-keyword}-{secondary-keyword}-{specific-detail}
+{date}-{product-name}-{version}-{review-type}
+{date}-{topic}-{technique}-{application}
+{date}-{software-name}-{feature}-{guide-type}
+```
+
+#### Keyword Strategy
+- **Primary Keywords**: Main topic or product name
+- **Secondary Keywords**: Related concepts or features
+- **Long-tail Keywords**: Specific use cases or scenarios
+- **Brand Names**: Include when reviewing or discussing specific products
+
+## Directory Structure Rules
+
+### Standard Structure
+```
+content/post/YYYY/YYYY-MM-DD-title-with-keywords/
+├── index.md
+├── featured-image.jpg
+├── additional-image.png
+└── supporting-document.pdf
+```
+
+## Implementation Guidelines
+
+### Front Matter Alignment
+
+#### Required Front Matter Fields
+```yaml
+---
+title: "[Category] Human-Readable Title - Subtitle"
+description: "SEO-optimized description (150-160 characters)"
+date: YYYY-MM-DD
+lastmod: YYYY-MM-DD
+categories: 
+- "Primary Category"
+- "Secondary Category"
+tags: 
+- "primary-keyword"
+- "secondary-keyword"
+- "long-tail-keyword"
+image: "featured-image.jpg"
+---
+```
+
+#### Title Format Rules
+- **Category Prefix**: Use appropriate category in brackets
+- **Main Title**: Human-readable, SEO-optimized title
+- **Subtitle**: Additional context or clarification
+- **Length**: Keep total title under 70 characters
