@@ -159,113 +159,6 @@ image: "season-poster.png"
 - **시즌 전체 관점**: 개별 에피소드가 아닌 시즌 전체의 서사 아크를 중심으로 분석한다
 - **재관람 도구**: 이 리뷰를 통해 시즌의 모든 내용을 완벽히 기억할 수 있도록 한다
 
-### 폴더 구조 규칙 (기존 규칙 유지)
-```
-content/collection/TVShows/{연도}/{연도-월-일}-{영어원제-소문자}-season-{시즌번호}-{부제목-핵심키워드}/
-```
-예시: `content/collection/TVShows/2023/2023-12-15-breaking-bad-season-5-finale-redemption-sacrifice/`
-
----
-
-## 📝 Front Matter 템플릿
-
-```yaml
----
-title: "[TV Series] 영어원제 (한국제목) Season X (방영연도) - 부제목"
-# 예시: "[TV Series] Breaking Bad (브레이킹 배드) Season 5 (2013) - 죄와 벌, 그리고 구원을 향한 마지막 여정"
-# 예시: "[TV Series] Stranger Things (기묘한 이야기) Season 4 (2022) - 어둠 속에서 피어나는 우정과 성장의 서사"
-description: "시즌 전체 아크와 핵심 메시지 (150자 이내)"
-date: {{ .Date }}
-categories:
-- TV Series
-- 주요장르
-- 보조장르
-- 제작사명
-tags:
-- 시즌번호
-- 총에피소드수
-- 방영기간
-- 감독명
-- 주연배우명
-- 주연여배우명
-- 조연배우명
-- 음악감독명
-- 주요장르
-- 보조장르
-- 세부장르
-- 드라마스타일
-- 서사구조
-- 시각스타일
-- 톤앤매너
-- 분위기
-- 주제의식
-- 특수효과
-- 촬영기법
-- 사운드디자인
-- 음악스타일
-- 기술혁신
-- 제작방식
-- 주인공유형
-- 시대적배경
-- 공간적배경
-- 문화적요소
-- 사회적이슈
-- 타겟관객
-- 시청률
-- 에피소드평균길이
-- 시즌갱신여부
-- 시즌피날레
-- 클리프행어
-- 캐릭터아크
-- 관계도변화
-- 세계관확장
-- 시즌연속성
-- 독립성
-- 몰입도유지
-- 반전요소
-- 감정적클라이맥스
-- 서사완성도
-- 시즌평가
-- 전체시리즈위치
-- Season-X
-- Episode-Count
-- Broadcast-Period
-- Director-Name
-- Lead-Actor-Name
-- Lead-Actress-Name  
-- Supporting-Actor-Name
-- Composer-Name
-- Primary-Genre
-- Secondary-Genre
-- Drama-Style
-- Narrative-Structure
-- Visual-Style
-- Technical-Innovation
-- Cultural-Element
-- Social-Issue
-- Target-Audience
-- Viewership-Rating
-- Episode-Length
-- Season-Renewal
-- Season-Finale
-- Cliffhanger
-- Character-Arc
-- Relationship-Dynamics
-- World-Building
-- Season-Continuity
-- Independence
-- Immersion-Strategy
-- Plot-Twist
-- Emotional-Climax
-- Narrative-Completion
-- Season-Evaluation
-- Series-Position
-image: "season-poster.png"
----
-```
-
----
-
 ## 📖 본문 구조 가이드
 
 ### 1. 도입부
@@ -318,9 +211,9 @@ image: "season-poster.png"
 
 ```mermaid
 flowchart LR
-    A[Episode 1-3: Setup<br/>시즌 설정과 캐릭터 소개] 
-    B[Episode 4-8: Development<br/>갈등 심화와 관계 발전]
-    C[Episode 9-12: Climax<br/>시즌 피날레와 해결]
+    A[Episode 1-{시즌총에피소드수*0.25}: Setup<br/>시즌 설정과 캐릭터 소개] 
+    B[Episode {시즌총에피소드수*0.25+1}-{시즌총에피소드수*0.75}: Development<br/>갈등 심화와 관계 발전]
+    C[Episode {시즌총에피소드수*0.75+1}-{시즌총에피소드수}: Climax<br/>시즌 피날레와 해결]
     
     A --> A1[주요 설정 요소1]
     A --> A2[새로운 캐릭터 소개]
@@ -335,6 +228,28 @@ flowchart LR
     C --> C3[다음 시즌 복선]
 ```
 
+### 에피소드 수별 구조 가이드
+
+**6-8화 시즌 (미니시리즈형)**
+- Setup: Episode 1-2 (25-33%)
+- Development: Episode 3-6 (50-67%)  
+- Climax: Episode 7-8 (17-25%)
+
+**10-13화 시즌 (표준형)**
+- Setup: Episode 1-3 (23-30%)
+- Development: Episode 4-9 (46-69%)
+- Climax: Episode 10-13 (23-30%)
+
+**16-22화 시즌 (확장형)**
+- Setup: Episode 1-4 (18-25%)
+- Development: Episode 5-16 (50-73%)
+- Climax: Episode 17-22 (23-32%)
+
+**24화 이상 시즌 (대형 시리즈형)**
+- Setup: Episode 1-6 (20-25%)
+- Development: Episode 7-18 (50-75%)
+- Climax: Episode 19-24 (20-25%)
+
 ### 에피소드별 핵심 포인트
 
 **Episode 1: {에피소드 제목}**
@@ -342,22 +257,22 @@ flowchart LR
 
 {새로운 설정이나 캐릭터}의 등장은 {시즌의 방향성}을 제시하며, {시각적/음향적 요소}는 {시즌의 톤앤매너}를 확립한다. {복선이나 상징적 요소}는 후에 {어떤 의미로 발전되는지}를 암시한다.
 
-**Episode 2-3: {에피소드 제목들}**
+**Episode 2-{시즌총에피소드수*0.25}: {Setup 구간 에피소드들}**
 {캐릭터 관계의 발전}과 {세계관의 확장}이 본격적으로 시작된다. {구체적 사건들}을 통해 {갈등의 심화}가 나타나며, {캐릭터들의 동기와 목표}가 명확해진다.
 
 {중요한 반전이나 복선}이 등장하여 {시청자의 기대감}을 고조시키고, {관계의 변화}는 {시즌 전체의 방향성}을 제시한다.
 
-**Episode 4-8: {중간 에피소드들}**
+**Episode {시즌총에피소드수*0.25+1}-{시즌총에피소드수*0.75}: {Development 구간 에피소드들}**
 {갈등의 본격적 심화}와 {캐릭터 성장의 가속화}가 일어나는 구간이다. {구체적 사건들}을 통해 {관계의 역학 변화}가 나타나며, {새로운 갈등 요소}가 추가된다.
 
 {캐릭터들의 내적 갈등}과 {외적 갈등}이 교차하며 {드라마의 긴장감}을 고조시킨다. {중요한 전환점들}에서는 {캐릭터의 변화}가 명확히 드러나며, {시즌 피날레를 위한 준비}가 이루어진다.
 
-**Episode 9-11: {피날레 준비}**
+**Episode {시즌총에피소드수*0.75+1}-{시즌총에피소드수-1}: {Climax 준비 구간}**
 {클라이맥스 준비 과정}이 본격화되는 구간이다. {모든 갈등 요소}가 {최종 대결을 위한 구체적 설정}을 통해 긴장감을 고조시킨다.
 
 {캐릭터들의 최종 선택}과 {관계의 결정적 변화}가 일어나며, {시즌 피날레를 위한 모든 복선}이 회수된다. {감정적 고조}와 {서사적 긴장감}이 절정에 달한다.
 
-**Episode 12: {시즌 피날레}**
+**Episode {시즌총에피소드수}: {시즌 피날레}**
 {시즌의 모든 갈등}이 {최종적 해결}을 맞이하는 순간이다. {주요 캐릭터들의 성장}이 {완성되는 지점}이며, {시즌 전체의 테마}가 {구체적 결말}을 통해 구현된다.
 
 {시즌 피날레의 특별함}은 {전체 시리즈에서의 의미}를 가지며, {다음 시즌을 위한 복선}이 {적절히 배치}된다. {시청자에게 남기는 여운}과 {시즌의 완성도}가 {최종적으로 평가}되는 순간이다.
@@ -467,66 +382,7 @@ graph LR
 
 ```
 
-### 6. 시즌별 기술적 분석 (필수)
-```markdown
-## 시즌별 제작 기술 분석
-
-### 에피소드별 제작 품질 변화
-| 에피소드 | 촬영 기법 | 특수효과 | 음악 활용 | 전체 평가 |
-|----------|-----------|----------|-----------|-----------|
-| Episode 1 | | | | |
-| Episode 2 | | | | |
-| ... | | | | |
-| Finale | | | | |
-
-### 시즌 전체 제작 일관성
-**촬영 스타일의 일관성과 변화**
-{시즌 전체에서 촬영 스타일이 어떻게 유지되고 변화하는지}
-
-**음악 테마의 발전과 변주**
-{시즌 전체에서 음악이 어떻게 발전하고 변주되는지}
-
-**특수효과의 발전 과정**
-{시즌 진행에 따른 특수효과의 발전과 변화}
-
-**편집 스타일의 변화**
-{에피소드별 편집 스타일의 변화와 시즌 전체의 일관성}
-
-### 연기 & 캐스팅 분석 테이블  
-| 배우 | 캐릭터 | 시즌 연기력 평가 | 캐스팅 적합성 | 특별한 점 |
-|------|---------|-------------|---------------|-----------|
-| | | | | |
-
-### 연출 & 각본 분석
-**연출의 강점과 약점 분석**
-{시즌 전체에서 연출의 강점과 약점}
-
-**각본의 강점과 약점 분석**
-{시즌 전체 서사에서 각본의 강점과 약점}
-
-### 음악 & 사운드 분석
-**특징적 음악 요소와 대표곡 분석**
-{시즌에서 특징적인 음악 요소들과 대표곡들}
-```
-
-### 7. 시즌별 비교 분석 (필수)
-```markdown
-## 시즌별 비교 분석
-
-### 이전 시즌과의 비교
-{이전 시즌과의 연속성과 차별점 분석}
-
-### 동시대 드라마와의 비교  
-{같은 시기 방영된 드라마들과의 비교}
-
-### 전체 시리즈에서의 위치
-{전체 시리즈에서 이 시즌이 갖는 의미와 위치}
-
-### 시즌 고유의 특별함
-{이 시즌만의 고유한 특징과 차별화 요소}
-```
-
-### 8. 심층 의미 분석 (필수)
+### 6. 심층 의미 분석
 ```markdown
 ## 숨겨진 레이어
 
@@ -543,7 +399,7 @@ graph LR
 {시즌 전체를 관통하는 테마의 심화 분석}
 ```
 
-### 9. 제작 비하인드
+### 7. 제작 비하인드
 ```markdown
 ## 제작 비하인드
 
@@ -560,32 +416,12 @@ graph LR
 {시청자 반응에 대한 제작진의 대응과 변화}
 ```
 
-### 10. 시즌 종합 평가 (필수)
+### 8. 시즌 종합 평가 (필수)
 ```markdown
 ## 시즌 종합 평가
 
 ### 시즌 완성도 평가
 **최종 평점: ★★★★☆ (X/5)**
-
-**시즌 아크 완성도**: X/5
-- 설정과 갈등의 완전한 해결
-- 캐릭터 성장의 완성
-- 시즌 피날레의 만족도
-
-**연속성과 독립성**: X/5
-- 이전 시즌과의 연결성
-- 시즌 자체의 독립적 완성도
-- 다음 시즌을 위한 적절한 복선
-
-**몰입도 유지**: X/5
-- 에피소드별 흥미 유지
-- 클리프행어와 반전의 효과
-- 시청자 몰입도 지속성
-
-**제작 품질**: X/5
-- 연출과 각본의 일관성
-- 연기와 캐스팅의 적합성
-- 기술적 완성도
 
 ### 한 줄 평
 {시즌을 한 문장으로 요약한 평가}
@@ -595,16 +431,6 @@ graph LR
 
 ### 관람 전 체크리스트
 {이 시즌을 보기 전에 알아야 할 사항들}
-
-### 다음 시즌 전망
-**시즌 피날레의 복선 분석**
-{시즌 피날레에서 다음 시즌을 위한 복선들}
-
-**예상되는 다음 시즌 전개**
-{다음 시즌에서 예상되는 전개}
-
-**시청자 기대감과 우려사항**
-{시청자들의 기대감과 우려사항}
 ```
 
 ---
@@ -655,532 +481,3 @@ graph LR
 3. **해석과 사실 구분**: 명확히 "이는 본 리뷰어의 해석이다" 등으로 구분 표시
 4. **대안 관점 제시**: 하나의 해석만 제시하지 말고 다양한 관점 언급
 5. **한계 인정**: "정확한 정보가 부족하여..." 등 정보의 한계 명시
-
-### 📋 사실 확인 체크리스트 (작성 전 필수)
-#### 드라마 기본 정보
-- [ ] 드라마 제목 (원제/한국제목) 정확성
-- [ ] 시즌 번호와 에피소드 수 확인
-- [ ] 방영 기간과 에피소드 길이 확인
-- [ ] 감독 및 주요 제작진 정보 검증
-- [ ] 주연/조연 배우 이름과 캐릭터명 매칭
-- [ ] 제작사와 방송사 정보 확인
-
-#### 기술적 정보
-- [ ] 촬영 장비와 기법 정보 검증
-- [ ] 특수효과 기술과 제작사 확인
-- [ ] 음악 작곡가와 주요 테마곡 정보
-- [ ] 로케이션과 세트 정보 정확성
-
-#### 시청률 및 반응
-- [ ] 에피소드별 시청률 확인
-- [ ] 시청자 반응과 토론 포인트 검증
-- [ ] 비평가 평점과 관련 리뷰 확인
-- [ ] 각종 드라마상 노미네이션과 수상 여부
-
-### 💡 품질 향상 팁
-1. **구체적 에피소드 묘사**: "Episode 5에서..."
-2. **드라마사적 맥락**: "2010년대 드라마 장르에서..."
-3. **기술적 세부사항**: "특정 촬영 기법의 효과..."
-4. **문화적 의미**: "현대 한국 사회에서 이 드라마가 갖는 의미는..."
-5. **사실과 해석 구분**: "사실적으로는... 하지만 해석적으로는..."
-
-### 🎬 시즌 전체 서사 분석 팁
-
-**시즌 아크 중심 분석 방식 채택**
-- 개별 에피소드 나열식이 아닌 시즌 전체의 서사 흐름을 중심으로 분석한다
-- "시즌 시작에서... 중간 전환점에서... 피날레에서..." 형태로 연결성 있게 작성한다
-- 각 에피소드의 역할과 시즌 전체에서의 의미를 명확히 제시한다
-
-**시즌별 특화 요소 분석**
-- "시즌 고유의 테마와 설정"을 중심으로 분석한다
-- "이전 시즌과의 연속성과 차별점"을 명확히 구분한다
-- "시즌 피날레의 특별성과 전체 시리즈에서의 의미"를 강조한다
-
-**캐릭터 성장의 장기적 관찰**
-- "시즌 전체를 통한 캐릭터의 변화 과정"을 추적한다
-- "관계의 발전과 변화"를 시즌 전체 관점에서 분석한다
-- "캐릭터 아크의 완성도"를 시즌 피날레와 연결하여 평가한다
-
-**시청자 몰입도 유지 전략**
-- "클리프행어와 반전의 효과"를 시즌 전체에서 분석한다
-- "에피소드별 흥미 유지 전략"을 제작진 관점에서 평가한다
-- "시청자 반응과 제작진의 대응"을 연결하여 분석한다
-
-**세계관 확장과 설정 발전**
-- "시즌별 새로운 요소의 도입"을 분석한다
-- "세계관의 확장과 일관성"을 평가한다
-- "설정의 발전과 복선의 회수"를 추적한다
-
----
-
-## 📚 참고 자료
-
-### 드라마 이론 키워드
-- **Serial Narrative**: 시리즈 내러티브 이론
-- **Character Arc Theory**: 캐릭터 아크 이론
-- **Seasonal Structure**: 시즌 구조 이론
-- **Cliffhanger Theory**: 클리프행어 이론
-- **Viewership Engagement**: 시청자 몰입도 이론
-- **Television Aesthetics**: TV 미학 이론
-
-### 분석 관점
-- **시리즈 내러티브 분석**: 전체 시리즈에서의 위치 중심
-- **시즌 독립성 분석**: 시즌 자체의 완성도 중심  
-- **캐릭터 성장 분석**: 장기적 캐릭터 발전 중심
-- **관계 역학 분석**: 캐릭터 간 관계 변화 중심
-
----
-
-## 🎓 전문가급 확장 가이드
-
-### 학술적 엄밀성 강화
-
-#### 필수 인용 이론가
-- **Robert C. Allen** (TV 내러티브 이론): "Speaking of Soap Operas"
-- **John Ellis** (TV 시청 이론): "Visible Fictions"
-- **Jane Feuer** (TV 장르 이론): "MTM: Quality Television"
-- **Horace Newcomb** (TV 문화 이론): "TV: The Most Popular Art"
-
-#### 분석 심화 방법
-1. **시리즈 내러티브 분석 (Serial Narrative Analysis)**
-   - Season arc의 구조 분석
-   - Episode 간 연결성과 독립성
-   - Series 전체에서의 위치와 의미
-
-2. **캐릭터 발전 분석 (Character Development Analysis)**
-   - Long-term character arc 분석
-   - Relationship dynamics 변화
-   - Character growth의 완성도
-
-3. **시청자 몰입도 분석 (Viewership Engagement Analysis)**
-   - Cliffhanger 효과 분석
-   - Emotional investment 전략
-   - Audience response 예측
-
-### 장르별 전문 분석법
-
-#### 드라마 시리즈
-- **Serial vs Episodic Structure** 분석
-- **Character Development** 구현 방식
-- **Seasonal Arc Theory** 적용
-
-#### 액션 드라마
-- **Action Sequence Design** 분석
-- **Stunt Coordination** 윤리적 고찰
-- **Visual Spectacle Theory** 적용
-
-#### 호러 드라마
-- **Psychological Horror Theory** 적용
-- **Atmospheric Building** 연결성 분석
-- **Cultural Anxiety** 표현 방식
-
-#### 코미디 드라마
-- **Comedy Timing** 고유성 분석
-- **Character Chemistry** 철학적 의미
-- **Laughter vs Drama** 변증법
-
-### 전문가급 문체 가이드
-
-#### 학술적 표현 예시
-```markdown
-❌ 일반적: "이 드라마는 좋다"
-✅ 전문가급: "본 시즌은 Allen의 시리즈 내러티브 이론 관점에서 볼 때, seasonal arc를 통해 캐릭터 발전을 효과적으로 구현하고 있다"
-
-❌ 일반적: "클리프행어가 흥미진진하다"  
-✅ 전문가급: "episode-ending cliffhanger를 통한 시청자 몰입도 유지는 Ellis의 TV 시청 이론을 현대적으로 재해석한 것으로 평가된다"
-```
-
-#### 비교 분석 심화
-```markdown
-### 드라마사적 맥락에서의 위치
-- **선행 영향**: [감독명]의 이전 시즌과의 연관성
-- **동시대적 대화**: 같은 시기 [장르] 드라마들과의 차별점
-- **후속 영향**: 이후 드라마 제작에 미친 파급효과
-```
-
-### 품질 평가 기준
-
-#### 전문가급 리뷰 체크리스트
-**사실 정확성 검증**
-- [ ] 모든 드라마 기본 정보 (제작진, 출연진, 방영일 등) 정확성 확인
-- [ ] 인용하는 이론가와 이론 개념의 정확한 출처 확인
-- [ ] 비교 대상 드라마들의 정보와 분석 내용 사실 검증
-- [ ] 제작 비하인드 정보의 공식적 확인 여부 체크
-
-**학술적 엄밀성**
-- [ ] 최소 3개 이상의 드라마 이론 개념 적용
-- [ ] 구체적 에피소드를 통한 textual evidence 제시  
-- [ ] 최소 5편 이상의 작품과 비교 분석
-- [ ] 사회문화적 맥락과의 연결
-- [ ] 드라마사적 의의와 미래 전망 제시
-- [ ] 학술적 객관성과 개인적 통찰의 균형
-- [ ] 전문 용어의 정확한 사용과 설명
-
-**신뢰성 확보**
-- [ ] 추측과 사실의 명확한 구분
-- [ ] 출처가 불분명한 정보에 대한 적절한 표시
-- [ ] 다양한 관점과 해석의 제시
-- [ ] 정보의 한계와 불확실성에 대한 솔직한 인정
-
-### 고급 활용 팁
-
-#### 인용과 참조 방식
-- **직접 인용 원칙**: 구체적 에피소드와 연결하여 정확한 출처 명시
-- **이론 적용 검증**: 원문 개념과 한국어 번역 병기, 이론가의 정확한 의도 반영
-- **타 비평가 관점**: 다른 비평가들의 관점 소개 시 정확한 출처와 맥락 제시
-- **사실 vs 해석 구분**: 객관적 사실과 주관적 해석을 명확히 구분하여 표시
-
-#### 정보 검증과 신뢰성 확보
-- [ ] **Primary Source 활용**: 감독 인터뷰, 공식 제작 노트 등 1차 자료 우선 참조
-- [ ] **Cross-Reference 검증**: 여러 신뢰할 만한 출처를 통한 정보 교차 확인
-- [ ] **업데이트된 정보**: 과거 정보의 변경사항이나 정정된 내용 반영
-- [ ] **불확실성 표시**: "공식 확인되지 않음", "추정", "해석" 등 명확한 구분
-
-#### 독창적 관점 개발
-- [ ] **기존 해석 검토**: 새로운 관점 제시 전 기존 해석들의 사실적 기반 검증
-- [ ] **문화적 특수성**: 한국적 맥락 적용 시 과도한 일반화나 왜곡 방지
-- [ ] **현재적 관점**: 시대적 재평가 시 당시와 현재의 사실적 차이 고려
-- [ ] **증거 기반 해석**: 모든 독창적 해석은 드라마 텍스트 내 구체적 증거에 기반
-- **문화적 특수성**: 한국적 맥락 적용 시 과도한 일반화나 왜곡 방지
-- **현재적 관점**: 시대적 재평가 시 당시와 현재의 사실적 차이 고려
-- **증거 기반 해석**: 모든 독창적 해석은 영화 텍스트 내 구체적 증거에 기반
-```
-
----
-
-## 🚀 Content Bundle 실무 가이드
-
-### 📅 날짜 관리 자동화
-
-#### PowerShell 날짜 자동 생성 함수
-```powershell
-# 날짜 자동 생성 함수
-function Get-TodayDate {
-    return Get-Date -Format "yyyy-MM-dd"
-}
-
-function Get-Year {
-    return Get-Date -Format "yyyy"
-}
-
-# 드라마 리뷰 Content Bundle 생성 함수
-function New-DramaReviewBundle {
-    param(
-        [string]$DramaTitle,
-        [string]$KoreanTitle,
-        [int]$SeasonNumber,
-        [string]$CoreKeyword,
-        [string]$Description,
-        [string]$Genre,
-        [string]$Director,
-        [string]$LeadActor
-    )
-    
-    $today = Get-TodayDate
-    $year = Get-Year
-    $dramaTitleLower = $DramaTitle.ToLower() -replace '\s+', '-'
-    $folderName = "$today-$dramaTitleLower-season-$SeasonNumber-$CoreKeyword"
-    
-    # 디렉토리 생성
-    $path = "content/post/$year/$folderName"
-    New-Item -ItemType Directory -Path $path -Force
-    
-    # Front Matter 생성
-    $frontMatter = @"
----
-title: "[TV Series] $DramaTitle ($KoreanTitle) Season $SeasonNumber - $CoreKeyword"
-description: "$Description"
-date: $today
-lastmod: $today
-categories: 
-- "TV Series"
-- "$Genre"
-tags: 
-- "season-$SeasonNumber"
-- "$dramaTitleLower"
-- "$Director"
-- "$LeadActor"
-- "$Genre"
-- "$CoreKeyword"
-image: "season-poster.jpg"
----
-
-# $DramaTitle ($KoreanTitle) Season $SeasonNumber 리뷰
-
-## 시즌 개요
-
-### 드라마 정보
-* 제목: $DramaTitle / $KoreanTitle
-* 시즌: Season $SeasonNumber
-* 감독: $Director
-* 주연: $LeadActor
-* 장르: $Genre
-
-## 시즌 전체 서사 아크
-
-**🎬 스포일러 전체 공개 - 이미 시즌을 모두 본 독자를 위한 완전한 서사 분석**
-
-### 시즌 메인 아크 구조
-
-### 에피소드별 핵심 포인트
-
-## 캐릭터 성장 아크 (시즌 전체)
-
-## 관계도 변화 역학
-
-## 시즌별 제작 기술 분석
-
-## 시즌별 비교 분석
-
-## 숨겨진 레이어
-
-## 제작 비하인드
-
-## 시즌 종합 평가
-
-### 시즌 완성도 평가
-**최종 평점: ★★★★☆ (X/5)**
-
-### 한 줄 평
-
-### 추천 작품
-
-### 다음 시즌 전망
-"@
-    
-    $frontMatter | Out-File -FilePath "$path/index.md" -Encoding UTF8
-    Write-Host "Content Bundle created: $path"
-}
-
-# 사용 예시
-# New-DramaReviewBundle -DramaTitle "Breaking Bad" -KoreanTitle "브레이킹 배드" -SeasonNumber 5 -CoreKeyword "redemption-sacrifice" -Description "죄와 벌, 그리고 구원을 향한 마지막 여정" -Genre "Crime Drama" -Director "Vince Gilligan" -LeadActor "Bryan Cranston"
-```
-
-### 📁 폴더 구조 최적화
-
-#### SEO 친화적 폴더명 생성 규칙
-1. **날짜 우선**: 검색 엔진 최적화를 위해 날짜를 맨 앞에 배치
-2. **드라마명 표준화**: 영어 원제를 소문자로, 공백은 하이픈으로 연결
-3. **시즌 정보 명확화**: `season-{번호}` 형식으로 시즌 정보 표시
-4. **키워드 최적화**: 시즌의 핵심 테마나 특징을 SEO 키워드로 활용
-
-#### 폴더명 예시 데이터베이스
-```yaml
-# 인기 드라마 시리즈 폴더명 예시
-Breaking Bad:
-  - "2025-01-27-breaking-bad-season-1-transformation-beginning"
-  - "2025-01-27-breaking-bad-season-2-empire-building"
-  - "2025-01-27-breaking-bad-season-3-consequences-escalation"
-  - "2025-01-27-breaking-bad-season-4-power-struggle"
-  - "2025-01-27-breaking-bad-season-5-redemption-sacrifice"
-
-Stranger Things:
-  - "2025-01-27-stranger-things-season-1-supernatural-discovery"
-  - "2025-01-27-stranger-things-season-2-darkness-expansion"
-  - "2025-01-27-stranger-things-season-3-summer-adventure"
-  - "2025-01-27-stranger-things-season-4-darkness-friendship"
-
-Game of Thrones:
-  - "2025-01-27-game-of-thrones-season-1-power-struggle"
-  - "2025-01-27-game-of-thrones-season-8-final-destiny"
-```
-
-### 🔄 Front Matter 자동화
-
-#### 동적 Front Matter 생성 시스템
-```powershell
-# Front Matter 템플릿 자동 생성
-function New-FrontMatter {
-    param(
-        [string]$Title,
-        [string]$Description,
-        [string]$Categories,
-        [string]$Tags,
-        [string]$Image
-    )
-    
-    $today = Get-TodayDate
-    
-    $frontMatter = @"
----
-title: "$Title"
-description: "$Description"
-date: $today
-lastmod: $today
-categories: 
-$Categories
-tags: 
-$Tags
-image: "$Image"
----
-"@
-    
-    return $frontMatter
-}
-
-# 카테고리와 태그 자동 생성
-function Get-DramaCategories {
-    param([string]$Genre, [string]$Network, [string]$Studio)
-    
-    $categories = @"
-- "TV Series"
-- "$Genre"
-- "$Network"
-- "$Studio"
-"@
-    
-    return $categories
-}
-
-function Get-DramaTags {
-    param(
-        [int]$SeasonNumber,
-        [string]$DramaTitle,
-        [string]$Genre,
-        [string]$Director,
-        [string]$LeadActor,
-        [string]$CoreKeyword
-    )
-    
-    $dramaTitleLower = $DramaTitle.ToLower() -replace '\s+', '-'
-    
-    $tags = @"
-- "season-$SeasonNumber"
-- "$dramaTitleLower"
-- "$Genre"
-- "$Director"
-- "$LeadActor"
-- "$CoreKeyword"
-- "tv-series"
-- "drama-review"
-"@
-    
-    return $tags
-}
-```
-
-### 📊 메타데이터 관리
-
-#### 드라마 정보 데이터베이스 구조
-```yaml
-# 드라마 기본 정보 템플릿
-drama_info:
-  english_title: "Breaking Bad"
-  korean_title: "브레이킹 배드"
-  original_network: "AMC"
-  production_company: "Sony Pictures Television"
-  creator: "Vince Gilligan"
-  total_seasons: 5
-  total_episodes: 62
-  first_air_date: "2008-01-20"
-  last_air_date: "2013-09-29"
-  genre: ["Crime Drama", "Thriller", "Drama"]
-  country: "United States"
-  language: "English"
-  
-seasons:
-  season_1:
-    episodes: 7
-    air_date: "2008-01-20"
-    end_date: "2008-03-09"
-    director: "Vince Gilligan"
-    lead_actor: "Bryan Cranston"
-    lead_actress: "Anna Gunn"
-    core_theme: "transformation-beginning"
-    keywords: ["chemistry-teacher", "cancer-diagnosis", "meth-cooking"]
-    
-  season_5:
-    episodes: 16
-    air_date: "2012-07-15"
-    end_date: "2013-09-29"
-    director: "Vince Gilligan"
-    lead_actor: "Bryan Cranston"
-    lead_actress: "Anna Gunn"
-    core_theme: "redemption-sacrifice"
-    keywords: ["final-season", "heisenberg-empire", "family-protection"]
-```
-
-### 🎯 SEO 최적화 가이드
-
-#### 제목 최적화 규칙
-1. **카테고리 표시**: `[TV Series]` 접두사로 콘텐츠 유형 명시
-2. **제목 형식**: `영어원제 (한국제목) Season X (방영연도) - 부제목`
-3. **길이 제한**: 전체 제목 70자 이내
-4. **키워드 포함**: 시즌 번호, 장르, 핵심 테마 포함
-
-#### 설명 최적화 규칙
-1. **길이 제한**: 150-160자 (SEO 최적화)
-2. **핵심 정보**: 시즌의 주요 테마와 특징 포함
-3. **키워드 밀도**: 자연스러운 키워드 배치
-4. **호기심 유발**: 시청자의 관심을 끌 수 있는 문장
-
-#### 태그 최적화 전략
-1. **계층적 태그**: 시즌 → 드라마 → 장르 → 세부 요소 순서
-2. **다양성 확보**: 최소 10개 이상의 태그 사용
-3. **검색 최적화**: 검색 가능한 키워드 중심으로 구성
-4. **일관성 유지**: 동일한 드라마의 다른 시즌과 태그 일관성
-
-### 🔧 실무 체크리스트
-
-#### Content Bundle 생성 전 체크리스트
-- [ ] 오늘 날짜 확인 (`Get-Date -Format "yyyy-MM-dd"`)
-- [ ] 드라마 기본 정보 검증 (제목, 시즌, 방영일 등)
-- [ ] 폴더명 규칙 준수 확인
-- [ ] Front Matter 필수 항목 완성
-- [ ] 이미지 파일 준비 (season-poster.jpg)
-
-#### 작성 중 체크리스트
-- [ ] 최소 12,000자 이상 작성
-- [ ] 시즌 전체 서사 아크 분석 포함
-- [ ] Mermaid 다이어그램 2개 이상 포함
-- [ ] 구체적 에피소드 예시 10개 이상
-- [ ] 드라마 이론 3개 이상 적용
-- [ ] 비교 분석 5편 이상 포함
-
-#### 발행 전 최종 체크리스트
-- [ ] Front Matter 날짜 일치 확인
-- [ ] 폴더명과 제목 일치 확인
-- [ ] 이미지 파일 경로 확인
-- [ ] 태그와 카테고리 정확성 확인
-- [ ] 스포일러 경고 문구 포함
-- [ ] 문법 및 맞춤법 검토
-
-### 📈 성과 측정 지표
-
-#### SEO 성과 지표
-- **검색 노출**: 구글 검색 결과 노출 순위
-- **클릭률**: 검색 결과에서의 클릭률
-- **체류 시간**: 페이지 평균 체류 시간
-- **이탈률**: 첫 페이지에서 이탈하는 비율
-
-#### 콘텐츠 품질 지표
-- **완독률**: 전체 글을 끝까지 읽는 비율
-- **공유율**: 소셜 미디어 공유 횟수
-- **댓글 수**: 독자 참여도
-- **재방문율**: 같은 독자의 재방문 비율
-
-### 🚀 고급 활용 팁
-
-#### 자동화 스크립트 활용
-```powershell
-# 일괄 Content Bundle 생성
-$dramaList = @(
-    @{Title="Breaking Bad"; Season=1; Keyword="transformation"},
-    @{Title="Breaking Bad"; Season=2; Keyword="empire-building"},
-    @{Title="Stranger Things"; Season=1; Keyword="supernatural-discovery"}
-)
-
-foreach($drama in $dramaList) {
-    New-DramaReviewBundle -DramaTitle $drama.Title -SeasonNumber $drama.Season -CoreKeyword $drama.Keyword
-}
-```
-
-#### 템플릿 시스템 구축
-- **시즌별 템플릿**: 각 시즌의 특성에 맞는 템플릿 준비
-- **장르별 템플릿**: 드라마, 코미디, 액션 등 장르별 분석 구조
-- **제작사별 템플릿**: HBO, Netflix, AMC 등 제작사별 특성 반영
-
-이러한 Content Bundle 생성 규칙을 통해 드라마 리뷰 작성 시 일관성 있고 SEO 최적화된 콘텐츠를 효율적으로 생성할 수 있습니다.
-- **제작사별 템플릿**: HBO, Netflix, AMC 등 제작사별 특성 반영
-
-이러한 Content Bundle 생성 규칙을 통해 드라마 리뷰 작성 시 일관성 있고 SEO 최적화된 콘텐츠를 효율적으로 생성할 수 있습니다.
