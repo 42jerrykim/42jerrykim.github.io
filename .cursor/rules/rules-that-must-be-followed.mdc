@@ -1,0 +1,9 @@
+---
+alwaysApply: true
+---
+
+웹 검색은 playwright mcp를 사용한다.
+
+frontmatter가 다음 규칙을 따르는지 확인하고 그렇지 않다면 개선한다.
+* tags는 영어와 한글을 포함해서 50개 이상 작성
+* description은 150자 분량으로 작성

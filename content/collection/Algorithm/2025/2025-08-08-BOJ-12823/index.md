@@ -5,21 +5,114 @@ categories:
 - Graph Theory
 - DAG
 - Topological Sort
+description: "BOJ 12823 Critical Projects 문제다. DAG에서 모든 정점이 임계 정점인지 판단하는 문제다. 위상 정렬과 도달 가능성을 활용해 O(N+M) 시간복잡도로 해결한다. 차분 배열과 접두사 합으로 임계성을 효율적으로 검사한다."
 tags:
-- DAG
-- Topological Sort
-- Difference Array
-- Reachability
-- O(N+M)
+  - Algorithm
+  - 알고리즘
+  - Graph Theory
+  - 그래프 이론
+  - DAG
+  - 방향 비순환 그래프
+  - Topological Sort
+  - 위상 정렬
+  - Kahn's Algorithm
+  - 칸 알고리즘
+  - Reachability
+  - 도달 가능성
+  - Difference Array
+  - 차분 배열
+  - Prefix Sum
+  - 접두사 합
+  - Suffix Sum
+  - 접미사 합
+  - Adjacency List
+  - 인접 리스트
+  - Forward-star
+  - 포워드 스타
+  - In-degree
+  - 진입 차수
+  - Out-degree
+  - 진출 차수
+  - Linear Time
+  - 선형 시간
+  - "O(N+M)"
+  - 빠른 입출력
+  - Fast I/O
+  - getchar_unlocked
+  - Critical Vertex
+  - 임계 정점
+  - Partial Order
+  - 부분 순서
+  - Transitivity
+  - 추이성
+  - Queue
+  - 큐
+  - Memory Optimization
+  - 메모리 최적화
+  - BOJ
+  - 백준
+  - "C++"
+  - "C++17"
+  - Topological Order
+  - 위상 순서
+  - Large Input
+  - 대용량 입력
 date: 2025-08-08
-draft: true
+image: wordcloud.png
 ---
+
+프로젝트 간 선행 관계가 주어진 DAG에서, 모든 다른 정점과 반드시 선행 관계(앞서거나 뒤서거나)가 성립하는 "critical" 정점을 찾는 문제이다. 각 정점이 critical인지 판정하려면 해당 정점에서 도달 가능한 정점들과 해당 정점으로 도달 가능한 정점들의 합이 전체 정점 수와 같은지 확인하면 된다. 이를 위해 위상 정렬과 도달 가능성 분석을 활용하여 효율적으로 해결할 수 있다.
+
 
 문제: [https://www.acmicpc.net/problem/12823](https://www.acmicpc.net/problem/12823)
 
 ## 문제 요약
 
 N개의 하위 프로젝트(정점)와 선행 관계(유향 간선)가 주어진 DAG에서, 정점 u가 다른 모든 정점 v에 대해 `u → v` 또는 `v → u` 중 하나가 반드시 성립하는 정점들을 모두 구한다. 이러한 정점을 문제에서는 “critical”이라 부른다.
+
+- 정의
+  - 직접 선행: `u → v`는 하위 프로젝트 `u`가 `v`보다 먼저 완료되어야 함을 의미한다.
+  - 선행: 직접 선행의 추이적 개념으로, 어떤 `z`가 있어 `u → z`이며 `z → v`이면 `u → v`라고 본다.
+  - critical 정점: 모든 다른 정점 `v`에 대해 `v → u` 또는 `u → v` 중 하나가 성립하는 정점 `u`.
+  - 사이클 없음: 자기 자신으로 돌아오는 경로가 없어 전체 프로젝트를 완료할 수 있음(즉, 그래프는 DAG).
+
+- 입력 형식
+  - 첫 줄: `N M` — `1 ≤ N ≤ 100000`, `0 ≤ M ≤ 1000000`
+  - 다음 `M`줄: `u v` — `1 ≤ u ≠ v ≤ N`, 여기서 `u`는 `v`의 직접 선행 관계를 의미
+
+- 출력 형식
+  - 첫 줄: critical 정점의 개수 `K`
+  - 둘째 줄: critical 정점의 번호를 오름차순으로 공백으로 구분해 출력
+  - critical 정점이 하나도 없으면 첫 줄에 `0`만 출력
+
+- 제한
+  - 시간 제한: 0.6초
+  - 메모리 제한: 32 MB
+
+- 예제
+  - 입력
+
+    ```text
+    7 9
+    1 3
+    2 3
+    3 4
+    3 5
+    4 6
+    5 6
+    1 7
+    3 7
+    7 4
+    ```
+
+  - 출력
+
+    ```text
+    2
+    3 6
+    ```
+
+- 참고: 원문은 [BOJ 12823 — Critical Projects](https://www.acmicpc.net/problem/12823).
 
 ## 핵심 아이디어
 

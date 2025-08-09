@@ -1,21 +1,75 @@
 ---
-title: "[Algorithm] C++ 백준 1605번 : 반복 부분문자열"
+title: "[Algorithm] C++ 백준 1605번: 반복 부분문자열"
+description: "BOJ 1605 반복 부분문자열 문제다. Suffix Array와 LCP Array를 활용해 가장 긴 반복 부분문자열의 길이를 O(n log n) 시간복잡도로 구한다. 배가법(doubling)과 카운팅 소트로 접미사 배열을 구성하고, Kasai 알고리즘으로 LCP 배열을 계산한다. 인접한 접미사들의 최대 LCP가 정답이다."
+date: 2025-08-08
+lastmod: 2025-08-09
 categories:
 - Algorithm
 - String
 - Data Structures
 tags:
-- Suffix Array
-- LCP
-- 문자열
-- O(n log n)
-date: 2025-08-08
-draft: true
+ - Algorithm
+ - Data Structures
+ - String
+ - 문자열
+ - BOJ
+ - C++
+ - Suffix Array
+ - LCP
+ - LCP Array
+ - Kasai
+ - Doubling
+ - Counting Sort
+ - Stable Sort
+ - Rank
+ - Lexicographic Order
+ - Longest Repeated Substring
+ - LRS
+ - Rolling Hash
+ - Binary Search
+ - Suffix Tree
+ - SA-IS
+ - DivSufSort
+ - Text Indexing
+ - Pattern Matching
+ - O(n log n)
+ - O(n)
+ - Time Complexity
+ - Space Complexity
+ - Implementation
+ - Competitive Programming
+ - 문자열 알고리즘
+ - 접미사배열
+ - LCP배열
+ - 카사이 알고리즘
+ - 반복 부분문자열
+ - 최장 반복 부분문자열
+ - 이분 탐색
+ - 롤링 해시
+ - 사전순 정렬
+ - 카운팅 소트
+ - 안정 정렬
+ - 랭크 배열
+ - 배가법
+ - 서픽스 트리
+ - 문자열 인덱싱
+ - 패턴 매칭
+ - 백준
+ - 플래티넘
+ - 최적화
+ - 구현 디테일
+image: wordcloud.png
 ---
 
 문자열 안에서 적어도 한 번 이상 반복되는 부분문자열(즉, 전체 문자열에서 두 번 이상 등장하는 부분문자열)의 최대 길이를 구하는 문제이다. 길이 \(L\) 은 최대 200,000이므로, 단순한 모든 구간 비교는 시간 내에 불가능하다.
 
-문제: [https://www.acmicpc.net/problem/3033](https://www.acmicpc.net/problem/3033)
+문제: [BOJ 1605 — 반복 부분문자열](https://www.acmicpc.net/problem/1605)
+
+## 문제 정보
+
+- 시간 제한: 2초
+- 메모리 제한: 128MB
+- 입력 제한: L ≤ 200,000, 문자열은 소문자
 
 ## 접근 방식
 
@@ -160,3 +214,10 @@ tellmetellmetetetetetetellme
 - 모든 문자가 동일("aaaa…") → 정답은 L-1
 - 겹치는 반복 허용: 예) "aaaa"에서 길이 3의 반복("aaa")는 위치 0과 1에서 겹치지만 유효하다
 - 입력은 소문자만 가정하므로 알파벳 크기 26, 하지만 구현은 일반 바이트값 기준이라 범용적
+
+## 참고자료
+
+- Suffix Array — Wikipedia: [https://en.wikipedia.org/wiki/Suffix_array](https://en.wikipedia.org/wiki/Suffix_array)
+- LCP array — Wikipedia: [https://en.wikipedia.org/wiki/LCP_array](https://en.wikipedia.org/wiki/LCP_array)
+- Longest repeated substring problem — Wikipedia: [https://en.wikipedia.org/wiki/Longest_repeated_substring_problem](https://en.wikipedia.org/wiki/Longest_repeated_substring_problem)
+- Suffix Array — cp-algorithms: [https://cp-algorithms.com/string/suffix-array.html](https://cp-algorithms.com/string/suffix-array.html)
