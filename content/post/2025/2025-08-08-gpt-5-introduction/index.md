@@ -5,7 +5,7 @@ categories:
 - ChatGPT
 - GPT-5
 date: 2025-08-08
-description: "OpenAI의 혁신적인 AI 모델 GPT-5에 대한 완전 가이드. 통합 시스템(스마트·추론·라우터)과 핵심 벤치마크(AIME 94.6%, SWE-bench 74.9%, MMMU 84.2%), 정확한 가격 및 가용성(Free, Plus, Pro, Team, Enterprise, Edu), API의 신규 기능(reasoning_effort·verbosity·Custom Tools)과 40만 토큰 컨텍스트(입력 272k·추론/출력 128k), 실제 활용 사례까지 한눈에 정리합니다."
+description: "OpenAI의 혁신적인 AI 모델 GPT-5에 대한 완전 가이드. 통합 시스템(스마트·추론·라우터)과 핵심 벤치마크, 정확한 가격 및 가용성, API의 신규 기능과 40만 토큰 컨텍스트, 실제 활용 사례까지 한눈에 정리합니다."
 tags:
   - 머신러닝
   - Machine Learning
