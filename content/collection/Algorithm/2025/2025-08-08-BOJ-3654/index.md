@@ -1,22 +1,118 @@
 ---
-title: "[Algorithm] C++ 백준 3654번 : L퍼즐 실패"
+title: "[Algorithm] C++ 백준 3654번 : L퍼즐"
 categories:
 - Algorithm
 - Graph
 - Flow
+description: "격자에서 빈 칸을 L자 타일로 겹치지 않게 모두 덮을 수 있는지 판정하는 문제입니다. 그래프 모델링과 최대 유량(디닉) 알고리즘을 활용하여, 각 칸을 노드로 변환하고 L자 타일의 배치 가능성을 간선으로 연결해 해를 구합니다. C++로 효율적으로 구현하는 방법과, 이분 그래프, 유량 네트워크의 개념, 좌표 매핑 및 간선 구성 등 다양한 알고리즘적 아이디어를 다룹니다."
+lastmod: 2025-08-08
 tags:
-- Max Flow
-- Dinic
-- Bipartite Matching
-- Grid
-- 구현
+  - Algorithm
+  - 알고리즘
+  - Graph
+  - 그래프
+  - Flow
+  - 유량
+  - Max Flow
+  - 최대 유량
+  - Dinic
+  - 디닉
+  - Bipartite Matching
+  - 이분 매칭
+  - Bipartite Graph
+  - 이분 그래프
+  - Grid
+  - 격자
+  - Grid Modeling
+  - 격자 모델링
+  - Tiling
+  - 타일링
+  - L-tromino
+  - L자 조각
+  - Adjacency
+  - 인접
+  - Four Directions
+  - 상하좌우
+  - Source
+  - 소스
+  - Sink
+  - 싱크
+  - Residual Graph
+  - 잔여 그래프
+  - Augmenting Path
+  - 증가 경로
+  - Level Graph
+  - 레벨 그래프
+  - Blocking Flow
+  - 차단 유량
+  - Capacity
+  - 용량
+  - Unit Capacity
+  - 단위 용량
+  - Edge Construction
+  - 간선 구성
+  - Node Mapping
+  - 노드 매핑
+  - Coordinate Mapping
+  - 좌표 매핑
+  - Implementation
+  - 구현
 date: 2025-08-08
-draft: true
+image: wordcloud.png
 ---
+
+검정(B) 한 칸과 흰(W) 두 칸을 덮는 L자 조각(총 3칸)으로, 주어진 격자 패턴(일부는 빈 칸 `.`)을 정확히 덮을 수 있는지 묻는 문제입니다. 조각은 회전 가능, 겹침 불가이며 `.`는 덮으면 안 됩니다.
 
 문제: [https://www.acmicpc.net/problem/3654](https://www.acmicpc.net/problem/3654)
 
-검정(B) 한 칸과 흰(W) 두 칸을 덮는 L자 조각(총 3칸)으로, 주어진 격자 패턴(일부는 빈 칸 `.`)을 정확히 덮을 수 있는지 묻는 문제입니다. 조각은 회전 가능, 겹침 불가이며 `.`는 덮으면 안 됩니다.
+## 문제 요약
+
+- L모양 조각은 정사각형 3개로 구성되며 모서리(꼭짓점)에 있는 1칸은 검정(B), 나머지 2칸은 흰색(W)입니다.
+- 목표: 이 L조각을 무한히 사용해 주어진 `B/W/.` 패턴과 정확히 일치하는 직사각형 패턴을 만들 수 있는지 판정
+- 조각은 자유롭게 회전 가능, 서로 겹치면 안 되며, `.`(빈 칸)은 덮으면 안 됩니다.
+
+## 입력
+
+- 첫 줄에 테스트 케이스 수 `T` (`T ≤ 100`)
+- 각 테스트 케이스마다 첫 줄에 높이 `n`과 너비 `m`이 주어짐 (`1 ≤ n, m ≤ 500`)
+- 이어서 `n`개의 줄에 패턴이 주어짐. 각 문자는 `B`(검정), `W`(흰색), `.`(빈 칸)
+- 패턴에는 `B` 또는 `W`가 적어도 하나 존재
+
+## 출력
+
+- 각 테스트 케이스마다 만들 수 있으면 `YES`, 만들 수 없으면 `NO`를 출력
+
+## 제한
+
+- 시간 제한: 5초
+- 메모리 제한: 128MB
+
+## 예제
+
+- 입력
+
+```text
+2
+3 4
+BWW.
+WWBW
+..WB
+3 3
+W..
+BW.
+WBW
+```
+
+- 출력
+
+```text
+YES
+NO
+```
+
+## 출처
+
+- 원문: [BOJ 3654 — L퍼즐](https://www.acmicpc.net/problem/3654)
 
 ## 핵심 아이디어
 
@@ -36,7 +132,7 @@ draft: true
 
 또한, 조기 불가능성 체크로 각 B가 최소 한 개 이상의 수직 인접 W와 수평 인접 W를 모두 갖는지 확인하면 탐색 공간을 줄일 수 있습니다.
 
-## C++ 풀이 (Dinic)
+## C++ 풀이
 
 ```cpp
 #include <bits/stdc++.h>

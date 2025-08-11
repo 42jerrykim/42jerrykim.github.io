@@ -1,16 +1,64 @@
 ---
-title: "GPT-5 완전 가이드: OpenAI의 혁신적인 AI 모델의 모든 것"
-date: 2025-08-08
-description: "OpenAI의 혁신적인 AI 모델 GPT-5의 모든 것을 담은 완벽 가이드. 통합 시스템 아키텍처, 획기적 성능 향상, 정확한 가격 정보, 실제 활용 사례까지 한눈에 확인하세요."
-tags: 
-- "AI"
-- "GPT-5"
-- "OpenAI"
-- "ChatGPT"
-- "인공지능"
-- "머신러닝"
+title: "[OpenAI] GPT-5 완전 가이드: OpenAI의 혁신적인 AI 모델의 모든 것"
 categories: 
-- AI
+- OpenAI
+- ChatGPT
+- GPT-5
+date: 2025-08-08
+description: "OpenAI의 혁신적인 AI 모델 GPT-5에 대한 완전 가이드. 통합 시스템(스마트·추론·라우터)과 핵심 벤치마크, 정확한 가격 및 가용성, API의 신규 기능과 40만 토큰 컨텍스트, 실제 활용 사례까지 한눈에 정리합니다."
+tags:
+  - 머신러닝
+  - Machine Learning
+  - AI
+  - 인공지능
+  - Artificial Intelligence
+  - ChatGPT
+  - GPT-5
+  - OpenAI
+  - 딥러닝
+  - Deep Learning
+  - Neural Network
+  - 신경망
+  - LLM
+  - Large Language Model
+  - 대형언어모델
+  - Natural Language Processing
+  - 자연어처리
+  - NLP
+  - Transformer
+  - 트랜스포머
+  - Generative AI
+  - 생성형AI
+  - AI모델
+  - AI Model
+  - 언어모델
+  - Language Model
+  - 챗봇
+  - Chatbot
+  - 대화형AI
+  - Conversational AI
+  - 텍스트생성
+  - Text Generation
+  - 코딩
+  - Coding
+  - Programming
+  - 프로그래밍
+  - 글쓰기
+  - Writing
+  - 창작
+  - Creative Writing
+  - 수학
+  - Mathematics
+  - 건강
+  - Health
+  - 벤치마크
+  - Benchmark
+  - 성능평가
+  - Performance Evaluation
+  - API
+  - 기술혁신
+  - Technology Innovation
+  - 2025
 image: image01.png
 ---
 
@@ -94,9 +142,9 @@ GPT-5는 더 적은 사고 시간으로 더 많은 가치를 창출합니다:
 - 시각적 추론, 에이전트 코딩, 대학원 수준의 과학적 문제 해결에서 효율성 향상
 
 ### 향상된 정확성과 신뢰성
-- **환각 현상 감소**: 웹 검색이 활성화된 상태에서 GPT-4o 대비 약 45% 적은 사실 오류
-- **추론 모드**: OpenAI o3 대비 약 80% 적은 사실 오류
-- **LongFact 및 FActScore** 벤치마크에서 o3 대비 약 6배 적은 환각 현상
+- **사실 오류 감소**: ChatGPT 생산 트래픽 표본에서 GPT-4o 대비 최대 20% 감소
+- **추론 모드**: OpenAI o3 대비 사실 오류 최대 70% 감소
+- **LongFact 및 FActScore** 벤치마크에서 o3 대비 환각 약 6배 감소
 
 ### 더 정직한 응답
 - 불가능한 작업이나 불완전한 정보에 대해 더 정확하게 한계를 인식하고 명확하게 전달
@@ -107,6 +155,13 @@ GPT-5는 더 적은 사고 시간으로 더 많은 가치를 창출합니다:
 - **안전 완성(Safe Completions)**: 거부 기반 안전성 훈련에서 벗어나 가능한 한 도움이 되는 답변을 제공하면서 안전 경계 내에서 유지
 - **투명한 거부**: 거부가 필요한 경우 이유를 명확히 설명하고 안전한 대안 제공
 - **이중 사용 도메인**: 바이러스학과 같은 분야에서 더 유연한 접근
+
+### 개발자를 위한 신규 API 기능
+- **reasoning_effort**: minimal/low/medium/high로 모델의 사고 시간과 속도·품질 트레이드오프 제어
+- **verbosity**: low/medium/high로 기본 응답 길이 제어(명시적 지시가 있을 경우 지시가 우선)
+- **Custom Tools**: JSON 대신 평문으로 도구 호출 가능(정규식/문맥 자유 문법으로 형식 제약 가능)
+- **도구 사용**: 병렬 도구 호출, 내장 도구(웹 검색, 파일 검색, 이미지 생성 등) 강화
+- **컨텍스트**: 입력 272,000 토큰 + 추론·출력 128,000 토큰 = 총 400,000 토큰
 
 ## 활용 방안
 
@@ -128,13 +183,18 @@ GPT-5는 더 적은 사고 시간으로 더 많은 가치를 창출합니다:
 ## 접근성 및 가격 정책
 
 ### ChatGPT 내 사용
-- **무료 사용자**: 제한된 사용량으로 GPT-5 사용 가능, 한도 초과 시 GPT-5 mini로 전환
+- **가용성**: 오늘부터 Free, Plus, Pro, Team 사용 가능. Enterprise 및 Edu는 1주 내 제공 예정
+- **무료 사용자**: 제한된 사용량으로 GPT-5 사용 가능. 한도 도달 시 자동으로 GPT-5 mini로 전환
 - **Plus 사용자**: 일상적인 질문을 위한 기본 모델로 편안하게 사용 가능
 - **Pro 사용자**: 무제한 GPT-5 접근 및 GPT-5 Pro 사용 가능
-- **Team, Enterprise, Edu**: 조직 전체가 GPT-5를 기본 모델로 사용 가능
+- **Team/Enterprise/Edu**: 조직 전체가 GPT-5를 기본 모델로 활용 가능
 
 ### API 사용
 - 모든 사용자가 OpenAI API를 통해 GPT-5 사용 가능
+- API 모델: `gpt-5`, `gpt-5-mini`, `gpt-5-nano`(ChatGPT 비추론 모델: `gpt-5-chat-latest`)
+- 응답 제어: `reasoning_effort`(minimal/low/medium/high), `verbosity`(low/medium/high)
+- 도구: Custom Tools(평문 입력), 병렬 도구 호출, 내장 도구(웹 검색, 파일 검색, 이미지 생성 등)
+- 컨텍스트: 입력 272,000 토큰, 추론+출력 128,000 토큰(총 400,000)
 - 토큰 기반 과금 시스템
 - Batch API를 통한 50% 비용 절약 가능
 - Priority processing을 통한 고속 성능 옵션
@@ -143,7 +203,7 @@ GPT-5는 더 적은 사고 시간으로 더 많은 가치를 창출합니다:
 
 - **GPT-5**: 2024년 10월 1일까지의 정보
 - **GPT-5 mini, nano**: 2024년 5월 31일까지의 정보
-- **컨텍스트 윈도우**: 최대 40만 토큰 지원
+- **컨텍스트 윈도우**: 입력 272,000 + 추론·출력 128,000 = 총 400,000 토큰
 
 ## 미래 전망
 
@@ -175,3 +235,6 @@ GPT-5는 단순한 AI 모델의 업그레이드가 아닌, 인공지능 기술�
 - [OpenAI GPT-5 공식 발표](https://openai.com/index/introducing-gpt-5/)
 - [GPT-5와 새로운 시대의 작업](https://openai.com/ko-KR/index/gpt-5-new-era-of-work/)
 - [OpenAI API 가격 정책](https://openai.com/ko-KR/api/pricing/)
+- [개발자를 위한 GPT-5](https://openai.com/index/introducing-gpt-5-for-developers/)
+- [강한 거절에서 안전한 완성으로](https://openai.com/ko-KR/index/gpt-5-safe-completions/)
+- [GPT-5 시스템 카드](https://openai.com/ko-KR/index/gpt-5-system-card/)

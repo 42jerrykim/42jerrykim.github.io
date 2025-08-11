@@ -4,15 +4,73 @@ categories:
 - Algorithm
 - Greedy
 - Data Structures
+description: "BOJ 1150번 백업 문제다. N개 지점에서 K개 케이블을 선택해 총 길이를 최소화하는 greedy 알고리즘이다. 우선순위 큐와 이중연결리스트로 인접한 케이블 쌍을 효율적으로 관리하며, 선택 시 겹치지 않게 처리한다. O((N+K)logN) 시간복잡도로 해결한다."
 tags:
-- Greedy
-- Priority Queue
-- Doubly Linked List
-- Matching
-- O((N + K) log N)
+  - Algorithm
+  - 알고리즘
+  - Data Structures
+  - 자료구조
+  - Doubly Linked List
+  - 이중연결리스트
+  - Greedy
+  - 그리디
+  - Matching
+  - 매칭
+  - Priority Queue
+  - 우선순위큐
+  - Min Heap
+  - 최소힙
+  - Graph Theory
+  - 그래프이론
+  - Path Graph
+  - 경로그래프
+  - Edge Selection
+  - 간선선택
+  - Optimization
+  - 최적화
+  - Dynamic Programming
+  - 동적계획법
+  - Time Complexity
+  - 시간복잡도
+  - Space Complexity
+  - 공간복잡도
+  - O((N + K) log N)
+  - BOJ
+  - 백준
+  - C++
+  - Implementation
+  - 구현
+  - Competitive Programming
+  - 경쟁프로그래밍
+  - Network
+  - 네트워크
+  - Cable
+  - 케이블
+  - Distance
+  - 거리
+  - Minimization
+  - 최소화
+  - Pair Selection
+  - 쌍선택
+  - Adjacent
+  - 인접
+  - Non-overlapping
+  - 비겹침
+  - Coordinate
+  - 좌표
+  - Linear
+  - 선형
+  - Backup
+  - 백업
+  - Company
+  - 회사
 date: 2025-08-08
-draft: true
+image: wordcloud.png
 ---
+
+n개의 회사가 직선상에 배치되어 있고, k개의 네트워크 케이블로 정확히 k개의 회사 쌍을 연결해야 한다. 각 회사는 최대 하나의 케이블에만 연결될 수 있으며, 목표는 연결된 회사 쌍들 간의 거리 합을 최소화하는 것이다. 
+
+이 문제는 경로 그래프에서 비인접한 k개의 간선을 선택해 가중치 합을 최소화하는 문제로 모델링할 수 있다. 그리디 알고리즘과 우선순위 큐, 이중 연결 리스트를 활용해 O((N + K) log N) 시간복잡도로 해결 가능하다.
 
 문제: [https://www.acmicpc.net/problem/1150](https://www.acmicpc.net/problem/1150)
 
