@@ -1,7 +1,7 @@
 ---
-alwaysApply: true
+description: TV Show 리뷰 작성할때 사용한다.
+alwaysApply: false
 ---
-
 # TV Shows Review Writing Rules
 
 ## 📅 Content Bundle 생성 규칙 (Hugo 표준)
