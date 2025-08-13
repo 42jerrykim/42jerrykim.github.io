@@ -1,21 +1,21 @@
 ---
 alwaysApply: true
 ---
-```
 
-#### Title Format Rules
+
+# Title Format Rules
 - **Category Prefix**: Use appropriate category in brackets
 - **Main Title**: Human-readable, SEO-optimized title
 - **Subtitle**: Additional context or clarification
 - **Length**: Keep total title under 70 characters
 
-### Date Management Best Practices
+# Date Management Best Practices
 - **Current Date**: Always use today's date obtained via command line
 - **Date Consistency**: Ensure folder name date matches front matter date
 - **Time Zone**: Use local timezone for date determination
 - **Date Updates**: Update `lastmod` when content is significantly revised
 
-### Automated Content Bundle Creation
+# Automated Content Bundle Creation
 ```powershell
 # Complete script for creating a new content bundle
 $today = Get-Date -Format "yyyy-MM-dd"
@@ -55,4 +55,3 @@ Your content here...
 "@
 
 $frontMatter | Out-File -FilePath "content/post/$year/$folderName/index.md" -Encoding UTF8
-```

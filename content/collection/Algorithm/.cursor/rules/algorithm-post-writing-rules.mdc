@@ -1,0 +1,347 @@
+## Algorithm 문제 풀이 글 작성 규칙 (BOJ 중심)
+
+### 목적
+- **일관된 구조**와 **검색 친화성(SEO)**, **재사용 가능한 템플릿**을 제공해, 문제 해결 직후 빠르게 고품질 글을 작성한다.
+
+## 📦 콘텐츠 번들/폴더 규칙 (Hugo)
+- 경로: `content/collection/Algorithm/{YYYY}/{YYYY-MM-DD-BOJ-{문제번호}-{핵심키워드}/index.md}`
+- 예시:
+  - `content/collection/Algorithm/2025/2025-08-12-BOJ-31403-a-plus-b-minus-c-cpp-python-solution/`
+  - `content/collection/Algorithm/2025/2025-08-08-BOJ-1605-longest-repeated-substring/`
+- 키워드(slug): 문제 핵심 개념이나 알고리즘 키워드 2-4개를 하이픈으로 연결(영문 소문자 권장)
+
+## ⚙️ 자동 생성 스크립트 (PowerShell)
+```powershell
+$today = Get-Date -Format "yyyy-MM-dd"
+$year = Get-Date -Format "yyyy"
+$boj = "1605"              # BOJ 문제 번호
+$langs = "cpp-python"      # 사용 언어 표기 (예: cpp, python, cpp-python)
+$slug = "longest-repeated-substring"  # 핵심 키워드 슬러그(영문 소문자)
+$folderName = "$today-BOJ-$boj-$slug"
+
+New-Item -ItemType Directory -Path "content/collection/Algorithm/$year/$folderName" -Force | Out-Null
+
+$frontMatter = @"
+---
+draft: true
+title: "[Algorithm] $langs 백준 $boj번: Human-Readable 한국어 문제명"
+description: "핵심 접근, 자료구조/알고리즘, 정당성 근거, 복잡도, 구현 포인트까지 한 번에 정리한 풀이입니다. 제한 조건에 맞춘 최적 알고리즘을 제시하고, 실수/엣지 케이스 점검표로 제출 안정성을 높입니다."
+date: $today
+lastmod: $today
+categories:
+- Algorithm
+- Fill-Primary-Domain  # 예: String / Graph / DP / Geometry / Greedy / Math
+tags:
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Problem-$boj
+- $langs
+- C++
+- Python
+- Data Structures
+- 자료구조
+- Implementation
+- 구현
+- Time Complexity
+- 시간복잡도
+- Space Complexity
+- 공간복잡도
+- Proof of Correctness
+- 정당성 증명
+- Edge Cases
+- 코너 케이스
+- Pitfalls
+- 실수 포인트
+- Optimization
+- 최적화
+- Competitive Programming
+- 경쟁프로그래밍
+- Editorial
+- 에디토리얼
+- Code Review
+- 코드리뷰
+- Template
+- 템플릿
+- Testing
+- 테스트
+- Complexity Analysis
+- 복잡도 분석
+- Invariant
+- 불변식
+- Greedy
+- 그리디
+- Dynamic Programming
+- 동적계획법
+- Graph
+- 그래프
+- Tree
+- 트리
+- BFS
+- DFS
+- Shortest Path
+- 최단경로
+- Dijkstra
+- 다익스트라
+- Bellman-Ford
+- 벨만포드
+- Floyd-Warshall
+- 플로이드워셜
+- Topological Sort
+- 위상정렬
+- Segment Tree
+- 세그먼트 트리
+- Fenwick Tree
+- 펜윅트리
+- Disjoint Set Union
+- 유니온파인드
+- Binary Search
+- 이분탐색
+- Two Pointers
+- 투포인터
+- Sliding Window
+- 슬라이딩윈도우
+- Hashing
+- 해싱
+- String
+- 문자열
+- Geometry
+- 기하
+- Math
+- 수학
+- Modulo
+- 모듈러
+- Implementation Details
+- 구현 디테일
+image: "wordcloud.png"
+---
+"@
+
+$frontMatter | Out-File -FilePath "content/collection/Algorithm/$year/$folderName/index.md" -Encoding UTF8
+```
+
+### Front Matter 체크 규칙
+- **title**: `[Algorithm] {언어} 백준 {번호}번: {문제명}` 형태 유지(언어 다중 가능: `cpp-python`)
+- **description**: 150자 내외(필수). 문제 핵심, 접근, 복잡도, 실수 포인트를 한 문장으로 요약
+- **date/lastmod**: 반드시 오늘 날짜(현지 시간대) 사용, 수정 시 `lastmod` 갱신
+- **categories**: `Algorithm` + 주제 1-2개
+- **tags**: 영어/한글 혼합으로 **50개 이상** 기입. 문제·알고리즘·자료구조·복잡도·언어 태그 포함
+- **image**: `wordcloud.png` 권장(폴더 내 배치)
+
+## 🧱 본문 표준 구조
+
+### 1) 문제 정보
+- **문제**: `https://www.acmicpc.net/problem/{번호}`
+- **요약**: 입력, 요구사항을 2-4문장으로 압축
+- **제한/스펙**: 시간, 메모리, 입력 크기 등 핵심만 표기
+
+### 2) 입출력 형식/예제
+- 입력/출력 정의와 대표 예제 1-2개를 코드 블록으로 첨부
+
+### 3) 접근 개요(아이디어 스케치)
+- 핵심 관찰/불변식, 모델링 방식(그래프/DP/수학 등), 선택 근거를 짧게
+- 가능하면 **Mermaid** 다이어그램으로 흐름/그래프/DP 전이 시각화
+
+### 4) 알고리즘 설계
+- 상태/전이(또는 그래프/간선), 자료구조, 구현 포인트 정리
+- 올바름 근거(국소->전역, 귀납/반례 배제 등) 간결하게 제시
+- 의사코드 또는 단계 요약
+
+### 5) 복잡도
+- 시간/공간 복잡도 빅오 표기와 근거 한 줄
+
+### 6) 구현
+- 가능한 경우 **C++와 Python** 모두 제공
+- 모든 코드 블록의 최상단에 아래 주석 추가(필수):
+  - C++: `// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.`
+  - Python: `# 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.`
+
+예시 스켈레톤:
+
+```cpp
+// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){ios::sync_with_stdio(false);cin.tie(nullptr);
+    // 입력 파싱
+    // 핵심 로직
+    // 정답 출력
+    return 0;
+}
+```
+
+```python
+# 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+import sys
+input = sys.stdin.readline
+
+def solve():
+    # 입력 파싱
+    # 핵심 로직
+    # 정답 출력
+    pass
+
+if __name__ == "__main__":
+    solve()
+```
+
+### 7) 코너 케이스 체크리스트
+- 빈/단일/최대 입력, 균일/증가/감소/교차 패턴, 경계 값, 음수/0/중복, 비연결, 다중 정답 등
+
+### 8) 제출 전 점검
+- 입출력 형식/개행, 오버플로(64-bit), 초기화, 인덱스 범위, 정렬/해시 키, 방문/리셋 누락
+
+### 9) 참고자료/유사문제(선택)
+- 위키/공식 에디토리얼/블로그, 유사 문제 링크
+
+## ✅ 품질 보증 체크리스트
+- Front Matter: 설명 150자 내외, 태그 50개 이상(영/한 혼합)
+- 복잡도: 시간/공간 모두 명시
+- 정당성: 핵심 근거 2-3줄 포함
+- 코드: 언어별 상단 주석 포함, 표준 입력/출력 호환
+- 예제: 최소 1개, 가능하면 반례 1개도 포함
+
+## ✍️ 제목 규칙
+- 형태: `[Algorithm] {언어} 백준 {번호}번: {문제명}`
+- 길이: 70자 이내, **사람이 읽기 쉬운 표현 + 핵심 키워드** 포함
+
+## 🏷 태그 가이드(확장 예시)
+- 문제/언어/도메인/기법을 폭넓게 혼합(영/한). 기존 템플릿에 문제 특화 태그를 5-10개 추가
+- 예: `Suffix Array`, `LCP`, `접미사배열`, `이분탐색`, `유량`, `디닉`, `최단경로`, `그리디`, `수학`, `모듈러`, `문자열`, `그래프`, `세그먼트 트리`, `펜윅트리` 등
+
+## 🔁 업데이트 원칙
+- 풀이 개선/재채점 이슈 발생 시 본문/코드 반영 후 `lastmod` 갱신
+
+---
+
+## 빠른 시작 템플릿(복사용)
+
+```yaml
+---
+draft: true
+title: "[Algorithm] cpp-python 백준 00000번: 문제명"
+description: "핵심 아이디어, 알고리즘 선택 근거, 정당성, 시간/공간 복잡도와 실수 포인트를 한 문서에 모았습니다. 예제/엣지 케이스, 구현 스켈레톤으로 제출 안정성을 높입니다."
+date: 2025-01-01
+lastmod: 2025-01-01
+categories:
+- Algorithm
+- Domain
+tags:
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- cpp
+- python
+- Implementation
+- 구현
+- Time Complexity
+- 시간복잡도
+- Space Complexity
+- 공간복잡도
+- Proof of Correctness
+- 정당성 증명
+- Edge Cases
+- 코너 케이스
+- Pitfalls
+- 실수 포인트
+- Optimization
+- 최적화
+- Competitive Programming
+- 경쟁프로그래밍
+- Editorial
+- 에디토리얼
+- Code Review
+- 코드리뷰
+- Template
+- 템플릿
+- Testing
+- 테스트
+- Complexity Analysis
+- 복잡도 분석
+- Invariant
+- 불변식
+- Greedy
+- 그리디
+- Dynamic Programming
+- 동적계획법
+- Graph
+- 그래프
+- Tree
+- 트리
+- BFS
+- DFS
+- Shortest Path
+- 최단경로
+- Dijkstra
+- 다익스트라
+- Segment Tree
+- 세그먼트 트리
+- Fenwick Tree
+- 펜윅트리
+- Disjoint Set Union
+- 유니온파인드
+- Binary Search
+- 이분탐색
+- Two Pointers
+- 투포인터
+- Sliding Window
+- 슬라이딩윈도우
+- Hashing
+- 해싱
+- String
+- 문자열
+- Geometry
+- 기하
+- Math
+- 수학
+- Modulo
+- 모듈러
+- Debugging
+- 디버깅
+image: "wordcloud.png"
+---
+```
+
+```markdown
+## 문제
+- 링크: https://www.acmicpc.net/problem/00000
+- 요약: 한 줄 요약 1-2문장
+
+## 입력/출력
+```
+<입력 예시>
+```
+```
+<출력 예시>
+```
+
+## 접근 개요
+- 핵심 관찰 / 모델링 / 선택 근거
+
+## 알고리즘
+- 상태/전이·자료구조·정당성
+
+## 복잡도
+- 시간: O(...), 공간: O(...)
+
+## 구현 (C++)
+```cpp
+// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+```
+
+## 구현 (Python)
+```python
+# 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+```
+
+## 코너 케이스 체크리스트
+- 항목 나열
+
+## 참고자료
+- 링크
+```
+
+
