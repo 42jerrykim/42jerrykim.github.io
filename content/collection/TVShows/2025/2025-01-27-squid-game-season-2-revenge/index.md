@@ -1,10 +1,11 @@
 ---
-title: "[TV Series] Squid Game (오징어 게임) Season 2 (2024) - 복수와 저항의 새로운 시작"
+title: "[TV Show] Squid Game (오징어 게임) Season 2 (2024) - 복수와 저항의 새로운 시작"
 description: "성기훈이 게임을 끝내기 위해 자발적으로 재참가해 프론트맨(001)과 정면충돌한다. O/X 투표 시스템과 신·구 참가자의 치열한 심리전, 7부작 구성과 폭발적 흥행(공개 4일 6,800만 뷰·92개국 1위)을 입체적으로 분석한다."
 date: 2025-01-27
 lastmod: 2025-08-09
 categories: 
 - TV Series
+- TV Show
 - Thriller
 - Drama
 - Netflix
