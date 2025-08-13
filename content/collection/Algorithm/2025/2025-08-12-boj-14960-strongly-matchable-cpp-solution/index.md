@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 14960 - Strongly Matchable C++ 풀이 - 충돌그래프+HK"
+title: "[Algorithm] C++ 백준 14960번 - Strongly Matchable"
 description: "BOJ 14960 Strongly Matchable을 그래프 이론 관점에서 정리. Hall 정리 기반 조건을 ‘충돌 이분 그래프’로 환원하고, Kőnig 정리(α=|V|-ν)와 Hopcroft–Karp로 최대 독립집합 크기를 구해 강매칭성 여부를 판별하는 실전 C++ 풀이."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -64,8 +64,7 @@ tags:
 - "Combinatorics"
 - "Cut Condition"
 - "절단 조건"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 14960 - Strongly Matchable](https://www.acmicpc.net/problem/14960)

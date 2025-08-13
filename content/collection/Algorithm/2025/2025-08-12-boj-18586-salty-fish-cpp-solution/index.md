@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] Salty Fish (18586) - C++ 풀이"
+title: "[Algorithm] C++ 백준 18586번 : Salty Fish"
 description: "트리의 각 노드 사과를 모두 먹되, 카메라가 보는 구간(p(x,k))의 변화를 막기 위해 일부 카메라를 매수(비용 c)하거나 일부 정점을 포기하는 문제를 최소 컷으로 환원한다. 거대한 일반 네트워크 대신 트리 구조를 활용해 dp(map<depth,sum>)을 small-to-large로 병합하고, 카메라별 커버 가능한 가장 깊은 depth부터 잔여 유량을 소모해 Max-Flow=Min-Cut을 암시적으로 계산, 전체 사과 합 − 유량으로 최대 수익을 구한다. 시간복잡도는 O((n+m) log n)으로 테스트케이스 합 n,m ≤ 10^6에서도 빠르게 동작한다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -65,8 +65,7 @@ tags:
 - "트리 병합"
 - "upper_bound"
 - "ordered structure"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 18586 - Salty Fish](https://www.acmicpc.net/problem/18586)

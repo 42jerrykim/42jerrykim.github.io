@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] 9063 - Bounding Rectangle Area - Python/C++ Solution"
+title: "[Algorithm] C++ 백준 9063번 : Bounding Rectangle Area"
 description: "백준 9063(축에 평행한 최소 직사각형) 문제를 Python/C++로 풉니다. 좌표의 최솟값·최댓값을 선형 스캔해 넓이를 구하고 N≤1은 0 처리. O(N) 복잡도와 입출력 최적화, 오버플로우 주의까지 정리."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -67,8 +67,7 @@ tags:
 - "Rectangle Area"
 - "Without Sorting"
 - "No Data Structure"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 ### 문제 요약

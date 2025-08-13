@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] 고압선 (17625) - C++ 풀이"
+title: "[Algorithm] C++ 백준 17625번 : 고압선"
 description: "백준 17625 고압선 문제를 회전 스윕(Rotating Sweep Line)으로 해결합니다. 모든 (i,j)쌍의 평행/수직 이벤트를 각도 정렬하여 인접 스왑만으로 순서를 유지하고, 수직이등분선과 선분 양측의 인접 점을 이용해 거주지점까지의 직선거리의 최솟값을 최대화하는 최적의 고압선 값을 안정적으로 구하는 C++ 풀이를 정리합니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -76,8 +76,7 @@ tags:
 - "알고리즘"
 - "Solution Code"
 - "정답 코드"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 17625 - 고압선](https://www.acmicpc.net/problem/17625)

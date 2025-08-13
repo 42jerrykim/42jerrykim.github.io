@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] Robotic Sort (3444) - Treap 뒤집기 C++ 풀이"
+title: "[Algorithm] C++ 백준 3444번 : Robotic Sort"
 description: "백준 3444 Robotic Sort는 로봇 팔이 연속 구간을 뒤집는 연산만으로 샘플을 안정적으로 오름차순 정렬하도록 P1..PN을 출력하는 문제입니다. Implicit Treap로 현재 위치 계산과 구간 뒤집기를 O(N log N)으로 처리한 C++ 풀이."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -65,8 +65,7 @@ tags:
 - "공간복잡도"
 - "문제해설"
 - "백준해설"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 백준 문제 [Robotic Sort (3444)](https://www.acmicpc.net/problem/3444)는 로봇 팔이 연속 구간을 뒤집는 연산만으로 샘플을 안정적으로 오름차순 정렬하도록, 각 단계에서 뒤집기 직전의 목표 원소 위치 `P1..PN`을 출력하는 문제입니다.

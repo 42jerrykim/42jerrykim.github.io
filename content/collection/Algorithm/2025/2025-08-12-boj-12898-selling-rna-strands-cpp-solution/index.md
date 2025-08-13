@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] Selling RNA Strands (12898) - C++ 풀이"
+title: "[Algorithm] C++ 백준 12898번 :Selling RNA Strands"
 description: "백준 12898 Selling RNA Strands 문제를 접두사·접미사 조건을 각각 트라이 서브트리 구간으로 변환하고, 오일러 투어와 펜윅 트리(Fenwick/BIT)를 이용한 2D 직사각형 카운팅으로 M개의 질의를 빠르고 안정적으로 처리하는 C++ 풀이를 정리합니다. 대용량 입력을 위한 Fast I/O와 메모리 사용 최적화 포인트, 시간·공간 복잡도 분석까지 한 번에 확인할 수 있습니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -65,8 +65,7 @@ tags:
 - "선형스캔"
 - "Linear Scan"
 - "정답률"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 백준 문제 [Selling RNA Strands (12898)](https://www.acmicpc.net/problem/12898)는 사전에 있는 RNA 문자열들에 대해, M개의 질의마다 접두사가 `P`이고 접미사가 `Q`인 문자열의 개수를 구하는 문제입니다. 입력은 매우 크며, 문자열은 `A`, `C`, `G`, `U` 네 글자만 사용합니다.

@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 15292 - Petersburg→Moscow: Top-K Tolls Dijkstra"
+title: "[Algorithm] C++ 백준 15292번 : Journey from Petersburg to Moscow"
 description: "도로 네트워크에서 상트페테르부르크→모스크바 최단 경로의 ‘가장 비싼 간선 k개만 결제’ 비용을 최소화한다. 임계값 α에 대해 간선 비용을 max(0, w−α)로 변환해 다익스트라를 수행하고, k·α를 더한 값의 최소를 간선 가중치 집합(및 0)에서 탐색해 정답을 구한다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -72,8 +72,7 @@ tags:
 - "해설"
 - "Algorithm"
 - "알고리즘"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 15292 - Journey from Petersburg to Moscow](https://www.acmicpc.net/problem/15292)

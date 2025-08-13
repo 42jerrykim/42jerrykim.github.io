@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 3527 Jungle Outpost - C++ 풀이 (HPI)"
+title: "[Algorithm] C++ 백준 3527번 : Jungle Outpost"
 description: "BOJ 3527 Jungle Outpost 문제를 반평면 교집합(HPI)과 이분탐색으로 해결. k개의 연속 정점 제거에도 항상 보호되는 HQ가 존재하는지 공집합 여부로 판정하고, 가장 큰 k를 찾아 k+1을 정답으로 출력하는 실전 C++ 구현과 핵심 아이디어 정리."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -68,8 +68,7 @@ tags:
 - "회전 캘리퍼스"
 - "Two-pointer"
 - "두 포인터"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 3527 - Jungle Outpost](https://www.acmicpc.net/problem/3527)

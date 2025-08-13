@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] Quadrilaterals (17973) - C++ 풀이"
+title: "[Algorithm] C++ 백준 17973번 : Quadrilaterals"
 description: "백준 17973 Quadrilaterals를 회전 스윕과 대각선 카운팅으로 해결합니다. 모든 대각선에 대해 반평면 점수의 곱으로 기본 점수를 합산하고, 최소 넓이 사각형은 4개 후보만 검사하여 __int128 연산으로 오버플로 없이 안정적으로 판정하는 C++ 풀이를 정리합니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -74,8 +74,7 @@ tags:
 - "문제해설"
 - "정답 코드"
 - "Solution Code"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 17973 - Quadrilaterals](https://www.acmicpc.net/problem/17973)

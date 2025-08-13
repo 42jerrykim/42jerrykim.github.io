@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] Treatment Project (18855) - 다익스트라+세그트리 C++"
+title: "[Algorithm] C++ 백준 18855번 : Treatment Project"
 description: "JOI 2019/2020 Day4 C, 백준 18855 Treatment Project의 정해 구현. 프로젝트들을 정점(정점 비용)으로 보고 시간-구간 제약을 불등식으로 변환해 간선을 정의, 시작(L=1)에서 종료(R=N)까지 정점 비용 최단경로를 다익스트라로 구한다. 간선 전개는 T별로 정렬해 세그트리로 한 번씩만 활성화하여 전체 O(M log M)에 해결한다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -68,8 +68,7 @@ tags:
 - "해설"
 - "Solution-Code"
 - "정답-코드"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 18855 - Treatment Project](https://www.acmicpc.net/problem/18855)

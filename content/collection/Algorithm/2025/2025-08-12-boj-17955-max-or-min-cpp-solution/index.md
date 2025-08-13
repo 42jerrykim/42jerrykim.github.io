@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 17955 - Max or Min C++ 풀이 - 원형 배열+구간 누적"
+title: "[Algorithm] C++ 백준 17955번 Max or Min"
 description: "원형 배열에서 한 칸을 골라 인접 세 수의 최소/최대로 바꾸는 연산으로 모든 값을 x로 만드는 최소 시간을 구한다. 배열에 x가 없으면 불가능(-1). 인접 쌍마다 (min+1..max-1)에 1을 더하는 차분 누적으로 ‘그룹 수’를 집계하고, 시작점을 한 칸 회전한 두 번의 집계를 취해 중복을 보정한다. 정답은 (n - cnt[x]) + max(groups1[x], groups2[x])로 계산한다. O(n + m)."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -60,8 +60,7 @@ tags:
 - "ICPC"
 - "SEERC 2019"
 - "Open Cup"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 17955 - Max or Min](https://www.acmicpc.net/problem/17955)

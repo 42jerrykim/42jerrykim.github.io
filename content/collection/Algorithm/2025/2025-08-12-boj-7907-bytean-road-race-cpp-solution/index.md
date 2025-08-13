@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] Bytean Road Race (7907) - C++ 풀이"
+title: "[Algorithm] C++ 백준 7907번 : Bytean Road Race"
 description: "Bytean Road Race(백준 7907)을 동/남 방향 격자 DAG로 모델링해 두 정점 p, q를 모두 지나는 경로 존재 여부를 O(1)로 판별하는 C++ 풀이. 동우선·남우선 위상정렬 두 랭크 비교와 O(N+M) 전처리로 빠르고 안정적인 질의 응답을 제공합니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -63,8 +63,7 @@ tags:
 - "코딩테스트"
 - "Competitive Programming"
 - "정답률"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 7907 - Bytean Road Race](https://www.acmicpc.net/problem/7907)

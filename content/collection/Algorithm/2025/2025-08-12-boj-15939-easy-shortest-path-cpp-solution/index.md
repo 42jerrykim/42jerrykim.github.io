@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 15939 쉬운 최단경로 - 기하 O(N) 쿼리 C++"
+title: "[Algorithm] C++ 백준 15939번 쉬운 최단경로"
 description: "UCPC 2018 B(BOJ 15939) 쉬운 최단경로 문제 풀이. 두 점의 위치(외부/내부)에 따라 3가지로 분기. 내부-내부는 선분 교차 대각선 수와 각자 외부로 나가는 비용 합 중 최솟값을 O(N)로 계산하고, 내부 판정은 O(log N)로 최적화한다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -71,8 +71,7 @@ tags:
   - "구현"
   - "Math"
   - "수학"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 ### 개요

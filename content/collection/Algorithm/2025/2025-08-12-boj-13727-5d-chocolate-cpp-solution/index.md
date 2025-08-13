@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] 5차원 구사과 초콜릿 (13727) - BM O(log n) C++"
+title: "[Algorithm] C++ 백준 13727번 : 5차원 구사과 초콜릿"
 description: "백준 13727 5차원 구사과 초콜릿은 2×2×2×2×n 격자를 1×1×1×1×2 도미노로 채우는 가짓수를 구하는 문제입니다. 비트마스크 DP로 초항을 만들고 Berlekamp–Massey로 선형 점화를 복원해 O(log n)으로 n번째 항을 구하는 C++ 풀이를 정리합니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -65,8 +65,7 @@ tags:
 - "PS"
 - "Solution Code"
 - "정답 코드"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 13727 - 5차원 구사과 초콜릿](https://www.acmicpc.net/problem/13727)

@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 15768 - Duathlon C++ 풀이 - BCC/BCT"
+title: "[Algorithm] C++ 백준 15768번 - Duathlon"
 description: "APIO 2018 Duathlon(백준 15768) 문제를 Tarjan의 이중연결요소(BCC)와 Block-Cut Tree로 모델링하고, 보수계산으로 ‘불량’ 삼중쌍을 합산해 전체 경우에서 빼는 O(N+M) C++ 풀이를 정리합니다. 스택 기반 간선 추출, 서브트리 원소수 집계, 절단점-블록 기여 계산, 64비트 오버플로 주의, 샘플 검증과 빌드/실행 방법까지 포함."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -68,8 +68,7 @@ tags:
 - "Block Graph"
 - "BCC Tree"
 - "2-Connected"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 15768 - Duathlon](https://www.acmicpc.net/problem/15768)

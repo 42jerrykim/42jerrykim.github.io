@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 13725 - RNG C++ 풀이 - Bostan–Mori+NTT"
+title: "[Algorithm] C++ 백준 13725번 - RNG"
 description: "선형 점화식 A_i = \u2211 A_{i-j}\u00B7C_j (mod 104857601)를 Bostan–Mori와 NTT로 O(k log k log N)에 계산합니다. 2^22\u00B75^2+1 소수 모듈러에서 다항식 곱셈으로 A_N을 빠르고 안정적으로 구하는 C++ 정답과 구현 포인트를 정리합니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -67,8 +67,7 @@ tags:
 - "구현"
 - "정답 코드"
 - "Solution Code"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 13725 - RNG](https://www.acmicpc.net/problem/13725)

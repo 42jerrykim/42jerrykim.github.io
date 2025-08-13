@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 15737 - 일반 그래프 매칭 C++ 풀이 - Edmonds Blossom"
+title: "[Algorithm] C++ 백준 15737번 : 일반 그래프 매칭"
 description: "Edmonds Blossom로 일반 그래프에서 최대 매칭을 구합니다. BFS 증가 경로 탐색과 블로섬 수축, LCA 기반 기저 갱신을 구현해 N≤500, M≈N(N−1)/2에서도 1초 내 통과하는 C++ 정답과 핵심 포인트를 정리합니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -78,8 +78,7 @@ tags:
 - "Base Vertex"
 - "루트"
 - "Root"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 15737 - 일반 그래프 매칭](https://www.acmicpc.net/problem/15737)

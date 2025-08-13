@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 17517 - Parklife C++ 풀이 - 트리 DP"
+title: "[Algorithm] C++ 백준 17517번 : Parklife"
 description: "BOJ 17517 Parklife는 교차하지 않는 다리들을 라미나(중첩) 구간 트리로 변환한 뒤, 자식 DP의 볼록한 차이 수열을 small-to-large로 합치고 노드 가중치를 삽입(슬로프 트릭)해 k=1..N의 최댓값을 O(N log^2 N)에 구하는 C++ 풀이를 정리합니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -69,8 +69,7 @@ tags:
 - "KAIST"
 - "Mock Competition"
 - "Open Cup"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 17517 - Parklife](https://www.acmicpc.net/problem/17517)

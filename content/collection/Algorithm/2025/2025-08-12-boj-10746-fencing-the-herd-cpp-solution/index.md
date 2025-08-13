@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 10746 - Fencing the Herd C++ 풀이"
+title: "[Algorithm] C++ 백준 10746번 : Fencing the Herd"
 description: "동적으로 소가 추가되는 좌표 집합에 대해 직선 울타리 Ax+By=C가 모든 소를 한쪽 반평면에 두는지 판별한다. 시간 세그먼트 트리+노드별 볼록껍질로 지지함수(min/max 내적)를 빠르게 구해 O(log^2 N)로 YES/NO를 처리한다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -65,8 +65,7 @@ tags:
 - "Baekjoon"
 - "Problem Solving"
 - "PS"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 ### 문제 요약

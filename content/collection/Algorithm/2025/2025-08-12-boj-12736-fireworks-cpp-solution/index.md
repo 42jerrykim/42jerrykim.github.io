@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] Fireworks (12736) - 트리 DP O(N log^2 N) C++"
+title: "[Algorithm] C++ 백준 12736번 : Fireworks"
 description: "백준 12736 Fireworks(APIO 2016)는 스위치-연결점-폭약으로 이루어진 트리에서 모든 폭약의 폭발 시각을 같게 만들기 위해 도화선 길이를 조정하는 최소 비용을 구하는 문제입니다. 볼록 함수(slope trick) 기반 트리 DP와 small-to-large 우선순위 큐 합병으로 O((N+M) log^2(N+M))에 해결합니다. 구현 핵심은 기울기 변화 지점을 우선순위 큐로 관리하고, 간선 통과 시 upperize 연산으로 기울기와 절편 변화를 반영하는 것입니다. 안전한 64-bit 정수 사용과 서브트리 크기 기준 정렬로 상수 시간을 줄여 AC를 얻습니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -71,8 +71,7 @@ tags:
 - "Solution-Code"
 - "정답-코드"
 - "Editorial"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 12736 - Fireworks](https://www.acmicpc.net/problem/12736)

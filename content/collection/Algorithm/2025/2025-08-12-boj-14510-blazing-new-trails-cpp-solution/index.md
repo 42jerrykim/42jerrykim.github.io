@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] Blazing New Trails (14510) - C++ 풀이"
+title: "[Algorithm] C++ 백준 14510번 : Blazing New Trails"
 description: "특수/일반 노드 간 교차 간선을 정확히 w개 포함하는 최소 스패닝 트리. 라그랑주 가중치로 교차 간선에 x를 더해 크루스칼을 돌리고, 이분 탐색으로 w를 맞춘 뒤 비용'에서 x·w를 빼 원래 최소 비용을 복원한다. 정렬 1회, 탐색 중 두 포인터 병합으로 빠르게 처리."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -68,8 +68,7 @@ tags:
 - "네트워크 설계"
 - "Spanning"
 - "트리"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 14510 - Blazing New Trails](https://www.acmicpc.net/problem/14510)

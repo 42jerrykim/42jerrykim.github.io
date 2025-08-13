@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] 수열과 쿼리 26 (17474) - Segment Tree Beats C++"
+title: "[Algorithm] C++ 백준 17474번 : 수열과 쿼리"
 description: "백준 17474 수열과 쿼리 26: 구간에 X로 chmin을 적용하고 구간 최댓값/합을 질의하는 문제. Segment Tree Beats로 (max, second max, count, sum)을 유지하여 chmin을 빠르게 처리하고, 질의는 O(log N)로 응답하는 C++ 구현을 정리합니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -70,8 +70,7 @@ tags:
 - "정수 오버플로"
 - "Range Update"
 - "범위 업데이트"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 17474 - 수열과 쿼리 26](https://www.acmicpc.net/problem/17474)

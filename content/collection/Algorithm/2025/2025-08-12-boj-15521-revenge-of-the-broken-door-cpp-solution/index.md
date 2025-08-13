@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] Revenge of the Broken Door (15521) - Robust Path C++"
+title: "[Algorithm] C++ 백준 15521번 : Revenge of the Broken Door"
 description: "백준 15521은 하나의 간선이 공사 중일 때 최악의 총 이동 거리를 최소화하는 경로를 구하는 문제입니다. T에서 다익스트라로 SPT를 만들고 비트리 간선을 HLD+세그로 경로 최소 갱신, 이분 탐색+Dijkstra로 최적 값을 구합니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -87,8 +87,7 @@ tags:
 - "정답 코드"
 - "Tutorial"
 - "해설"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 15521 - Revenge of the Broken Door](https://www.acmicpc.net/problem/15521)

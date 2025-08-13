@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 17442 - 삼분 그래프 - 듀얼 그래프+2D 질의 C++"
+title: "[Algorithm] C++ 백준 17442번 : 삼분 그래프"
 description: "평면 그래프에 두 수직선 x=A, x=B를 그어 그래프를 삼분할할 때 조각 수를 구한다. 오일러 공식 ΔC=ΔV−ΔE+ΔF와 듀얼 그래프로 각 면의 x-범위를 구해 2D 질의로 ΔF(잘리는 면 수)를 세고, ΔE는 간선 교차수 누적으로 계산한다. 외부 면을 제외해 정확히 세며, 전체는 O((N+M)logN + Qlog^2N)로 처리하는 C++ 풀이."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -73,8 +73,7 @@ tags:
 - "SNUPC"
 - "SNU"
 - "서울대학교"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 백준 문제 [삼분 그래프 (17442)](https://www.acmicpc.net/problem/17442)의 C++ 풀이를 정리합니다. 평면 그래프에 수직선 `x=A`, `x=B`로 절단을 가하면, 정의에 따라 교점에서 간선을 둘로 나누고 각 끝에 새 정점을 추가합니다. 목표는 잘린 뒤 연결 성분(조각) 수를 구하는 것입니다.

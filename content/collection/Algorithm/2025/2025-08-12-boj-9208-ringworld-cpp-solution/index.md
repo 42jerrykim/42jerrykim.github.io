@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] Ringworld (9208) - C++ 풀이"
+title: "[Algorithm] C++ 백준 9208번 : Ringworld"
 description: "DSU로 모노톤 후보를 유지해 Hall 조건의 최대값만 추적하여 세그트리 없이 BOJ 9208 링월드를 O(n log n)으로 해결합니다. 원형 구간의 2배 선형화와 좌표압축을 결합해 TLE를 방지하고, 구현이 간결하며 안정적인 성능을 보장합니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -72,8 +72,7 @@ tags:
 - "정답률"
 - "문제해설"
 - "Editorial"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 9208 - 링월드](https://www.acmicpc.net/problem/9208)

@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 12670 - Code Jam Year Large - Min-cut 최대 행복"
+title: "[Algorithm] C++ 백준 12670번 : The Year of Code Jam (Large)"
 description: "격자 달력에서 파란날 행복도 4−이웃수의 합을 최대화하는 문제를 이분 격자 그래프 컷으로 환원한다. B측 보조 변수 y=1−x 변환과 Potts [x!=y] 간선, 단항 재매개화, 고정일(#, .)을 s-t 컷으로 구성해 Dinic으로 최적값을 빠르게 구한다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -74,8 +74,7 @@ tags:
 - "2D Grid"
 - "Google"
 - "World Finals"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 12670 - The Year of Code Jam (Large)](https://www.acmicpc.net/problem/12670)

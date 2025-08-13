@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] A + B - C (31403) - Python/C++ 풀이"
+title: "[Algorithm] C++ 백준 31403번 : A + B - C"
 description: "백준 31403 A + B - C 문제를 Python과 C++로 풀이합니다. 숫자로 계산하는 A + B - C와 문자열을 이어붙인 뒤 int로 변환하여 C를 빼는 연산의 차이를 예제와 함께 설명하고, 빠른 입출력 코드, 복잡도, 테스트 팁까지 간결하게 정리했습니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -64,8 +64,7 @@ tags:
 - "테스트케이스"
 - "백준기초"
 - "풀이정리"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 백준 문제 [A + B - C (31403)](https://www.acmicpc.net/problem/31403) 는 숫자로 계산하는 `A + B - C`와 문자열로 이어붙인 뒤 수로 변환해 `- C`를 하는 두 가지 결과를 각각 출력하는 간단 구현 문제입니다.

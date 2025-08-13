@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] Prefixuffix (8235) - 롤링 해시 O(n) C++ 풀이"
+title: "[Algorithm] C++ 백준 8235번 : Prefixuffix"
 description: "백준 8235 Prefixuffix는 접두사와 접미사의 회전 동치 최대 길이를 구하는 문자열 문제입니다. 두 포인터와 롤링 해시(모듈러)로 T=A+B+X+B+A 구조를 O(n)에 찾아 C++로 구현하고, 경계 처리와 충돌 안정성까지 설명합니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -70,8 +70,7 @@ tags:
 - "Rotation"
 - "비교 최적화"
 - "Comparison Optimization"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 8235 - Prefixuffix](https://www.acmicpc.net/problem/8235)

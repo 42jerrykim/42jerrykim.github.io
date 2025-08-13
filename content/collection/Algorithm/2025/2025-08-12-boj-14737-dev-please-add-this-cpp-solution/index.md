@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 14737 - Dev, Please Add This! C++ 풀이 - SCC+2-SAT"
+title: "[Algorithm] C++ 백준 14737번 Dev, Please Add This!"
 description: "격자에서 공을 상하좌우로 굴려 벽이나 가장자리에 닿을 때까지 이동하는 퍼즐에서, 모든 별을 하나의 플레이 순서로 획득할 수 있는지 판정한다. 단순 커버리지가 아니라 이동 순서 제약이 존재하므로 셀 단위 이동을 단방향 그래프로 모델링하고, 강한 연결 요소(SCC)로 압축한 DAG에서 상호 비가역(서로 도달 불가)한 컴포넌트 쌍의 동시 방문을 금지하는 제약과 각 별이 있는 칸의 행/열 중 하나의 정지 컴포넌트를 반드시 방문해야 한다는 제약을 2-SAT으로 구성해 모순 여부로 YES/NO를 결정한다. Kosaraju로 SCC를 구하고 DAG 도달성은 비트셋 DP로 처리하여 50×50까지 빠르게 동작한다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -65,8 +65,7 @@ tags:
 - "Logic"
 - "Path Dependency"
 - "순서 제약"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 14737 - Dev, Please Add This!](https://www.acmicpc.net/problem/14737)

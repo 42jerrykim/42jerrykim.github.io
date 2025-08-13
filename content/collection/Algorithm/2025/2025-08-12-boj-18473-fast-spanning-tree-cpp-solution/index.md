@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 18473 - Fast Spanning Tree C++ 풀이"
+title: "[Algorithm] C++ 백준 18473번 : Fast Spanning Tree"
 description: "BOJ 18473 Fast Spanning Tree는 인덱스가 작은 간선부터 조건을 만족할 때만 연결하는 과정을 효율적으로 복원하는 문제입니다. DSU(Union-Find)와 small-to-large 병합, 부족분 절반 기준의 watcher, 전역 후보 우선순위 큐를 이용해 O(m log m) 내에 기록된 간선 인덱스 시퀀스를 재현하는 C++ 구현과 핵심 아이디어를 정리했습니다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -68,8 +68,7 @@ tags:
 - "Open Cup"
 - "300iq"
 - "Contest"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 18473 - Fast Spanning Tree](https://www.acmicpc.net/problem/18473)

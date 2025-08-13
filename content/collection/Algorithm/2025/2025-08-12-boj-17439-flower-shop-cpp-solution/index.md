@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] 꽃집 (17439) - Alien’s Trick + Monotone Queue C++"
+title: "[Algorithm] C++ 백준 17439번 : 꽃집"
 description: "가격 오름차순 N개의 꽃을 최대 K개 구간으로 연속 분할하여 ∑(구간합×구간길이)을 최소화. 추가 비용 C를 이분탐색(Alien’s trick)하고 교점 1개 성질을 이용한 단조 큐 최적화로 O(N log N log X) 해법과 C++ 구현을 정리한다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -66,8 +66,7 @@ tags:
 - "Slope Optimization"
 - "Segment Cost"
 - "구간 비용"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 17439 - 꽃집](https://www.acmicpc.net/problem/17439)

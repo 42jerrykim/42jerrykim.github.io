@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] 3419 - Racing Car Trail - C++ 최대매칭/게임이론 풀이"
+title: "[Algorithm] C++ 백준 3419번 : Racing Car Trail"
 description: "백준 3419 Racing Car Trail을 격자 그래프의 이분 그래프로 모델링해 Hopcroft–Karp 최대 매칭과 Dulmage–Mendelsohn 도달성으로 각 시작 칸의 승패(A/B)를 판정합니다. O(E√V) 매칭과 O(V+E) 마킹으로 빠르게 처리하며, 구현 디테일과 복잡도까지 정리."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -65,8 +65,7 @@ tags:
 - "코딩테스트"
 - "Competitive Programming"
 - "CP"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 백준 문제 [Racing Car Trail (3419)](https://www.acmicpc.net/problem/3419)은 장애물이 있는 \"격자(Grid)\" 위에서 한 칸씩 번갈아 이동하며 자기 궤적을 다시 밟으면 지는 게임입니다. 각 시작 칸에서 최적 플레이 시 누가 이기는지 출력합니다.

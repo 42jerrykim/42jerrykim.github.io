@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 16191 - Utilitarianism C++ 풀이: 라그랑주+트리DP"
+title: "[Algorithm] C++ 백준 16191번 : Utilitarianism"
 description: "트리에서 서로 인접하지 않는 k개의 간선을 골라 가중치 합을 최대로 만드는 문제. 라그랑주 최적화(λ)로 k-제약을 벌점으로 흡수하고, 노드별 상태 DP(A/B)로 F(λ)=max∑(w-λ)와 선택 간선 수를 O(n)에 계산, λ에 대한 단조성을 이용해 이분 탐색 후 F(λ)+λk의 최소값으로 정답을 복원한다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -64,8 +64,7 @@ tags:
 - "PS"
 - "Algorithm"
 - "알고리즘"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 16191 - Utilitarianism](https://www.acmicpc.net/problem/16191)

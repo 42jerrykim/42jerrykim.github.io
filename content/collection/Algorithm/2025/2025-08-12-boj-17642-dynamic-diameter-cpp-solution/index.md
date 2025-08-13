@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] Dynamic Diameter (17642) - Centroid Decomp + Segtree C++"
+title: "[Algorithm] C++ 백준 17642번 : Dynamic Diameter"
 description: "가중 무향 트리에서 간선 가중치가 바뀔 때마다 지름을 출력한다. 센트로이드 분할과 지연 전파 세그트리로 업데이트를 O((log n)^2)에 처리하고, 각 센트로이드에서 두 서브트리 최댓값 합으로 전역 지름을 유지하는 정해 구현을 정리한다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -79,8 +79,7 @@ tags:
 - "정답 코드"
 - "Editorial"
 - "해설"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 17642 - Dynamic Diameter](https://www.acmicpc.net/problem/17642)

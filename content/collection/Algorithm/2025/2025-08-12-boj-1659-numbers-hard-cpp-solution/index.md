@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 1659 - 수 (Hard) C++ 풀이 - O(n+m) DP"
+title: "[Algorithm] C++ 백준 1659번 : 수 (Hard)"
 description: "백준 1659 수 (Hard): S∪T 병합 정렬 뒤 약한 연결(최근접 반대 타입)과 균형 구간 강한 매칭 비용(|∑S−∑T|)을 결합한 선형 DP로 최소 총비용을 구한다. 시간 O(n+m), 메모리 O(n+m)인 C++ 구현과 핵심 아이디어를 함께 정리한다."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -67,8 +67,7 @@ tags:
 - "최적화"
 - "Int64"
 - "long long"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 1659 - 수 (Hard)](https://www.acmicpc.net/problem/1659)

@@ -1,5 +1,5 @@
 ---
-title: "[BOJ] Double Clique (16041) - C++ 풀이"
+title: "[Algorithm] C++ 백준 16041번 : Double Clique"
 description: "백준 16041 Double Clique를 스플릿 그래프 특성으로 환원해 정렬된 차수 누적 합 등식(sum_S−s(s−1)=2m−sum_S)으로 분할 크기 s를 찾고, 제거·추가·교환 경우의 수를 합산해 1e9+7로 정답을 출력하는 C++ 풀이."
 date: 2025-08-12
 lastmod: 2025-08-12
@@ -78,8 +78,7 @@ tags:
 - "Validation"
 - "증명"
 - "Proof"
-image: "featured-image.jpg"
-draft: true
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 16041 - Double Clique](https://www.acmicpc.net/problem/16041)
