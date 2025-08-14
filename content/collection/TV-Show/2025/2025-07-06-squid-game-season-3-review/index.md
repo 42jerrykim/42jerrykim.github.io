@@ -1,11 +1,12 @@
 ---
-title: "[TV Series] 오징어게임 시즌3 (Squid Game Season 3) (2025) - 절망과 희망이 공존하는 완벽한 대결의 끝"
+title: "[TV Show] 오징어게임 시즌3 (Squid Game Season 3) (2025) - 절망과 희망이 공존하는 완벽한 대결의 끝"
 date: 2025-07-06
 lastmod: 2025-07-06
 description: "시즌2 반란 여파 속 다시 열린 데스게임. ‘하늘 오징어게임’·‘영희·철수’ 확장 규칙, 황준호·황인호 형제 비극과 성기훈의 최후 선택까지 시즌3 전편 줄거리·상징·메시지 총정리"
 image: "poster.webp"
 categories: 
   - TV Series
+  - TV Show
   - Thriller
   - Drama
   - Netflix

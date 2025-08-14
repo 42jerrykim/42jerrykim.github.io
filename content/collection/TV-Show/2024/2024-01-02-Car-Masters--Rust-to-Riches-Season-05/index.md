@@ -1,13 +1,13 @@
 ---
 image: "tmp_wordcloud.png"
-categories: TVShows
+categories: TV Show
 date: "2024-01-02T00:00:00Z"
 header:
   teaser: /assets/images/2024/CM_Title.jpg
 tags:
 - Car
 - GothamGarage
-title: '[TVShows] Car Masters: Rust to Riches - Season 05 (2023)'
+title: '[TV Show] Car Masters: Rust to Riches - Season 05 (2023)'
 
 ---
 

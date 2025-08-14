@@ -1,10 +1,11 @@
 ---
-title: "[TV Series] Squid Game (오징어 게임) Season 1 (2021) - 생존과 자본주의의 잔혹한 초상"
+title: "[TV Show] Squid Game (오징어 게임) Season 1 (2021) - 생존과 자본주의의 잔혹한 초상"
 description: "456명의 참가자가 극한의 생존 게임에 내몰리며 자본주의의 잔혹함과 인간성의 경계에서 선택을 강요받는 과정을 그린다. 각 인물의 사연과 계급, 심리 변화가 치밀하게 전개되며, 사회적 불평등과 도덕적 딜레마를 심도 있게 조명한다."
 date: 2021-09-17
 lastmod: 2025-08-06
 categories: 
 - TV Series
+- TV Show
 - Thriller
 - Drama
 - Netflix
