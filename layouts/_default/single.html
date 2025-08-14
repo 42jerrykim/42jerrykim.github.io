@@ -37,7 +37,7 @@
         {{- $currentPageURL := .RelPermalink -}}
         
         {{- if gt (len $allPosts) 1 -}}
-        <section class="widget related">
+        <section class="widget related" data-pagefind-ignore>
             <h2 class="widget-title section-title">{{ $currentCollection.Title }}의 관련 글들</h2>
             
             <div class="widget-body">

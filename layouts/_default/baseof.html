@@ -24,6 +24,17 @@
             {{ .Title }}
         </div>
 
+        <div class="pagefind-url-hidden" data-pagefind-body style="display:none;visibility:hidden">
+            {{ .RelPermalink }}
+            {{ with .Permalink }}{{ . }}{{ end }}
+            {{- $cleanRel := replace (replace .RelPermalink "/" " ") "-" " " -}}
+            {{ $cleanRel }}
+            {{- with .File -}}
+            {{- $cleanPath := replace (replace .Path "/" " ") "-" " " -}}
+            {{ $cleanPath }}
+            {{- end -}}
+        </div>
+
         {{/* The container is wider when there's any activated widget */}}
         {{- $hasWidget := false -}}
         {{- range .Site.Params.widgets -}}
