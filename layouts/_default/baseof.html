@@ -47,7 +47,7 @@
                 {{ partial "sidebar/left.html" . }}
             {{- end -}}
             {{- block "right-sidebar" . -}}{{ end }}
-            <main class="main full-width">
+            <main class="main full-width" data-pagefind-body>
                 {{- block "main" . }}{{- end }}
             </main>
         </div>
