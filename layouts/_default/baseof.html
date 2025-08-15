@@ -24,6 +24,31 @@
             {{ .Title }}
         </div>
 
+        {{/* 이미지 메타데이터 추가 */}}
+        {{- $image := "" -}}
+        {{- if .Params.image -}}
+            {{- if strings.HasPrefix .Params.image "http" -}}
+                {{- $image = .Params.image -}}
+            {{- else -}}
+                {{- $image = printf "%s%s" .RelPermalink .Params.image -}}
+            {{- end -}}
+        {{- else if .Resources.GetMatch "poster.*" -}}
+            {{- $posterResource := .Resources.GetMatch "poster.*" -}}
+            {{- $image = printf "%s%s" .RelPermalink $posterResource.Name -}}
+        {{- else if .Resources.GetMatch "image.*" -}}
+            {{- $imgResource := .Resources.GetMatch "image.*" -}}
+            {{- $image = printf "%s%s" .RelPermalink $imgResource.Name -}}
+        {{- else if .Resources.GetMatch "*.{jpg,jpeg,png,webp}" -}}
+            {{- $firstImg := .Resources.GetMatch "*.{jpg,jpeg,png,webp}" -}}
+            {{- $image = printf "%s%s" .RelPermalink $firstImg.Name -}}
+        {{- end -}}
+        
+        {{- if $image -}}
+        <div class="pagefind-image-hidden" data-pagefind-meta="image" style="display:none;visibility:hidden">
+            {{ $image }}
+        </div>
+        {{- end -}}
+
         <div class="pagefind-url-hidden" data-pagefind-body style="display:none;visibility:hidden">
             {{ .RelPermalink }}
             {{ with .Permalink }}{{ . }}{{ end }}
