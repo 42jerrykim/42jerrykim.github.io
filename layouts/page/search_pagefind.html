@@ -29,21 +29,19 @@
             background-color: #f8f9fa;
         }
         
-        /* 다크모드 지원 */
-        [data-scheme="dark"] .search-result-image {
-            border-color: #404040;
-            background-color: #2a2a2a;
-        }
-        
-        /* 다크모드 skeleton 애니메이션 */
+        /* 통합된 다크모드 지원 */
         @media (prefers-color-scheme: dark) {
             .search-result-image {
+                border-color: #404040;
+                background-color: #2a2a2a;
                 background: linear-gradient(90deg, #404040 25%, transparent 37%, #404040 63%);
                 background-size: 400% 100%;
             }
         }
         
         [data-scheme="dark"] .search-result-image {
+            border-color: #404040;
+            background-color: #2a2a2a;
             background: linear-gradient(90deg, #404040 25%, transparent 37%, #404040 63%);
             background-size: 400% 100%;
         }
@@ -86,6 +84,9 @@
 let pagefindInstance;
 
 // 전역 캐시 변수들은 ImageCacheManager로 통합됨
+
+// 간소화된 이미지 URL 저장소
+const imageUrlStore = new Map();
 
 // ========================================
 // 이미지 로딩 관련 유틸리티
@@ -193,32 +194,19 @@ function createImageElement(result, link, imageUrl) {
             removeSkeleton();
         };
         
-        // 이미지 로드 실패 시 처리
+        // 이미지 로드 실패 시 처리 - 아바타 fallback 제거
         img.onerror = function() {
             console.log('❌ 이미지 로드 실패:', imageUrl);
             
-            // 간소화된 fallback - 기본 아바타 이미지만 시도
-            if (!img.hasAttribute('data-fallback-tried')) {
-                img.setAttribute('data-fallback-tried', 'true');
-                
-                // 기본 아바타 이미지로 fallback
-                console.log('🔄 기본 아바타 이미지로 fallback');
-                img.src = '/img/avatar_hu_a8bb2d700b228ae8.png';
-                img.setAttribute('data-final-fallback', 'true');
-                return;
-            }
+            // 이미지 로드 실패 시 컨테이너 제거 (아바타 fallback 없음)
+            console.log('💥 이미지 로드 실패, 컨테이너 제거');
             
-            // 최종 fallback도 실패한 경우 skeleton 제거 후 컨테이너 제거
-            if (img.hasAttribute('data-final-fallback')) {
-                console.log('💥 최종 fallback도 실패, 컨테이너 제거');
-                
-                // skeleton 애니메이션 제거
-                imageContainer.style.background = 'none';
-                imageContainer.style.animation = 'none';
-                
-                if (imageContainer.parentNode) {
-                    imageContainer.parentNode.removeChild(imageContainer);
-                }
+            // skeleton 애니메이션 제거
+            imageContainer.style.background = 'none';
+            imageContainer.style.animation = 'none';
+            
+            if (imageContainer.parentNode) {
+                imageContainer.parentNode.removeChild(imageContainer);
             }
         };
 
@@ -299,37 +287,12 @@ function createImageElement(result, link, imageUrl) {
                     console.log('❌ Pagefind Meta 이미지 없음 for:', result.url);
                 }
                 
-                // 이미지 URL을 result에 추가 (여러 방법으로 저장)
-                result.customImage = imageUrl;
-                
-                // DOM에도 이미지 정보 저장 (hidden element로)
-                if (imageUrl) {
-                    // 기존 element가 있는지 확인하고 제거
-                    const existingElement = document.querySelector(`[data-page-url="${result.url}"]`);
-                    if (existingElement) {
-                        existingElement.remove();
-                    }
-                    
-                    // URL을 기반으로 고유한 ID 생성 (한국어 URL 지원)
-                    const urlHash = encodeURIComponent(result.url).replace(/[^a-zA-Z0-9]/g, '').substring(0, 20);
-                    const timestamp = Date.now().toString(36);
-                    
-                    // 이미지 정보를 담은 hidden element 생성
-                    const hiddenImageInfo = document.createElement('div');
-                    hiddenImageInfo.id = `pagefind-meta-image-${urlHash}-${timestamp}`;
-                    hiddenImageInfo.dataset.pageUrl = result.url;
-                    hiddenImageInfo.dataset.imageUrl = imageUrl;
-                    hiddenImageInfo.style.display = 'none';
-                    hiddenImageInfo.classList.add('pagefind-meta-image-info');
-                    
-                    // body에 추가 (나중에 검색할 수 있도록)
-                    document.body.appendChild(hiddenImageInfo);
-                    
-                    console.log('💾 DOM에 Meta 이미지 정보 저장:', {
-                        id: hiddenImageInfo.id,
-                        url: result.url,
-                        imageUrl: imageUrl
-                    });
+                // 이미지 URL 저장 (아바타가 아닌 경우만)
+                if (imageUrl && !imageUrl.includes('avatar')) {
+                    imageUrlStore.set(result.url, imageUrl);
+                    console.log('💾 이미지 URL 저장:', result.url, '→', imageUrl);
+                } else if (imageUrl && imageUrl.includes('avatar')) {
+                    console.log('🚫 아바타 이미지 제외:', imageUrl);
                 }
                 
                 return result;
@@ -365,23 +328,35 @@ function createImageElement(result, link, imageUrl) {
         
         // debounce 제거됨 - 즉시 컨테이너 생성 방식으로 인해 불필요
         
-        // 검색 결과 변경 감지 (성능 최적화)
-        const observer = new MutationObserver(function(mutations) {
-            let needUpdate = false;
+        // 통합된 MutationObserver - 모든 DOM 변경을 한 번에 처리
+        const unifiedObserver = new MutationObserver(function(mutations) {
+            let needImageUpdate = false;
+            
             mutations.forEach(function(mutation) {
                 if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                    // 실제 검색 결과가 추가된 경우만 체크
                     for (let node of mutation.addedNodes) {
-                        if (node.nodeType === Node.ELEMENT_NODE && 
-                            (node.classList.contains('pagefind-ui__result') || 
-                             node.querySelector && node.querySelector('.pagefind-ui__result'))) {
-                            needUpdate = true;
-                            break;
+                        if (node.nodeType === Node.ELEMENT_NODE) {
+                            // 검색 결과 추가 감지
+                            if (node.classList.contains('pagefind-ui__result') || 
+                                (node.querySelector && node.querySelector('.pagefind-ui__result'))) {
+                                needImageUpdate = true;
+                            }
+                            
+                            // 썸네일 제거
+                            if (node.classList.contains('pagefind-ui__result-thumb')) {
+                                node.remove();
+                            }
+                            
+                            // 클리어 버튼 제거
+                            if (node.classList.contains('pagefind-ui__search-clear')) {
+                                node.remove();
+                            }
                         }
                     }
                 }
             });
-            if (needUpdate) {
+            
+            if (needImageUpdate) {
                 console.log('🔄 새로운 검색 결과 감지, 즉시 이미지 컨테이너 생성');
                 // 즉시 이미지 컨테이너 생성 (레이아웃 시프트 방지)
                 setTimeout(() => {
@@ -393,10 +368,12 @@ function createImageElement(result, link, imageUrl) {
             }
         });
         
+        // 검색 컨테이너와 body 모두 관찰
         const searchContainer = document.getElementById('search');
         if (searchContainer) {
-            observer.observe(searchContainer, { childList: true, subtree: true });
+            unifiedObserver.observe(searchContainer, { childList: true, subtree: true });
         }
+        unifiedObserver.observe(document.body, { childList: true, subtree: true });
         
         /**
          * 모든 검색 결과에 즉시 이미지 컨테이너 생성 (레이아웃 시프트 방지)
@@ -450,7 +427,7 @@ function createImageElement(result, link, imageUrl) {
             document.getElementById('pagefind-search-input').value = searchQuery;
             // 잠시 후 검색 실행 (PagefindUI가 완전히 로드된 후)
             setTimeout(() => {
-                triggerSearch();
+                SearchUtils.triggerSearch();
             }, 500);
         }
         
@@ -462,13 +439,13 @@ function createImageElement(result, link, imageUrl) {
                 pagefindInput.value = this.value;
                 pagefindInput.dispatchEvent(new Event('input'));
             }
-            updateSearchResultTitle(this.value);
+            SearchUtils.updateSearchResultTitle(this.value);
         });
         
         // 엔터 키 검색 지원
         customInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                triggerSearch();
+                SearchUtils.triggerSearch();
             }
         });
     });
@@ -493,64 +470,12 @@ function addImagesToResults() {
 
             const url = link.href;
             
-            // 1. 먼저 pagefind meta image가 있는지 확인
-            let pagefindMetaImage = null;
-            
-            // processResult에서 설정한 customImage 사용
-            // pagefind가 인덱싱한 data-pagefind-meta="image" 데이터를 활용
+            // 간소화된 이미지 URL 조회
             const pageUrl = link.href;
+            const pagefindMetaImage = imageUrlStore.get(pageUrl);
             
-            // 간소화됨 - DOM에서 저장된 이미지 정보만 사용
-            
-            // 방법 3: DOM에서 저장된 meta 이미지 정보 찾기
-            if (!pagefindMetaImage) {
-                // 절대 URL과 상대 URL 모두 시도
-                const relativeUrl = pageUrl.replace(window.location.origin, '');
-                
-                let metaImageInfo = document.querySelector(`[data-page-url="${pageUrl}"]`);
-                if (!metaImageInfo) {
-                    metaImageInfo = document.querySelector(`[data-page-url="${relativeUrl}"]`);
-                }
-                
-                if (metaImageInfo && metaImageInfo.dataset.imageUrl) {
-                    pagefindMetaImage = metaImageInfo.dataset.imageUrl;
-                    console.log('📋 DOM에서 저장된 Meta 이미지 발견:', pagefindMetaImage, '(URL 매칭 성공)');
-                }
-            }
-            
-            // 디버깅: result 객체 구조 확인
-            console.log('🔍 Result 객체 구조 확인:', {
-                customImage: result.customImage,
-                keys: Object.keys(result),
-                _pagefindResult: result._pagefindResult,
-                url: pageUrl,
-                domMetaFound: !!document.querySelector(`[data-page-url="${pageUrl}"]`)
-            });
-            
-            // 방법 2: pagefind API를 통한 실시간 meta 데이터 접근
-            if (!pagefindMetaImage && result.data && typeof result.data === 'function') {
-                // 비동기로 meta 데이터 접근 시도
-                result.data().then(data => {
-                    if (data.meta && data.meta.image) {
-                        const metaImageUrl = data.meta.image.startsWith('/') 
-                            ? window.location.origin + data.meta.image 
-                            : data.meta.image;
-                        console.log('✅ Pagefind API Meta 이미지 발견:', metaImageUrl);
-                        
-                        // 기존 이미지가 없는 경우에만 새로 생성
-                        const existingImage = result.querySelector('.pagefind-ui__result-image');
-                        if (!existingImage) {
-                            createImageElement(result, link, metaImageUrl);
-                            ImageCacheManager.set(pageUrl, metaImageUrl);
-                        }
-                    }
-                }).catch(err => {
-                    console.log('❌ Pagefind Meta API 접근 실패:', err);
-                });
-            }
-
             if (pagefindMetaImage) {
-                console.log('✅ Pagefind Meta 이미지 직접 사용:', pagefindMetaImage);
+                console.log('✅ 저장된 이미지 URL 사용:', pagefindMetaImage);
                 createImageElement(result, link, pagefindMetaImage);
                 ImageCacheManager.set(url, pagefindMetaImage);
                 return;
@@ -620,8 +545,7 @@ const ImageCandidateGenerator = {
             candidates.push(`${basePath}/${filename}`);
         });
 
-        // 간소화됨 - 추가 fallback 제거
-        candidates.push('/img/avatar_hu_a8bb2d700b228ae8.png');
+        // 아바타 fallback 제거 - 실제 이미지만 사용
 
         return candidates;
     }
@@ -637,47 +561,33 @@ const ImageCandidateGenerator = {
 // Logger 객체 제거됨 - 직접 console.log 사용으로 간소화
 
 /**
- * 헤더 이미지 검색 - 여러 후보를 시도하여 최적의 이미지 찾기
+ * 개선된 헤더 이미지 검색 - HTML 파싱으로 실제 이미지 찾기
  * @param {string} pageUrl - 페이지 URL
  * @returns {Promise<string|null>} - 이미지 URL 또는 null
  */
 async function fetchHeaderImage(pageUrl) {
         try {
-            console.log('🔍 이미지 로딩 시작:', pageUrl);
+            console.log('🔍 개선된 이미지 검색:', pageUrl);
             
-            // 이미지 파일 직접 시도 방식
+            // 1. 먼저 기본 후보 시도
             const imageCandidates = ImageCandidateGenerator.generate(pageUrl);
-            console.log('🎯 이미지 후보들:', imageCandidates);
-            
             for (const imageUrl of imageCandidates) {
-                // 실패한 URL은 건너뛰기 (성능 최적화)
-                if (ImageCacheManager.isFailed(imageUrl)) {
-                    console.log('⏭️ 캐시된 실패 URL 건너뛰기:', imageUrl);
-                    continue;
-                }
+                if (ImageCacheManager.isFailed(imageUrl)) continue;
                 
                 try {
-                    const response = await fetch(imageUrl, { 
-                        method: 'HEAD', // HEAD 요청으로 빠른 확인
-                        cache: 'force-cache'
-                    });
-                    
+                    const response = await fetch(imageUrl, { method: 'HEAD' });
                     if (response.ok) {
-                        console.log('✅ 이미지 발견 (HEAD 요청):', imageUrl);
+                        console.log('✅ 기본 후보에서 이미지 발견:', imageUrl);
                         return imageUrl;
-                    } else {
-                        ImageCacheManager.addFailed(imageUrl);
                     }
-                } catch (e) {
-                    console.log('❌ 이미지 로딩 실패 (Fetch 에러):', imageUrl);
                     ImageCacheManager.addFailed(imageUrl);
-                    continue;
+                } catch (e) {
+                    ImageCacheManager.addFailed(imageUrl);
                 }
             }
             
-            console.log('💭 모든 이미지 후보 실패, 페이지 메타데이터 검색 시도:', pageUrl);
-            
-            // 이미지 직접 접근 실패 시 기존 방식으로 fallback
+            // 2. HTML 파싱으로 실제 이미지 찾기
+            console.log('🔍 HTML 파싱으로 이미지 검색 시도:', pageUrl);
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 3000);
             
@@ -696,96 +606,7 @@ async function fetchHeaderImage(pageUrl) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             
-            // 1. 헤더 이미지 메타데이터 찾기 (data-pagefind-meta="image" 속성) - 최우선
-            const imageElement = doc.querySelector('[data-pagefind-meta="image"]');
-            if (imageElement && imageElement.textContent) {
-                let imageUrl = imageElement.textContent.trim();
-                console.log('📋 Meta 이미지 발견:', imageUrl);
-                
-                // 부적절한 이미지 제외 (아바타, favicon 등)
-                if (imageUrl.includes('avatar') || imageUrl.endsWith('img/avatar.png') || imageUrl.endsWith('/avatar.png') || 
-                    imageUrl.includes('favicon') || imageUrl.endsWith('.ico')) {
-                    console.log('🚫 부적절한 이미지 제외:', imageUrl);
-                } else {
-                    // 포트 불일치 문제 해결: localhost의 다른 포트를 현재 포트로 변경
-                    if (imageUrl.includes('localhost:12345')) {
-                        imageUrl = imageUrl.replace('localhost:12345', window.location.host);
-                        console.log('🔧 포트 수정:', imageUrl);
-                    }
-                    
-                    // 상대 경로 처리
-                    if (imageUrl.startsWith('/')) {
-                        imageUrl = window.location.origin + imageUrl;
-                    } else if (!imageUrl.startsWith('http')) {
-                        // assets/images 등으로 시작하는 경우
-                        if (!imageUrl.startsWith('assets/')) {
-                            imageUrl = '/assets/images/' + imageUrl;
-                        } else {
-                            imageUrl = '/' + imageUrl;
-                        }
-                        imageUrl = window.location.origin + imageUrl;
-                    }
-                    console.log('✅ Meta 이미지 사용:', imageUrl);
-                    return imageUrl;
-                }
-            } else {
-                console.log('📋 Meta 이미지 없음');
-            }
-            // 2. Open Graph 이미지 찾기
-            const ogImage = doc.querySelector('meta[property="og:image"]');
-            if (ogImage && ogImage.content) {
-                let imageUrl = ogImage.content.trim();
-                console.log('🌐 OG 이미지 발견:', imageUrl);
-                
-                if (imageUrl.includes('avatar') || imageUrl.endsWith('img/avatar.png') || imageUrl.endsWith('/avatar.png') ||
-                    imageUrl.includes('favicon') || imageUrl.endsWith('.ico')) {
-                    console.log('🚫 OG 부적절한 이미지 제외:', imageUrl);
-                } else {
-                    // 포트 불일치 문제 해결
-                    if (imageUrl.includes('localhost:12345')) {
-                        imageUrl = imageUrl.replace('localhost:12345', window.location.host);
-                        console.log('🔧 OG 포트 수정:', imageUrl);
-                    }
-                    
-                    // 상대 경로 처리
-                    if (imageUrl.startsWith('/')) {
-                        imageUrl = window.location.origin + imageUrl;
-                    }
-                    console.log('✅ OG 이미지 사용:', imageUrl);
-                    return imageUrl;
-                }
-            } else {
-                console.log('🌐 OG 이미지 없음');
-            }
-            
-            // 3. Twitter Card 이미지 찾기
-            const twitterImage = doc.querySelector('meta[name="twitter:image"], meta[property="twitter:image"]');
-            if (twitterImage && twitterImage.content) {
-                let imageUrl = twitterImage.content.trim();
-                console.log('🐦 Twitter 이미지 발견:', imageUrl);
-                
-                if (imageUrl.includes('avatar') || imageUrl.endsWith('img/avatar.png') || imageUrl.endsWith('/avatar.png') ||
-                    imageUrl.includes('favicon') || imageUrl.endsWith('.ico')) {
-                    console.log('🚫 Twitter 부적절한 이미지 제외:', imageUrl);
-                } else {
-                    // 포트 불일치 문제 해결
-                    if (imageUrl.includes('localhost:12345')) {
-                        imageUrl = imageUrl.replace('localhost:12345', window.location.host);
-                        console.log('🔧 Twitter 포트 수정:', imageUrl);
-                    }
-                    
-                    // 상대 경로 처리
-                    if (imageUrl.startsWith('/')) {
-                        imageUrl = window.location.origin + imageUrl;
-                    }
-                    console.log('✅ Twitter 이미지 사용:', imageUrl);
-                    return imageUrl;
-                }
-            } else {
-                console.log('🐦 Twitter 이미지 없음');
-            }
-            
-            // 4. 첫 번째 이미지 찾기 (article 내에서)
+            // 3. article 내 이미지 찾기
             const articleImages = doc.querySelectorAll('article img, .article-content img, .content img, main img');
             console.log('📰 Article 이미지 개수:', articleImages.length);
             
@@ -793,50 +614,48 @@ async function fetchHeaderImage(pageUrl) {
                 let src = articleImg.src || articleImg.getAttribute('src') || articleImg.getAttribute('data-src');
                 if (!src) continue;
                 
-                console.log('🖼️ 발견된 이미지:', src);
-                
-                if (src.includes('avatar') || src.endsWith('img/avatar.png') || src.endsWith('/avatar.png') ||
-                    src.includes('favicon') || src.endsWith('.ico')) {
-                    console.log('🚫 Article 부적절한 이미지 제외:', src);
+                // 아바타, favicon 제외
+                if (src.includes('avatar') || src.includes('favicon') || src.endsWith('.ico')) {
                     continue;
                 }
                 
-                // 포트 불일치 문제 해결
+                // 포트 수정
                 if (src.includes('localhost:12345')) {
                     src = src.replace('localhost:12345', window.location.host);
-                    console.log('🔧 Article 포트 수정:', src);
                 }
                 
                 // 상대 경로 처리
                 if (src.startsWith('/')) {
                     src = window.location.origin + src;
                 }
-                console.log('✅ Article 이미지 사용:', src);
+                
+                console.log('✅ Article 이미지 발견:', src);
                 return src;
             }
             
             console.log('❌ 이미지를 찾을 수 없음:', pageUrl);
             return null;
         } catch (error) {
-            // AbortError는 타임아웃이므로 로그 출력하지 않음
             if (error.name !== 'AbortError') {
-                console.warn('Failed to fetch header image for:', pageUrl, error.message);
+                console.warn('이미지 검색 실패:', pageUrl, error.message);
             }
             return null;
         }
     }
 
-function triggerSearch() {
+// 검색 관련 유틸리티 함수들
+const SearchUtils = {
+    triggerSearch() {
         const searchTerm = document.getElementById('pagefind-search-input').value;
         const pagefindInput = document.querySelector('.pagefind-ui__search-input');
         if (pagefindInput) {
             pagefindInput.value = searchTerm;
             pagefindInput.dispatchEvent(new Event('input'));
         }
-        updateSearchResultTitle(searchTerm);
-    }
+        this.updateSearchResultTitle(searchTerm);
+    },
 
-function updateSearchResultTitle(searchTerm) {
+    updateSearchResultTitle(searchTerm) {
         const resultTitle = document.querySelector('.search-result--title');
         if (searchTerm.trim()) {
             resultTitle.textContent = `"${searchTerm}"에 대한 검색 결과`;
@@ -845,33 +664,12 @@ function updateSearchResultTitle(searchTerm) {
             resultTitle.style.display = 'none';
         }
     }
+};
 
-    // 검색 결과 썸네일(pagefind-ui__result-thumb) 완전 삭제
-    function removePagefindThumbs() {
-        document.querySelectorAll('.pagefind-ui__result-thumb').forEach(el => el.remove());
-    }
+// 전역 접근을 위한 별칭 (HTML에서 onclick 사용)
+window.triggerSearch = () => SearchUtils.triggerSearch();
 
-    // 검색 결과가 갱신될 때마다 썸네일 제거
-    const searchResultNode = document.getElementById('search');
-    if (searchResultNode) {
-        const observer = new MutationObserver(removePagefindThumbs);
-        observer.observe(searchResultNode, { childList: true, subtree: true });
-        // 최초 1회도 실행
-        removePagefindThumbs();
-    }
-
-    // 검색 입력 클리어 버튼(pagefind-ui__search-clear) 완전 삭제 (강력 버전)
-    function removePagefindClearButtons() {
-        document.querySelectorAll('.pagefind-ui__search-clear.svelte-e9gkc3').forEach(el => el.remove());
-    }
-    // 페이지 전체에서 감시
-    const bodyObserver = new MutationObserver(removePagefindClearButtons);
-    bodyObserver.observe(document.body, { childList: true, subtree: true });
-    // 최초 1회, 그리고 0.5초 간격으로 여러 번 시도(동적 렌더링 대응)
-    removePagefindClearButtons();
-    for (let i = 1; i <= 5; i++) {
-        setTimeout(removePagefindClearButtons, i * 200);
-    }
+    // 통합된 MutationObserver에서 처리됨 - 별도 함수들 제거
 </script>
 
 <style>
