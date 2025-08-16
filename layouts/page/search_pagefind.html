@@ -10,6 +10,44 @@
     
     <!-- 이미지 최적화를 위한 메타 태그 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- 검색 결과 이미지 스타일 -->
+    <style>
+        /* Skeleton 로딩 애니메이션 */
+        @keyframes skeleton-loading {
+            0% {
+                background-position: -200px 0;
+            }
+            100% {
+                background-position: calc(200px + 100%) 0;
+            }
+        }
+        
+        /* 검색 결과 이미지 컨테이너 스타일 */
+        .search-result-image {
+            border: 1px solid #e0e0e0;
+            background-color: #f8f9fa;
+        }
+        
+        /* 다크모드 지원 */
+        [data-scheme="dark"] .search-result-image {
+            border-color: #404040;
+            background-color: #2a2a2a;
+        }
+        
+        /* 다크모드 skeleton 애니메이션 */
+        @media (prefers-color-scheme: dark) {
+            .search-result-image {
+                background: linear-gradient(90deg, #404040 25%, transparent 37%, #404040 63%);
+                background-size: 400% 100%;
+            }
+        }
+        
+        [data-scheme="dark"] .search-result-image {
+            background: linear-gradient(90deg, #404040 25%, transparent 37%, #404040 63%);
+            background-size: 400% 100%;
+        }
+    </style>
 {{ end }}
 {{ define "main" }}
 <form class="search-form" onsubmit="return false;">
@@ -106,13 +144,42 @@ const ImageCacheManager = {
 function createImageElement(result, link, imageUrl) {
         const imageContainer = document.createElement('div');
         imageContainer.className = 'search-result-image';
+        
+        // 레이아웃 시프트 방지를 위한 고정 크기 설정
+        imageContainer.style.cssText = `
+            width: 120px;
+            height: 80px;
+            flex-shrink: 0;
+            position: relative;
+            background: linear-gradient(90deg, #f0f0f0 25%, transparent 37%, #f0f0f0 63%);
+            background-size: 400% 100%;
+            animation: skeleton-loading 1.5s ease-in-out infinite;
+            border-radius: 8px;
+            overflow: hidden;
+        `;
 
         const img = document.createElement('img');
         img.alt = link.textContent;
         img.loading = 'lazy';
         
+        // 이미지 스타일 설정
+        img.style.cssText = `
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        `;
+        
         // 즉시 이미지 로딩 시작 (뷰포트 진입을 기다리지 않음)
         img.src = imageUrl;
+        
+        // skeleton 제거를 위한 헬퍼 함수
+        function removeSkeleton() {
+            imageContainer.style.background = 'none';
+            imageContainer.style.animation = 'none';
+            img.style.opacity = '1';
+        }
         
         // 이미지 로딩 성공 시 캐시에 저장
         img.onload = function() {
@@ -121,6 +188,9 @@ function createImageElement(result, link, imageUrl) {
             if (pageUrl) {
                 ImageCacheManager.set(pageUrl, img.src);
             }
+            
+            // skeleton 애니메이션 제거 및 이미지 표시
+            removeSkeleton();
         };
         
         // 이미지 로드 실패 시 처리
@@ -162,29 +232,54 @@ function createImageElement(result, link, imageUrl) {
                 return;
             }
             
-            // 최종 fallback도 실패한 경우에만 컨테이너 제거
+            // 최종 fallback도 실패한 경우 skeleton 제거 후 컨테이너 제거
             if (img.hasAttribute('data-final-fallback')) {
                 console.log('💥 최종 fallback도 실패, 컨테이너 제거');
+                
+                // skeleton 애니메이션 제거
+                imageContainer.style.background = 'none';
+                imageContainer.style.animation = 'none';
+                
                 if (imageContainer.parentNode) {
                     imageContainer.parentNode.removeChild(imageContainer);
                 }
             }
         };
 
-        imageContainer.appendChild(img);
+        // 기존 이미지 컨테이너가 있으면 그것을 사용
+        let existingContainer = result.querySelector('.search-result-image');
+        console.log('🔍 기존 컨테이너 검색:', {
+            url: imageUrl,
+            resultElement: result,
+            existingContainer: !!existingContainer,
+            resultHTML: result.outerHTML.substring(0, 200) + '...'
+        });
+        
+        if (existingContainer) {
+            // 기존 컨테이너에 이미지 추가
+            existingContainer.appendChild(img);
+            // skeleton 스타일 제거
+            existingContainer.style.background = 'none';
+            existingContainer.style.animation = 'none';
+            console.log('🔄 기존 컨테이너에 이미지 추가:', imageUrl);
+        } else {
+            // 새로 컨테이너 생성 (fallback)
+            imageContainer.appendChild(img);
 
-        // 검색 결과 구조 변경
-        const resultContent = document.createElement('div');
-        resultContent.className = 'search-result-content';
+            // 검색 결과 구조 변경
+            const resultContent = document.createElement('div');
+            resultContent.className = 'search-result-content';
 
-        // 기존 내용을 새 컨테이너로 이동
-        while (result.firstChild) {
-            resultContent.appendChild(result.firstChild);
+            // 기존 내용을 새 컨테이너로 이동
+            while (result.firstChild) {
+                resultContent.appendChild(result.firstChild);
+            }
+
+            // 이미지와 내용을 결과에 추가
+            result.appendChild(imageContainer);
+            result.appendChild(resultContent);
+            console.log('🆕 새 컨테이너에 이미지 추가:', imageUrl);
         }
-
-        // 이미지와 내용을 결과에 추가
-        result.appendChild(imageContainer);
-        result.appendChild(resultContent);
     }
     
 /**
@@ -266,8 +361,8 @@ function createPlaceholderElement(result) {
                         existingElement.remove();
                     }
                     
-                    // URL을 기반으로 고유한 ID 생성 (더 안전한 방법)
-                    const urlHash = btoa(result.url).replace(/[^a-zA-Z0-9]/g, '').substring(0, 20);
+                    // URL을 기반으로 고유한 ID 생성 (한국어 URL 지원)
+                    const urlHash = encodeURIComponent(result.url).replace(/[^a-zA-Z0-9]/g, '').substring(0, 20);
                     const timestamp = Date.now().toString(36);
                     
                     // 이미지 정보를 담은 hidden element 생성
@@ -312,6 +407,9 @@ function createPlaceholderElement(result) {
                 pagefindInput.style.display = 'none';
             }
             
+            // 즉시 이미지 컨테이너 생성 함수 정의
+            window.createImmediateImageContainers = createImmediateImageContainers;
+            
             // 검색 결과가 렌더링된 후 이미지 추가
             addImagesToResults();
         }, 100);
@@ -345,6 +443,12 @@ function createPlaceholderElement(result) {
                 }
             });
             if (needUpdate) {
+                console.log('🔄 새로운 검색 결과 감지, 즉시 이미지 컨테이너 생성');
+                // 즉시 이미지 컨테이너 생성 (레이아웃 시프트 방지)
+                setTimeout(() => {
+                    createImmediateImageContainers();
+                }, 10);
+                
                 debouncedAddImagesToResults();
                 // 한 번만 추가 시도 (중복 실행 방지)
                 setTimeout(addImagesToResults, 300);
@@ -354,6 +458,50 @@ function createPlaceholderElement(result) {
         const searchContainer = document.getElementById('search');
         if (searchContainer) {
             observer.observe(searchContainer, { childList: true, subtree: true });
+        }
+        
+        /**
+         * 모든 검색 결과에 즉시 이미지 컨테이너 생성 (레이아웃 시프트 방지)
+         */
+        function createImmediateImageContainers() {
+            const results = document.querySelectorAll('.pagefind-ui__result:not(.image-processed)');
+            
+            results.forEach((result) => {
+                const link = result.querySelector('.pagefind-ui__result-link');
+                if (!link) return;
+                
+                // 이미 이미지 컨테이너가 있는지 확인
+                if (result.querySelector('.search-result-image')) return;
+                
+                // 즉시 skeleton 이미지 컨테이너 생성
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'search-result-image';
+                imageContainer.style.cssText = `
+                    width: 120px;
+                    height: 80px;
+                    flex-shrink: 0;
+                    position: relative;
+                    background: linear-gradient(90deg, #f0f0f0 25%, transparent 37%, #f0f0f0 63%);
+                    background-size: 400% 100%;
+                    animation: skeleton-loading 1.5s ease-in-out infinite;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    border: 1px solid #e0e0e0;
+                    background-color: #f8f9fa;
+                `;
+                
+                // 검색 결과 구조 변경 - 이미지를 맨 앞에 배치
+                result.insertBefore(imageContainer, result.firstChild);
+                result.classList.add('image-processed');
+                
+                console.log('📦 즉시 이미지 컨테이너 생성:', link.href);
+            });
+            
+            // 즉시 이미지 컨테이너 생성 후 실제 이미지 로딩 시작
+            console.log('🚀 즉시 이미지 로딩 시작');
+            setTimeout(() => {
+                addImagesToResults();
+            }, 50);
         }
         
         // URL 파라미터에서 검색어 추출
@@ -388,14 +536,18 @@ function createPlaceholderElement(result) {
     });
 
 function addImagesToResults() {
-        const results = document.querySelectorAll('.pagefind-ui__result:not(.image-processed)');
+        const results = document.querySelectorAll('.pagefind-ui__result');
         results.forEach(result => {
-            result.classList.add('image-processed');
-
-            // 이미 이미지가 있는 결과는 건너뛰기
-            if (result.querySelector('.search-result-image')) {
+            console.log('🔍 검색 결과 처리 중:', result);
+            
+            // 기존 이미지 컨테이너가 있으면 그것을 사용
+            let existingContainer = result.querySelector('.search-result-image');
+            if (existingContainer && existingContainer.querySelector('img')) {
+                console.log('⏭️ 이미 이미지가 있는 결과 건너뛰기');
                 return;
             }
+            
+            result.classList.add('image-processed');
 
             // 검색 결과에서 이미지 메타데이터 찾기
             const link = result.querySelector('.pagefind-ui__result-link');
