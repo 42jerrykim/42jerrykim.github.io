@@ -85,11 +85,7 @@
 
 let pagefindInstance;
 
-// 이미지 URL 캐시 시스템 (성능 최적화)
-const imageCache = new Map();
-
-// 실패한 URL 캐시 (중복 요청 방지)
-const failedUrls = new Set();
+// 전역 캐시 변수들은 ImageCacheManager로 통합됨
 
 // ========================================
 // 이미지 로딩 관련 유틸리티
@@ -99,13 +95,17 @@ const failedUrls = new Set();
  * 이미지 캐시 관리 시스템
  */
 const ImageCacheManager = {
+    // 내장 캐시 시스템
+    cache: new Map(),
+    failedUrls: new Set(),
+    
     /**
      * 캐시에서 이미지 URL 가져오기
      * @param {string} url - 페이지 URL
      * @returns {string|undefined} - 캐시된 이미지 URL 또는 undefined
      */
     get(url) {
-        return imageCache.get(url);
+        return this.cache.get(url);
     },
 
     /**
@@ -114,7 +114,7 @@ const ImageCacheManager = {
      * @param {string} imageUrl - 이미지 URL
      */
     set(url, imageUrl) {
-        imageCache.set(url, imageUrl);
+        this.cache.set(url, imageUrl);
     },
 
     /**
@@ -123,7 +123,7 @@ const ImageCacheManager = {
      * @returns {boolean} - 실패한 URL인지 여부
      */
     isFailed(url) {
-        return failedUrls.has(url);
+        return this.failedUrls.has(url);
     },
 
     /**
@@ -131,7 +131,7 @@ const ImageCacheManager = {
      * @param {string} url - 실패한 URL
      */
     addFailed(url) {
-        failedUrls.add(url);
+        this.failedUrls.add(url);
     }
 };
 
@@ -197,36 +197,12 @@ function createImageElement(result, link, imageUrl) {
         img.onerror = function() {
             console.log('❌ 이미지 로드 실패:', imageUrl);
             
-            // 기본 이미지나 대체 이미지 시도
+            // 간소화된 fallback - 기본 아바타 이미지만 시도
             if (!img.hasAttribute('data-fallback-tried')) {
                 img.setAttribute('data-fallback-tried', 'true');
                 
-                // tmp_wordcloud.png 시도 (실제로 가장 많이 존재하는 파일)
-                const tmpWordcloudUrl = imageUrl.replace(/\/[^\/]+\.(png|jpg|jpeg|gif|webp)$/i, '/tmp_wordcloud.png');
-                if (tmpWordcloudUrl !== imageUrl) {
-                    console.log('🔄 TMP 워드클라우드 이미지 시도:', tmpWordcloudUrl);
-                    img.src = tmpWordcloudUrl;
-                    return;
-                }
-                
-                // wordcloud.png 시도
-                const wordcloudUrl = imageUrl.replace(/\/[^\/]+\.(png|jpg|jpeg|gif|webp)$/i, '/wordcloud.png');
-                if (wordcloudUrl !== imageUrl) {
-                    console.log('🔄 워드클라우드 이미지 시도:', wordcloudUrl);
-                    img.src = wordcloudUrl;
-                    return;
-                }
-                
-                // index.png 시도
-                const indexUrl = imageUrl.replace(/\/[^\/]+\.(png|jpg|jpeg|gif|webp)$/i, '/index.png');
-                if (indexUrl !== imageUrl) {
-                    console.log('🔄 인덱스 이미지 시도:', indexUrl);
-                    img.src = indexUrl;
-                    return;
-                }
-                
-                // 최종 fallback: 기본 아바타 이미지 (확실히 존재하는 이미지)
-                console.log('🔄 최종 fallback 이미지 시도:', '/img/avatar_hu_a8bb2d700b228ae8.png');
+                // 기본 아바타 이미지로 fallback
+                console.log('🔄 기본 아바타 이미지로 fallback');
                 img.src = '/img/avatar_hu_a8bb2d700b228ae8.png';
                 img.setAttribute('data-final-fallback', 'true');
                 return;
@@ -282,24 +258,7 @@ function createImageElement(result, link, imageUrl) {
         }
     }
     
-/**
- * 플레이스홀더 엘리먼트 생성 - 이미지가 없는 경우 사용
- * @param {HTMLElement} result - 검색 결과 엘리먼트
- */
-function createPlaceholderElement(result) {
-        const imageContainer = document.createElement('div');
-        imageContainer.className = 'search-result-image search-result-image--placeholder';
-        
-        const resultContent = document.createElement('div');
-        resultContent.className = 'search-result-content';
-        
-        while (result.firstChild) {
-            resultContent.appendChild(result.firstChild);
-        }
-        
-        result.appendChild(imageContainer);
-        result.appendChild(resultContent);
-    }
+// createPlaceholderElement 함수 제거됨 - 즉시 skeleton 컨테이너 생성 방식으로 대체
     
     window.addEventListener('DOMContentLoaded', (event) => {
         // PagefindUI 초기화 시 검색 입력 숨기기
@@ -310,21 +269,11 @@ function createPlaceholderElement(result) {
             resetStyles: false,
             autofocus: false,
             processResult: function(result) {
-                // 제목 처리 개선: meta.title이 있으면 사용하고, 없으면 url에서 추출
+                // 간소화된 제목 처리 - meta.title만 사용
                 if (result.meta && result.meta.title) {
                     result.meta.title = result.meta.title.trim();
-                } else {
-                    // URL에서 제목 추출 시도
-                    const url = result.url || '';
-                    const segments = url.split('/').filter(s => s);
-                    if (segments.length > 0) {
-                        // 마지막 segment를 제목으로 사용 (일반적으로 slug)
-                        let titleFromUrl = segments[segments.length - 1];
-                        titleFromUrl = titleFromUrl.replace(/-/g, ' ');
-                        titleFromUrl = titleFromUrl.replace(/\b\w/g, l => l.toUpperCase());
-                        result.meta.title = titleFromUrl;
-                    }
                 }
+                // URL에서 제목 추출 로직 제거됨 - meta.title이 대부분 존재함
                 
                 // 작성자 정보가 "42jerrykim"으로 잘못 설정된 경우 제거
                 if (result.meta && result.meta.author === "42jerrykim") {
@@ -414,17 +363,7 @@ function createPlaceholderElement(result) {
             addImagesToResults();
         }, 100);
         
-        // debounce 유틸 함수 추가
-        function debounce(func, wait) {
-            let timeout;
-            return function(...args) {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => func.apply(this, args), wait);
-            };
-        }
-
-        // 이미지 삽입을 debounce 처리 (성능 최적화를 위해 시간 단축)
-        const debouncedAddImagesToResults = debounce(addImagesToResults, 150);
+        // debounce 제거됨 - 즉시 컨테이너 생성 방식으로 인해 불필요
         
         // 검색 결과 변경 감지 (성능 최적화)
         const observer = new MutationObserver(function(mutations) {
@@ -449,8 +388,7 @@ function createPlaceholderElement(result) {
                     createImmediateImageContainers();
                 }, 10);
                 
-                debouncedAddImagesToResults();
-                // 한 번만 추가 시도 (중복 실행 방지)
+                // 실제 이미지 로딩 시도
                 setTimeout(addImagesToResults, 300);
             }
         });
@@ -562,22 +500,7 @@ function addImagesToResults() {
             // pagefind가 인덱싱한 data-pagefind-meta="image" 데이터를 활용
             const pageUrl = link.href;
             
-            // 방법 1: processResult에서 설정한 customImage 직접 사용
-            // pagefind 결과 객체에서 여러 위치 확인
-            const possibleSources = [
-                result.customImage,
-                result._pagefindResult?.customImage,
-                result.data?.customImage,
-                result.__pagefind_meta?.customImage
-            ];
-            
-            for (const source of possibleSources) {
-                if (source) {
-                    pagefindMetaImage = source;
-                    console.log('📋 ProcessResult에서 설정된 Meta 이미지 발견:', pagefindMetaImage, '(source: customImage)');
-                    break;
-                }
-            }
+            // 간소화됨 - DOM에서 저장된 이미지 정보만 사용
             
             // 방법 3: DOM에서 저장된 meta 이미지 정보 찾기
             if (!pagefindMetaImage) {
@@ -639,9 +562,8 @@ function addImagesToResults() {
                 console.log('💾 캐시된 이미지 사용:', url, '→', cachedImageUrl);
                 if (cachedImageUrl !== 'NO_IMAGE') {
                     createImageElement(result, link, cachedImageUrl);
-                } else {
-                    createPlaceholderElement(result);
                 }
+                // NO_IMAGE인 경우 skeleton 컨테이너가 이미 생성되어 있으므로 추가 작업 불필요
             } else {
                 console.log('🔍 새로운 이미지 검색 시작:', url);
                 fetchHeaderImage(url).then(headerImageUrl => {
@@ -654,14 +576,12 @@ function addImagesToResults() {
                     if (headerImageUrl) {
                         console.log('✅ 이미지 발견 및 생성:', headerImageUrl);
                         createImageElement(result, link, headerImageUrl);
-                    } else {
-                        console.log('📭 이미지 없음, 플레이스홀더 생성');
-                        createPlaceholderElement(result);
                     }
+                    // 이미지가 없는 경우 skeleton 컨테이너가 이미 생성되어 있으므로 추가 작업 불필요
                 }).catch((error) => {
                     console.log('❌ 이미지 검색 실패:', error);
                     ImageCacheManager.set(url, 'NO_IMAGE'); // 실패도 캐시하여 재시도 방지
-                    createPlaceholderElement(result);
+                    // 실패한 경우에도 skeleton 컨테이너가 이미 생성되어 있으므로 추가 작업 불필요
                 });
             }
         });
@@ -680,33 +600,10 @@ const ImageCandidateGenerator = {
     priorityFiles: [
         'poster.webp',        // TV Show 등에서 주로 사용
         'poster.jpg',
-        'poster.png',
-        'image.webp',
-        'image.jpg',
-        'image.png'
+        'poster.png'
     ],
 
-    /**
-     * 기본 이미지 파일명들 (생성된 이미지)
-     */
-    basicFiles: [
-        'tmp_wordcloud.png',
-        'index.png',
-        'wordcloud.png',
-        'index_wordcloud.png'
-    ],
-
-    /**
-     * 카테고리별 fallback 이미지 매핑
-     */
-    categoryImages: {
-        'algorithm': '/img/avatar_hu_a8bb2d700b228ae8.png',
-        'python': '/img/avatar_hu_a8bb2d700b228ae8.png',
-        'computerterms': '/img/avatar_hu_a8bb2d700b228ae8.png',
-        'tv-show': '/img/avatar_hu_a8bb2d700b228ae8.png',
-        'design-patterns': '/img/avatar_hu_a8bb2d700b228ae8.png',
-        'clean-code': '/img/avatar_hu_a8bb2d700b228ae8.png'
-    },
+    // 카테고리별 fallback 제거됨 - 기본 아바타로 통합
 
     /**
      * 페이지 URL에서 이미지 후보들을 생성
@@ -723,22 +620,7 @@ const ImageCandidateGenerator = {
             candidates.push(`${basePath}/${filename}`);
         });
 
-        // 2. 기본 생성 이미지들
-        this.basicFiles.forEach(filename => {
-            candidates.push(`${basePath}/${filename}`);
-        });
-
-        // 3. 카테고리별 fallback 이미지
-        const pathSegments = basePath.split('/');
-        if (pathSegments.length >= 3) {
-            const category = pathSegments[2]; // /post/category/...에서 category 추출
-            
-            if (this.categoryImages[category]) {
-                candidates.push(this.categoryImages[category]);
-            }
-        }
-
-        // 4. 최종 fallback 이미지
+        // 간소화됨 - 추가 fallback 제거
         candidates.push('/img/avatar_hu_a8bb2d700b228ae8.png');
 
         return candidates;
@@ -752,19 +634,7 @@ const ImageCandidateGenerator = {
 // 로깅 시스템
 // ========================================
 
-/**
- * 개선된 로깅 시스템 - 구조화된 로그 메시지 (사용되는 함수만 포함)
- */
-const Logger = {
-    /**
-     * 이미지 관련 로그
-     */
-    image: {
-        found: (url, source = '') => console.log(`✅ 이미지 발견${source ? ` (${source})` : ''}:`, url),
-        loading: (url) => console.log('🔍 이미지 로딩 시작:', url),
-        failed: (url, reason = '') => console.log(`❌ 이미지 로딩 실패${reason ? ` (${reason})` : ''}:`, url)
-    }
-};
+// Logger 객체 제거됨 - 직접 console.log 사용으로 간소화
 
 /**
  * 헤더 이미지 검색 - 여러 후보를 시도하여 최적의 이미지 찾기
@@ -773,7 +643,7 @@ const Logger = {
  */
 async function fetchHeaderImage(pageUrl) {
         try {
-            Logger.image.loading(pageUrl);
+            console.log('🔍 이미지 로딩 시작:', pageUrl);
             
             // 이미지 파일 직접 시도 방식
             const imageCandidates = ImageCandidateGenerator.generate(pageUrl);
@@ -793,13 +663,13 @@ async function fetchHeaderImage(pageUrl) {
                     });
                     
                     if (response.ok) {
-                        Logger.image.found(imageUrl, 'HEAD 요청');
+                        console.log('✅ 이미지 발견 (HEAD 요청):', imageUrl);
                         return imageUrl;
                     } else {
                         ImageCacheManager.addFailed(imageUrl);
                     }
                 } catch (e) {
-                    Logger.image.failed(imageUrl, 'Fetch 에러');
+                    console.log('❌ 이미지 로딩 실패 (Fetch 에러):', imageUrl);
                     ImageCacheManager.addFailed(imageUrl);
                     continue;
                 }
