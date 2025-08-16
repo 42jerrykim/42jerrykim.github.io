@@ -255,8 +255,38 @@ function createPlaceholderElement(result) {
                     console.log('❌ Pagefind Meta 이미지 없음 for:', result.url);
                 }
                 
-                // 이미지 URL을 result에 추가
+                // 이미지 URL을 result에 추가 (여러 방법으로 저장)
                 result.customImage = imageUrl;
+                
+                // DOM에도 이미지 정보 저장 (hidden element로)
+                if (imageUrl) {
+                    // 기존 element가 있는지 확인하고 제거
+                    const existingElement = document.querySelector(`[data-page-url="${result.url}"]`);
+                    if (existingElement) {
+                        existingElement.remove();
+                    }
+                    
+                    // URL을 기반으로 고유한 ID 생성 (더 안전한 방법)
+                    const urlHash = btoa(result.url).replace(/[^a-zA-Z0-9]/g, '').substring(0, 20);
+                    const timestamp = Date.now().toString(36);
+                    
+                    // 이미지 정보를 담은 hidden element 생성
+                    const hiddenImageInfo = document.createElement('div');
+                    hiddenImageInfo.id = `pagefind-meta-image-${urlHash}-${timestamp}`;
+                    hiddenImageInfo.dataset.pageUrl = result.url;
+                    hiddenImageInfo.dataset.imageUrl = imageUrl;
+                    hiddenImageInfo.style.display = 'none';
+                    hiddenImageInfo.classList.add('pagefind-meta-image-info');
+                    
+                    // body에 추가 (나중에 검색할 수 있도록)
+                    document.body.appendChild(hiddenImageInfo);
+                    
+                    console.log('💾 DOM에 Meta 이미지 정보 저장:', {
+                        id: hiddenImageInfo.id,
+                        url: result.url,
+                        imageUrl: imageUrl
+                    });
+                }
                 
                 return result;
             },
@@ -373,15 +403,75 @@ function addImagesToResults() {
 
             const url = link.href;
             
-            // 1. 먼저 pagefind meta image가 있는지 확인 (새로운 방식)
-            // 이미 processResult에서 처리된 customImage를 결과에서 찾기
+            // 1. 먼저 pagefind meta image가 있는지 확인
             let pagefindMetaImage = null;
             
-            // pagefind result data에서 customImage 가져오기 시도
-            const resultData = result._pagefindResult;
-            if (resultData && resultData.customImage) {
-                pagefindMetaImage = resultData.customImage;
-                console.log('📋 Pagefind Meta 이미지 발견 (결과에서):', pagefindMetaImage);
+            // processResult에서 설정한 customImage 사용
+            // pagefind가 인덱싱한 data-pagefind-meta="image" 데이터를 활용
+            const pageUrl = link.href;
+            
+            // 방법 1: processResult에서 설정한 customImage 직접 사용
+            // pagefind 결과 객체에서 여러 위치 확인
+            const possibleSources = [
+                result.customImage,
+                result._pagefindResult?.customImage,
+                result.data?.customImage,
+                result.__pagefind_meta?.customImage
+            ];
+            
+            for (const source of possibleSources) {
+                if (source) {
+                    pagefindMetaImage = source;
+                    console.log('📋 ProcessResult에서 설정된 Meta 이미지 발견:', pagefindMetaImage, '(source: customImage)');
+                    break;
+                }
+            }
+            
+            // 방법 3: DOM에서 저장된 meta 이미지 정보 찾기
+            if (!pagefindMetaImage) {
+                // 절대 URL과 상대 URL 모두 시도
+                const relativeUrl = pageUrl.replace(window.location.origin, '');
+                
+                let metaImageInfo = document.querySelector(`[data-page-url="${pageUrl}"]`);
+                if (!metaImageInfo) {
+                    metaImageInfo = document.querySelector(`[data-page-url="${relativeUrl}"]`);
+                }
+                
+                if (metaImageInfo && metaImageInfo.dataset.imageUrl) {
+                    pagefindMetaImage = metaImageInfo.dataset.imageUrl;
+                    console.log('📋 DOM에서 저장된 Meta 이미지 발견:', pagefindMetaImage, '(URL 매칭 성공)');
+                }
+            }
+            
+            // 디버깅: result 객체 구조 확인
+            console.log('🔍 Result 객체 구조 확인:', {
+                customImage: result.customImage,
+                keys: Object.keys(result),
+                _pagefindResult: result._pagefindResult,
+                url: pageUrl,
+                domMetaFound: !!document.querySelector(`[data-page-url="${pageUrl}"]`)
+            });
+            
+            // 방법 2: pagefind API를 통한 실시간 meta 데이터 접근
+            if (!pagefindMetaImage && result.data && typeof result.data === 'function') {
+                // 비동기로 meta 데이터 접근 시도
+                result.data().then(data => {
+                    if (data.meta && data.meta.image) {
+                        const metaImageUrl = data.meta.image.startsWith('/') 
+                            ? window.location.origin + data.meta.image 
+                            : data.meta.image;
+                        console.log('✅ Pagefind API Meta 이미지 발견:', metaImageUrl);
+                        
+                        // 기존 이미지가 없는 경우에만 새로 생성
+                        const existingImage = result.querySelector('.pagefind-ui__result-image');
+                        if (!existingImage) {
+                            createImageElement(result, link, metaImageUrl);
+                            ImageCacheManager.set(pageUrl, metaImageUrl);
+                        }
+                    }
+                }).catch(err => {
+                    console.log('❌ Pagefind Meta API 접근 실패:', err);
+                });
             }
 
             if (pagefindMetaImage) {
