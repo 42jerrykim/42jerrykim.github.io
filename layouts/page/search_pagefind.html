@@ -146,10 +146,12 @@ function createImageElement(result, link, imageUrl) {
         const imageContainer = document.createElement('div');
         imageContainer.className = 'search-result-image';
         
-        // 레이아웃 시프트 방지를 위한 고정 크기 설정
+        // 레이아웃 시프트 방지를 위한 고정 크기 설정 (CSS와 일치)
+        const isMobile = window.innerWidth <= 768;
+        
         imageContainer.style.cssText = `
-            width: 120px;
-            height: 80px;
+            width: ${isMobile ? '100%' : '120px'};
+            height: ${isMobile ? '200px' : '120px'};
             flex-shrink: 0;
             position: relative;
             background: linear-gradient(90deg, #f0f0f0 25%, transparent 37%, #f0f0f0 63%);
@@ -157,6 +159,12 @@ function createImageElement(result, link, imageUrl) {
             animation: skeleton-loading 1.5s ease-in-out infinite;
             border-radius: 8px;
             overflow: hidden;
+            margin-top: 1.5rem;
+            margin-left: ${isMobile ? '0' : '2.5rem'};
+            margin-right: 0;
+            margin-bottom: ${isMobile ? '1rem' : '0'};
+            border: 1px solid #e0e0e0;
+            background-color: #f8f9fa;
         `;
 
         const img = document.createElement('img');
@@ -177,8 +185,9 @@ function createImageElement(result, link, imageUrl) {
         
         // skeleton 제거를 위한 헬퍼 함수
         function removeSkeleton() {
-            imageContainer.style.background = 'none';
+            imageContainer.style.background = 'var(--card-background, #ffffff)';
             imageContainer.style.animation = 'none';
+            imageContainer.style.border = '1px solid var(--card-separator-color, #ddd)';
             img.style.opacity = '1';
         }
         
@@ -194,20 +203,31 @@ function createImageElement(result, link, imageUrl) {
             removeSkeleton();
         };
         
-        // 이미지 로드 실패 시 처리 - 아바타 fallback 제거
+        // 이미지 로드 실패 시 처리 - 레이아웃 시프트 방지
         img.onerror = function() {
             console.log('❌ 이미지 로드 실패:', imageUrl);
             
-            // 이미지 로드 실패 시 컨테이너 제거 (아바타 fallback 없음)
-            console.log('💥 이미지 로드 실패, 컨테이너 제거');
+            // 이미지 로드 실패 시에도 컨테이너 유지 (레이아웃 시프트 방지)
+            console.log('💥 이미지 로드 실패, 컨테이너 유지');
             
-            // skeleton 애니메이션 제거
-            imageContainer.style.background = 'none';
+            // skeleton 애니메이션을 정적 배경으로 변경 (다크 모드 지원)
+            const isDarkMode = document.documentElement.getAttribute('data-scheme') === 'dark' || 
+                              document.documentElement.classList.contains('dark') || 
+                              document.body.classList.contains('dark') ||
+                              window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (isDarkMode) {
+                imageContainer.style.background = '#2a2a2a';
+                imageContainer.style.border = '1px solid #444';
+            } else {
+                imageContainer.style.background = '#f8f9fa';
+                imageContainer.style.border = '1px solid #e0e0e0';
+            }
             imageContainer.style.animation = 'none';
             
-            if (imageContainer.parentNode) {
-                imageContainer.parentNode.removeChild(imageContainer);
-            }
+            // 실패 표시를 위한 아이콘 또는 텍스트 추가
+            const textColor = isDarkMode ? '#a0a0a0' : '#6c757d';
+            imageContainer.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: ${textColor}; font-size: 12px;">이미지 없음</div>`;
         };
 
         // 기존 이미지 컨테이너가 있으면 그것을 사용
@@ -223,8 +243,9 @@ function createImageElement(result, link, imageUrl) {
             // 기존 컨테이너에 이미지 추가
             existingContainer.appendChild(img);
             // skeleton 스타일 제거
-            existingContainer.style.background = 'none';
+            existingContainer.style.background = 'var(--card-background, #ffffff)';
             existingContainer.style.animation = 'none';
+            existingContainer.style.border = '1px solid var(--card-separator-color, #ddd)';
             console.log('🔄 기존 컨테이너에 이미지 추가:', imageUrl);
         } else {
             // 새로 컨테이너 생성 (fallback)
@@ -391,9 +412,13 @@ function createImageElement(result, link, imageUrl) {
                 // 즉시 skeleton 이미지 컨테이너 생성
                 const imageContainer = document.createElement('div');
                 imageContainer.className = 'search-result-image';
+                
+                // 모바일 환경 감지
+                const isMobile = window.innerWidth <= 768;
+                
                 imageContainer.style.cssText = `
-                    width: 120px;
-                    height: 80px;
+                    width: ${isMobile ? '100%' : '120px'};
+                    height: ${isMobile ? '200px' : '120px'};
                     flex-shrink: 0;
                     position: relative;
                     background: linear-gradient(90deg, #f0f0f0 25%, transparent 37%, #f0f0f0 63%);
@@ -403,6 +428,10 @@ function createImageElement(result, link, imageUrl) {
                     overflow: hidden;
                     border: 1px solid #e0e0e0;
                     background-color: #f8f9fa;
+                    margin-top: 1.5rem;
+                    margin-left: ${isMobile ? '0' : '2.5rem'};
+                    margin-right: 0;
+                    margin-bottom: ${isMobile ? '1rem' : '0'};
                 `;
                 
                 // 검색 결과 구조 변경 - 이미지를 맨 앞에 배치
@@ -723,6 +752,11 @@ window.triggerSearch = () => SearchUtils.triggerSearch();
         display: flex;
         align-items: center;
         justify-content: center;
+        /* 레이아웃 시프트 방지를 위한 고정 크기 */
+        min-width: 120px;
+        min-height: 120px;
+        max-width: 120px;
+        max-height: 120px;
     }
     
     .search-result-image img {
@@ -799,6 +833,20 @@ window.triggerSearch = () => SearchUtils.triggerSearch();
     body.dark .search-result-image {
         background: var(--card-background, #2a2a2a) !important;
         border-color: var(--card-separator-color, #444) !important;
+    }
+    
+    /* 이미지 로드 실패 시 표시되는 텍스트 스타일 */
+    .search-result-image div {
+        text-align: center;
+        font-size: 12px;
+        color: var(--card-text-color-secondary, #6c757d);
+        user-select: none;
+    }
+    
+    [data-scheme="dark"] .search-result-image div,
+    .dark .search-result-image div,
+    body.dark .search-result-image div {
+        color: var(--card-text-color-secondary, #a0a0a0) !important;
     }
     
     .pagefind-ui__result-excerpt {
@@ -928,6 +976,11 @@ window.triggerSearch = () => SearchUtils.triggerSearch();
             height: 200px;
             margin-left: 0;
             margin-bottom: 1rem;
+            /* 모바일에서도 레이아웃 시프트 방지 */
+            min-width: 100%;
+            min-height: 200px;
+            max-width: 100%;
+            max-height: 200px;
         }
         
         .search-result-content {
