@@ -149,23 +149,7 @@ function createImageElement(result, link, imageUrl) {
         // 레이아웃 시프트 방지를 위한 고정 크기 설정 (CSS와 일치)
         const isMobile = window.innerWidth <= 768;
         
-        imageContainer.style.cssText = `
-            width: ${isMobile ? '100%' : '120px'};
-            height: ${isMobile ? '200px' : '120px'};
-            flex-shrink: 0;
-            position: relative;
-            background: linear-gradient(90deg, #f0f0f0 25%, transparent 37%, #f0f0f0 63%);
-            background-size: 400% 100%;
-            animation: skeleton-loading 1.5s ease-in-out infinite;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-top: 1.5rem;
-            margin-left: ${isMobile ? '0' : '2.5rem'};
-            margin-right: 0;
-            margin-bottom: ${isMobile ? '1rem' : '0'};
-            border: 1px solid #e0e0e0;
-            background-color: #f8f9fa;
-        `;
+        imageContainer.style.cssText = createImageContainerStyle(isMobile, false, true);
 
         const img = document.createElement('img');
         img.alt = link.textContent;
@@ -225,9 +209,17 @@ function createImageElement(result, link, imageUrl) {
             }
             imageContainer.style.animation = 'none';
             
+            // 이미지 요소 제거하고 실패 메시지 추가
+            if (img.parentNode) {
+                img.parentNode.removeChild(img);
+            }
+            
             // 실패 표시를 위한 아이콘 또는 텍스트 추가
             const textColor = isDarkMode ? '#a0a0a0' : '#6c757d';
-            imageContainer.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: ${textColor}; font-size: 12px;">이미지 없음</div>`;
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = `display: flex; align-items: center; justify-content: center; height: 100%; color: ${textColor}; font-size: 12px; text-align: center; padding: 8px;`;
+            errorDiv.textContent = '이미지 없음';
+            imageContainer.appendChild(errorDiv);
         };
 
         // 기존 이미지 컨테이너가 있으면 그것을 사용
@@ -246,6 +238,8 @@ function createImageElement(result, link, imageUrl) {
             existingContainer.style.background = 'var(--card-background, #ffffff)';
             existingContainer.style.animation = 'none';
             existingContainer.style.border = '1px solid var(--card-separator-color, #ddd)';
+            // 이미지가 추가되었음을 표시
+            result.classList.add('has-image');
             console.log('🔄 기존 컨테이너에 이미지 추가:', imageUrl);
         } else {
             // 새로 컨테이너 생성 (fallback)
@@ -263,8 +257,83 @@ function createImageElement(result, link, imageUrl) {
             // 이미지와 내용을 결과에 추가
             result.appendChild(imageContainer);
             result.appendChild(resultContent);
+            // 이미지가 추가되었음을 표시
+            result.classList.add('has-image');
             console.log('🆕 새 컨테이너에 이미지 추가:', imageUrl);
         }
+    }
+    
+    /**
+     * 이미지 컨테이너 스타일 생성 함수
+     */
+    function createImageContainerStyle(isMobile, isDarkMode, isSkeleton = false) {
+        const width = isMobile ? '100%' : '120px';
+        const height = isMobile ? '200px' : '120px';
+        const margin = isMobile ? '0 0 1rem 0' : '1rem 2rem 0 0';
+        
+        if (isSkeleton) {
+            return `
+                width: ${width}; height: ${height}; flex-shrink: 0; position: relative;
+                background: linear-gradient(90deg, #f0f0f0 25%, transparent 37%, #f0f0f0 63%);
+                background-size: 400% 100%; animation: skeleton-loading 1.5s ease-in-out infinite;
+                border-radius: 8px; overflow: hidden; margin: ${margin};
+                border: 1px solid #e0e0e0; background-color: #f8f9fa; order: -1;
+            `;
+        } else {
+            const bgColor = isDarkMode ? '#2a2a2a' : '#f8f9fa';
+            const borderColor = isDarkMode ? '#444' : '#e0e0e0';
+            
+            return `
+                width: ${width}; height: ${height}; flex-shrink: 0; position: relative;
+                background: ${bgColor}; border: 1px solid ${borderColor};
+                border-radius: 8px; overflow: hidden; margin: ${margin};
+                display: flex; align-items: flex-start; justify-content: center; order: -1;
+            `;
+        }
+    }
+    
+    /**
+     * 이미지가 없는 경우 skeleton 컨테이너 생성
+     * @param {HTMLElement} result - 검색 결과 엘리먼트
+     * @param {HTMLElement} link - 링크 엘리먼트
+     */
+    function createSkeletonContainer(result, link) {
+        // 이미 skeleton 컨테이너가 있는지 확인
+        if (result.querySelector('.search-result-image')) return;
+        
+        const isMobile = window.innerWidth <= 768;
+        const isDarkMode = document.documentElement.getAttribute('data-scheme') === 'dark' || 
+                          document.documentElement.classList.contains('dark') || 
+                          document.body.classList.contains('dark') ||
+                          window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // skeleton 컨테이너 생성
+        const imageContainer = document.createElement('div');
+        imageContainer.className = 'search-result-image';
+        imageContainer.style.cssText = createImageContainerStyle(isMobile, isDarkMode, false);
+        
+        // "이미지 없음" 텍스트 추가
+        const textColor = isDarkMode ? '#a0a0a0' : '#6c757d';
+        const errorDiv = document.createElement('div');
+        errorDiv.style.cssText = `display: flex; align-items: center; justify-content: center; height: 100%; color: ${textColor}; font-size: 12px; text-align: center; padding: 8px;`;
+        errorDiv.textContent = '이미지 없음';
+        imageContainer.appendChild(errorDiv);
+        
+        // 검색 결과 구조 변경
+        const resultContent = document.createElement('div');
+        resultContent.className = 'search-result-content';
+        
+        // 기존 내용을 새 컨테이너로 이동
+        while (result.firstChild) {
+            resultContent.appendChild(result.firstChild);
+        }
+        
+        // 이미지와 내용을 결과에 추가
+        result.appendChild(imageContainer);
+        result.appendChild(resultContent);
+        result.classList.add('has-image');
+        
+        console.log('📦 Skeleton 컨테이너 생성 (이미지 없음):', link.href);
     }
     
 // createPlaceholderElement 함수 제거됨 - 즉시 skeleton 컨테이너 생성 방식으로 대체
@@ -416,29 +485,15 @@ function createImageElement(result, link, imageUrl) {
                 // 모바일 환경 감지
                 const isMobile = window.innerWidth <= 768;
                 
-                imageContainer.style.cssText = `
-                    width: ${isMobile ? '100%' : '120px'};
-                    height: ${isMobile ? '200px' : '120px'};
-                    flex-shrink: 0;
-                    position: relative;
-                    background: linear-gradient(90deg, #f0f0f0 25%, transparent 37%, #f0f0f0 63%);
-                    background-size: 400% 100%;
-                    animation: skeleton-loading 1.5s ease-in-out infinite;
-                    border-radius: 8px;
-                    overflow: hidden;
-                    border: 1px solid #e0e0e0;
-                    background-color: #f8f9fa;
-                    margin-top: 1.5rem;
-                    margin-left: ${isMobile ? '0' : '2.5rem'};
-                    margin-right: 0;
-                    margin-bottom: ${isMobile ? '1rem' : '0'};
-                `;
+                imageContainer.style.cssText = createImageContainerStyle(isMobile, false, true);
                 
-                // 검색 결과 구조 변경 - 이미지를 맨 앞에 배치
-                result.insertBefore(imageContainer, result.firstChild);
-                result.classList.add('image-processed');
-                
-                console.log('📦 즉시 이미지 컨테이너 생성:', link.href);
+                            // 검색 결과 구조 변경 - 이미지를 맨 앞에 배치
+            result.insertBefore(imageContainer, result.firstChild);
+            result.classList.add('image-processed');
+            // 이미지 컨테이너가 생성되었음을 표시
+            result.classList.add('has-image');
+            
+            console.log('📦 즉시 이미지 컨테이너 생성:', link.href);
             });
             
             // 즉시 이미지 컨테이너 생성 후 실제 이미지 로딩 시작
@@ -516,8 +571,10 @@ function addImagesToResults() {
                 console.log('💾 캐시된 이미지 사용:', url, '→', cachedImageUrl);
                 if (cachedImageUrl !== 'NO_IMAGE') {
                     createImageElement(result, link, cachedImageUrl);
+                } else {
+                    // NO_IMAGE인 경우 skeleton 컨테이너 생성
+                    createSkeletonContainer(result, link);
                 }
-                // NO_IMAGE인 경우 skeleton 컨테이너가 이미 생성되어 있으므로 추가 작업 불필요
             } else {
                 console.log('🔍 새로운 이미지 검색 시작:', url);
                 fetchHeaderImage(url).then(headerImageUrl => {
@@ -530,12 +587,15 @@ function addImagesToResults() {
                     if (headerImageUrl) {
                         console.log('✅ 이미지 발견 및 생성:', headerImageUrl);
                         createImageElement(result, link, headerImageUrl);
+                    } else {
+                        // 이미지가 없는 경우 skeleton 컨테이너 생성
+                        createSkeletonContainer(result, link);
                     }
-                    // 이미지가 없는 경우 skeleton 컨테이너가 이미 생성되어 있으므로 추가 작업 불필요
                 }).catch((error) => {
                     console.log('❌ 이미지 검색 실패:', error);
                     ImageCacheManager.set(url, 'NO_IMAGE'); // 실패도 캐시하여 재시도 방지
-                    // 실패한 경우에도 skeleton 컨테이너가 이미 생성되어 있으므로 추가 작업 불필요
+                    // 실패한 경우 skeleton 컨테이너 생성
+                    createSkeletonContainer(result, link);
                 });
             }
         });
@@ -713,20 +773,24 @@ window.triggerSearch = () => SearchUtils.triggerSearch();
     }
     
     .pagefind-ui__result {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 1.5rem;
-        padding: 0;
-        border: none;
-        border-radius: 0;
-        background: transparent;
-        transition: none;
-        transform: none;
-        box-shadow: none;
-        border-bottom: 1px solid var(--card-separator-color, #ddd);
-        padding-bottom: 1.5rem;
+        display: flex !important;
+        align-items: flex-start !important;
+        margin-bottom: 1.5rem !important;
+        padding: 0 2rem 1.5rem !important;
+        border: none !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        transition: none !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border-bottom: 1px solid var(--card-separator-color, #ddd) !important;
         --pagefind-ui-border-width: 0 !important;
+        min-height: 120px !important;
+        position: relative !important;
+        gap: 1rem !important;
     }
+    
+
     
     .pagefind-ui__result:hover {
         box-shadow: none;
@@ -739,24 +803,23 @@ window.triggerSearch = () => SearchUtils.triggerSearch();
     
     /* 검색 결과 이미지 스타일 */
     .search-result-image {
-        flex-shrink: 0;
-        width: 120px;
-        height: 120px;
-        margin-top: 1.5rem;
-        margin-left: 2.5rem;
-        margin-right: 0;
-        border-radius: 8px;
-        overflow: hidden;
-        background: var(--card-background, #ffffff);
-        border: 1px solid var(--card-separator-color, #ddd);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        /* 레이아웃 시프트 방지를 위한 고정 크기 */
-        min-width: 120px;
-        min-height: 120px;
-        max-width: 120px;
-        max-height: 120px;
+        flex-shrink: 0 !important;
+        width: 120px !important;
+        height: 120px !important;
+        margin: 1rem 2rem 0 0 !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        background: var(--card-background, #ffffff) !important;
+        border: 1px solid var(--card-separator-color, #ddd) !important;
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: center !important;
+        min-width: 120px !important;
+        min-height: 120px !important;
+        max-width: 120px !important;
+        max-height: 120px !important;
+        position: relative !important;
+        order: -1 !important;
     }
     
     .search-result-image img {
@@ -780,7 +843,11 @@ window.triggerSearch = () => SearchUtils.triggerSearch();
         min-width: 0;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        padding-left: 0;
+        padding-top: 0;
+        /* 내용 영역의 최소 높이 설정으로 레이아웃 안정화 */
+        min-height: 120px;
     }
     
     .pagefind-ui__result-link {
@@ -969,13 +1036,14 @@ window.triggerSearch = () => SearchUtils.triggerSearch();
         .pagefind-ui__result {
             flex-direction: column;
             align-items: stretch;
+            /* 모바일에서 최소 높이 조정 */
+            min-height: 200px;
         }
         
         .search-result-image {
             width: 100%;
             height: 200px;
-            margin-left: 0;
-            margin-bottom: 1rem;
+            margin: 0 0 1rem 0;
             /* 모바일에서도 레이아웃 시프트 방지 */
             min-width: 100%;
             min-height: 200px;
@@ -985,6 +1053,10 @@ window.triggerSearch = () => SearchUtils.triggerSearch();
         
         .search-result-content {
             align-items: flex-start;
+            padding-top: 0;
+            padding-left: 0;
+            /* 모바일에서 내용 영역 높이 조정 */
+            min-height: auto;
         }
         
         .pagefind-ui__result-link {
