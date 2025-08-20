@@ -95,8 +95,8 @@
 }
 
 .search-result-excerpt mark {
-    background-color: var(--accent-color-lighter, rgba(0, 122, 204, 0.1));
-    color: var(--accent-color, #007acc);
+    /* background-color: var(--accent-color-lighter, rgba(0, 122, 204, 0.1)); */
+    /* color: var(--accent-color, #007acc); */
     padding: 0.1em 0.3em;
     border-radius: 3px;
     font-weight: 500;
@@ -141,8 +141,8 @@
 }
 
 .search-result-tag {
-    background: var(--tag-background-color, rgba(0, 122, 204, 0.1));
-    color: var(--tag-text-color, var(--accent-color, #007acc));
+    /* background: var(--tag-background-color, rgba(0, 122, 204, 0.1)); */
+    /* color: var(--tag-text-color, var(--accent-color, #007acc)); */
     padding: 0.3em 0.8em;
     border-radius: 15px;
     font-size: 0.8rem;

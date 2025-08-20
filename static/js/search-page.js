@@ -578,9 +578,9 @@ class SearchManager {
         }
         
         // 검색 완료 표시 (약간의 지연 후)
-        setTimeout(() => {
+        // setTimeout(() => {
             this.isSearching = false;
-        }, 1000);
+        // }, 1000);
     }
 
     /**
