@@ -1,10 +1,10 @@
 ---
-title: "[개발] Protocol Buffers Proto3 가이드 - 완전한 데이터 직렬화 솔루션"
+title: "[Protobuf] Protocol Buffers Proto3 가이드 - 완전한 데이터 직렬화 솔루션"
 description: "Protocol Buffers Proto3의 완전한 가이드를 통해 Google의 효율적인 데이터 직렬화 기술을 마스터하세요. Proto3 문법, 메시지 정의, 필드 타입, 서비스 생성까지 상세히 설명합니다. 크로스플랫폼 호환성과 빠른 성능의 이점을 경험해보세요."
 date: 2025-08-21
 lastmod: 2025-08-21
 categories:
-- "개발"
+- "Protobuf"
 - "프로그래밍"
 - "데이터 직렬화"
 - "구글 기술"
