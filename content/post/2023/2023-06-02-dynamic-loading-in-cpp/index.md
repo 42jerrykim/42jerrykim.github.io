@@ -24,6 +24,7 @@ tags:
 - DynamicLinking
 - SoftwareModularity
 title: '[C/C++] C++의 동적 로딩(Dynamic loading) 이해하기'
+aliases: /cpp/dynamic-loading-in-cpp/
 ---
 동적 로딩(Dynamic loading)은 런타임에 프로그램에서 코드 모듈을 로드하고 언로드할 수 있는 C++의 강력한 기능입니다. 이 기능은 공유 라이브러리의 동적 로딩을 가능하게 하는 함수 집합인 dlopen API를 통해 제공됩니다.
 

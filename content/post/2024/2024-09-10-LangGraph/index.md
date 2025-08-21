@@ -76,6 +76,7 @@ tags:
 - DataRetrieval
 - KnowledgeManagement
 title: '[LangGraph] LangGraph를 활용한 LLM 기반 애플리케이션 구축'
+aliases: /langgraph/LangGraph/
 ---
 
 LangChain의 생태계에서 LangGraph는 대규모 언어 모델(LLM)을 활용한 애플리케이션 구축을 위한 강력한 프레임워크이다. LangGraph는 복잡한 작업 흐름을 정의하고 실행하는 데 필요한 다양한 기능을 제공하며, 특히 순환 그래프를 통해 에이전트 간의 상호작용을 효율적으로 관리할 수 있다. 이 글에서는 LangGraph의 기본 개념과 주요 기능을 살펴보고, 이를 활용하여 다양한 질문에 답변할 수 있는 시스템을 구축하는 방법을 소개할 것이다. LangGraph는 상태(state) 관리, 에이전트 조정, 그리고 인간-인-루프(human-in-the-loop) 상호작용을 지원하여, 복잡한 비즈니스 로직을 구현하는 데 유용하다. 또한, LangGraph는 기존의 LangChain 도구와 통합되어, 개발자가 필요한 도구를 쉽게 활용할 수 있도록 돕는다. 이 글을 통해 LangGraph의 활용 가능성을 탐구하고, 실제 애플리케이션을 구축하는 데 필요한 기초 지식을 제공하고자 한다.

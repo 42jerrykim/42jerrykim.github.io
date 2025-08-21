@@ -23,6 +23,7 @@ tags:
 - VirtualFilesystemSwitch
 - VirtualFilesystem
 title: '[Linux] File System 종류- DebugFS, SecurityFS, PipeFS, SockFS'
+aliases: /linux/linux-filesystem/
 ---
 
 리눅스에는 다양한 목적을 가지고 있는 가상 파일 시스템을 가지고 있다. 파일 시스템을 사용하든 간에 관계없이 프로그램을 작성할 땐 open, read, write, close와 같은 시스템 호출을 사용해서 이 모든 걸 처리할 수 있다. 지금은 이게 모두 당연하지만, 예전에는 그렇지 않았다. 실제 파일 시스템이 무엇이냐에 관계없이 공통된 인터페이스(open/read/write/close 등)로 접근하는 것은 매우 어려운 일이었다. 이렇듯 리눅스에서, 실제 파일시스템과 관계없이 공통된 인터페이스로 파일시스템에 접근하도록 하는 계층을 가상 파일시스템(Virtual Filesystem Switch, VFS)이라고 한다.

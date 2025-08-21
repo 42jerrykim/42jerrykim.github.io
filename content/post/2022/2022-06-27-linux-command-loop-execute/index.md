@@ -9,7 +9,7 @@ tags:
 - Watch
 - While
 title: '[Shell] 명령어 반복 실행 (watch, while)'
-
+aliases: /shell/linux-command-loop-execute/
 ---
 
 가끔 같은 명령어를 주기적으로 실행해야 할 때가 있다. 예를 들어 시스템의 자원 사용량을 모니터링하거나, 특정 명령어를 반복적으로 입력해서 결과를 확인해야 할 때, 사용할 수 있는 방법을 알아보자.
