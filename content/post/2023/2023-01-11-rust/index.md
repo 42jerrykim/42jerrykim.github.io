@@ -8,6 +8,7 @@ tag:
 - Rust
 - Free
 title: '[Rust] Rust Atomics and Locks'
+aliases: /collections/rust/
 ---
 
 Rust를 사용하여 동시성(Concurrency)을 가진 프로그램을 작성할 때 도움이 되는 내용을 담고 있다.
