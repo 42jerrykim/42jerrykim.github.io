@@ -5,11 +5,30 @@ on:
     - cron: '0 2 * * *'
   workflow_dispatch:
 jobs:
-  check-and-submit:
+  submit-sitemap-bing:
     runs-on: ubuntu-latest
     steps:
-      - name: indexnow-action
-        uses: bojieyang/indexnow-action@v2
+      - name: Submit sitemap URLs to IndexNow
+        uses: jakob-bagterp/index-now-submit-sitemap-urls-action@v1
         with:
-          sitemap-location: 'https://42jerrykim.github.io/sitemap.xml'
-          key: b48ffc0db159408d9e8a583e33069524
+          host: 42jerrykim.github.io  # Replace with your website's host.
+          api_key: b48ffc0db159408d9e8a583e33069524 # Replace with your IndexNow API key.
+          api_key_location: https://42jerrykim.github.io/b48ffc0db159408d9e8a583e33069524.txt  # Replace with your IndexNow API key location.
+          endpoint: bing  # Optional. Other options: bing, indexnow, naver, seznam, yandex, yep. Default is Bing.
+          sitemap_locations: https://42jerrykim.github.io/sitemap.xml  # Replace with your sitemap location
+          sitemap_filter: r'(post)|(collection)'  # Optional. Only submit sitemap URLs that contain "section1" or match a regular expression "r'(section1)|(section2)'".
+          sitemap_days_ago: 2  # Optional. Only submit sitemap URLs that have been modified recently, e.g. 1, 2, or more days ago.
+
+  submit-sitemap-naver:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Submit sitemap URLs to IndexNow
+        uses: jakob-bagterp/index-now-submit-sitemap-urls-action@v1
+        with:
+          host: 42jerrykim.github.io  # Replace with your website's host.
+          api_key: b48ffc0db159408d9e8a583e33069524 # Replace with your IndexNow API key.
+          api_key_location: https://42jerrykim.github.io/b48ffc0db159408d9e8a583e33069524.txt  # Replace with your IndexNow API key location.
+          endpoint: naver  # Optional. Other options: bing, indexnow, naver, seznam, yandex, yep. Default is Bing.
+          sitemap_locations: https://42jerrykim.github.io/sitemap.xml  # Replace with your sitemap location
+          sitemap_filter: r'(post)|(collection)'  # Optional. Only submit sitemap URLs that contain "section1" or match a regular expression "r'(section1)|(section2)'".
+          sitemap_days_ago: 2  # Optional. Only submit sitemap URLs that have been modified recently, e.g. 1, 2, or more days ago.
