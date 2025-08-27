@@ -2,6 +2,9 @@
 image: "tmp_wordcloud.png"
 categories: Algorithm
 date: "2024-08-27T00:00:00Z"
+aliases: 
+- /2024-08-26-coding-test/
+- /algorithm/coding-test/
 
 
 header:

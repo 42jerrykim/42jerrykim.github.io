@@ -40,6 +40,7 @@ tags:
 - Low-Code Development
 - RapidApplicationDevelopment
 title: '[DesignPattern] Abstract Factory Pattern - 추상팩토리 패턴'
+aliases: /designpattern/abstract-factory-pattern/
 ---
 
 소프트웨어 엔지니어링에서 디자인 패턴은 유연하고 유지 관리 가능한 코드를 만드는 데 중요한 역할을 합니다. 이러한 디자인 패턴 중 하나가 추상 팩토리 패턴입니다. 이 패턴을 사용하면 구체적인 클래스를 지정하지 않고도 관련 객체의 제품군을 생성할 수 있습니다. 이 패턴은 공통 주제를 공유하는 개별 팩토리 그룹을 캡슐화하고 구체적인 객체를 생성하기 위한 일반적인 인터페이스를 제공합니다.
