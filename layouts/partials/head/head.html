@@ -1,13 +1,16 @@
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-{{- /* Compute page description with tag-specific override */ -}}
+{{- /* Compute page description with tag/category-specific override */ -}}
 {{- $isTag := and (eq .Kind "term") (or (eq .Data.Plural "tags") (eq .Data.Singular "tag")) -}}
+{{- $isCategory := and (eq .Kind "term") (or (eq .Data.Plural "categories") (eq .Data.Singular "category")) -}}
 {{- $desc := "" -}}
 {{- if .Params.description -}}
   {{- $desc = .Params.description -}}
 {{- else if $isTag -}}
-  {{- $desc = (printf "42JerryKim의 블로그 글 중에서 %s을 사용한 글의 나열" .Title) -}}
+  {{- $desc = (printf "A collection of 42JerryKim blog posts that use %s." .Title) -}}
+{{- else if $isCategory -}}
+  {{- $desc = (printf "A collection of 42JerryKim blog posts in the %s category." .Title) -}}
 {{- else -}}
   {{- with .Description -}}
     {{- $desc = . -}}
