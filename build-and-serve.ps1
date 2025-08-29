@@ -5,7 +5,7 @@
 # 3. Hugo 개발 서버 시작
 
 Write-Host "Hugo 빌드를 시작합니다..." -ForegroundColor Yellow
-hugo build -D
+hugo build -D --cleanDestinationDir
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "Hugo 빌드가 성공적으로 완료되었습니다." -ForegroundColor Green
