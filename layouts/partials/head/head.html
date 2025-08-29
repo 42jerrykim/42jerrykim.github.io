@@ -8,9 +8,9 @@
 {{- if .Params.description -}}
   {{- $desc = .Params.description -}}
 {{- else if $isTag -}}
-  {{- $desc = (printf "A collection of 42JerryKim blog posts that use %s." .Title) -}}
+  {{- $desc = (printf "Discover blog posts tagged '%s' on 42JerryKim." .Title) -}}
 {{- else if $isCategory -}}
-  {{- $desc = (printf "A collection of 42JerryKim blog posts in the %s category." .Title) -}}
+  {{- $desc = (printf "Explore posts in the '%s' category on 42JerryKim." .Title) -}}
 {{- else -}}
   {{- with .Description -}}
     {{- $desc = . -}}
@@ -29,7 +29,18 @@
 
 {{- partial "head/style.html" . -}}
 {{- partial "head/script.html" . -}}
-{{- partial "head/opengraph/include.html" . -}}
+
+{{- /* Open Graph */ -}}
+<meta property='og:title' content='{{ $title }}'>
+<meta property='og:description' content='{{ $desc }}'>
+<meta property='og:url' content='{{ .Permalink }}'>
+<meta property='og:site_name' content='{{ .Site.Title }}'>
+<meta property='og:type' content='{{ if .IsPage }}article{{ else }}website{{ end }}'>
+{{- with .Lastmod -}}<meta property='og:updated_time' content='{{ .Format "2006-01-02T15:04:05Z07:00" }}'>{{- end -}}
+
+{{- /* Twitter */ -}}
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $desc }}">
 
 {{- range .AlternativeOutputFormats -}}
     <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
