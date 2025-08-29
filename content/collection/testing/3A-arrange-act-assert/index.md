@@ -2,6 +2,7 @@
 image: "tmp_wordcloud.png"
 title : "3A – Arrange, Act, Assert"
 date: 2022-01-01
+aliases: /post/3a-arrange-act-assert/
 ---
 
 > 본 글은 [Bill Wake](https://xp123.com/articles/contact/)의 [3A – Arrange, Act, Assert](https://xp123.com/articles/3a-arrange-act-assert/)내용을 번역한 글 입니다.
