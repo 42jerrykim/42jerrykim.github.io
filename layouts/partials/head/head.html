@@ -1,0 +1,40 @@
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+{{- /* Compute page description with tag-specific override */ -}}
+{{- $isTag := and (eq .Kind "term") (or (eq .Data.Plural "tags") (eq .Data.Singular "tag")) -}}
+{{- $desc := "" -}}
+{{- if .Params.description -}}
+  {{- $desc = .Params.description -}}
+{{- else if $isTag -}}
+  {{- $desc = (printf "42JerryKim의 블로그 글 중에서 %s을 사용한 글의 나열" .Title) -}}
+{{- else -}}
+  {{- with .Description -}}
+    {{- $desc = . -}}
+  {{- else -}}
+    {{- $desc = (default .Site.Params.sidebar.subtitle .Site.Params.description) -}}
+  {{- end -}}
+{{- end -}}
+
+<meta name='description' content='{{ $desc }}'>
+{{ with .Params.Keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
+
+{{- $title := partial "data/title" . -}}
+<title>{{ $title }}</title>
+
+<link rel='canonical' href='{{ .Permalink }}'>
+
+{{- partial "head/style.html" . -}}
+{{- partial "head/script.html" . -}}
+{{- partial "head/opengraph/include.html" . -}}
+
+{{- range .AlternativeOutputFormats -}}
+    <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+{{- end -}}
+
+{{ with .Site.Params.favicon }}
+    <link rel="shortcut icon" href="{{ . | relURL }}" />
+{{ end }}
+
+{{- template "_internal/google_analytics.html" . -}}
+{{- partial "head/custom.html" . -}}
