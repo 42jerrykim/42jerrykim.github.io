@@ -16,7 +16,7 @@ title: '[GitHub] github.dev - GitHub의 웹 IDE'
 
 ## 소개
 
-|![](/assets/images/2022/2022-07-07-135907.png)|
+|![/assets/images/2022/2022-07-07-135907.png](/assets/images/2022/2022-07-07-135907.png)|
 |:---:|
 |웹 브라우저에서 사용할 수 있는 IDE|
 

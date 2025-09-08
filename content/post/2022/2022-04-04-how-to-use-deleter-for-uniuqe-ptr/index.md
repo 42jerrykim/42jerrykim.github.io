@@ -27,7 +27,7 @@ C/C++언어를 사용하다 보면 동적으로 할당한 자원을 해제 하�
 
 > C++03의 `auto_ptr`은 `unique_ptr`을 만들려던 시도의 실패작이므로 사용해선 안된다.
 
-|![](https://docs.microsoft.com/ko-kr/cpp/cpp/media/unique_ptr.png?view=msvc-170)|
+|![https://docs.microsoft.com/ko-kr/cpp/cpp/media/unique_ptr.png?view=msvc-170](https://docs.microsoft.com/ko-kr/cpp/cpp/media/unique_ptr.png?view=msvc-170)|
 |:---:|
 |두 unique_ptr 인스턴스 사이의 소유권 이전 관계도|
 

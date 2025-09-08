@@ -26,7 +26,7 @@ image: "poster.png"
 
 Disney Animation Studios의 창립 50주년을 기념하는 기념비적 작품 **Tangled**은 전통적인 fairy tale의 틀을 깨고 현대적 감각으로 재탄생한 혁신적인 애니메이션이다. Nathan Greno와 Byron Howard의 공동 연출로 그림 형제의 "라푼젤"을 대담하게 재해석한 이 작품은 단순한 동화 각색을 넘어 자유, 자아 발견, 진정한 사랑에 대한 깊이 있는 성찰을 담고 있다. $260 million의 제작비로 당시 최고가 애니메이션 기록을 세웠으며, 혁신적인 hair simulation 기술과 painterly rendering으로 animation 산업에 새로운 standard를 제시했다.
 
-|![](poster.png)|
+|![poster.png](poster.png)|
 |:---:|
 ||
 

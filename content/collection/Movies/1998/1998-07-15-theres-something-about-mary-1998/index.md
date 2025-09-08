@@ -84,7 +84,7 @@ image: poster.png
 
 90년대 할리우드 로맨틱 코미디의 새로운 패러다임을 제시한 작품이 있다면, 바로 '메리에겐 뭔가 특별한 것이 있다(There's Something About Mary)'를 빼놓을 수 없다. 1998년 페럴리(Farrelly) 형제가 연출하고 벤 스틸러와 카메론 디아즈가 주연을 맡은 이 영화는 당시로서는 파격적인 유머와 로맨스를 결합하여 전 세계 관객들에게 충격과 웃음을 선사했다.
 
-|![](poster.png)|
+|![poster.png](poster.png)|
 |:---:|
 |*There's Something About Mary (1998) - 20th Century Fox*|
 

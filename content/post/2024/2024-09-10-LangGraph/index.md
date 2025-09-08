@@ -82,7 +82,7 @@ aliases: /langgraph/LangGraph/
 LangChain의 생태계에서 LangGraph는 대규모 언어 모델(LLM)을 활용한 애플리케이션 구축을 위한 강력한 프레임워크이다. LangGraph는 복잡한 작업 흐름을 정의하고 실행하는 데 필요한 다양한 기능을 제공하며, 특히 순환 그래프를 통해 에이전트 간의 상호작용을 효율적으로 관리할 수 있다. 이 글에서는 LangGraph의 기본 개념과 주요 기능을 살펴보고, 이를 활용하여 다양한 질문에 답변할 수 있는 시스템을 구축하는 방법을 소개할 것이다. LangGraph는 상태(state) 관리, 에이전트 조정, 그리고 인간-인-루프(human-in-the-loop) 상호작용을 지원하여, 복잡한 비즈니스 로직을 구현하는 데 유용하다. 또한, LangGraph는 기존의 LangChain 도구와 통합되어, 개발자가 필요한 도구를 쉽게 활용할 수 있도록 돕는다. 이 글을 통해 LangGraph의 활용 가능성을 탐구하고, 실제 애플리케이션을 구축하는 데 필요한 기초 지식을 제공하고자 한다.
 
 
-|![](/assets/images/2024/2024-09-10-LangGraph.png)|
+|![/assets/images/2024/2024-09-10-LangGraph.png](/assets/images/2024/2024-09-10-LangGraph.png)|
 |:---:|
 ||
 
@@ -2782,7 +2782,7 @@ langgraph라는 게 결국 workflow 간의 상태 관리를 하면서 flow를 �
 
 ##  Building a Simple LangGraph Application (Train ML Model)
 
-![](https://blog.kakaocdn.net/dn/bICNAy/btsIhe9Yzqe/MrfNG4JIoOkRd1iJhjAMak/img.png)
+![https://blog.kakaocdn.net/dn/bICNAy/btsIhe9Yzqe/MrfNG4JIoOkRd1iJhjAMak/img.png](https://blog.kakaocdn.net/dn/bICNAy/btsIhe9Yzqe/MrfNG4JIoOkRd1iJhjAMak/img.png)
 
 graph는 다음과 같이 구성해 봤습니다.
 
@@ -2815,7 +2815,7 @@ handle_stop_condition (if iterations ≥ 20)
     
     config = RunnableConfig(recursion_limit=2 + 3 * 20 + 3, configurable={"thread_id": "THREAD_ID"})
 
-![](https://blog.kakaocdn.net/dn/IZyGO/btsIgMspXVQ/FUe6T4LE6LCZKCIiQjtTQ0/img.png)
+![https://blog.kakaocdn.net/dn/IZyGO/btsIgMspXVQ/FUe6T4LE6LCZKCIiQjtTQ0/img.png](https://blog.kakaocdn.net/dn/IZyGO/btsIgMspXVQ/FUe6T4LE6LCZKCIiQjtTQ0/img.png)
 
 ####  GraphState 정의
 
@@ -2996,11 +2996,11 @@ handle_stop_condition (if iterations ≥ 20)
 
 이런 식으로 결과를 저장하는 것을 할 수 있었습니다.
 
-![](https://blog.kakaocdn.net/dn/MybEg/btsIhwoYnmY/VRA67sJYyvEjCU1N8nb3jK/img.png)
+![https://blog.kakaocdn.net/dn/MybEg/btsIhwoYnmY/VRA67sJYyvEjCU1N8nb3jK/img.png](https://blog.kakaocdn.net/dn/MybEg/btsIhwoYnmY/VRA67sJYyvEjCU1N8nb3jK/img.png)
 
 ##  Building a Simple LangGraph Application (LLM Simple Chat)
 
-![](https://blog.kakaocdn.net/dn/Pz2Ot/btsIiAcRitt/ZcpN0uVRiMVem6fB8Dyp5k/img.png)
+![https://blog.kakaocdn.net/dn/Pz2Ot/btsIiAcRitt/ZcpN0uVRiMVem6fB8Dyp5k/img.png](https://blog.kakaocdn.net/dn/Pz2Ot/btsIiAcRitt/ZcpN0uVRiMVem6fB8Dyp5k/img.png)
 
     
     
@@ -3171,7 +3171,7 @@ tool 실행하는 거랑 하려다 보니 아직 잘 이해가 안돼서 좀 해
 
 a
 
-![](https://blog.kakaocdn.net/dn/NxA7x/btsIiPOtlLz/RUQvabm3f2DmDEnoACsTGK/img.png)
+![https://blog.kakaocdn.net/dn/NxA7x/btsIiPOtlLz/RUQvabm3f2DmDEnoACsTGK/img.png](https://blog.kakaocdn.net/dn/NxA7x/btsIiPOtlLz/RUQvabm3f2DmDEnoACsTGK/img.png)
 
 ##  Building a Simple LangGraph Application (Parallel Branch)
 
@@ -3285,7 +3285,7 @@ a
     result = graph.invoke({"aggregate": [], "which": "b,d", "fanout_values": []})
     result
 
-![](https://blog.kakaocdn.net/dn/LFflf/btsIioQ6Snr/NuikR6kYOqu5AeE3Mv9ak1/img.png)
+![https://blog.kakaocdn.net/dn/LFflf/btsIioQ6Snr/NuikR6kYOqu5AeE3Mv9ak1/img.png](https://blog.kakaocdn.net/dn/LFflf/btsIioQ6Snr/NuikR6kYOqu5AeE3Mv9ak1/img.png)
 
 ##  결론
 

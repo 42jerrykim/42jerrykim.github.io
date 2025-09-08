@@ -26,7 +26,7 @@ aliases: /algorithm/BOJ-14517/
 
 문제 : [https://www.acmicpc.net/problem/14517](https://www.acmicpc.net/problem/14517)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 | |
 

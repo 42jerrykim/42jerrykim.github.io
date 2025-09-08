@@ -26,7 +26,7 @@ aliases: /algorithm/BOJ-3653/
 
 문제 : [https://www.acmicpc.net/problem/3653](https://www.acmicpc.net/problem/3653)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

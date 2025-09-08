@@ -26,7 +26,7 @@ title: '[Lyft] Lyft의 비밀스러운 계획: 자체 지도와 미래를 통제
 
 안녕하세요, 여러분! 오늘은 Lyft와 OpenStreetMap에 대한 흥미로운 주제를 다루려고 합니다. Lyft가 자체 지도 시스템을 구축하려는 이유와 그 방법, 그리고 이것이 어떻게 회사의 미래에 영향을 미칠 것인지에 대해 알아보겠습니다. 또한, 이 모든 것이 가능하게 한 OpenStreetMap에 대해서도 이야기하겠습니다.
 
-![](/assets/images/2023/LyftMaps_ImageHeader_01.jpg)
+![/assets/images/2023/LyftMaps_ImageHeader_01.jpg](/assets/images/2023/LyftMaps_ImageHeader_01.jpg)
 
 > [https://www.lyft.com/rev/posts/lyfts-secret-plan-to-take-control-of-its-maps-and-its-future](https://www.lyft.com/rev/posts/lyfts-secret-plan-to-take-control-of-its-maps-and-its-future)의 내용을 참고 하였습니다.
 

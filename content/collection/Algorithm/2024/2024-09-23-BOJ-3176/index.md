@@ -25,7 +25,7 @@ N개의 도시와 그 도시들을 연결하는 N-1개의 도로로 이루어진
 
 문제 : [https://www.acmicpc.net/problem/3176](https://www.acmicpc.net/problem/3176)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

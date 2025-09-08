@@ -28,7 +28,7 @@ Git 프로젝트의 커밋 히스토리를 기반으로 비디오 애미메이�
 
 ## 예시
 
-![](/assets/images/undefined/git-story.png)
+![/assets/images/undefined/git-story.png](/assets/images/undefined/git-story.png)
 
 ## 사이트
 

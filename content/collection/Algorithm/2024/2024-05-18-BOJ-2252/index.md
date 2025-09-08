@@ -15,7 +15,7 @@ aliases: /algorithm/BOJ-2252/
 
 [원문 링크](https://www.acmicpc.net/problem/2206)
 
-|![](/assets/images/2024/topological_sort_process.png)|
+|![/assets/images/2024/topological_sort_process.png](/assets/images/2024/topological_sort_process.png)|
 |:---:|
 |이미지로 형상화|
 

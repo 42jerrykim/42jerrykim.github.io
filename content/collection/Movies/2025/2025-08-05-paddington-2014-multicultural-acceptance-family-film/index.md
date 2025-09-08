@@ -76,7 +76,7 @@ image: "paddington_poster.png"
 
 마이클 본드(Michael Bond)의 영원한 클래식 동화 캐릭터가 21세기 스크린에서 새로운 생명을 얻었다. 폴 킹(Paul King) 감독의 《패딩턴》(2014)은 단순한 아동 영화의 범주를 넘어서, 현대 다문화 사회의 포용과 배제, 가족의 진정한 의미, 그리고 낯선 타자에 대한 환대의 윤리학을 탐구하는 깊이 있는 작품으로 탄생했다.
 
-|![](paddington_poster.png)|
+|![paddington_poster.png](paddington_poster.png)|
 |:---:|
 ||
 

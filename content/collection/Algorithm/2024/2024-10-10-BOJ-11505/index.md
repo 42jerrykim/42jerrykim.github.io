@@ -21,7 +21,7 @@ title: '[Algorithm] C++/Python 백준 11505번 : 구간 곱 구하기'
 
 문제 : [https://www.acmicpc.net/problem/11505](https://www.acmicpc.net/problem/11505)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

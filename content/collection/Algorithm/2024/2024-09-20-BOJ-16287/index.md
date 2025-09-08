@@ -22,7 +22,7 @@ aliases: /algorithm/BOJ-16287/
 
 문제 : [https://www.acmicpc.net/problem/16287](https://www.acmicpc.net/problem/16287)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

@@ -94,7 +94,7 @@ image: "WvSmGgCduVA-b5cU4Z0SvHeRCclUn2uv1SXCiX6auiaTaUFmAO1BdbxsQ4UK-OOI08m3455C
 
 세대를 관통한 우정과 신뢰의 서사가 실사로 되살아났다. 원작의 감정선과 서사 구조를 충실히 따르되, 빌 포프 촬영감독의 웅장한 스케일과 프레임스토어의 정교한 VFX, 존 파웰의 주제가가 어우러지며 체감은 한층 커졌다. 아래 내용은 스포일러를 포함한다.
 
-|![](WvSmGgCduVA-b5cU4Z0SvHeRCclUn2uv1SXCiX6auiaTaUFmAO1BdbxsQ4UK-OOI08m3455CSGHzT7sRSTpi2Q.webp)|
+|![WvSmGgCduVA-b5cU4Z0SvHeRCclUn2uv1SXCiX6auiaTaUFmAO1BdbxsQ4UK-OOI08m3455CSGHzT7sRSTpi2Q.webp](WvSmGgCduVA-b5cU4Z0SvHeRCclUn2uv1SXCiX6auiaTaUFmAO1BdbxsQ4UK-OOI08m3455CSGHzT7sRSTpi2Q.webp)|
 |:---:|
 ||
 

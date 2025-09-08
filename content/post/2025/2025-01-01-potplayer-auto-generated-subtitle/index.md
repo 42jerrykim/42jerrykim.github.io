@@ -17,7 +17,7 @@ image: Screenshot-2025-01-01-094009.png
 
 ## 팟플레이어와 AI를 활용한 자동 자막 생성 가이드
 
-|![](Screenshot-2025-01-01-094009.png)|
+|![Screenshot-2025-01-01-094009.png](Screenshot-2025-01-01-094009.png)|
 |:---:|
 ||
 
@@ -46,7 +46,7 @@ image: Screenshot-2025-01-01-094009.png
 
 ### 1. 메뉴 선택
 
-|![](Screenshot-2025-01-01-094009.png)|
+|![Screenshot-2025-01-01-094009.png](Screenshot-2025-01-01-094009.png)|
 |:---:|
 |메뉴 선택|
 
@@ -91,7 +91,7 @@ image: Screenshot-2025-01-01-094009.png
 
 ### 실시간 번역
 
-|![](Screenshot-2025-01-01-175829.png)|
+|![Screenshot-2025-01-01-175829.png](Screenshot-2025-01-01-175829.png)|
 |:---:|
 |메뉴 선택|
 

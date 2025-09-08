@@ -66,7 +66,7 @@ title: '[C#] .NET에서 정규 표현식의 최적화 기법'
 정규 표현식(Regular Expressions)은 텍스트 처리에서 매우 유용한 도구이다. 특히 .NET 환경에서 정규 표현식 엔진은 패턴 매칭을 통해 텍스트를 처리하는 강력한 기능을 제공한다. 그러나 정규 표현식의 성능은 입력 데이터의 특성과 패턴의 복잡성에 따라 크게 달라질 수 있다. 이 글에서는 정규 표현식의 성능을 최적화하기 위한 몇 가지 모범 사례를 소개하고자 한다. 첫째, 입력 소스를 고려해야 한다. 입력이 신뢰할 수 있는 경우와 그렇지 않은 경우에 따라 정규 표현식 패턴을 다르게 설계해야 한다. 둘째, 정규 표현식의 백트래킹을 최소화하는 것이 중요하다. 백트래킹이 과도하게 발생하면 성능 저하를 초래할 수 있다. 셋째, 정규 표현식 객체의 인스턴스를 재사용하여 성능을 향상시킬 수 있다. 정적 메서드를 사용하거나, 정규 표현식 객체를 미리 컴파일하여 사용하는 것이 좋다. 넷째, 정규 표현식의 패턴을 최적화하여 불필요한 캡처를 피하고, 가능한 한 구체적인 문자 클래스를 사용하는 것이 성능을 높이는 데 도움이 된다. 마지막으로, 정규 표현식의 타임아웃 값을 설정하여 과도한 백트래킹으로 인한 성능 저하를 방지할 수 있다. 이러한 기법들을 통해 개발자는 정규 표현식의 성능을 극대화하고, 보다 효율적인 텍스트 처리를 구현할 수 있다.
 
 
-|![](/assets/images/2024/2024-10-10-optimizing-regex.png)|
+|![/assets/images/2024/2024-10-10-optimizing-regex.png](/assets/images/2024/2024-10-10-optimizing-regex.png)|
 |:---:|
 ||
 
@@ -2798,7 +2798,7 @@ other trademarks are the property of their respective owners._
 -->
 
 <!--
-![](https://library.humio.com/kb/images/eye.svg)
+![https://library.humio.com/kb/images/eye.svg](https://library.humio.com/kb/images/eye.svg)
 
 ###  Best Practice:  **Optimizing string and regular expression (regex) search
 performance**

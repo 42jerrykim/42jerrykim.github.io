@@ -64,7 +64,7 @@ title: '[TypeScript] 타입 추론의 모든 것'
 타입스크립트(TypeScript)는 자바스크립트의 상위 집합으로, 정적 타입을 지원하는 프로그래밍 언어이다. 타입스크립트의 가장 큰 장점 중 하나는 타입 추론(Type Inference) 기능이다. 타입 추론이란, 개발자가 명시적으로 타입을 지정하지 않아도 타입스크립트 컴파일러가 변수나 표현식의 타입을 자동으로 추론하는 기능을 의미한다. 예를 들어, 변수를 초기화할 때 그 값에 따라 타입스크립트는 해당 변수의 타입을 자동으로 결정한다. 이는 코드의 가독성을 높이고, 불필요한 타입 주석을 줄여 코드의 간결함을 유지하는 데 큰 도움이 된다. 또한, 타입 추론은 코드 작성 시 발생할 수 있는 오류를 사전에 방지하는 데 기여한다. 그러나 복잡한 상황에서는 명시적으로 타입을 정의해야 할 필요가 있다. 이 글에서는 타입스크립트의 타입 추론에 대해 자세히 살펴보고, 기본 개념부터 고급 주제까지 다양한 예제를 통해 이해를 돕고자 한다. 타입 추론을 활용하여 더 깔끔하고 안전한 타입스크립트 코드를 작성해보자.
 
 
-|![](/assets/images/2024/2024-08-26-typescript-inference.png)|
+|![/assets/images/2024/2024-08-26-typescript-inference.png](/assets/images/2024/2024-08-26-typescript-inference.png)|
 |:---:|
 ||
 
@@ -1506,7 +1506,7 @@ kor.0038147d.png)
 강의와 함께 [ 쉽게 시작하는 타입스크립트  ](https://www.yes24.com/Product/Goods/119410497) 를
 읽어보시면 실무에서 타입스크립트 코드가 전혀 두렵지 않을 겁니다 😃
 
-[ ![](https://joshua1988.github.io/ts/assets/img/ts-book-cover.a872d304.png)
+[ ![https://joshua1988.github.io/ts/assets/img/ts-book-cover.a872d304.png](https://joshua1988.github.io/ts/assets/img/ts-book-cover.a872d304.png)
 ](https://www.yes24.com/Product/Goods/119410497)
 
 

@@ -18,7 +18,7 @@ title: '[Algorithm] C++/Python 백준 5670번 : 휴대폰 자판'
 
 문제 : [https://www.acmicpc.net/problem/5670](https://www.acmicpc.net/problem/5670)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

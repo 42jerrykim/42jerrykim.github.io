@@ -15,7 +15,7 @@ Rust를 사용하여 동시성(Concurrency)을 가진 프로그램을 작성할 
 
 [https://marabos.nl/atomics/](https://marabos.nl/atomics/) 에서 무료로 내용을 볼 수 있다.
 
-|![](/assets/images/2023/cover.jpg)|
+|![/assets/images/2023/cover.jpg](/assets/images/2023/cover.jpg)|
 |:---:|
 |책 표지|
 

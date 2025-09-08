@@ -47,7 +47,7 @@ title: '[DesignPattern] 디자인 패턴'
 
 ## 생성 패턴
 
-![](https://starship-knowledge.com/wp-content/uploads/2021/01/Creational_patterns-1024x724.jpeg)
+![https://starship-knowledge.com/wp-content/uploads/2021/01/Creational_patterns-1024x724.jpeg](https://starship-knowledge.com/wp-content/uploads/2021/01/Creational_patterns-1024x724.jpeg)
 
 생성 패턴은 객체 생성에 중점을 둔 디자인 패턴의 한 범주입니다. 이러한 패턴은 유연하고 효율적이며 코드 재사용성을 촉진하는 방식으로 객체를 생성하는 방법을 제공합니다. 이 섹션에서는 생성 패턴의 개념을 살펴보고 이러한 패턴 중 하나인 싱글톤 디자인 패턴의 예를 제공합니다.
 
@@ -130,7 +130,7 @@ class Singleton:
 
 ## 구조적 패턴
 
-![](https://starship-knowledge.com/wp-content/uploads/2021/01/Structural_design-patterns-1024x724.jpeg)
+![https://starship-knowledge.com/wp-content/uploads/2021/01/Structural_design-patterns-1024x724.jpeg](https://starship-knowledge.com/wp-content/uploads/2021/01/Structural_design-patterns-1024x724.jpeg)
 
 구조 패턴은 더 큰 구조를 형성하고 새로운 기능을 제공하기 위해 클래스와 객체의 구성에 초점을 맞춘 디자인 패턴입니다. 이러한 패턴은 서로 다른 객체 간의 관계를 구성하고 관리하여 시스템을 보다 유연하고 효율적으로 만드는 데 도움이 됩니다.
 
@@ -216,7 +216,7 @@ print(espresso_with_milk_and_sugar.get_cost())  # Output: 2.75
 
 ## 행동 패턴
 
-![](https://starship-knowledge.com/wp-content/uploads/2021/01/Behavioral_Patterns-1024x724.jpeg)
+![https://starship-knowledge.com/wp-content/uploads/2021/01/Behavioral_Patterns-1024x724.jpeg](https://starship-knowledge.com/wp-content/uploads/2021/01/Behavioral_Patterns-1024x724.jpeg)
 행동 패턴은 객체 간의 상호 작용과 객체 간의 책임 분배에 초점을 맞춘 디자인 패턴의 범주입니다. 이러한 패턴은 객체 간의 통신 패턴을 설계하는 데 도움이 되며 복잡한 통신 시나리오에 대한 솔루션을 제공합니다.
 
 **명령 디자인 패턴**

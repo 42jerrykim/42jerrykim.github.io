@@ -20,7 +20,7 @@ title: '[Algorithm] C++/Python 백준 2618번 : 경찰차'
 
 문제 : [https://www.acmicpc.net/problem/2618](https://www.acmicpc.net/problem/2618)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

@@ -77,11 +77,11 @@ date: 2025-02-04
 4. "클립보드" 옵션이 체크되어 있는지 확인한다.
 5. "자세히"를 클릭하여 추가 클립보드 리소스가 공유되도록 설정한다.
 
-|![](image1.png)|
+|![image1.png](image1.png)|
 |:---:|
 |RDP 연결 설정의 "옵션 표시"|
 
-|![](image2.png)|
+|![image2.png](image2.png)|
 |:---:|
 |RDP 연결 설정의 로컬 리소스 탭|
 
@@ -93,7 +93,7 @@ date: 2025-02-04
 4. "File" > "Run new task"를 선택한다.
 5. "rdpclip.exe"를 입력하고 Enter를 눌러 프로세스를 다시 시작한다.
 
-|![](image3.png)|
+|![image3.png](image3.png)|
 |:---:|
 |Task Manager의 Processes 탭|
 

@@ -14,7 +14,7 @@ title: '[HyperV] 원격(RPD, Chrome 원격 데스크톱 등) 사용시 은행 �
 
 태블릿이나 스마트폰에서 윈도우를 사용해야 하는 경우가 종종 있다. 예를 들어 어떤 작업을 해야 하는데 모바일 기기에서는 지원하는 기능이 아니라고 해보자. 그럴 때는 아래의 그림에서 보는 것처럼 다양한 원격 프로그램을 사용해서 모바일 기기에서 원도우로 원격으로 접속해서 처리 할 수 있는 방법이 있다.
 
-|![](/assets/images/undefined/unnamed.jpg)|![](/assets/images/undefined/img.jpg)|![](/assets/images/undefined/index.jpg)|
+|![/assets/images/undefined/unnamed.jpg)|![](/assets/images/undefined/img.jpg)|![](/assets/images/undefined/index.jpg](/assets/images/undefined/unnamed.jpg)|![](/assets/images/undefined/img.jpg)|![](/assets/images/undefined/index.jpg)|
 |:---:|:---:|:---:|
 |Chrome 원격 데스크톱 아이콘|Remote Desktop 아이콘|Any Desk|
 

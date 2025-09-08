@@ -31,7 +31,7 @@ title: '[Movie] Bicentennial Man (1999) - 로빈 윌리엄스와 함께하는 �
 
 "바이센테니얼 맨(Bicentennial Man)"은 1999년에 개봉한 SF 드라마 영화로, 로빈 윌리엄스가 주연을 맡았습니다. 이 영화는 아이작 아시모프의 단편소설 "The Bicentennial Man"과 "The Positronic Man"을 바탕으로 만들어졌습니다.
 
-![](https://upload.wikimedia.org/wikipedia/en/f/fc/Bicentennial_man_film_poster.jpg)
+![https://upload.wikimedia.org/wikipedia/en/f/fc/Bicentennial_man_film_poster.jpg](https://upload.wikimedia.org/wikipedia/en/f/fc/Bicentennial_man_film_poster.jpg)
 
 영화는 가까운 미래, 한 가정에서 가정용 로봇인 앤드류(로빈 윌리엄스)가 가족의 일원으로 활동하면서 시작됩니다. 앤드류는 단순히 프로그래밍된 기능을 수행하는 일반적인 로봇과 달리, 창조성과 독립적인 생각을 보이기 시작합니다. 그는 인간의 감정을 이해하고, 표현하려는 능력을 발전시키면서 자신만의 인격을 형성해갑니다.
 

@@ -17,7 +17,7 @@ title: '[Algorithm] C++/Python 백준 13334번 : 철로'
 
 문제 : [https://www.acmicpc.net/problem/13334](https://www.acmicpc.net/problem/13334)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

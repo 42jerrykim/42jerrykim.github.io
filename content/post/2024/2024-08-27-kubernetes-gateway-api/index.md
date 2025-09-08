@@ -67,7 +67,7 @@ aliases: /kubernetes/kubernetes-gateway-api/
 Kubernetes Gateway API는 CNCF에서 발표한 새로운 사양으로, Kubernetes Ingress 트래픽을 표준화하는 데 목적이 있다. 이제 서비스가 고가용성(HA)으로 구성되어 있다고 가정해 보자. (예를 들어, 다른 클라우드 환경에 있으며 Gateway를 통해 접근해야 하는 경우, 즉 멀티 클러스터, 멀티 클라우드 시나리오에서) 이 글에서는 Gateway API 사양을 사용하여 멀티 클러스터 설정을 위한 게이트웨이를 구성하는 방법을 소개할 것이다. 본 데모에서는 EKS(주 클러스터)와 GKE(원격 클러스터) 두 개의 클러스터를 사용하여 Istio를 배포하고, Gateway API 리소스를 구현하는 방법을 보여줄 것이다. 이 과정에서 각 클러스터에 필요한 서비스와 배포를 설정하고, Gateway API 리소스를 통해 두 클러스터 간의 통신을 검증하는 방법을 다룰 것이다. 이를 통해 멀티 클러스터 환경에서의 트래픽 관리와 부하 분산을 효과적으로 수행할 수 있는 방법을 이해할 수 있을 것이다.
 
 
-|![](/assets/images/2024/2024-08-27-kubernetes-gateway-api.png)|
+|![/assets/images/2024/2024-08-27-kubernetes-gateway-api.png](/assets/images/2024/2024-08-27-kubernetes-gateway-api.png)|
 |:---:|
 ||
 

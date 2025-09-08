@@ -53,18 +53,18 @@ Foo1 -> Foo6 : To collections
 
 Push가 되면 Github Action이 동작하는 것을 확인 할 수 있다.
 
-![](/assets/images/undefined/120211.png)
+![/assets/images/undefined/120211.png](/assets/images/undefined/120211.png)
 
 파일이 생성되어 추가된 것을 확인할 수 있다.
 
-![](/assets/images/undefined/115850.png)
+![/assets/images/undefined/115850.png](/assets/images/undefined/115850.png)
 
 ```markdown
-![](/plantuml/md-sample-sequence.svg)
+![/plantuml/md-sample-sequence.svg](/plantuml/md-sample-sequence.svg)
 ```
 위와 같은 코드를 추가하면 다음과 같이 생성된 UML을 사용 할 수 있다.
 
-![](/plantuml/md-sample-sequence.svg)
+![/plantuml/md-sample-sequence.svg](/plantuml/md-sample-sequence.svg)
 
 ### 2. 이미지 링크를 삽입하는 방법
 
@@ -92,7 +92,7 @@ PlantUML 에서 링크를 이용한 방법이다.
 
 Action을 사용하는것이 나중에 유지보수를 하는 면에 있어서도 더 편할 수 있을것 같다.
 
-|![](/plantuml/md-sample-sequence.svg)|![PlantUML model](https://www.plantuml.com/plantuml/png/JSyz3i8m30NWtQVm1HYWFmC3wiG9k82RPAWKR2bn1suFhgdayUMJtekNhjHqVrUWfDBmANA5LNREr3wMRf24jKcrC41XtVI04J8fhTIBfGcIr5gIRiBT7cQmAhmyZXAyuqlmx8qqEFr7eemklXXXSZZd8yrEuI-m5Cw_-xu0)|
+|![/plantuml/md-sample-sequence.svg](/plantuml/md-sample-sequence.svg)|![PlantUML model](https://www.plantuml.com/plantuml/png/JSyz3i8m30NWtQVm1HYWFmC3wiG9k82RPAWKR2bn1suFhgdayUMJtekNhjHqVrUWfDBmANA5LNREr3wMRf24jKcrC41XtVI04J8fhTIBfGcIr5gIRiBT7cQmAhmyZXAyuqlmx8qqEFr7eemklXXXSZZd8yrEuI-m5Cw_-xu0)|
 |:--:|:--:|
 |GitHub Action을 사용한 결과|이미지 링크를 사용한 결과|
 

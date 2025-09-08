@@ -24,7 +24,7 @@ title: '[Movie] Dune (2021)'
 
 **폴 아트레이데스 (Paul Atreides)**
 
-|![](/assets\images\2024\intro-1634905430.jpg)|
+|![/assets\images\2024\intro-1634905430.jpg](/assets\images\2024\intro-1634905430.jpg)|
 |:---:|
 |폴 아트레이데스 (Paul Atreides)|
 
@@ -32,7 +32,7 @@ title: '[Movie] Dune (2021)'
 
 **레토 아트레이데스 (Leto Atreides)**
 
-|![](/assets\images\2024\SE-927f8131-55b7-41c3-a50b-2a32646c449b.jpg)|
+|![/assets\images\2024\SE-927f8131-55b7-41c3-a50b-2a32646c449b.jpg](/assets\images\2024\SE-927f8131-55b7-41c3-a50b-2a32646c449b.jpg)|
 |:---:|
 |레토 아트레이데스 (Leto Atreides)|
 
@@ -40,7 +40,7 @@ title: '[Movie] Dune (2021)'
 
 **레이디 제시카 (Lady Jessica)**
 
-|![](/assets\images\2024\yWKgl234BP5JkXJ6ifM6YKK2lfc.jpg)|
+|![/assets\images\2024\yWKgl234BP5JkXJ6ifM6YKK2lfc.jpg](/assets\images\2024\yWKgl234BP5JkXJ6ifM6YKK2lfc.jpg)|
 |:---:|
 |레이디 제시카 (Lady Jessica)|
 
@@ -48,7 +48,7 @@ title: '[Movie] Dune (2021)'
 
 **던컨 아이다호 (Duncan Idaho)**
 
-|![](/assets\images\2024\7SwR9fV9V5ZoEGEZ9F8kuJHREm2UNLH2721sRunYXtX-vWa_IGdxOxBsBu4dOTdRaFgvf6H6y1XMlgKJSgBThg.webp)|
+|![/assets\images\2024\7SwR9fV9V5ZoEGEZ9F8kuJHREm2UNLH2721sRunYXtX-vWa_IGdxOxBsBu4dOTdRaFgvf6H6y1XMlgKJSgBThg.webp](/assets\images\2024\7SwR9fV9V5ZoEGEZ9F8kuJHREm2UNLH2721sRunYXtX-vWa_IGdxOxBsBu4dOTdRaFgvf6H6y1XMlgKJSgBThg.webp)|
 |:---:|
 |던컨 아이다호 (Duncan Idaho)|
 
@@ -56,7 +56,7 @@ title: '[Movie] Dune (2021)'
 
 **바론 블라디미르 하코넨 (Baron Vladimir Harkonnen)**
 
-|![](/assets\images\2024\62a80b6f86a29bd633aef7b3a7c1498a.jpg)|
+|![/assets\images\2024\62a80b6f86a29bd633aef7b3a7c1498a.jpg](/assets\images\2024\62a80b6f86a29bd633aef7b3a7c1498a.jpg)|
 |:---:|
 |바론 블라디미르 하코넨 (Baron Vladimir Harkonnen)|
 
@@ -64,7 +64,7 @@ title: '[Movie] Dune (2021)'
 
 **차니 (Chani)**
 
-|![](/assets\images\2024\0520-dune-ebmed-01-1-1610047475.jpg)|
+|![/assets\images\2024\0520-dune-ebmed-01-1-1610047475.jpg](/assets\images\2024\0520-dune-ebmed-01-1-1610047475.jpg)|
 |:---:|
 |차니 (Chani)|
 
@@ -94,7 +94,7 @@ title: '[Movie] Dune (2021)'
 
 ## 베네 게세릿(Bene Gesserit)
 
-|![](/assets\images\2024\reverend-mother-bene-gesserit-dune.avif)|
+|![/assets\images\2024\reverend-mother-bene-gesserit-dune.avif](/assets\images\2024\reverend-mother-bene-gesserit-dune.avif)|
 |:---:|
 |베네 게세릿(Bene Gesserit)|
 

@@ -28,7 +28,7 @@ Source Generators는 개발자에게 새로운 두가지에 기능을 제공한�
 
 Source Generators는 아래의 그림처럼 동작한다.
 
-|![](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/media/source-generators/source-generator-visualization.png#lightbox)|
+|![https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/media/source-generators/source-generator-visualization.png#lightbox](https://docs.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/media/source-generators/source-generator-visualization.png#lightbox)|
 |:---:|
 |Source Generators 동작 다이어그램|
 

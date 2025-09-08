@@ -22,7 +22,7 @@ title: '[Algorithm] C++/Python 백준 6549번 : 히스토그램에서 가장 큰
 
 문제 : [https://www.acmicpc.net/problem/6549](https://www.acmicpc.net/problem/6549)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

@@ -227,7 +227,7 @@ document.getElementById('dark-theme').onclick = () => changeTheme('dark');
 
 카운터 애플리케이션 예제는 사용자가 여러 탭에서 카운터 값을 증가시키거나 감소시킬 때, 모든 탭에서 카운터 값이 동기화되는 기능을 구현하는 것이다. 이 예제는 실시간으로 데이터를 공유해야 하는 애플리케이션에서 유용하다.
 
-|![](/plantuml/broadcast-channel-api-ex2.svg)|
+|![/plantuml/broadcast-channel-api-ex2.svg](/plantuml/broadcast-channel-api-ex2.svg)|
 |:---:|
 |시퀀스 다이어그램|
 

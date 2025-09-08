@@ -1127,7 +1127,7 @@ C#은 개발자의 생산성을 높여주고 개발 비용 증가의 원인이 �
 -->
 
 <!--
-![](https://blog.kakaocdn.net/dn/mpH4H/btsHtpxggLT/xMtjRoY9xNatVdbqCHx8M1/img.png)
+![https://blog.kakaocdn.net/dn/mpH4H/btsHtpxggLT/xMtjRoY9xNatVdbqCHx8M1/img.png](https://blog.kakaocdn.net/dn/mpH4H/btsHtpxggLT/xMtjRoY9xNatVdbqCHx8M1/img.png)
 
 ##  .NET 이란?
 

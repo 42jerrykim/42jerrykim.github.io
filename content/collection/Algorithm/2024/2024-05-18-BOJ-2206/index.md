@@ -15,7 +15,7 @@ title: '[Algorithm] C++ 백준 2206번 : 벽 부수고 이동하기'
 
 [원문 링크](https://www.acmicpc.net/problem/2206)
 
-|![](/assets/images/2024/diagram_understanding_breaking_walls.png)|
+|![/assets/images/2024/diagram_understanding_breaking_walls.png](/assets/images/2024/diagram_understanding_breaking_walls.png)|
 |:---:|
 |이미지로 형상화|
 

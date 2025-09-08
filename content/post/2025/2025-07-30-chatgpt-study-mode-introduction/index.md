@@ -21,7 +21,7 @@ image: index.png
 
 안녕하십니까, 여러분. 오늘은 OpenAI가 최근 출시한 **ChatGPT Study Mode**에 대해 소개하고자 합니다. 이 새로운 기능은 기존의 ChatGPT를 넘어서 학습에 특화된 AI 튜터로서의 역할을 수행하도록 설계되었습니다.
 
-![](image01.png)
+![image01.png](image01.png)
 
 ## ChatGPT Study Mode란?
 

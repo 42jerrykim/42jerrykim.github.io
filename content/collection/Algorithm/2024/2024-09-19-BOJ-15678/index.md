@@ -30,7 +30,7 @@ title: '[Algorithm] C++/Python 백준 15678번 : 연세워터파크'
 
 문제 : [https://www.acmicpc.net/problem/15678](https://www.acmicpc.net/problem/15678)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

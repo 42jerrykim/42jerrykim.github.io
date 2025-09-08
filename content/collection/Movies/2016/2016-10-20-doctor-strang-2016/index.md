@@ -62,7 +62,7 @@ image: MV5BNjgwNzAzNjk1Nl5BMl5BanBnXkFtZTgwMzQ2NjI1OTE@._V1_.jpg
 
 Marvel Cinematic Universe에서 신비한 마법과 다차원적 모험을 그린 독특한 작품, "Doctor Strange"는 2016년에 개봉하여 시각적 혁신과 흥미로운 스토리텔링으로 관객을 사로잡았다. 영화는 오만하고 성공한 신경외과 의사 스티븐 스트레인지가 사고로 모든 것을 잃고, 치유를 위해 영적 여정을 떠나며 강력한 마법사로 거듭나는 과정을 그린다. 이 영화는 현실을 초월한 마법과 다중 우주의 세계를 무대로 하여 관객에게 전혀 새로운 차원의 모험을 선사한다.
 
-|![](MV5BNjgwNzAzNjk1Nl5BMl5BanBnXkFtZTgwMzQ2NjI1OTE@._V1_.jpg)|
+|![MV5BNjgwNzAzNjk1Nl5BMl5BanBnXkFtZTgwMzQ2NjI1OTE@._V1_.jpg](MV5BNjgwNzAzNjk1Nl5BMl5BanBnXkFtZTgwMzQ2NjI1OTE@._V1_.jpg)|
 |:---:|
 ||
 

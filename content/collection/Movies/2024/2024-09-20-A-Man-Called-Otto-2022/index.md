@@ -59,7 +59,7 @@ description: "2022년 개봉한 'A Man Called Otto'는 마크 포스터 감독�
 
 "A Man Called Otto"는 마크 포스터 감독이 연출하고 톰 행크스가 주연을 맡은 2022년 개봉한 미국의 코미디 드라마 영화이다. 이 영화는 프레드릭 백만의 소설 "A Man Called Ove"를 원작으로 하며, 삶의 고통과 상실을 겪은 오토라는 남성의 이야기를 그린다. 오토는 외로움과 고집으로 주변 사람들과 갈등을 빚지만, 새로운 이웃들과의 만남을 통해 점차 마음을 열게 된다. 이 영화는 인간 관계의 소중함과 개인의 성장, 커뮤니티의 힘을 따뜻하게 그려내며 관객들에게 깊은 감동을 선사한다.
 
-|![](CcFBsxy-fu98wNTFoQB2Pp44rBi654GeCAZXGZCmR0vfBSwYK1M6E9hFgOj268w_hbfcAKTc0EOl2YNXLX-JgELHOPZDnE9UbAX8qct38jvcYG0pmMIBu6tn1JmFZ6ojSGt0wdJwGkkBlMMRrIi5bg.webp)|
+|![CcFBsxy-fu98wNTFoQB2Pp44rBi654GeCAZXGZCmR0vfBSwYK1M6E9hFgOj268w_hbfcAKTc0EOl2YNXLX-JgELHOPZDnE9UbAX8qct38jvcYG0pmMIBu6tn1JmFZ6ojSGt0wdJwGkkBlMMRrIi5bg.webp](CcFBsxy-fu98wNTFoQB2Pp44rBi654GeCAZXGZCmR0vfBSwYK1M6E9hFgOj268w_hbfcAKTc0EOl2YNXLX-JgELHOPZDnE9UbAX8qct38jvcYG0pmMIBu6tn1JmFZ6ojSGt0wdJwGkkBlMMRrIi5bg.webp)|
 |:---:|
 ||
 
