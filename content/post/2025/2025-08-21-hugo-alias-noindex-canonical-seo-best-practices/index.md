@@ -107,7 +107,7 @@ image: "wordcloud.png"
 
 Hugo 정적 사이트 생성기에서 alias를 사용하여 URL을 리다이렉트할 때 발생하는 `noindex` 태그와 그로 인한 SEO 문제에 대해 깊이 있게 분석해보겠습니다. 특히 Google Search Console에서 발생하는 호환성 문제를 해결하는 방법과 canonical 태그의 올바른 사용법을 알아보겠습니다.
 
-|![](image_asis.png)|
+|![](image01.png)|
 |:---:|
 |문제 상황|
 
@@ -169,6 +169,10 @@ Hugo에서 alias를 설정하면 다음과 같은 메타 태그가 포함된 HTM
 </head>
 </html>
 ```
+
+|![](image02.png)|
+|:---:|
+|해결 상홤|
 
 ### 301 리다이렉트 사용 (서버 수준)
 
