@@ -97,8 +97,6 @@ tags:
 image: "wordcloud.png"
 ---
 
-# Protocol Buffers Proto3 가이드 - 완전한 데이터 직렬화 솔루션
-
 Protocol Buffers(이하 protobuf)는 Google에서 개발한 언어 중립적이고 플랫폼 중립적인 확장 가능한 데이터 직렬화 메커니즘입니다. JSON과 비슷하지만 더 작고 빠르며, 특수하게 생성된 소스 코드를 사용하여 다양한 데이터 스트림에서 구조화된 데이터를 쉽게 읽고 쓸 수 있습니다.
 
 ## Protocol Buffers가 해결하는 문제들

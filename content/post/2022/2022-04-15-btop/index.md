@@ -27,7 +27,7 @@ tags:
 - 디스크
 - Resource
 - 리소스
-title: '[Linux] btop++ - 리눅스용 Processor, Memory, Disks, Network and Processes 모니터'
+title: '[Linux] btop++ - Processor, Memory, Disks, Network and Processes 모니터'
 ---
 
 리눅스를 사용할 때 `top`명령어를 사용해서 CPU를 모니터링 해본적이 있는가? 너무 보잘것 없는 UI에 실망한적이 있는가? 다른 리소스의 사용량도 확인 해 보고 싶은 생각은 없었는가? 본 글에서는 PC의 자원은 한 화면헤서 확인 할 수 있는 btop++에 개해서 소개 한다.

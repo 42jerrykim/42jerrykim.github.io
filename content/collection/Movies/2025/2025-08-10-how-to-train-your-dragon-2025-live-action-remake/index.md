@@ -1,5 +1,5 @@
 ---
-title: "[Movie] How to Train Your Dragon (드래곤 길들이기) (2025) - 실사로 되살린 신뢰와 우정의 비상"
+title: "[Movie] How to Train Your Dragon (드래곤 길들이기) (2025)"
 description: "2010년 원작을 실사로 재해석한 2025년작 ‘드래곤 길들이기’. 딘 데블로이스 연출과 존 파웰 음악, 125분 러닝타임 속 히컵·아스트리드·투슬리스의 신뢰와 성장을 스포일러로 완벽 정리"
 date: 2025-08-10
 lastmod: 2025-08-10

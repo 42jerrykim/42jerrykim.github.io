@@ -1,5 +1,6 @@
 ---
-title: "[Algorithm] C++/Python 백준 18251번 : 내 생각에 A번인 단순 dfs 문제가 이 대회에서 E번이 되어버린 건에 관하여 (Easy)"
+title: "[Algorithm] C++/Python 백준 18251번"
+desctiption: "백준 18251번 : 내 생각에 A번인 단순 dfs 문제가 이 대회에서 E번이 되어버린 건에 관하여 (Easy)"
 categories: 
 - Algorithm
 - Platinum IV

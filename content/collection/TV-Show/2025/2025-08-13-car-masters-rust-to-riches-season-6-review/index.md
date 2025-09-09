@@ -1,5 +1,5 @@
 ---
-title: "[TV Show] Car Masters: Rust to Riches 시즌6 (2024) - 페라리·맥라렌·매그넘 308, '업그레이드 앤 트레이드'의 변주"
+title: "[TV Show] Car Masters: Rust to Riches 시즌6 (2024)"
 date: 2025-08-13
 lastmod: 2025-08-13
 description: "럭셔리 시장 공략과 창의의 줄다리기. 두 대의 페라리·맥라렌·드로리언·브롱코 6x6·카마로 SS·재규어 XK-E·페라리 308 '매그넘 P.I.'까지 8부작 전편 줄거리·빌드·메시지 총정리"

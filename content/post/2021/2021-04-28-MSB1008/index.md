@@ -9,7 +9,7 @@ tags:
 - .NET
 - build
 - msbuild
-title: '[.NET] MSBUILD : error MSB1008: Only one project can be specified. 해결 방법'
+title: '[.NET] MSBUILD : error MSB1008: Only one project can be specified. 해결'
 aliases: /.net/MSB1008/
 ---
 
