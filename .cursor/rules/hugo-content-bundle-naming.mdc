@@ -17,6 +17,7 @@ alwaysApply: true
 
 # Automated Content Bundle Creation
 ```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -Command '
 # Complete script for creating a new content bundle
 $today = Get-Date -Format "yyyy-MM-dd"
 $year = Get-Date -Format "yyyy"
@@ -55,3 +56,5 @@ Your content here...
 "@
 
 $frontMatter | Out-File -FilePath "content/post/$year/$folderName/index.md" -Encoding UTF8
+'
+```
