@@ -71,7 +71,7 @@ title: '[Regex] 정규 표현식의 기초(Python)'
 정규식(정규 표현식)은 문자열에서 특정 패턴을 찾고 조작하는 데 사용되는 강력한 도구이다. 파이썬에서는 `re` 모듈을 통해 정규식을 사용할 수 있으며, 이를 통해 문자열 검색, 치환, 분할 등의 작업을 수행할 수 있다. 정규식의 기본 구성 요소는 메타 문자로, 이들은 문자열의 특정 규칙을 정의하는 데 사용된다. 예를 들어, `.`는 줄바꿈 문자를 제외한 모든 문자와 일치하며, `*`는 앞의 문자가 0회 이상 반복될 수 있음을 나타낸다. 또한, `[]`를 사용하여 문자 클래스(특정 문자 집합)를 정의할 수 있으며, `^`와 `$`는 각각 문자열의 시작과 끝을 나타낸다. 이러한 메타 문자를 조합하여 복잡한 패턴을 만들 수 있으며, 이를 통해 다양한 문자열 처리 작업을 효율적으로 수행할 수 있다. 정규식은 데이터 처리, 텍스트 분석, 웹 스크래핑 등 여러 분야에서 유용하게 사용되며, 그 활용도는 매우 넓다. 정규식을 잘 활용하면 코드의 가독성과 효율성을 높일 수 있다.
 
 
-|![](/assets/images/2024/2024-08-26-python-regex.png)|
+|![/assets/images/2024/2024-08-26-python-regex.png](/assets/images/2024/2024-08-26-python-regex.png)|
 |:---:|
 ||
 
@@ -5201,25 +5201,25 @@ REGEXP
 
 address 컬럼이 특수기호가 들어간 row만 출력
 
-![](https://blog.kakaocdn.net/dn/mUGKR/btrz44A48aN/wi3TFHKUoOLMuriXJ4jn90/img.png)
+![https://blog.kakaocdn.net/dn/mUGKR/btrz44A48aN/wi3TFHKUoOLMuriXJ4jn90/img.png](https://blog.kakaocdn.net/dn/mUGKR/btrz44A48aN/wi3TFHKUoOLMuriXJ4jn90/img.png)
 
 RLIKE
 
 address 컬럼이 특수기호가 들어간 row만 출력
 
-![](https://blog.kakaocdn.net/dn/bjw0Lx/btrz6rCgDYZ/YZbCT6W94a5MyiwZZJgNG0/img.png)
+![https://blog.kakaocdn.net/dn/bjw0Lx/btrz6rCgDYZ/YZbCT6W94a5MyiwZZJgNG0/img.png](https://blog.kakaocdn.net/dn/bjw0Lx/btrz6rCgDYZ/YZbCT6W94a5MyiwZZJgNG0/img.png)
 
 REGEXP_LIKE
 
 address 컬럼이 특수기호가 들어간 row만 출력
 
-![](https://blog.kakaocdn.net/dn/m6Alu/btrz6sHUU10/4kH7lXqQGfUXCddVwhJOR0/img.png)
+![https://blog.kakaocdn.net/dn/m6Alu/btrz6sHUU10/4kH7lXqQGfUXCddVwhJOR0/img.png](https://blog.kakaocdn.net/dn/m6Alu/btrz6sHUU10/4kH7lXqQGfUXCddVwhJOR0/img.png)
 
 REGEXP_REPLACE
 
 actor 테이블의 last_update 컬럼이 숫자가 있으면 *로 변환
 
-![](https://blog.kakaocdn.net/dn/1F5ae/btrz7z0SjdI/ko1fRRvGJtoSWVN6k9lE9k/img.png)
+![https://blog.kakaocdn.net/dn/1F5ae/btrz7z0SjdI/ko1fRRvGJtoSWVN6k9lE9k/img.png](https://blog.kakaocdn.net/dn/1F5ae/btrz7z0SjdI/ko1fRRvGJtoSWVN6k9lE9k/img.png)
 
 * * *
 
@@ -5236,7 +5236,7 @@ hive에서의 정규식도 mysql과 사용하는 함수가 대부분이 같다.'
 IF, RLIKE, REGEXP_REPLACE를 활용하여 다음과 같이 address컬럼에 특수기호가 들어가 있는 row에 숫자를 마스킹 처리
 하도록 표현할 수도 있다.
 
-![](https://blog.kakaocdn.net/dn/sEXO6/btrz43ISMIk/sWKYaKNplOXlCDTKjMO8XK/img.png)
+![https://blog.kakaocdn.net/dn/sEXO6/btrz43ISMIk/sWKYaKNplOXlCDTKjMO8XK/img.png](https://blog.kakaocdn.net/dn/sEXO6/btrz43ISMIk/sWKYaKNplOXlCDTKjMO8XK/img.png)
 
 다만 하이브는 특수기호 자체를 표현하는데에 있어서 \사용에 유의해야 한다.
 

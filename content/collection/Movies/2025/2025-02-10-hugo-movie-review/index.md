@@ -65,7 +65,7 @@ image: "MV5BMjAzNzk5MzgyNF5BMl5BanBnXkFtZTcwOTE4NDU5Ng@@._V1_.jpg"
 
 『Hugo』는 Martin Scorsese 감독이 선사하는 마법 같은 모험 영화로, 1930년대 파리 기차역을 배경으로 영화의 역사와 마법을 탐구하는 작품이다. 이 영화는 단순한 가족 영화를 넘어 초기 영화의 선구자 Georges Méliès에 대한 오마주이자, 영화 예술의 소중함과 보존의 중요성을 강조하는 메타시네마적 작품이다. 고아 소년 Hugo의 여정을 통해 영화의 마법과 역사를 재발견하는 놀라운 모험을 그린다.
 
-|![](MV5BMjAzNzk5MzgyNF5BMl5BanBnXkFtZTcwOTE4NDU5Ng@@._V1_.jpg)|
+|![MV5BMjAzNzk5MzgyNF5BMl5BanBnXkFtZTcwOTE4NDU5Ng@@._V1_.jpg](MV5BMjAzNzk5MzgyNF5BMl5BanBnXkFtZTcwOTE4NDU5Ng@@._V1_.jpg)|
 |:---:|
 |Hugo (2011) - Martin Scorsese의 영화에 대한 영화|
 
@@ -190,7 +190,7 @@ graph LR
 
 ### **주인공: Hugo Cabret (Asa Butterfield)**
 
-![](Screenshot-2025-02-11-at-07-47-17-Hugo-(2011).png)
+![Screenshot-2025-02-11-at-07-47-17-Hugo-(2011).png](Screenshot-2025-02-11-at-07-47-17-Hugo-(2011).png)
 
 **캐릭터 개요**
 * 기본 설정: 12세 고아 소년, 기계 천재, 시계탑 거주
@@ -216,7 +216,7 @@ Hugo는 모든 고아와 소외된 이들의 대변자로, 꿈과 상상력의 �
 
 ### **조연: Georges Méliès (Ben Kingsley)**
 
-![](Screenshot-2025-02-11-at-07-48-56-Hugo-(2011).png)
+![Screenshot-2025-02-11-at-07-48-56-Hugo-(2011).png](Screenshot-2025-02-11-at-07-48-56-Hugo-(2011).png)
 
 **캐릭터 개요**
 * 기본 설정: 전 영화 감독, 장난감 가게 주인, 은둔자
@@ -237,7 +237,7 @@ Georges Méliès는 잊혀진 예술가들의 대변자로, 예술의 보존과 
 
 ### **조연: Isabelle (Chloë Grace Moretz)**
 
-![](Screenshot-2025-02-11-at-07-48-03-Hugo-(2011).png)
+![Screenshot-2025-02-11-at-07-48-03-Hugo-(2011).png](Screenshot-2025-02-11-at-07-48-03-Hugo-(2011).png)
 
 **캐릭터 개요**
 * 기본 설정: Georges Méliès의 대녀, 독서광, 모험가
@@ -253,7 +253,7 @@ Isabelle은 지식과 경험의 연결고리 역할을 하며, 여성의 지적 
 
 ### **조연: Station Inspector (Sacha Baron Cohen)**
 
-![](Screenshot-2025-02-11-at-07-48-34-Hugo-(2011).png)
+![Screenshot-2025-02-11-at-07-48-34-Hugo-(2011).png](Screenshot-2025-02-11-at-07-48-34-Hugo-(2011).png)
 
 **캐릭터 개요**
 * 기본 설정: 기차역 경비원, 전쟁 상처, 엄격한 성격

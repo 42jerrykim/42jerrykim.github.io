@@ -17,7 +17,7 @@ aliases: /collections/designpattern/00_overview/
 
 소프트웨어를 설계할 때 특정 맥락에서 자주 발생하는 고질적인 문제들이 또 발생했을 때 재사용할 할 수 있는 훌륭한 해결책이다. ```바퀴를 다시 발명하지 마라(Don’t reinvent the wheel)```라는 말이 있듯이 이미 만들어져서 잘 되는 것을 처음부터 다시 만들 필요가 없다는 의미이다.
 
-|![](https://pbs.twimg.com/media/EJ5Gw_RXsAEeSJ5.png)|
+|![https://pbs.twimg.com/media/EJ5Gw_RXsAEeSJ5.png](https://pbs.twimg.com/media/EJ5Gw_RXsAEeSJ5.png)|
 |:--:|
 |더 좋은 바퀴(동가란 바퀴)가 있어도 기존에 사용하던 바퀴(네모)를 포기하지 않는 모습|
 

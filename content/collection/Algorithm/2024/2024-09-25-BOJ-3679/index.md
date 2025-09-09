@@ -24,7 +24,7 @@ title: '[Algorithm] C++/Python 백준 3679번 : 단순 다각형'
 
 문제 : [https://www.acmicpc.net/problem/3679](https://www.acmicpc.net/problem/3679)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 | |
 
@@ -53,7 +53,7 @@ title: '[Algorithm] C++/Python 백준 3679번 : 단순 다각형'
 
 문제 : [https://www.acmicpc.net/problem/3679](https://www.acmicpc.net/problem/3679)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

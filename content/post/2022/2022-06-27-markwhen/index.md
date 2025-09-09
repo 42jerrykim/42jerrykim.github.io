@@ -49,7 +49,7 @@ section Overall
 
 위의 텍스트의 결과물이다.
 
-|![](/assets/images/undefined/export.png)|
+|![/assets/images/undefined/export.png](/assets/images/undefined/export.png)|
 |:---:|
 |예시|
 

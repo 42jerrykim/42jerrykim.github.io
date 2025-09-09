@@ -21,7 +21,7 @@ title: '[SearchEngine] OpenVerse - 오픈 라이센스 미디어 검색엔진'
 
 ## 스크린샷
 
-|![](/assets/images/2022/2022-06-07-101710.png)|
+|![/assets/images/2022/2022-06-07-101710.png](/assets/images/2022/2022-06-07-101710.png)|
 |:---:|
 |스크린샷|
 

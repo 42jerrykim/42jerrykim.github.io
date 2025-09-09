@@ -69,7 +69,7 @@ aliases: /artificialgeneralintelligence/agi/
 인공 일반 지능(AGI)이라는 개념은 인공지능(AI) 기술의 발전을 통해 인간의 지능을 초월하는 능력을 갖춘 시스템을 의미한다. AGI는 특정 작업에 국한되지 않고, 다양한 분야에서 인간과 동등하거나 그 이상의 능력을 발휘할 수 있는 AI를 지칭한다. 현재의 AI는 주로 특정 작업에 최적화된 약인공지능(Narrow AI)으로, 제한된 범위 내에서만 기능을 수행할 수 있다. 그러나 AGI는 학습, 추론, 문제 해결, 계획 수립 등 인간의 인지 능력을 모방하며, 새로운 상황에 유연하게 적응할 수 있는 능력을 갖추고 있다. OpenAI는 AGI 개발을 위한 5단계 로드맵을 제시하며, 현재의 AI 기술이 1단계인 대화형 AI에서 2단계인 추론 AI로 발전하고 있다고 평가하고 있다. 이러한 발전은 기업의 운영 방식, 사회의 구조, 그리고 인간의 삶에 혁신적인 변화를 가져올 것으로 예상된다. AGI의 실현은 기후 변화, 질병, 빈곤 등 글로벌 문제에 대한 혁신적인 해결책을 제시할 수 있는 기회를 제공할 것이다. 그러나 AGI의 발전에는 윤리적 사용, 일자리 변화, 기술의 안전성 확보 등 해결해야 할 과제가 산적해 있다. 이러한 변화에 대비하고 긍정적인 방향으로 이끌어가는 것이 우리 모두의 과제이다.
 
 
-|![](/assets/images/2024/2024-10-02-agi.png)|
+|![/assets/images/2024/2024-10-02-agi.png](/assets/images/2024/2024-10-02-agi.png)|
 |:---:|
 ||
 
@@ -945,7 +945,7 @@ levels of AGI performance,...  deepmind.google
 âœ… ì�´ëŸ¬í•œ ì—�ì�´ì „íŠ¸ëŠ” ê²°ì •ì �ì�¸ ë‹µë³€ì—� ë�„ë‹¬í• ë•Œê¹Œì§€ ì¤‘ê°„
 í•˜ìœ„ ì�‘ì—… ë°˜ë³µ
 
-![](https://blog.kakaocdn.net/dn/biy7nN/btsItUqxSRF/oaLOZKWzG0DOVcFyKKizi1/img.png)
+![https://blog.kakaocdn.net/dn/biy7nN/btsItUqxSRF/oaLOZKWzG0DOVcFyKKizi1/img.png](https://blog.kakaocdn.net/dn/biy7nN/btsItUqxSRF/oaLOZKWzG0DOVcFyKKizi1/img.png)
 ì¶œì²˜: Cobus Greyling(ë²ˆì—­: yooniverse)
 
 * * *
@@ -980,7 +980,7 @@ levels of AGI performance,...  deepmind.google
 >  Steve Jobs is regarded as the father of the iPhone, and the square root of
 > his year of birth(1955) is approximately 44.22
 
-![](https://blog.kakaocdn.net/dn/bi3Yzp/btsIvOokZUf/NF93cky5uUe0M5KCxodDik/img.png)
+![https://blog.kakaocdn.net/dn/bi3Yzp/btsIvOokZUf/NF93cky5uUe0M5KCxodDik/img.png](https://blog.kakaocdn.net/dn/bi3Yzp/btsIvOokZUf/NF93cky5uUe0M5KCxodDik/img.png)
 ì—�ì�´ì „íŠ¸ ì�‘ë�™ ê³¼ì •
 
 âœ… ì—�ì�´ì „íŠ¸ê°€ ìµœì¢… ë‹µë³€ì—� ë�„ë‹¬í•˜ê³ ì²´ì�¸ì�´ ë��ë‚ ë•Œê¹Œì§€
@@ -988,7 +988,7 @@ levels of AGI performance,...  deepmind.google
 
   * ìƒ�ê°�(Thought) -> í–‰ë�™(Action) -> ê´€ì°°(Observation) 
 
-![](https://blog.kakaocdn.net/dn/dWIxZN/btsIt3HmGGL/JBQXaiMLQxkSpP6BioE2Qk/img.png)
+![https://blog.kakaocdn.net/dn/dWIxZN/btsIt3HmGGL/JBQXaiMLQxkSpP6BioE2Qk/img.png](https://blog.kakaocdn.net/dn/dWIxZN/btsIt3HmGGL/JBQXaiMLQxkSpP6BioE2Qk/img.png)
 ì¶œì²˜:Cobus Greyling(ë²ˆì—­: yooniverse)
 
     
@@ -1193,7 +1193,7 @@ agent êµ¬í˜„ì�€ agent backboneì—� êµ¬ì¶•ë�˜ì–´ì
 âœ… ê³¼ê±° í•™ìŠµ ë‚´ìš©ì�„ ê¸°ë°˜ìœ¼ë¡œ ì�´ì „ì—� ë³¸ ì � ì—†ëŠ” ì�‘ì—…ì�„
 ê°€ëŠ¥í•˜ê²Œ í•´, ëª¨ë�¸ì�˜ ë‹¤ì–‘ì„±ì�„ ë�”í•´ì¤Œ
 
-![](https://blog.kakaocdn.net/dn/bpNT8X/btsIvUPpQsa/INjYgZ5lHtObElEbKKxOD0/img.png)
+![https://blog.kakaocdn.net/dn/bpNT8X/btsIvUPpQsa/INjYgZ5lHtObElEbKKxOD0/img.png](https://blog.kakaocdn.net/dn/bpNT8X/btsIvUPpQsa/INjYgZ5lHtObElEbKKxOD0/img.png)
 ì¶œì²˜:Cobus Greyling(ë²ˆì—­: yooniverse)
 
 * * *

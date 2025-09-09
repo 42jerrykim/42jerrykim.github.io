@@ -63,7 +63,7 @@ title: '[Technology] CRDT(Conflict-Free Replicated Data Types)란'
 CRDT(Conflict-Free Replicated Data Types)와 OT(Operational Transformation)는 분산 시스템에서 데이터의 일관성을 유지하며 여러 사용자가 동시에 데이터를 수정할 수 있도록 돕는 기술이다. CRDT는 여러 컴퓨터에 걸쳐 복제된 데이터 구조로, 각 복제본이 독립적으로 업데이트될 수 있으며, 이러한 업데이트는 나중에 자동으로 병합되어 일관된 상태로 돌아온다. 반면, OT는 서버가 모든 변경 사항을 병합하는 방식으로, 클라이언트는 자신의 변경 사항을 서버에 전송하고 서버는 이를 순차적으로 처리하여 최종 결과를 각 클라이언트에 반환한다. CRDT는 P2P(peer-to-peer) 방식으로 작동하여 중앙 서버 없이도 동작할 수 있는 반면, OT는 중앙 집중식 서버에 의존한다. 이러한 차이로 인해 CRDT는 더 나은 확장성과 유연성을 제공하며, 특히 실시간 협업 애플리케이션에서 유용하게 사용된다. CRDT는 또한 교환법칙, 결합법칙, 항등법칙을 만족하는 병합 함수를 통해 데이터의 일관성을 보장한다. 이와 같은 특성 덕분에 CRDT는 Google Docs, Figma와 같은 다양한 협업 도구에서 널리 사용되고 있다. CRDT와 OT의 차이점을 이해하는 것은 분산 시스템에서의 데이터 처리 및 협업 기술을 발전시키는 데 중요한 기초가 된다.
 
 
-|![](/assets/images/2024/2024-08-29-crdt.png)|
+|![/assets/images/2024/2024-08-29-crdt.png](/assets/images/2024/2024-08-29-crdt.png)|
 |:---:|
 ||
 

@@ -55,7 +55,7 @@ Urwerk는 시계 제작에 있어 현대적인 소재와 기술을 적극 활용
 
 이 컬렉션은 Urwerk의 대표적인 '위성 디스플레이' 방식을 특징으로 한다. 시간은 회전하는 위성 모듈을 통해 표시되며, 독특한 시각적 경험을 제공한다. 주요 모델로는 다음이 있다:
 
-|![](ur-100v-magic-t.png)|
+|![ur-100v-magic-t.png](ur-100v-magic-t.png)|
 |:---:|
 |UR-100V MAGIC T|
 
@@ -67,7 +67,7 @@ Urwerk는 시계 제작에 있어 현대적인 소재와 기술을 적극 활용
 
 이 컬렉션은 기계식 시계의 정확성을 극대화하기 위한 혁신적인 기술을 도입한 모델들로 구성되어 있다. 주요 모델로는 다음이 있다:
 
-|![](emc-time-hunter_white_pr.jpg)|
+|![emc-time-hunter_white_pr.jpg](emc-time-hunter_white_pr.jpg)|
 |:---:|
 |EMC TimeHunter|
 

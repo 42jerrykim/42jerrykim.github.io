@@ -21,7 +21,7 @@ title: '[MathJax] Markdown에서 LaTeX로 수식 작성하기'
 
 ## MathJax? Latex?
 
-| ![](/assets/images/2022/2022-02-24-145445.png) |
+| ![/assets/images/2022/2022-02-24-145445.png](/assets/images/2022/2022-02-24-145445.png) |
 |:--:|
 |MathJax를 사용하여 수식을 보기 좋게 표시 할 수 있다.|
 

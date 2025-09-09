@@ -12,7 +12,7 @@ title: '[Movie] Ghosted (2023)'
 
 "Ghosted"는 2023년에 개봉한 미국의 로맨틱 액션 모험 코미디 영화다. 감독은 덱스터 플레처이며, 주연 배우로는 크리스 에반스와 아나 데 아르마스가 출연한다. 이 영화의 줄거리는 콜(크리스 에반스)이 신비로운 새디(아나 데 아르마스)에게 반하면서 시작되는데, 새디는 사실 비밀 요원이라는 반전이 있다. 이들의 만남은 국제적인 모험으로 이어지며, 세계를 구하기 위한 여정에 뛰어든다.
 
-|![](/assets/images/2023/ATV_Ghosted_key_art_big_image_post.jpg.large_2x.jpg)|
+|![/assets/images/2023/ATV_Ghosted_key_art_big_image_post.jpg.large_2x.jpg](/assets/images/2023/ATV_Ghosted_key_art_big_image_post.jpg.large_2x.jpg)|
 |:---:|
 |Ghosted 포스터|
 

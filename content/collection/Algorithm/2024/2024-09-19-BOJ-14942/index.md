@@ -20,7 +20,7 @@ title: '[Algorithm] C++/Python 백준 14942번 : 개미'
 
 문제 : [https://www.acmicpc.net/problem/14942](https://www.acmicpc.net/problem/14942)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

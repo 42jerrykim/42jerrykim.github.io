@@ -21,7 +21,7 @@ title: '[Algorithm] C++/Python 백준 17401번 : 일하는 세포'
 
 문제 : [https://www.acmicpc.net/problem/17401](https://www.acmicpc.net/problem/17401)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

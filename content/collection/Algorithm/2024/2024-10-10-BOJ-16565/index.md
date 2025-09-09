@@ -18,7 +18,7 @@ title: '[Algorithm] C++/Python 백준 16565번 : N포커'
 
 문제 : [https://www.acmicpc.net/problem/16565](https://www.acmicpc.net/problem/16565)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

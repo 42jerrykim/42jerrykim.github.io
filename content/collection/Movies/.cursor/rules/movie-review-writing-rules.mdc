@@ -208,7 +208,7 @@ image: "poster.png"
 ```markdown
 영화 제목과 기본 정보를 소개하고, 독자의 관심을 끌 수 있는 흥미로운 문장으로 시작한다.
 
-|![](poster.png)|
+|![poster.png](poster.png)|
 |:---:|
 ||
 ```

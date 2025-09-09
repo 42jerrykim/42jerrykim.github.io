@@ -45,7 +45,7 @@ Crontab은 시스템 관리자가 자주 사용하지만 웹 개발자에게도 
 
 따라서 일상적인 작업을 자동화하려는 시스템 관리자이든 워크플로우를 간소화하려는 웹 개발자이든, 이 블로그 게시물은 Linux Crontab을 최대한 활용할 수 있는 지식과 도구를 제공합니다. 지금 바로 시작하여 자동화의 강력한 기능을 활용해보세요!
 
-|![](/assets/images/2023/crontab.png)|
+|![/assets/images/2023/crontab.png](/assets/images/2023/crontab.png)|
 |:---:|
 |Crontab 규칙|
 

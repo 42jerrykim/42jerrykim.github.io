@@ -522,7 +522,7 @@ C#의 인터페이스와 추상 클래스에 대한 이해를 바탕으로, 더 
 
 
 <!--
-![](https://blog.kakaocdn.net/dn/dvBma9/btqAowX7Zfo/F9qkvgWA8rQKwNXAZCkgFk/img.png)
+![https://blog.kakaocdn.net/dn/dvBma9/btqAowX7Zfo/F9qkvgWA8rQKwNXAZCkgFk/img.png](https://blog.kakaocdn.net/dn/dvBma9/btqAowX7Zfo/F9qkvgWA8rQKwNXAZCkgFk/img.png)
 
 ###  C# 인터페이스와 추상클래스의 차이점
 
@@ -1141,7 +1141,7 @@ public void nomalMethod()
         }
     }
 
-![](https://blog.kakaocdn.net/dn/dgwtNZ/btsd4F2hDRO/k91YSGYwSAFZe4U92CTFjK/img.png)
+![https://blog.kakaocdn.net/dn/dgwtNZ/btsd4F2hDRO/k91YSGYwSAFZe4U92CTFjK/img.png](https://blog.kakaocdn.net/dn/dgwtNZ/btsd4F2hDRO/k91YSGYwSAFZe4U92CTFjK/img.png)
 
 Main 함수에서
 
@@ -1248,7 +1248,7 @@ child.nomalMethod() 에서 부모 클래스의 일반 메서드를 호출합니�
         }
     }
 
-![](https://blog.kakaocdn.net/dn/ZJ3yr/btsdZyReMFj/O8hCCIupxcYYBotTkTB6s0/img.png)
+![https://blog.kakaocdn.net/dn/ZJ3yr/btsdZyReMFj/O8hCCIupxcYYBotTkTB6s0/img.png](https://blog.kakaocdn.net/dn/ZJ3yr/btsdZyReMFj/O8hCCIupxcYYBotTkTB6s0/img.png)
 
 Main 함수에서
 
@@ -1282,7 +1282,7 @@ MyClass 클래스의 myClass 객체를 생성하고
 = 클래스가 어떤 메소드를 가질지 결정
 
   * 선언 : ` interface ` 키워드 이용   
-![](https://velog.velcdn.com/images/ssu_hyun/post/71063c69-057f-476b-805d-597f4e246ba9/image.png)
+![https://velog.velcdn.com/images/ssu_hyun/post/71063c69-057f-476b-805d-597f4e246ba9/image.png](https://velog.velcdn.com/images/ssu_hyun/post/71063c69-057f-476b-805d-597f4e246ba9/image.png)
 
   * 대개 ` I ` 로 시작하는 이름으로 명명 
   * 메소드 **구현** , 필드 X 
@@ -1383,7 +1383,7 @@ MyClass 클래스의 myClass 객체를 생성하고
        }
     } 
 
-![](https://velog.velcdn.com/images/ssu_hyun/post/272023d2-efad-4178-8e76-209192340c12/image.png)
+![https://velog.velcdn.com/images/ssu_hyun/post/272023d2-efad-4178-8e76-209192340c12/image.png](https://velog.velcdn.com/images/ssu_hyun/post/272023d2-efad-4178-8e76-209192340c12/image.png)
 
 > 예제 프로그램 - ` 텍스트파일에 로그 출력 `
     
@@ -1460,15 +1460,15 @@ MyClass 클래스의 myClass 객체를 생성하고
         }
     }
 
-![](https://velog.velcdn.com/images/ssu_hyun/post/836ccfce-2456-4a98-9945-25f42dd8da85/image.png)
+![https://velog.velcdn.com/images/ssu_hyun/post/836ccfce-2456-4a98-9945-25f42dd8da85/image.png](https://velog.velcdn.com/images/ssu_hyun/post/836ccfce-2456-4a98-9945-25f42dd8da85/image.png)
 
   * cmd에서 ` txt파일 ` 한글깨짐 없이 여는 법 
-    * ` type ` 명령어 통해 파일 읽기 ![](https://velog.velcdn.com/images/ssu_hyun/post/6582ada4-cc49-4e7d-8d72-76762e4d7434/image.png)
+    * ` type ` 명령어 통해 파일 읽기 ![https://velog.velcdn.com/images/ssu_hyun/post/6582ada4-cc49-4e7d-8d72-76762e4d7434/image.png](https://velog.velcdn.com/images/ssu_hyun/post/6582ada4-cc49-4e7d-8d72-76762e4d7434/image.png)
     * chcp( **CH** ange **C** ode **P** ages) : **cmd 상의 언어를 바꾸는 명령어**
     * 한글코드인 ` 949 ` 에서 한글이 깨지는 문제가 발생하므로 유니코드 ` 65001 ` 설정   
 _*유니코드 : 모든 언어를 표시할 수 있는 코드_
-![](https://velog.velcdn.com/images/ssu_hyun/post/5bfd6e65-b25c-4940-9a8b-7fb22322e801/image.png)
-![](https://velog.velcdn.com/images/ssu_hyun/post/36c95058-212a-47d6-8cf0-134d0656c161/image.png)
+![https://velog.velcdn.com/images/ssu_hyun/post/5bfd6e65-b25c-4940-9a8b-7fb22322e801/image.png](https://velog.velcdn.com/images/ssu_hyun/post/5bfd6e65-b25c-4940-9a8b-7fb22322e801/image.png)
+![https://velog.velcdn.com/images/ssu_hyun/post/36c95058-212a-47d6-8cf0-134d0656c161/image.png](https://velog.velcdn.com/images/ssu_hyun/post/36c95058-212a-47d6-8cf0-134d0656c161/image.png)
 
 > 예제 프로그램 - ` 상속을 통한 class connect 역할 `
     
@@ -1550,7 +1550,7 @@ _*유니코드 : 모든 언어를 표시할 수 있는 코드_
         }
     }
 
-![](https://velog.velcdn.com/images/ssu_hyun/post/8c7c8705-848f-4588-af57-fca898a9521b/image.png)
+![https://velog.velcdn.com/images/ssu_hyun/post/8c7c8705-848f-4588-af57-fca898a9521b/image.png](https://velog.velcdn.com/images/ssu_hyun/post/8c7c8705-848f-4588-af57-fca898a9521b/image.png)
 
 > _[비타민 퀴즈]  
 >  ClimateMonitor의 logger가 ConsoleLogger의 객체를 가리킬 경우 실행 결과 _
@@ -1559,7 +1559,7 @@ _*유니코드 : 모든 언어를 표시할 수 있는 코드_
 >     ClimateMonitor monitor = new ClimateMonitor(new ConsoleLogger());
 >
 >
-> ![](https://velog.velcdn.com/images/ssu_hyun/post/45c0ccc8-0c7d-486a-b3ff-39f056c9e59c/image.png)
+> ![https://velog.velcdn.com/images/ssu_hyun/post/45c0ccc8-0c7d-486a-b3ff-39f056c9e59c/image.png](https://velog.velcdn.com/images/ssu_hyun/post/45c0ccc8-0c7d-486a-b3ff-39f056c9e59c/image.png)
 
 #  8.3 인터페이스를 상속하는 인터페이스
 
@@ -1611,7 +1611,7 @@ _*유니코드 : 모든 언어를 표시할 수 있는 코드_
         }
     }
 
-![](https://velog.velcdn.com/images/ssu_hyun/post/bc16ccac-094c-41a2-8f59-55c0055070ac/image.png)
+![https://velog.velcdn.com/images/ssu_hyun/post/bc16ccac-094c-41a2-8f59-55c0055070ac/image.png](https://velog.velcdn.com/images/ssu_hyun/post/bc16ccac-094c-41a2-8f59-55c0055070ac/image.png)
 
 #  8.4 여러 개의 인터페이스, 한꺼번에 상속하기
 
@@ -1668,7 +1668,7 @@ _*유니코드 : 모든 언어를 표시할 수 있는 코드_
         }
     }
 
-![](https://velog.velcdn.com/images/ssu_hyun/post/dc25cb1f-1dad-4bf9-b46b-54430f5cc58b/image.png)
+![https://velog.velcdn.com/images/ssu_hyun/post/dc25cb1f-1dad-4bf9-b46b-54430f5cc58b/image.png](https://velog.velcdn.com/images/ssu_hyun/post/dc25cb1f-1dad-4bf9-b46b-54430f5cc58b/image.png)
 
 > _그래도 여러 클래스로부터 구현을 물려받고 싶다면?_
 >
@@ -1734,7 +1734,7 @@ _*유니코드 : 모든 언어를 표시할 수 있는 코드_
     }
 
   * 인터페이스에 선언된 기본 구현 인터페이스는 파생 클래스의 참조로 호출할 수 없다.   
-![](https://velog.velcdn.com/images/ssu_hyun/post/ae941023-123f-413f-a7dc-7a5e1b4603e8/image.png)
+![https://velog.velcdn.com/images/ssu_hyun/post/ae941023-123f-413f-a7dc-7a5e1b4603e8/image.png](https://velog.velcdn.com/images/ssu_hyun/post/ae941023-123f-413f-a7dc-7a5e1b4603e8/image.png)
 
 #  8.6 추상 클래스 : 인터페이스와 클래스 사이
 
@@ -1818,7 +1818,7 @@ _*유니코드 : 모든 언어를 표시할 수 있는 코드_
         }
     }
 
-![](https://velog.velcdn.com/images/ssu_hyun/post/5f5e8519-f019-48f4-8ac6-7aefdcc4e2ed/image.png)
+![https://velog.velcdn.com/images/ssu_hyun/post/5f5e8519-f019-48f4-8ac6-7aefdcc4e2ed/image.png](https://velog.velcdn.com/images/ssu_hyun/post/5f5e8519-f019-48f4-8ac6-7aefdcc4e2ed/image.png)
 
 #  연습 문제
 
@@ -2232,7 +2232,7 @@ _**용법** _
         }
     }
 
-![](https://blog.kakaocdn.net/dn/bpnPpn/btrLgaPU4Mz/PuHAQY2OGmQAV8GDFdtEP0/img.png)
+![https://blog.kakaocdn.net/dn/bpnPpn/btrLgaPU4Mz/PuHAQY2OGmQAV8GDFdtEP0/img.png](https://blog.kakaocdn.net/dn/bpnPpn/btrLgaPU4Mz/PuHAQY2OGmQAV8GDFdtEP0/img.png)
 결과 화면
 
 ##  Abstract

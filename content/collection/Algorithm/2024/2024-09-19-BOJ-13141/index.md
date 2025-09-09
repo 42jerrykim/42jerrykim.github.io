@@ -20,7 +20,7 @@ title: '[Algorithm] C++/Python 백준 13141번 : 그래프 불태우기'
 
 문제 : [https://www.acmicpc.net/problem/13141](https://www.acmicpc.net/problem/13141)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

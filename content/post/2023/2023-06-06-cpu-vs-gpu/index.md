@@ -32,7 +32,7 @@ title: '[Processor] Understanding the Differences: CPU vs GPU'
 
 컴퓨팅 세계에서는 중앙 처리 장치(CPU)와 그래픽 처리 장치(GPU)라는 두 가지 핵심 구성 요소가 시스템 성능에 중요한 역할을 합니다. 비슷해 보일 수 있지만, 이 둘은 고유한 기능과 성능을 가지고 있습니다. 
 
-![](/assets/images/2023/CPU2.jpg)
+![/assets/images/2023/CPU2.jpg](/assets/images/2023/CPU2.jpg)
 
 컴퓨터의 '두뇌'라고도 불리는 CPU는 대부분의 범용 연산을 처리하고 시스템의 다른 구성 요소의 작동을 제어합니다. 반면에 빠른 수학적 계산을 위해 설계된 GPU는 그래픽을 렌더링하고 병렬 처리가 필요한 작업을 수행하는 데 필수적입니다.
 

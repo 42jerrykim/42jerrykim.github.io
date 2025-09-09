@@ -18,7 +18,7 @@ title: '[Algorithm] C++/Python 백준 15824번 : 너 봄에는 캡사이신이 �
 
 문제 : [https://www.acmicpc.net/problem/15824](https://www.acmicpc.net/problem/15824)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

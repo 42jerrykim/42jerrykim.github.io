@@ -30,7 +30,7 @@ title: '[Software] SOLID 원칙 이해 - 유지 관리가 가능하고 확장 �
 
 SOLID 원칙은 소프트웨어 커뮤니티에서 밥 아저씨라는 애칭으로 잘 알려진 Robert C. Martin에 의해 소개되었습니다. 그의 연구는 소프트웨어 업계에 큰 영향을 미쳤으며, 이러한 원칙은 많은 개발자가 소프트웨어를 설계하고 제작할 때 초석이 되었습니다. SOLID 원칙은 단순한 이론적 개념이 아니라 실용적인 지침으로, 이를 준수하면 더 강력하고 유연하며 이해하기 쉬운 코드를 만들 수 있습니다.
 
-|![](https://images.velog.io/images/haero_kim/post/169ef81a-0c8c-4241-a73a-135d5b67ffea/1_XOMTPWTpDLypkp079p9XXg.png)|
+|![https://images.velog.io/images/haero_kim/post/169ef81a-0c8c-4241-a73a-135d5b67ffea/1_XOMTPWTpDLypkp079p9XXg.png](https://images.velog.io/images/haero_kim/post/169ef81a-0c8c-4241-a73a-135d5b67ffea/1_XOMTPWTpDLypkp079p9XXg.png)|
 |:---:|
 |Solid 그림|
 

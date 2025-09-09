@@ -61,7 +61,7 @@ title: '[Database] 관계형 데이터베이스와 비관계형 데이터베이�
 관계형 데이터베이스와 비관계형 데이터베이스는 데이터 저장 및 관리 방식에서 본질적으로 다르다. 관계형 데이터베이스는 데이터를 테이블 형식으로 저장하며, 각 테이블은 행과 열로 구성되어 있다. 이러한 구조는 데이터의 무결성과 일관성을 유지하는 데 유리하며, SQL(Structured Query Language)을 사용하여 데이터를 쿼리하고 조작할 수 있다. 반면, 비관계형 데이터베이스는 데이터가 테이블에 제한되지 않고 다양한 형식으로 저장될 수 있는 유연성을 제공한다. 이러한 데이터베이스는 대량의 비정형 데이터나 반정형 데이터를 처리하는 데 적합하며, 수평적 확장이 용이하여 대규모 애플리케이션에 적합하다. 비관계형 데이터베이스는 JSON, XML과 같은 형식으로 데이터를 저장하며, 데이터 모델이 동적으로 변화할 수 있는 장점이 있다. 이처럼 두 데이터베이스 유형은 각각의 장단점이 있으며, 특정 비즈니스 요구 사항에 따라 적절한 선택이 필요하다. 데이터의 구조, 처리 방식, 성능 요구 사항 등을 고려하여 적합한 데이터베이스를 선택하는 것이 중요하다.
 
 
-|![](/assets/images/2024/2024-08-22-Relational-vs-Non-Relational-Datebase.png)|
+|![/assets/images/2024/2024-08-22-Relational-vs-Non-Relational-Datebase.png](/assets/images/2024/2024-08-22-Relational-vs-Non-Relational-Datebase.png)|
 |:---:|
 ||
 
@@ -959,7 +959,7 @@ high-powered analytics, artificial intelligence, real-time data, and
 unstructured data, choose the FlashBlade family for efficient, economical, and
 high-performance storage.
 
-![](https://pixel.welcomesoftware.com/px.gif?key=YXJ0aWNsZT04Y2U1ODI3YTE2OTkxMWVlODAwODEyNGFmNGFhMDcxNQ==)
+![https://pixel.welcomesoftware.com/px.gif?key=YXJ0aWNsZT04Y2U1ODI3YTE2OTkxMWVlODAwODEyNGFmNGFhMDcxNQ==](https://pixel.welcomesoftware.com/px.gif?key=YXJ0aWNsZT04Y2U1ODI3YTE2OTkxMWVlODAwODEyNGFmNGFhMDcxNQ==)
 
 
 -->

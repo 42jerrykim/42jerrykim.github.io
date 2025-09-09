@@ -75,7 +75,7 @@ x...x.x...
 
 **문제 링크:** [https://www.acmicpc.net/problem/1014](https://www.acmicpc.net/problem/1014)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

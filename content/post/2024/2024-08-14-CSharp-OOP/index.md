@@ -1146,7 +1146,7 @@ Unity에서는 [SerializeField] 속성을 사용하여 private 필드를 인스�
         }
     }
 
-![](https://blog.kakaocdn.net/dn/bFL0qB/btsGzGeNpoR/a9QKqLXjhkjSJt1Q9mI3qK/img.png)
+![https://blog.kakaocdn.net/dn/bFL0qB/btsGzGeNpoR/a9QKqLXjhkjSJt1Q9mI3qK/img.png](https://blog.kakaocdn.net/dn/bFL0qB/btsGzGeNpoR/a9QKqLXjhkjSJt1Q9mI3qK/img.png)
 SerializeField를 붙여주어 선언해 주면 변수를 에디터 인스펙터에서 직접 수치를 가시화하고 빠르고 쉽게 조작할 수 있다
 
 ###  결론
@@ -1355,7 +1355,7 @@ house.tistory.com/105)
 -->
 
 <!--
-![](https://blog.kakaocdn.net/dn/cS7s9h/btracYY1SBu/ElaKP56NxFd2DUjOtjGukk/img.png)
+![https://blog.kakaocdn.net/dn/cS7s9h/btracYY1SBu/ElaKP56NxFd2DUjOtjGukk/img.png](https://blog.kakaocdn.net/dn/cS7s9h/btracYY1SBu/ElaKP56NxFd2DUjOtjGukk/img.png)
 
 * * *
 
@@ -1436,14 +1436,14 @@ private(내부에서만 접근 가능)로 설정해야 합니다. 접근지정�
 
 객체 지향에서 추상화란 객체에서 필요한 공통된 부분을 추출하는 것을 의미합니다.
 
-![](https://blog.kakaocdn.net/dn/bAQtjS/btracJ2dsEq/bZNKofKy2DUhHPXGLvoCh0/img.png)
+![https://blog.kakaocdn.net/dn/bAQtjS/btracJ2dsEq/bZNKofKy2DUhHPXGLvoCh0/img.png](https://blog.kakaocdn.net/dn/bAQtjS/btracJ2dsEq/bZNKofKy2DUhHPXGLvoCh0/img.png)
 
 이렇게 Cat, Dog라는 각각의 class가 있습니다.
 
 각각의 클래스는 공통점을 가지는데, 이는 둘 다 Animal이라는 공통적인 속성을 가지고 있기 때문입니다. 따라서 아래와 같이
 Animal이라는 추상적인 class로 둘의 공통된 부분을 묶을 수 있습니다.
 
-![](https://blog.kakaocdn.net/dn/cz9ykE/btracJVwkAQ/zBahwwyBOlkpW5fkghgzKK/img.png)
+![https://blog.kakaocdn.net/dn/cz9ykE/btracJVwkAQ/zBahwwyBOlkpW5fkghgzKK/img.png](https://blog.kakaocdn.net/dn/cz9ykE/btracJVwkAQ/zBahwwyBOlkpW5fkghgzKK/img.png)
 
 다음, 상속에서 계속 설명이 이어집니다.
 
@@ -1454,7 +1454,7 @@ Animal이라는 추상적인 class로 둘의 공통된 부분을 묶을 수 있�
 상속은 비슷한 객체들의 부모 클래스와 인터페이스를 정의하여 공통화 한 다음 상속받아 객체를 좀 더 다루기 쉽게 합니다. 추상화에서 각
 클래스의 공통된 부분을 묶었다면, 부모 class를 상속받아 거기에 포함된 데이터를 그대로 사용할 수 있습니다.
 
-![](https://blog.kakaocdn.net/dn/b2eInh/btradI9HNon/uZ8Hv9P6KjLEuFKYCNbMoK/img.png)
+![https://blog.kakaocdn.net/dn/b2eInh/btradI9HNon/uZ8Hv9P6KjLEuFKYCNbMoK/img.png](https://blog.kakaocdn.net/dn/b2eInh/btradI9HNon/uZ8Hv9P6KjLEuFKYCNbMoK/img.png)
 
 ####  **4) 다형성**
 
@@ -1465,7 +1465,7 @@ Animal이라는 추상적인 class로 둘의 공통된 부분을 묶을 수 있�
 
 다형성은 오버라이딩, 오버로딩 형태로 제공됩니다.
 
-![](https://blog.kakaocdn.net/dn/GdD2k/btq99mtgENq/ueuoMjFRy9NZFYsVuBbN8k/img.png)
+![https://blog.kakaocdn.net/dn/GdD2k/btq99mtgENq/ueuoMjFRy9NZFYsVuBbN8k/img.png](https://blog.kakaocdn.net/dn/GdD2k/btq99mtgENq/ueuoMjFRy9NZFYsVuBbN8k/img.png)
 
 
 -->

@@ -165,7 +165,7 @@ image: "season-poster.png"
 ```markdown
 드라마 제목과 시즌 정보를 소개하고, 독자의 관심을 끌 수 있는 흥미로운 문장으로 시작한다.
 
-|![](season-poster.png)|
+|![season-poster.png](season-poster.png)|
 |:---:|
 ||
 ```

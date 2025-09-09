@@ -12,11 +12,11 @@ title: '[C/C++] gcc로 dlopen 하는 방법'
 
 dlopen을 사용하는 이유는 프로그램이 실행되는 동안 동적으로 라이브러리를 로드하거나 언로드하고 함수를 호출할 수 있기 때문입니다. 또한, 라이브러리를 동적으로 로딩하면 그 라이브러리의 코드를 전체 프로그램의 코드에 미리 포함시키지 않고도 필요할 때마다 로드할 수 있기 때문입니다.
 
-|![](/plantuml/dlopen-class-diagram.svg)|
+|![/plantuml/dlopen-class-diagram.svg](/plantuml/dlopen-class-diagram.svg)|
 |:---:|
 |클래스 다이어그램|
 
-|![](/plantuml/dlopen-sequence-diagram.svg)|
+|![/plantuml/dlopen-sequence-diagram.svg](/plantuml/dlopen-sequence-diagram.svg)|
 |:---:|
 |시퀀스 다이어그램|
 

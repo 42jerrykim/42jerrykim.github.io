@@ -69,7 +69,7 @@ aliases: /distributedsystems/distrubute-system/
 분산 시스템은 여러 컴퓨터나 장치에 걸쳐 다양한 구성 요소가 분산되어 있는 컴퓨팅 환경을 의미한다. 이러한 시스템은 데이터 저장, 메시징, 시스템 관리 및 컴퓨팅 기능을 처리하는 핵심 소프트웨어를 포함하고 있으며, 여러 복사본의 데이터를 동기화해야 하는 도전 과제를 안고 있다. 그러나 처리 노드가 신뢰할 수 없고 네트워크 지연이 발생할 수 있기 때문에 일관성을 유지하는 것이 어렵다. 이러한 문제를 해결하기 위해 다양한 패턴이 개발되었으며, 이들은 공통적인 문제를 해결하기 위해 유사한 솔루션을 제공한다. 2020년부터 이러한 패턴을 수집하여 이 사이트에 게시하였고, 2023년에는 "Patterns of Distributed Systems"라는 책으로 출판되었다. 이 책에서는 각 패턴에 대한 간략한 요약과 함께 관련 장으로의 깊은 링크를 제공하고 있다. 분산 시스템의 설계 및 구현에 있어 이러한 패턴을 이해하고 활용하는 것은 시스템의 효율성과 안정성을 높이는 데 큰 도움이 된다.
 
 
-|![](/assets/images/2024/2024-09-23-distrubute-system.png)|
+|![/assets/images/2024/2024-09-23-distrubute-system.png](/assets/images/2024/2024-09-23-distrubute-system.png)|
 |:---:|
 ||
 
@@ -590,7 +590,7 @@ this site as I developed them. In 2023 these were published in the book [
 Patterns of Distributed Systems ](/books/patterns-distributed.html) . On this
 site I now have short summaries of each pattern, with deep links to the
 relevant chapters for the online eBook publication on oreilly.com (marked on
-this page with [ ![](https://martinfowler.com/external.svg) ).
+this page with [ ![https://martinfowler.com/external.svg](https://martinfowler.com/external.svg) ).
 ](https://learning.oreilly.com/library/view/patterns-of-
 distributed/9780138222246)
 

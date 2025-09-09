@@ -19,7 +19,7 @@ title: '[Algorithm] C++/Python 백준 14725번 : 개미굴'
 
 문제 : [https://www.acmicpc.net/problem/14725](https://www.acmicpc.net/problem/14725)
 
-|![](/assets/images/undefined/algorithm.png)|
+|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
 |:---:|
 ||
 

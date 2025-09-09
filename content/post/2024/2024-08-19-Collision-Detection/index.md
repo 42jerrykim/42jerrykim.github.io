@@ -1624,7 +1624,7 @@ because **[1]** _n log n_ is [ much smaller ](https://bigocheatsheet.com/)
 than _n 2  _ and **[2]** it is partially output-based - depending on the
 number of overlaps, it does not process more than necessary.
 
-[ ![](https://www.bigocheatsheet.com/img/big-o-complexity-chart.png)
+[ ![https://www.bigocheatsheet.com/img/big-o-complexity-chart.png](https://www.bigocheatsheet.com/img/big-o-complexity-chart.png)
 bigocheatsheet.com  ](https://www.bigocheatsheet.com)
 
 Furthermore, the choice of sorting algorithm could be improved. We‚Äôll look

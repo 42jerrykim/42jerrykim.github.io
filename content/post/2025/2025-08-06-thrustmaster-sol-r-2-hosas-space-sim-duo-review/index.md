@@ -62,7 +62,7 @@ image: Website_ProductPageGallery-SolR2_1920x1080_1.webp
 
 | 특징 | HOSAS | HOTAS |
 |------|-------|-------|
-||![](Website_ProductPageGallery-SolR2_1920x1080_1.webp)|![](SF-gallery-HOTAS-WARTHOG-flight-sim-pc-1.png)|
+||![Website_ProductPageGallery-SolR2_1920x1080_1.webp)|![](SF-gallery-HOTAS-WARTHOG-flight-sim-pc-1.png](Website_ProductPageGallery-SolR2_1920x1080_1.webp)|![](SF-gallery-HOTAS-WARTHOG-flight-sim-pc-1.png)|
 | 제어 방식 | 양손 조이스틱 | 조이스틱 + 스로틀 |
 | 6축 제어 | 완벽한 6축 제어 | 제한적 6축 제어 |
 | 우주 시뮬 최적화 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
@@ -71,7 +71,7 @@ image: Website_ProductPageGallery-SolR2_1920x1080_1.webp
 ## Sol-R 2 HOSAS Space Sim Duo 핵심 특징
 
 
-![](Website_ProductPageGallery-SolR2_1920x1080_1.webp)
+![Website_ProductPageGallery-SolR2_1920x1080_1.webp](Website_ProductPageGallery-SolR2_1920x1080_1.webp)
 
 
 ### 88개의 액션 버튼
