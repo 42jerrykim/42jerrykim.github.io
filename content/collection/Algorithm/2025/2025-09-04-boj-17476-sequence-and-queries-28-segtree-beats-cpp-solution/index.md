@@ -1,5 +1,4 @@
 ---
-draft: true
 title: "[Algorithm] cpp 백준 17476번: 수열과 쿼리 28"
 description: "구간 덧셈, 구간 제곱근, 구간 합을 동시에 처리하는 Segment Tree Beats 풀이입니다. min/max 기반 가지치기(동일 제곱근 일괄 set, 인접값은 delta add)로 리프 하강을 크게 줄여 TLE 없이 통과합니다. 시간/공간 복잡도와 실수 포인트까지 정리했습니다."
 date: 2025-09-04
