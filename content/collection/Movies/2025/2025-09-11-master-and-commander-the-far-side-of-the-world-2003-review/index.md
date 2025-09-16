@@ -2,7 +2,7 @@
 title: "[Movie] Master and Commander: The Far Side of the World (2003)"
 description: "나폴레옹 전쟁기의 남대서양·갈라파고스를 누비는 영국 프리깃 ‘HMS 서프라이즈’의 추격전. 잭 오브리의 결단과 스티븐 머투린의 호기심이 충돌·조화를 이루며, 해전의 공포와 동료애, 자연사적 경이가 교차하는 장엄하고 지적인 해양 모험을 정교한 사운드·촬영으로 체감하게 한다."
 date: 2025-09-11
-lastmod: 2025-09-11
+lastmod: 2025-09-16
 categories:
 - Movie
 - Adventure
@@ -84,91 +84,12 @@ tags:
 - 자가 수술
 - Marine Captain Howard
 - 해병대 하워드 대위
-image: "poster.png"
-dratf: true
+image: "ij2NRlE2GKYjAObfB5WGGbArOAyVBHk40UUlx3ZAFfL5MQmd0IFxWtfxKOCDWVlxbpbIRLO-2kE3WZXM3JSpSw.webp"
 ---
 
-|![poster.png](poster.png)|
-|:---:|
-||
+바다의 바람과 포성, 현악의 울림으로 기억되는 해양 활극의 정점. ‘Master and Commander: The Far Side of the World’는 임무와 우정, 전술과 호기심이 충돌하는 순간들을 압도적인 사운드·촬영으로 밀착 체감하게 한다. 잭 오브리와 스티븐 머투린의 상보적 관계를 통해 ‘배=영국’이라는 은유가 살아나고, 갈라파고스의 경이는 전쟁의 소음 사이로 조용한 질문을 던진다. 아래 글은 장면 단위로 그 긴장과 여운을 따라가며, 리얼리즘과 지성의 균형이 어떻게 이 작품을 클래식으로 만들었는지 추적한다.
 
-## Research Dossier (Playwright MCP)
-
-### Query Set
-- "Master and Commander: The Far Side of the World plot"
-- "마스터 앤드 커맨더 줄거리"
-- "Master and Commander act breakdown"
-- "Master and Commander scene by scene"
-- "Master and Commander timeline"
-
-### Sources (5+)
-- [R1] Master and Commander: The Far Side of the World — Wikipedia (`https://en.wikipedia.org/wiki/Master_and_Commander:_The_Far_Side_of_the_World`) | Accessed: 2025-09-11
-  - Facts: 2003 개봉, 러닝타임 138분; 감독 Peter Weir; 주연 Russell Crowe, Paul Bettany; 배경 1805년 나폴레옹 전쟁; 아카데미 촬영상·음향편집상 수상.
-  - Entities: HMS Surprise, Acheron, Galápagos, Valparaíso, de Vigny.
-  - Conflicts: 소설 시점(1812) ↔ 영화(1805)로 변경.
-- [R2] Master and Commander: The Far Side of the World (2003) — IMDb (`https://www.imdb.com/title/tt0311113/`) | Accessed: 2025-09-11
-  - Facts: 평점·출연·제작 정보; 촬영비율 2.39:1; 사운드 포맷 SDDS/Dolby/DTS; 촬영지 갈라파고스.
-  - Entities: Jack Aubrey, Stephen Maturin, Thomas Pullings, Hollom, Blakeney.
-  - Conflicts: 없음(크레딧/기술 정보 보강 용도).
-- [R3] Master and Commander: The Far Side of the World — Box Office Mojo (`https://www.boxofficemojo.com/release/rl2439218689/`) | Accessed: 2025-09-11
-  - Facts: 북미 $93.9M, 전세계 $211.6M; 오프닝 $25.1M(3,101개관); MPAA PG-13.
-  - Entities: Domestic/International breakdown, release dates.
-  - Conflicts: 없음(수치 일치 확인).
-- [R4] Master and Commander: The Far Side of the World — Roger Ebert Review (`https://www.rogerebert.com/reviews/master-and-commander-the-far-side-of-the-world-2003`) | Accessed: 2025-09-11
-  - Facts: 별 4/4 수준의 찬사; 인간적 서사와 장엄함 강조; 두 주인공의 대비.
-  - Entities: Epic, seamanship, Galápagos sequence.
-  - Conflicts: 없음(해석 관점 자료).
-- [R5] Master and Commander review — The Guardian (`https://www.theguardian.com/film/article/2003/nov/21/master-and-commander-the-far-side-of-the-world-review`) | Accessed: 2025-09-11
-  - Facts: 오락성·전술 묘사 호평; ‘위장한 포경선’ 전술 강조; 홀럼 서브플롯 언급.
-  - Entities: flogging, amputations, whaling ruse.
-  - Conflicts: 없음.
-- [R6] Master and Commander — AllMovie (`https://www.allmovie.com/movie/master-and-commander-the-far-side-of-the-world-am4070`) | Accessed: 2025-09-11
-  - Facts: 장르 라벨(액션·드라마·역사·전쟁); 감독/출연 기본 팩트.
-  - Entities: Genre taxonomy.
-  - Conflicts: 없음.
-
-### Entities Glossary (한영 병기)
-- Jack Aubrey — 잭 오브리
-- Stephen Maturin — 스티븐 머투린
-- HMS Surprise — HMS 서프라이즈
-- Acheron — 아케론(프랑스 사략선)
-- Thomas Pullings — 톰 풀링스(부장)
-- Hollom — 홀럼(견습 사관)
-- Lord Blakeney — 블레이크니 경(견습 사관)
-- Captain Howard — 하워드 대위(해병대)
-- de Vigny — 드 비니(선의/가칭)
-- Royal Navy — 영국 해군
-- Galápagos Islands — 갈라파고스 제도
-- Valparaíso — 발파라이소(칠레)
-- Portsmouth — 포츠머스(영국)
-- Cape Horn — 케이프 혼
-- Privateer — 사략선
-- Camouflage — 위장/위복
-- Flightless cormorant — 날지 못하는 가마우지
-- Phasmid — 대벌레(곤충)
-- Musica notturna delle strade di Madrid — 보케리니 ‘마드리드의 밤의 음악’
-- Jonah (superstition) — ‘요나’(불운의 상징)
-
-### Timeline Seeds (10–15)
-1) 1805년 브라질 인근 안개 속에서 Surprise가 Acheron의 기습을 받는다.
-2) 손상 상태에서 바다 위 수리를 감행하고 귀항 대신 추격을 결심한다.
-3) 미끼 뗏목(등대 트릭)으로 야음을 틈타 이탈/회피한다.
-4) 케이프 혼을 돌아 남태평양으로 진입, 혹한·폭풍을 견디며 추적 지속.
-5) 항해 정체(무풍)로 미신과 불안이 번지고, 홀럼은 승조원의 분노를 산다.
-6) 홀럼의 투신 자살 이후 바람이 돌아오고, 규율과 사기가 재정렬된다.
-7) 해병대 사격 중 사고로 머투린이 복부에 피격된다.
-8) 갈라파고스로 회항, 머투린이 자가 수술로 탄환을 제거한다.
-9) 머투린의 자연 관찰 약속이 있었으나, 아케론의 흔적 발견으로 중단.
-10) 머투린이 위장·보호색에서 아이디어를 얻고, 오브리가 위장 포경선 책략을 수립.
-11) 위장 작전으로 아케론을 근접 유인, 마스트를 격절시키며 백병전에 돌입.
-12) 격전 끝 포획 성공; 선의 드 비니가 항복을 통지한다.
-13) ‘드 비니가 이미 사망’했다는 머투린의 말로 정체 위장이 드러난다.
-14) 오브리는 Acheron 재추격을 명하고, 두 사람은 선실에서 합주한다.
-
-### Conflict Resolution Notes
-- 소설 대비 시점·적선 변경(USS Norfolk → 프랑스 사략선 Acheron)은 대형 DB·공식 인터뷰로 교차 확인. 영화 맥락상 전면 수정으로 취급.
-
----
+![영화 포스터](ij2NRlE2GKYjAObfB5WGGbArOAyVBHk40UUlx3ZAFfL5MQmd0IFxWtfxKOCDWVlxbpbIRLO-2kE3WZXM3JSpSw.webp)
 
 ## 개요
 
