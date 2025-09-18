@@ -31,6 +31,15 @@ url = "https://open.kakao.com/o/s5FFkQWg"
 [social.params]
 icon = "kakao"
 
+# RSS feed link
+[[social]]
+identifier = "rss"
+name = "RSS"
+url = "/index.xml"
+
+[social.params]
+icon = "rss"
+
 # [[social]]
 # identifier = "twitter"
 # name = "Twitter"

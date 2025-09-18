@@ -18,3 +18,10 @@ disqusShortname = "hugo-theme-stack"
 pagerSize = 20
 
 
+[outputs]
+home = ["HTML", "RSS"]
+section = ["HTML", "RSS"]
+taxonomy = ["HTML", "RSS"]
+term = ["HTML", "RSS"]
+
+
