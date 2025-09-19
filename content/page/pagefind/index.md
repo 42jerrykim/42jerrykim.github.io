@@ -7,6 +7,7 @@ menu:
         weight: 3
         params:
             icon: search
-
+sitemap:
+  disable: true
 comments: false
 ---
