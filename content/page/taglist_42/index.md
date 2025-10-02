@@ -7,6 +7,7 @@ menu:
         weight: 5
         params:
             icon: tag
-
+sitemap:
+  disable: true
 comments: false
 ---
