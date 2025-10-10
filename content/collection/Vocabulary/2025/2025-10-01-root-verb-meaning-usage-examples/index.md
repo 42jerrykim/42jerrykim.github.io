@@ -83,6 +83,7 @@ tags:
   - 동의어
   - 반의어
   - 일상영어
+image: wordcloud.png
 ---
 
 # Root (동사): 의미, 용법 및 예시
