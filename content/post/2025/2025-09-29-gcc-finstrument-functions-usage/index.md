@@ -2,7 +2,7 @@
 title: "[GCC] -finstrument-functions 사용법"
 date: 2025-09-29T00:00:00+09:00
 lastmod: 2025-09-29T00:00:00+09:00
-description: "GCC 컴파일러의 -finstrument-functions 플래그는 함수 진입과 종료 시 훅 함수를 호출하여 코드 프로파일링과 디버깅을 가능하게 합니다. 이 가이드에서는 기본 사용법부터 고급 기법, 제한사항까지 전문가 수준으로 설명합니다. 성능 분석 도구로서의 활용을 중점으로 다룹니다. (약 148자)"
+description: "GCC 컴파일러의 -finstrument-functions 플래그는 함수 진입과 종료 시 훅 함수를 호출하여 코드 프로파일링과 디버깅을 가능하게 합니다. 이 가이드에서는 기본 사용법부터 고급 기법, 제한사항까지 전문가 수준으로 설명합니다. 성능 분석 도구로서의 활용을 중점으로 다룹니다."
 tags:
   - gcc
   - GNU Compiler Collection
@@ -58,8 +58,6 @@ tags:
 image: wordcloud.png
 ---
 
-# [GCC] -finstrument-functions 플래그: 전문가 수준 사용 가이드
-
 ## 소개
 
 GCC(GNU Compiler Collection)는 C, C++, Fortran 등의 언어를 컴파일하는 강력한 도구입니다. 그 중 `-finstrument-functions` 플래그는 컴파일 시 각 함수의 진입과 종료 지점에 특수 훅 함수 호출을 삽입하여, 코드의 실행 흐름을 추적하고 분석할 수 있게 합니다. 이는 프로파일링, 디버깅, 성능 최적화에 유용하며, 특히 임베디드 시스템이나 저수준 프로그래밍에서 자주 사용됩니다.
@@ -83,7 +81,7 @@ GCC(GNU Compiler Collection)는 C, C++, Fortran 등의 언어를 컴파일하는
 
 ## 기본 사용법
 
-### 1. 컴파일
+### 컴파일
 
 간단한 C 프로그램을 예로 들어보겠습니다. `example.c`:
 
@@ -95,7 +93,7 @@ void sub_function(int x) {
 }
 
 int main() {
-    for(int i = 0; i < 5; i++) {
+    for(int i = i < i++) {
         sub_function(i);
     }
     return 0;
@@ -108,7 +106,7 @@ int main() {
 gcc -finstrument-functions -g example.c -o example
 ```
 
-### 2. 훅 함수 구현
+### 훅 함수 구현
 
 훅 함수를 정의한 별도 파일 `hooks.c`를 작성하고 링크합니다:
 
@@ -164,7 +162,7 @@ Exiting function: main at 0x401136
 
 ## 고급 활용법
 
-### 1. 성능 프로파일링
+### 성능 프로파일링
 
 시간 측정을 위해 `clock_gettime`을 사용한 고급 훅:
 
@@ -187,14 +185,14 @@ void __cyg_profile_func_exit(void *this_fn, void *call_site) __attribute__((no_i
     if (dladdr(this_fn, &info) && info.dli_sname) {
         clock_gettime(CLOCK_MONOTONIC, &end_time);
         double elapsed = (end_time.tv_sec - start_time.tv_sec) + (end_time.tv_nsec - start_time.tv_nsec) / 1e9;
-        printf("EXIT: %s (%.6f seconds)\n", info.dli_sname, elapsed);
+        printf("EXIT: %s (%.seconds)\n", info.dli_sname, elapsed);
     }
 }
 ```
 
 이로써 각 함수의 실행 시간을 측정할 수 있습니다. 다만, 오버헤드가 발생하니 프로덕션 코드가 아닌 개발/테스트 환경에 적합합니다.
 
-### 2. 제외 옵션 사용
+### 제외 옵션 사용
 
 특정 함수나 파일을 제외:
 
@@ -204,7 +202,7 @@ gcc -finstrument-functions -finstrument-functions-exclude-file-list=main.c -fins
 
 이 옵션은 불필요한 노이즈를 줄여 분석을 용이하게 합니다.
 
-### 3. 다중 스레드 환경
+### 다중 스레드 환경
 
 스레드 안전성을 위해 뮤텍스나 thread-local storage를 사용:
 
@@ -220,7 +218,7 @@ void __cyg_profile_func_enter(void *this_fn, void *call_site) __attribute__((no_
 }
 ```
 
-### 4. 다른 도구와 결합
+### 다른 도구와 결합
 
 - **GDB와 연동**: 계측된 함수 호출을 브레이크포인트로 설정.
 - **Valgrind나 Perf와 비교**: `-finstrument-functions`는 소스 레벨 계측으로, 바이너리 계측 도구(예: Pin, DynamoRIO)와 대비됩니다.
@@ -228,15 +226,15 @@ void __cyg_profile_func_enter(void *this_fn, void *call_site) __attribute__((no_
 
 ## 제한사항과 주의점
 
-1. **오버헤드**: 모든 함수 호출에 훅이 삽입되어 런타임 성능이 10-50% 저하될 수 있습니다. 특히 빈번한 작은 함수에서 두드러집니다.
+**오버헤드**: 모든 함수 호출에 훅이 삽입되어 런타임 성능이 10-5저하될 수 있습니다. 특히 빈번한 작은 함수에서 두드러집니다.
 
-2. **인라인 및 최적화**: `-O2` 이상 최적화 시 일부 함수가 인라인되어 계측되지 않습니다. `-fno-inline`로 테스트 가능하나, 실제 성능 왜곡.
+**인라인 및 최적화**: `-O이상 최적화 시 일부 함수가 인라인되어 계측되지 않습니다. `-fno-inline`로 테스트 가능하나, 실제 성능 왜곡.
 
-3. **플랫폼 의존성**: `dladdr`는 Linux/Unix에서 동작; Windows에서는 `SymFromAddr` 등 대체 필요. 크로스 컴파일 시 주의.
+**플랫폼 의존성**: `dladdr`는 Linux/Unix에서 동작; Windows에서는 `SymFromAddr` 등 대체 필요. 크로스 컴파일 시 주의.
 
-4. **재귀 및 무한 루프**: 훅 함수가 계측되지 않도록 해야 함. 이미 `__attribute__((no_instrument_function))`로 해결.
+**재귀 및 무한 루프**: 훅 함수가 계측되지 않도록 해야 함. 이미 `__attribute__((no_instrument_function))`로 해결.
 
-5. **대안 도구**: 더 세밀한 제어가 필요 시 Intel VTune, ARM Streamline, 또는 바이너리 계측 프레임워크(예: LLVM의 instrumentation passes) 고려.
+**대안 도구**: 더 세밀한 제어가 필요 시 Intel VTune, ARM Streamline, 또는 바이너리 계측 프레임워크(예: LLVM의 instrumentation passes) 고려.
 
 ## 결론
 
