@@ -8,6 +8,13 @@ alwaysApply: false
 
 ---
 
+## 제목/메타 규칙(필수)
+
+- 카테고리 접두어: `[Movie]` 사용
+- 메인 제목: 사람 친화 + SEO 최적화(한글/영문 병기 가능)
+- 부제목: 추가 맥락·핵심 메시지 요약
+- 총 길이: 70자 이내
+
 ## 날짜/버전 관리(필수)
 
 - `date`, `lastmod`는 작성/수정 당일(로컬 타임존) 날짜 사용
@@ -18,7 +25,7 @@ alwaysApply: false
 
 ```yaml
 ---
-title: "[Movie] 영어원제 (한국제목) (개봉연도)" # 70자 이내
+title: "[Movie] 영어원제 (한국제목) (개봉연도) - 부제목"
 description: "핵심 사건·주제·톤을 포함한 150자 내외 설명"  # 150자 내외 엄수
 date: {{ .Date }}
 lastmod: {{ .Date }}
@@ -72,116 +79,12 @@ image: "poster.png"
 ---
 ```
 
-- 검증 규칙: `tags` 50개 이상, `description` 150자 내외, `date/lastmod` 당일
+## Prewriting Research Protocol — 영화 내용용 사전 조사(필수)
 
----
-
-## Prewriting Research Protocol (Playwright MCP) — 줄거리 사전 조사(필수)
-
-- 검색 정책: 웹 검색은 반드시 Playwright MCP를 사용한다.
-- 목적: 줄거리 작성 전, 최소 5개 이상의 상호 독립 출처에서 핵심 사건·고유명·연대기 정보를 확보하여 사실성을 담보한다.
-
-### 추천 출처 유형(가급적 서로 다른 계열에서 선택)
-
-1. 공식 자료: 스튜디오/배급사/프레스킷/오피셜 사이트
-2. 대형 데이터베이스: Wikipedia, IMDb, AllMovie, Box Office Mojo
-3. 평론/저널: Variety, The Hollywood Reporter, Empire, Roger Ebert
-4. 국내 포털/백과: 나무위키, 네이버영화, 다음영화
-5. 커뮤니티/팬 위키: Fandom 등(공식 정보와 교차 검증 필수)
-
-### 조사 단계(출력은 ‘Research Dossier’ 형태로 문서 상단에 배치)
-
-1. 쿼리 세트 구성(국/영 병기):
-   - "{영어원제} plot", "{영어원제} full plot summary", "{한국제목} 줄거리", "{영어원제} act breakdown", "{영어원제} timeline"
-2. 최소 5개 출처 선정 및 캡처: 각 출처마다 아래 메타를 기록
-   - ID: [R1]~[R5+], 제목, 사이트, URL, Accessed: YYYY-MM-DD(로컬)
-   - 핵심 사실 3–5개(사건/인물/연대/지명), 고유명 리스트, 모순 포인트
-3. Entities Glossary 작성: 인물/기관/장소/기술 한영 병기 통일 표기(최소 15개)
-4. Timeline Seeds 작성: 30개 사건을 시간 순으로 요약(한 줄씩)
-5. 모순 해결 원칙: 공식/일차 출처 > 대형 DB > 평론 > 팬 커뮤니티 순으로 우선순위 적용
-
-### Research Dossier 템플릿(본문 상단에 삽입)
-
-```markdown
-## Research Dossier (Playwright MCP)
-
-### Query Set
-- "{영어원제} plot"
-- "{한국제목} 줄거리"
-- "{영어원제} act breakdown"
-- "{영어원제} scene by scene"
-- "{영어원제} timeline"
-
-### Sources (5+)
-- [R1] [Title — Site](URL)
-  - Facts: …
-  - Entities: …
-  - Conflicts: …
-- [R2] …
-
-### Entities Glossary (한영 병기)
-- Ethan Hunt — 에단 헌트
-- …
-
-### Timeline Seeds (25–40)
-- …
-
-### Conflict Resolution Notes
-- …
-```
-
----
-
-## Plot-DeepDive — 나무위키급 줄거리 작성 모듈
-
-### 출력 범위와 길이
-
-- 대상 독자: 이미 관람한 사람(스포일러 100% 허용)
-- 분량(한국어 기준): 기본 6,000–10,000자, 대작/군상극 10,000–14,000자
-
-- 장면 비트 최소 개수: 25개 이상(권장 30–40개)
-
-### 전체 구성 순서(Act-first)
-
-1. Act 1 (Setup) — 장면 비트 [S01]~[Sxx]
-2. Act 2 (Inciting & Rising) — 장면 비트 계속 번호 증가
-3. Act 3 (Complications) — 장면 비트 계속 번호 증가(미드포인트 표시)
-4. Act 4 (Climax) — 장면 비트 계속 번호 증가(클라이맥스 표시)
-5. Act 5 (Resolution) — 장면 비트 계속 번호 증가(엔딩 표시)
-
-### Act별 장면 단위 서술(강제 스키마)
-
-- 각 장면은 5–8문장으로 작성하고 아래 요소 포함:
-  - 등장인물과 행동(결정·행동·방해·결과)
-- 장면 헤더 예(Act 안에 포함되어도 전역 연속 번호 유지):
-  - `[S07] 베를린·심야 — 금고 침입 실패로 계획 수정`
-
-### 핵심 대사 인덱스
-
-- 포맷: `"대사" — 화자, [장면번호]; 키워드 1–2개`
-
-### 사실 검증·금칙어
-
-- 사실 검증: 개봉일/상영시간/크레딧/포맷은 공식 출처 일치
-- 표기 원칙: 인물 첫 등장 한영 병기, 이후 표기 일관(예: 유진 키트리지(Eugene Kittridge) → 이후 ‘키트리지’)
-- 금칙: 모호어(어떤/무언가/등), 근거 없는 추정, 오기/오탈 고유명
-- 웹 검증 수행 시: Playwright MCP 기반 검색만 사용(정책 준수)
-
-### 결과물 자체 점검 체크리스트(반드시 통과)
-
-- [ ] Research Dossier: Playwright MCP로 5개+ 출처 기록
-- [ ] Entities Glossary 15개+, Timeline Seeds 30개 정리
-- [ ] Act-first 구성: Act 1~5 순서, 각 Act 최소 비트 수 충족
-- [ ] 비트 전역 연속 번호 유지([S01]부터 끝까지 끊김 없음)
-- [ ] 장면 비트 총합 25개 이상, 각 5–8문장
-- [ ] 모호어/추정 금지, 고유명 표기 일관
-- [ ] Front Matter: tags 50+, description 150자, date/lastmod 당일
-
----
+- 웹 검색을 통해서 스포일러를 포함한 영화의 전체 내용을 파악한다. 
+- 목적: 줄거리 작성 전, 최소 5개 이상의 출처에서 핵심 사건 정보를 확보하여 사실성을 담보한다.
 
 ## 본문 구조 가이드
-
-> 작성 순서: Research Dossier → Plot-DeepDive(줄거리) → 구조 분석 → 캐릭터 분석 → 비교/의미/비하인드 → 종합 평가 → 참고 문헌
 
 ### 도입부
 
@@ -212,7 +115,7 @@ image: "poster.png"
 * **대상3**: 추천 이유
 ```
 
-### 구조 분석(Act-first 보조 도식)
+### 3) 구조 분석(Act-first 보조 도식)
 
 ```mermaid
 flowchart LR
@@ -238,9 +141,19 @@ flowchart LR
     E --> E3["Resolution 주요사건3"]
 ```
 
+### 영화의 전체 내용 구성 순서(Act-first)
+
+- 대상 독자: 이미 관람한 사람(스포일러 100% 허용)
+
+1. Act 1 (Setup) — 장면 비트 [S01]~[Sxx]
+2. Act 2 (Inciting & Rising) — 장면 비트 계속 번호 증가
+3. Act 3 (Complications) — 장면 비트 계속 번호 증가(미드포인트 표시)
+4. Act 4 (Climax) — 장면 비트 계속 번호 증가(클라이맥스 표시)
+5. Act 5 (Resolution) — 장면 비트 계속 번호 증가(엔딩 표시)
+
 #### Act별 작성 원칙
 
-- 각 Act 서두에 3–5줄 요약(핵심 질문/전환점/리스크)
+- 각 Act 서두에 3–5줄 요약(핵심 사건건/전환점/리스크)
 - 도식은 설명용 보조 자료이며, 본문은 반드시 Act-first 장면 단위로 서술
 
 ### 캐릭터 분석
@@ -254,14 +167,3 @@ flowchart LR
 ### 참고 문헌 / 출처
 
 - 표기 예: `[Title — Site](URL)`
-
----
-
-## 사실 정확성·검증 요구사항
-
-1. 영화 기본 정보(개봉일/러닝타임/제작·배급/출연·제작진/포맷) 공식 출처와 일치
-2. 배우–캐릭터 매칭, 주연/조연 구분 정확성 보장
-4. 수상·박스오피스 언급 시 수치·출처 일치
-5. 웹 검증은 반드시 Playwright MCP 사용(내부 정책 준수), 추정·가공 금지
-
----
