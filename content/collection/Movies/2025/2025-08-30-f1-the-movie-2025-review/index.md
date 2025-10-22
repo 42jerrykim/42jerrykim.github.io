@@ -187,8 +187,6 @@ image: "image01.png"
 - [S32] 바하 1000 스타트라인 — 다른 속도의 시작(엔딩)
   사막의 아침 햇살이 차체를 스친다. 누군가 묻는다. "무엇을 위해 달려요?" 소니는 웃으며 시동을 건다. 응답은 엔진의 포효다.
 
----
-
 ### 핵심 대사 인덱스
 
 "Best in the world." — 루벤, [S02]; 동기 부여
@@ -198,8 +196,6 @@ image: "image01.png"
 "그 순간엔 내가 untouchable이었지." — 소니, [S07]; 감정·기억
 
 "너의 레이스다, 소니!" — 무전, [S27]; 클라이맥스
-
----
 
 ## 구조 분석(Act-first 보조 도식)
 
@@ -221,8 +217,6 @@ flowchart LR
     E --> E1["APXGP 존속"]
     E --> E2["바하 1000"]
 ```
-
----
 
 ## 캐릭터 분석
 
@@ -262,7 +256,6 @@ flowchart LR
 |:---:|
 ||
 
-
 - 동기: 자본 논리 속 팀 아이덴티티 보존
 - 역할: 팀과 사람을 잇는 신뢰의 리더십, 방출 통보의 고통을 감내하는 보호자
 
@@ -270,14 +263,10 @@ flowchart LR
 - 동기: 자산 가치 극대화
 - 역할: 결과를 위해 과정을 훼손하는 유혹의 대변자, 윤리적 대비를 강화
 
----
-
 ## 비교/의미/비하인드
 - 비교: 『탑건: 매버릭』이 공중에서 구현한 ‘속도의 내부화’를, 본작은 지면과 타이어, 공기역학의 압력으로 이식한다. 카메라의 위치와 질량이 드라마를 이동시킨다.
 - 의미: ‘최고’(best in the world)의 재정의 — 1위의 기록이 아니라, 공동의 선택과 책임의 문법
 - 비하인드: 실제 GP 주말 촬영·그리드 접근·초소형 온보드 카메라(아이폰 기반 맞춤형)·IMAX 포맷 최적화는 현장감의 핵심 지분을 차지한다.
-
----
 
 ## 종합 평가
 - 평점: ★★★★☆ (4.5/5)
@@ -285,25 +274,13 @@ flowchart LR
 - 관람 포맷 추천: IMAX/프리미엄 포맷 권장 — 고주파 엔진음·저역 토크의 체감 우수
 - 관람 전 체크: 실존 레이스·드라이버 카메오·규정/전술 용어에 대한 기본 이해가 몰입을 돕는다.
 
----
-
 ## 참고 문헌 / 출처
-- [R1] F1 (film) — Wikipedia (`https://en.wikipedia.org/wiki/F1_(film)`) | Accessed: 2025-08-30
-- [R2] Box Office Mojo — F1: The Movie (`https://www.boxofficemojo.com/release/rl2507374593/`) | Accessed: 2025-08-30
-- [R3] The Numbers — F1: The Movie (`https://www.the-numbers.com/movie/F1-The-Movie-(2025)#tab=summary`) | Accessed: 2025-08-30
-- [R4] Apple TV+ Press — Trailer PR (`https://www.apple.com/tv-pr/news/2025/03/apple-original-films-unveils-the-f1-movie-trailer/`) | Accessed: 2025-08-30
-- [R5] Formula1.com — Information page (`https://www.formula1.com/en/page/apple-original-films-f1-movie`) | Accessed: 2025-08-30
-- [R6] Warner Bros. — Official movie page (`https://www.warnerbros.com/movies/f1`) | Accessed: 2025-08-30
-- [R7] Variety — Box Office (`https://variety.com/2025/film/box-office/brad-pitt-f1-movie-box-office-record-apple-megan-2-flops-1236443608/`) | Accessed: 2025-08-30
-- [R8] Rotten Tomatoes/Metacritic index pages | Accessed: 2025-08-30
 
----
-
-체크리스트 요약
-- [x] Research Dossier 5개+ 출처 기록
-- [x] Entities Glossary 15개+, Timeline 10–15개
-- [x] Act 1–5 전개, 비트 32개, 전역 번호 유지
-- [x] 각 비트 3–6문장, 5요소 이상 충족
-- [x] Front Matter: tags 50+, description 150자 내외, date/lastmod 당일
-
-
+- [F1 (film) — Wikipedia](https://en.wikipedia.org/wiki/F1_(film))
+- [Box Office Mojo — F1: The Movie](https://www.boxofficemojo.com/release/rl2507374593/)
+- [The Numbers — F1: The Movie](https://www.the-numbers.com/movie/F1-The-Movie-(2025)#tab=summary)
+- [Apple TV+ Press — Trailer PR](https://www.apple.com/tv-pr/news/2025/03/apple-original-films-unveils-the-f1-movie-trailer/)
+- [Formula1.com — Information page](https://www.formula1.com/en/page/apple-original-films-f1-movie)
+- [Warner Bros. — Official movie page](https://www.warnerbros.com/movies/f1)
+- [Variety — Box Office](https://variety.com/2025/film/box-office/brad-pitt-f1-movie-box-office-record-apple-megan-2-flops-1236443608/)
+- [Rotten Tomatoes/Metacritic index pages](https://www.rottentomatoes.com/)
