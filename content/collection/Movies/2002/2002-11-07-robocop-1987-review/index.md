@@ -1,11 +1,112 @@
 ---
-title: "로보캅 (1987) - 기업 지배와 인간성을 탐구한 사이보그 액션의 걸작"
+title: "[Movie] RoboCop (로보캅) (1987) - 기업 지배와 인간성을 탐구한 사이보그 액션"
+description: "근미래 디트로이트, 살해당한 경찰 머피가 사이보그 로보캅으로 부활해 범죄와 싸우며 잃어버린 인간성을 되찾는 과정을 그린 폴 버호벤의 풍자적 SF 액션 걸작. 기업 권력과 기술 윤리를 날카롭게 비판한 80년대 컬트 클래식."
 date: 2002-11-07
-categories: [Movies]
-tags: [RoboCop, Paul Verhoeven, Peter Weller, Nancy Allen, Kurtwood Smith, Detroit, Cyborg, Science Fiction, Action, Crime, Satire, Corporate, Police, Future, Dystopia, 1987]
+lastmod: 2002-11-07
+categories:
+- Movie
+- Science Fiction
+- Action
+- Orion Pictures
+tags:
+- RoboCop
+- 로보캅
+- Paul Verhoeven
+- 폴 버호벤
+- Peter Weller
+- 피터 웰러
+- Nancy Allen
+- 낸시 앨런
+- Kurtwood Smith
+- 커트우드 스미스
+- Ronny Cox
+- 로니 콕스
+- Miguel Ferrer
+- 미겔 페러
+- Detroit
+- 디트로이트
+- Cyborg
+- 사이보그
+- Dystopia
+- 디스토피아
+- Science Fiction
+- SF
+- Action
+- 액션
+- Crime
+- 범죄
+- Satire
+- 풍자
+- Corporate
+- 기업
+- Police
+- 경찰
+- Future
+- 미래
+- 1987
+- 1980s
+- Technology
+- 기술
+- Ethics
+- 윤리
+- Identity
+- 정체성
+- Revenge
+- 복수
+- Resurrection
+- 부활
+- OCP
+- ED-209
+- Practical Effects
+- 실용 특수효과
+- Stop Motion
+- 스톱모션
+- Basil Poledouris
+- 바질 폴레두리스
+- Rob Bottin
+- 로브 보틴
+- Phil Tippett
+- 필 팁펫
+- Edward Neumeier
+- 에드워드 노이마이어
+- Michael Miner
+- 마이클 마이너
+- Dick Jones
+- Bob Morton
+- Clarence Boddicker
+- Anne Lewis
+- Urban Decay
+- 도시 쇠퇴
+- Privatization
+- 민영화
+- Media Satire
+- 미디어 풍자
+- Violence
+- 폭력
+- Humanity
+- 인간성
+- Memory
+- 기억
+- Justice
+- 정의
+- Corruption
+- 부패
+- Capitalism
+- 자본주의
+- Consumerism
+- 소비주의
+- 1980s Cinema
+- 80년대 영화
+- Cult Classic
+- 컬트 클래식
+- R-Rated
+- 성인등급
+- Orion Pictures
+- 오리온 픽처스
+image: "poster.png"
 collection_order: 47
 rating: 5
-draft: true
+draft: false
 ---
 
 ## 작품 개요
