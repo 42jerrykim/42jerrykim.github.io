@@ -1,6 +1,6 @@
 ---
 title: "로보캅 (1987) - 기업 지배와 인간성을 탐구한 사이보그 액션의 걸작"
-date: 1987-07-17
+date: 2002-11-07
 categories: [Movies]
 tags: [RoboCop, Paul Verhoeven, Peter Weller, Nancy Allen, Kurtwood Smith, Detroit, Cyborg, Science Fiction, Action, Crime, Satire, Corporate, Police, Future, Dystopia, 1987]
 collection_order: 47
