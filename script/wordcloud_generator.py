@@ -7,15 +7,13 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import nltk
 import re
+import os
 
 # 필요한 리소스 다운로드
 nltk.download('averaged_perceptron_tagger')
 nltk.download('averaged_perceptron_tagger_eng')
 nltk.download('punkt')
 nltk.download('punkt_tab')
-
-# 한글 폰트 설정
-font_path = './font.ttf'  # 이 경로는 OS에 따라 다를 수 있습니다.
 
 # 텍스트 파일 읽기 함수
 def read_text(file_path):
@@ -56,7 +54,12 @@ def create_wordcloud(nouns, output_image_path, font_path):
     wordcloud.to_file(output_image_path)
 
 # 메인 함수
-def create_wordcloud_image(file_path, output_image_path, mandatory_text = "", font_path="./font.ttf"):
+def create_wordcloud_image(file_path, output_image_path, mandatory_text = "", font_path=None):
+    # font_path가 None이면 기본 경로 사용
+    if font_path is None:
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(script_dir)
+        font_path = os.path.join(project_root, 'font.ttf')
     text = read_text(file_path)
     nouns = extract_all_nouns(text)
     mandatory_words = re.split(r'\s+', mandatory_text)
@@ -69,9 +72,35 @@ if __name__ == "__main__":
     import sys
 
     if len(sys.argv) < 2:
-        print("사용법: python wordcloud_generator.py <file_name(확장자 없는 경로)>")
+        print("사용법: python wordcloud_generator.py <경로>")
+        print("  - 디렉토리 경로: content/collection/Vocabulary/2025/2025-10-28-xxx")
+        print("  - 파일 경로: content/collection/Vocabulary/2025/2025-10-28-xxx/index.md")
         sys.exit(1)
-    file_name = sys.argv[1]
-    input_text_file = file_name + "/index.md"  # 읽을 텍스트 파일 경로
-    output_image_file = file_name + '/wordcloud.png'  # 저장할 그림 파일 경로
-    create_wordcloud_image(input_text_file, output_image_file, mandatory_text, font_path)
+    
+    input_path = sys.argv[1]
+    
+    # 입력 경로가 파일인지 디렉토리인지 판단
+    if os.path.isfile(input_path):
+        # 파일 경로가 주어진 경우
+        input_text_file = input_path
+        output_dir = os.path.dirname(input_path)
+        output_image_file = os.path.join(output_dir, 'wordcloud.png')
+    elif os.path.isdir(input_path):
+        # 디렉토리 경로가 주어진 경우
+        input_text_file = os.path.join(input_path, "index.md")
+        output_image_file = os.path.join(input_path, 'wordcloud.png')
+    else:
+        # 존재하지 않는 경로 - 디렉토리로 시도
+        input_text_file = os.path.join(input_path, "index.md")
+        output_image_file = os.path.join(input_path, 'wordcloud.png')
+    
+    # 입력 파일 존재 여부 확인
+    if not os.path.isfile(input_text_file):
+        print(f"오류: 파일을 찾을 수 없습니다 - {input_text_file}")
+        print(f"입력 경로: {input_path}")
+        print("올바른 디렉토리 경로 또는 index.md 파일 경로를 지정해주세요.")
+        sys.exit(1)
+    
+    print(f"입력 파일: {input_text_file}")
+    print(f"출력 파일: {output_image_file}")
+    create_wordcloud_image(input_text_file, output_image_file, mandatory_text)
