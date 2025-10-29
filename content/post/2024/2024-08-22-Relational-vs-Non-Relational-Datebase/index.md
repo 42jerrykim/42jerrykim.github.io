@@ -3129,7 +3129,7 @@ organization.
 
 * * *
 
-##  3 Examples of non-relational database vs relational database
+## Examples of non-relational database vs relational database
 
 In the world of databases, the dichotomy between non-relational and relational
 models is akin to the contrast between two architectural styles, each with its

@@ -30,7 +30,7 @@ draft: true
 - 시작 단계는 모든 애플리케이션이 풀어야 할 '관심사'다
 - Main 분리, 팩토리, 의존성 주입 등의 기법을 활용한다
 
-#### 11.2.1 Main 분리
+#### Main 분리
 **접근 방법**:
 - main 함수를 통한 시스템 생성과 비즈니스 로직 분리
 - 제어 흐름의 명확한 구분
@@ -93,7 +93,7 @@ public class MyApplication {
 }
 ```
 
-#### 11.2.2 팩토리
+#### 팩토리
 **접근 방법**:
 - Abstract Factory 패턴을 통한 객체 생성 캡슐화
 - 애플리케이션이 객체 생성 시점을 결정하지만 생성 방법은 모르게 하기
@@ -144,7 +144,7 @@ public class OrderProcessor {
 }
 ```
 
-#### 11.2.3 의존성 주입
+#### 의존성 주입
 **접근 방법**:
 - Inversion of Control 컨테이너와 Dependency Injection
 - 제어의 역전을 통한 의존성 관리
@@ -254,7 +254,7 @@ public class AdvancedPaymentProcessor implements PaymentProcessor {
 }
 ```
 
-#### 11.3.1 횡단(cross-cutting) 관심사
+#### 횡단(cross-cutting) 관심사
 **접근 방법**:
 - AOP(Aspect-Oriented Programming) 개념 소개
 - 관심사의 분리를 통한 모듈화

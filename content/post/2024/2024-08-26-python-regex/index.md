@@ -3922,7 +3922,7 @@ Friedl, Jeffrey. Mastering Regular Expressions. 3rd ed., O’Reilly Media, 2009.
 <!--
 #  [Python 문법] 정규표현식 (Regular Expressions)
 
-####  17 Sep 2017
+#### Sep 2017
 
 __ Reading time ~9 minutes
 

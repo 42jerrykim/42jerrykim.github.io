@@ -13,11 +13,11 @@ draft: true
 
 ## API 게이트웨이 패턴
 
-### 14.1.1 API 게이트웨이란?
+### API 게이트웨이란?
 
 API 게이트웨이는 **모든 클라이언트 요청에 대한 단일 진입점 역할을 하는 서버**로, 라우팅, 인증, 모니터링, 트래픽 제어 등을 담당합니다.
 
-### 14.1.2 API 게이트웨이 구현 예제
+### API 게이트웨이 구현 예제
 
 ```java
 // Spring Cloud Gateway 구현
@@ -114,7 +114,7 @@ public class RateLimitingFilter implements GatewayFilter {
 }
 ```
 
-### 14.1.3 API 게이트웨이 모니터링
+### API 게이트웨이 모니터링
 
 ```java
 // 메트릭 수집 필터
@@ -159,7 +159,7 @@ public class MetricsFilter implements GatewayFilter {
 
 ## 메시징 패턴과 이벤트 기반 통합
 
-### 14.2.1 메시징 패턴
+### 메시징 패턴
 
 ```java
 // 발행-구독 패턴
@@ -232,7 +232,7 @@ public class IdempotentMessageHandler {
 }
 ```
 
-### 14.2.2 이벤트 소싱과 CQRS 통합
+### 이벤트 소싱과 CQRS 통합
 
 ```java
 // 이벤트 스트림 처리
@@ -286,7 +286,7 @@ public class EventReplayService {
 
 ## 엔터프라이즈 서비스 버스 (ESB)
 
-### 14.3.1 ESB 개념과 구현
+### ESB 개념과 구현
 
 ```java
 // 메시지 라우터
@@ -393,7 +393,7 @@ public class RabbitMQBroker implements MessageBroker {
 
 ## 시스템 간 통합 전략
 
-### 14.4.1 동기 vs 비동기 통합
+### 동기 vs 비동기 통합
 
 ```java
 // 동기 통합 - REST API 호출
@@ -439,7 +439,7 @@ public class AsynchronousIntegrationService {
 }
 ```
 
-### 14.4.2 데이터 동기화 패턴
+### 데이터 동기화 패턴
 
 ```java
 // Change Data Capture (CDC) 패턴

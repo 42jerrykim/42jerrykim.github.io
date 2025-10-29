@@ -13,11 +13,11 @@ draft: true
 
 ## Entity (엔티티)
 
-### 10.1.1 Entity란?
+### Entity란?
 
 Entity는 **고유한 식별자를 가지며 생명주기 동안 연속성을 유지하는 도메인 객체**입니다.
 
-### 10.1.2 Entity 구현 예제
+### Entity 구현 예제
 
 ```java
 // 고객 Entity
@@ -80,11 +80,11 @@ public class Customer {
 
 ## Value Object (값 객체)
 
-### 10.2.1 Value Object란?
+### Value Object란?
 
 Value Object는 **식별자가 없고 값 자체로 동등성을 판단하는 불변 객체**입니다.
 
-### 10.2.2 Value Object 구현 예제
+### Value Object 구현 예제
 
 ```java
 // 이메일 Value Object
@@ -181,11 +181,11 @@ public class Money {
 
 ## Aggregate (애그리게이트)
 
-### 10.3.1 Aggregate란?
+### Aggregate란?
 
 Aggregate는 **데이터 변경의 단위로 취급되는 연관된 객체들의 클러스터**입니다.
 
-### 10.3.2 Aggregate 구현 예제
+### Aggregate 구현 예제
 
 ```java
 // 주문 Aggregate
@@ -277,7 +277,7 @@ public class OrderItem {
 
 ## Repository 패턴
 
-### 10.4.1 Repository 구현 예제
+### Repository 구현 예제
 
 ```java
 // Repository 인터페이스 (도메인 계층)
@@ -327,7 +327,7 @@ public class JpaOrderRepository implements OrderRepository {
 
 ## Domain Service
 
-### 10.5.1 Domain Service 구현 예제
+### Domain Service 구현 예제
 
 ```java
 // 할인 정책 Domain Service

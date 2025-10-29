@@ -144,7 +144,7 @@ gRPC/Protobuf에서 API를 추가·삭제할 때의 호환성 영향과 안전�
 - UNKNOWN/INTERNAL: 직렬화/파싱 실패 등 → 스키마/게이트웨이 설정 확인
 
 ## C# 예제
-### 1) proto: v1 → v2로 안전 추가/삭제
+### proto: v1 → v2로 안전 추가/삭제
 ```proto
 syntax = "proto3";
 
@@ -184,7 +184,7 @@ service Greeter {
 }
 ```
 
-### 2) 서버: v1/v2 동시 호스팅, 새 필드 기본값 허용
+### 서버: v1/v2 동시 호스팅, 새 필드 기본값 허용
 ```csharp
 using Grpc.Core;
 using greet.v1;
@@ -217,7 +217,7 @@ public sealed class GreeterServiceV2 : greet.v2.Greeter.GreeterBase
 }
 ```
 
-### 3) 클라이언트: UNIMPLEMENTED 처리 및 v1로 폴백
+### 클라이언트: UNIMPLEMENTED 처리 및 v1로 폴백
 ```csharp
 using Grpc.Net.Client;
 using Grpc.Core;
@@ -239,7 +239,7 @@ catch (RpcException ex) when (ex.StatusCode == StatusCode.Unimplemented)
 }
 ```
 
-### 4) JSON 경로: 미지 필드 무시 설정(ProtoJSON)
+### JSON 경로: 미지 필드 무시 설정(ProtoJSON)
 ```csharp
 using Google.Protobuf;
 using Google.Protobuf.Reflection;

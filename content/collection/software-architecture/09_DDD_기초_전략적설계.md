@@ -13,7 +13,7 @@ draft: true
 
 ## DDD의 핵심 철학
 
-### 9.1.1 DDD란 무엇인가?
+### DDD란 무엇인가?
 
 도메인 주도 설계(Domain-Driven Design)는 **복잡한 비즈니스 도메인을 중심으로 소프트웨어를 설계하는 방법론**입니다.
 
@@ -23,7 +23,7 @@ draft: true
 - **유비쿼터스 언어**: 팀 전체가 공유하는 공통 언어
 - **지속적 학습**: 도메인에 대한 이해를 지속적으로 심화
 
-### 9.1.2 DDD 적용 예제
+### DDD 적용 예제
 
 ```java
 // DDD 적용 전: 비즈니스 로직이 서비스 계층에 산재
@@ -76,11 +76,11 @@ public class Order {
 
 ## Bounded Context
 
-### 9.2.1 Bounded Context란?
+### Bounded Context란?
 
 Bounded Context는 **특정 도메인 모델이 유효한 경계**를 의미합니다. 같은 용어라도 컨텍스트에 따라 다른 의미를 가질 수 있습니다.
 
-### 9.2.2 Bounded Context 식별 예제
+### Bounded Context 식별 예제
 
 ```java
 // 1. 주문 컨텍스트에서의 고객
@@ -115,7 +115,7 @@ public class Customer {
 
 ## Context Map
 
-### 9.3.1 통합 패턴
+### 통합 패턴
 
 ```java
 // 1. Customer-Supplier 관계
@@ -153,7 +153,7 @@ public class ExternalPaymentAdapter {
 
 ## 유비쿼터스 언어
 
-### 9.4.1 유비쿼터스 언어의 중요성
+### 유비쿼터스 언어의 중요성
 
 ```java
 // 문제: 기술적 용어 중심
@@ -189,11 +189,11 @@ public class Order {
 
 ## 이벤트 스토밍
 
-### 9.5.1 이벤트 스토밍이란?
+### 이벤트 스토밍이란?
 
 이벤트 스토밍은 **도메인 이벤트를 중심으로 비즈니스 프로세스를 탐색하고 모델링하는 워크샵 기법**입니다.
 
-### 9.5.2 이벤트 스토밍 예제
+### 이벤트 스토밍 예제
 
 ```java
 // 1. 도메인 이벤트 발견

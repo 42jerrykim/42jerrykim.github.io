@@ -72,7 +72,7 @@ public class SuperDashboard extends JFrame implements MetaDataUser {
 }
 ```
 
-#### 10.1.1 캡슐화
+#### 캡슐화
 **접근 방법**:
 - 변수와 유틸리티 함수의 공개 여부 결정
 - 테스트를 위한 접근성과 캡슐화의 균형
@@ -132,7 +132,7 @@ public class PropertyChangeNotifier {
 }
 ```
 
-#### 10.2.1 단일 책임 원칙
+#### 단일 책임 원칙
 **접근 방법**:
 - SRP(Single Responsibility Principle)의 개념과 적용
 - 변경할 이유가 하나여야 한다는 원칙
@@ -205,7 +205,7 @@ public class EmployeeReporter {
 2. 데이터베이스 스키마가 변경되면 Employee 클래스가 변경됨
 3. 보고서 형식이 변경되면 Employee 클래스가 변경됨
 
-#### 10.2.2 응집도
+#### 응집도
 **접근 방법**:
 - 클래스 응집도의 개념과 측정 방법
 - 높은 응집도를 가진 클래스의 특징
@@ -267,7 +267,7 @@ public class LowCohesion {
 }
 ```
 
-#### 10.2.3 응집도를 유지하면 작은 클래스 여럿이 나온다
+#### 응집도를 유지하면 작은 클래스 여럿이 나온다
 **접근 방법**:
 - 큰 함수를 작은 함수 여럿으로 쪼개는 과정
 - 변수 승격과 클래스 분리 과정
@@ -418,7 +418,7 @@ public class PreparedInsertSql extends Sql {
 }
 ```
 
-#### 10.3.1 변경으로부터 격리
+#### 변경으로부터 격리
 **접근 방법**:
 - 의존성 역전 원칙(DIP) 적용
 - 인터페이스와 추상 클래스를 통한 격리

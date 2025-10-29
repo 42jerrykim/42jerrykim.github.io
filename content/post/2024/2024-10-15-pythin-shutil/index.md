@@ -447,7 +447,7 @@ graph TD;
 
 ## FAQ
 
-### 5.1. copytree() 사용 시 FileExistsError 해결 방법
+### copytree() 사용 시 FileExistsError 해결 방법
 
 `copytree()` 함수는 기본적으로 대상 디렉토리가 이미 존재할 경우 `FileExistsError`를 발생시킨다. 이 문제를 해결하기 위해서는 `dirs_exist_ok` 인자를 `True`로 설정하면 된다. 이 인자를 사용하면 대상 디렉토리가 존재할 경우에도 복사가 가능하다. 
 
@@ -464,7 +464,7 @@ shutil.copytree(source_dir, destination_dir, dirs_exist_ok=True)
 
 이 코드는 `source_folder`의 내용을 `destination_folder`로 복사하며, 만약 `destination_folder`가 이미 존재한다면 그 안에 내용을 추가하게 된다.
 
-### 5.2. symlink가 있는 경우 어떻게 처리하나요?
+### symlink가 있는 경우 어떻게 처리하나요?
 
 `copytree()` 함수는 기본적으로 심볼릭 링크(symlink)를 복사하지 않는다. 그러나 `symlinks` 인자를 `True`로 설정하면 심볼릭 링크를 복사할 수 있다. 이 경우, 원본의 링크를 그대로 유지하게 된다.
 
@@ -481,7 +481,7 @@ shutil.copytree(source_dir, destination_dir, symlinks=True)
 
 이 코드는 `source_folder_with_symlinks`의 심볼릭 링크를 `destination_folder`로 복사한다.
 
-### 5.3. shutil 모듈과 os 모듈의 차이점은 무엇인가요?
+### shutil 모듈과 os 모듈의 차이점은 무엇인가요?
 
 `shutil` 모듈과 `os` 모듈은 모두 파일 및 디렉토리 작업을 수행하는 데 사용되지만, 그 목적과 기능이 다르다. 
 
@@ -502,7 +502,7 @@ graph LR;
     F -->|프로세스 관리| I["os.system()"]
 ```
 
-### 5.4. copytree()에서 메타데이터는 어떻게 복사되나요?
+### copytree()에서 메타데이터는 어떻게 복사되나요?
 
 `copytree()` 함수는 기본적으로 파일의 메타데이터(예: 수정 시간, 접근 시간 등)를 복사하지 않는다. 그러나 `copy_function` 인자를 사용하여 사용자 정의 복사 함수를 지정하면 메타데이터를 포함한 복사를 수행할 수 있다. 
 

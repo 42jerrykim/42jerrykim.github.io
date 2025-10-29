@@ -150,7 +150,7 @@ public class AtomicCounter {
 - 동시성 문제를 방지하기 위한 설계 원칙들
 - 실용적인 가이드라인 제시
 
-#### 13.4.1 단일 책임 원칙 (SRP)
+#### 단일 책임 원칙 (SRP)
 **주요 내용**:
 - **동시성 관련 코드는 다른 코드와 분리하라**
 - 동시성 관련 코드는 독자적인 개발, 변경, 조율 주기가 있다
@@ -223,7 +223,7 @@ public class OrderService {
 }
 ```
 
-#### 13.4.2 따름 정리: 자료 범위를 제한하라
+#### 따름 정리: 자료 범위를 제한하라
 **주요 내용**:
 - 객체 하나를 공유하는 코드가 둘 이상이라면 해당 코드는 잠재적으로 간섭받을 가능성이 있다
 - **공유 객체를 사용하는 코드 내 임계영역을 synchronized 키워드로 보호하라**
@@ -288,7 +288,7 @@ public class ConcurrentUserRepository {
 }
 ```
 
-#### 13.4.3 따름 정리: 자료 사본을 사용하라
+#### 따름 정리: 자료 사본을 사용하라
 **주요 내용**:
 - 공유 자료를 줄이는 좋은 방법 중 하나는 처음부터 공유하지 않는 것이다
 - 객체를 복사해 읽기 전용으로 사용하는 방법이 가능하다
@@ -328,7 +328,7 @@ public final class Configuration {
 }
 ```
 
-#### 13.4.4 따름 정리: 스레드는 가능한 독립적으로 구현하라
+#### 따름 정리: 스레드는 가능한 독립적으로 구현하라
 **주요 내용**:
 - 다른 스레드와 자료를 공유하지 않는 스레드를 구현하라
 - 각 스레드는 클라이언트 요청 하나를 처리한다
@@ -386,7 +386,7 @@ public class RequestProcessor {
 
 **주요 내용**:
 
-#### 13.5.1 스레드 환경에 안전한 컬렉션
+#### 스레드 환경에 안전한 컬렉션
 ```java
 // 스레드 안전한 컬렉션 사용
 public class SafeCollectionExamples {
@@ -417,7 +417,7 @@ public class SafeCollectionExamples {
 }
 ```
 
-#### 13.5.2 Executor 프레임워크
+#### Executor 프레임워크
 ```java
 // Executor 사용 예시
 public class TaskExecutorService {
@@ -473,7 +473,7 @@ public class TaskExecutorService {
 
 **주요 내용**:
 
-#### 13.6.1 생산자-소비자 (Producer-Consumer)
+#### 생산자-소비자 (Producer-Consumer)
 ```java
 public class ProducerConsumerExample {
     private final BlockingQueue<String> queue = new LinkedBlockingQueue<>(10);
@@ -516,7 +516,7 @@ public class ProducerConsumerExample {
 }
 ```
 
-#### 13.6.2 읽기-쓰기 (Readers-Writers)
+#### 읽기-쓰기 (Readers-Writers)
 ```java
 public class ReadersWritersExample {
     private final ReadWriteLock lock = new ReentrantReadWriteLock();
@@ -546,7 +546,7 @@ public class ReadersWritersExample {
 }
 ```
 
-#### 13.6.3 철학자들의 저녁식사 (Dining Philosophers)
+#### 철학자들의 저녁식사 (Dining Philosophers)
 ```java
 public class DiningPhilosophers {
     private final int numPhilosophers = 5;

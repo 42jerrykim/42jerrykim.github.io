@@ -154,7 +154,7 @@ public void shouldSendEmailForHighValueOrder() {
 - 중복은 추가 작업, 추가 위험, 불필요한 복잡도를 뜻한다
 - 중복은 여러 가지 형태로 나타난다
 
-#### 12.5.1 명백한 중복
+#### 명백한 중복
 **예시**:
 ```java
 // Bad: 명백한 중복
@@ -210,7 +210,7 @@ public class EUVacationPolicy extends VacationPolicy {
 }
 ```
 
-#### 12.5.2 더 미묘한 중복
+#### 더 미묘한 중복
 **예시**:
 ```java
 // Bad: 미묘한 중복 (구조적 중복)
@@ -277,7 +277,7 @@ public class Rectangle {
 }
 ```
 
-#### 12.5.3 Template Method 패턴을 활용한 중복 제거
+#### Template Method 패턴을 활용한 중복 제거
 **예시**:
 ```java
 // Bad: 중복된 고차원 정책
@@ -354,7 +354,7 @@ public class SalariedEmployee extends Employee {
 - 시스템이 점차 복잡해지면서 유지보수 개발자가 시스템을 이해하느라 보내는 시간은 늘어만 간다
 - 코드는 개발자의 의도를 분명히 표현해야 한다
 
-#### 12.6.1 표현력을 높이는 방법들
+#### 표현력을 높이는 방법들
 
 **1. 좋은 이름 선택하기**
 ```java
