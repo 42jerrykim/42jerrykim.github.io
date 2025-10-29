@@ -245,13 +245,13 @@ public class OrderProcessor {
 ```markdown
 # 팀 프로젝트 네이밍 컨벤션
 
-## 1. 기본 원칙
+## 기본 원칙
 - 의도를 명확히 표현하는 이름 사용
 - 줄임말보다는 완전한 단어 사용
 - 일관성 있는 네이밍 규칙 적용
 - 도메인 용어 활용
 
-## 2. 언어별 명명 규칙
+## 언어별 명명 규칙
 
 ### Java
 #### 클래스 및 인터페이스
@@ -295,7 +295,7 @@ public class OrderProcessor {
 - **규칙**: SCREAMING_SNAKE_CASE 사용
 - **예시**: `MAX_RETRY_COUNT`, `DEFAULT_TIMEOUT_SECONDS`
 
-## 3. 도메인별 네이밍 가이드
+## 도메인별 네이밍 가이드
 
 ### 사용자 관리
 - 사용자 생성: `createUser`, `registerUser`
@@ -313,19 +313,19 @@ public class OrderProcessor {
 - 결제 검증: `validatePayment`, `verifyPaymentData`
 - 환불 처리: `refundPayment`, `processRefund`
 
-## 4. 금지 사항
+## 금지 사항
 - [ ] 한 글자 변수명 (i, j, k 제외한 반복문 인덱스)
 - [ ] 숫자로 시작하는 이름
 - [ ] 예약어 사용
 - [ ] 발음하기 어려운 줄임말
 - [ ] 문화적으로 부적절한 이름
 
-## 5. 부울 변수/메서드 네이밍
+## 부울 변수/메서드 네이밍
 - **접두어 사용**: `is`, `has`, `can`, `should`, `will`
 - **예시**: `isValid`, `hasPermission`, `canEdit`, `shouldRetry`
 - **금지**: `valid`, `permission`, `edit` (부울임을 알 수 없음)
 
-## 6. 컬렉션 네이밍
+## 컬렉션 네이밍
 - **복수형 사용**: `users`, `orders`, `products`
 - **의미 있는 접미사**: `userList`, `orderQueue`, `productSet`
 - **금지**: `userData`, `orderInfo` (모호한 표현)
@@ -394,7 +394,7 @@ public class LibrarySystem {
 ```markdown
 # 코드 리뷰: 네이밍 개선 사항
 
-## 1. 발견된 네이밍 문제점
+## 발견된 네이밍 문제점
 
 ### 심각도 HIGH (즉시 수정 필요)
 | 라인 | 현재 이름 | 문제점 | 제안 개선명 |
@@ -414,7 +414,7 @@ public class LibrarySystem {
 |------|-----------|--------|-------------|
 | 3 | `books` | 적절하지만 더 명확할 수 있음 | `bookCatalog` |
 
-## 2. 전체적인 네이밍 개선 방향
+## 전체적인 네이밍 개선 방향
 
 ### 일관성 개선
 - [ ] 메서드명에서 줄임말 제거 (`addB` → `addBook`)
@@ -426,7 +426,7 @@ public class LibrarySystem {
 - [ ] 메서드명에서 동작을 명확히 표현
 - [ ] 매개변수명을 더 구체적으로 작성
 
-## 3. 리팩토링된 코드 제안
+## 리팩토링된 코드 제안
 
 ```java
 public class LibraryManagementSystem {
@@ -460,7 +460,7 @@ public class LibraryManagementSystem {
 }
 ```
 
-## 4. 피드백 제공 방법
+## 피드백 제공 방법
 - 건설적이고 구체적인 제안
 - 개선 이유 명확히 설명
 - 우선순위 표시 (High/Medium/Low)

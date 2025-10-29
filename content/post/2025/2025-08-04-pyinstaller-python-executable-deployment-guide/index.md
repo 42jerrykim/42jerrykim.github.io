@@ -307,7 +307,7 @@ pyinstaller your_script.spec
 
 ## 실무 사용 예제
 
-### 1. Flask Web Application 패키징
+### Flask Web Application 패키징
 
 ```python
 # app.py
@@ -328,7 +328,7 @@ if __name__ == '__main__':
 pyinstaller --onefile --add-data "templates;templates" --add-data "static;static" app.py
 ```
 
-### 2. Tkinter GUI 애플리케이션 패키징
+### Tkinter GUI 애플리케이션 패키징
 
 ```python
 # gui_app.py
@@ -352,7 +352,7 @@ root.mainloop()
 pyinstaller --onefile --windowed --icon=app.ico gui_app.py
 ```
 
-### 3. 외부 라이브러리를 사용하는 애플리케이션
+### 외부 라이브러리를 사용하는 애플리케이션
 
 ```python
 # data_processor.py

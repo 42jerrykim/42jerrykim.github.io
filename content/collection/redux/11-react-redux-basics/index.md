@@ -40,9 +40,9 @@ import { Provider } from 'react-redux';
 
 **React-Redux**: Redux Store와 React 컴포넌트를 연결하는 공식 바인딩 라이브러리
 
-## 1. React-Redux 설치 및 설정
+## React-Redux 설치 및 설정
 
-### 1.1 설치
+### 설치
 
 ```bash
 # npm
@@ -55,7 +55,7 @@ yarn add react-redux
 npm install redux
 ```
 
-### 1.2 기본 프로젝트 구조
+### 기본 프로젝트 구조
 
 ```
 src/
@@ -70,9 +70,9 @@ src/
 └── index.js
 ```
 
-## 2. Provider - Redux Store 제공
+## Provider - Redux Store 제공
 
-### 2.1 Provider 컴포넌트
+### Provider 컴포넌트
 
 ```javascript
 // src/store/index.js
@@ -103,7 +103,7 @@ ReactDOM.render(
 - 모든 하위 컴포넌트가 Store에 접근 가능
 - 앱의 최상위에서 한 번만 사용
 
-### 2.2 Provider의 작동 원리
+### Provider의 작동 원리
 
 ```javascript
 // Provider 내부 동작 (간소화 버전)
@@ -122,9 +122,9 @@ function ChildComponent() {
 }
 ```
 
-## 3. connect - 컴포넌트와 Redux 연결
+## connect - 컴포넌트와 Redux 연결
 
-### 3.1 connect 기본 사용법
+### connect 기본 사용법
 
 ```javascript
 import { connect } from 'react-redux';
@@ -158,7 +158,7 @@ export default connect(
 )(Counter);
 ```
 
-### 3.2 connect HOC 이해하기
+### connect HOC 이해하기
 
 ```javascript
 // connect는 Higher Order Component (HOC)
@@ -190,9 +190,9 @@ function ConnectedCounter(props) {
 - 재사용 가능한 컴포넌트
 - 관심사의 분리 (UI vs 로직)
 
-## 4. mapStateToProps - State를 Props로
+## mapStateToProps - State를 Props로
 
-### 4.1 기본 사용법
+### 기본 사용법
 
 ```javascript
 // Redux State
@@ -214,7 +214,7 @@ function Counter({ count, userName }) {
 }
 ```
 
-### 4.2 ownProps 활용
+### ownProps 활용
 
 ```javascript
 // ownProps: 컴포넌트가 받은 props
@@ -236,7 +236,7 @@ export default connect(mapStateToProps)(TodoItem);
 <TodoItem todoId={1} />
 ```
 
-### 4.3 Selector 함수 사용
+### Selector 함수 사용
 
 ```javascript
 // selectors.js - 재사용 가능한 selector
@@ -254,7 +254,7 @@ const mapStateToProps = (state) => ({
 });
 ```
 
-### 4.4 성능 최적화: 메모이제이션
+### 성능 최적화: 메모이제이션
 
 ```javascript
 import { createSelector } from 'reselect';
@@ -276,9 +276,9 @@ const mapStateToProps = (state) => ({
 });
 ```
 
-## 5. mapDispatchToProps - Action Dispatch
+## mapDispatchToProps - Action Dispatch
 
-### 5.1 기본 사용법
+### 기본 사용법
 
 ```javascript
 // 방법 1: 함수 형태
@@ -303,7 +303,7 @@ const mapDispatchToProps = {
 // 두 방법 모두 결과는 같음
 ```
 
-### 5.2 Action Creator 활용
+### Action Creator 활용
 
 ```javascript
 // actions.js
@@ -372,7 +372,7 @@ function TodoList({ todos, addTodo, toggleTodo, removeTodo }) {
 export default connect(null, mapDispatchToProps)(TodoList);
 ```
 
-### 5.3 ownProps와 함께 사용
+### ownProps와 함께 사용
 
 ```javascript
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -382,9 +382,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 });
 ```
 
-## 6. 컨테이너 vs 프레젠테이셔널 패턴
+## 컨테이너 vs 프레젠테이셔널 패턴
 
-### 6.1 패턴 개념
+### 패턴 개념
 
 ```javascript
 // ✅ 프레젠테이셔널 컴포넌트 (Presentational)
@@ -432,7 +432,7 @@ const TodoItemContainer = connect(
 export default TodoItemContainer;
 ```
 
-### 6.2 폴더 구조
+### 폴더 구조
 
 ```
 src/
@@ -451,9 +451,9 @@ src/
 └── App.js
 ```
 
-## 7. 실전 예제: Todo 앱
+## 실전 예제: Todo 앱
 
-### 7.1 Redux Store 설정
+### Redux Store 설정
 
 ```javascript
 // store/reducers/todosReducer.js
@@ -506,7 +506,7 @@ const store = createStore(
 export default store;
 ```
 
-### 7.2 Action Creators
+### Action Creators
 
 ```javascript
 // store/actions/todoActions.js
@@ -535,7 +535,7 @@ export const setFilter = (filter) => ({
 });
 ```
 
-### 7.3 프레젠테이셔널 컴포넌트
+### 프레젠테이셔널 컴포넌트
 
 ```javascript
 // components/TodoList.js
@@ -569,7 +569,7 @@ function TodoList({ todos, onToggle, onRemove }) {
 export default TodoList;
 ```
 
-### 7.4 컨테이너 컴포넌트
+### 컨테이너 컴포넌트
 
 ```javascript
 // containers/TodoListContainer.js
@@ -604,7 +604,7 @@ export default connect(
 )(TodoList);
 ```
 
-### 7.5 App 컴포넌트
+### App 컴포넌트
 
 ```javascript
 // App.js
@@ -631,7 +631,7 @@ function App() {
 export default App;
 ```
 
-## 8. 실습 문제 🏋️‍♂️
+## 실습 문제 🏋️‍♂️
 
 ### 문제 1: Counter 컴포넌트 연결
 
@@ -691,7 +691,7 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(UserProfile);
 ```
 
-## 9. 흔한 실수 ⚠️
+## 흔한 실수 ⚠️
 
 ### 실수 1: Provider 위치
 
@@ -740,7 +740,7 @@ connect(mapDispatchToProps, mapStateToProps)(Component);
 connect(mapStateToProps, mapDispatchToProps)(Component);
 ```
 
-## 10. 체크리스트 ✅
+## 체크리스트 ✅
 
 - [ ] React-Redux를 설치하고 설정할 수 있다
 - [ ] Provider로 Store를 제공할 수 있다
@@ -750,7 +750,7 @@ connect(mapStateToProps, mapDispatchToProps)(Component);
 - [ ] 컨테이너/프레젠테이셔널 패턴을 적용할 수 있다
 - [ ] 실습 문제를 모두 해결했다
 
-## 11. 다음 단계 🚀
+## 다음 단계 🚀
 
 **다음 챕터**: `12. React-Redux Hooks - useSelector와 useDispatch`에서 더 현대적이고 간편한 Hooks API를 배웁니다!
 

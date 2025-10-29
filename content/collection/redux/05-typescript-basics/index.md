@@ -43,9 +43,9 @@ console.log(user.email); // ❌ Error: Property 'email' does not exist
 3. **리팩토링 안전**: 타입 변경 시 영향받는 코드 자동 표시
 4. **문서화**: 타입 자체가 문서 역할
 
-## 1. 기본 타입 (Basic Types)
+## 기본 타입 (Basic Types)
 
-### 1.1 원시 타입
+### 원시 타입
 
 ```typescript
 // 문자열
@@ -73,7 +73,7 @@ anything = 123; // OK
 anything = true; // OK
 ```
 
-### 1.2 배열과 튜플
+### 배열과 튜플
 
 ```typescript
 // 배열
@@ -98,7 +98,7 @@ let users: [string, number][] = [
 ];
 ```
 
-### 1.3 객체 타입
+### 객체 타입
 
 ```typescript
 // 객체
@@ -128,9 +128,9 @@ let readonlyUser: {
 readonlyUser.name = "Bob"; // OK
 ```
 
-## 2. 인터페이스 (Interface)
+## 인터페이스 (Interface)
 
-### 2.1 기본 인터페이스
+### 기본 인터페이스
 
 ```typescript
 // 인터페이스 정의
@@ -165,7 +165,7 @@ interface TodoState {
 }
 ```
 
-### 2.2 인터페이스 확장
+### 인터페이스 확장
 
 ```typescript
 interface Person {
@@ -192,7 +192,7 @@ interface Admin extends Person, Employee {
 }
 ```
 
-### 2.3 함수 인터페이스
+### 함수 인터페이스
 
 ```typescript
 // 함수 시그니처
@@ -222,9 +222,9 @@ const addTodo: ActionCreator = (text) => ({
 });
 ```
 
-## 3. 타입 별칭 (Type Alias)
+## 타입 별칭 (Type Alias)
 
-### 3.1 기본 타입 별칭
+### 기본 타입 별칭
 
 ```typescript
 // 타입 별칭
@@ -251,7 +251,7 @@ const user: User = {
 };
 ```
 
-### 3.2 인터페이스 vs 타입 별칭
+### 인터페이스 vs 타입 별칭
 
 ```typescript
 // Interface는 확장 가능
@@ -280,9 +280,9 @@ type Combined = User & Employee; // OK
 // - Redux에서는 둘 다 많이 사용
 ```
 
-## 4. 유니온과 인터섹션
+## 유니온과 인터섹션
 
-### 4.1 유니온 타입 (Union)
+### 유니온 타입 (Union)
 
 ```typescript
 // 여러 타입 중 하나
@@ -331,7 +331,7 @@ function todoReducer(state: TodoState, action: TodoAction) {
 }
 ```
 
-### 4.2 인터섹션 타입 (Intersection)
+### 인터섹션 타입 (Intersection)
 
 ```typescript
 // 여러 타입을 결합
@@ -368,9 +368,9 @@ type Todo = {
 } & Timestamps;
 ```
 
-## 5. 제네릭 (Generics)
+## 제네릭 (Generics)
 
-### 5.1 제네릭 기본
+### 제네릭 기본
 
 ```typescript
 // 제네릭 없이
@@ -393,7 +393,7 @@ const firstString = getFirst<string>(["a", "b"]); // string
 const firstAny = getFirst([1, "a", true]); // number | string | boolean (자동 추론)
 ```
 
-### 5.2 제네릭 인터페이스
+### 제네릭 인터페이스
 
 ```typescript
 // 제네릭 인터페이스
@@ -422,7 +422,7 @@ const todosRes: TodosResponse = {
 };
 ```
 
-### 5.3 Redux에서 제네릭 활용
+### Redux에서 제네릭 활용
 
 ```typescript
 // Redux State
@@ -469,9 +469,9 @@ const fetchTodos: ThunkAction<Promise<void>> = async (dispatch, getState) => {
 };
 ```
 
-## 6. 유틸리티 타입 (Utility Types)
+## 유틸리티 타입 (Utility Types)
 
-### 6.1 Partial, Required, Readonly
+### Partial, Required, Readonly
 
 ```typescript
 interface Todo {
@@ -502,7 +502,7 @@ const todo: ReadonlyTodo = { id: 1, text: "Learn TS", completed: false };
 // todo.completed = true; // Error
 ```
 
-### 6.2 Pick, Omit
+### Pick, Omit
 
 ```typescript
 interface User {
@@ -532,7 +532,7 @@ interface TodoState {
 type LoadingState = Pick<TodoState, 'loading' | 'error'>;
 ```
 
-### 6.3 Record, ReturnType
+### Record, ReturnType
 
 ```typescript
 // Record - 키-값 타입 매핑
@@ -562,9 +562,9 @@ type TodoAction = ReturnType<typeof createTodoAction>;
 // { type: 'ADD_TODO'; payload: { text: string; } }
 ```
 
-## 7. Redux TypeScript 실전 예제
+## Redux TypeScript 실전 예제
 
-### 7.1 타입 안전한 Redux Store
+### 타입 안전한 Redux Store
 
 ```typescript
 // types.ts
@@ -652,7 +652,7 @@ export const toggleTodo = (id: number): TodoAction => ({
 });
 ```
 
-## 8. 실습 문제 🏋️‍♂️
+## 실습 문제 🏋️‍♂️
 
 ### 문제 1: 인터페이스 정의
 ```typescript
@@ -709,7 +709,7 @@ interface UserState {
 }
 ```
 
-## 9. 체크리스트 ✅
+## 체크리스트 ✅
 
 - [ ] TypeScript 기본 타입을 이해한다
 - [ ] 인터페이스와 타입 별칭을 작성할 수 있다
@@ -719,7 +719,7 @@ interface UserState {
 - [ ] Redux에서 TypeScript를 적용할 수 있다
 - [ ] 실습 문제를 모두 해결했다
 
-## 10. 다음 단계 🚀
+## 다음 단계 🚀
 
 축하합니다! JavaScript/TypeScript 기초를 모두 마쳤습니다.
 

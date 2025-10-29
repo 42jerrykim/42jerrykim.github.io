@@ -11,7 +11,7 @@ draft: true
 
 ---
 
-## 9.1 DDD의 핵심 철학
+## DDD의 핵심 철학
 
 ### 9.1.1 DDD란 무엇인가?
 
@@ -74,7 +74,7 @@ public class Order {
 
 ---
 
-## 9.2 Bounded Context
+## Bounded Context
 
 ### 9.2.1 Bounded Context란?
 
@@ -113,7 +113,7 @@ public class Customer {
 
 ---
 
-## 9.3 Context Map
+## Context Map
 
 ### 9.3.1 통합 패턴
 
@@ -151,7 +151,7 @@ public class ExternalPaymentAdapter {
 
 ---
 
-## 9.4 유비쿼터스 언어
+## 유비쿼터스 언어
 
 ### 9.4.1 유비쿼터스 언어의 중요성
 
@@ -187,7 +187,7 @@ public class Order {
 
 ---
 
-## 9.5 이벤트 스토밍
+## 이벤트 스토밍
 
 ### 9.5.1 이벤트 스토밍이란?
 

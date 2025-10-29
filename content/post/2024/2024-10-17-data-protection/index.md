@@ -68,71 +68,71 @@ image: "tmp_wordcloud.png"
 <!--
 # 목차
 
-## 1. 개요
+## 개요
    - 데이터 보호의 중요성
    - 데이터가 정지 상태일 때의 위험성
    - 데이터 암호화의 필요성
 
-## 2. 데이터가 정지 상태일 때의 암호화 (Data at Rest Encryption)
+## 데이터가 정지 상태일 때의 암호화 (Data at Rest Encryption)
    - 데이터가 정지 상태란 무엇인가?
    - 암호화의 기본 개념
 
-## 3. 암호화 방법
-   ### 3.1 대칭 암호화 (Symmetric Encryption)
+## 암호화 방법
+   ### 대칭 암호화 (Symmetric Encryption)
    - 정의 및 작동 원리
    - 주요 알고리즘: AES, DES
    - 장점과 단점
 
-   ### 3.2 비대칭 암호화 (Asymmetric Encryption)
+   ### 비대칭 암호화 (Asymmetric Encryption)
    - 정의 및 작동 원리
    - 공개 키와 개인 키의 역할
    - 일반적인 사용 사례
    - 장점과 단점
 
-   ### 3.3 하이브리드 암호화 (Hybrid Encryption)
+   ### 하이브리드 암호화 (Hybrid Encryption)
    - 정의 및 작동 원리
    - 대칭 및 비대칭 암호화의 조합
    - 실제 적용 사례
    - 장점과 단점
 
-## 4. 파일 수준 암호화 (File-Level Encryption)
+## 파일 수준 암호화 (File-Level Encryption)
    - 정의 및 작동 원리
    - 인기 있는 도구 및 방법: BitLocker, FileVault, VeraCrypt
    - 장점과 단점
 
-## 5. 데이터베이스 암호화 (Database Encryption)
+## 데이터베이스 암호화 (Database Encryption)
    - 정의 및 중요성
    - 도전 과제 및 모범 사례
    - 키 관리 시스템의 중요성
 
-## 6. 전체 디스크 암호화 (Full-Disk Encryption)
+## 전체 디스크 암호화 (Full-Disk Encryption)
    - 정의 및 작동 원리
    - 주요 도구: BitLocker, FileVault
    - 장점과 단점
 
-## 7. 암호화 방법 선택하기 (Choosing the Right Encryption Method)
+## 암호화 방법 선택하기 (Choosing the Right Encryption Method)
    - 위험 평가 (Risk Assessment)
    - 성능 (Performance)
    - 규제 준수 (Regulatory Compliance)
 
-## 8. FAQ
+## FAQ
    - 데이터 암호화의 필요성에 대한 일반적인 질문
    - 암호화 키 관리에 대한 질문
    - 암호화 방법의 선택 기준에 대한 질문
 
-## 9. 관련 기술
+## 관련 기술
    - 클라우드 보안 (Cloud Security)
    - 블록체인 기술 (Blockchain Technology)
    - 데이터 프라이버시 법규 (Data Privacy Regulations)
 
-## 10. 결론
+## 결론
    - 데이터가 정지 상태일 때의 암호화 방법 요약
    - 적절한 암호화 방법 선택의 중요성
    - 데이터 보호를 위한 지속적인 노력의 필요성
 -->
 
 <!--
-## 1. 개요
+## 개요
    - 데이터 보호의 중요성
    - 데이터가 정지 상태일 때의 위험성
    - 데이터 암호화의 필요성
@@ -165,7 +165,7 @@ graph TD;
 위의 다이어그램은 데이터 보호의 중요성과 암호화의 필요성을 시각적으로 나타낸 것이다. 데이터 보호는 단순한 선택이 아니라 필수적인 조치임을 강조하고 있다. 데이터가 정지 상태일 때의 암호화는 이러한 보호 조치의 핵심 요소로 자리 잡고 있다.
 
 <!--
-## 2. 데이터가 정지 상태일 때의 암호화 (Data at Rest Encryption)
+## 데이터가 정지 상태일 때의 암호화 (Data at Rest Encryption)
    - 데이터가 정지 상태란 무엇인가?
    - 암호화의 기본 개념
 -->
@@ -199,8 +199,8 @@ graph TD;
 이러한 암호화 기술은 데이터 보호의 중요한 요소로 자리 잡고 있으며, 다양한 산업 분야에서 필수적으로 사용되고 있다.
 
 <!--
-## 3. 암호화 방법
-   ### 3.1 대칭 암호화 (Symmetric Encryption)
+## 암호화 방법
+   ### 대칭 암호화 (Symmetric Encryption)
    - 정의 및 작동 원리
    - 주요 알고리즘: AES, DES
    - 장점과 단점
@@ -235,7 +235,7 @@ graph TD;
 대칭 암호화는 데이터 보호를 위한 중요한 방법 중 하나이며, 적절한 사용과 관리가 이루어질 경우 강력한 보안성을 제공할 수 있다.
 
 <!--
-   ### 3.2 비대칭 암호화 (Asymmetric Encryption)
+   ### 비대칭 암호화 (Asymmetric Encryption)
    - 정의 및 작동 원리
    - 공개 키와 개인 키의 역할
    - 일반적인 사용 사례
@@ -269,7 +269,7 @@ graph TD;
 비대칭 암호화의 장점은 다음과 같다. 첫째, 키 관리가 용이하다. 공개 키는 자유롭게 배포할 수 있어, 키 분배 문제를 해결할 수 있다. 둘째, 데이터의 기밀성과 무결성을 보장할 수 있다. 그러나 단점도 존재한다. 비대칭 암호화는 대칭 암호화에 비해 속도가 느리며, 대량의 데이터를 암호화하는 데 비효율적일 수 있다. 이러한 이유로, 비대칭 암호화는 대칭 암호화와 함께 하이브리드 방식으로 사용되는 경우가 많다.
 
 <!--
-   ### 3.3 하이브리드 암호화 (Hybrid Encryption)
+   ### 하이브리드 암호화 (Hybrid Encryption)
    - 정의 및 작동 원리
    - 대칭 및 비대칭 암호화의 조합
    - 실제 적용 사례
@@ -315,7 +315,7 @@ graph TD;
 하이브리드 암호화는 데이터 보호를 위한 효과적인 방법으로, 다양한 상황에서 활용될 수 있다.
 
 <!--
-## 4. 파일 수준 암호화 (File-Level Encryption)
+## 파일 수준 암호화 (File-Level Encryption)
    - 정의 및 작동 원리
    - 인기 있는 도구 및 방법: BitLocker, FileVault, VeraCrypt
    - 장점과 단점
@@ -367,7 +367,7 @@ flowchart TD
 파일 수준 암호화는 특정 상황에서 매우 유용한 방법이지만, 사용자는 각 도구의 특성과 장단점을 잘 이해하고 선택해야 한다.
 
 <!--
-## 5. 데이터베이스 암호화 (Database Encryption)
+## 데이터베이스 암호화 (Database Encryption)
    - 정의 및 중요성
    - 도전 과제 및 모범 사례
    - 키 관리 시스템의 중요성
@@ -408,7 +408,7 @@ graph TD;
 이러한 기능들은 데이터베이스의 보안을 강화하고, 데이터 유출 사고를 예방하는 데 중요한 역할을 한다. 데이터베이스 암호화와 함께 KMS를 적절히 활용하는 것은 데이터 보호의 핵심 요소이다.
 
 <!--
-## 6. 전체 디스크 암호화 (Full-Disk Encryption)
+## 전체 디스크 암호화 (Full-Disk Encryption)
    - 정의 및 작동 원리
    - 주요 도구: BitLocker, FileVault
    - 장점과 단점
@@ -458,7 +458,7 @@ graph TD;
 전체 디스크 암호화는 데이터 보호를 위한 강력한 방법이지만, 사용자는 장점과 단점을 충분히 고려하여 적절한 도구와 방법을 선택해야 한다.
 
 <!--
-## 7. 암호화 방법 선택하기 (Choosing the Right Encryption Method)
+## 암호화 방법 선택하기 (Choosing the Right Encryption Method)
    - 위험 평가 (Risk Assessment)
    - 성능 (Performance)
    - 규제 준수 (Regulatory Compliance)
@@ -511,7 +511,7 @@ graph TD;
 이와 같이 위험 평가, 성능, 그리고 규제 준수는 암호화 방법을 선택하는 데 있어 필수적인 요소이다. 각 요소를 충분히 고려하여 적절한 암호화 방법을 선택하는 것이 데이터 보호의 핵심이다.
 
 <!--
-## 8. FAQ
+## FAQ
    - 데이터 암호화의 필요성에 대한 일반적인 질문
    - 암호화 키 관리에 대한 질문
    - 암호화 방법의 선택 기준에 대한 질문
@@ -564,7 +564,7 @@ graph LR;
 위의 다이어그램은 데이터 암호화의 다양한 방법과 각 방법의 장단점을 시각적으로 나타낸 것이다. 암호화 방법을 선택할 때는 이러한 요소들을 종합적으로 고려해야 한다.
 
 <!--
-## 9. 관련 기술
+## 관련 기술
    - 클라우드 보안 (Cloud Security)
    - 블록체인 기술 (Blockchain Technology)
    - 데이터 프라이버시 법규 (Data Privacy Regulations)
@@ -630,7 +630,7 @@ graph TD;
 이와 같이 클라우드 보안, 블록체인 기술, 데이터 프라이버시 법규는 데이터 보호와 관련된 중요한 기술 및 규제이다. 이들은 데이터가 정지 상태일 때의 암호화와 함께 데이터 보호의 전반적인 전략을 강화하는 데 기여한다.
 
 <!--
-## 10. 결론
+## 결론
    - 데이터가 정지 상태일 때의 암호화 방법 요약
    - 적절한 암호화 방법 선택의 중요성
    - 데이터 보호를 위한 지속적인 노력의 필요성

@@ -45,9 +45,9 @@ Redux는 **단방향 데이터 흐름**을 따릅니다:
 └─────────────────────────────────────────────────┘
 ```
 
-## 1. 단계별 데이터 흐름
+## 단계별 데이터 흐름
 
-### 1.1 [Step 1] User Interaction
+### [Step 1] User Interaction
 
 ```javascript
 // 사용자가 버튼 클릭
@@ -62,7 +62,7 @@ function Counter() {
 }
 ```
 
-### 1.2 [Step 2] Action Dispatch
+### [Step 2] Action Dispatch
 
 ```javascript
 // dispatch 함수 호출
@@ -91,7 +91,7 @@ store.dispatch = function(action) {
 };
 ```
 
-### 1.3 [Step 3] Middleware (선택)
+### [Step 3] Middleware (선택)
 
 ```javascript
 // Middleware는 dispatch와 reducer 사이에 위치
@@ -109,7 +109,7 @@ const loggerMiddleware = store => next => action => {
 // dispatch → middleware1 → middleware2 → reducer
 ```
 
-### 1.4 [Step 4] Reducer 호출
+### [Step 4] Reducer 호출
 
 ```javascript
 // Reducer가 새 상태 계산
@@ -134,7 +134,7 @@ function counterReducer(state = { count: 0 }, action) {
 // 4. 전체 새 상태 트리 생성
 ```
 
-### 1.5 [Step 5] State 업데이트
+### [Step 5] State 업데이트
 
 ```javascript
 // Store 내부
@@ -156,7 +156,7 @@ function dispatch(action) {
 }
 ```
 
-### 1.6 [Step 6] Subscribers 알림
+### [Step 6] Subscribers 알림
 
 ```javascript
 // Subscribers (React-Redux가 내부적으로 사용)
@@ -187,7 +187,7 @@ useEffect(() => {
 }, []);
 ```
 
-### 1.7 [Step 7] Component Re-render
+### [Step 7] Component Re-render
 
 ```javascript
 function Counter() {
@@ -223,7 +223,7 @@ function useSelector(selector) {
 }
 ```
 
-### 1.8 [Step 8] UI 업데이트
+### [Step 8] UI 업데이트
 
 ```javascript
 // React가 Virtual DOM 비교 후 실제 DOM 업데이트
@@ -236,9 +236,9 @@ function Counter() {
 }
 ```
 
-## 2. 완전한 흐름 예제
+## 완전한 흐름 예제
 
-### 2.1 Todo 추가 전체 프로세스
+### Todo 추가 전체 프로세스
 
 ```javascript
 // ========== 1. User Interaction ==========
@@ -331,7 +331,7 @@ function TodoList() {
 }
 ```
 
-### 2.2 실행 결과 (콘솔)
+### 실행 결과 (콘솔)
 
 ```
 [1] User submitted form
@@ -348,9 +348,9 @@ function TodoList() {
 [8] Updating UI with 1 todos
 ```
 
-## 3. 비동기 데이터 흐름
+## 비동기 데이터 흐름
 
-### 3.1 비동기 Action (Thunk)
+### 비동기 Action (Thunk)
 
 ```javascript
 // ========== 비동기 Action Creator ==========
@@ -437,7 +437,7 @@ function TodoList() {
 }
 ```
 
-### 3.2 비동기 흐름 타임라인
+### 비동기 흐름 타임라인
 
 ```
 Time  | Event
@@ -456,9 +456,9 @@ Time  | Event
 503ms | Component re-renders (shows todo list)
 ```
 
-## 4. Redux DevTools로 흐름 추적
+## Redux DevTools로 흐름 추적
 
-### 4.1 DevTools 설치 및 설정
+### DevTools 설치 및 설정
 
 ```javascript
 // Store 생성 시 DevTools 연결
@@ -478,7 +478,7 @@ const store = configureStore({
 });
 ```
 
-### 4.2 DevTools 주요 기능
+### DevTools 주요 기능
 
 ```javascript
 // 1. Action Log
@@ -501,7 +501,7 @@ const store = configureStore({
 // - 상태 변화를 시각적으로 표시
 ```
 
-### 4.3 커스텀 로깅
+### 커스텀 로깅
 
 ```javascript
 // Action에 메타데이터 추가
@@ -522,9 +522,9 @@ function addTodo(text) {
 // - payload 내용으로 검색
 ```
 
-## 5. 디버깅 패턴
+## 디버깅 패턴
 
-### 5.1 각 단계에 로깅 추가
+### 각 단계에 로깅 추가
 
 ```javascript
 // 1. Action Creator
@@ -577,7 +577,7 @@ function TodoList() {
 }
 ```
 
-### 5.2 Performance 추적
+### Performance 추적
 
 ```javascript
 // Action 처리 시간 측정
@@ -606,7 +606,7 @@ function TodoList() {
 }
 ```
 
-## 6. 실습 문제 🏋️‍♂️
+## 실습 문제 🏋️‍♂️
 
 ### 문제 1: 흐름 추적하기
 ```javascript
@@ -646,7 +646,7 @@ const loggerMiddleware = store => next => action => {
 };
 ```
 
-## 7. 체크리스트 ✅
+## 체크리스트 ✅
 
 - [ ] Redux의 단방향 데이터 흐름을 이해한다
 - [ ] Action dispatch부터 UI 업데이트까지 추적할 수 있다
@@ -654,7 +654,7 @@ const loggerMiddleware = store => next => action => {
 - [ ] 비동기 Action의 흐름을 이해한다
 - [ ] 각 단계에서 디버깅할 수 있다
 
-## 8. 다음 단계 🚀
+## 다음 단계 🚀
 
 **다음 챕터**: `10. Redux를 사용하는 이유와 적절한 사용 시기`에서 언제 Redux가 필요하고 언제 불필요한지, 대안들과 비교하며 학습합니다!
 

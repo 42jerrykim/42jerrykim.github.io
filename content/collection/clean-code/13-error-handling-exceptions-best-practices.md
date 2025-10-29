@@ -10,7 +10,7 @@ draft: true
 
 ## 내용 구성 전략
 
-### 7.1 오류 코드보다 예외를 사용하라
+### 오류 코드보다 예외를 사용하라
 **접근 방법**:
 - 오류 코드와 예외 처리 방식의 차이점 분석
 - 코드 가독성과 유지보수성 관점에서의 비교
@@ -71,7 +71,7 @@ public class DeviceController {
 }
 ```
 
-### 7.2 Try-Catch-Finally 문부터 작성하라
+### Try-Catch-Finally 문부터 작성하라
 **접근 방법**:
 - TDD 관점에서의 예외 처리 구현
 - 예외 안전성을 고려한 코드 작성
@@ -111,7 +111,7 @@ public List<RecordedGrip> retrieveSection(String sectionName) {
 }
 ```
 
-### 7.3 미확인(unchecked) 예외를 사용하라
+### 미확인(unchecked) 예외를 사용하라
 **접근 방법**:
 - Checked vs Unchecked 예외의 장단점 분석
 - 현대적 언어들의 예외 처리 경향
@@ -123,7 +123,7 @@ public List<RecordedGrip> retrieveSection(String sectionName) {
 - 아주 중요한 라이브러리를 작성한다면 모든 예외를 잡아야 한다
 - 하지만 일반적인 애플리케이션은 의존성이라는 비용이 이익보다 크다
 
-### 7.4 예외에 의미를 제공하라
+### 예외에 의미를 제공하라
 **접근 방법**:
 - 예외 메시지의 중요성과 작성 방법
 - 디버깅을 위한 충분한 정보 제공
@@ -147,7 +147,7 @@ throw new InsufficientFundsException(
 );
 ```
 
-### 7.5 호출자를 고려해 예외 클래스를 정의하라
+### 호출자를 고려해 예외 클래스를 정의하라
 **접근 방법**:
 - 예외 분류의 다양한 방법
 - 호출하는 라이브러리 API를 감싸는 기법
@@ -210,7 +210,7 @@ public class LocalPort {
 }
 ```
 
-### 7.6 정상 흐름을 정의하라
+### 정상 흐름을 정의하라
 **접근 방법**:
 - Special Case Pattern 적용
 - 예외 상황을 정상 흐름으로 처리하는 기법
@@ -241,7 +241,7 @@ public class PerDiemMealExpenses implements MealExpenses {
 }
 ```
 
-### 7.7 null을 반환하지 마라
+### null을 반환하지 마라
 **접근 방법**:
 - null 반환의 문제점과 대안 제시
 - Optional 패턴 등 현대적 해결책
@@ -284,7 +284,7 @@ for (Employee e : employees) {
 }
 ```
 
-### 7.8 null을 전달하지 마라
+### null을 전달하지 마라
 **접근 방법**:
 - 메서드 인수로 null을 전달하는 것의 위험성
 - null 방어 코드의 문제점
@@ -318,7 +318,7 @@ public double xProjection(Point p1, Point p2) {
 // 파라미터 검증, 불변 객체 사용, Optional 활용 등
 ```
 
-### 7.9 결론
+### 결론
 **접근 방법**:
 - 깨끗한 코드에서 오류 처리의 역할
 - 견고한 소프트웨어 개발을 위한 원칙

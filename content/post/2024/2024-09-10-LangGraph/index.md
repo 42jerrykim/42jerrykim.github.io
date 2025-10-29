@@ -94,21 +94,21 @@ LangChain의 생태계에서 LangGraph는 대규모 언어 모델(LLM)을 활용
 <!--
 # 목차
 
-## 1. 개요
+## 개요
    - LangGraph 소개
    - LangChain과의 관계
    - 주요 기능 및 이점
 
-## 2. LangGraph의 기본 개념
+## LangGraph의 기본 개념
    - 노드(Node)와 엣지(Edge)
    - 상태 관리(State Management)
    - 그래프 구조(Graph Structure)
 
-## 3. LangGraph 설치 및 설정
+## LangGraph 설치 및 설정
    - 설치 방법
    - 환경 설정
 
-## 4. LangGraph 활용 예제
+## LangGraph 활용 예제
    - 단일 에이전트 워크플로우
      - 에이전트 구축하기
      - SQL 쿼리 실행 도구 사용
@@ -118,31 +118,31 @@ LangChain의 생태계에서 LangGraph는 대규모 언어 모델(LLM)을 활용
    - 인간-인-루프(Human-in-the-Loop) 상호작용
      - 피드백 수집 및 최종 답변 수정
 
-## 5. LangGraph의 고급 기능
+## LangGraph의 고급 기능
    - 순환 그래프(Cyclic Graphs) 구현
    - 상태 지속성(Persistence) 및 오류 복구
    - 스트리밍 지원(Streaming Support)
 
-## 6. LangGraph와 CrewAI 비교
+## LangGraph와 CrewAI 비교
    - 사용 용이성
    - 기능 및 커스터마이징
    - 성능 및 안정성
 
-## 7. FAQ
+## FAQ
    - LangGraph의 주요 사용 사례는 무엇인가요?
    - LangGraph를 사용하기 위한 사전 지식은 무엇인가요?
    - LangGraph의 성능을 최적화하는 방법은 무엇인가요?
 
-## 8. 관련 기술
+## 관련 기술
    - LangChain
    - LLM(대형 언어 모델)
    - DAG(유향 비순환 그래프)
 
-## 9. 결론
+## 결론
    - LangGraph의 장점 및 단점 요약
    - 향후 발전 방향 및 기대 효과
 
-## 10. 참고 자료
+## 참고 자료
    - 공식 문서 및 튜토리얼 링크
    - 관련 블로그 및 아티클
    - GitHub 리포지토리
@@ -151,13 +151,13 @@ LangChain의 생태계에서 LangGraph는 대규모 언어 모델(LLM)을 활용
 -->
 
 <!--
-## 1. 개요
+## 개요
    - LangGraph 소개
    - LangChain과의 관계
    - 주요 기능 및 이점
 -->
 
-## 1. 개요
+## 개요
 
 **LangGraph 소개**  
 
@@ -188,13 +188,13 @@ graph TD;
 위의 다이어그램은 LangGraph의 기본적인 데이터 흐름을 보여준다. 사용자의 입력이 에이전트에 의해 처리되고, 결과에 따라 성공 또는 실패로 나뉘어지는 구조를 나타낸다. 이러한 시각적 표현은 LangGraph의 강력한 기능을 잘 보여준다.
 
 <!--
-## 2. LangGraph의 기본 개념
+## LangGraph의 기본 개념
    - 노드(Node)와 엣지(Edge)
    - 상태 관리(State Management)
    - 그래프 구조(Graph Structure)
 -->
 
-## 2. LangGraph의 기본 개념
+## LangGraph의 기본 개념
 
 LangGraph는 그래프 기반의 데이터 구조를 활용하여 복잡한 상태 관리 및 데이터 흐름을 효율적으로 처리하는 시스템이다. 이 섹션에서는 LangGraph의 기본 개념인 노드(Node), 엣지(Edge), 상태 관리(State Management), 그리고 그래프 구조(Graph Structure)에 대해 설명하겠다.
 
@@ -258,12 +258,12 @@ graph TD;
 이와 같이 LangGraph의 기본 개념은 노드, 엣지, 상태 관리, 그리고 그래프 구조를 통해 데이터의 흐름과 상태를 효과적으로 관리할 수 있도록 설계되었다. 이러한 기본 개념을 이해하는 것은 LangGraph를 활용하는 데 있어 매우 중요하다.
 
 <!--
-## 3. LangGraph 설치 및 설정
+## LangGraph 설치 및 설정
    - 설치 방법
    - 환경 설정
 -->
 
-## 3. LangGraph 설치 및 설정
+## LangGraph 설치 및 설정
 
 LangGraph를 사용하기 위해서는 먼저 설치와 환경 설정이 필요하다. 이 과정은 간단하며, 몇 가지 단계를 통해 완료할 수 있다.
 
@@ -310,7 +310,7 @@ graph TD;
 이와 같은 과정을 통해 LangGraph를 설치하고 설정할 수 있으며, 이후 다양한 기능을 활용하여 프로젝트를 진행할 수 있다.
 
 <!--
-## 4. LangGraph 활용 예제
+## LangGraph 활용 예제
    - 단일 에이전트 워크플로우
      - 에이전트 구축하기
      - SQL 쿼리 실행 도구 사용
@@ -321,7 +321,7 @@ graph TD;
      - 피드백 수집 및 최종 답변 수정
 -->
 
-## 4. LangGraph 활용 예제
+## LangGraph 활용 예제
 
 LangGraph는 다양한 활용 사례를 통해 그 기능을 극대화할 수 있다. 이 섹션에서는 단일 에이전트 워크플로우, 멀티 에이전트 시스템, 그리고 인간-인-루프(Human-in-the-Loop) 상호작용을 중심으로 LangGraph의 활용 예제를 살펴보겠다.
 
@@ -443,13 +443,13 @@ print(f"Final answer: {final_answer}")
 이와 같이 LangGraph는 다양한 활용 예제를 통해 그 기능을 극대화할 수 있으며, 단일 에이전트부터 멀티 에이전트 시스템, 그리고 인간-인-루프 상호작용까지 폭넓은 적용이 가능하다. 이러한 예제들은 LangGraph를 효과적으로 활용하는 데 큰 도움이 될 것이다.
 
 <!--
-## 5. LangGraph의 고급 기능
+## LangGraph의 고급 기능
    - 순환 그래프(Cyclic Graphs) 구현
    - 상태 지속성(Persistence) 및 오류 복구
    - 스트리밍 지원(Streaming Support)
 -->
 
-## 5. LangGraph의 고급 기능
+## LangGraph의 고급 기능
 
 LangGraph는 다양한 고급 기능을 제공하여 복잡한 애플리케이션을 효과적으로 구축할 수 있도록 지원한다. 이 섹션에서는 순환 그래프 구현, 상태 지속성 및 오류 복구, 스트리밍 지원에 대해 자세히 살펴보겠다.
 
@@ -536,13 +536,13 @@ stream_data(data_source)
 이와 같이 LangGraph의 고급 기능들은 복잡한 시스템을 구축하는 데 있어 매우 유용하며, 다양한 상황에서 활용될 수 있다.
 
 <!--
-## 6. LangGraph와 CrewAI 비교
+## LangGraph와 CrewAI 비교
    - 사용 용이성
    - 기능 및 커스터마이징
    - 성능 및 안정성
 -->
 
-## 6. LangGraph와 CrewAI 비교
+## LangGraph와 CrewAI 비교
 
 LangGraph와 CrewAI는 각각의 장점과 특징을 가지고 있으며, 사용자의 요구에 따라 선택할 수 있는 다양한 옵션을 제공한다. 이 섹션에서는 사용 용이성, 기능 및 커스터마이징, 성능 및 안정성 측면에서 두 플랫폼을 비교해보겠다.
 
@@ -576,13 +576,13 @@ graph TD;
 이와 같이 LangGraph와 CrewAI는 각각의 장단점이 있으며, 사용자의 필요에 따라 적절한 선택을 할 수 있도록 돕는다.
 
 <!--
-## 7. FAQ
+## FAQ
    - LangGraph의 주요 사용 사례는 무엇인가요?
    - LangGraph를 사용하기 위한 사전 지식은 무엇인가요?
    - LangGraph의 성능을 최적화하는 방법은 무엇인가요?
 -->
 
-## 7. FAQ
+## FAQ
 
 **LangGraph의 주요 사용 사례는 무엇인가요?**
 
@@ -635,13 +635,13 @@ graph TD;
 이와 같은 방법들을 통해 LangGraph의 성능을 최적화할 수 있으며, 이를 통해 더욱 효율적인 시스템을 구축할 수 있다.
 
 <!--
-## 8. 관련 기술
+## 관련 기술
    - LangChain
    - LLM(대형 언어 모델)
    - DAG(유향 비순환 그래프)
 -->
 
-## 8. 관련 기술
+## 관련 기술
 
 **LangChain**  
 
@@ -669,12 +669,12 @@ graph TD;
 이 다이어그램은 LangGraph가 LangChain, LLM, DAG와 어떻게 연결되어 있는지를 시각적으로 나타낸다. 각 기술은 LangGraph의 기능을 확장하고, 다양한 애플리케이션을 구축하는 데 중요한 역할을 한다.
 
 <!--
-## 9. 결론
+## 결론
    - LangGraph의 장점 및 단점 요약
    - 향후 발전 방향 및 기대 효과
 -->
 
-## 9. 결론
+## 결론
 
 **LangGraph의 장점 및 단점 요약**
 
@@ -720,7 +720,7 @@ graph TD;
 결론적으로, LangGraph는 강력한 기능과 유연성을 제공하는 도구로, 앞으로의 발전이 기대되는 기술이다.
 
 <!--
-## 10. 참고 자료
+## 참고 자료
    - 공식 문서 및 튜토리얼 링크
    - 관련 블로그 및 아티클
    - GitHub 리포지토리

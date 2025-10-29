@@ -63,9 +63,9 @@ function TodoList() {
 - State 구조 변경 시 한 곳만 수정
 - 성능 최적화 가능
 
-## 1. 기본 Selector 패턴
+## 기본 Selector 패턴
 
-### 1.1 Simple Selector
+### Simple Selector
 
 ```javascript
 // selectors.js
@@ -100,7 +100,7 @@ function Stats() {
 }
 ```
 
-### 1.2 Derived State (파생 상태)
+### Derived State (파생 상태)
 
 ```javascript
 // 여러 State를 조합한 파생 데이터
@@ -132,9 +132,9 @@ export const selectTodoStats = (state) => {
 };
 ```
 
-## 2. Reselect - 메모이제이션 Selector
+## Reselect - 메모이제이션 Selector
 
-### 2.1 Reselect 설치 및 기본 사용
+### Reselect 설치 및 기본 사용
 
 ```bash
 npm install reselect
@@ -170,7 +170,7 @@ function TodoList() {
 }
 ```
 
-### 2.2 메모이제이션 작동 원리
+### 메모이제이션 작동 원리
 
 ```javascript
 // Reselect는 입력값이 같으면 이전 결과를 반환
@@ -192,7 +192,7 @@ selector(state); // 아무것도 출력 안 됨, 캐시된 결과 반환!
 selector(newState); // "Calculating..." 출력, 재계산
 ```
 
-### 2.3 여러 Input Selector
+### 여러 Input Selector
 
 ```javascript
 // 3개 이상의 Input Selector
@@ -237,9 +237,9 @@ export const selectFilteredAndSortedTodos = createSelector(
 );
 ```
 
-## 3. Selector 조합 (Composition)
+## Selector 조합 (Composition)
 
-### 3.1 Selector를 조합하여 재사용
+### Selector를 조합하여 재사용
 
 ```javascript
 // Base Selectors
@@ -284,7 +284,7 @@ export const selectVisibleTodosByPriority = createSelector(
 );
 ```
 
-### 3.2 정규화된 State에서 Selector
+### 정규화된 State에서 Selector
 
 ```javascript
 // State 구조
@@ -336,9 +336,9 @@ export const selectTodosByUser = createSelector(
 );
 ```
 
-## 4. Parametric Selector (매개변수가 있는 Selector)
+## Parametric Selector (매개변수가 있는 Selector)
 
-### 4.1 문제점
+### 문제점
 
 ```javascript
 // ❌ 매번 새 함수 생성 → 캐시 안 됨
@@ -350,7 +350,7 @@ function TodoDetail({ todoId }) {
 }
 ```
 
-### 4.2 해결 방법 1: Selector Factory
+### 해결 방법 1: Selector Factory
 
 ```javascript
 // Selector Factory
@@ -376,7 +376,7 @@ function TodoDetail({ todoId }) {
 }
 ```
 
-### 4.3 해결 방법 2: createCachedSelector (Re-reselect)
+### 해결 방법 2: createCachedSelector (Re-reselect)
 
 ```bash
 npm install re-reselect
@@ -403,7 +403,7 @@ function TodoDetail({ todoId }) {
 }
 ```
 
-### 4.4 해결 방법 3: useCallback
+### 해결 방법 3: useCallback
 
 ```javascript
 function TodoDetail({ todoId }) {
@@ -418,9 +418,9 @@ function TodoDetail({ todoId }) {
 }
 ```
 
-## 5. 고급 Selector 패턴
+## 고급 Selector 패턴
 
-### 5.1 기본값 처리
+### 기본값 처리
 
 ```javascript
 export const selectUser = createSelector(
@@ -434,7 +434,7 @@ export const selectTodoById = (todoId) => createSelector(
 );
 ```
 
-### 5.2 조건부 Selector
+### 조건부 Selector
 
 ```javascript
 export const selectTodosByStatus = createSelector(
@@ -459,7 +459,7 @@ export const selectTodosByStatus = createSelector(
 );
 ```
 
-### 5.3 복잡한 데이터 변환
+### 복잡한 데이터 변환
 
 ```javascript
 // 중첩된 데이터를 Flat하게
@@ -498,9 +498,9 @@ export const selectCommentTree = createSelector(
 );
 ```
 
-## 6. TypeScript와 Selector
+## TypeScript와 Selector
 
-### 6.1 타입 안전한 Selector
+### 타입 안전한 Selector
 
 ```typescript
 // types.ts
@@ -545,7 +545,7 @@ export const selectTodoById = (todoId: string) =>
     );
 ```
 
-### 6.2 Typed Hooks
+### Typed Hooks
 
 ```typescript
 // hooks/useTypedSelector.ts
@@ -565,7 +565,7 @@ function TodoList() {
 }
 ```
 
-## 7. 실전 Selector 예제
+## 실전 Selector 예제
 
 ```javascript
 // selectors/todoSelectors.js
@@ -677,7 +677,7 @@ function TodoDashboard() {
 }
 ```
 
-## 8. 실습 문제 🏋️‍♂️
+## 실습 문제 🏋️‍♂️
 
 ### 문제 1: 기본 Selector 작성
 ```javascript
@@ -714,7 +714,7 @@ export const selectSortedTodosByCategory = createSelector(
 );
 ```
 
-## 9. 체크리스트 ✅
+## 체크리스트 ✅
 
 - [ ] Selector 패턴의 장점을 이해한다
 - [ ] createSelector로 메모이제이션 Selector를 만들 수 있다
@@ -723,7 +723,7 @@ export const selectSortedTodosByCategory = createSelector(
 - [ ] 매개변수가 있는 Selector를 작성할 수 있다
 - [ ] 정규화된 State에서 데이터를 선택할 수 있다
 
-## 10. 다음 단계 🚀
+## 다음 단계 🚀
 
 **다음 챕터**: `15. 실습: Counter와 Todo 앱 만들기`에서 지금까지 배운 모든 내용을 종합하여 완전한 앱을 만들어봅니다!
 

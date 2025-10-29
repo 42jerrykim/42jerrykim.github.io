@@ -21,7 +21,7 @@ collection_order: 15
 
 ## 핵심 내용
 
-### 1. 컨텍스트 매니저 기본
+### 컨텍스트 매니저 기본
 
 **with문의 필요성**
 
@@ -65,7 +65,7 @@ with SimpleContextManager("테스트") as cm:
     # raise ValueError("예외 테스트")  # 주석 해제 시 예외 처리 확인
 ```
 
-### 2. 파일과 데이터베이스 관리
+### 파일과 데이터베이스 관리
 
 **안전한 파일 처리**
 
@@ -147,7 +147,7 @@ with DatabaseConnection(':memory:') as cursor:
                    ("김철수", "kim@example.com"))
 ```
 
-### 3. contextlib 모듈
+### contextlib 모듈
 
 **@contextmanager 데코레이터**
 
@@ -233,7 +233,7 @@ captured_output = output_buffer.getvalue()
 print(f"캡처된 출력: {repr(captured_output)}")
 ```
 
-### 4. 고급 컨텍스트 매니저 패턴
+### 고급 컨텍스트 매니저 패턴
 
 **중첩 컨텍스트 매니저**
 

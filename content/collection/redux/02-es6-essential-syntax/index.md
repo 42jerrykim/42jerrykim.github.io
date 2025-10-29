@@ -34,9 +34,9 @@ const newState = { ...state, todos: [...state.todos, todo] };
 
 **차이점**: 더 간결하고, 읽기 쉽고, 실수가 적은 코드!
 
-## 1. 구조 분해 할당 (Destructuring)
+## 구조 분해 할당 (Destructuring)
 
-### 1.1 객체 구조 분해
+### 객체 구조 분해
 
 ```javascript
 // 기존 방식
@@ -96,7 +96,7 @@ function TodoList({ state }) {
 }
 ```
 
-### 1.2 배열 구조 분해
+### 배열 구조 분해
 
 ```javascript
 const colors = ["red", "green", "blue"];
@@ -133,7 +133,7 @@ const [count, setCount] = useState(0);
 const todos = useSelector(state => state.todos);
 ```
 
-### 1.3 함수 매개변수 구조 분해
+### 함수 매개변수 구조 분해
 
 ```javascript
 // 기존 방식
@@ -168,9 +168,9 @@ const todoReducer = (state = initialState, { type, payload }) => {
 };
 ```
 
-## 2. 스프레드 연산자 (Spread Operator)
+## 스프레드 연산자 (Spread Operator)
 
-### 2.1 배열 스프레드
+### 배열 스프레드
 
 ```javascript
 const arr1 = [1, 2, 3];
@@ -225,7 +225,7 @@ case 'UPDATE_TODO':
     };
 ```
 
-### 2.2 객체 스프레드
+### 객체 스프레드
 
 ```javascript
 const person = { name: "Alice", age: 25 };
@@ -290,7 +290,7 @@ case 'LOGIN_SUCCESS':
     };
 ```
 
-### 2.3 Rest 파라미터
+### Rest 파라미터
 
 ```javascript
 // 나머지 매개변수
@@ -312,9 +312,9 @@ case 'UPDATE_SETTINGS':
     return { ...state, settings };
 ```
 
-## 3. 템플릿 리터럴 (Template Literals)
+## 템플릿 리터럴 (Template Literals)
 
-### 3.1 기본 사용법
+### 기본 사용법
 
 ```javascript
 const name = "Alice";
@@ -333,7 +333,7 @@ const total = `Total: ${10 + 20}`; // "Total: 30"
 const upper = `Hello ${name.toUpperCase()}`; // "Hello ALICE"
 ```
 
-### 3.2 여러 줄 문자열
+### 여러 줄 문자열
 
 ```javascript
 // 기존 방식
@@ -351,7 +351,7 @@ const html2 = `
 `;
 ```
 
-### 3.3 Redux에서의 활용
+### Redux에서의 활용
 
 ```javascript
 // Action Type 생성
@@ -379,9 +379,9 @@ const getTodosUrl = (userId, filter = 'all') =>
     `/api/users/${userId}/todos?filter=${filter}`;
 ```
 
-## 4. 기타 유용한 ES6+ 문법
+## 기타 유용한 ES6+ 문법
 
-### 4.1 단축 속성 (Property Shorthand)
+### 단축 속성 (Property Shorthand)
 
 ```javascript
 const name = "Alice";
@@ -403,7 +403,7 @@ const addTodo = (id, text) => ({
 });
 ```
 
-### 4.2 계산된 속성명 (Computed Property Names)
+### 계산된 속성명 (Computed Property Names)
 
 ```javascript
 const key = 'favoriteColor';
@@ -444,7 +444,7 @@ const todoReducer = createReducer({
 });
 ```
 
-### 4.3 기본 매개변수 (Default Parameters)
+### 기본 매개변수 (Default Parameters)
 
 ```javascript
 // 기존 방식
@@ -473,7 +473,7 @@ const fetchTodos = (userId, page = 1, limit = 10) => ({
 });
 ```
 
-## 5. 실습 문제 🏋️‍♂️
+## 실습 문제 🏋️‍♂️
 
 ### 문제 1: 구조 분해 활용
 ```javascript
@@ -570,7 +570,7 @@ const updateUser = (userData) => {
 };
 ```
 
-## 6. 실전 Redux 코드 예제
+## 실전 Redux 코드 예제
 
 ### 완전한 Reducer 예제
 ```javascript
@@ -655,7 +655,7 @@ const setFilter = (filter = 'all') => ({
 });
 ```
 
-## 7. 흔한 실수 ⚠️
+## 흔한 실수 ⚠️
 
 ### 실수 1: 얕은 복사의 한계
 ```javascript
@@ -700,7 +700,7 @@ const config1 = { ...custom, ...defaults }; // { a: 1, b: 2 }
 const config2 = { ...defaults, ...custom }; // { a: 1, b: 3 }
 ```
 
-## 8. 체크리스트 ✅
+## 체크리스트 ✅
 
 - [ ] 객체 구조 분해로 값을 추출할 수 있다
 - [ ] 배열 구조 분해와 Rest를 사용할 수 있다
@@ -710,7 +710,7 @@ const config2 = { ...defaults, ...custom }; // { a: 1, b: 3 }
 - [ ] ES6+ 문법으로 Redux 코드를 작성할 수 있다
 - [ ] 실습 문제를 모두 해결했다
 
-## 9. 다음 단계 🚀
+## 다음 단계 🚀
 
 **다음 챕터**: `03. 배열과 객체 다루기 - map, filter, reduce`에서는 Redux에서 가장 많이 사용되는 배열 메서드를 완벽히 익힙니다.
 

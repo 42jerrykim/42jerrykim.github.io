@@ -57,9 +57,9 @@ function Counter() {
 - 컴포넌트 구조가 단순
 - 테스트가 쉬움
 
-## 1. useSelector - State 읽기
+## useSelector - State 읽기
 
-### 1.1 기본 사용법
+### 기본 사용법
 
 ```javascript
 import { useSelector } from 'react-redux';
@@ -78,7 +78,7 @@ function TodoList() {
 }
 ```
 
-### 1.2 여러 값 선택하기
+### 여러 값 선택하기
 
 ```javascript
 function Dashboard() {
@@ -98,7 +98,7 @@ function Dashboard() {
 }
 ```
 
-### 1.3 Selector 함수 재사용
+### Selector 함수 재사용
 
 ```javascript
 // selectors.js - Selector 함수 분리
@@ -119,7 +119,7 @@ function TodoList() {
 }
 ```
 
-### 1.4 매개변수가 있는 Selector
+### 매개변수가 있는 Selector
 
 ```javascript
 // ❌ 이렇게 하면 안 됨 (매번 새 함수 생성)
@@ -154,9 +154,9 @@ function TodoItem({ todoId }) {
 }
 ```
 
-## 2. useDispatch - Action 발송
+## useDispatch - Action 발송
 
-### 2.1 기본 사용법
+### 기본 사용법
 
 ```javascript
 import { useDispatch } from 'react-redux';
@@ -181,7 +181,7 @@ function Counter() {
 }
 ```
 
-### 2.2 Action Creator 사용
+### Action Creator 사용
 
 ```javascript
 // actions.js
@@ -210,7 +210,7 @@ function Counter() {
 }
 ```
 
-### 2.3 useCallback으로 최적화
+### useCallback으로 최적화
 
 ```javascript
 function TodoForm() {
@@ -238,9 +238,9 @@ function TodoForm() {
 }
 ```
 
-## 3. useStore - Store 직접 접근
+## useStore - Store 직접 접근
 
-### 3.1 useStore Hook
+### useStore Hook
 
 ```javascript
 import { useStore } from 'react-redux';
@@ -272,9 +272,9 @@ function DebugPanel() {
 
 **주의**: useStore는 거의 사용하지 않음. useSelector와 useDispatch로 충분!
 
-## 4. 성능 최적화
+## 성능 최적화
 
-### 4.1 Equality Function (동등 비교 함수)
+### Equality Function (동등 비교 함수)
 
 ```javascript
 import { shallowEqual } from 'react-redux';
@@ -299,7 +299,7 @@ function UserProfile() {
 }
 ```
 
-### 4.2 커스텀 Equality Function
+### 커스텀 Equality Function
 
 ```javascript
 // 깊은 비교 (lodash 사용)
@@ -318,7 +318,7 @@ const customEqual = (prev, next) => {
 const user = useSelector(state => state.user, customEqual);
 ```
 
-### 4.3 Reselect로 메모이제이션
+### Reselect로 메모이제이션
 
 ```javascript
 import { createSelector } from 'reselect';
@@ -357,9 +357,9 @@ function TodoList() {
 }
 ```
 
-## 5. Custom Hooks - 로직 재사용
+## Custom Hooks - 로직 재사용
 
-### 5.1 useTodos Hook
+### useTodos Hook
 
 ```javascript
 // hooks/useTodos.js
@@ -420,7 +420,7 @@ function TodoApp() {
 }
 ```
 
-### 5.2 useActions Hook
+### useActions Hook
 
 ```javascript
 // hooks/useActions.js
@@ -452,7 +452,7 @@ function TodoList() {
 }
 ```
 
-### 5.3 useSelector + TypeScript
+### useSelector + TypeScript
 
 ```typescript
 // types.ts
@@ -479,9 +479,9 @@ function Counter() {
 }
 ```
 
-## 6. connect HOC를 Hooks로 전환
+## connect HOC를 Hooks로 전환
 
-### 6.1 Before: connect
+### Before: connect
 
 ```javascript
 function TodoList({ todos, addTodo, toggleTodo, removeTodo }) {
@@ -501,7 +501,7 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
 ```
 
-### 6.2 After: Hooks
+### After: Hooks
 
 ```javascript
 import { useSelector, useDispatch } from 'react-redux';
@@ -521,9 +521,9 @@ function TodoList() {
 export default TodoList;
 ```
 
-## 7. 실전 예제: Todo 앱
+## 실전 예제: Todo 앱
 
-### 7.1 완전한 Todo 컴포넌트
+### 완전한 Todo 컴포넌트
 
 ```javascript
 import React, { useState, useCallback } from 'react';
@@ -647,7 +647,7 @@ function TodoApp() {
 export default TodoApp;
 ```
 
-## 8. 실습 문제 🏋️‍♂️
+## 실습 문제 🏋️‍♂️
 
 ### 문제 1: connect를 Hooks로 변환
 
@@ -718,7 +718,7 @@ function Counter() {
 }
 ```
 
-## 9. 흔한 실수 ⚠️
+## 흔한 실수 ⚠️
 
 ### 실수 1: 객체 Selector에서 shallowEqual 빠뜨림
 
@@ -753,7 +753,7 @@ const handleSubmit = useCallback(() => {
 }, [text, dispatch]);
 ```
 
-## 10. 체크리스트 ✅
+## 체크리스트 ✅
 
 - [ ] useSelector로 State를 읽을 수 있다
 - [ ] useDispatch로 Action을 dispatch할 수 있다
@@ -762,7 +762,7 @@ const handleSubmit = useCallback(() => {
 - [ ] connect HOC를 Hooks로 전환할 수 있다
 - [ ] 실습 문제를 모두 해결했다
 
-## 11. 다음 단계 🚀
+## 다음 단계 🚀
 
 **다음 챕터**: `13. 컴포넌트 최적화 - 리렌더링 제어`에서 React.memo, useMemo, useCallback을 활용한 성능 최적화를 배웁니다!
 

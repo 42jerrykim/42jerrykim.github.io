@@ -20,7 +20,7 @@ series_order: 6
 
 ## 상태 관리의 필요성
 
-### 1.1 상태(State)란 무엇인가?
+### 상태(State)란 무엇인가?
 
 ```javascript
 // UI 상태
@@ -47,7 +47,7 @@ const appState = {
 
 **상태**: 시간에 따라 변할 수 있는 데이터
 
-### 1.2 상태 관리가 어려운 이유
+### 상태 관리가 어려운 이유
 
 ```javascript
 // ❌ 여러 컴포넌트에서 같은 상태를 관리
@@ -70,9 +70,9 @@ function App() {
 // 3. 디버깅 어려움: 상태가 어디서 어떻게 변경되는지 추적 어려움
 ```
 
-## 2. Flux 아키텍처의 등장
+## Flux 아키텍처의 등장
 
-### 2.1 기존 MVC 패턴의 문제
+### 기존 MVC 패턴의 문제
 
 ```
 ❌ 양방향 데이터 흐름 (MVC)
@@ -87,7 +87,7 @@ Model ←→ View ←→ Controller
 - 하나의 변경이 연쇄적인 업데이트 유발
 ```
 
-### 2.2 Flux 아키텍처
+### Flux 아키텍처
 
 ```
 ✅ 단방향 데이터 흐름 (Flux)
@@ -109,9 +109,9 @@ Action → Dispatcher → Store → View
 3. **Store**: 상태를 저장하고 관리
 4. **View**: 상태를 화면에 표시
 
-## 3. Redux란 무엇인가?
+## Redux란 무엇인가?
 
-### 3.1 Redux의 정의
+### Redux의 정의
 
 > Redux는 JavaScript 앱을 위한 **예측 가능한 상태 컨테이너**입니다.
 
@@ -119,7 +119,7 @@ Action → Dispatcher → Store → View
 - **예측 가능한**: 같은 입력 → 항상 같은 출력
 - **상태 컨테이너**: 앱의 모든 상태를 한 곳에서 관리
 
-### 3.2 Redux의 탄생
+### Redux의 탄생
 
 ```
 2011: Facebook이 Flux 아키텍처 개념 발표
@@ -128,7 +128,7 @@ Action → Dispatcher → Store → View
 2019: Redux Toolkit 출시 (현대적인 Redux)
 ```
 
-### 3.3 Redux 데이터 흐름
+### Redux 데이터 흐름
 
 ```
 ┌─────────────────────────────────────────┐
@@ -146,9 +146,9 @@ Action → Dispatcher → Store → View
 └─────────────────────────────────────────┘
 ```
 
-## 4. Redux의 3가지 원칙
+## Redux의 3가지 원칙
 
-### 4.1 원칙 1: Single Source of Truth (단일 진실 공급원)
+### 원칙 1: Single Source of Truth (단일 진실 공급원)
 
 ```javascript
 // ✅ Redux: 모든 상태가 하나의 Store에
@@ -169,7 +169,7 @@ const postsState = { ... };
 - 디버깅과 테스트가 쉬움
 - 서버 렌더링(SSR)이 쉬움
 
-### 4.2 원칙 2: State is Read-Only (상태는 읽기 전용)
+### 원칙 2: State is Read-Only (상태는 읽기 전용)
 
 ```javascript
 // ❌ 직접 수정 불가
@@ -187,7 +187,7 @@ dispatch({
 - Time Travel Debugging (시간 여행 디버깅)
 - Undo/Redo 구현 가능
 
-### 4.3 원칙 3: Changes are Made with Pure Functions (순수 함수로만 변경)
+### 원칙 3: Changes are Made with Pure Functions (순수 함수로만 변경)
 
 ```javascript
 // Reducer는 순수 함수여야 함
@@ -218,9 +218,9 @@ function impureReducer(state = [], action) {
 2. 부수 효과(Side Effect) 없음
 3. 입력값을 변경하지 않음
 
-## 5. Redux 핵심 개념
+## Redux 핵심 개념
 
-### 5.1 Store (저장소)
+### Store (저장소)
 
 ```javascript
 // Store: 상태를 저장하는 객체
@@ -238,7 +238,7 @@ store.subscribe(() => {
 store.dispatch({ type: 'INCREMENT' });
 ```
 
-### 5.2 Action (액션)
+### Action (액션)
 
 ```javascript
 // Action: 무슨 일이 일어났는지 설명하는 객체
@@ -265,7 +265,7 @@ function addTodo(text) {
 dispatch(addTodo('Learn Redux'));
 ```
 
-### 5.3 Reducer (리듀서)
+### Reducer (리듀서)
 
 ```javascript
 // Reducer: (state, action) => newState
@@ -294,9 +294,9 @@ function rootReducer(state = initialState, action) {
 }
 ```
 
-## 6. Redux가 해결하는 문제
+## Redux가 해결하는 문제
 
-### 6.1 Props Drilling 해결
+### Props Drilling 해결
 
 ```javascript
 // ❌ Props Drilling
@@ -324,7 +324,7 @@ function Child() {
 }
 ```
 
-### 6.2 상태 공유 간소화
+### 상태 공유 간소화
 
 ```javascript
 // 여러 컴포넌트에서 같은 상태 사용
@@ -349,7 +349,7 @@ function Settings() {
 }
 ```
 
-### 6.3 예측 가능한 상태 변화
+### 예측 가능한 상태 변화
 
 ```javascript
 // 모든 상태 변화는 Action을 통해서만
@@ -361,9 +361,9 @@ dispatch({ type: 'LOGOUT' });
 // Time Travel: 이전 상태로 되돌리기 가능
 ```
 
-## 7. Redux의 장단점
+## Redux의 장단점
 
-### 7.1 장점
+### 장점
 
 ```
 ✅ 예측 가능성: 상태 변화가 명확하고 추적 가능
@@ -375,7 +375,7 @@ dispatch({ type: 'LOGOUT' });
 ✅ 생태계: 많은 라이브러리와 리소스
 ```
 
-### 7.2 단점
+### 단점
 
 ```
 ❌ 보일러플레이트: 초기 설정 코드 많음 (Redux Toolkit으로 해결!)
@@ -384,9 +384,9 @@ dispatch({ type: 'LOGOUT' });
 ❌ 성능: 잘못 사용하면 불필요한 리렌더링
 ```
 
-## 8. 언제 Redux를 사용해야 할까?
+## 언제 Redux를 사용해야 할까?
 
-### 8.1 Redux가 필요한 경우 ✅
+### Redux가 필요한 경우 ✅
 
 ```
 ✅ 여러 컴포넌트에서 같은 상태를 사용
@@ -397,7 +397,7 @@ dispatch({ type: 'LOGOUT' });
 ✅ 서버 상태와 클라이언트 상태를 함께 관리
 ```
 
-### 8.2 Redux가 불필요한 경우 ❌
+### Redux가 불필요한 경우 ❌
 
 ```
 ❌ 작은 앱 (컴포넌트 5개 미만)
@@ -407,9 +407,9 @@ dispatch({ type: 'LOGOUT' });
 ❌ 프로토타입/간단한 데모
 ```
 
-## 9. Redux vs 다른 상태 관리
+## Redux vs 다른 상태 관리
 
-### 9.1 Context API
+### Context API
 
 ```javascript
 // Context API - 작은 앱에 적합
@@ -432,7 +432,7 @@ const store = configureStore({ reducer: rootReducer });
 - Context: 단순한 전역 상태
 - Redux: 복잡한 상태 로직과 디버깅 필요
 
-### 9.2 MobX
+### MobX
 
 ```javascript
 // MobX - 객체 지향적, 자동 반응성
@@ -453,7 +453,7 @@ function todoReducer(state = [], action) {
 }
 ```
 
-### 9.3 Zustand, Jotai, Recoil
+### Zustand, Jotai, Recoil
 
 ```javascript
 // Zustand - 간단한 API
@@ -472,7 +472,7 @@ const counterSlice = createSlice({
 });
 ```
 
-## 10. 실습 퀴즈 🏋️‍♂️
+## 실습 퀴즈 🏋️‍♂️
 
 ### 퀴즈 1: Redux 원칙
 ```
@@ -496,7 +496,7 @@ D) 단일 페이지 랜딩 페이지
 정답: B
 ```
 
-## 11. 체크리스트 ✅
+## 체크리스트 ✅
 
 - [ ] 상태 관리의 필요성을 이해한다
 - [ ] Flux 아키텍처의 개념을 안다
@@ -505,7 +505,7 @@ D) 단일 페이지 랜딩 페이지
 - [ ] Redux의 장단점을 이해한다
 - [ ] 언제 Redux를 사용해야 하는지 판단할 수 있다
 
-## 12. 다음 단계 🚀
+## 다음 단계 🚀
 
 **다음 챕터**: `07. Redux의 핵심 - Action, Reducer, Store`에서 Redux의 핵심 개념을 코드로 직접 구현하며 깊이 있게 학습합니다.
 

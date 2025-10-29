@@ -17,7 +17,7 @@ collection_order: 3
 
 ## 조건문 (Conditional Statements)
 
-### 1. if 문 기본 구조
+### if 문 기본 구조
 
 <function_calls>
 <invoke name="create_diagram">
@@ -37,31 +37,31 @@ collection_order: 3
 
 ## 핵심 내용
 
-### 1. 조건문 (if, elif, else)
+### 조건문 (if, elif, else)
 - **기본 구조**: if-elif-else 체인
 - **조건 표현식**: 단축 평가와 논리 연산
 - **중첩 조건문**: 복잡한 논리 구조
 - **삼항 연산자**: 조건부 표현식 활용
 
-### 2. 반복문
+### 반복문
 - **for 문**: 시퀀스 순회, range() 활용
 - **while 문**: 조건 기반 반복
 - **중첩 반복문**: 다차원 데이터 처리
 - **무한 루프**: 주의사항과 활용법
 
-### 3. 제어 키워드
+### 제어 키워드
 - **break**: 반복문 완전 탈출
 - **continue**: 현재 반복 건너뛰기
 - **else**: 반복문의 정상 완료 처리
 - **pass**: 빈 코드 블록 처리
 
-### 4. 고급 제어 구조
+### 고급 제어 구조
 - **enumerate()**: 인덱스와 값 동시 처리
 - **zip()**: 다중 시퀀스 병렬 처리
 - **reversed()**: 역순 순회
 - **sorted()**: 정렬된 순회
 
-### 5. 예외 기반 제어
+### 예외 기반 제어
 - **try-except**: 예외 처리 기본
 - **try-except-else-finally**: 완전한 예외 처리
 - **raise**: 예외 발생시키기
@@ -119,7 +119,7 @@ else:
     print(f"{number}는 홀수입니다.")
 ```
 
-### 2. if-elif-else 체인
+### if-elif-else 체인
 
 <function_calls>
 <invoke name="create_diagram">
@@ -206,7 +206,7 @@ elif humidity > 60:
     print("습합니다. 제습기를 켜세요.")
 ```
 
-### 3. 조건부 표현식 (삼항 연산자)
+### 조건부 표현식 (삼항 연산자)
 
 ```python
 # 기본 문법: 값1 if 조건 else 값2
@@ -234,7 +234,7 @@ print(f"점수 {score}: {grade}등급")
 
 ## 반복문 (Loops)
 
-### 1. for 문
+### for 문
 
 <function_calls>
 <invoke name="create_diagram">
@@ -349,7 +349,7 @@ for x in range(3):
     print()
 ```
 
-### 2. while 문
+### while 문
 
 <function_calls>
 <invoke name="create_diagram">
@@ -480,7 +480,7 @@ while running:
 
 ## 제어 키워드
 
-### 1. break와 continue
+### break와 continue
 
 ```python
 # break - 반복문 완전 탈출
@@ -519,7 +519,7 @@ while count < 10:
     print(f"카운트: {count}")
 ```
 
-### 2. else 절과 함께 사용하는 break
+### else 절과 함께 사용하는 break
 
 ```python
 # for문의 else: break 없이 정상 완료 시 실행
@@ -561,7 +561,7 @@ else:
     print("로그인 실패: 최대 시도 횟수를 초과했습니다.")
 ```
 
-### 3. pass 문
+### pass 문
 
 ```python
 # pass - 아무것도 하지 않는 구문 (자리표시자)
@@ -589,7 +589,7 @@ except ZeroDivisionError:
 
 ## 고급 제어 구조
 
-### 1. enumerate()로 인덱스와 값 함께 처리
+### enumerate()로 인덱스와 값 함께 처리
 
 ```python
 # 기본 enumerate 사용
@@ -612,7 +612,7 @@ for i, score in enumerate(scores):
     print(f"학생 {i+1}: {score}점 ({grade}등급)")
 ```
 
-### 2. zip()으로 여러 시퀀스 병렬 처리
+### zip()으로 여러 시퀀스 병렬 처리
 
 ```python
 # 기본 zip 사용
@@ -646,7 +646,7 @@ print(f"\n원본 행렬: {matrix}")
 print(f"전치 행렬: {transposed}")
 ```
 
-### 3. reversed()와 sorted()
+### reversed()와 sorted()
 
 ```python
 # reversed() - 역순 순회
@@ -693,7 +693,7 @@ for name, score in sorted(students, key=lambda x: x[1], reverse=True):
 
 ## 중첩 반복문과 실전 예제
 
-### 1. 구구단 마스터
+### 구구단 마스터
 
 ```python
 def multiplication_table():
@@ -762,7 +762,7 @@ def multiplication_table():
 multiplication_table()
 ```
 
-### 2. 숫자 맞추기 게임
+### 숫자 맞추기 게임
 
 ```python
 def number_guessing_game():
@@ -871,7 +871,7 @@ def number_guessing_game():
 number_guessing_game()
 ```
 
-### 3. 학점 관리 시스템
+### 학점 관리 시스템
 
 ```python
 def grade_management_system():
@@ -1147,7 +1147,7 @@ while count < 10:
     print(f"카운트: {count}")
 ```
 
-### 2. else 절과 함께 사용
+### else 절과 함께 사용
 
 ```python
 # for-else: 정상 완료시에만 실행
@@ -1197,7 +1197,7 @@ else:
     print(f"{number}는 소수가 아닙니다.")
 ```
 
-### 3. pass 문
+### pass 문
 
 ```python
 # pass - 빈 코드 블록 (문법상 필요할 때)
@@ -1232,7 +1232,7 @@ for i in range(5):
 
 ## 고급 제어 구조
 
-### 1. 컬렉션 순회 고급 기법
+### 컬렉션 순회 고급 기법
 
 ```python
 # reversed() - 역순 순회
@@ -1264,7 +1264,7 @@ for word in sorted(words, key=len):
     print(f"{word} ({len(word)}글자)")
 ```
 
-### 2. 조건부 반복
+### 조건부 반복
 
 ```python
 # any()와 all() 활용
@@ -1294,7 +1294,7 @@ for name in a_names:
     print(f"- {name}")
 ```
 
-### 3. 반복문 최적화
+### 반복문 최적화
 
 ```python
 # 리스트 컴프리헨션 (더 빠르고 간결)

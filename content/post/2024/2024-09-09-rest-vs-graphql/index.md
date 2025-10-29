@@ -77,12 +77,12 @@ REST API와 GraphQL은 현대 애플리케이션에서 데이터를 교환하기
 <!--
 # 목차
 
-## 1. 개요
+## 개요
    - REST와 GraphQL의 정의
    - REST와 GraphQL의 역사적 배경
    - API의 중요성
 
-## 2. REST API
+## REST API
    - 2.1 REST의 개념
    - 2.2 REST의 작동 방식
    - 2.3 REST의 장점
@@ -95,7 +95,7 @@ REST API와 GraphQL은 현대 애플리케이션에서 데이터를 교환하기
        - 버전 관리의 복잡성
        - 실시간 데이터 업데이트의 어려움
 
-## 3. GraphQL
+## GraphQL
    - 3.1 GraphQL의 개념
    - 3.2 GraphQL의 작동 방식
    - 3.3 GraphQL의 장점
@@ -107,13 +107,13 @@ REST API와 GraphQL은 현대 애플리케이션에서 데이터를 교환하기
        - 학습 곡선
        - 캐싱의 복잡성
 
-## 4. REST와 GraphQL의 유사점
+## REST와 GraphQL의 유사점
    - 4.1 공통 아키텍처 원칙
    - 4.2 HTTP를 통한 데이터 전송
    - 4.3 데이터 형식의 표준화
    - 4.4 미들웨어 및 확장성
 
-## 5. REST와 GraphQL의 차이점
+## REST와 GraphQL의 차이점
    - 5.1 데이터 검색 방식
    - 5.2 버전 관리
    - 5.3 오류 처리
@@ -121,7 +121,7 @@ REST API와 GraphQL은 현대 애플리케이션에서 데이터를 교환하기
    - 5.5 도구 및 환경
    - 5.6 캐싱 메커니즘
 
-## 6. 언제 REST를 사용하고 언제 GraphQL을 사용해야 할까?
+## 언제 REST를 사용하고 언제 GraphQL을 사용해야 할까?
    - 6.1 REST 사용 사례
        - 간단한 데이터 요구 사항
        - 작은 애플리케이션
@@ -130,37 +130,37 @@ REST API와 GraphQL은 현대 애플리케이션에서 데이터를 교환하기
        - 다양한 클라이언트 요청
    - 6.3 REST와 GraphQL의 혼합 사용
 
-## 7. 예제
+## 예제
    - 7.1 REST API 예제
    - 7.2 GraphQL API 예제
    - 7.3 REST와 GraphQL의 비교 예제
 
-## 8. FAQ
+## FAQ
    - 8.1 REST와 GraphQL의 선택 기준은 무엇인가요?
    - 8.2 GraphQL의 성능은 REST보다 항상 우수한가요?
    - 8.3 REST API의 버전 관리는 어떻게 해야 하나요?
    - 8.4 GraphQL의 실시간 데이터 업데이트는 어떻게 구현하나요?
 
-## 9. 관련 기술
+## 관련 기술
    - 9.1 OpenAPI
    - 9.2 gRPC
    - 9.3 WebSocket
    - 9.4 Microservices Architecture
 
-## 10. 결론
+## 결론
    - REST와 GraphQL의 요약
    - 각 기술의 미래 전망
    - 최적의 API 설계를 위한 권장 사항
 -->
 
 <!--
-## 1. 개요
+## 개요
    - REST와 GraphQL의 정의
    - REST와 GraphQL의 역사적 배경
    - API의 중요성
 -->
 
-## 1. 개요
+## 개요
 
 **REST와 GraphQL의 정의**  
 
@@ -193,7 +193,7 @@ graph TD;
 위의 다이어그램은 API의 두 가지 주요 유형인 REST와 GraphQL을 보여준다. REST는 HTTP 메서드와 자원 식별을 통해 작동하며, GraphQL은 유연한 쿼리와 단일 엔드포인트를 통해 클라이언트의 요구를 충족한다.
 
 <!--
-## 2. REST API
+## REST API
    - 2.1 REST의 개념
    - 2.2 REST의 작동 방식
    - 2.3 REST의 장점
@@ -207,7 +207,7 @@ graph TD;
        - 실시간 데이터 업데이트의 어려움
 -->
 
-## 2. REST API
+## REST API
 
 **REST의 개념**  
 
@@ -239,7 +239,7 @@ sequenceDiagram
 - **실시간 데이터 업데이트의 어려움**: REST는 상태 비저장 방식이기 때문에, 클라이언트가 실시간으로 데이터를 업데이트하거나 변경 사항을 수신하는 데 어려움이 있다. 이를 해결하기 위해서는 추가적인 기술이 필요하다.
 
 <!--
-## 3. GraphQL
+## GraphQL
    - 3.1 GraphQL의 개념
    - 3.2 GraphQL의 작동 방식
    - 3.3 GraphQL의 장점
@@ -252,7 +252,7 @@ sequenceDiagram
        - 캐싱의 복잡성
 -->
 
-## 3. GraphQL
+## GraphQL
 
 **GraphQL의 개념** 
 
@@ -318,14 +318,14 @@ graph TD;
 위의 다이어그램은 클라이언트가 GraphQL 서버에 쿼리를 보내고, 서버가 데이터베이스에서 필요한 데이터를 조회하여 클라이언트에 응답하는 과정을 보여준다. GraphQL은 이러한 방식으로 클라이언트와 서버 간의 효율적인 데이터 통신을 가능하게 한다.
 
 <!--
-## 4. REST와 GraphQL의 유사점
+## REST와 GraphQL의 유사점
    - 4.1 공통 아키텍처 원칙
    - 4.2 HTTP를 통한 데이터 전송
    - 4.3 데이터 형식의 표준화
    - 4.4 미들웨어 및 확장성
 -->
 
-## 4. REST와 GraphQL의 유사점
+## REST와 GraphQL의 유사점
 
 REST와 GraphQL은 현대 웹 애플리케이션에서 데이터 전송 및 상호작용을 위한 두 가지 주요 기술이다. 이 두 기술은 여러 면에서 유사점을 가지고 있으며, 이를 통해 개발자들은 다양한 요구 사항에 맞춰 적절한 선택을 할 수 있다.
 
@@ -357,7 +357,7 @@ graph TD;
 위의 다이어그램은 클라이언트와 서버 간의 데이터 전송 흐름을 나타낸다. 클라이언트는 HTTP 요청을 통해 서버에 접근하고, 서버는 미들웨어를 통해 요청을 처리한 후 JSON 형식으로 응답을 반환한다. 이러한 구조는 REST와 GraphQL 모두에서 유사하게 나타난다.
 
 <!--
-## 5. REST와 GraphQL의 차이점
+## REST와 GraphQL의 차이점
    - 5.1 데이터 검색 방식
    - 5.2 버전 관리
    - 5.3 오류 처리
@@ -366,7 +366,7 @@ graph TD;
    - 5.6 캐싱 메커니즘
 -->
 
-## 5. REST와 GraphQL의 차이점
+## REST와 GraphQL의 차이점
 
 REST와 GraphQL은 API 설계에서 널리 사용되는 두 가지 접근 방식이다. 이 두 기술은 여러 면에서 다르며, 각기 다른 장단점을 가지고 있다. 이번 섹션에서는 REST와 GraphQL의 주요 차이점을 살펴보겠다.
 
@@ -408,7 +408,7 @@ REST API는 HTTP 캐싱 메커니즘을 활용하여 클라이언트의 요청�
 이와 같이 REST와 GraphQL은 데이터 검색 방식, 버전 관리, 오류 처리, 실시간 데이터 처리, 도구 및 환경, 캐싱 메커니즘 등 여러 면에서 차이를 보인다. 각 기술의 특성을 이해하고, 상황에 맞는 적절한 선택을 하는 것이 중요하다.
 
 <!--
-## 6. 언제 REST를 사용하고 언제 GraphQL을 사용해야 할까?
+## 언제 REST를 사용하고 언제 GraphQL을 사용해야 할까?
    - 6.1 REST 사용 사례
        - 간단한 데이터 요구 사항
        - 작은 애플리케이션
@@ -418,7 +418,7 @@ REST API는 HTTP 캐싱 메커니즘을 활용하여 클라이언트의 요청�
    - 6.3 REST와 GraphQL의 혼합 사용
 -->
 
-## 6. 언제 REST를 사용하고 언제 GraphQL을 사용해야 할까?
+## 언제 REST를 사용하고 언제 GraphQL을 사용해야 할까?
 
 API를 설계할 때 REST와 GraphQL 중 어떤 기술을 선택할지는 애플리케이션의 요구 사항에 따라 달라진다. 이 섹션에서는 REST와 GraphQL의 사용 사례를 살펴보고, 각각의 장점과 적합한 상황을 설명하겠다.
 
@@ -463,13 +463,13 @@ REST와 GraphQL은 서로 보완적인 기술이므로, 특정 상황에서는 �
 결론적으로, REST와 GraphQL의 선택은 애플리케이션의 요구 사항에 따라 달라지며, 상황에 맞는 적절한 기술을 선택하는 것이 중요하다.
 
 <!--
-## 7. 예제
+## 예제
    - 7.1 REST API 예제
    - 7.2 GraphQL API 예제
    - 7.3 REST와 GraphQL의 비교 예제
 -->
 
-## 7. 예제
+## 예제
 
 **7.1 REST API 예제**
 
@@ -560,14 +560,14 @@ graph TD;
 위의 다이어그램은 클라이언트가 REST API와 GraphQL API를 통해 서버와 상호작용하는 모습을 보여준다. REST API는 특정 엔드포인트에 요청을 보내고, GraphQL API는 단일 엔드포인트에 쿼리를 보내는 방식이다. 이러한 차이는 데이터 요청의 유연성과 효율성에 큰 영향을 미친다.
 
 <!--
-## 8. FAQ
+## FAQ
    - 8.1 REST와 GraphQL의 선택 기준은 무엇인가요?
    - 8.2 GraphQL의 성능은 REST보다 항상 우수한가요?
    - 8.3 REST API의 버전 관리는 어떻게 해야 하나요?
    - 8.4 GraphQL의 실시간 데이터 업데이트는 어떻게 구현하나요?
 -->
 
-## 8. FAQ
+## FAQ
 
 **8.1 REST와 GraphQL의 선택 기준은 무엇인가요?**
 
@@ -609,14 +609,14 @@ graph TD;
 위 다이어그램은 클라이언트가 GraphQL 서버에 Subscription 요청을 보내고, 서버가 이벤트 발생 시 클라이언트에 데이터를 푸시하는 과정을 나타낸다. 이를 통해 GraphQL은 실시간 데이터 업데이트를 효과적으로 지원할 수 있다.
 
 <!--
-## 9. 관련 기술
+## 관련 기술
    - 9.1 OpenAPI
    - 9.2 gRPC
    - 9.3 WebSocket
    - 9.4 Microservices Architecture
 -->
 
-## 9. 관련 기술
+## 관련 기술
 
 API 설계 및 구현에 있어 REST와 GraphQL 외에도 여러 관련 기술들이 존재한다. 이들 기술은 각각의 특성과 장점을 가지고 있으며, 특정 상황에서 유용하게 사용될 수 있다. 이번 섹션에서는 OpenAPI, gRPC, WebSocket, Microservices Architecture에 대해 살펴보겠다.
 
@@ -690,13 +690,13 @@ graph TD;
 이와 같이 OpenAPI, gRPC, WebSocket, Microservices Architecture는 각각의 특성과 장점을 가지고 있으며, REST와 GraphQL과 함께 현대 소프트웨어 개발에서 중요한 역할을 하고 있다. 각 기술의 특성을 이해하고 적절히 활용하는 것이 최적의 API 설계를 위한 중요한 요소이다.
 
 <!--
-## 10. 결론
+## 결론
    - REST와 GraphQL의 요약
    - 각 기술의 미래 전망
    - 최적의 API 설계를 위한 권장 사항
 -->
 
-## 10. 결론
+## 결론
 
 **REST와 GraphQL의 요약**  
 

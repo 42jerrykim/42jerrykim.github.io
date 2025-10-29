@@ -43,9 +43,9 @@ case 'FILTER_COMPLETED':
 
 **핵심**: 배열 메서드는 원본을 변경하지 않고 새 배열을 반환 = 불변성 유지!
 
-## 1. map() - 배열 요소 변환
+## map() - 배열 요소 변환
 
-### 1.1 기본 사용법
+### 기본 사용법
 
 ```javascript
 const numbers = [1, 2, 3, 4, 5];
@@ -68,7 +68,7 @@ const withIndex = numbers.map((num, index, array) => ({
 // ]
 ```
 
-### 1.2 객체 배열 변환
+### 객체 배열 변환
 
 ```javascript
 const users = [
@@ -92,7 +92,7 @@ const enrichedUsers = users.map(user => ({
 }));
 ```
 
-### 1.3 Redux에서의 map 활용 ⭐
+### Redux에서의 map 활용 ⭐
 
 ```javascript
 // Todo 완료 토글
@@ -135,9 +135,9 @@ case 'MARK_ALL_COMPLETE':
     };
 ```
 
-## 2. filter() - 조건부 필터링
+## filter() - 조건부 필터링
 
-### 2.1 기본 사용법
+### 기본 사용법
 
 ```javascript
 const numbers = [1, 2, 3, 4, 5, 6];
@@ -155,7 +155,7 @@ const oddIndices = numbers.filter((n, index) => index % 2 === 1);
 console.log(oddIndices); // [2, 4, 6]
 ```
 
-### 2.2 객체 배열 필터링
+### 객체 배열 필터링
 
 ```javascript
 const users = [
@@ -179,7 +179,7 @@ const youngActiveUsers = users.filter(
 const withoutUser2 = users.filter(user => user.id !== 2);
 ```
 
-### 2.3 Redux에서의 filter 활용 ⭐
+### Redux에서의 filter 활용 ⭐
 
 ```javascript
 // Todo 삭제
@@ -226,9 +226,9 @@ case 'FILTER_TODOS':
     };
 ```
 
-## 3. reduce() - 배열을 하나의 값으로 축소
+## reduce() - 배열을 하나의 값으로 축소
 
-### 3.1 기본 사용법
+### 기본 사용법
 
 ```javascript
 const numbers = [1, 2, 3, 4, 5];
@@ -257,7 +257,7 @@ numbers.reduce((acc, num) => {
 // acc: 10, num: 5  -> 15
 ```
 
-### 3.2 객체/배열 생성
+### 객체/배열 생성
 
 ```javascript
 const users = [
@@ -299,7 +299,7 @@ const roleCounts = users.reduce((acc, user) => {
 // { admin: 2, user: 1 }
 ```
 
-### 3.3 Redux에서의 reduce 활용 ⭐
+### Redux에서의 reduce 활용 ⭐
 
 ```javascript
 // 배열을 정규화된 객체로 변환
@@ -344,9 +344,9 @@ case 'PROCESS_TODOS':
     return { ...state, ...processed };
 ```
 
-## 4. 메서드 체이닝 (Method Chaining)
+## 메서드 체이닝 (Method Chaining)
 
-### 4.1 기본 체이닝
+### 기본 체이닝
 
 ```javascript
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -360,7 +360,7 @@ const result = numbers
 console.log(result); // 60
 ```
 
-### 4.2 실전 체이닝
+### 실전 체이닝
 
 ```javascript
 const todos = [
@@ -388,7 +388,7 @@ const percentage = (completionRate.completed / completionRate.total) * 100;
 // 33.33...
 ```
 
-### 4.3 Redux Selector 패턴 ⭐
+### Redux Selector 패턴 ⭐
 
 ```javascript
 // Selector 함수 (상태에서 파생 데이터 생성)
@@ -429,9 +429,9 @@ const getTodoStats = (state) => {
 };
 ```
 
-## 5. 기타 유용한 배열 메서드
+## 기타 유용한 배열 메서드
 
-### 5.1 find() - 첫 번째 일치 요소 찾기
+### find() - 첫 번째 일치 요소 찾기
 
 ```javascript
 const users = [
@@ -451,7 +451,7 @@ case 'SELECT_TODO':
     return { ...state, selectedTodo };
 ```
 
-### 5.2 some() / every()
+### some() / every()
 
 ```javascript
 const numbers = [1, 2, 3, 4, 5];
@@ -470,7 +470,7 @@ case 'CHECK_ALL_COMPLETE':
     return { ...state, allComplete };
 ```
 
-### 5.3 sort() - 정렬 (⚠️ 원본 변경!)
+### sort() - 정렬 (⚠️ 원본 변경!)
 
 ```javascript
 const numbers = [3, 1, 4, 1, 5, 9];
@@ -497,7 +497,7 @@ case 'SORT_TODOS':
     };
 ```
 
-## 6. 실습 문제 🏋️‍♂️
+## 실습 문제 🏋️‍♂️
 
 ### 문제 1: map과 filter 조합
 ```javascript
@@ -591,9 +591,9 @@ const userTotals = orders
     }, {});
 ```
 
-## 7. 성능 고려사항 ⚡
+## 성능 고려사항 ⚡
 
-### 7.1 체이닝 vs 단일 reduce
+### 체이닝 vs 단일 reduce
 ```javascript
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -614,7 +614,7 @@ const result2 = numbers.reduce((sum, n) => {
 // 둘 다 결과는 같지만 reduce가 더 효율적
 ```
 
-### 7.2 성능 팁
+### 성능 팁
 ```javascript
 // ❌ 불필요한 중간 배열 생성
 const result = todos
@@ -628,7 +628,7 @@ const result = todos
     .map(t => t.name);
 ```
 
-## 8. 체크리스트 ✅
+## 체크리스트 ✅
 
 - [ ] map으로 배열 요소를 변환할 수 있다
 - [ ] filter로 조건부 필터링을 할 수 있다
@@ -638,7 +638,7 @@ const result = todos
 - [ ] find, some, every 등 다른 메서드도 활용할 수 있다
 - [ ] 실습 문제를 모두 해결했다
 
-## 9. 다음 단계 🚀
+## 다음 단계 🚀
 
 **다음 챕터**: `04. 비동기 JavaScript - Promise와 async/await`에서는 Redux에서 API 호출 등 비동기 작업을 처리하는 방법을 배웁니다.
 

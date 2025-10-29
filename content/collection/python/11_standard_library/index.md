@@ -21,7 +21,7 @@ collection_order: 11
 
 ## 핵심 내용
 
-### 1. 시스템 관련 모듈
+### 시스템 관련 모듈
 
 **os 모듈 - 운영체제 인터페이스**
 
@@ -50,7 +50,7 @@ current_path = Path('.')
 print(f"Current path: {current_path.absolute()}")
 ```
 
-### 2. 날짜와 시간
+### 날짜와 시간
 
 **datetime 모듈**
 
@@ -69,7 +69,7 @@ tomorrow = now + timedelta(days=1)
 print(f"Tomorrow: {tomorrow.date()}")
 ```
 
-### 3. 특수 자료구조 (collections)
+### 특수 자료구조 (collections)
 
 ```python
 from collections import defaultdict, Counter, deque

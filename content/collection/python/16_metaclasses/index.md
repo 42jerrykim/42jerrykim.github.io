@@ -17,7 +17,7 @@ collection_order: 16
 
 ## 메타클래스 기초 이해
 
-### 1. 클래스도 객체다
+### 클래스도 객체다
 
 ```python
 # 클래스도 객체라는 것을 증명해보자
@@ -47,7 +47,7 @@ obj = MyClass(42)
 print(obj.new_method())  # New method called with value: 42
 ```
 
-### 2. type의 두 가지 역할
+### type의 두 가지 역할
 
 ```python
 # 역할 1: 객체의 타입 확인
@@ -74,7 +74,7 @@ print(obj.class_var)        # Hello
 print(obj.instance_method()) # Instance method called
 ```
 
-### 3. 메타클래스 계층 구조
+### 메타클래스 계층 구조
 
 ```python
 # 계층 구조 이해
@@ -101,7 +101,7 @@ print(f"type은 type의 인스턴스: {isinstance(type, type)}")  # True
 
 ## 동적 클래스 생성
 
-### 1. type()을 활용한 클래스 생성
+### type()을 활용한 클래스 생성
 
 ```python
 # 함수들을 미리 정의
@@ -134,7 +134,7 @@ print(person.get_info()) # Alice is 30 years old
 print(Person.species)   # Homo sapiens
 ```
 
-### 2. 상속 관계를 가진 동적 클래스
+### 상속 관계를 가진 동적 클래스
 
 ```python
 # 기본 클래스
@@ -172,7 +172,7 @@ print(f"This car has {car.wheels} wheels")  # This car has 4 wheels
 
 ## 커스텀 메타클래스 만들기
 
-### 1. 기본 메타클래스 구현
+### 기본 메타클래스 구현
 
 ```python
 class MyMetaClass(type):
@@ -225,7 +225,7 @@ result1 = calc.add(5, 3)
 result2 = calc.multiply(4, 6)
 ```
 
-### 2. 싱글톤 메타클래스
+### 싱글톤 메타클래스
 
 ```python
 class SingletonMeta(type):
@@ -265,7 +265,7 @@ print(f"db1 is db2: {db1 is db2}")  # True
 print(f"db1 host: {db1.host}")      # localhost (첫 번째 인스턴스 값 유지)
 ```
 
-### 3. 속성 검증 메타클래스
+### 속성 검증 메타클래스
 
 ```python
 class ValidatedMeta(type):
@@ -316,7 +316,7 @@ except AttributeError as e:
 
 ## 고급 메타클래스 기능
 
-### 1. __prepare__ 메서드 활용
+### __prepare__ 메서드 활용
 
 ```python
 class OrderedMeta(type):
@@ -348,7 +348,7 @@ class OrderedClass(metaclass=OrderedMeta):
         pass
 ```
 
-### 2. 자동 등록 시스템
+### 자동 등록 시스템
 
 ```python
 class RegistryMeta(type):
@@ -397,7 +397,7 @@ for name, plugin_class in RegistryMeta.get_registered_classes().items():
     print(f"{name}: {plugin.execute()}")
 ```
 
-### 3. ORM 스타일 메타클래스
+### ORM 스타일 메타클래스
 
 ```python
 class Field:
@@ -489,7 +489,7 @@ except TypeError as e:
 
 ## 메타클래스 대안
 
-### 1. 클래스 데코레이터
+### 클래스 데코레이터
 
 ```python
 def add_logging(cls):
@@ -520,7 +520,7 @@ calc.add(5, 3)
 calc.subtract(10, 4)
 ```
 
-### 2. __init_subclass__ 활용
+### __init_subclass__ 활용
 
 ```python
 class ValidatedBase:

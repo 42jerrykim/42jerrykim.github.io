@@ -61,7 +61,7 @@ date: 2025-01-10
 
 작업 표시줄 설정을 변경해도 문제가 지속되는 경우, Windows Explorer 프로세스를 재시작하는 방법을 시도해볼 수 있다. 이는 다음과 같은 두 가지 방법으로 수행할 수 있다:
 
-### 1. Task Manager를 통한 재시작
+### Task Manager를 통한 재시작
 
 1. Task Manager를 연다 (Ctrl + Shift + Esc)
 2. "Processes" 탭에서 "Windows Explorer"를 찾는다
@@ -71,7 +71,7 @@ date: 2025-01-10
 |:---:|
 |Task Manager에서 Explorer 재시작 화면|
 
-### 2. Command Prompt를 통한 재시작
+### Command Prompt를 통한 재시작
 
 1. Command Prompt를 관리자 권한으로 실행한다 (Windows 키 + X > Windows PowerShell(관리자))
 2. 다음 명령어들을 순서대로 입력한다:

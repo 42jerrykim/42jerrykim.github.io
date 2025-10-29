@@ -36,9 +36,9 @@ console.log(numbers); // [1, 2, 3] - 원본 유지
 console.log(newNumbers); // [1, 2, 3, 4]
 ```
 
-## 1. 왜 불변성이 중요한가?
+## 왜 불변성이 중요한가?
 
-### 1.1 Redux에서 불변성이 필수인 이유
+### Redux에서 불변성이 필수인 이유
 
 ```javascript
 // ❌ 불변성 위반 - Redux가 변경을 감지 못함
@@ -74,7 +74,7 @@ const newState = [...oldState, { id: 2, text: 'Build App' }];
 oldState === newState; // false → 변경 감지!
 ```
 
-### 1.2 React 리렌더링
+### React 리렌더링
 
 ```javascript
 // React는 참조 비교로 리렌더링 결정
@@ -106,7 +106,7 @@ dispatch({
 // [...state.todos, ...] → 새 참조 → 리렌더링!
 ```
 
-### 1.3 Time Travel Debugging
+### Time Travel Debugging
 
 ```javascript
 // 불변성 덕분에 이전 상태 유지
@@ -127,9 +127,9 @@ function undo() {
 }
 ```
 
-## 2. 배열 불변 업데이트
+## 배열 불변 업데이트
 
-### 2.1 추가 (Add)
+### 추가 (Add)
 
 ```javascript
 const state = [1, 2, 3];
@@ -158,7 +158,7 @@ case 'INSERT_TODO':
     ];
 ```
 
-### 2.2 제거 (Remove)
+### 제거 (Remove)
 
 ```javascript
 const state = [
@@ -190,7 +190,7 @@ case 'REMOVE_TODO_AT':
     ];
 ```
 
-### 2.3 수정 (Update)
+### 수정 (Update)
 
 ```javascript
 const state = [
@@ -224,7 +224,7 @@ case 'UPDATE_TODO':
     );
 ```
 
-### 2.4 정렬 (Sort)
+### 정렬 (Sort)
 
 ```javascript
 const state = [3, 1, 4, 1, 5, 9];
@@ -246,9 +246,9 @@ case 'SORT_TODOS':
     });
 ```
 
-## 3. 객체 불변 업데이트
+## 객체 불변 업데이트
 
-### 3.1 속성 추가/수정
+### 속성 추가/수정
 
 ```javascript
 const state = {
@@ -279,7 +279,7 @@ case 'UPDATE_USER':
     };
 ```
 
-### 3.2 속성 제거
+### 속성 제거
 
 ```javascript
 const state = {
@@ -312,7 +312,7 @@ case 'REMOVE_PASSWORD':
     };
 ```
 
-### 3.3 중첩 객체 업데이트
+### 중첩 객체 업데이트
 
 ```javascript
 const state = {
@@ -363,9 +363,9 @@ case 'UPDATE_CITY':
     };
 ```
 
-## 4. 복잡한 State 업데이트 패턴
+## 복잡한 State 업데이트 패턴
 
-### 4.1 배열 내 객체 업데이트
+### 배열 내 객체 업데이트
 
 ```javascript
 const state = {
@@ -398,7 +398,7 @@ case 'ADD_TAG_TO_TODO':
     };
 ```
 
-### 4.2 정규화된 State
+### 정규화된 State
 
 ```javascript
 const state = {
@@ -460,9 +460,9 @@ case 'UPDATE_TODO':
     };
 ```
 
-## 5. Immer - 불변성을 쉽게
+## Immer - 불변성을 쉽게
 
-### 5.1 Immer 기본 사용
+### Immer 기본 사용
 
 ```bash
 npm install immer
@@ -492,7 +492,7 @@ const newState = produce(state, draft => {
 });
 ```
 
-### 5.2 Immer로 Redux Reducer 작성
+### Immer로 Redux Reducer 작성
 
 ```javascript
 import produce from 'immer';
@@ -550,7 +550,7 @@ function todoReducer(state = initialState, action) {
 }
 ```
 
-### 5.3 중첩 업데이트가 쉬워짐
+### 중첩 업데이트가 쉬워짐
 
 ```javascript
 const state = {
@@ -593,9 +593,9 @@ const newState = produce(state, draft => {
 });
 ```
 
-## 6. 성능 고려사항
+## 성능 고려사항
 
-### 6.1 얕은 복사 vs 깊은 복사
+### 얕은 복사 vs 깊은 복사
 
 ```javascript
 // 얕은 복사 (Shallow Copy)
@@ -617,7 +617,7 @@ const deepCopy = cloneDeep(original);
 // 중첩된 부분만 필요할 때 복사
 ```
 
-### 6.2 대용량 배열 처리
+### 대용량 배열 처리
 
 ```javascript
 // ❌ 느림: 매번 새 배열 생성
@@ -659,7 +659,7 @@ function updateOne(state, id, value) {
 }
 ```
 
-## 7. 흔한 실수와 해결법
+## 흔한 실수와 해결법
 
 ### 실수 1: 배열 메서드 혼동
 
@@ -717,7 +717,7 @@ const newState = produce(state, draft => {
 });
 ```
 
-## 8. 실습 문제 🏋️‍♂️
+## 실습 문제 🏋️‍♂️
 
 ### 문제 1: 배열 불변 업데이트
 ```javascript
@@ -771,7 +771,7 @@ const newState = produce(state, draft => {
 });
 ```
 
-## 9. 체크리스트 ✅
+## 체크리스트 ✅
 
 - [ ] 불변성의 개념과 필요성을 이해한다
 - [ ] 배열을 불변하게 업데이트할 수 있다
@@ -780,7 +780,7 @@ const newState = produce(state, draft => {
 - [ ] Immer 라이브러리를 사용할 수 있다
 - [ ] 불변성 관련 흔한 실수를 피할 수 있다
 
-## 10. 다음 단계 🚀
+## 다음 단계 🚀
 
 **다음 챕터**: `09. Redux 데이터 흐름 이해하기`에서 Redux의 단방향 데이터 흐름을 시각화하고 전체 프로세스를 완벽히 이해합니다!
 

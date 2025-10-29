@@ -22,84 +22,84 @@ header:
 <!--
 # 목차
 
-## 1. 개요
+## 개요
    - I/O Redirection의 정의
    - Redirection의 중요성 및 활용 사례
 
-## 2. Redirection의 기본 개념
+## Redirection의 기본 개념
    - Redirection의 작동 원리
    - 파일 디스크립터(File Descriptors)란?
    - Redirection 연산자 소개
 
-## 3. Redirection의 종류
-   ### 3.1 입력 리디렉션 (Redirecting Input)
+## Redirection의 종류
+   ### 입력 리디렉션 (Redirecting Input)
    - 입력 리디렉션의 형식
    - 예제: 파일에서 입력 받기
 
-   ### 3.2 출력 리디렉션 (Redirecting Output)
+   ### 출력 리디렉션 (Redirecting Output)
    - 출력 리디렉션의 형식
    - 예제: 파일로 출력하기
 
-   ### 3.3 출력 추가 리디렉션 (Appending Redirected Output)
+   ### 출력 추가 리디렉션 (Appending Redirected Output)
    - 출력 추가 리디렉션의 형식
    - 예제: 파일에 추가하기
 
-   ### 3.4 표준 출력 및 표준 오류 리디렉션 (Redirecting Standard Output and Standard Error)
+   ### 표준 출력 및 표준 오류 리디렉션 (Redirecting Standard Output and Standard Error)
    - 두 가지 형식의 설명
    - 예제: 표준 오류를 파일로 리디렉션하기
 
-   ### 3.5 표준 출력 및 표준 오류 추가 리디렉션 (Appending Standard Output and Standard Error)
+   ### 표준 출력 및 표준 오류 추가 리디렉션 (Appending Standard Output and Standard Error)
    - 형식 및 예제
 
-   ### 3.6 Here Documents
+   ### Here Documents
    - Here Document의 정의 및 형식
    - 예제: Here Document 사용하기
 
-   ### 3.7 Here Strings
+   ### Here Strings
    - Here String의 정의 및 형식
    - 예제: Here String 사용하기
 
-   ### 3.8 파일 디스크립터 복제 (Duplicating File Descriptors)
+   ### 파일 디스크립터 복제 (Duplicating File Descriptors)
    - 입력 및 출력 파일 디스크립터 복제 방법
    - 예제: 파일 디스크립터 복제하기
 
-   ### 3.9 파일 디스크립터 이동 (Moving File Descriptors)
+   ### 파일 디스크립터 이동 (Moving File Descriptors)
    - 파일 디스크립터 이동의 형식
    - 예제: 파일 디스크립터 이동하기
 
-   ### 3.10 읽기 및 쓰기를 위한 파일 디스크립터 열기 (Opening File Descriptors for Reading and Writing)
+   ### 읽기 및 쓰기를 위한 파일 디스크립터 열기 (Opening File Descriptors for Reading and Writing)
    - 형식 및 예제
 
-## 4. 파이프라인 (Pipelines)
+## 파이프라인 (Pipelines)
    - 파이프라인의 정의 및 사용법
    - 예제: 여러 명령어 연결하기
 
-## 5. 필터 (Filters)
+## 필터 (Filters)
    - 필터의 정의 및 역할
    - 일반적인 필터 명령어 목록 및 설명
 
-## 6. FAQ
+## FAQ
    - I/O Redirection 관련 자주 묻는 질문
    - Redirection 사용 시 주의사항
 
-## 7. 관련 기술
+## 관련 기술
    - Bash 스크립트
    - 리눅스 명령어
    - 텍스트 처리 도구 (예: awk, sed)
 
-## 8. 결론
+## 결론
    - I/O Redirection의 요약
    - 실무에서의 활용 방안
    - 추가 학습 자료 및 참고 링크
 -->
 
 <!--
-## 1. 개요
+## 개요
    - I/O Redirection의 정의
    - Redirection의 중요성 및 활용 사례
 -->
 
-## 1. 개요
+## 개요
 
 **I/O Redirection의 정의**  
 
@@ -140,13 +140,13 @@ graph TD;
 이 다이어그램은 사용자가 입력한 데이터가 프로그램으로 전달되고, 프로그램의 출력과 오류가 각각 파일로 리디렉션되는 과정을 보여준다. I/O Redirection은 이러한 방식으로 데이터 흐름을 효율적으로 관리할 수 있게 해준다.
 
 <!--
-## 2. Redirection의 기본 개념
+## Redirection의 기본 개념
    - Redirection의 작동 원리
    - 파일 디스크립터(File Descriptors)란?
    - Redirection 연산자 소개
 -->
 
-## 2. Redirection의 기본 개념
+## Redirection의 기본 개념
 
 **Redirection의 작동 원리**  
 
@@ -190,13 +190,13 @@ echo "Hello, World!" > output.txt
 위 명령어는 "Hello, World!"라는 문자열을 `output.txt` 파일에 저장한다.
 
 <!--
-## 3. Redirection의 종류
-   ### 3.1 입력 리디렉션 (Redirecting Input)
+## Redirection의 종류
+   ### 입력 리디렉션 (Redirecting Input)
    - 입력 리디렉션의 형식
    - 예제: 파일에서 입력 받기
 -->
 
-## 3. Redirection의 종류
+## Redirection의 종류
 
 **입력 리디렉션 (Redirecting Input)**
 
@@ -232,7 +232,7 @@ graph TD;
 이 다이어그램은 입력 파일이 명령어로 읽혀지고, 그 결과가 표준 출력으로 나가는 과정을 보여준다. 입력 리디렉션을 통해 사용자는 파일의 내용을 직접 입력하지 않고도 명령어를 실행할 수 있는 장점을 누릴 수 있다.
 
 <!--
-   ### 3.2 출력 리디렉션 (Redirecting Output)
+   ### 출력 리디렉션 (Redirecting Output)
    - 출력 리디렉션의 형식
    - 예제: 파일로 출력하기
 -->
@@ -276,12 +276,12 @@ graph TD;
 이와 같이 출력 리디렉션을 활용하면 명령어의 결과를 파일로 저장하여 나중에 참고하거나 분석할 수 있는 장점이 있다.
 
 <!--
-   ### 3.3 출력 추가 리디렉션 (Appending Redirected Output)
+   ### 출력 추가 리디렉션 (Appending Redirected Output)
    - 출력 추가 리디렉션의 형식
    - 예제: 파일에 추가하기
 -->
 
-## 3.3 출력 추가 리디렉션 (Appending Redirected Output)
+## 출력 추가 리디렉션 (Appending Redirected Output)
 
 **출력 추가 리디렉션의 형식**  
 
@@ -320,12 +320,12 @@ graph TD;
 출력 추가 리디렉션은 로그 파일이나 데이터 파일에 지속적으로 정보를 기록할 때 유용하게 사용된다. 이를 통해 기존 데이터를 손실하지 않고 새로운 데이터를 추가할 수 있다.
 
 <!--
-   ### 3.4 표준 출력 및 표준 오류 리디렉션 (Redirecting Standard Output and Standard Error)
+   ### 표준 출력 및 표준 오류 리디렉션 (Redirecting Standard Output and Standard Error)
    - 두 가지 형식의 설명
    - 예제: 표준 오류를 파일로 리디렉션하기
 -->
 
-## 3.4 표준 출력 및 표준 오류 리디렉션 (Redirecting Standard Output and Standard Error)
+## 표준 출력 및 표준 오류 리디렉션 (Redirecting Standard Output and Standard Error)
 
 **두 가지 형식의 설명**
 
@@ -359,12 +359,12 @@ graph TD;
 위의 다이어그램은 터미널에서 발생하는 표준 출력과 표준 오류가 각각 다른 파일로 리디렉션되는 과정을 보여준다. 이와 같은 리디렉션을 활용하면, 프로그램의 실행 결과와 오류를 효과적으로 관리할 수 있다.
 
 <!--
-   ### 3.6 Here Documents
+   ### Here Documents
    - Here Document의 정의 및 형식
    - 예제: Here Document 사용하기
 -->
 
-## 3.6 Here Documents
+## Here Documents
 
 **Here Document의 정의 및 형식**  
 
@@ -416,12 +416,12 @@ graph TD;
 이 다이어그램은 Here Document의 흐름을 간단하게 설명하며, 입력이 어떻게 처리되는지를 보여준다. Here Document는 스크립트 작성 시 가독성을 높이고, 복잡한 입력을 간편하게 관리할 수 있는 유용한 도구이다.
 
 <!--
-   ### 3.7 Here Strings
+   ### Here Strings
    - Here String의 정의 및 형식
    - 예제: Here String 사용하기
 -->
 
-## 3.7 Here Strings
+## Here Strings
 
 **Here String의 정의 및 형식**  
 
@@ -463,12 +463,12 @@ graph TD;
 이와 같이 Here String은 간단하고 직관적인 방법으로 문자열을 명령어에 전달할 수 있는 유용한 기능이다.
 
 <!--
-   ### 3.8 파일 디스크립터 복제 (Duplicating File Descriptors)
+   ### 파일 디스크립터 복제 (Duplicating File Descriptors)
    - 입력 및 출력 파일 디스크립터 복제 방법
    - 예제: 파일 디스크립터 복제하기
 -->
 
-## 3.8 파일 디스크립터 복제 (Duplicating File Descriptors)
+## 파일 디스크립터 복제 (Duplicating File Descriptors)
 
 **입력 및 출력 파일 디스크립터 복제 방법**  
 
@@ -531,12 +531,12 @@ graph TD;
 이와 같이 파일 디스크립터 복제를 통해 프로세스는 다양한 I/O 자원에 유연하게 접근할 수 있으며, 이를 통해 효율적인 데이터 처리가 가능해진다.
 
 <!--
-   ### 3.9 파일 디스크립터 이동 (Moving File Descriptors)
+   ### 파일 디스크립터 이동 (Moving File Descriptors)
    - 파일 디스크립터 이동의 형식
    - 예제: 파일 디스크립터 이동하기
 -->
 
-## 3.9 파일 디스크립터 이동 (Moving File Descriptors)
+## 파일 디스크립터 이동 (Moving File Descriptors)
 
 **파일 디스크립터 이동의 형식** 
 
@@ -594,12 +594,12 @@ graph TD;
 이와 같이 파일 디스크립터 이동을 통해 프로세스의 출력 방향을 변경할 수 있으며, 다양한 상황에서 유용하게 활용될 수 있다.
 
 <!--
-## 4. 파이프라인 (Pipelines)
+## 파이프라인 (Pipelines)
    - 파이프라인의 정의 및 사용법
    - 예제: 여러 명령어 연결하기
 -->
 
-## 4. 파이프라인 (Pipelines)
+## 파이프라인 (Pipelines)
 
 **파이프라인의 정의 및 사용법**  
 
@@ -637,12 +637,12 @@ graph TD;
 파이프라인은 리눅스 환경에서 매우 유용한 도구이며, 다양한 명령어를 조합하여 효율적으로 작업을 수행할 수 있도록 도와준다.
 
 <!--
-## 5. 필터 (Filters)
+## 필터 (Filters)
    - 필터의 정의 및 역할
    - 일반적인 필터 명령어 목록 및 설명
 -->
 
-## 5. 필터 (Filters)
+## 필터 (Filters)
 
 **필터의 정의 및 역할**  
 
@@ -675,12 +675,12 @@ graph TD;
 이와 같이 필터는 입력 데이터를 받아 처리한 후, 원하는 형식으로 출력하는 역할을 수행한다. 필터를 적절히 활용하면 데이터 처리 작업을 효율적으로 수행할 수 있다.
 
 <!--
-## 6. FAQ
+## FAQ
    - I/O Redirection 관련 자주 묻는 질문
    - Redirection 사용 시 주의사항
 -->
 
-## 6. FAQ
+## FAQ
 
 **I/O Redirection 관련 자주 묻는 질문**
 
@@ -739,13 +739,13 @@ graph TD;
 이와 같이 I/O Redirection에 대한 자주 묻는 질문과 주의사항을 정리하였다. 이를 통해 리디렉션을 보다 효과적으로 활용할 수 있을 것이다.
 
 <!--
-## 7. 관련 기술
+## 관련 기술
    - Bash 스크립트
    - 리눅스 명령어
    - 텍스트 처리 도구 (예: awk, sed)
 -->
 
-## 7. 관련 기술
+## 관련 기술
 
 **Bash 스크립트**  
 
@@ -794,13 +794,13 @@ graph TD;
 이와 같이 Bash 스크립트, 리눅스 명령어, 텍스트 처리 도구는 I/O Redirection과 함께 사용되어 효율적인 데이터 처리 및 자동화를 가능하게 한다.
 
 <!--
-## 8. 결론
+## 결론
    - I/O Redirection의 요약
    - 실무에서의 활용 방안
    - 추가 학습 자료 및 참고 링크
 -->
 
-## 8. 결론
+## 결론
 
 **I/O Redirection의 요약**  
 

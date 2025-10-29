@@ -31,9 +31,9 @@ Reducer (어떻게 변경할지)
 Store (상태 저장소)
 ```
 
-## 1. Action - 무엇이 일어났는지
+## Action - 무엇이 일어났는지
 
-### 1.1 Action의 구조
+### Action의 구조
 
 ```javascript
 // Action은 plain JavaScript 객체
@@ -59,7 +59,7 @@ const fsaAction = {
 - 직렬화 가능한 값만 사용 (함수, Promise 등 불가)
 - 타입은 보통 대문자 상수
 
-### 1.2 Action Types
+### Action Types
 
 ```javascript
 // ❌ 문자열 직접 사용 (오타 위험)
@@ -86,7 +86,7 @@ enum TodoActionTypes {
 }
 ```
 
-### 1.3 Action Creator
+### Action Creator
 
 ```javascript
 // 단순 Action Creator
@@ -131,7 +131,7 @@ function removeTodoIfCompleted(id) {
 }
 ```
 
-### 1.4 Action Creator 패턴
+### Action Creator 패턴
 
 ```javascript
 // 1. 기본 패턴
@@ -175,9 +175,9 @@ function createAction<T>(type: string) {
 const addTodo = createAction<{ text: string }>('ADD_TODO');
 ```
 
-## 2. Reducer - 상태를 어떻게 변경할지
+## Reducer - 상태를 어떻게 변경할지
 
-### 2.1 Reducer의 기본 구조
+### Reducer의 기본 구조
 
 ```javascript
 // Reducer: (state, action) => newState
@@ -203,7 +203,7 @@ state = counterReducer(state, { type: 'INCREMENT' }); // 1
 state = counterReducer(state, { type: 'INCREMENT' }); // 2
 ```
 
-### 2.2 순수 함수 규칙
+### 순수 함수 규칙
 
 ```javascript
 // ✅ 순수 함수 - 좋은 Reducer
@@ -253,7 +253,7 @@ function badReducer(state = [], action) {
 - [ ] 부수 효과 없음 (API 호출, 랜덤 값, 날짜 등)
 - [ ] 인자를 변경하지 않음
 
-### 2.3 복잡한 State 다루기
+### 복잡한 State 다루기
 
 ```javascript
 // 중첩된 객체 업데이트
@@ -307,7 +307,7 @@ function appReducer(state = initialState, action) {
 }
 ```
 
-### 2.4 Reducer 패턴들
+### Reducer 패턴들
 
 ```javascript
 // 1. Lookup Table 패턴
@@ -357,9 +357,9 @@ function todoReducer(state = [], action) {
 }
 ```
 
-## 3. combineReducers - Reducer 조합
+## combineReducers - Reducer 조합
 
-### 3.1 기본 사용법
+### 기본 사용법
 
 ```javascript
 import { combineReducers } from 'redux';
@@ -396,7 +396,7 @@ const rootReducer = combineReducers({
 // }
 ```
 
-### 3.2 중첩된 Reducer
+### 중첩된 Reducer
 
 ```javascript
 // User Reducers
@@ -431,7 +431,7 @@ const rootReducer = combineReducers({
 // }
 ```
 
-### 3.3 커스텀 combineReducers
+### 커스텀 combineReducers
 
 ```javascript
 // combineReducers의 동작 원리
@@ -457,9 +457,9 @@ const rootReducer = customCombineReducers({
 });
 ```
 
-## 4. Store - 상태 관리의 중심
+## Store - 상태 관리의 중심
 
-### 4.1 Store 생성
+### Store 생성
 
 ```javascript
 import { createStore } from 'redux';
@@ -484,7 +484,7 @@ const store = createStore(
 );
 ```
 
-### 4.2 Store API
+### Store API
 
 ```javascript
 // 1. getState() - 현재 상태 읽기
@@ -509,7 +509,7 @@ unsubscribe();
 store.replaceReducer(newRootReducer);
 ```
 
-### 4.3 Subscribe 패턴
+### Subscribe 패턴
 
 ```javascript
 // 기본 Subscribe
@@ -559,9 +559,9 @@ function notifySubscribers() {
 store.subscribe(notifySubscribers);
 ```
 
-## 5. 실전 Redux 구현
+## 실전 Redux 구현
 
-### 5.1 완전한 Todo 앱 Redux
+### 완전한 Todo 앱 Redux
 
 ```javascript
 // types.js
@@ -674,7 +674,7 @@ store.dispatch(setFilter('active'));
 console.log('Final State:', store.getState());
 ```
 
-### 5.2 TypeScript Redux
+### TypeScript Redux
 
 ```typescript
 // types.ts
@@ -762,7 +762,7 @@ export default function todoReducer(
 }
 ```
 
-## 6. 실습 문제 🏋️‍♂️
+## 실습 문제 🏋️‍♂️
 
 ### 문제 1: Counter Reducer 작성
 ```javascript
@@ -818,7 +818,7 @@ export const updateProfile = (profileData) => ({
 });
 ```
 
-## 7. 체크리스트 ✅
+## 체크리스트 ✅
 
 - [ ] Action의 구조를 이해하고 작성할 수 있다
 - [ ] Action Creator를 만들 수 있다
@@ -827,7 +827,7 @@ export const updateProfile = (profileData) => ({
 - [ ] Store를 생성하고 API를 사용할 수 있다
 - [ ] dispatch, getState, subscribe를 활용할 수 있다
 
-## 8. 다음 단계 🚀
+## 다음 단계 🚀
 
 **다음 챕터**: `08. 불변성의 중요성 - Immutability in Redux`에서 Redux에서 가장 중요한 불변성 개념을 깊이 있게 학습합니다!
 

@@ -21,7 +21,7 @@ collection_order: 14
 
 ## 핵심 내용
 
-### 1. 이터레이터 기본
+### 이터레이터 기본
 
 **이터러블과 이터레이터**
 
@@ -97,7 +97,7 @@ for i in my_range:
     print(i)  # 0, 1, 2, 3, 4
 ```
 
-### 2. 제너레이터 함수
+### 제너레이터 함수
 
 **기본 제너레이터**
 
@@ -169,7 +169,7 @@ first_ten = [next(infinite) for _ in range(10)]
 print(first_ten)  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
-### 3. 제너레이터 표현식
+### 제너레이터 표현식
 
 ```python
 # 리스트 컴프리헨션 vs 제너레이터 표현식
@@ -200,7 +200,7 @@ words = (word.lower() for word in text.split())
 print(list(words))  # ['hello', 'world', 'python']
 ```
 
-### 4. 고급 제너레이터 기법
+### 고급 제너레이터 기법
 
 **yield from**
 

@@ -25,7 +25,7 @@ title: '[Jekyll] Jekyll에서 Plantuml 사용하기'
 
 Github Action을 사용하여 Github에서 랜더링을 하거나 Plantuml의 온라인 툴을 사용하여 이미지를 직접 출력하는 두가지 방식이 있다. 둘중에 적합하다고 생각하는 방법을 고민하고 적용해 보도록 한다.
 
-### 1. GitHub Action을 사용하는 방법
+### GitHub Action을 사용하는 방법
 
 [https://github.com/marketplace?query=plantuml](https://github.com/marketplace?query=plantuml) 에서 적용가능한 Action을 확인 할 수 있다. 가장 별점이 높은 [Generate Plantuml](https://github.com/marketplace/actions/generate-plantuml)을 사용해 보았다.
 
@@ -66,7 +66,7 @@ Push가 되면 Github Action이 동작하는 것을 확인 할 수 있다.
 
 ![/plantuml/md-sample-sequence.svg](/plantuml/md-sample-sequence.svg)
 
-### 2. 이미지 링크를 삽입하는 방법
+### 이미지 링크를 삽입하는 방법
 
 PlantUML 에서 링크를 이용한 방법이다.
 

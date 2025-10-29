@@ -38,9 +38,9 @@ dispatch({ type: 'FETCH_USER_SUCCESS', payload: user });
 
 **핵심**: JavaScript는 싱글 스레드이므로 비동기 처리가 필수!
 
-## 1. 동기 vs 비동기
+## 동기 vs 비동기
 
-### 1.1 동기 코드 (Synchronous)
+### 동기 코드 (Synchronous)
 
 ```javascript
 console.log("1. 시작");
@@ -50,7 +50,7 @@ console.log("3. 끝");
 // 출력 순서: 1 → 2 → 3 (순차적)
 ```
 
-### 1.2 비동기 코드 (Asynchronous)
+### 비동기 코드 (Asynchronous)
 
 ```javascript
 console.log("1. 시작");
@@ -65,7 +65,7 @@ console.log("3. 끝");
 // setTimeout은 비동기이므로 기다리지 않음!
 ```
 
-### 1.3 왜 비동기가 필요한가?
+### 왜 비동기가 필요한가?
 
 ```javascript
 // ❌ 만약 동기로 처리한다면...
@@ -79,9 +79,9 @@ fetchDataFromServer()
 // 즉시 다음 코드 실행, 화면도 정상 작동!
 ```
 
-## 2. Callback - 전통적인 비동기 처리
+## Callback - 전통적인 비동기 처리
 
-### 2.1 Callback 기본
+### Callback 기본
 
 ```javascript
 // Callback 함수
@@ -98,7 +98,7 @@ fetchData((data) => {
 });
 ```
 
-### 2.2 Callback Hell 🔥
+### Callback Hell 🔥
 
 ```javascript
 // ❌ 콜백 지옥 (Callback Hell)
@@ -120,9 +120,9 @@ fetchUser(userId, (user) => {
 - 에러 처리 복잡
 - 유지보수 어려움
 
-## 3. Promise - 더 나은 비동기 처리
+## Promise - 더 나은 비동기 처리
 
-### 3.1 Promise 기본 개념
+### Promise 기본 개념
 
 ```javascript
 // Promise 생성
@@ -146,7 +146,7 @@ promise
     .finally(() => console.log("완료")); // 항상 실행
 ```
 
-### 3.2 Promise States (상태)
+### Promise States (상태)
 
 ```javascript
 // Pending (대기) - 초기 상태
@@ -172,7 +172,7 @@ promise
     });
 ```
 
-### 3.3 Promise Chaining (체이닝)
+### Promise Chaining (체이닝)
 
 ```javascript
 // ✅ Callback Hell을 Promise로 해결
@@ -193,7 +193,7 @@ Promise.resolve(5)
     .then(result => console.log(result)); // 169
 ```
 
-### 3.4 실전 예제: fetch API
+### 실전 예제: fetch API
 
 ```javascript
 // fetch는 Promise를 반환
@@ -213,7 +213,7 @@ fetch('https://jsonplaceholder.typicode.com/users/1')
     .catch(error => console.error('에러:', error));
 ```
 
-### 3.5 Promise 정적 메서드
+### Promise 정적 메서드
 
 ```javascript
 // Promise.all - 모든 Promise 완료 대기
@@ -246,9 +246,9 @@ Promise.allSettled([promise1, promise2, promise3])
     });
 ```
 
-## 4. async/await - 가장 현대적인 방법 ⭐
+## async/await - 가장 현대적인 방법 ⭐
 
-### 4.1 기본 문법
+### 기본 문법
 
 ```javascript
 // async 함수는 항상 Promise를 반환
@@ -269,7 +269,7 @@ async function getUser() {
 getUser().then(user => console.log(user));
 ```
 
-### 4.2 동기 코드처럼 작성
+### 동기 코드처럼 작성
 
 ```javascript
 // Promise 체이닝
@@ -289,7 +289,7 @@ async function getUserData() {
 }
 ```
 
-### 4.3 에러 처리 (try-catch)
+### 에러 처리 (try-catch)
 
 ```javascript
 async function fetchData() {
@@ -316,7 +316,7 @@ async function fetchData() {
 const data = await fetchData();
 ```
 
-### 4.4 병렬 처리
+### 병렬 처리
 
 ```javascript
 // ❌ 순차 처리 (느림)
@@ -352,9 +352,9 @@ async function conditionalParallel() {
 }
 ```
 
-## 5. Redux에서 비동기 처리 미리보기
+## Redux에서 비동기 처리 미리보기
 
-### 5.1 기본 패턴
+### 기본 패턴
 
 ```javascript
 // Action Types
@@ -404,7 +404,7 @@ const todoReducer = (state = initialState, action) => {
 };
 ```
 
-### 5.2 Redux Toolkit 미리보기
+### Redux Toolkit 미리보기
 
 ```javascript
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
@@ -439,7 +439,7 @@ const todoSlice = createSlice({
 });
 ```
 
-## 6. 실습 문제 🏋️‍♂️
+## 실습 문제 🏋️‍♂️
 
 ### 문제 1: Promise 기본
 ```javascript
@@ -566,9 +566,9 @@ async function fetchMultipleUsers(userIds) {
 const users = await fetchMultipleUsers(userIds);
 ```
 
-## 7. 실전 패턴
+## 실전 패턴
 
-### 7.1 재시도 로직
+### 재시도 로직
 ```javascript
 async function fetchWithRetry(url, maxRetries = 3) {
     for (let i = 0; i < maxRetries; i++) {
@@ -585,7 +585,7 @@ async function fetchWithRetry(url, maxRetries = 3) {
 }
 ```
 
-### 7.2 캐싱
+### 캐싱
 ```javascript
 const cache = new Map();
 
@@ -601,7 +601,7 @@ async function fetchWithCache(url) {
 }
 ```
 
-## 8. 체크리스트 ✅
+## 체크리스트 ✅
 
 - [ ] Promise의 3가지 상태를 이해한다
 - [ ] Promise 체이닝을 사용할 수 있다
@@ -611,7 +611,7 @@ async function fetchWithCache(url) {
 - [ ] fetch API로 HTTP 요청을 보낼 수 있다
 - [ ] 실습 문제를 모두 해결했다
 
-## 9. 다음 단계 🚀
+## 다음 단계 🚀
 
 **다음 챕터**: `05. TypeScript 기초 - 타입 시스템 이해하기`에서는 Redux를 더 안전하게 사용하기 위한 TypeScript 기초를 배웁니다.
 

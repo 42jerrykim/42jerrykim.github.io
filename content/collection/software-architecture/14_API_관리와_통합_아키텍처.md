@@ -11,7 +11,7 @@ draft: true
 
 ---
 
-## 14.1 API 게이트웨이 패턴
+## API 게이트웨이 패턴
 
 ### 14.1.1 API 게이트웨이란?
 
@@ -157,7 +157,7 @@ public class MetricsFilter implements GatewayFilter {
 
 ---
 
-## 14.2 메시징 패턴과 이벤트 기반 통합
+## 메시징 패턴과 이벤트 기반 통합
 
 ### 14.2.1 메시징 패턴
 
@@ -284,7 +284,7 @@ public class EventReplayService {
 
 ---
 
-## 14.3 엔터프라이즈 서비스 버스 (ESB)
+## 엔터프라이즈 서비스 버스 (ESB)
 
 ### 14.3.1 ESB 개념과 구현
 
@@ -391,7 +391,7 @@ public class RabbitMQBroker implements MessageBroker {
 
 ---
 
-## 14.4 시스템 간 통합 전략
+## 시스템 간 통합 전략
 
 ### 14.4.1 동기 vs 비동기 통합
 

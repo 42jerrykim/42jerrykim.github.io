@@ -45,9 +45,9 @@ const TodoItem = React.memo(function TodoItem({ todo }) {
 });
 ```
 
-## 1. React 리렌더링 이해하기
+## React 리렌더링 이해하기
 
-### 1.1 리렌더링이 발생하는 경우
+### 리렌더링이 발생하는 경우
 
 ```javascript
 // 1. State 변경
@@ -72,7 +72,7 @@ const value = useContext(MyContext);
 // Context 값 변경 시 모든 구독 컴포넌트 리렌더링
 ```
 
-### 1.2 Redux에서의 리렌더링
+### Redux에서의 리렌더링
 
 ```javascript
 // Redux State 변경 시
@@ -90,9 +90,9 @@ function Component2() {
 }
 ```
 
-## 2. React.memo - 컴포넌트 메모이제이션
+## React.memo - 컴포넌트 메모이제이션
 
-### 2.1 기본 사용법
+### 기본 사용법
 
 ```javascript
 // Before: 항상 리렌더링
@@ -116,7 +116,7 @@ const TodoItem = React.memo(function TodoItem({ todo, onToggle }) {
 });
 ```
 
-### 2.2 커스텀 비교 함수
+### 커스텀 비교 함수
 
 ```javascript
 // 기본: 얕은 비교 (shallow comparison)
@@ -139,7 +139,7 @@ import { isEqual } from 'lodash';
 const TodoItem = React.memo(TodoItem, isEqual);
 ```
 
-### 2.3 실전 예제
+### 실전 예제
 
 ```javascript
 // 최적화된 Todo 컴포넌트
@@ -184,9 +184,9 @@ function TodoList() {
 }
 ```
 
-## 3. useCallback - 함수 메모이제이션
+## useCallback - 함수 메모이제이션
 
-### 3.1 기본 사용법
+### 기본 사용법
 
 ```javascript
 function TodoList() {
@@ -221,7 +221,7 @@ function TodoList() {
 }
 ```
 
-### 3.2 의존성 배열 주의
+### 의존성 배열 주의
 
 ```javascript
 function SearchForm() {
@@ -249,7 +249,7 @@ function SearchForm() {
 }
 ```
 
-### 3.3 useCallback vs 인라인 함수
+### useCallback vs 인라인 함수
 
 ```javascript
 // ❌ 항상 useCallback 쓰는 건 오히려 느림
@@ -271,9 +271,9 @@ useEffect(() => {
 }, [handleFetch]); // handleFetch이 변경될 때만 실행
 ```
 
-## 4. useMemo - 값 메모이제이션
+## useMemo - 값 메모이제이션
 
-### 4.1 기본 사용법
+### 기본 사용법
 
 ```javascript
 function TodoStats() {
@@ -303,7 +303,7 @@ function TodoStats() {
 }
 ```
 
-### 4.2 복잡한 연산 최적화
+### 복잡한 연산 최적화
 
 ```javascript
 function ExpensiveComponent() {
@@ -335,7 +335,7 @@ function ExpensiveComponent() {
 }
 ```
 
-### 4.3 useMemo vs useCallback
+### useMemo vs useCallback
 
 ```javascript
 // useMemo: 값을 메모이제이션
@@ -348,9 +348,9 @@ const callback = useCallback(() => doSomething(a, b), [a, b]);
 const callback = useMemo(() => () => doSomething(a, b), [a, b]);
 ```
 
-## 5. Redux Selector 최적화
+## Redux Selector 최적화
 
-### 5.1 Reselect 사용
+### Reselect 사용
 
 ```javascript
 import { createSelector } from 'reselect';
@@ -390,7 +390,7 @@ function TodoList() {
 }
 ```
 
-### 5.2 shallowEqual 사용
+### shallowEqual 사용
 
 ```javascript
 import { shallowEqual } from 'react-redux';
@@ -415,7 +415,7 @@ const name = useSelector(state => state.user.name);
 const email = useSelector(state => state.user.email);
 ```
 
-### 5.3 Selector Factory 패턴
+### Selector Factory 패턴
 
 ```javascript
 // 매개변수가 있는 Selector
@@ -437,9 +437,9 @@ function TodoDetail({ todoId }) {
 }
 ```
 
-## 6. 실전 최적화 예제
+## 실전 최적화 예제
 
-### 6.1 완전히 최적화된 Todo 앱
+### 완전히 최적화된 Todo 앱
 
 ```javascript
 import React, { useCallback, useMemo } from 'react';
@@ -562,9 +562,9 @@ const FilterButtons = React.memo(function FilterButtons({ current, onChange }) {
 export default TodoApp;
 ```
 
-## 7. 성능 측정
+## 성능 측정
 
-### 7.1 React Profiler
+### React Profiler
 
 ```javascript
 import { Profiler } from 'react';
@@ -586,7 +586,7 @@ function onRenderCallback(
 </Profiler>
 ```
 
-### 7.2 Redux DevTools
+### Redux DevTools
 
 ```javascript
 // Time Travel로 성능 테스트
@@ -596,7 +596,7 @@ function onRenderCallback(
 // 4. 렌더링 성능 확인
 ```
 
-### 7.3 Why Did You Render
+### Why Did You Render
 
 ```javascript
 // 설치: npm install @welldone-software/why-did-you-render
@@ -614,7 +614,7 @@ if (process.env.NODE_ENV === 'development') {
 TodoItem.whyDidYouRender = true;
 ```
 
-## 8. 체크리스트 ✅
+## 체크리스트 ✅
 
 - [ ] React 리렌더링 원리를 이해한다
 - [ ] React.memo로 컴포넌트를 메모이제이션할 수 있다
@@ -623,7 +623,7 @@ TodoItem.whyDidYouRender = true;
 - [ ] Reselect로 Selector를 최적화할 수 있다
 - [ ] Profiler로 성능을 측정할 수 있다
 
-## 9. 다음 단계 🚀
+## 다음 단계 🚀
 
 **다음 챕터**: `14. 데이터 선택자 - Selector 패턴`에서 Reselect를 깊이 있게 학습하고 복잡한 데이터 변환을 효율적으로 처리합니다!
 

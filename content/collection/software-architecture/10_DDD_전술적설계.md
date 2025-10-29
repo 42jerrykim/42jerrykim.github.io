@@ -11,7 +11,7 @@ draft: true
 
 ---
 
-## 10.1 Entity (엔티티)
+## Entity (엔티티)
 
 ### 10.1.1 Entity란?
 
@@ -78,7 +78,7 @@ public class Customer {
 
 ---
 
-## 10.2 Value Object (값 객체)
+## Value Object (값 객체)
 
 ### 10.2.1 Value Object란?
 
@@ -179,7 +179,7 @@ public class Money {
 
 ---
 
-## 10.3 Aggregate (애그리게이트)
+## Aggregate (애그리게이트)
 
 ### 10.3.1 Aggregate란?
 
@@ -275,7 +275,7 @@ public class OrderItem {
 
 ---
 
-## 10.4 Repository 패턴
+## Repository 패턴
 
 ### 10.4.1 Repository 구현 예제
 
@@ -325,7 +325,7 @@ public class JpaOrderRepository implements OrderRepository {
 
 ---
 
-## 10.5 Domain Service
+## Domain Service
 
 ### 10.5.1 Domain Service 구현 예제
 

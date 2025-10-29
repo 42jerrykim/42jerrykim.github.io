@@ -75,12 +75,12 @@ CRDT(Conflict-Free Replicated Data Types)와 OT(Operational Transformation)는 �
 <!--
 # CRDT (Conflict-Free Replicated Data Types) 기술 블로그 목차
 
-## 1. 개요
+## 개요
    - CRDT의 정의
    - CRDT의 필요성 및 장점
    - CRDT와 OT(Operational Transformation)의 차이점
 
-## 2. CRDT의 기본 개념
+## CRDT의 기본 개념
    - CRDT의 구성 요소
      - 값(value)
      - 상태(state)
@@ -90,7 +90,7 @@ CRDT(Conflict-Free Replicated Data Types)와 OT(Operational Transformation)는 �
      - 결합법칙(Associativity)
      - 항등법칙(Idempotence)
 
-## 3. CRDT의 종류
+## CRDT의 종류
    - 상태 기반 CRDT(State-based CRDT)
    - 연산 기반 CRDT(Operation-based CRDT)
    - CRDT의 예시
@@ -98,41 +98,41 @@ CRDT(Conflict-Free Replicated Data Types)와 OT(Operational Transformation)는 �
      - LWW 맵
      - G-Counter, PN-Counter, G-Set, 2P-Set, LWW-Element-Set, OR-Set 등
 
-## 4. CRDT의 구현
+## CRDT의 구현
    - CRDT의 기본 구현 방법
    - LWW 레지스터 구현 예제
    - LWW 맵 구현 예제
    - CRDT의 병합 및 상태 관리
 
-## 5. CRDT의 응용
+## CRDT의 응용
    - CRDT를 활용한 협업 애플리케이션
      - Google Docs, Figma와 같은 사례
    - CRDT를 이용한 실시간 데이터 동기화
    - CRDT의 사용 사례
      - Redis, Riak, SoundCloud, League of Legends 등
 
-## 6. CRDT의 성능 최적화
+## CRDT의 성능 최적화
    - CRDT의 성능 문제
    - 성능 최적화를 위한 접근 방법
    - Rust 및 WebAssembly를 활용한 CRDT 성능 개선 사례
 
-## 7. FAQ
+## FAQ
    - CRDT와 OT 중 어떤 것을 선택해야 할까?
    - CRDT의 데이터 구조는 어떻게 설계해야 할까?
    - CRDT의 한계는 무엇인가?
    - CRDT를 사용한 프로젝트에서의 주의사항
 
-## 8. 관련 기술
+## 관련 기술
    - P2P 네트워크와 CRDT
    - 분산 시스템에서의 데이터 일관성
    - 실시간 협업 기술의 발전
 
-## 9. 결론
+## 결론
    - CRDT의 미래와 발전 가능성
    - CRDT를 통한 협업 기술의 혁신
    - CRDT를 활용한 새로운 애플리케이션 아이디어
 
-## 10. 참고 자료
+## 참고 자료
    - CRDT 관련 논문 및 자료
    - CRDT 구현 라이브러리 및 프레임워크
    - 추가 학습 자료 및 튜토리얼 링크
@@ -141,13 +141,13 @@ CRDT(Conflict-Free Replicated Data Types)와 OT(Operational Transformation)는 �
 -->
 
 <!--
-## 1. 개요
+## 개요
    - CRDT의 정의
    - CRDT의 필요성 및 장점
    - CRDT와 OT(Operational Transformation)의 차이점
 -->
 
-## 1. 개요
+## 개요
 
 **CRDT의 정의** 
 
@@ -182,7 +182,7 @@ graph TD;
 이와 같이 CRDT와 OT는 서로 다른 접근 방식을 가지고 있으며, 각각의 장단점이 존재한다. CRDT는 특히 실시간 협업 환경에서 유용하게 사용될 수 있는 기술이다.
 
 <!--
-## 2. CRDT의 기본 개념
+## CRDT의 기본 개념
    - CRDT의 구성 요소
      - 값(value)
      - 상태(state)
@@ -193,7 +193,7 @@ graph TD;
      - 항등법칙(Idempotence)
 -->
 
-## 2. CRDT의 기본 개념
+## CRDT의 기본 개념
 
 CRDT(Conflict-Free Replicated Data Types)는 분산 시스템에서 데이터의 일관성을 유지하기 위해 설계된 데이터 구조이다. CRDT의 기본 개념을 이해하기 위해서는 구성 요소와 수학적 속성을 살펴보아야 한다.
 
@@ -228,7 +228,7 @@ CRDT는 다음과 같은 세 가지 수학적 속성을 가진다.
 이러한 수학적 속성들은 CRDT가 분산 시스템에서 데이터의 일관성을 유지하고, 동시성 문제를 해결하는 데 필수적이다. CRDT의 기본 개념을 이해함으로써, 분산 환경에서의 데이터 처리 방식에 대한 깊은 통찰을 얻을 수 있다.
 
 <!--
-## 3. CRDT의 종류
+## CRDT의 종류
    - 상태 기반 CRDT(State-based CRDT)
    - 연산 기반 CRDT(Operation-based CRDT)
    - CRDT의 예시
@@ -237,7 +237,7 @@ CRDT는 다음과 같은 세 가지 수학적 속성을 가진다.
      - G-Counter, PN-Counter, G-Set, 2P-Set, LWW-Element-Set, OR-Set 등
 -->
 
-## 3. CRDT의 종류
+## CRDT의 종류
 
 CRDT는 크게 두 가지 종류로 나눌 수 있다. 상태 기반 CRDT와 연산 기반 CRDT가 그것이다. 이 두 가지는 데이터의 복제 및 병합 방식에서 차이를 보인다.
 
@@ -288,14 +288,14 @@ CRDT의 종류를 이해하기 위해 몇 가지 예시를 살펴보겠다.
 이와 같이 CRDT는 다양한 종류와 예시를 통해 데이터의 일관성을 유지하면서도 분산 환경에서의 협업을 가능하게 한다.
 
 <!--
-## 4. CRDT의 구현
+## CRDT의 구현
    - CRDT의 기본 구현 방법
    - LWW 레지스터 구현 예제
    - LWW 맵 구현 예제
    - CRDT의 병합 및 상태 관리
 -->
 
-## 4. CRDT의 구현
+## CRDT의 구현
 
 CRDT(Conflict-Free Replicated Data Types)의 구현은 분산 시스템에서 데이터의 일관성을 유지하면서도 충돌을 방지하는 데 중요한 역할을 한다. 이 섹션에서는 CRDT의 기본 구현 방법과 LWW(Last Write Wins) 레지스터 및 LWW 맵의 구현 예제를 살펴보겠다.
 
@@ -370,7 +370,7 @@ graph LR;
 이와 같이 CRDT의 구현은 데이터의 일관성을 유지하면서도 충돌을 방지하는 데 중요한 역할을 하며, 다양한 응용 프로그램에서 활용될 수 있다. CRDT의 기본 개념과 구현 방법을 이해함으로써, 분산 시스템에서의 데이터 관리에 대한 통찰을 얻을 수 있다.
 
 <!--
-## 5. CRDT의 응용
+## CRDT의 응용
    - CRDT를 활용한 협업 애플리케이션
      - Google Docs, Figma와 같은 사례
    - CRDT를 이용한 실시간 데이터 동기화
@@ -378,7 +378,7 @@ graph LR;
      - Redis, Riak, SoundCloud, League of Legends 등
 -->
 
-## 5. CRDT의 응용
+## CRDT의 응용
 
 **CRDT를 활용한 협업 애플리케이션**
 
@@ -404,13 +404,13 @@ CRDT는 다양한 분야에서 활용되고 있다. 예를 들어, Redis와 Riak
 CRDT는 협업 애플리케이션, 실시간 데이터 동기화, 그리고 다양한 시스템에서의 데이터 일관성을 유지하는 데 있어 중요한 역할을 하고 있다. 앞으로도 CRDT의 응용 가능성은 더욱 확대될 것으로 기대된다.
 
 <!--
-## 6. CRDT의 성능 최적화
+## CRDT의 성능 최적화
    - CRDT의 성능 문제
    - 성능 최적화를 위한 접근 방법
    - Rust 및 WebAssembly를 활용한 CRDT 성능 개선 사례
 -->
 
-## 6. CRDT의 성능 최적화
+## CRDT의 성능 최적화
 
 CRDT(Conflict-Free Replicated Data Types)는 분산 시스템에서 데이터의 일관성을 유지하면서도 동시성을 지원하는 강력한 도구이다. 그러나 CRDT의 성능은 다양한 요인에 의해 영향을 받을 수 있으며, 이를 최적화하는 방법에 대해 알아보도록 하겠다.
 
@@ -482,14 +482,14 @@ graph TD;
 이와 같이 CRDT의 성능 최적화는 다양한 접근 방법을 통해 이루어질 수 있으며, Rust와 WebAssembly와 같은 최신 기술을 활용하여 성능을 더욱 개선할 수 있다. CRDT의 성능을 최적화함으로써, 대규모 분산 시스템에서도 효율적으로 동작할 수 있는 가능성을 열어준다.
 
 <!--
-## 7. FAQ
+## FAQ
    - CRDT와 OT 중 어떤 것을 선택해야 할까?
    - CRDT의 데이터 구조는 어떻게 설계해야 할까?
    - CRDT의 한계는 무엇인가?
    - CRDT를 사용한 프로젝트에서의 주의사항
 -->
 
-## 7. FAQ
+## FAQ
 
 **CRDT와 OT 중 어떤 것을 선택해야 할까?**  
 
@@ -522,13 +522,13 @@ CRDT는 여러 장점을 가지고 있지만, 몇 가지 한계도 존재한다.
 CRDT를 사용하여 프로젝트를 진행할 때는 몇 가지 주의사항이 있다. 첫째, 데이터 구조와 병합 함수를 신중하게 설계해야 한다. 잘못된 설계는 데이터의 일관성을 해칠 수 있다. 둘째, CRDT의 성능을 고려해야 한다. 대규모 데이터에 대한 성능 테스트를 통해 병목 현상을 미리 파악하고 최적화해야 한다. 셋째, CRDT의 특성을 이해하고, 적절한 사용 사례를 선택해야 한다. CRDT는 모든 상황에 적합하지 않으므로, 사용 목적에 맞는 기술을 선택하는 것이 중요하다.
 
 <!--
-## 8. 관련 기술
+## 관련 기술
    - P2P 네트워크와 CRDT
    - 분산 시스템에서의 데이터 일관성
    - 실시간 협업 기술의 발전
 -->
 
-## 8. 관련 기술
+## 관련 기술
 
 **P2P 네트워크와 CRDT**  
 
@@ -560,13 +560,13 @@ CRDT는 실시간 협업 애플리케이션의 발전에 기여하고 있다. Go
 이러한 특성 덕분에 CRDT는 실시간 협업 기술의 핵심 요소로 자리 잡고 있으며, 앞으로도 다양한 분야에서 그 활용 가능성이 더욱 확대될 것으로 기대된다.
 
 <!--
-## 9. 결론
+## 결론
    - CRDT의 미래와 발전 가능성
    - CRDT를 통한 협업 기술의 혁신
    - CRDT를 활용한 새로운 애플리케이션 아이디어
 -->
 
-## 9. 결론
+## 결론
 
 **CRDT의 미래와 발전 가능성**  
 
@@ -595,13 +595,13 @@ graph TD;
 이와 같이 CRDT는 앞으로도 다양한 분야에서 활용될 수 있는 가능성을 지니고 있으며, 협업 기술의 혁신과 새로운 애플리케이션 개발에 기여할 것이다. CRDT의 발전은 분산 시스템의 데이터 처리 방식에 큰 변화를 가져올 것으로 기대된다.
 
 <!--
-## 10. 참고 자료
+## 참고 자료
    - CRDT 관련 논문 및 자료
    - CRDT 구현 라이브러리 및 프레임워크
    - 추가 학습 자료 및 튜토리얼 링크
 -->
 
-## 10. 참고 자료
+## 참고 자료
 
 CRDT(Conflict-Free Replicated Data Types)에 대한 깊이 있는 이해를 위해 다음과 같은 자료들을 참고할 수 있다. 이 자료들은 CRDT의 이론적 배경, 구현 방법, 그리고 실제 사용 사례를 포함하고 있어 독자가 CRDT를 보다 잘 이해하는 데 도움을 줄 것이다.
 

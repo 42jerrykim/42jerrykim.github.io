@@ -35,7 +35,7 @@ draft: true
 
 ## 핵심 학습 내용
 
-### 11.1 안드로이드 호환성 인증
+### 안드로이드 호환성 인증
 - **Android CDD (Compatibility Definition Document)**
   - 하드웨어 요구사항 분석
   - 소프트웨어 호환성 기준
@@ -48,7 +48,7 @@ draft: true
   - 구글 앱 번들 인증
   - 브랜딩 가이드라인 준수
 
-### 11.2 CTS (Compatibility Test Suite)
+### CTS (Compatibility Test Suite)
 - **CTS 테스트 프레임워크**
   - 테스트 환경 구축
   - 자동화된 테스트 실행
@@ -61,7 +61,7 @@ draft: true
   - 성능 벤치마크 테스트
   - 보안 검증 테스트
 
-### 11.3 VTS (Vendor Test Suite)
+### VTS (Vendor Test Suite)
 - **VTS 아키텍처**
   - HAL 인터페이스 테스트
   - 커널 기능 검증
@@ -74,7 +74,7 @@ draft: true
   - 결과 분석 및 보고
   - 이슈 추적 및 해결
 
-### 11.4 국제 표준 인증
+### 국제 표준 인증
 - **FCC (Federal Communications Commission)**
   - 무선 주파수 인증
   - 전자파 적합성 테스트
@@ -87,7 +87,7 @@ draft: true
   - 안전성 표준 준수
   - RoHS 규정 준수
 
-### 11.5 지역별 규정 준수
+### 지역별 규정 준수
 - **한국 KC (Korea Certification)**
   - 전자파 적합성 인증
   - 안전성 인증
@@ -100,7 +100,7 @@ draft: true
   - 인도 BIS 인증
   - 브라질 ANATEL 인증
 
-### 11.6 품질 관리 시스템
+### 품질 관리 시스템
 - **ISO 9001 품질 관리**
   - 품질 관리 시스템 구축
   - 프로세스 문서화

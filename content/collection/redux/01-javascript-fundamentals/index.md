@@ -26,9 +26,9 @@ Redux를 배우기 전에 JavaScript 기초가 탄탄해야 하는 이유:
 2. **불변성 관리**: 객체와 배열을 다루는 방법을 알아야 Redux의 불변성 원칙을 이해할 수 있습니다
 3. **함수형 프로그래밍**: Redux는 함수형 프로그래밍 패러다임을 따릅니다
 
-## 1. 변수 선언 - var, let, const
+## 변수 선언 - var, let, const
 
-### 1.1 var의 문제점
+### var의 문제점
 
 ```javascript
 // var는 함수 스코프를 가집니다
@@ -53,7 +53,7 @@ var y = 5;
 - 재선언 가능 (실수 유발)
 - 호이스팅으로 인한 혼란
 
-### 1.2 let - 재할당 가능한 변수
+### let - 재할당 가능한 변수
 
 ```javascript
 // let은 블록 스코프를 가집니다
@@ -77,7 +77,7 @@ count = 2; // OK
 
 **사용 시기**: 값이 변경될 수 있는 변수
 
-### 1.3 const - 재할당 불가능한 상수
+### const - 재할당 불가능한 상수
 
 ```javascript
 // const는 반드시 초기화해야 합니다
@@ -124,9 +124,9 @@ const todos = [];
 2. 재할당이 필요하면 `let` 사용
 3. `var`는 사용하지 않기
 
-## 2. 함수 정의
+## 함수 정의
 
-### 2.1 함수 선언문 (Function Declaration)
+### 함수 선언문 (Function Declaration)
 
 ```javascript
 // 전통적인 함수 선언
@@ -144,7 +144,7 @@ function greet(name) {
 }
 ```
 
-### 2.2 함수 표현식 (Function Expression)
+### 함수 표현식 (Function Expression)
 
 ```javascript
 // 함수를 변수에 할당
@@ -162,7 +162,7 @@ const multiply = function(a, b) {
 };
 ```
 
-### 2.3 화살표 함수 (Arrow Function) ⭐
+### 화살표 함수 (Arrow Function) ⭐
 
 ```javascript
 // 기본 형태
@@ -186,7 +186,7 @@ console.log(createPerson("Alice", 25));
 // { name: "Alice", age: 25 }
 ```
 
-### 2.4 this 바인딩 차이 ⚠️
+### this 바인딩 차이 ⚠️
 
 ```javascript
 // 일반 함수: this는 호출 방식에 따라 결정
@@ -219,9 +219,9 @@ const actionCreator = (payload) => ({
 - this 바인딩 문제 없음
 - 암묵적 반환으로 Action 객체 생성이 쉬움
 
-## 3. 객체 (Object)
+## 객체 (Object)
 
-### 3.1 객체 생성과 접근
+### 객체 생성과 접근
 
 ```javascript
 // 객체 리터럴
@@ -242,7 +242,7 @@ const key = "age";
 console.log(user[key]); // 25
 ```
 
-### 3.2 객체 속성 추가/수정/삭제
+### 객체 속성 추가/수정/삭제
 
 ```javascript
 const person = { name: "Bob" };
@@ -260,7 +260,7 @@ delete person.city;
 console.log(person); // { name: "Robert", age: 30 }
 ```
 
-### 3.3 객체 메서드
+### 객체 메서드
 
 ```javascript
 const calculator = {
@@ -285,7 +285,7 @@ calculator.add(10).subtract(3).multiply(2);
 console.log(calculator.value); // 14
 ```
 
-### 3.4 Redux State 예제
+### Redux State 예제
 
 ```javascript
 // Redux의 State는 보통 객체입니다
@@ -310,9 +310,9 @@ console.log(reduxState.user.name); // "Alice"
 console.log(reduxState.todos[0].text); // "Learn Redux"
 ```
 
-## 4. 배열 (Array)
+## 배열 (Array)
 
-### 4.1 배열 생성과 접근
+### 배열 생성과 접근
 
 ```javascript
 // 배열 리터럴
@@ -329,7 +329,7 @@ console.log(fruits.length); // 3
 console.log(fruits[fruits.length - 1]); // "orange"
 ```
 
-### 4.2 배열 기본 메서드
+### 배열 기본 메서드
 
 ```javascript
 const numbers = [1, 2, 3];
@@ -353,7 +353,7 @@ console.log(first); // 0
 console.log(numbers); // [1, 2, 3]
 ```
 
-### 4.3 불변성을 지키는 방법 (Redux 중요! ⭐)
+### 불변성을 지키는 방법 (Redux 중요! ⭐)
 
 ```javascript
 const original = [1, 2, 3];
@@ -392,7 +392,7 @@ const updateItemWithMap = (arr, index, newValue) =>
     arr.map((item, i) => i === index ? newValue : item);
 ```
 
-### 4.4 Redux Todo 예제
+### Redux Todo 예제
 
 ```javascript
 // Redux에서 Todo 추가
@@ -414,7 +414,7 @@ const completedTodos = todos.map(todo =>
 );
 ```
 
-## 5. 실습 문제 🏋️‍♂️
+## 실습 문제 🏋️‍♂️
 
 ### 문제 1: 변수 선언
 ```javascript
@@ -510,7 +510,7 @@ const updatedTodos = todos.map(todo =>
 const filteredTodos = todos.filter(todo => todo.id !== 2);
 ```
 
-## 6. 흔한 실수와 해결법 ⚠️
+## 흔한 실수와 해결법 ⚠️
 
 ### 실수 1: var 사용
 ```javascript
@@ -565,7 +565,7 @@ const obj = {
 };
 ```
 
-## 7. 체크리스트 ✅
+## 체크리스트 ✅
 
 학습을 완료했다면 다음을 확인하세요:
 
@@ -578,7 +578,7 @@ const obj = {
 - [ ] 스프레드 연산자(...)를 사용할 수 있다
 - [ ] 실습 문제를 모두 해결했다
 
-## 8. 다음 단계 🚀
+## 다음 단계 🚀
 
 축하합니다! JavaScript 핵심 개념을 익혔습니다.
 

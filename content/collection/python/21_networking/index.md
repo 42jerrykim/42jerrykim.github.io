@@ -17,7 +17,7 @@ collection_order: 21
 
 ## 네트워크 기초
 
-### 1. TCP 소켓 프로그래밍
+### TCP 소켓 프로그래밍
 
 ```python
 import socket
@@ -102,7 +102,7 @@ if __name__ == "__main__":
     client.connect_and_send("안녕하세요!")
 ```
 
-### 2. HTTP 클라이언트
+### HTTP 클라이언트
 
 ```python
 import requests

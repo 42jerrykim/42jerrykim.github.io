@@ -17,7 +17,7 @@ collection_order: 18
 
 ## 비동기 프로그래밍 기초
 
-### 1. 동기 vs 비동기 비교
+### 동기 vs 비동기 비교
 
 ```python
 import time
@@ -78,7 +78,7 @@ if __name__ == "__main__":
     async_results = asyncio.run(async_example())
 ```
 
-### 2. 기본 async/await 문법
+### 기본 async/await 문법
 
 ```python
 import asyncio
@@ -153,7 +153,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-### 3. 이벤트 루프 이해
+### 이벤트 루프 이해
 
 ```python
 import asyncio
@@ -297,7 +297,7 @@ if __name__ == "__main__":
 
 ## asyncio 핵심 기능
 
-### 1. 동시 실행 패턴
+### 동시 실행 패턴
 
 ```python
 import asyncio
@@ -457,7 +457,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-### 2. 비동기 컨텍스트 매니저와 큐
+### 비동기 컨텍스트 매니저와 큐
 
 ```python
 import asyncio

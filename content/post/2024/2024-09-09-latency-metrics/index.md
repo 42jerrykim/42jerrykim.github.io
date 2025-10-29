@@ -78,68 +78,68 @@ aliases: /performance/latency-metrics/
 <!--
 # 목차
 
-## 1. 개요
+## 개요
    - Latency Metrics의 중요성
    - P90, P95, P99의 정의와 역할
 
-## 2. Latency Metrics 이해하기
+## Latency Metrics 이해하기
    - 2.1 Latency란 무엇인가?
    - 2.2 Latency 측정 단위 (Milliseconds, Seconds)
    - 2.3 Latency와 사용자 경험의 관계
 
-## 3. SLA (Service Level Agreement)
+## SLA (Service Level Agreement)
    - 3.1 SLA의 정의
    - 3.2 SLA의 중요성
    - 3.3 SLA 샘플 보고서
 
-## 4. P90, P95, P99의 이해
+## P90, P95, P99의 이해
    - 4.1 P90 (90th Percentile)
    - 4.2 P95 (95th Percentile)
    - 4.3 P99 (99th Percentile)
    - 4.4 PXX Latency의 의미와 활용
 
-## 5. Latency Metrics 계산 방법
+## Latency Metrics 계산 방법
    - 5.1 Mean Latency
    - 5.2 Median Latency
    - 5.3 Max Latency
    - 5.4 P99 Latency vs Median Latency
 
-## 6. Latency Metrics 모니터링
+## Latency Metrics 모니터링
    - 6.1 모니터링 도구 및 기술
    - 6.2 Prometheus와 PromQL을 이용한 모니터링
    - 6.3 AWS에서의 Latency Metrics 활용
 
-## 7. 예제
+## 예제
    - 7.1 Latency Metrics 계산 예제
    - 7.2 SLA 예제
    - 7.3 P90, P95, P99 예제
 
-## 8. FAQ
+## FAQ
    - 8.1 Latency가 높은 경우의 대처 방법은?
    - 8.2 SLA를 설정할 때 고려해야 할 사항은?
    - 8.3 P90, P95, P99의 차이는 무엇인가요?
 
-## 9. 관련 기술
+## 관련 기술
    - 9.1 API 성능 최적화 기술
    - 9.2 모니터링 및 로깅 도구
    - 9.3 클라우드 서비스와 Latency Metrics
 
-## 10. 결론
+## 결론
    - Latency Metrics의 중요성 요약
    - 성능 최적화를 위한 지속적인 모니터링 필요성
 
-## 11. 참고 자료
+## 참고 자료
    - 11.1 관련 블로그 및 문서
    - 11.2 추가 학습 자료 및 링크
 -->
 
 <!--
-## 1. 개요
+## 개요
    - Latency Metrics의 중요성
    - P90, P95, P99의 정의와 역할
 -->
 
-## 1. 개요
+## 개요
 
 **Latency Metrics의 중요성**
 
@@ -174,13 +174,13 @@ graph TD;
 위의 다이어그램은 Latency Metrics와 P90, P95, P99 간의 관계를 시각적으로 나타낸 것이다. 이러한 지표들은 시스템의 성능을 평가하고, 사용자 경험을 개선하기 위한 중요한 도구로 활용된다.
 
 <!--
-## 2. Latency Metrics 이해하기
+## Latency Metrics 이해하기
    - 2.1 Latency란 무엇인가?
    - 2.2 Latency 측정 단위 (Milliseconds, Seconds)
    - 2.3 Latency와 사용자 경험의 관계
 -->
 
-## 2. Latency Metrics 이해하기
+## Latency Metrics 이해하기
 
 **Latency란 무엇인가?**  
 
@@ -206,13 +206,13 @@ Latency는 사용자 경험에 직접적인 영향을 미친다. Latency가 낮�
 이와 같이 Latency는 단순한 기술적 지표가 아니라, 사용자 경험을 좌우하는 중요한 요소임을 인식해야 한다.
 
 <!--
-## 3. SLA (Service Level Agreement)
+## SLA (Service Level Agreement)
    - 3.1 SLA의 정의
    - 3.2 SLA의 중요성
    - 3.3 SLA 샘플 보고서
 -->
 
-## 3. SLA (Service Level Agreement)
+## SLA (Service Level Agreement)
 
 **SLA의 정의**  
 
@@ -245,14 +245,14 @@ graph TD;
 위의 다이어그램은 SLA의 주요 구성 요소를 시각적으로 나타낸 것이다. 각 요소는 서비스의 품질을 보장하기 위해 서로 연결되어 있으며, 이를 통해 서비스 제공자는 고객의 기대를 충족하기 위해 필요한 조치를 취할 수 있다. SLA는 단순한 문서가 아니라, 서비스의 품질을 지속적으로 개선하기 위한 중요한 도구임을 명심해야 한다.
 
 <!--
-## 4. P90, P95, P99의 이해
+## P90, P95, P99의 이해
    - 4.1 P90 (90th Percentile)
    - 4.2 P95 (95th Percentile)
    - 4.3 P99 (99th Percentile)
    - 4.4 PXX Latency의 의미와 활용
 -->
 
-## 4. P90, P95, P99의 이해
+## P90, P95, P99의 이해
 
 P90, P95, P99는 Latency Metrics에서 중요한 역할을 하는 지표로, 시스템의 성능을 평가하는 데 유용하다. 이 지표들은 특정 백분위수에서의 응답 시간을 나타내며, 사용자 경험을 개선하기 위한 중요한 데이터로 활용된다.
 
@@ -287,14 +287,14 @@ graph TD;
 이러한 지표들은 Latency Metrics를 이해하고, 시스템 성능을 최적화하는 데 필수적인 요소이다. P90, P95, P99를 통해 성능을 지속적으로 모니터링하고, 사용자 경험을 개선하기 위한 전략을 수립할 수 있다.
 
 <!--
-## 5. Latency Metrics 계산 방법
+## Latency Metrics 계산 방법
    - 5.1 Mean Latency
    - 5.2 Median Latency
    - 5.3 Max Latency
    - 5.4 P99 Latency vs Median Latency
 -->
 
-## 5. Latency Metrics 계산 방법
+## Latency Metrics 계산 방법
 
 Latency Metrics는 시스템의 성능을 평가하는 데 중요한 역할을 한다. 이 섹션에서는 Latency Metrics의 다양한 계산 방법에 대해 설명하겠다.
 
@@ -359,13 +359,13 @@ graph TD;
 이와 같이 Latency Metrics의 다양한 계산 방법을 이해하고 활용함으로써, 시스템의 성능을 보다 효과적으로 모니터링하고 최적화할 수 있다.
 
 <!--
-## 6. Latency Metrics 모니터링
+## Latency Metrics 모니터링
    - 6.1 모니터링 도구 및 기술
    - 6.2 Prometheus와 PromQL을 이용한 모니터링
    - 6.3 AWS에서의 Latency Metrics 활용
 -->
 
-## 6. Latency Metrics 모니터링
+## Latency Metrics 모니터링
 
 **모니터링 도구 및 기술**  
 
@@ -416,13 +416,13 @@ graph TD;
 이와 같이 Latency Metrics를 모니터링하는 것은 시스템의 성능을 유지하고, 사용자 경험을 향상시키기 위해 필수적이다.
 
 <!--
-## 7. 예제
+## 예제
    - 7.1 Latency Metrics 계산 예제
    - 7.2 SLA 예제
    - 7.3 P90, P95, P99 예제
 -->
 
-## 7. 예제
+## 예제
 
 **7.1 Latency Metrics 계산 예제**
 
@@ -501,13 +501,13 @@ graph TD;
 위의 다이어그램은 Latency 데이터가 다양한 Latency Metrics로 변환되는 과정을 나타낸다. 이러한 예제와 계산을 통해 Latency Metrics의 중요성을 이해하고, 실제 시스템에 적용할 수 있다.
 
 <!--
-## 8. FAQ
+## FAQ
    - 8.1 Latency가 높은 경우의 대처 방법은?
    - 8.2 SLA를 설정할 때 고려해야 할 사항은?
    - 8.3 P90, P95, P99의 차이는 무엇인가요?
 -->
 
-## 8. FAQ
+## FAQ
 
 **8.1 Latency가 높은 경우의 대처 방법은?**
 
@@ -555,13 +555,13 @@ graph TD;
 이와 같이 P90, P95, P99는 Latency를 이해하고 관리하는 데 중요한 역할을 하며, 각 Percentile의 차이를 이해하는 것은 성능 최적화에 필수적이다.
 
 <!--
-## 9. 관련 기술
+## 관련 기술
    - 9.1 API 성능 최적화 기술
    - 9.2 모니터링 및 로깅 도구
    - 9.3 클라우드 서비스와 Latency Metrics
 -->
 
-## 9. 관련 기술
+## 관련 기술
 
 **API 성능 최적화 기술**  
 
@@ -603,12 +603,12 @@ graph TD;
 이러한 도구와 기술을 활용하여 Latency Metrics를 효과적으로 관리하고, 성능을 최적화할 수 있다.
 
 <!--
-## 10. 결론
+## 결론
    - Latency Metrics의 중요성 요약
    - 성능 최적화를 위한 지속적인 모니터링 필요성
 -->
 
-## 10. 결론
+## 결론
 
 **Latency Metrics의 중요성 요약**  
 
@@ -631,12 +631,12 @@ graph TD;
 이와 같은 지속적인 모니터링과 분석을 통해, Latency Metrics는 서비스의 품질을 높이고, 사용자 만족도를 극대화하는 데 기여할 수 있다. 따라서, Latency Metrics의 중요성을 인식하고 이를 적극적으로 활용하는 것이 필요하다.
 
 <!--
-## 11. 참고 자료
+## 참고 자료
    - 11.1 관련 블로그 및 문서
    - 11.2 추가 학습 자료 및 링크
 -->
 
-## 11. 참고 자료
+## 참고 자료
 
 **11.1 관련 블로그 및 문서**  
 

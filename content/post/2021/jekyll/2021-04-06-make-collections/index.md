@@ -53,7 +53,7 @@ Collections 내용의 레이아웃을 잡기 위해서 _pages에 collection-arch
 
 3가지 중에 하나라도 되지 않는다면 내용이 표시 되지 않는다.
 
-#### 1. 별도의 폴더에 글 작성하기
+#### 별도의 폴더에 글 작성하기
 
 ![Image Alt 텍스트](/assets/images/jekyll/2.png)
 
@@ -70,13 +70,13 @@ title: "Bubble Sort"
 ```
 title만 있어도 잘 동작한다.
 
-#### 2. _configure.xml에 default:에 내용 추가 하기
+#### _configure.xml에 default:에 내용 추가 하기
 
 {% gist e2f763e399b19830c19c4266df17fef8 %}
 
 각 post별로 목차를 보여주기 위해서 ```toc```관련된 내용이 추가되어 있다.
 
-#### 3. _configure.xml에 collections:에 내용 추가 하기
+#### _configure.xml에 collections:에 내용 추가 하기
 
 {% gist c21893cc7ef9fb248d3e290cbaac400e %}
 

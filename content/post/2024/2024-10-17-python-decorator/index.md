@@ -76,57 +76,57 @@ Python의 데코레이터(Decorator)는 기존 함수를 수정하지 않고 그
 <!--
 # 목차
 
-## 1. 개요
+## 개요
    - Python Decorator의 정의
    - Decorator의 필요성 및 장점
 
-## 2. Decorator의 기본 개념
+## Decorator의 기본 개념
    - Decorator의 작동 원리
    - 함수와 Decorator의 관계
    - Decorator의 문법
 
-## 3. Decorator의 종류
+## Decorator의 종류
    - 함수 Decorator
    - 클래스 Decorator
    - Decorator 클래스
 
-## 4. Decorator 사용 사례
+## Decorator 사용 사례
    - Flask 웹 프레임워크에서의 Decorator 사용
    - 로깅(Logging) Decorator
    - 사용자 인증을 위한 Decorator
 
-## 5. Decorator의 장단점
+## Decorator의 장단점
    - 코드 재사용성 증가
    - 코드 복잡도 증가의 위험
 
-## 6. Decorator 구현 예제
+## Decorator 구현 예제
    - 기본 Decorator 구현
    - 인자를 받는 Decorator 구현
    - 여러 Decorator의 중첩 사용
 
-## 7. Decorator와 클로저(Closure)
+## Decorator와 클로저(Closure)
    - 클로저의 개념
    - Decorator와 클로저의 관계
 
-## 8. Decorator의 디버깅
+## Decorator의 디버깅
    - Decorator 사용 시 주의사항
    - Decorator의 속성 유지하기 (functools.wraps)
 
-## 9. FAQ
+## FAQ
    - Decorator는 언제 사용해야 하나요?
    - Decorator를 여러 개 사용할 수 있나요?
    - Decorator의 성능에 대한 영향은 무엇인가요?
 
-## 10. 관련 기술
+## 관련 기술
    - Python의 함수형 프로그래밍
    - 메타프로그래밍
    - 고차 함수(Higher-order functions)
 
-## 11. 결론
+## 결론
    - Decorator의 중요성 요약
    - Python 프로그래밍에서 Decorator의 활용 방안
 
-## 12. 추가 자료
+## 추가 자료
    - 추천 도서 및 온라인 강의
    - 관련 블로그 및 커뮤니티 링크
 
@@ -134,7 +134,7 @@ Python의 데코레이터(Decorator)는 기존 함수를 수정하지 않고 그
 -->
 
 <!--
-## 1. 개요
+## 개요
    - Python Decorator의 정의
    - Decorator의 필요성 및 장점
 -->
@@ -188,7 +188,7 @@ graph TD;
 이 다이어그램은 원본 함수가 Decorator에 의해 변경되어 실행 결과를 생성하는 과정을 보여준다. Decorator는 원본 함수의 기능을 확장하는 역할을 하며, 이를 통해 다양한 기능을 손쉽게 추가할 수 있다.
 
 <!--
-## 2. Decorator의 기본 개념
+## Decorator의 기본 개념
    - Decorator의 작동 원리
    - 함수와 Decorator의 관계
    - Decorator의 문법
@@ -256,7 +256,7 @@ greet()
 위의 예제에서 `simple_decorator`는 `greet` 함수를 감싸고, `inner_function`을 반환한다. `greet` 함수를 호출하면 Decorator가 적용된 `inner_function`이 실행된다. 이와 같은 방식으로 Decorator를 정의하고 사용할 수 있다.
 
 <!--
-## 3. Decorator의 종류
+## Decorator의 종류
    - 함수 Decorator
    - 클래스 Decorator
    - Decorator 클래스
@@ -377,7 +377,7 @@ graph TD;
 이와 같이 Python의 Decorator는 다양한 형태로 구현될 수 있으며, 각 종류는 특정한 상황에서 유용하게 사용될 수 있다. Decorator를 적절히 활용하면 코드의 재사용성과 가독성을 높일 수 있다.
 
 <!--
-## 4. Decorator 사용 사례
+## Decorator 사용 사례
    - Flask 웹 프레임워크에서의 Decorator 사용
    - 로깅(Logging) Decorator
    - 사용자 인증을 위한 Decorator
@@ -496,7 +496,7 @@ graph TD;
 이와 같이 Decorator는 Flask 웹 프레임워크에서의 라우팅, 로깅, 사용자 인증 등 다양한 분야에서 유용하게 사용될 수 있다. 이를 통해 코드의 가독성과 재사용성을 높일 수 있으며, 유지보수 또한 용이해진다.
 
 <!--
-## 5. Decorator의 장단점
+## Decorator의 장단점
    - 코드 재사용성 증가
    - 코드 복잡도 증가의 위험
 -->
@@ -561,7 +561,7 @@ graph TD;
 이와 같이 Decorator는 코드의 재사용성을 높이는 장점이 있지만, 남용할 경우 코드의 복잡도를 증가시킬 위험이 있다. 따라서 적절한 사용이 필요하다.
 
 <!--
-## 6. Decorator 구현 예제
+## Decorator 구현 예제
    - 기본 Decorator 구현
    - 인자를 받는 Decorator 구현
    - 여러 Decorator의 중첩 사용
@@ -669,7 +669,7 @@ graph TD;
 이와 같이 Decorator를 구현하고 활용함으로써 코드의 가독성과 재사용성을 높일 수 있다.
 
 <!--
-## 7. Decorator와 클로저(Closure)
+## Decorator와 클로저(Closure)
    - 클로저의 개념
    - Decorator와 클로저의 관계
 -->
@@ -732,7 +732,7 @@ graph TD;
 이 다이어그램은 Decorator가 원래 함수를 감싸고, 그 내부에서 클로저를 통해 외부 변수를 유지하는 구조를 보여준다. Decorator는 클로저를 통해 원래 함수의 동작을 수정하고, 추가적인 기능을 제공할 수 있다.
 
 <!--
-## 8. Decorator의 디버깅
+## Decorator의 디버깅
    - Decorator 사용 시 주의사항
    - Decorator의 속성 유지하기 (functools.wraps)
 -->
@@ -812,7 +812,7 @@ graph TD;
 위의 다이어그램은 Decorator의 작동 과정을 시각적으로 나타낸 것이다. 원래 함수가 Decorator에 의해 감싸지고, Wrapper 함수가 호출되며, 최종적으로 원래 함수가 실행되는 구조를 보여준다. Decorator를 사용할 때 이러한 구조를 이해하는 것이 중요하다.
 
 <!--
-## 9. FAQ
+## FAQ
    - Decorator는 언제 사용해야 하나요?
    - Decorator를 여러 개 사용할 수 있나요?
    - Decorator의 성능에 대한 영향은 무엇인가요?
@@ -888,7 +888,7 @@ graph TD;
 위의 다이어그램은 Decorator가 추가적인 오버헤드를 발생시킨다는 것을 보여준다. Decorator를 사용할 때는 이러한 성능 영향을 고려하여 적절히 사용해야 한다.
 
 <!--
-## 10. 관련 기술
+## 관련 기술
    - Python의 함수형 프로그래밍
    - 메타프로그래밍
    - 고차 함수(Higher-order functions)
@@ -949,7 +949,7 @@ print(display())  # 출력: Wrapper executed before display
 이와 같이 Python의 함수형 프로그래밍, 메타프로그래밍, 고차 함수는 Decorator와 밀접한 관계를 맺고 있으며, 이를 통해 Python 프로그래밍의 유연성과 확장성을 높일 수 있다.
 
 <!--
-## 11. 결론
+## 결론
    - Decorator의 중요성 요약
    - Python 프로그래밍에서 Decorator의 활용 방안
 -->
@@ -997,7 +997,7 @@ graph TD;
 결론적으로, Decorator는 Python 프로그래밍에서 매우 유용한 도구이며, 다양한 상황에서 활용될 수 있다. 이를 통해 개발자는 더 깔끔하고 효율적인 코드를 작성할 수 있다.
 
 <!--
-## 12. 추가 자료
+## 추가 자료
    - 추천 도서 및 온라인 강의
    - 관련 블로그 및 커뮤니티 링크
 -->

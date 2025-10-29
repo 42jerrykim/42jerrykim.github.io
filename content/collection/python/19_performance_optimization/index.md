@@ -17,7 +17,7 @@ collection_order: 19
 
 ## 성능 측정과 프로파일링
 
-### 1. 기본 성능 측정
+### 기본 성능 측정
 
 ```python
 import time
@@ -129,7 +129,7 @@ if __name__ == "__main__":
     list_creation_comparison()
 ```
 
-### 2. 고급 프로파일링
+### 고급 프로파일링
 
 ```python
 import cProfile
@@ -235,7 +235,7 @@ if __name__ == "__main__":
 
 ## 코드 최적화 기법
 
-### 1. 데이터 구조 최적화
+### 데이터 구조 최적화
 
 ```python
 import array
@@ -372,7 +372,7 @@ if __name__ == "__main__":
     slots_optimization_demo()
 ```
 
-### 2. 알고리즘 최적화
+### 알고리즘 최적화
 
 ```python
 import bisect

@@ -17,7 +17,7 @@ collection_order: 8
 
 ## 모듈 기본
 
-### 1. 모듈 생성과 import
+### 모듈 생성과 import
 
 ```python
 # math_utils.py 파일 생성
@@ -38,7 +38,7 @@ if __name__ == "__main__":
     print("math_utils 모듈이 직접 실행되었습니다.")
 ```
 
-### 2. import 방법들
+### import 방법들
 
 ```python
 # 방법 1: 전체 모듈 import
@@ -61,7 +61,7 @@ from collections import Counter, defaultdict
 
 ## 패키지 구조
 
-### 1. 기본 패키지 구조
+### 기본 패키지 구조
 
 ```
 my_package/
@@ -76,7 +76,7 @@ my_package/
         formatters.py
 ```
 
-### 2. 패키지 파일 예제
+### 패키지 파일 예제
 
 ```python
 # my_package/__init__.py
@@ -150,19 +150,19 @@ print(task)  # Task: 웹사이트 개발 [진행중]
 
 ## 핵심 내용
 
-### 1. 모듈 시스템
+### 모듈 시스템
 - **import 문**: 다양한 import 방법들
 - **모듈 경로**: sys.path와 PYTHONPATH
 - **모듈 속성**: __name__, __file__, __doc__
 - **표준 라이브러리**: 내장 모듈들 활용
 
-### 2. 패키지 구조
+### 패키지 구조
 - **__init__.py**: 패키지 초기화 파일
 - **상대 import**: . 과 .. 사용법
 - **__all__**: 공개 API 정의
 - **패키지 계층**: 중첩된 패키지 구조
 
-### 3. 가상 환경과 패키지 관리
+### 가상 환경과 패키지 관리
 - **venv**: 표준 가상 환경 도구
 - **pip**: 패키지 설치와 관리
 - **requirements.txt**: 의존성 명세

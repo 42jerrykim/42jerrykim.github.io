@@ -15,9 +15,9 @@ collection_order: 24
 - 효과적인 디버깅 기법을 활용할 수 있다
 - 테스트 자동화와 CI/CD를 구축할 수 있다
 
-## 1. 테스팅 기초
+## 테스팅 기초
 
-### 1.1 테스트 피라미드
+### 테스트 피라미드
 
 ```mermaid
 graph TB
@@ -29,7 +29,7 @@ graph TB
     style C fill:#99ff99
 ```
 
-### 1.2 TDD (Test-Driven Development)
+### TDD (Test-Driven Development)
 
 ```python
 # TDD 사이클: Red -> Green -> Refactor
@@ -77,9 +77,9 @@ class Calculator:
         return a / b
 ```
 
-## 2. unittest 모듈
+## unittest 모듈
 
-### 2.1 기본 테스트 케이스
+### 기본 테스트 케이스
 
 ```python
 import unittest
@@ -180,7 +180,7 @@ if __name__ == '__main__':
     unittest.main(verbosity=2)
 ```
 
-### 2.2 테스트 스위트와 러너
+### 테스트 스위트와 러너
 
 ```python
 import unittest
@@ -213,9 +213,9 @@ if __name__ == '__main__':
     run_custom_tests()
 ```
 
-## 3. pytest 프레임워크
+## pytest 프레임워크
 
-### 3.1 기본 사용법
+### 기본 사용법
 
 ```python
 # test_pytest_example.py
@@ -249,7 +249,7 @@ def test_float_comparison():
     assert math.pi == pytest.approx(3.14, abs=0.01)
 ```
 
-### 3.2 픽스처 (Fixtures)
+### 픽스처 (Fixtures)
 
 ```python
 import pytest
@@ -354,7 +354,7 @@ def test_known_bug():
     assert 1 == 2  # 이 테스트는 실패할 것으로 예상됨
 ```
 
-### 3.3 conftest.py와 공유 픽스처
+### conftest.py와 공유 픽스처
 
 ```python
 # conftest.py - 프로젝트 전체에서 사용할 픽스처
@@ -417,9 +417,9 @@ def test_user_names(db_connection):
     assert names == ["Alice", "Bob", "Charlie"]
 ```
 
-## 4. 모킹과 패칭
+## 모킹과 패칭
 
-### 4.1 unittest.mock 기본
+### unittest.mock 기본
 
 ```python
 import unittest
@@ -561,9 +561,9 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
-## 5. 디버깅 기법
+## 디버깅 기법
 
-### 5.1 기본 디버깅 방법
+### 기본 디버깅 방법
 
 ```python
 import logging
@@ -623,7 +623,7 @@ if __name__ == "__main__":
     debug_example()
 ```
 
-### 5.2 pdb 디버거 사용
+### pdb 디버거 사용
 
 ```python
 import pdb
@@ -696,7 +696,7 @@ if __name__ == "__main__":
     pdb_example()
 ```
 
-### 5.3 고급 디버깅 도구
+### 고급 디버깅 도구
 
 ```python
 import sys
@@ -807,7 +807,7 @@ if __name__ == "__main__":
     tracing_example()
 ```
 
-## 6. 실습 프로젝트
+## 실습 프로젝트
 
 ### 프로젝트 1: TDD로 구현하는 계산기
 

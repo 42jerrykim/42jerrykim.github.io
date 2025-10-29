@@ -32,7 +32,7 @@ draft: true
 
 ## 핵심 학습 내용
 
-### 6.1 프레임워크 아키텍처 심화
+### 프레임워크 아키텍처 심화
 - **프레임워크 계층 구조**
   - Application Framework Layer
   - Native Libraries Layer
@@ -46,7 +46,7 @@ draft: true
   - View System
   - Resource Manager
 
-### 6.2 시스템 UI 커스터마이징
+### 시스템 UI 커스터마이징
 - **SystemUI 구조**
   - Status Bar 커스터마이징
   - Navigation Bar 수정
@@ -59,7 +59,7 @@ draft: true
   - 백엔드 로직 구현
   - 권한 관리 시스템
 
-### 6.3 API 확장 및 개발
+### API 확장 및 개발
 - **새로운 API 개발**
   - 공개 API 설계
   - 내부 API 구현
@@ -72,7 +72,7 @@ draft: true
   - 호환성 유지
   - 테스트 케이스 작성
 
-### 6.4 리소스 관리 시스템
+### 리소스 관리 시스템
 - **리소스 오버레이**
   - RRO (Runtime Resource Overlay)
   - 테마 시스템 구현

@@ -15,9 +15,9 @@ collection_order: 20
 - 효율적인 메모리 사용 패턴을 적용할 수 있다
 - 가비지 컬렉션을 제어하고 최적화할 수 있다
 
-## 1. 파이썬 메모리 모델
+## 파이썬 메모리 모델
 
-### 1.1 객체와 참조
+### 객체와 참조
 
 파이썬에서 모든 것은 객체이며, 변수는 객체에 대한 참조입니다.
 
@@ -32,7 +32,7 @@ print(a is b)  # True - 같은 객체
 print(a is c)  # False - 다른 객체
 ```
 
-### 1.2 참조 카운팅
+### 참조 카운팅
 
 파이썬은 각 객체의 참조 횟수를 추적합니다.
 
@@ -59,7 +59,7 @@ print(f"참조 횟수: {sys.getrefcount(obj)}")  # 2
 del obj     # 마지막 참조 제거, 객체 삭제됨
 ```
 
-### 1.3 메모리 레이아웃
+### 메모리 레이아웃
 
 ```python
 import sys
@@ -77,9 +77,9 @@ for obj in objects:
     print(f"{type(obj).__name__}: {sys.getsizeof(obj)} bytes")
 ```
 
-## 2. 가비지 컬렉션
+## 가비지 컬렉션
 
-### 2.1 순환 참조 문제
+### 순환 참조 문제
 
 ```python
 import gc
@@ -105,7 +105,7 @@ print(f"수집된 객체 수: {collected}")
 print(f"수집 후 객체 수: {len(gc.get_objects())}")
 ```
 
-### 2.2 가비지 컬렉션 제어
+### 가비지 컬렉션 제어
 
 ```python
 import gc
@@ -126,7 +126,7 @@ collected = gc.collect()
 print(f"수집된 객체 수: {collected}")
 ```
 
-### 2.3 약한 참조 (Weak Reference)
+### 약한 참조 (Weak Reference)
 
 ```python
 import weakref
@@ -155,9 +155,9 @@ del ref  # 마지막 강한 참조 제거
 print(f"객체 존재: {weak_ref() is not None}")
 ```
 
-## 3. 메모리 프로파일링
+## 메모리 프로파일링
 
-### 3.1 tracemalloc 모듈
+### tracemalloc 모듈
 
 ```python
 import tracemalloc
@@ -189,7 +189,7 @@ for stat in top_stats[:10]:
     print(stat)
 ```
 
-### 3.2 memory_profiler 사용
+### memory_profiler 사용
 
 ```python
 # pip install memory-profiler 필요
@@ -212,9 +212,9 @@ if __name__ == "__main__":
     memory_test()
 ```
 
-## 4. 메모리 최적화 기법
+## 메모리 최적화 기법
 
-### 4.1 __slots__ 사용
+### __slots__ 사용
 
 ```python
 import sys
@@ -258,7 +258,7 @@ print(f"현재 메모리: {current / 1024 / 1024:.2f} MB")
 print(f"최대 메모리: {peak / 1024 / 1024:.2f} MB")
 ```
 
-### 4.2 제너레이터를 통한 메모리 효율성
+### 제너레이터를 통한 메모리 효율성
 
 ```python
 import sys
@@ -281,7 +281,7 @@ gen_result = create_generator(n)
 print(f"제너레이터 크기: {sys.getsizeof(gen_result)} bytes")
 ```
 
-### 4.3 메모리 효율적 자료구조
+### 메모리 효율적 자료구조
 
 ```python
 import array
@@ -304,9 +304,9 @@ queue_deque = deque()
 # 성능과 메모리 효율성에서 deque가 유리
 ```
 
-## 5. 대용량 데이터 처리
+## 대용량 데이터 처리
 
-### 5.1 메모리 매핑
+### 메모리 매핑
 
 ```python
 import mmap
@@ -337,7 +337,7 @@ if __name__ == "__main__":
     os.remove(test_file)
 ```
 
-### 5.2 청크 단위 처리
+### 청크 단위 처리
 
 ```python
 def process_large_dataset_chunked(data_generator, chunk_size=1000):
@@ -369,9 +369,9 @@ def large_data_generator():
 process_large_dataset_chunked(large_data_generator())
 ```
 
-## 6. 메모리 누수 탐지 및 해결
+## 메모리 누수 탐지 및 해결
 
-### 6.1 일반적인 메모리 누수 패턴
+### 일반적인 메모리 누수 패턴
 
 ```python
 import gc
@@ -423,7 +423,7 @@ class ImprovedWidget:
         self.emitter.remove_callback(self._callback_ref)
 ```
 
-### 6.2 메모리 모니터링 도구
+### 메모리 모니터링 도구
 
 ```python
 import psutil
@@ -461,7 +461,7 @@ gc.collect()
 monitor.log_memory_usage("GC 수행 후")
 ```
 
-## 7. 실습 프로젝트
+## 실습 프로젝트
 
 ### 프로젝트 1: 메모리 누수 탐지기
 

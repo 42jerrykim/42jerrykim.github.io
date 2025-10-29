@@ -71,17 +71,17 @@ image: "tmp_wordcloud.png"
 <!--
 # 목차: Two Pointers 기법
 
-## 1. 개요
+## 개요
    - Two Pointers 기법의 정의
    - 사용 사례 및 장점
    - 시간 복잡도 및 공간 복잡도
 
-## 2. Two Pointers 기법의 동작 원리
+## Two Pointers 기법의 동작 원리
    - 기본 개념
    - 포인터 초기화 및 조건 설정
    - 포인터 이동 방식
 
-## 3. 문제 해결을 위한 예제
+## 문제 해결을 위한 예제
    - 예제 1: 주어진 합을 가지는 두 수 찾기
      - 입력 및 출력 예시
      - 설명 및 코드 구현
@@ -89,39 +89,39 @@ image: "tmp_wordcloud.png"
      - 입력 및 출력 예시
      - 설명 및 코드 구현
 
-## 4. 다양한 프로그래밍 언어로의 구현
+## 다양한 프로그래밍 언어로의 구현
    - C++
    - Python
    - Java
    - C#
    - JavaScript
 
-## 5. 더 나은 접근법
+## 더 나은 접근법
    - Naive Method (O(n^2) 시간 복잡도)
    - Binary Search
    - Hashing 기법
 
-## 6. Two Pointers 기법의 장단점
+## Two Pointers 기법의 장단점
    - 장점: 효율성 및 간결성
    - 단점: 특정 조건에서만 유효함 (예: 정렬된 배열)
 
-## 7. Two Pointers 기법을 활용한 문제들
+## Two Pointers 기법을 활용한 문제들
    - Two Sum 문제
    - Three Sum 문제
    - Four Sum 문제
    - Trapping Rain Water 문제
 
-## 8. FAQ
+## FAQ
    - Q1: Two Pointers 기법은 언제 사용해야 하나요?
    - Q2: 이 기법의 시간 복잡도는 어떻게 되나요?
    - Q3: Two Pointers 기법이 아닌 다른 방법으로 해결할 수 있는 문제는 무엇인가요?
 
-## 9. 관련 기술
+## 관련 기술
    - Sliding Window 기법
    - Binary Search 기법
    - Dynamic Programming 기법
 
-## 10. 결론
+## 결론
    - Two Pointers 기법의 중요성
    - 실전에서의 활용 가능성
    - 추가 학습 자료 및 참고 링크
@@ -130,7 +130,7 @@ image: "tmp_wordcloud.png"
 -->
 
 <!--
-## 1. 개요
+## 개요
    - Two Pointers 기법의 정의
    - 사용 사례 및 장점
    - 시간 복잡도 및 공간 복잡도
@@ -165,7 +165,7 @@ flowchart TD
 위의 다이어그램은 Two Pointers 기법의 기본적인 흐름을 나타낸다. 조건을 검사하고, 조건이 만족되면 포인터를 이동시키며, 그렇지 않으면 결과를 반환하는 구조이다. 이와 같은 방식으로 문제를 해결할 수 있다.
 
 <!--
-## 2. Two Pointers 기법의 동작 원리
+## Two Pointers 기법의 동작 원리
    - 기본 개념
    - 포인터 초기화 및 조건 설정
    - 포인터 이동 방식
@@ -213,7 +213,7 @@ graph TD;
 이와 같은 방식으로 Two Pointers 기법을 활용하면, 다양한 문제를 효율적으로 해결할 수 있다.
 
 <!--
-## 3. 문제 해결을 위한 예제
+## 문제 해결을 위한 예제
    - 예제 1: 주어진 합을 가지는 두 수 찾기
      - 입력 및 출력 예시
      - 설명 및 코드 구현
@@ -305,7 +305,7 @@ graph TD;
 이와 같이 Two Pointers 기법을 활용하여 다양한 문제를 해결할 수 있으며, 효율적인 알고리즘을 구현할 수 있다.
 
 <!--
-## 4. 다양한 프로그래밍 언어로의 구현
+## 다양한 프로그래밍 언어로의 구현
    - C++
    - Python
    - Java
@@ -435,7 +435,7 @@ graph TD;
 이와 같이 다양한 프로그래밍 언어에서 Two Pointers 기법을 활용하여 문제를 해결할 수 있다. 각 언어의 문법에 맞게 구현하면 효율적인 알고리즘을 작성할 수 있다.
 
 <!--
-## 5. 더 나은 접근법
+## 더 나은 접근법
    - Naive Method (O(n^2) 시간 복잡도)
    - Binary Search
    - Hashing 기법
@@ -517,7 +517,7 @@ graph TD;
 위의 다이어그램은 각 접근법의 시간 복잡도를 시각적으로 나타낸 것이다. 각 방법의 장단점을 이해하고 적절한 상황에서 활용하는 것이 중요하다.
 
 <!--
-## 6. Two Pointers 기법의 장단점
+## Two Pointers 기법의 장단점
    - 장점: 효율성 및 간결성
    - 단점: 특정 조건에서만 유효함 (예: 정렬된 배열)
 -->
@@ -566,7 +566,7 @@ def two_sum_unsorted(nums, target):
 Two Pointers 기법은 효율성과 간결성을 제공하는 강력한 도구이다. 그러나 이 기법이 유효한 조건을 이해하고, 적절한 상황에서 사용하는 것이 중요하다. 정렬된 데이터에서 최적의 성능을 발휘하는 이 기법을 활용하여 다양한 문제를 해결할 수 있다.
 
 <!--
-## 7. Two Pointers 기법을 활용한 문제들
+## Two Pointers 기법을 활용한 문제들
    - Two Sum 문제
    - Three Sum 문제
    - Four Sum 문제
@@ -743,7 +743,7 @@ def trap(height):
 이와 같이 Two Pointers 기법은 다양한 문제를 해결하는 데 매우 유용하며, 효율적인 알고리즘을 구현할 수 있도록 돕는다. 각 문제의 접근 방식과 구현 방법을 이해하면, 더 복잡한 문제를 해결하는 데에도 큰 도움이 될 것이다.
 
 <!--
-## 8. FAQ
+## FAQ
    - Q1: Two Pointers 기법은 언제 사용해야 하나요?
    - Q2: 이 기법의 시간 복잡도는 어떻게 되나요?
    - Q3: Two Pointers 기법이 아닌 다른 방법으로 해결할 수 있는 문제는 무엇인가요?
@@ -787,7 +787,7 @@ Two Pointers 기법이 아닌 다른 방법으로 해결할 수 있는 문제는
 이러한 방법들은 각각의 문제에 따라 적합할 수 있으며, 상황에 맞는 최적의 알고리즘을 선택하는 것이 중요하다.
 
 <!--
-## 9. 관련 기술
+## 관련 기술
    - Sliding Window 기법
    - Binary Search 기법
    - Dynamic Programming 기법
@@ -886,7 +886,7 @@ graph TD;
 이와 같이 Sliding Window, Binary Search, Dynamic Programming 기법은 각각의 특성과 장점을 가지고 있으며, Two Pointers 기법과 함께 사용될 때 더욱 강력한 문제 해결 도구가 된다.
 
 <!--
-## 10. 결론
+## 결론
    - Two Pointers 기법의 중요성
    - 실전에서의 활용 가능성
    - 추가 학습 자료 및 참고 링크

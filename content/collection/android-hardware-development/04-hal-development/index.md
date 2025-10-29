@@ -32,7 +32,7 @@ description: "안드로이드 HAL 아키텍처와 커스텀 HAL 모듈 개발"
 
 ## 핵심 학습 내용
 
-### 4.1 HAL 아키텍처 개요
+### HAL 아키텍처 개요
 - **HAL 레이어의 역할**
   - 하드웨어 종속성 분리
   - 벤더 구현 추상화
@@ -45,7 +45,7 @@ description: "안드로이드 HAL 아키텍처와 커스텀 HAL 모듈 개발"
   - 버전 호환성 관리
   - 독립적인 업데이트 지원
 
-### 4.2 HIDL (HAL Interface Definition Language)
+### HIDL (HAL Interface Definition Language)
 - **HIDL 기본 개념**
   - 인터페이스 정의 언어
   - 언어 중립적 바인딩
@@ -64,7 +64,7 @@ description: "안드로이드 HAL 아키텍처와 커스텀 HAL 모듈 개발"
   - 마샬링/언마샬링 처리
   - 원격 프로시저 호출 (RPC)
 
-### 4.3 AIDL (Android Interface Definition Language)
+### AIDL (Android Interface Definition Language)
 - **AIDL vs HIDL**
   - AIDL 2.0 새로운 기능
   - 성능 향상과 안정성
@@ -77,7 +77,7 @@ description: "안드로이드 HAL 아키텍처와 커스텀 HAL 모듈 개발"
   - 버전 관리 및 호환성
   - 비동기 호출 지원
 
-### 4.4 주요 HAL 모듈 분석
+### 주요 HAL 모듈 분석
 - **카메라 HAL**
   - 카메라 파이프라인 구조
   - 이미지 처리 워크플로우
@@ -102,7 +102,7 @@ description: "안드로이드 HAL 아키텍처와 커스텀 HAL 모듈 개발"
   - 배치 모드 지원
   - 전력 최적화
 
-### 4.5 커스텀 HAL 개발
+### 커스텀 HAL 개발
 - **HAL 모듈 구조**
   - 헤더 파일 정의
   - 구조체 및 함수 포인터
@@ -121,7 +121,7 @@ description: "안드로이드 HAL 아키텍처와 커스텀 HAL 모듈 개발"
   - 전력 소비 최소화
   - 응답 시간 개선
 
-### 4.6 HAL 테스트 및 검증
+### HAL 테스트 및 검증
 - **VTS (Vendor Test Suite)**
   - HAL 인터페이스 테스트
   - 호환성 검증

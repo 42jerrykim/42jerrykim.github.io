@@ -67,19 +67,19 @@ ColorBrewer는 지도 색상 스킴을 선택하기 위한 온라인 도구로, 
 <!--
 # 목차
 
-## 1. 개요
+## 개요
    - ColorBrewer 소개
    - 개발 배경 및 역사
    - 사용 목적 및 중요성
 
-## 2. ColorBrewer의 기능
+## ColorBrewer의 기능
    - 색상 팔레트 선택
      - Sequential, Divergent, Qualitative
    - 다양한 디스플레이 환경 지원
      - Laptop, Photocopy, LCD Projector
    - Colorblind Safe 옵션
 
-## 3. 색상 팔레트 설명
+## 색상 팔레트 설명
    - 3.1. Sequential 색상 팔레트
      - YlGn, YlGnBu, GnBu 등
    - 3.2. Divergent 색상 팔레트
@@ -87,29 +87,29 @@ ColorBrewer는 지도 색상 스킴을 선택하기 위한 온라인 도구로, 
    - 3.3. Qualitative 색상 팔레트
      - Accent, Dark2, Paired 등
 
-## 4. ColorBrewer의 활용 사례
+## ColorBrewer의 활용 사례
    - 기후 변화 시각화: Warming Stripes
    - 지도 제작에서의 응용
 
-## 5. 예제
+## 예제
    - ColorBrewer 사용법 예제
    - 다양한 색상 팔레트를 활용한 지도 디자인 예시
 
-## 6. FAQ
+## FAQ
    - ColorBrewer는 무료인가요?
    - ColorBrewer의 색상 선택 기준은 무엇인가요?
    - 색맹 사용자에게 적합한 색상 조합은 어떻게 선택하나요?
 
-## 7. 관련 기술
+## 관련 기술
    - GIS (Geographic Information Systems)
    - 데이터 시각화 (Data Visualization)
    - 색상 이론 (Color Theory)
 
-## 8. 결론
+## 결론
    - ColorBrewer의 중요성 및 미래 전망
    - 색상 선택의 영향력
 
-## 9. 참고 문헌
+## 참고 문헌
    - 관련 연구 및 자료 링크
    - ColorBrewer 관련 논문 및 기사
 
@@ -117,7 +117,7 @@ ColorBrewer는 지도 색상 스킴을 선택하기 위한 온라인 도구로, 
 -->
 
 <!--
-## 1. 개요
+## 개요
    - ColorBrewer 소개
    - 개발 배경 및 역사
    - 사용 목적 및 중요성
@@ -149,7 +149,7 @@ graph TD;
 위의 다이어그램은 ColorBrewer가 데이터 시각화에 어떻게 기여하는지를 보여준다. ColorBrewer는 다양한 분야에서 색상 팔레트를 선택하는 데 도움을 주며, 이를 통해 데이터의 해석과 전달이 용이해진다.
 
 <!--
-## 2. ColorBrewer의 기능
+## ColorBrewer의 기능
    - 색상 팔레트 선택
      - Sequential, Divergent, Qualitative
    - 다양한 디스플레이 환경 지원
@@ -228,7 +228,7 @@ graph TD;
 이와 같은 기능들은 ColorBrewer를 데이터 시각화 도구로서 더욱 유용하게 만들어준다. 사용자는 다양한 색상 팔레트를 통해 데이터의 의미를 명확히 전달할 수 있으며, 다양한 환경에서도 일관된 시각적 효과를 유지할 수 있다.
 
 <!--
-## 3. 색상 팔레트 설명
+## 색상 팔레트 설명
    - 3.1. Sequential 색상 팔레트
      - YlGn, YlGnBu, GnBu 등
    - 3.2. Divergent 색상 팔레트
@@ -316,7 +316,7 @@ graph LR;
 이와 같이 ColorBrewer의 색상 팔레트는 데이터의 특성에 따라 적절한 색상을 선택할 수 있도록 도와준다. 각 팔레트의 특성을 이해하고 활용하는 것은 데이터 시각화의 품질을 높이는 데 중요한 요소이다.
 
 <!--
-## 4. ColorBrewer의 활용 사례
+## ColorBrewer의 활용 사례
    - 기후 변화 시각화: Warming Stripes
    - 지도 제작에서의 응용
 -->
@@ -376,7 +376,7 @@ graph TD;
 이와 같이 ColorBrewer는 다양한 데이터 유형에 맞춰 색상 팔레트를 제공함으로써, 지도 제작에서의 데이터 시각화를 더욱 효과적으로 만들어준다. 이를 통해 사용자는 복잡한 데이터를 쉽게 이해하고, 중요한 인사이트를 도출할 수 있다.
 
 <!--
-## 5. 예제
+## 예제
    - ColorBrewer 사용법 예제
    - 다양한 색상 팔레트를 활용한 지도 디자인 예시
 -->
@@ -423,7 +423,7 @@ graph TD;
 위의 다이어그램은 기후 변화 데이터를 기반으로 한 색상 팔레트의 선택 과정을 나타낸다. 온도 변화에 따라 적절한 색상 팔레트를 선택함으로써 데이터의 의미를 더욱 명확하게 전달할 수 있다. ColorBrewer의 다양한 색상 팔레트를 활용하여 지도 디자인을 개선하고, 데이터의 시각적 효과를 극대화할 수 있다.
 
 <!--
-## 6. FAQ
+## FAQ
    - ColorBrewer는 무료인가요?
    - ColorBrewer의 색상 선택 기준은 무엇인가요?
    - 색맹 사용자에게 적합한 색상 조합은 어떻게 선택하나요?
@@ -466,7 +466,7 @@ graph TD;
 이와 같은 방법으로 색상 조합을 선택하면 색맹 사용자도 데이터 시각화를 보다 쉽게 이해할 수 있다. ColorBrewer는 이러한 접근성을 고려하여 설계된 도구로, 다양한 사용자에게 유용한 정보를 제공하는 데 기여하고 있다.
 
 <!--
-## 7. 관련 기술
+## 관련 기술
    - GIS (Geographic Information Systems)
    - 데이터 시각화 (Data Visualization)
    - 색상 이론 (Color Theory)
@@ -537,7 +537,7 @@ graph TD;
 이와 같이 GIS, 데이터 시각화, 색상 이론은 ColorBrewer와 밀접한 관련이 있으며, 이들 기술을 이해하는 것은 효과적인 데이터 시각화를 위한 중요한 기초가 된다.
 
 <!--
-## 8. 결론
+## 결론
    - ColorBrewer의 중요성 및 미래 전망
    - 색상 선택의 영향력
 -->
@@ -584,7 +584,7 @@ graph TD;
 이와 같이 ColorBrewer는 데이터 시각화에서 색상 선택의 중요성을 강조하며, 앞으로도 그 역할이 더욱 중요해질 것이다. 색상 선택은 단순한 디자인 요소가 아니라, 데이터의 의미를 전달하는 핵심 요소임을 잊지 말아야 한다.
 
 <!--
-## 9. 참고 문헌
+## 참고 문헌
    - 관련 연구 및 자료 링크
    - ColorBrewer 관련 논문 및 기사
 -->

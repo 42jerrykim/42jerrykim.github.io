@@ -69,7 +69,7 @@ date: 2025-02-04
 
 ## 해결 방법
 
-### 1. RDP 설정 확인
+### RDP 설정 확인
 
 1. 원격 데스크톱 연결(mstsc.exe)을 실행한다.
 2. "옵션 표시"을 클릭하여 고급 설정을 연다.
@@ -85,7 +85,7 @@ date: 2025-02-04
 |:---:|
 |RDP 연결 설정의 로컬 리소스 탭|
 
-### 2. rdpclip.exe 프로세스 재시작
+### rdpclip.exe 프로세스 재시작
 
 1. Remote session에서 Task Manager를 연다(Ctrl + Shift + Esc).
 2. "Processes" 탭에서 "rdpclip.exe"(한글로는 "RDP 클립보드 모니터")를 찾는다.

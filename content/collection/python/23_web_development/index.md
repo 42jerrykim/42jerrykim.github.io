@@ -17,7 +17,7 @@ collection_order: 23
 
 ## Flask 웹 프레임워크
 
-### 1. Flask 기본 구조
+### Flask 기본 구조
 
 ```python
 from flask import Flask, render_template, request, jsonify, redirect, url_for
@@ -96,7 +96,7 @@ if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
 ```
 
-### 2. 템플릿과 정적 파일
+### 템플릿과 정적 파일
 
 ```python
 # templates/base.html
@@ -197,7 +197,7 @@ def dashboard():
                          posts=recent_posts)
 ```
 
-### 3. 데이터베이스 연동 (Flask-SQLAlchemy)
+### 데이터베이스 연동 (Flask-SQLAlchemy)
 
 ```python
 from flask import Flask, request, jsonify

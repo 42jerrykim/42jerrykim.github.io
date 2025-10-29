@@ -28,7 +28,7 @@ series_order: 15
 
 ## 프로젝트 1: Counter 앱
 
-### 1.1 프로젝트 생성
+### 프로젝트 생성
 
 ```bash
 # Create React App
@@ -42,7 +42,7 @@ npm install @reduxjs/toolkit react-redux
 # 크롬 웹스토어에서 "Redux DevTools" 설치
 ```
 
-### 1.2 폴더 구조
+### 폴더 구조
 
 ```
 src/
@@ -56,7 +56,7 @@ src/
 └── index.tsx
 ```
 
-### 1.3 Redux Store 설정
+### Redux Store 설정
 
 ```typescript
 // src/store/types.ts
@@ -114,7 +114,7 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 ```
 
-### 1.4 Provider 설정
+### Provider 설정
 
 ```typescript
 // src/index.tsx
@@ -138,7 +138,7 @@ root.render(
 );
 ```
 
-### 1.5 Counter 컴포넌트
+### Counter 컴포넌트
 
 ```typescript
 // src/components/Counter.tsx
@@ -204,7 +204,7 @@ function App() {
 export default App;
 ```
 
-### 1.6 스타일링
+### 스타일링
 
 ```css
 /* src/App.css */
@@ -287,7 +287,7 @@ button:active {
 
 ## 프로젝트 2: Todo 앱
 
-### 2.1 프로젝트 구조
+### 프로젝트 구조
 
 ```
 src/
@@ -306,7 +306,7 @@ src/
 └── index.tsx
 ```
 
-### 2.2 Todos Slice
+### Todos Slice
 
 ```typescript
 // src/store/todosSlice.ts
@@ -383,7 +383,7 @@ export const {
 export default todosSlice.reducer;
 ```
 
-### 2.3 Filter Slice
+### Filter Slice
 
 ```typescript
 // src/store/filterSlice.ts
@@ -413,7 +413,7 @@ export const { setFilter } = filterSlice.actions;
 export default filterSlice.reducer;
 ```
 
-### 2.4 Selectors
+### Selectors
 
 ```typescript
 // src/store/selectors.ts
@@ -447,7 +447,7 @@ export const selectTodoStats = createSelector(
 );
 ```
 
-### 2.5 Store 설정
+### Store 설정
 
 ```typescript
 // src/store/index.ts
@@ -466,7 +466,7 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 ```
 
-### 2.6 Todo Components
+### Todo Components
 
 ```typescript
 // src/components/TodoForm.tsx
@@ -648,7 +648,7 @@ export default function TodoStats() {
 }
 ```
 
-### 2.7 App 컴포넌트
+### App 컴포넌트
 
 ```typescript
 // src/App.tsx
@@ -675,7 +675,7 @@ function App() {
 export default App;
 ```
 
-### 2.8 스타일링
+### 스타일링
 
 ```css
 /* src/App.css */
@@ -849,9 +849,9 @@ export default App;
 }
 ```
 
-## 3. 확장 기능 추가하기
+## 확장 기능 추가하기
 
-### 3.1 LocalStorage 연동
+### LocalStorage 연동
 
 ```typescript
 // src/store/middleware/localStorage.ts
@@ -909,7 +909,7 @@ export const store = configureStore({
 });
 ```
 
-### 3.2 검색 기능
+### 검색 기능
 
 ```typescript
 // searchSlice.ts 추가
@@ -961,7 +961,7 @@ export const selectFilteredTodos = createSelector(
 );
 ```
 
-## 4. 체크리스트 ✅
+## 체크리스트 ✅
 
 - [ ] Counter 앱을 성공적으로 만들었다
 - [ ] Todo 앱의 CRUD 기능이 모두 작동한다
@@ -969,7 +969,7 @@ export const selectFilteredTodos = createSelector(
 - [ ] Selector를 사용하여 성능 최적화를 적용했다
 - [ ] LocalStorage로 데이터를 영구 저장했다
 
-## 5. 다음 단계 🚀
+## 다음 단계 🚀
 
 축하합니다! Phase 3를 완료했습니다!
 

@@ -17,7 +17,7 @@ collection_order: 6
 
 ## 기본 파일 연산
 
-### 1. 파일 열기와 닫기
+### 파일 열기와 닫기
 
 **기본 파일 열기:**
 
@@ -48,7 +48,7 @@ finally:
         file.close()
 ```
 
-### 2. with 문을 사용한 안전한 파일 처리
+### with 문을 사용한 안전한 파일 처리
 
 ```python
 # with 문 (컨텍스트 매니저) - 권장 방법
@@ -65,7 +65,7 @@ with open('input.txt', 'r', encoding='utf-8') as infile, \
     outfile.write(processed_data)
 ```
 
-### 3. 파일 모드
+### 파일 모드
 
 ```python
 # 텍스트 모드

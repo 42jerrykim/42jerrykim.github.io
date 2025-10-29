@@ -35,7 +35,7 @@ draft: true
 
 ## 핵심 학습 내용
 
-### 13.1 AOSP 빌드 시스템 아키텍처
+### AOSP 빌드 시스템 아키텍처
 - **Soong 빌드 시스템**
   - Soong vs Make 시스템 비교
   - Blueprint 파일 구조 분석
@@ -48,7 +48,7 @@ draft: true
   - 빌드 캐시 활용
   - 증분 빌드 최적화
 
-### 13.2 Blueprint 파일 작성
+### Blueprint 파일 작성
 - **모듈 정의**
   - cc_binary, cc_library 모듈
   - android_app, java_library 모듈
@@ -61,7 +61,7 @@ draft: true
   - 순환 의존성 해결
   - 조건부 의존성 설정
 
-### 13.3 빌드 최적화
+### 빌드 최적화
 - **빌드 성능 향상**
   - 병렬 빌드 최적화
   - ccache 활용
@@ -74,7 +74,7 @@ draft: true
   - 네트워크 캐시 활용
   - 분산 빌드 시스템
 
-### 13.4 개발 도구체인
+### 개발 도구체인
 - **컴파일러 도구**
   - Clang/LLVM 툴체인
   - GCC 크로스 컴파일러
@@ -87,7 +87,7 @@ draft: true
   - AddressSanitizer (ASan)
   - ThreadSanitizer (TSan)
 
-### 13.5 코드 품질 관리
+### 코드 품질 관리
 - **정적 분석 도구**
   - Clang Static Analyzer
   - Android Lint 활용
@@ -100,7 +100,7 @@ draft: true
   - 커버리지 리포트 생성
   - 테스트 품질 개선
 
-### 13.6 자동화 및 CI/CD
+### 자동화 및 CI/CD
 - **빌드 자동화**
   - Jenkins 파이프라인 구축
   - GitHub Actions 활용
@@ -113,7 +113,7 @@ draft: true
   - 성능 회귀 테스트
   - 자동 배포 시스템
 
-### 13.7 커스텀 빌드 환경
+### 커스텀 빌드 환경
 - **툴체인 커스터마이징**
   - 크로스 컴파일 환경 구성
   - 커스텀 컴파일러 통합

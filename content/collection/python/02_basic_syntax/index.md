@@ -17,7 +17,7 @@ collection_order: 2
 
 ## 변수와 식별자
 
-### 1. 변수의 기본 개념
+### 변수의 기본 개념
 
 파이썬에서 변수는 값을 저장하는 컨테이너입니다. 변수 선언과 동시에 값을 할당해야 합니다.
 
@@ -37,7 +37,7 @@ x, y = y, x
 print(f"x: {x}, y: {y}")  # x: 2, y: 1
 ```
 
-### 2. 변수 명명 규칙
+### 변수 명명 규칙
 
 **✅ 올바른 변수명:**
 
@@ -71,7 +71,7 @@ __special_var = "very special"
 # user@email = "test"   # SyntaxError
 ```
 
-### 3. 동적 타이핑 이해하기
+### 동적 타이핑 이해하기
 
 <function_calls>
 <invoke name="create_diagram">
@@ -131,31 +131,31 @@ check_type(3.14)      # 값: 3.14, 타입: float
 
 ## 핵심 내용
 
-### 1. 변수와 식별자
+### 변수와 식별자
 - **변수 명명 규칙**: snake_case, 예약어 회피
 - **동적 타이핑**: 타입 추론과 변수 재할당
 - **메모리 관리**: 객체 참조와 가비지 컬렉션
 - **전역/지역 변수**: 스코프 이해
 
-### 2. 기본 데이터 타입
+### 기본 데이터 타입
 - **숫자형**: int, float, complex
 - **문자열**: str, 인코딩, 포매팅
 - **불린형**: bool, 논리 연산
 - **None**: 특수한 값과 활용법
 
-### 3. 연산자
+### 연산자
 - **산술 연산자**: +, -, *, /, //, %, **
 - **비교 연산자**: ==, !=, <, >, <=, >=
 - **논리 연산자**: and, or, not
 - **멤버십 연산자**: in, not in
 - **신원 연산자**: is, is not
 
-### 4. 입출력
+### 입출력
 - **print() 함수**: 출력 형식화, 구분자, 종결자
 - **input() 함수**: 사용자 입력 처리
 - **문자열 포매팅**: %, .format(), f-string
 
-### 5. 주석과 독스트링
+### 주석과 독스트링
 - **한 줄 주석**: # 활용법
 - **여러 줄 주석**: """ 또는 '''
 - **독스트링**: 함수/클래스 문서화
@@ -178,7 +178,7 @@ check_type(3.14)      # 값: 3.14, 타입: float
 
 ## 기본 데이터 타입
 
-### 1. 숫자형 (Numeric Types)
+### 숫자형 (Numeric Types)
 
 <function_calls>
 <invoke name="create_diagram">
@@ -294,7 +294,7 @@ magnitude = abs(z1)
 print(f"절댓값: {magnitude}")   # 5.0
 ```
 
-### 2. 문자열 (String)
+### 문자열 (String)
 
 ```python
 # 문자열 생성 방법들
@@ -340,7 +340,7 @@ joined = " | ".join(fruits)
 print(f"결합: {joined}")             # apple | banana | cherry
 ```
 
-### 3. 불린형 (Boolean)
+### 불린형 (Boolean)
 
 ```python
 # 불린 값
@@ -383,7 +383,7 @@ result2 = True or get_value()   # get_value() 호출되지 않음
 print(f"결과2: {result2}")
 ```
 
-### 4. None 타입
+### None 타입
 
 ```python
 # None 값
@@ -411,7 +411,7 @@ print(f"bool(None): {bool(None)}")          # False
 
 ## 연산자
 
-### 1. 산술 연산자
+### 산술 연산자
 
 ```python
 # 기본 산술 연산
@@ -445,7 +445,7 @@ print(f"리스트 덧셈: {list1 + list2}")      # [1, 2, 3, 4]
 print(f"리스트 곱셈: {list1 * 3}")          # [1, 2, 1, 2, 1, 2]
 ```
 
-### 2. 비교 연산자
+### 비교 연산자
 
 ```python
 # 숫자 비교
@@ -472,7 +472,7 @@ list2 = [1, 2, 4]
 print(f"{list1} < {list2}: {list1 < list2}")        # True
 ```
 
-### 3. 논리 연산자
+### 논리 연산자
 
 ```python
 # 논리 연산자
@@ -494,7 +494,7 @@ print(f"연산 결과: {result}")  # True
 # 계산 과정: not False -> True, True and False -> False, True or False -> True
 ```
 
-### 4. 멤버십과 신원 연산자
+### 멤버십과 신원 연산자
 
 ```python
 # 멤버십 연산자 (in, not in)
@@ -529,7 +529,7 @@ print(f"연산자 우선순위: {result}, {result2}")
 
 ## 입출력
 
-### 1. print() 함수 고급 활용
+### print() 함수 고급 활용
 
 ```python
 # 기본 출력
@@ -558,7 +558,7 @@ print(f"점수: {score:.1f}점")        # 점수: 85.7점
 print(f"점수: {score:>6.1f}점")      # 점수:   85.7점 (오른쪽 정렬)
 ```
 
-### 2. input() 함수
+### input() 함수
 
 ```python
 # 기본 입력
@@ -610,7 +610,7 @@ print(f"연산자 우선순위: {result}, {result2}")
 
 ## 입출력
 
-### 1. print() 함수 활용
+### print() 함수 활용
 
 ```python
 # 기본 출력
@@ -639,7 +639,7 @@ print(f"점수: {score:.1f}점")        # 점수: 85.7점
 print(f"점수: {score:>6.1f}점")      # 점수:   85.7점 (오른쪽 정렬)
 ```
 
-### 2. input() 함수
+### input() 함수
 
 ```python
 # 기본 입력
@@ -666,7 +666,7 @@ if len(data) == 2:
 
 ## 주석과 독스트링
 
-### 1. 주석 작성법
+### 주석 작성법
 
 ```python
 # 한 줄 주석
@@ -687,7 +687,7 @@ print("Hello")  # 이것도 한 줄 주석
 # NOTE: 중요한 사항
 ```
 
-### 2. 독스트링 (Docstring)
+### 독스트링 (Docstring)
 
 ```python
 def calculate_area(radius):

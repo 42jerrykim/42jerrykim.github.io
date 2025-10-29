@@ -17,7 +17,7 @@ collection_order: 17
 
 ## 동시성 기본 개념
 
-### 1. 동시성 vs 병렬성
+### 동시성 vs 병렬성
 
 ```python
 import time
@@ -101,7 +101,7 @@ if __name__ == "__main__":
     parallel_task()
 ```
 
-### 2. GIL (Global Interpreter Lock) 이해
+### GIL (Global Interpreter Lock) 이해
 
 ```python
 import threading
@@ -179,7 +179,7 @@ demonstrate_gil()
 
 ## 멀티스레딩 (threading)
 
-### 1. 기본 스레드 생성과 관리
+### 기본 스레드 생성과 관리
 
 ```python
 import threading
@@ -231,7 +231,7 @@ def thread_management_demo():
 thread_management_demo()
 ```
 
-### 2. 스레드 동기화
+### 스레드 동기화
 
 ```python
 import threading
@@ -294,7 +294,7 @@ def demonstrate_thread_safety():
 demonstrate_thread_safety()
 ```
 
-### 3. 생산자-소비자 패턴
+### 생산자-소비자 패턴
 
 ```python
 import threading
@@ -378,7 +378,7 @@ producer_consumer_demo()
 
 ## 멀티프로세싱 (multiprocessing)
 
-### 1. 기본 프로세스 생성
+### 기본 프로세스 생성
 
 ```python
 import multiprocessing
@@ -429,7 +429,7 @@ if __name__ == "__main__":
     multiprocessing_demo()
 ```
 
-### 2. 프로세스 간 통신
+### 프로세스 간 통신
 
 ```python
 import multiprocessing
@@ -540,7 +540,7 @@ if __name__ == "__main__":
     pipe_communication()
 ```
 
-### 3. 프로세스 풀
+### 프로세스 풀
 
 ```python
 import multiprocessing
@@ -603,7 +603,7 @@ if __name__ == "__main__":
 
 ## concurrent.futures 모듈
 
-### 1. ThreadPoolExecutor와 ProcessPoolExecutor
+### ThreadPoolExecutor와 ProcessPoolExecutor
 
 ```python
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_completed

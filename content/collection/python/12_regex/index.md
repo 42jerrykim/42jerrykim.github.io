@@ -21,7 +21,7 @@ collection_order: 12
 
 ## 핵심 내용
 
-### 1. 정규표현식 기본
+### 정규표현식 기본
 
 **기본 메타문자**
 
@@ -75,7 +75,7 @@ matches = re.findall(pattern, text)
 print(f"Words: {matches}")  # ['hello_world', '123']
 ```
 
-### 2. re 모듈 함수들
+### re 모듈 함수들
 
 ```python
 import re
@@ -101,7 +101,7 @@ parts = re.split(r'[,;]', text2)
 print(f"Split: {parts}")  # ['apple', 'banana', 'orange']
 ```
 
-### 3. 그룹화와 캡처링
+### 그룹화와 캡처링
 
 ```python
 # () : 그룹화

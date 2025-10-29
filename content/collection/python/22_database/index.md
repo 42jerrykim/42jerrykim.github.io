@@ -15,9 +15,9 @@ collection_order: 22
 - ORM을 활용한 객체-관계 매핑을 구현할 수 있다
 - NoSQL 데이터베이스를 효과적으로 활용할 수 있다
 
-## 1. 데이터베이스 기초
+## 데이터베이스 기초
 
-### 1.1 데이터베이스 유형
+### 데이터베이스 유형
 
 ```mermaid
 graph TB
@@ -35,7 +35,7 @@ graph TB
     C --> K[그래프<br/>Neo4j]
 ```
 
-### 1.2 ACID 속성
+### ACID 속성
 
 ```python
 # ACID 속성 이해
@@ -90,9 +90,9 @@ def transfer_money(from_account, to_account, amount):
         conn.close()
 ```
 
-## 2. SQLite - 내장 데이터베이스
+## SQLite - 내장 데이터베이스
 
-### 2.1 기본 연결과 CRUD 연산
+### 기본 연결과 CRUD 연산
 
 ```python
 import sqlite3
@@ -220,7 +220,7 @@ for post in posts:
     print(f"게시글: {post[1]} - {post[2]}")
 ```
 
-### 2.2 고급 SQL 쿼리
+### 고급 SQL 쿼리
 
 ```python
 import sqlite3
@@ -364,9 +364,9 @@ manager.add_sample_data()
 manager.complex_queries()
 ```
 
-## 3. SQLAlchemy ORM
+## SQLAlchemy ORM
 
-### 3.1 모델 정의
+### 모델 정의
 
 ```python
 from sqlalchemy import create_engine, Column, Integer, String, DateTime, ForeignKey, Text, Boolean
@@ -414,7 +414,7 @@ Session = sessionmaker(bind=engine)
 session = Session()
 ```
 
-### 3.2 CRUD 연산 (ORM)
+### CRUD 연산 (ORM)
 
 ```python
 from sqlalchemy.orm import Session
@@ -516,7 +516,7 @@ results = service.search_posts("SQLAlchemy")
 print(f"검색 결과: {len(results)}개")
 ```
 
-## 4. Redis - NoSQL 데이터베이스
+## Redis - NoSQL 데이터베이스
 
 ```python
 import redis
@@ -618,7 +618,7 @@ is_allowed = redis_manager.rate_limit_check("123")
 print(f"요청 허용: {is_allowed}")
 ```
 
-## 5. 실습 프로젝트
+## 실습 프로젝트
 
 ### 프로젝트 1: 완전한 블로그 시스템
 

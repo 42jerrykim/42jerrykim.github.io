@@ -36,7 +36,7 @@ draft: true
 
 ## 핵심 학습 내용
 
-### 10.1 차세대 안드로이드 보안 아키텍처
+### 차세대 안드로이드 보안 아키텍처
 - **Zero Trust 보안 모델**
   - Never Trust, Always Verify 원칙
   - 마이크로 세그멘테이션
@@ -49,7 +49,7 @@ draft: true
   - 투명성 및 사용자 제어
   - 개인정보 영향 평가
 
-### 10.2 Advanced TEE 및 HSM
+### Advanced TEE 및 HSM
 - **차세대 TEE 아키텍처**
   - ARM Confidential Compute Architecture (CCA)
   - RISC-V Keystone TEE
@@ -62,7 +62,7 @@ draft: true
   - 양자 내성 암호화 알고리즘
   - HSM 클러스터링
 
-### 10.3 Android Keystore 고급 기능
+### Android Keystore 고급 기능
 - **키 증명 (Key Attestation)**
   - Hardware-backed 키 증명
   - 증명 체인 검증
@@ -75,7 +75,7 @@ draft: true
   - 키 회전 자동화
   - 키 에스크로 시스템
 
-### 10.4 Hardware Attestation 시스템
+### Hardware Attestation 시스템
 - **Device Integrity Verification**
   - Boot State Attestation
   - Runtime Attestation
@@ -88,7 +88,7 @@ draft: true
   - Account Risk Assessment
   - Real-time Decision Making
 
-### 10.5 고급 보안 부팅 시스템
+### 고급 보안 부팅 시스템
 - **Android Verified Boot 3.0**
   - Hardware Root of Trust
   - Rollback Index Protection
@@ -101,7 +101,7 @@ draft: true
   - 런타임 검증 최적화
   - Custom Hash Algorithm
 
-### 10.6 바이오메트릭 보안 고도화
+### 바이오메트릭 보안 고도화
 - **멀티모달 바이오메트릭**
   - 지문 + 얼굴 융합 인증
   - 행동 바이오메트릭
@@ -114,7 +114,7 @@ draft: true
   - 심박수 기반 검증
   - AI 기반 스푸핑 탐지
 
-### 10.7 5G 네트워크 보안
+### 5G 네트워크 보안
 - **5G SA (Standalone) 보안**
   - Network Slicing 보안
   - Edge Computing 보안
@@ -127,7 +127,7 @@ draft: true
   - Network Function 보안
   - Inter-PLMN 보안
 
-### 10.8 IoT 디바이스 보안
+### IoT 디바이스 보안
 - **IoT 보안 프레임워크**
   - Device Identity 관리
   - Lightweight Cryptography
@@ -140,7 +140,7 @@ draft: true
   - Edge-to-Cloud 보안 통신
   - Secure Function Distribution
 
-### 10.9 AI 기반 보안 시스템
+### AI 기반 보안 시스템
 - **Machine Learning 보안**
   - Model Privacy Protection
   - Adversarial Attack 방어
@@ -153,7 +153,7 @@ draft: true
   - Zero-day 공격 예측
   - 자동화된 대응 시스템
 
-### 10.10 양자 내성 암호화
+### 양자 내성 암호화
 - **Post-Quantum Cryptography**
   - NIST 표준 알고리즘
   - 하이브리드 암호화 시스템

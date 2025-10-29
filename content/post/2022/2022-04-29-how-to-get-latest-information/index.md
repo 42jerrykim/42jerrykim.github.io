@@ -27,7 +27,7 @@ title: '[Util] Google Alart, Blogtrottr, 개발과 관련된 최신 정보를 �
 
 개인적으로 RSS를 사용하는 방법은 리더(Feedly 같은 서비스)에 따라서 사용 경험이 매우 달라질 수 있어서 선호하지 않는다. 예전에 [Google Reader](https://en.wikipedia.org/wiki/Google_Reader)가 서비스 종료되면서 리더를 갈아타야 하는 쓴맛을 본 적이 있다. 그래서 Email을 활용하는 방법으로 소개한다.
 
-## 1. SW Blog & News
+## SW Blog & News
 
 보통의 SW 관련 회사에서는 회사의 기술력을 뽐내고 영향력을 키우기 위해서 Blog나 News를 제공한다.
 
@@ -40,15 +40,15 @@ title: '[Util] Google Alart, Blogtrottr, 개발과 관련된 최신 정보를 �
 
 이 밖에도 다양한 회사에서 정보를 제공하고 있으니 관심 있는 기술이나 회사를 찾아보는 것이 좋다.
 
-## 2. Blogtrottr
+## Blogtrottr
 
 위에 나열된 사이트를 포함해서 대부분 서비스는 RSS나 Email을 통해서 새로운 소식을 전달 할 수 있는 방법을 제공한다. 하지만 개인적으로 RSS Reader를 좋아하지 않는다. RSS를 Email로 받아 볼 수 있도록 하는 부가적인 서비스가 필요하다. 내가 선택한 방법은 [Blogtrottr](https://blogtrottr.com/)이다. 비슷한 기능을 제공하는 무료 서비스들이 여럿 있지만 [Blogtrottr](https://blogtrottr.com/)가 제약사항이 적어서 유용하게 사용하고 있다.
 
-## 3. Google Alart
+## Google Alart
 
 RSS나 Email 모두 본인이 알고 있는 사이트에 대해서 구독을 하는 형태이다. 따라서 모르는 회사나 기술에 대해서는 정보를 얻을 수 없다. 여러분들은 모르는것이 있으면 구글에 검색해서 원하는 정보를 찾으려고 할것이다. 이와 비슷하게 구글에 미리 검색어를 등록해 두고 결과를 Email로 보내주는 [Goodle Alart](https://www.google.co.kr/alerts)있다.
 
-## 4. News 제공 서비스
+## News 제공 서비스
 
 언론사처럼 개발 관련된 내용들만 추려서 정보를 제공하는 서비스들도 있다. 아래의 사이트들은 최근에 자주 사용하는 것들이다.
 

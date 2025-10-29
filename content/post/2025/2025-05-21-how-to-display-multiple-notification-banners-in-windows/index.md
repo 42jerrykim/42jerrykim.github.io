@@ -134,7 +134,7 @@ class Program
 
 여러 가지 방법을 시도했지만 모두 원하는 결과를 얻지 못했으며, 그 과정에서 시도했던 방법들과 코드를 정리해보았다.
 
-### 1. 단일 AppUserModelID로 연속 전송
+### 단일 AppUserModelID로 연속 전송
 
 **방법**: 하나의 AppUserModelID를 설정한 후, 같은 프로세스에서 `Show()`를 3회 호출
 
@@ -159,7 +159,7 @@ for (int i = 1; i <= 3; i++)
 
 > **결과**: 세 알림이 모두 큐에 쌓이지만, 화면에는 하나씩 차례대로만 나타남.
 
-### 2. COM 인터롭으로 `.lnk` 직접 생성
+### COM 인터롭으로 `.lnk` 직접 생성
 
 **방법**: `IShellLinkW`·`IPropertyStore`를 직접 구현해 시작 메뉴 바로가기(.lnk)에 AppUserModelID 속성 삽입
 
@@ -180,7 +180,7 @@ using (var pv = new PropVariant(appId))
 
 > **결과**: COM 호출 중 `AccessViolationException`이 빈번히 발생했고, 안정적으로 바로가기를 만들 수 없었음.
 
-### 3. Windows Community Toolkit `DesktopNotificationManagerCompat`
+### Windows Community Toolkit `DesktopNotificationManagerCompat`
 
 **방법**: 툴킷 헬퍼에 맡겨 AUMID 등록과 바로가기 생성을 자동 처리
 
@@ -196,7 +196,7 @@ new ToastContentBuilder()
 
 > **결과**: 바로가기 생성은 자동화되었지만, 알림은 여전히 “한 번에 하나”만 배너에 표시되었음.
 
-### 4. 멀티 프로세스 + 멀티 AUMID 전략
+### 멀티 프로세스 + 멀티 AUMID 전략
 
 **방법**: 같은 EXE를 3개의 프로세스로 실행해, 각자 다른 AUMID로 알림 전송
 

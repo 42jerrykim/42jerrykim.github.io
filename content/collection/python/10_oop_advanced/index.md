@@ -21,7 +21,7 @@ collection_order: 10
 
 ## 핵심 내용
 
-### 1. 상속 (Inheritance)
+### 상속 (Inheritance)
 
 **기본 상속**
 
@@ -87,7 +87,7 @@ class GraduateStudent(Student):
         return super().introduce() + f", Research: {self.research_area}"
 ```
 
-### 2. 다형성 (Polymorphism)
+### 다형성 (Polymorphism)
 
 **메서드 오버라이딩을 통한 다형성**
 
@@ -139,7 +139,7 @@ for shape in shapes:
     print_shape_info(shape)  # 동일한 인터페이스, 다른 구현
 ```
 
-### 3. 추상화 (Abstraction)
+### 추상화 (Abstraction)
 
 **추상 기본 클래스**
 
@@ -190,7 +190,7 @@ class Motorcycle(Vehicle):
         return f"{self.get_info()} is already stopped"
 ```
 
-### 4. 다중 상속과 MRO
+### 다중 상속과 MRO
 
 **다중 상속**
 
@@ -251,7 +251,7 @@ d.method()
 print(D.__mro__)
 ```
 
-### 5. 프로퍼티 (Properties)
+### 프로퍼티 (Properties)
 
 **@property 데코레이터**
 
