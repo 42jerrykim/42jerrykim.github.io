@@ -682,7 +682,7 @@ if __name__ == "__main__":
 
 ## 실습 프로젝트
 
-### 🛠️ 프로젝트 1: 웹 크롤러 (멀티스레딩)
+###️ 프로젝트 1: 웹 크롤러 (멀티스레딩)
 
 ```python
 import threading
@@ -840,7 +840,7 @@ if __name__ == "__main__":
     crawler_demo()
 ```
 
-### 🛠️ 프로젝트 2: 이미지 처리 도구 (멀티프로세싱)
+###️ 프로젝트 2: 이미지 처리 도구 (멀티프로세싱)
 
 ```python
 import multiprocessing
@@ -1060,31 +1060,31 @@ if __name__ == "__main__":
 
 ## 체크리스트
 
-### ✅ 동시성 기본 개념
+### 동시성 기본 개념
 - [ ] 동시성과 병렬성의 차이점 이해
 - [ ] GIL의 영향과 제약사항 파악
 - [ ] I/O 바운드 vs CPU 바운드 작업 구분
 - [ ] 적절한 동시성 모델 선택 능력
 
-### ✅ 멀티스레딩
+### 멀티스레딩
 - [ ] Thread 클래스로 스레드 생성
 - [ ] Lock을 사용한 동기화
 - [ ] 생산자-소비자 패턴 구현
 - [ ] 스레드 안전성 고려
 
-### ✅ 멀티프로세싱
+### 멀티프로세싱
 - [ ] Process 클래스로 프로세스 생성
 - [ ] Queue, Pipe로 프로세스 간 통신
 - [ ] ProcessPool을 활용한 병렬처리
 - [ ] 공유 메모리 사용
 
-### ✅ concurrent.futures
+### concurrent.futures
 - [ ] ThreadPoolExecutor 활용
 - [ ] ProcessPoolExecutor 활용
 - [ ] Future 객체 이해
 - [ ] as_completed() 패턴 활용
 
-### ✅ 동시성 문제 해결
+### 동시성 문제 해결
 - [ ] Race Condition 방지
 - [ ] 데드락 회피
 - [ ] 성능 최적화 고려

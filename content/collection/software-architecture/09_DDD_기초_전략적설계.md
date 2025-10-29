@@ -3,7 +3,7 @@ draft: true
 ---
 # 9장. 도메인 주도 설계 (DDD) 기초 및 전략적 설계
 
-## 📋 학습 목표
+## 학습 목표
 - DDD의 핵심 철학과 개념을 이해한다
 - Bounded Context와 Context Map의 실무 적용 방법을 습득한다
 - 유비쿼터스 언어의 중요성과 구축 방법을 파악한다
@@ -229,7 +229,7 @@ public class Order {
 
 ---
 
-## 🎯 핵심 요약
+## 핵심 요약
 
 ### DDD 전략적 설계 요소
 
@@ -248,7 +248,7 @@ public class Order {
 
 ---
 
-## 💭 생각해보기
+## 생각해보기
 
 1. 현재 시스템에서 Bounded Context를 어떻게 나눌 수 있을까?
 2. 팀에서 사용하는 용어들이 유비쿼터스 언어로 적절히 정의되어 있는가?
@@ -256,7 +256,7 @@ public class Order {
 
 ---
 
-## 📚 추가 학습 자료
+## 추가 학습 자료
 
 ### 도서
 - "Domain-Driven Design" - Eric Evans

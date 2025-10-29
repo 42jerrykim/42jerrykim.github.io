@@ -79,7 +79,7 @@ tags:
 
 # Memento와 Visitor - 상태 보존과 연산 분리
 
-## ⏰ **서론: 시간을 저장하고 기능을 분리하다**
+## **서론: 시간을 저장하고 기능을 분리하다**
 
 > *"Memento는 시간을 객체로 만들어 과거로 돌아갈 수 있게 하고, Visitor는 구조와 연산을 분리하여 무한한 확장을 가능하게 한다."*
 
@@ -96,7 +96,7 @@ tags:
 - Memento: **시간적 복잡성** 관리
 - Visitor: **기능적 복잡성** 관리
 
-## 💾 **1. Memento 패턴 - 시간을 되돌리는 마법**
+## **1. Memento 패턴 - 시간을 되돌리는 마법**
 
 ### **1.1 Memento 패턴의 핵심 철학**
 
@@ -456,7 +456,7 @@ class MementoPatternDemo {
 }
 ```
 
-## 🎭 **2. Visitor 패턴 - 연산의 외부화**
+## **2. Visitor 패턴 - 연산의 외부화**
 
 ### **2.1 Visitor 패턴의 핵심 철학**
 
@@ -916,7 +916,7 @@ class VisitorPatternDemo {
 }
 ```
 
-## 🔄 **3. Memento와 Visitor의 현대적 활용**
+## **3. Memento와 Visitor의 현대적 활용**
 
 ### **3.1 Git의 커밋 시스템 (Memento 패턴)**
 
@@ -981,7 +981,7 @@ class CodeGeneratorVisitor implements ASTVisitor {
 }
 ```
 
-## 🚀 **결론: 시간과 기능의 마법사들**
+## **결론: 시간과 기능의 마법사들**
 
 Memento와 Visitor 패턴은 객체지향 프로그래밍의 한계를 창의적으로 극복하는 패턴들입니다:
 

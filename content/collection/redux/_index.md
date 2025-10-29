@@ -9,13 +9,13 @@ tags: ["Redux", "React", "State Management", "JavaScript", "TypeScript", "Redux 
 
 # Redux 완전 정복 - 초보부터 전문가까지
 
-## 📚 프로젝트 개요
+## 프로젝트 개요
 
 이 프로젝트는 **JavaScript를 잘 다루지 못하는 개발자도 Redux를 통해 SW 전문가 수준으로 성장**할 수 있도록 설계된 체계적인 학습 가이드입니다.
 
 총 **30편**의 글을 통해 JavaScript 기초부터 Redux의 고급 기법까지, 현대적인 Redux Toolkit과 RTK Query를 활용한 실무 능력을 완벽하게 습득합니다.
 
-## 🎯 학습 목표
+## 학습 목표
 
 - JavaScript/TypeScript 기초부터 Redux까지 단계적 학습
 - Redux Toolkit을 활용한 현대적인 상태 관리 패턴 마스터
@@ -24,9 +24,9 @@ tags: ["Redux", "React", "State Management", "JavaScript", "TypeScript", "Redux 
 - 실전 프로젝트를 통한 아키텍처 설계 및 최적화 능력 배양
 - 테스팅, 디버깅, 성능 최적화 등 전문가 수준의 실무 역량 개발
 
-## 📋 커리큘럼 구성
+## 커리큘럼 구성
 
-### 🌱 Phase 1: JavaScript/TypeScript 기초 다지기 (1-5편)
+### Phase 1: JavaScript/TypeScript 기초 다지기 (1-5편)
 
 **JavaScript를 잘 모르는 분들을 위한 필수 기초**
 
@@ -55,7 +55,7 @@ tags: ["Redux", "React", "State Management", "JavaScript", "TypeScript", "Redux 
    - 기본 타입과 인터페이스
    - 제네릭 기초
 
-### 🏗️ Phase 2: Redux 핵심 개념 (6-10편)
+###️ Phase 2: Redux 핵심 개념 (6-10편)
 
 **Redux의 철학과 기본 원리 완벽 이해**
 
@@ -84,7 +84,7 @@ tags: ["Redux", "React", "State Management", "JavaScript", "TypeScript", "Redux 
     - 언제 Redux가 필요한가?
     - 대안들과의 비교 (Context API, MobX, Zustand)
 
-### ⚛️ Phase 3: React-Redux 연동 (11-15편)
+###️ Phase 3: React-Redux 연동 (11-15편)
 
 **React와 Redux를 효과적으로 연결하기**
 
@@ -113,7 +113,7 @@ tags: ["Redux", "React", "State Management", "JavaScript", "TypeScript", "Redux 
     - Todo 앱 완성하기
     - 실전 디버깅 기법
 
-### 🚀 Phase 4: Redux Toolkit - 현대적인 Redux (16-20편)
+### Phase 4: Redux Toolkit - 현대적인 Redux (16-20편)
 
 **Redux Toolkit으로 생산성 10배 높이기**
 
@@ -142,7 +142,7 @@ tags: ["Redux", "React", "State Management", "JavaScript", "TypeScript", "Redux 
     - API 연동과 로딩 상태 관리
     - 에러 핸들링
 
-### ⚡ Phase 5: 미들웨어와 사이드 이펙트 (21-25편)
+### Phase 5: 미들웨어와 사이드 이펙트 (21-25편)
 
 **비동기 처리와 복잡한 로직 관리**
 
@@ -171,7 +171,7 @@ tags: ["Redux", "React", "State Management", "JavaScript", "TypeScript", "Redux 
     - 낙관적 업데이트
     - 캐시 무효화 전략
 
-### 🎓 Phase 6: 고급 패턴과 아키텍처 (26-28편)
+### Phase 6: 고급 패턴과 아키텍처 (26-28편)
 
 **전문가 수준의 Redux 아키텍처 설계**
 
@@ -190,7 +190,7 @@ tags: ["Redux", "React", "State Management", "JavaScript", "TypeScript", "Redux 
     - 타입 추론 활용하기
     - 타입 안전한 Hooks 만들기
 
-### 🔥 Phase 7: 실무 마스터 레벨 (29-30편)
+### Phase 7: 실무 마스터 레벨 (29-30편)
 
 **실전 프로젝트와 최적화, 테스팅**
 
@@ -206,31 +206,31 @@ tags: ["Redux", "React", "State Management", "JavaScript", "TypeScript", "Redux 
     - React Testing Library와 통합
     - 실전 E-Commerce 앱 구축
 
-## 📖 각 글의 구성
+## 각 글의 구성
 
 각 챕터는 다음과 같은 구조로 구성됩니다:
 
-### 📝 **기본 구성**
+### **기본 구성**
 - **학습 목표**: 이 챕터에서 달성할 구체적인 학습 목표
 - **핵심 개념**: 반드시 이해해야 할 핵심 내용
 - **실습 코드**: 직접 따라할 수 있는 예제 코드
 - **흔한 실수**: 초보자가 자주 하는 실수와 해결 방법
 - **체크리스트**: 학습 완료 확인을 위한 체크리스트
 
-### 🎯 **JavaScript 기초 챕터 (1-5편)**
+### **JavaScript 기초 챕터 (1-5편)**
 - **왜 배워야 하는가**: 해당 개념이 Redux에서 어떻게 사용되는지
 - **단계별 설명**: 초보자도 이해할 수 있는 상세한 설명
 - **실습 문제**: 손으로 직접 코딩하며 익히는 연습 문제
 
-### 🚀 **Redux 실전 챕터 (6-30편)**
+### **Redux 실전 챕터 (6-30편)**
 - **실무 사례**: 실제 프로젝트에서의 활용 예시
 - **Best Practices**: 업계 표준 패턴과 모범 사례
 - **안티패턴**: 피해야 할 나쁜 패턴들
 - **심화 학습**: 더 깊이 공부하고 싶은 분들을 위한 고급 주제
 
-## 🎯 학습 방법론
+## 학습 방법론
 
-### 📚 초보자를 위한 단계적 접근
+### 초보자를 위한 단계적 접근
 
 1. **JavaScript 기초 탄탄히** (1-5편)
    - 급하게 넘어가지 말고 충분히 연습
@@ -247,7 +247,7 @@ tags: ["Redux", "React", "State Management", "JavaScript", "TypeScript", "Redux 
    - 에러 메시지 읽는 법 익히기
    - 공식 문서 참조 습관 들이기
 
-### 🔄 효과적인 학습 프로세스
+### 효과적인 학습 프로세스
 
 ```
 1. 개념 학습 (읽기)
@@ -261,7 +261,7 @@ tags: ["Redux", "React", "State Management", "JavaScript", "TypeScript", "Redux 
 5. 복습과 정리 (체크리스트)
 ```
 
-### 💡 학습 팁
+### 학습 팁
 
 - **하루 1-2시간, 꾸준히**: 한꺼번에 많이 하는 것보다 매일 조금씩
 - **손으로 직접 코딩**: 복사-붙여넣기 금지!
@@ -269,31 +269,31 @@ tags: ["Redux", "React", "State Management", "JavaScript", "TypeScript", "Redux 
 - **커뮤니티 활용**: 막힐 때는 질문하기 (Stack Overflow, Discord)
 - **프로젝트 만들기**: 배운 내용으로 작은 프로젝트 직접 만들어보기
 
-## 🎓 기대 효과
+## 기대 효과
 
 이 시리즈를 완주하면 다음과 같은 역량을 갖추게 됩니다:
 
-### 🧠 **기술적 역량**
+### **기술적 역량**
 - Modern JavaScript/TypeScript 능숙한 사용
 - Redux/Redux Toolkit을 활용한 상태 관리 마스터
 - React-Redux를 통한 효율적인 컴포넌트 설계
 - 비동기 처리와 사이드 이펙트 관리 능력
 
-### 🛠️ **실무 능력**
+###️ **실무 능력**
 - 실전 프로젝트 구조 설계 및 구현
 - 성능 최적화와 디버깅 기법
 - 테스트 작성과 코드 품질 관리
 - 확장 가능한 아키텍처 설계
 
-### 🚀 **전문가 수준**
+### **전문가 수준**
 - Redux 공식 문서를 스스로 읽고 학습하는 능력
 - 새로운 라이브러리와 패턴을 빠르게 습득
 - 팀원들에게 Redux를 가르칠 수 있는 수준
 - 복잡한 상태 관리 문제를 설계부터 해결까지 완수
 
-## 📝 사용법
+## 사용법
 
-### 🎯 **추천 학습 경로**
+### **추천 학습 경로**
 
 #### 1️⃣ **JavaScript 초보자**
 ```
@@ -315,14 +315,14 @@ Phase 4 (16-20편) → Phase 5 (21-25편) → Phase 6-7 (26-30편)
 ```
 **예상 소요 시간**: 1-2개월
 
-### 📚 **참고 학습 방법**
+### **참고 학습 방법**
 - 특정 주제가 궁금할 때 해당 챕터만 선택적으로 학습
 - 실무에서 문제 발생 시 관련 챕터 참조
 - 코드 리뷰나 아키텍처 설계 시 Best Practices 참고
 
-## 💻 실습 프로젝트
+## 실습 프로젝트
 
-### 🏗️ **Phase별 프로젝트**
+###️ **Phase별 프로젝트**
 
 #### Phase 3: 기본 앱
 - **Counter 앱**: Redux 기초 이해
@@ -344,25 +344,25 @@ Phase 4 (16-20편) → Phase 5 (21-25편) → Phase 6-7 (26-30편)
   - 주문 처리
   - 결제 시뮬레이션
 
-## 🌐 참고 자료
+## 참고 자료
 
-### 📚 **공식 문서**
+### **공식 문서**
 - [Redux 공식 문서](https://redux.js.org/)
 - [Redux Toolkit 공식 문서](https://redux-toolkit.js.org/)
 - [React-Redux 공식 문서](https://react-redux.js.org/)
 - [RTK Query 공식 문서](https://redux-toolkit.js.org/rtk-query/overview)
 
-### 🎓 **추천 학습 자료**
+### **추천 학습 자료**
 - [Redux Essentials 튜토리얼](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)
 - [Redux Fundamentals 튜토리얼](https://redux.js.org/tutorials/fundamentals/part-1-overview)
 - [Egghead.io - Redux 코스](https://egghead.io/courses/fundamentals-of-redux-course-from-dan-abramov-bd5cc867)
 
-### 🛠️ **유용한 도구**
+###️ **유용한 도구**
 - [Redux DevTools Extension](https://github.com/reduxjs/redux-devtools)
 - [Redux Toolkit Templates](https://redux-toolkit.js.org/introduction/getting-started#using-create-react-app)
 - [TypeScript Redux Template](https://github.com/reduxjs/cra-template-redux-typescript)
 
-## 🎨 커리큘럼 맵
+## 커리큘럼 맵
 
 ```
 JavaScript 기초 (1-5편)
@@ -380,15 +380,15 @@ Redux 핵심 개념 (6-10편)
     실무 마스터 (29-30편)
 ```
 
-## 🤝 학습 지원
+## 학습 지원
 
-### ❓ **자주 묻는 질문**
+### **자주 묻는 질문**
 각 챕터마다 FAQ 섹션이 포함되어 있습니다.
 
-### 🐛 **트러블슈팅**
+### **트러블슈팅**
 흔한 에러와 해결 방법을 상세히 설명합니다.
 
-### 💬 **커뮤니티**
+### **커뮤니티**
 - [Reactiflux Discord](https://www.reactiflux.com/)
 - [Stack Overflow - Redux 태그](https://stackoverflow.com/questions/tagged/redux)
 - [Reddit - r/reactjs](https://www.reddit.com/r/reactjs/)

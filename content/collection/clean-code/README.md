@@ -12,15 +12,15 @@ draft: true
 - 소프트웨어 장인정신(Software Craftsmanship) 이해
 - 현대적 개발 도구와 방법론 활용 능력 개발
 
-## 📂 파일 구조 (SEO 최적화)
+## 파일 구조 (SEO 최적화)
 이 강의 자료는 **SEO 최적화된 파일명**을 사용하여 검색 접근성을 높였습니다.
 
-### 🎯 파일명 규칙
+### 파일명 규칙
 - **순차 번호**: 01-23번으로 학습 순서 명확화
 - **키워드 포함**: 검색 친화적 핵심 키워드 포함
 - **구조화**: `번호-주제-핵심개념-상세내용.md` 형식
 
-### 📋 전체 파일 목록
+### 전체 파일 목록
 ```
 01 → Clean Code 기초
 ├── 01-clean-code-fundamentals-what-is-clean-code.md
@@ -74,12 +74,12 @@ draft: true
 └── 23-refactoring-techniques-legacy-code-improvement.md
 ```
 
-### 🔍 SEO 키워드
+### SEO 키워드
 `clean code`, `naming conventions`, `functions`, `comments`, `formatting`, `objects`, `data structures`, `error handling`, `API boundaries`, `unit testing`, `TDD`, `classes`, `SOLID principles`, `system design`, `emergent design`, `concurrency`, `refactoring`
 
 ## 강의 목차
 
-### 🌟 기초 단계 (1-5장)
+### 기초 단계 (1-5장)
 
 ### 1장: Clean Code의 개념과 중요성 ⭐☆☆
 **이론**: [`01-clean-code-fundamentals-what-is-clean-code.md`](01-clean-code-fundamentals-what-is-clean-code.md)  
@@ -128,7 +128,7 @@ draft: true
 - 팀 규칙과 일관성
 - 자동 포매터와 린터 활용
 
-### 🚀 중급 단계 (6-10장)
+### 중급 단계 (6-10장)
 
 ### 6장: 객체와 자료구조 ⭐⭐☆
 **이론**: [`11-objects-vs-data-structures-design-patterns.md`](11-objects-vs-data-structures-design-patterns.md)  
@@ -178,7 +178,7 @@ draft: true
 - 응집도
 - 변경하기 쉬운 클래스 (SOLID 원칙)
 
-### 🎯 고급 단계 (11-14장)
+### 고급 단계 (11-14장)
 
 ### 11장: 시스템 ⭐⭐⭐
 **이론**: [`20-system-design-dependency-injection-architecture.md`](20-system-design-dependency-injection-architecture.md)  
@@ -248,19 +248,19 @@ draft: true
 
 ## 언어별 학습 가이드
 
-### 🔵 Java 학습 경로
+### Java 학습 경로
 **추천 순서**: 1→2→3→4→5→7→9→10→6→8→11→12→13→14
 - **강점**: 강력한 타입 시스템, 풍부한 IDE 지원
 - **주요 도구**: IntelliJ IDEA, Maven/Gradle, JUnit, Mockito
 - **실습 프로젝트**: Spring Boot를 활용한 웹 애플리케이션
 
-### 🐍 Python 학습 경로  
+### Python 학습 경로  
 **추천 순서**: 1→2→3→4→5→7→9→6→8→10→11→12→14→13
 - **강점**: 간결한 문법, 빠른 프로토타이핑
 - **주요 도구**: PyCharm/VS Code, pip, pytest, black
 - **실습 프로젝트**: FastAPI를 활용한 REST API
 
-### 🟨 JavaScript 학습 경로
+### JavaScript 학습 경로
 **추천 순서**: 1→2→3→4→5→7→9→6→8→10→11→12→14→13
 - **강점**: 함수형 프로그래밍, 비동기 처리
 - **주요 도구**: VS Code, npm, Jest, ESLint, Prettier
@@ -268,7 +268,7 @@ draft: true
 
 ## 자기주도 학습 가이드
 
-### 📚 주차별 학습 계획 (12주 과정)
+### 주차별 학습 계획 (12주 과정)
 | 주차 | 챕터 | 주요 활동 | 실습 과제 |
 |------|------|-----------|-----------|
 | 1주 | 1장 | Clean Code 철학 이해 | 코드 품질 자가 진단 |
@@ -284,7 +284,7 @@ draft: true
 | 11주 | 12-13장 | 창발적 설계와 동시성 | 성능 최적화 |
 | 12주 | 14장 | 종합 리팩토링 | 최종 프로젝트 완성 |
 
-### 📊 일일 학습 루틴
+### 일일 학습 루틴
 **평일 (30분)**:
 - 코드 리뷰 및 개선점 찾기 (15분)
 - 해당 주차 챕터 내용 복습 (15분)
@@ -317,7 +317,7 @@ draft: true
 - [ ] 코드 리뷰에서 받는 피드백이 개선되었는가?
 - [ ] 리팩토링에 대한 두려움이 줄어들었는가?
 
-### 📈 진도 체크 및 복습 가이드
+### 진도 체크 및 복습 가이드
 **매주 점검 사항**:
 - [ ] 해당 주차 체크리스트 완료율 80% 이상
 - [ ] 실습 과제 완료 및 코드 리뷰 받기
@@ -357,7 +357,7 @@ draft: true
 - **테스트 도구**: JUnit, pytest, Jest, Cypress
 - **CI/CD**: GitHub Actions, GitLab CI, Jenkins
 
-## 💡 성공적인 학습을 위한 팁
+## 성공적인 학습을 위한 팁
 1. **점진적 적용**: 한 번에 모든 원칙을 적용하려 하지 말고 하나씩 점진적으로
 2. **실무 연결**: 현재 작업 중인 프로젝트에 바로 적용해보기
 3. **동료와 토론**: 코드 리뷰와 페어 프로그래밍으로 지식 공유
@@ -366,7 +366,7 @@ draft: true
 
 ---
 
-## 📞 문의 및 지원
+## 문의 및 지원
 - **강의 관련 문의**: [이메일 주소]
 - **기술적 문제**: GitHub Issues
 - **학습 그룹**: [커뮤니티 링크]

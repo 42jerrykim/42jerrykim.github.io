@@ -9,7 +9,7 @@ series: ["Redux 완전 정복"]
 series_order: 14
 ---
 
-## 🎯 학습 목표
+## 학습 목표
 
 이 챕터를 마치면 다음을 할 수 있습니다:
 
@@ -19,7 +19,7 @@ series_order: 14
 - ✅ 정규화된 State에서 데이터 선택
 - ✅ Parametric Selector와 Selector Factory
 
-## 📚 Selector란 무엇인가?
+## Selector란 무엇인가?
 
 Selector는 Redux State에서 데이터를 추출하는 함수입니다:
 

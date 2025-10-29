@@ -144,7 +144,7 @@ print(len(v1))      # 5
 
 ## 실습 프로젝트
 
-### 🛠️ 학생 관리 시스템
+###️ 학생 관리 시스템
 
 ```python
 class Student:
@@ -243,7 +243,7 @@ print(f"전체 학생 수: {stats['total_students']}")
 print(f"반 평균: {stats['class_average']:.1f}")
 ```
 
-### 🛠️ 도서관 관리 시스템
+###️ 도서관 관리 시스템
 
 ```python
 from datetime import datetime, timedelta
@@ -363,19 +363,19 @@ for book in library.books.values():
 
 ## 체크리스트
 
-### ✅ 기본 OOP 개념
+### 기본 OOP 개념
 - [ ] 클래스와 객체의 차이 이해
 - [ ] 생성자(__init__) 활용
 - [ ] 인스턴스 변수와 메서드 구분
 - [ ] self 매개변수의 역할 이해
 
-### ✅ 고급 기능
+### 고급 기능
 - [ ] 클래스 변수와 인스턴스 변수 구분
 - [ ] 프라이빗 속성(_var, __var) 활용
 - [ ] 프로퍼티(@property) 사용
 - [ ] 특수 메서드 구현
 
-### ✅ 실무 활용
+### 실무 활용
 - [ ] 실제 문제를 클래스로 모델링
 - [ ] 적절한 캡슐화 적용
 - [ ] 메서드의 단일 책임 원칙

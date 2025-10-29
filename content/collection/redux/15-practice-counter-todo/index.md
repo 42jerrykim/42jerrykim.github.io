@@ -9,7 +9,7 @@ series: ["Redux 완전 정복"]
 series_order: 15
 ---
 
-## 🎯 학습 목표
+## 학습 목표
 
 이 챕터를 마치면 다음을 할 수 있습니다:
 
@@ -19,7 +19,7 @@ series_order: 15
 - ✅ React-Redux Hooks 실전 활용
 - ✅ Selector 패턴과 성능 최적화 적용
 
-## 📚 프로젝트 개요
+## 프로젝트 개요
 
 두 개의 앱을 만들어 Redux를 완벽히 이해합니다:
 

@@ -9,7 +9,7 @@ series: ["Redux 완전 정복"]
 series_order: 12
 ---
 
-## 🎯 학습 목표
+## 학습 목표
 
 이 챕터를 마치면 다음을 할 수 있습니다:
 
@@ -19,7 +19,7 @@ series_order: 12
 - ✅ Custom Hooks로 로직 재사용
 - ✅ 성능 최적화 기법 적용
 
-## 📚 왜 Hooks를 사용하는가?
+## 왜 Hooks를 사용하는가?
 
 connect HOC vs Hooks 비교:
 

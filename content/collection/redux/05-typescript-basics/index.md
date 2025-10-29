@@ -9,7 +9,7 @@ series: ["Redux 완전 정복"]
 series_order: 5
 ---
 
-## 🎯 학습 목표
+## 학습 목표
 
 이 챕터를 마치면 다음을 할 수 있습니다:
 
@@ -18,7 +18,7 @@ series_order: 5
 - ✅ 제네릭을 활용한 재사용 가능한 타입 작성
 - ✅ Redux에서 TypeScript를 효과적으로 활용
 
-## 📚 왜 TypeScript를 배워야 할까?
+## 왜 TypeScript를 배워야 할까?
 
 Redux + TypeScript = 강력한 개발 경험:
 

@@ -56,13 +56,13 @@ tags:
 
 # Proxy 패턴 실습 - 다면적 제어와 최적화
 
-## 🎯 **실습 목표**
+## **실습 목표**
 - 다양한 Proxy 유형 구현 (가상, 보호, 원격, 캐싱)
 - 지연 로딩과 성능 최적화 기법
 - AOP 스타일 횡단 관심사 처리
 - 동적 프록시와 리플렉션 활용
 
-## 📋 **실습 1: 이미지 로딩 Virtual Proxy**
+## **실습 1: 이미지 로딩 Virtual Proxy**
 
 ### **요구사항**
 대용량 이미지의 지연 로딩 시스템
@@ -142,7 +142,7 @@ public class CachingImageProxy implements Image {
 }
 ```
 
-## 📋 **실습 2: 보안 Protection Proxy**
+## **실습 2: 보안 Protection Proxy**
 
 ### **요구사항**
 사용자 권한에 따른 파일 접근 제어
@@ -210,7 +210,7 @@ public class AccessController {
 }
 ```
 
-## 📋 **실습 3: 원격 서비스 Remote Proxy**
+## **실습 3: 원격 서비스 Remote Proxy**
 
 ### **요구사항**
 원격 서버의 서비스를 로컬에서 사용하는 것처럼 처리
@@ -274,7 +274,7 @@ public class CircuitBreakerProxy implements UserService {
 }
 ```
 
-## 📋 **실습 4: 동적 프록시 구현**
+## **실습 4: 동적 프록시 구현**
 
 ### **💻 코드 템플릿**
 
@@ -355,7 +355,7 @@ public class AnnotationProxyHandler implements InvocationHandler {
 }
 ```
 
-## ✅ **체크리스트**
+## **체크리스트**
 
 ### **기본 Proxy 유형**
 - [ ] Virtual Proxy (지연 로딩)
@@ -375,14 +375,14 @@ public class AnnotationProxyHandler implements InvocationHandler {
 - [ ] 프록시 체이닝
 - [ ] 메트릭 수집
 
-## 🔍 **추가 도전**
+## **추가 도전**
 
 1. **Smart Proxy**: 참조 카운팅과 자동 정리
 2. **Copy-on-Write Proxy**: 쓰기 시점 복사
 3. **Adaptive Proxy**: 상황에 따른 전략 변경
 4. **Distributed Proxy**: 분산 환경 투명 접근
 
-## 🚀 **실무 적용**
+## **실무 적용**
 
 ### **Proxy 활용 사례**
 - ORM 지연 로딩 (Hibernate)

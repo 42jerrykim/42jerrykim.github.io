@@ -54,13 +54,13 @@ tags:
 
 # Command & Chain of Responsibility 패턴 실습 - 요청 캡슐화와 처리 체인
 
-## 🎯 **실습 목표**
+## **실습 목표**
 - Command 패턴으로 Undo/Redo 시스템 구현
 - Chain of Responsibility로 요청 처리 체인 구현
 - 매크로 명령과 복합 명령 처리
 - 웹 미들웨어 스타일 체인 구현
 
-## 📋 **실습 1: 텍스트 에디터 Command 시스템**
+## **실습 1: 텍스트 에디터 Command 시스템**
 
 ### **요구사항**
 실행 취소/재실행이 가능한 텍스트 에디터
@@ -138,7 +138,7 @@ public class CommandManager {
 }
 ```
 
-## 📋 **실습 2: 지원 요청 처리 체인**
+## **실습 2: 지원 요청 처리 체인**
 
 ### **요구사항**
 다단계 고객 지원 시스템 (Level 1 → Level 2 → Level 3)
@@ -197,7 +197,7 @@ public class SupportRequest {
 }
 ```
 
-## 📋 **실습 3: HTTP 미들웨어 체인**
+## **실습 3: HTTP 미들웨어 체인**
 
 ### **💻 코드 템플릿**
 
@@ -249,7 +249,7 @@ public class MiddlewareBuilder {
 }
 ```
 
-## 📋 **실습 4: 이벤트 처리 Command 시스템**
+## **실습 4: 이벤트 처리 Command 시스템**
 
 ### **💻 코드 템플릿**
 
@@ -275,7 +275,7 @@ public class DistributedCommandProcessor {
 }
 ```
 
-## ✅ **체크리스트**
+## **체크리스트**
 
 ### **Command 패턴**
 - [ ] 실행 취소/재실행 구현
@@ -295,14 +295,14 @@ public class DistributedCommandProcessor {
 - [ ] 성능 모니터링
 - [ ] 로깅 및 디버깅 지원
 
-## 🔍 **추가 도전**
+## **추가 도전**
 
 1. **Command Sourcing**: 이벤트 소싱 패턴 구현
 2. **Async Command**: 비동기 명령 처리
 3. **Command Batching**: 명령 배치 처리
 4. **Distributed Chain**: 분산 책임 체인
 
-## 🚀 **실무 적용**
+## **실무 적용**
 
 ### **Command 패턴 활용**
 - GUI 이벤트 처리

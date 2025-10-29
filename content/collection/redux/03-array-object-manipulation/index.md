@@ -9,7 +9,7 @@ series: ["Redux 완전 정복"]
 series_order: 3
 ---
 
-## 🎯 학습 목표
+## 학습 목표
 
 이 챕터를 마치면 다음을 할 수 있습니다:
 
@@ -18,7 +18,7 @@ series_order: 3
 - ✅ reduce로 복잡한 데이터 변환 수행
 - ✅ 고차 함수를 조합하여 Redux Reducer 작성
 
-## 📚 왜 배열 메서드가 Redux에 중요한가?
+## 왜 배열 메서드가 Redux에 중요한가?
 
 Redux의 90%는 배열과 객체 조작입니다:
 

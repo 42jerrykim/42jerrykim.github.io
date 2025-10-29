@@ -77,7 +77,7 @@ tags:
 
 # Template Method와 Iterator - 알고리즘 골격과 순회의 깊이
 
-## 🏗️ **서론: 구조의 정의와 접근의 추상화**
+##️ **서론: 구조의 정의와 접근의 추상화**
 
 > *"Template Method는 '어떻게 할 것인가'의 구조를 정의하고, Iterator는 '어떻게 접근할 것인가'를 추상화한다."*
 
@@ -89,7 +89,7 @@ tags:
 - Template Method: 알고리즘 **구조**의 제어 역전
 - Iterator: 컬렉션 **순회**의 캡슐화
 
-## 📋 **1. Template Method 패턴 - 알고리즘 골격의 정의**
+## **1. Template Method 패턴 - 알고리즘 골격의 정의**
 
 ### **1.1 Template Method의 핵심 철학**
 
@@ -465,7 +465,7 @@ class ProcessingResult {
 }
 ```
 
-## 🔄 **2. Iterator 패턴 - 순회의 추상화**
+## **2. Iterator 패턴 - 순회의 추상화**
 
 ### **2.1 Iterator 패턴의 핵심 철학**
 
@@ -896,7 +896,7 @@ class IteratorPatternDemo {
 }
 ```
 
-## 🔄 **3. Template Method와 Iterator의 시너지**
+## **3. Template Method와 Iterator의 시너지**
 
 두 패턴을 결합하면 매우 강력한 처리 파이프라인을 만들 수 있습니다:
 
@@ -970,7 +970,7 @@ class NumberProcessor extends IterativeProcessor<Integer> {
 }
 ```
 
-## 🚀 **결론: 구조와 접근의 완벽한 조화**
+## **결론: 구조와 접근의 완벽한 조화**
 
 Template Method와 Iterator 패턴은 **"구조의 정의"**와 **"접근의 추상화"**를 통해 코드의 재사용성과 유연성을 극대화합니다:
 

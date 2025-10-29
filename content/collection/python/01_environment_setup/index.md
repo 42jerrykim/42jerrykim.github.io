@@ -20,7 +20,7 @@ image: /favicon.ico
 
 ### 1. 운영체제별 설치 방법
 
-#### 🪟 Windows 설치
+#### Windows 설치
 
 **방법 1: 공식 웹사이트에서 설치 (권장)**
 
@@ -49,7 +49,7 @@ pip --version
 2. Individual Edition 다운로드
 3. 설치 후 Anaconda Navigator 실행
 
-#### 🍎 macOS 설치
+#### macOS 설치
 
 **방법 1: Homebrew (권장)**
 
@@ -80,7 +80,7 @@ echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc
 echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 ```
 
-#### 🐧 Linux 설치
+#### Linux 설치
 
 **Ubuntu/Debian:**
 
@@ -287,7 +287,7 @@ pipenv graph
 
 ### 1. 코드 에디터 선택과 설정
 
-#### 🔥 VS Code (무료, 권장)
+#### VS Code (무료, 권장)
 
 **설치 및 기본 설정:**
 
@@ -324,7 +324,7 @@ pipenv graph
 }
 ```
 
-#### 💎 PyCharm (전문가용)
+#### PyCharm (전문가용)
 
 **Community Edition (무료):**
 - [jetbrains.com/pycharm](https://jetbrains.com/pycharm) 다운로드
@@ -515,7 +515,7 @@ jupyter==1.0.0
 
 ## 실습 프로젝트
 
-### 🛠️ 프로젝트 1: 개발 환경 완전 구축
+###️ 프로젝트 1: 개발 환경 완전 구축
 
 **목표:** 실제 프로젝트에서 사용할 수 있는 완전한 개발 환경 구축
 
@@ -610,7 +610,7 @@ def test_greet_empty_string():
     assert result == "Hello, !"
 ```
 
-### 🛠️ 프로젝트 2: 다중 환경 관리
+###️ 프로젝트 2: 다중 환경 관리
 
 **목표:** 여러 프로젝트를 위한 독립적인 환경 구성
 
@@ -643,7 +643,7 @@ pip freeze > requirements.txt
 deactivate
 ```
 
-### 🛠️ 프로젝트 3: VS Code 완전 설정
+###️ 프로젝트 3: VS Code 완전 설정
 
 **workspace 설정 파일 (.vscode/settings.json):**
 
@@ -668,7 +668,7 @@ deactivate
 
 ## 문제 해결 가이드
 
-### 🚨 자주 발생하는 문제들
+### 자주 발생하는 문제들
 
 #### 1. "python: command not found"
 
@@ -782,31 +782,31 @@ make clean    # 캐시 정리
 
 ## 체크리스트
 
-### ✅ 기본 설치
+### 기본 설치
 - [ ] Python 3.8+ 설치 완료
 - [ ] pip 설치 및 업그레이드 완료
 - [ ] PATH 환경 변수 설정 완료
 - [ ] `python --version` 명령어 정상 작동
 
-### ✅ 가상 환경
+### 가상 환경
 - [ ] venv로 가상 환경 생성 완료
 - [ ] 가상 환경 활성화/비활성화 가능
 - [ ] requirements.txt 생성 및 사용 가능
 - [ ] 프로젝트별 독립 환경 구축 완료
 
-### ✅ 개발 도구
+### 개발 도구
 - [ ] VS Code 또는 PyCharm 설치 완료
 - [ ] Python 확장 프로그램 설치 완료
 - [ ] 코드 에디터에서 Python 인터프리터 설정 완료
 - [ ] 기본적인 코드 작성 및 실행 가능
 
-### ✅ 프로젝트 구조
+### 프로젝트 구조
 - [ ] 표준 프로젝트 디렉토리 구조 이해
 - [ ] .gitignore 파일 작성 완료
 - [ ] README.md 파일 작성 완료
 - [ ] 기본 테스트 코드 작성 가능
 
-### ✅ 고급 기능
+### 고급 기능
 - [ ] Jupyter Notebook 설치 및 실행 가능
 - [ ] 코드 포매팅 도구 (black) 사용 가능
 - [ ] 코드 검사 도구 (flake8, pylint) 사용 가능

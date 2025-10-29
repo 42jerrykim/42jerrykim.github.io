@@ -52,13 +52,13 @@ tags:
 
 # DDD와 디자인 패턴 실습 - 비즈니스 로직 설계
 
-## 🎯 **실습 목표**
+## **실습 목표**
 
 1. 도서관 도메인 모델링으로 DDD 기본 개념 학습
 2. 전자상거래 주문 처리를 통한 Event Sourcing 구현
 3. Repository, Aggregate, Domain Service 패턴 실습
 
-## 📋 **과제 1: 도서관 도메인 모델링**
+## **과제 1: 도서관 도메인 모델링**
 
 ### 요구사항
 - 회원은 도서를 대출하고 반납할 수 있다
@@ -182,7 +182,7 @@ public interface MemberRepository extends Repository<Member, MemberId> {
 }
 ```
 
-## 📋 **과제 2: 전자상거래 주문 처리**
+## **과제 2: 전자상거래 주문 처리**
 
 ### Event Sourcing 구현
 ```java
@@ -294,7 +294,7 @@ public class InMemoryEventStore implements EventStore {
 }
 ```
 
-## 📋 **과제 3: CQRS 패턴 구현**
+## **과제 3: CQRS 패턴 구현**
 
 ### Command Side
 ```java
@@ -346,7 +346,7 @@ public interface OrderQueryService {
 }
 ```
 
-## ✅ **완성도 체크리스트**
+## **완성도 체크리스트**
 
 ### DDD 기본 개념
 - [ ] Entity와 Value Object 구분
@@ -369,7 +369,7 @@ public interface OrderQueryService {
 - [ ] Query Service 구현
 - [ ] 프로젝션 업데이트
 
-## 🔍 **추가 도전 과제**
+## **추가 도전 과제**
 
 1. **Domain Event Publisher 구현**
    - 이벤트 발행/구독 메커니즘
@@ -387,7 +387,7 @@ public interface OrderQueryService {
    - 레거시 시스템과의 통합
    - 도메인 모델 보호
 
-## 🚀 **실무 적용 팁**
+## **실무 적용 팁**
 
 ### Bounded Context 설계
 ```java

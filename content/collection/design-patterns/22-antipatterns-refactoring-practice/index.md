@@ -52,13 +52,13 @@ tags:
 
 # 안티패턴과 리팩토링 실습 - 나쁜 설계 개선
 
-## 🎯 **실습 목표**
+## **실습 목표**
 
 1. God Object 리팩토링으로 단일 책임 원칙 적용
 2. Spaghetti Code를 Command Pattern으로 정리
 3. 안티패턴 탐지기 구현
 
-## 📋 **과제 1: God Object 리팩토링**
+## **과제 1: God Object 리팩토링**
 
 ### 문제 코드
 ```java
@@ -100,7 +100,7 @@ public class OrderEventHandler {
 }
 ```
 
-## 📋 **과제 2: Command Pattern으로 Spaghetti Code 정리**
+## **과제 2: Command Pattern으로 Spaghetti Code 정리**
 
 ### 문제 코드
 ```java
@@ -149,7 +149,7 @@ public class PaymentProcessor {
 }
 ```
 
-## 📋 **과제 3: 안티패턴 탐지기 구현**
+## **과제 3: 안티패턴 탐지기 구현**
 
 ### 기본 구조
 ```java
@@ -200,7 +200,7 @@ public class AntiPatternAnalyzer {
 }
 ```
 
-## ✅ **완성도 체크리스트**
+## **완성도 체크리스트**
 
 ### God Object 리팩토링
 - [ ] 단일 책임 원칙 적용
@@ -220,14 +220,14 @@ public class AntiPatternAnalyzer {
 - [ ] 리팩토링 제안
 - [ ] 통계 리포트
 
-## 🔍 **추가 도전 과제**
+## **추가 도전 과제**
 
 1. **정적 분석 도구 통합** - SonarQube, PMD 연계
 2. **IDE 플러그인 개발** - 실시간 코드 분석
 3. **CI/CD 통합** - 품질 게이트 적용
 4. **머신러닝 탐지** - 패턴 학습 기반 분석
 
-## 🚀 **실무 적용**
+## **실무 적용**
 
 ### Strangler Fig Pattern
 ```java

@@ -1078,25 +1078,25 @@ grade_management_system()
 
 ## 체크리스트
 
-### ✅ 조건문
+### 조건문
 - [ ] if-elif-else 구조 이해
 - [ ] 논리 연산자 활용
 - [ ] 중첩 조건문 작성
 - [ ] 조건부 표현식 활용
 
-### ✅ 반복문
+### 반복문
 - [ ] for문과 range() 활용
 - [ ] while문 조건 설정
 - [ ] 중첩 반복문 구현
 - [ ] 무한 루프 방지
 
-### ✅ 제어 키워드
+### 제어 키워드
 - [ ] break와 continue 적절한 사용
 - [ ] for-else, while-else 이해
 - [ ] pass 문의 활용
 - [ ] 반복문 최적화
 
-### ✅ 고급 기능
+### 고급 기능
 - [ ] enumerate(), zip() 활용
 - [ ] reversed(), sorted() 활용
 - [ ] 복잡한 제어 로직 구현

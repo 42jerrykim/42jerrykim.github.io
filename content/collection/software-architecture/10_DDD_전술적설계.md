@@ -3,7 +3,7 @@ draft: true
 ---
 # 10장. DDD 전술적 설계
 
-## 📋 학습 목표
+## 학습 목표
 - Entity와 Value Object의 차이점과 설계 방법을 이해한다
 - Aggregate의 개념과 설계 원칙을 습득한다
 - Repository와 Domain Service의 역할을 파악한다
@@ -385,7 +385,7 @@ public class InventoryService {
 
 ---
 
-## 🎯 핵심 요약
+## 핵심 요약
 
 ### DDD 전술적 설계 요소
 
@@ -405,7 +405,7 @@ public class InventoryService {
 
 ---
 
-## 💭 생각해보기
+## 생각해보기
 
 1. 현재 시스템에서 Entity와 Value Object를 어떻게 구분할 수 있을까?
 2. Aggregate 경계를 잘못 설정했을 때 발생할 수 있는 문제는?
@@ -413,7 +413,7 @@ public class InventoryService {
 
 ---
 
-## 📚 추가 학습 자료
+## 추가 학습 자료
 
 ### 도서
 - "Implementing Domain-Driven Design" - Vaughn Vernon

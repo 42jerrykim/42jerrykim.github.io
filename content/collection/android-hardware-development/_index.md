@@ -80,19 +80,19 @@ draft: true
 
 ## 최신 기술 커버리지
 
-### 🔐 차세대 보안 기술
+### 차세대 보안 기술
 - Zero Trust 보안 모델
 - Hardware Attestation
 - 양자 내성 암호화
 - 5G/IoT 보안
 
-### 🤖 On-Device AI/ML
+### On-Device AI/ML
 - LiteRT (TensorFlow Lite) 전문 개발
 - Google AI Edge 플랫폼
 - NPU/GPU 하드웨어 가속
 - Privacy-preserving AI
 
-### 🚗 산업별 특화
+### 산업별 특화
 - Android Automotive OS (AAOS)
 - IoT 및 Edge Computing
 - 5G 네트워크 통합

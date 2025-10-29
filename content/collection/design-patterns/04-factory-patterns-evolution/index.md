@@ -75,7 +75,7 @@ tags:
 
 # Factory 패턴군의 진화와 철학
 
-## 🏭 **서론: new 키워드의 한계와 객체 생성의 딜레마**
+## **서론: new 키워드의 한계와 객체 생성의 딜레마**
 
 > *"객체를 만드는 일은 쉽다. 올바른 객체를 올바른 시점에 올바른 방식으로 만드는 일은 어렵다."*
 
@@ -103,7 +103,7 @@ public class OrderService {
 
 Factory 패턴은 이러한 **"생성의 복잡성"**을 해결하기 위해 진화해온 패턴군입니다. 단순한 Simple Factory부터 현대의 DI Container까지, 이들의 진화 과정을 따라가다 보면 **객체지향 설계의 핵심 원리**들을 발견할 수 있습니다.
 
-### 🌱 **1. Simple Factory: 생성 로직의 중앙화**
+### **1. Simple Factory: 생성 로직의 중앙화**
 
 #### **1.1 가장 단순한 해결책**
 
@@ -213,7 +213,7 @@ public class DatabaseConnection {
 - **인스턴스 제어**: 캐싱, 풀링, 싱글톤 패턴 적용 가능
 - **매개변수 제약 회피**: 동일한 시그니처 문제 해결
 
-### 🎨 **2. Factory Method Pattern: 생성 책임의 위임**
+### **2. Factory Method Pattern: 생성 책임의 위임**
 
 #### **2.1 Template Method와의 만남**
 
@@ -390,7 +390,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 }
 ```
 
-### 🏭 **3. Abstract Factory Pattern: 제품군의 일관성**
+### **3. Abstract Factory Pattern: 제품군의 일관성**
 
 #### **3.1 관련 객체군의 생성 문제**
 
@@ -657,7 +657,7 @@ public class CloudService {
 }
 ```
 
-### 🚀 **4. 현대적 Factory 패턴의 진화**
+### **4. 현대적 Factory 패턴의 진화**
 
 #### **4.1 Dependency Injection과 Factory의 융합**
 
@@ -885,7 +885,7 @@ public class AutoPaymentProcessorFactory {
 }
 ```
 
-### 📊 **5. 성능 분석과 최적화 전략**
+### **5. 성능 분석과 최적화 전략**
 
 #### **5.1 Factory 패턴의 성능 특성**
 
@@ -983,7 +983,7 @@ public class DatabaseConnectionFactory {
 }
 ```
 
-### ⚠️ **6. 안티패턴과 함정들**
+###️ **6. 안티패턴과 함정들**
 
 #### **6.1 God Factory 안티패턴**
 
@@ -1053,7 +1053,7 @@ String copy = new String(value);
 String upper = value.toUpperCase();
 ```
 
-### 🎯 **7. 실무 적용 가이드라인**
+### **7. 실무 적용 가이드라인**
 
 #### **7.1 Factory 패턴 선택 기준**
 
@@ -1123,7 +1123,7 @@ public class ModernFactoryGuidelines {
 }
 ```
 
-### 🚀 **결론: Factory 패턴의 본질과 미래**
+### **결론: Factory 패턴의 본질과 미래**
 
 Factory 패턴군의 진화 과정을 살펴보면, 이들이 단순한 **"객체 생성 도구"**를 넘어서 **"시스템 아키텍처의 핵심"**이 되어왔음을 알 수 있습니다.
 

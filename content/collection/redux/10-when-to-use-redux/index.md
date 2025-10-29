@@ -9,7 +9,7 @@ series: ["Redux 완전 정복"]
 series_order: 10
 ---
 
-## 🎯 학습 목표
+## 학습 목표
 
 이 챕터를 마치면 다음을 할 수 있습니다:
 
@@ -19,7 +19,7 @@ series_order: 10
 - ✅ 팀 규모와 프로젝트 특성에 맞는 선택
 - ✅ Redux 없이 시작하고 나중에 도입하는 전략
 
-## 📚 Redux는 만능이 아닙니다
+## Redux는 만능이 아닙니다
 
 Redux 창시자 Dan Abramov의 말:
 

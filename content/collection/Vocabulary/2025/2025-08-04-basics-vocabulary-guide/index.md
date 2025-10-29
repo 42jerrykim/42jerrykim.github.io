@@ -11,13 +11,13 @@ image: wordcloud.png
 
 ## 단어 분석
 
-### 📚 기본 정보
+### 기본 정보
 - **단어**: Basics
 - **품사**: Noun (명사)
 - **발음**: [ˈbeɪsɪks]
 - **어원**: Basic + s (복수형)
 
-### 🔍 의미와 정의
+### 의미와 정의
 
 **Basics**는 다음과 같은 의미를 가진다:
 
@@ -27,7 +27,7 @@ image: wordcloud.png
 
 ## 사용법과 예문
 
-### 💼 교육 분야에서의 활용
+### 교육 분야에서의 활용
 
 ```markdown
 - "Let's start with the basics of programming."
@@ -37,7 +37,7 @@ image: wordcloud.png
   (학생들은 고급 주제로 넘어가기 전에 기초를 완전히 익혀야 한다.)
 ```
 
-### 🏢 비즈니스 영역에서의 사용
+### 비즈니스 영역에서의 사용
 
 ```markdown
 - "We need to get back to basics in our marketing strategy."
@@ -47,7 +47,7 @@ image: wordcloud.png
   (customer service의 기본을 이해하는 것은 매우 중요하다.)
 ```
 
-### 💻 기술 분야에서의 적용
+### 기술 분야에서의 적용
 
 ```markdown
 - "Learn the basics of HTML and CSS first."
@@ -59,7 +59,7 @@ image: wordcloud.png
 
 ## 관련 표현과 패턴
 
-### 🎯 핵심 표현들
+### 핵심 표현들
 
 1. **"Back to basics"**
    - 의미: 기본으로 돌아가기
@@ -73,7 +73,7 @@ image: wordcloud.png
    - 의미: 기본을 완전히 익히다
    - 사용: 숙련도 향상을 강조할 때
 
-### 📖 동의어와 유사 표현
+### 동의어와 유사 표현
 
 - **Fundamentals** - 보다 formal한 표현
 - **Essentials** - 필수 요소에 중점
@@ -82,7 +82,7 @@ image: wordcloud.png
 
 ## 실생활 활용법
 
-### 🎓 학습 상황에서
+### 학습 상황에서
 
 **Basics**를 활용한 효과적인 학습 approach:
 
@@ -98,7 +98,7 @@ image: wordcloud.png
    - 탄탄한 기초 구축
    - "Build a solid foundation with basics"
 
-### 💡 문제 해결에서의 적용
+### 문제 해결에서의 적용
 
 복잡한 문제에 직면했을 때:
 
@@ -112,7 +112,7 @@ image: wordcloud.png
 
 ## 문화적 맥락과 뉘앙스
 
-### 🌍 영어권 문화에서의 인식
+### 영어권 문화에서의 인식
 
 **Basics**는 영어권에서 매우 긍정적인 개념으로 인식된다:
 
@@ -120,7 +120,7 @@ image: wordcloud.png
 - **Long-term thinking** - 장기적 관점의 중요성
 - **Humility** - 겸손한 자세의 가치
 
-### 📊 비즈니스 커뮤니케이션에서
+### 비즈니스 커뮤니케이션에서
 
 Professional environment에서 "basics"를 언급할 때:
 
@@ -130,7 +130,7 @@ Professional environment에서 "basics"를 언급할 때:
 
 ## 학습 팁과 기억법
 
-### 🧠 효과적인 암기 방법
+### 효과적인 암기 방법
 
 1. **Visual association**
    - Building blocks 이미지 연상

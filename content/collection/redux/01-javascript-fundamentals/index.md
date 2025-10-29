@@ -9,7 +9,7 @@ series: ["Redux 완전 정복"]
 series_order: 1
 ---
 
-## 🎯 학습 목표
+## 학습 목표
 
 이 챕터를 마치면 다음을 할 수 있습니다:
 
@@ -18,7 +18,7 @@ series_order: 1
 - ✅ 객체와 배열을 생성하고 조작하는 방법 숙지
 - ✅ Redux에서 사용되는 JavaScript 패턴 이해
 
-## 📚 왜 이것을 배워야 할까요?
+## 왜 이것을 배워야 할까요?
 
 Redux를 배우기 전에 JavaScript 기초가 탄탄해야 하는 이유:
 
@@ -104,7 +104,7 @@ const INCREMENT = 'INCREMENT';  // Action Type
 const initialState = { count: 0 };  // 초기 상태
 ```
 
-### 🎯 변수 선언 가이드라인
+### 변수 선언 가이드라인
 
 ```javascript
 // ❌ 나쁜 예 - var 사용

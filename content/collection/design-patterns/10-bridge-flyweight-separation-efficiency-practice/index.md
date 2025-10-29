@@ -58,13 +58,13 @@ tags:
 
 # Bridge & Flyweight 패턴 실습 - 분리와 효율성
 
-## 🎯 **실습 목표**
+## **실습 목표**
 
 1. Bridge 패턴으로 다중 플랫폼 파일 시스템 구현
 2. Flyweight 패턴으로 메모리 효율적인 텍스트 렌더링 구현  
 3. 패턴 적용 전후 성능 비교 분석
 
-## 📋 **과제 1: Bridge 패턴 - 파일 시스템**
+## **과제 1: Bridge 패턴 - 파일 시스템**
 
 ### 기본 구조
 ```java
@@ -97,7 +97,7 @@ public interface FileSystemImpl {
 - MacFileSystem (확장 속성 지원)
 - BasicFileManager, SecureFileManager 구현
 
-## 📋 **과제 2: Flyweight 패턴 - 텍스트 렌더링**
+## **과제 2: Flyweight 패턴 - 텍스트 렌더링**
 
 ### 기본 구조
 ```java
@@ -125,14 +125,14 @@ public class CharacterFlyweightFactory {
 - TextDocument (외재적 상태 관리)
 - 100만 개 문자 처리 성능 테스트
 
-## 📋 **과제 3: 성능 비교**
+## **과제 3: 성능 비교**
 
 ### 측정 항목
 - Bridge: 직접 구현 vs 패턴 적용 시간 오버헤드
 - Flyweight: 일반 구현 vs 패턴 적용 메모리 사용량
 - 처리량과 응답 시간 비교
 
-## ✅ **완성도 체크리스트**
+## **완성도 체크리스트**
 
 ### Bridge 패턴
 - [ ] 추상화와 구현 분리
@@ -151,7 +151,7 @@ public class CharacterFlyweightFactory {
 - [ ] 메모리 절약률 계산
 - [ ] 결과 분석 및 문서화
 
-## 🔍 **추가 도전 과제**
+## **추가 도전 과제**
 
 1. Bridge + Strategy 결합으로 파일 압축 알고리즘 적용
 2. Flyweight + Observer 결합으로 문서 변경 알림

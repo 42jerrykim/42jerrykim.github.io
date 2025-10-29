@@ -9,7 +9,7 @@ series: ["Redux 완전 정복"]
 series_order: 13
 ---
 
-## 🎯 학습 목표
+## 학습 목표
 
 이 챕터를 마치면 다음을 할 수 있습니다:
 
@@ -20,7 +20,7 @@ series_order: 13
 - ✅ Redux Selector 최적화
 - ✅ React Profiler로 성능 측정
 
-## 📚 왜 최적화가 필요한가?
+## 왜 최적화가 필요한가?
 
 Redux 앱에서 성능 문제가 발생하는 경우:
 

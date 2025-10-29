@@ -54,13 +54,13 @@ tags:
 
 # Strategy & State 패턴 실습 - 알고리즘과 상태의 캡슐화
 
-## 🎯 **실습 목표**
+## **실습 목표**
 - Strategy 패턴으로 알고리즘 캡슐화 구현
 - State 패턴으로 상태 기반 행동 변화 구현
 - 두 패턴의 차이점과 적용 시나리오 이해
 - 함수형 프로그래밍 스타일 Strategy 패턴 구현
 
-## 📋 **실습 1: 할인 전략 시스템 (Strategy)**
+## **실습 1: 할인 전략 시스템 (Strategy)**
 
 ### **요구사항**
 다양한 할인 정책을 적용하는 쇼핑몰 시스템
@@ -119,7 +119,7 @@ public class FunctionalDiscountCalculator {
 }
 ```
 
-## 📋 **실습 2: 자판기 상태 관리 (State)**
+## **실습 2: 자판기 상태 관리 (State)**
 
 ### **요구사항**
 동전 투입, 상품 선택, 배출 과정의 상태 관리
@@ -177,7 +177,7 @@ public class VendingMachine {
 }
 ```
 
-## 📋 **실습 3: 게임 캐릭터 상태 시스템**
+## **실습 3: 게임 캐릭터 상태 시스템**
 
 ### **💻 코드 템플릿**
 
@@ -204,7 +204,7 @@ public class StateManager {
 }
 ```
 
-## ✅ **체크리스트**
+## **체크리스트**
 
 ### **Strategy 패턴**
 - [ ] 알고리즘 가족 캡슐화
@@ -223,14 +223,14 @@ public class StateManager {
 - [ ] 각 패턴의 적용 시나리오 분석
 - [ ] 성능 및 메모리 사용량 비교
 
-## 🔍 **추가 도전**
+## **추가 도전**
 
 1. **State Machine Builder**: 상태 기계 생성기 구현
 2. **Strategy Composition**: 여러 전략 조합 시스템
 3. **Dynamic Strategy Loading**: 런타임 전략 로딩
 4. **State Persistence**: 상태 저장/복원 시스템
 
-## 🚀 **실무 적용**
+## **실무 적용**
 
 ### **Strategy 패턴 활용**
 - 결제 처리 전략

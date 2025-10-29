@@ -75,7 +75,7 @@ tags:
 
 # 도메인 주도 설계(DDD)와 디자인 패턴
 
-## 🏛️ **서론: 도메인이 주도하는 설계**
+##️ **서론: 도메인이 주도하는 설계**
 
 > *"좋은 소프트웨어의 핵심은 도메인을 잘 이해하고 표현하는 것이다. DDD는 이를 위한 철학이고, 디자인 패턴은 이를 구현하는 도구다."*
 
@@ -87,7 +87,7 @@ tags:
 - **Domain Model**: 비즈니스 규칙과 로직의 중심화
 - **Anti-Corruption Layer**: 레거시 시스템과의 통합
 
-## 🧱 **1. DDD Building Blocks와 디자인 패턴**
+## **1. DDD Building Blocks와 디자인 패턴**
 
 ### **1.1 Entity 패턴과 Identity 관리**
 
@@ -238,7 +238,7 @@ public class Order extends AggregateRoot<OrderId> {
 }
 ```
 
-## 🗃️ **2. Repository 패턴과 데이터 접근**
+##️ **2. Repository 패턴과 데이터 접근**
 
 ```java
 // Repository의 도메인 중심 설계
@@ -286,7 +286,7 @@ public class JpaOrderRepository implements OrderRepository {
 }
 ```
 
-## 🔄 **3. CQRS와 Event Sourcing 패턴**
+## **3. CQRS와 Event Sourcing 패턴**
 
 ### **3.1 Command Query Responsibility Segregation**
 
@@ -383,7 +383,7 @@ public abstract class EventSourcedAggregateRoot<ID> {
 }
 ```
 
-## 🎯 **4. 실습 과제**
+## **4. 실습 과제**
 
 ### **과제 1: 도서관 도메인 모델링**
 다음 요구사항을 만족하는 도서관 시스템을 DDD로 설계하세요:
@@ -401,7 +401,7 @@ Event Sourcing을 적용한 주문 처리 시스템을 구현하세요:
 3. 재고 관리와의 연계
 4. 주문 이력 추적 및 감사
 
-## 🤔 **토론 주제**
+## **토론 주제**
 
 1. **DDD vs Traditional Layered Architecture**: 언제 DDD를 선택해야 하는가?
 
@@ -411,7 +411,7 @@ Event Sourcing을 적용한 주문 처리 시스템을 구현하세요:
 
 4. **도메인 서비스 vs 애플리케이션 서비스**: 비즈니스 로직을 어디에 배치해야 하는가?
 
-## 📚 **참고 자료**
+## **참고 자료**
 
 ### **핵심 도서**
 - Eric Evans, "Domain-Driven Design" (2003)

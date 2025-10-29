@@ -74,7 +74,7 @@ tags:
 ---
 
 
-## ⚡ **서론: 사랑받으면서도 미움받는 패턴의 역설**
+## **서론: 사랑받으면서도 미움받는 패턴의 역설**
 
 > *"Singleton은 디자인 패턴의 양날의 검이다. 올바르게 사용하면 시스템을 단순화하지만, 잘못 사용하면 시스템을 파괴한다."*
 
@@ -119,7 +119,7 @@ String dbUrl = ConfigurationManager.getInstance().getProperty("db.url");
 
 이 글에서는 Singleton 패턴의 **기술적 구현부터 철학적 논쟁**까지, 그리고 **언제 사용해야 하고 언제 피해야 하는지**에 대한 명확한 가이드라인을 제시하겠습니다.
 
-### 🎯 **1. Singleton 패턴의 본질과 동기**
+### **1. Singleton 패턴의 본질과 동기**
 
 #### **1.1 GoF의 원래 의도**
 
@@ -221,7 +221,7 @@ public class ApplicationConfig {
 }
 ```
 
-### 🔧 **2. 다양한 Singleton 구현 방식 심화 분석**
+### **2. 다양한 Singleton 구현 방식 심화 분석**
 
 #### **2.1 Eager Initialization (이른 초기화)**
 
@@ -418,7 +418,7 @@ try {
 }
 ```
 
-### ⚡ **3. Thread Safety와 성능 최적화 심화**
+### **3. Thread Safety와 성능 최적화 심화**
 
 #### **3.1 성능 벤치마크 분석**
 
@@ -471,7 +471,7 @@ Lazy Synchronized      |   45.2   |   ±2.1  |  낮음 (병목!)
 */
 ```
 
-### ⚠️ **4. Singleton이 Anti-pattern으로 여겨지는 이유**
+###️ **4. Singleton이 Anti-pattern으로 여겨지는 이유**
 
 #### **4.1 전역 상태의 문제점 - 숨겨진 의존성**
 
@@ -624,7 +624,7 @@ public class RedisBasedCacheManager {
 }
 ```
 
-### ✅ **5. Singleton의 올바른 사용 시나리오**
+### **5. Singleton의 올바른 사용 시나리오**
 
 #### **5.1 진정한 단일 리소스**
 
@@ -742,7 +742,7 @@ public class ApplicationLogger {
 }
 ```
 
-### 🔄 **6. 현대적 대안들**
+### **6. 현대적 대안들**
 
 #### **6.1 Dependency Injection**
 
@@ -830,7 +830,7 @@ configModule.setConfig({ dbUrl: 'localhost:5432' });
 const dbUrl = configModule.getProperty('dbUrl');
 ```
 
-### 🎯 **7. 실무 적용 가이드라인**
+### **7. 실무 적용 가이드라인**
 
 #### **7.1 Singleton 사용 결정 트리**
 
@@ -952,7 +952,7 @@ public class FinalBusinessService implements BusinessService {
 }
 ```
 
-### 🚀 **결론: Singleton 패턴의 현명한 사용**
+### **결론: Singleton 패턴의 현명한 사용**
 
 Singleton 패턴은 **강력하지만 위험한 도구**입니다. 올바르게 사용하면 시스템을 단순화하고 효율성을 높일 수 있지만, 잘못 사용하면 코드의 품질과 유지보수성을 크게 떨어뜨릴 수 있습니다.
 

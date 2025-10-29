@@ -9,7 +9,7 @@ series: ["Redux 완전 정복"]
 series_order: 11
 ---
 
-## 🎯 학습 목표
+## 학습 목표
 
 이 챕터를 마치면 다음을 할 수 있습니다:
 
@@ -19,7 +19,7 @@ series_order: 11
 - ✅ mapStateToProps로 State를 Props로 전달
 - ✅ mapDispatchToProps로 Action Dispatch 함수 전달
 
-## 📚 왜 React-Redux가 필요한가?
+## 왜 React-Redux가 필요한가?
 
 Redux는 독립적인 라이브러리이므로 React와 직접 연결되지 않습니다:
 

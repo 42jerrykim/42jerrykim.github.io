@@ -75,7 +75,7 @@ tags:
 
 # Builder와 Prototype의 깊은 이해
 
-## 🏗️ **서론: 복잡한 객체 생성의 예술과 과학**
+##️ **서론: 복잡한 객체 생성의 예술과 과학**
 
 > *"좋은 소프트웨어는 객체를 만드는 방법에서부터 시작된다. Builder는 구성의 명확성을, Prototype은 생성의 효율성을 추구한다."*
 
@@ -127,7 +127,7 @@ HttpRequest request = new HttpRequest(
 
 이 글에서는 두 패턴의 **깊은 원리부터 현대적 활용**까지, 그리고 **언제 어떤 패턴을 선택해야 하는지**에 대한 명확한 가이드라인을 제시하겠습니다.
 
-### 🏗️ **1. Builder 패턴의 진화와 구현 전략**
+###️ **1. Builder 패턴의 진화와 구현 전략**
 
 #### **1.1 문제의 본질: Constructor Parameter Explosion**
 
@@ -441,7 +441,7 @@ DatabaseConnection invalid = TypeSafeDatabaseConnection.builder()
     .build(); // 컴파일 에러: password() 메서드를 먼저 호출해야 함
 ```
 
-### 🧬 **2. Prototype 패턴의 본질과 복제 전략**
+### **2. Prototype 패턴의 본질과 복제 전략**
 
 #### **2.1 Prototype 패턴의 동기와 철학**
 
@@ -677,7 +677,7 @@ LargeDataSet copy2 = original.clone(); // 빠름 - 실제 복사 안 함
 copy1.addElement(newElement); // 이 때 copy1만 실제 복사됨
 ```
 
-### 📊 **3. 성능 분석과 메모리 관리**
+### **3. 성능 분석과 메모리 관리**
 
 #### **3.1 생성 방식별 성능 벤치마크**
 
@@ -808,7 +808,7 @@ public class MemoryEfficientPrototype implements Cloneable {
 */
 ```
 
-### 🚀 **4. 현대적 활용과 라이브러리 생태계**
+### **4. 현대적 활용과 라이브러리 생태계**
 
 #### **4.1 Lombok @Builder - 코드 생성의 혁신**
 
@@ -1048,7 +1048,7 @@ ImmutableUser transformed = original.transform(user ->
 );
 ```
 
-### 🎯 **5. 실무 적용 가이드라인과 패턴 선택**
+### **5. 실무 적용 가이드라인과 패턴 선택**
 
 #### **5.1 패턴 선택 결정 트리**
 
@@ -1311,7 +1311,7 @@ public class FlyweightPrototype implements Cloneable {
 }
 ```
 
-### ⚠️ **6. 안티패턴과 주의사항**
+###️ **6. 안티패턴과 주의사항**
 
 #### **6.1 Builder 관련 안티패턴**
 
@@ -1392,7 +1392,7 @@ public class ProperExceptionHandling {
 }
 ```
 
-### 🚀 **결론: 객체 생성의 미래와 패턴의 진화**
+### **결론: 객체 생성의 미래와 패턴의 진화**
 
 Builder와 Prototype 패턴을 깊이 있게 살펴본 결과, 두 패턴은 **서로 다른 철학으로 복잡한 객체 생성 문제를 해결**한다는 것을 알 수 있습니다.
 

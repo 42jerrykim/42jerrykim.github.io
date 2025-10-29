@@ -13,7 +13,7 @@ image: "FSViewer.png"
 
 ## 주요 기능과 특징
 
-### 🖼️ 강력한 이미지 관리 기능
+###️ 강력한 이미지 관리 기능
 
 FastStone Image Viewer는 다음과 같은 핵심 기능들을 제공한다:
 
@@ -24,7 +24,7 @@ FastStone Image Viewer는 다음과 같은 핵심 기능들을 제공한다:
 - **Resizing** 및 **cropping**
 - **Retouching** 및 **color adjustment**
 
-### 🎯 혁신적인 Full-screen Mode
+### 혁신적인 Full-screen Mode
 
 이 소프트웨어의 가장 독특한 특징 중 하나는 직관적인 full-screen mode이다. 이 모드에서는:
 
@@ -33,7 +33,7 @@ FastStone Image Viewer는 다음과 같은 핵심 기능들을 제공한다:
 - 화면의 네 모서리에 마우스를 대면 숨겨진 toolbar가 나타난다
 - 주요 기능들에 즉시 접근할 수 있다
 
-### 🔍 고품질 확대 및 슬라이드쇼
+### 고품질 확대 및 슬라이드쇼
 
 - **High quality magnifier** 기능
 - **150개 이상의 transitional effect**가 포함된 musical slideshow
@@ -47,17 +47,17 @@ FastStone Image Viewer는 다음과 같은 핵심 기능들을 제공한다:
 
 FastStone Image Viewer 8.1에서는 다음과 같은 주요 개선사항과 새로운 기능들이 추가되었다:
 
-### 🆕 사용자 인터페이스 개선
+### 사용자 인터페이스 개선
 - **Modern style의 Open/Save dialog** - 더욱 현대적인 스타일로 개선된 파일 열기/저장 대화상자
 - **현재 파일 위치 표시** - Menu toolbar에서 현재 파일 위치와 전체 파일 수를 표시
 - **Thumbnail 표시 옵션** - "Import Photos and Videos"의 "Select files manually" 옵션에서 thumbnail 아래에 filename 또는 date/time 중 선택하여 표시 가능
 
-### 📸 이미지 Format 지원 강화
+### 이미지 Format 지원 강화
 - **WEBP 이미지 지원** - WEBP 이미지에 대한 native read/write 지원 추가
 - **HEIC/HEIF 성능 향상** - 더 빠른 HEIC/HEIF thumbnail 생성
 - **Video thumbnail 개선** - 향상된 video thumbnail 생성 기능
 
-### ⚡ 기능 개선사항
+### 기능 개선사항
 - **EXIF 기반 batch-renaming** - HEIC/HEIF 이미지를 date/time으로 batch-rename할 때 EXIF "date taken" 정보 활용
 - **Symbolic link 지원** - Symbolic link 폴더로 파일을 드래그 앤 드롭할 수 없던 버그 수정
 - **기타 개선사항** - 다양한 성능 향상 및 버그 수정

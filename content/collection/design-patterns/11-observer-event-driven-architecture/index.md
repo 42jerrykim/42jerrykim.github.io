@@ -75,7 +75,7 @@ tags:
 
 # Observer - 이벤트 기반 아키텍처의 시작
 
-## 📡 **서론: 변화에 반응하는 시스템의 미학**
+## **서론: 변화에 반응하는 시스템의 미학**
 
 > *"좋은 소프트웨어는 변화에 민감하게 반응한다. Observer 패턴은 이런 반응성을 우아하게 구현하는 가장 근본적인 방법이다."*
 
@@ -117,7 +117,7 @@ public class BadStockSystem {
 
 이런 문제를 어떻게 우아하게 해결할 수 있을까요?
 
-## 👁️ **1. Observer 패턴의 핵심 구조와 철학**
+##️ **1. Observer 패턴의 핵심 구조와 철학**
 
 ### **1.1 패턴의 핵심 아이디어**
 
@@ -483,7 +483,7 @@ public class ObserverPatternBenefits {
 }
 ```
 
-## 🔄 **2. Push vs Pull 모델: 두 가지 철학적 접근**
+## **2. Push vs Pull 모델: 두 가지 철학적 접근**
 
 ### **2.1 Push Model: "내가 너에게 줄게"**
 
@@ -707,7 +707,7 @@ class AdaptiveTrader implements HybridObserver {
 }
 ```
 
-## 🧠 **3. 메모리 관리와 생명주기: Observer의 숨겨진 함정**
+## **3. 메모리 관리와 생명주기: Observer의 숨겨진 함정**
 
 Observer 패턴의 가장 큰 함정 중 하나는 **메모리 누수**입니다. Subject가 Observer에 대한 강한 참조를 유지하면서 발생하는 문제입니다.
 
@@ -783,7 +783,7 @@ public class MemoryManagement {
 }
 ```
 
-## 🚀 **결론: 이벤트 기반 아키텍처의 출발점**
+## **결론: 이벤트 기반 아키텍처의 출발점**
 
 Observer 패턴을 깊이 탐구한 결과, 이 패턴은 **현대 이벤트 기반 아키텍처의 DNA**임을 확인했습니다.
 

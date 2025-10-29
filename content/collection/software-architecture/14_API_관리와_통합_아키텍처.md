@@ -3,7 +3,7 @@ draft: true
 ---
 # 14장. API 관리와 통합 아키텍처
 
-## 📋 학습 목표
+## 학습 목표
 - API 게이트웨이 패턴과 설계 방법을 이해한다
 - 메시징 패턴과 이벤트 기반 통합을 습득한다
 - 엔터프라이즈 서비스 버스(ESB) 개념을 파악한다
@@ -487,7 +487,7 @@ public class BatchSynchronizer {
 
 ---
 
-## 🎯 핵심 요약
+## 핵심 요약
 
 ### API 관리와 통합 패턴 비교
 
@@ -506,7 +506,7 @@ public class BatchSynchronizer {
 
 ---
 
-## 💭 생각해보기
+## 생각해보기
 
 1. API 게이트웨이의 단일 장애점 문제를 어떻게 해결할 것인가?
 2. 동기와 비동기 통합의 선택 기준은 무엇인가?
@@ -514,7 +514,7 @@ public class BatchSynchronizer {
 
 ---
 
-## 📚 추가 학습 자료
+## 추가 학습 자료
 
 ### 도서
 - "Enterprise Integration Patterns" - Gregor Hohpe
