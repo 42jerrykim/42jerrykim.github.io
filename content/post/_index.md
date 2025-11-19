@@ -13,3 +13,9 @@ X-59
 
 US Biggest Nuclear Aircraft Carrier That Changed Naval Warfare
 * https://www.youtube.com/watch?v=j26ppRiUBe0
+
+밈 검색
+* https://memes.getyarn.io/
+
+팜레스트 맞춤 제작
+* https://treewa.co.kr/product/detail.html?product_no=71&cate_no=56&display_group=1
