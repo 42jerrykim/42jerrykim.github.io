@@ -72,7 +72,6 @@ tags:
 - High Performance
 - 고성능
 image: "wordcloud.png"
-aliases: /algorithm/BOJ-15576/
 ---
 
 ## 문제

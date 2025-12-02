@@ -81,7 +81,6 @@ tags:
 - Invariant
 - 불변식
 image: "wordcloud.png"
-aliases: /algorithm/BOJ-12728/
 ---
 
 ## 문제 정보

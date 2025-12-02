@@ -74,7 +74,6 @@ tags:
 - 면적계산
 - 정수오버플로
 image: "wordcloud.png"
-aliases: /algorithm/BOJ-7626/
 ---
 
 ## 문제 정보

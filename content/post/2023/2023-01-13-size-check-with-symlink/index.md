@@ -11,7 +11,6 @@ tag:
 - Direstory
 - Link
 title: '[Linux] 용량 측정할때 Symlink도 포함하기'
-aliases: /linux/size-check-with-symlink/
 
 ---
 

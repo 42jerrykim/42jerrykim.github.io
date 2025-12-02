@@ -9,7 +9,6 @@ tags:
 - RDPWrapper
 - 20H2
 - Windows
-aliases: /rdpwrapper/rdp-wrapper-issue/
 title: '[RDPWrapper] Windows 10 Pro 20H2에서 not supported issue 해결하기'
 ---
 

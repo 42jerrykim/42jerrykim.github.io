@@ -8,8 +8,6 @@ tags:
 - Car
 - GothamGarage
 title: '[TV Show] Car Masters: Rust to Riches - Season 05 (2023)'
-aliases: 
-- /post/2024-01-02-car-masters--rust-to-riches-season-05/
 
 ---
 

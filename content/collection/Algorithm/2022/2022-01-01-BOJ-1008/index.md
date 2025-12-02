@@ -56,7 +56,6 @@ tags:
 - SoftwareEngineering
 - AlgorithmOptimization
 image: "index.png"
-aliases: "/collections/baekjoon/1008/"
 ---
 
 
