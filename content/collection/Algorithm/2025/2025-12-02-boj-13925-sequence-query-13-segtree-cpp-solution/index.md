@@ -1,7 +1,7 @@
 ---
-title: "[BOJ] 13925 수열과 쿼리 13"
+title: "[Algorithm] 13925 수열과 쿼리 13"
 description: "구간 덧셈, 곱셈, 값 설정과 구간 합 쿼리를 처리하는 Lazy Propagation 세그먼트 트리 문제. 선형 함수 f(x)=mul*x+add로 모든 연산을 통합하여 해결합니다."
-category: "[Algorithm]"
+category: "Algorithm"
 tags:
   - 알고리즘
   - 세그먼트트리
