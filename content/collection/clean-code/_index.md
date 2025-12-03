@@ -1,5 +1,6 @@
 ---
 draft: true
+title: "clean-code"
 ---
 # Clean Code 강의 자료
 

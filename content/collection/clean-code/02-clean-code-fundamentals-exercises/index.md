@@ -1,5 +1,6 @@
 ---
 draft: true
+title: "clean-code"
 ---
 # Chapter 1: Clean Code 개념과 중요성 - 실습 과제
 

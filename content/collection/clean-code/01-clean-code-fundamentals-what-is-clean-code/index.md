@@ -1,5 +1,6 @@
 ---
 draft: true
+title: "clean-code"
 ---
 # 1장: Clean Code의 개념과 중요성
 
