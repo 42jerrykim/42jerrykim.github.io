@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 6171번: 땅따먹기 - 묶음 할인 최소 비용 DP+CHT"
+title: "[Algorithm] C++ 백준 6171번: 땅따먹기 - 묶음 할인 최소 비용 DP+CHT"
 description: "여러 직사각형 땅을 묶어 살 때 비용은 (묶음 내 최대 W)*(묶음 내 최대 H)입니다. W 오름차순 정렬 후 같은 W는 최대 H로 병합하고, 뒤에서 앞으로 보며 지배된 직사각형을 제거해 H를 단조 감소로 만듭니다. 이후 dp[i]=min(dp[k]+W[i]*H[k+1])를 단조 Convex Hull Trick으로 O(n)에 계산하며, 정수 교차 비교와 __int128 중간 연산으로 오버플로를 방지합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

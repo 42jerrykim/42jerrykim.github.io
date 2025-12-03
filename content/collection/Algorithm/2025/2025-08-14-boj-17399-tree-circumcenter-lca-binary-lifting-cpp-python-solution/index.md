@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 17399번: 트리의 외심"
+title: "[Algorithm] C++/Python 백준 17399번: 트리의 외심"
 description: "세 정점의 외심은 세 정점까지의 거리가 같으면서 그 거리가 최소가 되는 정점입니다. LCA·깊이로 세 경로의 교점 S를 찾고, 두 작은 팔 길이의 동일성과 큰 팔과의 짝수 차이를 이용해 존재·위치를 판정합니다. BFS+Binary Lifting로 O((N+Q)logN)에 해결합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

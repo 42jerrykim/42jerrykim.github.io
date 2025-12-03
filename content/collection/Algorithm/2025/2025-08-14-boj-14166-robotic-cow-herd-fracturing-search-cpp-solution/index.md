@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 14166번: 로봇 소 무리 (Robotic Cow Herd)"
+title: "[Algorithm] C++ 백준 14166번: 로봇 소 무리 (Robotic Cow Herd)"
 description: "K개의 로봇을 서로 다른 구성으로 최저 비용에 제작하는 문제. 각 위치 최소값 합을 기반으로 추가비용 배열을 구성해 임계 추가비용을 이분탐색하고, fracturing search(가지치기 열거)로 개수를 세어 K개 최소 합을 얻는다. 구현·복잡도·실수 포인트까지 정리."
 date: 2025-08-14
 lastmod: 2025-08-14

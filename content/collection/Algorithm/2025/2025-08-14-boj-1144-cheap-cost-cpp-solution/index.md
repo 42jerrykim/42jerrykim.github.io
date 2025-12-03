@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 1144번: 싼 비용 - Connection Profile DP"
+title: "[Algorithm] C++ 백준 1144번: 싼 비용 - Connection Profile DP"
 description: "N,M ≤ 9 격자에서 상하좌우로 연결된 하나의 칸 집합을 골라 비용 합의 최솟값을 찾습니다. 연결 프로파일 DP로 상태를 라벨링·정규화해 압축하고, 고립 검사와 병합 전이로 올바름과 효율을 보장합니다. 시간·공간 복잡도, 구현 포인트, 코너 케이스까지 정리합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

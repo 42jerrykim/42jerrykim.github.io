@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] CPP 백준 6567번: 팔찌"
+title: "[Algorithm] C++ 백준 6567번: 팔찌"
 description: "팔찌의 고유한 개수를 구하는 조합론 문제. Burnside의 보조정리와 오일러 파이 함수를 활용하여 회전과 뒤집기 대칭을 처리하는 Polya 열거 정리 풀이입니다. 조합 게임 이론의 핵심 개념을 학습할 수 있습니다."
 categories:
 - Algorithm
@@ -71,10 +71,7 @@ image: "wordcloud.png"
 
 ## 문제 정보
 
-더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
-
 - **문제 링크**: https://www.acmicpc.net/problem/6567
-- **난이도**: Gold 2
 - **카테고리**: 조합론, 수학, Polya 열거 정리
 
 ### 문제 요약
@@ -342,6 +339,3 @@ while True:
 - **Polya 열거 정리**: https://en.wikipedia.org/wiki/P%C3%B3lya_enumeration_theorem
 - **오일러 파이 함수**: https://en.wikipedia.org/wiki/Euler%27s_totient_function
 - **유사 문제**: BOJ 1593 (육각형), BOJ 2110 (목걸이)
-
----
-

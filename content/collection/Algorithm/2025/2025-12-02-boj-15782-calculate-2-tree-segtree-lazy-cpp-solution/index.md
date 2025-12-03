@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 15782번: Calculate! 2"
+title: "[Algorithm] C++ 백준 15782번: Calculate! 2"
 description: "트리 구조에서 부분트리 XOR 쿼리 및 범위 업데이트를 효율적으로 처리하는 문제입니다. Euler Tour Technique으로 트리를 일렬화하고 Lazy Propagation 세그먼트 트리로 O((N+M)logN)에 해결합니다."
 date: 2025-12-02
 lastmod: 2025-12-02

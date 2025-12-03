@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 16998번: Mod World"
+title: "[Algorithm] C++/Python 백준 16998번: Mod World"
 description: "p, q, n이 주어질 때 (p·i mod q)의 합을 i=1..n까지 구하는 문제입니다. 유클리드 호제법 기반 floor_sum과 주기성(서로소 시 잔여 클래스 순열)을 이용해 O(log q)로 풀며, 정당성과 경계 사례를 함께 점검합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 10854번: Divisions - 약수 개수"
+title: "[Algorithm] C++/Python 백준 10854번: Divisions - 약수 개수"
 description: "N(≤1e18)의 양의 약수 개수를 구하는 문제입니다. N을 소인수분해한 뒤 (지수+1)의 곱으로 약수 개수를 계산합니다. Pollard's Rho + Miller–Rabin을 이용해 64비트 범위를 안정적으로 처리하고, 오버플로·64비트 연산·N=1 등 엣지 케이스를 점검합니다."
 date: 2025-09-16
 lastmod: 2025-09-16

@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 14504번: 수열과 쿼리 18"
+title: "[Algorithm] C++ 백준 14504번: 수열과 쿼리 18"
 description: "Merge Sort Tree를 이용하여 범위 내 k보다 큰 원소 개수를 O(log²n)에 조회하고 O(log n)에 갱신합니다. 세그먼트 트리의 각 노드에 정렬된 벡터를 저장하여 범위 쿼리를 효율적으로 처리하는 풀이입니다."
 date: 2025-12-02
 lastmod: 2025-12-02

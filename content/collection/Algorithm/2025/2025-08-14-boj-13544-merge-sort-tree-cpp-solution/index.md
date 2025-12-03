@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 13544번: 수열과 쿼리 3 - Merge Sort Tree"
+title: "[Algorithm] C++ 백준 13544번: 수열과 쿼리 3 - Merge Sort Tree"
 description: "정렬된 구간 리스트를 저장한 Merge Sort Tree로 구간 [i,j]에서 k보다 큰 원소 개수를 온라인으로 계산합니다. 각 노드에서 upper_bound로 개수만 더해 O(log^2N) 질의, O(NlogN) 빌드. XOR last_ans 변형을 안전히 처리하는 구현 포인트와 엣지 케이스까지 정리합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

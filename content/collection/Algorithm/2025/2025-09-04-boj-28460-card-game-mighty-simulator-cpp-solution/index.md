@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 28460번: Card Game (Mighty) 시뮬레이션"
+title: "[Algorithm] C++ 백준 28460번: Card Game (Mighty) 시뮬레이션"
 description: "54장 트럼프(조커 포함) 마이티 규칙을 완전 시뮬레이션하여 Deal Mistake/Rule Violation 우선, 선거·기루다/no-기루다, 프렌드, 조커 총, 1·10라운드 조커 무력화, 첫 라운드 제약, 승패·점수차 출력까지 정확 구현한 C++ 풀이."
 date: 2025-09-04
 lastmod: 2025-09-04

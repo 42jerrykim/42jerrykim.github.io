@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 11385번: 씽크스몰 - NTT+CRT 다항식 곱셈"
+title: "[Algorithm] C++ 백준 11385번: 씽크스몰 - NTT+CRT 다항식 곱셈"
 description: "NTT 친화 소수 3개에서 다항식 곱셈을 수행하고 CRT로 계수를 복원해 모든 계수의 XOR을 계산합니다. N, M ≤ 1e6의 대용량 입력을 O(n log n) 시간과 선형 메모리로 안정 처리하며, 오버플로는 __int128로 방지합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

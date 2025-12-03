@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 15773번: Touch The Sky"
+title: "[Algorithm] C++/Python 백준 15773번: Touch The Sky"
 description: "고도 h≤L에서만 풍선을 불 수 있고 한 번 불 때마다 D만큼 상승한다. 최대 몇 개의 풍선을 순서대로 사용할 수 있는지 구한다. E=L+D 오름차순 정렬 + 최대 힙으로 누적 D를 관리하며, 누적이 현재 E를 초과하면 가장 큰 D를 제거한다. 교환 논법으로 그리디 정당화, O(N log N), 64비트 정수 주의."
 date: 2025-08-14
 lastmod: 2025-08-14

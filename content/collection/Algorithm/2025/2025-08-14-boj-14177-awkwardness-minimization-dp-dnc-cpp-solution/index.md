@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 14177번: 티떱랜드 - 어색함 최소화 DP(DnC)"
+title: "[Algorithm] C++ 백준 14177번: 티떱랜드 - 어색함 최소화 DP(DnC)"
 description: "N명을 K개 연속 구간으로 나눠 구간 내 사람쌍 어색함 합을 최소화. 2D 누적합으로 cost(l,r) O(1) 계산, dp[g][i]=min(dp[g-1][j]+cost) 전이를 분할정복 최적화로 O(KN log N) 해결."
 date: 2025-08-14
 lastmod: 2025-08-14

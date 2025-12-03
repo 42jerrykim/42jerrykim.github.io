@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 8202번: Conspiracy (스플릿 그래프)"
+title: "[Algorithm] C++/Python 백준 8202번: Conspiracy (스플릿 그래프)"
 description: "POI 2010/2011 ‘Conspiracy’를 스플릿 그래프 인식 정리로 해결합니다. Hammer–Simeone 차수 조건으로 분할 가능 여부를 판정하고, 기준 분할에서 단일 이동과 교환 스왑 규칙으로 모든 유효 분할 수를 O(n^2)로 계산합니다. 엣지·완전 그래프 등 코너 케이스와 정당성 근거, 구현 포인트까지 제공합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

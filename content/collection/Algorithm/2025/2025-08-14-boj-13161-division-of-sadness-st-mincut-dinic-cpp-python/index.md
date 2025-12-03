@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 13161번: 분단의 슬픔 - s-t 최소 컷"
+title: "[Algorithm] C++/Python 백준 13161번: 분단의 슬픔 - s-t 최소 컷"
 description: "UCPC 2016 C ‘분단의 슬픔’을 s-t 최소 컷으로 푼 풀이. w[i,j]는 양방향 간선, 강제 A/B는 소스·싱크 무한 용량으로 고정. Dinic으로 최소 슬픔 합을 구하고 잔여 그래프에서 A/B를 복원한다. 모델링 근거와 컷 복원, 구현 포인트, 복잡도와 코너 케이스 점검까지 정리. C++·Python 코드 포함."
 date: 2025-08-14
 lastmod: 2025-08-14

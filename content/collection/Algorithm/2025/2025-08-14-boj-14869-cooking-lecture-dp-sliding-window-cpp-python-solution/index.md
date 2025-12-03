@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 14869번: 요리 강좌 - DP, 슬라이딩 윈도우 최적화"
+title: "[Algorithm] C++/Python 백준 14869번: 요리 강좌 - DP, 슬라이딩 윈도우 최적화"
 description: "연속 수강 길이 S~E, 학원 변경 비용 T, 불허용 학원 제약을 동시에 만족하는 최소비용을 구합니다. prefix sum과 단조 큐로 블록 DP를 슬라이딩 윈도우 최적화해 O(NM)로 해결, 정당성과 엣지 케이스 점검까지 담았습니다."
 date: 2025-08-14
 lastmod: 2025-08-14

@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 13310번: 먼 별"
+title: "[Algorithm] C++ 백준 13310번: 먼 별"
 description: "N개 별의 시간에 따른 위치 변화 중 가장 먼 두 별 사이 거리 최소화 시점을 찾는 문제입니다. 삼분 탐색, 볼록 껍질, 회전하는 캘리퍼스를 활용하여 O(N log N log T) 시간에 해결합니다."
 date: 2025-12-02
 lastmod: 2025-12-02

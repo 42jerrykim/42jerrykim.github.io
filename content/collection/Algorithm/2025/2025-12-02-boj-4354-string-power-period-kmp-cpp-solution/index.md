@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 4354번: 문자열 제곱"
+title: "[Algorithm] C++ 백준 4354번: 문자열 제곱"
 description: "문자열 s = a^n을 만족하는 최대 n을 KMP failure function으로 O(n)에 구합니다. 주기성 판별과 약수 계산을 통해 정확하게 해결하고, 엣지 케이스 처리까지 정리한 풀이입니다."
 date: 2025-12-02
 lastmod: 2025-12-02

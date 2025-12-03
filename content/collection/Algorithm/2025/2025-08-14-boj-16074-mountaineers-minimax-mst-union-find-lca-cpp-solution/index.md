@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 16074번: Mountaineers - Minimax MST·LCA"
+title: "[Algorithm] C++ 백준 16074번: Mountaineers - Minimax MST·LCA"
 description: "격자 지도에서 출발→도착까지 필요한 최소 ‘최고 고도’(minimax 경로)를 구합니다. Kruskal+유니온파인드로 MST를 구성하고 LCA 이진 리프팅으로 경로 최대 가중치를 O(logV)로 질의합니다. 올바름 근거·코너 케이스 점검을 포함해 제출 안정성을 높입니다."
 date: 2025-08-14
 lastmod: 2025-08-14

@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 13510번: 트리와 쿼리 1"
+title: "[Algorithm] C++ 백준 13510번: 트리와 쿼리 1"
 description: "트리에서 간선 가중치 갱신과 경로 최댓값 질의를 처리하는 최적 풀이를 정리합니다. Heavy-Light Decomposition과 세그먼트 트리를 결합해 각 쿼리를 O(log N)에 해결하고, 구현 포인트·엣지 케이스·정당성·복잡도를 점검합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

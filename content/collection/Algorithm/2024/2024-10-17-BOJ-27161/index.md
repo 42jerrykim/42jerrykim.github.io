@@ -9,8 +9,8 @@ tags:
 - Simulation
 - BruteForce
 - O(N)
-- Implementation Strategy: Simulation
-image: "tmp_wordcloud.png"
+- Simulation
+image: "wordcloud.png"
 date: 2024-01-01
 ---
 

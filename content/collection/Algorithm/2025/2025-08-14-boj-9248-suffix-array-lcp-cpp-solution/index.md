@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 9248번: Suffix Array - 접미사 배열과 LCP O(n log n)"
+title: "[Algorithm] C++ 백준 9248번: Suffix Array - 접미사 배열과 LCP O(n log n)"
 description: "접미사 배열을 O(n log n) 더블링으로 구축하고, LCP 배열은 카사이 알고리즘으로 O(n)에 계산합니다. 안정 정렬·랭크 갱신·경계 처리와 엣지 케이스 점검까지 담은 실전 풀이."
 date: 2025-08-14
 lastmod: 2025-08-14

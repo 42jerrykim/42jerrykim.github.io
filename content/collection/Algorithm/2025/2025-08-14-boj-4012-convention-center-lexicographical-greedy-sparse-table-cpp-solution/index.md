@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 4012번: 컨벤션 센터 - 사전순 최소 해 선택"
+title: "[Algorithm] C++ 백준 4012번: 컨벤션 센터 - 사전순 최소 해 선택"
 description: "회의 구간을 최대 개수로 선택하면서 사전순(lexicographical)으로 가장 이른 해를 출력하는 문제. 시작 시각 기준 정렬, 선행 회의의 이진 점프(sparse table)로 f(l,r)를 O(log n)에 계산하고, 구간 경계 map을 유지해 포함 여부를 O(log n)에 증명·선택한다. 전체 O(n log n)."
 date: 2025-08-14
 lastmod: 2025-08-14

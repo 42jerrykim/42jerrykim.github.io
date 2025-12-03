@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 13329번: Meteor Shower"
+title: "[Algorithm] C++ 백준 13329번: Meteor Shower"
 description: "각 다각형을 최소각·최대각 꼭짓점으로 압축한 선분으로 바꾼 뒤, 각도 스위핑과 ccw 기반 비교(set)를 이용해 현재 각도에서 최전면 선분만 표시합니다. 표시된 선분 수를 제외해 완전히 가려진 다각형 개수를 계산하는 풀이입니다."
 date: 2025-08-14
 lastmod: 2025-08-14

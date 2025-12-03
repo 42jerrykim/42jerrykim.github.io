@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 33651번: Vandalism"
+title: "[Algorithm] C++/Python 백준 33651번: Vandalism"
 description: "UAPC에서 일부 문자를 삭제해 얻은 s가 주어지면, 빠진 문자들을 원래 순서대로 복원합니다. 두 포인터로 UAPC와 s를 한 번만 훑어 불일치만 수집해 O(|UAPC|) 시간, O(1) 공간에 안정적으로 해결합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

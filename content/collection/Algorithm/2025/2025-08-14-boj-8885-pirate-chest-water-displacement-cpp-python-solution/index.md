@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 8885번: Pirate Chest - 수면 상승 고려 최대 체적"
+title: "[Algorithm] C++/Python 백준 8885번: Pirate Chest - 수면 상승 고려 최대 체적"
 description: "상자가 밀어낸 물로 수면이 R=(A·H)/(m·n)만큼 상승할 때, 윗면이 수면 아래에 엄격히 위치하도록 최대 부피 V=A·H를 구한다. 세로 슬라이딩 최소+단조 스택으로 A, H를 빠르게 계산."
 date: 2025-08-14
 lastmod: 2025-08-14

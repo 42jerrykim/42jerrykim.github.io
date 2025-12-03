@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 16367번: TV Show Game - 2-SAT 풀이"
+title: "[Algorithm] C++ 백준 16367번: TV Show Game - 2-SAT 풀이"
 description: "TV Show Game은 참가자마다 제출한 세 개의 (램프, 색) 예측 중 최소 두 개가 참이 되도록 램프 색을 조정할 수 있는지 판정하는 문제입니다. (a∨b)∧(a∨c)∧(b∨c) 제약을 2‑SAT로 모델링해 암시 그래프와 SCC로 가능 여부를 확인하고 해를 O(k+n)에 구성합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

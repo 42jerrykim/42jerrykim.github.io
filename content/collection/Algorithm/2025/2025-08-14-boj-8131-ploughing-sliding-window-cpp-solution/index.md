@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 8131번: Ploughing - 슬라이딩 윈도우"
+title: "[Algorithm] C++ 백준 8131번: Ploughing - 슬라이딩 윈도우"
 description: "2000×2000 격자에서 합 ≤ K인 바깥 행·열만 제거하며 제거 횟수를 최소화한다. 마지막 1×L 또는 L×1 스트립 길이 최대화로 환원하고, 2D 누적합+투포인터로 O((N+M)^2) 해결. 경계 우선 그리디 핵심."
 date: 2025-08-14
 lastmod: 2025-08-14

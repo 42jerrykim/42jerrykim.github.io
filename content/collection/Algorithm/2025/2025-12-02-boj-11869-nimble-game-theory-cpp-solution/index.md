@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] CPP 백준 11869번: 님블"
+title: "[Algorithm] C++ 백준 11869번: 님블"
 description: "님블 게임 이론 문제 풀이. Sprague-Grundy 정리를 활용하여 각 동전 위치의 XOR로 게임 승자를 O(M) 시간에 판별합니다. 조합 게임 이론과 님 게임의 핵심 원리를 학습할 수 있는 문제입니다."
 categories:
 - Algorithm

@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 13547번: 수열과 쿼리 5 - Mo 알고리즘"
+title: "[Algorithm] C++ 백준 13547번: 수열과 쿼리 5 - Mo 알고리즘"
 description: "Mo 알고리즘으로 구간 [L,R]의 서로 다른 값 개수를 오프라인으로 처리합니다. 좌우 포인터 이동 시 빈도와 distinct를 유지하고, 좌표압축으로 메모리를 줄입니다. 정렬 O(Q log Q), 전체 O((N+Q)√N), 경계 이동 순서·0-index 변환·freq 0↔1 갱신 실수 방지까지 정리합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 14001번 : Mole Tunnels"
+title: "[Algorithm] C++ 백준 14001번 : Mole Tunnels"
 description: "NEERC 2016 ‘Mole Tunnels’(BOJ 14001) 문제를 트리 위 최소 비용 흐름을 직접 쓰지 않고 잔여 네트워크를 모사해 O(m log n)으로 해결하는 방법을 정리합니다. 경로 비용 갱신, DP 구성, 구현 팁과 전체 코드 포함."
 date: 2025-08-14
 lastmod: 2025-08-14

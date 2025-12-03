@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 13323번: BOJ 수열 1 - Slope Trick"
+title: "[Algorithm] C++ 백준 13323번: BOJ 수열 1 - Slope Trick"
 description: "수열 B가 엄격히 증가하도록 하면서 |B_i−A_i|의 합을 최소화하는 문제. A_i−i로 변환해 비내림 수열 적합 문제로 줄이고, 최대 힙으로 중간값을 유지하는 slope trick을 적용해 O(N log N)로 해결한다. 32비트 범위, 경계·반례까지 점검한다."
 date: 2025-08-14
 lastmod: 2025-08-14

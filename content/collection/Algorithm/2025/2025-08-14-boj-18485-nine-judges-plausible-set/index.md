@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 18485번 : Nine Judges"
+title: "[Algorithm] C++/Python 백준 18485번 : Nine Judges"
 description: "심사위원 선호 순위로 유도된 다수결 비교(토너먼트)에서 해밀토니안 경로를 구성해 상위 p개를 취해 ‘plausible set’을 찾는다. 분할-정복 머지와 다수결 비교로 O(n·k log k), 구현은 pos 테이블로 O(n·k) 메모리. 엣지/동률 없음(다수결 임계), 입력 정합성·인덱스·출력 형식 점검."
 date: 2025-08-14
 lastmod: 2025-08-14

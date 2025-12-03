@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 12771번: Oil"
+title: "[Algorithm] C++/Python 백준 12771번: Oil"
 description: "수평 선분들로 모델링된 유전을 한 번의 직선 시추로 통과하며 만나는 선분 길이 합(유전 너비 합)을 최대로 만드는 문제입니다. 각 선분의 양 끝점을 기준으로 기울기 구간을 스위프하여 포함 가중치를 갱신하고, O(n^2 log n)으로 최대 추출량을 구합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

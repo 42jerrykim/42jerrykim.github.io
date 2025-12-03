@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 8177번: Ice Skates - 최대연속합 세그트리"
+title: "[Algorithm] C++ 백준 8177번: Ice Skates - 최대연속합 세그트리"
 description: "사이즈 r인 사람은 [r, r+d]의 스케이트를 신을 수 있을 때, 매 이벤트마다 모든 사람에게 신발을 재분배할 수 있는지 판정합니다. p[i]-k 배열의 최대연속합이 d*k를 초과하는지 세그먼트 트리로 O(log N)에 확인하는 풀이를 정리합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

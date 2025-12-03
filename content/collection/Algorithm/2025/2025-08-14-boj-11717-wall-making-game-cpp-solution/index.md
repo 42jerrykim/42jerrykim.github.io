@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 11717번: Wall Making Game"
+title: "[Algorithm] C++ 백준 11717번: Wall Making Game"
 description: "H×W 격자에서 점을 하나 고르면 그 행·열 전체가 벽이 되어 보드가 네 개의 직사각형 서브게임으로 분할됩니다. 표시 칸(X)은 선택 불가이지만 벽으로 변할 수 있습니다. 스프라그-그런디 정리로 각 서브직사각형의 그런디 수를 XOR해 승자를 판단하며, 메모이제이션을 적용한 사각형 분해 DP로 최적 풀이를 구현합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 11933번: 공장들"
+title: "[Algorithm] C++ 백준 11933번: 공장들"
 description: "트리 위 두 회사 공장 집합 A, B 사이의 최소 거리를 구하는 문제입니다. LCA 전처리 후 질의마다 A∪B와 인접 LCA들로 버추얼 트리를 만들고, 두 번의 DP로 각 정점의 A까지/ B까지 최단거리를 구해 min(dA+dB)로 답합니다. O((|A|+|B|)logN)으로 6초 제한을 안정 통과합니다."
 date: 2025-08-14
 lastmod: 2025-08-14
