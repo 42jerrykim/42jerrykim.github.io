@@ -2,9 +2,10 @@
 image: "tmp_wordcloud.png"
 categories: DeepLearning
 date: "2024-08-22T00:00:00Z"
+lastmod: "2024-12-04"
+description: "JAX와 PyTorch 딥러닝 프레임워크를 비교 분석한다. JAX의 JIT 컴파일과 함수형 프로그래밍, PyTorch의 동적 계산 그래프와 커뮤니티 지원 등 각 프레임워크의 특징과 장단점을 살펴보고 프로젝트에 적합한 선택 기준을 제시한다."
 header:
   teaser: /assets/images/2024/2024-08-22-JAX-vs-PyTorch.png
-
 tags:
 - JAX
 - PyTorch
@@ -56,6 +57,52 @@ tags:
 - ModelArchitecture
 - DataLoading
 - Visualization
+- 딥러닝
+- 머신러닝
+- 신경망
+- 자동미분
+- GPU가속
+- TPU지원
+- 함수형프로그래밍
+- 동적계산그래프
+- 성능비교
+- 모델훈련
+- 연구프레임워크
+- 텐서플로우
+- 넘파이
+- 고성능컴퓨팅
+- 그래디언트계산
+- JIT컴파일
+- 생태계
+- 커뮤니티지원
+- 유연성
+- 사용성
+- 코드최적화
+- 데이터사이언스
+- AI연구
+- 모델배포
+- 프로토타이핑
+- 컴퓨터비전
+- 자연어처리
+- 라이브러리
+- 프레임워크
+- 오픈소스
+- 프로그래밍패러다임
+- 성능지표
+- 확장성
+- 메모리효율성
+- 연구모델
+- 프로덕션시스템
+- 사전학습모델
+- 코드가독성
+- 실험
+- 학습자료
+- 튜토리얼
+- 문서화
+- 사용자경험
+- 모델아키텍처
+- 데이터로딩
+- 시각화
 title: '[DeepLearning] JAX vs PyTorch: Comparing Two Deep Learning Frameworks'
 ---
 

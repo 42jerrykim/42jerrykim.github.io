@@ -2,6 +2,8 @@
 image: "tmp_wordcloud.png"
 categories: Architecture
 date: "2024-08-27T00:00:00Z"
+lastmod: "2024-12-04"
+description: "C4 모델은 소프트웨어 아키텍처를 Context, Containers, Components, Code 4단계로 시각화하는 도구로, 복잡한 시스템을 이해하기 쉽게 표현하고 팀 간 커뮤니케이션을 향상시키는 데 효과적이다."
 header:
   teaser: /assets/images/2024/2024-08-27-c4-model.png
 tags:
@@ -58,6 +60,42 @@ tags:
 - ArchitectureFramework
 - VisualRepresentation
 - SoftwareTools
+- 소프트웨어아키텍처
+- 아키텍처모델
+- 아키텍처다이어그램
+- 시스템컨텍스트
+- 컨테이너다이어그램
+- 컴포넌트다이어그램
+- 코드다이어그램
+- 시스템설계
+- 소프트웨어설계
+- 문서화
+- 기술문서
+- 팀협업
+- 팀커뮤니케이션
+- 애자일개발
+- 애자일
+- 소프트웨어개발
+- 마이크로서비스
+- 소프트웨어엔지니어링
+- 시각화
+- 시각적모델링
+- 추상화
+- 분해
+- 디자인패턴
+- 개발프로세스
+- 요구사항수집
+- 이해관계자
+- 반복개발
+- 지식공유
+- 모범사례
+- 소프트웨어시스템
+- 코드구조
+- 시스템통합
+- 기술부채
+- 시스템의존성
+- 프로젝트관리
+- 소프트웨어수명주기
 title: '[Architecture] C4 모델 쉽게 이해하기'
 ---
 
