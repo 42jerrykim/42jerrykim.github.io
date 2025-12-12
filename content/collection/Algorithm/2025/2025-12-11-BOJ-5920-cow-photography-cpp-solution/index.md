@@ -171,14 +171,14 @@ image: "wordcloud.png"
 
 ```mermaid
 flowchart TD
-    A[시작: N 입력] --> B[5개의 사진에서<br/>각 소의 위치 pos[k][id] 저장]
-    B --> C[소 번호 배열 cows = 1..N 초기화]
-    C --> D[정렬 비교 함수 정의]
-    D --> E[정렬: sort(cows.begin, cows.end, cmp)]
-    E --> F[정렬된 cows를 한 줄에 하나씩 출력]
+    A["시작: N 입력"] --> B["5개의 사진에서<br/>각 소의 위치 pos[k][id] 저장"]
+    B --> C["소 번호 배열 cows = 1..N 초기화"]
+    C --> D["정렬 비교 함수 정의"]
+    D --> E["정렬: sort(cows.begin, cows.end, cmp)"]
+    E --> F["정렬된 cows를 한 줄에 하나씩 출력"]
 
-    D --> D1[cmp(a, b):<br/>각 사진 k=0..4에 대해<br/>pos[k][a] < pos[k][b] 인 횟수 count]
-    D1 --> D2[만약 count >= 3 이면<br/>a가 b보다 앞선다고 판단]
+    D --> D1["cmp(a, b):<br/>각 사진 k=0..4에 대해<br/>pos[k][a] < pos[k][b] 인 횟수 count"]
+    D1 --> D2["만약 count >= 3 이면<br/>a가 b보다 앞선다고 판단"]
 ```
 
 
