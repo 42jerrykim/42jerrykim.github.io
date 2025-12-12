@@ -116,19 +116,19 @@ image: "wordcloud.png"
 ```mermaid
 flowchart TD
     A[입력 T] --> B[각 테스트 R 수집, 최대 Rmax 계산]
-    B --> C[ord[r]=4·5^(r-1) 전처리]
-    C --> D[기저: k[1]=1]
+    B --> C["ord[r]=4·5^(r-1) 전처리"]
+    C --> D["기저: k[1]=1"]
     D --> E[r = 2..Rmax 반복]
-    E --> F[step = ord[r-1], base = k[r-1]]
+    E --> F["step = ord[r-1], base = k[r-1]"]
     F --> G{t = 0..4}
     G --> H[후보 cand = base + step*t]
     H --> I[mod2 = 2^cand mod 2^r]
     I --> J[mod5 = 2^cand mod 5^r]
     J --> K[CRT로 mod10 = 2^cand mod 10^r]
     K --> L{하위 r자리가 1/2?}
-    L -- Yes --> M[k[r]=cand; break]
+    L -- Yes --> M["k[r]=cand; break"]
     L -- No --> G
-    M --> N[모든 R 처리 후 질의별 k[R] 출력]
+    M --> N["모든 R 처리 후 질의별 k[R] 출력"]
 ```
 
 ### 단계별 로직

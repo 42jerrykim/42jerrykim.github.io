@@ -127,10 +127,10 @@ k23
 flowchart TD
     A[시작: N, M 입력] --> B[그래프 초기화]
     B --> C[소스 S, 싱크 T 설정]
-    C --> D[각 직원 i에 대해<br/>S -> i (cap=1, cost=0) 추가]
+    C --> D["각 직원 i에 대해 S -> i (cap=1, cost=0) 추가"]
     D --> E[직원별 가능한 일과 월급 입력]
-    E --> F[직원 i -> 일 j (cap=1, cost=-wage) 추가]
-    F --> G[각 일 j에 대해<br/>j -> T (cap=1, cost=0) 추가]
+    E --> F["직원 i -> 일 j (cap=1, cost=-wage) 추가"]
+    F --> G["각 일 j에 대해<br/>j -> T (cap=1, cost=0) 추가"]
     G --> H{S에서 T까지<br/>최소 비용 증가 경로 존재?}
     H -- 예 --> I[SPFA로 최단 비용 경로 탐색]
     I --> J[경로상의 최소 잔여 용량만큼 유량 흘리기]
