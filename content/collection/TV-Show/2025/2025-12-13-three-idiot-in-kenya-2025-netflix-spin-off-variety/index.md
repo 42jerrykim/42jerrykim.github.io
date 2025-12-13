@@ -1,5 +1,5 @@
 ---
-title: "[TV Series] 케냐 간 세끼 (Kenya Three Meals) (2025) - 신서유기 스핀오프"
+title: "[TV Series] 케냐 간 세끼 (Three Idiots in Kenya) (2025) - 신서유기 스핀오프"
 description: "나영석 프로듀서의 신서유기 정통성을 이어받은 넷플릭스 스핀오프. 이수근·은지원·규현이 펼치는 케냐 아프리카 여행기. 게임·미션·관광을 아우르는 예능의 재미"
 date: 2025-12-13
 lastmod: 2025-12-13
