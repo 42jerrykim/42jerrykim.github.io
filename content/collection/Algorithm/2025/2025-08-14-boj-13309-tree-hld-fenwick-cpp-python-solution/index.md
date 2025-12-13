@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 13309번: 트리 - 경로 질의와 간선 제거"
+title: "[Algorithm] C++/Python 백준 13309번: 트리 - 경로 질의와 간선 제거"
 description: "트리에서 두 정점의 연결 여부를 빠르게 판별하고, 결과에 따라 부모-자식 간선을 제거하는 온라인 질의를 처리합니다. HLD와 Fenwick Tree로 경로를 O(log N)에 분해해 2e5도 안정적으로 통과합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

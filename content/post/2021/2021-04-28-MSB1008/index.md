@@ -10,7 +10,6 @@ tags:
 - build
 - msbuild
 title: '[.NET] MSBUILD : error MSB1008: Only one project can be specified. 해결'
-aliases: /.net/MSB1008/
 ---
 
 ```bash

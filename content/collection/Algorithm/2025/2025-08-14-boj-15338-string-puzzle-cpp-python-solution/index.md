@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 15338번: String Puzzle - 루트 압축 점프"
+title: "[Algorithm] C++/Python 백준 15338번: String Puzzle - 루트 압축 점프"
 description: "길이 n(≤1e9) 비공개 문자열에 위치 고정 힌트와 구간 복사 힌트가 주어진다. 각 구간을 왼쪽으로 d만큼 당기는 함수로 모델링하고 p에서 반복 적용해 유일한 루트를 찾는다. 루트→문자 맵으로 쿼리를 O(log b)로 결정한다."
 date: 2025-08-14
 lastmod: 2025-08-14

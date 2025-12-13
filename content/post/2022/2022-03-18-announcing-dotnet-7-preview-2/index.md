@@ -13,7 +13,6 @@ tag:
 - DotnetNew
 
 title: '[.NET] .NET 7 Preview 2 소개 - 더 새로운 경험'
-aliases: /.net/announcing-dotnet-7-preview-2/
 ---
 
 새롭게 선보인 .NET 7 Preview 2에는 아래와 같은 기능이 소개 되었다.

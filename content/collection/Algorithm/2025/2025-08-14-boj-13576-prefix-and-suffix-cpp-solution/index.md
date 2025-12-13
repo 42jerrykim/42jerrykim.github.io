@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 13576번: Prefix와 Suffix"
+title: "[Algorithm] C++ 백준 13576번: Prefix와 Suffix"
 description: "문자열의 접두사이자 접미사인 모든 경계(보더)를 찾고, 각 길이가 부분 문자열로 등장하는 횟수를 구합니다. KMP 접두사함수(π)로 경계 사슬을 추출하고, π 누적 분포로 등장수를 계산하여 l 오름차순으로 출력합니다. O(n) 구현과 정당성·엣지케이스를 정리했습니다."
 date: 2025-08-14
 lastmod: 2025-08-14

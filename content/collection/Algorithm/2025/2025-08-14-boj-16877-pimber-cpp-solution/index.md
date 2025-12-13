@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 16877번: 핌버"
+title: "[Algorithm] C++ 백준 16877번: 핌버"
 description: "핌버는 여러 돌 더미에서 한 턴에 한 더미를 골라 피보나치 수 만큼만 제거하는 님 게임 변형입니다. 피보나치 이동 집합으로 각 크기 x의 Grundy 수를 DP로 선계산하고, 모든 더미의 Grundy XOR로 승패를 판별합니다. 시간 O(U·F+N), 메모리 O(U)."
 date: 2025-08-14
 lastmod: 2025-08-14

@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 1420번: 학교 가지마!"
+title: "[Algorithm] C++ 백준 1420번: 학교 가지마!"
 description: "격자에서 K→H 경로를 막기 위해 최소 몇 칸을 벽으로 바꿀지 구한다. 각 칸을 in/out으로 분할해 정점 컷을 최대유량으로 환원하고 '.'=1·K/H=INF·인접=INF로 모델링한다. Dinic으로 계산하며 K-H가 인접하면 -1을 출력한다."
 date: 2025-08-14
 lastmod: 2025-08-14

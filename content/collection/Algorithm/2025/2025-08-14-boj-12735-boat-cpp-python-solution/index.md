@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 12735번: Boat"
+title: "[Algorithm] C++/Python 백준 12735번: Boat"
 description: "한강 북안 N개 학교가 [ai, bi] 범위의 보트를 낼 수 있고, 선택된 각 학교의 보트 수가 이전에 선택된 모든 더 작은 번호 학교의 보트 수보다 항상 큰 경우의 수를 구합니다. 좌표압축과 구간 DP, 모듈러 역원으로 O(N^3) 카운팅을 구현합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

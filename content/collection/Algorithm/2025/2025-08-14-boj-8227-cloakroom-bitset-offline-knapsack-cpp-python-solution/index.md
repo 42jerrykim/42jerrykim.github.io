@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 8227번: Cloakroom"
+title: "[Algorithm] C++/Python 백준 8227번: Cloakroom"
 description: "시점 m에 a≤m, b>m+s인 물건만 선택 가능. 이 집합에서 합이 정확히 k가 되는지 비트셋 부분합 DP로 판정한다. 질의를 B=m+s로 그룹화해 m 오름차순으로 아이템을 추가하며 정답을 빠르게 계산한다."
 date: 2025-08-14
 lastmod: 2025-08-14

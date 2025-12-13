@@ -13,7 +13,7 @@ tags:
 - Adjacency List
 - Maximum Matching Problem
 - Problem Solving
-image: "bipartite_graph.png"
+image: "index.png"
 date: 2024-06-20
 ---
 

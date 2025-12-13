@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 17169번: Eat Economically - 그리디 O(N log N)"
+title: "[Algorithm] C++/Python 백준 17169번: Eat Economically - 그리디 O(N log N)"
 description: "2N개의 메뉴에서 점심·저녁 가격이 다를 때 i쌍(점심 i, 저녁 i)을 중복 없이 골라 총 비용을 최소화하는 문제. 잔여 그래프 관찰을 바탕으로 매 단계 3가지 증분 케이스만 비교하는 O(N log N) 그리디로 모든 i의 정답을 한 번에 계산한다."
 date: 2025-08-14
 lastmod: 2025-08-14

@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 17526번: Star Trek"
+title: "[Algorithm] C++ 백준 17526번: Star Trek"
 description: "선형 행성 경로에서 환승 준비시간과 선박 속도를 고려해 1→n 최소 이동 시간을 구한다. dp[j]=min(dp[i]+p_i+s_i·(D[j]-D[i]))를 직선 최소 질의로 바꾸고 Li Chao Tree로 O(n log X)로 최적화한 정답과 증명·엣지케이스를 정리."
 date: 2025-08-14
 lastmod: 2025-08-14

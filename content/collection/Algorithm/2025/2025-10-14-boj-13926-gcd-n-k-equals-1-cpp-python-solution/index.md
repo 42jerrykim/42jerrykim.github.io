@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] BOJ 13926 gcd(n, k) = 1 — φ(n) 계산 (C++/Python)"
+title: "[Algorithm] C++/Python 백준 13926 gcd(n, k) = 1 — φ(n) 계산"
 description: "자연수 n(≤10^18)에 대해 gcd(n, k) = 1인 1 ≤ k ≤ n의 개수, 즉 오일러 파이 함수 φ(n)를 구합니다. Miller–Rabin 소수판정과 Pollard Rho를 이용해 64비트 범위를 빠르게 소인수분해하고, φ(n)=n∏(1−1/p) 공식을 적용합니다."
 date: 2025-10-14
 lastmod: 2025-10-14

@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 14959번: Slot Machines - KMP로 최소 주기 O(n)"
+title: "[Algorithm] C++ 백준 14959번: Slot Machines - KMP로 최소 주기 O(n)"
 description: "관측 수열 T[1..n]이 시점 k 이후 주기 p로 반복될 때, k+p 최소(동률 시 p 최소)인 (k,p)를 구한다. 역수열에 KMP 접두사함수를 적용해 접미사 최소 주기 p=L-pi를 O(n)에 계산하고 최적 해를 도출한다."
 date: 2025-08-14
 lastmod: 2025-08-14

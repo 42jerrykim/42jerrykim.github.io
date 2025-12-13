@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 16583번: Boomerangs - DFS 간선 페어링"
+title: "[Algorithm] C++ 백준 16583번: Boomerangs - DFS 간선 페어링"
 description: "정점 기준으로 미소모 간선을 둘씩 묶어 부메랑 <u,v,w>를 최대화하는 문제. 비재귀 DFS로 즉시 페어링하고 1개는 부모 간선과 결합해 전역 최적 보장. O(N+M), 다중 컴포넌트·트리/사이클 안전."
 date: 2025-08-14
 lastmod: 2025-08-14

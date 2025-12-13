@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 13034번: 다각형 게임 - Sprague–Grundy DP"
+title: "[Algorithm] C++/Python 백준 13034번: 다각형 게임 - Sprague–Grundy DP"
 description: "볼록 다각형에서 선분을 서로 교차시키지 않고 기존 선분의 끝점과도 겹치지 않게 잇는 게임을 스프라그–그런디 정리로 모델링합니다. 한 번의 선택이 다각형을 두 부분으로 분할한다는 불변식에서 g[n]=mex{g[a]⊕g[n-2-a]}를 세우고, O(N^2) DP로 승패(1/2)를 판정합니다. 엣지/실수 포인트 점검 포함."
 date: 2025-08-14
 lastmod: 2025-08-14

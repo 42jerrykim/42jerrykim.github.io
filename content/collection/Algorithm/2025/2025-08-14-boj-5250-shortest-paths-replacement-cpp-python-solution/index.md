@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 5250번: 최단 경로들"
+title: "[Algorithm] C++/Python 백준 5250번: 최단 경로들"
 description: "BOI 2012 ‘최단 경로들’. 다익스트라 2회와 최단경로 DAG에서 구간 후보를 만들고, 우선순위큐 스윕으로 각 경로 간선 폐쇄 시 a→b 대체 최단거리를 O(m log n)으로 계산합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

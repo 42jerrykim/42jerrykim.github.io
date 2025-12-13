@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 13896번: Sky Tax"
+title: "[Algorithm] C++ 백준 13896번: Sky Tax"
 description: "트리에서 수도(루트)가 동적으로 바뀔 때 도시 X가 처리해야 할 세금 도시 수를 빠르게 구한다. 오일러 투어로 서브트리 크기를 전처리하고, 이진 승진(LCA) 계통 정보를 사용해 X가 수도의 조상인지 판정하여 경우를 분기해 O((N+Q)logN)으로 답한다."
 date: 2025-08-14
 lastmod: 2025-08-14

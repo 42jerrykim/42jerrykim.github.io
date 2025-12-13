@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 3683번: 고양이와 개 - 투표 최대 만족"
+title: "[Algorithm] C++/Python 백준 3683번: 고양이와 개 - 투표 최대 만족"
 description: "고양이 선호(C×D)·개 선호(D×C) 투표를 분리해 충돌 간선으로 이분 그래프를 만들고, 최대 매칭으로 최소 제거 수를 구합니다. 코니그 정리로 정당성을 보이고 Hopcroft–Karp로 O(E√V) 내에 해결합니다. 구현·엣지 케이스까지 정리했습니다."
 date: 2025-08-14
 lastmod: 2025-08-14

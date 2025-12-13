@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 15337번: 관광열차 좌석 배치 - s1/s2 계산"
+title: "[Algorithm] C++/Python 백준 15337번: 관광열차 좌석 배치 - s1/s2 계산"
 description: "정책-1(승객 자유 좌석 선택)·정책-2(운영자 일괄 배정)에서 필요한 최소 좌석 s1·s2 계산. s2는 라인 스위핑으로 최대 동시 탑승, s1은 n−endPrefix[a]−startSuffix[b]의 최댓값. [a,b) 경계·누적/접미합·빠른 I/O, 엣지·실수 포인트 점검."
 date: 2025-08-14
 lastmod: 2025-08-14

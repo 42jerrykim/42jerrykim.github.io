@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 2316번: 도시 왕복하기 2 - Dinic, Node Splitting"
+title: "[Algorithm] C++/Python 백준 2316번: 도시 왕복하기 2 - Dinic, Node Splitting"
 description: "정점 방문 제한을 정점 분할로 모델링하고, 1·2번은 무제한·나머지는 1의 용량을 부여합니다. 양방향 도로는 양방향 간선(∞)로 만들고 Dinic으로 최대 유량을 구해 왕복 가능한 최대 횟수를 계산합니다. 구현 포인트와 엣지 케이스까지 정리했습니다."
 date: 2025-08-14
 lastmod: 2025-08-14

@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 16181번: Coloring Roads (도로 색칠하기)"
+title: "[Algorithm] C++ 백준 16181번: Coloring Roads (도로 색칠하기)"
 description: "트리에서 루트까지 경로를 특정 색으로 덮어씌우고, 정확히 m개의 도로가 칠해진 색의 개수를 즉시 질의하는 문제를 HLD와 구간 대입(lazy) 세그먼트 트리로 해결합니다. 균일 구간만 색 전파하여 per-color 카운트와 히스토그램을 O(log^2 N)에 유지합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

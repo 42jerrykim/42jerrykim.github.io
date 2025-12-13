@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 2912번: 백설공주와 난쟁이 - 세그트리+후보검증"
+title: "[Algorithm] C++ 백준 2912번: 백설공주와 난쟁이 - 세그트리+후보검증"
 description: "세그먼트 트리로 Boyer–Moore 다수결(majority) 후보를 구간 병합으로 구하고, 색상별 위치 배열에 대한 이분탐색으로 실제 빈도를 검증합니다. 전처리 O(N), 질의 O(log N)로 제한을 만족합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

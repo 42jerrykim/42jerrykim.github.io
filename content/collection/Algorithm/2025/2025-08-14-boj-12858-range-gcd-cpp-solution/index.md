@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 12858번: Range GCD - 차분+세그트리"
+title: "[Algorithm] C++ 백준 12858번: Range GCD - 차분+세그트리"
 description: "구간 덧셈과 구간 GCD 질의를 함께 처리합니다. 차분 배열과 세그먼트 트리로 d[l+1..r]의 GCD를 유지하고, 펜윅트리로 a[l]을 복원해 정답을 gcd(|a[l]|, G)로 구해 O(logN)에 해결합니다. 경계·절댓값·64-bit 주의."
 date: 2025-08-14
 lastmod: 2025-08-14

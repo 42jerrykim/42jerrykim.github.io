@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp-python 백준 16901번: XOR MST"
+title: "[Algorithm] C++/Python 백준 16901번: XOR MST"
 description: "XOR 가중치 완전그래프의 MST를 비트 최상위부터 그룹을 나누는 분할정복과 이분 트라이로 계산합니다. 각 레벨에서 교차 간선 비용을 2^b + 하위 최소 XOR로 구해 전체 비용을 누적합니다. 구현 포인트와 코너 케이스, C++·Python 코드와 정당성 근거까지 정리했습니다."
 date: 2025-08-14
 lastmod: 2025-08-14

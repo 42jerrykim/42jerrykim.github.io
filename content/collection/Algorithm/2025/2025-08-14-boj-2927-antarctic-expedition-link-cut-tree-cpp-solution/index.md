@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 2927번: 남극 탐험"
+title: "[Algorithm] C++ 백준 2927번: 남극 탐험"
 description: "LCT(링크-컷 트리)로 동적 연결과 경로 합을 처리하는 풀이. bridge로 다른 컴포넌트만 연결, penguins로 노드 값 갱신, excursion으로 경로 합 질의. Splay 기반 access/makeroot로 O(log N) 보장, 엣지 케이스 및 올바름 근거 포함."
 date: 2025-08-14
 lastmod: 2025-08-14

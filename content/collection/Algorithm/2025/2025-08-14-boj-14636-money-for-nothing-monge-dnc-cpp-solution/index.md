@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 14636번: Money for Nothing - Monge DnC"
+title: "[Algorithm] C++ 백준 14636번: Money for Nothing - Monge DnC"
 description: "생산자/소비자 후보를 정렬·중복 제거해 비지배 전처리로 파레토 경계를 만들고, 원점 변환된 점집합의 Monge 구조를 이용해 분할정복 최적화로 (e−d)*(q−p) 최대 이익을 계산합니다. 계약 불가 케이스는 0 처리, i128로 오버플로를 방지하며 엣지 케이스 점검을 포함합니다."
 date: 2025-08-14
 lastmod: 2025-08-14

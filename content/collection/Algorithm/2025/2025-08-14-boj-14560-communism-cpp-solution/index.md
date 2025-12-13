@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] cpp 백준 14560번: Communism - 합차 제한 MITM"
+title: "[Algorithm] C++ 백준 14560번: Communism - 합차 제한 MITM"
 description: "세 사람에게 N≤30개의 일을 배분할 때 아드와 래리 보수 합의 차이가 D를 넘지 않도록 하는 가짓수를 구한다. 전수탐색 대신 절반 분할, 남은 절대합 기반 가지치기, 정렬·이분탐색으로 O(3^(N/2))에 해결."
 date: 2025-08-14
 lastmod: 2025-08-14
