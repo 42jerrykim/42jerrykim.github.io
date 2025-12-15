@@ -76,6 +76,7 @@ tags:
 - "C++"
 - "CPP"
 - "GNU++17"
+image: wordcloud.png
 ---
 
 문제: [BOJ 27046 - Beauty Contest](https://www.acmicpc.net/problem/27046)
