@@ -78,7 +78,7 @@ tags:
 - "C++"
 - "CPP"
 - "GNU++17"
-image: wordclo ud.png
+image: wordcloud.png
 ---
 
 문제: [BOJ 5498 - Batch Scheduling](https://www.acmicpc.net/problem/5498)
