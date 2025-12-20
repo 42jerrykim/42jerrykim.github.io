@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 포스트는 데이터베이스의 성능, 보안, 확장성, 데이터 무결성 관리, 인덱싱, 최적화, 백업 및 복구, 모니터링 등 데이터베이스 전반에 걸친 핵심 개념과 실무 적용 방법을 다룹니다."
 categories: Database
 date: "2024-08-27T00:00:00Z"
 

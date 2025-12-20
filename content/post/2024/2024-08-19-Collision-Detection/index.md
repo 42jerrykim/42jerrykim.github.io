@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "충돌 감지(Collision Detection)는 2D 및 3D 공간에서 오브젝트 간의 상호작용, 물리 시뮬레이션, 게임 엔진 구현 등에 활용되는 알고리즘입니다. AABB, OBB, 서클, 공간 분할 등 다양한 방법과 최적화 기법을 상세히 다룹니다."
 categories: CollisionDetection
 date: "2024-08-19T00:00:00Z"
 header: null

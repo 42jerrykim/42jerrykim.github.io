@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Latency metrics는 시스템 성능 평가에 필수적인 지표로, P90, P95, P99와 같은 percentile, 평균, 중앙값, 최대값 등을 포괄적으로 설명합니다. 이 글에서는 성능 병목, SLA, 모니터링과 최적화에 latency metric이 어떻게 활용되는지 자세히 안내합니다."
 categories: Performance
 date: "2024-09-09T00:00:00Z"
 

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "리눅스 bash 쉘에서 파일 경로나 확장자를 별도로 제외하고 파일 이름만 추출하는 방법, 다양한 확장자 처리, 변수 가공 패턴을 실제 코드와 함께 150자 분량의 설명으로 쉽게 정리합니다."
 categories:
 - Shell
 date: "2021-07-09T00:00:00Z"

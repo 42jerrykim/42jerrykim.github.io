@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 Bash 및 Unix/Linux 셸 환경에서 사용되는 다양한 리디렉션 연산자, 표준 입력 및 출력, 파일 디스크립터, 파이프라인, Here Document와 Here String 등 Shell 리디렉션의 핵심 개념과 실전 예제를 통해 명령어 실행 결과를 효과적으로 다루는 방법을 상세히 설명합니다."
 categories: Shell
 date: "2024-09-10T00:00:00Z"
 header:

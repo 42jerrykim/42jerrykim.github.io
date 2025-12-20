@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "C#에서 변수와 상수는 메모리 관리와 코드 안정성에 핵심적인 요소입니다. 변수와 상수의 차이점, 선언 방법, const와 readonly의 쓰임새, 실용 예제, 변수 기본값 및 초기화 등 핵심 내용을 150자 분량으로 쉽게 설명합니다."
 categories: CSharp
 
 date: "2024-08-07T00:00:00Z"

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "C#의 기초를 다루는 이 글은 콘솔 프로그램 예제와 함께 메인 메서드, 네임스페이스, 클래스, 자료형, 변수, 에러 처리, 비동기 프로그래밍, 구조와 문법 등 핵심 개념을 150자 분량으로 명확하게 설명합니다."
 categories: CSharp
 date: "2024-08-14T00:00:00Z"
 header: null

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "도메인 주도 설계(DDD)는 비즈니스 도메인 중심의 소프트웨어 설계 방법론입니다. 유비쿼터스 언어, 바운디드 컨텍스트 등 핵심 개념을 바탕으로 개발자와 도메인 전문가의 협업을 강조하며 복잡한 시스템을 효과적으로 관리하고 유지보수를 쉽게 합니다."
 categories: softwaredevelopment
 date: "2024-08-08T00:00:00Z"
 header: null

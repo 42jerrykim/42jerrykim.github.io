@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 4655번 : Hangover"
+description: "백준 4655번 Hangover 문제는 주어진 오버행 길이를 넘기 위해 필요한 최소 카드의 수를 구하는 수학 및 구현 문제입니다. 조화수열의 합을 반복적으로 누적해 오버행 조건을 만족하는 카드를 효율적으로 계산합니다."
 categories: 
 - Algorithm
 - Math

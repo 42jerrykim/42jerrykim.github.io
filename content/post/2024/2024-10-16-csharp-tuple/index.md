@@ -1,5 +1,6 @@
 ---
 date: 2024-10-16
+description: "이 글에서는 C#에서 튜플과 다양한 형식 분해 방법의 개념, 실전 코드 예제, Record 타입 및 KeyValuePair 등과의 연계, 변수 무시 처리, 확장 메서드를 포함한 응용 및 모던 프로그래밍에서의 활용 포인트를 150자 내외로 설명합니다."
 title: "[CSharp] 튜플 및 기타 형식 분해"
 categories: 
 - CSharp

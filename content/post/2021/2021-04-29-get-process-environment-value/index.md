@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "리눅스에서 실행 중인 프로세스의 환경변수를 /proc 파일시스템을 통해 확인하는 방법과, 환경변수 구분자 문제를 해결하기 위한 xargs -0 사용법에 대해 실제 명령어 예시와 함께 150자 분량으로 자세히 설명합니다."
 categories:
 - Shell
 date: "2021-04-29T00:00:00Z"

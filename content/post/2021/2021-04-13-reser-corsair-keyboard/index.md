@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Corsair(커세어) K63 무선 블루투스 키보드가 정상적으로 입력되지 않을 때, 키보드 하드웨어 초기화(Reset) 방법을 단계별로 설명합니다. PC, USB, ESC키 조합 동작 방식과 상황별 해결 팁을 150자 분량으로 안내합니다."
 categories:
 - Corsair
 date: "2021-04-13T00:00:00Z"

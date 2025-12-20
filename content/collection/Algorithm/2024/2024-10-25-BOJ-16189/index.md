@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 16189번 : Repetitive Palindrome"
+description: "문자열 s를 주어진 횟수 k만큼 반복하여 만들어지는 새로운 문자열 t가 회문인지 효율적으로 판단하는 알고리즘 문제입니다. t 전체를 실제로 생성하지 않고도 s가 회문인지 여부만으로 답을 결정할 수 있는 점이 특징입니다."
 categories: 
 - Algorithm
 - Strings

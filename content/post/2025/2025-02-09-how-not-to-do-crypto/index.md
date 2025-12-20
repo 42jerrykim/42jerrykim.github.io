@@ -9,6 +9,8 @@ tags:
   - Best Practices
   - Web Security
 image: "index.png"
+description: "이 글은 실제 개발 현장에서 자주 발생하는 암호화 및 보안 실수 사례들을 분석합니다. 직접 암호화 구현, 잘못된 난수 생성, 부적절한 패스워드 저장, 키 관리의 오해 등 대표적인 보안 실패 유형과 예방을 위한 실질적 가이드라인, 최신 베스트 프랙티스를 제공합니다."
+
 ---
 
 암호화는 현대 소프트웨어 개발에서 매우 중요한 부분이다. Latacora의 [How to Not Do Crypto](https://latacora.micro.blog/2018/04/03/cryptographic-right-answers.html) 글은 개발자들이 자주 저지르는 암호화 관련 실수들을 상세히 설명하고 있다. 이 글에서는 주요 내용을 정리하고 올바른 접근 방법을 살펴보도록 하겠다.

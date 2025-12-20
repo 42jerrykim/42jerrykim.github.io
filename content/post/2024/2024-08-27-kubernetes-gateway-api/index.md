@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Kubernetes Gateway API는 클라우드 네이티브 환경에서 트래픽 관리와 멀티 클러스터, 멀티 클라우드 운영을 위한 표준을 제공합니다. 이 글에서는 주요 기능, 사용 예시, 아키텍처, 그리고 Istio, EKS, GKE 등 다양한 사례를 통해 Gateway API의 실무 활용법을 자세히 다룹니다."
 categories: Kubernetes
 date: "2024-08-27T00:00:00Z"
 

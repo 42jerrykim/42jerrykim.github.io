@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Learn Prompting은 인공지능 및 LLM과 효과적으로 소통하기 위해 프롬프트 엔지니어링의 기초, 고급 응용, 신뢰성 강화, 이미지 생성 프롬프트 등 다양한 주제를 쉽게 배우고 실습할 수 있는 무료 오픈소스 강의 플랫폼입니다."
 date: "2022-12-30T00:00:00Z"
 header:
   teaser: /assets/images/undefined/towards_ai-8ba6f0df56a97d31c30cf8711647f549.png

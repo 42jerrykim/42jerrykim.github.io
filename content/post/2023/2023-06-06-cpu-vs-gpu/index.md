@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "CPU와 GPU는 컴퓨터 시스템에서 서로 다른 역할을 담당하는 중요한 하드웨어입니다. 본 게시글에서는 CPU와 GPU의 구조, 기능, 적합한 사용 사례 및 주요 차이점을 쉽고 명확하게 설명합니다."
 categories: Processor
 date: "2023-06-06T00:00:00Z"
 header:

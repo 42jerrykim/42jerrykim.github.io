@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Car Masters: Rust to Riches 시즌 5는 넷플릭스에서 방영되며, 고담 개러지 팀이 다양한 빈티지 차량을 현대적으로 복원해 판매하는 과정을 다룹니다. 새로운 파트너십, 혁신적 프로젝트, 다양한 자동차의 변화 등 자동차 애호가는 물론 일반 시청자도 흥미롭게 즐길 수 있습니다."
 categories: TV Show
 date: "2024-01-02T00:00:00Z"
 header:

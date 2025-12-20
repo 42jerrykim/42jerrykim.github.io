@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 8217번 : 유성"
+description: "백준 8217번 유성 문제는 원형 구간에 운석을 시뮬레이션하고, 회원국별 최소 충족일을 구해야 합니다. Binary Indexed Tree와 Parallel Binary Search로 대규모 입력을 빠르게 처리하는 효율적인 알고리즘과 구현방법을 소개합니다."
 categories: 
 - Algorithm
 - Diamond IV

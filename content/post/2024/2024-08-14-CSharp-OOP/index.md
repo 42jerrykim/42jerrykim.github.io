@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글은 C# 객체지향 프로그래밍의 핵심 개념(상속, 다형성, 캡슐화, 추상화)과 실제 코드 예제를 통해 클래스 구조, 메서드, 인터페이스, 디자인 패턴 등 실무에서 유용한 OOP 활용법을 150자 분량으로 상세히 소개합니다."
 categories: CSharp
 date: "2024-08-14T00:00:00Z"
 header: null

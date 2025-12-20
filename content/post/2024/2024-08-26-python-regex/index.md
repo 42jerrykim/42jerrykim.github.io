@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 Python의 정규표현식(Regex) 사용법을 기초부터 고급까지 예제와 함께 자세하게 다룹니다. 다양한 패턴, 검색, 치환, 유효성 검사 등 실전 활용법을 설명하며, 텍스트 데이터 분석과 자동화 작업에 Regex를 어떻게 활용할 수 있는지도 소개합니다."
 categories:
 - Regex
 - Python

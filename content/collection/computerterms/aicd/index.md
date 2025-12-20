@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "ACID는 데이터베이스 트랜잭션의 네 가지 핵심 속성(원자성, 일관성, 고립성, 영구성)을 의미하며, 데이터의 무결성과 신뢰성 유지를 보장하는 필수 원칙입니다. 시스템 오류나 장애에도 안전한 데이터 처리를 제공합니다."
 title: "ACID Transactions"
 last_modified_at: 2024-09-01
 date: 2024-09-01

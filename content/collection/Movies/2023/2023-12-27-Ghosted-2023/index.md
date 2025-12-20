@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "2023년 개봉한 'Ghosted'는 평범한 남자 콜과 정체를 숨긴 CIA 요원 새디가 국제적 모험에 휘말리며 사랑과 위기를 겪는 로맨틱 액션 코미디 영화입니다. 예측불허 반전과 유쾌한 케미가 돋보입니다."
 categories: Movie
 date: "2023-12-27T00:00:00Z"
 header:

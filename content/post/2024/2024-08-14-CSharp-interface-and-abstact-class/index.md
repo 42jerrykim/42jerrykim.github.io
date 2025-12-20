@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "C#에서 인터페이스와 추상 클래스는 객체지향 프로그래밍의 중요한 구성요소입니다. 추상화, 다형성, 코드 재사용성 증진을 위한 각각의 역할과 차이점, 실무 적용법, 예시 코드를 통해 개념을 150자 분량으로 명확히 설명합니다."
 categories: CSharp
 date: "2024-08-14T00:00:00Z"
 header: null

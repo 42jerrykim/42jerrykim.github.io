@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 13907번 : 세금"
+description: "백준 13907번 '세금' 문제는 세금 인상 전후 최소 통행료를 각 경로 길이별로 동적 계획법과 반복적 그래프 완화(Bellman-Ford) 기법을 활용해 계산한다. 본문에서는 효율적인 구현 전략과 알고리즘 최적화 방안, 경로별 누적 세금 처리를 상세히 다룬다."
 categories: 
 - Algorithm
 - Platinum IV

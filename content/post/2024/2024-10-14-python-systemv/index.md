@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Python에서 System V IPC를 이용해 공유 메모리와 세마포어 기능을 구현하는 방법을 다룹니다. C 라이브러리 연동, 데이터 동기화, 실무 예제와 주요 함수 사용법, 멀티프로세스 환경에서의 데이터 공유 전략까지 150자 분량으로 설명합니다."
 date: "2024-10-14T00:00:00Z"
 title: "[Python] System V IPC를 활용한 공유 메모리와 세마포어"
 categories: python

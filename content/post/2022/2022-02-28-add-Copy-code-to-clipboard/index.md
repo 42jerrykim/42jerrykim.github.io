@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Jekyll 기반 블로그에서 코드 복사(Copy code to clipboard) 버튼을 쉽게 추가하는 방법과 실전 적용 코드를 안내합니다. JavaScript를 활용해 마크다운/코드 블록에 직접 적용하며, 사용성 개선 및 복사 기능의 이점을 설명합니다."
 date: "2022-02-28T00:00:00Z"
 header:
   teaser: /assets/images/2022/2022-02-28-150429.png

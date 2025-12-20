@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 C#에서 제공하는 CancellationTokenSource 클래스의 개념과 사용법을 자세히 소개합니다. 실용적 예제 코드와 함께 비동기 작업 취소 시나리오에서 CancellationToken의 활용 방법을 알기 쉽게 설명합니다."
 date: "2022-12-11T00:00:00Z"
 marp: true
 tag:

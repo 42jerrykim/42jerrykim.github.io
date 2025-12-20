@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "리눅스에서 wait 커맨드는 백그라운드로 실행된 서브 프로세스의 종료를 효율적으로 대기할 수 있게 해줍니다. PID, job 번호 또는 전체 프로세스 종료 대기법 및 실전 예시를 150자 분량으로 쉽게 설명합니다."
 categories:
 - Shell
 date: "2021-08-05T00:00:00Z"

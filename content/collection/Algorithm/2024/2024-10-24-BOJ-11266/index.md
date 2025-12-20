@@ -1,4 +1,5 @@
 ---
+description: "이 글에서는 백준 11266번 '단절점' 문제를 집중적으로 다룹니다. 단절점(Articulation Point)의 개념, 문제 설명, 예시 입력과 출력, 알고리즘 및 구현 방법까지 상세하게 설명합니다."
 
 title: "[Algorithm] C++/Python 백준 11266번 : 단절점"
 categories: 

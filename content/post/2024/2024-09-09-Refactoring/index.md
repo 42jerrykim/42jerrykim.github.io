@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Refactoring은 소프트웨어의 품질을 높이고 유지보수를 용이하게 하기 위해 코드 구조를 개선하는 과정입니다. 이 글에서는 리팩토링의 정의, 장점, 방법론, 실무 적용법 등을 자세히 다룹니다."
 categories: Refactoring
 date: "2024-09-09T00:00:00Z"
 

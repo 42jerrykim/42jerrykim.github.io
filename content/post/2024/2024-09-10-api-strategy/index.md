@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 API 전략 수립의 핵심 개념, 라이프사이클 관리, 거버넌스 모델, REST 및 GraphQL 설계, 마이크로서비스, 인증 및 보안, 모니터링, 성능 최적화 등 성공적인 디지털 전환을 위한 통합적인 API 전략 실전 가이드를 제공합니다."
 categories: API
 date: "2024-09-10T00:00:00Z"
 header:

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글은 백준 2252번 '줄 세우기' 문제를 C++로 해결하는 방법을 다룹니다. 주어진 학생들의 키 비교 결과를 바탕으로 위상 정렬을 이용해 올바른 줄 세우기 순서를 구하는 과정을 자세하게 설명합니다."
 categories: Algorithm
 date: "2024-05-18T00:00:00Z"
 header:

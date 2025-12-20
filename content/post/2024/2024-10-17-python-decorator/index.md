@@ -1,5 +1,6 @@
 ---
 date: 2024-10-17
+description: "이 글에서는 Python 데코레이터의 개념, 사용 방법 및 다양한 활용 예시를 자세하게 설명합니다. 데코레이터로 코드의 재사용성과 가독성을 높이고, 실전 프로젝트에서 어떻게 활용할 수 있는지 예제 중심으로 안내합니다."
 title: "[Python] Python Decorator 이해하기"
 categories: 
 - Python

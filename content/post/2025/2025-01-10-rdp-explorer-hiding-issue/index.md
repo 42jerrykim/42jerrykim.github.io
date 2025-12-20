@@ -1,5 +1,6 @@
 ---
 title: "[Windows] RDP 원격 세션에서 작업 표시줄이 사라지는 문제 해결하기"
+description: "본 포스트에서는 Windows RDP 원격 세션에서 발생할 수 있는 작업 표시줄이 사라지는 문제의 원인과 그 해결 방법에 대해 상세히 안내합니다. 주요 설정 변경 절차와 실무 중심 팁으로 원격 업무 환경을 최적화하세요."
 categories:
 - Windows
 tags:

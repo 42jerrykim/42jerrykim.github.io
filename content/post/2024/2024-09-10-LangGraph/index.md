@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "LangGraph는 LangChain 생태계에서 복잡한 워크플로우와 AI Agent의 상태 관리를 지원하는 오픈소스 프레임워크입니다. DAG 기반 설계를 통해 대규모 LLM, 멀티 에이전트, 휴먼 피드백, 실시간 이벤트 처리, 커스텀 유즈 케이스까지 활용이 가능합니다."
 categories: LangGraph
 date: "2024-09-10T00:00:00Z"
 

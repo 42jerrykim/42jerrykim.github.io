@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "백준 6549번 문제는 히스토그램에서 가장 큰 직사각형의 넓이를 구하는 알고리즘 문제입니다. 입력이 매우 크기 때문에 효율적 자료구조와 O(N) 시간복잡도의 스택 알고리즘을 활용해 풀이해야 합니다."
 categories: Algorithm
 date: "2024-09-14T00:00:00Z"
 header:

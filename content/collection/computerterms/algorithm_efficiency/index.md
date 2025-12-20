@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "알고리즘 효율성(Algorithm Efficiency)은 주어진 문제를 해결할 때 자원(시간, 공간)을 얼마나 적게 사용하는지를 판단하는 기준입니다. 시간 복잡도와 공간 복잡도를 분석하여 다양한 입력 크기에서 알고리즘의 성능을 비교, 최적화하며, 효율적 문제 해결에 필수적입니다."
 title: "Algorithm Efficiency, Computational Complexity   알고리즘 효율성, 계산 복잡도"
 date: 2022-03-14
 categories: ComputerTerms

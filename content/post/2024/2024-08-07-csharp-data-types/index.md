@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 C#의 데이터 타입에 대해 자세히 알아봅니다. 값 타입과 참조 타입의 차이, .NET 타입 시스템, 리터럴 표기법, Nullable 타입 등 필수 개념을 예제와 함께 설명합니다."
 categories: CSharp
 date: "2024-08-07T00:00:00Z"
 header: null

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 문서에서는 소프트웨어 설계와 아키텍처의 개념적 차이와 공통점, 실제 현장에서의 의사결정 연속성, 그리고 좋은 아키텍처의 목표와 실무적 중요성을 구체적인 사례와 그래프와 함께 150자 분량으로 설명합니다."
 title: "1장 설계와 아키텍처란?"
 date: 2022-01-01
 categories: CleanArchitecture

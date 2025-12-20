@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 2336번 : 굉장한 학생"
+description: "백준 2336번 '굉장한 학생' 문제는 세 번의 시험 성적이 주어졌을 때, 세 시험 모두에서 다른 어떤 학생에게도 뒤처지지 않는 '굉장한 학생'의 수를 효율적으로 계산하는 알고리즘과 자료구조 구현법을 설명한다."
 categories: 
 - Algorithm
 - Platinum II

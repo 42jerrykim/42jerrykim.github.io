@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 백준 온라인 저지 1005번 ACM Craft 문제를 분석하고, 위상 정렬과 동적 프로그래밍을 활용해 건물별 최소 건설 시간을 효율적으로 계산하는 방법과 전체 알고리즘 풀이 과정을 자세하게 제공합니다."
 categories: Algorithm
 date: "2024-05-18T00:00:00Z"
 header:

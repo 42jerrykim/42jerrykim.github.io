@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 20149번 : 선분 교차 3"
+description: "이 글에서는 백준 20149번 '선분 교차 3' 문제를 C++과 Python으로 해결하는 방법을 다룹니다. CCW, 교차점 판정, 교차점 출력, 일직선 상 겹침 등 기하학 알고리즘의 필수 테크닉과 각종 예외처리 방법을 자세하게 설명합니다."
 categories: 
 - Algorithm
 - Geometry

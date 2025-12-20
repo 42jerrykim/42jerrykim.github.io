@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 장에서는 구조적 프로그래밍, 객체 지향 프로그래밍, 함수형 프로그래밍 등 세 가지 주요 프로그래밍 패러다임의 개요와 각 패러다임이 가진 부정적 규칙의 본질, 그리고 프로그래밍 방식에 미치는 영향에 대해 설명합니다."
 title: "3장 패러다임 개요"
 date: 2022-01-01
 categories: CleanArchitecture

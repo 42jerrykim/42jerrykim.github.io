@@ -1,5 +1,6 @@
 ---
-title: "[CSharp] 무시 항목 - C# 기본 사항"
+title: "[CSharp] 무시 항목(Discard) - 기본 개념과 실전 활용"
+description: "이 글에서는 C#에서 변수를 임시로 무시하거나 필요 없는 값을 무시할 때 사용하는 무시 항목(discard)의 개념과 문법, 튜플 분해, out 파라미터, 패턴 매칭 등에서의 활용 방법과 실전 코드 예시까지 150자 분량으로 안내합니다."
 categories: 
 - CSharp
 - Discards

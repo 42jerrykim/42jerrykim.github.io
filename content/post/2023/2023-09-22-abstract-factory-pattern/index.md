@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "추상 팩토리 패턴은 객체의 구체적인 클래스를 지정하지 않고 관련된 객체 제품군을 생성할 수 있게 해줍니다. 이 글에서는 C#을 중심으로 코드를 통한 구현 방법, 장단점, 실사용 사례, 응용 가능성 등을 상세히 설명합니다."
 categories: DesignPattern
 date: "2023-09-22T00:00:00Z"
 header:

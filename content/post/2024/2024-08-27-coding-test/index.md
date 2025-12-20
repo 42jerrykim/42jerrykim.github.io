@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 코딩 테스트의 역사와 발전, 주요 IT 기업에서의 활용 사례, 시험 유형과 문제 풀이 전략, 필수 알고리즘 및 자료구조, 효율적인 준비 방법, 취업 및 경력 개발과의 연계 방안 등 실전 대비를 위한 핵심 정보를 150자 내외로 제공합니다."
 categories: Algorithm
 date: "2024-08-27T00:00:00Z"
 header:

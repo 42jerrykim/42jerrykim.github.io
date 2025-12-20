@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: ".NET 및 C# 환경에서 조건부 컴파일 옵션(Conditional Compilation)을 정의하고 적용하는 방법, MSBuild와 프로젝트 파일에서의 심볼 관리, 전처리기 사용법 및 실제 활용 사례 등을 150자 분량으로 쉽게 정리합니다."
 categories:
 - .NET
 date: "2021-04-28T00:00:00Z"

@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 1605번 : Non-boring sequences"
+description: "주어진 수열에서 모든 연속된 부분 수열이 서로 다른 원소(고유한 원소)만을 포함하는지 효율적으로 판별하는 문제입니다. O(n²) 풀이를 피하고 분할 정복, 전처리, 해시맵 등을 활용한 논리와 아이디어를 실제 코드로 구현합니다."
 categories: 
 - Algorithm
 - Platinum III

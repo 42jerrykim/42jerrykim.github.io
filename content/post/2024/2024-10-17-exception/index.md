@@ -1,5 +1,6 @@
 ---
 date: 2024-10-17
+description: "이 글에서는 C#에서의 예외 및 예외 처리 메커니즘의 원리와 구조, try-catch-finally 문법, 다양한 예외 클래스 활용 방법, 예외 발생 흐름과 개발 시 실전 적용 시나리오까지 체계적으로 150자 내외로 설명합니다."
 title: "[CSharp] 예외 및 예외 처리"
 categories: 
 - CSharp

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 REST와 GraphQL의 주요 차이점과 각각의 장단점을 설명합니다. 두 API 방식이 데이터 요청, 관리, 확장성 및 개발자 경험에 미치는 영향을 다양한 예시와 함께 이해하기 쉽게 제공합니다."
 categories: API
 date: "2024-09-09T00:00:00Z"
 header:

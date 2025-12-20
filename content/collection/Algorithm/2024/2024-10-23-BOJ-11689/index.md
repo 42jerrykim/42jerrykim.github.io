@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 11689번 : GCD(n, k) = 1"
+description: "백준 11689번 GCD(n, k) = 1 문제는 주어진 자연수 n에 대해 1 ≤ k ≤ n 범위 내에서 n과 서로소인 자연수 k의 개수를 구하는 수론 문제입니다. 효율적으로 오일러 피 함수(Euler's Totient Function)를 활용해 풀 수 있으며, 대수적 수식과 소인수분해 알고리즘을 적용하는 것이 핵심입니다."
 categories: 
 - Algorithm
 - NumberTheory

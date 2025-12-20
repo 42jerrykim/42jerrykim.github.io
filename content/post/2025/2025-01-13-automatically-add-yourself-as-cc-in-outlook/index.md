@@ -1,5 +1,6 @@
 ---
 title: "[Outlook] 아웃룩에서 메일 보낼 때 자동으로 본인을 참조(CC) 추가하는 방법"
+description: "아웃룩(Outlook)에서 메일을 보낼 때마다 본인을 참조(CC)로 자동 추가하는 방법을 안내합니다. 규칙 설정 또는 VBA 매크로를 이용해 별도의 수동 작업 없이 업무 효율성을 높이고, 메일 관리 및 업무 내역을 꼼꼼하게 기록하는 방법까지 상세히 설명합니다."
 categories:
 - Outlook
 - OutlookAutomation

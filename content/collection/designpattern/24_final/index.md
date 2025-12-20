@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 페이지는 디자인 패턴의 개념과 등장 배경, 객체지향 설계의 원리를 입문자도 쉽게 이해할 수 있도록 설명합니다. 실무에서 패턴을 적용하는 이유와 역사, 실제 소프트웨어 개발에서 패턴의 역할을 폭넓게 다룹니다."
 title: "[Design Pattern] Final"
 categories:
 - Design Patterns

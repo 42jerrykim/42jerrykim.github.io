@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 19585번 : 전설"
+description: "이 문제는 주어진 색상 이름과 닉네임 목록을 활용해, 팀 이름이 '색상 이름+닉네임' 형태인지 효율적으로 판별하는 자료구조 활용 문제입니다. Trie 두 개를 통해 접두사/접미사 매칭을 빠르게 수행합니다."
 categories: 
 - Algorithm
 - DataStructures

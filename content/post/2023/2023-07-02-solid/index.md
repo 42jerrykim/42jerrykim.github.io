@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "SOLID 원칙에 대해 쉽고 명확하게 설명합니다. 실무에서의 적용 사례, 각 원칙별 특징, 객체 지향 프로그래밍에서 SOLID가 왜 중요한지, 코드 유지보수와 확장성에 미치는 긍정적인 영향까지 꼼꼼하게 다룹니다."
 categories: null
 date: "2023-07-02T00:00:00Z"
 header:

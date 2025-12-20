@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "쿼드트리(Quad Tree)는 2차원 공간을 4분할하는 트리 기반 자료구조로, 공간 데이터 처리, 이미지 압축, 게임 맵 관리, 충돌 감지, GIS 등 다양한 분야에서 효율적인 데이터 저장 및 검색을 지원합니다."
 categories: DataStructure
 date: "2024-08-19T00:00:00Z"
 header: null

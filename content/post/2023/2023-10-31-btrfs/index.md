@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Btrfs는 Linux에서 사용되는 차세대 파일 시스템입니다. 강력한 스냅샷, 데이터 무결성, 저장 공간 효율화, 빠른 복구 기능, SSD 최적화, 동적 할당 등 현대적인 파일 시스템 기능을 제공합니다."
 categories: FileSystem
 date: "2023-10-31T00:00:00Z"
 

@@ -1,4 +1,5 @@
 ---
+description: "팩토리 메소드 패턴은 객체 생성을 서브클래스에 위임하여 확장성과 유지보수성을 높이는 디자인 패턴입니다. 클라이언트는 구체적인 클래스에 의존하지 않고, 인터페이스를 통해 객체를 생성하여 코드의 유연성을 확보합니다. 다양한 객체 생성에 활용됩니다."
 image: "tmp_wordcloud.png"
 title: "[Design Pattern] Factory Method"
 last_modified_at: 2024-08-22

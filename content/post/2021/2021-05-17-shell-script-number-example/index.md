@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 숫자를 입력하여 다양한 명령어를 실행할 수 있는 셸 스크립트 예제를 소개합니다. 사용자가 숫자를 선택해 ls, ls -al, ls -a 등의 명령을 실행하는 기본 인터페이스와 구현법을 설명합니다."
 categories:
 - Shell
 date: "2021-05-17T00:00:00Z"

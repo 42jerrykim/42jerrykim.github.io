@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 16978번 : 수열과 쿼리 22"
+description: "백준 16978번 문제는 여러 버전의 수열 상태에서 구간 합 쿼리와 값을 갱신하는 쿼리를 빠르게 처리해야 합니다. 이를 위해 영속적 세그먼트 트리(Persistent Segment Tree)를 활용하여, 각 업데이트마다 새로운 버전을 효율적으로 관리하며, 원하는 시점의 구간 합을 O(log N)에 계산할 수 있습니다. 본 글에서는 문제의 요구사항, 제한 사항, 데이터 구조의 원리와 구현 방법을 상세히 설명합니다."
 categories: 
 - Algorithm
 - Platinum IV

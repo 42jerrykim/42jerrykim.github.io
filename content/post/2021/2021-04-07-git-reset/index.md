@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Git에서 작업 도중 파일을 잘못 수정했거나 이전 상태로 되돌리고 싶을 때 사용하는 'git reset', 'git checkout' 명령어의 차이점과 실제 사용 예시를 150자 분량으로 명확하게 설명합니다. 안전한 롤백 방법을 안내합니다."
 categories: Git
 date: "2021-04-07T00:00:00Z"
 tags:

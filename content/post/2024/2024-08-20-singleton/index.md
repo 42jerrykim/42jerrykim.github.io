@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "싱글턴 패턴은 전역적으로 단 하나의 인스턴스만 존재하도록 보장하는 디자인 패턴으로, 전역 상태 관리, 리소스 공유, 인스턴스 생명주기 제어 및 멀티스레드 환경의 동기화 등 다양한 소프트웨어 설계 문제에 활용됩니다."
 categories: DesignPattern
 date: "2024-08-20T00:00:00Z"
 

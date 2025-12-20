@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 Entity Framework의 핵심 원리와 구조, DbContext와 DbSet 활용법, 마이그레이션, LINQ 쿼리, 성능 최적화, 트랜잭션, 데이터 일관성 유지, 객체와 관계형 매핑, 실전 아키텍처 적용, 코드 및 데이터베이스 우선 접근 방식 등 실무에 필요한 통합 가이드를 제공합니다."
 categories: EntityFramework
 date: "2024-09-09T00:00:00Z"
 header:

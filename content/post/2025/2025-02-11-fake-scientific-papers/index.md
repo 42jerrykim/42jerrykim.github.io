@@ -10,6 +10,8 @@ tags:
   - Research
   - Paper
 image: image.png
+description: "AI가 작성한 가짜 학술 논문이 실제 학계와 건강 분야에 미치는 심각한 영향, Peer Review 시스템의 허점, 과잉 논문 생산의 실태 및 근본적 해결책에 대해 분석합니다. 신뢰받는 과학 생태계를 위한 방안을 다룹니다."
+
 ---
 
 최근 computer scientist들과 전직 health reporter가 6개월간의 조사를 통해 매우 충격적인 사실을 발견했다. 수천 개의 가짜 학술 논문들이 특히 암(cancer)과 Covid-19 research 분야에서 발견되고 있으며, 이는 실제 과학 연구를 방해하고 있다는 것이다.

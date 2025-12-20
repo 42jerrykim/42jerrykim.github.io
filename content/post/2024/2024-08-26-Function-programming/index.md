@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 함수형 프로그래밍의 기본 개념, 주요 원칙(순수 함수, 고차 함수, 불변성 등), Python에서의 활용 예제, 장단점, 실전 팁 등 핵심 내용을 150자 내외로 알기 쉽게 설명합니다."
 categories: Python
 date: "2024-08-26T00:00:00Z"
 header:

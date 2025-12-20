@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "API Gateway와 Load Balancer는 모두 네트워크 트래픽 분산과 효율적인 자원 관리를 담당하지만, 역할과 적용 계층, 처리 방식이 다릅니다. 이 글에서는 두 컴포넌트의 차이, 장단점, 실무 사례를 상세히 비교 분석합니다."
 categories: null
 date: "2023-06-23T00:00:00Z"
 header:

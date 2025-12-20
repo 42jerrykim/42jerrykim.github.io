@@ -1,5 +1,6 @@
 ---
 date: 2024-10-16
+description: "이 글에서는 C#의 무명 형식(Anonymous Types) 개념과 객체 초기화, 타입 추론, 읽기 전용 속성, LINQ와의 연계, 안전한 타입 사용 등 핵심 특징을 실전 예제와 함께 150자 분량으로 자세히 설명합니다."
 title: "[CSharp] 무명 형식"
 categories: 
 - CSharp

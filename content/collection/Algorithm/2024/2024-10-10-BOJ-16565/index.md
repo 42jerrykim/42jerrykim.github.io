@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "백준 16565번 N포커 문제는 52장의 카드 중 N장을 뽑았을 때 적어도 하나의 포카드가 포함되는 경우의 수를 구하는 조합론/포함-배제 알고리즘 문제입니다. 문제에서 요구하는 조건에 따라 수학적 사고와 원리 응용 능력이 중요합니다."
 categories: Algorithm
 date: "2024-10-10T00:00:00Z"
 header:

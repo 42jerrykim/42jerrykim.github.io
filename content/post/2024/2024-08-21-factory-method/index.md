@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "공장 메서드(Factory Method) 패턴은 객체 생성 로직을 하위 클래스로 분리하여, 유연한 구조와 확장성을 제공합니다. 본 포스트에서는 UML 구조, 코드 예시, 다양한 언어의 구현, 패턴의 장단점 등을 자세히 설명합니다."
 categories: DesignPattern
 date: "2024-08-21T00:00:00Z"
 header:

@@ -1,5 +1,6 @@
 ---
 title: "[Brand] Urwerk 시계 라인업 소개"
+description: "Urwerk는 혁신적인 디자인과 독특한 위성 디스플레이 메커니즘으로 유명한 스위스 독립 시계 브랜드입니다. 미래지향적 기술과 전통적 장인정신을 결합하여 소량 한정 생산되는 고급 시계를 선보입니다."
 categories:
 - Brand
 tags:

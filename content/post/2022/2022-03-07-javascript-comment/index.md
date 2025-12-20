@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "자바스크립트에서 주석(Comment)을 작성하는 방법과 문법을 설명합니다. 한 줄 주석과 여러 줄 주석의 차이점, 실제 코딩 예시 및 HTML 주석과의 구분 방법 등 초보 개발자가 주의해야 할 사항을 상세히 안내합니다."
 categories:
 - Javascript
 date: "2022-03-07T00:00:00Z"

@@ -60,6 +60,7 @@ tags:
 - software_learning
 image: "tmp_wordcloud.png"
 date: 2024-12-30
+draft: true
 ---
 
 [Write your Own Virtual Machine](https://www.jmeiners.com/lc3-vm/)

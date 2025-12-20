@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 C#에서 Regex로 문자열을 검색하고, 검색된 결과(match)를 람다와 함께 활용하여 원하는 값을 효율적으로 치환하는 방법을 다룹니다. 실전 예시와 코드로 match 객체 재사용법을 상세하게 설명합니다."
 categories:
 - Regex
 date: "2021-08-18T00:00:00Z"

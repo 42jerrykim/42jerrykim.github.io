@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 문서에서는 리눅스와 유닉스 환경에서 필수적인 입력 및 출력 리디렉션(I/O Redirection)의 개념, 사용 방법, 표준 입출력/표준 오류 처리 및 다양한 응용 예시 등을 자세하고 쉽게 150자 분량으로 설명합니다."
 title: "I/O Redirection - 명령어의 입력과 출력을 다루는 방법"
 date: 2022-01-03
 categories: "Shell"

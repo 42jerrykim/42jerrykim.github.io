@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "시간 복잡도(Time Complexity)는 알고리즘이 입력 크기에 따라 얼마나 빠르게 실행되는지를 수학적으로 분석하는 척도입니다. 주로 빅오, 빅세타, 빅오메가 표기법을 사용해 최악, 평균, 최선의 실행 시간을 구분하여, 효율적인 코드 구현과 문제 해결 능력을 향상시킬 수 있습니다."
 title: "Time Complexity 시간 복잡도"
 date: 2022-03-14
 categories: ComputerTerms

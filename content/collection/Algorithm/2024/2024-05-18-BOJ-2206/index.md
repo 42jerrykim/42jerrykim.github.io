@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 문제는 N×M 2차원 배열로 주어진 맵에서 최대 한 개의 벽을 부수고 (1,1)에서 (N,M)까지의 최단 경로를 찾는 것이다. BFS로 벽을 부순/부수지 않은 상태를 구분하며 방문을 관리해 모든 경로를 탐색한다. 경로가 없을 경우 -1을 반환한다."
 categories: Algorithm
 date: "2024-05-18T00:00:00Z"
 header:

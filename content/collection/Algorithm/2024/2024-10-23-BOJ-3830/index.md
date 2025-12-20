@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 3830번 : 교수님은 기다리지 않는다"
+description: "백준 3830번 문제는 서로 다른 샘플 간의 무게 차이를 빠르게 처리하고 질의에 답해야 하는 Union-Find(Disjoint Set Union) 알고리즘 응용 문제입니다. 각 샘플쌍의 상대적 무게 정보를 축적하며, Path Compression과 가중치 누적 로직을 활용해 효율적으로 연산합니다."
 categories: 
 - Algorithm
 - UnionFind

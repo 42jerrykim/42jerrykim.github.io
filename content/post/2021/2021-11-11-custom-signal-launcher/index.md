@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "리눅스에서 Custom Signal Handler를 만드는 방법과 sigaction 함수 활용법, 시그널 종류, 안전하게 시그널을 처리하는 팁, 실전 예제 코드를 포함해 개발자가 알아야 할 핵심 내용을 150자 분량으로 쉽게 정리합니다."
 categories:
 - Linux
 date: "2021-11-11T00:00:00Z"

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "추상 팩토리 패턴은 제품군의 객체들을 일관된 방식으로 생성할 수 있도록 하는 디자인 패턴입니다. 구체적인 클래스에 의존하지 않고, 새로운 제품군이나 스타일이 추가될 때 코드의 재사용성과 확장성을 높여주며 유지보수에도 유리합니다."
 categories: DesignPattern
 date: "2024-08-22T00:00:00Z"
 header:

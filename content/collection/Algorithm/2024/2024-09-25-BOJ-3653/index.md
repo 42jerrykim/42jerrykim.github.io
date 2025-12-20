@@ -1,4 +1,5 @@
 ---
+description: "백준 3653 영화 수집 문제는 DVD를 꺼내고 맨 위로 올릴 때마다 기존 위치에서 그 위에 쌓인 DVD의 개수를 빠르게 계산해야 하는 문제입니다. Fenwick Tree를 활용하여 각 DVD의 최신 위치와 위쪽 쌓임 정보를 O(log N)에 관리하며, 다수의 쿼리를 효율적으로 해결하는 방법과 자료구조 설계 아이디어를 소개합니다."
 image: "tmp_wordcloud.png"
 categories: Algorithm
 date: "2024-09-25T00:00:00Z"

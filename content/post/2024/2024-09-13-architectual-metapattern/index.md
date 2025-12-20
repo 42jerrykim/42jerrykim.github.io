@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "This article explores key architectural metapatterns used in modern software design, focusing on reusable structures and strategies that address common challenges in scalable, maintainable, and flexible system architectures. 다양한 메타패턴의 실제 적용과 비교를 통해 소프트웨어 설계 및 아키텍처의 이해를 돕습니다."
 categories: architecture
 date: "2024-09-13T00:00:00Z"
 header:

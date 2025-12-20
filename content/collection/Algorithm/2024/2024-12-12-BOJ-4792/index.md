@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 4792번 : 레드 블루 스패닝 트리"
+description: "백준 4792번 레드 블루 스패닝 트리는 무방향 그래프에서 각 간선 색이 빨강 또는 파랑일 때, 파란 간선이 정확히 k개인 스패닝 트리의 존재 여부를 Kruskal 변형, MST와 Union-Find로 판별하는 문제로, 최소·최대 파란 간선 개수 범위 내 k의 포함 여부를 통해 풀이하며 색 기준 정렬 및 트리 구성 원리를 묻는 대표적 문제입니다."
 categories: 
 - Algorithm
 - GraphTheory

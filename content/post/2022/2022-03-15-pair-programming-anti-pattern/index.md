@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "페어 프로그래밍에서 종종 발생하는 안티 패턴(부정적인 행동 유형)과 역할별로 주의해야 할 행동, 효과적인 협업을 위해 피해야 하는 네비게이터와 드라이버의 잘못된 습관, 실전 팁 등을 정리합니다."
 categories:
 - Programming
 date: "2022-03-15T00:00:00Z"

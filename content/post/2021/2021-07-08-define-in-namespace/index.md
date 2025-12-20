@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "C/C++에서 전처리기 define 문을 namespace 내부에 선언하는 것이 의미가 없는 원리와 이유, 실제 컴파일 단계에서의 동작 방식, 올바르게 특정 범위 내에서 상수를 관리하는 대안(const) 방법까지 150자 내외로 정리합니다."
 categories:
 - Cpp
 date: "2021-07-08T00:00:00Z"

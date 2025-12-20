@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "알고리즘은 문제를 해결하는 논리적 절차로, 입력값을 바탕으로 명확한 규칙에 따라 일련의 작업을 수행하여 원하는 출력을 만들어냅니다. 본 문서는 알고리즘의 정의와 특징, 역사, 그리고 표현 방식까지 체계적으로 설명합니다."
 title: "알고리즘 (Algorithm) 이란?"
 date: 2022-03-13
 categories: ComputerTerms

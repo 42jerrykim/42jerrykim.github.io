@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "C# 등 .NET 환경에서 Finalizer(소멸자), Distructor의 호출 시점과 GC(Garbage Collector)의 동작 방식 차이를 실제 예제 코드와 함께 비교하며 자세히 설명합니다. C++과의 차이도 짚어줍니다."
 categories:
 - .NET
 date: "2021-04-27T00:00:00Z"

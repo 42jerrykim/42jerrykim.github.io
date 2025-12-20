@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 10999번 : 구간 합 구하기 2"
+description: "세그먼트 트리와 Lazy Propagation(지연 갱신)을 활용해, 크기가 최대 1,000,000에 달하는 배열에 대하여 대규모 구간 덧셈 및 구간 합 쿼리를 O(log N) 시간 내에 빠르고 효율적으로 처리하는 방법을 구현하고 설명합니다."
 categories: 
 - Algorithm
 - Segment Tree

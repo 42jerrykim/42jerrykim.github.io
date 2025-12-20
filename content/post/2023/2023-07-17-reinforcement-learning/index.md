@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "강화 학습(Reinforcement Learning, RL)의 핵심 개념, 주요 알고리즘(Q-Learning, SARSA, DDPG 등), 다양한 실전 응용 사례, RL과 타 머신 러닝 기법 비교, 학습 전략과 현장 활용 팁, RL 리소스까지 총정리해 실제로 RL을 이해하고 활용하는 데 도움이 되는 포괄적인 안내서입니다."
 categories: Reinforcement Learning
 date: "2023-07-17T00:00:00Z"
 tags:

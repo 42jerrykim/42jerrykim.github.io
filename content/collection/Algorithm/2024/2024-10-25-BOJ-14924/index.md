@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 14924번 : 폰 노이만과 파리"
+description: "이 포스트에서는 백준 14924번 '폰 노이만과 파리' 문제를 다룹니다. 두 기차와 파리의 이동을 관찰하여 수학적 사고와 효율적인 풀이 방법을 확인하고, 실제 코드 구현 예시도 함께 제공합니다."
 categories: 
 - Algorithm
 - Arithmetic

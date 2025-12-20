@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "개미굴(Trie) 구조를 구현하는 백준 14725번 문제를 풀면서 계층적 데이터 처리, 재귀 탐색, 사전순 정렬 등 다양한 알고리즘 개념을 연습할 수 있습니다. Python과 C++ 예제 코드와 함께 중요한 풀이 포인트를 자세히 설명합니다."
 categories: Algorithm
 date: "2024-10-10T00:00:00Z"
 header:

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글은 CSS의 탄생과 발전 과정을 통해 CSS가 점차 복잡해진 이유와 그 시대적 배경, 다양한 CSS 방법론과 기술적 진화, 그리고 오늘날 많이 쓰이는 CSS in JS, Atomic CSS 등의 현대적 흐름까지 상세하게 설명합니다."
 categories:
 - CSS
 date: "2022-03-16T00:00:00Z"

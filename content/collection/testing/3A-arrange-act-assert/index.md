@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "3A(Arrange, Act, Assert) 패턴은 단위 테스트의 품질과 명확성을 높이기 위한 기본 구조로, 테스트 준비, 동작 실행, 결과 검증의 세 단계를 명확히 구분해 효과적으로 좋은 테스트를 작성하는 방법과 실전에서의 활용 팁을 150자 분량으로 설명합니다."
 title : "3A – Arrange, Act, Assert"
 date: 2022-01-01
 ---

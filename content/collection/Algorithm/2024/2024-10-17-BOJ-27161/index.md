@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 27161번 : 크레이지 타임"
+description: "백준 27161 크레이지 타임 문제는 다양한 카드 규칙(시간 역행, 동기화, 과부하)을 따라 시뮬레이션하며, 플레이어가 어떤 시각을 외치고 어떤 행동을 해야 하는지 순서대로 출력하는 구현·시뮬레이션 문제입니다."
 categories: 
 - Algorithm
 - Implementation

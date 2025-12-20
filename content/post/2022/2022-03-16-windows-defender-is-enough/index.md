@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Windows Defender(현 Microsoft Defender)의 보안 기능을 최적으로 설정하는 방법과 추가적인 안티바이러스 프로그램 없이도 안전하게 PC를 보호하는 팁을 설명합니다. 로컬 정책, MAPS, 랜섬웨어 방어 등 실전 활용법을 다룹니다."
 categories:
 - Windows
 date: "2022-03-16T00:00:00Z"

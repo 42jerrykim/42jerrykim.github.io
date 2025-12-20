@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "C#/.NET 환경에서 Custom AssemblyLoadContext와 AssemblyDependencyResolver를 활용해 서로 다른 위치에 있는 DLL 의존성 로딩 문제를 해결하는 방법, 플러그인 설계 시 고려사항과 실전 예제, 주요 개념까지 핵심만 150자 분량으로 정리합니다."
 categories:
 - .NET
 date: "2021-10-27T00:00:00Z"

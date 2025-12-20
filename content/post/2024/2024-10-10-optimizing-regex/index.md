@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "This post explores advanced techniques for optimizing regular expressions (regex) in C#. Learn about performance bottlenecks, best practices, and practical strategies to improve speed, efficiency, and reliability of your regex patterns in real-world applications."
 categories: CSharp
 date: "2024-10-10T00:00:00Z"
 

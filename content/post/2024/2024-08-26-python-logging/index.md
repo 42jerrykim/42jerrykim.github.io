@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 Python의 logging 모듈을 활용한 로그 기록 방법을 소개합니다. 로그 레벨, 포맷터, 핸들러 등 실전 환경에서 안정적이고 효율적으로 로깅을 설정·운용하는 다양한 예제와 실무 노하우를 150자 내외로 안내합니다."
 categories: Python
 date: "2024-08-26T00:00:00Z"
 

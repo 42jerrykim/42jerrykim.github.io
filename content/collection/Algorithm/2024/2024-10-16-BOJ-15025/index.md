@@ -1,5 +1,6 @@
 ---
-title: "[Algorithm] C++/Python 백준 15025번 : Judging Moose"
+title: "[Algorithm] C++/Python 백준 15025번: Judging Moose"
+description: "백준 15025번 Judging Moose 문제는 입력받은 두 값(왼쪽, 오른쪽 뿔의 가지 수)에 따라 조건문으로 무스의 포인트를 판별합니다. 두 값이 모두 0이면 무스가 아니며, 같으면 'Even', 다르면 'Odd'로 출력하는 간단한 구현 문제입니다."
 categories: Algorithm
 tags:
 - Implementation

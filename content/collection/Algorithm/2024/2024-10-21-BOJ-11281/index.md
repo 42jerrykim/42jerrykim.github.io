@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 11281번 : 2-SAT - 4"
+description: "백준 11281번 2-SAT 문제는 2개의 변수로 이루어진 논리식을 모두 만족시키는 변수의 값을 결정하는 알고리즘 문제입니다. 임플리케이션 그래프와 강한 연결 요소(SCC) 탐색을 통해 논리식의 만족 가능성을 판별하고, 변수의 진리값 할당 방법을 구하는 것이 핵심입니다."
 categories: 
 - Algorithm
 - GraphTheory

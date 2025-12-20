@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "원격 데스크톱(RDP, Chrome 원격 데스크톱 등) 환경에서 은행 사이트 등 일부 사이트 접속이 차단되는 문제를 Hyper-V 가상 머신을 활용해 우회·해결하는 방법을 상세히 소개합니다. 실제 설정 팁도 함께 안내합니다."
 categories:
 - HyperV
 date: "2022-07-05T00:00:00Z"
