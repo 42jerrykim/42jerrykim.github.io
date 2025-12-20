@@ -72,8 +72,6 @@ tags:
 image: "wordcloud.png"
 ---
 
-# BOJ 16313: Janitor Troubles - 최대 사각형 넓이 문제
-
 **문제 링크**: [https://www.acmicpc.net/problem/16313](https://www.acmicpc.net/problem/16313)
 
 ## 문제 요약
