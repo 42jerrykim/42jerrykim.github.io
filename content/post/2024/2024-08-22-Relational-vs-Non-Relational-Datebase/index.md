@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 관계형 데이터베이스와 비관계형(NoSQL) 데이터베이스의 구조 및 특징, 장단점, 확장성, 데이터 일관성, 대표적인 활용 사례 등 핵심 비교 포인트를 150자 내외로 알기 쉽게 설명합니다."
 categories: Database
 date: "2024-08-22T00:00:00Z"
 header: null

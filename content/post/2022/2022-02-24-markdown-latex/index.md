@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Markdown 및 Jekyll 기반 블로그에서 수학 수식을 LaTeX와 MathJax를 활용해 효과적으로 작성하고 표시하는 방법을 상세히 안내합니다. 기본 개념부터 설치, 사용 팁까지 실전 중심으로 설명합니다."
 date: "2022-02-24T00:00:00Z"
 header:
   teaser: /assets/images/2022/2022-02-24-145445.png

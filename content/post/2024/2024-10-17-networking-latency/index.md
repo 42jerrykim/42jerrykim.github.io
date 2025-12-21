@@ -1,4 +1,6 @@
 ---
+description: "이 글은 인터넷 사용 중 빈번하게 발생하는 네트워크 지연(latency) 문제의 원인을 분석하고, 최신 솔루션과 최적화 방법(예: QoS, Active Queue Management, CAKE 등)을 통해 성능 저하를 효과적으로 해결할 수 있는 실질적인 방안을 제시합니다."
+
 date: 2024-10-17
 title: "[Networking] 인터넷 성능 문제 해결을 위한 솔루션"
 categories: 

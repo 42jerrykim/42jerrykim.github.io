@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "리눅스 및 Bash 쉘에서 자주 사용되는 exit 코드의 특수한 의미와 예시, 각 코드별 주의사항을 150자 분량으로 상세히 설명합니다. 스크립트 작성 및 오류 디버깅 시 필수적으로 알아야 할 exit status 표와 활용법을 안내합니다."
 categories:
 - Shell
 date: "2019-02-14T00:00:00Z"

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "리눅스/유닉스 환경에서 시스템 자원 모니터링 등 반복 작업 시 유용하게 활용할 수 있는 watch, while 구문의 사용법을 상세히 안내합니다. 간단한 스크립트와 옵션 예시를 통해 반복 명령 실행을 손쉽게 구현할 수 있습니다."
 categories:
 - Shell
 date: "2022-06-27T00:00:00Z"

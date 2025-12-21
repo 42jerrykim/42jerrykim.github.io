@@ -1,5 +1,6 @@
 ---
 date: 2024-10-23
+description: "ColorBrewer는 지도와 데이터 시각화를 위한 색상 팔레트와 조합을 제공하는 온라인 도구입니다. 색맹 안전, 색상 유형별 분류, 활용 예시 및 적용 사례 소개 통해 시각적 정보 전달과 활용을 극대화할 수 있습니다."
 title: "[Cartography] 온라인 색상 도구 ColorBrewer"
 categories: 
 - cartography

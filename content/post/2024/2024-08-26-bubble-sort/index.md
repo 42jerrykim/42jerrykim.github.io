@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 버블 소트(Bubble Sort) 알고리즘의 원리와 구현 방법을 다양한 언어(C, C++, Java, Python 등) 예제와 함께 150자 분량으로 상세히 설명합니다. 시간 복잡도, 최적화, 특징 및 실전 응용 팁도 포함되어 있어 초보자도 쉽게 이해할 수 있습니다."
 categories: Sorting, Algorithm
 date: "2024-08-26T00:00:00Z"
 

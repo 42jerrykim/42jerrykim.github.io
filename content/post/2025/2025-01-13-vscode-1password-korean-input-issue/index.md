@@ -45,6 +45,8 @@ tags:
 - ConfigurationGuide
 image: "image.png"
 date: 2025-01-13
+description: "원격 데스크톱에서 Visual Studio Code, 1Password 등 일부 앱에서 한글 입력이 안 되는 문제의 원인과 해결법을 안내합니다. Windows 설정을 통해 이전 버전 IME로 전환해 입력 문제를 해결하는 과정을 상세히 설명합니다."
+
 ---
 
 원격 데스크톱 세션에서 Visual Studio Code나 1Password와 같은 특정 애플리케이션을 사용할 때 키보드 입력이 되지 않는 문제가 발생할 수 있다. 이는 Windows의 새로운 IME(Input Method Editor) 시스템과의 호환성 문제로 인한 것이다. 이 문제를 해결하기 위해 이전 버전의 Windows IME를 사용하도록 설정하는 방법을 알아보자.

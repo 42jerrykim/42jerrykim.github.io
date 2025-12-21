@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "C++의 unique_ptr 사용 시, 커스텀 Deleter를 람다로 지정하여 동적으로 할당된 메모리 및 복잡한 리소스를 안전하게 해제하는 방법을 소개합니다. 메모리 누수 방지와 안전한 자원 관리를 위한 스마트 포인터와 Deleter의 활용법을 상세 사례와 함께 쉽게 설명합니다."
 cagegory: Cpp
 date: "2022-04-04T00:00:00Z"
 tag:

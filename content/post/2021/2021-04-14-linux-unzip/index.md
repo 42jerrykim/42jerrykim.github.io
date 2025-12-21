@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "리눅스에서 zip, tar, tar.gz 파일을 압축·해제하는 명령어들을 150자 분량으로 정리합니다. zip, unzip, tar 명령의 사용법, 주요 옵션 및 실제 예시와 함께 파일 및 디렉토리 다루는 방법을 구체적으로 설명합니다."
 categories:
 - Shell
 date: "2021-04-14T00:00:00Z"

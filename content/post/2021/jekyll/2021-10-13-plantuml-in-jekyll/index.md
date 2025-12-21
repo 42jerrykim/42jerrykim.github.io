@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Jekyll 블로그에서 PlantUML을 활용해 UML 다이어그램을 직접 그리고 관리하는 방법을 소개합니다. GitHub Action 연동, PlantUML 파일 작성, SVG 자동 생성 등 실전 적용법과 주의할 점을 150자 분량으로 안내합니다."
 categories:
 - Jekyll
 - Plantuml

@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 14939번 : 불 끄기"
+description: "백준 14939번 불 끄기 문제는 10×10 격자의 각 전구를 켜고 끄는 퍼즐로, 한 전구를 조작할 때 상하좌우 전구들도 함께 반전되어 모든 불을 최소한의 조작으로 끄는 최적해를 찾는 비트마스크+브루트포스 알고리즘 문제입니다."
 categories: 
 - Algorithm
 - BruteForce

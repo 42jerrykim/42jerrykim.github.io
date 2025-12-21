@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Kramdown 마크다운과 Jekyll 환경에서 코드 영역에 쉽고 효과적으로 줄번호(Line Number)를 표시하는 방법을 안내합니다. 라인 넘버 설정, _config.xml 수정, 코드 블록 내 자동 줄번호 적용법 등 실전예제를 통해 코드 가독성 향상 방법을 소개합니다."
 date: "2022-02-08T00:00:00Z"
 header:
   teaser: https://t1.daumcdn.net/cfile/tistory/2565523756ECCA0102

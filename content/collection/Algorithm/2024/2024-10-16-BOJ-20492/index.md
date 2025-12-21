@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 20492번 : 세금"
+description: "이 문제는 상금에 세금이 부과되는 두 가지 경우에 대해 실제로 수령하는 금액을 계산하는 문제입니다. 전체 금액에 대해 세금을 내는 경우와, 일부만 세금 대상이 되는 경우의 결과를 모두 구해야 합니다."
 categories: Algorithm
 tags:
 - Mathematics

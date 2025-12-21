@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 프로토타입(Prototype) 디자인 패턴의 개념과 원리, 얕은 복사와 깊은 복사의 차이, 실제 객체 복제 예제(Java, C# 등), 활용 시 장점과 주의사항, 주요 사용 사례와 팁을 150자 내외로 체계적으로 설명합니다."
 categories: DesignPattern
 date: "2024-08-22T00:00:00Z"
 header:

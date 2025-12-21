@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 문제는 주어진 모든 음식 조합에서 최대값과 최소값의 차이, 즉 '주헌고통지수'의 총합을 빠르고 효율적으로 구하는 수학적(조합론적) 접근을 다룬다. N이 매우 클 때도 가능한 알고리즘을 설명한다."
 categories: Algorithm
 date: "2024-10-10T00:00:00Z"
 header:

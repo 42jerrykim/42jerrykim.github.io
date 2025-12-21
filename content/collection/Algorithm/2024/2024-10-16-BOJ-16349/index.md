@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 16394번 : 홍익대학교"
+description: "이 포스트에서는 백준 온라인 저지 16394번 홍익대학교 문제를 다룹니다. 주어진 년도에서 1946년을 빼 개교 몇 주년이 되는지 계산하는 간단한 수학 문제로, 접근 방식과 함께 C++/Python 예제 코드를 상세하게 설명합니다."
 categories: Algorithm
 tags:
 - Math

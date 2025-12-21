@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글은 AI의 미래에 대해 다루며, 인공지능이 가져올 기회와 위험, 오픈 소스 연구의 필요성, 사회·기업에 미칠 영향, AI 개발 현장의 인적 비용, 윤리적 문제 등을 폭넓게 다룹니다."
 categories: AI
 date: "2023-06-02T00:00:00Z"
 

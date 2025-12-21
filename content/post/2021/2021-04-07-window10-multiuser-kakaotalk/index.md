@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Windows 10에서 여러 사용자가 한 PC에서 카카오톡을 각각 사용할 때 발생하는 권한 문제를 해결하는 방법과, 신규 사용자 추가 후 카카오톡 프로그램 실행 권한 부여, 발생 가능한 오류 및 해결 과정을 150자 분량으로 상세히 안내합니다."
 categories: KakalTalk
 date: "2021-04-07T00:00:00Z"
 tags:

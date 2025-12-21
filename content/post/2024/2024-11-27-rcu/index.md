@@ -1,4 +1,5 @@
 ---
+description: "RCU(Read-Copy Update)는 Linux 커널에서 데이터의 동시 접근을 효율적이고 안전하게 처리하기 위한 동기화 메커니즘으로, 성능 저하 없이 읽기와 쓰기 작업을 분리하여 높은 병렬성과 데이터 일관성을 제공합니다."
 date: "2024-11-27T09:22:56+09:00"
 title: "[Linux] RCU란 무엇인가?"
 categories: 

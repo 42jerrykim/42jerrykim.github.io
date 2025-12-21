@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 10828번 : 스택"
+description: "이 글에서는 백준 10828번 스택 문제를 C++와 Python 언어로 해결하는 방법을 자세히 다룹니다. 스택(Stack) 기본 구조 및 명령어 활용법, 입력과 출력 예시, 빠르고 효율적인 코드 작성 팁에 대해 설명합니다."
 categories: 
 - Algorithm
 - DataStructures

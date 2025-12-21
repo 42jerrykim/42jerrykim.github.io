@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 24736번 : Football Scoring"
+description: "백준 24736번 Football Scoring 문제는 미식축구의 점수 계산 방식을 이해하고, 박스 스코어로 두 팀의 총점을 계산하는 간단한 구현 문제입니다. 각 득점 요소별(터치다운, 필드골, 세이프티 등) 점수를 입력 받아 총합을 출력하는 문제로, 입력과 출력, 구현 능력을 기를 수 있습니다."
 categories: Algorithm
 tags:
 - Implementation

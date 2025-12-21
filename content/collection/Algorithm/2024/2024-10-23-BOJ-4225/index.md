@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 4225번 : 쓰레기 슈트"
+description: "Convex Hull과 Rotating Calipers를 활용해 2차원 다각형이 통과할 수 있는 쓰레기 슈트의 최소 너비를 구하는 문제입니다. 효율적인 기하 알고리즘을 적용하며, 소수점 둘째 자리까지 올림하여 결과를 도출합니다."
 categories: 
 - Algorithm
 - Geometry

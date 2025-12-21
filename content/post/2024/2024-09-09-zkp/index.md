@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+description: "Zero-Knowledge Proof(ZKP)는 개인 정보 보호와 블록체인 상의 데이터 보안 및 신뢰성 향상을 위한 암호학적 기법입니다. 증명자는 검증자에게 정보를 노출하지 않고 사실을 증명할 수 있어, 금융·투표·인증 등 다양한 분야의 혁신을 이끌고 있습니다."
 categories: Blockchain
 date: "2024-09-09T00:00:00Z"
 header:

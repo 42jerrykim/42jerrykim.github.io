@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "클린 코드의 개념을 비판적으로 살펴보고, 실제로는 완벽하게 클린한 코드란 존재하지 않으며 '클린'이라는 용어가 개발에서 어떤 의미와 한계가 있는지 다양한 관점에서 분석합니다."
 categories:
 - CleanCode
 date: "2022-03-16T00:00:00Z"

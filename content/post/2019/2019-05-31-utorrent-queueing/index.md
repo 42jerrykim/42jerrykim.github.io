@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "µTorrent의 Queueing(큐잉) 정책과 시드/다운로드 동시 제한, Seeding Goal 설정, 업로드 속도 제한 등 토렌트 파일의 효율적인 관리 및 업로드·다운로드 제어 방법을 150자 분량으로 구체적으로 설명합니다."
 categories:
 - uTorrent
 date: "2019-05-31T00:00:00Z"

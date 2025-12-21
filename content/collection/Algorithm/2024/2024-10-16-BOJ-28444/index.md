@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 28444번 : HI-ARC=?"
+description: "백준 28444번 'HI-ARC=?' 문제는 주어진 다섯 정수 H, I, A, R, C를 받아 (H×I)-(A×R×C)의 값을 계산하는 구현 문제입니다. 수식 처리와 산술 연산 능력을 연습할 수 있으며, 입력 범위는 0부터 100까지입니다."
 categories: Algorithm
 tags:
 - Implementation

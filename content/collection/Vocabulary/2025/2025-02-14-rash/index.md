@@ -1,5 +1,6 @@
 ---
 title: "[Vocabulary] rash의 의미와 용례"
+description: "'rash'는 영어에서 '성급한', '무모한'이라는 형용사와 '발진', '피부 염증'이라는 명사로 쓰입니다. 본문에서는 각각의 의미, 주요 용례 및 관련 표현을 150자 분량으로 상세히 설명합니다."
 date: 2025-02-14
 categories:
   - Vocabulary

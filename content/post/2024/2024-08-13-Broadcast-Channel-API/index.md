@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Broadcast Channel API는 브라우저의 여러 탭, 윈도우, iframe간에 데이터를 실시간으로 동기화하며 통신할 수 있게 해주는 Web API입니다. 메시지 전달 구조, 사용 예시, 장단점, 활용 시 고려사항을 150자 분량으로 체계적으로 소개합니다."
 categories: webdevelopment
 date: "2024-08-13T00:00:00Z"
 header: null

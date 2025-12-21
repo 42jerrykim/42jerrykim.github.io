@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "빠르게 변화하는 IT 및 개발 분야에서 최신 정보를 얻는 다양한 방법을 소개합니다. 구글 알리미, Blogtrottr, 기업 블로그, 뉴스레터 등 실용적인 소식 구독 및 관리 전략을 상세히 안내합니다."
 categories:
 - GoogleAlart
 - Blogtrottr

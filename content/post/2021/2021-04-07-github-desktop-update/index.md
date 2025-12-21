@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Github Desktop 2.7.1 버전으로 업데이트된 후 commit과 push의 속도가 크게 개선되었습니다. 이전까지 느렸던 작업들이 빠르게 처리되어 윈도우 환경에서 Git 클라이언트를 쾌적하게 사용할 수 있습니다."
 categories:
 - GithubDesktop
 date: "2021-04-07T00:00:00Z"

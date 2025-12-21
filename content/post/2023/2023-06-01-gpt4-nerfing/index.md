@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "최근 GPT-4의 성능 저하(Nerfing) 논란, AI 조정(alignment)의 필요성, 오픈 소스 비조정형(Unaligned) AI에 대한 요구, 기업 및 사회적 관점에서 AI의 책임과 활용에 대한 중요 논점을 150자 분량으로 심층적으로 다룹니다."
 categories: ChatGPT
 date: "2023-06-01T00:00:00Z"
 header:

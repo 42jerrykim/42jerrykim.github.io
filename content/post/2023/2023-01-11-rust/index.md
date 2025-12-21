@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Rust 언어로 동시성 프로그래밍을 안전하게 구현하는 방법, Atomics와 Locks의 원리, Memory Ordering, 운영체제 수준의 동기화 기법 등 실전 Rust 개발에 필요한 핵심 이론 및 실용적 지식을 150자 내외로 소개합니다."
 date: "2023-01-11T00:00:00Z"
 header:
   teaser: /assets/images/2023/cover.jpg

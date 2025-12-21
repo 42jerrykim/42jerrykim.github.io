@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "del 명령어는 도스, 윈도우 및 파워셸에서 파일 또는 디렉터리를 삭제하는 데 사용됩니다. 다양한 옵션으로 삭제 전 확인, 읽기 전용 파일 삭제, 하위 디렉터리 내 검색이 가능하며, 유닉스 계열의 rm 명령과 유사한 역할을 수행합니다."
 title: "del - 파일 삭제"
 date: 2022-01-01
 categories: CMD

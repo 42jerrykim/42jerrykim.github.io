@@ -11,6 +11,8 @@ tags:
   - Linux
   - MacOS
 image: "image.png"
+description: "Kanata는 Rust로 작성된 멀티플랫폼 키보드 리매퍼로, 커스터마이징 가능한 다중 레이어, tap-hold, 복합키, 매크로 등 강력한 기능을 제공합니다. 설정 파일을 통해 개인화가 쉬우며 Windows, Linux, MacOS를 모두 지원합니다."
+
 ---
 
 Kanata는 Rust 프로그래밍 언어로 작성된 강력한 키보드 리매퍼입니다. Windows, Linux, MacOS 등 다양한 운영체제를 지원하며, 키보드의 동작을 사용자가 원하는 대로 커스터마이징할 수 있는 도구입니다.

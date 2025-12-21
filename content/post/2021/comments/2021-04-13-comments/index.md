@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Github Page 블로그에서 댓글 기능을 위해 Disqus와 Utterances를 비교하고, Disqus 광고 문제점과 Utterances의 장점 및 설치 과정, 실사용 예시까지 자세히 안내합니다. 깔끔하고 효율적으로 댓글을 운영하고 싶은 분들에게 필요한 정보를 150자 내외로 정리했습니다."
 categories:
 - Utterances
 date: "2021-04-13T00:00:00Z"

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "C#의 async/await 키워드는 비동기 프로그래밍을 간결하게 구현할 수 있게 해줍니다. TAP(Task 기반 비동기 패턴), Task 및 Task<T> 사용법, I/O/CPU 바인딩 예시와 비동기 코드 작성 시 주의사항을 150자 분량으로 쉽게 설명합니다."
 categories: CSharp
 date: "2024-08-07T00:00:00Z"
 header:

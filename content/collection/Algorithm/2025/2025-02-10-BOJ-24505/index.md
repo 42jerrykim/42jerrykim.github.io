@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 24505번 : blobhyperthink"
+description: "이 글에서는 백준 24505번 'blobhyperthink' 문제를 C++ 및 Python을 활용해 효율적으로 푸는 방법을 다룹니다. 최대 10^5 길이의 수열에서 길이가 11인 증가 부분 수열의 개수를 구하기 위해 동적 계획법과 Binary Indexed Tree(Fenwick Tree)를 활용하는 자세한 알고리즘 설계 및 최적화 과정을, 시간 복잡도와 실제 코드 구현과 함께 150자 내외로 명확하게 설명합니다."
 categories: 
 - Algorithm
 - Dynamic Programming

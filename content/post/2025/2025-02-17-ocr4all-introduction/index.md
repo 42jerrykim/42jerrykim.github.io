@@ -9,6 +9,8 @@ tags:
 - Open Source
 - Document Processing
 image: image.png
+description: "OCR4all은 무료 오픈소스 OCR 솔루션으로, 수기와 인쇄 문서 모두를 고품질로 인식하며 직관적 UI, Docker 기반 배포, MIT 라이선스, OCR-D 호환성을 제공해 누구나 쉽게 문서 디지털화와 자동 텍스트 추출을 할 수 있습니다."
+
 ---
 
 OCR4all은 모든 사람이 사용할 수 있는 완전히 무료이며 오픈소스인 Optical Character Recognition(OCR) 솔루션이다. 이 도구는 고품질의 문서 처리부터 대량의 텍스트 인식까지 다양한 용도로 활용이 가능하다.

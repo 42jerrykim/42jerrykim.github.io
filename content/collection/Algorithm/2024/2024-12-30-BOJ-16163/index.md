@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 16163번 : 회문 부분 문자열 세기"
+description: "이 글에서는 백준 16163번 문제를 효율적으로 해결하는 Manacher 알고리즘을 소개합니다. O(N) 시간 복잡도로 주어진 문자열의 모든 회문 부분 문자열의 개수를 빠르게 계산하는 과정을 상세히 설명합니다."
 categories: 
 - Algorithm
 - String

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 웹 폰트의 종류, 성능 최적화, FOUT/FOIT 현상, font-display 속성, 자체 호스팅 및 CDN 제공 폰트 비교 등 실제 프로젝트에서 활용 가능한 웹 폰트 전략과 최적화 방법을 체계적으로 정리합니다. 폰트 불러오기, 접근성, 브라우저 호환성, 효율적 관리 전략까지 폭넓게 다룹니다."
 categories: webdevelopment
 date: "2024-09-10T00:00:00Z"
 header:

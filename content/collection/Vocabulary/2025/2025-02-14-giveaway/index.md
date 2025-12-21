@@ -1,5 +1,6 @@
 ---
 title: "[Vocabulary] Giveaway - 무료 증정품, 경품"
+description: "'giveaway'는 영어에서 '무료 증정품' 또는 '경품'을 의미하며, 마케팅, 프로모션, 고객 유치 등 다양한 분야에서 사용됩니다. 주로 브랜드 인지도 향상과 참여 유도를 위해 활용됩니다."
 date: 2025-02-14T08:00:00+09:00
 categories:
   - Vocabulary

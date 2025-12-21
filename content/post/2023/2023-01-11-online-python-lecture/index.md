@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "futurecoder는 완전 무료이자 오픈소스인 온라인 파이썬 프로그래밍 학습 플랫폼입니다. 초보자가 조건문, 반복문, 자료구조 등 기초 코딩을 연습하고, 실습형 인터페이스와 쉬운 디버깅, 단계별 힌트를 체험할 수 있습니다."
 date: "2023-01-11T00:00:00Z"
 header:
   teaser: /assets/images/2023/2023-01-11-190639.png

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "GitHub.dev는 웹 브라우저 상에서 간편하게 GitHub 저장소의 코드를 수정하고 커밋할 수 있는 웹 기반 IDE입니다. 별도의 설치 없이 `.`키만 눌러 빠르게 개발 환경에 접근할 수 있어 생산성을 크게 향상시킵니다."
 categories:
 - GitHub
 date: "2022-07-07T00:00:00Z"

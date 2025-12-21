@@ -1,5 +1,6 @@
 ---
-title: "[Algorithm] C++/Python 백준 11400번 : 단절선"
+title: "[Algorithm] C++/Python 백준 11400 : 단절선(Bridge) 문제 풀이 및 해설"
+description: "백준 11400 단절선(Bridge) 문제를 효율적으로 해결하는 방법을 소개합니다. Tarjan’s Algorithm을 이용해 모든 단절선을 찾고, C++과 Python 코드 예시와 함께 핵심 개념 및 DFS 기반 접근법, 출력 방법까지 자세히 다룹니다."
 categories: 
 - Algorithm
 tags:

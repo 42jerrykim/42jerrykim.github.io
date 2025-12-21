@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Test coverage는 소프트웨어 테스트에서 품질과 신뢰성을 평가하는 핵심 지표입니다. 여러 종류의 커버리지(구문, 브랜치, 조건, 경로 등)와 그 활용 방법을 이해하면 효과적으로 결함을 줄이고 품질을 향상시킬 수 있습니다."
 categories: SoftwareTesting
 date: "2024-08-19T00:00:00Z"
 header: null

@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 16975번 : 수열과 쿼리 21"
+description: "백준 16975번 '수열과 쿼리 21' 문제는 구간에 수를 더하고 특정 위치의 값을 빠르게 조회하는 효율적 자료구조 설계가 핵심입니다. 누적합과 차분, Fenwick Tree(BIT) 활용으로 O(log N) 복잡도 내에서 대용량 쿼리를 모두 빠르게 처리하는 방법을 다룹니다."
 categories: 
 - Algorithm
 - Platinum IV

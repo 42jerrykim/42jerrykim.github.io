@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 28702번 : FizzBuzz 스페셜 저지"
+description: "백준 28702번 FizzBuzz 스페셜 저지는 연속된 세 개의 FizzBuzz 출력 결과를 입력받아 이후에 출력될 값을 예측하는 알고리즘 문제입니다. 문자열 처리, 브루트포스, 수학적 규칙 등 다양한 접근이 요구됩니다. 실제 FizzBuzz 패턴을 분석하여 다음 값을 도출하는 과정이 중요합니다."
 categories: Algorithm
 tags:
 - Mathematics

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Windows 10 Pro 20H2 환경에서 RDP Wrapper 사용 시 발생하는 'not supported' 오류 해결 방법을 150자 분량으로 상세히 안내합니다. 단계별 패치 설치, 관련 다운로드, Windows Defender 예외 설정 등 실질적인 문제 해결 노하우를 포함합니다."
 categories:
 - RDPWrapper
 date: "2021-04-06T00:00:00Z"

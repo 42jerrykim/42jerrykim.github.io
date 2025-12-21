@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "백준 3679번 단순 다각형 문제는 여러 점이 평면 위에 주어졌을 때, 자기 교차 없는 단순 다각형을 만드는 점의 순서를 구하는 알고리즘 문제입니다. 기하학적 정렬과 구현이 핵심이며, O(N log N) 복잡도의 효율적인 방법과 실제 순열 출력 예시를 포함합니다."
 categories: Algorithm
 date: "2024-09-25T00:00:00Z"
 header:

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Windows 환경에서 Plex Media Server의 문제 발생 시 빠르게 재구동할 수 있도록 스크립트와 자동화 방법을 안내합니다. 수동 반복 작업 대신 효율적인 서버 운영을 위한 실용 팁을 150자 분량으로 제공합니다."
 date: "2023-01-13T00:00:00Z"
 header:
   teaser: /assets/images/2023/plex.png

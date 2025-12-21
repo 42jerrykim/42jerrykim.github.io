@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 7523번 : Gauß 다국어"
+description: "백준 7523번 Gauß 다국어 문제는 두 정수 n과 m 사이 모든 정수의 합을 구하는 문제로, 단순 반복 대신 가우스 공식 \u2013 연속 정수의 합 공식을 적용해 O(1) 시간에 합을 구하는 효율적 수학적 접근법을 요구합니다. 입력 범위가 크므로 오버플로우에 주의해 long long 등의 자료형 사용이 필요합니다."
 categories: 
 - Algorithm
 - Mathematics

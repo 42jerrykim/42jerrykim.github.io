@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 빌더(Builder) 디자인 패턴의 동작 원리, 단계별 객체 생성 방식, 장점(가독성, 유지보수성, 불변성 등)과 단점, Java 코드 예제, 주요 활용 사례, 팁 등 패턴을 150자 내외로 알기 쉽게 설명합니다."
 categories: DesignPattern
 date: "2024-08-22T00:00:00Z"
 

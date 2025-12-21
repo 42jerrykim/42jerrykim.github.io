@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 C/C++에서 dlopen, dlclose, dlerror 함수를 이용해 동적으로 공유 라이브러리를 로딩하고 언로드하는 방법, 실제 활용 예제, 런타임에 외부 라이브러리를 유연하게 관리할 수 있는 실전 노하우를 150자 분량으로 다룹니다."
 date: "2023-02-13T00:00:00Z"
 tag:
 - Cpp

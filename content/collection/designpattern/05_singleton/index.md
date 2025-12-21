@@ -1,4 +1,5 @@
 ---
+description: "싱글턴 패턴은 객체의 인스턴스가 오직 하나만 존재하도록 보장하고, 전역적으로 해당 인스턴스에 접근할 수 있게 해주는 디자인 패턴입니다. 주로 데이터베이스 연결, 설정 관리 등 시스템 전역에서 단일 인스턴스가 필요한 경우에 사용되며, 자원 낭비와 데이터 불일치를 방지하는 효과가 있습니다."
 image: "tmp_wordcloud.png"
 title: "[Design Pattern] Singleton"
 last_modified_at: 2024-08-20

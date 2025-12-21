@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "리눅스에는 다양한 목적의 가상 파일 시스템이 존재하며, DebugFS, SecurityFS, PipeFS, SockFS 등은 커널과 유저 영역 간의 인터페이스 및 특수 용도의 파일 시스템 역할을 한다. 본 글에서는 이들의 역할과 특징, 주요 활용 사례, 시스템 마운트 방법 등 실질적인 내용을 설명한다."
 categories:
 - Linux
 date: "2022-06-09T00:00:00Z"

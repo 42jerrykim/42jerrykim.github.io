@@ -58,6 +58,8 @@ tags:
 - environmentalpressures
 image: "maxresdefault.png"
 date: "2024-12-26"
+description: "붉은 여왕 효과(Red Queen Effect)는 생물들이 환경과의 경쟁적 상호작용 속에서 진화적 균형을 유지하기 위해 끊임없이 적응해야 함을 설명하는 이론입니다. 숙주-기생충, 포식자-피식자처럼 서로 영향을 주고받는 관계에서 나타나는 필연적인 진화 경쟁의 본질을 다루며, 실제 자연계와 인간 사회의 다양한 생태·경제 현상에 적용되는 중요한 진화 생물학 개념입니다."
+
 ---
 
 ## 붉은 여왕 효과 (Red Queen Effect)란?

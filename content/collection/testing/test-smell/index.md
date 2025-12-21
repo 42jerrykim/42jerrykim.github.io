@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "테스트 스멜(Test Smell)은 테스트 코드의 품질과 유지보수를 저해하는 여러 문제들을 의미합니다. 대표적으로 Assertion Roulette, Conditional Test Logic 등 다양한 안티 패턴 사례와 감지 방법, 이를 개선하는 실질적 전략을 150자 분량으로 설명합니다."
 title : "Software Unit Test Smells"
 date: 2022-03-18
 ---

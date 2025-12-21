@@ -1,5 +1,6 @@
 ---
 date: 2024-10-16
+description: 두 포인터 알고리즘은 배열이나 리스트의 구간 합, 특정 쌍 찾기 등 다양한 문제를 효율적으로 해결하는 기법입니다. 시간 복잡도를 줄이고, 다양한 언어와 상황에서 적용이 가능합니다. 실전 예제와 함께 이해할 수 있습니다.
 title: "[Algorithm] Two Pointers Algorithm"
 categories: 
 - Algorithm

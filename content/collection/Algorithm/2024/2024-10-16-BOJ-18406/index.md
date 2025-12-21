@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 18406번 : 럭키 스트레이트"
+description: "백준 18406 럭키 스트레이트 문제는 주어진 점수의 자릿수를 절반으로 나누어 각 부분의 자릿수 합이 같은지 판단하는 알고리즘 문제입니다. C++ 및 Python으로 구현하며 문자열 처리를 활용합니다. 각 합이 같으면 LUCKY, 다르면 READY를 출력합니다."
 categories: Algorithm
 tags:
 - Implementation

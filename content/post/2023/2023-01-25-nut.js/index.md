@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Nut.js는 Node.js 기반의 데스크톱 자동화 프레임워크로, 마우스와 키보드 제어, 클립보드 접근, 이미지/텍스트 검색 등 다양한 기능을 제공하며 Windows, macOS, Linux 등 여러 운영체제에서 활용 가능한 오픈소스 도구입니다."
 date: "2023-01-25T00:00:00Z"
 header:
   teaser: /assets/images/2023/2023-01-25-103941.png

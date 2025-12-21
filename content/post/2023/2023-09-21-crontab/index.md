@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Crontab은 리눅스에서 반복 작업의 자동화를 담당하는 도구로, 예약 명령어 작성, 편집, 로그 관리, 백업, 다양한 예약 표현식과 옵션 사용법 등 시스템 관리자와 개발자가 필수적으로 알아야 할 기능을 150자 분량으로 설명합니다."
 date: "2023-09-21T00:00:00Z"
 header:
   teaser: /assets/images/2023/crontab.png

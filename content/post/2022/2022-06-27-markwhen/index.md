@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "MarkWhen은 마크다운 문법을 사용해 계단식 타임라인을 쉽게 만들고 시각화할 수 있는 오픈소스 웹서비스입니다. 프로젝트, 일정, 계획 수립 등에 유용하며, 여러 포맷의 날짜 입력을 지원하여 직관적인 타임라인 생성이 가능합니다."
 categories:
 - MarkWhen
 date: "2022-06-27T00:00:00Z"

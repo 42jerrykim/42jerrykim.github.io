@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글은 .NET의 리플렉션(reflection)이 왜 일반적인 코드에 비해 더 느린지에 대해 설명합니다. CLR 타입 시스템과 내부 동작, EEClass와 MethodTable 구조, 그리고 실제 성능 측정 결과를 바탕으로 분석합니다."
 categories:
 - .NET
 date: "2021-05-06T00:00:00Z"

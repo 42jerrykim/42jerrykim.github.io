@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "C++ 동적 로딩(Dynamic loading)의 원리와 dlopen, dlsym, dlclose, dlerror 함수의 활용 방법, 실전 예제, 네임 맹글링 대응 방안, 객체지향적 플러그인 설계까지 체계적으로 설명합니다."
 date: "2023-06-02T00:00:00Z"
 
 tags:

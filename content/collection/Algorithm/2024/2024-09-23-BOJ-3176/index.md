@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "백준 3176번 도로 네트워크 문제는 트리에서 두 정점 사이 경로의 최소·최대 간선 가중치를 효율적으로 구하는 알고리즘을 다룹니다. LCA(Binray Lifting)와 Sparse Table을 활용해, 다수 쿼리도 빠르게 처리하는 고난도 트리 문제의 주요 풀이와 최적화 기법을 상세히 설명합니다."
 categories: Algorithm
 date: "2024-09-23T00:00:00Z"
 header:

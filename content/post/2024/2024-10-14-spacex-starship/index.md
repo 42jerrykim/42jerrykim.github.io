@@ -1,5 +1,6 @@
 ---
 image: "3wSVbqxH8udGsGkpjFFkCT-970-80.jpg.webp"
+description: "SpaceX가 2024년 10월 13일 진행한 스타쉽 5번째 비행에서 슈퍼 헤비 부스터가 '젓가락' 메카질라 팔로 성공적으로 포획되었으며, 상단 스테이지도 임무를 마친 역사적인 우주 발사 사건을 기록합니다."
 title: "[SpaceX] 발사! SpaceX 스타쉽 5번째 비행 성공, '젓가락' 부스터 착륙 완벽 성공" 
 date: 2024-10-14
 categories: 

@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 31654번 : Adding Trouble"
+description: "백준 31654번 Adding Trouble 문제는 세 정수 A, B, C가 입력될 때, A+B가 C와 같은지 판별하여 'correct!' 또는 'wrong!'을 출력하는 아주 기초적인 산술 연산 및 조건문 활용 연습 문제이다. 초보자를 위한 쉬운 입출력 및 연산 검증 학습 목적의 문제이다."
 categories:
 - Algorithm
 - Mathematics

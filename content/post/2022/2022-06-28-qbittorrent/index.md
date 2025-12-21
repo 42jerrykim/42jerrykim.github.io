@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "qBittorrent는 다양한 운영체제에서 사용할 수 있는 오픈소스 토렌트 클라이언트로, RSS 피드를 통한 자동 다운로드 기능을 제공해 반복적인 파일 다운로드 작업을 자동화할 수 있습니다. 설정 방법과 클라이언트 사용법을 자세히 안내합니다."
 categories:
 - Torrent
 date: "2022-06-28T00:00:00Z"

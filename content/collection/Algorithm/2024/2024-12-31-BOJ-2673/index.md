@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 2673번 : 교차하지 않는 원의 현들의 최대집합"
+description: "주어진 여러 개의 원의 현들 중에서 서로 교차하지 않고, 끝점도 겹치지 않는 최대 부분집합을 찾는 문제입니다. Conflict Graph를 구성하여 Backtracking 또는 탐색 방법으로 Maximum Independent Set을 구하는 방식으로 접근합니다. 교차와 끝점 공유 조건을 정확히 구현하는 것이 핵심입니다."
 categories: 
 - Algorithm
 - Graph

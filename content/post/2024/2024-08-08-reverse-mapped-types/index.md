@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "TypeScript의 Reverse Mapped Types는 매핑된 타입의 키와 값을 역으로 추론하여 유연한 타입 변환을 제공합니다. 사용법, 실제 활용 사례, 고급 타입 시스템에서의 역할과 장점을 150자 분량으로 상세하게 설명합니다."
 categories: typescript
 date: "2024-08-08T00:00:00Z"
 header: null

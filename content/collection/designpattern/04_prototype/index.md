@@ -1,4 +1,5 @@
 ---
+description: "Prototype 패턴은 기존 객체를 복제해 새로운 인스턴스를 생성하는 방식으로, 객체 생성의 복잡성을 줄이고 효율성과 재사용성을 높여준다. 복제 메서드를 통해 유사 객체를 신속히 만들 수 있어, 생성 비용이 큰 객체나 동적 구조에서 특히 유용하다."
 image: "tmp_wordcloud.png"
 title: "[Design Pattern] Prototype"
 last_modified_at: 2022-08-22

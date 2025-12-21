@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "분산 시스템의 핵심 개념, 마이크로서비스, 장애 허용, 데이터 일관성, 로드밸런싱, 이벤트 소싱 등 필수 아키텍처 패턴과 실제 적용 사례를 통해 확장성과 안정성을 높이는 방법을 자세히 설명합니다."
 categories: DistributedSystems
 date: "2024-09-23T00:00:00Z"
 header:

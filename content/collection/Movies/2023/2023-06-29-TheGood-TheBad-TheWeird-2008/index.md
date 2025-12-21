@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "'놈놈놈(The Good, The Bad, The Weird)'은 1930년대 만주를 배경으로 세 명의 독특한 인물이 보물지도를 둘러싸고 펼치는 액션과 스릴, 반전이 가득한 한국 웨스턴 액션 영화입니다. 각기 다른 목적과 매력을 지닌 캐릭터들의 대립과 유쾌한 전개, 스타일리시한 연출이 돋보입니다."
 categories: Movie
 date: "2023-06-29T00:00:00Z"
 header:

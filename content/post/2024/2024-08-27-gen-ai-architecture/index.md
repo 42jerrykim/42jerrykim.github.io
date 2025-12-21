@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 기업 내에서 생성형 AI 아키텍처를 설계할 때 필요한 핵심 구성요소, 대규모 언어모델과 파인튜닝 기법, RAG, 벡터DB, 도메인 데이터 연계 및 실제 업무 적용 전략 등 실무자가 알아야 할 주요 원칙과 사례를 150자 내외로 다룹니다."
 categories: Architecture
 date: "2024-08-27T00:00:00Z"
 

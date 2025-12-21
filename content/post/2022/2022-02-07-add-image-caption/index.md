@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Jekyll 및 Markdown 환경에서 블로그 이미지에 캡션을 추가하는 다양한 방법을 안내합니다. figure 태그 활용, Minimal Mistakes 테마의 헬퍼, CSS 커스터마이즈 등 실전 적용 팁을 150자 분량으로 자세히 설명합니다."
 date: "2022-02-07T00:00:00Z"
 header:
   teaser: /assets/images/2022/2022-02-09-214658.png

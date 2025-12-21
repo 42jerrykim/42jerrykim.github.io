@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "rmdir 명령어는 유닉스, 도스, 윈도우 등 다양한 운영체제에서 빈 디렉터리를 제거할 때 사용됩니다. 해당 명령어의 기본적인 사용법, 주요 옵션, 주의사항 등에 대해 설명하여, 디렉터리 관리와 자동화 작업 등에서 rmdir를 보다 효율적으로 활용할 수 있도록 안내합니다."
 title: "rmdir - 폴더 삭제"
 date: 2022-01-01
 categories: CMD

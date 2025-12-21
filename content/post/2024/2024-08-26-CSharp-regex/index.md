@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 C#에서의 정규표현식(Regex) 사용법을 초보자도 이해하기 쉽도록 기초부터 고급까지 체계적으로 설명합니다. 다양한 실전 예제, 패턴 매칭, 검색·치환·분할 방법, 유효성 검사, 고급 옵션 활용법까지 150자 분량으로 안내합니다."
 categories:
 - Regex
 - CSharp

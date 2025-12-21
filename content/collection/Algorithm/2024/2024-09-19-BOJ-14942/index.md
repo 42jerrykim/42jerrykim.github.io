@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "해당 문제는 트리 구조에서 각 개미의 에너지로 1번 방(루트)과 가장 가까운 도달 가능한 방을 찾는 알고리즘을 구현합니다. 이진 승격(Binary Lifting)을 이용해 각 쿼리를 효율적으로 처리하며, 트리 누적거리 계산 및 O(logN) 시간 복잡도 분석까지 포괄적으로 설명합니다."
 categories: Algorithm
 date: "2024-09-19T00:00:00Z"
 header:

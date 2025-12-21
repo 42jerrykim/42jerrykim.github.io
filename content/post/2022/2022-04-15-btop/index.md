@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "btop++은 리눅스에서 CPU, 메모리, 디스크, 네트워크, 프로세스 등 다양한 시스템 자원을 한눈에 확인할 수 있는 고급 리소스 모니터링 툴입니다. 직관적인 UI와 다양한 커스터마이징 기능, 마우스 지원, 실시간 그래프를 제공하여 서버와 PC 환경 모두에서 효율적인 시스템 관리가 가능합니다."
 categories:
 - Linux
 - Monitor

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "git-story는 Git 저장소의 커밋 히스토리를 바탕으로 애니메이션 비디오(.mp4)를 자동 생성하여 프로젝트 흐름을 쉽게 시각화하고, 팀원들과 개발 과정을 효과적으로 공유할 수 있도록 도와주는 무료 오픈소스 도구입니다."
 date: "2022-07-26T00:00:00Z"
 header:
   teaser: /assets/images/undefined/git-story.png

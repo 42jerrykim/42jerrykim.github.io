@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Abstract Factory 패턴은 관련 객체 집합을 생성하는 인터페이스를 제공하여, 클라이언트가 구체적인 클래스에 의존하지 않고 일관되게 다양한 제품군을 생성할 수 있도록 해줍니다. 유지보수성과 확장성이 뛰어납니다."
 title: "[Design Pattern] Abstract Factory"
 last_modified_at: 2023-01-12
 date: 2022-01-01

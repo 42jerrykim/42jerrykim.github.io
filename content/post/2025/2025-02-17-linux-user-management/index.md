@@ -9,6 +9,7 @@ tags:
   - Linux
   - User Management
   - Shell Command
+description: "이 글은 Linux 시스템에서 사용자 관리(user management)의 기본을 다룹니다. 주요 파일 위치, 계정 생성, 비밀번호 설정, usermod 명령 등을 실제 명령어 예시와 함께 설명하여 리눅스 초보자도 쉽게 사용자 계정과 그룹을 관리할 수 있도록 합니다."
 ---
 
 Linux system에서 user management는 system 관리의 핵심적인 부분이다. 이 글에서는 Linux user management의 기본적인 개념과 명령어들을 살펴보겠다.

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Garmin(가민)에서 제공하는 다양한 워크아웃 운동 목록을 한 곳에 정리했습니다. 각 운동의 한글명과 원어 설명, 주요 특징까지 함께 소개하여 운동 선택과 이해를 돕습니다."
 categories:
 - Garmin
 date: "2022-06-02T00:00:00Z"

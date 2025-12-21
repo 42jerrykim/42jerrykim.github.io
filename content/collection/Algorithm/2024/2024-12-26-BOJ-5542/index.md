@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 5542번 : JOI 국가의 행사"
+description: "여러 도시와 도로가 연결된 JOI 국가에서 축제 도시와의 최단 거리를 활용해 최적의 경로를 찾는 문제입니다. 멀티 소스 다익스트라, MST, LCA 등 다양한 알고리즘 기법을 적용하고 경로의 특성을 극대화하여 Q개의 질의에 효과적으로 답하는 방법을 다룹니다."
 categories: 
 - Algorithm
 - Graph

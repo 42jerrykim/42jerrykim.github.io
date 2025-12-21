@@ -1,5 +1,6 @@
 ---
-date: 2024-10-15 16:10:27+0900 
+date: 2024-10-15 16:10:27+0900
+description: "이 글에서는 Python의 표준 라이브러리 itertools 모듈의 핵심 함수들(map, filter, takewhile, groupby 등)을 실전 코드와 함께 효율적인 반복, 조합, 성능 향상 기법을 다루며 150자 분량으로 자세히 설명합니다."
 title: "[Python] itertools 모듈"
 categories: Python
 tags:

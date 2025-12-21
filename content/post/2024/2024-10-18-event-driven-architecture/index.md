@@ -1,5 +1,6 @@
 ---
 date: 2024-10-18
+description: "이벤트 기반 아키텍처는 애플리케이션 컴포넌트 간 비동기 메시지를 통해 통신하며, 확장성과 탄력성, 장애 복구, 유연한 워크플로우 구현에 적합한 소프트웨어 설계 패턴입니다."
 title: "[EventDrivenArchitecture] 이벤트 기반 아키텍처란?"
 categories: 
 - EventDrivenArchitecture

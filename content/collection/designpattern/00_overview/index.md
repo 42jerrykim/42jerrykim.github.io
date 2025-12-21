@@ -1,4 +1,5 @@
 ---
+description: "디자인 패턴은 소프트웨어 설계에서 반복적으로 등장하는 문제를 효과적으로 해결하는 검증된 방법론으로, 코드 재사용성, 유지보수성, 팀 의사소통 효율을 높여주고 다양한 분야와 언어에 적용이 가능한 설계 지침입니다."
 image: "tmp_wordcloud.png"
 title: "[Design Pattern] Overview"
 last_modified_at: 2024-08-20

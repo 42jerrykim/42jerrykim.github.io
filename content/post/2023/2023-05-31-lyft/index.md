@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Lyft가 Google Maps 대신 자체 지도 시스템을 구축하게 된 배경, OpenStreetMap의 활용, 비용 절감 및 데이터 통제의 의미, 그리고 자체 지도가 승객과 운전자에게 미치는 혁신적 영향에 대해 심층적으로 다룹니다."
 categories: Lyft
 date: "2023-05-31T00:00:00Z"
 header:

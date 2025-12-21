@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "리눅스 기반 gbs 개발 환경에서 device is busy 문제와 언마운트 오류의 원인 및 대응법, umount -l, -f 옵션 사용법, 디렉터리 강제 해제 방법 등 문제 발생 시 효율적으로 해결하는 방법을 150자 분량으로 정리합니다."
 categories:
 - Linux
 date: "2021-07-12T00:00:00Z"

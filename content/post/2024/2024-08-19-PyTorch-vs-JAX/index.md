@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "PyTorch와 JAX는 현대 딥러닝 프레임워크 중 대표적인 두 가지입니다. 본 포스트에서는 성능, 확장성, 사용성, 연구 및 배포 환경에서의 장단점을 비교하여, 각 프레임워크의 특징과 선택 기준을 상세히 분석합니다."
 categories: MachineLearning
 date: "2024-08-19T00:00:00Z"
 header: null

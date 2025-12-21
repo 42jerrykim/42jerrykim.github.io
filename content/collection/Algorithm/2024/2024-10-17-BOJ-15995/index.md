@@ -1,5 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 15995번 : 잉여역수 구하기"
+description: "잉여역수란 두 자연수 a, m이 서로소일 때, a × x ≡ 1 (mod m)을 만족하는 최소의 자연수 x를 의미합니다. 이 글에서는 확장 유클리드 알고리즘, Python 내장 함수 등 다양한 방법으로 잉여역수를 효율적으로 구하는 법을 설명합니다."
 categories: 
 - Algorithm
 - NumberTheory

@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "C#의 배열(Array)은 같은 타입의 데이터를 효율적으로 저장하고 관리하도록 설계된 자료구조입니다. 1차원, 다차원, 가변 배열의 선언, 초기화, 요소 접근 및 각 배열의 특성을 150자 내외로 쉽게 설명합니다."
 categories: CSharp
 date: "2024-08-07T00:00:00Z"
 header: null

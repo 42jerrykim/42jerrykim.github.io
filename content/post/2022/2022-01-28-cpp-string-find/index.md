@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "C++의 std::string::find 함수를 활용하여 문자열 내에서 특정 서브스트링 또는 문자가 존재하는지 효과적으로 찾는 방법과 다양한 함수 원형, 사용 예시, 반환값, 실전 코드 사례를 포함해 초보자도 쉽게 이해할 수 있도록 설명합니다."
 categories:
 - Cpp
 date: "2022-01-28T00:00:00Z"

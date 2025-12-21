@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Disagree and Commit은 조직 내 신속한 의사결정과 실행력을 높이기 위해 도입된 관리 철학입니다. 활발한 토론 후 일단 결정이 내려지면 모두가 그 결정을 지지하고 실행에 최선을 다하는 문화를 의미합니다."
 categories: management
 date: "2024-08-13T00:00:00Z"
 header: null

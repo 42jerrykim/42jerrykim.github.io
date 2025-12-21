@@ -1,4 +1,5 @@
 ---
+description: "빌더 패턴은 복잡한 객체 생성을 단계별로 분리하여, 동일한 생성 로직으로 다양한 내부 표현의 객체를 만들 수 있게 하는 생성 패턴입니다. 가독성, 확장성, 불변성을 높여 멀티스레드 환경에서도 효과적인 객체 생성을 지원합니다."
 image: "tmp_wordcloud.png"
 title: "[Design Pattern] Builder"
 last_modified_at: 2024-08-22

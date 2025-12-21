@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: ".NET 7 Preview 2가 출시되어 RegEx 소스 생성기, NativeAOT의 Mainline 전환, dotnet new 개선 등 다양한 기능과 성능 향상이 추가되었습니다. 본 글에서는 새롭게 도입된 주요 기능들을 소개하고 개발자에게 미치는 영향을 살펴봅니다."
 date: "2022-03-18T00:00:00Z"
 header:
   teaser: https://media.vlpt.us/images/jinuku/post/e62f8f63-4001-46f9-b811-dc6f62f0828e/40cc3e52-745d-48b8-8a09-02c21efc36e5.png

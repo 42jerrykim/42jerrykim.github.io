@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Explore the differences and best practices between orchestration and choreography in microservices communication, including workflows, system autonomy, event-based strategies, and integration patterns for resilient distributed architectures."
 categories: microservices
 date: "2024-08-29T00:00:00Z"
 header:

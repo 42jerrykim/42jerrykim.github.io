@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "C#에서 string 객체를 반복적으로 생성하는 실수와 이로 인한 메모리, 성능 문제를 실제 예시와 함께 설명합니다. StringBuilder를 사용하여 불필요한 객체 생성을 방지하고, 효율적인 문자열 처리 방법도 함께 안내합니다."
 date: "2022-03-18T00:00:00Z"
 header:
   teaser: https://media.vlpt.us/images/jinuku/post/e62f8f63-4001-46f9-b811-dc6f62f0828e/40cc3e52-745d-48b8-8a09-02c21efc36e5.png

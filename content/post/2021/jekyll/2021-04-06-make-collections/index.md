@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "Jekyll 블로그에서 Collections 기능을 활용해 게시글을 카테고리별로 체계적으로 분류하고 관리하는 방법을 안내합니다. _config.yml 설정, navigation.yml 링크 추가, collection-archive.html 레이아웃 적용, 실전 사용 팁과 주의사항까지 150자 분량으로 상세히 설명합니다."
 categories:
 - Jekyll
 date: "2021-04-06T00:00:00Z"

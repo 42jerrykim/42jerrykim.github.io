@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글은 C++에서 cout을 사용할 때 소수점 아래 자릿수를 정밀하게 제어하는 방법을 다룹니다. std::fixed와 std::cout.precision()의 차이와 사용법을 구체적인 예시와 함께 설명하여, 부동소수점 출력의 실전 활용에 도움을 줍니다."
 categories:
 - Cpp
 date: "2022-03-29T00:00:00Z"

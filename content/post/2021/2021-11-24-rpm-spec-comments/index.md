@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "RPM Spec 파일에서 주석(`#`)과 매크로(`%macro`)를 동시에 사용할 때 발생할 수 있는 오동작 사례, 주석 및 매크로 정의 원리와 주의사항, 예상 결과와 올바른 사용법을 150자 분량으로 알기 쉽게 설명합니다."
 categories:
 - RPM
 date: "2021-11-24T00:00:00Z"

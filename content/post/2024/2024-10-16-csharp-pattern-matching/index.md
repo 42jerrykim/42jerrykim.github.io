@@ -1,5 +1,6 @@
 ---
 date: 2024-10-16
+description: "C#의 패턴 일치(Pattern Matching) 기능을 활용해 코드의 가독성과 안정성을 높이고 다양한 조건 분기, 타입 검사, 값 비교, 예외 처리 등 실무에서 자주 사용하는 예시들을 2024년 최신 문법을 바탕으로 이해하기 쉽게 설명합니다."
 title: "[CSharp] 패턴 일치 개요"
 categories: 
 - CSharp

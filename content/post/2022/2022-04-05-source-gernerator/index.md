@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "C# Source Generators는 컴파일 과정에서 코드 구조를 분석(Inspect)하여 새로운 C# 코드를 자동 생성할 수 있는 강력한 기능입니다. 코드 자동화와 반복 작업 최소화, 빌드 시점 분석 및 개발 효율성 향상에 효과적입니다."
 date: "2022-04-05T00:00:00Z"
 header:
   teaser: https://media.vlpt.us/images/jinuku/post/e62f8f63-4001-46f9-b811-dc6f62f0828e/40cc3e52-745d-48b8-8a09-02c21efc36e5.png

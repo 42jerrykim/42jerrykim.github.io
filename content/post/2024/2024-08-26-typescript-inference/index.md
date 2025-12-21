@@ -1,5 +1,6 @@
 ---
 image: "tmp_wordcloud.png"
+description: "이 글에서는 타입스크립트의 타입 추론 메커니즘, Best Common Type, Contextual Typing 등 핵심 원리와 실전 활용법을 150자 내외로 설명합니다. 코드 안전성, 생산성, 가독성 향상에 도움을 주는 다양한 예제와 팁도 포함합니다."
 categories: TypeScript
 date: "2024-08-26T00:00:00Z"
 
