@@ -1,0 +1,37 @@
+{
+  "canvas": { "width": 1920, "height": 1080 },
+  "header": {
+    "lines": ["Hugo hero infographic generator"],
+    "subtitle": "JSON 스펙 기반으로 대표 이미지(커버/OG)를 자동 생성"
+  },
+  "cards": [
+    {
+      "title": "How to use",
+      "subtitle": "CLI + JSON spec",
+      "accent": [120, 150, 255],
+      "bullets": [
+        "python script/hero_infographic_generator.py out.png",
+        "--spec spec.json 로 텍스트/카드/푸터를 교체",
+        "--width/--height 로 OG(1200x630) 지원"
+      ]
+    },
+    {
+      "title": "Why it works",
+      "subtitle": "재사용 + 일관성",
+      "accent": [75, 205, 160],
+      "bullets": [
+        "템플릿을 코드가 아니라 스펙으로 관리",
+        "줄바꿈(한글/긴 토큰) 오버플로우 방지",
+        "브랜드/푸터 우측 정렬 자동 처리"
+      ]
+    }
+  ],
+  "footer": {
+    "text": "Tip: 템플릿 5개를 만들어두면 글마다 spec만 바꿔서 즉시 커버 생성 가능",
+    "brand": "42jerrykim.github.io"
+  },
+  "layout": { "cols": 2 },
+  "typography": { "bullet_prefix": "- " }
+}
+
+
