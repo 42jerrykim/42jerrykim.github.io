@@ -1,0 +1,23 @@
+{
+  "canvas": { "width": 1920, "height": 1080 },
+  "header": { "lines": ["<TITLE LINE 1>", "<TITLE LINE 2>"], "subtitle": "<SUBTITLE>" },
+  "cards": [
+    {
+      "title": "<LEFT CARD TITLE>",
+      "subtitle": "<LEFT CARD SUBTITLE>",
+      "accent": [255, 120, 85],
+      "bullets": ["<BULLET 1>", "<BULLET 2>", "<BULLET 3>", "<BULLET 4>"]
+    },
+    {
+      "title": "<RIGHT CARD TITLE>",
+      "subtitle": "<RIGHT CARD SUBTITLE>",
+      "accent": [75, 205, 160],
+      "bullets": ["<BULLET 1>", "<BULLET 2>", "<BULLET 3>", "<BULLET 4>"]
+    }
+  ],
+  "footer": { "text": "<FOOTER TEXT>", "brand": "42jerrykim.github.io" },
+  "layout": { "cols": 2 },
+  "typography": { "bullet_prefix": "- " }
+}
+
+

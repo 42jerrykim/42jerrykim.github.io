@@ -1,0 +1,39 @@
+{
+  "canvas": { "width": 1920, "height": 1080 },
+  "header": {
+    "lines": ["Privacy is marketing.", "Anonymity is architecture."],
+    "subtitle": "프라이버시(약속) vs 익명성(구조) — 설계가 강제집행 가능성을 바꾼다"
+  },
+  "cards": [
+    {
+      "title": "Privacy theater (약속/정책)",
+      "subtitle": "데이터를 ‘가지고’ 있으면서 잘 지키겠다고 말한다",
+      "accent": [255, 120, 85],
+      "bullets": [
+        "이메일/전화/ID 요구 → 식별 벡터 누적",
+        "비밀번호 재설정/지원 프로세스 → 소유권 확인을 위해 신원을 저장",
+        "IP/행동 로그/지문 → 운영 데이터가 사용자 모델로 변질",
+        "요청(영장/내부자/침해) 시 ‘제공 가능’ 영역이 생김"
+      ]
+    },
+    {
+      "title": "Anonymity by design (아키텍처)",
+      "subtitle": "운영자조차 연결할 데이터가 없도록 만든다",
+      "accent": [75, 205, 160],
+      "bullets": [
+        "무작위 자격증명 기반(예: account number/credential)",
+        "신원·IP·사용패턴 비보유(또는 비연결) 원칙",
+        "계정 복구 불가 같은 UX 비용을 ‘의도된 기능’으로 수용",
+        "요청(영장)에도 ‘줄 데이터가 없음’이 구조로 보장됨"
+      ]
+    }
+  ],
+  "footer": {
+    "text": "Trade-offs: 관측가능성(로그/메트릭) · 남용 대응 · 결제/환불 · 고객지원 — 익명성은 기능이 아니라 위협모델이다",
+    "brand": "42jerrykim.github.io"
+  },
+  "layout": { "cols": 2 },
+  "typography": { "bullet_prefix": "- " }
+}
+
+

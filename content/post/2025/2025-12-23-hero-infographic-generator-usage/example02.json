@@ -1,0 +1,44 @@
+{
+  "canvas": { "width": 1920, "height": 1080 },
+  "header": {
+    "lines": ["Privacy vs Anonymity vs Pseudonymity"],
+    "subtitle": "세 단어를 같은 것으로 취급하면 설계가 무너진다"
+  },
+  "cards": [
+    {
+      "title": "Privacy (프라이버시)",
+      "subtitle": "데이터를 보유한 상태에서 ‘통제’로 보호",
+      "accent": [120, 150, 255],
+      "bullets": [
+        "접근통제/암호화/감사",
+        "보유 데이터는 유출·요청·오용 위험이 존재",
+        "정책이 바뀌면 경계도 바뀜"
+      ]
+    },
+    {
+      "title": "Anonymity (익명성)",
+      "subtitle": "연결할 데이터가 없도록 구조로 보장",
+      "accent": [75, 205, 160],
+      "bullets": [
+        "신원/복구 벡터 제거",
+        "‘줄 데이터 없음’이 설계의 결과",
+        "UX/운영 비용이 필연"
+      ]
+    },
+    {
+      "title": "Pseudonymity (가명성)",
+      "subtitle": "일관된 정체성(계정/핸들), 상관관계에 취약",
+      "accent": [255, 200, 90],
+      "bullets": [
+        "실명은 아니지만 반복 사용하면 추적 단서",
+        "메타데이터/행동 패턴으로 연결 가능",
+        "‘완전한 익명’과 다름"
+      ]
+    }
+  ],
+  "footer": { "text": "Tip: ‘가명’을 ‘익명’으로 착각하지 말 것", "brand": "42jerrykim.github.io" },
+  "layout": { "cols": 3 },
+  "typography": { "bullet_prefix": "- " }
+}
+
+
