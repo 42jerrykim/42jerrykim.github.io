@@ -11,7 +11,8 @@ on:
 jobs:
   update-theme:
     runs-on: ubuntu-latest
-
+    env:
+      HUGO_VERSION: 0.147.9
     permissions:
       # Give the default GITHUB_TOKEN write permission to commit and push the
       # added or changed files to the repository.
