@@ -1,8 +1,8 @@
 ---
 collection_order: 160
-draft: true
 title: "[Design Patterns] 메멘토와 비지터: 상태 보존과 연산 분리"
 description: "객체의 상태를 캡슐화하여 저장하는 Memento 패턴과 구조와 연산을 분리하는 Visitor 패턴의 고급 활용법을 탐구합니다. Undo/Redo 시스템, 상태 스냅샷, 이중 디스패치, 객체 구조 순회 등 복잡한 상태 관리와 연산 확장을 위한 전문가 수준의 설계 기법을 학습합니다."
+image: "wordcloud.png"
 date: 2024-12-16T10:00:00+09:00
 lastmod: 2024-12-15T14:30:00+09:00
 categories:
@@ -77,9 +77,9 @@ tags:
 - 내보내기 연산
 ---
 
-# Memento와 Visitor - 상태 보존과 연산 분리
+Memento와 Visitor 패턴을 통해 상태 보존과 연산 분리를 탐구합니다. 과거 상태로의 복원과 객체 구조의 확장 가능한 설계 방법을 학습합니다.
 
-## **서론: 시간을 저장하고 기능을 분리하다**
+## 서론: 시간을 저장하고 기능을 분리하다
 
 > *"Memento는 시간을 객체로 만들어 과거로 돌아갈 수 있게 하고, Visitor는 구조와 연산을 분리하여 무한한 확장을 가능하게 한다."*
 
@@ -96,14 +96,14 @@ tags:
 - Memento: **시간적 복잡성** 관리
 - Visitor: **기능적 복잡성** 관리
 
-## **1. Memento 패턴 - 시간을 되돌리는 마법**
+## Memento 패턴 - 시간을 되돌리는 마법
 
-### **1.1 Memento 패턴의 핵심 철학**
+### Memento 패턴의 핵심 철학
 
 Memento 패턴의 핵심은 **"캡슐화를 깨지 않으면서 객체의 내부 상태를 외부에 저장"** 하는 것입니다. 이는 시간 여행을 가능하게 하는 마법 같은 패턴입니다.
 
 ```java
-// ❌ Memento 패턴 없이 구현한다면?
+// Memento 패턴 없이 구현한다면?
 class BadDocumentEditor {
     private String content;
     private int cursorPosition;
@@ -130,10 +130,10 @@ class BadDocumentEditor {
 }
 ```
 
-### **1.2 Memento 패턴으로 우아하게 해결**
+### Memento 패턴으로 우아하게 해결
 
 ```java
-// ✅ Memento 패턴의 우아함
+// Memento 패턴의 우아함
 // 1. Memento 인터페이스 (Marker Interface)
 interface DocumentMemento {
     // 외부에서는 구체적인 내용을 알 수 없음
@@ -201,7 +201,7 @@ class DocumentEditor {
             this.properties = new HashMap<>(concreteMemento.properties);
             this.lastModified = concreteMemento.lastModified;
             
-            System.out.println("✅ Document restored to state: " + memento.getDescription());
+            System.out.println("[OK] Document restored to state: " + memento.getDescription());
         }
     }
     
@@ -281,7 +281,7 @@ class DocumentHistory {
     // Undo 수행
     public boolean undo() {
         if (undoStack.isEmpty()) {
-            System.out.println("❌ No more states to undo");
+            System.out.println("[Info] No more states to undo");
             return false;
         }
         
@@ -299,7 +299,7 @@ class DocumentHistory {
     // Redo 수행
     public boolean redo() {
         if (redoStack.isEmpty()) {
-            System.out.println("❌ No more states to redo");
+            System.out.println("[Info] No more states to redo");
             return false;
         }
         
@@ -456,14 +456,14 @@ class MementoPatternDemo {
 }
 ```
 
-## **2. Visitor 패턴 - 연산의 외부화**
+## Visitor 패턴 - 연산의 외부화
 
-### **2.1 Visitor 패턴의 핵심 철학**
+### Visitor 패턴의 핵심 철학
 
 Visitor 패턴은 **"객체 구조와 연산을 분리"** 하여 기존 클래스를 수정하지 않고도 새로운 기능을 추가할 수 있게 합니다. 이는 **개방-폐쇄 원칙**의 완벽한 구현입니다.
 
 ```java
-// ❌ Visitor 패턴 없이 구현한다면?
+// Visitor 패턴 없이 구현한다면?
 abstract class BadShape {
     // 😱 새로운 연산을 추가할 때마다 모든 Shape 클래스 수정
     public abstract double calculateArea();
@@ -491,10 +491,10 @@ class BadCircle extends BadShape {
 }
 ```
 
-### **2.2 Visitor 패턴으로 우아하게 해결**
+### Visitor 패턴으로 우아하게 해결
 
 ```java
-// ✅ Visitor 패턴의 우아함
+// Visitor 패턴의 우아함
 // 1. Visitor 인터페이스
 interface ShapeVisitor {
     void visit(Circle circle);
@@ -902,23 +902,23 @@ class VisitorPatternDemo {
         group.accept(validator);
         
         if (validator.isValid()) {
-            System.out.println("✅ All shapes are valid");
+            System.out.println("[OK] All shapes are valid");
         } else {
-            System.out.println("❌ Validation errors found:");
+            System.out.println("[Error] Validation errors found:");
             validator.getErrors().forEach(error -> System.out.println("  - " + error));
         }
         
         if (!validator.getWarnings().isEmpty()) {
-            System.out.println("⚠️ Warnings:");
+            System.out.println("[Warning] Warnings:");
             validator.getWarnings().forEach(warning -> System.out.println("  - " + warning));
         }
     }
 }
 ```
 
-## **3. Memento와 Visitor의 현대적 활용**
+## Memento와 Visitor의 현대적 활용
 
-### **3.1 Git의 커밋 시스템 (Memento 패턴)**
+### Git의 커밋 시스템 (Memento 패턴)
 
 ```java
 // Git의 커밋이 Memento 패턴의 실제 구현
@@ -948,7 +948,7 @@ class Commit {
 }
 ```
 
-### **3.2 컴파일러의 AST 처리 (Visitor 패턴)**
+### 컴파일러의 AST 처리 (Visitor 패턴)
 
 ```java
 // 컴파일러에서 AST 노드 처리
@@ -981,25 +981,109 @@ class CodeGeneratorVisitor implements ASTVisitor {
 }
 ```
 
-## **결론: 시간과 기능의 마법사들**
+## 한눈에 보는 Memento & Visitor 패턴
+
+### Memento vs Visitor 핵심 비교
+
+| 비교 항목 | Memento 패턴 | Visitor 패턴 |
+|----------|-------------|-------------|
+| **핵심 목적** | 객체 상태 저장 및 복원 | 객체 구조에 새 연산 추가 |
+| **캡슐화 보호** | 내부 상태 노출 없이 저장 | 구조 변경 없이 연산 추가 |
+| **확장 대상** | 상태 이력 관리 | 연산/기능 확장 |
+| **OCP 준수** | 상태 저장에 대해 | 연산 추가에 대해 |
+| **복잡도 증가** | Memento 클래스 추가 | Visitor + Element 클래스 |
+| **사용 빈도** | 중간 (Undo/Redo) | 낮음 (컴파일러, 분석 도구) |
+
+### Memento 패턴 핵심 참여자
+
+| 참여자 | 역할 | 책임 |
+|--------|------|------|
+| Originator | 원본 객체 | 상태 저장/복원, Memento 생성 |
+| Memento | 상태 보관함 | 내부 상태 저장 (불변) |
+| Caretaker | 관리자 | Memento 보관, 이력 관리 |
+
+### Visitor 패턴 핵심 참여자
+
+| 참여자 | 역할 | 책임 |
+|--------|------|------|
+| Visitor | 연산 인터페이스 | visit(Element) 메서드 정의 |
+| ConcreteVisitor | 구체 연산 | 각 Element 타입별 처리 |
+| Element | 요소 인터페이스 | accept(Visitor) 정의 |
+| ConcreteElement | 구체 요소 | Visitor 수용 |
+| ObjectStructure | 구조 | 요소 컬렉션 관리 |
+
+### 적용 시나리오 비교
+
+| 시나리오 | Memento | Visitor |
+|----------|---------|---------|
+| Undo/Redo 기능 | O | X |
+| 게임 저장/로드 | O | X |
+| 트랜잭션 롤백 | O | X |
+| AST 분석/변환 | X | O |
+| 문서 내보내기 (HTML, PDF) | X | O |
+| 파일 시스템 용량 계산 | X | O |
+| 에디터 스냅샷 | O | X |
+
+### Double Dispatch 메커니즘 (Visitor)
+
+| 단계 | 호출 | 결정 요소 |
+|------|------|----------|
+| 1단계 | element.accept(visitor) | Element 타입 |
+| 2단계 | visitor.visit(this) | Visitor 타입 |
+
+### 메모리 관리 전략 (Memento)
+
+| 전략 | 설명 | 장단점 |
+|------|------|--------|
+| 전체 상태 저장 | 모든 상태 복사 | 단순하나 메모리 낭비 |
+| 차분 저장 | 변경분만 저장 | 메모리 효율적, 구현 복잡 |
+| 주기적 스냅샷 | 일정 간격 전체 저장 | 균형 잡힌 접근 |
+| LRU 캐시 | 오래된 Memento 삭제 | 메모리 제한 가능 |
+
+### 장단점 비교
+
+| 패턴 | 장점 | 단점 |
+|------|------|------|
+| Memento | 캡슐화 유지, Undo 지원, 상태 이력 | 메모리 사용량, Memento 클래스 필요 |
+| Visitor | 새 연산 쉽게 추가, 관련 연산 집중 | 새 Element 추가 어려움, 캡슐화 위반 가능 |
+
+### 현대적 대안 비교
+
+| 패턴 | 전통적 구현 | 현대적 대안 |
+|------|-----------|-----------|
+| Memento | 직접 구현 | Event Sourcing, 불변 객체 + 이력 |
+| Visitor | 직접 구현 | 패턴 매칭 (Kotlin sealed class), Stream API |
+
+### 적용 체크리스트
+
+| Memento 체크 항목 | Visitor 체크 항목 |
+|------------------|-----------------|
+| 객체 상태를 저장/복원해야 하는가? | 구조 변경 없이 연산 추가 필요? |
+| 캡슐화를 유지하며 스냅샷 필요? | 다양한 타입에 동일 연산 적용? |
+| Undo/Redo 기능이 필요한가? | 관련 연산을 한 곳에 집중? |
+| 메모리 관리 전략을 수립했는가? | Element 타입이 안정적인가? |
+
+---
+
+## 결론: 시간과 기능의 마법사들
 
 Memento와 Visitor 패턴은 객체지향 프로그래밍의 한계를 창의적으로 극복하는 패턴들입니다:
 
-### **패턴별 핵심 가치:**
+### 패턴별 핵심 가치:
 
 **Memento 패턴:**
-- ✅ **시간적 캡슐화** - 과거 상태 보존
-- ✅ **캡슐화 유지** - 내부 구조 노출 없이 상태 저장
-- ✅ **Undo/Redo** 시스템 구현
-- ✅ **버전 관리**와 **스냅샷** 기능
+- **시간적 캡슐화** - 과거 상태 보존
+- **캡슐화 유지** - 내부 구조 노출 없이 상태 저장
+- **Undo/Redo** 시스템 구현
+- **버전 관리**와 **스냅샷** 기능
 
 **Visitor 패턴:**
-- ✅ **연산의 외부화** - 구조와 기능 분리
-- ✅ **개방-폐쇄 원칙** 실현
-- ✅ **Double Dispatch** 메커니즘
-- ✅ **타입별 다형성** 처리
+- **연산의 외부화** - 구조와 기능 분리
+- **개방-폐쇄 원칙** 실현
+- **Double Dispatch** 메커니즘
+- **타입별 다형성** 처리
 
-### **현대적 활용:**
+### 현대적 활용:
 
 ```
 Memento Pattern → Modern Evolution:
@@ -1015,29 +1099,29 @@ Visitor Pattern → Modern Evolution:
 - Code Analysis Tools (SonarQube)
 ```
 
-### **실무 가이드라인:**
+### 실무 가이드라인:
 
 ```
-✅ Memento 패턴 적용 시점:
+Memento 패턴 적용 시점:
 - Undo/Redo 기능이 필요할 때
 - 객체 상태의 스냅샷이 필요할 때
 - 캡슐화를 유지하면서 상태 저장이 필요할 때
 - 버전 관리나 히스토리 기능이 필요할 때
 
-✅ Visitor 패턴 적용 시점:
+Visitor 패턴 적용 시점:
 - 객체 구조는 안정적이지만 연산이 자주 추가될 때
 - 타입별로 다른 처리가 필요할 때
 - 기존 클래스를 수정하지 않고 기능 확장이 필요할 때
 - 복잡한 객체 구조를 순회하며 처리해야 할 때
 
-⚠️ 주의사항:
+주의사항:
 - Memento: 메모리 사용량 최적화 필요
 - Visitor: 객체 구조 변경 시 모든 Visitor 수정
 - 과도한 복잡성 방지
 - 성능 오버헤드 고려
 ```
 
-### **함수형 프로그래밍과의 비교:**
+### 함수형 프로그래밍과의 비교:
 
 ```
 Memento vs Immutability:
@@ -1055,5 +1139,5 @@ Visitor vs Pattern Matching:
 
 ---
 
-**💡 핵심 메시지:**
+**핵심 메시지:**
 "Memento는 시간을 되돌리는 마법을, Visitor는 기능을 무한 확장하는 마법을 제공한다. 두 패턴 모두 객체지향의 한계를 창의적으로 극복하며, 현대 프로그래밍에서도 여전히 강력한 도구로 활용되고 있다." 

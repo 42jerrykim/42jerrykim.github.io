@@ -1,12 +1,69 @@
 ---
-description: "디자인 패턴은 소프트웨어 설계에서 반복적으로 등장하는 문제를 효과적으로 해결하는 검증된 방법론으로, 코드 재사용성, 유지보수성, 팀 의사소통 효율을 높여주고 다양한 분야와 언어에 적용이 가능한 설계 지침입니다."
-image: "tmp_wordcloud.png"
-title: "[Design Pattern] Overview"
-last_modified_at: 2024-08-20
+collection_order: 0
+title: "[Design Pattern] 디자인 패턴 개요 및 분류"
+description: "디자인 패턴은 소프트웨어 설계에서 반복되는 문제를 해결하는 검증된 방법론으로, 코드 재사용성과 유지보수성을 높이고 팀 의사소통을 원활하게 하는 설계 지침입니다."
 date: 2022-01-01
+last_modified_at: 2024-08-20
 categories: Design Pattern
+image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-22-designpattern-overview.png
+tags:
+  - Design Pattern
+  - 디자인 패턴
+  - GoF
+  - Gang of Four
+  - Software Design
+  - 소프트웨어 설계
+  - Creational Pattern
+  - 생성 패턴
+  - Structural Pattern
+  - 구조 패턴
+  - Behavioral Pattern
+  - 행위 패턴
+  - Object Oriented
+  - 객체지향
+  - OOP
+  - 객체지향 프로그래밍
+  - Code Reusability
+  - 코드 재사용성
+  - Maintainability
+  - 유지보수성
+  - Software Architecture
+  - 소프트웨어 아키텍처
+  - Clean Code
+  - 클린 코드
+  - SOLID
+  - Best Practices
+  - 모범 사례
+  - Refactoring
+  - 리팩토링
+  - Abstraction
+  - 추상화
+  - Encapsulation
+  - 캡슐화
+  - Inheritance
+  - 상속
+  - Polymorphism
+  - 다형성
+  - Interface
+  - 인터페이스
+  - Class
+  - 클래스
+  - Object
+  - 객체
+  - Pattern Catalog
+  - 패턴 카탈로그
+  - Software Engineering
+  - 소프트웨어 공학
+  - Architecture Pattern
+  - 아키텍처 패턴
+  - Code Quality
+  - 코드 품질
+  - Programming
+  - 프로그래밍
+  - Development
+  - 개발
 ---
 
 소프트웨어 개발은 반복적이고 복잡한 문제를 해결해야 하는 과정이다. 이러한 문제를 해결하는데 있어, 이미 검증된 해결책을 사용하면 시간과 노력을 절약할 수 있다. 이처럼 특정 맥락에서 자주 발생하는 문제에 대해, 경험적으로 검증된 해결책을 **디자인 패턴(Design Pattern)**이라 한다. 디자인 패턴은 소프트웨어 설계의 모범 사례를 축적한 결과물로, 문제 해결의 효율성을 높이고, 코드의 재사용성을 극대화하며, 팀원 간의 의사소통을 원활하게 해주는 중요한 도구이다.
@@ -16,10 +73,6 @@ header:
 ## 디자인 패턴이란
 
 소프트웨어를 설계할 때 특정 맥락에서 자주 발생하는 고질적인 문제들이 또 발생했을 때 재사용할 할 수 있는 훌륭한 해결책이다. ```바퀴를 다시 발명하지 마라(Don’t reinvent the wheel)```라는 말이 있듯이 이미 만들어져서 잘 되는 것을 처음부터 다시 만들 필요가 없다는 의미이다.
-
-|![https://pbs.twimg.com/media/EJ5Gw_RXsAEeSJ5.png](https://pbs.twimg.com/media/EJ5Gw_RXsAEeSJ5.png)|
-|:--:|
-|더 좋은 바퀴(동가란 바퀴)가 있어도 기존에 사용하던 바퀴(네모)를 포기하지 않는 모습|
 
 또한 디자인 패턴은 상황에 따라서 더 효율적인 방법이 있을 수도 있다. 하지만 지금의 일이 바쁘다고 해서 다른 대안을 살펴보지 않는 것은 위 그림처럼 네모난 바퀴를 사용하여 일을 처리하는 모습이 될 것이다. 따라서 시간을 갖고 더 효율적인 방법을 찾을 수 있도록 노력하는 시간을 가져 보자.
 

@@ -1,8 +1,8 @@
 ---
 collection_order: 220
-draft: true
 title: "[Design Patterns] 안티패턴 식별과 리팩토링"
 description: "소프트웨어 개발에서 자주 발생하는 안티패턴을 식별하고 체계적으로 리팩토링하는 전문가 기법을 학습합니다. God Object, Spaghetti Code 등 주요 안티패턴 분석, Strangler Fig Pattern을 활용한 점진적 개선, 코드 품질 측정과 기술 부채 관리를 통해 지속 가능한 소프트웨어를 만드는 방법을 탐구합니다."
+image: "wordcloud.png"
 date: 2024-12-22T10:00:00+09:00
 lastmod: 2024-12-15T14:30:00+09:00
 categories:
@@ -73,23 +73,23 @@ tags:
 - 코드 건강성
 ---
 
-# 안티패턴 식별과 리팩토링
+실무에서 자주 발생하는 안티패턴을 식별하고 체계적인 리팩토링 방법을 탐구합니다. 코드 스멜, 설계 부채, 패턴 남용의 문제를 해결하는 방법을 학습합니다.
 
-## **서론: 나쁜 설계 패턴의 역설**
+## 서론: 나쁜 설계 패턴의 역설
 
 > *"모든 좋은 패턴에는 그림자가 있다. 잘못 사용된 패턴은 코드를 더 복잡하게 만들고, 오히려 유지보수를 어렵게 한다."*
 
 안티패턴(Anti-pattern)은 **겉보기에는 문제를 해결하는 것처럼 보이지만, 실제로는 더 큰 문제를 만드는 설계 방식**입니다. 이 글에서는 실무에서 자주 발생하는 안티패턴들을 식별하고, 체계적인 리팩토링 방법을 제시합니다.
 
-### **안티패턴 식별의 핵심 관점**
+### 안티패턴 식별의 핵심 관점
 - **코드 스멜(Code Smell)**: 즉각적인 문제 징후
 - **설계 부채(Design Debt)**: 장기적 유지보수 비용
 - **패턴 오남용**: 적절한 맥락이 아닌 곳에서의 패턴 사용
 - **과도한 추상화**: 불필요한 복잡성 증가
 
-## **1. 주요 안티패턴 분석**
+## 주요 안티패턴 분석
 
-### **1.1 God Object (신 객체)**
+### God Object (신 객체)
 
 ```java
 // 안티패턴: 모든 책임을 가진 거대한 클래스
@@ -252,7 +252,7 @@ public class UserRegistrationEventHandler {
 // 4. 확장성: 새로운 기능 추가 시 기존 코드 변경 최소화
 ```
 
-### **1.2 Spaghetti Code (스파게티 코드)**
+### Spaghetti Code (스파게티 코드)
 
 ```java
 // 안티패턴: 복잡하게 얽힌 제어 흐름
@@ -407,9 +407,9 @@ public class OrderProcessingOrchestrator {
 // 4. 오류 처리 집중화 - 일관된 예외 처리
 ```
 
-## **2. 리팩토링 전략**
+## 리팩토링 전략
 
-### **2.1 Strangler Fig Pattern (점진적 교체)**
+### Strangler Fig Pattern (점진적 교체)
 
 ```java
 // 기존 레거시 시스템
@@ -493,9 +493,9 @@ public class NewOrderService {
 }
 ```
 
-## **3. 성과 측정**
+## 성과 측정
 
-### **3.1 리팩토링 효과 측정**
+### 리팩토링 효과 측정
 
 ```java
 @Component
@@ -526,27 +526,102 @@ public class RefactoringMetrics {
 }
 ```
 
-## **실습 과제**
+## 실습 과제
 
-### **과제 1: God Object 리팩토링**
+### 과제 1: God Object 리팩토링
 주어진 `OrderManager` 클래스를 분석하고, 단일 책임 원칙에 따라 여러 서비스로 분리하세요.
 
-### **과제 2: Spaghetti Code 정리**
+### 과제 2: Spaghetti Code 정리
 복잡한 중첩 조건문으로 이루어진 `PaymentProcessor.processPayment()` 메서드를 Command Pattern을 사용해 리팩토링하세요.
 
-### **과제 3: 안티패턴 탐지기 구현**
+### 과제 3: 안티패턴 탐지기 구현
 정적 분석을 통해 다음 안티패턴을 탐지하는 도구를 구현하세요:
 - Long Parameter List
 - Data Class
 - Feature Envy
 
-## **토론 주제**
+## 토론 주제
 
 1. **기술 부채와 비즈니스 가치**: 언제 리팩토링에 투자해야 하는가?
 2. **레거시 시스템 현대화**: 대규모 레거시 시스템을 안전하게 리팩토링하는 전략
 3. **팀 차원의 코드 품질**: 코드 리뷰와 페어 프로그래밍의 역할
 
-## **참고 자료**
+## 한눈에 보는 안티패턴과 리팩토링
+
+### 안티패턴 vs 올바른 패턴 비교표
+
+| 안티패턴 | 문제점 | 해결 패턴 | 리팩토링 방향 |
+|---------|-------|----------|-------------|
+| God Class | 과도한 책임, 낮은 응집도 | SRP 적용 | Extract Class |
+| Spaghetti Code | 얽힌 의존성, 이해 불가 | 계층화 | Extract Method, Move |
+| Golden Hammer | 하나의 해법만 고집 | 상황별 적절한 패턴 | 요구사항 재분석 |
+| Lava Flow | 죽은 코드 방치 | 정기적 정리 | Remove Dead Code |
+| Blob | 하나의 클래스에 모든 것 | Facade, Mediator | 책임 분리 |
+| Copy-Paste | 코드 중복 | Template Method, Strategy | Extract Method/Class |
+| Poltergeist | 불필요한 중간 클래스 | 직접 호출 | Inline Class |
+| Boat Anchor | 미사용 코드 보존 | 제거 | Remove |
+
+### 코드 스멜과 리팩토링 매핑
+
+| 코드 스멜 | 징후 | 권장 리팩토링 | 관련 패턴 |
+|----------|------|-------------|----------|
+| Long Method | 50+ 줄 | Extract Method | Template Method |
+| Large Class | 500+ 줄 | Extract Class | Facade |
+| Long Parameter List | 5+ 파라미터 | Introduce Parameter Object | Builder |
+| Duplicate Code | 동일 코드 반복 | Extract Method | Strategy, Template |
+| Feature Envy | 다른 클래스 데이터 사용 | Move Method | - |
+| Data Clumps | 함께 다니는 데이터 | Extract Class | Value Object |
+| Primitive Obsession | 원시 타입 남용 | Replace Primitive with Object | Value Object |
+| Switch Statements | switch/if 연쇄 | Replace with Polymorphism | Strategy, State |
+| Parallel Inheritance | 계층 구조 동기화 필요 | Move/Merge | Bridge |
+| Speculative Generality | 미래 대비 과설계 | Collapse Hierarchy | YAGNI |
+
+### 안티패턴 심각도 및 우선순위
+
+| 안티패턴 | 심각도 | 수정 우선순위 | 영향 범위 |
+|---------|-------|-------------|----------|
+| God Class | 높음 | 높음 | 시스템 전체 |
+| Spaghetti Code | 높음 | 높음 | 해당 모듈 |
+| Copy-Paste | 중간 | 높음 | 변경 시 버그 |
+| Golden Hammer | 중간 | 중간 | 설계 품질 |
+| Lava Flow | 낮음 | 낮음 | 유지보수성 |
+| Boat Anchor | 낮음 | 낮음 | 가독성 |
+
+### 리팩토링 안전성 가이드
+
+| 리팩토링 | 위험도 | 필요 조건 | 자동화 가능 |
+|---------|-------|----------|-----------|
+| Rename | 낮음 | IDE 지원 | O |
+| Extract Method | 낮음 | 테스트 | O |
+| Move Method/Class | 중간 | 의존성 분석 | 부분 |
+| Change Signature | 중간 | 호출부 확인 | O |
+| Replace Inheritance | 높음 | 설계 검토 | X |
+| Introduce Pattern | 높음 | 팀 합의 | X |
+
+### 패턴 오용 vs 올바른 사용
+
+| 패턴 | 오용 상황 | 올바른 사용 |
+|------|----------|-----------|
+| Singleton | 전역 상태 남용 | 진짜 유일해야 하는 자원 |
+| Factory | 단순 생성에 과사용 | 생성 로직 복잡할 때 |
+| Observer | 이벤트 지옥 | 명확한 1:N 관계 |
+| Strategy | 단일 알고리즘에 적용 | 교체 가능한 알고리즘 |
+| Decorator | 과도한 래핑 | 동적 기능 조합 필요 시 |
+
+### 리팩토링 체크리스트
+
+| 단계 | 체크 항목 | 완료 |
+|------|----------|------|
+| 1 | 기존 테스트 통과 확인 | - |
+| 2 | 변경 범위 식별 | - |
+| 3 | 작은 단위로 분할 | - |
+| 4 | 각 단계 후 테스트 | - |
+| 5 | 커밋 메시지 작성 | - |
+| 6 | 코드 리뷰 요청 | - |
+
+---
+
+## 참고 자료
 
 - **도서**: "Refactoring: Improving the Design of Existing Code" by Martin Fowler
 - **도서**: "Working Effectively with Legacy Code" by Michael Feathers
@@ -556,7 +631,7 @@ public class RefactoringMetrics {
 
 ---
 
-## **다음 단계**
+## 다음 단계
 
 안티패턴을 식별하고 체계적으로 리팩토링할 수 있게 되었다면, 다음 글에서는 **패턴을 활용한 코드 리뷰와 설계 리뷰**에 대해 알아보겠습니다. 팀 차원에서 좋은 설계를 유지하고 발전시키는 방법을 탐구해보겠습니다.
 

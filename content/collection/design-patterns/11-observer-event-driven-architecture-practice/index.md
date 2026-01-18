@@ -1,8 +1,8 @@
 ---
 collection_order: 111
-draft: true
 title: "[Design Patterns] 옵저버 패턴 실습 - 이벤트 주도 아키텍처"
 description: "Observer 패턴을 활용한 이벤트 주도 아키텍처를 실습합니다. 주식 시세 모니터링, 온도 센서 알림, MVC 아키텍처 등을 구현하며 느슨한 결합과 반응형 시스템 설계를 마스터하고, WeakReference와 비동기 처리를 통한 성능 최적화 기법을 학습합니다."
+image: "wordcloud.png"
 date: 2024-12-11T11:00:00+09:00
 lastmod: 2024-12-15T14:30:00+09:00
 categories:
@@ -54,15 +54,15 @@ tags:
 - 이벤트 처리
 ---
 
-# Observer 패턴 실습 - 이벤트 주도 아키텍처
+이 실습에서는 Observer 패턴을 활용하여 주식 시세 모니터링, 센서 알림 시스템 등 이벤트 주도 아키텍처를 구현합니다.
 
-## **실습 목표**
+## 실습 목표
 
 1. 주식 시세 모니터링 시스템 구현
 2. 온도 센서 알림 시스템 구현
 3. 성능 최적화 실습
 
-## **과제 1: 주식 시세 모니터링**
+## 과제 1: 주식 시세 모니터링
 
 ### 기본 구조
 ```java
@@ -94,7 +94,7 @@ public class Stock implements StockSubject {
 - StockDisplay, StockAlert, StockLogger 옵저버 구현
 - 여러 주식 동시 모니터링 기능
 
-## **과제 2: 온도 센서 알림**
+## 과제 2: 온도 센서 알림
 
 ### 기본 구조
 ```java
@@ -120,7 +120,7 @@ public interface TemperatureObserver {
 - 다양한 알림 채널 (이메일, SMS, 로그)
 - 알림 빈도 제한 기능
 
-## **과제 3: 성능 최적화**
+## 과제 3: 성능 최적화
 
 ### WeakReference Observer
 ```java
@@ -158,7 +158,7 @@ public class AsyncObserver implements Observer {
 }
 ```
 
-## **완성도 체크리스트**
+## 완성도 체크리스트
 
 ### 기본 구현
 - [ ] Subject/Observer 인터페이스 구현
@@ -177,14 +177,14 @@ public class AsyncObserver implements Observer {
 - [ ] 메모리 누수 시나리오 테스트
 - [ ] 동시성 테스트
 
-## **추가 도전 과제**
+## 추가 도전 과제
 
 1. EventBus 패턴으로 확장
 2. Reactive Streams 연계
 3. 분산 Observer 시스템
 4. 패턴 조합 (Observer + Strategy + Command)
 
-## **실무 적용 예시**
+## 실무 적용 예시
 
 ### MVC 아키텍처
 ```java
@@ -234,7 +234,7 @@ public class EmailService {
 
 ---
 
-**💡 실습 팁**
+**실습 팁**
 - Observer 패턴의 메모리 누수 위험성 항상 고려
 - 비동기 처리 시 스레드 안전성 확보
 - 대량 Observer 등록 시 성능 영향 측정

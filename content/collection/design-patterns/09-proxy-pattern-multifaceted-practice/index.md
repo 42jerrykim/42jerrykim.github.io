@@ -1,8 +1,8 @@
 ---
 collection_order: 91
-draft: true
 title: "[Design Patterns] 프록시 패턴 실습 - 다면적 제어와 최적화"
 description: "Proxy 패턴의 다양한 형태를 실제 프로젝트에 적용하는 실습입니다. Virtual Proxy, Protection Proxy, Remote Proxy, Smart Proxy 등을 구현하며 접근 제어, 지연 로딩, 캐싱, 원격 호출 등의 고급 기법을 마스터하고 성능 최적화와 보안 강화 방법을 학습합니다."
+image: "wordcloud.png"
 date: 2024-12-09T11:00:00+09:00
 lastmod: 2024-12-15T14:30:00+09:00
 categories:
@@ -54,20 +54,20 @@ tags:
 - 소프트웨어 아키텍처
 ---
 
-# Proxy 패턴 실습 - 다면적 제어와 최적화
+이 실습에서는 Virtual, Protection, Remote, Caching 등 다양한 Proxy 유형을 직접 구현하며 성능 최적화 기법을 익힙니다.
 
-## **실습 목표**
+## 실습 목표
 - 다양한 Proxy 유형 구현 (가상, 보호, 원격, 캐싱)
 - 지연 로딩과 성능 최적화 기법
 - AOP 스타일 횡단 관심사 처리
 - 동적 프록시와 리플렉션 활용
 
-## **실습 1: 이미지 로딩 Virtual Proxy**
+## 실습 1: 이미지 로딩 Virtual Proxy
 
-### **요구사항**
+### 요구사항
 대용량 이미지의 지연 로딩 시스템
 
-### **💻 코드 템플릿**
+### 코드 템플릿
 
 ```java
 // TODO 1: Subject 인터페이스 정의
@@ -142,12 +142,12 @@ public class CachingImageProxy implements Image {
 }
 ```
 
-## **실습 2: 보안 Protection Proxy**
+## 실습 2: 보안 Protection Proxy
 
-### **요구사항**
+### 요구사항
 사용자 권한에 따른 파일 접근 제어
 
-### **💻 코드 템플릿**
+### 코드 템플릿
 
 ```java
 // TODO 1: 파일 서비스 인터페이스
@@ -210,12 +210,12 @@ public class AccessController {
 }
 ```
 
-## **실습 3: 원격 서비스 Remote Proxy**
+## 실습 3: 원격 서비스 Remote Proxy
 
-### **요구사항**
+### 요구사항
 원격 서버의 서비스를 로컬에서 사용하는 것처럼 처리
 
-### **💻 코드 템플릿**
+### 코드 템플릿
 
 ```java
 // TODO 1: 서비스 인터페이스
@@ -274,9 +274,9 @@ public class CircuitBreakerProxy implements UserService {
 }
 ```
 
-## **실습 4: 동적 프록시 구현**
+## 실습 4: 동적 프록시 구현
 
-### **💻 코드 템플릿**
+### 코드 템플릿
 
 ```java
 // TODO 1: 범용 프록시 핸들러
@@ -355,36 +355,36 @@ public class AnnotationProxyHandler implements InvocationHandler {
 }
 ```
 
-## **체크리스트**
+## 체크리스트
 
-### **기본 Proxy 유형**
+### 기본 Proxy 유형
 - [ ] Virtual Proxy (지연 로딩)
 - [ ] Protection Proxy (접근 제어)  
 - [ ] Remote Proxy (원격 접근)
 - [ ] Caching Proxy (결과 캐싱)
 
-### **고급 기능**
+### 고급 기능
 - [ ] 동적 프록시 구현
 - [ ] 어노테이션 기반 AOP
 - [ ] 회로 차단기 패턴
 - [ ] 성능 모니터링
 
-### **최적화 및 확장**
+### 최적화 및 확장
 - [ ] LRU 캐시 구현
 - [ ] 비동기 프록시
 - [ ] 프록시 체이닝
 - [ ] 메트릭 수집
 
-## **추가 도전**
+## 추가 도전
 
 1. **Smart Proxy**: 참조 카운팅과 자동 정리
 2. **Copy-on-Write Proxy**: 쓰기 시점 복사
 3. **Adaptive Proxy**: 상황에 따른 전략 변경
 4. **Distributed Proxy**: 분산 환경 투명 접근
 
-## **실무 적용**
+## 실무 적용
 
-### **Proxy 활용 사례**
+### Proxy 활용 사례
 - ORM 지연 로딩 (Hibernate)
 - Spring AOP 프록시
 - HTTP 클라이언트 래핑
@@ -392,7 +392,7 @@ public class AnnotationProxyHandler implements InvocationHandler {
 - 보안 검사 계층
 - 성능 모니터링
 
-### **성능 고려사항**
+### 성능 고려사항
 - 프록시 생성 비용
 - 메서드 호출 오버헤드
 - 메모리 사용량 증가
@@ -400,4 +400,4 @@ public class AnnotationProxyHandler implements InvocationHandler {
 
 ---
 
-💡 **핵심 포인트**: Proxy 패턴은 다양한 형태로 진화하여 현대 소프트웨어의 핵심 인프라가 되었습니다. 지연 로딩, 보안, 캐싱, 모니터링 등 횡단 관심사를 우아하게 처리하는 강력한 도구입니다. 
+**핵심 포인트**: Proxy 패턴은 다양한 형태로 진화하여 현대 소프트웨어의 핵심 인프라가 되었습니다. 지연 로딩, 보안, 캐싱, 모니터링 등 횡단 관심사를 우아하게 처리하는 강력한 도구입니다. 

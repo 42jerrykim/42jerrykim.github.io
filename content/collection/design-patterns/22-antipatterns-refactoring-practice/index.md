@@ -1,8 +1,8 @@
 ---
 collection_order: 221
-draft: true
 title: "[Design Patterns] 안티패턴과 리팩토링 실습 - 나쁜 설계 개선"
 description: "안티패턴을 식별하고 디자인 패턴을 활용해 리팩토링하는 실습입니다. God Object, Spaghetti Code, Singleton 남용 등의 문제를 체계적으로 분석하고 적절한 패턴 적용을 통해 깔끔하고 유지보수 가능한 코드로 개선하는 실무 기법을 학습합니다."
+image: "wordcloud.png"
 date: 2024-12-22T11:00:00+09:00
 lastmod: 2024-12-15T14:30:00+09:00
 categories:
@@ -50,15 +50,15 @@ tags:
 - 설계 개선
 ---
 
-# 안티패턴과 리팩토링 실습 - 나쁜 설계 개선
+이 실습에서는 God Object 리팩토링, Spaghetti Code 정리, 안티패턴 탐지기 구현을 통해 나쁜 설계를 개선합니다.
 
-## **실습 목표**
+## 실습 목표
 
 1. God Object 리팩토링으로 단일 책임 원칙 적용
 2. Spaghetti Code를 Command Pattern으로 정리
 3. 안티패턴 탐지기 구현
 
-## **과제 1: God Object 리팩토링**
+## 과제 1: God Object 리팩토링
 
 ### 문제 코드
 ```java
@@ -100,7 +100,7 @@ public class OrderEventHandler {
 }
 ```
 
-## **과제 2: Command Pattern으로 Spaghetti Code 정리**
+## 과제 2: Command Pattern으로 Spaghetti Code 정리
 
 ### 문제 코드
 ```java
@@ -149,7 +149,7 @@ public class PaymentProcessor {
 }
 ```
 
-## **과제 3: 안티패턴 탐지기 구현**
+## 과제 3: 안티패턴 탐지기 구현
 
 ### 기본 구조
 ```java
@@ -200,7 +200,7 @@ public class AntiPatternAnalyzer {
 }
 ```
 
-## **완성도 체크리스트**
+## 완성도 체크리스트
 
 ### God Object 리팩토링
 - [ ] 단일 책임 원칙 적용
@@ -220,14 +220,14 @@ public class AntiPatternAnalyzer {
 - [ ] 리팩토링 제안
 - [ ] 통계 리포트
 
-## **추가 도전 과제**
+## 추가 도전 과제
 
 1. **정적 분석 도구 통합** - SonarQube, PMD 연계
 2. **IDE 플러그인 개발** - 실시간 코드 분석
 3. **CI/CD 통합** - 품질 게이트 적용
 4. **머신러닝 탐지** - 패턴 학습 기반 분석
 
-## **실무 적용**
+## 실무 적용
 
 ### Strangler Fig Pattern
 ```java
@@ -248,7 +248,7 @@ public class ServiceFacade {
 
 ---
 
-**💡 실습 팁**
+**실습 팁**
 - 작은 단위로 점진적 리팩토링
 - 테스트 코드 먼저 작성
 - 정적 분석 도구 적극 활용

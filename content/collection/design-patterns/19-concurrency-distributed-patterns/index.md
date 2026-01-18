@@ -1,8 +1,8 @@
 ---
 collection_order: 190
-draft: true
 title: "[Design Patterns] 동시성과 분산 시스템에서의 패턴"
 description: "동시성과 분산 시스템 환경에서 적용되는 고급 디자인 패턴을 탐구합니다. Thread-Safe Singleton, Producer-Consumer, Actor 패턴 등 동시성 패턴과 Circuit Breaker, Event Sourcing, CQRS 등 분산 시스템 패턴을 다루며, 확장성과 안정성을 보장하는 현대적 아키텍처 설계 기법을 학습합니다."
+image: "wordcloud.png"
 date: 2024-12-19T10:00:00+09:00
 lastmod: 2024-12-15T14:30:00+09:00
 categories:
@@ -75,20 +75,20 @@ tags:
 - 최종 일관성
 ---
 
-# 동시성과 분산 시스템에서의 패턴 - 확장성의 도전
+동시성과 분산 시스템 환경에서 전통적 패턴의 진화와 새로운 패턴을 탐구합니다. 확장 가능한 시스템 설계를 위한 동시성 제어와 분산 패턴을 학습합니다.
 
-## **서론: 분산 세계의 패턴 진화**
+## 서론: 분산 세계의 패턴 진화
 
 > *"단일 시스템에서 동작하던 패턴들이 분산 환경에서 어떻게 진화하고 있는가? 동시성과 분산성은 기존 패턴에 새로운 도전과 기회를 가져다준다."*
 
 현대 소프트웨어는 **분산 시스템**과 **고동시성** 환경에서 동작해야 합니다. 전통적 디자인 패턴들이 이러한 환경에서 어떻게 적응하고 진화했는지, 그리고 분산 시스템만의 새로운 패턴들을 탐구해보겠습니다.
 
-## **1. 동시성 패턴들**
+## 동시성 패턴들
 
-### **1.1 Thread-Safe Singleton - 동시성의 첫 번째 시험**
+### Thread-Safe Singleton - 동시성의 첫 번째 시험
 
 ```java
-// ✅ 현대적 Thread-Safe Singleton 구현들
+// 현대적 Thread-Safe Singleton 구현들
 public class ModernSingleton {
     
     // 1. Enum 기반 (가장 안전)
@@ -146,10 +146,10 @@ public class ModernSingleton {
 }
 ```
 
-### **1.2 Producer-Consumer 패턴 - 동시성의 핵심**
+### Producer-Consumer 패턴 - 동시성의 핵심
 
 ```java
-// ✅ 현대적 Producer-Consumer 구현
+// 현대적 Producer-Consumer 구현
 public class ModernProducerConsumer<T> {
     private final BlockingQueue<T> queue;
     private final AtomicBoolean running = new AtomicBoolean(true);
@@ -204,10 +204,10 @@ public class ModernProducerConsumer<T> {
 }
 ```
 
-### **1.3 Actor 패턴 - 동시성의 새로운 접근**
+### Actor 패턴 - 동시성의 새로운 접근
 
 ```java
-// ✅ Java에서의 Actor 패턴 구현
+// Java에서의 Actor 패턴 구현
 public abstract class Actor<T> {
     private final BlockingQueue<T> mailbox = new LinkedBlockingQueue<>();
     private final AtomicBoolean running = new AtomicBoolean(false);
@@ -287,12 +287,12 @@ public class OrderProcessorActor extends Actor<OrderMessage> {
 }
 ```
 
-## **2. 분산 시스템 패턴들**
+## 분산 시스템 패턴들
 
-### **2.1 Circuit Breaker - 장애 전파 방지**
+### Circuit Breaker - 장애 전파 방지
 
 ```java
-// ✅ Circuit Breaker 패턴 구현
+// Circuit Breaker 패턴 구현
 public class CircuitBreaker {
     public enum State { CLOSED, OPEN, HALF_OPEN }
     
@@ -388,10 +388,10 @@ public class ExternalServiceClient {
 }
 ```
 
-### **2.2 Event Sourcing - 분산 상태 관리**
+### Event Sourcing - 분산 상태 관리
 
 ```java
-// ✅ Event Sourcing 패턴
+// Event Sourcing 패턴
 public abstract class Event {
     private final UUID id = UUID.randomUUID();
     private final LocalDateTime timestamp = LocalDateTime.now();
@@ -511,10 +511,10 @@ public class Order {
 }
 ```
 
-### **2.3 CQRS - 읽기/쓰기 분리**
+### CQRS - 읽기/쓰기 분리
 
 ```java
-// ✅ CQRS 패턴 구현
+// CQRS 패턴 구현
 // Command 측면
 public abstract class Command {
     private final UUID id = UUID.randomUUID();
@@ -623,9 +623,9 @@ public class OrderQueryService {
 }
 ```
 
-## **3. 성능과 확장성 분석**
+## 성능과 확장성 분석
 
-### **패턴별 성능 특성**
+### 패턴별 성능 특성
 
 | 패턴 | 처리량 | 지연시간 | 메모리 사용 | 확장성 | 복잡성 |
 |------|--------|----------|-------------|--------|---------|
@@ -636,11 +636,73 @@ public class OrderQueryService {
 | Event Sourcing | 중간 | 높음 | 높음 | 높음 | 높음 |
 | CQRS | 높음 | 중간 | 중간 | 매우 높음 | 높음 |
 
-## **결론: 분산 시대의 패턴 진화**
+## 한눈에 보는 동시성/분산 패턴
+
+### 동시성 패턴 비교표
+
+| 패턴 | 핵심 목적 | 적용 상황 | 복잡도 |
+|------|----------|----------|--------|
+| Thread Pool | 스레드 재사용, 자원 관리 | 다수 작업 병렬 처리 | 낮음 |
+| Producer-Consumer | 생산/소비 분리, 버퍼링 | 비동기 작업 큐 | 중간 |
+| Read-Write Lock | 읽기 동시성, 쓰기 독점 | 읽기 빈번, 쓰기 드묾 | 중간 |
+| Double-Checked Locking | 지연 초기화 + 스레드 안전 | 싱글톤, 캐시 | 중간 |
+| Future/Promise | 비동기 결과 표현 | 비동기 작업 결과 처리 | 낮음 |
+| Actor Model | 메시지 기반 동시성 | 분산 시스템, 고동시성 | 높음 |
+
+### 분산 시스템 패턴 비교표
+
+| 패턴 | 핵심 목적 | 해결 문제 | 트레이드오프 |
+|------|----------|----------|------------|
+| Saga | 분산 트랜잭션 | 서비스 간 일관성 | 보상 로직 복잡 |
+| Circuit Breaker | 장애 격리 | 연쇄 장애 방지 | 일시적 서비스 불가 |
+| Retry + Backoff | 일시적 장애 극복 | 네트워크 불안정 | 지연 증가 |
+| Bulkhead | 자원 격리 | 장애 전파 방지 | 자원 효율성 감소 |
+| CQRS | 읽기/쓰기 분리 | 성능 최적화 | 일관성 복잡성 |
+| Event Sourcing | 이벤트 기반 상태 | 감사, 이력 추적 | 구현 복잡성 |
+
+### CAP 정리와 패턴 선택
+
+| 선택 | 패턴 적합성 | 사용 예 |
+|------|-----------|--------|
+| CP (일관성+분할내성) | SAGA, 2PC | 금융 시스템 |
+| AP (가용성+분할내성) | Event Sourcing, CQRS | SNS, 쇼핑몰 |
+| CA (일관성+가용성) | 전통적 ACID | 단일 DB 시스템 |
+
+### 마이크로서비스 패턴 매트릭스
+
+| 패턴 | 서비스 디커플링 | 장애 내성 | 성능 | 복잡도 |
+|------|---------------|---------|------|--------|
+| API Gateway | 높음 | 중간 | 중간 | 중간 |
+| Service Mesh | 매우 높음 | 높음 | 약간 저하 | 높음 |
+| Event-Driven | 매우 높음 | 높음 | 높음 | 높음 |
+| Choreography | 높음 | 높음 | 높음 | 중간 |
+| Orchestration | 중간 | 중간 | 중간 | 중간 |
+
+### 비동기 통신 패턴
+
+| 패턴 | 특징 | 장점 | 단점 |
+|------|------|------|------|
+| Request-Reply | 동기식 대기 | 단순함 | 블로킹 |
+| Fire-and-Forget | 응답 없음 | 빠름 | 결과 확인 불가 |
+| Publish-Subscribe | 다대다 브로드캐스트 | 느슨한 결합 | 순서 보장 어려움 |
+| Message Queue | 버퍼링 + 전달 보장 | 신뢰성 | 복잡성 증가 |
+
+### 적용 체크리스트
+
+| 동시성 패턴 체크 | 분산 패턴 체크 |
+|----------------|---------------|
+| 공유 자원 경합이 있는가? | 서비스 간 트랜잭션 필요? |
+| 스레드 안전성이 필요한가? | 장애 격리가 중요한가? |
+| 비동기 처리가 필요한가? | 확장성이 중요한가? |
+| 성능 병목이 동시성 때문인가? | 일관성 vs 가용성 선택? |
+
+---
+
+## 결론: 분산 시대의 패턴 진화
 
 분산 시스템과 동시성 환경은 디자인 패턴에 **새로운 차원**을 열어주었습니다:
 
-### **🌟 핵심 인사이트**
+### 핵심 인사이트
 
 1. **상태 관리의 복잡성**: 분산 환경에서 상태 일관성 유지의 도전
 2. **장애 내성**: Circuit Breaker, Bulkhead 패턴을 통한 회복력 구축
@@ -649,4 +711,4 @@ public class OrderQueryService {
 
 > *"분산 시스템에서는 완벽한 해결책은 없다. 있는 것은 적절한 트레이드오프뿐이다."*
 
-현대 개발자는 **단일 시스템의 패턴**과 **분산 시스템의 패턴**을 모두 이해해야 합니다. 각각의 장단점을 파악하고 상황에 맞는 최적의 선택을 하는 것이 핵심입니다! 🚀
+현대 개발자는 **단일 시스템의 패턴**과 **분산 시스템의 패턴**을 모두 이해해야 합니다. 각각의 장단점을 파악하고 상황에 맞는 최적의 선택을 하는 것이 핵심입니다!

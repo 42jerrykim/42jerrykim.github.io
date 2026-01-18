@@ -1,8 +1,8 @@
 ---
 collection_order: 150
-draft: true
 title: "[Design Patterns] 인터프리터와 미디에이터: 파싱과 조정의 패턴"
 description: "언어를 객체로 구현하는 Interpreter 패턴과 복잡한 상호작용을 중재하는 Mediator 패턴을 심도 있게 분석합니다. 문법 해석 엔진, 비즈니스 규칙 엔진, 객체 간 통신 조정, UI 컴포넌트 상호작용 등 복잡한 로직과 관계를 체계적으로 관리하는 전문가 기법을 학습합니다."
+image: "wordcloud.png"
 date: 2024-12-15T10:00:00+09:00
 lastmod: 2024-12-15T14:30:00+09:00
 categories:
@@ -75,9 +75,9 @@ tags:
 - 통신 프로토콜
 ---
 
-# Interpreter와 Mediator - 해석과 중재의 패턴
+Interpreter와 Mediator 패턴을 통해 언어 처리와 객체 관계 관리를 탐구합니다. DSL 구현과 복잡한 상호작용의 중앙 집중화 방법을 학습합니다.
 
-##️ **서론: 언어의 구현과 관계의 중재**
+## 서론: 언어의 구현과 관계의 중재
 
 > *"좋은 소프트웨어는 복잡한 것을 단순하게 표현한다. Interpreter는 언어를 통해, Mediator는 중재를 통해 이를 실현한다."*
 
@@ -94,14 +94,14 @@ tags:
 - Interpreter: **문법적 복잡성**의 구조화
 - Mediator: **관계적 복잡성**의 구조화
 
-## **1. Interpreter 패턴 - 언어의 객체화**
+## Interpreter 패턴 - 언어의 객체화
 
-### **1.1 Interpreter 패턴의 핵심 철학**
+### Interpreter 패턴의 핵심 철학
 
 Interpreter 패턴은 **"문법을 클래스로, 문장을 객체 트리로"** 변환하는 것입니다. 이를 통해 언어의 실행 엔진을 객체지향적으로 구현할 수 있습니다.
 
 ```java
-// ❌ Interpreter 패턴 없이 구현한다면?
+// Interpreter 패턴 없이 구현한다면?
 class BadRuleEngine {
     public boolean evaluate(String expression, Map<String, Boolean> variables) {
         // 😱 복잡한 파싱과 평가 로직이 한 곳에 집중
@@ -123,10 +123,10 @@ class BadRuleEngine {
 }
 ```
 
-### **1.2 Interpreter 패턴으로 우아하게 해결**
+### Interpreter 패턴으로 우아하게 해결
 
 ```java
-// ✅ Interpreter 패턴의 우아함
+// Interpreter 패턴의 우아함
 // 1. 추상 표현식 인터페이스
 interface Expression {
     boolean interpret(Context context);
@@ -502,13 +502,13 @@ class InterpreterPatternDemo {
         // 결과 출력
         System.out.println("\n=== Results ===");
         results.forEach((rule, result) -> 
-            System.out.printf("%s: %s\n", rule, result ? "✅ APPLY" : "❌ NO")
+            System.out.printf("%s: %s\n", rule, result ? "[APPLY]" : "[NO]")
         );
     }
 }
 ```
 
-### **1.3 고급 Interpreter - 수식 계산기**
+### 고급 Interpreter - 수식 계산기
 
 ```java
 // 수식 계산을 위한 Interpreter 구현
@@ -590,14 +590,14 @@ class MathDemo {
 }
 ```
 
-## **2. Mediator 패턴 - 관계의 중재**
+## Mediator 패턴 - 관계의 중재
 
-### **2.1 Mediator 패턴의 핵심 철학**
+### Mediator 패턴의 핵심 철학
 
 Mediator 패턴은 **"많은 객체 간의 복잡한 상호작용을 중재자가 관리"**하여 객체들이 서로를 직접 참조하지 않도록 합니다.
 
 ```java
-// ❌ Mediator 패턴 없이 구현한다면?
+// Mediator 패턴 없이 구현한다면?
 class BadChatSystem {
     class BadUser {
         private String name;
@@ -626,10 +626,10 @@ class BadChatSystem {
 }
 ```
 
-### **2.2 Mediator 패턴으로 우아하게 해결**
+### Mediator 패턴으로 우아하게 해결
 
 ```java
-// ✅ Mediator 패턴의 우아함
+// Mediator 패턴의 우아함
 // 1. Mediator 인터페이스
 interface ChatMediator {
     void sendMessage(Message message, User sender);
@@ -1019,9 +1019,9 @@ class MediatorPatternDemo {
 }
 ```
 
-## **3. Interpreter와 Mediator의 현대적 활용**
+## Interpreter와 Mediator의 현대적 활용
 
-### **3.1 Spring Framework에서의 활용**
+### Spring Framework에서의 활용
 
 ```java
 // Spring에서 Mediator 패턴 활용
@@ -1050,7 +1050,7 @@ public void processOrder(Order order) {
 }
 ```
 
-### **3.2 현대적 DSL 설계**
+### 현대적 DSL 설계
 
 ```java
 // Fluent Interface를 활용한 내부 DSL
@@ -1069,25 +1069,103 @@ Query query = select("name", "email")
     .limit(10);
 ```
 
-## **결론: 복잡성의 구조화**
+## 한눈에 보는 Interpreter & Mediator 패턴
+
+### Interpreter vs Mediator 핵심 비교
+
+| 비교 항목 | Interpreter 패턴 | Mediator 패턴 |
+|----------|-----------------|--------------|
+| **핵심 목적** | 언어/문법 해석 | 객체 간 상호작용 조정 |
+| **해결 문제** | 문법 파싱, DSL 처리 | 복잡한 객체 간 의존성 |
+| **구조** | 문법 규칙별 클래스 계층 | 중재자 + Colleague 구조 |
+| **확장 방식** | 새 표현식 클래스 추가 | 중재자 로직 수정 |
+| **복잡도 위치** | 분산 (각 표현식 클래스) | 집중 (Mediator) |
+| **사용 빈도** | 드묾 (특수 목적) | 중간 (GUI, 시스템 통합) |
+
+### Interpreter 패턴 구성 요소
+
+| 구성 요소 | 역할 | 예시 |
+|----------|------|------|
+| AbstractExpression | 해석 인터페이스 정의 | `interpret(Context)` |
+| TerminalExpression | 종단 기호 해석 | 숫자, 변수, 리터럴 |
+| NonterminalExpression | 비종단 기호 해석 | 연산자, 조합 규칙 |
+| Context | 전역 정보 저장 | 변수 값, 해석 상태 |
+| Client | 구문 트리 구성 | 파서 역할 |
+
+### Mediator 패턴 통신 비교
+
+| 비교 항목 | 직접 통신 | Mediator 통신 |
+|----------|----------|--------------|
+| 결합도 | O(n²) 연결 | O(n) 연결 |
+| 의존성 | Colleague 서로 의존 | Mediator만 의존 |
+| 확장성 | 새 Colleague 추가 어려움 | Mediator만 수정 |
+| 복잡성 | 분산 (각 객체에) | 집중 (Mediator에) |
+
+### 적용 시나리오 비교
+
+| 시나리오 | Interpreter | Mediator |
+|----------|-------------|----------|
+| 수식 계산기 | O | X |
+| SQL 파서 | O | X |
+| 정규표현식 엔진 | O | X |
+| 채팅방 | X | O |
+| GUI 폼 컴포넌트 연동 | X | O |
+| 항공 관제 시스템 | X | O |
+| DSL 구현 | O | X |
+
+### 현대적 대안 비교
+
+| 패턴 | 전통적 구현 | 현대적 대안 |
+|------|-----------|-----------|
+| Interpreter | 직접 구현 | ANTLR, Parser Combinator, 정규표현식 |
+| Mediator | 직접 구현 | Event Bus, Message Queue, Redux |
+
+### 장단점 비교
+
+| 패턴 | 장점 | 단점 |
+|------|------|------|
+| Interpreter | 문법 변경 용이, 새 표현식 추가 쉬움 | 복잡한 문법에 비효율, 성능 이슈 |
+| Mediator | 결합도 감소, 상호작용 집중 관리 | God Object 위험, 단일 실패점 |
+
+### Mediator vs Observer 비교
+
+| 비교 항목 | Mediator | Observer |
+|----------|----------|----------|
+| 통신 방향 | 양방향 | 단방향 |
+| 중재자 역할 | 능동적 조정 | 없음 (Subject만) |
+| 결합도 | Mediator에 집중 | Subject-Observer |
+| 사용 목적 | 복잡한 상호작용 조정 | 상태 변경 통지 |
+
+### 적용 체크리스트
+
+| Interpreter 체크 항목 | Mediator 체크 항목 |
+|---------------------|------------------|
+| 단순한 문법인가? (복잡하면 파서 도구 사용) | 객체 간 복잡한 의존성이 있는가? |
+| 문법 변경이 빈번한가? | N:N 통신을 N:1로 줄이고 싶은가? |
+| 성능이 크리티컬하지 않은가? | 객체들의 상호작용을 한 곳에서 관리? |
+| DSL이 비즈니스 가치를 제공하는가? | 새 Colleague 추가 시 기존 코드 수정 최소화? |
+
+---
+
+## 결론: 복잡성의 구조화
 
 Interpreter와 Mediator 패턴은 서로 다른 종류의 복잡성을 해결합니다:
 
-### **패턴별 핵심 가치:**
+### 패턴별 핵심 가치:
 
 **Interpreter 패턴:**
-- ✅ **문법적 복잡성**의 구조화
-- ✅ **도메인 특화 언어** 구현
-- ✅ **규칙 엔진**과 **표현식 평가**
-- ✅ **확장 가능한 문법** 정의
+- **문법적 복잡성**의 구조화
+- **도메인 특화 언어** 구현
+- **규칙 엔진**과 **표현식 평가**
+- **확장 가능한 문법** 정의
 
 **Mediator 패턴:**
-- ✅ **관계적 복잡성**의 단순화
-- ✅ **느슨한 결합** 실현
-- ✅ **중앙집중식 제어**
-- ✅ **재사용 가능한 상호작용**
+- **관계적 복잡성**의 단순화
+- **느슨한 결합** 실현
+- **중앙집중식 제어**
+- **재사용 가능한 상호작용**
 
-### **현대적 활용:**
+### 현대적 활용:
 
 ```
 Interpreter Pattern → Modern Evolution:
@@ -1103,22 +1181,22 @@ Mediator Pattern → Modern Evolution:
 - Microservice Event Bus
 ```
 
-### **실무 가이드라인:**
+### 실무 가이드라인:
 
 ```
-✅ Interpreter 패턴 적용 시점:
+Interpreter 패턴 적용 시점:
 - 도메인 특화 언어(DSL)가 필요할 때
 - 복잡한 비즈니스 규칙을 표현해야 할 때
 - 사용자가 규칙을 정의할 수 있어야 할 때
 - 문법이 자주 변경될 가능성이 있을 때
 
-✅ Mediator 패턴 적용 시점:
+Mediator 패턴 적용 시점:
 - 객체 간 복잡한 상호작용이 있을 때
 - 결합도를 낮추고 싶을 때
 - 통신 프로토콜을 중앙에서 관리하고 싶을 때
 - 재사용 가능한 컴포넌트를 만들고 싶을 때
 
-⚠️ 주의사항:
+주의사항:
 - Interpreter: 성능 오버헤드 고려
 - Mediator: Single Point of Failure 방지
 - 과도한 추상화 지양
@@ -1131,7 +1209,7 @@ Mediator Pattern → Modern Evolution:
 
 ---
 
-**💡 핵심 메시지:**
+**핵심 메시지:**
 "Interpreter는 복잡한 규칙을 객체로 만들어 실행 가능하게 하고, Mediator는 복잡한 관계를 중재자로 단순화한다. 두 패턴 모두 복잡성을 구조화하여 시스템의 이해도와 확장성을 높이는 핵심 메커니즘이다."
 
 ### 평가 기준
@@ -1145,5 +1223,5 @@ Mediator Pattern → Modern Evolution:
 
 ---
 
-**💡 핵심 메시지:**
+**핵심 메시지:**
 "Interpreter는 복잡한 규칙을 객체로 만들어 실행 가능하게 하고, Mediator는 복잡한 관계를 중재자로 단순화한다. 두 패턴 모두 복잡성을 구조화하여 시스템의 이해도와 확장성을 높이는 핵심 메커니즘이다." 
