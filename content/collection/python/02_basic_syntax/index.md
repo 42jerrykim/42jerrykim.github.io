@@ -1,10 +1,76 @@
 ---
 draft: true
 title: "02. 파이썬 기본 문법"
-description: "변수, 데이터 타입, 연산자 등 파이썬의 기본 문법 요소들"
+description: "변수·타입·연산자·입출력·주석/독스트링을 핵심 개념 중심으로 정리합니다. 타입 변환과 우선순위 같은 함정을 피하고 파이썬다운 기본기를 단단히 다집니다."
+tags:
+  - python
+  - Python
+  - 파이썬
+  - programming
+  - 프로그래밍
+  - software-engineering
+  - 소프트웨어공학
+  - computer-science
+  - 컴퓨터과학
+  - backend
+  - 백엔드
+  - development
+  - 개발
+  - best-practices
+  - 베스트프랙티스
+  - clean-code
+  - 클린코드
+  - refactoring
+  - 리팩토링
+  - testing
+  - 테스트
+  - debugging
+  - 디버깅
+  - logging
+  - 로깅
+  - security
+  - 보안
+  - performance
+  - 성능
+  - concurrency
+  - 동시성
+  - async
+  - 비동기
+  - oop
+  - 객체지향
+  - data-structures
+  - 자료구조
+  - algorithms
+  - 알고리즘
+  - standard-library
+  - 표준라이브러리
+  - packaging
+  - 패키징
+  - deployment
+  - 배포
+  - architecture
+  - 아키텍처
+  - design-patterns
+  - 디자인패턴
+  - web
+  - 웹
+  - database
+  - 데이터베이스
+  - networking
+  - 네트워킹
+  - ci-cd
+  - 자동화
+  - documentation
+  - 문서화
+  - git
+  - 버전관리
+  - tooling
+  - 개발도구
+  - code-quality
+  - 코드품질
+lastmod: 2026-01-17
 collection_order: 2
 ---
-
 # 챕터 2: 파이썬 기본 문법
 
 > "문법은 언어의 뼈대다" - 파이썬의 기본 문법을 탄탄하게 다지면 모든 고급 기능을 쉽게 이해할 수 있습니다.
@@ -14,6 +80,41 @@ collection_order: 2
 - 다양한 데이터 타입의 특성을 파악할 수 있다
 - 변수와 연산자를 적절히 사용할 수 있다
 - 파이썬다운 코드(Pythonic)의 기초를 이해할 수 있다
+
+## 핵심 개념(이론)
+
+### 1) 변수는 ‘상자’가 아니라 ‘객체 참조’다
+파이썬 변수는 값을 담는 상자가 아니라, **객체를 가리키는 이름(레퍼런스)**입니다.
+그래서 대입은 “복사”가 아니라 “참조 연결”이 기본이며, 이 차이가 버그(특히 가변 객체)로 이어집니다.
+
+### 2) 타입 시스템: 동적 타이핑 + 강한 타입(Strong typing)
+동적 타이핑은 실행 시점에 타입이 결정된다는 뜻이지, 아무 타입으로 자동 변환해준다는 뜻이 아닙니다.
+파이썬은 강한 타입이라 `"1" + 1` 같은 것은 자동으로 맞춰주지 않고 오류가 납니다.
+
+### 3) 연산자/우선순위는 ‘외우기’보다 ‘명확하게 쓰기’가 중요하다
+우선순위는 실수를 유발합니다. “헷갈리면 괄호”가 가독성과 안정성을 높입니다.
+특히 `is`(정체성)와 `==`(동등성)을 섞으면 버그가 납니다.
+
+### 4) I/O는 실패를 기본으로 설계한다
+입력은 항상 잘못될 수 있고, 파일은 항상 없을 수 있습니다.
+따라서 타입 변환, 예외 처리, 인코딩을 기본 전제로 두고 코드를 짜는 습관이 중요합니다.
+
+### 5) “파이썬답게(Pythonic)”는 짧게 쓰는 게 아니라 읽기 쉽게 쓰는 것이다
+한 줄로 줄이는 것이 목적이 아니라, **의도가 드러나는 코드**가 목적입니다.
+가독성이 떨어지는 축약(과한 삼항/중첩 컴프리헨션)은 유지보수 비용을 올립니다.
+
+## 선택 기준(Decision Guide)
+- 데이터 변환은 `int()/float()` 같은 명시적 변환을 우선.
+- `is`는 **None 비교**에만 우선적으로 사용.
+- 입력/파일 I/O는 항상 예외를 염두에 두고 최소한의 검증을 넣기.
+
+## 흔한 오해/주의점
+- `eval()`은 편리하지만 보안 위험이 매우 큽니다(입력 섞이면 즉시 취약점).
+- “동적 타이핑 = 안전하지 않다”는 오해가 있습니다. 타입 힌트/테스트로 충분히 안정성을 확보할 수 있습니다.
+
+## 요약
+- 변수는 참조이며, 동적 타이핑과 강한 타입을 구분한다.
+- 우선순위/비교는 명확성을 우선하고, I/O는 실패를 기본으로 설계한다.
 
 ## 변수와 식별자
 
@@ -73,32 +174,22 @@ __special_var = "very special"
 
 ### 동적 타이핑 이해하기
 
-<function_calls>
-<invoke name="create_diagram">
-<parameter name="content">graph TD
-    A["변수"] --> B["동적 타이핑"]
-    B --> C["실행 시 타입 결정"]
-    B --> D["타입 변경 가능"]
+```mermaid
+graph TD
+    varNode["변수"] --> dynTyping["동적 타이핑"]
+    dynTyping --> runtimeType["실행 시 타입 결정"]
+    dynTyping --> reassignType["타입 변경 가능"]
     
-    C --> E["x = 10 (int)"]
-    D --> F["x = 'hello' (str)"]
-    D --> G["x = [1,2,3] (list)"]
+    runtimeType --> exInt["x = 10 (int)"]
+    reassignType --> exStr["x = 'hello' (str)"]
+    reassignType --> exList["x = [1,2,3] (list)"]
     
-    H["정적 타이핑 (Java, C++)"] --> I["컴파일 시 타입 결정"]
-    H --> J["타입 변경 불가"]
+    staticTyping["정적 타이핑 (Java, C++)"] --> compileType["컴파일 시 타입 결정"]
+    staticTyping --> fixedType["타입 변경 불가"]
     
-    I --> K["int x = 10"]
-    J --> L["x = 'hello' (Error)"]
-    
-    style B fill:#e8f5e8
-    style H fill:#ffebee
-    style E fill:#e8f5e8
-    style F fill:#e8f5e8
-    style G fill:#e8f5e8
-    style L fill:#ffebee
-</code_block_to_apply_changes_from>
-</invoke>
-</function_calls>
+    compileType --> exStatic["int x = 10"]
+    fixedType --> exError["x = 'hello' (Error)"]
+```
 
 **동적 타이핑 예제:**
 
@@ -180,33 +271,25 @@ check_type(3.14)      # 값: 3.14, 타입: float
 
 ### 숫자형 (Numeric Types)
 
-<function_calls>
-<invoke name="create_diagram">
-<parameter name="content">graph TD
-    A["숫자형"] --> B["정수 (int)"]
-    A --> C["실수 (float)"]
-    A --> D["복소수 (complex)"]
+```mermaid
+graph TD
+    numeric["숫자형"] --> intNode["정수 (int)"]
+    numeric --> floatNode["실수 (float)"]
+    numeric --> complexNode["복소수 (complex)"]
     
-    B --> E["42"]
-    B --> F["-100"]
-    B --> G["0b1010 (이진수)"]
-    B --> H["0o12 (8진수)"]
-    B --> I["0xFF (16진수)"]
+    intNode --> ex42["42"]
+    intNode --> exNeg100["-100"]
+    intNode --> exBinary["0b1010 (이진수)"]
+    intNode --> exOctal["0o12 (8진수)"]
+    intNode --> exHex["0xFF (16진수)"]
     
-    C --> J["3.14"]
-    C --> K["2.5e-3 (과학적 표기법)"]
-    C --> L["float('inf') (무한대)"]
+    floatNode --> exPi["3.14"]
+    floatNode --> exSci["2.5e-3 (과학적 표기법)"]
+    floatNode --> exInf["float('inf') (무한대)"]
     
-    D --> M["3+4j"]
-    D --> N["complex(2, 3)"]
-    
-    style A fill:#e1f5fe
-    style B fill:#e8f5e8
-    style C fill:#fff3e0
-    style D fill:#fce4ec
-</code_block_to_apply_changes_from>
-</invoke>
-</function_calls>
+    complexNode --> exComplex["3+4j"]
+    complexNode --> exComplexCtor["complex(2, 3)"]
+```
 
 **정수형 (int):**
 
@@ -581,87 +664,6 @@ if len(data) == 2:
         print(f"{name}님은 {age}세입니다.")
     except ValueError:
         print("나이는 숫자로 입력하세요.")
-print(f"'apple' in fruits: {'apple' in fruits}")         # True
-print(f"'grape' not in fruits: {'grape' not in fruits}") # True
-
-text = "Hello, World!"
-print(f"'World' in text: {'World' in text}")            # True
-print(f"'Python' in text: {'Python' in text}")          # False
-
-# 신원 연산자 (is, is not)
-a = [1, 2, 3]
-b = [1, 2, 3]
-c = a
-
-print(f"a == b: {a == b}")       # True (값 비교)
-print(f"a is b: {a is b}")       # False (객체 비교)
-print(f"a is c: {a is c}")       # True (같은 객체)
-
-# None 비교에서 is 사용 (권장)
-value = None
-if value is None:
-    print("값이 None입니다.")
-
-# 연산자 우선순위
-result = 2 + 3 * 4      # 14 (곱셈 먼저)
-result2 = (2 + 3) * 4   # 20 (괄호 먼저)
-print(f"연산자 우선순위: {result}, {result2}")
-```
-
-## 입출력
-
-### print() 함수 활용
-
-```python
-# 기본 출력
-print("Hello, World!")
-
-# 여러 값 출력
-name = "Alice"
-age = 25
-print("이름:", name, "나이:", age)
-
-# 구분자 변경
-print("A", "B", "C", sep="-")        # A-B-C
-print("A", "B", "C", sep="")         # ABC
-
-# 끝 문자 변경
-print("첫 번째 줄", end=" ")
-print("같은 줄")                     # 첫 번째 줄 같은 줄
-
-# 파일로 출력
-with open("output.txt", "w", encoding="utf-8") as f:
-    print("파일에 저장됩니다", file=f)
-
-# 형식화된 출력
-score = 85.7
-print(f"점수: {score:.1f}점")        # 점수: 85.7점
-print(f"점수: {score:>6.1f}점")      # 점수:   85.7점 (오른쪽 정렬)
-```
-
-### input() 함수
-
-```python
-# 기본 입력
-name = input("이름을 입력하세요: ")
-print(f"안녕하세요, {name}님!")
-
-# 숫자 입력 처리
-try:
-    age = int(input("나이를 입력하세요: "))
-    print(f"당신은 {age}세입니다.")
-except ValueError:
-    print("올바른 숫자를 입력하세요.")
-
-# 여러 값 입력
-data = input("이름과 나이를 공백으로 구분해 입력하세요: ").split()
-if len(data) == 2:
-    name, age_str = data
-    try:
-        age = int(age_str)
-        print(f"{name}님은 {age}세입니다.")
-    except ValueError:
-        print("나이는 숫자로 입력하세요.")
 ```
 
 ## 주석과 독스트링
@@ -771,7 +773,40 @@ def calculator():
                 continue
             
             # 계산 실행
-            result = eval(expression)
+            #
+            # 주의: eval()은 입력이 섞이는 순간 임의 코드 실행 취약점이 됩니다.
+            # 여기서는 산술 연산만 허용하는 간단한 안전 평가기를 사용합니다.
+            import ast
+            import operator as op
+            
+            _BIN_OPS = {
+                ast.Add: op.add,
+                ast.Sub: op.sub,
+                ast.Mult: op.mul,
+                ast.Div: op.truediv,
+                ast.FloorDiv: op.floordiv,
+                ast.Mod: op.mod,
+                ast.Pow: op.pow,
+            }
+            _UNARY_OPS = {ast.UAdd: op.pos, ast.USub: op.neg}
+            
+            def safe_eval(expr: str):
+                node = ast.parse(expr, mode="eval")
+                
+                def _eval(n):
+                    if isinstance(n, ast.Expression):
+                        return _eval(n.body)
+                    if isinstance(n, ast.Constant) and isinstance(n.value, (int, float)):
+                        return n.value
+                    if isinstance(n, ast.BinOp) and type(n.op) in _BIN_OPS:
+                        return _BIN_OPS[type(n.op)](_eval(n.left), _eval(n.right))
+                    if isinstance(n, ast.UnaryOp) and type(n.op) in _UNARY_OPS:
+                        return _UNARY_OPS[type(n.op)](_eval(n.operand))
+                    raise ValueError("허용되지 않는 수식입니다.")
+                
+                return _eval(node)
+            
+            result = safe_eval(expression)
             
             # 결과 출력
             print(f"결과: {expression} = {result}")

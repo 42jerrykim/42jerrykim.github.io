@@ -1,11 +1,77 @@
 ---
 draft: true
 title: "Python 마스터 커리큘럼"
-description: "Python 프로그래밍을 초급부터 전문가 레벨까지 완전히 마스터하는 체계적인 학습 가이드"
+description: "파이썬을 초급부터 전문가 수준까지 체계적으로 학습하는 커리큘럼입니다. 문법·OOP·동시성·웹·테스트·배포까지 단계별로 연결해 실무 감각과 문제 해결력을 함께 키웁니다."
 featured_image: "/images/home-banner.jpg"
+tags:
+  - python
+  - Python
+  - 파이썬
+  - programming
+  - 프로그래밍
+  - software-engineering
+  - 소프트웨어공학
+  - computer-science
+  - 컴퓨터과학
+  - backend
+  - 백엔드
+  - development
+  - 개발
+  - best-practices
+  - 베스트프랙티스
+  - clean-code
+  - 클린코드
+  - refactoring
+  - 리팩토링
+  - testing
+  - 테스트
+  - debugging
+  - 디버깅
+  - logging
+  - 로깅
+  - security
+  - 보안
+  - performance
+  - 성능
+  - concurrency
+  - 동시성
+  - async
+  - 비동기
+  - oop
+  - 객체지향
+  - data-structures
+  - 자료구조
+  - algorithms
+  - 알고리즘
+  - standard-library
+  - 표준라이브러리
+  - packaging
+  - 패키징
+  - deployment
+  - 배포
+  - architecture
+  - 아키텍처
+  - design-patterns
+  - 디자인패턴
+  - web
+  - 웹
+  - database
+  - 데이터베이스
+  - networking
+  - 네트워킹
+  - ci-cd
+  - 자동화
+  - documentation
+  - 문서화
+  - git
+  - 버전관리
+  - tooling
+  - 개발도구
+  - code-quality
+  - 코드품질
+lastmod: 2026-01-17
 collection_order: 1
 ---
-
 # Python 마스터 커리큘럼
 
 파이썬을 전문가 수준까지 마스터할 수 있는 체계적이고 실무 중심적인 커리큘럼입니다. 31개 챕터를 통해 동기부여부터 고급 기능까지 단계적으로 학습할 수 있습니다.
@@ -248,3 +314,4 @@ collection_order: 1
 ---
 
 💡 **TIP**: [00. 왜 파이썬인가?](00_why_python/)부터 시작하여 학습 동기를 명확히 한 후, 단계별로 진행하시길 권장합니다.
+

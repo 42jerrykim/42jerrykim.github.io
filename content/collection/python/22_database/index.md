@@ -1,10 +1,76 @@
 ---
 draft: true
 title: "22. 데이터베이스"
-description: "SQL과 NoSQL 데이터베이스 연동 및 ORM 활용"
+description: "관계형 DB와 NoSQL의 차이, 트랜잭션(ACID), ORM의 장단점을 설명합니다. 파이썬에서 DB를 안전하게 다루는 패턴과 성능/모델링의 핵심 선택 기준을 정리합니다."
+tags:
+  - python
+  - Python
+  - 파이썬
+  - programming
+  - 프로그래밍
+  - software-engineering
+  - 소프트웨어공학
+  - computer-science
+  - 컴퓨터과학
+  - backend
+  - 백엔드
+  - development
+  - 개발
+  - best-practices
+  - 베스트프랙티스
+  - clean-code
+  - 클린코드
+  - refactoring
+  - 리팩토링
+  - testing
+  - 테스트
+  - debugging
+  - 디버깅
+  - logging
+  - 로깅
+  - security
+  - 보안
+  - performance
+  - 성능
+  - concurrency
+  - 동시성
+  - async
+  - 비동기
+  - oop
+  - 객체지향
+  - data-structures
+  - 자료구조
+  - algorithms
+  - 알고리즘
+  - standard-library
+  - 표준라이브러리
+  - packaging
+  - 패키징
+  - deployment
+  - 배포
+  - architecture
+  - 아키텍처
+  - design-patterns
+  - 디자인패턴
+  - web
+  - 웹
+  - database
+  - 데이터베이스
+  - networking
+  - 네트워킹
+  - ci-cd
+  - 자동화
+  - documentation
+  - 문서화
+  - git
+  - 버전관리
+  - tooling
+  - 개발도구
+  - code-quality
+  - 코드품질
+lastmod: 2026-01-17
 collection_order: 22
 ---
-
 # 챕터 22: 데이터베이스
 
 데이터베이스는 현대 애플리케이션의 핵심 구성 요소입니다. 파이썬에서는 다양한 데이터베이스 시스템과 연동할 수 있는 풍부한 라이브러리와 ORM 도구를 제공합니다. 이 챕터에서는 관계형 데이터베이스부터 NoSQL까지 다양한 데이터베이스 기술을 다룹니다.
@@ -15,24 +81,59 @@ collection_order: 22
 - ORM을 활용한 객체-관계 매핑을 구현할 수 있다
 - NoSQL 데이터베이스를 효과적으로 활용할 수 있다
 
+## 핵심 개념(이론)
+
+### 1) 데이터베이스의 역할과 경계
+이 챕터의 핵심은 “무엇을 할 수 있나”가 아니라, **어떤 문제를 해결하고 어디까지 책임지는지**를 분명히 하는 것입니다.
+경계가 흐리면 코드는 커질수록 결합이 늘어나고 수정 비용이 커집니다.
+
+### 2) 왜 이 개념이 필요한가(실무 동기)
+실무에서는 예외 상황, 성능, 협업, 테스트가 항상 문제를 만듭니다.
+따라서 이 주제는 기능이 아니라 **품질(신뢰성/유지보수성/보안)**을 위한 기반으로 이해해야 합니다.
+
+### 3) 트레이드오프: 간단함 vs 확장성
+대부분의 선택은 “더 단순하게”와 “더 확장 가능하게” 사이에서 균형을 잡는 일입니다.
+초기에는 단순함을, 장기 운영/팀 협업이 커질수록 확장성을 더 우선합니다.
+
+### 4) 실패 모드(Failure Modes)를 먼저 생각하라
+무엇이 실패하는지(입력, I/O, 동시성, 외부 시스템)를 먼저 떠올리면 설계가 안정적으로 변합니다.
+이 챕터의 예제는 실패 모드를 축소해서 보여주므로, 실제 적용 시에는 더 많은 방어가 필요합니다.
+
+### 5) 학습 포인트: 외우지 말고 “판단 기준”을 남겨라
+핵심은 API를 외우는 것이 아니라, “언제 무엇을 선택할지” 판단 기준을 정리하는 것입니다.
+이 기준이 쌓이면 새로운 라이브러리/도구가 나와도 빠르게 적응할 수 있습니다.
+
+## 선택 기준(Decision Guide)
+- 기본은 **가독성/명확성** 우선(최적화는 측정 이후).
+- 외부 의존이 늘수록 **경계/추상화**와 **테스트**를 먼저 강화.
+- 복잡도가 증가하면 “규칙을 코드로”가 아니라 “구조로” 담는 방향을 고려.
+
+## 흔한 오해/주의점
+- 도구/문법이 곧 실력이라는 오해가 있습니다. 실력은 문제를 단순화하고 구조화하는 능력입니다.
+- 극단적 최적화/과설계는 학습과 유지보수를 방해할 수 있습니다.
+
+## 요약
+- 데이터베이스는 기능이 아니라 구조/품질을 위한 기반이다.
+- 트레이드오프와 실패 모드를 먼저 생각하고, 판단 기준을 남기자.
+
 ## 데이터베이스 기초
 
 ### 데이터베이스 유형
 
 ```mermaid
 graph TB
-    A[데이터베이스] --> B[관계형 DB]
-    A --> C[NoSQL DB]
+    db["데이터베이스"] --> rdb["관계형 DB"]
+    db --> nosql["NoSQL DB"]
     
-    B --> D[MySQL]
-    B --> E[PostgreSQL]
-    B --> F[SQLite]
-    B --> G[Oracle]
+    rdb --> mysql["MySQL"]
+    rdb --> postgres["PostgreSQL"]
+    rdb --> sqlite["SQLite"]
+    rdb --> oracle["Oracle"]
     
-    C --> H[문서형<br/>MongoDB]
-    C --> I[키-값<br/>Redis]
-    C --> J[컬럼형<br/>Cassandra]
-    C --> K[그래프<br/>Neo4j]
+    nosql --> docDb["문서형</br>MongoDB"]
+    nosql --> kvDb["키-값</br>Redis"]
+    nosql --> columnDb["컬럼형</br>Cassandra"]
+    nosql --> graphDb["그래프</br>Neo4j"]
 ```
 
 ### ACID 속성

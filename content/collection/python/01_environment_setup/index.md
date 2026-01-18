@@ -1,11 +1,77 @@
 ---
 draft: true
 title: "01. 파이썬 환경 설정"
-description: "파이썬 설치, 개발 환경 구축 및 기본 도구 사용법"
-collection_order: 3
+description: "Windows/macOS/Linux에서 파이썬 설치부터 가상환경, 패키지 관리, IDE 설정까지 정리합니다. 실무에서 재현 가능한 개발 환경을 만들고 흔한 설치/경로 문제를 해결합니다."
 image: /favicon.ico
+tags:
+  - python
+  - Python
+  - 파이썬
+  - programming
+  - 프로그래밍
+  - software-engineering
+  - 소프트웨어공학
+  - computer-science
+  - 컴퓨터과학
+  - backend
+  - 백엔드
+  - development
+  - 개발
+  - best-practices
+  - 베스트프랙티스
+  - clean-code
+  - 클린코드
+  - refactoring
+  - 리팩토링
+  - testing
+  - 테스트
+  - debugging
+  - 디버깅
+  - logging
+  - 로깅
+  - security
+  - 보안
+  - performance
+  - 성능
+  - concurrency
+  - 동시성
+  - async
+  - 비동기
+  - oop
+  - 객체지향
+  - data-structures
+  - 자료구조
+  - algorithms
+  - 알고리즘
+  - standard-library
+  - 표준라이브러리
+  - packaging
+  - 패키징
+  - deployment
+  - 배포
+  - architecture
+  - 아키텍처
+  - design-patterns
+  - 디자인패턴
+  - web
+  - 웹
+  - database
+  - 데이터베이스
+  - networking
+  - 네트워킹
+  - ci-cd
+  - 자동화
+  - documentation
+  - 문서화
+  - git
+  - 버전관리
+  - tooling
+  - 개발도구
+  - code-quality
+  - 코드품질
+lastmod: 2026-01-17
+collection_order: 1
 ---
-
 # 챕터 1: 파이썬 환경 설정
 
 > "좋은 시작이 반이다" - 파이썬 개발 환경을 제대로 구축하면 이후 모든 학습이 수월해집니다.
@@ -15,6 +81,36 @@ image: /favicon.ico
 - 다양한 운영체제에서 파이썬 환경을 구축할 수 있다
 - 가상 환경을 이해하고 활용할 수 있다
 - 개발 도구들을 효과적으로 사용할 수 있다
+
+## 핵심 개념(이론)
+
+### 1) “설치”보다 중요한 건 “재현 가능한 환경”이다
+환경 설정의 목표는 단순히 파이썬을 실행하는 것이 아니라, **언제/어디서나 동일하게 설치 가능한 상태**를 만드는 것입니다.
+프로젝트가 커질수록 “내 PC에서는 되는데요?” 문제가 비용을 폭발시킵니다.
+
+### 2) 가상환경은 ‘선택’이 아니라 ‘기본 안전장치’다
+프로젝트마다 의존성 버전이 다르기 때문에, 가상환경이 없으면 충돌이 필연적으로 발생합니다.
+가상환경은 패키지를 격리해 충돌을 줄이고, 배포/CI에서도 동일 환경을 재현하기 쉽게 합니다.
+
+### 3) 패키지 관리의 핵심은 “범위와 고정”의 균형이다
+학습/개발에서는 최신을 쓰고 싶지만, 운영에서는 재현성이 필요합니다.
+따라서 “범위(>=)”와 “고정(lock)”을 목적에 따라 구분하는 습관이 중요합니다.
+
+### 4) 도구(IDE/포매터/린터)는 품질과 속도를 동시에 올린다
+초반에 도구 설정이 번거롭게 느껴져도, 코드가 늘어날수록 자동화의 이득이 누적됩니다.
+특히 포매팅/린트/테스트 실행을 습관화하면 실수를 줄이고 학습 속도를 올립니다.
+
+## 선택 기준(Decision Guide)
+- **단일 프로젝트**도 venv는 쓰는 것이 기본(충돌 예방).
+- **팀/운영**이 들어가면: `pyproject.toml` 기반과 CI(테스트/린트)까지 초기에 설계.
+
+## 흔한 오해/주의점
+- PATH/인터프리터가 여러 개일 때, “실행되는 파이썬”과 “pip가 설치하는 파이썬”이 다를 수 있습니다.
+- OS별 차이는 파일 경로/권한/인코딩에서 자주 터집니다. 초기에 습관을 잡아두세요.
+
+## 요약
+- 목표는 설치가 아니라 재현 가능한 개발 환경이다.
+- 가상환경은 필수이며, 의존성은 목적에 따라 범위/고정으로 관리한다.
 
 ## 파이썬 설치 가이드
 
@@ -455,36 +551,28 @@ jupyter==1.0.0
 
 ### 프로젝트 구조 베스트 프랙티스
 
-<function_calls>
-<invoke name="create_diagram">
-<parameter name="content">graph TD
-    A["my_project/"] --> B["venv/"]
-    A --> C["src/"]
-    A --> D["tests/"]
-    A --> E["docs/"]
-    A --> F["requirements.txt"]
-    A --> G["README.md"]
-    A --> H[".gitignore"]
-    A --> I["setup.py"]
+```mermaid
+graph TD
+    myProject["my_project/"] --> venv["venv/"]
+    myProject --> src["src/"]
+    myProject --> tests["tests/"]
+    myProject --> docs["docs/"]
+    myProject --> requirements["requirements.txt"]
+    myProject --> readme["README.md"]
+    myProject --> gitignore[".gitignore"]
+    myProject --> setupPy["setup.py"]
     
-    C --> J["__init__.py"]
-    C --> K["main.py"]
-    C --> L["utils.py"]
-    C --> M["config.py"]
+    src --> initPy["__init__.py"]
+    src --> mainPy["main.py"]
+    src --> utilsPy["utils.py"]
+    src --> configPy["config.py"]
     
-    D --> N["test_main.py"]
-    D --> O["test_utils.py"]
+    tests --> testMain["test_main.py"]
+    tests --> testUtils["test_utils.py"]
     
-    E --> P["index.md"]
-    E --> Q["api.md"]
-    
-    style A fill:#e1f5fe
-    style B fill:#fff3e0
-    style C fill:#e8f5e8
-    style D fill:#fce4ec
-</code_block_to_apply_changes_from>
-</invoke>
-</function_calls>
+    docs --> docsIndex["index.md"]
+    docs --> apiMd["api.md"]
+```
 
 ## 핵심 내용
 

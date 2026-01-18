@@ -1,8 +1,71 @@
 ---
-title: "[OOAD] 객체지향 분석 설계 마스터 시리즈"
-description: "객체지향 분석과 설계의 완전한 이해를 통해 소프트웨어 아키텍트 수준의 전문가로 성장하는 체계적인 학습 가이드. 기초 철학부터 현대 아키텍처까지 OOAD의 모든 측면을 포괄하는 전문가 수준의 커리큘럼"
+title: "[OOAD] 객체지향 분석·설계(OOAD) 마스터 커리큘럼"
+description: "객체지향 분석(OOA)과 설계(OOD)를 요구사항→모델→설계→아키텍처까지 20편으로 완주합니다. UML/DDD/클린 아키텍처를 실무 예제로 연결해 ‘설계 판단력’을 키웁니다."
+date: 2026-01-17
+lastmod: 2026-01-17
 featured_image: "/images/ooad-mastery-banner.jpg"
-weigh: 25
+weight: 25
+tags:
+  - OOAD
+  - Object-Oriented-Analysis
+  - Object-Oriented-Design
+  - OOA
+  - OOD
+  - OOP
+  - 객체지향
+  - 객체지향-분석
+  - 객체지향-설계
+  - 소프트웨어-설계
+  - 설계-원칙
+  - 디자인-패턴
+  - Design-Patterns
+  - SOLID
+  - SRP
+  - OCP
+  - LSP
+  - ISP
+  - DIP
+  - 응집도
+  - 결합도
+  - Cohesion
+  - Coupling
+  - 캡슐화
+  - Encapsulation
+  - 추상화
+  - Abstraction
+  - 상속
+  - Inheritance
+  - 다형성
+  - Polymorphism
+  - UML
+  - Use-Case
+  - 유스케이스
+  - 도메인-모델
+  - Domain-Modeling
+  - 요구사항-분석
+  - Requirement-Analysis
+  - 시퀀스-다이어그램
+  - Sequence-Diagram
+  - 상태-다이어그램
+  - State-Machine
+  - 클래스-다이어그램
+  - Class-Diagram
+  - 아키텍처
+  - Architecture
+  - Layered-Architecture
+  - Clean-Architecture
+  - Hexagonal-Architecture
+  - Ports-and-Adapters
+  - DDD
+  - Domain-Driven-Design
+  - Bounded-Context
+  - Aggregate
+  - Repository-Pattern
+  - CQRS
+  - Event-Driven-Architecture
+  - Microservices
+  - 레거시-현대화
+  - Legacy-Modernization
 ---
 
 # 객체지향 분석 설계 마스터 시리즈
@@ -25,34 +88,34 @@ weigh: 25
 ## 커리큘럼 구성
 
 ###️ Phase 1: 객체지향 철학 & 기초 토대 (1-4편)
-1. [객체지향 패러다임의 본질과 철학](01-oop-paradigm-essence-philosophy.md)
-2. [분석과 설계의 핵심 개념](02-analysis-design-core-concepts.md)
-3. [객체지향 4대 원칙의 심층 분석](03-oop-four-principles-deep-analysis.md)
-4. [SOLID 원칙과 실무 적용](04-solid-principles-practical-application.md)
+1. [객체지향 패러다임의 본질과 철학](01_oop_paradigm_essence_philosophy/)
+2. [분석과 설계의 핵심 개념](02_analysis_design_core_concepts/)
+3. [객체지향 4대 원칙의 심층 분석](03_oop_four_principles_deep_analysis/)
+4. [SOLID 원칙과 실무 적용](04_solid_principles_practical_application/)
 
 ### Phase 2: 객체지향 분석 방법론 (5-8편)
-5. [요구사항 분석과 도메인 모델링](05-requirement-analysis-domain-modeling.md)
-6. [유스케이스 기반 분석 기법](06-usecase-based-analysis-techniques.md)
-7. [클래스 다이어그램과 관계 모델링](07-class-diagram-relationship-modeling.md)
-8. [동적 모델링 - 시퀀스와 상태 다이어그램](08-dynamic-modeling-sequence-state.md)
+5. [요구사항 분석과 도메인 모델링](05_requirement_analysis_domain_modeling/)
+6. [유스케이스 기반 분석 기법](06_usecase_based_analysis_techniques/)
+7. [클래스 다이어그램과 관계 모델링](07_class_diagram_relationship_modeling/)
+8. [동적 모델링: 시퀀스와 상태 다이어그램](08_dynamic_modeling_sequence_state/)
 
 ### Phase 3: 객체지향 설계 전략 (9-12편)
-9. [설계 원칙과 패턴 적용 전략](09-design-principles-pattern-strategy.md)
-10. [아키텍처 설계와 계층 분리](10-architecture-design-layer-separation.md)
-11. [의존성 관리와 인터페이스 설계](11-dependency-management-interface-design.md)
-12. [확장성과 유연성을 위한 설계 기법](12-extensibility-flexibility-design-techniques.md)
+9. [설계 원칙과 패턴 적용 전략](09_design_principles_pattern_strategy/)
+10. [아키텍처 설계와 레이어 분리](10_architecture_design_layer_separation/)
+11. [의존성 관리와 인터페이스 설계](11_dependency_management_interface_design/)
+12. [확장성과 유연성을 위한 설계 기법](12_extensibility_flexibility_design_techniques/)
 
 ###️ Phase 4: 도메인 주도 설계 (13-16편)
-13. [도메인 주도 설계의 핵심 개념](13-domain-driven-design-core-concepts.md)
-14. [전략적 설계 - 바운디드 컨텍스트](14-strategic-design-bounded-context.md)
-15. [전술적 설계 - 엔티티와 밸류 오브젝트](15-tactical-design-entity-value-object.md)
-16. [애그리거트와 리포지터리 패턴](16-aggregate-repository-pattern.md)
+13. [도메인 주도 설계(DDD)의 핵심 개념](13_domain_driven_design_core_concepts/)
+14. [전략적 설계: 바운디드 컨텍스트](14_strategic_design_bounded_context/)
+15. [전술적 설계: 엔티티와 밸류 오브젝트](15_tactical_design_entity_value_object/)
+16. [애그리거트와 리포지터리 패턴](16_aggregate_repository_pattern/)
 
 ### Phase 5: 현대 아키텍처 & 실무 적용 (17-20편)
-17. [마이크로서비스 아키텍처와 OOAD](17-microservices-architecture-ooad.md)
-18. [클린 아키텍처와 헥사고날 아키텍처](18-clean-hexagonal-architecture.md)
-19. [이벤트 기반 아키텍처와 CQRS](19-event-driven-architecture-cqrs.md)
-20. [레거시 시스템 현대화 전략](20-legacy-system-modernization-strategy.md)
+17. [마이크로서비스 아키텍처와 OOAD](17_microservices_architecture_ooad/)
+18. [클린 아키텍처와 헥사고날 아키텍처](18_clean_hexagonal_architecture/)
+19. [이벤트 기반 아키텍처와 CQRS](19_event_driven_architecture_cqrs/)
+20. [레거시 시스템 현대화 전략](20_legacy_system_modernization_strategy/)
 
 ## 각 글의 구성
 
@@ -234,7 +297,7 @@ weigh: 25
 
 **"객체지향은 단순한 프로그래밍 기법이 아니라, 복잡한 세상을 이해하고 표현하는 사고 방식이다."**
 
-이 시리즈를 통해 진정한 객체지향 분석 설계 마스터가 되어보세요! 🚀
+이 시리즈를 통해 진정한 객체지향 분석 설계 마스터가 되어보세요!
 
 ## **완주 인증 프로그램**
 

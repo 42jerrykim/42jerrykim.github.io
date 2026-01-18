@@ -1,10 +1,76 @@
 ---
 draft: true
 title: "03. 제어 구조"
-description: "조건문, 반복문을 활용한 프로그램 흐름 제어"
+description: "조건문과 반복문으로 프로그램 흐름을 제어하는 원리를 익힙니다. break/continue/else의 의미와 활용 기준을 이해하고 복잡한 분기 로직을 읽기 쉽게 구성합니다."
+tags:
+  - python
+  - Python
+  - 파이썬
+  - programming
+  - 프로그래밍
+  - software-engineering
+  - 소프트웨어공학
+  - computer-science
+  - 컴퓨터과학
+  - backend
+  - 백엔드
+  - development
+  - 개발
+  - best-practices
+  - 베스트프랙티스
+  - clean-code
+  - 클린코드
+  - refactoring
+  - 리팩토링
+  - testing
+  - 테스트
+  - debugging
+  - 디버깅
+  - logging
+  - 로깅
+  - security
+  - 보안
+  - performance
+  - 성능
+  - concurrency
+  - 동시성
+  - async
+  - 비동기
+  - oop
+  - 객체지향
+  - data-structures
+  - 자료구조
+  - algorithms
+  - 알고리즘
+  - standard-library
+  - 표준라이브러리
+  - packaging
+  - 패키징
+  - deployment
+  - 배포
+  - architecture
+  - 아키텍처
+  - design-patterns
+  - 디자인패턴
+  - web
+  - 웹
+  - database
+  - 데이터베이스
+  - networking
+  - 네트워킹
+  - ci-cd
+  - 자동화
+  - documentation
+  - 문서화
+  - git
+  - 버전관리
+  - tooling
+  - 개발도구
+  - code-quality
+  - 코드품질
+lastmod: 2026-01-17
 collection_order: 3
 ---
-
 # 챕터 3: 제어 구조
 
 > "프로그램의 흐름을 제어하는 것은 코딩의 핵심이다" - 조건문과 반복문으로 더욱 지능적이고 효율적인 프로그램을 만들어봅시다.
@@ -15,25 +81,48 @@ collection_order: 3
 - 중첩 구조와 복합 조건을 이해할 수 있다
 - break, continue, else 등의 제어문을 적절히 활용할 수 있다
 
+## 핵심 개념(이론)
+
+### 1) 제어 구조의 목적은 “분기”가 아니라 “의도 표현”이다
+조건문/반복문은 실행 흐름을 바꾸기 위한 도구지만, 실무에서는 **의도를 읽기 쉽게 표현**하는 것이 더 중요합니다.
+복잡한 분기는 코드가 아니라 요구사항이 복잡하다는 신호일 수 있습니다.
+
+### 2) 반복문의 핵심: “상태 변화”를 최소화하라
+버그의 많은 부분은 반복문 내부의 상태가 여러 군데서 바뀌며 생깁니다.
+가능하면 상태 변화를 한 곳으로 모으고, `for`/내장 함수로 의도를 드러내는 편이 안전합니다.
+
+### 3) `break/continue/else`는 ‘제어 흐름 계약’이다
+`break`는 “중단 조건을 찾으면 즉시 종료”라는 계약을 만들고, `else`는 “끝까지 break 없이 돌았다”는 사실을 표현합니다.
+이 의미를 모르면 `for-else`가 오히려 혼란을 줍니다.
+
+### 4) 중첩은 비용이다: 복잡도는 ‘줄 수’가 아니라 ‘경로 수’다
+if/for 중첩이 늘어날수록 가능한 실행 경로가 폭발하고 테스트가 어려워집니다.
+중첩이 깊다면 함수 분리, 조기 반환(guard), 데이터 구조 변경을 먼저 고려하세요.
+
+## 선택 기준(Decision Guide)
+- 반복은 `while`보다 `for`가 기본(종료 조건을 명확히).
+- 분기가 많아지면 “조건을 데이터로” 바꾸는 전략(딕셔너리 매핑 등)을 고려.
+
+## 흔한 오해/주의점
+- `else`는 “if의 else”만 있는 게 아니라, 반복문에도 붙을 수 있습니다.
+- 무한 루프는 나쁜 것이 아니라, 종료 조건/timeout이 없을 때 위험합니다.
+
+## 요약
+- 제어 구조는 의도를 표현하는 도구이며, 중첩은 복잡도를 폭발시킨다.
+- `break/continue/else`의 의미를 계약으로 이해하고 사용한다.
+
 ## 조건문 (Conditional Statements)
 
 ### if 문 기본 구조
 
-<function_calls>
-<invoke name="create_diagram">
-<parameter name="content">flowchart TD
-    A["시작"] --> B{"조건 검사"}
-    B -->|True| C["실행 블록"]
-    B -->|False| D["건너뛰기"]
-    C --> E["다음 코드"]
-    D --> E
-    
-    style B fill:#fff2cc
-    style C fill:#e8f5e8
-    style D fill:#ffebee
-</function_calls>
-</invoke>
-</function_calls>
+```mermaid
+flowchart TD
+    startNode["시작"] --> cond{"조건 검사"}
+    cond -->|"True"| thenBlock["실행 블록"]
+    cond -->|"False"| skipBlock["건너뛰기"]
+    thenBlock --> nextCode["다음 코드"]
+    skipBlock --> nextCode
+```
 
 ## 핵심 내용
 
@@ -121,32 +210,21 @@ else:
 
 ### if-elif-else 체인
 
-<function_calls>
-<invoke name="create_diagram">
-<parameter name="content">flowchart TD
-    A["시작"] --> B{"첫 번째 조건"}
-    B -->|True| C["블록 1 실행"]
-    B -->|False| D{"두 번째 조건"}
-    D -->|True| E["블록 2 실행"]
-    D -->|False| F{"세 번째 조건"}
-    F -->|True| G["블록 3 실행"]
-    F -->|False| H["else 블록 실행"]
+```mermaid
+flowchart TD
+    startNode["시작"] --> cond1{"첫 번째 조건"}
+    cond1 -->|"True"| block1["블록 1 실행"]
+    cond1 -->|"False"| cond2{"두 번째 조건"}
+    cond2 -->|"True"| block2["블록 2 실행"]
+    cond2 -->|"False"| cond3{"세 번째 조건"}
+    cond3 -->|"True"| block3["블록 3 실행"]
+    cond3 -->|"False"| elseBlock["else 블록 실행"]
     
-    C --> I["다음 코드"]
-    E --> I
-    G --> I
-    H --> I
-    
-    style B fill:#fff2cc
-    style D fill:#fff2cc
-    style F fill:#fff2cc
-    style C fill:#e8f5e8
-    style E fill:#e8f5e8
-    style G fill:#e8f5e8
-    style H fill:#ffebee
-</function_calls>
-</invoke>
-</function_calls>
+    block1 --> nextCode["다음 코드"]
+    block2 --> nextCode
+    block3 --> nextCode
+    elseBlock --> nextCode
+```
 
 **학점 계산 예제:**
 
@@ -236,23 +314,16 @@ print(f"점수 {score}: {grade}등급")
 
 ### for 문
 
-<function_calls>
-<invoke name="create_diagram">
-<parameter name="content">flowchart TD
-    A["시작"] --> B["시퀀스 준비"]
-    B --> C{"다음 항목 있음?"}
-    C -->|Yes| D["항목을 변수에 할당"]
-    D --> E["반복 블록 실행"]
-    E --> C
-    C -->|No| F["반복 종료"]
-    F --> G["다음 코드"]
-    
-    style C fill:#fff2cc
-    style E fill:#e8f5e8
-    style F fill:#ffebee
-</function_calls>
-</invoke>
-</function_calls>
+```mermaid
+flowchart TD
+    startNode["시작"] --> prep["시퀀스 준비"]
+    prep --> hasNext{"다음 항목 있음?"}
+    hasNext -->|"Yes"| assign["항목을 변수에 할당"]
+    assign --> loopBlock["반복 블록 실행"]
+    loopBlock --> hasNext
+    hasNext -->|"No"| endLoop["반복 종료"]
+    endLoop --> nextCode["다음 코드"]
+```
 
 **기본 for 문:**
 
@@ -351,24 +422,16 @@ for x in range(3):
 
 ### while 문
 
-<function_calls>
-<invoke name="create_diagram">
-<parameter name="content">flowchart TD
-    A["시작"] --> B["조건 검사"]
-    B -->|True| C["반복 블록 실행"]
-    C --> D["조건 재검사"]
-    D -->|True| C
-    D -->|False| E["반복 종료"]
-    B -->|False| E
-    E --> F["다음 코드"]
-    
-    style B fill:#fff2cc
-    style D fill:#fff2cc
-    style C fill:#e8f5e8
-    style E fill:#ffebee
-</function_calls>
-</invoke>
-</function_calls> 
+```mermaid
+flowchart TD
+    startNode["시작"] --> condCheck["조건 검사"]
+    condCheck -->|"True"| loopBlock["반복 블록 실행"]
+    loopBlock --> recheck["조건 재검사"]
+    recheck -->|"True"| loopBlock
+    recheck -->|"False"| endLoop["반복 종료"]
+    condCheck -->|"False"| endLoop
+    endLoop --> nextCode["다음 코드"]
+```
 
 **기본 while 문:**
 
@@ -1323,4 +1386,4 @@ print("고유 길이들:", unique_lengths)
 # 제너레이터 표현식 (메모리 효율적)
 sum_squares = sum(i ** 2 for i in range(1000000))  # 메모리 절약
 print(f"백만개 수의 제곱합: {sum_squares}")
-``` 
+
