@@ -7,7 +7,6 @@ categories:
 date: 2026-01-01
 description: 그리드에서 태어난 병기형 프로그램 ‘아레스’가 현실로 넘어오며 ENCOM·딜린저의 ‘영구성 코드’ 전쟁이 폭주한다. 29분 수명 제한, 라이트 사이클 추격과 리코그나이저 도시전, NIN 스코어 위에서 AI의 자아·자유의지와 인간의 책임을 함께 묻는다.
 draft: false
-image: poster.png
 lastmod: 2026-01-01
 tags:
 - Tron-Ares

@@ -1,5 +1,4 @@
 ---
-image: "tmp_wordcloud.png"
 title : "[Algorithm] C++ 백준 1008번 : A/B"
 date: 2022-01-01T00:00:00Z
 categories: Algorithm

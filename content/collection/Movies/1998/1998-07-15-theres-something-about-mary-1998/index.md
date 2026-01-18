@@ -2,7 +2,6 @@
 title: "[Movie] There's Something About Mary (메리에겐 뭔가 특별한 것이 있다) (1998)"
 date: 1998-07-15
 description: "페럴리 형제가 연출하고 벤 스틸러, 카메론 디아즈가 주연한 90년대 로맨틱 코미디의 혁명적 작품. 파격적인 유머와 진정한 사랑의 메시지가 결합된 걸작"
-image: "theres-something-about-mary-poster.png"
 categories:
 - Movie
 - Comedy
