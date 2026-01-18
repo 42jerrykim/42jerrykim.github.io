@@ -1,5 +1,5 @@
 ---
 title: "Clean Architecture"
-description: "로버트 C. 마틴(Uncle Bob)의 클린 아키텍처 원칙과 실무 적용 방법을 다루는 컬렉션입니다. 소프트웨어 아키텍처 설계의 핵심 개념부터 실제 구현까지, 유지보수가 용이하고 확장 가능한 시스템을 구축하는 방법을 제시합니다."
+description: "Robert C. Martin(Uncle Bob)의 Clean Architecture를 체계적으로 다루는 시리즈입니다. 아키텍처 역사, 프로그래밍 패러다임, SOLID 원칙, 컴포넌트 원칙, 아키텍처 설계, 세부사항까지 6개 파트 45개 챕터로 구성되어 의존성 역전과 경계 분리를 통한 유지보수성 높은 시스템 설계 방법을 제시합니다."
 featured_image: "/images/home-banner.jpg"
 ---
