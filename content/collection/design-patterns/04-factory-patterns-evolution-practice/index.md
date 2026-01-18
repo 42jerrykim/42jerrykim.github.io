@@ -1,8 +1,8 @@
 ---
 collection_order: 41
-draft: true
 title: "[Design Patterns] Factory 패턴 실습 - 다양한 생성 전략 마스터하기"
 description: "Simple Factory부터 Abstract Factory까지 다양한 Factory 패턴을 실제로 구현해보는 종합 실습입니다. 결제 시스템, 게임 캐릭터 생성, 로깅 시스템을 통해 각 패턴의 특징과 적용 시나리오를 체험하고, 현대적 Factory 구현 기법까지 마스터합니다. 실무에서 바로 적용 가능한 Factory 패턴 설계 노하우를 학습합니다."
+image: "wordcloud.png"
 date: 2024-12-04T11:00:00+09:00
 lastmod: 2024-12-15T14:30:00+09:00
 categories:
@@ -58,26 +58,26 @@ tags:
 - 객체 컴포지션
 ---
 
-# Factory 패턴 실습 - 다양한 생성 전략 마스터하기
+이 실습에서는 Simple Factory, Factory Method, Abstract Factory 패턴을 직접 구현하며 다양한 생성 전략을 익힙니다.
 
-## **실습 목표**
+## 실습 목표
 - Simple Factory, Factory Method, Abstract Factory 패턴의 차이점 이해
 - 실무에서 Factory 패턴이 적용되는 다양한 상황 경험
 - 현대적 Factory 패턴(DI Container, Functional Factory) 구현
 - Factory 패턴의 성능 특성과 최적화 방법 학습
 
-## **실습 1: 결제 시스템 Factory 패턴 적용**
+## 실습 1: 결제 시스템 Factory 패턴 적용
 
-### **과제 설명**
+### 과제 설명
 온라인 쇼핑몰의 결제 시스템을 구현합니다. 다양한 결제 방식(신용카드, PayPal, 암호화폐)을 지원하며, 각 결제 방식마다 다른 설정과 처리 로직이 필요합니다.
 
-### **요구사항**
+### 요구사항
 1. **Simple Factory**: 기본적인 결제 프로세서 생성
 2. **Factory Method**: 결제 서비스별 특화된 프로세서 생성
 3. **Abstract Factory**: 지역별(미국, 유럽, 아시아) 결제 시스템 제공
 4. **현대적 Factory**: 어노테이션 기반 자동 등록
 
-### **💻 코드 템플릿**
+### 코드 템플릿
 
 ```java
 // TODO 1: PaymentProcessor 인터페이스 정의
@@ -216,12 +216,12 @@ public class PaymentFactoryTest {
 }
 ```
 
-## **실습 2: 게임 캐릭터 생성 시스템**
+## 실습 2: 게임 캐릭터 생성 시스템
 
-### **과제 설명**
+### 과제 설명
 MMORPG 게임의 캐릭터 생성 시스템을 구현합니다. 다양한 직업(전사, 마법사, 궁수)과 종족(인간, 엘프, 드워프)의 조합을 지원해야 합니다.
 
-### **💻 코드 템플릿**
+### 코드 템플릿
 
 ```java
 // TODO 1: 캐릭터 관련 클래스들 정의
@@ -266,12 +266,12 @@ public class OptimizedCharacterFactory {
 }
 ```
 
-## **실습 3: 로깅 시스템 Factory**
+## 실습 3: 로깅 시스템 Factory
 
-### **과제 설명**
+### 과제 설명
 다양한 로깅 백엔드(콘솔, 파일, 데이터베이스, 원격 서버)를 지원하는 로깅 시스템을 구현합니다.
 
-### **💻 코드 템플릿**
+### 코드 템플릿
 
 ```java
 // TODO 1: 로거 인터페이스와 구현체들
@@ -300,55 +300,55 @@ public class FunctionalLoggerFactory {
 }
 ```
 
-## **체크리스트**
+## 체크리스트
 
-### **기본 구현**
+### 기본 구현
 - [ ] Simple Factory로 기본적인 객체 생성 구현
 - [ ] Factory Method로 확장 가능한 생성 구조 구현
 - [ ] Abstract Factory로 관련 객체군 생성 구현
 - [ ] 각 Factory 패턴의 차이점을 명확히 이해
 
-### **현대적 구현**
+### 현대적 구현
 - [ ] 어노테이션 기반 자동 등록 Factory 구현
 - [ ] 함수형 스타일 Factory 구현
 - [ ] DI Container와 연계된 Factory 구현
 - [ ] Generic을 활용한 타입 안전한 Factory 구현
 
-### **성능 최적화**
+### 성능 최적화
 - [ ] Object Pool과 Factory 패턴 조합
 - [ ] Flyweight 패턴과 Factory 조합
 - [ ] Lazy initialization 구현
 - [ ] 캐싱 메커니즘 적용
 
-### **테스트 및 검증**
+### 테스트 및 검증
 - [ ] 단위 테스트 작성 (최소 80% 커버리지)
 - [ ] 성능 벤치마크 테스트
 - [ ] 메모리 사용량 분석
 - [ ] 동시성 테스트 (멀티스레드 환경)
 
-## **추가 도전**
+## 추가 도전
 
-### **고급 패턴 조합**
+### 고급 패턴 조합
 1. **Factory + Decorator**: 생성된 객체에 자동으로 기능 추가
 2. **Factory + Observer**: 객체 생성 이벤트 알림 시스템
 3. **Factory + Strategy**: 생성 전략을 런타임에 변경
 4. **Factory + Proxy**: 생성된 객체에 자동으로 프록시 적용
 
-### **실무 시나리오**
+### 실무 시나리오
 1. **마이크로서비스 환경**에서 서비스 인스턴스 Factory
 2. **Spring Framework**와 연계된 Factory Bean 구현
 3. **테스트 환경**에서 Mock 객체 Factory
 4. **플러그인 아키텍처**에서 동적 Factory
 
-## **실무 적용**
+## 실무 적용
 
-### **프로젝트 적용 가이드**
+### 프로젝트 적용 가이드
 1. **현재 프로젝트에서** 객체 생성이 복잡한 부분 식별
 2. **적절한 Factory 패턴** 선택 기준 수립
 3. **점진적 적용** 계획 수립
 4. **팀원들과 패턴** 사용 가이드라인 공유
 
-### **성능 고려사항**
+### 성능 고려사항
 - Factory 패턴의 오버헤드 측정
 - 리플렉션 사용 시 성능 영향 분석
 - 메모리 사용량 모니터링
@@ -356,4 +356,4 @@ public class FunctionalLoggerFactory {
 
 ---
 
-💡 **핵심 포인트**: Factory 패턴은 단순한 객체 생성을 넘어 시스템의 유연성과 확장성을 좌우하는 핵심 설계 요소입니다. 각 패턴의 특성을 이해하고 상황에 맞게 적용하는 것이 중요합니다. 
+**핵심 포인트**: Factory 패턴은 단순한 객체 생성을 넘어 시스템의 유연성과 확장성을 좌우하는 핵심 설계 요소입니다. 각 패턴의 특성을 이해하고 상황에 맞게 적용하는 것이 중요합니다. 

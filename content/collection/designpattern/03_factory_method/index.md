@@ -1,21 +1,70 @@
 ---
-description: "팩토리 메소드 패턴은 객체 생성을 서브클래스에 위임하여 확장성과 유지보수성을 높이는 디자인 패턴입니다. 클라이언트는 구체적인 클래스에 의존하지 않고, 인터페이스를 통해 객체를 생성하여 코드의 유연성을 확보합니다. 다양한 객체 생성에 활용됩니다."
-image: "tmp_wordcloud.png"
-title: "[Design Pattern] Factory Method"
-last_modified_at: 2024-08-22
+collection_order: 3
+title: "[Design Pattern] Factory Method - 팩토리 메서드 패턴"
+description: "팩토리 메서드 패턴은 객체 생성을 서브클래스에 위임하여 확장성과 유지보수성을 높이며, 클라이언트가 구체 클래스에 의존하지 않고 인터페이스로 객체를 생성하게 합니다."
 date: 2022-01-01
+last_modified_at: 2024-08-22
 categories: Design Pattern
-
+image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-21-factory-method.png
+tags:
+  - Design Pattern
+  - 디자인 패턴
+  - Factory Method
+  - 팩토리 메서드
+  - Creational Pattern
+  - 생성 패턴
+  - GoF
+  - Gang of Four
+  - Virtual Constructor
+  - 가상 생성자
+  - Object Creation
+  - 객체 생성
+  - Subclass
+  - 서브클래스
+  - Inheritance
+  - 상속
+  - Polymorphism
+  - 다형성
+  - Interface
+  - 인터페이스
+  - Abstract Class
+  - 추상 클래스
+  - Concrete Creator
+  - 구체 생성자
+  - Product
+  - 제품
+  - Open Closed Principle
+  - 개방 폐쇄 원칙
+  - SOLID
+  - Loose Coupling
+  - 느슨한 결합
+  - Code Reusability
+  - 코드 재사용성
+  - Maintainability
+  - 유지보수성
+  - Extensibility
+  - 확장성
+  - Software Design
+  - 소프트웨어 설계
+  - OOP
+  - 객체지향 프로그래밍
+  - Java
+  - C++
+  - Python
+  - C#
+  - Template Method
+  - 템플릿 메서드
+  - Hook Method
+  - 훅 메서드
+  - Creator
+  - 생성자
+  - Dependency Inversion
+  - 의존성 역전
 ---
 
 팩토리 메소드 패턴은 객체 지향 프로그래밍에서 널리 사용되는 디자인 패턴 중 하나로, 객체 생성의 책임을 서브클래스에 위임하는 방식이다. 이 패턴은 객체를 생성하는 인터페이스를 정의하되, 어떤 클래스의 인스턴스를 생성할지는 서브클래스에서 결정하도록 한다. 이를 통해 클라이언트는 구체적인 클래스에 의존하지 않고, 인터페이스를 통해 객체를 생성할 수 있게 된다. 팩토리 메소드 패턴은 코드의 유연성을 높이고, 새로운 클래스의 추가가 용이하게 만들어준다. 예를 들어, 기존의 코드에 새로운 제품 클래스를 추가할 때, 클라이언트 코드를 수정할 필요 없이 새로운 팩토리 클래스를 작성하고, 해당 클래스에서 생성할 제품을 정의하면 된다. 이처럼 팩토리 메소드 패턴은 객체 생성의 복잡성을 줄이고, 코드의 재사용성을 높이며, 유지보수를 용이하게 하는 장점을 가지고 있다. 또한, 이 패턴은 SOLID 원칙 중 하나인 개방-폐쇄 원칙을 준수하여, 기존 코드를 변경하지 않고도 새로운 기능을 추가할 수 있는 유연성을 제공한다. 따라서 소프트웨어 개발에서 팩토리 메소드 패턴은 매우 유용하게 활용될 수 있다.
-
-
-|![/assets/images/2024/2024-08-21-factory-method.png](/assets/images/2024/2024-08-21-factory-method.png)|
-|:---:|
-||
 
 
 <!--

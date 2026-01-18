@@ -1,21 +1,70 @@
 ---
-description: "Prototype 패턴은 기존 객체를 복제해 새로운 인스턴스를 생성하는 방식으로, 객체 생성의 복잡성을 줄이고 효율성과 재사용성을 높여준다. 복제 메서드를 통해 유사 객체를 신속히 만들 수 있어, 생성 비용이 큰 객체나 동적 구조에서 특히 유용하다."
-image: "tmp_wordcloud.png"
-title: "[Design Pattern] Prototype"
-last_modified_at: 2022-08-22
+collection_order: 4
+title: "[Design Pattern] Prototype - 프로토타입 패턴"
+description: "Prototype 패턴은 기존 객체를 복제해 새 인스턴스를 생성하여 객체 생성의 복잡성을 줄이고 효율성을 높입니다. 복제 메서드로 유사 객체를 빠르게 만들 수 있습니다."
 date: 2022-01-01
+last_modified_at: 2022-08-22
 categories: Design Pattern
-
+image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-22-prototype.png
+tags:
+  - Design Pattern
+  - 디자인 패턴
+  - Prototype
+  - 프로토타입
+  - Creational Pattern
+  - 생성 패턴
+  - GoF
+  - Gang of Four
+  - Clone
+  - 복제
+  - Object Cloning
+  - 객체 복제
+  - Deep Copy
+  - 깊은 복사
+  - Shallow Copy
+  - 얕은 복사
+  - Cloneable
+  - Object Creation
+  - 객체 생성
+  - Prototype Registry
+  - 프로토타입 레지스트리
+  - Cache
+  - 캐시
+  - Performance
+  - 성능
+  - Memory
+  - 메모리
+  - Instance
+  - 인스턴스
+  - Copy Constructor
+  - 복사 생성자
+  - Object Pool
+  - 객체 풀
+  - Code Reusability
+  - 코드 재사용성
+  - Maintainability
+  - 유지보수성
+  - Software Design
+  - 소프트웨어 설계
+  - OOP
+  - 객체지향 프로그래밍
+  - Java
+  - C++
+  - Python
+  - C#
+  - Serialization
+  - 직렬화
+  - Deserialization
+  - 역직렬화
+  - State Copy
+  - 상태 복사
+  - Dynamic Creation
+  - 동적 생성
 ---
 
 프로토타입 패턴은 객체를 생성하는 데 있어 기존 객체를 복제하여 새로운 객체를 생성하는 디자인 패턴이다. 이 패턴은 객체 생성 과정에서 발생할 수 있는 복잡한 로직을 간소화하고, 유사한 객체를 생성할 때 시간과 비용을 줄일 수 있는 장점이 있다. 프로토타입 패턴을 사용하면, 객체 생성 시 복잡한 초기화 과정을 피할 수 있으며, 이미 생성된 객체를 복제하여 새로운 객체를 생성함으로써 코드의 재사용성을 높일 수 있다. 이 패턴은 특히 객체 생성 비용이 크거나, 비슷한 객체가 이미 존재하는 경우에 유용하다. 프로토타입 패턴을 구현하기 위해서는 Cloneable 인터페이스를 구현하고, clone() 메서드를 오버라이드하여 복제 가능한 객체를 만들어야 한다. 이때, 복제된 객체는 원본 객체와 독립적으로 존재해야 하며, 깊은 복사 또는 얕은 복사를 통해 객체를 복제할 수 있다. 프로토타입 패턴은 객체의 상태를 공유하는 경우 부작용이 발생할 수 있으므로, 적절한 복사 방법을 선택하는 것이 중요하다. 이 패턴은 다양한 소프트웨어 개발 분야에서 활용될 수 있으며, 특히 그래픽 디자인 애플리케이션이나 음악 편집기와 같은 분야에서 그 유용성이 두드러진다.
-
-
-|![/assets/images/2024/2024-08-22-prototype.png](/assets/images/2024/2024-08-22-prototype.png)|
-|:---:|
-||
 
 
 <!--

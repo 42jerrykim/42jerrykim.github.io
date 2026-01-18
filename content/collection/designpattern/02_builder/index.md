@@ -1,21 +1,69 @@
 ---
-description: "빌더 패턴은 복잡한 객체 생성을 단계별로 분리하여, 동일한 생성 로직으로 다양한 내부 표현의 객체를 만들 수 있게 하는 생성 패턴입니다. 가독성, 확장성, 불변성을 높여 멀티스레드 환경에서도 효과적인 객체 생성을 지원합니다."
-image: "tmp_wordcloud.png"
-title: "[Design Pattern] Builder"
-last_modified_at: 2024-08-22
+collection_order: 2
+title: "[Design Pattern] Builder - 빌더 패턴"
+description: "빌더 패턴은 복잡한 객체 생성을 단계별로 분리하여 동일한 생성 로직으로 다양한 표현의 객체를 만들 수 있게 하며, 가독성과 불변성을 높여 안전한 객체 생성을 지원합니다."
 date: 2022-01-01
+last_modified_at: 2024-08-22
 categories: Design Pattern
+image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-22-builder.png
+tags:
+  - Design Pattern
+  - 디자인 패턴
+  - Builder
+  - 빌더
+  - Creational Pattern
+  - 생성 패턴
+  - GoF
+  - Gang of Four
+  - Object Creation
+  - 객체 생성
+  - Step by Step
+  - 단계별 생성
+  - Fluent Interface
+  - 플루언트 인터페이스
+  - Method Chaining
+  - 메서드 체이닝
+  - Immutability
+  - 불변성
+  - Thread Safety
+  - 스레드 안전성
+  - Complex Object
+  - 복잡한 객체
+  - Director
+  - 디렉터
+  - Concrete Builder
+  - 구체 빌더
+  - Product
+  - 제품
+  - Telescoping Constructor
+  - 점층적 생성자
+  - Code Readability
+  - 코드 가독성
+  - Maintainability
+  - 유지보수성
+  - Software Design
+  - 소프트웨어 설계
+  - OOP
+  - 객체지향 프로그래밍
+  - Java
+  - C++
+  - Python
+  - C#
+  - StringBuilder
+  - Configuration
+  - 설정
+  - Optional Parameters
+  - 선택적 매개변수
+  - Construction
+  - 생성
+  - Separation of Concerns
+  - 관심사 분리
 ---
 
 
 빌더 패턴은 복잡한 객체를 단계별로 생성할 수 있도록 해주는 생성 디자인 패턴이다. 이 패턴은 동일한 생성 코드를 사용하여 다양한 유형과 표현의 객체를 생성할 수 있게 해준다. 예를 들어, 집을 짓는 과정을 생각해보자. 집을 짓기 위해서는 여러 단계가 필요하다. 벽을 세우고, 문을 설치하고, 창문을 달고, 지붕을 올리는 등의 과정이 있다. 이러한 복잡한 과정을 단순한 생성자 호출로 처리하기에는 한계가 있다. 빌더 패턴을 사용하면 각 단계별로 필요한 메소드를 호출하여 객체를 생성할 수 있으며, 필요한 단계만 선택적으로 호출할 수 있다. 이로 인해 코드의 가독성이 높아지고, 유지보수성이 향상된다. 또한, 빌더 패턴은 객체의 불변성을 보장할 수 있어, 멀티스레드 환경에서도 안전하게 사용할 수 있다. 이러한 이유로 빌더 패턴은 소프트웨어 개발에서 매우 유용하게 사용된다.
-
-
-|![/assets/images/2024/2024-08-22-builder.png](/assets/images/2024/2024-08-22-builder.png)|
-|:---:|
-||
 
 
 <!--

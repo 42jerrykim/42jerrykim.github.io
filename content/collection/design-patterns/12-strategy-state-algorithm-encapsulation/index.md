@@ -1,8 +1,8 @@
 ---
 collection_order: 120
-draft: true
 title: "[Design Patterns] 전략과 상태: 알고리즘 캡슐화의 미학"
 description: "동적으로 알고리즘을 교체하는 Strategy 패턴과 상태에 따라 행동을 변경하는 State 패턴의 고급 활용법을 탐구합니다. 알고리즘 캡슐화, 상태 기계 설계, 함수형 프로그래밍과의 연계 등을 통해 유연하고 확장 가능한 시스템을 설계하는 전문가 수준의 기법을 학습합니다."
+image: "wordcloud.png"
 date: 2024-12-12T10:00:00+09:00
 lastmod: 2024-12-15T14:30:00+09:00
 categories:
@@ -73,9 +73,9 @@ tags:
 - 상태 지속성
 ---
 
-# Strategy와 State - 알고리즘과 상태의 캡슐화
+Strategy와 State 패턴의 철학적 차이를 탐구합니다. 알고리즘 교체와 상태 기반 행동 변화를 통해 유연한 시스템을 설계하는 방법을 학습합니다.
 
-##️ **서론: 행동의 캡슐화 vs 상태의 진화**
+## 서론: 행동의 캡슐화 vs 상태의 진화
 
 > *"Strategy 패턴은 '어떻게 할 것인가'를 캡슐화하고, State 패턴은 '언제 무엇을 할 것인가'를 캡슐화한다."*
 
@@ -85,14 +85,14 @@ tags:
 
 **State 패턴**은 **"상태 기반 행동 변화"**에 초점을 맞춥니다. 객체의 내부 상태에 따라 행동이 자동으로 변하며, "언제 무엇을 할 것인가(When & What)"의 문제를 해결합니다.
 
-## **1. Strategy 패턴 - 알고리즘의 캡슐화**
+## Strategy 패턴 - 알고리즘의 캡슐화
 
-### **1.1 Strategy 패턴의 핵심 철학**
+### Strategy 패턴의 핵심 철학
 
 Strategy 패턴은 **"알고리즘 패밀리를 정의하고, 각각을 캡슐화하여 상호 교체 가능하게 만드는"** 패턴입니다. 이는 **개방-폐쇄 원칙**의 완벽한 구현체입니다.
 
 ```java
-// ❌ Strategy 패턴 없이 구현한다면?
+// Strategy 패턴 없이 구현한다면?
 class BadPriceCalculator {
     public double calculatePrice(double basePrice, String customerType) {
         switch (customerType) {
@@ -111,10 +111,10 @@ class BadPriceCalculator {
 }
 ```
 
-### **1.2 Strategy 패턴으로 우아하게 해결**
+### Strategy 패턴으로 우아하게 해결
 
 ```java
-// ✅ Strategy 패턴으로 우아하게 해결
+// Strategy 패턴으로 우아하게 해결
 interface PaymentStrategy {
     PaymentResult processPayment(double amount, PaymentContext context);
     String getPaymentType();
@@ -385,7 +385,7 @@ class PaymentContext {
 }
 ```
 
-### **1.3 함수형 프로그래밍에서의 Strategy 패턴**
+### 함수형 프로그래밍에서의 Strategy 패턴
 
 Java 8 이후, Strategy 패턴은 함수형 인터페이스와 람다 표현식으로 더욱 간결하게 구현할 수 있습니다:
 
@@ -440,14 +440,14 @@ DiscountStrategy bulkDiscount = conditional(
 );
 ```
 
-## **2. State 패턴 - 상태 기반 행동 변화**
+## State 패턴 - 상태 기반 행동 변화
 
-### **2.1 State 패턴의 핵심 철학**
+### State 패턴의 핵심 철학
 
 State 패턴은 **"객체의 내부 상태가 변할 때 객체의 행동이 바뀌도록 허용하는"** 패턴입니다. 마치 객체의 클래스가 바뀌는 것처럼 보입니다.
 
 ```java
-// ❌ State 패턴 없이 구현한다면?
+// State 패턴 없이 구현한다면?
 class BadVendingMachine {
     private enum State { IDLE, MONEY_INSERTED, PRODUCT_SELECTED, DISPENSING }
     private State currentState = State.IDLE;
@@ -478,10 +478,10 @@ class BadVendingMachine {
 }
 ```
 
-### **2.2 State 패턴으로 우아하게 해결**
+### State 패턴으로 우아하게 해결
 
 ```java
-// ✅ State 패턴으로 우아하게 해결
+// State 패턴으로 우아하게 해결
 interface VendingMachineState {
     void insertMoney(VendingMachine machine, double amount);
     void selectProduct(VendingMachine machine, String productCode);
@@ -506,17 +506,17 @@ class IdleState implements VendingMachineState {
     
     @Override
     public void selectProduct(VendingMachine machine, String productCode) {
-        System.out.println("❌ Please insert money first!");
+        System.out.println("[Error] Please insert money first!");
     }
     
     @Override
     public void dispenseProduct(VendingMachine machine) {
-        System.out.println("❌ Please insert money and select product first!");
+        System.out.println("[Error] Please insert money and select product first!");
     }
     
     @Override
     public void returnMoney(VendingMachine machine) {
-        System.out.println("❌ No money to return!");
+        System.out.println("[Error] No money to return!");
     }
     
     @Override
@@ -543,24 +543,24 @@ class MoneyInsertedState implements VendingMachineState {
     public void selectProduct(VendingMachine machine, String productCode) {
         Product product = machine.getProduct(productCode);
         if (product == null) {
-            System.out.println("❌ Invalid product code!");
+            System.out.println("[Error] Invalid product code!");
             return;
         }
         
         if (machine.getCurrentBalance() >= product.getPrice()) {
             machine.setSelectedProduct(product);
-            System.out.printf("✅ Product selected: %s ($%.2f)\n", 
+            System.out.printf("[OK] Product selected: %s ($%.2f)\n", 
                              product.getName(), product.getPrice());
             machine.setState(ProductSelectedState.getInstance());
         } else {
-            System.out.printf("❌ Insufficient funds! Need $%.2f more\n", 
+            System.out.printf("[Error] Insufficient funds! Need $%.2f more\n", 
                              product.getPrice() - machine.getCurrentBalance());
         }
     }
     
     @Override
     public void dispenseProduct(VendingMachine machine) {
-        System.out.println("❌ Please select a product first!");
+        System.out.println("[Error] Please select a product first!");
     }
     
     @Override
@@ -592,7 +592,7 @@ class ProductSelectedState implements VendingMachineState {
     
     @Override
     public void selectProduct(VendingMachine machine, String productCode) {
-        System.out.println("⚠️ Product already selected. Press dispense or return money.");
+        System.out.println("[Warning] Product already selected. Press dispense or return money.");
     }
     
     @Override
@@ -776,9 +776,9 @@ class Product {
 }
 ```
 
-## **3. Strategy vs State - 구조적 유사성과 본질적 차이**
+## Strategy vs State - 구조적 유사성과 본질적 차이
 
-### **3.1 패턴 비교 매트릭스**
+### 패턴 비교 매트릭스
 
 | **특성** | **Strategy Pattern** | **State Pattern** |
 |----------|---------------------|-------------------|
@@ -790,7 +790,7 @@ class Product {
 | **복잡성** | 상대적으로 단순 | 상태 전이 로직으로 복잡 |
 | **사용 시점** | 런타임 알고리즘 선택 | 객체 상태 변화 시 |
 
-### **3.2 실제 비교 예시**
+### 실제 비교 예시
 
 ```java
 // Strategy 패턴 예시: 정렬 알고리즘 선택
@@ -820,7 +820,7 @@ class TCPConnection {
 }
 ```
 
-### **3.3 언제 어떤 패턴을 선택할 것인가?**
+### 언제 어떤 패턴을 선택할 것인가?
 
 **Strategy 패턴을 선택하세요:**
 - 런타임에 알고리즘을 변경해야 할 때
@@ -834,14 +834,84 @@ class TCPConnection {
 - 상태 전이 규칙이 명확할 때
 - 상태 머신을 구현해야 할 때
 
-## **결론: 캡슐화의 두 얼굴**
+## 한눈에 보는 Strategy & State 패턴
+
+### Strategy vs State 핵심 비교
+
+| 비교 항목 | Strategy 패턴 | State 패턴 |
+|----------|--------------|-----------|
+| **핵심 목적** | 알고리즘 캡슐화 및 교체 | 상태별 행동 캡슐화 |
+| **변화 주체** | 클라이언트가 선택 | 객체 내부에서 전이 |
+| **교체 시점** | 클라이언트 결정 (외부) | 상태 로직에 따라 (내부) |
+| **캡슐화 대상** | "어떻게(How)" | "언제(When)" |
+| **상태 인식** | Context가 전략 몰라도 됨 | Context가 상태 알 필요 없음 |
+| **전이 책임** | 없음 (선택만) | State 또는 Context |
+
+### 구조적 유사점과 차이점
+
+| 측면 | Strategy | State |
+|------|----------|-------|
+| UML 구조 | 거의 동일 | 거의 동일 |
+| 공통 인터페이스 | Strategy 인터페이스 | State 인터페이스 |
+| Context 역할 | 전략 사용 | 현재 상태 유지 |
+| 구체 클래스 | 알고리즘 구현 | 상태별 행동 구현 |
+| 핵심 차이 | **의도(Intent)** | **의도(Intent)** |
+
+### 선택 가이드
+
+| 상황 | 권장 패턴 | 이유 |
+|------|----------|------|
+| 정렬 알고리즘 교체 | Strategy | 클라이언트가 알고리즘 선택 |
+| 할인 정책 적용 | Strategy | 조건에 따른 계산 방식 변경 |
+| 주문 상태 관리 | State | 상태 전이에 따른 행동 변화 |
+| 게임 캐릭터 상태 | State | 상태별 다른 행동 패턴 |
+| 결제 처리 방식 | Strategy | 결제 수단별 처리 로직 |
+| TCP 연결 상태 | State | 연결 상태에 따른 행동 |
+
+### if-else 제거 효과 비교
+
+| 문제 코드 | Strategy 해결 | State 해결 |
+|----------|--------------|-----------|
+| if(type == A) doA() | strategy.execute() | state.handle() |
+| switch(algorithm) | strategy.process() | - |
+| switch(state) | - | state.action() |
+| 조건 추가 시 | 새 Strategy 클래스 | 새 State 클래스 |
+
+### 장단점 비교
+
+| 패턴 | 장점 | 단점 |
+|------|------|------|
+| Strategy | 알고리즘 독립적 변경, OCP 준수, 테스트 용이 | 클래스 수 증가, 클라이언트가 전략 알아야 함 |
+| State | 상태 로직 분리, 전이 로직 명확, OCP 준수 | 상태 수에 비례한 클래스, 상태 공유 어려움 |
+
+### 현대적 구현 방식
+
+| 구현 방식 | Strategy 예시 | State 예시 |
+|----------|--------------|-----------|
+| 전통적 OOP | interface + 구현 클래스들 | interface + 상태 클래스들 |
+| 함수형 (Java 8+) | `Function<T, R>` | 가능하나 복잡 |
+| Enum 활용 | `enum Strategy` | `enum State` |
+| 람다 + Map | `Map<String, Strategy>` | 제한적 |
+
+### 적용 체크리스트
+
+| Strategy 체크 항목 | State 체크 항목 |
+|------------------|----------------|
+| 여러 알고리즘이 존재하는가? | 객체가 여러 상태를 가지는가? |
+| 클라이언트가 알고리즘을 선택하는가? | 상태에 따라 행동이 달라지는가? |
+| 런타임에 알고리즘 교체 필요? | 상태 전이 로직이 명확한가? |
+| 조건문으로 알고리즘 분기 중? | switch/if로 상태 분기 중? |
+
+---
+
+## 결론: 캡슐화의 두 얼굴
 
 Strategy와 State 패턴은 **"캡슐화"**라는 공통 목표를 가지지만, 서로 다른 관점에서 접근합니다:
 
 - **Strategy**: "어떻게(How)" - 알고리즘의 캡슐화
 - **State**: "언제(When)" - 상태별 행동의 캡슐화
 
-### **현대적 활용:**
+### 현대적 활용:
 
 ```
 Strategy Pattern → Modern Evolution:
@@ -857,20 +927,20 @@ State Pattern → Modern Evolution:
 - Finite State Machines in Microservices
 ```
 
-### **실무 가이드라인:**
+### 실무 가이드라인:
 
 ```
-✅ Strategy 패턴 적용 시점:
+Strategy 패턴 적용 시점:
 - 동일한 목적의 다양한 알고리즘이 존재할 때
 - 런타임에 알고리즘 선택이 필요할 때
 - 조건문으로 인한 복잡성을 줄이고 싶을 때
 
-✅ State 패턴 적용 시점:
+State 패턴 적용 시점:
 - 객체의 상태가 명확히 구분될 때
 - 상태에 따른 행동 변화가 복잡할 때
 - 상태 전이 규칙이 명확할 때
 
-⚠️ 주의사항:
+주의사항:
 - 과도한 추상화 방지
 - 성능 오버헤드 고려
 - 메모리 사용량 모니터링
@@ -883,5 +953,5 @@ State Pattern → Modern Evolution:
 
 ---
 
-**💡 핵심 메시지:**
+**핵심 메시지:**
 "Strategy는 '어떻게 할 것인가'의 다양성을, State는 '언제 무엇을 할 것인가'의 변화를 캡슐화한다. 구조는 비슷하지만 철학이 다른 이 두 패턴을 올바르게 구분하는 것이 설계의 핵심이다." 

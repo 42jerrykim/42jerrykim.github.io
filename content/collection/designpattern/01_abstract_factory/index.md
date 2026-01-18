@@ -1,22 +1,71 @@
 ---
-image: "tmp_wordcloud.png"
-description: "Abstract Factory 패턴은 관련 객체 집합을 생성하는 인터페이스를 제공하여, 클라이언트가 구체적인 클래스에 의존하지 않고 일관되게 다양한 제품군을 생성할 수 있도록 해줍니다. 유지보수성과 확장성이 뛰어납니다."
-title: "[Design Pattern] Abstract Factory"
-last_modified_at: 2023-01-12
+collection_order: 1
+title: "[Design Pattern] Abstract Factory - 추상 팩토리 패턴"
+description: "Abstract Factory 패턴은 관련 객체 집합을 생성하는 인터페이스를 제공하여 클라이언트가 구체 클래스에 의존하지 않고 다양한 제품군을 일관되게 생성할 수 있게 합니다."
 date: 2022-01-01
+last_modified_at: 2023-01-12
 categories: Design Pattern
-desctiption: test
+image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-22-abstract-factory.png
+tags:
+  - Design Pattern
+  - 디자인 패턴
+  - Abstract Factory
+  - 추상 팩토리
+  - Creational Pattern
+  - 생성 패턴
+  - GoF
+  - Gang of Four
+  - Factory
+  - 팩토리
+  - Object Creation
+  - 객체 생성
+  - Product Family
+  - 제품군
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - Encapsulation
+  - 캡슐화
+  - Dependency Injection
+  - 의존성 주입
+  - Loose Coupling
+  - 느슨한 결합
+  - Code Reusability
+  - 코드 재사용성
+  - Maintainability
+  - 유지보수성
+  - Extensibility
+  - 확장성
+  - Software Design
+  - 소프트웨어 설계
+  - OOP
+  - 객체지향 프로그래밍
+  - Java
+  - C++
+  - Python
+  - C#
+  - Concrete Factory
+  - 구체 팩토리
+  - Abstract Product
+  - 추상 제품
+  - Concrete Product
+  - 구체 제품
+  - Client
+  - 클라이언트
+  - Cross-platform
+  - 크로스 플랫폼
+  - UI Factory
+  - Theme
+  - 테마
+  - Configuration
+  - 설정
 ---
 
 
 추상 팩토리 패턴은 객체 생성의 유연성을 제공하는 디자인 패턴으로, 서로 관련된 객체들을 일관된 방식으로 생성할 수 있도록 돕는다. 이 패턴은 구체적인 클래스에 의존하지 않고, 제품군을 정의하고 이를 생성하는 인터페이스를 제공함으로써, 클라이언트 코드가 구체적인 제품의 생성 방식에 대해 알 필요가 없도록 한다. 예를 들어, 가구 쇼핑몰 시뮬레이터를 생각해보자. 이 시뮬레이터는 의자, 소파, 커피 테이블과 같은 가구 제품을 다루며, 각 제품은 현대적, 빅토리안, 아르데코와 같은 다양한 스타일로 제공된다. 이때, 각 스타일에 맞는 제품을 생성하기 위해 추상 팩토리 패턴을 활용하면, 클라이언트는 특정 스타일의 제품을 요청할 수 있으며, 해당 스타일에 맞는 제품이 생성된다. 이 패턴의 장점은 새로운 제품이나 스타일이 추가될 때 기존 코드를 수정할 필요 없이 새로운 팩토리 클래스를 추가함으로써 쉽게 확장할 수 있다는 점이다. 따라서, 추상 팩토리 패턴은 객체 생성의 복잡성을 줄이고, 코드의 재사용성을 높이며, 유지보수를 용이하게 하는 데 큰 도움이 된다.
-
-
-|![/assets/images/2024/2024-08-22-abstract-factory.png](/assets/images/2024/2024-08-22-abstract-factory.png)|
-|:---:|
-||
 
 
 <!--

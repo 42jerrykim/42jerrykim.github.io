@@ -1,8 +1,8 @@
 ---
 collection_order: 201
-draft: true
 title: "[Design Patterns] 도메인 주도 설계와 디자인 패턴 실습 - 비즈니스 로직 설계"
 description: "Domain-Driven Design과 디자인 패턴을 결합한 실습입니다. Aggregate, Repository, Factory, Service 등의 DDD 패턴과 기존 GoF 패턴을 조합하여 복잡한 비즈니스 도메인을 모델링하고, 실무에서 효과적인 도메인 계층 설계 기법을 학습합니다."
+image: "wordcloud.png"
 date: 2024-12-20T11:00:00+09:00
 lastmod: 2024-12-15T14:30:00+09:00
 categories:
@@ -50,15 +50,15 @@ tags:
 - 엔터프라이즈 패턴
 ---
 
-# DDD와 디자인 패턴 실습 - 비즈니스 로직 설계
+이 실습에서는 도서관 도메인 모델링과 전자상거래 주문 처리를 통해 DDD 패턴을 직접 구현합니다.
 
-## **실습 목표**
+## 실습 목표
 
 1. 도서관 도메인 모델링으로 DDD 기본 개념 학습
 2. 전자상거래 주문 처리를 통한 Event Sourcing 구현
 3. Repository, Aggregate, Domain Service 패턴 실습
 
-## **과제 1: 도서관 도메인 모델링**
+## 과제 1: 도서관 도메인 모델링
 
 ### 요구사항
 - 회원은 도서를 대출하고 반납할 수 있다
@@ -182,7 +182,7 @@ public interface MemberRepository extends Repository<Member, MemberId> {
 }
 ```
 
-## **과제 2: 전자상거래 주문 처리**
+## 과제 2: 전자상거래 주문 처리
 
 ### Event Sourcing 구현
 ```java
@@ -294,7 +294,7 @@ public class InMemoryEventStore implements EventStore {
 }
 ```
 
-## **과제 3: CQRS 패턴 구현**
+## 과제 3: CQRS 패턴 구현
 
 ### Command Side
 ```java
@@ -346,7 +346,7 @@ public interface OrderQueryService {
 }
 ```
 
-## **완성도 체크리스트**
+## 완성도 체크리스트
 
 ### DDD 기본 개념
 - [ ] Entity와 Value Object 구분
@@ -369,7 +369,7 @@ public interface OrderQueryService {
 - [ ] Query Service 구현
 - [ ] 프로젝션 업데이트
 
-## **추가 도전 과제**
+## 추가 도전 과제
 
 1. **Domain Event Publisher 구현**
    - 이벤트 발행/구독 메커니즘
@@ -387,7 +387,7 @@ public interface OrderQueryService {
    - 레거시 시스템과의 통합
    - 도메인 모델 보호
 
-## **실무 적용 팁**
+## 실무 적용 팁
 
 ### Bounded Context 설계
 ```java
@@ -419,7 +419,7 @@ public class OrderInventoryIntegration {
 
 ---
 
-**💡 실습 팁**
+**실습 팁**
 - 도메인 전문가와 대화하며 Ubiquitous Language 구축
 - 작은 Bounded Context부터 시작하여 점진적 확장
 - Event Storming 기법으로 도메인 이벤트 발견

@@ -1,20 +1,69 @@
 ---
-description: "싱글턴 패턴은 객체의 인스턴스가 오직 하나만 존재하도록 보장하고, 전역적으로 해당 인스턴스에 접근할 수 있게 해주는 디자인 패턴입니다. 주로 데이터베이스 연결, 설정 관리 등 시스템 전역에서 단일 인스턴스가 필요한 경우에 사용되며, 자원 낭비와 데이터 불일치를 방지하는 효과가 있습니다."
-image: "tmp_wordcloud.png"
-title: "[Design Pattern] Singleton"
-last_modified_at: 2024-08-20
+collection_order: 5
+title: "[Design Pattern] Singleton - 싱글턴 패턴"
+description: "싱글턴 패턴은 클래스의 인스턴스가 하나만 존재하도록 보장하고 전역 접근점을 제공합니다. 데이터베이스 연결, 설정 관리 등 단일 인스턴스가 필요한 경우에 사용됩니다."
 date: 2022-01-01
+last_modified_at: 2024-08-20
 categories: Design Pattern
-
+image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-20-singleton.png
+tags:
+  - Design Pattern
+  - 디자인 패턴
+  - Singleton
+  - 싱글턴
+  - Creational Pattern
+  - 생성 패턴
+  - GoF
+  - Gang of Four
+  - Single Instance
+  - 단일 인스턴스
+  - Global Access
+  - 전역 접근
+  - Thread Safety
+  - 스레드 안전성
+  - Lazy Initialization
+  - 지연 초기화
+  - Eager Initialization
+  - 즉시 초기화
+  - Double Checked Locking
+  - 이중 검사 잠금
+  - Synchronized
+  - 동기화
+  - Static Instance
+  - 정적 인스턴스
+  - Private Constructor
+  - 비공개 생성자
+  - Database Connection
+  - 데이터베이스 연결
+  - Configuration
+  - 설정
+  - Logger
+  - 로거
+  - Cache
+  - 캐시
+  - Resource Management
+  - 리소스 관리
+  - Anti Pattern
+  - 안티 패턴
+  - Dependency Injection
+  - 의존성 주입
+  - Software Design
+  - 소프트웨어 설계
+  - OOP
+  - 객체지향 프로그래밍
+  - Java
+  - C++
+  - Python
+  - C#
+  - Enum Singleton
+  - Bill Pugh
+  - Inner Class
+  - 내부 클래스
 ---
 
 싱글턴 패턴은 객체 지향 소프트웨어 개발에서 자주 사용되는 디자인 패턴 중 하나로, 특정 클래스의 인스턴스가 오직 하나만 존재하도록 보장하는 패턴이다. 이 패턴은 전역적으로 접근할 수 있는 인스턴스를 제공하여, 여러 객체가 동일한 인스턴스를 공유할 수 있도록 한다. 싱글턴 패턴은 주로 데이터베이스 연결, 로그 기록, 설정 관리 등과 같이 애플리케이션 전역에서 단일 인스턴스가 필요한 경우에 유용하게 사용된다. 그러나 싱글턴 패턴은 여러 가지 문제점을 동반할 수 있다. 예를 들어, 멀티 스레드 환경에서 인스턴스가 여러 번 생성되는 경합 조건이 발생할 수 있으며, 이는 프로그램의 안정성을 저해할 수 있다. 또한, 싱글턴 패턴은 테스트하기 어려운 구조를 만들어, 의존성 주입과 같은 다른 디자인 원칙을 위반할 수 있다. 따라서 싱글턴 패턴을 사용할 때는 이러한 장단점을 충분히 고려해야 하며, 필요에 따라 대체 디자인 패턴을 검토하는 것이 좋다.
-
-|![/assets/images/2024/2024-08-20-singleton.png](/assets/images/2024/2024-08-20-singleton.png)|
-|:---:|
-|클래스 다이어그램|
 
 ## 싱글턴 패턴 개요
 

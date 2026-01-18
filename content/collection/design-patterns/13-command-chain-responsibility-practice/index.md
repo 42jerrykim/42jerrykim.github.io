@@ -1,8 +1,8 @@
 ---
 collection_order: 131
-draft: true
 title: "[Design Patterns] 커맨드와 책임 연쇄 패턴 실습 - 요청 캡슐화와 처리 체인"
 description: "Command와 Chain of Responsibility 패턴을 통해 요청 캡슐화와 처리 체인을 실습합니다. GUI 액션 시스템, 로그 처리 체인, 게임 AI 명령 등을 구현하며 실행 취소, 매크로, 요청 라우팅 등의 고급 기능을 마스터하는 실무 설계 기법을 학습합니다."
+image: "wordcloud.png"
 date: 2024-12-13T11:00:00+09:00
 lastmod: 2024-12-15T14:30:00+09:00
 categories:
@@ -52,20 +52,20 @@ tags:
 - 액션 프레임워크
 ---
 
-# Command & Chain of Responsibility 패턴 실습 - 요청 캡슐화와 처리 체인
+이 실습에서는 Command 패턴으로 Undo/Redo 시스템을, Chain of Responsibility로 요청 처리 체인을 구현합니다.
 
-## **실습 목표**
+## 실습 목표
 - Command 패턴으로 Undo/Redo 시스템 구현
 - Chain of Responsibility로 요청 처리 체인 구현
 - 매크로 명령과 복합 명령 처리
 - 웹 미들웨어 스타일 체인 구현
 
-## **실습 1: 텍스트 에디터 Command 시스템**
+## 실습 1: 텍스트 에디터 Command 시스템
 
-### **요구사항**
+### 요구사항
 실행 취소/재실행이 가능한 텍스트 에디터
 
-### **💻 코드 템플릿**
+### 코드 템플릿
 
 ```java
 // TODO 1: Command 인터페이스 정의
@@ -138,12 +138,12 @@ public class CommandManager {
 }
 ```
 
-## **실습 2: 지원 요청 처리 체인**
+## 실습 2: 지원 요청 처리 체인
 
-### **요구사항**
+### 요구사항
 다단계 고객 지원 시스템 (Level 1 → Level 2 → Level 3)
 
-### **💻 코드 템플릿**
+### 코드 템플릿
 
 ```java
 // TODO 1: Handler 추상 클래스 정의
@@ -197,9 +197,9 @@ public class SupportRequest {
 }
 ```
 
-## **실습 3: HTTP 미들웨어 체인**
+## 실습 3: HTTP 미들웨어 체인
 
-### **💻 코드 템플릿**
+### 코드 템플릿
 
 ```java
 // TODO 1: 미들웨어 인터페이스
@@ -249,9 +249,9 @@ public class MiddlewareBuilder {
 }
 ```
 
-## **실습 4: 이벤트 처리 Command 시스템**
+## 실습 4: 이벤트 처리 Command 시스템
 
-### **💻 코드 템플릿**
+### 코드 템플릿
 
 ```java
 // TODO 1: 이벤트 기반 Command
@@ -275,42 +275,42 @@ public class DistributedCommandProcessor {
 }
 ```
 
-## **체크리스트**
+## 체크리스트
 
-### **Command 패턴**
+### Command 패턴
 - [ ] 실행 취소/재실행 구현
 - [ ] 매크로 명령 구현
 - [ ] Command 큐잉 시스템
 - [ ] 분산 명령 처리
 
-### **Chain of Responsibility**
+### Chain of Responsibility
 - [ ] 요청 처리 체인 구현
 - [ ] 동적 체인 구성
 - [ ] 우선순위 기반 라우팅
 - [ ] 미들웨어 패턴 구현
 
-### **패턴 조합**
+### 패턴 조합
 - [ ] Command + Chain 결합 사용
 - [ ] 에러 처리 메커니즘
 - [ ] 성능 모니터링
 - [ ] 로깅 및 디버깅 지원
 
-## **추가 도전**
+## 추가 도전
 
 1. **Command Sourcing**: 이벤트 소싱 패턴 구현
 2. **Async Command**: 비동기 명령 처리
 3. **Command Batching**: 명령 배치 처리
 4. **Distributed Chain**: 분산 책임 체인
 
-## **실무 적용**
+## 실무 적용
 
-### **Command 패턴 활용**
+### Command 패턴 활용
 - GUI 이벤트 처리
 - 트랜잭션 관리
 - 작업 큐 시스템
 - 이벤트 소싱
 
-### **Chain of Responsibility 활용**  
+### Chain of Responsibility 활용
 - 웹 프레임워크 미들웨어
 - 예외 처리 체인
 - 승인 워크플로우
@@ -318,4 +318,4 @@ public class DistributedCommandProcessor {
 
 ---
 
-💡 **핵심 포인트**: Command는 '무엇을 할 것인가'를 객체로 캡슐화하고, Chain of Responsibility는 '누가 할 것인가'를 유연하게 결정합니다. 두 패턴의 조합은 복잡한 요청 처리 시스템의 핵심입니다. 
+**핵심 포인트**: Command는 '무엇을 할 것인가'를 객체로 캡슐화하고, Chain of Responsibility는 '누가 할 것인가'를 유연하게 결정합니다. 두 패턴의 조합은 복잡한 요청 처리 시스템의 핵심입니다. 
