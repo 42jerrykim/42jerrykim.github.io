@@ -70,7 +70,7 @@ tags:
   - code-quality
   - 코드품질
 lastmod: 2026-01-17
-collection_order: 1
+collection_order: 2
 ---
 # Python 마스터 커리큘럼
 
