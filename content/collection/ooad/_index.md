@@ -4,7 +4,6 @@ description: "객체지향 분석(OOA)과 설계(OOD)를 요구사항→모델�
 date: 2026-01-17
 lastmod: 2026-01-17
 featured_image: "/images/ooad-mastery-banner.jpg"
-weight: 25
 tags:
   - OOAD
   - Object-Oriented-Analysis
@@ -105,7 +104,7 @@ tags:
 11. [의존성 관리와 인터페이스 설계](11_dependency_management_interface_design/)
 12. [확장성과 유연성을 위한 설계 기법](12_extensibility_flexibility_design_techniques/)
 
-###️ Phase 4: 도메인 주도 설계 (13-16편)
+### Phase 4: 도메인 주도 설계 (13-16편)
 13. [도메인 주도 설계(DDD)의 핵심 개념](13_domain_driven_design_core_concepts/)
 14. [전략적 설계: 바운디드 컨텍스트](14_strategic_design_bounded_context/)
 15. [전술적 설계: 엔티티와 밸류 오브젝트](15_tactical_design_entity_value_object/)
@@ -173,7 +172,7 @@ tags:
 - 복잡한 문제를 체계적으로 분석하는 능력
 - 추상화와 모델링에 대한 깊은 이해
 
-###️ **실무 역량**
+### **실무 역량**
 - 요구사항에서 설계까지의 완전한 프로세스 수행 능력
 - 확장 가능하고 유지보수 가능한 아키텍처 설계 능력
 - 팀 협업과 기술 리더십 역량
@@ -220,7 +219,7 @@ tags:
 - **소셜 미디어**: 사용자 상호작용과 콘텐츠 관리
 - **교육 플랫폼**: 학습자 관리와 진도 추적 시스템
 
-###️ **인프라 시스템**
+### **인프라 시스템**
 - **모니터링 시스템**: 대규모 시스템 상태 관리
 - **로그 분석**: 실시간 로그 처리와 분석
 - **배치 처리**: 대용량 데이터 처리 시스템
@@ -270,7 +269,7 @@ tags:
 - Test-Driven Development (TDD)
 - Behavior-Driven Development (BDD)
 
-###️ **도구 및 리소스**
+### **도구 및 리소스**
 - **UML 도구**: Enterprise Architect, Lucidchart, draw.io
 - **설계 도구**: PlantUML, Mermaid, Visio
 - **모델링 도구**: MagicDraw, ArgoUML, StarUML
