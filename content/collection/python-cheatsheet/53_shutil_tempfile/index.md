@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 53. shutil & tempfile - 파일/디렉토리 복사/이동/임시파일"
 slug: "file-directory-automation-shutil-tempfile-best-practices"

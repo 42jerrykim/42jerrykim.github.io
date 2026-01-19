@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 51. os 심화 - 파일시스템과 프로세스"
 slug: "os-module-filesystem-process-management-guide"

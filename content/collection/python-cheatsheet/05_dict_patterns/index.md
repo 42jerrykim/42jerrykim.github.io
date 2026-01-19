@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 05. dict 패턴 - 조회/기본값/카운팅/병합"
 slug: "advanced-dictionary-patterns-safe-lookup-merging-counting"

@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 49. uuid - 고유 식별자 생성"
 slug: "unique-id-generation-uuid-module-guide"

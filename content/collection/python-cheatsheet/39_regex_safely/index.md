@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 39. Regex - 안전하게 쓰는 최소 패턴"
 slug: "regex-safely-minimal-pattern-usage-tips-seo"

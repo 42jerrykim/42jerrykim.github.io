@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 30. collections 심화 - deque/namedtuple/ChainMap"
 slug: "effective-collections-deque-namedtuple-chainmap-advanced-guide"

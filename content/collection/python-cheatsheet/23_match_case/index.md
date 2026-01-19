@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 23. match-case - 구조적 패턴 매칭 (Py3.10+)"
 slug: "structural-pattern-matching-switch-guide-py310-py311-code-examples"

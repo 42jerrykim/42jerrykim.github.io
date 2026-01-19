@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 28. itertools & functools - 자주 쓰는 조합"
 slug: "efficient-iteration-caching-itertools-functools-productivity-guide"

@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 68. email & smtplib - 이메일 작성/발송"
 slug: "smtp-email-sending-guide-attach-html-auth-secure-tips"

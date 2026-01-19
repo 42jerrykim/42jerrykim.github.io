@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 54. zipfile & tarfile - 압축 파일 읽기/쓰기/추출"
 slug: "zipfile-tarfile-archive-compression-extract-secure-guide"

@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 38. zoneinfo - 표준 시간대 (Python 3.9+)"
 slug: "datetime-standard-timezone-iana-zoneinfo-guide"

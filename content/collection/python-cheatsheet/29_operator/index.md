@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 29. operator - 연산자 함수와 효율적 접근자"
 slug: "efficient-operator-module-guide-for-sorting-functional-patterns"

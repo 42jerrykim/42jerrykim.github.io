@@ -1,5 +1,5 @@
 ---
-draft: true
+
 title: "[Python Cheatsheet] 파이썬 치트시트 커리큘럼"
 description: "파이썬을 빠르게 다시 꺼내 쓰기 위한 치트시트 커리큘럼입니다. 기본 문법부터 비동기, 네트워크까지 68개 주제를 체계적인 로드맵으로 정리합니다."
 featured_image: "/images/home-banner.jpg"

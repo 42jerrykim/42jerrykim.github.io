@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 10. Comprehensions & Generators"
 slug: "efficient-comprehensions-generators-list-dict-set-iterator-guide"

@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 13. Files - pathlib/encoding/open 패턴"
 slug: "file-io-open-path-encoding-best-practice-guide"

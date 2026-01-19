@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 41. configparser & tomllib - INI/TOML 설정 파일"
 slug: "ini-toml-config-file-guide-best-practices-tutorial"

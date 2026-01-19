@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 07. Functions - 인자/리턴/*args/**kwargs"
 slug: "fast-guide-functions-args-kwargs-defaults-annotations-tips"

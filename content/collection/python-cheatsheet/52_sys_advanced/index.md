@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 52. sys 심화 - 인터프리터와 런타임 정보"
 slug: "sys-module-advanced-runtime-interpreter-tips-guide"

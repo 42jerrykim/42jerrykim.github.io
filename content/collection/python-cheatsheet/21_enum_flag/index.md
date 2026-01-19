@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 21. Enum & Flag - 열거형 실전 패턴"
 slug: "enum-flag-intenum-strenum-auto-bitwise-guide-best-patterns"

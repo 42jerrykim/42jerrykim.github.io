@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 24. ABC - 추상 클래스 정의 패턴"
 slug: "abstract-base-class-interface-abc-usage-oop-patterns-guide"

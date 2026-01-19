@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 01. Basic - 연산자/변수/출력/형변환"
 slug: "operators-variables-casting-output-input-essential-guide"

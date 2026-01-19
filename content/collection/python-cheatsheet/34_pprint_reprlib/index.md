@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 34. pprint & reprlib - 예쁜 출력과 요약"
 slug: "pretty-print-complex-data-dict-reprlib-formatting-guide"

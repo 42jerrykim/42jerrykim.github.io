@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 18. subprocess - 외부 프로세스 실행"
 slug: "external-process-run-execute-command-subprocess-guide-security"

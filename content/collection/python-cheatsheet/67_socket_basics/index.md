@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 67. socket - 소켓 프로그래밍 최소 패턴"
 slug: "easy-socket-programming-guide-tcp-udp-server-client-network"

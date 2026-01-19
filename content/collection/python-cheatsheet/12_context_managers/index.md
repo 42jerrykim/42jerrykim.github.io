@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 12. Context Managers - with문/리소스 관리"
 slug: "context-manager-with-resource-management-best-practices-guide"

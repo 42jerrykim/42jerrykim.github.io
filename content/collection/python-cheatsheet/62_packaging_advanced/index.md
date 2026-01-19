@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 62. Packaging - pyproject.toml/배포 체크리스트"
 slug: "advanced-package-distribution-pyproject-toml-pypi-guide"

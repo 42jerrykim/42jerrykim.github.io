@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 17. argparse & CLI - 커맨드라인 인자 처리"
 slug: "argparse-command-line-interface-guide-core-cli-arguments"

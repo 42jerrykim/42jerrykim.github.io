@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 60. unittest.mock - 모킹과 패칭"
 slug: "effective-mocking-magicmock-patch-unittest-best-practices-guide"

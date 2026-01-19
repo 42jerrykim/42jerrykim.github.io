@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 42. pickle - 객체 직렬화 (보안 주의)"
 slug: "pickle-serialization-deserialization-security-best-practices"

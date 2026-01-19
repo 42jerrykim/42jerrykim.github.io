@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 36. XML - ElementTree로 XML 파싱/생성"
 slug: "xml-elementtree-parse-edit-xpath-security-namespace-guide"

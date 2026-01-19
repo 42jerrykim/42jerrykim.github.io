@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 19. Typing - 실전 타입힌트 패턴"
 slug: "practical-type-hint-patterns-static-analysis-guide-2024"

@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 66. http.server - 간단한 HTTP 서버"
 slug: "lightweight-http-server-setup-file-sharing-api-guide"

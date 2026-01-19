@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 47. decimal & fractions - 정밀 수치 연산"
 slug: "decimal-fraction-precision-finance-scientific-guide"

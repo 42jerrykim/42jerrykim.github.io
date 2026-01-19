@@ -1,5 +1,5 @@
 ---
-draft: true
+
 slug: "roadmap-overview-essential-guide-for-efficient-curriculum"
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 00. Overview - 사용법/커리큘럼/로드맵"

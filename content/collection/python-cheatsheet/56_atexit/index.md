@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 56. atexit - 프로그램 종료 시 정리"
 slug: "atexit-module-exit-callbacks-cleanup-automation-guide"

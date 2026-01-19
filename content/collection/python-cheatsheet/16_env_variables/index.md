@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 16. Environment Variables - os.environ/dotenv 패턴"
 slug: "manage-env-variables-os-environ-dotenv-envfile-configuration-guide"

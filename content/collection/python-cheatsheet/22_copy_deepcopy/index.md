@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 22. copy - 얕은 복사/깊은 복사 패턴"
 slug: "object-copy-deepcopy-shallow-guide-reference-clone-tips"

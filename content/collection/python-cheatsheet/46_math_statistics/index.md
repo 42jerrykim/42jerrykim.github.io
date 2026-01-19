@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 46. math & statistics - 수학/통계 함수"
 slug: "math-statistics-functions-guide-essential-formulas-examples"

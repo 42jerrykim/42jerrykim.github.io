@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 06. Control Flow - if/for/while 패턴"
 slug: "master-if-for-while-control-flow-examples-best-guide"

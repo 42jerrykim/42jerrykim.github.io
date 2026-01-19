@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 33. textwrap - 텍스트 정렬과 줄바꿈"
 slug: "textwrap-formatting-multiline-word-wrap-guide"

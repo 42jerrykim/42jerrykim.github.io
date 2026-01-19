@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 03. Strings - 슬라이싱/포맷팅/검색/치환"
 slug: "string-slicing-format-find-replace-text-guide-fast"

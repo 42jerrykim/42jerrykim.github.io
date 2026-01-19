@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 09. Decorators - 함수/클래스 데코레이터"
 slug: "guide-decorators-functions-classes-wrapper-examples-reference"

@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 20. dataclasses - default_factory/frozen 패턴"
 slug: "immutable-object-dataclasses-default-factory-frozen-best-patterns"

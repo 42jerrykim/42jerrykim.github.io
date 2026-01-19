@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 48. random - 난수 생성과 무작위 선택"
 slug: "random-module-guide-efficient-random-number-generation-examples"

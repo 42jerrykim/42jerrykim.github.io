@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 25. Metaclass - 클래스를 만드는 클래스"
 slug: ""

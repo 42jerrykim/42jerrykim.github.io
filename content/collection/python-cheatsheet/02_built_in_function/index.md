@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 02. Built-in Functions"
 slug: "essential-built-in-functions-reference-fast-lookup-guide"

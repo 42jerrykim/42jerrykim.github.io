@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 04. Collections - list/tuple/set 패턴"
 slug: "fast-list-tuple-set-guide-patterns-collection-copy-sort-unpack"

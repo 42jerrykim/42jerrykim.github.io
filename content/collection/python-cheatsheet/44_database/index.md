@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 44. Database - sqlite3/ORM 기본 패턴"
 slug: "simple-sqlite-database-guide-for-fast-sql-crud-class-methods"

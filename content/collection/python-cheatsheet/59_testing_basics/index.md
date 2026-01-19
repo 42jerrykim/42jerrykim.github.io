@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 59. Testing - unittest/pytest 관점"
 slug: "unit-testing-quick-start-best-practices-arrange-act-assert"

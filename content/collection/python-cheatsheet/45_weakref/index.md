@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 45. weakref - 약한 참조와 메모리 관리"
 slug: "weakref-memory-leak-circular-reference-garbage-collection-cache"

@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 31. heapq & bisect - 우선순위 큐/이진 검색 패턴"
 slug: "heapq-bisect-priority-queue-binary-search-guide"

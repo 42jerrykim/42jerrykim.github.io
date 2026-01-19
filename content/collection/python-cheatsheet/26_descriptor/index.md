@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 26. Descriptor - 속성 접근 제어 프로토콜"
 slug: "descriptor-attribute-access-control-data-nondata-get-set-delete-property"

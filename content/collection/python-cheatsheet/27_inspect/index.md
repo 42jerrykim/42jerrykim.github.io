@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 27. inspect - 런타임 객체 검사"
 slug: "inspect-module-runtime-analysis-introspection-reflection-guide"

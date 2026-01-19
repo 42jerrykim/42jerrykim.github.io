@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 15. venv & pip - 환경/의존성 기본"
 slug: "venv-pip-virtualenv-dependency-installation-best-practices"

@@ -1,5 +1,5 @@
 ---
-draft: true
+
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 08. OOP & Classes - 클래스/상속/프로퍼티"
 slug: "oop-classes-inheritance-property-methods-guide"
