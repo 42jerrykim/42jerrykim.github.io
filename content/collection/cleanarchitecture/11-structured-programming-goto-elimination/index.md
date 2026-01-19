@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 110
 image: "wordcloud.png"
 description: "1968년 데이크스트라가 발견한 구조적 프로그래밍의 핵심을 다룹니다. goto문 해로움 논쟁, 순차/선택/반복 구조, 기능적 분해와 증명 가능한 프로그램의 개념을 상세히 설명합니다."

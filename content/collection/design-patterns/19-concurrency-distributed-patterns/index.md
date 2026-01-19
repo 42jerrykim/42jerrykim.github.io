@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 190
 title: "[Design Patterns] 동시성과 분산 시스템에서의 패턴"
 description: "동시성과 분산 시스템 환경에서 적용되는 고급 디자인 패턴을 탐구합니다. Thread-Safe Singleton, Producer-Consumer, Actor 패턴 등 동시성 패턴과 Circuit Breaker, Event Sourcing, CQRS 등 분산 시스템 패턴을 다루며, 확장성과 안정성을 보장하는 현대적 아키텍처 설계 기법을 학습합니다."

@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 20
 image: "wordcloud.png"
 description: "전통적인 계층형 아키텍처(N-Tier Architecture)의 등장 배경과 구조를 살펴보고, MVC 패턴과 3계층 구조가 가진 근본적인 한계점을 분석합니다. 왜 새로운 아키텍처 패턴이 필요했는지 이해합니다."

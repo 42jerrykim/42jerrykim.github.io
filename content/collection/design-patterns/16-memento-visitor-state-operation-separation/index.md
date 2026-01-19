@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 160
 title: "[Design Patterns] 메멘토와 비지터: 상태 보존과 연산 분리"
 description: "객체의 상태를 캡슐화하여 저장하는 Memento 패턴과 구조와 연산을 분리하는 Visitor 패턴의 고급 활용법을 탐구합니다. Undo/Redo 시스템, 상태 스냅샷, 이중 디스패치, 객체 구조 순회 등 복잡한 상태 관리와 연산 확장을 위한 전문가 수준의 설계 기법을 학습합니다."

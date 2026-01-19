@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 210
 image: "wordcloud.png"
 description: "컴포넌트의 정의와 역사를 상세히 다룹니다. 초기 프로그래밍의 메모리 배치 문제부터 재배치 가능한 바이너리, 링커, 동적 링킹까지 컴포넌트 개념의 발전 과정을 설명합니다."

@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 101
 title: "[Design Patterns] 브리지와 플라이웨이트 패턴 실습 - 분리와 효율성"
 description: "Bridge와 Flyweight 패턴을 통해 추상화와 구현의 분리, 메모리 효율성을 실습합니다. GUI 컴포넌트 시스템, 게임 객체 최적화, 텍스트 에디터 등의 프로젝트를 통해 확장성과 성능 최적화를 동시에 달성하는 고급 설계 기법을 학습합니다."

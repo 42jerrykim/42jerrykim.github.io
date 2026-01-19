@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 410
 image: "wordcloud.png"
 description: "데이터베이스가 왜 아키텍처의 세부사항인지 다룹니다. 관계형 데이터베이스의 역사, 디스크에서 RAM으로의 변화, 그리고 데이터 접근 기술이 비즈니스 규칙과 분리되어야 하는 이유를 설명합니다."

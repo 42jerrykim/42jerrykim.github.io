@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 290
 image: "wordcloud.png"
 description: "정책의 수준(Level)과 의존성 방향의 관계를 다룹니다. 고수준 정책과 저수준 정책을 구분하고, 의존성이 수준의 방향으로 흘러야 하는 이유를 설명합니다."

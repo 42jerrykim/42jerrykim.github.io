@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 20
 title: "[Design Patterns] 패턴 분석의 프레임워크"
 description: "GoF 패턴을 체계적으로 분석하고 평가하는 과학적 방법론을 제시합니다. Intent 분석부터 Trade-off 평가까지, 패턴의 본질을 꿰뚫어보는 전문가적 사고 과정을 학습하고, 상황에 맞는 최적의 패턴을 선택할 수 있는 분석 능력을 기릅니다. 인지과학적 관점에서 패턴 인식과 스키마 이론을 탐구합니다."

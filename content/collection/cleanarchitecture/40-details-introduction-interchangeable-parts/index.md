@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 400
 image: "wordcloud.png"
 description: "세부사항의 정의와 아키텍처에서의 위치를 다룹니다. 데이터베이스, 웹, 프레임워크가 왜 세부사항이며, 비즈니스 규칙과 어떻게 분리해야 하는지 설명합니다."

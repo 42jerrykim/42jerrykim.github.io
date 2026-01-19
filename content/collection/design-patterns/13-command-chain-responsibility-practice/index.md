@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 131
 title: "[Design Patterns] 커맨드와 책임 연쇄 패턴 실습 - 요청 캡슐화와 처리 체인"
 description: "Command와 Chain of Responsibility 패턴을 통해 요청 캡슐화와 처리 체인을 실습합니다. GUI 액션 시스템, 로그 처리 체인, 게임 AI 명령 등을 구현하며 실행 취소, 매크로, 요청 라우팅 등의 고급 기능을 마스터하는 실무 설계 기법을 학습합니다."

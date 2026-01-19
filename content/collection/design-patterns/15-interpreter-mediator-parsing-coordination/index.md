@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 150
 title: "[Design Patterns] 인터프리터와 미디에이터: 파싱과 조정의 패턴"
 description: "언어를 객체로 구현하는 Interpreter 패턴과 복잡한 상호작용을 중재하는 Mediator 패턴을 심도 있게 분석합니다. 문법 해석 엔진, 비즈니스 규칙 엔진, 객체 간 통신 조정, UI 컴포넌트 상호작용 등 복잡한 로직과 관계를 체계적으로 관리하는 전문가 기법을 학습합니다."

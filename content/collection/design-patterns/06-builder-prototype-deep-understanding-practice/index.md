@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 61
 title: "[Design Patterns] 빌더와 프로토타입 패턴 실습 - 복잡한 객체 생성 마스터"
 description: "Builder와 Prototype 패턴을 실제 프로젝트에 적용하는 종합 실습입니다. HTTP 클라이언트 Builder, 게임 캐릭터 Prototype, 설정 객체 관리 등을 통해 복잡한 객체 생성과 복제 전략을 마스터하고, 불변 객체와 성능 최적화 기법까지 학습합니다."

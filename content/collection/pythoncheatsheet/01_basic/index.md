@@ -1,14 +1,87 @@
 ---
+draft: true
 image: "tmp_wordcloud.png"
-description: "이 페이지는 파이썬의 기본 문법과 연산자, 변수, 출력, 형변환 등 핵심 개념을 초보자도 쉽게 이해할 수 있도록 실전 예시와 함께 명확히 설명합니다. 파이썬 학습의 출발점이 되는 내용을 종합적으로 안내합니다."
-title: "Basic - 연산자, 변수, 출력, 형변환"
+title: "[Python Cheatsheet] 01. Basic - 연산자/변수/출력/형변환"
+slug: "basic-basics-syntax-operators-arithmetic-precedence-variables-types"
+description: "파이썬 기본 문법 치트시트입니다. 연산자, 변수, 출력, 형변환부터 walrus operator(:=), f-string 디버깅(=) 같은 최신 문법까지 실전 예제로 정리합니다."
+lastmod: 2026-01-18
+collection_order: 1
+tags:
+  - python
+  - Python
+  - python3
+  - 파이썬
+  - cheatsheet
+  - 치트시트
+  - quick-reference
+  - 빠른참조
+  - basic
+  - basics
+  - 기초
+  - syntax
+  - 문법
+  - operators
+  - 연산자
+  - arithmetic
+  - 산술
+  - precedence
+  - 우선순위
+  - augmented-assignment
+  - 증강연산자
+  - variables
+  - 변수
+  - assignment
+  - 할당
+  - walrus-operator
+  - 할당표현식
+  - assignment-expression
+  - types
+  - 자료형
+  - int
+  - float
+  - bool
+  - str
+  - casting
+  - type-conversion
+  - 형변환
+  - print
+  - output
+  - 출력
+  - input
+  - 입력
+  - comments
+  - 주석
+  - docstring
+  - 문서화
+  - strings
+  - 문자열
+  - formatting
+  - f-string
+  - f-string-debugging
+  - 디버깅출력
+  - standard-library
+  - 표준라이브러리
+  - best-practices
+  - 베스트프랙티스
+  - pitfalls
+  - 함정
+  - readability
+  - 가독성
+  - debugging
+  - 디버깅
+  - beginner
+  - 초보
+  - tutorial
+  - 튜토리얼
+  - python38
+  - python39
+  - python310
 last_modified_at: 2023-01-17
 date: 2022-01-17
 categories: Python
 header:
   teaser: /assets/images/2023/Screenshot_2023-01-17_at_20-55-19_WelcometoPython.org.png
 ---
-
 우리는 어디에선가 시작할 필요가 있다. 바로 여기서 그 시작점이다.
 
 > [The Python Tutorial](https://docs.python.org/3/tutorial/index.html)에서 내용을 가지고 왔다.
@@ -264,3 +337,140 @@ print('cats', 'dogs', 'mice', sep=',')
 >>> float('3.14')
 ## 3.14
 ```
+
+## Walrus Operator `:=` (Py3.8+)
+
+할당 표현식(Assignment Expression)이라고도 불리는 walrus operator는 값을 변수에 할당하면서 동시에 그 값을 표현식으로 사용할 수 있게 해준다.
+
+```python
+# 기존 방식
+line = input()
+while line != "quit":
+    print(line)
+    line = input()
+
+# walrus operator 사용
+while (line := input()) != "quit":
+    print(line)
+```
+
+```python
+# 리스트에서 조건부 필터링
+data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# 기존 방식
+filtered = []
+for x in data:
+    y = x * 2
+    if y > 10:
+        filtered.append(y)
+
+# walrus operator 사용
+filtered = [y for x in data if (y := x * 2) > 10]
+print(filtered)  # [12, 14, 16, 18, 20]
+```
+
+```python
+# 정규식 매칭
+import re
+
+text = "Hello, my email is test@example.com"
+
+# 기존 방식
+match = re.search(r'\S+@\S+', text)
+if match:
+    print(match.group())
+
+# walrus operator 사용
+if (match := re.search(r'\S+@\S+', text)):
+    print(match.group())
+```
+
+```python
+# 파일 읽기
+# 기존 방식
+while True:
+    chunk = file.read(1024)
+    if not chunk:
+        break
+    process(chunk)
+
+# walrus operator 사용
+while (chunk := file.read(1024)):
+    process(chunk)
+```
+
+> **주의**: walrus operator는 코드를 간결하게 만들 수 있지만, 과도하게 사용하면 가독성이 떨어질 수 있다. 명확성이 우선!
+
+## f-string 디버깅 `=` (Py3.8+)
+
+f-string에서 `=`를 사용하면 변수명과 값을 함께 출력할 수 있다. 디버깅할 때 매우 유용하다.
+
+```python
+name = "Alice"
+age = 30
+score = 95.5
+
+# 기존 방식
+print(f"name={name}, age={age}, score={score}")
+# name=Alice, age=30, score=95.5
+
+# f-string = 사용 (Py3.8+)
+print(f"{name=}, {age=}, {score=}")
+# name='Alice', age=30, score=95.5
+```
+
+```python
+# 표현식도 가능
+x = 10
+y = 20
+
+print(f"{x + y=}")
+# x + y=30
+
+print(f"{x * 2=}, {y // 3=}")
+# x * 2=20, y // 3=6
+```
+
+```python
+# 포맷 지정자와 함께 사용
+pi = 3.141592653589793
+
+print(f"{pi=:.2f}")
+# pi=3.14
+
+value = 1234567
+print(f"{value=:,}")
+# value=1,234,567
+```
+
+```python
+# 객체 디버깅
+from dataclasses import dataclass
+
+@dataclass
+class Point:
+    x: int
+    y: int
+
+p = Point(10, 20)
+print(f"{p=}")
+# p=Point(x=10, y=20)
+```
+
+```python
+# 리스트/딕셔너리 디버깅
+items = [1, 2, 3]
+config = {"host": "localhost", "port": 8080}
+
+print(f"{items=}")
+# items=[1, 2, 3]
+
+print(f"{config=}")
+# config={'host': 'localhost', 'port': 8080}
+
+print(f"{len(items)=}, {config.get('port')=}")
+# len(items)=3, config.get('port')=8080
+```
+
+> **팁**: 디버깅 시 `print(f"{var=}")`를 사용하면 변수명을 직접 타이핑할 필요가 없어 오타를 줄일 수 있다.

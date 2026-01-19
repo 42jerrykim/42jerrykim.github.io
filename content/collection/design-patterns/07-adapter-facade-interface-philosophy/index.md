@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 70
 title: "[Design Patterns] 어댑터와 파사드: 인터페이스의 철학"
 description: "호환되지 않는 인터페이스를 연결하는 Adapter와 복잡한 시스템을 단순화하는 Facade 패턴의 철학과 실무 적용을 탐구합니다. 레거시 시스템 통합, API 래핑, 시스템 간 브릿지 구축 등 실제 개발 현장에서 마주치는 인터페이스 설계 문제에 대한 우아한 해결책을 제시합니다."

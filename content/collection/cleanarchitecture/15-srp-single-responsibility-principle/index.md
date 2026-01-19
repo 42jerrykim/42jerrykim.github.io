@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 150
 image: "wordcloud.png"
 description: "단일 책임 원칙(SRP)의 진정한 의미를 다룹니다. '하나의 일만 해야 한다'는 오해를 바로잡고, 액터(Actor) 개념과 Conway's Law와의 연결을 통해 SRP의 아키텍처적 의미를 설명합니다."

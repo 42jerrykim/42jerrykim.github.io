@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 180
 title: "[Design Patterns] 함수형 프로그래밍과 디자인 패턴: 패러다임의 진화"
 description: "함수형 프로그래밍 패러다임이 전통적인 디자인 패턴에 미친 혁명적 변화를 탐구합니다. 고차 함수, 불변성, 함수 합성을 통한 패턴의 단순화, 모나드와 커링 같은 함수형 고유 패턴, 그리고 Java, Scala, JavaScript에서의 실무 적용까지 포괄적으로 다룹니다."

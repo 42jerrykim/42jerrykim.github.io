@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 70
 image: "wordcloud.png"
 description: "설계(Design)와 아키텍처(Architecture)의 개념적 차이와 공통점을 다룹니다. 둘 사이에는 차이가 없으며, 좋은 아키텍처의 목표는 인력 최소화라는 실무적 관점을 사례 연구와 함께 설명합니다."

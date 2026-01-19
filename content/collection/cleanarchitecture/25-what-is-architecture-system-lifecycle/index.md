@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 250
 image: "wordcloud.png"
 description: "아키텍처의 정의와 시스템 생명주기 전반에 걸친 목표를 다룹니다. 개발, 배포, 운영, 유지보수를 지원하는 좋은 아키텍처의 특성과 결정 지연의 가치를 설명합니다."

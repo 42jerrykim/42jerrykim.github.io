@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 60
 title: "[Design Patterns] 빌더와 프로토타입 패턴의 깊이 있는 이해"
 description: "복잡한 객체 생성과 복제를 우아하게 해결하는 Builder와 Prototype 패턴을 심도 있게 분석합니다. Fluent Interface, Method Chaining, 복사 전략의 고급 기법을 다루고, 현대 언어에서의 발전된 형태까지 탐구합니다. 실무에서 마주치는 복잡한 객체 생성 시나리오에 대한 완벽한 해법을 제시합니다."

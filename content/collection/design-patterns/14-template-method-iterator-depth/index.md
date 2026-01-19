@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 140
 title: "[Design Patterns] 템플릿 메서드와 이터레이터: 제어의 깊이"
 description: "알고리즘의 골격을 정의하는 Template Method 패턴과 컬렉션 순회를 추상화하는 Iterator 패턴의 제어 구조와 설계 철학을 탐구합니다. 할리우드 원칙, Hook 메서드, 지연 평가, Stream API까지 포괄하여 제어 흐름을 우아하게 관리하는 고급 설계 기법을 학습합니다."

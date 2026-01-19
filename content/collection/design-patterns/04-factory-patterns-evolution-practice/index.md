@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 41
 title: "[Design Patterns] Factory 패턴 실습 - 다양한 생성 전략 마스터하기"
 description: "Simple Factory부터 Abstract Factory까지 다양한 Factory 패턴을 실제로 구현해보는 종합 실습입니다. 결제 시스템, 게임 캐릭터 생성, 로깅 시스템을 통해 각 패턴의 특징과 적용 시나리오를 체험하고, 현대적 Factory 구현 기법까지 마스터합니다. 실무에서 바로 적용 가능한 Factory 패턴 설계 노하우를 학습합니다."

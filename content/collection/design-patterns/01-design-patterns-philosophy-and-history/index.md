@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 10
 title: "[Design Patterns] 디자인 패턴의 철학과 역사"
 description: "Christopher Alexander의 건축 패턴에서 시작된 디자인 패턴의 근본 철학과 Gang of Four까지의 발전 과정을 탐구합니다. 패턴이 단순한 코드 템플릿이 아닌 설계 지혜의 결정체임을 이해하고, 패턴 언어의 본질과 소프트웨어 설계에 미친 혁명적 영향을 깊이 있게 살펴봅니다."

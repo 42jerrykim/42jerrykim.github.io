@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 120
 image: "wordcloud.png"
 description: "객체 지향 프로그래밍의 세 가지 핵심인 캡슐화, 상속, 다형성을 아키텍처 관점에서 재해석합니다. 특히 다형성이 의존성 역전을 가능하게 하여 아키텍처에 혁명을 가져온 원리를 설명합니다."

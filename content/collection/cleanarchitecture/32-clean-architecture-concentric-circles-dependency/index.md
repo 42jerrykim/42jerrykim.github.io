@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 320
 image: "wordcloud.png"
 description: "Clean Architecture의 핵심인 동심원 구조와 의존성 규칙을 상세히 다룹니다. Entities, Use Cases, Interface Adapters, Frameworks의 4계층과 경계를 넘는 데이터 흐름을 설명합니다."

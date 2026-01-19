@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 350
 image: "wordcloud.png"
 description: "실제 시스템에서 계층과 경계를 설정하는 방법을 다룹니다. Hunt the Wumpus 게임을 예로 들어 경계 설정의 실제 과정과 고려사항을 설명합니다."

@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 111
 title: "[Design Patterns] 옵저버 패턴 실습 - 이벤트 주도 아키텍처"
 description: "Observer 패턴을 활용한 이벤트 주도 아키텍처를 실습합니다. 주식 시세 모니터링, 온도 센서 알림, MVC 아키텍처 등을 구현하며 느슨한 결합과 반응형 시스템 설계를 마스터하고, WeakReference와 비동기 처리를 통한 성능 최적화 기법을 학습합니다."

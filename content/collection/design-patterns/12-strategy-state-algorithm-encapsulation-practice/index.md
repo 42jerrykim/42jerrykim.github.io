@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 121
 title: "[Design Patterns] 전략과 상태 패턴 실습 - 알고리즘 캡슐화"
 description: "Strategy와 State 패턴을 통해 알고리즘 캡슐화와 상태 전이를 실습합니다. 정렬 알고리즘 선택, 결제 전략, 게임 캐릭터 상태 관리 등을 구현하며 개방-폐쇄 원칙을 실현하고 복잡한 상태 로직을 우아하게 관리하는 설계 기법을 학습합니다."

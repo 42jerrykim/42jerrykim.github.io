@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 240
 image: "wordcloud.png"
 description: "아키텍처란 무엇이며, 좋은 아키텍처의 목표는 무엇인지 다룹니다. 시스템의 형태를 결정하고 개발, 배포, 운영, 유지보수를 용이하게 만드는 아키텍처의 본질을 설명합니다."

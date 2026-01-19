@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 100
 title: "[Design Patterns] 브릿지와 플라이웨이트: 분리와 효율성"
 description: "추상화와 구현을 분리하는 Bridge 패턴과 메모리 사용을 최적화하는 Flyweight 패턴의 고급 설계 기법을 탐구합니다. 대용량 객체 처리, 메모리 효율성, 추상화 계층 설계 등 성능과 유지보수성을 동시에 고려한 전문가 수준의 아키텍처 설계 방법을 학습합니다."

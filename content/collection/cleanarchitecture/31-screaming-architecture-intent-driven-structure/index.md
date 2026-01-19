@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 310
 image: "wordcloud.png"
 description: "소리치는 아키텍처(Screaming Architecture)의 개념을 다룹니다. 아키텍처가 시스템의 유스케이스와 의도를 어떻게 드러내야 하는지, 프레임워크가 아닌 도메인 중심 설계를 설명합니다."

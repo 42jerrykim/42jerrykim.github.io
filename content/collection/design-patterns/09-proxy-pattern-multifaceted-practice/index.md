@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 91
 title: "[Design Patterns] 프록시 패턴 실습 - 다면적 제어와 최적화"
 description: "Proxy 패턴의 다양한 형태를 실제 프로젝트에 적용하는 실습입니다. Virtual Proxy, Protection Proxy, Remote Proxy, Smart Proxy 등을 구현하며 접근 제어, 지연 로딩, 캐싱, 원격 호출 등의 고급 기법을 마스터하고 성능 최적화와 보안 강화 방법을 학습합니다."

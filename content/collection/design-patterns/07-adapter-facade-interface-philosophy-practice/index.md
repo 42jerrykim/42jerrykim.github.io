@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 71
 title: "[Design Patterns] 어댑터와 파사드 패턴 실습 - 인터페이스 통합과 단순화"
 description: "Adapter와 Facade 패턴을 활용하여 레거시 시스템 통합과 복잡한 서브시스템 단순화를 실습합니다. 결제 시스템 통합, E-commerce 파사드, 데이터 소스 통합 등의 실무 시나리오를 통해 인터페이스 설계의 철학과 시스템 간 결합도를 낮추는 기법을 학습합니다."

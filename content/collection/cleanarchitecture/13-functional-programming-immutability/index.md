@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 130
 image: "wordcloud.png"
 description: "함수형 프로그래밍의 핵심인 불변성(Immutability)을 아키텍처 관점에서 분석합니다. 람다 계산법부터 이벤트 소싱까지, 가변 상태가 없는 프로그래밍이 동시성 문제를 해결하는 원리를 설명합니다."

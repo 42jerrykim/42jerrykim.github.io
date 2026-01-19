@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 190
 image: "wordcloud.png"
 description: "의존성 역전 원칙(DIP)이 Clean Architecture의 핵심인 이유를 설명합니다. 안정된 추상화에 의존하는 방법, 변동성 있는 구체 클래스 피하기, 그리고 팩토리 패턴의 활용을 다룹니다."

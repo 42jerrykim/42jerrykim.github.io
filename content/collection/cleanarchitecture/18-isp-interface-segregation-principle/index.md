@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 180
 image: "wordcloud.png"
 description: "인터페이스 분리 원칙(ISP)이 불필요한 의존성을 제거하여 시스템을 어떻게 유연하게 만드는지 설명합니다. 뚱뚱한 인터페이스의 문제점과 분리 전략, 그리고 아키텍처 수준에서의 적용을 다룹니다."

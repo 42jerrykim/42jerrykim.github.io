@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 0
 title: "[Clean Architecture] 00. 클린 아키텍처 개요"
 date: 2024-01-01

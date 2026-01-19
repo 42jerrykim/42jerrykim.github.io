@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 80
 title: "[Design Patterns] 데코레이터와 컴포지트: 재귀적 아름다움"
 description: "동적으로 기능을 확장하는 Decorator와 부분-전체 계층구조를 표현하는 Composite 패턴의 재귀적 구조와 수학적 아름다움을 탐구합니다. 함수형 프로그래밍과의 연관성, 트리 구조 처리, 동적 기능 조합 등 고급 설계 기법을 통해 유연하고 확장 가능한 시스템을 구축하는 방법을 학습합니다."

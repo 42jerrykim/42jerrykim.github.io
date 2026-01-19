@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 30
 image: "wordcloud.png"
 description: "2005년 알리스테어 콕번이 제안한 육각형 아키텍처(Hexagonal Architecture)를 심층 분석합니다. 포트와 어댑터 개념, 외부 의존성 분리 방법, 그리고 테스트 용이성 향상의 원리를 상세히 설명합니다."

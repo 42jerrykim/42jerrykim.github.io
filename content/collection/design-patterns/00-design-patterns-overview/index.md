@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 0
 title: "[Design Patterns] 디자인 패턴 마스터 시리즈 개요"
 description: "GoF 23개 패턴을 완전히 마스터하는 체계적인 학습 가이드입니다. 기초 철학부터 고급 응용까지 디자인 패턴의 모든 측면을 포괄하는 전문가 수준의 커리큘럼과 학습 방법론을 제공합니다."

@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 201
 title: "[Design Patterns] 도메인 주도 설계와 디자인 패턴 실습 - 비즈니스 로직 설계"
 description: "Domain-Driven Design과 디자인 패턴을 결합한 실습입니다. Aggregate, Repository, Factory, Service 등의 DDD 패턴과 기존 GoF 패턴을 조합하여 복잡한 비즈니스 도메인을 모델링하고, 실무에서 효과적인 도메인 계층 설계 기법을 학습합니다."

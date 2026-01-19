@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 120
 title: "[Design Patterns] 전략과 상태: 알고리즘 캡슐화의 미학"
 description: "동적으로 알고리즘을 교체하는 Strategy 패턴과 상태에 따라 행동을 변경하는 State 패턴의 고급 활용법을 탐구합니다. 알고리즘 캡슐화, 상태 기계 설계, 함수형 프로그래밍과의 연계 등을 통해 유연하고 확장 가능한 시스템을 설계하는 전문가 수준의 기법을 학습합니다."

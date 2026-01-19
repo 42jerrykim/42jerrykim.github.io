@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 340
 image: "wordcloud.png"
 description: "부분적 경계 전략을 다룹니다. 완전한 경계의 비용이 부담될 때 사용할 수 있는 세 가지 부분적 경계 패턴과 각각의 장단점을 설명합니다."

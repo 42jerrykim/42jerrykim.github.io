@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 200
 title: "[Design Patterns] 도메인 주도 설계와 디자인 패턴"
 description: "도메인 주도 설계(DDD) 철학과 GoF 디자인 패턴의 융합을 탐구합니다. Entity, Value Object, Aggregate, Repository 등 DDD의 핵심 빌딩 블록과 패턴의 결합을 통해 비즈니스 도메인을 효과적으로 표현하는 방법을 학습하고, CQRS, Event Sourcing 등 현대적 아키텍처 패턴까지 다룹니다."

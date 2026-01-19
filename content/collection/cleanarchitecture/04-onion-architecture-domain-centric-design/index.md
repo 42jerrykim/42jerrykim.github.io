@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 40
 image: "wordcloud.png"
 description: "2008년 제프리 팔레르모가 제안한 양파 아키텍처(Onion Architecture)를 상세히 분석합니다. 도메인 중심 설계, 동심원 구조의 의존성 방향, 그리고 인프라스트럭처 독립성의 원리를 설명합니다."

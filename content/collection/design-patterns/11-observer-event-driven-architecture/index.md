@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 110
 title: "[Design Patterns] 옵저버: 이벤트 드리븐 아키텍처의 핵심"
 description: "일대다 의존성을 관리하는 Observer 패턴의 깊이 있는 이해와 현대 이벤트 드리븐 시스템으로의 진화를 탐구합니다. Subject-Observer 관계, 느슨한 결합, Reactive Programming, Event Bus, MVC 패턴까지 포괄적으로 다루며, 대규모 시스템에서의 이벤트 기반 아키텍처 설계 기법을 학습합니다."

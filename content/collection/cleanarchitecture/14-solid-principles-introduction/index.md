@@ -1,4 +1,5 @@
 ---
+draft: true
 collection_order: 140
 image: "wordcloud.png"
 description: "SOLID 원칙의 개요와 역사적 맥락을 다룹니다. Robert C. Martin이 어떻게 이 다섯 가지 설계 원칙을 체계화했는지, 그리고 이 원칙들이 Clean Architecture와 어떻게 연결되는지 설명합니다."
