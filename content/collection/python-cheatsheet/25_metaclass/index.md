@@ -1,7 +1,8 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 25. Metaclass - 클래스를 만드는 클래스"
-slug: "metaclass-type-creation-patterns-oop-metaprogramming-guide"
+slug: ""
 description: "파이썬 메타클래스를 빠르게 이해하기 위한 치트시트입니다. type(), __new__, __init_subclass__, 싱글톤/레지스트리 패턴 등 메타클래스의 핵심 개념과 실무 활용법을 최소 예제로 정리합니다."
 lastmod: 2026-01-18
 collection_order: 25

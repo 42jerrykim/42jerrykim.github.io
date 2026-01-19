@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 54. zipfile & tarfile - 압축 파일 읽기/쓰기/추출"
 slug: "zipfile-tarfile-archive-compression-extract-secure-guide"
 description: "파이썬 zipfile과 tarfile 모듈을 빠르게 쓰기 위한 치트시트입니다. ZIP/TAR 아카이브 생성/추출, 파일 추가/목록 조회, 암호화, 메모리 내 처리 패턴과 보안 주의점을 최소 예제로 정리합니다."

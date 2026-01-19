@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 55. signal - 시그널 처리"
 slug: "signal-module-unix-signal-handling-graceful-shutdown-interrupts"
 description: "파이썬 signal 모듈을 빠르게 사용하기 위한 치트시트입니다. SIGINT, SIGTERM 처리, 그레이스풀 종료, 타임아웃, 알람 등 시그널 핸들링 패턴을 최소 예제로 정리합니다."

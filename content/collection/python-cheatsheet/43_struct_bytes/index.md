@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 43. struct & bytes - 바이너리 데이터 pack/unpack"
 slug: "struct-bytes-binary-pack-unpack-endian-parse-tutorial"
 description: "파이썬 struct 모듈과 bytes를 빠르게 쓰기 위한 치트시트입니다. 바이너리 데이터 pack/unpack, 포맷 문자, 엔디언, 파일 헤더 파싱, 네트워크 프로토콜 처리 패턴을 최소 예제로 정리합니다."

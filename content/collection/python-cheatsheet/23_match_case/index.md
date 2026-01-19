@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 23. match-case - 구조적 패턴 매칭 (Py3.10+)"
 slug: "structural-pattern-matching-switch-guide-py310-py311-code-examples"
 description: "파이썬 3.10+ 구조적 패턴 매칭을 빠르게 쓰기 위한 치트시트입니다. match-case 기본 문법, 리터럴/시퀀스/매핑/클래스 패턴, 가드(if), 와일드카드, OR 패턴과 실전 사용 사례를 최소 예제로 정리합니다."

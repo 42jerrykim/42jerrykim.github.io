@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 30. collections 심화 - deque/namedtuple/ChainMap"
 slug: "effective-collections-deque-namedtuple-chainmap-advanced-guide"
 description: "파이썬 collections 모듈 심화 내용을 빠르게 쓰기 위한 치트시트입니다. deque(양방향 큐), namedtuple(명명된 튜플), ChainMap, OrderedDict 패턴과 Counter/defaultdict 복습을 최소 예제로 정리합니다."

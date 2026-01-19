@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 22. copy - 얕은 복사/깊은 복사 패턴"
 slug: "object-copy-deepcopy-shallow-guide-reference-clone-tips"
 description: "파이썬 객체 복사를 정확히 이해하기 위한 치트시트입니다. 할당 vs 얕은 복사 vs 깊은 복사의 차이, copy.copy()/copy.deepcopy(), 가변 객체 함정과 커스텀 복사 구현을 최소 예제로 정리합니다."

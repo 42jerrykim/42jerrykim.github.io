@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 68. email & smtplib - 이메일 작성/발송"
 slug: "smtp-email-sending-guide-attach-html-auth-secure-tips"
 description: "파이썬 email과 smtplib 모듈을 빠르게 사용하기 위한 치트시트입니다. 이메일 메시지 생성, SMTP 발송, 첨부파일, HTML 메일 등 핵심 패턴을 최소 예제로 정리합니다."

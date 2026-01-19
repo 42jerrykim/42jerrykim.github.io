@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 66. http.server - 간단한 HTTP 서버"
 slug: "lightweight-http-server-setup-file-sharing-api-guide"
 description: "파이썬 http.server 모듈을 빠르게 사용하기 위한 치트시트입니다. 한 줄로 파일 서버 실행, 커스텀 핸들러, 간단한 API 서버 만들기 등을 최소 예제로 정리합니다."

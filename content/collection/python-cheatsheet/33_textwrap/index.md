@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 33. textwrap - 텍스트 정렬과 줄바꿈"
 slug: "textwrap-formatting-multiline-word-wrap-guide"
 description: "파이썬 textwrap 모듈을 빠르게 사용하기 위한 치트시트입니다. wrap, fill, dedent, indent, shorten 함수로 텍스트 포맷팅하는 패턴을 최소 예제로 정리합니다."

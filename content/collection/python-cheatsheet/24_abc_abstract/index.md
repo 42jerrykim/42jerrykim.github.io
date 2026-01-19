@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 24. ABC - 추상 클래스 정의 패턴"
 slug: "abstract-base-class-interface-abc-usage-oop-patterns-guide"
 description: "파이썬 abc 모듈과 추상 클래스를 빠르게 쓰기 위한 치트시트입니다. ABC/abstractmethod로 인터페이스 정의, 추상 프로퍼티, collections.abc 활용, Protocol과의 비교를 최소 예제로 정리합니다."

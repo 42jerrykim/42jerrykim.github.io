@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 32. contextlib 심화 - suppress, redirect, ExitStack"
 slug: "contextlib-advanced-suppress-redirect-exitstack-nullcontext-examples"
 description: "파이썬 contextlib 모듈 심화 기능 치트시트입니다. suppress로 예외 무시, redirect_stdout/stderr로 출력 리다이렉트, ExitStack으로 동적 컨텍스트 관리, nullcontext 패턴을 최소 예제로 정리합니다."

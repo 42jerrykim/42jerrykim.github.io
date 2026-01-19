@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 53. shutil & tempfile - 파일/디렉토리 복사/이동/임시파일"
 slug: "file-directory-automation-shutil-tempfile-best-practices"
 description: "파이썬 shutil과 tempfile 모듈을 빠르게 쓰기 위한 치트시트입니다. 파일/디렉토리 복사/이동/삭제, 디스크 용량 확인, 임시 파일/디렉토리 안전 생성과 자동 정리 패턴을 최소 예제로 정리합니다."

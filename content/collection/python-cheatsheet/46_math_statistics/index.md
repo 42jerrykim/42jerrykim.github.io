@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 46. math & statistics - 수학/통계 함수"
 slug: "math-statistics-functions-guide-essential-formulas-examples"
 description: "파이썬 math와 statistics 모듈을 빠르게 사용하기 위한 치트시트입니다. 기본 수학 함수, 삼각함수, 로그, 평균, 중앙값, 표준편차 등 핵심 함수를 최소 예제로 정리합니다."

@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 51. os 심화 - 파일시스템과 프로세스"
 slug: "os-module-filesystem-process-management-guide"
 description: "파이썬 os 모듈 심화 치트시트입니다. 디렉토리 순회, 파일 정보, 환경 변수, 프로세스 관리, 경로 처리 등 os 모듈의 핵심 기능을 최소 예제로 정리합니다."

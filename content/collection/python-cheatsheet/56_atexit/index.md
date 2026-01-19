@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 56. atexit - 프로그램 종료 시 정리"
 slug: "atexit-module-exit-callbacks-cleanup-automation-guide"
 description: "파이썬 atexit 모듈을 빠르게 사용하기 위한 치트시트입니다. 종료 콜백 등록, 리소스 정리, 임시 파일 삭제 등 프로그램 종료 시 실행할 작업을 최소 예제로 정리합니다."

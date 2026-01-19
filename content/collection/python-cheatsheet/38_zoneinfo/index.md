@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 38. zoneinfo - 표준 시간대 (Python 3.9+)"
 slug: "datetime-standard-timezone-iana-zoneinfo-guide"
 description: "파이썬 zoneinfo 모듈을 빠르게 사용하기 위한 치트시트입니다. IANA 타임존, aware datetime 생성, 시간대 변환, DST 처리 등 표준 시간대 작업 패턴을 최소 예제로 정리합니다."

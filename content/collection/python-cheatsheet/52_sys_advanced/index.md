@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 52. sys 심화 - 인터프리터와 런타임 정보"
 slug: "sys-module-advanced-runtime-interpreter-tips-guide"
 description: "파이썬 sys 모듈 심화 치트시트입니다. 명령행 인자, 표준 입출력, 모듈 경로, 인터프리터 정보, 재귀 제한, 종료 처리 등 핵심 기능을 최소 예제로 정리합니다."

@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 02. Built-in Functions"
 slug: "essential-built-in-functions-reference-fast-lookup-guide"
 description: "파이썬 내장 함수/타입을 알파벳 및 용도별로 빠르게 찾는 치트시트입니다. 공식 문서 기준(A~Z, _) 전체 목록과 핵심 시그니처, 자주 하는 실수, 선택 기준을 짧게 정리합니다."

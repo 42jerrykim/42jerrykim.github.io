@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 49. uuid - 고유 식별자 생성"
 slug: "unique-id-generation-uuid-module-guide"
 description: "파이썬 uuid 모듈을 빠르게 사용하기 위한 치트시트입니다. UUID1/4/5 생성, 문자열 변환, 데이터베이스 키 활용, 버전별 차이점을 최소 예제로 정리합니다."

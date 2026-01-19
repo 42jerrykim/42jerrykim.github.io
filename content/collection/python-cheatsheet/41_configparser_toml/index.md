@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 41. configparser & tomllib - INI/TOML 설정 파일"
 slug: "ini-toml-config-file-guide-best-practices-tutorial"
 description: "파이썬 configparser와 tomllib 모듈을 빠르게 쓰기 위한 치트시트입니다. INI/TOML 설정 파일 읽기/쓰기, 섹션/키 접근, 기본값 처리, pyproject.toml 파싱 패턴을 최소 예제로 정리합니다."

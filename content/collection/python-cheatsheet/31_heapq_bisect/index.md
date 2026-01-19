@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 31. heapq & bisect - 우선순위 큐/이진 검색 패턴"
 slug: "heapq-bisect-priority-queue-binary-search-guide"
 description: "파이썬 heapq와 bisect 모듈을 빠르게 쓰기 위한 치트시트입니다. 우선순위 큐 구현, 최소/최대 힙, 정렬된 리스트에서 이진 검색, nlargest/nsmallest 패턴과 주의점을 최소 예제로 정리합니다."

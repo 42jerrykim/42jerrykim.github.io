@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 58. pdb 심화 - 대화형 디버깅"
 slug: "pdb-interactive-debugger-advanced-usage-post-mortem-breakpoint-guide"
 description: "파이썬 pdb 모듈 심화 치트시트입니다. breakpoint(), 중단점, 변수 검사, 스텝 실행, 조건부 중단, 사후 분석 디버깅 등 대화형 디버거 명령을 최소 예제로 정리합니다."

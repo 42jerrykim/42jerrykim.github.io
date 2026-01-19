@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 50. hashlib & secrets - 해시/보안 난수 패턴"
 slug: "hashlib-secrets-hash-random-security-tips-token-checksum-digest"
 description: "파이썬 hashlib과 secrets 모듈을 빠르게 쓰기 위한 치트시트입니다. MD5/SHA 해시 생성, 파일 체크섬, 보안 토큰 생성, 안전한 비밀번호 비교, random vs secrets 차이를 최소 예제로 정리합니다."

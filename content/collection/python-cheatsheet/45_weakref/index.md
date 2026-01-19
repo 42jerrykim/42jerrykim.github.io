@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 45. weakref - 약한 참조와 메모리 관리"
 slug: "weakref-memory-leak-circular-reference-garbage-collection-cache"
 description: "파이썬 weakref 모듈을 빠르게 사용하기 위한 치트시트입니다. 약한 참조, WeakValueDictionary, WeakSet, 순환 참조 방지, 캐시 구현 패턴을 최소 예제로 정리합니다."

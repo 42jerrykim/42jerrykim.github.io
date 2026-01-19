@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 60. unittest.mock - 모킹과 패칭"
 slug: "effective-mocking-magicmock-patch-unittest-best-practices-guide"
 description: "파이썬 unittest.mock 모듈을 빠르게 사용하기 위한 치트시트입니다. Mock, MagicMock, patch, side_effect, return_value 등 테스트 모킹 패턴을 최소 예제로 정리합니다."

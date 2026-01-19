@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 47. decimal & fractions - 정밀 수치 연산"
 slug: "decimal-fraction-precision-finance-scientific-guide"
 description: "파이썬 decimal과 fractions 모듈을 빠르게 사용하기 위한 치트시트입니다. 부동소수점 오차 없는 십진 연산, 분수 연산, 금융/과학 계산 패턴을 최소 예제로 정리합니다."

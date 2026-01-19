@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 01. Basic - 연산자/변수/출력/형변환"
 slug: "operators-variables-casting-output-input-essential-guide"
 description: "파이썬 기본 문법 치트시트입니다. 연산자, 변수, 출력, 형변환부터 walrus operator(:=), f-string 디버깅(=) 같은 최신 문법까지 실전 예제로 정리합니다."

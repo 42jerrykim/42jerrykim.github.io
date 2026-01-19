@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 27. inspect - 런타임 객체 검사"
 slug: "inspect-module-runtime-analysis-introspection-reflection-guide"
 description: "파이썬 inspect 모듈을 빠르게 사용하기 위한 치트시트입니다. 함수 시그니처, 소스 코드 조회, 스택 프레임, 클래스 계층 분석 등 런타임 객체 검사 패턴을 최소 예제로 정리합니다."

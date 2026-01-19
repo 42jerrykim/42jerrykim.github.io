@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 34. pprint & reprlib - 예쁜 출력과 요약"
 slug: "pretty-print-complex-data-dict-reprlib-formatting-guide"
 description: "파이썬 pprint와 reprlib 모듈을 빠르게 사용하기 위한 치트시트입니다. 복잡한 자료구조를 읽기 좋게 출력하고, 긴 객체를 적절히 요약하는 패턴을 최소 예제로 정리합니다."

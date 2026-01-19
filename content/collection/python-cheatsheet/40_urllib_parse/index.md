@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 40. urllib.parse - URL 파싱과 조립"
 slug: "url-parse-build-encode-decode-guide-web-api-usage"
 description: "파이썬 urllib.parse 모듈을 빠르게 사용하기 위한 치트시트입니다. URL 파싱, 쿼리 문자열 처리, URL 인코딩/디코딩, URL 조립 패턴을 최소 예제로 정리합니다."

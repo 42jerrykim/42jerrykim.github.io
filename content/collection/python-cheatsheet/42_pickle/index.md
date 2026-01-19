@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 42. pickle - 객체 직렬화 (보안 주의)"
 slug: "pickle-serialization-deserialization-security-best-practices"
 description: "파이썬 pickle 모듈을 빠르게 쓰기 위한 치트시트입니다. 객체 직렬화/역직렬화, dump/load 패턴, 프로토콜 버전, 보안 위험과 대안(JSON, shelve)을 최소 예제로 정리합니다."

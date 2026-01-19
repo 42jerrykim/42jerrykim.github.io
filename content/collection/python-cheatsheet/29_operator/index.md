@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 29. operator - 연산자 함수와 효율적 접근자"
 slug: "efficient-operator-module-guide-for-sorting-functional-patterns"
 description: "파이썬 operator 모듈을 빠르게 사용하기 위한 치트시트입니다. itemgetter, attrgetter, methodcaller와 연산자 함수들을 활용한 정렬, 맵핑, 함수형 프로그래밍 패턴을 최소 예제로 정리합니다."

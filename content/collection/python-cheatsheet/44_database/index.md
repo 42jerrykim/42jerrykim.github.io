@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 44. Database - sqlite3/ORM 기본 패턴"
 slug: "simple-sqlite-database-guide-for-fast-sql-crud-class-methods"
 description: "파이썬 데이터베이스 연동을 빠르게 시작하기 위한 치트시트입니다. sqlite3 기본 CRUD, 파라미터 바인딩, 트랜잭션, 컨텍스트 매니저 패턴과 SQL 인젝션 방지 등 실무 함정을 최소 예제로 정리합니다."

@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 48. random - 난수 생성과 무작위 선택"
 slug: "random-module-guide-efficient-random-number-generation-examples"
 description: "파이썬 random 모듈을 빠르게 사용하기 위한 치트시트입니다. 난수 생성, 무작위 선택, 셔플, 가중치 선택, 시드 설정 등 핵심 패턴을 최소 예제로 정리합니다."

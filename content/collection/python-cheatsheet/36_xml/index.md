@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 36. XML - ElementTree로 XML 파싱/생성"
 slug: "xml-elementtree-parse-edit-xpath-security-namespace-guide"
 description: "파이썬 xml.etree.ElementTree를 빠르게 사용하기 위한 치트시트입니다. XML 파싱, XPath 검색, 요소 생성/수정, 네임스페이스 처리, 보안 주의점을 최소 예제로 정리합니다."

@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 67. socket - 소켓 프로그래밍 최소 패턴"
 slug: "easy-socket-programming-guide-tcp-udp-server-client-network"
 description: "파이썬 socket 모듈을 빠르게 쓰기 위한 치트시트입니다. TCP/UDP 클라이언트/서버, 연결/송수신/종료, 타임아웃, 간단한 HTTP 요청 패턴과 주의점을 최소 예제로 정리합니다."

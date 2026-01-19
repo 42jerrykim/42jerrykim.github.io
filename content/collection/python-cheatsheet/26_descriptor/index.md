@@ -1,5 +1,6 @@
 ---
 draft: true
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 26. Descriptor - 속성 접근 제어 프로토콜"
 slug: "descriptor-attribute-access-control-data-nondata-get-set-delete-property"
 description: "파이썬 디스크립터를 빠르게 이해하기 위한 치트시트입니다. __get__, __set__, __delete__ 프로토콜, 데이터/비데이터 디스크립터 차이, property 구현 원리를 최소 예제로 정리합니다."

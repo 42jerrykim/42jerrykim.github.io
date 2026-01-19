@@ -1,6 +1,6 @@
 ---
 draft: true
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Python Cheatsheet] 21. Enum & Flag - 열거형 실전 패턴"
 slug: "enum-flag-intenum-strenum-auto-bitwise-guide-best-patterns"
 description: "파이썬 Enum을 실전에서 빠르게 쓰기 위한 치트시트입니다. Enum/IntEnum/StrEnum 기본, auto() 자동값, Flag 비트 연산, 멤버 접근/비교/순회와 흔한 함정을 최소 예제로 정리합니다."
