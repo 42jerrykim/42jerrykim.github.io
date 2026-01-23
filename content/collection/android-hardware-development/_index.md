@@ -2,6 +2,7 @@
 title: "안드로이드 하드웨어 개발 전문가 과정"
 description: "갤럭시와 같은 안드로이드 기반 하드웨어 제품을 개발하기 위한 전문가 교육과정"
 draft: true
+slug: android-hardware-development
 ---
 
 # 안드로이드 하드웨어 개발 전문가 과정

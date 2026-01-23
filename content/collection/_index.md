@@ -11,4 +11,5 @@ menu:
             icon: database
 
 comments: false
+slug: collection
 ---

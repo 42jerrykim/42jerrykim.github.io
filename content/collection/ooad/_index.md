@@ -3,6 +3,7 @@ title: "[OOAD] 객체지향 분석·설계(OOAD) 마스터 커리큘럼"
 description: "객체지향 분석(OOA)과 설계(OOD)를 요구사항→모델→설계→아키텍처까지 20편으로 완주합니다. UML/DDD/클린 아키텍처를 실무 예제로 연결해 ‘설계 판단력’을 키웁니다."
 date: 2026-01-17
 lastmod: 2026-01-17
+slug: ooad
 featured_image: "/images/ooad-mastery-banner.jpg"
 tags:
   - OOAD

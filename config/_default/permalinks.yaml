@@ -1,0 +1,5 @@
+page:
+  post: /:sections/:contentbasename/
+  collection: /post/:sectionslugs[last]/:slugorcontentbasename/
+section:
+  collection: /:sectionslugs/
