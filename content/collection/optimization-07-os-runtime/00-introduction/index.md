@@ -62,7 +62,7 @@ tags:
   - 유지보수
 ---
 
-이 트랙은 “코드는 빠른데 프로세스가 느린 이유”를 운영환경에서 찾고 고칩니다. µs 단위에서는 context switch, syscall, 스케줄링 정책, 코어 배치가 지연시간의 바닥을 결정합니다.
+이 트랙은 "코드는 빠른데 프로세스가 느린 이유"를 운영환경에서 찾고 고칩니다. µs 단위에서는 context switch, syscall, 스케줄링 정책, 코어 배치가 지연시간의 바닥을 결정합니다.
 
 ## 이 트랙이 책임지는 범위
 
@@ -77,6 +77,23 @@ tags:
 - 커널/스케줄러 구현을 직접 수정하는 수준의 튜닝 (→ 필요 시 별도 심화)
 - C++ 언어/컴파일러/데이터 구조 자체의 최적화 상세 (→ 각 트랙)
 
+## 커리큘럼
+
+| 챕터 | 제목 | 핵심 내용 |
+|------|------|-----------|
+| 01 | Context Switch 비용 | Context switch 비용 분석과 회피 전략 |
+| 02 | Syscall 최적화 | Syscall 비용과 최소화 기법 |
+| 03 | CPU Pinning/Affinity | CPU pinning/affinity 전략 |
+| 04 | NUMA 최적화 | NUMA 아키텍처 최적화 |
+| 05 | Realtime 스케줄링 | Realtime 스케줄링 적용 |
+| 06 | 정밀 시간 측정 | RDTSC, clock_gettime 등 정밀 타이밍 |
+| 07 | 커널 바이패스 | DPDK, io_uring 등 커널 바이패스 기법 |
+| 08 | io_uring 비동기 | io_uring 기반 비동기 I/O |
+| 09 | 네트워크 스택 최적화 | XDP, eBPF 등 네트워크 최적화 |
+| 10 | Huge TLB Pages | Huge TLB Pages 활용 |
+| 11 | 컨테이너 성능 | 컨테이너/가상화 성능 고려사항 |
+| 12 | IRQ 최적화 | IRQ 처리와 인터럽트 최적화 |
+
 ## 측정과 검증 (이 트랙 기준)
 
 - 운영환경 변경(affinity/scheduler) 전후 레이턴시 분포 비교
@@ -85,5 +102,5 @@ tags:
 
 ## 추천 선행/병행 트랙
 
-- 선행: `Low-latency Profiling & Performance Analysis`
-- 병행: `Concurrency`, `CPU Microarchitecture`
+- 선행: `Low-latency Profiling & Performance Analysis` (Course 05)
+- 병행: `Concurrency` (Course 04), `CPU Microarchitecture` (Course 06)

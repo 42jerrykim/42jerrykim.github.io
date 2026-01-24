@@ -72,7 +72,7 @@ tags:
   - 유지보수
 ---
 
-이 트랙은 “스레드가 늘어날수록 느려지는 이유”를 비용 관점으로 설명하고 통제합니다. µs 시스템에서는 lock 경합, cache line ping-pong, 잘못된 atomic 사용이 지연시간의 지배항이 되기 쉽습니다.
+이 트랙은 "스레드가 늘어날수록 느려지는 이유"를 비용 관점으로 설명하고 통제합니다. µs 시스템에서는 lock 경합, cache line ping-pong, 잘못된 atomic 사용이 지연시간의 지배항이 되기 쉽습니다.
 
 ## 이 트랙이 책임지는 범위
 
@@ -84,9 +84,26 @@ tags:
 
 ## 이 트랙이 다루지 않는 것 (경계)
 
-- OS 스케줄러 “구현”과 커널 내부 튜닝 (→ OS/런타임 트랙)
+- OS 스케줄러 "구현"과 커널 내부 튜닝 (→ OS/런타임 트랙)
 - CPU 파이프라인/분기/캐시 계층의 하드 분석 (→ CPU 트랙)
 - 알고리즘 자체의 시간 복잡도 선택 (→ 설계/의사결정 트랙 또는 별도)
+
+## 커리큘럼
+
+| 챕터 | 제목 | 핵심 내용 |
+|------|------|-----------|
+| 01 | 동기화 비용 분석 | mutex/spinlock/atomic 비용 정량 분석 |
+| 02 | Lock 선택 기준 | 동기화 프리미티브 선택 가이드 |
+| 03 | False Sharing 회피 | False sharing 탐지와 해결 |
+| 04 | 메모리 모델 실무 | C++ 메모리 모델 실무 해석 (acquire/release/seq_cst) |
+| 05 | Lock-free 기초 | Lock-free 설계 기초와 적용 판단 |
+| 06 | Lock-free 자료구조 | Lock-free 큐, 스택, 해시맵 구현 |
+| 07 | Hazard Pointers/RCU | Hazard Pointers와 RCU 패턴 |
+| 08 | SPSC/MPMC 큐 | SPSC/MPMC 큐와 링버퍼 구현 |
+| 09 | C++20 Atomics | C++20 atomic wait/notify 활용 |
+| 10 | 스레드 풀 최적화 | 스레드 풀 최적화와 워크 스틸링 |
+| 11 | 코루틴 동시성 | 코루틴 기반 동시성 패턴 |
+| 12 | Wait-free 프로그래밍 | Wait-free 프로그래밍 기초 |
 
 ## 측정과 검증 (이 트랙 기준)
 
@@ -96,5 +113,5 @@ tags:
 
 ## 추천 선행/병행 트랙
 
-- 선행: `Low-latency Profiling & Performance Analysis`
-- 병행: `Memory & Allocation & Data Layout`, `OS & Runtime Low-latency Tuning`
+- 선행: `Low-latency Profiling & Performance Analysis` (Course 05)
+- 병행: `Memory & Allocation & Data Layout` (Course 03), `OS & Runtime Low-latency Tuning` (Course 07)

@@ -90,7 +90,7 @@ tags:
   - 의사결정
 ---
 
-이 트랙은 “C++를 더 잘 쓰면 해결되는 성능”에 집중합니다. µs 단위에서는 작은 추상화/할당/복사 비용이 누적되어 핫패스를 지배하므로, 언어 레벨 비용을 수치로 확인하고 제거하는 능력이 핵심입니다.
+이 트랙은 "C++를 더 잘 쓰면 해결되는 성능"에 집중합니다. µs 단위에서는 작은 추상화/할당/복사 비용이 누적되어 핫패스를 지배하므로, 언어 레벨 비용을 수치로 확인하고 제거하는 능력이 핵심입니다.
 
 ## 이 트랙이 책임지는 범위
 
@@ -102,17 +102,32 @@ tags:
 
 ## 이 트랙이 다루지 않는 것 (경계)
 
-- CPU 파이프라인/분기 예측/캐시 미스 “원인”의 하드 분석 (→ CPU 트랙)
+- CPU 파이프라인/분기 예측/캐시 미스 "원인"의 하드 분석 (→ CPU 트랙)
 - OS 스케줄링, CPU pinning, syscall 비용 (→ OS/런타임 트랙)
 - 락 경합/메모리 모델/false sharing 같은 동시성 구조 (→ 동시성 트랙)
 
+## 커리큘럼
+
+| 챕터 | 제목 | 핵심 내용 |
+|------|------|-----------|
+| 01 | 추상화 비용 분석 | 가상 함수/RTTI/예외 처리의 정량적 비용, devirtualization |
+| 02 | STL 컨테이너 비용 | vector/map/unordered_map 비용 모델, 캐시 효율성 |
+| 03 | 문자열 최적화 | SSO, string_view, 문자열 처리 최적화 기법 |
+| 04 | 객체 수명 최적화 | Copy Elision, RVO/NRVO, 이동 의미론 심화 |
+| 05 | 임시 객체 제거 | 임시 객체 생성 진단, 제거 패턴 |
+| 06 | 템플릿/constexpr | constexpr/consteval, 컴파일 타임 계산 전략 |
+| 07 | Modern C++ 기능 | C++17/20/23 성능 관련 기능 (ranges, concepts, modules) |
+| 08 | 코루틴 성능 | C++20 코루틴의 성능 특성과 오버헤드 |
+| 09 | 예외 처리 심화 | zero-cost exception의 실제, noexcept 전략 |
+| 10 | 인라이닝 유도 | 인라이닝 실패 원인 분석, 유도 기법 |
+
 ## 측정과 검증 (이 트랙 기준)
 
-- 마이크로벤치마크로 “추상화 1개”의 비용을 분리 측정
+- 마이크로벤치마크로 "추상화 1개"의 비용을 분리 측정
 - 컴파일 결과(인라이닝/코드 크기)와 런타임 수치를 함께 확인
 - 변경 전/후 회귀 검증(최소한의 자동화 포함)
 
 ## 추천 선행/병행 트랙
 
-- 선행: `Low-latency Profiling & Performance Analysis`
-- 병행: `Low-latency Compiler & Build Optimization`, `Memory & Data Layout`, `Concurrency`
+- 선행: `Low-latency Profiling & Performance Analysis` (Course 05)
+- 병행: `Compiler & Build Optimization` (Course 02), `Memory & Allocation` (Course 03), `Concurrency` (Course 04)
