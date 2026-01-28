@@ -36,6 +36,17 @@ tags:
   - Concurrency
   - Linux
   - Windows
+  - AMD
+  - AMD uProf
+  - ETW
+  - Event Tracing for Windows
+  - Valgrind
+  - Callgrind
+  - Cachegrind
+  - BPF
+  - eBPF
+  - bpftrace
+  - BCC
   - 측정
   - 검증
   - 성능
@@ -60,6 +71,10 @@ tags:
   - 히스토그램
   - 꼬리 지연시간
   - 운영환경
+  - 동적 추적
+  - 메모리 분석
+  - 호출 그래프
+  - 캐시 시뮬레이션
 ---
 
 이 트랙은 모든 트랙의 공통 기반입니다. µs 단위 최적화는 "측정→가설→변경→검증→회귀 방지" 루프가 없으면 재현 불가능한 우연이 되기 때문에, 분석 역량을 표준화합니다.
@@ -92,6 +107,10 @@ tags:
 | 10 | 통계적 벤치마킹 | 벤치마크 통계 분석 (신뢰 구간, 유의성) |
 | 11 | 지속적 프로파일링 | 지속적 프로파일링 (production profiling) |
 | 12 | 성능 A/B 테스트 | 성능 A/B 테스트 방법론 |
+| 13 | AMD μProf 활용 | AMD μProf 프로파일러 활용과 AMD CPU 분석 |
+| 14 | Windows ETW | Event Tracing for Windows 기반 성능 분석 |
+| 15 | Valgrind/Callgrind | 메모리 프로파일링, 캐시 시뮬레이션, 호출 그래프 분석 |
+| 16 | BPF 기반 프로파일링 | bpftrace, BCC를 활용한 동적 프로파일링 |
 
 ## 측정과 검증 (이 트랙 기준)
 

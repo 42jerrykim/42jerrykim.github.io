@@ -36,6 +36,20 @@ tags:
   - Assembly
   - Codegen
   - Regression
+  - Apple Silicon
+  - M1
+  - M2
+  - M3
+  - ARM64
+  - AArch64
+  - SMT
+  - Hyper-Threading
+  - Simultaneous Multithreading
+  - uOp Cache
+  - DSB
+  - Decoded Stream Buffer
+  - RISC-V
+  - ISA
   - 측정
   - 검증
   - 성능
@@ -61,6 +75,11 @@ tags:
   - 메모리
   - NUMA
   - 성능 회귀
+  - 애플 실리콘
+  - 동시 멀티스레딩
+  - 하이퍼스레딩
+  - 마이크로옵 캐시
+  - 명령어 집합 아키텍처
 ---
 
 이 트랙은 "왜 이 코드가 캐시 미스를 내는가", "왜 분기 예측이 깨지는가" 같은 질문에 답합니다. µs 최적화에서는 CPU 이벤트가 지연시간 분포를 흔들기 때문에, 하드웨어 관점의 비용 모델이 필요합니다.
@@ -94,6 +113,10 @@ tags:
 | 10 | 추측 실행 | 추측 실행과 보안 영향 (Spectre/Meltdown) |
 | 11 | 주파수 스케일링 | CPU 주파수 스케일링과 성능 |
 | 12 | 전력 관리 | 전력 관리가 성능에 미치는 영향 |
+| 13 | Apple Silicon 아키텍처 | M 시리즈 칩 특성, P/E 코어, Unified Memory 아키텍처 |
+| 14 | SMT/Hyper-Threading | 동시 멀티스레딩 성능 영향과 최적화 전략 |
+| 15 | μOp Cache와 DSB | Decoded Stream Buffer, μOp 캐시 활용과 최적화 |
+| 16 | RISC-V 아키텍처 기초 | RISC-V ISA 특성과 성능 고려사항 (미래 대비) |
 
 ## 측정과 검증 (이 트랙 기준)
 

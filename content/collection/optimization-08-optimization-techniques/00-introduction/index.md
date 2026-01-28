@@ -33,6 +33,18 @@ tags:
   - Codegen
   - Regression
   - Safety
+  - ARM NEON
+  - NEON
+  - Highway
+  - xsimd
+  - Eigen
+  - Portable SIMD
+  - Cache-oblivious
+  - GPU
+  - CUDA
+  - OpenCL
+  - SYCL
+  - Heterogeneous Computing
   - 측정
   - 검증
   - 성능
@@ -60,6 +72,10 @@ tags:
   - 데이터 레이아웃
   - 코드 생성
   - 성능 회귀
+  - 포터블 SIMD
+  - 캐시 독립 알고리즘
+  - 이기종 컴퓨팅
+  - GPU 오프로딩
 ---
 
 이 트랙은 "정말로 필요할 때만" 접근하는 특수 기술 묶음입니다. 잘못된 조기 진입은 복잡도만 키우고 회귀를 부르기 쉬우므로, 반드시 목표/측정/검증이 준비된 상황에서 사용합니다.
@@ -91,6 +107,10 @@ tags:
 | 09 | 비트 조작 최적화 | 비트 조작 최적화 기법 |
 | 10 | 핫패스 극한 튜닝 | 핫패스 극한 튜닝 사례 |
 | 11 | 유지보수성 균형 | 극한 최적화와 유지보수성 균형 |
+| 12 | ARM NEON 최적화 | ARM NEON intrinsics, Apple Silicon/ARM 서버 대응 |
+| 13 | SIMD 라이브러리 | Highway, xsimd, Eigen 등 포터블 SIMD 라이브러리 활용 |
+| 14 | Cache-oblivious 알고리즘 | 캐시 크기 독립적인 알고리즘 설계 기법 |
+| 15 | GPU Offloading 기초 | CUDA/OpenCL/SYCL 개념과 CPU-GPU 협업 판단 기준 |
 
 ## 측정과 검증 (이 트랙 기준)
 

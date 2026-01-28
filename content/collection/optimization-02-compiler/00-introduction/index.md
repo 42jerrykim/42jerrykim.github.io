@@ -38,6 +38,13 @@ tags:
   - Linker
   - ABI
   - Binary Size
+  - Modules
+  - C++20 Modules
+  - ccache
+  - distcc
+  - sccache
+  - Static Analyzer
+  - Build Parallelization
   - CPU
   - Cache
   - Memory
@@ -92,12 +99,15 @@ tags:
 | 02 | LTO/ThinLTO | Link-Time Optimization 실전 적용과 검증 |
 | 03 | PGO 워크플로우 | Profile-Guided Optimization 고급 워크플로우 |
 | 04 | 컴파일러 비교 | GCC vs Clang vs MSVC 최적화 차이점 |
-| 05 | 인라이닝 분석 | 인라이닝 실패 진단 (가시성, ODR, ABI, 코드 크기) |
+| 05 | 인라이닝 진단 | 컴파일러 관점 인라이닝 실패 진단 (가시성, ODR, ABI, 코드 크기) (유도: Course 01) |
 | 06 | 코드 생성 분석 | 어셈블리 레벨 코드 생성 분석 |
 | 07 | 함수 멀티버저닝 | CPU 기능별 함수 다중 버전 생성 |
 | 08 | 컴파일러 내장 함수 | 컴파일러 intrinsics 카탈로그 |
 | 09 | Sanitizer 오버헤드 | AddressSanitizer/UBSan 등의 성능 영향 |
 | 10 | 디버그 정보와 성능 | 디버그 심볼과 성능, 릴리즈 빌드 전략 |
+| 11 | C++20 Modules | Modules 빌드 시간과 런타임 성능 영향 |
+| 12 | 빌드 병렬화 전략 | ccache, distcc, sccache 활용과 빌드 시간 최적화 |
+| 13 | Static Analyzer | 성능 관련 정적 분석 경고와 활용 |
 
 ## 측정과 검증 (이 트랙 기준)
 

@@ -30,6 +30,11 @@ tags:
   - Clock
   - Timekeeping
   - HFT
+  - cgroups
+  - cgroups v2
+  - mlock
+  - mlockall
+  - Signal Handling
   - Game Engine
   - Realtime Media
   - Regression
@@ -84,15 +89,19 @@ tags:
 | 01 | Context Switch 비용 | Context switch 비용 분석과 회피 전략 |
 | 02 | Syscall 최적화 | Syscall 비용과 최소화 기법 |
 | 03 | CPU Pinning/Affinity | CPU pinning/affinity 전략 |
-| 04 | NUMA 최적화 | NUMA 아키텍처 최적화 |
+| 04 | NUMA CPU Affinity | NUMA 아키텍처에서의 CPU affinity와 스레드 배치 (메모리 할당: Course 03) |
 | 05 | Realtime 스케줄링 | Realtime 스케줄링 적용 |
 | 06 | 정밀 시간 측정 | RDTSC, clock_gettime 등 정밀 타이밍 |
-| 07 | 커널 바이패스 | DPDK, io_uring 등 커널 바이패스 기법 |
-| 08 | io_uring 비동기 | io_uring 기반 비동기 I/O |
-| 09 | 네트워크 스택 최적화 | XDP, eBPF 등 네트워크 최적화 |
+| 07 | 커널 바이패스 개요 | 커널 바이패스 개념과 적용 판단 기준 (심화: Course 11, 12) |
+| 08 | io_uring 개요 | io_uring 아키텍처 개요와 OS 관점 이해 (심화: Course 11) |
+| 09 | XDP/eBPF 개요 | XDP, eBPF 기반 OS 레벨 최적화 개요 (네트워크 심화: Course 12) |
 | 10 | Huge TLB Pages | Huge TLB Pages 활용 |
 | 11 | 컨테이너 성능 | 컨테이너/가상화 성능 고려사항 |
 | 12 | IRQ 최적화 | IRQ 처리와 인터럽트 최적화 |
+| 13 | cgroups v2 | cgroups v2 기반 리소스 제어와 성능 영향 |
+| 14 | Memory Locking | mlock/mlockall을 활용한 메모리 고정 전략 |
+| 15 | Signal Handling | Signal handling 오버헤드와 회피 전략 |
+| 16 | Process vs Thread | 프로세스 vs 스레드 아키텍처 선택 기준 |
 
 ## 측정과 검증 (이 트랙 기준)
 

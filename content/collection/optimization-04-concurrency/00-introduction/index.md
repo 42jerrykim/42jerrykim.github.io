@@ -38,6 +38,12 @@ tags:
   - NUMA
   - CPU Pinning
   - Scheduling
+  - jthread
+  - stop_token
+  - Seqlock
+  - TLS
+  - Thread-local Storage
+  - Executors
   - Linux
   - Windows
   - Regression
@@ -104,6 +110,10 @@ tags:
 | 10 | 스레드 풀 최적화 | 스레드 풀 최적화와 워크 스틸링 |
 | 11 | 코루틴 동시성 | 코루틴 기반 동시성 패턴 |
 | 12 | Wait-free 프로그래밍 | Wait-free 프로그래밍 기초 |
+| 13 | std::jthread와 stop_token | C++20 협력적 스레드 취소와 활용 |
+| 14 | Seqlock 패턴 | Reader-writer 시나리오 최적화를 위한 Seqlock |
+| 15 | Thread-local Storage | TLS 비용 분석과 활용 패턴 |
+| 16 | Executors 기초 | C++23/26 Executors 개념과 비동기 실행 모델 |
 
 ## 측정과 검증 (이 트랙 기준)
 

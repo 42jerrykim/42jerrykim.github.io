@@ -30,6 +30,15 @@ tags:
   - Move Semantics
   - RAII
   - Object Lifetime
+  - std::variant
+  - std::optional
+  - std::expected
+  - std::span
+  - Lambda
+  - Closure
+  - Small Buffer Optimization
+  - SBO
+  - Parameter Passing
   - Memory
   - Allocation
   - Allocator
@@ -88,6 +97,13 @@ tags:
   - 유지보수
   - 시스템 설계
   - 의사결정
+  - 타입 안전
+  - 옵셔널
+  - 뷰 패턴
+  - 람다
+  - 클로저
+  - 소형 버퍼 최적화
+  - 매개변수 전달
 ---
 
 이 트랙은 "C++를 더 잘 쓰면 해결되는 성능"에 집중합니다. µs 단위에서는 작은 추상화/할당/복사 비용이 누적되어 핫패스를 지배하므로, 언어 레벨 비용을 수치로 확인하고 제거하는 능력이 핵심입니다.
@@ -119,7 +135,12 @@ tags:
 | 07 | Modern C++ 기능 | C++17/20/23 성능 관련 기능 (ranges, concepts, modules) |
 | 08 | 코루틴 성능 | C++20 코루틴의 성능 특성과 오버헤드 |
 | 09 | 예외 처리 심화 | zero-cost exception의 실제, noexcept 전략 |
-| 10 | 인라이닝 유도 | 인라이닝 실패 원인 분석, 유도 기법 |
+| 10 | 인라이닝 유도 기법 | 코드 레벨 인라이닝 유도 기법, inline/forceinline 활용 (진단: Course 02) |
+| 11 | std::variant/optional/expected | 타입 안전 유니온과 옵셔널 타입의 성능 특성, 오버헤드 분석 |
+| 12 | std::span과 뷰 패턴 | 안전한 뷰 패턴, span/string_view 활용과 성능 이점 |
+| 13 | 람다 표현식 성능 | 캡처 비용 (by-value vs by-reference), 클로저 최적화 |
+| 14 | Small Buffer Optimization | SBO 패턴 상세, std::function/std::any 내부 구조 |
+| 15 | Parameter Passing 전략 | by value vs const ref vs rvalue ref 정량 분석 |
 
 ## 측정과 검증 (이 트랙 기준)
 

@@ -37,6 +37,13 @@ tags:
   - NVMe
   - SSD
   - Storage
+  - Vectored I/O
+  - readv
+  - writev
+  - WAL
+  - Write-Ahead Log
+  - fsync
+  - File Locking
   - 측정
   - 검증
   - 성능
@@ -82,7 +89,7 @@ tags:
 |------|------|-----------|
 | 01 | I/O 패턴과 비용 | 동기/비동기, 블로킹/논블로킹 비용 모델 |
 | 02 | 비동기 I/O 기초 | select, poll, epoll, kqueue 비교 |
-| 03 | io_uring 심화 | Linux io_uring 아키텍처와 실전 활용 |
+| 03 | io_uring 심화 | Linux io_uring 아키텍처와 파일 I/O 실전 활용 (개요: Course 07) |
 | 04 | IOCP와 Windows I/O | Windows IOCP 모델과 최적화 |
 | 05 | Zero-copy 기법 | sendfile, splice, copy_file_range 활용 |
 | 06 | Memory-mapped I/O | mmap 활용과 주의사항 |
@@ -90,6 +97,10 @@ tags:
 | 08 | 파일시스템 특성 | ext4, XFS, ZFS 등 성능 특성 |
 | 09 | 블록 디바이스 최적화 | NVMe, SSD 특성과 I/O 스케줄러 |
 | 10 | I/O 멀티플렉싱 패턴 | Reactor, Proactor 패턴 구현 |
+| 11 | Vectored I/O | readv/writev, preadv2/pwritev2 활용 |
+| 12 | POSIX AIO vs io_uring | POSIX AIO와 io_uring 성능 비교 |
+| 13 | Database I/O 패턴 | WAL, fsync, 저널링 전략과 성능 영향 |
+| 14 | File Locking 성능 | 파일 잠금이 성능에 미치는 영향과 대안 |
 
 ## 측정과 검증 (이 트랙 기준)
 

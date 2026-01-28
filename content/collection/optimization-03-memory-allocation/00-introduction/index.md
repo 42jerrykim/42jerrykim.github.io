@@ -97,9 +97,12 @@ tags:
 | 06 | 캐시 친화적 패턴 | 순차 접근, stride, batching 전략 |
 | 07 | 패딩과 정렬 | 구조체 패딩과 정렬 최적화 |
 | 08 | Large Pages | Huge Pages / Large Pages 활용 |
-| 09 | NUMA 인식 할당 | NUMA 아키텍처에서의 메모리 할당 |
+| 09 | NUMA 메모리 할당 | NUMA 아키텍처에서의 메모리 할당과 지역성 (CPU affinity: Course 07) |
 | 10 | 메모리 단편화 | 단편화 분석과 대응 전략 |
 | 11 | 메모리 대역폭 | 메모리 대역폭 최적화 기법 |
+| 12 | Stack vs Heap 전략 | Stack/Heap 할당 비용 정량 분석과 선택 기준 |
+| 13 | Virtual Memory 관리 | madvise, msync 등 가상 메모리 힌트 활용 |
+| 14 | 메모리 누수 탐지 | Valgrind, ASan을 활용한 메모리 누수 탐지와 성능 영향 |
 
 ## 측정과 검증 (이 트랙 기준)
 

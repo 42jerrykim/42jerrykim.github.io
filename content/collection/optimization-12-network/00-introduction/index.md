@@ -41,6 +41,18 @@ tags:
   - Buffer
   - Congestion Control
   - RTT
+  - QUIC
+  - TLS
+  - SSL
+  - TLS Handshake
+  - 0-RTT
+  - Session Resumption
+  - Connection Pooling
+  - Keep-alive
+  - WebSocket
+  - HTTP/2
+  - HTTP/3
+  - Multiplexing
   - 측정
   - 검증
   - 성능
@@ -59,6 +71,11 @@ tags:
   - 바이너리 프로토콜
   - 커널 바이패스
   - 혼잡 제어
+  - 연결 풀링
+  - 세션 재개
+  - 멀티플렉싱
+  - 웹소켓
+  - TLS 핸드셰이크
 ---
 
 이 트랙은 "데이터가 네트워크를 오가는 경로"의 지연시간을 줄이는 영역을 책임집니다. µs 단위에서는 프로토콜 오버헤드, 직렬화 비용, 커널 네트워크 스택 지연이 전체 지연시간의 상당 부분을 차지합니다.
@@ -91,10 +108,15 @@ tags:
 | 06 | Zero-copy 직렬화 | FlatBuffers, Cap'n Proto zero-copy 활용 |
 | 07 | 프로토콜 설계 | 저지연 바이너리 프로토콜 설계 원칙 |
 | 08 | 메시지 프레이밍 | Length-prefix, delimiter, fixed-size 전략 |
-| 09 | 커널 바이패스 DPDK | DPDK 아키텍처와 적용 판단 |
-| 10 | XDP/eBPF 네트워크 | XDP, eBPF 기반 패킷 처리 |
+| 09 | 네트워크 DPDK 심화 | 네트워크 관점 DPDK 아키텍처와 패킷 처리 (개요: Course 07) |
+| 10 | 네트워크 XDP/eBPF | 네트워크 패킷 처리를 위한 XDP, eBPF 심화 (개요: Course 07) |
 | 11 | RDMA 기초 | RDMA/InfiniBand 개념과 활용 |
 | 12 | gRPC 최적화 | gRPC 성능 튜닝 |
+| 13 | QUIC 프로토콜 | QUIC 성능 특성, 0-RTT 연결, UDP 기반 전송 |
+| 14 | TLS/SSL 최적화 | TLS 핸드셰이크 최적화, 세션 재개, 0-RTT |
+| 15 | Connection Pooling | 연결 풀링 전략, Keep-alive, 연결 재사용 |
+| 16 | WebSocket 최적화 | WebSocket 성능 튜닝, 압축, 메시지 배치 |
+| 17 | HTTP/2와 HTTP/3 | HTTP/2 멀티플렉싱, HTTP/3 QUIC 기반 성능 비교 |
 
 ## 측정과 검증 (이 트랙 기준)
 
