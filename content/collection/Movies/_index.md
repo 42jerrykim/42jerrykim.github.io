@@ -2,7 +2,7 @@
 title: "Movies"
 description: "영화 리뷰 및 소개 글. 다양한 장르의 영화에 대한 심층 분석과 감상평, 기술적 요소 평가, 흥행 성적 및 평단 반응 등을 포함한 포괄적인 콘텐츠를 제공한다."
 featured_image: "/images/home-banner.jpg"
-
+slug: movies
 ---
 
 이 섹션에서는 다양한 장르의 영화에 대한 리뷰와 소개를 다루고 있습니다. 각 포스트에서는 다음과 같은 내용을 다룹니다:
