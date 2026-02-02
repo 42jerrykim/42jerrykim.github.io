@@ -3,7 +3,7 @@ title: "엔더스 게임 (2013) - 전쟁과 도덕의 경계선에서"
 date: 2013-11-01
 categories: [Movies]
 tags: [Ender's Game, Gavin Hood, Asa Butterfield, Harrison Ford, Hailee Steinfeld, Abigail Breslin, Viola Davis, Ben Kingsley, Orson Scott Card, Science Fiction, Young Adult, War, Military, 2013]
-collection_order: 42
+
 rating: 5
 draft: true
 ---

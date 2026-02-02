@@ -3,7 +3,7 @@ title: "디스커넥트 (2012) - 연결된 세상에서 단절된 사람들"
 date: 2012-04-12
 categories: [Movies]
 tags: [Disconnect, Henry Alex Rubin, Jason Bateman, Paula Patton, Alexander Skarsgård, Drama, Thriller, Internet, Social Media, Cyberbullying, 2012]
-collection_order: 34
+
 rating: 5
 draft: true
 ---

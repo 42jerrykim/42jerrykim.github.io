@@ -3,7 +3,7 @@ title: "드래곤 길들이기 2 (2014) - 성장한 영웅과 더 깊어진 모�
 date: 2014-06-13
 categories: [Movies]
 tags: [How to Train Your Dragon 2, Dean DeBlois, Jay Baruchel, Cate Blanchett, Gerard Butler, DreamWorks, Animation, Adventure, Family, 2014]
-collection_order: 36
+
 rating: 5
 draft: true
 ---

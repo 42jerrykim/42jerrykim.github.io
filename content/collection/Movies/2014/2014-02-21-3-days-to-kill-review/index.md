@@ -3,7 +3,7 @@ title: "쓰리데이즈 투 킬 (2014) - 가족과 임무 사이의 균형잡기
 date: 2014-02-21
 categories: [Movies]
 tags: [3 Days to Kill, McG, Kevin Costner, Amber Heard, Hailee Steinfeld, Connie Nielsen, Luc Besson, Action, Thriller, CIA, Family Drama, 2014]
-collection_order: 43
+
 rating: 5
 draft: true
 ---

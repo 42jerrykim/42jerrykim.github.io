@@ -1,7 +1,7 @@
 ---
 title: "위플래시 - 완벽을 향한 광기의 질주"
 date: 2014-10-10
-collection_order: 28
+
 categories: [Movies, Drama, Music]
 tags: [위플래시, 데미언_샤젤, 마일스_텔러, JK_시먼스, 재즈, 드럼, 완벽주의, 멘토십, 예술영화]
 description: "완벽을 향한 광적인 집착과 예술가의 고통을 그린 충격적인 걸작. J.K. 시먼스의 아카데미상 수상작"
