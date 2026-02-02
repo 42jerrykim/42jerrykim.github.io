@@ -4,7 +4,7 @@ date: 2014-02-28
 categories: [Movies]
 tags: [Non-Stop, Jaume Collet-Serra, Liam Neeson, Julianne Moore, Michelle Dockery, Scoot McNairy, Nate Parker, Action, Thriller, Airplane, Hijacking, Air Marshal, 2014]
 
-rating: 5
+
 draft: true
 ---
 

@@ -4,7 +4,7 @@ date: 2012-04-12
 categories: [Movies]
 tags: [Disconnect, Henry Alex Rubin, Jason Bateman, Paula Patton, Alexander Skarsgård, Drama, Thriller, Internet, Social Media, Cyberbullying, 2012]
 
-rating: 5
+
 draft: true
 ---
 

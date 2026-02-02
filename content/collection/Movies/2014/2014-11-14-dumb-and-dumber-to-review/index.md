@@ -6,7 +6,7 @@ categories: [Movies, Comedy]
 tags: [덤_앤_더머_투, 짐_캐리, 제프_다니엘스, 패럴리_형제, 코미디, 속편, 로이드_크리스마스, 해리_던]
 description: "20년 만에 돌아온 바보 콤비의 모험담. 하지만 시간이 흘러도 변하지 않는 건 그들의 바보스러움뿐, 코미디는 퇴화했다"
 poster: "https://image.tmdb.org/t/p/w500/pPqWjMRA4vRl3PnhHlqJ4fGzqjz.jpg"
-rating: 2
+
 draft: true
 ---
 

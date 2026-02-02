@@ -4,7 +4,7 @@ date: 2013-08-16
 categories: [Movies]
 tags: [Begin Again, John Carney, Keira Knightley, Mark Ruffalo, Adam Levine, Music, Romance, Drama, 2013]
 
-rating: 5
+
 draft: true
 ---
 

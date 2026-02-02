@@ -4,7 +4,7 @@ date: 2014-07-11
 categories: [Movies]
 tags: [Dawn of the Planet of the Apes, Matt Reeves, Andy Serkis, Jason Clarke, Gary Oldman, Keri Russell, Motion Capture, Weta Digital, Science Fiction, 2014]
 
-rating: 5
+
 draft: true
 ---
 

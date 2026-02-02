@@ -4,7 +4,7 @@ date: 2014-05-02
 categories: [Movies]
 tags: [The Amazing Spider-Man 2, Marc Webb, Andrew Garfield, Emma Stone, Jamie Foxx, Dane DeHaan, Sally Field, Sony Pictures, Marvel, Spider-Man, 2014]
 
-rating: 3
+
 draft: true
 ---
 

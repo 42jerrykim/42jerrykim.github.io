@@ -105,7 +105,7 @@ tags:
 - 오리온 픽처스
 image: "poster.png"
 
-rating: 5
+
 draft: true
 ---
 

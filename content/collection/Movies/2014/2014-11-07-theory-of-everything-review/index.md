@@ -7,7 +7,7 @@ tags: [더_씨어리_오브_에브리싱, 에디_레드메인, 펠리시티_존�
 description: "천재 물리학자 스티븐 호킹과 첫 번째 아내 제인의 사랑과 희생을 그린 감동적인 전기영화. 에디 레드메인의 아카데미상 수상작"
 poster: "https://image.tmdb.org/t/p/w500/6TGjBEZAGWuKMJ0n87pE8RYKJGI.jpg"
 draft: true
-rating: 5
+
 ---
 
 ## 작품 개요

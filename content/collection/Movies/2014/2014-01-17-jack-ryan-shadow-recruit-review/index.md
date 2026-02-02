@@ -4,7 +4,7 @@ date: 2014-01-17
 categories: [Movies]
 tags: [Jack Ryan Shadow Recruit, Kenneth Branagh, Chris Pine, Kevin Costner, Keira Knightley, Tom Clancy, CIA, Spy, Action, Thriller, Russia, Terrorism, Financial, Moscow, Wall Street, 2014]
 
-rating: 5
+
 draft: true
 ---
 

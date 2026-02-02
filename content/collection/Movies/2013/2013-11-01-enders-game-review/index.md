@@ -4,7 +4,7 @@ date: 2013-11-01
 categories: [Movies]
 tags: [Ender's Game, Gavin Hood, Asa Butterfield, Harrison Ford, Hailee Steinfeld, Abigail Breslin, Viola Davis, Ben Kingsley, Orson Scott Card, Science Fiction, Young Adult, War, Military, 2013]
 
-rating: 5
+
 draft: true
 ---
 

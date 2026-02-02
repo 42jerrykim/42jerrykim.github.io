@@ -4,7 +4,7 @@ date: 2014-02-21
 categories: [Movies]
 tags: [3 Days to Kill, McG, Kevin Costner, Amber Heard, Hailee Steinfeld, Connie Nielsen, Luc Besson, Action, Thriller, CIA, Family Drama, 2014]
 
-rating: 5
+
 draft: true
 ---
 

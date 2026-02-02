@@ -4,7 +4,7 @@ date: 2014-04-04
 categories: [Movies]
 tags: [Captain America The Winter Soldier, Anthony Russo, Joe Russo, Chris Evans, Scarlett Johansson, Sebastian Stan, Samuel L Jackson, Marvel, MCU, Political Thriller, Action, 2014]
 
-rating: 5
+
 draft: true
 ---
 

@@ -4,7 +4,7 @@ date: 2014-06-06
 categories: [Movies]
 tags: [Edge of Tomorrow, Doug Liman, Tom Cruise, Emily Blunt, Live Die Repeat, Time Loop, Science Fiction, Action, War, 2014]
 
-rating: 5
+
 draft: true
 ---
 

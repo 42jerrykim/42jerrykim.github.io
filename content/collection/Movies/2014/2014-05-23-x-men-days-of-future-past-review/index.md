@@ -4,7 +4,7 @@ date: 2014-05-23
 categories: [Movies]
 tags: [X-Men Days of Future Past, Bryan Singer, Hugh Jackman, James McAvoy, Michael Fassbender, Jennifer Lawrence, Patrick Stewart, Ian McKellen, Superhero, Marvel, Time Travel, 2014]
 
-rating: 5
+
 draft: true
 ---
 

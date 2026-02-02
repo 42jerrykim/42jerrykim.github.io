@@ -4,7 +4,7 @@ date: 2014-12-17
 categories: [Movies]
 tags: [The Hobbit, Peter Jackson, Martin Freeman, Richard Armitage, Fantasy, Adventure, Drama, 2014]
 
-rating: 5
+
 draft: true
 ---
 
