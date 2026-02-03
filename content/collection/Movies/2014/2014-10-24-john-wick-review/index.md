@@ -1,12 +1,12 @@
 ---
 title: "존 윅 - 액션 영화의 부활을 알린 완벽한 복수극"
 date: 2014-10-24
-collection_order: 30
+
 categories: [Movies, Action, Thriller]
 tags: [존_윅, 키아누_리브스, 채드_스타헬스키, 데렉_콜스타드, 액션, 복수, 킬러, 강아지, 콘티넨탈_호텔]
 description: "은퇴한 킬러의 처절한 복수극. 키아누 리브스의 화려한 컴백과 액션 영화 장르의 부활을 알린 걸작"
 poster: "https://image.tmdb.org/t/p/w500/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg"
-rating: 5
+
 draft: true
 ---
 

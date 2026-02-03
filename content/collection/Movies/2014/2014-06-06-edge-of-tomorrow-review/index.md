@@ -3,8 +3,8 @@ title: "엣지 오브 투모로우 (2014) - 반복 속에서 찾은 완벽한 �
 date: 2014-06-06
 categories: [Movies]
 tags: [Edge of Tomorrow, Doug Liman, Tom Cruise, Emily Blunt, Live Die Repeat, Time Loop, Science Fiction, Action, War, 2014]
-collection_order: 37
-rating: 5
+
+
 draft: true
 ---
 

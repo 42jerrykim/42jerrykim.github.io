@@ -3,8 +3,8 @@ title: "엑스맨: 데이즈 오브 퓨처 패스트 (2014) - 시간을 넘나�
 date: 2014-05-23
 categories: [Movies]
 tags: [X-Men Days of Future Past, Bryan Singer, Hugh Jackman, James McAvoy, Michael Fassbender, Jennifer Lawrence, Patrick Stewart, Ian McKellen, Superhero, Marvel, Time Travel, 2014]
-collection_order: 35
-rating: 5
+
+
 draft: true
 ---
 

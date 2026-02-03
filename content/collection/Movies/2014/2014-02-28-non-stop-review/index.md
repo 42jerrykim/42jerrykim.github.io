@@ -3,8 +3,8 @@ title: "논스톱 (2014) - 40,000피트 상공의 완벽한 밀실 스릴러"
 date: 2014-02-28
 categories: [Movies]
 tags: [Non-Stop, Jaume Collet-Serra, Liam Neeson, Julianne Moore, Michelle Dockery, Scoot McNairy, Nate Parker, Action, Thriller, Airplane, Hijacking, Air Marshal, 2014]
-collection_order: 44
-rating: 5
+
+
 draft: true
 ---
 

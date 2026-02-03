@@ -1,0 +1,40 @@
+{{/*
+Deterministically sort a Pages collection by frontmatter param `collection_order`.
+Pages without collection_order are sorted by date (newest first) at the end.
+
+Why this exists:
+- `.Pages.ByParam "collection_order"` can behave inconsistently when the param type
+  differs (number vs string) or parsing differs between environments.
+- We force-cast to int and add a permalink tie-breaker for a stable order.
+
+Usage:
+  {{- $sorted := partial "helper/sort-by-collection-order" .Pages -}}
+  {{- range $sorted }} ... {{ end }}
+*/}}
+
+{{- $pages := . -}}
+{{- $items := slice -}}
+
+{{- range $p := $pages -}}
+  {{- $order := 999999 -}}
+  {{- $dateKey := "" -}}
+  {{- if isset $p.Params "collection_order" -}}
+    {{- /* `int` handles numeric and numeric-strings; `0` must not be treated as empty */ -}}
+    {{- $order = int (index $p.Params "collection_order") -}}
+    {{- $dateKey = "0000000000" -}}  {{/* order가 있으면 날짜 무시 */}}
+  {{- else -}}
+    {{- /* 날짜 역순: 9999999999 - unix timestamp (최신이 먼저) */}}
+    {{- $dateKey = printf "%010d" (sub 9999999999 $p.Date.Unix) -}}
+  {{- end -}}
+  {{- $key := printf "%010d|%s|%s" $order $dateKey $p.RelPermalink -}}
+  {{- $items = $items | append (dict "key" $key "page" $p) -}}
+{{- end -}}
+
+{{- $sortedItems := sort $items "key" "asc" -}}
+{{- $sortedPages := slice -}}
+{{- range $it := $sortedItems -}}
+  {{- $sortedPages = $sortedPages | append (index $it "page") -}}
+{{- end -}}
+
+{{- return $sortedPages -}}
+

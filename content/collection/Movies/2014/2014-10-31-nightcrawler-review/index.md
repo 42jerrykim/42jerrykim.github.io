@@ -1,12 +1,12 @@
 ---
 title: "나이트크롤러 - 소시오패스가 미디어를 만났을 때"
 date: 2014-10-31
-collection_order: 26
+
 categories: [Movies, Crime, Thriller]
 tags: [나이트크롤러, 제이크_질렌할, 댄_길로이, 범죄_스릴러, 네오_누아르, 미디어_비판, 르네_루소, 빌_팩스톤]
 description: "LA의 밤을 누비는 범죄 영상 사냥꾼의 어둠 속 세계. 제이크 질렌할의 소름 끼치는 연기가 빛나는 현대적 네오 누아르"
 poster: "https://image.tmdb.org/t/p/w500/j9HrX8f7GbZQm1BrBiR40uFQZSb.jpg"
-rating: 5
+
 draft: true
 ---
 

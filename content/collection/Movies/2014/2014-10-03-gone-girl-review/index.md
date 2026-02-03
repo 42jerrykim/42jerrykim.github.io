@@ -1,12 +1,12 @@
 ---
 title: "나이프 아웃 - 결혼이라는 지옥의 초상"
 date: 2014-10-03
-collection_order: 29
+
 categories: [Movies, Thriller, Drama]
 tags: [나이프_아웃, 데이비드_핀처, 벤_애플렉, 로자먼드_파이크, 질리언_플린, 심리_스릴러, 미디어_조작, 결혼_드라마]
 description: "데이비드 핀처가 그려낸 결혼의 어두운 진실과 미디어의 공포. 로자먼드 파이크의 소름 끼치는 연기가 돋보이는 걸작"
 poster: "https://image.tmdb.org/t/p/w500/gdiLTof3rbPDAmPaCf4g6op46bj.jpg"
-rating: 5
+
 draft: true
 ---
 

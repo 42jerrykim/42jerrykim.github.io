@@ -104,8 +104,8 @@ tags:
 - Orion Pictures
 - 오리온 픽처스
 image: "poster.png"
-collection_order: 47
-rating: 5
+
+
 draft: true
 ---
 

@@ -45,21 +45,50 @@
     </header>
 
     {{- $pages := .Pages -}}
-    {{- if or (eq .Section "collection") (hasPrefix .RelPermalink "/collection/") -}}
-        {{- $pages = .Pages.ByParam "collection_order" -}}
-    {{- end -}}
-    {{- $paginator := .Paginate $pages }}
-    <section class="article-list--compact">
-        {{ range $paginator.Pages }}
-            {{- if eq .Section "collection" -}}
+    {{- if hasPrefix .RelPermalink "/collection/" -}}
+        {{- $sortedPages := partial "helper/sort-by-collection-order" .Pages -}}
+        {{- $pageSize := .Site.Params.pagination.pagerSize | default 20 -}}
+        {{- $totalPages := len $sortedPages -}}
+        {{- $totalPaginatorPages := int (math.Ceil (div (float $totalPages) (float $pageSize))) -}}
+        
+        {{- /* Get current page number from URL */ -}}
+        {{- $currentPageNum := 1 -}}
+        {{- if .Paginator -}}
+            {{- $currentPageNum = .Paginator.PageNumber -}}
+        {{- end -}}
+        
+        {{- /* Calculate slice range */ -}}
+        {{- $startIdx := mul (sub $currentPageNum 1) $pageSize -}}
+        {{- $endIdx := add $startIdx $pageSize -}}
+        {{- if gt $endIdx $totalPages -}}
+            {{- $endIdx = $totalPages -}}
+        {{- end -}}
+        
+        {{- /* Get current page's items */ -}}
+        {{- $currentPageItems := first $endIdx $sortedPages | after $startIdx -}}
+        
+        <section class="article-list--compact">
+            {{ range $currentPageItems }}
                 {{ partial "article-list/collection-compact" . }}
-            {{- else -}}
-                {{ partial "article-list/compact" . }}
-            {{- end -}}
-        {{ end }}
-    </section>
-
-    {{- partial "pagination.html" . -}}
+            {{ end }}
+        </section>
+        
+        {{- /* Use default paginator for pagination UI */ -}}
+        {{- $paginator := .Paginate .Pages }}
+        {{- partial "pagination.html" . -}}
+    {{- else -}}
+        {{- $paginator := .Paginate $pages }}
+        <section class="article-list--compact">
+            {{ range $paginator.Pages }}
+                {{- if eq .Section "collection" -}}
+                    {{ partial "article-list/collection-compact" . }}
+                {{- else -}}
+                    {{ partial "article-list/compact" . }}
+                {{- end -}}
+            {{ end }}
+        </section>
+        {{- partial "pagination.html" . -}}
+    {{- end -}}
 
     {{ partialCached "footer/footer" . }}
 {{ end }}

@@ -34,6 +34,7 @@
     {{- if eq .Section "collection" -}}
         {{- $currentCollection := .Parent -}}
         {{- $allPosts := $currentCollection.Pages -}}
+        {{- $allPosts = partial "helper/sort-by-collection-order" $allPosts -}}
         {{- $currentPageURL := .RelPermalink -}}
         
         {{- if gt (len $allPosts) 1 -}}

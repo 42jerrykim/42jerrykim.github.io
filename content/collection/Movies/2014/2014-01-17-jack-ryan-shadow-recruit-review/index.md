@@ -3,8 +3,8 @@ title: "잭 라이언: 코드네임 쉐도우 (2014) - 현대적으로 재탄생
 date: 2014-01-17
 categories: [Movies]
 tags: [Jack Ryan Shadow Recruit, Kenneth Branagh, Chris Pine, Kevin Costner, Keira Knightley, Tom Clancy, CIA, Spy, Action, Thriller, Russia, Terrorism, Financial, Moscow, Wall Street, 2014]
-collection_order: 45
-rating: 5
+
+
 draft: true
 ---
 

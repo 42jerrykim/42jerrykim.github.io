@@ -1,12 +1,12 @@
 ---
 title: "빅 히어로 6 - 디즈니가 만든 마블 유니버스의 따뜻한 시작"
 date: 2014-11-07
-collection_order: 24
+
 categories: [Movies, Animation, Superhero]
 tags: [빅_히어로_6, 디즈니, 마블, 베이맥스, 히로_하마다, 애니메이션, 슈퍼히어로, 돈_홀, 크리스_윌리엄스]
 description: "천재 소년과 의료진단 로봇의 우정을 그린 디즈니의 마블 첫 작품. 기술과 인간미가 조화를 이룬 감동적인 슈퍼히어로 애니메이션"
 poster: "https://image.tmdb.org/t/p/w500/ndeMzIi4JWRP0XQl35sHQKp5HlU.jpg"
-rating: 5
+
 draft: true
 ---
 

@@ -3,8 +3,8 @@ title: "어메이징 스파이더맨 2 (2014) - 야심찬 시도와 아쉬운 �
 date: 2014-05-02
 categories: [Movies]
 tags: [The Amazing Spider-Man 2, Marc Webb, Andrew Garfield, Emma Stone, Jamie Foxx, Dane DeHaan, Sally Field, Sony Pictures, Marvel, Spider-Man, 2014]
-collection_order: 39
-rating: 3
+
+
 draft: true
 ---
 

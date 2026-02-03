@@ -3,8 +3,8 @@ title: "번-E (2008) - WALL-E의 그림자에서 피어난 작은 영웅"
 date: 2008-11-18
 categories: [Movies]
 tags: [BURN-E, Pixar, Animation, Short Film, WALL-E, Angus MacLane, Robot, Comedy, Adventure, 2008]
-collection_order: 33
-rating: 5
+
+
 draft: true
 ---
 
