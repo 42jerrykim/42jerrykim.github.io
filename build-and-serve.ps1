@@ -104,7 +104,7 @@ if ($needPagefind) {
 # --- Hugo 개발 서버 시작 ---
 Write-Host "Hugo 개발 서버를 시작합니다..." -ForegroundColor Cyan
 
-$serveArgs = @("serve", "--port", "12345", "--renderStaticToDisk", "--templateMetrics", "--templateMetricsHints", "--logLevel=info")
+$serveArgs = @("serve", "-D", "--port", "12345", "--renderStaticToDisk", "--templateMetrics", "--templateMetricsHints", "--logLevel=info")
 if ($Segment) {
     $serveArgs += "--renderSegments"
     $serveArgs += $Segment
