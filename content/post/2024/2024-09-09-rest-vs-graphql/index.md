@@ -41,6 +41,21 @@ tags:
 - Networking
 - History
 - 역사
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
 title: '[API] REST API와 GraphQL의 비교'
 ---
 

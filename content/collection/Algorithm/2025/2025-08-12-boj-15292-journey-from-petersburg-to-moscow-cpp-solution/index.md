@@ -28,6 +28,35 @@ tags:
 - Editorial
 - Algorithm
 - 알고리즘
+- Competitive-Programming
+- Problem-Solving
+- Time-Complexity
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Queue
+- Python
+- Deployment
+- Compiler
+- Linux
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
 image: "wordcloud.png"
 ---
 

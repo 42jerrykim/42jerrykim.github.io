@@ -32,6 +32,33 @@ tags:
   - GitHub
   - Implementation
   - 구현
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Documentation
+  - 문서화
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - Encapsulation
+  - 캡슐화
+  - Polymorphism
+  - 다형성
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
+  - 테스트
+  - 성능
+  - Education
+  - 교육
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Technology
 ---
 
 데코레이터 패턴(Decorator Pattern)은 객체에 동적으로 새로운 책임을 추가할 수 있게 해주는 구조적 디자인 패턴이다. 상속을 사용하지 않고도 객체의 기능을 확장할 수 있어, 런타임에 유연하게 기능을 조합할 수 있다. 마치 선물 포장처럼 객체를 여러 겹으로 감싸면서 새로운 기능을 덧붙이는 방식으로 동작한다.

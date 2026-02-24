@@ -27,6 +27,36 @@ tags:
   - Tree
   - String
   - Recursion
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
+  - 트러블슈팅
 ---
 `xml.etree.ElementTree`는 XML을 **파싱하고 생성**하는 표준 라이브러리입니다. 레거시 시스템 연동, 설정 파일 처리 등에 여전히 많이 사용됩니다.
 

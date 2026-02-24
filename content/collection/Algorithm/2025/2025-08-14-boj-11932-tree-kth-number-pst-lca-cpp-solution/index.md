@@ -43,6 +43,21 @@ tags:
 - 테스트
 - Debugging
 - 디버깅
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Graph
+- Sorting
+- 그래프
 image: "wordcloud.png"
 ---
 

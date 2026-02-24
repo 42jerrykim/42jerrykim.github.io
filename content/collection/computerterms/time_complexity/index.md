@@ -22,6 +22,39 @@ tags:
 - 문제해결
 - Time-Complexity
 - 시간복잡도
+- Reference
+- 참고
+- Documentation
+- 문서화
+- Best-Practices
+- Comparison
+- 비교
+- How-To
+- Tips
+- Beginner
+- Advanced
+- Case-Study
+- Deep-Dive
+- 실습
+- Markdown
+- 마크다운
+- Productivity
+- 생산성
+- Innovation
+- 혁신
+- Review
+- 리뷰
+- Configuration
+- 설정
+- Workflow
+- 워크플로우
+- Web
+- 웹
+- Blog
+- 블로그
+- Open-Source
+- 오픈소스
+- Troubleshooting
 ---
 
 빅 오 표기법, 빅 세타 표기법

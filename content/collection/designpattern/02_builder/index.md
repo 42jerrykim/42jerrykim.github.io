@@ -33,6 +33,32 @@ tags:
   - Factory
   - Blog
   - 블로그
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Documentation
+  - 문서화
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - Encapsulation
+  - 캡슐화
+  - Polymorphism
+  - 다형성
+  - Composition
+  - 합성
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
+  - 테스트
+  - Performance
+  - 성능
+  - Education
+  - 교육
+  - Tutorial
 ---
 
 

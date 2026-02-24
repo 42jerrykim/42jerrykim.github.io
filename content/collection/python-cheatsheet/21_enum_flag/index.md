@@ -26,6 +26,37 @@ tags:
   - 구현
   - API
   - String
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
+  - 트러블슈팅
+  - Education
+  - 교육
 ---
 Enum은 관련 상수를 그룹화하여 타입 안전성과 가독성을 높이는 방법입니다. 이 치트시트는 Enum, IntEnum, StrEnum, Flag의 기본 사용법과 실전 패턴을 정리합니다.
 

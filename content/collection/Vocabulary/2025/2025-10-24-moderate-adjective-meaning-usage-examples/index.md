@@ -28,6 +28,35 @@ tags:
   - Go
   - AI
   - Technology
+  - Pronunciation
+  - 발음
+  - Daily-Life
+  - 일상표현
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Business-English
+  - 비즈니스영어
+  - Academic-English
+  - 학술영어
+  - Comparison
+  - 비교
+  - Tips
+  - How-To
+  - Beginner
+  - Advanced
+  - Markdown
+  - 마크다운
+  - 기술
+  - Guide
+  - 가이드
+  - Documentation
+  - 문서화
+  - Best-Practices
+  - Case-Study
+  - Deep-Dive
+  - 실습
 image: wordcloud.png
 ---
 

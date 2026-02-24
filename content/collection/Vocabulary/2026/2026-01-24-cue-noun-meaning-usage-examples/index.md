@@ -37,6 +37,26 @@ tags:
   - 범죄
   - War
   - 전쟁
+  - Antonym
+  - 반의어
+  - 발음
+  - Daily-Life
+  - 일상표현
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Business-English
+  - 비즈니스영어
+  - Academic-English
+  - 학술영어
+  - Comparison
+  - 비교
+  - Tips
+  - How-To
+  - Beginner
+  - Advanced
+  - Markdown
 image: wordcloud.png
 ---
 

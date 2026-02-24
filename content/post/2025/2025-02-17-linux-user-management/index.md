@@ -28,6 +28,34 @@ tags:
   - 구현
   - History
   - 역사
+  - Guide
+  - Productivity
+  - 생산성
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Best-Practices
+  - Documentation
+  - 문서화
+  - Open-Source
+  - 오픈소스
+  - Innovation
+  - 혁신
+  - Troubleshooting
+  - 트러블슈팅
+  - Configuration
+  - 설정
+  - How-To
+  - Tips
+  - Comparison
+  - 비교
+  - Career
+  - 커리어
+  - Workflow
+  - 워크플로우
+  - Migration
+  - 마이그레이션
 description: "이 글은 Linux 시스템에서 사용자 관리(user management)의 기본을 다룹니다. 주요 파일 위치, 계정 생성, 비밀번호 설정, usermod 명령 등을 실제 명령어 예시와 함께 설명하여 리눅스 초보자도 쉽게 사용자 계정과 그룹을 관리할 수 있도록 합니다."
 ---
 

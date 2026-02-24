@@ -17,6 +17,45 @@ header:
   - Refactoring
   - Blog
   - 블로그
+  - Best-Practices
+  - 리팩토링
+  - 클린코드
+  - Documentation
+  - 문서화
+  - Implementation
+  - 구현
+  - Debugging
+  - 디버깅
+  - Education
+  - 교육
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Technology
+  - 기술
+  - How-To
+  - Tips
+  - Beginner
+  - Advanced
+  - Performance
+  - 성능
+  - Reference
+  - 참고
+  - Comparison
+  - 비교
+  - Case-Study
+  - Deep-Dive
+  - 실습
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - Productivity
+  - 생산성
+  - Innovation
+  - 혁신
+  - Configuration
 ---
 
 이 책은 단위 테스트라는 주제를 둘러싼 모범 사례와 일반적인 안티 패턴에 대한 인사이트를 제공한다. 이 책을 읽고 나면 새로운 기술로 무장해서 **유지 보수와 확장이 쉽게 프로젝트를 성공시키는 전문가**가 되는 데 필요한 지식을 얻게 된다.

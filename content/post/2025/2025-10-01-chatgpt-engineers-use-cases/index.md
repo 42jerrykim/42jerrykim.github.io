@@ -26,6 +26,33 @@ tags:
   - 머신러닝
   - 마이크로서비스
   - 프롬프트엔지니어링
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - Cloud
+  - 구현
+  - Sorting
+  - Stack
+  - Prompt-Engineering
+  - Guide
+  - Productivity
+  - 생산성
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Best-Practices
+  - Open-Source
+  - 오픈소스
 categories:
   - AI
   - Engineering

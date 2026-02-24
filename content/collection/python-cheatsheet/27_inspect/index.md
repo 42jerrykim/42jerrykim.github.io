@@ -31,6 +31,32 @@ tags:
   - War
   - 전쟁
   - Sci-Fi
+  - Error-Handling
+  - 에러처리
+  - Best-Practices
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
 ---
 `inspect` 모듈은 **런타임에 객체를 검사**하는 도구입니다. 함수 시그니처 분석, 소스 코드 조회, 스택 추적 등 메타프로그래밍과 디버깅에 필수적입니다.
 

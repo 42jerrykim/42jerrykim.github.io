@@ -34,6 +34,29 @@ tags:
   - 리뷰
   - Process
   - Configuration
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
 ---
 타입힌트는 코드의 의도를 명확히 하고 리팩토링 안정성을 높입니다. 이 치트시트는 기본 타입부터 Generic, TypeVar, Literal까지 실무에서 바로 쓰는 타입힌트 패턴을 정리합니다.
 

@@ -25,6 +25,37 @@ tags:
 - 마크다운
 - Science
 - 과학
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Career
+- 커리어
+- Workflow
+- 워크플로우
+- Migration
+- 마이그레이션
+- Hardware
+- 하드웨어
+- Mobile
 description: "비트박스는 인간의 목소리를 활용한 독특한 음악적 표현 방식으로, 그 역사적 변화와 현대적 양상을 탐구한다. 과거의 비트박스와 현대의 기법을 비교하며, 비트박스가 어떻게 독립적인 음악 장르로 자리매김하게 되었는지를 살펴본다."
 image: index.png
 ---

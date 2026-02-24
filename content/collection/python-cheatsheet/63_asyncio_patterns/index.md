@@ -27,6 +27,36 @@ tags:
   - 함정
   - debugging
   - 디버깅
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Simulation
+  - HTML
+  - Thread
+  - Error-Handling
+  - 에러처리
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
 ---
 asyncio는 I/O 바운드 작업을 효율적으로 처리하는 파이썬의 비동기 프레임워크입니다. 이 치트시트는 async/await 기본, gather로 동시 실행, 타임아웃 처리, 동기 코드와 혼용 시 주의점을 정리합니다.
 

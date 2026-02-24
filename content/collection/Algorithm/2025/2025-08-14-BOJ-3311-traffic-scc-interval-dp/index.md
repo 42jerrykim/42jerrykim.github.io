@@ -36,6 +36,27 @@ tags:
 - Competitive-Programming
 - 경쟁프로그래밍
 - IO
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Recursion
+- Memory
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
 image: "wordcloud.png"
 ---
 

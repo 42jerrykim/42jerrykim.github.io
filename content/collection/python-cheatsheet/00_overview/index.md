@@ -37,6 +37,26 @@ tags:
   - XML
   - math
   - os
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - OOP
+  - 객체지향
+  - Tree
+  - War
+  - 전쟁
+  - Process
+  - Factory
+  - Design-Pattern
+  - Decorator
+  - Deployment
+  - 에러처리
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Best-Practices
 ---
 이 컬렉션은 파이썬을 이미 어느 정도 아는 개발자가 **필요할 때 빠르게 꺼내 쓸 수 있도록** 핵심 패턴과 함정을 정리한 치트시트입니다. 처음 배우는 분보다는 "예전에 했는데 문법이 기억 안 날 때" 참고하기 좋습니다.
 

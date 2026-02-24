@@ -33,6 +33,30 @@ tags:
 - 디버깅
 - Competitive-Programming
 - ICPC
+- Algorithm
+- 알고리즘
+- Problem-Solving
+- Time-Complexity
+- Coding-Test
+- 코딩테스트
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Sorting
+- Graph
+- 그래프
+- Tree
+- Hardware
+- Networking
+- Edge-Cases
+- 엣지케이스
+- Testing
 image: "wordcloud.png"
 ---
 

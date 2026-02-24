@@ -35,6 +35,30 @@ tags:
   - Gaming
   - 게임
   - 역사
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Documentation
+  - 문서화
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - SOLID
+  - Encapsulation
+  - 캡슐화
+  - Polymorphism
+  - 다형성
+  - Composition
+  - 합성
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
+  - 테스트
+  - Performance
+  - 성능
 ---
 
 메멘토 패턴(Memento Pattern)은 객체의 내부 상태를 캡슐화하여 저장하고, 나중에 해당 상태로 복원할 수 있게 하는 행위 디자인 패턴이다. 이 패턴을 사용하면 객체의 캡슐화를 위반하지 않으면서 실행 취소(Undo)나 스냅샷 기능을 구현할 수 있다.

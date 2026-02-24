@@ -38,6 +38,27 @@ tags:
 - 드라마
 - Culture
 - 문화
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Family
+- 가족
+- Biography
+- 전기영화
+- Visual-Effects
+- 시각효과
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- Adventure
+- 모험
+- Horror
+- 공포
+- 2020s
 image: "image01.png"
 ---
 

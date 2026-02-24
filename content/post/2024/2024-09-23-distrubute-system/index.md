@@ -43,6 +43,19 @@ tags:
 - Backend
 - Load-Balancing
 - Networking
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
 title: '[DistributedSystems] 분산 시스템 패턴'
 ---
 

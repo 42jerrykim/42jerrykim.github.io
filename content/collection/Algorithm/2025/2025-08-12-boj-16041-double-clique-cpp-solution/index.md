@@ -36,6 +36,27 @@ tags:
 - Data-Structures
 - Divide-and-Conquer
 - Testing
+- Problem-Solving
+- Coding-Test
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- REST
+- API
+- Memory
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- 테스트
+- Documentation
+- 문서화
 image: "wordcloud.png"
 ---
 

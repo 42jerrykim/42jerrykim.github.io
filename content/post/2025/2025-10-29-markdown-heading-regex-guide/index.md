@@ -34,6 +34,29 @@ tags:
   - War
   - 전쟁
   - IDE
+  - Guide
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Best-Practices
+  - 문서화
+  - Open-Source
+  - 오픈소스
+  - Innovation
+  - 혁신
+  - Troubleshooting
+  - 트러블슈팅
+  - Configuration
+  - 설정
+  - How-To
+  - Tips
+  - Comparison
+  - 비교
+  - Career
+  - 커리어
+  - Migration
+  - 마이그레이션
 description: "VSCode에서 마크다운 문서의 heading에 포함된 번호 매기기(1., 10.1.1 등)와 이모티콘을 효과적으로 제거하는 세 가지 정규식 패턴을 소개합니다. 계층적 번호, 명시적 이모티콘, 유니코드 범위를 활용한 실전 가이드를 제공합니다."
 image: wordcloud.png
 

@@ -33,6 +33,32 @@ tags:
   - CSharp
   - Configuration
   - 설정
+  - Sci-Fi
+  - Windows
+  - Singleton
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Documentation
+  - 문서화
+  - Implementation
+  - 구현
+  - SOLID
+  - Polymorphism
+  - 다형성
+  - Composition
+  - 합성
+  - 의존성주입
+  - Testing
+  - 테스트
+  - Performance
+  - 성능
+  - Education
+  - 교육
+  - Tutorial
+  - 튜토리얼
 ---
 
 

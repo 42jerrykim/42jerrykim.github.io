@@ -25,6 +25,37 @@ tags:
 - Review
 - 리뷰
 - 마크다운
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Career
+- 커리어
+- Workflow
+- 워크플로우
+- Migration
+- 마이그레이션
+- Hardware
+- 하드웨어
+- Mobile
+- 모바일
 title: '[Kramdown] Kramdown으로 랜더링되는 code 영역에 줄번호 표시하기'
 ---
 

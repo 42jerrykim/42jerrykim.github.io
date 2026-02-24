@@ -38,6 +38,26 @@ tags:
   - 문제해결
   - Coding-Test
   - 코딩테스트
+  - Code-Quality
+  - 코드품질
+  - Go
+  - .NET
+  - 그리디
+  - Stack
+  - Queue
+  - Memory
+  - Testing
+  - 테스트
+  - Documentation
+  - 문서화
+  - Best-Practices
+  - Complexity-Analysis
+  - 복잡도분석
+  - Debugging
+  - 디버깅
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
 image: "wordcloud.png"
 ---
 

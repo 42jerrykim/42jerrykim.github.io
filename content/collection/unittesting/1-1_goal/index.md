@@ -14,6 +14,48 @@ header:
   - Process
   - Clean-Code
   - Refactoring
+  - Best-Practices
+  - 리팩토링
+  - 클린코드
+  - Documentation
+  - 문서화
+  - Implementation
+  - 구현
+  - Debugging
+  - 디버깅
+  - Education
+  - 교육
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Technology
+  - 기술
+  - How-To
+  - Tips
+  - Beginner
+  - Advanced
+  - Performance
+  - 성능
+  - Reference
+  - 참고
+  - Comparison
+  - 비교
+  - Case-Study
+  - Deep-Dive
+  - 실습
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - Productivity
+  - 생산성
+  - Innovation
+  - 혁신
+  - Configuration
+  - 설정
+  - Workflow
+  - 워크플로우
 ---
 
 단위 테스트는 단순히 테스트를 작성하는 것보다 더 큰 범주다. 단위 테스트에 시간을 투자할 때는 항상 최대한 이득을 얻도록 노력해야 하며, 테스트에 드는 노력을 가능한 한 줄이고 그에 따르는 이득을 최대화해야 한다. 두 가지를 모두 달성하기란 쉬운 일이 아니다.

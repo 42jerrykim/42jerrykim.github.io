@@ -41,6 +41,22 @@ tags:
 - 엣지케이스
 - Code-Review
 - 코드리뷰
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- 문제해결
+- Code-Quality
+- 코드품질
+- Python
+- Go
+- .NET
+- Git
+- GitHub
+- DFS
+- Windows
+- Memory
 image: "wordcloud.png"
 ---
 

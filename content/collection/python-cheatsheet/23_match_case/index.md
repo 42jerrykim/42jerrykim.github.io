@@ -29,6 +29,34 @@ tags:
   - Process
   - Command
   - Design-Pattern
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
 ---
 match-case는 Python 3.10에서 도입된 구조적 패턴 매칭입니다. 이 치트시트는 리터럴, 시퀀스, 매핑, 클래스 패턴과 가드 조건 사용법을 정리합니다.
 

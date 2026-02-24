@@ -52,6 +52,9 @@ tags:
 - Security
 - Science
 - 과학
+- Guide
+- Productivity
+- 생산성
 title: '[Algorithm] 알고리즘의 주제별 분류'
 ---
 

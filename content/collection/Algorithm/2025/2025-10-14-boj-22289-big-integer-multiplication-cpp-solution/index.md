@@ -34,6 +34,30 @@ tags:
   - IO
   - Complexity-Analysis
   - 복잡도분석
+  - Competitive-Programming
+  - Problem-Solving
+  - Coding-Test
+  - 코딩테스트
+  - Data-Structures
+  - 자료구조
+  - Optimization
+  - 최적화
+  - 문제해결
+  - 코드품질
+  - Math
+  - Go
+  - .NET
+  - Git
+  - GitHub
+  - String
+  - Self-Hosted
+  - Memory
+  - Testing
+  - 테스트
+  - Documentation
+  - 문서화
+  - Best-Practices
+  - Debugging
 image: "wordcloud.png"
 ---
 

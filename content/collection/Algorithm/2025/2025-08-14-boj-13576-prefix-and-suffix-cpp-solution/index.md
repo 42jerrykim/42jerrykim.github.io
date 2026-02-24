@@ -32,6 +32,31 @@ tags:
 - 에디토리얼
 - Data-Structures
 - 자료구조
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Sorting
+- Memory
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- Complexity-Analysis
+- 복잡도분석
+- Debugging
+- 디버깅
+- Refactoring
+- 리팩토링
 image: "wordcloud.png"
 ---
 

@@ -38,6 +38,25 @@ tags:
   - Memory
   - Process
   - File-System
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Optimization
+  - 최적화
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
 ---
 파일 입출력과 경로 처리는 대부분의 프로그램에서 필요합니다. 이 치트시트는 pathlib 경로 다루기, encoding 명시, 텍스트/바이너리 모드의 핵심 패턴과 OS별 함정을 정리합니다.
 

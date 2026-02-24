@@ -40,6 +40,22 @@ tags:
 - Science
 - 과학
 - 역사
+- Guide
+- Productivity
+- 생산성
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
 title: '[Algorithm] 코딩 테스트의 역사와 현황'
 ---
 

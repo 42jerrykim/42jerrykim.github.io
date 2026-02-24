@@ -43,6 +43,19 @@ tags:
 - Builder
 - Gaming
 - 게임
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
 title: '[DesignPattern] 팩토리 메소드 패턴'
 ---
 

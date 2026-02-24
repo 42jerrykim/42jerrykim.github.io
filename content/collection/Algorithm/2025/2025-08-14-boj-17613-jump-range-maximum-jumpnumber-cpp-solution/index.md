@@ -51,6 +51,21 @@ tags:
 - Dynamic-Programming
 - Debugging
 - 디버깅
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- War
+- 전쟁
+- Memory
 image: "wordcloud.png"
 ---
 

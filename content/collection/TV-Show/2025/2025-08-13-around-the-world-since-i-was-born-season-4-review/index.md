@@ -18,6 +18,49 @@ tags:
   - 리뷰
   - Culture
   - 문화
+  - Drama
+  - Thriller
+  - 스릴러
+  - Comedy
+  - 코미디
+  - Fantasy
+  - 판타지
+  - Romance
+  - 로맨스
+  - Action
+  - 액션
+  - Mystery
+  - 미스터리
+  - Crime
+  - 범죄
+  - Adventure
+  - 모험
+  - 2020s
+  - 2010s
+  - Cinematography
+  - 촬영기법
+  - Soundtrack
+  - 사운드트랙
+  - Family
+  - 가족
+  - Biography
+  - 전기영화
+  - History
+  - 역사
+  - Science
+  - 과학
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Reference
+  - 참고
+  - Documentation
+  - 문서화
 ---
 
 시즌4는 “멀리서 보면 동화, 가까이서 보면 다큐”였던 네팔 히말라야의 현실을 정면으로 마주한 여정이다. 루클라의 짧고 가파른 활주로로 상징되는 위험, 이마끈으로 수십 kg을 받쳐 나르는 셰르파의 노동, 해발 고도에 무릎 꿇는 몸과 익숙해지려는 마음. 그 한복판에서 네 사람은 각자 다른 속도로 숨을 고르고, 결국 같은 곳을 바라보게 된다. 본 글은 다시보지 않아도 될 만큼 자세한 스포일러 중심의 회차별 전편 정리다.

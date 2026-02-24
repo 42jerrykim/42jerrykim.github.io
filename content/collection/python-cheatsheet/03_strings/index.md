@@ -30,6 +30,33 @@ tags:
   - 코드품질
   - HTML
   - Memory
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - 클린코드
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
+  - 트러블슈팅
 ---
 문자열(str)은 파이썬에서 가장 자주 다루는 타입입니다. 이 치트시트는 슬라이싱, split/join, 검색/치환, f-string 포맷팅, bytes 변환의 핵심 패턴과 흔한 실수를 빠르게 훑습니다.
 

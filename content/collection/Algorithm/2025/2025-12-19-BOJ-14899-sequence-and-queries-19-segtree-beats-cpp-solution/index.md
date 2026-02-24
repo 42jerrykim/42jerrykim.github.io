@@ -34,6 +34,30 @@ tags:
 - 경쟁프로그래밍
 - Coding-Test
 - 코딩테스트
+- Problem-Solving
+- Time-Complexity
+- 시간복잡도
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Tree
+- Recursion
+- Memory
+- Space-Complexity
+- 공간복잡도
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- Complexity-Analysis
+- 복잡도분석
+- Debugging
+- 디버깅
 image: "wordcloud.png"
 ---
 

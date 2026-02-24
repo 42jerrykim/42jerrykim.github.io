@@ -28,6 +28,35 @@ tags:
   - 코드품질
   - REST
   - API
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
 ---
 pickle은 파이썬 객체를 바이너리로 직렬화/역직렬화합니다. 이 치트시트는 dump/load 기본, 프로토콜 버전, **보안 위험**과 안전한 대안을 정리합니다.
 

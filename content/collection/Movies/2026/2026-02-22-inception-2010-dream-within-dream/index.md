@@ -38,6 +38,28 @@ tags:
 - 전쟁
 - Hardware
 - Networking
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Family
+- 가족
+- Biography
+- 전기영화
+- Visual-Effects
+- Documentary
+- 다큐멘터리
+- Mystery
+- 미스터리
+- Adventure
+- 모험
+- Horror
+- 공포
+- 2020s
+- 2010s
+- 2000s
+- Culture
+- 문화
 image: "poster.png"
 ---
 

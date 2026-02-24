@@ -38,6 +38,27 @@ tags:
 - 경쟁프로그래밍
 - Problem-Solving
 - 문제해결
+- C++
+- Coding-Test
+- 코딩테스트
+- Optimization
+- 최적화
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Memory
+- Edge-Cases
+- 엣지케이스
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- Complexity-Analysis
+- 복잡도분석
 image: "wordcloud.png"
 ---
 

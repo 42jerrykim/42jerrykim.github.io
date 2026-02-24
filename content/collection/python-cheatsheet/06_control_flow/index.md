@@ -35,6 +35,28 @@ tags:
   - 객체지향
   - HTML
   - Process
+  - 에러처리
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
+  - 트러블슈팅
+  - Education
 ---
 if/for/while 제어 흐름은 모든 프로그램의 뼈대입니다. 이 치트시트는 truthy/falsy, enumerate/zip, loop-else, guard clause 등 깔끔한 제어 흐름 패턴을 빠르게 훑습니다.
 

@@ -35,6 +35,30 @@ tags:
   - Tree
   - Math
   - HTML
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Documentation
+  - 문서화
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - Encapsulation
+  - 캡슐화
+  - Composition
+  - 합성
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
+  - 테스트
+  - Performance
+  - 성능
+  - Education
+  - 교육
+  - Tutorial
 ---
 
 방문자 패턴(Visitor Pattern)은 객체 구조의 요소들에 수행할 연산을 별도의 방문자 객체로 분리하는 행위 디자인 패턴이다. 이 패턴을 사용하면 기존 객체 구조를 변경하지 않고 새로운 연산을 추가할 수 있다.

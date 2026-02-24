@@ -36,6 +36,26 @@ tags:
 - Culture
 - 문화
 - Innovation
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
+- Comparison
 title: '[API] API Strategy의 중요성과 구현 방법'
 ---
 

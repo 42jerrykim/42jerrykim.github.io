@@ -49,6 +49,14 @@ tags:
 - History
 - 역사
 - Innovation
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
 title: '[DeepLearning] JAX vs PyTorch: Comparing Two Deep Learning Frameworks'
 ---
 

@@ -30,6 +30,32 @@ tags:
 - Guide
 - Review
 - Strategy
+- 알고리즘
+- 백준
+- 구현
+- Time-Complexity
+- 시간복잡도
+- 코딩테스트
+- 자료구조
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- 그리디
+- 그래프
+- Memory
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- Testing
+- 테스트
+- Documentation
+- 문서화
 description: "백준 16983번 Coin Collecting 문제는 2N개의 동전을 Nx2 격자에 배치하는 최소 이동 횟수를 구하는 문제입니다. 그리디 알고리즘을 통해 각 열의 동전 과부족을 계산하고, 수직 및 수평 이동을 최적화하여 문제를 해결하는 C++ 정답 코드와 상세한 풀이를 제공합니다."
 image: "wordcloud.png"
 ---

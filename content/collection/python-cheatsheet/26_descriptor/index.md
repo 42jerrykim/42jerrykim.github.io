@@ -27,6 +27,36 @@ tags:
   - 구현
   - Code-Quality
   - 코드품질
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
+  - 트러블슈팅
+  - Education
 ---
 디스크립터는 **속성 접근을 커스터마이징**하는 파이썬의 핵심 프로토콜입니다. `@property`, `@classmethod`, `@staticmethod` 모두 디스크립터로 구현됩니다. 이 치트시트는 디스크립터의 핵심 개념과 실무 패턴을 정리합니다.
 

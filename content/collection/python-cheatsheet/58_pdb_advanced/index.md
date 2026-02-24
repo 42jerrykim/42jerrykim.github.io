@@ -26,6 +26,37 @@ tags:
   - Code-Quality
   - 코드품질
   - Process
+  - Error-Handling
+  - 에러처리
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
+  - 트러블슈팅
+  - Education
+  - 교육
+  - Technology
 ---
 `pdb`는 파이썬의 **대화형 디버거**입니다. 중단점 설정, 코드 스텝 실행, 변수 검사 등 강력한 디버깅 기능을 제공합니다.
 

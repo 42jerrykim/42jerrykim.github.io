@@ -25,6 +25,36 @@ tags:
 - Markdown
 - 마크다운
 - 구현
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Career
+- 커리어
+- Workflow
+- 워크플로우
+- Migration
+- 마이그레이션
+- Hardware
+- 하드웨어
 title: '[.NET] .NET 7 Preview 2 소개 - 더 새로운 경험'
 ---
 

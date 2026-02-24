@@ -38,6 +38,25 @@ tags:
   - Design-Pattern
   - Bash
   - Deployment
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
 ---
 subprocess는 외부 명령어와 프로세스를 실행하는 파이썬 표준 라이브러리입니다. 이 치트시트는 `run()` 기본 사용, 출력 캡처, 타임아웃, 에러 처리, 보안 주의점을 정리합니다.
 

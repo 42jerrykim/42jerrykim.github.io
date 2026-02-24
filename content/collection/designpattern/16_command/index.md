@@ -33,6 +33,32 @@ tags:
   - Python
   - CSharp
   - Frontend
+  - Implementation
+  - 구현
+  - Stack
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Documentation
+  - 문서화
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - SOLID
+  - Polymorphism
+  - 다형성
+  - Composition
+  - 합성
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
+  - 테스트
+  - Performance
+  - 성능
+  - Education
 ---
 
 커맨드 패턴(Command Pattern)은 요청을 객체로 캡슐화하여 요청을 보내는 객체와 요청을 수행하는 객체를 분리하는 행위 디자인 패턴이다. 이 패턴을 통해 요청의 큐잉, 로깅, 실행 취소(Undo)/재실행(Redo) 등 다양한 기능을 유연하게 구현할 수 있다.

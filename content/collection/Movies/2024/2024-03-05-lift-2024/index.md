@@ -27,6 +27,31 @@ tags:
   - 심리학
   - Innovation
   - Technology
+  - Cinematography
+  - 촬영기법
+  - Soundtrack
+  - 사운드트랙
+  - Family
+  - 가족
+  - Biography
+  - 전기영화
+  - Visual-Effects
+  - 시각효과
+  - Documentary
+  - 다큐멘터리
+  - Crime
+  - 범죄
+  - Mystery
+  - 미스터리
+  - War
+  - 전쟁
+  - Adventure
+  - 모험
+  - Horror
+  - 공포
+  - 2020s
+  - 2010s
+  - 2000s
 description: "2024년 넷플릭스 오리지널 영화 '리프트(Lift)' 종합 분석: 하늘 위 하이스트의 매력과 아쉬움"
 image: image.png
 date: "2024-03-05"

@@ -37,6 +37,26 @@ tags:
 - Editorial
 - 에디토리얼
 - Problem-Solving
+- Coding-Test
+- 코딩테스트
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Sorting
+- Tree
+- Memory
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- Complexity-Analysis
+- 복잡도분석
+- Debugging
 description: "기하학 기반의 스위핑 알고리즘과 세그먼트 트리를 결합해 두 평행선 사이 영역의 최대 이익을 구하는 고급 문제입니다. 모든 점의 기울기를 이벤트로 처리하고 공선점 처리를 통해 효율적으로 문제를 해결합니다."
 image: "wordcloud.png"
 ---

@@ -32,6 +32,33 @@ tags:
   - 구현
   - Security
   - Process
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Documentation
+  - 문서화
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - SOLID
+  - Encapsulation
+  - 캡슐화
+  - Polymorphism
+  - 다형성
+  - Composition
+  - 합성
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
+  - 테스트
+  - Performance
+  - 성능
+  - Education
+  - 교육
+  - Tutorial
 ---
 
 책임 연쇄 패턴(Chain of Responsibility Pattern)은 요청을 처리할 수 있는 객체들을 체인 형태로 연결하여, 요청이 처리될 때까지 체인을 따라 전달하는 행위 디자인 패턴이다. 이 패턴을 사용하면 요청을 보내는 객체와 처리하는 객체 사이의 결합도를 낮추고, 동적으로 처리자를 추가하거나 변경할 수 있다.

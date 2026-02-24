@@ -33,6 +33,30 @@ tags:
   - GitHub
   - Tree
   - Deployment
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Workflow
+  - 워크플로우
 ---
 파이썬 패키지 배포는 pyproject.toml 기반이 표준입니다. 이 치트시트는 pyproject.toml 구조, build + twine으로 PyPI 배포, 의존성 명세, 배포 전 체크리스트를 정리합니다.
 

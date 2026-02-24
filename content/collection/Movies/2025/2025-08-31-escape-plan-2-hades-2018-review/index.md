@@ -34,6 +34,32 @@ tags:
 - 로맨스
 - Problem-Solving
 - 문제해결
+- Cinematography
+- 촬영기법
+- 사운드트랙
+- Family
+- 가족
+- Biography
+- 전기영화
+- Visual-Effects
+- 시각효과
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Adventure
+- 모험
+- 공포
+- 2020s
+- 2010s
+- 2000s
+- Culture
+- 문화
+- History
 image: "MV5BYTcyMmFmYzMtZmYwMi00ZGNhLTg1ZjctODNiNTAzOWY3NjBmXkEyXkFqcGc@._V1_.jpg"
 ---
 

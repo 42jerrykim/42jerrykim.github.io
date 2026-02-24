@@ -30,6 +30,33 @@ tags:
   - Code-Quality
   - 코드품질
   - HTML
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
+  - 트러블슈팅
 ---
 dict는 파이썬에서 가장 많이 쓰이는 매핑 타입입니다. 이 치트시트는 안전한 조회(get), 기본값 처리(setdefault/defaultdict), 카운팅(Counter), 병합 패턴과 흔한 함정을 빠르게 정리합니다.
 

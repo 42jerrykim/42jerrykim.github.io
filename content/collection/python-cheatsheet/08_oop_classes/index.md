@@ -35,6 +35,28 @@ tags:
   - Hashing
   - String
   - Memory
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
 ---
 파이썬의 클래스는 데이터와 동작을 묶는 기본 단위입니다. 이 치트시트는 class 정의, 상속과 super(), @property, __slots__, 자주 쓰는 매직 메서드를 빠르게 정리합니다.
 

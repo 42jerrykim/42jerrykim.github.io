@@ -40,6 +40,25 @@ tags:
   - 마크다운
   - Queue
   - Innovation
+  - Guide
+  - Productivity
+  - 생산성
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Best-Practices
+  - Documentation
+  - 문서화
+  - Open-Source
+  - 오픈소스
+  - 혁신
+  - Troubleshooting
+  - 트러블슈팅
+  - Configuration
+  - 설정
+  - How-To
+  - Tips
 ---
 
 > 본 글은 [Cursor 공식 블로그](https://cursor.com/blog/composer) 정보를 바탕으로 작성했습니다.

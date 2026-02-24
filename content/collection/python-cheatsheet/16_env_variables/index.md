@@ -37,6 +37,26 @@ tags:
   - API
   - String
   - Process
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Guide
+  - 가이드
 ---
 환경 변수는 코드와 설정을 분리하는 핵심 방법입니다. 이 치트시트는 os.environ으로 환경 변수 읽기/쓰기, python-dotenv로 .env 파일 관리, 보안 주의점을 정리합니다.
 

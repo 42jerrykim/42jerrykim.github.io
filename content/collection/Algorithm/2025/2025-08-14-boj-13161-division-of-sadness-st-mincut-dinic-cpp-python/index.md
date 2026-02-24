@@ -41,6 +41,22 @@ tags:
 - Testing
 - 테스트
 - BFS
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- DFS
+- Queue
+- Documentation
+- 문서화
+- Best-Practices
+- Debugging
 image: "wordcloud.png"
 ---
 

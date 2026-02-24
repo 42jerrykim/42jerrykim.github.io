@@ -32,6 +32,31 @@ tags:
 - 엣지케이스
 - Competitive-Programming
 - 경쟁프로그래밍
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Queue
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- Debugging
+- 디버깅
+- Refactoring
+- 리팩토링
+- Clean-Code
 image: "wordcloud.png"
 ---
 

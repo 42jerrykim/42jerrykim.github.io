@@ -28,6 +28,35 @@ tags:
   - Recursion
   - Sci-Fi
   - Process
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
 ---
 `os` 모듈은 **운영체제와 상호작용**하는 기능을 제공합니다. 파일 시스템 조작, 환경 변수, 프로세스 정보 등을 다룹니다. 경로 처리는 `pathlib`을 권장하지만, `os`도 여전히 유용합니다.
 

@@ -29,6 +29,31 @@ tags:
   - 역사
   - Culture
   - 문화
+  - 뉘앙스
+  - Antonym
+  - 반의어
+  - Pronunciation
+  - 발음
+  - Daily-Life
+  - 일상표현
+  - 교육
+  - Reference
+  - 참고
+  - Business-English
+  - 비즈니스영어
+  - Academic-English
+  - 학술영어
+  - Comparison
+  - 비교
+  - Tips
+  - How-To
+  - Beginner
+  - Advanced
+  - Markdown
+  - 마크다운
+  - Technology
+  - 기술
+  - Guide
 image: index.png
 description: "illegitimate(불법)이라는 용어의 의미와 용법을 다룬다. 법적, 사회적, 역사적 맥락에서의 다양한 의미와 사용법을 설명하며, 사생아, 비합법 정부, 부당한 주장 등 구체적인 예시를 통해 이해를 돕는다. 유의어와 반의어를 포함한 어휘 학습 자료로 활용할 수 있다."
 ---

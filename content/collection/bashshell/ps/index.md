@@ -23,6 +23,38 @@ tags:
 - 튜토리얼
 - History
 - 역사
+- Automation
+- 자동화
+- Deployment
+- 배포
+- File-System
+- Error-Handling
+- 에러처리
+- Troubleshooting
+- 트러블슈팅
+- Workflow
+- 워크플로우
+- Best-Practices
+- Documentation
+- 문서화
+- Technology
+- 기술
+- Education
+- 교육
+- Reference
+- 참고
+- How-To
+- Tips
+- Beginner
+- Advanced
+- Comparison
+- 비교
+- Case-Study
+- Deep-Dive
+- 실습
+- Review
+- 리뷰
+- Markdown
 ---
 
 대부분의 Unix 및 Unix 유사 운영 체제에서 ps 프로그램 ("process status"의 약자)은 현재 실행중인 프로세스를 표시합니다. top이라는 이름의 관련 Unix 유틸리티는 실행중인 프로세스에 대한 실시간보기를 제공합니다. 

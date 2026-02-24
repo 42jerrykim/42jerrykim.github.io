@@ -26,6 +26,37 @@ tags:
   - DP
   - Queue
   - Thread
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
+  - 트러블슈팅
+  - Education
 ---
 socket 모듈은 저수준 네트워크 인터페이스를 제공합니다. 이 치트시트는 TCP/UDP 클라이언트/서버의 최소 패턴, 타임아웃 처리, 주의점을 정리합니다.
 

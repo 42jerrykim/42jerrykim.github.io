@@ -30,6 +30,33 @@ tags:
 - Optimization
 - 최적화
 - Edge-Cases
+- Competitive-Programming
+- 시간복잡도
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- REST
+- API
+- Sorting
+- Space-Complexity
+- 공간복잡도
+- 엣지케이스
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- Complexity-Analysis
+- 복잡도분석
+- Debugging
+- 디버깅
 image: "wordcloud.png"
 ---
 

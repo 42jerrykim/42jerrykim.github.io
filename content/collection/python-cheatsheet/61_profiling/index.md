@@ -45,6 +45,18 @@ tags:
   - HTML
   - Process
   - Deployment
+  - Error-Handling
+  - 에러처리
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Logging
+  - 로깅
 ---
 성능 최적화는 "측정 먼저, 최적화 나중"이 원칙입니다. 이 치트시트는 timeit으로 마이크로벤치마크, cProfile로 함수별 분석, py-spy로 운영 환경 샘플링하는 방법을 정리합니다.
 

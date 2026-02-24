@@ -31,6 +31,34 @@ tags:
   - GitHub
   - Implementation
   - 구현
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Documentation
+  - 문서화
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - SOLID
+  - Encapsulation
+  - 캡슐화
+  - Polymorphism
+  - 다형성
+  - Composition
+  - 합성
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
+  - 테스트
+  - Performance
+  - 성능
+  - Education
+  - 교육
+  - Tutorial
+  - 튜토리얼
 ---
 
 프록시 패턴(Proxy Pattern)은 다른 객체에 대한 접근을 제어하기 위해 대리자(Surrogate) 또는 플레이스홀더 역할을 하는 객체를 제공하는 구조적 디자인 패턴이다. 실제 객체를 직접 참조하는 대신 프록시 객체를 통해 간접적으로 접근함으로써, 접근 제어, 지연 로딩, 로깅, 캐싱 등 다양한 부가 기능을 추가할 수 있다.

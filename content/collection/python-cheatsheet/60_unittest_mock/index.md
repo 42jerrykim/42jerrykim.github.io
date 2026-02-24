@@ -25,6 +25,38 @@ tags:
   - 코드품질
   - API
   - TDD
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
+  - 트러블슈팅
+  - Education
+  - 교육
+  - Technology
+  - 기술
 ---
 `unittest.mock`은 테스트에서 **객체를 가짜로 대체**하는 기능을 제공합니다. 외부 의존성 격리, API 호출 모킹 등 단위 테스트에 필수적입니다.
 

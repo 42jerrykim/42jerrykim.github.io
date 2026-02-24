@@ -31,6 +31,31 @@ tags:
   - Networking
   - Hardware
   - Automation
+  - Guide
+  - Productivity
+  - 생산성
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Best-Practices
+  - Documentation
+  - 문서화
+  - Open-Source
+  - 오픈소스
+  - Innovation
+  - 혁신
+  - Troubleshooting
+  - 트러블슈팅
+  - Configuration
+  - 설정
+  - How-To
+  - Tips
+  - Comparison
+  - 비교
+  - Career
+  - 커리어
+  - Workflow
 description: "이 포스트에서는 HDMI-CEC 기술을 이용해 PC와 TV의 전원을 자동으로 연동하는 방법을 소개한다. Intel NUC와 Pulse-Eight USB-CEC 어댑터를 활용한 설치 방법과 실제 예시를 통해, 사용자가 손쉽게 이 기술을 적용할 수 있도록 안내할 것이다."
 image: "0000237_555.png"
 ---

@@ -34,6 +34,28 @@ tags:
 - 그래프
 - Queue
 - Process
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- Complexity-Analysis
+- 복잡도분석
+- Debugging
+- 디버깅
+- Refactoring
+- 리팩토링
+- Clean-Code
+- 클린코드
+- Performance
+- 성능
+- Pitfalls
+- 함정
+- Error-Handling
 title: '[Algorithm] C++ 백준 2252번 : 줄 세우기'
 ---
 

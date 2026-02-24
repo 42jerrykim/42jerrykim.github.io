@@ -39,6 +39,24 @@ tags:
 - 테스트
 - Complexity-Analysis
 - 복잡도분석
+- Coding-Test
+- 코딩테스트
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Memory
+- Documentation
+- 문서화
+- Best-Practices
+- Debugging
+- 디버깅
+- Refactoring
+- 리팩토링
+- Clean-Code
+- 클린코드
 image: "wordcloud.png"
 ---
 

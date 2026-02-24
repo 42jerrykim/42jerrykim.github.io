@@ -42,6 +42,19 @@ tags:
 - 교육
 - Career
 - 커리어
+- Guide
+- 생산성
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- 오픈소스
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
 image: "Screenshot-2024-12-27-094857.png"
 date: 2024-12-18
 description: "이 포스트에서는 스탠포드 강사이자 머신러닝 시스템 분야 전문가인 Huyen Chip의 블로그를 상세히 소개합니다. 그녀의 기술적 통찰, 커리어 조언, 머신러닝 및 AI 관련 실무와 연구 경험, 추천 학습 리소스, 그리고 글로벌 관점에서 바라본 IT 업계 변화와 혁신까지 다양한 내용을 150자 분량으로 정리하여 독자들에게 유익한 정보를 제공합니다."

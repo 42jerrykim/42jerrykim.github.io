@@ -29,6 +29,36 @@ tags:
   - C++
   - Python
   - CSharp
+  - Go
+  - Algorithm
+  - 알고리즘
+  - Problem-Solving
+  - 문제해결
+  - 구현
+  - Tree
+  - Queue
+  - Builder
+  - Singleton
+  - Factory
+  - Observer
+  - Adapter
+  - Decorator
+  - Command
+  - Proxy
+  - 클린코드
+  - Documentation
+  - 문서화
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - Encapsulation
+  - 캡슐화
+  - Polymorphism
+  - 다형성
+  - Composition
+  - 합성
+  - Dependency-Injection
 ---
 
 이 글에서는 지금까지 학습한 GoF의 23가지 디자인 패턴을 총정리하고, 각 패턴을 언제 어떻게 선택해야 하는지, 그리고 실무에서 패턴을 효과적으로 적용하는 방법을 다룬다.

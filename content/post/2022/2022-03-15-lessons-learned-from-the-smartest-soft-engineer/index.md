@@ -25,6 +25,38 @@ tags:
 - 마크다운
 - War
 - 전쟁
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Workflow
+- 워크플로우
+- Migration
+- 마이그레이션
+- Hardware
+- 하드웨어
+- Mobile
+- 모바일
+- Cloud
+- 클라우드
 title: '[Programming] 가장 똑똑한 소프트웨어 엔지니어에게 배운 10가지 교훈'
 
 ---

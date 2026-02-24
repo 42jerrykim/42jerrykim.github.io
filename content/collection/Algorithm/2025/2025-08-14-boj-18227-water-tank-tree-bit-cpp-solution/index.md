@@ -41,6 +41,22 @@ tags:
 - Optimization
 - 최적화
 - IO
+- Competitive-Programming
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- API
+- Stack
+- Testing
+- 테스트
+- Documentation
 image: "wordcloud.png"
 ---
 

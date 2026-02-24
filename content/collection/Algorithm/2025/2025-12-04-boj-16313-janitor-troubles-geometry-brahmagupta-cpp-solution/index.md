@@ -34,6 +34,29 @@ tags:
   - Competitive-Programming
   - 경쟁프로그래밍
   - 수학
+  - Coding-Test
+  - 코딩테스트
+  - 문제해결
+  - Code-Quality
+  - 코드품질
+  - Go
+  - .NET
+  - Git
+  - GitHub
+  - Testing
+  - 테스트
+  - Documentation
+  - 문서화
+  - Best-Practices
+  - Complexity-Analysis
+  - 복잡도분석
+  - Debugging
+  - 디버깅
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
 image: "wordcloud.png"
 ---
 

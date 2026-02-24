@@ -35,6 +35,31 @@ tags:
 - Edge-Cases
 - 엣지케이스
 - C++
+- Competitive-Programming
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- DFS
+- Graph
+- Memory
+- Culture
+- 문화
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- Complexity-Analysis
+- 복잡도분석
 image: "wordcloud.png"
 ---
 

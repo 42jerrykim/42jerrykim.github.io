@@ -29,6 +29,34 @@ tags:
   - debugging
   - 디버깅
   - 비동기
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Simulation
+  - HTML
+  - Windows
+  - Memory
+  - Process
+  - Async
+  - Error-Handling
+  - 에러처리
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
 ---
 동시성(concurrency)과 병렬성(parallelism)은 성능 향상의 핵심 도구입니다. 이 치트시트는 GIL 이해, I/O vs CPU 바운드 판단, ThreadPoolExecutor/ProcessPoolExecutor 선택 기준을 정리합니다.
 

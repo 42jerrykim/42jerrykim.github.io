@@ -34,6 +34,31 @@ tags:
   - 구현
   - Tree
   - Math
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Documentation
+  - 문서화
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - SOLID
+  - Encapsulation
+  - 캡슐화
+  - Polymorphism
+  - 다형성
+  - Composition
+  - 합성
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
+  - 테스트
+  - Performance
+  - 성능
+  - Education
 ---
 
 인터프리터 패턴(Interpreter Pattern)은 특정 언어나 문법을 해석하고 실행하는 방법을 정의하는 행위 디자인 패턴이다. 이 패턴을 사용하면 간단한 언어의 문법을 클래스로 표현하고, 문장을 해석하는 인터프리터를 구현할 수 있다.

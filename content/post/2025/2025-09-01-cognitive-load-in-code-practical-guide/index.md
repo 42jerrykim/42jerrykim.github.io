@@ -44,6 +44,19 @@ tags:
 - 과학
 - Education
 - 교육
+- Guide
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
 image: "wordcloud.png"
 ---
 

@@ -30,6 +30,33 @@ tags:
 - Bash
 - Shell
 - Configuration
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Career
+- 커리어
+- Workflow
+- Migration
+- 마이그레이션
+- Hardware
+- 하드웨어
 image: wordcloud.png
 ---
 

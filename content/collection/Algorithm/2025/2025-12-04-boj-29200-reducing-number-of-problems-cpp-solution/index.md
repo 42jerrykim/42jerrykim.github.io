@@ -45,6 +45,19 @@ tags:
   - Brute-Force
   - 완전탐색
   - Memoization
+  - Problem-Solving
+  - Coding-Test
+  - 코딩테스트
+  - 문제해결
+  - Code-Quality
+  - 코드품질
+  - Go
+  - .NET
+  - Memory
+  - Documentation
+  - 문서화
+  - Best-Practices
+  - Debugging
 image: "wordcloud.png"
 ---
 

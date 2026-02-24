@@ -28,6 +28,35 @@ tags:
   - Thread
   - C++
   - Compiler
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
 ---
 `signal` 모듈은 **Unix 시그널 핸들링**을 제공합니다. Ctrl+C 처리, 그레이스풀 종료, 타임아웃 등에 사용됩니다. (Windows에서는 일부 기능 제한)
 

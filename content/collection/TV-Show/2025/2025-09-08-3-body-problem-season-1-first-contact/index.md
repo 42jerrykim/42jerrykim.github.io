@@ -29,6 +29,36 @@ tags:
 - 과학
 - Culture
 - 문화
+- 스릴러
+- Comedy
+- 코미디
+- 판타지
+- Romance
+- 로맨스
+- Action
+- 액션
+- Crime
+- 범죄
+- Adventure
+- 모험
+- 2020s
+- 2010s
+- 사운드트랙
+- Family
+- 가족
+- Biography
+- 전기영화
+- History
+- 역사
+- Technology
+- 기술
+- Education
+- 교육
+- Tutorial
+- 튜토리얼
+- Guide
+- 가이드
+- Reference
 image: "netflix-3-boby-problem-poster.webp"
 ---
 

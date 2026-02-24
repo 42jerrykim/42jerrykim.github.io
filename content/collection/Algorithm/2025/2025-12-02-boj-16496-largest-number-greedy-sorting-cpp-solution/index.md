@@ -40,6 +40,23 @@ tags:
 - 함정
 - Complexity-Analysis
 - 복잡도분석
+- Coding-Test
+- 코딩테스트
+- Optimization
+- 최적화
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Math
+- Memory
+- Documentation
+- 문서화
+- Best-Practices
+- Debugging
+- 디버깅
 image: "wordcloud.png"
 ---
 

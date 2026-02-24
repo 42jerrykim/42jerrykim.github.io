@@ -32,6 +32,31 @@ tags:
 - IO
 - Complexity-Analysis
 - 복잡도분석
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Sorting
+- Memory
+- Watch
+- Documentation
+- 문서화
+- Best-Practices
+- Debugging
+- 디버깅
+- Refactoring
+- 리팩토링
+- Clean-Code
+- 클린코드
+- Performance
+- 성능
+- Pitfalls
 image: "wordcloud.png"
 ---
 

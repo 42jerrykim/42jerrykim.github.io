@@ -30,6 +30,33 @@ tags:
   - 자동화
   - testing
   - 테스트
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Bash
+  - Shell
+  - HTML
+  - Deployment
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
 ---
 가상환경과 의존성 관리는 재현 가능한 개발 환경의 기본입니다. 이 치트시트는 venv 생성/활성화, pip 설치, requirements.txt 관리의 핵심 체크리스트를 정리합니다.
 

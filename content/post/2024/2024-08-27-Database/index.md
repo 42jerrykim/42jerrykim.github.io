@@ -41,6 +41,22 @@ tags:
 - 구현
 - Graph
 - 그래프
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
 title: '[Database] API 개발에서 흔히 발생하는 데이터베이스 성능 실수 5가지'
 ---
 

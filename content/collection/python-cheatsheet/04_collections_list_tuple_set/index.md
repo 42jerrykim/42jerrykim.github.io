@@ -27,6 +27,36 @@ tags:
   - Best-Practices
   - pitfalls
   - 함정
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - 코드품질
+  - HTML
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
 ---
 파이썬의 핵심 컬렉션 타입인 list, tuple, set을 언제/어떻게 선택하고, 정렬/중복제거/멤버십 검사에서 성능 감각을 잡는 치트시트입니다.
 

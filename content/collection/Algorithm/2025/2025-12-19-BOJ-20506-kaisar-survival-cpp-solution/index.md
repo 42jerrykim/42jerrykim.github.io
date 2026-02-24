@@ -40,6 +40,25 @@ tags:
 - 문제해결
 - Competitive-Programming
 - 경쟁프로그래밍
+- Coding-Test
+- 코딩테스트
+- 자료구조
+- Optimization
+- 최적화
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Graph
+- Memory
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- Complexity-Analysis
 image: wordcloud.png
 ---
 

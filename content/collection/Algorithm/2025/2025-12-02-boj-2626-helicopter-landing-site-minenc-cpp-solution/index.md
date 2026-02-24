@@ -34,6 +34,29 @@ tags:
 - 복잡도분석
 - Recursion
 - 재귀
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Stack
+- Memory
+- Documentation
+- 문서화
+- Best-Practices
+- Debugging
+- 디버깅
+- Refactoring
+- 리팩토링
+- Clean-Code
+- 클린코드
+- Performance
+- 성능
 image: "wordcloud.png"
 ---
 

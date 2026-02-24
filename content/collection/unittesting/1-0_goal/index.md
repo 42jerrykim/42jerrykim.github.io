@@ -12,6 +12,50 @@ header:
   - Code-Quality
   - Clean-Code
   - Refactoring
+  - Best-Practices
+  - 리팩토링
+  - 클린코드
+  - Documentation
+  - 문서화
+  - Implementation
+  - 구현
+  - Debugging
+  - 디버깅
+  - Education
+  - 교육
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Technology
+  - 기술
+  - How-To
+  - Tips
+  - Beginner
+  - Advanced
+  - Performance
+  - 성능
+  - Reference
+  - 참고
+  - Comparison
+  - 비교
+  - Case-Study
+  - Deep-Dive
+  - 실습
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - Productivity
+  - 생산성
+  - Innovation
+  - 혁신
+  - Configuration
+  - 설정
+  - Workflow
+  - 워크플로우
+  - Web
+  - 웹
 ---
 
 1부에서는 단위 테스트의 현황을 빠르게 살펴본다.

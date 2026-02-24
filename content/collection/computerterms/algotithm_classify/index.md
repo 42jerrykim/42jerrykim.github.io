@@ -30,6 +30,31 @@ tags:
 - Hashing
 - String
 - Security
+- Reference
+- 참고
+- Documentation
+- 문서화
+- Best-Practices
+- Comparison
+- 비교
+- How-To
+- Tips
+- Beginner
+- Advanced
+- Case-Study
+- Deep-Dive
+- 실습
+- Markdown
+- 마크다운
+- Productivity
+- 생산성
+- Innovation
+- 혁신
+- Review
+- 리뷰
+- Configuration
+- 설정
+- Workflow
 ---
 
 ## 알고리즘의 주제별 분류

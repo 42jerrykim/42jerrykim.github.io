@@ -31,6 +31,33 @@ tags:
 - 코딩테스트
 - Edge-Cases
 - 엣지케이스
+- Data-Structures
+- 자료구조
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Queue
+- Memory
+- Gaming
+- 게임
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- Complexity-Analysis
+- 복잡도분석
+- Debugging
+- 디버깅
+- Refactoring
+- 리팩토링
+- Clean-Code
+- 클린코드
+- Performance
+- 성능
 image: "wordcloud.png"
 ---
 

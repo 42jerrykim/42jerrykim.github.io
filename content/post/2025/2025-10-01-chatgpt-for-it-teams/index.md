@@ -35,6 +35,28 @@ tags:
   - Implementation
   - 구현
   - Prompt-Engineering
+  - Guide
+  - Productivity
+  - 생산성
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Best-Practices
+  - Documentation
+  - 문서화
+  - Open-Source
+  - 오픈소스
+  - Innovation
+  - 혁신
+  - Troubleshooting
+  - 트러블슈팅
+  - Configuration
+  - 설정
+  - How-To
+  - Tips
+  - Comparison
+  - 비교
 description: "IT 팀이 ChatGPT를 활용하여 클라우드 평가, 보안 컴플라이언스, 시스템 모니터링 등 핵심 업무를 자동화하고 효율화하는 실용적인 프롬프트와 사용 사례를 소개합니다. 실무에 바로 적용 가능한 가이드입니다."
 image: Work-Users-Cover-Images-19--49e19084-0ea8-4a42-b4a2-1a9679cfa0b7-1754316734132.png
 ---

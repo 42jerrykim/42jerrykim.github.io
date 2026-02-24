@@ -31,6 +31,32 @@ tags:
 - Map
 - 정렬
 - Competitive-Programming
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- String
+- Memory
+- Gaming
+- 게임
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- 복잡도분석
+- Debugging
+- 디버깅
+- Refactoring
+- 리팩토링
 image: "wordcloud.png"
 ---
 

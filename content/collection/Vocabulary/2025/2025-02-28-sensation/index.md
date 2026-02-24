@@ -25,6 +25,35 @@ tags:
 - 전쟁
 - Culture
 - 문화
+- Nuance
+- 뉘앙스
+- Antonym
+- 반의어
+- Pronunciation
+- 발음
+- Daily-Life
+- 일상표현
+- Education
+- 교육
+- Reference
+- 참고
+- Business-English
+- 비즈니스영어
+- Academic-English
+- 학술영어
+- Comparison
+- 비교
+- Tips
+- How-To
+- Beginner
+- Advanced
+- Markdown
+- 마크다운
+- Technology
+- 기술
+- Guide
+- 가이드
+- Documentation
 image: index.png
 description: Sensation은 감각적 경험과 정서적 반응을 아우르는 다층적인 단어로, 라틴어 sensatio에서 유래되었다. 이 단어는 일상에서의 감각적 자극과 예술적 감동을 표현하며, 최근에는 사회문화적 현상까지 포함하는 의미로 확장되었다.
 ---

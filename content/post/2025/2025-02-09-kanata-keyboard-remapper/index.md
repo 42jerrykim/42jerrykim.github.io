@@ -29,6 +29,31 @@ tags:
   - 마크다운
   - Sci-Fi
   - 키보드
+  - Guide
+  - Productivity
+  - 생산성
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Best-Practices
+  - Documentation
+  - 문서화
+  - Open-Source
+  - 오픈소스
+  - Innovation
+  - 혁신
+  - Troubleshooting
+  - 트러블슈팅
+  - Configuration
+  - 설정
+  - How-To
+  - Tips
+  - Comparison
+  - 비교
+  - Career
+  - 커리어
+  - Workflow
 image: "image.png"
 description: "Kanata는 Rust로 작성된 멀티플랫폼 키보드 리매퍼로, 커스터마이징 가능한 다중 레이어, tap-hold, 복합키, 매크로 등 강력한 기능을 제공합니다. 설정 파일을 통해 개인화가 쉬우며 Windows, Linux, MacOS를 모두 지원합니다."
 

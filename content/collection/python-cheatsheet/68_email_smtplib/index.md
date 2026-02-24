@@ -25,6 +25,38 @@ tags:
   - Code-Quality
   - 코드품질
   - HTML
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
+  - 트러블슈팅
+  - Education
+  - 교육
+  - Technology
+  - 기술
 ---
 `email` 모듈은 **이메일 메시지 생성**을, `smtplib`는 **SMTP 프로토콜로 발송**을 담당합니다. 알림 메일, 리포트 발송, 자동화 등에 유용합니다.
 

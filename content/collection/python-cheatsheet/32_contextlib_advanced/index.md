@@ -27,6 +27,36 @@ tags:
   - Stack
   - String
   - Async
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
+  - 트러블슈팅
+  - Education
 ---
 `contextlib` 모듈은 컨텍스트 매니저 작성을 도와주는 유틸리티를 제공합니다. 이 치트시트는 `@contextmanager` 외의 **심화 기능**인 `suppress`, `redirect_*`, `ExitStack` 등을 다룹니다.
 

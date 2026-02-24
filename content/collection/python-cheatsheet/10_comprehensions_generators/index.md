@@ -29,6 +29,34 @@ tags:
   - async
   - 비동기
   - error-handling
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - OOP
+  - 객체지향
+  - Tree
+  - HTML
+  - 에러처리
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - 클린코드
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
 ---
 컴프리헨션과 제너레이터는 파이썬다운 코드를 작성하는 핵심 도구입니다. 이 치트시트는 list/dict/set comprehension과 generator expression의 선택 기준(가독성 vs 메모리)을 빠르게 정리합니다.
 

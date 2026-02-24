@@ -34,6 +34,27 @@ tags:
 - Samsung
 - Android
 - Mobile
+- Guide
+- Productivity
+- 생산성
+- Reference
+- 참고
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Workflow
+- 워크플로우
 title: SW 개발자 필수 마인드
 
 ---

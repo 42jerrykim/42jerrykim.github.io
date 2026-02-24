@@ -37,6 +37,28 @@ tags:
   - C++
   - Python
   - CSharp
+  - Git
+  - GitHub
+  - Problem-Solving
+  - 문제해결
+  - Implementation
+  - 구현
+  - RDP
+  - Windows
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Documentation
+  - 문서화
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - 의존성주입
+  - Testing
+  - 테스트
 ---
 
 전략 패턴(Strategy Pattern)은 알고리즘 군을 정의하고 각각을 캡슐화하여 상호 교환 가능하게 만드는 행위 디자인 패턴이다. 이 패턴을 사용하면 알고리즘을 사용하는 클라이언트와 독립적으로 알고리즘을 변경할 수 있으며, 런타임에 동적으로 알고리즘을 교체할 수 있다.

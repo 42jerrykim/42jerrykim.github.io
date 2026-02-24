@@ -21,6 +21,46 @@ tags:
   - Tree
   - Gaming
   - 게임
+  - Comedy
+  - 코미디
+  - Fantasy
+  - 판타지
+  - Romance
+  - 로맨스
+  - Action
+  - 액션
+  - Mystery
+  - 미스터리
+  - Crime
+  - 범죄
+  - Adventure
+  - 모험
+  - Culture
+  - 문화
+  - 2020s
+  - 2010s
+  - Cinematography
+  - 촬영기법
+  - Soundtrack
+  - 사운드트랙
+  - Family
+  - 가족
+  - Biography
+  - 전기영화
+  - History
+  - 역사
+  - Science
+  - 과학
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Reference
+  - 참고
 ---
 
 2025년 6월 27일, 전 세계를 열광시킨 오징어게임이 마침내 그 대서사시의 막을 내렸다. 시즌3는 456번 성기훈의 절망적인 상황에서 시작해, 프론트맨과의 최종 대결까지 6개의 에피소드에 압축적으로 담아낸 완결편이다. 실패한 반란, 친구의 죽음, 그리고 비밀스러운 배신의 여파 속에서 성기훈은 인생 최악의 순간을 맞이한다. 하지만 오징어게임은 누구를 위해서도 멈추지 않는다.

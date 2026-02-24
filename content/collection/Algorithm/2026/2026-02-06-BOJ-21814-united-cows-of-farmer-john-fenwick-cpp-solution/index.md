@@ -41,6 +41,25 @@ tags:
 - Coding-Test
 - 코딩테스트
 - 엣지케이스
+- C++
+- Optimization
+- 최적화
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Tree
+- Memory
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- Complexity-Analysis
+- 복잡도분석
+- Debugging
+- 디버깅
+- Refactoring
 image: "wordcloud.png"
 ---
 

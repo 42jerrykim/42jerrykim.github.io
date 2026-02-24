@@ -23,6 +23,39 @@ tags:
   - 가이드
   - Markdown
   - 마크다운
+  - Guide
+  - Productivity
+  - 생산성
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Best-Practices
+  - Documentation
+  - 문서화
+  - Open-Source
+  - 오픈소스
+  - Innovation
+  - 혁신
+  - Troubleshooting
+  - 트러블슈팅
+  - Configuration
+  - 설정
+  - How-To
+  - Tips
+  - Comparison
+  - 비교
+  - Career
+  - 커리어
+  - Workflow
+  - 워크플로우
+  - Migration
+  - 마이그레이션
+  - Hardware
+  - 하드웨어
+  - Mobile
+  - 모바일
+  - Cloud
 image: image03.png
 description: "트리와는 원목 키보드 손목받침대와 애플 키보드/트랙패드 전용 트레이를 커스텀 제작하는 한국 업체입니다. 천연 원목을 사용한 고품질 키보드 액세서리와 에르고노믹 제품을 제공합니다."
 ---

@@ -39,6 +39,24 @@ tags:
 - Tree
 - AI
 - Design-Pattern
+- Guide
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
 image: "image.png"
 ---
 

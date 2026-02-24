@@ -48,6 +48,19 @@ tags:
 - 교육
 - Innovation
 - Technology
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- 가족
+- Biography
+- 전기영화
+- Visual-Effects
+- 시각효과
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
 image: "MV5BMjAzNzk5MzgyNF5BMl5BanBnXkFtZTcwOTE4NDU5Ng@@._V1_.jpg"
 ---
 

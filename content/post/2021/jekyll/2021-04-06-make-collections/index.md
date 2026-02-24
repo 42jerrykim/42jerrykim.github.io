@@ -16,6 +16,45 @@ tags:
 - Web
 - Problem-Solving
 - 문제해결
+- 블로그
+- Technology
+- 기술
+- 웹
+- 가이드
+- Guide
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Career
+- 커리어
+- Workflow
+- 워크플로우
+- Migration
+- 마이그레이션
+- Hardware
+- 하드웨어
+- Mobile
 title: '[Jekyll] 모아 볼 수 있는 콜렉션 만들기'
 ---
 

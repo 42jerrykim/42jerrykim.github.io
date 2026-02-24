@@ -26,6 +26,35 @@ tags:
 - Implementation
 - 구현
 - Innovation
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- 오픈소스
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Career
+- 커리어
+- Workflow
+- 워크플로우
+- Migration
+- 마이그레이션
+- Hardware
+- 하드웨어
+- Mobile
 description: "DeepSearcher는 오픈소스 모델과 도구를 활용하여 로컬 환경에서 심층 리서치를 자동화하는 혁신적인 도구이다. 복합적인 질문을 분석하고, 관련 데이터를 효율적으로 검색하여 최종 보고서를 생성하는 기능을 제공한다."
 image: index.png
 ---

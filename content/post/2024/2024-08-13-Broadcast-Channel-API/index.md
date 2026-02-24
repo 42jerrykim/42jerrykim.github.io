@@ -34,6 +34,28 @@ tags:
 - Security
 - Gaming
 - 게임
+- Guide
+- Productivity
+- 생산성
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- 오픈소스
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Career
+- 커리어
+- Workflow
 teaser: /assets/images/undefined/teaser.jpg
 title: '[WebDevelopment] Broadcast Channel API로 브라우저 간 통신하기'
 ---

@@ -39,6 +39,24 @@ tags:
 - 테스트
 - Problem-Solving
 - 문제해결
+- Coding-Test
+- 코딩테스트
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- DP
+- Sorting
+- Tree
+- Math
+- Recursion
+- Memory
+- Documentation
+- 문서화
+- Best-Practices
+- Complexity-Analysis
 image: "wordcloud.png"
 ---
 

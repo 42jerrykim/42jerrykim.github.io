@@ -17,6 +17,44 @@ tags:
 - 키보드
 - Hardware
 - Security
+- Technology
+- 기술
+- 웹
+- 가이드
+- Guide
+- Review
+- 리뷰
+- 마크다운
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Career
+- 커리어
+- Workflow
+- 워크플로우
+- Migration
+- 마이그레이션
+- 하드웨어
+- Mobile
+- 모바일
 title: '[Utterances] GithubPage에 Disques 대신 Utterances를 사용하여 댓글을 달 수 있도록 하자'
 ---
 

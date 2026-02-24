@@ -30,6 +30,35 @@ tags:
   - CSharp
   - Interface
   - 인터페이스
+  - Git
+  - GitHub
+  - Action
+  - 액션
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Documentation
+  - 문서화
+  - Encapsulation
+  - 캡슐화
+  - Polymorphism
+  - 다형성
+  - Composition
+  - 합성
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
+  - 테스트
+  - Performance
+  - 성능
+  - Education
+  - 교육
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
 ---
 
 브릿지 패턴(Bridge Pattern)은 추상화(Abstraction)와 구현(Implementation)을 분리하여 각각 독립적으로 변형할 수 있게 하는 구조적 디자인 패턴이다. 이 패턴은 상속 대신 합성을 사용하여 두 차원의 변화를 독립적으로 관리할 수 있게 해주며, 런타임에 구현을 교체할 수 있는 유연성을 제공한다.

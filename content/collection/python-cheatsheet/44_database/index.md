@@ -35,6 +35,28 @@ tags:
   - Factory
   - Design-Pattern
   - Deployment
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
 ---
 sqlite3는 파이썬 표준 라이브러리에 포함된 경량 관계형 데이터베이스입니다. 이 치트시트는 sqlite3 기본 CRUD, 파라미터 바인딩, 트랜잭션 처리와 SQL 인젝션 방지 패턴을 정리합니다.
 

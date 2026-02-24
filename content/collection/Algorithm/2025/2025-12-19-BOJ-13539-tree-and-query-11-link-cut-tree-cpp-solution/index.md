@@ -36,6 +36,30 @@ tags:
 - Coding-Test
 - 코딩테스트
 - C++
+- Optimization
+- 최적화
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Memory
+- Edge-Cases
+- 엣지케이스
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- Complexity-Analysis
+- 복잡도분석
+- Debugging
+- 디버깅
+- Refactoring
+- 리팩토링
+- Clean-Code
+- 클린코드
 image: "wordcloud.png"
 ---
 

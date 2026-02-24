@@ -43,6 +43,19 @@ tags:
 - AI
 - Science
 - 과학
+- Guide
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- 문서화
+- 오픈소스
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
 teaser: /assets/images/undefined/teaser.jpg
 title: '[MachineLearning] PyTorch vs JAX: A Critical Analysis'
 ---

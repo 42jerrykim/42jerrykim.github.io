@@ -32,6 +32,33 @@ tags:
   - 구현
   - Tree
   - Process
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Documentation
+  - 문서화
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - SOLID
+  - Polymorphism
+  - 다형성
+  - Composition
+  - 합성
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
+  - 테스트
+  - Performance
+  - 성능
+  - Education
+  - 교육
+  - Tutorial
+  - 튜토리얼
+  - Guide
 ---
 
 반복자 패턴(Iterator Pattern)은 컬렉션의 내부 구조를 노출하지 않고 그 안의 요소들을 순차적으로 접근할 수 있게 해주는 행위 디자인 패턴이다. 이 패턴을 사용하면 다양한 종류의 컬렉션(배열, 리스트, 트리 등)을 동일한 방식으로 순회할 수 있다.

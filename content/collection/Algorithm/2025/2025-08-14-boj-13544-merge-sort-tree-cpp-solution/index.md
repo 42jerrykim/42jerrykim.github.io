@@ -37,6 +37,26 @@ tags:
 - 정렬
 - Array
 - 파이썬
+- Competitive-Programming
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Tree
+- Recursion
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
 image: "wordcloud.png"
 ---
 

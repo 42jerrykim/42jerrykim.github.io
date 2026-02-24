@@ -31,6 +31,32 @@ tags:
   - Tree
   - War
   - 전쟁
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
 ---
 메타클래스는 **클래스를 만드는 클래스**입니다. 파이썬에서 클래스 자체도 객체이며, 메타클래스는 그 클래스 객체의 타입입니다. 이 치트시트는 메타클래스의 핵심 개념과 실무 패턴을 정리합니다.
 

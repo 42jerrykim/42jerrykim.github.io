@@ -33,6 +33,30 @@ tags:
 - 최적화
 - 시간복잡도
 - 공간복잡도
+- Competitive-Programming
+- Problem-Solving
+- Time-Complexity
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Queue
+- War
+- 전쟁
+- Space-Complexity
+- Documentation
+- 문서화
+- Best-Practices
+- Debugging
+- 디버깅
+- Refactoring
 image: "wordcloud.png"
 ---
 

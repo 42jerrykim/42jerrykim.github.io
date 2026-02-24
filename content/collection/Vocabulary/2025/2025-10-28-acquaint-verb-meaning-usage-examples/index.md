@@ -34,6 +34,29 @@ tags:
   - 문화
   - Education
   - 교육
+  - Pronunciation
+  - 발음
+  - Daily-Life
+  - 일상표현
+  - Reference
+  - 참고
+  - Business-English
+  - 비즈니스영어
+  - Academic-English
+  - 학술영어
+  - Comparison
+  - 비교
+  - Tips
+  - How-To
+  - Beginner
+  - Advanced
+  - Markdown
+  - 마크다운
+  - Technology
+  - 기술
+  - Guide
+  - 가이드
+  - Documentation
 image: wordcloud.png
 ---
 

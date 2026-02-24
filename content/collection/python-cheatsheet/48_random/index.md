@@ -29,6 +29,34 @@ tags:
   - String
   - Security
   - Gaming
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
 ---
 `random` 모듈은 **의사 난수 생성**을 위한 도구입니다. 시뮬레이션, 게임, 테스트 데이터 생성 등에 사용합니다. 보안용으로는 `secrets` 모듈을 사용하세요.
 

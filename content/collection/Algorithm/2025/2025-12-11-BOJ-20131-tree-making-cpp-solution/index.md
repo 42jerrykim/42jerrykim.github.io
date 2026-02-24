@@ -42,6 +42,22 @@ tags:
   - Math
   - Sorting
   - 정렬
+  - Optimization
+  - 최적화
+  - Code-Quality
+  - 코드품질
+  - Go
+  - .NET
+  - Queue
+  - Memory
+  - Testing
+  - 테스트
+  - Documentation
+  - 문서화
+  - Best-Practices
+  - Complexity-Analysis
+  - 복잡도분석
+  - Debugging
 image: "wordcloud.png"
 ---
 

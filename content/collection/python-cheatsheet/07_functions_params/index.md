@@ -33,6 +33,30 @@ tags:
   - War
   - 전쟁
   - HTML
+  - 에러처리
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
+  - 트러블슈팅
+  - Education
 ---
 함수는 코드 재사용과 구조화의 핵심입니다. 이 치트시트는 기본값 인자 함정, *args/**kwargs, keyword-only, 다중 반환 등 함수 시그니처 패턴과 실수 포인트를 정리합니다.
 

@@ -48,6 +48,15 @@ tags:
 - History
 - 역사
 - 교육
+- Guide
+- Productivity
+- 생산성
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
 title: '[Sorting] 버블 정렬(Bubble Sort) 이해하기'
 ---
 

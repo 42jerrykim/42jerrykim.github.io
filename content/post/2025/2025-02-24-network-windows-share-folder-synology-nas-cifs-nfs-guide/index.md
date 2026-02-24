@@ -33,6 +33,26 @@ tags:
   - Productivity
   - History
   - 역사
+  - Guide
+  - 생산성
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Best-Practices
+  - Documentation
+  - 문서화
+  - Open-Source
+  - 오픈소스
+  - Innovation
+  - 혁신
+  - Troubleshooting
+  - 트러블슈팅
+  - Configuration
+  - 설정
+  - How-To
+  - Tips
+  - Comparison
 description: "CIFS와 NFS 프로토콜의 기술적 특성과 성능 차이를 분석하여 최적의 선택 기준을 제시하는 가이드로, 파일 공유 시스템 구축 시 고려해야 할 요소들을 정리하였다."
 image: index.png
 ---

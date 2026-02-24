@@ -27,6 +27,36 @@ tags:
 - 시간복잡도
 - Space-Complexity
 - 공간복잡도
+- Competitive-Programming
+- Data-Structures
+- 자료구조
+- Optimization
+- 최적화
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Memory
+- Gaming
+- 게임
+- Education
+- 교육
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- Complexity-Analysis
+- 복잡도분석
+- Debugging
+- 디버깅
+- Refactoring
+- 리팩토링
+- Clean-Code
+- 클린코드
+- Performance
 image: "wordcloud.png"
 description: 동적 계획법과 확률을 이용한 게임 이론 풀이입니다. 최적 전략을 역방향 귀납법으로 구성하고 각 상태의 기댓값을 계산하는 O(N) 풀이를 다룹니다.
 ---

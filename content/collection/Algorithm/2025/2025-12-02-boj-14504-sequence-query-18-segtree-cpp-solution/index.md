@@ -37,6 +37,26 @@ tags:
 - IO
 - Complexity-Analysis
 - 복잡도분석
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Graph
+- 그래프
+- Tree
+- Memory
+- Documentation
+- 문서화
+- Best-Practices
+- Debugging
 image: "wordcloud.png"
 ---
 

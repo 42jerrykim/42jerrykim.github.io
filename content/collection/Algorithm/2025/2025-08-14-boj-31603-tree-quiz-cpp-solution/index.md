@@ -39,6 +39,24 @@ tags:
 - Edge-Cases
 - 엣지케이스
 - IO
+- Competitive-Programming
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- DFS
+- Memory
+- Testing
+- 테스트
+- Documentation
 image: "wordcloud.png"
 ---
 

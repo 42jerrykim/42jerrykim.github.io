@@ -39,6 +39,24 @@ tags:
 - 복잡도분석
 - Queue
 - 큐
+- Problem-Solving
+- Coding-Test
+- 코딩테스트
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- LLM
+- AI
+- Memory
+- Documentation
+- 문서화
+- Best-Practices
+- Debugging
+- 디버깅
 image: "wordcloud.png"
 ---
 

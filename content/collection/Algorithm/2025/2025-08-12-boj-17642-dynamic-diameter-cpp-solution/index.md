@@ -34,6 +34,29 @@ tags:
 - Problem-Solving
 - Competitive-Programming
 - Editorial
+- Time-Complexity
+- Coding-Test
+- 코딩테스트
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Space-Complexity
+- 공간복잡도
+- 엣지케이스
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- 복잡도분석
+- Debugging
+- 디버깅
 image: "wordcloud.png"
 ---
 

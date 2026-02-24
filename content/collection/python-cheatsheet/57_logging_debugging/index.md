@@ -28,6 +28,35 @@ tags:
   - 함정
   - testing
   - 테스트
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Stack
+  - String
+  - HTML
+  - Configuration
+  - 에러처리
+  - Documentation
+  - 문서화
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Optimization
+  - 최적화
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Education
 ---
 로깅과 디버깅은 문제를 빠르게 찾고 운영 환경을 모니터링하는 핵심 도구입니다. 이 치트시트는 logging 설정, 예외 로깅, traceback 읽는 법, breakpoint 활용을 정리합니다.
 

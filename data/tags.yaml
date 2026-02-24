@@ -5,7 +5,7 @@
 # Each tag has an English canonical form. Korean equivalents are
 # listed as separate approved tags under the same category.
 #
-# When writing a post, pick 10~20 tags from this list.
+# When writing a post, pick 50 or more tags from this list.
 # ============================================================
 
 programming_languages:
@@ -161,6 +161,13 @@ algorithm_topics:
   - Linked-List
   - Hash-Map
   - Trie
+  - Sweep-Line
+  - Convex-Hull
+  - Suffix-Array
+  - Heavy-Light-Decomposition
+  - Offline-Query
+  - Mo-Algorithm
+  - Persistent-Structure
 
 data_structures:
   - Data-Structures
@@ -215,6 +222,10 @@ code_quality:
   - 문서화
   - Code-Quality
   - 코드품질
+  - Type-Safety
+  - Readability
+  - Maintainability
+  - Modularity
 
 software_engineering:
   - Software-Architecture
@@ -462,6 +473,11 @@ movie_and_tv:
   - 2000s
   - 2010s
   - 2020s
+  - Blockbuster
+  - Indie
+  - Adaptation
+  - Sequel
+  - Prequel
 
 general_topics:
   - Tutorial
@@ -571,3 +587,22 @@ general_topics:
   - 블로그
   - Domain
   - 도메인
+  - How-To
+  - Tips
+  - Comparison
+  - 비교
+  - Reference
+  - 참고
+  - Beginner
+  - Advanced
+  - Case-Study
+  - Deep-Dive
+  - 실습
+
+python_specific:
+  - asyncio
+  - type-hints
+  - pytest
+  - unittest
+  - venv
+  - pip

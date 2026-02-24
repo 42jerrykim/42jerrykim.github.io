@@ -37,6 +37,25 @@ tags:
 - Networking
 - TV-Show
 - 드라마
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
 image: ui-classic-bd3481be0133059729c5a937070f8b69.png
 description: "토렌트 다운로드 완료 후 자동으로 파일을 정리하는 Python 스크립트에 대한 설명이다. 미디어 파일(.mkv, .mp4)과 압축 파일(.rar)을 자동으로 분류하고, 지정된 폴더로 이동시키며, 압축 해제를 수행하는 기능을 제공한다. 작업 과정은 상세한 로그로 기록되며, 디스크 사용량을 모니터링하여 안정적인 파일 처리를 보장한다."
 ---

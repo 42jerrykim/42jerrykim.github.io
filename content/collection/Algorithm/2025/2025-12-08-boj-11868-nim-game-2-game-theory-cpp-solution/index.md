@@ -27,6 +27,35 @@ tags:
 - Space-Complexity
 - 엣지케이스
 - Edge-Cases
+- Competitive-Programming
+- Data-Structures
+- 자료구조
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Memory
+- Gaming
+- 게임
+- Testing
+- 테스트
+- Documentation
+- 문서화
+- Best-Practices
+- Complexity-Analysis
+- 복잡도분석
+- Debugging
+- 디버깅
+- Refactoring
+- 리팩토링
+- Clean-Code
+- 클린코드
+- Performance
 image: "wordcloud.png"
 description: Sprague-Grundy 정리와 XOR을 이용한 게임 이론 풀이입니다. 두 플레이어가 돌 더미에서 최적으로 돌을 제거할 때 승자를 판정하는 필승 전략을 O(N)에 구현합니다.
 ---

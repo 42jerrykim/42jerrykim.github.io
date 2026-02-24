@@ -43,6 +43,20 @@ tags:
 - Math
 - Watch
 - 교육
+- Guide
+- Productivity
+- 생산성
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
 image: image01.png
 ---
 

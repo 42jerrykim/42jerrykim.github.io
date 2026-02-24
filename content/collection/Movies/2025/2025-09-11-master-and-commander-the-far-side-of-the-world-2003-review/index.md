@@ -40,6 +40,26 @@ tags:
 - 과학
 - History
 - 역사
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Family
+- 가족
+- Biography
+- 전기영화
+- Visual-Effects
+- 시각효과
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- 모험
+- 공포
+- 2020s
+- 2010s
 image: "ij2NRlE2GKYjAObfB5WGGbArOAyVBHk40UUlx3ZAFfL5MQmd0IFxWtfxKOCDWVlxbpbIRLO-2kE3WZXM3JSpSw.webp"
 ---
 

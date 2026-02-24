@@ -29,6 +29,34 @@ tags:
   - 문자열
   - debugging
   - 디버깅
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - 그리디
+  - HTML
+  - Error-Handling
+  - 에러처리
+  - Documentation
+  - 문서화
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
 ---
 정규표현식은 강력하지만 남용하면 가독성과 성능을 해칩니다. 이 치트시트는 re 모듈의 핵심 함수, 그룹/플래그, greedy vs non-greedy, 그리고 "언제 쓰지 말아야 하는지"를 정리합니다.
 

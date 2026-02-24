@@ -36,6 +36,25 @@ tags:
 - 마크다운
 - SOLID
 - 구현
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
 teaser: /assets/images/undefined/teaser.jpg
 title: '[C#] C# 인터페이스와 추상클래스의 차이점'
 ---

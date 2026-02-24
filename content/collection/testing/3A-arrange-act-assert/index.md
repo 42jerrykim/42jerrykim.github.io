@@ -20,6 +20,40 @@ tags:
 - 액션
 - Command
 - Design-Pattern
+- Clean-Code
+- 클린코드
+- Documentation
+- 문서화
+- Implementation
+- 구현
+- Debugging
+- 디버깅
+- Performance
+- 성능
+- Automation
+- 자동화
+- Education
+- 교육
+- Tutorial
+- 튜토리얼
+- Guide
+- 가이드
+- Technology
+- 기술
+- How-To
+- Tips
+- Beginner
+- Advanced
+- Reference
+- 참고
+- Comparison
+- 비교
+- Case-Study
+- Deep-Dive
+- 실습
+- Review
+- 리뷰
+- Markdown
 ---
 
 > 본 글은 [Bill Wake](https://xp123.com/articles/contact/)의 [3A – Arrange, Act, Assert](https://xp123.com/articles/3a-arrange-act-assert/)내용을 번역한 글 입니다.

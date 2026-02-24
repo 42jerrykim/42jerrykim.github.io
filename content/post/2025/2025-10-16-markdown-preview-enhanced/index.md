@@ -39,6 +39,22 @@ tags:
   - Hardware
   - RDP
   - IDE
+  - Guide
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Best-Practices
+  - Innovation
+  - 혁신
+  - Troubleshooting
+  - 트러블슈팅
+  - Configuration
+  - 설정
+  - How-To
+  - Tips
+  - Comparison
+  - 비교
 image: "image03.png"
 date: 2025-10-16
 lastmod: 2025-10-16

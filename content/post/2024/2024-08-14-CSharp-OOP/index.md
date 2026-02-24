@@ -38,6 +38,24 @@ tags:
 - .NET
 - 객체지향
 - 구현
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
 teaser: /assets/images/undefined/teaser.jpg
 title: '[C#] 객체 지향 프로그래밍(C#)'
 ---

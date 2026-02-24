@@ -27,6 +27,36 @@ tags:
 - 인터페이스
 - 의존성주입
 - 코드품질
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Java
+- API
+- String
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
 ---
 
 디미터의 법칙은 객체가 자신의 가까운 이웃과만 대화하게 만들어 불필요한 결합을 줄이고 응집을 높이는 객체지향 설계 원칙입니다. 긴 점 체이닝과 내부 구조 노출을 줄이고, 도메인 언어로 말하는 메서드를 제공하도록 이끕니다.

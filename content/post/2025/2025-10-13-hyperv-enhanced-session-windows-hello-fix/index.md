@@ -32,6 +32,31 @@ tags:
   - Hardware
   - Keyboard
   - 키보드
+  - Guide
+  - Productivity
+  - 생산성
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Best-Practices
+  - Documentation
+  - 문서화
+  - Open-Source
+  - 오픈소스
+  - Innovation
+  - 혁신
+  - 트러블슈팅
+  - Configuration
+  - 설정
+  - How-To
+  - Tips
+  - Comparison
+  - 비교
+  - Career
+  - 커리어
+  - Workflow
+  - 워크플로우
 description: "원격 데스크톱 환경에서 Hyper-V 고급 세션 모드 사용 시 Windows Hello 로그인 화면이 멈추는 문제를 해결합니다. 이중 RDP 연결 구조의 한계와 해결 방법 4가지를 상세히 설명합니다."
 image: "image01.png"
 ---

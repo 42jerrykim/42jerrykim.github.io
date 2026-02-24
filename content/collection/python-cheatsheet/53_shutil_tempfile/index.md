@@ -28,6 +28,35 @@ tags:
   - Tree
   - Recursion
   - Windows
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
+  - Workflow
+  - 워크플로우
+  - Troubleshooting
 ---
 shutil은 고수준 파일/디렉토리 작업을, tempfile은 안전한 임시 파일 생성을 제공합니다. 이 치트시트는 복사/이동/삭제, 임시 파일 패턴, 자동 정리 방법을 정리합니다.
 

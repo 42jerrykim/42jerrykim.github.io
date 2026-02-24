@@ -41,6 +41,22 @@ tags:
   - 키보드
   - Automation
   - Privacy
+  - Guide
+  - Productivity
+  - 생산성
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Best-Practices
+  - Documentation
+  - 문서화
+  - Open-Source
+  - Innovation
+  - 혁신
+  - 트러블슈팅
+  - Configuration
+  - 설정
 description: "JetKVM은 컴퓨터, 서버, 워크스테이션의 효율적인 원격 관리를 위해 설계된 고성능 오픈소스 KVM over IP 솔루션입니다. 1080p 60FPS에서 30-60ms의 초저지연, H.264 인코딩, WebRTC 기반 클라우드 액세스, Golang과 React로 구축된 완전한 오픈소스 아키텍처를 제공하며, Kickstarter에서 600만 달러를 모금한 차세대 원격 제어 솔루션입니다."
 image: cover.png
 ---

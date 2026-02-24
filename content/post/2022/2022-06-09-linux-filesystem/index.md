@@ -30,6 +30,33 @@ tags:
 - File-System
 - Python
 - Deployment
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Career
+- 커리어
+- Workflow
+- 워크플로우
+- Migration
+- 마이그레이션
 title: '[Linux] File System 종류- DebugFS, SecurityFS, PipeFS, SockFS'
 ---
 

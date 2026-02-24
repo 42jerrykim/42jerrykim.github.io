@@ -17,6 +17,48 @@ tags:
   - 리뷰
   - Brand
   - 브랜드
+  - Drama
+  - Thriller
+  - 스릴러
+  - Comedy
+  - 코미디
+  - Fantasy
+  - 판타지
+  - Romance
+  - 로맨스
+  - Action
+  - 액션
+  - Mystery
+  - 미스터리
+  - Crime
+  - 범죄
+  - Adventure
+  - 모험
+  - Culture
+  - 문화
+  - 2020s
+  - 2010s
+  - Cinematography
+  - 촬영기법
+  - Soundtrack
+  - 사운드트랙
+  - Family
+  - 가족
+  - Biography
+  - 전기영화
+  - History
+  - 역사
+  - Science
+  - 과학
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Reference
 image: season-6.jpg
 ---
 

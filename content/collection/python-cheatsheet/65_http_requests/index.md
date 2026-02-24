@@ -30,6 +30,33 @@ tags:
   - 함정
   - Performance
   - 성능
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - HTML
+  - Deployment
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - 배포
 ---
 HTTP 요청은 API 연동과 웹 데이터 수집의 기본입니다. 이 치트시트는 requests 라이브러리의 핵심 패턴(GET/POST/JSON), 세션, 타임아웃, 에러 핸들링과 urllib 표준 라이브러리 기본을 정리합니다.
 

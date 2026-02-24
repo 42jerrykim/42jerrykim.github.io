@@ -33,6 +33,30 @@ tags:
   - Memory
   - C++
   - Compiler
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
 ---
 `sys` 모듈은 **파이썬 인터프리터와 런타임 환경**에 접근합니다. 명령행 인자, 모듈 시스템, 표준 스트림, 인터프리터 설정 등을 다룹니다.
 

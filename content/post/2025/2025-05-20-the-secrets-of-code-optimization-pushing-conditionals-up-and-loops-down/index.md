@@ -25,6 +25,36 @@ tags:
   - Data-Structures
   - Documentation
   - Clean-Architecture
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - CSharp
+  - Git
+  - GitHub
+  - Stack
+  - HTML
+  - ChatGPT
+  - AI
+  - Guide
+  - Productivity
+  - 생산성
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Best-Practices
+  - Open-Source
+  - 오픈소스
+  - Innovation
 description: "조건문과 반복문을 최적화하는 방법에 대해 설명한다. 조건문은 함수 내부가 아닌 호출부로 이동시켜 코드의 복잡성을 줄이고, 반복문은 하위 레벨로 내리거나 배치 처리하여 성능을 향상시킬 수 있다. 이러한 접근은 코드의 가독성과 유지보수성을 높이는 데 기여한다."
 image: index.png
 ---

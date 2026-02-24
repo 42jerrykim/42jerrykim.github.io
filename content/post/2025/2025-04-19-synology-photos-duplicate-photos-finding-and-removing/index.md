@@ -25,6 +25,36 @@ tags:
 - 리뷰
 - Markdown
 - 마크다운
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Career
+- 커리어
+- Workflow
+- 워크플로우
+- Migration
+- 마이그레이션
+- Hardware
+- 하드웨어
 description: "Synology Photos의 AI 기능을 활용하여 중복 사진을 쉽게 찾고 제거하는 방법을 안내한다. 이 기능을 통해 비슷한 사진들을 자동으로 감지하고 스택으로 묶어주어, 사용자는 중복 사진을 간편하게 확인하고 삭제할 수 있다. 몇 가지 간단한 단계만 따라 하면, 깔끔한 사진 라이브러리를 유지할 수 있다."
 image: "image03.png"
 ---

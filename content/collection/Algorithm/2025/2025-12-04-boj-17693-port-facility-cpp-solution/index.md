@@ -35,6 +35,29 @@ tags:
   - Problem-Solving
   - Implementation
   - Edge-Cases
+  - 구현
+  - Coding-Test
+  - 코딩테스트
+  - Optimization
+  - 최적화
+  - 문제해결
+  - Code-Quality
+  - 코드품질
+  - Go
+  - .NET
+  - Git
+  - GitHub
+  - Sorting
+  - Tree
+  - Stack
+  - Queue
+  - Memory
+  - 엣지케이스
+  - Testing
+  - 테스트
+  - Documentation
+  - 문서화
+  - Best-Practices
 image: "wordcloud.png"
 ---
 

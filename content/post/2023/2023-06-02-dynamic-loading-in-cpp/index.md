@@ -29,6 +29,31 @@ tags:
 - Windows
 - Memory
 - Compiler
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Career
+- 커리어
+- Workflow
 title: '[C/C++] C++의 동적 로딩(Dynamic loading) 이해하기'
 ---
 동적 로딩(Dynamic loading)은 런타임에 프로그램에서 코드 모듈을 로드하고 언로드할 수 있는 C++의 강력한 기능입니다. 이 기능은 공유 라이브러리의 동적 로딩을 가능하게 하는 함수 집합인 dlopen API를 통해 제공됩니다.

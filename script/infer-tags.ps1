@@ -4,12 +4,12 @@
 .PARAMETER DryRun
     Show what would change without modifying files.
 .PARAMETER MinTags
-    Minimum number of tags a file should have. Default: 20.
+    Minimum number of tags a file should have. Default: 50.
 #>
 [CmdletBinding()]
 param(
     [switch]$DryRun,
-    [int]$MinTags = 20
+    [int]$MinTags = 50
 )
 
 $ErrorActionPreference = 'Stop'
@@ -18,6 +18,7 @@ $taxonomyPath = Join-Path $root 'data\tags.yaml'
 $contentRoot  = Join-Path $root 'content'
 $pathMapTsv   = Join-Path $PSScriptRoot 'path-tag-map.tsv'
 $kwMapTsv     = Join-Path $PSScriptRoot 'keyword-tag-map.tsv'
+$fallbackTsv  = Join-Path $PSScriptRoot 'fallback-tag-pool.tsv'
 
 $approvedTags = [System.Collections.Generic.HashSet[string]]::new(
     [System.StringComparer]::OrdinalIgnoreCase
@@ -48,6 +49,18 @@ foreach ($line in (Get-Content $kwMapTsv -Encoding UTF8)) {
     }
 }
 Write-Host "Loaded $($keywordTagMap.Count) keyword tag mappings" -ForegroundColor Cyan
+
+# Load fallback tag pool from TSV
+$fallbackTagMap = [ordered]@{}
+if (Test-Path $fallbackTsv) {
+    foreach ($line in (Get-Content $fallbackTsv -Encoding UTF8)) {
+        $parts = $line -split "`t"
+        if ($parts.Count -ge 2) {
+            $fallbackTagMap[$parts[0]] = $parts[1..($parts.Count - 1)]
+        }
+    }
+    Write-Host "Loaded $($fallbackTagMap.Count) fallback tag pools" -ForegroundColor Cyan
+}
 
 $files = Get-ChildItem $contentRoot -Recurse -Filter 'index.md'
 $filesAugmented = 0
@@ -138,6 +151,26 @@ foreach ($f in $files) {
         if ($searchText -match $kv.Key) {
             foreach ($kt in $kv.Value) {
                 if ($approvedTags.Contains($kt) -and $seen.Add($kt)) { $newTags.Add($kt) }
+            }
+        }
+    }
+
+    # Source 5: Fallback pool when below MinTags
+    if ($newTags.Count -lt $MinTags -and $fallbackTagMap.Count -gt 0) {
+        $fallbackPool = $null
+        foreach ($pathKey in $fallbackTagMap.Keys) {
+            if ($pathKey -eq 'default') { continue }
+            if ($rel -match $pathKey) {
+                $fallbackPool = $fallbackTagMap[$pathKey]
+                break
+            }
+        }
+        if ($null -eq $fallbackPool) { $fallbackPool = $fallbackTagMap['post\\'] }
+        foreach ($pool in @($fallbackPool, $fallbackTagMap['default'])) {
+            if ($null -eq $pool -or $newTags.Count -ge $MinTags) { break }
+            foreach ($ft in $pool) {
+                if ($newTags.Count -ge $MinTags) { break }
+                if ($approvedTags.Contains($ft) -and $seen.Add($ft)) { $newTags.Add($ft) }
             }
         }
     }

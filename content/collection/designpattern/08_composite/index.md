@@ -33,6 +33,32 @@ tags:
   - Windows
   - File-System
   - Linux
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Documentation
+  - 문서화
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - SOLID
+  - Encapsulation
+  - 캡슐화
+  - Polymorphism
+  - 다형성
+  - Composition
+  - 합성
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
+  - 테스트
+  - Performance
+  - 성능
+  - Education
+  - 교육
 ---
 
 컴포지트 패턴(Composite Pattern)은 객체들을 트리 구조로 구성하여 부분-전체 계층을 표현하는 구조적 디자인 패턴이다. 이 패턴을 사용하면 클라이언트가 단일 객체(Leaf)와 복합 객체(Composite)를 동일하게 다룰 수 있어, 재귀적 구조를 단순하고 일관되게 처리할 수 있다.

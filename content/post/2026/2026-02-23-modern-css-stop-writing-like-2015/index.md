@@ -29,6 +29,36 @@ tags:
   - Markdown
   - 마크다운
   - Docker
+  - Guide
+  - Productivity
+  - 생산성
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Best-Practices
+  - Documentation
+  - 문서화
+  - Open-Source
+  - 오픈소스
+  - Innovation
+  - 혁신
+  - Troubleshooting
+  - 트러블슈팅
+  - Configuration
+  - 설정
+  - How-To
+  - Tips
+  - Comparison
+  - 비교
+  - Career
+  - 커리어
+  - Workflow
+  - 워크플로우
+  - Migration
+  - 마이그레이션
+  - Hardware
+  - 하드웨어
 ---
 
 CSS는 어떻게 보면 단순해 보이지만, 오랫동안 "이상한 방식"으로 무언가를 해결해야 했던 언어이기도 하다. 가운데 정렬 하나를 위해 `position: absolute`와 `transform: translate(-50%, -50%)`를 쓰거나, 요소를 나란히 배치하기 위해 `float`을 쓰고 그 뒤를 `clearfix`로 청소해야 했던 시절이 있었다. 그러나 2025년을 기준으로 CSS는 완전히 달라졌다. JavaScript 의존도를 줄이고, Sass 같은 전처리기 없이도 깔끔한 코드를 작성할 수 있는 수준으로 발전했다. 이 글에서는 "예전에는 이렇게 했지만, 이제는 이렇게 한다"는 방식으로 현대 CSS의 핵심 기능들을 초보자도 이해할 수 있도록 설명한다.

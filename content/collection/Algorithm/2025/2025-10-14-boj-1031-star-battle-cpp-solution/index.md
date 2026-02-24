@@ -35,6 +35,28 @@ tags:
   - 튜토리얼
   - Pitfalls
   - 함정
+  - Competitive-Programming
+  - Problem-Solving
+  - Time-Complexity
+  - Coding-Test
+  - 코딩테스트
+  - Data-Structures
+  - 자료구조
+  - Optimization
+  - 최적화
+  - 문제해결
+  - Code-Quality
+  - 코드품질
+  - Go
+  - .NET
+  - Git
+  - GitHub
+  - Queue
+  - Memory
+  - Testing
+  - 테스트
+  - Documentation
+  - 문서화
 image: "wordcloud.png"
 ---
 

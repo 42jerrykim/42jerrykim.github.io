@@ -35,6 +35,27 @@ tags:
 - 게임
 - History
 - 역사
+- Guide
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Career
 teaser: /assets/images/undefined/teaser.jpg
 title: '[C#] C# 언어 둘러보기'
 ---

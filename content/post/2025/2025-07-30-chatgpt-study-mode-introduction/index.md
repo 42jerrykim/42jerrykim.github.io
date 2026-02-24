@@ -28,6 +28,34 @@ tags:
 - 리뷰
 - Markdown
 - 마크다운
+- Guide
+- Productivity
+- 생산성
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
+- Comparison
+- 비교
+- Career
+- 커리어
+- Workflow
+- 워크플로우
+- Migration
+- 마이그레이션
+- Hardware
+- 하드웨어
+- Mobile
 description: "OpenAI가 출시한 ChatGPT Study Mode는 학습에 특화된 AI 튜터 기능으로, 학생들이 더 효과적으로 학습할 수 있도록 도와주는 혁신적인 교육 도구이다."
 image: index.png
 ---

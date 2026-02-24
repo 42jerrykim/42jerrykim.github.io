@@ -30,6 +30,35 @@ tags:
   - 구현
   - History
   - 역사
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Documentation
+  - 문서화
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - SOLID
+  - Encapsulation
+  - 캡슐화
+  - Polymorphism
+  - 다형성
+  - Composition
+  - 합성
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
+  - 테스트
+  - Performance
+  - 성능
+  - Education
+  - 교육
+  - Tutorial
+  - 튜토리얼
+  - Guide
 ---
 
 중재자 패턴(Mediator Pattern)은 객체들 간의 직접적인 통신을 제한하고, 중재자 객체를 통해서만 상호작용하도록 하는 행위 디자인 패턴이다. 이 패턴을 사용하면 객체 간의 복잡한 의존 관계를 줄이고, 시스템의 결합도를 낮출 수 있다.

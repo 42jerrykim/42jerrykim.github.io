@@ -31,6 +31,32 @@ tags:
   - 액션
   - Science
   - Accounting
+  - Error-Handling
+  - 에러처리
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Clean-Code
+  - 클린코드
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Logging
+  - 로깅
+  - Configuration
+  - 설정
+  - Guide
+  - 가이드
+  - Deployment
+  - 배포
+  - Automation
+  - 자동화
 ---
 `decimal`은 **부동소수점 오차 없는 십진 연산**을, `fractions`는 **분수 연산**을 제공합니다. 금융 계산, 과학 계산 등 정밀도가 중요한 곳에서 사용합니다.
 

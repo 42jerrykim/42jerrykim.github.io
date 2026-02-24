@@ -34,6 +34,27 @@ tags:
 - 전쟁
 - Self-Hosted
 - Process
+- Guide
+- Productivity
+- 생산성
+- Education
+- 교육
+- Reference
+- 참고
+- Best-Practices
+- Documentation
+- 문서화
+- Open-Source
+- 오픈소스
+- Innovation
+- 혁신
+- Troubleshooting
+- 트러블슈팅
+- Configuration
+- 설정
+- How-To
+- Tips
+- Comparison
 title: '[Blockchain] 제로 지식 증명(ZKP) 완벽 가이드'
 ---
 

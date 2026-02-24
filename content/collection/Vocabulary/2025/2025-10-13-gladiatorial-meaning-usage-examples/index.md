@@ -35,6 +35,28 @@ tags:
   - 역사
   - Culture
   - 문화
+  - Antonym
+  - 반의어
+  - Pronunciation
+  - 발음
+  - Daily-Life
+  - 일상표현
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Business-English
+  - 학술영어
+  - Comparison
+  - 비교
+  - Tips
+  - How-To
+  - Beginner
+  - Advanced
+  - Markdown
+  - 마크다운
+  - Technology
+  - 기술
 image: wordcloud.png
 ---
 
