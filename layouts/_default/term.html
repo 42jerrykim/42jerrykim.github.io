@@ -11,7 +11,7 @@
 <ul>{{- range .Pages -}}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{- end -}}</ul>
 <a href="/">Home</a></noscript>
 <script>
-var S={n:{{ .Site.Title | jsonify | safeJS }},d:{{ .Site.Params.sidebar.subtitle | jsonify | safeJS }},a:{{- $avatar := resources.Get (.Site.Params.sidebar.avatar.src) -}}{{- $avatarResized := $avatar.Resize "300x webp" -}}{{ $avatarResized.RelPermalink | jsonify | safeJS }}};
+var S={n:{{ .Site.Title | jsonify | safeJS }},d:{{ .Site.Params.sidebar.subtitle | jsonify | safeJS }},a:{{- $avatar := resources.Get (.Site.Params.sidebar.avatar.src) -}}{{- $avatarResized := $avatar.Resize "300x webp" -}}{{ $avatarResized.RelPermalink | jsonify | safeJS }},fs:{{ .Site.Params.footer.since }}};
 var T={t:{{ .Title | jsonify | safeJS }},s:{{ .Site.Title | jsonify | safeJS }},c:{{ len .Pages }},p:[
 {{- range .Pages -}}[{{ .Title | jsonify | safeJS }},{{ .RelPermalink | jsonify | safeJS }},"{{ .Date.Format "2006-01-02" }}",{{ with .Params.description }}{{ . | jsonify | safeJS }}{{ else }}""{{ end }}],
 {{- end -}}]};

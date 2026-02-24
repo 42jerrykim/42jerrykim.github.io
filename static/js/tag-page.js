@@ -119,6 +119,14 @@ h+='<section class="article-list--compact" id="article-list">';
 h+=buildArticles(1);
 h+='</section>';
 h+=buildPagination(1);
+var yr=new Date().getFullYear();
+h+='<footer class="site-footer"><section class="copyright">&copy; ';
+if(s.fs&&s.fs!==yr)h+=s.fs+' - ';
+h+=yr+' '+esc(s.n);
+h+='</section><section class="powerby">';
+h+='Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />';
+h+='Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.2">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>';
+h+='</section></footer>';
 h+='</main>';
 return h;
 }
@@ -170,11 +178,6 @@ var wrap=document.createElement('div');
 wrap.className='container main-container flex on-phone--column extended';
 wrap.innerHTML=buildSidebar()+buildRightSidebar()+buildMain();
 document.body.appendChild(wrap);
-
-var ft=document.createElement('footer');
-ft.className='footer';
-ft.innerHTML='Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://git.io/Je09Y" target="_blank" rel="noopener">Stack</a>';
-document.body.appendChild(ft);
 
 var toggleBtn=document.getElementById('toggle-menu');
 if(toggleBtn){
