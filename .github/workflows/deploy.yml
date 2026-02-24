@@ -69,6 +69,16 @@ jobs:
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"   
 
+      - name: Remove original PNG files (keep WebP-converted versions)
+        run: |
+          echo "=== Before cleanup ==="
+          du -sh public/
+          find public/post -type f -name '*.png' ! -name '*_hu_*' -delete
+          find public/tags -type d -name 'page' -exec rm -rf {} + 2>/dev/null || true
+          find public/categories -type d -name 'page' -exec rm -rf {} + 2>/dev/null || true
+          echo "=== After cleanup ==="
+          du -sh public/
+
       # Pagefind 인덱스 생성
       - name: Run Pagefind
         run: npx pagefind --site public --glob "post/**/*.html" --verbose

@@ -24,7 +24,13 @@ section = ["HTML"]
 taxonomy = ["HTML"]
 term = ["HTML"]
 
+[imaging]
+quality = 80
+resampleFilter = "Lanczos"
+
+[imaging.exif]
+disableDate = true
+disableLatLong = true
+
 [services.rss]
 limit = 50
-
-
