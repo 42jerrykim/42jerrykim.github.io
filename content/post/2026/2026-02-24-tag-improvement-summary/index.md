@@ -1,5 +1,5 @@
 ---
-title: "블로그 태그 50개 이상 확장 - Fallback 풀 기반 자동 보강"
+title: "[Hugo] 블로그 태그 50개 이상 확장 - Fallback 풀 기반 자동 보강"
 description: "42jerrykim.github.io 블로그의 모든 게시물에 태그를 50개 이상으로 확장한 개선 작업을 정리한다. data/tags.yaml 확장, fallback-tag-pool.tsv 도입, infer-tags.ps1 수정을 통해 849개 파일에 20,460개 태그를 추가했다."
 date: 2026-02-24
 lastmod: 2026-02-24
