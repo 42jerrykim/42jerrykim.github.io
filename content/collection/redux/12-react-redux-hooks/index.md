@@ -3,7 +3,20 @@ draft: true
 title: "[Redux] 12. React-Redux Hooks - useSelector와 useDispatch"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "React", "React-Redux", "Hooks", "useSelector", "useDispatch", "React Hooks", "리액트훅스", "상태관리", "State Management", "웹개발", "프론트엔드", "리액트", "리덕스", "Modern Redux", "현대적리덕스", "Functional Components", "함수형컴포넌트", "Custom Hooks", "커스텀훅스", "useStore", "TypeScript", "타입스크립트", "JavaScript", "자바스크립트", "개발", "코딩", "Redux Patterns", "리덕스패턴", "Performance", "성능", "Optimization", "최적화", "Equality Function", "비교함수", "Memoization", "메모이제이션", "Best Practices", "모범사례", "Clean Code", "클린코드", "Redux Tutorial", "리덕스튜토리얼", "개발자가이드"]
+tags:
+- React
+- 프론트엔드
+- TypeScript
+- JavaScript
+- Implementation
+- Performance
+- 성능
+- Optimization
+- 최적화
+- Memoization
+- Best-Practices
+- Clean-Code
+- 클린코드
 description: "현대적인 React-Redux Hooks 완벽 마스터. useSelector로 간결한 상태 조회, useDispatch로 액션 발송, 성능 최적화까지 connect HOC를 대체하는 Hooks API를 실전 예제로 학습합니다"
 series: ["Redux 완전 정복"]
 series_order: 12

@@ -11,60 +11,30 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-8131
-- Ploughing
-- POI
-- POI 2005/2006
-- Sliding Window
-- 슬라이딩윈도우
-- Two Pointers
-- 투포인터
+- Sliding-Window
+- Two-Pointers
 - Greedy
 - 그리디
-- Prefix Sum
-- 누적합
-- 2D Prefix Sum
-- 2차원누적합
-- Submatrix Sum
-- 부분행렬합
-- Border Removal
-- 경계 제거
-- Rectangle
-- 직사각형
-- Row Removal
-- 행 제거
-- Column Removal
-- 열 제거
-- Window Expansion
-- 윈도우 확장
-- Check Function
-- 검증 함수
-- Prefix Query
-- 구간합
-- O((N+M)^2)
-- 시간복잡도 O((N+M)^2)
-- Time Complexity
+- Prefix-Sum
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
 - Testing
 - 테스트
 - C++
-- cpp
 - Implementation
 - 구현
 image: "wordcloud.png"

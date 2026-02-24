@@ -7,48 +7,16 @@ description: "파이썬 struct 모듈과 bytes를 빠르게 쓰기 위한 치트
 lastmod: 2026-01-18
 collection_order: 43
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - struct
-  - bytes
-  - bytearray
-  - binary
-  - 바이너리
-  - pack
-  - unpack
-  - 패킹
-  - 언패킹
-  - format
-  - 포맷
-  - endian
-  - 엔디언
-  - big-endian
-  - little-endian
-  - network
-  - 네트워크
-  - protocol
-  - 프로토콜
-  - header
-  - 헤더
-  - parsing
-  - 파싱
-  - file-format
-  - 파일포맷
-  - C-struct
-  - standard-library
-  - 표준라이브러리
-  - best-practices
-  - 베스트프랙티스
+  - Quick-Reference
+  - Networking
+  - Implementation
+  - Best-Practices
   - pitfalls
   - 함정
-  - low-level
-  - 저수준
 ---
 struct는 파이썬 값과 C 구조체/바이너리 데이터 간의 변환을 제공합니다. 이 치트시트는 pack/unpack, 포맷 문자, 엔디언, 파일 헤더 파싱 패턴을 정리합니다.
 

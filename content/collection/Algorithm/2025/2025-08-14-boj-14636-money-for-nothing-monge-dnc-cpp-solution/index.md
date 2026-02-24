@@ -11,71 +11,39 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-14636
-- cpp
 - C++
 - Greedy
 - 그리디
-- Divide and Conquer
+- Divide-and-Conquer
 - 분할정복
-- Divide and Conquer Optimization
-- 분할정복 최적화
-- Monge
-- Monge Array
-- Totally Monotone Matrix
-- 완전단조행렬
-- Pareto Frontier
-- 파레토 프론티어
-- Non-dominated
-- 비지배점
-- Envelope
-- 경계선
 - Sorting
 - 정렬
-- Two-phase Filtering
-- 2단계 전처리
 - Optimization
 - 최적화
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Complexity Analysis
-- 복잡도 분석
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
-- Competitive Programming
+- 함정
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Invariant
-- 불변식
-- Fast IO
-- 빠른 입출력
-- Overflow
-- 오버플로
-- __int128
-- 128bit
-- Long Long
-- long long
-- Coordinate Compression
-- 좌표 압축
-- Profit Maximization
-- 이익 최대화
+- IO
+- Coordinate-Compression
+- 좌표압축
 - ICPC
-- World Finals
 image: "wordcloud.png"
 ---
 

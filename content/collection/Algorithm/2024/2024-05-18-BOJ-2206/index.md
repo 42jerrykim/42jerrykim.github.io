@@ -8,6 +8,14 @@ header:
 tags:
 - BFS
 - Graph
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Python
 title: '[Algorithm] C++ 백준 2206번 : 벽 부수고 이동하기'
 
 ---

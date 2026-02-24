@@ -10,96 +10,13 @@ categories:
 - Techno Thriller
 - Paramount Pictures
 tags:
-- Christopher McQuarrie
-- Tom Cruise
-- Hayley Atwell
-- Ving Rhames
-- Simon Pegg
-- Esai Morales
-- Pom Klementieff
-- Henry Czerny
-- Angela Bassett
-- Hannah Waddingham
-- Nick Offerman
-- Greg Tarzan Davis
-- Shea Whigham
-- Mark Gatiss
-- Charles Parnell
-- Rolf Saxon
-- Katy O'Brian
-- Tramell Tillman
-- Lorne Balfe
-- Eddie Hamilton
-- Fraser Taggart
-- Ethan Hunt
-- Grace
-- Benji Dunn
-- Luther Stickell
-- Gabriel
-- Paris
-- Eugene Kittridge
-- Erika Sloane
-- Jasper Briggs
-- William Donloe
-- Tapisa
-- Theo Dega
-- The Entity
-- Sevastopol Submarine
-- Podkova
-- Poison Pill
-- Doomsday Vault
-- Mount Weather
-- Saint Matthew Island
-- Bering Sea
-- USS George H.W. Bush
-- Ohio-class Submarine
-- Biplane Stunt
-- Boeing Stearman
-- Nuclear Crisis
-- AI Apocalypse
-- Cyber Warfare
-- Deep Sea Diving
-- Aerial Combat
-- IMF Mission
-- Spy Action
-- Physical Stunts
-- IMAX
-- Dolby Cinema
-- ScreenX
-- 4DX
-- Paramount Pictures
-- Skydance Media
-- Cannes Film Festival
-- Box Office Success
-- Series Finale
-- Legacy Character
-- Sacrifice Theme
-- Trust and Betrayal
-- Human vs AI
-- Analog Strategy
-- 크리스토퍼 맥쿼리
-- 톰 크루즈
-- 해일리 앳웰
-- 빙 레임스
-- 사이먼 페그
-- 에사이 모랄레스
-- 첩보 액션
-- 테크노 스릴러
-- AI 위협
-- 핵전쟁 위기
-- 심해 잠수
-- 복엽기 액션
-- 물리 스턴트
-- 시리즈 완결
-- 루터 희생
-- 팀워크
-- 신뢰
-- 선택
-- 엔티티
-- 포드코바
-- 포이즌 필
-- 세바스토폴호
-- 둠스데이 볼트
+- Movie
+- Action
+- 영화
+- Review
+- 리뷰
+- Tree
+- Thriller
 image: "poster.png"
 ---
 

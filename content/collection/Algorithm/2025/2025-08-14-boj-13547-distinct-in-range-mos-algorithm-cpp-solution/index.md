@@ -11,37 +11,29 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-13547
-- cpp
 - C++
 - Python
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Complexity Analysis
-- 복잡도 분석
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Testing
 - 테스트
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
-- Invariant
-- 불변식
 - Greedy
 - 그리디
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
 - Graph
 - 그래프
@@ -49,40 +41,24 @@ tags:
 - 트리
 - BFS
 - DFS
-- Shortest Path
+- Shortest-Path
 - 최단경로
-- Binary Search
+- Binary-Search
 - 이분탐색
-- Two Pointers
-- 투포인터
-- Sliding Window
-- 슬라이딩윈도우
+- Two-Pointers
+- Sliding-Window
 - Hashing
 - 해싱
 - String
 - 문자열
 - Geometry
-- 기하
 - Math
 - 수학
-- Modulo
+- Modular-Arithmetic
 - 모듈러
-- Mo's Algorithm
-- Mo
-- Offline Queries
-- 오프라인 쿼리
-- Distinct Count
-- 서로다른값개수
-- Frequency Array
-- 빈도배열
-- Coordinate Compression
+- Range-Query
+- Coordinate-Compression
 - 좌표압축
-- Sqrt Decomposition
-- 제곱근분할
-- Query Reordering
-- 쿼리정렬
-- Range Query
-- 구간쿼리
 - Array
 - 배열
 - Optimization

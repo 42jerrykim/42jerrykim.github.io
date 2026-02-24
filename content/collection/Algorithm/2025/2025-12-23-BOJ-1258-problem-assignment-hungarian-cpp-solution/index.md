@@ -10,78 +10,32 @@ categories:
 - "Matching"
 - "Hungarian Algorithm"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "1258"
-- "BOJ-1258"
-- "문제 할당"
-- "문제할당"
-- "Problem Assignment"
-- "Assignment Problem"
-- "할당 문제"
-- "Minimum Cost"
-- "최소 비용"
-- "Minimization"
-- "최소화"
-- "Perfect Matching"
-- "완전 매칭"
-- "Matching"
-- "매칭"
-- "Bipartite Matching"
-- "이분 매칭"
-- "Weighted Bipartite Graph"
-- "가중 이분 그래프"
-- "Cost Matrix"
-- "비용 행렬"
-- "Hungarian"
-- "Hungarian Algorithm"
-- "헝가리안 알고리즘"
-- "Kuhn-Munkres"
-- "KM Algorithm"
-- "Dual"
-- "이중 문제"
-- "Potential"
-- "포텐셜"
-- "u v potential"
-- "Reduced Cost"
-- "감소 비용"
-- "Augmenting Path"
-- "증가 경로"
-- "Shortest Path in Equality Graph"
-- "등가 그래프"
-- "Labeling"
-- "라벨링"
-- "O(N^3)"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Optimization"
-- "최적화"
-- "Implementation"
-- "구현"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Matrix"
-- "행렬"
-- "N up to 100"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "STL"
-- "vector"
-- "long long"
-- "Overflow"
-- "오버플로우"
-- "Edge Case"
-- "엣지 케이스"
-- "1-indexed"
-- "1인덱스"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- String
+- Bipartite-Matching
+- Network-Flow
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Optimization
+- 최적화
+- Implementation
+- 구현
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Matrix
+- 행렬
+- C++
+- Array
+- Edge-Cases
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

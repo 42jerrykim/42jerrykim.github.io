@@ -7,79 +7,34 @@ categories:
 - "Algorithm"
 - "Geometry"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "백준"
-- "Problem-3878"
-- "cpp"
-- "C++"
-- "Geometry"
-- "기하"
-- "Convex Hull"
-- "볼록껍질"
-- "Line Separation"
-- "직선분리"
-- "Linear Separability"
-- "선형분리"
-- "Polygon"
-- "다각형"
-- "Polygon Intersection"
-- "다각형교차"
-- "Segment Intersection"
-- "선분교차"
-- "CCW"
-- "Cross Product"
-- "외적"
-- "Orientation"
-- "방향성"
-- "Point in Polygon"
-- "점내부판정"
-- "Monotone Chain"
-- "모노톤체인"
-- "Computational Geometry"
-- "계산기하"
-- "Proof of Correctness"
-- "정당성 증명"
-- "Edge Cases"
-- "코너 케이스"
-- "Pitfalls"
-- "실수 포인트"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Implementation"
-- "구현"
-- "Optimization"
-- "최적화"
-- "Testing"
-- "테스트"
-- "Invariant"
-- "불변식"
-- "Separation Theorem"
-- "분리정리"
-- "Separating Line"
-- "분리직선"
-- "Strict Separation"
-- "엄격분리"
-- "Touching Case"
-- "접촉케이스"
-- "Degenerate Case"
-- "특이케이스"
-- "Integer Coordinates"
-- "정수좌표"
-- "Robustness"
-- "견고성"
-- "ICPC"
-- "Regional-2009-Tokyo"
-- "Asia Regional"
-- "Editorial"
-- "에디토리얼"
-- "Code Review"
-- "코드리뷰"
-- "Competitive Programming"
-- "경쟁프로그래밍"
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- C++
+- Geometry
+- Computational-Geometry
+- Edge-Cases
+- 엣지케이스
+- Pitfalls
+- 함정
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Implementation
+- 구현
+- Optimization
+- 최적화
+- Testing
+- 테스트
+- ICPC
+- Editorial
+- 에디토리얼
+- Code-Review
+- 코드리뷰
+- Competitive-Programming
+- 경쟁프로그래밍
 image: "wordcloud.png"
 ---
 

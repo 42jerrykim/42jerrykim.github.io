@@ -6,12 +6,16 @@ date: "2024-10-10T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- Mathematics
+- Math
 - Sorting
 - Combinatorics
-- ExponentiationBySquaring
-- ModuloArithmetic
-- O(NlogN)
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 title: '[Algorithm] C++/Python 백준 15824번 : 너 봄에는 캡사이신이 맛있단다'
 ---
 

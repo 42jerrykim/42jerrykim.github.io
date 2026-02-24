@@ -7,9 +7,12 @@ description: install Ubuntu 16.04 on LattePanda Alpha
 redirect_from:
 - /2018/12/06/
 tags:
-- lattepanda
-- ubuntu
 - linux
+- Go
+- Windows
+- Security
+- Process
+- http
 title: Install Ubuntu 16.04 on LattePanda Alpha
 ---
 

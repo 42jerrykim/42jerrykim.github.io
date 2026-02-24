@@ -4,14 +4,13 @@ description: "git-story는 Git 저장소의 커밋 히스토리를 바탕으로 
 date: "2022-07-26T00:00:00Z"
 header:
   teaser: /assets/images/undefined/git-story.png
-tag:
+tags:
 - Git
-- git-story
-- Commit
 - History
 - Animation
 - 애니메이션
-- 히스토리
+- GitHub
+- Photography
 title: '[Git] git-story - 커밋 히스토리를 애니메이션으로 만들어 설명하기'
 ---
 

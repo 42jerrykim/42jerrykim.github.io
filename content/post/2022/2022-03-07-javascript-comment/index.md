@@ -4,20 +4,13 @@ description: "자바스크립트에서 주석(Comment)을 작성하는 방법과
 categories:
 - Javascript
 date: "2022-03-07T00:00:00Z"
-tag:
+tags:
 - Javascript
-- Comment
-- 주석
-- 개발
-- 코드
+- Implementation
 - HTML
 - 웹
-- 웹 브라우저
-- 브라우저
-- WebBrowser
 - Web
-- Browser
-- JS
+- Clean-Code
 title: '[Javascript] Javascript에 주석(Comment) 넣기'
 ---
 

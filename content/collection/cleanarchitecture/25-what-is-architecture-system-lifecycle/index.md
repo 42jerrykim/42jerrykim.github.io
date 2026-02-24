@@ -7,64 +7,22 @@ title: "[Clean Architecture] 25. 아키텍처란?"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - System Design
-  - 시스템 설계
-  - Development
-  - 개발
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Implementation
   - Deployment
   - 배포
-  - Operation
-  - 운영
-  - Maintenance
-  - 유지보수
-  - Decision
-  - 결정
-  - Policy
-  - 정책
-  - Details
-  - 세부사항
-  - Team Structure
-  - 팀 구조
-  - Component
-  - 컴포넌트
-  - Independence
-  - 독립성
-  - Options
-  - 선택지
-  - Architect
-  - 아키텍트
-  - Use Case
-  - 유스케이스
-  - Framework
-  - 프레임워크
+  - 코드품질
+  - Security
   - Database
   - 데이터베이스
-  - Delay Decision
-  - 결정 지연
-  - Programmer
-  - 프로그래머
-  - Software Design
-  - 소프트웨어 설계
-  - Build
-  - 빌드
-  - Release
-  - 릴리스
+  - CI-CD
   - Scalability
   - 확장성
   - Performance
   - 성능
-  - High Level
-  - 고수준
-  - Low Level
-  - 저수준
-  - Business Rules
-  - 비즈니스 규칙
-  - Technical Details
-  - 기술 세부사항
 ---
 
 소프트웨어 아키텍처란 무엇인가? 마틴은 아키텍처를 시스템의 **형태를 결정**하고, 시스템의 **생명주기를 지원**하는 것으로 정의한다.

@@ -6,56 +6,21 @@ date: "2024-08-27T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-27-two-sum.png
 tags:
-- TwoSum
-- coding
+- Implementation
 - algorithm
-- DataStructures
-- ProblemSolving
+- Data-Structures
+- Problem-Solving
 - JavaScript
 - Python
 - Java
 - C++
-- C#
-- efficiency
-- HashMap
-- BruteForce
+- CSharp
+- Performance
+- Brute-Force
 - optimization
-- CodingChallenge
-- InterviewQuestions
-- SoftwareEngineering
-- arrays
-- indices
-- TargetSum
-- ComplexityAnalysis
-- TimeComplexity
-- SpaceComplexity
-- CodingSkills
-- AlgorithmDesign
-- programming
-- TechInterview
-- CompetitiveProgramming
-- CodingInterview
-- AlgorithmicThinking
-- problem-solving skills
-- SoftwareDevelopment
-- CodingBestPractices
-- DataManipulation
-- AlgorithmEfficiency
-- CodeOptimization
-- SoftwareArchitecture
-- AlgorithmImplementation
-- CodingTechniques
-- SoftwareTesting
+- Software-Architecture
+- Testing
 - debugging
-- CodeReview
-- PerformanceTuning
-- AlgorithmAnalysis
-- CodingStandards
-- SoftwareDesign
-- ProgrammingLanguages
-- AlgorithmChallenges
-- CodingExercises
-- AlgorithmTutorials
 title: '[Algorithm] 두 수의 합(TwoSum)'
 ---
 

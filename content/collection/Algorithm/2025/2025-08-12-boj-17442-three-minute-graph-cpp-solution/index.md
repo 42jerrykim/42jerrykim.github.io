@@ -7,72 +7,32 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "17442"
-- "삼분 그래프"
-- "Three Minute Graph"
-- "Planar Graph"
-- "평면 그래프"
-- "Dual Graph"
-- "듀얼 그래프"
-- "Euler Formula"
-- "오일러 공식"
-- "Connected Components"
-- "연결 성분"
-- "Faces"
-- "면"
-- "Edge Split"
-- "간선 분할"
-- "Vertical Line Cuts"
-- "수직선 절단"
-- "Inclusion-Exclusion"
-- "포함 배제"
-- "Merge Sort Tree"
-- "머지 소트 트리"
-- "Segment Tree"
-- "세그먼트 트리"
-- "2D Range Query"
-- "2D 질의"
-- "Range Counting"
-- "범위 카운팅"
-- "Coordinate Compression"
-- "좌표 압축"
-- "Angle Sort"
-- "각 정렬"
-- "CCW"
-- "외적"
-- "Union-Find"
-- "DSU"
-- "Disjoint Set Union"
-- "자료구조"
-- "Data Structure"
-- "Graph Algorithms"
-- "그래프 알고리즘"
-- "Geometry"
-- "기하"
-- "Offline Query"
-- "오프라인 질의"
-- "Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "Implementation"
-- "구현"
-- "Debugging"
-- "디버깅"
-- "Competitive Programming"
-- "CP"
-- "ICPC"
-- "SNUPC"
-- "SNU"
-- "서울대학교"
+- BOJ
+- Baekjoon
+- 백준
+- Segment-Tree
+- 세그먼트트리
+- Coordinate-Compression
+- 좌표압축
+- Computational-Geometry
+- Disjoint-Set
+- DSU
+- 자료구조
+- Data-Structures
+- Geometry
+- Range-Query
+- Complexity-Analysis
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
+- IO
+- Implementation
+- 구현
+- Debugging
+- 디버깅
+- Competitive-Programming
+- ICPC
 image: "wordcloud.png"
 ---
 

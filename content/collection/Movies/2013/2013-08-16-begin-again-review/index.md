@@ -1,10 +1,11 @@
 ---
 title: "비긴 어게인 (2013) - 음악이 선사하는 다시 시작의 희망"
 date: 2013-08-16
-categories: [Movies]
-tags: [Begin Again, John Carney, Keira Knightley, Mark Ruffalo, Adam Levine, Music, Romance, Drama, 2013]
-
-
+categories:
+- Movies
+tags:
+- Romance
+- Drama
 draft: true
 ---
 

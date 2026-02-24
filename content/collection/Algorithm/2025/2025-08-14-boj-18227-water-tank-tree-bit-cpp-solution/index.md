@@ -11,74 +11,36 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-18227
-- cpp
 - C++
-- Data Structures
+- Data-Structures
 - 자료구조
 - Graph
 - 그래프
 - Tree
 - 트리
-- Rooted Tree
-- 루트 트리
-- Depth
-- 깊이
-- Ancestor
-- 조상
-- Subtree
-- 서브트리
 - DFS
-- Euler Tour
-- 오일러투어
-- DFS Order
-- DFS 순회
-- Tree Flattening
-- 트리 평탄화
-- Fenwick Tree
-- 펜윅트리
+- Euler-Tour
+- Fenwick-Tree
 - BIT
-- Binary Indexed Tree
-- Range Sum
-- 구간합
-- Prefix Sum
-- 누적합
-- Range Query
-- 구간 질의
-- Subtree Query
-- 서브트리 질의
-- Point Update
-- 점 업데이트
-- Update
-- 업데이트
-- Query Processing
-- 쿼리 처리
-- Online Queries
-- 온라인 처리
+- Binary-Indexed-Tree
+- Prefix-Sum
+- Range-Query
+- Segment-Tree
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Fast IO
-- 빠른 입출력
-- Long Long
-- 64-bit
-- Overflow
-- 오버플로
+- IO
 image: "wordcloud.png"
 ---
 

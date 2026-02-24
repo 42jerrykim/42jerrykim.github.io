@@ -10,63 +10,15 @@ categories:
   - WebDevelopment
 tags:
   - Hugo
-  - HugoOptimization
-  - HugoBuild
-  - HugoPerformance
-  - HugoPartialCached
-  - HugoTemplateMetrics
-  - HugoImaging
-  - HugoWebP
-  - HugoCSR
-  - HugoTermTemplate
-  - StaticSiteGenerator
-  - SSG
-  - GitHubPages
-  - GitHubActions
-  - CICD
-  - BuildOptimization
-  - BuildPerformance
-  - WebP
-  - ImageOptimization
-  - ImageCompression
-  - ClientSideRendering
-  - CSR
   - JavaScript
   - SEO
-  - noscript
-  - partialCached
-  - templateMetrics
-  - WindowsDefender
-  - Pagefind
-  - RSS
-  - FOUT
-  - GoogleFonts
-  - FontOptimization
-  - preconnect
-  - WebPerformance
-  - FrontendOptimization
-  - ArtifactSize
-  - DeploymentOptimization
   - PowerShell
-  - BuildScript
-  - SegmentBuild
-  - IncrementalBuild
-  - HugoExtended
-  - GoTemplate
-  - safeJS
-  - jsonify
-  - 휴고
-  - 빌드최적화
-  - 정적사이트생성기
-  - 깃헙페이지
-  - 이미지최적화
-  - 빌드성능
-  - 웹성능최적화
-  - 태그페이지최적화
-  - 클라이언트사이드렌더링
-  - 폰트최적화
-  - 배포최적화
-  - 캐싱전략
+  - Optimization
+  - Go
+  - Blog
+  - Git
+  - GitHub
+  - Action
 image: "poster.png"
 ---
 

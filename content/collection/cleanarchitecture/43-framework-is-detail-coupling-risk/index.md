@@ -7,55 +7,21 @@ title: "[Clean Architecture] 43. 프레임워크는 세부사항이다"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Framework
-  - 프레임워크
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
   - Spring
   - Django
-  - Rails
-  - Express
   - React
   - Angular
   - Vue
-  - Library
-  - 라이브러리
-  - Coupling
-  - 결합
-  - Marriage
-  - 결혼
-  - Dependency
-  - 의존성
-  - Risk
-  - 위험
-  - Author
-  - 저자
-  - User
-  - 사용자
-  - Arms Length
-  - 팔 길이
-  - Plugin
-  - 플러그인
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Details
-  - 세부사항
-  - Business Rules
-  - 비즈니스 규칙
-  - Base Class
-  - 기반 클래스
-  - Annotation
-  - 어노테이션
+  - Dependency-Injection
+  - 소프트웨어아키텍처
   - Inheritance
   - 상속
-  - Lock in
-  - 종속
-  - Upgrade
-  - 업그레이드
   - Migration
   - 마이그레이션
   - Technology
-  - 기술
 ---
 
 프레임워크는 아키텍처에서 **세부사항**이다. 프레임워크와 **결혼하지 마라**. 프레임워크를 **팔 길이 거리**에 두어라.

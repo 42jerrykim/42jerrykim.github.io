@@ -5,59 +5,17 @@ categories:
 - CSharp
 - Discards
 tags:
-- C#
-- Discards
-- Tuples
-- Variables
-- CodeReadability
-- LambdaExpressions
-- PatternMatching
-- SwitchExpressions
-- OutParameters
-- NullCoalescing
-- AsyncProgramming
-- ErrorHandling
-- CodeMaintenance
-- Deconstruct
-- IFormatProvider
-- ArgumentNullException
-- Task
-- Console
-- PopulationData
-- CityInformation
-- MethodCalls
-- CodeExamples
-- ProgrammingConcepts
-- SoftwareDevelopment
-- C# Features
-- LanguageReference
-- CodeEfficiency
-- VariableNaming
-- CompilerErrors
+- CSharp
+- Error-Handling
+- Implementation
+- Software-Architecture
 - Debugging
-- CodeStructure
-- ObjectDeconstruction
-- DataTypes
-- ProgrammingBestPractices
-- CodeOptimization
-- C# Syntax
-- ProgrammingLanguages
-- SoftwareEngineering
-- ApplicationDevelopment
-- CodeQuality
-- Readability
-- Maintainability
+- Optimization
+- Code-Quality
+- Clean-Code
 - Performance
-- DevelopmentTools
-- CodingStandards
-- SoftwareDesign
-- CleanCode
-- Object-Oriented Programming
-- FunctionalProgramming
-- C# 7.0
-- C# 8.0
-- C# 9.0
-- C# 10.0
+- OOP
+- Functional-Programming
 image: "tmp_wordcloud.png"
 date: 2024-10-16
 ---

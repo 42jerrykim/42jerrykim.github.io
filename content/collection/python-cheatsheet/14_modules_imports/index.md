@@ -7,58 +7,24 @@ description: "모듈/임포트를 실무에서 안전하게 쓰기 위한 치트
 lastmod: 2026-01-17
 collection_order: 14
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - modules
-  - module
-  - 모듈
-  - packages
-  - package
-  - 패키지
-  - imports
-  - import
-  - 임포트
-  - absolute-import
-  - relative-import
-  - __init__.py
-  - __main__
-  - entrypoint
-  - 엔트리포인트
-  - scripts
-  - 스크립트
-  - sys.path
-  - path
-  - 경로
-  - project-structure
-  - 프로젝트구조
-  - packaging
+  - Quick-Reference
+  - Software-Architecture
+  - Shell
+  - Graph
+  - DevOps
   - 배포
-  - pip
-  - venv
-  - namespace
-  - 네임스페이스
-  - circular-import
-  - 순환참조
-  - best-practices
-  - 베스트프랙티스
+  - Best-Practices
   - pitfalls
   - 함정
-  - standard-library
-  - 표준라이브러리
   - debugging
   - 디버깅
   - clean-code
   - 클린코드
-  - architecture
-  - 아키텍처
-  - typing
-  - 타입힌트
+  - 소프트웨어아키텍처
   - testing
   - 테스트
 ---

@@ -11,80 +11,42 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-16877
-- cpp
 - C++
-- Game Theory
-- 게임 이론
-- Grundy
-- Grundy Numbers
-- Sprague-Grundy
-- 스프라그-그런디
-- Impartial Game
-- 무정 게임
-- Combinatorial Game
-- 조합 게임
-- Nim
-- 님 게임
-- Fibonacci
-- 피보나치
-- Fibonacci Numbers
-- 피보나치 수열
-- Fibonacci Nim
-- 피보나치 님
-- Subtraction Game
-- 서브트랙션 게임
-- Mex
-- 멕스
-- Bitmask
-- 비트마스크
-- Mask Optimization
-- 마스크 최적화
+- Game-Theory
 - DP
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Complexity Analysis
-- 복잡도 분석
-- Proof of Correctness
-- 정당성 증명
-- Invariant
-- 불변식
-- Edge Cases
-- 코너 케이스
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
 - Testing
 - 테스트
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Template
-- 템플릿
 - Debugging
 - 디버깅
-- Binary Search
+- Binary-Search
 - 이분탐색
-- Two Pointers
-- 투포인터
-- Sliding Window
-- 슬라이딩윈도우
+- Two-Pointers
+- Sliding-Window
 - Hashing
 - 해싱
 - String
 - 문자열
 - Geometry
-- 기하
 - Math
 - 수학
 image: "wordcloud.png"

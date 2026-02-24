@@ -9,54 +9,15 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - close-knit
-  - close-knit meaning
-  - close-knit usage
-  - close-knit examples
-  - close-knit adjective
   - 영단어
   - 영어형용사
-  - close-knit 의미
-  - close-knit 용법
-  - close-knit 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - tight-knit
-  - united
-  - cohesive
-  - bonded
-  - intimate
   - family
-  - friendship
-  - community
-  - team
-  - group
-  - bond
-  - unity
-  - 밀접한
-  - 단합된
-  - 친밀한
-  - 강한 유대감
-  - 가족 유대
-  - 친구 관계
-  - 팀 결속력
-  - 커뮤니티
-  - 사회 관계
-  - 관계 표현
-  - 감정 표현
-  - 사람 관계
-  - 결속력
-  - 신뢰
-  - 애정
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

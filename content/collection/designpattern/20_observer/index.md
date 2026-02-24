@@ -9,54 +9,21 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
+  - Design-Pattern
+  - 디자인패턴
   - Observer
-  - 옵저버
-  - Behavioral Pattern
-  - 행위 패턴
   - GoF
-  - Gang of Four
-  - Subject
-  - 주체
-  - Subscriber
-  - 구독자
-  - Publisher
-  - 발행자
-  - Event
-  - 이벤트
-  - Notification
-  - 알림
-  - Loose Coupling
-  - 느슨한 결합
-  - One to Many
-  - 일대다 관계
-  - Push Model
-  - 푸시 모델
-  - Pull Model
-  - 풀 모델
-  - Event Listener
-  - 이벤트 리스너
-  - Callback
-  - 콜백
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Implementation
+  - Software-Architecture
+  - Code-Quality
+  - 코드품질
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - MVC
-  - Reactive Programming
-  - 반응형 프로그래밍
-  - RxJS
-  - Event Driven
-  - 이벤트 기반
+  - CSharp
 ---
 
 옵저버 패턴(Observer Pattern)은 객체 사이에 일대다(one-to-many) 의존 관계를 정의하여, 어떤 객체의 상태가 변할 때 그 객체에 의존하는 모든 객체에게 자동으로 알림을 보내고 갱신하는 행위 디자인 패턴이다. 발행-구독(Pub-Sub) 패턴이라고도 불리며, 이벤트 기반 시스템의 핵심 패턴이다.

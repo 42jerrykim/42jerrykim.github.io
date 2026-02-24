@@ -12,66 +12,14 @@ categories:
 - Design Principles  
 - Programming Philosophy
 tags:
-- Design Patterns
-- Christopher Alexander
-- Gang Of Four
-- Pattern Language
-- Software Architecture
-- Object Oriented Design
-- GoF Patterns
-- Architectural Patterns
-- Programming Paradigms
-- Software Engineering
-- Pattern Theory
-- Complexity Management
-- Code Reusability
-- Design Principles
-- Software Craftsmanship
-- Pattern Philosophy
-- Building Architecture
-- Pattern Evolution
-- Cognitive Science
-- Pattern Recognition
-- Abstraction Layers
-- Software Design
-- Pattern Catalog
-- Design Wisdom
-- Programming Culture
-- Software History
-- Pattern Discovery
-- Design Methodology
-- Architectural Thinking
-- Software Philosophy
-- 디자인 패턴
-- 크리스토퍼 알렉산더
-- 갱 오브 포
-- 패턴 언어
-- 소프트웨어 아키텍처
-- 객체 지향 설계
-- GoF 패턴
-- 아키텍처 패턴
-- 프로그래밍 패러다임
-- 소프트웨어 공학
-- 패턴 이론
-- 복잡성 관리
-- 코드 재사용성
-- 설계 원칙
-- 소프트웨어 장인 정신
-- 패턴 철학
-- 건축 설계
-- 패턴 진화
-- 인지 과학
-- 패턴 인식
-- 추상화 계층
-- 소프트웨어 설계
-- 패턴 카탈로그
-- 설계 지혜
-- 프로그래밍 문화
-- 소프트웨어 역사
-- 패턴 발견
-- 설계 방법론
-- 아키텍처 사고
-- 소프트웨어 철학
+- Design-Pattern
+- GoF
+- Software-Architecture
+- Code-Quality
+- SOLID
+- 디자인패턴
+- 소프트웨어아키텍처
+- 코드품질
 ---
 
 ## 서론: 패턴이라는 이름의 시

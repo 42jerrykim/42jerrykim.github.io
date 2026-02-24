@@ -9,53 +9,15 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - booth
-  - booth meaning
-  - booth usage
-  - booth examples
-  - booth noun
   - 영단어
   - 영어명사
-  - booth 의미
-  - booth 용법
-  - booth 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - small space
-  - compartment
-  - stall
-  - kiosk
-  - booth 뜻
-  - 부스
-  - 구분된 공간
-  - 투표소
-  - 표 투표
-  - 전시회
-  - 박람회
-  - 매장
-  - 모임
-  - 행사
-  - retail
-  - exhibition
-  - trade show
-  - voting booth
-  - phone booth
-  - booth restaurant
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
-  - study English
-  - vocabulary building
-  - business English
-  - daily English
-  - British English
-  - American English
+  - Grammar
+  - Pronunciation
+  - Business-English
 image: wordcloud.png
 ---
 

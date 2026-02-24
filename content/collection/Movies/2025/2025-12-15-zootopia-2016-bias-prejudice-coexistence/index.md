@@ -9,118 +9,16 @@ categories:
 - Mystery
 - Disney
 tags:
-- Zootopia
-- 주토피아
-- Disney
-- 디즈니
-- Walt Disney Animation Studios
-- 월트디즈니애니메이션스튜디오
-- Byron Howard
-- 바이론 하워드
-- Rich Moore
-- 리치 무어
-- Jared Bush
-- 자레드 부시
-- Phil Johnston
-- 필 존스턴
-- Michael Giacchino
-- 마이클 지아키노
-- Ginnifer Goodwin
-- 지니퍼 굿윈
-- Jason Bateman
-- 제이슨 베이트먼
-- Idris Elba
-- 이드리스 엘바
-- Jenny Slate
-- 제니 슬레이트
-- Nate Torrence
-- 네이트 토렌스
-- Alan Tudyk
-- 앨런 튜딕
-- Shakira
-- 샤키라
-- Octavia Spencer
-- 옥타비아 스펜서
-- J.K. Simmons
-- J. K. 시몬스
-- Bonnie Hunt
-- 보니 헌트
-- Don Lake
-- 돈 레이크
-- Tommy Chong
-- 토미 총
-- Raymond S. Persi
-- 레이먼드 S. 퍼시
-- Disney Animation
-- 디즈니 애니메이션
-- Animated Film
-- 애니메이션 영화
-- Family Film
-- 가족 영화
-- Buddy Cop
-- 버디무비
-- Detective Story
-- 수사극
-- Mystery Plot
 - 미스터리
-- Noir Tone
-- 누아르 감성
-- Worldbuilding
-- 세계관
-- City Worldbuilding
-- 도시 세계관
-- Anthropomorphic Animals
-- 동물 의인화
-- Predator and Prey
-- 포식자와 피식자
-- Prejudice
-- 편견
-- Discrimination
-- 차별
-- Stereotype
-- 고정관념
-- Social Allegory
-- 사회적 은유
-- Fear Politics
-- 공포 정치
-- Scapegoat
-- 희생양
-- Media Narrative
-- 여론
-- Conspiracy
-- 음모
-- Corruption
-- 권력
-- Police Story
-- 경찰
-- Partnership
-- 파트너
-- Friendship
-- 우정
-- Redemption
-- 성장
-- Try Everything
-- Try Everything (song)
-- Gazelle
-- 가젤
-- Judy Hopps
-- 주디 홉스
-- Nick Wilde
-- 닉 와일드
-- Chief Bogo
-- 보고 서장
-- Bellwether
-- 벨웨더
-- Leodore Lionheart
-- 라이언하트
-- Duke Weaselton
-- 듀크 위즐튼
-- Mr. Big
-- 미스터 빅
-- Flash the Sloth
-- 플래시
-- Night Howler
-- 밤의 울음꾼
+- Movie
+- Animation
+- Mystery
+- 영화
+- Review
+- 리뷰
+- Go
+- Action
+- Comedy
 image: "poster.png"
 draft: false
 ---

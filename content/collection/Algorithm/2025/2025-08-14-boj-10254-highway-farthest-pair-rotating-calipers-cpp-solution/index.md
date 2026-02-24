@@ -11,70 +11,33 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-10254
-- cpp
 - C++
 - Geometry
-- 기하
-- Computational Geometry
-- 계산기하
-- Convex Hull
-- 볼록 껍질
-- Monotone Chain
-- 단조 사슬
-- Andrew
-- Rotating Calipers
-- 회전하는 캘리퍼스
-- Diameter
-- 다각형 지름
-- Farthest Pair
-- 최원점 쌍
-- Antipodal Pairs
-- 안티포달
-- Euclidean Distance
-- 유클리드 거리
-- Squared Distance
-- 제곱거리
+- Computational-Geometry
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Testing
 - 테스트
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Template
-- 템플릿
 - Debugging
 - 디버깅
-- Integer Overflow
-- 정수 오버플로
-- 64-bit
-- 64비트
-- Sort
 - 정렬
-- Unique
-- 중복제거
-- O(n log n)
-- 대용량 입력
-- Fast IO
-- 빠른입출력
+- IO
 image: "wordcloud.png"
 ---
 

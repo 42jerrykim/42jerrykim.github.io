@@ -7,69 +7,26 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "8235"
-- "Prefixuffix"
-- "Prefix"
-- "Suffix"
-- "접두사"
-- "접미사"
-- "회전 동치"
-- "Cyclic Equivalence"
-- "문자열"
-- "String"
-- "해싱"
-- "Hashing"
-- "Rolling Hash"
-- "Polynomial Hash"
-- "모듈러 해시"
-- "Modular Hash"
-- "64-bit Hash"
-- "Substr Hash"
-- "서브스트링 해시"
-- "두 포인터"
-- "Two Pointers"
-- "O(n)"
-- "시간복잡도"
-- "Time Complexity"
-- "POI"
-- "Polish Olympiad in Informatics"
-- "Stage 3"
-- "문제해설"
-- "Editorial"
-- "솔루션"
-- "정답 코드"
-- "Solution Code"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "빠른입출력"
-- "Fast IO"
-- "경계 조건"
-- "Edge Cases"
-- "해시 충돌"
-- "Hash Collision"
-- "안정성"
-- "Stability"
-- "인덱싱"
-- "Indexing"
-- "문자열 알고리즘"
-- "String Algorithms"
-- "Competitive Programming"
-- "Problem Solving"
-- "PS"
-- "코딩테스트"
-- "Practice"
-- "Study"
-- "센티넬"
-- "Sentinel"
-- "Prefix Equals Suffix"
-- "회전"
-- "Rotation"
-- "비교 최적화"
-- "Comparison Optimization"
+- BOJ
+- Baekjoon
+- 백준
+- Prefix-Sum
+- String
+- 문자열
+- 해싱
+- Hashing
+- Two-Pointers
+- Time-Complexity
+- 시간복잡도
+- Editorial
+- C++
+- IO
+- Edge-Cases
+- Code-Quality
+- Data-Structures
+- Competitive-Programming
+- Problem-Solving
+- 코딩테스트
 image: "wordcloud.png"
 ---
 

@@ -6,56 +6,13 @@ categories:
 tags:
   - English
   - Vocabulary
-  - Learning
-  - illegitimate
-  - 불법적인
-  - unlawful
-  - illegal
-  - unauthorized
-  - invalid
-  - 비합법적인
-  - 부당한
-  - 부적절한
-  - 사생아
-  - 비적법 상속인
-  - 비합법 정부
-  - 법적
-  - 사회적
-  - 역사적
-  - 학술적
-  - 전문적
-  - 법원
-  - 주장
-  - 권위
-  - 출처
-  - 연구
-  - 방법
-  - concerns
-  - practices
-  - authority
-  - claims
-  - child
-  - heir
-  - government
-  - sources
-  - methods
-  - context
-  - meaning
-  - usage
-  - implications
-  - examples
-  - vocabulary
-  - learning
-  - English
-  - language
-  - definition
-  - interpretation
-  - significance
-  - relevance
-  - application
-  - analysis
-  - discussion
-  - conclusion
+  - Education
+  - OOP
+  - Nuance
+  - 영단어
+  - Go
+  - Git
+  - GitHub
 image: index.png
 description: "illegitimate(불법)이라는 용어의 의미와 용법을 다룬다. 법적, 사회적, 역사적 맥락에서의 다양한 의미와 사용법을 설명하며, 사생아, 비합법 정부, 부당한 주장 등 구체적인 예시를 통해 이해를 돕는다. 유의어와 반의어를 포함한 어휘 학습 자료로 활용할 수 있다."
 ---

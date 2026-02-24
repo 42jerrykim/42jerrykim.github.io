@@ -10,67 +10,27 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-16481
-- cpp
 - C++
 - Geometry
-- 기하
 - 기하학
 - Math
 - 수학
-- Circle
-- 원
-- Incircle
-- 내접원
-- Excircle
-- 방접원
-- Triangle
-- 삼각형
-- Formula
-- 공식
-- Mathematical Formula
-- 수학공식
-- Trigonometry
-- 삼각법
-- Area
-- 넓이
-- Semiperimeter
-- 반둘레
-- Radius
-- 반지름
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- O(1)
-- Constant Time
-- 상수시간
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
-- Problem Solving
+- Problem-Solving
 - 문제해결
 - Editorial
 - 에디토리얼
-- Data Structures
+- Data-Structures
 - 자료구조
-- Edge Cases
-- 코너 케이스
-- Floating Point
-- 부동소수점
-- Precision
-- 정밀도
-- Double
-- 더블
-- Special Judge
-- 스페셜저지
-- Flow Cup
-- 플로우컵
-- 원전문가
-- 진우
-- Subtask
-- 서브태스크
+- Edge-Cases
+- 엣지케이스
 date: 2025-12-03
 lastmod: 2025-12-03
 image: wordcloud.png

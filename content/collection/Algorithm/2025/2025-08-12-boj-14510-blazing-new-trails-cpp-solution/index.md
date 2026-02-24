@@ -7,67 +7,29 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "14510"
-- "Blazing New Trails"
-- "NAIPC 2017"
-- "NAIPC"
-- "North American Invitational Programming Contest"
-- "MST"
-- "Minimum Spanning Tree"
-- "Spanning Tree"
-- "Kruskal"
-- "Union-Find"
-- "Disjoint Set Union"
-- "DSU"
-- "Lagrangian"
-- "라그랑주"
-- "Parametric Search"
-- "Binary Search"
-- "이분 탐색"
-- "Penalty Method"
-- "Cross Edge"
-- "교차 간선"
-- "Special"
-- "특수 노드"
-- "Regular"
-- "일반 노드"
-- "Edge Classification"
-- "간선 분류"
-- "Greedy"
-- "그리디"
-- "Graph"
-- "그래프"
-- "Algorithm"
-- "알고리즘"
-- "Proof"
-- "증명"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "Time Complexity"
-- "시간복잡도"
-- "Solution Code"
-- "정답 코드"
-- "Editorial"
-- "문제해설"
-- "해설"
-- "ICPC"
-- "Open Cup"
-- "Grand Prix of America"
-- "Stage 16"
-- "Minimum Cost"
-- "최소 비용"
-- "Network Design"
-- "네트워크 설계"
-- "Spanning"
-- "트리"
+- BOJ
+- Baekjoon
+- 백준
+- MST
+- Disjoint-Set
+- DSU
+- Binary-Search
+- 이분탐색
+- Greedy
+- 그리디
+- Graph
+- 그래프
+- Algorithm
+- 알고리즘
+- Implementation
+- 구현
+- C++
+- IO
+- Time-Complexity
+- 시간복잡도
+- Editorial
+- ICPC
+- 트리
 image: "wordcloud.png"
 ---
 

@@ -11,80 +11,48 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-5466
-- cpp
 - C++
-- Data Structures
+- Data-Structures
 - 자료구조
-- Fenwick Tree
-- 펜윅트리
-- Binary Indexed Tree
+- Fenwick-Tree
+- Binary-Indexed-Tree
 - BIT
-- Coordinate Compression
+- Coordinate-Compression
 - 좌표압축
 - DP
 - 동적계획법
-- Day Grouping
-- 날짜 그룹화
-- Sweep
-- 스위핑
-- Max Transform
-- 최대 변환
-- Prefix Max
-- 접두 최대
-- Suffix Max
-- 접미 최대
 - Greedy
 - 그리디
 - Optimization
 - 최적화
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
 - Sorting
 - 정렬
-- IOI
-- IOI 2009
-- Merchant
-- 상인
-- Danube
-- 도나우강
-- Cost Model
-- 비용모델
-- Affine Transform
-- 아핀 변환
-- Range Query
-- 구간 쿼리
-- Prefix/Suffix (Concept)
-- 개념 정리
-- Competitive Programming
+- Competitive-Programming
+- Range-Query
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
 - Testing
 - 테스트
-- Invariant
-- 불변식
-- Binary Search
+- Binary-Search
 - 이분탐색
-- Segment Tree
-- 세그먼트 트리
+- Segment-Tree
+- 세그먼트트리
 - Math
 - 수학
-- Modulo
+- Modular-Arithmetic
 - 모듈러
 image: "wordcloud.png"
 ---

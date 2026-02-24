@@ -6,9 +6,11 @@ categories:
 date: "2021-07-12T00:00:00Z"
 tags:
 - Linux
-- Ubuntu
-- mount
-- gbs
+- Bash
+- Shell
+- Tree
+- Process
+- space
 title: '[GBS] device is busy 문제 해결 방법'
 ---
 

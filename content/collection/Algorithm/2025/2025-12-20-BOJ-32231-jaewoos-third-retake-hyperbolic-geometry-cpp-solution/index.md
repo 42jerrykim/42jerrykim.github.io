@@ -10,72 +10,21 @@ categories:
 - "Calculus"
 - "Hyperbolic Geometry"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "32231"
-- "BOJ-32231"
-- "재우의 삼수강"
-- "재수강"
-- "삼수강"
-- "Jaewoo"
-- "Jaewoo's Third Retake"
-- "MatKor Cup"
-- "Korea University"
-- "Special Judge"
-- "스페셜 저지"
-- "Geometry"
-- "기하"
-- "Continuous Optimization"
-- "연속 최적화"
-- "Calculus"
-- "미적분"
-- "Line Integral"
-- "선적분"
-- "Metric"
-- "거리 함수"
-- "Riemannian Metric"
-- "리만 기하"
-- "Hyperbolic Geometry"
-- "쌍곡기하"
-- "Hyperbolic Distance"
-- "쌍곡거리"
-- "Upper Half-Plane Model"
-- "상반평면 모델"
-- "Poincare Half-Plane"
-- "Poincaré"
-- "Geodesic"
-- "측지선"
-- "acosh"
-- "acoshl"
-- "log"
-- "sqrt"
-- "Floating Point"
-- "부동소수점"
-- "Numerical Stability"
-- "수치 안정성"
-- "Precision"
-- "정밀도"
-- "Relative Error"
-- "상대오차"
-- "Absolute Error"
-- "절대오차"
-- "Implementation"
-- "구현"
-- "Math"
-- "수학"
-- "Real Analysis"
-- "해석학"
-- "Integral"
-- "적분"
-- "Optimization"
-- "최적화"
-- "O(1)"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Geometry
+- Edge-Cases
+- Implementation
+- 구현
+- Math
+- 수학
+- Optimization
+- 최적화
+- Time-Complexity
+- C++
 image: "wordcloud.png"
 ---
 

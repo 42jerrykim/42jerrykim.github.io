@@ -6,10 +6,11 @@ categories:
 date: "2021-04-14T00:00:00Z"
 tags:
 - Shell
-- zip
+- Bash
+- Linux
 - unzip
-- tar
-- tar.gz
+- Terminal
+- Testing
 title: '[Shell] 리눅스 zip, tar, tar.gz 파일 압축 & 풀기'
 
 ---

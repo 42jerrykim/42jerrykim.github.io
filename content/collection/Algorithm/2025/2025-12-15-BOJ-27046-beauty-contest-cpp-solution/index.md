@@ -8,74 +8,28 @@ categories:
 - "BOJ"
 - "Geometry"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "27046"
-- "BOJ-27046"
-- "Beauty Contest"
-- "USACO"
-- "USA Computing Olympiad"
-- "Computational Geometry"
-- "계산기하"
-- "Geometry"
-- "기하학"
-- "Point"
-- "점"
-- "Point Set"
-- "점 집합"
-- "Farthest Pair"
-- "가장 먼 점 쌍"
-- "Maximum Distance"
-- "최대 거리"
-- "Euclidean Distance"
-- "유클리드 거리"
-- "Squared Distance"
-- "거리 제곱"
-- "Convex Hull"
-- "컨벡스 헐"
-- "Convex Polygon"
-- "볼록 다각형"
-- "Andrew Monotone Chain"
-- "Monotone Chain"
-- "모노톤 체인"
-- "Sorting"
-- "정렬"
-- "Rotating Calipers"
-- "회전하는 캘리퍼스"
-- "Calipers"
-- "Diameter"
-- "지름"
-- "Diameter of Convex Polygon"
-- "볼록다각형 지름"
-- "Cross Product"
-- "외적"
-- "CCW"
-- "Orientation"
-- "방향 판정"
-- "Collinear"
-- "공선"
-- "Overflow"
-- "오버플로우"
-- "long long"
-- "64-bit"
-- "Implementation"
-- "구현"
-- "Problem Solving"
-- "문제해결"
-- "Competitive Programming"
-- "컴페티티브 프로그래밍"
-- "PS"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N log N)"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- USACO
+- Computational-Geometry
+- Geometry
+- 기하학
+- Sorting
+- 정렬
+- Edge-Cases
+- Implementation
+- 구현
+- Problem-Solving
+- 문제해결
+- Competitive-Programming
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
 image: wordcloud.png
 ---
 

@@ -3,7 +3,17 @@ draft: true
 title: "[Redux] 13. 컴포넌트 최적화 - 리렌더링 제어"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "React", "Performance", "Optimization", "성능최적화", "리렌더링", "Re-rendering", "React.memo", "useMemo", "useCallback", "메모이제이션", "Memoization", "웹개발", "프론트엔드", "리액트", "리덕스", "React Performance", "성능", "최적화기법", "Optimization Techniques", "Profiler", "프로파일러", "DevTools", "개발자도구", "Virtual DOM", "가상돔", "Reconciliation", "재조정", "Pure Components", "순수컴포넌트", "Equality Check", "동등성검사", "shallowEqual", "얕은비교", "Deep Comparison", "깊은비교", "JavaScript", "TypeScript", "개발", "코딩", "Best Practices", "모범사례", "Redux Patterns", "리덕스패턴", "Component Patterns", "컴포넌트패턴", "Performance Monitoring", "성능모니터링", "Bundle Size", "번들사이즈"]
+tags:
+- React
+- Performance
+- Optimization
+- Memoization
+- 프론트엔드
+- 성능
+- JavaScript
+- TypeScript
+- Implementation
+- Best-Practices
 description: "Redux 앱의 성능 최적화 완벽 가이드. React.memo로 불필요한 리렌더링 방지, useMemo와 useCallback으로 연산 최적화, Profiler로 성능 측정하는 실전 최적화 기법을 마스터합니다"
 series: ["Redux 완전 정복"]
 series_order: 13

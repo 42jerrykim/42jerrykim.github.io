@@ -7,14 +7,10 @@ header: null
 tags:
 - CSharp
 - Array
-- Programming
-- DataStructure
-- MultidimensionalArray
-- JaggedArray
-- Coding
-- SoftwareDevelopment
+- Implementation
+- Data-Structures
+- Software-Architecture
 - .NET
-- ComputerScience
 teaser: /assets/images/undefined/teaser.jpg
 title: '[C#] 배열 (Array)'
 

@@ -9,55 +9,30 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
+  - Design-Pattern
+  - 디자인패턴
   - Command
-  - 커맨드
-  - Behavioral Pattern
-  - 행위 패턴
   - GoF
-  - Gang of Four
   - Encapsulation
   - 캡슐화
-  - Request
-  - 요청
-  - Invoker
-  - 호출자
-  - Receiver
-  - 수신자
-  - Undo
-  - 실행 취소
-  - Redo
-  - 재실행
   - Queue
   - 큐
-  - Macro
-  - 매크로
-  - Transaction
-  - 트랜잭션
+  - Database
   - Logging
   - 로깅
   - Action
   - 액션
-  - Callback
-  - 콜백
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Code-Quality
+  - 코드품질
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - GUI
-  - Menu
-  - Button
-  - Scheduler
-  - 스케줄러
+  - CSharp
+  - Frontend
 ---
 
 커맨드 패턴(Command Pattern)은 요청을 객체로 캡슐화하여 요청을 보내는 객체와 요청을 수행하는 객체를 분리하는 행위 디자인 패턴이다. 이 패턴을 통해 요청의 큐잉, 로깅, 실행 취소(Undo)/재실행(Redo) 등 다양한 기능을 유연하게 구현할 수 있다.

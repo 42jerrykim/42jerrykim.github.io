@@ -10,64 +10,17 @@ categories:
   - Netflix
   - Comedy
 tags:
-  - 케냐간세끼
-  - Kenya-Three-Meals
-  - 신서유기
-  - Shin-Seo-Yoo-Gi
-  - 신서유기-스핀오프
-  - Spin-Off-Series
-  - 나영석
-  - Na-Young-Seok
-  - 이수근
-  - Lee-Soo-Geun
-  - 은지원
-  - Eun-Ji-Won
-  - 규현
-  - Kyu-Hyun
-  - Super-Junior
-  - 김예슬-PD
-  - Kim-Ye-Seul
-  - 채널-십오야
-  - Channel-15-Ya
-  - 넷플릭스-오리지널
-  - Netflix-Original
-  - 예능-프로그램
-  - Variety-Program
-  - 코미디-예능
-  - Comedy-Entertainment
-  - 여행-예능
-  - Travel-Show
-  - 해외-여행
-  - Overseas-Travel
-  - 아프리카-여행
-  - Africa-Journey
-  - 게임-미션
-  - Games-and-Missions
-  - 음식-게임
-  - Food-Games
-  - 기념품-게임
-  - Souvenir-Games
-  - 리얼-버라이어티
-  - Reality-Variety
-  - 즐거움
-  - Fun
-  - 우당탕탕
-  - Chaos-Comedy
-  - 웃음
-  - Laughter
-  - 재미
-  - Entertainment
-  - 흥미
-  - Interest
-  - 케냐
-  - Kenya
-  - 기린-호텔
-  - Giraffe-Hotel
-  - 2025-방송
-  - 2025-Broadcasting
-  - Netflix-Korea
-  - 한국예능
-  - Korean-Variety
+  - Comedy
+  - Review
+  - 리뷰
+  - TV-Show
+  - 드라마
+  - Hardware
+  - Networking
+  - SEO
+  - Web
+  - Gaming
+  - 게임
 image: "image02.png"
 ---
 

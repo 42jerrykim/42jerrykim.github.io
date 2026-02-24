@@ -9,70 +9,35 @@ categories:
 - "Fenwick Tree"
 - "Inversion"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "18874"
-- "BOJ-18874"
-- "Haircut"
-- "Hair"
-- "Inversion"
-- "역위"
-- "Inversion Count"
-- "역위 개수"
-- "Fenwick Tree"
-- "펜윅 트리"
-- "Binary Indexed Tree"
-- "BIT"
-- "이진 인덱스 트리"
-- "Data Structure"
-- "자료구조"
-- "Segment Tree"
-- "세그먼트 트리"
-- "Range Query"
-- "범위 쿼리"
-- "Point Update"
-- "점 업데이트"
-- "Prefix Sum"
-- "누적합"
-- "USACO"
-- "USA Computing Olympiad"
-- "Gold"
-- "골드"
-- "Difficulty"
-- "난이도"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N^2 log N)"
-- "O(N log N)"
-- "Edge Case"
-- "엣지 케이스"
-- "Thresholding"
-- "임계값 처리"
-- "Array Modification"
-- "배열 수정"
-- "Clamping"
-- "값 제한"
-- "Counting Inversions"
-- "역위 세기"
-- "Pair Analysis"
-- "쌍 분석"
-- "USACO 2020"
-- "2020 US Open"
-- "Open Contest"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Math
+- Fenwick-Tree
+- Binary-Indexed-Tree
+- BIT
+- Data-Structures
+- 자료구조
+- Segment-Tree
+- 세그먼트트리
+- Range-Query
+- Prefix-Sum
+- USACO
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- C++
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

@@ -7,10 +7,10 @@ categories:
 tags:
 - Stack
 - Implementation
-- Fast I/O
-- O(N)
-- DataStructures
-- ProblemSolving
+- IO
+- Time-Complexity
+- Data-Structures
+- Problem-Solving
 image: "tmp_wordcloud.png"
 date: 2024-10-25
 ---

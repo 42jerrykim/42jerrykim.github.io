@@ -7,69 +7,30 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "17474"
-- "Sequence and Queries"
-- "수열과 쿼리"
-- "수열과-쿼리-26"
-- "Range Query"
-- "범위 질의"
-- "Segment Tree"
-- "세그먼트 트리"
-- "Segment Tree Beats"
-- "세그트리 비트"
-- "Beats"
-- "Chmin"
-- "Range Chmin"
-- "구간 chmin"
-- "Min Cap"
-- "Cap Assign"
-- "Range Max"
-- "구간 최댓값"
-- "Range Sum"
-- "구간 합"
-- "Lazy Propagation"
-- "지연 전파"
-- "Data Structure"
-- "자료 구조"
-- "Second Maximum"
-- "두번째 최댓값"
-- "Count of Max"
-- "최댓값 개수"
-- "Competitive Programming"
-- "컴페티티브 프로그래밍"
-- "Problem Solving"
-- "PS"
-- "Solution Code"
-- "정답 코드"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른입출력"
-- "Time Complexity"
-- "시간복잡도"
-- "O(log N)"
-- "Query Processing"
-- "쿼리 처리"
-- "Implementation"
-- "구현"
-- "Optimization"
-- "최적화"
-- "Large N"
-- "N=1e6"
-- "Memory"
-- "메모리"
-- "64-bit"
-- "Long Long"
-- "Integer Overflow"
-- "정수 오버플로"
-- "Range Update"
-- "범위 업데이트"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Range-Query
+- Segment-Tree
+- 세그먼트트리
+- Lazy-Propagation
+- Data-Structures
+- Competitive-Programming
+- Problem-Solving
+- Editorial
+- C++
+- IO
+- Time-Complexity
+- 시간복잡도
+- Implementation
+- 구현
+- Optimization
+- 최적화
+- Memory
+- 메모리
+- Edge-Cases
 image: "wordcloud.png"
 ---
 

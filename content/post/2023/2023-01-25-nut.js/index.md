@@ -4,15 +4,14 @@ description: "Nut.js는 Node.js 기반의 데스크톱 자동화 프레임워크
 date: "2023-01-25T00:00:00Z"
 header:
   teaser: /assets/images/2023/2023-01-25-103941.png
-tag:
+tags:
 - Automation
-- Opensource
+- Open-Source
 - Windows
 - Linux
-- Nut.js
-- Desktop
-- Tool
-- Util
+- JavaScript
+- TypeScript
+- Node.js
 title: '[Automation] Nut.js - 오픈소스 데스크탑 오토메이션 툴킷'
 ---
 

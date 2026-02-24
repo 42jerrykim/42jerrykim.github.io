@@ -13,79 +13,25 @@ categories:
 - "Binomial Theorem"
 - "Polynomial"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "13543"
-- "BOJ-13543"
-- "수열과 쿼리 2"
-- "수열과쿼리2"
-- "Sequence and Query 2"
-- "Sequence and Queries"
-- "Dynamic Array"
-- "동적 배열"
-- "Dynamic Sequence"
-- "동적 수열"
-- "Online Query"
-- "온라인 쿼리"
-- "Data Structures"
-- "자료구조"
-- "Treap"
-- "트립"
-- "Implicit Treap"
-- "암시적 트립"
-- "Randomized BST"
-- "랜덤 BST"
-- "Cartesian Tree"
-- "카테시안 트리"
-- "Split"
-- "스플릿"
-- "Merge"
-- "머지"
-- "Order Statistic Tree"
-- "순서 통계 트리"
-- "Sequence Maintenance"
-- "수열 유지"
-- "Insert"
-- "삽입"
-- "Delete"
-- "삭제"
-- "Update"
-- "갱신"
-- "Range Query"
-- "구간 쿼리"
-- "Polynomial"
-- "다항식"
-- "Binomial Theorem"
-- "이항정리"
-- "Binomial Coefficient"
-- "이항계수"
-- "Power Sum"
-- "거듭제곱 합"
-- "Shift"
-- "시프트"
-- "Modulo"
-- "모듈러"
-- "Modulo 2^32"
-- "2의 32승 모듈러"
-- "uint32_t"
-- "Unsigned Overflow"
-- "부호없는 오버플로우"
-- "Implementation"
-- "구현"
-- "Edge Case"
-- "엣지 케이스"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(log N)"
-- "O(K^2 log N)"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Range-Query
+- Data-Structures
+- 자료구조
+- Modular-Arithmetic
+- 모듈러
+- Implementation
+- 구현
+- Edge-Cases
+- 엣지케이스
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
 image: "wordcloud.png"
 ---
 

@@ -8,77 +8,20 @@ categories:
 - "MCP"
 - "Cursor"
 tags:
-- "Cursor"
-- "MCP"
-- "Model Context Protocol"
-- "Playwright"
-- "@playwright/mcp"
-- "Node.js"
-- "Windows"
-- "설치"
-- "설정"
-- "mcp.json"
-- "stdio"
-- "SSE"
-- "HTTP"
-- "headless"
-- "MS Edge"
-- "Chrome"
-- "Firefox"
-- "WebKit"
-- "vision"
-- "pdf"
-- "automation"
-- "E2E"
-- "testing"
-- "browser automation"
-- "API testing"
-- "GitHub Copilot"
-- "Claude"
-- "Anthropic"
-- "VS Code"
-- "Windsurf"
-- "Goose"
-- "CLI"
-- "npx"
-- "환경변수"
-- "OAuth"
-- "보안"
-- "프록시"
-- "스토리지"
-- "세션"
-- "프로필"
-- "격리"
-- "저장"
-- "디버깅"
-- "트러블슈팅"
-- "Windows11"
-- "winget"
-- "Chocolatey"
-- "macOS"
-- "Linux"
-- "경로"
-- "Home"
-- "global"
-- "project"
-- "tools"
-- "Add to Cursor"
-- "Extension API"
-- "registerServer"
-- "로컬서버"
-- "원격서버"
-- "포트"
-- "옵션"
-- "browser"
-- "caps"
-- "허용목록"
-- "차단목록"
-- "Playwright MCP"
-- "executeautomation"
-- "Composio"
-- "LobeHub"
-- "Snyk"
-- "Apideck"
+- IDE
+- Node.js
+- Windows
+- 설정
+- HTTP
+- automation
+- testing
+- Shell
+- 보안
+- 디버깅
+- 트러블슈팅
+- macOS
+- Linux
+- Graph
 image: wordcloud.png
 ---
 

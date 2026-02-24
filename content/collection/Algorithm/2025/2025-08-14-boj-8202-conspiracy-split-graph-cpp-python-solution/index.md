@@ -11,78 +11,45 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-8202
-- cpp
-- python
+- C++
+- Python
 - Graph
 - 그래프
-- Split Graph
-- 스플릿 그래프
-- Split Graph Recognition
-- 스플릿 그래프 판정
-- Hammer–Simeone
-- Degree Sequence
-- 차수열
-- Clique
-- 클리크
-- Independent Set
-- 독립집합
-- Partition Counting
-- 분할 개수
-- POI
-- Polish Olympiad in Informatics
-- Conspiracy
-- 음모
-- Bitset
-- 비트셋
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Proof of Correctness
-- 정당성 증명
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- O(n^2)
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Greedy
 - 그리디
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
-- Graph Theory
-- 그래프 이론
+- Graph-Theory
+- 그래프이론
 - BFS
 - DFS
-- Shortest Path
+- Shortest-Path
 - 최단경로
 - Dijkstra
-- 다익스트라
-- Segment Tree
-- 세그먼트 트리
-- Fenwick Tree
-- 펜윅트리
-- Disjoint Set Union
-- 유니온파인드
-- Binary Search
+- Segment-Tree
+- 세그먼트트리
+- Fenwick-Tree
+- Disjoint-Set
+- Binary-Search
 - 이분탐색
-- Two Pointers
-- 투포인터
-- Sliding Window
-- 슬라이딩윈도우
+- Two-Pointers
+- Sliding-Window
 - Hashing
 - 해싱
 - String
 - 문자열
 - Geometry
-- 기하
 - Math
 - 수학
-- Modulo
+- Modular-Arithmetic
 - 모듈러
 - Debugging
 - 디버깅

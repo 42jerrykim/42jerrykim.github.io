@@ -11,75 +11,29 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-2626
-- cpp
 - C++
-- Minimum Enclosing Circle
-- 최소 외접원
-- MEC
-- Welzl Algorithm
-- 웰츠 알고리즘
-- Randomized Algorithm
-- 랜덤화 알고리즘
-- Computational Geometry
-- 전산 기하학
-- Circle
-- 원
-- Circumcircle
-- 외접원
-- Center
-- 중심
-- Radius
-- 반지름
-- Point Set
-- 점 집합
-- Smallest Enclosing
-- 최소 포함
-- Data Structures
+- Computational-Geometry
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- O(n) Expected Time
-- Expected Linear Time
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
-- Collinear Points
-- 일직선 점
-- Degenerate Cases
-- 퇴화 사례
+- Edge-Cases
+- 엣지케이스
 - Testing
 - 테스트
-- Fast I/O
-- 빠른 입출력
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- IO
+- Complexity-Analysis
+- 복잡도분석
 - Recursion
 - 재귀
-- Distance Calculation
-- 거리 계산
-- Double Precision
-- 배정도
-- Floating Point
-- 부동 소수점
-- KOI 2002
-- Korean Informatics Olympiad
-- 한국정보올림피아드
-- High School Division
-- 고등부
-- Regional Contest
-- 지역본선
 image: "wordcloud.png"
 ---
 

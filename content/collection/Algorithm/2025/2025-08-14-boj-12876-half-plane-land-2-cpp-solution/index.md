@@ -11,73 +11,23 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-12876
 - C++
-- cpp
-- Data Structures
+- Data-Structures
 - 자료구조
-- Li Chao Tree
-- Convex Hull Trick
-- CHT
-- 세그먼트 트리
-- Segment Tree
-- Offline Processing
-- 오프라인 처리
-- Rollback
-- 롤백
-- Dynamic Lines
-- 동적 직선 집합
-- Line Container
-- 라인 컨테이너
-- Max Query
-- 최대값 질의
-- Range Add
-- 구간 추가
-- Time SegTree
-- 시간 세그트리
-- Query on X
-- x좌표 질의
-- 64-bit Integer
-- 64비트 정수
-- __int128
-- Overflow Safety
-- 오버플로 안전
-- Fast IO
-- 빠른 입출력
-- Complexity Analysis
-- 복잡도 분석
-- Proof of Correctness
-- 정당성 증명
-- Exchange/Divide and Conquer on Structure
-- 구조 분할 정복
-- Persistent-like
-- 준영속
-- Competitive Programming
+- Dynamic-Programming
+- 세그먼트트리
+- Segment-Tree
+- IO
+- Complexity-Analysis
+- 복잡도분석
+- Competitive-Programming
 - 경쟁프로그래밍
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
-- Templates
-- 템플릿
-- Geometry-ish
-- 기하 아이디어
-- Function Maximum
-- 함수 최대값
-- Integer Domain
-- 정수 좌표
-- Logarithmic
-- 로그 복잡도
-- DS on SegTree
-- 세그트리 내 자료구조
-- Recursive DFS
-- 재귀 DFS
-- KAIST RUN Contest
-- 카이스트 RUN
+- 함정
 - Editorial
 - 에디토리얼
 image: "wordcloud.png"

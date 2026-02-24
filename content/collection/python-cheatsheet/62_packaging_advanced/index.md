@@ -7,60 +7,19 @@ description: "파이썬 패키지 배포를 빠르게 시작하기 위한 치트
 lastmod: 2026-01-18
 collection_order: 62
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - packaging
-  - 패키징
-  - pyproject.toml
-  - pyproject
-  - setup.py
-  - setuptools
-  - build
-  - twine
-  - wheel
-  - sdist
-  - distribution
+  - Quick-Reference
+  - DevOps
+  - CI-CD
   - 배포
-  - PyPI
-  - TestPyPI
-  - publish
-  - 퍼블리시
-  - upload
-  - dependencies
-  - 의존성
-  - optional-dependencies
-  - extras
-  - entry-points
-  - 엔트리포인트
-  - console-scripts
-  - CLI
-  - version
-  - 버전
-  - metadata
-  - 메타데이터
-  - license
-  - 라이선스
-  - readme
-  - classifiers
-  - pip
-  - install
-  - editable
-  - best-practices
-  - 베스트프랙티스
+  - Dependency-Injection
+  - Shell
+  - Best-Practices
   - pitfalls
   - 함정
-  - checklist
-  - 체크리스트
-  - standard-library
-  - 표준라이브러리
-  - ci
-  - cd
   - automation
   - 자동화
 ---

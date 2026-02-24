@@ -6,14 +6,8 @@ lastmod: 2026-01-17
 collection_order: 1
 draft: true
 tags:
-  - OOAD
-  - Object-Oriented-Analysis
-  - Object-Oriented-Design
   - OOP
   - 객체지향
-  - 객체지향-사고
-  - 패러다임
-  - Paradigm
   - Abstraction
   - 추상화
   - Encapsulation
@@ -22,54 +16,25 @@ tags:
   - 상속
   - Polymorphism
   - 다형성
-  - Responsibility
-  - 책임
-  - Collaboration
-  - 협력
-  - Message-Passing
-  - 메시지-패싱
-  - Information-Hiding
-  - 정보은닉
-  - Cohesion
+  - Software-Architecture
   - 응집도
-  - Coupling
   - 결합도
   - Domain
   - 도메인
-  - Modeling
-  - 모델링
-  - Ubiquitous-Language
-  - 유비쿼터스-언어
-  - Design-Tradeoff
-  - 트레이드오프
-  - Software-Architecture
-  - 소프트웨어-아키텍처
   - Clean-Code
   - 클린코드
   - Refactoring
   - 리팩토링
-  - Maintainability
-  - 유지보수성
-  - Extensibility
+  - Code-Quality
+  - 코드품질
   - 확장성
-  - Testability
-  - 테스트가능성
-  - Design-Principles
-  - 설계-원칙
+  - Testing
   - SOLID
   - UML
-  - Use-Case
-  - 유스케이스
   - Domain-Driven-Design
-  - DDD
   - Microservices
   - 마이크로서비스
   - Event-Driven
-  - 이벤트-기반
-  - Legacy
-  - 레거시
-  - System-Design
-  - 시스템-설계
 ---
 
 # 01. 객체지향 패러다임의 본질과 철학

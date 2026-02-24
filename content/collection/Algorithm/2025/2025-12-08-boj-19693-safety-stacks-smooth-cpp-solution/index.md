@@ -12,57 +12,31 @@ tags:
   - 알고리즘
   - BOJ
   - 백준
-  - Problem-19693
-  - 19693
-  - cpp
   - C++
   - Greedy
-  - 탐욕법
-  - Priority Queue
+  - Priority-Queue
   - 우선순위큐
   - Heap
   - 힙
   - Optimization
   - 최적화
-  - Data Structures
+  - Data-Structures
   - 자료구조
-  - Time Complexity
+  - Time-Complexity
   - 시간복잡도
-  - Space Complexity
+  - Space-Complexity
   - 공간복잡도
-  - Proof of Correctness
-  - 정당성 증명
-  - Edge Cases
-  - 코너 케이스
-  - Competitive Programming
+  - Edge-Cases
+  - 엣지케이스
+  - Competitive-Programming
   - 경쟁프로그래밍
-  - Online Judge
-  - 온라인 저지
   - Implementation
   - 구현
-  - Constraint Satisfaction
-  - 제약조건만족
-  - Interval Constraint
-  - 구간제약
-  - Dual Heap Strategy
-  - 이중힙전략
-  - Dynamic Programming
+  - Dynamic-Programming
   - 동적계획법
-  - State Management
-  - 상태관리
-  - Geometry Problem
-  - 기하문제
-  - Stack Height
-  - 스택높이
-  - Difference Constraint
-  - 차이제약
-  - Graph Traversal
-  - 그래프순회
-  - Smart Greedy
-  - 지능형탐욕법
-  - Problem Solving
+  - Problem-Solving
   - 문제해결
-  - Coding Test
+  - Coding-Test
   - 코딩테스트
 image: "wordcloud.png"
 ---

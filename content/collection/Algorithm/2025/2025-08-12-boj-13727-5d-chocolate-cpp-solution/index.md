@@ -7,64 +7,22 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "13727"
-- "5차원"
-- "구사과"
-- "초콜릿"
-- "도미노 타일링"
-- "Domino Tiling"
-- "타일 채우기"
-- "Perfect Matching"
-- "완전 매칭"
-- "Grid Graph"
-- "격자 그래프"
-- "P2"
-- "Pn"
-- "P2xP2xP2xP2xPn"
-- "Cartesian Product"
-- "카르테시안 곱"
-- "Berlekamp–Massey"
-- "BM"
-- "선형 점화"
-- "Linear Recurrence"
-- "Minimal Polynomial"
-- "Linear Algebra"
-- "다항식 거듭제곱"
-- "Polynomial Exponentiation"
-- "빠른 거듭제곱"
-- "Exponentiation by Squaring"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "mod"
-- "모듈러"
-- "나머지 연산"
-- "O(log n)"
-- "시간복잡도"
-- "시간 복잡도"
-- "수열"
-- "Sequence"
-- "Bitmask DP"
-- "비트마스크"
-- "상태 압축"
-- "State Compression"
-- "DP"
-- "Dynamic Programming"
-- "그래프 이론"
-- "Graph Theory"
-- "Matching"
-- "Perfect Matchings"
-- "High-dimensional"
-- "고차원"
-- "컴페티티브 프로그래밍"
-- "Competitive Programming"
-- "Problem Solving"
-- "PS"
-- "Solution Code"
-- "정답 코드"
+- BOJ
+- Baekjoon
+- 백준
+- C++
+- 모듈러
+- Time-Complexity
+- 시간복잡도
+- Math
+- DP
+- Dynamic-Programming
+- 그래프이론
+- Graph-Theory
+- String
+- Competitive-Programming
+- Problem-Solving
+- Editorial
 image: "wordcloud.png"
 ---
 

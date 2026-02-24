@@ -7,14 +7,12 @@ categories:
 - Dynamic Programming
 - Graph Theory
 tags:
-- Dynamic Programming
+- Dynamic-Programming
 - DFS
-- Brute Force
-- Kadane's Algorithm
-- O(N log² N)
+- Brute-Force
 - Tree
-- Graph Theory
-- Sweep Line
+- Graph-Theory
+- Algorithm
 image: "index.png"
 date: 2025-02-08
 ---

@@ -10,82 +10,24 @@ categories:
 - "Bayesian"
 - "Math"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "14853"
-- "BOJ-14853"
-- "동전 던지기"
-- "Coin Tossing"
-- "Special Judge"
-- "스페셜 저지"
-- "Probability"
-- "확률"
-- "Bayesian"
-- "베이즈"
-- "Bayesian Inference"
-- "베이즈 추론"
-- "Posterior"
-- "사후분포"
-- "Prior"
-- "사전분포"
-- "Uniform Prior"
-- "균등 사전분포"
-- "Conjugate Prior"
-- "켤레사전분포"
-- "Beta Distribution"
-- "베타 분포"
-- "Beta"
-- "Binomial"
-- "이항분포"
-- "Beta-Binomial"
-- "베타-이항"
-- "CDF"
-- "누적분포함수"
-- "PDF"
-- "확률밀도함수"
-- "Integration"
-- "적분"
-- "Closed Form"
-- "닫힌 형태"
-- "Beta Function"
-- "베타 함수"
-- "Gamma Function"
-- "감마 함수"
-- "Log Gamma"
-- "로그 감마"
-- "Log Factorial"
-- "로그 팩토리얼"
-- "Stability"
-- "수치 안정성"
-- "Floating Point"
-- "부동소수점"
-- "Precision"
-- "정밀도"
-- "Long Double"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Precomputation"
-- "전처리"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(50) per test"
-- "T=1e5"
-- "Large Input"
-- "큰 입력"
-- "Implementation"
-- "구현"
-- "Math"
-- "수학"
-- "Combinatorics"
-- "조합론"
-- "Combination"
-- "조합"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Code-Quality
+- Edge-Cases
+- C++
+- Implementation
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- 구현
+- Math
+- 수학
+- Combinatorics
+- 조합론
 image: "wordcloud.png"
 ---
 

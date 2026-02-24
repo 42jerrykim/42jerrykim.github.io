@@ -13,44 +13,15 @@ categories:
 - Practice
 - State Management
 tags:
-- Strategy Pattern Practice
-- State Pattern Practice
-- Algorithm Encapsulation
-- State Transition
-- Sorting Algorithms
-- Payment Strategy
-- Game Character States
-- Open Closed Principle
-- Context Switching
-- State Machine
-- Behavioral Patterns
-- Design Patterns
-- GoF Patterns
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Software Architecture
-- Dynamic Behavior
-- 전략 패턴 실습
-- 상태 패턴 실습
-- 알고리즘 캡슐화
-- 상태 전이
-- 정렬 알고리즘
-- 결제 전략
-- 게임 캐릭터 상태
-- 개방 폐쇄 원칙
-- 컨텍스트 전환
-- 상태 머신
-- 행동 패턴
-- 디자인 패턴
-- GoF 패턴
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 소프트웨어 아키텍처
-- 동적 행동
+- SOLID
+- Design-Pattern
+- GoF
+- Tutorial
+- Implementation
+- Software-Architecture
+- 디자인패턴
+- 구현
+- 소프트웨어아키텍처
 ---
 
 이 실습에서는 Strategy 패턴으로 알고리즘을, State 패턴으로 상태 기반 행동을 캡슐화하는 방법을 직접 구현합니다.

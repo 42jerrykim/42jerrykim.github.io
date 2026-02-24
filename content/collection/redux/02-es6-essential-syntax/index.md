@@ -3,7 +3,15 @@ draft: true
 title: "[Redux] 02. ES6+ 필수 문법 - 구조 분해, 스프레드, 템플릿 리터럴"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "JavaScript", "ES6", "구조분해", "스프레드연산자", "템플릿리터럴", "Destructuring", "Spread Operator", "Template Literals", "Modern JavaScript", "ES2015", "웹개발", "프론트엔드", "JavaScript ES6", "Object Destructuring", "Array Destructuring", "Rest Parameters", "Tagged Templates", "코딩", "개발", "자바스크립트문법", "모던자바스크립트", "단축속성", "계산된속성", "Object Shorthand", "Computed Properties", "Default Parameters", "Optional Chaining", "Nullish Coalescing", "프로그래밍", "소프트웨어개발", "함수형프로그래밍", "불변성", "Immutability", "클린코드", "Clean Code", "Best Practices", "모범사례", "JavaScript Tutorial", "Learn JavaScript", "JS Guide", "개발자가이드", "초보자", "입문", "Beginner"]
+tags:
+- JavaScript
+- 프론트엔드
+- Implementation
+- 함수형프로그래밍
+- Code-Quality
+- 클린코드
+- Clean-Code
+- Best-Practices
 description: "Redux 개발에 필수적인 ES6+ 문법 완벽 마스터. 구조 분해 할당으로 간결한 코드 작성, 스프레드 연산자로 불변성 유지, 템플릿 리터럴로 가독성 향상하는 현대적인 JavaScript 문법을 실전 예제와 함께 학습합니다"
 series: ["Redux 완전 정복"]
 series_order: 2

@@ -11,87 +11,31 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-11717
-- cpp
 - C++
-- Sprague-Grundy
-- 스프라그-그런디
-- Grundy Number
-- 그런디 수
-- mex
-- Nim
-- 님
-- Game Theory
-- 게임 이론
-- Impartial Game
-- 무편향 게임
-- XOR
-- 님섬
-- Combinatorial Game
-- 조합 게임
+- Game-Theory
+- Math
 - DP
 - 동적계획법
 - Memoization
-- 메모이제이션
 - Recursion
 - 재귀
-- Grid
-- 격자
-- Rectangle DP
-- 사각형 DP
-- Split Game
-- 분할 게임
-- Subrectangle
-- 부분직사각형
-- State Decomposition
-- 상태 분해
-- Optimal Play
-- 최적 전략
-- Correctness Proof
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
+- Graph
+- Complexity-Analysis
+- 복잡도분석
 - Implementation
 - 구현
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Board Game
-- 보드 게임
-- Rectangle Partition
-- 직사각형 분할
-- Search Pruning
-- 가지치기
-- Top-Down DP
-- 하향식 DP
-- 2D DP
-- 2차원 DP
-- Game Decomposition
-- 게임 분해
-- JAG Spring Contest 2015
-- JAG
-- Contest
-- 대회 문제
-- Marked Cells
-- 표시 칸
-- Walls
-- 벽
-- Sprague Grundy Theorem
-- 스프라그 그런디 정리
-- Nim-Sum
-- 님섬 XOR
-- Rectangle Split
-- 행열 분할
-- Fast IO
-- 빠른 입출력
-- Reference Solution
+- Competitive-Programming
+- IO
 - 에디토리얼
 image: "wordcloud.png"
 ---

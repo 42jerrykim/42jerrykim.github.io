@@ -6,11 +6,16 @@ categories:
 - Geometry
 - ConvexHull
 tags:
-- ConvexHull
-- RotatingCalipers
-- ComputationalGeometry
-- O(N log N)
+- Time-Complexity
 - Geometry
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Python
 image: "tmp_wordcloud.png"
 date: 2024-01-01
 ---

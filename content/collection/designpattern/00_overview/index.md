@@ -9,33 +9,18 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-22-designpattern-overview.png
 tags:
-  - Design Pattern
-  - 디자인 패턴
+  - Design-Pattern
+  - 디자인패턴
   - GoF
-  - Gang of Four
-  - Software Design
-  - 소프트웨어 설계
-  - Creational Pattern
-  - 생성 패턴
-  - Structural Pattern
-  - 구조 패턴
-  - Behavioral Pattern
-  - 행위 패턴
-  - Object Oriented
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - 객체지향
   - OOP
-  - 객체지향 프로그래밍
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Clean Code
-  - 클린 코드
+  - Code-Quality
+  - 코드품질
+  - Clean-Code
   - SOLID
-  - Best Practices
-  - 모범 사례
+  - Best-Practices
   - Refactoring
   - 리팩토링
   - Abstraction
@@ -48,22 +33,7 @@ tags:
   - 다형성
   - Interface
   - 인터페이스
-  - Class
-  - 클래스
-  - Object
-  - 객체
-  - Pattern Catalog
-  - 패턴 카탈로그
-  - Software Engineering
-  - 소프트웨어 공학
-  - Architecture Pattern
-  - 아키텍처 패턴
-  - Code Quality
-  - 코드 품질
-  - Programming
-  - 프로그래밍
-  - Development
-  - 개발
+  - Implementation
 ---
 
 소프트웨어 개발은 반복적이고 복잡한 문제를 해결해야 하는 과정이다. 이러한 문제를 해결하는데 있어, 이미 검증된 해결책을 사용하면 시간과 노력을 절약할 수 있다. 이처럼 특정 맥락에서 자주 발생하는 문제에 대해, 경험적으로 검증된 해결책을 **디자인 패턴(Design Pattern)**이라 한다. 디자인 패턴은 소프트웨어 설계의 모범 사례를 축적한 결과물로, 문제 해결의 효율성을 높이고, 코드의 재사용성을 극대화하며, 팀원 간의 의사소통을 원활하게 해주는 중요한 도구이다.

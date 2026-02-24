@@ -10,84 +10,31 @@ categories:
 - "Priority Queue"
 - "Data Structure"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "13324"
-- "BOJ-13324"
-- "BOJ 수열 2"
-- "BOJ Sequence 2"
-- "Sequence"
-- "수열"
-- "Increasing Sequence"
-- "증가 수열"
-- "Strictly Increasing"
-- "엄격 증가"
-- "Monotone"
-- "단조"
-- "Nondecreasing"
-- "비내림"
-- "Greedy"
-- "그리디"
-- "Data Structure"
-- "자료구조"
-- "Priority Queue"
-- "우선순위 큐"
-- "Heap"
-- "힙"
-- "Median"
-- "중앙값"
-- "Median Maintenance"
-- "중앙값 유지"
-- "Isotonic Regression"
-- "아이소토닉 회귀"
-- "Monotone Regression"
-- "단조 회귀"
-- "L1"
-- "L1 Norm"
-- "Manhattan Distance"
-- "맨해튼"
-- "Absolute Value"
-- "절댓값"
-- "Sum of Absolute Differences"
-- "절댓값 합"
-- "Optimization"
-- "최적화"
-- "Convex"
-- "볼록"
-- "Piecewise Constant"
-- "구간 상수"
-- "Prefix"
-- "접두사"
-- "Suffix"
-- "접미사"
-- "Backward Pass"
-- "역방향 보정"
-- "Proof"
-- "정당성"
-- "Invariant"
-- "불변식"
-- "Implementation"
-- "구현"
-- "Fast IO"
-- "빠른 입출력"
-- "O(N log N)"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Large N"
-- "큰 N"
-- "1e6"
-- "BOI 2004"
-- "Baltic Olympiad in Informatics"
-- "Special Judge"
-- "스페셜 저지"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Math
+- Greedy
+- 그리디
+- Data-Structures
+- 자료구조
+- Priority-Queue
+- Heap
+- 힙
+- Optimization
+- 최적화
+- Prefix-Sum
+- String
+- Implementation
+- 구현
+- IO
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
 image: "wordcloud.png"
 ---
 

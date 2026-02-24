@@ -5,11 +5,12 @@ categories:
 - Cpp
 date: "2021-07-08T00:00:00Z"
 tags:
-- Language
-- Cpp
-- define
-- namespace
-- Preprocessor
+- C++
+- Process
+- Implementation
+- Networking
+- Concurrency
+- Technology
 title: '[C/C++] define 문을 namespace안에 선언하는건 의미가 없다.'
 ---
 

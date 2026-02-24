@@ -13,50 +13,16 @@ categories:
 - Practice
 - System Integration
 tags:
-- Adapter Pattern Practice
-- Facade Pattern Practice
-- Interface Design
-- System Integration
-- Legacy System
-- Payment System Integration
-- E-commerce Facade
-- Data Source Integration
-- External API Wrapper
-- Subsystem Simplification
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Structural Patterns
-- Design Patterns
-- GoF Patterns
-- API Gateway
+- Tutorial
+- Implementation
+- Design-Pattern
+- GoF
 - Microservices
-- Software Architecture
-- Interface Philosophy
-- Compatibility Layer
-- 어댑터 패턴 실습
-- 파사드 패턴 실습
-- 인터페이스 설계
-- 시스템 통합
-- 레거시 시스템
-- 결제 시스템 통합
-- 이커머스 파사드
-- 데이터 소스 통합
-- 외부 API 래퍼
-- 서브시스템 단순화
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 구조 패턴
-- 디자인 패턴
-- GoF 패턴
-- API 게이트웨이
+- Software-Architecture
+- 구현
+- 디자인패턴
 - 마이크로서비스
-- 소프트웨어 아키텍처
-- 인터페이스 철학
-- 호환성 계층
+- 소프트웨어아키텍처
 ---
 
 이 실습에서는 Adapter와 Facade 패턴을 통해 레거시 시스템 통합과 복잡한 서브시스템 단순화를 경험합니다.

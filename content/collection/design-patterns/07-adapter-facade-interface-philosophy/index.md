@@ -12,66 +12,15 @@ categories:
 - Interface Design
 - System Integration
 tags:
-- Adapter Pattern
-- Facade Pattern
-- Structural Patterns
-- Interface Design
-- Legacy Integration
-- API Wrapper
-- System Bridge
-- Code Adaptation
-- Interface Compatibility
-- Design Patterns
-- GoF Patterns
-- Object Adapter
-- Class Adapter
-- Two Way Adapter
-- Facade Simplification
-- Subsystem Integration
-- Complexity Management
-- API Design
-- Software Architecture
-- System Interoperability
-- Bridge Construction
-- Wrapper Pattern
-- Integration Patterns
-- Interface Translation
-- System Abstraction
-- Architectural Patterns
-- Code Reusability
-- System Decoupling
-- Interface Segregation
-- Clean Architecture
-- 어댑터 패턴
-- 파사드 패턴
-- 구조 패턴
-- 인터페이스 설계
-- 레거시 통합
-- API 래퍼
-- 시스템 브릿지
-- 코드 적응
-- 인터페이스 호환성
-- 디자인 패턴
-- GoF 패턴
-- 객체 어댑터
-- 클래스 어댑터
-- 양방향 어댑터
-- 파사드 단순화
-- 서브시스템 통합
-- 복잡성 관리
-- API 설계
-- 소프트웨어 아키텍처
-- 시스템 상호운용성
-- 브릿지 구축
-- 래퍼 패턴
-- 통합 패턴
-- 인터페이스 변환
-- 시스템 추상화
-- 아키텍처 패턴
-- 코드 재사용성
-- 시스템 디커플링
-- 인터페이스 분리
-- 클린 아키텍처
+- Design-Pattern
+- GoF
+- Software-Architecture
+- Code-Quality
+- Clean-Architecture
+- 디자인패턴
+- 소프트웨어아키텍처
+- 코드품질
+- 클린아키텍처
 ---
 
 Adapter와 Facade 패턴을 통해 인터페이스 설계의 철학을 탐구합니다. 시스템 간 호환성 문제를 해결하고, 복잡한 서브시스템을 단순화하는 방법을 학습합니다.

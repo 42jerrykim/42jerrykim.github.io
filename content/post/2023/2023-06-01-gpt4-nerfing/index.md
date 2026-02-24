@@ -6,26 +6,17 @@ date: "2023-06-01T00:00:00Z"
 header:
   teaser: /assets/images/2023/2023-06-chatgpt-tile_tcm7-315735.jpg
 tags:
-- ArtificialIntelligence
-- OpenAI GPT-4
-- HackerNewsPlatform
-- Nerfing of GPT-4
-- ClassifierLayer
-- Microsoft
-- LiabilityConcerns
-- Open source Unaligned AI
-- CorporationInterests
-- ComputingPower
-- Alignment in AI models
-- MoralAlignment
-- InstructionFollowing
-- GPTAPI
-- Unpredictability
-- ChatGPTAPI
-- Size and Complexity of GPT-4
-- 1 trillion parameters
-- ScalingIssues
-- EthicalWay
+- AI
+- 인공지능
+- ChatGPT
+- LLM
+- Technology
+- Go
+- Git
+- GitHub
+- API
+- Review
+- 리뷰
 title: '[ChatGPT] ChatGPT의 품질이 저하된것 같은 느낌에 대한 생각'
 
 ---

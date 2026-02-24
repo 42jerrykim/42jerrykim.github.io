@@ -9,52 +9,16 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - lobbyist
-  - lobbyist meaning
-  - lobbyist usage
-  - lobbyist examples
-  - lobbyist noun
   - 영단어
   - 영어명사
-  - lobbyist 의미
-  - lobbyist 용법
-  - lobbyist 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - advocate
-  - representative
-  - agent
-  - representative
-  - activist
-  - persuader
-  - influencer
-  - politician
-  - 로비활동가
-  - 로비스트
-  - 영향력
-  - 정책
-  - 정치
-  - 비즈니스
-  - 법률
-  - 미디어
-  - 정치 용어
-  - 비즈니스 용어
-  - 뉴스 용어
-  - 일상 표현
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
-  - etymology
-  - noun usage
-  - English learning
-  - vocabulary building
-  - study English
+  - 일상표현
+  - Grammar
+  - Pronunciation
+  - Etymology
 image: wordcloud.png
 ---
 

@@ -12,66 +12,13 @@ categories:
 - Design Analysis
 - Pattern Theory
 tags:
-- Pattern Analysis
-- GoF Patterns
-- Design Framework
-- Software Design
-- Pattern Evaluation
-- Trade Off Analysis
-- Intent Analysis
-- Pattern Selection
-- Design Methodology
-- Cognitive Science
-- Schema Theory
-- Pattern Recognition
-- Expert Thinking
-- Software Architecture
-- Design Principles
-- Pattern Comparison
-- Architectural Patterns
-- System Design
-- Code Quality
-- Design Decision
-- Pattern Mastery
-- Software Engineering
-- Design Wisdom
-- Pattern Application
-- Structural Analysis
-- Behavioral Analysis
-- Creational Analysis
-- Design Metrics
-- Pattern Evolution
-- Software Craftsmanship
-- 패턴 분석
-- GoF 패턴
-- 설계 프레임워크
-- 소프트웨어 설계
-- 패턴 평가
-- 트레이드오프 분석
-- 의도 분석
-- 패턴 선택
-- 설계 방법론
-- 인지 과학
-- 스키마 이론
-- 패턴 인식
-- 전문가 사고
-- 소프트웨어 아키텍처
-- 설계 원칙
-- 패턴 비교
-- 아키텍처 패턴
-- 시스템 설계
-- 코드 품질
-- 설계 결정
-- 패턴 마스터리
-- 소프트웨어 공학
-- 설계 지혜
-- 패턴 적용
-- 구조적 분석
-- 행동적 분석
-- 생성적 분석
-- 설계 메트릭
-- 패턴 진화
-- 소프트웨어 장인정신
+- GoF
+- Software-Architecture
+- SOLID
+- Code-Quality
+- 소프트웨어아키텍처
+- Design-Pattern
+- 코드품질
 ---
 
 GoF 패턴을 체계적으로 분석하고 평가하는 과학적 방법론을 제시합니다. Intent 분석부터 Trade-off 평가까지, 패턴의 본질을 꿰뚫어보는 전문가적 사고 과정을 학습합니다.

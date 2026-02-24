@@ -5,68 +5,20 @@ slug: getting-started-memory-allocation-data-layout-tuning
 description: "Low-latency 메모리·할당·데이터 레이아웃 트랙의 도입 챕터입니다. 컨테이너/할당/레이아웃 설계의 책임 경계를 정리하고, allocation·레이턴시 변화를 벤치마크로 검증하는 기본 흐름을 제공합니다."
 tags:
   - Performance
-  - Performance Engineering
-  - Performance Optimization
-  - Low Latency
-  - Low-latency
-  - Microsecond
-  - Latency
-  - Throughput
-  - Benchmark
-  - Microbenchmark
   - Profiling
-  - Flamegraph
   - Optimization
-  - Systems Programming
   - C++
-  - STL
   - Memory
-  - Allocation
-  - Allocator
-  - pmr
-  - Object Pool
-  - Arena Allocator
-  - Data Layout
-  - AoS
-  - SoA
-  - Cache Locality
-  - Cache Line
-  - Prefetch
-  - NUMA
-  - Page Fault
-  - TLB
-  - Fragmentation
   - CPU
   - Cache
   - Concurrency
-  - Regression
-  - CI
-  - 측정
-  - 검증
+  - Testing
+  - CI-CD
   - 성능
-  - 성능공학
-  - 성능 최적화
-  - 저지연
-  - 마이크로초
-  - 레이턴시
-  - 처리량
-  - 벤치마크
-  - 마이크로벤치마크
   - 프로파일링
   - 최적화
-  - 시스템 프로그래밍
   - 메모리
-  - 할당
-  - 할당자
-  - 데이터 레이아웃
-  - 캐시 지역성
-  - 캐시 라인
-  - NUMA
-  - 파편화
-  - 페이지 폴트
-  - TLB
-  - 성능 회귀
-  - 유지보수
+  - 코드품질
 ---
 
 이 트랙은 "메모리 접근 패턴과 할당 정책을 설계해서 지연시간을 줄이는 영역"을 책임집니다. 핫패스에서 allocation 1회, 캐시 라인 1개가 µs 예산을 소모하는 상황을 전제로, 데이터 구조를 비용 관점으로 재구성합니다.

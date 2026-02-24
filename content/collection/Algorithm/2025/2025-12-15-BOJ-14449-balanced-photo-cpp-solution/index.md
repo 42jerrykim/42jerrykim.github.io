@@ -13,67 +13,29 @@ tags:
   - 알고리즘
   - BOJ
   - 백준
-  - Problem-14449
-  - 14449
-  - Balanced Photo
-  - balanced-photo
-  - Unbalanced
-  - 불균형
   - USACO
-  - USA Computing Olympiad
-  - Gold
   - 자료구조
-  - Data Structures
-  - Fenwick Tree
-  - 펜윅트리
+  - Data-Structures
+  - Fenwick-Tree
   - BIT
-  - Binary Indexed Tree
-  - Coordinate Compression
+  - Binary-Indexed-Tree
+  - Coordinate-Compression
   - 좌표압축
-  - Order Statistics
-  - 순서통계
-  - Counting
-  - 카운팅
-  - Taller Count
-  - 큰수세기
-  - Left Right
-  - 좌우
-  - Prefix Sum
-  - 누적합
-  - Frequency
-  - 빈도
-  - Offline
-  - 오프라인
-  - Sweep
-  - 스위핑
-  - Two Pass
-  - 양방향스캔
+  - Math
+  - Prefix-Sum
   - Sorting
   - 정렬
-  - Discretization
-  - 이산화
   - Implementation
   - 구현
-  - Time Complexity
+  - Time-Complexity
   - 시간복잡도
-  - Space Complexity
+  - Space-Complexity
   - 공간복잡도
-  - O(N log N)
-  - NlogN
-  - Competitive Programming
+  - Competitive-Programming
   - 경쟁프로그래밍
-  - Online Judge
-  - 온라인저지
   - C++
-  - cpp
-  - STL
-  - iostream
-  - Coordinate
-  - 좌표
-  - Edge Case
+  - Edge-Cases
   - 엣지케이스
-  - Overflow
-  - 오버플로우
   - Array
   - 배열
 image: "wordcloud.png"

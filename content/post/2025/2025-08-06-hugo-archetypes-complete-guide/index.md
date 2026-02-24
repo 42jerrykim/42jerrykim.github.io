@@ -6,66 +6,16 @@ categories:
 - "Hugo"
 - "Static Site Generator"
 - "Content Management"
-tags: 
-- "Hugo"
-- "Archetypes"
-- "Content Templates"
-- "Static Site Generator"
-- "JAMstack"
-- "Markdown"
-- "Front Matter"
-- "Content Management"
-- "Workflow Automation"
-- "Template System"
-- "Site Generation"
-- "Content Structure"
-- "Metadata"
-- "YAML"
-- "TOML"
-- "JSON"
-- "Content Creation"
-- "Blog Management"
-- "Documentation"
-- "Web Development"
-- "Static Websites"
-- "Content Modeling"
-- "Data Structure"
-- "Site Architecture"
-- "Content Workflow"
-- "Template Engine"
-- "Site Building"
-- "Content Organization"
-- "Frontend Development"
-- "Web Publishing"
-- "Content Strategy"
-- "Digital Publishing"
-- "Web Content"
-- "Site Management"
-- "Content Templates"
-- "Hugo Themes"
-- "Static Blog"
-- "Web Development Tools"
-- "Content Creation Tools"
-- "Site Generator"
-- "웹개발"
-- "정적사이트"
-- "콘텐츠관리"
-- "템플릿시스템"
-- "마크다운"
-- "사이트생성"
-- "워크플로우"
-- "자동화"
-- "콘텐츠구조"
-- "메타데이터"
-- "블로그관리"
-- "웹퍼블리싱"
-- "콘텐츠전략"
-- "사이트아키텍처"
-- "템플릿엔진"
-- "정적블로그"
-- "웹개발도구"
-- "콘텐츠생성"
-- "사이트빌더"
+tags:
+- Hugo
+- Markdown
+- YAML
+- JSON
+- Documentation
+- Data-Structures
+- 마크다운
+- 워크플로우
+- 자동화
 image: wordcloud.png
 ---
 

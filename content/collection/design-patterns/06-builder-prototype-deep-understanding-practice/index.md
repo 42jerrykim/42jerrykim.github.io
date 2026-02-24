@@ -13,52 +13,12 @@ categories:
 - Practice
 - Pattern Implementation
 tags:
-- Builder Pattern Practice
-- Prototype Pattern Practice
-- Object Construction
-- Fluent Interface
-- Method Chaining
-- Complex Objects
-- Object Cloning
-- Deep Copy
-- Shallow Copy
-- Immutable Objects
-- HTTP Client Builder
-- Game Character Creation
-- Configuration Objects
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Creational Patterns
-- Design Patterns
-- GoF Patterns
-- Object Assembly
-- Data Transfer Objects
-- API Design
-- 빌더 패턴 실습
-- 프로토타입 패턴 실습
-- 객체 구성
-- 플루언트 인터페이스
-- 메서드 체이닝
-- 복잡한 객체
-- 객체 복제
-- 깊은 복사
-- 얕은 복사
-- 불변 객체
-- HTTP 클라이언트 빌더
-- 게임 캐릭터 생성
-- 설정 객체
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 생성 패턴
-- 디자인 패턴
-- GoF 패턴
-- 객체 조립
-- 데이터 전송 객체
-- API 설계
+- Tutorial
+- Implementation
+- Design-Pattern
+- GoF
+- 구현
+- 디자인패턴
 ---
 
 이 실습에서는 Builder와 Prototype 패턴을 활용하여 복잡한 객체 생성 문제를 해결하는 다양한 기법을 직접 구현합니다.

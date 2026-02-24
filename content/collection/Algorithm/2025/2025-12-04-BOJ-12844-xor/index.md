@@ -11,66 +11,29 @@ tags:
   - 알고리즘
   - BOJ
   - 백준
-  - Problem-12844
-  - 12844번
   - C++
-  - CPP
-  - 씨쁠쁠
-  - Segment Tree
-  - 세그먼트 트리
-  - Lazy Propagation
-  - 레이지 프로퍼게이션
-  - 느리게 갱신되는 세그먼트 트리
-  - Range Update
-  - 구간 업데이트
-  - Range Query
-  - 구간 쿼리
-  - XOR
-  - Exclusive OR
-  - 배타적 논리합
-  - Data Structure
+  - Segment-Tree
+  - 세그먼트트리
+  - Lazy-Propagation
+  - Range-Query
+  - Math
+  - Data-Structures
   - 자료구조
-  - Time Complexity
-  - 시간 복잡도
-  - Space Complexity
-  - 공간 복잡도
+  - Time-Complexity
+  - Space-Complexity
   - Optimization
   - 최적화
   - Implementation
   - 구현
-  - Problem Solving
-  - 문제 해결
-  - Coding Test
-  - 코딩 테스트
-  - Competitive Programming
-  - 경쟁적 프로그래밍
-  - Algorithm Study
-  - 알고리즘 스터디
-  - BOJ Solution
-  - 백준 풀이
-  - C++ Solution
-  - C++ 풀이
-  - O(M log N)
-  - Logarithmic Time
-  - 로그 시간
-  - Binary Tree
-  - 이진 트리
+  - Problem-Solving
+  - 문제해결
+  - Coding-Test
+  - 코딩테스트
+  - Competitive-Programming
   - Tree
   - 트리
-  - Bitwise Operation
-  - 비트 연산
-  - Bit Manipulation
-  - 비트 조작
-  - PS
-  - Problem Solver
-  - Code
-  - Code Snippet
-  - Programming
-  - 프로그래밍
-  - Computer Science
-  - 컴퓨터 공학
-  - Software Engineering
-  - 소프트웨어 엔지니어링
+  - Software-Architecture
+  - 소프트웨어아키텍처
 image: "wordcloud.png"
 ---
 

@@ -11,71 +11,45 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-13537
-- cpp
 - C++
-- Data Structures
+- Data-Structures
 - 자료구조
-- Range Query
-- 구간쿼리
-- Offline Queries
-- 오프라인 쿼리
-- Fenwick Tree
-- 펜윅트리
+- Range-Query
+- Fenwick-Tree
 - BIT
-- Binary Indexed Tree
-- Merge Sort Tree
-- 머지소트트리
-- Segment Tree
-- 세그먼트 트리
-- Count Greater Than K
-- k보다큰개수
-- Counting
-- 카운팅
+- Binary-Indexed-Tree
+- Segment-Tree
+- 세그먼트트리
+- Math
 - Sorting
 - 정렬
-- Prefix Sum
-- 누적합
-- Two Pointers
-- 투포인터
-- Binary Search
+- Prefix-Sum
+- Two-Pointers
+- Binary-Search
 - 이분탐색
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Complexity Analysis
-- 복잡도 분석
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
 - Testing
 - 테스트
-- Invariant
-- 불변식
 - Array
 - 배열
-- Query Sorting
-- 쿼리정렬
-- Offline Processing
-- 오프라인 처리
-- 1-based Index
-- 1-기반 인덱스
-- Fast IO
-- 빠른 입출력
-- 수열과 쿼리 1
-- Sequence and Queries 1
+- IO
 image: "wordcloud.png"
 ---
 

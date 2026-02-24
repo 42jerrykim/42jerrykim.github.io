@@ -12,79 +12,35 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-3611
-- cpp
 - C++
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Graph
 - 그래프
-- Flow
-- 플로우
-- Max Flow
-- 최대유량
-- Min Cut
-- 최소절단
-- Dinic
-- 디닉
-- Parametric Search
-- 파라메트릭 탐색
-- Binary Search
+- Network-Flow
+- Binary-Search
 - 이분탐색
-- Maximum Density Subgraph
-- 최대밀도부분그래프
-- Densest Subgraph
-- 밀도부분그래프
-- Residual Graph
-- 잔여그래프
-- Cut
-- 컷
-- NEERC
-- NEERC 2006
-- 팀의 난이도
-- 팀
-- Special Judge
-- 스페셜저지
-- Modeling
-- 모델링
-- Network Flow
-- 네트워크 플로우
-- Set Selection
-- 부분집합 선택
-- Subgraph
-- 부분그래프
-- Construction
-- 구성
-- Proof Sketch
-- 정당성 스케치
-- Implementation Details
-- 구현 디테일
+- Software-Architecture
 image: "wordcloud.png"
 ---
 

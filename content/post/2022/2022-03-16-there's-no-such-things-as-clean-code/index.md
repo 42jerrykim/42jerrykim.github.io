@@ -7,9 +7,13 @@ date: "2022-03-16T00:00:00Z"
 header:
   teaser: /assets/images/undefined/cleancode.jpg
 last_modified_at: "2022-01-16"
-tag:
-- CleanCode
-- Programming
+tags:
+- Clean-Code
+- Implementation
+- Singleton
+- Design-Pattern
+- Blog
+- 블로그
 title: '[Clean Code] 클린 코드와 같은 건 없다.'
 
 ---

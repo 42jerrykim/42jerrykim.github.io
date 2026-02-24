@@ -7,11 +7,15 @@ header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
 - Stack
-- DivideAndConquer
-- O(N)
-- DataStructure
-- LargestRectangle
-- Histogram
+- Time-Complexity
+- Data-Structures
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 title: '[Algorithm] C++/Python 백준 6549번 : 히스토그램에서 가장 큰 직사각형'
 ---
 

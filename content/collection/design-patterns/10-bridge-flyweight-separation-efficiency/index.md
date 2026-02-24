@@ -12,68 +12,11 @@ categories:
 - Performance Optimization
 - Memory Management
 tags:
-- Bridge Pattern
-- Flyweight Pattern
-- Structural Patterns
-- Abstraction Implementation
-- Memory Optimization
-- Object Pooling
-- Intrinsic State
-- Extrinsic State
-- Separation Of Concerns
-- Platform Independence
-- Implementation Hiding
-- Design Patterns
-- GoF Patterns
-- Memory Efficiency
-- Performance Patterns
-- Object Sharing
-- State Management
-- Context Objects
-- Factory Coordination
-- Lightweight Objects
-- Resource Conservation
-- Scalability Patterns
-- Large Scale Systems
-- Object Lifecycle
-- Memory Footprint
-- Caching Mechanisms
-- Object Reuse
-- State Externalization
-- Context Passing
-- Immutable Objects
-- Shared Resources
-- 브릿지 패턴
-- 플라이웨이트 패턴
-- 구조 패턴
-- 추상화 구현
-- 메모리 최적화
-- 객체 풀링
-- 내재적 상태
-- 외재적 상태
-- 관심사 분리
-- 플랫폼 독립성
-- 구현 은닉
-- 디자인 패턴
-- GoF 패턴
-- 메모리 효율성
-- 성능 패턴
-- 객체 공유
-- 상태 관리
-- 컨텍스트 객체
-- 팩토리 조정
-- 경량 객체
-- 자원 보존
-- 확장성 패턴
-- 대규모 시스템
-- 객체 생명주기
-- 메모리 사용량
-- 캐싱 메커니즘
-- 객체 재사용
-- 상태 외부화
-- 컨텍스트 전달
-- 불변 객체
-- 공유 자원
+- Design-Pattern
+- Memory
+- SOLID
+- GoF
+- 디자인패턴
 ---
 
 Bridge와 Flyweight 패턴을 통해 분리와 효율성의 철학을 탐구합니다. 변화의 축을 분리하고, 공유를 통해 메모리 효율성을 극대화하는 방법을 학습합니다.

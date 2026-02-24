@@ -6,13 +6,16 @@ date: "2024-10-10T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- SegmentTree
-- RangeQuery
-- ModularArithmetic
-- DataStructures
-- EfficientAlgorithms
-- TimeComplexity
-- O(log N)
+- Data-Structures
+- Time-Complexity
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Python
 title: '[Algorithm] C++/Python 백준 11505번 : 구간 곱 구하기'
 ---
 

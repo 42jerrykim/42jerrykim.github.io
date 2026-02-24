@@ -5,7 +5,31 @@ lastmod: 2025-12-04
 categories:
   - Algorithm
   - Greedy
-tags: ["Algorithm", "C++", "Baekjoon", "BOJ", "Problem Solving", "Coin Collecting", "JOI", "Greedy", "Implementation", "Simulation", "Optimization", "16983", "Coding Test", "Competitive Programming", "Data Structure", "Math", "Geometry", "Manhattan Distance", "Grid", "Coordinates", "Flow", "Constructive", "Min Cost", "Efficiency", "Programming", "Source Code", "Solution", "Explanation", "Computer Science", "Software Engineering", "ICPC", "Olympiad", "Education", "Study", "Logic", "Reasoning", "Thinking", "Development", "Coding", "Practice", "Challenge", "Skill", "Knowledge", "Learning", "Tutorial", "Guide", "Reference", "Tips", "Review", "Analysis", "Strategy", "Technique"]
+tags:
+- Algorithm
+- C++
+- Baekjoon
+- BOJ
+- Problem-Solving
+- Greedy
+- Implementation
+- Simulation
+- Optimization
+- Coding-Test
+- Competitive-Programming
+- Data-Structures
+- Math
+- Geometry
+- Graph
+- Network-Flow
+- Performance
+- Software-Architecture
+- ICPC
+- Education
+- Tutorial
+- Guide
+- Review
+- Strategy
 description: "백준 16983번 Coin Collecting 문제는 2N개의 동전을 Nx2 격자에 배치하는 최소 이동 횟수를 구하는 문제입니다. 그리디 알고리즘을 통해 각 열의 동전 과부족을 계산하고, 수직 및 수평 이동을 최적화하여 문제를 해결하는 C++ 정답 코드와 상세한 풀이를 제공합니다."
 image: "wordcloud.png"
 ---

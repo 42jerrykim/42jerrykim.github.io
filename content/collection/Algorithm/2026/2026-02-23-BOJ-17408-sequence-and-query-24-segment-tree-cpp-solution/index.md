@@ -9,71 +9,35 @@ categories:
 - "Data Structure"
 - "Segment Tree"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "17408"
-- "BOJ-17408"
-- "Problem-17408"
-- "수열과 쿼리 24"
-- "Sequence and Query 24"
-- "Data Structure"
-- "자료구조"
-- "Segment Tree"
-- "세그먼트 트리"
-- "Range Query"
-- "구간 쿼리"
-- "Point Update"
-- "점 업데이트"
-- "Maximum Pair Sum"
-- "두 원소 합 최댓값"
-- "Top Two"
-- "최댓값 두 개"
-- "Merge"
-- "병합"
-- "Divide and Conquer"
-- "분할정복"
-- "1-indexed"
-- "1부터 인덱스"
-- "Query Type 1"
-- "쿼리 타입 1"
-- "Query Type 2"
-- "쿼리 타입 2"
-- "Single Point Update"
-- "단일 점 갱신"
-- "Range Maximum"
-- "구간 최댓값"
-- "Second Maximum"
-- "두 번째 최댓값"
-- "Invariant"
-- "불변식"
-- "Correctness"
-- "정당성"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(log N)"
-- "Optimization"
-- "최적화"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Edge Case"
-- "엣지 케이스"
-- "Long Long"
-- "오버플로우"
-- "Overflow"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Data-Structures
+- 자료구조
+- Segment-Tree
+- 세그먼트트리
+- Range-Query
+- Divide-and-Conquer
+- 분할정복
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Optimization
+- 최적화
+- Implementation
+- 구현
+- C++
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- Edge-Cases
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

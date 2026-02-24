@@ -6,7 +6,11 @@ categories:
 date: "2021-05-17T00:00:00Z"
 tags:
 - Shell
-- Navigation
+- Bash
+- Linux
+- Terminal
+- Networking
+- Technology
 title: '[Shell] 숫자로 메뉴 실행하는 셸스크립트 예제'
 ---
 

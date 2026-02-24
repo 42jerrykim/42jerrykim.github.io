@@ -4,6 +4,16 @@ description: "시간 복잡도(Time Complexity)는 알고리즘이 입력 크기
 title: "Time Complexity 시간 복잡도"
 date: 2022-03-14
 categories: ComputerTerms
+tags:
+- Technology
+- 기술
+- Education
+- 교육
+- Go
+- Algorithm
+- 알고리즘
+- Sorting
+- Self-Hosted
 ---
 
 빅 오 표기법, 빅 세타 표기법

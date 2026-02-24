@@ -7,61 +7,13 @@ title: "[Clean Architecture] 21. 컴포넌트: 배포 단위"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Component
-  - 컴포넌트
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
   - Deployment
   - 배포
-  - Module
-  - 모듈
-  - Linker
-  - 링커
-  - Loader
-  - 로더
-  - Relocatable Binary
-  - 재배치 가능 바이너리
-  - Static Linking
-  - 정적 링킹
-  - Dynamic Linking
-  - 동적 링킹
-  - Shared Library
-  - 공유 라이브러리
-  - DLL
-  - Dynamic Link Library
-  - Shared Object
-  - jar
-  - gem
-  - npm
-  - pip
-  - Memory Layout
-  - 메모리 레이아웃
-  - Address Space
-  - 주소 공간
-  - Compile Time
-  - 컴파일 타임
-  - Link Time
-  - 링크 타임
-  - Load Time
-  - 로드 타임
-  - Runtime
-  - 런타임
-  - Object File
-  - 오브젝트 파일
-  - Executable
-  - 실행 파일
-  - Software History
-  - 소프트웨어 역사
-  - Plugin Architecture
-  - 플러그인 아키텍처
-  - Independent Deployment
-  - 독립 배포
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Build System
-  - 빌드 시스템
-  - Package Manager
-  - 패키지 관리자
+  - Performance
+  - 소프트웨어아키텍처
 ---
 
 컴포넌트는 **배포의 단위**다. Java에서는 jar 파일, .NET에서는 dll 파일, Ruby에서는 gem 파일이다. 컴파일형 언어에서는 바이너리 파일의 묶음이고, 인터프리터형 언어에서는 소스 파일의 묶음이다.

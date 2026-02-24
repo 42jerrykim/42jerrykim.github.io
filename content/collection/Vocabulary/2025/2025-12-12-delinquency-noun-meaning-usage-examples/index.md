@@ -9,64 +9,17 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - delinquency
-  - delinquency meaning
-  - delinquency usage
-  - delinquency examples
-  - delinquency noun
-  - juvenile delinquency
-  - financial delinquency
   - 영단어
   - 영어명사
-  - delinquency 의미
-  - delinquency 용법
-  - delinquency 예문
-  - 청소년 비행
-  - 불이행
-  - 법률 위반
-  - 채무 불이행
-  - 범죄 행동
-  - 의무 회피
-  - 청년 문제
-  - 사회 문제
-  - 법적 책임
-  - 재정 문제
-  - 신용 위험
-  - 법원
-  - 신용 기록
-  - 금융 용어
-  - 법률 용어
-  - 사회학 용어
-  - 금융 시장
-  - 신용 평가
-  - 범죄 심리학
-  - 청소년 행동
-  - 행동 문제
-  - 사회 일탈
-  - 법적 계약
-  - 채무 관리
-  - 금융 의무
-  - 법적 의무
-  - 도덕적 책임
-  - 사회적 책임
-  - 범죄 학
   - 심리학
-  - 교육학
-  - 사회복지
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - etymology
+  - Etymology
   - 어원
-  - 형태소
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

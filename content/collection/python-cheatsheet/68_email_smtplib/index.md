@@ -7,39 +7,15 @@ description: "파이썬 email과 smtplib 모듈을 빠르게 사용하기 위한
 lastmod: 2026-01-18
 collection_order: 68
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - email
-  - 이메일
-  - smtp
-  - SMTP
-  - smtplib
-  - send-email
-  - 이메일발송
-  - attachment
-  - 첨부파일
-  - html-email
-  - HTML이메일
-  - mime
-  - MIME
-  - gmail
-  - outlook
-  - ssl
-  - tls
+  - Quick-Reference
   - authentication
   - 인증
-  - standard-library
-  - 표준라이브러리
-  - patterns
-  - 패턴
-  - best-practices
-  - 베스트프랙티스
+  - Design-Pattern
+  - Best-Practices
   - automation
   - 자동화
 ---

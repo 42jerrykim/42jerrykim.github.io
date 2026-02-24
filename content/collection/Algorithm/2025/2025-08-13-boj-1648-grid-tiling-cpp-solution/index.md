@@ -11,62 +11,35 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-1648
-- cpp
 - C++
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
 - DP
-- Bitmask
-- 비트마스크
-- State Compression
-- 상태압축
-- Profile DP
-- 프로필DP
-- Grid
-- 격자
-- Grid Tiling
-- 격자 타일링
-- Domino
-- 도미노
-- Tiling
-- 타일링
+- Graph
 - Implementation
 - 구현
 - Recursion
 - 재귀
 - Memoization
-- 메모이제이션
-- Invariant
-- 불변식
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
 - Optimization
 - 최적화
-- Modulo
+- Modular-Arithmetic
 - 모듈러
-- 9901
-- Mask DP
-- 마스크 DP
-- Row-major Scan
-- 행우선스캔
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
 - Testing
 - 테스트
-- Edge Cases
-- 코너 케이스
-- Implementation Details
-- 구현 디테일
-- Code Review
+- Edge-Cases
+- 엣지케이스
+- Code-Review
 - 코드리뷰
 image: "wordcloud.png"
 ---

@@ -9,57 +9,28 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-22-abstract-factory.png
 tags:
-  - Design Pattern
-  - 디자인 패턴
-  - Abstract Factory
-  - 추상 팩토리
-  - Creational Pattern
-  - 생성 패턴
+  - Design-Pattern
+  - 디자인패턴
   - GoF
-  - Gang of Four
   - Factory
-  - 팩토리
-  - Object Creation
-  - 객체 생성
-  - Product Family
-  - 제품군
   - Interface
   - 인터페이스
   - Abstraction
   - 추상화
   - Encapsulation
   - 캡슐화
-  - Dependency Injection
-  - 의존성 주입
-  - Loose Coupling
-  - 느슨한 결합
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Extensibility
+  - Dependency-Injection
+  - Software-Architecture
+  - Code-Quality
+  - 코드품질
   - 확장성
-  - Software Design
-  - 소프트웨어 설계
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - Concrete Factory
-  - 구체 팩토리
-  - Abstract Product
-  - 추상 제품
-  - Concrete Product
-  - 구체 제품
-  - Client
-  - 클라이언트
-  - Cross-platform
-  - 크로스 플랫폼
-  - UI Factory
-  - Theme
-  - 테마
+  - CSharp
   - Configuration
   - 설정
 ---

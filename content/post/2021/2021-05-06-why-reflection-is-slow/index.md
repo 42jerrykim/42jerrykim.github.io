@@ -9,8 +9,11 @@ header:
 tags:
 - .NET
 - CSharp
-- Reflection
-- 리플렉션
+- Implementation
+- Go
+- Git
+- GitHub
+- Security
 title: '[C#] 왜 리플렉션은 느린가?'
 
 ---

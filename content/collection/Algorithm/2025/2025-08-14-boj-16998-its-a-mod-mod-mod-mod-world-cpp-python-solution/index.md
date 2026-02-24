@@ -11,70 +11,36 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-16998
-- cpp
-- python
 - C++
 - Python
-- Modular Arithmetic
+- Modular-Arithmetic
 - 모듈러
-- Number Theory
+- Number-Theory
 - 정수론
-- Euclidean Algorithm
-- 유클리드 호제법
-- Floor Sum
-- 합-바닥함수
-- Sum of Floors
-- 바닥합
-- Mathematics
+- Math
 - 수학
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
-- Arithmetic Progression
-- 등차수열
-- Residue Class
-- 잔여류
-- Chinese Remainder Insight
-- 나머지 분해
-- GCD Reduction
-- 최대공약수 분해
-- Periodicity
-- 주기성
-- AtCoder Library Style
-- ACL 스타일
-- Big Integer Safety
-- 큰정수 안전성
-- Overflow Guard
-- 오버플로 방지
-- NAIPC 2019
-- Contest D
-- 문제 풀이
+- Complexity-Analysis
+- 복잡도분석
 image: "wordcloud.png"
 ---
 

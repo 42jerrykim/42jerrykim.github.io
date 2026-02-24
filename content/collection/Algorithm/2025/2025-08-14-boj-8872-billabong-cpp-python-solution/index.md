@@ -11,83 +11,44 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-8872
-- cpp
-- python
+- C++
+- Python
 - Graph
 - 그래프
 - Tree
 - 트리
-- Diameter
-- 지름
-- Radius
-- 반지름
-- Graph Center
-- 그래프 중심
-- Component
-- 연결요소
-- Bridge
-- 브리지
-- Shortest Path
+- Software-Architecture
+- Shortest-Path
 - 최단경로
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Greedy
 - 그리디
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
 - BFS
 - DFS
-- Union-Find
-- 유니온파인드
-- Tree Diameter
-- 트리 지름
-- Tree Radius
-- 트리 반지름
-- IOI
-- IOI-2013
-- Dreaming
-- 빌라봉
-- Fixed-Length Edge
-- 고정 길이 간선
-- Graph Construction
-- 그래프 구성
-- Connectivity
-- 연결성
-- Centers
-- 센터
-- Two-Pass BFS
-- 두 번의 BFS
-- Depth-First Search
-- 깊이우선탐색
-- Stack-Based DFS
-- 스택 DFS
+- Disjoint-Set
 image: "wordcloud.png"
 ---
 

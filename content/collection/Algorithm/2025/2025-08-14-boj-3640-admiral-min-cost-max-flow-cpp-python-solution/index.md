@@ -11,75 +11,27 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-3640
-- cpp
 - C++
-- python
 - Python
 - Graph
 - 그래프
-- Directed Graph
-- 유향 그래프
-- Min Cost Max Flow
-- 최소비용최대유량
-- MCMF
-- Network Flow
-- 네트워크 플로우
-- Flow
-- 유량
-- Residual Graph
-- 잔여 그래프
-- Augmenting Path
-- 증가 경로
-- SPFA
+- Network-Flow
 - Dijkstra
-- 다익스트라
-- Johnson Potential
-- 잠재값
-- Reduced Cost
-- 감소 비용
-- Node Splitting
-- 정점 분할
-- Vertex Capacity
-- 정점 용량
-- Edge Capacity
-- 간선 용량
-- Edge Disjoint Paths
-- 간선 분리 경로
-- Vertex Disjoint Paths
-- 정점 분리 경로
-- Two Disjoint Paths
-- 두 경로
-- Shortest Path on Residual
 - 최단경로
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
 - Pitfalls
-- 실수 포인트
-- Edge Cases
-- 코너 케이스
-- Competitive Programming
+- 함정
+- Edge-Cases
+- 엣지케이스
+- Competitive-Programming
 - 경쟁프로그래밍
-- NWERC
-- NWERC 2012
-- Admiral
-- 제독
-- Integer Weights
-- 정수 가중치
-- Nonnegative Costs
-- 음이 아닌 비용
-- EOF Input
-- EOF 입력
 image: "wordcloud.png"
 ---
 

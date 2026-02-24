@@ -6,10 +6,13 @@ categories:
 date: "2022-07-07T00:00:00Z"
 header:
   teaser: /assets/images/2022/2022-07-07-135907.png
-tag:
+tags:
 - GitHub
 - IDE
 - Web
+- Git
+- Keyboard
+- 키보드
 title: '[GitHub] github.dev - GitHub의 웹 IDE'
 ---
 

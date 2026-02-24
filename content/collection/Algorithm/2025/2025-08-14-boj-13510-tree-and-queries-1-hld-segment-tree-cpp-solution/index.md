@@ -7,70 +7,43 @@ categories:
 - Algorithm
 - Tree
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "백준"
-- "Problem-13510"
-- "cpp"
-- "C++"
-- "Data Structures"
-- "자료구조"
-- "Implementation"
-- "구현"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Proof of Correctness"
-- "정당성 증명"
-- "Edge Cases"
-- "코너 케이스"
-- "Pitfalls"
-- "실수 포인트"
-- "Optimization"
-- "최적화"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Editorial"
-- "에디토리얼"
-- "Code Review"
-- "코드리뷰"
-- "Template"
-- "템플릿"
-- "Testing"
-- "테스트"
-- "Complexity Analysis"
-- "복잡도 분석"
-- "Invariant"
-- "불변식"
-- "Graph"
-- "그래프"
-- "Tree"
-- "트리"
-- "Segment Tree"
-- "세그먼트 트리"
-- "Range Maximum Query"
-- "RMQ"
-- "Heavy Light Decomposition"
-- "HLD"
-- "Path Query"
-- "경로 질의"
-- "Edge Update"
-- "간선 갱신"
-- "Iterative Segment Tree"
-- "세그트리"
-- "Lowest Common Ancestor"
-- "LCA"
-- "Chain Decomposition"
-- "체인 분할"
-- "Range Query"
-- "쿼리"
-- "RMQ Max"
-- "Max Query"
-- "O(log N)"
-- "Static Tree"
-- "트리 분해"
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- C++
+- Data-Structures
+- 자료구조
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- Pitfalls
+- 함정
+- Optimization
+- 최적화
+- Competitive-Programming
+- 경쟁프로그래밍
+- Editorial
+- 에디토리얼
+- Code-Review
+- 코드리뷰
+- Testing
+- 테스트
+- Complexity-Analysis
+- 복잡도분석
+- Graph
+- 그래프
+- Tree
+- 트리
+- Segment-Tree
+- 세그먼트트리
+- LCA
+- Range-Query
 image: "wordcloud.png"
 ---
 

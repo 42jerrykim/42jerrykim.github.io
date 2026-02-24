@@ -8,14 +8,14 @@ description: How to extract directory path and file name from file path using se
 redirect_from:
 - /2019/02/13/
 tags:
-- Script
 - Shell
 - Bash
-- sed
-- folder
-- file
-- path
-- directory
+- Graph
+- String
+- Sci-Fi
+- Process
+- Command
+- Design-Pattern
 title: '[Shell] Extract directory path and file name from file path'
 ---
 

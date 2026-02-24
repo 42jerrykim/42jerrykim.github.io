@@ -7,58 +7,15 @@ title: "[Clean Architecture] 23. 컴포넌트 결합: ADP, SDP, SAP"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Component Coupling
-  - 컴포넌트 결합
-  - ADP
-  - Acyclic Dependencies Principle
-  - 비순환 의존성 원칙
-  - SDP
-  - Stable Dependencies Principle
-  - 안정된 의존성 원칙
-  - SAP
-  - Stable Abstractions Principle
-  - 안정된 추상화 원칙
-  - Component
-  - 컴포넌트
-  - Coupling
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
   - 결합도
-  - Dependency
-  - 의존성
-  - Circular Dependency
-  - 순환 의존성
-  - Cycle
-  - 순환
-  - DAG
-  - Directed Acyclic Graph
-  - 방향성 비순환 그래프
-  - Stability
-  - 안정성
-  - Instability
-  - 불안정성
+  - Dependency-Injection
+  - Code-Quality
   - Abstraction
   - 추상화
-  - Metrics
-  - 메트릭
-  - Fan In
-  - Fan Out
-  - Main Sequence
-  - 주계열
-  - Zone of Pain
-  - 고통의 구역
-  - Zone of Uselessness
-  - 쓸모없음의 구역
-  - DIP
-  - Dependency Inversion Principle
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Software Design
-  - 소프트웨어 설계
-  - Build Order
-  - 빌드 순서
-  - Weekly Build
-  - 주간 빌드
+  - 소프트웨어아키텍처
 ---
 
 컴포넌트 응집도가 **무엇을 포함할 것인가**에 관한 것이라면, 컴포넌트 결합은 **컴포넌트 간 관계**에 관한 것이다. 이 장에서는 컴포넌트 의존성을 관리하는 세 가지 원칙을 다룬다.

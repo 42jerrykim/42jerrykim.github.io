@@ -6,11 +6,16 @@ categories:
 - Algorithm
 - GraphTheory
 tags:
-- GraphTheory
-- Depth-First Search
-- ArticulationPoints
-- Tarjan's Algorithm
-- O(V+E)
+- Graph-Theory
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Python
+- Go
 image: "tmp_wordcloud.png"
 date: 2024-10-24
 ---

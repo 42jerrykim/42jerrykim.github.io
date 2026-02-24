@@ -11,83 +11,41 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-10538
-- cpp
 - C++
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - String
 - 문자열
 - Hashing
 - 해싱
-- Rolling Hash
-- 롤링해시
-- 2D Hashing
-- 2차원 해싱
-- Rabin-Karp
-- 라빈카프
-- Pattern Matching
-- 패턴 매칭
-- Submatrix
-- 서브매트릭스
 - Convolution
-- 컨볼루션
 - FFT
-- 고속푸리에변환
-- Double Hash
-- 이중해싱
-- Collision
-- 해시충돌
-- Sliding Window
-- 슬라이딩윈도우
-- Grid
-- 격자
-- Image Processing
-- 영상처리
+- Sliding-Window
+- Graph
 - Geometry
-- 기하
-- Implementation Details
-- 구현 디테일
 - Debugging
 - 디버깅
-- Big Picture
-- 빅픽쳐
-- Karp-Rabin
-- 카프라빈
-- Polynomial Hash
-- 다항해시
-- Modular Arithmetic
-- 모듈러연산
-- 64-bit
-- 64비트
-- Overflow
-- 오버플로
+- Modular-Arithmetic
 image: "wordcloud.png"
 ---
 

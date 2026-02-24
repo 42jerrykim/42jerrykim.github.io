@@ -5,53 +5,27 @@ lastmod: 2025-10-01
 tags:
   - ChatGPT
   - AI
-  - engineers
-  - engineering
-  - prompts
-  - use cases
-  - software development
-  - cloud computing
-  - system architecture
-  - documentation
-  - code review
+  - Implementation
+  - Documentation
+  - Code-Review
   - debugging
   - AWS
   - GCP
   - Azure
   - DevOps
-  - CI/CD
-  - observability
-  - compliance
-  - GDPR
-  - CCPA
-  - machine learning
-  - data analysis
-  - visualization
+  - Monitoring
+  - Machine-Learning
   - microservices
   - API
-  - performance testing
-  - bug tracking
-  - technical writing
-  - system design
-  - 챗GPT
+  - Software-Architecture
   - 인공지능
-  - 엔지니어링
-  - 소프트웨어개발
   - 클라우드
-  - 시스템아키텍처
   - 문서화
   - 코드리뷰
   - 디버깅
-  - 데브옵스
   - 머신러닝
-  - 데이터분석
-  - 시각화
   - 마이크로서비스
-  - 성능테스트
-  - 기술문서
-  - 시스템설계
   - 프롬프트엔지니어링
-  - 생산성향상
 categories:
   - AI
   - Engineering

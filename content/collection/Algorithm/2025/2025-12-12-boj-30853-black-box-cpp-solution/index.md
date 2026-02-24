@@ -12,75 +12,24 @@
    - 알고리즘
    - BOJ
    - 백준
-   - Problem-30853
    - C++
-   - Black Box
-   - 블랙박스
    - Simulation
    - 시뮬레이션
-   - Permutation
-   - 순열
-   - Josephus
-   - 요세푸스
-   - Implicit Treap
-   - 암시적트립
-   - Treap
-   - 트립
-   - Randomized BST
-   - 랜덤BST
-   - Sequence Reconstruction
-   - 수열복원
-   - List Operation
-   - 리스트연산
-   - Pop Operation
-   - 팝연산
-   - Modular Arithmetic
-   - 모듈러산술
-   - Indexing
-   - 인덱싱
-   - Data Structure
+   - Combinatorics
+   - Modular-Arithmetic
+   - Data-Structures
    - 자료구조
-   - Time Complexity
+   - Time-Complexity
    - 시간복잡도
-   - O(n log n)
-   - Space Complexity
+   - Space-Complexity
    - 공간복잡도
-   - Implementation Detail
-   - 구현디테일
-   - Edge Cases
-   - 코너케이스
-   - Inversion of Process
-   - 과정역추적
-   - Reverse Engineering
-   - 역공학
-   - Sequence Rotation
-   - 수열회전
+   - Edge-Cases
    - ICPC
-   - 아이씨피씨
-   - Seoul Regional
-   - 서울리저널
-   - Asia Regional
-   - 아시아리저널
-   - Competitive Programming
+   - Competitive-Programming
    - 경쟁프로그래밍
-   - Problem Solving
-   - 문제풀이
-   - Code Implementation
-   - 코드구현
-   - Recursion Free
-   - 비재귀
-   - STL
-   - 표준라이브러리
-   - Randomized
-   - 랜덤라이즈드
-   - Index Based Insert
-   - 인덱스삽입
-   - Sequence Container
-   - 시퀀스컨테이너
-   - Online Judge
-   - 온라인저지
-   - Debugging Strategy
-   - 디버깅전략
+   - Problem-Solving
+   - Implementation
+   - 파이썬
  image: "wordcloud.png"
 ---
 

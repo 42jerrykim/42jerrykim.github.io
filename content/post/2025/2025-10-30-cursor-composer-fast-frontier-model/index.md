@@ -9,120 +9,23 @@ date: 2025-10-30
 description: "Cursor의 새로운 에이전트 모델 Composer 소개. 강화학습으로 훈련된 MoE 모델로 프론티어 코딩 성과 달성, 유사 모델 대비 4배 빠른 생성 속도, MXFP8 기반 효율적 인프라까지 종합 정리합니다."
 image: composer-main.png
 tags:
-  - Composer
-  - Cursor
-  - RL
-  - Reinforcement Learning
-  - 강화학습
-  - MoE
-  - Mixture of Experts
-  - 전문가 혼합 모델
-  - AI Agent
-  - 에이전트
-  - Software Engineering
-  - 소프트웨어 엔지니어링
-  - MXFP8
-  - 벤치마크
-  - Benchmark
-  - Fast Frontier
-  - 프론티어 모델
+  - IDE
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Performance
   - AI
   - 인공지능
-  - Artificial Intelligence
-  - Machine Learning
+  - Machine-Learning
   - 머신러닝
-  - Deep Learning
   - 딥러닝
-  - Neural Network
-  - 신경망
   - LLM
-  - Large Language Model
-  - 대형언어모델
   - NLP
-  - Natural Language Processing
-  - 자연어처리
-  - Transformer
-  - 트랜스포머
-  - Generative AI
-  - 생성형AI
-  - 코딩
-  - Coding
-  - Programming
-  - 프로그래밍
-  - 개발 도구
-  - Developer Tools
-  - PyTorch
-  - Ray
-  - 비동기 학습
-  - Asynchronous Learning
-  - Expert Parallelism
-  - 전문가 병렬화
-  - Data Parallelism
-  - 데이터 병렬화
-  - Hybrid Sharding
-  - 하이브리드 샤딩
-  - NVIDIA GPU
-  - GPU
-  - Cursor Bench
-  - 성능 평가
-  - Performance Evaluation
-  - 코드 생성
-  - Code Generation
-  - 소프트웨어 개발
-  - Software Development
-  - 에이전트 모델
-  - Agent Model
-  - 개발 생산성
-  - Developer Productivity
-  - 도구 사용
-  - Tool Use
-  - 병렬 처리
-  - Parallel Processing
-  - 양자화
-  - Quantization
-  - 추론 속도
-  - Inference Speed
-  - 훈련 인프라
-  - Training Infrastructure
-  - 샌드박스 환경
-  - Sandbox Environment
-  - 가상 머신
-  - Virtual Machine
-  - 프로덕션 환경
-  - Production Environment
-  - 코드베이스 검색
-  - Codebase Search
-  - 시맨틱 검색
-  - Semantic Search
-  - 린터 오류 수정
-  - Linter Error Fixing
-  - 단위 테스트
-  - Unit Testing
-  - Cursor Tab
-  - 개발 도구 통합
-  - IDE Integration
-  - 코드 편집
-  - Code Editing
-  - 터미널 명령
-  - Terminal Commands
-  - 소프트웨어 아키텍처
-  - Software Architecture
-  - 코드 품질
-  - Code Quality
-  - 개발 워크플로
-  - Development Workflow
-  - AI 코딩 어시스턴트
-  - AI Coding Assistant
+  - Implementation
+  - Testing
+  - 코드품질
+  - Code-Quality
   - 자동화
   - Automation
-  - 효율성
-  - Efficiency
-  - 속도 최적화
-  - Speed Optimization
-  - 모델 최적화
-  - Model Optimization
-  - 기술 혁신
-  - Technology Innovation
 ---
 
 > 본 글은 [Cursor 공식 블로그](https://cursor.com/blog/composer) 정보를 바탕으로 작성했습니다.

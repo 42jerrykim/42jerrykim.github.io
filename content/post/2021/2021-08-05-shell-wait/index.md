@@ -7,8 +7,10 @@ date: "2021-08-05T00:00:00Z"
 tags:
 - Shell
 - Bash
-- wait
-- process
+- OS
+- Process
+- Linux
+- Terminal
 title: '[Shell] 서브 프로세스의 실행 종료를 대기하는 wait 커맨드'
 ---
 

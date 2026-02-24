@@ -7,56 +7,21 @@ description: "datetime을 안전하게 다루기 위한 치트시트입니다. n
 lastmod: 2026-01-17
 collection_order: 37
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - datetime
-  - date
-  - time
-  - timedelta
-  - timezone
-  - time-zone
-  - 타임존
-  - utc
-  - ISO-8601
-  - isoformat
-  - parsing
-  - 파싱
-  - formatting
-  - 포맷팅
-  - strftime
-  - strptime
-  - naive
-  - aware
-  - localtime
-  - 로컬타임
-  - dst
-  - 서머타임
-  - bugs
+  - Quick-Reference
+  - Implementation
   - 함정
   - pitfalls
-  - best-practices
-  - 베스트프랙티스
-  - standard-library
-  - 표준라이브러리
-  - serialization
-  - 직렬화
-  - json
+  - Best-Practices
+  - JSON
   - logging
   - 로깅
   - testing
   - 테스트
-  - schedules
-  - 스케줄링
-  - cron
-  - duration
-  - 기간
-  - performance
+  - Performance
   - 성능
 ---
 날짜와 시간은 버그가 숨기 쉬운 영역입니다. 이 치트시트는 naive/aware 구분, UTC 기준 저장, ISO 파싱/포맷, 타임존 변환의 핵심 원칙과 흔한 함정을 정리합니다.

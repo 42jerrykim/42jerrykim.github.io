@@ -11,55 +11,21 @@ tags:
   - 알고리즘
   - BOJ
   - 백준
-  - Problem-13182
-  - Lottery Draw
-  - 제비
-  - 확률
-  - Probability
-  - 기댓값
-  - Expected Value
-  - 점화식
-  - Recurrence Relation
+  - Dynamic-Programming
   - 동적계획법
-  - Dynamic Programming
   - DP
-  - 선형 점화식
-  - Linear Recurrence
-  - 모듈로 연산
-  - Modular Arithmetic
-  - 모듈러 역원
-  - Modular Inverse
-  - 페르마의 소정리
-  - Fermat's Little Theorem
-  - 거듭제곱
-  - Exponentiation
+  - Modular-Arithmetic
   - 수학
-  - Mathematics
-  - 수학적 최적화
-  - Mathematical Optimization
+  - Math
   - C++
-  - Programming
-  - 프로그래밍
+  - Implementation
   - 경쟁프로그래밍
-  - Competitive Programming
-  - 정답코드
-  - Solution Code
-  - 기하급수
-  - Geometric Series
+  - Competitive-Programming
+  - Editorial
   - 조합론
   - Combinatorics
-  - 확률론
-  - Probability Theory
-  - 통계
-  - Statistics
-  - 수열
-  - Sequence
   - 최적화
   - Optimization
-  - 분수 계산
-  - Fraction Calculation
-  - 역원 계산
-  - Inverse Calculation
 image: wordcloud.png
 ---
 

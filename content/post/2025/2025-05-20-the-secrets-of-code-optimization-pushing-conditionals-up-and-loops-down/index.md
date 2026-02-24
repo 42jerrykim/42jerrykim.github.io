@@ -5,69 +5,26 @@ categories:
   - CleanCode
   - Programming
 tags:
-  - 코드 최적화
-  - 조건문
-  - 반복문
-  - 코드 최적화
-  - 조건문
-  - 반복문
-  - 성능 개선
-  - 클린 코드
+  - Clean-Code
   - 리팩토링
-  - 소프트웨어 개발
-  - 프로그래밍 기법
-  - 코드 가독성
-  - 유지보수성
-  - 함수형 프로그래밍
-  - 객체지향 프로그래밍
-  - 디자인 패턴
-  - 테스트 주도 개발
-  - 버그 수정
-  - 코드 리뷰
-  - 개발 도구
-  - 알고리즘 최적화
-  - 데이터 구조
-  - 코드 품질
-  - 개발 방법론
-  - 협업
+  - 소프트웨어아키텍처
+  - 코드품질
+  - 객체지향
+  - 디자인패턴
+  - 코드리뷰
   - 문서화
-  - 코드 스니펫
-  - 성능 분석
-  - 코드 스멜
-  - 클린 아키텍처
-  - 소프트웨어 공학
-  - 프로그래밍 언어
-  - 기술 블로그
-  - code optimization
-  - conditional statements
-  - loops
-  - performance improvement
-  - clean code
+  - 클린아키텍처
+  - Software-Architecture
   - refactoring
-  - software development
-  - programming techniques
-  - code readability
-  - maintainability
-  - functional programming
-  - object-oriented programming
-  - design patterns
-  - test-driven development
-  - bug fixing
-  - code review
-  - development tools
-  - algorithm optimization
-  - data structures
-  - code quality
-  - development methodologies
-  - collaboration
-  - documentation
-  - code snippets
-  - performance analysis
-  - code smell
-  - clean architecture
-  - software engineering
-  - programming languages
-  - technical blog
+  - Implementation
+  - Code-Quality
+  - Functional-Programming
+  - OOP
+  - Design-Pattern
+  - Code-Review
+  - Data-Structures
+  - Documentation
+  - Clean-Architecture
 description: "조건문과 반복문을 최적화하는 방법에 대해 설명한다. 조건문은 함수 내부가 아닌 호출부로 이동시켜 코드의 복잡성을 줄이고, 반복문은 하위 레벨로 내리거나 배치 처리하여 성능을 향상시킬 수 있다. 이러한 접근은 코드의 가독성과 유지보수성을 높이는 데 기여한다."
 image: index.png
 ---

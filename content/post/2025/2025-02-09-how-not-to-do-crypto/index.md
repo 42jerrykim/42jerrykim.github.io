@@ -4,10 +4,16 @@ date: 2025-02-09
 categories:
   - Security
 tags:
-  - Cryptography
   - Security
-  - Best Practices
-  - Web Security
+  - Best-Practices
+  - Go
+  - Algorithm
+  - 알고리즘
+  - Graph
+  - 그래프
+  - Math
+  - Review
+  - 리뷰
 image: "index.png"
 description: "이 글은 실제 개발 현장에서 자주 발생하는 암호화 및 보안 실수 사례들을 분석합니다. 직접 암호화 구현, 잘못된 난수 생성, 부적절한 패스워드 저장, 키 관리의 오해 등 대표적인 보안 실패 유형과 예방을 위한 실질적 가이드라인, 최신 베스트 프랙티스를 제공합니다."
 

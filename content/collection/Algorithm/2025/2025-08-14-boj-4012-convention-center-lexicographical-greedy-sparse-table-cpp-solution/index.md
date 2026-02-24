@@ -8,72 +8,48 @@ categories:
 - "Greedy"
 - "Interval Scheduling"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "백준"
-- "Problem-4012"
-- "cpp"
-- "C++"
-- "Greedy"
-- "그리디"
-- "Interval Scheduling"
-- "스케줄링"
-- "Scheduling"
-- "Lexicographical Order"
-- "사전순"
-- "Sparse Table"
-- "스파스 테이블"
-- "Binary Lifting"
-- "이진 점프"
-- "Map"
-- "맵"
-- "Set"
-- "세트"
-- "Sorting"
-- "정렬"
-- "Two Pointers"
-- "투포인터"
-- "DP"
-- "동적계획법"
-- "Proof of Correctness"
-- "정당성 증명"
-- "Complexity Analysis"
-- "복잡도 분석"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Implementation"
-- "구현"
-- "Implementation Details"
-- "구현 디테일"
-- "Edge Cases"
-- "코너 케이스"
-- "Pitfalls"
-- "실수 포인트"
-- "Optimization"
-- "최적화"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Editorial"
-- "에디토리얼"
-- "Testing"
-- "테스트"
-- "Invariant"
-- "불변식"
-- "Binary Search"
-- "이분탐색"
-- "Prefix"
-- "접두어"
-- "Stack"
-- "스택"
-- "Monotonic Stack"
-- "단조 스택"
-- "Interval"
-- "구간"
-- "APIO"
-- "APIO 2009"
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- C++
+- Greedy
+- 그리디
+- Concurrency
+- LCA
+- Map
+- Set
+- Sorting
+- 정렬
+- Two-Pointers
+- DP
+- 동적계획법
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Implementation
+- 구현
+- Edge-Cases
+- 엣지케이스
+- Pitfalls
+- 함정
+- Optimization
+- 최적화
+- Competitive-Programming
+- 경쟁프로그래밍
+- Editorial
+- 에디토리얼
+- Testing
+- 테스트
+- Binary-Search
+- 이분탐색
+- Prefix-Sum
+- Stack
+- 스택
+- Range-Query
 image: "wordcloud.png"
 ---
 

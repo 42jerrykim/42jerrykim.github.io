@@ -6,7 +6,13 @@ description: "업무 규칙의 두 가지 유형인 엔터티와 유스케이스
 title: "[Clean Architecture] 30. 업무 규칙: 엔티티와 유스케이스"
 date: 2026-01-18
 categories: CleanArchitecture
-tags: [Clean Architecture, 클린 아키텍처, Business Rules, 비즈니스 규칙, Entity, 엔터티, Use Case, 유스케이스, Critical Business Rules, 핵심 업무 규칙, Application Business Rules, 애플리케이션 업무 규칙, Domain, 도메인, Request Model, 요청 모델, Response Model, 응답 모델, DTO, Data Transfer Object, Input Port, 입력 포트, Output Port, 출력 포트, Interactor, 인터랙터, Enterprise, 기업, Application, 애플리케이션, Software Architecture, 소프트웨어 아키텍처, Domain Model, 도메인 모델, Data, 데이터, Behavior, 행동, Loan, 대출, Interest, 이자, Customer, 고객, Object Oriented, 객체 지향, Independence, 독립성]
+tags:
+- Clean-Architecture
+- 클린아키텍처
+- Software-Architecture
+- 소프트웨어아키텍처
+- Domain
+- 도메인
 ---
 
 업무 규칙은 시스템에서 가장 **핵심적인 부분**이다. 마틴은 업무 규칙을 두 가지로 구분한다: **엔터티**(핵심 업무 규칙)와 **유스케이스**(애플리케이션 업무 규칙).

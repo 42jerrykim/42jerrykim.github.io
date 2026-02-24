@@ -6,13 +6,16 @@ categories:
 - GraphTheory
 - 2-SAT
 tags:
-- 2-SAT
-- StronglyConnectedComponents
-- Kosaraju's Algorithm
-- GraphTheory
-- ImplicationGraph
-- O(N+M)
-- GraphTraversal
+- Graph-Theory
+- Time-Complexity
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Python
 image: "tmp_wordcloud.png"
 date: 2024-10-21
 ---

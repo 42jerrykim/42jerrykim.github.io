@@ -9,73 +9,14 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - earnestness
-  - earnestness meaning
-  - earnestness usage
-  - earnestness examples
-  - earnestness noun
   - 영단어
   - 영어명사
-  - earnestness 의미
-  - earnestness 용법
-  - earnestness 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - sincerity
-  - seriousness
-  - dedication
-  - commitment
-  - passion
-  - zeal
-  - intensity
-  - conviction
-  - determination
-  - resolve
-  - 진심
-  - 진지함
-  - 열정
-  - 성실함
-  - 헌신
-  - 집중력
-  - 진정성
-  - 몰입
-  - 소명의식
-  - 진지한 태도
-  - earnest adjective
-  - earnestly adverb
-  - earnest meaning
-  - earnest usage
-  - 형용사 earnest
-  - 부사 earnestly
-  - emotion
-  - attitude
-  - intention
-  - purpose
-  - determination
-  - business communication
-  - academic writing
-  - personal relationships
-  - persuasion
-  - credibility
-  - authenticity
-  - 비즈니스 용어
-  - 감정 표현
-  - 태도 표현
-  - 성격 묘사
-  - 인간관계
-  - 설득
-  - 신뢰성
-  - 인물 표현
-  - 한눈에 정리
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

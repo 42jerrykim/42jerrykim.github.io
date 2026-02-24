@@ -9,52 +9,20 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
+  - Design-Pattern
+  - 디자인패턴
   - Mediator
-  - 중재자
-  - Behavioral Pattern
-  - 행위 패턴
   - GoF
-  - Gang of Four
-  - Loose Coupling
-  - 느슨한 결합
-  - Colleague
-  - 동료
-  - Communication
-  - 통신
-  - Centralized Control
-  - 중앙 집중 제어
-  - Event Bus
-  - 이벤트 버스
-  - Message Broker
-  - 메시지 브로커
-  - Chat Room
-  - 채팅방
-  - Air Traffic Control
-  - 항공 교통 관제
-  - GUI Components
-  - Dialog
-  - 다이얼로그
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Software-Architecture
+  - Code-Quality
+  - 코드품질
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - MVC
-  - Controller
-  - 컨트롤러
-  - Hub
-  - 허브
-  - Coordinator
-  - 조정자
+  - CSharp
 ---
 
 중재자 패턴(Mediator Pattern)은 객체들 간의 직접적인 통신을 제한하고, 중재자 객체를 통해서만 상호작용하도록 하는 행위 디자인 패턴이다. 이 패턴을 사용하면 객체 간의 복잡한 의존 관계를 줄이고, 시스템의 결합도를 낮출 수 있다.

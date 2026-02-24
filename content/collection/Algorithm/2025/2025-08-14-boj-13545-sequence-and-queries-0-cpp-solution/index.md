@@ -11,73 +11,42 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-13545
-- cpp
 - C++
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
-- Prefix Sum
-- 누적합
-- Mo's Algorithm
-- 모스 알고리즘
-- Offline Query
-- 오프라인 쿼리
-- Sqrt Decomposition
-- 제곱근 분할
-- Bucket
-- 버킷
-- Range Query
-- 구간 쿼리
-- Coordinate Compression
+- Complexity-Analysis
+- 복잡도분석
+- Prefix-Sum
+- Range-Query
+- Coordinate-Compression
 - 좌표압축
 - Deque
-- 데크
-- Frequency
-- 빈도
 - Hashing
 - 해싱
-- Two Pointers
-- 투포인터
-- Sliding Window
-- 슬라이딩윈도우
-- Data Structures
+- Two-Pointers
+- Sliding-Window
+- Data-Structures
 - 자료구조
 - Array
 - 배열
-- Zero Sum Subarray
-- 합이 0
-- Span
-- 구간 길이
-- Prefix Equality
-- 동일 누적합
-- Indexing
-- 인덱싱
 image: "wordcloud.png"
 ---
 

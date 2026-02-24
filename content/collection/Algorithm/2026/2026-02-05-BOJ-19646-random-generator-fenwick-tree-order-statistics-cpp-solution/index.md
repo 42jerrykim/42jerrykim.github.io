@@ -10,77 +10,41 @@ categories:
 - "Fenwick Tree"
 - "Order Statistics"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "19646"
-- "BOJ-19646"
-- "Problem-19646"
-- "Random Generator"
-- "랜덤 제너레이터"
-- "Data Structure"
-- "자료구조"
-- "Fenwick Tree"
-- "펜윅 트리"
-- "Binary Indexed Tree"
-- "이진 인덱스 트리"
-- "Order Statistics"
-- "순서 통계"
-- "k-th Element"
-- "k번째 원소"
-- "Prefix Sum"
-- "누적합"
-- "Weighted Sequence"
-- "가중치 수열"
-- "Permutation"
-- "순열"
-- "Simulation"
-- "시뮬레이션"
-- "Offline"
-- "오프라인"
-- "Greedy"
-- "그리디"
-- "Binary Search"
-- "이분 탐색"
-- "Fenwick Kth"
-- "펜윅 kth"
-- "Point Update"
-- "점 업데이트"
-- "Range Sum Query"
-- "구간 합 쿼리"
-- "Delete All Occurrences"
-- "전체 삭제"
-- "Multiset"
-- "멀티셋"
-- "Indexing"
-- "인덱싱"
-- "1-indexed"
-- "1부터 인덱스"
-- "Invariant"
-- "불변식"
-- "Proof"
-- "정당성 증명"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Optimization"
-- "최적화"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Edge Case"
-- "엣지 케이스"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Data-Structures
+- 자료구조
+- Fenwick-Tree
+- Binary-Indexed-Tree
+- Prefix-Sum
+- Combinatorics
+- Simulation
+- 시뮬레이션
+- Greedy
+- 그리디
+- Binary-Search
+- 이분탐색
+- Segment-Tree
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Optimization
+- 최적화
+- Implementation
+- 구현
+- C++
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- Edge-Cases
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

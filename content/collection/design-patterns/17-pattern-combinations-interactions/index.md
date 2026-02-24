@@ -12,68 +12,13 @@ categories:
 - System Architecture
 - Advanced Design
 tags:
-- Pattern Combinations
-- Pattern Interactions
-- Composite Patterns
-- Pattern Synergy
-- System Architecture
-- Design Patterns
-- GoF Patterns
-- Pattern Integration
-- Architectural Patterns
-- Complex Systems
-- Enterprise Architecture
-- Pattern Conflicts
-- Design Trade Offs
-- Pattern Selection
-- System Design
-- Software Architecture
-- Design Methodology
-- Best Practices
-- Pattern Catalog
-- Design Principles
-- Code Organization
-- System Complexity
-- Architectural Decisions
-- Design Evolution
-- Pattern Libraries
-- Framework Design
-- Component Architecture
-- Service Architecture
-- Microservice Patterns
-- Distributed Patterns
-- Scalability Patterns
-- 패턴 조합
-- 패턴 상호작용
-- 복합 패턴
-- 패턴 시너지
-- 시스템 아키텍처
-- 디자인 패턴
-- GoF 패턴
-- 패턴 통합
-- 아키텍처 패턴
-- 복잡한 시스템
-- 엔터프라이즈 아키텍처
-- 패턴 충돌
-- 설계 트레이드오프
-- 패턴 선택
-- 시스템 설계
-- 소프트웨어 아키텍처
-- 설계 방법론
-- 모범 사례
-- 패턴 카탈로그
-- 설계 원칙
-- 코드 구조화
-- 시스템 복잡성
-- 아키텍처 결정
-- 설계 진화
-- 패턴 라이브러리
-- 프레임워크 설계
-- 컴포넌트 아키텍처
-- 서비스 아키텍처
-- 마이크로서비스 패턴
-- 분산 패턴
-- 확장성 패턴
+- Design-Pattern
+- GoF
+- Software-Architecture
+- Best-Practices
+- SOLID
+- 디자인패턴
+- 소프트웨어아키텍처
 ---
 
 여러 패턴의 조합과 상호작용을 통해 시너지 효과를 내는 방법을 탐구합니다. 실제 시스템에서 패턴들이 어떻게 협력하는지 학습합니다.

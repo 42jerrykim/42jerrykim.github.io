@@ -11,73 +11,34 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-7577
-- cpp
 - C++
-- Difference Constraints
-- 차분 제약
-- SPFA
 - Bellman-Ford
-- 벨만포드
-- Shortest Path
+- Shortest-Path
 - 최단경로
 - Graph
 - 그래프
-- Negative Cycle Detection
-- 음수 사이클 탐지
-- Constraint Satisfaction
-- 제약 조건 만족
-- Prefix Sum
-- 누적합
-- System of Inequalities
-- 부등식 시스템
-- Data Structures
+- Prefix-Sum
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- O(NK)
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Testing
 - 테스트
-- Fast I/O
-- 빠른 입출력
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
-- Korean Olympiad
-- 한국정보올림피아드
-- KOI
-- Regional Contest
-- 지역본선
-- 2013
-- High School
-- 고등부
-- Special Judge
-- 스페셜 저지
+- IO
+- Complexity-Analysis
+- 복잡도분석
 - Queue
 - 큐
-- Relaxation
-- 완화
-- Edge Weight
-- 간선 가중치
-- Adjacency List
-- 인접 리스트
-- String Output
-- 문자열 출력
-- Binary State
-- 이진 상태
 image: "wordcloud.png"
 ---
 

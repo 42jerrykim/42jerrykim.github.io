@@ -4,13 +4,13 @@ description: "Windows 환경에서 Plex Media Server의 문제 발생 시 빠르
 date: "2023-01-13T00:00:00Z"
 header:
   teaser: /assets/images/2023/plex.png
-tag:
-- Plex
+tags:
 - Windows
-- Script
-- CMD
-- Taskkill
-- Server
+- Python
+- Git
+- GitHub
+- Linux
+- Self-Hosted
 title: '[Plex] Windows에서 Plex media server 재실행하는 스크립트'
 ---
 

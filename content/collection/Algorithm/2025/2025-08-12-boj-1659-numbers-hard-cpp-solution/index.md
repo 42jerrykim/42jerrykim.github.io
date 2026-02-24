@@ -7,66 +7,29 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "1659"
-- "수"
-- "Numbers"
-- "Hard"
-- "ICPC"
-- "Seoul Regional 2007"
-- "Asia Regional"
-- "문제해결"
-- "Problem Solving"
-- "Algorithm"
-- "알고리즘"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "DP"
-- "Dynamic Programming"
-- "O(n+m)"
-- "Linear Time"
-- "선형 시간"
-- "Prefix Sum"
-- "접두사 합"
-- "Greedy"
-- "그리디"
-- "두 집합"
-- "Set Pairing"
-- "짝짓기"
-- "비용 최소화"
-- "Absolute Difference"
-- "절댓값"
-- "Sorted Merge"
-- "병합 정렬"
-- "In-order Matching"
-- "비교 불교차"
-- "Non-crossing"
-- "교차 금지"
-- "강한 연결"
-- "약한 연결"
-- "Strong Matching"
-- "Weak Matching"
-- "Balance"
-- "균형"
-- "Counting"
-- "세기"
-- "Two Pointers"
-- "투 포인터"
-- "Nearest Neighbor"
-- "가장 가까운 원소"
-- "Gap Sum"
-- "간격 합"
-- "Implementation"
-- "구현"
-- "Optimization"
-- "최적화"
-- "Int64"
-- "long long"
+- BOJ
+- Baekjoon
+- 백준
+- ICPC
+- 문제해결
+- Problem-Solving
+- Algorithm
+- 알고리즘
+- C++
+- IO
+- DP
+- Dynamic-Programming
+- Time-Complexity
+- Prefix-Sum
+- Greedy
+- 그리디
+- Math
+- Two-Pointers
+- Implementation
+- 구현
+- Optimization
+- 최적화
+- Edge-Cases
 image: "wordcloud.png"
 ---
 

@@ -9,99 +9,20 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - noun
   - 영단어
   - 영어명사
-  - study English
-  - vocabulary building
-  - EN/KR examples
-  - examples
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - representation
-  - representation meaning
-  - representation usage
-  - representation examples
-  - representation noun
-  - representation 의미
-  - representation 용법
-  - representation 예문
-  - represent
-  - representative
-  - representational
-  - misrepresentation
-  - underrepresentation
-  - overrepresentation
-  - depiction
-  - portrayal
-  - illustration
-  - image
-  - symbol
-  - visualization
-  - data visualization
-  - visual representation
-  - graphical representation
-  - symbolic representation
-  - accurate representation
-  - faithful representation
-  - representation of
-  - representation in
-  - representation as
   - map
-  - chart
-  - diagram
-  - model
-  - modeling
+  - Software-Architecture
   - abstraction
-  - format
-  - encoding
-  - communication
-  - media
-  - art
-  - design
-  - 정치
-  - 민주주의
-  - 정치적 대표
-  - 대표성
-  - 비례대표
-  - 선거
-  - 의회
-  - 다양성
-  - 소수자
-  - 평등
-  - 노동조합
-  - 협상
-  - 법률
-  - 변호사
-  - 변호
-  - 법률 대리
-  - 법정
-  - 소송
-  - counsel
-  - attorney
-  - legal representation
-  - representation by counsel
-  - advocacy
+  - Design-Pattern
   - proxy
-  - delegation
-  - claim
-  - statement
-  - allegation
-  - warranty
-  - representations and warranties
-  - fraud
-  - false representation
-  - contract
-  - business English
-  - academic writing
-  - usage notes
-  - grammar
-  - pronunciation
+  - Business-English
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

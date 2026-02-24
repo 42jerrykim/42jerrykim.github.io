@@ -12,61 +12,23 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-2709
 - C++
-- Number Theory
+- Number-Theory
 - 정수론
-- Modular Arithmetic
-- 모듈러 연산
-- Chinese Remainder Theorem
-- 중국인 나머지 정리
-- Multiplicative Order
-- 곱셈군
-- Periodicity
-- 주기
-- Power of Two
-- 2의 거듭제곱
-- Last Digits
-- 뒷자리
-- Base 10
-- 십진수
-- CRT
-- 모듈러 조합
-- Fast Power
-- 거듭제곱 분할정복
-- Binary Exponentiation
-- 이분 거듭제곱
-- __int128
-- 큰정수처리
-- Overflow
-- 오버플로
-- Lifting Exponent
-- 승수 리프트
-- Candidate Search
-- 후보 탐색
-- Precomputation
-- 전처리
-- Complexity Analysis
-- 시간복잡도
-- Space Complexity
-- 공간복잡도
-- Edge Case
-- 엣지케이스
+- Modular-Arithmetic
+- 모듈러
+- Edge-Cases
 - Implementation
+- Complexity-Analysis
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- 엣지케이스
 - 구현
-- Math Proof
-- 수학적 증명
 - ICPC
-- Greater New York
-- Contest
-- Problem Solving
+- Competitive-Programming
+- Problem-Solving
 - 문제해결
-- Modular Period
-- 순환 길이
-- Residue Class
-- 잔여 클래스
-- Constraints Handling
-- 제약 처리
 image: "wordcloud.png"
 ---
 

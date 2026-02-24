@@ -7,7 +7,10 @@ categories:
 tags:
   - English
   - Vocabulary
-  - Learning
+  - Education
+  - 영단어
+  - Go
+  - Action
 image: index.png
 ---
 

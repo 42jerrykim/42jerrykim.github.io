@@ -12,60 +12,34 @@ tags:
   - 알고리즘
   - BOJ
   - 백준
-  - Problem-20131
-  - 20131
   - Tree
   - 트리
   - Graph
   - 그래프
-  - Graph Theory
+  - Graph-Theory
   - 그래프이론
-  - Tree Reconstruction
-  - 트리복원
-  - Degree Sequence
-  - 차수열
-  - Leaf Removal
-  - 리프제거
-  - Priority Queue
+  - Priority-Queue
   - 우선순위큐
-  - Max Heap
-  - 최대힙
   - Implementation
   - 구현
   - Simulation
   - 시뮬레이션
-  - Data Structures
+  - Data-Structures
   - 자료구조
-  - Time Complexity
+  - Time-Complexity
   - 시간복잡도
-  - Space Complexity
+  - Space-Complexity
   - 공간복잡도
-  - O(N log N)
-  - 선형로그시간
-  - Unique Tree
-  - 유일해결
-  - Invalid Case
-  - 불가능판정
-  - Edge Case
+  - Edge-Cases
   - 엣지케이스
-  - Competitive Programming
+  - Competitive-Programming
   - 경쟁프로그래밍
-  - Online Judge
-  - 온라인저지
   - C++
-  - cpp
-  - Problem Solving
+  - Problem-Solving
   - 문제해결
-  - Coding Test
+  - Coding-Test
   - 코딩테스트
-  - Algorithm Design
-  - 알고리즘설계
-  - Ad Hoc
-  - 애드혹
-  - Sequence
-  - 수열
-  - Tree Degree
-  - 트리차수
+  - Math
   - Sorting
   - 정렬
 image: "wordcloud.png"

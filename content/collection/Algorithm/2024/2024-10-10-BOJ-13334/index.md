@@ -6,11 +6,16 @@ date: "2024-10-10T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- PriorityQueue
 - Greedy
 - Sorting
-- Sweeping
-- DataStructure
+- Data-Structures
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 title: '[Algorithm] C++/Python 백준 13334번 : 철로'
 ---
 

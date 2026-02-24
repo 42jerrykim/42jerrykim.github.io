@@ -6,12 +6,16 @@ date: "2024-10-10T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- SparseTable
-- RangeQuery
-- Preprocessing
-- DataStructures
-- SegmentTree
-- RMQ
+- Data-Structures
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Python
+- Go
 title: '[Algorithm] C++/Python 백준 2357번 : 최솟값과 최댓값'
 ---
 

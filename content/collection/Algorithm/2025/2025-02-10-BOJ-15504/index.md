@@ -6,15 +6,17 @@ categories:
 - Maximum Flow
 - Minimum Cost Flow
 tags:
-- MinCostFlow
-- GraphTheory
-- NetworkFlow
+- Graph-Theory
 - Dijkstra
-- PriorityQueue
 - Greedy
-- O(E * Flow)
 - Simulation
-- ProblemSolving
+- Problem-Solving
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- C++
 image: "index.png"
 date: 2025-02-10
 ---

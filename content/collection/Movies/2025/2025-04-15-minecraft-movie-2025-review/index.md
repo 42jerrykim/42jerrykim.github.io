@@ -10,78 +10,16 @@ categories:
   - Family
   - Warner Bros
 tags:
-  - A Minecraft Movie
-  - 마인크래프트 무비
-  - 마인크래프트
-  - Minecraft
-  - 잭 블랙
-  - Jack Black
-  - 제이슨 모모아
-  - Jason Momoa
-  - 엠마 마이어스
-  - Emma Myers
-  - 대니엘 브룩스
-  - Danielle Brooks
-  - 세바스찬 유진 한센
-  - Sebastian Eugene Hansen
-  - 제니퍼 쿨리지
-  - Jennifer Coolidge
-  - 자레드 헤스
-  - Jared Hess
-  - 워너 브라더스
-  - Warner Bros
-  - 레전더리 픽처스
-  - Legendary Pictures
-  - 비디오 게임 원작
-  - Video Game Adaptation
-  - 게임 영화
-  - Game Movie
-  - 오버월드
-  - Overworld
-  - 네더
-  - Nether
-  - 피글린
-  - Piglin
-  - 말고샤
-  - Malgosha
-  - 오브
-  - Orb
-  - 땅의 수정
-  - Earth Crystal
-  - 엔더맨
-  - Enderman
-  - 크리퍼
-  - Creeper
-  - 철 골렘
-  - Iron Golem
-  - 가족 영화
-  - Family Film
-  - 모험 영화
-  - Adventure Film
   - 판타지
   - Fantasy
   - 코미디
   - Comedy
-  - 블록 게임
-  - Block Game
-  - 샌드박스
-  - Sandbox
-  - 크래프팅
-  - Crafting
-  - 마이닝
-  - Mining
-  - 서바이벌
-  - Survival
-  - CGI
-  - Visual Effects
-  - 2025년 영화
-  - 2025 Movie
-  - 봄 시즌 개봉
-  - Spring Release
-  - 블록버스터
-  - Blockbuster
-  - 흥행작
-  - Box Office Hit
+  - Movie
+  - 영화
+  - Review
+  - 리뷰
+  - Adventure
+  - Family
 draft: false
 ---
 

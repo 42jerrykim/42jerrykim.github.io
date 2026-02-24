@@ -6,14 +6,16 @@ categories:
 - Math
 - Implementation
 tags:
-- MathematicalConcepts
 - Implementation
-- BruteForce
-- TimeComplexity
-- StringProcessing
-- SumOfDigits
-- IntegerMultiplication
-- NumberTheory
+- Brute-Force
+- Algorithm
+- Math
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 image: "tmp_wordcloud.png"
 date: 2024-10-25
 ---

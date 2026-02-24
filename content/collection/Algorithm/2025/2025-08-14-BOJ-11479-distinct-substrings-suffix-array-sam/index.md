@@ -11,80 +11,46 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-11479
-- cpp
-- python
 - C++
 - Python
 - String
 - 문자열
-- Distinct Substrings
-- 서로 다른 부분 문자열
-- Suffix Array
-- 접미사배열
-- SA
-- Doubling
-- Radix Sort
-- Counting Sort
-- LCP
-- 최장공통접두사
-- Kasai
-- 카사이
-- Suffix Automaton
-- 접미사 자동자
-- SAM
-- Endpos Equivalence
-- endpos 등가류
-- Automaton
-- 자동자
-- Data Structures
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Hashing
 - 해싱
-- Binary Search
+- Binary-Search
 - 이분탐색
-- Two Pointers
-- 투포인터
-- Sliding Window
-- 슬라이딩윈도우
+- Two-Pointers
+- Sliding-Window
 - Geometry
-- 기하
 - Math
 - 수학
-- Modulo
+- Modular-Arithmetic
 - 모듈러
-- Implementation Details
-- 구현 디테일
-- LPSA
-- 접두사
+- Prefix-Sum
 image: "wordcloud.png"
 ---
 

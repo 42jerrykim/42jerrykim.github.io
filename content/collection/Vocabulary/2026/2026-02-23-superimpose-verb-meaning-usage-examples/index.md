@@ -9,66 +9,21 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - superimpose
-  - superimpose meaning
-  - superimpose usage
-  - superimpose examples
-  - superimpose verb
   - 영단어
   - 영어동사
-  - superimpose 의미
-  - superimpose 용법
-  - superimpose 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - overlay
-  - overlap
-  - place over
   - stack
-  - layer
-  - composite
-  - merge
-  - blend
-  - combine
-  - impose
-  - 겹치다
-  - 중복되다
-  - 얹다
-  - 얹히다
-  - 포개다
-  - 겹다
-  - 중첩되다
-  - 대입하다
-  - 겹침
-  - 포개짐
-  - 그래픽 디자인
-  - 영상 편집
-  - 사진 편집
-  - 이미지 처리
+  - Algorithm
   - psychology
   - memory
   - 심리학
-  - 기억
-  - 무의식
-  - design
-  - visual
-  - 디자인
-  - 시각적
-  - 이미지
+  - Design-Pattern
   - 사진
-  - 영상
-  - 아트
-  - video editing
-  - 편집
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

@@ -6,25 +6,14 @@ date: "2023-06-07T00:00:00Z"
 header:
   teaser: /assets/images/2023/zvmLbKImlWKrQSE54qZ8fw.jpg
 tags:
-- Serverless
-- Monoliths
 - Microservices
-- SoftwareArchitecture
-- CloudComputing
-- AWSLambda
+- Software-Architecture
 - Scalability
-- Maintainability
+- Code-Quality
 - Deployment
-- DevelopmentProcess
-- CodeReusability
-- PerformanceOptimization
+- Performance
 - Security
 - Testing
-- Event-Driven Workflows
-- CodeDecomposition
-- SoftwareDevelopmentTrends
-- ServerlessMonoliths
-- CloudFormation
 - DevOps
 title: '[Serverless] 서버리스 모놀리스의 등장: 소프트웨어 아키텍처의 새로운 패러다임'
 

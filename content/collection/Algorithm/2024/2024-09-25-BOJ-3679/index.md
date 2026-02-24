@@ -8,10 +8,15 @@ header:
 tags:
 - Geometry
 - Sorting
-- ConvexHull
 - Implementation
-- O(N log N)
-- ComputationalGeometry
+- Time-Complexity
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 title: '[Algorithm] C++/Python 백준 3679번 : 단순 다각형'
 ---
 

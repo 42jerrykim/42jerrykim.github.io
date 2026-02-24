@@ -11,78 +11,41 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-1763
-- cpp
 - C++
 - Tree
 - 트리
 - Greedy
 - 그리디
-- Disjoint Set Union
-- 유니온파인드
-- Union-Find
+- Disjoint-Set
 - DSU
-- Merging
-- 병합
-- Ratio
-- 비율
-- Average Weight
-- 평균 가중치
 - Sorting
 - 정렬
-- Topological Order
 - 위상정렬
-- Parent Compression
-- 조상 압축
-- Path Compression
-- 경로 압축
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Complexity Analysis
-- 복잡도 분석
-- Proof of Correctness
-- 정당성 증명
-- Correctness
-- 올바름
-- Edge Cases
-- 코너 케이스
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
 - Testing
 - 테스트
 - Simulation
 - 시뮬레이션
-- Priority Queue
-- 우선순위 큐
-- Greedy Choice
-- 그리디 선택
-- Exchange Argument
-- 교환 논증
-- Tree Coloring
-- 트리 색칠
-- Parent First
-- 부모 선행
-- Ordering
-- 순서
-- Integer Arithmetic
-- 정수 연산
-- __int128
-- 오버플로 방지
-- BFS/DFS
+- Priority-Queue
 - 그래프
 image: "wordcloud.png"
 ---

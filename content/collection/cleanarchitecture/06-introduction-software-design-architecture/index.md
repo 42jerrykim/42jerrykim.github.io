@@ -7,61 +7,24 @@ title: "[Clean Architecture] 06. 서론: 설계와 아키텍처"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Software Design
-  - 소프트웨어 설계
-  - Working Software
-  - 동작하는 소프트웨어
-  - Code Quality
-  - 코드 품질
-  - Maintainability
-  - 유지보수성
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Code-Quality
+  - 코드품질
   - Scalability
   - 확장성
-  - Technical Debt
-  - 기술 부채
-  - Junior Developer
-  - 주니어 개발자
-  - Senior Developer
-  - 시니어 개발자
-  - Professional
-  - 전문가
-  - Craftsmanship
-  - 장인 정신
-  - Robert C. Martin
-  - Uncle Bob
-  - Software Engineering
-  - 소프트웨어 공학
-  - System Design
-  - 시스템 설계
+  - SOLID
   - Productivity
   - 생산성
-  - Development Cost
-  - 개발 비용
-  - Legacy Code
-  - 레거시 코드
   - Refactoring
   - 리팩토링
-  - Best Practices
-  - 모범 사례
-  - Programming
-  - 프로그래밍
-  - PHP
+  - Best-Practices
+  - Implementation
   - Ruby
-  - 루비
-  - Startup
-  - 스타트업
-  - Software Quality
-  - 소프트웨어 품질
-  - Code Review
-  - 코드 리뷰
-  - Defect
-  - 결함
-  - Bug
-  - 버그
+  - Code-Review
+  - 코드리뷰
 ---
 
 **프로그램이 동작하도록 만드는 데 엄청난 수준의 지식과 기술이 필요하지는 않다.** 언제든 어린 고등학생이라도 할 수 있는 일이다.

@@ -7,64 +7,26 @@ categories:
 - "BOJ"
 - "Algorithm"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "3444"
-- "Robotic Sort"
-- "로보틱 소트"
-- "Robot"
-- "Reversal"
-- "뒤집기"
-- "Range Reverse"
-- "구간 뒤집기"
-- "Stable Sort"
-- "안정 정렬"
-- "Sorting"
-- "정렬"
-- "Implicit Treap"
-- "Treap"
-- "트립"
-- "Splay Tree"
-- "스플레이 트리"
-- "Lazy Propagation"
-- "지연 전파"
-- "자료구조"
-- "Data Structure"
-- "Algorithm"
-- "알고리즘"
-- "ICPC"
-- "CERC 2007"
-- "Regionals"
-- "Competitive Programming"
-- "코딩테스트"
-- "GNU++17"
-- "C++"
-- "CPP"
-- "Index by pointer"
-- "포인터 인덱스"
-- "안정성 보장"
-- "Order Statistics"
-- "순서 통계"
-- "Rank query"
-- "순위 질의"
-- "Sequence"
-- "시퀀스"
-- "Lazy Reverse"
-- "플립"
-- "Reverse Operation"
-- "연산 시뮬레이션"
-- "시뮬레이션"
-- "Stable Reordering"
-- "위치 추적"
-- "Position"
-- "인덱스"
-- "N log N"
-- "O(N log N)"
-- "시간복잡도"
-- "공간복잡도"
-- "문제해설"
-- "백준해설"
+- BOJ
+- Baekjoon
+- 백준
+- Sorting
+- 정렬
+- Lazy-Propagation
+- 자료구조
+- Data-Structures
+- Algorithm
+- 알고리즘
+- ICPC
+- Competitive-Programming
+- 코딩테스트
+- C++
+- Math
+- 시뮬레이션
+- Time-Complexity
+- 시간복잡도
+- 공간복잡도
+- Editorial
 image: "wordcloud.png"
 ---
 

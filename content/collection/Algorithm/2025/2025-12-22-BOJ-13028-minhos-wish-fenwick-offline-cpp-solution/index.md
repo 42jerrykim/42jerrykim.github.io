@@ -10,76 +10,36 @@ categories:
 - "Fenwick Tree"
 - "Offline Query"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "13028"
-- "BOJ-13028"
-- "민호의 소원"
-- "민호의소원"
-- "Minho's Wish"
-- "Range Query"
-- "구간 쿼리"
-- "Offline Query"
-- "오프라인 쿼리"
-- "Fenwick Tree"
-- "Binary Indexed Tree"
-- "BIT"
-- "펜윅트리"
-- "자료구조"
-- "Data Structure"
-- "Frequency"
-- "빈도"
-- "Occurrence"
-- "등장"
-- "At least three"
-- "세 번 이상"
-- "Distinct Count"
-- "서로 다른 개수"
-- "Counting"
-- "카운팅"
-- "Sweep"
-- "스위핑"
-- "Prefix Processing"
-- "접두 처리"
-- "Incremental Update"
-- "점진 갱신"
-- "Position List"
-- "위치 리스트"
-- "Indexing"
-- "인덱싱"
-- "Two Pointers"
-- "투포인터"
-- "Not Mo's"
-- "모스아님"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Implementation"
-- "구현"
-- "Optimization"
-- "최적화"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O((N+Q)logN)"
-- "N up to 100000"
-- "Q up to 100000"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "STL"
-- "vector"
-- "map"
-- "array"
-- "Edge Case"
-- "엣지 케이스"
-- "1-indexed"
-- "1인덱스"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Range-Query
+- Fenwick-Tree
+- Binary-Indexed-Tree
+- BIT
+- 자료구조
+- Data-Structures
+- Math
+- Two-Pointers
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Implementation
+- 구현
+- Optimization
+- 최적화
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
+- Array
+- map
+- Edge-Cases
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

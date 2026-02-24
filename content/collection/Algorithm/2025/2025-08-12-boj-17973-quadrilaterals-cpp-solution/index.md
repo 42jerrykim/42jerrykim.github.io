@@ -7,73 +7,23 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "17973"
-- "Quadrilaterals"
-- "사각형"
-- "기하"
-- "Geometry"
-- "Rotating Sweep"
-- "Rotating Sweep Line"
-- "회전 스윕"
-- "대각선"
-- "Diagonal"
-- "Minimum Area"
-- "최소 넓이"
-- "Convex"
-- "Concave"
-- "볼록사각형"
-- "오목사각형"
-- "Cross Product"
-- "교차곱"
-- "Area"
-- "면적"
-- "Angle Sort"
-- "각도 정렬"
-- "Counting"
-- "카운팅"
-- "O(n^2 log n)"
-- "Time Complexity"
-- "시간복잡도"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른입출력"
-- "__int128"
-- "i128"
-- "Overflow Safe"
-- "오버플로 방지"
-- "ICPC"
-- "Seoul Regional"
-- "2019 Seoul Regional"
-- "Regional Contest"
-- "Competitive Programming"
-- "코딩테스트"
-- "Problem Solving"
-- "문제풀이"
-- "최솟값"
-- "Minimum"
-- "Candidate"
-- "후보 선택"
-- "Two Diagonals"
-- "두 대각선"
-- "Adjacency Swap"
-- "인접 스왑"
-- "Label Maintenance"
-- "라벨 유지"
-- "Sorting Events"
-- "이벤트 정렬"
-- "Stable"
-- "안정적"
-- "Editorial"
-- "문제해설"
-- "정답 코드"
-- "Solution Code"
+- BOJ
+- Baekjoon
+- 백준
+- Geometry
+- Computational-Geometry
+- Math
+- Time-Complexity
+- 시간복잡도
+- Implementation
+- 구현
+- C++
+- IO
+- ICPC
+- Competitive-Programming
+- 코딩테스트
+- Problem-Solving
+- Editorial
 image: "wordcloud.png"
 ---
 

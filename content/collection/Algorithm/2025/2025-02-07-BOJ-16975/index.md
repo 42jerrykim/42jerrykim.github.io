@@ -7,14 +7,16 @@ categories:
 - FenwickTree
 - RangeQuery
 tags:
-- FenwickTree
-- RangeUpdate
 - Implementation
 - Optimization
-- O(log N)
-- BinaryIndexedTree
-- PrefixSum
-- RangeQuery
+- Time-Complexity
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 image: "index.png"
 date: 2025-02-08
 ---

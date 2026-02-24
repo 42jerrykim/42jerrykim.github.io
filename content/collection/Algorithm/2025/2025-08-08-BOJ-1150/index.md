@@ -8,62 +8,32 @@ description: "BOJ 1150번 백업 문제다. N개 지점에서 K개 케이블을 
 tags:
   - Algorithm
   - 알고리즘
-  - Data Structures
+  - Data-Structures
   - 자료구조
-  - Doubly Linked List
-  - 이중연결리스트
   - Greedy
   - 그리디
-  - Matching
-  - 매칭
-  - Priority Queue
+  - String
+  - Priority-Queue
   - 우선순위큐
-  - Min Heap
-  - 최소힙
-  - Graph Theory
+  - Graph-Theory
   - 그래프이론
-  - Path Graph
-  - 경로그래프
-  - Edge Selection
-  - 간선선택
   - Optimization
   - 최적화
-  - Dynamic Programming
+  - Dynamic-Programming
   - 동적계획법
-  - Time Complexity
+  - Time-Complexity
   - 시간복잡도
-  - Space Complexity
+  - Space-Complexity
   - 공간복잡도
-  - O((N + K) log N)
   - BOJ
   - 백준
   - C++
   - Implementation
   - 구현
-  - Competitive Programming
+  - Competitive-Programming
   - 경쟁프로그래밍
-  - Network
-  - 네트워크
-  - Cable
-  - 케이블
-  - Distance
-  - 거리
-  - Minimization
-  - 최소화
-  - Pair Selection
-  - 쌍선택
-  - Adjacent
-  - 인접
-  - Non-overlapping
-  - 비겹침
-  - Coordinate
-  - 좌표
-  - Linear
-  - 선형
-  - Backup
-  - 백업
-  - Company
-  - 회사
+  - Networking
+  - Shortest-Path
 date: 2025-08-08
 image: wordcloud.png
 ---

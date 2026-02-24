@@ -9,57 +9,24 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-22-builder.png
 tags:
-  - Design Pattern
-  - 디자인 패턴
+  - Design-Pattern
+  - 디자인패턴
   - Builder
-  - 빌더
-  - Creational Pattern
-  - 생성 패턴
   - GoF
-  - Gang of Four
-  - Object Creation
-  - 객체 생성
-  - Step by Step
-  - 단계별 생성
-  - Fluent Interface
-  - 플루언트 인터페이스
-  - Method Chaining
-  - 메서드 체이닝
-  - Immutability
-  - 불변성
-  - Thread Safety
-  - 스레드 안전성
-  - Complex Object
-  - 복잡한 객체
-  - Director
-  - 디렉터
-  - Concrete Builder
-  - 구체 빌더
-  - Product
-  - 제품
-  - Telescoping Constructor
-  - 점층적 생성자
-  - Code Readability
-  - 코드 가독성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Code-Quality
+  - Implementation
+  - 코드품질
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - StringBuilder
+  - CSharp
   - Configuration
   - 설정
-  - Optional Parameters
-  - 선택적 매개변수
-  - Construction
-  - 생성
-  - Separation of Concerns
-  - 관심사 분리
+  - SOLID
 ---
 
 

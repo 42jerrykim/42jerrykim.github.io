@@ -5,16 +5,16 @@ date: "2022-02-08T00:00:00Z"
 header:
   teaser: https://t1.daumcdn.net/cfile/tistory/2565523756ECCA0102
 last_modified_at: "2022-02-09"
-tag:
-- Kramdown
+tags:
 - Jekyll
 - Markdown
-- Code
-- LineNumber
-- Highlight
-- AutoWrapping
-- Warp
-- Auto
+- Python
+- .NET
+- Git
+- GitHub
+- CSS
+- Blog
+- Configuration
 title: '[Kramdown] Kramdown으로 랜더링되는 code 영역에 줄번호 표시하기'
 ---
 

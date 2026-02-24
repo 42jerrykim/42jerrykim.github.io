@@ -3,11 +3,15 @@ title: "[Movie] Lift (2024)"
 categories: Movie
 tags:
   - 액션
-  - 하이스트
-  - 케빈 하트
-  - 넷플릭스
-  - 영화 분석
   - 스릴러
+  - Movie
+  - 영화
+  - Review
+  - 리뷰
+  - Action
+  - Comedy
+  - Romance
+  - Security
 description: "2024년 넷플릭스 오리지널 영화 '리프트(Lift)' 종합 분석: 하늘 위 하이스트의 매력과 아쉬움"
 image: image.png
 date: "2024-03-05"

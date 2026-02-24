@@ -11,58 +11,29 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-13974
-- cpp
 - C++
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
-- Interval DP
-- 구간 DP
-- Knuth Optimization
-- 크누스 최적화
-- Quadrangle Inequality
-- 사각 부등식
-- Monge Array
-- 몽주 배열
-- Prefix Sum
-- 누적합
-- Range Sum
-- 구간합
-- File Merge
-- 파일 합치기
-- File Merging
-- Optimal Merge (Ordered)
-- DP Optimization
+- Prefix-Sum
 - 최적화
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
-- Data Structures
+- 함정
+- Data-Structures
 - 자료구조
-- Arrays
 - 배열
-- Long Long
-- 64-bit Integer
-- Fast IO
-- 입출력 최적화
-- Memory Optimization
-- 메모리 최적화
-- O(N^2)
-- 512MB Limit
-- Problem Solving
+- IO
+- Memory
+- Problem-Solving
 - 문제해결
 image: "wordcloud.png"
 ---

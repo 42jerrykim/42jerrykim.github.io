@@ -6,9 +6,16 @@ date: "2024-05-18T00:00:00Z"
 header:
   teaser: /assets/images/2024/1005.JPG
 tags:
-- DynamicProgramming
-- GraphTheory
-- TopologicalSorting
+- Dynamic-Programming
+- Graph-Theory
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Python
 title: '[Algorithm] C++ 백준 1005번 : ACM Craft'
 
 ---

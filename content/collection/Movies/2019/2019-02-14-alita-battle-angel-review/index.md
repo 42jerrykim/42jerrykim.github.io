@@ -5,17 +5,9 @@ description: "기시로 유키토의 총몽을 원작으로 한 SF 액션 대작
 image: "alita-battle-angel-poster.png"
 categories: 
   - Movies
-tags: 
-  - Science Fiction
+tags:
+  - Sci-Fi
   - Action
-  - Cyberpunk
-  - Manga Adaptation
-  - 로사 살라자르
-  - 크리스토프 발츠
-  - 제임스 카메론
-  - 로버트 로드리게스
-  - 사이보그
-  - 총몽
 draft: true
 ---
 

@@ -7,80 +7,36 @@ categories:
 - "Algorithm"
 - "Dynamic Tree"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "백준"
-- "Problem-2927"
-- "cpp"
-- "C++"
-- "Data Structures"
-- "자료구조"
-- "Tree"
-- "트리"
-- "Dynamic Tree"
-- "동적트리"
-- "Link-Cut Tree"
-- "링크컷트리"
-- "Splay Tree"
-- "스플레이트리"
-- "Path Query"
-- "경로쿼리"
-- "Path Sum"
-- "경로합"
-- "Dynamic Connectivity"
-- "동적연결성"
-- "Online Query"
-- "온라인쿼리"
-- "Node Update"
-- "노드업데이트"
-- "Lazy Propagation"
-- "지연전파"
-- "Reversal"
-- "뒤집기"
-- "Access"
-- "MakeRoot"
-- "FindRoot"
-- "Link"
-- "Cut"
-- "Connectivity"
-- "연결성"
-- "Forest"
-- "포리스트"
-- "Graph"
-- "그래프"
-- "Implementation"
-- "구현"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Proof of Correctness"
-- "정당성 증명"
-- "Edge Cases"
-- "코너 케이스"
-- "Pitfalls"
-- "실수 포인트"
-- "Optimization"
-- "최적화"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Testing"
-- "테스트"
-- "Invariant"
-- "불변식"
-- "Query"
-- "질의"
-- "Update"
-- "갱신"
-- "Sum Aggregation"
-- "합집계"
-- "Path Aggregation"
-- "경로집계"
-- "Rooting"
-- "루팅"
-- "Adversarial Cases"
-- "최악케이스"
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- C++
+- Data-Structures
+- 자료구조
+- Tree
+- 트리
+- Range-Query
+- Lazy-Propagation
+- Network-Flow
+- Graph
+- 그래프
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- Pitfalls
+- 함정
+- Optimization
+- 최적화
+- Competitive-Programming
+- 경쟁프로그래밍
+- Testing
+- 테스트
 image: "wordcloud.png"
 ---
 

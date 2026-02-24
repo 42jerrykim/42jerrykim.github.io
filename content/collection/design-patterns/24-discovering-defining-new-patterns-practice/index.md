@@ -13,46 +13,13 @@ categories:
 - Practice
 - Advanced Design
 tags:
-- Pattern Discovery Practice
-- Pattern Creation Practice
-- New Pattern Definition
-- Pattern Documentation
-- Problem Analysis
-- Solution Generalization
-- Pattern Catalog
-- Design Innovation
-- Creative Design
-- Pattern Thinking
-- Abstract Thinking
-- Design Methodology
-- Pattern Language
-- Software Innovation
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Software Architecture
-- Design Evolution
-- 패턴 발견 실습
-- 패턴 창조 실습
-- 새로운 패턴 정의
-- 패턴 문서화
-- 문제 분석
-- 솔루션 일반화
-- 패턴 카탈로그
-- 설계 혁신
-- 창의적 설계
-- 패턴 사고
-- 추상적 사고
-- 설계 방법론
-- 패턴 언어
-- 소프트웨어 혁신
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 소프트웨어 아키텍처
-- 설계 진화
+- Tutorial
+- Implementation
+- Design-Pattern
+- Software-Architecture
+- 구현
+- 디자인패턴
+- 소프트웨어아키텍처
 ---
 
 이 실습에서는 반복되는 설계 문제에서 새로운 패턴을 발견하고, 문서화하고, 검증하는 전 과정을 경험합니다.

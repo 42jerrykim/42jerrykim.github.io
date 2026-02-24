@@ -7,52 +7,19 @@ title: "[Clean Architecture] 31. 소리치는 아키텍처"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Screaming Architecture
-  - 소리치는 아키텍처
-  - Intent
-  - 의도
-  - Use Case
-  - 유스케이스
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
   - Domain
   - 도메인
-  - Framework
-  - 프레임워크
-  - Directory Structure
-  - 디렉토리 구조
-  - Package Structure
-  - 패키지 구조
-  - Rails
   - Spring
   - Django
-  - Architecture Intent
-  - 아키텍처 의도
-  - Building Architecture
-  - 건축 아키텍처
-  - Blueprint
-  - 청사진
-  - Health Care
-  - 헬스케어
   - Accounting
   - 회계
-  - Library
-  - 라이브러리
-  - Software Architecture
-  - 소프트웨어 아키텍처
+  - 소프트웨어아키텍처
   - Web
   - 웹
-  - Model View Controller
-  - MVC
-  - Testability
-  - 테스트 용이성
-  - Independence
-  - 독립성
-  - Ivar Jacobson
-  - Use Case Driven
-  - 유스케이스 주도
-  - Domain Driven Design
-  - 도메인 주도 설계
+  - Testing
 ---
 
 아키텍처는 시스템의 **의도를 소리쳐야** 한다. 최상위 디렉토리 구조를 보면 이것이 건강 관리 시스템인지, 회계 시스템인지 알 수 있어야 한다.

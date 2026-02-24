@@ -7,60 +7,16 @@ title: "[Clean Architecture] 15. SRP: 단일 책임 원칙"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Single Responsibility Principle
-  - 단일 책임 원칙
-  - SRP
+  - Clean-Architecture
+  - 클린아키텍처
   - SOLID
-  - SOLID Principles
-  - SOLID 원칙
-  - Actor
-  - 액터
-  - Stakeholder
-  - 이해관계자
-  - Conway's Law
-  - 콘웨이 법칙
-  - Responsibility
-  - 책임
-  - Change
-  - 변경
-  - Cohesion
+  - Software-Architecture
   - 응집도
-  - Module
-  - 모듈
-  - Class
-  - 클래스
-  - Software Design
-  - 소프트웨어 설계
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Code Organization
-  - 코드 구성
-  - Separation of Concerns
-  - 관심사의 분리
-  - Reason to Change
-  - 변경 이유
-  - Employee Example
-  - 직원 예제
-  - Merge Conflict
-  - 병합 충돌
-  - Accidental Duplication
-  - 우발적 중복
-  - Facade Pattern
-  - 퍼사드 패턴
-  - Code Quality
-  - 코드 품질
-  - Maintainability
-  - 유지보수성
-  - Team Organization
-  - 팀 구성
-  - Business Rules
-  - 비즈니스 규칙
-  - Function
-  - 함수
-  - Method
-  - 메서드
+  - OOP
+  - 소프트웨어아키텍처
+  - Code-Quality
+  - 코드품질
+  - Implementation
   - Refactoring
   - 리팩토링
 ---

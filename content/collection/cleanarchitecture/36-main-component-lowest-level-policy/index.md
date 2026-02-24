@@ -7,47 +7,15 @@ title: "[Clean Architecture] 36. 메인 컴포넌트"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Main Component
-  - 메인 컴포넌트
-  - Entry Point
-  - 진입점
-  - Lowest Level
-  - 최저 수준
+  - Clean-Architecture
+  - 클린아키텍처
   - Configuration
   - 설정
-  - Dependency Injection
-  - 의존성 주입
+  - Dependency-Injection
   - Factory
-  - 팩토리
-  - Composition Root
-  - 컴포지션 루트
-  - Dirty Component
-  - 더러운 컴포넌트
-  - Plugin
-  - 플러그인
-  - Concrete Class
-  - 구체 클래스
-  - Wiring
-  - 와이어링
-  - Bootstrap
-  - 부트스트랩
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - DI Container
-  - DI 컨테이너
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - Spring
-  - Framework
-  - 프레임워크
-  - Application
-  - 애플리케이션
-  - System
-  - 시스템
-  - Initialization
-  - 초기화
-  - startup
-  - 시작
 ---
 
 **Main**은 시스템의 **초기 진입점**이다. Clean Architecture에서 Main은 가장 **저수준의 정책**이며, 가장 **더러운** 컴포넌트다.

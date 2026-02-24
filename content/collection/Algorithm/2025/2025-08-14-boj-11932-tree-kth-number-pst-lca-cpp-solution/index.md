@@ -11,65 +11,33 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-11932
-- cpp
 - C++
 - Tree
 - 트리
-- Path Query
-- 경로 쿼리
-- K-th
-- K번째
-- Order Statistics
-- 순위통계
-- Persistent Segment Tree
-- 영속 세그먼트 트리
-- PST
-- Segment Tree
-- 세그먼트 트리
-- Lowest Common Ancestor
-- 최소 공통 조상
+- Segment-Tree
+- 세그먼트트리
 - LCA
-- Binary Lifting
-- 이진 점프
-- Binary Lifting LCA
-- Inclusion-Exclusion
-- 포함-배제
-- Coordinate Compression
+- Coordinate-Compression
 - 좌표압축
-- Value Compression
-- 값 압축
-- Online Query
-- 온라인 쿼리
-- Query
-- 쿼리
+- Range-Query
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Complexity Analysis
-- 복잡도 분석
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
-- Fast IO
-- 빠른 입출력
+- 함정
+- IO
 - DFS
 - BFS
-- Rooted Tree
-- 루트 트리
-- K-th on Path
-- 경로 K번째
-- Data Structures
+- Data-Structures
 - 자료구조
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Testing
 - 테스트

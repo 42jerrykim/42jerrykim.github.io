@@ -6,60 +6,11 @@ categories:
   - Vocabulary
 tags:
   - English
-  - Word
   - Vocabulary
-  - Giveaway
-  - 무료증정
-  - 경품
-  - giveaway
-  - 무료 증정
-  - 경품
-  - promotion
-  - 이벤트
-  - contest
-  - prize
-  - freebie
-  - raffle
-  - draw
-  - social media
-  - marketing
-  - brand awareness
-  - customer engagement
-  - loyalty
-  - product launch
-  - sampling
-  - audience
-  - participation
-  - rewards
-  - incentives
-  - advertising
+  - Implementation
+  - Competitive-Programming
   - strategy
-  - online
-  - campaign
-  - interaction
-  - feedback
-  - visibility
-  - reach
-  - sales
-  - conversion
-  - giveaway event
-  - promotional item
-  - free gift
-  - customer acquisition
-  - brand loyalty
-  - user-generated content
-  - engagement rate
-  - social proof
-  - viral marketing
-  - community
-  - followers
-  - likes
-  - shares
-  - comments
-  - entries
-  - winners
-  - announcement
-  - terms and conditions
+  - 영단어
 image: index.png
 ---
 

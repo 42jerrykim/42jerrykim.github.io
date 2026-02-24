@@ -5,12 +5,14 @@ categories:
 - uTorrent
 date: "2019-05-31T00:00:00Z"
 tags:
-- Torrent
-- µTorrent
-- uTorrent
-- seeding
-- queueing
-- Goal
+- Networking
+- Configuration
+- 설정
+- Windows
+- Troubleshooting
+- Go
+- Queue
+- Process
 title: '[µtorrent] µtorrent queueing policy'
 ---
 

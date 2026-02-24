@@ -3,7 +3,19 @@ draft: true
 title: "[Redux] 10. Redux를 사용하는 이유와 적절한 사용 시기"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "State Management", "상태관리", "Architecture", "아키텍처", "Decision Making", "의사결정", "Context API", "MobX", "Zustand", "Recoil", "비교", "Comparison", "웹개발", "프론트엔드", "React", "리액트", "Redux Benefits", "리덕스장점", "Trade-offs", "트레이드오프", "Best Practices", "모범사례", "When to Use", "사용시기", "Alternatives", "대안", "선택기준", "JavaScript", "TypeScript", "개발", "코딩", "Software Architecture", "소프트웨어아키텍처", "Design Pattern", "디자인패턴", "Scalability", "확장성", "Team Collaboration", "팀협업", "Redux Tutorial", "리덕스튜토리얼", "개발자가이드", "Project Planning", "프로젝트계획"]
+tags:
+- Software-Architecture
+- 소프트웨어아키텍처
+- 프론트엔드
+- React
+- Best-Practices
+- JavaScript
+- TypeScript
+- Implementation
+- Design-Pattern
+- 디자인패턴
+- Scalability
+- 확장성
 description: "Redux 도입 결정을 위한 완벽 가이드. Redux가 필요한 경우와 불필요한 경우, Context API와 다른 상태 관리 라이브러리와의 비교, 프로젝트 규모별 최적 선택 기준을 실전 사례로 학습합니다"
 series: ["Redux 완전 정복"]
 series_order: 10

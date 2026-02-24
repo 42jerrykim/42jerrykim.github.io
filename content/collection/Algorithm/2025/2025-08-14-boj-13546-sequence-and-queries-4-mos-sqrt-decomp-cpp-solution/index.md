@@ -11,71 +11,33 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-13546
-- cpp
 - C++
 - Python
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
-- Mo's Algorithm
-- Mo
-- Sqrt Decomposition
-- 제곱근분할
-- Offline Queries
-- 오프라인 쿼리
-- Range Query
-- 구간쿼리
-- Range Max Distance
-- 최대거리
-- Distance Frequency
-- 거리빈도
-- Block Decomposition
-- 블록분할
+- Range-Query
 - Deque
-- 데크
-- Frequency Array
-- 빈도배열
-- Occurrence Positions
-- 등장위치
-- Positions
-- 위치관리
-- Add Remove
-- 추가제거
-- Two Pointers
-- 투포인터
-- Query Reordering
-- 쿼리정렬
-- Zigzag Order
-- 지그재그정렬
+- Two-Pointers
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
 - Array
 - 배열
 - Hashing
 - 해싱
-- Data Structures
+- Data-Structures
 - 자료구조
-- 0-index
-- 1-index
-- 경계처리
-- sqrt-block
-- 블록카운팅
 image: "wordcloud.png"
 ---
 

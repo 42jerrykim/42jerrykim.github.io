@@ -2,8 +2,20 @@
 title: "[Vocabulary] Basics - 기초의 핵심을 이해하는 영단어"
 date: 2025-08-04
 description: "Basics는 '기본', '기초'를 의미하는 영단어로, 모든 분야에서 가장 근본적이고 필수적인 요소들을 나타낸다. Basic의 복수형으로 사용되며, 교육, 비즈니스, 기술 등 다양한 영역에서 fundamental concepts를 표현할 때 활용된다. 단순해 보이지만 매우 중요한 개념을 담고 있는 핵심 vocabulary이다."
-categories: ["Vocabulary", "English"]
-tags: ["Basics", "Foundation", "Fundamental", "Essential"]
+categories:
+- Vocabulary
+- English
+tags:
+- Vocabulary
+- English
+- 영단어
+- SOLID
+- OOP
+- Review
+- 리뷰
+- Markdown
+- CSS
+- HTML
 image: wordcloud.png
 ---
 

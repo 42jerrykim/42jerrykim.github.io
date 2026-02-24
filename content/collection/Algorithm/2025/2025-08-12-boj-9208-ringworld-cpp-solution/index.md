@@ -7,71 +7,38 @@ categories:
 - "BOJ"
 - "Algorithm"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "9208"
-- "Ringworld"
-- "링월드"
-- "ICPC"
-- "GCPC"
-- "GCPC 2013"
-- "German Collegiate Programming Contest"
-- "Interval"
-- "Intervals"
-- "원형 구간"
-- "Circular"
-- "Circular Interval"
-- "좌표압축"
-- "Coordinate Compression"
-- "DSU"
-- "Disjoint Set"
-- "Union-Find"
-- "모노톤"
-- "Monotone"
-- "스위핑"
-- "Sweep Line"
-- "그리디"
-- "Greedy"
-- "세그먼트 트리"
-- "Segment Tree"
-- "Lazy Propagation"
-- "시간초과"
-- "TLE"
-- "최적화"
-- "Optimization"
-- "정렬"
-- "Sorting"
-- "이분탐색"
-- "Binary Search"
-- "lower_bound"
-- "Hall"
-- "Hall's Theorem"
-- "매칭"
-- "Matching"
-- "할의 정리"
-- "원형배열"
-- "Circular Array"
-- "Arc"
-- "Range"
-- "좌표"
-- "Coordinates"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "빠른입출력"
-- "Fast IO"
-- "구현"
-- "Implementation"
-- "자료구조"
-- "Data Structure"
-- "알고리즘"
-- "Algorithm"
-- "코딩테스트"
-- "Competitive Programming"
-- "정답률"
-- "문제해설"
-- "Editorial"
+- BOJ
+- Baekjoon
+- 백준
+- ICPC
+- Range-Query
+- 좌표압축
+- Coordinate-Compression
+- DSU
+- Disjoint-Set
+- Algorithm
+- 그리디
+- Greedy
+- 세그먼트트리
+- Segment-Tree
+- Lazy-Propagation
+- 최적화
+- Optimization
+- 정렬
+- Sorting
+- 이분탐색
+- Binary-Search
+- String
+- C++
+- IO
+- 구현
+- Implementation
+- 자료구조
+- Data-Structures
+- 알고리즘
+- 코딩테스트
+- Competitive-Programming
+- Editorial
 image: "wordcloud.png"
 ---
 

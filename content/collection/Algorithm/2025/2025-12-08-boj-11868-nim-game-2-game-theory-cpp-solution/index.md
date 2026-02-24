@@ -10,52 +10,23 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-11868
 - C++
-- Nim Game
-- 님 게임
-- Game Theory
-- 게임 이론
-- XOR
-- 비트 연산
-- Sprague-Grundy Theorem
-- 필승 전략
-- Grundy Number
-- 최적 플레이
-- 게임 분석
-- 두 플레이어
-- 턴 기반 게임
-- Impartial Game
-- 공평한 게임
-- 조합 게임
-- Combinatorial Game
-- 완벽한 정보
-- Perfect Information
-- 게임 상태
-- 돌 더미
-- 제거 전략
-- 승패 판정
-- 동적 계획법
+- Game-Theory
+- Math
+- Dynamic-Programming
 - DP
 - 수학
-- Mathematics
-- 알고리즘 문제 풀이
-- Problem Solving
-- 코딩 테스트
-- Coding Test
-- 백준 온라인 저지
-- BOJ Online Judge
-- C++ 프로그래밍
-- CPP Programming
-- 코드 구현
+- Problem-Solving
+- 코딩테스트
+- Coding-Test
+- 구현
 - Implementation
 - 시간복잡도
-- Time Complexity
-- O(N)
+- Time-Complexity
 - 공간복잡도
-- Space Complexity
+- Space-Complexity
 - 엣지케이스
-- Edge Case
+- Edge-Cases
 image: "wordcloud.png"
 description: Sprague-Grundy 정리와 XOR을 이용한 게임 이론 풀이입니다. 두 플레이어가 돌 더미에서 최적으로 돌을 제거할 때 승자를 판정하는 필승 전략을 O(N)에 구현합니다.
 ---

@@ -6,61 +6,16 @@ categories:
   - Cryptography
   - Math
 tags:
-  - RSA
-  - PKCS1
-  - PKCS #1 v2.2
-  - RFC 8017
-  - NIST SP 800-56B
-  - Carmichael Function
-  - Carmichael Lambda
-  - λ(n)
-  - Euler Totient
-  - φ(n)
-  - Totient
-  - Modular Inverse
-  - Modular Arithmetic
-  - Public Key
-  - Private Key
-  - Exponent
-  - 65537
-  - Key Generation
-  - CRT
-  - Garner Algorithm
-  - Chinese Remainder Theorem
-  - Cryptography Standards
-  - IETF
-  - NIST
-  - IEEE 1363
-  - ASN.1
-  - RSASSA-PSS
-  - RSAES-OAEP
-  - Security Proofs
+  - Modular-Arithmetic
   - Performance
-  - Decryption Speed
-  - lcm
-  - gcd
-  - prime
-  - modulus
-  - factorization
-  - keypair
-  - key establishment
-  - OAEP
-  - PSS
-  - CMS
-  - X.509
-  - Crypto Engineering
-  - Practical Cryptography
+  - Math
   - 수학
-  - 암호학
-  - 공개키암호
-  - 개인키
-  - 공개키
-  - 카르마이클 함수
-  - 오일러 피함수
-  - 모듈러 역원
-  - 키 생성
-  - 성능 최적화
   - 정수론
+  - Go
+  - Algorithm
+  - 알고리즘
+  - Sci-Fi
+  - Security
 description: "현대 RSA에서 개인지수 d는 φ(n)이 아닌 λ(n)=lcm(p−1,q−1,…) 기준에서 e의 모듈러 역원으로 정의된다. IETF RFC 8017과 NIST SP 800-56B의 정확한 조항을 인용해 이 변화를 확인하고, 왜 λ(n)가 채택되었는지(작은 d, 약간의 복호화 이득, CRT·Garner와의 관계), 실무적 영향과 보안 측면을 전문가 관점에서 정리한다."
 image: "wordcloud.png"
 ---

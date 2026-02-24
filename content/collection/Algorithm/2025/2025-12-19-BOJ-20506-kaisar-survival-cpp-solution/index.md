@@ -9,84 +9,37 @@ categories:
 - "Tree"
 - "LCA"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "20506"
-- "BOJ-20506"
-- "Kaisar - 생존"
-- "Kaisar"
-- "생존"
-- "Survival"
-- "Tree"
-- "트리"
-- "Rooted Tree"
-- "루트 트리"
-- "Parent Array"
-- "부모 배열"
-- "LCA"
-- "Lowest Common Ancestor"
-- "최소 공통 조상"
-- "Counting"
-- "카운팅"
-- "Combinatorics"
-- "조합론"
-- "Ordered Pair"
-- "순서쌍"
-- "All Pairs"
-- "모든 쌍"
-- "Subtree"
-- "서브트리"
-- "Subtree Size"
-- "서브트리 크기"
-- "Postorder"
-- "후위순회"
-- "DFS"
-- "깊이 우선 탐색"
-- "Iterative DFS"
-- "반복 DFS"
-- "Stack"
-- "스택"
-- "Traversal"
-- "순회"
-- "Sorting"
-- "정렬"
-- "Frequency"
-- "빈도"
-- "Parity"
-- "홀짝"
-- "Odd Even"
-- "홀수 짝수"
-- "Index"
-- "인덱스"
-- "Position"
-- "위치"
-- "Math"
-- "수학"
-- "Formula"
-- "공식"
-- "Implementation"
-- "구현"
-- "Edge Case"
-- "엣지케이스"
-- "Overflow"
-- "오버플로우"
-- "64-bit"
-- "long long"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N)"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Problem Solving"
-- "문제해결"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Tree
+- 트리
+- LCA
+- Math
+- Combinatorics
+- 조합론
+- DFS
+- Stack
+- 스택
+- Sorting
+- 정렬
+- Data-Structures
+- 수학
+- Implementation
+- 구현
+- Edge-Cases
+- 엣지케이스
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
+- Problem-Solving
+- 문제해결
+- Competitive-Programming
+- 경쟁프로그래밍
 image: wordcloud.png
 ---
 

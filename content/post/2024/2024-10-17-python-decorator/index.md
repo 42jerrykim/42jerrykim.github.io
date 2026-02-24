@@ -7,64 +7,12 @@ categories:
 - Decorators
 tags:
 - Python
-- Decorators
-- Programming
-- CodeReusability
-- Functionality
-- Higher-Order Functions
+- Implementation
+- Code-Quality
 - Flask
 - Logging
 - Authentication
-- CodeEfficiency
-- SoftwareDesign
-- PythonFunctions
-- PythonSyntax
-- PythonTips
-- PythonTricks
-- CodeReadability
-- PythonProgramming
-- FunctionDecorators
-- ClassDecorators
-- DecoratorPatterns
-- PythonExamples
-- PythonBasics
-- PythonAdvanced
-- PythonDevelopment
-- PythonCommunity
-- PythonLibraries
-- PythonFrameworks
-- PythonBestPractices
-- PythonCode
-- PythonTutorial
-- PythonLearning
-- PythonConcepts
-- PythonTechniques
-- PythonResources
-- PythonDocumentation
-- PythonProjects
-- PythonCodeSnippets
-- PythonCodeExamples
-- PythonForBeginners
-- PythonForExperts
-- PythonForDevelopers
-- Python for Data Science
-- Python for Web Development
-- PythonForAutomation
-- Python for Machine Learning
-- PythonForAI
-- PythonForScripting
-- Python for Game Development
-- PythonForNetworking
-- PythonForIoT
-- Python for Cloud Computing
-- PythonForCybersecurity
-- PythonForRobotics
-- PythonForFinance
-- PythonForEducation
-- PythonForResearch
-- PythonForScience
-- PythonForEngineering
-- PythonForBusiness
+- Software-Architecture
 image: "tmp_wordcloud.png"
 ---
 

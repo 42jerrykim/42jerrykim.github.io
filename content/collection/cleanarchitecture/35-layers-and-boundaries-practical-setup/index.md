@@ -7,58 +7,20 @@ title: "[Clean Architecture] 35. 레이어와 경계"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Layers
-  - 계층
-  - Boundaries
-  - 경계
-  - Hunt the Wumpus
+  - Clean-Architecture
+  - 클린아키텍처
+  - Edge-Cases
   - 게임
-  - Game Rules
-  - 게임 규칙
-  - UI
-  - 사용자 인터페이스
-  - Language
-  - 언어
   - API
-  - Text Delivery
-  - 텍스트 전달
   - English
-  - 영어
-  - Spanish
-  - 스페인어
-  - SMS
   - Shell
-  - 쉘
-  - Data Storage
-  - 데이터 저장
-  - Flash
-  - 플래시
   - Cloud
   - 클라우드
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Boundary Line
-  - 경계선
-  - Component
-  - 컴포넌트
-  - Dependency
-  - 의존성
-  - Stream
-  - 스트림
-  - Input
-  - 입력
-  - Output
-  - 출력
-  - Decision
-  - 결정
-  - Trade off
-  - 트레이드오프
-  - Complexity
-  - 복잡성
-  - Flexibility
-  - 유연성
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Dependency-Injection
+  - IO
+  - Complexity-Analysis
 ---
 
 지금까지 경계의 개념을 배웠다. 이 장에서는 **실제 시스템**에서 경계를 어떻게 설정하는지 살펴본다.

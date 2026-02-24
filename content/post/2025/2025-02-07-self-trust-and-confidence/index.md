@@ -3,36 +3,12 @@ title: "[Quote] 새는 나뭇가지를 믿을까, 자신의 날개를 믿을까?
 categories:
 - Quote
 tags:
-- 에세이
-- 삶의교훈
-- 자기신뢰
-- 자신감
-- 도전
-- 성장
-- 긍정
-- 마인드셋
-- 자기계발
-- 동기부여
-- 영감
-- 지혜
-- 철학
-- 사색
-- 명상
-- Essay
-- LifeLessons 
-- SelfTrust
-- Confidence
-- Challenge
-- Growth
-- Positivity
-- Mindset
-- SelfDevelopment
-- Motivation
-- Inspiration
-- Wisdom
-- Philosophy
-- Contemplation
-- Meditation
+- Psychology
+- 심리학
+- Education
+- 교육
+- Rust
+- Technology
 image: "wildlife_nature_tree_sitting_feather_brown_branch_spring-804272.png"
 date: 2025-02-07
 description: "새가 나뭇가지에 앉을 때 믿는 것은 나뭇가지가 아니라 자신의 날개입니다. 환경이나 조건을 너무 의지하기보다, 자신의 능력과 내면의 힘을 신뢰함으로써 위기와 변화 속에서도 다시 날아오를 수 있다는 자기신뢰와 자신감의 중요성을 담은 통찰을 전합니다."

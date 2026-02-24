@@ -13,42 +13,17 @@ categories:
 - Practice
 - Code Quality
 tags:
-- Anti Patterns Practice
-- Refactoring Practice
-- God Object
-- Spaghetti Code
-- Singleton Abuse
-- Code Smell
-- Pattern Misuse
-- Legacy Code
-- Technical Debt
-- Code Quality
-- Clean Code
-- SOLID Principles
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Software Architecture
-- Design Improvement
-- 안티패턴 실습
-- 리팩토링 실습
-- 갓 오브젝트
-- 스파게티 코드
-- 싱글톤 남용
-- 코드 스멜
-- 패턴 오남용
-- 레거시 코드
-- 기술 부채
-- 코드 품질
-- 클린 코드
-- SOLID 원칙
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 소프트웨어 아키텍처
-- 설계 개선
+- Code-Quality
+- Clean-Code
+- SOLID
+- Tutorial
+- Implementation
+- Design-Pattern
+- Software-Architecture
+- 코드품질
+- 구현
+- 디자인패턴
+- 소프트웨어아키텍처
 ---
 
 이 실습에서는 God Object 리팩토링, Spaghetti Code 정리, 안티패턴 탐지기 구현을 통해 나쁜 설계를 개선합니다.

@@ -4,58 +4,17 @@ date: 2022-01-01T00:00:00Z
 categories: Algorithm
 description: "두 수 A와 B를 입력받아 A를 B로 나누는 값을 소수점 아래 10자리까지 출력하는 문제입니다. 실수 연산과 출력형식에 주의해야 하며, C++에서 소수점 출력 제어법을 익힐 수 있습니다. 백준 1008번 풀이다."
 
-tags: 
+tags:
 - C++
 - BOJ
 - 백준
-- 소수점
-- 출력
-- 입력
-- 문제
 - 알고리즘
-- 코딩
-- Programming
+- Implementation
 - Algorithm
-- CodingTest
-- ProblemSolving
-- DataStructures
-- Algorithms
-- CodingChallenges
-- BaekjoonOnlineJudge
-- CompetitiveProgramming
-- CodeOptimization
-- ProgrammingBasics
-- CodingPractice
-- AlgorithmStudy
-- ProgrammingTutorial
-- CodingSkills
-- ProblemSolvingSkills
-- ComputerScience
-- SoftwareEngineering
-- CodingEducation
-- ProgrammingLanguages
-- CodeExamples
-- AlgorithmAnalysis
-- CodingInterview
-- TechnicalSkills
-- CodeImplementation
-- SoftwareDevelopment
-- CodingTips
-- AlgorithmDesign
-- ProgrammingLogic
-- ProblemSolvingTechniques
-- ComputationalThinking
-- AlgorithmEfficiency
-- ProgrammingPractice
-- CodingMethodology
-- AlgorithmPatterns
-- CodingBestPractices
-- ComputerProgramming
-- CodingExercises
-- AlgorithmImplementation
-- ProgrammingSkills
-- SoftwareEngineering
-- AlgorithmOptimization
+- Problem-Solving
+- Data-Structures
+- Optimization
+- Software-Architecture
 image: "index.png"
 ---
 

@@ -6,12 +6,17 @@ date: "2024-09-20T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- MatrixExponentiation
-- DynamicProgramming
-- ModularArithmetic
-- O(log N)
-- GraphTheory
+- Dynamic-Programming
+- Time-Complexity
+- Graph-Theory
 - Optimization
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 title: '[Algorithm] C++/Python 백준 17401번 : 일하는 세포'
 
 ---

@@ -3,7 +3,15 @@ draft: true
 title: "[Redux] 03. 배열과 객체 다루기 - map, filter, reduce"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "JavaScript", "배열메서드", "고차함수", "map", "filter", "reduce", "불변성", "Array Methods", "Higher Order Functions", "Immutability", "Functional Programming", "함수형프로그래밍", "데이터조작", "Data Manipulation", "웹개발", "프론트엔드", "JavaScript Arrays", "Array Iteration", "forEach", "find", "some", "every", "sort", "배열정렬", "배열필터링", "배열변환", "데이터처리", "코딩", "개발", "자바스크립트배열", "배열고차함수", "Chaining", "메서드체이닝", "Pure Functions", "순수함수", "Side Effects", "부수효과", "Array Transformation", "Data Processing", "JavaScript Tutorial", "Learn JavaScript", "개발자가이드", "실전예제", "Best Practices", "Redux Patterns", "State Management", "상태관리"]
+tags:
+- JavaScript
+- map
+- Implementation
+- Code-Quality
+- Functional-Programming
+- 함수형프로그래밍
+- 프론트엔드
+- Best-Practices
 description: "Redux 상태 관리의 핵심인 배열/객체 조작 메서드 완벽 정복. map, filter, reduce를 활용한 불변성 유지, 고차 함수로 간결한 Redux Reducer 작성법을 실전 예제와 함께 마스터합니다"
 series: ["Redux 완전 정복"]
 series_order: 3

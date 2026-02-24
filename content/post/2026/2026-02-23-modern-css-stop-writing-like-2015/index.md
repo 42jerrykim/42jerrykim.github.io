@@ -10,69 +10,13 @@ categories:
   - Frontend
 tags:
   - CSS
-  - ModernCSS
-  - CSS2025
-  - CSSGrid
-  - Flexbox
-  - ContainerQueries
-  - CSSNesting
-  - CSSSelectors
-  - HasSelector
-  - IsSelector
-  - WhereSelector
-  - OKLCH
-  - ColorSpace
-  - ScrollTimeline
-  - ScrollDrivenAnimations
-  - CSSLayer
-  - AtLayer
-  - CSSVariables
-  - CustomProperties
-  - WebDevelopment
+  - Web
   - Frontend
-  - ResponsiveDesign
-  - Layout
-  - CSSLayout
-  - Float
-  - Clearfix
-  - CSSHacks
-  - Sass
-  - SCSS
-  - preprocessor
-  - MediaQueries
-  - BrowserSupport
-  - ChromeDevTools
-  - WebStandards
-  - WebPerformance
   - JavaScript
-  - VanillaCSS
-  - CSSAnimation
-  - Keyframes
-  - AnimationTimeline
-  - IntersectionObserver
-  - Specificity
-  - CSSSpecificity
-  - CSSCascade
-  - RelativeColor
-  - SubGrid
-  - CSSSubgrid
-  - PopoverAPI
-  - WebComponents
-  - CSSBaseline
-  - MDN
-  - WebDev
-  - FrontendDevelopment
-  - UIDesign
-  - 모던CSS
-  - 웹개발
   - 프론트엔드
-  - 반응형디자인
-  - CSS레이아웃
-  - 컨테이너쿼리
-  - CSS중첩
-  - 스크롤애니메이션
-  - CSS선택자
-  - 웹표준
+  - Sorting
+  - Sci-Fi
+  - Animation
 ---
 
 CSS는 어떻게 보면 단순해 보이지만, 오랫동안 "이상한 방식"으로 무언가를 해결해야 했던 언어이기도 하다. 가운데 정렬 하나를 위해 `position: absolute`와 `transform: translate(-50%, -50%)`를 쓰거나, 요소를 나란히 배치하기 위해 `float`을 쓰고 그 뒤를 `clearfix`로 청소해야 했던 시절이 있었다. 그러나 2025년을 기준으로 CSS는 완전히 달라졌다. JavaScript 의존도를 줄이고, Sass 같은 전처리기 없이도 깔끔한 코드를 작성할 수 있는 수준으로 발전했다. 이 글에서는 "예전에는 이렇게 했지만, 이제는 이렇게 한다"는 방식으로 현대 CSS의 핵심 기능들을 초보자도 이해할 수 있도록 설명한다.

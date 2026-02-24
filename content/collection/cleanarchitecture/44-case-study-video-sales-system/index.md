@@ -7,58 +7,12 @@ title: "[Clean Architecture] 44. 사례 연구: 비디오 판매 시스템"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Case Study
-  - 사례 연구
-  - Video Sales
-  - 비디오 판매
-  - Use Case
-  - 유스케이스
-  - Actor
-  - 액터
-  - Component
-  - 컴포넌트
-  - Architecture
-  - 아키텍처
-  - Design
-  - 설계
-  - Analysis
-  - 분석
-  - Entity
-  - 엔터티
-  - Boundary
-  - 경계
-  - Controller
-  - 컨트롤러
-  - Presenter
-  - 프레젠터
-  - Gateway
-  - 게이트웨이
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Business Rules
-  - 비즈니스 규칙
-  - Customer
-  - 고객
-  - Admin
-  - 관리자
-  - Purchase
-  - 구매
-  - Catalog
-  - 카탈로그
-  - View
-  - 조회
-  - Stream
-  - 스트리밍
-  - Download
-  - 다운로드
-  - License
-  - 라이선스
-  - Practical
-  - 실용적
-  - Example
-  - 예제
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Design-Pattern
+  - Edge-Cases
 ---
 
 이 장에서는 **비디오 판매 시스템**을 예제로 Clean Architecture 설계 과정을 살펴본다.

@@ -9,80 +9,31 @@ categories:
 - "DP"
 - "Convex Hull Trick"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "15249"
-- "BOJ-15249"
-- "Building Bridges"
-- "다리 만들기"
-- "Dynamic Programming"
-- "DP"
-- "동적 계획법"
-- "Optimization"
-- "최적화"
-- "Convex Hull Trick"
-- "CHT"
-- "Li Chao Tree"
-- "리차오 트리"
-- "Line Container"
-- "선형 함수"
-- "Minimum Query"
-- "최솟값 질의"
-- "Quadratic Cost"
-- "제곱 비용"
-- "Prefix Sum"
-- "누적합"
-- "Transition"
-- "점화식"
-- "State"
-- "상태"
-- "Math"
-- "수학"
-- "Geometry"
-- "기하"
-- "Parabola"
-- "포물선"
-- "Line"
-- "직선"
-- "Slope"
-- "기울기"
-- "Intercept"
-- "절편"
-- "Integer"
-- "정수"
-- "Overflow"
-- "오버플로우"
-- "int128"
-- "__int128"
-- "long long"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Implementation"
-- "구현"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Subtask"
-- "서브태스크"
-- "CEOI 2017"
-- "Central European Olympiad in Informatics"
-- "Greedy"
-- "그리디"
-- "Divide and Conquer Optimization"
-- "분할정복 최적화"
-- "Monotone Hull"
-- "단조성"
-- "Deque Trick"
-- "덱 최적화"
-- "Edge Case"
-- "엣지 케이스"
-- "Negative Cost"
-- "음수 비용"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Dynamic-Programming
+- DP
+- Optimization
+- 최적화
+- Prefix-Sum
+- State
+- Math
+- 수학
+- Geometry
+- Edge-Cases
+- C++
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Greedy
+- 그리디
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

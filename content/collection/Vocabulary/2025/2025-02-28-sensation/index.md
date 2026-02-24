@@ -3,25 +3,14 @@ title: "[Vocabulary] Sensation: 감각과 감동을 아우르는 단어 탐구"
 categories:
 - Vocabulary
 date: 2025-02-28
-tags: 
-- Sensation
-- 감각
-- 영어 단어
+tags:
 - 어원
-- 감정
-- 정서적 반응
-- 영어 학습
-- 예문
-- sensation
-- 감각
-- emotional response
-- 감정적 반응
-- sensory experience
-- 감각적 경험
-- English vocabulary
-- 영어 단어
-- etymology
-- 어원
+- English
+- Etymology
+- Vocabulary
+- 영단어
+- Movie
+- 영화
 image: index.png
 description: Sensation은 감각적 경험과 정서적 반응을 아우르는 다층적인 단어로, 라틴어 sensatio에서 유래되었다. 이 단어는 일상에서의 감각적 자극과 예술적 감동을 표현하며, 최근에는 사회문화적 현상까지 포함하는 의미로 확장되었다.
 ---

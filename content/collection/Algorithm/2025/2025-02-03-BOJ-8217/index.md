@@ -7,14 +7,17 @@ categories:
 - Segment Tree
 - Binary Search
 tags:
-- Parallel Binary Search
-- Binary Indexed Tree
+- Binary-Indexed-Tree
 - Simulation
-- Inlining
-- O((Q+M)*log M)
-- Fenwick Tree
-- Mathematical Idea
-- Binary Search
+- Fenwick-Tree
+- Binary-Search
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 image: "index.png"
 date: 2025-02-03
 ---

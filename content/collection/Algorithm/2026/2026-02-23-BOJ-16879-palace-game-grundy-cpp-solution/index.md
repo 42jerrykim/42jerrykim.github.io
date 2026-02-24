@@ -8,71 +8,29 @@ categories:
 - "BOJ"
 - "Game Theory"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "16879"
-- "BOJ-16879"
-- "Problem-16879"
-- "궁전 게임"
-- "Palace Game"
-- "Game Theory"
-- "게임 이론"
-- "Combinatorial Game"
-- "조합 게임"
-- "Impartial Game"
-- "공정 게임"
-- "Sprague-Grundy"
-- "스프라그-그런디"
-- "Grundy Number"
-- "그런디 수"
-- "Nim"
-- "님 게임"
-- "XOR Sum"
-- "XOR 합"
-- "Winning Strategy"
-- "필승 전략"
-- "Rook Move"
-- "룩 이동"
-- "King Move"
-- "킹 이동"
-- "Manhattan Distance"
-- "맨해튼 거리"
-- "Chess"
-- "체스"
-- "Optimal Play"
-- "최적 플레이"
-- "koosaga"
-- "cubelover"
-- "First Player"
-- "선공"
-- "Second Player"
-- "후공"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N)"
-- "Optimization"
-- "최적화"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Edge Case"
-- "엣지 케이스"
-- "Single Palace"
-- "궁전 하나"
-- "Multiple Palaces"
-- "다중 궁전"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Game-Theory
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Optimization
+- 최적화
+- Implementation
+- 구현
+- C++
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- Edge-Cases
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

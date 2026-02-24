@@ -11,75 +11,32 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-6171
-- cpp
 - C++
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
-- DP Optimization
-- DP 최적화
-- Convex Hull Trick
-- 컨벡스 헐 트릭
-- CHT
-- Monotonic CHT
-- 단조 CHT
-- Lines Container
-- 직선 집합
-- Lower Envelope
-- 하한선
-- Deque Optimization
-- 덱 최적화
 - Sorting
 - 정렬
-- Deduplication
-- 중복제거
-- Pareto
-- 파레토
-- Dominated
-- 지배관계
-- Rectangle
-- 직사각형
-- Greedy Filter
-- 그리디 필터
-- Proof of Correctness
-- 정당성 증명
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Complexity Analysis
-- 복잡도 분석
-- Edge Cases
-- 코너 케이스
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- __int128
-- 128-bit
-- 64-bit
-- 오버플로 방지
-- Fast IO
-- 빠른 입출력
-- Land Grabbing
-- 땅따먹기
-- BOJ6171
-- Data Structures
+- IO
+- Data-Structures
 - 자료구조
-- Binary Search
+- Binary-Search
 - 이분탐색
-- Monotonic Queue
-- 단조 큐
 - Editorial
 - 에디토리얼
 - Testing
 - 테스트
-- Invariant
-- 불변식
-- Template
-- 템플릿
 image: "wordcloud.png"
 ---
 

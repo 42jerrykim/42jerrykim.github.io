@@ -11,74 +11,40 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-16993
-- cpp
-- python
 - C++
 - Python
-- Data Structures
+- Data-Structures
 - 자료구조
-- Segment Tree
-- 세그먼트 트리
-- Range Query
-- 구간 질의
-- Maximum Subarray
-- 최대 연속합
-- Kadane
-- 카데인
-- Divide and Conquer
+- Segment-Tree
+- 세그먼트트리
+- Range-Query
+- Divide-and-Conquer
 - 분할정복
-- Merge
-- 병합
-- Prefix Sum
-- 접두합
-- Suffix Sum
-- 접미합
-- Subarray
-- 부분배열
-- Interval
-- 인터벌
-- Query
-- 쿼리
-- Offline
-- 온라인 질의
-- Online Query
-- 온라인 쿼리
-- Time Complexity
+- Prefix-Sum
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- O(log N)
-- 로그 시간
-- O(N)
-- 선형 시간
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Implementation
 - 구현
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
-- Sliding Window
-- 슬라이딩윈도우
+- Complexity-Analysis
+- 복잡도분석
+- Sliding-Window
 - Greedy
 - 그리디
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
 - Graph
 - 그래프
@@ -86,24 +52,20 @@ tags:
 - 트리
 - BFS
 - DFS
-- Shortest Path
+- Shortest-Path
 - 최단경로
 - Dijkstra
-- 다익스트라
-- Binary Search
+- Binary-Search
 - 이분탐색
 - Hashing
 - 해싱
 - String
 - 문자열
 - Geometry
-- 기하
 - Math
 - 수학
-- Modulo
+- Modular-Arithmetic
 - 모듈러
-- Implementation Details
-- 구현 디테일
 image: "wordcloud.png"
 ---
 ## 문제 정보

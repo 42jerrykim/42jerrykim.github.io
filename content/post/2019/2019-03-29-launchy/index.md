@@ -7,9 +7,13 @@ description: ""
 redirect_from:
 - /2019/03/29/
 tags:
-- Launchy
-- Windows7
 - Windows
+- Go
+- .NET
+- REST
+- API
+- Sci-Fi
+- CSS
 title: Launchy - 윈도우7에서 응용프로그램을 몇번의 타이핑만으로 실행하자
 ---
 

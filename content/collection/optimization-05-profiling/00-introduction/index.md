@@ -5,76 +5,22 @@ slug: getting-started-profiling-performance-analysis-fundamentals
 description: "Low-latency 프로파일링·성능 분석 트랙의 도입 챕터입니다. microbenchmark/프로파일링으로 hot path를 찾고, 지표를 해석해 회귀를 자동화하는 공통 기반을 한 번에 정리합니다."
 tags:
   - Performance
-  - Performance Engineering
-  - Performance Optimization
-  - Low Latency
-  - Low-latency
-  - Microsecond
-  - Latency
-  - Throughput
-  - Benchmark
-  - Microbenchmark
   - Profiling
-  - Sampling Profiler
-  - Tracing
-  - Flamegraph
-  - Hot Path
   - Optimization
-  - Regression
-  - Performance Budget
-  - CI
-  - Observability
-  - Metrics
-  - Histogram
-  - p50
-  - p95
-  - p99
-  - Tail Latency
+  - Testing
+  - CI-CD
+  - Monitoring
+  - Data-Structures
   - CPU
   - Cache
   - Memory
   - Concurrency
   - Linux
   - Windows
-  - AMD
-  - AMD uProf
-  - ETW
-  - Event Tracing for Windows
-  - Valgrind
-  - Callgrind
-  - Cachegrind
-  - BPF
-  - eBPF
-  - bpftrace
-  - BCC
-  - 측정
-  - 검증
   - 성능
-  - 성능공학
-  - 성능 최적화
-  - 저지연
-  - 마이크로초
-  - 레이턴시
-  - 처리량
-  - 벤치마크
-  - 마이크로벤치마크
   - 프로파일링
-  - 트레이싱
-  - 플레임그래프
-  - 핫패스
   - 최적화
-  - 성능 회귀
-  - 성능 예산
   - 자동화
-  - 관측가능성
-  - 메트릭
-  - 히스토그램
-  - 꼬리 지연시간
-  - 운영환경
-  - 동적 추적
-  - 메모리 분석
-  - 호출 그래프
-  - 캐시 시뮬레이션
 ---
 
 이 트랙은 모든 트랙의 공통 기반입니다. µs 단위 최적화는 "측정→가설→변경→검증→회귀 방지" 루프가 없으면 재현 불가능한 우연이 되기 때문에, 분석 역량을 표준화합니다.

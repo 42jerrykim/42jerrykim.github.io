@@ -9,73 +9,20 @@ categories:
 tags:
 - Vocabulary
 - English
-- English Words
-- Pipeline
-- pipeline meaning
-- pipeline usage
-- pipeline examples
-- in the pipeline
-- sales pipeline
-- data pipeline
-- CI/CD pipeline
 - DevOps
-- software engineering
-- computing
-- CPU pipeline
-- GPU pipeline
-- graphics pipeline
-- ML pipeline
-- machine learning pipeline
-- ETL
-- ELT
-- stream processing
+- Software-Architecture
 - workflow
-- process
-- value chain
-- supply chain
-- distribution channel
-- oil pipeline
-- gas pipeline
-- water pipeline
-- project pipeline
-- hiring pipeline
-- talent pipeline
-- product pipeline
-- development pipeline
-- build pipeline
-- deployment pipeline
-- test pipeline
-- stages
-- stage gate
-- bottleneck
-- throughput
-- backlog
-- roadmap
+- OS
+- Performance
 - queue
-- pipeline integrity
-- pipeline capacity
-- pipeline operator
-- pipeline leak
-- collocation
-- expressions
-- phrase
-- 예문
-- 영작
-- 회화
+- Collocation
 - 비즈니스영어
-- 기술영어
-- IT영어
-- 시험영어
-- TOEIC
 - TOEFL
 - IELTS
-- academic English
-- business English
+- Academic-English
+- Business-English
 - 영단어
 - 영어명사
-- 명사
-- 용법
-- 의미
 - 뉘앙스
 image: "wordcloud.png"
 ---

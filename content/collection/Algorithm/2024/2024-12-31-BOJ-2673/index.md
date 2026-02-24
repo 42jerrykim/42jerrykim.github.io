@@ -8,12 +8,15 @@ categories:
 tags:
 - Backtracking
 - Graph
-- Pruning
-- Maximum-Independent-Set
-- Circle-Graph
-- Complexity-O(2^N)
 - Implementation
 - Geometry
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 image: "index.png"
 date: 2024-12-31
 ---

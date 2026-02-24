@@ -9,80 +9,23 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - Root
-  - root meaning
-  - root usage
-  - root examples
-  - root verb
-  - root for
-  - root out
-  - root around
-  - take root
-  - deep-rooted
-  - establish
-  - plant
-  - grow
-  - dig
-  - search
-  - rummage
-  - forage
-  - cheer
-  - support
-  - encourage
-  - fix
-  - embed
-  - implant
-  - uproot
-  - rooting
-  - rooted
-  - roots
-  - botanical terms
-  - plant verbs
-  - sports English
-  - informal English
-  - phrasal verbs
-  - idioms
-  - collocation
-  - expressions
+  - Algorithm
+  - Collocation
   - grammar
-  - nuance
-  - etymology
-  - Old English
-  - context
-  - synonym
-  - antonym
-  - everyday English
-  - TOEIC
+  - Nuance
+  - Etymology
+  - Synonym
+  - Antonym
   - TOEFL
   - IELTS
   - 영단어
   - 영어동사
-  - root 의미
-  - root 용법
-  - root 예문
-  - 뿌리내리다
-  - 고정하다
-  - 파헤치다
-  - 뒤지다
-  - 응원하다
-  - 지지하다
-  - 뿌리박다
-  - 정착하다
-  - 찾다
-  - 탐색하다
-  - 식물용어
-  - 스포츠영어
-  - 구동사
-  - 관용어
   - 콜로케이션
   - 문법
   - 뉘앙스
   - 어원
-  - 맥락
-  - 동의어
+  - 유의어
   - 반의어
-  - 일상영어
 image: wordcloud.png
 ---
 

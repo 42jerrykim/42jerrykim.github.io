@@ -6,14 +6,19 @@ categories:
 - String
 - Palindrome
 tags:
-- Manacher
-- Palindromic
 - Implementation
 - Optimization
-- O(N)
-- Data Structure
-- String Theory
-- Dynamic Programming
+- Time-Complexity
+- Data-Structures
+- Dynamic-Programming
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- String
 image: "index.png"
 date: 2024-12-30
 ---

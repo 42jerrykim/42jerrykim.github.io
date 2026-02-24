@@ -7,91 +7,44 @@ categories:
 - "Algorithm"
 - "Geometry"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "백준"
-- "Problem-9244"
-- "cpp"
-- "python"
-- "C++"
-- "Implementation"
-- "구현"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Proof of Correctness"
-- "정당성 증명"
-- "Edge Cases"
-- "코너 케이스"
-- "Pitfalls"
-- "실수 포인트"
-- "Optimization"
-- "최적화"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Editorial"
-- "에디토리얼"
-- "Code Review"
-- "코드리뷰"
-- "Template"
-- "템플릿"
-- "Testing"
-- "테스트"
-- "Complexity Analysis"
-- "복잡도 분석"
-- "Invariant"
-- "불변식"
-- "Geometry"
-- "기하"
-- "Sweep Line"
-- "스위프 라인"
-- "Event Sorting"
-- "이벤트 정렬"
-- "Active Set"
-- "활성 집합"
-- "Balanced BST"
-- "균형트리"
-- "std::set"
-- "Integer Geometry"
-- "정수 기하"
-- "__int128"
-- "Overflow"
-- "오버플로"
-- "Precision"
-- "정밀도"
-- "Sorting"
-- "정렬"
-- "Coordinate"
-- "좌표"
-- "Line Segment"
-- "선분"
-- "Segment Ordering"
-- "선분 정렬"
-- "Downward Flow"
-- "하강 흐름"
-- "Pinball"
-- "핀볼"
-- "NCPC"
-- "NCPC 2013"
-- "ICPC"
-- "Greedy"
-- "그리디"
-- "Graph"
-- "그래프"
-- "Directed Acyclic Graph"
-- "유향 비순환 그래프"
-- "Topological"
-- "위상"
-- "Mathematics"
-- "수학"
-- "Robust"
-- "견고한 구현"
-- "Overflow Safety"
-- "오버플로 안전"
-- "Deterministic"
-- "결정적"
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- C++
+- Python
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- Pitfalls
+- 함정
+- Optimization
+- 최적화
+- Competitive-Programming
+- 경쟁프로그래밍
+- Editorial
+- 에디토리얼
+- Code-Review
+- 코드리뷰
+- Testing
+- 테스트
+- Complexity-Analysis
+- 복잡도분석
+- Geometry
+- Sorting
+- 정렬
+- ICPC
+- Greedy
+- 그리디
+- Graph
+- 그래프
+- Math
+- 수학
 image: "wordcloud.png"
 ---
 

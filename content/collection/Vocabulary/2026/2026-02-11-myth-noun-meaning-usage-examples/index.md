@@ -9,53 +9,18 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - myth
-  - myth meaning
-  - myth usage
-  - myth examples
-  - myth noun
   - 영단어
   - 영어명사
-  - myth 의미
-  - myth 용법
-  - myth 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - legend
-  - fiction
-  - folklore
-  - misconception
-  - fallacy
-  - illusion
-  - belief
-  - story
-  - 신화
-  - 전설
-  - 거짓
-  - 통념
-  - 오류
-  - 잘못된 믿음
-  - mythology
-  - classical
-  - ancient
-  - cultural
-  - literature
   - science
-  - business
-  - urban legend
-  - 문학 용어
+  - Business-English
   - 문화
   - 과학
-  - 오류 정정
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

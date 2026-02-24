@@ -7,14 +7,18 @@ date: "2024-09-19T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- DynamicProgramming
-- Inclusion-Exclusion
+- Dynamic-Programming
 - Implementation
 - Optimization
-- O(N^2)
-- 2D DP Array
-- Counting
-- DPg
+- Time-Complexity
+- Math
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 title: '[Algorithm] C++/Python 백준 14517번 : 팰린드롬 개수 구하기 (Large)'
 ---
 

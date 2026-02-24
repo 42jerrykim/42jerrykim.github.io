@@ -7,71 +7,25 @@ description: "if/for/while 제어 흐름을 빠르게 쓰기 위한 치트시트
 lastmod: 2026-01-17
 collection_order: 6
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - control-flow
-  - 제어흐름
-  - if
-  - 조건문
-  - for
-  - while
-  - 반복문
-  - loops
-  - loop-else
-  - break
-  - continue
-  - pass
-  - enumerate
-  - zip
-  - range
-  - iteration
-  - 반복
-  - truthiness
-  - truthy
-  - falsy
-  - 비교
-  - comparison
-  - operators
-  - 연산자
-  - membership
-  - 포함검사
-  - in-operator
-  - any
-  - all
-  - builtins
-  - 내장함수
-  - match
-  - match-case
-  - python310
-  - readability
-  - 가독성
-  - performance
+  - Quick-Reference
+  - Implementation
+  - Clean-Code
+  - Performance
   - 성능
-  - best-practices
-  - 베스트프랙티스
+  - Best-Practices
   - pitfalls
   - 함정
   - error-handling
-  - 예외처리
-  - standard-library
-  - 표준라이브러리
-  - patterns
-  - 패턴
+  - Design-Pattern
   - debugging
   - 디버깅
-  - style
-  - clean-code
   - 클린코드
   - refactoring
   - 리팩토링
-  - guard-clause
-  - early-return
 ---
 if/for/while 제어 흐름은 모든 프로그램의 뼈대입니다. 이 치트시트는 truthy/falsy, enumerate/zip, loop-else, guard clause 등 깔끔한 제어 흐름 패턴을 빠르게 훑습니다.
 

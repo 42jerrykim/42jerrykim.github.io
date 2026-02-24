@@ -7,10 +7,8 @@ title: "[Clean Architecture] 12. 객체 지향 프로그래밍"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Object Oriented Programming
-  - 객체 지향 프로그래밍
+  - Clean-Architecture
+  - 클린아키텍처
   - OOP
   - Encapsulation
   - 캡슐화
@@ -18,54 +16,16 @@ tags:
   - 상속
   - Polymorphism
   - 다형성
-  - Dependency Inversion
-  - 의존성 역전
-  - Plugin Architecture
-  - 플러그인 아키텍처
+  - Dependency-Injection
+  - 의존성주입
+  - Software-Architecture
   - Interface
   - 인터페이스
-  - Abstract Class
-  - 추상 클래스
-  - Virtual Function
-  - 가상 함수
-  - Function Pointer
-  - 함수 포인터
-  - Vtable
-  - Late Binding
-  - 늦은 바인딩
-  - Dynamic Dispatch
-  - 동적 디스패치
-  - Liskov Substitution
-  - 리스코프 치환
-  - Open Closed Principle
-  - 개방 폐쇄 원칙
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Source Code Dependency
-  - 소스 코드 의존성
-  - Control Flow
-  - 제어 흐름
-  - Compile Time
-  - 컴파일 타임
-  - Runtime
-  - 런타임
-  - Smalltalk
+  - SOLID
+  - 소프트웨어아키텍처
+  - Performance
   - C++
   - Java
-  - Programming Paradigm
-  - 프로그래밍 패러다임
-  - Information Hiding
-  - 정보 은닉
-  - Data Abstraction
-  - 데이터 추상화
-  - Module
-  - 모듈
-  - Class
-  - 클래스
-  - Method
-  - 메서드
-  - Object
-  - 객체
 ---
 
 객체 지향 프로그래밍(OOP)은 1966년에 올레 요한 달(Ole Johan Dahl)과 크리스텐 니가드(Kristen Nygaard)가 Simula 67을 개발하면서 시작되었다. 이후 Smalltalk, C++, Java를 거치며 주류 패러다임이 되었다. 하지만 OOP가 아키텍처에 제공하는 진정한 가치는 무엇일까? 로버트 마틴은 그것이 **다형성을 통한 의존성 역전**이라고 말한다.

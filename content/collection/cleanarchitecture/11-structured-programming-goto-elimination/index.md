@@ -7,68 +7,18 @@ title: "[Clean Architecture] 11. 구조적 프로그래밍"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Structured Programming
-  - 구조적 프로그래밍
+  - Clean-Architecture
+  - 클린아키텍처
   - Dijkstra
-  - 데이크스트라
-  - Edsger Dijkstra
-  - goto Statement
-  - goto문
-  - Go To Considered Harmful
-  - Sequence
-  - 순차
-  - Selection
-  - 선택
-  - Iteration
-  - 반복
-  - Control Flow
-  - 제어 흐름
-  - Functional Decomposition
-  - 기능적 분해
-  - Modular Programming
-  - 모듈러 프로그래밍
-  - Proof of Correctness
-  - 정확성 증명
-  - Software Testing
-  - 소프트웨어 테스팅
-  - Formal Verification
-  - 형식 검증
-  - Scientific Method
-  - 과학적 방법
-  - Falsifiability
-  - 반증 가능성
-  - Programming Paradigm
-  - 프로그래밍 패러다임
-  - Software Engineering
-  - 소프트웨어 공학
-  - Code Quality
-  - 코드 품질
-  - Maintainability
-  - 유지보수성
-  - Readability
-  - 가독성
-  - Block Structure
-  - 블록 구조
-  - Subroutine
-  - 서브루틴
-  - Function
-  - 함수
-  - Loop
-  - 루프
-  - Conditional
-  - 조건문
-  - Software Crisis
-  - 소프트웨어 위기
-  - Top Down Design
-  - 하향식 설계
-  - Stepwise Refinement
-  - 단계적 정제
+  - Math
+  - Implementation
   - Algorithm
+  - 테스트
+  - Software-Architecture
+  - Code-Quality
+  - 코드품질
+  - Clean-Code
   - 알고리즘
-  - Program Structure
-  - 프로그램 구조
 ---
 
 1968년, 에츠허르 비버 데이크스트라(Edsger Wybe Dijkstra)는 CACM(Communications of the ACM)에 보낸 편지에서 프로그래밍 역사상 가장 유명한 논쟁을 시작했다. "Go To Statement Considered Harmful"이라는 제목의 이 글은 구조적 프로그래밍의 시대를 열었다.

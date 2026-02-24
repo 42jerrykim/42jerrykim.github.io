@@ -12,56 +12,21 @@ categories:
 - Programming Education
 - Software Engineering
 tags:
-- Design Patterns
-- GoF Patterns
-- Software Architecture
-- Object Oriented Design
-- Programming Paradigms
-- Software Engineering
-- Pattern Learning
-- Code Quality
-- Software Design
-- Best Practices
-- Clean Code
-- SOLID Principles
+- Design-Pattern
+- GoF
+- Software-Architecture
+- Code-Quality
+- Best-Practices
+- Clean-Code
+- SOLID
 - Refactoring
-- Code Review
-- Software Development
-- Programming Education
-- Technical Skills
-- Developer Growth
-- Architecture Patterns
-- Creational Patterns
-- Structural Patterns
-- Behavioral Patterns
-- Factory Pattern
-- Singleton Pattern
-- Builder Pattern
-- Prototype Pattern
-- Adapter Pattern
-- Decorator Pattern
-- Proxy Pattern
-- Observer Pattern
-- Strategy Pattern
-- Command Pattern
-- 디자인 패턴
-- GoF 패턴
-- 소프트웨어 아키텍처
-- 객체 지향 설계
-- 프로그래밍 패러다임
-- 소프트웨어 공학
-- 패턴 학습
-- 코드 품질
-- 소프트웨어 설계
-- 모범 사례
-- 클린 코드
-- SOLID 원칙
+- Code-Review
+- Implementation
+- 디자인패턴
+- 소프트웨어아키텍처
+- 코드품질
 - 리팩토링
-- 코드 리뷰
-- 소프트웨어 개발
-- 프로그래밍 교육
-- 기술 역량
-- 개발자 성장
+- 코드리뷰
 ---
 
 GoF 23개 패턴을 완전히 마스터하는 체계적인 학습 가이드입니다. 기초 철학부터 고급 응용까지 디자인 패턴의 모든 측면을 포괄하는 전문가 수준의 커리큘럼을 제공합니다.

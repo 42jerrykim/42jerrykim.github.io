@@ -12,66 +12,11 @@ categories:
 - Event Driven Architecture
 - Reactive Programming
 tags:
-- Observer Pattern
-- Event Driven Architecture
-- Subject Observer
-- Behavioral Patterns
-- Reactive Programming
-- Event Bus
-- Publisher Subscriber
-- Loose Coupling
-- Notification System
-- MVC Pattern
-- Event Sourcing
-- Reactive Streams
-- Event Handling
-- Design Patterns
-- GoF Patterns
-- Asynchronous Events
-- Event Propagation
-- Observer Registry
-- Event Listeners
-- Callback Mechanisms
-- State Change Notification
-- Decoupled Communication
-- Event Based Systems
-- Reactive Extensions
-- Event Aggregation
-- Message Passing
-- Signal Slot Mechanism
-- Property Change Events
-- Data Binding
-- Real Time Updates
-- 옵저버 패턴
-- 이벤트 드리븐 아키텍처
-- 서브젝트 옵저버
-- 행동 패턴
-- 리액티브 프로그래밍
-- 이벤트 버스
-- 퍼블리셔 구독자
-- 느슨한 결합
-- 알림 시스템
-- MVC 패턴
-- 이벤트 소싱
-- 리액티브 스트림
-- 이벤트 처리
-- 디자인 패턴
-- GoF 패턴
-- 비동기 이벤트
-- 이벤트 전파
-- 옵저버 레지스트리
-- 이벤트 리스너
-- 콜백 메커니즘
-- 상태 변경 알림
-- 디커플된 통신
-- 이벤트 기반 시스템
-- 리액티브 확장
-- 이벤트 집계
-- 메시지 전달
-- 시그널 슬롯 메커니즘
-- 프로퍼티 변경 이벤트
-- 데이터 바인딩
-- 실시간 업데이트
+- Design-Pattern
+- Software-Architecture
+- GoF
+- Implementation
+- 디자인패턴
 ---
 
 Observer 패턴을 통해 이벤트 기반 아키텍처의 기초를 탐구합니다. 느슨한 결합과 일대다 의존성 관리로 반응형 시스템을 구축하는 방법을 학습합니다.

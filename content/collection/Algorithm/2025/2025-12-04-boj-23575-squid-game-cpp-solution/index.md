@@ -11,98 +11,39 @@ tags:
   - 알고리즘
   - BOJ
   - 백준
-  - Problem-23575
-  - Squid Game
-  - 오징어 게임
   - C++
-  - CPP
-  - CPlusPlus
-  - Euclidean Algorithm
-  - 유클리드 호제법
-  - GCD
-  - 최대공약수
-  - Binary Representation
-  - 이진수 표현
-  - Bitmask
-  - 비트마스크
   - Math
   - 수학
-  - Number Theory
+  - Number-Theory
   - 정수론
-  - Constructive
-  - 구성적
   - Simulation
   - 시뮬레이션
   - Implementation
   - 구현
-  - Problem Solving
+  - Problem-Solving
   - 문제해결
-  - Competitive Programming
+  - Competitive-Programming
   - 경쟁프로그래밍
-  - Water Pouring
-  - 물붓기
-  - Bucket Problem
-  - 물통 문제
-  - Puzzle
-  - 퍼즐
   - Greedy
-  - 탐욕법
-  - Division Algorithm
-  - 나눗셈 알고리즘
-  - Modulo Operation
-  - 모듈러 연산
-  - Recursive Pattern
-  - 재귀적 패턴
-  - Iterative Solution
-  - 반복적 해법
-  - Edge Cases
-  - 엣지 케이스
-  - Time Complexity
+  - 모듈러
+  - Edge-Cases
+  - 엣지케이스
+  - Time-Complexity
   - 시간복잡도
-  - Space Complexity
+  - Space-Complexity
   - 공간복잡도
-  - Vector
-  - 벡터
-  - Pair
-  - 페어
+  - Array
   - Sorting
   - 정렬
-  - Sorting Algorithm
-  - 정렬 알고리즘
-  - Comparator
-  - 비교기
-  - Structure
-  - 구조체
   - ICPC
-  - 국제대학생프로그래밍대회
-  - Regionals
-  - 지역본선
-  - Asia Pacific
-  - Asia Regional
-  - Seoul 2021
-  - 서울 2021
-  - Korea Regional
-  - 한국 지역본선
-  - Constructive Algorithm
-  - 구성 알고리즘
-  - Logic
-  - 논리
   - Optimization
   - 최적화
   - Strategy
-  - 전략
-  - Verification
-  - 검증
-  - Code Review
-  - 코드리뷰
   - Testing
+  - Code-Review
+  - 코드리뷰
   - 테스트
-  - Integer Overflow
-  - 정수 오버플로우
-  - Long Long
-  - 64비트 정수
-  - Input Output
-  - 입출력
+  - IO
   - Editorial
   - 에디토리얼
 image: "wordcloud.png"

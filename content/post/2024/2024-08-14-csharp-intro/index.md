@@ -8,55 +8,12 @@ header: null
 tags:
 - CSharp
 - .NET
-- programming
-- SoftwareDevelopment
-- object-oriented
-- cross-platform
+- Implementation
+- Software-Architecture
 - open-source
-- coding
-- ProgrammingLanguages
-- SoftwareEngineering
-- ApplicationDevelopment
-- performance
+- Performance
 - productivity
-- MemoryManagement
-- GarbageCollection
-- AsynchronousProgramming
-- LINQ
-- C# features
-- C# history
-- C# syntax
-- C# applications
-- C# tutorials
-- C# examples
-- C# libraries
-- C# frameworks
-- C# community
-- C# tools
-- C# IDE
-- C# best practices
-- C# for beginners
-- C# advanced
-- C# development
-- C# programming concepts
-- C# design patterns
-- C# coding standards
-- C# error handling
-- C# debugging
-- C# performance optimization
-- C# web development
-- C# mobile development
-- C# game development
-- C# cloud development
-- C# IoT development
-- C# data structures
-- C# algorithms
-- C# testing
-- C# versioning
-- C# updates
-- C# community resources
-- C# job market
-- C# career
+- Memory
 teaser: /assets/images/undefined/teaser.jpg
 title: '[C#] C# 언어 둘러보기'
 ---

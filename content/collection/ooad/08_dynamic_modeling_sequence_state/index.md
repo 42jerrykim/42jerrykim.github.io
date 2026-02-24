@@ -7,62 +7,16 @@ collection_order: 8
 draft: true
 tags:
   - UML
-  - Dynamic-Modeling
-  - 동적-모델링
-  - Sequence-Diagram
-  - 시퀀스-다이어그램
-  - State-Diagram
-  - 상태-다이어그램
-  - State-Machine
-  - 상태머신
-  - Interaction
-  - 상호작용
-  - Scenario
-  - 시나리오
-  - Use-Case
-  - 유스케이스
-  - Exception-Flow
-  - 예외-흐름
-  - Compensation
-  - 보상-트랜잭션
-  - Saga
-  - Transaction
-  - 트랜잭션
-  - Consistency
-  - 일관성
-  - Invariant
-  - 불변조건
-  - Domain-Event
-  - 도메인-이벤트
-  - OOAD
-  - OOA
-  - OOD
-  - Domain-Model
-  - 도메인-모델
-  - Class-Diagram
-  - 클래스-다이어그램
-  - Responsibility
-  - 책임
-  - Collaboration
-  - 협력
-  - Message-Passing
-  - 메시지-패싱
+  - Software-Architecture
+  - Database
+  - Algorithm
+  - OOP
   - Error-Handling
-  - 예외처리
-  - Timeout
-  - 타임아웃
-  - Retry
-  - 재시도
-  - Idempotency
-  - 멱등성
-  - Observability
+  - Monitoring
   - 로깅
   - Testing
   - 테스트
-  - BDD
   - TDD
-  - DDD
-  - Event-Driven-Architecture
   - CQRS
   - Microservices
   - Clean-Architecture

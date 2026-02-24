@@ -11,61 +11,39 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-17526
-- cpp
 - C++
 - Python
-- Data Structures
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
-- Dynamic Programming
+- Complexity-Analysis
+- 복잡도분석
+- Dynamic-Programming
 - 동적계획법
-- DP Optimization
-- DP 최적화
-- Convex Hull Trick
-- 컨벡스 헐 트릭
-- Li Chao Tree
-- 라이차오 트리
-- Line Container
-- 라인 컨테이너
-- Minimum Query
-- 최소 질의
-- Distance Prefix
-- 누적거리
-- Prefix Sum
-- 접두사 합
+- Prefix-Sum
 - Math
 - 수학
 - Geometry
-- 기하
-- Binary Search
+- Binary-Search
 - 이분탐색
 - Graph
 - 그래프
@@ -73,16 +51,12 @@ tags:
 - 문자열
 - Hashing
 - 해싱
-- Segment Tree
-- 세그먼트 트리
-- Fenwick Tree
-- 펜윅트리
-- Disjoint Set Union
-- 유니온파인드
-- Two Pointers
-- 투포인터
-- Sliding Window
-- 슬라이딩윈도우
+- Segment-Tree
+- 세그먼트트리
+- Fenwick-Tree
+- Disjoint-Set
+- Two-Pointers
+- Sliding-Window
 - Debugging
 - 디버깅
 image: "wordcloud.png"

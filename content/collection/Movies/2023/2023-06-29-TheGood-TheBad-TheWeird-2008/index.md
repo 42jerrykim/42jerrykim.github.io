@@ -6,10 +6,16 @@ date: "2023-06-29T00:00:00Z"
 header:
   teaser: null
 tags:
-- KoreanCinema
 - Action
 - Thriller
 - Adventure
+- Movie
+- 영화
+- Review
+- 리뷰
+- Go
+- Tree
+- Comedy
 title: '[Movie] 놈놈놈 (2008) - 독특한 캐릭터와 함께하는 스릴 넘치는 여정'
 ---
 

@@ -11,60 +11,32 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-16783
 - C++
-- Data Structures
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Geometry
-- 기하
 - Math
 - 수학
-- Segment Tree
-- 세그먼트 트리
-- Sweepline
-- 스위핑
-- Maximum Subarray Sum
-- 최대 부분 합
-- Collinear Points
-- 공선점
-- Vector Operations
-- 벡터 연산
-- Cross Product
-- 외적
-- Parallel Lines
-- 평행선
-- Bulldozer
-- 불도저
-- Geometric Algorithm
-- 기하 알고리즘
-- Advanced Data Structure
-- 고급 자료구조
+- Segment-Tree
+- 세그먼트트리
+- Computational-Geometry
 - Editorial
 - 에디토리얼
-- Slope Calculation
-- 기울기 계산
-- Event Processing
-- 이벤트 처리
-- Permutation Reversal
-- 순열 역순
-- Problem Solving
-- 문제 풀이
+- Problem-Solving
 description: "기하학 기반의 스위핑 알고리즘과 세그먼트 트리를 결합해 두 평행선 사이 영역의 최대 이익을 구하는 고급 문제입니다. 모든 점의 기울기를 이벤트로 처리하고 공선점 처리를 통해 효율적으로 문제를 해결합니다."
 image: "wordcloud.png"
 ---

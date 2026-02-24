@@ -7,68 +7,31 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "17517"
-- "Parklife"
-- "라미나"
-- "Laminar"
-- "Interval"
-- "중첩 구간"
-- "Non-crossing"
-- "교차 없음"
-- "Tree"
-- "트리"
-- "Tree DP"
-- "트리 DP"
-- "Convex DP"
-- "볼록 DP"
-- "Slope Trick"
-- "슬로프 트릭"
-- "Difference Sequence"
-- "차이 수열"
-- "Priority Queue"
-- "우선순위 큐"
-- "Small-to-Large"
-- "Merge"
-- "병합"
-- "Max-Heap"
-- "힙"
-- "Stack"
-- "스택"
-- "Sort"
-- "정렬"
-- "Segment"
-- "세그먼트"
-- "Bridge"
-- "다리"
-- "Arc"
-- "원호"
-- "Dynamic Programming"
-- "동적 계획법"
-- "Greedy"
-- "그리디"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "Time Complexity"
-- "시간복잡도"
-- "O(N log^2 N)"
-- "Solution"
-- "해설"
-- "Editorial"
-- "Problem Solving"
-- "문제풀이"
-- "KAIST"
-- "Mock Competition"
-- "Open Cup"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Range-Query
+- Tree
+- 트리
+- Priority-Queue
+- 힙
+- Stack
+- 스택
+- 정렬
+- Segment-Tree
+- Dynamic-Programming
+- Greedy
+- 그리디
+- Implementation
+- 구현
+- C++
+- IO
+- Time-Complexity
+- 시간복잡도
+- Editorial
+- Problem-Solving
 image: "wordcloud.png"
 ---
 

@@ -11,75 +11,37 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-10854
-- cpp-python
 - C++
 - Python
-- Data Structures
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Math
 - 수학
-- Number Theory
+- Number-Theory
 - 정수론
-- Divisors
-- 약수
-- Divisor Function
-- 약수함수
-- tau(n)
-- Factorization
-- 소인수분해
-- Pollard Rho
-- 폴라드로
-- Miller Rabin
-- 밀러라빈
-- Primality Test
-- 소수판정
-- Modular Arithmetic
-- 모듈러연산
-- 64-bit
-- 64비트
-- __int128
-- unsigned__int128
-- Fast Power
-- 빠른 거듭제곱
-- GCD
-- 최대공약수
-- Randomized
-- 무작위화
-- Deterministic
-- 결정론적
-- Overflow
-- 오버플로
-- Implementation Details
-- 구현 디테일
+- Modular-Arithmetic
 image: "wordcloud.png"
 ---
 

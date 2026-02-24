@@ -5,30 +5,13 @@ categories:
   - Win32
   - Programming
 tags:
-  - Win32 API
   - Windows
-  - MessageBox
-  - CBT Hook
-  - SetForegroundWindow
-  - Win32 API
-  - 메시지 박스
-  - 최상단
-  - 포커스
-  - CBT 후크
-  - AllowSetForegroundWindow
-  - SetForegroundWindow
-  - 창 활성화
-  - Windows
-  - 프로그래밍
-  - MessageBox
-  - Topmost
-  - Focus
-  - CBT Hook
-  - AllowSetForegroundWindow
-  - SetForegroundWindow
-  - Window Activation
-  - Windows
-  - Programming
+  - Implementation
+  - API
+  - Sci-Fi
+  - Security
+  - Process
+  - Thread
 description: "Win32 API 환경에서 메시지 박스가 최상단에 포커스를 강제로 획득하도록 실행하는 방법에 대해 알아보겠다이다. CBT 후크와 AllowSetForegroundWindow API를 활용한 두 가지 해결 방안을 소개한다."
 image: messagebox_02.png
 ---

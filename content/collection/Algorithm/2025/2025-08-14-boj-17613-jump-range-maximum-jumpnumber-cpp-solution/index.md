@@ -11,76 +11,44 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-17613
-- cpp
 - C++
-- python
 - Python
 - Greedy
 - 그리디
 - Bit
-- 비트연산
-- Binary Decomposition
-- 이진분해
-- Doubling
-- 두배점프
-- Mersenne
-- 메르센수
-- Range Maximum
-- 구간최대
-- Prefix Maximum
-- 프리픽스최대
+- Math
 - Recursion
 - 재귀
-- Math
 - 수학
 - Implementation
 - 구현
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
 - Testing
 - 테스트
-- Invariant
-- 불변식
-- Binary Search
+- Binary-Search
 - 이분탐색
-- Number Theory
+- Number-Theory
 - 정수론
-- KOI
-- 한국정보올림피아드
-- 2019
-- High School
-- 고등부
-- Interval Query
-- 구간질의
-- Divide and Conquer
+- Divide-and-Conquer
 - 분할정복
-- Recurrence
-- 점화식
-- DP-Style
-- DP스타일
-- Logarithmic
-- 로그시간
-- Implementation Details
-- 구현 디테일
+- Dynamic-Programming
 - Debugging
 - 디버깅
 image: "wordcloud.png"

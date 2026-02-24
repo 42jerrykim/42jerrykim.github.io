@@ -6,14 +6,17 @@ categories:
 - Graph
 - SCC
 tags:
-- 2-SAT
-- SCC
 - Graph
 - Implementation
-- Complexity
+- Complexity-Analysis
 - DFS
-- Kosaraju
 - Problem-Solving
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- C++
 image: "tmp_wordcloud.png"
 date: 2024-12-26
 ---

@@ -11,76 +11,35 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-13329
-- cpp
+- C++
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Geometry
-- 기하
-- Convex Hull
-- 컨벡스헐
-- Angular Sweep
-- 각도 스위핑
-- Sweeping
-- 스위핑
-- CCW
-- 반시계
-- Cross Product
-- 외적
+- Computational-Geometry
 - Set
-- 집합
-- Comparator
-- 비교함수
-- Segment
-- 선분
-- Visibility
-- 가시성
-- Lower Hull
-- 아래 껍질
-- Polar Angle
-- 극각
-- Event
-- 이벤트
+- Segment-Tree
 - Sorting
 - 정렬
-- Robustness
-- 견고성
-- Overflow
-- 오버플로
-- __int128
-- 정수연산
-- Precision
-- 정밀도
-- Implementation Details
-- 구현 디테일
-- Tips
-- 팁
 image: "wordcloud.png"
 ---
 

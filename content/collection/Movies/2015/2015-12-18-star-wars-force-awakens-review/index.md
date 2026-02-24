@@ -3,8 +3,14 @@ title: "스타워즈: 포스 어웨이큰스 (Star Wars: The Force Awakens, 2015
 description: "은하계 전설의 귀환, JJ 에이브럼스가 완성한 새로운 희망의 이야기"
 summary: "제다이의 귀환 30년 후를 배경으로 한 스타워즈 시퀄 삼부작의 첫 번째 작품. 실종된 루크 스카이워커를 찾기 위한 퍼스트 오더와 레지스탕스의 대립 속에서 새로운 영웅들이 등장한다. JJ 에이브럼스의 탁월한 연출과 원작에 대한 깊은 이해가 만나 클래식 스타워즈의 정신을 현대적으로 부활시킨 걸작."
 date: 2015-12-18
-tags: ["영화", "리뷰", "2015", "SF", "스페이스오페라", "액션", "모험", "스타워즈", "JJ에이브럼스", "해리슨포드", "마크해밀", "캐리피셔"]
-categories: ["Movies"]
+tags:
+- 영화
+- 리뷰
+- SF
+- 액션
+- 모험
+categories:
+- Movies
 series: ["Movie Reviews"]
 series_order: 15
 ShowToc: true

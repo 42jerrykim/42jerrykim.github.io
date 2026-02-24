@@ -10,78 +10,32 @@ categories:
 - "Offline Query"
 - "Dynamic Connectivity"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "25172"
-- "BOJ-25172"
-- "꼼꼼한 쿠기의 졸업여행"
-- "Graduation Trip"
-- "Cookie"
-- "Kuki"
-- "Graph"
-- "그래프"
-- "Connectivity"
-- "연결성"
-- "Connected Graph"
-- "연결 그래프"
-- "Dynamic Connectivity"
-- "동적 연결성"
-- "Vertex Deletion"
-- "정점 삭제"
-- "Edge Deletion"
-- "간선 삭제"
-- "Offline"
-- "오프라인"
-- "Reverse Processing"
-- "역순 처리"
-- "DSU"
-- "Disjoint Set Union"
-- "Union Find"
-- "유니온 파인드"
-- "Connected Components"
-- "연결 요소"
-- "Component Count"
-- "컴포넌트 개수"
-- "Graph Traversal"
-- "그래프 탐색"
-- "Data Structure"
-- "자료구조"
-- "Implementation"
-- "구현"
-- "Invariant"
-- "불변식"
-- "Counting Components"
-- "컴포넌트 세기"
-- "Path Compression"
-- "경로 압축"
-- "Union by Size"
-- "크기 기준 합치기"
-- "Amortized"
-- "평균 상수"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O((N+M)α(N))"
-- "O(N+M)"
-- "Edge Case"
-- "엣지 케이스"
-- "N up to 200000"
-- "M up to 200000"
-- "CCPC"
-- "가톨릭대학교"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Graph
+- 그래프
+- DSU
+- Disjoint-Set
+- Data-Structures
+- 자료구조
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- C++
 image: "wordcloud.png"
 ---
 

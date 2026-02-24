@@ -6,14 +6,12 @@ categories:
 - BipartiteMatching
 - MaximumFlow
 tags:
-- bipartite
-- matching
-- maxflow
+- String
 - optimization
-- O(N^2)
-- DataStructure
-- GraphTheory
-- DynamicProgramming
+- Time-Complexity
+- Data-Structures
+- Graph-Theory
+- Dynamic-Programming
 image: "tmp_wordcloud.png"
 date: 2024-12-26
 ---

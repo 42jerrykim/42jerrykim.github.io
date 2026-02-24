@@ -6,16 +6,13 @@ categories:
 - BruteForce
 - Bitmask
 tags:
-- BruteForce
-- Bitmask
+- Brute-Force
 - Greedy
 - Optimization
 - Implementation
-- O(1)
+- Time-Complexity
 - Array
-- Puzzle
 - Simulation
-- StateSearch
 image: "tmp_wordcloud.png"
 date: 2024-12-26
 ---

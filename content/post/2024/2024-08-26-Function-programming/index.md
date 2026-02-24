@@ -7,58 +7,23 @@ header:
   teaser: /assets/images/2024/2024-08-26-Function-programming.png
 
 tags:
-- FunctionalProgramming
+- Functional-Programming
 - Python
-- ProgrammingParadigms
-- LambdaCalculus
-- higher-order functions
-- PureFunctions
-- SideEffects
 - recursion
-- currying
-- PartialApplication
-- immutability
-- closures
-- monads
-- DataStructures
-- algorithms
+- Code-Quality
+- Data-Structures
+- Algorithm
 - concurrency
-- parallelism
 - debugging
 - testing
-- SoftwareDevelopment
-- ProgrammingLanguages
-- SoftwareEngineering
-- CodeOptimization
-- performance
-- modularity
+- Software-Architecture
+- Implementation
+- Optimization
+- Performance
 - abstraction
-- DeclarativeProgramming
-- ImperativeProgramming
-- object-oriented programming
-- TypeSystems
-- FunctionalDataStructures
-- LazyEvaluation
-- StrictEvaluation
-- coroutines
-- generators
-- iterators
+- OOP
 - map
-- filter
-- reduce
-- ListComprehensions
-- FunctionalInterfaces
-- SoftwareArchitecture
-- DesignPatterns
-- SoftwareReliability
-- FormalVerification
-- MathematicalProofs
-- CategoryTheory
-- ProgrammingTheory
-- SoftwareTesting
-- SoftwareMaintenance
-- SoftwareQuality
-- ProgrammingEducation
+- Design-Pattern
 title: '[Python] 함수형 프로그래밍 HOWTO'
 ---
 

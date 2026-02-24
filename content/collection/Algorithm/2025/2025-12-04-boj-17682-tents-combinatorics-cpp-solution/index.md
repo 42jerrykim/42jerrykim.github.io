@@ -11,59 +11,24 @@ tags:
   - 알고리즘
   - BOJ
   - 백준
-  - Problem-17682
-  - Tents
-  - 텐트
   - 조합론
   - Combinatorics
   - 동적계획법
-  - Dynamic Programming
+  - Dynamic-Programming
   - DP
-  - 경우의 수
-  - Counting
-  - 모듈로 연산
-  - Modular Arithmetic
-  - 모듈러 역원
-  - Modular Inverse
-  - 페르마의 소정리
-  - Fermat's Little Theorem
-  - 팩토리얼
-  - Factorial
-  - 이항계수
-  - Binomial Coefficient
-  - 조합계산
-  - Combinatorial Calculation
-  - 격자
-  - Grid
-  - 제약조건
-  - Constraints
-  - 방향배치
-  - Direction Assignment
+  - Math
+  - Modular-Arithmetic
+  - Graph
+  - Edge-Cases
   - 수학
-  - Mathematics
   - C++
-  - Programming
-  - 프로그래밍
+  - Implementation
   - 경쟁프로그래밍
-  - Competitive Programming
-  - JOI
-  - Spring Training Camp
-  - 포함배제 원리
-  - Inclusion-Exclusion
-  - 분할
-  - Partition
-  - 카운팅 문제
-  - Counting Problem
-  - 세트 파티션
-  - Set Partition
-  - 확률계산
-  - Probability Calculation
-  - 수열
-  - Sequence
+  - Competitive-Programming
+  - Divide-and-Conquer
   - 최적화
   - Optimization
-  - 정답코드
-  - Solution Code
+  - Editorial
 image: wordcloud.png
 ---
 

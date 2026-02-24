@@ -7,8 +7,14 @@ date: "2019-02-14T00:00:00Z"
 tags:
 - Shell
 - bash
-- exit
-- reserved
+- C++
+- REST
+- API
+- Prompt-Engineering
+- AI
+- Troubleshooting
+- Command
+- Design-Pattern
 title: '[Shell] Exit Codes With Special Meanings'
 ---
 

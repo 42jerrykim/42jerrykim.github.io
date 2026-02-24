@@ -6,61 +6,16 @@ date: "2024-09-10T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-09-10-web-font.png
 tags:
-- WebFonts
-- FontLoading
-- FOUT
-- FOIT
-- FOFT
-- self-hosted fonts
-- cloud-hosted fonts
-- font-display
-- font-face
 - CSS
 - JavaScript
-- performance
-- typography
-- WebDesign
-- UserExperience
-- FontOptimization
-- GoogleFonts
-- AdobeFonts
-- Typekit
-- FontFormats
-- woff2
-- woff
-- FontLicensing
-- CriticalCSS
-- unicode-range
-- DataURI
-- preload
-- sessionStorage
-- FontFaceObserver
-- AsynchronousLoading
-- SystemFonts
-- FallbackFonts
-- WebPerformance
-- LoadingStrategies
-- WebDevelopment
-- front-end development
-- DesignTips
-- CodingBestPractices
-- WebAccessibility
-- ResponsiveDesign
-- BrowserSupport
-- FontRendering
-- FontStyles
-- FontWeights
-- FontManagement
-- WebTypography
-- DesignResources
-- WebStandards
-- CSSTricks
-- PerformanceOptimization
-- UserPreferences
-- WebDesignTrends
-- FontIntegration
-- WebApplication
-- WebsitePerformance
+- Performance
+- Frontend
+- Web
+- Go
+- API
+- Graph
+- 그래프
+- Async
 title: '[WebDevelopment] 웹 폰트 로딩 전략'
 ---
 

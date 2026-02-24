@@ -9,83 +9,40 @@ categories:
 - "Game Theory"
 - "Greedy"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "17965"
-- "BOJ-17965"
-- "Absolute Game"
-- "절댓값 게임"
-- "Game Theory"
-- "게임 이론"
-- "Minimax"
-- "미니맥스"
-- "Optimal Play"
-- "최적 플레이"
-- "Strategy"
-- "전략"
-- "Greedy"
-- "그리디"
-- "Reduction"
-- "환원"
-- "Independent Subgames"
-- "독립 게임"
-- "Turn-based Game"
-- "턴제 게임"
-- "Adversarial"
-- "적대적"
-- "Absolute Difference"
-- "절댓값 차이"
-- "Distance"
-- "거리"
-- "Nearest Neighbor"
-- "최근접 원소"
-- "Closest Element"
-- "가장 가까운 값"
-- "Sorting"
-- "정렬"
-- "Binary Search"
-- "이분 탐색"
-- "Lower Bound"
-- "lower_bound"
-- "STL"
-- "표준 라이브러리"
-- "Array"
-- "배열"
-- "Subsequence"
-- "부분 수열"
-- "Remove Operation"
-- "삭제 연산"
-- "Simulation"
-- "시뮬레이션"
-- "Proof"
-- "정당성"
-- "Invariant"
-- "불변식"
-- "Complexity"
-- "복잡도"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Edge Case"
-- "엣지 케이스"
-- "N=1"
-- "Constraints"
-- "제한 조건"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Game-Theory
+- Strategy
+- Greedy
+- 그리디
+- Shortest-Path
+- Sorting
+- 정렬
+- Binary-Search
+- 이분탐색
+- C++
+- Array
+- 배열
+- Simulation
+- 시뮬레이션
+- Complexity-Analysis
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Implementation
+- 구현
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- Edge-Cases
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

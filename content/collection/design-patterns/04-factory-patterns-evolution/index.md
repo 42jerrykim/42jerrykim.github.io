@@ -12,66 +12,13 @@ categories:
 - Factory Patterns
 - Object Creation
 tags:
-- Factory Method
-- Abstract Factory
-- Simple Factory
-- Static Factory
-- Factory Pattern
-- Object Creation
-- Creational Patterns
-- Design Patterns
-- GoF Patterns
-- Dependency Injection
-- IoC Container
-- Object Instantiation
-- Class Hierarchy
-- Product Family
-- Factory Evolution
-- Software Architecture
-- Design Principles
-- Pattern Progression
-- Code Organization
-- Object Lifecycle
-- Factory Design
-- Creation Logic
-- Pattern Implementation
-- Software Engineering
-- Design Methodology
-- Architectural Patterns
-- Object Composition
-- Flexibility Design
-- Extensible Design
-- Modular Design
-- 팩토리 메서드
-- 추상 팩토리
-- 심플 팩토리
-- 정적 팩토리
-- 팩토리 패턴
-- 객체 생성
-- 생성 패턴
-- 디자인 패턴
-- GoF 패턴
-- 의존성 주입
-- IoC 컨테이너
-- 객체 인스턴스화
-- 클래스 계층
-- 제품군
-- 팩토리 진화
-- 소프트웨어 아키텍처
-- 설계 원칙
-- 패턴 진행
-- 코드 구조화
-- 객체 생명주기
-- 팩토리 설계
-- 생성 로직
-- 패턴 구현
-- 소프트웨어 공학
-- 설계 방법론
-- 아키텍처 패턴
-- 객체 컴포지션
-- 유연한 설계
-- 확장 가능한 설계
-- 모듈러 설계
+- Design-Pattern
+- GoF
+- Dependency-Injection
+- Software-Architecture
+- SOLID
+- 디자인패턴
+- 소프트웨어아키텍처
 ---
 
 Simple Factory부터 Abstract Factory까지, Factory 패턴군의 진화 과정을 탐구합니다. 객체 생성의 복잡성을 어떻게 캡슐화하고, 유연한 시스템을 구축하는지 학습합니다.

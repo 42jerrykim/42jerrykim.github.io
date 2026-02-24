@@ -11,52 +11,34 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-14560
-- 14560
-- Communism
-- cpp
 - C++
-- Meet-in-the-Middle
-- Meet in the Middle
-- 미들미들
-- 반으로 나누기
-- 부분합
-- 브루트포스
 - 완전탐색
-- 조합 탐색
-- 가지치기
-- pruning
-- 두 포인터
-- two pointers
-- 이분 탐색
-- binary search
+- Two-Pointers
+- 이분탐색
+- Binary-Search
 - 정렬
 - sorting
 - 시간복잡도
-- Time Complexity
+- Time-Complexity
 - 공간복잡도
-- Space Complexity
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Space-Complexity
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
 - Implementation
 - 구현
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Greedy
 - 그리디
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
 - Graph
 - 그래프
@@ -64,35 +46,25 @@ tags:
 - 트리
 - BFS
 - DFS
-- Shortest Path
+- Shortest-Path
 - 최단경로
 - Dijkstra
-- 다익스트라
-- Segment Tree
-- 세그먼트 트리
-- Fenwick Tree
-- 펜윅트리
-- Disjoint Set Union
-- 유니온파인드
-- Binary Search
-- 이분탐색
-- Two Pointers
-- 투포인터
-- Sliding Window
-- 슬라이딩윈도우
+- Segment-Tree
+- 세그먼트트리
+- Fenwick-Tree
+- Disjoint-Set
+- Sliding-Window
 - Hashing
 - 해싱
 - String
 - 문자열
 - Geometry
-- 기하
 - Math
 - 수학
-- Modulo
+- Modular-Arithmetic
 - 모듈러
 - Debugging
 - 디버깅
-- 세 사람 분배
 image: "wordcloud.png"
 ---
 

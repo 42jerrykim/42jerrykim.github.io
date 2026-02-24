@@ -4,57 +4,16 @@ date: 2025-09-29T00:00:00+09:00
 lastmod: 2025-09-29T00:00:00+09:00
 description: "GCC 컴파일러의 -finstrument-functions 플래그는 함수 진입과 종료 시 훅 함수를 호출하여 코드 프로파일링과 디버깅을 가능하게 합니다. 이 가이드에서는 기본 사용법부터 고급 기법, 제한사항까지 전문가 수준으로 설명합니다. 성능 분석 도구로서의 활용을 중점으로 다룹니다."
 tags:
-  - gcc
-  - GNU Compiler Collection
-  - finstrument-functions
-  - function instrumentation
-  - code profiling
-  - compiler flag
-  - __cyg_profile_func_enter
-  - __cyg_profile_func_exit
-  - performance monitoring
-  - debugging tools
-  - low-level programming
-  - embedded systems
-  - optimization techniques
-  - dynamic analysis
-  - static instrumentation
-  - c programming
   - c++
   - 프로파일링
-  - 함수 계측
-  - 컴파일러 옵션
-  - 성능 분석
   - 디버깅
-  - 저수준 프로그래밍
-  - 임베디드 시스템
-  - 최적화 기법
-  - 동적 분석
-  - 정적 계측
-  - C 프로그래밍
-  - C++
-  - valgrind
-  - gprof
-  - perf tools
-  - linux profiling
-  - code instrumentation
-  - hook functions
-  - function tracing
-  - execution flow analysis
-  - runtime overhead
-  - binary instrumentation
-  - source code modification
-  - 개발 도구
-  - 소프트웨어 엔지니어링
-  - 시스템 프로그래밍
-  - 컴파일 과정
-  - 어셈블리
-  - 링커
-  - 빌드 시스템
+  - 소프트웨어아키텍처
   - 오픈소스
-  - GNU 프로젝트
-  - 코드 커버리지
-  - 테스트 자동화
+  - Bash
+  - Shell
+  - Recursion
+  - Memory
+  - Compiler
 image: wordcloud.png
 ---
 

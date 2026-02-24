@@ -7,50 +7,23 @@ description: "파이썬 heapq와 bisect 모듈을 빠르게 쓰기 위한 치트
 lastmod: 2026-01-18
 collection_order: 31
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - heapq
+  - Quick-Reference
   - heap
   - 힙
   - priority-queue
   - 우선순위큐
-  - bisect
   - binary-search
-  - 이진검색
-  - 이진탐색
-  - sorted-list
-  - 정렬리스트
-  - min-heap
-  - max-heap
-  - 최소힙
-  - 최대힙
-  - nlargest
-  - nsmallest
-  - heappush
-  - heappop
-  - heapify
-  - insort
-  - bisect_left
-  - bisect_right
   - algorithm
   - 알고리즘
-  - data-structure
   - 자료구조
-  - performance
+  - Performance
   - 성능
-  - O(log n)
-  - efficiency
-  - 효율
-  - standard-library
-  - 표준라이브러리
-  - best-practices
-  - 베스트프랙티스
+  - Time-Complexity
+  - Best-Practices
   - pitfalls
   - 함정
 ---

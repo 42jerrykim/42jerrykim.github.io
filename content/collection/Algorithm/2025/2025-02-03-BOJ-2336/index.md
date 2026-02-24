@@ -7,11 +7,11 @@ categories:
 - Data Structures
 - Binary Indexed Tree
 tags:
-- Fenwick Tree
+- Fenwick-Tree
 - Greedy
-- O(N log N)
-- Binary Indexed Tree
-- Competitive Programming
+- Time-Complexity
+- Binary-Indexed-Tree
+- Competitive-Programming
 - Implementation
 image: "index.png"
 date: 2025-02-03

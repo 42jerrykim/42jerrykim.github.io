@@ -7,58 +7,24 @@ description: "파이썬 성능 분석을 빠르게 시작하기 위한 치트시
 lastmod: 2026-01-18
 collection_order: 61
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - profiling
+  - Quick-Reference
+  - Profiling
   - 프로파일링
-  - performance
+  - Performance
   - 성능
   - optimization
   - 최적화
-  - benchmark
-  - 벤치마크
-  - timeit
-  - cProfile
-  - profile
-  - pstats
-  - py-spy
-  - line_profiler
-  - memory_profiler
-  - bottleneck
-  - 병목
-  - cpu
-  - time
-  - 시간
-  - function-call
-  - 함수호출
-  - hotspot
-  - 핫스팟
-  - flame-graph
-  - 플레임그래프
-  - sampling
-  - 샘플링
-  - deterministic
-  - overhead
-  - 오버헤드
+  - CPU
   - debugging
   - 디버깅
-  - best-practices
-  - 베스트프랙티스
+  - Best-Practices
   - pitfalls
   - 함정
-  - standard-library
-  - 표준라이브러리
-  - tools
-  - 도구
-  - cli
-  - visualization
-  - 시각화
+  - Shell
 ---
 성능 최적화는 "측정 먼저, 최적화 나중"이 원칙입니다. 이 치트시트는 timeit으로 마이크로벤치마크, cProfile로 함수별 분석, py-spy로 운영 환경 샘플링하는 방법을 정리합니다.
 

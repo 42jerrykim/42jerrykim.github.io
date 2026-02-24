@@ -6,15 +6,17 @@ categories:
 - Mathematics
 - Arithmetic
 tags:
-- Mathematics
-- GaussSum
+- Math
 - Implementation
-- Arithmetic
 - Optimization
-- O(1)
-- Summation
-- MathematicalConcepts
-- MathematicalProblem
+- Time-Complexity
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 image: "tmp_wordcloud.png"
 date: 2024-10-25
 ---

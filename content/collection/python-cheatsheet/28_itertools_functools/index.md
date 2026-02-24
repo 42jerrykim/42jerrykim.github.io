@@ -7,54 +7,25 @@ description: "itertools/functools를 실전에서 바로 쓰기 위한 치트시
 lastmod: 2026-01-17
 collection_order: 28
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - itertools
-  - functools
-  - standard-library
-  - 표준라이브러리
+  - Quick-Reference
   - iterator
-  - iterable
-  - 이터레이터
-  - 이터러블
-  - chain
-  - islice
-  - groupby
-  - product
-  - permutations
-  - combinations
-  - accumulate
-  - lru_cache
-  - cache
+  - Implementation
+  - Cache
   - memoization
-  - 메모이제이션
-  - partial
-  - reduce
-  - performance
+  - Performance
   - 성능
   - memory
   - 메모리
-  - streaming
-  - 스트리밍
-  - lazy-evaluation
-  - 지연평가
   - pitfalls
   - 함정
-  - best-practices
-  - 베스트프랙티스
-  - patterns
-  - 패턴
+  - Best-Practices
+  - Design-Pattern
   - functional-programming
-  - 함수형
   - map
-  - filter
-  - lambda
   - debugging
   - 디버깅
   - testing

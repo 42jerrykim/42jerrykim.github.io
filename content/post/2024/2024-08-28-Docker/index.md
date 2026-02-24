@@ -6,59 +6,20 @@ date: "2024-08-28T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-28-Docker.png
 tags:
-- containers
-- containerization
 - docker
 - kubernetes
-- orchestration
-- devops
-- softwaredevelopment
-- virtualization
-- cloudcomputing
+- DevOps
+- Software-Architecture
 - microservices
 - deployment
-- softwareengineering
 - open-source
 - linux
 - windows
-- applicationdevelopment
-- systemadministration
-- infrastructure
+- Implementation
 - agile
-- continuousintegration
-- continuousdelivery
 - scalability
-- performance
+- Performance
 - security
-- isolation
-- standardization
-- softwarepackaging
-- runtime
-- systemtools
-- systemlibraries
-- namespaces
-- cgroups
-- lxc
-- podman
-- cri-o
-- buildah
-- opencontainerinitiative
-- cloudnative
-- redhat
-- openshift
-- freebsd
-- unix
-- virtualizationtechnology
-- softwarearchitecture
-- applicationdeployment
-- resourceallocation
-- softwarecontainers
-- containerimages
-- containerhub
-- softwaredependencies
-- applicationisolation
-- serverefficiency
-- licensingcosts
 title: '[Docker] 컨테이너: 진정한 혁신인가?'
 ---
 

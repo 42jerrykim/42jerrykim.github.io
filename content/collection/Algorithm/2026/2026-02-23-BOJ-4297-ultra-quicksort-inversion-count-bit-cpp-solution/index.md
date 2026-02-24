@@ -9,71 +9,41 @@ categories:
 - "Data Structure"
 - "BIT"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "4297"
-- "BOJ-4297"
-- "Problem-4297"
-- "Ultra-QuickSort"
-- "울트라 퀵소트"
-- "Inversion Count"
-- "역전 쌍"
-- "역전 수"
-- "Inversion"
-- "BIT"
-- "Binary Indexed Tree"
-- "Fenwick Tree"
-- "펜윅 트리"
-- "이진 인덱스 트리"
-- "Coordinate Compression"
-- "좌표 압축"
-- "Adjacent Swap"
-- "인접 교환"
-- "Sorting"
-- "정렬"
-- "Minimum Swap"
-- "최소 교환 횟수"
-- "Counting"
-- "카운팅"
-- "Range Sum Query"
-- "구간 합 쿼리"
-- "Prefix Sum"
-- "누적 합"
-- "Multiple Test Cases"
-- "다중 테스트 케이스"
-- "Data Structure"
-- "자료구조"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N log N)"
-- "Optimization"
-- "최적화"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Edge Case"
-- "엣지 케이스"
-- "Long Long"
-- "오버플로우"
-- "Overflow"
-- "Lower Bound"
-- "이분 탐색"
-- "Binary Search"
-- "Unique"
-- "중복 제거"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Math
+- BIT
+- Binary-Indexed-Tree
+- Fenwick-Tree
+- Coordinate-Compression
+- 좌표압축
+- Sorting
+- 정렬
+- Prefix-Sum
+- Data-Structures
+- 자료구조
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Optimization
+- 최적화
+- Implementation
+- 구현
+- C++
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- Edge-Cases
+- 엣지케이스
+- 이분탐색
+- Binary-Search
 image: "wordcloud.png"
 ---
 

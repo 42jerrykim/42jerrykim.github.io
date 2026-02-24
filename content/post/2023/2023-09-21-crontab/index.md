@@ -4,31 +4,13 @@ description: "Crontab은 리눅스에서 반복 작업의 자동화를 담당하
 date: "2023-09-21T00:00:00Z"
 header:
   teaser: /assets/images/2023/crontab.png
-tag:
-- LinuxCrontab
-- CrontabUsage
-- EditingCrontab
-- ViewingCrontab
-- DeletingCrontab
-- SchedulingOptions
-- RunningCommands
-- CrontabTips
-- LoggingCrontabOutput
-- BackupCrontabEntries
-- AutomatingTasks
-- SystemMaintenance
-- DiskSpaceMonitoring
-- ScheduledBackups
-- SystemAdministrators
-- WebDevelopers
-- CustomizingCrontabBehavior
-- DisablingEmailNotifications
-- SavingCommandOutput
-- Scheduling tasks on system reboot
-- TimeSettingExpressions
-- Special characters in Crontab
-- LoggingOptions
-- BackupOptions
+tags:
+- Linux
+- Automation
+- Blog
+- 블로그
+- Shell
+- Bash
 title: '[Linux] Crontab 사용법'
 ---
 

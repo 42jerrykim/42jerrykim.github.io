@@ -9,55 +9,34 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
+  - Design-Pattern
+  - 디자인패턴
   - Strategy
-  - 전략
-  - Behavioral Pattern
-  - 행위 패턴
   - GoF
-  - Gang of Four
   - Algorithm
   - 알고리즘
   - Encapsulation
   - 캡슐화
-  - Context
-  - 컨텍스트
-  - Concrete Strategy
-  - 구체 전략
-  - Runtime
-  - 런타임
+  - Nuance
+  - Performance
   - Polymorphism
   - 다형성
   - Composition
   - 합성
-  - Open Closed Principle
-  - 개방 폐쇄 원칙
-  - Dependency Injection
-  - 의존성 주입
-  - Interchangeable
-  - 교체 가능
+  - SOLID
+  - Dependency-Injection
   - Sorting
   - 정렬
-  - Payment
-  - 결제
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Code-Quality
+  - 코드품질
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - Comparator
-  - Validator
-  - 검증기
-  - Compression
-  - 압축
+  - CSharp
 ---
 
 전략 패턴(Strategy Pattern)은 알고리즘 군을 정의하고 각각을 캡슐화하여 상호 교환 가능하게 만드는 행위 디자인 패턴이다. 이 패턴을 사용하면 알고리즘을 사용하는 클라이언트와 독립적으로 알고리즘을 변경할 수 있으며, 런타임에 동적으로 알고리즘을 교체할 수 있다.

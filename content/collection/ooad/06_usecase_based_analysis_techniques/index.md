@@ -6,68 +6,17 @@ lastmod: 2026-01-17
 collection_order: 6
 draft: true
 tags:
-  - Use-Case
-  - 유스케이스
+  - Software-Architecture
   - UML
-  - Use-Case-Diagram
-  - Actor
-  - 액터
-  - System-Boundary
-  - 시스템-경계
-  - Scenario
-  - 시나리오
-  - Main-Flow
-  - 기본-흐름
-  - Alternate-Flow
-  - 대안-흐름
-  - Exception-Flow
-  - 예외-흐름
-  - Preconditions
-  - 사전조건
-  - Postconditions
-  - 사후조건
-  - Business-Rule
-  - 비즈니스-규칙
-  - Traceability
-  - 추적가능성
-  - OOAD
-  - OOA
-  - OOD
-  - Requirements
-  - 요구사항
-  - Domain-Model
-  - 도메인-모델
-  - Sequence-Diagram
-  - 시퀀스-다이어그램
-  - Class-Diagram
-  - 클래스-다이어그램
-  - Robustness-Analysis
-  - Boundary-Control-Entity
-  - B-C-E
-  - Validation
-  - 검증
-  - Non-Functional-Requirements
-  - 비기능-요구사항
-  - Quality-Attributes
-  - 품질-속성
-  - Acceptance-Criteria
-  - 인수조건
+  - OOP
   - Testing
   - 테스트
-  - BDD
-  - Behavior-Driven-Development
   - Documentation
   - 문서화
-  - Stakeholder
-  - 이해관계자
-  - DDD
-  - Ubiquitous-Language
-  - 유비쿼터스-언어
   - Clean-Architecture
-  - Ports-and-Adapters
   - Refactoring
-  - Maintainability
-  - 유지보수성
+  - Code-Quality
+  - 코드품질
 ---
 
 # 06. 유스케이스 기반 분석 기법

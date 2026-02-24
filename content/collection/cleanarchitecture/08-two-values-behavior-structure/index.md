@@ -7,58 +7,16 @@ title: "[Clean Architecture] 08. 두 가지 가치: 행위와 구조"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Software Value
-  - 소프트웨어 가치
-  - Behavior
-  - 행위
-  - Structure
-  - 구조
-  - Architecture
-  - 아키텍처
-  - Function
-  - 기능
-  - Flexibility
-  - 유연성
-  - Maintainability
-  - 유지보수성
-  - Software
-  - 소프트웨어
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Code-Quality
+  - 코드품질
   - Hardware
   - 하드웨어
-  - Change
-  - 변경
-  - Stakeholder
-  - 이해관계자
-  - Requirements
-  - 요구사항
-  - Eisenhower Matrix
-  - 아이젠하워 매트릭스
-  - Urgency
-  - 긴급성
-  - Importance
-  - 중요성
-  - Priority
-  - 우선순위
-  - Technical Debt
-  - 기술 부채
-  - Scope
-  - 범위
-  - Shape
-  - 형태
-  - Developer
-  - 개발자
-  - Business Manager
-  - 업무 관리자
-  - Software Development
-  - 소프트웨어 개발
-  - Robert C. Martin
-  - Uncle Bob
-  - Dwight Eisenhower
-  - 아이젠하워
-  - Decision Making
-  - 의사결정
+  - Implementation
+  - SOLID
 ---
 
 모든 소프트웨어 시스템은 이해관계자에게 서로 다른 **두 가지 가치**를 제공하는데, **행위(Behavior)**와 **구조(Structure)**가 바로 그것이다.

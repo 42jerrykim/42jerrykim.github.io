@@ -7,14 +7,11 @@ categories:
 - String 
 tags:
 - Implementation
-- StringManipulation
 - C++
 - Python
-- BruteForce
-- O(T * N)
+- Brute-Force
 - Array
-- InputParsing
-- ProblemSolving
+- Problem-Solving
 image: "tmp_wordcloud.png"
 date: 2024-10-17
 ---

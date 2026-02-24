@@ -11,64 +11,27 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-13576
-- cpp
 - C++
 - Implementation
 - 구현
 - String
 - 문자열
-- String Matching
-- 문자열 매칭
-- KMP
-- 접두사함수
-- Prefix Function
-- Prefix-Function
-- Pi Array
-- 파이배열
-- Failure Function
-- 실패함수
-- Border
-- 경계
-- Prefix
-- 접두사
-- Suffix
-- 접미사
-- Prefix equals Suffix
-- 접두사=접미사
-- Occurrence Counting
-- 등장 횟수
-- Substring
-- 부분 문자열
-- Counting
-- 카운팅
-- Accumulation
-- 누적
-- Chain of Borders
-- 경계 사슬
-- Z-Algorithm
-- Z 알고리즘
-- Linear Time
-- 선형시간
-- O(n)
-- Time Complexity
+- Edge-Cases
+- Prefix-Sum
+- Math
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
-- Competitive Programming
+- 함정
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Data Structures
+- Data-Structures
 - 자료구조
-- Implementation Details
-- 구현 디테일
 image: "wordcloud.png"
 ---
 

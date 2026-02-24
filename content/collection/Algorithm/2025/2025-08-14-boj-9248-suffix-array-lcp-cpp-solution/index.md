@@ -11,67 +11,33 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-9248
-- cpp
 - C++
 - 문자열
 - String
-- Suffix Array
-- 접미사 배열
-- LCP
-- Longest Common Prefix
-- 카사이
-- Kasai
-- Doubling
-- 더블링
-- Rank
-- 랭크
-- Stable Sort
-- 안정 정렬
-- Counting Sort
-- 계수 정렬
-- Two-Key Sort
-- 두 단계 정렬
-- Lexicographic
-- 사전순
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
-- String Algorithms
-- 문자열 알고리즘
-- SA-IS
-- 접미사 배열 구축
-- Prefix
-- 접두사
-- Indexing
-- 인덱싱
-- O(n log n)
-- O(n)
+- Complexity-Analysis
+- 복잡도분석
+- Prefix-Sum
+- Data-Structures
 - Memory
 - 메모리
 image: "wordcloud.png"

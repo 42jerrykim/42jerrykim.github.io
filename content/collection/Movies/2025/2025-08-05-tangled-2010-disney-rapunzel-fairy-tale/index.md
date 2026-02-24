@@ -8,19 +8,17 @@ categories:
 - Musical
 - Disney
 tags:
-- Nathan-Greno
-- Byron-Howard
-- Mandy-Moore
-- Zachary-Levi
 - Animation
 - Musical
 - Adventure
 - Romance
-- Disney-Renaissance
-- Fairy-Tale
-- 3D-Animation
-- Hair-Simulation
-- Painterly-Rendering
+- Movie
+- 영화
+- Review
+- 리뷰
+- Go
+- Graph
+- 그래프
 image: "poster.png"
 ---
 

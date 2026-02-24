@@ -7,56 +7,15 @@ title: "[Clean Architecture] 22. 컴포넌트 응집도: REP, CCP, CRP"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Component Cohesion
-  - 컴포넌트 응집도
-  - REP
-  - Reuse Release Equivalence Principle
-  - 재사용 릴리스 등가 원칙
-  - CCP
-  - Common Closure Principle
-  - 공통 폐쇄 원칙
-  - CRP
-  - Common Reuse Principle
-  - 공통 재사용 원칙
-  - Component
-  - 컴포넌트
-  - Cohesion
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
   - 응집도
   - SOLID
-  - SRP
-  - Single Responsibility Principle
-  - ISP
-  - Interface Segregation Principle
-  - Software Design
-  - 소프트웨어 설계
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Package Design
-  - 패키지 설계
-  - Module Design
-  - 모듈 설계
-  - Release
-  - 릴리스
-  - Versioning
-  - 버전 관리
-  - Reusability
-  - 재사용성
-  - Change
-  - 변경
-  - Dependency
-  - 의존성
-  - Tension Diagram
-  - 장력 다이어그램
-  - Trade-off
-  - 트레이드오프
-  - Class Grouping
-  - 클래스 그룹화
-  - Maintainability
-  - 유지보수성
-  - Deployability
-  - 배포 용이성
+  - 소프트웨어아키텍처
+  - Dependency-Injection
+  - Code-Quality
+  - 코드품질
 ---
 
 컴포넌트에 **어떤 클래스들을 포함**시켜야 하는가? 이것은 중요한 설계 결정이다. 너무 많이 묶으면 불필요한 의존성이 생기고, 너무 적게 묶으면 관리가 어려워진다. 세 가지 원칙이 이 결정을 도와준다.

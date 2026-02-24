@@ -7,52 +7,15 @@ date: "2023-10-31T00:00:00Z"
 header:
   teaser: /assets/images/2024/png-transparent-btrfs-file-system-linux-kernel-raid-logical-volume-manager-linux-text-hand-logo.png
 tags:
-- Btrfs
-- FileSystem
-- B-tree file system
-- ButterFileSystem
-- Facebook
-- DynamicInodeAllocation
-- WritableSnapshots
-- Subvolumes
-- Mirroring
-- Striping
-- ObjectLevel
-- Compression
-- FileSystemChecks
-- LinuxOperatingSystems
-- GNU General Public License
-- DataIntegrity
-- EfficientSnapshots
-- MetadataMirroring
-- Self-healing
-- Snapshot and data protection
-- Checksums
-- DataCorruption
-- CustomizableBackups
-- InstantSnapshots
-- Self-service recovery
-- DriveStorage
-- DataConsistency
-- QuotaAllocation
-- SynologyNASModels
-- Oracle
-- Fujitsu
-- RedHat
-- Unix/Linux systems
-- Lightweight
-- B-Tree-based Copy-On-Write
-- AutomaticDefragmentation
-- SpaceCompression
-- DataCompression
-- SSDOptimization
-- SubvolumeManagement
-- SnapshotManagement
-- NASDevices
-- MountOptions
-- Benchmarking
-- DiskAlignment
-- SwapFileFunctionality
+- Code-Quality
+- Sorting
+- Tree
+- Linux
+- Self-Hosted
+- Networking
+- File-System
+- Blog
+- 블로그
 title: '[FileSystem] Btrfs: 데이터 보호 및 백업을 위한 차세대 파일 시스템'
 ---
 

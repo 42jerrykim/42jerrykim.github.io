@@ -9,77 +9,30 @@ categories:
 - "Combinatorics"
 - "DP"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "3948"
-- "BOJ-3948"
-- "홍준이의 친위대"
-- "Hongjun's Royal Guards"
-- "Permutation"
-- "순열"
-- "Counting"
-- "경우의 수"
-- "Combinatorics"
-- "조합론"
-- "Enumerative Combinatorics"
-- "생성 조합론"
-- "Alternating Permutation"
-- "교대 순열"
-- "Up-Down Permutation"
-- "증감 교대"
-- "Zigzag Permutation"
-- "지그재그 순열"
-- "Euler Zigzag Number"
-- "오일러 지그재그 수"
-- "Entringer Number"
-- "엔트링거 수"
-- "DP"
-- "동적 계획법"
-- "Recurrence"
-- "점화식"
-- "Dynamic Programming"
-- "Table DP"
-- "테이블 DP"
-- "Precomputation"
-- "전처리"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N^2)"
-- "N<=20"
-- "Small Constraints"
-- "작은 제한"
-- "Implementation"
-- "구현"
-- "Math"
-- "수학"
-- "Discrete Mathematics"
-- "이산수학"
-- "Local Extrema"
-- "국소 극값"
-- "Peak"
-- "봉우리"
-- "Valley"
-- "골"
-- "Inequality"
-- "부등식"
-- "Sequence"
-- "수열"
-- "OEIS"
-- "A000111"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Combinatorics
+- Math
+- 조합론
+- DP
+- Dynamic-Programming
+- Implementation
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- 구현
+- 수학
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- C++
 image: "wordcloud.png"
 ---
 

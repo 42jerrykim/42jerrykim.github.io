@@ -11,79 +11,34 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-31603
-- cpp
 - C++
 - Tree
 - 트리
 - LCA
-- Lowest Common Ancestor
-- 최소 공통 조상
-- Euler Tour
-- 오일러 투어
-- Binary Lifting
-- 이진 점프
-- Fenwick Tree
-- 펜윅트리
-- Binary Indexed Tree
-- 비트
-- Persistent Segment Tree
-- 영속 세그먼트 트리
-- PST
-- Segment Tree
-- 세그먼트 트리
-- Offline Query
-- 오프라인 쿼리
-- Parallel Binary Search
-- 병렬 이분 탐색
-- Parametric Search
-- 매개변수 탐색
-- Range Add
-- 구간 더하기
-- Point Query
-- 점 질의
-- K-th Order Statistic
-- k번째 원소
-- Order Statistics
-- 사전순 정렬
-- Lexicographic Order
+- Euler-Tour
+- Fenwick-Tree
+- Binary-Indexed-Tree
+- Segment-Tree
+- 세그먼트트리
+- Range-Query
+- Binary-Search
 - Sorting
 - 정렬
-- Query Processing
-- 쿼리 처리
-- Depth
-- 깊이
-- tin tout
-- 진입-이탈 시간
-- Ancestor
-- 조상
-- Subtree
-- 서브트리
-- Events
-- 이벤트
-- BIT events
-- 라벨 임계치
-- Label Threshold
-- Counting
-- 개수 세기
-- Range Query
-- 구간 질의
-- Data Structures
-- 자료구조
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
-- 시간복잡도
-- Space Complexity
-- 공간복잡도
+- Graph
 - Implementation
+- Math
+- Data-Structures
+- 자료구조
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
 - 구현
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
-- Fast IO
-- 입출력 최적화
+- Edge-Cases
+- 엣지케이스
+- IO
 image: "wordcloud.png"
 ---
 

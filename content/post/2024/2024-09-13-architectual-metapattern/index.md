@@ -6,59 +6,12 @@ date: "2024-09-13T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-09-13-architectual-metapattern.png
 tags:
-- ArchitecturalPatterns
-- SoftwareArchitecture
-- DesignPatterns
-- metapatterns
-- SystemArchitecture
-- KnowledgeTransfer
-- PatternLanguage
-- N-tier architecture
-- layers
-- middleware
-- SharedDatabase
-- model-view-controller
-- orchestration
+- Software-Architecture
+- Design-Pattern
 - microservices
-- domain-driven design
-- event-driven architecture
-- sharding
-- ProxyPatterns
-- service-oriented architecture
-- HexagonalArchitecture
-- plugins
-- ArchitectureStyles
-- SoftwareEngineering
-- DesignSpace
-- StructuralDiagrams
 - CQRS
 - scalability
 - abstraction
-- subdomains
-- DistributedSystems
-- EnterpriseArchitecture
-- IntegrationPatterns
-- MessageBroker
-- ServiceMesh
-- DataGrid
-- BlackboardArchitecture
-- LoadBalancer
-- ResponseCache
-- APIGateway
-- EventMediator
-- WorkflowManagement
-- ApplicationLayer
-- FacadePattern
-- MediatorPattern
-- ArchitecturePrinciples
-- SoftwareDesign
-- ProgrammingParadigms
-- SystemDesign
-- ArchitecturalStyles
-- SoftwarePatterns
-- SoftwareDevelopment
-- EngineeringPractices
-- TechnologyTrends
 title: '[Architecture] Architecture Metapatterns'
 ---
 

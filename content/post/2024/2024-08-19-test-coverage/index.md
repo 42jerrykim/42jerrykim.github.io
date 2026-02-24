@@ -6,56 +6,12 @@ date: "2024-08-19T00:00:00Z"
 header: null
 
 tags:
-- CodeCoverage
-- TestCoverage
-- SoftwareEngineering
-- SoftwareTesting
-- UnitTesting
-- IntegrationTesting
-- RegressionTesting
-- TestSuite
-- RequirementsCoverage
-- StatementCoverage
-- BranchCoverage
-- ConditionCoverage
-- EdgeCoverage
-- FunctionCoverage
-- PathCoverage
-- RiskCoverage
-- CompatibilityCoverage
-- BoundaryValueCoverage
-- ParameterValueCoverage
-- FaultInjection
-- modified condition/decision coverage
-- MultipleConditionCoverage
-- data-flow coverage
-- StaticAnalysis
-- TestPlanning
-- TestDesign
-- TestExecution
-- TestMetrics
-- TestAutomation
-- ContinuousIntegration
-- QualityAssurance
-- SoftwareQuality
-- AgileTesting
-- TestCaseManagement
-- TestStrategy
-- TestResults
-- TestScenarios
-- TestData
-- TestEnvironment
-- TestDocumentation
-- TestOptimization
-- TestMaintenance
-- SoftwareReliability
-- SoftwarePerformance
-- SoftwareScalability
-- SoftwareSecurity
-- SoftwareDefects
-- SoftwareBugs
-- SoftwareQualityAssurance
-- SoftwareDevelopmentLifecycle
+- Software-Architecture
+- Testing
+- Technology
+- Tutorial
+- Guide
+- Implementation
 teaser: /assets/images/undefined/teaser.jpg
 title: '[SoftwareTesting] 소스 코드 테스트를 위한 메트릭'
 ---

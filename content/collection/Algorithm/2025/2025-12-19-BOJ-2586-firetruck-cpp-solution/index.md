@@ -10,91 +10,41 @@ categories:
 - "Greedy"
 - "Sorting"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "2586"
-- "BOJ-2586"
-- "소방차"
-- "Firetruck"
-- "Pump"
-- "펌프"
-- "Hose"
-- "호스"
-- "Distance"
-- "거리"
-- "Minimum Sum"
-- "최솟값"
-- "Matching"
-- "매칭"
-- "Bipartite Matching"
-- "이분 매칭"
-- "Greedy"
-- "그리디"
-- "DP"
-- "동적 계획법"
-- "Interval"
-- "구간"
-- "Non-crossing"
-- "교차 없음"
-- "Nested Intervals"
-- "중첩 구간"
-- "Disjoint Intervals"
-- "분리 구간"
-- "Layer"
-- "레이어"
-- "Depth"
-- "깊이"
-- "Stack-like"
-- "스택"
-- "Sweep"
-- "스위핑"
-- "Sorting"
-- "정렬"
-- "Two Pointers"
-- "투 포인터"
-- "Adjacent Pairing"
-- "인접 페어링"
-- "Skip One"
-- "하나 제외"
-- "Optimization"
-- "최적화"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O((P+F) log (P+F))"
-- "O(P+F)"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "KOI"
-- "한국정보올림피아드"
-- "KOI 2005"
-- "고등부"
-- "Line"
-- "직선"
-- "Coordinate"
-- "좌표"
-- "Large Input"
-- "큰 입력"
-- "Edge Case"
-- "엣지 케이스"
-- "Overflow"
-- "오버플로우"
-- "long long"
-- "Absolute Value"
-- "절댓값"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Shortest-Path
+- String
+- Bipartite-Matching
+- Greedy
+- 그리디
+- DP
+- Dynamic-Programming
+- Range-Query
+- Graph
+- 스택
+- Sorting
+- 정렬
+- Two-Pointers
+- Optimization
+- 최적화
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Implementation
+- 구현
+- C++
+- Competitive-Programming
+- Edge-Cases
+- 엣지케이스
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
 image: "wordcloud.png"
 ---
 

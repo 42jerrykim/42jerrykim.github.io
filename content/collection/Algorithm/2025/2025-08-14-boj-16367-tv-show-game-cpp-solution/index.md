@@ -11,75 +11,43 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-16367
-- cpp
 - C++
-- Two SAT
-- 2-SAT
-- 2SAT
-- Two-SAT
-- SAT
-- Satisfiability
-- CNF
-- Implication Graph
-- Implication
 - Graph
 - 그래프
-- SCC
-- Strongly Connected Components
-- Kosaraju
-- Tarjan
 - DFS
 - 위상정렬
-- Topological Sort
-- Logical Constraints
-- 논리 제약
-- Constraint Satisfaction
-- 제약 만족
-- Boolean Logic
-- 불 대수
-- Bitset
-- 논리식
-- Modeling
-- 모델링
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Topological-Sort
+- Software-Architecture
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
 - Pitfalls
-- 실수 포인트
-- Edge Cases
-- 코너 케이스
+- 함정
+- Edge-Cases
+- 엣지케이스
 - Testing
 - 테스트
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Template
-- 템플릿
 - Debugging
 - 디버깅
-- Shortest Path
+- Shortest-Path
 - 최단경로
-- Disjoint Set Union
-- 유니온파인드
-- Binary Search
+- Disjoint-Set
+- Binary-Search
 - 이분탐색
 - Hashing
 - 해싱
 - String
 - 문자열
 - Geometry
-- 기하
 - Math
 - 수학
 image: "wordcloud.png"

@@ -9,10 +9,9 @@ tags:
 - MST
 - Graph
 - Greedy
-- Union-Find
-- O(M log N)
+- Disjoint-Set
 - Implementation
-- GraphTheory
+- Graph-Theory
 image: "tmp_wordcloud.png"
 date: 2024-12-12
 ---

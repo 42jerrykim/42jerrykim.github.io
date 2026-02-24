@@ -4,110 +4,30 @@ categories:
 - Data Structure
 - Priority Queue
 date: 2025-02-28
-tags: 
-- DataStructure
-- PriorityQueue
-- C#
-- 동시성 프로그래밍
-- 우선순위 큐
-- Concurrent Programming
-- Priority Queue
-- Lock-Free
-- Thread-Safe
-- Data Structure
-- Atomic Operations
-- CAS
-- Multithreading
-- Synchronization
+tags:
+- Data-Structures
+- CSharp
+- Priority-Queue
+- Concurrency
 - Performance
 - Scalability
-- Resource Management
-- Queue Operations
-- Enqueue
-- Dequeue
-- Data Integrity
-- Consistency
-- High Performance
-- Software Development
-- System Design
-- Algorithm Optimization
-- Memory Management
-- ABA Problem
-- Free List
-- Event Handling
-- Task Scheduling
-- Load Balancing
-- Application Architecture
-- Code Complexity
-- Error Handling
+- Implementation
+- Software-Architecture
+- Error-Handling
 - Debugging
 - Testing
-- Software Engineering
-- Data Loss Prevention
-- Concurrency Control
-- Thread Management
-- Resource Allocation
-- System Performance
-- Application Performance
-- User Experience
-- Software Reliability
-- Code Quality
-- Design Patterns
-- Object-Oriented Programming
-- Functional Programming
-- Asynchronous Programming
-- Distributed Systems
-- Cloud Computing
-- 우선순위 큐
-- C#
-- 동시성 프로그래밍
-- 우선순위 큐
-- 락 프리
-- 스레드 안전
+- Code-Quality
+- Design-Pattern
+- OOP
+- Functional-Programming
 - 자료구조
-- 원자적 연산
-- CAS
-- 멀티스레딩
-- 동기화
 - 성능
 - 확장성
-- 자원 관리
-- 큐 연산
-- 삽입
-- 제거
-- 데이터 무결성
-- 일관성
-- 고성능
-- 소프트웨어 개발
-- 시스템 설계
-- 알고리즘 최적화
-- 메모리 관리
-- ABA 문제
-- 프리 리스트
-- 이벤트 처리
-- 작업 스케줄링
-- 로드 밸런싱
-- 애플리케이션 아키텍처
-- 코드 복잡성
-- 오류 처리
+- 소프트웨어아키텍처
 - 디버깅
 - 테스트
-- 소프트웨어 공학
-- 데이터 손실 방지
-- 동시성 제어
-- 스레드 관리
-- 자원 할당
-- 시스템 성능
-- 애플리케이션 성능
-- 사용자 경험
-- 소프트웨어 신뢰성
-- 코드 품질
-- 디자인 패턴
-- 객체 지향 프로그래밍
-- 함수형 프로그래밍
-- 비동기 프로그래밍
-- 분산 시스템
-- 클라우드 컴퓨팅
+- 코드품질
+- 디자인패턴
 description: "동시성 프로그래밍에서 우선순위 큐는 중요한 자료구조로, 멀티스레드 환경에서 lock-free하고 thread-safe하게 구현하는 것이 필수적이다. 이 보고서는 C#에서 우선순위 큐를 구현하는 방법과 관련 개념, 문제 해결 기법을 다룬다. 우선순위 큐는 FIFO 큐와 달리 각 요소에 우선순위를 부여하여 처리 순서를 조정할 수 있는 장점이 있다."
 image: index.png
 

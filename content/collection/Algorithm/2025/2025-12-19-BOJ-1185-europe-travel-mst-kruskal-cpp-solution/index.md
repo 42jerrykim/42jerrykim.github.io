@@ -10,82 +10,35 @@ categories:
 - "MST"
 - "Kruskal"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "1185"
-- "BOJ-1185"
-- "유럽여행"
-- "유럽 여행"
-- "Europe Travel"
-- "Graph"
-- "그래프"
-- "MST"
-- "Minimum Spanning Tree"
-- "최소 스패닝 트리"
-- "최소 신장 트리"
-- "Kruskal"
-- "크루스칼"
-- "DSU"
-- "Disjoint Set Union"
-- "Union Find"
-- "유니온 파인드"
-- "분리 집합"
-- "Greedy"
-- "그리디"
-- "Spanning Tree"
-- "스패닝 트리"
-- "Tree"
-- "트리"
-- "Traversal"
-- "순회"
-- "Euler Tour"
-- "오일러 투어"
-- "DFS"
-- "깊이 우선 탐색"
-- "Cost Transformation"
-- "비용 변형"
-- "Edge Weight"
-- "간선 가중치"
-- "Undirected Graph"
-- "무방향 그래프"
-- "Connectivity"
-- "연결성"
-- "Connected"
-- "연결 그래프"
-- "Optimization"
-- "최적화"
-- "Proof"
-- "정당성"
-- "Invariant"
-- "불변식"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(P log P)"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "STL"
-- "Sorting"
-- "정렬"
-- "Edge Case"
-- "엣지 케이스"
-- "Start City"
-- "시작 도시"
-- "Return to Start"
-- "시작점 복귀"
-- "Travel Cost"
-- "여행 비용"
-- "Toll"
-- "통행료"
-- "Visit Cost"
-- "방문 비용"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Graph
+- 그래프
+- MST
+- DSU
+- Disjoint-Set
+- Greedy
+- 그리디
+- Tree
+- 트리
+- Euler-Tour
+- DFS
+- Optimization
+- 최적화
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Implementation
+- 구현
+- C++
+- Sorting
+- 정렬
+- Edge-Cases
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

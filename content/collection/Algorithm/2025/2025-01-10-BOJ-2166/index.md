@@ -7,12 +7,11 @@ categories:
 - Geometry
 - Implementation
 tags:
-- Shoelace
 - Implementation
-- BruteForce
+- Brute-Force
 - Optimization
-- O(N)
-- Vector
+- Time-Complexity
+- Array
 - 수학
 - Geometry
 image: "index.png"

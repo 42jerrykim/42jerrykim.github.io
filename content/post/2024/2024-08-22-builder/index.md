@@ -8,55 +8,20 @@ header:
   teaser: /assets/images/2024/2024-08-22-builder.png
 tags:
 - Builder
-- DesignPattern
-- CreationalPattern
-- ObjectCreation
-- Step-by-Step Construction
-- ComplexObjects
-- BuilderPattern
+- Design-Pattern
 - Java
-- SoftwareDesign
-- Programming
-- Object-Oriented Design
-- DesignPrinciples
-- CodeReusability
-- Flexibility
-- Maintainability
-- Readability
-- Immutability
-- ConstructionProcess
-- FluentInterface
-- APIDesign
-- Lombok
-- JavaBeans
-- FactoryMethod
-- AbstractFactory
+- Software-Architecture
+- Implementation
+- Code-Quality
+- Clean-Code
 - Singleton
-- Prototype
-- Composite
 - Encapsulation
-- SeparationOfConcerns
-- DependencyInjection
-- Testability
-- CodeSmell
-- LongParameterList
-- TelescopingConstructor
-- ClientCode
-- Director
-- ConcreteBuilder
-- Product
+- Testing
 - Interface
-- MethodChaining
-- OptionalParameters
 - Configuration
-- UserExperience
-- SoftwareDevelopment
-- AgileDevelopment
+- Frontend
 - Refactoring
-- CleanCode
-- BestPractices
-- CodeQuality
-- SoftwareEngineering
+- Best-Practices
 title: '[DesignPattern] 빌더 패턴'
 ---
 

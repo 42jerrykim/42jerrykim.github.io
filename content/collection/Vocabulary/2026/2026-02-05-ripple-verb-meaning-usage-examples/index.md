@@ -9,92 +9,18 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - ripple
-  - ripple meaning
-  - ripple usage
-  - ripple examples
-  - ripple verb
-  - ripple effect
-  - ripple through
-  - ripple across
-  - ripple over
-  - ripple with
-  - ripples
-  - rippled
-  - rippling
-  - pronunciation
-  - IPA
+  - Pronunciation
   - grammar
-  - usage notes
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - study English
-  - vocabulary building
-  - EN/KR examples
-  - examples
-  - wave
-  - waves
-  - undulate
-  - ruffle
-  - stir
-  - spread
-  - propagate
-  - reverberate
-  - radiate
-  - cascade
-  - chain reaction
-  - second-order effects
-  - water
-  - water surface
-  - pond
-  - lake
-  - ocean
-  - wind
-  - breeze
-  - flag
-  - fabric
-  - emotions
-  - laughter
-  - applause
-  - excitement
-  - tension
-  - rumor
-  - news
-  - media
-  - business English
-  - economics
+  - Business-English
   - finance
-  - policy
-  - supply chain
-  - market
-  - organization
-  - product change
-  - UX writing
+  - Security
   - 영단어
   - 영어동사
-  - ripple 의미
-  - ripple 용법
-  - ripple 예문
-  - 잔물결
-  - 물결치다
-  - 파문
-  - 파급효과
-  - 여파
-  - 연쇄반응
-  - 번지다
-  - 퍼지다
-  - 전파되다
-  - 확산
-  - 영향
-  - 자연 표현
-  - 뉴스 영어
-  - 비즈니스 영어
-  - 일상 표현
+  - 일상표현
 image: wordcloud.png
 ---
 

@@ -9,82 +9,32 @@ categories:
 - "Math"
 - "Implementation"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "25201"
-- "BOJ-25201"
-- "보드 뒤집기 게임"
-- "Board Flipping Game"
-- "Grid"
-- "격자"
-- "Board"
-- "보드"
-- "2x2"
-- "2×2"
-- "Flip"
-- "뒤집기"
-- "Toggle"
-- "토글"
-- "Parity"
-- "홀짝"
-- "Even"
-- "짝수"
-- "Odd"
-- "홀수"
-- "Invariant"
-- "불변식"
-- "Row Parity"
-- "행 홀짝"
-- "Column Parity"
-- "열 홀짝"
-- "XOR"
-- "xor"
-- "Symmetric Difference"
-- "대칭차"
-- "Set"
-- "집합"
-- "Counting"
-- "카운팅"
-- "Sparse"
-- "희소"
-- "Coordinate"
-- "좌표"
-- "Constraints"
-- "제한"
-- "Math"
-- "수학"
-- "Linear Algebra"
-- "선형대수"
-- "GF(2)"
-- "Mod 2"
-- "모듈러2"
-- "Bit"
-- "비트"
-- "Implementation"
-- "구현"
-- "Fast IO"
-- "빠른 입출력"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N+M)"
-- "Linear Time"
-- "선형 시간"
-- "Problem Solving"
-- "문제해결"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Coding Test"
-- "코딩테스트"
-- "Edge Case"
-- "엣지 케이스"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Graph
+- Math
+- Set
+- Edge-Cases
+- 수학
+- Bit
+- Implementation
+- 구현
+- IO
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Problem-Solving
+- 문제해결
+- Competitive-Programming
+- 경쟁프로그래밍
+- Coding-Test
+- 코딩테스트
+- 엣지케이스
+- C++
 image: "wordcloud.png"
 ---
 

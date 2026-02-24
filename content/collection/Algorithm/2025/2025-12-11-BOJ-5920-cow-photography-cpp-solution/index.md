@@ -12,62 +12,32 @@ tags:
   - 알고리즘
   - BOJ
   - 백준
-  - Problem-5920
-  - 5920
-  - Cow
-  - 소
-  - Cow Photography
-  - cow-photography
   - USACO
-  - 브론즈
-  - Permutation
-  - 순열
-  - Order Reconstruction
-  - 순서복원
-  - Relative Order
-  - 상대적순서
-  - Majority
-  - 다수결
-  - Custom Sort
-  - 커스텀정렬
-  - Comparator
-  - 비교함수
+  - Combinatorics
   - Sorting
   - 정렬
   - Implementation
   - 구현
   - Simulation
   - 시뮬레이션
-  - Data Structures
+  - Data-Structures
   - 자료구조
   - Array
   - 배열
-  - Time Complexity
+  - Time-Complexity
   - 시간복잡도
-  - Space Complexity
+  - Space-Complexity
   - 공간복잡도
-  - O(N log N)
-  - NlogN
-  - Competitive Programming
+  - Competitive-Programming
   - 경쟁프로그래밍
-  - Online Judge
-  - 온라인저지
   - C++
-  - cpp
-  - Problem Solving
+  - Problem-Solving
   - 문제해결
-  - Coding Test
+  - Coding-Test
   - 코딩테스트
-  - Edge Case
+  - Edge-Cases
   - 엣지케이스
-  - Stable Ordering
-  - 안정된정렬
-  - Pairwise Comparison
-  - 쌍비교
-  - Algorithm Design
-  - 알고리즘설계
-  - BOJ문제풀이
-  - 문제해설
+  - Editorial
 image: "wordcloud.png"
 ---
 

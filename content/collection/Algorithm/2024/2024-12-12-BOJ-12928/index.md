@@ -8,12 +8,10 @@ categories:
 tags:
 - DP
 - Tree
-- Bitset
-- GraphTheory
+- Graph-Theory
 - Optimization
-- O(N^3)
 - Combinatorics
-- DynamicProgramming
+- Dynamic-Programming
 - Implementation
 image: "tmp_wordcloud.png"
 date: 2024-12-12

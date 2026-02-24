@@ -7,75 +7,23 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "17625"
-- "High Voltage Line"
-- "고압선"
-- "Geometry"
-- "기하"
-- "Computational Geometry"
-- "계산기하"
-- "Rotating Sweep"
-- "Rotating Sweep Line"
-- "회전 스윕"
-- "Sweep Line"
-- "스윕 라인"
-- "Angle Sort"
-- "각도 정렬"
-- "Event Sorting"
-- "이벤트 정렬"
-- "Adjacency Swap"
-- "인접 스왑"
-- "Label Maintenance"
-- "라벨 유지"
-- "Perpendicular Bisector"
-- "수직이등분선"
-- "Projection"
-- "사영"
-- "Line Distance"
-- "점-직선 거리"
-- "Cross Product"
-- "교차곱"
-- "Dot Product"
-- "내적"
-- "Vector Length"
-- "벡터 길이"
-- "Half-plane"
-- "반평면"
-- "Two-point Case"
-- "두 점 케이스"
-- "Three-point Case"
-- "세 점 케이스"
-- "Special Judge"
-- "스페셜 저지"
-- "Precision"
-- "정밀도"
-- "Double Precision"
-- "배정밀도"
-- "Overflow Safe"
-- "오버플로 방지"
-- "Time Complexity"
-- "시간복잡도"
-- "O(n^2 log n)"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른입출력"
-- "KOI"
-- "한국정보올림피아드"
-- "2019 KOI"
-- "Olympiad"
-- "Problem Solving"
-- "문제풀이"
-- "Algorithm"
-- "알고리즘"
-- "Solution Code"
-- "정답 코드"
+- BOJ
+- Baekjoon
+- 백준
+- Geometry
+- Computational-Geometry
+- Algorithm
+- Edge-Cases
+- Time-Complexity
+- 시간복잡도
+- Implementation
+- 구현
+- C++
+- IO
+- Competitive-Programming
+- Problem-Solving
+- 알고리즘
+- Editorial
 image: "wordcloud.png"
 ---
 

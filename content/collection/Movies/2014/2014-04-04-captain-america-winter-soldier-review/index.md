@@ -1,10 +1,10 @@
 ---
 title: "캡틴 아메리카: 윈터 솔져 (2014) - 마블의 정치적 스릴러 걸작"
 date: 2014-04-04
-categories: [Movies]
-tags: [Captain America The Winter Soldier, Anthony Russo, Joe Russo, Chris Evans, Scarlett Johansson, Sebastian Stan, Samuel L Jackson, Marvel, MCU, Political Thriller, Action, 2014]
-
-
+categories:
+- Movies
+tags:
+- Action
 draft: true
 ---
 

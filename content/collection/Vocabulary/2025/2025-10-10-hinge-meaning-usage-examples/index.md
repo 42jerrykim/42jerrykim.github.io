@@ -9,65 +9,14 @@ categories:
 tags:
 - Vocabulary
 - English
-- English Words
-- Hinge
-- hinge meaning
-- hinge usage
-- hinge examples
-- hinge verb
-- hinge on
-- hinge upon
-- depend on
-- rely on
-- contingent
-- conditional
-- hinge decision
-- hinge moment
-- critical factor
-- key factor
-- pivotal
-- turning point
-- success depends
-- outcome hinges
-- result hinges
-- hinge factor
-- depend entirely
-- conditionally
-- crucial element
-- determining factor
-- business English
-- everyday English
-- academic English
-- philosophical English
-- collocation
-- usage
-- nuance
-- expressions
-- examples
-- TOEIC
+- Business-English
+- Academic-English
+- Collocation
+- Nuance
 - TOEFL
 - IELTS
 - 영단어
 - 영어동사
-- hinge 의미
-- hinge 용법
-- hinge 예문
-- 의존하다
-- 달려있다
-- 좌우되다
-- 핵심 요소
-- 결정 요인
-- 중요한 순간
-- 전환점
-- 조건부
-- 성공 좌우
-- 결과 의존
-- 핵심 변수
-- 결정적 요소
-- 비즈니스 영어
-- 일상 영어
-- 학술 영어
-- 철학 영어
 - 뉘앙스
 - 콜로케이션
 image: wordcloud.png

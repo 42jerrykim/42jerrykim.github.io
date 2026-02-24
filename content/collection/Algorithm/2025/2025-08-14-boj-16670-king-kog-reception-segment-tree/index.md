@@ -11,71 +11,38 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-16670
-- cpp
 - C++
-- Data Structures
+- Data-Structures
 - 자료구조
-- Segment Tree
-- 세그먼트 트리
-- Lazy Propagation
-- 지연 전파
-- Coordinate Compression
+- Segment-Tree
+- 세그먼트트리
+- Lazy-Propagation
+- Coordinate-Compression
 - 좌표압축
-- Range Update
-- 구간 업데이트
-- Range Add
-- 구간 가산
-- Range Minimum Query
-- 구간 최소 질의
-- Prefix Minimum
-- 최소 접두사
-- Online Queries
-- 온라인 쿼리
 - Queue
-- 대기열
-- Scheduling
-- 스케줄링
-- Workload
-- 백로그
-- Backlog
-- 누적 처리량
-- Prefix Sum Model
-- 모델링
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Concurrency
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
 - Testing
 - 테스트
-- Invariant
-- 불변식
-- Binary Search
+- Binary-Search
 - 이분탐색
-- Set Maintenance
-- 집합 유지
-- Cancellation
-- 취소 처리
-- Event Processing
-- 이벤트 처리
 image: "wordcloud.png"
 ---
 

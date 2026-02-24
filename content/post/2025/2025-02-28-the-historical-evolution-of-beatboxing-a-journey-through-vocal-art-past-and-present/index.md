@@ -5,42 +5,13 @@ categories:
 - Vocal Art
 - Beatboxing
 date: 2025-02-28
-tags: 
-- Beatbox
-- Vocal Art
-- Music
+tags:
 - History
 - Culture
 - Performance
-- Art
-- Creativity
-- Expression
-- Sound
-- Rhythm
-- Human Voice
-- Music Genre
-- Digital Technology
-- Global Culture
-- 비트박스
-- 음악
 - 문화
-- 예술
-- 표현
-- 리듬
-- 인간의 목소리
-- 창의성
 - 역사
-- 기술
-- 글로벌 문화
-- 퍼포먼스
-- 소리
-- 감정
-- 현대
-- 전통
-- 융합
-- 디지털 기술
-- 전문성
-- 예술성
+- Technology
 description: "비트박스는 인간의 목소리를 활용한 독특한 음악적 표현 방식으로, 그 역사적 변화와 현대적 양상을 탐구한다. 과거의 비트박스와 현대의 기법을 비교하며, 비트박스가 어떻게 독립적인 음악 장르로 자리매김하게 되었는지를 살펴본다."
 image: index.png
 ---

@@ -7,57 +7,27 @@ description: "파이썬 데코레이터를 빠르게 이해하고 쓰기 위한 
 lastmod: 2026-01-18
 collection_order: 9
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
+  - Quick-Reference
   - decorator
-  - decorators
-  - 데코레이터
-  - wrapper
-  - 래퍼
-  - functools
-  - wraps
-  - higher-order
-  - 고차함수
-  - closure
-  - 클로저
-  - function
-  - 함수
-  - class-decorator
-  - 클래스데코레이터
-  - method-decorator
-  - 메서드데코레이터
-  - syntax
+  - Implementation
   - 문법
   - logging
   - 로깅
-  - timing
-  - 타이밍
   - caching
   - 캐싱
-  - validation
-  - 검증
-  - retry
-  - 재시도
+  - Testing
   - authentication
   - 인증
-  - metaprogramming
-  - 메타프로그래밍
-  - best-practices
-  - 베스트프랙티스
+  - Best-Practices
   - pitfalls
   - 함정
   - debugging
   - 디버깅
-  - standard-library
-  - 표준라이브러리
-  - patterns
-  - 패턴
+  - Design-Pattern
 ---
 데코레이터는 함수나 클래스를 감싸서 동작을 확장하는 파이썬의 강력한 패턴입니다. 이 치트시트는 함수 데코레이터 기본, @wraps, 인자 있는 데코레이터, 실무 패턴을 정리합니다.
 

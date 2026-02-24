@@ -8,59 +8,15 @@ categories:
 - Python
 - Programming
 tags:
-- Object-Oriented Programming
 - OOP
 - Python
-- Classes
-- Objects
 - Inheritance
 - Encapsulation
 - Polymorphism
 - Abstraction
-- Methods
-- Attributes
-- CodeReusability
-- SoftwareDesign
-- ProgrammingParadigms
-- DataHiding
-- ClassHierarchy
-- Constructors
-- InstanceMethods
-- ClassAttributes
-- InstanceAttributes
-- MethodOverriding
-- SuperFunction
-- DataProtection
-- ModularProgramming
-- CodeMaintenance
-- Real-World Modeling
-- SoftwareDevelopment
-- ProgrammingConcepts
-- PythonBasics
-- PythonClasses
-- PythonObjects
-- PythonInheritance
-- PythonEncapsulation
-- PythonPolymorphism
-- PythonAbstraction
-- PythonMethods
-- PythonAttributes
-- PythonProgramming
-- PythonTutorial
-- PythonGuide
-- PythonForBeginners
-- ObjectCreation
-- ClassDefinition
-- ObjectManipulation
-- SoftwareEngineering
-- CodeStructure
-- CodeOrganization
-- CodeEfficiency
-- CodeQuality
-- PythonCommunity
-- LearningPython
-- PythonResources
-- PythonDocumentation
+- Code-Quality
+- Software-Architecture
+- Implementation
 image: "tmp_wordcloud.png"
 ---
 

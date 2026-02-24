@@ -9,75 +9,30 @@ categories:
 - "DP"
 - "Convex Hull Trick"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "5498"
-- "BOJ-5498"
-- "Batch Scheduling"
-- "배치 스케줄링"
-- "Scheduling"
-- "스케줄링"
-- "Dynamic Programming"
-- "DP"
-- "동적 계획법"
-- "Optimization"
-- "최적화"
-- "Convex Hull Trick"
-- "CHT"
-- "컨벡스 헐 트릭"
-- "Hull"
-- "볼록 껍질"
-- "Line Container"
-- "직선 집합"
-- "Monotone Queue"
-- "단조 큐"
-- "Deque"
-- "덱"
-- "Linear Function"
-- "일차 함수"
-- "Slope"
-- "기울기"
-- "Intercept"
-- "절편"
-- "Prefix Sum"
-- "접두 합"
-- "Suffix Sum"
-- "접미 합"
-- "Cost Minimization"
-- "비용 최소화"
-- "Batch"
-- "배치"
-- "Setup Time"
-- "셋업 시간"
-- "Processing Time"
-- "처리 시간"
-- "Completion Time"
-- "완료 시간"
-- "Weighted Sum"
-- "가중 합"
-- "IOI"
-- "IOI 2002"
-- "International Olympiad in Informatics"
-- "Problem Solving"
-- "문제해결"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Implementation"
-- "구현"
-- "Proof"
-- "정당성"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N)"
-- "O(N log N)"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Concurrency
+- Dynamic-Programming
+- DP
+- Optimization
+- 최적화
+- Deque
+- 덱
+- Prefix-Sum
+- Competitive-Programming
+- Problem-Solving
+- 문제해결
+- 경쟁프로그래밍
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
 image: wordcloud.png
 ---
 

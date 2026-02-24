@@ -5,8 +5,16 @@ categories:
 - SW
 date: "2021-12-05T00:00:00Z"
 tags:
-- SW
-- 개발자
+- Career
+- 커리어
+- Education
+- 교육
+- Best-Practices
+- Go
+- .NET
+- Git
+- GitHub
+- API
 title: SW 개발자 필수 마인드
 
 ---

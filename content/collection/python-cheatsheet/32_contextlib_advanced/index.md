@@ -7,48 +7,16 @@ description: "파이썬 contextlib 모듈 심화 기능 치트시트입니다. s
 lastmod: 2026-01-18
 collection_order: 32
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - contextlib
-  - context-manager
-  - 컨텍스트매니저
-  - suppress
-  - 예외무시
-  - redirect_stdout
-  - redirect_stderr
-  - 출력리다이렉트
-  - ExitStack
-  - 동적컨텍스트
-  - nullcontext
-  - closing
-  - contextmanager
-  - asynccontextmanager
-  - with-statement
-  - with문
-  - resource-management
-  - 리소스관리
-  - exception-handling
-  - 예외처리
-  - cleanup
-  - 정리
-  - nested-context
-  - 중첩컨텍스트
-  - standard-library
-  - 표준라이브러리
-  - patterns
-  - 패턴
-  - best-practices
-  - 베스트프랙티스
+  - Quick-Reference
+  - Error-Handling
+  - Design-Pattern
+  - Best-Practices
   - pitfalls
   - 함정
-  - advanced
-  - 고급
 ---
 `contextlib` 모듈은 컨텍스트 매니저 작성을 도와주는 유틸리티를 제공합니다. 이 치트시트는 `@contextmanager` 외의 **심화 기능**인 `suppress`, `redirect_*`, `ExitStack` 등을 다룹니다.
 

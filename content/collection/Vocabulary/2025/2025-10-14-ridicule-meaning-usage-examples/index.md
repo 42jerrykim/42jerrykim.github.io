@@ -9,97 +9,19 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - Ridicule
-  - ridicule meaning
-  - ridicule usage
-  - ridicule examples
-  - ridicule verb
-  - mock
-  - mockery
-  - scorn
-  - derision
-  - deride
-  - make fun of
-  - laugh at
-  - taunt
-  - jeer
-  - sneer
-  - belittle
-  - humiliate
-  - contempt
-  - contemptuous
-  - disdain
-  - unkind
-  - cruel
-  - harsh
-  - insult
-  - offensive
-  - bullying
-  - teasing
-  - sarcastic
-  - ironic
-  - satirical
-  - criticism
-  - public ridicule
-  - object of ridicule
-  - subject to ridicule
-  - hold up to ridicule
-  - lay open to ridicule
-  - transitive verb
-  - direct object
-  - conjugation
-  - ridicules
-  - ridiculing
-  - ridiculed
-  - formal English
-  - literary English
-  - academic English
-  - social interaction
-  - communication
-  - emotion
-  - negative emotion
-  - collocation
-  - expressions
-  - nuance
-  - etymology
-  - context
-  - synonym
+  - Testing
+  - Academic-English
+  - Collocation
+  - Nuance
+  - Etymology
+  - Synonym
   - 영단어
   - 영어동사
-  - ridicule 의미
-  - ridicule 용법
-  - ridicule 예문
-  - 조롱하다
-  - 비웃다
-  - 놀리다
-  - 모욕하다
-  - 경멸하다
-  - 멸시하다
-  - 깔보다
-  - 무시하다
-  - 업신여기다
-  - 조소하다
-  - 비난하다
-  - 비판하다
-  - 조롱
-  - 비웃음
-  - 경멸
-  - 멸시
-  - 모욕
-  - 무례함
-  - 잔인함
-  - 부정적감정
-  - 사회적상호작용
-  - 의사소통
-  - 격식영어
-  - 문학영어
   - 학술영어
   - 콜로케이션
   - 뉘앙스
   - 어원
-  - 맥락
-  - 동의어
+  - 유의어
 image: wordcloud.png
 ---
 

@@ -5,55 +5,17 @@ date: 2026-01-28T09:50:37+09:00
 categories:
   - AI
 tags:
-  - Claude
-  - Claude Code
   - AI
-  - AI 개발 도구
-  - 코딩 설정
   - 자동화
-  - 프롬프트 엔지니어링
-  - 생산성 도구
-  - DevTools
   - IDE
-  - 개발자 생산성
-  - 에이전트
-  - Agents
-  - Skills
-  - Hooks
-  - Slash Commands
-  - 코딩 어시스턴트
-  - AI 페어 프로그래밍
-  - Context Management
-  - AI Amnesia
-  - Affaan Mustafa
-  - 해커톤 우승자
-  - .claude 설정
-  - 스타일 가이드
-  - 코딩 표준
   - TDD
-  - 테스트 주도 개발
-  - 보안 감사
-  - Security Audit
-  - 코드 리팩토링
-  - 시스템 설계
-  - 개발 워크플로우
-  - 자동 포맷팅
-  - 빌드 자동화
+  - Software-Architecture
   - GitHub
   - 오픈소스
-  - 클로드
   - 인공지능
   - 머신러닝
-  - 코드 품질
-  - 일관성 유지
-  - 반복적 작업 제거
-  - 컨텍스트 보존
-  - 롤 기반 에이전트
-  - 워크플로우 자동화
-  - 개발 효율성
-  - 팀 협업
-  - 코드 리뷰
-  - CI/CD
+  - 코드품질
+  - 코드리뷰
 image: wordcloud.png
 ---
 

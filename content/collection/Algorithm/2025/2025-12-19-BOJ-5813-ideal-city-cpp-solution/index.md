@@ -11,83 +11,33 @@ categories:
 - "Grid"
 - "Shortest Path"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "5813"
-- "BOJ-5813"
-- "이상적인 도시"
-- "Ideal City"
-- "IOI"
-- "IOI 2012"
-- "IOI 2012 Day 2"
-- "Graph"
-- "그래프"
-- "Tree"
-- "트리"
-- "Grid"
-- "격자"
-- "2D Grid"
-- "격자 그래프"
-- "Polyomino"
-- "폴리오미노"
-- "Hole-free"
-- "구멍 없음"
-- "Connectivity"
-- "연결성"
-- "Connected Components"
-- "연결 요소"
-- "Shortest Path"
-- "최단거리"
-- "All Pairs Shortest Paths"
-- "모든 쌍 최단거리"
-- "Distance Sum"
-- "거리 합"
-- "Decomposition"
-- "분해"
-- "Compression"
-- "압축"
-- "Segment"
-- "구간"
-- "Run Length Encoding"
-- "연속 구간"
-- "Row Segment"
-- "행 구간"
-- "Column Segment"
-- "열 구간"
-- "Bipartite Graph"
-- "이분 그래프"
-- "Tree DP"
-- "트리 DP"
-- "Subtree"
-- "서브트리"
-- "Edge Contribution"
-- "간선 기여"
-- "Cut"
-- "절단"
-- "Modulo"
-- "모듈러"
-- "1e9"
-- "Overflow"
-- "오버플로우"
-- "Hash Map"
-- "해시맵"
-- "unordered_map"
-- "Sorting"
-- "정렬"
-- "Implementation"
-- "구현"
-- "Optimization"
-- "최적화"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Competitive-Programming
+- Graph
+- 그래프
+- Tree
+- 트리
+- Shortest-Path
+- Segment-Tree
+- Network-Flow
+- Modular-Arithmetic
+- 모듈러
+- Edge-Cases
+- Sorting
+- 정렬
+- Implementation
+- 구현
+- Optimization
+- 최적화
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
 image: "wordcloud.png"
 ---
 

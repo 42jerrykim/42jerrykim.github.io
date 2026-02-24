@@ -7,47 +7,16 @@ description: "파이썬 os 모듈 심화 치트시트입니다. 디렉토리 순
 lastmod: 2026-01-18
 collection_order: 51
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
+  - Quick-Reference
   - os
-  - operating-system
   - 운영체제
-  - filesystem
-  - 파일시스템
-  - directory
-  - 디렉토리
-  - path
-  - 경로
-  - walk
-  - listdir
-  - scandir
-  - makedirs
-  - remove
-  - rename
-  - stat
-  - environ
-  - 환경변수
-  - process
-  - 프로세스
-  - pid
-  - fork
-  - getenv
-  - getcwd
-  - chdir
-  - standard-library
-  - 표준라이브러리
-  - patterns
-  - 패턴
-  - best-practices
-  - 베스트프랙티스
-  - cross-platform
-  - 크로스플랫폼
+  - Graph
+  - Design-Pattern
+  - Best-Practices
 ---
 `os` 모듈은 **운영체제와 상호작용**하는 기능을 제공합니다. 파일 시스템 조작, 환경 변수, 프로세스 정보 등을 다룹니다. 경로 처리는 `pathlib`을 권장하지만, `os`도 여전히 유용합니다.
 

@@ -6,45 +6,19 @@ category:
 tags:
   - 알고리즘
   - 세그먼트트리
-  - Lazy Propagation
-  - 구간쿼리
-  - MOD연산
-  - 수열처리
-  - 범위업데이트
-  - 범위쿼리
-  - 라지데이터
-  - 고급자료구조
-  - segment tree
-  - lazy propagation
-  - range update
-  - range query
-  - modular arithmetic
-  - sequence queries
-  - data structure
-  - competitive programming
+  - Lazy-Propagation
+  - Segment-Tree
+  - Range-Query
+  - Modular-Arithmetic
+  - Data-Structures
+  - Competitive-Programming
   - algorithm
-  - C++ solution
   - 백준
   - baekjoon
   - BOJ
-  - 수열과쿼리
-  - 선형함수
-  - 함수합성
-  - 구간덧셈
-  - 구간곱셈
-  - 구간값설정
-  - MOD10^9+7
   - 최적화
-  - 효율적알고리즘
-  - 트리기반자료구조
-  - 동적쿼리
-  - 배열처리
-  - 온라인처리
-  - 시간복잡도O(logN)
-  - 공간복잡도O(N)
   - 분할정복
-  - 펜윅트리
-  - 고급쿼리처리
+  - Fenwick-Tree
 date: 2025-12-02
 lastmod: 2025-12-02
 image: wordcloud.png

@@ -4,11 +4,15 @@ description: "Jekyll 기반 블로그에서 코드 복사(Copy code to clipboard
 date: "2022-02-28T00:00:00Z"
 header:
   teaser: /assets/images/2022/2022-02-28-150429.png
-tag:
-- Code
-- Copy
+tags:
 - Jekyll
 - Markdown
+- Java
+- Git
+- GitHub
+- CSS
+- HTML
+- Blog
 title: '[Jekyll] 코드 카피 버튼 만들기'
 ---
 

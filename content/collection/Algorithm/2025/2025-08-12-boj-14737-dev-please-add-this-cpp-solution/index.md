@@ -7,64 +7,23 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "14737"
-- "Dev Please Add This"
-- "SCC"
-- "Strongly Connected Components"
-- "강한연결요소"
-- "2-SAT"
-- "Two-SAT"
-- "Implication Graph"
-- "CNF"
-- "Clause"
-- "Satisfiability"
-- "SAT"
-- "DAG"
-- "Directed Acyclic Graph"
-- "Topological Order"
-- "위상정렬"
-- "Reachability"
-- "Bitset"
-- "Grid"
-- "격자"
-- "Rolling Ball"
-- "Puzzle"
-- "Graph"
-- "Graph Theory"
-- "그래프"
-- "Algorithm"
-- "알고리즘"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "Kosaraju"
-- "Tarjan"
-- "Component"
-- "컴포넌트"
-- "State Space"
-- "상태 공간"
-- "ICPC"
-- "KAIST"
-- "Mock Competition"
-- "Open Cup"
-- "Problem Solving"
-- "문제풀이"
-- "해설"
-- "Solution"
-- "Editorial"
-- "Constraint"
-- "제약"
-- "논리"
-- "Logic"
-- "Path Dependency"
-- "순서 제약"
+- BOJ
+- Baekjoon
+- 백준
+- Graph
+- 위상정렬
+- Graph-Theory
+- 그래프
+- Algorithm
+- 알고리즘
+- Implementation
+- 구현
+- C++
+- IO
+- Software-Architecture
+- ICPC
+- Problem-Solving
+- Editorial
 image: "wordcloud.png"
 ---
 

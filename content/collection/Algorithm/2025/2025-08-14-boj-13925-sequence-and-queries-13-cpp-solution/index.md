@@ -11,67 +11,33 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-13925
-- cpp
 - C++
-- Data Structures
+- Data-Structures
 - 자료구조
-- Segment Tree
-- 세그먼트 트리
-- Lazy Propagation
-- 지연 전파
-- Range Update
-- 구간 갱신
-- Range Sum
-- 구간 합
-- Range Add
-- 구간 덧셈
-- Range Multiply
-- 구간 곱셈
-- Range Assign
-- 구간 대입
-- Affine Transform
-- 아핀 변환
+- Segment-Tree
+- 세그먼트트리
+- Lazy-Propagation
 - Composition
-- 연산 합성
-- Modular Arithmetic
-- 모듈러 연산
-- Mod 1e9+7
-- 1e9+7
-- Prefix/Suffix (Concept)
-- 개념 정리
+- Modular-Arithmetic
+- 모듈러
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
-- Integer Overflow
-- 정수 오버플로
-- Fast IO
-- 입출력 최적화
-- Competitive Programming
+- 함정
+- IO
+- Competitive-Programming
 - 경쟁프로그래밍
-- Templates
-- 템플릿
 - Testing
 - 테스트
-- Invariant
-- 불변식
-- Interval Tree
-- 인터벌 트리
-- Range Query
-- 구간 쿼리
+- Range-Query
 image: "wordcloud.png"
 ---
 

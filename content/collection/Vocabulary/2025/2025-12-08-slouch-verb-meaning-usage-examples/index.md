@@ -9,50 +9,15 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - slouch
-  - slouch meaning
-  - slouch usage
-  - slouch examples
-  - slouch verb
   - 영단어
   - 영어동사
-  - slouch 의미
-  - slouch 용법
-  - slouch 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - posture
-  - sitting position
-  - body language
-  - lazy
-  - idle
-  - 자세
-  - 구부정하다
-  - 게으르다
-  - 단정하지 않다
-  - 태도
-  - 성격
-  - slump
-  - stoop
-  - droop
-  - lean
-  - 신체 언어
-  - 일상 표현
-  - 성격 표현
-  - informal English
-  - conversation
-  - 구어체
-  - 가족 표현
-  - 학교 표현
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - 일상표현
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

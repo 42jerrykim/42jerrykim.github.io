@@ -7,9 +7,15 @@ header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
 - Combinatorics
-- Inclusion-Exclusion Principle
-- Mathematics
-- ModularArithmetic
+- Math
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Python
 title: '[Algorithm] C++/Python 백준 16565번 : N포커'
 ---
 

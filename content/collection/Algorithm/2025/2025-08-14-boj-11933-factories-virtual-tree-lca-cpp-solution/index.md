@@ -11,89 +11,45 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-11933
-- cpp
 - C++
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Graph
 - 그래프
 - Tree
 - 트리
 - LCA
-- 최소공통조상
-- Binary Lifting
-- 이진 도약
-- Virtual Tree
-- 버추얼 트리
-- Distance
-- 거리
-- Tree DP
-- 트리 DP
-- Multi-source
-- 다중 소스
-- Shortest Path
+- Shortest-Path
 - 최단경로
-- Weighted Tree
-- 가중치 트리
-- JOI
-- JOI 2014
-- JOI Open Contest
-- Set Distance
-- 집합 거리
-- Preprocessing
-- 전처리
 - DFS
-- 깊이우선탐색
-- Euler Tour
-- 오일러 투어
+- Euler-Tour
 - Stack
 - 스택
 - Sorting
 - 정렬
-- Unique
-- 유니크
-- Mapping
-- 매핑
-- Rooting
-- 루팅
-- O(log N)
-- O(N)
-- O(K)
 - Memory
 - 메모리
-- Fast IO
-- 빠른 입출력
-- Long Long
-- 64-bit
-- Validation
-- 검증
+- IO
 image: "wordcloud.png"
 ---
 

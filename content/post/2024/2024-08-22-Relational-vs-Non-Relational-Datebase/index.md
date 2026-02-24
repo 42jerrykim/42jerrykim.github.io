@@ -6,55 +6,14 @@ date: "2024-08-22T00:00:00Z"
 header: null
 
 tags:
-- RelationalDatabase
-- Non-Relational Database
-- NoSQL
+- Database
 - SQL
-- DataManagement
-- DataStructure
-- DataIntegrity
+- Data-Structures
+- Code-Quality
 - Scalability
 - Performance
-- Flexibility
-- ACIDCompliance
-- CAPTheorem
-- BigData
-- DataAnalytics
-- CloudStorage
-- DocumentStore
-- Key-Value Store
-- GraphDatabase
-- ColumnFamily
-- DataModeling
-- DataRetrieval
-- DataProcessing
-- DataStorage
-- DatabaseManagementSystems
-- DataRelationships
-- DataTypes
-- DataSchema
-- DataQuerying
-- DataManipulation
-- DataConsistency
-- DataRedundancy
-- DataArchitecture
-- DataWarehouse
-- DataGovernance
-- DataSecurity
-- DataPrivacy
-- DataQuality
-- DataAnalysis
-- DataTransformation
-- DataMigration
-- DataBackup
-- DataRecovery
-- DataVisualization
-- DataIntegration
-- DataPipeline
-- DataLifecycle
-- DataGovernanceFramework
-- DataStrategy
-- DataEcosystem
+- Software-Architecture
+- Implementation
 teaser: /assets/images/2024/2024-08-22-Relational-vs-Non-Relational-Datebase.png
 title: '[Database] 관계형 데이터베이스와 비관계형 데이터베이스의 차이'
 ---

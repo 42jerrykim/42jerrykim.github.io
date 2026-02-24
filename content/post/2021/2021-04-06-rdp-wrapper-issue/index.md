@@ -7,9 +7,12 @@ date: "2021-04-06T00:00:00Z"
 header:
   teaser: https://user-images.githubusercontent.com/11385249/112481810-73097380-8d88-11eb-90ae-27adaa456182.png
 tags:
-- RDPWrapper
-- 20H2
 - Windows
+- Git
+- GitHub
+- Dynamic-Programming
+- DP
+- RDP
 title: '[RDPWrapper] Windows 10 Pro 20H2에서 not supported issue 해결하기'
 ---
 

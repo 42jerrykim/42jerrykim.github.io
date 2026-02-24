@@ -11,73 +11,39 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-14898
-- cpp
 - C++
-- Data Structures
+- Data-Structures
 - 자료구조
-- Segment Tree
-- 세그먼트 트리
-- Persistent Segment Tree
-- 영속 세그먼트 트리
-- Persistent
-- 영속성
-- Versioned Tree
-- 버전 트리
-- Distinct Count
-- 서로 다른 수
-- Unique Elements
-- 유니크 원소
-- Queries
-- 쿼리
-- Online Query
-- 온라인 쿼리
-- Coordinate Compression
+- Segment-Tree
+- 세그먼트트리
+- Range-Query
+- Coordinate-Compression
 - 좌표압축
-- Prefix
-- Prefix Version
-- 버전 관리
-- Point Update
-- 포인트 업데이트
-- Range Query
-- 구간 질의
-- Offline Technique
-- 온라인 처리
-- Fast IO
-- 빠른입출력
-- Memory Optimization
-- 메모리 최적화
-- Complexity Analysis
-- 복잡도 분석
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Prefix-Sum
+- IO
+- Memory
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Implementation
 - 구현
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Tutorial
-- 해설
 - Editorial
 - 에디토리얼
-- Fenwick Tree
-- 펜윅트리
-- Binary Search
+- Fenwick-Tree
+- Binary-Search
 - 이분탐색
 - Hashing
 - 해싱
-- Sliding Window
-- 슬라이딩윈도우
-- Mo's Algorithm
-- 모스 알고리즘
-- Immutable DS
-- 불변 자료구조
-- Time Complexity
+- Sliding-Window
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
 image: "wordcloud.png"
 ---

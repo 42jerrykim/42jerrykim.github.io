@@ -8,58 +8,17 @@ header:
   teaser: /assets/images/2024/2024-08-27-cpp-safty.png
 tags:
 - C++
-- Cpp
 - security
-- SystemsProgramming
-- safety
-- HerbSutter
-- ProgrammingLanguages
-- MemorySafety
-- SoftwareVulnerabilities
+- Implementation
 - Rust
-- C++ standards
-- ISO C++
-- SoftwareSafety
-- CyberSecurity
-- SoftwareDevelopment
-- ProgrammingBestPractices
-- TypeSafety
-- BoundsSafety
-- InitializationSafety
-- LifetimeSafety
-- StaticAnalysis
-- DynamicAnalysis
-- SoftwareEngineering
-- CodeQuality
-- performance
+- Software-Architecture
+- Code-Quality
+- Performance
 - debugging
-- multithreading
-- shared_ptr
-- iostream
-- CheckedIterators
-- DebuggingTools
-- SoftwareArchitecture
-- SoftwareDesign
-- CompilerOptimizations
-- ProgrammingParadigms
-- object-oriented programming
-- FunctionalProgramming
-- TemplateProgramming
-- metaprogramming
-- CodeMaintainability
-- CodeReadability
-- SoftwareTesting
-- SoftwareReliability
-- SoftwarePerformance
-- SoftwareLifecycle
-- SoftwareMetrics
-- SoftwareQualityAssurance
-- ProgrammingChallenges
-- ProgrammingCommunity
-- SoftwareEcosystems
-- SoftwareSupplyChain
-- ProgrammingEducation
-- ProgrammingResources
+- Concurrency
+- OOP
+- Functional-Programming
+- Testing
 title: '[C++] C++의 보안 및 시스템 프로그래밍에 대한 비판'
 ---
 

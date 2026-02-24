@@ -13,72 +13,26 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-13618
 - C++
-- RSA
-- 암호
-- Cryptography
-- Public Key
-- 공개키
-- Private Key
-- 개인키
-- Modular Arithmetic
-- 모듈러 연산
-- Modular Inverse
-- 모듈러 역원
-- Euler Totient
-- 오일러 피 함수
-- φ(N)
-- Prime Factorization
-- 소인수분해
-- Extended Euclidean Algorithm
-- 확장 유클리드 알고리즘
-- GCD
-- 최대공약수
-- Number Theory
+- Modular-Arithmetic
+- 모듈러
+- Math
+- Number-Theory
 - 정수론
-- Fast Exponentiation
-- 빠른 거듭제곱
-- Binary Exponentiation
-- 이분 거듭제곱
-- Overflow
-- 오버플로
-- __int128
-- 64bit Integer
-- 64비트 정수
-- Time Complexity
+- Edge-Cases
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
 - Implementation
 - 구현
-- Math Proof
-- 수학적 증명
-- Inverse Modulo
-- 역원 계산
-- Brute Force Factorization
-- 소인수 탐색
 - Security
 - 보안
-- Encryption
-- 암호화
-- Decryption
-- 복호화
-- Edge Case
 - 엣지케이스
-- Problem Solving
+- Problem-Solving
 - 문제해결
-- Competitive Programming
-- 알고리즘 대회
+- Competitive-Programming
 - ICPC
-- Big Integer
-- 큰수 연산
-- CRT
-- 중국인 나머지 정리
-- Fermat
-- 페르마 정리
-- Modular Multiplication
-- 모듈러 곱셈
 image: "wordcloud.png"
 ---
 

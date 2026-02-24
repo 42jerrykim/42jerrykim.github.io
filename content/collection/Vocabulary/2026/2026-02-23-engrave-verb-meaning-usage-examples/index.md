@@ -9,54 +9,15 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - engrave
-  - engrave meaning
-  - engrave usage
-  - engrave examples
-  - engrave verb
   - 영단어
   - 영어동사
-  - engrave 의미
-  - engrave 용법
-  - engrave 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - carve
-  - etch
-  - inscribe
-  - cut
-  - imprint
-  - mark
-  - chisel
-  - 새기다
-  - 조각하다
-  - 인상을 남기다
-  - 깊이 남기다
-  - 기억에 남기다
-  - 예술 용어
-  - 감정 표현
-  - 기념물
-  - 기억
-  - 인상
-  - 감정적 영향
-  - 영구적 표시
-  - 미술 용어
-  - 메모리얼
-  - 감각적 표현
-  - 예술적 표현
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
-  - study English
-  - vocabulary building
-  - metaphorical usage
-  - figurative meaning
+  - Network-Flow
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

@@ -9,53 +9,18 @@ categories:
 tags:
   - Markdown
   - 마크다운
-  - Regex
-  - 정규식
-  - Regular Expression
+  - String
   - VSCode
-  - Visual Studio Code
-  - Heading
-  - 헤딩
-  - 제목
-  - Find and Replace
-  - Text Processing
   - Documentation
-  - 문서작성
-  - 문서편집
-  - Text Editing
-  - Numbering
-  - 번호매기기
-  - Emoji
-  - 이모티콘
-  - Pattern Matching
-  - 패턴매칭
-  - Search
-  - Replace
-  - Editor
-  - 편집기
-  - Formatting
-  - 포맷팅
-  - Clean Code
-  - 코드정리
-  - Text Cleanup
-  - Content Management
-  - 컨텐츠관리
-  - Writing
-  - Technical Writing
-  - 기술문서
-  - Documentation Tool
+  - Algorithm
+  - Implementation
+  - Clean-Code
   - Productivity
   - 생산성
   - Workflow
   - 워크플로우
   - Automation
   - 자동화
-  - Unicode
-  - 유니코드
-  - Character Class
-  - Quantifier
-  - Capture Group
-  - 캡처그룹
 description: "VSCode에서 마크다운 문서의 heading에 포함된 번호 매기기(1., 10.1.1 등)와 이모티콘을 효과적으로 제거하는 세 가지 정규식 패턴을 소개합니다. 계층적 번호, 명시적 이모티콘, 유니코드 범위를 활용한 실전 가이드를 제공합니다."
 image: wordcloud.png
 

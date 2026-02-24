@@ -4,10 +4,14 @@ description: "Minimal Mistakes Jekyll 테마에서 페이지의 최대 너비 �
 date: "2022-02-07T00:00:00Z"
 header:
   teaser: /assets/images/2022/2022-02-09-214522.png
-tag:
+tags:
 - Jekyll
-- MinimalMistakes
-- Theme
+- Git
+- GitHub
+- Sorting
+- Animation
+- CSS
+- Blog
 title: '[Minimal Mistakes] Minimal Mistakes 페이지 넓게 보기'
 ---
 

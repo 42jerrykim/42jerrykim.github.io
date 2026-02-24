@@ -3,7 +3,19 @@ draft: true
 title: "[Redux] 05. TypeScript 기초 - 타입 시스템 이해하기"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "TypeScript", "타입시스템", "Type System", "정적타입", "Static Typing", "Type Safety", "타입안전성", "Interface", "인터페이스", "Type Alias", "Generic", "제네릭", "웹개발", "프론트엔드", "TypeScript Basics", "TS", "타입추론", "Type Inference", "Union Types", "Intersection Types", "Literal Types", "Type Guards", "타입가드", "Utility Types", "유틸리티타입", "개발", "코딩", "타입스크립트기초", "타입정의", "Type Definition", "타입체크", "Type Checking", "JavaScript", "자바스크립트", "TypeScript Tutorial", "Learn TypeScript", "개발자가이드", "Best Practices", "Clean Code", "코드품질", "Code Quality", "IDE Support", "자동완성", "Autocomplete", "Refactoring", "리팩토링"]
+tags:
+- TypeScript
+- Interface
+- 인터페이스
+- 프론트엔드
+- Implementation
+- JavaScript
+- Best-Practices
+- Clean-Code
+- 코드품질
+- Code-Quality
+- Refactoring
+- 리팩토링
 description: "Redux Toolkit과 함께 사용하는 TypeScript 기초 완벽 마스터. 타입 시스템으로 안전한 Redux 코드 작성, 인터페이스와 제네릭으로 타입 재사용, 실전 Redux 타입 정의 패턴까지 학습합니다"
 series: ["Redux 완전 정복"]
 series_order: 5

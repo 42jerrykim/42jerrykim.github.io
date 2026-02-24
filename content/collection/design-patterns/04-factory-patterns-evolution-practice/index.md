@@ -13,50 +13,14 @@ categories:
 - Practice
 - Object Creation
 tags:
-- Factory Method
-- Abstract Factory
-- Simple Factory
-- Static Factory
-- Factory Pattern Practice
-- Object Creation
-- Creational Patterns
-- Design Patterns
-- GoF Patterns
-- Payment System
-- Game Character Creation
-- Logging System
-- Dependency Injection
-- IoC Container
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Software Engineering
-- Design Methodology
-- Architectural Patterns
-- Object Composition
-- 팩토리 메서드
-- 추상 팩토리
-- 심플 팩토리
-- 정적 팩토리
-- 팩토리 패턴 실습
-- 객체 생성
-- 생성 패턴
-- 디자인 패턴
-- GoF 패턴
-- 결제 시스템
-- 게임 캐릭터 생성
-- 로깅 시스템
-- 의존성 주입
-- IoC 컨테이너
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 소프트웨어 공학
-- 설계 방법론
-- 아키텍처 패턴
-- 객체 컴포지션
+- Design-Pattern
+- GoF
+- Dependency-Injection
+- Tutorial
+- Implementation
+- Software-Architecture
+- 디자인패턴
+- 구현
 ---
 
 이 실습에서는 Simple Factory, Factory Method, Abstract Factory 패턴을 직접 구현하며 다양한 생성 전략을 익힙니다.

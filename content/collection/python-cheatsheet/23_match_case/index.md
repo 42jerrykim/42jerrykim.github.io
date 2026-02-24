@@ -7,52 +7,16 @@ description: "파이썬 3.10+ 구조적 패턴 매칭을 빠르게 쓰기 위한
 lastmod: 2026-01-18
 collection_order: 23
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - match
-  - case
-  - pattern-matching
-  - 패턴매칭
-  - structural-pattern-matching
-  - 구조적패턴매칭
-  - switch
-  - switch-case
-  - control-flow
-  - 제어흐름
-  - literal
-  - 리터럴
-  - sequence
-  - 시퀀스
-  - mapping
-  - 매핑
-  - class-pattern
-  - 클래스패턴
-  - guard
-  - 가드
-  - wildcard
-  - 와일드카드
-  - OR-pattern
-  - capture
-  - 캡처
-  - destructuring
-  - 구조분해
-  - python310
-  - python311
-  - python312
-  - best-practices
-  - 베스트프랙티스
+  - Quick-Reference
+  - Math
+  - Best-Practices
   - pitfalls
   - 함정
-  - readability
-  - 가독성
-  - enum
-  - dataclass
+  - Clean-Code
 ---
 match-case는 Python 3.10에서 도입된 구조적 패턴 매칭입니다. 이 치트시트는 리터럴, 시퀀스, 매핑, 클래스 패턴과 가드 조건 사용법을 정리합니다.
 

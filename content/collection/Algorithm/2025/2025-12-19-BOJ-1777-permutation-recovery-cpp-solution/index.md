@@ -10,78 +10,39 @@ categories:
 - "Fenwick Tree"
 - "Order Statistics"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "1777"
-- "BOJ-1777"
-- "순열복원"
-- "Permutation Recovery"
-- "Permutation"
-- "순열"
-- "Reconstruction"
-- "복원"
-- "Inversion"
-- "역전"
-- "Inversion Sequence"
-- "역전 수열"
-- "Order Statistic"
-- "순서 통계"
-- "K-th"
-- "k번째"
-- "K-th Element"
-- "k번째 원소"
-- "Fenwick Tree"
-- "펜윅 트리"
-- "BIT"
-- "Binary Indexed Tree"
-- "Prefix Sum"
-- "누적합"
-- "Data Structure"
-- "자료구조"
-- "Online"
-- "온라인"
-- "Indexing"
-- "인덱싱"
-- "1-indexed"
-- "1부터"
-- "Greedy"
-- "그리디"
-- "Constructive"
-- "구성"
-- "Order Statistics Tree"
-- "순서통계트리"
-- "Segment Tree"
-- "세그먼트 트리"
-- "Balanced Tree"
-- "균형 트리"
-- "Implementation"
-- "구현"
-- "Fast IO"
-- "빠른 입출력"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N log N)"
-- "N<=100000"
-- "Constraints"
-- "제한"
-- "Corner Case"
-- "코너 케이스"
-- "Proof"
-- "정당성"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Combinatorics
+- Math
+- Fenwick-Tree
+- BIT
+- Binary-Indexed-Tree
+- Prefix-Sum
+- Data-Structures
+- 자료구조
+- Greedy
+- 그리디
+- Segment-Tree
+- 세그먼트트리
+- Implementation
+- 구현
+- IO
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- C++
 image: "wordcloud.png"
 ---
 

@@ -3,30 +3,15 @@ title: "[Vocabulary] Mature의 어원과 의미 - 성숙과 완성의 깊은 뜻
 categories:
 - Vocabulary
 tags:
-- English Words
-- Mature
+- English
 - Etymology
-- Vocabulary Learning
-- Development
-- Growth
-- Completion
+- Vocabulary
+- Implementation
 - Psychology
 - Biology
-- Business
-- 성숙
-- 성장
-- 완성
-- 발달
+- Business-English
 - 심리학
 - 생물학
-- 비즈니스
-- 단어학습
-- 의미
-- 예문
-- 라틴어
-- 성인
-- 성숙한
-- 완전한
 image: wordcloud.png
 date: 2025-08-07
 description: "영어 단어 'mature'의 어원과 다양한 의미를 탐구한다. 라틴어 'maturus'에서 유래한 이 단어는 '성숙하다', '완성되다', '성장하다' 등 중요한 의미를 가진다. 생물학적, 심리학적, 비즈니스적 맥락에서의 활용과 실제 예문을 통해 이 단어의 깊이 있는 이해를 돕는다."

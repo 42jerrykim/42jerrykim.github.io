@@ -11,59 +11,22 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-17367
 - C++
-- Dynamic Programming
-- 동적 계획법
+- Dynamic-Programming
 - DP
-- Expectation
-- 기댓값
-- Probability
-- 확률
-- Game Strategy
-- 게임 전략
-- Optimal Play
-- 최적 플레이
-- Dice Game
-- 주사위 게임
-- Gambling
-- 도박
-- Prize Calculation
-- 상금 계산
-- Bellman Equation
-- 벨만 방정식
-- Backward Induction
-- 역방향 귀납법
-- Decision Making
-- 의사결정
-- State Space
-- 상태 공간
 - Memoization
-- 메모이제이션
-- Mathematical Analysis
-- 수학적 분석
-- Floating Point
-- 부동소수점
-- Numerical Precision
-- 수치 정밀도
-- Problem Solving
+- Edge-Cases
+- Problem-Solving
 - 문제해결
-- Coding Test
+- Coding-Test
 - 코딩테스트
-- Algorithm Design
-- 알고리즘 설계
 - Implementation
 - 구현
-- Edge Case
 - 엣지케이스
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- O(N)
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- O(N)
-- UCPC
-- 대학생 프로그래밍 대회
 image: "wordcloud.png"
 description: 동적 계획법과 확률을 이용한 게임 이론 풀이입니다. 최적 전략을 역방향 귀납법으로 구성하고 각 상태의 기댓값을 계산하는 O(N) 풀이를 다룹니다.
 ---

@@ -9,54 +9,24 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
-  - Interpreter
-  - 인터프리터
-  - Behavioral Pattern
-  - 행위 패턴
+  - Design-Pattern
+  - 디자인패턴
   - GoF
-  - Gang of Four
   - Grammar
   - 문법
-  - Language
-  - 언어
-  - DSL
-  - Domain Specific Language
-  - 도메인 특화 언어
-  - Parser
-  - 파서
-  - Expression
-  - 표현식
-  - Abstract Syntax Tree
-  - 추상 구문 트리
-  - Terminal Expression
-  - 터미널 표현식
-  - Nonterminal Expression
-  - 비터미널 표현식
-  - Context
-  - 컨텍스트
-  - Regular Expression
-  - 정규 표현식
-  - SQL Parser
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Nuance
+  - Code-Quality
+  - 코드품질
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
+  - CSharp
   - Compiler
   - 컴파일러
-  - Calculator
-  - 계산기
-  - Rule Engine
-  - 규칙 엔진
 ---
 
 인터프리터 패턴(Interpreter Pattern)은 특정 언어나 문법을 해석하고 실행하는 방법을 정의하는 행위 디자인 패턴이다. 이 패턴을 사용하면 간단한 언어의 문법을 클래스로 표현하고, 문장을 해석하는 인터프리터를 구현할 수 있다.

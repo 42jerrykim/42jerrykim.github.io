@@ -6,40 +6,15 @@ date: "2023-09-22T00:00:00Z"
 header:
   teaser: /assets/images/undefined/teaser.jpg
 tags:
-- AbstractFactoryPattern
-- DesignPatterns
-- SoftwareEngineering
-- ObjectCreation
-- ConcreteClasses
-- GenericInterfaces
-- ObjectComposition
-- InterchangeableImplementations
-- Complexity
+- Design-Pattern
+- Software-Architecture
+- Complexity-Analysis
 - Debugging
-- Maintenance
 - Inheritance
-- AbstractClasses
-- Interfaces
-- Cpp
+- Interface
+- C++
 - CSharp
-- MazeGame
-- MazeFactory
-- UMLDiagram
-- ImplementationCode
-- Benefits
-- UseCases
-- ProductFamilies
-- Compatibility
-- Participants
-- ConcreteFactory
-- AbstractProduct
-- Product
-- Client
-- UMLClassDiagram
-- Dofactory .NET Product
-- PatternArchitectures
-- Low-Code Development
-- RapidApplicationDevelopment
+- Implementation
 title: '[DesignPattern] Abstract Factory Pattern - 추상팩토리 패턴'
 ---
 

@@ -5,58 +5,18 @@ slug: getting-started-performance-regression-prevention-strategies
 description: "Low-latency 성능 회귀 방지·유지보수 트랙의 도입 챕터입니다. 성능 테스트 자동화와 PR 게이트, performance budget 운영을 정리하고, '빠른 상태를 지키는' 운영 원칙을 한 번에 소개합니다."
 tags:
   - Performance
-  - Performance Engineering
-  - Performance Optimization
-  - Low Latency
-  - Low-latency
-  - Microsecond
-  - Latency
-  - Benchmark
-  - Microbenchmark
   - Profiling
-  - Regression
-  - Performance Regression
-  - CI
-  - CD
+  - Testing
+  - CI-CD
   - Automation
-  - Performance Test
-  - Benchmarking
-  - Performance Budget
-  - Guardrail
-  - Observability
-  - Metrics
-  - Alerting
-  - Release
-  - Code Review
-  - PR
-  - Maintainability
-  - 측정
-  - 검증
+  - Monitoring
+  - Code-Review
+  - Code-Quality
   - 성능
-  - 성능공학
-  - 성능 최적화
-  - 저지연
-  - 마이크로초
-  - 레이턴시
-  - 벤치마크
-  - 마이크로벤치마크
   - 프로파일링
-  - 성능 회귀
-  - 회귀 방지
   - 자동화
-  - CI
-  - CD
-  - 성능 테스트
-  - 성능 예산
-  - 가드레일
-  - 관측가능성
-  - 메트릭
-  - 알림
-  - 릴리즈
-  - 코드 리뷰
-  - PR
-  - 유지보수
-  - 운영
+  - 코드리뷰
+  - 코드품질
 ---
 
 이 트랙은 "성능이 다시 느려지지 않게 만드는 시스템"을 책임집니다. µs 단위에서는 작은 변경도 레이턴시 분포를 망칠 수 있으므로, 성능을 제품 품질의 일부로 운영합니다.

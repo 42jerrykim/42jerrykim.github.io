@@ -11,58 +11,24 @@ tags:
   - 알고리즘
   - BOJ
   - 백준
-  - Problem-16746
   - C++
   - Graph
   - 그래프
-  - Graph Coloring
-  - 그래프 색칠
-  - Four Color Theorem
-  - 4색 정리
-  - Planar Graph
-  - 평면 그래프
-  - Smallest-Last Ordering
-  - Kempe Chain
-  - Degeneracy
-  - Coloring Algorithm
-  - 색칠 알고리즘
-  - Greedy Coloring
-  - 그리디 색칠
   - BFS
   - DFS
-  - Graph Traversal
-  - 그래프 순회
-  - Vertex Coloring
-  - 정점 색칠
-  - Edge Coloring
-  - Component Analysis
-  - 연결 요소 분석
-  - Heuristic Algorithm
-  - 휴리스틱 알고리즘
-  - Constructive Algorithm
-  - 구성적 알고리즘
-  - Implementation Details
-  - 구현 디테일
-  - Time Complexity
+  - Implementation
+  - 구현
+  - Time-Complexity
   - 시간복잡도
-  - Space Complexity
+  - Space-Complexity
   - 공간복잡도
-  - Proof of Correctness
-  - 정당성 증명
-  - Competitive Programming
+  - Competitive-Programming
   - 경쟁프로그래밍
   - ICPC
-  - Yokohama Regional
-  - 2018
-  - Asia Regional
-  - Graph Theory
-  - 그래프 이론
-  - Data Structures
+  - Graph-Theory
+  - 그래프이론
+  - Data-Structures
   - 자료구조
-  - Adjacency List
-  - 인접 리스트
-  - Algorithm Study
-  - 알고리즘 공부
 image: "wordcloud.png"
 ---
 

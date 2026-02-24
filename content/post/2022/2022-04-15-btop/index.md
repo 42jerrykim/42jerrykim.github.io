@@ -10,24 +10,12 @@ header:
   teaser: /assets/images/2022/2022-04-15-122101.png
 tags:
 - Linux
-- Monitor
 - CPU
-- Disks
-- Disk
 - Memory
-- Processor
-- Network
-- Processes
+- Networking
 - 모니터링
-- 모니터
-- 사용량
-- 프로세스
 - 메모리
-- 네트워크
 - 리눅스
-- 디스크
-- Resource
-- 리소스
 title: '[Linux] btop++ - Processor, Memory, Disks, Network and Processes 모니터'
 ---
 

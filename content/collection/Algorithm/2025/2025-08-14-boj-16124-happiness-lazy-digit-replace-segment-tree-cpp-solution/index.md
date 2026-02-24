@@ -11,76 +11,35 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-16124
-- cpp
 - C++
-- Data Structures
+- Data-Structures
 - 자료구조
-- Segment Tree
-- 세그먼트 트리
-- Lazy Propagation
-- 지연 전파
-- Digit Replacement
-- 자릿수 치환
-- Digit Mapping
-- 자릿수 매핑
-- Mapping Composition
-- 매핑 합성
-- Range Update
-- 구간 업데이트
-- Range Query
-- 구간 질의
-- Substring Modulo
-- 부분 문자열 모듈러
-- Modulo
+- Segment-Tree
+- 세그먼트트리
+- Lazy-Propagation
+- Range-Query
+- Modular-Arithmetic
 - 모듈러
-- Power of Ten
-- 10의 거듭제곱
-- Rolling Power
-- 자리 가중치
-- Weighted Sum
-- 가중 합
-- Immutable Build
-- 선형 빌드
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Fast IO
-- 빠른 입출력
+- IO
 - Memory
 - 메모리
 - Array
 - 배열
-- Integer String
-- 숫자 문자열
-- Query Processing
-- 쿼리 처리
-- Compose Function
-- 함수 합성
-- Digit Count Vector
-- 자릿수 벡터
-- Monoid
-- 모노이드
-- Offline/Online
-- 온라인 처리
-- 998244353
-- Number Theory
-- 수론
+- Number-Theory
 image: "wordcloud.png"
 ---
 

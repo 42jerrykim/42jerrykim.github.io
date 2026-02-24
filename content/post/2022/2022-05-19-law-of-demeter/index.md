@@ -7,101 +7,26 @@ lastmod: "2025-09-04"
 title: "[OOP] 디미터의 법칙(Law of Demeter) - 결합도 낮추는 객체 협력 가이드"
 description: "디미터의 법칙(Law of Demeter)은 객체가 오직 가까운 이웃과만 상호작용하도록 하여 결합도를 낮추고 응집도를 높이는 설계 원칙입니다. 흔한 위반 사례, 리팩터링 방법, 실전 예제를 정리했습니다."
 tags:
-- Law of Demeter
-- LoD
-- Object-Oriented Programming
 - OOP
 - encapsulation
-- cohesion
-- coupling
-- loose coupling
-- high cohesion
-- message passing
-- tell dont ask
-- tell-dont-ask
-- train wreck
-- method chaining
-- dot chaining
-- fluent interface
-- Demeter rule
-- friend objects
-- object collaboration
-- design principle
-- design smell
-- code smell
+- Software-Architecture
 - refactoring
 - abstraction
 - interface
-- dependency inversion
-- DIP
-- single responsibility
-- SRP
-- encapsulate
-- protective wrapper
+- Dependency-Injection
 - facade
-- domain model
-- rich domain model
-- anemic domain model
-- DTO
-- maintainability
-- readability
-- testability
-- mocking
-- stubbing
-- indirection
-- delegation
-- messaging
-- API design
-- getter chaining
-- encapsulation leak
-- information hiding
-- 디미터의법칙
-- 디미터의 법칙
+- Code-Quality
+- Clean-Code
+- Testing
 - 객체지향
-- 객체 지향
 - 캡슐화
 - 응집도
 - 결합도
-- 낮은 결합도
-- 높은 응집도
-- 메시지 전달
-- 묻지말고말하라
-- 기차충돌
-- 점찍기지옥
-- 메서드 체이닝
-- 플루언트 인터페이스
-- 설계 원칙
-- 설계 냄새
-- 코드 스멜
-- 리팩터링
+- SOLID
 - 추상화
 - 인터페이스
-- 의존성 역전
-- DIP 원칙
-- 단일 책임 원칙
-- SRP 원칙
-- 보호적 래퍼
-- 파사드
-- 도메인 모델
-- 풍부한 도메인
-- 빈혈 도메인 모델
-- 유지보수성
-- 가독성
-- 테스트 용이성
-- 목 객체
-- 스텁
-- 간접화
-- 위임
-- 메시징
-- API 설계
-- 게터 체이닝
-- 캡슐화 침해
-- 정보 은닉
-- 경계 설계
-- 협력
-- 이웃 객체
-- 친구 객체
-- 내부 구조 노출
+- 의존성주입
+- 코드품질
 ---
 
 디미터의 법칙은 객체가 자신의 가까운 이웃과만 대화하게 만들어 불필요한 결합을 줄이고 응집을 높이는 객체지향 설계 원칙입니다. 긴 점 체이닝과 내부 구조 노출을 줄이고, 도메인 언어로 말하는 메서드를 제공하도록 이끕니다.

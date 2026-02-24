@@ -10,80 +10,43 @@ categories:
 - "Fenwick Tree"
 - "Prefix Sum"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "3006"
-- "BOJ-3006"
-- "터보소트"
-- "Turbo Sort"
-- "Sorting"
-- "정렬"
-- "Permutation"
-- "순열"
-- "Data Structure"
-- "자료구조"
-- "Fenwick Tree"
-- "펜윅 트리"
-- "Binary Indexed Tree"
-- "BIT"
-- "이진 인덱스 트리"
-- "Prefix Sum"
-- "누적합"
-- "Range Sum Query"
-- "구간 합"
-- "Point Update"
-- "점 업데이트"
-- "Order Statistic"
-- "순서 통계"
-- "Dynamic Order"
-- "동적 순서"
-- "Position Tracking"
-- "위치 추적"
-- "Index"
-- "인덱스"
-- "Adjacent Swap"
-- "인접 스왑"
-- "Swap Count"
-- "스왑 횟수"
-- "Inversion"
-- "역전"
-- "Inversion Count"
-- "역전 수"
-- "Greedy"
-- "그리디"
-- "Simulation"
-- "시뮬레이션"
-- "Removal"
-- "삭제"
-- "Online Query"
-- "온라인 쿼리"
-- "O(N log N)"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "Array"
-- "배열"
-- "Counting"
-- "카운팅"
-- "COCI"
-- "Croatian Open Competition in Informatics"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Sorting
+- 정렬
+- Combinatorics
+- Data-Structures
+- 자료구조
+- Fenwick-Tree
+- Binary-Indexed-Tree
+- BIT
+- Prefix-Sum
+- Segment-Tree
+- Math
+- Greedy
+- 그리디
+- Simulation
+- 시뮬레이션
+- Range-Query
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Implementation
+- 구현
+- C++
+- IO
+- Array
+- 배열
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- Competitive-Programming
+- 경쟁프로그래밍
 image: "wordcloud.png"
 ---
 

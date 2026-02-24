@@ -9,56 +9,27 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
-  - Bridge
-  - 브릿지
-  - Structural Pattern
-  - 구조 패턴
+  - Design-Pattern
+  - 디자인패턴
   - GoF
-  - Gang of Four
   - Abstraction
   - 추상화
   - Implementation
   - 구현
-  - Decoupling
-  - 분리
-  - Separation of Concerns
-  - 관심사 분리
-  - Refined Abstraction
-  - 정제된 추상화
-  - Concrete Implementation
-  - 구체적 구현
-  - Composition over Inheritance
-  - 상속보다 합성
-  - Flexibility
-  - 유연성
-  - Extensibility
+  - SOLID
+  - Software-Architecture
   - 확장성
-  - Platform Independence
-  - 플랫폼 독립성
-  - Driver
-  - 드라이버
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Code-Quality
+  - 코드품질
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - Runtime Binding
-  - 런타임 바인딩
+  - CSharp
   - Interface
   - 인터페이스
-  - Delegation
-  - 위임
-  - Cross Platform
-  - 크로스 플랫폼
 ---
 
 브릿지 패턴(Bridge Pattern)은 추상화(Abstraction)와 구현(Implementation)을 분리하여 각각 독립적으로 변형할 수 있게 하는 구조적 디자인 패턴이다. 이 패턴은 상속 대신 합성을 사용하여 두 차원의 변화를 독립적으로 관리할 수 있게 해주며, 런타임에 구현을 교체할 수 있는 유연성을 제공한다.

@@ -11,67 +11,35 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-4001
-- cpp
 - C++
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Graph
 - 그래프
-- Grid
-- 격자
-- Maze
-- 미로
-- Wall Follower
-- 벽따라가기
-- Left-hand Rule
-- 좌수법
-- Right-hand Rule
-- 우수법
-- Prefix Sum
-- 누적합
-- 2D Prefix Sum
-- 2차원 누적합
-- Binary Search
+- Prefix-Sum
+- Binary-Search
 - 이분탐색
-- Rectangle Query
-- 직사각형 질의
-- Path Blocking
-- 경로 차단
-- Pathfinding
-- 경로 탐색
-- Special Judge
-- 스페셜 저지
-- NEERC
 - ICPC
-- Minotaur
-- 미노타우르스
 image: "wordcloud.png"
 ---
 

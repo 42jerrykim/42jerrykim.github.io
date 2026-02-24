@@ -11,74 +11,43 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-11012
-- cpp
 - C++
-- Data Structures
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
-- Binary Indexed Tree
-- Fenwick Tree
-- 펜윅트리
+- Complexity-Analysis
+- 복잡도분석
+- Binary-Indexed-Tree
+- Fenwick-Tree
 - BIT
-- Coordinate Compression
+- Coordinate-Compression
 - 좌표압축
-- Sweep Line
-- 스위핑
-- Offline Query
-- 오프라인 쿼리
-- Inclusion-Exclusion
-- 포함배제
-- Range Query
-- 범위쿼리
-- Rectangle Query
-- 직사각형쿼리
-- 2D Range Counting
-- 2D 범위 카운팅
-- Orthogonal Range Counting
-- 직교 범위 카운팅
-- Event Processing
-- 이벤트 처리
-- Prefix Sum
-- 누적합
+- Range-Query
+- Prefix-Sum
 - Sorting
 - 정렬
 - Geometry
-- 기하
 - Math
 - 수학
-- Egg
-- Rectangle
-- 좌표평면
-- Algorithm Design
-- 알고리즘 설계
 image: "wordcloud.png"
 ---
 

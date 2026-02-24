@@ -9,57 +9,19 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - stimulation
-  - stimulation meaning
-  - stimulation usage
-  - stimulation examples
-  - stimulation noun
   - 영단어
   - 영어명사
-  - stimulation 의미
-  - stimulation 용법
-  - stimulation 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - stimulus
-  - excitation
-  - stimuli
-  - activation
-  - arousal
-  - invigoration
-  - encouragement
-  - 자극
-  - 촉진
-  - 증진
-  - 흥미유발
-  - 각성
-  - 자극 반응
-  - neuroscience
   - psychology
-  - economics
   - education
-  - technology
-  - 신경학
+  - Technology
   - 심리학
-  - 경제학
   - 교육
-  - 기술
-  - brain stimulation
-  - sensory stimulation
-  - cognitive stimulation
-  - economic stimulus
-  - intellectual
-  - mental
-  - physical stimulation
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

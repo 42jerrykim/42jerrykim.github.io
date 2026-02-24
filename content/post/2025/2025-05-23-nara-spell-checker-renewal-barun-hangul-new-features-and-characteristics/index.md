@@ -2,72 +2,15 @@
 title: "[Orthography] 나라 맞춤법 검사기 리뉴얼: '바른 한글'로 새단장된 기능과 특징"
 date: 2025-05-23
 description: "부산대학교와 ㈜나라인포테크가 개발한 '바른 한글' 맞춤법 검사기의 24년 만의 대대적인 리뉴얼 내용을 소개하는 글이다. 사용자 피드백 기능 도입, 오류 교정 제안 강화, UI/UX 개선, AI 기술 접목 등 주요 업데이트 사항을 상세히 다룬다."
-tags: 
-- Spell Checker
-- Grammar Checker
-- Korean Language
-- Natural Language Processing
-- AI Technology
-- Machine Learning
-- Deep Learning
-- Text Analysis
-- Language Tools
-- Educational Technology
-- Software Development
-- User Interface
-- User Experience
-- Web Application
-- Mobile Optimization
-- Cloud Computing
-- API Integration
-- Text Processing
-- Language Correction
-- Proofreading
-- Digital Tools
-- Educational Software
-- Language Learning
-- Text Editing
-- Software Engineering
-- Computer Science
-- Natural Language Understanding
-- Text Mining
-- Language Technology
-- Digital Education
-- 맞춤법
+tags:
+- Machine-Learning
+- Implementation
+- Software-Architecture
 - 문법
-- 한글
-- 맞춤법 검사기
-- 문법 검사기
-- 바른 한글
-- 부산대
-- 나라인포테크
-- 리뉴얼
-- UI/UX
-- 사용자 피드백
-- 오류 교정
 - AI
 - 인공지능
 - 머신러닝
 - 딥러닝
-- 자연어 처리
-- 텍스트 분석
-- 언어 도구
-- 교육 기술
-- 웹 애플리케이션
-- 모바일 최적화
-- 클라우드 컴퓨팅
-- API 연동
-- 텍스트 처리
-- 언어 교정
-- 교정
-- 디지털 도구
-- 교육 소프트웨어
-- 언어 학습
-- 한국어
-- 맞춤법
-- 바른 한글
-- 리뉴얼
-- AI
 categories: 
 - Orthography
 - Spell Checking

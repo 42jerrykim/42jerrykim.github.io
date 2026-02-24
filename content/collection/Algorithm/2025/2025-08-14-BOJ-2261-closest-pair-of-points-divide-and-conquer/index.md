@@ -11,73 +11,39 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-2261
-- cpp
 - C++
 - Geometry
-- 기하
-- Computational Geometry
-- 계산기하
-- Closest Pair
-- 최근접점
-- Closest Pair of Points
-- Divide and Conquer
+- Computational-Geometry
+- Divide-and-Conquer
 - 분할정복
-- Strip
-- 스트립
 - Sorting
 - 정렬
-- Sorting by X
-- X좌표정렬
-- Merge by Y
-- Y좌표정렬
-- Stable Merge
-- 안정 병합
-- Euclidean Distance
-- 유클리드거리
-- Squared Distance
-- 제곱거리
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- O(N log N)
-- Proof of Correctness
-- 정당성 증명
-- Invariant
-- 불변식
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
-- Overflow
-- 오버플로
-- 64-bit
-- Long Long
+- 함정
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Binary Search
+- Complexity-Analysis
+- 복잡도분석
+- Binary-Search
 - 이분탐색
-- Two Pointers
-- 투포인터
-- Sliding Window
-- 슬라이딩윈도우
+- Two-Pointers
+- Sliding-Window
 - Hashing
 - 해싱
 - String
@@ -86,17 +52,14 @@ tags:
 - 그래프
 - Tree
 - 트리
-- Segment Tree
-- 세그먼트 트리
-- Fenwick Tree
-- 펜윅트리
-- Disjoint Set Union
-- 유니온파인드
-- Shortest Path
+- Segment-Tree
+- 세그먼트트리
+- Fenwick-Tree
+- Disjoint-Set
+- Shortest-Path
 - 최단경로
 - Dijkstra
-- 다익스트라
-- Modulo
+- Modular-Arithmetic
 - 모듈러
 image: "wordcloud.png"
 ---

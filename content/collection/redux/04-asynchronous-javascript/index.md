@@ -3,7 +3,17 @@ draft: true
 title: "[Redux] 04. 비동기 JavaScript - Promise와 async/await"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "JavaScript", "비동기", "Promise", "async/await", "Asynchronous", "비동기프로그래밍", "API", "Fetch", "AJAX", "웹개발", "프론트엔드", "JavaScript Async", "Callback", "콜백", "Promises", "Async Functions", "Error Handling", "에러처리", "try-catch", "Promise Chaining", "프로미스체이닝", "Promise.all", "Promise.race", "병렬처리", "Parallel Processing", "개발", "코딩", "자바스크립트비동기", "데이터페칭", "Data Fetching", "HTTP Requests", "REST API", "Axios", "비동기패턴", "Async Patterns", "Concurrency", "동시성", "Event Loop", "이벤트루프", "Microtasks", "마이크로태스크", "JavaScript Tutorial", "개발자가이드", "Best Practices"]
+tags:
+- JavaScript
+- 비동기
+- API
+- 프론트엔드
+- Error-Handling
+- 에러처리
+- Implementation
+- Concurrency
+- 동시성
+- Best-Practices
 description: "Redux 비동기 처리의 기초인 Promise와 async/await 완벽 마스터. API 호출, 데이터 페칭, 에러 처리까지 Redux에서 필수적인 비동기 프로그래밍 패턴을 실전 예제로 학습합니다"
 series: ["Redux 완전 정복"]
 series_order: 4

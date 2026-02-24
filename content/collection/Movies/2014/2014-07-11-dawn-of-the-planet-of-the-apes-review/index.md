@@ -1,10 +1,10 @@
 ---
 title: "혹성탈출: 반격의 서막 (2014) - 진화한 문명과 몰락한 인류의 대비"
 date: 2014-07-11
-categories: [Movies]
-tags: [Dawn of the Planet of the Apes, Matt Reeves, Andy Serkis, Jason Clarke, Gary Oldman, Keri Russell, Motion Capture, Weta Digital, Science Fiction, 2014]
-
-
+categories:
+- Movies
+tags:
+- Sci-Fi
 draft: true
 ---
 

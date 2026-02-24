@@ -9,64 +9,15 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Phrases
-  - Phrasal Expressions
-  - fill someone's shoes
-  - fill someone's shoes meaning
-  - fill someone's shoes usage
-  - fill someone's shoes examples
-  - English idiom
   - 영단어
-  - 영어 숙어
-  - 영어 구문
-  - 구문 의미
-  - 구문 용법
-  - 구문 예문
-  - fill shoes meaning
-  - successor
-  - replacement
-  - take over
-  - follow in footsteps
-  - 역할 전환
-  - 대리자
-  - 후임자
-  - 누군가를 대신하다
-  - 역할을 이어받다
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - workplace
-  - 직장
-  - business
-  - leadership
-  - sports
-  - 스포츠
-  - organization
-  - 조직
-  - successor metaphor
-  - responsibility
-  - duty
-  - 책임감
-  - 의무
-  - transition
-  - 전환
-  - comparison
-  - 비교
-  - challenge
-  - 도전
-  - expectation
-  - 기대감
-  - performance
-  - 성과
-  - EN/KR examples
-  - usage notes
-  - grammar
-  - pronunciation
-  - study English
-  - vocabulary building
+  - Business-English
+  - Performance
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

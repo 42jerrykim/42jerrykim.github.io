@@ -6,63 +6,20 @@ date: "2024-09-23T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-09-23-distrubute-system.png
 tags:
-- DistributedSystems
 - Microservices
 - Scalability
-- FaultTolerance
-- DataConsistency
-- LoadBalancing
 - Caching
-- EventSourcing
 - CQRS
-- LeaderElection
-- CircuitBreaker
-- Bulkhead
-- RetryPattern
-- Sharding
-- ServiceRegistry
-- HintedHandoff
-- ReadRepair
-- Write-Ahead Log
-- Split-Brain
-- Patterns
-- Architecture
-- CloudComputing
-- APIGateway
-- PerformanceOptimization
-- ResourceManagement
-- DataPartitioning
-- AsynchronousProcessing
-- NetworkProtocols
-- DataStructures
-- Algorithms
-- HighAvailability
+- Design-Pattern
+- Software-Architecture
+- Performance
+- Data-Structures
+- Algorithm
 - Monitoring
 - Logging
-- ErrorHandling
-- SystemDesign
-- Event-Driven Architecture
-- MessagingSystems
-- DataReplication
-- ConsistencyModels
-- DistributedTransactions
-- ResourceIsolation
-- ApplicationResilience
-- SystemComplexity
-- Client-Server Model
-- NetworkLatency
-- DataSynchronization
-- PerformanceMetrics
-- SystemRecovery
-- ApplicationArchitecture
-- SoftwareEngineering
-- TechnologyTrends
-- CloudServices
-- DataStorage
-- SystemIntegration
-- ApplicationDevelopment
-- SoftwarePatterns
-- BestPractices
+- Error-Handling
+- Implementation
+- Best-Practices
 title: '[DistributedSystems] 분산 시스템 패턴'
 ---
 

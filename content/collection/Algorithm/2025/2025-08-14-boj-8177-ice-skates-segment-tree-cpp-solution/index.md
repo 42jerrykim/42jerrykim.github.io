@@ -11,73 +11,44 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-8177
-- cpp
 - C++
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
-- Data Structures
+- Complexity-Analysis
+- 복잡도분석
+- Data-Structures
 - 자료구조
-- Segment Tree
-- 세그먼트 트리
-- Range Query
-- 구간 질의
-- Max Subarray
-- 최대연속합
-- Kadane
-- 카데인
-- Prefix Sum
-- 접두사합
-- Suffix Sum
-- 접미사합
-- Online Query
-- 온라인 쿼리
-- Point Update
-- 점 갱신
-- POI
-- 폴란드 올림피아드
-- Ice Skates
-- 아이스 스케이트
+- Segment-Tree
+- 세그먼트트리
+- Range-Query
+- Prefix-Sum
 - Array
 - 배열
-- Sliding Window
-- 슬라이딩윈도우
+- Sliding-Window
 - Math
 - 수학
 - Greedy
 - 그리디
-- Validation
-- 검증
 - Debugging
 - 디버깅
-- Implementation Details
-- 구현 디테일
 image: "wordcloud.png"
 ---
 

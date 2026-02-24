@@ -9,94 +9,19 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - Gladiatorial
-  - gladiatorial meaning
-  - gladiatorial usage
-  - gladiatorial examples
-  - gladiatorial adjective
-  - gladiator
-  - gladiatorial combat
-  - gladiatorial arena
-  - gladiatorial contest
-  - gladiatorial games
-  - Roman history
-  - ancient Rome
-  - combat
-  - battle
-  - fierce competition
-  - brutal competition
-  - competitive
-  - combative
-  - aggressive
-  - confrontational
-  - violent
-  - bloodthirsty
-  - ruthless
-  - cutthroat
-  - arena
-  - amphitheater
-  - Colosseum
-  - spectacle
-  - entertainment
-  - sports metaphor
-  - business metaphor
-  - political metaphor
-  - debate
-  - contest
-  - struggle
-  - rivalry
-  - adversarial
-  - bellicose
-  - martial
-  - warlike
-  - historical terms
-  - Latin origin
-  - Roman culture
-  - academic English
-  - formal English
-  - literary English
-  - journalism
-  - collocation
-  - expressions
-  - nuance
-  - etymology
-  - context
-  - synonym
+  - Competitive-Programming
+  - Academic-English
+  - Collocation
+  - Nuance
+  - Etymology
+  - Synonym
   - 영단어
   - 영어형용사
-  - gladiatorial 의미
-  - gladiatorial 용법
-  - gladiatorial 예문
-  - 검투사의
-  - 전투적인
-  - 치열한
-  - 격렬한
-  - 잔인한
-  - 무자비한
-  - 경쟁적인
-  - 대결적인
-  - 공격적인
-  - 로마역사
-  - 고대로마
-  - 검투사경기
-  - 원형경기장
-  - 콜로세움
-  - 스포츠비유
   - 비즈니스영어
-  - 정치영어
-  - 논쟁
-  - 경쟁
-  - 라틴어원
-  - 로마문화
-  - 격식영어
-  - 문학영어
-  - 저널리즘
   - 콜로케이션
   - 뉘앙스
   - 어원
-  - 맥락
-  - 동의어
+  - 유의어
 image: wordcloud.png
 ---
 

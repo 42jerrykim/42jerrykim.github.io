@@ -11,89 +11,36 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-13161
-- cpp
 - C++
-- python
 - Python
-- Data Structures
+- Data-Structures
 - 자료구조
 - Graph
 - 그래프
-- Network Flow
-- 네트워크플로우
-- Max Flow
-- 최대유량
-- Min Cut
-- 최소컷
-- s-t Cut
-- st-컷
-- Dinic
-- 디닉
-- Edmonds-Karp
-- 에드몬즈카프
-- Residual Graph
-- 잔여그래프
-- Level Graph
-- 레벨그래프
-- Blocking Flow
-- 블로킹플로우
-- Source
-- 소스
-- Sink
-- 싱크
-- Capacity
-- 용량
-- INF Edge
-- 무한대간선
-- Cut Capacity
-- 컷용량
-- Graph Cut
-- 그래프컷
-- Partition
-- 분할
-- Bipartition
-- 이분분할
-- Undirected Graph
-- 무향그래프
-- Modeling
-- 모델링
-- UCPC
-- UCPC-2016
-- Special Judge
-- 스페셜저지
+- Network-Flow
+- Divide-and-Conquer
+- Software-Architecture
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Complexity Analysis
-- 복잡도 분석
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
 - Testing
 - 테스트
-- Invariant
-- 불변식
 - BFS
-- 너비우선탐색
-- Cut Recovery
-- 컷복원
-- Partition Recovery
-- 분할복원
-- UCPC-2016-C
-- 분단의-슬픔
 image: "wordcloud.png"
 ---
 

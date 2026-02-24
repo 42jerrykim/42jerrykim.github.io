@@ -10,79 +10,23 @@ categories:
 - "C/C++"
 - "Java"
 tags:
-- "performance"
-- "optimization"
-- "compiler"
-- "JIT"
-- "C"
-- "C++"
-- "Java"
-- "C#"
-- "Go"
-- "Rust"
-- "x86"
-- "assembly"
-- "add instruction"
-- "inc instruction"
-- "IR"
-- "SSA"
-- "peephole optimization"
-- "strength reduction"
-- "dead code elimination"
-- "microbenchmark"
-- "benchmark"
-- "JMH"
-- "BenchmarkDotNet"
-- "Google Benchmark"
-- "iterator"
-- "pre-increment"
-- "post-increment"
-- "prefix increment"
-- "postfix increment"
-- "operator"
-- "semantics"
-- "undefined behavior"
-- "aliasing"
-- "register allocation"
-- "pipeline"
-- "branch prediction"
-- "hot path"
-- "JIT warmup"
-- "codegen"
-- "decompilation"
-- "disassembly"
-- "performance myths"
-- "coding style"
-- "readability"
-- "best practices"
-- "low-level"
-- "machine code"
-- "flags"
-- "carry flag"
-- "overflow flag"
-- "zero flag"
-- "CPU"
-- "compiler optimization"
-- "optimization barrier"
-- "성능"
-- "최적화"
-- "컴파일러"
-- "어셈블리"
-- "증가 연산자"
-- "전위 증가"
-- "후위 증가"
-- "반복자"
-- "가독성"
-- "의미론"
-- "미시 벤치마크"
-- "벤치마크"
-- "기계어"
-- "레지스터"
-- "파이프라인"
-- "분기 예측"
-- "플래그"
-- "코딩 스타일"
-- "모범 사례"
+- Performance
+- optimization
+- compiler
+- C
+- C++
+- Java
+- CSharp
+- Go
+- Rust
+- assembly
+- iterator
+- Clean-Code
+- Best-Practices
+- CPU
+- 성능
+- 최적화
+- 컴파일러
 image: "wordcloud.png"
 ---
 

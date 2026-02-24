@@ -7,95 +7,69 @@ categories:
 - "Algorithm"
 - "Greedy"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "백준"
-- "Problem-13323"
-- "cpp"
-- "C++"
-- "Python"
-- "Data Structures"
-- "자료구조"
-- "Implementation"
-- "구현"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Proof of Correctness"
-- "정당성 증명"
-- "Edge Cases"
-- "코너 케이스"
-- "Pitfalls"
-- "실수 포인트"
-- "Optimization"
-- "최적화"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Editorial"
-- "에디토리얼"
-- "Code Review"
-- "코드리뷰"
-- "Template"
-- "템플릿"
-- "Testing"
-- "테스트"
-- "Complexity Analysis"
-- "복잡도 분석"
-- "Invariant"
-- "불변식"
-- "Greedy"
-- "그리디"
-- "Dynamic Programming"
-- "동적계획법"
-- "Graph"
-- "그래프"
-- "Tree"
-- "트리"
-- "BFS"
-- "DFS"
-- "Shortest Path"
-- "최단경로"
-- "Dijkstra"
-- "다익스트라"
-- "Segment Tree"
-- "세그먼트 트리"
-- "Fenwick Tree"
-- "펜윅트리"
-- "Disjoint Set Union"
-- "유니온파인드"
-- "Binary Search"
-- "이분탐색"
-- "Two Pointers"
-- "투포인터"
-- "Sliding Window"
-- "슬라이딩윈도우"
-- "Hashing"
-- "해싱"
-- "String"
-- "문자열"
-- "Geometry"
-- "기하"
-- "Math"
-- "수학"
-- "Modulo"
-- "모듈러"
-- "Implementation Details"
-- "구현 디테일"
-- "Slope Trick"
-- "Median"
-- "중앙값"
-- "Priority Queue"
-- "우선순위 큐"
-- "Heap"
-- "힙"
-- "Monotone"
-- "단조"
-- "비내림"
-- "L1"
-- "절댓값 합"
-- "BOJ 수열 1"
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- C++
+- Python
+- Data-Structures
+- 자료구조
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- Pitfalls
+- 함정
+- Optimization
+- 최적화
+- Competitive-Programming
+- 경쟁프로그래밍
+- Editorial
+- 에디토리얼
+- Code-Review
+- 코드리뷰
+- Testing
+- 테스트
+- Complexity-Analysis
+- 복잡도분석
+- Greedy
+- 그리디
+- Dynamic-Programming
+- 동적계획법
+- Graph
+- 그래프
+- Tree
+- 트리
+- BFS
+- DFS
+- Shortest-Path
+- 최단경로
+- Dijkstra
+- Segment-Tree
+- 세그먼트트리
+- Fenwick-Tree
+- Disjoint-Set
+- Binary-Search
+- 이분탐색
+- Two-Pointers
+- Sliding-Window
+- Hashing
+- 해싱
+- String
+- 문자열
+- Geometry
+- Math
+- 수학
+- Modular-Arithmetic
+- 모듈러
+- Priority-Queue
+- Heap
+- 힙
 image: "wordcloud.png"
 ---
 

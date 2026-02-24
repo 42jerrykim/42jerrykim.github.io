@@ -13,46 +13,19 @@ categories:
 - Practice
 - Performance Optimization
 tags:
-- Proxy Pattern Practice
-- Virtual Proxy
-- Protection Proxy
-- Remote Proxy
-- Smart Proxy
-- Access Control
-- Lazy Loading
 - Caching
-- Performance Optimization
+- Performance
 - Security
-- Remote Method Invocation
-- AOP Implementation
-- Structural Patterns
-- Design Patterns
-- GoF Patterns
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Software Architecture
-- 프록시 패턴 실습
-- 가상 프록시
-- 보호 프록시
-- 원격 프록시
-- 스마트 프록시
-- 접근 제어
-- 지연 로딩
+- Design-Pattern
+- GoF
+- Tutorial
+- Implementation
+- Software-Architecture
 - 캐싱
-- 성능 최적화
 - 보안
-- 원격 메서드 호출
-- AOP 구현
-- 구조 패턴
-- 디자인 패턴
-- GoF 패턴
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 소프트웨어 아키텍처
+- 디자인패턴
+- 구현
+- 소프트웨어아키텍처
 ---
 
 이 실습에서는 Virtual, Protection, Remote, Caching 등 다양한 Proxy 유형을 직접 구현하며 성능 최적화 기법을 익힙니다.

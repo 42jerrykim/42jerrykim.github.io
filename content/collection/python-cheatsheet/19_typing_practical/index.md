@@ -7,61 +7,21 @@ description: "실무에서 바로 쓰는 타입힌트 치트시트입니다. 기
 lastmod: 2026-01-18
 collection_order: 19
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - typing
-  - type-hints
-  - 타입힌트
-  - annotations
-  - 어노테이션
-  - mypy
-  - pyright
-  - static-analysis
-  - 정적분석
-  - Optional
-  - Union
-  - Callable
-  - Iterable
+  - Quick-Reference
   - Iterator
-  - Sequence
-  - Mapping
-  - dict
-  - list
-  - tuple
+  - Math
+  - Data-Structures
   - set
-  - generics
-  - Generic
-  - TypeVar
-  - 제네릭
-  - protocol
-  - Protocol
-  - TypedDict
-  - Literal
-  - Final
-  - ClassVar
-  - dataclasses
-  - dataclass
-  - readability
-  - 가독성
-  - maintainability
-  - 유지보수
-  - best-practices
-  - 베스트프랙티스
+  - Clean-Code
+  - Code-Quality
+  - 코드품질
+  - Best-Practices
   - pitfalls
   - 함정
-  - api-design
-  - 설계
-  - standard-library
-  - 표준라이브러리
-  - python39
-  - python310
-  - python311
   - testing
   - 테스트
   - refactoring

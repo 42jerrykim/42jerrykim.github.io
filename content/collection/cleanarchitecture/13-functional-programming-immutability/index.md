@@ -7,65 +7,18 @@ title: "[Clean Architecture] 13. 함수형 프로그래밍"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Functional Programming
-  - 함수형 프로그래밍
-  - Immutability
-  - 불변성
-  - Lambda Calculus
-  - 람다 계산법
-  - Alonzo Church
-  - 알론조 처치
-  - Pure Function
-  - 순수 함수
-  - Side Effect
-  - 부수 효과
-  - Referential Transparency
-  - 참조 투명성
+  - Clean-Architecture
+  - 클린아키텍처
+  - Functional-Programming
+  - Code-Quality
   - State
-  - 상태
-  - Mutable State
-  - 가변 상태
-  - Immutable Data
-  - 불변 데이터
   - Concurrency
   - 동시성
-  - Race Condition
-  - 경쟁 조건
-  - Deadlock
-  - 데드락
-  - Thread Safety
-  - 스레드 안전성
-  - Event Sourcing
-  - 이벤트 소싱
   - CQRS
-  - LISP
-  - Clojure
-  - Haskell
   - Scala
-  - Erlang
-  - Programming Paradigm
-  - 프로그래밍 패러다임
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Assignment Statement
-  - 할당문
-  - Variable
-  - 변수
-  - Constant
-  - 상수
-  - Value Object
-  - 값 객체
-  - Persistent Data Structure
-  - 영속 자료구조
-  - Copy on Write
-  - Segregation
-  - 분리
-  - Transaction
-  - 트랜잭션
-  - Event Log
-  - 이벤트 로그
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Database
 ---
 
 함수형 프로그래밍(FP)은 세 가지 패러다임 중 가장 오래되었지만, 가장 최근에 주목받기 시작했다. 1936년 알론조 처치(Alonzo Church)의 람다 계산법에서 시작된 이 패러다임은, **불변성(Immutability)**이라는 개념을 통해 현대 소프트웨어 아키텍처에 중요한 통찰을 제공한다.

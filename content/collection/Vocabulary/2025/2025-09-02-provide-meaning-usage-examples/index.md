@@ -9,66 +9,16 @@ categories:
 tags:
 - Vocabulary
 - English
-- English Words
-- Provide
-- provide meaning
-- provide usage
-- provide examples
-- provide grammar
-- provide collocations
-- provide synonyms
-- provide vs offer
-- provide vs supply
-- provide vs give
-- provide with
-- provide for
-- provide to
-- provide that
-- that-clause
-- clause
-- preposition
-- 전치사
-- 동사
 - 영어동사
-- 어휘
-- 단어
-- 영작
-- 회화
 - 비즈니스영어
-- 아카데믹라이팅
-- 시험영어
-- TOEIC
 - TOEFL
 - IELTS
-- 취업영어
-- formal English
-- academic English
-- business English
-- common errors
-- usage notes
-- collocation
-- expressions
-- phrase
-- 예문
-- 번역
+- Academic-English
+- Business-English
+- Grammar
+- Collocation
 - 뉘앙스
-- 차이점
-- 동의어
-- offer
-- supply
-- furnish
-- equip
-- grant
-- deliver
-- afford
-- render
-- provision
-- 서비스
-- 계약
-- 조항
-- 법률영어
-- 계약서영어
-- 기술문서
+- 유의어
 image: "wordcloud.png"
 ---
 

@@ -11,67 +11,28 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-11385
-- cpp
 - C++
-- Polynomial Multiplication
-- 다항식 곱셈
-- NTT
-- Number Theoretic Transform
-- 수론적 변환
 - FFT
-- Fast Fourier Transform
 - Convolution
-- 컨볼루션
-- CRT
-- Chinese Remainder Theorem
-- 중국인의 나머지 정리
-- Garner
-- 가너 알고리즘
-- Modular Arithmetic
-- 모듈러 연산
-- Modular Inverse
-- 모듈러 역원
-- Primitive Root
-- 원시근
-- Bit-reversal
-- 비트 반전
-- Iterative NTT
-- 반복 NTT
-- Power of Two
-- 2의 거듭제곱
+- Modular-Arithmetic
+- 모듈러
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Complexity Analysis
-- 복잡도 분석
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
-- Competitive Programming
+- 함정
+- Competitive-Programming
 - 경쟁프로그래밍
 - Testing
 - 테스트
-- Template
-- 템플릿
-- 64-bit
-- 64비트
-- __int128
-- 오버플로 방지
-- XOR
-- 배타적 논리합
-- Large Input
-- 대용량 입력
-- IO Optimization
-- 입출력 최적화
+- Math
 image: "wordcloud.png"
 ---
 

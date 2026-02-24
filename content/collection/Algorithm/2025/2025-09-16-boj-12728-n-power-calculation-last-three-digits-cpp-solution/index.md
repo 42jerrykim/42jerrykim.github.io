@@ -11,75 +11,32 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-12728
-- cpp
 - C++
-- Matrix Exponentiation
-- 행렬 거듭제곱
-- Linear Recurrence
-- 선형 점화식
-- Recurrence
-- 점화식
-- Modular Arithmetic
-- 모듈러 연산
-- Modulo
+- Dynamic-Programming
+- Modular-Arithmetic
 - 모듈러
-- Power
-- 거듭제곱
 - Matrix
 - 행렬
-- Fast Power
-- 빠른 거듭제곱
-- Binary Exponentiation
-- 이진 거듭제곱
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Implementation
 - 구현
-- Precision
-- 정밀도
-- Rounding
-- 반올림
-- Number Theory
+- Number-Theory
 - 수학
 - Math
-- Integer Part
-- 정수부
-- Last Three Digits
-- 마지막 세 자리
-- Formatting
-- 서식
-- Zero Padding
-- 0 패딩
-- Case Format
-- 출력 형식
-- Fast I/O
-- 빠른 입출력
-- Overflow
-- 오버플로
-- 64-bit
-- 64비트
-- Matrix Power Mod
-- 행렬 거듭제곱 모듈러
+- IO
 - ICPC
-- Code Jam
-- Google Code Jam
-- Contest
-- 대회
+- Competitive-Programming
 - Editorial
 - 에디토리얼
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 image: "wordcloud.png"
 ---
 

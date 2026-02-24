@@ -9,58 +9,21 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
-  - Composite
-  - 컴포지트
-  - Structural Pattern
-  - 구조 패턴
+  - Design-Pattern
+  - 디자인패턴
   - GoF
-  - Gang of Four
-  - Tree Structure
-  - 트리 구조
-  - Part Whole
-  - 부분 전체
-  - Hierarchy
-  - 계층 구조
-  - Component
-  - 컴포넌트
-  - Leaf
-  - 리프
-  - Composite Node
-  - 복합 노드
-  - Recursive
+  - Software-Architecture
   - 재귀
-  - Uniform Interface
-  - 균일한 인터페이스
-  - File System
-  - 파일 시스템
-  - Directory
-  - 디렉토리
-  - Menu
-  - 메뉴
-  - GUI Component
-  - 그래픽 요소
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Code-Quality
+  - 코드품질
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - Aggregation
-  - 집합
-  - Collection
-  - 컬렉션
+  - CSharp
   - Iterator
-  - 반복자
-  - Traversal
-  - 순회
 ---
 
 컴포지트 패턴(Composite Pattern)은 객체들을 트리 구조로 구성하여 부분-전체 계층을 표현하는 구조적 디자인 패턴이다. 이 패턴을 사용하면 클라이언트가 단일 객체(Leaf)와 복합 객체(Composite)를 동일하게 다룰 수 있어, 재귀적 구조를 단순하고 일관되게 처리할 수 있다.

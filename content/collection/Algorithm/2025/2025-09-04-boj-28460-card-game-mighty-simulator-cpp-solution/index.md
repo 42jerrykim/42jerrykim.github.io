@@ -7,71 +7,30 @@ categories:
 - "Algorithm"
 - "Simulation"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "백준"
-- "Problem-28460"
-- "cpp"
-- "C++"
-- "Simulation"
-- "시뮬레이션"
-- "Card Game"
-- "마이티"
-- "Mighty"
-- "Trump"
-- "기루다"
-- "No-Giruda"
-- "Friend"
-- "프렌드"
-- "Joker"
-- "조커"
-- "Joker Gun"
-- "조커 총"
-- "Ace"
-- "에이스"
-- "Rule Violation"
-- "룰 위반"
-- "Deal Mistake"
-- "딜 미스"
-- "Priority"
-- "우선순위"
-- "Game Simulation"
-- "게임 시뮬레이션"
-- "Parsing"
-- "파싱"
-- "Implementation"
-- "구현"
-- "Implementation Details"
-- "구현 디테일"
-- "Edge Cases"
-- "코너 케이스"
-- "Pitfalls"
-- "실수 포인트"
-- "Correctness"
-- "정당성 증명"
-- "Complexity"
-- "복잡도"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Set"
-- "집합"
-- "Multiset"
-- "멀티셋"
-- "Data Structures"
-- "자료구조"
-- "Map"
-- "해시"
-- "Ordering"
-- "정렬"
-- "Tie-break"
-- "동률 처리"
-- "Game Rules"
-- "게임 규칙"
-- "Contest"
-- "유틸컵"
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- C++
+- Simulation
+- 시뮬레이션
+- Implementation
+- 구현
+- Edge-Cases
+- 엣지케이스
+- Pitfalls
+- 함정
+- Complexity-Analysis
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Set
+- Data-Structures
+- 자료구조
+- Map
+- 정렬
+- Competitive-Programming
 image: "wordcloud.png"
 ---
 

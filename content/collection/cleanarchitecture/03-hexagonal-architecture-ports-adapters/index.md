@@ -7,64 +7,21 @@ title: "[Clean Architecture] 03. 헥사고날 아키텍처 (Ports and Adapters)"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Hexagonal Architecture
-  - 육각형 아키텍처
-  - Ports and Adapters
-  - 포트와 어댑터
-  - Alistair Cockburn
-  - 알리스테어 콕번
-  - Application Core
-  - 애플리케이션 코어
-  - Domain Logic
-  - 도메인 로직
-  - Dependency Inversion
-  - 의존성 역전
-  - Testability
-  - 테스트 용이성
-  - Adapter Pattern
-  - 어댑터 패턴
-  - Port Interface
-  - 포트 인터페이스
-  - Primary Port
-  - 주 포트
-  - Secondary Port
-  - 보조 포트
-  - Driving Adapter
-  - 구동 어댑터
-  - Driven Adapter
-  - 피구동 어댑터
-  - External Systems
-  - 외부 시스템
-  - Infrastructure
-  - 인프라스트럭처
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Architecture Pattern
-  - 아키텍처 패턴
-  - Separation of Concerns
-  - 관심사의 분리
-  - Coupling
+  - Clean-Architecture
+  - 클린아키텍처
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Design-Pattern
+  - SOLID
   - 결합도
   - Interface
   - 인터페이스
   - Abstraction
   - 추상화
-  - Mock Testing
-  - 목 테스팅
-  - Integration Testing
-  - 통합 테스트
-  - Unit Testing
-  - 단위 테스트
-  - Database Independence
-  - 데이터베이스 독립성
-  - Framework Independence
-  - 프레임워크 독립성
-  - API Design
-  - API 설계
-  - Boundary
-  - 경계
+  - Edge-Cases
 ---
 
 2005년, 알리스테어 콕번(Alistair Cockburn)은 "Hexagonal Architecture" 또는 "Ports and Adapters" 패턴을 제안했다. 이 아키텍처는 전통적인 계층형 아키텍처의 근본적인 문제를 해결하기 위해 등장했으며, Clean Architecture에 직접적인 영향을 미친 중요한 선행 패턴이다.

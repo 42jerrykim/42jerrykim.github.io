@@ -7,13 +7,12 @@ date: "2022-06-07T00:00:00Z"
 header:
   teaser: /assets/images/2022/2022-06-07-101710.png
 tags:
-- SearchEngine
-- OpenVerse
-- 라이센스
-- 검색
-- Search
-- Engine
-- 미디어
+- Algorithm
+- Go
+- Domain
+- AI
+- Photography
+- Networking
 title: '[SearchEngine] OpenVerse - 오픈 라이센스 미디어 검색엔진'
 
 ---

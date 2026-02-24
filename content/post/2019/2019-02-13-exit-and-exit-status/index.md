@@ -9,7 +9,10 @@ redirect_from:
 tags:
 - Shell
 - bash
-- exit
+- Sci-Fi
+- Process
+- Command
+- Design-Pattern
 title: '[Shell] Exit and exit status'
 ---
 

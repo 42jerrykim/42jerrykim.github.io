@@ -7,62 +7,12 @@ date: "2024-09-01T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-09-01-aicd.png
 tags:
-- ACID
-- Atomicity
-- Consistency
-- Isolation
-- Durability
-- DatabaseTransactions
-- DataIntegrity
-- ConcurrencyControl
-- TransactionManagement
-- DatabaseSystems
-- DataValidity
-- ErrorHandling
-- PowerFailures
-- TransactionRollback
+- Code-Quality
+- Error-Handling
 - SQL
-- NoSQL
+- Database
 - MongoDB
-- DistributedTransactions
-- Two-Phase Commit
-- Write-Ahead Logging
-- ShadowPaging
-- DataConsistency
-- ReferentialIntegrity
-- IntegrityConstraints
-- CascadingRollback
-- Triggers
-- Non-Volatile Memory
-- DiskBuffer
-- SnapshotIsolation
-- MultiversionConcurrencyControl
-- LockingMechanisms
-- Write-Write Contention
-- TransactionIsolationLevels
-- DatabaseRecovery
-- DataCorruption
-- TransactionFailures
-- SystemCrashes
-- DataManagement
-- DataArchitecture
-- DataModeling
-- DatabaseDesign
-- PerformanceOverhead
-- ScalabilityIssues
-- ComplexityInDBMS
-- DataLakes
-- DeltaLake
-- ETLProcesses
-- MachineLearning
-- DataAnalytics
-- Real-Time Data Processing
-- TransactionLogs
-- DataWarehouse
-- DataGovernance
-- DataQuality
-- DataReliability
-- DataOperations
+- Machine-Learning
 title: '[Database] 트랜잭션과 ACID의 이해'
 ---
 

@@ -9,56 +9,24 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
-  - Flyweight
-  - 플라이웨이트
-  - Structural Pattern
-  - 구조 패턴
+  - Design-Pattern
+  - 디자인패턴
   - GoF
-  - Gang of Four
-  - Memory Optimization
-  - 메모리 최적화
-  - Object Sharing
-  - 객체 공유
-  - Intrinsic State
-  - 내재 상태
-  - Extrinsic State
-  - 외재 상태
-  - Object Pool
-  - 객체 풀
+  - Memory
   - Cache
-  - 캐시
   - Performance
   - 성능
-  - Immutable
-  - 불변
   - Factory
-  - 팩토리
-  - HashMap
-  - 해시맵
-  - String Pool
-  - 문자열 풀
-  - Integer Cache
-  - 정수 캐시
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Code-Quality
+  - 코드품질
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - Game Development
-  - 게임 개발
-  - Graphics
-  - 그래픽
-  - Text Editor
-  - 텍스트 에디터
+  - CSharp
 ---
 
 플라이웨이트 패턴(Flyweight Pattern)은 대량의 유사한 객체를 효율적으로 관리하기 위해 객체 공유를 활용하는 구조적 디자인 패턴이다. 이 패턴은 각 객체에 모든 데이터를 유지하는 대신, 여러 객체가 공유할 수 있는 상태(내재 상태)와 객체마다 다른 상태(외재 상태)를 분리하여 메모리 사용량을 크게 줄인다.

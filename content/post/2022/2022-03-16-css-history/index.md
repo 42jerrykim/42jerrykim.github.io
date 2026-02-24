@@ -4,9 +4,13 @@ description: "이 글은 CSS의 탄생과 발전 과정을 통해 CSS가 점차 
 categories:
 - CSS
 date: "2022-03-16T00:00:00Z"
-tag:
+tags:
 - CSS
 - HTML
+- History
+- 역사
+- JavaScript
+- Web
 title: '[CSS] CSS 역사로 알아보는 CSS가 어려워진 이유'
 ---
 

@@ -3,8 +3,12 @@ title: "인터스텔라 (Interstellar, 2014) ★★★★★"
 description: "크리스토퍼 놀란이 선사하는 우주적 스케일의 감동 서사시"
 summary: "지구의 멸망이 임박한 미래, 인류의 새로운 터전을 찾아 떠나는 우주 여행을 그린 크리스토퍼 놀란의 대작. 매튜 맥커너히와 앤 해서웨이의 열연과 함께 사랑과 희생, 시간과 공간을 초월한 인간의 의지를 그려낸 SF 영화의 걸작이다."
 date: 2014-11-07
-tags: ["영화", "리뷰", "2014", "SF", "크리스토퍼놀란", "매튜맥커너히", "앤해서웨이", "제시카차스테인", "마이클케인", "한스짐머"]
-categories: ["Movies"]
+tags:
+- 영화
+- 리뷰
+- SF
+categories:
+- Movies
 series: ["Movie Reviews"]
 series_order: 20
 ShowToc: true

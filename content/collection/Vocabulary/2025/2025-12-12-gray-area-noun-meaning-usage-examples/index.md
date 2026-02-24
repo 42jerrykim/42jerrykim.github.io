@@ -9,67 +9,15 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - English Phrases
-  - gray area
-  - gray area meaning
-  - gray area usage
-  - gray area examples
-  - gray area noun
   - 영단어
   - 영어명사
-  - 영어표현
-  - gray area 의미
-  - gray area 용법
-  - gray area 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - ambiguity
-  - ambiguous
-  - unclear
-  - uncertain
-  - undefined
-  - boundary
-  - gray zone
-  - 모호한
-  - 불명확한
-  - 경계
-  - 애매한
-  - 불확정적인
-  - 판단하기 어려운
-  - legal
-  - business
-  - ethics
-  - compliance
-  - 법률
-  - 비즈니스
-  - 윤리
-  - 법령
-  - 규정
-  - definition
-  - boundary line
-  - interpretation
-  - 정의
-  - 경계선
-  - 해석
-  - usage notes
-  - grammar
-  - phrase
-  - idiom
-  - English phrases
-  - 숙어
-  - 관용표현
-  - pattern
-  - situation
-  - 상황
-  - 현상
-  - EN/KR examples
-  - study English
-  - vocabulary building
+  - Edge-Cases
+  - Business-English
+  - Grammar
 image: wordcloud.png
 ---
 

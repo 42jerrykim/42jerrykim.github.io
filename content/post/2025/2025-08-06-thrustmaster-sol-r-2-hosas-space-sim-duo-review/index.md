@@ -7,48 +7,16 @@ categories:
 - "Hardware"
 - "Simulation"
 - "Space Games"
-tags: 
-- "Thrustmaster"
-- "HOSAS"
-- "Space Simulator"
-- "Flight Stick"
-- "Gaming Hardware"
-- "Simulation Games"
-- "Star Citizen"
-- "Elite Dangerous"
-- "No Man's Sky"
-- "Space Combat"
-- "Flight Controls"
-- "Gaming Accessories"
-- "RGB Lighting"
-- "Hall Effect Sensors"
-- "TARGET Software"
-- "Modular Design"
-- "Ergonomics"
-- "Precision Control"
-- "Immersion"
-- "Gaming Setup"
-- "Hotas"
-- "Flight Simulation"
-- "Space Exploration"
-- "Combat Simulation"
-- "Gaming Technology"
-- "Hardware Review"
-- "Gaming Equipment"
-- "Simulation Hardware"
-- "우주시뮬레이션"
-- "게임하드웨어"
-- "플라이트스틱"
-- "게임액세서리"
-- "시뮬레이션게임"
-- "우주전투"
-- "게임장비"
-- "정밀제어"
-- "몰입감"
-- "게임설정"
-- "하드웨어리뷰"
-- "게임기술"
-- "시뮬레이션하드웨어"
+tags:
+- Gaming
+- Hardware
+- Simulation
+- Rust
+- Tree
+- Movie
+- 영화
+- Action
+- Sci-Fi
 image: Website_ProductPageGallery-SolR2_1920x1080_1.webp
 ---
 

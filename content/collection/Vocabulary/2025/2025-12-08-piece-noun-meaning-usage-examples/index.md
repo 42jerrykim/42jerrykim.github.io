@@ -9,61 +9,18 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - piece
-  - piece meaning
-  - piece usage
-  - piece examples
-  - piece noun
   - 영단어
   - 영어명사
-  - piece 의미
-  - piece 용법
-  - piece 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - fragment
-  - part
-  - portion
-  - section
   - bit
-  - chunk
-  - slice
-  - segment
-  - component
-  - unit
-  - artwork
-  - creation
+  - Segment-Tree
+  - Software-Architecture
   - composition
-  - 조각
-  - 부분
-  - 일부
-  - 한 개
-  - 음악
-  - 문학
-  - 미술
   - 게임
-  - 뉴스
-  - 요리
-  - 건축
-  - 음식
-  - 일상 표현
-  - 격식 표현
-  - collocation noun
-  - 명사 용법
-  - 가산명사
-  - 복수형
-  - piece 문법
-  - 영어 기초 어휘
-  - 중급 영어
-  - 일상 영어
-  - conversation
-  - formal writing
-  - creative work
+  - 일상표현
 image: wordcloud.png
 ---
 

@@ -8,21 +8,13 @@ header:
   teaser: /assets/images/undefined/securityfs.png
 tags:
 - Linux
-- FileSystem
-- DebugFS
-- SecurityFS
-- PipeFS
-- SockFS
 - Thread
-- Sock
-- Pipe
-- Fork
 - Mediator
-- Compatibility
-- Port
-- VFS
-- VirtualFilesystemSwitch
-- VirtualFilesystem
+- Sci-Fi
+- HTML
+- Security
+- Memory
+- Configuration
 title: '[Linux] File System 종류- DebugFS, SecurityFS, PipeFS, SockFS'
 ---
 

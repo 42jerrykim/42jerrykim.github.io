@@ -7,79 +7,46 @@ categories:
 - "Algorithm"
 - "Graph"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "백준"
-- "Problem-5250"
-- "cpp"
-- "python"
-- "C++"
-- "Python"
-- "Data Structures"
-- "자료구조"
-- "Implementation"
-- "구현"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Proof of Correctness"
-- "정당성 증명"
-- "Edge Cases"
-- "코너 케이스"
-- "Pitfalls"
-- "실수 포인트"
-- "Optimization"
-- "최적화"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Editorial"
-- "에디토리얼"
-- "Code Review"
-- "코드리뷰"
-- "Template"
-- "템플릿"
-- "Testing"
-- "테스트"
-- "Complexity Analysis"
-- "복잡도 분석"
-- "Invariant"
-- "불변식"
-- "Graph"
-- "그래프"
-- "Shortest Path"
-- "최단경로"
-- "Dijkstra"
-- "다익스트라"
-- "Replacement Paths"
-- "대체 최단경로"
-- "BOI"
-- "BOI 2012"
-- "Shortest Path DAG"
-- "경로 DAG"
-- "Interval Sweep"
-- "구간 스윕"
-- "Priority Queue"
-- "우선순위큐"
-- "Heap"
-- "힙"
-- "Weighted Graph"
-- "가중그래프"
-- "Undirected Graph"
-- "무방향그래프"
-- "Edge Deletion"
-- "간선 삭제"
-- "Path Interval"
-- "경로 구간"
-- "Index Propagation"
-- "인덱스 전파"
-- "Fast IO"
-- "빠른입출력"
-- "long long"
-- "64-bit"
-- "Python3"
-- "C++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- C++
+- Python
+- Data-Structures
+- 자료구조
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- Pitfalls
+- 함정
+- Optimization
+- 최적화
+- Competitive-Programming
+- 경쟁프로그래밍
+- Editorial
+- 에디토리얼
+- Code-Review
+- 코드리뷰
+- Testing
+- 테스트
+- Complexity-Analysis
+- 복잡도분석
+- Graph
+- 그래프
+- Shortest-Path
+- 최단경로
+- Dijkstra
+- Priority-Queue
+- 우선순위큐
+- Heap
+- 힙
+- IO
 image: "wordcloud.png"
 ---
 

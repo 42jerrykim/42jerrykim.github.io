@@ -11,83 +11,33 @@ categories:
 - "Convolution"
 - "Geometry"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "20176"
-- "BOJ-20176"
-- "Needle"
-- "니들"
-- "Geometry"
-- "기하"
-- "Analytic Geometry"
-- "해석기하"
-- "Collinearity"
-- "공선"
-- "Line"
-- "직선"
-- "Slope"
-- "기울기"
-- "Midpoint"
-- "중점"
-- "Average"
-- "평균"
-- "Arithmetic Mean"
-- "산술평균"
-- "Math"
-- "수학"
-- "Counting"
-- "카운팅"
-- "Combinatorics"
-- "조합"
-- "Pairs"
-- "쌍"
-- "FFT"
-- "Fast Fourier Transform"
-- "고속 푸리에 변환"
-- "Convolution"
-- "컨볼루션"
-- "Polynomial Multiplication"
-- "다항식 곱셈"
-- "Signal Processing"
-- "신호 처리"
-- "Frequency Domain"
-- "주파수 영역"
-- "Complex Numbers"
-- "복소수"
-- "Rounding"
-- "반올림"
-- "Precision"
-- "정밀도"
-- "Integer Coordinates"
-- "정수 좌표"
-- "Coordinate Compression"
-- "좌표 압축"
-- "Array"
-- "배열"
-- "Offset"
-- "시프트"
-- "Range"
-- "범위"
-- "Implementation"
-- "구현"
-- "Edge Case"
-- "엣지 케이스"
-- "Overflow"
-- "오버플로우"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Optimization"
-- "최적화"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "ICPC"
-- "Seoul 2020"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Geometry
+- Math
+- 수학
+- Combinatorics
+- FFT
+- Convolution
+- Edge-Cases
+- Coordinate-Compression
+- 좌표압축
+- Array
+- 배열
+- Implementation
+- 구현
+- 엣지케이스
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Optimization
+- 최적화
+- C++
+- ICPC
 image: "wordcloud.png"
 ---
 

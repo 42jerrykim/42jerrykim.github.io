@@ -4,12 +4,13 @@ image: "tmp_wordcloud.png"
 date: "2022-01-26T00:00:00Z"
 header:
   teaser: https://miro.medium.com/max/712/1*GijseQ3xYJ5OT2t-PRQFXA.png
-tag:
+tags:
 - CSharp
-- Class
-- Struct
-- GarvageCollection
+- OOP
 - .NET
+- Stack
+- Memory
+- Networking
 title: '[C#] 클래스와 구조체 간의 선택'
 ---
 

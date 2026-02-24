@@ -7,61 +7,15 @@ date: "2024-08-27T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-27-gen-ai-architecture.png
 tags:
-- EnterpriseArchitecture
-- ITSystems
-- GenerativeAI
-- LargeLanguageModels
-- Domain-Specific Fine Tuning
-- FineTuning
-- RAG
-- RetrievalAugmentedGeneration
-- KnowledgeGraph
-- DataProcessing
-- VectorDatabase
-- AIApplications
-- MachineLearning
-- NaturalLanguageProcessing
-- BusinessStrategy
-- EngineeringTeam
-- ArchitecturePatterns
-- AIIntegration
-- DataManagement
-- CloudComputing
-- SoftwareDevelopment
-- DigitalTransformation
+- Data-Structures
+- Machine-Learning
+- Database
+- Software-Architecture
 - Automation
-- DataAnalytics
-- PerformanceOptimization
-- UserExperience
-- TechnicalSupport
-- CustomerService
-- HRApplications
-- HealthcareAI
-- MarketingAutomation
-- RecommendationSystems
-- Chatbots
-- VirtualAssistants
-- DataRetrieval
-- SemanticSearch
-- InformationRetrieval
-- KnowledgeManagement
-- DataAnnotation
-- DataLabeling
-- ModelTraining
-- SupervisedLearning
-- ReinforcementLearning
-- Parameter Efficient Fine Tuning
-- LowRankAdaptation
-- Quantized Low-Rank Adaptation
-- AIStrategy
-- BusinessIntelligence
-- DecisionMaking
-- OperationalEfficiency
-- Cost-Effectiveness
+- Performance
+- Frontend
 - Scalability
-- Flexibility
 - Innovation
-- CompetitiveAdvantage
 title: '[Architecture] Generative AI 기업 아키텍처 설계'
 ---
 

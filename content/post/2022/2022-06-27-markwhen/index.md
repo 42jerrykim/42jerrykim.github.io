@@ -7,10 +7,12 @@ date: "2022-06-27T00:00:00Z"
 header:
   teaser: /assets/images/undefined/export.png
 tags:
-- MarkWhen
 - Markdown
-- 타임라인
 - 마크다운
+- TypeScript
+- Go
+- Vue
+- Map
 title: '[MarkWhen] MarkWhen - 마크다운으로 계단식 타임라인 만들기'
 ---
 

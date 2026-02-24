@@ -6,16 +6,17 @@ date: "2023-06-23T00:00:00Z"
 header:
   teaser: https://miro.medium.com/v2/resize:fit:1400/format:webp/1*5h5WIpLjdlh2Iiu_WG2_AA.jpeg
 tags:
-- APIGateway
-- LoadBalancer
 - Microservices
-- WebDevelopment
-- NetworkTraffic
+- Web
 - Scalability
-- CloudComputing
-- TechExplained
-- SoftwareArchitecture
-- SystemDesign
+- Software-Architecture
+- API
+- Algorithm
+- 알고리즘
+- Tree
+- Stack
+- Movie
+- 영화
 title: '[Networking] API Gateway와 Load Balancer 비고'
 ---
 

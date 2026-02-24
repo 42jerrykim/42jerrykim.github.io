@@ -7,65 +7,14 @@ title: "[Clean Architecture] 32. 클린 아키텍처: 동심원과 의존성 규
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Concentric Circles
-  - 동심원
-  - Dependency Rule
-  - 의존성 규칙
-  - Entities
-  - 엔터티
-  - Use Cases
-  - 유스케이스
-  - Interface Adapters
-  - 인터페이스 어댑터
-  - Frameworks
-  - 프레임워크
-  - Controllers
-  - 컨트롤러
-  - Gateways
-  - 게이트웨이
-  - Presenters
-  - 프레젠터
-  - Business Rules
-  - 비즈니스 규칙
-  - Enterprise Business Rules
-  - 기업 비즈니스 규칙
-  - Application Business Rules
-  - 애플리케이션 비즈니스 규칙
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Hexagonal Architecture
-  - 육각형 아키텍처
-  - Onion Architecture
-  - 양파 아키텍처
-  - Boundary
-  - 경계
-  - Crossing Boundaries
-  - 경계 횡단
-  - Data Transfer Object
-  - DTO
-  - Inward Dependency
-  - 내부 방향 의존성
-  - Outward Dependency
-  - Dependency Inversion
-  - 의존성 역전
-  - Input Port
-  - 입력 포트
-  - Output Port
-  - 출력 포트
-  - Framework Independence
-  - 프레임워크 독립성
-  - Database Independence
-  - 데이터베이스 독립성
-  - Testability
-  - 테스트 용이성
-  - UI Independence
-  - UI 독립성
-  - External Agency Independence
-  - 외부 에이전시 독립성
-  - Plugin Architecture
-  - 플러그인 아키텍처
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Edge-Cases
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
 ---
 
 드디어 Clean Architecture의 핵심에 도달했다. 이 장에서는 육각형 아키텍처, 양파 아키텍처, BCE 등 기존 아키텍처들의 공통점을 추출하여 정제한 **Clean Architecture**의 구조를 상세히 다룬다.

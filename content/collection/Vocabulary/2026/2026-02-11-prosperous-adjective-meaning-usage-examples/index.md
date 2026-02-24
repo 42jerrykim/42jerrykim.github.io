@@ -9,59 +9,17 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - prosperous
-  - prosperous meaning
-  - prosperous usage
-  - prosperous examples
-  - prosperous adjective
   - 영단어
   - 영어형용사
-  - prosperous 의미
-  - prosperous 용법
-  - prosperous 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - successful
-  - thriving
-  - flourishing
-  - wealthy
-  - affluent
-  - rich
-  - booming
-  - flourish
-  - boom
-  - 번영하는
-  - 성공한
-  - 부유한
-  - 번창하는
-  - 무성한
-  - 풍요로운
-  - business
-  - economy
-  - wealth
-  - success
-  - growth
-  - development
-  - capitalism
-  - entrepreneur
-  - 사업
-  - 경제
-  - 부자
-  - 성공
-  - 번영
-  - 발전
-  - 비즈니스 용어
-  - 경제 용어
-  - 일상 표현
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Business-English
+  - Implementation
+  - 일상표현
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

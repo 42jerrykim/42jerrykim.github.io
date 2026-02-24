@@ -6,15 +6,13 @@ categories:
 date: "2022-03-16T00:00:00Z"
 header:
   teaser: /assets/images/undefined/Windows-Defender.jpg
-tag:
+tags:
 - Windows
-- Defender
-- WindowsDefender
-- Antivirus
-- Virus
-- Program
-- built-in
-- Protection
+- Security
+- Networking
+- Technology
+- Tutorial
+- Guide
 title: '[Windows] 설정만 잘 한다면 Windows Defender로도 충분하다.'
 ---
 

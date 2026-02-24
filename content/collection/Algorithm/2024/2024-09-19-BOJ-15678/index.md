@@ -6,15 +6,13 @@ date: "2024-09-19T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- DynamicProgramming
-- DataStructures
+- Dynamic-Programming
+- Data-Structures
 - Implementation
 - Optimization
 - Deque
-- SlidingWindow
-- DPOptimization
-- O(N)
-- ProblemSolving
+- Time-Complexity
+- Problem-Solving
 title: '[Algorithm] C++/Python 백준 15678번 : 연세워터파크'
 ---
 

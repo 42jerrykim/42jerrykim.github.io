@@ -9,92 +9,32 @@ categories:
 - "Game Theory"
 - "Bitwise"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "16895"
-- "BOJ-16895"
-- "님 게임 3"
-- "Nim Game 3"
-- "Nim"
-- "님 게임"
-- "Game Theory"
-- "게임 이론"
-- "Combinatorial Game"
-- "조합 게임"
-- "Impartial Game"
-- "공정 게임"
-- "Normal Play"
-- "정상 규칙"
-- "Winning Strategy"
-- "승리 전략"
-- "Optimal Play"
-- "최적 플레이"
-- "Perfect Play"
-- "완전 플레이"
-- "Winning Move"
-- "승리 수"
-- "First Move"
-- "첫 수"
-- "Move Counting"
-- "수 세기"
-- "Counting"
-- "경우의 수"
-- "Nim-sum"
-- "님합"
-- "XOR"
-- "Bitwise XOR"
-- "비트 XOR"
-- "Bitwise"
-- "비트연산"
-- "Exclusive OR"
-- "배타적 논리합"
-- "Invariant"
-- "불변식"
-- "Proof"
-- "증명"
-- "Greedy"
-- "그리디"
-- "Mathematics"
-- "수학"
-- "Discrete Mathematics"
-- "이산수학"
-- "Sprague-Grundy"
-- "스프라그-그런디"
-- "Grundy Number"
-- "그런디 수"
-- "Take-Away Game"
-- "제거 게임"
-- "Pile Game"
-- "더미 게임"
-- "Stone Piles"
-- "돌 더미"
-- "Strategy"
-- "전략"
-- "Implementation"
-- "구현"
-- "Input Parsing"
-- "입력 파싱"
-- "Complexity"
-- "복잡도"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N)"
-- "Constraints"
-- "제한"
-- "N<=1000"
-- "Pi<=1000"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "C++"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Game-Theory
+- Math
+- Greedy
+- 그리디
+- 수학
+- Strategy
+- Implementation
+- 구현
+- Complexity-Analysis
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- C++
 image: "wordcloud.png"
 ---
 

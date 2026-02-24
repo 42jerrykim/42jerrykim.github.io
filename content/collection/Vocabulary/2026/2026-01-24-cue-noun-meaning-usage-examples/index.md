@@ -9,61 +9,18 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - cue
-  - cue meaning
-  - cue usage
-  - cue examples
-  - cue noun
   - 영단어
   - 영어명사
-  - cue 의미
-  - cue 용법
-  - cue 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - signal
-  - sign
-  - clue
-  - hint
-  - stick
-  - prompt
-  - indication
-  - theatrical
-  - theater
-  - theatre
   - drama
-  - performance
-  - billiards
-  - pool
-  - sports
-  - acting
-  - cinema
-  - film
-  - visual
-  - gesture
-  - 신호
-  - 단서
-  - 막대
-  - 막
-  - 연극
+  - Performance
   - 영화
-  - 당구
   - 큐
-  - 무대 신호
-  - 기입 신호
-  - 암시
-  - 힌트
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
-  - study English
-  - vocabulary building
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

@@ -7,58 +7,19 @@ title: "[Clean Architecture] 09. 프로그래밍 패러다임 서론"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Programming Paradigm
-  - 프로그래밍 패러다임
-  - Structured Programming
-  - 구조적 프로그래밍
-  - Object Oriented Programming
-  - 객체 지향 프로그래밍
+  - Clean-Architecture
+  - 클린아키텍처
   - OOP
-  - Functional Programming
-  - 함수형 프로그래밍
-  - FP
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Code History
-  - 코드 역사
-  - Alan Turing
-  - 앨런 튜링
-  - Grace Hopper
-  - 그레이스 호퍼
+  - Functional-Programming
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - Compiler
   - 컴파일러
-  - Assembler
-  - 어셈블러
-  - Binary Code
-  - 바이너리 코드
-  - Fortran
-  - 포트란
-  - COBOL
-  - 코볼
-  - C Language
-  - C 언어
   - Java
-  - 자바
-  - Programming Language
-  - 프로그래밍 언어
-  - Control Flow
-  - 제어 흐름
-  - goto Statement
-  - goto문
-  - Function Pointer
-  - 함수 포인터
-  - Assignment
-  - 할당문
-  - Immutability
-  - 불변성
+  - Code-Quality
   - Polymorphism
   - 다형성
-  - Software Design
-  - 소프트웨어 설계
-  - Robert C. Martin
-  - Uncle Bob
+  - SOLID
 ---
 
 소프트웨어 아키텍처는 **코드(code)**로부터 시작한다. 따라서 아키텍처에 대한 논의도 코드가 최초로 작성된 시점부터, 우리가 코드를 통해 배운 내용을 살펴보는 데서 출발하고자 한다.

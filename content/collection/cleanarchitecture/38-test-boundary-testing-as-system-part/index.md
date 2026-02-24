@@ -7,48 +7,14 @@ title: "[Clean Architecture] 38. 테스트 경계"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Test
+  - Clean-Architecture
+  - 클린아키텍처
   - 테스트
-  - Test Boundary
-  - 테스트 경계
-  - Test Architecture
-  - 테스트 아키텍처
-  - Fragile Test
-  - 깨지기 쉬운 테스트
-  - Test Coupling
-  - 테스트 결합
-  - Test API
-  - 테스트 API
-  - Unit Test
-  - 단위 테스트
-  - Integration Test
-  - 통합 테스트
-  - End to End Test
-  - E2E 테스트
+  - Testing
   - TDD
-  - Test Driven Development
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Dependency
-  - 의존성
-  - GUI Test
-  - GUI 테스트
-  - API Test
-  - API 테스트
-  - Business Rules
-  - 비즈니스 규칙
-  - Verification
-  - 검증
-  - Testability
-  - 테스트 용이성
-  - Structural Coupling
-  - 구조적 결합
-  - Testing Strategy
-  - 테스트 전략
-  - Component
-  - 컴포넌트
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Dependency-Injection
 ---
 
 테스트는 시스템의 **일부**다. 아키텍처에서 테스트를 어떻게 다뤄야 하는가?

@@ -5,16 +5,10 @@ description: "데미언 셔젤이 그려낸 현대적 뮤지컬의 완벽한 재
 image: "la-la-land-poster.png"
 categories: 
   - Movies
-tags: 
+tags:
   - Musical
   - Romance
   - Drama
-  - 라이언 고슬링
-  - 엠마 스톤
-  - 데미언 셔젤
-  - 재즈
-  - 로스앤젤레스
-  - 아카데미상
 draft: true
 ---
 

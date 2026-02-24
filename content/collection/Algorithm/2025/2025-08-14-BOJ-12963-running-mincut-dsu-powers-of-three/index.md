@@ -11,76 +11,43 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-12963
-- cpp
 - C++
 - Python
-- Data Structures
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Greedy
 - 그리디
 - Graph
 - 그래프
-- Cut
-- 컷
-- Min Cut
-- 최소컷
-- Max Flow
-- 최대유량
-- Disjoint Set Union
-- 유니온파인드
+- Network-Flow
+- Disjoint-Set
 - DSU
-- Connectivity
-- 연결성
-- Undirected Graph
-- 무향그래프
-- Unique Weights
-- 유일가중치
-- Powers of Three
-- 3의 거듭제곱
-- Kruskal-like
-- 크루스칼 유사
-- Modulo
+- Modular-Arithmetic
 - 모듈러
-- 1e9+7
 - Math
 - 수학
-- Implementation Details
-- 구현 디테일
-- Proof
-- 증명
-- S-T Cut
-- s-t 컷
-- Path Capacity
-- 경로 용량
 image: "wordcloud.png"
 ---
 

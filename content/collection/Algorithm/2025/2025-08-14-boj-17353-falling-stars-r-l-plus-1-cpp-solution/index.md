@@ -11,67 +11,34 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-17353
-- cpp
 - C++
-- Data Structures
+- Data-Structures
 - 자료구조
-- Fenwick Tree
-- 펜윅트리
+- Fenwick-Tree
 - BIT
-- Binary Indexed Tree
-- Difference Array
-- 차분 배열
-- Prefix Sum
-- 누적합
-- Range Update
-- 구간 업데이트
-- Point Query
-- 점 질의
-- Arithmetic Progression
-- 등차수열
-- Range Add
-- 구간 가산
-- Online Queries
-- 온라인 처리
-- Query Processing
-- 쿼리 처리
+- Binary-Indexed-Tree
+- Prefix-Sum
+- Segment-Tree
+- Range-Query
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
-- BIT Tricks
-- BIT 테크닉
-- Range to Point
-- 구간에서 점
 - Math
 - 수학
-- Indexing
-- 인덱싱
-- 1-based Index
-- 1-기반 인덱스
-- Fast IO
-- 빠른 입출력
-- Long Long
-- 64-bit
-- Overflow
-- 오버플로
+- IO
 image: "wordcloud.png"
 ---
 

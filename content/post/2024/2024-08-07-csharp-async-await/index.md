@@ -7,14 +7,10 @@ header:
   teaser: /assets/images/2024/whenany-async-breakfast.png
 tags:
 - async
-- await
 - CSharp
-- programming
-- I/O
+- Implementation
 - CPU
-- Task
-- asynchronous
-- performance
+- Performance
 - .NET
 title: '[C#] C# 비동기 프로그래밍 async/await'
 ---

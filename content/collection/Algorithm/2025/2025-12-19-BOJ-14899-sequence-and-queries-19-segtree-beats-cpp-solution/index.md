@@ -8,82 +8,32 @@ categories:
 - "Segment Tree"
 - "Segment Tree Beats"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "14899"
-- "BOJ-14899"
-- "수열과 쿼리 19"
-- "수열과쿼리19"
-- "Sequence and Query 19"
-- "Sequence and Queries"
-- "Range Query"
-- "구간 쿼리"
-- "Query Processing"
-- "쿼리 처리"
-- "Online Query"
-- "온라인 쿼리"
-- "Data Structures"
-- "자료구조"
-- "Segment Tree"
-- "세그먼트 트리"
-- "Segment Tree Beats"
-- "세그먼트 트리 비츠"
-- "Range Update"
-- "구간 갱신"
-- "Range Add"
-- "구간 덧셈"
-- "Add Update"
-- "덧셈 갱신"
-- "Range Division"
-- "구간 나눗셈"
-- "Integer Division"
-- "정수 나눗셈"
-- "Floor Division"
-- "바닥 나눗셈"
-- "Math"
-- "수학"
-- "Monotonicity"
-- "단조성"
-- "Pruning"
-- "가지치기"
-- "Lazy Propagation"
-- "레이지 프로퍼게이션"
-- "Range Minimum Query"
-- "RMQ"
-- "구간 최솟값"
-- "Range Sum Query"
-- "구간 합"
-- "Sum"
-- "합"
-- "Min"
-- "최솟값"
-- "Optimization"
-- "최적화"
-- "Amortized Analysis"
-- "상각 분석"
-- "Implementation"
-- "구현"
-- "Edge Case"
-- "엣지 케이스"
-- "Pitfalls"
-- "실수 포인트"
-- "Overflow"
-- "오버플로우"
-- "long long"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Coding Test"
-- "코딩 테스트"
-- "Signed Integer"
-- "부호 있는 정수"
-- "Negative Numbers"
-- "음수 처리"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Range-Query
+- Data-Structures
+- 자료구조
+- Segment-Tree
+- 세그먼트트리
+- Math
+- 수학
+- Lazy-Propagation
+- Optimization
+- 최적화
+- Implementation
+- 구현
+- Edge-Cases
+- 엣지케이스
+- Pitfalls
+- 함정
+- C++
+- Competitive-Programming
+- 경쟁프로그래밍
+- Coding-Test
+- 코딩테스트
 image: "wordcloud.png"
 ---
 

@@ -9,55 +9,15 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - burned
-  - burned meaning
-  - burned usage
-  - burned examples
-  - burned adjective
   - 영단어
   - 영어형용사
-  - burned 의미
-  - burned 용법
-  - burned 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - tired
-  - exhausted
-  - fatigued
-  - hurt
-  - betrayed
-  - scorched
-  - damaged
-  - scarred
-  - weary
-  - worn out
-  - 지친
-  - 피로한
-  - 소진된
-  - 탄
-  - 손상된
-  - 거절당한
-  - 배신당한
-  - 상처받은
-  - burnout
-  - exhaustion
-  - fatigue
-  - emotional
-  - trauma
-  - betrayal
-  - business
-  - relationships
-  - work
-  - personal experience
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Business-English
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

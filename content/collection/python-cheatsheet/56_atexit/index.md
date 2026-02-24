@@ -7,38 +7,13 @@ description: "파이썬 atexit 모듈을 빠르게 사용하기 위한 치트시
 lastmod: 2026-01-18
 collection_order: 56
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - atexit
-  - exit
-  - 종료
-  - cleanup
-  - 정리
-  - callback
-  - 콜백
-  - register
-  - 등록
-  - unregister
-  - resource
-  - 리소스
-  - temporary
-  - 임시파일
-  - shutdown
-  - 셧다운
-  - finalization
-  - 종료처리
-  - standard-library
-  - 표준라이브러리
-  - patterns
-  - 패턴
-  - best-practices
-  - 베스트프랙티스
+  - Quick-Reference
+  - Design-Pattern
+  - Best-Practices
 ---
 `atexit` 모듈은 **프로그램 정상 종료 시 실행할 함수를 등록**합니다. 리소스 정리, 임시 파일 삭제, 로그 기록 등 종료 작업에 유용합니다.
 

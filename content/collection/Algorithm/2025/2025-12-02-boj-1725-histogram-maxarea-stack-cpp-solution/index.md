@@ -11,70 +11,34 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-1725
-- cpp
 - C++
 - Stack
 - 스택
-- Data Structures
+- Data-Structures
 - 자료구조
-- Histogram
-- 히스토그램
-- Maximum Rectangle
-- 최대직사각형
-- Maximal Area
-- 최대 넓이
 - Greedy
 - 그리디
-- Linear Time
-- 선형시간
-- O(n)
-- Monotonic Stack
-- 단조스택
-- Problem Solving
-- 문제 해결
-- Competitive Programming
+- Time-Complexity
+- Problem-Solving
+- 문제해결
+- Competitive-Programming
 - 경쟁프로그래밍
-- Time Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Implementation
 - 구현
 - Pitfalls
-- 실수 포인트
-- Boundary Extension
-- 경계 확장
-- Height Array
-- 높이 배열
-- Width Calculation
-- 너비 계산
+- 함정
 - Optimization
 - 최적화
-- Classic Problem
-- 고전 문제
-- Stack-based Algorithm
-- 스택기반 알고리즘
-- Two Pointers Concept
-- 투포인터 개념
-- Nested Loops
-- 중첩 루프
-- Brute Force Alternative
-- 완전탐색 대안
-- Fast I/O
-- 빠른 입출력
+- IO
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
-- University Contest
-- 대학 대회
+- Complexity-Analysis
+- 복잡도분석
 image: "wordcloud.png"
 ---
 

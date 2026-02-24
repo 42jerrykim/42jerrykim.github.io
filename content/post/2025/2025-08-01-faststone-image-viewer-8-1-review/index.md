@@ -2,8 +2,21 @@
 title: "[Software] FastStone Image Viewer 8.1 - 무료 이미지 뷰어의 완벽한 선택"
 date: 2025-08-01
 description: "FastStone Image Viewer 8.1은 빠른 속도와 안정성을 자랑하는 무료 이미지 browser, converter, editor이다. 다양한 이미지 format 지원, 직관적인 full-screen mode, 강력한 slideshow, EXIF 정보 확인, batch processing, red-eye removal, resizing, cropping, color adjustment 등 다양한 기능을 제공한다. Modern style의 Open/Save dialog, thumbnail 표시 옵션, 파일 위치 표시 등 최신 UI 개선도 포함되어 있다. 가정 사용자에게 무료로 제공되며, 초보자와 전문가 모두에게 적합한 이미지 관리 솔루션이다."
-categories: ["Software", "Review"]
-tags: ["FastStone", "Image Viewer", "Photo Editor", "Free Software"]
+categories:
+- Software
+- Review
+tags:
+- Review
+- Git
+- GitHub
+- Windows
+- Samsung
+- Android
+- Mobile
+- Self-Hosted
+- Networking
+- Keyboard
+- 키보드
 image: "FSViewer.png"
 ---
 

@@ -10,76 +10,35 @@ categories:
 - "Convolution"
 - "Correlation"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "13055"
-- "BOJ-13055"
-- "K-Inversions"
-- "Inversion"
-- "인버전"
-- "String"
-- "문자열"
-- "Binary String"
-- "이진 문자열"
-- "A and B"
-- "A/B 문자열"
-- "Counting"
-- "카운팅"
-- "Distance"
-- "거리"
-- "Offset"
-- "오프셋"
-- "Cross-correlation"
-- "상관"
-- "Correlation"
-- "상관관계"
-- "Convolution"
-- "컨볼루션"
-- "FFT"
-- "고속 푸리에 변환"
-- "Fast Fourier Transform"
-- "Polynomial Multiplication"
-- "다항식 곱셈"
-- "Signal Processing"
-- "신호 처리"
-- "Indicator Array"
-- "지시 배열"
-- "Bitset"
-- "비트셋"
-- "Large Input"
-- "큰 입력"
-- "1e6"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N log N)"
-- "Optimization"
-- "최적화"
-- "Implementation"
-- "구현"
-- "Indexing"
-- "인덱싱"
-- "Rounding"
-- "반올림"
-- "Floating Point"
-- "부동소수점"
-- "Precision"
-- "정밀도"
-- "NAIPC"
-- "ICPC"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Math
+- String
+- 문자열
+- Shortest-Path
+- Convolution
+- FFT
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Optimization
+- 최적화
+- Implementation
+- 구현
+- Data-Structures
+- Edge-Cases
+- ICPC
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- C++
 image: wordcloud.png
 ---
 

@@ -7,62 +7,25 @@ description: "파이썬 객체지향 프로그래밍을 빠르게 쓰기 위한 
 lastmod: 2026-01-18
 collection_order: 8
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
+  - Quick-Reference
   - oop
-  - object-oriented
   - 객체지향
-  - class
-  - classes
-  - 클래스
   - inheritance
   - 상속
-  - super
-  - __init__
-  - constructor
-  - 생성자
-  - instance
-  - 인스턴스
-  - attribute
-  - 속성
-  - method
-  - 메서드
-  - self
-  - cls
-  - classmethod
-  - staticmethod
-  - property
-  - 프로퍼티
-  - getter
-  - setter
-  - __slots__
-  - slots
-  - magic-method
-  - dunder
-  - __str__
-  - __repr__
-  - __eq__
   - encapsulation
   - 캡슐화
   - polymorphism
   - 다형성
   - composition
   - 합성
-  - mro
-  - best-practices
-  - 베스트프랙티스
+  - Best-Practices
   - pitfalls
   - 함정
-  - standard-library
-  - 표준라이브러리
-  - design
-  - 설계
+  - Design-Pattern
 ---
 파이썬의 클래스는 데이터와 동작을 묶는 기본 단위입니다. 이 치트시트는 class 정의, 상속과 super(), @property, __slots__, 자주 쓰는 매직 메서드를 빠르게 정리합니다.
 

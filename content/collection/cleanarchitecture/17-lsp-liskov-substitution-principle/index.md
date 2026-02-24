@@ -7,61 +7,21 @@ title: "[Clean Architecture] 17. LSP: 리스코프 치환 원칙"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Liskov Substitution Principle
-  - 리스코프 치환 원칙
-  - LSP
+  - Clean-Architecture
+  - 클린아키텍처
   - SOLID
-  - SOLID Principles
-  - SOLID 원칙
-  - Barbara Liskov
-  - 바바라 리스코프
-  - Subtype
-  - 하위 타입
-  - Supertype
-  - 상위 타입
   - Inheritance
   - 상속
   - Interface
   - 인터페이스
-  - Contract
-  - 계약
-  - Behavioral Subtyping
-  - 행위적 하위 타입
-  - Square Rectangle Problem
-  - 정사각형 직사각형 문제
-  - Software Design
-  - 소프트웨어 설계
-  - Software Architecture
-  - 소프트웨어 아키텍처
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - Polymorphism
   - 다형성
-  - Substitutability
-  - 대체 가능성
-  - Design by Contract
-  - 계약에 의한 설계
-  - Precondition
-  - 사전 조건
-  - Postcondition
-  - 사후 조건
-  - Invariant
-  - 불변식
-  - REST API
-  - Architecture
-  - 아키텍처
-  - Type System
-  - 타입 시스템
-  - Code Quality
-  - 코드 품질
-  - Duck Typing
-  - 덕 타이핑
-  - Violation
-  - 위반
-  - Taxi Dispatch
-  - 택시 배차
-  - Interface Segregation
-  - 인터페이스 분리
+  - Algorithm
+  - 알고리즘
+  - Code-Quality
+  - 코드품질
 ---
 
 **LSP(Liskov Substitution Principle)**는 1988년 Barbara Liskov가 정의한 원칙이다. 처음에는 상속에 관한 원칙으로 보이지만, 실제로는 인터페이스와 구현에 관한 더 넓은 설계 원칙이다.

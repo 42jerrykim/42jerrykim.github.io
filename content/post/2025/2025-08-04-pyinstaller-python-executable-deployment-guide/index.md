@@ -5,72 +5,23 @@ date: 2025-08-04
 categories: 
 - "Python"
 - Distribution
-tags: 
-- "Python"
-- "PyInstaller"
-- "Deployment"
-- "Executable"
-- "Distribution"
-- "Application"
-- "Packaging"
-- "Installer"
-- "Windows"
-- "Linux"
-- "macOS"
-- "Cross-platform"
-- "Standalone"
-- "Binary"
-- "Build"
-- "Distribution"
-- "Bundle"
-- "Spec"
-- "Script"
-- "Command-line"
-- "Automation"
-- "GUI"
-- "Tkinter"
-- "PyQt"
-- "wxPython"
-- "Dependency"
-- "Library"
-- "Module"
-- "Freeze"
-- "Compile"
-- "Executable File"
-- "Single File"
-- "Portable"
-- "No Python Required"
-- "Release"
-- "파이썬"
-- "파이썬배포"
-- "실행파일"
-- "배포가이드"
-- "윈도우"
-- "리눅스"
-- "맥"
-- "크로스플랫폼"
-- "패키징"
-- "인스톨러"
-- "자동화"
-- "스크립트"
-- "명령줄"
-- "GUI"
-- "의존성"
-- "라이브러리"
-- "모듈"
-- "프리징"
-- "컴파일"
-- "단일파일"
-- "포터블"
-- "릴리즈"
-- "프로그램배포"
-- "앱배포"
-- "설치없이실행"
-- "파이썬앱"
-- "파이썬프로그램"
-- "파이썬실행파일"
-- "파이썬패키징"
-- "파이썬인스톨러"
+tags:
+- Python
+- Deployment
+- DevOps
+- Windows
+- Linux
+- macOS
+- CI-CD
+- Automation
+- Frontend
+- Dependency-Injection
+- Software-Architecture
+- 파이썬
+- 윈도우
+- 리눅스
+- 자동화
+- Shell
 image: wordcloud.png
 ---
 

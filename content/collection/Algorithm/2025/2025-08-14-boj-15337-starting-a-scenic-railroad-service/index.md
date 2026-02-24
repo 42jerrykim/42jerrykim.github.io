@@ -11,63 +11,38 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-15337
-- cpp
-- python
 - C++
 - Python
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Complexity Analysis
-- 복잡도 분석
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
 - Testing
 - 테스트
-- Invariant
-- 불변식
-- Line Sweep
-- 라인스위핑
-- Prefix Sum
-- 누적합
-- Suffix Sum
-- 접미합
-- Counting
-- 카운팅
-- Interval
-- 구간
-- Interval Overlap
-- 구간겹침
-- Interval Scheduling
-- 구간 스케줄링
+- Prefix-Sum
+- Math
+- Range-Query
 - Greedy
 - 그리디
-- Data Structures
+- Data-Structures
 - 자료구조
 - Array
 - 배열
-- Seat Assignment
-- 좌석 배정
 - ICPC
-- Tsukuba 2017
-- Scenic Railroad
-- 관광열차
-- Half-open Interval
-- 반열린구간
 image: "wordcloud.png"
 ---
 

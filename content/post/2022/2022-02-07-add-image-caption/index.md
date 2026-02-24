@@ -4,11 +4,13 @@ description: "Jekyll 및 Markdown 환경에서 블로그 이미지에 캡션을 
 date: "2022-02-07T00:00:00Z"
 header:
   teaser: /assets/images/2022/2022-02-09-214658.png
-tag:
-- image
-- caption
+tags:
 - Jekyll
 - Markdown
+- Git
+- GitHub
+- CSS
+- Blog
 title: '[Jekyll] 이미지에 캡션 추가하기'
 ---
 

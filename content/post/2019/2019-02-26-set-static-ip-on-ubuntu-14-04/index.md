@@ -9,12 +9,14 @@ last_modified_at: "2022-04-15"
 redirect_from:
 - /2019/02/26/
 tags:
-- Ubuntu
 - Linux
-- IP
-- setup
-- setting
 - Shell
+- Go
+- Bash
+- REST
+- API
+- Command
+- Design-Pattern
 title: '[Linux] Change Ubuntu 14.04 from DHCP to Static IP Addredd'
 ---
 

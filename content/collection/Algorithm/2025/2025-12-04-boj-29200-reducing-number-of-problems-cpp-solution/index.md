@@ -12,64 +12,39 @@ tags:
   - 알고리즘
   - BOJ
   - 백준
-  - Problem-29200
-  - 29200
-  - cpp
   - C++
-  - Dynamic Programming
+  - Dynamic-Programming
   - 동적계획법
   - DP
-  - XOR
-  - Bitwise Operation
-  - 비트연산
-  - Partition
-  - 분할
-  - Segmentation
-  - 세그먼테이션
+  - Math
+  - Divide-and-Conquer
   - Optimization
   - 최적화
-  - Data Structures
+  - Data-Structures
   - 자료구조
-  - Time Complexity
+  - Time-Complexity
   - 시간복잡도
-  - Space Complexity
+  - Space-Complexity
   - 공간복잡도
-  - Time Limit Exceeded
-  - TLE 회피
-  - Proof of Correctness
-  - 정당성 증명
-  - Edge Cases
-  - 코너 케이스
+  - Edge-Cases
+  - 엣지케이스
   - Pitfalls
-  - 실수 포인트
-  - Competitive Programming
+  - 함정
+  - Competitive-Programming
   - 경쟁프로그래밍
-  - Online Judge
-  - 온라인 저지
   - Implementation
   - 구현
-  - Code Review
+  - Code-Review
   - 코드리뷰
   - Testing
   - 테스트
-  - Complexity Analysis
-  - 복잡도 분석
+  - Complexity-Analysis
+  - 복잡도분석
   - Greedy
   - 그리디
-  - Brute Force
+  - Brute-Force
   - 완전탐색
-  - State Transition
-  - 상태전이
   - Memoization
-  - 메모이제이션
-  - Subsequence
-  - 부분수열
-  - Array Indexing
-  - 배열 인덱싱
-  - Constraint Satisfaction
-  - 제약조건 만족
-  - Monotonic Optimization
-  - 단조성 최적화
 image: "wordcloud.png"
 ---
 

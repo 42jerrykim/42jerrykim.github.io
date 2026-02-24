@@ -6,14 +6,17 @@ categories:
 - Sweeping
 - Segment-Tree
 tags:
-- SegmentTree
-- CoordinateCompression
-- MaximumSubarray
-- Sweeping
-- O(N² log N)
-- DataStructure
+- Data-Structures
 - Geometry
 - Optimization
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Segment-Tree
 image: "tmp_wordcloud.png"
 date: 2024-12-12
 ---

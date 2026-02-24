@@ -1,0 +1,334 @@
+Cpp	C++
+CPP	C++
+C#	CSharp
+C# programming	CSharp
+learning C#	CSharp
+Python3	Python
+python	Python
+DesignPattern	Design-Pattern
+DesignPatterns	Design-Pattern
+Design Patterns	Design-Pattern
+design-patterns	Design-Pattern
+SoftwareArchitecture	Software-Architecture
+SoftwareEngineering	Software-Architecture
+software-engineering	Software-Architecture
+Software Engineering	Software-Architecture
+SoftwareDevelopment	Software-Architecture
+SoftwareDesign	Software-Architecture
+Software Design	Software-Architecture
+CleanCode	Clean-Code
+Clean Code	Clean-Code
+CodeQuality	Code-Quality
+Code Quality	Code-Quality
+code-quality	Code-Quality
+BestPractices	Best-Practices
+best-practices	Best-Practices
+Best Practices	Best-Practices
+ProblemSolving	Problem-Solving
+Problem Solving	Problem-Solving
+Competitive Programming	Competitive-Programming
+Coding Test	Coding-Test
+Dynamic Programming	Dynamic-Programming
+DynamicProgramming	Dynamic-Programming
+Binary Search	Binary-Search
+Data Structures	Data-Structures
+DataStructures	Data-Structures
+data-structures	Data-Structures
+Data Structure	Data-Structures
+DataStructure	Data-Structures
+Time Complexity	Time-Complexity
+Space Complexity	Space-Complexity
+Complexity Analysis	Complexity-Analysis
+Edge Cases	Edge-Cases
+Edge Case	Edge-Cases
+Code Review	Code-Review
+Graph Theory	Graph-Theory
+GraphTheory	Graph-Theory
+Number Theory	Number-Theory
+Divide and Conquer	Divide-and-Conquer
+Two Pointers	Two-Pointers
+Sliding Window	Sliding-Window
+Range Query	Range-Query
+Prefix Sum	Prefix-Sum
+Shortest Path	Shortest-Path
+Network Flow	Network-Flow
+Segment Tree	Segment-Tree
+Fenwick Tree	Fenwick-Tree
+Binary Indexed Tree	Binary-Indexed-Tree
+Disjoint Set Union	Disjoint-Set
+Priority Queue	Priority-Queue
+Bipartite Matching	Bipartite-Matching
+Computational Geometry	Computational-Geometry
+Coordinate Compression	Coordinate-Compression
+Euler Tour	Euler-Tour
+Lazy Propagation	Lazy-Propagation
+Topological Sort	Topological-Sort
+Game Theory	Game-Theory
+Brute Force	Brute-Force
+BruteForce	Brute-Force
+Modular Arithmetic	Modular-Arithmetic
+Fast IO	IO
+Fast I/O	IO
+Proof of Correctness	Algorithm
+Invariant	Algorithm
+Clean Architecture	Clean-Architecture
+Dependency Injection	Dependency-Injection
+Dependency Inversion	Dependency-Injection
+Object-Oriented Programming	OOP
+Functional Programming	Functional-Programming
+FunctionalProgramming	Functional-Programming
+Error Handling	Error-Handling
+ErrorHandling	Error-Handling
+Machine Learning	Machine-Learning
+MachineLearning	Machine-Learning
+PerformanceOptimization	Performance
+Performance Optimization	Performance
+Performance Engineering	Performance
+CodeOptimization	Optimization
+Memory Optimization	Memory
+MemoryManagement	Memory
+Open Closed Principle	SOLID
+SOLID Principles	SOLID
+Robert C. Martin	SOLID
+Uncle Bob	SOLID
+Gang of Four	GoF
+GoF Patterns	GoF
+standard-library	Python
+GNU++17	C++
+cheatsheet	Cheatsheet
+quick-reference	Quick-Reference
+computer-science	Algorithm
+ci-cd	CI-CD
+devops	DevOps
+powershell	PowerShell
+git	Git
+coding	Implementation
+Programming	Implementation
+Algorithms	Algorithm
+patterns	Design-Pattern
+performance	Performance
+efficiency	Performance
+collocation	Collocation
+nuance	Nuance
+Context	Nuance
+synonym	Synonym
+antonym	Antonym
+usage notes	Grammar
+pronunciation	Pronunciation
+etymology	Etymology
+EN/KR examples	English
+study English	English
+vocabulary building	Vocabulary
+English Words	English
+examples	English
+expressions	English
+learning	Education
+TypeSafety	Code-Quality
+TypeManipulation	Code-Quality
+Immutability	Code-Quality
+DataIntegrity	Code-Quality
+DataTypes	Implementation
+ProgrammingLanguages	Implementation
+ProgrammingConcepts	Implementation
+ApplicationDevelopment	Implementation
+UserExperience	Frontend
+SystemDesign	Software-Architecture
+CodeReusability	Code-Quality
+Code Reusability	Code-Quality
+OpenSource	Open-Source
+SoftwareTesting	Testing
+Testability	Testing
+matching	String
+Formatting	Implementation
+Indexing	Data-Structures
+tooling	DevOps
+packaging	DevOps
+Maintainability	Code-Quality
+Flexibility	Software-Architecture
+Readability	Clean-Code
+list	Data-Structures
+Overflow	Edge-Cases
+long long	Edge-Cases
+64-bit	Edge-Cases
+Floating Point	Edge-Cases
+Precision	Edge-Cases
+Modulo	Modular-Arithmetic
+Template	C++
+STL	C++
+Counting	Math
+Mathematics	Math
+Permutation	Combinatorics
+XOR	Math
+GCD	Math
+Cross Product	Computational-Geometry
+CCW	Computational-Geometry
+Sequence	Math
+Point Update	Segment-Tree
+Range Update	Segment-Tree
+Range Add	Segment-Tree
+Online Query	Range-Query
+Offline Query	Range-Query
+Query Processing	Range-Query
+Adjacency List	Graph
+Connectivity	Graph
+Residual Graph	Network-Flow
+Flow	Network-Flow
+Cut	Network-Flow
+Path	Graph
+Grid	Graph
+Distance	Shortest-Path
+Boundary	Edge-Cases
+Interval	Range-Query
+Special Judge	BOJ
+Vector	Array
+Solution Code	Editorial
+Hands-on Learning	Tutorial
+Practice Project	Tutorial
+Implementation Details	Implementation
+Behavioral Pattern	Design-Pattern
+Behavioral Patterns	Design-Pattern
+Creational Pattern	Design-Pattern
+Structural Pattern	Design-Pattern
+Pattern Implementation	Design-Pattern
+Business Rules	Software-Architecture
+Microsecond	Performance
+Low Latency	Performance
+Low-latency	Performance
+PS	Competitive-Programming
+Contest	Competitive-Programming
+Benchmark	Performance
+Coupling	Software-Architecture
+Cohesion	Software-Architecture
+Component	Software-Architecture
+Module	Software-Architecture
+Throughput	Performance
+Latency	Performance
+Process	OS
+CPU	CPU
+Cache	Cache
+Profiling	Profiling
+Documentation	Documentation
+Innovation	Innovation
+Collaboration	Software-Architecture
+Regression	Testing
+Software Architecture	Software-Architecture
+Architecture	Software-Architecture
+Development	Implementation
+Design Pattern	Design-Pattern
+Complexity	Complexity-Analysis
+Code Implementation	Implementation
+Technology	Technology
+CI	CI-CD
+History	History
+Business	Business-English
+Class	OOP
+Framework	Software-Architecture
+Dependency	Dependency-Injection
+Design Principles	SOLID
+Loose Coupling	Software-Architecture
+Prefix	Prefix-Sum
+Design	Design-Pattern
+O(N log N)	Time-Complexity
+O(N)	Time-Complexity
+O(log N)	Time-Complexity
+O(N^2)	Time-Complexity
+O(1)	Time-Complexity
+O(N+M)	Time-Complexity
+Proof	Algorithm
+__int128	C++
+Science-Fiction	Sci-Fi
+Science Fiction	Sci-Fi
+WebDevelopment	Web
+Software Development	Implementation
+System Design	Software-Architecture
+Parsing	Implementation
+DDD	Software-Architecture
+cli	Shell
+business English	Business-English
+academic English	Academic-English
+Structural Patterns	Design-Pattern
+Creational Patterns	Design-Pattern
+Modeling	Software-Architecture
+Max Flow	Network-Flow
+Vocabulary Learning	Vocabulary
+Lowest Common Ancestor	LCA
+Binary Lifting	LCA
+Dinic	Network-Flow
+KOI	Competitive-Programming
+IOI	Competitive-Programming
+Rooted Tree	Tree
+Linear Time	Algorithm
+SCC	Graph
+Directed Graph	Graph
+Bipartite Graph	Graph
+Convex Hull	Computational-Geometry
+Convex Hull Trick	Dynamic-Programming
+Difference Array	Data-Structures
+Sweep Line	Algorithm
+Parametric Search	Binary-Search
+Fast Fourier Transform	FFT
+NoSQL	Database
+Multithreading	Concurrency
+regex	String
+TOEIC	English
+JSON	JSON
+YAML	YAML
+XML	XML
+Cursor	IDE
+Plugin Architecture	Software-Architecture
+Union-Find	Disjoint-Set
+Augmenting Path	Network-Flow
+Open Source	Open-Source
+Validation	Testing
+Scheduling	Concurrency
+Serialization	Implementation
+Arithmetic	Math
+Filter	Implementation
+Object	OOP
+Construction	Implementation
+Merge	Algorithm
+Depth	Graph
+Index	Data-Structures
+Search	Algorithm
+Iteration	Implementation
+Reflection	Implementation
+Object Creation	Design-Pattern
+Inversion	Math
+Constraints	Edge-Cases
+methods	OOP
+syntax	Implementation
+Segment	Segment-Tree
+Query	Range-Query
+Histogram	Data-Structures
+Output	IO
+Input	IO
+Network	Networking
+Stability	Code-Quality
+Transaction	Database
+Observability	Monitoring
+Microbenchmark	Performance
+Interfaces	Interface
+Separation of Concerns	SOLID
+Technical Debt	Code-Quality
+Build	CI-CD
+Reachability	Graph
+ObjectOriented	OOP
+Coming-of-age	Drama
+Sequel	Movie
+IMAX	Movie
+GUI	Frontend
+Product	Implementation
+Policy	Security
+Extensibility	Software-Architecture
+DP Optimization	Dynamic-Programming
+Precomputation	Algorithm
+Mock	Testing
+Euclidean Distance	Geometry
+Correctness	Algorithm
+Online judge	BOJ
+Runtime	Performance
+OOAD	OOP
+Modular Inverse	Modular-Arithmetic
+DataProcessing	Data-Structures
+DataManagement	Database
+DataAnalysis	Data-Structures

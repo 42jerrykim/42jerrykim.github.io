@@ -6,12 +6,17 @@ categories:
 - Graph Theory
 - Union-Find
 tags:
-- Union-Find
-- Graph Theory
+- Disjoint-Set
+- Graph-Theory
 - Greedy
-- Coordinate Compression
-- Mathematical Insight
-- Disjoint Set
+- Coordinate-Compression
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 image: "index.png"
 date: 2025-02-10
 ---

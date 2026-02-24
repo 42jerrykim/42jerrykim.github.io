@@ -7,15 +7,16 @@ categories:
 - 2-SAT
 - StronglyConnectedComponents
 tags:
-- 2-SAT
-- SCC
-- ImplicationGraph
-- KosarajuAlgorithm
-- O(N)
 - Graph
-- Logic
-- SatisfiabilityProblem
-- StronglyConnectedComponents
+- Time-Complexity
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Python
 image: "tmp_wordcloud.png"
 date: 2024-01-01
 ---

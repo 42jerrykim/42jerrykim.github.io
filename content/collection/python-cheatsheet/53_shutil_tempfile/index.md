@@ -7,52 +7,14 @@ description: "파이썬 shutil과 tempfile 모듈을 빠르게 쓰기 위한 치
 lastmod: 2026-01-18
 collection_order: 53
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - shutil
-  - tempfile
-  - copy
-  - 복사
-  - move
-  - 이동
-  - delete
-  - 삭제
-  - rmtree
-  - copytree
-  - 디렉토리
-  - directory
-  - file
-  - 파일
-  - temporary
-  - 임시파일
-  - temp
-  - tmp
-  - NamedTemporaryFile
-  - TemporaryDirectory
-  - mkstemp
-  - mkdtemp
-  - disk-usage
-  - 디스크용량
-  - archive
-  - 아카이브
-  - zip
-  - tar
-  - filesystem
-  - 파일시스템
-  - standard-library
-  - 표준라이브러리
-  - best-practices
-  - 베스트프랙티스
+  - Quick-Reference
+  - Best-Practices
   - pitfalls
   - 함정
-  - cleanup
-  - 정리
   - security
   - 보안
 ---

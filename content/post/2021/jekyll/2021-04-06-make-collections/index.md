@@ -6,9 +6,12 @@ categories:
 date: "2021-04-06T00:00:00Z"
 tags:
 - Jekyll
-- Category
-- Posts
-- _config.yml
+- Go
+- Algorithm
+- 알고리즘
+- HTML
+- Blog
+- Configuration
 title: '[Jekyll] 모아 볼 수 있는 콜렉션 만들기'
 ---
 

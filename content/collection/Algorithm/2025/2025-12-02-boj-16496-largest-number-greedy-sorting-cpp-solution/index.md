@@ -11,8 +11,6 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-16496
-- cpp
 - C++
 - Greedy
 - 그리디
@@ -20,56 +18,28 @@ tags:
 - 정렬
 - String
 - 문자열
-- Custom Comparator
-- 커스텀 비교함수
-- Lexicographical
-- 사전순
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Greedy Algorithm
-- 그리디 알고리즘
-- Problem Solving
-- 문제 해결
-- Competitive Programming
+- Problem-Solving
+- 문제해결
+- Competitive-Programming
 - 경쟁프로그래밍
-- Data Structures
+- Data-Structures
 - 자료구조
-- Vector
-- 벡터
-- Transitive
-- 이행성
-- Local Optimality
-- 국소 최적성
-- Global Optimality
-- 전역 최적성
-- Number Arrangement
-- 숫자 배열
-- Concatenation
-- 연결
-- String Comparison
-- 문자열 비교
-- Zero Handling
-- 0 처리
-- Leading Zeros
-- 선행 0
-- Integer Parsing
-- 정수 파싱
-- Fast I/O
-- 빠른 입출력
+- Array
+- IO
 - Testing
 - 테스트
 - Pitfalls
-- 실수 포인트
-- Complexity Analysis
-- 복잡도 분석
+- 함정
+- Complexity-Analysis
+- 복잡도분석
 image: "wordcloud.png"
 ---
 

@@ -5,8 +5,11 @@ categories: Git
 date: "2021-04-07T00:00:00Z"
 tags:
 - Git
-- stage
-- KakaoTalk
+- GitHub
+- Technology
+- Tutorial
+- Guide
+- Implementation
 title: '[Git] git 수정 이전으로 내용 되돌리기'
 ---
 

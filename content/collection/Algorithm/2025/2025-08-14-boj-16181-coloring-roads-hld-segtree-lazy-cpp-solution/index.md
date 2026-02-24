@@ -11,75 +11,43 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-16181
-- cpp
 - C++
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Greedy
 - 그리디
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
 - Graph
 - 그래프
 - Tree
 - 트리
-- Heavy-Light Decomposition
-- HLD
-- 세그먼트 트리
-- Segment Tree
-- Lazy Propagation
-- 레이지 프로파게이션
-- Range Assignment
-- 구간 대입
-- Path Update
-- 경로 갱신
-- Edge Coloring
-- 간선 색칠
-- Histogram
-- 히스토그램
-- Online Query
-- 온라인 질의
-- Recoloring
-- 재색칠
-- Roots Path
-- 루트 경로
-- Decomposition
-- 분해 정복
-- Data Structures
+- 세그먼트트리
+- Segment-Tree
+- Lazy-Propagation
+- Data-Structures
+- Range-Query
 - 자료구조
-- Trees and Queries
-- 트리 질의
-- Interval Tree
-- 인터벌 트리
-- Log Squared
-- 로그제곱
 image: "wordcloud.png"
 ---
 

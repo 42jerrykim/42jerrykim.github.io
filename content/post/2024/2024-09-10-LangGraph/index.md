@@ -7,75 +7,20 @@ date: "2024-09-10T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-09-10-LangGraph.png
 tags:
-- LangChain
 - LLM
 - AI
-- MachineLearning
-- Graphs
-- StateManagement
-- Multi-Agent Systems
-- Workflows
-- DirectedAcyclicGraphs
-- Human-in-the-loop
-- Persistence
-- Customization
+- Machine-Learning
 - Python
-- Programming
-- SoftwareDevelopment
-- DataScience
+- Implementation
+- Software-Architecture
 - Automation
-- AIAgents
-- Chatbots
-- NaturalLanguageProcessing
-- OpenAI
-- LangGraphFeatures
-- LangGraphBasics
-- LangGraphApplications
-- LangGraphVsCrewAI
-- ErrorHandling
+- Error-Handling
 - SQL
-- DataAnalysis
-- DocumentationGeneration
-- APIIntegration
-- UserInteraction
-- FeedbackLoop
-- Visualization
-- PerformanceMetrics
-- DecisionTrees
-- DataPreprocessing
-- ModelEvaluation
-- F1 Score
-- ParameterTuning
-- GraphVisualization
-- MemoryManagement
-- ToolIntegration
-- Real-time Processing
-- EventStreaming
-- TokenStreaming
-- SystemDesign
-- SoftwareArchitecture
-- FrameworkComparison
-- DevelopmentBestPractices
-- CodeExamples
-- Tutorials
-- How-to Guides
-- APIReference
-- CommunityContributions
-- OpenSource
-- Collaboration
+- Data-Structures
+- Memory
+- Open-Source
 - Scalability
-- FaultTolerance
-- Flexibility
-- SimplifiedDevelopment
-- AdvancedApplications
-- CustomTools
-- UserExperience
-- ConversationalAgents
-- Retrieval-Augmented Generation
-- AgentCollaboration
-- TaskAutomation
-- DataRetrieval
-- KnowledgeManagement
+- Frontend
 title: '[LangGraph] LangGraph를 활용한 LLM 기반 애플리케이션 구축'
 ---
 

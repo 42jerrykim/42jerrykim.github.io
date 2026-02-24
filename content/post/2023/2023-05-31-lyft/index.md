@@ -6,21 +6,15 @@ date: "2023-05-31T00:00:00Z"
 header:
   teaser: /assets/images/2023/LyftMaps_ImageHeader_01.jpg
 tags:
-- Lyft
-- Maps
-- OpenStreetMap
-- GoogleMaps
-- In-house development
-- Navigation
-- Drivers
-- Passengers
-- Experience
-- Features
-- CostEfficiency
-- Safety
-- Real-time updates
-- Feedback
-- RouteOptimization
+- Technology
+- Innovation
+- 혁신
+- Mobile
+- 모바일
+- Go
+- Algorithm
+- 알고리즘
+- Tree
 title: '[Lyft] Lyft의 비밀스러운 계획: 자체 지도와 미래를 통제하다'
 
 ---

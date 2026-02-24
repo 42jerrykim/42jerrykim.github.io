@@ -4,6 +4,18 @@ image: "tmp_wordcloud.png"
 title: "알고리즘 분류, 알고리즘 구분"
 date: 2022-03-14
 categories: ComputerTerms
+tags:
+- Technology
+- 기술
+- Education
+- 교육
+- Go
+- Algorithm
+- 알고리즘
+- Dynamic-Programming
+- DP
+- Greedy
+- 그리디
 ---
 
 ## 알고리즘의 주제별 분류

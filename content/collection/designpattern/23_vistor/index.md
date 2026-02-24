@@ -9,52 +9,25 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
+  - Design-Pattern
+  - 디자인패턴
   - Visitor
-  - 방문자
-  - Behavioral Pattern
-  - 행위 패턴
   - GoF
-  - Gang of Four
-  - Double Dispatch
-  - 이중 디스패치
-  - Element
-  - 요소
-  - Concrete Visitor
-  - 구체 방문자
-  - Concrete Element
-  - 구체 요소
-  - Object Structure
-  - 객체 구조
-  - Accept
-  - Visit
-  - Separation of Concerns
-  - 관심사 분리
-  - Open Closed Principle
-  - 개방 폐쇄 원칙
+  - SOLID
   - Polymorphism
   - 다형성
-  - Traversal
-  - 순회
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Code-Quality
+  - 코드품질
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - AST
-  - Abstract Syntax Tree
+  - CSharp
   - Compiler
   - 컴파일러
-  - Document
-  - 문서
 ---
 
 방문자 패턴(Visitor Pattern)은 객체 구조의 요소들에 수행할 연산을 별도의 방문자 객체로 분리하는 행위 디자인 패턴이다. 이 패턴을 사용하면 기존 객체 구조를 변경하지 않고 새로운 연산을 추가할 수 있다.

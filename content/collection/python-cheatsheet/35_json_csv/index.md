@@ -7,61 +7,24 @@ description: "JSON/CSV를 빠르게 읽고 쓰기 위한 치트시트입니다. 
 lastmod: 2026-01-17
 collection_order: 35
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - json
-  - csv
-  - serialization
-  - 직렬화
-  - deserialization
-  - 역직렬화
-  - encoding
-  - 인코딩
-  - utf-8
-  - newline
-  - file-io
-  - 파일입출력
+  - Quick-Reference
+  - JSON
+  - Implementation
   - io
-  - open
-  - with
-  - context-manager
-  - 표준라이브러리
-  - standard-library
-  - DictReader
-  - DictWriter
-  - reader
-  - writer
-  - ensure_ascii
-  - indent
-  - sort_keys
-  - datetime
-  - 날짜시간
-  - types
-  - 자료형
-  - list
-  - dict
-  - performance
+  - Data-Structures
+  - Performance
   - 성능
-  - best-practices
-  - 베스트프랙티스
+  - Best-Practices
   - pitfalls
   - 함정
-  - unicode
-  - 유니코드
-  - locale
   - security
   - 보안
-  - validation
-  - 검증
-  - errors
-  - exceptions
-  - 예외처리
+  - Testing
+  - Error-Handling
 ---
 JSON과 CSV는 데이터 교환의 표준 포맷입니다. 이 치트시트는 json/csv 표준 라이브러리로 안전하게 읽고 쓰는 패턴과 encoding/newline 설정의 함정을 정리합니다.
 

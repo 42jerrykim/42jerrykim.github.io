@@ -11,66 +11,28 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-15576
-- cpp
 - C++
 - FFT
-- Fast Fourier Transform
-- 빠른 푸리에 변환
 - Convolution
-- 컨볼루션
-- Big Integer
-- 큰수
-- Arbitrary Precision
-- 임의정밀도
-- Multiplication
-- 곱셈
 - String
 - 문자열
-- Parsing
-- 파싱
-- Base
-- 진법
-- Base 1000
-- 자리수 묶기
-- Digit Grouping
-- Carry
-- 자리올림
-- Rounding
-- 반올림
-- Precision
-- 정밀도
-- Complex
-- 복소수
-- Double
-- 부동소수점
-- Accuracy
-- 정확도
+- Implementation
+- Edge-Cases
 - Optimization
 - 최적화
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Edge Cases
-- 코너 케이스
-- Implementation
+- 엣지케이스
 - 구현
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
-- O(n log n)
-- Complexity Analysis
-- 복잡도 분석
-- Number Theory
+- Complexity-Analysis
+- 복잡도분석
+- Number-Theory
 - 수학
-- String Processing
-- 문자열처리
-- Round-off Error
-- 반올림 오차
-- Stable
-- 안정성
-- High Performance
-- 고성능
+- Code-Quality
 image: "wordcloud.png"
 ---
 

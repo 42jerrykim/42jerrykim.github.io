@@ -8,13 +8,11 @@ categories:
 tags:
 - Implementation
 - String
-- HashMap
-- DataStructures
-- InputProcessing
-- BruteForce
+- Data-Structures
+- Brute-Force
 - Optimization
-- O(N)
-- ProblemSolving
+- Time-Complexity
+- Problem-Solving
 image: "tmp_wordcloud.png"
 date: 2024-10-17
 ---

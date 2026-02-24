@@ -11,68 +11,44 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-15338
-- cpp
-- python
+- C++
+- Python
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
-- Binary Search
+- Complexity-Analysis
+- 복잡도분석
+- Binary-Search
 - 이분탐색
 - String
 - 문자열
 - Math
 - 수학
-- Modulo
+- Modular-Arithmetic
 - 모듈러
-- Congruence
-- 합동
-- Segment
-- 구간
-- Mapping
-- 매핑
-- Jump Compression
-- 점프 압축
-- Root Compression
-- 루트 압축
-- Equivalence
-- 동치
+- Segment-Tree
 - ICPC
-- Asia Tsukuba
-- 2017
-- Residue Class
-- 잔여 클래스
-- Interval
-- 인터벌
+- Range-Query
 - Simulation
 - 시뮬레이션
-- Sliding Window
-- 슬라이딩윈도우
+- Sliding-Window
 - Hashing
 - 해싱
 image: "wordcloud.png"

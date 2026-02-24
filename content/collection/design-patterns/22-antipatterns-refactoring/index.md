@@ -12,66 +12,13 @@ categories:
 - Code Refactoring
 - Software Quality
 tags:
-- Anti Patterns
-- Code Refactoring
-- Code Smells
-- Technical Debt
-- Software Quality
-- Design Debt
-- God Object
-- Spaghetti Code
-- Legacy Code
-- Strangler Fig Pattern
-- Code Quality Metrics
-- Refactoring Techniques
-- Clean Code
-- Software Maintenance
-- Code Review
-- Static Analysis
-- Code Analysis
-- Quality Assurance
-- Software Engineering
-- Best Practices
-- Code Optimization
-- Design Principles
-- SOLID Principles
-- Code Structure
-- Architecture Improvement
-- Code Modernization
-- Legacy System Migration
-- Continuous Improvement
-- Software Evolution
-- Code Health
-- 안티패턴
-- 코드 리팩토링
-- 코드 스멜
-- 기술 부채
-- 소프트웨어 품질
-- 설계 부채
-- 신 객체
-- 스파게티 코드
-- 레거시 코드
-- 교살자 무화과 패턴
-- 코드 품질 메트릭
-- 리팩토링 기법
-- 클린 코드
-- 소프트웨어 유지보수
-- 코드 리뷰
-- 정적 분석
-- 코드 분석
-- 품질 보증
-- 소프트웨어 공학
-- 모범 사례
-- 코드 최적화
-- 설계 원칙
-- SOLID 원칙
-- 코드 구조
-- 아키텍처 개선
-- 코드 현대화
-- 레거시 시스템 마이그레이션
-- 지속적 개선
-- 소프트웨어 진화
-- 코드 건강성
+- Code-Quality
+- Clean-Code
+- Code-Review
+- Software-Architecture
+- Best-Practices
+- SOLID
+- 코드리뷰
 ---
 
 실무에서 자주 발생하는 안티패턴을 식별하고 체계적인 리팩토링 방법을 탐구합니다. 코드 스멜, 설계 부채, 패턴 남용의 문제를 해결하는 방법을 학습합니다.

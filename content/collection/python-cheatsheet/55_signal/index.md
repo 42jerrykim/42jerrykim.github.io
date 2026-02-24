@@ -7,44 +7,15 @@ description: "파이썬 signal 모듈을 빠르게 사용하기 위한 치트시
 lastmod: 2026-01-18
 collection_order: 55
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - signal
-  - 시그널
-  - SIGINT
-  - SIGTERM
-  - SIGKILL
-  - SIGALRM
-  - SIGHUP
-  - handler
-  - 핸들러
-  - interrupt
-  - 인터럽트
-  - ctrl-c
-  - graceful-shutdown
-  - 그레이스풀종료
-  - timeout
-  - 타임아웃
-  - alarm
-  - 알람
-  - process
-  - 프로세스
-  - unix
+  - Quick-Reference
+  - OS
   - linux
-  - daemon
-  - 데몬
-  - standard-library
-  - 표준라이브러리
-  - patterns
-  - 패턴
-  - best-practices
-  - 베스트프랙티스
+  - Design-Pattern
+  - Best-Practices
 ---
 `signal` 모듈은 **Unix 시그널 핸들링**을 제공합니다. Ctrl+C 처리, 그레이스풀 종료, 타임아웃 등에 사용됩니다. (Windows에서는 일부 기능 제한)
 

@@ -11,77 +11,39 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-15773
-- cpp
-- python
 - C++
 - Python
 - Greedy
 - 그리디
-- Priority Queue
+- Priority-Queue
 - 우선순위큐
 - Heap
 - 힙
 - Sorting
 - 정렬
-- Scheduling
-- 스케줄링
-- Deadline
-- 데드라인
-- Earliest Finish Time
-- 조기완료정렬
-- L+D Trick
-- L+D 정렬
-- Proof of Correctness
-- 정당성 증명
-- Exchange Argument
-- 교환 논법
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Concurrency
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
-- Big Integer
-- 64비트정수
-- Long Long
+- 함정
 - 자료구조
-- Data Structures
-- Binary Heap
-- 이진 힙
-- Admissible Order
-- 허용 순서
-- Constructive Proof
-- 구성적 증명
-- Competitive Programming
+- Data-Structures
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Invariant
-- 불변식
 - Math
 - 수학
-- Greedy Scheduling
-- 그리디 스케줄링
-- Touch The Sky
-- Balloon
-- 풍선
-- Constraint Satisfaction
-- 제약충족
-- Algorithm Design
-- 알고리즘 설계
 image: "wordcloud.png"
 ---
 

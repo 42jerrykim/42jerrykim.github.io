@@ -7,42 +7,23 @@ description: "파이썬 collections 모듈 심화 내용을 빠르게 쓰기 위
 lastmod: 2026-01-18
 collection_order: 30
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - collections
+  - Quick-Reference
   - deque
   - 덱
-  - 양방향큐
-  - double-ended-queue
-  - namedtuple
-  - 명명된튜플
-  - ChainMap
-  - OrderedDict
-  - Counter
-  - defaultdict
-  - data-structures
+  - Data-Structures
   - 자료구조
   - queue
   - 큐
   - stack
   - 스택
-  - performance
+  - Performance
   - 성능
-  - O(1)
-  - append
-  - appendleft
-  - rotate
-  - maxlen
-  - standard-library
-  - 표준라이브러리
-  - best-practices
-  - 베스트프랙티스
+  - Time-Complexity
+  - Best-Practices
   - pitfalls
   - 함정
 ---

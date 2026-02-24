@@ -9,75 +9,34 @@ categories:
 - "Constructive"
 - "Divide and Conquer"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "10050"
-- "BOJ-10050"
-- "블록"
-- "Block"
-- "Baggage"
-- "ICPC World Finals 2014"
-- "ACM ICPC"
-- "Special Judge"
-- "스페셜 저지"
-- "Constructive"
-- "구성적"
-- "Construction"
-- "구성"
-- "Divide and Conquer"
-- "분할정복"
-- "Recurrence"
-- "점화식"
-- "Recursion"
-- "재귀"
-- "Pattern"
-- "패턴"
-- "Puzzle"
-- "퍼즐"
-- "Tait's Counter Puzzle"
-- "Permutation"
-- "순열"
-- "Rearrangement"
-- "재배열"
-- "Greedy"
-- "그리디"
-- "Invariant"
-- "불변식"
-- "Lower Bound"
-- "하한"
-- "Optimal"
-- "최적"
-- "Minimum Moves"
-- "최소 이동"
-- "Simulation"
-- "시뮬레이션"
-- "Implementation"
-- "구현"
-- "Indexing"
-- "인덱싱"
-- "Offset"
-- "좌표 변환"
-- "Math"
-- "수학"
-- "Proof"
-- "증명"
-- "Casework"
-- "케이스 분류"
-- "Base Case"
-- "기저 사례"
-- "Edge Case"
-- "엣지 케이스"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N)"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Implementation
+- Divide-and-Conquer
+- 분할정복
+- Dynamic-Programming
+- Recursion
+- 재귀
+- Design-Pattern
+- Combinatorics
+- Greedy
+- 그리디
+- Simulation
+- 시뮬레이션
+- 구현
+- Data-Structures
+- Math
+- 수학
+- Edge-Cases
+- 엣지케이스
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
 image: "wordcloud.png"
 ---
 

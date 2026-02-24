@@ -3,7 +3,16 @@ draft: true
 title: "[Redux] 15. 실습: Counter와 Todo 앱 만들기"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "React", "실습", "Practice", "Counter App", "Todo App", "프로젝트", "Project", "웹개발", "프론트엔드", "리액트", "리덕스", "Hands-on", "실전", "Tutorial", "튜토리얼", "Step by Step", "단계별", "Full Stack", "Application Development", "앱개발", "CRUD", "State Management", "상태관리", "useSelector", "useDispatch", "Redux Hooks", "Reducers", "Actions", "Store", "스토어", "JavaScript", "TypeScript", "코딩", "개발", "실습프로젝트", "학습프로젝트", "Portfolio", "포트폴리오", "Complete Example", "완전한예제", "Working App", "Best Practices", "모범사례", "Clean Code", "Redux Tutorial", "개발자가이드"]
+tags:
+- React
+- 프론트엔드
+- Tutorial
+- 튜토리얼
+- JavaScript
+- TypeScript
+- Implementation
+- Best-Practices
+- Clean-Code
 description: "지금까지 배운 Redux 지식을 총동원한 실전 프로젝트. Counter 앱으로 기초 다지기, Todo 앱으로 CRUD 마스터, Redux Hooks와 Selector 패턴을 적용한 완전한 애플리케이션 구축하기"
 series: ["Redux 완전 정복"]
 series_order: 15

@@ -8,65 +8,12 @@ categories:
   - Technology
   - Safety
 tags:
-  - Cannondale
-  - SmartSense
-  - SmartSense Gen 2
-  - SmartSense Gen2
-  - cycling safety
-  - bike radar
-  - rear radar
-  - Garmin Varia
-  - ANT+
-  - headlight
-  - taillight
-  - bike light
-  - integrated lights
-  - 800 lumen
-  - StashPort
-  - Synapse Carbon
-  - 2025 Synapse
-  - endurance road bike
-  - road cycling
-  - SRAM AXS
-  - electronic shifting
-  - USB-C
-  - bike battery
-  - smart bike
-  - connected bike
-  - Cannondale app
-  - Auto Wake
-  - Deep Sleep
-  - StVZO
-  - Garmin
-  - Wahoo
-  - Hammerhead
-  - bike computer
-  - cycling technology
-  - wearable tech
-  - bike safety
-  - visibility
-  - road awareness
-  - radar alert
-  - peloton mode
-  - react to radar
-  - stem mount
-  - saddle mount
-  - 캐논데일
-  - 스마트센스
-  - 자전거 안전
-  - 자전거 조명
-  - 후방 레이더
-  - 로드 사이클링
-  - 전자 변속기
-  - 통합 배터리
-  - 안전 기술
-  - 스마트 자전거
-  - 자전거 앱
-  - 사이클링 기술
-  - 라이트 모드
-  - 헤드라이트
-  - 테일라이트
-  - 배터리 수명
+  - Cycling
+  - Technology
+  - React
+  - 자전거
+  - Gadget
+  - Innovation
 image: "image.png"
 ---
 

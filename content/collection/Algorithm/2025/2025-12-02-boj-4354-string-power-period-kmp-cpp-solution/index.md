@@ -11,59 +11,27 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-4354
-- cpp
 - C++
 - String
 - 문자열
-- KMP
-- Knuth-Morris-Pratt
-- Failure Function
-- 실패함수
-- Period
-- 주기
-- Periodicity
-- 주기성
-- String Matching
-- 문자열 매칭
-- Pattern Matching
-- 패턴 매칭
-- Prefix
-- 접두사
-- Suffix
-- 접미사
-- Edge Cases
-- 코너 케이스
+- Prefix-Sum
+- Edge-Cases
+- 엣지케이스
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Linear Time
-- 선형시간
-- Fast I/O
-- 빠른 입출력
-- Multiple Test Cases
-- 다중 테스트
-- Problem Solving
-- 문제 해결
-- Competitive Programming
+- IO
+- Problem-Solving
+- 문제해결
+- Competitive-Programming
 - 경쟁프로그래밍
-- String Theory
-- 문자열 이론
-- Divisor
-- 약수
-- String Period
-- 문자열 주기
-- Periodicity Detection
-- 주기 감지
-- Proof of Correctness
-- 정당성 증명
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
+- Complexity-Analysis
+- 복잡도분석
 image: "wordcloud.png"
 ---
 

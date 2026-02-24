@@ -7,50 +7,20 @@ description: "파이썬 pickle 모듈을 빠르게 쓰기 위한 치트시트입
 lastmod: 2026-01-18
 collection_order: 42
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - pickle
-  - serialization
-  - 직렬화
-  - deserialization
-  - 역직렬화
-  - marshal
-  - dump
-  - load
-  - dumps
-  - loads
-  - object
-  - 객체
-  - binary
-  - 바이너리
-  - protocol
-  - 프로토콜
+  - Quick-Reference
+  - Implementation
+  - OOP
   - security
   - 보안
-  - vulnerability
-  - 취약점
-  - arbitrary-code-execution
-  - 임의코드실행
-  - shelve
-  - json
-  - persistence
-  - 영속성
-  - cache
-  - 캐시
-  - standard-library
-  - 표준라이브러리
-  - best-practices
-  - 베스트프랙티스
+  - JSON
+  - Cache
+  - Best-Practices
   - pitfalls
   - 함정
-  - warning
-  - 경고
 ---
 pickle은 파이썬 객체를 바이너리로 직렬화/역직렬화합니다. 이 치트시트는 dump/load 기본, 프로토콜 버전, **보안 위험**과 안전한 대안을 정리합니다.
 

@@ -9,75 +9,20 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
-  - dormant
-  - dormant meaning
-  - dormant usage
-  - dormant examples
-  - dormant adjective
   - 영어형용사
-  - dormant 의미
-  - dormant 용법
-  - dormant 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - inactive
-  - latent
-  - slumbering
-  - quiescent
-  - hibernating
-  - sleeping
-  - 휴면
-  - 휴면 상태
-  - 잠재된
-  - 잠복된
-  - 활동 정지
-  - 활동하지 않는
   - biology
   - 생물학
-  - geology
-  - 지질학
-  - medicine
-  - 의학
   - psychology
   - 심리학
-  - business
-  - 비즈니스
-  - volcano
-  - 화산
-  - disease
-  - 질병
-  - talent
-  - 재능
-  - potential
-  - 잠재력
-  - ability
-  - 능력
-  - virus
-  - 바이러스
+  - Business-English
   - 애니메이션
-  - 동물
-  - 식물
-  - 겨울
-  - 수면
-  - 재개
-  - 활성화
-  - awaken
-  - 깨어나다
-  - activate
-  - 활성화하다
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
-  - study English
-  - vocabulary building
-  - English learning
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

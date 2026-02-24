@@ -11,78 +11,33 @@ categories:
 - "Binary Search"
 - "Prefix Sum"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "33543"
-- "BOJ-33543"
-- "둘이 한 팀"
-- "Two in a Team"
-- "Team Ability"
-- "팀 능력치"
-- "Max"
-- "최댓값"
-- "Sum"
-- "합"
-- "Global Update"
-- "전역 업데이트"
-- "Lazy Update"
-- "지연 갱신"
-- "Add Operation"
-- "덧셈 연산"
-- "All Elements"
-- "전체 원소"
-- "Difference"
-- "차이"
-- "Difference Array"
-- "차이 배열"
-- "d = A - B"
-- "delta"
-- "Prefix Sum"
-- "누적합"
-- "Sorted Array"
-- "정렬된 배열"
-- "Sorting"
-- "정렬"
-- "Binary Search"
-- "이분 탐색"
-- "upper_bound"
-- "lower_bound"
-- "Threshold"
-- "임계값"
-- "Piecewise Linear"
-- "구간 선형"
-- "Monotonicity"
-- "단조성"
-- "Query"
-- "쿼리"
-- "Online Query"
-- "온라인 쿼리"
-- "O((N+Q)logN)"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Implementation"
-- "구현"
-- "Fast IO"
-- "빠른 입출력"
-- "long long"
-- "Overflow"
-- "오버플로우"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "UCPC"
-- "Hello, BOJ 2025!"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Data-Structures
+- Prefix-Sum
+- Sorting
+- 정렬
+- Binary-Search
+- 이분탐색
+- Range-Query
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Implementation
+- 구현
+- IO
+- Edge-Cases
+- C++
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
 image: "wordcloud.png"
 ---
 

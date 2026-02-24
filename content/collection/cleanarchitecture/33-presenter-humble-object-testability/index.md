@@ -7,54 +7,18 @@ title: "[Clean Architecture] 33. 프레젠터와 험블 객체"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Presenter
-  - 프레젠터
-  - Humble Object
-  - 험블 객체
-  - Humble Object Pattern
-  - 험블 객체 패턴
-  - Testability
-  - 테스트 용이성
-  - View
-  - 뷰
-  - ViewModel
-  - 뷰모델
-  - GUI
-  - 그래픽 사용자 인터페이스
-  - Unit Test
-  - 단위 테스트
-  - Hard to Test
-  - 테스트 어려움
-  - Easy to Test
-  - 테스트 쉬움
-  - Boundary
-  - 경계
+  - Clean-Architecture
+  - 클린아키텍처
+  - Testing
+  - Frontend
+  - Edge-Cases
   - Database
   - 데이터베이스
-  - Gateway
-  - 게이트웨이
-  - Data Mapper
-  - 데이터 매퍼
-  - ORM
-  - Object Relational Mapping
-  - Service Listener
-  - 서비스 리스너
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Separation
-  - 분리
-  - Logic
-  - 로직
-  - Formatting
-  - 포매팅
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Implementation
   - String
   - 문자열
-  - Date
-  - 날짜
-  - MVP
-  - Model View Presenter
 ---
 
 **험블 객체 패턴(Humble Object Pattern)**은 테스트하기 어려운 행위와 쉬운 행위를 분리하는 패턴이다. 이 패턴은 아키텍처 경계에서 자주 사용된다.

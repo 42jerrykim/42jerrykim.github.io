@@ -7,48 +7,16 @@ description: "파이썬 random 모듈을 빠르게 사용하기 위한 치트시
 lastmod: 2026-01-18
 collection_order: 48
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - random
-  - 난수
-  - 랜덤
-  - randint
-  - choice
-  - choices
-  - sample
-  - shuffle
-  - uniform
-  - gauss
-  - seed
-  - 시드
-  - 무작위
-  - sampling
-  - 샘플링
-  - weighted
-  - 가중치
-  - probability
-  - 확률
+  - Quick-Reference
   - simulation
   - 시뮬레이션
-  - game
   - 게임
-  - lottery
-  - 복권
-  - standard-library
-  - 표준라이브러리
-  - patterns
-  - 패턴
-  - best-practices
-  - 베스트프랙티스
-  - cryptography
-  - 암호화
-  - secrets
+  - Design-Pattern
+  - Best-Practices
 ---
 `random` 모듈은 **의사 난수 생성**을 위한 도구입니다. 시뮬레이션, 게임, 테스트 데이터 생성 등에 사용합니다. 보안용으로는 `secrets` 모듈을 사용하세요.
 

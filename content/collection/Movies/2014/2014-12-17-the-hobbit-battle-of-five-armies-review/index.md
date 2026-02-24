@@ -1,10 +1,12 @@
 ---
 title: "호빗: 다섯 군대 전투 (2014) - 중간계의 웅장한 종장"
 date: 2014-12-17
-categories: [Movies]
-tags: [The Hobbit, Peter Jackson, Martin Freeman, Richard Armitage, Fantasy, Adventure, Drama, 2014]
-
-
+categories:
+- Movies
+tags:
+- Fantasy
+- Adventure
+- Drama
 draft: true
 ---
 

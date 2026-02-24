@@ -10,81 +10,42 @@ categories:
 - "Coordinate Compression"
 - "Order Statistics"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "15517"
-- "BOJ-15517"
-- "Array Manipulation at Moloco"
-- "Moloco"
-- "Hard"
-- "Data Structure"
-- "자료구조"
-- "Fenwick Tree"
-- "펜윅 트리"
-- "Binary Indexed Tree"
-- "BIT"
-- "Prefix Sum"
-- "누적합"
-- "Order Statistics"
-- "순서통계"
-- "Counting"
-- "카운팅"
-- "Coordinate Compression"
-- "좌표 압축"
-- "Value Compression"
-- "값 압축"
-- "Ranking"
-- "순위"
-- "Strictly Less"
-- "엄격한 비교"
-- "Distinct"
-- "서로 다른 수"
-- "Binary Search"
-- "이분탐색"
-- "lower_bound"
-- "Sorting"
-- "정렬"
-- "Offline Preprocessing"
-- "오프라인 전처리"
-- "Online Output"
-- "온라인 출력"
-- "Stream Output"
-- "스트림 출력"
-- "Fast IO"
-- "빠른 입출력"
-- "fread"
-- "fwrite"
-- "Buffer"
-- "버퍼"
-- "Optimization"
-- "최적화"
-- "Implementation"
-- "구현"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N log N)"
-- "O(N)"
-- "Edge Case"
-- "엣지 케이스"
-- "Large N"
-- "큰 입력"
-- "1e6"
-- "Memory Limit"
-- "메모리 제한"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Data-Structures
+- 자료구조
+- Fenwick-Tree
+- Binary-Indexed-Tree
+- BIT
+- Prefix-Sum
+- Math
+- Coordinate-Compression
+- 좌표압축
+- Binary-Search
+- 이분탐색
+- Sorting
+- 정렬
+- IO
+- Optimization
+- 최적화
+- Implementation
+- 구현
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- C++
 image: wordcloud.png
 ---
 

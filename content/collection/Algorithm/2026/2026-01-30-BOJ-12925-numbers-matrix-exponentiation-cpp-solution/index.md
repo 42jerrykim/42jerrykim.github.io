@@ -9,75 +9,28 @@ categories:
 - "Linear Recurrence"
 - "Matrix Exponentiation"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "12925"
-- "BOJ-12925"
-- "Numbers"
-- "Math"
-- "수학"
-- "Algebra"
-- "대수"
-- "Irrational Number"
-- "무리수"
-- "Square Root"
-- "제곱근"
-- "sqrt5"
-- "√5"
-- "Conjugate"
-- "켤레"
-- "Algebraic Integer"
-- "대수적 정수"
-- "Floor"
-- "Floor Function"
-- "정수부"
-- "Last Three Digits"
-- "마지막 세 자리"
-- "Leading Zeros"
-- "앞자리 0"
-- "Modulo"
-- "Modular Arithmetic"
-- "모듈러 연산"
-- "mod 1000"
-- "1000"
-- "Linear Recurrence"
-- "선형 점화식"
-- "Recurrence Relation"
-- "점화식"
-- "Matrix Exponentiation"
-- "행렬 거듭제곱"
-- "2x2 Matrix"
-- "2x2 행렬"
-- "Fast Exponentiation"
-- "빠른 거듭제곱"
-- "Exponentiation by Squaring"
-- "분할정복"
-- "Logarithmic Time"
-- "로그 시간"
-- "O(log n)"
-- "Large N"
-- "큰 입력"
-- "2e9"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Implementation"
-- "구현"
-- "Output Formatting"
-- "출력 포맷"
-- "Case Format"
-- "Case #"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Math
+- 수학
+- Modular-Arithmetic
+- 모듈러
+- Dynamic-Programming
+- 분할정복
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Implementation
+- 구현
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- C++
 image: wordcloud.png
 ---
 

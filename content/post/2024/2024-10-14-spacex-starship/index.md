@@ -7,11 +7,13 @@ categories:
 - SpaceX
 - Scrap
 tags:
-- YouTube
-- Starship
-- Launch
-- SpaceX
-- Chopsticks
+- Space
+- 우주
+- Technology
+- Science
+- 과학
+- Innovation
+- 혁신
 ---
 
 ## 원문

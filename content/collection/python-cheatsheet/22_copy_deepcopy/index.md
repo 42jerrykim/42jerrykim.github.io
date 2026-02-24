@@ -7,54 +7,20 @@ description: "파이썬 객체 복사를 정확히 이해하기 위한 치트시
 lastmod: 2026-01-18
 collection_order: 22
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - copy
-  - deepcopy
-  - shallow-copy
-  - 얕은복사
-  - deep-copy
-  - 깊은복사
-  - clone
-  - 복제
-  - mutable
-  - 가변객체
-  - immutable
-  - 불변객체
-  - reference
-  - 참조
-  - assignment
-  - 할당
-  - list
-  - dict
-  - nested
-  - 중첩
-  - object
-  - 객체
+  - Quick-Reference
+  - Data-Structures
+  - OOP
   - memory
   - 메모리
   - pitfalls
   - 함정
-  - side-effect
-  - 부작용
-  - bug
-  - 버그
   - debugging
   - 디버깅
-  - best-practices
-  - 베스트프랙티스
-  - standard-library
-  - 표준라이브러리
-  - __copy__
-  - __deepcopy__
-  - custom
-  - 커스텀
+  - Best-Practices
 ---
 파이썬에서 객체 복사는 의도치 않은 버그의 원인이 됩니다. 이 치트시트는 할당, 얕은 복사, 깊은 복사의 차이와 copy 모듈 사용법을 정리합니다.
 

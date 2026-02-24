@@ -6,13 +6,16 @@ categories:
 - String
 - Pattern-Matching
 tags:
-- KMP
 - String
 - Implementation
-- O(N)
-- Circular-array
-- Pattern-matching
+- Time-Complexity
 - Problem-solving
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- C++
 image: "index.png"
 date: 2024-12-31
 ---

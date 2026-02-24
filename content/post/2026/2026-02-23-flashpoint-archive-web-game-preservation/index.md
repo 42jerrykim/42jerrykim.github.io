@@ -9,69 +9,16 @@ categories:
   - WebHistory
   - Gaming
 tags:
-  - FlashpointArchive
-  - Flashpoint
-  - FlashGames
-  - AdobeFlash
-  - Flash
-  - FlashEOL
-  - DigitalPreservation
-  - WebPreservation
-  - GamePreservation
-  - BlueMaxima
-  - Ruffle
-  - WebAssembly
-  - WASM
-  - OpenSource
-  - NonProfit
-  - WebGames
-  - WebAnimations
-  - Newgrounds
-  - Miniclip
-  - Kongregate
-  - ArmorGames
-  - ShockwaveFlash
-  - UnityWebPlayer
-  - JavaApplet
-  - Silverlight
-  - ActionScript
-  - ActionScript3
-  - SWF
-  - Launcher
+  - Open-Source
   - Proxy
-  - Sandbox
-  - InternetHistory
-  - InternetCulture
-  - GameHistory
-  - CommunityProject
-  - OpenCollective
-  - Kingfisher
-  - Flashpoint14
-  - DigitalArchive
-  - WebArchive
-  - RetroGaming
-  - BrowserGames
-  - FlashPlayer
-  - AdobeFlashEOL
-  - LegacyTech
-  - Emulator
-  - NetConnection
-  - WebSockify
   - WebSocket
-  - 플래시
-  - 플래시게임
-  - 디지털보존
-  - 웹게임보존
-  - 인터넷문화보존
-  - 웹게임
-  - 웹애니메이션
-  - 레트로게임
-  - 플래시아카이브
-  - 비영리프로젝트
   - 오픈소스
-  - 인터넷역사
-  - 게임보존
-  - 커뮤니티프로젝트
+  - Gaming
+  - Java
+  - Git
+  - GitHub
+  - Graph
+  - 그래프
 ---
 
 2020년 12월 31일, Adobe는 Flash Player에 대한 공식 지원을 종료했다. 이 날짜는 단순한 소프트웨어 하나의 죽음이 아니었다. 1990년대 말부터 2010년대 초까지 인터넷 문화를 수놓았던 수십만 개의 웹 게임과 애니메이션이 함께 역사의 뒤안길로 사라질 위기에 처했다. Newgrounds에서 즐기던 괴작 애니메이션, Miniclip에서 밤을 새웠던 플래시 게임들, Kongregate나 Armor Games의 무수한 명작들. 그러나 이 콘텐츠들이 영원히 사라지지 않도록 수백 명의 자원봉사자가 수년 전부터 조용히 싸워왔다. 그 결과물이 바로 **Flashpoint Archive**다.

@@ -12,63 +12,23 @@ tags:
   - 알고리즘
   - BOJ
   - 백준
-  - Problem-12850
-  - 본대 산책2
-  - Campus Walk
-  - 행렬 거듭제곱
-  - Matrix Exponentiation
-  - Matrix Power
   - 그래프
   - Graph
-  - 인접 행렬
-  - Adjacency Matrix
-  - 경로 수
-  - Path Counting
-  - 분할 정복
-  - Divide and Conquer
-  - 빠른 거듭제곱
-  - Fast Exponentiation
-  - 모듈러 연산
-  - Modular Arithmetic
-  - 모듈로 연산
-  - Modulo Operation
+  - Divide-and-Conquer
+  - 모듈러
+  - Modular-Arithmetic
   - C++
-  - Programming
-  - 프로그래밍
+  - Implementation
   - 경쟁프로그래밍
-  - Competitive Programming
-  - 숭실대학교
-  - Soongsil University
-  - SCCC
+  - Competitive-Programming
   - 시간복잡도
-  - Time Complexity
+  - Time-Complexity
   - 공간복잡도
-  - Space Complexity
-  - O(log N)
-  - 로그 시간
-  - Logarithmic Time
-  - 정보과학관
-  - 전산관
-  - 미래관
-  - 신양관
-  - 한경직기념관
-  - 진리관
-  - 형남공학관
-  - 학생회관
-  - 캠퍼스 지도
-  - Campus Map
-  - 경로 문제
-  - Path Problem
-  - 그래프 탐색
-  - Graph Traversal
-  - 정답코드
-  - Solution Code
+  - Space-Complexity
   - Editorial
   - 에디토리얼
   - 수학
-  - Mathematics
-  - Linear Algebra
-  - 선형대수
+  - Math
 image: wordcloud.png
 ---
 

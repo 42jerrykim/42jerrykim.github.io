@@ -4,67 +4,14 @@ description: "본 글에서는 C#의 강력한 형식 시스템에 대해 상세
 title: "[CSharp] C# 형식 시스템"
 categories: CSharp
 tags:
-- C#
-- TypeSystem
-- StrongTyping
+- CSharp
 - .NET
-- variables
-- constants
-- methods
-- classes
-- structs
-- enums
-- interfaces
-- generics
-- ValueTypes
-- ReferenceTypes
-- metadata
-- CLR
-- casting
-- boxing
-- unboxing
-- literals
-- NullableTypes
-- AnonymousTypes
-- collections
-- arrays
+- OOP
+- Interface
 - inheritance
-- object-oriented
-- programming
-- SoftwareDevelopment
-- coding
-- syntax
-- ProgrammingLanguages
-- SoftwareEngineering
-- DataTypes
-- TypeSafety
-- TypeInference
-- TypeConversion
-- TypeParameters
-- TypeHierarchy
-- TypeChecking
-- TypeCasting
-- TypeDefinitions
-- TypeConstraints
-- TypeAnnotations
-- TypeDeclarations
-- TypeCompatibility
-- TypeSystemDesign
-- TypeSystemPrinciples
-- TypeSystemFeatures
-- TypeSystemRules
-- TypeSystemImplementation
-- TypeSystemOverview
-- TypeSystemConcepts
-- TypeSystemExamples
-- TypeSystemApplications
-- type system in C#
-- type system in .NET
-- type system in programming
-- type system in software development
-- type system in coding
-- type system in languages
-- type system in object-oriented programming
+- Implementation
+- Software-Architecture
+- Code-Quality
 image: "tmp_wordcloud.png"
 
 

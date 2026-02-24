@@ -6,52 +6,13 @@ draft: false
 categories:
   - Product Review
 tags:
-  - Treewa
   - Keyboard
-  - Palmrest
-  - Custom Made
-  - Hand Rest Support
-  - Wrist Rest
-  - Natural Wood
-  - Ergonomic
-  - Workspace Setup
-  - Desk Accessories
-  - Apple Keyboard
-  - Mac Accessories
-  - Mechanical Keyboard
-  - Keyboard Tray
-  - Wood Working
-  - Premium Keyboard Accessories
-  - DIY Keyboard
-  - Keyboard Customization
-  - Ergonomics
-  - Desk Organization
-  - Monitor Stand
-  - Keyboard Stand
-  - Wood Crafting
-  - Korean Brand
-  - Made in Korea
-  - Small Business
-  - Handmade Products
-  - Quality Craftsmanship
-  - Personalization
-  - Office Ergonomics
-  - Productivity Tools
-  - Workspace Design
-  - Computer Accessories
-  - Technical Equipment
-  - Desk Setup
-  - Comfort Products
-  - Health and Wellness
-  - Posture Support
-  - Hand Care
-  - Professional Setup
-  - Premium Materials
-  - Natural Aesthetics
-  - Interior Design
-  - Product Review
-  - Korean Products
-  - E-commerce
+  - Tree
+  - Review
+  - 리뷰
+  - 키보드
+  - Culture
+  - 문화
 image: image03.png
 description: "트리와는 원목 키보드 손목받침대와 애플 키보드/트랙패드 전용 트레이를 커스텀 제작하는 한국 업체입니다. 천연 원목을 사용한 고품질 키보드 액세서리와 에르고노믹 제품을 제공합니다."
 ---

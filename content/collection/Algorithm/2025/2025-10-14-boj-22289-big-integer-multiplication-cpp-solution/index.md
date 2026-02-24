@@ -13,70 +13,27 @@ tags:
   - BOJ
   - 백준
   - Baekjoon
-  - Problem-22289
   - C++
-  - CPP
-  - Big Integer
-  - 큰수연산
-  - Big Multiplication
-  - 큰수곱셈
   - FFT
-  - Fast Fourier Transform
-  - 고속푸리에변환
-  - NTT
-  - Number Theoretic Transform
-  - Arbitrary Precision
-  - 다중정밀도
-  - Karatsuba
-  - 카라추바
   - Convolution
-  - 컨볼루션
-  - Polynomial Multiplication
-  - 다항식곱셈
-  - Complex
-  - 복소수
-  - Long Double
-  - 반올림
-  - Rounding
-  - Carry Handling
-  - 자리올림
-  - Base Blocks
-  - 기수블록
-  - BASE-10000
-  - 10^4 Base
-  - Stability
-  - 수치안정성
-  - Precision
-  - 정밀도
-  - Overflow Safe
-  - 오버플로방지
-  - Time Complexity
+  - Code-Quality
+  - Edge-Cases
+  - Time-Complexity
   - 시간복잡도
-  - Space Complexity
+  - Space-Complexity
   - 공간복잡도
   - Implementation
   - 구현
-  - Edge Cases
-  - 코너 케이스
-  - Proof of Correctness
-  - 정당성 증명
+  - 엣지케이스
   - Editorial
   - 에디토리얼
   - Tutorial
   - 튜토리얼
-  - Tips
-  - 팁
   - Pitfalls
-  - 실수 포인트
-  - 문자열 파싱
-  - String Parsing
-  - Leading Zeros
-  - 선행영
-  - 대용량입출력
-  - Fast IO
-  - O(n log n)
-  - Complexity Analysis
-  - 복잡도 분석
+  - 함정
+  - IO
+  - Complexity-Analysis
+  - 복잡도분석
 image: "wordcloud.png"
 ---
 

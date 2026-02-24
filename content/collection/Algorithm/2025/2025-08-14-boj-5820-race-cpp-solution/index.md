@@ -11,78 +11,33 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-5820
-- cpp
 - C++
 - Tree
 - 트리
-- Weighted Tree
-- 가중치 트리
-- Path
-- 경로
-- Simple Path
-- 단순 경로
-- Exact Path Length
-- 정확한 경로 길이
-- K
-- K 길이
-- Centroid Decomposition
-- 센트로이드 분해
-- Decomposition
-- 분할 정복
-- Divide and Conquer on Tree
-- 트리 분할정복
-- Distance
-- 거리
-- Distance Pairing
-- 거리 매칭
-- Complement
-- 보완 거리
-- Bucket
-- 버킷
-- Minimal Edges
-- 최소 간선 수
-- Edge Count
-- 간선 수
+- Graph
+- Shortest-Path
 - Optimization
 - 최적화
 - DFS
-- 깊이우선탐색
 - Recursion
 - 재귀
-- Pruning
-- 가지치기
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
-- Fast IO
-- 입출력 최적화
-- 64-bit Integer
-- 64비트 정수
-- Long Long
+- 함정
+- IO
 - 자료구조
-- Data Structures
-- Touched Distances
-- 업데이트 최적화
-- Memory Optimization
-- 메모리 최적화
-- IOI
-- IOI 2011
-- Race
-- 경주
+- Data-Structures
+- Memory
+- Competitive-Programming
 image: "wordcloud.png"
 ---
 

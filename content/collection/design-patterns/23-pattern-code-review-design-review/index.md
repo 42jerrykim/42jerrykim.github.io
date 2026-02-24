@@ -12,68 +12,10 @@ categories:
 - Design Review
 - Quality Assurance
 tags:
-- Code Review
-- Design Review
-- Pattern Review
-- Code Quality
-- Design Quality
-- Review Process
-- Review Automation
-- Static Analysis
-- Code Inspection
-- Design Inspection
-- Quality Metrics
-- Review Checklist
-- Peer Review
-- Collaborative Review
-- Review Best Practices
-- Review Standards
-- Quality Gates
-- Review Tools
-- Review Workflow
-- Team Collaboration
-- Knowledge Sharing
-- Continuous Improvement
-- Review Effectiveness
-- Review Analytics
-- Review Optimization
-- Pattern Recognition
-- Design Validation
-- Code Validation
-- Architecture Review
-- Technical Review
-- Quality Control
-- 코드 리뷰
-- 설계 리뷰
-- 패턴 리뷰
-- 코드 품질
-- 설계 품질
-- 리뷰 프로세스
-- 리뷰 자동화
-- 정적 분석
-- 코드 검토
-- 설계 검토
-- 품질 메트릭
-- 리뷰 체크리스트
-- 동료 리뷰
-- 협업 리뷰
-- 리뷰 모범 사례
-- 리뷰 표준
-- 품질 게이트
-- 리뷰 도구
-- 리뷰 워크플로우
-- 팀 협업
-- 지식 공유
-- 지속적 개선
-- 리뷰 효과성
-- 리뷰 분석
-- 리뷰 최적화
-- 패턴 인식
-- 설계 검증
-- 코드 검증
-- 아키텍처 리뷰
-- 기술 리뷰
-- 품질 관리
+- Code-Review
+- Code-Quality
+- 코드리뷰
+- 코드품질
 ---
 
 디자인 패턴을 활용한 효과적인 코드 리뷰와 설계 리뷰 방법을 탐구합니다. 패턴이라는 공통 언어로 팀의 설계 품질을 향상시키는 방법을 학습합니다.

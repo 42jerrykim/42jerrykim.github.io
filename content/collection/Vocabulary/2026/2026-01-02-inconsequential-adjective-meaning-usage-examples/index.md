@@ -9,68 +9,14 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - inconsequential
-  - inconsequential meaning
-  - inconsequential usage
-  - inconsequential examples
-  - inconsequential adjective
   - 영단어
   - 영어형용사
-  - inconsequential 의미
-  - inconsequential 용법
-  - inconsequential 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - trivial
-  - insignificant
-  - unimportant
-  - minor
-  - negligible
-  - trifling
-  - petty
-  - immaterial
-  - irrelevant
-  - 중요하지 않은
-  - 하찮은
-  - 미미한
-  - 사소한
-  - 무시할 수 있는
-  - 부차적인
-  - 경미한
-  - 영향 없는
-  - 중요하지 않음
-  - 무관한
-  - adjective
-  - importance
-  - significance
-  - relevance
-  - impact
-  - value
-  - decision
-  - consequence
-  - outcome
-  - event
-  - business communication
-  - academic writing
-  - news reporting
-  - evaluation
-  - assessment
-  - 비즈니스 용어
-  - 평가 용어
-  - 사건 설명
-  - 영향 평가
-  - 우선순위
-  - 중요도
-  - 한눈에 정리
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

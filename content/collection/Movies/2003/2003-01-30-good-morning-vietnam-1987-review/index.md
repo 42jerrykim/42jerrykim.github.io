@@ -9,77 +9,16 @@ categories:
 - Comedy-Drama
 - Touchstone Pictures
 tags:
-- 굿모닝베트남
-- Good Morning Vietnam
-- 로빈윌리엄스
-- Robin Williams
-- 배리레빈슨
-- Barry Levinson
-- 포레스트휘태커
-- Forest Whitaker
-- 브루노커비
-- Bruno Kirby
-- 미치마코위츠
-- Mitch Markowitz
-- 에이드리언크로나우어
-- Adrian Cronauer
-- 알렉스노스
-- Alex North
-- 피터소바
-- Peter Sova
-- 전쟁영화
-- War Film
-- 코미디드라마
-- Comedy Drama
-- 베트남전쟁
-- Vietnam War
-- 1960년대
 - 1960s
-- 사이공
-- Saigon
-- 미군라디오
-- Armed Forces Radio
-- DJ
-- 라디오방송
-- Radio Broadcasting
-- 즉흥연기
-- Improvisation
-- 실화기반
-- Based on True Story
-- 반전영화
-- Anti-war Film
-- 휴먼드라마
-- Human Drama
-- 문화충돌
-- Cultural Clash
-- 우정
-- Friendship
-- 배신
-- Betrayal
-- 검열
-- Censorship
-- 표현의자유
-- Freedom of Expression
-- 록앤롤
-- Rock and Roll
-- 1960s Music
-- 루이암스트롱
-- Louis Armstrong
-- What a Wonderful World
-- 골든글로브
-- Golden Globe
-- 아카데미후보
-- Oscar Nominee
-- 터치스톤픽처스
-- Touchstone Pictures
-- 1987년영화
-- 1987 Film
-- 코미디연기
-- Comedy Performance
-- 감동영화
-- Emotional Film
-- 전쟁의인간성
-- Humanity in War
+- Movie
+- War
+- 영화
+- Review
+- 리뷰
+- Go
+- Comedy
+- Linux
+- Automation
 image: "poster.png"
 ---
 

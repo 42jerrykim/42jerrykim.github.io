@@ -6,9 +6,11 @@ date: "2018-07-10T00:00:00Z"
 description: Remove all docker container
 tags:
 - Docker
-- Container
-- Delete
-- Stop
+- Command
+- Design-Pattern
+- Shell
+- Bash
+- terminal
 title: Remove all docker container
 ---
 

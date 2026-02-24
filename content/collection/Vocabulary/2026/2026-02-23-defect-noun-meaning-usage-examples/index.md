@@ -9,66 +9,16 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - defect
-  - defect meaning
-  - defect usage
-  - defect examples
-  - defect noun
   - 영단어
   - 영어명사
-  - defect 의미
-  - defect 용법
-  - defect 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - flaw
-  - fault
-  - imperfection
-  - shortcoming
-  - deficiency
-  - bug
-  - desertion
-  - 결함
-  - 흠
-  - 결점
-  - 탈당
-  - 이탈
-  - 변절
-  - 품질
-  - 제조
-  - 품질 관리
-  - manufacturing
-  - quality control
-  - birth defect
-  - 선천적 결함
-  - character defect
-  - 성격 결함
-  - software defect
-  - 소프트웨어 결함
-  - defector
-  - 정치
-  - 군사
-  - medical
-  - 의료
-  - health
-  - 건강
-  - product
-  - 제품
-  - system
-  - 시스템
-  - etymology
-  - origin
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
-  - defect in
-  - defect of
+  - Implementation
+  - Etymology
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

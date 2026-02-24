@@ -10,66 +10,14 @@ categories:
 - Science Fiction
 - DC Studios
 tags:
-- James Gunn
-- Chris Beck
-- David Corenswet
-- Rachel Adams
-- Nicholas Hoult
-- Jena Malone
-- Zachary Levi
-- Krypto
-- Superman
-- Clark Kent
-- Lois Lane
-- Lex Luthor
-- Ultraman
-- Metahumans
-- DC Universe
 - 액션
-- 슈퍼히어로
 - SF
-- 신화
-- 정체성
-- 인간화
-- 권력
-- 부패
-- 복수
 - 가족
-- 사랑
-- 정의
-- 희망
-- 다크톤
-- 압도적액션
-- 격투장면
-- 우주관
-- 대역할배우
-- 스타일리시
-- 비극적
-- 영웅담
-- 신화적
-- 크립톤
-- 저스티스리그
-- 렉스루터
-- 울트라맨
-- 메타몰포
-- 미스터테리픽
-- 제임스건
-- David-Corenswet
-- Rachel-Adams
-- Nicholas-Hoult
-- Jena-Malone
-- Zachary-Levi
-- Superman-2025
-- DC-Studios
-- James-Gunn-Director
-- Superhero-Origin
-- Dark-Reimagining
-- Mythological-Narrative
-- Contemporary-Setting
-- American-Values
-- Power-Corruption
-- True-Identity
-- Paternal-Legacy
+- Movie
+- 영화
+- Review
+- 리뷰
+- Action
 image: "poster.png"
 ---
 

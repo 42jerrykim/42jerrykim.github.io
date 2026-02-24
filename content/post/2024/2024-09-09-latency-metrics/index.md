@@ -7,59 +7,13 @@ date: "2024-09-09T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-09-09-latency-metrics.png
 tags:
-- latency
-- metrics
-- P90
-- P95
-- P99
-- performance
-- UserExperience
+- Performance
+- Frontend
 - API
-- SLA
-- ResponseTime
-- MeanLatency
-- MedianLatency
-- MaxLatency
-- bottlenecks
 - optimization
 - monitoring
-- percentile
-- ServiceLevelAgreement
 - backend
-- SystemPerformance
-- LoadTesting
-- RequestCount
-- ErrorRate
-- WebServer
-- OperatingSystem
-- ElasticBeanstalk
-- Prometheus
-- PromQL
-- HTTPRequests
-- PerformanceMetrics
-- UserSatisfaction
-- ApplicationPerformance
-- ResponseLatency
-- DataAnalysis
-- PerformanceOptimization
-- SystemMonitoring
-- RequestLatency
-- PerformanceEvaluation
-- ServiceProvider
-- CustomerSatisfaction
-- PerformanceInsights
-- PerformanceThresholds
-- LatencyAnalysis
-- PerformanceReporting
-- SystemMetrics
-- PerformanceBenchmarks
-- ResponseTimeAnalysis
-- UserLoad
-- ApplicationMetrics
-- PerformanceTrends
-- LatencyMeasurement
-- PerformanceStandards
-- PerformanceImprovement
+- Data-Structures
 title: '[Performance] 지연 시간 메트릭 마스터하기: P90, P95, P99'
 ---
 

@@ -9,57 +9,17 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - analog
-  - analog meaning
-  - analog usage
-  - analog examples
-  - analog adjective
   - 영단어
   - 영어형용사
-  - analog 의미
-  - analog 용법
-  - analog 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - digital
-  - electronic
-  - mechanical
-  - continuous
-  - analogue
-  - vintage
-  - traditional
-  - analog clock
-  - analog watch
-  - analog signal
-  - analog device
-  - 아날로그
-  - 연속적인
-  - 전자기계식
-  - 아날로그식
-  - 유사한
-  - 기술 용어
-  - 전자 용어
-  - 음악 용어
   - 시계
   - 사진
-  - 레코드
-  - 빈티지
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
-  - etymology
-  - adjective usage
-  - English learning
-  - vocabulary building
-  - study English
-  - technology vocabulary
-  - digital age
+  - Grammar
+  - Pronunciation
+  - Etymology
 image: wordcloud.png
 ---
 

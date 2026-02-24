@@ -10,118 +10,16 @@ categories:
 - CBS
 - Warner Bros Television
 tags:
-- Young Sheldon
-- 영 셸던
-- Chuck Lorre
-- 척 로어
-- Steven Molaro
-- 스티븐 몰라로
-- Iain Armitage
-- 아이언 아미티지
-- Jim Parsons
-- 짐 파슨스
-- Zoe Perry
-- 조 페리
-- Lance Barber
-- 랜스 바버
-- Montana Jordan
-- 몬타나 조던
-- Raegan Revord
-- 리건 레보드
-- Annie Potts
-- 애니 포츠
-- The Big Bang Theory
-- 빅뱅 이론
-- Sheldon Cooper
-- 셸던 쿠퍼
-- 천재 소년
-- Child Prodigy
-- 가족 드라마
-- Family Sitcom
-- 성장 드라마
-- Coming-of-age
-- 1980년대
-- 1989-1994
-- 텍사스
-- East Texas
-- 코미디 드라마
-- Comedy Drama
-- 싱글카메라
-- Single-camera
-- 스핀오프
-- Spin-off
-- 프리퀄
-- Prequel
-- 가족애
-- Family Values
-- 종교와 과학
-- Religion vs Science
-- 어린이 천재
-- Gifted Child
-- 고등학교
-- High School
-- 대학생활
-- College Life
-- 형제 관계
-- Sibling Dynamics
-- 부모자식 관계
-- Parent-child Relationship
-- 할머니와 손자
-- Grandmother-grandson Bond
-- 1990년대 향수
-- 90s Nostalgia
-- 미국 남부
-- American South
-- 기독교 가정
-- Christian Family
-- 풋볼 코치
-- Football Coach
-- 물리학
-- Physics
-- 수학 천재
-- Math Genius
-- 사회성 부족
-- Social Awkwardness
-- 쌍둥이
-- Twins
-- 형제 경쟁
-- Sibling Rivalry
-- 할머니 Meemaw
-- Meemaw
-- 유머러스
-- Humorous
-- 따뜻한
-- Heartwarming
-- 감동적
-- Touching
-- 가족 중심
-- Family-centered
-- 교육적
-- Educational
-- CBS 시트콤
-- CBS Sitcom
-- 내레이션 드라마
-- Narrated Drama
-- 완결 시리즈
-- Completed Series
-- 7시즌
-- Seven Seasons
-- 141 에피소드
-- 141 Episodes
-- 에미상 후보
-- Emmy Nominated
-- 캐릭터 개발
-- Character Development
-- 세대 차이
-- Generation Gap
-- 소도시 생활
-- Small Town Life
-- 미국 중산층
-- American Middle Class
-- 1980-90년대
-- 1980s-1990s
-- 가족 코미디
-- Family Comedy
+- Drama
+- Comedy
+- TV-Show
+- 드라마
+- Review
+- 리뷰
+- Science
+- 과학
+- Culture
+- 문화
 image: "poster.png"
 ---
 

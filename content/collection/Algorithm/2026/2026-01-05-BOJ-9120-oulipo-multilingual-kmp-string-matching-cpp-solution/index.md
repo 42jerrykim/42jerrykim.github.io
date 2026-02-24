@@ -10,78 +10,31 @@ categories:
 - "KMP"
 - "Pattern Matching"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "9120"
-- "BOJ-9120"
-- "Oulipo"
-- "Oulipo 다국어"
-- "String"
-- "문자열"
-- "String Matching"
-- "문자열 매칭"
-- "Pattern Matching"
-- "패턴 매칭"
-- "Substring"
-- "부분문자열"
-- "Occurrences"
-- "등장 횟수"
-- "Overlapping"
-- "겹침 허용"
-- "KMP"
-- "Knuth-Morris-Pratt"
-- "Prefix Function"
-- "접두사 함수"
-- "Failure Function"
-- "실패 함수"
-- "pi array"
-- "pi 배열"
-- "Border"
-- "경계(접두/접미)"
-- "Linear Time"
-- "선형 시간"
-- "O(n+m)"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Implementation"
-- "구현"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Fast IO"
-- "빠른 입출력"
-- "Multiple Test Cases"
-- "다중 테스트케이스"
-- "No Spaces"
-- "공백 없음"
-- "Alphabet"
-- "대문자 알파벳"
-- "Edge Case"
-- "엣지 케이스"
-- "Off-by-one"
-- "오프바이원"
-- "Two Pointers"
-- "투 포인터"
-- "Automaton"
-- "오토마톤"
-- "Text"
-- "텍스트"
-- "Word"
-- "단어"
-- "ICPC"
-- "BAPC"
-- "NWERC"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- String
+- 문자열
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Implementation
+- 구현
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- IO
+- Edge-Cases
+- 엣지케이스
+- Two-Pointers
+- ICPC
+- C++
 image: "wordcloud.png"
 ---
 

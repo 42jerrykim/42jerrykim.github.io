@@ -8,57 +8,18 @@ date: 2025-08-08
 description: "OpenAI의 혁신적인 AI 모델 GPT-5에 대한 완전 가이드. 통합 시스템(스마트·추론·라우터)과 핵심 벤치마크, 정확한 가격 및 가용성, API의 신규 기능과 40만 토큰 컨텍스트, 실제 활용 사례까지 한눈에 정리합니다."
 tags:
   - 머신러닝
-  - Machine Learning
+  - Machine-Learning
   - AI
   - 인공지능
-  - Artificial Intelligence
   - ChatGPT
-  - GPT-5
-  - OpenAI
   - 딥러닝
-  - Deep Learning
-  - Neural Network
-  - 신경망
   - LLM
-  - Large Language Model
-  - 대형언어모델
-  - Natural Language Processing
-  - 자연어처리
   - NLP
-  - Transformer
-  - 트랜스포머
-  - Generative AI
-  - 생성형AI
-  - AI모델
-  - AI Model
-  - 언어모델
-  - Language Model
-  - 챗봇
-  - Chatbot
-  - 대화형AI
-  - Conversational AI
-  - 텍스트생성
-  - Text Generation
-  - 코딩
-  - Coding
-  - Programming
-  - 프로그래밍
-  - 글쓰기
-  - Writing
-  - 창작
-  - Creative Writing
+  - Implementation
   - 수학
-  - Mathematics
-  - 건강
-  - Health
-  - 벤치마크
-  - Benchmark
-  - 성능평가
-  - Performance Evaluation
+  - Math
+  - Performance
   - API
-  - 기술혁신
-  - Technology Innovation
-  - 2025
 image: image01.png
 ---
 

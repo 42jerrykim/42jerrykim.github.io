@@ -11,67 +11,32 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-13544
-- cpp
 - C++
-- Data Structures
+- Data-Structures
 - 자료구조
-- Segment Tree
-- 세그먼트 트리
-- Merge Sort Tree
-- 머지 소트 트리
-- Merge Tree
-- 머지 트리
-- Range Query
-- 구간 쿼리
-- Online Query
-- 온라인 쿼리
-- XOR
-- xor
-- last_ans
-- Binary Search
+- Segment-Tree
+- 세그먼트트리
+- Range-Query
+- Math
+- Binary-Search
 - 이분탐색
-- upper_bound
-- offline-vs-online
-- 온라인 처리
-- Query Processing
-- 쿼리 처리
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Fast IO
-- 빠른 입출력
-- 1-based Index
-- 1-기반 인덱스
+- IO
 - Sorting
 - 정렬
-- Vector
-- 벡터
-- STL
-- 표준라이브러리
-- upper-bound-count
-- 카운팅 질의
-- Greater Than
-- 초과 개수
-- Persistent Segment Tree
-- 영속 세그먼트 트리
-- Alternative Approach
-- 대안 풀이
-- NlogN
-- log^2N
+- Array
+- 파이썬
 image: "wordcloud.png"
 ---
 

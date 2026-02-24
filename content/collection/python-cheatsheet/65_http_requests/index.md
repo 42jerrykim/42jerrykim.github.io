@@ -7,62 +7,29 @@ description: "HTTP 요청을 빠르게 보내기 위한 치트시트입니다. r
 lastmod: 2026-01-18
 collection_order: 65
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
+  - Quick-Reference
   - http
-  - requests
-  - urllib
-  - GET
-  - POST
-  - PUT
-  - DELETE
   - REST
   - API
-  - json
-  - headers
-  - cookies
-  - session
-  - 세션
-  - timeout
-  - 타임아웃
-  - retry
-  - 재시도
+  - JSON
   - error-handling
   - 에러처리
-  - status-code
-  - 상태코드
   - authentication
   - 인증
-  - ssl
-  - https
   - proxy
-  - 프록시
-  - download
-  - upload
-  - streaming
-  - 스트리밍
   - networking
   - 네트워킹
   - web
   - 웹
-  - scraping
-  - 크롤링
-  - best-practices
-  - 베스트프랙티스
+  - Best-Practices
   - pitfalls
   - 함정
-  - performance
+  - Performance
   - 성능
-  - standard-library
-  - 표준라이브러리
-  - third-party
-  - 서드파티
 ---
 HTTP 요청은 API 연동과 웹 데이터 수집의 기본입니다. 이 치트시트는 requests 라이브러리의 핵심 패턴(GET/POST/JSON), 세션, 타임아웃, 에러 핸들링과 urllib 표준 라이브러리 기본을 정리합니다.
 

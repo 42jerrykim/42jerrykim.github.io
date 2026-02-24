@@ -11,71 +11,37 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-3319
-- cpp
 - C++
 - Tree
 - 트리
 - DP
 - 동적계획법
-- Tree DP
-- 트리 DP
-- Path DP
-- 경로 DP
 - Graph
 - 그래프
-- Distance
-- 거리
-- Rooted Tree
-- 루트드 트리
-- Ancestor
-- 조상
-- Convex Hull Trick
-- 컨벡스 헐 트릭
-- Li Chao Tree
-- 라이차오 트리
-- Line Container
-- 선형함수 컨테이너
-- Minimum Query
-- 최소 질의
-- Add Line
-- 직선 추가
-- Persistent
-- 퍼시스턴스
-- Rollback
-- 롤백
-- Segment Tree
-- 세그먼트 트리
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Shortest-Path
+- Dynamic-Programming
+- Segment-Tree
+- 세그먼트트리
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Invariant
-- 불변식
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
 - Testing
 - 테스트
-- CEOI
-- CEOI 2009
-- Messengers
-- 전령들
 image: "wordcloud.png"
 ---
 

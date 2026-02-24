@@ -9,54 +9,24 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
-  - Template Method
-  - 템플릿 메서드
-  - Behavioral Pattern
-  - 행위 패턴
+  - Design-Pattern
+  - 디자인패턴
   - GoF
-  - Gang of Four
-  - Algorithm Skeleton
-  - 알고리즘 골격
-  - Abstract Class
-  - 추상 클래스
-  - Hook Method
-  - 훅 메서드
   - Inheritance
   - 상속
   - Polymorphism
   - 다형성
-  - Inversion of Control
-  - 제어 역전
-  - Hollywood Principle
-  - 할리우드 원칙
-  - Code Reuse
-  - 코드 재사용
-  - DRY Principle
-  - Framework
-  - 프레임워크
-  - Primitive Operation
-  - 원시 연산
-  - Final Method
-  - 최종 메서드
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - 코드품질
+  - Software-Architecture
+  - Code-Quality
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - Servlet
-  - JUnit
+  - CSharp
   - Spring
-  - Lifecycle
-  - 생명주기
 ---
 
 템플릿 메서드 패턴(Template Method Pattern)은 알고리즘의 골격을 상위 클래스에 정의하고, 일부 단계의 구현을 하위 클래스에 위임하는 행위 디자인 패턴이다. 이 패턴을 사용하면 알고리즘의 전체 구조를 변경하지 않으면서 특정 단계만 재정의할 수 있다.

@@ -7,78 +7,33 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "17642"
-- "Dynamic Diameter"
-- "동적 지름"
-- "Tree"
-- "트리"
-- "Weighted Tree"
-- "가중 트리"
-- "Diameter"
-- "지름"
-- "Update"
-- "업데이트"
-- "Edge Weight"
-- "간선 가중치"
-- "Centroid Decomposition"
-- "센트로이드 분해"
-- "센트로이드 분할"
-- "Segment Tree"
-- "Segtree"
-- "세그먼트 트리"
-- "세그트리"
-- "Lazy Propagation"
-- "지연 전파"
-- "Range Add"
-- "Range Max"
-- "Euler Tour"
-- "오일러 투어"
-- "Subtree Interval"
-- "서브트리 구간"
-- "Multiset"
-- "멀티셋"
-- "Top Two"
-- "최대 두 값"
-- "Decomposition"
-- "분할정복"
-- "Tree DnC"
-- "트리 분할정복"
-- "CEOI"
-- "CEOI 2019"
-- "Olympiad"
-- "올림피아드"
-- "Data Structure"
-- "자료구조"
-- "Graph"
-- "그래프"
-- "Distance"
-- "거리"
-- "Long Long"
-- "64-bit"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른입출력"
-- "Implementation"
-- "구현"
-- "Complexity"
-- "시간복잡도"
-- "O(log^2 n)"
-- "효율성"
-- "Problem Solving"
-- "PS"
-- "Competitive Programming"
-- "컴퓨티티브 프로그래밍"
-- "Solution Code"
-- "정답 코드"
-- "Editorial"
-- "해설"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Tree
+- 트리
+- Segment-Tree
+- 세그먼트트리
+- Lazy-Propagation
+- Euler-Tour
+- 분할정복
+- Data-Structures
+- 자료구조
+- Graph
+- 그래프
+- Shortest-Path
+- Edge-Cases
+- C++
+- IO
+- Implementation
+- 구현
+- Complexity-Analysis
+- 시간복잡도
+- Problem-Solving
+- Competitive-Programming
+- Editorial
 image: "wordcloud.png"
 ---
 

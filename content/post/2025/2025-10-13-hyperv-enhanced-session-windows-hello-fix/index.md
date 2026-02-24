@@ -7,71 +7,16 @@ categories:
   - Hyper-V
   - Virtualization
 tags:
-  - Hyper-V
-  - Windows Hello
-  - Enhanced Session
-  - 고급 세션
-  - 가상머신
-  - VM
-  - Virtual Machine
   - RDP
-  - Remote Desktop
-  - 원격 데스크톱
-  - Windows 11
-  - Windows 10
-  - 로그인 오류
-  - Login Error
-  - 화면 멈춤
-  - Screen Freeze
-  - 인증 문제
   - Authentication
-  - 생체 인식
-  - Biometric
-  - PIN
-  - Microsoft Account
-  - 로컬 계정
-  - Local Account
-  - VMConnect
-  - Hyper-V Manager
-  - 하이퍼바이저
-  - Hypervisor
-  - 가상화
-  - Virtualization
-  - 문제 해결
+  - 문제해결
   - Troubleshooting
-  - 버그 수정
-  - Bug Fix
-  - IT 관리
-  - System Admin
-  - 윈도우 설정
-  - Windows Settings
-  - 세션 모드
-  - Session Mode
-  - 클립보드 공유
-  - Clipboard Sharing
-  - 드라이브 리디렉션
-  - Drive Redirection
-  - 호환성 문제
-  - Compatibility Issue
-  - RDP Protocol
-  - 보안 설정
-  - Security Settings
-  - 로그인 옵션
-  - Sign-in Options
-  - 계정 설정
-  - Account Settings
-  - VM 관리
-  - VM Management
-  - 스마트 카드
-  - Smart Card
-  - 비지니스용 Windows Hello
-  - Windows Hello for Business
-  - WHfB
-  - 인증서
-  - Certificate
-  - mstsc
-  - 원격 데스크톱 연결
-  - Remote Desktop Connection
+  - Windows
+  - Dynamic-Programming
+  - DP
+  - Graph
+  - 그래프
+  - Security
 description: "원격 데스크톱 환경에서 Hyper-V 고급 세션 모드 사용 시 Windows Hello 로그인 화면이 멈추는 문제를 해결합니다. 이중 RDP 연결 구조의 한계와 해결 방법 4가지를 상세히 설명합니다."
 image: "image01.png"
 ---

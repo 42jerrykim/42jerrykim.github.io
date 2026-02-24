@@ -5,6 +5,14 @@ title: "2장 단위 테스트란 무엇인가"
 date: 2022-03-11
 header:
   teaser:  /assets/images/Khorikov-UT-HI.png
+  tags:
+  - Testing
+  - 테스트
+  - TDD
+  - Code-Quality
+  - CSharp
+  - Clean-Code
+  - Refactoring
 ---
 
 단위 테스트에 접근하는 방법은 고전파(classical school)와 런던파(London school)로 나뉘어 있다. 고전파는 모든 사람이 단위 테스트와 테스트 주도 개발에 원론적으로 접근하는 방식, 런던파는 런던의 프로그래밍 커뮤니티에서 시작되었다.

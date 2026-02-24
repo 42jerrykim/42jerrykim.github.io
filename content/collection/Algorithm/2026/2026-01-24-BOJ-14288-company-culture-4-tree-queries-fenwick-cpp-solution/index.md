@@ -10,82 +10,31 @@ categories:
 - "Euler Tour"
 - "Query"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "14288"
-- "BOJ-14288"
-- "회사 문화 4"
-- "Company Culture 4"
-- "Tree"
-- "트리"
-- "Rooted Tree"
-- "루트 트리"
-- "Hierarchy"
-- "조직도"
-- "Company"
-- "회사"
-- "Praise"
-- "칭찬"
-- "Propagation"
-- "전파"
-- "Toggle"
-- "토글"
-- "Direction Flip"
-- "방향 전환"
-- "Query"
-- "쿼리"
-- "Online Query"
-- "온라인 쿼리"
-- "Data Structure"
-- "자료구조"
-- "Fenwick Tree"
-- "펜윅 트리"
-- "BIT"
-- "Binary Indexed Tree"
-- "Prefix Sum"
-- "누적합"
-- "Range Add"
-- "구간 업데이트"
-- "Point Query"
-- "점 질의"
-- "Point Add"
-- "점 업데이트"
-- "Range Sum"
-- "구간 합"
-- "Euler Tour"
-- "오일러 투어"
-- "DFS Order"
-- "DFS 순서"
-- "Subtree"
-- "서브트리"
-- "Ancestor"
-- "조상"
-- "Descendant"
-- "자손"
-- "Path to Root"
-- "루트까지 경로"
-- "Lazy Strategy"
-- "지연 처리"
-- "Invariant"
-- "불변식"
-- "Implementation"
-- "구현"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(log N)"
-- "O(N log N)"
-- "Edge Case"
-- "엣지 케이스"
-- "Overflow"
-- "오버플로우"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Tree
+- 트리
+- Range-Query
+- Data-Structures
+- 자료구조
+- Fenwick-Tree
+- BIT
+- Binary-Indexed-Tree
+- Prefix-Sum
+- Segment-Tree
+- Euler-Tour
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- C++
 image: "wordcloud.png"
 ---
 

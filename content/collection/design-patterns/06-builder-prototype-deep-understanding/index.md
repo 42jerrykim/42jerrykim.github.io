@@ -12,66 +12,12 @@ categories:
 - Object Construction
 - Pattern Implementation
 tags:
-- Builder Pattern
-- Prototype Pattern
-- Creational Patterns
-- Object Construction
-- Fluent Interface
-- Method Chaining
-- Complex Objects
-- Object Cloning
-- Deep Copy
-- Shallow Copy
-- Telescoping Constructor
-- Parameter Object
-- Object Creation
-- Design Patterns
-- GoF Patterns
-- Immutable Objects
-- Object Copying
-- Clone Method
-- Copy Constructor
-- Builder Interface
-- Director Pattern
-- Step Builder
-- Object Assembly
-- Configuration Objects
-- Data Transfer Objects
-- Software Architecture
-- Design Principles
-- Code Readability
-- API Design
-- Pattern Evolution
-- 빌더 패턴
-- 프로토타입 패턴
-- 생성 패턴
-- 객체 구성
-- 플루언트 인터페이스
-- 메서드 체이닝
-- 복잡한 객체
-- 객체 복제
-- 깊은 복사
-- 얕은 복사
-- 망원경 생성자
-- 매개변수 객체
-- 객체 생성
-- 디자인 패턴
-- GoF 패턴
-- 불변 객체
-- 객체 복사
-- 클론 메서드
-- 복사 생성자
-- 빌더 인터페이스
-- 디렉터 패턴
-- 단계별 빌더
-- 객체 조립
-- 설정 객체
-- 데이터 전송 객체
-- 소프트웨어 아키텍처
-- 설계 원칙
-- 코드 가독성
-- API 설계
-- 패턴 진화
+- Design-Pattern
+- GoF
+- Software-Architecture
+- SOLID
+- 디자인패턴
+- 소프트웨어아키텍처
 ---
 
 Builder와 Prototype 패턴을 통해 복잡한 객체 생성 문제를 해결하는 방법을 탐구합니다. 구성의 명확성과 생성의 효율성을 모두 잡는 설계 기법을 학습합니다.

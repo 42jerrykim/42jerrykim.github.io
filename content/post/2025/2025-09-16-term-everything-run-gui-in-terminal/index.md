@@ -8,63 +8,17 @@ categories:
 - "Terminal"
 - "Wayland"
 tags:
-- "term.everything"
-- "Wayland"
-- "Wayland compositor"
-- "terminal GUI"
-- "terminal"
-- "CLI"
-- "Linux"
-- "x11"
-- "Wayland host"
-- "kitty"
-- "iTerm2"
-- "alacritty"
-- "ssh"
-- "remote desktop"
-- "image protocol"
-- "full resolution"
-- "resolution scaling"
-- "FPS"
-- "performance"
-- "TypeScript"
-- "Bun"
-- "C++"
-- "AGPL-3.0"
-- "FOSS"
-- "open source"
-- "GUI in terminal"
-- "Firefox"
-- "file manager"
-- "Doom"
-- "beta"
-- "roadmap"
-- "usage"
-- "how it works"
-- "HowIDidIt"
-- "Linux desktop"
-- "Compositor"
-- "graphics"
-- "rendering"
-- "framebuffer"
-- "SSH over terminal"
-- "iterm2 inline images"
-- "kitty graphics"
-- "터미널"
-- "리눅스"
-- "웨일랜드"
-- "컴포지터"
-- "원격 접속"
-- "이미지 터미널"
-- "성능"
-- "사용법"
-- "오픈소스"
-- "라이선스"
-- "개발자 도구"
-- "실험적 기능"
-- "프로젝트 소개"
-- "설치"
-- "빌드"
+- terminal
+- Shell
+- Linux
+- Performance
+- TypeScript
+- C++
+- Open-Source
+- 터미널
+- 리눅스
+- 성능
+- 오픈소스
 image: "wordcloud.png"
 ---
 

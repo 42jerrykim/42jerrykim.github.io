@@ -8,7 +8,9 @@ tags:
 - Shell
 - Linux
 - Watch
-- While
+- Bash
+- Terminal
+- AI
 title: '[Shell] 명령어 반복 실행 (watch, while)'
 ---
 

@@ -4,6 +4,17 @@ description: "알고리즘은 문제를 해결하는 논리적 절차로, 입력
 title: "알고리즘 (Algorithm) 이란?"
 date: 2022-03-13
 categories: ComputerTerms
+tags:
+- Technology
+- 기술
+- Education
+- 교육
+- Go
+- Algorithm
+- 알고리즘
+- Sorting
+- Graph
+- 그래프
 ---
 
 ## 알고리즘 (Algorithm) 이란?

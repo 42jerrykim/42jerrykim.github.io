@@ -7,62 +7,16 @@ title: "[Clean Architecture] 14. SOLID 원칙 서론"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
+  - Clean-Architecture
+  - 클린아키텍처
   - SOLID
-  - SOLID Principles
-  - SOLID 원칙
-  - Design Principles
-  - 설계 원칙
-  - Robert C. Martin
-  - Uncle Bob
-  - Single Responsibility Principle
-  - 단일 책임 원칙
-  - SRP
-  - Open Closed Principle
-  - 개방 폐쇄 원칙
-  - OCP
-  - Liskov Substitution Principle
-  - 리스코프 치환 원칙
-  - LSP
-  - Interface Segregation Principle
-  - 인터페이스 분리 원칙
-  - ISP
-  - Dependency Inversion Principle
-  - 의존성 역전 원칙
-  - DIP
-  - Object Oriented Design
-  - 객체 지향 설계
-  - Software Design
-  - 소프트웨어 설계
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Code Quality
-  - 코드 품질
-  - Maintainability
-  - 유지보수성
-  - Flexibility
-  - 유연성
-  - Testability
-  - 테스트 용이성
-  - Module Design
-  - 모듈 설계
-  - Class Design
-  - 클래스 설계
-  - Function Design
-  - 함수 설계
-  - Coupling
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Code-Quality
+  - 코드품질
+  - Testing
   - 결합도
-  - Cohesion
   - 응집도
-  - Mid-Level Design
-  - 중간 수준 설계
-  - Change Tolerance
-  - 변경 내성
-  - Understandability
-  - 이해 용이성
-  - Reusability
-  - 재사용성
 ---
 
 SOLID 원칙은 객체 지향 설계의 기초가 되는 다섯 가지 원칙이다. 이 원칙들은 2000년대 초반 Robert C. Martin에 의해 체계화되었으며, 오늘날 소프트웨어 개발자들에게 필수적인 지식이 되었다.

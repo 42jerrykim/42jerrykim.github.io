@@ -8,62 +8,31 @@ categories:
 - "BOJ"
 - "Tree DP"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "16191"
-- "Utilitarianism"
-- "Tree"
-- "트리"
-- "Tree DP"
-- "트리 DP"
-- "Matching"
-- "매칭"
-- "K-Matching"
-- "Maximum Weight Matching"
-- "최대 가중치 매칭"
-- "Lagrangian Relaxation"
-- "라그랑주 이완"
-- "Convex Dual"
-- "이중성"
-- "Dynamic Programming"
-- "DP"
-- "Binary Search"
-- "이분 탐색"
-- "Monotonicity"
-- "단조성"
-- "Optimization"
-- "최적화"
-- "Greedy DP"
-- "루트 트리"
-- "Rooted Tree"
-- "Parent Array"
-- "부모 배열"
-- "Iterative DFS"
-- "스택 DFS"
-- "Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(n log W)"
-- "64-bit"
-- "long long"
-- "Overflow Safety"
-- "오버플로우 방지"
-- "Tie-breaking"
-- "동률 처리"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "STL"
-- "Fast IO"
-- "빠른 입출력"
-- "Competitive Programming"
-- "Problem Solving"
-- "PS"
-- "Algorithm"
-- "알고리즘"
+- BOJ
+- Baekjoon
+- 백준
+- Tree
+- 트리
+- String
+- Dynamic-Programming
+- DP
+- Binary-Search
+- 이분탐색
+- Optimization
+- 최적화
+- Complexity-Analysis
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- Implementation
+- 구현
+- C++
+- IO
+- Competitive-Programming
+- Problem-Solving
+- Algorithm
+- 알고리즘
 image: "wordcloud.png"
 ---
 

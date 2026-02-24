@@ -9,54 +9,22 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
-  - Memento
-  - 메멘토
-  - Behavioral Pattern
-  - 행위 패턴
+  - Design-Pattern
+  - 디자인패턴
   - GoF
-  - Gang of Four
   - State
-  - 상태
-  - Snapshot
-  - 스냅샷
-  - Undo
-  - 실행 취소
-  - Redo
-  - 재실행
-  - Rollback
-  - 롤백
-  - Originator
-  - 원조자
-  - Caretaker
-  - 관리자
-  - Checkpoint
-  - 체크포인트
   - History
-  - 히스토리
-  - Backup
-  - 백업
-  - Restore
-  - 복원
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Code-Quality
+  - 코드품질
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - Text Editor
-  - 텍스트 에디터
-  - Game Save
-  - 게임 저장
-  - Transaction
-  - 트랜잭션
+  - CSharp
+  - Database
 ---
 
 메멘토 패턴(Memento Pattern)은 객체의 내부 상태를 캡슐화하여 저장하고, 나중에 해당 상태로 복원할 수 있게 하는 행위 디자인 패턴이다. 이 패턴을 사용하면 객체의 캡슐화를 위반하지 않으면서 실행 취소(Undo)나 스냅샷 기능을 구현할 수 있다.

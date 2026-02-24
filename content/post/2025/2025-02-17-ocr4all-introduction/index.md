@@ -5,9 +5,12 @@ draft: false
 categories:
 - Technology
 tags:
-- OCR
-- Open Source
-- Document Processing
+- Open-Source
+- Technology
+- Docker
+- Deployment
+- AI
+- Networking
 image: image.png
 description: "OCR4all은 무료 오픈소스 OCR 솔루션으로, 수기와 인쇄 문서 모두를 고품질로 인식하며 직관적 UI, Docker 기반 배포, MIT 라이선스, OCR-D 호환성을 제공해 누구나 쉽게 문서 디지털화와 자동 텍스트 추출을 할 수 있습니다."
 

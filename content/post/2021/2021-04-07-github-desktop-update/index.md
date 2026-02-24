@@ -5,9 +5,12 @@ categories:
 - GithubDesktop
 date: "2021-04-07T00:00:00Z"
 tags:
-- GithubDesktop
 - Git
-- GitClient
+- GitHub
+- Windows
+- Shell
+- Bash
+- Linux
 title: '[Github Desktop] 이제는 commit과 push가 빨라졌어요'
 ---
 

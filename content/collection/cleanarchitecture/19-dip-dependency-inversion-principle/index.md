@@ -7,60 +7,18 @@ title: "[Clean Architecture] 19. DIP: 의존성 역전 원칙"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Dependency Inversion Principle
-  - 의존성 역전 원칙
-  - DIP
+  - Clean-Architecture
+  - 클린아키텍처
   - SOLID
-  - SOLID Principles
-  - SOLID 원칙
-  - Robert C. Martin
-  - Uncle Bob
   - Abstraction
   - 추상화
-  - Concrete Class
-  - 구체 클래스
   - Interface
   - 인터페이스
-  - Abstract Class
-  - 추상 클래스
-  - High Level Module
-  - 고수준 모듈
-  - Low Level Module
-  - 저수준 모듈
-  - Dependency
-  - 의존성
-  - Software Design
-  - 소프트웨어 설계
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Stability
-  - 안정성
-  - Volatility
-  - 변동성
-  - Factory Pattern
-  - 팩토리 패턴
-  - Abstract Factory
-  - 추상 팩토리
-  - Dependency Injection
-  - 의존성 주입
-  - Inversion of Control
-  - 제어의 역전
-  - Plugin Architecture
-  - 플러그인 아키텍처
-  - Source Code Dependency
-  - 소스 코드 의존성
-  - Control Flow
-  - 제어 흐름
-  - Compile Time Dependency
-  - 컴파일 타임 의존성
-  - Runtime Dependency
-  - 런타임 의존성
-  - Boundary
-  - 경계
-  - Main Component
-  - 메인 컴포넌트
+  - Dependency-Injection
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Code-Quality
+  - Edge-Cases
 ---
 
 **DIP(Dependency Inversion Principle)**는 SOLID 원칙 중 가장 중요하며, Clean Architecture의 **핵심 원칙**이다. 이 원칙은 소스 코드 의존성이 추상화를 향해야 하며, 구체적인 것을 향해서는 안 된다고 말한다.

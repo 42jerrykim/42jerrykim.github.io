@@ -9,59 +9,16 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - ripcord
-  - ripcord meaning
-  - ripcord usage
-  - ripcord examples
-  - ripcord noun
   - 영단어
   - 영어명사
-  - ripcord 의미
-  - ripcord 용법
-  - ripcord 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - parachute
-  - emergency
-  - escape
-  - last resort
-  - solution
-  - mechanism
-  - 낙하산
-  - 응급
-  - 탈출
-  - 마지막 수단
-  - 해결책
-  - 메커니즘
-  - aviation
-  - skydiving
-  - extreme sports
-  - business
-  - management
-  - crisis
-  - 항공
-  - 스카이다이빙
-  - 익스트림 스포츠
-  - 비즈니스
-  - 경영
-  - 위기
-  - 응급 상황
-  - 위험 관리
-  - idiom
-  - metaphor
-  - 관용구
-  - 은유
-  - etymology
-  - origin
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Business-English
+  - Etymology
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

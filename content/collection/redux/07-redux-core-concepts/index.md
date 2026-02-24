@@ -3,7 +3,19 @@ draft: true
 title: "[Redux] 07. Redux의 핵심 - Action, Reducer, Store"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "Action", "Reducer", "Store", "액션", "리듀서", "스토어", "상태관리", "State Management", "Redux Core", "리덕스핵심", "Dispatch", "디스패치", "Subscribe", "구독", "웹개발", "프론트엔드", "JavaScript", "TypeScript", "Pure Functions", "순수함수", "Immutability", "불변성", "Action Creator", "액션생성자", "Action Types", "액션타입", "Root Reducer", "루트리듀서", "combineReducers", "리듀서조합", "Store API", "스토어API", "getState", "Redux Patterns", "리덕스패턴", "개발", "코딩", "Best Practices", "모범사례", "Redux Tutorial", "리덕스튜토리얼", "개발자가이드", "Clean Code", "클린코드", "Software Architecture", "소프트웨어아키텍처"]
+tags:
+- Action
+- 액션
+- 프론트엔드
+- JavaScript
+- TypeScript
+- Code-Quality
+- Implementation
+- Best-Practices
+- Clean-Code
+- 클린코드
+- Software-Architecture
+- 소프트웨어아키텍처
 description: "Redux의 3대 핵심 개념 완벽 정복. Action으로 무엇을 할지 정의, Reducer로 상태 변경 로직 구현, Store로 전체 관리하는 Redux의 작동 원리를 실제 코드와 함께 깊이 있게 학습합니다"
 series: ["Redux 완전 정복"]
 series_order: 7

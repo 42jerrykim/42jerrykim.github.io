@@ -11,72 +11,46 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-3683
-- cpp
-- python
-- Data Structures
+- C++
+- Python
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Graph
 - 그래프
-- Bipartite Matching
-- 이분매칭
-- Hopcroft-Karp
-- Conflict Graph
-- Cat vs Dog
-- NWERC
-- NWERC 2008
-- Minimum Vertex Cover
-- 최소 정점 커버
-- Kőnig's Theorem
-- 코니그 정리
-- Maximum Independent Set
-- 최대 독립 집합
-- Matching
-- 매칭
-- Flow
-- 최대유량
+- Bipartite-Matching
 - String
+- Network-Flow
 - 문자열
 - Math
 - 수학
 - Debugging
 - 디버깅
-- Implementation Details
-- 구현 디테일
-- Binary Search
+- Binary-Search
 - 이분탐색
-- Two Pointers
-- 투포인터
-- Sliding Window
-- 슬라이딩윈도우
+- Two-Pointers
+- Sliding-Window
 - Hashing
 - 해싱
 image: "wordcloud.png"

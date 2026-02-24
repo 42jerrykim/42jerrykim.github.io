@@ -8,86 +8,12 @@ categories:
   - Culture
   - Science
 tags:
-  - calendar
-  - history of calendars
-  - Gregorian calendar
-  - Julian calendar
-  - Roman calendar
-  - Sumerian calendar
-  - Maya calendar
-  - lunar calendar
-  - solar calendar
-  - lunisolar calendar
-  - Julius Caesar
-  - Omar Khayyam
-  - timekeeping
-  - ancient history
-  - prehistory
-  - Stonehenge
-  - Warren Field
-  - Metonic cycle
-  - intercalary month
-  - leap year
-  - leap day
-  - Yoruba calendar
-  - Igbo calendar
-  - Chinese calendar
-  - Hindu calendar
-  - Islamic calendar
-  - Hebrew calendar
-  - Zoroastrian calendar
-  - Babylonian calendar
-  - Greek calendar
-  - tzolkin
-  - haab
-  - Mesoamerica
-  - calendar reform
-  - Anno Domini
-  - Jalali calendar
-  - Seljuq dynasty
-  - Achaemenid
-  - 달력
-  - 달력의 역사
-  - 그레고리력
-  - 율리우스력
-  - 로마 달력
-  - 수메르 달력
-  - 마야 달력
-  - 음력
-  - 양력
-  - 율리우스 카이사르
-  - 오마르 카이얌
-  - 시간 계산
-  - 고대 역사
-  - 선사시대
-  - 윤년
-  - 윤달
-  - 요루바 달력
-  - 힌두 달력
-  - 이슬람 달력
-  - 달력 개혁
-  - 문명의 역사
-  - 천문학
-  - 농업 달력
-  - 시간 단위
-  - 메소포타미아
-  - 바빌로니아
-  - month names etymology
-  - January origin
-  - Augustus Caesar
-  - Romulus calendar
-  - Numa Pompilius
-  - Janus
-  - Roman gods
-  - Roman months
-  - 달 이름 유래
-  - 야누스
-  - 마르스
-  - 아우구스투스
-  - 로물루스
-  - 누마 폼필리우스
-  - 영어 달 이름
-  - 로마 신화
+  - History
+  - Culture
+  - Science
+  - Math
+  - 역사
+  - C++
 image: "poster.png"
 ---
 

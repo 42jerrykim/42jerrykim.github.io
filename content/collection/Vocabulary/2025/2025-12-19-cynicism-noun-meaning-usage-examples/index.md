@@ -9,66 +9,17 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - cynicism
-  - cynicism meaning
-  - cynicism usage
-  - cynicism examples
-  - cynicism noun
   - 영단어
   - 영어명사
-  - cynicism 의미
-  - cynicism 용법
-  - cynicism 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - distrust
-  - skepticism
-  - pessimism
-  - negativity
-  - disbelief
-  - suspicion
-  - 냉소주의
-  - 냉소적
-  - 불신
-  - 회의주의
-  - 비관주의
-  - 부정주의
-  - 의심
-  - philosophy
   - psychology
-  - politics
-  - society
-  - human nature
-  - motivation
-  - behavior
-  - 철학
   - 심리학
-  - 정치
-  - 사회
-  - 인간 본성
-  - 동기
-  - 행동
-  - attitude
-  - mindset
-  - worldview
-  - belief system
-  - 태도
-  - 사고방식
-  - 세계관
-  - 신념 체계
-  - etymology
-  - origin
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
-  - study English
-  - vocabulary building
+  - Etymology
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

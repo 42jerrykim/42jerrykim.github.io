@@ -9,63 +9,14 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - overbearing
-  - overbearing meaning
-  - overbearing usage
-  - overbearing examples
-  - overbearing adjective
   - 영단어
   - 영어형용사
-  - overbearing 의미
-  - overbearing 용법
-  - overbearing 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - domineering
-  - demanding
-  - controlling
-  - authoritarian
-  - imperious
-  - bossy
-  - arrogant
-  - overwhelming
-  - oppressive
-  - assertive
-  - aggressive
-  - commanding
-  - dictatorial
-  - domineering
-  - personality
-  - leadership
-  - interpersonal
-  - relationships
-  - family dynamics
-  - workplace
-  - authority
-  - power dynamics
-  - 압도적인
-  - 자제심 없는
-  - 오만한
-  - 전제적인
-  - 독재적인
-  - 무례한
-  - 거만한
-  - 비난하는
-  - 비판적인
-  - 성격 특성
-  - 리더십
-  - 대인관계
-  - 가족 관계
-  - 직장 관계
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

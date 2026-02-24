@@ -5,8 +5,11 @@ categories: KakalTalk
 date: "2021-04-07T00:00:00Z"
 tags:
 - Windows
-- Account
-- KakaoTalk
+- Mobile
+- Android
+- Photography
+- Networking
+- Technology
 title: '[KakaoTalk] Windows 10 다른 사용자도 카카오톡을 사용할 수 있도록 사용권한 주기'
 ---
 

@@ -7,71 +7,33 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "31222"
-- "BOJ-31222"
-- "Sequence and Queries"
-- "수열과 쿼리"
-- "수열과 어렵지 않은 쿼리"
-- "Not So Hard Queries"
-- "연속 일치 구간"
-- "중요한 연속 일치 구간"
-- "Equal Segments"
-- "같은 값 구간"
-- "Run Length"
-- "런 길이"
-- "Segment Count"
-- "구간 개수"
-- "Range Query"
-- "범위 질의"
-- "Point Update"
-- "포인트 업데이트"
-- "Online Query"
-- "온라인 쿼리"
-- "Fenwick Tree"
-- "Binary Indexed Tree"
-- "BIT"
-- "Prefix Sum"
-- "차분 배열"
-- "Difference Array"
-- "인접 비교"
-- "Adjacency Difference"
-- "Data Structure"
-- "자료 구조"
-- "Array"
-- "수열"
-- "Dynamic Array"
-- "동적 배열"
-- "Competitive Programming"
-- "컴페티티브 프로그래밍"
-- "Problem Solving"
-- "PS"
-- "Solution Code"
-- "정답 코드"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른입출력"
-- "Time Complexity"
-- "시간복잡도"
-- "O((N+Q) log N)"
-- "Query Processing"
-- "쿼리 처리"
-- "Implementation"
-- "구현"
-- "Optimization"
-- "최적화"
-- "Edge Case"
-- "엣지 케이스"
-- "Indexing"
-- "인덱싱"
-- "1-based Index"
-- "1-기반 인덱스"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Range-Query
+- Segment-Tree
+- Fenwick-Tree
+- Binary-Indexed-Tree
+- BIT
+- Prefix-Sum
+- Data-Structures
+- Array
+- Math
+- Competitive-Programming
+- Problem-Solving
+- Editorial
+- C++
+- IO
+- Time-Complexity
+- 시간복잡도
+- Implementation
+- 구현
+- Optimization
+- 최적화
+- Edge-Cases
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

@@ -10,78 +10,32 @@ categories:
 - "Stack"
 - "Greedy"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "8155"
-- "BOJ-8155"
-- "Postering"
-- "포스터링"
-- "Poster"
-- "포스터"
-- "Rectangle"
-- "직사각형"
-- "Covering"
-- "덮기"
-- "Minimum"
-- "최소"
-- "Optimization"
-- "최적화"
-- "Greedy"
-- "그리디"
-- "Data Structures"
-- "자료구조"
-- "Stack"
-- "스택"
-- "Monotonic Stack"
-- "단조 스택"
-- "Monotone Stack"
-- "단조성"
-- "Increasing Stack"
-- "증가 스택"
-- "Skyline"
-- "스카이라인"
-- "Histogram"
-- "히스토그램"
-- "Sweep"
-- "스위핑"
-- "Line Sweep"
-- "라인 스위프"
-- "Compressed Heights"
-- "높이 압축"
-- "Distinct Heights"
-- "서로 다른 높이"
-- "Equal Heights"
-- "같은 높이"
-- "Adjacent"
-- "인접"
-- "Greedy Counting"
-- "카운팅"
-- "Proof"
-- "정당성"
-- "Invariant"
-- "불변식"
-- "Amortized"
-- "상각 분석"
-- "O(N)"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Implementation"
-- "구현"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "POI"
-- "폴란드 정보올림피아드"
-- "Buildings"
-- "건물"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Optimization
+- 최적화
+- Greedy
+- 그리디
+- Data-Structures
+- 자료구조
+- Stack
+- 스택
+- Math
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Implementation
+- 구현
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
 image: "wordcloud.png"
 ---
 

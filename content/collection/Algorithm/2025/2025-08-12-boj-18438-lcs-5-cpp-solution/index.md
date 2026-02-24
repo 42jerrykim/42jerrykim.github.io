@@ -7,66 +7,34 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "18438"
-- "LCS"
-- "Longest Common Subsequence"
-- "최장 공통 부분 수열"
-- "LCS 5"
-- "Hirschberg"
-- "히르슈베르크"
-- "Divide and Conquer"
-- "분할정복"
-- "DP"
-- "Dynamic Programming"
-- "동적 계획법"
-- "Memory Optimization"
-- "메모리 최적화"
-- "Space Complexity"
-- "공간 복잡도"
-- "Time Complexity"
-- "시간 복잡도"
-- "O(NM)"
-- "O(min(n,m))"
-- "Reconstruction"
-- "복원"
-- "Backtracking"
-- "역추적"
-- "String"
-- "문자열"
-- "Special Judge"
-- "스페셜 저지"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "Edge Cases"
-- "경계 조건"
-- "Correctness"
-- "정당성"
-- "Optimization"
-- "최적화"
-- "Stable"
-- "안정성"
-- "Tutorial"
-- "해설"
-- "Solution Code"
-- "정답 코드"
-- "Problem Solving"
-- "문제 해결"
-- "Competitive Programming"
-- "컴페티티브 프로그래밍"
-- "Baekjoon 18438"
-- "BOJ 18438"
-- "문제풀이"
-- "코드"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Divide-and-Conquer
+- 분할정복
+- DP
+- Dynamic-Programming
+- Memory
+- Space-Complexity
+- Time-Complexity
+- Backtracking
+- String
+- 문자열
+- Implementation
+- 구현
+- C++
+- IO
+- Edge-Cases
+- Optimization
+- 최적화
+- Code-Quality
+- Tutorial
+- Editorial
+- Problem-Solving
+- 문제해결
+- Competitive-Programming
 image: "wordcloud.png"
 ---
 

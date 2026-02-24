@@ -5,70 +5,14 @@ categories:
 - Synology Photos
 - Synology
 tags:
-- Synology
-- Photos
-- 중복 사진
 - AI
-- 사진 관리
-- AI 기능
 - 스택
-- Synology Photos
-- 사진 정리
-- 사진 라이브러리
-- 저장 공간
-- 비슷한 사진
-- 자동 감지
-- 사진 분석
-- 사용자 경험
-- 사진 업로드
-- 백업
-- 사진 삭제
-- 사진 썸네일
-- 중복 제거
-- 스택 아이콘
-- 사진 검토
-- 삭제 확인
-- Similar Items
-- 앨범 관리
-- 사진 편집
-- 사진 공유
-- 클라우드 저장
-- 데이터 관리
-- 사진 정렬
-- 사진 필터
-- 사진 검색
-- 사진 카테고리
-- Duplicate Photos
-- Photo Management
-- AI Features
-- Stacking
-- Synology
-- Synology Photos
-- Photo Organization
-- Photo Library
-- Storage Space
-- Similar Photos
-- Automatic Detection
-- Photo Analysis
-- User Experience
-- Photo Upload
-- Backup
-- Photo Deletion
-- Photo Thumbnails
-- Duplicate Removal
-- Stack Icon
-- Photo Review
-- Deletion Confirmation
-- Similar Items
-- Album Management
-- Photo Editing
-- Photo Sharing
-- Cloud Storage
-- Data Management
-- Photo Sorting
-- Photo Filtering
-- Photo Search
-- Photo Categories
+- REST
+- API
+- Stack
+- Self-Hosted
+- Networking
+- Watch
 description: "Synology Photos의 AI 기능을 활용하여 중복 사진을 쉽게 찾고 제거하는 방법을 안내한다. 이 기능을 통해 비슷한 사진들을 자동으로 감지하고 스택으로 묶어주어, 사용자는 중복 사진을 간편하게 확인하고 삭제할 수 있다. 몇 가지 간단한 단계만 따라 하면, 깔끔한 사진 라이브러리를 유지할 수 있다."
 image: "image03.png"
 ---

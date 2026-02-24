@@ -10,73 +10,37 @@ categories:
 - "Fenwick Tree"
 - "Sweeping"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "21814"
-- "BOJ-21814"
-- "Problem-21814"
-- "United Cows of Farmer John"
-- "UCFJ"
-- "USACO"
-- "USACO Gold"
-- "IOI"
-- "Counting"
-- "카운팅"
-- "Counting Pairs"
-- "쌍 세기"
-- "Subarray"
-- "부분배열"
-- "Interval"
-- "구간"
-- "Leader"
-- "리더"
-- "Distinct Breed"
-- "품종"
-- "Array"
-- "배열"
-- "Sweeping"
-- "스위핑"
-- "Offline"
-- "오프라인"
-- "Preprocessing"
-- "전처리"
-- "Prev Occurrence"
-- "이전 등장"
-- "Next Occurrence"
-- "다음 등장"
-- "Fenwick Tree"
-- "Binary Indexed Tree"
-- "BIT"
-- "펜윅트리"
-- "자료구조"
-- "Data Structure"
-- "Prefix Sum"
-- "부분합"
-- "Range Sum Query"
-- "구간 합"
-- "Point Update"
-- "점 업데이트"
-- "O(N log N)"
-- "시간복잡도"
-- "Time Complexity"
-- "공간복잡도"
-- "Space Complexity"
-- "long long"
-- "오버플로우"
-- "Overflow"
-- "Implementation"
-- "구현"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Edge Case"
-- "엣지 케이스"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- USACO
+- Competitive-Programming
+- Math
+- Range-Query
+- Array
+- 배열
+- Implementation
+- Fenwick-Tree
+- Binary-Indexed-Tree
+- BIT
+- 자료구조
+- Data-Structures
+- Prefix-Sum
+- Segment-Tree
+- Time-Complexity
+- 시간복잡도
+- 공간복잡도
+- Space-Complexity
+- Edge-Cases
+- 구현
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

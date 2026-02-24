@@ -3,7 +3,11 @@ draft: true
 title: "[Redux] 01. JavaScript 핵심 개념 - 변수, 함수, 객체"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "JavaScript", "변수", "함수", "객체", "기초", "var", "let", "const", "화살표함수", "Arrow Function", "ES6", "프로그래밍기초", "웹개발", "프론트엔드", "초보자", "입문", "JavaScript Basics", "Variables", "Functions", "Objects", "Fundamentals", "Beginner", "Web Development", "Frontend", "Programming", "Coding", "Software Development", "JS Tutorial", "Learn JavaScript", "JavaScript Guide", "코딩", "개발", "자바스크립트입문", "자바스크립트기초", "변수선언", "함수정의", "객체조작", "배열기초", "데이터타입", "스코프", "호이스팅", "this키워드", "프로토타입", "클로저", "Scope", "Hoisting", "Prototype"]
+tags:
+- JavaScript
+- Implementation
+- 프론트엔드
+- Frontend
 description: "JavaScript 입문자를 위한 핵심 개념 완벽 가이드. var, let, const 변수 선언부터 화살표 함수, 객체와 배열 조작까지 Redux 학습을 위한 필수 JavaScript 기초를 단계별로 마스터합니다"
 series: ["Redux 완전 정복"]
 series_order: 1

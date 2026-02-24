@@ -7,50 +7,13 @@ description: "파이썬 socket 모듈을 빠르게 쓰기 위한 치트시트입
 lastmod: 2026-01-18
 collection_order: 67
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - socket
-  - 소켓
-  - network
-  - 네트워크
-  - tcp
-  - TCP
-  - udp
-  - UDP
-  - client
-  - 클라이언트
-  - server
-  - 서버
-  - connection
-  - 연결
-  - send
-  - recv
-  - 송수신
-  - bind
-  - listen
-  - accept
-  - connect
-  - timeout
-  - 타임아웃
-  - ip
-  - port
-  - 포트
-  - localhost
-  - AF_INET
-  - SOCK_STREAM
-  - SOCK_DGRAM
-  - blocking
-  - non-blocking
-  - standard-library
-  - 표준라이브러리
-  - best-practices
-  - 베스트프랙티스
+  - Quick-Reference
+  - Networking
+  - Best-Practices
   - pitfalls
   - 함정
 ---

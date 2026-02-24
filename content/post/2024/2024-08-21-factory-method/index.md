@@ -6,59 +6,22 @@ date: "2024-08-21T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-21-factory-method.png
 tags:
-- FactoryMethod
-- DesignPattern
-- CreationalPattern
-- ObjectOriented
-- SoftwareDesign
-- Programming
+- Design-Pattern
+- OOP
+- Software-Architecture
+- Implementation
 - UML
-- CodeExample
 - Java
 - CSharp
 - Python
-- PHP
-- SoftwareDevelopment
-- DesignPatterns
-- GangOfFour
 - Inheritance
 - Interface
-- ObjectCreation
-- Subclass
-- MethodOverriding
-- CodeReuse
 - Abstraction
-- DependencyInversion
-- OpenClosedPrinciple
-- SingleResponsibility
-- SoftwareArchitecture
-- DesignPrinciples
 - Factory
-- Product
-- Creator
-- ConcreteProduct
-- AbstractFactory
-- TemplateMethod
-- ClientCode
-- DynamicFactory
-- EnumFactory
-- Application
-- SystemDesign
-- CodeMaintainability
-- SoftwareEngineering
-- ObjectOrientedDesign
-- DesignPatternExamples
-- ProgrammingLanguages
-- SoftwarePatterns
-- CodeQuality
+- Code-Quality
 - Refactoring
-- BestPractices
-- SoftwareCraftsmanship
-- AgileDevelopment
-- CleanCode
-- CodeStructure
-- DesignFlexibility
-- SystemArchitecture
+- Best-Practices
+- Clean-Code
 title: '[DesignPattern] 팩토리 메소드 패턴'
 ---
 

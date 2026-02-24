@@ -5,10 +5,12 @@ categories:
 - RPM
 date: "2021-11-24T00:00:00Z"
 tags:
-- Spec
-- RPM
-- Comments
-- Macro
+- Linux
+- Shell
+- Configuration
+- 설정
+- Bash
+- HTML
 title: RPM Spec 파일 내에서 주석과 매크로 사용시 주의 사항
 ---
 

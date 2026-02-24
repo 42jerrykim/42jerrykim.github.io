@@ -7,75 +7,25 @@ description: "파이썬 기본 문법 치트시트입니다. 연산자, 변수, 
 lastmod: 2026-01-18
 collection_order: 1
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - basic
-  - basics
-  - 기초
-  - syntax
+  - Quick-Reference
+  - Implementation
   - 문법
-  - operators
-  - 연산자
-  - arithmetic
-  - 산술
-  - precedence
-  - 우선순위
-  - augmented-assignment
-  - 증강연산자
-  - variables
-  - 변수
-  - assignment
-  - 할당
-  - walrus-operator
-  - 할당표현식
-  - assignment-expression
-  - types
-  - 자료형
-  - int
-  - float
-  - bool
-  - str
-  - casting
-  - type-conversion
-  - 형변환
-  - print
-  - output
-  - 출력
-  - input
-  - 입력
-  - comments
-  - 주석
-  - docstring
+  - Math
+  - IO
   - 문서화
-  - strings
   - 문자열
-  - formatting
-  - f-string
-  - f-string-debugging
-  - 디버깅출력
-  - standard-library
-  - 표준라이브러리
-  - best-practices
-  - 베스트프랙티스
+  - Best-Practices
   - pitfalls
   - 함정
-  - readability
-  - 가독성
+  - Clean-Code
   - debugging
   - 디버깅
-  - beginner
-  - 초보
   - tutorial
   - 튜토리얼
-  - python38
-  - python39
-  - python310
 last_modified_at: 2023-01-17
 date: 2022-01-17
 categories: Python

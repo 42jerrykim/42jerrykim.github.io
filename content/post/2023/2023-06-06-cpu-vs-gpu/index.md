@@ -7,25 +7,13 @@ header:
   teaser: /assets/images/2023/CPU2.jpg
 tags:
 - CPU
-- GPU
 - Technology
 - Hardware
-- Computing
-- Processor
-- MachineLearning
-- DeepLearning
-- ParallelComputing
-- GraphicsCard
-- Intel
-- AMD
-- NVIDIA
-- TechGuide
-- ComputerScience
-- TechComparison
-- DataProcessing
-- TechTrends
-- ComputerHardware
-- TechEducation
+- Machine-Learning
+- Data-Structures
+- Math
+- Memory
+- Process
 title: '[Processor] Understanding the Differences: CPU vs GPU'
 
 

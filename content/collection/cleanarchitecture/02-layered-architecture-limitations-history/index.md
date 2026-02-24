@@ -7,63 +7,17 @@ title: "[Clean Architecture] 02. 계층형 아키텍처의 역사와 한계"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Layered Architecture
-  - 계층형 아키텍처
-  - N-Tier Architecture
-  - 다계층 아키텍처
-  - 3-Tier Architecture
-  - 3계층 아키텍처
-  - MVC
-  - Model View Controller
-  - Presentation Layer
-  - 프레젠테이션 계층
-  - Business Logic Layer
-  - 비즈니스 로직 계층
-  - Data Access Layer
-  - 데이터 접근 계층
-  - Separation of Concerns
-  - 관심사의 분리
-  - Coupling
+  - Clean-Architecture
+  - 클린아키텍처
+  - SOLID
+  - Software-Architecture
   - 결합도
-  - Dependency
-  - 의존성
-  - Database Dependency
-  - 데이터베이스 의존성
-  - Framework Dependency
-  - 프레임워크 의존성
-  - Testability
-  - 테스트 용이성
-  - Maintainability
-  - 유지보수성
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Architecture Pattern
-  - 아키텍처 패턴
-  - Enterprise Application
-  - 엔터프라이즈 애플리케이션
-  - Web Application
-  - 웹 애플리케이션
-  - Domain Logic
-  - 도메인 로직
-  - Infrastructure
-  - 인프라스트럭처
-  - Code Organization
-  - 코드 구성
-  - Software Design
-  - 소프트웨어 설계
-  - Technical Debt
-  - 기술 부채
-  - Legacy System
-  - 레거시 시스템
-  - Monolithic Architecture
-  - 모놀리식 아키텍처
-  - Big Ball of Mud
-  - Service Layer
-  - 서비스 계층
-  - Repository Pattern
-  - 리포지토리 패턴
+  - Dependency-Injection
+  - Testing
+  - Code-Quality
+  - 코드품질
+  - 소프트웨어아키텍처
+  - Design-Pattern
 ---
 
 계층형 아키텍처는 수십 년간 소프트웨어 개발의 표준으로 자리 잡았다. 대부분의 엔터프라이즈 애플리케이션이 이 구조를 따랐고, 많은 프레임워크들이 이 패턴을 기본으로 제공했다. 그러나 이 검증된 패턴에도 근본적인 한계가 있었고, 이 한계를 극복하기 위해 새로운 아키텍처 패턴들이 등장하게 되었다.

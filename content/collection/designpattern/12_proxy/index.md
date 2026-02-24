@@ -9,54 +9,24 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
+  - Design-Pattern
+  - 디자인패턴
   - Proxy
-  - 프록시
-  - Structural Pattern
-  - 구조 패턴
   - GoF
-  - Gang of Four
-  - Surrogate
-  - 대리자
-  - Access Control
-  - 접근 제어
-  - Lazy Loading
-  - 지연 로딩
-  - Virtual Proxy
-  - 가상 프록시
-  - Remote Proxy
-  - 원격 프록시
-  - Protection Proxy
-  - 보호 프록시
-  - Caching Proxy
-  - 캐싱 프록시
   - Logging
   - 로깅
   - Security
   - 보안
-  - Smart Reference
-  - 스마트 참조
-  - Placeholder
-  - 플레이스홀더
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Code-Quality
+  - 코드품질
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - Dynamic Proxy
-  - 동적 프록시
-  - AOP
-  - 관점 지향 프로그래밍
-  - Spring Proxy
-  - JDK Proxy
+  - CSharp
 ---
 
 프록시 패턴(Proxy Pattern)은 다른 객체에 대한 접근을 제어하기 위해 대리자(Surrogate) 또는 플레이스홀더 역할을 하는 객체를 제공하는 구조적 디자인 패턴이다. 실제 객체를 직접 참조하는 대신 프록시 객체를 통해 간접적으로 접근함으로써, 접근 제어, 지연 로딩, 로깅, 캐싱 등 다양한 부가 기능을 추가할 수 있다.

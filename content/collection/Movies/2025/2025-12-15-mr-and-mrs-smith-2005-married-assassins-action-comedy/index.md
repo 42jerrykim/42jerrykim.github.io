@@ -10,112 +10,15 @@ categories:
 - Romance
 - Thriller
 tags:
-- Mr. & Mrs. Smith
-- 미스터 앤 미세스 스미스
-- Doug Liman
-- 더그 라이먼
-- Brad Pitt
-- 브래드 피트
-- Angelina Jolie
-- 안젤리나 졸리
-- Vince Vaughn
-- 빈스 본
-- Adam Brody
-- 아담 브로디
-- Kerry Washington
-- 케리 워싱턴
-- Keith David
-- 키스 데이비드
-- Chris Weitz
-- 크리스 와이츠
-- Simon Kinberg
-- 사이먼 킨버그
-- John Powell
-- 존 파월
-- Action Comedy
-- 액션 코미디
-- Romantic Action
-- 로맨틱 액션
-- Spy Thriller
-- 스파이 스릴러
-- Assassin Film
-- 암살자 영화
-- Married Couple
-- 부부 영화
-- Secret Identity
-- 비밀 정체
-- Double Life
-- 이중생활
-- Contract Killer
-- 계약 살인자
-- Espionage
-- 첩보
-- Undercover
-- 잠입
-- Marriage Crisis
-- 결혼 위기
-- Relationship Comedy
-- 관계 코미디
-- Trust Issues
-- 신뢰 문제
-- Deception
-- 기만
-- Betrayal
-- 배신
-- Gunfight
-- 총격전
-- Explosions
-- 폭발
-- Car Chase
-- 카체이싱
-- Hand Combat
-- 격투
-- Weapons
-- 무기
-- Marital Counseling
-- 부부 상담
-- Suburban Life
-- 교외 생활
-- Cover Story
-- 위장 신분
-- Competing Organizations
-- 경쟁 조직
-- Joint Mission
-- 공동 임무
-- Partnership
-- 파트너십
-- Chemistry
-- 케미스트리
-- Witty Dialogue
-- 재치있는 대사
-- Visual Style
-- 비주얼 스타일
-- Stylish Action
-- 스타일리쉬 액션
-- 2000s Action
-- 2000년대 액션
-- Bogota
-- 보고타
-- Colombia
-- 콜롬비아
-- New York Suburbs
-- 뉴욕 교외
-- Home Destruction
-- 집 파괴
-- Department Store Battle
-- 백화점 전투
-- Limousine Chase
-- 리무진 추격
-- Minivan Escape
-- 미니밴 탈출
-- Arsenal
-- 무기고
-- 20th Century Fox
-- 20세기 폭스
-- Regency Enterprises
-- 리전시 엔터프라이즈
-- New Regency
-- 뉴 리전시
+- Movie
+- Action
+- Comedy
+- Romance
+- Thriller
+- 영화
+- Review
+- 리뷰
+- Tree
 image: "poster.png"
 draft: false
 ---

@@ -5,13 +5,12 @@ categories:
 - Corsair
 date: "2021-04-13T00:00:00Z"
 tags:
-- Corsair
 - Keyboard
-- Reset
-- 초기화
-- 커세어
 - 키보드
-- 바이오스
+- Hardware
+- Security
+- AI
+- Technology
 title: '[Corsair] CORSAIR 커세어 K63 WIRELESS 블루투스키보드 초기화 하기'
 ---
 

@@ -11,74 +11,36 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-16903
-- cpp
 - C++
-- Data Structures
+- Data-Structures
 - 자료구조
 - Trie
-- 트라이
-- Binary Trie
-- 이진 트라이
-- Bitwise
-- 비트연산
-- XOR
-- 최대 XOR
-- Max XOR
-- Bit Tricks
-- 비트 테크닉
+- Math
 - Greedy
 - 그리디
-- Online Queries
-- 온라인 쿼리
-- Query Processing
-- 쿼리 처리
-- Insertion
-- 삽입
-- Deletion
-- 삭제
-- Duplicate
-- 중복
-- Multiset
-- 멀티셋
-- Counts
-- 카운트
-- Frequency
-- 빈도
+- Range-Query
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Testing
 - 테스트
 - Optimization
 - 최적화
-- Fast IO
-- 빠른 입출력
+- IO
 - Performance
 - 성능
 - Baekjoon
-- 수열과 쿼리
-- 수열과쿼리20
-- Sequence and Queries
-- Sequence and Queries 20
 - Array
 - 배열
-- Logarithmic
-- 로그
-- C++17
 image: "wordcloud.png"
 ---
 

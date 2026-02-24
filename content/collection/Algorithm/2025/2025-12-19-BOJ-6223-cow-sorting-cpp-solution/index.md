@@ -9,77 +9,35 @@ categories:
 - "Greedy"
 - "Sorting"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "6223"
-- "BOJ-6223"
-- "Cow Sorting"
-- "소 정렬"
-- "Sorting"
-- "정렬"
-- "Permutation"
-- "순열"
-- "Permutation Cycle"
-- "순열 사이클"
-- "Cycle Decomposition"
-- "사이클 분해"
-- "Greedy"
-- "그리디"
-- "Minimum Cost"
-- "최소 비용"
-- "Minimum Cost Sorting"
-- "최소 비용 정렬"
-- "Swap"
-- "스왑"
-- "Exchange"
-- "교환"
-- "Cost Function"
-- "비용 함수"
-- "Graph"
-- "그래프"
-- "Visited"
-- "방문 처리"
-- "Mapping"
-- "매핑"
-- "Index Mapping"
-- "인덱스 매핑"
-- "Coordinate Compression"
-- "좌표 압축"
-- "Cycle Minimum"
-- "사이클 최소값"
-- "Global Minimum"
-- "전체 최소값"
-- "Case Analysis"
-- "케이스 분석"
-- "Proof"
-- "정당성"
-- "Implementation"
-- "구현"
-- "Data Structures"
-- "자료구조"
-- "Array"
-- "배열"
-- "Hash Map"
-- "해시맵"
-- "unordered_map"
-- "O(N log N)"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "USACO"
-- "USA Computing Olympiad"
-- "Olympiad"
-- "올림피아드"
-- "Ad Hoc"
-- "애드혹"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Problem Solving"
-- "문제해결"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Sorting
+- 정렬
+- Combinatorics
+- Greedy
+- 그리디
+- Graph
+- 그래프
+- Coordinate-Compression
+- 좌표압축
+- Implementation
+- 구현
+- Data-Structures
+- 자료구조
+- Array
+- 배열
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- USACO
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
 image: "wordcloud.png"
 ---
 

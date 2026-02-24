@@ -7,59 +7,27 @@ description: "테스트를 빠르게 시작하기 위한 치트시트입니다. 
 lastmod: 2026-01-17
 collection_order: 59
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
+  - Quick-Reference
   - testing
-  - tests
   - 테스트
-  - unit-test
-  - 단위테스트
-  - integration-test
-  - 통합테스트
-  - unittest
-  - pytest
-  - assert
-  - assertions
-  - AAA
-  - arrange-act-assert
-  - fixture
-  - fixtures
-  - parameterize
-  - parametrization
-  - mocking
-  - mock
-  - patch
-  - test-double
-  - stub
-  - coverage
-  - 코드커버리지
-  - regression
-  - 회귀테스트
   - refactoring
   - 리팩토링
   - debugging
   - 디버깅
-  - best-practices
-  - 베스트프랙티스
+  - Best-Practices
   - pitfalls
   - 함정
-  - ci
+  - CI-CD
   - automation
   - 자동화
-  - reliability
-  - 안정성
-  - design
-  - 설계
+  - Code-Quality
+  - Design-Pattern
   - dependency-injection
   - 의존성주입
-  - standard-library
-  - 표준라이브러리
 ---
 테스트는 코드 변경에 대한 자신감을 주고 리팩토링을 안전하게 합니다. 이 치트시트는 AAA 패턴, pytest/unittest 기본, fixture, mock의 최소 사용 원칙을 정리합니다.
 

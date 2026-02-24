@@ -7,59 +7,24 @@ date: "2024-08-26T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-26-bubble-sort.png
 tags:
-- BubbleSort
-- SortingAlgorithm
-- TimeComplexity
-- CProgramming
 - C++
 - Java
 - Python
 - JavaScript
-- PHP
-- C#
+- CSharp
 - Algorithm
-- DataStructures
-- In-Place Sorting
-- StableSort
+- Data-Structures
 - Optimization
-- ComparisonSort
-- Educational
-- ComputerScience
-- Programming
-- Coding
-- SoftwareDevelopment
-- AlgorithmAnalysis
-- Performance
-- Efficiency
-- Array
-- Swapping
-- AdjacentElements
-- Iteration
-- Passes
-- Complexity
-- BestCase
-- WorstCase
-- AverageCase
 - Implementation
-- CodeExample
-- VisualExplanation
-- Learning
+- Software-Architecture
+- Performance
+- Array
+- Complexity-Analysis
+- Education
 - Tutorial
-- Beginner
-- Concepts
-- SoftwareEngineering
-- Development
 - Debugging
 - Testing
-- AlgorithmDesign
-- ProblemSolving
-- TechnicalSkills
-- ComputerProgramming
-- SoftwareSolutions
-- ProgrammingLanguages
-- EducationalResources
-- OnlineLearning
-- CodingChallenges
+- Problem-Solving
 title: '[Sorting] 버블 정렬(Bubble Sort) 이해하기'
 ---
 

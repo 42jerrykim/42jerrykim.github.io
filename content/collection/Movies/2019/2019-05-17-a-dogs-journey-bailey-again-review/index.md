@@ -5,15 +5,9 @@ description: "개의 눈으로 본 인생의 소중함과 사랑의 영원함을
 image: "a-dogs-journey-bailey-again-poster.png"
 categories: 
   - Movies
-tags: 
+tags:
   - Family
   - Drama
-  - Animal
-  - Heartwarming
-  - 브라이스 댈러스 하워드
-  - 데니스 퀘이드
-  - 개일 홀란드
-  - 개츠 할스톤
 draft: true
 ---
 

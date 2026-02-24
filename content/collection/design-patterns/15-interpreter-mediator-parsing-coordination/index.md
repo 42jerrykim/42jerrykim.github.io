@@ -12,68 +12,10 @@ categories:
 - Language Processing
 - Communication Patterns
 tags:
-- Interpreter Pattern
-- Mediator Pattern
-- Language Implementation
-- Grammar Parser
-- Business Rules Engine
-- Object Communication
-- Behavioral Patterns
-- Design Patterns
-- GoF Patterns
-- Expression Trees
-- Abstract Syntax Tree
-- Domain Specific Language
-- Rule Engine
-- Communication Hub
-- Loose Coupling
-- Object Coordination
-- Component Interaction
-- Event Coordination
-- Message Routing
-- Centralized Control
-- UI Component Coordination
-- State Synchronization
-- Complex Interactions
-- System Integration
-- Workflow Coordination
-- Decision Engine
-- Script Engine
-- Formula Engine
-- Configuration Language
-- Query Language
-- Communication Protocol
-- 인터프리터 패턴
-- 미디에이터 패턴
-- 언어 구현
-- 문법 파서
-- 비즈니스 규칙 엔진
-- 객체 통신
-- 행동 패턴
-- 디자인 패턴
-- GoF 패턴
-- 표현식 트리
-- 추상 구문 트리
-- 도메인 특화 언어
-- 규칙 엔진
-- 통신 허브
-- 느슨한 결합
-- 객체 조정
-- 컴포넌트 상호작용
-- 이벤트 조정
-- 메시지 라우팅
-- 중앙 집중 제어
-- UI 컴포넌트 조정
-- 상태 동기화
-- 복잡한 상호작용
-- 시스템 통합
-- 워크플로우 조정
-- 결정 엔진
-- 스크립트 엔진
-- 수식 엔진
-- 설정 언어
-- 쿼리 언어
-- 통신 프로토콜
+- Design-Pattern
+- GoF
+- Software-Architecture
+- 디자인패턴
 ---
 
 Interpreter와 Mediator 패턴을 통해 언어 처리와 객체 관계 관리를 탐구합니다. DSL 구현과 복잡한 상호작용의 중앙 집중화 방법을 학습합니다.

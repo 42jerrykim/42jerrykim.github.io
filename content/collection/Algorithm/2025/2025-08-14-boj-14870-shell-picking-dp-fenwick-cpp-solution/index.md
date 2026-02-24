@@ -11,80 +11,37 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-14870
-- cpp
 - C++
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
 - DP
-- Grid
-- 격자
-- Staircase
-- 계단 경계
-- Fenwick Tree
-- 펜윅트리
+- Graph
+- Fenwick-Tree
 - BIT
-- Binary Indexed Tree
-- Range Add
-- 구간 가산
-- Point Query
-- 점 질의
-- Range Update
-- 구간 업데이트
-- Prefix Sum
-- 누적합
-- Propagation
-- 전파
-- Monotone
-- 단조 경계
-- Update Propagation
-- 갱신 전파
-- KOI
-- KOI 2017
-- 한국정보올림피아드
-- Subtask
-- 서브태스크
+- Binary-Indexed-Tree
+- Segment-Tree
+- Prefix-Sum
+- Competitive-Programming
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Data Structures
+- Data-Structures
 - 자료구조
-- Grid DP
-- 격자 DP
-- 2D DP
-- 2차원 DP
-- Online Updates
-- 온라인 업데이트
-- Incremental Update
-- 단위 갱신
-- Range to Point
-- 구간→점
-- O(N^2 log N)
-- Long Long
-- 64-bit
-- Fast IO
-- 빠른 입출력
-- Invariant
-- 불변식
+- IO
 image: "wordcloud.png"
 ---
 

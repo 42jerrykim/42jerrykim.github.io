@@ -2,15 +2,13 @@
 image: "tmp_wordcloud.png"
 description: "Linux에서 디스크 용량 측정 시 심링크(symlink)를 정확하게 포함하여 계산하는 방법을 설명합니다. du, df 등 명령어들의 -L 옵션 사용법과 실제 파일 크기 반영 팁까지 150자 내로 정리합니다."
 date: "2023-01-13T00:00:00Z"
-tag:
+tags:
 - Linux
-- Symlink
-- du
-- df
-- File
-- Size
-- Direstory
-- Link
+- File-System
+- Technology
+- Tutorial
+- Guide
+- Implementation
 title: '[Linux] 용량 측정할때 Symlink도 포함하기'
 
 ---

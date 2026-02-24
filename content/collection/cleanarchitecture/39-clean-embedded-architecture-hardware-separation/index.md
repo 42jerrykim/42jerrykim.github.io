@@ -6,7 +6,22 @@ description: "임베디드 소프트웨어에 Clean Architecture를 적용하는
 title: "[Clean Architecture] 39. 클린 임베디드 아키텍처"
 date: 2026-01-18
 categories: CleanArchitecture
-tags: [Clean Architecture, 클린 아키텍처, Embedded, 임베디드, Firmware, 펌웨어, Hardware, 하드웨어, HAL, Hardware Abstraction Layer, 하드웨어 추상화 계층, OSAL, Operating System Abstraction Layer, OS 추상화 계층, Target Hardware, 타겟 하드웨어, Microcontroller, 마이크로컨트롤러, Device Driver, 디바이스 드라이버, Software Architecture, 소프트웨어 아키텍처, Testability, 테스트 용이성, Portability, 이식성, Off Target Testing, 오프 타겟 테스팅, On Target Testing, 온 타겟 테스팅, App titude test, 앱티튜드 테스트, Processor, 프로세서, GPIO, I2C, SPI, UART, Dependency Inversion, 의존성 역전, Interface, 인터페이스, Abstraction, 추상화]
+tags:
+- Clean-Architecture
+- 클린아키텍처
+- Embedded
+- 임베디드
+- Hardware
+- 하드웨어
+- Software-Architecture
+- 소프트웨어아키텍처
+- Testing
+- Dependency-Injection
+- 의존성주입
+- Interface
+- 인터페이스
+- Abstraction
+- 추상화
 ---
 
 임베디드 소프트웨어는 **하드웨어와 밀접**하다. 그러나 Clean Architecture의 원칙은 임베디드에도 적용된다. 핵심은 **하드웨어에서 소프트웨어를 분리**하는 것이다.

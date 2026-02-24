@@ -11,69 +11,31 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-3311
-- cpp
 - C++
 - Graph
 - 그래프
-- SCC
-- 강한연결요소
-- Kosaraju
-- 코사라주
-- Tarjan
-- 타잔
-- DAG
 - 위상정렬
-- Topological Sort
-- Reachability
-- 도달성
-- Interval DP
-- 구간 DP
-- Condensation Graph
-- 압축그래프
-- Planar Graph
-- 평면그래프
+- Topological-Sort
 - Geometry
-- 기하
-- Directed Graph
-- 유향그래프
-- Bidirectional Edge
-- 양방향간선
 - DFS
 - BFS
-- Iterative DFS
-- 반복형DFS
 - Stack
 - 스택
 - Queue
 - 큐
 - Sorting
 - 정렬
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
-- CEOI
-- CEOI-2011
-- Traffic
-- Interval Propagation
-- 구간 전파
-- Condensed DAG
-- 압축 DAG
-- Planarity Property
-- 연속구간성
-- Fast IO
-- 빠른입출력
+- IO
 image: "wordcloud.png"
 ---
 

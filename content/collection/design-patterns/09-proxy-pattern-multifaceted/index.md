@@ -12,68 +12,11 @@ categories:
 - Proxy Patterns
 - System Design
 tags:
-- Proxy Pattern
-- Virtual Proxy
-- Protection Proxy
-- Remote Proxy
-- Cache Proxy
-- Smart Proxy
-- Structural Patterns
-- Lazy Loading
-- Access Control
-- Performance Optimization
-- Design Patterns
-- GoF Patterns
-- Surrogate Object
-- Placeholder Object
-- Aspect Oriented Programming
-- Cross Cutting Concerns
-- Security Patterns
-- Caching Strategies
-- Resource Management
-- Network Communication
-- Distributed Systems
-- Memory Optimization
-- Load Balancing
-- Monitoring Proxy
-- Logging Proxy
-- Transaction Proxy
-- Dynamic Proxy
-- Reflection API
-- Bytecode Manipulation
-- Framework Integration
-- Spring AOP
-- 프록시 패턴
-- 가상 프록시
-- 보호 프록시
-- 원격 프록시
-- 캐시 프록시
-- 스마트 프록시
-- 구조 패턴
-- 지연 로딩
-- 접근 제어
-- 성능 최적화
-- 디자인 패턴
-- GoF 패턴
-- 대리 객체
-- 플레이스홀더 객체
-- 관점 지향 프로그래밍
-- 횡단 관심사
-- 보안 패턴
-- 캐싱 전략
-- 자원 관리
-- 네트워크 통신
-- 분산 시스템
-- 메모리 최적화
-- 로드 밸런싱
-- 모니터링 프록시
-- 로깅 프록시
-- 트랜잭션 프록시
-- 동적 프록시
-- 리플렉션 API
-- 바이트코드 조작
-- 프레임워크 통합
-- 스프링 AOP
+- Design-Pattern
+- Performance
+- GoF
+- Memory
+- 디자인패턴
 ---
 
 Proxy 패턴의 다양한 형태와 활용법을 탐구합니다. 지연 로딩, 접근 제어, 원격 투명성 등 대리자의 강력한 능력을 학습합니다.

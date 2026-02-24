@@ -9,71 +9,14 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - bulk
-  - bulk meaning
-  - bulk usage
-  - bulk examples
-  - bulk verb
-  - increase
-  - enlarge
-  - expand
-  - swell
-  - grow
-  - amplify
-  - magnify
-  - muscle building
-  - fitness
-  - bodybuilding
-  - bulking
-  - cutting
-  - lean mass
-  - mass gain
-  - weight gain
-  - fitness terminology
-  - construction
-  - materials
-  - volume
-  - size
-  - thickness
-  - width
-  - proportions
-  - appearance
-  - business
-  - inventory
-  - production
-  - manufacturing
-  - refuse
-  - reject
-  - decline
+  - Implementation
+  - Business-English
   - 영단어
   - 영어동사
-  - bulk 의미
-  - bulk 용법
-  - bulk 예문
-  - 늘리다
-  - 부풀리다
-  - 증가하다
-  - 확대하다
-  - 거대해지다
-  - 근육 늘리다
-  - 벌크업
-  - 체격
-  - 덩치
-  - 무게
-  - 부피
-  - 거절하다
-  - 꺼리다
-  - 막다
-  - 방해하다
   - 콜로케이션
   - 뉘앙스
-  - 맥락
-  - 헬스 용어
-  - 스포츠 용어
-  - 건설 용어
-  - 비즈니스 용어
-  - 일상 표현
+  - Nuance
+  - 일상표현
 image: wordcloud.png
 ---
 

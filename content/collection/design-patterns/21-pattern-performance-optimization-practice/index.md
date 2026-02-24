@@ -13,40 +13,15 @@ categories:
 - Practice
 - Efficiency
 tags:
-- Performance Optimization Practice
-- Object Pooling
-- Lazy Loading
-- Caching Strategies
-- Memory Management
-- Flyweight Optimization
-- Benchmarking
 - Profiling
-- JVM Performance
-- GC Optimization
-- Pattern Efficiency
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Software Architecture
-- Performance Tuning
-- 성능 최적화 실습
-- 객체 풀링
-- 지연 로딩
-- 캐싱 전략
-- 메모리 관리
-- 플라이웨이트 최적화
-- 벤치마킹
+- Tutorial
+- Implementation
+- Design-Pattern
+- Software-Architecture
 - 프로파일링
-- JVM 성능
-- GC 최적화
-- 패턴 효율성
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 소프트웨어 아키텍처
-- 성능 튜닝
+- 구현
+- 디자인패턴
+- 소프트웨어아키텍처
 ---
 
 이 실습에서는 성능 벤치마크 작성, 메모리 효율적인 패턴 구현, JIT 최적화 분석을 직접 수행합니다.

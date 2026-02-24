@@ -11,74 +11,24 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-31397
-- cpp
 - C++
 - Python
 - Geometry
-- 기하
-- Computational Geometry
-- 계산기하
-- Convex Polygon
-- 볼록다각형
-- Polygon
-- 다각형
-- Shoelace
-- 신발끈공식
-- Shoelace Formula
-- Perimeter
-- 둘레
-- Area
-- 넓이
-- Arc Length
-- 호길이
-- Bisection
+- Computational-Geometry
 - 이분탐색
-- Prefix Sum
-- 누적합
-- Numerical Methods
-- 수치해석
-- Root Finding
-- 근 찾기
-- Long Double
-- 부동소수점
-- Precision
-- 정밀도
-- Parametric Search
-- 매개변수탐색
-- Segment
-- 선분
-- Chord
-- 현
-- Cut
-- 절단
-- Special Judge
-- 스페셜저지
+- Prefix-Sum
+- Edge-Cases
+- Binary-Search
+- Segment-Tree
+- Network-Flow
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
-- Robustness
-- 견고성
-- Prefix Perimeter
-- 둘레누적
-- Prefix Cross
-- 교차누적
-- Upper Bound
-- 상한
-- Monotonicity
-- 단조성
-- Contest
-- solvedac
-- Grand Arena #4
-- Hard
-- 난이도상
+- 엣지케이스
+- Competitive-Programming
 image: "wordcloud.png"
 ---
 

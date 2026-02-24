@@ -9,56 +9,18 @@ tags:
 - REST
 - GraphQL
 - API
-- WebDevelopment
-- DataExchange
+- Web
 - JSON
 - XML
 - HTTP
-- Client-Server Model
-- APIDesign
-- SoftwareArchitecture
+- Software-Architecture
 - Performance
 - Scalability
-- DataFetching
-- Over-fetching
-- Under-fetching
-- Versioning
-- ErrorHandling
-- Real-time Data
+- Error-Handling
 - Caching
-- Middleware
-- Schema
-- TypeSafety
-- QueryLanguage
-- Mutations
-- Subscriptions
-- APIManagement
-- DeveloperExperience
-- Interoperability
-- DataFormats
-- APIDocumentation
-- APITools
-- APITesting
-- APISecurity
-- APIIntegration
+- Code-Quality
 - Microservices
-- Serverless
-- OpenSource
-- APIStandards
-- APIArchitecture
-- APIDevelopment
-- APIPerformance
-- APIFlexibility
-- APIEfficiency
-- APIEvolution
-- APICompatibility
-- APIUsage
-- APIBestPractices
-- APITrends
-- APIEcosystem
-- APILifecycle
-- APIGovernance
-- APIStrategy
+- Open-Source
 title: '[API] REST API와 GraphQL의 비교'
 ---
 

@@ -9,54 +9,22 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
+  - Design-Pattern
+  - 디자인패턴
   - Facade
-  - 퍼사드
-  - Structural Pattern
-  - 구조 패턴
   - GoF
-  - Gang of Four
-  - Simplified Interface
-  - 단순화된 인터페이스
-  - Subsystem
-  - 서브시스템
   - Encapsulation
   - 캡슐화
-  - Loose Coupling
-  - 느슨한 결합
-  - High Level Interface
-  - 고수준 인터페이스
-  - API Gateway
-  - 게이트웨이
-  - Wrapper
-  - 래퍼
-  - Complexity Hiding
-  - 복잡성 숨김
-  - Library
-  - 라이브러리
-  - Framework
-  - 프레임워크
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Software-Architecture
+  - Code-Quality
+  - 코드품질
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - Service Layer
-  - 서비스 레이어
-  - Controller
-  - 컨트롤러
-  - Entry Point
-  - 진입점
-  - Unified Interface
-  - 통합 인터페이스
+  - CSharp
 ---
 
 퍼사드 패턴(Facade Pattern)은 복잡한 서브시스템에 대한 단순화된 인터페이스를 제공하는 구조적 디자인 패턴이다. 건물의 정면(Facade)처럼, 복잡한 내부 구조를 숨기고 깔끔한 외관만 보여주는 역할을 한다. 클라이언트는 서브시스템의 복잡한 상호작용을 알 필요 없이 퍼사드를 통해 간단하게 기능을 사용할 수 있다.

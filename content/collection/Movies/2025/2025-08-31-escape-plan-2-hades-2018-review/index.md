@@ -10,65 +10,16 @@ categories:
 - Techno-thriller
 - Lionsgate
 tags:
-- Steven C. Miller
-- Sylvester Stallone
-- Dave Bautista
-- Huang Xiaoming
-- Jaime King
-- Jesse Metcalfe
-- Wes Chatham
-- Titus Welliver
-- Curtis Jackson
-- 50 Cent
-- The Newton Brothers
-- Brandon Cox
-- Vincent Tabaillon
-- Summit Entertainment
-- Grindstone Entertainment Group
-- Emmett/Furla/Oasis Films
-- The Fyzz
-- Leomus Pictures
-- Ingenious Media
-- Lionsgate Home Entertainment
-- Action Thriller
-- Prison Film
-- Techno-thriller
-- Direct-to-Video
-- Sequel
-- Franchise
-- US-China Co-production
-- Chinese Co-production
-- HADES
-- Galileo
-- Ray Breslin
-- Trent DeRosa
-- Shu Ren
-- Yusheng Ma
-- Jasper Kimbral
-- Gregor Faust
-- Zookeeper
-- Abigail Ross
-- Hush
-- Luke Graves
-- Count Zero
-- Legion (Hackers)
-- Chechnya
-- Bangkok
-- Shanghai
-- Atlanta
-- Automated Prison
-- Handheld Cinematography
-- Visual Style
-- Narrative Structure
+- Movie
 - Soundtrack
-- Sound Design
-- Fight Choreography
-- VFX
-- Budget
-- Box Office
-- Rotten Reviews
-- 2018 Films
-- 2010s Prison Films
+- 영화
+- Review
+- 리뷰
+- Algorithm
+- 알고리즘
+- Action
+- Thriller
+- Horror
 image: "MV5BYTcyMmFmYzMtZmYwMi00ZGNhLTg1ZjctODNiNTAzOWY3NjBmXkEyXkFqcGc@._V1_.jpg"
 ---
 

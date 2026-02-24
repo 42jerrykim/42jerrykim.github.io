@@ -10,72 +10,32 @@ categories:
 - "Tree"
 - "Dynamic Tree"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "13539"
-- "BOJ-13539"
-- "트리와 쿼리 11"
-- "Tree and Query 11"
-- "Tree"
-- "트리"
-- "Rooted Tree"
-- "루트 트리"
-- "Forest"
-- "포리스트"
-- "Dynamic Tree"
-- "동적 트리"
-- "Link-Cut Tree"
-- "링크 컷 트리"
-- "LCT"
-- "Splay Tree"
-- "스플레이 트리"
-- "Amortized"
-- "분할상환"
-- "LCA"
-- "최소 공통 조상"
-- "Lowest Common Ancestor"
-- "Online Query"
-- "온라인 쿼리"
-- "Link"
-- "간선 연결"
-- "Cut"
-- "간선 삭제"
-- "Connectivity"
-- "연결성"
-- "Parent"
-- "부모"
-- "Root"
-- "루트"
-- "Path"
-- "경로"
-- "Access"
-- "Expose"
-- "Preferred Path"
-- "선호 경로"
-- "Data Structure"
-- "자료구조"
-- "Implementation"
-- "구현"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(log N)"
-- "O(M log N)"
-- "N<=100000"
-- "M<=200000"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "GNU++17"
-- "C++"
-- "CPP"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Tree
+- 트리
+- LCA
+- Range-Query
+- Network-Flow
+- Graph
+- Data-Structures
+- 자료구조
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- C++
 image: "wordcloud.png"
 ---
 

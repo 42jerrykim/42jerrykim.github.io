@@ -10,77 +10,29 @@ categories:
 - "DSU"
 - "Offline Query"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "12012"
-- "BOJ-12012"
-- "Closing the Farm"
-- "Farm"
-- "USACO"
-- "US Open 2016"
-- "Gold"
-- "Graph"
-- "그래프"
-- "Connectivity"
-- "연결성"
-- "Connected"
-- "연결"
-- "Fully Connected"
-- "완전 연결"
-- "Dynamic Connectivity"
-- "동적 연결성"
-- "Offline"
-- "오프라인"
-- "Offline Query"
-- "오프라인 쿼리"
-- "Reverse Process"
-- "역순 처리"
-- "Reverse Simulation"
-- "역시뮬레이션"
-- "Add Nodes"
-- "정점 추가"
-- "Remove Nodes"
-- "정점 제거"
-- "DSU"
-- "Disjoint Set Union"
-- "Union Find"
-- "유니온 파인드"
-- "Union"
-- "합치기"
-- "Find"
-- "대표 찾기"
-- "Component"
-- "컴포넌트"
-- "Component Size"
-- "컴포넌트 크기"
-- "Adjacency List"
-- "인접 리스트"
-- "Edge"
-- "간선"
-- "Bidirectional"
-- "무방향"
-- "Permutation"
-- "순열"
-- "Implementation"
-- "구현"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O((N+M)α(N))"
-- "N up to 200000"
-- "M up to 200000"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "STL"
-- "vector"
-- "ios::sync_with_stdio"
-- "Edge Case"
-- "엣지 케이스"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- USACO
+- Graph
+- 그래프
+- Range-Query
+- DSU
+- Disjoint-Set
+- Software-Architecture
+- Combinatorics
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
+- Array
+- Edge-Cases
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

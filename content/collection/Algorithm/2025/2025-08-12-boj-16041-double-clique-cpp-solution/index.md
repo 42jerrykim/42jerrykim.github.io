@@ -7,77 +7,35 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "16041"
-- "Double Clique"
-- "DoubleClique"
-- "NAIPC 2018"
-- "NAIPC"
-- "North American Invitational Programming Contest"
-- "그래프"
-- "Graph"
-- "Graph Theory"
-- "그래프 이론"
-- "스플릿 그래프"
-- "Split Graph"
-- "독립 집합"
-- "Independent Set"
-- "클릭"
-- "Clique"
-- "보수 그래프"
-- "Complement Graph"
-- "차수"
-- "Degree"
-- "차수 합"
-- "Degree Sum"
-- "핸드셰이킹 렘마"
-- "Handshaking Lemma"
-- "정렬"
-- "Sorting"
-- "O(n log n)"
-- "시간복잡도"
-- "Time Complexity"
-- "조합론"
-- "Combinatorics"
-- "세기 문제"
-- "Counting"
-- "케이스 분석"
-- "Case Analysis"
-- "구현"
-- "Implementation"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "모듈로"
-- "Modular Arithmetic"
-- "1e9+7"
-- "mod 1e9+7"
-- "에지"
-- "Edges"
-- "정점"
-- "Vertices"
-- "문제해설"
-- "Editorial"
-- "해설"
-- "풀이"
-- "알고리즘"
-- "Algorithm"
-- "코딩테스트"
-- "Competitive Programming"
-- "ICPC"
-- "자료구조"
-- "Data Structures"
-- "분할"
-- "Partition"
-- "스플릿"
-- "검증"
-- "Validation"
-- "증명"
-- "Proof"
+- BOJ
+- Baekjoon
+- 백준
+- 그래프
+- Graph
+- Graph-Theory
+- 그래프이론
+- 정렬
+- Sorting
+- Time-Complexity
+- 시간복잡도
+- 조합론
+- Combinatorics
+- Math
+- 구현
+- Implementation
+- C++
+- IO
+- Modular-Arithmetic
+- Editorial
+- 알고리즘
+- Algorithm
+- 코딩테스트
+- Competitive-Programming
+- ICPC
+- 자료구조
+- Data-Structures
+- Divide-and-Conquer
+- Testing
 image: "wordcloud.png"
 ---
 

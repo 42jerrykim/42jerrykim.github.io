@@ -12,66 +12,10 @@ categories:
 - Recursive Patterns
 - Dynamic Composition
 tags:
-- Decorator Pattern
-- Composite Pattern
-- Structural Patterns
-- Recursive Structure
-- Dynamic Extension
-- Tree Structure
-- Part Whole Hierarchy
-- Component Composition
-- Wrapper Objects
-- Feature Enhancement
-- Design Patterns
-- GoF Patterns
-- Object Composition
-- Behavioral Delegation
-- Transparent Interface
-- Uniform Treatment
-- Recursive Design
-- Mathematical Beauty
-- Functional Programming
-- Higher Order Functions
-- Tree Traversal
-- Node Composition
-- Leaf Components
-- Composite Components
-- Dynamic Behavior
-- Runtime Extension
-- Flexible Architecture
-- Extensible Design
-- Pattern Combination
-- Architectural Elegance
-- 데코레이터 패턴
-- 컴포지트 패턴
-- 구조 패턴
-- 재귀 구조
-- 동적 확장
-- 트리 구조
-- 부분 전체 계층
-- 컴포넌트 조합
-- 래퍼 객체
-- 기능 향상
-- 디자인 패턴
-- GoF 패턴
-- 객체 조합
-- 행동 위임
-- 투명한 인터페이스
-- 균일한 처리
-- 재귀적 설계
-- 수학적 아름다움
-- 함수형 프로그래밍
-- 고차 함수
-- 트리 순회
-- 노드 조합
-- 리프 컴포넌트
-- 컴포지트 컴포넌트
-- 동적 행동
-- 런타임 확장
-- 유연한 아키텍처
-- 확장 가능한 설계
-- 패턴 조합
-- 아키텍처 우아함
+- Design-Pattern
+- GoF
+- Functional-Programming
+- 디자인패턴
 ---
 
 Decorator와 Composite 패턴을 통해 재귀적 구조의 아름다움을 탐구합니다. 동적 기능 확장과 트리 구조 표현의 우아한 해결책을 학습합니다.

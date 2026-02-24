@@ -6,14 +6,17 @@ date: "2024-09-19T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- GraphTheory
-- All-Pairs Shortest Path
+- Graph-Theory
 - Floyd-Warshall
 - Implementation
 - Optimization
-- O(N³)
-- AdjacencyMatrix
-- GraphTraversal
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 title: '[Algorithm] C++/Python 백준 13141번 : 그래프 불태우기'
 ---
 

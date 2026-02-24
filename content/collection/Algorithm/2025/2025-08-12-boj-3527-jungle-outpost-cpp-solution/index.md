@@ -7,67 +7,27 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "3527"
-- "Jungle Outpost"
-- "NEERC"
-- "NEERC 2010"
-- "ICPC"
-- "Regional"
-- "Northern Eurasia"
-- "Computational Geometry"
-- "Geometry"
-- "기하"
-- "Convex Hull"
-- "볼록 껍질"
-- "Half-Plane Intersection"
-- "반평면 교집합"
-- "HPI"
-- "Binary Search"
-- "이분탐색"
-- "Strictly Inside"
-- "내부 판정"
-- "Line Intersection"
-- "직선 교점"
-- "Orientation"
-- "CCW"
-- "Cross Product"
-- "외적"
-- "Precision"
-- "부동소수"
-- "Long Double"
-- "EPS"
-- "Numerical Stability"
-- "수치 안정성"
-- "Complexity"
-- "시간복잡도"
-- "O(n log n)"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "Algorithm"
-- "알고리즘"
-- "Problem Solving"
-- "문제풀이"
-- "Convex Polygon"
-- "볼록 다각형"
-- "Deque"
-- "덱"
-- "Half-planes"
-- "반평면"
-- "Strict Interior"
-- "보호 구역"
-- "Protection"
-- "Calipers"
-- "회전 캘리퍼스"
-- "Two-pointer"
-- "두 포인터"
+- BOJ
+- Baekjoon
+- 백준
+- ICPC
+- Computational-Geometry
+- Geometry
+- Binary-Search
+- 이분탐색
+- Edge-Cases
+- Complexity-Analysis
+- 시간복잡도
+- Time-Complexity
+- Implementation
+- 구현
+- C++
+- IO
+- Algorithm
+- 알고리즘
+- Problem-Solving
+- Deque
+- 덱
 image: "wordcloud.png"
 ---
 

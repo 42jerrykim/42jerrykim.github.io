@@ -11,76 +11,30 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-1420
-- cpp
 - C++
 - Python
 - Graph
 - 그래프
-- Max Flow
-- 최대유량
-- Min Cut
-- 최소절단
-- Vertex Cut
-- 정점절단
-- Node Splitting
-- 노드분할
-- Dinic
-- 디닉
-- Flow Network
-- 네트워크플로우
-- Grid
-- 격자
-- Grid Graph
-- 격자그래프
-- Modeling
-- 모델링
+- Network-Flow
+- Software-Architecture
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
-- Cut Capacity
-- 컷용량
-- Infinite Capacity
-- 무한용량
-- Adjacency
-- 인접
-- Unreachable
-- 도달불가
-- Impossible Case
-- 불가능판정
-- Competitive Programming
+- 함정
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Invariant
-- 불변식
-- Residual Graph
-- 잔여그래프
-- Augmenting Path
-- 증가경로
-- S-T Cut
-- S-T컷
-- Source
-- Sink
-- Source-Sink
-- 소스싱크
 image: "wordcloud.png"
 ---
 

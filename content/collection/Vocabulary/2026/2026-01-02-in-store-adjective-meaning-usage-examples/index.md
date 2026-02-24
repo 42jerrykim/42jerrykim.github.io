@@ -9,69 +9,14 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - idiom
-  - expression
-  - phrase
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
   - 영단어
-  - 영어표현
-  - 영어숙어
-  - 영어회화
-  - in store
-  - in-store
-  - in store meaning
-  - in store usage
-  - in store examples
-  - in store phrase
-  - be in store for
-  - have in store for
-  - what is in store
-  - what's in store
-  - in store for us
-  - surprise
-  - surprise in store
-  - future
-  - upcoming
-  - ahead
-  - expected
-  - expectation
-  - 예정된
-  - 앞에 닥친
-  - 다가오는
-  - 기대되는
-  - 예고된
-  - 준비된
-  - 비축된
-  - 숨겨둔
-  - 계획
-  - 계획된
-  - 변화
-  - 기회
-  - 위험
-  - 좋은 소식
-  - 나쁜 소식
-  - business
-  - marketing
-  - launch
-  - roadmap
-  - announcement
-  - customer experience
-  - retail
-  - inventory
-  - stock
-  - in stock
+  - Business-English
   - grammar
-  - usage notes
-  - pronunciation
-  - EN/KR examples
-  - study English
-  - vocabulary building
+  - Pronunciation
 image: wordcloud.png
 ---
 

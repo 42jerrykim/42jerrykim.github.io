@@ -4,10 +4,16 @@ description: "백준 18406 럭키 스트레이트 문제는 주어진 점수의 
 categories: Algorithm
 tags:
 - Implementation
-- StringManipulation
-- Mathematics
+- Math
 - Simulation
-- O(N)
+- Time-Complexity
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 image: "tmp_wordcloud.png"
 date: 2024-10-16
 ---

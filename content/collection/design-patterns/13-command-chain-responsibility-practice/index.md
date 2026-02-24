@@ -13,44 +13,14 @@ categories:
 - Practice
 - Action Systems
 tags:
-- Command Pattern Practice
-- Chain of Responsibility Practice
-- Request Encapsulation
-- Processing Chain
-- GUI Actions
-- Undo Redo
-- Macro Commands
-- Log Processing
-- Game AI Commands
-- Request Routing
-- Behavioral Patterns
-- Design Patterns
-- GoF Patterns
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Software Architecture
-- Action Framework
-- 커맨드 패턴 실습
-- 책임 연쇄 패턴 실습
-- 요청 캡슐화
-- 처리 체인
-- GUI 액션
-- 실행 취소 다시 실행
-- 매크로 명령
-- 로그 처리
-- 게임 AI 명령
-- 요청 라우팅
-- 행동 패턴
-- 디자인 패턴
-- GoF 패턴
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 소프트웨어 아키텍처
-- 액션 프레임워크
+- Design-Pattern
+- GoF
+- Tutorial
+- Implementation
+- Software-Architecture
+- 디자인패턴
+- 구현
+- 소프트웨어아키텍처
 ---
 
 이 실습에서는 Command 패턴으로 Undo/Redo 시스템을, Chain of Responsibility로 요청 처리 체인을 구현합니다.

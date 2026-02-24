@@ -7,64 +7,26 @@ collection_order: 4
 draft: true
 tags:
   - SOLID
-  - SRP
-  - OCP
-  - LSP
-  - ISP
-  - DIP
-  - OOAD
   - OOP
-  - Design-Principles
-  - 설계-원칙
   - Refactoring
   - 리팩토링
-  - Code-Smell
-  - 코드-스멜
-  - God-Object
   - Dependency-Injection
-  - 의존성-주입
-  - Inversion-of-Control
-  - IoC
   - Interface
   - 인터페이스
-  - Ports-and-Adapters
-  - Hexagonal-Architecture
   - Clean-Architecture
-  - Architecture
-  - 아키텍처
-  - Cohesion
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - 응집도
-  - Coupling
   - 결합도
-  - Testability
-  - 테스트가능성
-  - Unit-Test
-  - 단위테스트
-  - Mock
-  - Stub
-  - Test-Double
-  - API-Design
-  - API-설계
-  - Legacy
-  - 레거시
-  - Change-Cost
-  - 변경-비용
-  - Maintainability
-  - 유지보수성
-  - Extensibility
+  - Testing
+  - Code-Quality
+  - 코드품질
   - 확장성
-  - Strategy-Pattern
   - Factory
-  - Repository
-  - Layered-Architecture
-  - Domain-Model
-  - 도메인-모델
-  - Transaction
-  - 트랜잭션
-  - Observability
+  - Database
+  - Monitoring
   - 로깅
   - Error-Handling
-  - 예외처리
   - Documentation
   - 문서화
   - Code-Review

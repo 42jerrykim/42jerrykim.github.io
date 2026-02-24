@@ -10,82 +10,38 @@ categories:
 - "DP"
 - "Divide and Conquer"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "7727"
-- "BOJ-7727"
-- "Byephone"
-- "바이폰"
-- "Text Editor"
-- "텍스트 에디터"
-- "String"
-- "문자열"
-- "LCS"
-- "Longest Common Subsequence"
-- "최장 공통 부분 수열"
-- "Subsequence"
-- "부분 수열"
-- "Dynamic Programming"
-- "동적 계획법"
-- "DP"
-- "Rolling Array"
-- "롤링 배열"
-- "2-row DP"
-- "Two Row DP"
-- "Space Optimization"
-- "공간 최적화"
-- "Memory Limit"
-- "메모리 제한"
-- "3MB"
-- "Divide and Conquer"
-- "분할 정복"
-- "Hirschberg"
-- "Hirschberg Algorithm"
-- "Linear Space"
-- "선형 공간"
-- "Reconstruction"
-- "복원"
-- "Backtracking"
-- "역추적"
-- "Index Split"
-- "분할 인덱스"
-- "Prefix"
-- "접두사"
-- "Suffix"
-- "접미사"
-- "Reverse DP"
-- "역방향 DP"
-- "Recursion"
-- "재귀"
-- "Optimization"
-- "최적화"
-- "uint16_t"
-- "Short Integer"
-- "정수형 최적화"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(nm)"
-- "O(min(n,m))"
-- "Implementation"
-- "구현"
-- "Fast IO"
-- "빠른 입출력"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Edge Case"
-- "엣지 케이스"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- String
+- 문자열
+- Dynamic-Programming
+- DP
+- Divide-and-Conquer
+- Backtracking
+- Prefix-Sum
+- Recursion
+- 재귀
+- Optimization
+- 최적화
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Implementation
+- 구현
+- IO
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- Edge-Cases
+- 엣지케이스
+- C++
 image: "wordcloud.png"
 ---
 

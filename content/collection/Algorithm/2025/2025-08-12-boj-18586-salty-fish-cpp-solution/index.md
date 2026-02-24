@@ -7,64 +7,23 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "18586"
-- "Salty Fish"
-- "Tree"
-- "트리"
-- "Tree DP"
-- "트리 DP"
-- "Small-to-Large"
-- "Map Merge"
-- "std::map"
-- "Ordered Map"
-- "Depth"
-- "깊이"
-- "Subtree"
-- "서브트리"
-- "Camera"
-- "카메라"
-- "Flow"
-- "유량"
-- "Cut"
-- "컷"
-- "Min-cut"
-- "Minimum Cut"
-- "Max-flow"
-- "Maximum Flow"
-- "Ford-Fulkerson"
-- "Residual Capacity"
-- "잔여 용량"
-- "Source"
-- "Sink"
-- "s-t Cut"
-- "INF Edge"
-- "무한 용량"
-- "Greedy"
-- "그리디"
-- "DP"
-- "Dynamic Programming"
-- "Algorithm"
-- "알고리즘"
-- "Problem Solving"
-- "문제풀이"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "ICPC"
-- "Petrozavodsk"
-- "Programming Camp"
-- "Songyang Chen Contest 2"
-- "Summer 2019"
-- "최대 이익"
-- "최소 컷"
-- "트리 병합"
-- "upper_bound"
-- "ordered structure"
+- BOJ
+- Baekjoon
+- 백준
+- Tree
+- 트리
+- Graph
+- Network-Flow
+- Greedy
+- 그리디
+- DP
+- Dynamic-Programming
+- Algorithm
+- 알고리즘
+- Problem-Solving
+- C++
+- IO
+- ICPC
 image: "wordcloud.png"
 ---
 

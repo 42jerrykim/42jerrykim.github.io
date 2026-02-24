@@ -7,16 +7,12 @@ date: "2020-05-12T00:00:00Z"
 excerpt_separator: <!--more-->
 tags:
 - Shell
-- ls
-- date
-- order
-- file
 - linux
 - bash
 - 정렬
-- 날짜
-- 파일
-- 목록
+- Sorting
+- Command
+- Design-Pattern
 title: '[Shell] 날짜로 정렬해서 파일 목록 뽑기'
 ---
 

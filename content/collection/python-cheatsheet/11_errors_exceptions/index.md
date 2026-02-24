@@ -7,64 +7,27 @@ description: "예외 처리를 빠르게 설계/작성하기 위한 치트시트
 lastmod: 2026-01-17
 collection_order: 11
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - errors
-  - exceptions
-  - 예외
-  - 예외처리
-  - try
-  - except
-  - else
-  - finally
-  - raise
-  - raise-from
-  - exception-chaining
-  - traceback
-  - 스택트레이스
+  - Quick-Reference
+  - Error-Handling
   - 디버깅
   - debugging
   - logging
   - 로깅
-  - context-manager
-  - 컨텍스트매니저
-  - with
-  - resource-management
-  - 자원관리
-  - custom-exception
-  - 사용자정의예외
-  - ValueError
-  - TypeError
-  - KeyError
-  - IndexError
-  - OSError
-  - FileNotFoundError
-  - assert
-  - assertion
   - testing
   - 테스트
-  - best-practices
-  - 베스트프랙티스
+  - Best-Practices
   - pitfalls
   - 함정
   - security
   - 보안
-  - reliability
-  - 안정성
-  - standard-library
-  - 표준라이브러리
-  - patterns
-  - 패턴
+  - Code-Quality
+  - Design-Pattern
   - clean-code
   - 클린코드
-  - api-design
-  - 설계
 ---
 예외 처리는 견고한 프로그램의 필수 요소입니다. 이 치트시트는 try/except/else/finally 구조, raise from으로 원인 보존, 자원 정리(with) 등 실전 패턴을 정리합니다.
 

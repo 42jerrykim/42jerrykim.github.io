@@ -5,52 +5,14 @@ date: "2024-09-20T00:00:00Z"
 tags:
 - drama
 - comedy
-- TomHanks
-- MarcForster
-- adaptation
-- friendship
-- life
-- loss
-- community
-- heartwarming
-- character-driven
-- emotional
-- storytelling
-- AmericanCinema
-- FilmReview
-- MovieAnalysis
-- acting
 - cinematography
 - soundtrack
-- narrative
-- resolution
-- PersonalGrowth
-- relationships
-- solitude
-- transformation
-- humor
-- inspiration
-- adaptation
-- novel
-- FredrikBackman
-- bestseller
-- protagonist
-- antagonist
-- plot
-- climax
-- resolution
-- themes
-- society
-- CulturalImpact
-- reception
-- BoxOffice
-- CriticalAcclaim
-- audience
-- recommendation
 - review
-- FilmCritique
-- CinematicTechniques
-- VisualEffects
+- Movie
+- 영화
+- 리뷰
+- Go
+- Action
 title: '[Movie] A Man Called Otto (2022)'
 # Start of Selection
 description: "2022년 개봉한 'A Man Called Otto'는 마크 포스터 감독이 연출하고 톰 행크스가 주연을 맡은 코미디 드라마 영화이다. 외로운 남성 오토가 새로운 이웃들과의 만남을 통해 인간 관계의 소중함과 개인의 성장을 경험하는 이야기를 담고 있다."

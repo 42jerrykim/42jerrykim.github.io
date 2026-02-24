@@ -12,63 +12,29 @@ tags:
   - 알고리즘
   - BOJ
   - 백준
-  - Problem-17693
   - C++
-  - Graph Theory
+  - Graph-Theory
   - 그래프
-  - Bipartite Graph
-  - 이분그래프
-  - Circle Graph
-  - 원형그래프
-  - Graph Coloring
-  - 그래프칠하기
+  - Graph
   - BFS
   - DFS
-  - Segment Tree
+  - Segment-Tree
   - 세그먼트트리
-  - Range Query
-  - 범위쿼리
-  - Connected Components
-  - 연결요소
-  - Conflict Graph
-  - 충돌그래프
-  - Crossing Intervals
-  - 교차구간
-  - Interval Scheduling
-  - 구간스케줄링
-  - Stack Data Structure
+  - Range-Query
   - 스택
-  - Two-Coloring
-  - 이색칠
-  - Graph Traversal
-  - 그래프순회
-  - Data Structures
+  - Data-Structures
   - 자료구조
-  - Time Complexity
+  - Time-Complexity
   - 시간복잡도
-  - O(N log N)
-  - Space Complexity
+  - Space-Complexity
   - 공간복잡도
-  - Modulo Arithmetic
-  - 모듈러산술
   - Combinatorics
   - 조합론
-  - Competitive Programming
+  - Competitive-Programming
   - 경쟁프로그래밍
-  - Problem Solving
-  - 문제풀이
-  - Code Implementation
-  - 코드구현
-  - JOI
-  - 정보올림피아드
-  - Spring Camp
-  - 봄캠프
-  - Correctness Proof
-  - 정당성증명
-  - Edge Cases
-  - 코너케이스
-  - Optimization Technique
-  - 최적화기법
+  - Problem-Solving
+  - Implementation
+  - Edge-Cases
 image: "wordcloud.png"
 ---
 

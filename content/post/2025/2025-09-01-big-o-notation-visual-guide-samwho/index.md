@@ -7,16 +7,9 @@ categories:
 - Algorithm
 - Computer Science
 tags:
-- BigO
-- TimeComplexity
-- O(1)
-- O(log n)
-- O(n)
-- O(n^2)
+- Time-Complexity
 - Algorithm
-- DataStructures
-- BinarySearch
-- BubbleSort
+- Data-Structures
 - Performance
 - Optimization
 - C++
@@ -24,7 +17,6 @@ tags:
 - Map
 - Caching
 - Education
-- Visualization
 image: image01.png
 ---
 

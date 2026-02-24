@@ -13,48 +13,14 @@ categories:
 - Practice
 - Pattern Implementation
 tags:
-- Decorator Pattern Practice
-- Composite Pattern Practice
-- Recursive Structure
-- Dynamic Enhancement
-- Tree Structure
-- File System Modeling
-- GUI Components
-- Beverage System
-- Logging System
-- Structural Patterns
-- Design Patterns
-- GoF Patterns
-- Object Composition
-- Transparency Principle
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Software Architecture
-- Flexible Design
-- Extensible Design
-- 데코레이터 패턴 실습
-- 컴포지트 패턴 실습
-- 재귀적 구조
-- 동적 기능 확장
-- 트리 구조
-- 파일 시스템 모델링
-- GUI 컴포넌트
-- 음료 시스템
-- 로깅 시스템
-- 구조 패턴
-- 디자인 패턴
-- GoF 패턴
-- 객체 컴포지션
-- 투명성 원칙
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 소프트웨어 아키텍처
-- 유연한 설계
-- 확장 가능한 설계
+- Design-Pattern
+- GoF
+- Tutorial
+- Implementation
+- Software-Architecture
+- 디자인패턴
+- 구현
+- 소프트웨어아키텍처
 ---
 
 이 실습에서는 Decorator와 Composite 패턴을 활용하여 동적 기능 확장과 트리 구조 객체 처리를 구현합니다.

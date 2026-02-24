@@ -9,66 +9,18 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - cinematic
-  - cinematic meaning
-  - cinematic usage
-  - cinematic examples
-  - cinematic adjective
   - 영단어
   - 영어형용사
-  - cinematic 의미
-  - cinematic 용법
-  - cinematic 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - dramatic
-  - visual
-  - picturesque
-  - stunning
-  - breathtaking
-  - spectacular
-  - vivid
-  - striking
-  - 극적인
-  - 시각적인
-  - 영화 같은
-  - 영상미
-  - 아름다운
-  - 영화 용어
-  - 영상 표현
-  - film terminology
   - movie
-  - cinema
-  - video
-  - production
   - photography
-  - directing
   - cinematography
-  - visual arts
-  - creative writing
-  - storytelling
   - composition
-  - framing
-  - lighting
-  - aesthetic
-  - 미학
-  - 창작
-  - 영화 제작
-  - 비디오 제작
-  - 구성
-  - 조명
-  - 촬영
-  - 표현 기법
-  - 스토리텔링
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

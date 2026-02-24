@@ -7,62 +7,21 @@ title: "[Clean Architecture] 16. OCP: 개방-폐쇄 원칙"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Open Closed Principle
-  - 개방 폐쇄 원칙
-  - OCP
+  - Clean-Architecture
+  - 클린아키텍처
   - SOLID
-  - SOLID Principles
-  - SOLID 원칙
-  - Bertrand Meyer
-  - 버트란드 마이어
-  - Extension
-  - 확장
-  - Modification
-  - 수정
-  - Plugin Architecture
-  - 플러그인 아키텍처
-  - Software Design
-  - 소프트웨어 설계
-  - Software Architecture
-  - 소프트웨어 아키텍처
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - Abstraction
   - 추상화
   - Interface
   - 인터페이스
   - Polymorphism
   - 다형성
-  - Dependency Inversion
-  - 의존성 역전
-  - Change Protection
-  - 변경 보호
-  - Component Design
-  - 컴포넌트 설계
-  - Module Design
-  - 모듈 설계
-  - Code Quality
-  - 코드 품질
-  - Maintainability
-  - 유지보수성
-  - Flexibility
-  - 유연성
-  - Architecture Goal
-  - 아키텍처 목표
-  - Financial Report
-  - 재무 보고서
-  - Strategy Pattern
-  - 전략 패턴
-  - Template Method Pattern
-  - 템플릿 메서드 패턴
-  - Stable Abstraction
-  - 안정된 추상화
-  - Directional Control
-  - 방향 제어
-  - Information Hiding
-  - 정보 은닉
-  - Transitive Dependency
-  - 이행적 의존성
+  - Dependency-Injection
+  - 의존성주입
+  - Code-Quality
+  - 코드품질
 ---
 
 **OCP(Open-Closed Principle)**는 1988년 Bertrand Meyer가 "Object-Oriented Software Construction"에서 처음 제안했다. 마틴은 이 원칙이 **소프트웨어 아키텍처를 연구하는 근본적인 이유**라고 말한다.

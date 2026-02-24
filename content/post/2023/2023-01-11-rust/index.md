@@ -4,10 +4,13 @@ description: "Rust 언어로 동시성 프로그래밍을 안전하게 구현하
 date: "2023-01-11T00:00:00Z"
 header:
   teaser: /assets/images/2023/cover.jpg
-tag:
-- Atomics
+tags:
 - Rust
-- Free
+- Git
+- GitHub
+- API
+- Memory
+- Concurrency
 title: '[Rust] Rust Atomics and Locks'
 ---
 

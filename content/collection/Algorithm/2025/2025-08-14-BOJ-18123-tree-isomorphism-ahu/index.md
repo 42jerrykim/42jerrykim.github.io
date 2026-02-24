@@ -11,77 +11,42 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-18123
-- cpp
-- python
 - C++
 - Python
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Tree
 - 트리
 - Graph
 - 그래프
-- Tree Isomorphism
-- 트리 동형
-- AHU
-- AHU 인코딩
-- Canonical Form
-- 정규형
-- Rooted Tree
-- 루트 트리
-- Unlabeled Tree
-- 무라벨 트리
-- Tree Center
-- 트리 중심
-- Centroid
-- 센트로이드
-- Encoding
-- 문자열 인코딩
 - String
 - 문자열
 - Hashing
 - 해싱
-- Unordered Set
-- unordered_set
 - DFS
 - BFS
 - Sorting
 - 정렬
-- Lexicographic
-- 사전순
-- Adjacency List
-- 인접 리스트
-- 입력 파싱
-- 제한조건
-- Correctness
-- 올바름
 image: "wordcloud.png"
 ---
 

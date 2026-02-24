@@ -8,63 +8,25 @@ categories:
 - "BOJ"
 - "Computational Geometry"
 tags:
-- "BOJ"
-- "백준"
-- "USACO"
-- "Gold"
-- "Fencing the Herd"
-- "10746"
-- "Algorithm"
-- "알고리즘"
-- "Computational Geometry"
-- "기하"
-- "Convex Hull"
-- "볼록껍질"
-- "Support Function"
-- "지지함수"
-- "Dot Product"
-- "내적"
-- "Half-plane"
-- "반평면"
-- "Line Query"
-- "직선 질의"
-- "Segment Tree"
-- "세그먼트 트리"
-- "Offline Query"
-- "오프라인 질의"
-- "Dynamic Set"
-- "동적 집합"
-- "Range Aggregation"
-- "구간 집계"
-- "Max Dot"
-- "Min Dot"
-- "__int128"
-- "정수 오버플로우 방지"
-- "CCW"
-- "Cross Product"
-- "외적"
-- "Andrew Monotone Chain"
-- "모노톤 체인"
-- "Time Decomposition"
-- "시간 분할"
-- "Data Structure"
-- "자료구조"
-- "Geometry Trick"
-- "기하 트릭"
-- "Queries"
-- "질의 처리"
-- "Fast IO"
-- "빠른 입출력"
-- "C++"
-- "Cpp"
-- "GCC"
-- "Optimization"
-- "최적화"
-- "Numerical Stability"
-- "정확한 계산"
-- "Baekjoon"
-- "Problem Solving"
-- "PS"
+- BOJ
+- 백준
+- USACO
+- Algorithm
+- 알고리즘
+- Computational-Geometry
+- Geometry
+- Segment-Tree
+- 세그먼트트리
+- Range-Query
+- C++
+- Data-Structures
+- 자료구조
+- IO
+- Optimization
+- 최적화
+- Baekjoon
+- Problem-Solving
+- Competitive-Programming
 image: "wordcloud.png"
 ---
 

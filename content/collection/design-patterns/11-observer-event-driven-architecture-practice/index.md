@@ -13,46 +13,15 @@ categories:
 - Practice
 - Reactive Systems
 tags:
-- Observer Pattern Practice
-- Event Driven Architecture
-- Publish Subscribe
-- Stock Monitoring
-- Temperature Sensor
-- MVC Architecture
-- WeakReference
-- Async Processing
-- Performance Optimization
-- Reactive Systems
-- Loose Coupling
-- Behavioral Patterns
-- Design Patterns
-- GoF Patterns
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Software Architecture
-- Event Handling
-- 옵저버 패턴 실습
-- 이벤트 주도 아키텍처
-- 발행 구독
-- 주식 모니터링
-- 온도 센서
-- MVC 아키텍처
-- 약한 참조
-- 비동기 처리
-- 성능 최적화
-- 반응형 시스템
-- 느슨한 결합
-- 행동 패턴
-- 디자인 패턴
-- GoF 패턴
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 소프트웨어 아키텍처
-- 이벤트 처리
+- Performance
+- Software-Architecture
+- Design-Pattern
+- GoF
+- Tutorial
+- Implementation
+- 디자인패턴
+- 구현
+- 소프트웨어아키텍처
 ---
 
 이 실습에서는 Observer 패턴을 활용하여 주식 시세 모니터링, 센서 알림 시스템 등 이벤트 주도 아키텍처를 구현합니다.

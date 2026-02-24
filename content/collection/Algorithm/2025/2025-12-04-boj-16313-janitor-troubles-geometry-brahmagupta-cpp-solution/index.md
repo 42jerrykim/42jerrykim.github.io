@@ -11,64 +11,29 @@ tags:
   - 알고리즘
   - BOJ
   - 백준
-  - Problem-16313
   - C++
   - 기하학
   - Geometry
-  - 최대값
-  - Maximum
-  - 사각형
-  - Quadrilateral
-  - 넓이
-  - Area
-  - 브라마굽타
-  - Brahmagupta
-  - 공식
-  - Formula
-  - 원에내접
-  - Cyclic
-  - 우아한수학
-  - Elegant
-  - Mathematics
-  - 수학올림피아드
-  - Mathematical Olympiad
-  - 고급알고리즘
-  - Advanced Algorithm
+  - Math
   - ICPC
-  - 경시대회
-  - Programming Contest
   - 구현
   - Implementation
-  - 수학적증명
-  - Mathematical Proof
   - 최적화
   - Optimization
-  - 문제풀이
-  - Problem Solving
-  - 알고리즘설계
-  - Algorithm Design
-  - Data Structure
+  - Problem-Solving
+  - Data-Structures
   - 자료구조
-  - Time Complexity
+  - Time-Complexity
   - 시간복잡도
-  - Space Complexity
+  - Space-Complexity
   - 공간복잡도
-  - Proof of Correctness
-  - 정당성 증명
-  - Edge Cases
-  - 코너 케이스
+  - Edge-Cases
+  - 엣지케이스
   - Pitfalls
-  - 실수 포인트
-  - Competitive Programming
+  - 함정
+  - Competitive-Programming
   - 경쟁프로그래밍
-  - 부동소수점
-  - Floating Point
-  - 정밀도
-  - Precision
   - 수학
-  - Math
-  - 페톨레마이오스정리
-  - Ptolemy
 image: "wordcloud.png"
 ---
 

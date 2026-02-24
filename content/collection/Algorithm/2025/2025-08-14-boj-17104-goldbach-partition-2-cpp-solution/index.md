@@ -11,70 +11,26 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-17104
-- cpp
 - C++
-- Number Theory
+- Number-Theory
 - 정수론
-- Goldbach
-- 골드바흐
-- Goldbach Partition
-- 골드바흐 파티션
-- Prime
-- 소수
-- Sieve of Eratosthenes
-- 에라토스테네스의 체
 - FFT
-- Fast Fourier Transform
-- 빠른 푸리에 변환
 - Convolution
-- 컨볼루션
-- Polynomial
-- 다항식
-- NTT
-- Number Theoretic Transform
-- 복소 FFT
-- Complex FFT
-- Precision
-- 반올림 오차
-- llround
-- Double Precision
-- 실수 연산
-- Big O
-- Time Complexity
+- Edge-Cases
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Precomputation
-- 전처리
-- O(N log N)
-- O(1) Query
-- Query Processing
-- 쿼리 처리
-- Unordered Pairs
-- 순서 무관 쌍
-- Ordered Pairs
-- 순서 있는 쌍
-- Symmetry Correction
-- 대칭 보정
-- p equals q
-- p=q 대칭
-- 2 as Prime
-- 소수 2 처리
-- Edge Cases
-- 코너 케이스
+- Implementation
+- Range-Query
+- 엣지케이스
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
-- Implementation Details
-- 구현 디테일
-- Fast IO
-- 입출력 최적화
+- 구현
+- IO
 - Memory
-- 메모리 관리
-- Rounding
-- 반올림
 image: "wordcloud.png"
 ---
 

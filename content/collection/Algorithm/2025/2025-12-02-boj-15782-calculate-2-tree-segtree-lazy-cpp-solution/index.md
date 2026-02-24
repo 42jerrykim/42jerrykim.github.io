@@ -12,66 +12,33 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-15782
-- cpp
 - C++
 - Tree
 - 트리
-- Segment Tree
-- 세그먼트 트리
-- Lazy Propagation
-- 레이지 프로파게이션
-- Euler Tour
-- 오일러 투어
-- XOR Query
-- 비트연산
-- Range Update
-- 범위 업데이트
-- Range Query
-- 범위 쿼리
-- Subtree Query
-- 부분트리 쿼리
+- Segment-Tree
+- 세그먼트트리
+- Lazy-Propagation
+- Euler-Tour
+- Math
+- Range-Query
 - DFS
-- 깊이 우선 탐색
-- Data Structures
+- Data-Structures
 - 자료구조
-- Tree Flattening
-- 트리 평탄화
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- O(N log N)
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Testing
 - 테스트
-- Fast I/O
-- 빠른 입출력
-- Complexity Analysis
-- 복잡도 분석
-- Bitwise XOR
-- XOR 연산
-- In-Order Traversal
-- 중위 탐색
-- Flatten Array
-- 배열 평탄화
-- Query Processing
-- 쿼리 처리
-- Constraint Handling
-- 제약 처리
-- Algorithm Design
-- 알고리즘 설계
-- Logic Gates
-- 논리 연산
-- Optimization Technique
-- 최적화 기법
+- IO
+- Complexity-Analysis
+- 복잡도분석
 image: "wordcloud.png"
 ---
 

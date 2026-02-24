@@ -12,89 +12,47 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-24272
-- cpp
 - C++
 - Graph
 - 그래프
 - Tree
 - 트리
-- Orientation
-- 방향 그래프
-- Root
-- 루트
-- Reachability
-- 도달성
-- Euler Tour
-- 오일러 순회
-- Subtree Interval
-- 서브트리 구간
-- Segment Tree
-- 세그먼트 트리
-- Range Cover
-- 구간 피복
-- Multiset
-- 멀티셋
-- Set Intersection
-- 교집합
-- Set Union
-- 합집합
-- Interval Query
-- 인터벌 쿼리
-- Data Structures
+- Euler-Tour
+- Segment-Tree
+- 세그먼트트리
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Greedy
 - 그리디
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
-- Graph Theory
-- 그래프 이론
-- Tree DP
-- 트리 DP
+- Graph-Theory
+- 그래프이론
 - DFS
-- 깊이우선탐색
 - LCA
-- 최소공통조상
-- Binary Lifting
-- 이진 도약
-- Range Update
-- 구간 갱신
-- Range Query
-- 구간 질의
-- Offline Query
-- 오프라인 쿼리
-- Online Query
-- 온라인 쿼리
-- Contest
-- 대회 문제
+- Range-Query
 image: "wordcloud.png"
 ---
 

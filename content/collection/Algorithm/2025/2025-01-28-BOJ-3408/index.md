@@ -7,12 +7,16 @@ categories:
 - Divide and Conquer
 - Segment Tree
 tags:
-- Divide and Conquer
-- Hash Map
-- Precomputation
-- Time Complexity O(n log n)
+- Divide-and-Conquer
+- Algorithm
 - Stack
-- Recursion Optimization
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Python
 date: 2024-06-19
 image: "index.png"
 ---

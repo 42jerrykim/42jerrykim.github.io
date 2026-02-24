@@ -6,36 +6,13 @@ date: "2024-08-22T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-22-abstract-factory.png
 tags:
-- AbstractFactory
-- DesignPattern
-- FactoryMethod
-- CreationalPattern
-- SoftwareDesign
-- ObjectOriented
-- Programming
-- DesignPatterns
-- CodeReuse
+- Design-Pattern
+- Software-Architecture
+- OOP
+- Implementation
 - Interface
 - Encapsulation
-- DependencyInjection
-- ObjectCreation
-- ProductFamily
-- Variants
-- ClientCode
-- ConcreteFactory
-- AbstractProduct
-- ConcreteProduct
-- GUIFactory
-- UIElements
-- CrossPlatform
-- Application
-- FactoryInterface
-- ProductInterface
-- Compatibility
-- Extensibility
-- Maintainability
-- DesignPrinciples
-- SoftwareArchitecture
+- Code-Quality
 title: '[DesignPattern] 추상 팩토리 패턴'
 ---
 

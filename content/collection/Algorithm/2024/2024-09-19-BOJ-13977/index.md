@@ -8,13 +8,15 @@ header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
 - Combinatorics
-- NumberTheory
-- FastExponentiation
-- ModularInverse
-- Factorial
 - Implementation
-- MathematicalIdea
-- DynamicProgramming
+- Dynamic-Programming
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 title: '[Algorithm] C++/Python 백준 13977번 : 이항 계수와 쿼리'
 ---
 

@@ -7,78 +7,36 @@ categories:
 - "BOJ"
 - "Algorithm"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "9817"
-- "Necklace of Beads"
-- "목걸이"
-- "Beads"
-- "구슬"
-- "ICPC"
-- "Xi'an Regional"
-- "Xi'an Regional 2002"
-- "Combinatorics"
-- "조합론"
-- "Burnside Lemma"
-- "Burnside 보조정리"
-- "Polya Counting"
-- "Polya 셀 수 세기"
-- "Group Theory"
-- "군론"
-- "Dihedral Group"
-- "이차원 대칭군"
-- "D_n"
-- "Rotation"
-- "Rotations"
-- "회전대칭"
-- "Reflection"
-- "Reflections"
-- "반사대칭"
-- "대칭"
-- "Necklace Counting"
-- "목걸이 개수 세기"
-- "Orbit Counting"
-- "궤도 세기"
-- "Burnside's Lemma"
-- "Cycle Decomposition"
-- "순환 분해"
-- "GCD"
-- "gcd"
-- "Number Theory"
-- "정수론"
-- "수학"
-- "Math"
-- "Enumeration"
-- "Counting"
-- "완전탐색 대체"
-- "수학적 풀이"
-- "Brute Force"
-- "완전탐색"
-- "Optimization"
-- "최적화"
-- "O(n^2)"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른입출력"
-- "Implementation"
-- "구현"
-- "Algorithm"
-- "알고리즘"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Competitive Programming"
-- "정답률"
-- "문제해설"
-- "Editorial"
+- BOJ
+- Baekjoon
+- 백준
+- ICPC
+- Combinatorics
+- 조합론
+- Implementation
+- Math
+- Number-Theory
+- 정수론
+- 수학
+- Brute-Force
+- 완전탐색
+- Optimization
+- 최적화
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
+- IO
+- 구현
+- Algorithm
+- 알고리즘
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- Competitive-Programming
+- Editorial
 image: "wordcloud.png"
 ---
 

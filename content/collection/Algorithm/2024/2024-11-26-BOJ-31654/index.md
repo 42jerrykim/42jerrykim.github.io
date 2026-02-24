@@ -6,11 +6,16 @@ categories:
 - Mathematics
 - Implementation
 tags:
-- Arithmetic
-- SimpleMath
-- Input/Output
-- O(1) Time Complexity
-- ConditionalStatements
+- Math
+- Algorithm
+- Implementation
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Python
 image: "tmp_wordcloud.png"
 date: 2024-11-26
 ---

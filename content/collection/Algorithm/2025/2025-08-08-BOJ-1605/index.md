@@ -9,55 +9,20 @@ categories:
 - Data Structures
 tags:
  - Algorithm
- - Data Structures
+ - Data-Structures
  - String
  - 문자열
  - BOJ
  - C++
- - Suffix Array
- - LCP
- - LCP Array
- - Kasai
- - Doubling
- - Counting Sort
- - Stable Sort
- - Rank
- - Lexicographic Order
- - Longest Repeated Substring
- - LRS
- - Rolling Hash
- - Binary Search
- - Suffix Tree
- - SA-IS
- - DivSufSort
- - Text Indexing
- - Pattern Matching
- - O(n log n)
- - O(n)
- - Time Complexity
- - Space Complexity
+ - Binary-Search
+ - Time-Complexity
+ - Space-Complexity
  - Implementation
- - Competitive Programming
- - 문자열 알고리즘
- - 접미사배열
- - LCP배열
- - 카사이 알고리즘
- - 반복 부분문자열
- - 최장 반복 부분문자열
- - 이분 탐색
- - 롤링 해시
- - 사전순 정렬
- - 카운팅 소트
- - 안정 정렬
- - 랭크 배열
- - 배가법
- - 서픽스 트리
- - 문자열 인덱싱
- - 패턴 매칭
+ - Competitive-Programming
+ - 이분탐색
  - 백준
- - 플래티넘
  - 최적화
- - 구현 디테일
+ - 구현
 image: wordcloud.png
 ---
 

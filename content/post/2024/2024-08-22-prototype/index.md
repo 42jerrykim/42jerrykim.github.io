@@ -6,62 +6,22 @@ date: "2024-08-22T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-22-prototype.png
 tags:
-- Prototype
-- DesignPattern
-- CreationalPattern
-- ObjectCloning
-- ShallowCopy
-- DeepCopy
+- Design-Pattern
 - Java
-- C#
-- SoftwareDevelopment
-- Object-Oriented Programming
-- DesignPrinciples
-- CodeReusability
-- FactoryMethod
-- AbstractFactory
-- BuilderPattern
+- CSharp
+- Software-Architecture
+- OOP
+- Code-Quality
 - Singleton
 - UML
-- Cloning
-- ObjectCreation
-- PerformanceOptimization
-- MemoryManagement
-- CircularReferences
+- Performance
+- Memory
 - Interface
 - Inheritance
 - Encapsulation
 - Polymorphism
-- CodeDuplication
 - Configuration
-- Registry
-- PrototypeRegistry
-- ClientCode
-- Third-Party Code
-- Initialization
-- ObjectState
-- DynamicLoading
-- GraphicDesign
-- DrawingApplication
-- MusicEditor
-- CircuitDesign
-- ApplicationDevelopment
-- SoftwareArchitecture
-- SystemDesign
-- ObjectLifecycle
-- ObjectManagement
-- PrototypeManager
-- ObjectComposition
-- ObjectBehavior
-- ObjectStateManagement
-- ObjectReference
-- ObjectIdentity
-- ObjectModification
-- ObjectSharing
-- ObjectDuplication
-- ObjectInstantiation
-- ObjectFactory
-- ObjectRegistry
+- Implementation
 title: '[DesignPattern] 프로토타입 패턴'
 ---
 

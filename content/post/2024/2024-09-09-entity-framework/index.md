@@ -6,59 +6,19 @@ date: "2024-09-09T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-09-09-entity-framework.png
 tags:
-- EntityFramework
-- ORM
 - .NET
-- C#
+- CSharp
 - Database
 - SQL
-- LINQ
-- CodeFirst
-- ModelFirst
-- DatabaseFirst
-- DbContext
-- DbSet
-- ChangeTracker
-- Transactions
 - Performance
-- DataConsistency
-- Querying
-- Migrations
-- ASP.NET
-- WebDevelopment
-- SoftwareDevelopment
-- Programming
-- SoftwareEngineering
-- DataAccess
-- ObjectRelationalMapping
-- EFCore
-- EntityDataModel
-- SQLServer
-- NoSQL
-- DataModel
-- BusinessLogic
-- ApplicationDevelopment
-- SoftwareArchitecture
-- DependencyInjection
-- UnitOfWork
-- RepositoryPattern
-- DataLayer
-- EntityConfiguration
-- FluentAPI
-- DataAnnotations
-- LINQtoEntities
-- AsynchronousProgramming
-- TaskBasedAsyncPattern
-- DependencyInjection
-- ServiceLayer
+- Web
+- Software-Architecture
+- Implementation
 - API
-- WebAPI
 - Microservices
-- CloudComputing
-- SoftwareTesting
+- Testing
 - Debugging
-- CodeOptimization
-- SoftwareMaintenance
+- Optimization
 title: '[EntityFramework] EF는 당신이 생각하는 것보다 똑똑하다'
 ---
 

@@ -6,11 +6,17 @@ date: "2024-09-25T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- FenwickTree
-- DataStructures
-- O(log N)
+- Data-Structures
+- Time-Complexity
 - Simulation
 - Stack
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 title: '[Algorithm] C++/Python 백준 3653번 : 영화 수집'
 ---
 

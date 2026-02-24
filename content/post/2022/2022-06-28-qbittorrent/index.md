@@ -7,17 +7,12 @@ date: "2022-06-28T00:00:00Z"
 header:
   teaser: /assets/images/undefined/800px-Qbittorrent_4.1.5.png
 tags:
-- qBittorrent
-- µTorrent
-- ruTorrent
-- Transmission
-- Torrent
 - Windows
-- Mac
 - Linux
-- RSS
-- 토렌트
-- 다운로드
+- Self-Hosted
+- Networking
+- Photography
+- Technology
 title: '[Torrent] qBittorrent - RSS 자동 다운로드를 위한 Torrent Client 추천'
 ---
 

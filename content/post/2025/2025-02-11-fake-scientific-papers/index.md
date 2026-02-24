@@ -5,10 +5,14 @@ categories:
   - AI
   - Research
 tags:
-  - Academic
   - AI
-  - Research
-  - Paper
+  - Review
+  - 리뷰
+  - ChatGPT
+  - Blog
+  - 블로그
+  - Science
+  - 과학
 image: image.png
 description: "AI가 작성한 가짜 학술 논문이 실제 학계와 건강 분야에 미치는 심각한 영향, Peer Review 시스템의 허점, 과잉 논문 생산의 실태 및 근본적 해결책에 대해 분석합니다. 신뢰받는 과학 생태계를 위한 방안을 다룹니다."
 

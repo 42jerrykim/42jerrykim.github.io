@@ -7,67 +7,31 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "18473"
-- "Fast Spanning Tree"
-- "FastSpanningTree"
-- "DSU"
-- "Union Find"
-- "Disjoint Set Union"
-- "Disjoint Set"
-- "Small-to-Large"
-- "Merge"
-- "Merge Trick"
-- "Priority Queue"
-- "Min-Heap"
-- "Watcher"
-- "Half Threshold"
-- "Component"
-- "컴포넌트"
-- "Graph"
-- "그래프"
-- "Spanning Tree"
-- "MST"
-- "Greedy"
-- "Offline"
-- "Simulation"
-- "Process"
-- "Queue"
-- "Index Order"
-- "Edge Selection"
-- "Edge Threshold"
-- "Weight Sum"
-- "Vertex Weight"
-- "Sum of Weights"
-- "Connectivity"
-- "Connected Components"
-- "Union"
-- "Find"
-- "Path Compression"
-- "Rank"
-- "시간복잡도"
-- "Time Complexity"
-- "O(m log m)"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "Problem Solving"
-- "문제풀이"
-- "해설"
-- "Solution"
-- "Editorial"
-- "Petrozavodsk"
-- "Open Cup"
-- "300iq"
-- "Contest"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- DSU
+- Disjoint-Set
+- Priority-Queue
+- Software-Architecture
+- Graph
+- 그래프
+- MST
+- Greedy
+- Simulation
+- OS
+- Queue
+- 시간복잡도
+- Time-Complexity
+- Implementation
+- 구현
+- C++
+- IO
+- Problem-Solving
+- Editorial
+- Competitive-Programming
 image: "wordcloud.png"
 ---
 

@@ -10,11 +10,10 @@ tags:
 - DP
 - Memoization
 - Recursion
-- Brute Force
-- O(N*H)
+- Brute-Force
 - Array
-- Difference Array
-- Dynamic Programming
+- Data-Structures
+- Dynamic-Programming
 image: "index.png"
 date: 2025-02-10
 ---

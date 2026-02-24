@@ -8,75 +8,12 @@ categories:
   - Lisp
   - Language
 tags:
-  - S-expression
-  - S-expr
-  - sexp
-  - symbolic expression
-  - Symbolic Expressions
-  - John McCarthy
-  - McCarthy 1960
-  - Lisp
-  - Scheme
-  - R5RS
-  - Common Lisp
-  - CLHS
-  - Clojure
-  - reader
-  - Reader
-  - reader macro
-  - read syntax
-  - datum syntax
-  - external representation
-  - code as data
-  - homoiconicity
-  - AST
-  - parse
-  - parser
-  - token
-  - whitespace
-  - parentheses
-  - list
-  - proper list
-  - improper list
-  - dotted list
-  - dotted pair
-  - cons
-  - car
-  - cdr
-  - nil
-  - quote
-  - quasiquote
-  - unquote
-  - unquote-splicing
-  - backquote
-  - macro
-  - macros
-  - metaprogramming
-  - REPL
-  - 함수 호출
-  - 데이터 구조
-  - 데이터 표현
-  - 외부표현
-  - S-표현식
-  - 심볼릭 표현식
-  - 리스프
-  - 스킴
-  - 커먼리스프
-  - 클로저
-  - 리더 문법
-  - 리더 매크로
-  - 점표기
-  - 도트 페어
-  - 컨스 셀
-  - 카
-  - 씨디알
-  - 인용
-  - 준인용
-  - 언쿼트
-  - 괄호
-  - 공백
-  - 구문
+  - Data-Structures
   - 문법
+  - String
+  - map
+  - HTML
+  - documentation
 image: "wordcloud.png"
 ---
 

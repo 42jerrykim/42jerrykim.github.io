@@ -7,59 +7,30 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "17955"
-- "Max or Min"
-- "원형 배열"
-- "circular array"
-- "difference array"
-- "차분 배열"
-- "prefix sum"
-- "누적합"
-- "range add"
-- "구간 추가"
-- "overlap trimming"
-- "구간 조정"
-- "wrap-around"
-- "회전"
-- "adjacent pairs"
-- "인접 쌍"
-- "그리디"
-- "greedy"
-- "아이디어"
-- "idea"
-- "구현"
-- "implementation"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "O(n+m)"
-- "시간복잡도"
-- "complexity"
-- "자료구조"
-- "data structure"
-- "interval"
-- "인터벌"
-- "중복 제거"
-- "overlap removal"
-- "frequency"
-- "빈도"
-- "counting"
-- "카운팅"
-- "editorial"
-- "해설"
-- "문제 풀이"
-- "알고리즘"
-- "Algorithm"
-- "array"
-- "배열"
-- "ICPC"
-- "SEERC 2019"
-- "Open Cup"
+- BOJ
+- Baekjoon
+- 백준
+- Data-Structures
+- Prefix-Sum
+- Segment-Tree
+- 그리디
+- greedy
+- 구현
+- implementation
+- C++
+- IO
+- Time-Complexity
+- 시간복잡도
+- Complexity-Analysis
+- 자료구조
+- Range-Query
+- Math
+- editorial
+- 알고리즘
+- Algorithm
+- array
+- 배열
+- ICPC
 image: "wordcloud.png"
 ---
 

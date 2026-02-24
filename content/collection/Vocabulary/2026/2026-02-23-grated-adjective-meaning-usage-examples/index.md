@@ -9,71 +9,17 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - grated
-  - grated meaning
-  - grated usage
-  - grated examples
-  - grated adjective
   - 영단어
   - 영어형용사
-  - grated 의미
-  - grated 용법
-  - grated 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - shredded
-  - grated cheese
-  - grated carrot
-  - grated ginger
-  - grated parmesan
-  - grated lemon zest
-  - grated chocolate
-  - grated nutmeg
-  - grille
-  - lattice
-  - grid
-  - grating
-  - 갈아낸
-  - 채 썬
-  - 강판에 간
-  - 격자형
-  - 철망
-  - 통풍구
-  - 배수구
-  - 거슬리는
-  - 신경 거슬리는
-  - 요리
-  - 조리법
-  - 치즈
-  - 채소
-  - 향신료
-  - 건축
-  - 구조물
-  - 인테리어
-  - cooking
-  - culinary
-  - recipe
-  - cheese
-  - vegetable
-  - spice
-  - architecture
-  - structure
-  - interior
-  - kitchen
-  - irritating
-  - annoying
-  - etymology
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
-  - study English
-  - vocabulary building
+  - Graph
+  - Software-Architecture
+  - Etymology
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

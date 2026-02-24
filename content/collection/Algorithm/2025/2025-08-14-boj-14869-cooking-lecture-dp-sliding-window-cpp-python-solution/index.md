@@ -7,81 +7,43 @@ categories:
 - "Algorithm"
 - "Dynamic Programming"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "백준"
-- "Problem-14869"
-- "cpp"
-- "C++"
-- "python"
-- "Python"
-- "Implementation"
-- "구현"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Proof of Correctness"
-- "정당성 증명"
-- "Edge Cases"
-- "코너 케이스"
-- "Pitfalls"
-- "실수 포인트"
-- "Optimization"
-- "최적화"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Editorial"
-- "에디토리얼"
-- "Code Review"
-- "코드리뷰"
-- "Template"
-- "템플릿"
-- "Testing"
-- "테스트"
-- "Complexity Analysis"
-- "복잡도 분석"
-- "Invariant"
-- "불변식"
-- "Dynamic Programming"
-- "동적계획법"
-- "DP Optimization"
-- "DP 최적화"
-- "Sliding Window"
-- "슬라이딩윈도우"
-- "Monotone Queue"
-- "단조 큐"
-- "Deque"
-- "덱"
-- "Prefix Sum"
-- "누적합"
-- "Range DP"
-- "구간 DP"
-- "Run Length"
-- "구간 길이 제약"
-- "Forbidden Academy"
-- "불허용 학원"
-- "Transition"
-- "전이"
-- "Window Minima"
-- "윈도우 최소값"
-- "KOI"
-- "KOI 2017"
-- "Cooking Lecture"
-- "요리 강좌"
-- "State"
-- "상태"
-- "Boundary Conditions"
-- "경계 조건"
-- "64-bit"
-- "long long"
-- "Memory"
-- "메모리"
-- "Subtasks"
-- "서브태스크"
-- "O(NM)"
-- "빅오"
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- C++
+- Python
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- Pitfalls
+- 함정
+- Optimization
+- 최적화
+- Competitive-Programming
+- 경쟁프로그래밍
+- Editorial
+- 에디토리얼
+- Code-Review
+- 코드리뷰
+- Testing
+- 테스트
+- Complexity-Analysis
+- 복잡도분석
+- Dynamic-Programming
+- 동적계획법
+- Sliding-Window
+- Deque
+- 덱
+- Prefix-Sum
+- State
+- Memory
+- 메모리
 image: "wordcloud.png"
 ---
 

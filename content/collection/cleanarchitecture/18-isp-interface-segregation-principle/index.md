@@ -7,60 +7,16 @@ title: "[Clean Architecture] 18. ISP: 인터페이스 분리 원칙"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Interface Segregation Principle
-  - 인터페이스 분리 원칙
-  - ISP
+  - Clean-Architecture
+  - 클린아키텍처
   - SOLID
-  - SOLID Principles
-  - SOLID 원칙
-  - Robert C. Martin
-  - Uncle Bob
-  - Fat Interface
-  - 뚱뚱한 인터페이스
-  - Interface Design
-  - 인터페이스 설계
-  - Software Design
-  - 소프트웨어 설계
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Client Specific Interface
-  - 클라이언트 전용 인터페이스
-  - Role Interface
-  - 역할 인터페이스
-  - Coupling
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - 결합도
-  - Dependency
-  - 의존성
-  - Unnecessary Dependency
-  - 불필요한 의존성
-  - Recompilation
-  - 재컴파일
-  - Redeployment
-  - 재배포
-  - Module Design
-  - 모듈 설계
-  - Code Quality
-  - 코드 품질
-  - Maintainability
-  - 유지보수성
-  - Flexibility
-  - 유연성
-  - Cohesion
+  - Dependency-Injection
+  - Code-Quality
+  - 코드품질
   - 응집도
-  - OPS Example
-  - 운영 예제
-  - Statically Typed Language
-  - 정적 타입 언어
-  - Dynamically Typed Language
-  - 동적 타입 언어
-  - Framework Dependency
-  - 프레임워크 의존성
-  - Transitive Dependency
-  - 이행적 의존성
-  - Change Impact
-  - 변경 영향
 ---
 
 **ISP(Interface Segregation Principle)**는 1996년 Robert C. Martin이 Xerox 컨설팅 중에 발견한 원칙이다. 이 원칙은 불필요한 의존성으로 인한 문제를 해결하기 위해 **인터페이스를 분리**해야 한다고 말한다.

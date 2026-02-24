@@ -7,60 +7,21 @@ title: "[Clean Architecture] 26. 독립성: 유스케이스, 운영, 개발, 배
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Independence
-  - 독립성
-  - Use Case
-  - 유스케이스
-  - Operation
-  - 운영
-  - Development
-  - 개발
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
+  - Implementation
   - Deployment
   - 배포
-  - Decoupling
-  - 디커플링
-  - Layer
-  - 계층
-  - Use Case Slice
-  - 유스케이스 슬라이스
-  - Duplication
-  - 중복
-  - Accidental Duplication
-  - 우발적 중복
-  - True Duplication
-  - 진짜 중복
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Component
-  - 컴포넌트
-  - Module
-  - 모듈
-  - Team
-  - 팀
+  - 소프트웨어아키텍처
   - Scalability
   - 확장성
   - Microservices
   - 마이크로서비스
-  - Monolith
-  - 모놀리스
-  - Service
-  - 서비스
-  - Horizontal Slicing
-  - 수평 분할
-  - Vertical Slicing
-  - 수직 분할
-  - Boundary
-  - 경계
-  - Separation
-  - 분리
-  - Flexibility
-  - 유연성
-  - Testability
-  - 테스트 용이성
-  - Maintainability
-  - 유지보수성
+  - Edge-Cases
+  - Testing
+  - Code-Quality
+  - 코드품질
 ---
 
 좋은 아키텍처는 다양한 **독립성**을 제공해야 한다. 유스케이스의 독립성, 운영의 독립성, 개발의 독립성, 배포의 독립성이 그것이다.

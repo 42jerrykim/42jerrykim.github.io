@@ -8,9 +8,15 @@ categories:
 tags:
 - Implementation
 - Simulation
-- BruteForce
-- O(N)
-- Simulation
+- Brute-Force
+- Time-Complexity
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 image: "wordcloud.png"
 date: 2024-01-01
 ---

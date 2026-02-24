@@ -9,77 +9,34 @@ categories:
 - "Bitwise"
 - "Query"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "24271"
-- "BOJ-24271"
-- "xor²"
-- "XOR"
-- "엑스오알"
-- "Bitwise XOR"
-- "비트 XOR"
-- "Bitwise"
-- "비트연산"
-- "Bit Manipulation"
-- "비트조작"
-- "Index"
-- "인덱스"
-- "Permutation"
-- "순열"
-- "XOR Permutation"
-- "XOR 순열"
-- "XOR Shift"
-- "XOR 시프트"
-- "Range Query"
-- "구간 쿼리"
-- "Online Query"
-- "온라인 쿼리"
-- "Point Update"
-- "점 업데이트"
-- "XOR Update"
-- "XOR 업데이트"
-- "Data Structure"
-- "자료구조"
-- "Segment Tree"
-- "세그먼트 트리"
-- "Binary Tree"
-- "이진트리"
-- "Divide and Conquer"
-- "분할정복"
-- "Recursion"
-- "재귀"
-- "Padding"
-- "패딩"
-- "Power of Two"
-- "2의 거듭제곱"
-- "Zero Padding"
-- "0 패딩"
-- "Invariant"
-- "불변식"
-- "Correctness"
-- "정당성"
-- "Proof Sketch"
-- "증명 스케치"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(log N)"
-- "O((N+Q)log N)"
-- "Constraints"
-- "제한"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Math
+- Data-Structures
+- Combinatorics
+- Range-Query
+- Segment-Tree
+- 자료구조
+- 세그먼트트리
+- Divide-and-Conquer
+- 분할정복
+- Recursion
+- 재귀
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- Implementation
+- 구현
+- C++
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
 image: "wordcloud.png"
 ---
 

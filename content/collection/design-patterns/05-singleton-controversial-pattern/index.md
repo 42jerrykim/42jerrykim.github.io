@@ -12,66 +12,17 @@ categories:
 - Controversial Patterns
 - Design Debate
 tags:
-- Singleton Pattern
-- Creational Patterns
-- Global State
-- Thread Safety
-- Lazy Initialization
-- Eager Initialization
-- Double Checked Locking
-- Enum Singleton
-- Singleton Alternatives
-- Dependency Injection
-- Service Locator
-- Design Patterns
-- GoF Patterns
-- Anti Patterns
-- Testing Challenges
-- Mock Objects
-- Unit Testing
-- Concurrency Issues
-- Memory Management
-- Pattern Criticism
-- Design Principles
-- Global Access
-- Instance Control
-- Pattern Implementation
-- Software Architecture
-- Code Quality
-- Design Trade Offs
-- Pattern Misuse
-- Best Practices
-- Modern Approaches
-- 싱글톤 패턴
-- 생성 패턴
-- 전역 상태
-- 스레드 안전성
-- 지연 초기화
-- 즉시 초기화
-- 더블 체크 로킹
-- 열거형 싱글톤
-- 싱글톤 대안
-- 의존성 주입
-- 서비스 로케이터
-- 디자인 패턴
-- GoF 패턴
-- 안티 패턴
-- 테스트 어려움
-- 목 객체
-- 단위 테스트
-- 동시성 문제
-- 메모리 관리
-- 패턴 비판
-- 설계 원칙
-- 전역 접근
-- 인스턴스 제어
-- 패턴 구현
-- 소프트웨어 아키텍처
-- 코드 품질
-- 설계 트레이드오프
-- 패턴 오남용
-- 모범 사례
-- 현대적 접근법
+- Design-Pattern
+- Dependency-Injection
+- GoF
+- SOLID
+- Software-Architecture
+- Code-Quality
+- Best-Practices
+- 디자인패턴
+- Testing
+- 소프트웨어아키텍처
+- 코드품질
 ---
 
 가장 논란이 많은 디자인 패턴인 Singleton의 장단점을 객관적으로 분석합니다. 전역 상태의 위험성, 테스트의 어려움, 멀티스레드 환경에서의 문제점과 대안 패턴을 탐구합니다.

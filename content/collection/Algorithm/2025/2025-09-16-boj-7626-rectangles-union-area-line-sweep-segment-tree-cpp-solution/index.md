@@ -11,68 +11,37 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-7626
-- cpp
 - C++
-- Line Sweep
-- 스위프라인
-- Scanline
-- 스캔라인
-- Segment Tree
-- 세그먼트 트리
-- Coordinate Compression
+- Segment-Tree
+- 세그먼트트리
+- Coordinate-Compression
 - 좌표압축
-- Rectangle Union
-- 직사각형
-- Union Area
-- 면적합집합
-- Axis-Aligned
-- 축정렬
-- Coverage
-- 덮임길이
-- Events
-- 이벤트
-- Data Structures
-- 자료구조
 - Implementation
+- Data-Structures
+- 자료구조
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Geometry
-- 기하
-- Sweeping
-- 스위핑
-- 64-bit
-- Long Long
-- 대용량입력
-- 빠른입출력
-- 커버카운트
-- 면적계산
-- 정수오버플로
+- IO
 image: "wordcloud.png"
 ---
 

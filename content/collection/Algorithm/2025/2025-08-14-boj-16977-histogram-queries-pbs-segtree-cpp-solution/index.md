@@ -7,78 +7,44 @@ categories:
 - "Algorithm"
 - "Segment Tree"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "백준"
-- "Problem-16977"
-- "cpp"
-- "C++"
-- "Python"
-- "Data Structures"
-- "자료구조"
-- "Implementation"
-- "구현"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Proof of Correctness"
-- "정당성 증명"
-- "Edge Cases"
-- "코너 케이스"
-- "Pitfalls"
-- "실수 포인트"
-- "Optimization"
-- "최적화"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Editorial"
-- "에디토리얼"
-- "Code Review"
-- "코드리뷰"
-- "Template"
-- "템플릿"
-- "Testing"
-- "테스트"
-- "Complexity Analysis"
-- "복잡도 분석"
-- "Invariant"
-- "불변식"
-- "Binary Search"
-- "이분탐색"
-- "Binary Search on Answer"
-- "답을 위한 이분탐색"
-- "Parallel Binary Search"
-- "병렬 이분탐색"
-- "Segment Tree"
-- "세그먼트 트리"
-- "Range Query"
-- "구간 질의"
-- "Histogram"
-- "히스토그램"
-- "Largest Rectangle"
-- "최대 직사각형"
-- "Sliding Window"
-- "슬라이딩윈도우"
-- "Offline Query"
-- "오프라인 쿼리"
-- "Coordinate Compression"
-- "좌표압축"
-- "Min on Window"
-- "윈도우 최솟값"
-- "Consecutive Ones"
-- "연속 구간"
-- "Boolean Segment Tree"
-- "불리언 세그먼트트리"
-- "Query Optimization"
-- "쿼리 최적화"
-- "Range Minimum"
-- "구간최솟값"
-- "Monotonic Predicate"
-- "단조성"
-- "Max Subarray of Ones"
-- "연속1최대"
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- C++
+- Python
+- Data-Structures
+- 자료구조
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- Pitfalls
+- 함정
+- Optimization
+- 최적화
+- Competitive-Programming
+- 경쟁프로그래밍
+- Editorial
+- 에디토리얼
+- Code-Review
+- 코드리뷰
+- Testing
+- 테스트
+- Complexity-Analysis
+- 복잡도분석
+- Binary-Search
+- 이분탐색
+- Segment-Tree
+- 세그먼트트리
+- Range-Query
+- Sliding-Window
+- Coordinate-Compression
+- 좌표압축
 image: "wordcloud.png"
 ---
 

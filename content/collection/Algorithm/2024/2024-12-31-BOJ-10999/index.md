@@ -6,15 +6,18 @@ categories:
 - Segment Tree
 - Range Query
 tags:
-- SegmentTree
-- LazyPropagation
 - Implementation
 - Optimization
-- O(log N)
-- DataStructure
-- Mathematics
-- RangeUpdate
-- RangeQuery
+- Time-Complexity
+- Data-Structures
+- Math
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 image: "index.png"
 date: 2024-01-01
 ---

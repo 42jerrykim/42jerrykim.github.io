@@ -5,9 +5,15 @@ title: "[Algorithm] C++/Python 백준 23808번 : 골뱅이 찍기 - ㅂ"
 categories: Algorithm
 tags:
 - Implementation
-- PatternPrinting
-- StringManipulation
-- Loops
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Python
+- Go
 image: "tmp_wordcloud.png"
 date: 2024-10-16
 ---

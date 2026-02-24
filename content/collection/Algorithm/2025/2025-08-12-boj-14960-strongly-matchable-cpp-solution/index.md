@@ -7,63 +7,23 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "14960"
-- "Strongly Matchable"
-- "강매칭성"
-- "Graph Theory"
-- "그래프 이론"
-- "Matching"
-- "매칭"
-- "Perfect Matching"
-- "완전 매칭"
-- "Hall's Theorem"
-- "홀의 결혼 정리"
-- "Kőnig's Theorem"
-- "쾨니그 정리"
-- "Maximum Matching"
-- "최대 매칭"
-- "Maximum Independent Set"
-- "최대 독립집합"
-- "Bipartite Graph"
-- "이분 그래프"
-- "Hopcroft–Karp"
-- "Hopcroft-Karp"
-- "HK"
-- "Network Flow"
-- "네트워크 플로우"
-- "Kőnig–Egerváry"
-- "코니그 에게르바리"
-- "Independent Set"
-- "독립집합"
-- "Complement"
-- "여그래프"
-- "Reduction"
-- "환원"
-- "Constructive"
-- "구성적"
-- "Proof Sketch"
-- "증명 개요"
-- "Algorithm Design"
-- "알고리즘 설계"
-- "Complexity"
-- "시간복잡도"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "Implementation"
-- "구현"
-- "ICPC"
-- "대전 리저널"
-- "2017 Daejeon"
-- "조합론"
-- "Combinatorics"
-- "Cut Condition"
-- "절단 조건"
+- BOJ
+- Baekjoon
+- 백준
+- Graph-Theory
+- 그래프이론
+- String
+- Graph
+- Network-Flow
+- Complexity-Analysis
+- 시간복잡도
+- C++
+- IO
+- Implementation
+- 구현
+- ICPC
+- 조합론
+- Combinatorics
 image: "wordcloud.png"
 ---
 

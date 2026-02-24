@@ -7,54 +7,18 @@ description: "파이썬 컨텍스트 매니저를 빠르게 쓰기 위한 치트
 lastmod: 2026-01-18
 collection_order: 12
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - context-manager
-  - context-managers
-  - 컨텍스트매니저
-  - with
-  - with-statement
-  - __enter__
-  - __exit__
-  - contextlib
-  - contextmanager
-  - resource
-  - 리소스
-  - cleanup
-  - 정리
-  - file
-  - 파일
-  - lock
-  - 락
-  - transaction
-  - 트랜잭션
-  - connection
-  - 연결
-  - database
+  - Quick-Reference
+  - Database
   - 데이터베이스
-  - exception
-  - 예외
   - error-handling
-  - 예외처리
-  - finally
-  - try
-  - suppress
-  - ExitStack
-  - closing
-  - best-practices
-  - 베스트프랙티스
+  - Best-Practices
   - pitfalls
   - 함정
-  - standard-library
-  - 표준라이브러리
-  - patterns
-  - 패턴
+  - Design-Pattern
 ---
 컨텍스트 매니저는 리소스의 획득과 해제를 안전하게 관리하는 파이썬의 핵심 패턴입니다. 이 치트시트는 with문, `__enter__/__exit__`, @contextmanager, 실무 패턴을 정리합니다.
 

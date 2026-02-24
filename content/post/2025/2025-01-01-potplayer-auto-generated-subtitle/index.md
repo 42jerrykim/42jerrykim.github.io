@@ -5,12 +5,10 @@ categories:
 tags:
 - Movie
 - AI
-- Subtitle
-- Auto
-- 팟플레이어
-- 자막
 - 영화
 - 드라마
+- Git
+- GitHub
 date: 2025-01-01
 image: Screenshot-2025-01-01-094009.png
 description: "팟플레이어 최신 버전에서 인공지능 기반 오디오 인식(AI Whisper) 기능을 활용해 영화, 드라마 등 동영상 파일에서 자동으로 정확하고 빠르게 한글 및 다국어 자막을 생성하는 방법과 모델 선택, 실용 팁을 자세히 안내합니다."

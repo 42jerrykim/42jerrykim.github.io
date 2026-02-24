@@ -7,58 +7,21 @@ title: "[Clean Architecture] 27. 경계: 선 긋기와 플러그인 아키텍처
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Boundary
-  - 경계
-  - Drawing Lines
-  - 선 긋기
-  - Plugin Architecture
-  - 플러그인 아키텍처
-  - Business Rules
-  - 비즈니스 규칙
+  - Clean-Architecture
+  - 클린아키텍처
+  - Edge-Cases
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - Database
   - 데이터베이스
-  - GUI
-  - UI
+  - Frontend
   - Interface
   - 인터페이스
-  - Dependency Inversion
-  - 의존성 역전
-  - Input
-  - 입력
-  - Output
-  - 출력
-  - Coupling
+  - Dependency-Injection
+  - 의존성주입
+  - IO
   - 결합도
-  - Decoupling
-  - 디커플링
-  - Core
-  - 코어
-  - Framework
-  - 프레임워크
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Decision Deferral
-  - 결정 지연
-  - FitNesse
-  - 핏네스
-  - Early Decision
-  - 조기 결정
-  - Late Decision
-  - 후기 결정
-  - Premature Decision
-  - 성급한 결정
-  - Component
-  - 컴포넌트
-  - Module
-  - 모듈
-  - Separation
-  - 분리
-  - Independence
-  - 독립성
-  - Testability
-  - 테스트 용이성
+  - Testing
 ---
 
 아키텍처에서 **경계(Boundary)**란 관심사를 분리하는 선이다. 경계의 한쪽에는 비즈니스 규칙이, 다른 쪽에는 세부사항이 있다. 경계를 제대로 그으면 **플러그인 아키텍처**가 된다.

@@ -10,54 +10,16 @@ categories:
   - Natural Language Processing
   - Open Source
 tags:
-  - DeepSeek-OCR
-  - Vision-Language Model
-  - VLM
-  - OCR
-  - Optical Character Recognition
-  - Context Compression
-  - Vision-Text Compression
-  - DeepEncoder
-  - MoE
-  - Mixture of Experts
-  - DeepSeek-AI
-  - Document Parsing
-  - Vision Tokens
-  - Text Tokens
-  - Compression Ratio
-  - High Resolution
-  - Window Attention
-  - Global Attention
-  - SAM
-  - CLIP
-  - OmniDocBench
-  - Fox Benchmark
-  - arXiv
-  - End-to-End OCR
-  - Multilingual OCR
-  - Chart Parsing
-  - Formula Recognition
-  - Geometry Parsing
-  - Document Understanding
-  - AI Research
-  - Deep Learning
-  - Neural Networks
-  - Computer Vision AI
   - 인공지능
   - 딥러닝
-  - 비전언어모델
-  - 문서인식
-  - 광학문자인식
-  - 컨텍스트압축
-  - 비전토큰압축
-  - 문서파싱
-  - 다국어OCR
-  - 오픈소스AI
-  - 머신러닝모델
-  - 고해상도처리
-  - 토큰최적화
-  - 문서이해
-  - AI기술혁신
+  - AI
+  - Python
+  - Go
+  - Bash
+  - Shell
+  - Git
+  - GitHub
+  - HTML
 image: "image.png"
 ---
 

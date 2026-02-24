@@ -2,35 +2,13 @@
 image: "tmp_wordcloud.png"
 description: "빌더 패턴은 복잡한 객체의 생성과 표현을 분리하여 객체 생성의 유연성과 가독성을 높이는 디자인 패턴입니다. 이 글에서는 Java 예제와 함께 실제 소프트웨어 개발에서의 활용 방법과 장점을 설명합니다."
 date: "2023-09-21T00:00:00Z"
-tag:
-- BuilderPattern
-- CreationalDesignPattern
-- Construction of complex objects
-- Separation of construction and representation
-- OptionalAttributes
-- JavaImplementation
-- BuilderClass
-- ComputerObject
-- Retrofit
-- Okhttp
-- ObjectCreationProblems
-- Flexibility
-- ObjectInitialization
-- NestedObjects
-- DirectorClass
-- TelescopingConstructor
-- DifferentRepresentations
-- Clean and flexible object creation
-- EffectiveJava
-- GoFDesignPatterns
-- CodingStyle
-- MaintainableCode
-- ConstructionAlgorithm
-- AssemblyMethod
-- JavaBeanPattern
-- Lombok @Builder annotation
-- MazeGame
-- Text and HTML documents
+tags:
+- Software-Architecture
+- Java
+- Design-Pattern
+- 디자인패턴
+- Process
+- Builder
 title: '[DesignPattern] Builder pattern - 생성과 표현의 분리'
 ---
 

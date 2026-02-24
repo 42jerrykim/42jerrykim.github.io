@@ -7,51 +7,17 @@ title: "[Clean Architecture] 37. 서비스: 아키텍처 경계인가?"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Service
-  - 서비스
-  - Microservice
+  - Clean-Architecture
+  - 클린아키텍처
   - 마이크로서비스
-  - Service Oriented Architecture
-  - SOA
-  - 서비스 지향 아키텍처
-  - Architecture Boundary
-  - 아키텍처 경계
-  - Decoupling
-  - 디커플링
-  - Independent Deployment
-  - 독립 배포
-  - Independent Development
-  - 독립 개발
-  - Network
-  - 네트워크
-  - Latency
-  - 지연
-  - Coupling
-  - 결합
+  - Networking
+  - Performance
+  - Software-Architecture
   - Interface
   - 인터페이스
-  - Shared Data
-  - 공유 데이터
-  - Cross Cutting Concern
-  - 횡단 관심사
-  - Taxi Aggregator
-  - 택시 집계
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Monolith
-  - 모놀리스
-  - Component
-  - 컴포넌트
-  - Function
-  - 함수
-  - Boundary
-  - 경계
-  - Fallacy
-  - 오류
-  - Misconception
-  - 오해
+  - 소프트웨어아키텍처
+  - Implementation
+  - Edge-Cases
 ---
 
 서비스는 아키텍처에서 특별한 위치를 차지하는가? 마틴은 **서비스에 대한 오해**를 지적한다.

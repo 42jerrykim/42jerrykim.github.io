@@ -10,60 +10,15 @@ categories:
 - Adventure
 - 20th Century Fox
 tags:
-- James Gray
-- Brad Pitt
-- Tommy Lee Jones
-- Ruth Negga
-- Liv Tyler
-- Donald Sutherland
-- Max Richter
-- Science Fiction
-- Space Drama
-- Psychological Drama
-- Father-Son Relationship
-- Space Odyssey
-- Isolation
-- Human Connection
-- Existentialism
-- Space Exploration
-- Mars Mission
-- Neptune Mission
-- Space Pirates
-- Moon Base
-- Psychological Evaluation
-- Emotional Suppression
-- Family Trauma
-- Cosmic Horror
-- Visual Poetry
-- Minimalist Storytelling
-- Voice-Over Narration
-- Cinematic Space
-- Realistic Space Travel
-- Psychological Thriller
-- Character Study
-- Philosophical Film
-- Space Western
-- Cosmic Loneliness
-- Human Condition
-- Redemption Arc
-- Emotional Journey
-- Space Survival
-- Father Complex
-- Abandonment Issues
-- Space Technology
-- Future Society
-- Space Colonies
-- Interplanetary Travel
-- Space Communication
-- Psychological Testing
-- Emotional Intelligence
-- Space Psychology
-- Cosmic Perspective
-- Human Scale
-- Space Architecture
-- Future Aesthetics
-- Space Sound Design
-- Minimalist Score
+- Sci-Fi
+- Movie
+- SF
+- Drama
+- Adventure
+- 영화
+- Review
+- 리뷰
+- Thriller
 image: "image.png"
 ---
 

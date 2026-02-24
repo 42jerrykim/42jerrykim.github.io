@@ -11,60 +11,35 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-12918
-- cpp
 - C++
 - Geometry
-- 기하
-- Euclidean Distance
-- 유클리드 거리
-- Symmetry
-- 대칭
-- Mirror
-- 좌우대칭
-- Assignment Problem
-- 할당 문제
-- Hungarian Algorithm
-- 헝가리안 알고리즘
-- Minimum Cost
-- 최소 비용
-- Perfect Matching
-- 완전 매칭
-- Bipartite Matching
-- 이분 매칭
-- Matching
-- 매칭
+- Bipartite-Matching
+- String
 - Optimization
 - 최적화
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
-- Competitive Programming
+- 함정
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Greedy
 - 그리디
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
 - Graph
 - 그래프
@@ -72,33 +47,26 @@ tags:
 - 트리
 - BFS
 - DFS
-- Shortest Path
+- Shortest-Path
 - 최단경로
 - Dijkstra
-- 다익스트라
-- Segment Tree
-- 세그먼트 트리
-- Fenwick Tree
-- 펜윅트리
-- Disjoint Set Union
-- 유니온파인드
-- Binary Search
+- Segment-Tree
+- 세그먼트트리
+- Fenwick-Tree
+- Disjoint-Set
+- Binary-Search
 - 이분탐색
-- Two Pointers
-- 투포인터
-- Sliding Window
-- 슬라이딩윈도우
+- Two-Pointers
+- Sliding-Window
 - Hashing
 - 해싱
-- String
 - 문자열
 - Math
 - 수학
-- Modulo
+- Modular-Arithmetic
 - 모듈러
 - Debugging
 - 디버깅
-- 정리정돈
 image: "wordcloud.png"
 ---
 

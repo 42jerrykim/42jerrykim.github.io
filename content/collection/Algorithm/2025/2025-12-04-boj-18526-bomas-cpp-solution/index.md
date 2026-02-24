@@ -11,60 +11,34 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-18526
 - C++
-- CPP
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
-- Sweep Line
-- 스위프라인
-- Tree DP
-- 트리 DP
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
-- KD-Tree
-- Spatial Index
-- 공간 인덱스
 - Geometry
-- 기하
-- Circular Regions
-- 원형 영역
-- Maximum Independent Set
-- 최대 독립 집합
-- Graph Theory
-- 그래프 이론
-- Tree Structure
-- 트리 구조
-- Plane Sweep
-- 평면 스위프
-- Data Structure
+- Graph-Theory
+- 그래프이론
+- Data-Structures
 - 자료구조
-- Offline Queries
-- 오프라인 쿼리
-- Range Query
-- 범위 쿼리
-- Nested Circles
-- 중첩된 원
-- Computational Geometry
-- 계산 기하
-- Time Complexity
+- Range-Query
+- Computational-Geometry
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
 - Optimization
 - 최적화
-- Code Review
+- Code-Review
 - 코드리뷰
-- Implementation Details
-- 구현 디테일
-- Edge Cases
-- 코너 케이스
+- Implementation
+- 구현
+- Edge-Cases
+- 엣지케이스
 - Testing
 - 테스트
-- Problem Solving
+- Problem-Solving
 - 문제해결
-- Acyclic Graph
-- 비순환 그래프
 image: "wordcloud.png"
 ---
 

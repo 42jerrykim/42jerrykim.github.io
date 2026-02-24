@@ -5,66 +5,19 @@ slug: getting-started-os-runtime-performance-tuning
 description: "OS·런타임 Low-latency 운영환경 트랙의 도입 챕터입니다. context switch/syscall/affinity/realtime scheduling의 책임 경계를 정리하고, 환경 변화가 지연시간 분포에 미치는 영향을 검증하는 방법을 소개합니다."
 tags:
   - Performance
-  - Performance Engineering
-  - Performance Optimization
-  - Low Latency
-  - Low-latency
-  - Microsecond
-  - Latency
-  - Benchmark
   - Profiling
   - OS
-  - Operating System
-  - Runtime
   - Linux
   - Windows
-  - Scheduling
-  - Realtime
-  - RT
-  - Context Switch
-  - Syscall
-  - CPU Pinning
-  - Affinity
-  - IRQ
-  - Timer
-  - Clock
-  - Timekeeping
-  - HFT
-  - cgroups
-  - cgroups v2
-  - mlock
-  - mlockall
-  - Signal Handling
-  - Game Engine
-  - Realtime Media
-  - Regression
-  - CI
-  - 측정
-  - 검증
+  - Concurrency
+  - Testing
+  - CI-CD
   - 성능
-  - 성능공학
-  - 성능 최적화
-  - 저지연
-  - 마이크로초
-  - 레이턴시
   - 프로파일링
   - 운영체제
-  - 런타임
   - 리눅스
   - 윈도우
-  - 스케줄링
-  - 실시간
-  - 컨텍스트 스위치
-  - 시스템콜
-  - CPU 고정
-  - CPU affinity
-  - 인터럽트
-  - 타이머
-  - 클럭
-  - 시간 측정
-  - HFT
-  - 성능 회귀
-  - 유지보수
+  - 코드품질
 ---
 
 이 트랙은 "코드는 빠른데 프로세스가 느린 이유"를 운영환경에서 찾고 고칩니다. µs 단위에서는 context switch, syscall, 스케줄링 정책, 코어 배치가 지연시간의 바닥을 결정합니다.

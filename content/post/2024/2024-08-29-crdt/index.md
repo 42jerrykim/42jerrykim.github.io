@@ -6,58 +6,17 @@ date: "2024-08-29T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-29-crdt.png
 tags:
-- CRDT
-- OT
-- Conflict-Free
-- ReplicatedDataTypes
-- OperationalTransformation
-- DistributedSystems
-- CollaborativeEditing
-- Real-time Collaboration
-- DataStructures
-- Peer-to-Peer
-- Consistency
-- Merging
-- State-based CRDTs
-- Operation-based CRDTs
-- LastWriteWins
-- LWWRegister
-- LWWMap
-- DataIntegrity
-- NetworkProtocols
-- Timestamping
-- MergingAlgorithms
-- Commutativity
-- Associativity
-- Idempotence
-- CollaborativeApplications
-- VersionControl
-- DataSynchronization
-- EventualConsistency
-- PerformanceOptimization
-- MemoryManagement
+- Data-Structures
+- Code-Quality
+- Performance
+- Memory
 - JavaScript
 - TypeScript
-- WebRTC
 - Redis
-- Figma
-- GoogleDocs
-- SoundCloud
-- Real-time Editing
-- UserExperience
-- ApplicationDevelopment
-- SoftwareEngineering
-- DataIntegrity
-- DataReplication
-- DataConsistency
-- DataMerging
-- DataTypes
-- DistributedDatabases
-- NoSQL
-- CloudComputing
-- SoftwareArchitecture
-- SystemDesign
-- AlgorithmDesign
+- Frontend
+- Implementation
+- Software-Architecture
+- Database
 title: '[Technology] CRDT(Conflict-Free Replicated Data Types)란'
 ---
 

@@ -4,6 +4,15 @@ description: "cmd는 윈도우 운영 체제에서 명령줄 환경을 제공하
 title: "cmd - 윈도우 명령어 인터프리터"
 date: 2022-01-01
 categories: CMD
+tags:
+- Windows
+- Shell
+- Terminal
+- Go
+- Tree
+- String
+- Command
+- Design-Pattern
 ---
 
 명령 프롬프트(실행 파일이름: cmd.exe)는 OS/2, 윈도우 임베디드 컴팩트 그리고 윈도우 NT 5.0 이상 기반 시스템의 명령어 인터프리터이다. MS-DOS와 윈도우 9x 시스템의 COMMAND.COM 또는 유닉스 시스템에서 쓰이던 셸의 아날로그 형태이다.

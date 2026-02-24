@@ -11,80 +11,56 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-17169
-- cpp
-- python
 - C++
 - Python
-- Data Structures
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Greedy
 - 그리디
 - Graph
 - 그래프
-- Min Cost Flow
-- 최소비용유량
-- Residual Graph
-- 잔여그래프
-- Shortest Path
+- Network-Flow
+- Shortest-Path
 - 최단경로
 - Dijkstra
-- 다익스트라
-- Binary Search
+- Binary-Search
 - 이분탐색
-- Two Pointers
-- 투포인터
-- Sliding Window
-- 슬라이딩윈도우
+- Two-Pointers
+- Sliding-Window
 - Hashing
 - 해싱
 - String
 - 문자열
 - Geometry
-- 기하
 - Math
 - 수학
-- Modulo
+- Modular-Arithmetic
 - 모듈러
-- Priority Queue
-- 우선순위 큐
-- Multiset
-- 세트
+- Priority-Queue
 - Heap
 - 힙
-- O(NlogN)
-- Greedy-Exchange
-- 교환논법
 image: "wordcloud.png"
 ---
 

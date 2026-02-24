@@ -6,69 +6,25 @@ lastmod: 2026-01-17
 collection_order: 2
 draft: true
 tags:
-  - OOAD
-  - OOA
-  - OOD
-  - Analysis
-  - Design
-  - What-vs-How
-  - Requirements
-  - 요구사항
-  - Requirement-Analysis
-  - 요구사항-분석
-  - Domain-Model
-  - 도메인-모델
-  - Design-Model
-  - 설계-모델
-  - Traceability
-  - 추적가능성
-  - Consistency
-  - 일관성
-  - Verifiability
-  - 검증가능성
+  - OOP
+  - Design-Pattern
+  - Software-Architecture
   - UML
-  - Use-Case
-  - 유스케이스
-  - Scenario
-  - 시나리오
-  - CRC
-  - CRC-Card
-  - Event-Storming
-  - 이벤트-스토밍
-  - Ubiquitous-Language
-  - 유비쿼터스-언어
   - Abstraction
   - 추상화
   - Encapsulation
   - 캡슐화
-  - Cohesion
   - 응집도
-  - Coupling
   - 결합도
-  - Architecture
-  - 아키텍처
-  - Layering
-  - 레이어
+  - 소프트웨어아키텍처
   - Clean-Architecture
-  - DDD
   - SOLID
-  - Design-Principles
   - 테스트
-  - Testability
+  - Testing
   - Refactoring
   - 리팩토링
   - Documentation
   - 문서화
-  - ADR
-  - Architecture-Decision-Record
-  - Modeling
-  - 모델링
-  - Stakeholder
-  - 이해관계자
-  - Non-Functional-Requirements
-  - 비기능-요구사항
-  - Quality-Attributes
-  - 품질-속성
 ---
 
 # 02. 분석과 설계의 핵심 개념

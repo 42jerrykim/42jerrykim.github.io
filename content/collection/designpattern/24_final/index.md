@@ -9,55 +9,26 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
+  - Design-Pattern
+  - 디자인패턴
   - GoF
-  - Gang of Four
-  - Software Design
-  - 소프트웨어 설계
-  - Creational Pattern
-  - 생성 패턴
-  - Structural Pattern
-  - 구조 패턴
-  - Behavioral Pattern
-  - 행위 패턴
-  - Object Oriented
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - 객체지향
   - OOP
-  - 객체지향 프로그래밍
   - SOLID
-  - Clean Code
-  - 클린 코드
+  - Clean-Code
   - Refactoring
   - 리팩토링
-  - Best Practices
-  - 모범 사례
-  - Code Quality
-  - 코드 품질
-  - Maintainability
-  - 유지보수성
-  - Extensibility
+  - Best-Practices
+  - Code-Quality
+  - 코드품질
   - 확장성
-  - Code Reusability
-  - 코드 재사용성
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Software Engineering
-  - 소프트웨어 공학
-  - Programming
-  - 프로그래밍
-  - Development
-  - 개발
+  - Implementation
   - Java
   - C++
   - Python
-  - C#
-  - Pattern Summary
-  - 패턴 요약
-  - Pattern Selection
-  - 패턴 선택
-  - Anti Pattern
-  - 안티 패턴
+  - CSharp
 ---
 
 이 글에서는 지금까지 학습한 GoF의 23가지 디자인 패턴을 총정리하고, 각 패턴을 언제 어떻게 선택해야 하는지, 그리고 실무에서 패턴을 효과적으로 적용하는 방법을 다룬다.

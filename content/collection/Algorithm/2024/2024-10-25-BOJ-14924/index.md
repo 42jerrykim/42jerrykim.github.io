@@ -6,13 +6,18 @@ categories:
 - Arithmetic
 - Math
 tags:
-- Arithmetic
-- Implementation
 - Math
+- Implementation
 - Simulation
 - Greedy
-- O(1)
-- Problem Type: Implementation
+- Time-Complexity
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 image: "tmp_wordcloud.png"
 date: 2024-10-25
 ---

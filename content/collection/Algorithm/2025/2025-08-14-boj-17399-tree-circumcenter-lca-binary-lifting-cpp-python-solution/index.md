@@ -11,9 +11,6 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-17399
-- cpp
-- python
 - C++
 - Python
 - Graph
@@ -21,66 +18,28 @@ tags:
 - Tree
 - 트리
 - LCA
-- Lowest Common Ancestor
-- 최소 공통 조상
-- Binary Lifting
-- 이진 승수
-- Distance
-- 거리
-- Distance on Tree
-- 트리 거리
-- Path
-- 경로
-- Kth Node
-- k번째 노드
+- Shortest-Path
 - BFS
-- 너비우선탐색
-- Depth
-- 깊이
-- Parent Table
-- 부모 테이블
-- Parity
-- 짝수성
-- Circumcenter
-- 외심
-- Median of Three
-- 세 점의 중앙
-- Steiner Point
-- 스타이너 포인트
-- Meeting Point
-- 교점
-- Proof of Correctness
-- 정당성 증명
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Complexity Analysis
-- 복잡도 분석
-- Edge Cases
-- 코너 케이스
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Implementation
 - 구현
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
 - Testing
 - 테스트
-- Invariant
-- 불변식
-- Tree Center
-- 트리 중심
-- Pairwise LCA
-- 쌍별 LCA
-- Even Difference
-- 짝수 차이
-- K-Path Step
-- 경로상 이동
 image: "wordcloud.png"
 ---
 

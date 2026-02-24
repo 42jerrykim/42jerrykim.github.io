@@ -8,15 +8,15 @@ categories:
 - Hash
 tags:
 - Trie
-- StringProcessing
-- HashTable
-- Hash
-- HashMap
-- HashSet
 - String
-- StringMatching
-- DataStructures
-- EfficientAlgorithms
+- Data-Structures
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 image: "tmp_wordcloud.png"
 date: 2024-10-21
 ---

@@ -9,71 +9,14 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - unspoiled
-  - unspoiled meaning
-  - unspoiled usage
-  - unspoiled examples
-  - unspoiled adjective
   - 영단어
   - 영어형용사
-  - unspoiled 의미
-  - unspoiled 용법
-  - unspoiled 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - untouched
-  - pristine
-  - pure
-  - innocent
-  - uncorrupted
-  - virgin
-  - natural
-  - preserved
-  - intact
-  - unchanged
-  - unpolluted
-  - unspoilt
-  - 훼손되지 않은
-  - 순수한
-  - 변하지 않은
-  - 천진난만한
-  - 부패하지 않은
-  - 자연 그대로
-  - 보존된
-  - 무결한
-  - 깨끗한
-  - 변질되지 않은
-  - travel
-  - nature
-  - character
-  - personality
-  - tourism
-  - environment
-  - literature
-  - coming of age
-  - innocence
-  - preservation
-  - authenticity
-  - charm
-  - beauty
-  - 여행
-  - 자연
-  - 성격
-  - 환경
-  - 문학
-  - 보존
-  - 진정성
-  - 매력
-  - 아름다움
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

@@ -10,86 +10,26 @@ categories:
 - "Geometry"
 - "Green's Theorem"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "17441"
-- "BOJ-17441"
-- "파리채 만들기"
-- "Fly Swatter Making"
-- "Math"
-- "수학"
-- "Geometry"
-- "기하"
-- "Computational Geometry"
-- "계산기하"
-- "Green's Theorem"
-- "그린 정리"
-- "Area"
-- "면적"
-- "Simple Polygon"
-- "단순다각형"
-- "Polygon"
-- "다각형"
-- "Centroid"
-- "무게중심"
-- "Moment"
-- "모멘트"
-- "Second Moment"
-- "2차 모멘트"
-- "Moment of Inertia"
-- "관성모멘트"
-- "Integral"
-- "적분"
-- "Double Integral"
-- "이중적분"
-- "Expectation"
-- "기댓값"
-- "Expected Value"
-- "Probability"
-- "확률"
-- "Uniform Distribution"
-- "균일분포"
-- "Independence"
-- "독립"
-- "Distance"
-- "거리"
-- "Squared Distance"
-- "거리 제곱"
-- "Euclidean Distance"
-- "유클리드 거리"
-- "Mean Squared Distance"
-- "평균 제곱거리"
-- "Shoelace Formula"
-- "신발끈 공식"
-- "Cross Product"
-- "외적"
-- "Vector"
-- "벡터"
-- "Numerical Stability"
-- "수치 안정성"
-- "Floating Point"
-- "부동소수점"
-- "long double"
-- "정밀도"
-- "O(N)"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "Precision"
-- "오차"
-- "Special Judge"
-- "스페셜 저지"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Math
+- 수학
+- Geometry
+- Computational-Geometry
+- Shortest-Path
+- Array
+- Edge-Cases
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Implementation
+- 구현
+- C++
+- IO
 image: "wordcloud.png"
 ---
 

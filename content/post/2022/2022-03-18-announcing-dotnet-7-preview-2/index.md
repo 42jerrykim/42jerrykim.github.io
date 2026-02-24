@@ -4,15 +4,16 @@ description: ".NET 7 Preview 2가 출시되어 RegEx 소스 생성기, NativeAOT
 date: "2022-03-18T00:00:00Z"
 header:
   teaser: https://media.vlpt.us/images/jinuku/post/e62f8f63-4001-46f9-b811-dc6f62f0828e/40cc3e52-745d-48b8-8a09-02c21efc36e5.png
-tag:
+tags:
 - CSharp
 - .NET
-- GarvageCollection
-- Programming
-- NativeAOT
-- RegEx
-- DotnetNew
-
+- Implementation
+- String
+- Git
+- GitHub
+- Tree
+- Review
+- 리뷰
 title: '[.NET] .NET 7 Preview 2 소개 - 더 새로운 경험'
 ---
 

@@ -3,21 +3,15 @@ draft: true
 title: "03. 제어 구조"
 description: "조건문과 반복문으로 프로그램 흐름을 제어하는 원리를 익힙니다. break/continue/else의 의미와 활용 기준을 이해하고 복잡한 분기 로직을 읽기 쉽게 구성합니다."
 tags:
-  - python
   - Python
   - 파이썬
-  - programming
-  - 프로그래밍
-  - software-engineering
-  - 소프트웨어공학
-  - computer-science
-  - 컴퓨터과학
+  - Implementation
+  - Software-Architecture
+  - Algorithm
+  - 알고리즘
   - backend
   - 백엔드
-  - development
-  - 개발
-  - best-practices
-  - 베스트프랙티스
+  - Best-Practices
   - clean-code
   - 클린코드
   - refactoring
@@ -30,7 +24,7 @@ tags:
   - 로깅
   - security
   - 보안
-  - performance
+  - Performance
   - 성능
   - concurrency
   - 동시성
@@ -38,19 +32,13 @@ tags:
   - 비동기
   - oop
   - 객체지향
-  - data-structures
+  - Data-Structures
   - 자료구조
-  - algorithms
-  - 알고리즘
-  - standard-library
-  - 표준라이브러리
-  - packaging
-  - 패키징
+  - DevOps
   - deployment
   - 배포
-  - architecture
-  - 아키텍처
-  - design-patterns
+  - 소프트웨어아키텍처
+  - Design-Pattern
   - 디자인패턴
   - web
   - 웹
@@ -58,15 +46,12 @@ tags:
   - 데이터베이스
   - networking
   - 네트워킹
-  - ci-cd
+  - CI-CD
   - 자동화
-  - documentation
+  - Documentation
   - 문서화
-  - git
-  - 버전관리
-  - tooling
-  - 개발도구
-  - code-quality
+  - Git
+  - Code-Quality
   - 코드품질
 lastmod: 2026-01-17
 collection_order: 3

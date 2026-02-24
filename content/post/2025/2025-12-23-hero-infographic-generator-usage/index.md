@@ -8,59 +8,22 @@ categories:
   - Blog
 tags:
   - Python
-  - Pillow
-  - ImageGeneration
-  - Infographic
-  - HeroImage
-  - OpenGraph
-  - OGImage
   - Hugo
-  - StaticSite
-  - BlogAutomation
   - Automation
-  - ContentWorkflow
-  - TechnicalWriting
-  - CLI
+  - Shell
   - JSON
-  - SpecDriven
-  - Template
-  - Reusable
-  - DesignSystem
-  - Layout
-  - Typography
-  - Font
-  - KoreanFont
-  - Unicode
-  - LineWrapping
-  - WordWrap
-  - Gradient
-  - Branding
-  - DarkTheme
-  - DataViz
-  - DevTools
+  - C++
   - Productivity
   - Windows
   - PowerShell
-  - Script
-  - AssetPipeline
-  - StaticAssets
   - Web
   - SEO
-  - SocialShare
-  - ContentManagement
   - 마크다운
   - 블로그
   - 자동화
-  - 대표이미지
-  - 썸네일
-  - 오픈그래프
-  - 정적사이트
   - 파이썬
-  - 스크립트
   - 워크플로우
   - 생산성
-  - 템플릿
-  - 재사용
 date: 2025-12-23
 lastmod: 2025-12-23
 image: image01.png

@@ -11,77 +11,42 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-14166
-- cpp
 - C++
 - USACO
-- USACO Platinum
-- 2016 December
-- Robotic Cow Herd
-- 로봇 소 무리
-- Fracturing Search
-- 가지치기 열거
-- Pruned DFS
 - 백트래킹
-- Enumeration
-- 조합 열거
-- Counting
-- 개수 세기
-- Binary Search
+- Math
+- Binary-Search
 - 이분탐색
-- Search
-- 탐색
 - Greedy
 - 그리디
 - Sorting
 - 정렬
-- upper_bound
-- Lower/Upper Bound
 - Implementation
 - 구현
-- Implementation Details
-- 구현 디테일
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Complexity Analysis
-- 복잡도 분석
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Invariant
-- 불변식
 - Backtracking
 - DFS
 - 재귀
-- Pruning
-- 가지치기
-- Persistent Segment Tree
-- 영속 세그먼트 트리
-- Alternate Solution
-- 대안 풀이
-- Value Compression
-- 값 압축
-- Integer Overflow
-- 오버플로
-- Fast IO
-- 빠른 입출력
+- IO
 image: "wordcloud.png"
 ---
 

@@ -12,70 +12,10 @@ categories:
 - State Management
 - Operation Extension
 tags:
-- Memento Pattern
-- Visitor Pattern
-- State Preservation
-- Undo Redo System
-- State Snapshot
-- Double Dispatch
-- Object Structure Traversal
-- Behavioral Patterns
-- Design Patterns
-- GoF Patterns
-- State Encapsulation
-- Operation Separation
-- Caretaker Pattern
-- Originator Pattern
-- Element Visitor
-- Composite Visitor
-- Tree Traversal
-- AST Processing
-- Document History
-- Version Control
-- State Rollback
-- Time Travel Debugging
-- External Operations
-- Structure Independence
-- Algorithm Extension
-- Open Closed Principle
-- Polymorphic Dispatch
-- Type Safety
-- Compiler Design
-- Data Structure Processing
-- Report Generation
-- Export Operations
-- 메멘토 패턴
-- 비지터 패턴
-- 상태 보존
-- 실행 취소 재실행 시스템
-- 상태 스냅샷
-- 이중 디스패치
-- 객체 구조 순회
-- 행동 패턴
-- 디자인 패턴
-- GoF 패턴
-- 상태 캡슐화
-- 연산 분리
-- 관리자 패턴
-- 생성자 패턴
-- 요소 비지터
-- 복합 비지터
-- 트리 순회
-- AST 처리
-- 문서 히스토리
-- 버전 제어
-- 상태 롤백
-- 시간 여행 디버깅
-- 외부 연산
-- 구조 독립성
-- 알고리즘 확장
-- 개방 폐쇄 원칙
-- 다형적 디스패치
-- 타입 안전성
-- 컴파일러 설계
-- 자료구조 처리
-- 보고서 생성
-- 내보내기 연산
+- Design-Pattern
+- GoF
+- SOLID
+- 디자인패턴
 ---
 
 Memento와 Visitor 패턴을 통해 상태 보존과 연산 분리를 탐구합니다. 과거 상태로의 복원과 객체 구조의 확장 가능한 설계 방법을 학습합니다.

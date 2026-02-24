@@ -4,31 +4,15 @@ description: "강화 학습(Reinforcement Learning, RL)의 핵심 개념, 주요
 categories: Reinforcement Learning
 date: "2023-07-17T00:00:00Z"
 tags:
-- ReinforcementLearning
-- MachineLearning
-- ArtificialIntelligence
-- DeepLearning
-- Q-Learning
-- SARSA
-- Deep Q-Networks
-- Deep Deterministic Policy Gradient
-- MarkovDecisionProcesses
-- ExplorationVsExploitation
-- RLApplications
-- RLAlgorithms
-- AIInGaming
-- AIInHealthcare
-- AIInRobotics
-- AI in Industrial Automation
-- AI in Stock Trading
-- AI in Text Summarization
-- AIInMarketing
-- AI in Image Processing
-- AI in Recommendation Systems
-- RLResources
-- OpenAIGym
-- RLInPractice
-- RLFAQs
+- Machine-Learning
+- Algorithm
+- 알고리즘
+- Action
+- Blog
+- 블로그
+- Gaming
+- 게임
+- AI
 title: '[Reinforcement Learning] Reinforcement Learning의 이해와 포괄적인 가이드'
 ---
 

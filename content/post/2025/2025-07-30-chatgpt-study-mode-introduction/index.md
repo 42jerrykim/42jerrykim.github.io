@@ -5,16 +5,18 @@ categories:
 - Education
 - ChatGPT
 date: 2025-07-30
-tags: 
+tags:
 - AI
 - ChatGPT
-- Study Mode
 - Education
-- Learning
-- AI Tutor
-- Personalized Learning
-- Interactive Learning
-- OpenAI
+- Math
+- LLM
+- GPT
+- Science
+- 과학
+- 교육
+- Innovation
+- Technology
 description: "OpenAI가 출시한 ChatGPT Study Mode는 학습에 특화된 AI 튜터 기능으로, 학생들이 더 효과적으로 학습할 수 있도록 도와주는 혁신적인 교육 도구이다."
 image: index.png
 ---

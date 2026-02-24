@@ -11,65 +11,27 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-13310
-- cpp
 - C++
-- Convex Hull
-- 볼록 껍질
-- Rotating Calipers
-- 회전하는 캘리퍼스
-- Ternary Search
-- 삼분 탐색
-- Computational Geometry
-- 전산 기하학
-- Diameter
-- 지름
-- Point Set
-- 점 집합
-- Line Sweep
-- 라인 스윕
-- Andrew's Algorithm
-- Data Structures
+- Computational-Geometry
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- O(N log N log T)
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Testing
 - 테스트
-- Fast I/O
-- 빠른 입출력
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
-- Unimodal
-- 일방향 함수
-- Three-Way Search
-- 삼분 탐색
-- Geometric Algorithm
-- 기하 알고리즘
-- Cross Product
-- 외적
-- Distance Calculation
-- 거리 계산
-- Long Long Integer
-- 롱롱 정수
-- Squared Distance
-- 제곱 거리
-- Large Coordinate
-- 큰 좌표
+- IO
+- Complexity-Analysis
+- 복잡도분석
 image: "wordcloud.png"
 ---
 

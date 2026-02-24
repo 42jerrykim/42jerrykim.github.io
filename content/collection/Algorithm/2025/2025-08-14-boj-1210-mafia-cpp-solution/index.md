@@ -11,74 +11,33 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-1210
-- cpp
 - C++
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Graph
 - 그래프
-- Flow
-- 플로우
-- Max Flow
-- 최대 유량
-- Min Cut
-- 최소 컷
-- Vertex Cut
-- 정점 컷
-- Node Splitting
-- 정점 분할
-- Dinic
-- 디닉
-- Network Flow
-- 네트워크 플로우
-- s-t Cut
-- s-t 컷
-- Undirected Graph
-- 무방향 그래프
-- BOI 2008
-- Mafia
-- 마피아
-- Minimum Vertex Separator
-- 최소 정점 분리집합
-- Cut Recovery
-- 컷 복원
-- Special Judge
-- 스페셜 저지
-- Safety
-- 안정성
-- Overflow
-- 오버플로
-- INF
-- 무한대
-- Implementation Details
-- 구현 디테일
+- Network-Flow
+- Code-Quality
 image: "wordcloud.png"
 ---
 

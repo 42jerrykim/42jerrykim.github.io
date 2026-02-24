@@ -9,52 +9,19 @@ tags:
   - Algorithm
   - 그래프
   - Graph
-  - 이분그래프
-  - BipartiteMatching
-  - 최대유량
-  - MaxFlow
-  - 최소비용최대유량
-  - MinCostMaxFlow
-  - MCMF
-  - 열혈강호
-  - 열혈강호6
-  - BOJ11409
+  - Network-Flow
   - C++
-  - cpp
-  - 스파스그래프
-  - SPFA
-  - 다익스트라
-  - 음수간선
-  - 음수비용
-  - 최대매칭
-  - 최댓값
-  - 최적화문제
-  - 문제풀이
-  - PS
-  - CompetitiveProgramming
+  - Dijkstra
+  - Problem-Solving
+  - Competitive-Programming
   - 코딩테스트
-  - CodingInterview
   - 구현
   - 자료구조
-  - 프로그래밍
-  - 기계식키보드아님
-  - 블로그정리
-  - 문제해설
-  - BOJ문제풀이
-  - 알고리즘설명
+  - Implementation
+  - Editorial
   - 튜토리얼
-  - 예제해설
   - 시간복잡도
-  - 그래프알고리즘
-  - 네트워크플로우
-  - NetworkFlow
-  - 교육용
-  - 학습자료
-  - ACMICPC
   - ICPC
-  - 한국어풀이
-  - 영어태그
-  - mincostflow
 date: 2025-12-11
 lastmod: 2025-12-11
 categories:

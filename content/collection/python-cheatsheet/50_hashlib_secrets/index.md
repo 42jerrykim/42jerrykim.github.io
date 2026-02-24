@@ -7,46 +7,14 @@ description: "파이썬 hashlib과 secrets 모듈을 빠르게 쓰기 위한 치
 lastmod: 2026-01-18
 collection_order: 50
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - hashlib
-  - secrets
-  - hash
-  - 해시
-  - md5
-  - sha1
-  - sha256
-  - sha512
-  - checksum
-  - 체크섬
-  - digest
-  - hexdigest
+  - Quick-Reference
   - security
   - 보안
-  - cryptography
-  - 암호화
-  - token
-  - 토큰
-  - random
-  - 난수
-  - secure-random
-  - 보안난수
-  - password
-  - 비밀번호
-  - compare_digest
-  - urlsafe
-  - token_hex
-  - token_bytes
-  - standard-library
-  - 표준라이브러리
-  - best-practices
-  - 베스트프랙티스
+  - Best-Practices
   - pitfalls
   - 함정
 ---

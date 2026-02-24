@@ -9,64 +9,15 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - run-down
-  - run-down meaning
-  - run-down usage
-  - run-down examples
-  - run-down adjective
   - 영단어
   - 영어형용사
-  - run-down 의미
-  - run-down 용법
-  - run-down 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - old
-  - dilapidated
-  - worn-out
-  - exhausted
-  - tired
-  - neglected
-  - shabby
-  - rundown
-  - 낡은
-  - 낡아빠진
-  - 쇠퇴한
-  - 피곤한
-  - 지친
-  - 황폐한
-  - 누추한
-  - 건물
-  - 부동산
-  - 사람의 상태
-  - 건강 상태
-  - real estate
-  - property
-  - condition
-  - physical state
-  - tiredness
-  - fatigue
-  - neglect
-  - decay
-  - deterioration
-  - 건축
-  - 부동산
-  - 건강
-  - 피로
-  - 낡음
-  - etymology
-  - origin
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
-  - study English
-  - vocabulary building
+  - Etymology
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

@@ -9,9 +9,15 @@ header:
 tags:
 - Trie
 - Recursion
-- StringProcessing
 - Optimization
-- O(N)
+- Time-Complexity
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 title: '[Algorithm] C++/Python 백준 5670번 : 휴대폰 자판'
 ---
 

@@ -10,104 +10,15 @@ categories:
 - Historical
 - 20th Century Fox
 tags:
-- Peter Weir
-- 피터 위어
-- Russell Crowe
-- 러셀 크로우
-- Paul Bettany
-- 폴 베타니
-- James D'Arcy
-- 제임스 다시
-- Max Pirkis
-- 맥스 퍼키스
-- Jack Aubrey
-- 잭 오브리
-- Stephen Maturin
-- 스티븐 머투린
-- Tom Pullings
-- 톰 풀링스
-- Hollom
-- 홀럼
-- Lord Blakeney
-- 블레이크니 경
-- HMS Surprise
-- HMS 서프라이즈
-- Acheron
-- 아케론
-- Royal Navy
-- 영국 해군
-- Napoleonic Wars
-- 나폴레옹 전쟁
-- Galápagos Islands
-- 갈라파고스 제도
-- Valparaíso
-- 발파라이소
-- Portsmouth
-- 포츠머스
-- Cape Horn
-- 케이프 혼
-- Privateer
-- 사략선
-- Age of Sail
-- 범선 시대
-- Naval Tactics
-- 해상 전술
-- Boarding Action
-- 백병전
-- Seamanship
-- 항해술
-- Best Cinematography
-- 아카데미 촬영상
-- Best Sound Editing
-- 아카데미 음향편집상
-- Baroque Music
-- 바로크 음악
-- Violin Cello Duet
-- 바이올린 첼로 듀엣
-- Musica notturna delle strade di Madrid
-- 보케리니 마드리드의 밤의 음악
-- Patrick O'Brian
-- 패트릭 오브라이언
-- Aubrey–Maturin series
-- 오브리–머투린 시리즈
-- Historical Authenticity
-- 역사적 고증
-- Ship-of-the-line Aesthetics
-- 해군 미술·함상미학
-- British Whaling Fleet
-- 영국 포경선단
-- Camouflage Ruse
-- 위장 전술
-- Decoy Raft
-- 미끼 뗏목
-- Self-surgery
-- 자가 수술
-- Marine Captain Howard
-- 해병대 하워드 대위
-- Russell Boyd
-- 러셀 보이드
-- Cinematographer
-- 촬영감독
-- Iva Davies
-- 아이바 데이비스
-- Christopher Gordon
-- 크리스토퍼 고든
-- Richard Tognetti
-- 리차드 토네티
-- Composer
-- 작곡가
-- Practical Effects
-- 실물 범선
-- Authentic Sound Design
-- 정통 음향 디자인
-- Handheld Cinematography
-- 핸드헬드 촬영
-- Natural Lighting
-- 자연광 촬영
-- Baroque Chamber Music
-- 바로크 실내악
-- Boccherini
-- 보케리니
+- Movie
+- Adventure
+- War
+- 영화
+- Review
+- 리뷰
+- Horror
+- Command
+- Design-Pattern
 image: "ij2NRlE2GKYjAObfB5WGGbArOAyVBHk40UUlx3ZAFfL5MQmd0IFxWtfxKOCDWVlxbpbIRLO-2kE3WZXM3JSpSw.webp"
 ---
 

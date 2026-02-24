@@ -9,53 +9,14 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - pigment
-  - pigment meaning
-  - pigment usage
-  - pigment examples
-  - pigment noun
   - 영단어
   - 영어명사
-  - pigment 의미
-  - pigment 용법
-  - pigment 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - color
-  - dye
-  - stain
-  - paint
-  - melanin
-  - chromatin
-  - 색소
-  - 염료
-  - 안료
-  - 색조
-  - 색칠
-  - 착색
-  - 색상 표현
-  - 미술 용어
-  - 예술 용어
-  - 의학 용어
-  - 과학 용어
-  - 생물학 용어
-  - 화학 용어
-  - 산업 용어
-  - 페인트
-  - 미용
-  - 성분
-  - 물질
-  - 분자
-  - 세포
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

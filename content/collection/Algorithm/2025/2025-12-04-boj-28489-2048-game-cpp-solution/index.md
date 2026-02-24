@@ -11,67 +11,23 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-28489
 - C++
-- CPP
-- Game AI
-- 게임 AI
-- Expectimax
-- Minimax
-- 미니맥스
-- Heuristic
-- 휴리스틱
-- Tree Search
-- 트리 탐색
-- Game Tree
-- 게임 트리
-- Interactive Problem
-- 인터랙티브 문제
-- Probabilistic Search
-- 확률 탐색
-- 2048 Game
-- Tile Puzzle
-- 타일 퍼즐
-- State Evaluation
-- 상태 평가
-- Board Game
-- 보드 게임
 - Simulation
 - 시뮬레이션
-- AI Algorithm
 - 인공지능
-- Decision Making
-- 의사결정
-- Expectation
-- 기댓값
-- Greedy Strategy
-- 탐욕 전략
-- Depth-First Search
 - DFS
 - Backtracking
 - 백트래킹
-- Recursive Search
-- 재귀 탐색
-- Game State
-- 게임 상태
-- Move Simulation
-- 이동 시뮬레이션
-- Tile Merging
-- 타일 병합
-- Pattern Recognition
-- 패턴 인식
 - Implementation
 - 구현
-- Competitive Programming
-- 경쟁 프로그래밍
-- Problem Solving
-- 문제 해결
-- Code Optimization
-- 코드 최적화
-- Data Structure
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Data-Structures
 - 자료구조
-- Complexity Analysis
-- 복잡도 분석
+- Complexity-Analysis
+- 복잡도분석
 image: wordcloud.png
 ---
 

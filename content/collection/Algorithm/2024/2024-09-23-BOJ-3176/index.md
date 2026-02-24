@@ -7,12 +7,16 @@ header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
 - LCA
-- SparseTable
-- BinaryLifting
 - DFS
 - Tree
-- DataStructures
-- GraphTraversal
+- Data-Structures
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 title: '[Algorithm] C++/Python 백준 3176번 : 도로 네트워크'
 ---
 

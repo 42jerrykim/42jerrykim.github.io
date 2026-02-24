@@ -11,43 +11,35 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-17134
-- cpp
 - C++
 - Python
-- Data Structures
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Greedy
 - 그리디
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
 - Graph
 - 그래프
@@ -55,36 +47,17 @@ tags:
 - 트리
 - BFS
 - DFS
-- Shortest Path
+- Shortest-Path
 - 최단경로
 - Dijkstra
-- 다익스트라
-- Number Theory
+- Number-Theory
 - 정수론
-- Prime
-- 소수
-- Sieve of Eratosthenes
-- 에라토스테네스의 체
-- Semiprime
-- 세미소수
 - Convolution
-- 컨볼루션
 - FFT
-- 고속푸리에변환
-- NTT
 - 수학
-- Modulo
+- Modular-Arithmetic
 - 모듈러
-- Implementation Details
-- 구현 디테일
-- Lemoine
-- 르모앙
-- Lemoine's Conjecture
-- 르모앙의 추측
-- Counting
-- 조합계산
-- Signal Processing
-- 신호처리
+- Math
 image: "wordcloud.png"
 ---
 

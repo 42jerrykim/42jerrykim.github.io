@@ -7,66 +7,27 @@ categories:
 - "BOJ"
 - "Algorithm"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "9063"
-- "Bounding Rectangle"
-- "Minimum Bounding Rectangle"
-- "AABB"
-- "Axis-Aligned Bounding Box"
-- "Geometry"
-- "Computational Geometry"
-- "좌표기하"
-- "직사각형"
-- "최소직사각형"
-- "넓이"
-- "면적"
-- "좌표"
-- "좌표평면"
-- "Points"
-- "Min"
-- "Max"
-- "최소값"
-- "최댓값"
-- "스캔"
-- "선형탐색"
-- "O(N)"
-- "시간복잡도"
-- "구현"
-- "수학"
-- "Algorithm"
-- "알고리즘"
-- "Coding Test"
-- "코딩테스트"
-- "Competitive Programming"
-- "CP"
-- "Python"
-- "파이썬"
-- "C++"
-- "씨플플"
-- "STL"
-- "ios::sync_with_stdio"
-- "sys.stdin"
-- "입력파싱"
-- "Input Parsing"
-- "Edge Cases"
-- "엣지케이스"
-- "N<=1"
-- "Long Long"
-- "정수 오버플로우"
-- "Integer Overflow"
-- "예제"
-- "테스트케이스"
-- "Solution"
-- "풀이"
-- "해설"
-- "Problem Solving"
-- "문제풀이"
-- "Geometry Basics"
-- "Rectangle Area"
-- "Without Sorting"
-- "No Data Structure"
+- BOJ
+- Baekjoon
+- 백준
+- Geometry
+- Computational-Geometry
+- Time-Complexity
+- 시간복잡도
+- 구현
+- 수학
+- Algorithm
+- 알고리즘
+- Coding-Test
+- 코딩테스트
+- Competitive-Programming
+- Python
+- 파이썬
+- C++
+- Edge-Cases
+- 엣지케이스
+- Editorial
+- Problem-Solving
 image: "wordcloud.png"
 ---
 

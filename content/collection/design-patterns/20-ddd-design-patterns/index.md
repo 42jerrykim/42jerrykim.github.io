@@ -12,66 +12,11 @@ categories:
 - Architectural Patterns
 - Enterprise Patterns
 tags:
-- Domain Driven Design
-- DDD Building Blocks
-- Entity Pattern
-- Value Object
-- Aggregate Root
-- Repository Pattern
-- Domain Service
-- Application Service
-- Ubiquitous Language
-- Bounded Context
-- Context Mapping
-- Anti Corruption Layer
-- CQRS Pattern
-- Event Sourcing
-- Domain Events
-- Specification Pattern
-- Factory Pattern
-- Strategy Pattern
-- Template Method
-- Observer Pattern
-- Command Pattern
-- Enterprise Patterns
-- Architectural Design
-- Business Logic
-- Domain Modeling
-- Hexagonal Architecture
-- Clean Architecture
+- Clean-Architecture
 - Microservices
-- Event Driven Architecture
-- Saga Pattern
-- 도메인 주도 설계
-- DDD 빌딩 블록
-- 엔티티 패턴
-- 값 객체
-- 애그리거트 루트
-- 리포지토리 패턴
-- 도메인 서비스
-- 애플리케이션 서비스
-- 보편 언어
-- 경계 컨텍스트
-- 컨텍스트 매핑
-- 부패 방지 계층
-- CQRS 패턴
-- 이벤트 소싱
-- 도메인 이벤트
-- 명세 패턴
-- 팩토리 패턴
-- 전략 패턴
-- 템플릿 메서드
-- 옵저버 패턴
-- 커맨드 패턴
-- 엔터프라이즈 패턴
-- 아키텍처 설계
-- 비즈니스 로직
-- 도메인 모델링
-- 헥사고날 아키텍처
-- 클린 아키텍처
+- 소프트웨어아키텍처
+- 클린아키텍처
 - 마이크로서비스
-- 이벤트 주도 아키텍처
-- 사가 패턴
 ---
 
 Domain-Driven Design과 디자인 패턴의 융합을 탐구합니다. Aggregate, Repository, Domain Event 등 DDD 전술 패턴을 통한 비즈니스 도메인 모델링을 학습합니다.

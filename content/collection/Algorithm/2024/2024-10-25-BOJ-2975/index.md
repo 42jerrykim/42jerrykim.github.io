@@ -8,9 +8,14 @@ categories:
 tags:
 - Implementation
 - Simulation
-- I/O Optimization
-- ConditionalLogic
-- BasicMath
+- Algorithm
+- Math
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 image: "tmp_wordcloud.png"
 date: 2024-10-25
 ---

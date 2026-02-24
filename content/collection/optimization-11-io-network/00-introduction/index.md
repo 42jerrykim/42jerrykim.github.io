@@ -5,64 +5,13 @@ slug: getting-started-io-performance-tuning
 description: "Low-latency I/O 최적화 트랙의 도입 챕터입니다. I/O 패턴, 비동기 I/O, zero-copy, memory-mapped I/O의 책임 범위를 정리하고, I/O 병목을 측정·검증하는 기본 접근을 소개합니다."
 tags:
   - Performance
-  - Performance Engineering
-  - Performance Optimization
-  - Low Latency
-  - Low-latency
-  - Microsecond
-  - Latency
-  - Throughput
-  - Benchmark
   - Profiling
-  - I/O
-  - Input Output
-  - File I/O
-  - Disk I/O
   - Async
-  - Asynchronous
-  - io_uring
-  - epoll
-  - IOCP
-  - AIO
-  - Zero Copy
-  - sendfile
-  - splice
-  - mmap
-  - Memory Mapped
-  - Page Cache
-  - Direct I/O
-  - Buffered I/O
-  - File System
-  - Block Device
-  - NVMe
-  - SSD
-  - Storage
-  - Vectored I/O
-  - readv
-  - writev
-  - WAL
-  - Write-Ahead Log
-  - fsync
-  - File Locking
-  - 측정
-  - 검증
+  - Testing
   - 성능
-  - 성능공학
-  - 성능 최적화
-  - 저지연
-  - 마이크로초
-  - 레이턴시
-  - 처리량
-  - 벤치마크
   - 프로파일링
-  - 입출력
-  - 파일 I/O
-  - 디스크 I/O
+  - IO
   - 비동기
-  - 메모리 매핑
-  - 페이지 캐시
-  - 파일시스템
-  - 스토리지
 ---
 
 이 트랙은 "데이터가 저장장치를 오가는 경로"의 지연시간을 줄이는 영역을 책임집니다. µs 단위에서는 시스템콜 비용, 복사 횟수, I/O 스케줄링이 지연시간의 상당 부분을 차지합니다.

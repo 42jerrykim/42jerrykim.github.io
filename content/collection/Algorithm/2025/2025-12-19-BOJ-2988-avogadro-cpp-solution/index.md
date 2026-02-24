@@ -9,85 +9,38 @@ categories:
 - "Graph"
 - "Functional Graph"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "2988"
-- "BOJ-2988"
-- "아보가드로"
-- "Avogadro"
-- "Avogadro's law"
-- "COCI"
-- "COCI 2007/2008"
-- "Graph"
-- "그래프"
-- "Directed Graph"
-- "유향 그래프"
-- "Functional Graph"
-- "함수 그래프"
-- "Permutation"
-- "순열"
-- "Mapping"
-- "사상"
-- "Cycle"
-- "사이클"
-- "Directed Cycle"
-- "유향 사이클"
-- "Indegree"
-- "진입 차수"
-- "Topological Pruning"
-- "위상 제거"
-- "Kahn"
-- "칸 알고리즘"
-- "Queue"
-- "큐"
-- "BFS"
-- "너비 우선 탐색"
-- "Closure"
-- "폐포"
-- "All-or-nothing"
-- "전부 아니면 전무"
-- "Component"
-- "컴포넌트"
-- "SCC"
-- "강한 연결 요소"
-- "Reachability"
-- "도달성"
-- "Invariant"
-- "불변식"
-- "Greedy"
-- "그리디"
-- "Elimination"
-- "제거"
-- "Pruning"
-- "가지치기"
-- "Implementation"
-- "구현"
-- "Counting"
-- "카운팅"
-- "Multiset"
-- "다중집합"
-- "Sorting"
-- "정렬"
-- "Proof"
-- "정당성"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Edge Case"
-- "엣지 케이스"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Graph
+- 그래프
+- Combinatorics
+- Queue
+- 큐
+- BFS
+- Software-Architecture
+- Greedy
+- 그리디
+- Implementation
+- 구현
+- Math
+- Sorting
+- 정렬
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- Edge-Cases
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

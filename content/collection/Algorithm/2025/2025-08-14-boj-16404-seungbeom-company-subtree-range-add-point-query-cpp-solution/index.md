@@ -11,63 +11,36 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-16404
-- cpp
 - C++
-- Fenwick Tree
-- 펜윅트리
-- Binary Indexed Tree
-- 바이너리 인덱스 트리
-- Euler Tour
-- 오일러 투어
-- 오일러 경로
-- Subtree
-- 서브트리
-- Range Update
-- 구간 갱신
-- Point Query
-- 점 질의
+- Fenwick-Tree
+- Binary-Indexed-Tree
+- Euler-Tour
+- Segment-Tree
 - Tree
 - 트리
 - DFS
-- Iterative DFS
-- 반복 DFS
 - Graph
 - 그래프
 - Implementation
 - 구현
-- Data Structures
+- Data-Structures
 - 자료구조
-- Prefix Sum
-- 누적합
-- Time Complexity
+- Prefix-Sum
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Invariant
-- 불변식
-- Range Add
-- 구간 추가
-- Point Sum
-- 점 합
-- I/O Optimization
-- 입출력 최적화
-- Fast IO
-- 빠른 입출력
+- IO
 image: "wordcloud.png"
 ---
 

@@ -6,26 +6,14 @@ categories:
 tags:
 - Windows
 - RDP
-- RemoteDesktop
-- RemoteSecurity
-- WindowsGuide
-- TechGuide
-- ITGuide
-- 원격데스크톱
-- 작업표시줄
-- 원격접속
-- 원격작업
 - 문제해결
-- 시스템설정
-- 업무효율
-- 원격지원
-- 윈도우설정
-- 기술지원
-- 보안설정
-- 네트워크설정
-- 업무자동화
-- 원격근무
-- IT가이드
+- PowerShell
+- REST
+- API
+- Dynamic-Programming
+- DP
+- Prompt-Engineering
+- AI
 image: "Screenshot-2025-01-10-152606.png"
 date: 2025-01-10
 ---

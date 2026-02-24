@@ -9,10 +9,11 @@ header:
   teaser: /plantuml/md-sample-sequence.svg
 tags:
 - Jekyll
-- Plantuml
 - markdown
-- diagram
-- Image
+- Git
+- GitHub
+- Action
+- Blog
 title: '[Jekyll] Jekyll에서 Plantuml 사용하기'
 ---
 

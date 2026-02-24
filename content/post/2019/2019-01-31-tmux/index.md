@@ -5,9 +5,12 @@ categories:
 date: "2019-01-31T00:00:00Z"
 description: '[Util] Tmux'
 tags:
-- Tips
-- Tool
 - tmux
+- Git
+- GitHub
+- Linux
+- Terminal
+- Networking
 title: '[Util] Tmux'
 ---
 

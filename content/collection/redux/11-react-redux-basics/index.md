@@ -3,7 +3,15 @@ draft: true
 title: "[Redux] 11. React-Redux 시작하기 - Provider와 connect"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "React", "React-Redux", "Provider", "connect", "HOC", "Higher Order Component", "State Management", "상태관리", "리액트", "리덕스", "웹개발", "프론트엔드", "Component", "컴포넌트", "Props", "Store", "스토어", "mapStateToProps", "mapDispatchToProps", "Integration", "통합", "Binding", "바인딩", "React Integration", "리액트통합", "Redux Store", "리덕스스토어", "Context", "컨텍스트", "JavaScript", "TypeScript", "개발", "코딩", "React Components", "컴포넌트패턴", "Container Component", "Presentational Component", "UI Component", "Smart Component", "Dumb Component", "Best Practices", "모범사례", "Redux Tutorial", "개발자가이드"]
+tags:
+- React
+- 프론트엔드
+- Software-Architecture
+- Nuance
+- JavaScript
+- TypeScript
+- Implementation
+- Best-Practices
 description: "React와 Redux를 연결하는 React-Redux 라이브러리 완벽 마스터. Provider로 Store 제공, connect HOC로 컴포넌트 연결, mapStateToProps와 mapDispatchToProps 패턴을 실전 예제로 학습합니다"
 series: ["Redux 완전 정복"]
 series_order: 11

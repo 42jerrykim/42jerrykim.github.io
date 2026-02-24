@@ -7,16 +7,15 @@ categories:
 - "AI 활용"
 - "학습"
 tags:
-- "ChatGPT"
-- "Claude"
-- "프롬프트"
-- "대학생"
-- "Study"
-- "Career"
-- "Life"
-- "학습전략"
-- "연구"
-- "자기계발"
+- ChatGPT
+- Career
+- Guide
+- Go
+- REST
+- API
+- Deep-Learning
+- AI
+- Prompt-Engineering
 image: "wordcloud.png"
 ---
 

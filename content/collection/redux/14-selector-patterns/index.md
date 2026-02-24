@@ -3,7 +3,17 @@ draft: true
 title: "[Redux] 14. 데이터 선택자 - Selector 패턴"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "Selector", "Reselect", "Data Selection", "데이터선택", "Memoization", "메모이제이션", "Performance", "성능최적화", "Derived State", "파생상태", "웹개발", "프론트엔드", "리액트", "리덕스", "createSelector", "Selector Pattern", "셀렉터패턴", "Computed Values", "계산된값", "State Management", "상태관리", "JavaScript", "TypeScript", "타입스크립트", "개발", "코딩", "Redux Patterns", "리덕스패턴", "Normalization", "정규화", "Data Transformation", "데이터변환", "Cache", "캐시", "Pure Functions", "순수함수", "Input Selectors", "Output Selectors", "Selector Composition", "셀렉터조합", "Best Practices", "모범사례", "Clean Code", "클린코드", "Redux Tutorial", "개발자가이드"]
+tags:
+- Memoization
+- Performance
+- 프론트엔드
+- JavaScript
+- TypeScript
+- Implementation
+- Cache
+- Best-Practices
+- Clean-Code
+- 클린코드
 description: "Redux Selector 패턴과 Reselect 라이브러리 완벽 마스터. 효율적인 데이터 선택, 메모이제이션으로 성능 향상, Selector 조합으로 재사용 가능한 로직 작성법을 실전 예제로 학습합니다"
 series: ["Redux 완전 정복"]
 series_order: 14

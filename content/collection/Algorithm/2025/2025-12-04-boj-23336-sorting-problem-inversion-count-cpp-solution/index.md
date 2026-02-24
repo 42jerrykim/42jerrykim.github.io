@@ -3,55 +3,27 @@ title: "[Algorithm] C++ 백준 123336번 A Sorting Problem - 역순쌍 개수"
 description: "인접한 원소만 swap 가능할 때 배열 정렬에 필요한 최소 swap 횟수를 구하는 문제. 병합 정렬을 이용한 역순쌍(inversion count) 계산으로 O(n log n) 시간에 해결합니다."
 date: 2025-12-04
 lastmod: 2025-12-04
-tags: 
+tags:
   - BOJ
   - sorting
-  - inversion count
-  - merge sort
-  - 역순쌍
-  - 병합정렬
-  - 배열 정렬
-  - 최소 스왑
-  - adjacent swap
   - 알고리즘
-  - 문제 풀이
   - C++
-  - 프로그래밍
-  - 정렬 알고리즘
-  - 분할 정복
-  - divide and conquer
-  - competitive programming
+  - Implementation
+  - Divide-and-Conquer
+  - Competitive-Programming
   - algorithm
-  - coding
-  - solution
-  - BOJ 문제
-  - 온라인 저지
   - 백준
-  - 치환
-  - permutation
-  - 복잡도
-  - time complexity
+  - Combinatorics
+  - Time-Complexity
   - 구현
-  - implementation
   - 최적화
   - optimization
-  - 데이터 구조
-  - data structure
+  - Data-Structures
   - 그래프
   - 수학
-  - mathematics
-  - 조합
-  - combination
-  - 경우의 수
-  - counting
-  - 알고리즘 문제
-  - 프로그래밍 문제
-  - 코딩 테스트
-  - coding test
-  - 인터뷰
-  - interview
-  - 알고리즘 공부
-  - algorithm study
+  - Math
+  - 코딩테스트
+  - Coding-Test
 image: wordcloud.png
 ---
 

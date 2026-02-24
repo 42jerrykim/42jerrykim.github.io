@@ -11,63 +11,40 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-8885
-- cpp
 - C++
-- python
 - Python
-- Data Structures
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
-- Sliding Window
-- 슬라이딩윈도우
-- Monotonic Queue
-- 모노토닉 큐
-- Histogram
-- 히스토그램
-- Largest Rectangle
-- 최대직사각형
+- Complexity-Analysis
+- 복잡도분석
+- Sliding-Window
 - Geometry
-- 기하
 - Math
 - 수학
-- Water Displacement
-- 수위상승
-- Volume
-- 체적
-- Binary Search
+- Binary-Search
 - 이분탐색
 - Debugging
 - 디버깅
-- Implementation Details
-- 구현 디테일
 image: "wordcloud.png"
 ---
 

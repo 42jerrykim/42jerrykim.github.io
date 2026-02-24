@@ -9,59 +9,17 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - steaming
-  - steaming meaning
-  - steaming usage
-  - steaming examples
-  - steaming adjective
   - 영단어
   - 영어형용사
-  - steaming 의미
-  - steaming 용법
-  - steaming 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - hot
-  - furious
-  - angry
-  - rapid
-  - fast
-  - quick
   - swift
-  - boiling
-  - smoking
-  - vaporous
-  - steaming hot
-  - steaming mad
-  - steaming pace
-  - 수증기
-  - 김
-  - 화난
-  - 분노
-  - 빠른
-  - 신속한
-  - 빠르게
-  - 요리
-  - 요리용어
-  - 감정 표현
-  - 날씨
-  - 스포츠
-  - 일상 표현
-  - 비즈니스 용어
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
-  - etymology
-  - adjective usage
-  - English learning
-  - vocabulary building
-  - study English
+  - 일상표현
+  - Grammar
+  - Pronunciation
+  - Etymology
 image: wordcloud.png
 ---
 

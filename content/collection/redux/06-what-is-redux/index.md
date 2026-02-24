@@ -3,7 +3,20 @@ draft: true
 title: "[Redux] 06. Redux란 무엇인가 - Flux 아키텍처와 상태 관리"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "상태관리", "State Management", "Flux", "Flux Architecture", "플럭스아키텍처", "아키텍처", "Architecture", "웹개발", "프론트엔드", "React", "리액트", "단방향데이터흐름", "Unidirectional Data Flow", "Redux Principles", "리덕스원칙", "Predictable State", "예측가능한상태", "Store", "스토어", "Action", "액션", "Reducer", "리듀서", "Single Source of Truth", "단일진실공급원", "Immutability", "불변성", "Pure Functions", "순수함수", "개발", "코딩", "JavaScript", "TypeScript", "Application State", "애플리케이션상태", "Client State", "클라이언트상태", "Global State", "전역상태", "Redux Core", "리덕스코어", "Design Pattern", "디자인패턴", "Software Architecture", "소프트웨어아키텍처", "Best Practices", "모범사례", "Redux Tutorial", "리덕스튜토리얼", "개발자가이드"]
+tags:
+- 소프트웨어아키텍처
+- Software-Architecture
+- 프론트엔드
+- React
+- Action
+- 액션
+- Code-Quality
+- Implementation
+- JavaScript
+- TypeScript
+- Design-Pattern
+- 디자인패턴
+- Best-Practices
 description: "Redux의 탄생 배경과 핵심 철학 완벽 이해. Flux 아키텍처의 등장부터 Redux의 3가지 원칙, 언제 Redux가 필요한지까지 상태 관리의 본질을 깊이 있게 학습합니다"
 series: ["Redux 완전 정복"]
 series_order: 6

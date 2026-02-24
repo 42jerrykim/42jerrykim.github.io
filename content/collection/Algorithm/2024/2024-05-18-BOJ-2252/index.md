@@ -7,7 +7,15 @@ header:
   teaser: /assets/images/2024/topological_sort_process.png
 tags:
 - Graph
-- TopologicalSort
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Python
+- Go
 title: '[Algorithm] C++ 백준 2252번 : 줄 세우기'
 ---
 

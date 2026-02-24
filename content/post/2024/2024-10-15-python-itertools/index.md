@@ -4,60 +4,14 @@ description: "이 글에서는 Python의 표준 라이브러리 itertools 모듈
 title: "[Python] itertools 모듈"
 categories: Python
 tags:
-- itertools
-- FunctionalProgramming
-- higher-order functions
-- LazyEvaluation
-- currying
-- PartialFunctions
-- takewhile
-- dropwhile
-- groupby
+- Functional-Programming
 - Python
-- programming
-- coding
-- efficiency
-- iterators
-- DataProcessing
-- algorithms
-- CodeReusability
-- modularity
-- FunctionalComposition
-- performance
-- collections
-- ItertoolsModule
-- PythonFeatures
-- ProgrammingConcepts
-- SoftwareDevelopment
-- DataStructures
-- PythonLibraries
-- CodingTechniques
-- PythonTips
-- AdvancedPython
-- PythonProgramming
-- PythonIterators
-- FunctionalProgrammingConcepts
-- PythonItertoolsFunctions
-- PythonExamples
-- PythonTutorials
-- PythonBestPractices
-- PythonCoding
-- PythonEfficiency
-- PythonPerformance
-- PythonDataManipulation
-- PythonCollections
-- PythonAlgorithms
-- PythonDesignPatterns
-- PythonFunctionalProgramming
-- PythonProgrammingTechniques
-- PythonCodeOptimization
-- Python programming best practices
-- PythonCodingStandards
-- PythonProgrammingResources
-- PythonLearning
-- PythonCommunity
-- PythonDevelopers
-- PythonEnthusiasts
+- Implementation
+- Performance
+- Data-Structures
+- Algorithm
+- Code-Quality
+- Software-Architecture
 image: "tmp_wordcloud.png"
 ---
 

@@ -9,54 +9,24 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
-  - Chain of Responsibility
-  - 책임 연쇄
-  - Behavioral Pattern
-  - 행위 패턴
+  - Design-Pattern
+  - 디자인패턴
   - GoF
-  - Gang of Four
-  - Handler
-  - 핸들러
-  - Request
-  - 요청
-  - Successor
-  - 후속자
-  - Loose Coupling
-  - 느슨한 결합
-  - Decoupling
-  - 분리
-  - Middleware
-  - 미들웨어
-  - Filter
-  - 필터
-  - Pipeline
-  - 파이프라인
-  - Event Handling
-  - 이벤트 처리
-  - Exception Handling
-  - 예외 처리
+  - Software-Architecture
+  - Implementation
   - Logging
   - 로깅
   - Authentication
   - 인증
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Code-Quality
+  - 코드품질
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - Servlet Filter
-  - Spring Interceptor
-  - Express Middleware
-  - DOM Event
+  - CSharp
 ---
 
 책임 연쇄 패턴(Chain of Responsibility Pattern)은 요청을 처리할 수 있는 객체들을 체인 형태로 연결하여, 요청이 처리될 때까지 체인을 따라 전달하는 행위 디자인 패턴이다. 이 패턴을 사용하면 요청을 보내는 객체와 처리하는 객체 사이의 결합도를 낮추고, 동적으로 처리자를 추가하거나 변경할 수 있다.

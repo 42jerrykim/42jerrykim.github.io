@@ -5,10 +5,12 @@ categories:
 - Linux
 date: "2021-11-11T00:00:00Z"
 tags:
-- Cpp
+- C++
 - C
 - Linux
-- Signal
+- Action
+- HTML
+- Async
 title: '[Linux] Custom Signal을 만드는 방법'
 ---
 

@@ -7,59 +7,25 @@ title: "[Clean Architecture] 42. 웹은 세부사항이다"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
+  - Clean-Architecture
+  - 클린아키텍처
   - Web
   - 웹
-  - GUI
-  - 그래픽 사용자 인터페이스
-  - Client Server
-  - 클라이언트 서버
-  - Browser
-  - 브라우저
+  - Frontend
   - HTTP
   - REST
   - GraphQL
   - HTML
   - JavaScript
-  - Single Page Application
-  - SPA
-  - Server Side Rendering
-  - SSR
-  - Pendulum
-  - 진자
-  - Oscillation
-  - 진동
   - Terminal
   - 터미널
-  - Mainframe
-  - 메인프레임
-  - Desktop
-  - 데스크톱
   - Mobile
   - 모바일
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Details
-  - 세부사항
-  - Business Rules
-  - 비즈니스 규칙
-  - UI
-  - 사용자 인터페이스
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - Technology
-  - 기술
   - History
   - 역사
-  - Change
-  - 변화
-  - Client
-  - 클라이언트
-  - Server
-  - 서버
-  - Thick Client
-  - 팻 클라이언트
-  - Thin Client
-  - 씬 클라이언트
 ---
 
 웹은 아키텍처에서 **세부사항**이다. 비즈니스 규칙은 데이터가 웹으로 전달되는지, 콘솔로 전달되는지 **신경 쓰지 않아야** 한다.

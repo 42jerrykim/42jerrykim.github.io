@@ -7,65 +7,31 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "17439"
-- "Flower Shop"
-- "꽃집"
-- "DP"
-- "Dynamic Programming"
-- "구간 DP"
-- "Interval DP"
-- "연속 구간"
-- "Interval Partition"
-- "분할"
-- "Prefix Sum"
-- "누적합"
-- "Parametric Search"
-- "파라메트릭 서치"
-- "Aliens Trick"
-- "Alien’s Trick"
-- "Monotone Queue"
-- "단조 큐"
-- "Deque"
-- "큐"
-- "Cross Point"
-- "교점"
-- "Line Intersection"
-- "교차점"
-- "CHT"
-- "Convex Hull Trick"
-- "Li Chao Tree"
-- "리차오 트리"
-- "Optimization"
-- "최적화"
-- "Binary Search"
-- "이분 탐색"
-- "O(N log N)"
-- "시간복잡도"
-- "Complexity"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast-IO"
-- "빠른입출력"
-- "Problem-Solving"
-- "PS"
-- "Competitive-Programming"
-- "컴퓨티티브-프로그래밍"
-- "Editorial"
-- "해설"
-- "Solution-Code"
-- "정답-코드"
-- "Slope"
-- "Slope Optimization"
-- "Segment Cost"
-- "구간 비용"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- DP
+- Dynamic-Programming
+- Divide-and-Conquer
+- Prefix-Sum
+- Binary-Search
+- Deque
+- 큐
+- Optimization
+- 최적화
+- 이분탐색
+- Time-Complexity
+- 시간복잡도
+- Complexity-Analysis
+- Implementation
+- 구현
+- C++
+- IO
+- Problem-Solving
+- Competitive-Programming
+- Editorial
 image: "wordcloud.png"
 ---
 

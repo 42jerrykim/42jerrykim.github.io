@@ -12,77 +12,32 @@ tags:
   - BOJ
   - 백준
   - Baekjoon
-  - Problem-8464
   - C++
-  - CPP
   - Math
   - 수학
-  - Number Theory
+  - Number-Theory
   - 정수론
-  - Mobius
-  - Möbius
-  - 모비우스
-  - Inclusion Exclusion
-  - 포함배제
-  - Squarefree
-  - 제곱인수없음
-  - Non-Squarefree
-  - 제곱인수있음
-  - Binary Search
+  - Binary-Search
   - 이분탐색
-  - Counting
-  - 개수세기
-  - Multiplicative Function
-  - 곱셈적 함수
-  - Floor Division
-  - 내림나눗셈
-  - Square
-  - 제곱
-  - Density
-  - 밀도
-  - sqrt
-  - 제곱근
-  - Complexity
+  - Complexity-Analysis
   - 시간복잡도
-  - Space Complexity
+  - Space-Complexity
   - 공간복잡도
   - Implementation
   - 구현
-  - Edge Cases
-  - 코너 케이스
-  - Proof of Correctness
-  - 정당성 증명
+  - Edge-Cases
+  - 엣지케이스
   - Optimization
   - 최적화
   - Performance
-  - 성능최적화
-  - Big-O
-  - O(sqrt n)
-  - O(log n)
-  - Inclusion-Exclusion Principle
-  - 원리
-  - Precomputation
-  - 전처리
-  - Sieve
-  - 체
-  - Möbius Sieve
-  - 모비우스 체
-  - Integer Sequences
-  - 정수 수열
-  - nth Element
-  - n번째
-  - Problem Solving
-  - 문제풀이
+  - Time-Complexity
+  - Problem-Solving
   - Editorial
   - 에디토리얼
   - Tutorial
   - 튜토리얼
-  - Tips
-  - 팁
   - Pitfalls
-  - 실수 포인트
-  - Overflow
-  - 오버플로
+  - 함정
 image: "wordcloud.png"
 ---
 

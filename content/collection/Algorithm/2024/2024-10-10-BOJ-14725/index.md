@@ -9,8 +9,14 @@ tags:
 - Trie
 - DFS
 - Recursion
-- DataStructures
-- StringProcessing
+- Data-Structures
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 title: '[Algorithm] C++/Python 백준 14725번 : 개미굴'
 ---
 

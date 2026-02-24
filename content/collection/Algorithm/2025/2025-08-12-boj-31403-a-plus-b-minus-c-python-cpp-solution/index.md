@@ -7,63 +7,29 @@ categories:
 - "BOJ"
 - "Algorithm"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "31403"
-- "A + B - C"
-- "문자열"
-- "String"
-- "Concatenation"
-- "이어붙이기"
-- "Parsing"
-- "파싱"
-- "입출력"
-- "I/O"
-- "Python"
-- "파이썬"
-- "C++"
-- "CPP"
-- "Implementation"
-- "구현"
-- "사칙연산"
-- "덧셈"
-- "뺄셈"
-- "숫자연산"
-- "정수"
-- "문자열변환"
-- "Type Conversion"
-- "stoll"
-- "stoi"
-- "int"
-- "문제풀이"
-- "해설"
-- "코딩테스트"
-- "Coding Interview"
-- "알고리즘"
-- "기초문제"
-- "쉬운문제"
-- "Math"
-- "수학"
-- "빠른입출력"
-- "Fast IO"
-- "ios::sync_with_stdio(false)"
-- "cin.tie(nullptr)"
-- "sys.stdin.read"
-- "시간복잡도"
-- "공간복잡도"
-- "Time Complexity"
-- "Space Complexity"
-- "Greedy"
-- "Data Types"
-- "자료형"
-- "문자열처리"
-- "문자열연산"
-- "정수변환"
-- "Edge Cases"
-- "테스트케이스"
-- "백준기초"
-- "풀이정리"
+- BOJ
+- Baekjoon
+- 백준
+- 문자열
+- String
+- Implementation
+- IO
+- Python
+- 파이썬
+- C++
+- 구현
+- Problem-Solving
+- Editorial
+- 코딩테스트
+- 알고리즘
+- Math
+- 수학
+- 시간복잡도
+- 공간복잡도
+- Time-Complexity
+- Space-Complexity
+- Greedy
+- Edge-Cases
 image: "wordcloud.png"
 ---
 

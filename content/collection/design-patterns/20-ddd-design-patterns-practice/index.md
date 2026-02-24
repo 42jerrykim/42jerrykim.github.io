@@ -13,42 +13,13 @@ categories:
 - Practice
 - Business Logic
 tags:
-- DDD Practice
-- Domain Driven Design
-- Aggregate Pattern
-- Repository Pattern
-- Domain Service
-- Factory Pattern
-- Bounded Context
-- Ubiquitous Language
-- Business Logic
-- Domain Modeling
-- Entity Design
-- Value Object
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Software Architecture
-- Enterprise Patterns
-- 도메인 주도 설계 실습
-- DDD 실습
-- 애그리게이트 패턴
-- 리포지토리 패턴
-- 도메인 서비스
-- 팩토리 패턴
-- 경계 컨텍스트
-- 유비쿼터스 언어
-- 비즈니스 로직
-- 도메인 모델링
-- 엔티티 설계
-- 값 객체
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 소프트웨어 아키텍처
-- 엔터프라이즈 패턴
+- Tutorial
+- Implementation
+- Design-Pattern
+- Software-Architecture
+- 구현
+- 디자인패턴
+- 소프트웨어아키텍처
 ---
 
 이 실습에서는 도서관 도메인 모델링과 전자상거래 주문 처리를 통해 DDD 패턴을 직접 구현합니다.

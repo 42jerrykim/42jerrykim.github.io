@@ -12,71 +12,25 @@ tags:
   - BOJ
   - 백준
   - Baekjoon
-  - Problem-5051
   - C++
-  - CPP
   - Math
   - 수학
-  - Number Theory
+  - Number-Theory
   - 정수론
-  - Modular Arithmetic
-  - 모듈러 연산
-  - Modulo
+  - Modular-Arithmetic
   - 모듈러
-  - Pythagoras
-  - 피타고라스
-  - Pythagorean Theorem
-  - 피타고라스의 정리
-  - Squared Residue
-  - 제곱 나머지
-  - Residue Class
-  - 나머지 클래스
   - Convolution
-  - 컨볼루션
-  - Cyclic Convolution
-  - 순환 컨볼루션
-  - Circular Convolution
-  - 원형 컨볼루션
   - FFT
-  - 고속 푸리에 변환
-  - NTT
-  - 폴리노미얼 곱셈
-  - Polynomial Multiplication
-  - Complex Numbers
-  - 복소수
-  - Rounding
-  - 반올림
-  - Precision
-  - 정밀도
-  - Folding
-  - 접기
-  - FFT Convolution
-  - FFT Fold
-  - Counting
-  - 개수세기
+  - Edge-Cases
   - Combinatorics
   - 조합론
-  - Ordered Pairs
-  - 순서쌍
-  - Unordered Pairs
-  - 무순서 쌍
-  - a<=b
-  - 대칭 보정
-  - Proof of Correctness
-  - 정당성 증명
-  - Time Complexity
+  - Time-Complexity
   - 시간복잡도
-  - Space Complexity
+  - Space-Complexity
   - 공간복잡도
   - Implementation
   - 구현
-  - Edge Cases
-  - 코너 케이스
-  - Overflow Safe
-  - 오버플로 방지
-  - 64-bit Integer
-  - 64비트 정수
-  - long long
+  - 엣지케이스
 image: "wordcloud.png"
 ---
 

@@ -7,63 +7,19 @@ title: "[Clean Architecture] 24. 아키텍처 서론"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - System Design
-  - 시스템 설계
-  - Architecture Goal
-  - 아키텍처 목표
-  - Development
-  - 개발
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Implementation
   - Deployment
   - 배포
-  - Operation
-  - 운영
-  - Maintenance
-  - 유지보수
-  - Options Open
-  - 선택지 열기
-  - Decision Deferral
-  - 결정 지연
-  - Policy
-  - 정책
-  - Details
-  - 세부사항
-  - Use Case
-  - 유스케이스
-  - Business Rules
-  - 비즈니스 규칙
-  - Independence
-  - 독립성
-  - Framework Independence
-  - 프레임워크 독립성
-  - Database Independence
-  - 데이터베이스 독립성
-  - UI Independence
-  - UI 독립성
-  - Testability
-  - 테스트 용이성
-  - Flexibility
-  - 유연성
-  - Maintainability
-  - 유지보수성
-  - Architect
-  - 아키텍트
-  - Programmer
-  - 프로그래머
+  - 코드품질
+  - Security
+  - Testing
+  - Code-Quality
   - SOLID
-  - Component Principles
-  - 컴포넌트 원칙
-  - Boundary
-  - 경계
-  - Layers
-  - 계층
-  - Concentric Circles
-  - 동심원
-  - Dependency Rule
-  - 의존성 규칙
+  - Edge-Cases
 ---
 
 지금까지 프로그래밍 패러다임, SOLID 원칙, 컴포넌트 원칙을 살펴보았다. 이제 이 모든 것을 통합하는 **아키텍처**를 다룰 차례다. 아키텍처란 무엇이고, 좋은 아키텍처는 어떤 특성을 가지는가?

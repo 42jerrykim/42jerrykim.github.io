@@ -11,65 +11,37 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-13261
-- cpp
 - C++
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
 - DP
-- DP Optimization
-- DP 최적화
-- Divide and Conquer DP
-- 분할정복 DP
-- Divide and Conquer Optimization
-- 분할정복 최적화
-- DnC Optimization
-- Monge
-- Quadrangle Inequality
-- 단조성
-- Monotonicity
-- Partition DP
-- 구간 분할
-- Grouping
-- 그룹화
-- Range Cost
-- 구간 비용
-- Prefix Sum
-- 누적합
+- Prefix-Sum
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Complexity Analysis
-- 복잡도 분석
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
 - Testing
 - 테스트
-- Invariant
-- 불변식
 - Array
 - 배열
 - Greedy
 - 그리디
-- Binary Search
+- Binary-Search
 - 이분탐색
-- Implementation Details
-- 구현 디테일
-- Prison
-- 탈옥
 image: "wordcloud.png"
 ---
 

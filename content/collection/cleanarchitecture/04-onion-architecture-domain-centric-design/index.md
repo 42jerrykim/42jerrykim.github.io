@@ -7,66 +7,22 @@ title: "[Clean Architecture] 04. 어니언 아키텍처: 도메인 중심 설계
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Onion Architecture
-  - 양파 아키텍처
-  - Jeffrey Palermo
-  - 제프리 팔레르모
-  - Domain Model
-  - 도메인 모델
-  - Domain Driven Design
-  - DDD
-  - 도메인 주도 설계
-  - Domain Services
-  - 도메인 서비스
-  - Application Services
-  - 애플리케이션 서비스
-  - Infrastructure
-  - 인프라스트럭처
-  - Dependency Inversion
-  - 의존성 역전
-  - Concentric Circles
-  - 동심원
-  - Core Domain
-  - 핵심 도메인
-  - Business Logic
-  - 비즈니스 로직
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Architecture Pattern
-  - 아키텍처 패턴
-  - Testability
-  - 테스트 용이성
-  - Maintainability
-  - 유지보수성
-  - Coupling
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
+  - Dependency-Injection
+  - 의존성주입
+  - 소프트웨어아키텍처
+  - Design-Pattern
+  - Testing
+  - Code-Quality
+  - 코드품질
   - 결합도
   - Interface
   - 인터페이스
   - Abstraction
   - 추상화
-  - Repository Pattern
-  - 리포지토리 패턴
-  - Unit of Work
-  - Service Layer
-  - 서비스 계층
-  - Entity
-  - 엔터티
-  - Value Object
-  - 값 객체
-  - Aggregate
-  - 애그리게잇
-  - Database Independence
-  - 데이터베이스 독립성
-  - Framework Independence
-  - 프레임워크 독립성
-  - External Dependencies
-  - 외부 의존성
-  - Application Core
-  - 애플리케이션 코어
-  - Boundary
-  - 경계
+  - Edge-Cases
 ---
 
 2008년, 제프리 팔레르모(Jeffrey Palermo)는 자신의 블로그에 "The Onion Architecture"라는 시리즈 글을 게시했다. 육각형 아키텍처의 아이디어를 계승하면서, 더 명확한 계층 구조와 의존성 규칙을 제시한 이 아키텍처는 Clean Architecture의 또 다른 중요한 선조가 되었다.

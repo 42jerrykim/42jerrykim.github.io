@@ -10,83 +10,30 @@ categories:
 - "SCC"
 - "Tarjan"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "13232"
-- "BOJ-13232"
-- "Domain clusters"
-- "Domain Clusters"
-- "도메인 클러스터"
-- "Graph"
-- "그래프"
-- "Directed Graph"
-- "유향 그래프"
-- "Reachability"
-- "도달 가능"
-- "Transitive Closure"
-- "전이 폐쇄"
-- "Connectivity"
-- "연결성"
-- "Strongly Connected Components"
-- "Strongly Connected Component"
-- "SCC"
-- "강한 연결 요소"
-- "강연결요소"
-- "Mutual Reachability"
-- "상호 도달"
-- "Equivalence Relation"
-- "동치 관계"
-- "Condensation Graph"
-- "축약 그래프"
-- "DAG"
-- "위상"
-- "Tarjan"
-- "Tarjan Algorithm"
-- "타잔"
-- "Kosaraju"
-- "코사라주"
-- "DFS"
-- "깊이 우선 탐색"
-- "Depth First Search"
-- "Stack"
-- "스택"
-- "Lowlink"
-- "lowlink"
-- "Discovery Time"
-- "방문 순서"
-- "Component Size"
-- "컴포넌트 크기"
-- "Maximum"
-- "최대값"
-- "Implementation"
-- "구현"
-- "Fast IO"
-- "빠른 입출력"
-- "fread"
-- "Adjacency List"
-- "인접 리스트"
-- "Edge List"
-- "간선 리스트"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(D+L)"
-- "512MB"
-- "2 seconds"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "STL"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Edge Case"
-- "엣지 케이스"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Graph
+- 그래프
+- DFS
+- Stack
+- 스택
+- Implementation
+- 구현
+- IO
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Edge-Cases
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

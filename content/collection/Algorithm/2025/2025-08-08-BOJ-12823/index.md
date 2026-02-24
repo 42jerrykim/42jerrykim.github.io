@@ -9,54 +9,20 @@ description: "BOJ 12823 Critical Projects 문제다. DAG에서 모든 정점이 
 tags:
   - Algorithm
   - 알고리즘
-  - Graph Theory
-  - 그래프 이론
-  - DAG
-  - 방향 비순환 그래프
-  - Topological Sort
-  - 위상 정렬
-  - Kahn's Algorithm
-  - 칸 알고리즘
-  - Reachability
-  - 도달 가능성
-  - Difference Array
-  - 차분 배열
-  - Prefix Sum
-  - 접두사 합
-  - Suffix Sum
-  - 접미사 합
-  - Adjacency List
-  - 인접 리스트
-  - Forward-star
-  - 포워드 스타
-  - In-degree
-  - 진입 차수
-  - Out-degree
-  - 진출 차수
-  - Linear Time
-  - 선형 시간
-  - "O(N+M)"
-  - 빠른 입출력
-  - Fast I/O
-  - getchar_unlocked
-  - Critical Vertex
-  - 임계 정점
-  - Partial Order
-  - 부분 순서
-  - Transitivity
-  - 추이성
+  - Graph-Theory
+  - 그래프이론
+  - Topological-Sort
+  - Graph
+  - Data-Structures
+  - Prefix-Sum
+  - Time-Complexity
+  - IO
   - Queue
   - 큐
-  - Memory Optimization
-  - 메모리 최적화
+  - Memory
   - BOJ
   - 백준
-  - "C++"
-  - "C++17"
-  - Topological Order
-  - 위상 순서
-  - Large Input
-  - 대용량 입력
+  - C++
 date: 2025-08-08
 image: wordcloud.png
 ---

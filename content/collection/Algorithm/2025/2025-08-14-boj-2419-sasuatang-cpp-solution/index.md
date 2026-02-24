@@ -11,43 +11,32 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-2419
-- cpp
 - C++
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
-- Code Review
+- Code-Review
 - 코드리뷰
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
-- Dynamic Programming
+- Complexity-Analysis
+- 복잡도분석
+- Dynamic-Programming
 - 동적계획법
-- Interval DP
-- 구간 DP
-- Two Pointers
-- 투포인터
+- Two-Pointers
 - Greedy
 - 그리디
 - Graph
@@ -56,30 +45,21 @@ tags:
 - 트리
 - BFS
 - DFS
-- Shortest Path
+- Shortest-Path
 - 최단경로
 - Dijkstra
-- 다익스트라
-- Binary Search
+- Binary-Search
 - 이분탐색
-- Sliding Window
-- 슬라이딩윈도우
+- Sliding-Window
 - Hashing
 - 해싱
 - String
 - 문자열
 - Geometry
-- 기하
 - Math
 - 수학
-- Modulo
+- Modular-Arithmetic
 - 모듈러
-- Weighted Distance
-- 가중 이동거리
-- Left-Right DP
-- 좌우 포인터 DP
-- BOI 2009
-- 사수아탕
 image: "wordcloud.png"
 ---
 

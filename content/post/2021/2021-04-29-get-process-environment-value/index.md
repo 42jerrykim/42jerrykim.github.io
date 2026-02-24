@@ -6,11 +6,11 @@ categories:
 date: "2021-04-29T00:00:00Z"
 tags:
 - Shell
-- environ
-- proc
-- process
-- environment
-- xargs
+- OS
+- Bash
+- Linux
+- Memory
+- Process
 title: '[Shell] 리눅스 실행 프로세스의 환경변수 알아보기'
 ---
 

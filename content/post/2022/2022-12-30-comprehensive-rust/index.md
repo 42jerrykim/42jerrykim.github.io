@@ -4,8 +4,14 @@ description: "Comprehensive Rust는 Rust 언어의 기초부터 고급 개념까
 date: "2022-12-30T00:00:00Z"
 header:
   teaser: /assets/images/undefined/rust-social-wide.jpg
-tag:
+tags:
 - Rust
+- Go
+- Git
+- GitHub
+- HTML
+- Memory
+- Concurrency
 title: '[Rust] Welcome to Comprehensive Rust'
 ---
 

@@ -7,68 +7,28 @@ collection_order: 7
 draft: true
 tags:
   - UML
-  - Class-Diagram
-  - 클래스-다이어그램
-  - Association
-  - 연관
-  - Aggregation
-  - 집합
   - Composition
   - 합성
-  - Generalization
-  - 일반화
   - Inheritance
   - 상속
-  - Realization
-  - 실현
   - Interface
   - 인터페이스
-  - Dependency
-  - 의존성
-  - Multiplicity
-  - 다중성
-  - Lifecycle
-  - 생명주기
-  - Cohesion
+  - Dependency-Injection
+  - Software-Architecture
   - 응집도
-  - Coupling
   - 결합도
-  - Domain-Model
-  - 도메인-모델
-  - Design-Model
-  - 설계-모델
-  - Modeling
-  - 모델링
-  - OOAD
-  - OOA
-  - OOD
+  - OOP
   - Encapsulation
   - 캡슐화
   - Abstraction
   - 추상화
   - SOLID
-  - SRP
-  - LSP
-  - ISP
-  - DIP
-  - Value-Object
-  - 밸류-오브젝트
-  - Entity
-  - 엔티티
-  - DDD
-  - Bounded-Context
-  - Aggregate
-  - Repository
-  - API-Design
-  - API-설계
   - Refactoring
   - 리팩토링
-  - Testability
-  - 테스트가능성
+  - Testing
   - Documentation
   - 문서화
-  - Architecture
-  - 아키텍처
+  - 소프트웨어아키텍처
 ---
 
 # 07. 클래스 다이어그램과 관계 모델링

@@ -12,7 +12,6 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-16741
 - C++
 - Greedy
 - 그리디
@@ -20,48 +19,12 @@ tags:
 - 최적화
 - Sorting
 - 정렬
-- Problem Solving
+- Problem-Solving
 - 문제해결
 - ICPC
-- Asia Yokohama
-- Emergency Evacuation
-- 긴급 탈출
-- Seating Arrangement
-- 좌석 배치
-- Aisle Movement
-- 통로 이동
-- Passenger Evacuation
-- 승객 탈출
-- Time Minimization
-- 시간 최소화
-- Game Theory
-- 게임 이론
-- Combinatorial Optimization
-- 조합 최적화
-- Backtracking Prevention
-- 백트래킹 방지
-- Diagonal Assignment
-- 대각선 할당
-- Collision Avoidance
-- 충돌 회피
-- Step-wise Movement
-- 단계별 이동
-- Seat Configuration
-- 좌석 설정
-- Exit Queue
-- 탈출 대기열
-- Constraint Satisfaction
-- 제약 충족
-- Optimal Placement
-- 최적 배치
-- Data Structure
+- Game-Theory
+- Data-Structures
 - 자료구조
-- Mathematical Proof
-- 수학적 증명
-- Edge Case Handling
-- 엣지케이스 처리
-- Time Complexity Analysis
-- 시간복잡도 분석
 image: "wordcloud.png"
 ---
 

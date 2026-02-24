@@ -11,88 +11,35 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-13896
-- cpp
 - C++
 - Implementation
 - 구현
 - Tree
 - 트리
 - LCA
-- 최소공통조상
-- Binary Lifting
-- 이진 승진
-- Jump Pointers
-- 점프 포인터
-- Euler Tour
-- 오일러 투어
-- Subtree Size
-- 서브트리 크기
-- Rooted Tree
-- 루트 트리
-- Ancestor Check
-- 조상 판정
-- isAncestor
-- Depth
-- 깊이
-- Parent
-- 부모
-- Preprocessing
-- 전처리
+- Euler-Tour
+- Graph
 - DFS
-- 깊이우선탐색
-- Iterative DFS
-- 반복 DFS
-- Stack DFS
-- 스택 DFS
-- Queries
-- 쿼리
-- Online Queries
-- 온라인 쿼리
-- Dynamic Root
-- 동적 루트
-- Path
-- 경로
-- Path to Capital
-- 수도 경로
-- Tax Handling
-- 세금 처리
-- Component Size
-- 컴포넌트 크기
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
-- Implementation Details
-- 구현 디테일
-- Template
-- 템플릿
 - Testing
 - 테스트
 - Debugging
 - 디버깅
-- Invariant
-- 불변식
-- Graph
 - 그래프
-- Tree Queries
-- 트리 쿼리
-- Bangkok Regional
-- 방콕 리저널
 - ICPC
-- 아이시피씨
 image: "wordcloud.png"
 ---
 

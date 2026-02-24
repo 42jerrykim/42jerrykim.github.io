@@ -9,52 +9,23 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
+  - Design-Pattern
+  - 디자인패턴
   - Iterator
-  - 반복자
-  - Behavioral Pattern
-  - 행위 패턴
   - GoF
-  - Gang of Four
-  - Collection
-  - 컬렉션
-  - Aggregate
-  - 집합체
-  - Traversal
-  - 순회
-  - Cursor
-  - 커서
-  - hasNext
-  - next
-  - Internal Iterator
-  - 내부 반복자
-  - External Iterator
-  - 외부 반복자
+  - IDE
   - Encapsulation
   - 캡슐화
-  - Single Responsibility
-  - 단일 책임
-  - Iterable
-  - For Each
-  - Generator
-  - 제너레이터
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - Code-Quality
+  - 코드품질
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - ArrayList
-  - LinkedList
-  - HashMap
-  - Stream API
+  - CSharp
 ---
 
 반복자 패턴(Iterator Pattern)은 컬렉션의 내부 구조를 노출하지 않고 그 안의 요소들을 순차적으로 접근할 수 있게 해주는 행위 디자인 패턴이다. 이 패턴을 사용하면 다양한 종류의 컬렉션(배열, 리스트, 트리 등)을 동일한 방식으로 순회할 수 있다.

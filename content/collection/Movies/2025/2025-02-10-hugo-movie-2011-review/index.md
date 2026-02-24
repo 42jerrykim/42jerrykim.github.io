@@ -11,55 +11,16 @@ categories:
 - Fantasy
 - Paramount Pictures
 tags:
-- Martin Scorsese
-- Asa Butterfield
-- Chloë Grace Moretz
-- Ben Kingsley
-- Sacha Baron Cohen
-- Helen McCrory
-- Ray Winstone
-- Howard Shore
 - Drama
 - Adventure
 - Family
 - Fantasy
-- Historical
-- Coming-of-Age
-- Metacinema
-- Period Drama
-- 3D Technology
-- Visual Effects
 - Cinematography
-- Production Design
-- Sound Design
-- Classical Music
-- Technical Innovation
-- Traditional Filmmaking
-- Orphan Protagonist
-- 1930s Setting
-- Paris Background
-- French Culture
-- Film History
-- Art Preservation
-- Family Drama
-- Friendship Story
-- Historical Drama
-- Fantasy Adventure
-- Director-Martin-Scorsese
-- Lead-Actor-Asa-Butterfield
-- Lead-Actress-Chloe-Grace-Moretz
-- Supporting-Actor-Ben-Kingsley
-- Supporting-Actor-Sacha-Baron-Cohen
-- Composer-Howard-Shore
-- Primary-Genre-Drama
-- Secondary-Genre-Adventure
-- Film-Style-Metacinema
-- Narrative-Structure-Coming-of-Age
-- Visual-Style-Period-Drama
-- Technical-Innovation-3D
-- Cultural-Element-French-Cinema
-- Social-Issue-Art-Preservation
-- Target-Audience-Family
+- Movie
+- 영화
+- Review
+- 리뷰
+- Go
 image: "MV5BMjAzNzk5MzgyNF5BMl5BanBnXkFtZTcwOTE4NDU5Ng@@._V1_.jpg"
 ---
 

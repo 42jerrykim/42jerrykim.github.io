@@ -11,76 +11,42 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-9250
-- cpp
 - C++
 - Python
 - String
 - 문자열
-- Pattern Matching
-- 패턴 매칭
-- Aho-Corasick
-- 아호코라식
 - Trie
-- 트라이
-- Automaton
-- 자동자
-- Failure Link
-- 실패링크
-- Failure Function
-- 실패함수
 - BFS
-- BFS구현
-- Multi-pattern
-- 멀티패턴
-- Substring
-- 부분문자열
-- String Matching
-- 문자열 매칭
-- Online Query
-- 온라인 질의
-- Deterministic Automaton
-- 결정적 자동자
+- Range-Query
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
 - Testing
 - 테스트
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
+- Complexity-Analysis
+- 복잡도분석
 - Hashing
 - 해싱
-- KMP
-- KMP대안
-- Automata Theory
-- 자동자이론
-- Finite State Machine
-- 유한상태기계
 - Graph
 - 그래프
 - Queue
 - 큐
 - Memory
 - 메모리
-- Fast IO
-- 빠른 입출력
+- IO
 image: "wordcloud.png"
 ---
 

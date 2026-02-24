@@ -5,10 +5,12 @@ categories:
 - Regex
 date: "2021-08-18T00:00:00Z"
 tags:
-- Regex
+- String
 - CSharp
-- match
-- Lamda
+- Implementation
+- json
+- IDE
+- .NET
 title: '[Regex] C#에서 Regex로 검색한 결과를 재사용하는 방법'
 ---
 

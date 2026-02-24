@@ -7,53 +7,22 @@ description: "dataclasses를 빠르게 적용하기 위한 치트시트입니다
 lastmod: 2026-01-17
 collection_order: 20
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - dataclasses
-  - dataclass
-  - 데이터클래스
-  - model
-  - models
-  - 모델
-  - immutability
-  - 불변성
-  - frozen
-  - slots
-  - field
-  - default_factory
-  - defaults
-  - mutable-default
+  - Quick-Reference
+  - Code-Quality
   - 함정
   - pitfalls
-  - equality
-  - 비교
-  - ordering
   - 정렬
-  - repr
-  - typing
-  - 타입힌트
-  - maintainability
-  - 유지보수
-  - readability
-  - 가독성
-  - performance
+  - 코드품질
+  - Clean-Code
+  - Performance
   - 성능
-  - standard-library
-  - 표준라이브러리
-  - serialization
-  - 직렬화
-  - asdict
-  - astuple
-  - patterns
-  - 패턴
-  - best-practices
-  - 베스트프랙티스
+  - Implementation
+  - Design-Pattern
+  - Best-Practices
 ---
 dataclass는 데이터 컨테이너 클래스를 보일러플레이트 없이 만드는 표준 방법입니다. 이 치트시트는 field(default_factory), frozen, slots 옵션과 흔한 함정을 정리합니다.
 

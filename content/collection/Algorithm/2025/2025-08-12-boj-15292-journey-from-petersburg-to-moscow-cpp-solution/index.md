@@ -7,71 +7,27 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "15292"
-- "Journey from Petersburg to Moscow"
-- "Petersburg to Moscow"
-- "상트페테르부르크"
-- "모스크바"
-- "여정"
-- "통행료"
-- "톨게이트"
-- "Top-K"
-- "k most expensive"
-- "k개 최댓값"
-- "최댓값 합"
-- "경로 최적화"
-- "최단경로"
-- "Shortest Path"
-- "Dijkstra"
-- "다익스트라"
-- "Parametric Search"
-- "파라메트릭"
-- "Threshold Trick"
-- "Alpha Trick"
-- "임계값 변환"
-- "Cost Transformation"
-- "Piecewise Linear"
-- "Convex"
-- "Minimization"
-- "Optimization"
-- "Graph"
-- "그래프"
-- "Undirected"
-- "Weighted Graph"
-- "우선순위 큐"
-- "Priority Queue"
-- "O(M log N)"
-- "시간복잡도"
-- "Complexity"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "ICPC"
-- "NEERC"
-- "NEERC 2017"
-- "Northern Eurasia Finals"
-- "Radishchev Inc"
-- "Edge Weights"
-- "간선 가중치"
-- "Path Cost"
-- "경로 비용"
-- "Binary Search (Not Needed)"
-- "다중 시도 α"
-- "Breakpoints"
-- "가중치 분기점"
-- "Proof Sketch"
-- "정당화"
-- "문제 풀이"
-- "해설"
-- "Algorithm"
-- "알고리즘"
+- BOJ
+- Baekjoon
+- 백준
+- 최단경로
+- Shortest-Path
+- Dijkstra
+- Binary-Search
+- Optimization
+- Graph
+- 그래프
+- Priority-Queue
+- 시간복잡도
+- Complexity-Analysis
+- Implementation
+- 구현
+- C++
+- IO
+- ICPC
+- Editorial
+- Algorithm
+- 알고리즘
 image: "wordcloud.png"
 ---
 

@@ -5,10 +5,16 @@ categories: Algorithm
 tags:
 - Implementation
 - Simulation
-- StringManipulation
-- BruteForce
-- DataStructures
-- O(N^2)
+- Brute-Force
+- Data-Structures
+- Time-Complexity
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
 date: 2024-10-16
 image: "tmp_wordcloud.png"
 ---

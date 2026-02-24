@@ -3,7 +3,24 @@ draft: true
 title: "[Redux] 08. 불변성의 중요성 - Immutability in Redux"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "Immutability", "불변성", "Immutable", "State Management", "상태관리", "Pure Functions", "순수함수", "Spread Operator", "스프레드연산자", "Immer", "이머", "웹개발", "프론트엔드", "JavaScript", "TypeScript", "Deep Copy", "깊은복사", "Shallow Copy", "얕은복사", "Reference", "참조", "Redux Patterns", "리덕스패턴", "Performance", "성능", "Optimization", "최적화", "React", "리액트", "개발", "코딩", "Best Practices", "모범사례", "Redux Core", "리덕스핵심", "Data Structures", "자료구조", "Functional Programming", "함수형프로그래밍", "Clean Code", "클린코드", "Redux Tutorial", "개발자가이드"]
+tags:
+- Code-Quality
+- 프론트엔드
+- JavaScript
+- TypeScript
+- Performance
+- 성능
+- Optimization
+- 최적화
+- React
+- Implementation
+- Best-Practices
+- Data-Structures
+- 자료구조
+- Functional-Programming
+- 함수형프로그래밍
+- Clean-Code
+- 클린코드
 description: "Redux에서 가장 중요한 불변성 원칙 완벽 마스터. 왜 불변성이 필요한지부터 Spread 연산자, Immer 라이브러리 활용까지 불변 데이터 업데이트 패턴을 실전 예제로 학습합니다"
 series: ["Redux 완전 정복"]
 series_order: 8

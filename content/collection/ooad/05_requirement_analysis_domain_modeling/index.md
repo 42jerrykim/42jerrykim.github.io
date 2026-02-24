@@ -6,72 +6,17 @@ lastmod: 2026-01-17
 collection_order: 5
 draft: true
 tags:
-  - Requirement-Analysis
-  - 요구사항-분석
-  - Requirements
-  - Domain-Modeling
-  - 도메인-모델링
-  - Domain-Model
-  - 도메인-모델
-  - Ubiquitous-Language
-  - 유비쿼터스-언어
-  - Stakeholder
-  - 이해관계자
-  - Interview
-  - 인터뷰
-  - Workshop
-  - 워크숍
-  - Observation
-  - 업무-관찰
-  - Document-Analysis
-  - 문서-분석
-  - MoSCoW
-  - Prioritization
-  - 우선순위
-  - Functional-Requirements
-  - 기능-요구사항
-  - Non-Functional-Requirements
-  - 비기능-요구사항
-  - Quality-Attributes
-  - 품질-속성
-  - Glossary
-  - 용어집
-  - Context
-  - 컨텍스트
-  - Modeling
-  - 모델링
-  - CRC
-  - CRC-Card
-  - Event-Storming
-  - 이벤트-스토밍
-  - Domain-Event
-  - 도메인-이벤트
+  - Software-Architecture
+  - Nuance
   - Command
-  - 커맨드
-  - Policy
-  - 정책
-  - Business-Rule
-  - 비즈니스-규칙
-  - Constraint
-  - 제약
-  - Traceability
-  - 추적가능성
-  - OOAD
-  - OOA
-  - OOD
+  - Security
+  - OOP
   - UML
-  - Class-Diagram
-  - 클래스-다이어그램
-  - Sequence-Diagram
-  - 시퀀스-다이어그램
-  - DDD
   - Domain-Driven-Design
-  - Bounded-Context
-  - Aggregate
   - Clean-Architecture
   - Refactoring
   - 테스트
-  - Testability
+  - Testing
 ---
 
 # 05. 요구사항 분석과 도메인 모델링

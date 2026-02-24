@@ -7,54 +7,14 @@ categories:
   - Toast
   - Notification
 tags:
-  - 알림 배너
-  - Toast
-  - Notification
-  - UI/UX
-  - 팝업
-  - 알림 시스템
-  - 실시간 알림
-  - 개발 팁
-  - 코드 예제
-  - best practices
-  - notification system
-  - toast messages
-  - alert system
-  - user interface
-  - frontend development
-  - code examples
-  - windows notifications
-  - toast notifications
-  - notification system
-  - user interface
-  - user experience
-  - frontend development
-  - windows development
-  - c# programming
-  - win32 api
-  - system integration
-  - desktop applications
-  - notification management
-  - alert system
-  - popup messages
-  - real-time notifications
-  - 알림 배너
-  - 토스트 메시지
-  - 윈도우 알림
-  - 실시간 알림
-  - 알림 시스템
-  - 사용자 인터페이스
-  - 사용자 경험
-  - 프론트엔드 개발
-  - 윈도우 개발
-  - C# 프로그래밍
-  - Win32 API
-  - 시스템 통합
-  - 데스크톱 애플리케이션
-  - 알림 관리
-  - 경고 시스템
-  - 팝업 메시지
-  - 실시간 알림
+  - Best-Practices
+  - CSharp
+  - Windows
+  - Queue
+  - String
+  - Process
+  - Builder
+  - Design-Pattern
 image: image02.png
 ---
 

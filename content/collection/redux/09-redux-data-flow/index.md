@@ -3,7 +3,19 @@ draft: true
 title: "[Redux] 09. Redux 데이터 흐름 이해하기"
 date: 2025-10-14
 lastmod: 2025-10-14
-tags: ["Redux", "Data Flow", "데이터흐름", "Unidirectional", "단방향", "State Management", "상태관리", "Redux Flow", "리덕스흐름", "Dispatch", "디스패치", "Subscribe", "구독", "웹개발", "프론트엔드", "Architecture", "아키텍처", "Redux Core", "리덕스핵심", "Action Flow", "액션흐름", "State Update", "상태업데이트", "Redux Cycle", "리덕스사이클", "Component", "컴포넌트", "React", "리액트", "JavaScript", "TypeScript", "Visualization", "시각화", "Debugging", "디버깅", "Redux DevTools", "개발자도구", "개발", "코딩", "Best Practices", "모범사례", "Redux Tutorial", "리덕스튜토리얼", "개발자가이드", "Software Architecture", "소프트웨어아키텍처", "Design Pattern", "디자인패턴"]
+tags:
+- 프론트엔드
+- Software-Architecture
+- 소프트웨어아키텍처
+- React
+- JavaScript
+- TypeScript
+- Debugging
+- 디버깅
+- Implementation
+- Best-Practices
+- Design-Pattern
+- 디자인패턴
 description: "Redux의 단방향 데이터 흐름 완벽 이해. Action 발송부터 State 업데이트, 컴포넌트 리렌더링까지 전체 프로세스를 시각화하고 Redux DevTools로 추적하는 방법을 학습합니다"
 series: ["Redux 완전 정복"]
 series_order: 9

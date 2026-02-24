@@ -7,14 +7,16 @@ date: "2024-09-23T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- DynamicProgramming
-- Bitmasking
+- Dynamic-Programming
 - Memoization
 - Optimization
-- O(N^3)
-- Arrays
-- Masking
-- ProblemSolving
+- Problem-Solving
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- C++
 title: '[Algorithm] C++/Python 백준 1014번 : 컨닝'
 ---
 

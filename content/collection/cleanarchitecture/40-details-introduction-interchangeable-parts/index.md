@@ -7,38 +7,20 @@ title: "[Clean Architecture] 40. 세부사항 서론"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Details
-  - 세부사항
+  - Clean-Architecture
+  - 클린아키텍처
   - Database
   - 데이터베이스
   - Web
   - 웹
-  - Framework
-  - 프레임워크
-  - UI
-  - 사용자 인터페이스
-  - Policy
-  - 정책
-  - Business Rules
-  - 비즈니스 규칙
-  - Plugin
-  - 플러그인
-  - Interchangeable
-  - 교체 가능
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Dependency
-  - 의존성
+  - Software-Architecture
+  - Security
+  - 소프트웨어아키텍처
+  - Dependency-Injection
   - Abstraction
   - 추상화
   - Interface
   - 인터페이스
-  - Decision Deferral
-  - 결정 지연
-  - Technology Choice
-  - 기술 선택
   - MySQL
   - PostgreSQL
   - MongoDB
@@ -46,17 +28,9 @@ tags:
   - Angular
   - Spring
   - Django
-  - Rails
   - Implementation
   - 구현
-  - Infrastructure
-  - 인프라스트럭처
-  - Core
-  - 코어
   - Adapter
-  - 어댑터
-  - Port
-  - 포트
 ---
 
 지금까지 아키텍처의 핵심 원칙들을 다루었다. 이제 **세부사항(Details)**을 살펴본다. 세부사항은 아키텍처에서 **교체 가능한** 부분들이다.

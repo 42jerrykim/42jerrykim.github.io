@@ -7,26 +7,17 @@ date: "2023-06-02T00:00:00Z"
 header:
   teaser: /assets/images/2023/GettyImages-676338286-1-scaled.jpg
 tags:
-- ArtificialIntelligence
-- AIResearch
-- OpenSource
-- AIEthics
-- AISafety
-- AIDevelopment
-- AIRisks
-- AIPolicy
-- AITransparency
-- AIAccountability
-- FutureOfAI
-- Society
-- Economy
+- Open-Source
 - Innovation
-- Corporations
-- SmallBusinesses
 - Education
-- Government
-- HumanImpact
-- GlobalCooperation
+- Go
+- Algorithm
+- 알고리즘
+- Review
+- 리뷰
+- Security
+- Deep-Learning
+- AI
 title: '[AI] AI의 미래 - 기회, 위험, 오픈 소스 연구의 필요성'
 ---
 

@@ -7,63 +7,16 @@ title: "[Clean Architecture] 20. 컴포넌트 원칙 서론"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Component
-  - 컴포넌트
-  - Component Principles
-  - 컴포넌트 원칙
-  - Deployment Unit
-  - 배포 단위
-  - Module
-  - 모듈
-  - Package
-  - 패키지
-  - Library
-  - 라이브러리
-  - jar
-  - dll
-  - gem
-  - npm
-  - Cohesion
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
   - 응집도
-  - Coupling
   - 결합도
-  - REP
-  - Reuse Release Equivalence Principle
-  - 재사용 릴리스 등가 원칙
-  - CCP
-  - Common Closure Principle
-  - 공통 폐쇄 원칙
-  - CRP
-  - Common Reuse Principle
-  - 공통 재사용 원칙
-  - ADP
-  - Acyclic Dependencies Principle
-  - 비순환 의존성 원칙
-  - SDP
-  - Stable Dependencies Principle
-  - 안정된 의존성 원칙
-  - SAP
-  - Stable Abstractions Principle
-  - 안정된 추상화 원칙
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Software Design
-  - 소프트웨어 설계
-  - Linking
-  - 링킹
-  - Loading
-  - 로딩
-  - Build
-  - 빌드
+  - 소프트웨어아키텍처
+  - CI-CD
   - SOLID
   - History
   - 역사
-  - Linker
-  - 링커
-  - Relocatable
-  - 재배치 가능
 ---
 
 SOLID 원칙이 벽돌(클래스, 모듈)을 만드는 방법이라면, **컴포넌트 원칙**은 벽돌을 벽과 방으로 조합하는 방법이다. 이 파트에서는 컴포넌트가 무엇인지, 그리고 어떻게 좋은 컴포넌트를 설계하는지 다룬다.

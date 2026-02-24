@@ -5,10 +5,14 @@ categories:
 - Utterances
 date: "2021-04-13T00:00:00Z"
 tags:
-- Disqus
-- Utterances
-- Comments
-- GithubPage
+- Blog
+- 블로그
+- GitHub
+- Tutorial
+- Web
+- Git
+- Markdown
+- Thread
 title: '[Utterances] GithubPage에 Disques 대신 Utterances를 사용하여 댓글을 달 수 있도록 하자'
 ---
 

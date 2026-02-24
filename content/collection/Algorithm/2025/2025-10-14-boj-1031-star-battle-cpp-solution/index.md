@@ -12,75 +12,29 @@ tags:
   - BOJ
   - 백준
   - Baekjoon
-  - Problem-1031
   - C++
-  - CPP
   - Graph
   - 그래프
-  - Network Flow
-  - 네트워크 플로우
-  - Max Flow
-  - 최대유량
-  - Dinic
-  - 디닉
-  - Bipartite
-  - 이분 그래프
-  - Matching
-  - 매칭
-  - 0-1 Matrix
-  - 0-1 행렬
-  - Binary Matrix
-  - 이진 행렬
-  - Row Sum
-  - 행 합
-  - Column Sum
-  - 열 합
-  - Degree Sequence
-  - 차수열
-  - Feasibility
-  - 가능성 판정
+  - Network-Flow
+  - String
   - Greedy
   - 그리디
-  - Lexicographic
-  - 사전순
-  - Lexicographically Smallest
-  - 최소 사전순
-  - Construction
-  - 구성
-  - Constructive Algorithm
-  - 구성 알고리즘
-  - Residual Graph
-  - 잔여그래프
-  - Level Graph
-  - 레벨 그래프
-  - Blocking Flow
-  - 블로킹 플로우
+  - Implementation
   - BFS
   - DFS
-  - Complexity
+  - Complexity-Analysis
   - 시간복잡도
-  - Space Complexity
+  - Space-Complexity
   - 공간복잡도
-  - Implementation
   - 구현
-  - Edge Cases
-  - 코너 케이스
-  - Proof of Correctness
-  - 정당성 증명
+  - Edge-Cases
+  - 엣지케이스
   - Editorial
   - 에디토리얼
   - Tutorial
   - 튜토리얼
-  - Tips
-  - 팁
   - Pitfalls
-  - 실수 포인트
-  - Flow Network
-  - 플로우 네트워크
-  - Capacity
-  - 용량
-  - Adjacency
-  - 인접
+  - 함정
 image: "wordcloud.png"
 ---
 

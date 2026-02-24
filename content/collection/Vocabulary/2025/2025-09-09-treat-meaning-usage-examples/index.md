@@ -9,80 +9,20 @@ categories:
 tags:
 - Vocabulary
 - English
-- English Words
-- Treat
-- treat meaning
-- treat usage
-- treat examples
-- treat verb
-- treat someone to
-- treat as
-- treat with
-- treat of
-- treat well
-- treat badly
-- medical treatment
-- therapy
-- medicine
-- patient care
-- cure vs treat
-- handle
-- deal with
-- address
-- approach
-- regard as
-- consider as
-- manage
-- process
-- chemical treatment
-- surface treatment
-- water treatment
-- data processing
-- collocation
-- collocations
-- expressions
-- phrase
+- OS
+- Collocation
 - grammar
-- nuance
-- usage
-- business English
-- everyday English
-- academic English
-- TOEIC
+- Nuance
+- Business-English
+- Academic-English
 - TOEFL
 - IELTS
-- writing
-- speaking
-- conversation
-- examples
-- synonyms
-- differences
-- translation
 - 영단어
 - 영어동사
-- treat 의미
-- treat 용법
-- treat 예문
-- 대하다
-- 취급하다
-- 치료하다
-- 대접하다
-- 다루다
-- 처리하다
-- 존중하다
-- 부당대우
-- 의학용어
-- 화학처리
-- 표면처리
-- 물처리
-- 데이터처리
 - 문법
 - 뉘앙스
-- 표현
 - 콜로케이션
-- 회화
 - 비즈니스영어
-- 시험영어
 image: "wordcloud.png"
 ---
 

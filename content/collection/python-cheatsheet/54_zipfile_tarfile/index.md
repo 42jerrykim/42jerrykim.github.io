@@ -7,47 +7,14 @@ description: "파이썬 zipfile과 tarfile 모듈을 빠르게 쓰기 위한 치
 lastmod: 2026-01-18
 collection_order: 54
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - zipfile
-  - tarfile
-  - archive
-  - 아카이브
-  - compression
-  - 압축
-  - zip
-  - tar
-  - gzip
-  - bz2
-  - xz
-  - extract
-  - 추출
-  - compress
-  - decompress
-  - 압축해제
-  - file
-  - 파일
-  - directory
-  - 디렉토리
-  - ZipFile
-  - TarFile
-  - namelist
-  - extractall
-  - write
-  - add
+  - Quick-Reference
   - security
   - 보안
-  - path-traversal
-  - standard-library
-  - 표준라이브러리
-  - best-practices
-  - 베스트프랙티스
+  - Best-Practices
   - pitfalls
   - 함정
 ---

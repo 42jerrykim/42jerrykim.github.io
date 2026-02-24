@@ -11,58 +11,32 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-14504
-- cpp
 - C++
-- Segment Tree
-- 세그먼트 트리
-- Merge Sort Tree
-- 머지 소트 트리
-- Range Query
-- 범위 쿼리
-- Point Update
-- 점 갱신
-- Binary Search
+- Segment-Tree
+- 세그먼트트리
+- Range-Query
+- Binary-Search
 - 이분탐색
-- Upper Bound
-- 상한
-- Data Structures
+- Data-Structures
 - 자료구조
 - Implementation
 - 구현
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- O(log^2 n)
-- Efficient Query
-- 효율적 조회
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
-- Multiple Queries
-- 다중 쿼리
 - Sorting
 - 정렬
-- Vector
-- 벡터
-- Tree Traversal
-- 트리 순회
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Array
+- Edge-Cases
+- 엣지케이스
 - Testing
 - 테스트
-- Fast I/O
-- 빠른 입출력
-- Complexity Analysis
-- 복잡도 분석
-- Invariant
-- 불변식
-- Advanced Data Structures
-- 고급 자료구조
-- Query Optimization
-- 쿼리 최적화
+- IO
+- Complexity-Analysis
+- 복잡도분석
 image: "wordcloud.png"
 ---
 

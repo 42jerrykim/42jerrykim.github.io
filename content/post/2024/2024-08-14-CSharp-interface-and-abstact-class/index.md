@@ -7,52 +7,21 @@ header: null
 tags:
 - CSharp
 - interface
-- AbstractClass
-- object-oriented programming
+- OOP
 - inheritance
 - polymorphism
 - encapsulation
-- SoftwareDesign
-- coding
-- ProgrammingConcepts
-- SoftwareDevelopment
-- C# programming
-- OOPPrinciples
-- MethodOverriding
-- MethodImplementation
-- ClassDesign
-- SoftwareArchitecture
-- DesignPatterns
-- ProgrammingLanguages
-- CodeQuality
-- SoftwareEngineering
+- Software-Architecture
+- Implementation
+- Design-Pattern
+- Code-Quality
 - debugging
-- CodeMaintenance
-- SoftwareTesting
-- ApplicationDevelopment
-- PerformanceOptimization
-- DataAbstraction
-- CodeReusability
-- SoftwareLifecycle
-- DevelopmentMethodologies
-- AgileDevelopment
-- VersionControl
-- CodeDocumentation
-- BestPractices
-- CleanCode
+- Testing
+- Performance
+- Best-Practices
+- Clean-Code
 - refactoring
-- SoftwareTools
 - IDE
-- VisualStudio
-- .NET framework
-- ProgrammingTutorials
-- learning C#
-- CodingChallenges
-- TechBlogs
-- DeveloperCommunity
-- ProgrammingResources
-- OnlineCourses
-- SoftwareProjects
 teaser: /assets/images/undefined/teaser.jpg
 title: '[C#] C# 인터페이스와 추상클래스의 차이점'
 ---

@@ -13,46 +13,17 @@ categories:
 - Practice
 - Quality Assurance
 tags:
-- Code Review Practice
-- Design Review Practice
-- Pattern Evaluation
-- Quality Assessment
-- Architecture Review
-- Design Principles
-- Best Practices
-- Team Collaboration
-- Code Quality
-- Design Quality
-- Peer Review
-- Technical Communication
-- Pattern Misuse Detection
-- Refactoring Suggestions
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Software Architecture
-- Quality Improvement
-- 코드 리뷰 실습
-- 설계 리뷰 실습
-- 패턴 평가
-- 품질 평가
-- 아키텍처 리뷰
-- 설계 원칙
-- 모범 사례
-- 팀 협업
-- 코드 품질
-- 설계 품질
-- 동료 리뷰
-- 기술 커뮤니케이션
-- 패턴 오남용 탐지
-- 리팩토링 제안
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 소프트웨어 아키텍처
-- 품질 개선
+- SOLID
+- Best-Practices
+- Code-Quality
+- Tutorial
+- Implementation
+- Design-Pattern
+- Software-Architecture
+- 코드품질
+- 구현
+- 디자인패턴
+- 소프트웨어아키텍처
 ---
 
 이 실습에서는 패턴별 리뷰 체크리스트 작성, 자동 검증 도구 구현, 팀 리뷰 프로세스 개선을 직접 수행합니다.

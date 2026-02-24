@@ -5,11 +5,12 @@ categories:
 - Garmin
 date: "2022-06-02T00:00:00Z"
 tags:
-- Garmin
-- Workout
-- List
-- 가민
-- 워크아웃
+- Data-Structures
+- Go
+- Cycling
+- 자전거
+- Gadget
+- Rust
 title: '[Garmin] 가민(Garmin) 워크아웃 목록'
 ---
 가민에서 제공하는 워크아웃의 모든 운동 목록을 정리한것이다.

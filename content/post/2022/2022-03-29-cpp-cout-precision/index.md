@@ -4,12 +4,13 @@ description: "이 글은 C++에서 cout을 사용할 때 소수점 아래 자릿
 categories:
 - Cpp
 date: "2022-03-29T00:00:00Z"
-tag:
-- Cpp
-- cout
-- 소수점
-- 정확도
-- 출력
+tags:
+- C++
+- ios
+- Implementation
+- AI
+- Troubleshooting
+- Mobile
 title: '[C/C++] C언어, C++ 소수점 자릿수 조절하기'
 ---
 

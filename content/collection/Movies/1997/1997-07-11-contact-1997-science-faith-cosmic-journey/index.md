@@ -8,51 +8,12 @@ categories:
 - Drama
 - Warner Bros
 tags:
-- 로버트 저메키스
-- 조디 포스터
-- 매튜 맥커너히
-- 제임스 우즈
-- 안젤라 바셋
-- 톰 스커릿
-- 앨런 실베스트리
-- 과학 소설
-- 철학적 드라마
-- 하드 SF
-- 컨템포러리 드라마
-- 3막 구조
-- 리얼리즘
-- 웜홀 시퀀스
-- 깊은 초점
-- 과학적 고증
-- 종교 vs 과학
-- 외계 생명체
-- SETI
-- 우주적 스케일
-- CGI 혁신
-- 시네마스코프
-- 오케스트럴 스코어
-- 기술 혁신
-- 과학 어드바이저
-- 성인 관객
-- Robert-Zemeckis
-- Jodie-Foster
-- Matthew-McConaughey
-- James-Woods
-- Angela-Bassett
-- Tom-Skerritt
-- Alan-Silvestri
-- Science-Fiction
-- Philosophical-Drama
-- Cinematic-Realism
-- Three-Act-Structure
-- Deep-Focus-Cinematography
-- Scientific-Accuracy
-- Religious-Themes
-- Extraterrestrial-Contact
-- SETI-Program
-- Cosmic-Scale
-- Visual-Effects-Innovation
-- Adult-Audience
+- Sci-Fi
+- Movie
+- Drama
+- 영화
+- Review
+- 리뷰
 image: "contact_poster.png"
 ---
 

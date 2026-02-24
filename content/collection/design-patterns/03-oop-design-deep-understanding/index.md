@@ -12,66 +12,27 @@ categories:
 - Software Design
 - Design Principles
 tags:
-- Object Oriented Design
-- OOP Principles
-- SOLID Principles
+- SOLID
 - Encapsulation
 - Inheritance
 - Polymorphism
 - Abstraction
-- Design Patterns
-- Code Quality
-- Software Architecture
-- Class Design
-- Interface Design
+- Design-Pattern
+- Code-Quality
+- Software-Architecture
 - Composition
-- Aggregation
-- Dependency Injection
-- Inversion Of Control
-- Single Responsibility
-- Open Closed Principle
-- Liskov Substitution
-- Interface Segregation
-- Dependency Inversion
-- Design By Contract
-- Domain Modeling
-- Object Modeling
-- Software Engineering
-- Clean Code
+- Dependency-Injection
+- Clean-Code
 - Refactoring
-- Code Smells
-- Design Quality
-- Architectural Design
-- 객체 지향 설계
-- OOP 원칙
-- SOLID 원칙
 - 캡슐화
 - 상속
 - 다형성
 - 추상화
-- 디자인 패턴
-- 코드 품질
-- 소프트웨어 아키텍처
-- 클래스 설계
-- 인터페이스 설계
-- 컴포지션
-- 집합
-- 의존성 주입
-- 제어 역전
-- 단일 책임
-- 개방 폐쇄 원칙
-- 리스코프 치환
-- 인터페이스 분리
-- 의존성 역전
-- 계약에 의한 설계
-- 도메인 모델링
-- 객체 모델링
-- 소프트웨어 공학
-- 클린 코드
+- 디자인패턴
+- 코드품질
+- 소프트웨어아키텍처
+- 의존성주입
 - 리팩토링
-- 코드 스멜
-- 설계 품질
-- 아키텍처 설계
 ---
 
 객체지향 프로그래밍의 근본 원리와 설계 철학을 심도 있게 탐구합니다. SOLID 원칙, 캡슐화, 상속, 다형성의 본질을 이해하고, 이러한 개념들이 어떻게 패턴으로 구현되는지 학습합니다.

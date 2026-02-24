@@ -15,68 +15,26 @@ tags:
   - BOJ
   - 백준
   - Baekjoon
-  - Problem-13926
-  - gcd
-  - 최대공약수
-  - Coprime
-  - 서로소
-  - Euler Totient Function
-  - 오일러 파이 함수
-  - EulerPhi
-  - Totient
-  - Number Theory
+  - Math
+  - Number-Theory
   - 정수론
-  - Prime Factorization
-  - 소인수분해
-  - Miller Rabin
-  - 밀러라빈
-  - Pollard Rho
-  - 폴라드 로
-  - Modular Arithmetic
-  - 모듈러 연산
-  - Fast Power
-  - 거듭제곱 빠른 제곱
-  - 64-bit Integer
-  - 64비트 정수
-  - int64
-  - long long
+  - Modular-Arithmetic
+  - 모듈러
+  - Edge-Cases
   - Performance
-  - 성능최적화
-  - Complexity
+  - Complexity-Analysis
   - 시간복잡도
   - Space
   - 공간복잡도
   - C++
-  - CPP
   - Python
   - 파이썬
   - Implementation
   - 구현
-  - Math Problem
-  - 수학 문제
-  - Inclusion Exclusion
-  - 포함배제
-  - Multiplicative Function
-  - 곱셈적 함수
-  - Prime
-  - 소수
-  - Factorization
-  - 분해
-  - Deterministic
-  - 결정론적
-  - Randomized
-  - 난수
-  - Overflow Safe
-  - 오버플로 방지
-  - Big-O
-  - O(sqrt n)
-  - O(log n)
-  - Edge Cases
-  - 코너 케이스
+  - Time-Complexity
+  - 엣지케이스
   - Tutorial
-  - 풀이
-  - 해설
-  - Sample Code
+  - Editorial
 image: "wordcloud.png"
 ---
 

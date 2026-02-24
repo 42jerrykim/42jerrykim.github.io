@@ -7,86 +7,35 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "15521"
-- "Revenge of the Broken Door"
-- "부서진 문의 복수"
-- "JAG"
-- "JAG 2017"
-- "ICPC"
-- "Practice Contest"
-- "Graph"
-- "그래프"
-- "Shortest Path"
-- "최단경로"
-- "Dijkstra"
-- "다익스트라"
-- "SPT"
-- "Shortest Path Tree"
-- "최단경로트리"
-- "Heavy-Light Decomposition"
-- "HLD"
-- "헤비라이트 분해"
-- "Lowest Common Ancestor"
-- "LCA"
-- "최소공통조상"
-- "Segment Tree"
-- "세그먼트 트리"
-- "Range Min"
-- "Chmin"
-- "RMQ"
-- "Euler Tour"
-- "오일러 투어"
-- "Binary Search"
-- "이분 탐색"
-- "Parametric Search"
-- "파라메트릭 서치"
-- "Robust Path"
-- "Worst Case"
-- "최악 경우"
-- "Adversarial"
-- "Edge Failure"
-- "간선 고장"
-- "Single Edge Removal"
-- "단일 간선 제거"
-- "Replacement Paths"
-- "대체 경로"
-- "Non-tree Edge"
-- "비트리 간선"
-- "Cross Edge"
-- "교차 간선"
-- "Cut"
-- "단절"
-- "Graph Theory"
-- "그래프 이론"
-- "Algorithms"
-- "알고리즘"
-- "Competitive Programming"
-- "컴페티티브 프로그래밍"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Implementation"
-- "구현"
-- "Time Complexity"
-- "시간복잡도"
-- "O((N+M)logN logAns)"
-- "경로 갱신"
-- "경로 최소"
-- "LCA 기반 갱신"
-- "HLD path update"
-- "최단거리 보정"
-- "dist2"
-- "SPT 대체거리"
-- "Baekjoon 15521"
-- "BOJ 15521"
-- "문제풀이"
-- "Solution Code"
-- "정답 코드"
-- "Tutorial"
-- "해설"
+- BOJ
+- Baekjoon
+- 백준
+- ICPC
+- Graph
+- 그래프
+- Shortest-Path
+- 최단경로
+- Dijkstra
+- LCA
+- Segment-Tree
+- 세그먼트트리
+- Euler-Tour
+- Binary-Search
+- 이분탐색
+- Network-Flow
+- Graph-Theory
+- 그래프이론
+- Algorithm
+- 알고리즘
+- Competitive-Programming
+- C++
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Problem-Solving
+- Editorial
+- Tutorial
 image: "wordcloud.png"
 ---
 

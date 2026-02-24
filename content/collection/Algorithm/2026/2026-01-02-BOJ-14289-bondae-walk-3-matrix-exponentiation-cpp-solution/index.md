@@ -10,78 +10,39 @@ categories:
 - "Matrix Exponentiation"
 - "Linear Algebra"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "14289"
-- "BOJ-14289"
-- "본대 산책 3"
-- "본대산책3"
-- "Graph"
-- "그래프"
-- "Undirected Graph"
-- "무방향 그래프"
-- "Adjacency Matrix"
-- "인접 행렬"
-- "Matrix"
-- "행렬"
-- "Matrix Exponentiation"
-- "행렬 거듭제곱"
-- "Fast Exponentiation"
-- "빠른 거듭제곱"
-- "Binary Exponentiation"
-- "이진 거듭제곱"
-- "Linear Algebra"
-- "선형대수"
-- "Walk"
-- "그래프 워크"
-- "Walk Counting"
-- "워크 개수"
-- "Path Counting"
-- "경로 수 세기"
-- "Dynamic Programming"
-- "동적 계획법"
-- "DP"
-- "Modulo"
-- "모듈러"
-- "Modular Arithmetic"
-- "모듈러 연산"
-- "1e9+7"
-- "1000000007"
-- "Overflow"
-- "오버플로"
-- "__int128"
-- "Implementation"
-- "구현"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(n^3 log D)"
-- "n<=50"
-- "D<=1e9"
-- "Big Exponent"
-- "큰 지수"
-- "Counting"
-- "카운팅"
-- "Combinatorics"
-- "조합론"
-- "Graph Theory"
-- "그래프 이론"
-- "STL"
-- "GNU++17"
-- "C++"
-- "CPP"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Edge Case"
-- "엣지 케이스"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Graph
+- 그래프
+- Matrix
+- 행렬
+- Dynamic-Programming
+- DP
+- Modular-Arithmetic
+- 모듈러
+- Edge-Cases
+- C++
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Math
+- Combinatorics
+- 조합론
+- Graph-Theory
+- 그래프이론
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- 엣지케이스
 image: "wordcloud.png"
 ---
 

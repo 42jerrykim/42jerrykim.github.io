@@ -9,51 +9,26 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
+  - Design-Pattern
+  - 디자인패턴
   - State
-  - 상태
-  - Behavioral Pattern
-  - 행위 패턴
   - GoF
-  - Gang of Four
-  - State Machine
-  - 상태 기계
-  - Finite State Machine
-  - 유한 상태 기계
-  - Context
-  - 컨텍스트
-  - Concrete State
-  - 구체 상태
-  - State Transition
-  - 상태 전이
-  - Behavior Change
-  - 행동 변경
+  - Nuance
   - Polymorphism
   - 다형성
   - Encapsulation
   - 캡슐화
-  - Open Closed Principle
-  - 개방 폐쇄 원칙
-  - Conditional Logic
-  - 조건 로직
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - SOLID
+  - Code-Quality
+  - 코드품질
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - Vending Machine
-  - 자판기
-  - TCP Connection
-  - Game State
-  - 게임 상태
+  - CSharp
   - Workflow
   - 워크플로우
 ---

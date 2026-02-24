@@ -10,83 +10,30 @@ categories:
 - "Greedy"
 - "Sorting"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "32115"
-- "BOJ-32115"
-- "돌 놓기 게임"
-- "Stone Placing Game"
-- "Game Theory"
-- "게임 이론"
-- "Combinatorial Game"
-- "조합 게임"
-- "Optimal Play"
-- "최적 플레이"
-- "Perfect Play"
-- "완전 플레이"
-- "Turn-Based Game"
-- "턴제 게임"
-- "Two Player Game"
-- "2인 게임"
-- "Zero-Sum"
-- "제로섬"
-- "Greedy"
-- "그리디"
-- "Sorting"
-- "정렬"
-- "Circular Array"
-- "원형 배열"
-- "Ring"
-- "원형"
-- "Segment"
-- "구간"
-- "Interval"
-- "연속 구간"
-- "Decomposition"
-- "분해"
-- "Parity"
-- "홀짝"
-- "Even"
-- "짝수"
-- "Odd"
-- "홀수"
-- "Strategy"
-- "전략"
-- "Simulation"
-- "시뮬레이션"
-- "Implementation"
-- "구현"
-- "Invariant"
-- "불변식"
-- "Adversarial"
-- "상대적 최적화"
-- "Score Maximization"
-- "점수 최대화"
-- "Circular Board"
-- "원형 보드"
-- "Adjacent"
-- "인접"
-- "Expansion"
-- "확장"
-- "Boundary"
-- "경계"
-- "Casework"
-- "케이스 분류"
-- "Edge Case"
-- "엣지 케이스"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N log N)"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "UCPC"
-- "UCPC 2024"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Game-Theory
+- Greedy
+- 그리디
+- Sorting
+- 정렬
+- Segment-Tree
+- Range-Query
+- Strategy
+- Simulation
+- 시뮬레이션
+- Implementation
+- 구현
+- Edge-Cases
+- 엣지케이스
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
 image: "wordcloud.png"
 ---
 

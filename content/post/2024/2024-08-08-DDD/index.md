@@ -5,16 +5,13 @@ categories: softwaredevelopment
 date: "2024-08-08T00:00:00Z"
 header: null
 tags:
-- DomainDrivenDesign
 - Microservices
 - Agile
-- SoftwareArchitecture
-- UbiquitousLanguage
-- StrategicDesign
-- TacticalDesign
-- EventStorming
-- BoundedContext
-- ValueObject
+- Software-Architecture
+- Self-Hosted
+- Domain-Driven-Design
+- History
+- 역사
 teaser: /assets/images/undefined/teaser.jpg
 title: '[SoftwareDevelopment] DDD(도메인 주도 설계)란 무엇인가'
 

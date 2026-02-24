@@ -9,78 +9,38 @@ categories:
 - "Constructive"
 - "Math"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "32190"
-- "BOJ-32190"
-- "Ian Sequences"
-- "Ian"
-- "Sequence"
-- "수열"
-- "Constructive"
-- "구성"
-- "Construction"
-- "구성적 풀이"
-- "Mathematics"
-- "수학"
-- "Modular Arithmetic"
-- "모듈러"
-- "Modulo"
-- "Congruence"
-- "합동"
-- "Invariant"
-- "불변식"
-- "Proof"
-- "정당성"
-- "Induction"
-- "수학적 귀납법"
-- "Recursion"
-- "재귀"
-- "Iterative"
-- "반복"
-- "Deque"
-- "덱"
-- "Array"
-- "배열"
-- "Implementation"
-- "구현"
-- "O(N)"
-- "Linear Time"
-- "선형 시간"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Special Judge"
-- "스페셜 저지"
-- "Output Any"
-- "아무거나 출력"
-- "Permutation"
-- "순열"
-- "Pair"
-- "쌍"
-- "Two Occurrences"
-- "두 번 등장"
-- "Prefix"
-- "접두"
-- "Suffix"
-- "접미"
-- "Wrapping"
-- "양끝 붙이기"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Edge Case"
-- "엣지 케이스"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Math
+- Implementation
+- 수학
+- Modular-Arithmetic
+- 모듈러
+- Recursion
+- 재귀
+- Deque
+- 덱
+- Array
+- 배열
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Combinatorics
+- Prefix-Sum
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- Edge-Cases
+- 엣지케이스
+- C++
 image: "wordcloud.png"
 ---
 

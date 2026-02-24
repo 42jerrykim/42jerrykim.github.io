@@ -7,50 +7,16 @@ title: "[Clean Architecture] 34. 부분적 경계"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Partial Boundary
-  - 부분적 경계
-  - Full Boundary
-  - 완전한 경계
-  - Cost
-  - 비용
-  - YAGNI
-  - You Aren't Gonna Need It
-  - Strategy Pattern
-  - 전략 패턴
-  - Facade Pattern
-  - 퍼사드 패턴
-  - Skip Last Step
-  - 마지막 단계 건너뛰기
-  - One Dimensional Boundary
-  - 단방향 경계
+  - Clean-Architecture
+  - 클린아키텍처
   - Interface
   - 인터페이스
-  - Component
-  - 컴포넌트
+  - Software-Architecture
   - Deployment
   - 배포
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Trade off
-  - 트레이드오프
-  - Flexibility
-  - 유연성
-  - Simplicity
-  - 단순성
-  - Service
-  - 서비스
-  - Module
-  - 모듈
-  - Boundary
-  - 경계
-  - Future
-  - 미래
-  - Prediction
-  - 예측
-  - Technical Debt
-  - 기술 부채
+  - 소프트웨어아키텍처
+  - Edge-Cases
+  - Code-Quality
 ---
 
 완전한 경계를 만드는 비용은 **상당하다**. 때로는 완전한 경계가 **과도할** 수 있다. 부분적 경계는 비용을 줄이면서 일부 이점을 얻는 방법이다.

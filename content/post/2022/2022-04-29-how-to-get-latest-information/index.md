@@ -7,15 +7,14 @@ categories:
 - Util
 date: "2022-04-29T00:00:00Z"
 tags:
-- GoogleAlart
-- Blogtrottr
-- Util
-- RSS
-- NewsLatter
-- 뉴스
-- 소식
-- 개발
-- 최신
+- Implementation
+- Go
+- .NET
+- Samsung
+- Android
+- Mobile
+- Blog
+- 블로그
 title: '[Util] Google Alart, Blogtrottr, 개발과 관련된 최신 정보를 얻을수 있는 방법 소개'
 
 ---

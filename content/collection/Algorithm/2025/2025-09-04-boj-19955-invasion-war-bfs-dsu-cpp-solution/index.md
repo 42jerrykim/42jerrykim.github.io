@@ -11,75 +11,31 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-19955
-- cpp
 - C++
 - Simulation
 - 시뮬레이션
 - Graph
 - 그래프
-- Grid
-- 격자
 - BFS
-- 다중시작BFS
-- Multi-Source BFS
-- Shortest Path
+- Shortest-Path
 - 최단경로
 - DSU
-- Disjoint Set Union
-- Union-Find
-- 유니온파인드
-- Lazy Update
-- 지연갱신
-- Event Processing
-- 이벤트처리
-- Layered Expansion
-- 레이어확장
-- Tie-breaking
-- 타이브레이크
-- Territory Expansion
-- 영토확장
-- Battle Simulation
-- 전투시뮬레이션
-- Recruitment
-- 징집
-- Time Management
-- 시간관리
-- Temporal Logic
-- 시간논리
-- State Machine
-- 상태머신
-- Offline Processing
-- 오프라인처리
-- O(N^2)
+- Disjoint-Set
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Correctness Proof
-- 정당성증명
-- Edge Cases
-- 코너케이스
+- Edge-Cases
 - Pitfalls
-- 실수포인트
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Implementation
 - 구현
-- Data Structures
+- Data-Structures
 - 자료구조
-- Grid Graph
-- 그래프탐색
-- Invariant
-- 불변식
-- Large Input
-- 대용량입력
-- Fast IO
-- 빠른입출력
-- C++17
-- Template
-- 템플릿
+- IO
 image: "wordcloud.png"
 ---
 

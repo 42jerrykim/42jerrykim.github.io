@@ -9,57 +9,18 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - paleolithic
-  - paleolithic meaning
-  - paleolithic usage
-  - paleolithic examples
-  - paleolithic adjective
   - 영단어
   - 영어형용사
-  - paleolithic 의미
-  - paleolithic 용법
-  - paleolithic 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
-  - 맥락
-  - ancient
-  - primitive
-  - archaic
-  - old-fashioned
-  - prehistoric
-  - 구석기
-  - 구석기시대
-  - 고대의
-  - 원시적인
-  - 선사시대
-  - archaeology
-  - anthropology
-  - history
-  - evolution
-  - human development
-  - Stone Age
-  - archaeological
-  - historical periods
-  - prehistoric times
-  - 고고학
-  - 인류학
+  - History
   - 역사
-  - 진화
-  - 인류 발달
-  - 선사 시대
-  - 유물
-  - 역사 교육
   - 과학
-  - etymology
-  - origin
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
+  - Etymology
+  - Grammar
+  - Pronunciation
 image: wordcloud.png
 ---
 

@@ -9,83 +9,31 @@ categories:
 - "Developer Tools"
 - "CLI"
 tags:
-- "Cursor"
-- "Cursor CLI"
-- "CLI"
-- "terminal"
-- "IDE"
-- "developer tools"
-- "automation"
-- "scripting"
-- "OpenAI"
-- "GPT-5"
-- "Anthropic"
-- "Claude"
-- "Gemini"
-- "Grok"
-- "latest models"
-- "MCP"
-- "agents"
-- "rules"
-- "AGENTS.md"
-- "JetBrains"
-- "IntelliJ"
-- "Android Studio"
-- "VSCode"
-- "Ghostty"
-- "Warp"
-- "Bash"
-- "Windows"
-- "macOS"
-- "Linux"
-- "installation"
-- "curl install"
-- "script"
-- "SOC2"
-- "security"
-- "privacy"
-- "productivity"
-- "workflow"
-- "code review"
-- "agent edits"
-- "real-time steering"
-- "terminal integration"
-- "IDE integration"
-- "customization"
-- "automation pipeline"
-- "docs"
-- "pricing"
-- "features"
-- "beta"
-- "how to"
-- "quick start"
-- "scripting examples"
-- "developer experience"
-- "engineering"
-- "tooling"
-- "command palette"
-- "개발 도구"
-- "생산성"
-- "자동화"
-- "터미널"
-- "설치"
-- "사용법"
-- "최신 모델"
-- "멀티 모델"
-- "초보자 가이드"
-- "튜토리얼"
-- "리뷰"
-- "보안"
-- "프라이버시"
-- "워크플로"
-- "코드 리뷰"
-- "에이전트"
-- "규칙"
-- "커스터마이징"
-- "통합"
-- "윈도우"
-- "맥OS"
-- "리눅스"
+- IDE
+- Shell
+- terminal
+- automation
+- VSCode
+- Bash
+- Windows
+- macOS
+- Linux
+- security
+- privacy
+- productivity
+- workflow
+- Code-Review
+- DevOps
+- 생산성
+- 자동화
+- 터미널
+- 튜토리얼
+- 리뷰
+- 보안
+- 프라이버시
+- 코드리뷰
+- 윈도우
+- 리눅스
 image: "cursor-cli-screen-shot.png"
 draft: false
 ---

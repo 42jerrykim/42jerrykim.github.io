@@ -7,15 +7,12 @@ date: "2024-08-07T00:00:00Z"
 header: null
 tags:
 - CSharp
-- variables
-- constants
-- programming
-- coding
-- softwaredevelopment
-- examples
-- tutorials
-- learnprogramming
-- dotnet
+- Implementation
+- Software-Architecture
+- English
+- .NET
+- String
+- Memory
 teaser: /assets/images/undefined/teaser.jpg
 title: '[C#] C#에서 변수와 상수의 이해'
 ---

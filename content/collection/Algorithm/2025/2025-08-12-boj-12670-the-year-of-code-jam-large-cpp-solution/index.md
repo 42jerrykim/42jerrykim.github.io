@@ -7,73 +7,23 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "12670"
-- "The Year of Code Jam"
-- "Year of Code Jam"
-- "Code Jam"
-- "Google Code Jam"
-- "Large"
-- "그래프 컷"
-- "Graph Cut"
-- "Min-cut"
-- "Minimum Cut"
-- "Max-flow"
-- "Maximum Flow"
-- "Dinic"
-- "디닉"
-- "이분 그래프"
-- "Bipartite"
-- "격자 그래프"
-- "Grid Graph"
-- "Potts Model"
-- "Ising"
-- "Binary Labeling"
-- "Energy Minimization"
-- "Pairwise Potts"
-- "Unary Term"
-- "Pairwise Term"
-- "Submodular"
-- "서브모듈러"
-- "Cut Capacity"
-- "Capacity"
-- "s-t Cut"
-- "Source Sink"
-- "고정 노드"
-- "Hard Constraint"
-- "INF Edge"
-- "문제 풀이"
-- "해설"
-- "Algorithm"
-- "알고리즘"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "시간복잡도"
-- "Time Complexity"
-- "구현"
-- "Implementation"
-- "그래프"
-- "Graph"
-- "최대 행복"
-- "Happiness"
-- "Optimization"
-- "최적화"
-- "Mathematical Modeling"
-- "수식 변환"
-- "Energy Reparametrization"
-- "Labeling"
-- "Checkerboard"
-- "Neighbor"
-- "Adjacency"
-- "상하좌우"
-- "2D Grid"
-- "Google"
-- "World Finals"
+- BOJ
+- Baekjoon
+- 백준
+- Network-Flow
+- Editorial
+- Algorithm
+- 알고리즘
+- C++
+- IO
+- 시간복잡도
+- Time-Complexity
+- 구현
+- Implementation
+- 그래프
+- Graph
+- Optimization
+- 최적화
 image: "wordcloud.png"
 ---
 

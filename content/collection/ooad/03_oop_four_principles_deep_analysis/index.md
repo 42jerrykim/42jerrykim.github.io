@@ -6,9 +6,7 @@ lastmod: 2026-01-17
 collection_order: 3
 draft: true
 tags:
-  - OOAD
   - OOP
-  - Four-Principles
   - Abstraction
   - 추상화
   - Encapsulation
@@ -19,56 +17,27 @@ tags:
   - 다형성
   - Interface
   - 인터페이스
-  - Information-Hiding
-  - 정보은닉
-  - Cohesion
+  - Software-Architecture
   - 응집도
-  - Coupling
   - 결합도
   - Composition
-  - 조합
-  - Inheritance-vs-Composition
-  - 상속-조합
-  - LSP
-  - 리스코프-치환
+  - Combinatorics
   - SOLID
-  - Design-Principles
-  - 설계-원칙
-  - Anti-Pattern
-  - 안티패턴
-  - God-Object
-  - Feature-Envy
-  - Primitive-Obsession
   - Refactoring
   - 리팩토링
   - 테스트
-  - Testability
-  - Maintainability
-  - 유지보수성
-  - Extensibility
+  - Testing
+  - Code-Quality
+  - 코드품질
   - 확장성
-  - Strategy-Pattern
-  - 전략-패턴
   - Factory
-  - 팩토리
   - Template-Method
-  - 템플릿-메서드
-  - Domain-Model
-  - 도메인-모델
   - Clean-Code
   - 클린코드
-  - Code-Smell
-  - 코드-스멜
   - UML
-  - Architecture
-  - 아키텍처
-  - API-Design
-  - API-설계
+  - 소프트웨어아키텍처
   - TDD
-  - DDD
   - Microservices
-  - Legacy
-  - 레거시
 ---
 
 # 03. 객체지향 4대 원칙 심층 분석

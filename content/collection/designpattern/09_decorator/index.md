@@ -9,55 +9,25 @@ image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design Pattern
-  - 디자인 패턴
+  - Design-Pattern
+  - 디자인패턴
   - Decorator
-  - 데코레이터
-  - Structural Pattern
-  - 구조 패턴
   - GoF
-  - Gang of Four
-  - Wrapper
-  - 래퍼
-  - Dynamic Behavior
-  - 동적 행위
   - Composition
   - 합성
-  - Open Closed Principle
-  - 개방 폐쇄 원칙
-  - Single Responsibility
-  - 단일 책임
-  - Flexible Extension
-  - 유연한 확장
-  - Concrete Decorator
-  - 구체 데코레이터
-  - Component
-  - 컴포넌트
-  - Stream
-  - 스트림
-  - I/O
-  - 입출력
-  - BufferedInputStream
-  - Coffee Example
-  - 커피 예제
-  - Code Reusability
-  - 코드 재사용성
-  - Maintainability
-  - 유지보수성
-  - Software Design
-  - 소프트웨어 설계
+  - SOLID
+  - Software-Architecture
+  - IO
+  - Code-Quality
+  - 코드품질
+  - 소프트웨어아키텍처
   - OOP
-  - 객체지향 프로그래밍
+  - 객체지향
   - Java
   - C++
   - Python
-  - C#
-  - Chaining
-  - 체이닝
-  - Runtime
-  - 런타임
-  - Feature Addition
-  - 기능 추가
+  - CSharp
+  - Performance
 ---
 
 데코레이터 패턴(Decorator Pattern)은 객체에 동적으로 새로운 책임을 추가할 수 있게 해주는 구조적 디자인 패턴이다. 상속을 사용하지 않고도 객체의 기능을 확장할 수 있어, 런타임에 유연하게 기능을 조합할 수 있다. 마치 선물 포장처럼 객체를 여러 겹으로 감싸면서 새로운 기능을 덧붙이는 방식으로 동작한다.

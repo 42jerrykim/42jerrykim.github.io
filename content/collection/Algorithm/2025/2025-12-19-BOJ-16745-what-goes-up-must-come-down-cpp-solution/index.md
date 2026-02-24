@@ -8,77 +8,34 @@ categories:
 - "BOJ"
 - "Fenwick Tree"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "16745"
-- "BOJ-16745"
-- "What Goes Up Must Come Down"
-- "Bitonic"
-- "비토닉"
-- "Unimodal Sequence"
-- "단봉 수열"
-- "Non-decreasing"
-- "비감소"
-- "Non-increasing"
-- "비증가"
-- "Adjacent Swap"
-- "인접 스왑"
-- "Minimum Swaps"
-- "최소 스왑"
-- "Inversion Count"
-- "역전 수"
-- "Inversion"
-- "역전"
-- "Fenwick Tree"
-- "펜윅 트리"
-- "Binary Indexed Tree"
-- "이진 인덱스 트리"
-- "BIT"
-- "Order"
-- "순서"
-- "Reordering"
-- "재배열"
-- "Stable Matching"
-- "안정 매칭"
-- "Duplicate Values"
-- "중복 값"
-- "Multiset"
-- "멀티셋"
-- "Counting"
-- "카운팅"
-- "Prefix Sum"
-- "접두 합"
-- "Suffix Sum"
-- "접미 합"
-- "Greedy"
-- "그리디"
-- "Optimization"
-- "최적화"
-- "Data Structures"
-- "자료구조"
-- "Frequency"
-- "빈도"
-- "Index"
-- "인덱스"
-- "Implementation"
-- "구현"
-- "Problem Solving"
-- "문제해결"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "ICPC"
-- "Asia Yokohama Regional 2018"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "O(N log N)"
-- "C++"
-- "CPP"
-- "GNU++17"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Math
+- Fenwick-Tree
+- Binary-Indexed-Tree
+- BIT
+- Prefix-Sum
+- Greedy
+- 그리디
+- Optimization
+- 최적화
+- Data-Structures
+- 자료구조
+- Implementation
+- 구현
+- Problem-Solving
+- 문제해결
+- Competitive-Programming
+- 경쟁프로그래밍
+- ICPC
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- C++
 image: wordcloud.png
 ---
 

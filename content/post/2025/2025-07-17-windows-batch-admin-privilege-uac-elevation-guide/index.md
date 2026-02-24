@@ -4,9 +4,11 @@ date: 2025-07-17
 description: "Windows 환경에서 배치 파일(.bat)이 관리자 권한(Administrator Privilege)을 자동으로 요청하도록 하는 BatchGotAdmin 스크립트의 원리와 실제 동작 과정을 상세히 설명한다. UAC(User Account Control) 동작 방식, 스크립트 내부 구조, 실전 적용 방법, 주의사항까지 단계별로 안내하여, Windows 시스템 관리 자동화에 실질적으로 활용할 수 있도록 돕는다."
 tags:
   - Windows
-  - CMD
-  - Batch
-  - 관리자 권한
+  - Go
+  - Security
+  - Prompt-Engineering
+  - AI
+  - Configuration
 categories:
   - Windows
   - CMD

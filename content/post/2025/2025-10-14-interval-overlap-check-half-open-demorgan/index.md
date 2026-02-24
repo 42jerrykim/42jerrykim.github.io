@@ -7,63 +7,19 @@ categories:
   - Algorithm
   - Math
 tags:
-  - Interval
-  - Intervals
-  - Overlap
-  - Overlapping
-  - Interval Overlap
-  - Half-open Interval
-  - Closed Interval
-  - Open Interval
-  - De Morgan
-  - De Morgan's Laws
-  - Boolean Algebra
-  - Case Analysis
-  - Scheduling
-  - Time Range
-  - Date Range
-  - Range Intersection
-  - Segment Intersection
-  - AABB
-  - Axis-Aligned Bounding Box
-  - Box Overlap
-  - Collision Detection
+  - Range-Query
+  - Concurrency
   - Geometry
-  - Computational Geometry
+  - Computational-Geometry
   - Algorithm
   - 알고리즘
-  - 구간
-  - 구간 겹침
-  - 반열림 구간
-  - 폐구간
-  - 개구간
-  - 드모르간 법칙
-  - 불 대수
-  - 케이스 분석
-  - 스케줄링
-  - 시간 구간
-  - 날짜 범위
-  - 교집합
-  - 구간 교집합
-  - 직사각형 겹침
-  - 충돌 감지
   - 기하학
-  - 계산기하
-  - 조건식
-  - 오프바이원
-  - 성능 최적화
-  - Robustness
-  - Predicate
-  - Inequality
-  - Comparison
+  - Performance
   - Python
   - C++
   - JavaScript
   - TypeScript
-  - Edge Cases
-  - Floating Point
-  - 부동소수점
-  - 정수
+  - Edge-Cases
 image: wordcloud.png
 ---
 

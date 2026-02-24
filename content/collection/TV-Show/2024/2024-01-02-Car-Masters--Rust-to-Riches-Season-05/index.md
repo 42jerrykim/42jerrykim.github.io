@@ -6,8 +6,12 @@ date: "2024-01-02T00:00:00Z"
 header:
   teaser: /assets/images/2024/CM_Title.jpg
 tags:
-- Car
-- GothamGarage
+- TV-Show
+- 드라마
+- Documentary
+- 다큐멘터리
+- Review
+- 리뷰
 title: '[TV Show] Car Masters: Rust to Riches - Season 05 (2023)'
 
 ---

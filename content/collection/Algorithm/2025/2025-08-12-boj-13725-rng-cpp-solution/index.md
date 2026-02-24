@@ -7,66 +7,27 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "13725"
-- "RNG"
-- "Random Number Generator"
-- "선형 점화식"
-- "Linear Recurrence"
-- "Bostan–Mori"
-- "Bostan Mori"
-- "NTT"
-- "Number Theoretic Transform"
-- "NTT Convolution"
-- "Convolution"
-- "Polynomial"
-- "Polynomial Multiplication"
-- "다항식"
-- "다항식 곱셈"
-- "Generating Function"
-- "생성함수"
-- "Formal Power Series"
-- "형식적 멱급수"
-- "Fast Power Series"
-- "분할 정복"
-- "Divide and Conquer"
-- "이진 승법"
-- "빠른 거듭제곱"
-- "Powmod"
-- "modinv"
-- "Modular Inverse"
-- "Modular Arithmetic"
-- "모듈러 연산"
-- "Prime Modulo"
-- "104857601"
-- "Primitive Root"
-- "원시근"
-- "FFT prime"
-- "2^22*5^2+1"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "Algorithm"
-- "알고리즘"
-- "Competitive Programming"
-- "코딩테스트"
-- "Problem Solving"
-- "문제풀이"
-- "시간복잡도"
-- "Time Complexity"
-- "O(k log k log N)"
-- "K up to 30000"
-- "N up to 1e18"
-- "Optimization"
-- "최적화"
-- "Implementation"
-- "구현"
-- "정답 코드"
-- "Solution Code"
+- BOJ
+- Baekjoon
+- 백준
+- Convolution
+- Divide-and-Conquer
+- Modular-Arithmetic
+- 모듈러
+- C++
+- IO
+- Algorithm
+- 알고리즘
+- Competitive-Programming
+- 코딩테스트
+- Problem-Solving
+- 시간복잡도
+- Time-Complexity
+- Optimization
+- 최적화
+- Implementation
+- 구현
+- Editorial
 image: "wordcloud.png"
 ---
 

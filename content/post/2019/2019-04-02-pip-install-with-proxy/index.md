@@ -9,7 +9,11 @@ redirect_from:
 tags:
 - Shell
 - Proxy
-- PIP
+- Bash
+- Flask
+- Design-Pattern
+- Python
+- Deployment
 title: PIP 패키지 인스톨 Proxy 환경에서 사용하기
 ---
 

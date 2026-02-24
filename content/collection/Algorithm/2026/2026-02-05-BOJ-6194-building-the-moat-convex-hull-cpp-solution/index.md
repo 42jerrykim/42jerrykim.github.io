@@ -9,76 +9,30 @@ categories:
 - "Computational Geometry"
 - "Convex Hull"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "6194"
-- "BOJ-6194"
-- "Problem-6194"
-- "Building the Moat"
-- "모트 만들기"
-- "USACO"
-- "USA Computing Olympiad"
-- "Computational Geometry"
-- "계산기하"
-- "Geometry"
-- "기하"
-- "Convex Hull"
-- "볼록 껍질"
-- "Convex Hull Perimeter"
-- "볼록 껍질 둘레"
-- "Andrew Monotonic Chain"
-- "모노토닉 체인"
-- "Graham Scan"
-- "그레이엄 스캔"
-- "CCW"
-- "반시계"
-- "Cross Product"
-- "외적"
-- "Orientation Test"
-- "방향 판정"
-- "Polygon"
-- "다각형"
-- "Perimeter"
-- "둘레"
-- "Euclidean Distance"
-- "유클리드 거리"
-- "Sorting"
-- "정렬"
-- "O(N log N)"
-- "NlogN"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Implementation"
-- "구현"
-- "Precision"
-- "정밀도"
-- "Floating Point"
-- "부동소수점"
-- "Long Double"
-- "롱 더블"
-- "Two Decimals"
-- "소수점 둘째 자리"
-- "Edge Case"
-- "엣지 케이스"
-- "No Collinear"
-- "세 점 일직선 없음"
-- "Integer Coordinates"
-- "정수 좌표"
-- "Closed Loop"
-- "폐곡선"
-- "Minimal Fence"
-- "최소 둘레"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- USACO
+- Computational-Geometry
+- Geometry
+- Sorting
+- 정렬
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Implementation
+- 구현
+- Edge-Cases
+- 엣지케이스
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
 image: "wordcloud.png"
 ---
 

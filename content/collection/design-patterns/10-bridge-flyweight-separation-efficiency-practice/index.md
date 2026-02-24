@@ -13,48 +13,15 @@ categories:
 - Practice
 - Memory Efficiency
 tags:
-- Bridge Pattern Practice
-- Flyweight Pattern Practice
-- Abstraction Separation
-- Implementation Separation
-- Memory Optimization
-- Performance Tuning
-- GUI Components
-- Game Objects
-- Text Editor
-- Object Pool
-- Intrinsic State
-- Extrinsic State
-- Structural Patterns
-- Design Patterns
-- GoF Patterns
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Software Architecture
-- Scalable Design
-- 브리지 패턴 실습
-- 플라이웨이트 패턴 실습
-- 추상화 분리
-- 구현 분리
-- 메모리 최적화
-- 성능 튜닝
-- GUI 컴포넌트
-- 게임 객체
-- 텍스트 에디터
-- 객체 풀
-- 내재적 상태
-- 외재적 상태
-- 구조 패턴
-- 디자인 패턴
-- GoF 패턴
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 소프트웨어 아키텍처
-- 확장 가능한 설계
+- Memory
+- Design-Pattern
+- GoF
+- Tutorial
+- Implementation
+- Software-Architecture
+- 디자인패턴
+- 구현
+- 소프트웨어아키텍처
 ---
 
 이 실습에서는 Bridge 패턴으로 다중 플랫폼 시스템을, Flyweight 패턴으로 메모리 효율적인 시스템을 직접 구현합니다.

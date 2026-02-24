@@ -7,58 +7,19 @@ title: "[Clean Architecture] 07. 설계와 아키텍처란?"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Software Design
-  - 소프트웨어 설계
-  - Design
-  - 설계
-  - Architecture
-  - 아키텍처
-  - High Level
-  - 고수준
-  - Low Level
-  - 저수준
-  - Decision Making
-  - 의사결정
+  - Clean-Architecture
+  - 클린아키텍처
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Design-Pattern
   - Productivity
   - 생산성
-  - Development Cost
-  - 개발 비용
-  - Technical Debt
-  - 기술 부채
-  - Code Quality
-  - 코드 품질
-  - Maintainability
-  - 유지보수성
-  - Software Engineering
-  - 소프트웨어 공학
-  - Robert C. Martin
-  - Uncle Bob
-  - Case Study
-  - 사례 연구
-  - Line of Code
-  - 코드 라인
-  - Headcount
-  - 인력
-  - Cost per Line
-  - 라인당 비용
+  - Code-Quality
+  - 코드품질
+  - SOLID
   - Refactoring
   - 리팩토링
-  - Clean Code
-  - 클린 코드
-  - Redesign
-  - 재설계
-  - Legacy System
-  - 레거시 시스템
-  - Engineering Team
-  - 엔지니어링 팀
-  - Release
-  - 릴리스
-  - Overconfidence
-  - 과신
+  - Clean-Code
 ---
 
 **설계(Design)와 아키텍처(Architecture) 사이에는 오랫동안 많은 혼란이 있었다.** 결론부터 얘기하면 **둘 사이에는 차이가 없다.**

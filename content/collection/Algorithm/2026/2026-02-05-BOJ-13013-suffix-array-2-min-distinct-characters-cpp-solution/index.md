@@ -10,84 +10,30 @@ categories:
 - "Suffix Array"
 - "Greedy"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "13013"
-- "BOJ-13013"
-- "Problem-13013"
-- "접미사 배열 2"
-- "접미사배열2"
-- "Suffix Array"
-- "접미사 배열"
-- "Suffix"
-- "접미사"
-- "Suffix Array 2"
-- "String"
-- "문자열"
-- "Lexicographic Order"
-- "사전순"
-- "Dictionary Order"
-- "사전식 순서"
-- "Ranking"
-- "랭킹"
-- "Rank Array"
-- "순위 배열"
-- "Permutation"
-- "순열"
-- "Greedy"
-- "그리디"
-- "Constructive"
-- "구성"
-- "Construction"
-- "문자 구성"
-- "Minimum Alphabet"
-- "최소 알파벳"
-- "Distinct Characters"
-- "서로 다른 문자"
-- "Alphabet Size"
-- "알파벳 크기"
-- "Grouping"
-- "그룹핑"
-- "Partition"
-- "분할"
-- "Descent"
-- "내림"
-- "Inversion"
-- "역전"
-- "Order Constraint"
-- "순서 제약"
-- "Adjacent Comparison"
-- "인접 비교"
-- "Suffix Rank"
-- "접미사 순위"
-- "Shifted Index"
-- "인덱스 이동"
-- "N<=50"
-- "Small N"
-- "작은 N"
-- "O(N)"
-- "Linear Time"
-- "선형 시간"
-- "Proof"
-- "정당성 증명"
-- "Invariant"
-- "불변식"
-- "Edge Case"
-- "엣지 케이스"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- String
+- 문자열
+- Combinatorics
+- Greedy
+- 그리디
+- Implementation
+- Divide-and-Conquer
+- Math
+- Time-Complexity
+- Edge-Cases
+- 엣지케이스
+- 구현
+- C++
+- Competitive-Programming
+- 경쟁프로그래밍
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
 image: "wordcloud.png"
 ---
 

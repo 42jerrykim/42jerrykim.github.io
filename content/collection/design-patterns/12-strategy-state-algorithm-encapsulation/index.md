@@ -12,66 +12,11 @@ categories:
 - Algorithm Design
 - State Management
 tags:
-- Strategy Pattern
-- State Pattern
-- Behavioral Patterns
-- Algorithm Encapsulation
-- State Machine
-- Dynamic Behavior
-- Context Switching
-- Policy Pattern
-- State Transition
-- Finite State Machine
-- Design Patterns
-- GoF Patterns
-- Runtime Algorithm Selection
-- Behavioral Delegation
-- Context State
-- State Context
-- Algorithm Family
-- Interchangeable Algorithms
-- Conditional Logic Elimination
-- State Based Behavior
-- Functional Programming
-- Higher Order Functions
-- Strategy Objects
-- State Objects
-- Polymorphic Behavior
-- Interface Segregation
-- Open Closed Principle
-- State Synchronization
-- Concurrent State
-- State Persistence
-- 전략 패턴
-- 상태 패턴
-- 행동 패턴
-- 알고리즘 캡슐화
-- 상태 기계
-- 동적 행동
-- 컨텍스트 전환
-- 정책 패턴
-- 상태 전이
-- 유한 상태 기계
-- 디자인 패턴
-- GoF 패턴
-- 런타임 알고리즘 선택
-- 행동 위임
-- 컨텍스트 상태
-- 상태 컨텍스트
-- 알고리즘 패밀리
-- 교체 가능한 알고리즘
-- 조건 로직 제거
-- 상태 기반 행동
-- 함수형 프로그래밍
-- 고차 함수
-- 전략 객체
-- 상태 객체
-- 다형적 행동
-- 인터페이스 분리
-- 개방 폐쇄 원칙
-- 상태 동기화
-- 동시성 상태
-- 상태 지속성
+- Design-Pattern
+- GoF
+- Functional-Programming
+- SOLID
+- 디자인패턴
 ---
 
 Strategy와 State 패턴의 철학적 차이를 탐구합니다. 알고리즘 교체와 상태 기반 행동 변화를 통해 유연한 시스템을 설계하는 방법을 학습합니다.

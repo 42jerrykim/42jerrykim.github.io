@@ -7,64 +7,28 @@ categories:
 - "BOJ"
 - "Algorithm"
 tags:
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "12898"
-- "Selling RNA Strands"
-- "RNA"
-- "문자열"
-- "접두사"
-- "접미사"
-- "Prefix"
-- "Suffix"
-- "Trie"
-- "트라이"
-- "Euler Tour"
-- "오일러 투어"
-- "Fenwick Tree"
-- "BIT"
-- "펜윅 트리"
-- "2D Range Counting"
-- "직사각형 카운팅"
-- "오프라인 쿼리"
-- "Offline Query"
-- "스위핑"
-- "Sweep Line"
-- "자료구조"
-- "Data Structure"
-- "알고리즘"
-- "Algorithm"
-- "빠른입출력"
-- "Fast IO"
-- "입출력 최적화"
-- "I/O Optimization"
-- "구간합"
-- "Prefix Sum"
-- "쿼리 처리"
-- "Query Processing"
-- "고급자료구조"
-- "Advanced Data Structures"
-- "대규모입력"
-- "Large Input"
-- "메모리 최적화"
-- "Memory Optimization"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "백준해설"
-- "문제해설"
-- "코딩테스트"
-- "Competitive Programming"
-- "ICPC"
-- "문자열처리"
-- "String Processing"
-- "접두접미"
-- "Prefix Suffix"
-- "N log N"
-- "선형스캔"
-- "Linear Scan"
-- "정답률"
+- BOJ
+- Baekjoon
+- 백준
+- 문자열
+- Prefix-Sum
+- String
+- Trie
+- Euler-Tour
+- Fenwick-Tree
+- BIT
+- Range-Query
+- Algorithm
+- 자료구조
+- Data-Structures
+- 알고리즘
+- IO
+- Memory
+- C++
+- Editorial
+- 코딩테스트
+- Competitive-Programming
+- ICPC
 image: "wordcloud.png"
 ---
 

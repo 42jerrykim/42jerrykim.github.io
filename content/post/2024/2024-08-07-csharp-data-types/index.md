@@ -6,15 +6,12 @@ date: "2024-08-07T00:00:00Z"
 header: null
 tags:
 - CSharp
-- DataTypes
+- Implementation
 - .NET
-- Programming
-- Coding
-- SoftwareDevelopment
-- Variables
-- TypeSystem
-- NullableTypes
-- Literals
+- Software-Architecture
+- String
+- Memory
+- Compiler
 teaser: /assets/images/undefined/teaser.jpg
 title: '[C#] C# 데이터 타입'
 ---

@@ -13,46 +13,14 @@ categories:
 - Practice
 - Design Debate
 tags:
-- Singleton Pattern Practice
-- Thread Safety
-- Lazy Initialization
-- Eager Initialization
-- Double Checked Locking
-- Enum Singleton
-- Dependency Injection
-- Singleton Alternatives
-- Practice Project
-- Hands-on Learning
-- Code Implementation
-- Pattern Implementation
-- Creational Patterns
-- Design Patterns
-- GoF Patterns
-- Testing Challenges
-- Mock Objects
-- Unit Testing
-- Concurrency Issues
-- Modern Approaches
-- 싱글톤 패턴 실습
-- 스레드 안전성
-- 지연 초기화
-- 즉시 초기화
-- 더블 체크 로킹
-- 열거형 싱글톤
-- 의존성 주입
-- 싱글톤 대안
-- 실습 프로젝트
-- 실습 학습
-- 코드 구현
-- 패턴 구현
-- 생성 패턴
-- 디자인 패턴
-- GoF 패턴
-- 테스트 어려움
-- 목 객체
-- 단위 테스트
-- 동시성 문제
-- 현대적 접근법
+- Dependency-Injection
+- Tutorial
+- Implementation
+- Design-Pattern
+- GoF
+- 구현
+- 디자인패턴
+- Testing
 ---
 
 이 실습에서는 Singleton 패턴의 다양한 구현 방식과 멀티스레드 안전성, 그리고 현대적 대안을 직접 구현해봅니다.

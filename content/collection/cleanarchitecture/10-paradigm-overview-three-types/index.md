@@ -7,60 +7,16 @@ title: "[Clean Architecture] 10. 패러다임 개요: 세 가지 패러다임"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Programming Paradigm
-  - 프로그래밍 패러다임
-  - Structured Programming
-  - 구조적 프로그래밍
-  - Object Oriented Programming
-  - 객체 지향 프로그래밍
+  - Clean-Architecture
+  - 클린아키텍처
   - OOP
-  - Functional Programming
-  - 함수형 프로그래밍
-  - FP
+  - Functional-Programming
   - Dijkstra
-  - 데이크스트라
-  - Ole Johan Dahl
-  - 올레 요한 달
-  - Kristen Nygaard
-  - 크리스텐 니가드
-  - Alonzo Church
-  - 알론조 처치
-  - goto Statement
-  - goto문
-  - Function Pointer
-  - 함수 포인터
-  - Assignment
-  - 할당문
-  - Immutability
-  - 불변성
+  - Code-Quality
   - Polymorphism
   - 다형성
-  - Lambda Calculus
-  - 람다 계산법
-  - LISP
-  - 리스프
-  - ALGOL
-  - 알골
-  - Control Flow
-  - 제어 흐름
-  - Negative Rules
-  - 부정적 규칙
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Component Separation
-  - 컴포넌트 분리
-  - Data Management
-  - 데이터 관리
-  - Class
-  - 클래스
-  - Instance Variable
-  - 인스턴스 변수
-  - Method
-  - 메서드
-  - Stack Frame
-  - 스택 프레임
+  - Software-Architecture
+  - 소프트웨어아키텍처
   - Heap
   - 힙
 ---

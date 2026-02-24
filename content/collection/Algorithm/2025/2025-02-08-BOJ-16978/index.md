@@ -7,14 +7,16 @@ categories:
 - DataStructure
 - SegmentTree
 tags:
-- PersistentSegmentTree
-- SegmentTree
-- DivideAndConquer
-- Persistence
-- O(logN)
 - Tree
-- RangeQuery
 - Implementation
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Python
 image: "index.png"
 date: 2025-02-08
 ---

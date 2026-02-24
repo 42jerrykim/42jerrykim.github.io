@@ -9,73 +9,32 @@ categories:
 - "Math"
 - "Sorting"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "22878"
-- "BOJ-22878"
-- "간단한 문제"
-- "Simple Problem"
-- "Math"
-- "수학"
-- "Identity"
-- "항등식"
-- "Min"
-- "최솟값"
-- "Max"
-- "최댓값"
-- "Absolute Difference"
-- "절댓값 차이"
-- "L-infinity"
-- "L∞"
-- "Chebyshev Distance"
-- "체비셰프 거리"
-- "Distance"
-- "거리"
-- "Transform"
-- "변환"
-- "Coordinate Transform"
-- "좌표 변환"
-- "p+q"
-- "p-q"
-- "Rotation"
-- "회전 변환"
-- "Sorting"
-- "정렬"
-- "Prefix Sum"
-- "누적합"
-- "Sum of Absolute Differences"
-- "절댓값 차이 합"
-- "O(N log N)"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Fast IO"
-- "빠른 입출력"
-- "int128"
-- "__int128"
-- "Overflow"
-- "오버플로우"
-- "Large N"
-- "대용량 입력"
-- "UCPC 2021"
-- "Open Cup"
-- "Problem Solving"
-- "문제해결"
-- "Coding Test"
-- "코딩테스트"
-- "Competitive Programming"
-- "경쟁 프로그래밍"
-- "Two Sequences"
-- "두 수열"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Math
+- 수학
+- Shortest-Path
+- Sorting
+- 정렬
+- Prefix-Sum
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Implementation
+- 구현
+- C++
+- IO
+- Edge-Cases
+- Problem-Solving
+- 문제해결
+- Coding-Test
+- 코딩테스트
+- Competitive-Programming
+- 경쟁프로그래밍
 image: "wordcloud.png"
 ---
 

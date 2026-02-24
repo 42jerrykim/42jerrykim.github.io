@@ -6,59 +6,20 @@ categories:
   - Tools
 tags:
   - VSCode
-  - Visual Studio Code
   - Markdown
   - 마크다운
-  - Preview
-  - 미리보기
-  - Markdown Preview Enhanced
-  - Extension
-  - 익스텐션
-  - PlantUML
-  - Mermaid
-  - 다이어그램
-  - Diagram
-  - Flowchart
-  - 순서도
-  - Sequence Diagram
-  - 시퀀스 다이어그램
   - Documentation
   - 문서화
-  - Technical Writing
-  - 기술 문서
-  - Developer Tools
-  - 개발 도구
   - Productivity
   - 생산성
-  - Code Editor
-  - 코드 에디터
-  - Live Preview
-  - 실시간 미리보기
-  - Visualization
-  - 시각화
   - Graph
   - 그래프
-  - Chart
-  - 차트
   - UML
-  - Architecture Diagram
-  - 아키텍처 다이어그램
-  - System Design
-  - 시스템 설계
-  - Software Development
-  - 소프트웨어 개발
-  - Open Source
+  - Software-Architecture
+  - Implementation
+  - 소프트웨어아키텍처
+  - Open-Source
   - 오픈소스
-  - Markdown Extension
-  - 마크다운 확장
-  - Editor Plugin
-  - 에디터 플러그인
-  - Development Environment
-  - 개발 환경
-  - Code Documentation
-  - 코드 문서화
-  - Technical Documentation
-  - 기술 문서화
 image: "image03.png"
 date: 2025-10-16
 lastmod: 2025-10-16

@@ -5,9 +5,14 @@ categories: Algorithm
 tags:
 - Implementation
 - Math
-- Arithmetic
-- BasicCalculation
-- ProblemSolving
+- Problem-Solving
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- C++
+- Python
 image: "tmp_wordcloud.png"
 date: 2024-10-16
 ---

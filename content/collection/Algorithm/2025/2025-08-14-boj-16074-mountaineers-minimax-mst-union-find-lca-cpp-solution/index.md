@@ -11,64 +11,39 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-16074
-- cpp
 - C++
 - Graph
 - 그래프
-- Grid
-- 격자
-- Minimum Spanning Tree
 - MST
-- 최소스패닝트리
-- Kruskal
-- 크루스칼
-- Disjoint Set Union
-- 유니온파인드
-- Union Find
+- Disjoint-Set
 - LCA
-- Lowest Common Ancestor
-- 이진리프팅
-- Binary Lifting
-- Bottleneck Path
-- 병목경로
-- Minimax
-- 최소최대경로
-- Connectivity
-- 연결성
-- Offline Queries
-- 오프라인 쿼리
+- Range-Query
 - Tree
 - 트리
 - BFS
-- 너비우선탐색
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
-- Complexity Analysis
-- 복잡도 분석
-- Proof of Correctness
-- 정당성 증명
-- Edge Cases
-- 코너 케이스
+- Complexity-Analysis
+- 복잡도분석
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
+- 함정
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
 - Implementation
 - 구현
-- Data Structures
+- Data-Structures
 - 자료구조
-- Union-Find Tree
-- 경로최대질의
-- Binary Search
+- Binary-Search
 - 이분탐색
-- Shortest Path
+- Shortest-Path
 - 최단경로
 - String
 - 문자열

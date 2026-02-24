@@ -12,72 +12,39 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-12766
-- cpp
 - C++
 - Graph
 - 그래프
-- Directed Graph
-- 유향 그래프
-- Weighted Graph
-- 가중치 그래프
-- Shortest Path
+- Shortest-Path
 - 최단경로
 - Dijkstra
-- 다익스트라
-- All-Pairs via HQ
-- 본부 경유
-- Prefix Sum
-- 접두사 합
-- Dynamic Programming
+- Prefix-Sum
+- Dynamic-Programming
 - 동적계획법
-- DP Optimization
-- DP 최적화
-- Divide and Conquer DP
-- 분할 정복 DP
-- Monge
-- 몽주 구조
-- Quadrangle Inequality
-- 사각 부등식
-- Convex Optimization
-- 볼록 최적화
-- Greedy Structure
-- 그리디 구조
-- Partitioning
-- 구간 분할
-- Segmentation
-- 구간화
 - Sorting
 - 정렬
-- Proof of Correctness
-- 정당성 증명
-- Complexity Analysis
-- 복잡도 분석
-- Time Complexity
+- Complexity-Analysis
+- 복잡도분석
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
 - Implementation
 - 구현
-- Edge Cases
-- 코너 케이스
+- Edge-Cases
+- 엣지케이스
 - Pitfalls
-- 실수 포인트
-- Competitive Programming
+- 함정
+- Competitive-Programming
 - 경쟁프로그래밍
 - ICPC
-- ICPC World Finals 2016
 - editorial
 - 에디토리얼
-- Template
-- 템플릿
 - Testing
 - 테스트
-- Invariant
-- 불변식
 - Math
 - 수학
-- Modulo
+- Modular-Arithmetic
 - 모듈러
 - Debugging
 - 디버깅

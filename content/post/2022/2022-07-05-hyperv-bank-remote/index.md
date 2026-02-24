@@ -5,11 +5,13 @@ categories:
 - HyperV
 date: "2022-07-05T00:00:00Z"
 tags:
-- HyperV
-- Bank
 - RDP
-- RemoteDesktopProtocol
-- Chrome 원격 데스크톱
+- Windows
+- Security
+- Memory
+- Hardware
+- Tablet
+- 태블릿
 title: '[HyperV] 원격(RPD, Chrome 원격 데스크톱 등) 사용시 은행 사이트에 접근 안되는 것을 HyperV로 해결하기'
 ---
 

@@ -7,60 +7,16 @@ title: "[Clean Architecture] 05. 클린 아키텍처의 탄생"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Robert C. Martin
-  - Uncle Bob
-  - 로버트 C. 마틴
-  - 엉클 밥
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Architecture Pattern
-  - 아키텍처 패턴
-  - Hexagonal Architecture
-  - 육각형 아키텍처
-  - Onion Architecture
-  - 양파 아키텍처
-  - BCE Pattern
-  - Boundary Control Entity
-  - SOLID Principles
-  - SOLID 원칙
-  - Agile Manifesto
-  - 애자일 선언문
-  - Clean Code
-  - 클린 코드
-  - Clean Coder
-  - Software Craftsmanship
-  - 소프트웨어 장인정신
-  - Dependency Rule
-  - 의존성 규칙
-  - Dependency Inversion
-  - 의존성 역전
-  - Domain Logic
-  - 도메인 로직
-  - Use Case
-  - 유스케이스
-  - Entity
-  - 엔터티
-  - Interface Adapter
-  - 인터페이스 어댑터
-  - Framework Independence
-  - 프레임워크 독립성
-  - Database Independence
-  - 데이터베이스 독립성
-  - Testability
-  - 테스트 용이성
-  - Object Mentor
-  - Software History
-  - 소프트웨어 역사
-  - Programming History
-  - 프로그래밍 역사
-  - Architecture History
-  - 아키텍처 역사
-  - Concentric Circles
-  - 동심원
-  - Software Design
-  - 소프트웨어 설계
+  - Clean-Architecture
+  - 클린아키텍처
+  - SOLID
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Design-Pattern
+  - Clean-Code
+  - Dependency-Injection
+  - 의존성주입
+  - Testing
 ---
 
 2012년 8월 13일, 로버트 C. 마틴(Robert C. Martin)은 자신의 블로그 "The Clean Code Blog"에 "The Clean Architecture"라는 제목의 글을 게시했다. 이 글은 육각형 아키텍처, 양파 아키텍처, BCE(Boundary-Control-Entity) 등 기존 아키텍처 패턴들의 공통점을 추출하여 하나의 통합된 개념으로 정리했다. 이것이 Clean Architecture의 공식적인 탄생이었다.

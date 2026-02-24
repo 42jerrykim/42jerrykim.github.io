@@ -9,29 +9,14 @@ categories:
   - Netflix
   - Automotive
 tags:
-  - Car-Masters
-  - Rust-to-Riches
-  - Season-6
-  - Netflix-Series
-  - Episode-Guide
-  - Plot-Summary
   - Review
-  - Spoiler
-  - Mark-Towle
-  - Shawn-Pilot
-  - Constance-Nunes
-  - Tony-Quinones
-  - Caveman-Pyle
-  - Nick-Smith
-  - Ferrari
-  - McLaren
-  - DeLorean
-  - Ford-Bronco
-  - Chevrolet-Camaro
-  - Humvee
-  - Jaguar-XK-E
-  - Magnum-PI
-  - Nostalgia-Builds
+  - Rust
+  - Memory
+  - TV-Show
+  - 드라마
+  - 리뷰
+  - Brand
+  - 브랜드
 image: season-6.jpg
 ---
 

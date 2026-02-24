@@ -7,52 +7,20 @@ title: "[Clean Architecture] 29. 정책과 수준"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean Architecture
-  - 클린 아키텍처
-  - Policy
-  - 정책
-  - Level
-  - 수준
-  - High Level
-  - 고수준
-  - Low Level
-  - 저수준
-  - Dependency
-  - 의존성
-  - Business Rules
-  - 비즈니스 규칙
-  - Input
-  - 입력
-  - Output
-  - 출력
-  - Distance
-  - 거리
-  - Source Code Dependency
-  - 소스 코드 의존성
-  - Data Flow
-  - 데이터 흐름
-  - Software Architecture
-  - 소프트웨어 아키텍처
-  - Translate
-  - 번역
-  - Encrypt
-  - 암호화
-  - Dependency Inversion
-  - 의존성 역전
+  - Clean-Architecture
+  - 클린아키텍처
+  - Security
+  - Dependency-Injection
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - IO
+  - Shortest-Path
+  - 의존성주입
   - Interface
   - 인터페이스
   - Abstraction
   - 추상화
-  - Stability
-  - 안정성
-  - Change
-  - 변경
-  - SDP
-  - Stable Dependencies Principle
-  - Layer
-  - 계층
-  - Component
-  - 컴포넌트
+  - Code-Quality
 ---
 
 소프트웨어 시스템은 여러 **정책(Policy)**의 집합이다. 정책들은 서로 다른 **수준(Level)**에 존재하며, 의존성은 수준의 방향으로 흘러야 한다.

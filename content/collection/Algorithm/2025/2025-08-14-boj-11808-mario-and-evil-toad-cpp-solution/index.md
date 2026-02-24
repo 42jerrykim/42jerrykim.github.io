@@ -11,75 +11,41 @@ tags:
 - 알고리즘
 - BOJ
 - 백준
-- Problem-11808
-- cpp
 - C++
 - Tree
 - 트리
 - Graph
 - 그래프
-- Dynamic Programming
+- Dynamic-Programming
 - 동적계획법
-- Tree DP
-- 트리 DP
-- Knapsack
-- 배낭합치기
-- Divide and Conquer on Tree
-- 트리 합치기
-- Shortest Path
+- Shortest-Path
 - 최단경로
-- Path Decomposition
-- 경로 분해
-- Edge Contribution
-- 간선 기여도
-- Worst-case Order
-- 최악의 순서
-- Alternating Blocks
-- 교대 블록
-- Proof of Correctness
-- 정당성 증명
-- Time Complexity
+- Time-Complexity
 - 시간복잡도
-- Space Complexity
+- Space-Complexity
 - 공간복잡도
 - Implementation
 - 구현
 - Pitfalls
-- 실수 포인트
-- Edge Cases
-- 코너 케이스
-- Tree Knapsack
-- 트리 배낭
-- Root Exclusion
-- 루트 제외
-- Return to Root
-- 루트 복귀
-- Weighted Tree
-- 가중치 트리
-- DP Merge
-- DP 병합
+- 함정
+- Edge-Cases
+- 엣지케이스
 - Optimization
 - 최적화
-- Competitive Programming
+- Competitive-Programming
 - 경쟁프로그래밍
 - Editorial
 - 에디토리얼
 - Testing
 - 테스트
-- Invariant
-- 불변식
 - Greedy
 - 그리디
 - Math
 - 수학
-- Modulo
+- Modular-Arithmetic
 - 모듈러
 - Debugging
 - 디버깅
-- Mario
-- Toad
-- 마리오
-- 키노피오
 image: "wordcloud.png"
 ---
 

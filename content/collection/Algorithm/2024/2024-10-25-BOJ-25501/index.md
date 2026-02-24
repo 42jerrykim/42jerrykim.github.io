@@ -10,10 +10,9 @@ tags:
 - Recursion
 - String
 - Implementation
-- Counting
-- O(N)
-- RecursiveAlgorithms
-- ProblemSolving
+- Math
+- Time-Complexity
+- Problem-Solving
 image: "tmp_wordcloud.png"
 date: 2024-10-25
 ---

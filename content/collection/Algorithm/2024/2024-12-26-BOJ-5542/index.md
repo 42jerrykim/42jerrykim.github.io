@@ -7,13 +7,18 @@ categories:
 - ShortestPath
 tags:
 - Dijkstra
-- Kruskald
 - DSU
 - Optimization
-- O(N log N)
-- PriorityQueue
-- GraphTheory
-- GraphTraversal
+- Time-Complexity
+- Graph-Theory
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- Graph
 image: "tmp_wordcloud.png"
 date: 2024-12-26
 ---

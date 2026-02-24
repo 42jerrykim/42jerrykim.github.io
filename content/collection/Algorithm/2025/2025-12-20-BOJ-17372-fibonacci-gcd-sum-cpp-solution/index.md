@@ -10,73 +10,25 @@ categories:
 - "Mobius Inversion"
 - "Fibonacci"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "Baekjoon"
-- "백준"
-- "17372"
-- "BOJ-17372"
-- "피보나치 수의 최대공약수의 합"
-- "Fibonacci GCD Sum"
-- "Fibonacci"
-- "피보나치"
-- "GCD"
-- "gcd"
-- "최대공약수"
-- "Number Theory"
-- "정수론"
-- "Mobius"
-- "Möbius"
-- "뫼비우스"
-- "Mobius Inversion"
-- "뫼비우스 반전"
-- "Mertens"
-- "Mertens Function"
-- "메르텐스 함수"
-- "Dirichlet Convolution"
-- "디리클레 합성곱"
-- "Arithmetic Function"
-- "산술 함수"
-- "Floor Decomposition"
-- "바닥함수 분할"
-- "Quotient Grouping"
-- "몫 분할"
-- "Summatory Function"
-- "부분합"
-- "Prefix Sum"
-- "누적합"
-- "Fast Doubling"
-- "빠른 두배"
-- "Fast Fibonacci"
-- "피보나치 빠른 계산"
-- "Sieve"
-- "선형 체"
-- "Linear Sieve"
-- "Mobius Sieve"
-- "모비우스 함수"
-- "mu"
-- "μ"
-- "Memoization"
-- "메모이제이션"
-- "Hash Map"
-- "unordered_map"
-- "O(sqrt n)"
-- "Square Root Decomposition"
-- "분할"
-- "Optimization"
-- "최적화"
-- "Modular Arithmetic"
-- "모듈러"
-- "1e9+7"
-- "1000000007"
-- "Implementation"
-- "구현"
-- "C++"
-- "CPP"
-- "GNU++17"
-- "Math"
-- "수학"
+- Algorithm
+- 알고리즘
+- BOJ
+- Baekjoon
+- 백준
+- Math
+- Number-Theory
+- 정수론
+- Prefix-Sum
+- Memoization
+- Divide-and-Conquer
+- Optimization
+- 최적화
+- Modular-Arithmetic
+- 모듈러
+- Implementation
+- 구현
+- C++
+- 수학
 image: "wordcloud.png"
 ---
 

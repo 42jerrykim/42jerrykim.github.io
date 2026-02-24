@@ -7,74 +7,47 @@ categories:
 - "Algorithm"
 - "Dynamic Programming"
 tags:
-- "Algorithm"
-- "알고리즘"
-- "BOJ"
-- "백준"
-- "Problem-15977"
-- "cpp"
-- "C++"
-- "Data Structures"
-- "자료구조"
-- "Implementation"
-- "구현"
-- "Time Complexity"
-- "시간복잡도"
-- "Space Complexity"
-- "공간복잡도"
-- "Proof of Correctness"
-- "정당성 증명"
-- "Edge Cases"
-- "코너 케이스"
-- "Pitfalls"
-- "실수 포인트"
-- "Optimization"
-- "최적화"
-- "Competitive Programming"
-- "경쟁프로그래밍"
-- "Editorial"
-- "에디토리얼"
-- "Code Review"
-- "코드리뷰"
-- "Template"
-- "템플릿"
-- "Testing"
-- "테스트"
-- "Complexity Analysis"
-- "복잡도 분석"
-- "Invariant"
-- "불변식"
-- "Dynamic Programming"
-- "동적계획법"
-- "LIS"
-- "Longest Increasing Subsequence"
-- "3D LIS"
-- "2D LIS"
-- "CDQ Divide and Conquer"
-- "CDQ"
-- "Divide and Conquer"
-- "분할정복"
-- "Fenwick Tree"
-- "펜윅트리"
-- "BIT"
-- "Binary Indexed Tree"
-- "Order Statistics"
-- "Rank Matrix"
-- "등수행렬"
-- "조화로운 행렬"
-- "Harmonious Matrix"
-- "KOI"
-- "KOI 2018"
-- "Coordinate Compression"
-- "좌표압축"
-- "Strictly Increasing"
-- "증가수열"
-- "Sequence"
-- "수열"
-- "Sorting"
-- "정렬"
-- "Implementation Details"
-- "구현 디테일"
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- C++
+- Data-Structures
+- 자료구조
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Edge-Cases
+- 엣지케이스
+- Pitfalls
+- 함정
+- Optimization
+- 최적화
+- Competitive-Programming
+- 경쟁프로그래밍
+- Editorial
+- 에디토리얼
+- Code-Review
+- 코드리뷰
+- Testing
+- 테스트
+- Complexity-Analysis
+- 복잡도분석
+- Dynamic-Programming
+- 동적계획법
+- Divide-and-Conquer
+- 분할정복
+- Fenwick-Tree
+- BIT
+- Binary-Indexed-Tree
+- Coordinate-Compression
+- 좌표압축
+- Math
+- Sorting
+- 정렬
 image: "wordcloud.png"
 ---
 

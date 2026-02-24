@@ -6,10 +6,11 @@ categories:
 date: "2021-07-09T00:00:00Z"
 tags:
 - Shell
-- FileName
-- path
-- extract
+- Graph
 - bash
+- Linux
+- Terminal
+- Networking
 title: '[Shell] 파일 이름에서 경로와 확장자를 추출하는 법'
 ---
 

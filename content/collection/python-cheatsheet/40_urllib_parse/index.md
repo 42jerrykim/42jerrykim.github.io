@@ -7,51 +7,21 @@ description: "파이썬 urllib.parse 모듈을 빠르게 사용하기 위한 치
 lastmod: 2026-01-18
 collection_order: 40
 tags:
-  - python
   - Python
-  - python3
   - 파이썬
-  - cheatsheet
+  - Cheatsheet
   - 치트시트
-  - quick-reference
-  - 빠른참조
-  - urllib
-  - url
-  - URL
-  - parse
-  - 파싱
-  - urlparse
-  - urlunparse
-  - urljoin
-  - urlencode
-  - quote
-  - unquote
-  - query-string
-  - 쿼리스트링
-  - encoding
-  - 인코딩
-  - decoding
-  - 디코딩
-  - percent-encoding
-  - 퍼센트인코딩
+  - Quick-Reference
+  - Implementation
   - web
   - 웹
   - http
   - api
-  - requests
-  - standard-library
-  - 표준라이브러리
-  - patterns
-  - 패턴
-  - best-practices
-  - 베스트프랙티스
+  - Design-Pattern
+  - Best-Practices
   - security
   - 보안
-  - scheme
-  - netloc
-  - path
-  - params
-  - fragment
+  - Graph
 ---
 `urllib.parse`는 **URL을 파싱하고 조립**하는 표준 라이브러리입니다. 쿼리 문자열 처리, URL 인코딩, 상대/절대 URL 변환 등 웹 프로그래밍에 필수적입니다.
 

@@ -7,13 +7,12 @@ categories:
 - Data Structures
 tags:
 - DP
-- Binary Indexed Tree
-- Brute Force
+- Binary-Indexed-Tree
+- Brute-Force
 - Memoization
-- O(N log N)
-- Fenwick Tree
-- 수학적 아이디어
-- Dynamic Programming
+- Time-Complexity
+- Fenwick-Tree
+- Dynamic-Programming
 image: "index.png"
 date: 2025-02-10
 ---
