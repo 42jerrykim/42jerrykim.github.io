@@ -46,7 +46,7 @@
 
     {{- $pages := .Pages -}}
     {{- if hasPrefix .RelPermalink "/collection/" -}}
-        {{- $sortedPages := partial "helper/sort-by-collection-order" .Pages -}}
+        {{- $sortedPages := partialCached "helper/sort-by-collection-order" .Pages .RelPermalink -}}
         {{- $pageSize := .Site.Params.pagination.pagerSize | default 20 -}}
         {{- $totalPages := len $sortedPages -}}
         {{- $totalPaginatorPages := int (math.Ceil (div (float $totalPages) (float $pageSize))) -}}

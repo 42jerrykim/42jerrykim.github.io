@@ -26,7 +26,7 @@ term = ["HTML"]
 
 [imaging]
 quality = 80
-resampleFilter = "Lanczos"
+resampleFilter = "Box"
 
 [imaging.exif]
 disableDate = true
@@ -34,3 +34,15 @@ disableLatLong = true
 
 [services.rss]
 limit = 50
+
+[segments.posts]
+  [[segments.posts.includes]]
+    kind = '{home,section,taxonomy,term}'
+  [[segments.posts.includes]]
+    path = '{/post,/post/**}'
+
+[segments.recent]
+  [[segments.recent.includes]]
+    kind = '{home,section,taxonomy,term}'
+  [[segments.recent.includes]]
+    path = '{/post,/post/**,/collection,/collection/**}'

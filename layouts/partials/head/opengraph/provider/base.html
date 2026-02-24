@@ -40,8 +40,12 @@
 {{ $image := partialCached "helper/image" (dict "Context" . "Type" "opengraph") .RelPermalink "opengraph" }}
 {{- if $image.exists -}}
     {{- if $image.resource -}}
-        {{- $ogImage := $image.resource.Resize "1200x webp" -}}
-        <meta property='og:image' content='{{ absURL $ogImage.RelPermalink }}' />
+        {{- if (default true .Page.Site.Params.imageProcessing.cover.enabled) -}}
+            {{- $ogImage := $image.resource.Resize "1200x webp" -}}
+            <meta property='og:image' content='{{ absURL $ogImage.RelPermalink }}' />
+        {{- else -}}
+            <meta property='og:image' content='{{ absURL $image.resource.RelPermalink }}' />
+        {{- end -}}
     {{- else -}}
         <meta property='og:image' content='{{ absURL $image.permalink }}' />
     {{- end -}}

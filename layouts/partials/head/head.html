@@ -27,8 +27,8 @@
 
 <link rel='canonical' href='{{ .Permalink }}'>
 
-{{- partial "head/style.html" . -}}
-{{- partial "head/script.html" . -}}
+{{- partialCached "head/style.html" . -}}
+{{- partialCached "head/script.html" . -}}
 
 {{- /* Open Graph */ -}}
 <meta property='og:title' content='{{ $title }}'>
