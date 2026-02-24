@@ -6,16 +6,16 @@
 {{- partialCached "head/style.html" . -}}
 </head>
 <body>
-{{- partial "head/colorScheme" . -}}
+{{- partialCached "head/colorScheme" . "global" -}}
 <noscript><h1>{{ .Title }}</h1><p>{{ len .Pages }} posts</p>
 <ul>{{- range .Pages -}}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{- end -}}</ul>
 <a href="/">Home</a></noscript>
+{{- partialCached "tag-page/site-data.html" . "global" -}}
 <script>
-var S={n:{{ .Site.Title | jsonify | safeJS }},d:{{ .Site.Params.sidebar.subtitle | jsonify | safeJS }},a:{{- $avatar := resources.Get (.Site.Params.sidebar.avatar.src) -}}{{- $avatarResized := $avatar.Resize "300x webp" -}}{{ $avatarResized.RelPermalink | jsonify | safeJS }},fs:{{ .Site.Params.footer.since }}};
 var T={t:{{ .Title | jsonify | safeJS }},s:{{ .Site.Title | jsonify | safeJS }},c:{{ len .Pages }},p:[
 {{- range .Pages -}}[{{ .Title | jsonify | safeJS }},{{ .RelPermalink | jsonify | safeJS }},"{{ .Date.Format "2006-01-02" }}",{{ with .Params.description }}{{ . | jsonify | safeJS }}{{ else }}""{{ end }}],
 {{- end -}}]};
-var W={su:{{- $sp := first 1 (where .Site.Pages "Layout" "==" "search") -}}{{- if $sp -}}{{ (index $sp 0).RelPermalink | jsonify | safeJS }}{{- else -}}"/search/"{{- end -}},au:{{- $ap := first 1 (where .Site.Pages "Layout" "==" "archives") -}}{{- if $ap -}}{{ (index $ap 0).RelPermalink | jsonify | safeJS }}{{- else -}}"/archives/"{{- end -}},c:[{{- range $i, $e := first 10 .Site.Taxonomies.categories.ByCount -}}{{ if $i }},{{ end }}[{{ $e.Page.Title | jsonify | safeJS }},{{ $e.Page.RelPermalink | jsonify | safeJS }},{{ $e.Count }}]{{- end -}}],tg:[{{- range $i, $e := first 20 .Site.Taxonomies.tags.ByCount -}}{{ if $i }},{{ end }}[{{ $e.Page.Title | jsonify | safeJS }},{{ $e.Page.RelPermalink | jsonify | safeJS }}]{{- end -}}],ar:[{{- $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections -}}{{- $filtered := where $pages "Params.hidden" "!=" true -}}{{- $archives := $filtered.GroupByDate "2006" -}}{{- range $i, $item := first 6 $archives -}}{{ if $i }},{{ end }}[{{ $item.Key | jsonify | safeJS }},{{ len $item.Pages }}]{{- end -}}]};
 </script>
+{{- partialCached "tag-page/widget-data.html" . "global" -}}
 <script src="/js/tag-page.js"></script>
 </body></html>
