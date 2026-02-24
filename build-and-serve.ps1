@@ -2,18 +2,22 @@
 # 이 스크립트는 다음 작업을 순차적으로 수행한다:
 # 1. Windows Defender 제외 상태 확인
 # 2. 병렬 워커 수 증가 (HUGO_NUMWORKERMULTIPLIER)
-# 3. Hugo 빌드 실행 (pagefind 인덱싱용, development 환경으로 이미지 처리 생략)
-# 4. Pagefind 검색 인덱스 생성
-# 5. Hugo 개발 서버 시작 (renderToDisk로 pagefind 인덱스 재사용)
+# 3. (조건부) Hugo 빌드 + Pagefind 검색 인덱스 생성 → static/_pagefind/에 캐싱
+# 4. Hugo 개발 서버 시작 (renderStaticToDisk로 pagefind 인덱스 서빙)
+#
+# pagefind 인덱스가 static/_pagefind/에 이미 존재하면 빌드+pagefind 단계를 건너뛰어
+# hugo serve만 1회 빌드로 빠르게 시작한다.
 #
 # 사용법:
-#   .\build-and-serve.ps1                  # 전체 빌드
-#   .\build-and-serve.ps1 -Segment posts   # post 섹션만 빌드 (빠른 개발용)
-#   .\build-and-serve.ps1 -Segment recent  # post + collection 빌드
+#   .\build-and-serve.ps1                    # 전체 빌드 (pagefind 캐시 있으면 빌드 생략)
+#   .\build-and-serve.ps1 -Segment posts     # post 섹션만 빌드 (빠른 개발용)
+#   .\build-and-serve.ps1 -Segment recent    # post + collection 빌드
+#   .\build-and-serve.ps1 -Pagefind          # pagefind 인덱스 강제 재생성
 
 param(
     [ValidateSet("", "posts", "recent")]
-    [string]$Segment = ""
+    [string]$Segment = "",
+    [switch]$Pagefind
 )
 
 # --- Windows Defender 제외 확인 ---
@@ -41,24 +45,37 @@ if ($hugoCmd) {
 # Go 루틴은 경량이므로 CPU 코어 수보다 높게 설정해도 안전하며, I/O 대기 시 throughput 개선
 $env:HUGO_NUMWORKERMULTIPLIER = 4
 
-# --- Hugo 빌드 ---
-$buildArgs = @("build", "--cleanDestinationDir", "--gc", "--environment", "development", "--logLevel=info")
+# --- Pagefind 인덱스 생성 (조건부) ---
+$pagefindIndex = "static/_pagefind/pagefind.js"
+$needPagefind = $Pagefind -or !(Test-Path $pagefindIndex)
 
-if ($Segment) {
-    $buildArgs += "--renderSegments"
-    $buildArgs += $Segment
-    Write-Host "Hugo 빌드를 시작합니다 (segment: $Segment)..." -ForegroundColor Yellow
-} else {
-    Write-Host "Hugo 빌드를 시작합니다..." -ForegroundColor Yellow
-}
+if ($needPagefind) {
+    if ($Pagefind) {
+        Write-Host "Pagefind 인덱스를 강제 재생성합니다..." -ForegroundColor Yellow
+    } else {
+        Write-Host "Pagefind 인덱스가 없습니다. 빌드 후 생성합니다..." -ForegroundColor Yellow
+    }
 
-$buildTimer = [System.Diagnostics.Stopwatch]::StartNew()
+    # Hugo 빌드 (pagefind 인덱싱용)
+    $buildArgs = @("build", "--cleanDestinationDir", "--gc", "--environment", "development", "--logLevel=info")
 
-hugo @buildArgs
+    if ($Segment) {
+        $buildArgs += "--renderSegments"
+        $buildArgs += $Segment
+        Write-Host "Hugo 빌드를 시작합니다 (segment: $Segment)..." -ForegroundColor Yellow
+    } else {
+        Write-Host "Hugo 빌드를 시작합니다..." -ForegroundColor Yellow
+    }
 
-$buildTimer.Stop()
+    $buildTimer = [System.Diagnostics.Stopwatch]::StartNew()
+    hugo @buildArgs
+    $buildTimer.Stop()
 
-if ($LASTEXITCODE -eq 0) {
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Hugo 빌드에 실패했습니다." -ForegroundColor Red
+        exit 1
+    }
+
     Write-Host ("Hugo 빌드 완료 ({0:N1}초)" -f $buildTimer.Elapsed.TotalSeconds) -ForegroundColor Green
 
     Write-Host "원본 PNG 파일 정리 중..." -ForegroundColor Yellow
@@ -71,32 +88,45 @@ if ($LASTEXITCODE -eq 0) {
         Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
     Write-Host "정리 완료." -ForegroundColor Green
 
-    Write-Host "Pagefind 검색 인덱스를 생성합니다..." -ForegroundColor Yellow
-    python -m pagefind --site "public" --glob "post/**/*.html" --verbose
+    # Pagefind를 백그라운드 작업으로 실행 (serve와 병렬화)
+    Write-Host "Pagefind 검색 인덱스를 백그라운드에서 생성합니다..." -ForegroundColor Yellow
+    $pagefindJob = Start-Job -ScriptBlock {
+        param($WorkDir)
+        Set-Location $WorkDir
+        python -m pagefind --site "public" --output-path "static/_pagefind" --glob "post/**/*.html" --verbose 2>&1
+    } -ArgumentList (Get-Location).Path
 
-    if ($LASTEXITCODE -eq 0) {
-        Write-Host "Pagefind 검색 인덱스가 성공적으로 생성되었습니다." -ForegroundColor Green
-        
-        Write-Host "Hugo 개발 서버를 시작합니다..." -ForegroundColor Cyan
-
-        $serveArgs = @("serve", "--port", "12345", "--renderStaticToDisk", "--templateMetrics", "--templateMetricsHints", "--logLevel=info")
-        if ($Segment) {
-            $serveArgs += "--renderSegments"
-            $serveArgs += $Segment
-        }
-        
-        hugo @serveArgs
-    } else {
-        Write-Host "Pagefind 검색 인덱스 생성에 실패했습니다." -ForegroundColor Red
-        exit 1
-    }
 } else {
-    Write-Host "Hugo 빌드에 실패했습니다." -ForegroundColor Red
-    exit 1
+    Write-Host "Pagefind 인덱스가 캐시되어 있습니다. 빌드를 건너뜁니다." -ForegroundColor Green
+    Write-Host "  (인덱스 재생성이 필요하면 -Pagefind 플래그를 사용하세요)" -ForegroundColor DarkGray
+}
+
+# --- Hugo 개발 서버 시작 ---
+Write-Host "Hugo 개발 서버를 시작합니다..." -ForegroundColor Cyan
+
+$serveArgs = @("serve", "--port", "12345", "--renderStaticToDisk", "--templateMetrics", "--templateMetricsHints", "--logLevel=info")
+if ($Segment) {
+    $serveArgs += "--renderSegments"
+    $serveArgs += $Segment
+}
+
+hugo @serveArgs
+
+# --- 백그라운드 Pagefind 작업 정리 ---
+if ($pagefindJob) {
+    if ($pagefindJob.State -eq 'Running') {
+        Stop-Job $pagefindJob -ErrorAction SilentlyContinue
+    }
+    $pagefindOutput = Receive-Job $pagefindJob -ErrorAction SilentlyContinue
+    if ($pagefindOutput) {
+        Write-Host "`nPagefind 작업 결과:" -ForegroundColor Yellow
+        $pagefindOutput | Write-Host
+    }
+    Remove-Job $pagefindJob -ErrorAction SilentlyContinue
 }
 
 # --- templateMetrics 안내 ---
 # hugo serve 종료 후 표시
 Write-Host ""
 Write-Host "[팁] 위 templateMetrics 출력에서 'cache potential: 100%'인 partial을 확인하세요." -ForegroundColor Cyan
-Write-Host "  해당 partial은 'partial' 대신 'partialCached'로 변경하면 빌드가 더 빨라집니다." -ForegroundColor Cyan 
+Write-Host "  해당 partial은 'partial' 대신 'partialCached'로 변경하면 빌드가 더 빨라집니다." -ForegroundColor Cyan
