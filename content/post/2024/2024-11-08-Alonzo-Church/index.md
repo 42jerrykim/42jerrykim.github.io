@@ -16,6 +16,30 @@ tags:
 - Machine-Learning
 - Software-Architecture
 - Education
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Go
+- 알고리즘
+- Problem-Solving
+- 문제해결
+- 구현
+- Graph
+- 그래프
+- Self-Hosted
+- Science
+- 과학
+- History
+- 역사
+- 교육
 image: "Alonzo_Church.jpg"
 ---
 

@@ -14,6 +14,23 @@ tags:
 - DP
 - Prompt-Engineering
 - AI
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Process
+- Command
+- Design-Pattern
+- Shell
+- Bash
 image: "Screenshot-2025-01-10-152606.png"
 date: 2025-01-10
 ---

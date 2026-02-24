@@ -13,6 +13,27 @@ tags:
 - Database
 - MongoDB
 - Machine-Learning
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Go
+- Implementation
+- 구현
+- Graph
+- 그래프
+- Action
+- 액션
+- Process
+- Concurrency
 title: '[Database] 트랜잭션과 ACID의 이해'
 ---
 

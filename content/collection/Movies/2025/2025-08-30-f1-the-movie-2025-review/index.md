@@ -17,6 +17,25 @@ tags:
 - 리뷰
 - Action
 - Tree
+- Drama
+- Thriller
+- 스릴러
+- 액션
+- Sci-Fi
+- Animation
+- 애니메이션
+- Comedy
+- 코미디
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Linux
+- Deployment
+- TV-Show
+- 드라마
+- Career
+- 커리어
 image: "image01.png"
 ---
 

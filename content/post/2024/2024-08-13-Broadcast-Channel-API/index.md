@@ -21,6 +21,19 @@ tags:
 - Technology
 - Innovation
 - Open-Source
+- Blog
+- 블로그
+- 기술
+- 웹
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- 구현
+- Security
+- Gaming
+- 게임
 teaser: /assets/images/undefined/teaser.jpg
 title: '[WebDevelopment] Broadcast Channel API로 브라우저 간 통신하기'
 ---

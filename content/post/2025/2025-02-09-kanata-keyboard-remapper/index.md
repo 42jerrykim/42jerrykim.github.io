@@ -15,6 +15,20 @@ tags:
   - PowerShell
   - Git
   - GitHub
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - Sci-Fi
+  - 키보드
 image: "image.png"
 description: "Kanata는 Rust로 작성된 멀티플랫폼 키보드 리매퍼로, 커스터마이징 가능한 다중 레이어, tap-hold, 복합키, 매크로 등 강력한 기능을 제공합니다. 설정 파일을 통해 개인화가 쉬우며 Windows, Linux, MacOS를 모두 지원합니다."
 

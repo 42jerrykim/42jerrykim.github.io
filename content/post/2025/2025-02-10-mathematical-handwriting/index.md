@@ -9,6 +9,17 @@ tags:
   - 과학
   - Web
   - CSS
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
 categories:
   - Study
 ---

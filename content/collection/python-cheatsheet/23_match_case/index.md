@@ -17,6 +17,18 @@ tags:
   - pitfalls
   - 함정
   - Clean-Code
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Go
+  - REST
+  - API
+  - Process
+  - Command
+  - Design-Pattern
 ---
 match-case는 Python 3.10에서 도입된 구조적 패턴 매칭입니다. 이 치트시트는 리터럴, 시퀀스, 매핑, 클래스 패턴과 가드 조건 사용법을 정리합니다.
 

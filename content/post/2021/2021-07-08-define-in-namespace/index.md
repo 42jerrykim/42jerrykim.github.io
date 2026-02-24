@@ -11,6 +11,17 @@ tags:
 - Networking
 - Concurrency
 - Technology
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[C/C++] define 문을 namespace안에 선언하는건 의미가 없다.'
 ---
 

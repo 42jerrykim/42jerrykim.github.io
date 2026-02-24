@@ -26,6 +26,24 @@ tags:
 - Editorial
 - 코딩테스트
 - Competitive-Programming
+- Algorithm
+- 알고리즘
+- Problem-Solving
+- 시간복잡도
+- Coding-Test
+- Data-Structures
+- 자료구조
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- DFS
+- Sorting
 image: "wordcloud.png"
 ---
 

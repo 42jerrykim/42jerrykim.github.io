@@ -22,6 +22,27 @@ tags:
 - Refactoring
 - Best-Practices
 - Clean-Code
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- C++
+- JavaScript
+- Go
+- 디자인패턴
+- SOLID
+- 구현
+- Builder
+- Gaming
+- 게임
 title: '[DesignPattern] 팩토리 메소드 패턴'
 ---
 

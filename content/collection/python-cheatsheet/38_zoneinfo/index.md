@@ -14,6 +14,17 @@ tags:
   - Quick-Reference
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - String
+  - War
+  - 전쟁
+  - SEO
+  - Web
 ---
 `zoneinfo`는 Python 3.9+에서 **IANA 시간대 데이터베이스**를 사용하는 표준 모듈입니다. pytz 없이도 올바른 시간대 처리가 가능합니다.
 

@@ -12,6 +12,21 @@ tags:
   - Comedy
   - Romance
   - Security
+  - Drama
+  - Thriller
+  - Sci-Fi
+  - Animation
+  - 애니메이션
+  - 코미디
+  - Fantasy
+  - 판타지
+  - 로맨스
+  - Science
+  - 과학
+  - Psychology
+  - 심리학
+  - Innovation
+  - Technology
 description: "2024년 넷플릭스 오리지널 영화 '리프트(Lift)' 종합 분석: 하늘 위 하이스트의 매력과 아쉬움"
 image: image.png
 date: "2024-03-05"

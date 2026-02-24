@@ -17,6 +17,27 @@ tags:
 - 가족
 - Space
 - 우주
+- Movie
+- 영화
+- Review
+- 리뷰
+- Thriller
+- 스릴러
+- Action
+- 액션
+- Animation
+- 애니메이션
+- Comedy
+- 코미디
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- War
+- 전쟁
+- Horror
+- Self-Hosted
+- Networking
 image: "poster.png"
 draft: false
 ---

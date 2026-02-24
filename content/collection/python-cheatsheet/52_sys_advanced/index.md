@@ -20,6 +20,19 @@ tags:
   - Performance
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Go
+  - Stack
+  - String
+  - Linux
+  - Memory
+  - C++
+  - Compiler
 ---
 `sys` 모듈은 **파이썬 인터프리터와 런타임 환경**에 접근합니다. 명령행 인자, 모듈 시스템, 표준 스트림, 인터프리터 설정 등을 다룹니다.
 

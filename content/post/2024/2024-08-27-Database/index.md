@@ -25,6 +25,22 @@ tags:
 - Hardware
 - CPU
 - Frontend
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- CSharp
+- 구현
+- Graph
+- 그래프
 title: '[Database] API 개발에서 흔히 발생하는 데이터베이스 성능 실수 5가지'
 ---
 

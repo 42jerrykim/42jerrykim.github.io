@@ -11,6 +11,17 @@ tags:
 - 역사
 - JavaScript
 - Web
+- Blog
+- 블로그
+- Technology
+- 기술
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[CSS] CSS 역사로 알아보는 CSS가 어려워진 이유'
 ---
 

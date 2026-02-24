@@ -20,6 +20,10 @@ tags:
 - 과학
 - Culture
 - 문화
+- War
+- 전쟁
+- Education
+- 교육
 image: "poster.png"
 ---
 

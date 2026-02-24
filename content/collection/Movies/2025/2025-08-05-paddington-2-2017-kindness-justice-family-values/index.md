@@ -15,6 +15,29 @@ tags:
 - Comedy
 - Adventure
 - Animation
+- Movie
+- 영화
+- Review
+- 리뷰
+- Drama
+- Thriller
+- 스릴러
+- Action
+- 액션
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Family
+- Implementation
+- 구현
+- Graph
+- 그래프
+- Crime
+- 범죄
+- Culture
+- 문화
 image: "paddington2poster.png"
 ---
 

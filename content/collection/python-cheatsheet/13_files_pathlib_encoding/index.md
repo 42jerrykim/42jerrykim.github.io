@@ -25,6 +25,19 @@ tags:
   - windows
   - linux
   - macos
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - OOP
+  - 객체지향
+  - String
+  - HTML
+  - Memory
+  - Process
+  - File-System
 ---
 파일 입출력과 경로 처리는 대부분의 프로그램에서 필요합니다. 이 치트시트는 pathlib 경로 다루기, encoding 명시, 텍스트/바이너리 모드의 핵심 패턴과 OS별 함정을 정리합니다.
 

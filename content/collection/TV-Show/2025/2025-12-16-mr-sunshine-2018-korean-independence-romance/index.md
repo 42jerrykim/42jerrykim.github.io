@@ -17,6 +17,16 @@ tags:
   - 전쟁
   - War
   - Cinematography
+  - TV-Show
+  - 드라마
+  - Review
+  - 리뷰
+  - Romance
+  - Tree
+  - Movie
+  - 영화
+  - History
+  - 역사
 image: "poster.png"
 ---
 

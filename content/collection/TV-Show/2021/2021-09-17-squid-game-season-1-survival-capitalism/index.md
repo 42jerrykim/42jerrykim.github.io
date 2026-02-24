@@ -20,6 +20,8 @@ tags:
 - 리뷰
 - Gaming
 - 게임
+- Culture
+- 문화
 image: "poster.webp"
 ---
 

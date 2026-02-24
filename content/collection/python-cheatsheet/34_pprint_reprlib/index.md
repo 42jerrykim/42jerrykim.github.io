@@ -23,6 +23,18 @@ tags:
   - Graph
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - JavaScript
+  - SQL
+  - API
+  - Sorting
+  - String
+  - SEO
+  - Web
 ---
 `pprint`는 복잡한 자료구조를 **들여쓰기와 줄바꿈으로 읽기 좋게** 출력합니다. `reprlib`는 긴 객체를 **적절한 길이로 요약**합니다. 디버깅과 로깅에 유용합니다.
 

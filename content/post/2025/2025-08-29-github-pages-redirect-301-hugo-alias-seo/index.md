@@ -17,6 +17,27 @@ tags:
 - Blog
 - Git
 - GitHub
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- SOLID
+- OOP
+- Implementation
+- 구현
+- String
+- HTML
+- Shell
+- Bash
+- TV-Show
+- 드라마
 image: "wordcloud.png"
 ---
 

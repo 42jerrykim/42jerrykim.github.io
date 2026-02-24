@@ -13,6 +13,28 @@ tags:
 - Deque
 - Time-Complexity
 - Problem-Solving
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- C++
+- 구현
+- 시간복잡도
+- Coding-Test
+- 코딩테스트
+- 자료구조
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Python
+- Go
+- .NET
+- DP
+- Windows
+- Gaming
+- 게임
 title: '[Algorithm] C++/Python 백준 15678번 : 연세워터파크'
 ---
 

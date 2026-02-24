@@ -21,6 +21,26 @@ tags:
 - Code-Quality
 - Microservices
 - Open-Source
+- Blog
+- 블로그
+- Technology
+- 기술
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Implementation
+- 구현
+- Graph
+- 그래프
+- Sci-Fi
+- Backend
+- Networking
+- History
+- 역사
 title: '[API] REST API와 GraphQL의 비교'
 ---
 

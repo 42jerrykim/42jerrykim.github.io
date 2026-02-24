@@ -20,6 +20,26 @@ tags:
 - Visual-Effects
 - 뮤지컬
 - 판타지
+- Movie
+- 영화
+- Review
+- 리뷰
+- Thriller
+- 스릴러
+- Action
+- 액션
+- Sci-Fi
+- Animation
+- 애니메이션
+- 코미디
+- Romance
+- 로맨스
+- Go
+- Math
+- War
+- 전쟁
+- Finance
+- Accounting
 image: "poster.png"
 ---
 

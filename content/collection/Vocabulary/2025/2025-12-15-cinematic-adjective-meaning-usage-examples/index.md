@@ -21,6 +21,21 @@ tags:
   - composition
   - Grammar
   - Pronunciation
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - Graph
+  - 그래프
+  - 영화
+  - Review
+  - 리뷰
+  - Drama
+  - Watch
 image: wordcloud.png
 ---
 

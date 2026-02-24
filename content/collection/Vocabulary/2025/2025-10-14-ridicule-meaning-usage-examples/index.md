@@ -22,6 +22,10 @@ tags:
   - 뉘앙스
   - 어원
   - 유의어
+  - Grammar
+  - 문법
+  - Tutorial
+  - 튜토리얼
 image: wordcloud.png
 ---
 

@@ -16,6 +16,30 @@ tags:
 - Problem-Solving
 - career
 - Testing
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Go
+- 알고리즘
+- 문제해결
+- 구현
+- Coding-Test
+- 코딩테스트
+- Graph
+- 그래프
+- Stack
+- Queue
+- Science
+- 과학
+- 역사
 title: '[Algorithm] 코딩 테스트의 역사와 현황'
 ---
 

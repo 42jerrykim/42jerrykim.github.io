@@ -14,6 +14,26 @@ tags:
 - 영화
 - Review
 - 리뷰
+- Drama
+- Thriller
+- 스릴러
+- Action
+- 액션
+- Sci-Fi
+- Animation
+- 애니메이션
+- 코미디
+- Fantasy
+- 판타지
+- 로맨스
+- War
+- 전쟁
+- Hardware
+- Networking
+- Culture
+- 문화
+- Innovation
+- Technology
 image: poster.png
 ---
 

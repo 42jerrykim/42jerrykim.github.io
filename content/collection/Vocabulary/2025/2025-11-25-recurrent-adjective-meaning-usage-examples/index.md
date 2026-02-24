@@ -15,6 +15,19 @@ tags:
   - 콜로케이션
   - 뉘앙스
   - Nuance
+  - Collocation
+  - Grammar
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - Math
+  - Psychology
+  - 심리학
 image: wordcloud.png
 ---
 

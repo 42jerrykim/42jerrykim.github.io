@@ -19,6 +19,24 @@ tags:
   - Mystery
   - 미스터리
   - Movie
+  - 영화
+  - Review
+  - 리뷰
+  - Drama
+  - Thriller
+  - 스릴러
+  - Action
+  - 액션
+  - Sci-Fi
+  - Fantasy
+  - 판타지
+  - Romance
+  - 로맨스
+  - Go
+  - War
+  - 전쟁
+  - History
+  - 역사
 image: "poster.png"
 draft: false
 ---

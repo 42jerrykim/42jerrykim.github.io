@@ -12,6 +12,20 @@ tags:
 - Go
 - Action
 - Sci-Fi
+- Collocation
+- 콜로케이션
+- Grammar
+- 문법
+- 어원
+- Synonym
+- 유의어
+- Tutorial
+- 튜토리얼
+- 액션
+- History
+- 역사
+- Culture
+- 문화
 image: index.png
 date: 2025-07-29
 description: "영어 단어 'alienate'의 어원과 다양한 의미를 탐구한다. 라틴어 'alienus'에서 유래한 이 단어는 '소외시키다', '멀어지게 하다', '양도하다' 등 다양한 의미를 가진다. 심리학적, 사회학적 맥락에서의 활용과 실제 예문을 통해 이 단어의 깊이 있는 이해를 돕는다."

@@ -21,6 +21,27 @@ tags:
 - Open-Source
 - Scalability
 - Frontend
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Git
+- GitHub
+- OOP
+- 객체지향
+- 구현
+- Graph
+- 그래프
+- Tree
+- Process
 title: '[LangGraph] LangGraph를 활용한 LLM 기반 애플리케이션 구축'
 ---
 

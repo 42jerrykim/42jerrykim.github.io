@@ -17,6 +17,23 @@ tags:
 - Competitive-Programming
 - Problem-Solving
 - C++
+- Implementation
+- 구현
+- 시간복잡도
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Python
+- Go
+- .NET
+- Graph
+- 그래프
+- Simulation
 title: '[Algorithm] C++/Python 백준 17401번 : 일하는 세포'
 
 ---

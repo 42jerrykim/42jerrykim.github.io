@@ -17,6 +17,15 @@ tags:
   - 콜로케이션
   - 뉘앙스
   - 유의어
+  - Grammar
+  - 문법
+  - Etymology
+  - 어원
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - Gaming
+  - 게임
 image: wordcloud.png
 ---
 

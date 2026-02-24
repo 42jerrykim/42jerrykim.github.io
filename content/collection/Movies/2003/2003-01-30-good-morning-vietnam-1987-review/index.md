@@ -19,6 +19,22 @@ tags:
 - Comedy
 - Linux
 - Automation
+- Drama
+- Thriller
+- 스릴러
+- Action
+- 액션
+- Sci-Fi
+- Animation
+- 애니메이션
+- 코미디
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- 전쟁
+- TV-Show
+- 드라마
 image: "poster.png"
 ---
 

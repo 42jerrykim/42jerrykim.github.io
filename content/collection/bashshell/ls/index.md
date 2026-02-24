@@ -13,6 +13,13 @@ tags:
 - Tree
 - Command
 - Design-Pattern
+- 셸
+- Configuration
+- 설정
+- Guide
+- 가이드
+- Tutorial
+- 튜토리얼
 ---
 
 ## 사용법

@@ -15,6 +15,21 @@ tags:
 - 그래프
 - Process
 - Deployment
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Implementation
+- 구현
+- Backend
 title: '[Microservices] 분산 아키텍처에서의 조정 패턴'
 ---
 

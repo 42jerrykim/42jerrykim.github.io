@@ -19,6 +19,16 @@ tags:
 - Horror
 - Drama
 - Fantasy
+- TV-Show
+- 드라마
+- Review
+- 리뷰
+- Mystery
+- 미스터리
+- Science
+- 과학
+- Culture
+- 문화
 image: "netflix-3-boby-problem-poster.webp"
 ---
 

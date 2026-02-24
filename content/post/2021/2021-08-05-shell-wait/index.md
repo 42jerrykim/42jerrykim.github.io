@@ -11,6 +11,18 @@ tags:
 - Process
 - Linux
 - Terminal
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Shell] 서브 프로세스의 실행 종료를 대기하는 wait 커맨드'
 ---
 

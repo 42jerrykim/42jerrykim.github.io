@@ -14,6 +14,26 @@ tags:
 - Memory
 - Code-Quality
 - Software-Architecture
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- OOP
+- 객체지향
+- Design-Pattern
+- 디자인패턴
+- SOLID
+- Implementation
+- 구현
+- Stack
 image: "tmp_wordcloud.png"
 ---
 

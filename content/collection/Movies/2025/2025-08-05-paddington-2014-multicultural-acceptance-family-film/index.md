@@ -21,6 +21,20 @@ tags:
 - Review
 - 리뷰
 - Family
+- Drama
+- Thriller
+- 스릴러
+- Action
+- 액션
+- Sci-Fi
+- Animation
+- 애니메이션
+- Romance
+- 로맨스
+- Graph
+- 그래프
+- Culture
+- 문화
 image: "paddington_poster.png"
 ---
 

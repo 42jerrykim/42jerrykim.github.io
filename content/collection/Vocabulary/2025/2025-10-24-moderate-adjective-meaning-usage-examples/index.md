@@ -19,6 +19,15 @@ tags:
   - 뉘앙스
   - 유의어
   - 반의어
+  - Grammar
+  - 문법
+  - Etymology
+  - 어원
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - AI
+  - Technology
 image: wordcloud.png
 ---
 

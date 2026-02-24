@@ -20,6 +20,20 @@ tags:
 - Action
 - Thriller
 - Horror
+- Drama
+- 스릴러
+- 액션
+- Sci-Fi
+- Animation
+- 애니메이션
+- Comedy
+- 코미디
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Problem-Solving
+- 문제해결
 image: "MV5BYTcyMmFmYzMtZmYwMi00ZGNhLTg1ZjctODNiNTAzOWY3NjBmXkEyXkFqcGc@._V1_.jpg"
 ---
 

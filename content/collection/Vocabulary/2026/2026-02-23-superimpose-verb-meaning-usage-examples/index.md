@@ -24,6 +24,23 @@ tags:
   - 사진
   - Grammar
   - Pronunciation
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - API
+  - Graph
+  - 그래프
+  - War
+  - 전쟁
+  - Science
+  - 과학
+  - History
+  - 역사
 image: wordcloud.png
 ---
 

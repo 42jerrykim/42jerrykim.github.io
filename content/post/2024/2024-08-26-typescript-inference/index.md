@@ -15,6 +15,18 @@ tags:
 - 그래프
 - String
 - Compiler
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[TypeScript] 타입 추론의 모든 것'
 ---
 

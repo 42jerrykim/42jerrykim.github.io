@@ -14,6 +14,21 @@ tags:
 - monitoring
 - backend
 - Data-Structures
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- AWS
+- Cloud
+- Deployment
 title: '[Performance] 지연 시간 메트릭 마스터하기: P90, P95, P99'
 ---
 

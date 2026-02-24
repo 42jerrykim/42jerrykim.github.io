@@ -18,6 +18,22 @@ tags:
 - Review
 - 리뷰
 - Action
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Animation
+- 애니메이션
+- Comedy
+- 코미디
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- TV-Show
+- 드라마
+- History
+- 역사
 image: "poster.png"
 ---
 

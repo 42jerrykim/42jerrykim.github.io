@@ -12,6 +12,18 @@ tags:
 - Hardware
 - Tablet
 - 태블릿
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[HyperV] 원격(RPD, Chrome 원격 데스크톱 등) 사용시 은행 사이트에 접근 안되는 것을 HyperV로 해결하기'
 ---
 

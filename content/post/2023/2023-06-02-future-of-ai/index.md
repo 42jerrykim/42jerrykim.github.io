@@ -18,6 +18,24 @@ tags:
 - Security
 - Deep-Learning
 - AI
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Markdown
+- 마크다운
+- Problem-Solving
+- 문제해결
+- Deployment
+- LLM
+- GPT
+- Science
+- 과학
+- 교육
 title: '[AI] AI의 미래 - 기회, 위험, 오픈 소스 연구의 필요성'
 ---
 

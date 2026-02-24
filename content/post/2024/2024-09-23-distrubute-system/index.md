@@ -20,6 +20,29 @@ tags:
 - Error-Handling
 - Implementation
 - Best-Practices
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Go
+- SQL
+- 구현
+- Stack
+- Security
+- Concurrency
+- Command
+- Docker
+- Backend
+- Load-Balancing
+- Networking
 title: '[DistributedSystems] 분산 시스템 패턴'
 ---
 

@@ -25,6 +25,19 @@ tags:
   - Best-Practices
   - pitfalls
   - 함정
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Git
+  - GitHub
+  - String
+  - Process
+  - Design-Pattern
+  - Bash
+  - Deployment
 ---
 subprocess는 외부 명령어와 프로세스를 실행하는 파이썬 표준 라이브러리입니다. 이 치트시트는 `run()` 기본 사용, 출력 캡처, 타임아웃, 에러 처리, 보안 주의점을 정리합니다.
 

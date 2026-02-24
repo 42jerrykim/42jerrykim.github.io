@@ -16,6 +16,12 @@ tags:
   - 수학
   - Design-Pattern
   - 과학
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
 ---
 `math`는 기본 수학 함수를, `statistics`는 통계 함수를 제공하는 표준 라이브러리입니다. NumPy 없이도 기본적인 수학/통계 연산이 가능합니다.
 

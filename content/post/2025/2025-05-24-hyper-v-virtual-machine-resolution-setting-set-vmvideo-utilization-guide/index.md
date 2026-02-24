@@ -9,6 +9,27 @@ tags:
 - RDP
 - Linux
 - 리눅스
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Dynamic-Programming
+- DP
+- Security
+- Memory
+- Adapter
+- Design-Pattern
+- Hardware
+- Shell
+- Bash
 categories: 
 - Hyper-V
 - Windows

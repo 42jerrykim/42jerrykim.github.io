@@ -18,6 +18,18 @@ tags:
   - Network-Flow
   - Grammar
   - Pronunciation
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Graph
+  - 그래프
+  - War
+  - 전쟁
+  - Memory
 image: wordcloud.png
 ---
 

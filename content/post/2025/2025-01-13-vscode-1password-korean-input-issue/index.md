@@ -15,6 +15,18 @@ tags:
 - IDE
 - Security
 - Productivity
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 image: "image.png"
 date: 2025-01-13
 description: "원격 데스크톱에서 Visual Studio Code, 1Password 등 일부 앱에서 한글 입력이 안 되는 문제의 원인과 해결법을 안내합니다. Windows 설정을 통해 이전 버전 IME로 전환해 입력 문제를 해결하는 과정을 상세히 설명합니다."

@@ -21,6 +21,19 @@ tags:
   - 워크플로우
   - Automation
   - 자동화
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - War
+  - 전쟁
+  - IDE
 description: "VSCode에서 마크다운 문서의 heading에 포함된 번호 매기기(1., 10.1.1 등)와 이모티콘을 효과적으로 제거하는 세 가지 정규식 패턴을 소개합니다. 계층적 번호, 명시적 이모티콘, 유니코드 범위를 활용한 실전 가이드를 제공합니다."
 image: wordcloud.png
 

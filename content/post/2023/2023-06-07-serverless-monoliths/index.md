@@ -15,6 +15,20 @@ tags:
 - Security
 - Testing
 - DevOps
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Memory
+- Process
 title: '[Serverless] 서버리스 모놀리스의 등장: 소프트웨어 아키텍처의 새로운 패러다임'
 
 ---

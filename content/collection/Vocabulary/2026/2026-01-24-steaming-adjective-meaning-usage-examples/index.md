@@ -20,6 +20,17 @@ tags:
   - Grammar
   - Pronunciation
   - Etymology
+  - 문법
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - Performance
+  - Optimization
+  - War
+  - 전쟁
 image: wordcloud.png
 ---
 

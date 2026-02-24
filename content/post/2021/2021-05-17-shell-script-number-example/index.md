@@ -11,6 +11,17 @@ tags:
 - Terminal
 - Networking
 - Technology
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Shell] 숫자로 메뉴 실행하는 셸스크립트 예제'
 ---
 

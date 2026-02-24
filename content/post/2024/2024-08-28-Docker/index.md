@@ -20,6 +20,25 @@ tags:
 - scalability
 - Performance
 - security
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Graph
+- 그래프
+- Process
+- CI-CD
+- History
+- 역사
+- Innovation
 title: '[Docker] 컨테이너: 진정한 혁신인가?'
 ---
 

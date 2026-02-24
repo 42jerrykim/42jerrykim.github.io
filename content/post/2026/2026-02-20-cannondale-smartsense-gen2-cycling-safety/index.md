@@ -14,6 +14,17 @@ tags:
   - 자전거
   - Gadget
   - Innovation
+  - Blog
+  - 블로그
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
 image: "image.png"
 ---
 

@@ -11,6 +11,18 @@ tags:
   - Windows
   - Memory
   - Process
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
 date: 2025-07-29
 image: index.png
 description: "윈도잉(Windowing)은 스트림 데이터 처리에서 시간, 개수, 세션 등 다양한 기준으로 데이터를 그룹화하여 실시간 분석과 집계를 가능하게 하는 핵심 기술이다. Apache Kafka, Flink 등 주요 스트림 프로세싱 엔진에서 필수적으로 활용되며, 메모리 효율성과 패턴 인식, 시스템 부하 최적화에 중요한 역할을 한다. 본 가이드에서는 타임 윈도우, 슬라이딩 윈도우, 세션 윈도우 등 주요 윈도잉 유형과 실제 적용 사례, 성능 최적화 전략까지 체계적으로 설명한다."

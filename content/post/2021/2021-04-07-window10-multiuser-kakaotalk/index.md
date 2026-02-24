@@ -10,6 +10,17 @@ tags:
 - Photography
 - Networking
 - Technology
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[KakaoTalk] Windows 10 다른 사용자도 카카오톡을 사용할 수 있도록 사용권한 주기'
 ---
 

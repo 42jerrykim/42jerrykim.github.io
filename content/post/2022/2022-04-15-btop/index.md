@@ -16,6 +16,29 @@ tags:
 - 모니터링
 - 메모리
 - 리눅스
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- C++
+- Bash
+- Shell
+- Git
+- GitHub
+- Graph
+- 그래프
+- Process
+- AI
+- Gaming
+- 게임
 title: '[Linux] btop++ - Processor, Memory, Disks, Network and Processes 모니터'
 ---
 

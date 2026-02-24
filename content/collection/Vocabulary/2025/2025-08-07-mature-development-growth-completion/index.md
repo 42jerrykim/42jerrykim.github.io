@@ -12,6 +12,21 @@ tags:
 - Business-English
 - 심리학
 - 생물학
+- 영단어
+- Collocation
+- 콜로케이션
+- Grammar
+- 문법
+- 어원
+- Synonym
+- 유의어
+- Tutorial
+- 튜토리얼
+- Tree
+- War
+- 전쟁
+- Innovation
+- Technology
 image: wordcloud.png
 date: 2025-08-07
 description: "영어 단어 'mature'의 어원과 다양한 의미를 탐구한다. 라틴어 'maturus'에서 유래한 이 단어는 '성숙하다', '완성되다', '성장하다' 등 중요한 의미를 가진다. 생물학적, 심리학적, 비즈니스적 맥락에서의 활용과 실제 예문을 통해 이 단어의 깊이 있는 이해를 돕는다."

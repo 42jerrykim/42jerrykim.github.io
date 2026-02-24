@@ -17,6 +17,20 @@ tags:
 - 리뷰
 - Tree
 - Thriller
+- Drama
+- 스릴러
+- 액션
+- Sci-Fi
+- Animation
+- 애니메이션
+- Comedy
+- 코미디
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- War
+- 전쟁
 image: "poster.png"
 ---
 

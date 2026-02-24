@@ -12,6 +12,22 @@ tags:
 - Domain-Driven-Design
 - History
 - 역사
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Implementation
+- 구현
+- War
+- 전쟁
 teaser: /assets/images/undefined/teaser.jpg
 title: '[SoftwareDevelopment] DDD(도메인 주도 설계)란 무엇인가'
 

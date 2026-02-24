@@ -35,8 +35,11 @@ Unit.?Test	Testing	TDD
 Refactor	Refactoring
 Clean.?Code	Clean-Code
 Performance	Performance	Optimization
-Algorithm|알고리즘	Algorithm	알고리즘
-BOJ|백준|Baekjoon	BOJ	백준	Algorithm
+Algorithm|알고리즘	Algorithm	알고리즘	Problem-Solving	문제해결
+BOJ|백준|Baekjoon	BOJ	백준	Algorithm	알고리즘	Coding-Test	코딩테스트
+Implementation|구현	Implementation	구현
+시간복잡도|Time.?Complexity	Time-Complexity	시간복잡도
+코딩테스트|Coding.?Test	Coding-Test	코딩테스트
 BFS	BFS	Graph
 DFS	DFS	Graph
 Dynamic.?Programming|DP(?:\s|$)	Dynamic-Programming	DP
@@ -55,9 +58,13 @@ Math|수학	Math
 Simulation|시뮬레이션	Simulation
 Recursion|재귀	Recursion
 Memoization	Memoization
-Movie|영화	Movie	영화
+Movie|영화	Movie	영화	Review	리뷰
 Review|리뷰	Review	리뷰
-Action|액션	Action
+Action|액션	Action	액션
+Documentary|다큐멘터리	Documentary	다큐멘터리
+Crime|범죄	Crime	범죄
+Mystery|미스터리	Mystery	미스터리
+War|전쟁	War	전쟁
 Thriller|스릴러	Thriller
 Comedy|코미디	Comedy
 Horror|공포	Horror
@@ -85,7 +92,10 @@ Compiler|컴파일러	Compiler
 Process|프로세스	Process
 Thread|쓰레드	Thread
 Redux	JavaScript	React	Frontend
-Vocabulary|영단어	Vocabulary	English	영단어
+Vocabulary|영단어	Vocabulary	English	영단어	Collocation	콜로케이션
+Collocation|콜로케이션	Collocation	콜로케이션
+Etymology|어원	Etymology	어원
+Synonym|유의어	Synonym	유의어
 Tutorial|튜토리얼	Tutorial
 Troubleshoot	Troubleshooting
 Config	Configuration
@@ -137,6 +147,8 @@ Ubuntu|Debian	Linux
 RPM|Yum|DNF	Linux	Deployment
 File.?System|filesystem	File-System	Linux
 pip|PyPI	Python	Deployment
+Cheatsheet|치트시트	Cheatsheet	치트시트	Tutorial	튜토리얼
+decorator|Decorator	Decorator	Design-Pattern	Python
 Jekyll	Jekyll	Blog
 Blog|블로그	Blog	블로그
 SEO	SEO	Web

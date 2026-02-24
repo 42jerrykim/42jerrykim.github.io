@@ -22,6 +22,22 @@ tags:
 - Education
 - Networking
 - Problem-Solving
+- Blog
+- 블로그
+- 기술
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Python
+- 구현
+- Math
+- Process
+- Science
+- 과학
 image: "tmp_wordcloud.png"
 date: 2024-11-28
 description: "본 글은 HTML을 이용한 데이터 탐색, 분석, 시각화 및 프로그래밍 노트북 구현 방법을 상세히 소개합니다. Pyodide, WebR 등 최신 기술과 contenteditable, Observable, Hypertext Literal(HTL) 등의 활용법을 다루며, HTML 기반의 반응형 데이터 분석 환경을 직접 구축하고 관련 기술과의 차이점, 활용 사례, 실무 적용 방안까지 안내합니다. 초보자와 기존 Jupyter, LaTeX 사용자 모두에게 도움이 되도록 실용적 예시와 함께 설명합니다."

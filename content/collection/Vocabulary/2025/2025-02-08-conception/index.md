@@ -10,6 +10,16 @@ tags:
 - Culture
 - 문화
 - Speaker
+- Collocation
+- 콜로케이션
+- Grammar
+- 문법
+- Etymology
+- 어원
+- Synonym
+- 유의어
+- Tutorial
+- 튜토리얼
 image: "index.png"
 description: "영어 단어 'conception'의 다양한 의미와 활용법을 다룬다. '개념, 이해', '태아의 수정, 임신', '구상, 발상' 등 문맥에 따른 다양한 의미와 예문을 통해 이해를 돕는다. Conception date, Conception rate 등 관련 표현과 Idea, Concept, Notion 등 유의어의 차이점도 함께 설명하여 실용적인 영어 학습 자료로 활용할 수 있다."
 date: 2025-02-08

@@ -16,6 +16,16 @@ tags:
 - 로맨스
 - Adventure
 - 모험
+- Review
+- 리뷰
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Animation
+- 애니메이션
+- Fantasy
+- 판타지
 title: '[Movie] Ghosted (2023)'
 ---
 

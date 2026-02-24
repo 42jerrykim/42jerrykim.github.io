@@ -26,6 +26,15 @@ tags:
   - Best-Practices
   - pitfalls
   - 함정
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - API
+  - Sorting
+  - Queue
 ---
 heapq는 우선순위 큐를, bisect는 정렬된 리스트에서 이진 검색을 제공합니다. 이 치트시트는 최소/최대 힙, 정렬 유지 삽입, nlargest/nsmallest 패턴을 정리합니다.
 

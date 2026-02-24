@@ -26,6 +26,14 @@ tags:
   - 테스트
   - refactoring
   - 리팩토링
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Review
+  - 리뷰
+  - Process
+  - Configuration
 ---
 타입힌트는 코드의 의도를 명확히 하고 리팩토링 안정성을 높입니다. 이 치트시트는 기본 타입부터 Generic, TypeVar, Literal까지 실무에서 바로 쓰는 타입힌트 패턴을 정리합니다.
 

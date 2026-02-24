@@ -15,6 +15,20 @@ tags:
 - 회계
 - 오픈소스
 - 파이썬
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Git
+- Memory
 image: "wordcloud.png"
 description: "Beancount는 텍스트 파일로 재무 거래를 기록하는 오픈소스 복식 부기 시스템입니다. Python으로 개발되었으며 명령줄 환경에서 강력한 회계 기능을 제공하고 다양한 보고서를 생성할 수 있습니다."
 date: 2026-01-05

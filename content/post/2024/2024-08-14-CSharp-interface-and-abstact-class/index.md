@@ -22,6 +22,20 @@ tags:
 - Clean-Code
 - refactoring
 - IDE
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- SOLID
+- 구현
 teaser: /assets/images/undefined/teaser.jpg
 title: '[C#] C# 인터페이스와 추상클래스의 차이점'
 ---

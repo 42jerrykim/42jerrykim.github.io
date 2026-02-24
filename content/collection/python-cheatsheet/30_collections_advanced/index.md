@@ -26,6 +26,13 @@ tags:
   - Best-Practices
   - pitfalls
   - 함정
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Windows
 ---
 collections 모듈은 기본 자료구조를 확장한 특수 컨테이너를 제공합니다. 이 치트시트는 deque, namedtuple, ChainMap, OrderedDict의 실전 패턴을 정리합니다.
 

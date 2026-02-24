@@ -12,6 +12,26 @@ tags:
 - Brute-Force
 - Array
 - Problem-Solving
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- String
+- Go
+- .NET
 image: "tmp_wordcloud.png"
 date: 2024-10-17
 ---

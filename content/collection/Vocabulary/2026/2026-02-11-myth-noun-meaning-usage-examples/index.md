@@ -21,6 +21,20 @@ tags:
   - 과학
   - Grammar
   - Pronunciation
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - Documentary
+  - 다큐멘터리
+  - War
+  - 전쟁
+  - Sci-Fi
+  - Culture
 image: wordcloud.png
 ---
 

@@ -13,6 +13,21 @@ tags:
 - 리뷰
 - Go
 - Action
+- Thriller
+- 스릴러
+- 액션
+- Sci-Fi
+- Animation
+- 애니메이션
+- 코미디
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- TV-Show
+- 드라마
+- Culture
+- 문화
 title: '[Movie] A Man Called Otto (2022)'
 # Start of Selection
 description: "2022년 개봉한 'A Man Called Otto'는 마크 포스터 감독이 연출하고 톰 행크스가 주연을 맡은 코미디 드라마 영화이다. 외로운 남성 오토가 새로운 이웃들과의 만남을 통해 인간 관계의 소중함과 개인의 성장을 경험하는 이야기를 담고 있다."

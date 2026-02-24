@@ -13,6 +13,19 @@ tags:
   - 스피커
   - Innovation
   - Technology
+  - Blog
+  - 블로그
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - War
+  - 전쟁
 image: Screenshot_20250522_210544_Software_update.png
 description: "Samsung Galaxy Z Fold 6의 One UI 7.0 업데이트 이후 발견된 주요 버그들을 정리한 글이다. 배터리 측정 오류, 무선 이어폰 연결 문제, 잠금 화면 관련 이슈 등 경험을 바탕으로 한 버그 리포트를 작성했다."
 ---

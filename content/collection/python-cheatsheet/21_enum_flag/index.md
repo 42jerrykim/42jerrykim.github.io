@@ -21,6 +21,11 @@ tags:
   - Best-Practices
   - pitfalls
   - 함정
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - API
+  - String
 ---
 Enum은 관련 상수를 그룹화하여 타입 안전성과 가독성을 높이는 방법입니다. 이 치트시트는 Enum, IntEnum, StrEnum, Flag의 기본 사용법과 실전 패턴을 정리합니다.
 

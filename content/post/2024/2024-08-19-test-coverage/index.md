@@ -12,6 +12,19 @@ tags:
 - Tutorial
 - Guide
 - Implementation
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- 구현
+- War
+- 전쟁
 teaser: /assets/images/undefined/teaser.jpg
 title: '[SoftwareTesting] 소스 코드 테스트를 위한 메트릭'
 ---

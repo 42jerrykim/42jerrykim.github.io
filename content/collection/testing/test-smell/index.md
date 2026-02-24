@@ -14,6 +14,13 @@ tags:
 - Tree
 - String
 - Async
+- Best-Practices
+- Refactoring
+- 리팩토링
+- War
+- 전쟁
+- Adapter
+- Design-Pattern
 ---
 
 일반적인 소스 코드와 마찬가지로 단위 테스트 코드는 안티 패턴, 결함 및 냄새라고도 하는 잘못된 프로그래밍 관행의 영향을 받는다.

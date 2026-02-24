@@ -24,6 +24,12 @@ tags:
   - Best-Practices
   - pitfalls
   - 함정
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - 코드품질
+  - HTML
+  - Memory
 ---
 문자열(str)은 파이썬에서 가장 자주 다루는 타입입니다. 이 치트시트는 슬라이싱, split/join, 검색/치환, f-string 포맷팅, bytes 변환의 핵심 패턴과 흔한 실수를 빠르게 훑습니다.
 

@@ -14,6 +14,25 @@ tags:
 - Math
 - Memory
 - Process
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Tablet
+- 태블릿
+- Gaming
+- 게임
+- Science
+- 과학
+- Culture
+- 문화
 title: '[Processor] Understanding the Differences: CPU vs GPU'
 
 

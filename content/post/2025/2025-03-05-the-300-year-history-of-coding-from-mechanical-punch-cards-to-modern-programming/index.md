@@ -15,6 +15,24 @@ tags:
 - Innovation
 - Software-Architecture
 - DevOps
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- 알고리즘
+- Problem-Solving
+- 문제해결
+- 구현
+- Math
+- Education
+- 교육
 description: "코딩의 300년 역사를 통해 기계식 천공 카드에서 현대 프로그래밍으로의 발전 과정을 살펴본다. 초기의 코딩 방식이 어떻게 발전하여 오늘날의 소프트웨어 개발에 이르게 되었는지를 탐구하며, 이 과정에서의 기술적 혁신과 사회적 변화도 함께 조명한다."
 image: index.png
 ---

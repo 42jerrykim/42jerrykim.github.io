@@ -16,6 +16,21 @@ tags:
 - Best-Practices
 - debugging
 - Performance
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- 구현
+- Compiler
+- Async
 teaser: /assets/images/undefined/teaser.jpg
 title: '[C#] C# 프로그램의 일반적인 구조체'
 ---

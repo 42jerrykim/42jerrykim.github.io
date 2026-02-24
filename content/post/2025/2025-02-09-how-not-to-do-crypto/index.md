@@ -14,6 +14,21 @@ tags:
   - Math
   - Review
   - 리뷰
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Markdown
+  - 마크다운
+  - Problem-Solving
+  - 문제해결
+  - Implementation
+  - 구현
+  - HTML
 image: "index.png"
 description: "이 글은 실제 개발 현장에서 자주 발생하는 암호화 및 보안 실수 사례들을 분석합니다. 직접 암호화 구현, 잘못된 난수 생성, 부적절한 패스워드 저장, 키 관리의 오해 등 대표적인 보안 실패 유형과 예방을 위한 실질적 가이드라인, 최신 베스트 프랙티스를 제공합니다."
 

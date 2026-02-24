@@ -21,6 +21,26 @@ tags:
 - Software-Architecture
 - Testing
 - debugging
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Go
+- 알고리즘
+- 문제해결
+- 구현
+- Sorting
+- Graph
+- 그래프
+- Memory
 title: '[Algorithm] 두 수의 합(TwoSum)'
 ---
 

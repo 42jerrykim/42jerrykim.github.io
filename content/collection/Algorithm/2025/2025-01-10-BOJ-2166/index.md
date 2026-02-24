@@ -14,6 +14,26 @@ tags:
 - Array
 - 수학
 - Geometry
+- Algorithm
+- 알고리즘
+- BOJ
+- 백준
+- Competitive-Programming
+- Problem-Solving
+- C++
+- 구현
+- 시간복잡도
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Python
+- Go
+- .NET
 image: "index.png"
 date: 2025-01-10
 ---

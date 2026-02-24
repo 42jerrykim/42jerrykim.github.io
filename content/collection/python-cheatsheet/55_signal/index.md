@@ -16,6 +16,18 @@ tags:
   - linux
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Go
+  - Windows
+  - Process
+  - Thread
+  - C++
+  - Compiler
 ---
 `signal` 모듈은 **Unix 시그널 핸들링**을 제공합니다. Ctrl+C 처리, 그레이스풀 종료, 타임아웃 등에 사용됩니다. (Windows에서는 일부 기능 제한)
 

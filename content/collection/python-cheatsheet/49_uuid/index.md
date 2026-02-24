@@ -18,6 +18,16 @@ tags:
   - Best-Practices
   - security
   - 보안
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - REST
+  - API
+  - Sorting
+  - String
 ---
 `uuid` 모듈은 **RFC 4122 기반의 고유 식별자(UUID)**를 생성합니다. 데이터베이스 키, 분산 시스템의 ID, 파일명 등에 널리 사용됩니다.
 

@@ -21,6 +21,21 @@ tags:
 - Documentation
 - Error-Handling
 - IDE
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Python
+- Culture
+- 문화
 title: '[Refactoring] 코드 리팩토링의 중요성과 모범 사례'
 ---
 

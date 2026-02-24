@@ -17,6 +17,12 @@ tags:
   - Best-Practices
   - pitfalls
   - 함정
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - String
 ---
 struct는 파이썬 값과 C 구조체/바이너리 데이터 간의 변환을 제공합니다. 이 치트시트는 pack/unpack, 포맷 문자, 엔디언, 파일 헤더 파싱 패턴을 정리합니다.
 

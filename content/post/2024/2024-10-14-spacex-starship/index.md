@@ -14,6 +14,19 @@ tags:
 - 과학
 - Innovation
 - 혁신
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- History
+- 역사
 ---
 
 ## 원문

@@ -24,6 +24,26 @@ tags:
   - 파이썬
   - 워크플로우
   - 생산성
+  - Blog
+  - Technology
+  - 기술
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - Go
+  - Bash
+  - Git
+  - GitHub
+  - Graph
+  - 그래프
+  - String
+  - Process
+  - Privacy
+  - Brand
+  - 브랜드
 date: 2025-12-23
 lastmod: 2025-12-23
 image: image01.png

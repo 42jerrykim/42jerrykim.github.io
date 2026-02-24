@@ -15,6 +15,21 @@ tags:
 - Problem-Solving
 - C++
 - Go
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Math
+- Self-Hosted
 title: '[Algorithm] C++ 백준 1027번 : 이동'
 description: "BOJ 1067번 문제는 두 수열 X와 Y가 주어졌을 때, Y를 임의로 순환 이동하여 각 위치마다 두 수열의 곱의 합이 최대가 되도록 하는 값을 구하는 문제입니다. 효율성을 위해 FFT 알고리즘을 활용하여 최적의 합을 빠르게 찾아내는 것이 핵심입니다."
 

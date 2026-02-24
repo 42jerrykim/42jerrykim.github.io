@@ -11,6 +11,18 @@ tags:
 - 객체지향
 - Photography
 - Networking
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Python] futurecoder - 초보자를 위한 파이썬 무료 & 오픈소스 강의'
 ---
 

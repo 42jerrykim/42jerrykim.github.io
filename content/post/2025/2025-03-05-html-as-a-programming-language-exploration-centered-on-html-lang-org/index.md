@@ -10,6 +10,24 @@ tags:
 - 알고리즘
 - Sci-Fi
 - Memory
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Problem-Solving
+- 문제해결
+- Implementation
+- 구현
+- Science
+- 과학
 description: "HTML은 전통적으로 마크업 언어로 분류되지만, html-lang.org는 HTML을 프로그래밍 언어로 재해석하는 접근법을 제시한다. 이 사이트는 사용자 입력을 처리하고, HTML 태그를 통해 프로그래밍 구성 요소를 표현하는 기능을 포함하고 있다. 이러한 접근은 HTML의 선언적 특성을 유지하면서도 프로그래밍 언어의 핵심 기능을 통합하려는 시도로, HTML이 단순한 마크업 언어에서 벗어나 계산 능력을 갖춘 언어로 확장될 가능성을 제시한다."
 image: index.png
 ---

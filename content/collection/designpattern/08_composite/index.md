@@ -24,6 +24,15 @@ tags:
   - Python
   - CSharp
   - Iterator
+  - Git
+  - GitHub
+  - Implementation
+  - 구현
+  - Tree
+  - Recursion
+  - Windows
+  - File-System
+  - Linux
 ---
 
 컴포지트 패턴(Composite Pattern)은 객체들을 트리 구조로 구성하여 부분-전체 계층을 표현하는 구조적 디자인 패턴이다. 이 패턴을 사용하면 클라이언트가 단일 객체(Leaf)와 복합 객체(Composite)를 동일하게 다룰 수 있어, 재귀적 구조를 단순하고 일관되게 처리할 수 있다.

@@ -11,6 +11,19 @@ tags:
 - Implementation
 - 영단어
 - Go
+- Collocation
+- 콜로케이션
+- Grammar
+- 문법
+- Etymology
+- 어원
+- Synonym
+- 유의어
+- Tutorial
+- 튜토리얼
+- War
+- 전쟁
+- 교육
 image: index.png
 date: 2025-07-24
 description: "영어 단어 'parenting'의 의미와 용법, 관련 표현, 유의어와의 차이점을 다룬다. '양육, 부모 역할' 등 다양한 맥락에서의 사용법과 예문을 통해 이해를 돕는다. Child-rearing, Upbringing 등 유사 표현과 함께 실용적인 영어 학습 자료로 활용할 수 있다."

@@ -11,6 +11,18 @@ tags:
 - 애니메이션
 - GitHub
 - Photography
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Git] git-story - 커밋 히스토리를 애니메이션으로 만들어 설명하기'
 ---
 

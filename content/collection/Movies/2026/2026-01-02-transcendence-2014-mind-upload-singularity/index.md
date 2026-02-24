@@ -19,6 +19,25 @@ tags:
 - Internet
 - 인터넷
 - Cinematography
+- Movie
+- 영화
+- Review
+- 리뷰
+- Drama
+- Action
+- 액션
+- Animation
+- 애니메이션
+- Comedy
+- 코미디
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- API
+- War
+- 전쟁
+- Horror
 image: "poster.png"
 draft: false
 ---

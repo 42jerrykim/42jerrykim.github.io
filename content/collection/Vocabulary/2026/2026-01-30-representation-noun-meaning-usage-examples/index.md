@@ -23,6 +23,24 @@ tags:
   - Business-English
   - Grammar
   - Pronunciation
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - Graph
+  - 그래프
+  - Movie
+  - 영화
+  - Review
+  - 리뷰
+  - Self-Hosted
+  - Process
+  - Culture
+  - 문화
 image: wordcloud.png
 ---
 

@@ -14,6 +14,24 @@ tags:
 - Performance
 - Optimization
 - Action
+- Collocation
+- 콜로케이션
+- Grammar
+- 문법
+- Etymology
+- 어원
+- Synonym
+- 유의어
+- Tutorial
+- 튜토리얼
+- 액션
+- War
+- 전쟁
+- Sci-Fi
+- Prompt-Engineering
+- AI
+- Career
+- 커리어
 image: "wordcloud.png"
 date: 2025-08-21
 description: "영어 단어 'guarantee'의 정확한 의미와 활용법을 다룬다. '보장, 보증'의 개념부터 실생활과 비즈니스 상황에서의 다양한 용법, 관련 표현과 유의어를 통해 완벽하게 이해할 수 있다. Money-back guarantee, guarantee period 등 실용적인 표현과 함께 신뢰와 약속을 전달하는 영어 표현을 익힌다."

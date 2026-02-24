@@ -17,6 +17,28 @@ tags:
 - Implementation
 - Software-Architecture
 - Database
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Go
+- Rust
+- Algorithm
+- 알고리즘
+- Problem-Solving
+- 문제해결
+- 구현
+- Math
+- Sci-Fi
+- Innovation
 title: '[Technology] CRDT(Conflict-Free Replicated Data Types)란'
 ---
 

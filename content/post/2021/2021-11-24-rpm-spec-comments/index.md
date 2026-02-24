@@ -11,6 +11,19 @@ tags:
 - 설정
 - Bash
 - HTML
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Deployment
 title: RPM Spec 파일 내에서 주석과 매크로 사용시 주의 사항
 ---
 

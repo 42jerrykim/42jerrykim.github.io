@@ -15,6 +15,25 @@ tags:
 - C++
 - CSharp
 - Implementation
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- 디자인패턴
+- 구현
+- War
+- 전쟁
+- Factory
+- Gaming
+- 게임
 title: '[DesignPattern] Abstract Factory Pattern - 추상팩토리 패턴'
 ---
 

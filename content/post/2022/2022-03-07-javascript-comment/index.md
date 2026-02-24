@@ -11,6 +11,16 @@ tags:
 - 웹
 - Web
 - Clean-Code
+- Blog
+- 블로그
+- Technology
+- 기술
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Javascript] Javascript에 주석(Comment) 넣기'
 ---
 

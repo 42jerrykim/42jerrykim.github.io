@@ -19,6 +19,19 @@ tags:
   - biology
   - grammar
   - Pronunciation
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - REST
+  - API
+  - War
+  - 전쟁
+  - Science
+  - 과학
 image: wordcloud.png
 ---
 

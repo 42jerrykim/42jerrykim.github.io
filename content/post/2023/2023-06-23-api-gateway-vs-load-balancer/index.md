@@ -17,6 +17,24 @@ tags:
 - Stack
 - Movie
 - 영화
+- Blog
+- 블로그
+- Technology
+- 기술
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Problem-Solving
+- 문제해결
+- TV-Show
+- 드라마
+- Load-Balancing
+- Backend
+- Networking
 title: '[Networking] API Gateway와 Load Balancer 비고'
 ---
 

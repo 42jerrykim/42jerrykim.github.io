@@ -13,6 +13,16 @@ tags:
 - Technology
 - Tutorial
 - Guide
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Windows] 설정만 잘 한다면 Windows Defender로도 충분하다.'
 ---
 

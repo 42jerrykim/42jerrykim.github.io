@@ -12,6 +12,26 @@ tags:
   - Command
   - Security
   - Troubleshooting
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - OOP
+  - 객체지향
+  - Dynamic-Programming
+  - DP
+  - Stack
+  - Docker
+  - Shell
+  - Bash
 date: 2025-04-02
 last_modified_at: 2025-04-02
 description: Windows 원격 데스크톱 UWP 앱에서 SSH 터널링 연결 시 발생하는 0x516 오류의 원인과 해결 방법을 설명한다. UWP 앱의 네트워크 격리 정책으로 인해 localhost 접근이 차단되어 발생하는 문제이며, CheckNetIsolation 도구를 사용한 루프백 예외 설정으로 해결할 수 있다.

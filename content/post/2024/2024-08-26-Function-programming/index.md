@@ -24,6 +24,25 @@ tags:
 - OOP
 - map
 - Design-Pattern
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- JavaScript
+- 구현
+- Graph
+- 그래프
+- Math
+- History
+- 역사
 title: '[Python] 함수형 프로그래밍 HOWTO'
 ---
 

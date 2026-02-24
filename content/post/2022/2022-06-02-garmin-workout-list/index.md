@@ -11,6 +11,18 @@ tags:
 - 자전거
 - Gadget
 - Rust
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Garmin] 가민(Garmin) 워크아웃 목록'
 ---
 가민에서 제공하는 워크아웃의 모든 운동 목록을 정리한것이다.

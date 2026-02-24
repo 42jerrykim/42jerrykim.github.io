@@ -16,6 +16,25 @@ tags:
 - Sci-Fi
 - Deep-Learning
 - LLM
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Process
+- Gaming
+- 게임
+- Neural-Network
+- Security
+- GPT
+- Education
+- 교육
 title: '[ArtificialGeneralIntelligence] 인공 일반 지능의 발전과 미래'
 ---
 

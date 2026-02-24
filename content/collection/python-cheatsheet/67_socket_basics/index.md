@@ -16,6 +16,16 @@ tags:
   - Best-Practices
   - pitfalls
   - 함정
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Dynamic-Programming
+  - DP
+  - Queue
+  - Thread
 ---
 socket 모듈은 저수준 네트워크 인터페이스를 제공합니다. 이 치트시트는 TCP/UDP 클라이언트/서버의 최소 패턴, 타임아웃 처리, 주의점을 정리합니다.
 

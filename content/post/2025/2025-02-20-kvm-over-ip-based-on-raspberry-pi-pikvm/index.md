@@ -11,6 +11,25 @@ tags:
   - Tree
   - Linux
   - Deployment
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - Implementation
+  - 구현
+  - Keyboard
+  - 키보드
+  - Hardware
+  - Automation
+  - Innovation
 description: "PiKVM은 라즈베리 파이 기반의 오픈소스 원격 서버 관리 솔루션이다. 1080P 초저지연 스트리밍, H.264 하드웨어 인코딩, WebRTC 프로토콜을 통해 BIOS 레벨의 원격 제어가 가능하다. NVMe 가상화 및 확장형 네트워크 관리 기능을 제공하며 IPMI/Redfish API 호환성을 갖췄다. DIY 방식을 통한 커스터마이징이 가능하고 기존 상용 솔루션 대비 1/10 비용으로 데이터센터급 관리 기능을 구현한다."
 image: "pikvm_webui.png"
 ---

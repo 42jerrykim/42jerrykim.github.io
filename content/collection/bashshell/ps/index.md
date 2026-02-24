@@ -14,6 +14,15 @@ tags:
 - Thread
 - Command
 - Design-Pattern
+- 셸
+- Configuration
+- 설정
+- Guide
+- 가이드
+- Tutorial
+- 튜토리얼
+- History
+- 역사
 ---
 
 대부분의 Unix 및 Unix 유사 운영 체제에서 ps 프로그램 ("process status"의 약자)은 현재 실행중인 프로세스를 표시합니다. top이라는 이름의 관련 Unix 유틸리티는 실행중인 프로세스에 대한 실시간보기를 제공합니다. 

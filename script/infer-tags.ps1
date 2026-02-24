@@ -1,15 +1,15 @@
 <#
 .SYNOPSIS
-    Infers and adds tags to files with fewer than 6 tags.
+    Infers and adds tags to files with fewer than the minimum tag count.
 .PARAMETER DryRun
     Show what would change without modifying files.
 .PARAMETER MinTags
-    Minimum number of tags a file should have. Default: 6.
+    Minimum number of tags a file should have. Default: 20.
 #>
 [CmdletBinding()]
 param(
     [switch]$DryRun,
-    [int]$MinTags = 6
+    [int]$MinTags = 20
 )
 
 $ErrorActionPreference = 'Stop'
@@ -140,7 +140,6 @@ foreach ($f in $files) {
                 if ($approvedTags.Contains($kt) -and $seen.Add($kt)) { $newTags.Add($kt) }
             }
         }
-        if ($newTags.Count -ge $MinTags + 4) { break }
     }
 
     if ($newTags.Count -le $existingTags.Count) { continue }

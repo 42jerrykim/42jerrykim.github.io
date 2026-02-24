@@ -14,6 +14,27 @@ tags:
 - Performance
 - productivity
 - Memory
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- C++
+- Java
+- String
+- Windows
+- Async
+- Gaming
+- 게임
+- History
+- 역사
 teaser: /assets/images/undefined/teaser.jpg
 title: '[C#] C# 언어 둘러보기'
 ---

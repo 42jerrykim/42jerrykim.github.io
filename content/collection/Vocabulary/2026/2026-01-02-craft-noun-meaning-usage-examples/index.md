@@ -21,6 +21,19 @@ tags:
   - Implementation
   - grammar
   - Pronunciation
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - Process
+  - Hardware
+  - Automation
+  - Education
+  - 교육
 image: wordcloud.png
 ---
 

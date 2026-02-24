@@ -19,6 +19,22 @@ tags:
 - Romance
 - Android
 - Family
+- Movie
+- 영화
+- Review
+- 리뷰
+- Thriller
+- 스릴러
+- Action
+- 액션
+- Animation
+- 애니메이션
+- Comedy
+- 코미디
+- Fantasy
+- 판타지
+- Watch
+- TV-Show
 image: "poster.png"
 ---
 

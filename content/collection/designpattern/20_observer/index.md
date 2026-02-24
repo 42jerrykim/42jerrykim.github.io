@@ -24,6 +24,11 @@ tags:
   - C++
   - Python
   - CSharp
+  - Git
+  - GitHub
+  - 구현
+  - Queue
+  - Memory
 ---
 
 옵저버 패턴(Observer Pattern)은 객체 사이에 일대다(one-to-many) 의존 관계를 정의하여, 어떤 객체의 상태가 변할 때 그 객체에 의존하는 모든 객체에게 자동으로 알림을 보내고 갱신하는 행위 디자인 패턴이다. 발행-구독(Pub-Sub) 패턴이라고도 불리며, 이벤트 기반 시스템의 핵심 패턴이다.

@@ -17,6 +17,18 @@ tags:
   - 게임
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Angular
+  - Git
+  - GitHub
+  - String
+  - Security
+  - Gaming
 ---
 `random` 모듈은 **의사 난수 생성**을 위한 도구입니다. 시뮬레이션, 게임, 테스트 데이터 생성 등에 사용합니다. 보안용으로는 `secrets` 모듈을 사용하세요.
 

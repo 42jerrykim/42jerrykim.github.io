@@ -16,6 +16,27 @@ tags:
 - Thriller
 - Movie
 - 시각효과
+- 영화
+- Review
+- 리뷰
+- Drama
+- 스릴러
+- 액션
+- Animation
+- 애니메이션
+- Comedy
+- 코미디
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- War
+- 전쟁
+- Security
+- Science
+- 과학
+- History
+- 역사
 image: "poster.webp"
 ---
 

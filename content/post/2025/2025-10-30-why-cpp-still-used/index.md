@@ -20,6 +20,29 @@ tags:
 - 컴파일러
 - 최적화
 - 운영체제
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- SQL
+- Action
+- 액션
+- Sci-Fi
+- Linux
+- Windows
+- Compiler
+- Hardware
+- Networking
+- Gaming
+- 게임
 image: "wordcloud.png"
 ---
 

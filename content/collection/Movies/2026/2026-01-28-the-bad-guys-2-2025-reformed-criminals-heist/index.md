@@ -17,6 +17,23 @@ tags:
 - 로맨스
 - Movie
 - Visual-Effects
+- 영화
+- Review
+- 리뷰
+- Drama
+- Thriller
+- 스릴러
+- Action
+- 액션
+- Sci-Fi
+- Comedy
+- 코미디
+- Fantasy
+- 판타지
+- Tree
+- Crime
+- 범죄
+- Security
 image: "poster.png"
 draft: false
 ---

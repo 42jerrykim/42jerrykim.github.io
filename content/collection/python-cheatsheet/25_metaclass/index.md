@@ -22,6 +22,15 @@ tags:
   - Best-Practices
   - pitfalls
   - 함정
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Tree
+  - War
+  - 전쟁
 ---
 메타클래스는 **클래스를 만드는 클래스**입니다. 파이썬에서 클래스 자체도 객체이며, 메타클래스는 그 클래스 객체의 타입입니다. 이 치트시트는 메타클래스의 핵심 개념과 실무 패턴을 정리합니다.
 

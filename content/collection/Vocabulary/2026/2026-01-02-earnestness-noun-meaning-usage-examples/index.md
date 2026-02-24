@@ -17,6 +17,22 @@ tags:
   - 뉘앙스
   - Grammar
   - Pronunciation
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - Implementation
+  - 구현
+  - War
+  - 전쟁
+  - Speaker
+  - 스피커
+  - Education
+  - 교육
 image: wordcloud.png
 ---
 

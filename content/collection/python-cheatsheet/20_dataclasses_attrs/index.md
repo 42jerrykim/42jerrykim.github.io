@@ -23,6 +23,13 @@ tags:
   - Implementation
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - Recursion
+  - HTML
+  - Memory
+  - Factory
 ---
 dataclass는 데이터 컨테이너 클래스를 보일러플레이트 없이 만드는 표준 방법입니다. 이 치트시트는 field(default_factory), frozen, slots 옵션과 흔한 함정을 정리합니다.
 

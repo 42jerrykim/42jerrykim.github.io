@@ -18,6 +18,17 @@ tags:
   - Etymology
   - Grammar
   - Pronunciation
+  - 문법
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - API
+  - REST
+  - Sci-Fi
+  - Factory
+  - Design-Pattern
 image: wordcloud.png
 ---
 

@@ -26,6 +26,15 @@ tags:
   - pitfalls
   - 함정
   - Design-Pattern
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Hashing
+  - String
+  - Memory
 ---
 파이썬의 클래스는 데이터와 동작을 묶는 기본 단위입니다. 이 치트시트는 class 정의, 상속과 super(), @property, __slots__, 자주 쓰는 매직 메서드를 빠르게 정리합니다.
 

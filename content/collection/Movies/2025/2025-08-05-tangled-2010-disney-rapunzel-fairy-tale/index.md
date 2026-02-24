@@ -19,6 +19,24 @@ tags:
 - Go
 - Graph
 - 그래프
+- Drama
+- Thriller
+- 스릴러
+- Action
+- 액션
+- Sci-Fi
+- 애니메이션
+- Comedy
+- 코미디
+- Fantasy
+- 판타지
+- 로맨스
+- Simulation
+- War
+- 전쟁
+- Security
+- Innovation
+- Technology
 image: "poster.png"
 ---
 

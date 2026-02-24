@@ -10,6 +10,16 @@ tags:
 - Tutorial
 - Guide
 - Implementation
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Git] git 수정 이전으로 내용 되돌리기'
 ---
 

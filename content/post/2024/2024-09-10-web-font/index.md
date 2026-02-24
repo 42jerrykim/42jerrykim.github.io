@@ -16,6 +16,21 @@ tags:
 - Graph
 - 그래프
 - Async
+- Blog
+- 블로그
+- Technology
+- 기술
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Implementation
+- 구현
+- Observer
+- Design-Pattern
 title: '[WebDevelopment] 웹 폰트 로딩 전략'
 ---
 

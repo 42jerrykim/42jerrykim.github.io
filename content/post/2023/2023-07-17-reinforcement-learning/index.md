@@ -13,6 +13,21 @@ tags:
 - Gaming
 - 게임
 - AI
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Problem-Solving
+- 문제해결
+- 액션
+- War
+- 전쟁
 title: '[Reinforcement Learning] Reinforcement Learning의 이해와 포괄적인 가이드'
 ---
 

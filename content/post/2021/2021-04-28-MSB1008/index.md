@@ -15,6 +15,18 @@ tags:
 - REST
 - API
 - Stack
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[.NET] MSBUILD : error MSB1008: Only one project can be specified. 해결'
 ---
 

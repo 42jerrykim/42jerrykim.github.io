@@ -10,6 +10,18 @@ tags:
 - Go
 - Review
 - 리뷰
+- Collocation
+- 콜로케이션
+- Grammar
+- 문법
+- 어원
+- Synonym
+- 유의어
+- Tutorial
+- 튜토리얼
+- Crime
+- 범죄
+- Privacy
 image: wordcloud.png
 date: 2025-08-06
 description: "영어 단어 'consent'의 어원과 다양한 의미를 탐구한다. 라틴어 'consentire'에서 유래한 이 단어는 '동의하다', '허락하다', '승인하다' 등 중요한 의미를 가진다. 법적, 윤리적, 의료적 맥락에서의 활용과 실제 예문을 통해 이 단어의 깊이 있는 이해를 돕는다."

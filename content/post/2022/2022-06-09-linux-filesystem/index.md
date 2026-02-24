@@ -15,6 +15,21 @@ tags:
 - Security
 - Memory
 - Configuration
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- File-System
+- Python
+- Deployment
 title: '[Linux] File System 종류- DebugFS, SecurityFS, PipeFS, SockFS'
 ---
 

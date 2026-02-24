@@ -11,6 +11,16 @@ tags:
   - AI
   - Photography
   - Technology
+  - Collocation
+  - 콜로케이션
+  - Grammar
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
 description: "요리 레시피나 음식 관련 영어 용어에서 자주 등장하는 Sauce(소스), Dressing(드레싱), Spread(스프레드), Condiment(콘디멘트)의 차이점을 설명하는 글이다. 각 용어의 정의와 사용 예시를 통해 쉽게 이해할 수 있도록 정리했다."
 image: image05.png
 ---

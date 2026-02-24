@@ -20,6 +20,24 @@ tags:
   - Math
   - Performance
   - API
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - Gaming
+  - 게임
+  - GPT
+  - Science
+  - 과학
+  - Innovation
 image: image01.png
 ---
 

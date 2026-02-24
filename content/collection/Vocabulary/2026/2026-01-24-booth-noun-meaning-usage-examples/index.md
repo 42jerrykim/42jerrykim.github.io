@@ -18,6 +18,15 @@ tags:
   - Grammar
   - Pronunciation
   - Business-English
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - REST
+  - API
 image: wordcloud.png
 ---
 

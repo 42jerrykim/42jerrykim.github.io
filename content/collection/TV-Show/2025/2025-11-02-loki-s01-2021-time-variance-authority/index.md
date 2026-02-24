@@ -19,6 +19,7 @@ tags:
 - 드라마
 - Review
 - 리뷰
+- 액션
 image: "poster.png"
 ---
 

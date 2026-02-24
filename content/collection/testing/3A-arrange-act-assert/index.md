@@ -14,6 +14,12 @@ tags:
 - REST
 - API
 - Action
+- Best-Practices
+- Refactoring
+- 리팩토링
+- 액션
+- Command
+- Design-Pattern
 ---
 
 > 본 글은 [Bill Wake](https://xp123.com/articles/contact/)의 [3A – Arrange, Act, Assert](https://xp123.com/articles/3a-arrange-act-assert/)내용을 번역한 글 입니다.

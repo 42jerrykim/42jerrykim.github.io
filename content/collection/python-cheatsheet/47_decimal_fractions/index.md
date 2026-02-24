@@ -18,6 +18,19 @@ tags:
   - Math
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Git
+  - GitHub
+  - String
+  - Action
+  - 액션
+  - Science
+  - Accounting
 ---
 `decimal`은 **부동소수점 오차 없는 십진 연산**을, `fractions`는 **분수 연산**을 제공합니다. 금융 계산, 과학 계산 등 정밀도가 중요한 곳에서 사용합니다.
 

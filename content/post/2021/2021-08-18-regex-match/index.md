@@ -11,6 +11,18 @@ tags:
 - json
 - IDE
 - .NET
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Regex] C#에서 Regex로 검색한 결과를 재사용하는 방법'
 ---
 

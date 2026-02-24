@@ -19,6 +19,20 @@ tags:
 - Testing
 - Debugging
 - Optimization
+- Blog
+- 블로그
+- Technology
+- 기술
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- 구현
+- History
+- 역사
 title: '[EntityFramework] EF는 당신이 생각하는 것보다 똑똑하다'
 ---
 

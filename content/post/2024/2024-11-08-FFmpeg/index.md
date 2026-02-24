@@ -12,6 +12,29 @@ tags:
 - Data-Structures
 - Optimization
 - Implementation
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- C++
+- Python
+- Java
+- API
+- 구현
+- Memory
+- Compiler
+- Gaming
+- 게임
+- History
+- 역사
 image: "nzCbjfNC5zwoShThjeSBxM-650-80.webp"
 ---
 

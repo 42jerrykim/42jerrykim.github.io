@@ -15,6 +15,16 @@ tags:
 - Mobile
 - Blog
 - 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Util] Google Alart, Blogtrottr, 개발과 관련된 최신 정보를 얻을수 있는 방법 소개'
 
 ---

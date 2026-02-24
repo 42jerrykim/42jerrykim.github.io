@@ -17,6 +17,26 @@ tags:
   - Movie
   - Drama
   - Soundtrack
+  - 영화
+  - Review
+  - 리뷰
+  - Thriller
+  - 스릴러
+  - Action
+  - 액션
+  - Sci-Fi
+  - Animation
+  - 애니메이션
+  - Comedy
+  - 코미디
+  - Romance
+  - 로맨스
+  - Go
+  - Tree
+  - Horror
+  - Security
+  - Culture
+  - 문화
 image: "WvSmGgCduVA-b5cU4Z0SvHeRCclUn2uv1SXCiX6auiaTaUFmAO1BdbxsQ4UK-OOI08m3455CSGHzT7sRSTpi2Q.webp"
 ---
 

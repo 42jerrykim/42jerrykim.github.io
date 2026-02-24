@@ -26,6 +26,12 @@ tags:
   - 어원
   - 유의어
   - 반의어
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - REST
+  - API
+  - Sci-Fi
 image: wordcloud.png
 ---
 

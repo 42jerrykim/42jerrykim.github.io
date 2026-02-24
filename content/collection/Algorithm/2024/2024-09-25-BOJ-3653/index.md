@@ -17,6 +17,25 @@ tags:
 - Competitive-Programming
 - Problem-Solving
 - C++
+- Implementation
+- 구현
+- 시간복잡도
+- Coding-Test
+- 코딩테스트
+- 자료구조
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Python
+- Go
+- .NET
+- Tree
+- Movie
+- 영화
+- Review
+- 리뷰
 title: '[Algorithm] C++/Python 백준 3653번 : 영화 수집'
 ---
 

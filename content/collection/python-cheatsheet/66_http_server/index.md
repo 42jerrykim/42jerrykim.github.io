@@ -18,6 +18,15 @@ tags:
   - 테스트
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Bash
+  - Shell
+  - API
+  - HTML
 ---
 `http.server`는 **간단한 HTTP 서버**를 제공합니다. 정적 파일 서빙, 개발 테스트, 로컬 파일 공유 등에 유용합니다. (프로덕션용 아님)
 

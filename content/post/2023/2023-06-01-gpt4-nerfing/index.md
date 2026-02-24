@@ -17,6 +17,16 @@ tags:
 - API
 - Review
 - 리뷰
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Markdown
+- 마크다운
+- GPT
 title: '[ChatGPT] ChatGPT의 품질이 저하된것 같은 느낌에 대한 생각'
 
 ---

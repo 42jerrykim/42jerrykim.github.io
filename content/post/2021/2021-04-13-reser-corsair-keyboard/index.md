@@ -11,6 +11,17 @@ tags:
 - Security
 - AI
 - Technology
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Corsair] CORSAIR 커세어 K63 WIRELESS 블루투스키보드 초기화 하기'
 ---
 

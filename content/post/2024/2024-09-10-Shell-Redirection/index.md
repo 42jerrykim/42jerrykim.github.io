@@ -12,6 +12,23 @@ tags:
 - Error-Handling
 - Linux
 - Implementation
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Sorting
+- String
+- Process
+- Python
+- Deployment
 title: '[Shell] 명령어의 입력과 출력을 다루는 방법(I/O Redirection)'
 ---
 

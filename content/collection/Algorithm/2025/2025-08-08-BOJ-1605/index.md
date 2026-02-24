@@ -23,6 +23,20 @@ tags:
  - 백준
  - 최적화
  - 구현
+ - 알고리즘
+ - Problem-Solving
+ - 시간복잡도
+ - Coding-Test
+ - 코딩테스트
+ - 자료구조
+ - Optimization
+ - 문제해결
+ - Code-Quality
+ - 코드품질
+ - Go
+ - .NET
+ - Sorting
+ - Memory
 image: wordcloud.png
 ---
 

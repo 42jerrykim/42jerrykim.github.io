@@ -17,6 +17,14 @@ tags:
   - Best-Practices
   - pitfalls
   - 함정
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - String
+  - Deployment
 ---
 zipfile과 tarfile은 파이썬에서 압축 파일을 다루는 표준 모듈입니다. 이 치트시트는 ZIP/TAR 아카이브 생성, 추출, 파일 추가와 보안 주의점을 정리합니다.
 

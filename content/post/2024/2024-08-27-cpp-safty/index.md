@@ -19,6 +19,19 @@ tags:
 - OOP
 - Functional-Programming
 - Testing
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Memory
 title: '[C++] C++의 보안 및 시스템 프로그래밍에 대한 비판'
 ---
 

@@ -17,6 +17,29 @@ tags:
 - Abstraction
 - Math
 - Design-Pattern
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Algorithm
+- 알고리즘
+- Problem-Solving
+- 문제해결
+- Graph
+- 그래프
+- Science
+- 과학
+- 역사
+- Psychology
+- 심리학
 image: "tmp_wordcloud.png"
 ---
 

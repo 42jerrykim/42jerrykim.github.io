@@ -26,6 +26,20 @@ tags:
   - Code-Quality
   - 자동화
   - Automation
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - Queue
+  - Innovation
 ---
 
 > 본 글은 [Cursor 공식 블로그](https://cursor.com/blog/composer) 정보를 바탕으로 작성했습니다.

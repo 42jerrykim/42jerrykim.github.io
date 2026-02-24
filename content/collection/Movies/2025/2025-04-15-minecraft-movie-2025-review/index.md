@@ -20,6 +20,20 @@ tags:
   - 리뷰
   - Adventure
   - Family
+  - Drama
+  - Thriller
+  - 스릴러
+  - Action
+  - 액션
+  - Sci-Fi
+  - Animation
+  - 애니메이션
+  - Romance
+  - 로맨스
+  - War
+  - 전쟁
+  - Gaming
+  - 게임
 draft: false
 ---
 

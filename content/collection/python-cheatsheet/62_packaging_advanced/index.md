@@ -22,6 +22,17 @@ tags:
   - 함정
   - automation
   - 자동화
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Bash
+  - Git
+  - GitHub
+  - Tree
+  - Deployment
 ---
 파이썬 패키지 배포는 pyproject.toml 기반이 표준입니다. 이 치트시트는 pyproject.toml 구조, build + twine으로 PyPI 배포, 의존성 명세, 배포 전 체크리스트를 정리합니다.
 

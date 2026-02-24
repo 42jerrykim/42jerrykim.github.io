@@ -17,6 +17,21 @@ tags:
   - 뉘앙스
   - Nuance
   - 일상표현
+  - Collocation
+  - Grammar
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Action
+  - 액션
+  - Builder
+  - Design-Pattern
+  - Culture
+  - 문화
 image: wordcloud.png
 ---
 

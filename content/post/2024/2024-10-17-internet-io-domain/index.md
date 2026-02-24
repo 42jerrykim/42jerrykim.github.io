@@ -12,6 +12,27 @@ tags:
 - GitHub
 - Graph
 - 그래프
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- War
+- 전쟁
+- Gaming
+- 게임
+- Science
+- 과학
+- History
+- 역사
+- Innovation
 image: "tmp_wordcloud.png"
 ---
 

@@ -18,6 +18,13 @@ tags:
   - Cache
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Observer
 ---
 `weakref`는 **객체에 대한 약한 참조**를 만들어 가비지 컬렉션을 방해하지 않으면서 객체를 참조합니다. 캐시, 순환 참조 방지, 옵저버 패턴 등에 유용합니다.
 

@@ -19,6 +19,18 @@ tags:
 - Review
 - 리뷰
 - Tree
+- Drama
+- 스릴러
+- 액션
+- Sci-Fi
+- Animation
+- 애니메이션
+- 코미디
+- Fantasy
+- 판타지
+- 로맨스
+- Gaming
+- 게임
 image: "poster.png"
 draft: false
 ---

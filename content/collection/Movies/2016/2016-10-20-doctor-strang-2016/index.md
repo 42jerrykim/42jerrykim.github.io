@@ -14,6 +14,20 @@ tags:
 - 영화
 - Review
 - 리뷰
+- Drama
+- Thriller
+- 스릴러
+- 액션
+- Sci-Fi
+- Animation
+- 애니메이션
+- Comedy
+- 코미디
+- 판타지
+- Romance
+- 로맨스
+- Innovation
+- Technology
 image: MV5BNjgwNzAzNjk1Nl5BMl5BanBnXkFtZTgwMzQ2NjI1OTE@._V1_.jpg
 ---
 

@@ -23,6 +23,16 @@ tags:
   - 애니메이션
   - Grammar
   - Pronunciation
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - React
+  - REST
+  - API
 image: wordcloud.png
 ---
 

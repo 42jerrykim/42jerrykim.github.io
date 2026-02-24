@@ -12,6 +12,10 @@ tags:
 - HTML
 - Blog
 - Configuration
+- Tutorial
+- Web
+- Problem-Solving
+- 문제해결
 title: '[Jekyll] 모아 볼 수 있는 콜렉션 만들기'
 ---
 

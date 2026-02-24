@@ -24,6 +24,31 @@ tags:
 - 확장성
 - 튜토리얼
 - 문서화
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Go
+- Implementation
+- 구현
+- Graph
+- 그래프
+- Math
+- AI
+- Deep-Learning
+- Memory
+- Deployment
+- History
+- 역사
+- Innovation
 title: '[DeepLearning] JAX vs PyTorch: Comparing Two Deep Learning Frameworks'
 ---
 

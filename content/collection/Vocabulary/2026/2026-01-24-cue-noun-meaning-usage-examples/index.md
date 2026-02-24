@@ -21,6 +21,22 @@ tags:
   - 큐
   - Grammar
   - Pronunciation
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Sorting
+  - Queue
+  - Movie
+  - Review
+  - 리뷰
+  - Crime
+  - 범죄
+  - War
+  - 전쟁
 image: wordcloud.png
 ---
 

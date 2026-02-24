@@ -19,6 +19,15 @@ tags:
   - pitfalls
   - 함정
   - Design-Pattern
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Tree
+  - Stack
+  - HTML
 ---
 컨텍스트 매니저는 리소스의 획득과 해제를 안전하게 관리하는 파이썬의 핵심 패턴입니다. 이 치트시트는 with문, `__enter__/__exit__`, @contextmanager, 실무 패턴을 정리합니다.
 

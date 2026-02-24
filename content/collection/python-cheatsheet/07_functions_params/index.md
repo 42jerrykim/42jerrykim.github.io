@@ -24,6 +24,15 @@ tags:
   - 클린코드
   - error-handling
   - Design-Pattern
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - API
+  - War
+  - 전쟁
+  - HTML
 ---
 함수는 코드 재사용과 구조화의 핵심입니다. 이 치트시트는 기본값 인자 함정, *args/**kwargs, keyword-only, 다중 반환 등 함수 시그니처 패턴과 실수 포인트를 정리합니다.
 

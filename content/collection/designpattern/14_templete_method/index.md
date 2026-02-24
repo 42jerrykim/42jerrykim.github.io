@@ -27,6 +27,14 @@ tags:
   - Python
   - CSharp
   - Spring
+  - Git
+  - GitHub
+  - Algorithm
+  - 알고리즘
+  - Problem-Solving
+  - 문제해결
+  - Implementation
+  - 구현
 ---
 
 템플릿 메서드 패턴(Template Method Pattern)은 알고리즘의 골격을 상위 클래스에 정의하고, 일부 단계의 구현을 하위 클래스에 위임하는 행위 디자인 패턴이다. 이 패턴을 사용하면 알고리즘의 전체 구조를 변경하지 않으면서 특정 단계만 재정의할 수 있다.

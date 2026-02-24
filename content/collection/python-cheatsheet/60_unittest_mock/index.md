@@ -17,6 +17,14 @@ tags:
   - Dependency-Injection
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - API
+  - TDD
 ---
 `unittest.mock`은 테스트에서 **객체를 가짜로 대체**하는 기능을 제공합니다. 외부 의존성 격리, API 호출 모킹 등 단위 테스트에 필수적입니다.
 

@@ -22,6 +22,27 @@ tags:
 - Polymorphism
 - Configuration
 - Implementation
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- C++
+- Go
+- 디자인패턴
+- 구현
+- Graph
+- 그래프
+- Tree
+- Gaming
+- 게임
 title: '[DesignPattern] 프로토타입 패턴'
 ---
 

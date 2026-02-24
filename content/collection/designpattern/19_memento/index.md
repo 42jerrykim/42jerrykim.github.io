@@ -25,6 +25,16 @@ tags:
   - Python
   - CSharp
   - Database
+  - Git
+  - GitHub
+  - REST
+  - API
+  - Implementation
+  - 구현
+  - Memory
+  - Gaming
+  - 게임
+  - 역사
 ---
 
 메멘토 패턴(Memento Pattern)은 객체의 내부 상태를 캡슐화하여 저장하고, 나중에 해당 상태로 복원할 수 있게 하는 행위 디자인 패턴이다. 이 패턴을 사용하면 객체의 캡슐화를 위반하지 않으면서 실행 취소(Undo)나 스냅샷 기능을 구현할 수 있다.

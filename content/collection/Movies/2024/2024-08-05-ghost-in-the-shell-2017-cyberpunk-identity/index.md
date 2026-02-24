@@ -17,6 +17,26 @@ tags:
   - Shell
   - 셸
   - 시각효과
+  - Movie
+  - 영화
+  - Review
+  - 리뷰
+  - Drama
+  - Thriller
+  - 스릴러
+  - Action
+  - 액션
+  - Animation
+  - 애니메이션
+  - Comedy
+  - 코미디
+  - Fantasy
+  - 판타지
+  - Romance
+  - 로맨스
+  - Crime
+  - 범죄
+  - Bash
 image: "poster.png"
 ---
 

@@ -20,6 +20,21 @@ tags:
   - 자동화
   - Automation
   - Monitoring
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - Implementation
+  - 구현
+  - Prompt-Engineering
 description: "IT 팀이 ChatGPT를 활용하여 클라우드 평가, 보안 컴플라이언스, 시스템 모니터링 등 핵심 업무를 자동화하고 효율화하는 실용적인 프롬프트와 사용 사례를 소개합니다. 실무에 바로 적용 가능한 가이드입니다."
 image: Work-Users-Cover-Images-19--49e19084-0ea8-4a42-b4a2-1a9679cfa0b7-1754316734132.png
 ---

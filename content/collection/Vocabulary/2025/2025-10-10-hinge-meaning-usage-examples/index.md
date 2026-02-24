@@ -19,6 +19,24 @@ tags:
 - 영어동사
 - 뉘앙스
 - 콜로케이션
+- Grammar
+- 문법
+- Etymology
+- 어원
+- Synonym
+- 유의어
+- Tutorial
+- 튜토리얼
+- Go
+- Rust
+- REST
+- API
+- OOP
+- 객체지향
+- Performance
+- Optimization
+- Action
+- 액션
 image: wordcloud.png
 ---
 

@@ -11,6 +11,18 @@ tags:
 - Linux
 - Terminal
 - Networking
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Shell] 파일 이름에서 경로와 확장자를 추출하는 법'
 ---
 

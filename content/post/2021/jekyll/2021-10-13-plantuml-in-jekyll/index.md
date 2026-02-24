@@ -14,6 +14,11 @@ tags:
 - GitHub
 - Action
 - Blog
+- Tutorial
+- Web
+- 액션
+- Linux
+- Deployment
 title: '[Jekyll] Jekyll에서 Plantuml 사용하기'
 ---
 

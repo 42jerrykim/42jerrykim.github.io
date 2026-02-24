@@ -18,6 +18,21 @@ tags:
   - 일상표현
   - Grammar
   - Pronunciation
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - OOP
+  - 객체지향
+  - War
+  - 전쟁
+  - Watch
+  - Education
+  - 교육
 image: wordcloud.png
 ---
 

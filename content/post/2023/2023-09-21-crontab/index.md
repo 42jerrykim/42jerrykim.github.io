@@ -11,6 +11,16 @@ tags:
 - 블로그
 - Shell
 - Bash
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Linux] Crontab 사용법'
 ---
 

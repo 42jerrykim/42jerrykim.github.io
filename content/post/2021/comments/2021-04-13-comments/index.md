@@ -13,6 +13,10 @@ tags:
 - Git
 - Markdown
 - Thread
+- Keyboard
+- 키보드
+- Hardware
+- Security
 title: '[Utterances] GithubPage에 Disques 대신 Utterances를 사용하여 댓글을 달 수 있도록 하자'
 ---
 

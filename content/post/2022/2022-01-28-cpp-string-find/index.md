@@ -11,6 +11,18 @@ tags:
 - Implementation
 - AI
 - Mobile
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[C/C++] 문자열에서 특정 문자열이 있는지 찾는 방법'
 ---
 

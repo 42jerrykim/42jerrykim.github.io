@@ -13,6 +13,18 @@ tags:
 - AI
 - Photography
 - Networking
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[SearchEngine] OpenVerse - 오픈 라이센스 미디어 검색엔진'
 
 ---

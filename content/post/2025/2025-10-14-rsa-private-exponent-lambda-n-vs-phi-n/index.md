@@ -16,6 +16,22 @@ tags:
   - 알고리즘
   - Sci-Fi
   - Security
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - Problem-Solving
+  - 문제해결
+  - Implementation
+  - 구현
 description: "현대 RSA에서 개인지수 d는 φ(n)이 아닌 λ(n)=lcm(p−1,q−1,…) 기준에서 e의 모듈러 역원으로 정의된다. IETF RFC 8017과 NIST SP 800-56B의 정확한 조항을 인용해 이 변화를 확인하고, 왜 λ(n)가 채택되었는지(작은 d, 약간의 복호화 이득, CRT·Garner와의 관계), 실무적 영향과 보안 측면을 전문가 관점에서 정리한다."
 image: "wordcloud.png"
 ---

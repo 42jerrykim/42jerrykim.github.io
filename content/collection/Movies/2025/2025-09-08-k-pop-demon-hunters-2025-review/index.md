@@ -19,6 +19,25 @@ tags:
 - Tree
 - Action
 - Comedy
+- Drama
+- Thriller
+- 스릴러
+- 액션
+- Sci-Fi
+- 애니메이션
+- 코미디
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- War
+- 전쟁
+- SEO
+- Web
+- TV-Show
+- 드라마
+- Culture
+- 문화
 image: "image01.png"
 ---
 

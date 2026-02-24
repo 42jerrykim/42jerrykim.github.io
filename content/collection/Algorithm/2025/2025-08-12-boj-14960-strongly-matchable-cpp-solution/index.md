@@ -24,6 +24,28 @@ tags:
 - ICPC
 - 조합론
 - Combinatorics
+- Algorithm
+- 알고리즘
+- Competitive-Programming
+- Problem-Solving
+- Time-Complexity
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- BFS
+- DFS
+- 그래프
+- Queue
 image: "wordcloud.png"
 ---
 

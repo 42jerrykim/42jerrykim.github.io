@@ -13,6 +13,20 @@ tags:
   - Linux
   - Memory
   - Deployment
+  - Blog
+  - 블로그
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - War
+  - 전쟁
+  - Innovation
 image: "nvidia-project-digits-exploded-vew-ari-22.png"
 description: "NVIDIA가 CES 2025에서 혁신적인 개인용 AI supercomputer인 Project DIGITS를 공개했다. 이는 AI 연구원, data scientist, 그리고 학생들에게 NVIDIA Grace Blackwell platform의 강력한 성능을 제공하는 획기적인 제품이다."
 ---

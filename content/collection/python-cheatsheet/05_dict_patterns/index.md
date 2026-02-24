@@ -24,6 +24,12 @@ tags:
   - pitfalls
   - 함정
   - error-handling
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - HTML
 ---
 dict는 파이썬에서 가장 많이 쓰이는 매핑 타입입니다. 이 치트시트는 안전한 조회(get), 기본값 처리(setdefault/defaultdict), 카운팅(Counter), 병합 패턴과 흔한 함정을 빠르게 정리합니다.
 

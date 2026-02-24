@@ -12,6 +12,11 @@ tags:
 - 다큐멘터리
 - Review
 - 리뷰
+- Rust
+- Movie
+- 영화
+- Innovation
+- Technology
 title: '[TV Show] Car Masters: Rust to Riches - Season 05 (2023)'
 
 ---

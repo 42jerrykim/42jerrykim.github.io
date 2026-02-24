@@ -17,6 +17,26 @@ tags:
 - Competitive-Programming
 - Problem-Solving
 - C++
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Python
+- Go
+- .NET
+- OOP
+- 객체지향
+- Graph
+- 그래프
+- War
+- 전쟁
 title: '[Algorithm] C++/Python 백준 13141번 : 그래프 불태우기'
 ---
 

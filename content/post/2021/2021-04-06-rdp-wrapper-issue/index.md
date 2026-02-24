@@ -13,6 +13,18 @@ tags:
 - Dynamic-Programming
 - DP
 - RDP
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[RDPWrapper] Windows 10 Pro 20H2에서 not supported issue 해결하기'
 ---
 

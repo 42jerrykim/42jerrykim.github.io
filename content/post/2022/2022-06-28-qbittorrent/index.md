@@ -13,6 +13,17 @@ tags:
 - Networking
 - Photography
 - Technology
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Torrent] qBittorrent - RSS 자동 다운로드를 위한 Torrent Client 추천'
 ---
 

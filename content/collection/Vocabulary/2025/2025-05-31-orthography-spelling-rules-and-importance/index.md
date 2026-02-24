@@ -10,6 +10,17 @@ tags:
   - 영단어
   - Graph
   - 그래프
+  - Collocation
+  - 콜로케이션
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - History
+  - 역사
 categories:
   - Vocabulary
   - Language

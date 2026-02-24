@@ -17,6 +17,17 @@ tags:
   - 함정
   - security
   - 보안
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Git
+  - GitHub
+  - Tree
+  - Recursion
+  - Windows
 ---
 shutil은 고수준 파일/디렉토리 작업을, tempfile은 안전한 임시 파일 생성을 제공합니다. 이 치트시트는 복사/이동/삭제, 임시 파일 패턴, 자동 정리 방법을 정리합니다.
 

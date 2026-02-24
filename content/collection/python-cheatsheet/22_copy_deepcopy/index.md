@@ -21,6 +21,13 @@ tags:
   - debugging
   - 디버깅
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Recursion
 ---
 파이썬에서 객체 복사는 의도치 않은 버그의 원인이 됩니다. 이 치트시트는 할당, 얕은 복사, 깊은 복사의 차이와 copy 모듈 사용법을 정리합니다.
 

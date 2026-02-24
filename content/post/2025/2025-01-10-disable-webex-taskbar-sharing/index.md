@@ -10,6 +10,17 @@ tags:
 - Productivity
 - Web
 - CSS
+- Blog
+- 블로그
+- Technology
+- 기술
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 date: 2025-01-10
 image: "img1.daumcdn.png"
 ---

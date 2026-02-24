@@ -26,6 +26,15 @@ tags:
   - 클린코드
   - refactoring
   - 리팩토링
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - OOP
+  - 객체지향
+  - HTML
+  - Process
 ---
 if/for/while 제어 흐름은 모든 프로그램의 뼈대입니다. 이 치트시트는 truthy/falsy, enumerate/zip, loop-else, guard clause 등 깔끔한 제어 흐름 패턴을 빠르게 훑습니다.
 

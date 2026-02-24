@@ -18,6 +18,22 @@ tags:
   - Sci-Fi
   - LLM
   - AI
+  - Drama
+  - Thriller
+  - 스릴러
+  - 액션
+  - Animation
+  - 애니메이션
+  - Comedy
+  - 코미디
+  - Fantasy
+  - 판타지
+  - Romance
+  - 로맨스
+  - Gaming
+  - 게임
+  - TV-Show
+  - 드라마
 image: HO00003459.png
 ---
 

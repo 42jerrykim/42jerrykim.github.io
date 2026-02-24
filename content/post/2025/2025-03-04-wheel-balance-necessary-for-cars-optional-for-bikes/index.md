@@ -10,6 +10,16 @@ tags:
 - Deployment
 - Blog
 - 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 description: "자동차와 자전거의 휠 밸런스 필요성의 차이를 분석하고, 자전거에서 휠 밸런스가 필수적이지 않은 이유를 설명한다."
 image: index.png
 ---

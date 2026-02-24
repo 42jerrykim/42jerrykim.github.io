@@ -9,6 +9,16 @@ tags:
 - Tutorial
 - Guide
 - Implementation
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[Linux] 용량 측정할때 Symlink도 포함하기'
 
 ---

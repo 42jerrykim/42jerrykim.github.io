@@ -20,6 +20,25 @@ tags:
   - 소프트웨어아키텍처
   - Open-Source
   - 오픈소스
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - API
+  - Dynamic-Programming
+  - DP
+  - HTML
+  - Windows
+  - CI-CD
+  - Hardware
+  - RDP
+  - IDE
 image: "image03.png"
 date: 2025-10-16
 lastmod: 2025-10-16

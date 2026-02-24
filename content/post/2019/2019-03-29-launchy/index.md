@@ -14,6 +14,18 @@ tags:
 - API
 - Sci-Fi
 - CSS
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: Launchy - 윈도우7에서 응용프로그램을 몇번의 타이핑만으로 실행하자
 ---
 

@@ -20,6 +20,17 @@ tags:
   - 어원
   - Grammar
   - Pronunciation
+  - 문법
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Crime
+  - 범죄
+  - Drama
+  - Education
+  - 교육
+  - Psychology
 image: wordcloud.png
 ---
 

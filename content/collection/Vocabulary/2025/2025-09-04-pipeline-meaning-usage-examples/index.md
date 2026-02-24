@@ -24,6 +24,26 @@ tags:
 - 영단어
 - 영어명사
 - 뉘앙스
+- 콜로케이션
+- Grammar
+- 문법
+- Etymology
+- 어원
+- Synonym
+- 유의어
+- Tutorial
+- 튜토리얼
+- Git
+- GitHub
+- Review
+- 리뷰
+- Action
+- 액션
+- Sci-Fi
+- Process
+- Deployment
+- CI-CD
+- Python
 image: "wordcloud.png"
 ---
 

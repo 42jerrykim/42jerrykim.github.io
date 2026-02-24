@@ -15,6 +15,29 @@ tags:
 - Machine-Learning
 - Web
 - Django
+- Blog
+- 블로그
+- Technology
+- 기술
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Go
+- Flask
+- 객체지향
+- Graph
+- 그래프
+- AI
+- Deep-Learning
+- Decorator
+- Design-Pattern
+- String
+- Science
+- 과학
 title: '[Python] 고급 파이썬 튜토리얼'
 ---
 

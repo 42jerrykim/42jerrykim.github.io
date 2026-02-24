@@ -18,6 +18,27 @@ tags:
 - Soundtrack
 - 사운드트랙
 - Movie
+- 영화
+- Review
+- 리뷰
+- Drama
+- Thriller
+- 스릴러
+- 액션
+- Animation
+- 애니메이션
+- Comedy
+- 코미디
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- War
+- 전쟁
+- Horror
+- Security
+- Linux
+- Automation
 title: '[Movie] Tron: Ares (트론: 아레스) (2025) - AI의 현실 침투'
 image: poster.png
 ---

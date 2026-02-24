@@ -13,6 +13,18 @@ tags:
 - Networking
 - Technology
 - Tutorial
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- War
+- 전쟁
 title: '[Programming] 가장 똑똑한 소프트웨어 엔지니어에게 배운 10가지 교훈'
 
 ---

@@ -21,6 +21,23 @@ tags:
 - Code-Quality
 - Best-Practices
 - GitHub
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Python
+- Java
+- .NET
+- 객체지향
+- 구현
 teaser: /assets/images/undefined/teaser.jpg
 title: '[C#] 객체 지향 프로그래밍(C#)'
 ---

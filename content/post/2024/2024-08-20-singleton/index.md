@@ -22,6 +22,26 @@ tags:
 - UML
 - Best-Practices
 - Clean-Code
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Go
+- 객체지향
+- 디자인패턴
+- 구현
+- War
+- 전쟁
+- History
+- 역사
 title: '[DesignPattern] 싱글턴 패턴'
 ---
 

@@ -21,6 +21,13 @@ tags:
   - Best-Practices
   - pitfalls
   - 함정
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - REST
+  - API
 ---
 pickle은 파이썬 객체를 바이너리로 직렬화/역직렬화합니다. 이 치트시트는 dump/load 기본, 프로토콜 버전, **보안 위험**과 안전한 대안을 정리합니다.
 

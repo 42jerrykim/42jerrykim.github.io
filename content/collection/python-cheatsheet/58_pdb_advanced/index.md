@@ -19,6 +19,13 @@ tags:
   - watch
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Process
 ---
 `pdb`는 파이썬의 **대화형 디버거**입니다. 중단점 설정, 코드 스텝 실행, 변수 검사 등 강력한 디버깅 기능을 제공합니다.
 

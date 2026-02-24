@@ -14,6 +14,14 @@ tags:
 - 알고리즘
 - Sorting
 - Self-Hosted
+- Tutorial
+- 튜토리얼
+- Guide
+- 가이드
+- Problem-Solving
+- 문제해결
+- Time-Complexity
+- 시간복잡도
 ---
 
 빅 오 표기법, 빅 세타 표기법

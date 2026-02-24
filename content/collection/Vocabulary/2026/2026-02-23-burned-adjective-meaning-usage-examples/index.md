@@ -18,6 +18,22 @@ tags:
   - Business-English
   - Grammar
   - Pronunciation
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Rust
+  - REST
+  - API
+  - War
+  - 전쟁
+  - Culture
+  - 문화
+  - Psychology
+  - 심리학
 image: wordcloud.png
 ---
 

@@ -16,6 +16,21 @@ tags:
 - GitHub
 - Open-Source
 - DevOps
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Linux
+- Windows
+- IDE
 image: "tmp_wordcloud.png"
 date: 2024-12-27
 description: "이 글은 VSCode에서 정규식을 활용하여 코드를 효율적으로 검색·치환하는 방법을 소개합니다. 대표 예시 문법과 활용 사례도 상세하게 설명해, 생산성을 높이는 팁을 제공합니다."

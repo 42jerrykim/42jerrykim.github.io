@@ -16,6 +16,20 @@ tags:
 - 마크다운
 - 워크플로우
 - 자동화
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Go
+- Bash
+- Shell
+- Configuration
 image: wordcloud.png
 ---
 

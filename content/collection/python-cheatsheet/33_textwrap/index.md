@@ -20,6 +20,12 @@ tags:
   - 터미널
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Sorting
 ---
 `textwrap` 모듈은 **텍스트 줄바꿈과 들여쓰기**를 다루는 도구입니다. CLI 출력, 이메일 본문, 리포트 생성 등에서 텍스트를 깔끔하게 정렬할 때 유용합니다.
 

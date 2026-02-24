@@ -11,6 +11,21 @@ tags:
 - Automation
 - Git
 - GitHub
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Implementation
+- 구현
+- Innovation
 description: "DeepSearcher는 오픈소스 모델과 도구를 활용하여 로컬 환경에서 심층 리서치를 자동화하는 혁신적인 도구이다. 복합적인 질문을 분석하고, 관련 데이터를 효율적으로 검색하여 최종 보고서를 생성하는 기능을 제공한다."
 image: index.png
 ---

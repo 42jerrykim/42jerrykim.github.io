@@ -13,6 +13,18 @@ tags:
 - Self-Hosted
 - Networking
 - Watch
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 description: "Synology Photos의 AI 기능을 활용하여 중복 사진을 쉽게 찾고 제거하는 방법을 안내한다. 이 기능을 통해 비슷한 사진들을 자동으로 감지하고 스택으로 묶어주어, 사용자는 중복 사진을 간편하게 확인하고 삭제할 수 있다. 몇 가지 간단한 단계만 따라 하면, 깔끔한 사진 라이브러리를 유지할 수 있다."
 image: "image03.png"
 ---

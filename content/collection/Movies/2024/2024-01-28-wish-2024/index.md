@@ -19,6 +19,16 @@ tags:
 - Review
 - 리뷰
 - Comedy
+- Thriller
+- 스릴러
+- Action
+- 액션
+- Sci-Fi
+- 애니메이션
+- 코미디
+- 판타지
+- Romance
+- 로맨스
 image: "image.png"
 ---
 

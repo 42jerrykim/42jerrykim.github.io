@@ -12,6 +12,18 @@ tags:
   - Security
   - Process
   - Thread
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
 description: "Win32 API 환경에서 메시지 박스가 최상단에 포커스를 강제로 획득하도록 실행하는 방법에 대해 알아보겠다이다. CBT 후크와 AllowSetForegroundWindow API를 활용한 두 가지 해결 방안을 소개한다."
 image: messagebox_02.png
 ---

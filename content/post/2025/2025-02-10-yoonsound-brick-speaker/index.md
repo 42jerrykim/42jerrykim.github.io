@@ -12,6 +12,17 @@ tags:
   - Privacy
   - Innovation
   - Technology
+  - Blog
+  - 블로그
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Markdown
+  - 마크다운
+  - Implementation
+  - 구현
 image: image.png
 description: "윤사운드 Brick 지향성 파워드 스피커는 100watt 고출력과 Bluetooth 무선 연결, 초지향 기술, SD카드·외부입력 지원 등 다양한 기능을 갖춘 국내 제조 프리미엄 오디오 제품입니다. 박물관 및 컨퍼런스 등 다양한 환경에 최적화되어 뛰어난 음향 집중성과 설치 유연성을 제공합니다."
 

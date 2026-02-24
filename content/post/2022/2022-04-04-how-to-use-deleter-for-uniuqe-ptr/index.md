@@ -11,6 +11,20 @@ tags:
 - String
 - HTML
 - Memory
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Implementation
+- 구현
 title: '[C/C++] Lamda를 사용해서 unique_ptr의 자원을 자동으로 해제하기'
 ---
 

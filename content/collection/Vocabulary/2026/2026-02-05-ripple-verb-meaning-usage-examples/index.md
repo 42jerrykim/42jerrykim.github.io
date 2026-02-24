@@ -21,6 +21,15 @@ tags:
   - 영단어
   - 영어동사
   - 일상표현
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Windows
+  - Productivity
 image: wordcloud.png
 ---
 

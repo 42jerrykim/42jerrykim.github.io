@@ -15,6 +15,18 @@ tags:
 - recursion
 - Functional-Programming
 - Web
+- Blog
+- 블로그
+- Technology
+- 기술
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- 구현
 teaser: /assets/images/2024/2024-08-08-reverse-mapped-types.png
 title: '[TypeScript] 리버스 맵핑 타입의 이해'
 ---

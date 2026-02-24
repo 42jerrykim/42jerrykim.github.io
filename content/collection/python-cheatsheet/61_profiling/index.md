@@ -25,6 +25,26 @@ tags:
   - pitfalls
   - 함정
   - Shell
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Bash
+  - Git
+  - GitHub
+  - Algorithm
+  - 알고리즘
+  - Problem-Solving
+  - 문제해결
+  - Sorting
+  - Graph
+  - 그래프
+  - String
+  - HTML
+  - Process
+  - Deployment
 ---
 성능 최적화는 "측정 먼저, 최적화 나중"이 원칙입니다. 이 치트시트는 timeit으로 마이크로벤치마크, cProfile로 함수별 분석, py-spy로 운영 환경 샘플링하는 방법을 정리합니다.
 

@@ -21,6 +21,15 @@ tags:
   - composition
   - 게임
   - 일상표현
+  - Grammar
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Gaming
 image: wordcloud.png
 ---
 

@@ -20,6 +20,22 @@ tags:
 - Refactoring
 - Testing
 - Optimization
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Design-Pattern
+- 디자인패턴
+- Graph
+- 그래프
 image: "tmp_wordcloud.png"
 ---
 

@@ -11,6 +11,22 @@ tags:
 - GitHub
 - Linux
 - Self-Hosted
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Shell
+- Bash
+- Keyboard
+- 키보드
 title: '[Plex] Windows에서 Plex media server 재실행하는 스크립트'
 ---
 

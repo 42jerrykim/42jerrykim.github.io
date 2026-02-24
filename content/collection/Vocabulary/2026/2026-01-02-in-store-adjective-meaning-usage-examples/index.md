@@ -17,6 +17,18 @@ tags:
   - Business-English
   - grammar
   - Pronunciation
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - Python
+  - Deployment
+  - Blog
+  - 블로그
 image: wordcloud.png
 ---
 

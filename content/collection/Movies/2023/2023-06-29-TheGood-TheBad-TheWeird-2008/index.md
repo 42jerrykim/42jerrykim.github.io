@@ -16,6 +16,19 @@ tags:
 - Go
 - Tree
 - Comedy
+- Drama
+- 스릴러
+- 액션
+- Sci-Fi
+- Animation
+- 애니메이션
+- 코미디
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- TV-Show
+- 드라마
 title: '[Movie] 놈놈놈 (2008) - 독특한 캐릭터와 함께하는 스릴 넘치는 여정'
 ---
 

@@ -14,6 +14,15 @@ tags:
   - Quick-Reference
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Go
+  - War
+  - 전쟁
 ---
 `atexit` 모듈은 **프로그램 정상 종료 시 실행할 함수를 등록**합니다. 리소스 정리, 임시 파일 삭제, 로그 기록 등 종료 작업에 유용합니다.
 

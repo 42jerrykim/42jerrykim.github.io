@@ -11,6 +11,16 @@ tags:
 - Networking
 - Technology
 - Tutorial
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[C#] long -> int 변환하기'
 ---
 

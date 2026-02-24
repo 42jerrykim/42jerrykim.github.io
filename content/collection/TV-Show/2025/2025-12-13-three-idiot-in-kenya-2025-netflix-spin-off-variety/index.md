@@ -21,6 +21,8 @@ tags:
   - Web
   - Gaming
   - 게임
+  - Culture
+  - 문화
 image: "image02.png"
 ---
 

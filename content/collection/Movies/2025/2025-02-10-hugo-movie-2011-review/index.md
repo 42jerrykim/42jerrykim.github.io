@@ -21,6 +21,33 @@ tags:
 - Review
 - 리뷰
 - Go
+- Thriller
+- 스릴러
+- Action
+- 액션
+- Sci-Fi
+- Animation
+- 애니메이션
+- Comedy
+- 코미디
+- 판타지
+- Romance
+- 로맨스
+- Hugo
+- Blog
+- Implementation
+- 구현
+- War
+- 전쟁
+- Watch
+- TV-Show
+- 드라마
+- History
+- 역사
+- Education
+- 교육
+- Innovation
+- Technology
 image: "MV5BMjAzNzk5MzgyNF5BMl5BanBnXkFtZTcwOTE4NDU5Ng@@._V1_.jpg"
 ---
 

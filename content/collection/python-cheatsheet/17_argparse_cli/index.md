@@ -21,6 +21,17 @@ tags:
   - pitfalls
   - 함정
   - Design-Pattern
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Bash
+  - Git
+  - GitHub
+  - 액션
+  - Command
 ---
 argparse는 커맨드라인 인자를 파싱하는 파이썬 표준 라이브러리입니다. 이 치트시트는 위치/옵션 인자, 타입 변환, 서브커맨드, 도움말 생성의 핵심 패턴을 정리합니다.
 

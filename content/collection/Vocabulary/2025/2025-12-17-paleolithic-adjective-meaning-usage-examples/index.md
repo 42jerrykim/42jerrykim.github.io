@@ -21,6 +21,21 @@ tags:
   - Etymology
   - Grammar
   - Pronunciation
+  - 문법
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - Rust
+  - Git
+  - GitHub
+  - Science
+  - Culture
+  - 문화
+  - Education
+  - 교육
 image: wordcloud.png
 ---
 

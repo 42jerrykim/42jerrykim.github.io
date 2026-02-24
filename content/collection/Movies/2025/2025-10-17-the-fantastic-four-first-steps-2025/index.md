@@ -18,6 +18,25 @@ tags:
 - 1960s
 - Space
 - Visual-Effects
+- Movie
+- 영화
+- Review
+- 리뷰
+- Drama
+- Thriller
+- 스릴러
+- Animation
+- 애니메이션
+- Comedy
+- 코미디
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- TV-Show
+- 드라마
+- History
+- 역사
 image: "poster.png"
 ---
 

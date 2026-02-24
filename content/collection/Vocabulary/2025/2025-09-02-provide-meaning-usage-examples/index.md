@@ -19,6 +19,14 @@ tags:
 - Collocation
 - 뉘앙스
 - 유의어
+- 영단어
+- 콜로케이션
+- 문법
+- Etymology
+- 어원
+- Synonym
+- Tutorial
+- 튜토리얼
 image: "wordcloud.png"
 ---
 

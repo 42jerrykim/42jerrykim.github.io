@@ -15,6 +15,21 @@ tags:
 - Data-Structures
 - Optimization
 - Software-Architecture
+- Competitive-Programming
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Coding-Test
+- 코딩테스트
+- 자료구조
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Compiler
+- Linux
 image: "index.png"
 ---
 

@@ -19,6 +19,24 @@ tags:
 - Go
 - Action
 - Comedy
+- Drama
+- Thriller
+- 스릴러
+- 액션
+- Sci-Fi
+- 애니메이션
+- 코미디
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Crime
+- 범죄
+- War
+- 전쟁
+- Horror
+- History
+- 역사
 image: "poster.png"
 draft: false
 ---

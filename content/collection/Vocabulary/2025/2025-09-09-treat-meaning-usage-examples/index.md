@@ -23,6 +23,18 @@ tags:
 - 뉘앙스
 - 콜로케이션
 - 비즈니스영어
+- Etymology
+- 어원
+- Synonym
+- 유의어
+- Tutorial
+- 튜토리얼
+- Movie
+- 영화
+- Review
+- 리뷰
+- War
+- 전쟁
 image: "wordcloud.png"
 ---
 

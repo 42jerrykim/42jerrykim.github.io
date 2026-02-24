@@ -25,6 +25,29 @@ tags:
 - Debugging
 - Testing
 - Problem-Solving
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- 알고리즘
+- 문제해결
+- 구현
+- Sorting
+- Graph
+- 그래프
+- Animation
+- Science
+- 과학
+- History
+- 역사
+- 교육
 title: '[Sorting] 버블 정렬(Bubble Sort) 이해하기'
 ---
 

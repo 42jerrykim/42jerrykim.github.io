@@ -21,6 +21,16 @@ tags:
   - Grammar
   - 영단어
   - 영어명사
+  - 문법
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - REST
+  - API
+  - Process
+  - 교육
 image: wordcloud.png
 ---
 

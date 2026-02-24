@@ -20,6 +20,13 @@ tags:
   - Implementation
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Java
+  - String
 ---
 `operator` 모듈은 **파이썬 연산자를 함수로 제공**합니다. `itemgetter`, `attrgetter`는 람다보다 빠르고 가독성 좋은 키 함수를 만들 때 유용합니다.
 

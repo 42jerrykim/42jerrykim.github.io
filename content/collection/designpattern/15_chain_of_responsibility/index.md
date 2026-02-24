@@ -27,6 +27,11 @@ tags:
   - C++
   - Python
   - CSharp
+  - Git
+  - GitHub
+  - 구현
+  - Security
+  - Process
 ---
 
 책임 연쇄 패턴(Chain of Responsibility Pattern)은 요청을 처리할 수 있는 객체들을 체인 형태로 연결하여, 요청이 처리될 때까지 체인을 따라 전달하는 행위 디자인 패턴이다. 이 패턴을 사용하면 요청을 보내는 객체와 처리하는 객체 사이의 결합도를 낮추고, 동적으로 처리자를 추가하거나 변경할 수 있다.

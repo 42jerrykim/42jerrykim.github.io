@@ -12,6 +12,20 @@ tags:
 - JavaScript
 - TypeScript
 - Node.js
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Keyboard
+- 키보드
 title: '[Automation] Nut.js - 오픈소스 데스크탑 오토메이션 툴킷'
 ---
 

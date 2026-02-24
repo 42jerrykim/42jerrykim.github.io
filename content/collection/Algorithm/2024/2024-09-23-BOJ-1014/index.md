@@ -17,6 +17,23 @@ tags:
 - 백준
 - Competitive-Programming
 - C++
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Python
+- Go
+- .NET
+- DP
+- String
 title: '[Algorithm] C++/Python 백준 1014번 : 컨닝'
 ---
 

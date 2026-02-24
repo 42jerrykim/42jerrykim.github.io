@@ -12,6 +12,24 @@ tags:
 - 알고리즘
 - Tree
 - Recursion
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Problem-Solving
+- 문제해결
+- Implementation
+- 구현
+- Gaming
+- 게임
 teaser: /assets/images/undefined/teaser.jpg
 title: '[DataStructure] 쿼드 트리(Quad Tree) 개념 정리'
 ---

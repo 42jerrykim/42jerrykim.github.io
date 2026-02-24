@@ -13,6 +13,18 @@ tags:
 - Stack
 - Builder
 - Design-Pattern
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[C#] string 객체 사용에서 흔히 하는 실수 '
 
 ---

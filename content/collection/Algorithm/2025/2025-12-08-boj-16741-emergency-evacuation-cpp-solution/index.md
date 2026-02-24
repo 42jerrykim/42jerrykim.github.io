@@ -25,6 +25,20 @@ tags:
 - Game-Theory
 - Data-Structures
 - 자료구조
+- Competitive-Programming
+- Implementation
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Coding-Test
+- 코딩테스트
+- Code-Quality
+- 코드품질
+- Go
+- .NET
+- Git
+- GitHub
+- Memory
 image: "wordcloud.png"
 ---
 

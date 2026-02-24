@@ -9,6 +9,17 @@ tags:
 - 교육
 - Rust
 - Technology
+- Blog
+- 블로그
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 image: "wildlife_nature_tree_sitting_feather_brown_branch_spring-804272.png"
 date: 2025-02-07
 description: "새가 나뭇가지에 앉을 때 믿는 것은 나뭇가지가 아니라 자신의 날개입니다. 환경이나 조건을 너무 의지하기보다, 자신의 능력과 내면의 힘을 신뢰함으로써 위기와 변화 속에서도 다시 날아오를 수 있다는 자기신뢰와 자신감의 중요성을 담은 통찰을 전합니다."

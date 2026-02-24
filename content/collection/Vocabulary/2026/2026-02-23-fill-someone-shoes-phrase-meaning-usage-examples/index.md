@@ -18,6 +18,21 @@ tags:
   - Performance
   - Grammar
   - Pronunciation
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - Go
+  - Sci-Fi
+  - Factory
+  - Design-Pattern
+  - Education
+  - 교육
+  - Innovation
+  - Technology
 image: wordcloud.png
 ---
 

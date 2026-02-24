@@ -21,6 +21,27 @@ tags:
 - 마이크로서비스
 - 추상화
 - 디자인패턴
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Implementation
+- 구현
+- Graph
+- 그래프
+- Docker
+- History
+- 역사
+- Education
+- 교육
 title: '[Architecture] C4 모델 쉽게 이해하기'
 ---
 

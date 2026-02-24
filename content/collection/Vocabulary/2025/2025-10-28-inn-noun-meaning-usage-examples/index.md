@@ -15,6 +15,20 @@ tags:
   - 영어명사
   - 콜로케이션
   - 뉘앙스
+  - Grammar
+  - 문법
+  - Etymology
+  - 어원
+  - Synonym
+  - 유의어
+  - Tutorial
+  - 튜토리얼
+  - REST
+  - API
+  - War
+  - 전쟁
+  - History
+  - 역사
 image: wordcloud.png
 ---
 

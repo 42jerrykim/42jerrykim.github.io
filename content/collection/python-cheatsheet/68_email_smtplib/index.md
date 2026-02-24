@@ -18,6 +18,13 @@ tags:
   - Best-Practices
   - automation
   - 자동화
+  - Tutorial
+  - 튜토리얼
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - HTML
 ---
 `email` 모듈은 **이메일 메시지 생성**을, `smtplib`는 **SMTP 프로토콜로 발송**을 담당합니다. 알림 메일, 리포트 발송, 자동화 등에 유용합니다.
 

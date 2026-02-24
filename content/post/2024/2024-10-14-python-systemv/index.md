@@ -16,6 +16,28 @@ tags:
 - Open-Source
 - Optimization
 - Debugging
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Git
+- GitHub
+- API
+- 구현
+- Graph
+- 그래프
+- Queue
+- String
+- Windows
+- Process
 ---
 
 이 글에서는 Python에서 System V IPC를 활용하여 공유 메모리와 세마포어를 사용하는 방법에 대해 설명한다. System V IPC는 Unix 계열 운영체제에서 프로세스 간 통신을 위한 메커니즘으로, 공유 메모리, 세마포어, 메시지 큐를 포함한다. Python 3.7 환경에서 추가 라이브러리 없이도 C의 System V API를 사용할 수 있도록 ctypes를 활용한 간단한 래퍼를 작성하였다. 이 래퍼는 shmget, shmat, shmdt, shmctl과 같은 C 함수를 Python에서 호출할 수 있게 해준다. 공유 메모리 세그먼트를 생성하고, 이를 프로세스의 메모리에 매핑하여 데이터를 읽고 쓸 수 있는 방법을 보여준다. 또한, 세마포어를 사용하여 프로세스 간의 동기화를 관리하는 방법도 다룬다. 이 글은 향후 참고를 위해 작성되었으며, 코드 예제와 함께 System V IPC의 기본 개념을 이해하는 데 도움이 될 것이다. Python의 ctypes 모듈을 통해 C API를 호출하는 과정은 다소 복잡할 수 있지만, 이를 통해 프로세스 간의 데이터 공유와 동기화를 효과적으로 구현할 수 있다.

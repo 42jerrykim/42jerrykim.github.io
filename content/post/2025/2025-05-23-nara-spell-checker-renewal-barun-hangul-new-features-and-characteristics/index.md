@@ -11,6 +11,28 @@ tags:
 - 인공지능
 - 머신러닝
 - 딥러닝
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Algorithm
+- 알고리즘
+- Problem-Solving
+- 문제해결
+- Graph
+- 그래프
+- HTML
+- Tablet
+- 태블릿
+- SEO
 categories: 
 - Orthography
 - Spell Checking

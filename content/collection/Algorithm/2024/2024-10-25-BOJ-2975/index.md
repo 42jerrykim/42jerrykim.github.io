@@ -16,6 +16,23 @@ tags:
 - Competitive-Programming
 - Problem-Solving
 - C++
+- 구현
+- Time-Complexity
+- 시간복잡도
+- Coding-Test
+- 코딩테스트
+- Data-Structures
+- 자료구조
+- Optimization
+- 최적화
+- 문제해결
+- Code-Quality
+- 코드품질
+- Python
+- Go
+- .NET
+- Action
+- 액션
 image: "tmp_wordcloud.png"
 date: 2024-10-25
 ---

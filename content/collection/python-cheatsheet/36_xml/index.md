@@ -18,6 +18,15 @@ tags:
   - 보안
   - Design-Pattern
   - Best-Practices
+  - Tutorial
+  - 튜토리얼
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Go
+  - Tree
+  - String
+  - Recursion
 ---
 `xml.etree.ElementTree`는 XML을 **파싱하고 생성**하는 표준 라이브러리입니다. 레거시 시스템 연동, 설정 파일 처리 등에 여전히 많이 사용됩니다.
 

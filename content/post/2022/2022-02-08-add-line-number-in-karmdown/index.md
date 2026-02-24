@@ -15,6 +15,16 @@ tags:
 - CSS
 - Blog
 - Configuration
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- 마크다운
 title: '[Kramdown] Kramdown으로 랜더링되는 code 영역에 줄번호 표시하기'
 ---
 

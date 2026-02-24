@@ -11,6 +11,31 @@ tags:
   - Gadget
   - 가젯
   - Technology
+  - Blog
+  - 블로그
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 가이드
+  - Markdown
+  - 마크다운
+  - Go
+  - Implementation
+  - 구현
+  - War
+  - 전쟁
+  - Windows
+  - Keyboard
+  - 키보드
+  - Tablet
+  - 태블릿
+  - Linux
+  - Gaming
+  - 게임
+  - Science
+  - 과학
+  - Innovation
 description: "AMD Ryzen AI 300 시리즈 프로세서를 탑재한 GPD Pocket 4는 8.8인치 144Hz WQXGA 디스플레이와 모듈식 설계를 특징으로 하는 혁신적인 핸드헬드 AI PC이다. 사용자 정의 가능한 모듈 포트 시스템과 AI 가속기를 통해 생산성과 휴대성을 동시에 추구하는 새로운 컴퓨팅 경험을 제공한다."
 image: seuhp3ikkrty5uvr0um6.webp
 

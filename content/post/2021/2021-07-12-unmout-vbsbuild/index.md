@@ -11,6 +11,18 @@ tags:
 - Tree
 - Process
 - space
+- Blog
+- 블로그
+- Technology
+- 기술
+- Web
+- 웹
+- Tutorial
+- 가이드
+- Review
+- 리뷰
+- Markdown
+- 마크다운
 title: '[GBS] device is busy 문제 해결 방법'
 ---
 
