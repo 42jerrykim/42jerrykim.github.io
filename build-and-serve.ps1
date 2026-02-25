@@ -43,7 +43,7 @@ if ($hugoCmd) {
 
 # --- 병렬 워커 수 증가 ---
 # Go 루틴은 경량이므로 CPU 코어 수보다 높게 설정해도 안전하며, I/O 대기 시 throughput 개선
-$env:HUGO_NUMWORKERMULTIPLIER = 4
+$env:HUGO_NUMWORKERMULTIPLIER = 100
 
 # --- WebP/리소스 캐시 활용 (CI와 동일 전략) ---
 # HUGO_CACHEDIR을 워크스페이스 내 .hugo_cache로 두면, 빌드·서브 시 캐시가 유지되어
