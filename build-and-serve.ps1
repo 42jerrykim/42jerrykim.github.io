@@ -107,8 +107,22 @@ if ($needPagefind) {
     Write-Host "  (인덱스 재생성이 필요하면 -Pagefind 플래그를 사용하세요)" -ForegroundColor DarkGray
 }
 
+# --- 포트 12345 사용 중이면 해당 프로세스 종료 ---
+$conn = Get-NetTCPConnection -LocalPort 12345 -State Listen -ErrorAction SilentlyContinue
+if ($conn) {
+    $pidsToKill = $conn.OwningProcess | Sort-Object -Unique
+    foreach ($processId in $pidsToKill) {
+        $proc = Get-Process -Id $processId -ErrorAction SilentlyContinue
+        if ($proc) {
+            Write-Host "포트 12345 사용 중인 프로세스 종료: $($proc.ProcessName) (PID $processId)" -ForegroundColor Yellow
+            Stop-Process -Id $processId -Force
+        }
+    }
+    Start-Sleep -Seconds 1
+}
+
 # --- Hugo 개발 서버 시작 ---
-Write-Host "Hugo 개발 서버를 시작합니다..." -ForegroundColor Cyan
+Write-Host "Hugo 개발 서버를 시작합니다 (포트 12345)..." -ForegroundColor Cyan
 
 $serveArgs = @("serve", "-D", "--port", "12345", "--renderStaticToDisk", "--templateMetrics", "--templateMetricsHints", "--logLevel=info")
 if ($Segment) {
