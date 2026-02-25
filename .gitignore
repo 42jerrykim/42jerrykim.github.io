@@ -2,6 +2,7 @@ public
 resources
 _vendor
 .hugo_build.lock
+.hugo_cache
 __pycache__
 run.py
 node_modules

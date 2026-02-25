@@ -45,6 +45,17 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+
+      - name: Restore Hugo resources cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ./resources
+            .hugo_cache
+          key: hugo-resources-${{ runner.os }}-${{ hashFiles('content/**', 'layouts/**', 'config/**', 'assets/**') }}
+          restore-keys: |
+            hugo-resources-${{ runner.os }}-
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
@@ -60,7 +71,7 @@ jobs:
       
       - name: Build with Hugo
         env:
-          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_CACHEDIR: ${{ github.workspace }}/.hugo_cache
           HUGO_ENVIRONMENT: production
           TZ: America/Los_Angeles
         run: |
