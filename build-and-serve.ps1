@@ -45,6 +45,11 @@ if ($hugoCmd) {
 # Go 루틴은 경량이므로 CPU 코어 수보다 높게 설정해도 안전하며, I/O 대기 시 throughput 개선
 $env:HUGO_NUMWORKERMULTIPLIER = 4
 
+# --- WebP/리소스 캐시 활용 (CI와 동일 전략) ---
+# HUGO_CACHEDIR을 워크스페이스 내 .hugo_cache로 두면, 빌드·서브 시 캐시가 유지되어
+# 다음 실행에서 이미지(WebP) 변환·모듈 캐시를 재사용하고 빌드가 빨라진다. (deploy.yml 참고)
+$env:HUGO_CACHEDIR = Join-Path (Get-Location) ".hugo_cache"
+
 # --- Pagefind 인덱스 생성 (조건부) ---
 $pagefindIndex = "static/_pagefind/pagefind.js"
 $needPagefind = $Pagefind -or !(Test-Path $pagefindIndex)
@@ -56,8 +61,9 @@ if ($needPagefind) {
         Write-Host "Pagefind 인덱스가 없습니다. 빌드 후 생성합니다..." -ForegroundColor Yellow
     }
 
-    # Hugo 빌드 (pagefind 인덱싱용)
-    $buildArgs = @("build", "--cleanDestinationDir", "--gc", "--environment", "development", "--logLevel=info")
+    # Hugo 빌드 (pagefind 인덱싱용). production 사용: development는 config에서 imageProcessing을 끄므로
+    # WebP 변환이 생략되고, 캐시가 채워지지 않음. production으로 빌드해 WebP·캐시를 활용한다.
+    $buildArgs = @("build", "--cleanDestinationDir", "--gc", "--environment", "--logLevel=info")
 
     if ($Segment) {
         $buildArgs += "--renderSegments"

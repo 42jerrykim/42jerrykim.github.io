@@ -1,9 +1,0 @@
-[imaging]
-quality = 50
-resampleFilter = "Box"
-
-[outputs]
-home = ["HTML"]
-section = ["HTML"]
-taxonomy = ["HTML"]
-term = ["HTML"]
