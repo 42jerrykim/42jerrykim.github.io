@@ -15,8 +15,7 @@ hasCJKLanguage = true
 disqusShortname = "hugo-theme-stack"
 
 [pagination]
-pagerSize = 20
-
+pagerSize = 10
 
 [outputs]
 home = ["HTML", "RSS"]
@@ -34,15 +33,3 @@ disableLatLong = true
 
 [services.rss]
 limit = 50
-
-[segments.posts]
-  [[segments.posts.includes]]
-    kind = '{home,section,taxonomy,term}'
-  [[segments.posts.includes]]
-    path = '{/post,/post/**}'
-
-[segments.recent]
-  [[segments.recent.includes]]
-    kind = '{home,section,taxonomy,term}'
-  [[segments.recent.includes]]
-    path = '{/post,/post/**,/collection,/collection/**}'
