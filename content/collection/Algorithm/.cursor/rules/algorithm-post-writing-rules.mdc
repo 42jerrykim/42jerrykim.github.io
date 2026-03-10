@@ -38,6 +38,18 @@ YYYY-MM-DD-BOJ-문제번호-문제명-슬러그
 - **식별자**: `BOJ-{번호}`
 - **슬러그**: 문제의 영문명 또는 핵심 키워드를 소문자 하이픈(`-`)으로 연결
 
+## 이미지 규칙(워드클라우드)
+
+- 워드클라우드 생성기는 각 글의 `index.md` 내용을 읽어 **`wordcloud.png`** 이미지를 생성한다.
+- Front Matter에는 `image: "wordcloud.png"` 로 고정 사용한다.
+- 생성 방법: 프로젝트 루트에서 아래 명령 실행 (경로는 해당 콘텐츠 번들 폴더):
+
+```bash
+python script/wordcloud_generator.py "content/collection/Algorithm/2026/YYYY-MM-DD-BOJ-번호-슬러그"
+```
+
+- 실제 이미지 경로 예: `content/collection/Algorithm/2026/2026-03-10-BOJ-8927-squares-cpp-python-solution/wordcloud.png`
+
 ## Front Matter 템플릿
 
 ```yaml
@@ -235,6 +247,7 @@ input = sys.stdin.readline
 - [ ] 폴더명이 `YYYY-MM-DD-BOJ-번호-슬러그` 형식인가?
 - [ ] Front Matter의 tags가 50개 이상인가? (한글/영어 쌍 활용)
 - [ ] description이 150자 내외로 핵심을 잘 요약했는가?
+- [ ] `image: "wordcloud.png"`가 설정되어 있고, `python script/wordcloud_generator.py "<콘텐츠 번들 경로>"`로 워드클라우드를 생성했는가?
 - [ ] Mermaid 다이어그램으로 로직을 시각화했는가?
 - [ ] 복잡도 분석이 표(Table) 형식으로 작성되었는가?
 - [ ] 코드 최상단에 출처 주석(`더 많은 정보는...`)이 포함되었는가?
