@@ -3,36 +3,116 @@ draft: true
 title: "[Redux] 13. 컴포넌트 최적화 - 리렌더링 제어"
 date: 2025-10-14
 lastmod: 2025-10-14
+description: "Redux 앱의 성능 최적화 완벽 가이드. React.memo로 불필요한 리렌더링 방지, useMemo와 useCallback으로 연산 최적화, Profiler로 성능 측정하는 실전 최적화 기법을 마스터합니다."
+slug: component-optimization
 tags:
-- React
-- Performance
-- Optimization
-- Memoization
-- 프론트엔드
-- 성능
-- JavaScript
-- TypeScript
-- Implementation
-- Best-Practices
-description: "Redux 앱의 성능 최적화 완벽 가이드. React.memo로 불필요한 리렌더링 방지, useMemo와 useCallback으로 연산 최적화, Profiler로 성능 측정하는 실전 최적화 기법을 마스터합니다"
+  - JavaScript
+  - TypeScript
+  - React
+  - Frontend
+  - 프론트엔드
+  - Web
+  - 웹
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Memoization
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Design-Pattern
+  - 디자인패턴
+  - State
+  - Observer
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Testing
+  - 테스트
+  - Debugging
+  - 디버깅
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Reference
+  - 참고
+  - Documentation
+  - 문서화
+  - Error-Handling
+  - 에러처리
+  - Pitfalls
+  - 함정
+  - Edge-Cases
+  - 엣지케이스
+  - Type-Safety
+  - Interface
+  - 인터페이스
+  - Encapsulation
+  - 캡슐화
+  - Data-Structures
+  - 자료구조
+  - API
+  - Async
+  - 비동기
+  - Caching
+  - 캐싱
+  - Scalability
+  - 확장성
+  - Git
+  - IDE
+  - How-To
+  - Tips
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - 실습
+  - Case-Study
+  - Comparison
+  - 비교
+  - Deep-Dive
+  - Beginner
+  - Advanced
+  - Maintainability
+  - Modularity
+  - Readability
+  - Workflow
+  - 워크플로우
+  - JSON
+  - HTTP
+  - Event-Driven
+  - Benchmark
+  - Profiling
+  - 프로파일링
+  - Functional-Programming
+  - 함수형프로그래밍
 series: ["Redux 완전 정복"]
 series_order: 13
 ---
 
-## 학습 목표
+12장에서 useSelector·useDispatch로 컴포넌트와 store를 연결했다면, 이 장에서는 **불필요한 리렌더를 줄이는 방법**을 다룹니다. useSelector가 반환하는 참조가 바뀌면 컴포넌트가 리렌더되므로, React.memo·useMemo·useCallback과 **Selector**를 어떻게 조합할지가 실무 성능에 직결됩니다. 14장(Selector 패턴)에서 메모이제이션된 selector를 배우기 전에, "언제 리렌더가 일어나는지"를 이해하는 것이 중요합니다.
 
-이 챕터를 마치면 다음을 할 수 있습니다:
+## 이 글을 읽은 후 달성해야 할 목표 (평가 기준)
 
-- ✅ React 리렌더링 원리 이해
-- ✅ React.memo로 컴포넌트 메모이제이션
-- ✅ useMemo로 값 메모이제이션
-- ✅ useCallback으로 함수 메모이제이션
-- ✅ Redux Selector 최적화
+이 챕터를 마치면 다음을 할 수 있어야 합니다:
+
+- React 리렌더링 원리를 설명하고, **useSelector** 사용이 리렌더를 유발하는 조건을 구분할 수 있다.
+- **React.memo**, **useMemo**, **useCallback**을 상황에 맞게 적용하고, Redux **Selector**와 조합할 수 있다.
+- 언제 메모이제이션을 쓸지·피할지 **판단**할 수 있다.
 - ✅ React Profiler로 성능 측정
 
 ## 왜 최적화가 필요한가?
 
-Redux 앱에서 성능 문제가 발생하는 경우:
+**useSelector**를 쓰는 컴포넌트는 선택한 **state**가 바뀔 때만 리렌더되지만, 부모가 리렌더되면 **props**가 바뀌지 않아도 자식이 함께 리렌더되는 것이 React의 기본 동작입니다. 리스트가 길거나 **state**가 자주 바뀌면 불필요한 리렌더가 쌓여 성능이 나빠질 수 있습니다. 이 장에서는 **React.memo**, **useCallback**, **useMemo**와 Redux **Selector** 메모이제이션으로 "언제 리렌더할지"를 좁혀서 최적화하는 방법을 다룹니다. 단, 최적화는 **측정 후** 적용하는 것이 좋습니다. 병목이 없는 곳에 메모이제이션을 남발하면 오히려 메모리와 비교 비용만 늘어납니다.
+
+Redux 앱에서 흔히 발생하는 성능 문제와 해결 방향은 아래와 같습니다.
 
 ```javascript
 // ❌ 성능 문제: 부모가 리렌더링되면 모든 자식도 리렌더링
@@ -56,6 +136,8 @@ const TodoItem = React.memo(function TodoItem({ todo }) {
 ```
 
 ## React 리렌더링 이해하기
+
+React는 **state**나 **props**가 바뀌었을 때, 또는 부모가 리렌더되었을 때 컴포넌트를 다시 그립니다. Redux를 쓰면 **useSelector**가 선택한 **state** 조각이 바뀔 때만 해당 컴포넌트가 리렌더되고, **connect**는 **mapStateToProps** 결과가 바뀔 때만 구독 컴포넌트를 리렌더합니다. 그래도 부모가 리렌더되면 자식은 **props**가 같아도 리렌더되므로, 리스트 아이템처럼 개수가 많은 자식은 **React.memo**로 "props가 같으면 스킵"하도록 할 수 있습니다. 먼저 리렌더가 일어나는 경우를 정리합니다.
 
 ### 리렌더링이 발생하는 경우
 
@@ -101,6 +183,8 @@ function Component2() {
 ```
 
 ## React.memo - 컴포넌트 메모이제이션
+
+**React.memo**는 **props**를 얕은 비교해서 이전과 같으면 리렌더를 건너뜁니다. 리스트의 각 항목처럼 부모만 리렌더돼도 자식이 불필요하게 많이 리렌더되는 경우에, **todo**·**onToggle** 같은 **props**가 실제로 바뀌지 않았을 때만 스킵하도록 할 때 유용합니다. **props**에 객체나 함수가 있으면 참조가 바뀔 때마다 리렌더되므로, 부모에서 **useCallback**·**useMemo**로 같은 참조를 유지해야 **React.memo** 효과가 납니다.
 
 ### 기본 사용법
 
@@ -196,6 +280,8 @@ function TodoList() {
 
 ## useCallback - 함수 메모이제이션
 
+**useCallback**은 함수 참조를 **의존성 배열**이 바뀔 때만 새로 만들어 줍니다. **React.memo**로 감싼 자식에 **onToggle** 같은 함수를 **props**로 넘길 때, 부모가 리렌더될 때마다 새 함수가 만들어지면 **props**가 바뀐 것으로 간주되어 **React.memo**가 무력화됩니다. **useCallback**으로 **dispatch** 등만 의존성에 두면, 같은 함수 참조가 유지되어 자식이 불필요하게 리렌더되지 않습니다. 의존성 배열을 잘못 쓰면 오래된 **state**를 참조하는 버그가 나므로, 사용하는 값은 모두 배열에 넣어야 합니다.
+
 ### 기본 사용법
 
 ```javascript
@@ -283,6 +369,8 @@ useEffect(() => {
 
 ## useMemo - 값 메모이제이션
 
+**useMemo**는 **의존성 배열**이 바뀔 때만 계산을 다시 수행하고, 그 외에는 이전 결과를 재사용합니다. **useSelector**로 가져온 **state**를 **filter**·**sort**·**slice** 같은 연산으로 파생 데이터로 만들 때, 매 렌더마다 새 배열을 만들면 참조가 바뀌어 이를 **props**로 받는 자식이 계속 리렌더됩니다. **useMemo**로 **todos**·**filter**가 바뀔 때만 파생 데이터를 만들면 불필요한 리렌더와 연산을 줄일 수 있습니다. 단, 연산이 가벼우면 **useMemo** 자체의 비용이 더 클 수 있으므로, **비용이 큰 계산**이 있을 때만 쓰는 것이 좋습니다.
+
 ### 기본 사용법
 
 ```javascript
@@ -359,6 +447,8 @@ const callback = useMemo(() => () => doSomething(a, b), [a, b]);
 ```
 
 ## Redux Selector 최적화
+
+**useSelector**에 넘기는 선택자에서 **filter**·**map**처럼 매번 새 배열·객체를 반환하면, 참조가 바뀌어 컴포넌트가 매번 리렌더됩니다. **Reselect**의 **createSelector**는 입력 **state** 조각이 바뀔 때만 파생 결과를 다시 계산하고, 같으면 이전 참조를 반환해 불필요한 리렌더를 막습니다. 여러 필드를 한 객체로 반환할 때는 **useSelector**의 두 번째 인자로 **shallowEqual**을 넘겨 1단계 키만 비교하게 할 수도 있습니다. 아래는 **Reselect**·**shallowEqual**·**Selector Factory** 패턴입니다.
 
 ### Reselect 사용
 
@@ -447,7 +537,22 @@ function TodoDetail({ todoId }) {
 }
 ```
 
+### 판단 기준: 언제 메모이제이션을 쓸지·피할지
+
+| 상황 | 권장 | 비고 |
+|------|------|------|
+| **React.memo** | 리스트 항목·차트·무거운 자식이 부모 리렌더로 자주 같이 리렌더될 때 | **props**가 객체·함수면 부모에서 **useCallback**·**useMemo**로 참조 유지 필요 |
+| **useCallback** | **React.memo** 자식에 넘기는 핸들러, **useEffect** 의존성에 넣는 함수 | 단순 인라인 핸들러는 **useCallback** 생략 가능 |
+| **useMemo** | **useSelector** 결과를 filter/sort 등 무거운 연산으로 파생할 때 | 가벼운 연산은 **useMemo** 생략 |
+| **Reselect** | **useSelector** 선택자가 매번 새 배열·객체를 반환할 때 | 입력 **state**가 바뀔 때만 재계산되도록 |
+
+### 한계와 비판적 시각
+
+**과도한 메모이제이션**은 피하는 것이 좋습니다. 모든 컴포넌트에 **React.memo**를 붙이거나, 모든 함수에 **useCallback**을 쓰면 비교 비용과 메모리만 늘어나고, 의존성 배열 실수로 오래된 값을 쓰는 버그가 생기기 쉽습니다. 먼저 **React Profiler**나 **Why Did You Render**로 병목이 있는 컴포넌트를 찾고, 리스트의 자식·무거운 파생 데이터·자주 바뀌는 **props**를 받는 컴포넌트에만 **React.memo**·**useCallback**·**useMemo**·**Reselect**를 적용하는 것이 안전합니다.
+
 ## 실전 최적화 예제
+
+아래는 **React.memo**·**useCallback**·**useMemo**·**Reselect**·**shallowEqual**을 한 Todo 앱에 모두 적용한 예입니다. 실제로는 측정 후 필요한 부분만 골라 적용하는 것이 좋습니다.
 
 ### 완전히 최적화된 Todo 앱
 

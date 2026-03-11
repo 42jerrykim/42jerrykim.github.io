@@ -3,39 +3,110 @@ draft: true
 title: "[Redux] 10. Redux를 사용하는 이유와 적절한 사용 시기"
 date: 2025-10-14
 lastmod: 2025-10-14
+description: "Redux 도입 결정을 위한 완벽 가이드. Redux가 필요한 경우와 불필요한 경우, Context API와 다른 상태 관리 라이브러리와의 비교, 프로젝트 규모별 최적 선택 기준을 실전 사례로 학습합니다."
+slug: when-to-use-redux
 tags:
-- Software-Architecture
-- 소프트웨어아키텍처
-- 프론트엔드
-- React
-- Best-Practices
-- JavaScript
-- TypeScript
-- Implementation
-- Design-Pattern
-- 디자인패턴
-- Scalability
-- 확장성
-description: "Redux 도입 결정을 위한 완벽 가이드. Redux가 필요한 경우와 불필요한 경우, Context API와 다른 상태 관리 라이브러리와의 비교, 프로젝트 규모별 최적 선택 기준을 실전 사례로 학습합니다"
+  - JavaScript
+  - TypeScript
+  - React
+  - Frontend
+  - 프론트엔드
+  - Web
+  - 웹
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Design-Pattern
+  - 디자인패턴
+  - Scalability
+  - 확장성
+  - State
+  - Observer
+  - Event-Driven
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Testing
+  - 테스트
+  - Debugging
+  - 디버깅
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Reference
+  - 참고
+  - Documentation
+  - 문서화
+  - Error-Handling
+  - 에러처리
+  - Pitfalls
+  - 함정
+  - Edge-Cases
+  - 엣지케이스
+  - Performance
+  - 성능
+  - Type-Safety
+  - Interface
+  - 인터페이스
+  - Data-Structures
+  - 자료구조
+  - API
+  - Async
+  - 비동기
+  - Caching
+  - 캐싱
+  - Git
+  - IDE
+  - How-To
+  - Tips
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - 실습
+  - Case-Study
+  - Comparison
+  - 비교
+  - Deep-Dive
+  - Beginner
+  - Advanced
+  - Maintainability
+  - Modularity
+  - Readability
+  - Workflow
+  - 워크플로우
+  - JSON
+  - HTTP
+  - Functional-Programming
+  - 함수형프로그래밍
+  - Encapsulation
+  - 캡슐화
 series: ["Redux 완전 정복"]
 series_order: 10
 ---
 
-## 학습 목표
+06~09장에서 Redux의 개념과 데이터 흐름을 익혔다면, 이 장에서는 **언제 Redux를 도입하고 언제 피할지**를 판단하는 기준을 다룹니다. "Redux는 만능이 아니다"는 Dan Abramov의 글을 참고로, 장단점·대안(Context API, Zustand 등)·프로젝트 규모에 따른 선택을 정리합니다. Phase 2(Redux 핵심)를 마무리하는 장이므로, 다음 Phase 3(React-Redux)로 넘어가기 전에 한 번 정리해 두면 좋습니다.
 
-이 챕터를 마치면 다음을 할 수 있습니다:
+## 이 글을 읽은 후 달성해야 할 목표 (평가 기준)
 
-- ✅ Redux의 장단점을 정확히 이해
-- ✅ 프로젝트에 Redux가 필요한지 판단
-- ✅ Context API, MobX 등 대안과 비교
-- ✅ 팀 규모와 프로젝트 특성에 맞는 선택
-- ✅ Redux 없이 시작하고 나중에 도입하는 전략
+이 챕터를 마치면 다음을 할 수 있어야 합니다:
+
+- Redux의 장단점을 설명하고, 프로젝트 규모·요구사항에 따라 Redux를 쓸지 말지 **판단**할 수 있다.
+- Context API, MobX, Zustand 등 대안과 비교하고, 상황에 맞는 **선택**을 할 수 있다.
+- Redux 없이 시작했다가 나중에 도입하는 전략을 설명할 수 있다.
 
 ## Redux는 만능이 아닙니다
 
 Redux 창시자 Dan Abramov의 말:
 
-> "Redux를 사용하지 않고도 멋진 앱을 만들 수 있습니다. 실제로 대부분의 앱은 Redux가 필요하지 않습니다."
+> "Redux를 사용하지 않고도 멋진 앱을 만들 수 있습니다. 실제로 대부분의 앱은 Redux가 필요하지 않습니다."  
+> — Dan Abramov, [You Might Not Need Redux (2016)](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367)
 
 ```javascript
 // ❌ 잘못된 사고방식
@@ -46,6 +117,8 @@ Redux 창시자 Dan Abramov의 말:
 ```
 
 ## Redux의 장점
+
+Redux를 쓸지 말지는 **상태 복잡도**·**팀 규모**·**디버깅·테스트 요구**에 따라 결정하는 것이 좋습니다. 아래는 Redux가 빛을 발하는 대표적인 장점들입니다. 각 항목은 "일반 React state vs Redux" 비교로 이해하면 선택에 도움이 됩니다.
 
 ### 예측 가능한 상태 관리
 
@@ -60,6 +133,8 @@ setCount(count + 1);
 ```
 
 ### 중앙 집중식 상태
+
+**Store** 하나에서 **전역 state**를 관리하면 컴포넌트 간 동기화 부담이 줄고, **useSelector**로 필요한 슬라이스만 구독할 수 있습니다. 반대로 state가 여러 컴포넌트에 흩어지면 공유·갱신 시점을 맞추기 어렵습니다.
 
 ```javascript
 // ✅ Redux: 한 곳에서 모든 상태 관리
@@ -626,6 +701,10 @@ const AppContext = createContext();
 - 결제: Redux (상태 추적 필요)
 ```
 
+### 한계와 트레이드오프
+
+Redux는 **보일러플레이트가 많고**, 작은 앱에서는 오버헤드가 될 수 있습니다. **학습 곡선**이 있고, Context·Zustand 등 대안에 비해 설정이 무겁다는 비판도 있습니다. 반면 규모가 커질수록 **예측 가능한 데이터 흐름**과 **DevTools·미들웨어 생태계**가 장점이 되므로, 프로젝트 단계와 팀 상황에 맞는 **트레이드오프**를 고려해 선택하는 것이 중요합니다.
+
 ## 체크리스트 ✅
 
 - [ ] Redux의 장단점을 이해한다
@@ -638,7 +717,7 @@ const AppContext = createContext();
 
 축하합니다! Phase 2 (Redux 핵심 개념)를 완료했습니다!
 
-**다음 단계**: Phase 3에서 React-Redux를 배우거나, 바로 Phase 4 Redux Toolkit으로 넘어가세요!
+**다음 단계**: [11. React-Redux 기초](../11-react-redux-basics/)에서 Phase 3 React-Redux를 배우거나, 필요하면 Phase 4 Redux Toolkit으로 넘어가세요!
 
 ### 추가 학습 자료
 - [You Might Not Need Redux](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367)

@@ -3,36 +3,108 @@ draft: true
 title: "[Redux] 05. TypeScript 기초 - 타입 시스템 이해하기"
 date: 2025-10-14
 lastmod: 2025-10-14
+description: "Redux Toolkit과 함께 사용하는 TypeScript 기초 완벽 마스터. 타입 시스템으로 안전한 Redux 코드 작성, 인터페이스와 제네릭으로 타입 재사용, 실전 Redux 타입 정의 패턴까지 학습합니다."
+slug: typescript-basics
 tags:
-- TypeScript
-- Interface
-- 인터페이스
-- 프론트엔드
-- Implementation
-- JavaScript
-- Best-Practices
-- Clean-Code
-- 코드품질
-- Code-Quality
-- Refactoring
-- 리팩토링
-description: "Redux Toolkit과 함께 사용하는 TypeScript 기초 완벽 마스터. 타입 시스템으로 안전한 Redux 코드 작성, 인터페이스와 제네릭으로 타입 재사용, 실전 Redux 타입 정의 패턴까지 학습합니다"
+  - TypeScript
+  - JavaScript
+  - React
+  - Frontend
+  - 프론트엔드
+  - Web
+  - 웹
+  - Interface
+  - 인터페이스
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Type-Safety
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Design-Pattern
+  - 디자인패턴
+  - Functional-Programming
+  - 함수형프로그래밍
+  - State
+  - Observer
+  - Data-Structures
+  - 자료구조
+  - Testing
+  - 테스트
+  - Debugging
+  - 디버깅
+  - Documentation
+  - 문서화
+  - Error-Handling
+  - 에러처리
+  - Pitfalls
+  - 함정
+  - Edge-Cases
+  - 엣지케이스
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Reference
+  - 참고
+  - Readability
+  - Maintainability
+  - Modularity
+  - Encapsulation
+  - 캡슐화
+  - Polymorphism
+  - 다형성
+  - Abstraction
+  - 추상화
+  - Git
+  - IDE
+  - VSCode
+  - How-To
+  - Tips
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - 실습
+  - Case-Study
+  - Comparison
+  - 비교
+  - JSON
+  - API
+  - Async
+  - 비동기
+  - Performance
+  - 성능
+  - Deep-Dive
+  - Beginner
+  - Advanced
+  - Event-Driven
+  - Workflow
+  - 워크플로우
+  - Scalability
+  - 확장성
 series: ["Redux 완전 정복"]
 series_order: 5
 ---
 
-## 학습 목표
+Phase 1의 마지막 장으로 **TypeScript 기초**를 다룹니다. Redux와 React를 TypeScript로 쓰면 state·action·props에 타입을 붙여 오류를 컴파일 단계에서 잡을 수 있습니다. 이 장에서는 기본 타입·인터페이스·제네릭만 다루며, 06장(Redux란 무엇인가)부터 본격적인 Redux 학습을 시작할 때 타입을 함께 정의하는 습관을 들이면 실무에 바로 적용하기 좋습니다.
 
-이 챕터를 마치면 다음을 할 수 있습니다:
+## 이 글을 읽은 후 달성해야 할 목표 (평가 기준)
 
-- ✅ TypeScript의 기본 타입 시스템 이해
-- ✅ 인터페이스와 타입 별칭으로 복잡한 타입 정의
-- ✅ 제네릭을 활용한 재사용 가능한 타입 작성
-- ✅ Redux에서 TypeScript를 효과적으로 활용
+이 챕터를 마치면 다음을 할 수 있어야 합니다:
+
+- TypeScript의 기본 타입·**인터페이스**·타입 별칭으로 **State**, **Action** 타입을 정의할 수 있다.
+- **제네릭**을 활용해 재사용 가능한 타입을 작성하고, Redux **Reducer**·**Action Creator**에 적용할 수 있다.
 
 ## 왜 TypeScript를 배워야 할까?
 
-Redux + TypeScript = 강력한 개발 경험:
+Redux의 state·action·reducer에 **타입을 붙이면** 잘못된 필드 접근이나 action type 오타를 **실행 전에** 잡을 수 있습니다. JavaScript만 쓰면 런타임에 undefined를 참조해 에러가 나기 쉽고, TypeScript를 쓰면 컴파일 단계에서 경고가 나옵니다. 아래는 JavaScript에서는 에러가 나지 않지만 TypeScript에서는 타입 오류가 나는 예와, 인터페이스로 User 타입을 정의한 예를 대비한 것입니다.
 
 ```typescript
 // JavaScript - 런타임 에러!
@@ -56,6 +128,8 @@ console.log(user.email); // ❌ Error: Property 'email' does not exist
 4. **문서화**: 타입 자체가 문서 역할
 
 ## 기본 타입 (Basic Types)
+
+Redux **state**·**action payload**·**Reducer** 반환값에 타입을 두면 **잘못된 필드 접근**이나 **payload** 형식 오류를 컴파일 단계에서 막을 수 있습니다. **RootState**·**AppDispatch**를 정의해 **useSelector**·**useDispatch**에 붙이면 자동완성과 타입 안전성이 크게 좋아집니다. 그 기초가 되는 것이 아래 기본 타입입니다.
 
 ### 원시 타입
 
@@ -141,6 +215,8 @@ readonlyUser.name = "Bob"; // OK
 ```
 
 ## 인터페이스 (Interface)
+
+Redux에서는 **State**·**Action**·**Action Creator**의 형태를 **인터페이스**로 정의해 일관성을 유지합니다. **TodoState**·**UserState**처럼 슬라이스별 state 타입과 **payload** 타입을 인터페이스로 두면, **Reducer**와 **useSelector**에서 타입 추론이 잘 동작합니다.
 
 ### 기본 인터페이스
 

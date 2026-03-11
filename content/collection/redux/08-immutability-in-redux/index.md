@@ -3,42 +3,114 @@ draft: true
 title: "[Redux] 08. 불변성의 중요성 - Immutability in Redux"
 date: 2025-10-14
 lastmod: 2025-10-14
+description: "Redux에서 가장 중요한 불변성 원칙 완벽 마스터. 왜 불변성이 필요한지부터 Spread 연산자, Immer 라이브러리 활용까지 불변 데이터 업데이트 패턴을 실전 예제로 학습합니다."
+slug: immutability-in-redux
 tags:
-- Code-Quality
-- 프론트엔드
-- JavaScript
-- TypeScript
-- Performance
-- 성능
-- Optimization
-- 최적화
-- React
-- Implementation
-- Best-Practices
-- Data-Structures
-- 자료구조
-- Functional-Programming
-- 함수형프로그래밍
-- Clean-Code
-- 클린코드
-description: "Redux에서 가장 중요한 불변성 원칙 완벽 마스터. 왜 불변성이 필요한지부터 Spread 연산자, Immer 라이브러리 활용까지 불변 데이터 업데이트 패턴을 실전 예제로 학습합니다"
+  - JavaScript
+  - TypeScript
+  - React
+  - Frontend
+  - 프론트엔드
+  - Web
+  - 웹
+  - Code-Quality
+  - 코드품질
+  - Performance
+  - 성능
+  - Optimization
+  - 최적화
+  - Implementation
+  - 구현
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Data-Structures
+  - 자료구조
+  - Functional-Programming
+  - 함수형프로그래밍
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Design-Pattern
+  - 디자인패턴
+  - State
+  - Refactoring
+  - 리팩토링
+  - Testing
+  - 테스트
+  - Debugging
+  - 디버깅
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Reference
+  - 참고
+  - Documentation
+  - 문서화
+  - Error-Handling
+  - 에러처리
+  - Pitfalls
+  - 함정
+  - Edge-Cases
+  - 엣지케이스
+  - Type-Safety
+  - Interface
+  - 인터페이스
+  - Encapsulation
+  - 캡슐화
+  - Array
+  - 배열
+  - Observer
+  - Event-Driven
+  - API
+  - Async
+  - 비동기
+  - Caching
+  - 캐싱
+  - Scalability
+  - 확장성
+  - Git
+  - IDE
+  - How-To
+  - Tips
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - 실습
+  - Case-Study
+  - Comparison
+  - 비교
+  - Deep-Dive
+  - Beginner
+  - Advanced
+  - Maintainability
+  - Modularity
+  - Readability
+  - Workflow
+  - 워크플로우
+  - JSON
+  - HTTP
+  - Benchmark
+  - Profiling
+  - 프로파일링
 series: ["Redux 완전 정복"]
 series_order: 8
 ---
 
-## 학습 목표
+07장에서 Action·Reducer·Store를 배웠다면, 이 장에서는 Redux가 **상태 변경을 어떻게 감지하는지**의 기반이 되는 **불변성(Immutability)**을 다룹니다. Reducer에서 "기존 state를 수정하지 않고 새 객체/배열을 반환"해야 하는 이유, 스프레드·map·filter로 불변 업데이트를 하는 패턴, 그리고 Immer 같은 도구를 언제 쓰면 좋은지 정리합니다. 이 장을 마치면 09(데이터 흐름)·10(언제 Redux를 쓸까)으로 자연스럽게 이어집니다.
 
-이 챕터를 마치면 다음을 할 수 있습니다:
+## 이 글을 읽은 후 달성해야 할 목표 (평가 기준)
 
-- ✅ 불변성의 개념과 필요성 이해
-- ✅ 배열과 객체를 불변하게 업데이트
-- ✅ Spread 연산자로 깊은 복사 구현
-- ✅ Immer 라이브러리로 간편한 불변 업데이트
-- ✅ 불변성 관련 흔한 실수 방지
+이 챕터를 마치면 다음을 할 수 있어야 합니다:
+
+- **불변성**의 개념과 Redux에서 필요한 이유를 설명하고, 참조 비교와 변경 감지를 연결할 수 있다.
+- 배열·객체를 **불변**하게 업데이트하는 패턴(스프레드, map, filter)을 적용할 수 있다.
+- Immer를 사용해 깊은 중첩을 **불변**하게 업데이트할 수 있고, 흔한 실수를 피할 수 있다.
 
 ## 불변성이란?
 
-불변성(Immutability): 데이터를 직접 수정하지 않고 새로운 데이터를 생성하는 것
+**불변성(Immutability)**이란 데이터를 **직접 수정하지 않고** 새로운 데이터를 만들어 반환하는 방식을 말합니다. 원본 배열·객체는 그대로 두고, **스프레드**·**map**·**filter** 등으로 **새 참조**를 만듭니다. Redux에서는 **Reducer**가 **이전 state**를 변경하지 않고 **새 state**를 반환해야 하며, React-Redux는 **state** 참조가 바뀌었는지로 리렌더 여부를 판단하므로 불변성이 필수입니다. 아래는 가변 vs 불변 업데이트의 차이입니다.
 
 ```javascript
 // ❌ 가변적 (Mutable) - 원본 수정
@@ -54,6 +126,8 @@ console.log(newNumbers); // [1, 2, 3, 4]
 ```
 
 ## 왜 불변성이 중요한가?
+
+Redux는 **Reducer**가 반환한 **새 state**와 **이전 state**를 **참조 비교**합니다. 같은 참조를 반환하면 "변경 없음"으로 간주해 구독자에게 알리지 않고, **새 참조**를 반환해야만 **Store**가 갱신되고 **useSelector** 구독 컴포넌트가 리렌더됩니다. 따라서 **state**를 **push**·**splice** 등으로 바꾸거나 그대로 반환하면 안 되고, 반드시 **새 배열·객체**를 만들어 반환해야 합니다.
 
 ### Redux에서 불변성이 필수인 이유
 
@@ -479,6 +553,8 @@ case 'UPDATE_TODO':
 
 ## Immer - 불변성을 쉽게
 
+**스프레드**와 **map**·**filter**만으로도 대부분의 불변 업데이트를 처리할 수 있습니다. **깊은 중첩**을 자주 바꾸거나, 한 Reducer 안에서 반복적으로 **draft**를 수정하는 경우에는 **Immer**를 쓰면 가독성이 좋아집니다. Redux Toolkit의 **createSlice**는 내부적으로 Immer를 사용하므로, **reducers** 안에서는 **state**를 직접 수정하는 형태로 작성해도 됩니다. 아래는 Immer 설치와 기본 사용법입니다.
+
 ### Immer 기본 사용
 
 ```bash
@@ -609,6 +685,8 @@ const newState = produce(state, draft => {
     draft.user.profile.settings.notifications.push = true;
 });
 ```
+
+**한계와 비판적 시각**: Immer는 **Proxy** 기반으로 **draft**를 추적하므로, 단순 스프레드 한두 번으로 끝나는 Reducer보다 **런타임 비용**이 있습니다. 매우 큰 state 트리나 고빈도 dispatch가 있다면 **스프레드·map**만 쓰는 편이 나을 수 있습니다. 또한 **깊은 중첩**을 Immer로 풀어도, **state 구조 자체**가 지나치게 깊으면 나중에 **정규화**(byId, allIds 등)로 바꾸는 편이 유지보수와 성능에 유리합니다. "편하니까 전부 Immer"보다는, 필요한 구간에만 쓰고 나머지는 불변 패턴으로 유지하는 것이 좋습니다.
 
 ## 성능 고려사항
 

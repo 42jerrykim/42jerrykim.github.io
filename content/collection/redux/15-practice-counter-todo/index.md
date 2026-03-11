@@ -3,30 +3,106 @@ draft: true
 title: "[Redux] 15. 실습: Counter와 Todo 앱 만들기"
 date: 2025-10-14
 lastmod: 2025-10-14
+description: "지금까지 배운 Redux 지식을 총동원한 실전 프로젝트. Counter 앱으로 기초 다지기, Todo 앱으로 CRUD 마스터, Redux Hooks와 Selector 패턴을 적용한 완전한 애플리케이션 구축하기."
+slug: practice-counter-todo
 tags:
-- React
-- 프론트엔드
-- Tutorial
-- 튜토리얼
-- JavaScript
-- TypeScript
-- Implementation
-- Best-Practices
-- Clean-Code
-description: "지금까지 배운 Redux 지식을 총동원한 실전 프로젝트. Counter 앱으로 기초 다지기, Todo 앱으로 CRUD 마스터, Redux Hooks와 Selector 패턴을 적용한 완전한 애플리케이션 구축하기"
+  - JavaScript
+  - TypeScript
+  - React
+  - Frontend
+  - 프론트엔드
+  - Web
+  - 웹
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - 실습
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Design-Pattern
+  - 디자인패턴
+  - State
+  - Observer
+  - Event-Driven
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Refactoring
+  - 리팩토링
+  - Testing
+  - 테스트
+  - Debugging
+  - 디버깅
+  - Reference
+  - 참고
+  - Documentation
+  - 문서화
+  - Error-Handling
+  - 에러처리
+  - Pitfalls
+  - 함정
+  - Edge-Cases
+  - 엣지케이스
+  - Performance
+  - 성능
+  - Type-Safety
+  - Interface
+  - 인터페이스
+  - Encapsulation
+  - 캡슐화
+  - Data-Structures
+  - 자료구조
+  - API
+  - Async
+  - 비동기
+  - Caching
+  - 캐싱
+  - Scalability
+  - 확장성
+  - Git
+  - IDE
+  - How-To
+  - Tips
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - Case-Study
+  - Comparison
+  - 비교
+  - Deep-Dive
+  - Beginner
+  - Advanced
+  - Maintainability
+  - Modularity
+  - Readability
+  - Workflow
+  - 워크플로우
+  - JSON
+  - HTTP
+  - Memoization
+  - Optimization
+  - 최적화
+  - Functional-Programming
+  - 함수형프로그래밍
 series: ["Redux 완전 정복"]
 series_order: 15
 ---
 
-## 학습 목표
+Phase 3의 마지막 장으로 **01~14장에서 배운 내용을 한 번에 쓰는 실습**을 합니다. Redux store 설정, reducer·action 작성, React-Redux Provider·useSelector·useDispatch 연결, 그리고 Counter·Todo 앱을 처음부터 구현해 보면서 CRUD와 리렌더 최적화까지 경험합니다. 이 장을 마치면 Redux Toolkit(Phase 4)이나 실제 프로젝트에 Redux를 도입할 준비가 됩니다. 코드를 직접 타이핑하고 단계별로 실행해 보는 것을 권합니다.
 
-이 챕터를 마치면 다음을 할 수 있습니다:
+## 이 글을 읽은 후 달성해야 할 목표 (평가 기준)
 
-- ✅ Redux 프로젝트를 처음부터 설정
-- ✅ Counter 앱으로 Redux 기초 복습
-- ✅ Todo 앱으로 CRUD 작업 구현
-- ✅ React-Redux Hooks 실전 활용
-- ✅ Selector 패턴과 성능 최적화 적용
+이 챕터를 마치면 다음을 할 수 있어야 합니다:
+
+- Redux 프로젝트를 처음부터 설정하고, **Store**·**Reducer**·**Action**을 조합해 Counter·Todo 앱을 구현할 수 있다.
+- React-Redux **Hooks**(useSelector, useDispatch)와 **Selector** 패턴을 실전에 적용할 수 있다.
+- CRUD 흐름과 성능 최적화(불필요한 리렌더 방지)를 코드로 보여줄 수 있다.
 
 ## 프로젝트 개요
 
@@ -36,6 +112,8 @@ series_order: 15
 2. **Todo 앱**: 실전 CRUD 애플리케이션
 
 ## 프로젝트 1: Counter 앱
+
+Counter 앱으로 **Store**·**Slice**·**Provider**·**useSelector**·**useDispatch** 흐름을 한 번에 익힙니다. 먼저 Create React App으로 프로젝트를 만들고 Redux 관련 패키지를 설치합니다.
 
 ### 프로젝트 생성
 
@@ -51,6 +129,8 @@ npm install @reduxjs/toolkit react-redux
 # 크롬 웹스토어에서 "Redux DevTools" 설치
 ```
 
+설치가 끝나면 **store**·**components** 폴더를 두고, **Store** 설정·Slice·진입점 역할을 나눕니다. 아래 구조를 참고하면 됩니다.
+
 ### 폴더 구조
 
 ```
@@ -64,6 +144,8 @@ src/
 ├── App.tsx
 └── index.tsx
 ```
+
+**Redux Toolkit**의 **createSlice**로 **Reducer**와 **Action Creator**를 한 번에 정의합니다. **configureStore**로 **Store**를 만들고, **RootState**·**AppDispatch** 타입을 export해 **useSelector**·**useDispatch**에서 쓰면 됩니다. 아래는 Counter용 Slice와 Store 설정입니다.
 
 ### Redux Store 설정
 
@@ -123,6 +205,8 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 ```
 
+**Store**를 React 트리에 넣기 위해 **Provider**로 앱 최상위를 감쌉니다. **index.tsx**에서 **store**를 import해 **Provider**의 **store** prop으로 넘기면, 하위 컴포넌트에서 **useSelector**·**useDispatch**를 사용할 수 있습니다.
+
 ### Provider 설정
 
 ```typescript
@@ -148,6 +232,8 @@ root.render(
 ```
 
 ### Counter 컴포넌트
+
+**useSelector**로 **count**를 읽고, **useDispatch**로 **increment**·**decrement** 등을 호출하는 **Counter** UI를 만듭니다. **RootState** 타입을 쓰면 **state.counter.count** 자동완성이 되고, **dispatch**에 **action creator**를 넘기면 타입이 보장됩니다. 아래는 Counter 컴포넌트 예시입니다.
 
 ```typescript
 // src/components/Counter.tsx
@@ -296,6 +382,8 @@ button:active {
 
 ## 프로젝트 2: Todo 앱
 
+Counter에서 익힌 **Store**·**Provider**·Hooks에 더해, **여러 Slice**(todos, filter), **Selector**, **CRUD** 흐름을 Todo 앱에 적용합니다. 추가·완료 토글·삭제·필터를 구현하고, 13·14장의 **React.memo**·**Reselect**를 선택적으로 적용할 수 있습니다. 먼저 폴더 구조와 Slice 정의부터 진행합니다.
+
 ### 프로젝트 구조
 
 ```
@@ -316,6 +404,8 @@ src/
 ```
 
 ### Todos Slice
+
+Todo 항목의 **state**(목록)와 **추가·완료 토글·삭제** 액션을 **createSlice**로 정의합니다. **id**·**text**·**completed** 필드를 두고, **불변성**은 Redux Toolkit이 Immer로 처리해 주므로 **state**를 직접 수정하는 형태로 작성해도 됩니다.
 
 ```typescript
 // src/store/todosSlice.ts
@@ -392,6 +482,8 @@ export const {
 export default todosSlice.reducer;
 ```
 
+**전체/활성/완료** 필터 상태를 **filter** 슬라이스로 분리해 두면 **todos**와 독립적으로 관리할 수 있습니다. **setFilter** 액션 하나로 **currentFilter**만 바꾸고, **Selector**에서 **todos**와 **filter**를 조합해 보여줄 목록을 계산합니다.
+
 ### Filter Slice
 
 ```typescript
@@ -422,7 +514,11 @@ export const { setFilter } = filterSlice.actions;
 export default filterSlice.reducer;
 ```
 
+**todos**와 **filter**를 조합해 **보이는 목록**과 **통계**를 메모이제이션하는 **Selector**를 정의합니다. **createSelector**로 두면 **todos**·**filter**가 바뀔 때만 재계산됩니다.
+
 ### Selectors
+
+**필터링된 Todo 목록**과 **통계**(전체·완료·미완료 개수)는 **Reselect**의 **createSelector**로 메모이제이션합니다. **useSelector**에 넘기면 **todos**·**filter**가 바뀔 때만 재계산되어 불필요한 리렌더를 줄일 수 있습니다.
 
 ```typescript
 // src/store/selectors.ts
@@ -456,6 +552,8 @@ export const selectTodoStats = createSelector(
 );
 ```
 
+**todos**·**filter** 두 슬라이스를 **configureStore**의 **reducer**에 넣어 **Store**를 만들고, **RootState**·**AppDispatch**를 export해 **useSelector**·**useDispatch** 타입에 사용합니다.
+
 ### Store 설정
 
 ```typescript
@@ -476,6 +574,8 @@ export type AppDispatch = typeof store.dispatch;
 ```
 
 ### Todo Components
+
+아래는 **TodoList**·**TodoItem**·**TodoForm**·**Filter** 컴포넌트를 **useSelector**·**useDispatch**와 Selector로 연결한 예입니다. **TodoItem**은 **React.memo**로 감싸고, **onToggle**·**onRemove**는 **useCallback**으로 고정해 불필요한 리렌더를 줄입니다. 전체 코드가 길어 핵심 패턴만 발췌했으며, 스타일은 생략할 수 있습니다.
 
 ```typescript
 // src/components/TodoForm.tsx
@@ -859,6 +959,8 @@ export default App;
 ```
 
 ## 확장 기능 추가하기
+
+기본 Counter·Todo 구현이 끝나면 **LocalStorage**에 **state**를 저장·복원하거나, **검색** 기능을 넣어 볼 수 있습니다. **state** 구조가 바뀌면 직렬화·복원 로직을 함께 수정해야 합니다.
 
 ### LocalStorage 연동
 

@@ -3,33 +3,105 @@ draft: true
 title: "[Redux] 06. Redux란 무엇인가 - Flux 아키텍처와 상태 관리"
 date: 2025-10-14
 lastmod: 2025-10-14
+description: "Redux의 탄생 배경과 핵심 철학 완벽 이해. Flux 아키텍처의 등장부터 Redux의 3가지 원칙, 언제 Redux가 필요한지까지 상태 관리의 본질을 깊이 있게 학습합니다."
+slug: what-is-redux
 tags:
-- 소프트웨어아키텍처
-- Software-Architecture
-- 프론트엔드
-- React
-- Action
-- 액션
-- Code-Quality
-- Implementation
-- JavaScript
-- TypeScript
-- Design-Pattern
-- 디자인패턴
-- Best-Practices
-description: "Redux의 탄생 배경과 핵심 철학 완벽 이해. Flux 아키텍처의 등장부터 Redux의 3가지 원칙, 언제 Redux가 필요한지까지 상태 관리의 본질을 깊이 있게 학습합니다"
+  - JavaScript
+  - TypeScript
+  - React
+  - Frontend
+  - 프론트엔드
+  - Web
+  - 웹
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Design-Pattern
+  - 디자인패턴
+  - State
+  - Observer
+  - Event-Driven
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Functional-Programming
+  - 함수형프로그래밍
+  - Refactoring
+  - 리팩토링
+  - Testing
+  - 테스트
+  - Debugging
+  - 디버깅
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Reference
+  - 참고
+  - Documentation
+  - 문서화
+  - Error-Handling
+  - 에러처리
+  - Pitfalls
+  - 함정
+  - Edge-Cases
+  - 엣지케이스
+  - Performance
+  - 성능
+  - Type-Safety
+  - Interface
+  - 인터페이스
+  - Encapsulation
+  - 캡슐화
+  - Data-Structures
+  - 자료구조
+  - API
+  - Async
+  - 비동기
+  - Caching
+  - 캐싱
+  - Scalability
+  - 확장성
+  - Git
+  - IDE
+  - How-To
+  - Tips
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - 실습
+  - Case-Study
+  - Comparison
+  - 비교
+  - Deep-Dive
+  - Beginner
+  - Advanced
+  - History
+  - Maintainability
+  - Modularity
+  - Readability
+  - Workflow
+  - 워크플로우
+  - JSON
+  - HTTP
 series: ["Redux 완전 정복"]
 series_order: 6
 ---
 
-## 학습 목표
+01~05장에서 JavaScript/TypeScript 기초를 다졌다면, 이 장부터 **Redux 자체**를 다룹니다. "Redux란 무엇인가"에서는 **상태 관리가 왜 필요한지**, **Flux·Redux의 단방향 데이터 흐름**이 어떤 문제를 해결하는지를 배웁니다. 이 장을 마치면 07(Action, Reducer, Store)로 넘어가 Redux의 구체적인 API를 익힐 준비가 됩니다.
 
-이 챕터를 마치면 다음을 할 수 있습니다:
+## 이 글을 읽은 후 달성해야 할 목표 (평가 기준)
 
-- ✅ 상태 관리가 왜 필요한지 이해
-- ✅ Flux 아키텍처의 등장 배경과 원리 파악
-- ✅ Redux의 3가지 핵심 원칙 완전 이해
-- ✅ Redux가 해결하는 문제와 장단점 파악
+이 챕터를 마치면 다음을 할 수 있어야 합니다:
+
+- **상태 관리**가 왜 필요한지, Props Drilling·상태 동기화 문제를 설명할 수 있다.
+- **Flux** 아키텍처의 등장 배경과 단방향 데이터 흐름을 설명할 수 있다.
+- Redux의 세 가지 원칙(Single Source of Truth, Read-Only State, Pure Reducers)을 설명하고 코드로 구분할 수 있다.
+- Store, **Action**, **Reducer**의 역할을 구분하고, 언제 Redux를 쓸지·피할지 판단할 수 있다.
 
 ## 상태 관리의 필요성
 
@@ -102,18 +174,21 @@ Model ←→ View ←→ Controller
 
 ### Flux 아키텍처
 
+```mermaid
+flowchart LR
+  subgraph flux [Flux 단방향 데이터 흐름]
+    A["Action"]
+    D["Dispatcher"]
+    S["Store"]
+    V["View"]
+    A --> D
+    D --> S
+    S --> V
+    V -->|"사용자 상호작용"| A
+  end
 ```
-✅ 단방향 데이터 흐름 (Flux)
 
-Action → Dispatcher → Store → View
-   ↑                             ↓
-   └──────────────────────────────┘
-
-장점:
-- 데이터 흐름이 명확하고 예측 가능
-- 디버깅이 쉬움 (흐름 추적 가능)
-- 상태 변경이 일관성 있게 처리됨
-```
+**Flux**의 장점: 데이터 흐름이 명확하고 예측 가능하며, 디버깅이 쉽고 상태 변경이 일관되게 처리됩니다.
 
 **Flux 핵심 개념**:
 
@@ -126,37 +201,40 @@ Action → Dispatcher → Store → View
 
 ### Redux의 정의
 
-> Redux는 JavaScript 앱을 위한 **예측 가능한 상태 컨테이너**입니다.
+> Redux는 JavaScript 앱을 위한 **예측 가능한 상태 컨테이너**입니다.  
+> — [Redux 공식 문서](https://redux.js.org/introduction/getting-started#basic-example), Redux (Dan Abramov, 2015)
 
 **핵심 키워드**:
 - **예측 가능한**: 같은 입력 → 항상 같은 출력
-- **상태 컨테이너**: 앱의 모든 상태를 한 곳에서 관리
+- **상태 컨테이너**: 앱의 모든 **상태**를 한 곳에서 관리
 
-### Redux의 탄생
+### Redux의 탄생 (역사·배경)
 
-```
-2011: Facebook이 Flux 아키텍처 개념 발표
-2015: Dan Abramov가 Redux 라이브러리 만듦
-2015-현재: React 생태계의 사실상 표준 상태 관리 라이브러리
-2019: Redux Toolkit 출시 (현대적인 Redux)
-```
+**Flux**는 2011년 Facebook이 복잡한 클라이언트 **상태** 문제를 다루기 위해 공개한 아키텍처 개념입니다. 2015년 **Dan Abramov**가 Flux를 단순화한 **Redux** 라이브러리를 공개했고, React 생태계에서 사실상 표준 **상태 관리** 도구로 자리 잡았습니다. 2019년에는 보일러플레이트를 줄인 **Redux Toolkit**이 정식 권장 방식이 되었습니다.
+
+| 시기 | 내용 |
+|------|------|
+| 2011 | Facebook, Flux 아키텍처 개념 발표 |
+| 2015 | Dan Abramov, Redux 라이브러리 공개 |
+| 2015–현재 | React 생태계의 표준 **상태 관리** 라이브러리로 확산 |
+| 2019 | Redux Toolkit 출시 (현대적인 Redux 권장 방식) |
 
 ### Redux 데이터 흐름
 
-```
-┌─────────────────────────────────────────┐
-│                                         │
-│  Component (View)                       │
-│      ↓                                  │
-│  dispatch(action)                       │
-│      ↓                                  │
-│  Action → Reducer → Store               │
-│                      ↓                  │
-│                   subscribe             │
-│                      ↓                  │
-│              Component (re-render)      │
-│                                         │
-└─────────────────────────────────────────┘
+```mermaid
+flowchart TD
+  View["Component (View)"]
+  Dispatch["dispatch(action)"]
+  Reducer["Reducer"]
+  Store["Store"]
+  Subscribe["subscribe"]
+  Rerender["Component (re-render)"]
+  View --> Dispatch
+  Dispatch --> Reducer
+  Reducer --> Store
+  Store --> Subscribe
+  Subscribe --> Rerender
+  Rerender --> View
 ```
 
 ## Redux의 3가지 원칙
@@ -397,6 +475,10 @@ dispatch({ type: 'LOGOUT' });
 ❌ 성능: 잘못 사용하면 불필요한 리렌더링
 ```
 
+### 한계와 비판적 시각
+
+Redux는 **만능이 아닙니다**. 작은 앱에 도입하면 오버엔지니어링이 되고, 서버 **상태**만 필요할 때는 React Query·SWR 등이 더 적합할 수 있습니다. Redux 창시자 Dan Abramov도 "대부분의 앱은 Redux가 필요 없다"고 말한 바 있습니다. **상태** 복잡도·팀 규모·디버깅 요구를 먼저 보고, Redux·Context·Zustand 등 중에서 **선택**하는 것이 중요합니다.
+
 ## 언제 Redux를 사용해야 할까?
 
 ### Redux가 필요한 경우 ✅
@@ -419,6 +501,14 @@ dispatch({ type: 'LOGOUT' });
 ❌ 서버 상태만 관리 (React Query 사용)
 ❌ 프로토타입/간단한 데모
 ```
+
+### 판단 기준 한눈에 보기
+
+| 구분 | 사용해도 되는 경우 | 피해야 하는 경우 |
+|------|---------------------|-------------------|
+| 규모 | 중형~대형 앱, 여러 화면에서 같은 상태 공유 | 컴포넌트 수 적고 지역 상태만 있는 작은 앱 |
+| 요구사항 | 상태 변화 추적·디버깅·Time Travel 필요 | 단순 CRUD, 서버 상태만 캐싱하면 되는 경우 |
+| 팀 | 협업·코드 리뷰·일관된 패턴 필요 | 프로토타입·단기 데모 |
 
 ## Redux vs 다른 상태 관리
 
@@ -509,14 +599,13 @@ D) 단일 페이지 랜딩 페이지
 정답: B
 ```
 
-## 체크리스트 ✅
+## 체크리스트 (평가 기준 확인)
 
-- [ ] 상태 관리의 필요성을 이해한다
-- [ ] Flux 아키텍처의 개념을 안다
-- [ ] Redux의 3가지 원칙을 설명할 수 있다
-- [ ] Store, Action, Reducer의 역할을 안다
-- [ ] Redux의 장단점을 이해한다
-- [ ] 언제 Redux를 사용해야 하는지 판단할 수 있다
+- [ ] **상태 관리**의 필요성과 Props Drilling 문제를 설명할 수 있다.
+- [ ] **Flux** 아키텍처의 단방향 데이터 흐름을 설명할 수 있다.
+- [ ] Redux의 3가지 원칙을 설명하고 코드로 구분할 수 있다.
+- [ ] Store, **Action**, **Reducer**의 역할을 구분할 수 있다.
+- [ ] Redux의 장단점과 한계를 이해하고, 언제 Redux를 쓸지·피할지 판단할 수 있다.
 
 ## 다음 단계 🚀
 

@@ -3,35 +3,107 @@ draft: true
 title: "[Redux] 04. 비동기 JavaScript - Promise와 async/await"
 date: 2025-10-14
 lastmod: 2025-10-14
+description: "Redux 비동기 처리의 기초인 Promise와 async/await 완벽 마스터. API 호출, 데이터 페칭, 에러 처리까지 Redux에서 필수적인 비동기 프로그래밍 패턴을 실전 예제로 학습합니다."
+slug: asynchronous-javascript
 tags:
-- JavaScript
-- 비동기
-- API
-- 프론트엔드
-- Error-Handling
-- 에러처리
-- Implementation
-- Concurrency
-- 동시성
-- Best-Practices
-description: "Redux 비동기 처리의 기초인 Promise와 async/await 완벽 마스터. API 호출, 데이터 페칭, 에러 처리까지 Redux에서 필수적인 비동기 프로그래밍 패턴을 실전 예제로 학습합니다"
+  - JavaScript
+  - TypeScript
+  - React
+  - Frontend
+  - 프론트엔드
+  - Web
+  - 웹
+  - API
+  - Async
+  - 비동기
+  - Error-Handling
+  - 에러처리
+  - Implementation
+  - 구현
+  - Concurrency
+  - 동시성
+  - Code-Quality
+  - 코드품질
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Design-Pattern
+  - 디자인패턴
+  - Functional-Programming
+  - 함수형프로그래밍
+  - State
+  - Observer
+  - Event-Driven
+  - Refactoring
+  - 리팩토링
+  - Testing
+  - 테스트
+  - Debugging
+  - 디버깅
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Reference
+  - 참고
+  - Documentation
+  - 문서화
+  - Pitfalls
+  - 함정
+  - Edge-Cases
+  - 엣지케이스
+  - Performance
+  - 성능
+  - HTTP
+  - JSON
+  - Caching
+  - 캐싱
+  - Scalability
+  - 확장성
+  - Latency
+  - Throughput
+  - Git
+  - IDE
+  - How-To
+  - Tips
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - 실습
+  - Case-Study
+  - Comparison
+  - 비교
+  - Deep-Dive
+  - Beginner
+  - Advanced
+  - Data-Structures
+  - 자료구조
+  - Maintainability
+  - Modularity
+  - Readability
+  - Type-Safety
+  - Workflow
+  - 워크플로우
 series: ["Redux 완전 정복"]
 series_order: 4
 ---
 
-## 학습 목표
+Redux 앱에서는 **API 호출·데이터 페칭**처럼 비동기 작업이 필수입니다. 이 장에서는 **Promise**와 **async/await**을 정리하고, 나중에 Redux Thunk·RTK Query를 배울 때 필요한 비동기 패턴을 미리 익힙니다. 06~10장은 Redux 개념이지만, 실제로 "서버에서 데이터를 가져와 store에 넣는" 흐름을 이해하려면 이 장의 비동기 기초가 필요합니다.
 
-이 챕터를 마치면 다음을 할 수 있습니다:
+## 이 글을 읽은 후 달성해야 할 목표 (평가 기준)
 
-- ✅ Promise의 개념과 사용법 이해
-- ✅ async/await으로 깔끔한 비동기 코드 작성
-- ✅ API 호출과 데이터 페칭 구현
-- ✅ 비동기 에러 처리 방법 숙지
-- ✅ Redux에서 비동기 작업 처리 준비
+이 챕터를 마치면 다음을 할 수 있어야 합니다:
+
+- **Promise**의 개념과 then/catch 사용법을 설명하고, **async/await**으로 비동기 코드를 작성할 수 있다.
+- API 호출과 데이터 페칭을 구현하고, 비동기 에러를 처리할 수 있다.
+- Redux Thunk·비동기 **Action** 학습에 필요한 비동기 패턴을 적용할 수 있다.
 
 ## 왜 비동기 프로그래밍이 필요한가?
 
-Redux 애플리케이션에서 비동기 작업은 필수입니다:
+Redux 앱에서는 **서버에서 데이터를 가져오거나**, **사용자 입력을 저장하는 것**처럼 **완료 시점이 늦어지는 작업**이 반드시 필요합니다. 이런 작업을 동기 코드처럼 다루면 화면이 멈추므로, Promise·async/await으로 비동기 흐름을 다루고, 나중에는 Redux Thunk나 RTK Query로 "요청 시작 → 성공/실패 액션 dispatch" 패턴을 쓰게 됩니다. 아래는 사용자 데이터를 fetch한 뒤 Redux에 넣는 흐름을 단순화한 예입니다.
 
 ```javascript
 // 사용자 데이터 가져오기
@@ -49,6 +121,8 @@ dispatch({ type: 'FETCH_USER_SUCCESS', payload: user });
 **핵심**: JavaScript는 싱글 스레드이므로 비동기 처리가 필수!
 
 ## 동기 vs 비동기
+
+Redux에서 **API 호출**·**데이터 페칭**은 모두 **비동기**입니다. **dispatch** 후 서버 응답을 기다리는 동안 화면이 멈추지 않으려면 **Promise**나 **async/await**으로 비동기 흐름을 다뤄야 하고, 나중에 배울 **Redux Thunk**·**RTK Query**도 이 개념 위에 있습니다. 먼저 동기와 비동기의 차이를 구분합니다.
 
 ### 동기 코드 (Synchronous)
 
@@ -91,6 +165,8 @@ fetchDataFromServer()
 
 ## Callback - 전통적인 비동기 처리
 
+예전에는 비동기 결과를 **콜백 함수**로 넘겼지만, 중첩이 깊어지면 **콜백 지옥**이 됩니다. Redux에서는 **Thunk**나 **RTK Query**로 비동기를 다루며, 그 내부는 **Promise** 기반이므로 콜백보다 **then**·**async/await**을 익히는 것이 중요합니다. 아래는 콜백의 기본과 한계입니다.
+
 ### Callback 기본
 
 ```javascript
@@ -131,6 +207,8 @@ fetchUser(userId, (user) => {
 - 유지보수 어려움
 
 ## Promise - 더 나은 비동기 처리
+
+**Redux Thunk**는 **dispatch** 안에서 **Promise**를 반환하는 비동기 함수를 실행하고, **RTK Query**의 **useQuery**·**useMutation**도 내부적으로 **Promise**를 사용합니다. **fetch** API 역시 **Promise**를 반환하므로, **then**·**catch**·**async/await**을 다룰 수 있어야 Redux 비동기 패턴을 이해할 수 있습니다.
 
 ### Promise 기본 개념
 

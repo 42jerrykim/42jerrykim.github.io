@@ -3,45 +3,122 @@ draft: true
 title: "[Redux] 07. Redux의 핵심 - Action, Reducer, Store"
 date: 2025-10-14
 lastmod: 2025-10-14
+description: "Redux의 3대 핵심 개념 완벽 정복. Action으로 무엇을 할지 정의, Reducer로 상태 변경 로직 구현, Store로 전체 관리하는 Redux의 작동 원리를 실제 코드와 함께 깊이 있게 학습합니다."
+slug: redux-core-concepts
 tags:
-- Action
-- 액션
-- 프론트엔드
-- JavaScript
-- TypeScript
-- Code-Quality
-- Implementation
-- Best-Practices
-- Clean-Code
-- 클린코드
-- Software-Architecture
-- 소프트웨어아키텍처
-description: "Redux의 3대 핵심 개념 완벽 정복. Action으로 무엇을 할지 정의, Reducer로 상태 변경 로직 구현, Store로 전체 관리하는 Redux의 작동 원리를 실제 코드와 함께 깊이 있게 학습합니다"
+  - JavaScript
+  - TypeScript
+  - React
+  - Frontend
+  - 프론트엔드
+  - Web
+  - 웹
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Design-Pattern
+  - 디자인패턴
+  - State
+  - Observer
+  - Event-Driven
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Functional-Programming
+  - 함수형프로그래밍
+  - Refactoring
+  - 리팩토링
+  - Testing
+  - 테스트
+  - Debugging
+  - 디버깅
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Reference
+  - 참고
+  - Documentation
+  - 문서화
+  - Error-Handling
+  - 에러처리
+  - Pitfalls
+  - 함정
+  - Edge-Cases
+  - 엣지케이스
+  - Performance
+  - 성능
+  - Type-Safety
+  - Interface
+  - 인터페이스
+  - Encapsulation
+  - 캡슐화
+  - Data-Structures
+  - 자료구조
+  - API
+  - Async
+  - 비동기
+  - Caching
+  - 캐싱
+  - Scalability
+  - 확장성
+  - Git
+  - IDE
+  - How-To
+  - Tips
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - 실습
+  - Case-Study
+  - Comparison
+  - 비교
+  - Deep-Dive
+  - Beginner
+  - Advanced
+  - Maintainability
+  - Modularity
+  - Readability
+  - Workflow
+  - 워크플로우
+  - JSON
+  - HTTP
+  - Command
+  - Builder
+  - Iterator
 series: ["Redux 완전 정복"]
 series_order: 7
 ---
 
-## 학습 목표
+06장(Redux란 무엇인가)에서 Flux·Redux의 철학을 봤다면, 이 장에서는 **실제로 Redux가 돌아가는 세 가지 핵심 요소**를 배웁니다. **Action**(무엇을 할지), **Reducer**(상태를 어떻게 바꿀지), **Store**(전체 상태를 한곳에 모아 관리)의 관계를 이해해야 이후 08(불변성), 09(데이터 흐름), 11~(React-Redux)까지 이어지는 내용을 소화할 수 있습니다. 이 장의 코드를 직접 타이핑해 보는 것을 권합니다.
 
-이 챕터를 마치면 다음을 할 수 있습니다:
+## 이 글을 읽은 후 달성해야 할 목표 (평가 기준)
 
-- ✅ Action의 구조와 Action Creator 작성
-- ✅ Reducer의 원리와 순수 함수로 작성
-- ✅ Store 생성과 API 사용
-- ✅ dispatch, getState, subscribe 활용
-- ✅ combineReducers로 Reducer 조합
+이 챕터를 마치면 다음을 할 수 있어야 합니다:
+
+- **Action**의 구조와 **Action Creator**를 작성하고, FSA 형식을 구분할 수 있다.
+- **Reducer**를 순수 함수로 작성하고, 원본을 변경하지 않는 패턴을 적용할 수 있다.
+- **Store**를 생성하고 getState, dispatch, subscribe를 활용할 수 있다.
+- combineReducers로 **Reducer**를 조합하고 상태 트리 구조를 설명할 수 있다.
 
 ## Redux의 3대 핵심
 
 Redux는 세 가지 핵심 개념으로 구성됩니다:
 
+```mermaid
+flowchart TD
+  A["Action (무엇을 할지)"]
+  R["Reducer (어떻게 변경할지)"]
+  S["Store (상태 저장소)"]
+  A --> R
+  R --> S
 ```
-Action (무엇을 할지)
-    ↓
-Reducer (어떻게 변경할지)
-    ↓
-Store (상태 저장소)
-```
+
+**Action**은 "무슨 일이 일어났는지"를 나타내는 **평범한 JavaScript 객체**입니다. **type** 필드는 필수이고, **payload**·**meta** 등은 선택입니다. **Reducer**는 이 객체를 받아 **이전 state**와 조합해 **새 state**를 반환합니다. **Action**은 직렬화 가능해야 하며, 함수나 Promise를 넣지 않습니다. **Action Creator**는 **Action** 객체를 만들어 주는 함수로, **dispatch**에 넘기기 쉽게 합니다.
 
 ## Action - 무엇이 일어났는지
 
@@ -188,6 +265,8 @@ const addTodo = createAction<{ text: string }>('ADD_TODO');
 ```
 
 ## Reducer - 상태를 어떻게 변경할지
+
+**Reducer**는 **(state, action) => newState** 형태의 **순수 함수**입니다. **이전 state**와 **action**만으로 **새 state**를 계산하고, **부수 효과**(API 호출, 구독 등)를 두지 않으며, 인자를 변경하지 않습니다. Redux는 **Reducer**를 호출해 반환된 **새 state**로 **Store**를 갱신하고, 참조가 바뀌었는지 비교해 구독자에게 알립니다. 따라서 **state**를 직접 수정하지 않고 **스프레드**·**map**·**filter** 등으로 **새 객체·배열**을 반환해야 합니다.
 
 ### Reducer의 기본 구조
 
@@ -371,6 +450,8 @@ function todoReducer(state = [], action) {
 
 ## combineReducers - Reducer 조합
 
+**Store**는 하나의 **rootReducer**만 받습니다. **combineReducers**는 **슬라이스별 Reducer**(todos, filter, user 등)를 하나의 함수로 묶어, **state** 트리 구조를 **{ todos, filter, user }**처럼 키별로 나누어 관리하게 합니다. 각 슬라이스 Reducer는 자신의 **state** 키에 해당하는 부분만 받고, **action**이 오면 해당 슬라이스만 새 state를 반환합니다. 앱이 커질수록 **Reducer**를 도메인별로 쪼개고 **combineReducers**로 조합하는 패턴이 필수입니다.
+
 ### 기본 사용법
 
 ```javascript
@@ -470,6 +551,8 @@ const rootReducer = customCombineReducers({
 ```
 
 ## Store - 상태 관리의 중심
+
+**Store**는 **state**를 보관하고, **dispatch**·**getState**·**subscribe** API를 제공하는 객체입니다. **createStore(reducer)**로 하나만 만들며, **Reducer**가 반환한 **새 state**로 내부 **state**를 교체합니다. **subscribe**로 등록한 리스너는 **dispatch** 후에 호출되어, React-Redux는 이 메커니즘으로 **useSelector** 구독을 갱신합니다. **preloadedState**나 **Enhancer**(예: DevTools)는 두 번째·세 번째 인자로 넘깁니다.
 
 ### Store 생성
 

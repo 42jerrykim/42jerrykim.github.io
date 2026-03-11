@@ -3,61 +3,132 @@ draft: true
 title: "[Redux] 09. Redux 데이터 흐름 이해하기"
 date: 2025-10-14
 lastmod: 2025-10-14
+description: "Redux의 단방향 데이터 흐름 완벽 이해. Action 발송부터 State 업데이트, 컴포넌트 리렌더링까지 전체 프로세스를 시각화하고 Redux DevTools로 추적하는 방법을 학습합니다."
+slug: redux-data-flow
 tags:
-- 프론트엔드
-- Software-Architecture
-- 소프트웨어아키텍처
-- React
-- JavaScript
-- TypeScript
-- Debugging
-- 디버깅
-- Implementation
-- Best-Practices
-- Design-Pattern
-- 디자인패턴
-description: "Redux의 단방향 데이터 흐름 완벽 이해. Action 발송부터 State 업데이트, 컴포넌트 리렌더링까지 전체 프로세스를 시각화하고 Redux DevTools로 추적하는 방법을 학습합니다"
+  - JavaScript
+  - TypeScript
+  - React
+  - Frontend
+  - 프론트엔드
+  - Web
+  - 웹
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Design-Pattern
+  - 디자인패턴
+  - State
+  - Observer
+  - Event-Driven
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Best-Practices
+  - Debugging
+  - 디버깅
+  - Testing
+  - 테스트
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Reference
+  - 참고
+  - Documentation
+  - 문서화
+  - Error-Handling
+  - 에러처리
+  - Pitfalls
+  - 함정
+  - Edge-Cases
+  - 엣지케이스
+  - Performance
+  - 성능
+  - Clean-Code
+  - 클린코드
+  - Functional-Programming
+  - 함수형프로그래밍
+  - Refactoring
+  - 리팩토링
+  - Type-Safety
+  - Interface
+  - 인터페이스
+  - Data-Structures
+  - 자료구조
+  - API
+  - Async
+  - 비동기
+  - Caching
+  - 캐싱
+  - Scalability
+  - 확장성
+  - Git
+  - IDE
+  - VSCode
+  - How-To
+  - Tips
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - 실습
+  - Case-Study
+  - Comparison
+  - 비교
+  - Deep-Dive
+  - Beginner
+  - Advanced
+  - Maintainability
+  - Modularity
+  - Readability
+  - Workflow
+  - 워크플로우
+  - JSON
+  - HTTP
+  - Encapsulation
+  - 캡슐화
 series: ["Redux 완전 정복"]
 series_order: 9
 ---
 
-## 학습 목표
+08장(불변성)까지 Redux의 "어떻게 상태를 바꾸는지"를 봤다면, 이 장에서는 **한 번의 사용자 동작이 Store를 거쳐 화면까지 어떻게 전달되는지** 전체 흐름을 정리합니다. dispatch → reducer → 새 state → 구독자에게 알림 → 리렌더의 단방향 데이터 흐름과, 비동기 액션(Thunk)이 이 흐름에 어떻게 끼어드는지 이해하면 11장(React-Redux)에서 Provider·connect·훅을 배울 때 훨씬 수월합니다.
 
-이 챕터를 마치면 다음을 할 수 있습니다:
+## 이 글을 읽은 후 달성해야 할 목표 (평가 기준)
 
-- ✅ Redux의 단방향 데이터 흐름 완벽 이해
-- ✅ Action dispatch부터 UI 업데이트까지의 전체 과정 추적
-- ✅ Redux DevTools로 데이터 흐름 시각화
-- ✅ 동기/비동기 Action의 흐름 차이 이해
-- ✅ 실제 앱에서 데이터 흐름 디버깅
+이 챕터를 마치면 다음을 할 수 있어야 합니다:
+
+- Redux의 **단방향 데이터 흐름**을 설명하고, User Interaction → dispatch → Reducer → State → Re-render 순서를 추적할 수 있다.
+- 동기 **Action**과 비동기 **Action**(Thunk)의 흐름 차이를 설명할 수 있다.
+- Redux DevTools로 **Action**·상태 변화를 시각화하고 디버깅할 수 있다.
 
 ## Redux 데이터 흐름 개요
 
 Redux는 **단방향 데이터 흐름**을 따릅니다:
 
-```
-┌─────────────────────────────────────────────────┐
-│                                                 │
-│  [1] User Interaction (클릭, 입력 등)          │
-│           ↓                                     │
-│  [2] Action Dispatch                            │
-│           ↓                                     │
-│  [3] Middleware (선택)                          │
-│           ↓                                     │
-│  [4] Reducer 호출                               │
-│           ↓                                     │
-│  [5] State 업데이트                             │
-│           ↓                                     │
-│  [6] Subscribers 알림                           │
-│           ↓                                     │
-│  [7] Component Re-render                        │
-│           ↓                                     │
-│  [8] UI 업데이트                                │
-│                                                 │
-└─────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+  U["[1] User Interaction</br>(클릭, 입력 등)"]
+  D["[2] Action Dispatch"]
+  M["[3] Middleware (선택)"]
+  R["[4] Reducer 호출"]
+  S["[5] State 업데이트"]
+  Sub["[6] Subscribers 알림"]
+  C["[7] Component Re-render"]
+  UI["[8] UI 업데이트"]
+  U --> D
+  D --> M
+  M --> R
+  R --> S
+  S --> Sub
+  Sub --> C
+  C --> UI
+  UI --> U
 ```
 
 ## 단계별 데이터 흐름
+
+아래는 **클릭 → dispatch → Reducer → state 갱신 → 구독자 알림 → 리렌더**까지 각 단계에서 일어나는 일을 코드로 보여줍니다. **Step 1**에서는 사용자 상호작용이 **dispatch** 호출로 이어지는 부분만 다룹니다.
 
 ### [Step 1] User Interaction
 
@@ -73,6 +144,8 @@ function Counter() {
     );
 }
 ```
+
+**Step 2**에서는 **dispatch(action)**이 호출되면 **Store**가 **Middleware** 체인을 거친 뒤 **rootReducer**를 호출하고, 반환된 **새 state**로 내부 state를 바꾼 다음 **subscribe**된 리스너들을 실행하는 과정을 다룹니다.
 
 ### [Step 2] Action Dispatch
 
@@ -103,6 +176,8 @@ store.dispatch = function(action) {
 };
 ```
 
+**Step 3**에서는 **Middleware**가 **dispatch**와 **Reducer** 사이에서 **action**을 가로채 로깅·비동기 처리 등을 한 뒤 **next(action)**으로 다음 단계로 넘기는 방식을 다룹니다.
+
 ### [Step 3] Middleware (선택)
 
 ```javascript
@@ -120,6 +195,8 @@ const loggerMiddleware = store => next => action => {
 // 흐름
 // dispatch → middleware1 → middleware2 → reducer
 ```
+
+**Step 4**에서는 **rootReducer**(또는 **combineReducers**로 묶인 Reducer)가 **현재 state**와 **action**을 받아 **새 state**를 계산해 반환하는 과정을 다룹니다. **Store**는 이 반환값으로 내부 state를 교체합니다.
 
 ### [Step 4] Reducer 호출
 
@@ -145,6 +222,8 @@ function counterReducer(state = { count: 0 }, action) {
 // 3. 각 reducer가 새 상태 반환
 // 4. 전체 새 상태 트리 생성
 ```
+
+**Step 5**에서는 **Store**가 **Reducer**가 반환한 **새 state**로 내부 **currentState**를 교체하고, **subscribe**로 등록된 리스너들을 호출해 React-Redux 같은 구독자가 리렌더를 트리거할 수 있게 하는 부분을 다룹니다.
 
 ### [Step 5] State 업데이트
 

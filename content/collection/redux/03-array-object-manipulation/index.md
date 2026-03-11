@@ -3,32 +3,107 @@ draft: true
 title: "[Redux] 03. 배열과 객체 다루기 - map, filter, reduce"
 date: 2025-10-14
 lastmod: 2025-10-14
+description: "Redux 상태 관리의 핵심인 배열/객체 조작 메서드 완벽 정복. map, filter, reduce를 활용한 불변성 유지, 고차 함수로 간결한 Reducer 작성법을 실전 예제와 함께 마스터합니다."
+slug: array-object-manipulation
 tags:
-- JavaScript
-- map
-- Implementation
-- Code-Quality
-- Functional-Programming
-- 함수형프로그래밍
-- 프론트엔드
-- Best-Practices
-description: "Redux 상태 관리의 핵심인 배열/객체 조작 메서드 완벽 정복. map, filter, reduce를 활용한 불변성 유지, 고차 함수로 간결한 Redux Reducer 작성법을 실전 예제와 함께 마스터합니다"
+  - JavaScript
+  - TypeScript
+  - React
+  - Frontend
+  - 프론트엔드
+  - Web
+  - 웹
+  - Implementation
+  - 구현
+  - Code-Quality
+  - 코드품질
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Functional-Programming
+  - 함수형프로그래밍
+  - Data-Structures
+  - 자료구조
+  - Array
+  - 배열
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Design-Pattern
+  - 디자인패턴
+  - State
+  - Observer
+  - Refactoring
+  - 리팩토링
+  - Testing
+  - 테스트
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Reference
+  - 참고
+  - Readability
+  - Maintainability
+  - Modularity
+  - Documentation
+  - 문서화
+  - Error-Handling
+  - 에러처리
+  - Pitfalls
+  - 함정
+  - Edge-Cases
+  - 엣지케이스
+  - Debugging
+  - 디버깅
+  - Performance
+  - 성능
+  - Type-Safety
+  - Interface
+  - 인터페이스
+  - Encapsulation
+  - 캡슐화
+  - Git
+  - IDE
+  - How-To
+  - Tips
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - 실습
+  - Case-Study
+  - Comparison
+  - 비교
+  - JSON
+  - API
+  - Async
+  - 비동기
+  - Caching
+  - 캐싱
+  - Scalability
+  - 확장성
+  - Deep-Dive
+  - Beginner
+  - Advanced
+  - Event-Driven
+  - Workflow
+  - 워크플로우
 series: ["Redux 완전 정복"]
 series_order: 3
 ---
 
-## 학습 목표
+01·02장에서 변수·함수·객체·배열과 ES6+ 문법을 봤다면, 이 장에서는 **배열을 변환·필터·집계하는 map, filter, reduce**와 Redux reducer에서의 활용을 집중적으로 다룹니다. Redux의 상태 업데이트는 대부분 "기존 배열/객체를 수정하지 않고 새로 만드는" 패턴이라, 이 고차 함수들을 익혀 두면 07·08장의 reducer 코드를 훨씬 쉽게 읽고 작성할 수 있습니다.
 
-이 챕터를 마치면 다음을 할 수 있습니다:
+## 이 글을 읽은 후 달성해야 할 목표 (평가 기준)
 
-- ✅ map으로 배열 요소를 변환하고 State 업데이트
-- ✅ filter로 조건에 맞는 요소만 선택
-- ✅ reduce로 복잡한 데이터 변환 수행
-- ✅ 고차 함수를 조합하여 Redux Reducer 작성
+이 챕터를 마치면 다음을 할 수 있어야 합니다:
+
+- **map**, **filter**, **reduce**로 배열을 변환·필터·집계하고, **불변성**을 유지하며 **State**를 업데이트할 수 있다.
+- 고차 함수를 조합하여 Redux **Reducer**를 작성하고, 부수 효과 없이 새 **상태**를 반환할 수 있다.
 
 ## 왜 배열 메서드가 Redux에 중요한가?
 
-Redux의 90%는 배열과 객체 조작입니다:
+Redux의 상태 업데이트는 대부분 **기존 배열·객체를 수정하지 않고 새로 만드는** 패턴입니다. 그때 쓰는 것이 **map**(특정 항목만 바꾸기), **filter**(항목 제거), **reduce**(집계 또는 하나의 값으로 줄이기)입니다. 아래 코드는 Redux reducer에서 "특정 id의 todo만 completed를 토글하고 나머지는 그대로 두는" 전형적인 패턴입니다. map으로 새 배열을 만들어 반환하면 불변성이 지켜집니다.
 
 ```javascript
 // Redux Reducer의 전형적인 패턴
@@ -52,6 +127,8 @@ case 'FILTER_COMPLETED':
 **핵심**: 배열 메서드는 원본을 변경하지 않고 새 배열을 반환 = 불변성 유지!
 
 ## map() - 배열 요소 변환
+
+Redux **Reducer**에서 **todos**·**posts** 같은 배열 **state**를 바꿀 때는 원본을 수정하지 않고 **map**으로 **새 배열**을 만들어 반환합니다. 특정 **id**만 **completed**를 바꾸거나 **payload**로 필드를 덮어쓸 때 **map(todo => ...)** 패턴이 핵심입니다. Redux에서 **map**은 불변 업데이트의 기본 도구입니다.
 
 ### 기본 사용법
 
@@ -77,6 +154,8 @@ const withIndex = numbers.map((num, index, array) => ({
 ```
 
 ### 객체 배열 변환
+
+**state**가 **객체 배열**(예: todos, users)일 때 **map**으로 특정 **id**의 항목만 바꾸고 나머지는 그대로 두는 패턴이 자주 나옵니다. **스프레드**와 함께 **{ ...todo, completed: true }**처럼 필요한 필드만 덮어쓰면 됩니다.
 
 ```javascript
 const users = [
@@ -144,6 +223,8 @@ case 'MARK_ALL_COMPLETE':
 ```
 
 ## filter() - 조건부 필터링
+
+**Reducer**에서 항목 **삭제**(REMOVE_TODO)나 **필터링**(완료/미완료만 보기)할 때 **filter**로 조건에 맞는 요소만 남긴 **새 배열**을 반환합니다. **원본 배열을 변경하지 않으므로** 불변성이 유지되고, Redux가 **참조 비교**로 변경을 감지할 수 있습니다.
 
 ### 기본 사용법
 
@@ -235,6 +316,8 @@ case 'FILTER_TODOS':
 ```
 
 ## reduce() - 배열을 하나의 값으로 축소
+
+**Reducer**라는 이름은 Redux **Reducer**와 같은 "하나의 값으로 줄인다"는 의미에서 왔습니다. Redux에서는 **reduce**로 **배열을 byId/allIds 형태로 정규화**하거나, **합계·개수** 같은 파생 값을 한 번에 계산할 때 씁니다. **map**·**filter**로는 표현하기 어려운 "배열 → 하나의 값" 변환에 **reduce**를 사용합니다.
 
 ### 기본 사용법
 
