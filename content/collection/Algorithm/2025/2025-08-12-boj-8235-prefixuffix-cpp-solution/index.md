@@ -71,7 +71,7 @@ image: "wordcloud.png"
 ### C++ 풀이
 
 ```cpp
-// 42jerrykim.github.io에서 더 많은 정보를 확인 할 수 있습니다.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
@@ -147,4 +147,9 @@ int main() {
 - 문제: `https://www.acmicpc.net/problem/8235`
 - 아이디어: `T = A + B + X + B + A` 구조로 환원 + 단조성 이용한 두 포인터 + 롤링 해시 비교
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

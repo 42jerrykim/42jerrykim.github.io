@@ -1,6 +1,6 @@
 ---
 date: 2024-10-16
-description: 두 포인터 알고리즘은 배열이나 리스트의 구간 합, 특정 쌍 찾기 등 다양한 문제를 효율적으로 해결하는 기법입니다. 시간 복잡도를 줄이고, 다양한 언어와 상황에서 적용이 가능합니다. 실전 예제와 함께 이해할 수 있습니다.
+description: "두 포인터 알고리즘은 배열이나 리스트의 구간 합, 특정 쌍 찾기 등 다양한 문제를 O(n)에 가깝게 해결하는 기법입니다. 시간 복잡도 절감, 다양한 언어 적용, 실전 예제와 함께 150자 분량으로 정리합니다."
 title: "[Algorithm] Two Pointers Algorithm"
 categories: 
 - Algorithm
@@ -60,78 +60,6 @@ image: "tmp_wordcloud.png"
 ---
 
 투 포인터 알고리즘은 1차원 배열에서 두 개의 포인터를 조작하여 원하는 값을 찾는 효율적인 탐색 기법이다. 이 알고리즘은 주로 정렬된 배열에서 특정 조건을 만족하는 쌍을 찾는 데 사용된다. 예를 들어, 주어진 배열에서 두 수의 합이 특정 목표값과 일치하는 쌍을 찾는 문제를 해결할 수 있다. 투 포인터 기법은 배열의 양 끝에서 시작하여, 두 포인터를 이동시키며 조건을 만족하는 쌍을 찾는 방식으로 작동한다. 이 과정에서 한 포인터는 왼쪽에서 오른쪽으로, 다른 포인터는 오른쪽에서 왼쪽으로 이동한다. 이 방법은 O(n)의 시간 복잡도로 문제를 해결할 수 있어, 기존의 O(n^2) 시간 복잡도를 가진 중첩 루프 방식보다 훨씬 효율적이다. 투 포인터 알고리즘은 다양한 문제에 적용될 수 있으며, 특히 배열의 합, 부분 배열의 합, 특정 조건을 만족하는 연속적인 수열을 찾는 문제에서 유용하다. 이 알고리즘을 통해 우리는 더 나은 성능을 가진 코드를 작성할 수 있으며, 이는 실제 프로그래밍 인터뷰에서도 자주 등장하는 주제이다.
-
-<!--
-##### Outline #####
--->
-
-<!--
-# 목차: Two Pointers 기법
-
-## 개요
-   - Two Pointers 기법의 정의
-   - 사용 사례 및 장점
-   - 시간 복잡도 및 공간 복잡도
-
-## Two Pointers 기법의 동작 원리
-   - 기본 개념
-   - 포인터 초기화 및 조건 설정
-   - 포인터 이동 방식
-
-## 문제 해결을 위한 예제
-   - 예제 1: 주어진 합을 가지는 두 수 찾기
-     - 입력 및 출력 예시
-     - 설명 및 코드 구현
-   - 예제 2: 부분 연속 수열의 합 찾기
-     - 입력 및 출력 예시
-     - 설명 및 코드 구현
-
-## 다양한 프로그래밍 언어로의 구현
-   - C++
-   - Python
-   - Java
-   - C#
-   - JavaScript
-
-## 더 나은 접근법
-   - Naive Method (O(n^2) 시간 복잡도)
-   - Binary Search
-   - Hashing 기법
-
-## Two Pointers 기법의 장단점
-   - 장점: 효율성 및 간결성
-   - 단점: 특정 조건에서만 유효함 (예: 정렬된 배열)
-
-## Two Pointers 기법을 활용한 문제들
-   - Two Sum 문제
-   - Three Sum 문제
-   - Four Sum 문제
-   - Trapping Rain Water 문제
-
-## FAQ
-   - Q1: Two Pointers 기법은 언제 사용해야 하나요?
-   - Q2: 이 기법의 시간 복잡도는 어떻게 되나요?
-   - Q3: Two Pointers 기법이 아닌 다른 방법으로 해결할 수 있는 문제는 무엇인가요?
-
-## 관련 기술
-   - Sliding Window 기법
-   - Binary Search 기법
-   - Dynamic Programming 기법
-
-## 결론
-   - Two Pointers 기법의 중요성
-   - 실전에서의 활용 가능성
-   - 추가 학습 자료 및 참고 링크
-
-이 목차는 Two Pointers 기법에 대한 포괄적인 이해를 돕기 위해 구성되었습니다. 각 섹션은 기법의 기본 개념부터 다양한 예제와 구현 방법, 관련 기술까지 포함하여 독자가 이 기법을 효과적으로 활용할 수 있도록 안내합니다.
--->
-
-<!--
-## 개요
-   - Two Pointers 기법의 정의
-   - 사용 사례 및 장점
-   - 시간 복잡도 및 공간 복잡도
--->
 
 ## 개요
 
@@ -290,12 +218,12 @@ print(subarray_sum(nums, target))  # 출력: [2, 4]
 
 ```mermaid
 graph TD;
-    A[시작] --> B{current_sum < target}
-    B -- 예: current_sum = 8 --> C[왼쪽 포인터 이동]
-    B -- 아니오: current_sum = 10 --> D[오른쪽 포인터 이동]
+    A[시작] --> B["current_sum < target"]
+    B -->|"예: current_sum = 8"| C[왼쪽 포인터 이동]
+    B -->|"아니오: current_sum = 10"| D[오른쪽 포인터 이동]
     C --> B
     D --> B
-    B -- current_sum == target --> E[결과 반환]
+    B -->|"current_sum == target"| E[결과 반환]
     E --> F[종료]
 ```
 
@@ -607,14 +535,14 @@ def two_sum(nums, target):
 
 ```mermaid
 graph TD;
-    A[Start] --> B{Is left < right?}
-    B -- Yes --> C[Calculate current_sum]
-    C --> D{Is current_sum == target?}
-    D -- Yes --> E[Return indices]
-    D -- No --> F{Is current_sum < target?}
-    F -- Yes --> G[Increment left]
-    F -- No --> H[Decrement right]
-    B -- No --> I[End]
+    A[Start] --> B["Is left < right?"]
+    B -->|Yes| C[Calculate current_sum]
+    C --> D["Is current_sum == target?"]
+    D -->|Yes| E[Return indices]
+    D -->|No| F["Is current_sum < target?"]
+    F -->|Yes| G[Increment left]
+    F -->|No| H[Decrement right]
+    B -->|No| I[End]
 ```
 
 ### Three Sum 문제
@@ -847,9 +775,9 @@ def binary_search(arr, target):
 graph TD;
     A[Start] --> B[Set left and right];
     B --> C[Calculate mid];
-    C --> D{Is mid equal to target?};
-    D -- Yes --> E[Return mid];
-    D -- No --> F{Is mid < target?};
+    C --> D["Is mid equal to target?"];
+    D -->|Yes| E[Return mid];
+    D -->|No| F["Is mid < target?"];
     F -- Yes --> G[Move left to mid + 1];
     F -- No --> H[Move right to mid - 1];
     G --> C;

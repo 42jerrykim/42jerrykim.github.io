@@ -1,16 +1,62 @@
 ---
-title: "미녀와 야수 (Beauty and the Beast, 2017) ★★★★★"
-description: "디즈니 애니메이션의 완벽한 실사 재탄생, 엠마 왓슨이 선사하는 마법 같은 뮤지컬"
-summary: "1991년 디즈니 애니메이션 걸작의 실사 리메이크. 아름다운 마을의 책을 사랑하는 소녀 벨과 저주에 걸린 야수의 사랑 이야기를 현대적 감각으로 재해석했다. 엠마 왓슨과 댄 스티븐스의 완벽한 연기, 환상적인 음악과 시각효과가 어우러져 원작의 감동을 그대로 되살렸다."
+title: "[Movie] Beauty and the Beast (미녀와 야수) (2017) - 디즈니 실사 뮤지컬 재탄생"
+description: "1991년 디즈니 애니메이션의 실사 리메이크. 빌 콘돈 감독, 엠마 왓슨·댄 스티븐스 주연. 벨과 야수의 사랑, 환상적인 음악과 시각효과로 원작 감동 재현."
 date: 2017-03-17
+lastmod: 2017-03-17
 tags:
 - 영화
 - 리뷰
 - 뮤지컬
 - 판타지
 - 로맨스
+- Bill-Condon
+- Emma-Watson
+- Dan-Stevens
+- Luke-Evans
+- Disney
+- Movie
+- Action
+- 액션
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Romance
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 기술
+- Review
+- Musical
 categories:
-- Movies
+- Movie
 series: ["Movie Reviews"]
 series_order: 10
 ShowToc: true
@@ -152,6 +198,23 @@ draft: true
 모션 캡처와 CGI 기술의 발전을 보여주는 대표작으로, 향후 디즈니 실사 리메이크의 기술적 표준을 제시했다.
 
 ---
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Beauty+and+the+Beast)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Beauty%20and%20the%20Beast)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Beauty%20and%20the%20Beast)
 
 ## 결론
 

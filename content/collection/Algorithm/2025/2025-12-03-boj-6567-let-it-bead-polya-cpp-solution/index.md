@@ -193,7 +193,7 @@ d = gcd(k, s)라 하면, s/d개의 독립적인 주기 패턴이 있으므로:
 ## 구현
 
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <iostream>
 using namespace std;
 
@@ -255,7 +255,7 @@ int main() {
 ### Python 구현
 
 ```python
-# 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 def phi(n):
     """오일러 파이 함수"""
     result = n
@@ -330,3 +330,10 @@ while True:
 - **Polya 열거 정리**: https://en.wikipedia.org/wiki/P%C3%B3lya_enumeration_theorem
 - **오일러 파이 함수**: https://en.wikipedia.org/wiki/Euler%27s_totient_function
 - **유사 문제**: BOJ 1593 (육각형), BOJ 2110 (목걸이)
+
+## 코너 케이스 및 실수 포인트
+
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

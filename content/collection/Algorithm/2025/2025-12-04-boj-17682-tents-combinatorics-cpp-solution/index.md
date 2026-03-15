@@ -57,7 +57,7 @@ tags:
   - Debugging
   - 디버깅
   - Refactoring
-image: wordcloud.png
+image: "wordcloud.png"
 ---
 
 ## 문제 요약
@@ -169,7 +169,7 @@ g[a][b] = g[a-1][b] + 4×b×g[a-1][b-1]
 ## 구현
 
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -302,3 +302,9 @@ int main() {
 - **조합론 기초**: 이항계수, 포함-배제 원리
 - **모듈러 역원**: 페르마의 소정리 (a^(p-1) ≡ 1 mod p)
 
+## 코너 케이스 및 실수 포인트
+
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

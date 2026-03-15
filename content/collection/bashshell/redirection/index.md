@@ -1,62 +1,70 @@
 ---
 image: "tmp_wordcloud.png"
 description: "이 문서에서는 리눅스와 유닉스 환경에서 필수적인 입력 및 출력 리디렉션(I/O Redirection)의 개념, 사용 방법, 표준 입출력/표준 오류 처리 및 다양한 응용 예시 등을 자세하고 쉽게 150자 분량으로 설명합니다."
-title: "I/O Redirection - 명령어의 입력과 출력을 다루는 방법"
+title: "[Bash Shell] I/O Redirection - 명령어의 입력과 출력을 다루는 방법"
 date: 2022-01-03
-categories: "Shell"
+categories:
+- Bash Shell
 header:
   teaser: /assets/images/2024/2024-09-10-Shell-Redirection.png
-  tags:
-  - Bash
-  - Shell
-  - Linux
-  - Terminal
-  - Sorting
-  - String
-  - Process
-  - 셸
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Python
-  - Deployment
-  - Automation
-  - 자동화
-  - 배포
-  - File-System
-  - Error-Handling
-  - 에러처리
-  - Troubleshooting
-  - 트러블슈팅
-  - Workflow
-  - 워크플로우
-  - Best-Practices
-  - Documentation
-  - 문서화
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - How-To
-  - Tips
-  - Beginner
-  - Advanced
-  - Comparison
-  - 비교
-  - Case-Study
-  - Deep-Dive
-  - 실습
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
+tags:
+- Bash
+- Shell
+- Linux
+- 리눅스
+- Terminal
+- 터미널
+- Sorting
+- String
+- Process
+- 셸
+- Configuration
+- 설정
+- Guide
+- 가이드
+- Tutorial
+- 튜토리얼
+- Python
+- Deployment
+- Automation
+- 자동화
+- 배포
+- File-System
+- Error-Handling
+- 에러처리
+- Troubleshooting
+- 트러블슈팅
+- Workflow
+- 워크플로우
+- Best-Practices
+- Documentation
+- 문서화
+- Technology
+- 기술
+- Education
+- 교육
+- Reference
+- 참고
+- How-To
+- Tips
+- Beginner
+- Advanced
+- Comparison
+- 비교
+- Case-Study
+- Deep-Dive
+- 실습
+- Review
+- 리뷰
+- Markdown
+- 마크다운
+- Productivity
+- 생산성
+- Quick-Reference
+- IO
+- Redirection
+- 파이프
+- Pipeline
 ---
 
 명령어의 입력과 출력을 다루는 방법은 리눅스 및 유닉스 환경에서 매우 중요한 기술이다. 이 기술은 사용자가 명령어의 결과를 파일로 저장하거나, 다른 명령어의 입력으로 전달할 수 있도록 해준다. 이를 통해 사용자는 효율적으로 데이터를 처리하고, 다양한 작업을 자동화할 수 있다. 입력과 출력 리디렉션은 기본적으로 표준 입력(Standard Input)과 표준 출력(Standard Output)을 다루며, 이를 통해 사용자는 명령어의 결과를 화면에 표시하는 대신 파일에 저장하거나, 다른 명령어로 전달할 수 있다. 예를 들어, `ls` 명령어의 결과를 파일로 저장하고 싶다면 `ls > file_list.txt`와 같은 형식을 사용할 수 있다. 이 경우, `file_list.txt`라는 파일에 `ls` 명령어의 결과가 저장되며, 화면에는 아무것도 출력되지 않는다. 또한, 입력 리디렉션을 통해 파일의 내용을 명령어의 입력으로 사용할 수 있으며, 이는 `<` 기호를 사용하여 수행된다. 예를 들어, `sort < file_list.txt`는 `file_list.txt`의 내용을 정렬하여 출력하는 명령어이다. 이러한 리디렉션 기능은 파이프라인을 통해 여러 명령어를 연결하여 더욱 강력한 데이터 처리 작업을 수행할 수 있게 해준다. 이처럼 입력과 출력 리디렉션은 리눅스 및 유닉스 환경에서 필수적인 도구로 자리 잡고 있으며, 이를 통해 사용자는 다양한 작업을 보다 효율적으로 수행할 수 있다.

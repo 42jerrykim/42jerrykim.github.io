@@ -109,7 +109,7 @@ v[N-1][0] ...     v[N-1][M-1]
 
 ## 구현 (C++)
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -200,7 +200,7 @@ int main() {
 
 ## 구현 (Python)
 ```python
-# 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 import sys
 sys.setrecursionlimit(1_000_000)
 input = sys.stdin.readline
@@ -302,3 +302,10 @@ print(dfs(0, 0, '0' * m))
 - jh05013, "Connection Profile DP 가이드" (프로파일 DP 기본 아이디어)
 - Jinhan's Note, "[BOJ] 1144번 - 싼 비용" (구현 아이디어 정리)
 - 백준 1144 문제 페이지
+
+## 코너 케이스 및 실수 포인트
+
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

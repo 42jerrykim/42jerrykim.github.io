@@ -59,7 +59,7 @@ tags:
 - 문서화
 - Best-Practices
 - Complexity-Analysis
-image: wordcloud.png
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 20506 - Kaisar - 생존](https://www.acmicpc.net/problem/20506)
@@ -158,7 +158,7 @@ flowchart TD
 ## C++ 구현 코드
 
 ```cpp
-// 42jerrykim.github.io에서 더 많은 정보를 확인 할 수 있다
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 

@@ -100,4 +100,19 @@ Wagner는 마이크 모가 연기한 인물로, 악당 Leveque의 부하 중 한
 리지 브로드웨이(Mattie Turner, Cole의 동생 역)
 팀 블레이크 넬슨(Borislov 역): 영화의 또 다른 악당으로, 가장 치명적인 벌레를 사용하여 피해자로부터 정보를 얻는 것을 즐긴다.
 안나 드버 스미스(Claudia 역): 새디의 일종의 안내자/부모 같은 역할을 하는 CIA 요원이다.
-티야 시르카(Patti 역): 새디와 콜 사이의 긴장이 고조될 때 유머를 제공하는 또 다른 CIA 직원이다
+티야 시르카(Patti 역): 새디와 콜 사이의 긴장이 고조될 때 유머를 제공하는 또 다른 CIA 직원이다.
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: 로맨틱 액션 코미디. 크리스 에반스·아나 드 아르마스 케미.
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: 《미션 임파서블》, 《나이트 앤 데이》
+* **관람 전 체크리스트**: 폭력·액션 장면.
+
+## 참고 문헌 및 출처
+
+1. [Ghosted (2023) - IMDb](https://www.imdb.com/title/tt15326988/)
+2. [Ghosted - Rotten Tomatoes](https://www.rottentomatoes.com/m/ghosted_2023)
+3. [Ghosted - Apple TV+](https://tv.apple.com/us/movie/ghosted/umc.cmc.6bw7w2q2q2q2q2q2q2q2q2q)

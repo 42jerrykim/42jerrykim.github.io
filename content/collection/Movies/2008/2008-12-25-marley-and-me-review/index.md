@@ -1,14 +1,68 @@
 ---
-title: "말리와 나 (2008) - 세상에서 가장 못된 개가 선사한 가장 순수한 사랑"
+title: "[Movie] Marley & Me (말리와 나) (2008) - 못된 개가 선사한 순수한 사랑"
 date: 2008-12-25
-description: "존 그로건의 실화를 바탕으로 한 감동의 대작, 말리와 나의 13년간의 여정"
+lastmod: 2008-12-25
+description: "말썽꾸러기 래브라도 말리와 가족의 13년. 데이비드 프랭클 감독, 오웬 윌슨·제니퍼 애니스톤 주연. 존 그로건 베스트셀러 원작, 반려동물과 함께한 삶의 웃음과 눈물."
 image: "marley-and-me-poster.png"
-categories: 
-  - Movies
+categories:
+- Movie
+- Family
+- Drama
 tags:
-  - Family
-  - Drama
-  - Comedy
+- Family
+- Drama
+- Comedy
+- David-Frankel
+- 데이비드 프랭클
+- Owen-Wilson
+- 오웬 윌슨
+- Jennifer-Aniston
+- 제니퍼 애니스톤
+- John-Grogan
+- Movie
+- 영화
+- Action
+- 액션
+- Adventure
+- 모험
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- 2000s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Dog
+- Pet
 draft: true
 ---
 
@@ -203,6 +257,23 @@ draft: true
 ### 가족의 변화하는 의미
 
 혈연 중심의 전통적 가족 개념이 확장되고 있는 현재, 말리는 가족의 새로운 의미를 제시한다. 반려동물도 가족의 일원이 될 수 있다는 인식의 변화를 보여준다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Marley+&+Me)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Marley%20&%20Me)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Marley%20&%20Me)
 
 ## 결론: 불완전한 사랑의 완전한 아름다움
 

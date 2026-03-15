@@ -58,7 +58,7 @@ tags:
 - Performance
 date: 2025-12-03
 lastmod: 2025-12-03
-image: wordcloud.png
+image: "wordcloud.png"
 ---
 
 ## 문제 정보
@@ -138,7 +138,7 @@ $$r = \frac{1}{\frac{1}{r_1} + \frac{1}{r_2} + \frac{1}{r_3}}$$
 ## 풀이 코드
 
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <iostream>
 #include <iomanip>
 using namespace std;
@@ -214,6 +214,13 @@ int main() {
 - [x] 부동소수점 정밀도 (10자리 출력)
 - [x] double 자료형 사용
 - [x] 오차 범위 10^-6 충족
+
+## 코너 케이스 및 실수 포인트
+
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |
 
 ## 참고 자료
 

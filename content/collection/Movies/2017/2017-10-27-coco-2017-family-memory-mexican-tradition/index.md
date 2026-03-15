@@ -321,3 +321,9 @@ graph LR
 - [ ] 문화적 다양성에 대한 열린 마음
 
 **결론적으로 『코코』는 단순한 애니메이션을 넘어서 문화적 교육과 감정적 치유를 동시에 제공하는 예술 작품이다. 멕시코 문화에 대한 깊은 존중과 이해를 바탕으로 제작된 이 영화는 전 세계 관객들에게 가족의 의미와 기억의 소중함을 새롭게 일깨워준다. 시각적 화려함과 음악적 완성도, 그리고 무엇보다 진정성 있는 스토리텔링이 조화를 이룬 픽사의 대표작 중 하나로 평가받을 만하다.**
+
+## 참고 문헌 및 출처
+
+1. [Coco (2017) - IMDb](https://www.imdb.com/title/tt2380307/)
+2. [Coco - Rotten Tomatoes](https://www.rottentomatoes.com/m/coco_2017)
+3. [Coco - Box Office Mojo](https://www.boxofficemojo.com/title/tt2380307/)

@@ -1,12 +1,71 @@
 ---
-title: "엔더스 게임 (2013) - 전쟁과 도덕의 경계선에서"
+title: "[Movie] Ender's Game (엔더스 게임) (2013) - 전쟁과 도덕의 경계선에서"
+description: "어린이를 전쟁 병기로 키우는 인류의 절망적 현실. 개빈 후드 감독, 아사 버터필드·해리슨 포드·헤일리 스타인펠드 출연. 오슨 스콧 카드 원작 SF로 전쟁과 도덕적 딜레마를 다룬다."
 date: 2013-11-01
+lastmod: 2013-11-01
 categories:
-- Movies
+- Movie
+- Sci-Fi
+- Drama
 tags:
 - Sci-Fi
 - War
+- Gavin-Hood
+- 개빈 후드
+- Asa-Butterfield
+- 아사 버터필드
+- Harrison-Ford
+- 해리슨 포드
+- Hailee-Steinfeld
+- Movie
+- 영화
+- Action
+- 액션
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Orson-Scott-Card
+- Space
+- 우주
 draft: true
+image: "poster.png"
 ---
 
 ## 작품 개요
@@ -180,6 +239,23 @@ draft: true
 
 ### 청소년 영화의 성숙함
 청소년 대상 영화임에도 불구하고 성인도 만족할 수 있는 성숙한 메시지를 담았습니다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Ender's+Game)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Ender's%20Game)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Ender's%20Game)
 
 ## 결론
 **엔더스 게임**은 단순한 SF 액션 영화를 넘어 전쟁과 평화, 리더십과 도덕성에 대한 깊은 성찰을 담은 수작입니다. 아사 버터필드의 뛰어난 연기와 해리슨 포드를 비롯한 베테랑 배우들의 든든한 지원, 그리고 개빈 후드의 균형 잡힌 연출이 조화를 이룬 완성도 높은 작품입니다.

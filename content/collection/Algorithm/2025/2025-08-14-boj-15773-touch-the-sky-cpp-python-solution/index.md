@@ -135,7 +135,7 @@ graph TD
 
 ## 구현 (C++)
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -171,7 +171,7 @@ int main(){
 
 ## 구현 (Python)
 ```python
-# 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 import sys
 import heapq
 
@@ -222,4 +222,9 @@ if __name__ == "__main__":
 ## 참고자료/유사문제
 - 데드라인 기반 작업 최대 개수 그리디(접두집합 누적시간 ≤ 데드라인, 위반 시 가장 긴 작업 제거)와 동일한 증명 틀을 사용. 여기서는 시작 제약을 `E=L+D`로 치환하여 적용.
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

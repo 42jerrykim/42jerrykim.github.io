@@ -1,11 +1,72 @@
 ---
-title: "혹성탈출: 반격의 서막 (2014) - 진화한 문명과 몰락한 인류의 대비"
+title: "[Movie] Dawn of the Planet of the Apes (혹성탈출: 반격의 서막) (2014) - 진화한 문명과 몰락한 인류"
+description: "시미안 독감으로 몰락한 지 10년 후, 시저가 이끄는 유인원과 생존 인간의 갈등. 매트 리브스 감독, 앤디 서키스·제이슨 클라크·게리 올드맨 출연. 공존과 전쟁을 그린 SF 대작."
 date: 2014-07-11
+lastmod: 2014-07-11
 categories:
-- Movies
+- Movie
+- Sci-Fi
+- Drama
 tags:
 - Sci-Fi
+- Matt-Reeves
+- 매트 리브스
+- Andy-Serkis
+- 앤디 서키스
+- Jason-Clarke
+- Gary-Oldman
+- Keri-Russell
+- Planet-of-the-Apes
+- Movie
+- 영화
+- Action
+- 액션
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Ape
+- Caesar
 draft: true
+image: "poster.png"
 ---
 
 ## 작품 개요
@@ -169,6 +230,23 @@ IMAX 스크린에서 보는 유인원들의 표정과 움직임은 정말 압도
 
 ### 블록버스터의 새로운 가능성
 상업적 성공과 예술적 완성도를 동시에 달성한 모범적인 블록버스터입니다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Dawn+of+the+Planet+of+the+Apes)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Dawn%20of%20the%20Planet%20of%20the%20Apes)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Dawn%20of%20the%20Planet%20of%20the%20Apes)
 
 ## 결론
 **혹성탈출: 반격의 서막**은 기술적 혁신, 뛰어난 연기, 깊이 있는 주제 의식이 완벽하게 결합된 걸작입니다. 앤디 서키스의 시저는 영화사에 길이 남을 캐릭터이며, 매트 리브스의 연출은 블록버스터 영화의 새로운 가능성을 제시합니다.

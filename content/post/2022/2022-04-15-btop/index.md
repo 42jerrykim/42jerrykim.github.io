@@ -59,12 +59,29 @@ tags:
 - 설정
 - How-To
 - Tips
-title: '[Linux] btop++ - Processor, Memory, Disks, Network and Processes 모니터'
+- Comparison
+- 비교
+- Career
+- 커리어
+- Workflow
+- 워크플로우
+- Migration
+- 마이그레이션
+- Hardware
+- 하드웨어
+- Cloud
+- 클라우드
+- Mobile
+- 모바일
+- Deployment
+- Performance
+- 성능
+title: '[Linux] btop++ 시스템 리소스 모니터 소개'
 ---
 
-리눅스를 사용할 때 `top`명령어를 사용해서 CPU를 모니터링 해본적이 있는가? 너무 보잘것 없는 UI에 실망한적이 있는가? 다른 리소스의 사용량도 확인 해 보고 싶은 생각은 없었는가? 본 글에서는 PC의 자원은 한 화면헤서 확인 할 수 있는 btop++에 개해서 소개 한다.
+리눅스를 사용할 때 `top` 명령어로 CPU를 모니터링해 본 적이 있는가? 너무 보잘것없는 UI에 실망한 적이 있는가? 다른 리소스 사용량도 확인해 보고 싶은 생각은 없었는가? 본 글에서는 PC 자원을 한 화면에서 확인할 수 있는 btop++에 대해 소개한다.
 
-btop++을 사용하면 아래의 그림처럼 이쁜 UI와 함꼐 다양한 리소스의 사용량을 모니터링 할 수 있다.
+btop++을 사용하면 아래 그림처럼 예쁜 UI와 함께 다양한 리소스 사용량을 모니터링할 수 있다.
 
 |![/assets/images/2022/2022-04-15-122101.png](/assets/images/2022/2022-04-15-122101.png)|
 |:---:|

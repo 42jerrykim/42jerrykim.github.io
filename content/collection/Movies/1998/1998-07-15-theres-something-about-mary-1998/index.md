@@ -487,4 +487,10 @@ graph LR
 
 ---
 
-*"진정한 사랑은 모든 어색함과 실수를 뛰어넘는다. 때로는 가장 바보 같은 순간이 가장 진실한 순간이기도 하다."* 
+*"진정한 사랑은 모든 어색함과 실수를 뛰어넘는다. 때로는 가장 바보 같은 순간이 가장 진실한 순간이기도 하다."*
+
+## 참고 문헌 및 출처
+
+1. [There's Something About Mary (1998) - IMDb](https://www.imdb.com/title/tt0128853/)
+2. [There's Something About Mary - Rotten Tomatoes](https://www.rottentomatoes.com/m/theres_something_about_mary)
+3. [There's Something About Mary - Box Office Mojo](https://www.boxofficemojo.com/title/tt0128853/) 

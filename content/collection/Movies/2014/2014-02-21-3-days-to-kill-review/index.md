@@ -1,12 +1,68 @@
 ---
-title: "쓰리데이즈 투 킬 (2014) - 가족과 임무 사이의 균형잡기"
+title: "[Movie] 3 Days to Kill (쓰리데이즈 투 킬) (2014) - 가족과 임무 사이의 균형잡기"
 date: 2014-02-21
+lastmod: 2014-02-21
+description: "말기 암 선고를 받은 CIA 요원이 실험적 치료 대가로 마지막 임무를 수행하며 딸과의 관계를 회복한다. McG 감독, 케빈 코스트너·앰버 허드·헤일리 스타인펠드 출연. 뤽 베송 각본."
 categories:
-- Movies
+- Movie
+- Action
+- Thriller
 tags:
 - Action
 - Thriller
+- McG
+- Kevin-Costner
+- 케빈 코스트너
+- Amber-Heard
+- Hailee-Steinfeld
+- Luc-Besson
+- Movie
+- 영화
+- Adventure
+- 모험
+- Drama
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- CIA
+- Spy
 draft: true
+image: "poster.png"
 ---
 
 ## 작품 개요
@@ -199,6 +255,23 @@ CIA 요원이 십대 딸을 돌보는 상황에서 벌어지는 해프닝들이 
 
 ### 파리의 로맨틱함
 파리라는 배경이 전 세계 관객들에게 로맨틱한 매력을 제공합니다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=3+Days+to+Kill)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=3%20Days%20to%20Kill)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=3%20Days%20to%20Kill)
 
 ## 결론
 **쓰리데이즈 투 킬**은 예상보다 훨씬 따뜻하고 감동적인 가족 드라마입니다. 표면적으로는 액션 스릴러이지만, 그 속에는 아버지와 딸의 진솔한 이야기가 담겨 있습니다. 케빈 코스트너의 숙련된 연기와 헤일리 스타인펠드의 매력적인 연기가 조화를 이루며, McG의 세련된 연출과 뤽 베송의 독창적인 각본이 영화를 완성도 높게 만들어냅니다.

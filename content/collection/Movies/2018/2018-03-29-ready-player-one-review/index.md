@@ -1,16 +1,65 @@
 ---
-title: "레디 플레이어 원 (Ready Player One, 2018) ★★★★★"
-description: "스티븐 스필버그가 선사하는 80년대 향수와 미래 기술의 완벽한 조화"
-summary: "2045년 디스토피아 세계에서 가상현실 오아시스를 배경으로 펼쳐지는 궁극의 보물찾기 모험. 어니스트 클라인의 동명 소설을 원작으로 한 이 영화는 팝 컬처의 향수와 현대적 메시지를 절묘하게 결합한다. 스필버그의 연출력과 최첨단 특수효과가 만나 전례 없는 시각적 스펙터클을 완성했다."
+title: "[Movie] Ready Player One (레디 플레이어 원) (2018) - 80년대 향수와 VR 보물찾기"
+description: "2045년 오아시스 속 궁극의 보물찾기. 스티븐 스필버그 감독, 타이 쉐리던·올리비아 쿡·벤 멘델슨 주연. 어니스트 클라인 원작, 팝 컬처 향수와 시각 스펙터클."
 date: 2018-03-29
+lastmod: 2018-03-29
 tags:
 - 영화
 - 리뷰
 - SF
 - 액션
 - 모험
+- Steven-Spielberg
+- 스티븐 스필버그
+- Tye-Sheridan
+- Olivia-Cooke
+- Ben-Mendelsohn
+- Ernest-Cline
+- Movie
+- Action
+- Adventure
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 기술
+- Review
+- VR
+- OASIS
 categories:
-- Movies
+- Movie
 series: ["Movie Reviews"]
 series_order: 9
 ShowToc: true
@@ -307,6 +356,23 @@ IOI로 대표되는 기업의 기술 독점은 현재의 빅테크 기업들에 
 영화는 서로 다른 세대 간의 문화적 소통을 촉진하는 역할을 했다. 젊은 세대는 80년대 문화를 새롭게 발견했고, 기성세대는 디지털 네이티브들의 세계를 이해하게 되었다.
 
 ---
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Ready+Player+One)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Ready%20Player%20One)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Ready%20Player%20One)
 
 ## 결론
 

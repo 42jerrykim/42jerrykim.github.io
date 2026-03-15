@@ -109,7 +109,7 @@ flowchart LR
 
 ## 구현 (C++)
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -174,7 +174,7 @@ int main(){
 
 ## 구현 (Python)
 ```python
-# 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 import sys
 from collections import deque
 
@@ -299,4 +299,9 @@ if __name__ == "__main__":
 - 정점 컷의 간선 컷 환원(Node-splitting), Max-Flow Min-Cut 정리
 - Dinic 알고리즘 개요 및 구현
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

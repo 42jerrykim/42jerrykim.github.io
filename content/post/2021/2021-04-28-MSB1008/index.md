@@ -57,7 +57,11 @@ tags:
 - 마이그레이션
 - Hardware
 - 하드웨어
-title: '[.NET] MSBUILD : error MSB1008: Only one project can be specified. 해결'
+- Cloud
+- 클라우드
+- Mobile
+- 모바일
+title: '[.NET] MSB1008 한 프로젝트만 지정 오류 해결'
 ---
 
 ```bash

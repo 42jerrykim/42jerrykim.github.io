@@ -1,5 +1,5 @@
 ---
-title: "[Gaming] Thrustmaster Sol-R 2 HOSAS Space Sim Duo: 우주 시뮬레이션의 새로운 표준"
+title: "[Gaming] Thrustmaster Sol-R 2 HOSAS 우주 시뮬레이션 리뷰"
 description: "Thrustmaster Sol-R 2 HOSAS Space Sim Duo는 우주 시뮬레이션 게임을 위한 최고급 HOSAS(Hands On Stick And Stick) 컨트롤러다. 88개의 액션 버튼, 16비트 정밀도, RGB 조명 등 최첨단 기능을 탑재한 이 제품의 상세한 리뷰를 소개한다."
 date: 2025-08-06
 categories: 
@@ -58,6 +58,13 @@ tags:
 - Career
 - 커리어
 - Workflow
+- 워크플로우
+- Migration
+- 마이그레이션
+- Mobile
+- 모바일
+- Cloud
+- 클라우드
 image: Website_ProductPageGallery-SolR2_1920x1080_1.webp
 ---
 

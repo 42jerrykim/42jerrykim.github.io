@@ -1,15 +1,65 @@
 ---
-title: "캡틴 마블 (Captain Marvel, 2019) ★★★★★"
-description: "마블 시네마틱 유니버스 최초의 여성 주연 영화, 브리 라슨이 선사하는 우주적 스케일의 원점 이야기"
-summary: "1995년을 배경으로 한 캐롤 댄버스의 기원 이야기. 크리와 스크럴 종족 간의 은하계 전쟁에 휘말린 지구에서 우주 최강의 히어로가 탄생한다. 브리 라슨의 강렬한 연기와 사무엘 L. 잭슨의 젊은 닉 퓨리가 만나 마블 유니버스의 새로운 전설을 써내려간다."
+title: "[Movie] Captain Marvel (캡틴 마블) (2019) - MCU 최초 여성 주연, 우주의 원점"
+description: "1995년 캐롤 댄버스의 기원. 안나 보든·라이언 플렉 감독, 브리 라슨·사무엘 L. 잭슨 주연. 크리-스크럴 전쟁과 지구에서 우주 최강 히어로 탄생, 마블 여성 슈퍼히어로의 전설."
 date: 2019-03-08
+lastmod: 2019-03-08
 tags:
 - 영화
 - 리뷰
 - 액션
 - SF
+- Anna-Boden
+- Ryan-Fleck
+- Brie-Larson
+- Samuel-L-Jackson
+- Marvel
+- MCU
+- Movie
+- Action
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 기술
+- Review
+- Carol-Danvers
+- Superhero
 categories:
-- Movies
+- Movie
 series: ["Movie Reviews"]
 series_order: 7
 ShowToc: true
@@ -200,6 +250,23 @@ draft: true
 스탠 리의 MCU 카메오들로 구성된 오프닝 로고는 그의 별세 이후 첫 번째 MCU 영화답게 감동적인 추모의 의미를 담고 있다.
 
 ---
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Captain+Marvel)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Captain%20Marvel)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Captain%20Marvel)
 
 ## 결론
 

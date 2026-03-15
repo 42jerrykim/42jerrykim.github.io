@@ -1,13 +1,70 @@
 ---
-title: "호빗: 다섯 군대 전투 (2014) - 중간계의 웅장한 종장"
+title: "[Movie] The Hobbit: The Battle of the Five Armies (호빗: 다섯 군대 전투) (2014) - 중간계의 종장"
 date: 2014-12-17
+lastmod: 2014-12-17
+description: "스마우그의 몰락 후 에레보르 보물을 두고 다섯 군대가 격돌. 피터 잭슨 감독, 마틴 프리먼·리처드 아미티지·루크 에반스 출연. 톨킨 호빗 3부작 완결편."
 categories:
-- Movies
+- Movie
+- Fantasy
+- Adventure
 tags:
 - Fantasy
 - Adventure
 - Drama
+- Peter-Jackson
+- 피터 잭슨
+- Martin-Freeman
+- Richard-Armitage
+- Luke-Evans
+- Tolkien
+- Movie
+- 영화
+- Action
+- 액션
+- Thriller
+- 스릴러
+- Sci-Fi
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Middle-Earth
+- Smaug
+- Dwarf
+- Elf
 draft: true
+image: "poster.png"
 ---
 
 ## 작품 개요
@@ -89,6 +146,23 @@ draft: true
 리처드 아미티지의 연기는 정말 압도적입니다. 그의 토린은 복잡하고 입체적인 캐릭터로, 관객들에게 깊은 감동을 줍니다. 마틴 프리먼 역시 빌보의 성장 과정을 섬세하게 표현해냅니다.
 
 시각적 스펙터클 역시 놀라울 정도로 화려합니다. 스마우그의 레이크타운 공격 장면은 드래곤 영화의 새로운 기준을 제시했으며, 다섯 군대의 전투는 판타지 영화 역사상 가장 웅장한 전투 장면 중 하나입니다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=The+Hobbit:+The+Battle+of+the+Five+Armies)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=The%20Hobbit:%20The%20Battle%20of%20the%20Five%20Armies)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=The%20Hobbit:%20The%20Battle%20of%20the%20Five%20Armies)
 
 ## 결론
 **호빗: 다섯 군대 전투**는 완벽하지는 않지만, 중간계 사가의 장엄한 완결편으로서 충분한 가치를 지닙니다. 우정과 희생, 용기와 지혜에 대한 이야기는 시대를 초월한 감동을 선사합니다. 피터 잭슨의 연출과 배우들의 열연, 그리고 놀라운 시각 효과가 어우러진 이 작품은 판타지 영화의 새로운 이정표를 세웠습니다.

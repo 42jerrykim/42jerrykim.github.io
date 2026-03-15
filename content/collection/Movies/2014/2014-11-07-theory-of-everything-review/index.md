@@ -1,19 +1,74 @@
 ---
-title: "더 씨어리 오브 에브리싱 - 사랑이 시간을 초월할 때"
+title: "[Movie] The Theory of Everything (더 씨어리 오브 에브리싱) (2014) - 사랑이 시간을 초월할 때"
 date: 2014-11-07
-
+lastmod: 2014-11-07
 categories:
-- Movies
+- Movie
 - Biography
 - Drama
 tags:
 - 전기영화
 - Biography
 - Drama
-description: "천재 물리학자 스티븐 호킹과 첫 번째 아내 제인의 사랑과 희생을 그린 감동적인 전기영화. 에디 레드메인의 아카데미상 수상작"
-poster: "https://image.tmdb.org/t/p/w500/6TGjBEZAGWuKMJ0n87pE8RYKJGI.jpg"
+- James-Marsh
+- 제임스 마시
+- Eddie-Redmayne
+- 에디 레드메인
+- Felicity-Jones
+- 펠리시티 존스
+- Stephen-Hawking
+- 스티븐 호킹
+- Movie
+- 영화
+- Action
+- 액션
+- Adventure
+- 모험
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- 2000s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Cambridge
+- ALS
+- Physics
+description: "천재 물리학자 스티븐 호킹과 첫 번째 아내 제인 와일드의 사랑과 희생을 그린 전기영화. 제임스 마시 감독, 에디 레드메인·펠리시티 존스 주연. 에디 레드메인 아카데미 남우주연상 수상작."
+image: "poster.png"
 draft: true
-
 ---
 
 ## 작품 개요
@@ -230,6 +285,21 @@ draft: true
 ### 《마이 레프트 풋》과의 연결점
 
 신체적 장애를 극복하는 실존 인물의 이야기라는 점에서 《마이 레프트 풋》과 비교된다. 에디 레드메인의 연기도 다니엘 데이 루이스의 연기와 자주 비교된다.
+
+## 종합 평가
+
+* **최종 평점**: 5/5
+* **한 줄 평**: 호킹 박사의 삶과 사랑을 그린 전기 드라마. 에디 레드메인·펠리시티 존스 연기.
+* **장점**: 연기·전기 서사·감동.
+* **단점**: 일부 과학 설명 생략.
+* **추천 작품**: 《인터스텔라》, 《마션》, 《히든 피겨스》
+* **관람 전 체크리스트**: 전기·질병 관련 감정적 장면.
+
+## 참고 문헌 및 출처
+
+1. [The Theory of Everything (2014) - IMDb](https://www.imdb.com/title/tt2980516/)
+2. [The Theory of Everything - Rotten Tomatoes](https://www.rottentomatoes.com/m/the_theory_of_everything)
+3. [The Theory of Everything - Box Office Mojo](https://www.boxofficemojo.com/title/tt2980516/)
 
 ## 평가
 

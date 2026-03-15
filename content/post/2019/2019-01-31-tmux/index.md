@@ -3,7 +3,7 @@ image: "tmp_wordcloud.png"
 categories:
 - Tool
 date: "2019-01-31T00:00:00Z"
-description: '[Util] Tmux'
+description: "Tmux는 터미널 다중화 도구로, 한 터미널 세션 안에서 여러 가상 콘솔(윈도우·패널)을 사용할 수 있게 합니다. tmuxifier로 윈도우·세션 설정을 저장·불러오기 하는 방법과 기본 사용법을 150자 분량으로 정리합니다."
 tags:
 - tmux
 - Git
@@ -59,8 +59,13 @@ title: '[Util] Tmux'
 ---
 
 ## Tmux
-터미널 세션 안에서 여러 별도의 터미널 세션에 액세스할 수 있도록 여러 가상 콘솔을 다중화
+
+터미널 세션 안에서 여러 가상 콘솔을 다중화하여 별도의 터미널 세션에 액세스할 수 있게 해 준다.
+
 ## Tmux 관련 유틸
+
 ### tmuxifier
-Window와 Session의 셋팅을 미리 지정하고 불러와서 사용
-[tmuxifier](https://github.com/jimeh/tmuxifier)
+
+Window와 Session 설정을 미리 지정하고 불러와서 사용할 수 있다.
+
+- [tmuxifier](https://github.com/jimeh/tmuxifier)

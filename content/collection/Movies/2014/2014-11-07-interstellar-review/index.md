@@ -1,14 +1,72 @@
 ---
-title: "인터스텔라 (Interstellar, 2014) ★★★★★"
-description: "크리스토퍼 놀란이 선사하는 우주적 스케일의 감동 서사시"
-summary: "지구의 멸망이 임박한 미래, 인류의 새로운 터전을 찾아 떠나는 우주 여행을 그린 크리스토퍼 놀란의 대작. 매튜 맥커너히와 앤 해서웨이의 열연과 함께 사랑과 희생, 시간과 공간을 초월한 인간의 의지를 그려낸 SF 영화의 걸작이다."
+title: "[Movie] Interstellar (인터스텔라) (2014) - 우주적 스케일의 감동 서사시"
+description: "지구 멸망이 임박한 미래, 인류의 새 터전을 찾아 떠나는 우주 여행. 크리스토퍼 놀란 감독이 매튜 맥커너히·앤 해서웨이와 함께 사랑과 희생, 시간과 공간을 초월한 인간 의지를 그린 SF 걸작."
 date: 2014-11-07
+lastmod: 2014-11-07
 tags:
 - 영화
 - 리뷰
 - SF
+- Christopher-Nolan
+- 크리스토퍼 놀란
+- Matthew-McConaughey
+- 매튜 맥커너히
+- Anne-Hathaway
+- 앤 해서웨이
+- Movie
+- Action
+- 액션
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- 2000s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Review
+- Space
+- 우주
+- Time-Travel
+- Hans-Zimmer
 categories:
-- Movies
+- Movie
+- Sci-Fi
+- Drama
 series: ["Movie Reviews"]
 series_order: 20
 ShowToc: true
@@ -16,6 +74,7 @@ TocOpen: true
 UseHugoToc: true
 comments: true
 images: ["/2014/11/07/interstellar-review.jpg"]
+image: "poster.png"
 draft: true
 ---
 
@@ -33,6 +92,37 @@ draft: true
 
 ---
 
+## 개요
+
+### 영화 정보
+* **제목**: Interstellar / 인터스텔라
+* **감독**: Christopher Nolan (크리스토퍼 놀란)
+* **각본**: Jonathan Nolan, Christopher Nolan
+* **주연**: Matthew McConaughey, Anne Hathaway, Jessica Chastain, Michael Caine
+* **음악**: Hans Zimmer
+* **장르**: SF, 드라마, 모험
+* **상영시간**: 169분
+* **개봉일**: 2014.11.07
+* **제작사**: Paramount, Warner Bros., Legendary
+* **배급사**: Paramount, Warner Bros.
+
+### 추천 대상
+* **SF·우주물 팬**: 과학 자문 기반의 웜홀·블랙홀 서사
+* **놀란·한스 짐머 팬**: IMAX 촬영과 스코어
+* **가족·감동 드라마**: 부녀 사랑과 시간 초월
+
+## 구조 분석 (Act 5단계)
+
+```mermaid
+flowchart LR
+  Act1["Act 1 (Setup)<br/>지구 황폐화·쿠퍼·NASA 발견"]
+  Act2["Act 2 (Inciting & Rising)<br/>웜홀·밀러 행성"]
+  Act3["Act 3 (Complications)<br/>만 박사 배신·플랜 A 불가"]
+  Act4["Act 4 (Climax)<br/>가르간튜아·테서랙트"]
+  Act5["Act 5 (Resolution)<br/>머프 구원·에드먼즈"]
+  Act1 --> Act2 --> Act3 --> Act4 --> Act5
+```
+
 ## 작품 개요
 
 **인터스텔라**는 크리스토퍼 놀란이 감독과 각본을 맡은 2014년 SF 대작으로, 《인셉션》과 《다크 나이트》 시리즈를 통해 확고한 입지를 다진 놀란 감독의 우주적 상상력이 집대성된 작품이다. 이론 물리학자 킵 손의 과학적 자문을 받아 제작된 이 영화는 과학적 정확성과 영화적 상상력의 완벽한 조화를 이루어낸다.
@@ -43,11 +133,11 @@ draft: true
 
 ---
 
-## 줄거리
+## 영화의 전체 내용
 
 ### 지구의 황폐화
 
-영화는 21세기 중반, 모래폭풍과 농작물 기근으로 황폐해진 지구를 배경으로 시작된다. 전직 NASA 조종사였던 쿠퍼(매튜 맥커너히)는 이제 농부로 살아가며 딸 머프(맥켄지 포이)와 아들 톰(티모시 샬라메)을 키우고 있다. 
+**[S01]** 영화는 21세기 중반, 모래폭풍과 농작물 기근으로 황폐해진 지구를 배경으로 시작된다. 전직 NASA 조종사였던 쿠퍼(매튜 맥커너히)는 이제 농부로 살아가며 딸 머프(맥켄지 포이)와 아들 톰(티모시 샬라메)을 키우고 있다. 
 
 머프의 방에서 발생하는 중력 이상 현상을 조사하던 쿠퍼와 머프는 이 현상이 좌표를 나타낸다는 것을 발견하고, 그 좌표가 가리키는 곳에서 비밀리에 운영되고 있는 NASA 시설을 발견한다.
 
@@ -114,6 +204,10 @@ draft: true
 마이클 케인은 인류를 구하려는 숭고한 의지와 동시에 참혹한 진실을 숨겨야 하는 도덕적 딜레마를 겪는 과학자를 깊이 있게 표현했다.
 
 ---
+
+## 영상미와 음악
+
+IMAX 70mm·실용 효과와 블랙홀 가르간튜아 시각화로 대표되는 시각미, 한스 짐머의 파이프 오르간 스코어와 감정적 몰입을 높이는 음악. 자세한 내용은 아래 「시각적 완성도」「한스 짐머의 음악」 섹션을 참고.
 
 ## 과학적 정확성과 상상력
 
@@ -183,20 +277,20 @@ draft: true
 
 ---
 
-## 결론
+## 종합 평가
 
-**인터스텔라**는 크리스토퍼 놀란의 필모그래피에서 가장 야심찬 작품 중 하나로, SF 영화의 새로운 기준을 제시했다. 과학적 정확성을 바탕으로 한 상상력, 압도적인 시각적 스펙터클, 그리고 깊이 있는 인간 드라마가 완벽하게 조화를 이룬 걸작이다.
+* **최종 평점**: ★★★★★ (5/5)
+* **한 줄 평**: 우주의 광활함과 인간 감정의 세밀함을 동시에 담아낸 크리스토퍼 놀란의 대서사시.
+* **장점**: 과학 자문 기반 시각화, IMAX·한스 짐머, 부녀 사랑과 시간 초월 서사.
+* **단점**: 러닝타임 길고 일부 플롯 복잡도 논란.
+* **추천 작품**: 《인셉션》, 《다크 나이트》, 《그래비티》, 《마션》
+* **관람 전 체크리스트**: 169분. IMAX·대형 스크린 권장.
 
-영화는 우주의 광활함 앞에서도 변하지 않는 인간의 사랑과 의지를 그려내며, 관객들에게 우리 존재의 의미에 대해 깊이 생각해볼 기회를 제공한다. 특히 시간과 공간을 초월한 부녀간의 사랑은 모든 관객의 마음을 울리는 보편적 감동을 선사한다.
+**인터스텔라**는 크리스토퍼 놀란의 필모그래피에서 가장 야심찬 작품 중 하나로, SF 영화의 새로운 기준을 제시했다. 과학적 정확성을 바탕으로 한 상상력, 압도적인 시각적 스펙터클, 그리고 깊이 있는 인간 드라마가 완벽하게 조화를 이룬 걸작이다. *"Love is the one thing we're capable of perceiving that transcends dimensions of time and space."*
 
-기술적으로는 실용 효과와 CGI의 완벽한 결합, 한스 짐머의 웅장한 스코어, 그리고 IMAX의 몰입감 있는 촬영이 어우러져 극장에서만 느낄 수 있는 특별한 경험을 만들어낸다.
+## 참고 문헌 및 출처
 
-**인터스텔라**는 단순한 SF 영화를 넘어서 인간 존재에 대한 철학적 성찰을 담은 현대 영화의 고전이 되었다. 과학과 감성, 스펙터클과 메시지의 완벽한 균형을 이룬 이 작품은 앞으로도 오랫동안 회자될 명작이다.
-
-*"Love is the one thing we're capable of perceiving that transcends dimensions of time and space."*
-
----
-
-**최종 평점: ★★★★★**
-
-*인터스텔라는 우주의 광활함과 인간 감정의 세밀함을 동시에 담아낸 크리스토퍼 놀란의 대서사시다.* 
+1. [Interstellar (2014) - IMDb](https://www.imdb.com/title/tt0816692/)
+2. [Interstellar - Rotten Tomatoes](https://www.rottentomatoes.com/m/interstellar_2014)
+3. [Interstellar - Box Office Mojo](https://www.boxofficemojo.com/title/tt0816692/)
+4. [Kip Thorne - The Science of Interstellar](https://www.wwnorton.com/books/9780393351378) 

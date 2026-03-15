@@ -107,7 +107,7 @@ image: "wordcloud.png"
 
 ```mermaid
 flowchart TD
-  A[제곱 나머지 분포 A[r]] --> B[선형 컨볼루션 A*A (FFT)]
+  A["제곱 나머지 분포 A[r]"] --> B["선형 컨볼루션 A*A (FFT)"]
   B --> C[길이 n에서 접기(순환 컨볼루션)]
   C --> D[ordered = Σ_r circ[r]·A[r]]
   A --> E[equal = Σ_r A[r]·A[2r mod n]]
@@ -135,7 +135,7 @@ flowchart TD
 ## 구현 (C++)
 
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -269,4 +269,9 @@ int main() {
 - 순환 컨볼루션과 접기: 선형 컨볼루션 결과를 길이 `n`에서 접어 합산
 - 대칭 보정: `U = (O + E) / 2` (ordered→`a≤b` 변환)
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

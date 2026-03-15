@@ -1,13 +1,70 @@
 ---
-title: "디스커넥트 (2012) - 연결된 세상에서 단절된 사람들"
+title: "[Movie] Disconnect (디스커넥트) (2012) - 연결된 세상에서 단절된 사람들"
+description: "인터넷과 소셜 미디어가 현대인에게 미치는 어두운 영향을 세 개의 연결된 이야기로 그린 드라마 스릴러. 헨리 알렉스 루빈 감독, 제이슨 베이트먼·폴라 패튼·알렉산더 스카스가드 출연."
 date: 2012-04-12
+lastmod: 2012-04-12
 categories:
-- Movies
+- Movie
+- Drama
+- Thriller
 tags:
 - Drama
 - Thriller
 - Internet
+- Henry-Alex-Rubin
+- 헨리 알렉스 루빈
+- Jason-Bateman
+- 제이슨 베이트먼
+- Paula-Patton
+- Movie
+- 영화
+- Action
+- 액션
+- Adventure
+- 모험
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- 2000s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Cyberbullying
+- Social-Media
 draft: true
+image: "poster.png"
 ---
 
 ## 작품 개요
@@ -125,6 +182,23 @@ draft: true
 ## 기술적 혁신
 ### 디지털 시대의 영화 언어
 온라인 소통을 영화적으로 표현하는 새로운 방식을 제시했습니다. 텍스트 메시지나 채팅을 시각적으로 표현하는 기법은 이후 많은 영화들에 영향을 미쳤습니다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Disconnect)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Disconnect)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Disconnect)
 
 ## 결론
 **디스커넥트**는 현대 디지털 사회의 문제점을 예리하게 파헤친 중요한 작품입니다. 세 개의 서로 다른 이야기를 통해 인터넷과 소셜 미디어가 우리 삶에 미치는 복합적인 영향을 보여주며, 진정한 소통과 연결의 의미에 대해 생각해보게 만듭니다.

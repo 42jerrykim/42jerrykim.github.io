@@ -98,7 +98,7 @@ A×B
 
 ```mermaid
 flowchart TD
-  A[입력 문자열 A,B] --> B[BASE=10^4 블록화]
+  A["입력 문자열 A,B"] --> B["BASE=10^4 블록화"]
   B --> C[FFT로 컨볼루션]
   C --> D[역FFT + 반올림]
   D --> E[BASE 기준 캐리 전파]
@@ -121,7 +121,7 @@ flowchart TD
 ## 구현 (C++)
 
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -239,3 +239,9 @@ int main() {
 - 큰 수 곱셈: FFT/NTT 기반 다항식 곱셈 자료.
 - 관련 문제: 임의정밀 덧셈/뺄셈, Karatsuba/Toom-Cook 비교.
 
+## 코너 케이스 및 실수 포인트
+
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

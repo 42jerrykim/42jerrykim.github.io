@@ -1,16 +1,67 @@
 ---
-title: "가디언즈 오브 갤럭시 (Guardians of the Galaxy, 2014) ★★★★★"
-description: "우주 깡패들의 유쾌한 영웅담, 제임스 건이 선사한 마블의 새로운 패러다임"
-summary: "전과자 스타로드와 네 명의 이상한 동료들이 우주를 구하기 위해 뭉친다. 제임스 건 감독의 유머러스하고 감성적인 연출과 80년대 올드 팝 사운드트랙이 어우러져 마블 시네마틱 유니버스에 새로운 활력을 불어넣은 경쾌한 우주 모험담이다."
+title: "[Movie] Guardians of the Galaxy (가디언즈 오브 갤럭시) (2014) - 우주 깡패들의 영웅담"
+description: "스타로드와 동료들이 인피니티 스톤을 두고 싸운다. 제임스 건 감독, 크리스 프랫·조 샐다나·데이브 바티스타·빈 디젤·브래들리 쿠퍼. 80년대 팝과 마블의 경쾌한 우주 모험."
 date: 2014-08-01
+lastmod: 2014-08-01
 tags:
 - 영화
 - 리뷰
 - SF
 - 액션
 - 코미디
+- James-Gunn
+- 제임스 건
+- Chris-Pratt
+- Zoe-Saldana
+- Dave-Bautista
+- Vin-Diesel
+- Bradley-Cooper
+- Marvel
+- MCU
+- Movie
+- Action
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- 2010s
+- Culture
+- 문화
+- History
+- 기술
+- Review
+- Groot
+- Star-Lord
 categories:
-- Movies
+- Movie
 series: ["Movie Reviews"]
 series_order: 21
 ShowToc: true
@@ -240,6 +291,21 @@ draft: true
 이 영화의 성공으로 《가디언즈 오브 갤럭시 Vol.2》(2017), 《토르: 라그나로크》 등 유머를 적극 활용한 마블 영화들이 제작되었다. 제임스 건의 스타일은 이후 마블 영화들의 톤에 큰 영향을 미쳤다.
 
 ---
+
+## 종합 평가
+
+* **최종 평점**: ★★★★★ (5/5)
+* **한 줄 평**: 우주를 무대로 한 가장 따뜻하고 유쾌한 가족 이야기. 80년대 팝과 선택된 가족.
+* **장점**: 제임스 건 톤, 캐릭터·앙상블, 사운드트랙·시각 효과.
+* **단점**: MCU 연결로 인한 일부 설명 부담.
+* **추천 작품**: 《가디언즈 Vol.2》, 《토르: 라그나로크》, 《스타로드》
+* **관람 전 체크리스트**: 가족 관람 가능. 일부 폭력·언어.
+
+## 참고 문헌 및 출처
+
+1. [Guardians of the Galaxy (2014) - IMDb](https://www.imdb.com/title/tt2015381/)
+2. [Guardians of the Galaxy - Rotten Tomatoes](https://www.rottentomatoes.com/m/guardians_of_the_galaxy)
+3. [Guardians of the Galaxy - Box Office Mojo](https://www.boxofficemojo.com/title/tt2015381/)
 
 ## 결론
 

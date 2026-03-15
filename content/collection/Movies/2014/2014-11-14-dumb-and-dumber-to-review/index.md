@@ -1,16 +1,67 @@
 ---
-title: "덤 앤 더머 투 - 20년의 기다림이 아까운 속편"
+title: "[Movie] Dumb and Dumber To (덤 앤 더머 투) (2014) - 20년 만의 바보 콤비 속편"
+description: "20년 만에 돌아온 덤 앤 더머 정식 속편. 패럴리 형제 감독, 짐 캐리·제프 다니엘스가 로이드와 해리로 재회. 바보 콤비의 모험담이자 코미디 속편."
 date: 2014-11-14
-
+lastmod: 2014-11-14
 categories:
-- Movies
+- Movie
 - Comedy
 tags:
 - 코미디
 - Comedy
-description: "20년 만에 돌아온 바보 콤비의 모험담. 하지만 시간이 흘러도 변하지 않는 건 그들의 바보스러움뿐, 코미디는 퇴화했다"
-poster: "https://image.tmdb.org/t/p/w500/pPqWjMRA4vRl3PnhHlqJ4fGzqjz.jpg"
-
+- Farrelly-Brothers
+- 패럴리 형제
+- Jim-Carrey
+- 짐 캐리
+- Jeff-Daniels
+- 제프 다니엘스
+- Movie
+- 영화
+- Action
+- 액션
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Buddy-Comedy
+image: "poster.png"
 draft: true
 ---
 
@@ -203,6 +254,23 @@ draft: true
 ### 제프 다니엘스
 
 TV 시리즈 《뉴스룸》으로 제2의 전성기를 맞고 있던 제프 다니엘스에게 이 영화는 불필요한 흠집이 되었다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Dumb+and+Dumber+To)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Dumb%20and%20Dumber%20To)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Dumb%20and%20Dumber%20To)
 
 ## 평가
 

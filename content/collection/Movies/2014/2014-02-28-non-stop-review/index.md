@@ -1,12 +1,67 @@
 ---
-title: "논스톱 (2014) - 40,000피트 상공의 완벽한 밀실 스릴러"
+title: "[Movie] Non-Stop (논스톱) (2014) - 40,000피트 상공의 밀실 스릴러"
 date: 2014-02-28
+lastmod: 2014-02-28
+description: "뉴욕-런던 항공편에서 20분마다 승객을 죽이겠다는 협박을 받는 연방항공보안관. 자우메 콜레트-세라 감독, 리암 니슨·줄리안 무어 출연. 밀폐 공간 실시간 스릴러."
 categories:
-- Movies
+- Movie
+- Action
+- Thriller
 tags:
 - Action
 - Thriller
+- Jaume-Collet-Serra
+- 자우메 콜레트-세라
+- Liam-Neeson
+- 리암 니슨
+- Julianne-Moore
+- Movie
+- 영화
+- Adventure
+- 모험
+- Drama
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Plane
+- Aviation
 draft: true
+image: "poster.png"
 ---
 
 ## 작품 개요
@@ -256,6 +311,23 @@ draft: true
 
 ### 장르적 이해
 스릴러 장르에 대한 깊은 이해와 숙련된 연출 능력이 돋보입니다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Non)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Non)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Non)
 
 ## 결론
 **논스톱**은 40,000피트 상공에서 벌어지는 완벽한 밀실 스릴러입니다. 리암 니슨의 카리스마와 자우메 콜레트-세라의 연출력이 만나 긴장감 넘치는 106분을 선사합니다. 항공기라는 제한된 공간을 오히려 장점으로 활용하여 클로스트로포비아적 공포감과 추리의 재미를 동시에 제공하는 수작입니다.

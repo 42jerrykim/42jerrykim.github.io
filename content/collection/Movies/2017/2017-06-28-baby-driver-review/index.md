@@ -1,16 +1,64 @@
 ---
-title: "베이비 드라이버 (Baby Driver, 2017) ★★★★★"
-description: "음악과 액션의 완벽한 하모니, 에드가 라이트의 시네마틱 뮤지컬 마스터피스"
-summary: "이명 때문에 음악에 의존하는 젊은 도주 운전사 베이비의 이야기를 그린 액션 영화. 에드가 라이트 감독은 음악과 영상의 완벽한 동기화를 통해 전례 없는 시청각적 경험을 선사한다. 안셀 엘고트의 매력적인 연기와 존 햄, 제이미 폭스의 강렬한 존재감이 어우러져 현대 액션 영화의 새로운 기준을 제시한 혁신작."
+title: "[Movie] Baby Driver (베이비 드라이버) (2017) - 음악과 액션의 하모니"
+description: "이명이 있는 도주 운전사 베이비가 음악과 함께 달린다. 에드가 라이트 감독, 안셀 엘고트·존 햄·제이미 폭스·릴리 제임스 주연. 음악과 영상 동기화의 혁신적 액션."
 date: 2017-06-28
+lastmod: 2017-06-28
 tags:
 - 영화
 - 리뷰
 - 액션
 - 뮤지컬
 - 범죄
+- Edgar-Wright
+- 에드가 라이트
+- Ansel-Elgort
+- Jon-Hamm
+- Jamie-Foxx
+- Lily-James
+- Movie
+- Action
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 기술
+- Review
+- Getaway-Driver
 categories:
-- Movies
+- Movie
 series: ["Movie Reviews"]
 series_order: 14
 ShowToc: true
@@ -259,6 +307,23 @@ CGI에 의존하지 않은 실제 스턴트는 영화에 생생한 현실감을 
 베이비와 버디의 최후 대결은 영화 전체의 음악적 구성을 완성하는 피날레다.
 
 ---
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Baby+Driver)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Baby%20Driver)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Baby%20Driver)
 
 ## 결론
 

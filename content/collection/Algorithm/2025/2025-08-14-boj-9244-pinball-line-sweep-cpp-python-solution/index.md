@@ -137,7 +137,7 @@ flowchart TD
 
 ## 구현 (C++)
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -279,7 +279,7 @@ int main() {
 
 ## 구현 (Python)
 ```python
-# 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 # 참고: 본 문제의 핵심은 "현재 x에 의존하는 순서"를 유지하는 균형 BST가 필요합니다.
 # 파이썬 표준 라이브러리만으로는 비교자가 동적으로 변하는 정렬 집합을 직접 제공하지 않으므로
 # 실전 제출은 C++ 권장입니다. 아래는 로직 스켈레톤입니다.
@@ -332,3 +332,10 @@ if __name__ == "__main__":
 ## 참고자료
 - NCPC 2013 H: 핀볼 (원문 분류)
 - 문제 링크: https://www.acmicpc.net/problem/9244
+
+## 코너 케이스 및 실수 포인트
+
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

@@ -3,7 +3,7 @@ image: "tmp_wordcloud.png"
 categories:
 - Shell
 date: "2019-02-13T00:00:00Z"
-description: ""
+description: "셸 스크립트에서 exit 명령의 동작과 종료 상태(exit status)의 의미를 설명합니다. 성공 시 0, 실패 시 비영점 반환, exit nnn으로 부모 프로세스에 값 전달, 마지막 명령의 상태가 스크립트 종료값이 되는 규칙과 예제를 150자 분량으로 정리합니다."
 redirect_from:
 - /2019/02/13/
 tags:
@@ -57,6 +57,10 @@ tags:
 - 마이그레이션
 - Hardware
 - 하드웨어
+- Cloud
+- 클라우드
+- Mobile
+- 모바일
 title: '[Shell] Exit and exit status'
 ---
 
@@ -106,7 +110,7 @@ COMMAND1
 
 COMMAND_LAST
 
-## Will exit with status of last command.
+# Will exit with status of last command.
 ```
 
 `$?` reads the exit status of the last command executed. After a function returns, $? gives the exit status of the last command executed in the function. This is Bash's way of giving functions a **return value.**[^1]

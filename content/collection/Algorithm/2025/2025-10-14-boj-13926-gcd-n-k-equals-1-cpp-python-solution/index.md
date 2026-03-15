@@ -86,7 +86,7 @@ image: "wordcloud.png"
 ### C++
 
 ```cpp
-// 더 많은 정보는 https://42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 using u128 = unsigned __int128;
@@ -181,7 +181,7 @@ int main() {
 ### Python
 
 ```python
-# 더 많은 정보는 https://42jerrykim.github.io 에서 확인하세요.
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 import sys
 import random
 from math import gcd
@@ -289,3 +289,10 @@ if __name__ == "__main__":
 - φ(n) 공식: n × ∏(1 − 1/p)
 - Miller–Rabin 64비트 결정론적 기반 집합 사용
 - Pollard Rho 난수 시드에 따라 재시도 가능
+
+## 코너 케이스 및 실수 포인트
+
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

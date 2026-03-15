@@ -30,11 +30,11 @@ YYYY-MM-DD-영화제목-개봉연도-소제목-키워드
 ```
 
 **예시**:
-- `2008-06-27-wall-e-2008-love-saves-humanity`
-- `1987-07-17-robocop-1987-future-law-enforcement`
+- `2025-06-27-wall-e-2008-love-saves-humanity`
+- `2025-07-17-robocop-1987-future-law-enforcement`
 
 **구성 요소**:
-- **날짜** (`YYYY-MM-DD`): 리뷰 작성일 또는 영화 개봉일
+- **날짜** (`YYYY-MM-DD`): 리뷰 작성일(오늘 날짜). 개봉연도는 제목·본문에서만 사용하며 폴더명/ Front Matter `date`에는 사용하지 않는다.
 - **영화 제목**: 영어 원제를 소문자와 하이픈으로 표기
 - **개봉 연도**: 4자리 년도 (예: 2008)
 - **소제목 키워드**: title의 부제목을 영어로 간략하게 표현 (2-4 단어)

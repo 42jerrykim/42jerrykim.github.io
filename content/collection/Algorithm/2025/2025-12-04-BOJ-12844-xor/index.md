@@ -142,7 +142,7 @@ flowchart TD
 ### C++
 
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <iostream>
 #include <vector>
 #include <cmath>

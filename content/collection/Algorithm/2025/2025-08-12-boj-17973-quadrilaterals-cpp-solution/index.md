@@ -70,7 +70,7 @@ image: "wordcloud.png"
 ### C++ 풀이
 
 ```cpp
-// 42jerrykim.github.io에서 더 많은 정보를 확인 할 수 있습니다.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -173,4 +173,9 @@ int main() {
 - 문제: `https://www.acmicpc.net/problem/17973`
 - 아이디어: 회전 스윕으로 대각선 기여도 누적 + 대각선 주변 4개 후보로 최소 넓이 판정
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

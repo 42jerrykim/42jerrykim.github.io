@@ -1,15 +1,64 @@
 ---
-title: "위대한 쇼맨 (The Greatest Showman, 2017) ★★★★★"
-description: "꿈과 희망의 스펙터클, 휴 잭맨이 선사하는 환상적인 뮤지컬 서사시"
-summary: "19세기 뉴욕을 배경으로 한 P.T. 바넘의 서커스 창립 이야기. 평범한 재단사의 아들에서 세계 최고의 쇼맨으로 성장하는 바넘의 여정을 통해 꿈의 힘과 다양성의 아름다움을 노래한다. 휴 잭맨의 강렬한 연기와 벤즈 패섹, 저스틴 폴의 감동적인 음악이 만나 잊을 수 없는 감동을 선사한다."
+title: "[Movie] The Greatest Showman (위대한 쇼맨) (2017) - 꿈과 희망의 뮤지컬 스펙터클"
+description: "P.T. 바넘의 서커스 창립 이야기. 마이클 그레이시 감독, 휴 잭맨·잭 에프론·젠다야 주연. 꿈의 힘과 다양성을 노래하는 벤즈 패섹·저스틴 폴 음악의 뮤지컬."
 date: 2017-12-20
+lastmod: 2017-12-20
 tags:
 - 영화
 - 리뷰
 - 뮤지컬
 - 드라마
+- Michael-Gracey
+- 휴 잭맨
+- Zac-Efron
+- Zendaya
+- P-T-Barnum
+- Movie
+- Action
+- 액션
+- Adventure
+- 모험
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Musical
+- Visual-Effects
+- 시각효과
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 기술
+- Review
+- Circus
 categories:
-- Movies
+- Movie
 series: ["Movie Reviews"]
 series_order: 8
 ShowToc: true
@@ -226,6 +275,23 @@ draft: true
 사운드트랙의 성공은 영화 자체의 문화적 영향력을 증명하며, 많은 아티스트들이 이 곡들을 커버하면서 그 영향력은 더욱 확산되었다.
 
 ---
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=The+Greatest+Showman)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=The%20Greatest%20Showman)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=The%20Greatest%20Showman)
 
 ## 결론
 

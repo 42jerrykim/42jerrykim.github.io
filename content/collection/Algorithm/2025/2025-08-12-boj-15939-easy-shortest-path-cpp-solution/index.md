@@ -232,4 +232,9 @@ int main() {
 - 해설: [JusticeHui - BOJ15939 쉬운 최단경로 문제](https://justicehui.github.io/ps/2020/09/13/BOJ15939/)
 - 대회: [UCPC 2018](https://www.acmicpc.net/category/detail/1893)
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |
