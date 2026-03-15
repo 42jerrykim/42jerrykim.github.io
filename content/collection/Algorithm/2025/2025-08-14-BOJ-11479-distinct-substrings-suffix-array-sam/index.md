@@ -111,7 +111,7 @@ aaa
 
 ## 구현 (C++)
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -160,7 +160,7 @@ int main(){
 
 ## 구현 (Python, Suffix Automaton)
 ```python
-# 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 import sys
 
 def count_distinct_substrings(s: str) -> int:
@@ -232,4 +232,9 @@ if __name__ == "__main__":
 - 접미사 배열/카사이 알고리즘 개요와 LCP 누적 아이디어
 - 접미사 자동자(SAM) 기본 성질: `sum(len[v] − len[link[v]])`
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

@@ -71,7 +71,7 @@ image: "wordcloud.png"
 ### C++ 풀이
 
 ```cpp
-// 42jerrykim.github.io에서 더 많은 정보를 확인 할 수 있습니다.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -225,4 +225,9 @@ int main() {
 - 문제: `https://www.acmicpc.net/problem/13727`
 - 아이디어: 4차원 단면 상태 전이 + BM로 점화 복원 + 다항식 제곱으로 항 계산
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

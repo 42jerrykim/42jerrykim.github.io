@@ -148,7 +148,7 @@ while (S->T 최단 비용 경로 존재):
 
 ## 구현 (C++)
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -281,4 +281,9 @@ int main() {
 - 최소 비용 최대 유량(MCMF) 개요: 잠재치(Johnson) 기반 재가중치와 Dijkstra 결합
 - BOJ 11408 "열혈강호 5" 문제 페이지
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

@@ -194,7 +194,7 @@ for (long long b : base) {
 ### C++
 
 ```cpp
-// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있습니다.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 

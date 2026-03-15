@@ -270,7 +270,7 @@ graph TD
     A[시작: M개 동전 위치 입력] --> B[모든 위치를 XOR 연산]
     B --> C{XOR 결과}
     C -->|≠ 0| D[선공 유리<br/>koosaga 승리]
-    C -->|= 0| E[후공 유리<br/>cubelover 승리]
+    C -->|"= 0"| E["후공 유리</br>cubelover 승리"]
     
     style A fill:#e1f5ff
     style B fill:#fff4e1
@@ -292,7 +292,7 @@ graph TD
 ### C++ 코드
 
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -323,7 +323,7 @@ int main() {
 ### Python 코드
 
 ```python
-# 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 M = int(input())
 positions = list(map(int, input().split()))
 
@@ -431,3 +431,10 @@ else:
   - Grundy number를 활용한 돌 게임
 - [백준 11014번: 컨닝 2](https://www.acmicpc.net/problem/11014)
   - 이분 매칭을 활용한 게임 문제
+
+## 코너 케이스 및 실수 포인트
+
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

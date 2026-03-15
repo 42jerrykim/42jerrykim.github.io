@@ -89,16 +89,16 @@ image: "wordcloud.png"
 
 ```mermaid
 flowchart TD
-  A[입력 n] --> B[상한 hi 찾기: f(hi) ≥ n 될 때까지 두 배]
-  B --> C[μ(k) 전처리: k ≤ ⌊√hi⌋]
+  A["입력 n"] --> B["상한 hi 찾기: f(hi) >= n 될 때까지 두 배"]
+  B --> C["mu(k) 전처리: k <= sqrt(hi)"]
   C --> D{이분 탐색}
-  D -->|mid| E[S(mid)=∑ μ(k)⌊mid/k²⌋]
-  E --> F[f(mid)=mid - S(mid)]
-  F -->|f(mid) ≥ n| G[ans=mid, hi=mid-1]
-  F -->|f(mid) < n| H[lo=mid+1]
+  D -->|mid| E["S(mid)= sum mu(k) floor(mid/k^2)"]
+  E --> F["f(mid)=mid - S(mid)"]
+  F -->|"f(mid) >= n"| G["ans=mid, hi=mid-1"]
+  F -->|"f(mid) < n"| H["lo=mid+1"]
   G --> D
   H --> D
-  D -->|종료| I[정답 출력]
+  D -->|종료| I["정답 출력"]
 ```
 
 ## 알고리즘 설계
@@ -116,7 +116,7 @@ flowchart TD
 ## 구현 (C++)
 
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -211,4 +211,9 @@ int main() {
 - Squarefree counting: `S(x) = \sum_{k≥1} μ(k) ⌊x/k²⌋`
 - 밀도: squarefree 밀도 `6/π²`, non-squarefree 밀도 `1 - 6/π²`
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

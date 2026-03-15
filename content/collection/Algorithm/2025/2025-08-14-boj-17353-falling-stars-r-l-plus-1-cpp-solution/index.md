@@ -105,7 +105,7 @@ Q
 
 ## 구현 (C++)
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -175,4 +175,9 @@ int main() {
 - Binary Indexed Tree로 범위 업데이트/점 질의 처리 기법
 - 차분 배열(difference array)과 BIT의 결합 아이디어
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

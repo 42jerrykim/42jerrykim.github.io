@@ -98,7 +98,7 @@ flowchart LR
 
 ## 구현 (C++)
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -180,7 +180,7 @@ int main(){
 
 ## 구현 (Python)
 ```python
-# 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 import sys
 
 def main():
@@ -251,4 +251,9 @@ if __name__ == "__main__":
 - POI 2011/2012 SZA - Cloakroom 공식 문제 설명
 - 부분합 존재 여부 비트셋 기법 및 오프라인 질의 처리 패턴
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

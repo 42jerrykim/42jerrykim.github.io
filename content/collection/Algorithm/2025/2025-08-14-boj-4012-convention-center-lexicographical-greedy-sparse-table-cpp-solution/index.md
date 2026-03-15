@@ -121,7 +121,7 @@ flowchart TD
 
 ## 구현 (C++)
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -232,4 +232,9 @@ int main() {
 - [BOJ 4012: 컨벤션 센터](https://www.acmicpc.net/problem/4012)
 - [Coder's Brunch: 4012번 컨벤션 센터 노트](http://codersbrunch.blogspot.com/2017/01/4012.html)
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

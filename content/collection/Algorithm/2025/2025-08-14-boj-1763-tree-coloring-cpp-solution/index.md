@@ -108,7 +108,7 @@ image: "wordcloud.png"
 
 ## 구현 (C++)
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -186,4 +186,9 @@ int main() {
 - Beijing Regional 2004 F. BOJ 1763 “트리 색칠”.
 - 관련 아이디어: 비율 그리디·교환 논증, 조상 경로 압축.
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

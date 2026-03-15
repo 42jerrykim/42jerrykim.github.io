@@ -58,7 +58,7 @@ tags:
  - Pitfalls
  - 함정
  - Error-Handling
-image: wordcloud.png
+image: "wordcloud.png"
 ---
 
 문자열 안에서 적어도 한 번 이상 반복되는 부분문자열(즉, 전체 문자열에서 두 번 이상 등장하는 부분문자열)의 최대 길이를 구하는 문제이다. 길이 \(L\) 은 최대 200,000이므로, 단순한 모든 구간 비교는 시간 내에 불가능하다.
@@ -221,3 +221,10 @@ tellmetellmetetetetetetellme
 - LCP array — Wikipedia: [https://en.wikipedia.org/wiki/LCP_array](https://en.wikipedia.org/wiki/LCP_array)
 - Longest repeated substring problem — Wikipedia: [https://en.wikipedia.org/wiki/Longest_repeated_substring_problem](https://en.wikipedia.org/wiki/Longest_repeated_substring_problem)
 - Suffix Array — cp-algorithms: [https://cp-algorithms.com/string/suffix-array.html](https://cp-algorithms.com/string/suffix-array.html)
+
+## 코너 케이스 및 실수 포인트
+
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

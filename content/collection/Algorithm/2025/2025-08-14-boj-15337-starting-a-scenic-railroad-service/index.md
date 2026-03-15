@@ -115,7 +115,7 @@ flowchart LR
 
 ## 구현 (C++)
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -165,7 +165,7 @@ int main(){
 
 ## 구현 (Python)
 ```python
-# 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 import sys
 
 def solve() -> None:
@@ -234,4 +234,9 @@ if __name__ == "__main__":
 - 좌표 라인 스위핑으로 동시 활동 수 계산(최대 겹침)
 - 구간 겹침 수를 누적합/접미합으로 O(1) 조회
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

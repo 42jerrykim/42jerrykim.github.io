@@ -72,7 +72,7 @@ image: "wordcloud.png"
 ### C++ 풀이
 
 ```cpp
-// 42jerrykim.github.io에서 더 많은 정보를 확인 할 수 있습니다.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -208,4 +208,9 @@ int main() {
 - USACO Guide: [Solution - Duathlon (APIO 2018)](https://usaco.guide/problems/apio-2018duathlon/solution)
 - GitHub(Ava Pun): [apio18p3.cpp](https://github.com/AvaLovelace1/competitive-programming/blob/master/solutions/apio/apio18p3.cpp)
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

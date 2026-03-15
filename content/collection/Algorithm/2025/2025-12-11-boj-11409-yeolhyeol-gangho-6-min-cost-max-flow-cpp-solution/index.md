@@ -57,7 +57,7 @@ lastmod: 2025-12-11
 categories:
   - Algorithm
   - Graph
-image: wordcloud.png
+image: "wordcloud.png"
 ---
 
 문제의 핵심 유형은 **이분 그래프 네트워크 플로우 + 최소 비용 최대 유량(MCMF)**입니다.  
@@ -176,7 +176,7 @@ flowchart TD
 ### C++
 
 ```cpp
-// 42jerrykim.github.io에서 더 많은 정보를 확인 할 수 있습니다.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 
 #include <bits/stdc++.h>
 using namespace std;

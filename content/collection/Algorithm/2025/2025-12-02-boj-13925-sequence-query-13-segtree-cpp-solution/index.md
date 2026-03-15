@@ -56,7 +56,7 @@ tags:
   - Performance
 date: 2025-12-02
 lastmod: 2025-12-02
-image: wordcloud.png
+image: "wordcloud.png"
 ---
 
 ## 문제 분석
@@ -93,7 +93,7 @@ $$= (\text{mul'} \cdot \text{mul}) \cdot x + (\text{mul'} \cdot \text{add} + \te
 ## 구현 코드
 
 ```cpp
-// 더 많은 정보: https://42jerrykim.github.io
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -288,3 +288,9 @@ N = 100,000, M = 100,000일 때 약 1,700만 연산으로 충분합니다.
 
 이 문제가 어려운 이유는 **세 가지 서로 다른 연산을 하나의 프레임워크로 통합**해야 한다는 점입니다. 핵심은 모든 연산을 선형 함수로 표현하고, lazy 값을 합성 함수로 처리하는 것입니다. 비슷한 문제로 BOJ 13424, BOJ 14178 등이 있으니 참고하세요.
 
+## 코너 케이스 및 실수 포인트
+
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

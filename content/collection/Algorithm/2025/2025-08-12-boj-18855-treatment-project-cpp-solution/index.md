@@ -78,7 +78,7 @@ image: "wordcloud.png"
 ### C++ 풀이
 
 ```cpp
-// 더 많은 알고리즘/풀이 글은 42jerrykim.github.io에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -231,4 +231,9 @@ int main() {
 - JOI 공식 문제 설명(PDF): [treatment-en.pdf](https://www2.ioi-jp.org/camp/2020/2020-sp-tasks/day4/treatment-en.pdf)
 - Codeforces 토론: [Japanese Olympiad in Informatics Spring Camp 2020](https://codeforces.com/blog/entry/74871) – 댓글 중 square1001의 아이디어 요지
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

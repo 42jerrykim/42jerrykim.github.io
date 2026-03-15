@@ -60,7 +60,7 @@ tags:
 - Documentation
 - 문서화
 - Best-Practices
-image: wordcloud.png
+image: "wordcloud.png"
 ---
 
 서로 다른 정수 배열 \(A\)가 주어질 때,
@@ -166,7 +166,7 @@ flowchart TD
 ## 구현 코드 (C++)
 
 ```cpp
-// 42jerrykim.github.io에서 더 많은 정보를 확인 할 수 있다
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 

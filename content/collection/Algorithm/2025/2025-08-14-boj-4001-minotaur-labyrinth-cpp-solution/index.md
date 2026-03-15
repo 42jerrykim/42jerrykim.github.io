@@ -102,7 +102,7 @@ l x y  (정답 정사각형의 변 길이와 좌상단 좌표)
 
 ## 구현 (C++)
 ```cpp
-// 더 많은 정보는 42jerrykim.github.io 에서 확인하세요.
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -248,4 +248,9 @@ int main() {
 - NEERC 2012 L - Labyrinth of the Minotaur: [DMOJ 문제](https://dmoj.ca/problem/neerc12l), [Editorial](https://dmoj.ca/problem/neerc12l/editorial)
 - BOJ 4001 - 문제 페이지: [acmicpc.net/problem/4001](https://www.acmicpc.net/problem/4001)
 
+## 코너 케이스 및 실수 포인트
 
+| 케이스 | 설명 | 처리 방법 |
+|---|---|---|
+| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
+| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |

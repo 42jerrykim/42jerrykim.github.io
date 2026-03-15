@@ -58,7 +58,7 @@ tags:
 - Refactoring
 - 리팩토링
 - Clean-Code
-image: wordcloud.png
+image: "wordcloud.png"
 ---
 
 문제: [BOJ 16745 - What Goes Up Must Come Down](https://www.acmicpc.net/problem/16745)
@@ -195,7 +195,7 @@ flowchart TD
 ## C++ 구현 코드
 
 ```cpp
-// 42jerrykim.github.io에서 더 많은 정보를 확인 할 수 있다
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 
 #include <bits/stdc++.h>
 using namespace std;
