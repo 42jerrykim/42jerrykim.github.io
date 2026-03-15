@@ -3,7 +3,7 @@ image: "tmp_wordcloud.png"
 categories:
 - LattePanda
 date: "2018-12-06T00:00:00Z"
-description: install Ubuntu 16.04 on LattePanda Alpha
+description: "LattePanda Alpha에 Ubuntu 16.04 LTS를 설치하는 방법을 단계별로 안내합니다. Ubuntu ISO 다운로드, 부팅 USB 제작, Secure Boot 비활성화, UEFI 부팅 선택부터 설치 유형 선택까지 실무 절차를 150자 분량으로 정리합니다."
 redirect_from:
 - /2018/12/06/
 tags:
@@ -57,6 +57,8 @@ tags:
 - 하드웨어
 - Mobile
 - 모바일
+- Cloud
+- 클라우드
 title: Install Ubuntu 16.04 on LattePanda Alpha
 ---
 

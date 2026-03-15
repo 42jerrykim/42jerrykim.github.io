@@ -1,5 +1,5 @@
 ---
-title: "[Remote Desktop] Windows 원격 데스크톱 앱에서 SSH 터널 연결 시 오류 0x516 발생 원인 및 해결"
+title: "[Remote Desktop] RDP 앱 SSH 터널 오류 0x516 원인 및 해결"
 categories:
 - Remote Desktop
 tags:
@@ -53,6 +53,16 @@ tags:
   - Tips
   - Comparison
   - 비교
+  - Career
+  - 커리어
+  - Workflow
+  - 워크플로우
+  - Migration
+  - 마이그레이션
+  - Hardware
+  - 하드웨어
+  - Mobile
+  - 모바일
 date: 2025-04-02
 last_modified_at: 2025-04-02
 description: Windows 원격 데스크톱 UWP 앱에서 SSH 터널링 연결 시 발생하는 0x516 오류의 원인과 해결 방법을 설명한다. UWP 앱의 네트워크 격리 정책으로 인해 localhost 접근이 차단되어 발생하는 문제이며, CheckNetIsolation 도구를 사용한 루프백 예외 설정으로 해결할 수 있다.

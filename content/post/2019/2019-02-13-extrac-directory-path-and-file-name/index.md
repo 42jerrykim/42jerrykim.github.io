@@ -3,8 +3,7 @@ image: "tmp_wordcloud.png"
 categories:
 - Shell
 date: "2019-02-13T00:00:00Z"
-description: How to extract directory path and file name from file path using sed
-  and basename
+description: "파일 경로에서 디렉터리 경로와 파일 이름을 분리하는 방법을 설명합니다. sed를 이용한 디렉터리 추출, basename을 이용한 파일명·확장자 추출, bash 함수 예제와 주의사항을 150자 분량으로 정리합니다."
 redirect_from:
 - /2019/02/13/
 tags:
@@ -58,6 +57,17 @@ tags:
 - Migration
 - 마이그레이션
 - Hardware
+- 하드웨어
+- Cloud
+- 클라우드
+- Mobile
+- 모바일
+- Deployment
+- Error-Handling
+- Performance
+- 성능
+- Testing
+- 테스트
 title: '[Shell] Extract directory path and file name from file path'
 ---
 

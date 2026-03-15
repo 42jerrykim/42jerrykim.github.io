@@ -3,7 +3,7 @@ image: "tmp_wordcloud.png"
 categories:
 - Proxy
 date: "2019-04-02T00:00:00Z"
-description: ""
+description: "프록시 환경에서 pip으로 Python 패키지를 설치하는 방법을 설명합니다. pip install --proxy 옵션에 프록시 URL과 패키지 이름을 지정하는 문법, 실제 사용 예시 및 주의사항을 150자 분량으로 정리합니다."
 redirect_from:
 - /2019/04/02/
 tags:
@@ -57,6 +57,9 @@ tags:
 - Hardware
 - 하드웨어
 - Mobile
+- 모바일
+- Cloud
+- 클라우드
 title: PIP 패키지 인스톨 Proxy 환경에서 사용하기
 ---
 
@@ -70,10 +73,10 @@ title: PIP 패키지 인스톨 Proxy 환경에서 사용하기
 pip install --proxy [Proxy http url] [Package name]
 ```
 
-위에 보시는 것과 같이 프록시 값을 먼저 설정 후 뒤에 설치할 패키지명을 추가한다. 예를들어 아래와 같이 사용한다.
+위와 같이 프록시 값을 먼저 설정한 뒤 설치할 패키지명을 추가한다. 예를 들어 아래와 같이 사용한다.
 
 ```bash
-pip installl --proxy http://000.111.222.333:4444 Flask
+pip install --proxy http://000.111.222.333:4444 Flask
 ```
 
-이제 정상적으로 인스톨이 수행 될 것입니다.
+이제 정상적으로 설치가 수행될 것이다.
