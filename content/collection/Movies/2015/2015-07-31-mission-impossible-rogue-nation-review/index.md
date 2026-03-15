@@ -1,15 +1,62 @@
 ---
-title: "미션 임파서블: 로그네이션 (Mission: Impossible - Rogue Nation, 2015) ★★★★★"
-description: "완벽한 스파이 액션의 진수, 톰 크루즈가 선사하는 불가능을 가능으로 만드는 극한의 모험"
-summary: "국제 범죄 조직 '시디케이트'와 맞서는 이단 헌트와 IMF 팀의 다섯 번째 미션. 크리스토퍼 맥쿼리 감독은 완벽한 스토리텔링과 숨막히는 액션의 조화를 통해 스파이 영화의 새로운 기준을 제시했다. 톰 크루즈의 절대적 헌신과 레베카 퍼거슨의 카리스마가 만나 시리즈 최고의 작품 중 하나를 완성했다."
+title: "[Movie] Mission: Impossible - Rogue Nation (미션 임파서블: 로그네이션) (2015) - 스파이 액션의 진수"
+description: "시디케이트와 맞서는 이단 헌트와 IMF 팀의 다섯 번째 미션. 크리스토퍼 맥쿼리 감독, 톰 크루즈·레베카 퍼거슨 주연. 완벽한 스토리텔링과 숨막히는 액션의 조화."
 date: 2015-07-31
+lastmod: 2015-07-31
 tags:
 - 영화
 - 리뷰
 - 액션
 - 스릴러
+- Christopher-McQuarrie
+- 톰 크루즈
+- Rebecca-Ferguson
+- Simon-Pegg
+- Jeremy-Renner
+- Movie
+- Action
+- Adventure
+- 모험
+- Drama
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 기술
+- Review
+- IMF
+- Spy
 categories:
-- Movies
+- Movie
 series: ["Movie Reviews"]
 series_order: 16
 ShowToc: true
@@ -270,6 +317,23 @@ CGI 위주의 액션에서 실용적 스턴트 중심으로의 회귀를 이끈 
 전통적인 스파이 영화 공식에 현대적 감각을 더해 장르의 새로운 가능성을 제시했다.
 
 ---
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Mission:+Impossible)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Mission:%20Impossible)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Mission:%20Impossible)
 
 ## 결론
 

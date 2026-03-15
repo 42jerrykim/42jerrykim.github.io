@@ -1,14 +1,70 @@
 ---
-title: "라 라 랜드 (2016) - 꿈과 사랑이 춤추는 로스앤젤레스의 마법"
+title: "[Movie] La La Land (라 라 랜드) (2016) - 꿈과 사랑이 춤추는 LA의 마법"
 date: 2016-12-09
-description: "데미언 셔젤이 그려낸 현대적 뮤지컬의 완벽한 재탄생, 라이언 고슬링과 엠마 스톤의 환상적 케미스트리"
+lastmod: 2016-12-09
+description: "재즈 피아니스트와 배우 지망생의 꿈과 사랑. 데미언 셰젤 감독, 라이언 고슬링·엠마 스톤 주연. 아카데미 6개 부문 수상 현대 뮤지컬 걸작."
 image: "la-la-land-poster.png"
-categories: 
-  - Movies
+categories:
+- Movie
+- Musical
+- Romance
+- Drama
 tags:
-  - Musical
-  - Romance
-  - Drama
+- Musical
+- Romance
+- Drama
+- Damien-Chazelle
+- 데미언 셰젤
+- Ryan-Gosling
+- 라이언 고슬링
+- Emma-Stone
+- 엠마 스톤
+- Movie
+- 영화
+- Action
+- 액션
+- Adventure
+- 모험
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Jazz
+- Los-Angeles
 draft: true
 ---
 
@@ -231,6 +287,23 @@ LA 관광청은 이를 적극 활용하여 '라 라 랜드' 투어 코스를 개
 ### 팬덤의 지속
 
 영화는 여전히 강력한 팬덤을 유지하고 있다. 특히 젊은 세대 사이에서는 "라라랜드 조"라는 용어까지 생겨날 정도로 큰 인상을 남겼다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=La+La+Land)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=La%20La%20Land)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=La%20La%20Land)
 
 ## 결론: 꿈과 현실 사이의 아름다운 댄스
 

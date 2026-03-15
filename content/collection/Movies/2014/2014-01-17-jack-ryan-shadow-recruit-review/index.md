@@ -1,12 +1,70 @@
 ---
-title: "잭 라이언: 코드네임 쉐도우 (2014) - 현대적으로 재탄생한 CIA 스파이 액션의 완성작"
+title: "[Movie] Jack Ryan: Shadow Recruit (잭 라이언: 코드네임 쉐도우) (2014) - CIA 스파이 액션 리부트"
+description: "9/11 이후 CIA 요원이 된 잭 라이언이 러시아 재벌의 테러 계획을 저지한다. 케네스 브래나 감독·출연, 크리스 파인·키이라 나이틀리·케빈 코스트너 주연. 톰 클랜시 시리즈 현대 리부트."
 date: 2014-01-17
+lastmod: 2014-01-17
 categories:
-- Movies
+- Movie
+- Action
+- Thriller
 tags:
 - Action
 - Thriller
+- Kenneth-Branagh
+- 케네스 브래나
+- Chris-Pine
+- 크리스 파인
+- Keira-Knightley
+- Kevin-Costner
+- Tom-Clancy
+- Movie
+- 영화
+- Adventure
+- 모험
+- Drama
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- CIA
+- Spy
+- Jack-Ryan
 draft: true
+image: "poster.png"
 ---
 
 ## 작품 개요
@@ -249,6 +307,23 @@ CIA 요원으로서 라이언의 다양한 모험이 가능한 설정입니다.
 
 ### 국제적 감각
 영국 출신 감독이 미국 영화를 연출하면서 국제적 감각을 보여줍니다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Jack+Ryan:+Shadow+Recruit)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Jack%20Ryan:%20Shadow%20Recruit)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Jack%20Ryan:%20Shadow%20Recruit)
 
 ## 결론
 **잭 라이언: 코드네임 쉐도우**는 톰 클랜시의 클래식 캐릭터를 현대적으로 성공적으로 재해석한 수작입니다. 크리스 파인의 매력적인 연기와 케네스 브래나의 연출력, 케빈 코스트너의 부활이 만나 완성도 높은 스파이 액션 스릴러를 만들어냈습니다.

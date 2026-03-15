@@ -1,15 +1,69 @@
 ---
-title: "터미네이터 제니시스 (Terminator Genisys, 2015) ★★★★★"
-description: "아놀드의 화려한 복귀와 새로운 시간선의 모험, 혼돈 속에서 피어나는 또 다른 가능성"
-summary: "시간선이 변경된 1984년, 사라 코너는 이미 훈련받은 전사가 되어 있었다. 아놀드 슈워제네거의 상징적 복귀와 에밀리아 클라크의 카리스마틱한 연기가 만나 터미네이터 프랜차이즈에 새로운 활력을 불어넣는다. 복잡한 시간 여행 설정에도 불구하고 강력한 액션과 감정적 깊이로 관객들을 사로잡는 작품."
+title: "[Movie] Terminator Genisys (터미네이터 제니시스) (2015) - 아놀드의 복귀와 새 시간선"
+description: "시간선이 바뀐 1984년, 사라 코너는 이미 전사가 되어 있다. 아놀드 슈워제네거의 상징적 복귀와 에밀리아 클라크의 연기가 터미네이터 프랜차이즈에 새 활력을 불어넣는 SF 액션. 앨런 테일러 감독."
 date: 2015-07-01
+lastmod: 2015-07-01
 tags:
 - 영화
 - 리뷰
 - SF
 - 액션
+- Alan-Taylor
+- 앨런 테일러
+- Arnold-Schwarzenegger
+- 아놀드 슈워제네거
+- Emilia-Clarke
+- 에밀리아 클라크
+- Movie
+- Action
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Review
+- Terminator
+- Time-Travel
 categories:
-- Movies
+- Movie
+- Sci-Fi
+- Action
 series: ["Movie Reviews"]
 series_order: 17
 ShowToc: true
@@ -17,6 +71,7 @@ TocOpen: true
 UseHugoToc: true
 comments: true
 images: ["/2015/07/01/terminator-genisys-review.jpg"]
+image: "poster.png"
 draft: true
 ---
 
@@ -286,6 +341,23 @@ draft: true
 원래 새로운 삼부작의 첫 번째 작품으로 기획되었으며, 이후 작품들의 방향성을 제시했다. 비록 계획대로 진행되지는 않았지만, 프랜차이즈의 새로운 가능성을 보여줬다.
 
 ---
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Terminator+Genisys)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Terminator%20Genisys)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Terminator%20Genisys)
 
 ## 결론
 

@@ -1,18 +1,70 @@
 ---
-title: "헝거게임: 모킹제이 Part 1 - 혁명의 시작, 정치적 각성의 서막"
+title: "[Movie] The Hunger Games: Mockingjay Part 1 (헝거게임: 모킹제이 Part 1) (2014) - 혁명의 시작"
 date: 2014-11-21
-
+lastmod: 2014-11-21
+description: "캣니스가 혁명의 상징 모킹제이가 되어가는 과정. 프랜시스 로렌스 감독, 제니퍼 로렌스 주연. 수잔 콜린스 원작 시리즈 세 번째 영화, 정치적 드라마와 SF 액션."
 categories:
-- Movies
+- Movie
 - Drama
 - Sci-Fi
 tags:
 - Drama
 - Sci-Fi
-description: "게임은 끝났지만 진짜 전쟁이 시작된다. 캣니스 에버딘이 혁명의 상징 모킹제이가 되어가는 과정을 그린 정치적 드라마의 걸작"
-poster: "https://image.tmdb.org/t/p/w500/gj282Pniaa78ZJfbaixyLXnXEDI.jpg"
-
+- Francis-Lawrence
+- 프랜시스 로렌스
+- Jennifer-Lawrence
+- 제니퍼 로렌스
+- Suzanne-Collins
+- Movie
+- 영화
+- Action
+- 액션
+- Adventure
+- 모험
+- Thriller
+- 스릴러
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Hunger-Games
+- Mockingjay
+- Revolution
 draft: true
+image: "poster.png"
 ---
 
 ## 작품 개요
@@ -149,6 +201,23 @@ draft: true
 ## 속편에 대한 기대
 
 Part 2에서 어떻게 혁명이 완성되고 새로운 질서가 수립될지에 대한 기대를 높인다. 특히 캣니스와 피타의 관계 회복, 코인과 스노우의 최종 대결, 그리고 모든 갈등의 해결 과정이 주목된다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=The+Hunger+Games:+Mockingjay+Part+1)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=The%20Hunger%20Games:%20Mockingjay%20Part%201)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=The%20Hunger%20Games:%20Mockingjay%20Part%201)
 
 ## 평가
 

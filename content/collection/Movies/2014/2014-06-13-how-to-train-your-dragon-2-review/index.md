@@ -1,13 +1,68 @@
 ---
-title: "드래곤 길들이기 2 (2014) - 성장한 영웅과 더 깊어진 모험"
+title: "[Movie] How to Train Your Dragon 2 (드래곤 길들이기 2) (2014) - 성장한 영웅과 깊어진 모험"
 date: 2014-06-13
+lastmod: 2014-06-13
+description: "드래곤과 인간 공존 5년 후, 성장한 히컵과 투슬리스가 드라고 블러드피스트와 맞선다. 딘 드블루아 감독, 제이 바루첼·케이트 블란쳇·제라드 버틀러 성우. 드림웍스 애니메이션 속편."
 categories:
-- Movies
+- Movie
+- Animation
+- Adventure
 tags:
 - Animation
 - Adventure
 - Family
+- Dean-DeBlois
+- 딘 드블루아
+- Jay-Baruchel
+- Cate-Blanchett
+- Gerard-Butler
+- DreamWorks
+- Movie
+- 영화
+- Action
+- 액션
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Dragon
+- Hiccup
+- Toothless
 draft: true
+image: "poster.png"
 ---
 
 ## 작품 개요
@@ -187,6 +242,23 @@ draft: true
 ## 시리즈에서의 위치
 ### 완벽한 중간편
 1편에서 설정한 세계관을 확장하면서도 3편으로 이어질 수 있는 완벽한 가교 역할을 합니다. 스타워즈의 《제국의 역습》처럼 주인공이 큰 시련을 겪고 성장하는 과정을 그린 성공적인 속편입니다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=How+to+Train+Your+Dragon+2)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=How%20to%20Train%20Your%20Dragon%202)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=How%20to%20Train%20Your%20Dragon%202)
 
 ## 결론
 **드래곤 길들이기 2**는 애니메이션 영화의 새로운 기준을 제시하는 걸작입니다. 전작의 성공에 안주하지 않고 모든 면에서 한 단계 발전한 모습을 보여주며, 어린이와 성인 모두를 만족시키는 완성도 높은 작품입니다.

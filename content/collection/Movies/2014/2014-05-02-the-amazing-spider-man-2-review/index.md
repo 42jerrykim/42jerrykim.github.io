@@ -1,10 +1,78 @@
 ---
-title: "어메이징 스파이더맨 2 (2014) - 야심찬 시도와 아쉬운 완성도"
+title: "[Movie] The Amazing Spider-Man 2 (어메이징 스파이더맨 2) (2014) - 야심찬 시도와 아쉬운 완성도"
 date: 2014-05-02
+lastmod: 2014-05-02
+description: "피터 파커와 그웬 스테이시의 관계, 일렉트로·그린 고블린과의 대결. 마크 웹 감독, 앤드루 가필드·엠마 스톤·제이미 폭스 출연. 소니 스파이더맨 유니버스 확장의 야심작."
 categories:
-- Movies
+- Movie
+- Action
+- Sci-Fi
 tags:
+- Marc-Webb
+- 마크 웹
+- Andrew-Garfield
+- 앤드루 가필드
+- Emma-Stone
+- 엠마 스톤
+- Jamie-Foxx
+- 제이미 폭스
+- Spider-Man
+- 스파이더맨
+- Sony
+- Marvel
+- Movie
+- 영화
+- Action
+- 액션
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Superhero
+- 슈퍼히어로
+- Electro
+- Green-Goblin
 draft: true
+image: "poster.png"
 ---
 
 ## 작품 개요
@@ -171,6 +239,23 @@ draft: true
 
 ### 톰 홀랜드 버전 예고
 이후 등장하는 톰 홀랜드의 스파이더맨과 비교하면, 가필드 버전이 더 성인적이고 로맨틱했습니다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=The+Amazing+Spider)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=The%20Amazing%20Spider)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=The%20Amazing%20Spider)
 
 ## 결론
 **어메이징 스파이더맨 2**는 야심찬 시도를 했지만 완전히 성공하지는 못한 작품입니다. 뛰어난 액션과 시각 효과, 인상적인 연기, 특히 그웬 스테이시의 죽음이라는 강력한 클라이맥스를 가지고 있지만, 너무 많은 플롯과 설정 때문에 산만함을 피할 수 없었습니다.

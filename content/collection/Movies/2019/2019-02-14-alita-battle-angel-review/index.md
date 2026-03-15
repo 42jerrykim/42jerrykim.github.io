@@ -1,13 +1,70 @@
 ---
-title: "알리타: 배틀 엔젤 (2019) - 사이보그 소녀가 펼치는 미래 전쟁의 서막"
+title: "[Movie] Alita: Battle Angel (알리타: 배틀 엔젤) (2019) - 사이보그 소녀의 각성"
 date: 2019-02-14
-description: "기시로 유키토의 총몽을 원작으로 한 SF 액션 대작, 제임스 카메론과 로버트 로드리게스의 만남"
+lastmod: 2019-02-14
+description: "기시로 유키토 총몽 원작 SF 액션. 로버트 로드리게스 감독, 제임스 카메론 프로듀서·각본. 로사 살라자르·크리스토프 발츠 주연. 300년 후 디스토피아에서 사이보그 소녀의 성장."
 image: "alita-battle-angel-poster.png"
-categories: 
-  - Movies
+categories:
+- Movie
+- Sci-Fi
+- Action
 tags:
-  - Sci-Fi
-  - Action
+- Sci-Fi
+- Action
+- Robert-Rodriguez
+- 로버트 로드리게스
+- James-Cameron
+- 제임스 카메론
+- Rosa-Salazar
+- Christoph-Waltz
+- Kishiro-Yukito
+- Gunnm
+- Movie
+- 영화
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Cyberpunk
+- Cyborg
 draft: true
 ---
 
@@ -207,6 +264,23 @@ draft: true
 ### 과도한 설정 설명
 
 복잡한 세계관을 설명하기 위해 다소 설명적인 대사들이 많다. 이는 영화의 흐름을 때로 방해하는 요소가 된다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Alita:+Battle+Angel)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Alita:%20Battle%20Angel)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Alita:%20Battle%20Angel)
 
 ## 결론: 미래 영화의 새로운 가능성
 

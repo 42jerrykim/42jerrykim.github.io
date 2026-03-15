@@ -1,11 +1,75 @@
 ---
-title: "캡틴 아메리카: 윈터 솔져 (2014) - 마블의 정치적 스릴러 걸작"
+title: "[Movie] Captain America: The Winter Soldier (캡틴 아메리카: 윈터 솔져) (2014) - 마블의 정치적 스릴러"
+description: "캡틴 아메리카와 블랙 위도우가 쉴드 내부 음모와 윈터 솔져를 파헤친다. 러소 형제 감독, 크리스 에반스·스칼렛 요한슨·세바스찬 스탠 주연. 슈퍼히어로와 정치 스릴러의 결합."
 date: 2014-04-04
+lastmod: 2014-04-04
 categories:
-- Movies
+- Movie
+- Action
+- Thriller
 tags:
 - Action
+- Russo-Brothers
+- 러소 형제
+- Chris-Evans
+- 크리스 에반스
+- Scarlett-Johansson
+- 스칼렛 요한슨
+- Sebastian-Stan
+- Samuel-L-Jackson
+- Marvel
+- MCU
+- Movie
+- 영화
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Superhero
+- 슈퍼히어로
+- Captain-America
+- Winter-Soldier
 draft: true
+image: "poster.png"
 ---
 
 ## 작품 개요
@@ -170,6 +234,21 @@ CGI에만 의존하지 않고 실제 스턴트와 세트를 적극 활용하여 
 
 ### 슈퍼히어로 영화의 새로운 가능성
 슈퍼히어로 영화도 진지한 주제를 다룰 수 있음을 증명한 선구적 작품입니다.
+
+## 종합 평가
+
+* **최종 평점**: 5/5
+* **한 줄 평**: 마블 시네마틱 유니버스의 전환점이자, 정치적 스릴러와 슈퍼히어로 영화의 완벽한 결합.
+* **장점**: 루소 형제 연출, 크리스 에반스 연기, 현실감 있는 액션·정치 서사.
+* **단점**: 일부 MCU 선행 지식 유리.
+* **추천 작품**: 《블랙 팬서》, 《시빌 워》, 《윈터 솔져》 시리즈
+* **관람 전 체크리스트**: MCU 순서상 《캡틴 아메리카: 퍼스트 어벤저》 등 선행 시청 권장.
+
+## 참고 문헌 및 출처
+
+1. [Captain America: The Winter Soldier (2014) - IMDb](https://www.imdb.com/title/tt1843866/)
+2. [Captain America: The Winter Soldier - Rotten Tomatoes](https://www.rottentomatoes.com/m/captain_america_the_winter_soldier_2014)
+3. [Captain America: The Winter Soldier - Box Office Mojo](https://www.boxofficemojo.com/title/tt1843866/)
 
 ## 결론
 **캡틴 아메리카: 윈터 솔져**는 마블 시네마틱 유니버스의 가장 중요한 작품 중 하나입니다. 슈퍼히어로 영화의 외피를 쓰고 있지만, 그 내용은 현대 사회의 복잡한 정치적 이슈들을 깊이 있게 다루는 성숙한 정치적 스릴러입니다.

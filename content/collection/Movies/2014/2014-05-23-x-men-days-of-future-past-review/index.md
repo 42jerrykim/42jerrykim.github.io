@@ -1,10 +1,78 @@
 ---
-title: "엑스맨: 데이즈 오브 퓨처 패스트 (2014) - 시간을 넘나드는 완벽한 대서사시"
+title: "[Movie] X-Men: Days of Future Past (엑스맨: 데이즈 오브 퓨처 패스트) (2014) - 시간을 넘나드는 대서사시"
+description: "디스토피아 미래를 바꾸기 위해 울버린의 의식이 1973년으로 보내진다. 브라이언 싱어 감독, 휴 잭맨·제임스 맥어보이·마이클 패스벤더·제니퍼 로렌스 출연. 시간 여행과 엑스맨 세계관 통합의 걸작."
 date: 2014-05-23
+lastmod: 2014-05-23
 categories:
-- Movies
+- Movie
+- Action
+- Sci-Fi
 tags:
+- Bryan-Singer
+- 브라이언 싱어
+- Hugh-Jackman
+- 휴 잭맨
+- James-McAvoy
+- 제임스 맥어보이
+- Michael-Fassbender
+- 마이클 패스벤더
+- Jennifer-Lawrence
+- 제니퍼 로렌스
+- Movie
+- 영화
+- Action
+- 액션
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- Romance
+- 로맨스
+- 2010s
+- 2000s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- X-Men
+- Marvel
+- Time-Travel
+- Superhero
+- 슈퍼히어로
 draft: true
+image: "poster.png"
 ---
 
 ## 작품 개요
@@ -139,6 +207,21 @@ X-Men과 X2의 작곡가 존 오트만이 돌아와 다시 한 번 감동적인 
 
 ### 마블 영화의 새로운 방향성
 MCU와는 다른 방향에서 마블 캐릭터들을 활용한 성공 사례로, 슈퍼히어로 영화의 다양한 가능성을 보여주었습니다.
+
+## 종합 평가
+
+* **최종 평점**: 5/5
+* **한 줄 평**: 시간 여행과 캐릭터 드라마가 조화된 엑스맨 시리즈 르네상스. 브라이언 싱어 복귀작.
+* **장점**: 시간 서사·캐릭터·액션 스펙터클.
+* **단점**: 선행편 미시청 시 이해 부담.
+* **추천 작품**: 《엑스맨 퍼스트 클래스》, 《로그》, 《어벤져스》 시리즈
+* **관람 전 체크리스트**: 엑스맨 선행편 시청 권장.
+
+## 참고 문헌 및 출처
+
+1. [X-Men: Days of Future Past (2014) - IMDb](https://www.imdb.com/title/tt1877832/)
+2. [X-Men: Days of Future Past - Rotten Tomatoes](https://www.rottentomatoes.com/m/x_men_days_of_future_past)
+3. [X-Men: Days of Future Past - Box Office Mojo](https://www.boxofficemojo.com/title/tt1877832/)
 
 ## 결론
 **엑스맨: 데이즈 오브 퓨처 패스트**는 완벽한 슈퍼히어로 영화입니다. 복잡한 시간 여행 스토리를 명쾌하게 풀어내면서도 깊이 있는 캐릭터 드라마와 압도적인 액션 스펙터클을 동시에 선사합니다.

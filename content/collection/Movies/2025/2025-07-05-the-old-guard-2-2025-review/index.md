@@ -14,6 +14,50 @@ tags:
 - Cinematography
 - Visual-Effects
 - Family
+- Charlize-Theron
+- 샤를리즈 테론
+- Uma-Thurman
+- 우마 서먼
+- Victoria-Mahoney
+- Henry-Golding
+- Netflix
+- Superhero
+- 영화
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Soundtrack
+- 사운드트랙
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2020s
+- Culture
+- 문화
+- History
+- 기술
+- Immortal
+- The-Old-Guard
 image: "the-old-guard-2-poster.png"
 draft: true
 ---
@@ -287,6 +331,23 @@ flowchart LR
 영화가 던지는 근본적인 질문은 "영원히 산다는 것이 축복일까, 저주일까?"다. 디스코드와 퀸의 절망, 앤디의 피로감, 그리고 나일의 새로운 희망은 모두 이 질문에 대한 다른 답변들이다.
 
 특히 현대 사회의 반복되는 폭력과 불의에 대한 피로감은 많은 관객들에게 공감을 불러일으킬 것이다. 디스코드의 "인류는 변하지 않는다"는 절망적 관점과 앤디의 "그럼에도 우리는 계속 싸워야 한다"는 희망적 관점의 대립은 현재 우리가 직면한 여러 문제들과 맞닿아 있다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=The+Old+Guard+2)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=The%20Old%20Guard%202)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=The%20Old%20Guard%202)
 
 ## 결론
 

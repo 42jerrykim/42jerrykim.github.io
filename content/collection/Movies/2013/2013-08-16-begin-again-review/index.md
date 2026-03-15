@@ -1,12 +1,72 @@
 ---
-title: "비긴 어게인 (2013) - 음악이 선사하는 다시 시작의 희망"
+title: "[Movie] Begin Again (비긴 어게인) (2013) - 음악이 선사하는 다시 시작의 희망"
+description: "실직한 프로듀서와 배신으로 상처받은 송라이터가 뉴욕 거리에서 앨범을 만들며 치유하는 음악 로맨스. 존 카니 감독, 키이라 나이틀리·마크 러팔로·아담 레빈 주연."
 date: 2013-08-16
+lastmod: 2013-08-16
 categories:
-- Movies
+- Movie
+- Romance
+- Drama
 tags:
 - Romance
 - Drama
+- John-Carney
+- 존 카니
+- Keira-Knightley
+- 키이라 나이틀리
+- Mark-Ruffalo
+- 마크 러팔로
+- Adam-Levine
+- Movie
+- 영화
+- Action
+- 액션
+- Adventure
+- 모험
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Comedy
+- 코미디
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Musical
+- 뮤지컬
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- New-York
+- Music
 draft: true
+image: "poster.png"
 ---
 
 ## 작품 개요
@@ -102,6 +162,23 @@ draft: true
 
 ## 사운드트랙의 매력
 "Lost Stars"를 비롯한 여러 곡들은 영화를 본 후에도 계속 듣고 싶어지는 매력적인 곡들입니다. 특히 같은 곡을 다른 캐릭터들이 다른 방식으로 해석하는 것을 보여주는 것은 음악의 다양한 가능성을 보여주는 훌륭한 장치입니다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Begin+Again)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Begin%20Again)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Begin%20Again)
 
 ## 결론
 **비긴 어게인**은 《원스》의 감동을 더 세련되고 완성도 높은 형태로 재탄생시킨 작품입니다. 음악을 통한 치유와 새로운 시작이라는 보편적 주제를 뉴욕이라는 매력적인 배경과 함께 아름답게 그려냈습니다.

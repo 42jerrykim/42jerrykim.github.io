@@ -1,18 +1,68 @@
 ---
-title: "나이트크롤러 - 소시오패스가 미디어를 만났을 때"
+title: "[Movie] Nightcrawler (나이트크롤러) (2014) - 소시오패스가 미디어를 만났을 때"
 date: 2014-10-31
-
+lastmod: 2014-10-31
+description: "LA 야간 범죄 영상을 촬영해 뉴스에 파는 자유계약 기자의 어둠. 댄 길로이 감독 데뷔작, 제이크 질렌할 주연. 현대 미디어와 네오 누아르, 로튼 토마토 94%."
 categories:
-- Movies
+- Movie
 - Crime
 - Thriller
 tags:
 - Crime
 - Thriller
-description: "LA의 밤을 누비는 범죄 영상 사냥꾼의 어둠 속 세계. 제이크 질렌할의 소름 끼치는 연기가 빛나는 현대적 네오 누아르"
-poster: "https://image.tmdb.org/t/p/w500/j9HrX8f7GbZQm1BrBiR40uFQZSb.jpg"
-
+- Dan-Gilroy
+- 댄 길로이
+- Jake-Gyllenhaal
+- 제이크 질렌할
+- Rene-Russo
+- Movie
+- 영화
+- Action
+- 액션
+- Adventure
+- 모험
+- Drama
+- Sci-Fi
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Media
+- Neo-Noir
+- LA
 draft: true
+image: "poster.png"
 ---
 
 ## 작품 개요
@@ -201,6 +251,23 @@ draft: true
 ### 미디어 윤리 논의
 
 영화는 미디어 윤리와 저널리즘의 책임에 대한 사회적 논의를 촉발시켰다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Nightcrawler)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Nightcrawler)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Nightcrawler)
 
 ## 평가
 

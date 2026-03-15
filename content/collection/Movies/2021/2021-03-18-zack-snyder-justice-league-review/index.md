@@ -1,12 +1,74 @@
 ---
-title: "잭 스나이더의 저스티스 리그 (2021) - 불굴의 의지로 완성된 4시간의 대서사시"
+title: "[Movie] Zack Snyder's Justice League (잭 스나이더의 저스티스 리그) (2021) - 4시간의 대서사시"
 date: 2021-03-18
-description: "팬들의 열정과 감독의 비전이 만들어낸 기적, 잭 스나이더의 저스티스 리그 완전 분석"
+lastmod: 2021-03-18
+description: "팬들의 열정과 감독의 비전이 만들어낸 4시간 2분 디렉터스 컷. 잭 스나이더 감독, 헨리 카빌·갤 가돗·벤 애플렉·에즈라 밀러·제이슨 모모아·레이 피셔 주연. HBO Max 공개 DC 필름."
 image: "zack-snyder-justice-league-poster.png"
-categories: 
-  - Movies
+categories:
+- Movie
+- Action
+- Sci-Fi
 tags:
-  - Action
+- Action
+- Zack-Snyder
+- 잭 스나이더
+- Henry-Cavill
+- 갤 가돗
+- Ben-Affleck
+- Ezra-Miller
+- Jason-Momoa
+- Ray-Fisher
+- DC
+- Warner-Bros
+- HBO-Max
+- Movie
+- 영화
+- Adventure
+- 모험
+- Drama
+- Thriller
+- 스릴러
+- Fantasy
+- 판타지
+- Romance
+- 로맨스
+- Animation
+- 애니메이션
+- Family
+- 가족
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- 리뷰
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- Comedy
+- 코미디
+- 2020s
+- 2010s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Superhero
+- 슈퍼히어로
+- Justice-League
 draft: true
 ---
 
@@ -189,6 +251,23 @@ draft: true
 ### 팬 문화의 진화
 
 #ReleaseTheSnyderCut 운동은 팬덤이 단순한 소비자를 넘어 문화 콘텐츠의 창조에 적극적으로 참여할 수 있음을 보여줬다. 이는 이후 다른 팬덤 운동들에도 영향을 미쳤다.
+
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=Zack+Snyder's+Justice+League)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=Zack%20Snyder's%20Justice%20League)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=Zack%20Snyder's%20Justice%20League)
 
 ## 결론: 불가능을 가능하게 만든 기적
 

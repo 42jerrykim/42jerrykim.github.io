@@ -1,8 +1,8 @@
 ---
-title: "주먹왕 랄프 (Wreck-It Ralph, 2012) ★★★★★"
-description: "게임 세계의 '투이 스토리', 픽셀과 꿈으로 그려낸 디즈니의 최고 걸작"
-summary: "아케이드 게임의 악역 캐릭터 랄프가 진정한 영웅이 되기 위해 떠나는 모험을 그린 디즈니 애니메이션. 30년간 악역만 해온 랄프가 다양한 게임 세계를 넘나들며 벌이는 모험과 성장을 통해 정체성과 우정의 의미를 탐구한다. 게임 문화에 대한 애정 어린 오마주와 현대적 감성이 완벽하게 조화된 걸작."
+title: "[Movie] Wreck-It Ralph (주먹왕 랄프) (2012) - 게임 세계의 투이 스토리"
+description: "아케이드 악역 랄프가 진정한 영웅이 되기 위해 여러 게임 세계를 넘나드는 디즈니 애니메이션. 정체성과 우정을 탐구하며 게임 문화에 오마주를 담은 리치 무어 감독 걸작."
 date: 2012-11-02
+lastmod: 2012-11-02
 tags:
 - 영화
 - 리뷰
@@ -10,8 +10,58 @@ tags:
 - 가족
 - 모험
 - 게임
+- Rich-Moore
+- 리치 무어
+- Disney
+- 디즈니
+- Movie
+- Action
+- 액션
+- Adventure
+- Drama
+- Thriller
+- 스릴러
+- Sci-Fi
+- Fantasy
+- 판타지
+- Comedy
+- 코미디
+- Romance
+- 로맨스
+- Family
+- Cinematography
+- 촬영기법
+- Soundtrack
+- 사운드트랙
+- Visual-Effects
+- 시각효과
+- Review
+- Biography
+- 전기영화
+- Documentary
+- 다큐멘터리
+- Crime
+- 범죄
+- Mystery
+- 미스터리
+- War
+- 전쟁
+- Horror
+- 공포
+- 2010s
+- 2000s
+- Culture
+- 문화
+- History
+- 역사
+- Technology
+- 기술
+- Video-Game
+- Arcade
 categories:
-- Movies
+- Movie
+- Animation
+- Adventure
 series: ["Movie Reviews"]
 series_order: 12
 ShowToc: true
@@ -19,6 +69,7 @@ TocOpen: true
 UseHugoToc: true
 comments: true
 images: ["/2012/11/02/wreck-it-ralph-review.jpg"]
+image: "poster.png"
 draft: true
 ---
 
@@ -36,6 +87,35 @@ draft: true
 
 ---
 
+## 개요
+
+### 영화 정보
+* **제목**: Wreck-It Ralph / 주먹왕 랄프
+* **감독**: Rich Moore (리치 무어)
+* **각본**: Phil Johnston, Jennifer Lee
+* **주연**: John C. Reilly (랄프), Sarah Silverman (바넬로피), Jack McBrayer (펠릭스)
+* **음악**: Henry Jackman
+* **장르**: 애니메이션, 모험, 코미디, 가족
+* **상영시간**: 101분
+* **개봉일**: 2012.11.02
+* **제작사**: Walt Disney Animation Studios
+* **배급사**: Walt Disney Studios Motion Pictures
+
+### 추천 대상
+* **가족·애니메이션·게임 팬**: 아케이드 오마주, 정체성·우정 서사
+
+## 구조 분석 (Act 5단계)
+
+```mermaid
+flowchart LR
+  Act1["Act 1 (Setup)<br/>랄프·악역·메달 욕구"]
+  Act2["Act 2 (Inciting & Rising)<br/>영웅의 의무·슈가 러시"]
+  Act3["Act 3 (Complications)<br/>바넬로피·킹 캔디·진실"]
+  Act4["Act 4 (Climax)<br/>터보·희생"]
+  Act5["Act 5 (Resolution)<br/>진정한 영웅"]
+  Act1 --> Act2 --> Act3 --> Act4 --> Act5
+```
+
 ## 작품 개요
 
 **주먹왕 랄프**는 디즈니가 선사하는 게임 세계의 "토이 스토리"다. 아케이드 게임의 악역 캐릭터 랄프가 30년간의 악역 생활에 지쳐 진정한 영웅이 되기 위해 떠나는 모험을 그린 이 작품은 디즈니 애니메이션 스튜디오의 52번째 장편 애니메이션이다.
@@ -44,11 +124,11 @@ draft: true
 
 ---
 
-## 줄거리
+## 영화의 전체 내용
 
 ### 30년간의 악역 생활
 
-리트왁의 아케이드 게임장에서 30년간 "픽스 잇 펠릭스 주니어" 게임의 악역을 맡아온 랄프(존 C. 라일리)는 매일 같은 일의 반복에 지쳐간다. 게임이 끝나면 아파트 건물을 부수고, 펠릭스(잭 맥브레이어)가 망치로 모든 것을 고쳐 영웅 대접을 받는 동안 랄프는 항상 악역으로만 여겨진다.
+**[S01]** 리트왁의 아케이드 게임장에서 30년간 "픽스 잇 펠릭스 주니어" 게임의 악역을 맡아온 랄프(존 C. 라일리)는 매일 같은 일의 반복에 지쳐간다. 게임이 끝나면 아파트 건물을 부수고, 펠릭스(잭 맥브레이어)가 망치로 모든 것을 고쳐 영웅 대접을 받는 동안 랄프는 항상 악역으로만 여겨진다.
 
 게임 30주년 기념 파티에서도 랄프는 소외된다. 나이스랜드 주민들은 그를 초대하지 않았고, 뒤늦게 참석한 랄프에게 주민 진(레이몬드 S. 퍼시)은 메달을 따와야만 진정한 영웅으로 인정받을 수 있다고 말한다. 상처받은 랄프는 메달을 얻어 인정받겠다고 선언하고 게임을 떠난다.
 
@@ -113,6 +193,10 @@ draft: true
 앨런 투딕은 킹 캔디의 겉으로는 친절하지만 내면은 음험한 이중성을 탁월하게 연기했다. 특히 터보로 정체가 드러나는 순간의 연기 변화는 섬뜩하면서도 인상적이다.
 
 ---
+
+## 영상미와 음악
+
+연출·시각 디자인(게임 월드별 미학)과 헨리 잭맨의 음악·사운드가 분위기를 뒷받침한다. 아래 연출과 기법·시각적 완성도·음악과 사운드 섹션 참고.
 
 ## 연출과 기법
 
@@ -260,6 +344,21 @@ draft: true
 게임이 리셋되며 바넬로피의 진짜 정체가 드러나는 장면은 놀라움과 감동을 동시에 선사한다.
 
 ---
+
+## 종합 평가
+
+* **최종 평점**: ★★★★★ (5/5)
+* **한 줄 평**: 게임 세계의 악역이 진정한 영웅이 되는 정체성과 우정의 디즈니 애니메이션.
+* **장점**: 게임 오마주·월드빌딩, 랄프·바넬로피 캐릭터, 정체성·희생 주제.
+* **단점**: 일부 예측 가능한 플롯.
+* **추천 작품**: 《빅 히어로 6》, 《주토피아》, 《레디 플레이어 원》
+* **관람 전 체크리스트**: 가족 관람 가능. 일부 긴장 장면 있음.
+
+## 참고 문헌 및 출처
+
+1. [Wreck-It Ralph (2012) - IMDb](https://www.imdb.com/title/tt1772341/)
+2. [Wreck-It Ralph - Rotten Tomatoes](https://www.rottentomatoes.com/m/wreck_it_ralph)
+3. [Wreck-It Ralph - Box Office Mojo](https://www.boxofficemojo.com/title/tt1772341/)
 
 ## 결론
 
