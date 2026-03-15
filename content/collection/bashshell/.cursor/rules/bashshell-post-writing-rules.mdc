@@ -1,0 +1,125 @@
+---
+description: "Bash Shell 명령어·기능 글 작성을 위한 종합 가이드로, 제목/메타 규칙(70자 이하 title, 150자 description, 50개 이상 tags), 폴더명·본문 구조(명령어 참조형·개념/가이드형), Mermaid 문법 준수, 작성 체크리스트를 포함한 전문적인 포스트 작성 프레임워크입니다."
+alwaysApply: false
+---
+# AI Bash Shell 포스트 작성 가이드
+
+본 문서는 Bash Shell 컬렉션 포스트 작성 시 일관된 품질과 검색 최적화를 확보하기 위한 종합 규칙을 정의한다. 명령어 참조형·개념/가이드형 본문 구조, 50개 이상 태그 작성 가이드라인, Mermaid 다이어그램 규칙, 품질 체크리스트를 포함한다.
+
+---
+
+## 제목/메타 규칙(필수)
+
+- **카테고리 접두어**: `[Bash Shell]` 사용 (hugo-content-bundle-naming의 Category Prefix 준수)
+- **메인 제목**: 사람 친화적·SEO 고려, 한글/영문 병기 가능
+- **총 길이**: 70자 이내
+
+## description 규칙(필수)
+
+- **길이**: 150자 내외
+- **내용**: 해당 명령어 또는 개념의 역할, 주요 옵션/기능, 활용 맥락을 2~3문장으로 요약
+
+## tags 규칙(필수)
+
+- **개수**: 최소 **50개 이상** (한글·영어 혼합)
+- **우선**: [data/tags.yaml](data/tags.yaml) 승인 태그 사용 (Bash, Shell, Linux, Terminal, Guide, 가이드, Tutorial, Reference, Process, File-System, Automation, Deployment, Error-Handling, Troubleshooting, Command, Documentation, Workflow, Best-Practices 등)
+- 필요 시 해당 목록을 참고하여 도메인별 태그 추가
+
+## 날짜/버전 관리(필수)
+
+- `date`, `lastmod`는 작성/수정 당일(로컬 타임존) 날짜 사용
+- 폴더명에 날짜를 쓰는 경우 Front Matter `date`와 동일하게 유지
+- 의미 있는 개정 시 `lastmod` 갱신
+
+## 폴더명 규칙(필수)
+
+- **기본 구조**: `content/collection/bashshell/<slug>/index.md`
+- **slug**: 소문자·하이픈, 명령어명 또는 개념명 (예: `grep`, `io-redirection`, `pipe`)
+- **(선택)** 연도/날짜 도입 시: `bashshell/YYYY/YYYY-MM-DD-<slug>/index.md` 형식 사용 가능
+
+## Front Matter 템플릿
+
+- **신규 작성 시**: `draft: true` 포함. 배포 전 검토 후 필요 시 `draft: false`로 변경.
+- **categories**: 리스트 형식 사용 (문자열 `"Shell"` 금지)
+
+```yaml
+---
+title: "[Bash Shell] grep - 패턴 검색"
+description: "리눅스·유닉스에서 텍스트와 정규식 패턴 검색에 쓰이는 grep 명령어의 사용법, 주요 옵션(-i, -r, -n 등), 실무 예제와 파이프 조합을 150자 분량으로 요약합니다."
+date: 2026-03-15
+lastmod: 2026-03-15
+categories:
+- Bash Shell
+tags:  # 최소 50개 이상, data/tags.yaml 승인 태그 우선
+- Bash
+- Shell
+- Linux
+- Terminal
+- Command
+- Guide
+- 가이드
+- Tutorial
+- 튜토리얼
+- Reference
+- 참고
+- File-System
+- String
+- Process
+- Automation
+- 자동화
+- Deployment
+- 배포
+- Error-Handling
+- 에러처리
+- Troubleshooting
+- 트러블슈팅
+- Workflow
+- 워크플로우
+- Best-Practices
+- Documentation
+- 문서화
+- Quick-Reference
+- Productivity
+- 생산성
+# ... 50개 이상까지 이어서 작성
+image: "tmp_wordcloud.png"
+---
+```
+
+- **image**: 워드클라우드 사용 시 `wordcloud.png`, 없으면 `tmp_wordcloud.png` 등 고정 이미지 명시
+
+## 본문 구조 가이드
+
+### 명령어 참조형 (예: ls, ps, grep, find, cat)
+
+- **사용법**: `명령 [옵션] [인자...]` 형식
+- **옵션**: 그룹별로 정리 (전체 프로세스/선택/출력 형식 등). 짧은 설명 + 필요 시 예시
+- **예시**: 실전 명령 5~10개 (파일 검색, 파이프 조합, 자주 쓰는 옵션 조합)
+- **참고/Reference**: 공식 매뉴얼·위키 등 1~2개 링크
+
+### 개념/가이드형 (예: redirection, pipe)
+
+- **개요**: 정의·중요성·활용 사례
+- **기본 개념**: 작동 원리, 관련 용어(파일 디스크립터 등)
+- **종류/세부**: 입력/출력 리디렉션, Here Document 등
+- **예제·다이어그램**: Mermaid로 흐름 시각화 (규칙 준수)
+- **(선택)** FAQ, 관련 기술, 결론
+- **Reference**: 공식 문서·참고 링크
+
+## Mermaid 규칙(필수)
+
+- 노드 ID: 공백 없이 camelCase·PascalCase. 예약어(end, subgraph, graph 등) 노드 ID 금지
+- 노드·엣지 라벨에 대괄호, 등호, 비교 연산자, 괄호 등이 있으면 전체 라벨을 `"..."` 로 감싼다
+- 줄바꿈: `\n` 대신 `</br>` 사용
+
+## 작성 체크리스트
+
+- [ ] 폴더명이 `bashshell/<slug>/index.md` 형식(또는 선택 시 날짜 포함 형식)인가?
+- [ ] title이 70자 이내인가?
+- [ ] description이 150자 내외인가?
+- [ ] Front Matter의 tags가 50개 이상인가? (data/tags.yaml 승인 태그 우선)
+- [ ] categories가 리스트 형식인가?
+- [ ] 신규 md 파일에 `draft: true`가 있는가?
+- [ ] 본문 구조(명령어 참조형 또는 개념/가이드형)를 따랐는가?
+- [ ] Mermaid 사용 시 노드 ID·라벨 규칙을 지켰는가?
+- [ ] Reference/참고 문헌이 포함되었는가?
