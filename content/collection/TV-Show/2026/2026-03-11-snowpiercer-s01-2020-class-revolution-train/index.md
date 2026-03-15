@@ -1,9 +1,8 @@
 ---
-draft: true
 title: "[TV Series] Snowpiercer (설국열차) 시즌 1 (2020) - 계급과 혁명"
 description: "빙하기가 된 지구를 누비는 1001칸 열차 설국열차에서 꼬리칸 반란군 레이턴이 살인 사건 수사를 빌미로 혁명을 준비하고, 멜라니의 비밀이 드러나며 빅 앨리스가 등장하는 TNT 디스토피아 스릴러. 시즌 1의 계급 갈등·반전·캐릭터를 스포일러 포함해 정리한 리뷰."
-date: 2026-03-15
-lastmod: 2026-03-15
+date: 2026-03-11
+lastmod: 2026-03-11
 categories:
 - TV Series
 - Science Fiction
@@ -83,12 +82,12 @@ tags:
 - 시각효과
 - Biography
 - 전기영화
-image: "poster.png"
+image: "image.png"
 ---
 
 TNT의 `설국열차(Snowpiercer)` 시즌 1은 봉준호 영화(2013)와 동일한 프랑스 그래픽노블 『Le Transperceneige』를 원작으로, 빙하기가 된 지구를 영원히 달리는 1001칸 열차 안의 계급 사회와 혁명을 그린 디스토피아 스릴러다. 꼬리칸의 유일한 살인 수사관 앙드레 레이턴(Daveed Diggs)이 살인 사건 수사를 빌미로 혁명 정보를 수집하고, 호텔리티 책임자 멜라니 캐빌(Jennifer Connelly)이 윌포드 선장의 비밀을 지키며 열차를 운영하는 이중 서사가 한 시즌 안에 격돌한다. 시즌 말 빅 앨리스(Big Alice)의 등장과 멜라니의 정체 폭로는 시즌 2로 이어지는 강렬한 클리프행어를 만든다.
 
-![설국열차 시즌 1](poster.png)
+![설국열차 시즌 1](image.png)
 
 ## 시즌 개요
 
