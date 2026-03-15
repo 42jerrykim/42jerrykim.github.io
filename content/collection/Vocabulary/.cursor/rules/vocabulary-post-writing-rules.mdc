@@ -101,7 +101,7 @@ YYYY-MM-DD-단어-품사-meaning-usage-examples
 - Front Matter에는 다음과 같이 고정 사용:
 
 ```yaml
-image: wordcloud.png
+image: "wordcloud.png"
 ```
 
 - 실제 경로 예:
@@ -169,7 +169,7 @@ tags: # 최소 50개 이상 (영어/한국어 혼합)
   - grammar
   - pronunciation
   - EN/KR examples
-image: wordcloud.png
+image: "wordcloud.png"
 ---
 ```
 
