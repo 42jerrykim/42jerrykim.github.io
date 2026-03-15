@@ -1,5 +1,5 @@
 ---
-slug: redex
+slug: redux
 draft: true
 title: "[Redux] Redux 완전 정복 - 초보부터 전문가까지"
 description: "Redux와 Redux Toolkit을 활용한 현대적인 상태 관리. JavaScript 기초부터 실전 프로젝트까지, Redux의 모든 것을 마스터하는 체계적인 학습 가이드. 30편 시리즈로 초보부터 전문가 수준까지 단계별 역량을 갖춥니다."
