@@ -136,6 +136,23 @@ image: unnamed.jpg
 
 콘티넨탈 호텔의 규칙과 세계관의 확장, 킬러의 코드를 탐구하는 장면들이 인상적이다. 강렬한 액션과 독특한 설정이 매력적인 영화이다.
 
+
+
+## 종합 평가
+
+* **최종 평점**: (평점 입력)
+* **한 줄 평**: (한 줄 평 입력)
+* **장점**: (장점 요약)
+* **단점**: (단점 요약)
+* **추천 작품**: (유사 작품)
+* **관람 전 체크리스트**: (주의 사항)
+
+## 참고 문헌 및 출처
+
+1. [영화 - IMDb](https://www.imdb.com/find?q=John+Wick:+Chapter+2)
+2. [영화 - Rotten Tomatoes](https://www.rottentomatoes.com/search?search=John%20Wick:%20Chapter%202)
+3. [영화 - Box Office Mojo](https://www.boxofficemojo.com/search/q?q=John%20Wick:%20Chapter%202)
+
 ## 결론
 
 존 윅 - 리로드는 액션과 감정, 세계관이 조화된 완성도 높은 영화로, 관객에게 강렬한 시각적, 감정적 경험을 선사한다. 더 나아가 이 영화는 존 윅의 다음 여정에 대한 궁금증을 남기며, 그가 이 세계에서 어떤 운명을 맞게 될지에 대한 기대감을 불러일으킨다.
