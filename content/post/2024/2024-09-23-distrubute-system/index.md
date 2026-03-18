@@ -1,148 +1,132 @@
 ---
+draft: false
 image: "tmp_wordcloud.png"
-description: "분산 시스템의 핵심 개념, 마이크로서비스, 장애 허용, 데이터 일관성, 로드밸런싱, 이벤트 소싱 등 필수 아키텍처 패턴과 실제 적용 사례를 통해 확장성과 안정성을 높이는 방법을 자세히 설명합니다."
+description: "분산 시스템의 정의와 중요성, 이질성·확장성·보안 등 도전 과제, CQRS·2PC·Saga·Circuit Breaker·Leader Election 등 17가지 핵심 패턴, WAL·Bloom Filter, 마이크로서비스·클라우드·메시징과의 관계, 실무 예제·FAQ·참고 문헌을 포함한 완벽 가이드."
 categories: DistributedSystems
 date: "2024-09-23T00:00:00Z"
+lastmod: "2026-03-17"
 header:
   teaser: /assets/images/2024/2024-09-23-distrubute-system.png
+title: "[Distributed Systems] 분산 시스템 패턴과 아키텍처 가이드"
 tags:
-- Microservices
-- Scalability
-- Caching
-- CQRS
-- Design-Pattern
-- Software-Architecture
-- Performance
-- Data-Structures
-- Algorithm
-- Monitoring
-- Logging
-- Error-Handling
-- Implementation
-- Best-Practices
-- Blog
-- 블로그
-- Technology
-- 기술
-- Web
-- 웹
-- Tutorial
-- 가이드
-- Review
-- 리뷰
-- Markdown
-- 마크다운
-- Go
-- SQL
-- 구현
-- Stack
-- Security
-- Concurrency
-- Command
-- Docker
-- Backend
-- Load-Balancing
-- Networking
-- Guide
-- Productivity
-- 생산성
-- Education
-- 교육
-- Reference
-- 참고
-- Documentation
-- 문서화
-- Open-Source
-- 오픈소스
-- Innovation
-- 혁신
-title: '[DistributedSystems] 분산 시스템 패턴'
+  - Microservices
+  - 마이크로서비스
+  - Scalability
+  - 확장성
+  - Caching
+  - 캐싱
+  - CQRS
+  - Design-Pattern
+  - 디자인패턴
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Performance
+  - 성능
+  - Data-Structures
+  - 자료구조
+  - Algorithm
+  - 알고리즘
+  - Monitoring
+  - 모니터링
+  - Logging
+  - 로깅
+  - Error-Handling
+  - 에러처리
+  - Implementation
+  - 구현
+  - Best-Practices
+  - Blog
+  - 블로그
+  - Technology
+  - 기술
+  - Web
+  - 웹
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Review
+  - 리뷰
+  - Markdown
+  - 마크다운
+  - Go
+  - SQL
+  - Stack
+  - 스택
+  - Security
+  - 보안
+  - Concurrency
+  - 동시성
+  - Command
+  - Docker
+  - Kubernetes
+  - Backend
+  - 백엔드
+  - Load-Balancing
+  - Networking
+  - 네트워킹
+  - Productivity
+  - 생산성
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Documentation
+  - 문서화
+  - Open-Source
+  - 오픈소스
+  - Innovation
+  - 혁신
+  - Database
+  - 데이터베이스
+  - Message-Queue
+  - Kafka
+  - Event-Driven
+  - DevOps
+  - Deployment
+  - 배포
+  - Code-Quality
+  - 코드품질
+  - Clean-Architecture
+  - 클린아키텍처
+  - Testing
+  - 테스트
+  - Refactoring
+  - 리팩토링
+  - Case-Study
+  - Deep-Dive
+  - 실습
+  - Cloud
+  - 클라우드
+  - API
+  - REST
+  - Async
+  - 비동기
+  - Latency
+  - Throughput
+  - Problem-Solving
+  - 문제해결
 ---
 
 분산 시스템은 여러 컴퓨터나 장치에 걸쳐 다양한 구성 요소가 분산되어 있는 컴퓨팅 환경을 의미한다. 이러한 시스템은 데이터 저장, 메시징, 시스템 관리 및 컴퓨팅 기능을 처리하는 핵심 소프트웨어를 포함하고 있으며, 여러 복사본의 데이터를 동기화해야 하는 도전 과제를 안고 있다. 그러나 처리 노드가 신뢰할 수 없고 네트워크 지연이 발생할 수 있기 때문에 일관성을 유지하는 것이 어렵다. 이러한 문제를 해결하기 위해 다양한 패턴이 개발되었으며, 이들은 공통적인 문제를 해결하기 위해 유사한 솔루션을 제공한다. 2020년부터 이러한 패턴을 수집하여 이 사이트에 게시하였고, 2023년에는 "Patterns of Distributed Systems"라는 책으로 출판되었다. 이 책에서는 각 패턴에 대한 간략한 요약과 함께 관련 장으로의 깊은 링크를 제공하고 있다. 분산 시스템의 설계 및 구현에 있어 이러한 패턴을 이해하고 활용하는 것은 시스템의 효율성과 안정성을 높이는 데 큰 도움이 된다.
 
-
 |![/assets/images/2024/2024-09-23-distrubute-system.png](/assets/images/2024/2024-09-23-distrubute-system.png)|
 |:---:|
-||
+|분산 시스템 패턴 개요|
 
+## 목차
 
-<!--
-##### Outline #####
--->
+1. **개요** — 분산 시스템의 정의, 중요성, 일반적인 사용 사례  
+2. **분산 시스템의 일반적인 도전 과제** — 이질성, 확장성, 투명성, 동시성, 보안, 실패 처리  
+3. **분산 시스템 패턴** — CQRS, 2PC, Saga, RLBS, Sharded Services, Sidecar, WAL, Split-Brain, Hinted Handoff, Read Repair, Service Registry, Circuit Breaker, Leader Election, Bulkhead, Retry, Scatter Gather, Bloom Filters  
+4. **예제** — 패턴별 구현 예제 및 패턴 조합 사례  
+5. **FAQ** — 자주 묻는 질문과 답변  
+6. **관련 기술** — 마이크로서비스, 클라우드, 데이터베이스, 메시징, 컨테이너화  
+7. **결론** — 분산 시스템의 미래, 지속 학습, 추천 리소스  
+8. **추천 리소스** — 온라인 강의, 서적, 커뮤니티  
+9. **Reference** — 참고 문헌 및 외부 링크  
 
-<!--
-# 목차
-
-## 개요
-   - 분산 시스템의 정의
-   - 분산 시스템의 중요성
-   - 분산 시스템의 일반적인 사용 사례
-
-## 분산 시스템의 일반적인 도전 과제
-   - 이질성 (Heterogeneity)
-   - 확장성 (Scalability)
-   - 투명성 (Transparency)
-   - 동시성 (Concurrency)
-   - 보안 (Security)
-   - 실패 처리 (Failure Handling)
-
-## 분산 시스템 패턴
-   - 3.1. Command and Query Responsibility Segregation (CQRS) 패턴
-   - 3.2. Two-Phase Commit (2PC) 패턴
-   - 3.3. Saga 패턴
-   - 3.4. Replicated Load-Balanced Services (RLBS) 패턴
-   - 3.5. Sharded Services 패턴
-   - 3.6. Sidecar 패턴
-   - 3.7. Write-Ahead Log (WAL) 기법
-   - 3.8. Split-Brain 패턴
-   - 3.9. Hinted Handoff 패턴
-   - 3.10. Read Repair 패턴
-   - 3.11. Service Registry 패턴
-   - 3.12. Circuit Breaker 패턴
-   - 3.13. Leader Election 패턴
-   - 3.14. Bulkhead 패턴
-   - 3.15. Retry 패턴
-   - 3.16. Scatter Gather 패턴
-   - 3.17. Bloom Filters 데이터 구조
-
-## 예제
-   - 각 패턴의 실제 구현 예제
-   - 분산 시스템에서의 패턴 조합 사례
-
-## FAQ
-   - 분산 시스템이란 무엇인가요?
-   - 분산 시스템의 장점은 무엇인가요?
-   - CQRS 패턴은 언제 사용해야 하나요?
-   - Circuit Breaker 패턴의 작동 원리는 무엇인가요?
-   - Leader Election 패턴의 필요성은 무엇인가요?
-
-## 관련 기술
-   - 마이크로서비스 아키텍처 (Microservices Architecture)
-   - 클라우드 컴퓨팅 (Cloud Computing)
-   - 데이터베이스 (Relational, NoSQL)
-   - 메시징 시스템 (Messaging Systems)
-   - 컨테이너화 기술 (Containerization)
-
-## 결론
-   - 분산 시스템의 미래
-   - 지속적인 학습의 중요성
-   - 추천 리소스 및 자료
-
-## 추천 리소스
-   - 온라인 강의 및 자료
-   - 관련 서적
-   - 커뮤니티 및 포럼
-
-이 목차는 분산 시스템의 다양한 측면을 포괄적으로 다루며, 각 섹션은 독자가 분산 시스템의 패턴과 기술을 이해하는 데 도움이 될 것입니다.
--->
-
-<!--
-## 개요
-   - 분산 시스템의 정의
-   - 분산 시스템의 중요성
-   - 분산 시스템의 일반적인 사용 사례
--->
+---
 
 ## 개요
 
@@ -166,14 +150,14 @@ title: '[DistributedSystems] 분산 시스템 패턴'
 4. **IoT (Internet of Things)**: IoT 기기들은 분산 시스템을 통해 데이터를 수집하고 처리하여, 실시간으로 정보를 제공한다.
 
 ```mermaid
-graph TD;
-    A[사용자 요청] --> B[로드 밸런서]
-    B --> C[서버 1]
-    B --> D[서버 2]
-    B --> E[서버 3]
-    C --> F[데이터베이스]
-    D --> F
-    E --> F
+graph TD
+    UserReq["사용자 요청"] --> LoadBalancer["로드 밸런서"]
+    LoadBalancer --> Server1["서버 1"]
+    LoadBalancer --> Server2["서버 2"]
+    LoadBalancer --> Server3["서버 3"]
+    Server1 --> DB["데이터베이스"]
+    Server2 --> DB
+    Server3 --> DB
 ```
 
 위의 다이어그램은 분산 시스템의 기본적인 구조를 나타낸다. 사용자 요청은 로드 밸런서를 통해 여러 서버로 분산되며, 각 서버는 데이터베이스와 상호작용하여 요청을 처리한다. 이러한 구조는 시스템의 확장성과 신뢰성을 높이는 데 기여한다.
@@ -199,11 +183,11 @@ graph TD;
 분산 시스템은 사용자의 요구에 따라 쉽게 확장할 수 있어야 한다. 수평적 확장(horizontal scaling)과 수직적 확장(vertical scaling) 방법이 있으며, 시스템의 아키텍처에 따라 적절한 확장 방법을 선택해야 한다. 예를 들어, 마이크로서비스 아키텍처에서는 수평적 확장이 일반적이다.
 
 ```mermaid
-graph TD;
-    A[사용자 요청] --> B[로드 밸런서]
-    B --> C[서비스 A]
-    B --> D[서비스 B]
-    B --> E[서비스 C]
+graph TD
+    UserReq2["사용자 요청"] --> LB2["로드 밸런서"]
+    LB2 --> SvcA["서비스 A"]
+    LB2 --> SvcB["서비스 B"]
+    LB2 --> SvcC["서비스 C"]
 ```
 
 **투명성 (Transparency)**  
@@ -219,10 +203,10 @@ graph TD;
 분산 시스템에서는 노드의 실패가 불가피하다. 따라서 시스템은 이러한 실패를 감지하고 복구할 수 있는 메커니즘을 갖추어야 한다. 예를 들어, 장애 조치(failover) 및 데이터 복제(data replication) 기법을 통해 시스템의 가용성을 높일 수 있다.
 
 ```mermaid
-graph TD;
-    A[노드 A 실패] --> B[장애 조치]
-    B --> C[노드 B 활성화]
-    B --> D[데이터 복구]
+graph TD
+    NodeAFail["노드 A 실패"] --> Failover["장애 조치"]
+    Failover --> NodeBUp["노드 B 활성화"]
+    Failover --> DataRecovery["데이터 복구"]
 ```
 
 이와 같이 분산 시스템은 여러 도전 과제에 직면하게 되며, 이를 해결하기 위한 다양한 기술과 패턴이 필요하다. 각 도전 과제에 대한 이해는 분산 시스템을 설계하고 운영하는 데 필수적이다.
@@ -257,9 +241,9 @@ graph TD;
 CQRS 패턴은 명령(Command)과 조회(Query)를 분리하여 시스템의 복잡성을 줄이는 방법이다. 이 패턴을 사용하면 데이터의 읽기와 쓰기 작업을 독립적으로 최적화할 수 있다. 예를 들어, 데이터베이스의 읽기 성능을 높이기 위해 캐시를 사용할 수 있으며, 쓰기 작업은 별도의 데이터 저장소에 저장할 수 있다.
 
 ```mermaid
-graph TD;
-    A[Command] -->|Update| B[Write Model]
-    A -->|Query| C[Read Model]
+graph TD
+    Cmd["Command"] -->|"Update"| WriteModel["Write Model"]
+    Cmd -->|"Query"| ReadModel["Read Model"]
 ```
 
 **3.2. Two-Phase Commit (2PC) 패턴**
@@ -385,11 +369,11 @@ Bloom Filters는 데이터의 존재 여부를 확인하는 데 사용되는 확
 분산 시스템에서는 여러 패턴을 조합하여 사용할 수 있다. 예를 들어, CQRS 패턴과 Event Sourcing 패턴을 함께 사용하여 시스템의 상태를 관리할 수 있다. 아래는 이러한 조합의 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[Command] -->|Triggers| B[Event]
-    B -->|Stores| C[Event Store]
-    C -->|Rebuilds| D[Read Model]
-    D -->|Serves| E[Query]
+graph TD
+    Cmd2["Command"] -->|"Triggers"| Evt["Event"]
+    Evt -->|"Stores"| EventStore["Event Store"]
+    EventStore -->|"Rebuilds"| ReadModel2["Read Model"]
+    ReadModel2 -->|"Serves"| Query["Query"]
 ```
 
 이 다이어그램은 명령이 이벤트를 트리거하고, 이벤트가 이벤트 스토어에 저장된 후, 읽기 모델이 재구성되어 쿼리를 제공하는 과정을 보여준다. 이러한 조합을 통해 시스템의 일관성과 성능을 동시에 확보할 수 있다.
@@ -420,11 +404,11 @@ CQRS(명령과 쿼리 책임 분리) 패턴은 데이터의 읽기와 쓰기 작
 Circuit Breaker 패턴은 서비스 호출이 실패할 경우, 일정 시간 동안 해당 호출을 차단하여 시스템의 안정성을 높이는 기법이다. 이 패턴은 서비스가 일시적으로 불안정할 때, 연속적인 실패로 인해 시스템 전체가 영향을 받는 것을 방지한다. Circuit Breaker는 세 가지 상태로 나뉜다: Closed(닫힘), Open(열림), Half-Open(반열림) 상태로, 각 상태에 따라 서비스 호출을 허용하거나 차단한다.
 
 ```mermaid
-graph TD;
-    A[Closed] -->|Failure| B[Open]
-    B -->|Timeout| C[Half-Open]
-    C -->|Success| A
-    C -->|Failure| B
+graph TD
+    CircuitClosed["Closed"] -->|"Failure"| CircuitOpen["Open"]
+    CircuitOpen -->|"Timeout"| HalfOpen["Half-Open"]
+    HalfOpen -->|"Success"| CircuitClosed
+    HalfOpen -->|"Failure"| CircuitOpen
 ```
 
 **Leader Election 패턴의 필요성은 무엇인가요?**  
@@ -447,11 +431,11 @@ Leader Election 패턴은 분산 시스템에서 여러 노드 중 하나를 리
 마이크로서비스 아키텍처는 애플리케이션을 여러 개의 독립적인 서비스로 나누어 개발하는 접근 방식이다. 각 서비스는 특정 비즈니스 기능을 수행하며, 서로 독립적으로 배포 및 확장할 수 있다. 이 아키텍처는 분산 시스템의 특성과 잘 어울리며, 서비스 간의 통신은 REST API, gRPC, 메시징 시스템 등을 통해 이루어진다.
 
 ```mermaid
-graph TD;
-    A[Client] -->|HTTP Request| B[Service A]
-    A -->|HTTP Request| C[Service B]
-    B -->|Message| D[Service C]
-    C -->|Message| D
+graph TD
+    Client["Client"] -->|"HTTP Request"| ServiceA["Service A"]
+    Client -->|"HTTP Request"| ServiceB["Service B"]
+    ServiceA -->|"Message"| ServiceC["Service C"]
+    ServiceB -->|"Message"| ServiceC
 ```
 
 **클라우드 컴퓨팅 (Cloud Computing)**  
@@ -491,21 +475,19 @@ graph TD;
 3. **커뮤니티 및 포럼**: Stack Overflow, Reddit의 r/distributedsystems와 같은 커뮤니티에서 다른 개발자들과 경험을 공유하고 질문할 수 있다.
 
 ```mermaid
-graph TD;
-    A[분산 시스템의 미래] --> B[클라우드 컴퓨팅]
-    A --> C[IoT]
-    A --> D[AI]
-    B --> E[데이터 처리]
-    C --> F[실시간 분석]
-    D --> G[복잡한 시스템]
-    
-    H[지속적인 학습의 중요성] --> I[온라인 강의]
-    H --> J[세미나]
-    H --> K[기술 블로그]
-    
-    L[추천 리소스] --> M[온라인 강의]
-    L --> N[관련 서적]
-    L --> O[커뮤니티]
+graph TD
+    Future["분산 시스템의 미래"] --> Cloud["클라우드 컴퓨팅"]
+    Future --> IoT["IoT"]
+    Future --> AI["AI"]
+    Cloud --> DataProc["데이터 처리"]
+    IoT --> Realtime["실시간 분석"]
+    AI --> ComplexSys["복잡한 시스템"]
+    LearnImport["지속적인 학습의 중요성"] --> OnlineCourse["온라인 강의"]
+    LearnImport --> Seminar["세미나"]
+    LearnImport --> TechBlog["기술 블로그"]
+    RecResource["추천 리소스"] --> OnlineCourse2["온라인 강의"]
+    RecResource --> Books["관련 서적"]
+    RecResource --> Community["커뮤니티"]
 ```
 
 이와 같은 리소스를 통해 분산 시스템에 대한 이해를 깊이 있게 할 수 있으며, 기술의 발전에 발맞춰 나갈 수 있을 것이다.
@@ -542,16 +524,16 @@ graph TD;
 이 외에도 다양한 리소스가 존재하므로, 지속적으로 학습하고 최신 정보를 얻는 것이 중요하다. 분산 시스템의 복잡성을 이해하고, 실제로 적용하기 위해서는 이러한 자료들을 적극 활용하는 것이 필요하다. 
 
 ```mermaid
-graph TD;
-    A[온라인 강의 및 자료] --> B[Coursera]
-    A --> C[edX]
-    A --> D[YouTube]
-    E[관련 서적] --> F[Distributed Systems: Principles and Paradigms]
-    E --> G[Designing Data-Intensive Applications]
-    E --> H[Microservices Patterns]
-    I[커뮤니티 및 포럼] --> J[Stack Overflow]
-    I --> K[Reddit]
-    I --> L[GitHub]
+graph TD
+    OnlineMat["온라인 강의 및 자료"] --> Coursera["Coursera"]
+    OnlineMat --> EdX["edX"]
+    OnlineMat --> YouTube["YouTube"]
+    RelatedBooks["관련 서적"] --> Book1["Distributed Systems: Principles and Paradigms"]
+    RelatedBooks --> Book2["Designing Data-Intensive Applications"]
+    RelatedBooks --> Book3["Microservices Patterns"]
+    CommForum["커뮤니티 및 포럼"] --> StackOverflow["Stack Overflow"]
+    CommForum --> Reddit["Reddit"]
+    CommForum --> GitHub["GitHub"]
 ```
 
 위의 다이어그램은 추천 리소스의 구조를 시각적으로 나타내며, 각 카테고리와 그에 해당하는 리소스를 쉽게 이해할 수 있도록 돕는다.
@@ -562,11 +544,10 @@ graph TD;
 
 ## Reference
 
-
-* [https://martinfowler.com/articles/patterns-of-distributed-systems/](https://martinfowler.com/articles/patterns-of-distributed-systems/)
-* [https://medium.com/javarevisited/most-used-distributed-system-patterns-d5d90ffedf33](https://medium.com/javarevisited/most-used-distributed-system-patterns-d5d90ffedf33)
-* [https://medium.com/@maheshsaini.sec/10-must-know-distributed-system-patterns-ab98c594806a](https://medium.com/@maheshsaini.sec/10-must-know-distributed-system-patterns-ab98c594806a)
-* [https://www.freecodecamp.org/news/design-patterns-for-distributed-systems/](https://www.freecodecamp.org/news/design-patterns-for-distributed-systems/)
+- [Patterns of Distributed Systems — Martin Fowler](https://martinfowler.com/articles/patterns-of-distributed-systems/)  
+- [Design Patterns for Distributed Systems — freeCodeCamp](https://www.freecodecamp.org/news/design-patterns-for-distributed-systems/)  
+- [Most Used Distributed System Patterns — Medium (Java Revisited)](https://medium.com/javarevisited/most-used-distributed-system-patterns-d5d90ffedf33)  
+- [10 Must-Know Distributed System Patterns — Medium](https://medium.com/@maheshsaini.sec/10-must-know-distributed-system-patterns-ab98c594806a)
 
 
 <!--

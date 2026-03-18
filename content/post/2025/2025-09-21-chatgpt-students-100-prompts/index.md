@@ -1,41 +1,41 @@
 ---
-title: "[Guide] 대학생을 위한 ChatGPT 100 프롬프트 (Study/Career/Life)"
-description: "ChatGPT의 ‘Students use cases’(100 chats)를 공부하우 형식으로 재구성한 가이드. 카테고리별(Study, Career, Life) 제목·프롬프트·실행 링크(ChatGPT/Claude) 정리."
+title: "[Guide] 대학생을 위한 ChatGPT 100 프롬프트 (Study·Career·Life)"
+description: "ChatGPT 공식 학생용 유스케이스 100개를 Study·Career·Life 카테고리별로 재구성한 가이드. 프롬프트 문장, 플레이스홀더 가이드, ChatGPT·Claude 바로 실행 링크와 활용 팁을 담았으며, 학업·취업·일상에 바로 쓸 수 있다."
 date: 2025-09-21
-lastmod: 2025-09-21
+lastmod: 2026-03-17
 categories:
 - "AI 활용"
 - "학습"
 tags:
 - ChatGPT
-- Career
-- Guide
-- Go
-- REST
-- API
-- Deep-Learning
+- Claude
 - AI
+- 인공지능
+- LLM
+- GPT
 - Prompt-Engineering
+- 프롬프트엔지니어링
+- Education
+- 교육
+- Career
+- 커리어
+- Guide
+- 가이드
+- Tutorial
+- 튜토리얼
+- Productivity
+- 생산성
+- Reference
+- 참고
+- How-To
+- Tips
+- Best-Practices
 - Blog
 - 블로그
 - Technology
 - 기술
-- Web
-- 웹
-- Tutorial
-- 가이드
-- Review
-- 리뷰
 - Markdown
 - 마크다운
-- 커리어
-- Productivity
-- 생산성
-- Education
-- 교육
-- Reference
-- 참고
-- Best-Practices
 - Documentation
 - 문서화
 - Open-Source
@@ -46,59 +46,171 @@ tags:
 - 트러블슈팅
 - Configuration
 - 설정
-- How-To
-- Tips
 - Comparison
 - 비교
 - Workflow
 - 워크플로우
+- Web
+- 웹
+- API
+- REST
+- Beginner
+- Deep-Learning
+- 딥러닝
+- Machine-Learning
+- 머신러닝
+- Data-Science
+- 데이터사이언스
+- Clean-Code
+- 클린코드
+- Code-Quality
+- 코드품질
+- Testing
+- 테스트
+- Debugging
+- 디버깅
+- Performance
+- 성능
+- Software-Architecture
+- 소프트웨어아키텍처
+- Design-Pattern
+- 디자인패턴
+- Git
+- GitHub
+- Automation
+- 자동화
+- Agile
+- 애자일
+- Psychology
+- 심리학
+- English
+- 영어
+- Vocabulary
+- 영단어
+- Grammar
+- 문법
+- Academic-English
+- 학술영어
+- Business-English
+- 비즈니스영어
+- Case-Study
+- 실습
+- Cheatsheet
+- 치트시트
+- Quick-Reference
 - Migration
 - 마이그레이션
 - Hardware
 - 하드웨어
 - Mobile
+- 모바일
+- Cloud
+- 클라우드
+- Security
+- 보안
+- Privacy
+- 프라이버시
+- History
+- 역사
+- Culture
+- 문화
+- Science
+- 과학
+- Review
+- 리뷰
 image: "wordcloud.png"
+draft: false
 ---
 
-아래 목록은 ChatGPT의 공식 학생용 유스케이스(100 chats)를 카테고리와 제목, 프롬프트, 바로 실행 링크 형식으로 재구성한 것입니다. 필요에 맞게 복사해 바로 사용하세요. 원문과 형식 레퍼런스는 글 하단의 참고 링크를 확인하세요.
+## 개요
 
-### 빠른 시작
-1. 원하는 항목에서 대괄호([...])를 내 상황에 맞게 채웁니다.
-2. 필요 자료가 있으면 파일/이미지 첨부([Upload docs]/[Upload images]).
-3. ChatGPT 또는 Claude 링크를 눌러 실행합니다.
-4. 답변 정확도를 높이기 위해 예시, 맥락, 평가기준을 추가로 제공하고 1~2회 더 다듬습니다.
+본 문서는 **ChatGPT 공식 학생용 유스케이스(100 chats)**를 학업(Study)·커리어(Career)·일상(Life) 카테고리로 재구성한 실사용 가이드다. 각 항목마다 제목, 프롬프트 문장, ChatGPT·Claude 바로 실행 링크를 제공하며, 대괄호 플레이스홀더를 자신의 상황에 맞게 채워 넣어 즉시 활용할 수 있다. 원문 형식과 출처는 글 말단의 [참고 문헌](#참고-문헌)을 참고하면 된다.
 
-### 바로가기
-[Study](#study) · [Career](#career) · [Life](#life)
+**추천 대상**: 대학생, 대학원생, 자기주도 학습자, 취준생, 일상·시간 관리가 필요한 사람.
 
-### 플레이스홀더 가이드
-- [topic]: 주제(예: deep learning, epigenetics)
-- [mood]: 현재 감정 상태(예: overwhelmed, unmotivated)
-- [notes or slides]: 강의 노트/슬라이드
-- [length]: 분량(예: 15-page)
-- [APA or MLA]: 인용 스타일
-- [course] / [exam format]: 과목 / 시험 형식(예: MCQ)
-- [language] / [concept] / [domain] / [word]: 언어/개념/전문영역/단어
-- [type of interview] / [job] / [industry or location]: 인터뷰/직무/지역
-- [type of advisor] / [role] / [company] / [team]: 멘토 유형/역할/회사/팀
-- [city] / [dates] / [time of year]: 여행 도시/기간/계절
-- [meal] / [number of people] / [$ per person]: 식사 유형/인원/예산
-- [store name] / [duration] / [allergens]: 마트/기간/알레르겐
-- [project] / [project interests] / [name of app]: 프로젝트/관심사/앱 이름
-- [describe problem or goal] / [schedule] / [muscle group]: 목표/스케줄/운동 부위
-- [Upload docs] / [Upload images]: 파일 또는 이미지 첨부 지시
+---
 
-### 사용 팁
-- 맥락 풍부하게: 배경, 목표, 제약, 평가 기준을 함께 제공하세요.
-- 형식 지정: "표로 정리", "체크리스트로", "마일스톤별"처럼 출력 형식을 명시하세요.
-- 소크라테스 모드: "한 번에 한 질문씩" 진행을 요청하면 이해도 점검에 좋습니다.
-- 파일 우선: 강의노트/슬라이드/과제 PDF를 첨부하면 정확도가 크게 올라갑니다.
-- 반복 개선: 초안→피드백→개선의 2~3회 루프가 가장 효율적입니다.
+## 가이드 구조와 사용 흐름
 
-### 주의
-- 중요한 결정(학업·법률·의료)은 항상 2차 검증하세요.
-- 개인정보·기밀 파일은 업로드 전에 민감정보를 제거하세요.
-- 학술 인용은 원문 링크/DOI를 직접 열어 사실을 확인하세요.
+100개 프롬프트는 **Study(학업)** · **Career(커리어)** · **Life(일상)** 세 영역으로 나뉜다. 아래 흐름대로 카테고리를 고르고, 플레이스홀더를 채운 뒤 ChatGPT 또는 Claude 링크로 실행하면 된다.
+
+```mermaid
+flowchart LR
+    subgraph Input
+        User["사용자"]
+        Placeholder["플레이스홀더</br>채우기"]
+    end
+    subgraph Category
+        Study["Study</br>학업"]
+        Career["Career</br>커리어"]
+        Life["Life</br>일상"]
+    end
+    subgraph Run
+        ChatGPT["ChatGPT"]
+        Claude["Claude"]
+    end
+    User --> Placeholder
+    Placeholder --> Study
+    Placeholder --> Career
+    Placeholder --> Life
+    Study --> ChatGPT
+    Study --> Claude
+    Career --> ChatGPT
+    Career --> Claude
+    Life --> ChatGPT
+    Life --> Claude
+```
+
+---
+
+## 빠른 시작
+
+1. **플레이스홀더 채우기**: 원하는 항목에서 `[topic]`, `[course]`, `[company]` 등 대괄호를 자신의 상황에 맞게 치환한다.
+2. **자료 첨부**: 필요 시 `[Upload docs]` / `[Upload images]` 위치에 강의 노트·과제·이미지를 첨부한다.
+3. **실행**: [ChatGPT](https://chatgpt.com/) 또는 [Claude](https://claude.ai/) 링크를 눌러 대화를 시작한다.
+4. **정교화**: 답변 품질을 높이려면 예시·맥락·평가 기준을 추가하고, 1~2회 수정 요청을 한다.
+
+**바로가기**: [Study](#study) · [Career](#career) · [Life](#life)
+
+---
+
+## 플레이스홀더 가이드
+
+| 플레이스홀더 | 설명 | 예시 |
+|-------------|------|------|
+| `[topic]` | 주제 | deep learning, epigenetics |
+| `[mood]` | 현재 감정/상태 | overwhelmed, unmotivated |
+| `[notes or slides]` | 강의 노트·슬라이드 | — (파일 첨부) |
+| `[length]` | 분량 | 15-page |
+| `[APA or MLA]` | 인용 스타일 | APA, MLA |
+| `[course]` / `[exam format]` | 과목 / 시험 형식 | Psych 101, MCQ |
+| `[language]` / `[concept]` / `[domain]` | 언어/개념/전문영역 | French, epigenetics, health |
+| `[type of interview]` / `[job]` / `[industry or location]` | 인터뷰 유형/직무/지역 | technical, SWE, Austin |
+| `[type of advisor]` / `[role]` / `[company]` / `[team]` | 멘토 유형/역할/회사/팀 | first reader, Analyst, Surfline |
+| `[city]` / `[dates]` / `[time of year]` | 도시/기간/계절 | NYC, July 1–7, summer |
+| `[meal]` / `[number of people]` / `[$ per person]` | 식사 유형/인원/예산 | dinner, 10, 30 |
+| `[store name]` / `[duration]` / `[allergens]` | 마트/기간/알레르겐 | —, 1 week, nuts |
+| `[project]` / `[project interests]` / `[name of app]` | 프로젝트/관심사/앱 | thesis, finance, Lightroom |
+| `[describe problem or goal]` / `[schedule]` / `[muscle group]` | 목표/스케줄/운동 부위 | soften vignette, 30h/week, glutes |
+| `[Upload docs]` / `[Upload images]` | 파일·이미지 첨부 | — |
+
+---
+
+## 사용 팁과 주의사항
+
+**효과적인 활용**
+- **맥락 제공**: 배경, 목표, 제약, 평가 기준을 함께 적으면 답변이 정확해진다.
+- **형식 지정**: "표로 정리", "체크리스트로", "마일스톤별"처럼 출력 형식을 명시한다.
+- **소크라테스 모드**: "한 번에 한 질문씩 해줘"라고 하면 이해도 점검에 유리하다.
+- **파일 우선**: 강의 노트·슬라이드·과제 PDF를 첨부하면 품질이 크게 올라간다.
+- **반복 개선**: 초안 → 피드백 요청 → 수정 2~3회 루프를 권장한다.
+
+**주의**
+- 학업·법률·의료 등 중요한 결정은 반드시 2차 검증한다.
+- 개인정보·기밀 파일은 업로드 전 민감정보를 제거한다.
+- 학술 인용은 원문·DOI를 직접 확인한 뒤 사용한다.
+
+---
 
 ## Study
 
@@ -506,6 +618,10 @@ Analyze this [workout]. What's going well, and what's missing? [Upload docs]
 Can you write me a schedule to manage my time and avoid stress? Here's my current weekly schedule: [schedule] [Upload docs]
 [ChatGPT](https://chatgpt.com/?prompt=Can%20you%20write%20me%20a%20schedule%20to%20manage%20my%20time%20and%20avoid%20stress%3F%20Here%27s%20my%20current%20weekly%20schedule%3A%20%5Bschedule%5D%0A%5BUpload%20docs%5D), [Claude](https://claude.ai/new?q=Can%20you%20write%20me%20a%20schedule%20to%20manage%20my%20time%20and%20avoid%20stress%3F%20Here%27s%20my%20current%20weekly%20schedule%3A%20%5Bschedule%5D%0A%5BUpload%20docs%5D)
 
+---
 
-## 참고 링크
-- ChatGPT 원문: [ChatGPT for students](https://chatgpt.com/use-cases/students)
+## 참고 문헌
+
+1. **ChatGPT for students** — ChatGPT 공식 학생용 유스케이스(100 chats). [chatgpt.com/use-cases/students](https://chatgpt.com/use-cases/students)
+2. **OpenAI** — ChatGPT 제품 및 회사 정보. [openai.com](https://www.openai.com/)
+3. **Anthropic Help Center** — Claude 사용법 및 교육·기업용 리소스. [support.anthropic.com](https://support.anthropic.com)

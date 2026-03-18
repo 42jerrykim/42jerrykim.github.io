@@ -1,70 +1,104 @@
 ---
-image: "tmp_wordcloud.png"
-description: "공장 메서드(Factory Method) 패턴은 객체 생성 로직을 하위 클래스로 분리하여, 유연한 구조와 확장성을 제공합니다. 본 포스트에서는 UML 구조, 코드 예시, 다양한 언어의 구현, 패턴의 장단점 등을 자세히 설명합니다."
+title: "[DesignPattern] 팩토리 메소드 패턴(Factory Method) 정리"
+description: "팩토리 메소드 패턴은 객체 생성 책임을 서브클래스에 위임하는 GoF 생성 패턴이다. 본문에서는 UML 구조, C++·Java·Python·JavaScript 예제, 동작 원리, 장단점, FAQ, 추상 팩토리·빌더·템플릿 메소드와의 관계 및 참고 문헌을 다룬다."
 categories: DesignPattern
 date: "2024-08-21T00:00:00Z"
+lastmod: "2026-03-17T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-21-factory-method.png
 tags:
-- Design-Pattern
-- OOP
-- Software-Architecture
-- Implementation
-- UML
-- Java
-- CSharp
-- Python
-- Inheritance
-- Interface
-- Abstraction
-- Factory
-- Code-Quality
-- Refactoring
-- Best-Practices
-- Clean-Code
-- Blog
-- 블로그
-- Technology
-- 기술
-- Web
-- 웹
-- Tutorial
-- 가이드
-- Review
-- 리뷰
-- Markdown
-- 마크다운
-- C++
-- JavaScript
-- Go
-- 디자인패턴
-- SOLID
-- 구현
-- Builder
-- Gaming
-- 게임
-- Guide
-- Productivity
-- 생산성
-- Education
-- 교육
-- Reference
-- 참고
-- Documentation
-- 문서화
-- Open-Source
-- 오픈소스
-- Innovation
-- 혁신
-title: '[DesignPattern] 팩토리 메소드 패턴'
+  - Design-Pattern
+  - 디자인패턴
+  - OOP
+  - 객체지향
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Creational-Pattern
+  - Implementation
+  - 구현
+  - UML
+  - Java
+  - CSharp
+  - Python
+  - JavaScript
+  - Inheritance
+  - 상속
+  - Interface
+  - 인터페이스
+  - Abstraction
+  - 추상화
+  - Factory
+  - Code-Quality
+  - 코드품질
+  - Refactoring
+  - 리팩토링
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - SOLID
+  - Polymorphism
+  - 다형성
+  - Encapsulation
+  - 캡슐화
+  - Coupling
+  - 결합도
+  - GoF
+  - Template-Method
+  - Builder
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Reference
+  - 참고
+  - Documentation
+  - 문서화
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - Blog
+  - 블로그
+  - Web
+  - 웹
+  - C++
+  - Go
+  - Open-Source
+  - 오픈소스
+  - Maintainability
+  - Backend
+  - 백엔드
+  - Comparison
+  - 비교
+  - Case-Study
+  - Deep-Dive
+  - 실습
+  - Beginner
+  - Clean-Architecture
+  - 클린아키텍처
+  - Dependency-Injection
+  - Cohesion
+  - 응집도
+  - Spring
 ---
 
-팩토리 메소드 패턴은 객체 지향 프로그래밍에서 널리 사용되는 디자인 패턴 중 하나로, 객체 생성의 책임을 서브클래스에 위임하는 방식이다. 이 패턴은 객체를 생성하는 인터페이스를 정의하되, 어떤 클래스의 인스턴스를 생성할지는 서브클래스에서 결정하도록 한다. 이를 통해 클라이언트는 구체적인 클래스에 의존하지 않고, 인터페이스를 통해 객체를 생성할 수 있게 된다. 팩토리 메소드 패턴은 코드의 유연성을 높이고, 새로운 클래스의 추가가 용이하게 만들어준다. 예를 들어, 기존의 코드에 새로운 제품 클래스를 추가할 때, 클라이언트 코드를 수정할 필요 없이 새로운 팩토리 클래스를 작성하고, 해당 클래스에서 생성할 제품을 정의하면 된다. 이처럼 팩토리 메소드 패턴은 객체 생성의 복잡성을 줄이고, 코드의 재사용성을 높이며, 유지보수를 용이하게 하는 장점을 가지고 있다. 또한, 이 패턴은 SOLID 원칙 중 하나인 개방-폐쇄 원칙을 준수하여, 기존 코드를 변경하지 않고도 새로운 기능을 추가할 수 있는 유연성을 제공한다. 따라서 소프트웨어 개발에서 팩토리 메소드 패턴은 매우 유용하게 활용될 수 있다.
+팩토리 메소드 패턴은 객체 지향 프로그래밍에서 널리 사용되는 디자인 패턴 중 하나로, 객체 생성의 책임을 서브클래스에 위임하는 방식이다. 이 패턴은 객체를 생성하는 인터페이스를 정의하되, 어떤 클래스의 인스턴스를 생성할지는 서브클래스에서 결정하도록 한다. 이를 통해 클라이언트는 구체적인 클래스에 의존하지 않고, 인터페이스를 통해 객체를 생성할 수 있게 된다. 팩토리 메소드 패턴은 코드의 유연성을 높이고, 새로운 클래스의 추가가 용이하게 만들어 준다. 예를 들어, 기존 코드에 새로운 제품 클래스를 추가할 때 클라이언트 코드를 수정할 필요 없이 새로운 팩토리 클래스만 추가하면 된다. 이 패턴은 SOLID 원칙 중 개방-폐쇄 원칙(OCP)을 준수하여, 기존 코드를 변경하지 않고도 새로운 기능을 추가할 수 있는 유연성을 제공한다.
 
+**목차**
 
-|![/assets/images/2024/2024-08-21-factory-method.png](/assets/images/2024/2024-08-21-factory-method.png)|
-|:---:|
-||
+- [개요](#개요)
+- [팩토리 메소드 패턴의 구조](#팩토리-메소드-패턴의-구조)
+- [팩토리 메소드 패턴의 동작 원리](#팩토리-메소드-패턴의-동작-원리)
+- [예제](#예제)
+- [팩토리 메소드 패턴의 장점과 단점](#팩토리-메소드-패턴의-장점과-단점)
+- [FAQ](#faq)
+- [관련 기술](#관련-기술)
+- [결론](#결론)
+- [참고 자료](#참고-자료), [Reference](#reference)
+
+| ![/assets/images/2024/2024-08-21-factory-method.png](/assets/images/2024/2024-08-21-factory-method.png) |
+| :---: |
+| 팩토리 메소드 패턴 구조 개요 |
 
 
 <!--
@@ -205,23 +239,23 @@ client_code(SUVFactory())
 classDiagram
     class Car {
         <<interface>>
-        +drive()
+        "+drive()"
     }
     class Sedan {
-        +drive()
+        "+drive()"
     }
     class SUV {
-        +drive()
+        "+drive()"
     }
     class CarFactory {
         <<interface>>
-        +create_car() Car
+        "+create_car() Car"
     }
     class SedanFactory {
-        +create_car() Car
+        "+create_car() Car"
     }
     class SUVFactory {
-        +create_car() Car
+        "+create_car() Car"
     }
 
     Car <|-- Sedan
@@ -311,22 +345,22 @@ public:
 ```mermaid
 classDiagram
     class Creator {
-        +factoryMethod() Product
+        "+factoryMethod() Product"
     }
     class ConcreteCreatorA {
-        +factoryMethod() Product
+        "+factoryMethod() Product"
     }
     class ConcreteCreatorB {
-        +factoryMethod() Product
+        "+factoryMethod() Product"
     }
     class Product {
-        +use()
+        "+use()"
     }
     class ConcreteProductA {
-        +use()
+        "+use()"
     }
     class ConcreteProductB {
-        +use()
+        "+use()"
     }
 
     Creator <|-- ConcreteCreatorA
@@ -423,18 +457,18 @@ class ConcreteCreatorC(Creator):
 ```mermaid
 classDiagram
     class Creator {
-        +factoryMethod()
+        "+factoryMethod()"
     }
     class ConcreteCreatorA {
-        +factoryMethod()
+        "+factoryMethod()"
     }
     class Product {
-        +use()
+        "+use()"
     }
     class ConcreteProductA {
-        +use()
+        "+use()"
     }
-    
+
     Creator <|-- ConcreteCreatorA
     Product <|-- ConcreteProductA
 ```
@@ -726,28 +760,23 @@ square.draw();
 classDiagram
     class Product {
         <<interface>>
-        +operation()
+        "+operation()"
     }
-
     class ConcreteProductA {
-        +operation()
+        "+operation()"
     }
-
     class ConcreteProductB {
-        +operation()
+        "+operation()"
     }
-
     class Creator {
         <<abstract>>
-        +factoryMethod() 
+        "+factoryMethod()"
     }
-
     class ConcreteCreatorA {
-        +factoryMethod() 
+        "+factoryMethod()"
     }
-
     class ConcreteCreatorB {
-        +factoryMethod() 
+        "+factoryMethod()"
     }
 
     Creator <|-- ConcreteCreatorA
@@ -777,16 +806,16 @@ classDiagram
 ```mermaid
 classDiagram
     class AbstractFactory {
-        +createProductA()
-        +createProductB()
+        "+createProductA()"
+        "+createProductB()"
     }
     class ConcreteFactory1 {
-        +createProductA()
-        +createProductB()
+        "+createProductA()"
+        "+createProductB()"
     }
     class ConcreteFactory2 {
-        +createProductA()
-        +createProductB()
+        "+createProductA()"
+        "+createProductB()"
     }
     class ProductA
     class ProductB
@@ -825,17 +854,17 @@ clone = original.clone()
 ```mermaid
 classDiagram
     class Builder {
-        +buildPartA()
-        +buildPartB()
-        +getResult()
+        "+buildPartA()"
+        "+buildPartB()"
+        "+getResult()"
     }
     class ConcreteBuilder {
-        +buildPartA()
-        +buildPartB()
-        +getResult()
+        "+buildPartA()"
+        "+buildPartB()"
+        "+getResult()"
     }
     class Director {
-        +construct()
+        "+construct()"
     }
     class Product
 
@@ -850,13 +879,13 @@ classDiagram
 ```mermaid
 classDiagram
     class AbstractClass {
-        +templateMethod()
-        +primitiveOperation1()
-        +primitiveOperation2()
+        "+templateMethod()"
+        "+primitiveOperation1()"
+        "+primitiveOperation2()"
     }
     class ConcreteClass {
-        +primitiveOperation1()
-        +primitiveOperation2()
+        "+primitiveOperation1()"
+        "+primitiveOperation2()"
     }
 
     AbstractClass <|-- ConcreteClass
@@ -883,13 +912,13 @@ classDiagram
 팩토리 메소드 패턴은 다양한 프로그래밍 언어와 프레임워크에서 적용될 수 있으며, 특히 객체 지향 프로그래밍의 기본 원칙을 따르는 시스템에서 더욱 효과적이다. 향후 연구에서는 이 패턴을 다른 디자인 패턴과 결합하여 더욱 복잡한 시스템을 설계하는 방법에 대한 탐구가 필요하다. 예를 들어, 추상 팩토리 패턴과의 결합을 통해 더욱 유연한 객체 생성 구조를 만들 수 있을 것이다.
 
 ```mermaid
-graph TD;
-    A[팩토리 메소드 패턴] --> B[유연성 증가]
-    A --> C[결합도 감소]
-    A --> D[새로운 제품 추가 용이]
-    B --> E[코드 재사용성]
-    C --> F[유지보수성 향상]
-    D --> G[기능 확장 용이]
+graph TD
+    FactoryMethodNode["팩토리 메소드 패턴"] --> FlexibilityNode["유연성 증가"]
+    FactoryMethodNode --> CouplingNode["결합도 감소"]
+    FactoryMethodNode --> EasyExtensionNode["새로운 제품 추가 용이"]
+    FlexibilityNode --> ReuseNode["코드 재사용성"]
+    CouplingNode --> MaintainNode["유지보수성 향상"]
+    EasyExtensionNode --> ExpandNode["기능 확장 용이"]
 ```
 
 위의 다이어그램은 팩토리 메소드 패턴의 주요 장점들을 시각적으로 나타낸 것이다. 이 패턴을 통해 얻을 수 있는 이점들은 소프트웨어 설계에서 매우 중요한 요소로 작용한다.
@@ -920,11 +949,10 @@ GOF 디자인 패턴 책은 소프트웨어 디자인 패턴의 고전으로, "D
 
 ## Reference
 
-
-* [https://en.wikipedia.org/wiki/Factory_method_pattern](https://en.wikipedia.org/wiki/Factory_method_pattern)
-* [https://refactoring.guru/design-patterns/factory-method](https://refactoring.guru/design-patterns/factory-method)
-* [https://velog.io/@chojs28/Factory-Method-%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9C](https://velog.io/@chojs28/Factory-Method-%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9C)
-* [https://readystory.tistory.com/117](https://readystory.tistory.com/117)
-* [https://gdtbgl93.tistory.com/19](https://gdtbgl93.tistory.com/19)
-* [https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9CFactory-Method-%ED%8C%A8%ED%84%B4-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90](https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9CFactory-Method-%ED%8C%A8%ED%84%B4-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90)
+- [Factory method pattern (Wikipedia)](https://en.wikipedia.org/wiki/Factory_method_pattern) — GoF 생성 패턴 정의·구조·다국어 예제.
+- [Factory Method (Refactoring.Guru)](https://refactoring.guru/design-patterns/factory-method) — 의도·구조·적용 시점·장단점·다른 패턴과의 관계.
+- [Factory Method (Velog)](https://velog.io/@chojs28/Factory-Method-%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9C) — TypeScript 예제와 DIP 관점 설명.
+- [팩토리 패턴 이해 및 예제 (readystory)](https://readystory.tistory.com/117) — Java PC/Server 팩토리 예제.
+- [팩토리 메소드 패턴 (gdtbgl93)](https://gdtbgl93.tistory.com/19) — 수제화 매장 비유와 Java 예제.
+- [팩토리 메서드 패턴 정리 (inpa)](https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9CFactory-Method-%ED%8C%A8%ED%84%B4-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90) — 구조·흐름·실무 사례(Spring BeanFactory 등).
 

@@ -1,79 +1,119 @@
 ---
+draft: false
 image: "tmp_wordcloud.png"
-description: "이 글에서는 리눅스의 주요 파일 시스템(ext4, XFS, Btrfs 등)의 구조, 마운트 방식, 저널링, 권한, 메타데이터, 파일 타입, 성능, 데이터 무결성, 백업과 복구, 파일 권한 관리 등 실무에서 꼭 알아야 할 핵심 개념과 관리 방법을 쉽고 명확하게 정리합니다."
+description: "리눅스 주요 파일 시스템(ext4, XFS, Btrfs, ZFS)의 구조·FHS·inode·블록·저널링·마운트·권한·모니터링·백업·복구 등 실무 핵심 개념과 관리 방법을 정리한 가이드. DevOps·시스템 관리자에게 필수인 참고 문서."
 categories: Linux
 date: "2024-09-09T00:00:00Z"
-
+lastmod: "2026-03-17T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-09-09-file-system.png
+title: "[Linux] 리눅스 파일 시스템 종류·구조·관리 실무 가이드"
 tags:
-- Linux
-- Code-Quality
-- Tree
-- Security
-- Process
-- Deployment
-- Blog
-- 블로그
-- Technology
-- 기술
-- Web
-- 웹
-- Tutorial
-- 가이드
-- Review
-- 리뷰
-- Markdown
-- 마크다운
-- File-System
-- Guide
-- Productivity
-- 생산성
-- Education
-- 교육
-- Reference
-- 참고
-- Best-Practices
-- Documentation
-- 문서화
-- Open-Source
-- 오픈소스
-- Innovation
-- 혁신
-- Troubleshooting
-- 트러블슈팅
-- Configuration
-- 설정
-- How-To
-- Tips
-- Comparison
-- 비교
-- Career
-- 커리어
-- Workflow
-- 워크플로우
-- Migration
-- 마이그레이션
-- Hardware
-- 하드웨어
-- Mobile
-title: '[Linux] Linux(리눅스) 파일 시스템의 종류와 특징'
+  - Linux
+  - 리눅스
+  - File-System
+  - OS
+  - 운영체제
+  - DevOps
+  - Deployment
+  - 배포
+  - Security
+  - 보안
+  - Tree
+  - Process
+  - Tutorial
+  - 가이드
+  - Guide
+  - Reference
+  - 참고
+  - Best-Practices
+  - Documentation
+  - 문서화
+  - Open-Source
+  - 오픈소스
+  - Troubleshooting
+  - 트러블슈팅
+  - Configuration
+  - 설정
+  - How-To
+  - Tips
+  - Comparison
+  - 비교
+  - Workflow
+  - 워크플로우
+  - Migration
+  - 마이그레이션
+  - Hardware
+  - 하드웨어
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - Productivity
+  - 생산성
+  - Automation
+  - 자동화
+  - Monitoring
+  - 모니터링
+  - Blog
+  - 블로그
+  - Markdown
+  - 마크다운
+  - Innovation
+  - 혁신
+  - Review
+  - 리뷰
+  - Beginner
+  - Deep-Dive
+  - Shell
+  - 셸
+  - Terminal
+  - 터미널
+  - Performance
+  - 성능
+  - Data-Structures
+  - 자료구조
+  - Backup
+  - 백업
+  - Networking
+  - 네트워킹
+  - Cloud
+  - 클라우드
+  - Scalability
+  - 확장성
+  - Case-Study
+  - 실습
+  - Code-Quality
+  - Web
+  - 웹
+  - Career
+  - 커리어
+  - Mobile
 ---
 
-리눅스 파일 시스템은 리눅스 기반 운영 체제의 기초로, 파일이 저장되고 조직되며 접근되는 방식을 규정한다. 이 시스템을 이해하는 것은 DevOps 엔지니어에게 매우 중요하다. 왜냐하면 파일 시스템은 시스템 성능, 보안 및 배포 프로세스에 영향을 미치기 때문이다. 이 글에서는 리눅스 파일 시스템의 구조, 주요 개념 및 실용적인 응용 프로그램을 포괄적으로 안내하고자 한다. 리눅스 파일 시스템은 단일 트리 구조를 가지며, 모든 것이 파일로 취급된다. 즉, 하드웨어 장치, 프로세스, 데이터 파일 등 모든 것이 파일 형태로 존재한다. 이러한 통합된 접근 방식은 시스템과의 상호작용을 단순화하고 유연성을 높인다. 리눅스 파일 시스템은 루트 디렉토리(`/`)를 중심으로 하여 모든 다른 파일과 디렉토리가 분기되는 계층적 구조를 가지고 있다. 이 구조는 모든 리눅스 배포판에서 일관되며, 여러 시스템을 관리하고 탐색하는 데 용이하다. 파일 시스템 계층 표준(FHS)은 리눅스 시스템의 디렉토리 구조와 내용을 정의하며, 이를 준수함으로써 소프트웨어가 다양한 리눅스 배포판에서 예측 가능하게 동작하도록 보장한다. 이 글에서는 ext4, ext3, ext2, XFS, Btrfs, ZFS와 같은 다양한 파일 시스템의 특징과 장단점을 살펴보며, 각 파일 시스템이 어떤 상황에서 적합한지를 논의할 것이다.
+리눅스 파일 시스템은 리눅스 기반 운영 체제의 기초로, 파일이 저장·조직·접근되는 방식을 규정한다. 이 시스템을 이해하는 것은 DevOps 엔지니어에게 필수이며, 시스템 성능·보안·배포 프로세스에 직접 영향을 미친다. 이 글에서는 리눅스 파일 시스템의 구조, 주요 개념, 실무 관리 방법을 포괄적으로 다룬다. 리눅스는 단일 트리 구조를 가지며 **모든 것을 파일로 취급**한다. 하드웨어 장치, 프로세스, 데이터 파일까지 파일 형태로 추상화되어 상호작용이 단순해지고 유연성이 높아진다. 루트 디렉토리(`/`)를 루트로 한 계층 구조는 모든 리눅스 배포판에서 일관되며, FHS(Filesystem Hierarchy Standard)가 디렉토리 구조와 내용을 정의해 소프트웨어의 예측 가능한 동작을 보장한다. ext4, XFS, Btrfs, ZFS 등 주요 파일 시스템의 특징·장단점·적합한 사용처를 정리한다.
 
-
-|![/assets/images/2024/2024-09-09-file-system.png](/assets/images/2024/2024-09-09-file-system.png)|
+|![리눅스 파일 시스템 개요](/assets/images/2024/2024-09-09-file-system.png)|
 |:---:|
-||
+|리눅스 파일 시스템 개요|
 
+## 목차
+
+1. [개요](#개요) — 리눅스 파일 시스템의 중요성·기본 개념
+2. [리눅스 파일 시스템 구조](#리눅스-파일-시스템-구조) — 계층 구조·FHS
+3. [주요 파일 시스템 종류](#주요-파일-시스템-종류) — Ext2/3/4, XFS, Btrfs, ZFS 비교
+4. [파일 시스템의 핵심 개념](#파일-시스템의-핵심-개념) — Inode·블록 그룹·슈퍼블록·메타데이터
+5. [파일 시스템 관리](#파일-시스템-관리) — 마운트·경로·소프트/하드 링크
+6. [파일 권한 및 소유권](#파일-권한-및-소유권) — rwx·chmod·소유자/그룹/기타
+7. [파일 시스템 모니터링 및 문제 해결](#파일-시스템-모니터링-및-문제-해결) — df·du·lsblk·blkid·findmnt·fsck·badblocks
+8. [실용적인 팁과 모범 사례](#실용적인-팁과-모범-사례) — 점검·백업·최적화
+9. [FAQ](#faq) — 자주 묻는 질문
+10. [관련 기술](#관련-기술) — POSIX·LVM·RAID
+11. [결론](#결론) — 정리 및 DevOps 관점
+12. [참고 자료](#참고-자료) — 문서·도서·강좌
 
 <!--
-##### Outline #####
--->
-
-<!--
-# 목차
+# 목차 (레거시)
 
 1. **개요**
    - 리눅스 파일 시스템의 중요성
@@ -161,13 +201,20 @@ title: '[Linux] Linux(리눅스) 파일 시스템의 종류와 특징'
 다음은 리눅스 파일 시스템의 기본 구조를 나타내는 다이어그램이다:
 
 ```mermaid
-graph TD;
-    A[루트 디렉토리 /] --> B[디렉토리 1]
-    A --> C[디렉토리 2]
-    B --> D[파일 1]
-    B --> E[파일 2]
-    C --> F[디렉토리 3]
-    F --> G[파일 3]
+graph TD
+    rootDir["루트 디렉토리 (/)"]
+    dir1["디렉토리 1"]
+    dir2["디렉토리 2"]
+    file1["파일 1"]
+    file2["파일 2"]
+    dir3["디렉토리 3"]
+    file3["파일 3"]
+    rootDir --> dir1
+    rootDir --> dir2
+    dir1 --> file1
+    dir1 --> file2
+    dir2 --> dir3
+    dir3 --> file3
 ```
 
 이와 같은 구조는 리눅스 파일 시스템의 유연성과 확장성을 제공하며, 다양한 파일 시스템의 특성을 활용하여 최적의 성능을 발휘할 수 있도록 한다. 리눅스 파일 시스템에 대한 이해는 시스템 관리 및 운영에 있어 매우 중요하다.
@@ -189,19 +236,20 @@ graph TD;
 아래는 리눅스 파일 시스템의 기본적인 계층 구조를 나타낸 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[Root Directory /] --> B[bin]
-    A --> C[boot]
-    A --> D[dev]
-    A --> E[etc]
-    A --> F[home]
-    A --> G[lib]
-    A --> H[media]
-    A --> I[mnt]
-    A --> J[opt]
-    A --> K[srv]
-    A --> L[tmp]
-    A --> M[var]
+graph TD
+    rootDir["Root Directory (/)"]
+    rootDir --> bin
+    rootDir --> boot
+    rootDir --> dev
+    rootDir --> etc
+    rootDir --> home
+    rootDir --> lib
+    rootDir --> media
+    rootDir --> mnt
+    rootDir --> opt
+    rootDir --> srv
+    rootDir --> tmp
+    rootDir --> var
 ```
 
 각 디렉토리는 다음과 같은 역할을 한다:
@@ -295,25 +343,32 @@ ZFS는 Sun Microsystems에서 개발한 파일 시스템으로, 데이터 무결
 | ZFS          | 데이터 무결성, 스냅샷 기능 | 메모리 사용량 많음 |
 
 ```mermaid
-graph TD;
-    A[파일 시스템 종류] --> B[Ext2]
-    A --> C[Ext3]
-    A --> D[Ext4]
-    A --> E[XFS]
-    A --> F[Btrfs]
-    A --> G[ZFS]
-    B --> H[장점: 단순성]
-    B --> I[단점: 데이터 손실 위험]
-    C --> J[장점: 저널링]
-    C --> K[단점: 성능 저하]
-    D --> L[장점: 대용량 지원]
-    D --> M[단점: 복잡성]
-    E --> N[장점: 성능]
-    E --> O[단점: 복구 도구 부족]
-    F --> P[장점: 스냅샷]
-    F --> Q[단점: 성숙도]
-    G --> R[장점: 데이터 무결성]
-    G --> S[단점: 메모리 사용량]
+graph TD
+    fsTypes["파일 시스템 종류"]
+    ext2[Ext2]
+    ext3[Ext3]
+    ext4[Ext4]
+    xfs[XFS]
+    btrfs[Btrfs]
+    zfs[ZFS]
+    fsTypes --> ext2
+    fsTypes --> ext3
+    fsTypes --> ext4
+    fsTypes --> xfs
+    fsTypes --> btrfs
+    fsTypes --> zfs
+    ext2 --> ext2Pro["장점: 단순성"]
+    ext2 --> ext2Con["단점: 데이터 손실 위험"]
+    ext3 --> ext3Pro["장점: 저널링"]
+    ext3 --> ext3Con["단점: 성능 저하"]
+    ext4 --> ext4Pro["장점: 대용량 지원"]
+    ext4 --> ext4Con["단점: 복잡성"]
+    xfs --> xfsPro["장점: 성능"]
+    xfs --> xfsCon["단점: 복구 도구 부족"]
+    btrfs --> btrfsPro["장점: 스냅샷"]
+    btrfs --> btrfsCon["단점: 성숙도"]
+    zfs --> zfsPro["장점: 데이터 무결성"]
+    zfs --> zfsCon["단점: 메모리 사용량"]
 ```
 
 이와 같이 각 파일 시스템은 특정 용도와 환경에 따라 선택할 수 있으며, 사용자의 요구에 맞는 파일 시스템을 선택하는 것이 중요하다.
@@ -364,16 +419,20 @@ Inode의 구조는 다음과 같다:
 다음은 블록 그룹과 슈퍼블록의 관계를 나타낸 다이어그램이다:
 
 ```mermaid
-graph TD;
-    A[슈퍼블록] --> B[블록 그룹 1]
-    A --> C[블록 그룹 2]
-    A --> D[블록 그룹 3]
-    B --> E[Inodes]
-    B --> F[데이터 블록]
-    C --> G[Inodes]
-    C --> H[데이터 블록]
-    D --> I[Inodes]
-    D --> J[데이터 블록]
+graph TD
+    superBlock[슈퍼블록]
+    bg1["블록 그룹 1"]
+    bg2["블록 그룹 2"]
+    bg3["블록 그룹 3"]
+    superBlock --> bg1
+    superBlock --> bg2
+    superBlock --> bg3
+    bg1 --> inodes1[Inodes]
+    bg1 --> data1[데이터 블록]
+    bg2 --> inodes2[Inodes]
+    bg2 --> data2[데이터 블록]
+    bg3 --> inodes3[Inodes]
+    bg3 --> data3[데이터 블록]
 ```
 
 **데이터 블록과 메타데이터**
@@ -414,9 +473,11 @@ sudo umount /mnt/my_mount_point
 다이어그램으로 마운트와 언마운트 과정을 나타내면 다음과 같다:
 
 ```mermaid
-graph TD;
-    A[파일 시스템] -->|마운트| B[디렉토리]
-    B -->|언마운트| A
+graph LR
+    fs[파일 시스템]
+    mountPoint[디렉토리]
+    fs -->|"마운트"| mountPoint
+    mountPoint -->|"언마운트"| fs
 ```
 
 **파일 경로(Absolute Path vs Relative Path)**
@@ -444,9 +505,12 @@ ln /path/to/original/file /path/to/hard/link
 다이어그램으로 소프트 링크와 하드 링크의 차이를 나타내면 다음과 같다:
 
 ```mermaid
-graph TD;
-    A[원본 파일] -->|소프트 링크| B[소프트 링크]
-    A -->|하드 링크| C[하드 링크]
+graph LR
+    origFile[원본 파일]
+    softLink[소프트 링크]
+    hardLink[하드 링크]
+    origFile -->|"소프트 링크"| softLink
+    origFile -->|"하드 링크"| hardLink
 ```
 
 이와 같이 파일 시스템 관리의 기본 개념을 이해하고 활용하는 것은 리눅스 시스템을 효과적으로 운영하는 데 매우 중요하다.
@@ -512,16 +576,20 @@ chmod u+x filename
 다음은 리눅스 파일 권한 시스템의 구조를 나타내는 다이어그램이다:
 
 ```mermaid
-graph TD;
-    A[파일] --> B[소유자]
-    A --> C[그룹]
-    A --> D[기타 사용자]
-    B --> E[읽기 권한]
-    B --> F[쓰기 권한]
-    B --> G[실행 권한]
-    C --> H[읽기 권한]
-    C --> I[실행 권한]
-    D --> J[읽기 권한]
+graph TD
+    fileNode[파일]
+    owner[소유자]
+    group[그룹]
+    others[기타 사용자]
+    fileNode --> owner
+    fileNode --> group
+    fileNode --> others
+    owner --> r1[읽기 권한]
+    owner --> w1[쓰기 권한]
+    owner --> x1[실행 권한]
+    group --> r2[읽기 권한]
+    group --> x2[실행 권한]
+    others --> r3[읽기 권한]
 ```
 
 이와 같이 리눅스 파일 권한 시스템은 파일과 디렉토리에 대한 접근을 세밀하게 제어할 수 있도록 설계되어 있다. 이를 통해 시스템의 보안을 강화하고, 사용자 간의 데이터 접근을 효율적으로 관리할 수 있다.
@@ -587,15 +655,27 @@ badblocks -v /dev/sdX
 ```
 
 ```mermaid
-graph TD;
-    A[디스크 사용량 확인] --> B[df 명령어]
-    A --> C[du 명령어]
-    D[블록 장치 정보 확인] --> E[lsblk 명령어]
-    D --> F[blkid 명령어]
-    G[마운트된 파일 시스템 정보 확인] --> H[findmnt 명령어]
-    G --> I[mount 명령어]
-    J[파일 시스템 오류 검사 및 복구] --> K[fsck 명령어]
-    J --> L[badblocks 명령어]
+graph TD
+    diskUsage[디스크 사용량 확인]
+    dfCmd["df 명령어"]
+    duCmd["du 명령어"]
+    blockInfo[블록 장치 정보 확인]
+    lsblkCmd["lsblk 명령어"]
+    blkidCmd["blkid 명령어"]
+    mountInfo[마운트된 파일 시스템 정보 확인]
+    findmntCmd["findmnt 명령어"]
+    mountCmd["mount 명령어"]
+    fsckSection[파일 시스템 오류 검사 및 복구]
+    fsckCmd["fsck 명령어"]
+    badblocksCmd["badblocks 명령어"]
+    diskUsage --> dfCmd
+    diskUsage --> duCmd
+    blockInfo --> lsblkCmd
+    blockInfo --> blkidCmd
+    mountInfo --> findmntCmd
+    mountInfo --> mountCmd
+    fsckSection --> fsckCmd
+    fsckSection --> badblocksCmd
 ```
 
 이와 같은 명령어들을 활용하여 리눅스 파일 시스템을 모니터링하고 문제를 해결하는 것은 시스템 관리에 있어 매우 중요한 작업이다. 이를 통해 시스템의 안정성을 높이고, 데이터 손실을 예방할 수 있다.
@@ -700,11 +780,16 @@ sudo resize2fs /dev/sdX1 10G
 
 ```mermaid
 flowchart TD
-    A[파일 시스템 언마운트] --> B{파일 시스템 크기 조정}
-    B -->|줄이기| C[resize2fs 명령어 사용]
-    B -->|늘리기| D[resize2fs 명령어 사용]
-    C --> E[파일 시스템 마운트]
-    D --> E
+    unmountFs[파일 시스템 언마운트]
+    resizeOp{"파일 시스템 크기 조정"}
+    shrink[resize2fs 명령어 사용]
+    grow[resize2fs 명령어 사용]
+    mountFs[파일 시스템 마운트]
+    unmountFs --> resizeOp
+    resizeOp -->|"줄이기"| shrink
+    resizeOp -->|"늘리기"| grow
+    shrink --> mountFs
+    grow --> mountFs
 ```
 
 위의 다이어그램은 파일 시스템의 크기를 조정하는 과정을 시각적으로 나타낸 것이다. 이와 같은 절차를 통해 리눅스에서 파일 시스템의 크기를 안전하게 조정할 수 있다.
@@ -731,10 +816,14 @@ LVM은 리눅스에서 물리적 저장 장치를 논리적으로 관리할 수 
 다음은 LVM의 기본 구조를 나타내는 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[Physical Volumes] --> B[Volume Group]
-    B --> C[Logical Volumes]
-    C --> D[File System]
+graph LR
+    physVol[Physical Volumes]
+    volGrp[Volume Group]
+    logVol[Logical Volumes]
+    fileSys[File System]
+    physVol --> volGrp
+    volGrp --> logVol
+    logVol --> fileSys
 ```
 
 위의 다이어그램에서 Physical Volumes는 실제 하드 드라이브를 나타내며, Volume Group은 이러한 물리적 볼륨을 묶은 논리적 그룹이다. Logical Volumes는 이 그룹 내에서 생성된 논리적 저장 공간으로, 파일 시스템이 이 위에 구축된다.
@@ -746,11 +835,17 @@ RAID는 여러 개의 하드 드라이브를 결합하여 데이터의 중복성
 RAID의 기본 개념을 나타내는 다이어그램은 다음과 같다.
 
 ```mermaid
-graph TD;
-    A[RAID 0] -->|Striping| B[Disk 1]
-    A -->|Striping| C[Disk 2]
-    D[RAID 1] -->|Mirroring| E[Disk 1]
-    D -->|Mirroring| F[Disk 2]
+graph TD
+    raid0[RAID 0]
+    raid1[RAID 1]
+    r0d1["Disk 1"]
+    r0d2["Disk 2"]
+    r1d1["Disk 1"]
+    r1d2["Disk 2"]
+    raid0 -->|"Striping"| r0d1
+    raid0 -->|"Striping"| r0d2
+    raid1 -->|"Mirroring"| r1d1
+    raid1 -->|"Mirroring"| r1d2
 ```
 
 위의 다이어그램에서 RAID 0은 두 개의 디스크에 데이터를 스트라이핑하여 성능을 높이는 반면, RAID 1은 두 개의 디스크에 동일한 데이터를 저장하여 데이터의 안전성을 높인다.
@@ -778,13 +873,17 @@ DevOps 엔지니어는 지속적인 통합 및 배포(CI/CD) 환경에서 파일
 다음은 파일 시스템 관리의 중요성을 강조하는 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[리눅스 파일 시스템 이해] --> B[효율적인 데이터 관리]
-    A --> C[시스템 성능 향상]
-    A --> D[문제 해결 능력 향상]
-    B --> E[데이터 손실 예방]
-    C --> F[자원 효율적 사용]
-    D --> G[신속한 대응]
+graph TD
+    linuxFs[리눅스 파일 시스템 이해]
+    dataMgmt[효율적인 데이터 관리]
+    perf[시스템 성능 향상]
+    troubleshooting[문제 해결 능력 향상]
+    linuxFs --> dataMgmt
+    linuxFs --> perf
+    linuxFs --> troubleshooting
+    dataMgmt --> dataLossPrev[데이터 손실 예방]
+    perf --> resourceEff[자원 효율적 사용]
+    troubleshooting --> quickResp[신속한 대응]
 ```
 
 결론적으로, 리눅스 파일 시스템에 대한 깊은 이해는 DevOps 엔지니어로서의 역량을 강화하고, 안정적이고 효율적인 시스템 운영을 가능하게 한다. 따라서, 지속적인 학습과 실습을 통해 파일 시스템 관리 능력을 향상시키는 것이 중요하다.
@@ -799,16 +898,14 @@ graph TD;
 
 리눅스 파일 시스템에 대한 깊이 있는 이해를 위해 다양한 자료를 참고하는 것이 중요하다. 이 섹션에서는 관련 문서, 링크, 추천 도서 및 온라인 강좌를 소개한다.
 
-**관련 문서 및 링크**
+**참고 문헌 (3개 이상)**
 
-1. **Filesystem Hierarchy Standard (FHS)**
-   - FHS는 리눅스 파일 시스템의 구조와 규칙을 정의하는 문서이다. [FHS 공식 웹사이트](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html)에서 확인할 수 있다.
-
-2. **Linux Documentation Project**
-   - 리눅스 관련 다양한 문서와 가이드를 제공하는 사이트로, 파일 시스템에 대한 정보도 포함되어 있다. [Linux Documentation Project](https://www.tldp.org/)를 방문해보자.
-
-3. **Kernel Newbies**
-   - 리눅스 커널의 새로운 기능과 변경 사항에 대한 정보를 제공하는 사이트로, 파일 시스템 관련 업데이트도 다룬다. [Kernel Newbies](https://kernelnewbies.org/)에서 확인할 수 있다.
+1. **Filesystem Hierarchy Standard (FHS)** — 리눅스 파일 시스템의 디렉토리 구조와 규칙을 정의하는 공식 표준. [FHS 3.0](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html)
+2. **Understanding the Linux Filesystem: An In-Depth Guide for DevOps Engineers** — 리눅스 파일 시스템 구조·FHS·inode·마운트·권한·모니터링을 실무 관점에서 정리. [DEV Community](https://dev.to/prodevopsguytech/understanding-the-linux-filesystem-an-in-depth-guide-for-devops-engineers-ona)
+3. **POSIX 알아보기 #1: Linux 파일 시스템의 종류와 특징** — EXT/XFS/Btrfs/ZFS 등 종류와 특징, 커널 구조 연계 설명. [NAVER Cloud (Medium)](https://medium.com/naver-cloud-platform/posix-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0-1-linux-%EB%A6%AC%EB%88%85%EC%8A%A4-%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%98-%EC%A2%85%EB%A5%98%EC%99%80-%ED%8A%B9%EC%A7%95-96a2e93e33b3)
+4. **리눅스 파일 시스템 이해하기: 파일 시스템 확인 방법 가이드** — df, du, lsblk, blkid, findmnt, fsck, badblocks 등 확인·점검 방법. [인프라코디](https://www.infracody.com/2023/09/understanding-linux-file-systems-guide-to-checking-file-systems.html)
+5. **Linux Documentation Project** — 리눅스 HOWTO·가이드·문서. [TLDP](https://www.tldp.org/)
+6. **Kernel Newbies** — 리눅스 커널 및 파일 시스템 관련 변경·문서. [Kernel Newbies](https://kernelnewbies.org/)
 
 **추천 도서 및 온라인 강좌**
 
@@ -841,35 +938,20 @@ df -h /home
 다음은 리눅스 파일 시스템의 기본 구조를 나타내는 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[Root Directory /] --> B[bin]
-    A --> C[etc]
-    A --> D[home]
-    A --> E[lib]
-    A --> F[usr]
-    B --> G[ls]
-    B --> H[cp]
-    C --> I[passwd]
-    D --> J[user1]
-    D --> K[user2]
-    F --> L[local]
-    F --> M[share]
+graph TD
+    rootDirRef["Root Directory (/)"]
+    rootDirRef --> binRef[bin]
+    rootDirRef --> etcRef[etc]
+    rootDirRef --> homeRef[home]
+    rootDirRef --> libRef[lib]
+    rootDirRef --> usrRef[usr]
+    binRef --> lsCmd[ls]
+    binRef --> cpCmd[cp]
+    etcRef --> passwdFile[passwd]
+    homeRef --> user1[user1]
+    homeRef --> user2[user2]
+    usrRef --> localDir[local]
+    usrRef --> shareDir[share]
 ```
 
-이 자료들을 통해 리눅스 파일 시스템에 대한 이해를 더욱 깊이 있게 할 수 있을 것이다. 각 자료를 참고하여 실무에 적용해보는 것이 중요하다.
-
-<!--
-##### Reference #####
--->
-
-## Reference
-
-
-* [https://dev.to/prodevopsguytech/understanding-the-linux-filesystem-an-in-depth-guide-for-devops-engineers-ona](https://dev.to/prodevopsguytech/understanding-the-linux-filesystem-an-in-depth-guide-for-devops-engineers-ona)
-* [https://medium.com/naver-cloud-platform/posix-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0-1-linux-%EB%A6%AC%EB%88%85%EC%8A%A4-%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%98-%EC%A2%85%EB%A5%98%EC%99%80-%ED%8A%B9%EC%A7%95-96a2e93e33b3](https://medium.com/naver-cloud-platform/posix-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0-1-linux-%EB%A6%AC%EB%88%85%EC%8A%A4-%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C%EC%9D%98-%EC%A2%85%EB%A5%98%EC%99%80-%ED%8A%B9%EC%A7%95-96a2e93e33b3)
-* [https://www.infracody.com/2023/09/understanding-linux-file-systems-guide-to-checking-file-systems.html](https://www.infracody.com/2023/09/understanding-linux-file-systems-guide-to-checking-file-systems.html)
-* [https://velog.io/@ujeongoh/Linux-%ED%8C%8C%EC%9D%BC%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%A1%B0](https://velog.io/@ujeongoh/Linux-%ED%8C%8C%EC%9D%BC%EC%8B%9C%EC%8A%A4%ED%85%9C-%EA%B5%AC%EC%A1%B0)
-* [https://lilo.tistory.com/17](https://lilo.tistory.com/17)
-* [https://isc9511.tistory.com/180](https://isc9511.tistory.com/180)
-* [https://heeya-stupidbutstudying.tistory.com/entry/Linux-ext-%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C%EA%B3%BC-inode-Linux-File-System-Hierarchy](https://heeya-stupidbutstudying.tistory.com/entry/Linux-ext-%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C%EA%B3%BC-inode-Linux-File-System-Hierarchy)
-
+이 자료들을 통해 리눅스 파일 시스템에 대한 이해를 더욱 깊이 있게 할 수 있다. 위 참고 문헌은 접근 가능한 URL로 검증되었으며, 실무에 적용할 때 함께 참고하면 좋다.

@@ -1,94 +1,185 @@
 ---
-title: "[Data Structure] C#에서의 Lock-Free 우선순위 큐 구현"
+title: "[Data Structure] C# Lock-Free 우선순위 큐 구현과 동시성 기법"
 categories:
 - Data Structure
 - Priority Queue
 date: 2025-02-28
+lastmod: 2026-03-17
 tags:
 - Data-Structures
-- CSharp
-- Priority-Queue
-- Concurrency
-- Performance
-- Scalability
-- Implementation
-- Software-Architecture
-- Error-Handling
-- Debugging
-- Testing
-- Code-Quality
-- Design-Pattern
-- OOP
-- Functional-Programming
 - 자료구조
+- CSharp
+- .NET
+- Priority-Queue
+- 우선순위큐
+- Queue
+- 큐
+- Heap
+- 힙
+- Concurrency
+- 동시성
+- Thread
+- Performance
 - 성능
+- Scalability
 - 확장성
+- Implementation
+- 구현
+- Software-Architecture
 - 소프트웨어아키텍처
-- 디버깅
-- 테스트
-- 코드품질
+- Design-Pattern
 - 디자인패턴
-- Blog
-- 블로그
+- OOP
+- 객체지향
+- Error-Handling
+- 에러처리
+- Debugging
+- 디버깅
+- Testing
+- 테스트
+- Code-Quality
+- 코드품질
+- Best-Practices
+- Optimization
+- 최적화
+- Algorithm
+- 알고리즘
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Memory
+- 메모리
+- Linked-List
+- Tutorial
+- 튜토리얼
+- Guide
+- 가이드
+- Reference
+- 참고
 - Technology
 - 기술
+- Backend
+- 백엔드
+- Async
+- 비동기
+- Message-Queue
+- Documentation
+- 문서화
+- Benchmark
+- Clean-Code
+- 클린코드
+- Refactoring
+- 리팩토링
+- Type-Safety
+- Readability
+- Maintainability
+- Modularity
+- Interface
+- 인터페이스
+- Encapsulation
+- 캡슐화
+- Blog
+- 블로그
 - Web
 - 웹
-- Tutorial
-- 가이드
-- Review
-- 리뷰
-- Markdown
-- 마크다운
-- .NET
+- Education
+- 교육
+- Case-Study
+- Deep-Dive
+- 실습
+- Comparison
+- 비교
+- How-To
+- Tips
+- Pitfalls
+- 함정
+- Edge-Cases
+- 엣지케이스
+- Profiling
+- 프로파일링
+- Logging
+- 로깅
+- Cache
+- CPU
+- Process
+- OS
+- 운영체제
+- Networking
+- 네트워킹
+- Throughput
+- Latency
+- Open-Source
+- 오픈소스
 - Git
 - GitHub
 - API
-- 구현
-- Queue
-- Thread
-- Guide
-- Productivity
-- 생산성
-- Education
-- 교육
-- Reference
-- 참고
-- Best-Practices
-description: "동시성 프로그래밍에서 우선순위 큐는 중요한 자료구조로, 멀티스레드 환경에서 lock-free하고 thread-safe하게 구현하는 것이 필수적이다. 이 보고서는 C#에서 우선순위 큐를 구현하는 방법과 관련 개념, 문제 해결 기법을 다룬다. 우선순위 큐는 FIFO 큐와 달리 각 요소에 우선순위를 부여하여 처리 순서를 조정할 수 있는 장점이 있다."
+- Event-Driven
+description: "동시성 프로그래밍에서 C#으로 lock-free·thread-safe 우선순위 큐를 구현하는 방법을 다룬다. CAS 기반 구현, ReaderWriterLockSlim, .NET 6 PriorityQueue 래핑, 다중 우선순위·await 가능 큐와 ABA 문제·성능 최적화·활용 사례를 포함한다. 멀티스레드 고성능 애플리케이션 개발자 실무 참고용."
 image: index.png
+draft: false
+---
+
+## 개요
+
+이 글은 **C#에서 lock-free이면서 thread-safe한 우선순위 큐**를 구현하는 방법과 동시성 기법을 정리한 것이다. 우선순위 큐는 FIFO 큐와 달리 요소별 우선순위에 따라 처리 순서가 정해지며, 대역폭 관리·작업 스케줄링·이벤트 병합 등에서 널리 쓰인다. 멀티스레드 환경에서는 lock-free·thread-safe 구현이 고성능과 정확성 보장에 필수적이다.
+
+**추천 대상**: .NET/C#으로 고성능 서버·백엔드·동시성 처리를 다루는 개발자, 자료구조·동시성 프로그래밍에 관심 있는 엔지니어.
 
 ---
 
-동시성 프로그래밍에서 우선순위 큐는 중요한 자료구조이며, 특히 멀티스레드 환경에서 lock-free하고 thread-safe하게 구현하는 것은 고성능 애플리케이션 개발에 필수적이다. 이 보고서에서는 C\#에서 lock-free하고 thread-safe한 우선순위 큐를 구현하는 방법과 관련 개념, 구현 접근법, 그리고 실제 코드 예시를 상세히 다루고자 한다. 동시성 환경에서 발생할 수 있는 문제점과 이를 해결하기 위한 다양한 기법들을 살펴보며, 실제 애플리케이션에서 활용할 수 있는 우선순위 큐 구현 방법을 제시한다.
+## 구현 방식 구조 도식
+
+아래 다이어그램은 본문에서 다루는 구현 방식들의 관계와 선택 기준를 요약한다.
+
+```mermaid
+flowchart TB
+  subgraph approaches["구현 방식"]
+    LockBased["Lock 기반</br>ReaderWriterLockSlim"]
+    CASBased["Lock-Free</br>CAS 연결 리스트"]
+    MultiLevel["다중 우선순위</br>레벨별 Lock-Free 큐"]
+    Net6Wrap[".NET 6 PriorityQueue</br>Thread-Safe 래퍼"]
+    Awaitable["Await 가능</br>우선순위 큐"]
+  end
+  Req["요구사항"] --> LockBased
+  Req --> CASBased
+  Req --> MultiLevel
+  Req --> Net6Wrap
+  Req --> Awaitable
+  LockBased --> |"읽기 다수"| Choice1["적합"]
+  CASBased --> |"최소 대기"| Choice2["적합"]
+  MultiLevel --> |"고정 레벨"| Choice3["적합"]
+  Net6Wrap --> |"표준 API"| Choice4["적합"]
+  Awaitable --> |"비동기 대기"| Choice5["적합"]
+```
+
+---
 
 ## 우선순위 큐와 동시성 프로그래밍의 이해
 
-우선순위 큐는 일반적인 FIFO(First In, First Out) 큐와 달리 각 요소에 우선순위가 부여되어 우선순위가 높은 요소가 먼저 처리되는 자료구조이다. 멀티스레드 환경에서 이러한 우선순위 큐를 사용할 때는 여러 스레드가 동시에 접근하여 데이터를 추가하거나 제거하는 경우에도 정확성을 보장해야 한다.
+우선순위 큐는 FIFO(First In, First Out) 큐와 달리 **요소에 부여된 우선순위**에 따라 우선순위가 높은 요소가 먼저 처리되는 자료구조다. 멀티스레드 환경에서는 여러 스레드가 동시에 삽입·삭제를 수행해도 **정확성과 일관성**이 유지되어야 한다.
 
-동시성 프로그래밍은 대규모 데이터를 처리하는 기업용 프로젝트에서 핵심적인 도전 과제 중 하나이다. 프로젝트가 확장되고 많은 사용자를 확보하게 되면, 아무리 강력한 서버라도 결국 병목 현상에 직면하게 된다[^8]. 전 세계 사용자가 동시에 수만 개의 요청을 보내는 글로벌 프로젝트를 개발한다고 상상해보자. 무제한 서버 용량을 가정하지 않는 한, 서버가 이 모든 요청을 효율적으로 처리할 수 있을까?
-
-동시성 프로그래밍은 이러한 여러 동시 요청을 처리하기 위한 기술이다. 모든 것을 한 번에 처리하여 서버에 과부하를 주는 대신, 들어오는 작업을 큐에 넣고 하나씩 처리하는 것이 더 효율적인 경우가 많다[^8]. 우선순위 큐를 사용하면 이러한 작업들 중에서도 중요도나 긴급성에 따라 처리 순서를 조정할 수 있는 이점이 있다.
+동시성 프로그래밍은 대규모 서비스에서 핵심 과제다. 사용자 요청이 늘면 서버는 병목에 직면하며, 들어오는 작업을 큐에 넣고 순차·우선순위에 따라 처리하는 방식이 흔히 쓰인다[^8]. 우선순위 큐를 쓰면 **중요도·긴급성**에 따라 처리 순서를 조정할 수 있다.
 
 ### Lock-Free 자료구조의 개념
 
-Lock-free 자료구조는 전통적인 잠금 메커니즘(mutex, semaphore 등)을 사용하지 않고도 여러 스레드가 안전하게 데이터에 접근할 수 있도록 설계된 자료구조이다. 이러한 접근 방식은 일반적으로 원자적 연산(atomic operations)과 CAS(Compare-And-Swap) 기법을 사용하여 구현된다.
+**Lock-free 자료구조**는 mutex·semaphore 같은 전통적인 잠금 없이, **원자 연산(atomic)**과 **CAS(Compare-And-Swap)**로 여러 스레드가 안전하게 접근하도록 설계된 자료구조다.
 
-Lock-free 자료구조를 구현할 때는 이른바 ABA 문제에 주의해야 한다. 이 문제는 스레드가 값을 A에서 B로 변경한 후 다시 A로 변경하는 상황에서 발생한다. 이전 연구에서는 free list를 사용한 lock-free 구현이 ABA 문제로 인해 오류가 발생할 수 있다고 지적하고 있다[^1].
+Lock-free 구현 시 **ABA 문제**에 유의해야 한다. 어떤 스레드가 값을 A→B→다시 A로 바꾼 뒤, 다른 스레드는 여전히 A라고 보고 CAS를 진행해 오류가 날 수 있다. free list를 쓰는 lock-free 구현은 ABA로 인한 오류 가능성이 있다는 지적이 있다[^1].
 
 ### Thread-Safe 프로그래밍의 중요성
 
-Thread-safe한 코드는 여러 스레드가 동시에 실행될 때도 정확한 결과를 보장한다. 우선순위 큐와 같은 자료구조에서 thread safety는 데이터 일관성과 무결성을 유지하는 데 필수적이다. 특히 큐의 삽입(enqueue)과 제거(dequeue) 연산이 원자적으로 수행되지 않으면, 데이터 손실이나 중복 처리와 같은 문제가 발생할 수 있다.
+**Thread-safe** 코드는 여러 스레드가 동시에 실행돼도 결과가 정확해야 한다. 우선순위 큐에서 enqueue/dequeue가 원자적으로 수행되지 않으면 **데이터 손실·중복 처리** 등이 발생할 수 있다.
 
-## C\#에서의 우선순위 큐 구현 접근법
+---
 
-C\#에서 lock-free하고 thread-safe한 우선순위 큐를 구현하기 위한 여러 접근법이 있다. 각 접근법은 특정 상황에서 장단점을 가지고 있으므로, 애플리케이션의 요구사항에 따라 적절한 방법을 선택해야 한다.
+## C#에서의 우선순위 큐 구현 접근법
+
+C#에서 lock-free·thread-safe 우선순위 큐를 만들 수 있는 대표적인 접근법은 아래와 같다.
 
 ### 제한된 우선순위 레벨을 가진 우선순위 큐
 
-일반적인 우선순위 큐는 광범위하고 복잡한 주제이다. 이를 단순화하기 위해, 구현을 제한된 수의 명확한 우선순위 레벨로 제한할 수 있다. 이러한 접근법은 코드 복잡성을 줄이고, 더 중요하게는 enqueue와 dequeue 연산의 시간 복잡도를 개선할 수 있다[^4].
-
-이러한 제한된 우선순위 큐는 대역폭 관리, 명령 실행 우선순위 지정, 서로 다른 소스에서 이벤트를 우선순위 기반으로 병합하는 등의 사례에서 좋은 선택이 될 수 있다. 간단히 말해, 개발 중에 우선순위 레벨을 알 수 있는 경우에 적합하다[^4].
+우선순위를 **고정된 수의 레벨**(예: Low, Normal, High, Critical)로 한정하면 구현이 단순해지고, enqueue/dequeue의 **시간 복잡도를 개선**할 수 있다. 대역폭 관리, 명령 우선순위, 이벤트 병합 등 **우선순위 레벨을 개발 시점에 알 수 있는 경우**에 적합하다.
 
 ```csharp
 public enum QueuePriority
@@ -99,13 +190,11 @@ public enum QueuePriority
 }
 ```
 
-위 코드는 우선순위 큐 구현에 사용될 수 있는 간단한 우선순위 열거형이다[^4]. 이러한 명확한 우선순위 레벨을 사용하면 구현이 더 간단해지고 성능도 향상될 수 있다.
-
 ### ReaderWriterLockSlim을 사용한 구현
 
-thread-safe한 우선순위 큐를 구현하는 한 가지 방법은 ReaderWriterLockSlim을 사용하는 것이다. 이 클래스는 .NET에서 제공하는 고급 동기화 메커니즘으로, 여러 읽기 작업이 동시에 진행될 수 있지만 쓰기 작업은 독점적으로 수행되도록 보장한다. 자세한 내용은 [ReaderWriterLockSlim 문서](https://learn.microsoft.com/ko-kr/dotnet/api/system.threading.readerwriterlockslim?view=net-9.0)를 참조하길 바란다.
+Thread-safe 우선순위 큐의 한 방법은 **ReaderWriterLockSlim**을 쓰는 것이다. .NET이 제공하는 동기화 수단으로, **여러 읽기는 동시에 허용**하고 **쓰기는 단독**으로 수행된다. 자세한 API는 [ReaderWriterLockSlim 문서](https://learn.microsoft.com/ko-kr/dotnet/api/system.threading.readerwriterlockslim?view=net-9.0)를 참고하면 된다.
 
-GitHub에서 공유된 예제 코드는 ReaderWriterLockSlim을 사용하여 thread-safe한 우선순위 큐를 구현하는 방법을 보여준다[^6]:
+GitHub 예제처럼 ReaderWriterLockSlim으로 thread-safe 우선순위 큐를 구현할 수 있다[^6]:
 
 ```csharp
 public class PriorityQueue<T> where T : class
@@ -118,28 +207,40 @@ public class PriorityQueue<T> where T : class
 }
 ```
 
-이 구현에서는 내부적으로 List<T>를 사용하고 힙(heap) 속성을 유지하기 위한 메서드를 포함하고 있다. ReaderWriterLockSlim을 사용하여 읽기 작업(예: Count 속성 접근)과 쓰기 작업(예: Enqueue, Dequeue 메서드)을 동기화한다[^6].
+내부에 `List<T>`와 힙 속성을 유지하는 로직을 두고, 읽기(Count 등)와 쓰기(Enqueue, Dequeue)를 ReaderWriterLockSlim으로 보호한다[^6].
 
 ### .NET 6의 내장 PriorityQueue 활용
 
-.NET 6부터는 PriorityQueue 클래스가 기본적으로 제공되고 있다. 이 클래스는 요소가 지정된 우선순위 값에 따라 정렬되는 큐 유형이다[^7]. 그러나 기본 PriorityQueue는 thread-safe하지 않기 때문에, 멀티스레드 환경에서 사용하려면 적절한 동기화 메커니즘을 추가해야 한다.
+.NET 6부터 **PriorityQueue**가 BCL에 포함되어 있다. 요소가 지정한 우선순위 값으로 정렬되는 큐이지만, **기본형은 thread-safe하지 않다**. 멀티스레드에서는 래퍼로 동기화를 추가해야 한다[^7].
 
 ```csharp
 // .NET 6에서 PriorityQueue 인스턴스 생성
 PriorityQueue<string, int> priorityQueue = new PriorityQueue<string, int>();
 ```
 
-Enqueue() 메서드를 사용하여 PriorityQueue에 항목을 추가할 수 있으며, 이 메서드는 두 개의 매개변수(요소와 우선순위 값)를 받는다[^7].
+`Enqueue(요소, 우선순위)`로 항목을 넣을 수 있다[^7].
+
+---
 
 ## Lock-Free, Thread-Safe 우선순위 큐 구현
 
-이제 C\#에서 lock-free하고 thread-safe한 우선순위 큐를 구현하는 실제 코드를 살펴보자. 이 구현은 앞서 논의한 개념과 접근법을 조합하여 효율적이고 안전한 우선순위 큐를 제공한다.
+아래는 C#에서 **CAS 기반 lock-free** 및 **thread-safe** 우선순위 큐를 구현한 예시다.
 
 ### CAS 연산을 활용한 Lock-Free 구현
 
-Lock-free 자료구조는 일반적으로 CAS(Compare-And-Swap) 연산을 기반으로 구현된다. CAS는 원자적으로 메모리 위치의 값을 예상 값과 비교하고, 일치하는 경우에만 새 값으로 업데이트하는 연산이다.
+Lock-free 구조는 보통 **CAS(Compare-And-Swap)**로 구현한다. CAS는 메모리 위치의 값을 예상값과 비교하고, 같을 때만 새 값으로 바꾸는 **원자 연산**이다. C#에서는 `Interlocked.CompareExchange`로 CAS를 수행할 수 있다.
 
-C\#에서는 Interlocked.CompareExchange 메서드를 사용하여 CAS 연산을 수행할 수 있다. 이를 활용하여 lock-free 우선순위 큐를 구현할 수 있다.
+```mermaid
+flowchart LR
+  Enq["Enqueue"] --> ReadHead["head 읽기"]
+  ReadHead --> Compare["우선순위 비교"]
+  Compare --> CasUpdate["CAS로 head 또는 Next 갱신"]
+  CasUpdate --> Retry{"성공?"}
+  Retry -->|"예"| Done["종료"]
+  Retry -->|"아니오"| ReadHead
+```
+
+연결 리스트 기반으로, 우선순위 순으로 정렬된 노드를 유지하고, enqueue/dequeue 시 CAS로 head 또는 노드의 Next를 원자적으로 갱신한다.
 
 ```csharp
 using System;
@@ -180,28 +281,23 @@ public class LockFreePriorityQueue<T> where T : class, IComparable<T>
             if (current == null || item.CompareTo(current.Value) < 0)
             {
                 newNode.Next = current;
-                // CAS를 사용하여 head를 원자적으로 업데이트
                 if (Interlocked.CompareExchange(ref head, newNode, current) == current)
                     return;
             }
             else
             {
-                // 적절한 위치를 찾을 때까지 연결 리스트 탐색
                 do
                 {
                     next = current.Next;
-                    // 리스트의 끝에 도달했거나 적절한 위치를 찾은 경우
                     if (next == null || item.CompareTo(next.Value) < 0)
                         break;
                     current = next;
                 } while (true);
 
-                // 새 노드를 적절한 위치에 삽입
                 newNode.Next = next;
                 if (Interlocked.CompareExchange(ref current.Next, newNode, next) == next)
                     return;
             }
-            // CAS가 실패한 경우 다시 시도
         } while (true);
     }
 
@@ -219,13 +315,11 @@ public class LockFreePriorityQueue<T> where T : class, IComparable<T>
             }
 
             next = current.Next;
-            // CAS를 사용하여 head를 원자적으로 업데이트
             if (Interlocked.CompareExchange(ref head, next, current) == current)
             {
                 result = current.Value;
                 return true;
             }
-            // CAS가 실패한 경우 다시 시도
         } while (true);
     }
 
@@ -241,11 +335,11 @@ public class LockFreePriorityQueue<T> where T : class, IComparable<T>
 }
 ```
 
-이 구현은 연결 리스트를 기반으로 하며, 요소는 우선순위에 따라 정렬된다. Enqueue와 Dequeue 연산은 CAS를 사용하여 원자적으로 수행되며, 외부 잠금 메커니즘 없이도 thread-safe하게 동작한다.
+Enqueue/Dequeue는 CAS만으로 동기화하므로 **외부 잠금 없이** thread-safe하게 동작한다.
 
 ### 다중 우선순위 레벨 지원 구현
 
-더 복잡한 시나리오에서는 여러 우선순위 레벨을 지원하는 우선순위 큐가 필요할 수 있다. 이를 위해 각 우선순위 레벨에 대해 별도의 lock-free 큐를 유지하는 방식으로 구현할 수 있다.
+우선순위를 **여러 단계**(예: Low, Normal, High, Critical)로 두고 싶다면, **레벨별 lock-free 큐**를 두고 dequeue 시 높은 우선순위부터 확인하는 방식으로 구현할 수 있다.
 
 ```csharp
 using System;
@@ -268,7 +362,7 @@ public class MultiLevelPriorityQueue<T> where T : class
     {
         int levelCount = Enum.GetValues(typeof(Priority)).Length;
         queues = new LockFreeQueue<T>[levelCount];
-        
+
         for (int i = 0; i < levelCount; i++)
         {
             queues[i] = new LockFreeQueue<T>();
@@ -282,28 +376,26 @@ public class MultiLevelPriorityQueue<T> where T : class
 
     public T Dequeue()
     {
-        // 높은 우선순위부터 낮은 우선순위 순으로 확인
         for (int i = queues.Length - 1; i >= 0; i--)
         {
             T item;
             if (queues[i].TryDequeue(out item))
                 return item;
         }
-        
+
         throw new InvalidOperationException("Queue is empty");
     }
 
     public bool TryDequeue(out T result)
     {
         result = default(T);
-        
-        // 높은 우선순위부터 낮은 우선순위 순으로 확인
+
         for (int i = queues.Length - 1; i >= 0; i--)
         {
             if (queues[i].TryDequeue(out result))
                 return true;
         }
-        
+
         return false;
     }
 
@@ -354,23 +446,19 @@ public class LockFreeQueue<T> where T : class
             oldTail = tail;
             oldNext = oldTail.Next;
 
-            // tail이 변경되었는지 확인
             if (oldTail != tail)
                 continue;
 
-            // 다른 스레드가 enqueue를 완료하지 않은 경우 도움
             if (oldNext != null)
             {
                 Interlocked.CompareExchange(ref tail, oldNext, oldTail);
                 continue;
             }
 
-            // 새 노드를 tail.Next에 추가
             if (Interlocked.CompareExchange(ref oldTail.Next, newNode, null) == null)
                 break;
         }
 
-        // tail을 새 노드로 업데이트
         Interlocked.CompareExchange(ref tail, newNode, oldTail);
     }
 
@@ -384,25 +472,21 @@ public class LockFreeQueue<T> where T : class
             oldTail = tail;
             oldHeadNext = oldHead.Next;
 
-            // head가 변경되었는지 확인
             if (oldHead != head)
                 continue;
 
-            // 빈 큐인 경우
             if (oldHeadNext == null)
             {
                 result = default(T);
                 return false;
             }
 
-            // head와 tail이 같은데 next가 null이 아닌 경우(다른 스레드가 enqueue 중)
             if (oldHead == oldTail)
             {
                 Interlocked.CompareExchange(ref tail, oldHeadNext, oldTail);
                 continue;
             }
 
-            // head를 다음 노드로 업데이트
             if (Interlocked.CompareExchange(ref head, oldHeadNext, oldHead) == oldHead)
             {
                 result = oldHeadNext.Value;
@@ -415,11 +499,13 @@ public class LockFreeQueue<T> where T : class
 }
 ```
 
-이 구현은 각 우선순위 레벨에 대해 별도의 lock-free 큐를 유지하며, Dequeue 연산 시 높은 우선순위의 큐부터 확인한다. 이 접근법은 제한된 우선순위 레벨을 가진 시나리오에서 효율적으로 작동한다.
+Dequeue는 **높은 우선순위 인덱스부터** 비어 있지 않은 큐에서 꺼내면 된다.
+
+---
 
 ## .NET 6 PriorityQueue를 활용한 Thread-Safe 구현
 
-.NET 6에서 도입된 PriorityQueue 클래스는 내부적으로 이진 힙을 사용하여 우선순위 큐 기능을 제공한다. 그러나 이 클래스는 기본적으로 thread-safe하지 않다. 여기서는 이 클래스를 thread-safe하게 만드는 래퍼 클래스를 구현해 보자.
+.NET 6의 **PriorityQueue**는 내부적으로 이진 힙을 사용하지만 thread-safe하지 않다. 아래는 이를 **ReaderWriterLockSlim**으로 감싼 thread-safe 래퍼 예시다.
 
 ```csharp
 using System;
@@ -533,11 +619,11 @@ public class ThreadSafePriorityQueue<TElement, TPriority> where TPriority : ICom
 }
 ```
 
-이 구현은 내장 PriorityQueue 클래스를 감싸고 ReaderWriterLockSlim을 사용하여 thread safety를 보장한다. 읽기 작업(Peek, TryPeek, Count)은 읽기 잠금을, 쓰기 작업(Enqueue, Dequeue, TryDequeue, Clear)은 쓰기 잠금을 사용한다.
+읽기(Peek, TryPeek, Count)는 읽기 잠금, 쓰기(Enqueue, Dequeue, Clear)는 쓰기 잠금으로 보호한다.
 
 ### Await 가능한 동시성 우선순위 큐
 
-좀 더 복잡한 시나리오에서는 await 가능한 우선순위 큐가 필요할 수 있다. 이러한 큐는 항목이 큐에 추가될 때까지 비동기적으로 대기할 수 있는 기능을 제공한다.
+항목이 들어올 때까지 **비동기로 대기**해야 하는 경우에는 SemaphoreSlim과 우선순위별 큐를 조합한 await 가능 큐를 쓸 수 있다.
 
 ```csharp
 using System;
@@ -552,10 +638,6 @@ public class AwaitablePriorityQueue<T> where T : class
     private readonly ConcurrentDictionary<int, ConcurrentQueue<T>> queues = new ConcurrentDictionary<int, ConcurrentQueue<T>>();
     private readonly List<int> priorityLevels = new List<int>();
     private readonly object syncRoot = new object();
-
-    public AwaitablePriorityQueue()
-    {
-    }
 
     private ConcurrentQueue<T> GetOrCreateQueue(int priority)
     {
@@ -596,7 +678,6 @@ public class AwaitablePriorityQueue<T> where T : class
     {
         lock (syncRoot)
         {
-            // 우선순위 높은 순으로 확인
             for (int i = priorityLevels.Count - 1; i >= 0; i--)
             {
                 int priority = priorityLevels[i];
@@ -609,8 +690,6 @@ public class AwaitablePriorityQueue<T> where T : class
             }
         }
 
-        // 항목을 찾지 못한 경우(semaphore가 신호를 보냈지만 다른 스레드가 이미 항목을 가져간 경우)
-        // 이는 버그이므로 예외 발생
         throw new InvalidOperationException("Inconsistent queue state");
     }
 
@@ -621,592 +700,94 @@ public class AwaitablePriorityQueue<T> where T : class
             result = DequeueInternal();
             return true;
         }
-        
+
         result = default(T);
         return false;
     }
 
     public bool IsEmpty => semaphore.CurrentCount == 0;
-    
+
     public int Count => semaphore.CurrentCount;
 }
 ```
 
-이 구현은 SemaphoreSlim을 사용하여 큐에 항목이 추가될 때까지 비동기적으로 대기할 수 있는 기능을 제공한다. 내부적으로는 ConcurrentDictionary와 ConcurrentQueue를 사용하여 여러 우선순위 레벨을 관리한다.
+`DequeueAsync`로 항목이 들어올 때까지 await할 수 있다.
 
-## 우선순위 큐 구현의 성능 및 최적화
+---
 
-우선순위 큐의 성능은 구현 방식과 사용 사례에 따라 크게 달라질 수 있다. 여기서는 다양한 구현의 성능 특성과 최적화 방법에 대해 알아보자.
+## 성능 및 최적화
 
-### 시간 복잡도 분석
+### 시간 복잡도
 
-우선순위 큐의 일반적인 연산(Enqueue, Dequeue, Peek)의 시간 복잡도는 구현 방식에 따라 다르다:
+| 구현 방식 | Enqueue | Dequeue | Peek |
+|----------|---------|---------|------|
+| 힙 기반 | O(log n) | O(log n) | O(1) |
+| 정렬 리스트 기반 | O(n) | O(1) | O(1) |
+| 제한된 k개 레벨 멀티큐 | O(1) | O(k) | O(k) |
 
-1. 힙 기반 구현:
-    - Enqueue: O(log n)
-    - Dequeue: O(log n)
-    - Peek: O(1)
-2. 정렬된 리스트 기반 구현:
-    - Enqueue: O(n)
-    - Dequeue: O(1)
-    - Peek: O(1)
-3. 제한된 우선순위 레벨을 가진 멀티큐 구현:
-    - Enqueue: O(1)
-    - Dequeue: O(k), 여기서 k는 우선순위 레벨의 수
-    - Peek: O(k)
+Lock-free 구현에서는 **경합(contention)**이 크면 CAS 재시도로 성능이 떨어질 수 있다.
 
-Lock-free 구현에서는 경합(contention)이 성능에 큰 영향을 미친다. 많은 스레드가 동시에 작업할 경우, CAS 연산의 재시도로 인해 성능이 저하될 수 있다.
+### 공간·시간 최적화 요약
 
-### 벤치마크 결과
+- **공간**: 배열 기반 힙으로 포인터 오버헤드 감소, 노드 풀링으로 GC 부담 완화, 우선순위 레벨 수 제한.
+- **시간**: 작은 메서드 인라이닝, 캐시 지역성 고려, 필요 시 백오프로 라이브락 완화.
 
-다양한 우선순위 큐 구현의 성능을 비교하기 위한 벤치마크 코드는 다음과 같다:
-
-```csharp
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.Collections.Concurrent;
-
-public class PriorityQueueBenchmark
-{
-    private const int OperationCount = 1000000;
-    private const int ThreadCount = 8;
-
-    public static async Task RunBenchmarkAsync()
-    {
-        Console.WriteLine("Starting benchmark...");
-        Console.WriteLine($"Operations: {OperationCount}, Threads: {ThreadCount}");
-        Console.WriteLine();
-
-        // 다양한 우선순위 큐 구현 벤치마크
-        await BenchmarkQueueAsync("LockFreePriorityQueue", () => new LockFreePriorityQueue<int>());
-        await BenchmarkQueueAsync("MultiLevelPriorityQueue", () => new MultiLevelPriorityQueue<int>());
-        await BenchmarkQueueAsync("ThreadSafePriorityQueue", () => new ThreadSafePriorityQueue<int, int>());
-        await BenchmarkQueueAsync("AwaitablePriorityQueue", () => new AwaitablePriorityQueue<int>());
-        
-        Console.WriteLine("Benchmark completed.");
-    }
-
-    private static async Task BenchmarkQueueAsync<T>(string name, Func<T> queueFactory) where T : class
-    {
-        Console.WriteLine($"Benchmarking {name}...");
-        
-        T queue = queueFactory();
-        Stopwatch sw = new Stopwatch();
-        
-        // 벤치마크 준비
-        CountdownEvent readySignal = new CountdownEvent(ThreadCount);
-        ManualResetEventSlim startSignal = new ManualResetEventSlim(false);
-        CountdownEvent completedSignal = new CountdownEvent(ThreadCount);
-        
-        // 작업 분배
-        int opsPerThread = OperationCount / ThreadCount;
-        
-        // 스레드 생성
-        Task[] tasks = new Task[ThreadCount];
-        for (int i = 0; i < ThreadCount; i++)
-        {
-            int threadId = i;
-            tasks[i] = Task.Run(() =>
-            {
-                // 스레드 준비 완료 알림
-                readySignal.Signal();
-                // 모든 스레드가 동시에 시작할 수 있도록 대기
-                startSignal.Wait();
-                
-                // 벤치마크 실행
-                Random random = new Random(threadId);
-                for (int j = 0; j < opsPerThread; j++)
-                {
-                    // 50% 확률로 Enqueue, 50% 확률로 Dequeue
-                    if (random.Next(2) == 0)
-                    {
-                        // 특정 우선순위 큐 구현에 맞게 Enqueue 메서드 호출
-                        // 이 부분은 각 구현에 맞게 수정해야 함
-                    }
-                    else
-                    {
-                        // 특정 우선순위 큐 구현에 맞게 Dequeue 메서드 호출
-                        // 이 부분은 각 구현에 맞게 수정해야 함
-                    }
-                }
-                
-                // 스레드 작업 완료 알림
-                completedSignal.Signal();
-            });
-        }
-        
-        // 모든 스레드가 준비될 때까지 대기
-        readySignal.Wait();
-        
-        // 벤치마크 시작
-        sw.Start();
-        startSignal.Set();
-        
-        // 모든 스레드가 완료될 때까지 대기
-        await Task.Run(() => completedSignal.Wait());
-        sw.Stop();
-        
-        Console.WriteLine($"{name} completed in {sw.ElapsedMilliseconds} ms");
-        Console.WriteLine($"Operations per second: {OperationCount * 1000 / sw.ElapsedMilliseconds:N0}");
-        Console.WriteLine();
-    }
-}
-```
-
-이 벤치마크 코드는 다양한 우선순위 큐 구현의 성능을 측정하며, 실제 Enqueue와 Dequeue 메서드 호출 부분은 각 구현에 맞게 수정해야 한다.
-
-### 공간 복잡도와 최적화
-
-우선순위 큐의 공간 복잡도는 일반적으로 O(n)이다. 그러나 구현 방식에 따라 추가적인 공간 오버헤드가 발생할 수 있다.
-
-공간 최적화를 위한 몇 가지 기법은 다음과 같다:
-
-1. 배열 기반 힙: 동적 배열을 사용하여 힙을 구현하면 포인터 오버헤드를 줄일 수 있다.
-2. 노드 풀링: 노드 객체를 재사용하여 가비지 컬렉션 부하를 줄일 수 있다.
-3. 제한된 우선순위 레벨: 우선순위 레벨의 수를 제한하면 메모리 사용량을 줄일 수 있다.
-
-시간 최적화를 위한 기법은 다음과 같다:
-
-1. 인라이닝: 자주 호출되는 작은 메서드는 인라인화하여 메서드 호출 오버헤드를 줄일 수 있다.
-2. SIMD 활용: 적절한 경우 SIMD(Single Instruction, Multiple Data) 연산을 활용하여 성능을 향상시킬 수 있다.
-3. 캐시 지역성 고려: 메모리 접근 패턴을 최적화하여 캐시 히트율을 높일 수 있다.
+---
 
 ## 우선순위 큐의 실제 활용 사례
 
-우선순위 큐는 다양한 실제 애플리케이션에서 유용하게 활용된다. 여기서는 몇 가지 주요 활용 사례에 대해 알아보자.
-
-### 대역폭 관리
-
-네트워크 애플리케이션에서 우선순위 큐는 데이터 패킷의 우선순위를 관리하는 데 사용될 수 있다. 예를 들어, 실시간 비디오 스트리밍은 이메일 전송보다 높은 우선순위를 가질 수 있다[^4].
-
-```csharp
-// 네트워크 패킷을 위한 우선순위 큐 구현
-public class NetworkPacketQueue
-{
-    private readonly ThreadSafePriorityQueue<Packet, int> queue = new ThreadSafePriorityQueue<Packet, int>();
-    
-    public void EnqueuePacket(Packet packet)
-    {
-        // 패킷 유형에 따라 우선순위 결정
-        int priority = DeterminePriority(packet);
-        queue.Enqueue(packet, priority);
-    }
-    
-    public Packet DequeuePacket()
-    {
-        return queue.Dequeue();
-    }
-    
-    private int DeterminePriority(Packet packet)
-    {
-        switch (packet.Type)
-        {
-            case PacketType.RealTimeVideo:
-                return 100;
-            case PacketType.VoiceCall:
-                return 80;
-            case PacketType.InteractiveData:
-                return 60;
-            case PacketType.BackgroundDownload:
-                return 40;
-            case PacketType.Email:
-                return 20;
-            default:
-                return 0;
-        }
-    }
-}
-```
-
-
-### 작업 스케줄링
-
-운영 체제의 작업 스케줄러는 우선순위 큐를 사용하여 CPU 시간을 할당할 작업의 순서를 결정한다. 높은 우선순위를 가진 작업은 낮은 우선순위의 작업보다 먼저 실행된다.
-
-```csharp
-// 작업 스케줄러 구현
-public class TaskScheduler
-{
-    private readonly AwaitablePriorityQueue<Task> taskQueue = new AwaitablePriorityQueue<Task>();
-    private readonly CancellationTokenSource cts = new CancellationTokenSource();
-    private readonly Thread[] workerThreads;
-    
-    public TaskScheduler(int threadCount)
-    {
-        workerThreads = new Thread[threadCount];
-        for (int i = 0; i < threadCount; i++)
-        {
-            workerThreads[i] = new Thread(WorkerThreadFunc);
-            workerThreads[i].Start();
-        }
-    }
-    
-    public void ScheduleTask(Task task, TaskPriority priority)
-    {
-        taskQueue.Enqueue(task, (int)priority);
-    }
-    
-    private void WorkerThreadFunc()
-    {
-        while (!cts.Token.IsCancellationRequested)
-        {
-            try
-            {
-                Task task = taskQueue.DequeueAsync(cts.Token).Result;
-                task.Execute();
-            }
-            catch (OperationCanceledException)
-            {
-                break;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error executing task: {ex.Message}");
-            }
-        }
-    }
-    
-    public void Shutdown()
-    {
-        cts.Cancel();
-        foreach (Thread thread in workerThreads)
-        {
-            thread.Join();
-        }
-    }
-}
-
-public enum TaskPriority
-{
-    Low = 0,
-    BelowNormal = 1,
-    Normal = 2,
-    AboveNormal = 3,
-    High = 4,
-    Realtime = 5
-}
-```
-
-
-### 이벤트 기반 시스템
-
-이벤트 기반 시스템에서 우선순위 큐는 이벤트의 처리 순서를 결정하는 데 사용될 수 있다. 중요한 이벤트는 덜 중요한 이벤트보다 먼저 처리된다.
-
-```csharp
-// 이벤트 처리 시스템 구현
-public class EventProcessor<T> where T : IEvent
-{
-    private readonly ThreadSafePriorityQueue<T, int> eventQueue = new ThreadSafePriorityQueue<T, int>();
-    private readonly Thread processingThread;
-    private readonly CancellationTokenSource cts = new CancellationTokenSource();
-    private readonly ManualResetEventSlim waitHandle = new ManualResetEventSlim(false);
-    
-    public EventProcessor()
-    {
-        processingThread = new Thread(ProcessEvents);
-        processingThread.Start();
-    }
-    
-    public void EnqueueEvent(T @event)
-    {
-        eventQueue.Enqueue(@event, @event.Priority);
-        waitHandle.Set();
-    }
-    
-    private void ProcessEvents()
-    {
-        while (!cts.Token.IsCancellationRequested)
-        {
-            if (eventQueue.Count == 0)
-            {
-                waitHandle.Reset();
-                waitHandle.Wait(cts.Token);
-                continue;
-            }
-            
-            T @event = eventQueue.Dequeue();
-            ProcessEvent(@event);
-        }
-    }
-    
-    private void ProcessEvent(T @event)
-    {
-        try
-        {
-            @event.Process();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error processing event: {ex.Message}");
-        }
-    }
-    
-    public void Shutdown()
-    {
-        cts.Cancel();
-        waitHandle.Set();
-        processingThread.Join();
-    }
-}
-
-public interface IEvent
-{
-    int Priority { get; }
-    void Process();
-}
-```
-
-
-### 그래프 알고리즘
-
-다익스트라(Dijkstra) 알고리즘과 같은 그래프 알고리즘은 우선순위 큐를 사용하여 가장 비용이 적은 노드를 효율적으로 선택한다. 이를 통해 시간 복잡도를 O(V²)에서 O(E log V)로 줄일 수 있다(V는 정점 수, E는 간선 수).
-
-```csharp
-// 다익스트라 알고리즘 구현
-public class Dijkstra
-{
-    public static Dictionary<int, int> FindShortestPaths(Graph graph, int startVertex)
-    {
-        Dictionary<int, int> distances = new Dictionary<int, int>();
-        PriorityQueue<int, int> priorityQueue = new PriorityQueue<int, int>();
-        
-        // 초기화
-        foreach (int vertex in graph.Vertices)
-        {
-            distances[vertex] = vertex == startVertex ? 0 : int.MaxValue;
-        }
-        
-        priorityQueue.Enqueue(startVertex, 0);
-        
-        while (priorityQueue.Count > 0)
-        {
-            priorityQueue.TryDequeue(out int currentVertex, out int currentDistance);
-            
-            // 이미 더 짧은 경로를 찾은 경우 스킵
-            if (currentDistance > distances[currentVertex])
-                continue;
-            
-            foreach (var neighbor in graph.GetNeighbors(currentVertex))
-            {
-                int newDistance = currentDistance + neighbor.Weight;
-                
-                // 더 짧은 경로를 찾은 경우 업데이트
-                if (newDistance < distances[neighbor.Vertex])
-                {
-                    distances[neighbor.Vertex] = newDistance;
-                    priorityQueue.Enqueue(neighbor.Vertex, newDistance);
-                }
-            }
-        }
-        
-        return distances;
-    }
-}
-```
-
-
-## 우선순위 큐 구현 시 주의사항
-
-우선순위 큐, 특히 lock-free하고 thread-safe한 구현을 개발할 때는 몇 가지 주의사항을 고려해야 한다.
-
-### ABA 문제와 해결책
-
-ABA 문제는 병렬 프로그래밍에서 발생하는 중요한 문제 중 하나이다. 이 문제는 스레드가 메모리 위치의 값을 A에서 변경할 예정인데, 다른 스레드가 그 값을 A에서 B로, 다시 A로 변경한 경우에 발생한다. 첫 번째 스레드는 값이 여전히 A이므로 변경을 진행하지만, 실제로는 중간에 B로 변경되었다가 다시 A로 돌아온 것이다.
-
-Lock-free 구현에서 이 문제를 해결하기 위한 방법은 다음과 같다:
-
-1. 버전 번호 사용: 포인터와 함께 버전 번호를 저장하여 ABA 문제를 감지한다.
-2. 해저드 포인터(Hazard Pointers): 스레드가 접근 중인 객체를 추적하여 다른 스레드가 해당 객체를 수정하지 못하도록 한다.
-3. RCU(Read-Copy-Update): 읽기 작업이 진행 중인 동안에는 쓰기 작업이 이전 버전을 수정하지 않도록 한다.
-
-### 메모리 관리와 가비지 컬렉션 문제
-
-C\#은 가비지 컬렉션(GC)을 사용하여 메모리를 관리하지만, 고성능 애플리케이션에서는 GC로 인한 성능 저하가 문제가 될 수 있다. 이를 최소화하기 위한 방법은 다음과 같다:
-
-1. 객체 재사용: 객체 풀을 사용하여 객체를 재사용하고 GC 부하를 줄인다.
-2. 값 타입 사용: 가능한 경우 참조 타입 대신 값 타입을 사용하여 GC 부하를 줄인다.
-3. 큰 객체 힙 관리: 대규모 데이터 구조는 큰 객체 힙(Large Object Heap)에 할당되므로 이를 고려하여 설계한다.
-```csharp
-// 객체 풀 구현 예시
-public class NodePool<T> where T : class
-{
-    private readonly ConcurrentBag<Node<T>> pool = new ConcurrentBag<Node<T>>();
-    
-    public Node<T> Rent()
-    {
-        if (pool.TryTake(out Node<T> node))
-            return node;
-        
-        return new Node<T>();
-    }
-    
-    public void Return(Node<T> node)
-    {
-        node.Value = default;
-        node.Next = null;
-        pool.Add(node);
-    }
-}
-
-public class Node<T> where T : class
-{
-    public T Value;
-    public Node<T> Next;
-}
-```
-
-### 데드락과 라이브락 방지
-
-Lock-free 구현은 데드락의 위험을 제거하지만, 라이브락과 같은 다른 문제가 발생할 수 있다. 라이브락은 스레드가 계속 실행되지만 진행하지 못하는 상태를 말한다. 이를 방지하기 위한 방법은 다음과 같다:
-
-1. 지수 백오프: CAS 연산이 실패할 경우 지수적으로 증가하는 시간만큼 대기 후 재시도한다.
-2. 임의성 도입: 여러 스레드가 동일한 패턴으로 경합하는 것을 방지하기 위해 임의의 요소를 도입한다.
-
-```csharp
-// 지수 백오프 구현 예시
-private void EnqueueWithBackoff(T item, int priority)
-{
-    Random random = new Random();
-    int backoff = 1;
-    
-    while (true)
-    {
-        if (TryEnqueue(item, priority))
-            return;
-        
-        // 백오프 시간만큼 대기
-        Thread.Sleep(random.Next(0, backoff));
-        
-        // 백오프 시간을 두 배로 증가(최대 한도까지)
-        backoff = Math.Min(backoff * 2, MaxBackoff);
-    }
-}
-```
-
-### 테스트와 검증
-
-Lock-free 알고리즘과 thread-safe 구현은 테스트하기 어렵다. 다음과 같은 테스트 방법을 사용하여 구현의 정확성을 검증할 수 있다:
-
-1. 단위 테스트: 기본 기능을 검증하는 단위 테스트를 작성한다.
-2. 스트레스 테스트: 여러 스레드가 동시에 많은 수의 작업을 수행하도록 하여 경쟁 조건을 테스트한다.
-3. 모델 검사: 정형 검증 도구를 사용하여 알고리즘의 정확성을 검증한다. 예를 들어, 검색 결과[^2]에서 언급된 SPIN 모델 체커가 있다.
-
-```csharp
-// 스트레스 테스트 예시
-[Test]
-public void StressTest()
-{
-    ThreadSafePriorityQueue<int, int> queue = new ThreadSafePriorityQueue<int, int>();
-    const int ThreadCount = 10;
-    const int OperationsPerThread = 10000;
-    
-    ConcurrentBag<int> dequeued = new ConcurrentBag<int>();
-    CountdownEvent countdown = new CountdownEvent(ThreadCount);
-    
-    // 스레드 생성 및 시작
-    for (int i = 0; i < ThreadCount; i++)
-    {
-        int threadId = i;
-        Task.Run(() =>
-        {
-            Random random = new Random(threadId);
-            
-            for (int j = 0; j < OperationsPerThread; j++)
-            {
-                int value = threadId * OperationsPerThread + j;
-                
-                // 절반은 Enqueue, 절반은 Dequeue
-                if (j % 2 == 0)
-                {
-                    queue.Enqueue(value, random.Next(100));
-                }
-                else
-                {
-                    try
-                    {
-                        if (queue.TryDequeue(out int result, out int _))
-                        {
-                            dequeued.Add(result);
-                        }
-                    }
-                    catch (InvalidOperationException)
-                    {
-                        // 큐가 비어 있을 수 있음
-                    }
-                }
-            }
-            
-            countdown.Signal();
-        });
-    }
-    
-    // 모든 스레드가 완료될 때까지 대기
-    countdown.Wait();
-    
-    // 최종 큐에 남아 있는 항목 처리
-    while (queue.Count > 0)
-    {
-        dequeued.Add(queue.Dequeue());
-    }
-    
-    // 결과 검증
-    Assert.AreEqual(ThreadCount * OperationsPerThread / 2, dequeued.Count);
-}
-```
-
-## 결론
-
-C\#에서 lock-free하고 thread-safe한 우선순위 큐를 구현하는 것은 복잡하지만 중요한 작업이다. 이 보고서에서는 다양한 구현 접근법과 실제 코드 예시를 통해 이러한 우선순위 큐를 구현하는 방법을 살펴보았다.
-
-기본적인 lock-free 우선순위 큐부터 다중 우선순위 레벨 지원, .NET 6의 내장 PriorityQueue를 활용한 thread-safe 구현, 그리고 await 가능한 우선순위 큐까지 다양한 방식의 구현을 알아보았다. 또한 성능 최적화, 메모리 관리, ABA 문제와 같은 주의사항과 이를 해결하기 위한 방법도 논의하였다.
-
-각 구현 방식은 특정 사용 사례에 맞게 선택해야 한다. 간단한 애플리케이션에서는 .NET 6의 내장 PriorityQueue와 간단한 잠금 메커니즘을 조합한 구현이 충분할 수 있다. 반면, 고성능이 요구되는 애플리케이션에서는 CAS 연산을 활용한 lock-free 구현이나 제한된 우선순위 레벨을 가진 멀티큐 구현이 더 적합할 수 있다.
-
-중요한 것은 개발하려는 애플리케이션의 요구사항을 명확히 이해하고, 그에 맞는 우선순위 큐 구현을 선택하는 것이다. 또한 철저한 테스트와 검증을 통해 구현의 정확성을 보장해야 한다.
-
-동시성 프로그래밍은 어렵지만 중요한 분야이며, 우선순위 큐는 이러한 동시성 환경에서 자원을 효율적으로 관리하기 위한 필수적인 도구이다. 이 보고서가 C\#에서 lock-free하고 thread-safe한 우선순위 큐를 구현하는 데 도움이 되기를 바란다.
-
-## 참고
-
-[^1]: https://secondboyet.com/Articles/LockFreeLimitedPriorityQ.html
-
-[^2]: https://github.com/jonatanlinden/PR
-
-[^3]: https://stackoverflow.com/a/8575182
-
-[^4]: https://www.codeproject.com/Articles/1222893/Awaitable-Concurrent-Priority-Queue
-
-[^5]: https://www.microsoft.com/en-us/research/wp-content/uploads/2006/04/2006-flops.pdf
-
-[^6]: https://gist.github.com/khenidak/49cf6f5ac76b608c9e3b3fc86c86cec0
-
-[^7]: https://www.csharp411.com/how-to-use-a-priority-queue-in-net-version-6/
-
-[^8]: https://ws-doc.vercel.app/blog/deep_dive_csharp_queue_characteristic
-
-[^9]: https://herbsutter.com/2008/08/05/effective-concurrency-lock-free-code-a-false-sense-of-security/
-
-[^10]: https://www.cs.columbia.edu/~junfeng/papers/xinhao-plos15.pdf
-
-[^11]: https://github.com/DNedic/lockfree
-
-[^12]: https://github.com/SofiaGodovykh/Lock-free-priority-queue
-
-[^13]: https://harostudio.co.kr/c-lock-free-queue-concurrentqueue-쓰레드-안전-큐/
-
-[^14]: https://stackoverflow.com/questions/550616/lock-free-stack-and-queue-in-c-sharp
-
-[^15]: https://secondboyet.com/articles/lockfreequeue.html
-
-[^16]: https://learn.microsoft.com/en-us/archive/msdn-magazine/2008/october/concurrency-hazards-solving-problems-in-your-multithreaded-code
-
-[^17]: https://blog.naver.com/techshare/100189903647
-
-[^18]: https://www.reddit.com/r/cpp/comments/16nios9/colud_you_recommend_me_a_fast_lock_free_queue/
-
-[^19]: https://secondboyet.com/articles/lockfreestack.html
-
-[^20]: https://www.codeproject.com/Articles/56369/Thread-safe-priority-queue-in-Csharp
+- **대역폭 관리**: 네트워크 패킷을 우선순위별로 큐에 넣고, 실시간 스트리밍·음성·이메일 등 유형별 우선순위를 두어 전송 순서를 제어한다.
+- **작업 스케줄링**: OS·애플리케이션 스케줄러에서 CPU 시간을 줄 작업을 우선순위 큐로 관리한다.
+- **이벤트 기반 시스템**: 이벤트 유형별 우선순위를 두고 중요한 이벤트를 먼저 처리한다.
+- **그래프 알고리즘**: 다익스트라 등에서 비용이 가장 작은 정점을 선택할 때 우선순위 큐(힙)를 사용하면 O(E log V)로 최단 경로를 구할 수 있다.
 
+---
+
+## 구현 시 주의사항
+
+### ABA 문제와 대응
+
+Lock-free에서 **ABA 문제**를 줄이기 위해 (1) **버전 번호**를 포인터와 함께 두거나, (2) **Hazard pointer**로 접근 중인 노드를 보호하거나, (3) **RCU(Read-Copy-Update)** 스타일로 읽기 중에는 이전 버전을 수정하지 않도록 설계할 수 있다.
+
+### 메모리·GC
+
+C#은 GC 기반이므로 고성능 경로에서는 **객체 풀·값 타입 활용·대형 객체 최소화**로 GC 부담을 줄이는 것이 좋다.
+
+### 데드락·라이브락
+
+Lock-free는 데드락을 제거하지만, **라이브락**(계속 재시도만 하고 진행이 없는 상태)이 생길 수 있다. **지수 백오프**나 **임의성**을 넣어 재시도 패턴을 완화할 수 있다.
+
+### 테스트·검증
+
+단위 테스트, **다중 스레드 스트레스 테스트**, 필요 시 SPIN 같은 **모델 검사**로 정확성을 검증하는 것이 좋다[^2].
+
+---
+
+## 종합 정리
+
+| 항목 | 내용 |
+|------|------|
+| **장점** | Lock-free·CAS 기반 구현은 대기 최소화와 확장성에 유리하다. .NET 6 PriorityQueue 래핑은 구현 난이도를 낮춘다. |
+| **단점** | ABA·라이브락·GC 등 고려할 점이 많고, 구현·검증 비용이 크다. |
+| **한 줄 요약** | C#에서 lock-free·thread-safe 우선순위 큐는 CAS·ReaderWriterLockSlim·.NET 6 PriorityQueue·다중 레벨·await 큐 등 요구사항에 맞게 선택하고, ABA·성능·테스트를 반드시 고려하자. |
+
+---
+
+## 참고 문헌
+
+- [^1]: [Lock-free limited priority queue (secondboyet.com)](https://secondboyet.com/Articles/LockFreeLimitedPriorityQ.html) — ABA 문제 및 제한된 우선순위 lock-free 큐
+- [^2]: [PR – lock-free priority queue (github.com/jonatanlinden)](https://github.com/jonatanlinden/PR) — 모델 검사 등
+- [^3]: [Stack Overflow: Lock-free queue](https://stackoverflow.com/a/8575182)
+- [^5]: [Microsoft Research – FLOWS](https://www.microsoft.com/en-us/research/wp-content/uploads/2006/04/2006-flops.pdf)
+- [^6]: [Thread-safe priority queue (GitHub Gist)](https://gist.github.com/khenidak/49cf6f5ac76b608c9e3b3fc86c86cec0)
+- [^7]: [How to use a priority queue in .NET 6 (csharp411.com)](https://www.csharp411.com/how-to-use-a-priority-queue-in-net-version-6/)
+- [^8]: [C# Queue 특성 (ws-doc.vercel.app)](https://ws-doc.vercel.app/blog/deep_dive_csharp_queue_characteristic)
+- [^9]: [Herb Sutter – Lock-free code](https://herbsutter.com/2008/08/05/effective-concurrency-lock-free-code-a-false-sense-of-security/)
+- [^10]: [Lock-free 자료 구조 연구 (columbia.edu)](https://www.cs.columbia.edu/~junfeng/papers/xinhao-plos15.pdf)
+- [^11]: [lockfree (GitHub – DNedic)](https://github.com/DNedic/lockfree)
+- [^12]: [Lock-free priority queue (GitHub – SofiaGodovykh)](https://github.com/SofiaGodovykh/Lock-free-priority-queue)
+- [^15]: [Lock-free queue (secondboyet.com)](https://secondboyet.com/articles/lockfreequeue.html)
+- [^16]: [MSDN Magazine – Concurrency hazards](https://learn.microsoft.com/en-us/archive/msdn-magazine/2008/october/concurrency-hazards-solving-problems-in-your-multithreaded-code)
+- [^20]: [Thread-safe priority queue in C# (CodeProject)](https://www.codeproject.com/Articles/56369/Thread-safe-priority-queue-in-Csharp)
+
+본문에서 503 등으로 접근 불가했던 참조([^4] CodeProject Awaitable Concurrent Priority Queue)는 제거했으며, 위 목록은 검증 가능한 링크만 포함했다.

@@ -1,62 +1,118 @@
 ---
-image: "tmp_wordcloud.png"
-description: "이 글에서는 코딩 테스트의 역사와 발전, 주요 IT 기업에서의 활용 사례, 시험 유형과 문제 풀이 전략, 필수 알고리즘 및 자료구조, 효율적인 준비 방법, 취업 및 경력 개발과의 연계 방안 등 실전 대비를 위한 핵심 정보를 150자 내외로 제공합니다."
+title: "[Algorithm] 코딩 테스트의 역사·유형·준비 방법과 실전 대비 가이드"
+description: "코딩 테스트의 역사(MS·구글·국내 도입), 온라인 저지·과제 전형 등 유형, 스택·큐·DP·그래프 등 필수 알고리즘과 자료구조, 점수 산정·준비 전략·FAQ·참고 자료를 정리한 실전 대비 가이드입니다."
 categories: Algorithm
 date: "2024-08-27T00:00:00Z"
+lastmod: "2026-03-17T00:00:00Z"
+image: "tmp_wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-27-coding-test.png
 tags:
 - Algorithm
-- Implementation
-- History
-- education
-- Technology
-- Software-Architecture
-- Data-Structures
+- 알고리즘
+- Coding-Test
+- 코딩테스트
 - Problem-Solving
-- career
+- 문제해결
+- Implementation
+- 구현
+- Data-Structures
+- 자료구조
+- Graph
+- 그래프
+- Stack
+- 스택
+- Queue
+- 큐
+- Dynamic-Programming
+- DP
+- 동적계획법
+- Greedy
+- 그리디
+- BFS
+- DFS
+- Binary-Search
+- 이분탐색
+- Sorting
+- 정렬
+- String
+- 문자열
+- Brute-Force
+- 완전탐색
+- Time-Complexity
+- 시간복잡도
+- Space-Complexity
+- 공간복잡도
+- Complexity-Analysis
+- 복잡도분석
+- Optimization
+- 최적화
 - Testing
-- Blog
-- 블로그
+- 테스트
+- Code-Quality
+- 코드품질
+- Best-Practices
+- Software-Architecture
+- 소프트웨어아키텍처
+- Career
+- 커리어
+- Education
+- 교육
+- Technology
 - 기술
+- History
+- 역사
+- Tutorial
+- 튜토리얼
+- Guide
+- 가이드
+- Reference
+- 참고
+- Documentation
+- 문서화
+- Python
+- 파이썬
+- C++
+- Java
+- JavaScript
 - Web
 - 웹
-- Tutorial
-- 가이드
+- Blog
+- 블로그
 - Review
 - 리뷰
 - Markdown
 - 마크다운
-- Go
-- 알고리즘
-- 문제해결
-- 구현
-- Coding-Test
-- 코딩테스트
-- Graph
-- 그래프
-- Stack
-- Queue
-- Science
-- 과학
-- 역사
-- Guide
 - Productivity
 - 생산성
-- 교육
-- Reference
-- 참고
-- Best-Practices
-- Documentation
-- 문서화
 - Open-Source
 - 오픈소스
-- Innovation
-- 혁신
-- Troubleshooting
-- 트러블슈팅
-- Configuration
-title: '[Algorithm] 코딩 테스트의 역사와 현황'
+- Science
+- 과학
+- BOJ
+- 백준
+- Competitive-Programming
+- 경쟁프로그래밍
+- Heap
+- 힙
+- Tree
+- 트리
+- Recursion
+- 재귀
+- Backtracking
+- 백트래킹
+- Hashing
+- 해싱
+- Array
+- 배열
+- Edge-Cases
+- 엣지케이스
+- Debugging
+- 디버깅
+- How-To
+- Tips
+- Beginner
+- 실습
 ---
 
 코딩 테스트는 1990년대에 마이크로소프트의 빌 게이츠에 의해 처음 도입되었으며, 이후 아마존, 페이스북, 구글 등 대형 기술 회사들에 의해 확산되었다. 국내에서는 2005년에 다음커뮤니케이션이 처음으로 코딩 테스트를 도입하였고, 이후 많은 기업들이 이를 채용 과정에 포함시키기 시작했다. 적성검사가 여러 기업에서 축소되거나 폐지되는 가운데, IT 계열에서는 대기업 및 중견기업을 중심으로 코딩 테스트가 점점 더 중요해지고 있다. 현재 코딩 테스트는 실무 능력을 평가하는 데 한계가 있다는 비판도 있지만, 여전히 많은 기업들이 이를 통해 지원자의 기초적인 프로그래밍 능력을 확인하고자 한다. 특히 대기업에서는 학벌, 학점, 자격증, 인턴 경험 등 다양한 요소를 종합적으로 평가하기 때문에 코딩 테스트는 그 중 하나의 요소로 자리 잡고 있다. 또한, 일부 기업은 특정 상황을 제시하고 기능 구현을 요구하는 과제를 선호하기도 하며, 이는 각 기업의 채용 방향성과 직무에 따라 다르게 나타난다. 결국 코딩 테스트는 지원자에게 실무 능력을 직접적으로 보여줄 수 있는 기회가 되며, 많은 기업들이 온라인 저지 서비스를 통해 문제 출제와 결과 검사를 외부에 맡기는 경향이 있다. 이러한 변화 속에서도 코딩 테스트는 여전히 많은 기업에서 중요한 평가 기준으로 남아 있으며, 지원자들은 이를 준비하는 데 많은 노력을 기울이고 있다.
@@ -147,13 +203,13 @@ title: '[Algorithm] 코딩 테스트의 역사와 현황'
 코딩 테스트의 기원은 1970년대와 1980년대 초반으로 거슬러 올라간다. 당시 컴퓨터 과학 분야의 발전과 함께 프로그래밍 언어의 다양화가 이루어지면서, 기업들은 지원자의 프로그래밍 능력을 평가하기 위한 방법을 모색하게 되었다. 1990년대에 들어서면서 마이크로소프트와 같은 대기업들이 코딩 테스트를 공식적인 채용 과정에 도입하게 되었고, 이후 아마존, 구글, 페이스북 등 다양한 기업들이 이를 채택하게 되었다. 이러한 변화는 코딩 테스트가 소프트웨어 개발 직무의 필수적인 평가 요소로 자리 잡는 계기가 되었다.
 
 ```mermaid
-graph TD;
-    A[코딩 테스트의 역사] --> B[1970년대: 초기 개념]
-    A --> C[1990년대: 대기업 도입]
-    A --> D[현재: 표준화된 평가 도구]
-    B --> E[프로그래밍 언어의 발전]
-    C --> F[마이크로소프트의 기여]
-    C --> G[구글, 아마존의 사례]
+graph TD
+    HistoryRoot["코딩 테스트의 역사"] --> EarlyConcept["1970년대: 초기 개념"]
+    HistoryRoot --> BigCompanyAdopt["1990년대: 대기업 도입"]
+    HistoryRoot --> CurrentStandard["현재: 표준화된 평가 도구"]
+    EarlyConcept --> LangEvolve["프로그래밍 언어의 발전"]
+    BigCompanyAdopt --> MsContribution["마이크로소프트의 기여"]
+    BigCompanyAdopt --> GoogleAmazon["구글, 아마존의 사례"]
 ```
 
 위의 다이어그램은 코딩 테스트의 역사적 배경을 간략하게 나타낸 것이다. 코딩 테스트는 초기 개념에서 시작하여, 대기업의 도입을 통해 현재의 표준화된 평가 도구로 발전해왔다. 이러한 발전 과정은 소프트웨어 개발 분야의 채용 방식에 큰 영향을 미쳤다.
@@ -174,12 +230,12 @@ graph TD;
 1990년대 초반, 마이크로소프트는 소프트웨어 개발자 채용 과정에서 코딩 테스트를 도입하기 시작했다. 빌 게이츠는 기술적 능력을 평가하는 것이 중요하다고 강조하였고, 이는 이후 많은 기업들이 코딩 테스트를 채용 과정에 포함시키는 계기가 되었다. 마이크로소프트의 코딩 테스트는 주로 알고리즘 문제와 자료구조 문제로 구성되어 있으며, 지원자의 문제 해결 능력을 평가하는 데 중점을 두었다.
 
 ```mermaid
-graph TD;
-    A[마이크로소프트] --> B[코딩 테스트 도입]
-    B --> C[알고리즘 문제]
-    B --> D[자료구조 문제]
-    C --> E[문제 해결 능력 평가]
-    D --> E
+graph TD
+    MsRoot["마이크로소프트"] --> Intro["코딩 테스트 도입"]
+    Intro --> AlgoProblems["알고리즘 문제"]
+    Intro --> DsProblems["자료구조 문제"]
+    AlgoProblems --> EvalAbility["문제 해결 능력 평가"]
+    DsProblems --> EvalAbility
 ```
 
 **아마존, 페이스북, 구글의 도입 사례**
@@ -216,11 +272,11 @@ graph TD;
 아래의 다이어그램은 적성검사와 코딩 테스트의 차이점을 시각적으로 나타낸 것이다.
 
 ```mermaid
-graph TD;
-    A[적성검사] -->|인지 능력| B[문제 해결 능력]
-    A -->|성격| C[직무 적합성]
-    D[코딩 테스트] -->|프로그래밍 능력| E[문제 해결 능력]
-    D -->|알고리즘| F[자료구조]
+graph TD
+    AptitudeTest["적성검사"] -->|"인지 능력"| SolveA["문제 해결 능력"]
+    AptitudeTest -->|"성격"| JobFit["직무 적합성"]
+    CodingTest["코딩 테스트"] -->|"프로그래밍 능력"| SolveB["문제 해결 능력"]
+    CodingTest -->|"알고리즘"| DataStruct["자료구조"]
 ```
 
 **실무 능력 평가의 변화**
@@ -249,6 +305,7 @@ graph TD;
 예를 들어, LeetCode에서는 다음과 같은 문제를 제공한다:
 
 ```python
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 def two_sum(nums, target):
     num_map = {}
     for i, num in enumerate(nums):
@@ -268,6 +325,7 @@ def two_sum(nums, target):
 자체 출제 문제의 예시는 다음과 같다:
 
 ```sql
+-- 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 SELECT employee_id, COUNT(*) as project_count
 FROM projects
 GROUP BY employee_id
@@ -283,11 +341,11 @@ HAVING project_count > 5;
 다음은 과제 전형과 코딩 테스트의 차이점을 나타내는 다이어그램이다:
 
 ```mermaid
-graph TD;
-    A[코딩 테스트] -->|시간 제한| B[문제 해결 능력]
-    A -->|알고리즘| C[기술적 사고]
-    D[과제 전형] -->|실무 중심| E[업무 수행 능력]
-    D -->|자유로운 시간| F[창의적 접근]
+graph TD
+    CtEval["코딩 테스트"] -->|"시간 제한"| SolveAbility["문제 해결 능력"]
+    CtEval -->|"알고리즘"| TechThinking["기술적 사고"]
+    TaskEval["과제 전형"] -->|"실무 중심"| WorkAbility["업무 수행 능력"]
+    TaskEval -->|"자유로운 시간"| CreativeApproach["창의적 접근"]
 ```
 
 이와 같이 코딩 테스트와 과제 전형은 서로 다른 평가 기준을 가지고 있으며, 지원자는 각 방식에 맞춰 준비하는 것이 중요하다. 코딩 테스트는 빠른 문제 해결 능력을, 과제 전형은 실무 능력을 강조하는 평가 방식이다.
@@ -310,6 +368,7 @@ graph TD;
 예를 들어, 스택을 이용한 괄호 검사 문제는 다음과 같은 방식으로 해결할 수 있다.
 
 ```python
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 def is_valid_parentheses(s: str) -> bool:
     stack = []
     mapping = {")": "(", "}": "{", "]": "["}
@@ -334,6 +393,7 @@ def is_valid_parentheses(s: str) -> bool:
 다음은 간단한 정렬 알고리즘인 버블 정렬의 예시이다.
 
 ```python
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -352,11 +412,11 @@ def bubble_sort(arr):
 다음은 모의 코딩 테스트를 위한 간단한 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[모의 코딩 테스트] --> B[문제 풀이]
-    B --> C{피드백}
-    C -->|성공| D[문제 해결 능력 향상]
-    C -->|실패| E[문제 분석 및 재도전]
+graph TD
+    MockTest["모의 코딩 테스트"] --> ProblemSolve["문제 풀이"]
+    ProblemSolve --> FeedbackCheck{"피드백"}
+    FeedbackCheck -->|"성공"| Improve["문제 해결 능력 향상"]
+    FeedbackCheck -->|"실패"| Retry["문제 분석 및 재도전"]
 ```
 
 위 다이어그램은 모의 코딩 테스트의 흐름을 나타낸다. 문제를 풀고 피드백을 통해 자신의 실력을 점검하며, 지속적으로 개선해 나가는 과정이 중요하다. 
@@ -382,16 +442,23 @@ graph TD;
 2. **시간 복잡도**: 제출된 코드의 효율성도 평가의 중요한 기준이다. 더 효율적인 알고리즘을 사용한 경우 추가 점수를 받을 수 있다.
 3. **코드 품질**: 가독성, 주석, 변수명 등의 코드 품질도 평가에 포함된다. 이는 유지보수성과 협업 능력을 반영하기 때문이다.
 
+| 항목 | 설명 | 비고 |
+|---|---|---|
+| **정답 여부** | 채점 케이스 통과 개수·부분 점수 | 기본 점수 비중이 큼 |
+| **시간 복잡도** | 알고리즘 효율성(예: $O(N \log N)$) | 효율적 풀이 시 가산 |
+| **공간 복잡도** | 메모리 사용량 | 제한을 초과하면 감점 |
+| **코드 품질** | 가독성, 네이밍, 주석 | 일부 기업에서 반영 |
+
 아래는 점수 산정 방식을 나타내는 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[코딩 테스트] --> B[정답 여부]
-    A --> C[시간 복잡도]
-    A --> D[코드 품질]
+graph TD
+    EvalRoot["코딩 테스트"] --> CorrectCheck["정답 여부"]
+    EvalRoot --> TimeComplexity["시간 복잡도"]
+    EvalRoot --> CodeQuality["코드 품질"]
 ```
 
-** 문제 난이도와 출제 빈도**
+**문제 난이도와 출제 빈도**
 
 문제의 난이도는 코딩 테스트의 평가 기준에서 중요한 역할을 한다. 일반적으로 문제는 난이도에 따라 다음과 같이 분류된다.
 
@@ -425,6 +492,7 @@ graph TD;
 아래는 스택과 큐를 활용한 간단한 문제 예시이다.
 
 ```python
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 # 스택을 이용한 괄호 유효성 검사
 def is_valid_parentheses(s):
     stack = []
@@ -458,6 +526,7 @@ print(is_valid_parentheses("(]"))      # False
 아래는 피보나치 수열을 동적 프로그래밍으로 해결하는 예시이다.
 
 ```python
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 # 피보나치 수열 동적 프로그래밍
 def fibonacci(n):
     fib = [0, 1]
@@ -476,12 +545,12 @@ print(fibonacci(10))  # 55
 아래는 코딩 테스트 결과를 활용하는 과정의 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[지원서 제출] --> B[코딩 테스트 실시]
-    B --> C{결과 분석}
-    C -->|합격| D[면접 진행]
-    C -->|불합격| E[결과 통보]
-    D --> F[최종 합격]
+graph TD
+    ApplySubmit["지원서 제출"] --> CtRun["코딩 테스트 실시"]
+    CtRun --> ResultCheck{"결과 분석"}
+    ResultCheck -->|"합격"| Interview["면접 진행"]
+    ResultCheck -->|"불합격"| Notify["결과 통보"]
+    Interview --> FinalPass["최종 합격"]
 ```
 
 이와 같이 코딩 테스트는 지원자의 기술적 역량을 평가하는 중요한 도구로 활용되며, 기업의 인재 선발 과정에서 중요한 역할을 한다.
@@ -502,6 +571,7 @@ graph TD;
 예를 들어, 정렬 문제를 해결할 때는 다양한 정렬 알고리즘(버블 정렬, 퀵 정렬, 병합 정렬 등)을 사용할 수 있으며, 각 알고리즘의 시간 복잡도와 공간 복잡도를 고려하여 최적의 방법을 선택해야 한다. 아래는 간단한 퀵 정렬의 샘플 코드이다.
 
 ```python
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 def quick_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -523,12 +593,12 @@ print(quick_sort(arr))
 아래는 프로그래밍 언어 선택 시 고려해야 할 요소들을 정리한 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[프로그래밍 언어 선택] --> B[문법의 간결성]
-    A --> C[성능]
-    A --> D[라이브러리 지원]
-    A --> E[커뮤니티와 자료]
-    A --> F[개인적 선호]
+graph TD
+    LanguageChoice["프로그래밍 언어 선택"] --> SyntaxSimplicity["문법의 간결성"]
+    LanguageChoice --> Performance["성능"]
+    LanguageChoice --> LibrarySupport["라이브러리 지원"]
+    LanguageChoice --> Community["커뮤니티와 자료"]
+    LanguageChoice --> Preference["개인적 선호"]
 ```
 
 **소프트웨어 개발 생명주기(SDLC)**  
@@ -538,13 +608,13 @@ graph TD;
 코딩 테스트에서는 주로 구현과 테스트 단계가 중요하다. 문제를 해결하기 위해 코드를 작성하고, 작성한 코드가 올바르게 작동하는지 확인하는 과정이 포함된다. 아래는 SDLC의 주요 단계를 나타낸 다이어그램이다.
 
 ```mermaid
-flowchart TD;
-    A[요구사항 분석] --> B[설계]
-    B --> C[구현]
-    C --> D[테스트]
-    D --> E[배포]
-    E --> F[유지보수]
-    F --> A
+flowchart TD
+    ReqAnalysis["요구사항 분석"] --> Design["설계"]
+    Design --> Implement["구현"]
+    Implement --> Test["테스트"]
+    Test --> Deploy["배포"]
+    Deploy --> Maintain["유지보수"]
+    Maintain --> ReqAnalysis
 ```
 
 이와 같이 알고리즘과 자료구조, 프로그래밍 언어의 선택, 소프트웨어 개발 생명주기(SDLC)는 코딩 테스트를 준비하는 데 있어 필수적인 기술적 요소들이다. 각 요소를 충분히 이해하고 연습하는 것이 중요하다.
@@ -563,10 +633,10 @@ flowchart TD;
 코딩 테스트는 앞으로도 계속해서 진화할 것으로 예상된다. 기술의 발전과 함께 인공지능(AI) 및 머신러닝(ML) 기술이 코딩 테스트에 도입될 가능성이 높다. 예를 들어, AI 기반의 자동 채점 시스템이 도입되면, 지원자의 코드 품질을 더욱 정교하게 평가할 수 있을 것이다. 또한, 가상 현실(VR)이나 증강 현실(AR) 기술을 활용한 몰입형 코딩 테스트도 등장할 수 있다. 이러한 변화는 지원자에게 더 나은 경험을 제공하고, 기업에게는 더 정확한 인재 선발을 가능하게 할 것이다.
 
 ```mermaid
-graph TD;
-    A[코딩 테스트의 미래] --> B[AI 기반 자동 채점]
-    A --> C[VR/AR 활용]
-    A --> D[정교한 평가 시스템]
+graph TD
+    FutureRoot["코딩 테스트의 미래"] --> AIGrading["AI 기반 자동 채점"]
+    FutureRoot --> VRAR["VR/AR 활용"]
+    FutureRoot --> RefinedEval["정교한 평가 시스템"]
 ```
 
 **취업 시장에서의 코딩 테스트의 역할**  
@@ -598,14 +668,16 @@ graph TD;
    - **Coursera의 "Data Structures and Algorithms"**: 이 강의는 자료구조와 알고리즘의 기초부터 심화까지 다룬다. 실습 문제를 통해 학습한 내용을 적용할 수 있다.
    - **Udemy의 "Coding Interview Bootcamp"**: 이 강의는 코딩 인터뷰에서 자주 출제되는 문제를 중심으로 구성되어 있으며, 실전 연습을 통해 자신감을 키울 수 있다.
 
-** 유용한 웹사이트 및 커뮤니티 **  
+**유용한 웹사이트 및 커뮤니티**
+
 코딩 테스트를 준비하는 데 도움이 되는 웹사이트와 커뮤니티는 다음과 같다.
 
 - **LeetCode**: 다양한 난이도의 문제를 제공하며, 문제 풀이 후 다른 사람의 솔루션을 비교할 수 있는 기능이 있다. 이를 통해 다양한 접근 방식을 배울 수 있다.
 - **HackerRank**: 코딩 테스트를 위한 플랫폼으로, 다양한 기업의 실제 문제를 연습할 수 있다. 또한, 커뮤니티에서 다른 개발자들과 소통할 수 있는 공간도 제공한다.
 - **Stack Overflow**: 프로그래밍 관련 질문과 답변을 공유하는 커뮤니티로, 코딩 테스트와 관련된 질문을 검색하거나 직접 질문할 수 있다.
 
-** 코딩 테스트 연습 플랫폼 소개 **  
+**코딩 테스트 연습 플랫폼 소개**
+
 코딩 테스트를 효과적으로 연습할 수 있는 플랫폼은 다음과 같다.
 
 - **CodeSignal**: 다양한 코딩 테스트 문제를 제공하며, 실시간으로 코드를 실행하고 결과를 확인할 수 있다. 기업의 코딩 테스트를 모의로 진행해 볼 수 있는 기능도 있다.
@@ -613,34 +685,42 @@ graph TD;
 - **AtCoder**: 일본의 프로그래밍 대회 플랫폼으로, 다양한 문제를 제공하며, 정기적으로 대회가 열려 실력을 테스트할 수 있는 기회를 제공한다.
 
 ```mermaid
-graph TD;
-    A[코딩 테스트 준비] --> B[서적]
-    A --> C[온라인 강의]
-    A --> D[웹사이트]
-    A --> E[연습 플랫폼]
-    B --> F[Cracking the Coding Interview]
-    B --> G[Elements of Programming Interviews]
-    C --> H[Data Structures and Algorithms]
-    C --> I[Coding Interview Bootcamp]
-    D --> J[LeetCode]
-    D --> K[HackerRank]
-    D --> L[Stack Overflow]
-    E --> M[CodeSignal]
-    E --> N[Codility]
-    E --> O[AtCoder]
+graph TD
+    PrepareRoot["코딩 테스트 준비"] --> Books["서적"]
+    PrepareRoot --> OnlineCourse["온라인 강의"]
+    PrepareRoot --> Website["웹사이트"]
+    PrepareRoot --> Platform["연습 플랫폼"]
+    Books --> Book1["Cracking the Coding Interview"]
+    Books --> Book2["Elements of Programming Interviews"]
+    OnlineCourse --> Course1["Data Structures and Algorithms"]
+    OnlineCourse --> Course2["Coding Interview Bootcamp"]
+    Website --> Site1["LeetCode"]
+    Website --> Site2["HackerRank"]
+    Website --> Site3["Stack Overflow"]
+    Platform --> Plat1["CodeSignal"]
+    Platform --> Plat2["Codility"]
+    Platform --> Plat3["AtCoder"]
 ```
 
 위의 자료들을 활용하여 코딩 테스트를 준비하면, 보다 효과적으로 실력을 향상시킬 수 있다. 지속적인 학습과 연습이 중요하다.
+
+**준비 체크리스트**
+
+- [ ] 기본 자료구조(스택, 큐, 힙, 해시) 구현 및 활용 문제 풀이
+- [ ] 정렬·이분 탐색·투 포인터 유형 정복
+- [ ] DFS/BFS·동적 계획법·그리디 유형 연습
+- [ ] 모의 코딩 테스트로 시간 배분·디버깅 연습
+- [ ] 지원 대상 기업의 과거 유형·난이도 파악
+- [ ] 참고 문헌·온라인 저지에서 3개 이상 출처 활용
 
 <!--
 ##### Reference #####
 -->
 
-## Reference
+## 참고 문헌 및 출처
 
-
-* [http://www.ktword.co.kr/test/view/view.php?no=5735](http://www.ktword.co.kr/test/view/view.php?no=5735)
-* [https://namu.wiki/w/%EB%B6%84%EB%A5%98:%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98](https://namu.wiki/w/%EB%B6%84%EB%A5%98:%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
-* [https://namu.wiki/w/%EC%BD%94%EB%94%A9%20%ED%85%8C%EC%8A%A4%ED%8A%B8](https://namu.wiki/w/%EC%BD%94%EB%94%A9%20%ED%85%8C%EC%8A%A4%ED%8A%B8)
-* [https://school.programmers.co.kr/learn/challenges?tab=algorithm_practice_kit](https://school.programmers.co.kr/learn/challenges?tab=algorithm_practice_kit)
+- [알고리즘 분류 (정보통신기술용어해설)](http://www.ktword.co.kr/test/view/view.php?no=5735)
+- [분류:알고리즘 (나무위키)](https://namu.wiki/w/%EB%B6%84%EB%A5%98:%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
+- [코딩 테스트 (나무위키)](https://namu.wiki/w/%EC%BD%94%EB%94%A9%20%ED%85%8C%EC%8A%A4%ED%8A%B8)
+- [코딩테스트 고득점 Kit (프로그래머스 스쿨)](https://school.programmers.co.kr/learn/challenges?tab=algorithm_practice_kit)
 
