@@ -5,8 +5,7 @@ date: "2023-06-23T00:00:00Z"
 lastmod: "2026-03-17"
 draft: false
 categories: null
-header:
-  teaser: https://miro.medium.com/v2/resize:fit:1400/format:webp/1*5h5WIpLjdlh2Iiu_WG2_AA.jpeg
+image: https://miro.medium.com/v2/resize:fit:1400/format:webp/1*5h5WIpLjdlh2Iiu_WG2_AA.jpeg
 tags:
   - Networking
   - 네트워킹
