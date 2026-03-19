@@ -2,7 +2,7 @@
 title: "[AI] 녹음 음성 화자 인식·STT 오픈소스 정리 (Reverb, WhisperX, pyannote)"
 description: "녹음된 음성에서 누가 언제 말했는지(화자 다이어리제이션)와 음성을 글자로 바꾸는(STT) 오픈소스 도구를 정리한다. Reverb, WhisperX, pyannote-audio의 특징, 요구사항, 라이선스와 선택 가이드를 담았으며 로컬 실행 가능한 프로젝트 위주로 소개한다."
 date: 2026-03-12
-lastmod: 2026-03-12
+lastmod: 2026-03-19
 categories:
   - AI
   - OpenSource
@@ -116,6 +116,7 @@ tags:
   - Maintainability
   - Scalability
   - 확장성
+image: "wordcloud.png"
 ---
 
 회의나 인터뷰 녹음처럼 **녹음된 음성**을 다룰 때, “누가 언제 말했는지(화자 인식·다이어리제이션)”와 “무슨 말을 했는지(음성 인식·STT)”를 함께 처리하고 싶을 때가 많다. 이 글에서는 **녹음 음성에 대한 화자 인식과 STT를 지원하는 오픈소스**를 웹 검색과 문서를 바탕으로 정리한다.
