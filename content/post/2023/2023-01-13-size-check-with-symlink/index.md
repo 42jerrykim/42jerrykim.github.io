@@ -3,7 +3,7 @@ title: "[Linux] 디스크 용량 측정 시 심링크(dereference) 포함하기"
 description: "Linux에서 du·df로 디스크 용량을 측정할 때 심링크(symlink)를 따라가 대상의 실제 용량을 반영하는 방법을 설명한다. du -L(모든 심링크 역참조), -D/-H(명령줄 인자만) 옵션 차이, 디렉터리 순회 시 동작, 실전 예제와 중복·순환 링크 주의사항, 참고 문헌을 포함한다."
 date: "2023-01-13T00:00:00Z"
 lastmod: "2026-03-17T00:00:00Z"
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 tags:
 - Linux
 - 리눅스

@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "Mara Bos 저 Rust Atomics and Locks 서평. 동시성·원자 연산·메모리 순서·뮤텍스·조건 변수·OS API 연동까지, Rust 저수준 동시성을 올바르게 다루고 싶은 개발자를 위한 실전 가이드 요약, 추천 대상, 핵심 내용, 예제 코드 링크, 장단점과 종합 평가, 참고 문헌을 정리했다."
 date: "2023-01-11T00:00:00Z"
 lastmod: "2026-03-17"

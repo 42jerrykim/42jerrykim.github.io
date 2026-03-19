@@ -3,7 +3,7 @@ title: "[GitHub] github.dev - 웹 브라우저에서 쓰는 GitHub 전용 IDE"
 date: "2022-07-07T00:00:00Z"
 lastmod: "2026-03-16"
 description: "GitHub.dev는 브라우저만으로 저장소를 열어 코드 수정·커밋까지 할 수 있는 무료 웹 IDE다. 설치 없이 '.' 키 한 번으로 접속 가능하며, VS Code 기반 검색·문법 강조·소스 제어를 지원한다. 가벼운 수정과 PR 작업에 적합하며, 터미널 없이 편집에 집중할 수 있다."
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 categories:
   - GitHub
 header:

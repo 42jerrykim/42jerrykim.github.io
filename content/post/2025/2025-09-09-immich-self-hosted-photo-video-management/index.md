@@ -20,7 +20,7 @@ tags:
 - 셀프호스팅
 - 웹
 - 모바일
-image: "wordcloud.png"
+image: "image.png"
 draft: true
 ---
 

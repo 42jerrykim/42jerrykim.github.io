@@ -5,7 +5,7 @@ date: "2024-09-10T00:00:00Z"
 lastmod: "2026-03-17T00:00:00Z"
 categories:
   - Shell
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-09-10-Shell-Redirection.png
 tags:

@@ -1,6 +1,6 @@
 ---
 draft: false
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "PyTorch와 JAX의 설계 철학, 성능·확장성, 컴파일러 기반 개발, 함수형 API, 재현성·이식성을 비교하고, 대규모 연구·배포 환경에서의 선택 기준과 JAX의 장단점을 정리한 분석 포스트입니다. Mermaid 다이어그램, 비교 표, 참고 문헌을 포함합니다."
 categories: MachineLearning
 date: "2024-08-19T00:00:00Z"

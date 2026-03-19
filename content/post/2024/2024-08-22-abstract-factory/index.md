@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "추상 팩토리 패턴은 구체 클래스에 의존하지 않고 관련 객체 제품군을 일관되게 생성하는 인터페이스를 제공하는 GoF 생성 패턴이다. 구성 요소, 동작 원리, 가구·GUI·엘리베이터 예제, Factory Method와의 차이, FAQ, 참고 문헌을 정리했다."
 categories: DesignPattern
 date: "2024-08-22T00:00:00Z"

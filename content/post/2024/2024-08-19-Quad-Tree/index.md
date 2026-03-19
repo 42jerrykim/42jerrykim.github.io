@@ -5,7 +5,7 @@ categories: DataStructure
 date: "2024-08-19T00:00:00Z"
 lastmod: "2026-03-17T00:00:00Z"
 header: null
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 tags:
   - Algorithm
   - 알고리즘

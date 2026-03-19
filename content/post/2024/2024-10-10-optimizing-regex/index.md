@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C#과 .NET에서 정규 표현식(Regex) 성능 최적화 기법을 다룬다. 입력 소스 고려, 객체 재사용, 백트래킹 관리, 캡처 최소화, 해석/소스생성/컴파일 방식 비교, 타임아웃·벤치마킹·스레드 안전성 등 실무 모범 사례를 정리했다. 개발자와 DevOps 담당자에게 유용한 참고 자료이다."
 categories: CSharp
 date: "2024-10-10T00:00:00Z"

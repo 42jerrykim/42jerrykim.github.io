@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "btop++은 CPU·메모리·디스크·네트워크·프로세스를 한 화면에 보여 주는 리눅스용 리소스 모니터다. C++로 재작성된 bashtop 후속작으로, 직관적 UI·마우스 지원·테마·실시간 그래프로 서버와 데스크톱 모두에서 활용 가능하다. 설치 방법, top/htop과의 차이, 단축키와 설정 요약까지 소개한다."
 categories:
   - Linux

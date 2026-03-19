@@ -71,7 +71,7 @@ tags:
 - 보안
 - Networking
 - 네트워킹
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `ssh`(Secure Shell)는 **암호화된 채널**로 원격 호스트에 로그인하거나, 원격에서 **명령 한 줄**을 실행할 때 쓴다.

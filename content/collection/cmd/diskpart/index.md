@@ -5,7 +5,7 @@ description: "diskpart 명령어는 Windows CMD에서 디스크 파티션을 생
 date: 2025-03-15
 lastmod: 2025-03-15
 categories: CMD
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 tags:
 - Windows
 - 윈도우

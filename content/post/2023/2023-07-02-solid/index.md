@@ -1,6 +1,6 @@
 ---
 draft: false
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "SOLID는 로버트 C. 마틴이 정리한 객체 지향 설계 5원칙(SRP·OCP·LSP·ISP·DIP)이다. 각 원칙의 의미, Python 실무 예제, 적용·회피 판단 기준, 트레이드오프를 다루며 유지보수와 확장이 쉬운 코드 작성에 도움을 준다."
 lastmod: "2026-03-17"
 date: "2023-07-02T00:00:00Z"

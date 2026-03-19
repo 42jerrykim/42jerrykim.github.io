@@ -69,7 +69,7 @@ tags:
 - 페이징
 - 뷰어
 - 스크롤
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `less`와 `more`는 **긴 텍스트**를 한 화면(페이지)씩 보여주는 **페이저**다. `less`가 위아래 스크롤·검색 등이 더 풍부해 실무에서는 `less`를 더 많이 쓴다.

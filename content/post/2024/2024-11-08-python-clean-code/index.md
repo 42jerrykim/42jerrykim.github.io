@@ -89,7 +89,7 @@ tags:
 - 트러블슈팅
 - Configuration
 - 설정
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 draft: false
 ---
 

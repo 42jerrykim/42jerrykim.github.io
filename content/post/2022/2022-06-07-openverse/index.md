@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "OpenVerse는 Creative Commons·퍼블릭 도메인 이미지·오디오를 한곳에서 검색·다운로드할 수 있는 메타 검색엔진이다. 워드프레스가 운영하며 8억 건 이상의 무료 미디어를 제공한다. 추천 대상, 연동 소스, 사용법, 장단점, 참고 문헌을 정리했다. 블로그·교육 자료용 무료 미디어 검색에 적합하다."
 categories:
   - SearchEngine

@@ -5,7 +5,7 @@ description: "doskey 명령어는 Windows CMD에서 명령줄 편집, 이전 명
 date: 2025-03-15
 lastmod: 2025-03-15
 categories: CMD
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 tags:
 - Windows
 - 윈도우

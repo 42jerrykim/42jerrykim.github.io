@@ -5,7 +5,7 @@ description: "copy 명령어는 Windows CMD에서 하나 이상의 파일을 다
 date: 2025-03-15
 lastmod: 2025-03-15
 categories: CMD
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 tags:
 - Windows
 - 윈도우

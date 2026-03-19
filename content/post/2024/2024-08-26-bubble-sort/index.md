@@ -105,7 +105,7 @@ tags:
   - Software-Architecture
   - Design-Pattern
   - 디자인패턴
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-26-bubble-sort.png
 ---

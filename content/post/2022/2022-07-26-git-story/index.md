@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "git-story는 Git 저장소의 커밋 히스토리를 바탕으로 MP4 애니메이션을 자동 생성하는 무료 오픈소스 도구입니다. 프로젝트 시각화, 팀 워크플로우 공유, 블로그·유튜브용 영상 제작에 활용할 수 있으며, Manim 기반으로 한 번의 커맨드로 결과물을 얻을 수 있습니다."
 date: "2022-07-26T00:00:00Z"
 lastmod: "2026-03-16"

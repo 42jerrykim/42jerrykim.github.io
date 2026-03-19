@@ -5,7 +5,7 @@ description: "exit 명령어는 Windows CMD에서 현재 CMD.exe 세션을 종�
 date: 2025-03-15
 lastmod: 2025-03-15
 categories: CMD
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 tags:
 - Windows
 - 윈도우

@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C# Source Generator는 컴파일 시점에 사용자 코드를 분석(Inspect)하여 새로운 C# 소스 코드를 자동 생성하는 Roslyn 기반 기능입니다. 런타임 리플렉션 대체·AOT 친화·빌드 시점 메타프로그래밍을 가능하게 하며, 본문에서는 Hello World 예제와 .NET Standard 2.0 프로젝트 구성 방법을 단계별로 소개합니다."
 date: "2022-04-05T00:00:00Z"
 lastmod: "2026-03-16T00:00:00Z"

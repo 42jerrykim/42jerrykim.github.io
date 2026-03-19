@@ -70,7 +70,7 @@ tags:
 - 셸설정
 - 단축키
 - Shortcut
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `alias`는 **명령에 짧은 이름**을 붙여서 쓸 수 있게 한다. 셸 내장 명령이며, `.bashrc` 등에 넣어 두면 로그인할 때마다 적용된다.

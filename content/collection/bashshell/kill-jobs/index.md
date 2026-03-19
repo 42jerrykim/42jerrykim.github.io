@@ -72,7 +72,7 @@ tags:
 - SIGKILL
 - background
 - foreground
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `kill`은 **시그널**을 보내 프로세스를 종료·제어하고, `jobs`·`fg`·`bg`는 셸이 관리하는 **작업(Job)** 목록 확인·포그라운드·백그라운드 전환에 쓴다.

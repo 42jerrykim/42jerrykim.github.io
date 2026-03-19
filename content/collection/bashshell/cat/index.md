@@ -74,7 +74,7 @@ tags:
 - Pipeline
 - 텍스트
 - stdout
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `cat`, `head`, `tail`은 리눅스·유닉스에서 **파일 내용을 터미널(표준 출력)**으로 보여주는 명령어다. `cat`은 전체, `head`는 앞부분, `tail`은 뒷부분(및 실시간 추적)을 다룬다. 로그 확인·파이프 입력으로 자주 쓴다.

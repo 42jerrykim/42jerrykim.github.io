@@ -5,7 +5,7 @@ categories:
   - Programming
 date: "2022-03-15T00:00:00Z"
 lastmod: "2026-03-16"
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/image001.jpg
 tags:

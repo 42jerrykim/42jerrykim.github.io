@@ -72,7 +72,7 @@ tags:
 - 단어수
 - word-count
 - Pipeline
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `sort`는 **줄 단위 정렬**, `uniq`는 **연속된 동일 줄**만 제거·집계하고, `wc`는 **줄·단어·바이트 수**를 센다. 파이프로 묶어 로그·텍스트 처리에 자주 쓴다.

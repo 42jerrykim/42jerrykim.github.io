@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "Jekyll과 Kramdown 환경에서 코드 블록에 줄 번호(Line Number)를 표시하는 두 가지 방법을 정리합니다. _config.yml 설정법, highlight Liquid 태그 사용법, Rouge 옵션, 줄바꿈과의 충돌 이슈까지 실무에 바로 쓸 수 있게 안내합니다."
 date: "2022-02-08T00:00:00Z"
 last_modified_at: "2026-03-16"

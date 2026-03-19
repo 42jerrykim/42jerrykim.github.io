@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "Minimal Mistakes Jekyll 테마에서 페이지 최대 너비 제한을 해제하고 와이드 레이아웃을 적용하는 방법을 단계별로 안내한다. main.scss 생성, $max-width 변수 설정, breadcrumbs 정렬 수정까지 실제 적용 사례와 주의사항, 참고 문헌을 포함해 따라 하기 쉽게 정리했다."
 date: "2022-02-07T00:00:00Z"
 lastmod: "2026-03-16T00:00:00Z"

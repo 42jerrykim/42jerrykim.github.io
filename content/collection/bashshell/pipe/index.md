@@ -69,7 +69,7 @@ tags:
 - stdin
 - Redirection
 - 리디렉션
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 **파이프**(`|`)는 한 명령의 **표준 출력(stdout)**을 다음 명령의 **표준 입력(stdin)**으로 연결한다. 파일에 쓰지 않고 여러 명령을 이어 실행할 때 쓴다.

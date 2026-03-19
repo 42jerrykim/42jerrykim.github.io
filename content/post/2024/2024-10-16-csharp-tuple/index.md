@@ -72,7 +72,7 @@ tags:
 - 마크다운
 - Review
 - 리뷰
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 draft: false
 ---
 

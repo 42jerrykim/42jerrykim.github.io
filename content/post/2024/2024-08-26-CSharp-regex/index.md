@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C#과 .NET에서 정규 표현식(Regex)을 활용하는 방법을 기초부터 고급까지 정리한다. Regex 클래스, 메타문자·그룹·캡처, Match/Replace/Split, RegexOptions, 성능·보안 주의사항, 이메일·전화번호 검증 등 실전 예제를 포함한다."
 categories:
 - Regex

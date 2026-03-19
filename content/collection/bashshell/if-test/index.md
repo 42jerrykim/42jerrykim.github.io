@@ -70,7 +70,7 @@ tags:
 - 비교
 - 파일테스트
 - 문자열테스트
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 Bash **조건문**은 `if`와 **테스트 명령**(`test` 또는 `[ ]`, `[[ ]]`)을 함께 쓴다. `[[ ]]`는 Bash 확장으로, 패턴·문자열 비교에 유리하다.

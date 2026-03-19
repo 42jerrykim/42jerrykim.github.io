@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "리눅스 가상 파일시스템 DebugFS, SecurityFS, PipeFS, SockFS의 역할과 특징을 정리한다. VFS 개념, 마운트 방법, 커널 옵션, 주요 API 및 활용 사례를 다루며, 가상·유사 파일시스템 비교와 참고 문헌을 제공한다. 42jerrykim.github.io에서 더 많은 기술 글을 확인할 수 있다."
 categories:
   - Linux

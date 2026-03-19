@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "Jekyll·Minimal Mistakes 환경에서 블로그 이미지에 캡션을 넣는 세 가지 방법을 비교합니다. figure include, Kramdown image-caption 클래스, Markdown 표 활용을 예제와 함께 소개하고 상황별 선택 가이드를 제시합니다."
 date: "2022-02-07T00:00:00Z"
 lastmod: "2026-03-16T00:00:00Z"

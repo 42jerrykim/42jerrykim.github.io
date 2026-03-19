@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "AI의 미래를 다룹니다. 제프리 힌튼의 경고, GPT 훈련 노동의 인적 비용(리처드 마테엔게 사례), 오픈소스 AI 연구와 CERN형 슈퍼컴퓨팅 시설 제안, 대기업 독점과 민주화 필요성까지 정리한 종합 에세이입니다. 참고 문헌 네 편과 함께 투명성·책임성·포용성 기반의 AI 개발 방향을 제안합니다."
 categories: AI
 date: "2023-06-02T00:00:00Z"

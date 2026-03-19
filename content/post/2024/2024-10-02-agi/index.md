@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "인공 일반 지능(AGI)의 정의, OpenAI·DeepMind의 5단계 분류, LLM·전이학습 등 기술 기반, 비즈니스·의료·교육 응용, 윤리·안전·규제 이슈와 미래 전망을 정리한 기술 가이드."
 categories: artificialgeneralintelligence
 date: "2024-10-02T00:00:00Z"

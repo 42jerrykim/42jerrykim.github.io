@@ -1,6 +1,6 @@
 ---
 draft: false
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "분산 시스템의 정의와 중요성, 이질성·확장성·보안 등 도전 과제, CQRS·2PC·Saga·Circuit Breaker·Leader Election 등 17가지 핵심 패턴, WAL·Bloom Filter, 마이크로서비스·클라우드·메시징과의 관계, 실무 예제·FAQ·참고 문헌을 포함한 완벽 가이드."
 categories: DistributedSystems
 date: "2024-09-23T00:00:00Z"

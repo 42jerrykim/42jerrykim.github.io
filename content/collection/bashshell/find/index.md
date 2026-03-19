@@ -75,7 +75,7 @@ tags:
 - exec
 - xargs
 - Pipeline
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `find`는 리눅스·유닉스에서 **경로 아래**를 재귀적으로 탐색하며, 이름·타입·수정 시간·크기 등 **조건에 맞는 파일·디렉터리**를 찾아 경로를 출력하는 명령어다. 스크립트·백업·정리 작업에서 필수적으로 사용된다.

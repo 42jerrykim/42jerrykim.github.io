@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C++ std::string::find 함수의 네 가지 오버로드, 인자·반환값·npos 처리 방법을 설명하고, 반복 검색·부분 일치 등 실전 패턴과 rfind·find_first_of 등 관련 함수까지 정리한 참고 가이드. 초보자도 따라 할 수 있는 예제 코드, 주의사항, 참고 문헌 포함."
 categories:
 - Cpp

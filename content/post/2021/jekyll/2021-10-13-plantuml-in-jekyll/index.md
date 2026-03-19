@@ -7,7 +7,7 @@ draft: false
 categories:
   - Jekyll
   - PlantUML
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 header:
   teaser: /plantuml/md-sample-sequence.svg
 tags:

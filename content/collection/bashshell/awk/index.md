@@ -70,7 +70,7 @@ tags:
 - NF
 - FS
 - 스크립트
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `awk`는 **필드(열) 단위**로 텍스트를 처리하는 도구다. 패턴에 맞는 줄을 골라 특정 필드를 출력·계산할 때 쓴다.

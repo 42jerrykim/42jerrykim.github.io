@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "Markdown·Jekyll 기반 블로그에서 LaTeX 수식을 MathJax로 표시하는 방법을 다룹니다. LaTeX·MathJax 개념, 웹 연동, 인라인·블록 수식 문법(첨자·분수·절댓값), 사용 시 주의사항과 참고 자료를 150자 분량으로 요약합니다."
 date: "2022-02-24T00:00:00Z"
 lastmod: "2026-03-16"

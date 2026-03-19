@@ -75,7 +75,7 @@ tags:
 - 실시간
 - Performance
 - 성능
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `top`은 **실시간**으로 시스템 요약(CPU, 메모리)과 **프로세스 목록**을 보여준다. 정렬·필터로 부하 원인을 찾을 때 쓴다.

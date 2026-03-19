@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "소프트웨어 아키텍처의 구조적 메타패턴을 체계적으로 정리한다. Monolith·Layers·Services·Pipeline 등 기본 메타패턴부터 확장·분산·구현 메타패턴까지 분류하고, 디자인 공간·ASS 좌표계·Big Balls of Mud 개념, FAQ·관련 기술·참고 문헌까지 아키텍처 설계 실무에 도움 되는 내용을 담았다."
 categories: architecture
 date: "2024-09-13T00:00:00Z"

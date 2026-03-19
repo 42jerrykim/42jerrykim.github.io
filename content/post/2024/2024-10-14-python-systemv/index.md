@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "Python에서 System V IPC로 공유 메모리·세마포어·메시지 큐를 다루는 방법을 정리했다. ctypes 래퍼 작성, shmget·shmat·shmctl 사용법, sysv_ipc 모듈과 Python 3.8 shared_memory, POSIX IPC 비교까지 실무에 쓸 수 있게 구성했다."
 date: "2024-10-14T00:00:00Z"
 lastmod: "2026-03-17"

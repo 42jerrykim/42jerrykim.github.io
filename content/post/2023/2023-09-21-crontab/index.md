@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "리눅스 Crontab의 정의와 crond 데몬 역할, crontab -e/-l/-r 사용법, 5필드 표현식(분·시·일·월·요일), 특수문자와 스케줄 예제, 로그·백업·@reboot 활용, Anacron·systemd 타이머·Windows 작업 스케줄러 비교까지 150자 요약."
 date: "2023-09-21T00:00:00Z"
 lastmod: "2026-03-17"

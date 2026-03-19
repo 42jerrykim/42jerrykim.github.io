@@ -5,7 +5,7 @@ description: "pushd는 현재 디렉터리를 스택에 저장한 뒤 지정한 
 date: 2025-03-15
 lastmod: 2025-03-15
 categories: CMD
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 tags:
 - Windows
 - 윈도우

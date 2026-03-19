@@ -105,7 +105,7 @@ tags:
   - 엣지케이스
   - Pitfalls
   - 함정
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 draft: false
 ---
 

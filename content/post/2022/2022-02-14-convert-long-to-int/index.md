@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C#에서 long을 int·uint로 변환하는 방법(Convert 클래스, 캐스팅, checked), 오버플로우 위험과 예외 처리, 언제 어떤 방법을 쓸지 판단 기준을 설명합니다. 실무에서 자주 쓰는 패턴과 함정을 함께 다룹니다."
 date: "2022-02-14T00:00:00Z"
 lastmod: "2026-03-16T00:00:00Z"

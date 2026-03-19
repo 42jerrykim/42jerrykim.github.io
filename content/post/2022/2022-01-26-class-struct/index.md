@@ -2,7 +2,7 @@
 draft: false
 title: "[C#] 클래스와 구조체 선택 가이드: 차이점·성능·사용 기준"
 description: "C#에서 클래스(참조 형식)와 구조체(값 형식)의 할당·메모리·배열·박싱·복사 동작 차이를 비교하고, 16바이트 미만·불변·단일 값 등 구조체 선택 기준과 클래스 선택 기준을 정리한 실무 가이드입니다."
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 date: "2022-01-26T00:00:00Z"
 lastmod: "2026-03-16T00:00:00Z"
 header:

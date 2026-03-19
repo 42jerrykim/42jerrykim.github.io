@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 draft: false
 description: "C++ 동적 로딩의 원리, dlopen·dlsym·dlclose·dlerror 활용법, 네임 맹글링과 클래스 로딩 문제 및 extern C·팩토리 패턴 해결, 실전 예제와 플러그인 설계까지 정리한 완벽 가이드."
 date: "2023-06-02T00:00:00Z"

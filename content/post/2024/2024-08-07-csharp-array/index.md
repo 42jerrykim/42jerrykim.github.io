@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C# 배열(Array)의 정의, 1차원·다차원·가변 배열(Jagged) 선언·초기화·접근 방법, System.Array 메서드·속성, 실전 예제(성적 관리·이미지·게임), FAQ, LINQ·컬렉션과의 관계를 150자 분량으로 요약한 참고용 정리입니다."
 categories: CSharp
 date: "2024-08-07T00:00:00Z"

@@ -95,7 +95,7 @@ tags:
 - 배열
 - Compiler
 - 컴파일러
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 draft: false
 ---
 

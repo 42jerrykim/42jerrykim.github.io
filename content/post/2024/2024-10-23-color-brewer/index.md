@@ -114,7 +114,7 @@ tags:
   - 로깅
   - Culture
   - 문화
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 draft: false
 ---
 

@@ -68,7 +68,7 @@ tags:
 - 압축
 - gzip
 - Compression
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `tar`는 **여러 파일을 하나의 아카이브**로 묶거나 풀 때 쓴다. gzip·bzip2와 조합해 .tar.gz, .tar.bz2를 만든다.

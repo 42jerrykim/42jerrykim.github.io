@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "MarkWhen은 마크다운 계열 문법으로 타임라인·간트 차트·일지를 텍스트에 담고 시각화하는 오픈소스 도구다. 프로젝트 일정, 로드맵, 회고록 등에 적합하며 ISO8601·다양한 날짜 형식을 지원하고, Timeline/Map/Doc 뷰·PDF·PNG 내보내기를 제공한다. 42jerrykim.github.io에서 더 많은 기술 글을 확인할 수 있다."
 categories:
 - MarkWhen

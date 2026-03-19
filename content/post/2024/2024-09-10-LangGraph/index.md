@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "LangGraph는 LangChain 생태계의 오픈소스 에이전트 오케스트레이션 프레임워크로, 상태 기반 그래프·순환 워크플로·멀티 에이전트·휴먼 인 더 루프를 지원한다. 설치·기본 개념·활용 예제·고급 기능·CrewAI 비교·FAQ·참고 자료를 다루며, 실무 적용에 필요한 기초를 제공한다."
 categories: LangGraph
 date: "2024-09-10T00:00:00Z"

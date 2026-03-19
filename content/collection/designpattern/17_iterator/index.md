@@ -5,7 +5,7 @@ description: "Iterator 패턴은 컬렉션 내부 구조를 노출하지 않고 
 date: 2022-01-01
 last_modified_at: 2022-03-01
 categories: Design Pattern
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:

@@ -71,7 +71,7 @@ tags:
 - recursive
 - force
 - backup
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `cp`는 **복사**, `mv`는 **이동·이름 변경**, `rm`은 **삭제**를 수행한다. 디렉터리 작업 시 `-r` 옵션이 필요하다.

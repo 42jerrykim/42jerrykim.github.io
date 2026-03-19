@@ -71,7 +71,7 @@ tags:
 - owner
 - 755
 - 644
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `chmod`는 **권한(퍼미션)**을, `chown`은 **소유자·그룹**을 바꾼다. 보안·배포 시 자주 쓴다.

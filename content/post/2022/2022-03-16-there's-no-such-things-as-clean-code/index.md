@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "클린 코드의 개념을 비판적으로 살펴보고, '클린'이라는 용어가 기술적 논의에서 갖는 한계를 분석한다. 좋은 코드의 구체적 특성·트레이드오프·명확한 용어 사용의 중요성을 다루며, 프로젝트에 맞는 코드를 고민하는 데 도움을 준다."
 categories:
 - CleanCode

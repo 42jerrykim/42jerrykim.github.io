@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C# CancellationTokenSource와 CancellationToken의 개념, TaskFactory와의 연동, 비동기 작업 취소 시나리오에서의 올바른 사용법을 실전 예제와 함께 설명한다. Task.Delay에 토큰 전달·취소 요청 처리 등 실무 팁을 포함한다. 42jerrykim.github.io에서 더 많은 기술 글을 확인할 수 있다."
 date: "2022-12-11T00:00:00Z"
 lastmod: "2026-03-16"

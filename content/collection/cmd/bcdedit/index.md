@@ -5,7 +5,7 @@ description: "bcdedit 명령어는 Windows CMD에서 BCD(부팅 구성 데이터
 date: 2025-03-15
 lastmod: 2025-03-15
 categories: CMD
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 tags:
 - Windows
 - 윈도우

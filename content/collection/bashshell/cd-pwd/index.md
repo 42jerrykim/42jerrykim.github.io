@@ -72,7 +72,7 @@ tags:
 - 심볼릭링크
 - PWD
 - OLDPWD
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `cd`(change directory)는 **작업 디렉터리**를 바꾸는 셸 내장 명령이고, `pwd`(print working directory)는 **현재 작업 디렉터리의 절대 경로**를 출력한다. 스크립트·일상 작업에서 가장 자주 쓰는 조합이다.

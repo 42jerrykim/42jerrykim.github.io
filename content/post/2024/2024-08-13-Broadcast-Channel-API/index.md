@@ -6,7 +6,7 @@ header: null
 title: "[WebDevelopment] Broadcast Channel API로 브라우저 탭·창 간 실시간 통신하기"
 description: "Broadcast Channel API는 동일 출처의 탭·창·iframe 간 실시간 메시징을 가능하게 하는 Web API다. 채널 생성·메시지 송수신, 테마·카운터·React 예제, 한계와 트레이드오프, 언제 쓸지 판단 기준, 적용 체크리스트와 참고 문헌을 체계적으로 소개하며 개발자와 학습자에게 실무 적용 가이드로 활용할 수 있다."
 teaser: /assets/images/undefined/teaser.jpg
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 
 tags:
   - JavaScript

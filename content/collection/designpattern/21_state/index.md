@@ -5,7 +5,7 @@ description: "State 패턴은 객체의 내부 상태가 변경될 때 행동이
 date: 2022-01-01
 last_modified_at: 2022-03-01
 categories: Design Pattern
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:

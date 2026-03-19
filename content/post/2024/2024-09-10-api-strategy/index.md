@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "API 전략의 정의와 Jeff Bezos API Mandate, 디지털 전환과의 관계, 구성 요소(비즈니스 정렬·설계·보안·성능), 생애 주기·거버넌스·관리 도구, REST·GraphQL·gRPC 설계와 구현 단계, 도전 과제와 산업별 사례, FAQ 및 참고 문헌을 다룹니다. 디지털 전환과 성장을 위한 실전 가이드."
 categories: API
 date: "2024-09-10T00:00:00Z"

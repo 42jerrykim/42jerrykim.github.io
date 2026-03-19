@@ -5,7 +5,7 @@ description: "Command 패턴은 요청을 객체로 캡슐화하여 호출자와
 date: 2022-01-01
 last_modified_at: 2022-03-01
 categories: Design Pattern
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:

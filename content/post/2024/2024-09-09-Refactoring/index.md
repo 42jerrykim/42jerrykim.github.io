@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "리팩토링의 정의와 목표, 코드 냄새·기술 부채와의 관계를 설명하고, 좋은/나쁜 리팩토링 관행, 실무 팁·도구, 시기와 효과 측정을 다룹니다. TDD·CI·코드 품질 도구와의 연계, FAQ와 참고 문헌까지 포함한, 개발자와 팀이 일상적으로 적용할 수 있는 리팩토링 가이드입니다."
 categories: Refactoring
 date: "2024-09-09T00:00:00Z"

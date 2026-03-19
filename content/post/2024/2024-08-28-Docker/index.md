@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "컨테이너와 Docker의 기본 개념, 이미지·레지스트리·실행·관리, 네트워크·볼륨 활용, 보안·성능 고려사항, 마이크로서비스·오케스트레이션, 배포·운영 전략까지 개발·운영 실무에 필요한 핵심 이론과 Docker·Kubernetes·Podman 실습을 체계적으로 정리한 가이드입니다."
 categories: Docker
 date: "2024-08-28T00:00:00Z"

@@ -71,7 +71,7 @@ tags:
 - Script
 - break
 - continue
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 Bash **반복문**에는 **for**, **while**, **until**이 있다. 리스트·파일·숫자 범위를 돌리거나 조건이 참/거짓인 동안 반복할 때 쓴다.

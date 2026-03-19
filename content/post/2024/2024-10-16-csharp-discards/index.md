@@ -96,7 +96,7 @@ tags:
   - Quick-Reference
   - Cheatsheet
   - 치트시트
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 date: 2024-10-16
 lastmod: 2026-03-17
 draft: false
