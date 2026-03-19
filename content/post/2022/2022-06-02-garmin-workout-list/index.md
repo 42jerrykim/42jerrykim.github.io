@@ -1,65 +1,152 @@
 ---
 image: "tmp_wordcloud.png"
-description: "Garmin(가민)에서 제공하는 다양한 워크아웃 운동 목록을 한 곳에 정리했습니다. 각 운동의 한글명과 원어 설명, 주요 특징까지 함께 소개하여 운동 선택과 이해를 돕습니다."
+description: "가민(Garmin) 워크아웃 앱·기기에서 제공하는 전 운동 목록을 한글 자음별로 정리한 참고 문서입니다. 한글명·원어명·번호를 함께 수록해 운동 선택·검색·트레이닝 설계에 활용할 수 있습니다."
 categories:
-- Garmin
+  - Garmin
 date: "2022-06-02T00:00:00Z"
+lastmod: "2026-03-16T00:00:00Z"
 tags:
-- Data-Structures
-- Go
-- Cycling
-- 자전거
-- Gadget
-- Rust
-- Blog
-- 블로그
-- Technology
-- 기술
-- Web
-- 웹
-- Tutorial
-- 가이드
-- Review
-- 리뷰
-- Markdown
-- 마크다운
-- Guide
-- Productivity
-- 생산성
-- Education
-- 교육
-- Reference
-- 참고
-- Best-Practices
-- Documentation
-- 문서화
-- Open-Source
-- 오픈소스
-- Innovation
-- 혁신
-- Troubleshooting
-- 트러블슈팅
-- Configuration
-- 설정
-- How-To
-- Tips
-- Comparison
-- 비교
-- Career
-- 커리어
-- Workflow
-- 워크플로우
-- Migration
-- 마이그레이션
-- Hardware
-- 하드웨어
-- Mobile
-- 모바일
-title: '[Garmin] 가민(Garmin) 워크아웃 목록'
+  - Garmin
+  - Gadget
+  - 가젯
+  - Hardware
+  - 하드웨어
+  - Watch
+  - 시계
+  - Guide
+  - 가이드
+  - Tutorial
+  - 튜토리얼
+  - Reference
+  - 참고
+  - Quick-Reference
+  - Cheatsheet
+  - 치트시트
+  - Documentation
+  - 문서화
+  - How-To
+  - Tips
+  - Best-Practices
+  - Productivity
+  - 생산성
+  - Workflow
+  - 워크플로우
+  - Configuration
+  - 설정
+  - Cycling
+  - 자전거
+  - Technology
+  - 기술
+  - Mobile
+  - 모바일
+  - Blog
+  - 블로그
+  - Education
+  - 교육
+  - Review
+  - 리뷰
+  - Comparison
+  - 비교
+  - Markdown
+  - 마크다운
+  - Open-Source
+  - 오픈소스
+  - Innovation
+  - 혁신
+  - Troubleshooting
+  - 트러블슈팅
+  - Career
+  - 커리어
+  - Migration
+  - 마이그레이션
+  - Web
+  - 웹
+  - Beginner
+  - Case-Study
+  - History
+  - 역사
+  - Science
+  - 과학
+  - Brand
+  - 브랜드
+  - Fitness
+  - 워크아웃
+  - Exercise
+  - 운동
+  - Health
+  - 건강
+  - Checklist
+  - 체크리스트
+  - Summary
+  - 요약
+  - Deep-Dive
+  - 실습
+  - Implementation
+  - 구현
+  - Testing
+  - 테스트
+  - Performance
+  - 성능
+  - API
+  - Data-Structures
+  - 자료구조
+  - Algorithm
+  - 알고리즘
+  - Problem-Solving
+  - 문제해결
+title: "[Garmin] 가민 워크아웃 전체 목록 — 한글 자음별 참고 정리"
 ---
-가민에서 제공하는 워크아웃의 모든 운동 목록을 정리한것이다.
+이 문서는 **가민(Garmin)** 워크아웃·피트니스 기능에서 제공하는 운동 목록을 한 곳에 모아, 한글 이름·원어 표기·번호를 함께 정리한 **참고 자료**이다. 가민 Connect 앱, 가민 워치, 서드파티 앱에서 운동을 고를 때 검색·대조용으로 쓰거나, 트레이닝 설계 시 전체 목록을 한눈에 보고 싶을 때 활용할 수 있다.
 
-## 123
+## 이 글의 활용 대상
+
+- 가민 기기·Connect 앱에서 **운동 종목을 검색·선택**할 때 한글명·영문명을 대조하고 싶은 사용자  
+- **트레이닝 프로그램**을 만들 때 가민에 등록된 운동 이름을 기준으로 정리하고 싶은 코치·운동하는 사람  
+- 가민 워크아웃 **API·데이터 구조**를 다루는 개발자가 원문(한글/영문) 목록을 참고하고 싶을 때  
+
+목록은 가민에서 사용하는 **한글 표기 기준**으로 정리했으며, 숫자·기호로 시작하는 항목은 문서 상단, 그다음 **한글 자음(ㄱ→ㅎ) 순**으로 배치했다.
+
+## 목록 구조 개요
+
+아래 다이어그램은 이 문서에 수록된 워크아웃 목록의 **분류 방식**을 요약한다. 가민이 제공하는 운동 목록 전체를 가져온 뒤, **한글 첫 글자(자음)** 기준으로 묶고, 숫자·기호로 시작하는 항목은 별도 블록으로 두었다.
+
+```mermaid
+flowchart LR
+  subgraph dataSource["데이터 소스"]
+    GarminSource["Garmin</br>Workout List"]
+  end
+  subgraph classification["분류 방식"]
+    ByNumber["숫자 및 기호</br>로 시작"]
+    ByHangul["한글 자음별</br>가나다순"]
+  end
+  subgraph resultSection["본문 목록"]
+    SectionNum["숫자 기호 섹션"]
+    SectionGa["ㄱ 가~긔"]
+    SectionNa["ㄴ 나~닢"]
+    SectionEtc["ㄷ~ㅎ"]
+  end
+  GarminSource --> ByNumber
+  GarminSource --> ByHangul
+  ByNumber --> SectionNum
+  ByHangul --> SectionGa
+  ByHangul --> SectionNa
+  ByHangul --> SectionEtc
+```
+
+- **숫자·기호 섹션**: 운동 이름이 숫자(2, 3, 4, …) 또는 기호(90/90 등)로 시작하는 항목이다.  
+- **한글 자음별 섹션**: 첫 글자 자음이 같은 항목끼리 묶었고, 각 블록 제목은 해당 구간의 **대표 한글 글자**(예: 개, 걷, 걸)로 표기했다.  
+
+원본 데이터는 가민의 공식 워크아웃 목록을 기준으로 하며, 번호는 당시 수집·정리 시점의 순서를 반영할 수 있다.
+
+## 활용 팁
+
+- **검색**: 브라우저 내 검색(Ctrl+F / Cmd+F)으로 한글명·영문명·번호를 입력하면 해당 운동을 빠르게 찾을 수 있다.  
+- **대조**: 앱이나 기기 화면에 나온 한글명이 불명확할 때 이 문서의 원어(괄호 안)와 비교해 보면 도움이 된다.  
+- **트레이닝 설계**: 자음별로 나뉜 목록을 훑어 보며 부위·도구(덤벨, 바벨, 케틀벨, 밴드 등)가 포함된 이름을 골라 프로그램에 넣을 수 있다.  
+
+아래부터는 **숫자·기호로 시작하는 항목**과 **한글 자음별 전체 목록**이다.
+
+### 숫자·기호로 시작하는 항목
 - 2번 : 30도 랫 풀 다운
 - 3번 : 3단계 롤다운
 - 4번 : 3방향 카프 레이즈
@@ -75,6 +162,9 @@ title: '[Garmin] 가민(Garmin) 워크아웃 목록'
 - 14번 : 90도 웨이티드 스태틱 홀드(Weighted 90-degree Static Hold)
 - 15번 : 90도 익스터널 로테이션 - 케이블
 - 16번 : 90도 정지 자세
+
+### 한글 자음별 목록
+
 ## 개
 - 18번 : 개구리 프레스
 ## 걷
@@ -1787,4 +1877,16 @@ title: '[Garmin] 가민(Garmin) 워크아웃 목록'
 - 1726번 : X 앱
 ## Y
 - 1728번 : Y 레이즈 - 스위스볼
-- 1729번 : Y 레이즈 - 인클라인 벤치=
+- 1729번 : Y 레이즈 - 인클라인 벤치
+
+---
+
+## 요약 및 참고
+
+이 문서는 가민(Garmin) 워크아웃에서 제공하는 **전체 운동 목록**을 한글 자음별·숫자·기호 순으로 정리한 참고 자료다. 목록을 활용할 때는 다음을 염두에 두면 좋다.
+
+- **버전·지역**: 가민 앱·기기·지역에 따라 표시되는 운동 종목이나 한글명이 다를 수 있다. 공식 최신 목록은 가민 Connect 앱·웹 또는 지원 페이지를 참고하는 것이 안전하다.  
+- **검색**: 본문에서 한글명·영문명·번호로 검색하면 해당 항목을 빠르게 찾을 수 있다.  
+- **트레이닝 설계**: 목록을 참고해 부위·도구별로 운동을 골라 프로그램을 구성한 뒤, 가민 앱에서 해당 운동을 추가해 기록하면 된다.  
+
+가민 공식 리소스와 함께 이 목록을 보조 자료로 활용하면, 운동 선택과 트레이닝 설계가 수월해진다.

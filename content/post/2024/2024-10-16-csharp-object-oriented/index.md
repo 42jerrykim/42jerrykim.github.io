@@ -1,49 +1,65 @@
 ---
 date: 2024-10-16
-description: "이 글에서는 C#의 객체 지향 프로그래밍(OOP)을 구성하는 클래스, 구조체, 레코드의 개념과 주요 차이점, 생성자, 상속, 캡슐화, 다형성, 인터페이스, 메서드 오버라이딩 등 OOP 활용 핵심 내용을 150자 내외로 상세히 설명합니다."
-title: "[CSharp] C#의 클래스, 구조체 및 레코드 개요"
-categories: 
+lastmod: 2026-03-17
+description: "C#의 객체 지향 프로그래밍(OOP) 핵심을 다룹니다. 클래스·구조체·레코드의 차이, 캡슐화·상속·다형성·인터페이스, 접근 제어자·멤버 종류·제네릭·정적 형식·확장 메서드·레코드 값 같음과 with 식, 메모리 할당·참조 같음과 값 같음 비교까지 150자 분량으로 요약합니다."
+title: "[CSharp] C# 클래스, 구조체, 레코드와 OOP 핵심 정리"
+categories:
 - CSharp
 - ObjectOriented
 tags:
 - CSharp
+- .NET
+- OOP
+- 객체지향
 - Encapsulation
+- 캡슐화
 - Inheritance
+- 상속
 - Polymorphism
+- 다형성
 - Interface
-- Memory
-- Code-Quality
+- 인터페이스
+- Design-Pattern
+- 디자인패턴
+- SOLID
 - Software-Architecture
-- Blog
-- 블로그
+- 소프트웨어아키텍처
+- Memory
+- 메모리
+- Code-Quality
+- 코드품질
+- Implementation
+- 구현
+- Best-Practices
+- Documentation
+- 문서화
+- Refactoring
+- 리팩토링
+- Clean-Code
+- 클린코드
+- Type-Safety
+- Tutorial
+- 튜토리얼
+- Guide
+- 가이드
+- Reference
+- 참고
 - Technology
 - 기술
 - Web
 - 웹
-- Tutorial
-- 가이드
-- Review
-- 리뷰
-- Markdown
-- 마크다운
-- OOP
-- 객체지향
-- Design-Pattern
-- 디자인패턴
-- SOLID
-- Implementation
-- 구현
-- Stack
-- Guide
-- Productivity
-- 생산성
+- Blog
+- 블로그
 - Education
 - 교육
-- Reference
-- 참고
-- Best-Practices
-- Documentation
-- 문서화
+- Comparison
+- 비교
+- How-To
+- Tips
+- Markdown
+- 마크다운
+- Review
+- 리뷰
 - Open-Source
 - 오픈소스
 - Innovation
@@ -52,134 +68,40 @@ tags:
 - 트러블슈팅
 - Configuration
 - 설정
-- How-To
-- Tips
-- Comparison
-- 비교
+- Productivity
+- 생산성
+- Abstraction
+- 추상화
+- Composition
+- 합성
+- Data-Structures
+- 자료구조
+- Backend
+- 백엔드
+- API
+- Testing
+- 테스트
+- Debugging
+- 디버깅
+- Maintainability
+- Readability
+- Performance
+- 성능
+- Beginner
+- Advanced
+- Deep-Dive
+- Stack
+- Array
+- 배열
+- Compiler
+- 컴파일러
 image: "tmp_wordcloud.png"
+draft: false
 ---
 
 C#에서 형식(클래스, 구조체 또는 레코드)의 정의는 형식이 수행할 수 있는 작업을 지정하는 청사진과 같다. 개체는 기본적으로 청사진에 따라 구성 및 할당된 메모리 블록이다. 이 문서에서는 이러한 청사진과 해당 기능에 대한 개요를 제공한다. 캡슐화는 경우에 따라 개체 지향 프로그래밍의 첫 번째 원리로 인식된다. 클래스 또는 구조체는 클래스 또는 구조체 외부의 코드에 각 멤버가 액세스하는 방법을 지정할 수 있다. 클래스 또는 어셈블리 외부에서 사용하지 않으려는 메서드 및 변수를 숨겨 코딩 오류 또는 악의적인 악용 가능성을 제한할 수 있다. 형식의 ‘멤버’는 모든 메서드, 필드, 상수, 속성, 이벤트를 포함한다. C#에는 전역 변수 또는 메서드가 없으며, 프로그램의 진입점인 Main 메서드까지도 클래스나 구조체 내에 선언되어야 한다. 클래스는 상속 개념을 지원하며, 다른 클래스에서 파생되는 클래스는 기본 클래스의 모든 public, protected, internal 멤버를 자동으로 포함한다. 또한, 클래스, 구조체, 레코드는 여러 인터페이스를 구현할 수 있으며, 제네릭 형식으로 정의할 수 있다. 정적 형식은 static으로 선언할 수 있으며, 중첩 형식은 다른 클래스, 구조체 또는 레코드 내에 중첩될 수 있다. 이러한 다양한 형식의 특성과 사용법을 이해하는 것은 C# 프로그래밍의 핵심이다.
 
-<!--
-##### Outline #####
--->
-
-<!--
-# C#의 클래스, 구조체 및 레코드 개요 목차
-
-## 개요
-   - C#에서 형식의 정의
-   - 개체와 인스턴스의 개념
-
-## 캡슐화
-   - 캡슐화의 정의
-   - 접근 제어자 (Access Modifiers)
-   - 관련 개념: 객체 지향 프로그래밍 (OOP)
-
-## 멤버
-   - 멤버의 종류
-     - 필드 (Fields)
-     - 상수 (Constants)
-     - 속성 (Properties)
-     - 메서드 (Methods)
-     - 생성자 (Constructors)
-     - 이벤트 (Events)
-     - 종료자 (Finalizers)
-     - 인덱서 (Indexers)
-     - 연산자 (Operators)
-     - 중첩 형식 (Nested Types)
-
-## 접근성
-   - 접근 한정자 (Access Modifiers)
-   - 기본 접근성: private
-   - 클라이언트 코드와의 관계
-
-## 상속
-   - 상속의 개념
-   - 기본 클래스와 파생 클래스
-   - 추상 클래스 (Abstract Classes)
-   - sealed 클래스
-   - 관련 개념: 다형성 (Polymorphism)
-
-## 인터페이스
-   - 인터페이스의 정의
-   - 인터페이스 구현
-   - 관련 개념: 다중 상속
-
-## 제네릭 형식
-   - 제네릭의 정의
-   - 제네릭 클래스 및 메서드
-   - 예제: List<T>
-
-## 정적 형식
-   - static 클래스의 정의
-   - static 멤버의 사용
-
-## 중첩 형식
-   - 중첩 클래스, 구조체 및 레코드의 정의
-
-## 부분 형식 (Partial Type)
-   - 부분 클래스 및 메서드의 정의
-
-## 개체 이니셜라이저
-   - 개체 초기화 방법
-
-## 익명 형식
-   - 익명 형식의 정의 및 사용 사례
-
-## 확장 메서드
-   - 확장 메서드의 정의
-   - 사용 방법 및 예제
-
-## 암시적 형식 지역 변수
-   - var 키워드의 사용
-   - 암시적 형식의 장점
-
-## 레코드
-   - 레코드의 정의
-   - 값 기반 같음
-   - 비파괴적 변형 (Non-destructive Mutation)
-   - 레코드 클래스와 구조체의 차이
-
-## C# 언어 사양
-   - C# 언어 사양의 중요성
-   - 신뢰할 수 있는 소스
-
-## 개체 - 형식의 인스턴스 만들기
-   - 클래스와 구조체 인스턴스의 차이
-   - 메모리 할당 및 관리
-
-## 개체 ID와 값 같음 비교
-   - 참조 같음과 값 같음의 차이
-   - Equals 메서드의 사용
-
-## 다형성
-   - 다형성의 정의
-   - 가상 메서드와 재정의
-   - 다형성의 예제
-
-## 결론
-   - C#의 클래스, 구조체 및 레코드의 중요성
-   - 객체 지향 프로그래밍의 원칙 요약
-
-## FAQ
-   - C#에서 클래스와 구조체의 차이는 무엇인가요?
-   - 레코드는 언제 사용해야 하나요?
-   - C#에서 다형성을 어떻게 활용할 수 있나요?
-
-## 관련 기술
-   - 객체 지향 프로그래밍 (OOP)
-   - 디자인 패턴 (Design Patterns)
-   - SOLID 원칙
-   - C#의 최신 기능 (C# 9.0, C# 10.0 등)
--->
-
-<!--
-## 개요
-   - C#에서 형식의 정의
-   - 개체와 인스턴스의 개념
--->
+**이 포스트에서 다루는 내용:** 개요(형식·개체·인스턴스), 캡슐화·접근 제어자, 멤버(필드·속성·메서드·생성자·이벤트·인덱서·연산자·중첩 형식 등), 접근성, 상속(추상·sealed)·다형성, 인터페이스·다중 구현, 제네릭·정적 형식·확장 메서드·var, 레코드(값 같음·with), C# 언어 사양, 개체 생성·메모리, 참조/값 같음·Equals, FAQ, 관련 기술(OOP·디자인 패턴·SOLID·최신 C#), 참고 문헌.
 
 ## 개요
 
@@ -214,21 +136,14 @@ public struct Point
 다음은 개체와 인스턴스의 관계를 나타내는 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[형식] -->|정의| B[개체]
-    B -->|인스턴스화| C[인스턴스]
+graph TD
+    TypeNode[형식] -->|정의| ObjectNode[개체]
+    ObjectNode -->|인스턴스화| InstanceNode[인스턴스]
 ```
 
 위의 다이어그램에서 형식은 개체를 정의하고, 개체는 인스턴스화되어 메모리에 할당된다. 이러한 관계를 통해 C#의 객체 지향 프로그래밍의 기본 개념을 이해할 수 있다. 
 
 C#에서 형식과 개체의 개념은 프로그램의 구조와 설계를 이해하는 데 중요한 요소이며, 이를 통해 개발자는 더 나은 소프트웨어를 작성할 수 있다.
-
-<!--
-## 캡슐화
-   - 캡슐화의 정의
-   - 접근 제어자 (Access Modifiers)
-   - 관련 개념: 객체 지향 프로그래밍 (OOP)
--->
 
 ## 캡슐화
 
@@ -278,26 +193,11 @@ classDiagram
     class Person {
         - string name
         + int Age
-        + string GetName()
+        + "string GetName()"
     }
 ```
 
 위의 다이어그램은 `Person` 클래스의 구조를 나타내며, `name` 필드는 private으로 설정되어 외부에서 직접 접근할 수 없음을 보여준다. `Age` 속성과 `GetName()` 메서드는 public으로 설정되어 외부에서 접근할 수 있다. 이러한 구조는 캡슐화의 원칙을 잘 나타내고 있다.
-
-<!--
-## 멤버
-   - 멤버의 종류
-     - 필드 (Fields)
-     - 상수 (Constants)
-     - 속성 (Properties)
-     - 메서드 (Methods)
-     - 생성자 (Constructors)
-     - 이벤트 (Events)
-     - 종료자 (Finalizers)
-     - 인덱서 (Indexers)
-     - 연산자 (Operators)
-     - 중첩 형식 (Nested Types)
--->
 
 ## 멤버
 
@@ -467,41 +367,34 @@ classDiagram
         - int age
         + string Name
         + int Age
-        + Person(string name, int age)
+        + "Person(string name, int age)"
     }
     class Calculator {
-        + int Add(int a, int b)
+        + "int Add(int a, int b)"
     }
     class Button {
-        + event EventHandler Click
-        + void OnClick()
+        + "event EventHandler Click"
+        + "void OnClick()"
     }
     class ResourceHolder {
-        ~ResourceHolder()
+        + "Finalizer"
     }
     class StringCollection {
-        + string this[int index]
+        + "string this[int index]"
     }
     class Point {
         + int X
         + int Y
-        + static Point operator +(Point p1, Point p2)
+        + "static Point operator +"
     }
     class OuterClass {
         class NestedClass {
-            + void Display()
+            + "void Display()"
         }
     }
 ```
 
 이와 같이 C#의 멤버는 다양한 형태로 객체의 상태와 동작을 정의하며, 객체 지향 프로그래밍의 핵심 요소로 작용한다.
-
-<!--
-## 접근성
-   - 접근 한정자 (Access Modifiers)
-   - 기본 접근성: private
-   - 클라이언트 코드와의 관계
--->
 
 ## 접근성
 
@@ -561,24 +454,15 @@ public class Client
 아래는 접근 한정자에 따른 멤버 접근성을 나타내는 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[클래스 ExampleClass] -->|public| B[PublicField]
-    A -->|private| C[privateField]
-    A -->|protected| D[ProtectedField]
-    A -->|internal| E[InternalField]
-    A -->|protected internal| F[Protected Internal Field]
+graph TD
+    ExampleClass[클래스 ExampleClass] -->|public| PublicField[PublicField]
+    ExampleClass -->|private| PrivateField[privateField]
+    ExampleClass -->|protected| ProtectedField[ProtectedField]
+    ExampleClass -->|internal| InternalField[InternalField]
+    ExampleClass -->|"protected internal"| ProtectedInternal["Protected Internal Field"]
 ```
 
 이와 같이 접근성은 클래스의 설계와 클라이언트 코드 간의 관계를 정의하는 중요한 요소이다. 적절한 접근 한정자를 사용하여 데이터 보호 및 코드의 유지보수성을 높일 수 있다.
-
-<!--
-## 상속
-   - 상속의 개념
-   - 기본 클래스와 파생 클래스
-   - 추상 클래스 (Abstract Classes)
-   - sealed 클래스
-   - 관련 개념: 다형성 (Polymorphism)
--->
 
 ## 상속
 
@@ -669,30 +553,23 @@ MakeAnimalSpeak(new Dog()); // "Animal speaks"
 ```mermaid
 classDiagram
     class Animal {
-        +Speak()
+        + "Speak()"
     }
     class Dog {
-        +Bark()
+        + "Bark()"
     }
     class Shape {
-        +Area()
+        + "Area()"
     }
     class Circle {
-        +Radius
-        +Area()
+        + Radius
+        + "Area()"
     }
     Animal <|-- Dog
     Shape <|-- Circle
 ```
 
 위의 다이어그램은 `Animal`과 `Shape` 클래스의 상속 관계를 나타내며, `Dog`와 `Circle`이 각각의 기본 클래스를 상속받고 있음을 보여준다. 상속을 통해 클래스 간의 관계를 명확히 하고, 코드의 구조를 이해하기 쉽게 만든다.
-
-<!--
-## 인터페이스
-   - 인터페이스의 정의
-   - 인터페이스 구현
-   - 관련 개념: 다중 상속
--->
 
 ## 인터페이스
 
@@ -760,37 +637,26 @@ public class Bird : IAnimal, IFlyable
 ```mermaid
 classDiagram
     class IAnimal {
-        +Speak()
+        + "Speak()"
     }
-
     class IFlyable {
-        +Fly()
+        + "Fly()"
     }
-
     class Dog {
-        +Speak()
+        + "Speak()"
     }
-
     class Bird {
-        +Speak()
-        +Fly()
+        + "Speak()"
+        + "Fly()"
     }
-
-    IAnimal <|-- Dog
-    IAnimal <|-- Bird
-    IFlyable <|-- Bird
+    IAnimal <|.. Dog
+    IAnimal <|.. Bird
+    IFlyable <|.. Bird
 ```
 
 위의 다이어그램에서 `IAnimal`과 `IFlyable` 인터페이스는 각각 `Dog`와 `Bird` 클래스에 의해 구현되고 있다. `Bird` 클래스는 두 개의 인터페이스를 모두 구현하여 다중 상속의 효과를 보여준다. 
 
 인터페이스는 코드의 유연성과 확장성을 높이는 중요한 요소이며, 객체 지향 프로그래밍에서 매우 중요한 개념이다.
-
-<!--
-## 제네릭 형식
-   - 제네릭의 정의
-   - 제네릭 클래스 및 메서드
-   - 예제: List<T>
--->
 
 ## 제네릭 형식
 
@@ -844,21 +710,19 @@ foreach (int number in intList)
 위의 예제에서는 `List<int>`를 사용하여 정수형 데이터를 저장하고, foreach 루프를 통해 리스트의 모든 요소를 출력하고 있다.
 
 ```mermaid
-graph TD;
-    A[GenericList<T>] -->|Add| B[items]
-    A -->|Get| C[Return item]
-    B --> D[List<T>]
+graph TD
+    GenericList["GenericList T"]
+    Items[items]
+    ReturnItem["Return item"]
+    ListT["List T"]
+    GenericList -->|Add| Items
+    GenericList -->|Get| ReturnItem
+    Items --> ListT
 ```
 
 위의 다이어그램은 `GenericList<T>` 클래스의 구조를 나타내고 있다. `Add` 메서드는 `items` 리스트에 아이템을 추가하고, `Get` 메서드는 특정 인덱스의 아이템을 반환하는 과정을 보여준다.
 
 제네릭 형식은 코드의 재사용성을 높이고, 타입 안전성을 제공하는 강력한 도구이다. 이를 통해 개발자는 더 효율적이고 안전한 코드를 작성할 수 있다.
-
-<!--
-## 정적 형식
-   - static 클래스의 정의
-   - static 멤버의 사용
--->
 
 ## 정적 형식
 
@@ -919,26 +783,17 @@ public class Counter
 ```mermaid
 classDiagram
     class MathUtilities {
-        +static Add(int a, int b)
-        +static Subtract(int a, int b)
+        + "static Add"
+        + "static Subtract"
     }
-
     class Counter {
-        -static int count
-        +static Increment()
-        +static GetCount()
+        - "static int count"
+        + "static Increment()"
+        + "static GetCount()"
     }
-
-    MathUtilities <|-- Counter
 ```
 
 위의 다이어그램에서 `MathUtilities`와 `Counter` 클래스는 각각의 정적 메서드를 가지고 있으며, 인스턴스 없이 호출될 수 있는 구조를 보여준다. `static` 클래스와 멤버는 프로그램의 구조를 간결하게 유지하고, 메모리 사용을 최적화하는 데 기여한다.
-
-<!--
-## 확장 메서드
-   - 확장 메서드의 정의
-   - 사용 방법 및 예제
--->
 
 ## 확장 메서드
 
@@ -987,21 +842,15 @@ class Program
 ```mermaid
 classDiagram
     class StringExtensions {
-        +int WordCount(this string str)
+        + "int WordCount(this string str)"
     }
     class Program {
-        +Main()
+        + "Main()"
     }
     Program --> StringExtensions : uses
 ```
 
 이 다이어그램은 `Program` 클래스가 `StringExtensions` 클래스를 사용하여 확장 메서드를 호출하는 구조를 보여준다. 확장 메서드는 기존 클래스의 기능을 확장하는 유용한 방법으로, 코드의 재사용성과 가독성을 높이는 데 기여한다.
-
-<!--
-## 암시적 형식 지역 변수
-   - var 키워드의 사용
-   - 암시적 형식의 장점
--->
 
 ## 암시적 형식 지역 변수
 
@@ -1043,23 +892,15 @@ var evenNumbers = numbers.Where(n => n % 2 == 0).ToList();
 다음은 `var` 키워드의 사용을 설명하는 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[변수 선언] --> B[var 키워드 사용]
-    B --> C[형식 추론]
-    C --> D[타입 안전성 유지]
-    D --> E[가독성 향상]
-    D --> F[유연성 제공]
+graph TD
+    VarDecl[변수 선언] --> VarKeyword[var 키워드 사용]
+    VarKeyword --> TypeInfer[형식 추론]
+    TypeInfer --> TypeSafe[타입 안전성 유지]
+    TypeSafe --> Readability[가독성 향상]
+    TypeSafe --> Flexibility[유연성 제공]
 ```
 
 이와 같이 암시적 형식 지역 변수는 C#에서 코드의 가독성과 유연성을 높이는 데 기여하며, 개발자가 보다 효율적으로 코드를 작성할 수 있도록 돕는다.
-
-<!--
-## 레코드
-   - 레코드의 정의
-   - 값 기반 같음
-   - 비파괴적 변형 (Non-destructive Mutation)
-   - 레코드 클래스와 구조체의 차이
--->
 
 ## 레코드
 
@@ -1095,20 +936,14 @@ var person3 = person1 with { Age = 31 };
 레코드는 클래스와 유사하지만 몇 가지 중요한 차이점이 있다. 레코드는 기본적으로 참조 형식이며, 불변성을 기본으로 한다. 반면, 구조체는 값 형식으로, 메모리에서 직접 값을 저장한다. 레코드는 값 기반 같음을 제공하지만, 구조체는 기본적으로 참조 같음을 제공한다. 다음은 레코드와 구조체의 간단한 비교를 나타내는 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[레코드] -->|값 기반 같음| B[참조 형식]
-    A -->|불변성| C[변경 불가]
-    D[구조체] -->|값 같음| E[값 형식]
-    D -->|변경 가능| F[변경 가능]
+graph TD
+    RecordType[레코드] -->|"값 기반 같음"| RefType[참조 형식]
+    RecordType -->|불변성| Immutable[변경 불가]
+    StructType[구조체] -->|"값 같음"| ValueType[값 형식]
+    StructType -->|"변경 가능"| Mutable[변경 가능]
 ```
 
 이와 같이 레코드는 데이터 중심의 프로그래밍을 보다 간편하게 만들어 주며, 불변성과 값 기반 같음을 통해 코드의 안정성을 높이는 데 기여한다.
-
-<!--
-## C# 언어 사양
-   - C# 언어 사양의 중요성
-   - 신뢰할 수 있는 소스
--->
 
 ## C# 언어 사양
 
@@ -1130,7 +965,7 @@ C# 언어 사양은 다음과 같은 이유로 중요하다.
 
 C# 언어 사양을 참조할 때는 신뢰할 수 있는 소스를 사용하는 것이 중요하다. Microsoft의 공식 문서가 가장 권위 있는 자료로 여겨지며, 다음과 같은 링크에서 확인할 수 있다.
 
-- [C# Language Specification](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/)
+- [C# 언어 사양](https://learn.microsoft.com/ko-kr/dotnet/csharp/language-reference/language-specification/readme)
 
 이 외에도 C# 관련 서적이나 온라인 강의, 커뮤니티 포럼 등도 유용한 자료가 될 수 있다. 그러나 항상 공식 문서를 우선적으로 참고하는 것이 좋다.
 
@@ -1158,19 +993,13 @@ public class Person
 ```mermaid
 classDiagram
     class Person {
-        +string Name
-        +int Age
-        +void Introduce()
+        + string Name
+        + int Age
+        + "void Introduce()"
     }
 ```
 
 이와 같이 C# 언어 사양은 개발자들이 언어를 이해하고 활용하는 데 필수적인 자료이다. 신뢰할 수 있는 소스를 통해 지속적으로 업데이트된 정보를 확인하는 것이 중요하다.
-
-<!--
-## 개체 - 형식의 인스턴스 만들기
-   - 클래스와 구조체 인스턴스의 차이
-   - 메모리 할당 및 관리
--->
 
 ## 개체 - 형식의 인스턴스 만들기
 
@@ -1233,19 +1062,13 @@ class Program
 다음은 메모리 할당을 시각적으로 나타낸 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[스택 메모리] -->|구조체| B[구조체 인스턴스]
-    A -->|클래스| C[참조]
-    D[힙 메모리] -->|클래스| E[클래스 인스턴스]
+graph TD
+    StackMem[스택 메모리] -->|구조체| StructInstance[구조체 인스턴스]
+    StackMem -->|클래스| ClassRef[참조]
+    HeapMem[힙 메모리] -->|클래스| ClassInstance[클래스 인스턴스]
 ```
 
 이 다이어그램은 스택 메모리와 힙 메모리 간의 관계를 보여준다. 구조체는 스택에 직접 할당되며, 클래스는 힙에 할당되고 참조가 스택에 저장된다. 이러한 차이를 이해하는 것은 C#에서 메모리 관리 및 성능 최적화에 중요한 요소이다.
-
-<!--
-## 개체 ID와 값 같음 비교
-   - 참조 같음과 값 같음의 차이
-   - Equals 메서드의 사용
--->
 
 ## 개체 ID와 값 같음 비교
 
@@ -1329,23 +1152,16 @@ class Program
 다음은 참조 같음과 값 같음의 개념을 시각적으로 나타낸 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[person1] -->|참조 같음| B[메모리 주소]
-    C[person2] -->|참조 같음| D[다른 메모리 주소]
-    E[person3] -->|참조 같음| B[메모리 주소]
-    F[Name: "Alice"] -->|값 같음| G[Name: "Alice"]
+graph TD
+    Person1[person1] -->|"참조 같음"| Addr1[메모리 주소]
+    Person2[person2] -->|"참조 같음"| Addr2[다른 메모리 주소]
+    Person3[person3] -->|"참조 같음"| Addr1
+    NameAlice1["Name: Alice"] -->|"값 같음"| NameAlice2["Name: Alice"]
 ```
 
 이 다이어그램은 `person1`과 `person3`가 동일한 메모리 주소를 참조하고 있으며, `person2`는 다른 메모리 주소를 참조하고 있음을 보여준다. 그러나 `person1`과 `person2`의 `Name` 속성은 동일하므로 값 같음으로 간주된다.
 
 이와 같이 C#에서 개체의 ID와 값 같음 비교는 메모리 관리와 개체의 동작을 이해하는 데 중요한 요소이다.
-
-<!--
-## 다형성
-   - 다형성의 정의
-   - 가상 메서드와 재정의
-   - 다형성의 예제
--->
 
 ## 다형성
 
@@ -1415,25 +1231,19 @@ foreach (var animal in animals)
 ```mermaid
 classDiagram
     class Animal {
-        +Speak()
+        + "Speak()"
     }
     class Dog {
-        +Speak()
+        + "Speak()"
     }
     class Cat {
-        +Speak()
+        + "Speak()"
     }
     Animal <|-- Dog
     Animal <|-- Cat
 ```
 
 위의 다이어그램에서 `Animal` 클래스는 기본 클래스이며, `Dog`와 `Cat` 클래스는 이를 상속받아 각기 다른 방식으로 `Speak` 메서드를 구현하고 있다. 이처럼 다형성을 통해 다양한 객체를 동일한 인터페이스로 다룰 수 있는 장점을 제공한다.
-
-<!--
-## 결론
-   - C#의 클래스, 구조체 및 레코드의 중요성
-   - 객체 지향 프로그래밍의 원칙 요약
--->
 
 ## 결론
 
@@ -1481,23 +1291,16 @@ public struct Point
 다음은 객체 지향 프로그래밍의 원칙을 설명하는 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[객체 지향 프로그래밍] --> B[캡슐화]
-    A --> C[상속]
-    A --> D[다형성]
-    B --> E[데이터 보호]
-    C --> F[코드 재사용]
-    D --> G[유연한 코드]
+graph TD
+    OOP[객체 지향 프로그래밍] --> Encapsulation[캡슐화]
+    OOP --> Inheritance[상속]
+    OOP --> Polymorphism[다형성]
+    Encapsulation --> DataProtect[데이터 보호]
+    Inheritance --> CodeReuse[코드 재사용]
+    Polymorphism --> FlexibleCode[유연한 코드]
 ```
 
 결론적으로, C#의 클래스, 구조체 및 레코드는 객체 지향 프로그래밍의 핵심 요소로, 소프트웨어 개발에서 중요한 역할을 한다. 이들을 적절히 활용함으로써 더 나은 코드 품질과 유지보수성을 확보할 수 있다.
-
-<!--
-## FAQ
-   - C#에서 클래스와 구조체의 차이는 무엇인가요?
-   - 레코드는 언제 사용해야 하나요?
-   - C#에서 다형성을 어떻게 활용할 수 있나요?
--->
 
 ## FAQ
 
@@ -1596,14 +1399,6 @@ myCat.Speak(); // Cat meows
 
 이와 같이 C#에서 클래스와 구조체의 차이, 레코드의 사용 시기, 다형성의 활용 방법에 대해 알아보았다. 이러한 개념들은 객체 지향 프로그래밍을 이해하고 활용하는 데 중요한 요소이다.
 
-<!--
-## 관련 기술
-   - 객체 지향 프로그래밍 (OOP)
-   - 디자인 패턴 (Design Patterns)
-   - SOLID 원칙
-   - C#의 최신 기능 (C# 9.0, C# 10.0 등)
--->
-
 ## 관련 기술
 
 ### 객체 지향 프로그래밍 (OOP)
@@ -1615,14 +1410,14 @@ OOP의 기본 구조를 나타내는 다이어그램은 다음과 같다.
 ```mermaid
 classDiagram
     class Animal {
-        +String name
-        +void speak()
+        + String name
+        + "void speak()"
     }
     class Dog {
-        +void speak()
+        + "void speak()"
     }
     class Cat {
-        +void speak()
+        + "void speak()"
     }
     Animal <|-- Dog
     Animal <|-- Cat
@@ -1681,15 +1476,11 @@ public record Person(string Name, int Age);
 
 이와 같이 C#의 최신 기능들은 개발자들이 더 간결하고 명확한 코드를 작성할 수 있도록 돕는다.
 
-<!--
-##### Reference #####
--->
-
 ## Reference
 
-
-* [https://learn.microsoft.com/ko-kr/dotnet/csharp/fundamentals/object-oriented/](https://learn.microsoft.com/ko-kr/dotnet/csharp/fundamentals/object-oriented/)
-* [https://learn.microsoft.com/ko-kr/dotnet/csharp/fundamentals/object-oriented/objects](https://learn.microsoft.com/ko-kr/dotnet/csharp/fundamentals/object-oriented/objects)
-* [https://learn.microsoft.com/ko-kr/dotnet/csharp/fundamentals/object-oriented/inheritance](https://learn.microsoft.com/ko-kr/dotnet/csharp/fundamentals/object-oriented/inheritance)
-* [https://learn.microsoft.com/ko-kr/dotnet/csharp/fundamentals/object-oriented/polymorphism](https://learn.microsoft.com/ko-kr/dotnet/csharp/fundamentals/object-oriented/polymorphism)
+- [C# 개체 지향 기술 개요](https://learn.microsoft.com/ko-kr/dotnet/csharp/fundamentals/object-oriented/)
+- [개체 - 클래스 및 구조체 인스턴스](https://learn.microsoft.com/ko-kr/dotnet/csharp/fundamentals/object-oriented/objects)
+- [상속](https://learn.microsoft.com/ko-kr/dotnet/csharp/fundamentals/object-oriented/inheritance)
+- [다형성](https://learn.microsoft.com/ko-kr/dotnet/csharp/fundamentals/object-oriented/polymorphism)
+- [C# 언어 사양](https://learn.microsoft.com/ko-kr/dotnet/csharp/language-reference/language-specification/readme)
 

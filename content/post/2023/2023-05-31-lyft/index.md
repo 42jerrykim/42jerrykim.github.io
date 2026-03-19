@@ -1,105 +1,223 @@
 ---
-image: "tmp_wordcloud.png"
-description: "Lyft가 Google Maps 대신 자체 지도 시스템을 구축하게 된 배경, OpenStreetMap의 활용, 비용 절감 및 데이터 통제의 의미, 그리고 자체 지도가 승객과 운전자에게 미치는 혁신적 영향에 대해 심층적으로 다룹니다."
+description: "Lyft가 Google Maps에서 벗어나 OpenStreetMap 기반 자체 지도를 구축한 배경, 비용·데이터 통제 효과, OSM 활용 전략, 승객·기사 경험 개선, 70% 탑승 지원까지의 기술 사례를 정리한 리뷰."
 categories: Lyft
 date: "2023-05-31T00:00:00Z"
+lastmod: "2026-03-17T00:00:00Z"
 header:
   teaser: /assets/images/2023/LyftMaps_ImageHeader_01.jpg
 tags:
-- Technology
-- Innovation
-- 혁신
-- Mobile
-- 모바일
-- Go
-- Algorithm
-- 알고리즘
-- Tree
-- Blog
-- 블로그
-- 기술
-- Web
-- 웹
-- Tutorial
-- 가이드
-- Review
-- 리뷰
-- Markdown
-- 마크다운
-- Problem-Solving
-- 문제해결
-- History
-- 역사
-- Guide
-- Productivity
-- 생산성
-- Education
-- 교육
-- Reference
-- 참고
-- Best-Practices
-- Documentation
-- 문서화
-- Open-Source
-- 오픈소스
-- Troubleshooting
-- 트러블슈팅
-- Configuration
-- 설정
-- How-To
-- Tips
-- Comparison
-- 비교
-- Career
-- 커리어
-- Workflow
-- 워크플로우
-- Migration
-- 마이그레이션
-title: '[Lyft] Lyft의 비밀스러운 계획: 자체 지도와 미래를 통제하다'
+  - Technology
+  - 기술
+  - Innovation
+  - 혁신
+  - Mobile
+  - 모바일
+  - Open-Source
+  - 오픈소스
+  - Review
+  - 리뷰
+  - Case-Study
+  - Data-Science
+  - 데이터사이언스
+  - Networking
+  - 네트워킹
+  - API
+  - Backend
+  - 백엔드
+  - Cloud
+  - 클라우드
+  - Algorithm
+  - 알고리즘
+  - Problem-Solving
+  - 문제해결
+  - Best-Practices
+  - Documentation
+  - 문서화
+  - Tutorial
+  - 가이드
+  - Guide
+  - How-To
+  - Comparison
+  - 비교
+  - Reference
+  - 참고
+  - Productivity
+  - 생산성
+  - Education
+  - 교육
+  - History
+  - 역사
+  - Web
+  - 웹
+  - Markdown
+  - 마크다운
+  - Blog
+  - 블로그
+  - Troubleshooting
+  - 트러블슈팅
+  - Configuration
+  - 설정
+  - Tips
+  - Career
+  - 커리어
+  - Workflow
+  - 워크플로우
+  - Migration
+  - 마이그레이션
+  - Deep-Dive
+  - Git
+  - GitHub
+  - DevOps
+  - Automation
+  - 자동화
+  - Scalability
+  - 확장성
+  - Performance
+  - 성능
+  - Security
+  - 보안
+  - Database
+  - 데이터베이스
+  - JSON
+  - Design-Pattern
+  - 디자인패턴
+  - Software-Architecture
+  - 소프트웨어아키텍처
+  - Microservices
+  - 마이크로서비스
+  - Monitoring
+  - 모니터링
+  - Deployment
+  - 배포
+  - Caching
+  - 캐싱
+  - Latency
+  - Throughput
+  - Real-Time
+  - 실시간
+  - GIS
+  - 지도
+  - Rideshare
+  - 라이드쉐어
+title: "[Tech] Lyft의 비밀스러운 계획: 자체 지도와 미래를 통제하다"
+---
+
+## 개요
+
+Lyft 앱을 쓰는 수백만 운전자와 승객은 매일 지도를 보며 경로, 소요 시간, 기사와의 거리를 확인한다. 그런데 Lyft는 2020년대 초까지 이 내비게이션 경험을 **직접 통제하지 못했다**. 모든 것이 **Google Maps** 위에 올라가 있었기 때문이다. 이 글은 Lyft가 Google에 대한 의존을 줄이고 **OpenStreetMap(OSM)** 기반 **자체 지도 시스템**을 구축한 배경, 기술적 선택, 그리고 그 결과를 정리한 기술 사례다.
+
+**추천 대상**: 모빌리티·지도·오픈소스 기반 제품을 다루는 기획자·엔지니어, 제3자 지도 API 비용과 데이터 주권을 고민하는 팀.
+
+![Lyft Maps 헤더 이미지](/assets/images/2023/LyftMaps_ImageHeader_01.jpg)
 
 ---
 
-안녕하세요, 여러분! 오늘은 Lyft와 OpenStreetMap에 대한 흥미로운 주제를 다루려고 합니다. Lyft가 자체 지도 시스템을 구축하려는 이유와 그 방법, 그리고 이것이 어떻게 회사의 미래에 영향을 미칠 것인지에 대해 알아보겠습니다. 또한, 이 모든 것이 가능하게 한 OpenStreetMap에 대해서도 이야기하겠습니다.
+## Lyft와 Google Maps: 의존의 대가
 
-![/assets/images/2023/LyftMaps_ImageHeader_01.jpg](/assets/images/2023/LyftMaps_ImageHeader_01.jpg)
+Lyft는 승객·기사 경험을 높일 수 있는 **수백 개의 기능 아이디어**를 쌓아 두었지만, 실제로 구현할 수 있는 비중은 제한적이었다. 사용자가 보는 화면의 상당 부분이 Google Maps에 의해 점유되어 있었고, Lyft는 그 "픽셀"을 바꿀 권한이 없었다.
 
-> [https://www.lyft.com/rev/posts/lyfts-secret-plan-to-take-control-of-its-maps-and-its-future](https://www.lyft.com/rev/posts/lyfts-secret-plan-to-take-control-of-its-maps-and-its-future)의 내용을 참고 하였습니다.
+또한 **비용과 경로 불일치** 문제가 있었다. Lyft는 자체 알고리즘으로 탑승 시간과 요금을 예측해 승객·기사에게 보여 주지만, 탑승이 확정되면 **내비게이션은 Google이 담당**한다. Google이 제안하는 경로가 Lyft가 계산한 경로와 다를 때가 있어, 통행료가 더 나가는 경로로 안내되거나 예상과 다른 비용이 발생할 수 있었다. 이는 플랫폼 전체 비용과 사용자 경험에 직결되는 이슈였다.
 
-## Lyft와 Google Maps
+---
 
-Lyft 앱을 사용하는 수백만 명의 운전자와 승객들은 매일 지도를 보며 이동 경로를 파악하거나 목적지까지 얼마나 걸릴지, 운전자가 얼마나 멀리 떨어져 있는지 등을 확인합니다. 그러나, Lyft는 최근까지 이러한 내비게이션 경험을 통제할 수 없었습니다. 왜냐하면 이 모든 것이 Google Maps를 기반으로 구축되었기 때문입니다.
+## 전환점: 자체 지도로의 결단
 
-Lyft는 승객이나 운전자 경험을 향상시킬 수 있는 수백 가지 이상의 기능 목록을 수집했지만, 그것들을 실행하는 데 있어서는 무력했습니다. 게다가, 제3자 기술에 의존하는 것은 비용이 많이 들었습니다. Lyft는 자체 알고리즘을 사용하여 탑승 시간과 비용을 예측했지만, 탑승이 승인되면 Google이 내비게이션을 인수하고 때때로 그 경로가 Lyft가 계산한 경로와 다를 때가 있었습니다.
+2019년, Lyft 엔지니어링 팀은 **회사가 직접 내비게이션 경로를 제안**할 경우 상당한 절감과 경험 개선이 가능하다고 판단했다. Google에 지불하는 비용 절감, 더 일관된 ETA·요금 예측, 그리고 더 안전하고 예측 가능한 라이드 경험까지 포함한 효과를 고려한 결과였다.
 
-## Lyft의 자체 지도 계획
+다만 Google과 Apple은 수십억 달러와 수년을 들여 자사 지도를 만들었다. Lyft처럼 상대적으로 작은 규모의 회사가 그 수준을 그대로 재현하는 것은 현실적이지 않았다. **2019년에 돌파구가 열렸다.** 팀은 **OpenStreetMap(OSM)** 플랫폼이 드디어 Lyft 규모의 서비스를 지탱할 만큼 **견고해졌다**고 평가했다.
 
-2019년, Lyft 엔지니어들은 회사가 내비게이션 경로를 제안하면 큰 절약을 가져올 수 있다고 판단했습니다. 이는 Google에 지불하는 돈을 절약하거나 더 안전한 라이드쉐어 경험을 만드는 잠재적인 효과를 포함하지 않았습니다. 자체 제작 지도는 Lyft가 매일 플랫폼 전체에서 발생하는 수백만 건의 탑승을 곱하면 엄청난 양의 돈을 절약할 수 있었습니다.
-
-그러나 Lyft의 역사 대부분 동안 해결책은 없었습니다. Google과 Apple은 수십억 달러를 투자하고 여러 년에 걸쳐 자신들의 지도를 만들었습니다. 상대적으로 작은 회사인 Lyft가 그 노력을 복제하는 것은 부담스러웠습니다. 그러나 몇 년 전, Lyft는 자체 지도를 만드는데 성공하였고, 그 이후로 Lyft 플랫폼에서 모든 탑승의 70%를 지원하게 되었습니다.
+---
 
 ## OpenStreetMap의 역할
 
-2019년에 돌파구가 왔습니다. Lyft 팀은 OpenStreetMap (OSM) 플랫폼이 드디어 Lyft의 지도를 지원하기에 충분히 견고해졌다고 판단했습니다. OSM은 2004년에 영국 학자가 만든 무료이며 오픈소스인 Google과 Apple Maps의 대안이었습니다. 이는 지도의 위키백과와 같은 것으로, 자원봉사자들이 지리적 정보를 중앙 데이터베이스에 기여하고, 그 정보를 누구나 무료로 접근할 수 있게 하는 시스템이었습니다.
+**OpenStreetMap(OSM)**은 2004년 영국 학자가 시작한 **무료·오픈소스** 지도 프로젝트로, Google·Apple Maps의 대안이다. 위키백과처럼 자원봉사자들이 지리 정보를 중앙 데이터베이스에 기여하고, 누구나 무료로 이용할 수 있다. 2012년 Google이 기업용 Maps API 요금을 인상한 뒤 Amazon, Meta, Snapchat 등 많은 기업이 OSM 기반 지도 제품을 만들었고, 이 과정에서 OSM 데이터 품질과 커버리지가 크게 향상되었다.
 
-Lyft는 또한 매일 가장 많이 이용되는 거리를 여러 번 운행하는 Lyft 탑승의 데이터라는 또 다른 귀중한 자원을 가지고 있었습니다. 이를 통해 회사는 도로 폐쇄, 공사, 또는 다른 장애물에 대한 정보를 업데이트하는 데 필요한 데이터를 수집할 수 있었습니다.
+Lyft는 여기에 더해 **매일 수백만 건의 탑승**으로 쌓이는 **실제 주행 데이터**를 보유하고 있었다. 가장 많이 달리는 도로를 반복적으로 지나가므로, 도로 폐쇄, 공사, 장애물 등의 변화를 감지하고 지도에 반영하는 데 필요한 신호를 얻을 수 있었다. OSM의 "최신성(freshness)"을 Lyft가 실측 데이터로 검증한 사례는 Lyft Engineering 블로그에 정리되어 있다.
 
-## Lyft의 지도 시스템 구축
+---
 
-2019년 말에는, 팀은 "불가능한" 것을 해내기 위해 준비가 되었습니다 - 자체 제작 지도 시스템을 만들기 위해 준비가 되었던 것이죠. 그들은 앱의 경험을 운전자와 승객에게 더욱 원활하게 만들기 위해 열심히 일했습니다.
+## Lyft 자체 지도 구축 흐름
 
-Lyft는 지도를 재구성하여 운전자가 내비게이션에 집중하고 승객을 픽업할 수 있도록 불필요한 상점, 레스토랑, 근처 목적지 등의 혼란스러운 요소를 제거했습니다. 또한 실제 세계의 업데이트를 통합하여, 예를 들어, 운전자가 교통 체증에 빠져 있다면 승객에게 이를 알리는 등의 기능을 추가했습니다.
+아래는 Lyft가 Google 의존에서 자체 지도로 전환하기까지의 핵심 단계를 요약한 흐름이다.
 
-## Lyft 맵의 새로운 기능과 개선
+```mermaid
+flowchart LR
+  subgraph Before["과거 상태"]
+    A[Google Maps 의존]
+  end
+  subgraph Decision["전환 결정"]
+    B["OSM 품질 검증"]
+    C["자체 경로 제안으로 비용 절감"]
+  end
+  subgraph Build["구축"]
+    D["자체 지도 팀 및 카토그래퍼 편성"]
+    E["OSM 기반 베이스맵"]
+    F["실시간 탑승 데이터 반영"]
+  end
+  subgraph Result["결과"]
+    G["Lyft Maps 출시"]
+    H["전체 탑승의 약 70% 지원"]
+  end
+  A --> B
+  B --> C
+  C --> D
+  D --> E
+  E --> F
+  F --> G
+  G --> H
+```
 
-이제 팀이 성공적인 매핑 제품을 만들었으므로, 그들은 어떤 다른 타기 공유 특화 기능들이 이를 독특하게 만들 수 있을지, 그리고 운전 및 탑승 경험을 어떻게 개선할 수 있을지에 대해 생각하기 시작하였습니다. 그들이 추구하고 있는 몇 가지 아이디어들 중에는 기사들이 사고, 교통 체증, 승객 하차 구역 등에 대한 정보를 공유할 수 있는 기능, 탑승자들이 가장 효율적인 루트 대신에 '경치 좋은 루트'를 선택할 수 있는 옵션, 그리고 많은 사람들이 찾는 목적지로의 승차 및 하차 안내 등이 있습니다.
+- **노드 ID**: 공백 없이 PascalCase/camelCase 사용, 예약어 미사용.
+- **라벨**: 특수문자·등호가 없어 따옴표는 선택적. 서브그래프 라벨에 한글 사용.
 
-## 결론
+---
 
-Lyft의 지도와 미래를 통제하기 위한 계획은 매우 흥미롭습니다. Lyft는 자체 지도를 만들고, 이를 통해 더 나은 운전자 경험을 제공하려는 계획을 세우고 있습니다. 이를 위해 Lyft는 OpenStreetMap(OSM)과 실시간 데이터를 활용하여 매우 정확한 지도를 만드는 방법을 개발하였습니다. 또한, Lyft는 OpenStreetMap이 라이드쉐어링을 위한 가장 최신의 지도임을 발견하였습니다. 이 모든 것은 Lyft가 운전자와 승객에게 더 나은 경험을 제공하기 위한 노력의 일부입니다. 앞으로 Lyft가 어떻게 발전해 나갈지 기대해 봅니다.
+### 2019년 말: "불가능한 것"에 도전
 
-## 참고
+2019년 말, Lyft는 **자체 매핑 시스템**을 만드는 프로젝트를 본격화했다. 약 250명 규모의 팀(최초 카토그래퍼 및 매핑 경험 팀 포함)이 투입되어, 기사와 승객 앱 경험을 **라이드쉐어에 맞게** 재설계했다.
 
-* "Lyft's Secret Plan to Take Control of Its Maps and Its Future." Lyft. https://www.lyft.com/rev/posts/lyfts-secret-plan-to-take-control-of-its-maps-and-its-future
-* "How Lyft Creates Hyper-Accurate Maps from Open-Source Maps and Real-Time Data." Lyft Engineering. https://eng.lyft.com/how-lyft-creates-hyper-accurate-maps-from-open-source-maps-and-real-time-data-8dcf9abdd46a
-* "How Lyft discovered OpenStreetMap is the Freshest Map for Rideshare." Lyft Engineering. https://eng.lyft.com/how-lyft-discovered-openstreetmap-is-the-freshest-map-for-rideshare-a7a41bf92ec
+Google·Apple 지도는 범용 내비게이션에 강점이 있지만, **픽업·하차 지점**, **로딩 존·버스 정류장** 같은 제약, **CarPlay·Android Auto**와의 통합 등은 라이드쉐어 전용 요구사항에 가깝다. Lyft는 이런 부분을 직접 설계할 수 있게 되었다.
+
+**Lyft Maps**의 주요 설계 방향은 다음과 같다.
+
+- **시각 단순화**: 기사가 내비게이션과 픽업에 집중할 수 있도록 불필요한 상점·레스토랑·주변 POI를 줄였다.
+- **픽업 구역 사진**: 기사가 승객을 기다리는 동안 픽업 구역 주변 사진을 볼 수 있게 해 낯선 거리에서의 혼란을 줄였다.
+- **실시간 반영**: 기사가 교통 정체에 갇혀 있으면 승객에게 알림을 보내는 등, 실세계 변화를 경험에 반영했다.
+- **CarPlay·Android Auto 지원**: 차량 내 디스플레이에서 Lyft 지도를 사용할 수 있도록 했다.
+
+공개된 수치에 따르면, Lyft Maps를 써 본 기사의 **98%가 타 서비스(Google, Apple, Waze 등)로 되돌아가지 않고** Lyft 지도를 계속 사용한다고 한다. Lyft는 기사에게 선택권을 주고 피드백을 수집해, 강제가 아닌 **선호**로 자체 지도를 쓰게 만든 전략을 취했다.
+
+---
+
+## Lyft Maps의 확장 아이디어
+
+자체 지도가 안정화된 뒤 Lyft는 **라이드쉐어 전용 기능**으로 차별화하는 방향을 탐색하고 있다. 예를 들면 다음과 같다.
+
+- **기사 간 정보 공유**: 사고, 정체, 승객 하차 구역 등에 대한 정보를 기사들이 공유하는 기능.
+- **경치 좋은 경로**: 승객이 "가장 빠른 경로" 대신 "경치 좋은 경로"를 선택하는 옵션.
+- **대형 목적지 가이드**: 공항, 경기장, 공원 등 승하차가 빈번한 곳에 대한 픽업·하차 안내.
+
+"하루에 수백만 번 일어나는 미세한 경험"을 개선하는 것이, 결국 "스트레스 많고 별점을 낮게 주는 탑승"과 "편하고 재이용으로 이어지는 탑승"을 나누는 요인이 될 수 있다는 인식이 담겨 있다.
+
+---
+
+## 정리
+
+- Lyft는 **Google Maps 의존**으로 인한 비용·경로 불일치·제품 통제 한계를 해결하기 위해 **자체 지도** 구축을 결정했다.
+- **OpenStreetMap(OSM)**이 충분히 견고해진 시점(2019년 전후)을 활용해, OSM을 베이스로 하고 **실제 탑승 데이터**로 보강하는 방식으로 Lyft Maps를 만들었다.
+- 자체 지도로 전환한 뒤 **전체 탑승의 약 70%**를 Lyft Maps로 처리하고 있으며, 기사 만족도(98% 유지율)와 라이드쉐어 전용 기능 확장으로 경험과 비용을 동시에 관리하고 있다.
+
+제3자 지도에 의존하는 제품을 만들거나 비용·데이터 주권을 고민하는 팀에게, Lyft의 OSM 기반 자체 지도 사례는 좋은 참고가 된다.
+
+---
+
+## 참고 문헌
+
+1. **Lyft's Secret Plan to Take Control of Its Maps — And Its Future.** Lyft.  
+   [https://www.lyft.com/rev/posts/lyfts-secret-plan-to-take-control-of-its-maps-and-its-future](https://www.lyft.com/rev/posts/lyfts-secret-plan-to-take-control-of-its-maps-and-its-future)
+
+2. **How Lyft Creates Hyper-Accurate Maps from Open-Source Maps and Real-Time Data.** Lyft Engineering.  
+   [https://eng.lyft.com/how-lyft-creates-hyper-accurate-maps-from-open-source-maps-and-real-time-data-8dcf9abdd46a](https://eng.lyft.com/how-lyft-creates-hyper-accurate-maps-from-open-source-maps-and-real-time-data-8dcf9abdd46a)
+
+3. **How Lyft discovered OpenStreetMap is the Freshest Map for Rideshare.** Lyft Engineering.  
+   [https://eng.lyft.com/how-lyft-discovered-openstreetmap-is-the-freshest-map-for-rideshare-a7a41bf92ec](https://eng.lyft.com/how-lyft-discovered-openstreetmap-is-the-freshest-map-for-rideshare-a7a41bf92ec)

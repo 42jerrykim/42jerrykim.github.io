@@ -1,138 +1,116 @@
 ---
-description: "이 글에서는 고급 파이썬 개념, 객체지향 프로그래밍, 메모리 관리, 데코레이터와 제너레이터, 고급 자료구조, 테스트 기법 등 실무에서 유용하게 활용 가능한 다양한 기술들을 자세히 설명합니다. 초급자에서 중급자를 목표로 심화 내용을 정리하였습니다."
+title: "[Python] 고급 파이썬 튜토리얼: OOP·데코레이터·제너레이터·테스트"
+description: "고급 파이썬의 핵심 주제를 체계적으로 다룹니다. 고급 조건문·정규 표현식·OOP·이터러블과 제너레이터·클로저와 데코레이터·메모리 관리·테스트·동적 타이핑·패킹·어설션 등을 실무 예제와 함께 설명하며, 데이터 과학·AI·웹 개발로의 확장까지 소개합니다. 초급에서 중급으로 성장하려는 개발자에게 추천합니다."
 categories: Python
 date: "2024-09-23T00:00:00Z"
+lastmod: "2026-03-17T00:00:00Z"
+draft: false
 
 header:
   teaser: /assets/images/2024/2024-09-23-advenced-python.png
+
 tags:
-- Python
-- OOP
-- Memory
-- Testing
-- Implementation
-- Software-Architecture
-- Machine-Learning
-- Web
-- Django
-- Blog
-- 블로그
-- Technology
-- 기술
-- 웹
-- Tutorial
-- 가이드
-- Review
-- 리뷰
-- Markdown
-- 마크다운
-- Go
-- Flask
-- 객체지향
-- Graph
-- 그래프
-- AI
-- Deep-Learning
-- Decorator
-- Design-Pattern
-- String
-- Science
-- 과학
-- Guide
-- Productivity
-- 생산성
-- Education
-- 교육
-- Reference
-- 참고
-- Best-Practices
-- Documentation
-- 문서화
-- Open-Source
-- 오픈소스
-- Innovation
-- 혁신
-- Troubleshooting
-- 트러블슈팅
-- Configuration
-- 설정
-title: '[Python] 고급 파이썬 튜토리얼'
+  - Python
+  - 파이썬
+  - OOP
+  - 객체지향
+  - Memory
+  - 메모리
+  - Testing
+  - 테스트
+  - Implementation
+  - 구현
+  - Software-Architecture
+  - Design-Pattern
+  - 디자인패턴
+  - Machine-Learning
+  - 머신러닝
+  - Web
+  - 웹
+  - Django
+  - Flask
+  - Backend
+  - 데이터베이스
+  - Data-Science
+  - 데이터사이언스
+  - AI
+  - Deep-Learning
+  - 딥러닝
+  - Decorator
+  - Tutorial
+  - 튜토리얼
+  - Guide
+  - 가이드
+  - Best-Practices
+  - Documentation
+  - 문서화
+  - Open-Source
+  - 오픈소스
+  - Refactoring
+  - Clean-Code
+  - 클린코드
+  - Code-Quality
+  - Error-Handling
+  - 에러처리
+  - Inheritance
+  - 상속
+  - Encapsulation
+  - 캡슐화
+  - Polymorphism
+  - 다형성
+  - Iterator
+  - Functional-Programming
+  - 함수형프로그래밍
+  - Concurrency
+  - 동시성
+  - Async
+  - 비동기
+  - Algorithm
+  - 알고리즘
+  - Data-Structures
+  - 자료구조
+  - String
+  - 문자열
+  - Graph
+  - 그래프
+  - Technology
+  - 기술
+  - Education
+  - 교육
+  - Reference
+  - 참고
+  - Productivity
+  - 생산성
+  - Innovation
+  - 혁신
+  - Troubleshooting
+  - 트러블슈팅
+  - Configuration
+  - 설정
+  - Blog
+  - 블로그
+  - Markdown
+  - 마크다운
+  - Review
+  - 리뷰
+  - Science
+  - 과학
+  - Beginner
+  - Advanced
+  - Case-Study
+  - Deep-Dive
+  - 실습
+  - How-To
+  - Tips
+  - Comparison
+  - 비교
 ---
 
-파이썬은 매우 다재다능한 프로그래밍 언어로, 다양한 기술 분야에서 사용되고 있다. 일부 분야에서는 기본적인 파이썬 지식만으로도 충분하지만, 데이터 과학, 인공지능, 로봇 공학과 같은 분야에서는 고급 파이썬 지식이 필수적이다. 이 고급 파이썬 주제 튜토리얼에서는 다양한 고급 파이썬 개념을 배우고, 추가 자료를 통해 파이썬 프로그래밍 언어를 마스터할 수 있도록 돕는다. 고급 파이썬을 배우기 위해서는 기본적인 파이썬을 학습한 후에 시작하는 것이 좋다. 고급 파이썬을 배우면 새로운 직업을 얻거나 승진할 수 있는 기회를 제공받을 수 있다. 이 튜토리얼에서는 고급 조건문, 정규 표현식, 객체 지향 프로그래밍(OOP), 이터러블, 이터레이터 및 제너레이터, 클로저 및 데코레이터, 메모리 관리, 테스트 등 다양한 주제를 다룬다. 이러한 개념을 모두 학습한 후에는 파이썬 기술이 중급에서 고급으로 도약할 것이며, IT 경력에서 큰 발전을 이룰 수 있다. 고급 파이썬을 통해 여러 분야에서 일할 수 있는 기회를 탐색하고, 이 튜토리얼을 통해 더 나은 작업을 수행할 수 있게 될 것이다.
+파이썬은 데이터 과학, 인공지능, 웹·백엔드, 자동화 등 다양한 분야에서 쓰이는 다재다능한 언어다. 기본 문법만으로도 많은 작업이 가능하지만, 데이터 과학·AI·대규모 서비스에서는 **고급 파이썬** 이해가 필수다. 이 글에서는 고급 조건문, 정규 표현식, OOP, 이터러블·이터레이터·제너레이터, 클로저·데코레이터, 메모리 관리, 테스트, 동적 타이핑, 패킹, 어설션을 실무 예제와 함께 정리하고, 관련 기술과 참고 자료까지 이어서 소개한다. 기본 파이썬을 익힌 뒤 보면 중급으로 도약하는 데 도움이 된다.
 
 
-|![/assets/images/2024/2024-09-23-advenced-python.png](/assets/images/2024/2024-09-23-advenced-python.png)|
-|:---:|
-||
-
-
-<!--
-##### Outline #####
--->
-
-<!--
-# 고급 파이썬 주제 튜토리얼 목차
-
-## 개요
-   - 고급 파이썬의 필요성
-   - 파이썬의 활용 분야
-   - 튜토리얼의 목표 및 구성
-
-## 고급 파이썬 주제
-   - 2.1. 고급 조건문 (Advanced Conditional Statements)
-   - 2.2. 정규 표현식 (Regular Expressions)
-   - 2.3. 객체 지향 프로그래밍 (OOP - Object-Oriented Programming)
-   - 2.4. 이터러블, 이터레이터 및 제너레이터 (Iterables, Iterators, and Generators)
-   - 2.5. 클로저와 데코레이터 (Closures and Decorators)
-   - 2.6. 메모리 관리 (Memory Management)
-   - 2.7. 테스트 (Testing)
-   - 2.8. 동적 타이핑 (Dynamic Typing)
-   - 2.9. 패킹 (Packing)
-   - 2.10. 어설션 (Assertion)
-
-## 예제
-   - 3.1. 고급 조건문 예제
-   - 3.2. 정규 표현식 활용 예제
-   - 3.3. OOP 예제
-   - 3.4. 제너레이터와 이터레이터 예제
-   - 3.5. 클로저와 데코레이터 예제
-   - 3.6. 메모리 관리 예제
-   - 3.7. 테스트 프레임워크 예제
-
-## FAQ
-   - 4.1. 고급 파이썬 주제는 무엇인가요?
-   - 4.2. 기본 파이썬과 고급 파이썬의 차이는 무엇인가요?
-   - 4.3. 고급 파이썬을 배우기 위한 추천 도서는 무엇인가요?
-   - 4.4. 파이썬 숙련도의 수준은 어떻게 나누나요?
-   - 4.5. 고급 파이썬을 배우면 어떤 이점이 있나요?
-
-## 관련 기술
-   - 5.1. 데이터 과학 (Data Science)
-   - 5.2. 인공지능 (Artificial Intelligence)
-   - 5.3. 머신러닝 (Machine Learning)
-   - 5.4. 웹 개발 프레임워크 (Web Development Frameworks - Django, Flask)
-   - 5.5. 데이터베이스 관리 (Database Management)
-
-## 결론
-   - 고급 파이썬 학습의 중요성
-   - 경력 발전을 위한 고급 파이썬의 활용
-   - 지속적인 학습과 실습의 필요성
-
-## 추가 자료
-   - 7.1. 추천 온라인 강좌
-   - 7.2. 유용한 파이썬 라이브러리
-   - 7.3. 커뮤니티 및 포럼
-
-이 목차는 고급 파이썬 주제를 체계적으로 학습할 수 있도록 구성되어 있으며, 각 섹션은 관련된 내용을 포함하여 풍부한 정보를 제공합니다.
--->
-
-<!--
-## 개요
-   - 고급 파이썬의 필요성
-   - 파이썬의 활용 분야
-   - 튜토리얼의 목표 및 구성
--->
+| ![고급 파이썬 튜토리얼 개요](/assets/images/2024/2024-09-23-advenced-python.png) |
+| :---: |
 
 ## 개요
 
@@ -150,39 +128,28 @@ title: '[Python] 고급 파이썬 튜토리얼'
 이처럼 파이썬은 다양한 분야에서 활용되며, 고급 기능을 익히는 것은 이러한 분야에서의 경쟁력을 높이는 데 기여한다.
 
 **튜토리얼의 목표 및 구성**  
-이 튜토리얼의 목표는 고급 파이썬 주제를 체계적으로 학습하고, 실제 예제를 통해 이해를 돕는 것이다. 각 섹션은 고급 주제를 다루며, 이론과 실습을 병행하여 학습할 수 있도록 구성되어 있다. 
+이 튜토리얼의 목표는 고급 파이썬 주제를 체계적으로 학습하고, 실제 예제를 통해 이해를 돕는 것이다. 각 섹션은 고급 주제를 다루며, 이론과 실습을 병행하여 학습할 수 있도록 구성되어 있다.
+
+**추천 대상**  
+기본 문법(변수, 조건문, 반복문, 함수, 리스트·딕셔너리)을 알고 있으며, OOP·정규식·데코레이터 등은 아직 익히지 않은 **초급 후반~중급 진입** 단계의 개발자, 또는 파이썬으로 데이터 분석·웹 개발·자동화를 본격적으로 하려는 독자에게 적합하다.
 
 다음은 튜토리얼의 구성 요소를 나타내는 다이어그램이다:
 
 ```mermaid
-graph TD;
-    A[고급 파이썬 주제] --> B[고급 조건문]
-    A --> C[정규 표현식]
-    A --> D[객체 지향 프로그래밍]
-    A --> E[이터러블, 이터레이터 및 제너레이터]
-    A --> F[클로저와 데코레이터]
-    A --> G[메모리 관리]
-    A --> H[테스트]
-    A --> I[동적 타이핑]
-    A --> J[패킹]
-    A --> K[어설션]
+graph TD
+    rootNode["고급 파이썬 주제"] --> AdvancedConditional["고급 조건문"]
+    rootNode --> Regex["정규 표현식"]
+    rootNode --> OOP["객체 지향 프로그래밍"]
+    rootNode --> IterablesGenerators["이터러블, 이터레이터 및 제너레이터"]
+    rootNode --> ClosuresDecorators["클로저와 데코레이터"]
+    rootNode --> MemoryMgmt["메모리 관리"]
+    rootNode --> Testing["테스트"]
+    rootNode --> DynamicTyping["동적 타이핑"]
+    rootNode --> Packing["패킹"]
+    rootNode --> Assertion["어설션"]
 ```
 
 이 다이어그램은 고급 파이썬 주제의 다양한 구성 요소를 시각적으로 나타내며, 각 주제가 어떻게 연결되어 있는지를 보여준다. 이 튜토리얼을 통해 독자는 고급 파이썬의 다양한 기능을 이해하고, 실제 프로젝트에 적용할 수 있는 능력을 기를 수 있을 것이다.
-
-<!--
-## 고급 파이썬 주제
-   - 2.1. 고급 조건문 (Advanced Conditional Statements)
-   - 2.2. 정규 표현식 (Regular Expressions)
-   - 2.3. 객체 지향 프로그래밍 (OOP - Object-Oriented Programming)
-   - 2.4. 이터러블, 이터레이터 및 제너레이터 (Iterables, Iterators, and Generators)
-   - 2.5. 클로저와 데코레이터 (Closures and Decorators)
-   - 2.6. 메모리 관리 (Memory Management)
-   - 2.7. 테스트 (Testing)
-   - 2.8. 동적 타이핑 (Dynamic Typing)
-   - 2.9. 패킹 (Packing)
-   - 2.10. 어설션 (Assertion)
--->
 
 ## 고급 파이썬 주제
 
@@ -323,17 +290,6 @@ print(divide(10, 2))  # 출력: 5.0
 
 이와 같은 고급 파이썬 주제들은 개발자가 더 나은 코드를 작성하고, 복잡한 문제를 해결하는 데 도움을 준다. 각 주제를 깊이 있게 이해하고 활용하는 것이 중요하다.
 
-<!--
-## 예제
-   - 3.1. 고급 조건문 예제
-   - 3.2. 정규 표현식 활용 예제
-   - 3.3. OOP 예제
-   - 3.4. 제너레이터와 이터레이터 예제
-   - 3.5. 클로저와 데코레이터 예제
-   - 3.6. 메모리 관리 예제
-   - 3.7. 테스트 프레임워크 예제
--->
-
 ## 예제
 
 **3.1. 고급 조건문 예제**  
@@ -446,15 +402,6 @@ if __name__ == '__main__':
 
 이와 같은 예제들은 고급 파이썬의 다양한 기능을 이해하고 활용하는 데 도움을 줄 것이다. 각 예제는 실제로 사용되는 코드로, 학습자가 직접 실행해보며 실습할 수 있도록 구성되어 있다.
 
-<!--
-## FAQ
-   - 4.1. 고급 파이썬 주제는 무엇인가요?
-   - 4.2. 기본 파이썬과 고급 파이썬의 차이는 무엇인가요?
-   - 4.3. 고급 파이썬을 배우기 위한 추천 도서는 무엇인가요?
-   - 4.4. 파이썬 숙련도의 수준은 어떻게 나누나요?
-   - 4.5. 고급 파이썬을 배우면 어떤 이점이 있나요?
--->
-
 ## FAQ
 
 **4.1. 고급 파이썬 주제는 무엇인가요?**  
@@ -483,25 +430,16 @@ if __name__ == '__main__':
 - 소프트웨어 개발 분야에서의 경쟁력을 강화할 수 있다.
 
 ```mermaid
-graph TD;
-    A[파이썬 숙련도] --> B[초급];
-    A --> C[중급];
-    A --> D[고급];
-    B --> E[기본 문법 이해];
-    C --> F[객체 지향 프로그래밍];
-    D --> G[복잡한 시스템 설계];
+graph TD
+    ProficiencyLevel["파이썬 숙련도"] --> Beginner["초급"]
+    ProficiencyLevel --> Intermediate["중급"]
+    ProficiencyLevel --> Advanced["고급"]
+    Beginner --> BasicSyntax["기본 문법 이해"]
+    Intermediate --> OOPConcepts["객체 지향 프로그래밍"]
+    Advanced --> ComplexDesign["복잡한 시스템 설계"]
 ```
 
 위의 다이어그램은 파이썬 숙련도를 시각적으로 나타내며, 각 수준에서의 주요 특징을 보여준다. 고급 파이썬을 배우는 것은 개발자로서의 성장에 큰 도움이 된다.
-
-<!--
-## 관련 기술
-   - 5.1. 데이터 과학 (Data Science)
-   - 5.2. 인공지능 (Artificial Intelligence)
-   - 5.3. 머신러닝 (Machine Learning)
-   - 5.4. 웹 개발 프레임워크 (Web Development Frameworks - Django, Flask)
-   - 5.5. 데이터베이스 관리 (Database Management)
--->
 
 ## 관련 기술
 
@@ -564,22 +502,15 @@ print(predictions)
 
 다이어그램(mermaid):
 ```mermaid
-graph TD;
-    A[데이터 수집] --> B[데이터 처리];
-    B --> C[데이터 분석];
-    C --> D[모델 훈련];
-    D --> E[예측 결과];
-    E --> F[결과 시각화];
+graph TD
+    DataCollection["데이터 수집"] --> DataProcessing["데이터 처리"]
+    DataProcessing --> DataAnalysis["데이터 분석"]
+    DataAnalysis --> ModelTraining["모델 훈련"]
+    ModelTraining --> PredictionResult["예측 결과"]
+    PredictionResult --> ResultViz["결과 시각화"]
 ```
 
 이와 같이 고급 파이썬을 활용하여 다양한 관련 기술을 이해하고 적용하는 것은 개발자로서의 역량을 높이는 데 큰 도움이 된다.
-
-<!--
-## 결론
-   - 고급 파이썬 학습의 중요성
-   - 경력 발전을 위한 고급 파이썬의 활용
-   - 지속적인 학습과 실습의 필요성
--->
 
 ## 결론
 
@@ -607,22 +538,15 @@ print(dog.speak())  # 출력: Dog says hello!
 기술은 끊임없이 발전하고 있으며, 파이썬 또한 예외는 아니다. 따라서, 고급 파이썬을 학습한 후에도 지속적인 학습과 실습이 필요하다. 새로운 라이브러리나 프레임워크가 등장함에 따라, 이를 활용할 수 있는 능력을 기르는 것이 중요하다. 또한, 실제 프로젝트에 참여하거나 오픈 소스 기여를 통해 실력을 쌓는 것이 좋다. 
 
 ```mermaid
-graph TD;
-    A[고급 파이썬 학습] --> B[지속적인 학습]
-    A --> C[실습]
-    B --> D[새로운 기술 습득]
-    C --> E[프로젝트 참여]
-    C --> F[오픈 소스 기여]
+graph TD
+    AdvancedLearning["고급 파이썬 학습"] --> ContinuousLearning["지속적인 학습"]
+    AdvancedLearning --> Practice["실습"]
+    ContinuousLearning --> NewSkills["새로운 기술 습득"]
+    Practice --> ProjectParticipation["프로젝트 참여"]
+    Practice --> OpenSourceContribute["오픈 소스 기여"]
 ```
 
 결론적으로, 고급 파이썬 학습은 개발자로서의 성장과 경력 발전에 있어 매우 중요하며, 지속적인 학습과 실습을 통해 더욱 전문성을 높일 수 있다.
-
-<!--
-## 추가 자료
-   - 7.1. 추천 온라인 강좌
-   - 7.2. 유용한 파이썬 라이브러리
-   - 7.3. 커뮤니티 및 포럼
--->
 
 ## 추가 자료
 
@@ -674,411 +598,23 @@ print(f'Average Value: {average_value}')
 다음은 파이썬 커뮤니티의 구조를 나타내는 다이어그램이다.
 
 ```mermaid
-graph TD;
-    A[Python Community] --> B[Stack Overflow]
-    A --> C[Reddit]
-    A --> D[Python.org Community]
-    B --> E[Questions]
-    B --> F[Answers]
-    C --> G[Discussions]
-    C --> H[News]
-    D --> I[Forums]
-    D --> J[Mailing Lists]
+graph TD
+    PythonCommunity["Python Community"] --> StackOverflow["Stack Overflow"]
+    PythonCommunity --> Reddit["Reddit"]
+    PythonCommunity --> PythonOrg["Python.org Community"]
+    StackOverflow --> Questions["Questions"]
+    StackOverflow --> Answers["Answers"]
+    Reddit --> Discussions["Discussions"]
+    Reddit --> News["News"]
+    PythonOrg --> Forums["Forums"]
+    PythonOrg --> MailingLists["Mailing Lists"]
 ```
 
 이와 같은 자료들은 고급 파이썬을 학습하는 데 큰 도움이 될 것이다. 지속적인 학습과 실습을 통해 더욱 깊이 있는 지식을 쌓아 나가길 바란다.
 
-<!--
-##### Reference #####
--->
-
 ## Reference
 
-
-* [https://www.geeksforgeeks.org/advanced-python-tutorials/](https://www.geeksforgeeks.org/advanced-python-tutorials/)
-* [https://python-course.eu/advanced-python/](https://python-course.eu/advanced-python/)
-* [https://medium.com/@alexroz/5-python-features-to-make-your-code-more-advanced-533f1153c688](https://medium.com/@alexroz/5-python-features-to-make-your-code-more-advanced-533f1153c688)
-
-
-<!--
-#  Advanced Python Topics Tutorial
-
-Last Updated :  25 Jul, 2024
-
-Python language is a very versatile language and it is used in many technical
-fields. Some fields require only basic knowledge of Python but some fields
-require you to know advanced Python such as Data Science, Artificial
-Intelligence and Robotics. In this Advanced Python Topics Tutorial, you will
-learn about various advanced Python concepts with additional resources, so
-that you can master yourself in Python programming language.
-
-****Pre-requisites:** ** Before starting Advanced Python, one should have
-studied basic  [ Python  ](https://www.geeksforgeeks.org/python-programming-
-language/) .
-
-![ADVANCED-PYTHON-TUTORIAL](https://media.geeksforgeeks.org/wp-
-content/uploads/20231219152721/ADVANCED-PYTHON-TUTORIAL.webp)
-
-##  Why Study Advanced Python?
-
-Python is a very popular language among developers and is used in a variety of
-applications. Learning advanced Python can help you get a new job, or get a
-promotion.
-
-If you have studied basic Python, there is no harm in learning advanced Python
-as it will only help you in your career. We have all major advanced Python
-concepts, the list is designed in a systematic order so that you can easily
-learn these concepts in a flow.
-
-In this Advanced Python Topics tutorial, you will learn the following things:
-
-##  Advanced Python Topics Tutorial For Beginners
-
-In this Advanced Python Topics Tutorial we have currated advanced Python
-topics and sub-topics for you which will help you to master advanced Python
-with ease.
-
-Start your journey from Intermediate to Advanced Python using these resources!
-
-##  Advanced Conditional Statements
-
-##  Regular Expressions
-
-##  OOPS
-
-##  ITERABLES, ITERATORS and Generators
-
-##  CLOSURES and DECORATORS
-
-##  Memory Management
-
-##  Testing
-
-##  Conclusion
-
-After learning all these concepts, your skills in Python will jump from
-intermediate to advanced. Learning advanced Python will result in a big
-advancement in your IT career. Advanced Python enables you to work in multiple
-fields, you can explore more opportunities and enhance your work after this
-Advanced Python Topics tutorial.
-
-##  Advanced Python Topics Tutorial – FAQs
-
-###  What are some advanced Python topics?
-
-> Some Advanced Python Topics include:
->
->   * OOPs
->   * Testing
->   * Memory Management
->   * Closures and Decorators
->   * Regular Expressions
->   * Advanced Conditional Statements
->
-
-###  What is difference between basic Python and advanced Python?
-
-> ****Basic Python :** ** It includes basic foundational concepts of Python
-> like syntax, keywords, data types etc. You might also see some basic Python
-> functions, libraries, data structures like lists or tuples etc.
->
-> ****Advanced Python :** ** It includes more complex topics of Python like
-> advanced data structures, decorators, advanced libraries like numpy,
-> advanced frameworks like Django etc.
-
-###  What are some books to learn advanced Python?
-
->   * Python Cookbook by David Beazley and Brian K. Jones
->   * Fluent Python by Luciano Ramalho
->   * Learning Python by Mark Lutz
->   * Effective Python: 90 Specific Ways to Write Better Python by Brett
-> Slatkin
->   * Programming Python by Mark Lutz
->
-
-###  What are levels of Python Proficiency?
-
-> There are 3 levels of Python Proficiency:
->
->   * ****Beginner:** ** Python syntax, tuples, list, basic libraries,
-> functions, basic file operations,Writing basic scripts etc.
->   * ****Intermediate :** ** Object-oriented programming, data structures and
-> algorithms, database interaction, basic web development, etc.
->   * ****Advanced :** ** decorators, advanced libraries and frameworks,
-> concurrency and parallelism, advanced database management, etc
->
-
-###  Please _ Login  _ to comment...
-
-
--->
-
-<!--
-
-
-
-
-
-
--->
-
-<!--
-#  Intro to Advanced Python
-
-By **Bernd Klein** . Last modified: 16 Aug 2021.
-
-This section of our tutorial has Python topics that are too difficult for
-beginners. This is also reflected in our image. The trail requires experience
-and beginners with insufficient experience could easily get dizzy. Those who
-have successfully completed our beginner's tutorial or who have acquired
-sufficient Python experience elsewhere should not have any problems. As
-everywhere in our tutorial, we introduce the topics as gently as possible.
-This part of our Python tutorial is aimed at advanced programmers.
-
-Most people will probably ask themselves immediately whether they are at the
-right place here. As in various other areas of life and science, it is not
-easy to find and describe the dividing line between beginners and advanced
-learners in Python. On the other hand, it is also difficult to decide what the
-appropriate topics are for this part of the tutorial. Some topics are
-considered by some as particularly difficult, while others rate them as easy.
-Like the hiking trail in the picture on the right. For people with mountain
-experience it is a walk, while people without experience or with a strong
-feeling of dizziness are already dreadful at the sight of the picture.
-
-When asked what advanced topics are, i.e. Python topics that are too difficult
-for beginners, I was guided by my experiences from numerous Python trainings.
-
-Those who have successfully completed our beginner's tutorial or have had
-sufficient Python experience elsewhere should have no problems. As everywhere
-in our tutorial, we introduce the topics as gently as possible.
-
-Live Python training
-
-Upcoming online Courses
-
-[ Enrol here ](https://www.bodenseo.com/course_enrolment.php)
-
-##  In this chapter
-
-
--->
-
-<!--
-
-
-
-
-
-
--->
-
-<!--
-#  5 Python Features to Make Your Code More Advanced
-
-##  Enhance your Pythonüêç skills
-
-Photo by [ Kevin Ku
-](https://unsplash.com/@ikukevk?utm_source=medium&utm_medium=referral) on [
-Unsplash ](https://unsplash.com/?utm_source=medium&utm_medium=referral)
-
-P  ython has been my main programming tool for the last 2 years, and I‚Äôm
-sure it will stay the one for years, despite the fact that I have some basic
-knowledge of C++, JS, MatLab and R. The reason for that is its user-
-friendliness, intuitiveness and, of course, the quality and popularity of the
-machine learning frameworks built in python. However, although the internet is
-full of educational materials and tutorials to learn this language, I
-comprehended some of its features by myself when feeling an urgent need to
-optimize the code or to implement something new.
-
-So in this article I want to show you 5 unique features of python, which I
-wish I‚Äôd known when I was starting my journey. These features can be used by
-anyone, even beginners, to make their code more professional, efficient and
-good-looking.
-
-#  1\. Lists
-
-Of course we will start with lists, since these are one of the basic data
-structures in python. You can initialize a list in two ways:
-
-    
-    
-    l = list()  
-    l = []
-
-Often we need to fill a list iteratively. In the vanilla set up (like in many
-other programming languages), you can use the ` for ` loop:
-
-    
-    
-    for i in range(10):  
-        l.append(i)
-
-Or we can even created a nested loop:
-
-    
-    
-    L = []  
-    for i in range(10):  
-        l = []  
-        for j in range(5):  
-            l.append(i)  
-        L.append(l)
-
-But this code looks clumsy. It took us 5 rows to implement quite simple
-idea‚Ä¶
-
-Let‚Äôs use the first python feature:
-
-    
-    
-    l = [i for i in range(10)]  
-    l = [[i for _ in range(5)] for i in range(10)]
-
-As you can see it took only 2 rows for 2 loops. This is the true beauty of
-python.
-
-#  2\. Sets
-
-Arguably, sets are one of the least known data structures. But they have one
-unique feature, which I use extensively in my projects. Imagine you have a
-list with duplicates. To my knowledge, by July 2024 in python there is no
-built-in function to drop them. Instead of using dictionary‚Äôs keys or
-something else to tackle this problem, just transform you list to a set and
-then back to a list:
-
-    
-    
-    l = [1,1,2,2,3,4,5,0]  
-    l = list(set(l))
-
-Super simple and efficient. Not only does it drop duplicates, but it also
-sorts your list!
-
-#  3\. Dynamic typing
-
-If you‚Äôve written at least one Python program, you must know that there is
-no such thing as a variable type declaration. When you type ` a = 42.2 ` , you
-don't specify ` float32 ` or ` float64 ` ; you just assign the value. It works
-because Python is based on dynamic typing, meaning all the variable types are
-defined during runtime. This is important when we start talking about memory!
-
-There are mutable and immutable objects in python. The value of mutable
-objects ( ` list ` , ` dict ` , ` set ` ) can be changed over time. For
-instance:
-
-    
-    
-    l = [1,2,3]  
-    l[0] = 'a'
-
-Whereas immutable objects ( ` None ` , ` bool ` , ` int ` , ` float ` , `
-complex ` , ` str ` , ` tuple ` ) do not allow you to change their value.
-Let‚Äôs create variable _a_ and check its ID in the memory. If we change its
-value, then we‚Äôll get a new ID:
-
-It means that ` a ` in this case, can be considered as a pointer to an object
-in the computer memory. In this example, 10 and 20 are stored as different
-objects.
-
-But why am I writing all of this? Because there is a pitfall that has caused
-me severe pain several times, and I want you to be aware of it. Let‚Äôs do an
-experiment by creating a list ` p ` and then assigning its value to a new
-variable ` P ` :
-
-Now let‚Äôs append the list ` P ` and print the results:
-
-You can see now that we appended not only ` P ` , but also the first list ` p
-` . Let‚Äôs check their ID as we did before:
-
-They are identical. Both variables ` p ` and ` P ` point to the same object.
-This python feature has caused me tons of confusion. So if you want to assign
-the same value of list p to a new list, I recommend to use the _copy_
-function.
-
-In this case you won‚Äôt mess up your code!
-
-P.s. If we try to do the same thing with integers, for instance, by adding 10
-istead of appending, we will get a new object with a new ID:
-
-#  4\. Assertion
-
-Often in our code we use conditions before doing anything to check if we are
-about to process the data we need. In such situations the code can become
-clumsy as well:
-
-    
-    
-    A = [1,0,0,16]  
-    B = [23,32,2,4]  
-    for a,b in zip(A,B):  
-        if a==b**2:  
-            print(a,b, 'Error!')
-
-To avoid that you can use the assert keyword. It allows you to put a logical
-sentence and an error string in one line of code, making it much more
-appealing!
-
-As you can see, when the assertion is failed, python shows an assertion error
-with a custom message which you can compose yourself.
-
-#  **5\. Packing**
-
-When I was starting, those stars ( **_*_ ** and ****** ) before arguments were
-really confusing. But it turned out that they might help you a lot when your
-function has a lot of variables to pass.
-
-Let‚Äôs write a function with 2 values to pass and 3 default values. This
-function will perform simple math calculations:
-
-    
-    
-    def F(a, b, c=3, d=1, k=1):  
-        return (a*b*c/d)**k
-
-At some point, we might want to pass only ` a ` and ` b ` :
-
-But imagine that you want to also pass ` a ` __ and ` d ` , but you don‚Äôt
-know the names of these variables (they are simply hidden from you). Then you
-can use positional arguments (often ` args ` ):
-
-In the case of args, the order always matters! If you change it, the results
-will be different (since ` args ` is a list):
-
-Now imagine a different situation. You know the names of the variables, but
-you have no clue about their order. Then keyword arguments (or often ` kwargs
-` ) will help you:
-
-Since _kwargs_ is a dictionary you can use any order you want, the results
-will stay the same.
-
-===========================================
-
-That‚Äôs it! I hope that the article has a little bit extended your
-understanding of python and from now on you‚Äôll be using these features
-extensively and consciously.
-
-Would you like to see more python features in the next article?:)
-
-===========================================
-
-**_All my publications on Medium are free and open-access, that‚Äôs why I‚Äôd
-really appreciate if you followed me here!_ **
-
-P.s. I‚Äôm extremely passionate about (Geo)Data Science, ML/AI and Climate
-Change. So if you want to work together on some project pls contact me in [
-LinkedIn ](https://www.linkedin.com/in/alexxxroz/) .
-
-üõ∞Ô∏èFollow for moreüõ∞Ô∏è
-
-
--->
-
-<!--
-
-
-
-
-
-
--->
+- [Advanced Python Topics Tutorial — GeeksforGeeks](https://www.geeksforgeeks.org/advanced-python-tutorials/): 고급 조건문·정규식·OOP·이터레이터·데코레이터·메모리 관리·테스트 등 공식 튜토리얼.
+- [Intro to Advanced Python — python-course.eu](https://python-course.eu/advanced-python/): 재귀, 이터러블·제너레이터, 데코레이터·메모이제이션, pytest·정규식 등 고급 주제 정리.
+- [5 Python Features to Make Your Code More Advanced — Medium](https://medium.com/@alexroz/5-python-features-to-make-your-code-more-advanced-533f1153c688): 리스트 컴프리헨션·세트·동적 타이핑·어설션·패킹 등 실무 활용 팁.
 
