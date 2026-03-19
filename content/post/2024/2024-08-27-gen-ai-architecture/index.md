@@ -6,7 +6,7 @@ draft: false
 description: "기업 내 생성형 AI 아키텍처 설계 시 핵심 구성요소, LLM과 파인튜닝, RAG·벡터DB·GraphRAG, 도메인 데이터 연계 및 실무 적용 전략을 다룬다. DSFT·RAG·RA-FT·GraphRAG 네 가지 패턴의 정의·사용 사례·기업 전략, 데이터 처리·모델 선택·성능 평가·도메인 전문가 협업, 적용 예제와 FAQ·참고 자료를 포함한다."
 header:
   teaser: /assets/images/2024/2024-08-27-gen-ai-architecture.png
-image: /assets/images/2024/2024-08-27-gen-ai-architecture.png
+image: "wordcloud.png"
 tags:
   - AI
   - 인공지능

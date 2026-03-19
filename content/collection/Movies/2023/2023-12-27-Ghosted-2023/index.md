@@ -69,7 +69,7 @@ tags:
 - 역사
 - Education
 - 교육
-image: "poster.png"
+image: "wordcloud.png"
 draft: false
 ---
 

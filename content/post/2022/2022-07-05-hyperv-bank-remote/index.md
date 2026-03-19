@@ -118,6 +118,7 @@ tags:
   - 모니터링
   - Scalability
   - 확장성
+image: "wordcloud.png"
 ---
 
 ## 개요

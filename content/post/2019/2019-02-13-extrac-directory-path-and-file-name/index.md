@@ -92,6 +92,7 @@ tags:
   - Deep-Dive
   - 실습
 title: "[Shell] 파일 경로에서 디렉터리 경로와 파일명 추출하기"
+image: "wordcloud.png"
 ---
 
 ## 도입: 왜 경로와 파일명을 분리하는가

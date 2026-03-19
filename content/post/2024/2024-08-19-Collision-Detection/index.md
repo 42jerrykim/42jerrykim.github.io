@@ -109,6 +109,7 @@ tags:
   - Deep-Dive
   - 실습
 teaser: /assets/images/undefined/teaser.jpg
+image: "wordcloud.png"
 ---
 
 충돌 감지(collision detection)는 컴퓨터 그래픽스, 게임, 로봇 공학, 물리 시뮬레이션 등에서 **두 개 이상의 공간 객체가 서로 교차하는지** 판별하는 계산 기하학의 핵심 문제다. 게임에서는 캐릭터가 벽을 통과하지 않도록 하거나, 물체 간 상호작용을 구현하는 데 필수적이다. 본문에서는 충돌 감지의 기본 개념, 2D/3D 차이, 원형·AABB·스윕 앤 프룬·BVH 등 다양한 알고리즘과 실용 예제, 성능 최적화, FAQ, 참고 문헌까지 체계적으로 다룬다.

@@ -112,6 +112,7 @@ tags:
   - Mobile
   - 모바일
 title: "[CSS] CSS 역사로 알아보는 CSS가 어려워진 이유"
+image: "wordcloud.png"
 ---
 
 > **원문**: [CSS 역사로 알아보는 CSS가 어려워진 이유](https://velog.io/@teo/css-history-1) (velog, 테오)

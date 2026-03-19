@@ -273,6 +273,7 @@ tags:
   - 공간복잡도
   - Optimization
   - 최적화
+image: "wordcloud.png"
 ---
 
 [Comprehensive Rust](https://google.github.io/comprehensive-rust/)는 **Google이 제공하는 Rust 공식 스타일의 무료 오픈소스 강의**다. Rust 언어의 기초 문법부터 메모리·소유권·에러 처리·동시성·Android까지 단계별로 배울 수 있으며, 각 섹션마다 실습 예제와 연습문제가 포함되어 있어 시스템 프로그래밍과 실무 패턴을 체계적으로 익힐 수 있다. 본 글에서는 강의 개요, 코스 구조, Day별 학습 내용, 핵심 개념 요약, 활용 팁, 장단점과 참고 문헌을 정리한다.

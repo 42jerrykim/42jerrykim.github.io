@@ -131,6 +131,7 @@ tags:
   - Quick-Reference
   - Cheatsheet
   - 치트시트
+image: "wordcloud.png"
 ---
 
 ## 개요

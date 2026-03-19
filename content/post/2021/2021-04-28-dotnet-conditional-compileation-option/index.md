@@ -102,6 +102,7 @@ tags:
   - Readability
   - Build
 title: "[.NET] C# 조건부 컴파일 옵션 적용하기"
+image: "wordcloud.png"
 ---
 
 ## 개요

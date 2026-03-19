@@ -138,6 +138,7 @@ tags:
   - 클라우드
 categories:
   - Study
+image: "index.png"
 ---
 
 엔지니어링, 과학, 수학을 공부하거나 업무할 때 수식과 기호를 손으로 쓸 기회가 많다. 이때 **명확하고 읽기 쉬운 수학 필기**는 오해를 줄이고, 나중에 다시 읽을 때도 이해를 돕는다. John Kerl의 [Mathematical Handwriting Tips](https://johnkerl.org/doc/ortho/ortho.html)와 [수학 기호](https://en.wikipedia.org/wiki/Mathematical_notation), [수·공학에서 쓰는 문자 목록](https://en.wikipedia.org/wiki/List_of_letters_used_in_mathematics,_science,_and_engineering)을 참고해, 실무에 바로 쓸 수 있는 **수학 필기 규칙**을 정리했다.

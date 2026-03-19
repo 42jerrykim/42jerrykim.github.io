@@ -124,6 +124,7 @@ tags:
   - Readability
   - Code-Quality
   - 코드품질
+image: "wordcloud.png"
 ---
 
 ## 개요

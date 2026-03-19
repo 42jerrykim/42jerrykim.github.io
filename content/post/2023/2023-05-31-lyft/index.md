@@ -100,6 +100,7 @@ tags:
   - Rideshare
   - 라이드쉐어
 title: "[Tech] Lyft의 비밀스러운 계획: 자체 지도와 미래를 통제하다"
+image: "wordcloud.png"
 ---
 
 ## 개요

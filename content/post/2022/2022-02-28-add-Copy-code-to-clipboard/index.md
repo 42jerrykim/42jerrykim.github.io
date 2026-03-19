@@ -93,6 +93,7 @@ tags:
   - 인터넷
   - Case-Study
   - Deep-Dive
+image: "wordcloud.png"
 ---
 
 ## 개요

@@ -85,6 +85,7 @@ tags:
   - Concurrency
   - 동시성
 title: "[DesignPattern] 빌더 패턴(Builder Pattern) 정리와 Java 예제"
+image: "wordcloud.png"
 ---
 
 빌더 패턴은 복잡한 객체를 단계별로 생성할 수 있도록 해주는 **생성(Creational) 디자인 패턴**이다. 동일한 생성 코드로 다양한 표현의 객체를 만들 수 있으며, 선택적 매개변수가 많을 때 점층적 생성자나 자바빈의 한계를 보완한다. 이 글에서는 정의·구조·Java/Lombok 예제·실무 활용·장단점·참고 문헌을 다룬다.

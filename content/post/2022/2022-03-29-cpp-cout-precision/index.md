@@ -121,6 +121,7 @@ tags:
   - 리눅스
   - Windows
   - 윈도우
+image: "wordcloud.png"
 ---
 
 ## 도입: 왜 소수점 자릿수를 제어해야 하는가
