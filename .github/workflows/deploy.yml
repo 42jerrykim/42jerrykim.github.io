@@ -27,6 +27,10 @@ defaults:
   run:
     shell: bash
 
+# Opt into Node.js 24 for JS actions until all pinned actions ship node24 metadata (GitHub changelog 2025-09-19)
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   # Build job
   build:
@@ -41,13 +45,13 @@ jobs:
       - name: Install Dart Sass
         run: sudo snap install dart-sass
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           submodules: recursive
           fetch-depth: 0
 
       - name: Restore Hugo resources cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ./resources
@@ -62,7 +66,7 @@ jobs:
 
       # Node.js 설치 (pagefind CLI via npx 사용)
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v5
         with:
           node-version: '18'            # 원하는 LTS 버전 선택
 
@@ -95,7 +99,7 @@ jobs:
         run: npx pagefind --site public --output-subdir _pagefind --glob "post/**/*.html" --verbose
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./public
 
