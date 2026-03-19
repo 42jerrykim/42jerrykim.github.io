@@ -3,7 +3,7 @@ title: "[Vocabulary] gluten-free의 의미와 쓰임 - 형용사 핵심 정리"
 description: "영어 형용사 'gluten-free'는 글루텐이 없는 식품·메뉴를 가리키거나 글루텐을 피하는 식습관·사람을 묘사할 때 쓴다. 식품 라벨·레스토랑·건강 정보에서 자주 나오므로 하이픈 표기와 콜로케이션을 정리하고, EN/KR 예문 50개로 일상·외식 표현을 익힌다."
 date: 2026-03-19
 lastmod: 2026-03-19
-draft: true
+draft: false
 categories:
   - English
   - Vocabulary
