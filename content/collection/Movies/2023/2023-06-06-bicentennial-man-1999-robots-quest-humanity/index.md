@@ -1,49 +1,40 @@
 ---
 title: "[Movie] Bicentennial Man (바이센테니얼 맨) (1999) - 로봇이 꿈꾼 인간의 존엄성"
-description: "로빈 윌리엄스 주연의 SF 감성 드라마로, 200년에 걸친 로봇 앤드류의 인간성 탐구 여정을 그린 작품. 감정과 창의성을 지닌 로봇이 인간으로 인정받기 위해 겪는 사랑, 자유, 죽음에 대한 철학적 성찰을 담아낸다."
+description: "아이작 아시모프 원작의 SF 감성 드라마. 200년에 걸쳐 로봇 앤드류가 감정·창의성·사랑·죽음을 경험하며 인간으로 인정받기까지 겪는 여정을 그린다. 로빈 윌리엄스의 연기와 제임스 호너의 음악이 인간성에 대한 질문을 담아낸 감동작이다."
 date: 2023-06-06
-lastmod: 2025-10-22
+lastmod: 2026-03-15
 categories:
 - Movie
-- Science-Fiction
+- Sci-Fi
 - Drama
 - Romance
 - Touchstone-Pictures
 - Columbia-Pictures
 tags:
-- 드라마
-- 로맨스
-- 인공지능
-- Sci-Fi
-- Drama
-- Romance
-- Android
-- Family
 - Movie
 - 영화
-- Review
-- 리뷰
-- Thriller
-- 스릴러
-- Action
-- 액션
-- Animation
-- 애니메이션
+- Drama
+- 드라마
+- Sci-Fi
+- SF
+- Romance
+- 로맨스
+- Family
+- 가족
 - Comedy
 - 코미디
-- Fantasy
-- 판타지
-- Watch
-- TV-Show
 - Cinematography
 - 촬영기법
 - Soundtrack
 - 사운드트랙
-- 가족
-- Biography
-- 전기영화
 - Visual-Effects
 - 시각효과
+- Review
+- 리뷰
+- 1990s
+- Culture
+- 문화
+- Animation
 - Documentary
 - 다큐멘터리
 - Crime
@@ -56,11 +47,44 @@ tags:
 - 모험
 - Horror
 - 공포
-- 2020s
-- 2010s
-- 2000s
-- Culture
-- 문화
+- Thriller
+- 스릴러
+- Action
+- 액션
+- Fantasy
+- 판타지
+- Biography
+- 전기영화
+- Adaptation
+- Blockbuster
+- Indie
+- Chris-Columbus
+- Nicholas-Kazan
+- Robin-Williams
+- Sam-Neill
+- Embeth-Davidtz
+- Oliver-Platt
+- Wendy-Crewson
+- James-Horner
+- Touchstone-Pictures
+- Columbia-Pictures
+- Isaac-Asimov
+- AI
+- 인공지능
+- Android
+- Star-3.0
+- Technology
+- 과학
+- Science
+- History
+- 역사
+- Psychology
+- 심리학
+- Reference
+- 참고
+- Education
+- 교육
+- Watch
 image: "poster.png"
 ---
 
@@ -92,37 +116,41 @@ image: "poster.png"
 * **로빈 윌리엄스 팬**: 그의 감성 연기가 돋보이는 대표작을 찾는 이들
 * **가족 영화 애호가**: 전 연령이 함께 볼 수 있는 따뜻한 드라마를 선호하는 가족
 
-## 구조 분석
+## 구조 분석 (Act 5)
 
 ```mermaid
 flowchart LR
-    A["Act 1 (Setup): 앤드류의 도착<br/>2005년, 마틴 가족과의 만남"]
-    B["Act 2 (Inciting & Rising): 창의성의 발견<br/>감정 각성과 예술 활동"]
-    C["Act 3 (Complications): 자유를 향한 여정<br/>독립, 탐색, 갈라테아 만남"]
-    D["Act 4 (Climax): 사랑과 인정 투쟁<br/>포샤와의 사랑, 인간 인정 청원"]
-    E["Act 5 (Resolution): 존엄한 죽음<br/>인간 인정, 죽음, 포샤와의 재회"]
-    A --> A1["마틴 가족에 NDR-114 도입"]
-    A --> A2["아만다와 유대감 형성"]
-    A --> A3["목각 조각 재능 발견"]
-    B --> B1["시계공으로 활동 시작"]
-    B --> B2["표정 기능 추가"]
-    B --> B3["자유 요청과 리처드의 거절"]
-    C --> C1["리처드의 죽음과 해방"]
-    C --> C2["갈라테아와의 만남"]
-    C --> C3["루퍼트 번스와 협력"]
-    D --> D1["인간형 외모 획득"]
-    D --> D2["포샤와 사랑에 빠짐"]
-    D --> D3["의회 청원과 거절"]
-    E --> E1["혈액 시스템 도입"]
-    E --> E2["노화와 죽음 과정"]
-    E --> E3["인간 인정과 죽음"]
+    Act1["Act 1 Setup</br>앤드류의 도착</br>2005년 마틴 가족과의 만남"]
+    Act2["Act 2 Inciting and Rising</br>창의성의 발견</br>감정 각성과 예술 활동"]
+    Act3["Act 3 Complications</br>자유를 향한 여정</br>독립 탐색 갈라테아 만남"]
+    Act4["Act 4 Climax</br>사랑과 인정 투쟁</br>포샤와의 사랑 인간 인정 청원"]
+    Act5["Act 5 Resolution</br>존엄한 죽음</br>인간 인정 죽음 포샤와의 재회"]
+    Act1 --> Setup1["마틴 가족에 NDR-114 도입"]
+    Act1 --> Setup2["아만다와 유대감 형성"]
+    Act1 --> Setup3["목각 조각 재능 발견"]
+    Act2 --> Inciting1["시계공으로 활동 시작"]
+    Act2 --> Inciting2["표정 기능 추가"]
+    Act2 --> Inciting3["자유 요청과 리처드의 거절"]
+    Act3 --> Comp1["리처드의 죽음과 해방"]
+    Act3 --> Comp2["갈라테아와의 만남"]
+    Act3 --> Comp3["루퍼트 번스와 협력"]
+    Act4 --> Climax1["인간형 외모 획득"]
+    Act4 --> Climax2["포샤와 사랑에 빠짐"]
+    Act4 --> Climax3["의회 청원과 거절"]
+    Act5 --> Res1["혈액 시스템 도입"]
+    Act5 --> Res2["노화와 죽음 과정"]
+    Act5 --> Res3["인간 인정과 죽음"]
 ```
 
 ## 영화의 전체 내용 (스포일러 포함)
 
-이 영화는 로봇 앤드류가 200년에 걸쳐 진정한 인간이 되기 위해 겪는 여정을 그린다. 그는 감정, 창의성, 자유, 사랑, 그리고 마침내 죽음까지 경험하며 인간의 본질에 대한 깊은 질문을 던진다.
+아래는 이미 관람한 독자를 위한 **전체 스포일러**가 포함된 줄거리다. 로봇 앤드류가 200년에 걸쳐 감정·창의성·자유·사랑·죽음을 경험하며 인간으로 인정받기까지 겪는 여정을 Act 1~5와 장면 비트 [S01]~[S25]로 서술하며, 미드포인트와 클라이맥스는 명시한다.
+
+---
 
 ### Act 1 (Setup): 앤드류의 도착
+
+2005년 마틴 가족에 NDR-114 로봇이 도착하고, 가족과의 유대와 창의성 발견까지 1막이 구성된다.
 
 **[S01] 2005년 4월 3일 - 마틴 가문에 도착**: NDR-114 시리즈 로봇 "앤드류"가 마틴 가족의 집에 도착한다. 그는 가사와 유지보수 업무를 수행하도록 프로그래밍되었으며, 자신을 소개하면서 로봇공학의 3원칙 프레젠테이션을 보여준다. 
 
@@ -134,7 +162,11 @@ flowchart LR
 
 **[S05] 창의성 육성 결정**: 리처드는 제안을 거절하고 앤드류를 집으로 데려와 그의 창의성을 계속 발전시키고 인문학을 탐구하도록 격려한다. 앤드류는 시계공이 되어 상당한 재산을 축적한다. 리처드가 이를 관리하는데, 로봇은 현행법상 권리가 없기 때문이다.
 
+---
+
 ### Act 2 (Inciting & Rising): 창의성의 발견과 독립 요구
+
+표정 기능 추가, 자유 요청, 리처드의 조건부 독립 허락, 해변의 집 건설, 리처드 임종까지 2막을 이룬다.
 
 **[S06] 표정 기능 추가**: 세월이 흐르고, 리처드는 데니스에게 앤드류에게 감정을 표현할 수 있는 얼굴 표정 기능을 추가해달라고 요청한다.
 
@@ -144,7 +176,11 @@ flowchart LR
 
 **[S09] 2048년 - 리처드의 죽음**: 리처드가 임종 직전, 앤드류에게 수년 전 그를 추방한 것에 대해 사과한다. 리처드는 앤드류에게 자유를 가질 권리가 있었다고 말한다.
 
+---
+
 ### Act 3 (Complications): 탐색과 변화의 시작
+
+동족 찾기, 갈라테아·루퍼트 번스와의 만남, 인간형 외모 획득, 2088년 마틴 가정 재방문과 포샤와의 만남까지. 중간점에서 앤드류는 인간에 가까운 몸을 얻고 포샤와 인연을 맺는다.
 
 **[S10] 동족 찾기 여정 시작**: 리처드의 죽음 후, 앤드류는 자신과 같은 다른 NDR 로봇을 찾는 여정을 시작한다. 그는 아만다와 자주 소통하는데, 아만다는 결혼하고 이혼했으며 아들 로이드와 손녀 포샤를 두고 있다.
 
@@ -154,9 +190,13 @@ flowchart LR
 
 **[S13] 인간형 프로젝트 자금 지원**: 앤드류는 번스의 연구에 자금을 제공하고 테스트 대상이 되는 데 동의한다. 그는 곧 인간과 유사한 외모를 갖게 된다.
 
-**[S14] 2088년 - 마틴 가정 재방문**: 앤드류가 마틴 가정으로 돌아왔을 때, 아만다는 늙었고 포샤는 젊은 시절 할머니와 매우 닮았다. 포샤는 처음에는 앤드류를 조심스러워하지만 곧 그를 마틴 가족의 일원으로 받아들인다.
+**[S14] 미드포인트 - 마틴 가정 재방문과 포샤와의 만남**: 2088년 앤드류가 마틴 가정으로 돌아왔을 때, 아만다는 늙었고 포샤는 젊은 시절 할머니와 매우 닮았다. 포샤는 처음에는 앤드류를 조심스러워하지만 곧 그를 마틴 가족의 일원으로 받아들인다. 스토리의 중간 전환점에서 앤드류는 인간형 외모로 사랑의 대상 포샤와 맞닥뜨린다.
+
+---
 
 ### Act 4 (Climax): 사랑과 인간 인정을 위한 투쟁
+
+아만다의 죽음, 인공 장기·감각·필멸성의 수용, 포샤와의 사랑, 의회 청원과 거절, 혈액 시스템 도입 선택까지 최대 위기가 펼쳐진다.
 
 **[S15] 아만다의 죽음과 깨달음**: 아만다가 죽자, 앤드류는 자신이 아끼는 모든 사람이 결국 죽는다는 것을 깨닫는다.
 
@@ -170,7 +210,11 @@ flowchart LR
 
 **[S20] 마지막 수술 - 혈액 시스템**: 앤드류는 마지막 수술을 위해 루퍼트에게 돌아간다. 그의 몸을 움직이는 인공 유체를 혈액에 해당하는 것으로 바꾸는 것이다. 루퍼트는 혈액이 영원히 지속되지 않아 그의 몸이 노화되고 결국 죽게 될 것이라고 경고한다. 앤드류는 이 운명을 받아들인다.
 
+---
+
 ### Act 5 (Resolution): 존엄한 죽음과 인간으로서의 인정
+
+의회 재청원, 2205년 최종 결정의 날, 클라이맥스에서의 인간 인정, 앤드류의 죽음, 포샤의 선택까지 여파와 여운으로 마무리된다.
 
 **[S21] 수십 년 후 - 노화된 앤드류**: 수십 년이 지나고, 눈에 띄게 늙은 앤드류는 포샤의 지원을 받아 세계 의회에 다시 접근하여 과거의 결정에 항소한다. 그는 존엄하게 죽을 수 있기를 원한다.
 
@@ -180,7 +224,13 @@ flowchart LR
 
 **[S24] 앤드류의 죽음**: 앤드류는 방송 중에 죽는다. 갈라테아가 이를 확인하고, 포샤는 앤드류가 이미 답을 알고 있었다고 주장한다.
 
-**[S25] 엔딩 - 포샤의 선택**: 포샤는 갈라테아에게 자신의 생명 유지 장치를 끄라고 명령한 후, 앤드류와 손을 잡고 "곧 만나요"라고 속삭이며 죽는다.
+**[S25] 엔딩 - 포샤와의 재회**: 포샤는 갈라테아에게 자신의 생명 유지 장치를 끄라고 명령한 후, 앤드류와 손을 잡고 "곧 만나요"라고 속삭이며 죽는다.
+
+## 핵심 대사 인덱스
+
+- "One is glad to be of service." — 앤드류, [S01]; 로봇으로서의 자기소개이자 이후 200년간의 봉사 정신을 대변하는 문구.
+- "I would rather die as a man than live forever as a machine." — 앤드류, [S20] 근처; 필멸성을 선택하는 이유, 인간으로서의 존엄을 위한 결단.
+- "See you soon." — 포샤, [S25]; 앤드류와 함께 죽음을 맞이하며 하는 마지막 말. 사랑과 재회에 대한 믿음.
 
 ## 캐릭터 분석
 
@@ -321,6 +371,7 @@ flowchart LR
 
 ## 참고 문헌 및 출처
 
-- [Bicentennial Man (film) - Wikipedia](https://en.wikipedia.org/wiki/Bicentennial_Man_(film))
-- [Bicentennial Man - IMDb Plot Summary](https://www.imdb.com/title/tt0182789/plotsummary/)
-- [Bicentennial Man - Rotten Tomatoes](https://www.rottentomatoes.com/m/bicentennial_man)
+- [Bicentennial Man (film) — Wikipedia](https://en.wikipedia.org/wiki/Bicentennial_Man_(film))
+- [Bicentennial Man — IMDb](https://www.imdb.com/title/tt0182789/)
+- [Bicentennial Man — Rotten Tomatoes](https://www.rottentomatoes.com/m/bicentennial_man)
+- [Bicentennial Man — Metacritic](https://www.metacritic.com/movie/bicentennial-man)

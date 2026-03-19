@@ -1,64 +1,71 @@
 ---
 title: "[Movie] WALL-E (월-E) (2008) - 로봇의 사랑으로 인류를 구원하다"
-description: "700년 동안 혼자 지구를 정리하던 청소 로봇 월-E가 탐사 로봇 이브를 만나 사랑에 빠지고, 그 사랑이 전 인류를 지구로 되돌려 새로운 삶을 시작하게 만드는 감동적인 이야기. 환경 파괴와 소비주의를 경고하면서도 희망의 메시지를 전하는 픽사의 걸작."
+description: "700년 황폐한 지구에서 청소 로봇 월-E가 탐사 로봇 이브와 사랑에 빠지고, 그 사랑이 전 인류를 지구로 되돌리는 픽사 걸작. 환경·소비주의 경고와 희망 메시지, 대사 없이 감정을 전하는 무성영화식 시각 스토리텔링, 토마스 뉴먼 음악과 벤 버트 사운드가 어우러진 2008년 애니메이션."
 date: 2008-06-27
-lastmod: 2008-06-27
+lastmod: 2026-03-15
 categories:
 - Movie
 - Animation
-- Science Fiction
+- Sci-Fi
 - Pixar
 tags:
-- Animation
-- Sci-Fi
-- Romance
-- Space
-- Adventure
-- Family
 - Movie
 - 영화
-- Review
-- 리뷰
-- Drama
-- Thriller
-- 스릴러
-- Action
-- 액션
+- Animation
 - 애니메이션
+- Sci-Fi
+- SF
+- Romance
+- 로맨스
+- Adventure
+- 모험
+- Family
+- 가족
+- Drama
 - Comedy
 - 코미디
 - Fantasy
 - 판타지
-- 로맨스
-- REST
-- API
-- Queue
+- Review
+- 리뷰
+- Space
+- 우주
 - Cinematography
 - 촬영기법
 - Soundtrack
 - 사운드트랙
-- 가족
-- Biography
-- 전기영화
 - Visual-Effects
 - 시각효과
-- Documentary
-- 다큐멘터리
-- Crime
-- 범죄
-- Mystery
-- 미스터리
-- War
-- 전쟁
-- 모험
-- Horror
-- 공포
-- 2020s
-- 2010s
 - 2000s
 - Culture
 - 문화
 - History
+- 역사
+- Science
+- 과학
+- Technology
+- 기술
+- Andrew-Stanton
+- Pixar-Animation-Studios
+- Ben-Burtt
+- Elissa-Knight
+- Jeff-Garlin
+- Thomas-Newman
+- Walt-Disney-Pictures
+- Blockbuster
+- Environmental-Theme
+- Robot-Love-Story
+- Silent-Cinema-Style
+- Dystopia
+- 디스토피아
+- Musical
+- 뮤지컬
+- Star-5.0
+- Adaptation
+- Reference
+- 참고
+- Deep-Dive
+- Case-Study
 image: "poster.png"
 ---
 
@@ -69,22 +76,20 @@ image: "poster.png"
 ## 개요
 
 ### 영화 정보
-* **제목**: WALL·E / 월-E
+* **제목**: WALL·E (Waste Allocation Load Lifter Earth-class) / 월-E
 * **감독**: Andrew Stanton (앤드류 스탠튼)
-* **각본**: Andrew Stanton, Jim Reardon, Pete Docter (스토리)
-* **주연**: Ben Burtt (WALL·E), Elissa Knight (EVE), Jeff Garlin (Captain)
-* **음악**: Thomas Newman
+* **각본**: Andrew Stanton, Jim Reardon (각본), Pete Docter (스토리)
+* **주연**: Ben Burtt (WALL·E 목소리·사운드), Elissa Knight (EVE), Jeff Garlin (선장), Fred Willard (실사·BnL CEO)
+* **음악**: Thomas Newman (토마스 뉴먼)
+* **촬영**: Jeremy Lasky, Danielle Feinberg (시각 디렉션)
+* **편집**: Stephen Schaffer
 * **장르**: SF, Animation, Family, Adventure, Romance
 * **상영시간**: 98분 (1시간 38분)
 * **개봉일**: 2008.06.27 (미국), 2008.08.06 (한국)
 * **제작사**: Pixar Animation Studios
 * **배급사**: Walt Disney Pictures
 * **제작비**: 약 1억 8천만 달러
-* **평점**: 
-  - IMDb 8.4/10 (1.3M)
-  - Rotten Tomatoes 95% (Certified Fresh, 258 Reviews)
-  - Rotten Tomatoes Audience 90% (250,000+ Ratings)
-  - Metascore 95/100
+* **평점**: IMDb 8.4/10, Rotten Tomatoes 95% (Certified Fresh), Metascore 95/100, 골든글로브·아카데미 장편 애니메이션 작품상 수상
 
 ### 추천 대상
 * **환경 메시지에 관심 있는 관객**: 환경 파괴의 위험성을 설교적이지 않게 전달하는 메시지
@@ -97,26 +102,26 @@ image: "poster.png"
 
 ```mermaid
 flowchart LR
-    A["Act 1 (Setup): 외로운 로봇의 일상<br/>황폐한 지구, 월-E의 700년 청소 작업"]
-    B["Act 2 (Inciting & Rising): 이브와의 만남<br/>사랑의 시작, 식물 발견"]
-    C["Act 3 (Complications): 액시엄호의 진실<br/>AUTO의 방해, 인류의 타락"]
-    D["Act 4 (Climax): 지구 귀환을 위한 투쟁<br/>선장의 결단, AUTO와의 대결"]
-    E["Act 5 (Resolution): 희망의 귀환<br/>지구 복귀, 월-E의 기억 회복"]
-    A --> A1["황폐한 지구 배경 소개"]
-    A --> A2["월-E의 일상과 수집품"]
-    A --> A3["헬로 돌리를 보는 월-E"]
-    B --> B1["이브의 착륙"]
-    B --> B2["월-E와 이브의 교감"]
-    B --> B3["식물 발견과 이브의 정지"]
-    C --> C1["액시엄호 도착"]
-    C --> C2["비만한 인류 발견"]
-    C --> C3["AUTO의 지구 귀환 저지"]
-    D --> D1["선장의 각성"]
-    D --> D2["월-E의 위기"]
-    D --> D3["AUTO와의 최종 대결"]
-    E --> E1["지구 착륙"]
-    E --> E2["월-E의 기억 상실"]
-    E --> E3["이브의 키스로 회복"]
+    Act1["Act 1 Setup: 외로운 로봇의 일상</br>황폐한 지구, 월-E의 700년 청소 작업"]
+    Act2["Act 2 Inciting and Rising: 이브와의 만남</br>사랑의 시작, 식물 발견"]
+    Act3["Act 3 Complications: 액시엄호의 진실</br>AUTO 방해, 인류 타락"]
+    Act4["Act 4 Climax: 지구 귀환 투쟁</br>선장 결단, AUTO 대결"]
+    Act5["Act 5 Resolution: 희망의 귀환</br>지구 복귀, 월-E 기억 회복"]
+    Act1 --> Act1a["황폐한 지구 배경 소개"]
+    Act1 --> Act1b["월-E 일상과 수집품"]
+    Act1 --> Act1c["헬로 돌리를 보는 월-E"]
+    Act2 --> Act2a["이브 착륙"]
+    Act2 --> Act2b["월-E와 이브 교감"]
+    Act2 --> Act2c["식물 발견과 이브 정지"]
+    Act3 --> Act3a["액시엄호 도착"]
+    Act3 --> Act3b["비만한 인류 발견"]
+    Act3 --> Act3c["AUTO 지구 귀환 저지"]
+    Act4 --> Act4a["선장 각성"]
+    Act4 --> Act4b["월-E 위기"]
+    Act4 --> Act4c["AUTO와 최종 대결"]
+    Act5 --> Act5a["지구 착륙"]
+    Act5 --> Act5b["월-E 기억 상실"]
+    Act5 --> Act5c["이브 키스로 회복"]
 ```
 
 ## 영화의 전체 내용 (스포일러 포함)
@@ -396,8 +401,7 @@ flowchart LR
 
 ## 참고 문헌 및 출처
 
-- [WALL·E — Wikipedia](https://en.wikipedia.org/wiki/WALL-E)
-- [월-E/줄거리 — 나무위키](https://namu.wiki/w/%EC%9B%94-E/%EC%A4%84%EA%B1%B0%EB%A6%AC)
-- [WALL·E (2008) — IMDb](https://www.imdb.com/title/tt0910970/)
-- [WALL·E — Rotten Tomatoes](https://www.rottentomatoes.com/m/wall_e)
-- [월-E — 네이버 영화](https://movie.naver.com/movie/bi/mi/basic.naver?code=61521) 
+- [WALL-E — Wikipedia](https://en.wikipedia.org/wiki/WALL-E)
+- [WALL-E (2008) — IMDb](https://www.imdb.com/title/tt0910970/)
+- [WALL-E — Rotten Tomatoes](https://www.rottentomatoes.com/m/wall_e)
+- [월-E/줄거리 — 나무위키](https://namu.wiki/w/%EC%9B%94-E/%EC%A4%84%EA%B1%B0%EB%A6%AC) 
