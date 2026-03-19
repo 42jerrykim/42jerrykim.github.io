@@ -143,7 +143,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      # deploy-pages@v4도 아직 node20 메타데이터라 Summary 경고가 남을 수 있습니다(업스트림 node24 릴리스 대기).
+      # deploy-pages는 action.yml이 node20이라 Summary 경고가 남을 수 있음(공식 node24 메타 릴리스 대기).
+      # v4.0.5는 현재 최신 패치.
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4.0.5
