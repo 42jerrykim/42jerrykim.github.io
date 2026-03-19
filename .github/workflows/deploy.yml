@@ -45,7 +45,7 @@ jobs:
       - name: Install Dart Sass
         run: sudo snap install dart-sass
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           submodules: recursive
           fetch-depth: 0
@@ -66,9 +66,9 @@ jobs:
 
       # Node.js 설치 (pagefind CLI via npx 사용)
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
-          node-version: '18'            # 원하는 LTS 버전 선택
+          node-version: '24'            # 원하는 LTS 버전 선택
 
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
