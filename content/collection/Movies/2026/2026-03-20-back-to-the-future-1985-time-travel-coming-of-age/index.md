@@ -77,7 +77,7 @@ image: "poster.png"
 
 ![빽 투 더 퓨처 포스터](poster.png)
 
-## 등장인물 이미지
+## 등장인물 이미지 (영화 스틸컷)
 
 ![Marty McFly](characters/marty.jpg)
 ![Dr. Emmett Brown](characters/doc.jpg)

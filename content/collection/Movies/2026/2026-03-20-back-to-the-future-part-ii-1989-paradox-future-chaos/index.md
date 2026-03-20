@@ -79,13 +79,13 @@ image: "poster.png"
 
 ![빽 투 더 퓨쳐 2 포스터](poster.png)
 
-## 등장인물 이미지
+## 등장인물 이미지 (영화 스틸컷)
 
 ![Marty McFly](characters/marty.jpg)
 ![Dr. Emmett Brown](characters/doc.jpg)
 ![Biff Tannen](characters/biff.jpg)
 ![Jennifer Parker](characters/jennifer.jpg)
-![Lorraine McFly](characters/lorraine.jpg)
+![Marty vs Biff (1985A)](characters/marty-biff.jpg)
 
 ## 개요
 
