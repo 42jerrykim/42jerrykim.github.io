@@ -79,6 +79,14 @@ image: "poster.png"
 
 ![빽 투 더 퓨쳐 3 포스터](poster.png)
 
+## 등장인물 이미지
+
+![Marty McFly](characters/marty.jpg)
+![Dr. Emmett Brown](characters/doc.jpg)
+![Clara Clayton](characters/clara.jpg)
+![Buford Tannen](characters/biff.jpg)
+![Lorraine McFly](characters/lorraine.jpg)
+
 ## 개요
 
 ### 영화 정보

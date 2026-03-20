@@ -77,6 +77,14 @@ image: "poster.png"
 
 ![빽 투 더 퓨처 포스터](poster.png)
 
+## 등장인물 이미지
+
+![Marty McFly](characters/marty.jpg)
+![Dr. Emmett Brown](characters/doc.jpg)
+![Lorraine Baines McFly](characters/lorraine.jpg)
+![George McFly](characters/george.jpg)
+![Biff Tannen](characters/biff.jpg)
+
 ## 개요
 
 ### 영화 정보
