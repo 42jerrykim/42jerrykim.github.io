@@ -1,0 +1,84 @@
+---
+collection_order: 10
+draft: true
+title: "[Optimization(Series)] 00. Low-latency 최적화 시리즈 개요"
+slug: low-latency-optimization-series
+description: "C++ Low-latency 최적화 12트랙의 권장 순서·심화 진입·Tr.07 개요와 Tr.11·12 심화 연계를 안내합니다. 프로파일링·언어·컴파일·메모리·동시성·CPU·OS·극한기법·설계·회귀·I/O·네트워크까지 한 장에서 로드맵을 잡을 수 있습니다."
+tags:
+  - Performance
+  - Profiling
+  - Optimization
+  - C++
+  - Memory
+  - Compiler
+  - CPU
+  - Cache
+  - Concurrency
+  - Linux
+  - Windows
+  - OS
+  - Testing
+  - CI-CD
+  - Networking
+  - IO
+  - 성능
+  - 프로파일링
+  - 최적화
+  - 컴파일러
+  - 메모리
+  - 동시성
+  - 운영체제
+  - 코드품질
+  - Software-Architecture
+  - Latency
+  - Throughput
+  - Backend
+  - 백엔드
+  - Embedded
+  - 임베디드
+  - Code-Quality
+  - Benchmark
+  - Refactoring
+  - 리팩토링
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Implementation
+  - 구현
+  - Design-Pattern
+  - 디자인패턴
+  - Data-Structures
+  - 자료구조
+  - Time-Complexity
+  - 시간복잡도
+  - Documentation
+  - 문서화
+  - Git
+  - Deep-Dive
+  - Guide
+  - 가이드
+  - Reference
+  - 참고
+  - Technology
+  - 기술
+  - Tutorial
+  - 튜토리얼
+  - Roadmap
+  - 로드맵
+  - Curriculum
+  - 커리큘럼
+  - Low-Latency
+  - 저지연
+  - System-Design
+  - 시스템설계
+  - Production
+  - 프로덕션
+  - Monitoring
+  - 모니터링
+  - Assembly
+  - 어셈블리
+  - Microbenchmark
+  - 마이크로벤치마크
+---
+
+시리즈 전체 로드맵·트랙 간 선행 관계·심화(Tr.11·Tr.12) 진입은 **[00. Introduction: Low-latency 최적화 시리즈](/collection/optimization-00-series-overview/00-introduction/)**에서 다룹니다.

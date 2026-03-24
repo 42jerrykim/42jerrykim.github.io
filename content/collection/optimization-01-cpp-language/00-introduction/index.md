@@ -1,7 +1,7 @@
 ---
 collection_order: 0
 date: 2026-03-11
-lastmod: 2026-03-11
+lastmod: 2026-03-24
 draft: true
 title: "[Performance 01] Introduction: Low-latency C++ 언어 최적화"
 slug: getting-started-cpp-language-performance-tuning
@@ -88,23 +88,27 @@ tags:
 
 ## 커리큘럼
 
-| 챕터 | 제목 | 핵심 내용 |
-|------|------|-----------|
-| 01 | 추상화 비용 분석 | 가상 함수/RTTI/예외 처리의 정량적 비용, devirtualization |
-| 02 | STL 컨테이너 비용 | vector/map/unordered_map 비용 모델, 캐시 효율성 |
-| 03 | 문자열 최적화 | SSO, string_view, 문자열 처리 최적화 기법 |
-| 04 | 객체 수명 최적화 | Copy Elision, RVO/NRVO, 이동 의미론 심화 |
-| 05 | 임시 객체 제거 | 임시 객체 생성 진단, 제거 패턴 |
-| 06 | 템플릿/constexpr | constexpr/consteval, 컴파일 타임 계산 전략 |
-| 07 | Modern C++ 기능 | C++17/20/23 성능 관련 기능 (ranges, concepts, modules) |
-| 08 | 코루틴 성능 | C++20 코루틴의 성능 특성과 오버헤드 |
-| 09 | 예외 처리 심화 | zero-cost exception의 실제, noexcept 전략 |
-| 10 | 인라이닝 유도 기법 | 코드 레벨 인라이닝 유도 기법, inline/forceinline 활용 (진단: Course 02) |
-| 11 | std::variant/optional/expected | 타입 안전 유니온과 옵셔널 타입의 성능 특성, 오버헤드 분석 |
-| 12 | std::span과 뷰 패턴 | 안전한 뷰 패턴, span/string_view 활용과 성능 이점 |
-| 13 | 람다 표현식 성능 | 캡처 비용 (by-value vs by-reference), 클로저 최적화 |
-| 14 | Small Buffer Optimization | SBO 패턴 상세, std::function/std::any 내부 구조 |
-| 15 | Parameter Passing 전략 | by value vs const ref vs rvalue ref 정량 분석 |
+**난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치). **Tr.NN**은 `optimization-NN-*` 트랙을 가리킵니다. **기초**로 표시된 행 중 번호가 뒤에 있는 장(예: 챕터 16)은 표 순서와 달리 **챕터 01 이전에 선행 독해**해도 됩니다.
+
+| 챕터 | 제목 | 난이도 | 핵심 내용 |
+|------|------|--------|-----------|
+| 01 | 추상화 비용 분석 | 중급 | 가상 함수/RTTI/예외 처리의 정량적 비용, devirtualization |
+| 02 | STL 컨테이너 비용 | 중급 | vector/map/unordered_map 비용 모델, 캐시 효율성 |
+| 03 | 문자열 최적화 | 중급 | SSO, string_view, 문자열 처리 최적화 기법 |
+| 04 | 객체 수명 최적화 | 중급 | Copy Elision, RVO/NRVO, 이동 의미론 심화 |
+| 05 | 임시 객체 제거 | 중급 | 임시 객체 생성 진단, 제거 패턴 |
+| 06 | 템플릿/constexpr | 중급 | constexpr/consteval, 컴파일 타임 계산 전략 |
+| 07 | Modern C++ 기능 | 중급 | C++17/20/23 성능 관련 기능 (ranges, concepts, modules) |
+| 08 | 코루틴 성능 | 심화 | C++20 코루틴의 성능 특성과 오버헤드 |
+| 09 | 예외 처리 심화 | 심화 | zero-cost exception의 실제, noexcept 전략 |
+| 10 | 인라이닝 유도 기법 | 심화 | 코드 레벨 인라이닝 유도, inline/forceinline (컴파일러 진단·리포트는 Tr.02) |
+| 11 | std::variant/optional/expected | 중급 | 타입 안전 유니온과 옵셔널 타입의 성능 특성, 오버헤드 분석 |
+| 12 | std::span과 뷰 패턴 | 중급 | 안전한 뷰 패턴, span/string_view 활용과 성능 이점 |
+| 13 | 람다 표현식 성능 | 중급 | 캡처 비용 (by-value vs by-reference), 클로저 최적화 |
+| 14 | Small Buffer Optimization | 심화 | SBO 패턴 상세, std::function/std::any 내부 구조 |
+| 15 | Parameter Passing 전략 | 중급 | by value vs const ref vs rvalue ref 정량 분석 |
+| 16 | C++ 실행 모델·µs 최적화 어휘 | 기초 | 프로세스 메모리·스택/힙·핫패스·추상화 비용 용어 정리 (선행: 챕터 01 전에 읽기 권장) |
+| 17 | ABI·링크 경계와 극한 튜닝 | 전문 | ODR·ABI·가시성·심볼 경계와 성능·도구 한계 (Tr.02·Tr.08과 연계) |
 
 각 챕터는 **정의·원칙·예시(코드 또는 다이어그램)·비교·마무리(요약·평가 기준·판단 기준·비판적 시각)** 순서로 구성되어 있으며, 필요 시 **역사/배경** 절과 **인용**(blockquote + 출처)을 포함합니다. 게시 전에는 ai-educational-content-quality 규칙의 품질 체크리스트로 본문 구성·전문가 양성 요소·길이·깊이·시각 요소를 점검합니다.
 
@@ -256,4 +260,8 @@ flowchart LR
 첫 번째 주제인 **추상화 비용 분석**으로 들어갑니다. 가상 함수, RTTI, 예외 처리의 정량적 비용을 마이크로벤치마크로 측정하고, devirtualization·인라이닝 유도로 비용을 줄이는 방법을 다룹니다.
 
 → [추상화 비용 분석](/collection/optimization-01-cpp-language/01-abstraction-cost/) (챕터 01)
+
+## 시리즈 전체 로드맵
+
+12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**에서 정리합니다.
 
