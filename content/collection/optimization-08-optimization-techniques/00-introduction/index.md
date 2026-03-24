@@ -56,6 +56,7 @@ tags:
 | 13 | SIMD 라이브러리 | 중급 | Highway, xsimd, Eigen 등 포터블 SIMD 라이브러리 활용 |
 | 14 | Cache-oblivious 알고리즘 | 전문 | 캐시 크기 독립적인 알고리즘 설계 기법 |
 | 15 | GPU Offloading 기초 | 심화 | CUDA/OpenCL/SYCL 개념과 CPU-GPU 협업 판단 기준 |
+| 16 | AI 추론 최적화 | 전문 | NPU/Tensor Core 활용, 혼합 정밀도 및 양자화 기반 지연시간 최적화 |
 
 ## 측정과 검증 (이 트랙 기준)
 
@@ -80,7 +81,7 @@ tags:
 
 **Phase B — 메모리·제어 흐름 (챕터 05~06, 08~09)** prefetch·branchless·LUT·비트 연산은 캐시·분기 이벤트(Tr.06) 해석이 있을 때 효과가 큽니다.
 
-**Phase C — 극한·이질 디바이스 (챕터 07, 10, 14~15)** 핸드튜닝 asm, 핫패스 사례, cache-oblivious, GPU는 **전문~심화**입니다. Tr.09·Tr.10과 함께 “되돌리기 비용”을 문서화하세요.
+**Phase C — 극한·이질 디바이스 (챕터 07, 10, 14~16)** 핸드튜닝 asm, 핫패스 사례, cache-oblivious, GPU/NPU 추론 최적화는 **전문~심화**입니다. Tr.09·Tr.10과 함께 “되돌리기 비용”을 문서화하세요.
 
 ## 이 트랙을 마친 후 달성할 목표
 
