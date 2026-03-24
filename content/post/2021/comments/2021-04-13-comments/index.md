@@ -3,7 +3,7 @@ title: "[Tutorial] GitHub Pages에 Utterances 댓글 설치하기"
 description: "GitHub Pages·Hugo 등 정적 블로그에 Utterances 댓글을 붙이는 방법을 단계별로 안내합니다. Disqus 대비 장단점 비교, 저장소·앱 설정, 스크립트 삽입, 언제 쓰고 피할지 판단 기준까지 정리해 깔끔하게 댓글을 운영하고 싶은 분에게 도움이 됩니다."
 date: "2021-04-13T00:00:00Z"
 lastmod: "2026-03-16"
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 categories:
   - Utterances
 tags:

@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "서버리스 모놀리스는 단일 배포 단위와 서버리스의 자동 확장·종량제를 결합한 아키텍처다. 개념, 등장 배경, 모놀리스·마이크로서비스와의 비교표, 적용·회피 시기, 실전 예시, 분해 전략을 다루며 소규모 팀·초기 제품에 적합함을 설명하고, 검증된 참고 문헌을 제시한다."
 categories: Serverless
 date: "2023-06-07T00:00:00Z"

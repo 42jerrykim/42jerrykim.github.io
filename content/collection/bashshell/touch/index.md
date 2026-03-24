@@ -68,7 +68,7 @@ tags:
 - atime
 - 빈파일
 - timestamp
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `touch`는 **파일의 접근·수정 시간**을 갱신하거나, 파일이 없으면 **빈 파일**을 만든다. 빈 플래그 파일 생성·빌드 의존성 갱신에 자주 쓴다.

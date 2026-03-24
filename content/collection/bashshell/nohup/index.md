@@ -71,7 +71,7 @@ tags:
 - nohup.out
 - 장시간실행
 - 배치
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `nohup`(no hang up)은 **SIGHUP**을 무시하게 해, 터미널이 끊겨도 프로세스가 종료되지 않도록 한다. 장시간 작업·배치를 백그라운드로 돌릴 때 쓴다.

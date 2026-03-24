@@ -54,7 +54,7 @@ tags:
 - Comparison
 - 비교
 - Career
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 
 
 ---

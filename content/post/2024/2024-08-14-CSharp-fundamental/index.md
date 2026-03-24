@@ -1,6 +1,6 @@
 ---
 draft: false
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C# 프로그램의 일반적인 구조, Main()과 명령줄 인수, 비동기 Main, 최상위 문(Top-level statements)을 정리하고, Hello World·계승 계산·비동기 HTTP 예제로 실습할 수 있도록 구성했다. Microsoft Learn 공식 문서를 참고했으며, 초급·중급 개발자가 진입점과 프로그램 구조를 한 번에 파악하기 좋다."
 categories: CSharp
 date: "2024-08-14T00:00:00Z"

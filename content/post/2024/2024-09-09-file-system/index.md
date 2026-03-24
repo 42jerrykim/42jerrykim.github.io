@@ -1,6 +1,6 @@
 ---
 draft: false
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "리눅스 주요 파일 시스템(ext4, XFS, Btrfs, ZFS)의 구조·FHS·inode·블록·저널링·마운트·권한·모니터링·백업·복구 등 실무 핵심 개념과 관리 방법을 정리한 가이드. DevOps·시스템 관리자에게 필수인 참고 문서."
 categories: Linux
 date: "2024-09-09T00:00:00Z"

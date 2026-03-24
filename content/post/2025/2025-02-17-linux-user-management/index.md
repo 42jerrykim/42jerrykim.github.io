@@ -95,6 +95,7 @@ tags:
   - Career
   - 커리어
 description: "리눅스에서 사용자·그룹 계정 생성·수정·삭제, /etc/passwd·shadow·group 구조, useradd·usermod·passwd·sudo·PAM 등 핵심 명령과 보안 설정을 실무 예제와 함께 정리한 가이드입니다. 서버·데스크톱 관리자와 DevOps 실무자에게 유용합니다."
+image: "wordcloud.png"
 ---
 
 ## 개요

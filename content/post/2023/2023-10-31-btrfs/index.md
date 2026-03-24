@@ -116,6 +116,7 @@ tags:
   - 에러처리
   - Beginner
   - Advanced
+image: "wordcloud.png"
 ---
 
 ## 개요

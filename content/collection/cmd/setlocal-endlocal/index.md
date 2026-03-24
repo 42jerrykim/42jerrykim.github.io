@@ -5,7 +5,7 @@ description: "setlocal과 endlocal은 Windows CMD 배치 파일에서 환경 변
 date: 2025-03-15
 lastmod: 2025-03-15
 categories: CMD
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 tags:
 - Windows
 - 윈도우

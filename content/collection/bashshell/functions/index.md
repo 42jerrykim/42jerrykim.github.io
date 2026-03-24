@@ -69,7 +69,7 @@ tags:
 - 인자
 - 스크립트
 - Script
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 Bash **함수**는 반복되는 로직을 묶어서 이름으로 호출할 수 있게 한다. **인자**는 위치 매개변수(`$1`, `$2`, …), **반환**은 exit 상태(0~255)로 전달한다.

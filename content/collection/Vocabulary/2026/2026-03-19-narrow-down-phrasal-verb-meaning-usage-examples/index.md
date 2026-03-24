@@ -3,7 +3,7 @@ title: "[Vocabulary] narrow down의 의미와 쓰임 - 구동사 핵심 정리"
 description: "영어 구동사 'narrow down'의 핵심 뜻(가능성을 줄이다, 범위를 좁히다, 특정 짓다)을 정리한다. 의사결정·검색·조사·비즈니스·일상 맥락에서 자주 쓰이는 콜로케이션과 EN/KR 예문 50개로 실제 용법을 익힌다."
 date: 2026-03-19
 lastmod: 2026-03-19
-draft: true
+draft: false
 categories:
   - English
   - Vocabulary

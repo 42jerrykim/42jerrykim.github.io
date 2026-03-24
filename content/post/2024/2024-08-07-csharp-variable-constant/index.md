@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C# 변수(로컬·필드·정적)와 상수(const·readonly)의 정의, 생명주기, 기본값 규칙을 설명하고, 로컬 변수는 반드시 초기화해야 하며 필드는 타입 기본값이 자동 할당됩니다. const vs readonly 비교, var·ref·참조 반환, 실무 판단 기준과 학습 목표를 요약합니다."
 categories: CSharp
 date: "2024-08-07T00:00:00Z"

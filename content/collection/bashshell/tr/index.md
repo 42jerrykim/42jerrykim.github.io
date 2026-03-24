@@ -68,7 +68,7 @@ tags:
 - translate
 - 삭제
 - 대소문자
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `tr`(translate)는 **표준 입력**의 문자를 다른 문자로 바꾸거나 **삭제**한다. 한 줄씩만 처리하며 파일 인자를 받지 않는다.

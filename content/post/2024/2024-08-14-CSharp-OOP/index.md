@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C# 객체지향 프로그래밍의 네 가지 핵심 원칙(추상화, 캡슐화, 상속, 다형성)과 클래스·인터페이스·접근 제한자·예외 처리, BankAccount 계층 실습 예제(SavingsAccount, CreditAccount, GiftCardAccount)를 통해 실무 활용법을 정리한 글입니다. FAQ와 .NET·Unity·Java·Python 비교, 참고 문헌 포함."
 categories: CSharp
 date: "2024-08-14T00:00:00Z"

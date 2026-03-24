@@ -5,7 +5,7 @@ description: "driverquery 명령어는 Windows CMD에서 설치된 장치 드라
 date: 2025-03-15
 lastmod: 2025-03-15
 categories: CMD
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 tags:
 - Windows
 - 윈도우

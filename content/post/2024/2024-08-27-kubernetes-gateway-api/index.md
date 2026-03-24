@@ -87,6 +87,7 @@ tags:
   - Graph
   - 그래프
 title: "[Kubernetes] Gateway API로 멀티클러스터 게이트웨이 설정하기"
+image: "wordcloud.png"
 ---
 
 Kubernetes Gateway API는 Kubernetes Network SIG에서 제안한 **Ingress의 진화형**으로, 클러스터 외부 트래픽을 표준화하고 멀티클러스터·멀티클라우드 환경에서의 라우팅을 단일 API로 다룰 수 있게 한다. 이 글에서는 Gateway API 사양을 활용해 EKS(주 클러스터)와 GKE(원격 클러스터)에서 Istio를 사용한 멀티클러스터 게이트웨이 구성을 단계별로 소개하고, 보안·트래픽 관리·실무 예제까지 다룬다.

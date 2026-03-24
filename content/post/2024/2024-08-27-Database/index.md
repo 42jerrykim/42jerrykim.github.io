@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "API 개발 시 자주 발생하는 데이터베이스 성능 실수 5가지(정적 데이터 미캐싱, 상태 페이지 과다 쿼리, 인증 시 DB 과다 조회, ORM N+1, 빠른 쿼리 무시)와 설계·보안·인덱스·유지보수 대응 방법, C# 캐시·인덱스·쿼리 최적화 예제와 FAQ를 정리합니다."
 categories: Database
 date: "2024-08-27T00:00:00Z"

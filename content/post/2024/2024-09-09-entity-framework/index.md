@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "Entity Framework의 핵심 원리와 DbContext·DbSet·Change Tracker 사용법, Code First·마이그레이션·LINQ 쿼리, Find vs First·트랜잭션·성능 최적화·실무 팁을 한글로 정리한 통합 가이드. .NET 및 ASP.NET Core 개발자 참고. 42jerrykim.github.io"
 categories: EntityFramework
 date: "2024-09-09T00:00:00Z"

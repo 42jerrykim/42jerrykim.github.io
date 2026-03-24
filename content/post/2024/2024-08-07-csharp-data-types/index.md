@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C# 데이터 타입의 값 형식과 참조 형식 차이, .NET CTS 매핑, 리터럴 접미사(L/F/M/D), Nullable 타입, 정수·실수 형식 범위와 MinValue/MaxValue 활용을 예제와 함께 정리한 참고 문서입니다."
 categories: CSharp
 date: "2024-08-07T00:00:00Z"

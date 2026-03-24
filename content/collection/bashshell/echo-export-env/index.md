@@ -69,7 +69,7 @@ tags:
 - environment
 - variable
 - PATH
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `echo`는 **문자열을 표준 출력**하고, `export`는 **변수를 환경 변수**로 만들어 자식 프로세스에 전달하며, `env`는 **환경을 보거나** 그 환경으로 **명령을 실행**한다.

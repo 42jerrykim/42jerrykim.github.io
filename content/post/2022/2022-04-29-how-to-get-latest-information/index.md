@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "IT·개발 분야 최신 정보를 체계적으로 수집하는 방법을 다룹니다. Google Alerts, Blogtrottr, 기업 기술 블로그, GeekNews·DZone 등 이메일·RSS 기반 구독 전략과 서비스 종료(EOS) 대응까지, 개발자·엔지니어가 한곳에서 소식을 관리할 수 있는 실무 가이드입니다."
 categories:
   - GoogleAlerts

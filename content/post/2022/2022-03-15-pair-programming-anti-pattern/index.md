@@ -95,6 +95,7 @@ tags:
   - Problem-Solving
   - 문제해결
 title: "[Programming] 페어 프로그래밍 안티 패턴과 개선 방법"
+image: "wordcloud.png"
 ---
 
 ## 개요

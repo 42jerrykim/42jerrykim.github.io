@@ -4,7 +4,7 @@ description: "추상 팩토리 패턴은 구체 클래스를 노출하지 않고
 categories: DesignPattern
 date: "2023-09-22T00:00:00Z"
 lastmod: "2026-03-17"
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/teaser.jpg
 tags:

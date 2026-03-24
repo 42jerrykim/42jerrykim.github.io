@@ -3,7 +3,7 @@ title: "[Vocabulary] spend의 의미와 쓰임 - 동사 핵심 정리"
 description: "영어 동사 'spend'의 핵심 뜻(돈을 쓰다, 시간을 보내다, 노력을 쓰다)을 정리한다. 일상·비즈니스·학습 맥락에서 자주 쓰이는 콜로케이션과 EN/KR 예문 50개로 실제 용법을 익힌다."
 date: 2026-03-19
 lastmod: 2026-03-19
-draft: true
+draft: false
 categories:
   - English
   - Vocabulary

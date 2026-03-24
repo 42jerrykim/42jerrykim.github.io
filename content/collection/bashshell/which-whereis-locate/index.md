@@ -68,7 +68,7 @@ tags:
 - PATH
 - 실행파일
 - 검색
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `which`는 **PATH 기준 실행 파일** 경로를, `whereis`는 **바이너리·매뉴얼·소스** 위치를, `locate`는 **미리 만든 DB**로 파일명을 빠르게 검색한다.

@@ -67,7 +67,7 @@ tags:
 - 압축
 - Compression
 - .gz
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `gzip`은 **단일 파일**을 .gz로 압축하고, `gunzip`(또는 `gzip -d`)은 압축을 푼다. 원본은 기본적으로 제거된다.

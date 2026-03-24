@@ -5,7 +5,7 @@ description: "ftype 명령어는 Windows CMD에서 파일 형식(예: txtfile)�
 date: 2025-03-15
 lastmod: 2025-03-15
 categories: CMD
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 tags:
 - Windows
 - 윈도우

@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C/C++에서 dlopen, dlsym, dlclose, dlerror로 Linux/Unix 공유 라이브러리(.so)를 런타임에 동적 로딩·해제하는 방법, gcc -ldl 링크 옵션, RTLD_NOW/LAZY 플래그, dlsym 함수 포인터 조회 패턴과 에러 처리, 멀티스레드·의존성 함정 및 플러그인 활용 팁을 실무 관점에서 정리하고, man 페이지 참고 문헌을 제시합니다."
 date: "2023-02-13T00:00:00Z"
 lastmod: "2026-03-17T00:00:00Z"

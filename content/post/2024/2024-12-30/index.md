@@ -7,7 +7,7 @@ categories:
 tags:
 - Implementation
 - tutorial
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 date: 2024-12-30
 draft: true
 ---

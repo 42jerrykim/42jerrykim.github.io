@@ -83,7 +83,7 @@ tags:
 - Case-Study
 - Deep-Dive
 - 실습
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 draft: false
 ---
 

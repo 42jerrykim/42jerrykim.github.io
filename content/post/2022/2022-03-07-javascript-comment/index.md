@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "자바스크립트 한 줄 주석(//), 블록 주석(/* */), Hashbang(#!) 문법과 HTML 주석 혼동 방지, 소스 노출 주의사항, Clean Code·JSDoc 관점까지 초보부터 실무자가 참고할 수 있도록 정리한 JavaScript 주석 가이드입니다. MDN·ECMAScript 명세·JSDoc 공식 문서를 참고하여 작성하였으며, 주석 파싱 흐름 다이어그램과 베스트 프랙티스를 포함한다."
 categories:
 - Javascript

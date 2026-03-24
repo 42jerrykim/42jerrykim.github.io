@@ -93,7 +93,7 @@ tags:
   - 자동화
   - Monitoring
   - 모니터링
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 draft: false
 ---
 

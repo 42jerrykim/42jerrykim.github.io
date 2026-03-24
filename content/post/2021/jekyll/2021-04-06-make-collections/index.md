@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 title: "[Jekyll] 모아 볼 수 있는 콜렉션 만들기"
 description: "Jekyll 블로그에서 Collections 기능으로 게시글을 카테고리별로 분류·관리하는 방법을 다룹니다. _config.yml의 defaults와 collections 설정, _data/navigation.yml 링크 추가, collection-archive 레이아웃 적용, 컬렉션 폴더 구조와 문서 작성 요건, 실전 주의사항까지 150자 분량으로 정리했습니다."
 categories:

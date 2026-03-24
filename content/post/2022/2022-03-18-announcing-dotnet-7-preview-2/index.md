@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: ".NET 7 Preview 2의 RegEx 소스 생성기, NativeAOT 메인라인 전환, dotnet new CLI 개선을 중심으로 새로 도입된 기능과 성능 이점을 정리하고, C# 개발자가 적용할 때 참고할 수 있는 사용법과 참고 문헌을 제시합니다. 컴파일 타임 정규식과 네이티브 AOT 배포 검토 시 참고용."
 date: "2022-03-18T00:00:00Z"
 lastmod: "2026-03-16T00:00:00Z"

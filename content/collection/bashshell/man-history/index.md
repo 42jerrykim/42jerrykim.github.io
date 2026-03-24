@@ -69,7 +69,7 @@ tags:
 - 히스토리
 - HISTFILE
 - 문서
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `man`은 **매뉴얼 페이지**를 보여주고, `history`는 **셸 명령 히스토리**를 출력·검색·재사용할 때 쓴다.

@@ -5,7 +5,7 @@ description: "prompt 명령어는 Windows CMD에서 명령 프롬프트(예: C:\
 date: 2025-03-15
 lastmod: 2025-03-15
 categories: CMD
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 tags:
 - Windows
 - 윈도우

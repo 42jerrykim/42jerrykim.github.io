@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C#에서 루프 안에서 string을 반복 연결할 때 발생하는 메모리·성능 문제를 설명하고, StringBuilder 사용법·용량 지정·주의사항을 실전 예제와 다이어그램으로 정리했다. string 불변성과 GC 부담, 권장/비권장 패턴 비교표, 초기 capacity 지정 요령과 참고 문헌 3편을 포함한다."
 date: "2022-03-18T00:00:00Z"
 lastmod: "2026-03-16T00:00:00Z"

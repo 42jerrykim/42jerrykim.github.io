@@ -68,7 +68,7 @@ tags:
 - 컬럼
 - 텍스트처리
 - delimiter
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `cut`은 **필드(-f)** 또는 **문자 위치(-c)**로 줄을 잘라 출력한다. 구분자로 나뉜 로그·CSV에서 특정 열만 뽑을 때 쓴다.

@@ -74,7 +74,7 @@ tags:
 - 네트워킹
 - rsync
 - sftp
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `scp`(secure copy)는 **SSH**를 사용해 **로컬↔원격** 간에 파일·디렉터리를 복사한다. 인증·포트는 ssh와 동일하게 쓰인다.

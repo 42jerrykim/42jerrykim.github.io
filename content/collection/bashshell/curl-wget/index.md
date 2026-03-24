@@ -69,7 +69,7 @@ tags:
 - download
 - API
 - Networking
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `curl`과 `wget`은 **URL**에서 데이터를 가져오거나 **파일을 다운로드**할 때 쓴다. curl은 다양한 프로토콜·헤더 조작에, wget은 재귀·미러링에 강하다.

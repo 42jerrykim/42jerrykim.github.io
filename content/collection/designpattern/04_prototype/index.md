@@ -5,7 +5,7 @@ description: "Prototype 패턴은 기존 객체를 복제해 새 인스턴스를
 date: 2022-01-01
 last_modified_at: 2022-08-22
 categories: Design Pattern
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-22-prototype.png
 tags:

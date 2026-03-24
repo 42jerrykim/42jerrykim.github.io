@@ -3,7 +3,7 @@ title: "[Bash Shell] 명령어 반복 실행 (watch, while)"
 description: "리눅스·유닉스에서 명령어를 주기적으로 실행하는 watch 명령어와 while 루프의 사용법, 주요 옵션(-n, -d, -e 등), 실무 예제와 종료 방법을 정리합니다. 시스템 모니터링·디렉터리 감시·네트워크 확인에 바로 활용할 수 있습니다."
 date: "2022-06-27T00:00:00Z"
 lastmod: "2026-03-16T00:00:00Z"
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 categories:
 - Shell
 tags:

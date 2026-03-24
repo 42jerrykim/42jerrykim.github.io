@@ -93,6 +93,7 @@ tags:
   - 프라이버시
   - Clean-Code
   - 클린코드
+image: "wordcloud.png"
 ---
 
 ## 개요

@@ -70,7 +70,7 @@ tags:
 - 삭제
 - recursive
 - parent
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `mkdir`은 **디렉터리**를 만들고, `rmdir`은 **빈 디렉터리**만 제거한다. 비어 있지 않은 디렉터리 삭제는 `rm -r`을 사용한다.

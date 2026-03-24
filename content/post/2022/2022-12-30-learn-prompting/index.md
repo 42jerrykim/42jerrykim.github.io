@@ -243,6 +243,7 @@ tags:
   - Functional-Programming
   - 함수형프로그래밍
   - Type-Safety
+image: "wordcloud.png"
 ---
 
 [Learn Prompting](https://learnprompting.org/)은 **LLM(Large Language Model)·생성형 AI와 효과적으로 소통하기 위한 프롬프트 엔지니어링(PE) 무료 오픈소스 가이드**다. ChatGPT 이전인 2022년 10월에 첫 버전이 공개된 이래, Google·Microsoft·Wikipedia·O'REILLY·Salesforce 등에서 인용되며 수백만 명이 이용하고 있다. 본 글에서는 Learn Prompting의 개요, 가이드 구조, 모듈별 학습 내용, 활용 팁, 장단점과 참고 문헌을 정리한다.

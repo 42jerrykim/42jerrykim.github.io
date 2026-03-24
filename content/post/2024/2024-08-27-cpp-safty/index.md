@@ -112,6 +112,7 @@ tags:
   - Configuration
   - 설정
 title: "[C++] C++ 안전성과 보안: 메모리·타입·경계 안전성과 실무 대응"
+image: "wordcloud.png"
 ---
 
 C++는 성능과 유연성이 뛰어난 대신, 메모리·타입·경계·초기화 등에서 안전성 문제를 안고 있다. Herb Sutter의 「Safety in Context」와 Rico Mariani의 비판적 견해를 바탕으로, C++의 현재 취약점·개선 방안·Rust와의 비교·실무 도구 활용까지 체계적으로 정리한다.

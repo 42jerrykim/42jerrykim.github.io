@@ -1,6 +1,6 @@
 ---
 draft: false
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "CRDT(Conflict-Free Replicated Data Types)는 분산 시스템에서 충돌 없이 데이터를 자동 병합하는 자료구조다. 상태 기반·연산 기반 모델, 교환·결합·항등 법칙, LWW·G-Counter·OR-Set 등 핵심 타입과 구현 예제, Google Docs·Figma·Redis·Yjs 등 활용 사례와 성능 최적화·OT와의 비교까지 정리한다."
 categories: Technology
 date: "2024-08-29T00:00:00Z"

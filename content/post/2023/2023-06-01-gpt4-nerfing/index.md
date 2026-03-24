@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "2023년 해커뉴스에서 촉발된 GPT-4 품질 저하(너핑) 논란을 소개하고, 비조정형 AI 요구·조정(alignment) 필요성·API 예측 불가능성·모델 규모 이슈를 정리한 뒤, AI 윤리와 활용에 대한 관점을 제시합니다. Hinton 인터뷰·오픈소스 AI 청원 등 참고 문헌을 인용합니다."
 categories: ChatGPT
 date: "2023-06-01T00:00:00Z"

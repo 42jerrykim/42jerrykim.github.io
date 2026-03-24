@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "함수형 프로그래밍의 정의·역사, 순수 함수·고차 함수·불변성 등 핵심 원칙과 Python 이터레이터·제너레이터·functools·itertools 활용, 커링·부분 적용, 장단점·적용·회피 판단 기준, 학습 성과 목표와 참고 문헌을 포함한 실무 적용 가이드 요약."
 categories: Python
 date: "2024-08-26T00:00:00Z"

@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "강화 학습(RL)의 핵심 개념, MDP·에이전트-환경 루프, Q-Learning·SARSA·DQN·DDPG 등 알고리즘, 탐색-착취 트레이드오프, 게임·로보틱스·자율주행·추천 시스템 등 실전 응용과 Sutton & Barto·OpenAI Gym 등 학습 리소스를 한글로 정리한 포괄 가이드. 입문자·개발자용 참고용으로 활용할 수 있다."
 categories: Reinforcement Learning
 date: "2023-07-17T00:00:00Z"

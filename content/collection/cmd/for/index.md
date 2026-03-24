@@ -5,7 +5,7 @@ description: "for 명령어는 Windows CMD와 배치 파일에서 파일 집합,
 date: 2025-03-15
 lastmod: 2025-03-15
 categories: CMD
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 tags:
 - Windows
 - 윈도우

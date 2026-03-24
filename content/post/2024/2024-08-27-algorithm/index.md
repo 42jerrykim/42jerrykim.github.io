@@ -121,6 +121,7 @@ tags:
   - Las-Vegas
   - Linear-Programming
   - Genetic-Algorithm
+image: "wordcloud.png"
 ---
 
 알고리즘은 문제를 해결하기 위한 **유한한 절차와 규칙**을 말하며, 입력을 받아 원하는 출력을 내는 명확한 단계로 정의된다. 주제·설계 기법·확률 개입 여부 등 여러 기준으로 분류할 수 있으며, 적절한 알고리즘 선택은 소프트웨어 성능과 직결된다.

@@ -93,7 +93,7 @@ tags:
 - 터미널
 - Workflow
 - 워크플로우
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 CR(Carriage Return)과 LF(Line Feed)는 텍스트에서 줄바꿈을 나타내는 제어 문자다. CR은 커서를 현재 줄의 맨 앞으로 보내고, LF는 한 줄 아래로 내린다. 타자기·텔레타이프 시대의 유산으로, Windows는 CRLF(`\r\n`), Unix·Linux·현대 macOS는 LF(`\n`)를 기본으로 쓴다. 이 차이는 크로스 플랫폼 개발·협업 시 호환성 문제와 예기치 않은 오류를 일으킬 수 있으므로, 정의·역사·대응 방법을 정리해 둔다.

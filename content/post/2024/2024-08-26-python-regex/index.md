@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "Python re 모듈로 정규 표현식(Regex)을 기초부터 고급까지 다룹니다. 메타 문자·특수 시퀀스·match/search/findall/sub, 그룹·전방탐색, 그리디/비그리디·성능 최적화, Raw String·가독성 등 실전 활용과 주의사를 예제와 함께 설명하며, 데이터 검증·텍스트 검색·웹 스크래핑 활용까지 소개합니다."
 categories:
   - Regex

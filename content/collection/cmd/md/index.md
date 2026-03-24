@@ -5,7 +5,7 @@ description: "md(MKDIR)는 Windows CMD에서 새 디렉터리(폴더)를 만들 
 date: 2025-03-15
 lastmod: 2025-03-15
 categories: CMD
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 tags:
 - Windows
 - 윈도우

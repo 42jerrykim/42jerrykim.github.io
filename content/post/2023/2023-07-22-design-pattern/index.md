@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "디자인 패턴의 정의와 생성·구조·행동 패턴 분류, 싱글톤·데코레이터·커맨드 패턴의 Python 예제, FAQ와 참고 문헌을 담은 실무 중심 정리입니다. GoF 분류와 OOP·DI·TDD 등 관련 기술, 실용적 활용과 과용 시 주의점을 함께 다룹니다. 대규모·소규모 프로젝트 모두 적용 관점을 제시합니다."
 date: "2023-07-22T00:00:00Z"
 lastmod: "2026-03-17T00:00:00Z"

@@ -68,7 +68,7 @@ tags:
 - find
 - batch
 - Pipeline
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `xargs`는 **표준 입력**으로 받은 줄·항목을 **다른 명령의 인자**로 넘긴다. `find` 결과를 한 번에 처리할 때 자주 쓴다.

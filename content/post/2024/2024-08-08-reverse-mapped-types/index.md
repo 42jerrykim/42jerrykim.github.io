@@ -1,6 +1,6 @@
 ---
 draft: false
-image: /assets/images/2024/2024-08-08-reverse-mapped-types.png
+image: "wordcloud.png"
 teaser: /assets/images/2024/2024-08-08-reverse-mapped-types.png
 description: "TypeScript의 Reverse Mapped Types(리버스 맵핑 타입)는 매핑 타입을 역으로 실행해 인자 값으로부터 타입 매개변수를 추론하는 기능이다. infer, Box/Unboxify·unwrap 예제, 상태 머신·이벤트 바인딩 등 실전 활용과 요구사항·한계·FAQ, 공식 문서 포함 참고 문헌 3편까지 개념부터 정리했다."
 categories: typescript

@@ -69,7 +69,7 @@ tags:
 - 치환
 - Regex
 - 텍스트처리
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `sed`(stream editor)는 **입력을 줄 단위**로 읽어 지정한 편집 명령을 적용한 뒤 출력한다. 치환·삭제·출력이 가장 많이 쓰인다.

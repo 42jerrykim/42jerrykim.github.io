@@ -6,7 +6,7 @@ categories:
   - Database
 date: "2024-09-01T00:00:00Z"
 lastmod: "2026-03-17T00:00:00Z"
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-09-01-aicd.png
 tags:

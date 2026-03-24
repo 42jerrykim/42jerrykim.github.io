@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C#의 async/await 키워드와 TAP(Task 기반 비동기 패턴) 개요, Task·Task<T> 사용법, I/O·CPU 바인딩 구분, WhenAll·WhenAny·LINQ 활용, 비동기 메서드 작성 규칙과 예외 처리, ValueTask·ConfigureAwait 등 실무 시 유의사항과 참고 자료를 요약합니다."
 categories: CSharp
 date: "2024-08-07T00:00:00Z"

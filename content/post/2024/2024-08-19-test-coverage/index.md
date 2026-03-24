@@ -1,6 +1,6 @@
 ---
 draft: false
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "테스트 커버리지는 소프트웨어 품질과 신뢰성을 평가하는 핵심 지표다. 구문·브랜치·조건·경로·MC/DC 등 다양한 커버리지 기준, 정책 구현, 기술·기법·모범 사례를 정리하고, 100% 목표의 함정과 참고 문헌을 제시한다. 개발자·QA가 커버리지를 이해하고 적용하는 데 도움이 된다."
 categories: SoftwareTesting
 date: "2024-08-19T00:00:00Z"

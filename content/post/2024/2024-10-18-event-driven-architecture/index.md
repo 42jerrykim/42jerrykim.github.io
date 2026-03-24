@@ -104,7 +104,7 @@ tags:
   - 인터페이스
   - Optimization
   - 최적화
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 draft: false
 ---
 

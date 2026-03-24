@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "Windows Defender(현 Microsoft Defender)를 강화하는 방법을 정리했다. 로컬 그룹 정책·MAPS·랜섬웨어 보호·PowerShell 설정을 통해 추가 안티바이러스 없이 PC를 안전하게 보호하는 실전 가이드와 체크리스트, 언제 Defender만 쓰고 언제 추가 솔루션을 고려할지에 대한 판단 기준을 제시한다."
 categories:
   - Windows

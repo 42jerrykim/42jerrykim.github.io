@@ -5,7 +5,7 @@ description: "빌더 패턴은 복잡한 객체 생성을 단계별로 분리하
 date: 2022-01-01
 last_modified_at: 2024-08-22
 categories: Design Pattern
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-22-builder.png
 tags:

@@ -3,7 +3,7 @@ title: "[Vocabulary] save의 의미와 쓰임 - 동사 핵심 정리"
 description: "영어 동사 'save'의 핵심 뜻(돈을 아끼고 모으다, 위험에서 구하다, 데이터를 저장하다, 시간을 절약하다)을 정리한다. 금융·일상·소프트웨어·응급 상황에서 자주 쓰이는 패턴과 EN/KR 예문 50개로 실제 용법을 익힌다. 표현 범위가 넓은 필수 동사다."
 date: 2026-03-19
 lastmod: 2026-03-19
-draft: true
+draft: false
 categories:
   - English
   - Vocabulary

@@ -5,7 +5,7 @@ description: "팩토리 메서드 패턴은 객체 생성을 서브클래스에 
 date: 2022-01-01
 last_modified_at: 2024-08-22
 categories: Design Pattern
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-21-factory-method.png
 tags:

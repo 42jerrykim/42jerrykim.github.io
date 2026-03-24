@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "가민(Garmin) 워크아웃 앱·기기에서 제공하는 전 운동 목록을 한글 자음별로 정리한 참고 문서입니다. 한글명·원어명·번호를 함께 수록해 운동 선택·검색·트레이닝 설계에 활용할 수 있습니다."
 categories:
   - Garmin

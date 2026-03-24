@@ -91,7 +91,7 @@ tags:
 - 소프트웨어아키텍처
 - 문제해결
 - 튜토리얼
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 date: 2024-11-28
 lastmod: 2026-03-17
 description: "HTML 한 파일로 데이터 탐색·분석·시각화·출판을 한 번에 수행하는 반응형 노트북 구축법을 정리했다. contenteditable·Observable 런타임·Hypertext Literal·Observable Plot·Pyodide·WebR 활용법, Jupyter·LaTeX·Typst 대비 장단점, 문서화된 프로그래밍·viewof·mutable·Heximal 등 실무 적용 팁을 포함한다."

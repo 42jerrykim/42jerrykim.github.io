@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "futurecoder는 완전 무료·오픈소스 온라인 파이썬 학습 플랫폼이다. 조건문·반복문·자료구조 등 기초 코딩을 실습형으로 배우며, 디버거·힌트·파슨스 문제로 초보자 친화적이다. 추천 대상과 사용 팁을 소개한다."
 date: "2023-01-11T00:00:00Z"
 lastmod: "2026-03-17T00:00:00Z"

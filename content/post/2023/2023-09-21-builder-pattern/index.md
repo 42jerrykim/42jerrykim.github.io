@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "빌더 패턴은 복잡한 객체의 생성과 표현을 분리하여 가독성과 유연성을 높이는 생성 패턴이다. Java 예제, GoF/Effective Java 관점, Retrofit·OkHttp 활용, Lombok @Builder 주의점까지 150자 분량으로 요약한다."
 date: "2023-09-21T00:00:00Z"
 lastmod: "2026-03-17T00:00:00Z"

@@ -407,6 +407,7 @@ tags:
   - USACO
   - Editorial
   - 에디토리얼
+image: "wordcloud.png"
 ---
 
 이 문서는 **LattePanda Alpha**에 **Ubuntu 16.04 LTS (Xenial Xerus)**를 설치하는 방법을 단계별로 정리한 가이드입니다. ISO 다운로드, 부팅 미디어 제작, UEFI·Secure Boot 설정, 설치 유형 선택부터 설치 완료까지 한 흐름으로 따라 할 수 있도록 구성했습니다.

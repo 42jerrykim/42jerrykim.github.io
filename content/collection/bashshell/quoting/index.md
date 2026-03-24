@@ -71,7 +71,7 @@ tags:
 - 이스케이프
 - expand
 - Parameter-Expansion
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 Bash에서 **인용(quoting)**은 공백·특수문자·변수 확장을 제어한다. **쌍따옴표(`"`)**, **홑따옴표(`'`)**, **백슬래시(`\`)**의 동작이 다르다.

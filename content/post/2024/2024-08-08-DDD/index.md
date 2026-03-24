@@ -100,6 +100,7 @@ tags:
   - Command
   - State
 teaser: /assets/images/undefined/teaser.jpg
+image: "wordcloud.png"
 ---
 
 도메인 주도 설계(Domain-Driven Design, DDD)는 복잡한 비즈니스 도메인을 소프트웨어로 잘 반영하기 위한 설계 방법론이다. 비즈니스와 IT가 같은 언어로 소통하고, 도메인 규칙이 코드 구조에 드러나도록 하는 것이 목표다. 이 글에서는 DDD의 정의·역사·핵심 구성 요소·전략·전술 설계·실무 예시·FAQ·관련 기술을 정리한다.

@@ -76,7 +76,7 @@ tags:
 - BRE
 - 파이프
 - Pipeline
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 ---
 
 `grep`(global regular expression print)은 리눅스·유닉스에서 **패턴에 맞는 줄**을 검색해 출력하는 필터 명령어다. 파일 내용 검색, 파이프와 결합한 로그·코드 검색, 정규식 활용까지 실무에서 가장 자주 쓰는 도구 중 하나다.

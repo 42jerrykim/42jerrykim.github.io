@@ -1,5 +1,5 @@
 ---
-image: "tmp_wordcloud.png"
+image: "wordcloud.png"
 description: "C# 인터페이스와 추상 클래스의 정의, 다중·단일 상속 차이, 접근 제한자·기본 구현·성능 특성, C# 8.0 기본 구현 메서드, 실무 선택 기준과 예제 코드, SOLID·디자인 패턴 연계까지 정리한 실무 가이드입니다. 초급 이상 C#·.NET 개발자에게 추천합니다."
 categories: CSharp
 date: "2024-08-14T00:00:00Z"
