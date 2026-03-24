@@ -58,6 +58,8 @@ tags:
 | 14 | SMT/Hyper-Threading | 심화 | 동시 멀티스레딩 성능 영향과 최적화 전략 |
 | 15 | μOp Cache와 DSB | 전문 | Decoded Stream Buffer, μOp 캐시 활용과 최적화 |
 | 16 | RISC-V 아키텍처 기초 | 전문 | RISC-V ISA 특성과 성능 고려사항 (니치·임베디드 대비) |
+| 17 | Frontend vs Backend Bound 개념 | 기초 | TopDown 분석의 기초 직관과 병목 범주 구분 (선행: 챕터 01과 함께 읽기 권장) |
+| 18 | 의존성 체인·포트 압력 분석 | 중급 | 명령 의존성 체인 길이와 실행 포트 경합이 ILP에 미치는 영향 |
 
 ## 측정과 검증 (이 트랙 기준)
 

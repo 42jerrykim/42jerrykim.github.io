@@ -61,6 +61,9 @@ tags:
 | 14 | Seqlock 패턴 | 심화 | Reader-writer 시나리오 최적화를 위한 Seqlock |
 | 15 | Thread-local Storage | 중급 | TLS 비용 분석과 활용 패턴 |
 | 16 | Executors 기초 | 심화 | C++23/26 Executors 개념과 비동기 실행 모델 |
+| 17 | std::execution 병렬 알고리즘 | 중급 | C++17/20 병렬 정책(par, par_unseq)과 실전 성능 특성 |
+| 18 | Condition Variable 성능 패턴 | 중급 | condition_variable 비용, spurious wakeup 대응, 대안 비교 |
+| 19 | C++20 Barrier/Latch 활용 | 중급 | std::barrier/std::latch 비용과 동기 지점 설계 패턴 |
 
 ## 측정과 검증 (이 트랙 기준)
 
@@ -81,7 +84,7 @@ tags:
 
 **Phase A — 동기화 기초 (챕터 01~04)** 비용·락 선택·false sharing·메모리 모델을 익히지 않으면, 이후 lock-free를 **맞는지 틀린지조차** 검증하기 어렵습니다.
 
-**Phase B — 구조와 큐 (챕터 08~11, 13~15)** SPSC/MPMC·스레드 풀·TLS는 서버·파이프라인 코드에서 바로 적용 빈도가 높습니다. 코루틴 동시성(챕터 11)은 Tr.01 코루틴 성능과 연결해 읽으면 설계 일관성이 좋아집니다.
+**Phase B — 구조와 큐 (챕터 08~11, 13~15, 17~19)** SPSC/MPMC·스레드 풀·TLS는 서버·파이프라인 코드에서 바로 적용 빈도가 높습니다. 코루틴 동시성(챕터 11)은 Tr.01 코루틴 성능과 연결해 읽으면 설계 일관성이 좋아집니다. 챕터 17~19의 병렬 알고리즘·condition_variable·barrier/latch는 표준 라이브러리 동시성 프리미티브의 비용과 올바른 사용 패턴을 다루며, lock-free 진입 전에 익히면 기반이 단단해집니다.
 
 **Phase C — lock-free·wait-free·Executors (챕터 05~07, 12, 16)** 표에서 **전문** 난이도가 많습니다. 유지보수·정확성 리스크가 크므로, Tr.05로 경합과 꼬리 지연이 **실제 병목**임을 확인한 뒤 진입하는 것을 권장합니다.
 
@@ -90,6 +93,7 @@ tags:
 - **측정**: 스레드 수·경합 조건에서 p50/p99 변화를 벤치마크로 재현할 수 있다.
 - **선택**: mutex vs spin vs lock-free 후보를 **비용·위험** 기준으로 고를 수 있다.
 - **구현**: false sharing·캐시 라인 정렬 등 레이아웃 대응을 코드에 반영할 수 있다.
+- **표준 동시성**: std::execution 병렬 정책, condition_variable, barrier/latch의 비용을 이해하고 올바르게 적용할 수 있다.
 - **경계**: OS 스케줄러(Tr.07)·CPU 미세구조(Tr.06)와 역할을 나눌 수 있다.
 
 ## 평가 기준과 이 장을 읽은 후 확인

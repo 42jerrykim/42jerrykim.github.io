@@ -57,6 +57,7 @@ tags:
 | 14 | Cache-oblivious 알고리즘 | 전문 | 캐시 크기 독립적인 알고리즘 설계 기법 |
 | 15 | GPU Offloading 기초 | 심화 | CUDA/OpenCL/SYCL 개념과 CPU-GPU 협업 판단 기준 |
 | 16 | AI 추론 최적화 | 전문 | NPU/Tensor Core 활용, 혼합 정밀도 및 양자화 기반 지연시간 최적화 |
+| 17 | SIMD 문자열 처리 | 심화 | simdjson 등 SIMD 기반 파싱 사례와 적용 판단 기준 |
 
 ## 측정과 검증 (이 트랙 기준)
 

@@ -60,6 +60,8 @@ tags:
 | 15 | Connection Pooling | 중급 | 연결 풀링 전략, Keep-alive, 연결 재사용 |
 | 16 | WebSocket 최적화 | 중급 | WebSocket 성능 튜닝, 압축, 메시지 배치 |
 | 17 | HTTP/2와 HTTP/3 | 심화 | HTTP/2 멀티플렉싱, HTTP/3 QUIC 기반 성능 비교 |
+| 18 | 네트워크 지연 직관 | 기초 | RTT·대역폭·직렬화 비용이 지연에 미치는 그림 잡기 (선행: 챕터 01 전에 읽기 권장) |
+| 19 | 네트워크 압축 전략 | 중급 | LZ4/zstd/snappy in-transit 압축의 CPU-대역폭 트레이드오프와 선택 기준 |
 
 ## 측정과 검증 (이 트랙 기준)
 
