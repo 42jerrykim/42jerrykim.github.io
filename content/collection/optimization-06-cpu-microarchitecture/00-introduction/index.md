@@ -1,24 +1,76 @@
 ---
 collection_order: 0
 date: 2026-03-24
-lastmod: 2026-03-24
+lastmod: 2026-03-25
 draft: true
 title: "[Performance 06] Introduction: CPU 마이크로아키텍처 Low-latency"
 slug: getting-started-cpu-microarchitecture-performance-tuning
-description: "CPU 마이크로아키텍처 Low-latency 트랙의 도입 챕터입니다. 파이프라인·분기 예측·캐시·ILP 관점의 책임 범위를 정리하고, 하드웨어 이벤트와 지연시간을 연결해 검증하는 흐름을 소개합니다."
+description: "CPU 마이크로아키텍처 Low-latency 트랙의 도입 챕터입니다. TopDown 직관부터 파이프라인·캐시·분기·ILP의 책임 범위를 연결하고, 하드웨어 이벤트와 p99 지연을 함께 해석하는 기본 흐름을 정리합니다."
 tags:
   - Performance
   - Profiling
+  - Optimization
+  - C++
+  - Compiler
   - CPU
   - Cache
-  - Frontend
   - Backend
   - Memory
   - Assembly
+  - Concurrency
+  - Linux
+  - Windows
+  - OS
   - Testing
+  - CI-CD
+  - Monitoring
+  - Benchmark
+  - Latency
+  - Throughput
+  - Embedded
+  - Code-Quality
+  - Best-Practices
+  - Refactoring
+  - Software-Architecture
+  - Tutorial
+  - Guide
+  - Reference
+  - Technology
+  - Deep-Dive
+  - Production
+  - Scalability
+  - Reliability
+  - Implementation
+  - Documentation
+  - Debugging
+  - Automation
+  - System-Design
+  - Data-Structures
+  - Clean-Code
   - 성능
   - 프로파일링
+  - 최적화
+  - 컴파일러
   - 메모리
+  - 동시성
+  - 운영체제
+  - 리눅스
+  - 윈도우
+  - 네트워크
+  - 코드품질
+  - 가이드
+  - 참고
+  - 기술
+  - 튜토리얼
+  - 구현
+  - 문서화
+  - 디버깅
+  - 자동화
+  - 백엔드
+  - 임베디드
+  - 신뢰성
+  - 확장성
+  - 모니터링
 ---
 
 이 트랙은 "왜 이 코드가 캐시 미스를 내는가", "왜 분기 예측이 깨지는가" 같은 질문에 답합니다. µs 최적화에서는 CPU 이벤트가 지연시간 분포를 흔들기 때문에, 하드웨어 관점의 비용 모델이 필요합니다.
@@ -39,6 +91,10 @@ tags:
 ## 커리큘럼
 
 **난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치). **Tr.NN**은 `optimization-NN-*` 트랙을 가리킵니다.
+
+입문자라면 표 순서만 따라가기보다 **17 → 01 → 02 → 03 → 05** 순서로 읽는 편이 좋습니다. 17은 TopDown에서 말하는 Frontend/Backend bound의 최소 직관을 만들고, 01~05는 그 직관을 파이프라인·분기·캐시·ILP로 연결합니다. 이후 Tr.02의 코드 생성 분석, Tr.03의 레이아웃 변경과 함께 읽으면 카운터 해석이 훨씬 빨라집니다.
+
+여기서도 표 순서는 **참조와 재방문을 위한 지도**로 유지합니다. CPU 트랙은 캐시, TLB, SMT, μOp cache 같은 주제를 장 번호로 다시 찾아보는 일이 많기 때문에, 표는 구조를 고정하고 위 추천 순서는 입문자의 이해 의존성을 맞추는 용도로 분리합니다.
 
 | 챕터 | 제목 | 난이도 | 핵심 내용 |
 |------|------|--------|-----------|
@@ -78,7 +134,7 @@ tags:
 
 ## Phase별 학습 궤적
 
-**Phase A — 모델 (챕터 01~03, 05)** 파이프라인·분기·캐시·ILP 기초 없이 카운터만 보면 숫자가 뜬금없이 느껴집니다.
+**Phase A — 모델 (챕터 17, 01~03, 05)** Frontend/Backend bound 직관 없이 카운터만 보면 숫자가 뜬금없이 느껴집니다. 17을 01과 함께 읽으면 이후 챕터에서 "어느 종류의 병목인지"를 먼저 분류할 수 있습니다.
 
 **Phase B — 병목 해석 (챕터 04, 06~10)** 캐시 미스·OoO·TLB·추측 실행은 **심화**입니다. Tr.05의 perf/VTune과 같이 읽을 때 해석이 빨라집니다.
 

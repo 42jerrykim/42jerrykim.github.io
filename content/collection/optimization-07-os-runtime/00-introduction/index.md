@@ -1,26 +1,77 @@
 ---
 collection_order: 0
 date: 2026-03-24
-lastmod: 2026-03-24
+lastmod: 2026-03-25
 draft: true
 title: "[Performance 07] Introduction: OS·런타임 Low-latency 운영환경"
 slug: getting-started-os-runtime-performance-tuning
-description: "OS·런타임 Low-latency 운영환경 트랙의 도입 챕터입니다. context switch/syscall/affinity/realtime scheduling의 책임 경계를 정리하고, 환경 변화가 지연시간 분포에 미치는 영향을 검증하는 방법을 소개합니다."
+description: "OS·런타임 Low-latency 운영환경 트랙의 도입 챕터입니다. process/thread·syscall·affinity·realtime scheduling의 진입 순서와 플랫폼별 관찰 포인트를 정리하고, 환경 변화가 지연 분포에 미치는 영향을 검증하는 방법을 소개합니다."
 tags:
   - Performance
   - Profiling
+  - Optimization
+  - C++
+  - Compiler
+  - Memory
+  - CPU
+  - Cache
+  - Concurrency
   - OS
   - Linux
   - Windows
-  - Concurrency
+  - Networking
+  - IO
   - Testing
   - CI-CD
+  - Monitoring
+  - Benchmark
+  - Latency
+  - Throughput
+  - Backend
+  - Embedded
+  - Code-Quality
+  - Best-Practices
+  - Refactoring
+  - Software-Architecture
+  - Tutorial
+  - Guide
+  - Reference
+  - Technology
+  - Deep-Dive
+  - Production
+  - Scalability
+  - Reliability
+  - Implementation
+  - Documentation
+  - Debugging
+  - Automation
+  - System-Design
+  - Data-Structures
+  - Clean-Code
   - 성능
   - 프로파일링
+  - 최적화
+  - 컴파일러
+  - 메모리
   - 운영체제
   - 리눅스
   - 윈도우
+  - 동시성
+  - 네트워크
   - 코드품질
+  - 가이드
+  - 참고
+  - 기술
+  - 튜토리얼
+  - 구현
+  - 문서화
+  - 디버깅
+  - 자동화
+  - 백엔드
+  - 임베디드
+  - 신뢰성
+  - 확장성
+  - 모니터링
 ---
 
 이 트랙은 "코드는 빠른데 프로세스가 느린 이유"를 운영환경에서 찾고 고칩니다. µs 단위에서는 context switch, syscall, 스케줄링 정책, 코어 배치가 지연시간의 바닥을 결정합니다.
@@ -41,6 +92,10 @@ tags:
 ## 커리큘럼
 
 **난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치). **Tr.NN**은 `optimization-NN-*` 트랙을 가리킵니다. **개요(본 트랙)** 행은 동일 주제의 **심화**가 Tr.11(I/O)·Tr.12(네트워크) 등에 있음을 뜻합니다.
+
+운영환경 최적화가 처음이라면 **16 → 01 → 02 → 03 → 06 → 11** 순서로 읽는 것을 권장합니다. 16은 process/thread의 기본 mental model을 맞추고, 01~03과 06은 context switch·syscall·affinity·시간 측정의 바닥 비용을 먼저 이해하게 해 줍니다. 그 위에서 04~05, 10, 12~18의 심화 주제를 읽으면 훨씬 덜 가파릅니다.
+
+이 문서에서 **표 순서를 유지하는 이유**는 참조성과 경계 설명 때문입니다. `07~09`처럼 “개요(본 트랙)” 성격의 장과 이후 심화 장을 장 번호 기준으로 찾기 쉬워야 하므로, 표는 지도 역할을 맡고 위 추천 순서는 입문자용 진입 경로를 설명합니다.
 
 | 챕터 | 제목 | 난이도 | 핵심 내용 |
 |------|------|--------|-----------|
@@ -73,6 +128,11 @@ tags:
 
 - **선행**: Low-latency 프로파일링·성능 분석 (Tr.05)
 - **병행**: 동시성 (Tr.04), CPU 마이크로아키텍처 (Tr.06)
+
+## 플랫폼별 읽기 힌트
+
+- **Linux 중심 독자**는 01~03, 06, 07~10, 12~14를 먼저 읽으면 syscall·affinity·io_uring·IRQ·cgroups 흐름이 자연스럽습니다.
+- **Windows 중심 독자**는 06, 11, 15를 먼저 읽고, 02·03을 "시스템 호출 경로와 스레드 배치" 관점에서 대응시켜 읽으면 ETW/IOCP 같은 Tr.05·Tr.11 주제와 연결하기 쉽습니다.
 
 ## 왜 이 트랙인가 (동기)
 

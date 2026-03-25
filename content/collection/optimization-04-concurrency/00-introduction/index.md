@@ -1,26 +1,75 @@
 ---
 collection_order: 0
 date: 2026-03-24
-lastmod: 2026-03-24
+lastmod: 2026-03-25
 draft: true
 title: "[Performance 04] Introduction: Low-latency 동시성·멀티스레드"
 slug: getting-started-concurrency-multithreading-performance-tuning
-description: "Low-latency 동시성·멀티스레드 트랙의 도입 챕터입니다. mutex/atomic/lock-free의 비용 경계를 정의하고, 경합·false sharing을 측정해 p99 지연시간을 안정화하는 기본 접근을 정리합니다."
+description: "Low-latency 동시성·멀티스레드 트랙의 도입 챕터입니다. mutex/atomic/lock-free의 책임 경계와 입문자 진입 순서를 정리하고, 경합·false sharing·꼬리 지연을 측정해 개선하는 기본 접근을 소개합니다."
 tags:
   - Performance
   - Profiling
   - Optimization
+  - C++
+  - Compiler
+  - Memory
+  - CPU
+  - Cache
   - Concurrency
-  - Queue
   - Linux
   - Windows
+  - OS
   - Testing
   - CI-CD
+  - Monitoring
+  - Benchmark
+  - Latency
+  - Throughput
+  - Backend
+  - Embedded
+  - Code-Quality
+  - Best-Practices
+  - Refactoring
+  - Software-Architecture
+  - Tutorial
+  - Guide
+  - Reference
+  - Technology
+  - Deep-Dive
+  - Production
+  - Scalability
+  - Reliability
+  - Implementation
+  - Documentation
+  - Debugging
+  - Automation
+  - System-Design
+  - Data-Structures
+  - Clean-Code
   - 성능
   - 프로파일링
   - 최적화
+  - 컴파일러
+  - 메모리
   - 동시성
+  - 운영체제
+  - 리눅스
+  - 윈도우
+  - 네트워크
   - 코드품질
+  - 가이드
+  - 참고
+  - 기술
+  - 튜토리얼
+  - 구현
+  - 문서화
+  - 디버깅
+  - 자동화
+  - 백엔드
+  - 임베디드
+  - 신뢰성
+  - 확장성
+  - 모니터링
 ---
 
 이 트랙은 "스레드가 늘어날수록 느려지는 이유"를 비용 관점으로 설명하고 통제합니다. µs 시스템에서는 lock 경합, cache line ping-pong, 잘못된 atomic 사용이 지연시간의 지배항이 되기 쉽습니다.
@@ -42,6 +91,10 @@ tags:
 ## 커리큘럼
 
 **난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치). **Tr.NN**은 `optimization-NN-*` 트랙을 가리킵니다.
+
+동시성 배경이 약하다면 **01 → 02 → 03 → 18 → 19 → 04** 순서로 진입하는 것을 권장합니다. 01~03은 비용·경합·false sharing의 직관을 만들고, 18~19는 표준 프리미티브의 실제 사용 비용을 체감하게 해 주며, 그다음 04~08의 메모리 모델·lock-free로 들어가면 경사가 훨씬 완만해집니다.
+
+여기서도 **표 순서는 커리큘럼 참조용으로 유지**합니다. 표는 “이 트랙이 어떤 주제를 어디까지 다루는지”를 보여 주는 지도이고, 위 추천 순서는 초심자가 **개념 의존성**에 맞춰 들어오는 경로입니다.
 
 | 챕터 | 제목 | 난이도 | 핵심 내용 |
 |------|------|--------|-----------|
@@ -70,6 +123,7 @@ tags:
 - 경합(락 대기/스핀) 시간을 수치로 분리해서 측정
 - 스레드 수 변화에 따른 레이턴시 분포(p50/p95/p99) 확인
 - false sharing 개선 전/후를 microbenchmark로 재현/검증
+- TSAN, wait trace, 플랫폼 프로파일러로 deadlock·경합·가시성 문제를 별도 확인
 
 ## 추천 선행/병행 트랙
 
@@ -82,7 +136,7 @@ tags:
 
 ## Phase별 학습 궤적
 
-**Phase A — 동기화 기초 (챕터 01~04)** 비용·락 선택·false sharing·메모리 모델을 익히지 않으면, 이후 lock-free를 **맞는지 틀린지조차** 검증하기 어렵습니다.
+**Phase A — 동기화 기초 (챕터 01~04, 18~19)** 비용·락 선택·false sharing·표준 동기화 프리미티브의 사용 감각을 먼저 익히지 않으면, 이후 lock-free를 **맞는지 틀린지조차** 검증하기 어렵습니다.
 
 **Phase B — 구조와 큐 (챕터 08~11, 13~15, 17~19)** SPSC/MPMC·스레드 풀·TLS는 서버·파이프라인 코드에서 바로 적용 빈도가 높습니다. 코루틴 동시성(챕터 11)은 Tr.01 코루틴 성능과 연결해 읽으면 설계 일관성이 좋아집니다. 챕터 17~19의 병렬 알고리즘·condition_variable·barrier/latch는 표준 라이브러리 동시성 프리미티브의 비용과 올바른 사용 패턴을 다루며, lock-free 진입 전에 익히면 기반이 단단해집니다.
 

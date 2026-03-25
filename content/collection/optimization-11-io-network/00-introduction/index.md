@@ -1,20 +1,78 @@
 ---
 collection_order: 0
 date: 2026-03-24
-lastmod: 2026-03-24
+lastmod: 2026-03-25
 draft: true
 title: "[Performance 11] Introduction: Low-latency I/O 최적화"
 slug: getting-started-io-performance-tuning
-description: "Low-latency I/O 최적화 트랙의 도입 챕터입니다. I/O 패턴, 비동기 I/O, zero-copy, memory-mapped I/O의 책임 범위를 정리하고, I/O 병목을 측정·검증하는 기본 접근을 소개합니다."
+description: "Low-latency I/O 최적화 트랙의 도입 챕터입니다. I/O 비용 직관부터 비동기 I/O·zero-copy·filesystem 선택까지의 진입 순서를 정리하고, 시스템콜·복사 횟수·지연 분포를 연결해 검증하는 접근을 소개합니다."
 tags:
   - Performance
   - Profiling
-  - Async
+  - Optimization
+  - C++
+  - Compiler
+  - Memory
+  - CPU
+  - Cache
+  - Concurrency
+  - Linux
+  - Windows
+  - OS
+  - Networking
+  - IO
   - Testing
+  - CI-CD
+  - Monitoring
+  - Benchmark
+  - Latency
+  - Throughput
+  - Backend
+  - Embedded
+  - Code-Quality
+  - Best-Practices
+  - Refactoring
+  - Software-Architecture
+  - Tutorial
+  - Guide
+  - Reference
+  - Technology
+  - Deep-Dive
+  - Production
+  - Scalability
+  - Reliability
+  - Implementation
+  - Documentation
+  - Debugging
+  - Automation
+  - System-Design
+  - Data-Structures
+  - Clean-Code
   - 성능
   - 프로파일링
   - IO
-  - 비동기
+  - 최적화
+  - 컴파일러
+  - 메모리
+  - 동시성
+  - 운영체제
+  - 리눅스
+  - 윈도우
+  - 네트워크
+  - 코드품질
+  - 가이드
+  - 참고
+  - 기술
+  - 튜토리얼
+  - 구현
+  - 문서화
+  - 디버깅
+  - 자동화
+  - 백엔드
+  - 임베디드
+  - 신뢰성
+  - 확장성
+  - 모니터링
 ---
 
 이 트랙은 "데이터가 저장장치를 오가는 경로"의 지연시간을 줄이는 영역을 책임집니다. µs 단위에서는 시스템콜 비용, 복사 횟수, I/O 스케줄링이 지연시간의 상당 부분을 차지합니다.
@@ -38,6 +96,10 @@ tags:
 ## 커리큘럼
 
 **난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치). **Tr.NN**은 `optimization-NN-*` 트랙을 가리킵니다. **심화(본 트랙)** 행은 Tr.07에 있는 동일 주제 **개요**를 이어 받습니다.
+
+입문자는 **16 → 01 → 02 → 06 → 10 → 11** 순서로 먼저 읽는 것을 권장합니다. 16은 I/O 지연의 그림을 먼저 잡아 주고, 01~02는 동기/비동기와 이벤트 모델의 차이를 정리하며, 06·10·11은 mmap·Reactor/Proactor·Vectored I/O처럼 이후 심화 챕터의 공통 바닥을 만들어 줍니다.
+
+표 순서는 그대로 두는 편이 더 좋습니다. I/O 트랙은 `03`, `05`, `07`, `12`, `13`, `15`처럼 서로 다른 심화 축을 장 번호 기준으로 참조하는 일이 많아서, 표는 **주제 지도**로 남겨 두고 추천 순서는 **입문자용 진입 경로**로 분리하는 편이 덜 혼란스럽습니다.
 
 | 챕터 | 제목 | 난이도 | 핵심 내용 |
 |------|------|--------|-----------|
@@ -116,7 +178,7 @@ flowchart LR
 
 ## 심화·전문가 확장 궤적
 
-Direct I/O·저널링·스케줄러는 환경별로 튜닝 여지가 큽니다. **심화** 챕터는 스테이징에서 재현한 워크로드로만 결론 내리는 것을 권장합니다.
+Direct I/O·저널링·스케줄러는 환경별로 튜닝 여지가 큽니다. **심화** 챕터는 스테이징에서 재현한 워크로드로만 결론 내리는 것을 권장합니다. 이 트랙의 다음 확장 후보로는 **오브젝트 스토리지/클라우드 블록 스토리지 지연 모델**, **컨테이너·오버레이 파일시스템 I/O**, **전문 저장소 스택 운영**을 두고 검토할 수 있습니다.
 
 ## 시리즈 전체 로드맵
 

@@ -1,22 +1,77 @@
 ---
 collection_order: 0
 date: 2026-03-24
-lastmod: 2026-03-24
+lastmod: 2026-03-25
 draft: true
 title: "[Performance 12] Introduction: Low-latency 네트워크 최적화"
 slug: getting-started-network-performance-tuning
-description: "Low-latency 네트워크 최적화 트랙의 도입 챕터입니다. 소켓 최적화, 프로토콜 설계, 직렬화 성능, 커널 바이패스의 책임 범위를 정리하고, 네트워크 병목을 측정·검증하는 기본 접근을 소개합니다."
+description: "Low-latency 네트워크 최적화 트랙의 도입 챕터입니다. 네트워크 지연 직관부터 소켓·직렬화·프로토콜·커널 바이패스까지의 진입 순서를 정리하고, RTT·직렬화 비용·처리량을 분리 측정하는 접근을 소개합니다."
 tags:
   - Performance
   - Profiling
+  - Optimization
+  - C++
+  - Compiler
+  - Memory
+  - CPU
+  - Cache
+  - Concurrency
+  - Linux
+  - Windows
+  - OS
   - Networking
-  - Implementation
-  - JSON
-  - HTTP
-  - WebSocket
+  - IO
   - Testing
+  - CI-CD
+  - Monitoring
+  - Benchmark
+  - Latency
+  - Throughput
+  - Backend
+  - Embedded
+  - Code-Quality
+  - Best-Practices
+  - Refactoring
+  - Software-Architecture
+  - Tutorial
+  - Guide
+  - Reference
+  - Technology
+  - Deep-Dive
+  - Production
+  - Scalability
+  - Reliability
+  - Implementation
+  - Documentation
+  - Debugging
+  - Automation
+  - System-Design
+  - Data-Structures
+  - Clean-Code
   - 성능
   - 프로파일링
+  - 최적화
+  - 컴파일러
+  - 메모리
+  - 동시성
+  - 운영체제
+  - 리눅스
+  - 윈도우
+  - 네트워크
+  - 코드품질
+  - 가이드
+  - 참고
+  - 기술
+  - 튜토리얼
+  - 구현
+  - 문서화
+  - 디버깅
+  - 자동화
+  - 백엔드
+  - 임베디드
+  - 신뢰성
+  - 확장성
+  - 모니터링
 ---
 
 이 트랙은 "데이터가 네트워크를 오가는 경로"의 지연시간을 줄이는 영역을 책임집니다. µs 단위에서는 프로토콜 오버헤드, 직렬화 비용, 커널 네트워크 스택 지연이 전체 지연시간의 상당 부분을 차지합니다.
@@ -40,6 +95,10 @@ tags:
 ## 커리큘럼
 
 **난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치). **Tr.NN**은 `optimization-NN-*` 트랙을 가리킵니다. **심화(본 트랙)** 행은 Tr.07의 동일 주제 **개요**를 이어 받습니다.
+
+처음 읽는다면 **18 → 01 → 02 → 03 → 05 → 07** 순서로 진입하는 것이 안전합니다. 18은 RTT·직렬화·대역폭의 기본 직관을 만들고, 01~03은 전송 지연과 소켓 옵션의 바닥을 정리하며, 05와 07은 직렬화와 프로토콜 설계의 핵심 비용 모델을 먼저 잡아 줍니다.
+
+네트워크 트랙도 **표 순서는 유지**하는 편이 유리합니다. `09~10`의 커널 바이패스 심화, `11`, `13`, `14`, `17` 같은 고급 전송 주제를 장 번호 기준으로 참조하기 쉬워야 하므로, 표는 전체 구조를 보여 주고 추천 순서는 입문자에게 필요한 바닥 개념을 먼저 놓는 역할을 맡습니다.
 
 | 챕터 | 제목 | 난이도 | 핵심 내용 |
 |------|------|--------|-----------|
@@ -119,7 +178,7 @@ flowchart LR
 
 ## 심화·전문가 확장 궤적
 
-DPDK·XDP/eBPF는 운영·보안·배포 정책(Tr.09)과 충돌할 수 있습니다. **전문** 난이도 챕터는 스테이징·카나리(Tr.10) 전제를 권장합니다.
+DPDK·XDP/eBPF는 운영·보안·배포 정책(Tr.09)과 충돌할 수 있습니다. **전문** 난이도 챕터는 스테이징·카나리(Tr.10) 전제를 권장합니다. 중급 실무 확장 후보로는 **DNS/service discovery 지연**, **service mesh 오버헤드**, **배치·압축·연결 재사용의 데이터센터 내부 통신 패턴**을 이어서 검토할 수 있습니다.
 
 ## 시리즈 전체 로드맵
 
