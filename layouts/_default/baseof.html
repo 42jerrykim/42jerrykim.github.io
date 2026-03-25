@@ -9,9 +9,19 @@
             })(window,document,'script','dataLayer','GTM-K4GSZLPB');</script>
         <!-- End Google Tag Manager -->
         <script>
-        if(history.scrollRestoration){history.scrollRestoration='manual'}
-        window.addEventListener('beforeunload',function(){sessionStorage.setItem('__scrollPos:'+location.href,String(window.scrollY))});
-        window.addEventListener('load',function(){var n=performance.getEntriesByType('navigation')[0];if(n&&n.type==='back_forward'){var s=sessionStorage.getItem('__scrollPos:'+location.href);if(s!==null){setTimeout(function(){window.scrollTo(0,parseInt(s,10))},300)}}else if(location.hash){var el=document.getElementById(decodeURI(location.hash.substring(1)));if(el)el.scrollIntoView()}});
+        if(history.scrollRestoration)history.scrollRestoration='manual';
+        (function(){
+            var bf=false;
+            if(performance.navigation)bf=performance.navigation.type===2;
+            try{var e=performance.getEntriesByType('navigation')[0];if(e)bf=e.type==='back_forward'}catch(x){}
+            var key='__scrollPos:'+location.href,saved=bf?sessionStorage.getItem(key):null,pos=saved?parseInt(saved,10):0;
+            if(bf&&pos>0)document.documentElement.style.visibility='hidden';
+            window.addEventListener('beforeunload',function(){sessionStorage.setItem(key,String(window.scrollY))});
+            window.addEventListener('load',function(){
+                if(bf&&pos>0){setTimeout(function(){window.scrollTo(0,pos);document.documentElement.style.visibility=''},300)}
+                else{document.documentElement.style.visibility='';if(location.hash){var el=document.getElementById(decodeURI(location.hash.substring(1)));if(el)el.scrollIntoView()}}
+            });
+        })();
         </script>
         {{- partial "head/head.html" . -}}
         {{- block "head" . -}}{{ end }}
