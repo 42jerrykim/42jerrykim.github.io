@@ -5,7 +5,7 @@
         {{ range $widget := . }}
             {{ if templates.Exists (printf "partials/widget/%s.html" .type) }}
                 {{- $params := default dict .params -}}
-                {{ partialCached (printf "widget/%s" .type) (dict "Context" $context "Params" $params) .type $params $scope }}
+                {{ partial (printf "widget/%s" .type) (dict "Context" $context "Params" $params) }}
             {{ else }}
                 {{ warnf "Widget %s not found" .type }}
             {{ end }}
