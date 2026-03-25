@@ -130,11 +130,11 @@ BPF·일부 플랫폼 전용 도구는 **전문** 난이도입니다. 팀 표준
 
 ## 시리즈 전체 로드맵
 
-12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**를 참고하세요.
+12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**를 참고하세요.
 
 ## 지금 바로 이어 읽을 곳
 
 이 트랙의 본챕터가 아직 공개되기 전에는, **무엇을 측정할지**가 궁금하면 `Tr.01`로, **측정을 어떻게 운영에 고정할지**가 궁금하면 `Tr.10`으로 이어 가면 흐름이 자연스럽습니다.
 
-- [Tr.01 Introduction: Low-latency C++ 언어 최적화](/collection/optimization-01-cpp-language/00-introduction/)
-- [Tr.10 Introduction: Low-latency 성능 회귀 방지·유지보수](/collection/optimization-10-regression-prevention/00-introduction/)
+- [Tr.01 Introduction: Low-latency C++ 언어 최적화](/post/cpp-optimization/getting-started-cpp-language-performance-tuning/)
+- [Tr.10 Introduction: Low-latency 성능 회귀 방지·유지보수](/post/regression-prevention/getting-started-performance-regression-prevention-strategies/)

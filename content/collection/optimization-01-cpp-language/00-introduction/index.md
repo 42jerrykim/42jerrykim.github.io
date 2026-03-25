@@ -231,9 +231,9 @@ flowchart LR
 
 첫 번째 주제인 **추상화 비용 분석**으로 들어갑니다. 가상 함수, RTTI, 예외 처리의 정량적 비용을 마이크로벤치마크로 측정하고, devirtualization·인라이닝 유도로 비용을 줄이는 방법을 다룹니다.
 
-→ [추상화 비용 분석](/collection/optimization-01-cpp-language/01-abstraction-cost/) (챕터 01)
+→ [추상화 비용 분석](/post/cpp-optimization/abstraction-cost/) (챕터 01)
 
 ## 시리즈 전체 로드맵
 
-12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**에서 정리합니다.
+12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**에서 정리합니다.
 

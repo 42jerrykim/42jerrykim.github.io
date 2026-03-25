@@ -173,18 +173,18 @@ flowchart TB
 
 | Tr | 주제 | 챕터 수 | 도입(00) |
 |----|------|---------|-----------|
-| 05 | 프로파일링·성능 분석 | 20 | [Tr.05 00](/collection/optimization-05-profiling/00-introduction/) |
-| 01 | C++ 언어 최적화 | 19 | [Tr.01 00](/collection/optimization-01-cpp-language/00-introduction/) |
-| 02 | 컴파일러·빌드 | 15 | [Tr.02 00](/collection/optimization-02-compiler/00-introduction/) |
-| 03 | 메모리·할당·레이아웃 | 16 | [Tr.03 00](/collection/optimization-03-memory-allocation/00-introduction/) |
-| 06 | CPU 마이크로아키텍처 | 18 | [Tr.06 00](/collection/optimization-06-cpu-microarchitecture/00-introduction/) |
-| 07 | OS·런타임 | 18 | [Tr.07 00](/collection/optimization-07-os-runtime/00-introduction/) |
-| 04 | 동시성 | 19 | [Tr.04 00](/collection/optimization-04-concurrency/00-introduction/) |
-| 08 | 극한 최적화 기법 | 17 | [Tr.08 00](/collection/optimization-08-optimization-techniques/00-introduction/) |
-| 09 | 성능 설계·의사결정 | 18 | [Tr.09 00](/collection/optimization-09-design-decisions/00-introduction/) |
-| 10 | 성능 회귀 방지 | 17 | [Tr.10 00](/collection/optimization-10-regression-prevention/00-introduction/) |
-| 11 | I/O 최적화 | 17 | [Tr.11 00](/collection/optimization-11-io-network/00-introduction/) |
-| 12 | 네트워크 최적화 | 19 | [Tr.12 00](/collection/optimization-12-network/00-introduction/) |
+| 05 | 프로파일링·성능 분석 | 20 | [Tr.05 00](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/) |
+| 01 | C++ 언어 최적화 | 19 | [Tr.01 00](/post/cpp-optimization/getting-started-cpp-language-performance-tuning/) |
+| 02 | 컴파일러·빌드 | 15 | [Tr.02 00](/post/compiler-optimization/getting-started-compiler-build-performance-tuning/) |
+| 03 | 메모리·할당·레이아웃 | 16 | [Tr.03 00](/post/memory-optimization/getting-started-memory-allocation-data-layout-tuning/) |
+| 06 | CPU 마이크로아키텍처 | 18 | [Tr.06 00](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/) |
+| 07 | OS·런타임 | 18 | [Tr.07 00](/post/os-optimization/getting-started-os-runtime-performance-tuning/) |
+| 04 | 동시성 | 19 | [Tr.04 00](/post/concurrency-optimization/getting-started-concurrency-multithreading-performance-tuning/) |
+| 08 | 극한 최적화 기법 | 17 | [Tr.08 00](/post/extreme-optimization/getting-started-extreme-performance-optimization-techniques/) |
+| 09 | 성능 설계·의사결정 | 18 | [Tr.09 00](/post/design-decisions/getting-started-performance-design-decision-making/) |
+| 10 | 성능 회귀 방지 | 17 | [Tr.10 00](/post/regression-prevention/getting-started-performance-regression-prevention-strategies/) |
+| 11 | I/O 최적화 | 17 | [Tr.11 00](/post/io-optimization/getting-started-io-performance-tuning/) |
+| 12 | 네트워크 최적화 | 19 | [Tr.12 00](/post/network-optimization/getting-started-network-performance-tuning/) |
 
 ## Tr.07 ↔ Tr.11·Tr.12: 개요와 심화의 역할 나누기
 
@@ -218,7 +218,7 @@ Tr.07에서는 운영자·개발자가 **판단과 측정**에 필요한 수준�
 
 첫 트랙을 고르기 어렵다면 **Tr.05** 도입부터 시작하세요.
 
-→ [Tr.05 Introduction: 프로파일링·성능 분석](/collection/optimization-05-profiling/00-introduction/)
+→ [Tr.05 Introduction: 프로파일링·성능 분석](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)
 
 ## 비판적 시각
 

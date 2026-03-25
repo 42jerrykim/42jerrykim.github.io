@@ -177,10 +177,10 @@ flowchart LR
 
 ## 시리즈 전체 로드맵
 
-12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**에서 한눈에 정리합니다.
+12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**에서 한눈에 정리합니다.
 
 ## 지금 바로 이어 읽을 장
 
 현재 공개된 장 중에서는 **챕터 15**가 가장 좋은 출발점입니다. 챕터 01 계열이 모두 공개되면 `15 → 01 → 02` 흐름으로 이어 읽는 것을 권장합니다.
 
-→ [메모리·수명·캐시 라인 직관](/collection/optimization-03-memory-allocation/15-memory-lifetime-cacheline-intuition/)
+→ [메모리·수명·캐시 라인 직관](/post/memory-optimization/memory-lifetime-cache-line-intuition-fundamentals/)

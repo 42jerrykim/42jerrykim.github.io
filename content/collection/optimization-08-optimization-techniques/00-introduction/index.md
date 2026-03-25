@@ -122,11 +122,11 @@ flowchart LR
 
 ## 시리즈 전체 로드맵
 
-12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**를 참고하세요.
+12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**를 참고하세요.
 
 ## 지금 바로 이어 읽을 곳
 
 이 트랙은 보통 CPU 해석과 측정 근거가 갖춰진 뒤에 여는 편이 안전합니다. 아직 진입이 이른지 확신이 없다면 **Tr.06**과 **Tr.05** 도입을 먼저 다시 확인한 뒤 돌아오세요.
 
-- [Tr.06 Introduction: CPU 마이크로아키텍처 Low-latency](/collection/optimization-06-cpu-microarchitecture/00-introduction/)
-- [Tr.05 Introduction: Low-latency 프로파일링·성능 분석](/collection/optimization-05-profiling/00-introduction/)
+- [Tr.06 Introduction: CPU 마이크로아키텍처 Low-latency](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/)
+- [Tr.05 Introduction: Low-latency 프로파일링·성능 분석](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)

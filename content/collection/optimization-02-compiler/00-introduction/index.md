@@ -216,8 +216,8 @@ flowchart LR
 
 **최적화 플래그**(-O2/-O3/-Ofast)의 의미와 trade-off, 릴리즈/디버그/프로파일 빌드 전략을 다룹니다.
 
-→ [최적화 플래그: -O2/-O3/-Ofast](/collection/optimization-02-compiler/01-optimization-flags/) (챕터 01)
+→ [최적화 플래그: -O2/-O3/-Ofast](/post/compiler-optimization/optimization-flags-o2-o3-ofast/) (챕터 01)
 
 ## 시리즈 전체 로드맵
 
-12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**에서 정리합니다.
+12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**에서 정리합니다.

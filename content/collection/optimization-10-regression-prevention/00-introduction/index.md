@@ -122,11 +122,11 @@ flowchart LR
 
 ## 시리즈 전체 로드맵
 
-12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**를 참고하세요.
+12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**를 참고하세요.
 
 ## 지금 바로 이어 읽을 곳
 
 분산 환경까지 회귀 범위를 넓혀야 한다면 현재 공개된 **챕터 16**을 먼저 읽을 수 있습니다. 아직 팀 게이트의 바탕이 약하다면 **Tr.05** 도입을 다시 확인한 뒤 돌아오는 것도 좋습니다.
 
-- [분산·클러스터 성능 회귀](/collection/optimization-10-regression-prevention/16-distributed-cluster-performance-regression/)
-- [Tr.05 Introduction: Low-latency 프로파일링·성능 분석](/collection/optimization-05-profiling/00-introduction/)
+- [분산·클러스터 성능 회귀](/post/regression-prevention/distributed-cluster-performance-regression-expert/)
+- [Tr.05 Introduction: Low-latency 프로파일링·성능 분석](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)

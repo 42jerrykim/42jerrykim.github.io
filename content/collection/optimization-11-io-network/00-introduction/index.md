@@ -182,11 +182,11 @@ Direct I/O·저널링·스케줄러는 환경별로 튜닝 여지가 큽니다. 
 
 ## 시리즈 전체 로드맵
 
-12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**를 참고하세요.
+12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**를 참고하세요.
 
 ## 지금 바로 이어 읽을 곳
 
 현재 공개된 장 중에서는 운영 리스크가 큰 스토리지 경계를 다루는 **챕터 15**로 바로 들어갈 수 있습니다. 패킷 경로까지 병목이 이어진다면 `Tr.12` 도입으로 확장하세요.
 
-- [스토리지 스택 커스터마이징](/collection/optimization-11-io-network/15-storage-stack-customization/)
-- [Tr.12 Introduction: Low-latency 네트워크 최적화](/collection/optimization-12-network/00-introduction/)
+- [스토리지 스택 커스터마이징](/post/io-optimization/storage-stack-customization-kernel-fs-drivers-expert/)
+- [Tr.12 Introduction: Low-latency 네트워크 최적화](/post/network-optimization/getting-started-network-performance-tuning/)

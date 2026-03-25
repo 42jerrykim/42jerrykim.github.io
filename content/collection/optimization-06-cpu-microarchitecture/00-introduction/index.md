@@ -176,11 +176,11 @@ flowchart LR
 
 ## 시리즈 전체 로드맵
 
-12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**를 참고하세요.
+12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**를 참고하세요.
 
 ## 지금 바로 이어 읽을 곳
 
 CPU 카운터를 해석한 뒤 실제 코드 변경으로 이어 가려면, 보통 **Tr.03**의 레이아웃 변경이나 **Tr.08**의 극한 기법 판단으로 연결됩니다.
 
-- [Tr.03 Introduction: Low-latency 메모리·할당·레이아웃](/collection/optimization-03-memory-allocation/00-introduction/)
-- [Tr.08 Introduction: 극한 Low-latency 최적화 특수기술](/collection/optimization-08-optimization-techniques/00-introduction/)
+- [Tr.03 Introduction: Low-latency 메모리·할당·레이아웃](/post/memory-optimization/getting-started-memory-allocation-data-layout-tuning/)
+- [Tr.08 Introduction: 극한 Low-latency 최적화 특수기술](/post/extreme-optimization/getting-started-extreme-performance-optimization-techniques/)
