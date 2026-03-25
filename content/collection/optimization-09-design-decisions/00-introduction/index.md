@@ -76,7 +76,7 @@ tags:
 ## 추천 선행/병행 트랙
 
 - **선행**: Low-latency 프로파일링·성능 분석 (Tr.05)
-- **병행**: Tr.01~08 전부 (경계·우선순위 합의를 위해 참조)
+- **병행**: Tr.01~08 중 현재 병목 후보 트랙 (경계·우선순위 합의를 위해 참조)
 
 > **이 트랙은 기술 트랙을 아우르는 리드·아키텍트 관점의 프레임입니다.**
 
@@ -126,3 +126,10 @@ flowchart LR
 ## 시리즈 전체 로드맵
 
 12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**를 참고하세요.
+
+## 지금 바로 이어 읽을 곳
+
+규제·보안·운영 제약이 성능 목표와 충돌하는 팀이라면 현재 공개된 **챕터 15**를 먼저 읽는 편이 좋고, 목표를 실제 게이트로 고정하려면 **Tr.10** 도입으로 이어 가면 흐름이 자연스럽습니다.
+
+- [규제·보안 제약 하 성능](/collection/optimization-09-design-decisions/15-regulated-secure-performance-tradeoffs/)
+- [Tr.10 Introduction: Low-latency 성능 회귀 방지·유지보수](/collection/optimization-10-regression-prevention/00-introduction/)

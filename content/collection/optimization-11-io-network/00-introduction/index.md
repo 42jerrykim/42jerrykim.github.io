@@ -88,7 +88,7 @@ tags:
 
 ## 이 트랙이 다루지 않는 것 (경계)
 
-- 네트워크 소켓/프로토콜 최적화 (→ 네트워크 최적화 트랙 Course 12)
+- 네트워크 소켓/프로토콜 최적화 (→ 네트워크 최적화 트랙 Tr.12)
 - C++ 언어 레벨 최적화 상세 (→ C++ 언어 트랙)
 - CPU 파이프라인/캐시의 하드 분석 (→ CPU 트랙)
 - OS 스케줄러/affinity의 상세 (→ OS/런타임 트랙)
@@ -146,7 +146,7 @@ tags:
 
 **Phase B — 고급 I/O (챕터 03~07, 10~12)** io_uring **심화(본 트랙)**는 Tr.07 개요를 전제로 합니다. zero-copy·mmap·O_DIRECT는 캐시 일관성·이식성 이슈가 큽니다.
 
-**Phase C — 스토리지·DB (챕터 08~09, 13~14)** 파일시스템·NVMe·WAL/fsync는 **심화**입니다. Tr.03 메모리·Tr.09 용량 계획과 연결됩니다.
+**Phase C — 스토리지·DB (챕터 08~09, 13~14, 17)** 파일시스템·NVMe·WAL/fsync·핫패스 로깅 비용은 **심화**입니다. Tr.03 메모리·Tr.09 용량 계획과 연결됩니다.
 
 ## 이 트랙을 마친 후 달성할 목표
 
@@ -170,7 +170,7 @@ flowchart LR
   end
   subgraph outScope [경계 밖]
     D["소켓·프로토콜 Tr.12"]
-    E["C++ 문자열 Tr.01"]
+    E["언어·버퍼 설계 Tr.01·Tr.03"]
     F["CPU 캐시 Tr.06"]
   end
   inScope --> outScope
@@ -183,3 +183,10 @@ Direct I/O·저널링·스케줄러는 환경별로 튜닝 여지가 큽니다. 
 ## 시리즈 전체 로드맵
 
 12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**를 참고하세요.
+
+## 지금 바로 이어 읽을 곳
+
+현재 공개된 장 중에서는 운영 리스크가 큰 스토리지 경계를 다루는 **챕터 15**로 바로 들어갈 수 있습니다. 패킷 경로까지 병목이 이어진다면 `Tr.12` 도입으로 확장하세요.
+
+- [스토리지 스택 커스터마이징](/collection/optimization-11-io-network/15-storage-stack-customization/)
+- [Tr.12 Introduction: Low-latency 네트워크 최적화](/collection/optimization-12-network/00-introduction/)

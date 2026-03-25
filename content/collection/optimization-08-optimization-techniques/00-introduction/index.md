@@ -32,7 +32,7 @@ tags:
 
 ## 이 트랙이 다루지 않는 것 (경계)
 
-- 기본적인 언어/컴파일러/메모리/동시성 최적화의 기초 (→ Course 01-04 선행 권장)
+- 기본적인 언어/컴파일러/메모리/동시성 최적화의 기초 (→ Tr.01~Tr.04 선행 권장)
 - 운영환경(스케줄링/affinity) 변경 중심의 튜닝 (→ OS/런타임 트랙)
 
 ## 커리큘럼
@@ -123,3 +123,10 @@ flowchart LR
 ## 시리즈 전체 로드맵
 
 12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**를 참고하세요.
+
+## 지금 바로 이어 읽을 곳
+
+이 트랙은 보통 CPU 해석과 측정 근거가 갖춰진 뒤에 여는 편이 안전합니다. 아직 진입이 이른지 확신이 없다면 **Tr.06**과 **Tr.05** 도입을 먼저 다시 확인한 뒤 돌아오세요.
+
+- [Tr.06 Introduction: CPU 마이크로아키텍처 Low-latency](/collection/optimization-06-cpu-microarchitecture/00-introduction/)
+- [Tr.05 Introduction: Low-latency 프로파일링·성능 분석](/collection/optimization-05-profiling/00-introduction/)

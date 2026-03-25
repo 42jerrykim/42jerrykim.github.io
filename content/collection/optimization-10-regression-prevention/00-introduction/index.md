@@ -87,7 +87,7 @@ tags:
 
 **Phase B — 예산·변동성·관측 (챕터 04~08)** performance budget과 알림은 Tr.09 SLO와 맞물립니다.
 
-**Phase C — 릴리즈·장기 (챕터 09~12, 14~15)** 카나리, 장애 대응, 추세, 부채, 대시보드, 포스트모템은 **심화** 운영 주제입니다.
+**Phase C — 릴리즈·장기 (챕터 09~12, 14~15, 16)** 카나리, 장애 대응, 추세, 부채, 대시보드, 포스트모템, 분산·클러스터 회귀는 **심화~전문** 운영 주제입니다.
 
 ## 이 트랙을 마친 후 달성할 목표
 
@@ -123,3 +123,10 @@ flowchart LR
 ## 시리즈 전체 로드맵
 
 12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**를 참고하세요.
+
+## 지금 바로 이어 읽을 곳
+
+분산 환경까지 회귀 범위를 넓혀야 한다면 현재 공개된 **챕터 16**을 먼저 읽을 수 있습니다. 아직 팀 게이트의 바탕이 약하다면 **Tr.05** 도입을 다시 확인한 뒤 돌아오는 것도 좋습니다.
+
+- [분산·클러스터 성능 회귀](/collection/optimization-10-regression-prevention/16-distributed-cluster-performance-regression/)
+- [Tr.05 Introduction: Low-latency 프로파일링·성능 분석](/collection/optimization-05-profiling/00-introduction/)
