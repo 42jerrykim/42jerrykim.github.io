@@ -75,4 +75,4 @@ tags:
 
 이 트랙은 **Low-latency C++** 언어 최적화를 다룹니다. 마이크로초(µs) 단위 지연이 중요한 환경에서, 가상 함수·STL·문자열·객체 수명·임시·템플릿/constexpr·코루틴·variant·span·람다·SBO·파라미터 전달 등 "C++를 더 잘 쓰면 줄일 수 있는" 비용을 추상화 1개 단위로 격리 측정하고 대체하는 방법을 체계적으로 다룹니다. CPU 파이프라인·OS·동시성 구조는 별도 트랙에서 다루며, 여기서는 언어·라이브러리 수준만 취급합니다.
 
-자세한 커리큘럼(난이도 포함), 학습 목표, 측정·검증 방법론은 **[00. Introduction: Low-latency C++ 언어 최적화](/collection/optimization-01-cpp-language/00-introduction/)**를 참조하세요. 12개 트랙 전체 로드맵은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**를 참고하세요.
+자세한 커리큘럼(난이도 포함), 학습 목표, 측정·검증 방법론은 **[00. Introduction: Low-latency C++ 언어 최적화](/post/cpp-optimization/getting-started-cpp-language-performance-tuning/)**를 참조하세요. 12개 트랙 전체 로드맵은 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**를 참고하세요.
