@@ -92,6 +92,6 @@ tags:
 
 이 트랙은 **코드를 바꾸지 않고도** 최적화 플래그·LTO·PGO·컴파일러 선택으로 성능을 바꾸는 영역을 다룹니다. 인라이닝·벡터화·코드 생성 형태가 µs 단위 수치에 직결됩니다.
 
-**커리큘럼**(난이도 포함)·학습 목표·측정 기준·평가 체크리스트·선행·병행 트랙은 **[00. Introduction: Low-latency 컴파일러·빌드 최적화](/collection/optimization-02-compiler/00-introduction/)**에서 모두 다룹니다. 01(최적화 플래그)부터 순서대로 읽거나, 해당 챕터만 골라 읽어도 됩니다.
+**커리큘럼**(난이도 포함)·학습 목표·측정 기준·평가 체크리스트·선행·병행 트랙은 **[00. Introduction: Low-latency 컴파일러·빌드 최적화](/post/compiler-optimization/getting-started-compiler-build-performance-tuning/)**에서 모두 다룹니다. 01(최적화 플래그)부터 순서대로 읽거나, 해당 챕터만 골라 읽어도 됩니다.
 
-12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/collection/optimization-00-series-overview/00-introduction/)**를 참고하세요.
+12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**를 참고하세요.
