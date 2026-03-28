@@ -1,9 +1,9 @@
 ---
 collection_order: 14
 date: 2026-03-10
-lastmod: 2026-03-10
+lastmod: 2026-03-28
 draft: true
-title: "[Performance 15] Small Buffer Optimization"
+title: "[Optimization(C++) 14] Small Buffer Optimization"
 slug: small-buffer-optimization
 description: "SBO(Small Buffer Optimization) 패턴 상세와 std::function, std::any 등 타입 소거 타입의 내부 구조를 다룹니다. 작은 객체일 때 힙 할당을 피하는 메커니즘과 성능·ABI 영향을 정리하며, 버퍼 크기 선택과 이식성 주의점을 제시합니다."
 tags:
@@ -270,7 +270,7 @@ SBO는 std::function·std::any의 내부 버퍼·타입 소거·ABI로 요약됩
 
 ### 게시 전·복습 체크
 
-(1) 도입·정의·예시·비교·마무리가 있는가? (2) 학습 성과 목표·판단 기준·비판적 시각이 있는가? (3) 벤치마크 해석·FAQ·체크리스트·진단 도구가 있는가? (4) 용어 정리·이 장에서 다룬 내용·다음 장 링크가 있는가? (5) 본문이 500줄 이상인가? 위를 확인한 뒤 챕터 15(Parameter Passing)로 진행합니다.
+(1) 도입·정의·예시·비교·마무리가 있는가? (2) 학습 성과 목표·판단 기준·비판적 시각이 있는가? (3) 벤치마크 해석·FAQ·체크리스트·진단 도구가 있는가? (4) 용어 정리·이 장에서 다룬 내용·다음 장 링크가 있는가? (5) 트랙 분량·구성(분량 기준 문서 `CONTENT_LENGTH_TARGETS.md`(트랙 폴더 루트))을 점검했는가? 위를 확인한 뒤 챕터 15(Parameter Passing)로 진행합니다.
 
 ### 요약: 이 장의 핵심 메시지
 
@@ -386,7 +386,7 @@ SBO는 std::function·std::any의 내부 버퍼·타입 소거·ABI로 요약됩
 - **학습 성과 목표·판단 기준·비판적 시각**: 충족.
 - **벤치마크 해석·FAQ·체크리스트·진단 도구**: 충족.
 - **용어 정리·이 장에서 다룬 내용·다음 장 링크**: 충족.
-- **본문 500줄 이상**: 확장으로 충족 목표.
+- **분량·구성**: 분량 기준 문서 `CONTENT_LENGTH_TARGETS.md`(트랙 폴더 루트) 기준을 따른다.
 
 ### 참고
 
@@ -396,7 +396,7 @@ SBO는 "작은 객체는 힙 없이"를 가능하게 합니다. 한도는 구현
 
 **챕터 14 끝**: SBO = 내부 버퍼·힙 회피. function/any = 타입 소거·SBO 한도. 다음은 15(Parameter Passing)입니다.
 
-**다음 링크**: → [Parameter Passing 전략](/collection/optimization-01-cpp-language/15-parameter-passing/) (챕터 15)
+**다음 링크**: → [Parameter Passing 전략](/post/cpp-optimization/parameter-passing/) (챕터 15)
 
 **복습**: SBO·타입 소거·한도 초과 시 힙을 한 줄씩 말할 수 있으면 충분합니다.
 
@@ -406,4 +406,6 @@ SBO는 "작은 객체는 힙 없이"를 가능하게 합니다. 한도는 구현
 
 ## 다음 장에서는
 
-**Parameter Passing 전략**을 다룹니다. by value, const reference, rvalue reference의 정량적 분석과 객체 크기·복사/이동 비용에 따른 전달 전략을 정리합니다. → [Parameter Passing 전략](/collection/optimization-01-cpp-language/15-parameter-passing/) (챕터 15)
+**이전 장**: [람다 표현식 성능](/post/cpp-optimization/lambda-performance/) (챕터 13)
+
+**Parameter Passing 전략**을 다룹니다. by value, const reference, rvalue reference의 정량적 분석과 객체 크기·복사/이동 비용에 따른 전달 전략을 정리합니다. → [Parameter Passing 전략](/post/cpp-optimization/parameter-passing/) (챕터 15)

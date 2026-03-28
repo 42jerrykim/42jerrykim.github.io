@@ -1,9 +1,9 @@
 ---
 collection_order: 5
 date: 2026-03-10
-lastmod: 2026-03-10
+lastmod: 2026-03-28
 draft: true
-title: "[Performance 06] 임시 객체 제거"
+title: "[Optimization(C++) 05] 임시 객체 제거"
 slug: temporary-removal
 description: "임시 객체 생성이 발생하는 패턴을 진단하고, 연산자 오버로딩·암시적 변환·연속 연산 등에서 임시를 제거하는 패턴을 다룹니다. 컴파일러 출력과 프로파일링으로 임시 비용을 확인하는 방법을 정리하며, 실무 적용 시 주의점과 대안을 제시합니다."
 tags:
@@ -301,7 +301,7 @@ for (const auto& x : vec) sum += x;
 
 ### 게시 전·복습 체크
 
-(1) 도입·정의·예시·비교·마무리가 있는가? (2) 학습 성과 목표·판단 기준·비판적 시각이 있는가? (3) 벤치마크 해석·FAQ·체크리스트·진단 도구가 있는가? (4) 용어 정리·이 장에서 다룬 내용·다음 장 링크가 있는가? (5) 본문이 500줄 이상인가? 위를 확인한 뒤 챕터 06(템플릿/constexpr)으로 진행합니다.
+(1) 도입·정의·예시·비교·마무리가 있는가? (2) 학습 성과 목표·판단 기준·비판적 시각이 있는가? (3) 벤치마크 해석·FAQ·체크리스트·진단 도구가 있는가? (4) 용어 정리·이 장에서 다룬 내용·다음 장 링크가 있는가? (5) 트랙 분량·구성(분량 기준 문서 `CONTENT_LENGTH_TARGETS.md`(트랙 폴더 루트))을 점검했는가? 위를 확인한 뒤 챕터 06(템플릿/constexpr)으로 진행합니다.
 
 ### 요약: 이 장의 핵심 메시지
 
@@ -433,7 +433,7 @@ temporary materialization, explicit, in-place 연산(+=), const T& vs 값 전달
 
 (이상으로 챕터 05 임시 객체 제거를 마칩니다. 다음 장 06에서는 템플릿/constexpr를 다룹니다.)
 
-- **다음**: [템플릿/constexpr](/collection/optimization-01-cpp-language/06-templates-constexpr/) (챕터 06)
+- **다음**: [템플릿/constexpr](/post/cpp-optimization/templates-constexpr/) (챕터 06)
 
 ### 요약 표 (한눈에)
 
@@ -465,7 +465,7 @@ temporary materialization, explicit, in-place 연산(+=), const T& vs 값 전달
 **요약 (한 줄)**: 05 = 임시 제거(참조·explicit·+=·reserve). 06 = 템플릿/constexpr. 위 항목을 설명할 수 있으면 06으로 진행하세요.
 
 - **이 장의 범위**: 임시 원인·제거 패턴·진단·참조 전달·explicit·+=.
-- **다음**: [템플릿/constexpr](/collection/optimization-01-cpp-language/06-templates-constexpr/) (챕터 06).
+- **다음**: [템플릿/constexpr](/post/cpp-optimization/templates-constexpr/) (챕터 06).
 
 **참고**: 임시 제거는 프로파일러로 "어디서" 생성·할당이 나오는지 확인한 뒤, 해당 구간에 참조 전달·+=·explicit·reserve를 적용합니다. 06(템플릿/constexpr)에서는 컴파일 타임 계산으로 런타임 비용을 줄이므로, 05와 06을 연이어 학습하면 런타임·컴파일 타임 양쪽 최적화를 다룰 수 있습니다.
 
@@ -481,7 +481,7 @@ temporary materialization, explicit, in-place 연산(+=), const T& vs 값 전달
 
 (챕터 05 임시 객체 제거 끝. 다음은 06 템플릿/constexpr입니다.)
 
-- **다음**: [템플릿/constexpr](/collection/optimization-01-cpp-language/06-templates-constexpr/) (챕터 06).
+- **다음**: [템플릿/constexpr](/post/cpp-optimization/templates-constexpr/) (챕터 06).
 
 ---
 
@@ -494,8 +494,10 @@ temporary materialization, explicit, in-place 연산(+=), const T& vs 값 전달
 
 (이상으로 챕터 05 임시 객체 제거를 마칩니다.)
 
-→ [템플릿/constexpr](/collection/optimization-01-cpp-language/06-templates-constexpr/) (챕터 06)
+→ [템플릿/constexpr](/post/cpp-optimization/templates-constexpr/) (챕터 06)
 
 ## 다음 장에서는
+
+**이전 장**: [객체 수명 최적화](/post/cpp-optimization/object-lifetime/) (챕터 04)
 
 **템플릿/constexpr**를 다룹니다. constexpr·consteval로 컴파일 타임 계산을 하고, 템플릿으로 비용을 제어·인라이닝을 유도하는 패턴을 정리합니다.
