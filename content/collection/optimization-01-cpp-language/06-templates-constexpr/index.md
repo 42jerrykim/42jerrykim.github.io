@@ -1,9 +1,9 @@
 ---
 collection_order: 6
 date: 2026-03-10
-lastmod: 2026-03-10
+lastmod: 2026-03-28
 draft: true
-title: "[Performance 07] 템플릿/constexpr"
+title: "[Optimization(C++) 06] 템플릿/constexpr"
 slug: templates-constexpr
 description: "constexpr, consteval을 활용한 컴파일 타임 계산과 템플릿 기반 비용 제어 전략을 다룹니다. 런타임 오버헤드를 컴파일 타임으로 옮기고 인라이닝을 유도하는 패턴을 정리하며, 컴파일 시간·ABI 트레이드오프와 적용 기준을 제시합니다."
 tags:
@@ -285,7 +285,7 @@ constexpr int fib(int n) {
 
 ### 게시 전·복습 체크
 
-(1) 도입·정의·예시·비교·마무리가 있는가? (2) 학습 성과 목표·판단 기준·비판적 시각이 있는가? (3) 벤치마크 해석·FAQ·체크리스트·진단 도구가 있는가? (4) 용어 정리·이 장에서 다룬 내용·다음 장 링크가 있는가? (5) 본문이 500줄 이상인가? 위를 확인한 뒤 챕터 07(Modern C++ 기능)으로 진행합니다.
+(1) 도입·정의·예시·비교·마무리가 있는가? (2) 학습 성과 목표·판단 기준·비판적 시각이 있는가? (3) 벤치마크 해석·FAQ·체크리스트·진단 도구가 있는가? (4) 용어 정리·이 장에서 다룬 내용·다음 장 링크가 있는가? (5) 트랙 분량·구성(분량 기준 문서 `CONTENT_LENGTH_TARGETS.md`(트랙 폴더 루트))을 점검했는가? 위를 확인한 뒤 챕터 07(Modern C++ 기능)으로 진행합니다.
 
 ### 요약: 이 장의 핵심 메시지
 
@@ -311,7 +311,7 @@ constexpr int fib(int n) {
 
 (이상으로 챕터 06 템플릿/constexpr를 마칩니다.)
 
-→ [Modern C++ 기능](/collection/optimization-01-cpp-language/07-modern-cpp-features/) (챕터 07)
+→ [Modern C++ 기능](/post/cpp-optimization/modern-cpp-features/) (챕터 07)
 
 ### 정량적 비교 (참고)
 
@@ -419,7 +419,7 @@ constexpr, consteval, 상수 맥락, 템플릿 인스턴스, 컴파일 타임 vs
 
 (이상으로 챕터 06 템플릿/constexpr를 마칩니다.)
 
-- **다음**: [Modern C++ 기능](/collection/optimization-01-cpp-language/07-modern-cpp-features/) (챕터 07)
+- **다음**: [Modern C++ 기능](/post/cpp-optimization/modern-cpp-features/) (챕터 07)
 - **이 장의 범위**: constexpr·consteval·컴파일 타임 전략·템플릿 비용 제어.
 
 **챕터 06 끝.** 다음 장(07)에서는 Modern C++(ranges, concepts, modules)의 비용·이점을 다룹니다. 06·07을 연이어 학습하면 컴파일 타임 전략과 표준 기능 비용을 함께 다룰 수 있습니다.
@@ -455,7 +455,7 @@ constexpr, consteval, 상수 맥락, 템플릿 인스턴스, 컴파일 타임 vs
 **정리 (최종)**: (1) constexpr·consteval·컴파일 타임 전략. (2) 템플릿 비용 제어. (3) 컴파일 시간·벤치마크 검증. (4) 다음 07 = Modern C++. (5) 05·06·07 연이어 학습 권장.
 
 - **이 장의 범위**: constexpr·consteval·컴파일 타임 전략·템플릿 비용 제어.
-- **다음**: [Modern C++ 기능](/collection/optimization-01-cpp-language/07-modern-cpp-features/) (챕터 07).
+- **다음**: [Modern C++ 기능](/post/cpp-optimization/modern-cpp-features/) (챕터 07).
 
 **다음 단계**: 07(Modern C++ 기능)에서 ranges·concepts·modules를 배우면, 06의 constexpr·템플릿과 07의 표준 기능을 함께 적용할 수 있습니다. 10(인라이닝)에서는 템플릿·인라이닝 유도 기법을 더 깊이 다룹니다.
 
@@ -483,7 +483,7 @@ constexpr, consteval, 상수 맥락, 템플릿 인스턴스, 컴파일 타임 vs
 
 **마무리 (최종)**: 이 장(06)에서는 템플릿/constexpr—constexpr·consteval·컴파일 타임 전략·템플릿 비용 제어—를 다뤘습니다. 다음 장(07)에서는 Modern C++ 기능(ranges, concepts, modules)을 다룹니다.
 
-- **다음**: [Modern C++ 기능](/collection/optimization-01-cpp-language/07-modern-cpp-features/) (챕터 07).
+- **다음**: [Modern C++ 기능](/post/cpp-optimization/modern-cpp-features/) (챕터 07).
 
 (챕터 06 템플릿/constexpr 끝. 다음은 07 Modern C++ 기능입니다.)
 
@@ -497,5 +497,7 @@ constexpr, consteval, 상수 맥락, 템플릿 인스턴스, 컴파일 타임 vs
 ---
 
 ## 다음 장에서는
+
+**이전 장**: [임시 객체 제거](/post/cpp-optimization/temporary-removal/) (챕터 05)
 
 **Modern C++ 기능**을 다룹니다. C++17/20/23의 ranges, concepts, modules 등 성능 관련 기능의 비용·이점과 Low-latency 활용 기준을 정리합니다.

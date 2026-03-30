@@ -1,9 +1,9 @@
 ---
 collection_order: 9
 date: 2026-03-10
-lastmod: 2026-03-10
+lastmod: 2026-03-28
 draft: true
-title: "[Performance 10] 예외 처리 심화"
+title: "[Optimization(C++) 09] 예외 처리 심화"
 slug: exception-deep-dive
 description: "zero-cost exception의 실제 동작과 noexcept 전략을 다룹니다. 예외 발생 경로와 정상 경로의 비용 차이, 예외 사양이 인라이닝·코드 생성에 미치는 영향을 마이크로벤치마크로 검증하고, 핫패스에서의 사용·회피 기준을 정리합니다."
 tags:
@@ -277,7 +277,7 @@ struct Widget {
 
 ### 게시 전·복습 체크
 
-(1) 도입·정의·예시·비교·마무리가 있는가? (2) 학습 성과 목표·판단 기준·비판적 시각이 있는가? (3) 벤치마크 해석·FAQ·체크리스트·진단 도구가 있는가? (4) 용어 정리·이 장에서 다룬 내용·다음 장 링크가 있는가? (5) 본문이 500줄 이상인가? 위를 확인한 뒤 챕터 10(인라이닝 유도 기법)으로 진행합니다.
+(1) 도입·정의·예시·비교·마무리가 있는가? (2) 학습 성과 목표·판단 기준·비판적 시각이 있는가? (3) 벤치마크 해석·FAQ·체크리스트·진단 도구가 있는가? (4) 용어 정리·이 장에서 다룬 내용·다음 장 링크가 있는가? (5) 트랙 분량·구성(분량 기준 문서 `CONTENT_LENGTH_TARGETS.md`(트랙 폴더 루트))을 점검했는가? 위를 확인한 뒤 챕터 10(인라이닝 유도 기법)으로 진행합니다.
 
 ### 요약: 이 장의 핵심 메시지
 
@@ -322,7 +322,7 @@ struct Widget {
 
 ### 다음 장(10) 미리보기
 
-챕터 10에서는 **인라이닝 유도 기법**을 다룹니다. inline·__forceinline, 작은 함수·헤더 정의·LTO, 인라이닝 실패 원인 진단(Course 02)을 정리합니다. 09의 noexcept가 인라이닝에 미치는 영향과 연계됩니다.
+챕터 10에서는 **인라이닝 유도 기법**을 다룹니다. inline·__forceinline, 작은 함수·헤더 정의·LTO, 인라이닝 실패 원인 진단(Tr.02)을 정리합니다. 09의 noexcept가 인라이닝에 미치는 영향과 연계됩니다.
 
 ### 용어·개념 복습
 
@@ -396,7 +396,7 @@ noexcept 추가 시 호출 체인이 예외를 던지지 않음을 보장. expec
 - **학습 성과 목표·판단 기준·비판적 시각**: 충족.
 - **벤치마크 해석·FAQ·체크리스트·진단 도구**: 충족.
 - **용어 정리·이 장에서 다룬 내용·다음 장 링크**: 충족.
-- **본문 500줄 이상**: 확장으로 충족 목표.
+- **분량·구성**: 분량 기준 문서 `CONTENT_LENGTH_TARGETS.md`(트랙 폴더 루트) 기준을 따른다.
 
 ### 참고
 
@@ -406,7 +406,7 @@ noexcept 추가 시 호출 체인이 예외를 던지지 않음을 보장. expec
 
 **챕터 09 끝**: zero-cost·noexcept·이동 선택·실패 빈번 시 expected. 다음은 10(인라이닝 유도 기법)입니다.
 
-**다음 링크**: → [인라이닝 유도 기법](/collection/optimization-01-cpp-language/10-inlining-techniques/) (챕터 10)
+**다음 링크**: → [인라이닝 유도 기법](/post/cpp-optimization/inlining-techniques/) (챕터 10)
 
 **복습**: zero-cost·noexcept·expected 선택 기준을 한 줄씩 말할 수 있으면 충분합니다.
 
@@ -416,4 +416,6 @@ noexcept 추가 시 호출 체인이 예외를 던지지 않음을 보장. expec
 
 ## 다음 장에서는
 
-**인라이닝 유도 기법**을 다룹니다. inline·__forceinline 활용과 인라이닝을 유도하는 코드 패턴, 실패 원인 진단(Course 02 연계)을 정리합니다. → [인라이닝 유도 기법](/collection/optimization-01-cpp-language/10-inlining-techniques/) (챕터 10)
+**이전 장**: [코루틴 성능](/post/cpp-optimization/coroutine-performance/) (챕터 08)
+
+**인라이닝 유도 기법**을 다룹니다. inline·__forceinline 활용과 인라이닝을 유도하는 코드 패턴, 실패 원인 진단(Tr.02 컴파일러 트랙 연계)을 정리합니다. → [인라이닝 유도 기법](/post/cpp-optimization/inlining-techniques/) (챕터 10)

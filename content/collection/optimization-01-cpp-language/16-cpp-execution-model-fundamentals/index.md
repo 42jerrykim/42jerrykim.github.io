@@ -1,11 +1,11 @@
 ---
 collection_order: 16
 date: 2026-03-24
-lastmod: 2026-03-24
+lastmod: 2026-03-28
 draft: true
-title: "[C++ Lang 16] C++ 실행 모델·µs 최적화 어휘 (기초)"
+title: "[Optimization(C++) 16] C++ 실행 모델·µs 최적화 어휘 (기초)"
 slug: cpp-execution-model-microsecond-vocabulary-fundamentals
-description: "Low-latency C++ 트랙 선행 기초 장입니다. 프로세스 메모리·스택/힙·핫패스·추상화 비용 등 µs 튜닝에 필요한 용어와 직관을 정리하고, Tr.05 측정·01 본 챕터로 이어지는 학습 경로를 안내합니다."
+description: "Low-latency C++ 트랙 선행 기초 장입니다. 프로세스 메모리·스택/힙·캐시·핫패스·추상화 비용 등 µs 튜닝 용어를 문단으로 정리하고, Tr.05 프로파일링과 챕터 01 본편으로 이어지는 경로·이전·다음 장 내비게이션을 안내합니다."
 tags:
   - C++
   - Performance
@@ -121,6 +121,14 @@ flowchart TB
 
 실행 모델을 아는 것만으로는 병목이 사라지지 않습니다. 반대로, 모델을 모르면 **우연히 빠른 코드**를 **재현 가능하게** 만들기 어렵습니다. 이 장은 “암기”가 아니라 **팀 내 용어 통일**용으로 쓰고, 세부 수치는 항상 측정으로 확인하는 태도를 유지하는 것이 좋습니다.
 
+## 판단 기준: 이 장을 언제 끝까지 읽고 언제 훑을까
+
+**끝까지 읽을 가치가 큰 경우**는 챕터 01·02·04의 벤치마크 숫자를 팀과 공유해야 하는데 “스택·힙·캐시”를 서로 다르게 쓰고 있을 때입니다. 용어만 맞춰도 회의 시간이 줄고, 잘못된 최적화(예: 힙만 없애고 복사를 키우기)를 예방할 수 있습니다.
+
+**빠르게 훑고 넘어가도 되는 경우**는 이미 OS·컴파일러 과정을 들었고, 핫패스·할당·가상 호출을 구분해 말할 수 있을 때입니다. 이 독자는 바로 챕터 01이나 Tr.05로 가도 되고, 막히는 용어만 이 장 표로 되짚으면 됩니다.
+
+**피할 태도**는 이 장을 “정답 암기”로만 소비하는 것입니다. 캐시 라인 크기나 페이지 정책은 플랫폼마다 다르므로, 문장으로 짚은 직관은 유지하되 수치는 항상 본인 환경에서 측정합니다.
+
 ## 평가 기준: 이 장을 읽은 후
 
 - [ ] 스택·힙·코드 영역을 구분해 말할 수 있는가?
@@ -141,9 +149,15 @@ flowchart TB
 
 ## 다음 장에서는
 
-본 트랙의 본격적인 첫 주제인 **추상화 비용**(가상 함수·RTTI·예외)으로 들어갑니다. 이 장의 그림을 떠올리면 vtable·간접 호출이 왜 “캐시·분기” 이야기와 연결되는지 읽기 쉬워집니다.
+도입(00)에서 권장하는 **선행 순서**에 따라, 실행 모델 어휘를 맞춘 뒤에는 **Smart Pointer 비용 기초**(챕터 18)로 가서 참조·소유권 비용을 정리한 다음, 본격 주제인 **추상화 비용**(챕터 01)으로 들어가면 흐름이 자연스럽습니다. 이미 챕터 01~15를 읽었다면 18은 **선택 보강**이며, 소유권·참조 카운트 비용만 빠르게 맞추고 싶을 때 읽으면 됩니다.
 
-→ [추상화 비용 분석](/collection/optimization-01-cpp-language/01-abstraction-cost/)
+→ [Smart Pointer 비용 기초](/post/cpp-optimization/smart-pointer-cost-fundamentals/) (챕터 18, 권장 선행) · [추상화 비용 분석](/post/cpp-optimization/abstraction-cost/) (챕터 01)
+
+선형 `collection_order`로 목록을 따라갈 때는 [ABI·링크 경계](/post/cpp-optimization/abi-link-boundaries-extreme-cpp-performance/) (챕터 17)가 16 다음에 옵니다.
+
+## 이전 장 · 목록 순서
+
+핵심 주제(01~15)를 이미 읽었다면 **이전 장**은 [Parameter Passing 전략](/post/cpp-optimization/parameter-passing/) (챕터 15)입니다. 기초 선행 경로만 밟는다면 00 도입 다음이 곧 이 장(16)이므로, 필요 시 [도입·측정 방법론](/post/cpp-optimization/getting-started-cpp-language-performance-tuning/) (챕터 00)으로 되돌아가 커리큘럼을 확인하면 됩니다.
 
 ## 팀 체크리스트: 용어 통일
 
@@ -195,9 +209,9 @@ flowchart TB
 
 ## 더 읽을 거리 (트랙 내)
 
-- [챕터 00 도입](/collection/optimization-01-cpp-language/00-introduction/)
-- [객체 수명 최적화](/collection/optimization-01-cpp-language/04-object-lifetime/) — 스택/힙과 복사·이동이 만나는 지점
-- [Parameter Passing](/collection/optimization-01-cpp-language/15-parameter-passing/) — 호출 규약과 비용
+- [챕터 00 도입](/post/cpp-optimization/getting-started-cpp-language-performance-tuning/)
+- [객체 수명 최적화](/post/cpp-optimization/object-lifetime/) — 스택/힙과 복사·이동이 만나는 지점
+- [Parameter Passing](/post/cpp-optimization/parameter-passing/) — 호출 규약과 비용
 
 ## 부록 B: 미니 레슨 (문단 20)
 
@@ -263,12 +277,12 @@ flowchart TB
 | 핫패스 상위 3개는? | |
 | 힙 할당 의심 지점은? | |
 | 가상 호출 의심 지점은? | |
-| 캐시·레이아웃 실험 TODO는? | |
+| 캐시·레이아웃 실험 기록은? | (stride, 정렬, 패딩 변경 전후 벤치 수치·빌드 플래그) |
 | Tr.05에서 확인한 수치 링크는? | |
 
 ## 부록 E: 오해하기 쉬운 문장 30
 
-아래 문장 각각에 대해 “언제 맞고 언제 틀리는지”를 한 문장씩 스스로 답해 보세요. 답은 챕터 01~15와 Tr.03·Tr.05를 읽으며 업데이트하면 됩니다.
+아래 문장 각각에 대해 “언제 맞고 언제 틀리는지”를 한 문장씩 스스로 답해 보세요. 답은 챕터 01~19와 Tr.03·Tr.05를 읽으며 업데이트하면 됩니다.
 
 1. “스택 할당은 항상 무료다.”  
 2. “힙만 피하면 된다.”  

@@ -1,9 +1,9 @@
 ---
 collection_order: 1
 date: 2026-03-10
-lastmod: 2026-03-10
+lastmod: 2026-03-28
 draft: true
-title: "[Performance 02] 추상화 비용 분석"
+title: "[Optimization(C++) 01] 추상화 비용 분석"
 slug: abstraction-cost
 description: "가상 함수, RTTI, 예외 처리의 정량적 비용을 마이크로벤치마크로 측정하고, devirtualization 등으로 비용을 줄이는 방법을 다룹니다. Low-latency C++ 트랙의 핵심 진입 챕터이며, 평가 기준·판단 기준·비판적 시각과 다음 장 링크를 제공합니다."
 tags:
@@ -479,7 +479,7 @@ void process(const Shape& s) {
 위 목표를 달성했다면 챕터 02(STL 컨테이너 비용)로 진행해, 컨테이너 선택에 따른 비용을 배울 수 있습니다. 02에서는 vector·map·unordered_map의 메모리 레이아웃과 캐시 효율을 다루므로, "어디서 시간이 든다"는 프로파일 결과와 함께 01·02를 번갈아 참고하면 됩니다.
 
 - **챕터 01 정리**: 추상화 비용 측정 → 대안 적용 → 회귀 검증. 다음은 02(STL 컨테이너)입니다.
-- **다음 장 링크**: [STL 컨테이너 비용](/collection/optimization-01-cpp-language/02-stl-container-cost/) (챕터 02).
+- **다음 장 링크**: [STL 컨테이너 비용](/post/cpp-optimization/stl-container-cost/) (챕터 02).
 
 ### 이 장에서 다룬 내용
 
@@ -493,8 +493,10 @@ void process(const Shape& s) {
 
 ## 다음 장에서는
 
+**이전 장**: [Introduction: Low-latency C++ 언어 최적화](/post/cpp-optimization/getting-started-cpp-language-performance-tuning/) (챕터 00)
+
 **STL 컨테이너 비용**을 다룹니다. vector, map, unordered_map의 비용 모델과 캐시 효율성, 컨테이너 선택에 따른 메모리 레이아웃·접근 패턴 차이를 마이크로벤치마크로 측정하는 방법을 정리합니다.
 
 **참고 자료**: Itanium C++ ABI(예외 처리·vtable 레이아웃), ISO C++ 표준(예외 처리·RTTI), 컴파일러 문서(GCC/Clang `-fopt-info`, `-fno-rtti`). 챕터 09(예외 심화), 챕터 11(variant/optional/expected)에서 예외 대안과 타입 안전 유니온을 이어서 다룹니다.
 
-→ [STL 컨테이너 비용](/collection/optimization-01-cpp-language/02-stl-container-cost/) (챕터 02)
+→ [STL 컨테이너 비용](/post/cpp-optimization/stl-container-cost/) (챕터 02)

@@ -1,9 +1,9 @@
 ---
 collection_order: 13
 date: 2026-03-10
-lastmod: 2026-03-10
+lastmod: 2026-03-28
 draft: true
-title: "[Performance 14] 람다 표현식 성능"
+title: "[Optimization(C++) 13] 람다 표현식 성능"
 slug: lambda-performance
 description: "람다의 캡처 비용(by-value vs by-reference), 클로저 객체 크기·정렬, 인라이닝 가능성 등 성능 특성을 다룹니다. std::function과의 비교 및 콜백·알고리즘 전달 시 비용을 정리하고, 타입 소거 vs 템플릿 전달의 트레이드오프를 제시합니다."
 tags:
@@ -283,7 +283,7 @@ void apply(std::function<void()> f) { f(); }  // 간접 호출
 
 ### 게시 전·복습 체크
 
-(1) 도입·정의·예시·비교·마무리가 있는가? (2) 학습 성과 목표·판단 기준·비판적 시각이 있는가? (3) 벤치마크 해석·FAQ·체크리스트·진단 도구가 있는가? (4) 용어 정리·이 장에서 다룬 내용·다음 장 링크가 있는가? (5) 본문이 500줄 이상인가? 위를 확인한 뒤 챕터 14(SBO)로 진행합니다.
+(1) 도입·정의·예시·비교·마무리가 있는가? (2) 학습 성과 목표·판단 기준·비판적 시각이 있는가? (3) 벤치마크 해석·FAQ·체크리스트·진단 도구가 있는가? (4) 용어 정리·이 장에서 다룬 내용·다음 장 링크가 있는가? (5) 트랙 분량·구성(분량 기준 문서 `CONTENT_LENGTH_TARGETS.md`(트랙 폴더 루트))을 점검했는가? 위를 확인한 뒤 챕터 14(SBO)로 진행합니다.
 
 ### 요약: 이 장의 핵심 메시지
 
@@ -399,7 +399,7 @@ std::function 인자 → 템플릿으로 바꿀 때 인라인 기회 확보. 캡
 - **학습 성과 목표·판단 기준·비판적 시각**: 충족.
 - **벤치마크 해석·FAQ·체크리스트·진단 도구**: 충족.
 - **용어 정리·이 장에서 다룬 내용·다음 장 링크**: 충족.
-- **본문 500줄 이상**: 확장으로 충족 목표.
+- **분량·구성**: 분량 기준 문서 `CONTENT_LENGTH_TARGETS.md`(트랙 폴더 루트) 기준을 따른다.
 
 ### 참고
 
@@ -409,7 +409,7 @@ std::function 인자 → 템플릿으로 바꿀 때 인라인 기회 확보. 캡
 
 **챕터 13 끝**: 람다 = 인라인 가능·캡처 비용·function 대비. 다음은 14(SBO)입니다.
 
-**다음 링크**: → [Small Buffer Optimization](/collection/optimization-01-cpp-language/14-small-buffer-optimization/) (챕터 14)
+**다음 링크**: → [Small Buffer Optimization](/post/cpp-optimization/small-buffer-optimization/) (챕터 14)
 
 **복습**: 람다 vs function·캡처 비용을 한 줄씩 말할 수 있으면 충분합니다.
 
@@ -419,4 +419,6 @@ std::function 인자 → 템플릿으로 바꿀 때 인라인 기회 확보. 캡
 
 ## 다음 장에서는
 
-**Small Buffer Optimization**을 다룹니다. SBO 패턴과 std::function·std::any 내부 구조, 작은 객체일 때 힙 할당을 피하는 메커니즘을 정리합니다. → [Small Buffer Optimization](/collection/optimization-01-cpp-language/14-small-buffer-optimization/) (챕터 14)
+**이전 장**: [std::span과 뷰 패턴](/post/cpp-optimization/span-and-views/) (챕터 12)
+
+**Small Buffer Optimization**을 다룹니다. SBO 패턴과 std::function·std::any 내부 구조, 작은 객체일 때 힙 할당을 피하는 메커니즘을 정리합니다. → [Small Buffer Optimization](/post/cpp-optimization/small-buffer-optimization/) (챕터 14)
