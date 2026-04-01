@@ -10,7 +10,7 @@ description: >-
 
 이 스킬은 42jerrykim.github.io Hugo 사이트에서 **모든 유형의 블로그 포스트**(컬렉션, 일반 포스트, 기술 블로그, 새 컬렉션)를 일관된 품질로 작성하기 위한 프레임워크다.
 
-> **기존 규칙과의 관계**: 이 스킬은 `.cursor/rules/`의 always-applied 규칙들을 **보완**한다. frontmatter 필수 필드, Mermaid 문법, 링크 검증, 날짜 확인 등은 기존 규칙이 이미 강제하므로 여기서는 **워크플로우·구조·전략**에 집중한다.
+> **기존 규칙과의 관계**: 이 스킬은 `.cursor/rules/rules-that-must-be-followed.mdc`(alwaysApply)를 **보완**한다. frontmatter·Mermaid·링크 검증 등 전역 불변은 해당 규칙이 강제한다. **제목 형식·날짜·카테고리 접두어** 상세는 [reference.md](reference.md)의 **「제목·날짜·카테고리 접두어 (전역)」** 절을 따른다. 여기서는 **워크플로우·구조·전략**에 집중한다.
 >
 > **미디어 작품 한글 제목**: 영화·드라마 등은 해당 컬렉션의 `.cursor/rules/`를 따른다. 영화 리뷰의 본문·추천 작품 표기 세부는 `content/collection/Movies/.cursor/rules/movie-review-writing-rules.mdc`의 **「본문·추천 작품의 한국어 제목」** 절을 참고한다.
 
@@ -126,7 +126,7 @@ image: "image.png"
 
 #### 교육 콘텐츠 추가 요소
 
-교육 자료는 `ai-educational-content-quality.mdc` 규칙도 함께 따른다:
+교육·시리즈형 자료는 [`.cursor/skills/educational-content-writing/SKILL.md`](../educational-content-writing/SKILL.md)도 함께 따른다:
 - 학습 성과 목표 ("이 글을 읽은 후 점검해 볼 질문")
 - 판단 기준 (언제 사용/피할지)
 - 비판적 시각 (한계, 트레이드오프)
@@ -145,7 +145,7 @@ image: "image.png"
 - [ ] 본문 링크 전부 HTTP 접근 확인 완료 (404/5xx 없음)
 - [ ] Mermaid: 노드 ID camelCase, 특수문자 라벨은 `""` 감싸기, 줄바꿈 `</br>`
 - [ ] 이미지가 번들 내 존재하고 frontmatter에서 참조됨
-- [ ] 내부 링크는 `/post/<section-slug>/<page-slug>/` 형식
+- [ ] 내부 링크는 [reference.md](reference.md) **「Hugo 컬렉션 내부 링크」** (`/post/<section-slug>/<page-slug-or-contentbasename>/`)
 
 ---
 
@@ -236,6 +236,6 @@ slug: "kebab-case-slug"
 
 ## 7. 추가 참고
 
-- 컬렉션별 상세 템플릿, 태그 카테고리 전체 목록: [reference.md](reference.md)
-- 내부 링크 규칙: `.cursor/rules/hugo-collection-internal-links.mdc`
-- 교육 콘텐츠 품질 규칙: `.cursor/rules/ai-educational-content-quality.mdc`
+- 컬렉션별 상세 템플릿, 태그 카테고리, **내부 링크(permalinks·slug)**, **제목·날짜**: [reference.md](reference.md)
+- 컬렉션 `index.md` 편집 시 자동 트리거: `.cursor/rules/hugo-collection-internal-links.mdc` → 위 reference의 **「Hugo 컬렉션 내부 링크」** 준수
+- 교육·시리즈형 품질(분량·00 챕터·체크리스트): [`.cursor/skills/educational-content-writing/SKILL.md`](../educational-content-writing/SKILL.md) — 트리거 규칙: `.cursor/rules/ai-educational-content-quality.mdc`

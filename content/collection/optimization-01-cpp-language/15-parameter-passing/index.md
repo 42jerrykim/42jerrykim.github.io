@@ -467,7 +467,7 @@ C++ Core Guidelines의 F.15("Prefer simple and conventional ways of passing info
 
 ### 챕터 15·트랙 게시 전 최종 확인
 
-분량 기준 문서 `CONTENT_LENGTH_TARGETS.md`(트랙 폴더 루트)에 맞는 분량·구성인지, 도입·정의·예시·비교·마무리·학습 성과 목표·판단 기준·비판적 시각·벤치마크 해석·FAQ·체크리스트·진단 도구·용어 정리·이 장에서 다룬 내용·다음 장(16)·도입(00) 링크가 모두 포함되었는지 확인한 뒤 게시합니다. 트랙 전체(00~19)는 동일 문서의 분량 표와 워크스페이스 ai-educational-content-quality 규칙을 함께 점검합니다.
+분량 기준 문서 `CONTENT_LENGTH_TARGETS.md`(트랙 폴더 루트)에 맞는 분량·구성인지, 도입·정의·예시·비교·마무리·학습 성과 목표·판단 기준·비판적 시각·벤치마크 해석·FAQ·체크리스트·진단 도구·용어 정리·이 장에서 다룬 내용·다음 장(16)·도입(00) 링크가 모두 포함되었는지 확인한 뒤 게시합니다. 트랙 전체(00~19)는 동일 문서의 분량 표와 워크스페이스 educational-content-writing 스킬(`.cursor/skills/educational-content-writing/SKILL.md`)을 함께 점검합니다.
 
 ### 인자 전달 한 줄 요약
 
@@ -495,7 +495,7 @@ C++ Core Guidelines의 F.15("Prefer simple and conventional ways of passing info
 
 ### 본 트랙(00~19) 목차 요약
 
-**00** 도입·측정·활용 흐름 | **01** 추상화 비용 | **02** STL 컨테이너 비용 | **03** 문자열 최적화 | **04** 객체 수명·RVO·이동 | **05** 임시 제거 | **06** 템플릿·constexpr | **07** Modern C++(Ranges·Concepts·Modules) | **08** 코루틴 성능 | **09** 예외 처리 심화 | **10** 인라이닝 유도 | **11** variant·optional·expected | **12** span·뷰 패턴 | **13** 람다 표현식 성능 | **14** SBO | **15** Parameter Passing(본 장) | **16** 실행 모델·어휘 | **17** ABI·링크 | **18** Smart Pointer | **19** Type Erasure. 각 챕터는 벤치마크 해석·FAQ·체크리스트·진단 도구·학습 점검·판단 기준·비판적 시각·용어 정리·이 장에서 다룬 내용·다음 장 링크를 포함하며, 분량·구성 목표는 분량 기준 문서 `CONTENT_LENGTH_TARGETS.md`(트랙 폴더 루트)와 ai-educational-content-quality 규칙을 함께 따릅니다.
+**00** 도입·측정·활용 흐름 | **01** 추상화 비용 | **02** STL 컨테이너 비용 | **03** 문자열 최적화 | **04** 객체 수명·RVO·이동 | **05** 임시 제거 | **06** 템플릿·constexpr | **07** Modern C++(Ranges·Concepts·Modules) | **08** 코루틴 성능 | **09** 예외 처리 심화 | **10** 인라이닝 유도 | **11** variant·optional·expected | **12** span·뷰 패턴 | **13** 람다 표현식 성능 | **14** SBO | **15** Parameter Passing(본 장) | **16** 실행 모델·어휘 | **17** ABI·링크 | **18** Smart Pointer | **19** Type Erasure. 각 챕터는 벤치마크 해석·FAQ·체크리스트·진단 도구·학습 점검·판단 기준·비판적 시각·용어 정리·이 장에서 다룬 내용·다음 장 링크를 포함하며, 분량·구성 목표는 분량 기준 문서 `CONTENT_LENGTH_TARGETS.md`(트랙 폴더 루트)와 educational-content-writing 스킬을 함께 따릅니다.
 
 ### 인자 전달·트랙 마무리 요약
 
@@ -509,11 +509,11 @@ by value(작은 타입)·const ref(큰 타입)·rvalue ref(이동 유도)·perfe
 
 - **인자 전달**: 작은 타입 value, 큰 타입 const ref·rvalue ref, 템플릿 perfect forwarding. 정량 분석·벤치마크로 확인.
 - **이후 독해**: 선형 순서 16~19 또는 도입(00)의 **16→18→01** 권장 경로.
-- **본문 길이**: 분량 기준 문서 `CONTENT_LENGTH_TARGETS.md`(트랙 폴더 루트) 및 ai-educational-content-quality 규칙을 따릅니다.
+- **본문 길이**: 분량 기준 문서 `CONTENT_LENGTH_TARGETS.md`(트랙 폴더 루트) 및 educational-content-writing 스킬을 따릅니다.
 
 by value·const ref·rvalue ref·perfect forwarding을 객체 크기·복사/이동 비용에 따라 선택하고, C++ Core Guidelines F.15/F.16과 정량 분석으로 프로젝트에 맞게 조정합니다. 챕터 04(객체 수명)의 RVO·이동 의미론과 반환값 전달을 함께 설계하면, 인자·반환 모두에서 불필요한 복사를 줄일 수 있습니다.
 
-챕터 15는 rules-that-must-be-followed·hugo-content-bundle-naming·ai-educational-content-quality를 따릅니다. **트랙 마지막 챕터는 19(Type Erasure)** 입니다. 다음: [챕터 16](/post/cpp-optimization/cpp-execution-model-microsecond-vocabulary-fundamentals/) 또는 [도입(00)](/post/cpp-optimization/getting-started-cpp-language-performance-tuning/). 컴파일러·빌드·메모리·동시성 등 **다른 시리즈 트랙**은 00에서 로드맵을 참고하세요.
+챕터 15는 rules-that-must-be-followed·blog-post-writing 스킬(reference의 제목·날짜)·educational-content-writing 스킬을 따릅니다. **트랙 마지막 챕터는 19(Type Erasure)** 입니다. 다음: [챕터 16](/post/cpp-optimization/cpp-execution-model-microsecond-vocabulary-fundamentals/) 또는 [도입(00)](/post/cpp-optimization/getting-started-cpp-language-performance-tuning/). 컴파일러·빌드·메모리·동시성 등 **다른 시리즈 트랙**은 00에서 로드맵을 참고하세요.
 
 ## 다음 장에서는
 

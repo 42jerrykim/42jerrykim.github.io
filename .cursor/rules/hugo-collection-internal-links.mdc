@@ -1,22 +1,12 @@
 ---
-description: Hugo 컬렉션 글 내부 링크를 section slug와 page slug 기준으로 작성한다
+description: Hugo 컬렉션 글 내부 링크는 blog-post-writing 레퍼런스의 Hugo 섹션을 따른다
 globs: content/collection/**/index.md
 alwaysApply: false
 ---
 
-# Hugo Collection Internal Links
+# Hugo 컬렉션 내부 링크 (트리거)
 
-- 컬렉션 글의 내부 링크는 `/post/<section-slug>/<page-slug-or-contentbasename>/` 형식을 사용한다.
-- `<section-slug>`는 디렉터리명이 아니라 대상 컬렉션의 `_index.md`에 있는 `slug`를 사용한다.
-- `<page-slug-or-contentbasename>`는 대상 페이지 front matter에 `slug`가 있으면 그것을 쓰고, 없으면 폴더명(content basename)을 사용한다.
-- 링크를 추가하거나 수정하기 전에 `config/_default/permalinks.yaml`의 `collection: /post/:sectionslugs[last]/:slugorcontentbasename/` 규칙을 먼저 확인한다.
-- `/collection/...` 또는 `/post/<directory-name>/...`처럼 폴더명만 보고 추측한 URL은 쓰지 않는다.
-- 링크를 추가한 뒤에는 대상 `_index.md`와 대상 페이지 front matter를 다시 읽어 section slug와 page slug가 맞는지 확인하고, 가능하면 실제 접근 가능 여부도 확인한다.
+`content/collection/**/index.md`를 편집할 때 내부 링크·permalink 규칙은 **반드시** 다음을 읽고 따른다.
 
-예시:
-
-- 잘못된 링크: `/post/optimization-01-cpp-language/getting-started-cpp-language-performance-tuning/`
-- 올바른 링크: `/post/cpp-optimization/getting-started-cpp-language-performance-tuning/`
-
-- 잘못된 링크: `/collection/optimization-00-series-overview/00-introduction/`
-- 올바른 링크: `/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/`
+- [`.cursor/skills/blog-post-writing/reference.md`](.cursor/skills/blog-post-writing/reference.md)의 **「Hugo 컬렉션 내부 링크」** 절 전체
+- 링크 추가·수정 전 `config/_default/permalinks.yaml`의 `collection` 규칙 확인
