@@ -1,5 +1,7 @@
 ---
 description: "Vocabulary 컬렉션 영단어 글 작성을 위한 종합 가이드로, 2025년 최신 10개 Vocabulary 포스트 패턴을 표준화된 규칙으로 정리한다. 제목/메타데이터 규칙(70자 이하 title, 150자 내외 description, 50개 이상 tags), 폴더명·날짜·워드클라우드 이미지 규칙, EN/KR 예문 구조, 콜로케이션·유의어·문법 포인트·한눈에 정리 섹션 템플릿과 작성 체크리스트를 포함하여, 일관된 품질과 학습 효율을 보장하는 전문적인 Vocabulary 글쓰기 프레임워크를 제공한다."
+globs:
+  - "content/collection/Vocabulary/**/*.md"
 alwaysApply: false
 ---
 

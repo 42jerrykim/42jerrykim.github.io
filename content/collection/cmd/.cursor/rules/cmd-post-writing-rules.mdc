@@ -1,5 +1,7 @@
 ---
 description: "CMD(Windows 명령 프롬프트) 명령어 글 작성을 위한 규칙. 제목 [CMD] 접두어, 70자 이하 title, 150자 description, 50개 이상 tags, 개요·사용법·옵션·예시·주의사항 본문 구조와 품질 체크리스트를 정의합니다."
+globs:
+  - "content/collection/cmd/**/*.md"
 alwaysApply: false
 ---
 

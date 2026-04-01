@@ -31,7 +31,7 @@ description: >-
 | **일반 포스트** | `content/post/<연도>/<폴더>/index.md` | 단독 글, 자유 주제 |
 | **새 컬렉션** | `content/collection/<새이름>/_index.md` + 하위 글 | 신규 시리즈 생성 |
 
-3. **컬렉션별 전용 규칙 확인**: 대상 컬렉션 폴더 아래 `.cursor/rules/`가 있으면 해당 규칙을 먼저 읽는다
+3. **컬렉션별 전용 규칙 확인**: 대상 컬렉션 폴더 아래 `.cursor/rules/`가 있으면 해당 규칙을 먼저 읽는다 (각 `.mdc`는 `content/collection/<해당컬렉션>/**/*.md`용 **`globs`**가 있어, 해당 경로 편집 시 Cursor가 컨텍스트에 넣기 쉽다)
    - Algorithm → `algorithm-post-writing-rules.mdc`
    - Vocabulary → `vocabulary-post-writing-rules.mdc`
    - Movies → `movie-review-writing-rules.mdc`
