@@ -83,7 +83,7 @@ tags:
 - 가이드
 - Education
 - 교육
-title: '[TV Series] Car Masters: Rust to Riches 시즌 5 (2023) - 올인 빌드'
+title: '[TV Series] Car Masters: Rust to Riches 시즌 5 (2023) - 올인 빌드ㅐㅎ'
 ---
 
 《Car Masters: Rust to Riches》 시즌 5는 **고담 개러지(Gotham Garage)**가 단순한 복원을 넘어 **고액 매각·트레이드 업** 서사를 전면에 내세운다. **Mark Towle(마크 타울)**이 상상하는 과감한 스타일링과 **Shawn Pilot(숀 파일럿)**의 딜, **Tony Quinones(토니 퀴노네스)**의 팹, **Constance Nunes(콘스탄스 누네스)**·**Michael "Caveman" Pyle(마이클 "케이브맨" 파일)**의 현장 조립이 한데 묶이고, 시즌 5에서는 **Brian Reich(브라이언 라이시)**와 **Jake Cerveny(제이크 서버니)**가 패브리케이터로 가세하며 **Nick Smith(닉 스미스)**가 럭셔리 브로커 축을 보강한다. 2023년 12월 13일 넷플릭스에 **8편이 동시 공개**되며, 클라이맥스는 **페라리 360 스파이더**를 둘러싼 고위험 커스터마이징과 공개 행사로 수렴한다.

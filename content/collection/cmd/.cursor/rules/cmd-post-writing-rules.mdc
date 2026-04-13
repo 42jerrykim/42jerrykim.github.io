@@ -1,17 +1,19 @@
 ---
 description: "CMD(Windows 명령 프롬프트) 명령어 글 작성을 위한 규칙. 제목 [CMD] 접두어, 70자 이하 title, 150자 description, 50개 이상 tags, 개요·사용법·옵션·예시·주의사항 본문 구조와 품질 체크리스트를 정의합니다."
+globs:
+  - "content/collection/cmd/**/*.md"
 alwaysApply: false
 ---
 
 # AI CMD 명령어 글 작성 가이드
 
-본 문서는 CMD 컬렉션(Windows 명령 프롬프트 명령어) 포스트 작성 시 일관된 품질을 확보하기 위한 규칙을 정의한다. 전역 규칙(rules-that-must-be-followed, hugo-content-bundle-naming)을 준수하며, 메타데이터·폴더명·본문 구조·체크리스트를 표준화한다.
+본 문서는 CMD 컬렉션(Windows 명령 프롬프트 명령어) 포스트 작성 시 일관된 품질을 확보하기 위한 규칙을 정의한다. 전역 규칙(rules-that-must-be-followed, blog-post-writing 스킬의 제목·날짜·reference.md)을 준수하며, 메타데이터·폴더명·본문 구조·체크리스트를 표준화한다.
 
 ---
 
 ## 제목/메타 규칙(필수)
 
-- **카테고리 접두어**: `[CMD]` 사용 (hugo-content-bundle-naming의 Category Prefix)
+- **카테고리 접두어**: `[CMD]` 사용 (blog-post-writing 스킬·reference.md의 카테고리 접두어 규칙)
 - **title 예시**: `[CMD] rmdir - 빈 폴더 삭제`, `[CMD] dir - 디렉터리 목록 보기`
 - **총 길이**: 70자 이내
 - **description**: 150자 내외. 명령어 역할·주요 옵션·대상 독자(예: 배치 스크립트 작성자, 시스템 관리자)를 포함

@@ -1,5 +1,7 @@
 ---
 description: "Bash Shell 명령어·기능 글 작성을 위한 종합 가이드로, 제목/메타 규칙(70자 이하 title, 150자 description, 50개 이상 tags), 폴더명·본문 구조(명령어 참조형·개념/가이드형), Mermaid 문법 준수, 작성 체크리스트를 포함한 전문적인 포스트 작성 프레임워크입니다."
+globs:
+  - "content/collection/bashshell/**/*.md"
 alwaysApply: false
 ---
 # AI Bash Shell 포스트 작성 가이드
@@ -10,7 +12,7 @@ alwaysApply: false
 
 ## 제목/메타 규칙(필수)
 
-- **카테고리 접두어**: `[Bash Shell]` 사용 (hugo-content-bundle-naming의 Category Prefix 준수)
+- **카테고리 접두어**: `[Bash Shell]` 사용 (blog-post-writing 스킬·reference.md의 카테고리 접두어 규칙 준수)
 - **메인 제목**: 사람 친화적·SEO 고려, 한글/영문 병기 가능
 - **총 길이**: 70자 이내
 

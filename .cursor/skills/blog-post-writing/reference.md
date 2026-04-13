@@ -78,6 +78,23 @@ image: "image.png"
 
 ---
 
+## 제목·날짜·카테고리 접두어 (전역)
+
+포스트 `title`·날짜·접두어는 아래를 따른다. tags·description·draft·Mermaid·링크 검증 등 그 외 전역 메타는 [`.cursor/rules/rules-that-must-be-followed.mdc`](../../rules/rules-that-must-be-followed.mdc)를 따른다.
+
+### Title 형식
+
+- **카테고리 접두어**: 대괄호로 적절한 카테고리를 붙인다 (예: `[Movie]`, `[TV Series]`, `[Algorithm]`, `[Vocabulary]`, `[Bash]`, `[CMD]`).
+- **메인 제목**: 사람이 읽기 좋고 SEO에 유리한 제목.
+- **길이**: 접두어 포함 **총 70자 이하**.
+
+### 날짜
+
+- **현재 날짜**: 반드시 터미널에서 확인한 오늘 날짜를 사용한다 (추측 금지). 예: PowerShell `Get-Date -Format "yyyy-MM-dd"`.
+- **수정 시**: 내용을 크게 고치면 `lastmod`를 같은 방식으로 갱신한다.
+
+---
+
 ## 태그 선정 가이드
 
 `data/tags.yaml`의 카테고리별 태그 요약. 글 주제에 맞는 카테고리에서 태그를 선정한다.
@@ -207,17 +224,30 @@ image: "image.png"
 
 ---
 
-## 내부 링크 형식
+## Hugo 컬렉션 내부 링크
 
-컬렉션 글에서 다른 글을 링크할 때:
+컬렉션 글(`content/collection/**/index.md`)에서 사이트 내부 글로 링크할 때 다음을 따른다.
+
+- 내부 링크 형식은 **`/post/<section-slug>/<page-slug-or-contentbasename>/`** 이다.
+- **`<section-slug>`**: 디렉터리명이 아니라 대상 컬렉션의 **`_index.md`에 있는 `slug`**를 사용한다.
+- **`<page-slug-or-contentbasename>`**: 대상 페이지 front matter에 `slug`가 있으면 그것을 쓰고, **없으면 폴더명(content basename)**을 사용한다.
+- 링크를 추가하거나 수정하기 전에 **`config/_default/permalinks.yaml`**의 `collection: /post/:sectionslugs[last]/:slugorcontentbasename/` 규칙을 먼저 확인한다.
+- **`/collection/...`** 또는 **`/post/<directory-name>/...`**처럼 폴더명만 보고 추측한 URL은 쓰지 않는다.
+- 링크를 추가한 뒤에는 대상 **`_index.md`**와 대상 페이지 front matter를 다시 읽어 section slug와 page slug가 맞는지 확인하고, 가능하면 실제 접근 가능 여부도 확인한다.
+
+### 마크다운 예시
 
 ```markdown
-[링크 텍스트](/post/<section-slug>/<page-slug>/)
+[링크 텍스트](/post/<section-slug>/<page-slug-or-contentbasename>/)
 ```
 
-- `<section-slug>`: 대상 컬렉션 `_index.md`의 `slug` 값
-- `<page-slug>`: 대상 페이지 frontmatter의 `slug` 값 (없으면 폴더명)
-- 링크 추가 전 반드시 대상의 slug를 확인할 것
+### 올바른지 대조할 때 (실제 사례)
+
+- 잘못된 링크: `/post/optimization-01-cpp-language/getting-started-cpp-language-performance-tuning/`
+- 올바른 링크: `/post/cpp-optimization/getting-started-cpp-language-performance-tuning/`
+
+- 잘못된 링크: `/collection/optimization-00-series-overview/00-introduction/`
+- 올바른 링크: `/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/`
 
 ---
 

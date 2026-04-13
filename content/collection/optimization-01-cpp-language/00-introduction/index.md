@@ -122,7 +122,7 @@ tags:
 | 18 | Smart Pointer 비용 기초 | 기초 | unique_ptr/shared_ptr/raw pointer 비용 비교와 핫패스 판단 (선행: 챕터 01 전에 읽기 권장) |
 | 19 | Type Erasure 비용 패턴 | 심화 | std::function 외 type erasure 패턴의 호출·할당 비용과 대안 설계 |
 
-각 챕터는 **정의·원칙·예시(코드 또는 다이어그램)·비교·마무리(요약·평가 기준·판단 기준·비판적 시각)** 순서로 구성되어 있으며, 필요 시 **역사/배경** 절과 **인용**(blockquote + 출처)을 포함합니다. 게시 전에는 ai-educational-content-quality 규칙의 품질 체크리스트로 본문 구성·전문가 양성 요소·길이·깊이·시각 요소를 점검합니다.
+각 챕터는 **정의·원칙·예시(코드 또는 다이어그램)·비교·마무리(요약·평가 기준·판단 기준·비판적 시각)** 순서로 구성되어 있으며, 필요 시 **역사/배경** 절과 **인용**(blockquote + 출처)을 포함합니다. 게시 전에는 educational-content-writing 스킬(`.cursor/skills/educational-content-writing/SKILL.md`)의 품질 체크리스트로 본문 구성·전문가 양성 요소·길이·깊이·시각 요소를 점검합니다.
 
 ## 측정과 검증 (이 트랙 기준)
 
