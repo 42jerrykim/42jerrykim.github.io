@@ -13,3 +13,4 @@ pnpm-workspace.yaml
 pnpm-workspace.yaml
 assets/jsconfig.json
 static/_pagefind
+**/settings.local.json
