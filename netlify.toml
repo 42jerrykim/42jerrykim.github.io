@@ -1,0 +1,17 @@
+[build]
+  publish = "public"
+  command = "bash scripts/netlify-build.sh"
+
+[build.environment]
+  HUGO_VERSION  = "0.154.5"
+  HUGO_EXTENDED = "true"
+  NODE_VERSION  = "24"
+  TZ            = "America/Los_Angeles"
+
+# PR 프리뷰 전용 설정 (baseURL은 빌드 스크립트에서 $DEPLOY_PRIME_URL로 자동 지정)
+[context.deploy-preview]
+  command = "bash scripts/netlify-build.sh"
+
+# 브랜치 배포 (main 외 브랜치 push)
+[context.branch-deploy]
+  command = "bash scripts/netlify-build.sh"
