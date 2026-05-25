@@ -33,3 +33,94 @@ disableLatLong = true
 
 [services.rss]
 limit = 50
+
+# ---------------------------------------------------------------------------
+# Render Segments (Hugo 0.132+)
+# build-and-serve.ps1 -Segment posts   → post 섹션만 빌드
+# build-and-serve.ps1 -Segment recent  → PR preview 용 최근 콘텐츠
+# ---------------------------------------------------------------------------
+
+# "posts" 세그먼트 — post 섹션 전체 (로컬 개발용)
+[[segments.posts.includes]]
+  kind = "home"
+[[segments.posts.includes]]
+  kind = "section"
+[[segments.posts.includes]]
+  kind = "taxonomy"
+[[segments.posts.includes]]
+  kind = "term"
+[[segments.posts.includes]]
+  kind = "page"
+  path = "/post/**"
+
+# "recent" 세그먼트 — PR preview용: 2025~2026 post + 최근 컬렉션
+[[segments.recent.includes]]
+  kind = "home"
+[[segments.recent.includes]]
+  kind = "section"
+[[segments.recent.includes]]
+  kind = "taxonomy"
+[[segments.recent.includes]]
+  kind = "term"
+[[segments.recent.includes]]
+  kind = "page"
+  path = "/post/2025/**"
+[[segments.recent.includes]]
+  kind = "page"
+  path = "/post/2026/**"
+[[segments.recent.includes]]
+  kind = "page"
+  path = "/collection/**"
+
+# 연도 기반 컬렉션의 구(舊)연도 제외 (flat 컬렉션은 연도 디렉터리 없으므로 영향 없음)
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2024/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2023/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2022/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2021/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2020/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2019/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2018/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2017/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2016/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2015/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2014/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2013/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2012/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2011/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/2010/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/1997/**"
+[[segments.recent.excludes]]
+  kind = "page"
+  path = "/collection/**/1998/**"
