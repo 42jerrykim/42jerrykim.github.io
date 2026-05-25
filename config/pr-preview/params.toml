@@ -1,0 +1,7 @@
+# PR preview 환경: 이미지 WebP 변환 비활성화
+# 602MB 이미지 처리 (~5분)를 건너뛴다. 미리보기는 원본 해상도로 표시됨.
+[imageProcessing.cover]
+enabled = false
+
+[imageProcessing.content]
+enabled = false

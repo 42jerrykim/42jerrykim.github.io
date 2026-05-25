@@ -1,17 +1,20 @@
 [build]
   publish = "public"
-  command = "bash scripts/netlify-build.sh"
 
 [build.environment]
-  HUGO_VERSION  = "0.154.5"
-  HUGO_EXTENDED = "true"
-  NODE_VERSION  = "24"
-  TZ            = "America/Los_Angeles"
+  HUGO_VERSION      = "0.154.5"
+  HUGO_ENABLEGITINFO = "false"
+  TZ                = "America/Los_Angeles"
 
-# PR 프리뷰 전용 설정 (baseURL은 빌드 스크립트에서 $DEPLOY_PRIME_URL로 자동 지정)
+# Deploy Preview — PR마다 자동 생성되는 preview URL
+# 세그먼트 빌드 + 이미지 처리 OFF + Pagefind 없음
 [context.deploy-preview]
-  command = "bash scripts/netlify-build.sh"
+  command = "hugo --gc --minify --renderSegments recent --environment pr-preview --baseURL $DEPLOY_PRIME_URL"
 
-# 브랜치 배포 (main 외 브랜치 push)
+# Branch deploy (main 외 브랜치 직접 push 시)
 [context.branch-deploy]
-  command = "bash scripts/netlify-build.sh"
+  command = "hugo --gc --minify --renderSegments recent --environment pr-preview --baseURL $DEPLOY_PRIME_URL"
+
+# Production (Netlify를 주 호스팅으로 쓸 경우 대비 — 현재는 GitHub Pages 사용)
+[context.production]
+  command = "hugo --gc --minify --baseURL $URL"

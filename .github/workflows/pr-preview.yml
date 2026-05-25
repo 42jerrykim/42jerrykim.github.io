@@ -1,0 +1,92 @@
+name: PR Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+# PR당 하나의 preview만 실행; 새 commit push 시 이전 실행 취소
+concurrency:
+  group: pr-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write  # PR 코멘트에 preview URL 게시용
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.154.5
+    steps:
+      - name: Install Hugo CLI
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb \
+            https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
+      - name: Install Dart Sass
+        run: sudo snap install dart-sass
+
+      # fetch-depth: 1 — 전체 git 히스토리 불필요, 약 40초 절약
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 1
+
+      # content/** 해시 제외 — 602MB 해시 계산 생략, PR마다 캐시 무효화 방지
+      # layouts/config/assets 변경 시에만 캐시 갱신
+      - name: Restore Hugo cache
+        uses: actions/cache@v5
+        with:
+          path: |
+            ./resources
+            .hugo_cache
+          key: hugo-preview-${{ runner.os }}-${{ hashFiles('layouts/**', 'config/**', 'assets/**', 'go.sum') }}
+          restore-keys: |
+            hugo-preview-${{ runner.os }}-
+            hugo-resources-${{ runner.os }}-
+
+      # 핵심 최적화:
+      #   --renderSegments recent  → 2025~2026 post + 최근 컬렉션만 렌더 (1,324→~400 페이지)
+      #   --environment pr-preview → imageProcessing 비활성화 (WebP 변환 생략, ~5분 절약)
+      #   Pagefind 없음            → 검색 인덱싱 생략 (~3분 절약)
+      #   --gc 없음                → 세그먼트 외 캐시 삭제 방지
+      - name: Build with Hugo (segment=recent, no image processing, no Pagefind)
+        env:
+          HUGO_CACHEDIR: ${{ github.workspace }}/.hugo_cache
+          HUGO_ENVIRONMENT: pr-preview
+          HUGO_ENABLEGITINFO: "false"
+          TZ: America/Los_Angeles
+        run: |
+          hugo \
+            --minify \
+            --renderSegments recent \
+            --environment pr-preview \
+            --baseURL "/"
+
+      # 빌드 결과물을 Netlify에 업로드하고 PR 코멘트에 preview URL 자동 게시
+      # NETLIFY_AUTH_TOKEN, NETLIFY_SITE_ID 는 GitHub Secrets에서 설정 필요:
+      #   Settings > Secrets and variables > Actions
+      - name: Deploy preview to Netlify
+        uses: nwtgck/actions-netlify@v3
+        with:
+          publish-dir: ./public
+          production-deploy: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "PR #${{ github.event.pull_request.number }} — ${{ github.event.pull_request.title }}"
+          enable-pull-request-comment: true
+          enable-commit-comment: false
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
