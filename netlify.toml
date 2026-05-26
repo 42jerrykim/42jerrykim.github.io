@@ -7,13 +7,13 @@
   TZ                = "America/Los_Angeles"
 
 # Deploy Preview — PR마다 자동 생성되는 preview URL
-# 세그먼트 빌드 + 이미지 처리 OFF + Pagefind 없음
+# 이미지 처리 OFF + Pagefind 없음 (세그먼트 제거: collection 포스트 URL이 /post/<slug>/로 매핑되어 /collection/** 패턴에 매칭되지 않는 문제)
 [context.deploy-preview]
-  command = "hugo --gc --minify --renderSegments recent --environment pr-preview --baseURL $DEPLOY_PRIME_URL"
+  command = "hugo --gc --minify --environment pr-preview --baseURL $DEPLOY_PRIME_URL"
 
 # Branch deploy (main 외 브랜치 직접 push 시)
 [context.branch-deploy]
-  command = "hugo --gc --minify --renderSegments recent --environment pr-preview --baseURL $DEPLOY_PRIME_URL"
+  command = "hugo --gc --minify --environment pr-preview --baseURL $DEPLOY_PRIME_URL"
 
 # Production (Netlify를 주 호스팅으로 쓸 경우 대비 — 현재는 GitHub Pages 사용)
 [context.production]
