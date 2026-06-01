@@ -193,4 +193,4 @@ PGO는 **만능이 아니다**. 프로파일 대표성이 부족하면 성능이
 
 **GCC vs Clang vs MSVC** 최적화 차이, 벡터화·인라이닝·루프 영역별 비교, 플랫폼별 선택을 다룹니다.
 
-→ [컴파일러 비교: GCC vs Clang vs MSVC](/collection/optimization-02-compiler/04-compiler-comparison/) (챕터 04)
+→ [컴파일러 비교: GCC vs Clang vs MSVC](/post/compiler-optimization/compiler-comparison-gcc-clang-msvc/) (챕터 04)

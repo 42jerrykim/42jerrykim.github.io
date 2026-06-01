@@ -160,3 +160,9 @@ BOLT 같은 후링크 최적화는 **니치하지만 강력한 레버**입니다
 - **Basic block**: 분기 없이 연속 실행되는 명령 묶음(개념 수준 정의).  
 - **Post-link**: 링크 산출물을 입력으로 하는 후처리 단계.  
 - **Profile**: 엣지 빈도, 샘플 PC, LBR 등 도구가 요구하는 형식은 제각각이므로 “우리 파이프라인의 profile”을 하나로 정의합니다.
+
+## 다음 장에서는
+
+**AutoFDO(Automatic Feedback-Directed Optimization)** 워크플로우, 샘플링 기반 프로파일 수집·변환·적용, PGO(instrumented)와의 운영 비용 비교를 다룹니다.
+
+→ [AutoFDO 워크플로우](/post/compiler-optimization/autofdo-workflow-sampling-based/) (챕터 15)
