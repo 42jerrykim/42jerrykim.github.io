@@ -1,11 +1,11 @@
 ---
 collection_order: 5
 date: 2026-03-11
-lastmod: 2026-03-11
+lastmod: 2026-06-01
 draft: true
 title: "[Compiler 02] 인라이닝 실패 진단"
 slug: inlining-diagnostics
-description: "인라이닝이 되지 않는 원인(가시성, ODR/ABI, 코드 크기), GCC -fopt-info-inline·Clang -Rpass=inline 리포트 확인 방법, inline·LTO와 Course 01(인라이닝 유도) 연계를 다룹니다. 진단 후 같은 TU·헤더 인라인·LTO로 대처하는 판단 기준을 제시합니다."
+description: "인라이닝이 되지 않는 원인(가시성, ODR/ABI, 코드 크기), GCC -fopt-info-inline·Clang -Rpass=inline 리포트 확인 방법, inline·LTO와 Tr.01(인라이닝 유도) 연계를 다룹니다. 진단 후 같은 TU·헤더 인라인·LTO로 대처하는 판단 기준을 제시합니다."
 tags:
   - C++
   - Performance
@@ -114,7 +114,7 @@ g++ -O2 -fopt-info-inline foo.cc -o foo 2>&1 | grep "inlined\|not inlined"
 ```
 
 출력 예시:
-```
+```text
 foo.cc:5:10: note: Inlining add (a call from compute).
 foo.cc:12:8: note: Not inlining helper into process: --param max-inline-insns-single limit reached.
 ```
@@ -135,7 +135,7 @@ clang++ -O2 -Rpass-missed=inline foo.cc -o foo 2>&1
 ```
 
 출력 예시:
-```
+```text
 foo.cc:5:10: remark: 'add' inlined into 'compute' with (cost=-30, threshold=225) [-Rpass=inline]
 foo.cc:12:8: remark: 'big_func' not inlined into 'caller' with (cost=340, threshold=225) [-Rpass-missed=inline]
 ```
@@ -162,7 +162,7 @@ LTO를 켜면 링크 시점에 인라이닝이 일어나므로, 단일 TU 어셈
 1. **가시성**: 해당 함수 정의가 호출하는 TU에서 보이는가? 헤더에 인라인 정의가 있거나, 같은 .cc에 있으면 인라인 후보가 됨. 다른 .cc에만 있으면 LTO를 켜거나 해당 함수를 헤더/같은 TU로 옮긴다.
 2. **리포트 확인**: GCC **-fopt-info-inline**, Clang **-Rpass=inline**으로 인라인되지 않은 이유(크기 한도·가시성 등)를 확인한다.
 3. **어셈블리**: **-S**로 해당 호출 지점에 `call`이 남아 있는지 본다. LTO를 켠 경우에는 최종 바이너리 또는 LTO 단계 산출물을 확인한다.
-4. **코드 구조 변경**: Course 01의 인라이닝 유도(헤더 인라인·final·같은 TU 배치)를 적용한 뒤 다시 2~3을 확인한다.
+4. **코드 구조 변경**: Tr.01의 인라이닝 유도(헤더 인라인·final·같은 TU 배치)를 적용한 뒤 다시 2~3을 확인한다.
 
 ## 한눈에 보기: 인라이닝 실패 원인
 
@@ -190,7 +190,7 @@ LTO를 켜면 링크 시점에 인라이닝이 일어나므로, 단일 TU 어셈
 
 - 인라이닝 실패의 **가시성·ODR/ABI·코드 크기** 원인을 설명하고, 각각에 대한 대처를 말할 수 있다.
 - **GCC -fopt-info-inline**, **Clang -Rpass=inline**으로 인라이닝 리포트를 확인할 수 있다.
-- Course 01(인라이닝 유도)과 연계해, 진단 후 코드 구조·LTO로 인라이닝을 유도할 수 있다.
+- Tr.01(인라이닝 유도)과 연계해, 진단 후 코드 구조·LTO로 인라이닝을 유도할 수 있다.
 
 ## 비판적 시각: 한계와 트레이드오프
 
@@ -204,9 +204,9 @@ LTO를 켜면 링크 시점에 인라이닝이 일어나므로, 단일 TU 어셈
 | 진단 | -fopt-info-inline(GCC), -Rpass=inline(Clang), -S 어셈블리 |
 | 대처 | 같은 TU·헤더 인라인·LTO·always_inline(선택) |
 
-## Course 01(언어 최적화)과의 연계
+## Tr.01(언어 최적화)과의 연계
 
-Low-latency C++ 언어 최적화 트랙(Course 01)에서는 **인라이닝을 유도하는 코드 구조**를 다룹니다. 예를 들어 작은 함수를 헤더에 두기, 템플릿으로 구현을 호출부에 노출하기, `final`로 devirtualization을 유도하기 등입니다. 이 챕터(컴파일러 트랙)는 "왜 인라인되지 않았는지"를 **진단**하는 쪽에 초점을 둡니다. 코드 구조를 바꾼 뒤에도 인라이닝이 안 되면, 위의 가시성·ODR·크기 한도를 리포트와 어셈블리로 확인해 보면 됩니다.
+Low-latency C++ 언어 최적화 트랙(Tr.01)에서는 **인라이닝을 유도하는 코드 구조**를 다룹니다. 예를 들어 작은 함수를 헤더에 두기, 템플릿으로 구현을 호출부에 노출하기, `final`로 devirtualization을 유도하기 등입니다. 이 챕터(컴파일러 트랙)는 "왜 인라인되지 않았는지"를 **진단**하는 쪽에 초점을 둡니다. 코드 구조를 바꾼 뒤에도 인라이닝이 안 되면, 위의 가시성·ODR·크기 한도를 리포트와 어셈블리로 확인해 보면 됩니다.
 
 ## 다음 장에서는
 

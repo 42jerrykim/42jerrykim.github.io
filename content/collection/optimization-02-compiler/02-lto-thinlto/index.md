@@ -1,7 +1,7 @@
 ---
 collection_order: 2
 date: 2026-03-11
-lastmod: 2026-03-11
+lastmod: 2026-06-01
 draft: true
 title: "[Compiler 02] LTO와 ThinLTO 실전 적용"
 slug: lto-thinlto-practical
@@ -86,7 +86,7 @@ tags:
 
 ## 왜 LTO인가 (동기)
 
-일반 빌드에서는 각 TU가 독립적으로 컴파일되므로, 컴파일러는 **다른 TU에 있는 함수의 구현**을 보지 못합니다. 그 결과 **크로스-TU 인라이닝**이 불가능하고, 작은 함수가 여러 TU에서 호출될 때마다 호출 비용이 그대로 남습니다. LTO는 컴파일 시 **IR**을 오브젝트에 넣어 두고 링크 시점에 이를 모아 최적화하므로, TU 경계를 넘는 인라이닝·상수 전파가 가능해집니다. Course 01(인라이닝 유도)과 함께 쓰면 시너지가 큽니다.
+일반 빌드에서는 각 TU가 독립적으로 컴파일되므로, 컴파일러는 **다른 TU에 있는 함수의 구현**을 보지 못합니다. 그 결과 **크로스-TU 인라이닝**이 불가능하고, 작은 함수가 여러 TU에서 호출될 때마다 호출 비용이 그대로 남습니다. LTO는 컴파일 시 **IR**을 오브젝트에 넣어 두고 링크 시점에 이를 모아 최적화하므로, TU 경계를 넘는 인라이닝·상수 전파가 가능해집니다. Tr.01(인라이닝 유도)과 함께 쓰면 시너지가 큽니다.
 
 ## 정의: LTO와 ThinLTO
 
@@ -152,6 +152,27 @@ add_link_options(-flto)
 
 동일 소스·동일 -O2/-O3에 대해 **LTO 없이** 빌드한 바이너리와 **LTO(또는 ThinLTO)** 적용 바이너리를 만들고, **같은 벤치마크**로 실행 시간과 바이너리 크기를 측정합니다. 작은 함수가 여러 TU에 흩어져 있을수록 LTO 이득이 크고, 이미 대부분 인라인되거나 단일 TU에 몰려 있으면 차이가 작을 수 있습니다. 회귀 테스트에서 LTO on을 기본으로 두고, 변경이 성능에 영향을 주지 않는지 확인하는 것을 권장합니다.
 
+세 가지 설정을 같은 소스로 빌드해 크기와 실행 시간을 한 번에 비교하면 트레이드오프가 드러납니다.
+
+```bash
+# 같은 소스를 비-LTO / Full LTO / ThinLTO로 빌드
+clang++ -O2          a.cc b.cc -o app_nolto
+clang++ -O2 -flto=full a.cc b.cc -o app_fulllto
+clang++ -O2 -flto=thin a.cc b.cc -o app_thinlto
+
+# 바이너리 크기와 실행 시간 비교
+size app_nolto app_fulllto app_thinlto
+for b in app_nolto app_fulllto app_thinlto; do echo "== $b =="; ./$b < input; done
+```
+
+아래 표의 수치는 **예시값**이며, 실제 이득·링크 비용은 TU 수·인라이닝 구조·링커·하드웨어에 따라 크게 달라집니다.
+
+| 설정 | 실행 시간(예시) | 바이너리 크기(예시) | 링크 시간(예시) |
+|------|---------------|------------------|----------------|
+| 비-LTO (`-O2`) | 1.00× | 기준 | 짧음 |
+| Full LTO | 0.92~0.99× | ±수 % | 길고 메모리 큼 |
+| ThinLTO | 0.93~0.99× | ±수 % | 중간 |
+
 ## 빌드 캐시(ccache 등)와 LTO
 
 **ccache**는 컴파일러 호출 결과를 캐시합니다. LTO를 쓰면 **오브젝트에 IR**이 들어가 소스만 같아도 플래그(-O2 vs -O3, -flto 유무)에 따라 오브젝트 내용이 달라지므로 ccache hit이 줄어들 수 있습니다. LTO 빌드와 비-LTO 빌드를 섞어 쓰면 캐시 키가 달라져 효과가 반감됩니다. CI에서는 "LTO 한 가지 설정"으로 통일하고 캐시 키에 플래그를 포함하는 것이 안전합니다.
@@ -160,7 +181,9 @@ add_link_options(-flto)
 
 LTO는 2000년대 전반에 연구·도입되었고, GCC는 **-flto**를 4.5(2009년경)부터 공식 지원했습니다. GCC 매뉴얼에서는 LTO에 대해 다음과 같이 설명합니다.
 
-> "Link-time optimization (LTO) allows the compiler to perform various optimizations across translation units. The compiler generates a GIMPLE representation of the program and writes it to special ELF sections in the object files. The linker runs the compiler again and reads the GIMPLE representation to perform whole-program optimizations." — [GCC Manual, Option Summary](https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html) Clang/LLVM은 **Gold 플러그인**을 통한 LTO와 이후 **ThinLTO**를 도입해 대형 프로젝트에서의 빌드 시간 문제를 완화했습니다. MSVC의 **/LTCG**는 그 이전부터 링크 시점 코드 생성으로 제공되어 왔습니다.
+> "Link-time optimization (LTO) allows the compiler to perform various optimizations across translation units. The compiler generates a GIMPLE representation of the program and writes it to special ELF sections in the object files. The linker runs the compiler again and reads the GIMPLE representation to perform whole-program optimizations." — [GCC Manual, Option Summary](https://gcc.gnu.org/onlinedocs/gcc/Option-Summary.html)
+
+Clang/LLVM은 **Gold 플러그인**을 통한 LTO와 이후 **ThinLTO**를 도입해 대형 프로젝트에서의 빌드 시간 문제를 완화했습니다. MSVC의 **/LTCG**는 그 이전부터 링크 시점 코드 생성으로 제공되어 왔습니다.
 
 ## 한눈에 보기: LTO vs 비-LTO vs ThinLTO
 

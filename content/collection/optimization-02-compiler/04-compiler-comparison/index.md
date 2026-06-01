@@ -1,7 +1,7 @@
 ---
 collection_order: 4
 date: 2026-03-11
-lastmod: 2026-03-11
+lastmod: 2026-06-01
 draft: true
 title: "[Compiler 02] GCC vs Clang vs MSVC 최적화 차이"
 slug: compiler-comparison-gcc-clang-msvc
@@ -94,7 +94,7 @@ tags:
 
 **MSVC(Microsoft Visual C++)**는 1993년부터 Windows 개발 도구로 발전했습니다. Visual Studio와의 긴밀한 통합, Windows ABI·COM·DLL 모델과의 호환이 최우선입니다. 2015년 이후 C++ 표준 준수가 크게 향상되었고, 최신 버전은 성능 최적화도 적극적으로 개선되고 있습니다.
 
-> "GCC and Clang are largely interchangeable for most C++ code, but for hot numerical kernels with specific SIMD patterns, the generated code can differ by 10–30% — always measure." — 실무 격언
+대부분의 C++ 코드에서 GCC와 Clang은 사실상 호환되지만, 특정 SIMD 패턴이 들어간 수치 커널에서는 생성 코드가 10~30%까지 차이 날 수 있습니다(측정값은 코드·CPU·플래그에 따라 다름). 그래서 컴파일러 선택은 "어느 쪽이 빠르다"는 통념이 아니라 **자신의 워크로드에서의 측정**으로 결정해야 합니다.
 
 이 역사적 배경을 알면 왜 동일 소스에서 다른 코드가 나오는지 이해하기 쉽습니다. GCC는 특정 루프 패턴에서 Clang보다 공격적인 벡터화를 하기도 하고, Clang은 일부 템플릿 중심 코드에서 GCC보다 더 잘 최적화하는 경우가 있습니다.
 
@@ -274,6 +274,6 @@ clang++ -O2 -march=native benchmark.cc -o bench_clang
 
 ## 다음 장에서는
 
-**인라이닝 실패** 원인(가시성, ODR/ABI, 코드 크기), 인라이닝 리포트 확인 방법, Course 01 연계를 다룹니다.
+**인라이닝 실패** 원인(가시성, ODR/ABI, 코드 크기), 인라이닝 리포트 확인 방법, Tr.01 연계를 다룹니다.
 
 → [인라이닝 실패 진단](/post/compiler-optimization/inlining-diagnostics/) (챕터 05)

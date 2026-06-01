@@ -1,7 +1,7 @@
 ---
 collection_order: 14
 date: 2026-03-24
-lastmod: 2026-03-24
+lastmod: 2026-06-01
 draft: true
 title: "[Compiler 02] BOLT·후링크(post-link) 최적화"
 slug: bolt-post-link-binary-layout-optimization
@@ -78,6 +78,22 @@ tags:
 컴파일러와 링커는 이미 **함수 단위 배치**, **섹션 배치**, **LTO** 등으로 레이아웃을 결정합니다. 그런데 프로덕션 프로파일을 보면 “자주 함께 실행되는 코드 조각”이 물리적으로 멀리 떨어져 있어 **I-cache 미스**나 **분기 타깃 혼잡**을 키우는 경우가 있습니다. 후링크 도구는 **실행 빈도·호출 그래프** 같은 입력을 바탕으로 **기계어 블록의 순서·인접 배치**를 다시 잡습니다.
 
 핵심은 **소스를 다시 컴파일하지 않고도** 레이아웃만 손본다는 점입니다. 대신 **심볼·재배치 정보·디버그 정보**가 어떻게 남아 있는지, **스트립(strip)** 여부, **PIE**·**ASLR** 정책 등과 상호작용하므로 “빌드 한 줄 추가” 수준으로 생각하면 운영 사고로 이어지기 쉽습니다.
+
+전형적인 BOLT 흐름은 **프로파일 수집 → 변환 → 재배치**의 세 단계입니다. 아래는 개념을 보여 주는 **예시 스켈레톤**으로, 옵션·도구 이름은 LLVM/BOLT 버전에 따라 달라지므로 실제 적용 시 해당 버전 문서를 확인해야 합니다. 또한 정확한 함수 매핑을 위해 바이너리를 `-Wl,--emit-relocs`로 링크해 재배치 정보를 남겨 두는 것이 일반적입니다.
+
+```bash
+# (1) 대표 트래픽으로 프로파일 수집 (perf, LBR 권장)
+perf record -e cycles:u -j any,u -o perf.data -- ./app < representative_input
+
+# (2) perf 데이터를 BOLT 입력 형식으로 변환
+perf2bolt -p perf.data -o app.fdata ./app
+
+# (3) 프로파일로 레이아웃 재배치 (함수 재정렬·핫/콜드 분리)
+llvm-bolt ./app -o ./app.bolt -data=app.fdata \
+  -reorder-functions=hfsort -reorder-blocks=ext-tsp -split-functions
+```
+
+산출물(`app.bolt`)은 **원본과 다른 바이너리**이므로, 뒤에서 다루는 재현성·디버깅·검증 문제가 따라옵니다. "켜기"보다 "언제·어떻게 운영할지"가 본질입니다.
 
 ## PGO·LTO와의 순서 감각
 
