@@ -1,7 +1,7 @@
 ---
 collection_order: 6
 date: 2026-03-11
-lastmod: 2026-03-11
+lastmod: 2026-06-01
 draft: true
 title: "[Compiler 02] 어셈블리 레벨 코드 생성 분석"
 slug: code-generation-analysis-assembly
@@ -82,7 +82,9 @@ tags:
   - Assembly
 ---
 
-생성된 어셈블리를 보면 인라이닝·벡터화·호출 비용을 직접 확인할 수 있습니다. 이 챕터에서는 도구 사용법과 해석 포인트를 구체적인 어셈블리 예시와 함께 다룹니다.
+생성된 어셈블리를 보면 인라이닝·벡터화·호출 비용을 직접 확인할 수 있습니다. 이 챕터에서는 도구 사용법과 해석 포인트를 구체적인 어셈블리 예시와 함께 다룹니다. 생성 코드를 읽는 일은 고급 최적화의 기본기로, 컴파일러가 실제로 무엇을 만들었는지 확인하지 않으면 추측에 의존하게 됩니다.
+
+> "This is an optimization manual for advanced assembly language programmers and compiler makers." — Agner Fog, [Optimizing subroutines in assembly language](https://www.agner.org/optimize/)
 
 ## 산출물 확인 도구
 
