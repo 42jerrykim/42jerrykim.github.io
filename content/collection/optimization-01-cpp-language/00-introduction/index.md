@@ -1,7 +1,7 @@
 ---
 collection_order: 0
 date: 2026-03-11
-lastmod: 2026-03-28
+lastmod: 2026-06-01
 draft: true
 title: "[Optimization(C++) 00] Introduction: Low-latency C++ 언어 최적화"
 slug: getting-started-cpp-language-performance-tuning
@@ -72,7 +72,17 @@ tags:
 
 µs 단위에서는 작은 추상화·할당·복사 비용이 누적되어 핫패스를 지배하므로, **언어 레벨 비용을 수치로 확인하고 제거하는 능력**이 핵심입니다. 프로파일러로 "무엇이 느린가"를 본 뒤, 이 트랙에서 다루는 항목(가상 호출, STL, 문자열, 수명·임시, 예외 등)을 하나씩 격리 측정하고 대체하는 흐름을 익히게 됩니다.
 
+여기서 **µs**(마이크로초, 10⁻⁶초)는 네트워크·금융·게임 등 end-to-end 지연 예산을 잡을 때 자주 쓰는 단위이고, **핫패스**는 프로파일러에서 실행 시간·샘플의 상당 부분을 차지하는 코드 경로를 가리킵니다. **언어 레벨 비용**은 C++ 문법·표준 라이브러리 선택(가상 호출, 컨테이너·문자열, 복사/이동, 예외 등)에서 발생하는 CPU·메모리 오버헤드로, 컴파일러 플래그·CPU 캐시·OS·락 같은 다른 요인과 구분합니다.
+
 아래 **책임 범위** 목록은 같은 주제를 “여기서 다룬다”는 관점에서만 묶은 것입니다. 목록만 훑어도 요지가 전달되도록, 한 문장으로 먼저 짚으면 다음과 같습니다. 이 트랙은 **호출 규약·컨테이너·문자열·객체 수명·임시·템플릿·코루틴·에러 표현·뷰·람다·SBO·전달 방식**처럼, 소스 한 줄·타입 한 개를 바꿨을 때 비용이 어떻게 달라지는지 **언어·표준 라이브러리 선택**으로 설명할 수 있는 영역에 집중합니다. 불릿은 그 범위를 세부 항목으로 쪼갠 보조 표입니다.
+
+## 참고 자료
+
+- SI/시간 단위: [Microsecond](https://en.wikipedia.org/wiki/Microsecond) — µs(10⁻⁶초) 정의와 다른 시간 단위와의 관계.
+- 핫패스 개념: [Hot spot (computer programming)](https://en.wikipedia.org/wiki/Hot_spot_(computer_programming)) — 프로파일러에서 지배적인 코드 경로.
+- 마이크로벤치마크: [google/benchmark](https://github.com/google/benchmark), [nanobench](https://github.com/martinus/nanobench) — 격리 측정용 프레임워크.
+- CPU 프로파일링: [gperftools](https://github.com/gperftools/gperftools), [perf wiki](https://perf.wiki.kernel.org/index.php/Main_Page) — 핫패스 식별 도구·개요.
+- 트랙 내부: [C++ 실행 모델·µs 최적화 어휘](/post/cpp-optimization/cpp-execution-model-microsecond-vocabulary-fundamentals/) (챕터 16), [추상화 비용 분석](/post/cpp-optimization/abstraction-cost/) (챕터 01).
 
 ## 이 트랙이 책임지는 범위
 
@@ -136,6 +146,27 @@ tags:
 
 **Google Benchmark**와 **nanobench**는 반복 횟수·안정화 루프를 자동으로 조절해 "한 가지 연산"의 평균/중앙값 나노초(또는 사이클)를 보고합니다. nanobench는 헤더 온리로 도입이 쉽고, Google Benchmark는 CMake 연동과 CSV/콘솔 리포트가 풍부합니다. 예를 들어 가상 함수 한 번 호출 vs 직접 호출을 동일한 로직으로 벤치마크에 올려 두면, 두 연산의 차이가 추상화 오버헤드로 해석됩니다. 벤치마크 코드는 변경 전/후로 나누어 두고 CI 또는 로컬에서 회귀 검증에 사용할 수 있습니다.
 
+아래는 "추상화 1개"를 격리 측정하는 최소 Google Benchmark 예제입니다. 핵심은 컴파일러가 결과를 버리지 못하도록 `benchmark::DoNotOptimize`로 묶고, 비교 대상(여기서는 직접 호출 합산) 외의 로직을 동일하게 두는 것입니다. 빌드는 Release 수준 플래그(`-O2`/`-O3`, 필요 시 `-flto`)로 합니다.
+
+```cpp
+#include <benchmark/benchmark.h>
+
+static int add(int a, int b) { return a + b; }
+
+static void BM_DirectCall(benchmark::State& state) {
+  int x = 0;
+  for (auto _ : state) {
+    x = add(x, 1);
+    benchmark::DoNotOptimize(x);  // 결과 폐기 방지
+  }
+}
+BENCHMARK(BM_DirectCall);
+
+BENCHMARK_MAIN();
+```
+
+`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면 `BM_DirectCall   0.3 ns   ...` 형태로 연산당 시간이 보고됩니다(수치는 CPU·플래그에 따라 다름). 같은 틀에서 직접 호출을 가상 호출로 바꾼 `BM_VirtualCall`을 추가하면, 두 행의 ns 차이가 곧 "가상 호출 한 번"의 추상화 비용입니다. 챕터 01에서 이 비교를 구체화합니다.
+
 **컴파일러 진단**으로는 GCC/Clang의 **`-fopt-info-inline`**, **`-fopt-info-vec`** 등으로 어떤 함수가 인라인되었는지, 벡터화되었는지 확인할 수 있습니다. **`-S`** 옵션으로 어셈블리 출력을 보면 실제로 `call *reg`(간접 호출)인지 `call _ZNK7...`(직접 호출)인지 구분할 수 있어, devirtualization·인라이닝 적용 여부를 검증할 때 유용합니다. **메모리 프로파일러**(예: Valgrind massif, sanitizer, 플랫폼별 할당 훅)로 할당 횟수·크기를 보면 "추상화 1개"가 할당을 유발하는지 정량적으로 확인할 수 있습니다.
 
 | 도구 | 용도 |
@@ -196,7 +227,8 @@ tags:
 
 ## 용어 정리 (이 장에서 사용한 표현)
 
-- **핫패스**: 프로파일러에서 실행 시간의 상당 부분을 차지하는 코드 경로. 최적화는 보통 핫패스부터 대상으로 한다.
+- **핫패스**: 도입에서 정의한 바와 같이, 프로파일러 상 지배적인 코드 경로. 최적화는 보통 핫패스부터 대상으로 한다.
+- **언어 레벨 비용**: C++ 문법·표준 라이브러리 선택에서 발생하는 CPU·메모리 오버헤드. CPU·OS·동시성 병목과 구분한다.
 - **격리 측정**: 다른 요인을 고정한 채 "한 가지 추상화(예: 가상 호출 한 번)"만의 비용을 벤치마크로 측정하는 것.
 - **회귀 검증**: 코드 변경 후 기존 벤치마크를 다시 돌려, 의도한 개선이 나왔는지·다른 부분이 나빠지지 않았는지 확인하는 것.
 - **devirtualization**: 컴파일러가 가상 호출을 직접 호출(또는 인라인)로 바꾸는 최적화. `final`, LTO 등으로 유도할 수 있다.

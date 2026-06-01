@@ -1,7 +1,7 @@
 ---
 collection_order: 19
 date: 2026-03-28
-lastmod: 2026-03-28
+lastmod: 2026-06-01
 draft: true
 title: "[Optimization(C++) 19] Type Erasure 비용 패턴"
 slug: type-erasure-cost-patterns
@@ -130,6 +130,15 @@ void bench_template(F&& f, int n) {
 
 **bench_template** 쪽에서 `F`가 고정되면 호출부가 **직접 호출 또는 인라인**으로 접힐 여지가 크고, **bench_function**은 **타입 소거된 호출 경로**를 타는 경우가 많습니다. 실제 기계어는 컴파일러·옵션에 따라 달라지므로 `-S`나 최적화 리포트로 확인합니다.
 
+아래는 위 두 함수에 같은 람다(`[](int a, int b){ return a + b; }`)를 넘겨 `N = 1e8`회 호출했을 때의 **예시 수치**입니다(x86-64, `-O2`). 절대값이 아니라 **상대 배수**만 보고, 본인 환경에서 재현합니다.
+
+| 방식 (N = 1e8) | 예시 시간 | 상대 배수 | 이유 |
+|----------------|-----------|-----------|------|
+| `bench_template`(F&&) | ~55 ms | 1.0× | 람다 본문이 인라인되어 `add`가 사라짐 |
+| `bench_function`(std::function) | ~190 ms | ~3.5× | 매 호출이 소거된 간접 호출, 인라인 실패 |
+
+차이의 핵심은 **인라인 가능 여부**입니다. 템플릿 경로는 `F`의 구체 타입을 알아 루프 안에서 `+` 한 번으로 접히지만, `std::function` 경로는 호출마다 내부 함수 포인터를 거쳐야 해 루프가 펼쳐지지 않습니다. 같은 람다라도 **API가 타입을 소거하는 순간** 비용 구조가 바뀝니다.
+
 ## 커스텀 type erasure 스케치 (개념)
 
 아래는 교육용 **최소** 예시입니다. 실제 라이브러리는 예외 안전·복사·이동·small buffer·정렬을 더 정교하게 다룹니다.
@@ -157,7 +166,50 @@ public:
 };
 ```
 
-여기서 **호출마다 가상 함수 `invoke`**가 있습니다. 구체 `F`가 작고 자주 쓰인다면, **템플릿 래퍼**나 **variant<구체 타입들>**이 더 나을 수 있습니다.
+여기서 **호출마다 가상 함수 `invoke`**가 있고, `make_unique`로 **힙 할당**도 한 번 일어납니다. 구체 `F`가 작고 자주 쓰인다면, **템플릿 래퍼**나 **variant<구체 타입들>**이 더 나을 수 있습니다.
+
+## SBO 기반 소거: 힙·vtable 없이 (대조)
+
+위 `CallableErased`는 힙 할당과 가상 디스패치를 둘 다 씁니다. 대안으로 **고정 크기 버퍼(SBO)**에 호출 객체를 직접 담고, **가상 함수 대신 일반 함수 포인터**(`invoke`/`destroy`)로 연산을 표현하면 힙 할당과 vtable 로드를 피할 수 있습니다. 버퍼에 들어가는 작은 호출 객체에 한정되지만, 핫패스에서 자주 쓰는 콜백에 효과적입니다.
+
+```cpp
+#include <new>
+#include <utility>
+#include <type_traits>
+#include <cstddef>
+#include <cstdio>
+
+class SboCallable {
+    static constexpr std::size_t kBuf = 32;
+    alignas(std::max_align_t) unsigned char storage_[kBuf];
+    int  (*invoke_)(void*, int) = nullptr;   // 함수 포인터, vtable 아님
+    void (*destroy_)(void*)     = nullptr;
+
+public:
+    template <class F>
+    SboCallable(F f) {
+        static_assert(sizeof(F) <= kBuf, "callable too big for SBO");
+        static_assert(std::is_trivially_copyable_v<F> || true, "");
+        ::new (storage_) F(std::move(f));    // 버퍼에 직접 배치(힙 없음)
+        invoke_  = [](void* p, int x) { return (*static_cast<F*>(p))(x); };
+        destroy_ = [](void* p) { static_cast<F*>(p)->~F(); };
+    }
+    int operator()(int x) { return invoke_(storage_, x); }
+    ~SboCallable() { if (destroy_) destroy_(storage_); }
+
+    SboCallable(const SboCallable&) = delete;
+    SboCallable& operator=(const SboCallable&) = delete;
+};
+
+int main() {
+    int base = 10;
+    SboCallable c = [base](int x) { return base + x; };  // 버퍼 안에 보관
+    std::printf("%d\n", c(5));  // 15
+    return 0;
+}
+```
+
+`CallableErased`와 달리 **할당이 0회**이고, 호출은 멤버 함수 포인터 한 단계만 거칩니다. 여전히 **간접 호출**은 남지만(컴파일러가 `invoke_`를 항상 정적으로 풀 수는 없음), 힙·소멸자 가상화 비용은 사라집니다. 대신 버퍼를 넘는 큰 캡처는 담을 수 없고, 복사·이동·예외 안전을 직접 설계해야 합니다.
 
 ## 대안 패턴과 트레이드오프
 
@@ -232,8 +284,8 @@ flowchart TD
   need --> open
   open -->|"예"| erasure
   open -->|"아니오"| closed
-  closed --> variant
-  variant --> tmpl
+  closed -->|"여러 타입을 한 곳에 저장"| variant
+  closed -->|"호출처가 핫 내부·단일 타입"| tmpl
 ```
 
 ## 핵심 메시지 요약
@@ -244,25 +296,6 @@ flowchart TD
 | 닫힌 집합 | variant·템플릿이 종종 유리 |
 | 열린 집합 | 소거·가상·플러그인 경계 설계 |
 | 검증 | 챕터 00 방법으로 요인 분리 측정 |
-
-## 더 읽을 거리 (트랙 내)
-
-- [Small Buffer Optimization](/post/cpp-optimization/small-buffer-optimization/) (챕터 14)
-- [람다 표현식 성능](/post/cpp-optimization/lambda-performance/) (챕터 13)
-- [추상화 비용 분석](/post/cpp-optimization/abstraction-cost/) (챕터 01)
-- [ABI·링크 경계](/post/cpp-optimization/abi-link-boundaries-extreme-cpp-performance/) (챕터 17)
-
-## 트랙 마무리와 다음 학습
-
-이것으로 **Low-latency C++ 언어 최적화** 트랙(optimization-01-cpp-language)의 챕터 **00~19** 주제를 모두 다룹니다. 커리큘럼·측정 방법·선행 순서는 도입 장에서 정리되어 있으므로, 로드맵을 다시 보고 싶다면 아래로 돌아가면 됩니다.
-
-**이전 장**: [Smart Pointer 비용 기초](/post/cpp-optimization/smart-pointer-cost-fundamentals/) (챕터 18)
-
-→ [Introduction: Low-latency C++ 언어 최적화](/post/cpp-optimization/getting-started-cpp-language-performance-tuning/) (챕터 00)
-
-12개 트랙 전체 위치는 시리즈 개요에서 확인할 수 있습니다.
-
-→ [Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)
 
 ## std::any와 비교 (한계만)
 
@@ -294,48 +327,25 @@ A. 재할당·재바인딩을 줄이는 데는 도움이 됩니다. 여전히 **
 **Q. concept으로 std::invocable만 제약하면 충분한가요?**  
 A. 제약은 좋지만, **시그니처를 std::function에 넣는 순간** 소거가 됩니다. 템플릿 파라미터로 `F&&`를 유지하는지 확인합니다.
 
-## 게시 전 자가 점검 (챕터 19)
-
-- 소거·가상·variant·템플릿의 선택 기준이 표·문단으로 있는가?
-- 챕터 14·13·01·17과 연결 문장이 있는가?
-- 트랙 마무리 링크가 00·시리즈 개요를 가리키는가?
-
-## 부록: 패턴별 질문 16
-
-1. 이 콜백 타입은 컴파일 타임에 알 수 있는가?  
-2. 닫힌 집합이면 몇 개인가?  
-3. visit로 분기할 수 있는가?  
-4. 열린 집합이면 플러그인 경계인가?  
-5. 간접 호출이 어셈블리에 남는가?  
-6. SBO를 넘는 캡처인가?  
-7. 힙 할당이 루프마다 생기는가?  
-8. 템플릿으로 바이너리가 과도하게 커지는가?  
-9. 가상 한 번이면 충분한가?  
-10. 함수 포인터로 상태를 분리할 수 있는가?  
-11. 모듈 경계에서 opaque 핸들이 나은가?  
-12. 인라인 실패가 리포트에 잡히는가?  
-13. LTO 후에도 간접이 남는가?  
-14. 예외 경로가 소거 호출에 섞이는가?  
-15. noexcept가 간접 호출에 영향을 주는가?  
-16. 회귀 벤치마크에 넣었는가?
-
-## 부록: 한 줄 정리 12
-
-1. 소거는 편의와 간접의 트레이드오프다.  
-2. 닫히면 variant를 의심한다.  
-3. 핫 내부는 템플릿을 의심한다.  
-4. 열리면 소거·가상을 의심한다.  
-5. SBO는 구현에 맡기지 말고 측정한다.  
-6. 경계는 ABI를 먼저 본다.  
-7. 어셈블리로 call 대상을 본다.  
-8. 인스턴스 폭발은 크기로 본다.  
-9. any는 최후의 수단에 가깝다.  
-10. function은 범용 콜백에 강하다.  
-11. 람다를 템플릿으로 넘기면 소거를 피한다.  
-12. 트랙 전체는 00에서 로드맵을 닫는다.
-
 ## 용어 정리
 
 - **Type erasure**: 구체 타입을 숨기고 공통 연산만 노출하는 기법; 보통 간접 호출·저장소 내부 레이아웃이 뒤따름.
 - **SBO**: 작은 객체를 힙 없이 래퍼 내부에 넣는 최적화; 한도는 구현 의존.
 - **닫힌 집합**: 컴파일 타임에 대안 타입 목록을 열거할 수 있는 경우.
+
+## 더 읽을 거리 (트랙 내)
+
+- [Small Buffer Optimization](/post/cpp-optimization/small-buffer-optimization/) (챕터 14)
+- [람다 표현식 성능](/post/cpp-optimization/lambda-performance/) (챕터 13)
+- [추상화 비용 분석](/post/cpp-optimization/abstraction-cost/) (챕터 01)
+- [ABI·링크 경계](/post/cpp-optimization/abi-link-boundaries-extreme-cpp-performance/) (챕터 17)
+
+## 트랙 마무리와 다음 학습
+
+이것으로 **Low-latency C++ 언어 최적화** 트랙(optimization-01-cpp-language)의 챕터 **00~19** 주제를 모두 다룹니다. 커리큘럼·측정 방법·선행 순서는 도입 장에서 정리되어 있으므로, 로드맵을 다시 보고 싶다면 아래로 돌아가면 됩니다.
+
+**이전 장**: [Smart Pointer 비용 기초](/post/cpp-optimization/smart-pointer-cost-fundamentals/) (챕터 18)
+
+→ [Introduction: Low-latency C++ 언어 최적화](/post/cpp-optimization/getting-started-cpp-language-performance-tuning/) (챕터 00)
+
+→ [Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)
