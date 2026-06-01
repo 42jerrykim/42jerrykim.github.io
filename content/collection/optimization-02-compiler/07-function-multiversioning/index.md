@@ -88,14 +88,84 @@ tags:
 
 **함수 멀티버저닝(Function Multiversioning)**은 **같은 함수**에 대해 CPU 기능별로 **서로 다른 구현**을 두고, 실행 시점에 CPU가 지원하는 기능을 검사해 **해당하는 버전**을 호출하는 방식입니다. 예를 들어 "기본" 경로는 SSE만 쓰고, "AVX2" 경로는 256비트 SIMD를 쓰고, "AVX-512" 경로는 512비트 SIMD를 쓰도록 만들 수 있습니다. 한 바이너리를 여러 CPU에 배포할 때, 각 CPU에서 가장 적합한 구현이 자동으로 선택되므로, 호환성과 성능을 동시에 잡을 수 있습니다.
 
-## GCC / Clang 문법
+## GCC / Clang 문법과 코드 예시
 
-- **GCC**: **__attribute__((target("arch=...")))**
-  - 예: `__attribute__((target("default")))`와 `__attribute__((target("avx2")))`를 붙인 동일 이름 함수를 두 개 정의하면, 컴파일러가 디스패치 코드를 생성합니다. `target("avx2")` 버전에는 AVX2 명령을 사용할 수 있습니다.
-  - 여러 타겟을 나열할 수 있고, `target_clones`로 "이 타겟들에 대해 각각 버전을 만들어라"라고 지정할 수 있습니다.
-- **Clang**: **__attribute__((target_version(...)))** 또는 비슷한 타겟 지정으로 동일한 방식을 지원합니다. 문서에서 지원하는 타겟 문자열(예: "sse4.2", "avx2", "avx512f")을 확인해 사용합니다.
+멀티버저닝의 핵심은 **동일한 함수 이름에 서로 다른 target 속성을 붙인 여러 정의**를 두는 것입니다. 컴파일러가 자동으로 디스패치 코드를 생성합니다.
+
+### GCC: `__attribute__((target(...)))`
+
+```cpp
+// multiversioning_demo.cc — GCC/Clang 공통 예시
+#include <immintrin.h>
+#include <cstddef>
+
+// 기본 경로: SSE2 이상만 가정 (구형 CPU에서도 동작)
+__attribute__((target("default")))
+float dot_product(const float* a, const float* b, size_t n) {
+    float sum = 0.0f;
+    for (size_t i = 0; i < n; ++i)
+        sum += a[i] * b[i];
+    return sum;
+}
+
+// AVX2 경로: 256비트 SIMD로 8개 float 동시 처리
+__attribute__((target("avx2")))
+float dot_product(const float* a, const float* b, size_t n) {
+    __m256 acc = _mm256_setzero_ps();
+    size_t i = 0;
+    for (; i + 8 <= n; i += 8) {
+        __m256 va = _mm256_loadu_ps(a + i);
+        __m256 vb = _mm256_loadu_ps(b + i);
+        acc = _mm256_fmadd_ps(va, vb, acc);   // FMA: va * vb + acc
+    }
+    // 수평 합산 + 나머지 스칼라 처리 (생략)
+    float buf[8];
+    _mm256_storeu_ps(buf, acc);
+    float s = buf[0]+buf[1]+buf[2]+buf[3]+buf[4]+buf[5]+buf[6]+buf[7];
+    for (; i < n; ++i) s += a[i] * b[i];
+    return s;
+}
+```
+
+이 코드를 `-O2`로 빌드하면 컴파일러가 자동으로 **CPUID 기반 디스패치 코드**를 생성합니다. 프로그램이 AVX2를 지원하는 CPU에서 실행되면 `avx2` 버전이, 그렇지 않으면 `default` 버전이 호출됩니다.
+
+### GCC: `target_clones`로 여러 버전 한 번에 생성
+
+```cpp
+// target_clones: 하나의 함수 정의에서 여러 버전 자동 생성
+__attribute__((target_clones("avx512f", "avx2", "sse4.2", "default")))
+void vector_add(float* dst, const float* src, size_t n) {
+    for (size_t i = 0; i < n; ++i)
+        dst[i] += src[i];
+}
+```
+
+`target_clones`는 함수 정의를 한 번만 쓰고, 컴파일러가 각 타겟에 맞는 버전을 자동으로 생성합니다. 내부 루프에 SIMD intrinsic을 직접 쓰지 않아도 **auto-vectorization**이 타겟별로 다르게 적용됩니다.
+
+### Clang: `__attribute__((target_version(...)))`
+
+```cpp
+// Clang에서도 비슷한 방식 — target_version 속성 사용
+__attribute__((target_version("default")))
+int process(int x) { return x * 2; }
+
+__attribute__((target_version("avx2+fma")))
+int process(int x) { return x * 3; }  // AVX2+FMA CPU에서 선택되는 버전
+```
 
 두 컴파일러 모두 **CPU 디스패치**를 위해 런타임에 CPUID 등을 사용해 "지금 CPU가 어떤 기능을 지원하는지" 확인하고, 그에 맞는 함수 포인터를 선택합니다. 이 선택은 보통 **프로그램 시작 시** 또는 **해당 함수가 처음 호출될 때** 한 번 이루어지고, 이후에는 같은 포인터를 사용합니다.
+
+### 어셈블리에서 디스패치 확인
+
+멀티버저닝을 적용하면 링크된 바이너리에 **ifunc resolver** 또는 유사한 간접 호출 메커니즘이 나타납니다.
+
+```bash
+# objdump로 resolver 함수와 여러 버전 확인
+objdump -d ./app | grep -E "(dot_product|resolver)"
+# dot_product.default:  -> 기본 경로
+# dot_product.avx2:     -> AVX2 경로
+# dot_product.ifunc:    -> 디스패치 포인터
+```
 
 ## 디스패치 비용과 사용 시점
 
@@ -149,4 +219,4 @@ tags:
 
 **컴파일러 내장 함수(intrinsics)** 카탈로그, SIMD·원자성 등 사용 시 주의와 대안을 다룹니다.
 
-→ [컴파일러 내장 함수](/collection/optimization-02-compiler/08-compiler-intrinsics/) (챕터 08)
+→ [컴파일러 내장 함수](/post/compiler-optimization/compiler-intrinsics-catalog/) (챕터 08)

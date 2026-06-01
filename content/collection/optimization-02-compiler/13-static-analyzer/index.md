@@ -96,10 +96,46 @@ tags:
 
 ## Clang Static Analyzer / GCC -fanalyzer
 
-- **Clang Static Analyzer**: Clang 기반의 **정적 분석기**로, 메모리 누수·null 역참조·데이터 플로우 이상 등과 함께, 일부 성능 관련 이슈(불필요한 연산, 개선 가능한 패턴)를 보고할 수 있습니다. `scan-build`로 빌드를 감싸서 실행하면 분석 결과가 나옵니다. CI에서는 별도 타겟으로 돌리거나, 중요한 경고만 실패로 두는 정책을 둘 수 있습니다.
-- **GCC -fanalyzer**: GCC 10부터 포함된 **정적 분석 패스**입니다. `-fanalyzer`를 켜면 컴파일 시 분석이 함께 수행되고, 메모리·리소스 관련 이슈와 함께 일부 성능 관련 힌트가 나올 수 있습니다. 컴파일 시간이 늘어나므로, CI의 "정적 분석" 단계에서만 켜는 경우가 많습니다.
-
 두 도구 모두 **성능 전용**이 아니라 정확성·안전성 위주이지만, 출력되는 경고 중에는 "이렇게 바꾸면 더 빠르거나 더 단순해진다"에 해당하는 것이 섞여 있으므로, 성능 트랙에서는 그런 항목을 골라 개선 포인트로 활용할 수 있습니다.
+
+### Clang Static Analyzer (scan-build) 사용법
+
+```bash
+# CMake 프로젝트에서 scan-build 사용
+scan-build cmake -DCMAKE_BUILD_TYPE=Debug ..
+scan-build make -j$(nproc)
+
+# 결과를 HTML 보고서로 저장 (기본: /tmp/scan-build-*)
+scan-build -o ./analysis_report make -j$(nproc)
+
+# 특정 체커만 활성화 (성능 관련 체커 예시)
+scan-build --enable-checker alpha.performance.Padding make
+```
+
+출력 예시:
+```
+scan-build: 3 bugs found.
+scan-build: Run 'scan-view /tmp/scan-build-2026-06-01-123456-1234-1' to examine bug reports.
+
+foo.cc:15:5: warning: Value stored to 'result' is never read [deadcode.DeadStores]
+bar.cc:42:12: warning: Potential null pointer dereference [core.NullDereference]
+baz.cc:78:8: warning: Function call argument is an uninitialized value [core.CallAndMessage]
+```
+
+### GCC -fanalyzer 사용법
+
+```bash
+# 단일 파일 분석
+g++ -O2 -fanalyzer foo.cc -c 2>&1 | grep "warning:"
+
+# CMake 프로젝트: 분석 빌드용 플래그 추가
+cmake -DCMAKE_CXX_FLAGS="-fanalyzer" -DCMAKE_BUILD_TYPE=Debug ..
+make -j$(nproc) 2>&1 | grep -E "warning:|note:"
+```
+
+`-fanalyzer`는 컴파일 시간이 늘어나므로 CI의 별도 "static analysis" 단계에서만 켜는 것이 좋습니다. GCC 12 이상에서 지원 수준이 더 좋습니다.
+
+**Clang Static Analyzer**는 Clang 기반의 정적 분석기로, 메모리 누수·null 역참조·데이터 플로우 이상 등과 함께, 일부 성능 관련 이슈(불필요한 연산, 개선 가능한 패턴)를 보고할 수 있습니다. **GCC -fanalyzer**는 GCC 10부터 포함된 정적 분석 패스입니다.
 
 ## CI에 경고 통합하고 성능 회귀와 연계
 
@@ -144,6 +180,8 @@ tags:
 | 도구 | scan-build(Clang), -fanalyzer(GCC) |
 | CI | 경고 관리 + 별도 벤치마크로 회귀 측정 |
 
-## 다음 단계
+## 다음 장에서는
 
-이것으로 **Low-latency 컴파일러·빌드 최적화** 트랙(챕터 00~13)의 본문을 마칩니다. 트랙 전체 목차와 학습 목표는 [컬렉션 루트](/collection/optimization-02-compiler/)에서 확인할 수 있습니다.
+**BOLT·후링크(post-link) 최적화** 개념, PGO·LTO와의 순서 감각, 프로파일 대표성과 CI 재현성, 적용 판단 기준을 다룹니다.
+
+→ [BOLT·후링크 최적화](/post/compiler-optimization/bolt-post-link-binary-layout-optimization/) (챕터 14)
