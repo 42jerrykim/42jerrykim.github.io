@@ -56,11 +56,9 @@ jobs:
             hugo-resources-${{ runner.os }}-
 
       # 핵심 최적화:
-      #   --renderSegments recent  → 2025~2026 post + 최근 컬렉션만 렌더 (1,324→~400 페이지)
       #   --environment pr-preview → imageProcessing 비활성화 (WebP 변환 생략, ~5분 절약)
       #   Pagefind 없음            → 검색 인덱싱 생략 (~3분 절약)
-      #   --gc 없음                → 세그먼트 외 캐시 삭제 방지
-      - name: Build with Hugo (segment=recent, no image processing, no Pagefind)
+      - name: Build with Hugo (no image processing, no Pagefind)
         env:
           HUGO_CACHEDIR: ${{ github.workspace }}/.hugo_cache
           HUGO_ENVIRONMENT: pr-preview
@@ -69,7 +67,6 @@ jobs:
         run: |
           hugo \
             --minify \
-            --renderSegments recent \
             --environment pr-preview \
             --baseURL "/"
 
