@@ -12,12 +12,12 @@
 #   .\build-and-serve.ps1                    # 전체 빌드 (pagefind 캐시 있으면 빌드 생략)
 #   .\build-and-serve.ps1 -Pagefind          # pagefind 인덱스 강제 재생성
 
-# PowerShell 출력 인코딩을 UTF-8로 설정 (한글 표시용)
-$OutputEncoding = [System.Text.UTF8Encoding]::new($false)
-
 param(
     [switch]$Pagefind
 )
+
+# PowerShell 출력 인코딩을 UTF-8로 설정 (한글 표시용)
+$OutputEncoding = [System.Text.UTF8Encoding]::new($false)
 
 # --- Windows Defender 제외 확인 ---
 # Hugo 공식 문서: Defender가 빌드 시간을 400% 이상 증가시킬 수 있음
