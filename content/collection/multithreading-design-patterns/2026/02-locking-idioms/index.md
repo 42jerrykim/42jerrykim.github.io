@@ -5,6 +5,11 @@ date: 2026-06-11
 lastmod: 2026-06-11
 draft: true
 collection_order: 2
+difficulty: intermediate
+prerequisites:
+  - "01장: 동시성 기초와 C++ 메모리 모델"
+  - "std::mutex와 std::lock_guard 기본 개념"
+  - "RAII 원칙 (Resource Acquisition Is Initialization)"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -46,6 +51,18 @@ slug: cpp-locking-idioms-scoped-locking-thread-safe-interface
 ---
 
 02장의 핵심은 간단하지만 강력하다: **공유 상태를 보호하는 일을 `mutex`에만 맡기지 말고, 클래스 설계 자체에 스레드 안전성을 내장하라.** 01장에서 배운 메모리 모델은 "무엇이 safe한가"를 말했고, 이 장에서는 "어떻게 그것을 구조적으로 구현하는가"를 다룬다.
+
+## 📖 이 장을 읽기 전에
+
+**선행 학습**: 이 장은 01장의 메모리 모델 개념을 기반으로 합니다. 특히 "데이터 레이스"와 "happens-before"를 이해하고 있어야 합니다.
+
+## 🎯 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **초보자** | "문제" ~ "Scoped Locking 패턴" | lock_guard 사용법 습득 |
+| **중급자** | 전체 (고급 섹션 제외) | Thread-Safe Interface 설계 능력 |
+| **전문가** | "데드락 회피" ~ "실전 전략" | 멀티뮤텍스 관리 및 성능 고려 |
 
 ---
 

@@ -5,6 +5,10 @@ date: 2026-06-11
 lastmod: 2026-06-11
 draft: true
 collection_order: 9
+difficulty: advanced
+prerequisites:
+  - "01~06장: 기초부터 Thread Pool까지"
+  - "이벤트 기반 시스템의 개념"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -30,6 +34,13 @@ slug: cpp-reactor-event-driven-single-thread
 ---
 
 09장은 **한 스레드에서 여러 I/O 이벤트를 효율적으로 처리**하는 Reactor 패턴을 다룬다. Active Object는 "객체당 스레드"였다면, Reactor는 "이벤트당 콜백"의 이벤트 기반 구조다.
+
+## 🎯 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **고급자** | "문제" ~ "Reactor의 기본 구조" | Reactor 개념 이해 |
+| **시스템 설계자** | 전체, 특히 "구현 레벨" | select/poll/epoll 선택 기준 |
 
 ---
 

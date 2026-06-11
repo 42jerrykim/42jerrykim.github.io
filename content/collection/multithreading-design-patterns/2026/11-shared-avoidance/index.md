@@ -5,6 +5,10 @@ date: 2026-06-11
 lastmod: 2026-06-11
 draft: true
 collection_order: 11
+difficulty: intermediate-advanced
+prerequisites:
+  - "01~10장 전체의 맥락"
+  - "메모리 효율과 성능의 트레이드오프 이해"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -32,6 +36,14 @@ slug: cpp-avoiding-shared-state-immutable-cow-thread-local
 ---
 
 이 시리즈의 마지막 장은 **공유 상태 자체를 없애는 전략**을 다룬다. 지금까지 "공유 상태를 보호하는 방법"을 배웠다면, 11장은 "공유하지 않는 방법"을 배운다. 이것이 가장 근본적인 해결책이다.
+
+## 🎯 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **중급자** | "Immutable 패턴" ~ "thread_local" | 기본 공유 회피 기법 습득 |
+| **고급자** | 전체, "Copy-on-Write" 섹션 | 패턴 간의 트레이드오프 이해 |
+| **성능 전문가** | "패턴 선택 가이드" | 실제 시스템에서 어떤 패턴 쓸지 판단 |
 
 ---
 

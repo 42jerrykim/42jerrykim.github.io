@@ -5,6 +5,10 @@ date: 2026-06-11
 lastmod: 2026-06-11
 draft: true
 collection_order: 5
+difficulty: intermediate-advanced
+prerequisites:
+  - "01~04장: 메모리 모델, 락, condition_variable"
+  - "std::shared_mutex와 atomic 이해"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -36,6 +40,14 @@ slug: cpp-read-write-lock-dclp-call-once-lazy-init
 ---
 
 05장은 **읽기 작업이 대부분인 시나리오**의 최적화를 다룬다. 많은 시스템에서 쓰기(변경)는 드물고 읽기는 대부분이다. 기존의 단일 mutex는 읽기들까지 직렬화하므로 비효율적이다. 이 장에서는 읽기와 쓰기를 분리하고, 초기화 비용을 한 번만 치르는 패턴을 배운다.
+
+## 🎯 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **중급자** | "문제" ~ "std::call_once" | shared_mutex와 call_once 사용법 |
+| **고급자** | 전체, 특히 "DCLP" 섹션 | DCLP의 위험성과 올바른 구현 이해 |
+| **성능 전문가** | "DCLP" ~ "성능 비교" | 각 기법의 성능 트레이드오프 분석 |
 
 ---
 

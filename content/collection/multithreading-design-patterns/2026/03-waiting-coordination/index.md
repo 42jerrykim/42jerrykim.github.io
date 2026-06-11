@@ -5,6 +5,11 @@ date: 2026-06-11
 lastmod: 2026-06-11
 draft: true
 collection_order: 3
+difficulty: intermediate
+prerequisites:
+  - "01~02장: 메모리 모델과 Scoped Locking"
+  - "std::condition_variable 기본 개념"
+  - "spurious wakeup이란 용어"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -42,6 +47,14 @@ slug: cpp-condition-variable-monitor-object-guarded-suspension
 ---
 
 03장은 **능동적으로 상태를 확인(spinning)하는 대신, 다른 스레드가 신호를 보낼 때까지 안전하게 대기**하는 패턴들을 다룬다. 이전 장의 락은 "공유 상태를 보호하는 것"에 집중했다면, 이 장의 condition variable은 **"조건이 만족될 때까지 대기"**의 효율성을 높인다.
+
+## 🎯 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **초보자** | "문제" ~ "Monitor Object 패턴" | condition_variable 기본 사용법 |
+| **중급자** | 전체 (고급 섹션 제외) | Guarded Suspension 구현 능력 |
+| **전문가** | "여러 조건 변수" ~ "고급 패턴" | 복잡한 동기화 시나리오 설계 |
 
 ---
 

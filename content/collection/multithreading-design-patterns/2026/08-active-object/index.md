@@ -5,6 +5,10 @@ date: 2026-06-11
 lastmod: 2026-06-11
 draft: true
 collection_order: 8
+difficulty: advanced
+prerequisites:
+  - "06~07장: Thread Pool과 Future/Promise"
+  - "메서드 호출의 직렬화 개념"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -24,6 +28,13 @@ slug: cpp-active-object-async-method-invocation
 ---
 
 08장은 **각 객체가 자신만의 스레드를 가지고, 메서드 호출을 큐로 받아 처리**하는 Active Object 패턴을 다룬다. 이는 Producer-Consumer, Thread Pool, Future/Promise를 종합하는 패턴이다.
+
+## 🎯 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **고급자** | "기본 구현" | Active Object 구현 및 사용 |
+| **설계자** | 전체, 특히 "고급" 섹션 | Actor 모델과의 비교, 성능 분석 |
 
 ---
 

@@ -5,6 +5,10 @@ date: 2026-06-11
 lastmod: 2026-06-11
 draft: true
 collection_order: 6
+difficulty: intermediate-advanced
+prerequisites:
+  - "02~04장: 락, condition_variable, Producer-Consumer"
+  - "std::function과 람다 표현식"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -31,6 +35,14 @@ slug: cpp-thread-pool-work-queue-work-stealing
 ---
 
 06장은 **여러 스레드를 효율적으로 관리하는 기반 구조**를 다룬다. 스레드 생성은 비싸고, 무한정 많은 스레드는 만들 수 없다. Thread Pool은 미리 정해진 수의 워커 스레드를 풀에서 유지하며, 들어오는 작업들을 큐에서 꺼내 처리한다.
+
+## 🎯 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **중급자** | "기본 Thread Pool" | 워커 스레드 풀 구현 |
+| **고급자** | 전체, 특히 "Work Stealing" | 부하 분산 알고리즘 이해 |
+| **시스템 설계자** | "성능 비교" ~ 마무리 | 스레드 풀 선택 기준 이해 |
 
 ---
 

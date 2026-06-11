@@ -5,6 +5,10 @@ date: 2026-06-11
 lastmod: 2026-06-11
 draft: true
 collection_order: 4
+difficulty: intermediate
+prerequisites:
+  - "02~03장: Scoped Locking과 condition_variable"
+  - "std::queue 기본 사용법"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -37,6 +41,14 @@ slug: cpp-producer-consumer-bounded-buffer-backpressure
 
 1. **Bounded Buffer vs Unbounded**: 메모리 제한 vs 응답성
 2. **Blocking Backpressure vs Dropping**: 대기 vs 손실
+
+## 🎯 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **초보자** | "Unbounded Queue" ~ "Bounded Buffer" | 생산-소비 큐 구현 |
+| **중급자** | 전체 (성능 섹션 제외) | Backpressure 이해 및 적용 |
+| **전문가** | "성능 고려사항" ~ "다중 프로듀서/컨슈머" | Lock contention과 최적화 |
 
 ---
 

@@ -5,6 +5,10 @@ date: 2026-06-11
 lastmod: 2026-06-11
 draft: true
 collection_order: 7
+difficulty: intermediate-advanced
+prerequisites:
+  - "06장: Thread Pool"
+  - "std::future, std::promise 기본 개념"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -29,6 +33,14 @@ slug: cpp-future-promise-async-packaged-task
 ---
 
 07장은 **비동기 작업의 결과를 안전하게 전달하는 패턴**을 다룬다. Future와 Promise는 Thread Pool과 다르게, "언젠가 완료될 작업의 결과"를 handle로 나타내고, 그 결과를 나중에 대기하며 받을 수 있다.
+
+## 🎯 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **중급자** | "Promise와 Future" ~ "std::async" | 기본 사용법 습득 |
+| **고급자** | 전체, "Thread Pool with Future" | Future를 Thread Pool과 조합 |
+| **설계자** | "예외 처리" ~ "여러 Future 대기" | 복잡한 비동기 시나리오 관리 |
 
 ---
 
