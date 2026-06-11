@@ -21,7 +21,7 @@ param(
 $hugoCmd = Get-Command hugo -ErrorAction SilentlyContinue
 if ($hugoCmd) {
     $hugoPath = $hugoCmd.Source
-    try { 
+    try {
         $defenderExclusions = @((Get-MpPreference).ExclusionProcess)
         if ("hugo.exe" -notin $defenderExclusions -and $hugoPath -notin $defenderExclusions) {
             Write-Host "[성능 경고] hugo.exe가 Windows Defender 제외 목록에 없습니다." -ForegroundColor Red
