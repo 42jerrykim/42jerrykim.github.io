@@ -10,13 +10,9 @@
 #
 # 사용법:
 #   .\build-and-serve.ps1                    # 전체 빌드 (pagefind 캐시 있으면 빌드 생략)
-#   .\build-and-serve.ps1 -Segment posts     # post 섹션만 빌드 (빠른 개발용)
-#   .\build-and-serve.ps1 -Segment recent    # post + collection 빌드
 #   .\build-and-serve.ps1 -Pagefind          # pagefind 인덱스 강제 재생성
 
 param(
-    [ValidateSet("", "posts", "recent")]
-    [string]$Segment = "",
     [switch]$Pagefind
 )
 
@@ -65,13 +61,7 @@ if ($needPagefind) {
     # WebP 변환이 생략되고, 캐시가 채워지지 않음. production으로 빌드해 WebP·캐시를 활용한다.
     $buildArgs = @("build", "--cleanDestinationDir", "--gc", "--environment", "--logLevel=info")
 
-    if ($Segment) {
-        $buildArgs += "--renderSegments"
-        $buildArgs += $Segment
-        Write-Host "Hugo 빌드를 시작합니다 (segment: $Segment)..." -ForegroundColor Yellow
-    } else {
-        Write-Host "Hugo 빌드를 시작합니다..." -ForegroundColor Yellow
-    }
+    Write-Host "Hugo 빌드를 시작합니다..." -ForegroundColor Yellow
 
     $buildTimer = [System.Diagnostics.Stopwatch]::StartNew()
     hugo @buildArgs
@@ -125,10 +115,6 @@ if ($conn) {
 Write-Host "Hugo 개발 서버를 시작합니다 (포트 12345)..." -ForegroundColor Cyan
 
 $serveArgs = @("serve", "-D", "--port", "12345", "--renderStaticToDisk", "--templateMetrics", "--templateMetricsHints", "--logLevel=info")
-if ($Segment) {
-    $serveArgs += "--renderSegments"
-    $serveArgs += $Segment
-}
 
 hugo @serveArgs
 
