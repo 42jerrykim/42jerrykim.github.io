@@ -39,6 +39,13 @@ Hugo 정적 사이트 블로그 (`42jerrykim.github.io`).
 
 ## 컬렉션별 전용 규칙
 
+### AI 컬렉션 글 작성 표준 (모든 컬렉션 글에 적용)
+
+@.cursor/rules/ai-collection-writing-standards.mdc
+
+AI를 이용해 **이론 중심 + 예제 보충식** 전문가 수준의 컬렉션 글을 작성할 때 필수. 
+본문 구성(문단 비율), 깊이, 정확성, 출처, 안티패턴을 다룬다.
+
 ### 컬렉션 내부 링크 (`content/collection/**/index.md` 편집 시)
 
 @.cursor/rules/hugo-collection-internal-links.mdc
@@ -83,13 +90,14 @@ Hugo 정적 사이트 블로그 (`42jerrykim.github.io`).
 
 | 작업 | 적용 스킬/규칙 |
 |------|--------------|
-| Movies 리뷰 작성 | movie-review-writing 스킬 + Movies 규칙 |
-| TV-Show 리뷰 작성 | TV-Show 규칙 + blog-post-writing 스킬 |
-| Algorithm 풀이 작성 | Algorithm 규칙 + blog-post-writing 스킬 |
-| Vocabulary 단어 작성 | Vocabulary 규칙 + blog-post-writing 스킬 |
-| Bash/CMD 포스트 작성 | 해당 컬렉션 규칙 + blog-post-writing 스킬 |
-| 교육 시리즈 작성 | educational-content-writing 스킬 추가 적용 |
-| 처음부터 끝까지 신규 포스트 | blog-agent-pipeline 스킬 (4단계 파이프라인) |
+| **모든 컬렉션 글** (AI 작성) | **ai-collection-writing-standards** (필수) + 하위 규칙 |
+| Movies 리뷰 작성 | movie-review-writing 스킬 + Movies 규칙 + ai-collection-writing-standards |
+| TV-Show 리뷰 작성 | TV-Show 규칙 + blog-post-writing 스킬 + ai-collection-writing-standards |
+| Algorithm 풀이 작성 | Algorithm 규칙 + blog-post-writing 스킬 + ai-collection-writing-standards |
+| Vocabulary 단어 작성 | Vocabulary 규칙 + blog-post-writing 스킬 + ai-collection-writing-standards |
+| Bash/CMD 포스트 작성 | 해당 컬렉션 규칙 + blog-post-writing 스킬 + ai-collection-writing-standards |
+| 교육 시리즈 작성 | educational-content-writing 스킬 + ai-collection-writing-standards |
+| 처음부터 끝까지 신규 포스트 | blog-agent-pipeline 스킬 + ai-collection-writing-standards (컬렉션 글) |
 | 그 외 일반 포스트 | blog-post-writing 스킬 + 전역 규칙 |
 
 ---
