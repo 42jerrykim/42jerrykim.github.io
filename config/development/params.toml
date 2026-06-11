@@ -1,0 +1,12 @@
+# Development environment overrides
+
+# Disable related content rendering for faster builds in development
+[article]
+renderRelatedContent = false
+
+# Disable image processing in development for faster builds
+[imageProcessing.cover]
+enabled = false
+
+[imageProcessing.content]
+enabled = false
