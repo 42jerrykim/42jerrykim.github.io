@@ -32,7 +32,7 @@ slug: cpp-proactor-async-io-half-sync-half-async
 
 10장은 **Reactor의 다음 단계**를 다룬다. Reactor는 준비된 소켓을 폴링했지만, Proactor는 **I/O 완료를 비동기로 통지**받는다. 또한 단일 스레드 Reactor를 여러 스레드로 확장하는 Half-Sync/Half-Async 패턴도 함께 배운다.
 
-## 🎯 당신의 수준에 맞는 경로
+## 당신의 수준에 맞는 경로
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|

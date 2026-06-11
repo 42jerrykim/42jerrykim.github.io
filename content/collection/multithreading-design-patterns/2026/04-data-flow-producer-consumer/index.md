@@ -42,7 +42,7 @@ slug: cpp-producer-consumer-bounded-buffer-backpressure
 1. **Bounded Buffer vs Unbounded**: 메모리 제한 vs 응답성
 2. **Blocking Backpressure vs Dropping**: 대기 vs 손실
 
-## 🎯 당신의 수준에 맞는 경로
+## 당신의 수준에 맞는 경로
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
