@@ -1,14 +1,10 @@
 ---
 title: "[Concurrency Patterns] 05. 읽기 최적화와 지연 초기화"
 description: "shared_mutex로 읽기/쓰기 락 분리, DCLP의 함정과 해결, call_once를 통한 안전한 지연 초기화를 학습합니다."
-date: 2026-06-11
-lastmod: 2026-06-11
-draft: true
+date: 2026-06-15
+lastmod: 2026-06-16
+draft: false
 collection_order: 5
-difficulty: intermediate-advanced
-prerequisites:
-  - "01~04장: 메모리 모델, 락, condition_variable"
-  - "std::shared_mutex와 atomic 이해"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -369,3 +365,5 @@ public:
 - Scott Meyers & Andrei Alexandrescu, "C++ and the Perils of Double-Checked Locking" (2004)
 - Anthony Williams, 『C++ Concurrency in Action』, Chapter 3 & 7
 - C++ Standards Committee, Static storage duration initialization rules
+
+

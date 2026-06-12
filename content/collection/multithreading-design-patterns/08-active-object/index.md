@@ -1,14 +1,10 @@
 ---
 title: "[Concurrency Patterns] 08. 비동기 객체 (Active Object)"
 description: "스스로 스레드를 가지고 메서드 호출을 큐로 받는 Active Object 패턴을 구현합니다."
-date: 2026-06-11
-lastmod: 2026-06-11
-draft: true
+date: 2026-06-18
+lastmod: 2026-06-19
+draft: false
 collection_order: 8
-difficulty: advanced
-prerequisites:
-  - "06~07장: Thread Pool과 Future/Promise"
-  - "메서드 호출의 직렬화 개념"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -444,3 +440,5 @@ int main() {
 - POSA2 (Schmidt et al.), Chapter 6 — Active Object 원형
 - Douglas C. Schmidt, "An Object Behavioral Pattern for Concurrent Processing"
 - Carl Hewitt, "Actor Model of Computation" — Actor 모델의 이론적 기반 (비교 대상으로서의 배경)
+
+

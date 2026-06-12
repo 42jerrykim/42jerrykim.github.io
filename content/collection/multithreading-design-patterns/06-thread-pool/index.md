@@ -1,14 +1,10 @@
 ---
 title: "[Concurrency Patterns] 06. 실행 관리 I: Thread Pool"
 description: "스레드 풀, 작업 큐, Work Stealing 알고리즘을 구현하고, 부하 분산과 응답성의 트레이드오프를 학습합니다."
-date: 2026-06-11
-lastmod: 2026-06-11
-draft: true
+date: 2026-06-16
+lastmod: 2026-06-17
+draft: false
 collection_order: 6
-difficulty: intermediate-advanced
-prerequisites:
-  - "02~04장: 락, condition_variable, Producer-Consumer"
-  - "std::function과 람다 표현식"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -352,3 +348,5 @@ ThreadPool pool(n);
 - Anthony Williams, 『C++ Concurrency in Action』, Chapter 9 — Thread Pool 구현
 - Herb Sutter, "Design Patterns" from GotW — Executor pattern
 - Work-stealing 알고리즘은 Cilk, Intel TBB 등 업계 표준
+
+

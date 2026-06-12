@@ -1,15 +1,10 @@
 ---
 title: "[Concurrency Patterns] 02. 락 관용구"
 description: "RAII 기반 Scoped Locking, Strategized Locking, Thread-Safe Interface 패턴을 구현하고, 자기 데드락과 인터페이스 위반을 코드로 재현 후 고치는 장입니다."
-date: 2026-06-11
-lastmod: 2026-06-11
-draft: true
+date: 2026-06-12
+lastmod: 2026-06-13
+draft: false
 collection_order: 2
-difficulty: intermediate
-prerequisites:
-  - "01장: 동시성 기초와 C++ 메모리 모델"
-  - "std::mutex와 std::lock_guard 기본 개념"
-  - "RAII 원칙 (Resource Acquisition Is Initialization)"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -577,3 +572,5 @@ void doHighLevelStuff() {
 - Anthony Williams, 『C++ Concurrency in Action』(2nd ed., 2019), Chapter 3 — mutex, RAII 기반 락, hierarchical mutex 설계
 - C++ Standards Committee, `<mutex>` documentation — lock_guard, scoped_lock, unique_lock, recursive_mutex
 - LLVM Project, "ThreadSanitizer" documentation — lock-order-inversion 탐지와 TSAN_OPTIONS
+
+

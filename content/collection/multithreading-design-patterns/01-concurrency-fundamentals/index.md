@@ -2,14 +2,9 @@
 title: "[Concurrency Patterns] 01. 동시성 기초와 C++ 메모리 모델"
 description: "멀티스레드 프로그래밍의 기반이 되는 메모리 모델, 데이터 레이스, happens-before 관계, atomic 기초를 C++ 표준 문서와 실제 컴파일 예제를 통해 학습합니다."
 date: 2026-06-11
-lastmod: 2026-06-11
-draft: true
+lastmod: 2026-06-12
+draft: false
 collection_order: 1
-difficulty: intermediate
-prerequisites:
-  - "C++ 기본 문법 (변수, 함수, 포인터)"
-  - "std::thread 기본 사용법"
-  - "컴파일과 링크 이해"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -358,3 +353,5 @@ counter.fetch_add(1, std::memory_order_relaxed);
 - C++ Standards Committee, 『Working Draft, C++ Standard』 — Memory model clause (1.10 in C++11, 6.9 in C++20)
 - Hans Boehm & Mark Adve, "Foundations of the C++ Concurrency Memory Model" (2008) — 표준 메모리 모델 설계의 이론적 배경
 - Herb Sutter, "Atomic Weapons" (2012, GotW #86~#100) — atomic 활용법의 실전 가이드
+
+

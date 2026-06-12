@@ -1,14 +1,10 @@
 ---
 title: "[Concurrency Patterns] 09. 이벤트 아키텍처 I: Reactor"
 description: "단일 스레드에서 여러 이벤트 소스를 효율적으로 처리하는 Reactor 패턴을 학습합니다."
-date: 2026-06-11
-lastmod: 2026-06-11
-draft: true
+date: 2026-06-19
+lastmod: 2026-06-20
+draft: false
 collection_order: 9
-difficulty: advanced
-prerequisites:
-  - "01~06장: 기초부터 Thread Pool까지"
-  - "이벤트 기반 시스템의 개념"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -313,3 +309,5 @@ Windows에는 `epoll`이 없다. `select`는 지원되지만 `FD_SETSIZE` 제한
 - POSA2 (Schmidt et al.), Chapter 5 — Reactor 원형
 - Douglas C. Schmidt, "Reactor: An Object Behavioral Pattern for Demultiplexing and Dispatching Handles for Synchronous Events"
 - Linux man page: select(2), poll(2), epoll(7)
+
+
