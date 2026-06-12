@@ -5,11 +5,6 @@ date: 2026-06-12
 lastmod: 2026-06-13
 draft: false
 collection_order: 2
-difficulty: intermediate
-prerequisites:
-  - "01장: 동시성 기초와 C++ 메모리 모델"
-  - "std::mutex와 std::lock_guard 기본 개념"
-  - "RAII 원칙 (Resource Acquisition Is Initialization)"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -577,4 +572,5 @@ void doHighLevelStuff() {
 - Anthony Williams, 『C++ Concurrency in Action』(2nd ed., 2019), Chapter 3 — mutex, RAII 기반 락, hierarchical mutex 설계
 - C++ Standards Committee, `<mutex>` documentation — lock_guard, scoped_lock, unique_lock, recursive_mutex
 - LLVM Project, "ThreadSanitizer" documentation — lock-order-inversion 탐지와 TSAN_OPTIONS
+
 

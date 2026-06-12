@@ -5,10 +5,6 @@ date: 2026-06-18
 lastmod: 2026-06-19
 draft: false
 collection_order: 8
-difficulty: advanced
-prerequisites:
-  - "06~07장: Thread Pool과 Future/Promise"
-  - "메서드 호출의 직렬화 개념"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -444,4 +440,5 @@ int main() {
 - POSA2 (Schmidt et al.), Chapter 6 — Active Object 원형
 - Douglas C. Schmidt, "An Object Behavioral Pattern for Concurrent Processing"
 - Carl Hewitt, "Actor Model of Computation" — Actor 모델의 이론적 기반 (비교 대상으로서의 배경)
+
 

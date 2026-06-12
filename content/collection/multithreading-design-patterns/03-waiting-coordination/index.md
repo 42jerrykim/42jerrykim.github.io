@@ -5,11 +5,6 @@ date: 2026-06-13
 lastmod: 2026-06-14
 draft: false
 collection_order: 3
-difficulty: intermediate
-prerequisites:
-  - "01~02장: 메모리 모델과 Scoped Locking"
-  - "std::condition_variable 기본 개념"
-  - "spurious wakeup이란 용어"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -500,4 +495,5 @@ timeout 5 ./bq && echo OK || echo "hang or race detected"
 - C++ Standards Committee, `<condition_variable>` documentation — wait/wait_for의 spurious wakeup 명세
 - Linux man-pages, `pthread_cond_wait(3)` — futex 기반 구현과 spurious wakeup의 원인
 - Microsoft Docs, "Condition Variables" (Win32 API) — alertable wait와 spurious wakeup
+
 

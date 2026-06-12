@@ -5,10 +5,6 @@ date: 2026-06-21
 lastmod: 2026-06-22
 draft: false
 collection_order: 11
-difficulty: intermediate-advanced
-prerequisites:
-  - "01~10장 전체의 맥락"
-  - "메모리 효율과 성능의 트레이드오프 이해"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -445,4 +441,5 @@ int main() {
 - POSA2 (Schmidt et al.), 전체 — 모든 패턴의 원형
 - C++ Standards Committee, 전체 — std::thread, mutex, atomic, shared_ptr, future documentation
 - Boost.Lockfree, folly 문서 — 프로덕션 수준 Lock-Free 자료구조 참고
+
 

@@ -5,10 +5,6 @@ date: 2026-06-14
 lastmod: 2026-06-15
 draft: false
 collection_order: 4
-difficulty: intermediate
-prerequisites:
-  - "02~03장: Scoped Locking과 condition_variable"
-  - "std::queue 기본 사용법"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -330,4 +326,5 @@ public:
 
 - POSA2, Chapter 4 — Bounded Buffer 패턴
 - Brian Goetz, 『Java Concurrency in Practice』, Chapter 12 — Testing Concurrent Programs (큐 테스트 전략)
+
 

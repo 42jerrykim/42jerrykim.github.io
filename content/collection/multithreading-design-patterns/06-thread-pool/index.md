@@ -5,10 +5,6 @@ date: 2026-06-16
 lastmod: 2026-06-17
 draft: false
 collection_order: 6
-difficulty: intermediate-advanced
-prerequisites:
-  - "02~04장: 락, condition_variable, Producer-Consumer"
-  - "std::function과 람다 표현식"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -352,4 +348,5 @@ ThreadPool pool(n);
 - Anthony Williams, 『C++ Concurrency in Action』, Chapter 9 — Thread Pool 구현
 - Herb Sutter, "Design Patterns" from GotW — Executor pattern
 - Work-stealing 알고리즘은 Cilk, Intel TBB 등 업계 표준
+
 

@@ -5,10 +5,6 @@ date: 2026-06-15
 lastmod: 2026-06-16
 draft: false
 collection_order: 5
-difficulty: intermediate-advanced
-prerequisites:
-  - "01~04장: 메모리 모델, 락, condition_variable"
-  - "std::shared_mutex와 atomic 이해"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -369,4 +365,5 @@ public:
 - Scott Meyers & Andrei Alexandrescu, "C++ and the Perils of Double-Checked Locking" (2004)
 - Anthony Williams, 『C++ Concurrency in Action』, Chapter 3 & 7
 - C++ Standards Committee, Static storage duration initialization rules
+
 

@@ -5,10 +5,6 @@ date: 2026-06-20
 lastmod: 2026-06-21
 draft: false
 collection_order: 10
-difficulty: advanced
-prerequisites:
-  - "09장: Reactor 패턴"
-  - "비동기 I/O의 개념"
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -362,4 +358,5 @@ int main() {
 - POSA2 (Schmidt et al.), Chapter 7 — Half-Sync/Half-Async 원형
 - Douglas C. Schmidt, "Proactor: An Object Behavioral Pattern for Demultiplexing and Dispatching Handles for Asynchronous Events"
 - Mark Vinoski, "Boost.Asio C++ Network Programming" (2010)
+
 
