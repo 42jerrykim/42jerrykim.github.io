@@ -80,7 +80,7 @@ image: "image.png"
 
 ## 제목·날짜·카테고리 접두어 (전역)
 
-포스트 `title`·날짜·접두어는 아래를 따른다. tags·description·draft·Mermaid·링크 검증 등 그 외 전역 메타는 [`.cursor/rules/rules-that-must-be-followed.mdc`](../../rules/rules-that-must-be-followed.mdc)를 따른다.
+포스트 `title`·날짜·접두어는 아래를 따른다. tags·description·draft·Mermaid·링크 검증 등 그 외 전역 메타는 [`rules-that-must-be-followed`](../rules-that-must-be-followed/SKILL.md) 스킬을 따른다.
 
 ### Title 형식
 
@@ -274,14 +274,14 @@ flowchart TD
 
 ## 기존 컬렉션 목록 (참고)
 
-| 컬렉션 | 접두어 | 전용 규칙 |
+| 컬렉션 | 접두어 | 전용 스킬 |
 |--------|--------|----------|
-| Algorithm | `[Algorithm]` | `algorithm-post-writing-rules.mdc` |
-| Movies | `[Movie]` | `movie-review-writing-rules.mdc` |
-| TV-Show | `[TV Series]` | `tv-series-review-writing-rules.mdc` |
-| Vocabulary | `[Vocabulary]` | `vocabulary-post-writing-rules.mdc` |
-| bashshell | `[Bash]` | `bashshell-post-writing-rules.mdc` |
-| cmd | `[CMD]` | `cmd-post-writing-rules.mdc` |
+| Algorithm | `[Algorithm]` | [`algorithm-post-writing`](../algorithm-post-writing/SKILL.md) |
+| Movies | `[Movie]` | [`movie-review-writing`](../movie-review-writing/SKILL.md) |
+| TV-Show | `[TV Series]` | [`tv-series-review-writing`](../tv-series-review-writing/SKILL.md) |
+| Vocabulary | `[Vocabulary]` | [`vocabulary-post-writing`](../vocabulary-post-writing/SKILL.md) |
+| bashshell | `[Bash]` | [`bashshell-post-writing`](../bashshell-post-writing/SKILL.md) |
+| cmd | `[CMD]` | [`cmd-post-writing`](../cmd-post-writing/SKILL.md) |
 | design-patterns | 주제별 | — |
 | clean-code | 주제별 | — |
 | cleanarchitecture | 주제별 | — |

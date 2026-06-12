@@ -10,10 +10,22 @@ description: >-
 
 이 스킬은 AI로 생성·보완하는 교육 콘텐츠(블로그/시리즈형 글)의 품질을 일관되게 유지하기 위해 적용된다.
 
-**함께 따를 것**
+**적용 대상**: `content/collection/**/index.md` 중 교육/시리즈형(본문 구성, 분량, slug, 00 챕터, 체크리스트가 필요한) 글을 작성·보강할 때.
 
-- [`.cursor/rules/rules-that-must-be-followed.mdc`](../../rules/rules-that-must-be-followed.mdc): frontmatter, Mermaid, 알고리즘 주석, 링크 검증 등 전역 규칙
-- [`.cursor/skills/blog-post-writing/SKILL.md`](../blog-post-writing/SKILL.md) 및 [`reference.md`](../blog-post-writing/reference.md): 제목 형식·카테고리 접두어·날짜, 내부 링크(`/post/...`) 상세
+**함께 적용**
+
+- [`rules-that-must-be-followed`](../rules-that-must-be-followed/SKILL.md): frontmatter, Mermaid, 알고리즘 주석, 링크 검증 등 전역 규칙
+- [`blog-post-writing`](../blog-post-writing/SKILL.md) 및 [`reference.md`](../blog-post-writing/reference.md): 제목 형식·카테고리 접두어·날짜, 내부 링크(`/post/...`) 상세
+
+---
+
+## 0. 핵심 원칙 (항상 우선 적용)
+
+본문을 작성·수정하기 전, 아래 3원칙을 먼저 점검한다 (상세는 §2.5/§4.4/§5.2).
+
+1. **안티패딩**: 분량은 목표가 아니라 결과다. 닫는 절(요약·FAQ·체크리스트·네비)은 종류별 1개만 두고, 중복 요약·답 없는 번호 리스트(질문 24/메모 20류)·작성자용 자기인증("게시 전 자가 점검" 등)·존재하지 않는 파일 참조를 본문에 넣지 않는다.
+2. **컴파일 가능한 코드**: 핵심 예제는 `#include`·타입 정의를 갖춰 컴파일 가능해야 한다. 주석뿐인 블록·미정의 타입으로 핵심을 대체하지 않는다.
+3. **수치·사실 근거**: "정량적"·"측정"을 표방하면 실제 수치(플랫폼·플래그 명시) 또는 실행 가능한 벤치를 포함하고, 크기·새니타이저·디스패치 같은 사실 주장은 검증하거나 "구현 정의"로 표기한다.
 
 ---
 
@@ -155,7 +167,7 @@ description: >-
 ### 5.1 Mermaid·표
 
 - **구조/흐름/역사** 설명 시 **Mermaid 다이어그램** 또는 **Markdown 표** 중 하나 이상 사용을 권장한다.
-- Mermaid 작성 시 [rules-that-must-be-followed.mdc](../../rules/rules-that-must-be-followed.mdc)의 **라벨 따옴표·`</br>`** 규칙을 준수한다.
+- Mermaid 작성 시 [`rules-that-must-be-followed`](../rules-that-must-be-followed/SKILL.md)의 **라벨 따옴표·`</br>`** 규칙을 준수한다.
 
 ### 5.2 코드 블록
 

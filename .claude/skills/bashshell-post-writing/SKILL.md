@@ -1,39 +1,41 @@
 ---
-description: "Bash Shell 명령어·기능 글 작성을 위한 종합 가이드로, 제목/메타 규칙(70자 이하 title, 150자 description, 50개 이상 tags), 폴더명·본문 구조(명령어 참조형·개념/가이드형), Mermaid 문법 준수, 작성 체크리스트를 포함한 전문적인 포스트 작성 프레임워크입니다."
-globs:
-  - "content/collection/bashshell/**/*.md"
-alwaysApply: false
----
-# AI Bash Shell 포스트 작성 가이드
-
-본 문서는 Bash Shell 컬렉션 포스트 작성 시 일관된 품질과 검색 최적화를 확보하기 위한 종합 규칙을 정의한다. 명령어 참조형·개념/가이드형 본문 구조, 50개 이상 태그 작성 가이드라인, Mermaid 다이어그램 규칙, 품질 체크리스트를 포함한다.
-
+name: bashshell-post-writing
+description: >-
+  Bash Shell 명령어·기능 글 작성 가이드. 제목/메타 규칙(70자 이하 title, 150자 description, 50개
+  이상 tags), 폴더명·본문 구조(명령어 참조형·개념/가이드형), Mermaid 문법 준수, 작성 체크리스트를 포함한다.
+  content/collection/bashshell/ 하위 포스트 작성·보강 시 사용한다.
 ---
 
-## 제목/메타 규칙(필수)
+# Bash Shell 포스트 작성 가이드
 
-- **카테고리 접두어**: `[Bash Shell]` 사용 (blog-post-writing 스킬·reference.md의 카테고리 접두어 규칙 준수)
+`content/collection/bashshell/`에 Bash/Shell 명령어·개념 포스트를 작성할 때 따르는 제목·메타·본문 구조·체크리스트다. [`blog-post-writing`](../blog-post-writing/SKILL.md), [`rules-that-must-be-followed`](../rules-that-must-be-followed/SKILL.md)과 함께 적용한다.
+
+---
+
+## 제목/메타 규칙 (필수)
+
+- **카테고리 접두어**: `[Bash Shell]` 사용 ([`blog-post-writing`](../blog-post-writing/reference.md)의 카테고리 접두어 규칙 준수)
 - **메인 제목**: 사람 친화적·SEO 고려, 한글/영문 병기 가능
 - **총 길이**: 70자 이내
 
-## description 규칙(필수)
+## description 규칙 (필수)
 
 - **길이**: 150자 내외
 - **내용**: 해당 명령어 또는 개념의 역할, 주요 옵션/기능, 활용 맥락을 2~3문장으로 요약
 
-## tags 규칙(필수)
+## tags 규칙 (필수)
 
-- **개수**: 최소 **50개 이상** (한글·영어 혼합)
-- **우선**: [data/tags.yaml](data/tags.yaml) 승인 태그 사용 (Bash, Shell, Linux, Terminal, Guide, 가이드, Tutorial, Reference, Process, File-System, Automation, Deployment, Error-Handling, Troubleshooting, Command, Documentation, Workflow, Best-Practices 등)
+- **개수**: 최소 50개 이상 (한글·영어 혼합)
+- **우선**: `data/tags.yaml` 승인 태그 사용 (Bash, Shell, Linux, Terminal, Guide, 가이드, Tutorial, Reference, Process, File-System, Automation, Deployment, Error-Handling, Troubleshooting, Command, Documentation, Workflow, Best-Practices 등)
 - 필요 시 해당 목록을 참고하여 도메인별 태그 추가
 
-## 날짜/버전 관리(필수)
+## 날짜/버전 관리 (필수)
 
 - `date`, `lastmod`는 작성/수정 당일(로컬 타임존) 날짜 사용
 - 폴더명에 날짜를 쓰는 경우 Front Matter `date`와 동일하게 유지
 - 의미 있는 개정 시 `lastmod` 갱신
 
-## 폴더명 규칙(필수)
+## 폴더명 규칙 (필수)
 
 - **기본 구조**: `content/collection/bashshell/<slug>/index.md`
 - **slug**: 소문자·하이픈, 명령어명 또는 개념명 (예: `grep`, `io-redirection`, `pipe`)
@@ -104,15 +106,13 @@ image: "tmp_wordcloud.png"
 - **개요**: 정의·중요성·활용 사례
 - **기본 개념**: 작동 원리, 관련 용어(파일 디스크립터 등)
 - **종류/세부**: 입력/출력 리디렉션, Here Document 등
-- **예제·다이어그램**: Mermaid로 흐름 시각화 (규칙 준수)
+- **예제·다이어그램**: Mermaid로 흐름 시각화 (아래 규칙 준수)
 - **(선택)** FAQ, 관련 기술, 결론
 - **Reference**: 공식 문서·참고 링크
 
-## Mermaid 규칙(필수)
+## Mermaid 규칙 (필수)
 
-- 노드 ID: 공백 없이 camelCase·PascalCase. 예약어(end, subgraph, graph 등) 노드 ID 금지
-- 노드·엣지 라벨에 대괄호, 등호, 비교 연산자, 괄호 등이 있으면 전체 라벨을 `"..."` 로 감싼다
-- 줄바꿈: `\n` 대신 `</br>` 사용
+[`rules-that-must-be-followed`](../rules-that-must-be-followed/SKILL.md)의 Mermaid 문법(노드 ID, 라벨 인용, 줄바꿈)을 따른다. 파이프라인·리디렉션 흐름 다이어그램에서 특히 자주 위반되므로 꼼꼼히 확인한다.
 
 ## 작성 체크리스트
 
