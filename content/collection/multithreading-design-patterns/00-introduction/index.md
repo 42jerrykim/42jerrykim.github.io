@@ -1,8 +1,8 @@
 ---
 collection_order: 0
 date: 2026-06-10
-lastmod: 2026-06-10
-draft: true
+lastmod: 2026-06-11
+draft: false
 title: "[Concurrency Patterns] 00. 멀티스레딩 디자인 패턴 시리즈 소개와 커리큘럼"
 slug: getting-started-multithreading-design-patterns
 description: "C++ 표준 라이브러리로 구현하는 멀티스레딩 디자인 패턴 시리즈의 도입 챕터입니다. 왜 락 사용법이 아니라 동시성 구조 설계를 배워야 하는지, POSA2 계보와 12챕터 커리큘럼, 학습 후 달성할 역량을 안내합니다."
@@ -240,3 +240,4 @@ g++ -std=c++20 -pthread -Wall -Wextra -O2 example.cpp -o example
 ## 다음 장에서는
 
 01장 **「동시성 기초와 C++ 메모리 모델」**에서 시리즈 전체의 공통 어휘를 만든다. 데이터 레이스의 표준상 정의(undefined behavior), happens-before 관계, `std::atomic`과 `memory_order`의 최소 실무 해석을 다루고, 이후 모든 챕터에서 "이 코드는 왜 안전한가"를 같은 언어로 설명할 수 있게 한다.
+

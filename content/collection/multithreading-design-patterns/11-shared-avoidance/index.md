@@ -1,9 +1,9 @@
 ---
 title: "[Concurrency Patterns] 11. 공유 회피"
 description: "공유 상태를 애초에 없애는 전략: Immutable 패턴, Copy-on-Write, thread_local, 그리고 lock-free 자료구조의 전망을 다룹니다."
-date: 2026-06-11
-lastmod: 2026-06-11
-draft: true
+date: 2026-06-21
+lastmod: 2026-06-22
+draft: false
 collection_order: 11
 difficulty: intermediate-advanced
 prerequisites:
@@ -445,3 +445,4 @@ int main() {
 - POSA2 (Schmidt et al.), 전체 — 모든 패턴의 원형
 - C++ Standards Committee, 전체 — std::thread, mutex, atomic, shared_ptr, future documentation
 - Boost.Lockfree, folly 문서 — 프로덕션 수준 Lock-Free 자료구조 참고
+

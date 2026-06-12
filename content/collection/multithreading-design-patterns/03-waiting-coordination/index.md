@@ -1,9 +1,9 @@
 ---
 title: "[Concurrency Patterns] 03. 대기와 조정"
 description: "Monitor Object, Guarded Suspension, Balking 패턴을 condition_variable로 구현합니다. spurious wakeup 처리와 효율적인 신호 메커니즘을 다룹니다."
-date: 2026-06-11
-lastmod: 2026-06-11
-draft: true
+date: 2026-06-13
+lastmod: 2026-06-14
+draft: false
 collection_order: 3
 difficulty: intermediate
 prerequisites:
@@ -500,3 +500,4 @@ timeout 5 ./bq && echo OK || echo "hang or race detected"
 - C++ Standards Committee, `<condition_variable>` documentation — wait/wait_for의 spurious wakeup 명세
 - Linux man-pages, `pthread_cond_wait(3)` — futex 기반 구현과 spurious wakeup의 원인
 - Microsoft Docs, "Condition Variables" (Win32 API) — alertable wait와 spurious wakeup
+
