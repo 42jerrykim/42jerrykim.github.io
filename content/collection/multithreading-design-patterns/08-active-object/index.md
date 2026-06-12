@@ -1,4 +1,5 @@
 ---
+image: wordcloud.png
 title: "[Concurrency Patterns] 08. 비동기 객체 (Active Object)"
 description: "스스로 스레드를 가지고 메서드 호출을 큐로 받는 Active Object 패턴을 구현합니다."
 date: 2026-06-18

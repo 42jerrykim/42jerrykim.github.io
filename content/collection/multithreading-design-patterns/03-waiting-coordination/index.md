@@ -1,4 +1,5 @@
 ---
+image: wordcloud.png
 title: "[Concurrency Patterns] 03. 대기와 조정"
 description: "Monitor Object, Guarded Suspension, Balking 패턴을 condition_variable로 구현합니다. spurious wakeup 처리와 효율적인 신호 메커니즘을 다룹니다."
 date: 2026-06-13

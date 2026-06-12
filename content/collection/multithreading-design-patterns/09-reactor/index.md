@@ -1,4 +1,5 @@
 ---
+image: wordcloud.png
 title: "[Concurrency Patterns] 09. 이벤트 아키텍처 I: Reactor"
 description: "단일 스레드에서 여러 이벤트 소스를 효율적으로 처리하는 Reactor 패턴을 학습합니다."
 date: 2026-06-19

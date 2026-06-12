@@ -1,4 +1,5 @@
 ---
+image: wordcloud.png
 title: "[Concurrency Patterns] 05. 읽기 최적화와 지연 초기화"
 description: "shared_mutex로 읽기/쓰기 락 분리, DCLP의 함정과 해결, call_once를 통한 안전한 지연 초기화를 학습합니다."
 date: 2026-06-15

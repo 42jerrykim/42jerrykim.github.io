@@ -1,4 +1,5 @@
 ---
+image: wordcloud.png
 title: "[Concurrency Patterns] 06. 실행 관리 I: Thread Pool"
 description: "스레드 풀, 작업 큐, Work Stealing 알고리즘을 구현하고, 부하 분산과 응답성의 트레이드오프를 학습합니다."
 date: 2026-06-16

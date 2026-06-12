@@ -1,4 +1,5 @@
 ---
+image: wordcloud.png
 title: "[Concurrency Patterns] 07. 실행 관리 II: Future와 Promise"
 description: "std::future, std::promise, std::async, std::packaged_task로 비동기 작업의 결과를 안전하게 전달합니다."
 date: 2026-06-17
