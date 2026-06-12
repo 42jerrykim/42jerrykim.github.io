@@ -1,31 +1,31 @@
 ---
-description: "알고리즘 문제 풀이(BOJ) 글 작성을 위한 종합 가이드로, 표준화된 문제 정보, Mermaid 기반 로직 시각화, 복잡도 분석 표, 코너 케이스 체크리스트, 50개 이상 태그 작성 규칙을 포함한 전문적인 포스트 작성 프레임워크입니다."
-globs:
-  - "content/collection/Algorithm/**/*.md"
-alwaysApply: false
----
-# AI 알고리즘 문제 풀이 작성 가이드
-
-본 문서는 알고리즘 문제 풀이(주로 BOJ) 포스트 작성 시 일관된 품질과 검색 최적화를 확보하기 위한 종합 규칙을 정의한다. 문제 분석 프로토콜, 로직 시각화, 표준화된 코드 구조, 50개 이상 태그 작성 가이드라인, 품질 체크리스트를 포함한다.
-
+name: algorithm-post-writing
+description: >-
+  알고리즘 문제 풀이(BOJ) 글 작성 가이드. 표준화된 문제 정보, Mermaid 기반 로직 시각화, 복잡도 분석 표,
+  코너 케이스 체크리스트, 50개 이상 태그 작성 규칙을 포함한다. content/collection/Algorithm/ 하위
+  포스트 작성·보강 시 사용한다.
 ---
 
-## 제목/메타 규칙(필수)
+# 알고리즘 문제 풀이 작성 가이드
+
+`content/collection/Algorithm/`에 BOJ 등 알고리즘 문제 풀이 포스트를 작성할 때 따르는 제목·Front Matter·본문 구조·체크리스트다. [`blog-post-writing`](../blog-post-writing/SKILL.md), [`collection-writing-standards`](../collection-writing-standards/SKILL.md)와 함께 적용한다.
+
+---
+
+## 제목/메타 규칙 (필수)
 
 - **카테고리 접두어**: `[Algorithm]` 사용
 - **메인 제목**: `[Algorithm] {언어} 백준 {번호}번: {문제명}`
 - **언어 표기**: 단일 언어(`C++`) 또는 다중 언어(`C++ / Python`) 병기 가능
 - **총 길이**: 70자 이내
 
-## 날짜/버전 관리(필수)
+## 날짜/버전 관리 (필수)
 
 - `date`, `lastmod`는 작성/수정 당일(로컬 타임존) 날짜 사용
 - 폴더명 날짜와 Front Matter `date`는 반드시 동일
 - 의미 있는 풀이 개선이나 재채점 시 `lastmod` 갱신
 
-## 폴더명 규칙(필수)
-
-폴더명은 다음 형식을 따라야 합니다:
+## 폴더명 규칙 (필수)
 
 ```
 YYYY-MM-DD-BOJ-문제번호-문제명-슬러그
@@ -38,12 +38,12 @@ YYYY-MM-DD-BOJ-문제번호-문제명-슬러그
 **구성 요소**:
 - **날짜**: `YYYY-MM-DD`
 - **식별자**: `BOJ-{번호}`
-- **슬러그**: 문제의 영문명 또는 핵심 키워드를 소문자 하이픈(`-`)으로 연결
+- **슬러그**: 문제의 영문명 또는 핵심 키워드를 소문자 하이픈(`-`)으로 연결. 구현 언어/기법을 명시하는 접미사(`-cpp-solution`, `-cpp-python-solution` 등)를 포함할 수 있다.
 
-## 이미지 규칙(워드클라우드)
+## 이미지 규칙 (워드클라우드)
 
-- 워드클라우드 생성기는 각 글의 `index.md` 내용을 읽어 **`wordcloud.png`** 이미지를 생성한다.
-- Front Matter에는 `image: "wordcloud.png"` 로 고정 사용한다.
+- 워드클라우드 생성기는 각 글의 `index.md` 내용을 읽어 `wordcloud.png` 이미지를 생성한다.
+- Front Matter에는 `image: "wordcloud.png"`로 고정 사용한다.
 - 생성 방법: 프로젝트 루트에서 아래 명령 실행 (경로는 해당 콘텐츠 번들 폴더):
 
 ```bash
@@ -99,10 +99,7 @@ image: "wordcloud.png"
 
 ### 도입부
 
-```markdown
-문제의 핵심 유형(예: 그래프 탐색, 동적 계획법)과 난이도를 간단히 언급하고, 
-독자가 이 글을 통해 얻을 수 있는 핵심 인사이트(예: "메모리 초과를 피하는 비트마스킹 기법")를 1-2문장으로 소개한다.
-```
+문제의 핵심 유형(예: 그래프 탐색, 동적 계획법)과 난이도를 간단히 언급하고, 독자가 이 글을 통해 얻을 수 있는 핵심 인사이트(예: "메모리 초과를 피하는 비트마스킹 기법")를 1-2문장으로 소개한다.
 
 ### 문제 정보 요약
 
@@ -140,15 +137,11 @@ image: "wordcloud.png"
 
 ### 접근 방식 및 로직 설계
 
-```markdown
-## 접근 방식
-
-### 핵심 관찰
-문제를 해결하기 위해 발견해야 하는 수학적 성질이나 불변식(Invariant)을 서술한다.
+문제를 해결하기 위해 발견해야 하는 수학적 성질이나 불변식(Invariant)을 먼저 문단으로 서술한다.
 - 예: "이 문제는 최적 부분 구조를 가지므로 DP로 접근 가능하다."
 - 예: "N이 작으므로 비트마스크를 이용한 완전 탐색이 가능하다."
 
-### 알고리즘 설계 (Mermaid Flowchart)
+이어서 Mermaid flowchart로 알고리즘 설계를 시각화한다 ([`rules-that-must-be-followed`](../rules-that-must-be-followed/SKILL.md) 문법 준수):
 
 ```mermaid
 flowchart TD
@@ -160,11 +153,10 @@ flowchart TD
     E --> F[출력]
 ```
 
-### 단계별 로직
+이후 단계별 로직을 정리한다:
 1. **전처리**: 데이터를 정렬하거나 초기화하는 과정
 2. **메인 로직**: 상태 전이, 그래프 탐색, 쿼리 처리 등 핵심 과정
 3. **후처리**: 최종 답안 도출 및 출력 형식 맞춤
-```
 
 ### 복잡도 분석
 
@@ -179,7 +171,7 @@ flowchart TD
 
 ### 구현 코드
 
-가능한 경우 C++와 Python 코드를 모두 제공한다.
+가능한 경우 C++와 Python 코드를 모두 제공한다. 코드 최상단에 출처 주석(`42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다`)을 포함한다.
 
 ```markdown
 ## 구현 코드
@@ -196,9 +188,9 @@ using namespace std;
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    
+
     // 입력 및 로직 구현
-    
+
     return 0;
 }
 ```
@@ -229,11 +221,7 @@ input = sys.stdin.readline
 
 ### 마무리 (선택)
 
-```markdown
-## 마무리
-
 문제 풀이 후기, 더 최적화할 수 있는 여지, 혹은 유사한 문제 추천 등을 작성한다.
-```
 
 ### 참고 문헌 및 출처
 
@@ -252,6 +240,6 @@ input = sys.stdin.readline
 - [ ] `image: "wordcloud.png"`가 설정되어 있고, `python script/wordcloud_generator.py "<콘텐츠 번들 경로>"`로 워드클라우드를 생성했는가?
 - [ ] Mermaid 다이어그램으로 로직을 시각화했는가?
 - [ ] 복잡도 분석이 표(Table) 형식으로 작성되었는가?
-- [ ] 코드 최상단에 출처 주석(`42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다`)이 포함되었는가?
+- [ ] 코드 최상단에 출처 주석이 포함되었는가?
 - [ ] 코너 케이스 체크리스트가 포함되었는가?
 - [ ] `date`와 `lastmod`가 오늘 날짜로 설정되었는가?

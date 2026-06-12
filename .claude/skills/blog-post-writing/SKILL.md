@@ -4,15 +4,14 @@ description: >-
   Hugo 블로그 포스트 작성을 위한 종합 가이드. 컬렉션/일반 포스트의 frontmatter 생성, 본문 구조 템플릿,
   SEO 최적화, 이미지/에셋 관리, 태그 선정(data/tags.yaml), 링크 검증, Mermaid 다이어그램, 한국어/영어
   이중 언어 콘텐츠를 포함한다. 블로그 글 작성, 새 컬렉션 생성, 기술 블로그 포스트 작성 시 사용한다.
+  Research→Draft→QA→PublishPrep 전체 파이프라인을 한 번에 진행하려면 `blog-agent-pipeline`을 참고한다.
 ---
 
 # Hugo 블로그 포스트 작성 스킬
 
-이 스킬은 42jerrykim.github.io Hugo 사이트에서 **모든 유형의 블로그 포스트**(컬렉션, 일반 포스트, 기술 블로그, 새 컬렉션)를 일관된 품질로 작성하기 위한 프레임워크다.
+42jerrykim.github.io Hugo 사이트에서 **모든 유형의 블로그 포스트**(컬렉션, 일반 포스트, 기술 블로그, 새 컬렉션)를 일관된 품질로 작성하기 위한 워크플로우다.
 
-> **기존 규칙과의 관계**: 이 스킬은 `.cursor/rules/rules-that-must-be-followed.mdc`(alwaysApply)를 **보완**한다. frontmatter·Mermaid·링크 검증 등 전역 불변은 해당 규칙이 강제한다. **제목 형식·날짜·카테고리 접두어** 상세는 [reference.md](reference.md)의 **「제목·날짜·카테고리 접두어 (전역)」** 절을 따른다. 여기서는 **워크플로우·구조·전략**에 집중한다.
->
-> **미디어 작품 한글 제목**: 영화·드라마 등은 해당 컬렉션의 `.cursor/rules/`를 따른다. 영화 리뷰의 본문·추천 작품 표기 세부는 `content/collection/Movies/.cursor/rules/movie-review-writing-rules.mdc`의 **「본문·추천 작품의 한국어 제목」** 절을 참고한다.
+> **함께 적용**: frontmatter·Mermaid·링크 검증·날짜 확인 등 전역 필수 규칙은 [`rules-that-must-be-followed`](../rules-that-must-be-followed/SKILL.md) 스킬을 항상 함께 따른다. **제목 형식·날짜·카테고리 접두어** 상세는 [reference.md](reference.md)의 **「제목·날짜·카테고리 접두어 (전역)」** 절을 참고한다.
 
 ---
 
@@ -31,13 +30,16 @@ description: >-
 | **일반 포스트** | `content/post/<연도>/<폴더>/index.md` | 단독 글, 자유 주제 |
 | **새 컬렉션** | `content/collection/<새이름>/_index.md` + 하위 글 | 신규 시리즈 생성 |
 
-3. **컬렉션별 전용 규칙 확인**: 대상 컬렉션 폴더 아래 `.cursor/rules/`가 있으면 해당 규칙을 먼저 읽는다 (각 `.mdc`는 `content/collection/<해당컬렉션>/**/*.md`용 **`globs`**가 있어, 해당 경로 편집 시 Cursor가 컨텍스트에 넣기 쉽다)
-   - Algorithm → `algorithm-post-writing-rules.mdc`
-   - Vocabulary → `vocabulary-post-writing-rules.mdc`
-   - Movies → `movie-review-writing-rules.mdc`
-   - TV-Show → `tv-series-review-writing-rules.mdc`
-   - Bash Shell → `bashshell-post-writing-rules.mdc`
-   - CMD → `cmd-post-writing-rules.mdc`
+3. **컬렉션별 전용 스킬 확인**: 대상이 아래 컬렉션이면 해당 스킬을 함께 호출해 작성 규칙을 따른다.
+
+| 컬렉션 | 전용 스킬 |
+|--------|----------|
+| Algorithm | [`algorithm-post-writing`](../algorithm-post-writing/SKILL.md) |
+| Vocabulary | [`vocabulary-post-writing`](../vocabulary-post-writing/SKILL.md) |
+| Movies | [`movie-review-writing`](../movie-review-writing/SKILL.md) |
+| TV-Show | [`tv-series-review-writing`](../tv-series-review-writing/SKILL.md) |
+| bashshell | [`bashshell-post-writing`](../bashshell-post-writing/SKILL.md) |
+| cmd | [`cmd-post-writing`](../cmd-post-writing/SKILL.md) |
 
 4. **태그 후보 수집**: `data/tags.yaml` 읽어 관련 카테고리에서 태그 50개 이상 선정
 
@@ -126,12 +128,14 @@ image: "image.png"
 
 #### 교육 콘텐츠 추가 요소
 
-교육·시리즈형 자료는 [`.cursor/skills/educational-content-writing/SKILL.md`](../educational-content-writing/SKILL.md)도 함께 따른다:
+교육·시리즈형 자료(컬렉션 `index.md`)는 [`educational-content-writing`](../educational-content-writing/SKILL.md) 스킬을 함께 호출한다:
 - 학습 성과 목표 ("이 글을 읽은 후 점검해 볼 질문")
 - 판단 기준 (언제 사용/피할지)
 - 비판적 시각 (한계, 트레이드오프)
-- **분량은 품질의 결과**: 권장 하한(일반 약 300줄, 개요 약 150줄)을 **패딩 없이** 채운다. 중복 요약·답 없는 번호 리스트·작성자용 자기인증("게시 전 자가 점검" 등)·존재하지 않는 파일 참조 금지(educational-content-writing §2.5 안티패딩). 길이가 부족하면 실제 코드·측정 수치·사례로 채운다.
-- **코드는 컴파일 가능**해야 하고, "정량적"·"측정"을 표방하면 실제 수치·벤치를 포함한다(§4.4/§5.2).
+- **분량은 품질의 결과**: 권장 하한(일반 약 300줄, 개요 약 150줄)을 **패딩 없이** 채운다. 중복 요약·답 없는 번호 리스트·작성자용 자기인증("게시 전 자가 점검" 등)·존재하지 않는 파일 참조 금지(educational-content-writing 안티패딩 원칙). 길이가 부족하면 실제 코드·측정 수치·사례로 채운다.
+- **코드는 컴파일 가능**해야 하고, "정량적"·"측정"을 표방하면 실제 수치·벤치를 포함한다.
+
+이론 중심 컬렉션 글(`content/collection/**/index.md`)을 작성·보강할 때는 [`collection-writing-standards`](../collection-writing-standards/SKILL.md) 스킬도 함께 적용한다 (이론 우선 서술, 예제는 보충 역할).
 
 ### Phase 5: 검증
 
@@ -146,7 +150,7 @@ image: "image.png"
 - [ ] 본문 링크 전부 HTTP 접근 확인 완료 (404/5xx 없음)
 - [ ] Mermaid: 노드 ID camelCase, 특수문자 라벨은 `""` 감싸기, 줄바꿈 `</br>`
 - [ ] 이미지가 번들 내 존재하고 frontmatter에서 참조됨
-- [ ] 내부 링크는 [reference.md](reference.md) **「Hugo 컬렉션 내부 링크」** (`/post/<section-slug>/<page-slug-or-contentbasename>/`)
+- [ ] **컬렉션 `index.md`의 내부 링크**: [reference.md](reference.md)의 **「Hugo 컬렉션 내부 링크」** 규칙(`/post/<section-slug>/<page-slug-or-contentbasename>/`)을 따랐는가?
 - [ ] (교육 글) **안티패딩**: 닫는 절(요약·FAQ·체크리스트·네비)이 종류별 1개이고, 중복 요약·답 없는 번호 리스트·"게시 전 자가 점검" 류 메타·존재하지 않는 파일 참조가 없는가?
 - [ ] (기술/교육 글) **코드 컴파일 가능**(주석뿐·미정의 타입 아님), "정량적"·"측정" 주장에 **실제 수치·벤치** 동반
 
@@ -192,7 +196,7 @@ image: "image.png"
 
 ## 4. Mermaid 다이어그램
 
-기존 규칙의 문법 사항을 준수하면서, 다이어그램 사용 전략:
+기존 규칙([`rules-that-must-be-followed`](../rules-that-must-be-followed/SKILL.md))의 문법 사항을 준수하면서, 다이어그램 사용 전략:
 
 | 다이어그램 유형 | 적합한 콘텐츠 |
 |----------------|--------------|
@@ -233,12 +237,16 @@ slug: "kebab-case-slug"
 ```
 3. **00 챕터** 생성하여 소개/커리큘럼 배치 (`collection_order: 0`)
 4. 각 챕터에 `collection_order` 순번 부여
-5. (선택) 컬렉션 전용 `.cursor/rules/` 작성 규칙 생성
+5. **전용 작성 스킬 추가 여부 판단**: Algorithm/Movies처럼 고유한 폴더명·Front Matter·본문 구조 규칙이 필요한 컬렉션이면 `.claude/skills/<컬렉션명>-post-writing/SKILL.md`를 새로 작성한다. 단순 주제별 글 모음(전용 규칙 없음)이면 생략 가능.
+   - **템플릿**: `name`/`description` frontmatter를 작성하고, 본문에 아래 절을 포함한다 — 제목/메타 규칙, 날짜/버전 관리, 폴더명 규칙, Front Matter 템플릿, 본문 구조 가이드, 작성 체크리스트. 참고 템플릿: [`algorithm-post-writing`](../algorithm-post-writing/SKILL.md)(문제 풀이형) 또는 [`bashshell-post-writing`](../bashshell-post-writing/SKILL.md)(명령어 참조형)
+   - **매핑 표 갱신**: 전용 스킬을 새로 만들었다면 아래 3곳의 매핑 표에 컬렉션·접두어·스킬 링크를 추가한다
+     - 이 문서 §3 "컬렉션별 전용 스킬 확인" 표
+     - [reference.md](reference.md)의 "기존 컬렉션 목록" 표
+     - [`blog-agent-pipeline`](../blog-agent-pipeline/SKILL.md)의 "컬렉션별 작성 스킬" 표
+     - 루트 `CLAUDE.md`의 "컬렉션 글 작성 시 ..." 목록
 
 ---
 
 ## 7. 추가 참고
 
 - 컬렉션별 상세 템플릿, 태그 카테고리, **내부 링크(permalinks·slug)**, **제목·날짜**: [reference.md](reference.md)
-- 컬렉션 `index.md` 편집 시 자동 트리거: `.cursor/rules/hugo-collection-internal-links.mdc` → 위 reference의 **「Hugo 컬렉션 내부 링크」** 준수
-- 교육·시리즈형 품질(분량·00 챕터·체크리스트): [`.cursor/skills/educational-content-writing/SKILL.md`](../educational-content-writing/SKILL.md) — 트리거 규칙: `.cursor/rules/ai-educational-content-quality.mdc`

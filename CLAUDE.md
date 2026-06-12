@@ -21,7 +21,16 @@
 ## 상세 규칙이 필요할 때
 
 필요한 규칙·스킬을 명시적으로 요청하면 로드합니다:
-- `/blog-post-writing` — 포스트 작성 가이드
-- `/educational-content-writing` — 교육 콘텐츠 품질  
-- `/movie-review-writing` — 영화 리뷰
 - `rules-that-must-be-followed` — 전역 규칙 (frontmatter, Mermaid, 링크 등)
+- `blog-post-writing` — 포스트 작성 가이드 (경로, 제목, 태그, SEO)
+- `blog-agent-pipeline` — 글 작성 전체 파이프라인 (Research → Draft → QA → PublishPrep)
+- `educational-content-writing` — 교육 콘텐츠 품질 (안티패딩, 코드, 수치 근거)
+- `collection-writing-standards` — 컬렉션 글 이론 중심 작성 표준
+
+컬렉션 글 작성 시 해당 컬렉션 전용 스킬을 함께 참고합니다:
+- Algorithm → `algorithm-post-writing`
+- Movies → `movie-review-writing`
+- TV-Show → `tv-series-review-writing`
+- Vocabulary → `vocabulary-post-writing`
+- bashshell → `bashshell-post-writing`
+- cmd → `cmd-post-writing`

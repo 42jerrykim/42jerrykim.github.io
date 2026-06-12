@@ -28,7 +28,7 @@ SKILL.md에서 참조하는 검색 쿼리 상세 예시, 분석 관점 가이드
 | 평점 | `"{한국 제목}" 네이버 평점 CGV` |
 | 비화 | `"{한국 제목}" 제작 비화 촬영 뒷이야기` |
 
-### Browser MCP 탐색 우선순위 URL
+### 탐색 우선순위 URL
 
 ```
 Wikipedia:     https://en.wikipedia.org/wiki/{Title}_(film)
@@ -56,7 +56,7 @@ Rotten Tomatoes: https://www.rottentomatoes.com/m/{slug}
 ### 영상미 분석 체크리스트
 
 - [ ] **색감/색채 팔레트**: 전체 톤, 장면별 색감 변화와 의미
-- [ ] **구도/프레이밍**: 대칭, 규칙 of Thirds, 깊이감, 인물 배치
+- [ ] **구도/프레이밍**: 대칭, Rule of Thirds, 깊이감, 인물 배치
 - [ ] **카메라 워크**: 롱테이크, 핸드헬드, 스테디캠, 드론, 특수 장비
 - [ ] **조명**: 자연광 vs 인공광, 하이키/로우키, 빛의 방향과 의미
 - [ ] **편집 리듬**: 컷 빈도, 전환 기법, 몽타주 사용
@@ -140,4 +140,4 @@ Rotten Tomatoes: https://www.rottentomatoes.com/m/{slug}
 - [Wikipedia: Film Title](https://en.wikipedia.org/wiki/Film_Title)
 ```
 
-모든 URL은 본문에 포함하기 전 `WebFetch` 또는 `browser_navigate`로 접근 가능 여부를 확인한다. 404/5xx 응답이면 제거하거나 대체 URL을 찾는다.
+모든 URL은 본문에 포함하기 전 접근 가능 여부를 확인한다. 404/5xx 응답이면 제거하거나 대체 URL을 찾는다.
