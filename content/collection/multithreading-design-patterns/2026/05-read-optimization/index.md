@@ -41,6 +41,12 @@ slug: cpp-read-write-lock-dclp-call-once-lazy-init
 
 05장은 **읽기 작업이 대부분인 시나리오**의 최적화를 다룬다. 많은 시스템에서 쓰기(변경)는 드물고 읽기는 대부분이다. 기존의 단일 mutex는 읽기들까지 직렬화하므로 비효율적이다. 이 장에서는 읽기와 쓰기를 분리하고, 초기화 비용을 한 번만 치르는 패턴을 배운다.
 
+## 이 장을 읽기 전에
+
+**완전한 초보자?** 이 장은 [02장: 락 관용구](/post/multithreading-patterns/cpp-locking-idioms-scoped-locking-thread-safe-interface/)에서 다룬 `std::mutex`, `std::lock_guard`, 그리고 01장의 `memory_order_acquire`/`memory_order_release`를 전제로 합니다. 특히 DCLP 섹션은 01장의 happens-before 개념 없이는 "왜 위험했는지"가 와닿지 않으니, 아직이라면 01장과 02장을 먼저 보세요.
+
+**이 장의 깊이**: 이 장은 **중급~전문가**까지를 포괄합니다. `std::shared_mutex`로 읽기/쓰기를 분리하는 기본기부터 시작해, DCLP의 역사적 함정과 C++11 이후의 올바른 구현, 그리고 `call_once`/정적 지연 초기화까지 다룹니다. 전문가 구간에서는 `shared_mutex`가 실제로 손해인 상황과 플랫폼별 구현 차이까지 다룹니다. **다루지 않는 것**: lock-free 읽기 전용 자료구조(hazard pointer, RCU)의 구현은 11장의 전망 섹션 이상으로는 다루지 않습니다.
+
 ## 당신의 수준에 맞는 경로
 
 | 수준 | 읽을 부분 | 핵심 목표 |
@@ -100,8 +106,16 @@ public:
 ```
 
 **shared_lock vs unique_lock**:
-- `shared_lock`: 여러 스레드가 동시에 보유 가능 (읽기)
-- `unique_lock`: 한 스레드만 보유 (쓰기)
+
+| | `std::shared_lock<std::shared_mutex>` | `std::unique_lock<std::shared_mutex>` |
+|---|---|---|
+| 동시 보유 | 여러 스레드 (읽기 락, "shared" 상태) | 단 하나 (쓰기 락, "exclusive" 상태) |
+| 다른 shared_lock과 공존 | 가능 | 불가능 |
+| 다른 unique_lock과 공존 | 불가능 | 불가능 |
+| 대응 락 함수 | `mu.lock_shared()` / `unlock_shared()` | `mu.lock()` / `unlock()` |
+| 02장의 대응 | `std::lock_guard<std::mutex>`와 동일한 RAII 모델 | 동일 |
+
+두 타입 모두 02장에서 배운 RAII 락 가드와 동일한 원칙을 따른다 — 생성 시 잠기고 소멸 시 풀린다. 차이는 오직 *어떤 모드로* `shared_mutex`를 잠그느냐다.
 
 ```cpp
 int main() {
@@ -131,6 +145,23 @@ int main() {
 ```
 
 **성능**: 읽기는 병렬화되므로 처리량 증가. 쓰기는 여전히 배타적이지만 빈번하지 않으면 괜찮음.
+
+### shared_mutex의 실제 비용과 RW 락이 손해인 경우
+
+`shared_mutex`는 "공짜로 빠른 락"이 아니다. 내부적으로 "현재 몇 명이 읽고 있는가"를 추적하는 카운터를 원자적으로 갱신해야 하므로, **읽기 락 자체의 획득/해제 비용은 일반 `std::mutex`의 lock/unlock보다 오히려 높다.** 여러 코어가 동시에 이 카운터를 증가/감소시키면 그 카운터가 들어 있는 캐시 라인을 두고 코어 간 핑퐁(false sharing과 유사한 현상)이 발생한다.
+
+따라서 `shared_mutex`가 이득인 조건은 명확하다.
+
+- **임계 구역이 충분히 길다**: 읽기 작업 자체(데이터 복사, 계산)가 락 오버헤드보다 훨씬 커야 카운터 경합 비용을 상쇄한다.
+- **읽기/쓰기 비율이 매우 높다**: 읽기가 99% 이상이고 동시 읽기 스레드 수가 많을 때 병렬성의 이득이 카운터 비용을 압도한다.
+
+반대로 다음 경우에는 **일반 `std::mutex`가 더 빠르다**:
+
+- **임계 구역이 매우 짧다** (예: `int` 하나를 읽고 반환): mutex의 lock/unlock 한 쌍이 shared_mutex의 lock_shared/unlock_shared보다 싸다.
+- **쓰기가 빈번하다** (10~20% 이상): 쓰기 락은 모든 읽기를 막아야 하므로, 읽기 병렬화의 이득보다 쓰기 대기 비용이 커진다.
+- **writer starvation 위험**: 표준은 `shared_mutex`의 writer 우선순위를 규정하지 않는다. 구현에 따라 읽기 스레드가 끊임없이 들어오면 쓰기 스레드가 계속 뒤로 밀릴 수 있다(특히 일부 libstdc++/Windows 구현에서 보고된 사례). 쓰기 지연이 SLA에 영향을 준다면 벤치마크로 직접 확인해야 한다.
+
+결론적으로 **"읽기가 많으니 일단 shared_mutex로 바꾼다"는 직관만으로 결정하지 말고, 임계 구역의 크기와 실제 읽기/쓰기 비율을 프로파일링한 뒤 적용하라.** 02장에서 배운 Strategized Locking처럼, 락 타입 자체를 정책으로 분리해두면 나중에 `mutex` ↔ `shared_mutex`를 교체하며 벤치마크하기 쉽다.
 
 ## DCLP (Double-Checked Locking Pattern)
 
@@ -202,6 +233,22 @@ static Singleton* getInstance() {
 - `acquire` 로드와 `release` 저장이 happens-before을 만든다.
 - 다른 스레드의 생성자 코드가 모두 완료될 때까지 대기한다.
 
+### 안전성 검증: ThreadSanitizer로 DCLP 비교
+
+"DCLP with Mutex (초급, 부정확)" 버전과 "올바른 DCLP" 버전을 각각 빌드해 TSAN으로 비교하면 차이가 드러난다.
+
+```bash
+g++ -std=c++20 -pthread -fsanitize=thread -g dclp_broken.cpp -o dclp_broken
+./dclp_broken
+# WARNING: ThreadSanitizer: data race on instance (또는 heap-use-after-free 가능)
+
+g++ -std=c++20 -pthread -fsanitize=thread -g dclp_fixed.cpp -o dclp_fixed
+./dclp_fixed
+# 경고 없음
+```
+
+부정확한 버전이 실제 환경(x86)에서는 "우연히" 잘 동작하는 경우가 많다는 점이 더 위험하다. x86은 store-store, load-load 순서를 비교적 강하게 보장하기 때문에 재정렬로 인한 문제가 드물게 발생한다. 하지만 ARM 기반 서버나 모바일 환경, 또는 컴파일러가 더 적극적으로 최적화하는 빌드 옵션(`-O3`, LTO)에서는 같은 코드가 실패할 수 있다. **TSAN 경고가 없다는 것은 "이번 실행에서 못 봤다"는 뜻이지 "안전하다"는 증명이 아니다** — 따라서 `memory_order`를 직접 다루는 코드는 표준이 보장하는 패턴(`call_once`, 정적 지연 초기화)으로 대체할 수 있는지부터 검토해야 한다.
+
 하지만 **더 좋은 방법이 있다**.
 
 ## std::call_once와 std::once_flag
@@ -255,16 +302,21 @@ int main() {
 ### 1. Per-Object Initialization
 
 ```cpp
+#include <atomic>
+#include <mutex>
+
+void* allocateResource();  // 실제 리소스를 할당하는 함수
+
 class Resource {
 private:
-    std::atomic<void*> ptr(nullptr);
+    std::atomic<void*> ptr{nullptr};  // 괄호 초기화(ptr(nullptr))는 멤버 선언에서 사용 불가, 중괄호 사용
     mutable std::mutex initMu;
 
 public:
     void* get() {
         void* p = ptr.load(std::memory_order_acquire);
         if (p == nullptr) {
-            std::lock_guard lock(initMu);
+            std::lock_guard<std::mutex> lock(initMu);
             p = ptr.load(std::memory_order_acquire);
             if (p == nullptr) {
                 p = allocateResource();
