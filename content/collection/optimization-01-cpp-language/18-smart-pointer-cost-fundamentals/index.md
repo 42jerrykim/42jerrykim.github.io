@@ -85,6 +85,22 @@ tags:
 
 챕터 04(객체 수명)·챕터 15(파라미터 전달)와 함께 읽으면, **값/참조/이동**과 **소유권 단일성**이 만나는 지점에서 비용이 어떻게 달라지는지 한 그림으로 정리할 수 있습니다.
 
+## 이 장을 읽기 전에
+
+**완전한 초보자?** 이 장은 이 트랙의 **선행 기초** 중 하나로, [01장](/post/cpp-optimization/abstraction-cost/) 이전에 읽어도 됩니다. `std::unique_ptr`·`std::shared_ptr`가 "객체 수명을 자동 관리한다"는 정도와 원시 포인터(`T*`)의 개념만 알면 충분합니다. 함께 읽으면 좋은 장은 [04장: 객체 수명](/post/cpp-optimization/object-lifetime/)·[15장: Parameter Passing](/post/cpp-optimization/parameter-passing/)입니다.
+
+**이 장의 깊이**: 이 장은 **기초~전문가**를 포괄합니다. 세 포인터를 같은 작업(역참조·전달·복사) 기준으로 비교하는 것부터 시작해, 전문가 구간에서는 `shared_ptr` 참조 카운트의 원자적 연산·제어 블록·`make_shared`, 스레드 경계, 격리 벤치마크 아이디어까지 다룹니다. **다루지 않는 것**: 커스텀 할당자·메모리 풀(Tr.03)과 락-프리 자료구조(Tr.04 동시성 트랙)입니다.
+
+## 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **초보자** | "정의와 원칙" ~ "제어 블록과 make_shared" | 세 포인터의 비용 출처 이해 |
+| **중급자** | "코드로 보는 차이 (개념)" ~ "핫패스 판단 흐름" | 핫패스에서 스마트 포인터 유지/교체 판단 |
+| **전문가** | "스레드 경계와 원자적 연산" ~ "격리 벤치마크 아이디어" | 원자적 카운트 비용을 격리 측정 |
+
+---
+
 ## 정의와 원칙
 
 **unique_ptr**은 **독점 소유권**을 표현합니다. 일반적으로 크기는 원시 포인터 한 개와 같고, 역참조 비용도 원시 포인터와 동일한 한 단계 간접입니다. 소멸 시점에 커스텀 삭제자가 있으면 그 호출이 추가되지만, **참조 카운트나 원자적 연산은 없습니다**.
@@ -248,11 +264,11 @@ lock xadd DWORD PTR [rax+8], edx   ; 감소 후 0이면 소멸 분기(소멸)
 
 이 `lock`-프리픽스 연산은 캐시 라인을 잠그고 메모리 순서를 강제하므로, 핫 루프에서 N번 반복되면 “로직은 가벼운데 느린” 프로파일을 만듭니다.
 
-## 문단 심화: 소유권이 API 계약이 된다
+## 소유권은 곧 API 계약이다
 
 성능 튜닝에서 `shared_ptr`을 걷어내면, 바뀌는 것은 타입뿐 아니라 **호출자와 피호출자의 계약**입니다. `unique_ptr`로 바꾼 순간 “이 이후 객체는 받는 쪽이 소유한다”는 규칙이 강해지고, **다른 스레드가 같은 객체를 붙잡는** 패턴과 충돌할 수 있습니다. 따라서 리팩토링은 (1) 수명 다이어그램을 그린 뒤 (2) 핫패스에서 복사 횟수를 잰 다음 (3) 계약을 문서화하는 순서가 안전합니다.
 
-## 문단 심화: 커스텀 삭제자와 인라인화
+## 커스텀 삭제자와 인라인화
 
 `unique_ptr<T, Deleter>`에서 `Deleter`가 상태 없는 함수 객체면, 컴파일러가 **비용 없는 소멸**에 가깝게 접을 가능성이 큽니다. 반면 타입 소거된 삭제(예: 런타임에만 알려지는 삭제 정책)는 간접 호출을 남길 수 있습니다. “스마트 포인터가 느리다”기보다 **삭제 경로가 가상화**되어 있는지를 분리해 봅니다.
 
@@ -265,24 +281,12 @@ lock xadd DWORD PTR [rax+8], edx   ; 감소 후 0이면 소멸 분기(소멸)
 | 설계 | 공유가 진짜 필요한지 먼저 판단한 뒤 타입 선택 |
 | 검증 | 격리 벤치마크·프로파일러·할당 훅 |
 
-## 이전 장 · 다음 장
-
-목록의 `collection_order`를 그대로 따르면 **이전**은 [ABI·링크 경계와 극한 성능](/post/cpp-optimization/abi-link-boundaries-extreme-cpp-performance/) (챕터 17)입니다. 00장에서 권장하는 **16 → 18 → 01** 입문 경로에서는 챕터 17을 나중에 읽어도 되므로, 실행 모델만 맞춘 직후라면 [C++ 실행 모델·µs 최적화 어휘](/post/cpp-optimization/cpp-execution-model-microsecond-vocabulary-fundamentals/) (챕터 16)를 이전 단계로 두면 됩니다.
-
-**다음**은 트랙 마지막 주제인 [Type Erasure 비용 패턴](/post/cpp-optimization/type-erasure-cost-patterns/) (챕터 19)입니다.
-
 ## 더 읽을 거리 (트랙 내)
 
 - [객체 수명 최적화](/post/cpp-optimization/object-lifetime/) (챕터 04)
 - [Parameter Passing 전략](/post/cpp-optimization/parameter-passing/) (챕터 15)
 - [Small Buffer Optimization](/post/cpp-optimization/small-buffer-optimization/) (챕터 14) — 타입 소거 타입과 연계
 - [도입·측정 방법론](/post/cpp-optimization/getting-started-cpp-language-performance-tuning/) (챕터 00)
-
-## 다음 장에서는
-
-**Type erasure**가 간접 호출·SBO·할당을 어떻게 조합하는지, `std::function` 너머의 패턴까지 묶어 다룹니다. 챕터 14(SBO)와 겹치는 부분은 심화 관점에서 정리합니다.
-
-→ [Type Erasure 비용 패턴](/post/cpp-optimization/type-erasure-cost-patterns/) (챕터 19)
 
 ## FAQ
 
@@ -308,3 +312,11 @@ A. 순환을 끊는 데 도움이 되지만, `lock()` 비용과 설계 복잡도
 - **제어 블록**: `shared_ptr`이 공유하는 메타데이터(강한/약한 카운트, 삭제자 등)가 들어 있는 할당 블록.
 - **강한 참조**: 객체 수명을 유지하는 `shared_ptr` 개수.
 - **원자적 참조 카운트**: 다중 스레드에서 안전하게 증가·감소시키기 위한 연산; 단일 스레드 핫패스에서도 비용은 남습니다.
+
+## 다음 장에서는
+
+**이전 장**: [ABI·링크 경계와 극한 성능](/post/cpp-optimization/abi-link-boundaries-extreme-cpp-performance/) (챕터 17). 00장의 입문 경로(**16 → 18 → 01**)를 따른다면 챕터 17은 나중에 읽어도 되며, 실행 모델만 맞춘 직후라면 [C++ 실행 모델·µs 최적화 어휘](/post/cpp-optimization/cpp-execution-model-microsecond-vocabulary-fundamentals/) (챕터 16)가 직전 단계입니다.
+
+트랙의 마지막 주제인 **Type Erasure 비용 패턴**으로 넘어갑니다. `std::function`을 포함한 타입 소거가 간접 호출·SBO·할당을 어떻게 조합하는지, 그리고 템플릿·variant 같은 대안 설계가 비용을 어떻게 바꾸는지 정리합니다.
+
+→ [Type Erasure 비용 패턴](/post/cpp-optimization/type-erasure-cost-patterns/) (챕터 19)

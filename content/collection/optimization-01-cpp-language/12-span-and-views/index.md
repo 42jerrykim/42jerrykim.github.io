@@ -85,6 +85,22 @@ tags:
 
 **뷰 패턴**이란 연속 메모리나 문자열을 **소유하지 않고 참조만** 하는 non-owning 타입으로 전달해 복사·할당을 줄이는 방식을 말합니다. 본 챕터에서는 **std::span**과 **std::string_view** 활용, API 경계에서의 전달 기준, 수명·안전성을 정리합니다.
 
+## 이 장을 읽기 전에
+
+**완전한 초보자?** 이 장은 [03장: 문자열 최적화](/post/cpp-optimization/string-optimization/)에서 소개한 `string_view`와 [15장: Parameter Passing 전략](/post/cpp-optimization/parameter-passing/)의 전달 비용을 전제로 합니다. "포인터 + 크기"로 배열을 가리킨다는 개념만 알면 충분합니다.
+
+**이 장의 깊이**: 이 장은 **중급~전문가**를 포괄합니다. `span`·`string_view`로 복사 없이 전달하는 법부터 시작해, 전문가 구간에서는 API 경계에서 뷰를 받을지/소유 타입을 받을지, 그리고 댕글링 등 수명·안전성 함정을 다룹니다. **다루지 않는 것**: 컨테이너 자체의 비용([02장](/post/cpp-optimization/stl-container-cost/))과 ranges 뷰의 지연 평가([07장](/post/cpp-optimization/modern-cpp-features/))입니다.
+
+## 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **초보자** | "std::span" | non-owning 뷰가 복사를 없애는 원리 이해 |
+| **중급자** | "std::string_view와 수명" ~ "API 경계에서의 전달" | 뷰를 받는 API 설계 |
+| **전문가** | "수명과 안전성" ~ "비판적 시각" | 댕글링 위험과 뷰 vs 소유 선택 판단 |
+
+---
+
 ## std::span과 뷰 타입 도입 (역사·배경)
 
 **std::span**은 C++20에서 표준에 추가되었습니다. "포인터 + 크기" 쌍을 타입 안전하게 감싼 non-owning 뷰로, 배열 붕괴를 막고 API를 단순화합니다. **std::string_view**는 C++17에서 도입되어 문자열의 non-owning 뷰를 제공합니다. 둘 다 읽기 전용 전달 시 복사를 제거하고, 수명은 호출자가 보장해야 합니다.

@@ -84,6 +84,22 @@ tags:
 
 **std::variant**·**std::optional**·**std::expected**는 타입 안전 유니온·"있음/없음"·성공/실패 전달을 위한 표준 타입입니다. 본 챕터에서는 이들의 성능 특성과 오버헤드를 분석하고, 포인터·공용체·예외 대비 비용과 선택 기준을 다룹니다.
 
+## 이 장을 읽기 전에
+
+**완전한 초보자?** 이 장은 [09장: 예외 처리 심화](/post/cpp-optimization/exception-deep-dive/)에서 본 "예외 vs 에러 코드" 트레이드오프와 [01장: 추상화 비용 분석](/post/cpp-optimization/abstraction-cost/)을 전제로 합니다. 유니온·"값이 있거나 없거나"가 무엇인지 정도만 알면 충분합니다.
+
+**이 장의 깊이**: 이 장은 **중급~전문가**를 포괄합니다. `variant`·`optional`·`expected`의 의미와 사용법부터 시작해, 전문가 구간에서는 `sizeof` 레이아웃·접근 비용을 따지고 포인터·공용체·예외 대비 선택 기준을 다룹니다. **다루지 않는 것**: 예외 메커니즘 내부([09장](/post/cpp-optimization/exception-deep-dive/))와 타입 소거 일반론([19장](/post/cpp-optimization/type-erasure-cost-patterns/))입니다.
+
+## 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **초보자** | "std::variant" ~ "std::optional" | 세 타입의 의미·사용법 이해 |
+| **중급자** | "std::expected (C++23)" ~ "sizeof 레이아웃 노트" | 레이아웃·접근 비용 파악 |
+| **전문가** | "선택 가이드" ~ "비판적 시각" | 포인터·예외 대비 선택 판단 |
+
+---
+
 ## variant/optional/expected 표준화 (역사·배경)
 
 **std::variant**와 **std::optional**은 C++17에서 표준에 추가되었습니다. variant는 타입 안전 유니온, optional은 "값이 있거나 없거나"를 표현합니다. **std::expected**는 C++23에서 도입되어 성공 타입 T 또는 실패 타입 E를 담고, 예외 없이 에러 전달을 표준화합니다. 이들로 RTTI·포인터·예외 대신 타입 안전하고 비용이 예측 가능한 패턴을 쓸 수 있어, Low-latency에서 선택지가 됩니다.

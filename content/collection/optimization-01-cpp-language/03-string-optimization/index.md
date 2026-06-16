@@ -79,6 +79,22 @@ tags:
 
 **문자열 최적화**란 파싱·포맷팅·전달 과정에서 불필요한 할당과 복사를 줄이는 것을 말합니다. 본 챕터에서는 **SSO(Small String Optimization)**, **std::string_view**, 연결·파싱·포맷팅 시 비용을 정량적으로 다루고, 핫패스에서 "읽기 전용은 뷰, 소유·누적은 string + reserve" 패턴을 적용하는 방법을 정리합니다.
 
+## 이 장을 읽기 전에
+
+**완전한 초보자?** 이 장은 [02장: STL 컨테이너 비용](/post/cpp-optimization/stl-container-cost/)에서 다룬 "힙 할당과 캐시 효율" 개념을 전제로 합니다. `std::string`이 동적 메모리를 쓴다는 점과 `std::string_view`가 "소유하지 않는 뷰"라는 것만 알면 충분합니다.
+
+**이 장의 깊이**: 이 장은 **중급~전문가**를 포괄합니다. SSO(Small String Optimization)와 `string_view`의 원리부터 시작해, 전문가 구간에서는 연결·파싱·포맷팅 경로에서 할당을 제거하는 패턴과 `string_view`의 수명 함정을 다룹니다. **다루지 않는 것**: `std::span` 일반론(뷰의 안전성은 [12장](/post/cpp-optimization/span-and-views/))과 타입 소거 기반 버퍼([14장](/post/cpp-optimization/small-buffer-optimization/))입니다.
+
+## 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **초보자** | "SSO (Small String Optimization)" ~ "std::string_view" | SSO·string_view가 할당을 줄이는 원리 이해 |
+| **중급자** | "문자열 연결·파싱 최적화" ~ "포맷팅 비용" | 핫패스 문자열 처리에서 할당 제거 |
+| **전문가** | "판단 기준" ~ "비판적 시각" | string vs string_view 선택과 수명 위험 판단 |
+
+---
+
 ## SSO와 string_view 도입 (역사·배경)
 
 **SSO(Small String Optimization)**는 표준이 요구하는 것이 아니라 구현체가 선택한 최적화로, 여러 표준 라이브러리(libstdc++, libc++, MSVC STL)에서 오래 전부터 사용되어 왔습니다. 짧은 문자열을 객체 내부에 넣어 힙 할당을 피하는 방식이며, 구현마다 임계값(보통 15~24바이트)이 다릅니다. **std::string_view**는 C++17에서 표준에 추가되었고, "문자열을 소유하지 않고 참조만 하는" 수요를 표준화한 타입입니다.
