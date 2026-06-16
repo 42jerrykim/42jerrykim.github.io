@@ -102,7 +102,26 @@ tags:
 
 ## 커리큘럼
 
-**난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치). **Tr.NN**은 `optimization-NN-*` 트랙을 가리킵니다.
+**난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치).
+
+**트랙 약어 `Tr.NN`**: 본문에서 `Tr.05`처럼 표기하는 것은 이 **Low-latency 최적화 시리즈**의 다른 트랙을 가리키는 약어입니다(`NN` = 트랙 번호). 예컨대 **Tr.05는 [프로파일링·성능 분석 트랙](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)**이고, **Tr.02는 [컴파일러·빌드 최적화 트랙](/post/compiler-optimization/getting-started-compiler-build-performance-tuning/)**입니다. 이 글(C++ 언어 최적화)이 **Tr.01**이며, 범위 밖 주제를 가리킬 때 "→ Tr.NN"으로 어느 트랙에서 이어지는지 표시합니다. 트랙 이름을 누르면 각 트랙의 도입 장으로 이동합니다.
+
+| 약어 | 트랙 | 다루는 것 |
+|------|------|-----------|
+| **Tr.01** | C++ 언어 최적화 *(이 트랙)* | 언어·표준 라이브러리 사용 방식 자체의 비용 |
+| **Tr.02** | [컴파일러·빌드 최적화](/post/compiler-optimization/getting-started-compiler-build-performance-tuning/) | 최적화 플래그·LTO·PGO·인라이닝 리포트·멀티버저닝 |
+| **Tr.03** | [메모리·할당·데이터 레이아웃](/post/memory-optimization/getting-started-memory-allocation-data-layout-tuning/) | 할당자·메모리 풀·수명 그룹화·캐시 레이아웃 |
+| **Tr.04** | [동시성·멀티스레드](/post/concurrency-optimization/getting-started-concurrency-multithreading-performance-tuning/) | 락 경합·메모리 모델·false sharing |
+| **Tr.05** | [프로파일링·성능 분석](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/) | 핫패스·병목 식별, 측정 도구 사용법 |
+| **Tr.06** | [CPU 마이크로아키텍처](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/) | 파이프라인·분기 예측·캐시 미스의 하드 분석 |
+| **Tr.07** | [OS·런타임](/post/os-optimization/getting-started-os-runtime-performance-tuning/) | 스케줄링·CPU 피닝·syscall 비용 |
+| **Tr.08** | [극한 최적화 특수기술](/post/extreme-optimization/getting-started-extreme-performance-optimization-techniques/) | SIMD·인트린식·어셈블리 등 명령 선택 |
+| **Tr.09** | [성능 설계·의사결정](/post/design-decisions/getting-started-performance-design-decision-making/) | 아키텍처 수준의 성능 트레이드오프 |
+| **Tr.10** | [성능 회귀 방지·유지보수](/post/regression-prevention/getting-started-performance-regression-prevention-strategies/) | 성능 게이트·벤치마크 CI |
+| **Tr.11** | [I/O 최적화](/post/io-optimization/getting-started-io-performance-tuning/) | 파일·디스크·비동기 I/O |
+| **Tr.12** | [네트워크 최적화](/post/network-optimization/getting-started-network-performance-tuning/) | 소켓·프로토콜·전송 지연 |
+
+각 트랙의 전체 목록·권장 순서·심화 진입 조건은 맨 아래 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**에서 확인할 수 있습니다.
 
 이 트랙은 **번호 순서대로(01 → 19) 읽으면 됩니다.** 먼저 01~02장에서 실행 모델·소유권 비용의 공통 어휘를 맞추고, 03~17장에서 추상화·STL·문자열·수명·임시·템플릿·코루틴·예외·뷰·람다·SBO·전달 방식의 비용을 실전 패턴으로 확장한 뒤, 18장(ABI·링크, 전문)과 19장(type erasure, 심화)에서 경계·소거까지 정리하고 트랙을 닫습니다. 01·02장은 본편 곳곳에서 쓰는 용어(실행 모델·핫패스·소유권 비용)를 한곳에 모아 둔 **기초 정리 장**이라 맨 앞에 두었고, 각 본편 챕터는 필요한 용어를 본문에서 그때그때 짚으므로 어느 장부터 펼쳐도 막히지 않습니다. 챕터끼리 연결되는 부분은 **이미 읽은 앞 장을 되짚는 형태**로 두고, 뒤 장을 가리킬 때는 "먼저 읽으라"가 아니라 "뒤에서 더 다룬다"는 안내로만 적었습니다.
 
