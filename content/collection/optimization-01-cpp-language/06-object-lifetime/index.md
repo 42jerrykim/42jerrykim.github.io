@@ -1,8 +1,9 @@
----
+﻿---
 collection_order: 6
 date: 2026-03-10
 lastmod: 2026-06-01
 draft: false
+image: wordcloud.png
 title: "[Optimization(C++) 06] 객체 수명 최적화"
 slug: object-lifetime
 description: "Copy Elision, RVO/NRVO, 이동 의미론을 심화하여 객체 수명·복사/이동 비용을 제어하는 방법을 다룹니다. 반환값 최적화와 move semantics가 성능에 미치는 영향을 마이크로벤치마크로 검증하고, 언제 이동을 쓸지·회피할지 판단 기준을 제시합니다."

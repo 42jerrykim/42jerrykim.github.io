@@ -1,8 +1,9 @@
----
+﻿---
 collection_order: 16
 date: 2026-03-10
 lastmod: 2026-06-01
 draft: false
+image: wordcloud.png
 title: "[Optimization(C++) 16] Small Buffer Optimization"
 slug: small-buffer-optimization
 description: "SBO(Small Buffer Optimization) 패턴 상세와 std::function, std::any 등 타입 소거 타입의 내부 구조를 다룹니다. 작은 객체일 때 힙 할당을 피하는 메커니즘과 성능·ABI 영향을 정리하며, 버퍼 크기 선택과 이식성 주의점을 제시합니다."

@@ -1,8 +1,9 @@
----
+﻿---
 collection_order: 8
 date: 2026-03-10
 lastmod: 2026-06-01
 draft: false
+image: wordcloud.png
 title: "[Optimization(C++) 08] 템플릿/constexpr"
 slug: templates-constexpr
 description: "constexpr, consteval을 활용한 컴파일 타임 계산과 템플릿 기반 비용 제어 전략을 다룹니다. 런타임 오버헤드를 컴파일 타임으로 옮기고 인라이닝을 유도하는 패턴을 정리하며, 컴파일 시간·ABI 트레이드오프와 적용 기준을 제시합니다."

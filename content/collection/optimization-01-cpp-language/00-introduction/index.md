@@ -1,8 +1,9 @@
----
+﻿---
 collection_order: 0
 date: 2026-03-11
 lastmod: 2026-06-01
 draft: false
+image: wordcloud.png
 title: "[Optimization(C++) 00] Introduction: Low-latency C++ 언어 최적화"
 slug: getting-started-cpp-language-performance-tuning
 description: "Low-latency C++ 언어 최적화 트랙의 도입 챕터입니다. 이 트랙이 책임지는 범위와 경계를 명확히 하고, microbenchmark 기반 측정·검증 루프로 추상화 비용을 줄이는 흐름을 정리합니다. 학습 목표, 커리큘럼, 측정 도구 사용법, 선행·병행 트랙을 제시합니다."

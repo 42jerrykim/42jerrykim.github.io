@@ -1,8 +1,9 @@
----
+﻿---
 collection_order: 12
 date: 2026-03-10
 lastmod: 2026-06-01
 draft: false
+image: wordcloud.png
 title: "[Optimization(C++) 12] 인라이닝 유도 기법"
 slug: inlining-techniques
 description: "코드 레벨에서 인라이닝을 유도하는 기법과 inline, __forceinline 등 활용을 다룹니다. 컴파일러 진단(Tr.02)과 연계해 인라이닝 실패 원인을 파악하고 핫패스 비용을 줄이는 방법을 정리하며, 코드 크기·디버깅 트레이드오프를 제시합니다."

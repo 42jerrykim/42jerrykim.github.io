@@ -1,8 +1,9 @@
----
+﻿---
 collection_order: 2
 date: 2026-03-28
 lastmod: 2026-06-01
 draft: false
+image: wordcloud.png
 title: "[Optimization(C++) 02] Smart Pointer 비용 기초"
 slug: smart-pointer-cost-fundamentals
 description: "Low-latency C++에서 unique_ptr·shared_ptr·원시 포인터의 런타임 비용을 비교합니다. 제어 블록·원자적 참조 카운트·make_shared 이점, 핫패스에서 shared_ptr 복사 비용과 weak_ptr 개요를 정리하고 챕터 06·17과 연결합니다."

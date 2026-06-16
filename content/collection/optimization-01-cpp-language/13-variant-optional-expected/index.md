@@ -1,8 +1,9 @@
----
+﻿---
 collection_order: 13
 date: 2026-03-10
 lastmod: 2026-06-01
 draft: false
+image: wordcloud.png
 title: "[Optimization(C++) 13] std::variant/optional/expected"
 slug: variant-optional-expected
 description: "타입 안전 유니온과 옵셔널 타입인 std::variant, std::optional, std::expected의 성능 특성과 오버헤드를 분석합니다. 포인터·공용체 대비 비용과 예외 없이 실패를 표현하는 패턴의 성능을 다루며, 메모리 레이아웃과 visit/if-let 비용을 정리합니다."

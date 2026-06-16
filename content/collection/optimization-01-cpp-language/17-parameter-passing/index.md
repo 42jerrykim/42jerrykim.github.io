@@ -1,8 +1,9 @@
----
+﻿---
 collection_order: 17
 date: 2026-03-10
 lastmod: 2026-06-01
 draft: false
+image: wordcloud.png
 title: "[Optimization(C++) 17] Parameter Passing 전략"
 slug: parameter-passing
 description: "인자 전달 방식별 by value, const reference, rvalue reference의 정량적 분석을 다룹니다. 객체 크기·복사 비용·이동 비용에 따른 전달 전략과 마이크로벤치마크로 검증하는 방법을 정리하며, Effective Modern C++ 권장과 예외를 제시합니다."

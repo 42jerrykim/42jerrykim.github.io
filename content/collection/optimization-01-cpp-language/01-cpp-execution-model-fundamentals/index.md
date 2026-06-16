@@ -1,8 +1,9 @@
----
+﻿---
 collection_order: 1
 date: 2026-03-24
 lastmod: 2026-06-01
 draft: false
+image: wordcloud.png
 title: "[Optimization(C++) 01] C++ 실행 모델·µs 최적화 어휘 (기초)"
 slug: cpp-execution-model-microsecond-vocabulary-fundamentals
 description: "Low-latency C++ 트랙 선행 기초 장입니다. 프로세스 메모리·스택/힙·캐시·핫패스·추상화 비용 등 µs 튜닝 용어를 문단으로 정리하고, Tr.05 프로파일링과 챕터 03 본편으로 이어지는 경로·이전·다음 장 내비게이션을 안내합니다."

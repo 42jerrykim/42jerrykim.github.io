@@ -1,8 +1,9 @@
----
+﻿---
 collection_order: 18
 date: 2026-03-24
 lastmod: 2026-06-01
 draft: false
+image: wordcloud.png
 title: "[Optimization(C++) 18] ABI·링크 경계와 극한 성능 (전문)"
 slug: abi-link-boundaries-extreme-cpp-performance
 description: "전문 난이도 장으로 ODR·ABI·가시성·심볼 경계가 인라이닝·LTO·동적 링크에 주는 제약을 정리합니다. Tr.02·챕터 12·19와 연계한 링크 타임 판단 기준·PR 체크리스트·이전·다음 장 링크를 제공합니다."
