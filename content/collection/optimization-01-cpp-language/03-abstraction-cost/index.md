@@ -2,7 +2,7 @@
 collection_order: 3
 date: 2026-03-10
 lastmod: 2026-06-01
-draft: true
+draft: false
 title: "[Optimization(C++) 03] 추상화 비용 분석"
 slug: abstraction-cost
 description: "가상 함수, RTTI, 예외 처리의 정량적 비용을 마이크로벤치마크로 측정하고, devirtualization 등으로 비용을 줄이는 방법을 다룹니다. Low-latency C++ 트랙의 핵심 진입 챕터이며, 평가 기준·판단 기준·비판적 시각과 다음 장 링크를 제공합니다."

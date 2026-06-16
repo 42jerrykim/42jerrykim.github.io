@@ -2,7 +2,7 @@
 collection_order: 15
 date: 2026-03-10
 lastmod: 2026-06-01
-draft: true
+draft: false
 title: "[Optimization(C++) 15] 람다 표현식 성능"
 slug: lambda-performance
 description: "람다의 캡처 비용(by-value vs by-reference), 클로저 객체 크기·정렬, 인라이닝 가능성 등 성능 특성을 다룹니다. std::function과의 비교 및 콜백·알고리즘 전달 시 비용을 정리하고, 타입 소거 vs 템플릿 전달의 트레이드오프를 제시합니다."

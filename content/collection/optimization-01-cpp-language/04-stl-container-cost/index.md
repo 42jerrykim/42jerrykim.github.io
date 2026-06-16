@@ -2,7 +2,7 @@
 collection_order: 4
 date: 2026-03-10
 lastmod: 2026-06-01
-draft: true
+draft: false
 title: "[Optimization(C++) 04] STL 컨테이너 비용"
 slug: stl-container-cost
 description: "vector, map, unordered_map 등 STL 컨테이너의 비용 모델과 캐시 효율성을 정리합니다. 컨테이너 선택에 따른 메모리 레이아웃·접근 패턴 차이와 마이크로벤치마크로 측정하는 방법을 다루며, 연속 레이아웃과 노드 기반 구조의 트레이드오프를 제시합니다."

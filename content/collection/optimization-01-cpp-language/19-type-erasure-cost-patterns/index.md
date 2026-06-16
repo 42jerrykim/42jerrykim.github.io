@@ -2,7 +2,7 @@
 collection_order: 19
 date: 2026-03-28
 lastmod: 2026-06-01
-draft: true
+draft: false
 title: "[Optimization(C++) 19] Type Erasure 비용 패턴"
 slug: type-erasure-cost-patterns
 description: "Type erasure가 간접 호출·힙·SBO를 어떻게 묶는지 정리합니다. std::function·커스텀 소거와 챕터 16·18과의 관계, 템플릿·variant·함수 포인터·CRTP 대안과 격리 벤치 관점을 제시하며 트랙을 마무리합니다."

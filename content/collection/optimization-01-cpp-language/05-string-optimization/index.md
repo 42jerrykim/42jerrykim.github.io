@@ -2,7 +2,7 @@
 collection_order: 5
 date: 2026-03-10
 lastmod: 2026-06-01
-draft: true
+draft: false
 title: "[Optimization(C++) 05] 문자열 최적화"
 slug: string-optimization
 description: "std::string의 SSO(Small String Optimization), string_view 활용, 문자열 처리 시 불필요한 할당·복사를 줄이는 기법을 다룹니다. 파싱·포맷팅 등 핫패스에서의 문자열 비용을 정량적으로 다루며, API 경계와 내부 버퍼 관리 기준을 정리합니다."

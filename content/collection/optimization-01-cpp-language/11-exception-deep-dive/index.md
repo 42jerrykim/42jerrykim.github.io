@@ -2,7 +2,7 @@
 collection_order: 11
 date: 2026-03-10
 lastmod: 2026-06-01
-draft: true
+draft: false
 title: "[Optimization(C++) 11] 예외 처리 심화"
 slug: exception-deep-dive
 description: "zero-cost exception의 실제 동작과 noexcept 전략을 다룹니다. 예외 발생 경로와 정상 경로의 비용 차이, 예외 사양이 인라이닝·코드 생성에 미치는 영향을 마이크로벤치마크로 검증하고, 핫패스에서의 사용·회피 기준을 정리합니다."

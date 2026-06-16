@@ -2,7 +2,7 @@
 collection_order: 10
 date: 2026-03-10
 lastmod: 2026-06-01
-draft: true
+draft: false
 title: "[Optimization(C++) 10] 코루틴 성능"
 slug: coroutine-performance
 description: "C++20 코루틴의 성능 특성과 오버헤드를 다룹니다. 코루틴 프레임 할당·저장/복원 비용, 컴파일러 최적화 한계를 정리하고, Low-latency 경로에서의 사용 기준을 제시하며, generator·task 패턴별 비용과 대안을 비교합니다."

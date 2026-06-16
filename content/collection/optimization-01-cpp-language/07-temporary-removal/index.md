@@ -2,7 +2,7 @@
 collection_order: 7
 date: 2026-03-10
 lastmod: 2026-06-01
-draft: true
+draft: false
 title: "[Optimization(C++) 07] 임시 객체 제거"
 slug: temporary-removal
 description: "임시 객체 생성이 발생하는 패턴을 진단하고, 연산자 오버로딩·암시적 변환·연속 연산 등에서 임시를 제거하는 패턴을 다룹니다. 컴파일러 출력과 프로파일링으로 임시 비용을 확인하는 방법을 정리하며, 실무 적용 시 주의점과 대안을 제시합니다."

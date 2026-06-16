@@ -2,7 +2,7 @@
 collection_order: 14
 date: 2026-03-10
 lastmod: 2026-06-01
-draft: true
+draft: false
 title: "[Optimization(C++) 14] std::span과 뷰 패턴"
 slug: span-and-views
 description: "안전한 뷰 패턴으로 std::span, std::string_view 활용과 성능 이점을 다룹니다. 불필요한 복사·할당 없이 연속 메모리를 참조하는 방식과 API 경계에서의 사용 기준을 정리하며, 수명·null 처리 주의점과 대안을 제시합니다."
