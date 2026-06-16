@@ -1,6 +1,6 @@
 ---
 collection_order: 11
-draft: true
+draft: false
 title: "[Optimization(C++)] 01. Low-latency C++ 언어 최적화 트랙"
 slug: cpp-optimization
 description: "C++ 언어 레벨에서 추상화 비용을 측정하고 줄이는 트랙입니다. 가상 함수·RTTI·예외, STL 컨테이너·문자열, 객체 수명·임시·템플릿/constexpr, 코루틴·variant·span·람다·SBO·파라미터 전달을 다루며, 마이크로벤치마크 기반 검증과 전문가 판단 기준을 제시합니다. CPU/OS/동시성 영역은 별도 트랙에서 다룹니다."
