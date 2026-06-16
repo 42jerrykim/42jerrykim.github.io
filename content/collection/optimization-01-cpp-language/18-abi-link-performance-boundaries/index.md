@@ -188,8 +188,8 @@ flowchart LR
     E["호출 규약"]
     F["동적 로딩"]
   end
-  compile --> link
-  link --> run
+  B --> C
+  D --> E
 ```
 
 ## Tr.02·Tr.08과의 역할 나누기

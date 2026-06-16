@@ -133,7 +133,8 @@ flowchart TB
     F["챕터 03 추상화"]
     G["Tr.05 측정"]
   end
-  vocab --> next
+  E --> F
+  E --> G
 ```
 
 ## 이 트랙·타 트랙과의 경계

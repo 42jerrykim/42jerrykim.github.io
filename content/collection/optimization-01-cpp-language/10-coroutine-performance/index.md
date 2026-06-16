@@ -107,22 +107,9 @@ C++20 코루틴은 **일시 정지(suspend)**와 **재개(resume)**가 가능한
 
 ```mermaid
 flowchart LR
-  subgraph call [호출]
-    A["코루틴 진입"]
-    B["프레임 할당"]
-    C["실행"]
-  end
-  subgraph susp [suspend]
-    D["상태 저장"]
-    E["호출자로 제어 반환"]
-  end
-  subgraph res [resume]
-    F["상태 복원"]
-    G["이어서 실행"]
-  end
-  A --> B --> C
-  C -->|"co_await"| D --> E
-  E --> F --> G --> C
+  A["코루틴 진입"] --> B["프레임 할당"] --> C["실행"]
+  C -->|co_await| D["상태 저장"] --> E["호출자로 제어 반환"]
+  E -->|resume| F["상태 복원"] --> G["이어서 실행"] --> C
 ```
 
 **컴파일 가능한 최소 generator**: `co_yield`로 값을 내보낼 때마다 suspend되고, 호출자가 `resume()`으로 다시 진행시킵니다. `promise_type`과 `std::coroutine_handle`로 직접 generator를 구성하면 코루틴의 실제 동작을 확인할 수 있습니다.
