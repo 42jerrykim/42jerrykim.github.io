@@ -9,5 +9,10 @@
     {{- end -}}
 {{- end -}}
 
-{{- $title = $title | append (default $siteTitle $pageTitle) -}}
+{{- if .IsHome -}}
+    {{- $title = $title | append $siteTitle -}}
+{{- else -}}
+    {{- $title = $title | append $pageTitle -}}
+    {{- $title = $title | append $siteTitle -}}
+{{- end -}}
 {{ return delimit $title " - " }}
