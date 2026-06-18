@@ -23,7 +23,7 @@
             });
         })();
         </script>
-        {{- partialCached "head/head.html" . -}}
+        {{- partialCached "head/head.html" . .RelPermalink -}}
         {{- block "head" . -}}{{ end }}
         
       
@@ -84,7 +84,7 @@
         {{- end -}}
         <div class="container main-container flex on-phone--column {{ if $hasWidget }}extended{{ else }}compact{{ end }}">
             {{- block "left-sidebar" . -}}
-                {{ partialCached "sidebar/left.html" . }}
+                {{ partialCached "sidebar/left.html" . .RelPermalink }}
             {{- end -}}
             {{- block "right-sidebar" . -}}{{ end }}
             <main class="main full-width" data-pagefind-body>

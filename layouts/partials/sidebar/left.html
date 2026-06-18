@@ -62,7 +62,7 @@
         {{ range .Site.Menus.main }}
         {{ $normalizedURL := .URL | strings.TrimPrefix $.Site.BaseURL | strings.TrimSuffix "/" }}
         {{ $normalizedPageURL := $currentPage.RelPermalink | strings.TrimSuffix "/" }}
-        {{ $active := or (eq $normalizedURL $normalizedPageURL) ($currentPage.IsMenuCurrent "main" .) }}
+        {{ $active := eq $normalizedURL $normalizedPageURL }}
         <li {{ if $active }} class='current' {{ end }}>
             <a href='{{ .URL }}' {{ if eq .Params.newTab true }}target="_blank"{{ end }}>
                 {{ $icon := default .Pre .Params.Icon }}
