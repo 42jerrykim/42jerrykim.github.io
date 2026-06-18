@@ -1,0 +1,2 @@
+# PR preview 환경: draft 포스트도 빌드에 포함
+buildDrafts = true

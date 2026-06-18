@@ -1,7 +1,7 @@
 ---
 collection_order: 10
 date: 2026-03-11
-lastmod: 2026-03-11
+lastmod: 2026-06-01
 draft: true
 title: "[Compiler 02] 디버그 정보와 릴리즈 성능"
 slug: debug-info-and-release-performance
@@ -88,6 +88,10 @@ tags:
 
 일반적으로 **디버그 정보만 추가**하는 옵션(`-g`, `-g3` 등)은 **생성되는 기계어(코드 생성)**를 바꾸지 않습니다. 컴파일러는 소스 라인·변수·타입 정보를 별도 섹션(.debug_*, DWARF 등)에 넣을 뿐, 최적화된 코드는 -g 없이 빌드한 것과 동일하게 나옵니다. 따라서 **릴리즈 최적화(-O2/-O3)와 -g를 함께** 써도 실행 성능은 동일하다고 보면 됩니다.
 
+> "DWARF is a debugging information file format used by many compilers and debuggers to support source level debugging." — [DWARF Debugging Standard](https://dwarfstd.org/)
+
+이처럼 디버그 정보는 실행 코드가 아니라 **별도 형식의 메타데이터**로 저장되므로, 심볼을 더하거나 빼는 일이 성능이 아니라 파일 크기·분석 가능성에만 영향을 줍니다.
+
 예외적으로 **빌드/링크 설정**이 잘못되면 성능에 영향을 줄 수 있습니다. 예를 들어 -g를 켰을 때만 특정 최적화가 비활성화되는 레거시 빌드 스크립트가 있거나, 디버그 정보 생성 과정에서 부수적으로 다른 플래그가 바뀌는 경우입니다. **Split DWARF**(-gsplit-dwarf)는 디버그 정보를 별도 .dwo 파일로 빼서 링크 시간과 실행 파일 크기를 줄이는 데 쓰이며, 코드 생성 자체는 바꾸지 않습니다.
 
 ## 릴리즈 빌드에서 심볼 유지 전략
@@ -98,6 +102,71 @@ tags:
 - **심볼만 별도 보관**: strip하지 않은 바이너리를 보관해 두거나, **debug symbol 패키지**를 따로 배포합니다. 배포용 바이너리는 strip해 크기를 줄이고, 크래시 덤프는 심볼이 있는 환경에서 열어 분석합니다.
 
 이렇게 하면 **실행 성능은 최적화된 그대로** 유지하면서, 사후 분석만을 위해 심볼을 활용할 수 있습니다.
+
+심볼 분리는 `objcopy`로 표준화되어 있습니다. 심볼을 별도 파일로 뽑고(`--only-keep-debug`), 배포 바이너리는 strip한 뒤(`--strip-debug`), 둘을 `--add-gnu-debuglink`로 연결해 두면 디버거가 strip된 바이너리에서도 별도 심볼 파일을 찾아 씁니다.
+
+```bash
+# (1) 디버그 심볼만 별도 파일로 추출
+objcopy --only-keep-debug app app.debug
+# (2) 배포용 바이너리는 디버그 섹션 제거
+objcopy --strip-debug app
+# (3) strip된 바이너리에 심볼 파일 링크 정보 삽입
+objcopy --add-gnu-debuglink=app.debug app
+```
+
+배포에는 strip된 `app`을, 사후 분석에는 `app.debug`를 심볼 서버에 보관해 두는 패턴이 일반적입니다. 실행 코드는 세 단계 어디서도 바뀌지 않으므로 **성능은 동일**합니다.
+
+아래 표는 같은 소스를 빌드 타입만 바꿔 만든 산출물의 **예시값**입니다. 런타임은 `-g` 유무와 무관하게 동일하고, 차이는 파일 크기에만 나타납니다(절대 크기는 코드 규모·툴체인에 따라 다름).
+
+| 빌드 | 런타임(예시) | 바이너리 크기(예시) | 분석 가능성 |
+|------|-----------|------------------|-----------|
+| `-O2` (no `-g`) | 1.00× | 기준 | 주소만(어려움) |
+| `-O2 -g` (RelWithDebInfo) | 1.00× | 2~5× 큼 | 함수명·소스 라인 |
+| `-O2 -g` → strip + `.debug` | 1.00× | 배포본은 기준 수준 | 심볼 파일로 분석 |
+
+## Split DWARF로 빌드 시간 절감
+
+**Split DWARF**(`-gsplit-dwarf`)는 디버그 정보를 **별도 `.dwo` 파일**로 분리해, 링크 시 오브젝트 파일에서 디버그 섹션을 합치는 작업을 생략합니다. 대형 프로젝트에서 링크 시간과 링커 메모리 사용을 줄이는 데 효과적입니다.
+
+```bash
+# Split DWARF 적용 빌드
+g++ -O2 -g -gsplit-dwarf foo.cc -c -o foo.o
+# foo.o: 코드·인덱스만 포함 (링크에 사용)
+# foo.dwo: 상세 디버그 정보 (디버거가 직접 읽음)
+
+ls -la foo.o foo.dwo   # .dwo가 크고 .o는 작아진 것을 확인
+```
+
+링크 시:
+```bash
+g++ -O2 foo.o -o app   # 링크는 빠름(.dwo는 링크에 포함되지 않음)
+```
+
+`gdb`나 `addr2line` 등 디버거는 `.dwo` 파일을 자동으로 찾아 심볼을 해석합니다. CI에서 빌드 후 `.dwo` 파일을 보관해 두면 크래시 분석에 사용할 수 있습니다.
+
+## perf + 릴리즈 심볼 워크플로우
+
+RelWithDebInfo 빌드(`-O2 -g`)를 사용하면 **perf report**에서 함수명과 소스 라인이 보입니다.
+
+```bash
+# RelWithDebInfo 빌드
+g++ -O2 -g -o app main.cc
+
+# perf로 샘플링 실행
+perf record -g ./app
+
+# 심볼이 있으면 함수명으로 보임
+perf report
+# Overhead  Command  Symbol
+#  45.23%   app      [.] hot_function
+#  12.34%   app      [.] another_func
+# ...
+
+# 소스 라인별 분석 (디버그 정보 있을 때만 동작)
+perf annotate hot_function
+```
+
+심볼이 없는 strip된 바이너리에서는 `perf report`에 주소(`0x401234`)만 나와 분석이 어렵습니다. 배포 바이너리는 strip하되, 심볼이 있는 바이너리를 별도 보관하는 것이 이 문제를 해결합니다.
 
 ## strip / 비strip, FDO·LTO와 디버그 정보
 
@@ -147,4 +216,4 @@ tags:
 
 **C++20 Modules**가 빌드 시간과 런타임에 미치는 영향, 도입 단계별 전략을 다룹니다.
 
-→ [C++20 Modules](/collection/optimization-02-compiler/11-cpp20-modules/) (챕터 11)
+→ [C++20 Modules](/post/compiler-optimization/cpp20-modules-build-performance/) (챕터 11)

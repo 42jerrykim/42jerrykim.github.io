@@ -1,7 +1,7 @@
 ---
 collection_order: 3
 date: 2026-03-11
-lastmod: 2026-03-11
+lastmod: 2026-06-01
 draft: true
 title: "[Compiler 02] PGO 고급 워크플로우"
 slug: pgo-workflow-advanced
@@ -92,7 +92,9 @@ tags:
 
 PGO는 1990년대 후반부터 연구·상용화되었습니다. 컴파일러 문서에서는 프로파일 기반 최적화의 목적을 다음과 같이 설명합니다.
 
-> "Profile-guided optimization (PGO) uses the results of program execution to guide the optimizer. By using profile information, the compiler can make better decisions about inlining, branch prediction, and other optimizations." — [Clang documentation on Profile-Guided Optimization](https://clang.llvm.org/docs/UsersManual.html#profile-guided-optimization) GCC는 **-fprofile-generate** / **-fprofile-use** 형태로 프로파일 기반 최적화를 지원했고, Microsoft는 Visual C++에서 **/LTCG**와 연계한 PGO를 제공해 왔습니다. Clang/LLVM은 **-fprofile-instr-generate**·**-fprofile-instr-use**와 샘플링 기반 AutoFDO 등으로 진화했습니다. 오늘날에는 서버·게임·데스크톱 앱 등에서 핫 경로가 분명한 워크로드에 PGO를 적용해 5~15% 수준의 이득을 얻는 사례가 많습니다. 컴파일러는 프로파일을 보고 자주 실행되는 경로·핫 함수·루프를 알 수 있으므로, 분기 배치·인라이닝 우선순위·루프 최적화·코드 배치 등을 프로파일 없이 할 때보다 더 잘 맞출 수 있습니다. 그 결과 동일 소스라도 PGO 적용 후 5~15% 정도 빨라지는 경우가 많고, 분기가 많은 코드일수록 이득이 커질 수 있습니다.
+> "Profile-guided optimization (PGO) uses the results of program execution to guide the optimizer. By using profile information, the compiler can make better decisions about inlining, branch prediction, and other optimizations." — [Clang documentation on Profile-Guided Optimization](https://clang.llvm.org/docs/UsersManual.html#profile-guided-optimization)
+
+GCC는 **-fprofile-generate** / **-fprofile-use** 형태로 프로파일 기반 최적화를 지원했고, Microsoft는 Visual C++에서 **/LTCG**와 연계한 PGO를 제공해 왔습니다. Clang/LLVM은 **-fprofile-instr-generate**·**-fprofile-instr-use**와 샘플링 기반 AutoFDO 등으로 진화했습니다. 오늘날에는 서버·게임·데스크톱 앱 등에서 핫 경로가 분명한 워크로드에 PGO를 적용해 5~15% 수준의 이득을 얻는 사례가 많습니다. 컴파일러는 프로파일을 보고 자주 실행되는 경로·핫 함수·루프를 알 수 있으므로, 분기 배치·인라이닝 우선순위·루프 최적화·코드 배치 등을 프로파일 없이 할 때보다 더 잘 맞출 수 있습니다. 그 결과 동일 소스라도 PGO 적용 후 5~15% 정도 빨라지는 경우가 많고, 분기가 많은 코드일수록 이득이 커질 수 있습니다.
 
 ## 3단계 워크플로우
 
@@ -113,6 +115,29 @@ flowchart LR
   C --> C1["-fprofile-use</br>+ -O3 등"]
 ```
 
+## 컴파일러별 실제 명령
+
+GCC는 한 쌍의 플래그(`-fprofile-generate`/`-fprofile-use`)로 3단계를 처리합니다. 1단계 바이너리를 실행하면 `.gcda` 프로파일이 생기고, 2단계에서 같은 디렉터리를 가리키며 `-fprofile-use`로 재컴파일합니다.
+
+```bash
+# GCC: (1) 계측 빌드 -> (2) 실행해 프로파일 수집 -> (3) 프로파일로 재빌드
+g++ -O2 -fprofile-generate app.cpp -o app_instr
+./app_instr < representative_input    # .gcda 생성
+g++ -O3 -fprofile-use -fprofile-correction app.cpp -o app_pgo
+```
+
+Clang은 raw 프로파일(`.profraw`)을 `llvm-profdata merge`로 합쳐 `.profdata`로 만든 뒤 사용합니다. 여러 번 실행한 프로파일을 한 번에 병합할 수 있어 대표성을 높이기 좋습니다.
+
+```bash
+# Clang: 계측 -> 실행(LLVM_PROFILE_FILE) -> merge -> 사용
+clang++ -O2 -fprofile-instr-generate app.cpp -o app_instr
+LLVM_PROFILE_FILE="app-%p.profraw" ./app_instr < representative_input
+llvm-profdata merge -output=app.profdata app-*.profraw
+clang++ -O3 -fprofile-instr-use=app.profdata app.cpp -o app_pgo
+```
+
+MSVC는 `/GENPROFILE`로 계측하고 실행 후 `/USEPROFILE`로 재링크하며, 보통 `/LTCG`(링크 타임 코드 생성)와 함께 씁니다. 어느 컴파일러든 **소스나 플래그가 바뀌면 프로파일이 무효**가 되므로, 변경 후에는 1~3단계를 다시 수행합니다.
+
 ## 프로파일 수집 방법과 대표성
 
 프로파일은 **실제 서비스 트래픽에 가까운 입력**으로 수집하는 것이 이상적입니다. 그래야 "실제로 자주 타는 경로"가 반영됩니다. 현실적으로는 다음을 조합합니다.
@@ -126,6 +151,28 @@ flowchart LR
 ## PGO 전/후 성능 검증
 
 PGO를 적용한 뒤에는 **동일한 벤치마크**로 PGO 적용 전·후 실행 시간을 측정합니다. 수치적으로 개선이 나와야 하고, 중요한 지표(지연 시간, 처리량)가 나빠지면 프로파일 대표성이나 빌드 설정을 점검해야 합니다. 회귀 테스트 파이프라인에 "PGO 빌드 + 벤치마크"를 넣어 두면, 변경이 PGO 이득을 깨뜨리지 않는지 계속 확인할 수 있습니다.
+
+검증은 `-O3` baseline과 PGO 바이너리를 **같은 입력**으로 여러 번 돌려 비교하는 방식이 기본입니다. 아래는 최소 비교 스켈레톤입니다.
+
+```bash
+# baseline(-O3)과 PGO 바이너리를 같은 입력으로 반복 측정
+g++ -O3 app.cpp -o app_base
+# (app_pgo는 위 3단계로 생성)
+for b in app_base app_pgo; do
+  echo "== $b =="
+  for i in $(seq 5); do ./$b < representative_input; done | \
+    awk '{s+=$1; n++} END {printf "mean=%.3f over %d runs\n", s/n, n}'
+done
+```
+
+아래 표의 개선폭은 **예시값**입니다. 실제 이득은 분기·인라이닝에 민감한 코드일수록 크고, 경로가 균등하거나 프로파일 대표성이 낮으면 0에 가깝거나 음수일 수 있습니다(측정값은 CPU·컴파일러·워크로드에 따라 다름).
+
+| 빌드 | 실행 시간(예시) | 비고 |
+|------|---------------|------|
+| `-O2` | 1.00× | 기준 |
+| `-O3` | 0.97× | 일반 최적화 |
+| `-O3` + PGO(대표 프로파일) | 0.85~0.95× | 핫 경로 분기·인라이닝 개선 |
+| `-O3` + PGO(비대표 프로파일) | 1.0× 이상 | 잘못된 핫 경로 → 회귀 가능 |
 
 ## CI/자동화에서 PGO 적용 시 고려사항
 
@@ -193,4 +240,4 @@ PGO는 **만능이 아니다**. 프로파일 대표성이 부족하면 성능이
 
 **GCC vs Clang vs MSVC** 최적화 차이, 벡터화·인라이닝·루프 영역별 비교, 플랫폼별 선택을 다룹니다.
 
-→ [컴파일러 비교: GCC vs Clang vs MSVC](/collection/optimization-02-compiler/04-compiler-comparison/) (챕터 04)
+→ [컴파일러 비교: GCC vs Clang vs MSVC](/post/compiler-optimization/compiler-comparison-gcc-clang-msvc/) (챕터 04)

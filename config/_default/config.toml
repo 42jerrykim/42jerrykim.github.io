@@ -33,3 +33,4 @@ disableLatLong = true
 
 [services.rss]
 limit = 50
+
