@@ -1,9 +1,9 @@
 ---
 collection_order: 2
 title: "[Design Pattern] Builder - 빌더 패턴"
-description: "빌더 패턴은 복잡한 객체 생성을 단계별로 분리하여 동일한 생성 로직으로 다양한 표현의 객체를 만들 수 있게 하며, 가독성과 불변성을 높여 안전한 객체 생성을 지원합니다."
+description: "빌더 패턴은 선택적 매개변수가 많은 객체를 점층적 생성자 없이 단계별 메서드 호출로 조립하게 해주는 생성 패턴이다. 조슈아 블로크가 『Effective Java』에서 재조명한 이후 가독성과 불변성을 함께 보장하는 관용구로 널리 쓰인다."
 date: 2022-01-01
-last_modified_at: 2024-08-22
+last_modified_at: 2026-06-30
 categories: Design Pattern
 image: "wordcloud.png"
 header:
@@ -61,377 +61,155 @@ tags:
   - Tutorial
 ---
 
+여행 패키지 예약 시스템에서 `TourPlan` 객체를 만든다고 하자. 제목은 필수지만 호텔·기간·일정은 상품마다 있을 수도 없을 수도 있다. 이 조합을 모두 커버하려면 생성자를 몇 개나 만들어야 할까? 이 질문에서 출발해, 객체 생성 과정을 단계별 메서드 호출로 분리하는 빌더 패턴을 살펴본다.
 
-빌더 패턴은 복잡한 객체를 단계별로 생성할 수 있도록 해주는 생성 디자인 패턴이다. 이 패턴은 동일한 생성 코드를 사용하여 다양한 유형과 표현의 객체를 생성할 수 있게 해준다. 예를 들어, 집을 짓는 과정을 생각해보자. 집을 짓기 위해서는 여러 단계가 필요하다. 벽을 세우고, 문을 설치하고, 창문을 달고, 지붕을 올리는 등의 과정이 있다. 이러한 복잡한 과정을 단순한 생성자 호출로 처리하기에는 한계가 있다. 빌더 패턴을 사용하면 각 단계별로 필요한 메소드를 호출하여 객체를 생성할 수 있으며, 필요한 단계만 선택적으로 호출할 수 있다. 이로 인해 코드의 가독성이 높아지고, 유지보수성이 향상된다. 또한, 빌더 패턴은 객체의 불변성을 보장할 수 있어, 멀티스레드 환경에서도 안전하게 사용할 수 있다. 이러한 이유로 빌더 패턴은 소프트웨어 개발에서 매우 유용하게 사용된다.
+## 탄생 배경
 
+빌더 패턴은 GoF(에리히 감마, 리처드 헬름, 랄프 존슨, 존 블리시디스)가 1994년 저서 『Design Patterns: Elements of Reusable Object-Oriented Software』에서 정리한 23개 패턴 중 하나이며, 생성 패턴으로 분류된다. 책에서는 RTF(Rich Text Format) 문서를 ASCII 텍스트, TeX, 텍스트 위젯 등 여러 형식으로 변환하는 `RTFReader` 예제로 이 패턴을 설명한다. 이후 조슈아 블로크가 『Effective Java』 Item 2에서 "점층적 생성자 패턴(telescoping constructor pattern)"의 대안으로 빌더를 재조명하면서, 선택적 매개변수가 많은 객체를 안전하게 생성하는 관용구로 널리 퍼졌다.
 
-<!--
-##### Outline #####
--->
+## 학습 목표
 
-<!--
-# 빌더 패턴 (Builder Pattern) 블로그 목차
+이 장을 읽고 나면 다음을 할 수 있다.
 
-## 개요
-- 빌더 패턴의 정의
-- 빌더 패턴의 필요성
-- 빌더 패턴의 장점
-
-## 문제
-- 복잡한 객체 생성의 어려움
-- 점층적 생성자 패턴의 문제점
-- 자바 빈 패턴의 한계
-- 생성자와 수정자 패턴의 단점
-
-## 해결책
-- 빌더 패턴의 기본 개념
-- 빌더 패턴의 구조
-  - 빌더 인터페이스
-  - 구체적인 빌더 클래스
-  - 제품 클래스
-  - 디렉터 클래스
-- 빌더 패턴의 적용 예시
-
-## 예제
-- 기본적인 빌더 패턴 구현
-  - TourPlan 예제
-  - User 클래스 예제
-- Lombok을 활용한 빌더 패턴
-- 다양한 빌더 패턴 활용 사례
-  - StringBuilder
-  - Stream.Builder
-  - UriComponentsBuilder
-
-## FAQ
-- 빌더 패턴은 언제 사용해야 하나요?
-- 빌더 패턴의 단점은 무엇인가요?
-- 빌더 패턴과 다른 생성 패턴의 차이점은 무엇인가요?
-- 빌더 패턴을 사용하면 성능에 영향을 미치나요?
-
-## 관련 기술
-- Lombok
-- JavaBeans
-- Factory Method 패턴
-- Singleton 패턴
-- Composite 패턴
-
-## 결론
-- 빌더 패턴의 중요성
-- 실무에서의 빌더 패턴 활용
-- 빌더 패턴을 통한 코드 가독성 및 유지보수성 향상
-
-## 추가 자료
-- 참고 문헌 및 링크
-- 관련 동영상 강의
-- 빌더 패턴에 대한 심화 학습 자료
-
-이 목차는 빌더 패턴에 대한 포괄적인 이해를 돕고, 관련된 다양한 주제를 포함하여 독자가 더 깊이 있는 지식을 얻을 수 있도록 구성되었습니다.
--->
-
-<!--
-## 개요
-- 빌더 패턴의 정의
-- 빌더 패턴의 필요성
-- 빌더 패턴의 장점
--->
+1. 빌더 패턴이 해결하는 문제(점층적 생성자, 일관성 없는 가변 객체)를 설명할 수 있다.
+2. Builder, ConcreteBuilder, Director, Product 네 가지 역할을 구분하고 직접 구현할 수 있다.
+3. 빌더 패턴을 적용할 시점과, 단순한 객체에 적용하면 오히려 과한 설계가 되는 이유를 판단할 수 있다.
 
 ## 개요
 
 **빌더 패턴의 정의**  
-빌더 패턴은 복잡한 객체를 생성하는 과정을 단순화하기 위해 사용되는 생성 패턴 중 하나이다. 이 패턴은 객체의 생성 과정을 단계별로 나누어, 각 단계에서 필요한 속성만 설정할 수 있도록 하여, 최종적으로 완전한 객체를 생성하는 방식이다. 빌더 패턴은 특히 많은 매개변수를 가진 생성자나 복잡한 객체를 생성할 때 유용하다.
+빌더 패턴은 복잡한 객체의 생성 과정을 여러 단계로 분리하여, 동일한 생성 절차로도 서로 다른 표현의 객체를 만들 수 있게 하는 생성 패턴이다. 객체를 한 번의 생성자 호출로 완성하는 대신, 속성을 하나씩 설정하는 메서드를 연쇄적으로 호출한 뒤 마지막에 `build()`를 호출해 완성된 객체를 얻는다.
 
-**빌더 패턴의 필요성**  
-복잡한 객체를 생성할 때, 생성자의 매개변수가 많아지면 코드의 가독성이 떨어지고, 객체 생성 시 실수할 가능성이 높아진다. 또한, 점층적 생성자 패턴을 사용할 경우, 매개변수의 조합이 많아져서 코드가 복잡해질 수 있다. 이러한 문제를 해결하기 위해 빌더 패턴이 필요하다. 빌더 패턴은 객체의 생성 과정을 명확하게 하고, 각 속성을 설정하는 메서드를 제공하여, 코드의 가독성을 높이고 유지보수성을 향상시킨다.
+**패턴의 필요성**  
+선택적 필드가 많은 객체일수록 생성자의 매개변수 조합이 기하급수적으로 늘어난다. 빌더 패턴은 "필요한 속성만 호출하고 나머지는 기본값에 맡기는" 방식으로 이 문제를 해결하며, 동시에 생성 중인 객체의 중간 상태가 외부에 노출되지 않도록 캡슐화한다.
 
-**빌더 패턴의 장점**  
-1. **가독성 향상**: 빌더 패턴을 사용하면 객체 생성 시 각 속성을 명확하게 설정할 수 있어, 코드의 가독성이 높아진다.
-2. **불변 객체 생성**: 빌더 패턴을 통해 생성된 객체는 불변 객체로 만들 수 있어, 스레드 안전성을 보장할 수 있다.
-3. **유연한 객체 생성**: 다양한 조합의 속성을 설정할 수 있어, 객체 생성 시 유연성을 제공한다.
-4. **체이닝 지원**: 메서드 체이닝을 통해 코드가 간결해지고, 객체 생성 과정이 직관적으로 표현된다.
+**장단점**
 
-다음은 빌더 패턴의 기본 구조를 나타내는 다이어그램이다.
+| 구분 | 내용 |
+|------|------|
+| 장점 | 점층적 생성자 제거 — 선택적 매개변수 조합마다 생성자를 늘릴 필요 없이, 필요한 속성만 메서드로 설정한다. |
+| 장점 | 불변 객체 생성 — `build()` 호출 전까지 내부 상태가 노출되지 않고, 완성된 객체는 `final` 필드로 불변성을 보장할 수 있다. |
+| 단점 | 클래스 수 증가 — 객체마다 별도의 Builder 클래스(또는 정적 내부 클래스)가 필요해 코드량이 늘어난다. |
+| 단점 | 단순 객체에는 과한 설계 — 필드가 2~3개뿐인 객체에 빌더를 적용하면 오히려 가독성이 떨어진다. |
 
-```mermaid
-classDiagram
-    class Product {
-        +String name
-        +int age
-    }
-    
-    class Builder {
-        +Builder setName(String name)
-        +Builder setAge(int age)
-        +Product build()
-    }
-    
-    class ConcreteBuilder {
-        +String name
-        +int age
-        +Builder setName(String name)
-        +Builder setAge(int age)
-        +Product build()
-    }
-    
-    class Director {
-        +Product construct(Builder builder)
-    }
-    
-    Product <-- ConcreteBuilder
-    Builder <|-- ConcreteBuilder
-    Director --> Builder
-```
-
-위의 다이어그램은 빌더 패턴의 기본 구조를 보여준다. `Product` 클래스는 최종적으로 생성될 객체를 나타내며, `Builder` 인터페이스는 객체 생성에 필요한 메서드를 정의한다. `ConcreteBuilder` 클래스는 `Builder` 인터페이스를 구현하여 실제 객체를 생성하는 역할을 한다. `Director` 클래스는 빌더를 사용하여 객체를 구성하는 책임을 가진다. 
-
-이와 같이 빌더 패턴은 복잡한 객체 생성 과정을 단순화하고, 코드의 가독성과 유지보수성을 높이는 데 기여한다.
-
-<!--
-## 문제
-- 복잡한 객체 생성의 어려움
-- 점층적 생성자 패턴의 문제점
-- 자바 빈 패턴의 한계
-- 생성자와 수정자 패턴의 단점
--->
+코드로 어떻게 구현되는지는 아래 "문제"와 "구성 요소", "예제" 절에서 차례로 보여준다.
 
 ## 문제
 
-**복잡한 객체 생성의 어려움**  
-복잡한 객체를 생성하는 과정은 종종 많은 매개변수를 요구하게 된다. 이러한 매개변수들은 서로 의존성을 가질 수 있으며, 이로 인해 객체 생성 시 실수가 발생할 가능성이 높아진다. 예를 들어, 자동차 객체를 생성할 때 엔진, 바퀴, 색상 등의 다양한 속성을 설정해야 하는데, 이 모든 속성을 생성자에 전달하는 것은 매우 번거롭고 가독성을 떨어뜨린다. 
+빌더 패턴이 풀어야 할 문제는 두 갈래다 — 점층적 생성자의 가독성 문제와, 자바 빈 패턴의 상태 일관성 문제.
 
-```java
-public class Car {
-    private String engine;
-    private int wheels;
-    private String color;
-
-    public Car(String engine, int wheels, String color) {
-        this.engine = engine;
-        this.wheels = wheels;
-        this.color = color;
-    }
-}
-```
-
-위와 같은 생성자는 매개변수가 많아질수록 가독성이 떨어지고, 잘못된 순서로 인자를 전달할 경우 오류가 발생할 수 있다.
-
-**점층적 생성자 패턴의 문제점**  
-점층적 생성자 패턴은 여러 개의 생성자를 정의하여 다양한 조합의 객체를 생성할 수 있도록 하는 방법이다. 그러나 이 방식은 생성자의 수가 많아질수록 관리가 어려워지고, 각 생성자가 어떤 매개변수를 필요로 하는지 파악하기 힘들어진다. 또한, 모든 매개변수를 포함한 생성자를 사용해야 할 경우, 불필요한 매개변수를 전달해야 하는 상황이 발생할 수 있다.
+**점층적 생성자 패턴의 문제**
 
 ```java
 public class House {
-    private int rooms;
-    private int bathrooms;
-    private boolean garage;
+    private final int rooms;
+    private final int floors;
+    private final boolean hasGarage;
+    private final boolean hasGarden;
+    private final boolean hasPool;
 
-    public House(int rooms) {
-        this.rooms = rooms;
+    public House(int rooms, int floors) {
+        this(rooms, floors, false, false, false);
     }
 
-    public House(int rooms, int bathrooms) {
-        this.rooms = rooms;
-        this.bathrooms = bathrooms;
+    public House(int rooms, int floors, boolean hasGarage) {
+        this(rooms, floors, hasGarage, false, false);
     }
 
-    public House(int rooms, int bathrooms, boolean garage) {
+    public House(int rooms, int floors, boolean hasGarage, boolean hasGarden) {
+        this(rooms, floors, hasGarage, hasGarden, false);
+    }
+
+    public House(int rooms, int floors, boolean hasGarage, boolean hasGarden, boolean hasPool) {
         this.rooms = rooms;
-        this.bathrooms = bathrooms;
-        this.garage = garage;
+        this.floors = floors;
+        this.hasGarage = hasGarage;
+        this.hasGarden = hasGarden;
+        this.hasPool = hasPool;
     }
 }
+
+// 호출부: boolean 값이 각각 무엇을 의미하는지 코드만 보고 알 수 없다.
+House house = new House(3, 2, true, false, true);
 ```
 
-위의 예시에서 보듯이, 점층적 생성자 패턴은 생성자의 수가 증가함에 따라 코드의 복잡성이 증가하게 된다.
+선택적 매개변수 조합마다 생성자를 추가해야 하고, 매개변수가 늘어날수록 호출부의 가독성이 급격히 떨어진다.
 
-**자바 빈 패턴의 한계**  
-자바 빈 패턴은 기본 생성자와 setter 메서드를 사용하여 객체를 생성하는 방식이다. 이 방식은 객체의 속성을 설정하는 데 유연성을 제공하지만, 객체의 불변성을 보장하기 어렵고, 객체가 완전히 초기화되기 전에 사용될 위험이 있다. 또한, setter 메서드를 통해 잘못된 값이 설정될 수 있는 가능성도 존재한다.
+**자바 빈 패턴의 한계**
 
 ```java
 public class User {
     private String name;
     private int age;
+    private String email;
 
-    public User() {}
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
+    public void setName(String name) { this.name = name; }
+    public void setAge(int age) { this.age = age; }
+    public void setEmail(String email) { this.email = email; }
 }
+
+User user = new User();
+user.setName("Alice");
+// setAge(), setEmail() 호출 전에 user를 사용하면 불완전한 상태로 노출된다.
 ```
 
-위의 코드에서 User 객체는 생성 후에 setter 메서드를 통해 속성을 설정해야 하므로, 객체의 상태가 불완전할 수 있다.
-
-**생성자와 수정자 패턴의 단점**  
-생성자와 수정자 패턴은 객체를 생성한 후 수정자를 통해 속성을 변경하는 방식이다. 이 방식은 객체의 상태를 변경할 수 있는 유연성을 제공하지만, 객체의 일관성을 유지하기 어렵고, 여러 번의 메서드 호출이 필요하여 코드의 가독성을 떨어뜨린다. 또한, 객체의 상태가 변경될 때마다 일관성을 체크해야 하므로, 코드의 복잡성이 증가하게 된다.
-
-```java
-public class Product {
-    private String name;
-    private double price;
-
-    public Product(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-}
-```
-
-위의 예시에서 Product 객체는 생성 후에 가격을 설정해야 하므로, 객체의 상태가 완전하지 않을 수 있다. 이러한 문제들은 빌더 패턴을 통해 해결할 수 있다. 
+생성자 호출과 속성 설정이 분리되어, 객체가 일시적으로 불완전한 상태(inconsistent state)에 놓일 수 있고 `final` 필드를 쓸 수 없어 불변 객체를 만들 수 없다.
 
 ```mermaid
-graph TD;
+graph TD
     A[복잡한 객체 생성] --> B[점층적 생성자 패턴]
     A --> C[자바 빈 패턴]
-    A --> D[생성자와 수정자 패턴]
-    B --> E[관리의 어려움]
-    C --> F[불변성의 부족]
-    D --> G[일관성 유지의 어려움]
+    B --> D[매개변수 의미 파악 어려움]
+    C --> E[생성 도중 불완전한 상태 노출]
+    D --> F[빌더 패턴]
+    E --> F
 ```
 
-위의 다이어그램은 복잡한 객체 생성의 문제점들을 시각적으로 나타낸 것이다. 이러한 문제들은 빌더 패턴을 통해 해결할 수 있으며, 다음 섹션에서 빌더 패턴의 기본 개념과 구조를 살펴보도록 하겠다.
+## 빌더 패턴의 구성 요소
 
-<!--
-## 해결책
-- 빌더 패턴의 기본 개념
-- 빌더 패턴의 구조
-  - 빌더 인터페이스
-  - 구체적인 빌더 클래스
-  - 제품 클래스
-  - 디렉터 클래스
-- 빌더 패턴의 적용 예시
--->
+빌더 패턴은 다음 네 가지 역할로 구성된다.
 
-## 해결책
-
-**빌더 패턴의 기본 개념**  
-빌더 패턴은 복잡한 객체를 생성하는 과정을 단순화하기 위해 고안된 디자인 패턴이다. 이 패턴은 객체의 생성과정을 단계별로 나누어 각 단계를 독립적으로 설정할 수 있도록 하여, 최종적으로 완전한 객체를 생성하는 방식이다. 이를 통해 코드의 가독성을 높이고, 객체 생성 시의 유연성을 제공한다.
-
-**빌더 패턴의 구조**  
-빌더 패턴은 다음과 같은 주요 구성 요소로 이루어져 있다.
-
-- **빌더 인터페이스**  
-  빌더 인터페이스는 객체를 생성하기 위한 메서드의 집합을 정의한다. 이 인터페이스는 구체적인 빌더 클래스에서 구현된다.
-
-- **구체적인 빌더 클래스**  
-  구체적인 빌더 클래스는 빌더 인터페이스를 구현하며, 객체의 각 속성을 설정하는 메서드를 제공한다. 이 클래스는 최종적으로 제품 객체를 반환하는 메서드도 포함한다.
-
-- **제품 클래스**  
-  제품 클래스는 빌더 패턴을 통해 생성될 객체의 구조를 정의한다. 이 클래스는 빌더를 통해 설정된 속성을 포함한다.
-
-- **디렉터 클래스**  
-  디렉터 클래스는 빌더를 사용하여 제품 객체를 생성하는 역할을 한다. 이 클래스는 빌더의 메서드를 호출하여 객체의 생성 과정을 관리한다.
-
-다음은 빌더 패턴의 구조를 나타내는 다이어그램이다.
+1. **Builder(빌더 인터페이스)**: 제품 객체의 각 부분을 생성하는 추상 메서드를 정의한다.
+2. **ConcreteBuilder(구체적인 빌더)**: Builder 인터페이스를 구현해 실제 부품을 조립하고, 완성된 제품을 반환한다.
+3. **Product(제품)**: 생성될 복잡한 객체.
+4. **Director(디렉터, 선택적)**: 빌더를 사용해 특정 순서로 빌드 단계를 호출하는 역할. 생략하고 클라이언트가 직접 빌더를 호출하는 방식(플루언트 빌더)도 실무에서 널리 쓰인다.
 
 ```mermaid
 classDiagram
     class Director {
-        +construct(builder: Builder)
+        +construct(Builder builder)
     }
     class Builder {
         <<interface>>
-        +setPartA()
-        +setPartB()
-        +build(): Product
+        +reset()
+        +buildPartA()
+        +buildPartB()
+        +getResult() Product
     }
     class ConcreteBuilder {
-        +setPartA()
-        +setPartB()
-        +build(): Product
+        +reset()
+        +buildPartA()
+        +buildPartB()
+        +getResult() Product
     }
-    class Product {
-        +partA
-        +partB
-    }
+    class Product
 
     Director --> Builder
-    Builder <|-- ConcreteBuilder
-    ConcreteBuilder --> Product
+    Builder <|.. ConcreteBuilder
+    ConcreteBuilder --> Product : creates
 ```
 
-**빌더 패턴의 적용 예시**  
-빌더 패턴은 다양한 상황에서 유용하게 사용될 수 있다. 예를 들어, 복잡한 객체를 생성해야 하는 경우, 빌더 패턴을 통해 각 속성을 단계적으로 설정할 수 있다. 다음은 `TourPlan` 객체를 생성하는 예시이다.
+**동작 과정**
 
-```java
-public class TourPlan {
-    private String title;
-    private int days;
-    private String hotel;
-    private String startDate;
+1. 클라이언트(또는 Director)가 ConcreteBuilder 인스턴스를 생성한다.
+2. 필요한 부품을 설정하는 메서드를 차례로 호출한다(메서드 체이닝).
+3. 마지막으로 `build()`(또는 `getResult()`)를 호출해 완성된 Product를 받는다.
 
-    private TourPlan(Builder builder) {
-        this.title = builder.title;
-        this.days = builder.days;
-        this.hotel = builder.hotel;
-        this.startDate = builder.startDate;
-    }
-
-    public static class Builder {
-        private String title;
-        private int days;
-        private String hotel;
-        private String startDate;
-
-        public Builder(String title) {
-            this.title = title;
-        }
-
-        public Builder days(int days) {
-            this.days = days;
-            return this;
-        }
-
-        public Builder hotel(String hotel) {
-            this.hotel = hotel;
-            return this;
-        }
-
-        public Builder startDate(String startDate) {
-            this.startDate = startDate;
-            return this;
-        }
-
-        public TourPlan build() {
-            return new TourPlan(this);
-        }
-    }
-}
-
-// 사용 예
-TourPlan tourPlan = new TourPlan.Builder("여행 계획")
-        .days(5)
-        .hotel("호텔명")
-        .startDate("2023-10-01")
-        .build();
-```
-
-위의 예시에서 `TourPlan` 클래스는 빌더 패턴을 통해 객체를 생성하며, 각 속성을 설정하는 메서드를 제공하여 유연한 객체 생성을 가능하게 한다. 이처럼 빌더 패턴은 복잡한 객체를 간편하게 생성할 수 있는 강력한 도구이다.
-
-<!--
-## 예제
-- 기본적인 빌더 패턴 구현
-  - TourPlan 예제
-  - User 클래스 예제
-- Lombok을 활용한 빌더 패턴
-- 다양한 빌더 패턴 활용 사례
-  - StringBuilder
-  - Stream.Builder
-  - UriComponentsBuilder
--->
+Director는 필수가 아니다. 빌드 절차가 항상 같은 순서를 따라야 한다면 Director가 그 순서를 캡슐화하지만, 호출 순서가 자유로워도 되는 대부분의 실무 코드에서는 Director 없이 클라이언트가 직접 빌더 메서드를 체이닝하는 플루언트 빌더 형태를 더 많이 쓴다.
 
 ## 예제
 
-**기본적인 빌더 패턴 구현**
-
-빌더 패턴은 복잡한 객체를 단계적으로 생성할 수 있도록 도와주는 디자인 패턴이다. 이 패턴을 사용하면 객체의 생성 과정을 명확하게 분리할 수 있으며, 가독성과 유지보수성을 높일 수 있다. 아래는 `TourPlan`과 `User` 클래스를 사용한 기본적인 빌더 패턴 구현 예제이다.
-
-**TourPlan 예제**
+**TourPlan 빌더 구현**
 
 ```java
 public class TourPlan {
@@ -478,90 +256,29 @@ public class TourPlan {
         }
     }
 }
+
+// 사용 예
+TourPlan tourPlan = new TourPlan.Builder()
+        .title("제주도 여행")
+        .days(3)
+        .hotel("제주 호텔")
+        .plan("한라산 등반, 해변 산책")
+        .build();
 ```
 
-위의 `TourPlan` 클래스는 빌더 패턴을 사용하여 객체를 생성하는 방법을 보여준다. `Builder` 클래스는 각 필드를 설정하는 메서드를 제공하며, 최종적으로 `build()` 메서드를 호출하여 `TourPlan` 객체를 생성한다.
+`Builder`는 `TourPlan`의 정적 내부 클래스로, 각 필드를 설정하는 메서드가 `this`를 반환해 체이닝을 지원한다. `title`만 설정하고 `hotel`을 생략해도 컴파일 오류 없이 객체를 만들 수 있어, 앞서 본 점층적 생성자 문제가 사라진다. `TourPlan`의 필드가 모두 `final`이므로 `build()` 이후에는 값이 바뀌지 않는다.
 
-**User 클래스 예제**
-
-```java
-public class User {
-    private final String username;
-    private final String email;
-    private final int age;
-
-    private User(Builder builder) {
-        this.username = builder.username;
-        this.email = builder.email;
-        this.age = builder.age;
-    }
-
-    public static class Builder {
-        private String username;
-        private String email;
-        private int age;
-
-        public Builder username(String username) {
-            this.username = username;
-            return this;
-        }
-
-        public Builder email(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public Builder age(int age) {
-            this.age = age;
-            return this;
-        }
-
-        public User build() {
-            return new User(this);
-        }
-    }
-}
-```
-
-`User` 클래스 또한 빌더 패턴을 사용하여 객체를 생성하는 예제이다. 각 필드를 설정하는 메서드를 통해 유연하게 객체를 구성할 수 있다.
-
-**Lombok을 활용한 빌더 패턴**
-
-Lombok 라이브러리를 사용하면 빌더 패턴을 더욱 간편하게 구현할 수 있다. Lombok의 `@Builder` 어노테이션을 사용하면 자동으로 빌더 클래스를 생성할 수 있다.
-
-```java
-import lombok.Builder;
-import lombok.Getter;
-
-@Getter
-@Builder
-public class Product {
-    private final String name;
-    private final double price;
-    private final String description;
-}
-```
-
-위의 `Product` 클래스는 Lombok을 사용하여 빌더 패턴을 간단하게 구현한 예제이다. `@Builder` 어노테이션을 통해 빌더 클래스를 자동으로 생성할 수 있으며, 코드의 양을 줄일 수 있다.
-
-**다양한 빌더 패턴 활용 사례**
-
-빌더 패턴은 다양한 상황에서 활용될 수 있다. 아래는 몇 가지 대표적인 활용 사례이다.
+## 실무에서 만나는 빌더 패턴
 
 **StringBuilder**
 
-`StringBuilder`는 문자열을 효율적으로 조작하기 위해 사용되는 클래스이다. 내부적으로 빌더 패턴을 사용하여 문자열을 단계적으로 생성할 수 있다.
-
 ```java
 StringBuilder sb = new StringBuilder();
-sb.append("Hello, ");
-sb.append("World!");
+sb.append("Hello, ").append("World!");
 String result = sb.toString(); // "Hello, World!"
 ```
 
 **Stream.Builder**
-
-Java 9부터 추가된 `Stream.Builder`는 스트림을 생성하는 데 사용된다. 빌더 패턴을 통해 여러 요소를 추가한 후, 최종적으로 스트림을 생성할 수 있다.
 
 ```java
 Stream<String> stream = Stream.<String>builder()
@@ -571,381 +288,88 @@ Stream<String> stream = Stream.<String>builder()
     .build();
 ```
 
-**UriComponentsBuilder**
-
-Spring Framework에서 제공하는 `UriComponentsBuilder`는 URI를 생성하는 데 유용한 빌더 패턴의 예이다. 다양한 쿼리 파라미터를 추가하여 URI를 쉽게 구성할 수 있다.
+**UriComponentsBuilder (Spring)**
 
 ```java
-UriComponents uriComponents = UriComponentsBuilder
+UriComponents uri = UriComponentsBuilder
     .fromUriString("http://example.com")
     .path("/users")
     .queryParam("id", 1)
     .build();
 ```
 
-이와 같이 빌더 패턴은 다양한 클래스와 라이브러리에서 활용되며, 객체 생성의 유연성과 가독성을 높이는 데 기여한다.
+**Lombok `@Builder`**
 
-<!--
-## FAQ
-- 빌더 패턴은 언제 사용해야 하나요?
-- 빌더 패턴의 단점은 무엇인가요?
-- 빌더 패턴과 다른 생성 패턴의 차이점은 무엇인가요?
-- 빌더 패턴을 사용하면 성능에 영향을 미치나요?
--->
-
-## FAQ
-
-**빌더 패턴은 언제 사용해야 하나요?**
-
-빌더 패턴은 복잡한 객체를 생성할 때 유용하다. 특히, 생성자가 많은 매개변수를 필요로 하거나, 매개변수의 조합이 다양할 경우에 적합하다. 예를 들어, 설정할 속성이 많은 객체를 생성할 때, 각 속성을 설정하는 메서드를 제공하여 가독성을 높이고, 객체 생성 과정을 명확하게 할 수 있다. 또한, 불변 객체를 생성할 때도 빌더 패턴을 활용할 수 있다.
-
-```java
-public class User {
-    private final String name;
-    private final int age;
-    private final String email;
-
-    private User(UserBuilder builder) {
-        this.name = builder.name;
-        this.age = builder.age;
-        this.email = builder.email;
-    }
-
-    public static class UserBuilder {
-        private String name;
-        private int age;
-        private String email;
-
-        public UserBuilder setName(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public UserBuilder setAge(int age) {
-            this.age = age;
-            return this;
-        }
-
-        public UserBuilder setEmail(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public User build() {
-            return new User(this);
-        }
-    }
-}
-
-// 사용 예
-User user = new User.UserBuilder()
-                .setName("Alice")
-                .setAge(30)
-                .setEmail("alice@example.com")
-                .build();
-```
-
-**빌더 패턴의 단점은 무엇인가요?**
-
-빌더 패턴의 단점은 객체 생성 과정이 복잡해질 수 있다는 점이다. 특히, 빌더 클래스를 별도로 작성해야 하므로 코드가 길어질 수 있다. 또한, 단순한 객체를 생성할 때는 오히려 불필요한 복잡성을 초래할 수 있다. 따라서, 객체가 간단한 경우에는 일반 생성자를 사용하는 것이 더 효율적일 수 있다.
-
-**빌더 패턴과 다른 생성 패턴의 차이점은 무엇인가요?**
-
-빌더 패턴은 주로 복잡한 객체를 단계적으로 생성하는 데 중점을 둔다. 반면, 팩토리 메서드 패턴은 객체 생성의 책임을 서브클래스에 위임하여 객체의 생성 과정을 캡슐화한다. 싱글턴 패턴은 인스턴스를 하나만 생성하도록 보장하는 패턴이다. 빌더 패턴은 이러한 패턴들과 달리, 객체의 속성을 설정하는 메서드를 제공하여 유연한 객체 생성을 가능하게 한다.
-
-```mermaid
-classDiagram
-    class User {
-        +String name
-        +int age
-        +String email
-    }
-    class UserBuilder {
-        +setName(String name)
-        +setAge(int age)
-        +setEmail(String email)
-        +build()
-    }
-    UserBuilder --> User : creates
-```
-
-**빌더 패턴을 사용하면 성능에 영향을 미치나요?**
-
-빌더 패턴은 객체 생성 시 추가적인 메서드 호출이 필요하므로, 성능에 약간의 영향을 미칠 수 있다. 그러나 이 영향은 일반적으로 미미하며, 코드의 가독성과 유지보수성을 높이는 장점이 더 크다. 따라서, 성능이 중요한 경우가 아니라면 빌더 패턴을 사용하는 것이 바람직하다. 성능이 중요한 경우에는 객체의 생성 과정을 최적화하는 방법을 고려해야 한다.
-
-<!--
-## 관련 기술
-- Lombok
-- JavaBeans
-- Factory Method 패턴
-- Singleton 패턴
-- Composite 패턴
--->
-
-## 관련 기술
-
-**Lombok**  
-Lombok은 자바에서 보일러플레이트 코드를 줄여주는 라이브러리이다. 특히, 빌더 패턴을 구현할 때 유용하게 사용된다. Lombok의 `@Builder` 애너테이션을 사용하면, 복잡한 빌더 클래스를 수동으로 작성할 필요 없이 간단하게 빌더 패턴을 적용할 수 있다. 다음은 Lombok을 활용한 빌더 패턴의 예시 코드이다.
+매번 Builder 클래스를 손으로 작성하는 대신, Lombok의 `@Builder` 애너테이션을 쓰면 컴파일 시점에 동일한 코드를 자동 생성한다.
 
 ```java
 import lombok.Builder;
-import lombok.ToString;
 
 @Builder
-@ToString
-public class User {
-    private String name;
-    private int age;
-    private String email;
+public class Product {
+    private final String name;
+    private final double price;
+    private final String description;
 }
 
 // 사용 예
-public class Main {
-    public static void main(String[] args) {
-        User user = User.builder()
-                        .name("홍길동")
-                        .age(30)
-                        .email("hong@example.com")
-                        .build();
-        System.out.println(user);
-    }
-}
+Product product = Product.builder()
+        .name("키보드")
+        .price(89000)
+        .description("기계식 키보드")
+        .build();
 ```
 
-**Java Beans**  
-Java Beans는 자바에서 재사용 가능한 소프트웨어 컴포넌트를 만들기 위한 규약이다. Java Beans는 기본적으로 무인자 생성자, 프로퍼티 접근 메서드(getter/setter), 직렬화 가능성을 요구한다. 빌더 패턴은 Java Beans의 단점을 보완할 수 있는 방법으로, 복잡한 객체를 보다 쉽게 생성할 수 있도록 돕는다. Java Beans와 빌더 패턴을 함께 사용하면, 객체 생성의 유연성을 높일 수 있다.
+단, Lombok이 생성한 빌더는 어떤 필드가 필수인지 표시하지 않으므로, 필수 값 검증이 필요하다면 `@Builder`만으로는 부족하고 직접 검증 로직을 추가해야 한다.
 
-**Factory Method 패턴**  
-Factory Method 패턴은 객체 생성의 인터페이스를 정의하고, 서브클래스에서 어떤 클래스의 인스턴스를 만들지를 결정하는 패턴이다. 빌더 패턴과 함께 사용하면, 복잡한 객체를 생성하는 과정에서 Factory Method를 통해 빌더를 반환할 수 있다. 이로 인해 객체 생성의 책임을 분리하고, 코드의 가독성을 높일 수 있다.
+## 사용 시점과 회피 시점
 
-```java
-interface UserBuilder {
-    User build();
-}
+| 구분 | 내용 |
+|------|------|
+| 사용 시점 | 선택적 매개변수가 4개 이상이고 조합이 다양한 객체를 생성할 때 |
+| 사용 시점 | 생성된 객체가 불변(immutable)이어야 하고, 생성 도중 상태가 외부에 노출되면 안 될 때 |
+| 회피 시점 | 필드가 2~3개뿐인 단순한 객체 — 일반 생성자나 정적 팩토리 메서드로 충분하다 |
+| 회피 시점 | 객체의 모든 필드가 항상 함께 설정되어야 하는 경우 — 빌더의 유연성이 오히려 필수값 누락을 허용해 버그를 유발할 수 있다 |
 
-class DefaultUserBuilder implements UserBuilder {
-    private String name;
-    private int age;
+## 자주 묻는 질문
 
-    public DefaultUserBuilder setName(String name) {
-        this.name = name;
-        return this;
-    }
+**Q1: Director는 항상 필요한가요?**  
+아니다. GoF 원전은 Director가 빌드 순서를 캡슐화하는 구조를 제시했지만, 실무에서는 호출 순서가 자유로워도 되는 경우가 많아 Director 없이 클라이언트가 빌더 메서드를 직접 체이닝하는 플루언트 빌더가 더 흔하다. 앞서 본 `TourPlan` 예제도 Director 없는 형태다.
 
-    public DefaultUserBuilder setAge(int age) {
-        this.age = age;
-        return this;
-    }
+**Q2: 빌더 패턴과 팩토리 메서드 패턴의 차이는 무엇인가요?**  
+팩토리 메서드는 객체 하나를 생성하는 책임을 서브클래스에 위임해 "어떤 클래스의 인스턴스를 만들지"를 캡슐화한다. 반면 빌더는 이미 정해진 한 클래스의 객체를 "어떤 단계를 거쳐 조립할지"에 집중한다. 자세한 비교는 [03. Factory Method](/post/designpattern/03_factory_method/)에서 다룬다.
 
-    @Override
-    public User build() {
-        return new User(name, age);
-    }
-}
-```
+**Q3: Lombok `@Builder`를 쓰면 직접 구현할 필요가 없나요?**  
+대부분의 경우 충분하지만, 한계도 있다. Lombok이 생성한 빌더는 필수 필드를 강제하지 않고, `build()` 시점의 커스텀 검증 로직을 끼워 넣을 수 없다. 필수값 검증이나 빌드 직전 유효성 검사가 필요하다면 직접 구현하거나 `@Builder` 위에 별도 검증 메서드를 추가해야 한다.
 
-**Singleton 패턴**  
-Singleton 패턴은 클래스의 인스턴스가 오직 하나만 존재하도록 보장하는 패턴이다. 빌더 패턴과 함께 사용하면, 특정 객체를 생성할 때마다 동일한 인스턴스를 반환하도록 설정할 수 있다. 이로 인해 메모리 사용을 최적화하고, 상태를 공유할 수 있는 장점이 있다.
+## 관련 패턴
 
-```java
-public class Configuration {
-    private static Configuration instance;
-
-    private Configuration() {
-        // 초기화 코드
-    }
-
-    public static Configuration getInstance() {
-        if (instance == null) {
-            instance = new Configuration();
-        }
-        return instance;
-    }
-}
-```
-
-**Composite 패턴**  
-Composite 패턴은 객체를 트리 구조로 구성하여 부분-전체 계층을 표현하는 패턴이다. 빌더 패턴과 함께 사용하면, 복잡한 객체를 구성하는 여러 부분을 쉽게 관리할 수 있다. 예를 들어, 여러 개의 컴포넌트를 포함하는 복합 객체를 빌더 패턴을 통해 생성할 수 있다.
-
-```java
-import java.util.ArrayList;
-import java.util.List;
-
-class Component {
-    private String name;
-
-    public Component(String name) {
-        this.name = name;
-    }
-}
-
-class CompositeComponent {
-    private List<Component> components = new ArrayList<>();
-
-    public void add(Component component) {
-        components.add(component);
-    }
-}
-
-// 사용 예
-CompositeComponent composite = new CompositeComponent();
-composite.add(new Component("부품1"));
-composite.add(new Component("부품2"));
-```
-
-이와 같이, 빌더 패턴은 다양한 관련 기술과 함께 사용될 수 있으며, 각 기술의 특성을 살려 객체 생성의 유연성과 가독성을 높일 수 있다.
-
-<!--
-## 결론
-- 빌더 패턴의 중요성
-- 실무에서의 빌더 패턴 활용
-- 빌더 패턴을 통한 코드 가독성 및 유지보수성 향상
--->
+- **[01. Abstract Factory - 추상 팩토리 패턴](/post/designpattern/01_abstract_factory/)**: 둘 다 생성 패턴이지만, 빌더는 객체 하나를 단계별로 조립하는 데 집중하고, 추상 팩토리는 관련된 객체 여러 개를 한 번에 생성한다.
+- **[03. Factory Method - 팩토리 메서드 패턴](/post/designpattern/03_factory_method/)**: 단일 제품 생성 책임을 서브클래스에 위임하는 패턴으로, ConcreteBuilder 자체를 팩토리 메서드로 생성하는 조합도 흔하다.
+- **[05. Singleton - 싱글턴 패턴](/post/designpattern/05_singleton/)**: 빌드 절차를 한 곳에서 통제해야 한다면 Director를 싱글턴으로 관리하기도 한다.
 
 ## 결론
 
-**빌더 패턴의 중요성**  
-빌더 패턴은 복잡한 객체를 생성하는 데 있어 매우 중요한 역할을 한다. 객체의 생성 과정이 복잡해질수록, 이를 관리하고 유지하는 것이 어려워지기 때문이다. 빌더 패턴은 이러한 문제를 해결하기 위해 설계되었으며, 객체의 생성 과정을 명확하게 분리하여 가독성을 높이고, 코드의 유지보수성을 향상시킨다. 특히, 다양한 속성을 가진 객체를 생성할 때, 빌더 패턴은 유용하게 사용된다.
+빌더 패턴은 선택적 매개변수가 많고 생성 도중 상태가 노출되면 안 되는 객체에 가치가 있다. 반대로 필드가 몇 개뿐인 단순한 객체에 습관적으로 빌더를 씌우면, 클래스 수만 늘리고 점층적 생성자 문제보다 더 장황한 코드를 만들게 된다. `TourPlan`처럼 선택적 필드 조합이 다양하고 불변성이 중요한 경우인지 먼저 확인한 뒤 적용하는 것이 좋다.
 
-**실무에서의 빌더 패턴 활용**  
-실무에서는 빌더 패턴이 다양한 상황에서 활용된다. 예를 들어, 복잡한 설정을 요구하는 객체를 생성할 때, 빌더 패턴을 사용하면 코드의 가독성을 높일 수 있다. 또한, 객체의 생성 과정에서 불변성을 유지할 수 있어, 멀티스레드 환경에서도 안전하게 사용할 수 있다. 다음은 빌더 패턴을 활용한 간단한 예제 코드이다.
+다음 장에서는 생성 패턴의 세 번째인 팩토리 메서드 패턴을 다룬다: [03. Factory Method - 팩토리 메서드 패턴](/post/designpattern/03_factory_method/)
 
-```java
-public class TourPlan {
-    private final String title;
-    private final int days;
-    private final String hotel;
-    private final String plan;
+## 참고 문헌
 
-    private TourPlan(Builder builder) {
-        this.title = builder.title;
-        this.days = builder.days;
-        this.hotel = builder.hotel;
-        this.plan = builder.plan;
-    }
+**관련 서적**
 
-    public static class Builder {
-        private String title;
-        private int days;
-        private String hotel;
-        private String plan;
+1. **"Design Patterns: Elements of Reusable Object-Oriented Software"** - Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+   - 빌더 패턴을 처음 정리한 원전으로, RTFReader 예제를 통해 동기와 구조를 설명한다.
+2. **"Effective Java"** - Joshua Bloch
+   - Item 2에서 점층적 생성자 패턴의 대안으로 빌더 패턴을 다루며, 자바 관용구로서의 활용법을 제시한다.
+3. **"Refactoring: Improving the Design of Existing Code"** - Martin Fowler
+   - 복잡한 생성자를 빌더로 리팩토링하는 과정에 대한 통찰을 제공한다.
 
-        public Builder title(String title) {
-            this.title = title;
-            return this;
-        }
+**온라인 리소스**
 
-        public Builder days(int days) {
-            this.days = days;
-            return this;
-        }
-
-        public Builder hotel(String hotel) {
-            this.hotel = hotel;
-            return this;
-        }
-
-        public Builder plan(String plan) {
-            this.plan = plan;
-            return this;
-        }
-
-        public TourPlan build() {
-            return new TourPlan(this);
-        }
-    }
-}
-```
-
-**빌더 패턴을 통한 코드 가독성 및 유지보수성 향상**  
-빌더 패턴을 사용하면 코드의 가독성이 크게 향상된다. 객체의 속성을 설정하는 과정이 명확하게 드러나기 때문에, 다른 개발자가 코드를 읽을 때 이해하기 쉽다. 또한, 객체의 생성 과정에서 발생할 수 있는 오류를 줄일 수 있어, 유지보수성 또한 높아진다. 다음은 빌더 패턴의 구조를 나타내는 다이어그램이다.
-
-```mermaid
-classDiagram
-    class TourPlan {
-        +String title
-        +int days
-        +String hotel
-        +String plan
-    }
-    class Builder {
-        +String title
-        +int days
-        +String hotel
-        +String plan
-        +Builder title(String title)
-        +Builder days(int days)
-        +Builder hotel(String hotel)
-        +Builder plan(String plan)
-        +TourPlan build()
-    }
-    TourPlan --> Builder
-```
-
-결론적으로, 빌더 패턴은 객체 생성의 복잡성을 줄이고, 코드의 가독성과 유지보수성을 높이는 데 중요한 역할을 한다. 실무에서의 활용 사례를 통해 그 중요성을 다시 한번 확인할 수 있다.
-
-<!--
-## 추가 자료
-- 참고 문헌 및 링크
-- 관련 동영상 강의
-- 빌더 패턴에 대한 심화 학습 자료
--->
-
-## 추가 자료
-
-**참고 문헌 및 링크**  
-빌더 패턴에 대한 깊이 있는 이해를 위해 다음의 참고 문헌과 링크를 추천한다. 
-
-1. **"Design Patterns: Elements of Reusable Object-Oriented Software"** - Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides  
-   이 책은 디자인 패턴의 고전으로, 빌더 패턴을 포함한 다양한 패턴에 대한 설명이 잘 되어 있다.
-
-2. **"Effective Java"** - Joshua Bloch  
-   이 책에서는 자바에서의 빌더 패턴 사용에 대한 실용적인 조언을 제공한다.
-
-3. **"Refactoring: Improving the Design of Existing Code"** - Martin Fowler  
-   리팩토링 과정에서 빌더 패턴을 어떻게 활용할 수 있는지에 대한 통찰을 제공한다.
-
-4. [Refactoring Guru - Builder Pattern](https://refactoring.guru/design-patterns/builder)  
-   빌더 패턴에 대한 명확한 설명과 예제를 제공하는 웹사이트이다.
-
-**관련 동영상 강의**  
-다음의 동영상 강의는 빌더 패턴을 이해하는 데 큰 도움이 될 것이다.
-
-1. **YouTube - "Builder Pattern in Java"**  
-   이 강의에서는 자바에서 빌더 패턴을 구현하는 방법을 단계별로 설명한다.
-
-2. **Udemy - "Design Patterns in Java"**  
-   이 과정에서는 다양한 디자인 패턴을 다루며, 빌더 패턴에 대한 심도 있는 설명이 포함되어 있다.
-
-3. **Coursera - "Object-Oriented Design"**  
-   객체 지향 설계의 기초를 다루며, 빌더 패턴을 포함한 여러 디자인 패턴을 학습할 수 있다.
-
-**빌더 패턴에 대한 심화 학습 자료**  
-빌더 패턴을 더 깊이 있게 학습하고자 하는 개발자들을 위해 다음의 자료를 추천한다.
-
-1. **"Java Design Patterns"** - Vaskaran Sarcar  
-   이 책은 자바에서의 다양한 디자인 패턴을 다루며, 빌더 패턴에 대한 구체적인 예제와 설명이 포함되어 있다.
-
-2. **"Design Patterns in Modern C++"** - Dmitri Nesteruk  
-   C++에서의 빌더 패턴 구현을 다루며, 다른 언어와의 비교를 통해 이해를 돕는다.
-
-3. **GitHub - "Design Patterns"**  
-   다양한 디자인 패턴을 구현한 오픈 소스 프로젝트를 통해 실제 코드에서 빌더 패턴을 어떻게 활용하는지 살펴볼 수 있다.
-
-이 자료들은 빌더 패턴을 이해하고 활용하는 데 큰 도움이 될 것이다. 각 자료를 통해 이 패턴의 이론과 실제 적용 사례를 폭넓게 학습할 수 있다.
-
-<!--
-##### Reference #####
--->
-
-## Reference
-
-
-* [https://refactoring.guru/design-patterns/builder](https://refactoring.guru/design-patterns/builder)
-* [https://en.wikipedia.org/wiki/Builder_pattern](https://en.wikipedia.org/wiki/Builder_pattern)
-* [https://readystory.tistory.com/121](https://readystory.tistory.com/121)
-* [https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%EB%B9%8C%EB%8D%94Builder-%ED%8C%A8%ED%84%B4-%EB%81%9D%ED%8C%90%EC%99%95-%EC%A0%95%EB%A6%AC](https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%EB%B9%8C%EB%8D%94Builder-%ED%8C%A8%ED%84%B4-%EB%81%9D%ED%8C%90%EC%99%95-%EC%A0%95%EB%A6%AC)
-* [https://dev-youngjun.tistory.com/197](https://dev-youngjun.tistory.com/197)
-* [https://mangkyu.tistory.com/163](https://mangkyu.tistory.com/163)
-* [https://velog.io/@ch200203/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%B3%B5%ED%95%98%EA%B8%B03-%EB%B9%8C%EB%8D%94-%ED%8C%A8%ED%84%B4-Builder-Pattern](https://velog.io/@ch200203/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%B3%B5%ED%95%98%EA%B8%B03-%EB%B9%8C%EB%8D%94-%ED%8C%A8%ED%84%B4-Builder-Pattern)
-
+* [Refactoring Guru - Builder Pattern](https://refactoring.guru/design-patterns/builder)
+* [Wikipedia - Builder pattern](https://en.wikipedia.org/wiki/Builder_pattern)
+* [readystory.tistory.com - 빌더 패턴](https://readystory.tistory.com/121)
+* [inpa.tistory.com - GoF 빌더 패턴 끝판왕 정리](https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%EB%B9%8C%EB%8D%94Builder-%ED%8C%A8%ED%84%B4-%EB%81%9D%ED%8C%90%EC%99%95-%EC%A0%95%EB%A6%AC)
+* [mangkyu.tistory.com - 빌더 패턴](https://mangkyu.tistory.com/163)
+* [velog.io - 디자인 패턴 정복하기3 빌더 패턴](https://velog.io/@ch200203/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%B3%B5%ED%95%98%EA%B8%B03-%EB%B9%8C%EB%8D%94-%ED%8C%A8%ED%84%B4-Builder-Pattern)
