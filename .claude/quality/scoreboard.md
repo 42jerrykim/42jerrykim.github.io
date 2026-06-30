@@ -558,7 +558,7 @@
 | content/collection/designpattern/02_builder/index.md | 92 | 2026-06-30 | 2 | 통과 | 외부 링크 6개 접근성 미검증(도구 환경 403 제약, 깨짐 증거 없음) |
 | content/collection/designpattern/03_factory_method/index.md | 92 | 2026-06-30 | 2 | 통과 | 외부 링크 5개 접근성 미검증(도구 환경 403 제약, 깨짐 증거 없음) |
 | content/collection/designpattern/04_prototype/index.md | 96.4 | 2026-06-30 | 2 | 통과 | 외부 링크 3개 접근성 미검증(도구 환경 403 제약, 깨짐 증거 없음) |
-| content/collection/designpattern/05_singleton/index.md | - | - | - | 미채점 | - |
+| content/collection/designpattern/05_singleton/index.md | 96.4 | 2026-06-30 | 2 | 통과 | 외부 링크 3개 접근성 미검증(도구 환경 403 제약, 깨짐 증거 없음) |
 | content/collection/designpattern/06_adapter/index.md | - | - | - | 미채점 | - |
 | content/collection/designpattern/07_bridge/index.md | - | - | - | 미채점 | - |
 | content/collection/designpattern/08_composite/index.md | - | - | - | 미채점 | - |
