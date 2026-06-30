@@ -555,7 +555,7 @@
 | content/collection/computerterms/time_complexity/index.md | - | - | - | 미채점 | - |
 | content/collection/designpattern/00_overview/index.md | 90 | 2026-06-30 | 3 | 통과 | 잔여(경미): "스트레이트지"→"스트래티지" 오타, "Memonto"→"메멘토" 오타, 패턴 상세부 표·리스트 정보 중복 |
 | content/collection/designpattern/01_abstract_factory/index.md | 96.4 | 2026-06-30 | 3 | 통과 | 외부 링크 6개 접근성 미검증(도구 환경 403 제약, 깨짐 증거 없음) |
-| content/collection/designpattern/02_builder/index.md | - | - | - | 미채점 | - |
+| content/collection/designpattern/02_builder/index.md | 92 | 2026-06-30 | 2 | 통과 | 외부 링크 6개 접근성 미검증(도구 환경 403 제약, 깨짐 증거 없음) |
 | content/collection/designpattern/03_factory_method/index.md | - | - | - | 미채점 | - |
 | content/collection/designpattern/04_prototype/index.md | - | - | - | 미채점 | - |
 | content/collection/designpattern/05_singleton/index.md | - | - | - | 미채점 | - |
