@@ -553,7 +553,7 @@
 | content/collection/computerterms/algorithm_efficiency/index.md | - | - | - | 미채점 | - |
 | content/collection/computerterms/algotithm_classify/index.md | - | - | - | 미채점 | - |
 | content/collection/computerterms/time_complexity/index.md | - | - | - | 미채점 | - |
-| content/collection/designpattern/00_overview/index.md | - | - | - | 미채점 | - |
+| content/collection/designpattern/00_overview/index.md | 90 | 2026-06-30 | 3 | 통과 | 잔여(경미): "스트레이트지"→"스트래티지" 오타, "Memonto"→"메멘토" 오타, 패턴 상세부 표·리스트 정보 중복 |
 | content/collection/designpattern/01_abstract_factory/index.md | - | - | - | 미채점 | - |
 | content/collection/designpattern/02_builder/index.md | - | - | - | 미채점 | - |
 | content/collection/designpattern/03_factory_method/index.md | - | - | - | 미채점 | - |
