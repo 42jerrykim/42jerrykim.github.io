@@ -3,7 +3,7 @@ title: "[Self-Improvement] 박용후가 말하는 성공하는 사람의 네 가
 description: "관점디자이너 박용후가 말하는 AI 시대에 대체되지 않는 사람들의 공통점을 정리한다. 공부, 내 편 만들기, 글쓰기, 꾸준함이라는 성공의 네 기둥과 단어를 스스로 재정의하는 삶의 태도, 자극에 반응하는 방식을 스스로 선택하는 법까지 다룬다."
 date: 2026-06-30
 lastmod: 2026-06-30
-draft: true
+draft: false
 categories:
   - Self-Improvement
   - Career
