@@ -92,56 +92,7 @@ tags:
 | 단점 | 제품 "종류" 추가가 어려움 — 새로운 제품 종류(예: 책상)를 추가하려면 AbstractFactory 인터페이스와 모든 ConcreteFactory를 함께 수정해야 한다. |
 | 단점 | 클래스 수 증가 — 제품군 수 × 제품 종류 수만큼 클래스가 늘어나, 제품군이 하나뿐인 작은 프로젝트에는 과한 설계가 될 수 있다. |
 
-**샘플 코드**
-
-아래는 추상 팩토리 패턴의 간단한 예제 코드이다.
-
-```python
-from abc import ABC, abstractmethod
-
-# Abstract Product
-class Button(ABC):
-    @abstractmethod
-    def render(self):
-        pass
-
-# Concrete Products
-class WindowsButton(Button):
-    def render(self):
-        return "Windows Button"
-
-class MacOSButton(Button):
-    def render(self):
-        return "MacOS Button"
-
-# Abstract Factory
-class GUIFactory(ABC):
-    @abstractmethod
-    def create_button(self) -> Button:
-        pass
-
-# Concrete Factories
-class WindowsFactory(GUIFactory):
-    def create_button(self) -> Button:
-        return WindowsButton()
-
-class MacOSFactory(GUIFactory):
-    def create_button(self) -> Button:
-        return MacOSButton()
-
-# Client Code
-def client_code(factory: GUIFactory):
-    button = factory.create_button()
-    print(button.render())
-
-# Usage
-if __name__ == "__main__":
-    os_type = "Windows"  # or "MacOS"
-    factory = WindowsFactory() if os_type == "Windows" else MacOSFactory()
-    client_code(factory)
-```
-
-이와 같이 추상 팩토리 패턴은 객체 생성의 유연성을 제공하며, 다양한 제품군을 효과적으로 관리할 수 있는 방법을 제시한다.
+코드로 어떻게 구현되는지는 아래 "구성 요소"와 "예제" 절에서 가구 쇼핑몰 시뮬레이터 하나로 일관되게 보여준다.
 
 ## 추상 팩토리 패턴의 구성 요소
 
@@ -212,23 +163,14 @@ classDiagram
 
 위의 다이어그램은 추상 팩토리 패턴의 구성 요소 간의 관계를 보여준다. AbstractFactory는 ConcreteFactory에 의해 구현되며, 각 ConcreteFactory는 AbstractProduct의 구체적인 구현체인 ConcreteProduct를 생성한다. 이러한 구조는 클라이언트가 구체적인 클래스에 의존하지 않고도 다양한 제품을 생성할 수 있도록 한다.
 
-## 추상 팩토리 패턴의 동작 원리
-
-**객체 생성 과정 설명**  
-추상 팩토리 패턴은 객체 생성의 책임을 팩토리 클래스에 위임하여 클라이언트 코드가 구체적인 클래스에 의존하지 않도록 하는 디자인 패턴이다. 이 패턴은 여러 제품군을 생성할 수 있는 인터페이스를 제공하며, 클라이언트는 이 인터페이스를 통해 제품을 생성한다.
-
-객체 생성 과정은 다음과 같은 단계로 이루어진다.
+**객체 생성 과정**  
+이 네 가지 역할이 실제로 동작하는 순서는 다음과 같다.
 
 1. 클라이언트는 추상 팩토리 인터페이스를 통해 제품을 요청한다.
 2. 구체적인 팩토리 클래스가 선택되어 인스턴스화된다.
 3. 선택된 팩토리 클래스는 요청된 제품의 인스턴스를 생성하여 반환한다.
 
-이 과정에서 클라이언트는 구체적인 제품 클래스에 대한 정보를 알 필요가 없으며, 오직 추상 팩토리 인터페이스만을 통해 상호작용한다.
-
-**환경 설정에 따른 팩토리 선택**  
-추상 팩토리 패턴은 환경 설정에 따라 적절한 팩토리를 선택할 수 있는 유연성을 제공한다. 예를 들어, 운영 체제나 사용자 설정에 따라 서로 다른 팩토리를 선택하여 제품을 생성할 수 있다.
-
-다음은 환경 설정에 따라 팩토리를 선택하는 예시 코드이다.
+이 과정에서 클라이언트는 구체적인 제품 클래스에 대한 정보를 알 필요가 없으며, 오직 추상 팩토리 인터페이스만을 통해 상호작용한다. 2단계의 "팩토리 선택"은 코드에 고정값으로 박아둘 수도 있지만, 아래처럼 환경 설정값에 따라 런타임에 결정하는 방식도 흔하다.
 
 ```python
 def get_factory(os_type: str) -> AbstractFactory:
@@ -239,8 +181,6 @@ def get_factory(os_type: str) -> AbstractFactory:
     else:
         raise ValueError("Unsupported OS type")
 ```
-
-이와 같은 방식으로 클라이언트는 환경에 맞는 팩토리를 선택하여 제품을 생성할 수 있다. 구조 자체는 앞서 본 구성 요소 다이어그램과 동일하며, 차이는 "어떤 ConcreteFactory를 고를지"를 런타임 설정값으로 결정한다는 점뿐이다.
 
 ## 예제
 
