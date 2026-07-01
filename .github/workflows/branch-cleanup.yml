@@ -1,0 +1,22 @@
+name: 'Branch Cleanup'
+on:
+  pull_request:
+    types: [closed]
+jobs:
+  delete-head-branch:
+    # Merge 시엔 저장소의 delete_branch_on_merge 설정이 이미 처리하므로,
+    # 이 워크플로는 merge 없이 close된 PR의 브랜치를 정리하는 안전망 역할이다.
+    if: >
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref != 'main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Delete head branch
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        run: |
+          gh api -X DELETE "repos/${{ github.repository }}/git/refs/heads/$HEAD_REF"
