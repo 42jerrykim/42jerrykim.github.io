@@ -68,7 +68,7 @@ tags:
   - Refactoring
   - 리팩토링
 image: wordcloud.png
-draft: true
+draft: false
 ---
 
 리서치를 대신 해 달라고 AI에게 맡길 때 가장 아쉬운 부분은 **출처의 신뢰도**와 **작업 재현성**이다. 답은 그럴듯한데 근거가 어디서 왔는지 알기 어렵고, 세션이 끊기면 처음부터 다시 물어봐야 하는 경우가 많다. **[insane-research](https://github.com/fivetaku/insane-research)**는 Claude Code 위에서 동작하는 플러그인으로, 리서치 과정을 7단계 파이프라인으로 쪼개고 소스마다 A~E 등급을 매겨 이 문제를 정면으로 다룬다. 이 글에서는 insane-research의 구조와 동작 방식을 정리하고, 비슷한 목적의 Claude Code 플러그인 및 Perplexity·ChatGPT·Gemini의 딥 리서치 기능과 비교한다.
