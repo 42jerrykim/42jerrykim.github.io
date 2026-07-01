@@ -159,5 +159,5 @@
 {{ end }}
 
 {{ define "right-sidebar" }}
-    {{ if .Scratch.Get "hasWidget" }}{{ partialCached "sidebar/right.html" (dict "Context" . "Scope" "page") "page" }}{{ end}}
+    {{ if .Scratch.Get "hasWidget" }}{{ partialCached "sidebar/right.html" (dict "Context" . "Scope" "page") "page" .RelPermalink }}{{ end}}
 {{ end }} 
