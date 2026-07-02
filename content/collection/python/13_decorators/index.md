@@ -53,7 +53,7 @@ tags:
   - Git
   - Code-Quality
   - 코드품질
-lastmod: 2026-01-17
+lastmod: 2026-07-02
 collection_order: 13
 ---
 # 13. 데코레이터
@@ -72,38 +72,82 @@ collection_order: 13
 
 ## 핵심 개념(이론)
 
-### 1) 데코레이터의 역할과 경계
-이 챕터의 핵심은 “무엇을 할 수 있나”가 아니라, **어떤 문제를 해결하고 어디까지 책임지는지**를 분명히 하는 것입니다.
-경계가 흐리면 코드는 커질수록 결합이 늘어나고 수정 비용이 커집니다.
+### 1) `@`는 문법 설탕이다: `f = deco(f)`
 
-### 2) 왜 이 개념이 필요한가(실무 동기)
-실무에서는 예외 상황, 성능, 협업, 테스트가 항상 문제를 만듭니다.
-따라서 이 주제는 기능이 아니라 **품질(신뢰성/유지보수성/보안)**을 위한 기반으로 이해해야 합니다.
+데코레이터 문법의 실체는 단순한 재할당입니다. `@my_decorator`를 함수 정의 위에 붙이는 것은, 함수 정의 직후에 `say_goodbye = my_decorator(say_goodbye)`를 실행하는 것과 **완전히 동일**합니다 (도입 배경과 문법 논의는 [PEP 318](https://peps.python.org/pep-0318/) 참조). 즉 데코레이터는 마법이 아니라 "함수를 받아 함수를 돌려주는 일급 함수(higher-order function)"이며, 이 디슈가링(desugaring) 한 줄만 이해하면 아래 모든 변형이 유도됩니다.
 
-### 3) 트레이드오프: 간단함 vs 확장성
-대부분의 선택은 “더 단순하게”와 “더 확장 가능하게” 사이에서 균형을 잡는 일입니다.
-초기에는 단순함을, 장기 운영/팀 협업이 커질수록 확장성을 더 우선합니다.
+```python
+@my_decorator
+def say_goodbye(): ...
 
-### 4) 실패 모드(Failure Modes)를 먼저 생각하라
-무엇이 실패하는지(입력, I/O, 동시성, 외부 시스템)를 먼저 떠올리면 설계가 안정적으로 변합니다.
-이 챕터의 예제는 실패 모드를 축소해서 보여주므로, 실제 적용 시에는 더 많은 방어가 필요합니다.
+# 위 코드는 정확히 아래와 같다
+def say_goodbye(): ...
+say_goodbye = my_decorator(say_goodbye)
+```
 
-### 5) 학습 포인트: 외우지 말고 “판단 기준”을 남겨라
-핵심은 API를 외우는 것이 아니라, “언제 무엇을 선택할지” 판단 기준을 정리하는 것입니다.
-이 기준이 쌓이면 새로운 라이브러리/도구가 나와도 빠르게 적응할 수 있습니다.
+### 2) 상태는 클로저(closure)에 저장된다
 
-## 선택 기준(Decision Guide)
-- 기본은 **가독성/명확성** 우선(최적화는 측정 이후).
-- 외부 의존이 늘수록 **경계/추상화**와 **테스트**를 먼저 강화.
-- 복잡도가 증가하면 “규칙을 코드로”가 아니라 “구조로” 담는 방향을 고려.
+`wrapper`가 원본 `func`를 기억하는 이유는 **클로저** 때문입니다. `my_decorator(func)`가 반환하는 `wrapper`는 자신을 둘러싼 스코프의 `func`를 자유 변수(free variable)로 캡처하며, 이는 `wrapper.__closure__`에서 확인할 수 있습니다. 호출 횟수 세기처럼 값을 변경해야 하면 `nonlocal` 선언이 필요합니다 — 이것이 클래스 기반 데코레이터(`self.count`)와의 근본적 차이입니다.
 
-## 흔한 오해/주의점
-- 도구/문법이 곧 실력이라는 오해가 있습니다. 실력은 문제를 단순화하고 구조화하는 능력입니다.
-- 극단적 최적화/과설계는 학습과 유지보수를 방해할 수 있습니다.
+### 3) 매개변수 있는 데코레이터 = 3중 중첩
+
+`@retry(max_attempts=3)`처럼 인자를 받는 데코레이터는 구조가 다릅니다. `retry(max_attempts=3)`가 **먼저 호출되어 데코레이터를 반환**하고, 그 반환값이 함수에 적용됩니다. 즉 `f = retry(max_attempts=3)(f)` — "데코레이터를 만들어 주는 팩토리 → 데코레이터 → wrapper"의 3중 중첩입니다. 아래 실용 예제의 `retry`가 이 구조를 그대로 보여줍니다.
+
+### 4) `functools.wraps`가 없으면 함수의 정체성이 사라진다
+
+`wrapper`로 교체된 함수는 `__name__`이 `"wrapper"`가 되고 `__doc__`·시그니처 정보를 잃습니다. 이는 디버깅·문서 도구·직렬화(pickle)를 조용히 깨뜨립니다. `@functools.wraps(func)`는 원본의 `__name__`, `__doc__`, `__module__` 등을 복사하고 `__wrapped__` 속성으로 원본 접근 경로까지 남깁니다.
+
+```python
+import functools
+
+def bad_deco(func):
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper
+
+def good_deco(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        return func(*args, **kwargs)
+    return wrapper
+
+@bad_deco
+def area(r):
+    """원의 넓이"""
+    return 3.14159 * r * r
+
+@good_deco
+def perimeter(r):
+    """원의 둘레"""
+    return 2 * 3.14159 * r
+
+print(area.__name__, area.__doc__)            # wrapper None  ← 정체성 소실!
+print(perimeter.__name__, perimeter.__doc__)  # perimeter 원의 둘레
+print(perimeter.__wrapped__(1))               # 원본 함수에 직접 접근 가능
+```
+
+## 흔한 오해/함정
+
+- **표준 라이브러리를 두고 손수 만들지 말 것**: 캐싱이 필요하면 먼저 `functools.lru_cache`(또는 3.9+의 `functools.cache`)를 씁니다. 직접 구현(아래 프로젝트 2)은 TTL·커스텀 키·분산 캐시처럼 `lru_cache`가 못 하는 요구가 있을 때만 정당화됩니다.
+
+  ```python
+  import functools
+
+  @functools.lru_cache(maxsize=128)
+  def fib(n):
+      return n if n < 2 else fib(n - 1) + fib(n - 2)
+
+  print(fib(100))            # 순식간에 계산
+  print(fib.cache_info())    # 히트/미스 통계 내장
+  ```
+
+- **클래스 기반 데코레이터를 메서드에 붙이면 `self`가 사라진다**: `CountCalls` 같은 클래스 데코레이터는 함수를 인스턴스로 교체하는데, 일반 클래스 인스턴스는 함수와 달리 디스크립터 프로토콜(`__get__`)을 구현하지 않아 **바운드 메서드가 만들어지지 않습니다**. 인스턴스 메서드에는 클로저 기반 데코레이터를 쓰거나, 클래스 데코레이터에 `__get__`을 구현해야 합니다.
+
+- **스택 순서는 아래에서 위로**: `@a` 위에 `@b`가 있으면 `f = b(a(f))`입니다. 즉 **함수에 가까운 데코레이터가 먼저 적용**되고, 호출 시에는 바깥(위쪽) wrapper부터 실행됩니다. 로깅·트랜잭션·권한처럼 순서가 의미 있는 조합에서 자주 틀리는 지점입니다.
 
 ## 요약
-- 데코레이터는 기능이 아니라 구조/품질을 위한 기반이다.
-- 트레이드오프와 실패 모드를 먼저 생각하고, 판단 기준을 남기자.
+- `@deco`는 `f = deco(f)`의 문법 설탕이고, 상태는 클로저가 담는다. 인자 있는 데코레이터는 3중 중첩(`deco(args)(f)`)이다.
+- `functools.wraps`는 선택이 아니라 기본값이다. 캐싱은 `lru_cache` 먼저, 직접 구현은 그것이 부족할 때만.
 
 ## 핵심 내용
 
@@ -281,6 +325,8 @@ print(person)  # Person(name=김철수, age=30)
 **@property**
 
 ```python
+import math
+
 class Circle:
     def __init__(self, radius):
         self._radius = radius
@@ -297,11 +343,11 @@ class Circle:
     
     @property
     def area(self):
-        return 3.14159 * self._radius ** 2
+        return math.pi * self._radius ** 2
     
     @property
     def circumference(self):
-        return 2 * 3.14159 * self._radius
+        return 2 * math.pi * self._radius
 
 circle = Circle(5)
 print(f"반지름: {circle.radius}")

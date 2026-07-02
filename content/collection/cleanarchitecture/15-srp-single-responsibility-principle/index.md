@@ -5,6 +5,7 @@ image: "wordcloud.png"
 description: "단일 책임 원칙(SRP)의 진정한 의미를 다룹니다. '하나의 일만 해야 한다'는 오해를 바로잡고, 액터(Actor) 개념과 Conway's Law와의 연결을 통해 SRP의 아키텍처적 의미를 설명합니다."
 title: "[Clean Architecture] 15. SRP: 단일 책임 원칙"
 date: 2026-01-18
+lastmod: 2026-07-02
 categories: CleanArchitecture
 tags:
   - Clean-Architecture
@@ -313,6 +314,13 @@ SRP는 클래스뿐 아니라 **컴포넌트** 수준에서도 적용된다:
 
 > **"SRP는 '변경의 이유'에 관한 것이다. 하나의 모듈을 변경해야 하는 이유는 하나여야 한다."**
 > — Robert C. Martin
+
+## 참고 문헌
+
+- Robert C. Martin, 『Clean Architecture: A Craftsman's Guide to Software Structure and Design』(2017), 7장 — 이 글의 원전
+- Robert C. Martin, 『Agile Software Development: Principles, Patterns, and Practices』(2003) — SRP가 처음 정식화된 책
+- Robert C. Martin, ["The Single Responsibility Principle"](https://blog.cleancoder.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html) (2014) — 저자가 직접 오해를 교정하는 글
+- Melvin E. Conway, ["How Do Committees Invent?"](https://www.melconway.com/Home/Committees_Paper.html) (1968) — Conway's Law의 원 논문
 
 ## 다음 장에서는
 

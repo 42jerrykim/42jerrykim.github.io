@@ -5,7 +5,7 @@ title: "[Design Patterns] 싱글톤: 논란이 많은 패턴"
 description: "가장 논란이 많은 디자인 패턴인 Singleton의 장단점을 객관적으로 분석합니다. 전역 상태의 위험성, 테스트의 어려움, 멀티스레드 환경에서의 문제점을 깊이 있게 다루고, 언제 사용해야 하고 언제 피해야 하는지에 대한 명확한 가이드라인을 제시합니다. 대안 패턴과 현대적 접근법도 함께 탐구합니다."
 image: "wordcloud.png"
 date: 2024-12-05T10:00:00+09:00
-lastmod: 2024-12-15T14:30:00+09:00
+lastmod: 2026-07-02T00:00:00+09:00
 categories:
 - Design Patterns
 - Creational Patterns
@@ -408,7 +408,10 @@ public class SingletonPerformanceBenchmark {
 }
 
 /*
-JMH 벤치마크 결과 (나노초/operation):
+JMH 벤치마크 예시 결과 (나노초/operation):
+※ 아래 수치는 경향을 보여주기 위한 예시값이다. 절대값은 JVM 버전·하드웨어·
+   JIT 워밍업 상태에 따라 크게 달라지므로, 위 벤치마크 코드를 직접 실행해
+   자신의 환경에서 측정할 것.
 
 구현 방식               | 평균 시간 | 표준편차 | Throughput
 Eager Initialization   |    2.1   |   ±0.1  |  매우 높음
@@ -417,10 +420,10 @@ Enum Singleton         |    1.8   |   ±0.1  |  가장 높음
 Double-Checked Locking |    2.7   |   ±0.2  |  높음
 Lazy Synchronized      |   45.2   |   ±2.1  |  낮음 (병목!)
 
-결론: 
-- Enum Singleton이 가장 빠름
-- Lazy Synchronized는 심각한 성능 저하
-- 초기화 후에는 대부분 비슷한 성능
+결론(환경과 무관하게 유지되는 경향):
+- 동기화 없는 방식(Enum/Eager/Bill Pugh)은 초기화 후 오버헤드가 거의 없음
+- 매 호출 synchronized(Lazy Synchronized)만 수십 배 느림 — 락 경합이 원인
+- 초기화 후에는 나머지 방식 간 차이가 미미함
 */
 ```
 
@@ -477,7 +480,9 @@ public void testSendEmail() {
     SmtpClient.reset();  // 하지만 보통 없음!
     
     // 문제 2: Mock 객체 주입 불가능
-    // Mockito로 static 메서드 mocking은 복잡함
+    // Mockito 3.4+의 mockStatic()으로 static 메서드 mocking이 가능해졌지만,
+    // try-with-resources로 스코프를 관리해야 하고 테스트가 장황해짐 —
+    // "가능하다"와 "설계가 좋다"는 다른 문제
     
     // 문제 3: 테스트 간 격리 실패
     // 이전 테스트의 상태가 영향을 줄 수 있음
@@ -919,13 +924,15 @@ public class FinalBusinessService implements BusinessService {
 
 ### 구현 방식별 성능 벤치마크
 
-| 구현 방식 | 평균 시간 (ns) | 표준편차 | 권장 사용 |
+| 구현 방식 | 평균 시간 (ns, 예시값) | 표준편차 | 권장 사용 |
 |----------|--------------|---------|----------|
 | Enum Singleton | 1.8 | ±0.1 | 직렬화 필요, 리플렉션 방지 |
 | Eager Initialization | 2.1 | ±0.1 | 즉시 초기화 허용 |
 | Bill Pugh Solution | 2.3 | ±0.1 | 지연 초기화 필요 |
 | Double-Checked Locking | 2.7 | ±0.2 | volatile 이해 가능한 팀 |
 | Synchronized Method | 45.2 | ±2.1 | 사용 비권장 |
+
+수치는 본문 벤치마크 코드의 예시 실행값으로, JVM·하드웨어에 따라 달라진다. 신뢰할 수 있는 것은 절대값이 아니라 "매 호출 동기화만 수십 배 느리다"는 경향이다.
 
 ### Singleton vs 대안 패턴 비교
 
@@ -1019,7 +1026,8 @@ Singleton을 피해야 하는 경우:
 - [ ] Singleton의 대안들을 제시하고 비교할 수 있다
 - [ ] 기존 Singleton 코드를 더 나은 설계로 리팩토링할 수 있다
 
----
+### 참고 문헌
 
-**핵심 메시지:**
-"Singleton은 강력하지만 위험한 도구이다. 사용 전에 신중히 고려하고, 사용 후에는 지속적으로 그 필요성을 검토해야 한다. 때로는 사용하지 않는 것이 더 나은 설계일 수 있다." 
+- Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides, 『Design Patterns: Elements of Reusable Object-Oriented Software』(1994) — Singleton 패턴의 원전. [위키백과 항목](https://en.wikipedia.org/wiki/Design_Patterns)
+- Joshua Bloch, 『Effective Java, 3rd Edition』(2018) — Item 3(Enum 싱글톤 권장), Item 89(직렬화와 인스턴스 통제)
+- [Java Language Specification §12.4 — 클래스 초기화의 스레드 안전성](https://docs.oracle.com/javase/specs/jls/se17/html/jls-12.html#jls-12.4) (Bill Pugh 방식의 근거) 
