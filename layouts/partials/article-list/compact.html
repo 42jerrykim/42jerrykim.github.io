@@ -2,7 +2,6 @@
     <a href="{{ .RelPermalink }}">
         <div class="article-details">
             <h2 class="article-title{{ if .Draft }} article-title--draft{{ end }}">
-                {{- if .Draft }}<span class="draft-badge">DRAFT</span> {{ end -}}
                 {{- .Title -}}
             </h2>
             <footer class="article-time">
