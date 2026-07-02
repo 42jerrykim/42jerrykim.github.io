@@ -38,8 +38,7 @@ description: >-
 | Vocabulary | [`vocabulary-post-writing`](../vocabulary-post-writing/SKILL.md) |
 | Movies | [`movie-review-writing`](../movie-review-writing/SKILL.md) |
 | TV-Show | [`tv-series-review-writing`](../tv-series-review-writing/SKILL.md) |
-| bashshell | [`bashshell-post-writing`](../bashshell-post-writing/SKILL.md) |
-| cmd | [`cmd-post-writing`](../cmd-post-writing/SKILL.md) |
+| bashshell / cmd | [`shell-command-post-writing`](../shell-command-post-writing/SKILL.md) |
 
 4. **태그 후보 수집**: `data/tags.yaml` 읽어 관련 카테고리에서 태그 50개 이상 선정
 
@@ -132,7 +131,7 @@ image: "image.png"
 - 학습 성과 목표 ("이 글을 읽은 후 점검해 볼 질문")
 - 판단 기준 (언제 사용/피할지)
 - 비판적 시각 (한계, 트레이드오프)
-- **분량은 품질의 결과**: 권장 하한(일반 약 300줄, 개요 약 150줄)을 **패딩 없이** 채운다. 중복 요약·답 없는 번호 리스트·작성자용 자기인증("게시 전 자가 점검" 등)·존재하지 않는 파일 참조 금지(educational-content-writing 안티패딩 원칙). 길이가 부족하면 실제 코드·측정 수치·사례로 채운다.
+- **분량은 품질의 결과 (줄 수 하한 없음)**: 최소 분량 기준을 두지 않는다 — "충분한가"는 educational-content-writing §7 내용 완결성으로 판단한다. 중복 요약·답 없는 번호 리스트·작성자용 자기인증("게시 전 자가 점검" 등)·존재하지 않는 파일 참조 금지(안티패딩 원칙). 짧게 느껴지면 줄을 늘리지 말고 실제 코드·측정 수치·사례·빠진 완결성 축으로 보강한다.
 - **코드는 컴파일 가능**해야 하고, "정량적"·"측정"을 표방하면 실제 수치·벤치를 포함한다.
 
 이론 중심 컬렉션 글(`content/collection/**/index.md`)을 작성·보강할 때는 [`collection-writing-standards`](../collection-writing-standards/SKILL.md) 스킬도 함께 적용한다 (이론 우선 서술, 예제는 보충 역할).
@@ -238,7 +237,7 @@ slug: "kebab-case-slug"
 3. **00 챕터** 생성하여 소개/커리큘럼 배치 (`collection_order: 0`)
 4. 각 챕터에 `collection_order` 순번 부여
 5. **전용 작성 스킬 추가 여부 판단**: Algorithm/Movies처럼 고유한 폴더명·Front Matter·본문 구조 규칙이 필요한 컬렉션이면 `.claude/skills/<컬렉션명>-post-writing/SKILL.md`를 새로 작성한다. 단순 주제별 글 모음(전용 규칙 없음)이면 생략 가능.
-   - **템플릿**: `name`/`description` frontmatter를 작성하고, 본문에 아래 절을 포함한다 — 제목/메타 규칙, 날짜/버전 관리, 폴더명 규칙, Front Matter 템플릿, 본문 구조 가이드, 작성 체크리스트. 참고 템플릿: [`algorithm-post-writing`](../algorithm-post-writing/SKILL.md)(문제 풀이형) 또는 [`bashshell-post-writing`](../bashshell-post-writing/SKILL.md)(명령어 참조형)
+   - **템플릿**: `name`/`description` frontmatter를 작성하고, 본문에 아래 절을 포함한다 — 제목/메타 규칙, 날짜/버전 관리, 폴더명 규칙, Front Matter 템플릿, 본문 구조 가이드, 작성 체크리스트. 참고 템플릿: [`algorithm-post-writing`](../algorithm-post-writing/SKILL.md)(문제 풀이형) 또는 [`shell-command-post-writing`](../shell-command-post-writing/SKILL.md)(명령어 참조형)
    - **매핑 표 갱신**: 전용 스킬을 새로 만들었다면 아래 3곳의 매핑 표에 컬렉션·접두어·스킬 링크를 추가한다
      - 이 문서 §3 "컬렉션별 전용 스킬 확인" 표
      - [reference.md](reference.md)의 "기존 컬렉션 목록" 표
