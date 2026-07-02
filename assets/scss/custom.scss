@@ -2,7 +2,12 @@
     You can add your own custom styles here.
 */
 
-/* Draft article titles in lists */
+/* Draft article visual indicator (PR 프리뷰에서 draft: true 글 식별용) */
+article.article-draft {
+    border-left: 4px solid #d32f2f;
+    background-color: rgba(211, 47, 47, 0.08);
+}
+
 .article-title--draft {
     color: #d32f2f; /* red */
 }

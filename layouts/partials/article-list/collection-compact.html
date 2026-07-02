@@ -1,4 +1,4 @@
-<article>
+<article{{ if .Draft }} class="article-draft"{{ end }}>
     <a href="{{ .RelPermalink }}">
         <div class="article-details">
             <h2 class="article-title{{ if .Draft }} article-title--draft{{ end }}">
