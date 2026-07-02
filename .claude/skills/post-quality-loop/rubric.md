@@ -140,8 +140,7 @@
 | `Vocabulary/` | `vocabulary-post-writing` (정의·콜로케이션·유의어·예문) |
 | `Movies/` | `movie-review-writing` (Act 5 구조·캐릭터·상징) |
 | `TV-Show/` | `tv-series-review-writing` (출처 10+·Act 5·인물 분석) |
-| `bashshell/` | `bashshell-post-writing` |
-| `cmd/` | `cmd-post-writing` |
+| `bashshell/` / `cmd/` | `shell-command-post-writing` (정신 모델·이식성·1차 출처) |
 | 교육 시리즈 (`optimization-*`, `design-patterns`, `cleanarchitecture` 등) | `educational-content-writing` + `collection-writing-standards` (00 챕터 필수요소·레벨별 경로·Broken→Fixed→Verification·문단 비율 ≥40%·컴파일 가능 코드·수치 근거·**내용 완결성 §7**: 메커니즘·오개념·개념 연결·1차 출처·과목별 필수 요소) |
 
 해당 컬렉션 체크리스트의 필수 섹션이 빠졌으면 항목 2·3에서 감점하고, 결함 목록에 "어느 섹션이 빠졌는지"를 적는다.

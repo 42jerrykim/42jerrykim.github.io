@@ -145,7 +145,7 @@ Counter a, b;  // 각각 독립적인 count
 | **Design Patterns** | 패턴의 탄생 배경(저자, 연도) + 장단점 표 필수. 안티패턴과의 비교 포함. |
 | **Optimization** | 성능 주장은 반드시 벤치 또는 실행 가능한 코드 포함. 플랫폼/플래그 명시. |
 | **Vocabulary** | [`vocabulary-post-writing`](../vocabulary-post-writing/SKILL.md) 참고. 단어 정의 + 콜로케이션 + 유의어 비교 표 필수. |
-| **Bash/CMD** | [`bashshell-post-writing`](../bashshell-post-writing/SKILL.md) / [`cmd-post-writing`](../cmd-post-writing/SKILL.md) 참고. |
+| **Bash/CMD** | [`shell-command-post-writing`](../shell-command-post-writing/SKILL.md) 참고. |
 | **Movies** | [`movie-review-writing`](../movie-review-writing/SKILL.md) 우선 적용. |
 
 ---
