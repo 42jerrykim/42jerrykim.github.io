@@ -38,8 +38,7 @@ description: >-
 | `Vocabulary/` | [`vocabulary-post-writing`](../vocabulary-post-writing/SKILL.md) |
 | `Movies/` | [`movie-review-writing`](../movie-review-writing/SKILL.md) |
 | `TV-Show/` | [`tv-series-review-writing`](../tv-series-review-writing/SKILL.md) |
-| `bashshell/` | [`bashshell-post-writing`](../bashshell-post-writing/SKILL.md) |
-| `cmd/` | [`cmd-post-writing`](../cmd-post-writing/SKILL.md) |
+| `bashshell/` / `cmd/` | [`shell-command-post-writing`](../shell-command-post-writing/SKILL.md) |
 
 ---
 

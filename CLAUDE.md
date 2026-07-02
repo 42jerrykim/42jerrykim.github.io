@@ -34,5 +34,4 @@
 - Movies → `movie-review-writing`
 - TV-Show → `tv-series-review-writing`
 - Vocabulary → `vocabulary-post-writing`
-- bashshell → `bashshell-post-writing`
-- cmd → `cmd-post-writing`
+- bashshell / cmd → `shell-command-post-writing`

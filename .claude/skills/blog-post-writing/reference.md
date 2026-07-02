@@ -280,8 +280,8 @@ flowchart TD
 | Movies | `[Movie]` | [`movie-review-writing`](../movie-review-writing/SKILL.md) |
 | TV-Show | `[TV Series]` | [`tv-series-review-writing`](../tv-series-review-writing/SKILL.md) |
 | Vocabulary | `[Vocabulary]` | [`vocabulary-post-writing`](../vocabulary-post-writing/SKILL.md) |
-| bashshell | `[Bash]` | [`bashshell-post-writing`](../bashshell-post-writing/SKILL.md) |
-| cmd | `[CMD]` | [`cmd-post-writing`](../cmd-post-writing/SKILL.md) |
+| bashshell | `[Bash Shell]` | [`shell-command-post-writing`](../shell-command-post-writing/SKILL.md) |
+| cmd | `[CMD]` | [`shell-command-post-writing`](../shell-command-post-writing/SKILL.md) |
 | design-patterns | 주제별 | — |
 | clean-code | 주제별 | — |
 | cleanarchitecture | 주제별 | — |
