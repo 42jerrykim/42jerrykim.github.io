@@ -10,8 +10,9 @@
     {{ end }}
 
     <div class="article-title-wrapper">
-        <h1 class="article-title">
+        <h1 class="article-title{{ if .Draft }} article-title--draft{{ end }}">
             <a href="{{ .RelPermalink }}">
+                {{- if .Draft }}<span class="draft-badge">DRAFT</span> {{ end -}}
                 {{- .Title -}}
             </a>
         </h1>
