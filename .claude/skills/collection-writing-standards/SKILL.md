@@ -13,7 +13,7 @@ description: >-
 **함께 적용**
 
 - [`rules-that-must-be-followed`](../rules-that-must-be-followed/SKILL.md): frontmatter, 링크 검증, Mermaid
-- [`educational-content-writing`](../educational-content-writing/SKILL.md): 교육 콘텐츠 구조·깊이·안티패딩 (이 스킬은 이를 보완)
+- [`educational-content-writing`](../educational-content-writing/SKILL.md): 교육 콘텐츠 구조·깊이·안티패딩·내용 완결성(§7 석학/SME 기준) (이 스킬은 이를 보완)
 - [`blog-post-writing`](../blog-post-writing/reference.md): SEO, 태그, 내부 링크
 
 ---
