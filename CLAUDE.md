@@ -35,3 +35,9 @@
 - TV-Show → `tv-series-review-writing`
 - Vocabulary → `vocabulary-post-writing`
 - bashshell / cmd → `shell-command-post-writing`
+
+일반 포스트(`content/post/`) 작성 시 주제 성격에 맞는 전용 스킬을 함께 참고합니다:
+- 개발·프로그래밍 → `dev-programming-post-writing`
+- 시스템·인프라 → `systems-infra-post-writing`
+- AI·도구 활용 → `ai-tools-post-writing`
+- 교양·생활 → `life-knowledge-post-writing`

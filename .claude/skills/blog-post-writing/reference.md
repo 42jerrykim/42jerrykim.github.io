@@ -282,15 +282,27 @@ flowchart TD
 | Vocabulary | `[Vocabulary]` | [`vocabulary-post-writing`](../vocabulary-post-writing/SKILL.md) |
 | bashshell | `[Bash Shell]` | [`shell-command-post-writing`](../shell-command-post-writing/SKILL.md) |
 | cmd | `[CMD]` | [`shell-command-post-writing`](../shell-command-post-writing/SKILL.md) |
-| design-patterns | 주제별 | — |
+| design-patterns / designpattern | 주제별 | — |
+| multithreading-design-patterns | 주제별 | — |
 | clean-code | 주제별 | — |
 | cleanarchitecture | 주제별 | — |
 | python | `[Python]` | — |
 | python-cheatsheet | `[Python]` | — |
 | software-architecture | 주제별 | — |
 | testing / unittesting | 주제별 | — |
-| optimization-* (01~12) | 주제별 | — |
+| optimization-00-series-overview ~ 12 | 주제별 | — |
 | computerterms | 주제별 | — |
 | redux | `[Redux]` | — |
 | ooad | 주제별 | — |
 | android-hardware-development | 주제별 | — |
+
+## 일반 포스트(`content/post/`) 성격별 전용 스킬 (참고)
+
+컬렉션에 속하지 않는 자유 주제 글은 아래 성격 분류에 따라 전용 스킬을 함께 적용한다. 실제 파일 이동 없이(폴더 구분 없음) 주제 성격만으로 판단한다.
+
+| 성격 | 전용 스킬 | 예시 |
+|------|----------|------|
+| 개발·프로그래밍 | [`dev-programming-post-writing`](../dev-programming-post-writing/SKILL.md) | 언어 문법 해설, 자료구조·라이브러리 구현/최적화 |
+| 시스템·인프라 | [`systems-infra-post-writing`](../systems-infra-post-writing/SKILL.md) | Hugo/CI-CD 빌드 최적화, OS·가상화·네트워킹·보안 |
+| AI·도구 활용 | [`ai-tools-post-writing`](../ai-tools-post-writing/SKILL.md) | Claude Code·ChatGPT·AI 에이전트/플러그인 가이드 |
+| 교양·생활 | [`life-knowledge-post-writing`](../life-knowledge-post-writing/SKILL.md) | 역사·과학 교양, 자기계발, 하드웨어·기기 리뷰 |
