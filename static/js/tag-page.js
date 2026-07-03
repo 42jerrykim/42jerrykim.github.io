@@ -80,10 +80,10 @@ return h;
 function buildArticles(page){
 var st=(page-1)*PP,en=Math.min(st+PP,d.p.length),h='';
 for(var i=st;i<en;i++){
-var p=d.p[i];
-h+='<article><a href="'+p[1]+'">';
+var p=d.p[i],isDraft=p[4]===1;
+h+='<article'+(isDraft?' class="article-draft"':'')+'><a href="'+p[1]+'">';
 h+='<div class="article-details">';
-h+='<h2 class="article-title">'+esc(p[0])+'</h2>';
+h+='<h2 class="article-title'+(isDraft?' article-title--draft':'')+'">'+esc(p[0])+'</h2>';
 h+='<footer class="article-time">';
 h+='<time datetime="'+p[2]+'">'+fmtDate(p[2])+'</time>';
 if(p[3])h+='<span class="article-description">'+esc(p[3])+'</span>';
