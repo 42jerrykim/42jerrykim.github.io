@@ -102,7 +102,7 @@ def main():
     with open(args.mapping, encoding="utf-8") as f:
         mapping = json.load(f)
 
-    files = glob.glob("content/**/index.md", recursive=True)
+    files = glob.glob("content/**/*index.md", recursive=True)
     changed_files = 0
     total_before = 0
     total_after = 0

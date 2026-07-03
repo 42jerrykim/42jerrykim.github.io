@@ -120,7 +120,7 @@ def main():
     args = ap.parse_args()
 
     backfill_pool = load_backfill_pool(".")
-    files = glob.glob("content/collection/Vocabulary/**/index.md", recursive=True)
+    files = glob.glob("content/collection/Vocabulary/**/*index.md", recursive=True)
 
     changed_files = 0
     total_removed = 0

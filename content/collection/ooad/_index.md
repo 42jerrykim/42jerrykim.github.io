@@ -17,7 +17,7 @@ tags:
   - 객체지향-설계
   - 소프트웨어-설계
   - 설계-원칙
-  - 디자인-패턴
+  - 디자인패턴
   - Design-Patterns
   - SOLID
   - SRP
@@ -51,7 +51,7 @@ tags:
   - 클래스-다이어그램
   - Class-Diagram
   - 아키텍처
-  - Architecture
+  - System-Design
   - Layered-Architecture
   - Clean-Architecture
   - Hexagonal-Architecture
