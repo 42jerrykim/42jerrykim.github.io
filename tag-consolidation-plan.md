@@ -1,7 +1,7 @@
 ---
 title: 태그 파편화 분석 및 통합 계획
 date: 2026-07-03
-status: Phase 1~5 실행 완료
+status: Phase 1~6 실행 완료
 ---
 
 ## 실행 결과 (2026-07-03)
@@ -11,7 +11,8 @@ status: Phase 1~5 실행 완료
 - Phase 3 (`rules-that-must-be-followed`에 "최소 10개는 승인 태그" 규칙 명문화)
 - Phase 4 (`script/lint_frontmatter.py`/CI에 태그 표기 검사 추가, 들여쓰기 태그 카운트 버그 수정)
 - Phase 5 (Vocabulary 컬렉션의 "표제어+meaning/usage/examples/noun/의미/용법/예문" 노이즈 태그 제거, `script/clean_vocabulary_noise_tags.py`): 그 글의 표제어를 그대로 접미사와 결합한 태그(`track meaning`, `track 의미` 등)는 구조적으로 다른 글과 절대 겹칠 수 없어 롱테일이 아니라 순수 중복이었음. 45개 포스트에서 246개 제거, 50개 미만으로 떨어진 3개 포스트는 `data/tags.yaml` `english_vocabulary` 카테고리(품사 전용 태그 제외)에서 보충.
-- 최종 결과: 고유 태그 3,876개 → **3,441개**, 1회성 태그 2,928개 → **2,565개**, 승인 태그 커버리지 93.6% → **95.4%**
+- Phase 6 (승인 태그의 누락된 한/영 페어 등록): 콘텐츠 전반에서 "영문 태그 바로 다음 줄에 그 한글 번역"이 붙는 관행을 이용해, 인접한 (영문, 한글) 태그 쌍 1,253개를 전수 조사. 이미 승인된 영문 태그인데 한글 짝이 미등록인 경우만(66건 후보) 사람이 직접 번역 정확성을 검증해 25개를 채택 — 오탐(예: `SSH`→`원격`, `PWD`→`디렉터리`, `Deployment`→`가독성`처럼 그냥 우연히 옆에 있던 무관한 태그)은 전부 제외했다. 이 Phase는 기존 콘텐츠 태그를 수정하지 않고 `data/tags.yaml`만 갱신한다 — 이미 쓰이고 있던 한글 태그를 승인 목록에 등록해, 향후 글에서도 같은 표기로 재사용되도록 하는 것이 목적.
+- 최종 결과: 고유 태그 3,876개 → **3,441개**, 1회성 태그 2,928개 → **2,565개**, 승인 태그 646개 → **664개**(중복 제외 실질 659개, 기존부터 있던 5건은 별개), 승인 태그 커버리지 93.6% → **95.4%**
 - 사용한 스크립트: `script/normalize_tags.py`(Phase 1/2 적용기), `script/clean_vocabulary_noise_tags.py`(Phase 5), 매핑 근거는 `script/tag_normalization_phase1_mapping.json` / `phase2_mapping.json`에 감사용으로 보존
 - 모든 변경 후 `content/**/index.md` 1,324개 frontmatter가 YAML로 정상 파싱됨을 확인. 정규화 과정에서 우연히 발견된 기존 완전 중복 태그(같은 파일 내 동일 태그 2회 기입)도 함께 정리됨.
 
