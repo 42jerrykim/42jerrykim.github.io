@@ -15,20 +15,20 @@ tags:
   - DevOps
   - Dependency-Injection
   - CI-CD
-  - windows
+  - Windows
   - PowerShell
-  - macos
-  - linux
+  - macOS
+  - Linux
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
-  - troubleshooting
+  - Troubleshooting
   - 트러블슈팅
-  - security
+  - Security
   - 보안
-  - automation
+  - Automation
   - 자동화
-  - testing
+  - Testing
   - 테스트
   - Tutorial
   - 튜토리얼

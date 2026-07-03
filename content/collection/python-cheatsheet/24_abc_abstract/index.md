@@ -12,19 +12,19 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - interface
+  - Interface
   - 인터페이스
-  - inheritance
+  - Inheritance
   - 상속
-  - polymorphism
+  - Polymorphism
   - 다형성
   - Math
-  - design-pattern
+  - Design-Pattern
   - 디자인패턴
-  - oop
+  - OOP
   - 객체지향
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼

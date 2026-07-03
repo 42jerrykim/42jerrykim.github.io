@@ -15,10 +15,10 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - movie
-  - photography
-  - cinematography
-  - composition
+  - Movie
+  - Photography
+  - Cinematography
+  - Composition
   - Grammar
   - Pronunciation
   - 문법

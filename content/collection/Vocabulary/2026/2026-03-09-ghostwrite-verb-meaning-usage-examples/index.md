@@ -65,7 +65,6 @@ tags:
   - celebrity
   - 유명인
   - autobiography
-  - 자서전
   - Reference
   - Comparison
   - Tutorial

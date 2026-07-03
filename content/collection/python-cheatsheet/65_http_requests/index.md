@@ -12,21 +12,21 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - http
+  - HTTP
   - REST
   - API
   - JSON
-  - error-handling
+  - Error-Handling
   - 에러처리
-  - authentication
+  - Authentication
   - 인증
-  - proxy
-  - networking
+  - Proxy
+  - Networking
   - 네트워킹
-  - web
+  - Web
   - 웹
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Performance
   - 성능

@@ -50,10 +50,10 @@ tags:
   - backlog
   - deadline
   - update
-  - review
+  - Review
   - communication
   - conversation
-  - networking
+  - Networking
   - 재정비
   - 밀린 일
   - 따라잡기

@@ -84,7 +84,7 @@ tags:
   - Best-Practices
   - Beginner
   - Advanced
-  - problem-solving
+  - Problem-Solving
   - 문제해결
   - research
   - 연구

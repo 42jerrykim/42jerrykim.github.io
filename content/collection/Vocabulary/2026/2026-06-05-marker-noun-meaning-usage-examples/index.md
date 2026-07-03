@@ -20,9 +20,9 @@ tags:
   - marker 의미
   - marker 용법
   - marker 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
   - context
   - 맥락
@@ -60,10 +60,9 @@ tags:
   - study English
   - 영어 학습
   - usage notes
-  - grammar
-  - pronunciation
+  - Grammar
+  - Pronunciation
   - 발음
-  - 영어 명사
 image: "wordcloud.png"
 ---
 

@@ -12,19 +12,19 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - heap
+  - Heap
   - 힙
-  - priority-queue
+  - Priority-Queue
   - 우선순위큐
-  - binary-search
-  - algorithm
+  - Binary-Search
+  - Algorithm
   - 알고리즘
   - 자료구조
   - Performance
   - 성능
   - Time-Complexity
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼

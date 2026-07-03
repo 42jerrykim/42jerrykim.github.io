@@ -15,7 +15,7 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - swift
+  - Swift
   - 일상표현
   - Grammar
   - Pronunciation

@@ -52,7 +52,7 @@ tags:
   - qualification
   - expertise
   - proficiency
-  - performance
+  - Performance
   - leadership
   - teamwork
   - communication

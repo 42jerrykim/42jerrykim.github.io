@@ -12,7 +12,7 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - math
+  - Math
   - 수학
   - Design-Pattern
   - 과학

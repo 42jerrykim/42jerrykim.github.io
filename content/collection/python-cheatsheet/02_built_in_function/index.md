@@ -13,10 +13,10 @@ tags:
   - 치트시트
   - Quick-Reference
   - IO
-  - map
+  - Map
   - Implementation
   - Data-Structures
-  - set
+  - Set
   - OOP
   - Tutorial
   - 튜토리얼

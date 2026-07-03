@@ -9,7 +9,7 @@ categories:
 tags:
   - Vocabulary
   - English
-  - solid
+  - SOLID
   - Collocation
   - Nuance
   - Synonym

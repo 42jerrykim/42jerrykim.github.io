@@ -15,7 +15,7 @@ tags:
   - Error-Handling
   - Design-Pattern
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼

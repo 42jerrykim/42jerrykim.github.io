@@ -12,18 +12,18 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - oop
+  - OOP
   - 객체지향
-  - inheritance
+  - Inheritance
   - 상속
-  - encapsulation
+  - Encapsulation
   - 캡슐화
-  - polymorphism
+  - Polymorphism
   - 다형성
-  - composition
+  - Composition
   - 합성
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Design-Pattern
   - Tutorial

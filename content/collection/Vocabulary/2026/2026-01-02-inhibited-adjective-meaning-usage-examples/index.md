@@ -15,9 +15,9 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - psychology
-  - biology
-  - grammar
+  - Psychology
+  - Biology
+  - Grammar
   - Pronunciation
   - 문법
   - Etymology

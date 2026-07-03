@@ -12,9 +12,9 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - memory
+  - Memory
   - 메모리
-  - proxy
+  - Proxy
   - Cache
   - Design-Pattern
   - Best-Practices

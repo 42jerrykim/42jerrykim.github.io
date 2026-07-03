@@ -13,7 +13,7 @@ tags:
   - 치트시트
   - Quick-Reference
   - Edge-Cases
-  - finance
+  - Finance
   - 과학
   - Math
   - Design-Pattern

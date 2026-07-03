@@ -15,11 +15,11 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - map
+  - Map
   - Software-Architecture
-  - abstraction
+  - Abstraction
   - Design-Pattern
-  - proxy
+  - Proxy
   - Business-English
   - Grammar
   - Pronunciation

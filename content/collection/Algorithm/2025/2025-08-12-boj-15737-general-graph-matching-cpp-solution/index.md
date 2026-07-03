@@ -15,7 +15,7 @@ tags:
 - LCA
 - BFS
 - 큐
-- queue
+- Queue
 - 그래프이론
 - Graph-Theory
 - Graph

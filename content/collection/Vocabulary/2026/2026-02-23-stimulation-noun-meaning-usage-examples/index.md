@@ -15,8 +15,8 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - psychology
-  - education
+  - Psychology
+  - Education
   - Technology
   - 심리학
   - 교육

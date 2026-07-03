@@ -12,9 +12,9 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - http
+  - HTTP
   - Implementation
-  - testing
+  - Testing
   - 테스트
   - Design-Pattern
   - Best-Practices

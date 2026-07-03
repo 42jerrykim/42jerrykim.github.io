@@ -49,7 +49,7 @@ tags:
   - harm prevention
   - human rights
   - consent
-  - privacy
+  - Privacy
   - bias
   - discrimination
   - policy
@@ -61,13 +61,13 @@ tags:
   - 의료 윤리
   - 데이터 윤리
   - 책임 있는 AI
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
   - context
   - 맥락
-  - pronunciation
+  - Pronunciation
   - 발음
   - EN/KR examples
   - study English

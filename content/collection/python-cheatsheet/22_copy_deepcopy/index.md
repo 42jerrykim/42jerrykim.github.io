@@ -14,11 +14,11 @@ tags:
   - Quick-Reference
   - Data-Structures
   - OOP
-  - memory
+  - Memory
   - 메모리
-  - pitfalls
+  - Pitfalls
   - 함정
-  - debugging
+  - Debugging
   - 디버깅
   - Best-Practices
   - Tutorial

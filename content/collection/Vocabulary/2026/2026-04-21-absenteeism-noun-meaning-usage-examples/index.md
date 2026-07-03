@@ -50,7 +50,7 @@ tags:
   - 직장
   - labor
   - 노동
-  - education
+  - Education
   - 교육
   - school attendance
   - 출석
@@ -60,7 +60,7 @@ tags:
   - 상습결근
   - attendance policy
   - 출근관리
-  - productivity
+  - Productivity
   - 생산성
   - wellbeing
   - 웰빙

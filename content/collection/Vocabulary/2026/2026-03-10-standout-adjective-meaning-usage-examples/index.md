@@ -58,7 +58,7 @@ tags:
   - standout feature
   - sports
   - 스포츠
-  - performance
+  - Performance
   - 성과
   - achievement
   - 성취

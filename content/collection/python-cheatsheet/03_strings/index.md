@@ -12,7 +12,7 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - string
+  - String
   - 문자열
   - Data-Structures
   - Implementation
@@ -22,7 +22,7 @@ tags:
   - Clean-Code
   - Code-Quality
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼

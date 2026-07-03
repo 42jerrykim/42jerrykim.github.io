@@ -11,7 +11,7 @@ tags:
   - Performance
   - Optimization
   - Storage
-  - Filesystem
+  - File-System
   - Kernel
   - Linux
   - Driver
@@ -20,7 +20,7 @@ tags:
   - SSD
   - Latency
   - Throughput
-  - I-O
+  - IO
   - Backend
   - Networking
   - Observability
@@ -59,7 +59,6 @@ tags:
   - 파일시스템
   - 커널
   - 드라이버
-  - I-O
   - 백엔드
   - 전문
   - 리스크

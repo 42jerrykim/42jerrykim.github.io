@@ -13,13 +13,13 @@ tags:
   - 치트시트
   - Quick-Reference
   - Implementation
-  - web
+  - Web
   - 웹
-  - http
-  - api
+  - HTTP
+  - API
   - Design-Pattern
   - Best-Practices
-  - security
+  - Security
   - 보안
   - Graph
   - Tutorial

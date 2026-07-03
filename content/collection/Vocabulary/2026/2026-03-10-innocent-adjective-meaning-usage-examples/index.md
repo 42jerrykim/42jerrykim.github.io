@@ -77,7 +77,7 @@ tags:
   - 신뢰
   - 유죄
   - wrongful conviction
-  - comparison
+  - Comparison
   - 비교
   - Reference
   - 참고

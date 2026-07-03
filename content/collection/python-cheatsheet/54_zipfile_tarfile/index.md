@@ -12,10 +12,10 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - security
+  - Security
   - 보안
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼

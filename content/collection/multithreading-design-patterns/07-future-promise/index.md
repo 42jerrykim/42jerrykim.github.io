@@ -12,7 +12,7 @@ categories:
 tags:
   - Future
   - Promise
-  - async
+  - Async
   - packaged_task
   - Asynchronous
   - 비동기

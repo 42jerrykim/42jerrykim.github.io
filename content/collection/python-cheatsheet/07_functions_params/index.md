@@ -14,15 +14,15 @@ tags:
   - Quick-Reference
   - Implementation
   - 함정
-  - pitfalls
+  - Pitfalls
   - Clean-Code
   - Best-Practices
-  - refactoring
+  - Refactoring
   - 리팩토링
-  - debugging
+  - Debugging
   - 디버깅
   - 클린코드
-  - error-handling
+  - Error-Handling
   - Design-Pattern
   - Tutorial
   - 튜토리얼

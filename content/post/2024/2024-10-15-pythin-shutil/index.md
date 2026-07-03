@@ -5,7 +5,7 @@ title: "[Python] shutil 모듈을 활용한 파일 및 폴더 관리"
 categories: Python
 tags:
 - Implementation
-- automation
+- Automation
 - Python
 - Graph
 - 그래프

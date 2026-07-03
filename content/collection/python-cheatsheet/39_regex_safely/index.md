@@ -15,19 +15,19 @@ tags:
   - String
   - Design-Pattern
   - Algorithm
-  - greedy
+  - Greedy
   - Testing
   - Implementation
   - Performance
   - 성능
-  - backtracking
-  - security
+  - Backtracking
+  - Security
   - 보안
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - 문자열
-  - debugging
+  - Debugging
   - 디버깅
   - Tutorial
   - 튜토리얼

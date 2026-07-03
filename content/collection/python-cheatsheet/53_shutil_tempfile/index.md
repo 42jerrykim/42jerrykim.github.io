@@ -13,9 +13,9 @@ tags:
   - 치트시트
   - Quick-Reference
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
-  - security
+  - Security
   - 보안
   - Tutorial
   - 튜토리얼

@@ -20,9 +20,9 @@ tags:
   - track 의미
   - track 용법
   - track 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
   - context
   - 맥락
@@ -41,11 +41,11 @@ tags:
   - 음악
   - 트랙
   - 추적
-  - etymology
+  - Etymology
   - origin
   - usage notes
-  - grammar
-  - pronunciation
+  - Grammar
+  - Pronunciation
   - examples
   - EN/KR
   - study English
@@ -53,7 +53,6 @@ tags:
   - Transportation
   - 교통
   - Music
-  - 음악
   - Sports
   - 스포츠
   - Film

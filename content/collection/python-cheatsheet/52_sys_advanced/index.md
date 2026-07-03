@@ -14,7 +14,7 @@ tags:
   - Quick-Reference
   - Graph
   - Software-Architecture
-  - recursion
+  - Recursion
   - 재귀
   - 메모리
   - Performance

@@ -75,9 +75,7 @@ tags:
   - put down to
   - lay down
   - set down
-  - write down
   - take down
-  - criticize
   - ridicule
   - 억누르다
   - 제압하다

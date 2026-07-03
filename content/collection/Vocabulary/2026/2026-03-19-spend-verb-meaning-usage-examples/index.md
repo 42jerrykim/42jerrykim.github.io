@@ -73,10 +73,9 @@ tags:
   - spend doing
   - spend with
   - 일상 영어
-  - 비즈니스 영어
   - 금융
   - 시간 관리
-  - productivity
+  - Productivity
   - 생산성
   - money
   - time

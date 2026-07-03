@@ -9,7 +9,7 @@ tags:
   - Vocabulary
   - Implementation
   - Competitive-Programming
-  - strategy
+  - Strategy
   - 영단어
   - Collocation
   - 콜로케이션

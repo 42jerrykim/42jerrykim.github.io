@@ -71,7 +71,7 @@ tags:
   - vocabulary building
   - usage notes
   - STEM
-  - biology
+  - Biology
   - 생물학
   - chemistry
   - 화학

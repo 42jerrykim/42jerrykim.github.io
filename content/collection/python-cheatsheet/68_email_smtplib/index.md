@@ -12,11 +12,11 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - authentication
+  - Authentication
   - 인증
   - Design-Pattern
   - Best-Practices
-  - automation
+  - Automation
   - 자동화
   - Tutorial
   - 튜토리얼

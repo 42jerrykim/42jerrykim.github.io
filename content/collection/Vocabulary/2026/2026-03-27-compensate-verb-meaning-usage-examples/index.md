@@ -51,8 +51,8 @@ tags:
   - damages
   - liability
   - insurance
-  - finance
-  - accounting
+  - Finance
+  - Accounting
   - Productivity
   - 생산성
   - Psychology

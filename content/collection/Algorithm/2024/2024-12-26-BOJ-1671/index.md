@@ -7,7 +7,7 @@ categories:
 - MaximumFlow
 tags:
 - String
-- optimization
+- Optimization
 - Time-Complexity
 - Data-Structures
 - Graph-Theory

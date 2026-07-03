@@ -12,11 +12,11 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - debugging
+  - Debugging
   - 디버깅
-  - stack
+  - Stack
   - 스택
-  - watch
+  - Watch
   - Design-Pattern
   - Best-Practices
   - Tutorial

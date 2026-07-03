@@ -50,7 +50,7 @@ tags:
   - creative writing
   - audio design
   - media
-  - culture
+  - Culture
   - 감탄사표현
   - 의성어
   - 속도감

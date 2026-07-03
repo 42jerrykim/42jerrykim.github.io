@@ -70,8 +70,8 @@ tags:
   - 외교
   - 기술용어
   - 일상표현
-  - reference
-  - comparison
+  - Reference
+  - Comparison
 image: wordcloud.png
 ---
 

@@ -11,7 +11,7 @@ tags:
   - English
   - Algorithm
   - Collocation
-  - grammar
+  - Grammar
   - Nuance
   - Etymology
   - Synonym

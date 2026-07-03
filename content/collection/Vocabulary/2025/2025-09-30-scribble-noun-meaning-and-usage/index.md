@@ -7,7 +7,7 @@ categories:
 - "영어"
 - "Vocabulary"
 tags:
-- vocabulary
+- Vocabulary
 - English
 draft: true
 ---

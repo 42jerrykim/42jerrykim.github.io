@@ -18,13 +18,13 @@ tags:
   - Performance
   - 성능
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
-  - logging
+  - Logging
   - 로깅
-  - windows
-  - linux
-  - macos
+  - Windows
+  - Linux
+  - macOS
   - Tutorial
   - 튜토리얼
   - Implementation

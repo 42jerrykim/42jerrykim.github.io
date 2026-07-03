@@ -5,19 +5,19 @@ date: 2025-12-04
 lastmod: 2025-12-04
 tags:
   - BOJ
-  - sorting
+  - Sorting
   - 알고리즘
   - C++
   - Implementation
   - Divide-and-Conquer
   - Competitive-Programming
-  - algorithm
+  - Algorithm
   - 백준
   - Combinatorics
   - Time-Complexity
   - 구현
   - 최적화
-  - optimization
+  - Optimization
   - Data-Structures
   - 그래프
   - 수학

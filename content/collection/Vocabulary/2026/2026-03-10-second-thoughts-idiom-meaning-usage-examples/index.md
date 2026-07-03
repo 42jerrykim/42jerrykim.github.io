@@ -81,7 +81,6 @@ tags:
   - 망설이다
   - 주저하다
   - 재고하다
-  - hesitation
   - reluctance
   - commitment
   - 약속

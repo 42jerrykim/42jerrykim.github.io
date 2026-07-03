@@ -46,7 +46,7 @@ tags:
   - EN/KR examples
   - vocabulary building
   - study English
-  - stack
+  - Stack
   - overlay
   - coat
   - arrange
@@ -64,7 +64,7 @@ tags:
   - architecture
   - texture
   - depth
-  - composition
+  - Composition
   - style
   - 표현력
   - 묘사

@@ -53,7 +53,7 @@ tags:
   - preserve
   - store
   - backup
-  - finance
+  - Finance
   - 금융
   - emergency
   - 응급

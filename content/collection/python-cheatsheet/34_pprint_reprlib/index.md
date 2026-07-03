@@ -12,9 +12,9 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - debugging
+  - Debugging
   - 디버깅
-  - logging
+  - Logging
   - 로깅
   - 자료구조
   - Data-Structures

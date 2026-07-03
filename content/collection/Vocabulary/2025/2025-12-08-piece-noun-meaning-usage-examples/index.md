@@ -15,10 +15,10 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - bit
+  - BIT
   - Segment-Tree
   - Software-Architecture
-  - composition
+  - Composition
   - 게임
   - 일상표현
   - Grammar

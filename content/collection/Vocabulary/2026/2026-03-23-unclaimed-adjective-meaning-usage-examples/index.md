@@ -48,7 +48,7 @@ tags:
   - 자금
   - estate
   - 유산
-  - inheritance
+  - Inheritance
   - 상속
   - bank account
   - 은행 계좌
@@ -84,7 +84,7 @@ tags:
   - 격식체
   - government
   - 정부
-  - finance
+  - Finance
   - 금융
   - lottery
   - 복권

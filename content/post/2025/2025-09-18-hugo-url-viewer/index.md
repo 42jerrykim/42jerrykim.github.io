@@ -55,7 +55,6 @@ tags:
   - 비교
   - Career
   - Mobile
-  - 모바일
   - Security
   - Networking
   - 네트워킹

@@ -9,7 +9,7 @@ tags:
 - String
 - Implementation
 - Time-Complexity
-- Problem-solving
+- Problem-Solving
 - Algorithm
 - 알고리즘
 - BOJ

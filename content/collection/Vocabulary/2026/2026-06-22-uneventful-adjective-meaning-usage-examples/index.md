@@ -20,9 +20,9 @@ tags:
   - uneventful 의미
   - uneventful 용법
   - uneventful 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
   - context
   - 맥락
@@ -50,7 +50,7 @@ tags:
   - flight
   - journey
   - workday
-  - daily life
+  - Daily-Life
   - medical
   - surgery
   - recovery
@@ -59,16 +59,16 @@ tags:
   - vacation
   - 여행 용어
   - 의료 용어
-  - 일상 표현
+  - 일상표현
   - 뉴스 용어
   - usage notes
-  - grammar
-  - pronunciation
-  - etymology
+  - Grammar
+  - Pronunciation
+  - Etymology
   - origin
-  - antonym
+  - Antonym
   - eventful
-  - synonym
+  - Synonym
   - EN/KR examples
   - study English
   - vocabulary building

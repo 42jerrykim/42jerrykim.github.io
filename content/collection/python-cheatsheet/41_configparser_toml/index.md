@@ -13,10 +13,10 @@ tags:
   - 치트시트
   - Quick-Reference
   - 설정
-  - configuration
+  - Configuration
   - Implementation
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼

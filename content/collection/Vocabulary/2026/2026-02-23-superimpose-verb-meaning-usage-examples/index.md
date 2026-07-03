@@ -15,10 +15,10 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - stack
+  - Stack
   - Algorithm
-  - psychology
-  - memory
+  - Psychology
+  - Memory
   - 심리학
   - Design-Pattern
   - 사진

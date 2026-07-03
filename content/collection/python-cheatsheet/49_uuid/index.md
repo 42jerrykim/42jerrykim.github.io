@@ -12,11 +12,11 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - database
+  - Database
   - 데이터베이스
   - Design-Pattern
   - Best-Practices
-  - security
+  - Security
   - 보안
   - Tutorial
   - 튜토리얼

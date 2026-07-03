@@ -19,7 +19,7 @@ tags:
   - Code-Quality
   - 코드품질
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼

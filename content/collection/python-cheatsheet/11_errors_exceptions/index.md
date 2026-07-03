@@ -14,19 +14,19 @@ tags:
   - Quick-Reference
   - Error-Handling
   - 디버깅
-  - debugging
-  - logging
+  - Debugging
+  - Logging
   - 로깅
-  - testing
+  - Testing
   - 테스트
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
-  - security
+  - Security
   - 보안
   - Code-Quality
   - Design-Pattern
-  - clean-code
+  - Clean-Code
   - 클린코드
   - Tutorial
   - 튜토리얼

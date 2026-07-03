@@ -13,23 +13,23 @@ categories:
 tags:
 - IDE
 - VSCode
-- productivity
+- Productivity
 - 생산성
-- debugging
+- Debugging
 - 디버깅
-- terminal
+- Terminal
 - 터미널
 - Algorithm
 - Git
-- refactoring
+- Refactoring
 - 리팩토링
 - 설정
 - Implementation
 - Performance
-- workflow
+- Workflow
 - 워크플로우
 - Best-Practices
-- configuration
+- Configuration
 image: wordcloud.png
 ---
 

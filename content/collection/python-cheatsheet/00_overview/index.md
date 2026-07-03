@@ -13,30 +13,30 @@ tags:
   - 치트시트
   - Quick-Reference
   - Education
-  - guide
+  - Guide
   - 가이드
   - Implementation
   - 문법
   - 문자열
   - 자료구조
   - Data-Structures
-  - set
+  - Set
   - Error-Handling
-  - io
+  - IO
   - Software-Architecture
   - String
   - JSON
-  - logging
-  - debugging
-  - testing
+  - Logging
+  - Debugging
+  - Testing
   - 테스트
-  - database
+  - Database
   - 데이터베이스
   - 우선순위큐
-  - deque
+  - Deque
   - XML
-  - math
-  - os
+  - Math
+  - OS
   - Tutorial
   - 튜토리얼
   - 구현

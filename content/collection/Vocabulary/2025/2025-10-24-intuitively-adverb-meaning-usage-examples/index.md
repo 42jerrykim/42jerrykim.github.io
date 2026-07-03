@@ -10,7 +10,7 @@ tags:
   - Vocabulary
   - English
   - Design-Pattern
-  - interface
+  - Interface
   - 영단어
   - 영어부사
   - 인터페이스

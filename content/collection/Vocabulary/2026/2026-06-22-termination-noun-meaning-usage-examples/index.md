@@ -20,9 +20,9 @@ tags:
   - termination 의미
   - termination 용법
   - termination 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
   - context
   - 맥락
@@ -64,13 +64,13 @@ tags:
   - termination of employment
   - termination of contract
   - termination of pregnancy
-  - process
+  - Process
   - procedure
   - formal notice
   - usage notes
-  - grammar
-  - pronunciation
-  - etymology
+  - Grammar
+  - Pronunciation
+  - Etymology
   - origin
   - EN/KR examples
   - study English

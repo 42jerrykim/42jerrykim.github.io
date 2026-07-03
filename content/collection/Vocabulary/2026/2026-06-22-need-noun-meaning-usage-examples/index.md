@@ -20,9 +20,9 @@ tags:
   - need 의미
   - need 용법
   - need 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
   - context
   - 맥락
@@ -44,12 +44,12 @@ tags:
   - human needs
   - emotional needs
   - business
-  - psychology
+  - Psychology
   - welfare
   - social services
   - economics
   - healthcare
-  - education
+  - Education
   - relationship
   - 필요
   - 필요성
@@ -62,13 +62,13 @@ tags:
   - 절실함
   - 기본 욕구
   - 정서적 욕구
-  - 일상 표현
+  - 일상표현
   - 비즈니스 용어
   - 심리 용어
   - 복지 용어
   - usage notes
-  - grammar
-  - pronunciation
+  - Grammar
+  - Pronunciation
   - EN/KR examples
   - vocabulary building
   - study English

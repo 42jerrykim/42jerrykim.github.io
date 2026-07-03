@@ -7,15 +7,15 @@ categories:
 - "Software"
 - "Self-Hosted"
 tags:
-- self-hosted
+- Self-Hosted
 - Open-Source
 - TypeScript
 - Docker
 - Kubernetes
 - PostgreSQL
 - Machine-Learning
-- map
-- privacy
+- Map
+- Privacy
 - 프라이버시
 - 셀프호스팅
 - 웹

@@ -72,10 +72,9 @@ tags:
   - 기술
   - accessibility
   - 접근성
-  - visitor
+  - Visitor
   - 방문자
   - sightseeing
-  - 관광
   - artifact
   - 유물
   - exhibit

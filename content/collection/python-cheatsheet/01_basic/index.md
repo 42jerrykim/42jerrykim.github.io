@@ -19,12 +19,12 @@ tags:
   - 문서화
   - 문자열
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Clean-Code
-  - debugging
+  - Debugging
   - 디버깅
-  - tutorial
+  - Tutorial
   - 튜토리얼
   - 구현
   - Code-Quality

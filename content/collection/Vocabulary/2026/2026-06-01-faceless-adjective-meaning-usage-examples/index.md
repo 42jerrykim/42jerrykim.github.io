@@ -78,7 +78,7 @@ tags:
   - Comparison
   - 비교
   - usage notes
-  - pronunciation
+  - Pronunciation
   - 발음
   - EN/KR examples
   - study English

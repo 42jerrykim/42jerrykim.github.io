@@ -13,7 +13,7 @@ tags:
   - 치트시트
   - Quick-Reference
   - Implementation
-  - sorting
+  - Sorting
   - 정렬
   - Algorithm
   - JSON
@@ -21,9 +21,9 @@ tags:
   - 성능
   - 시간복잡도
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
-  - error-handling
+  - Error-Handling
   - Tutorial
   - 튜토리얼
   - 구현

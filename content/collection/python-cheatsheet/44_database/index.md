@@ -12,15 +12,15 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - database
+  - Database
   - 데이터베이스
   - SQL
   - Range-Query
   - IDE
   - 보안
-  - security
+  - Security
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼
