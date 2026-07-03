@@ -9,81 +9,48 @@ categories:
 tags:
   - Samsung
   - Android
-  - Mobile
-  - 모바일
-  - Hardware
-  - 하드웨어
-  - Troubleshooting
-  - 트러블슈팅
-  - Review
-  - 리뷰
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Technology
-  - 기술
-  - Innovation
-  - 혁신
-  - Documentation
-  - 문서화
+  - Mobile(모바일)
+  - Hardware(하드웨어)
+  - Troubleshooting(트러블슈팅)
+  - Review(리뷰)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Technology(기술)
+  - Innovation(혁신)
+  - Documentation(문서화)
   - Best-Practices
-  - Configuration
-  - 설정
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Web
-  - 웹
-  - Career
-  - 커리어
-  - Gadget
-  - 가젯
+  - Comparison(비교)
+  - Reference(참고)
+  - Productivity(생산성)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Web(웹)
+  - Career(커리어)
+  - Gadget(가젯)
   - Tablet
-  - 태블릿
   - Speaker
-  - 스피커
-  - Networking
-  - 네트워킹
+  - Networking(네트워킹)
   - Case-Study
   - Deep-Dive
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Performance
-  - 성능
-  - Testing
-  - 테스트
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Performance(성능)
+  - Testing(테스트)
   - Beginner
   - Advanced
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - User-Experience
   - 사용자경험
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Interface
-  - 인터페이스
+  - Software-Architecture(소프트웨어아키텍처)
+  - Interface(인터페이스)
   - Reliability
-  - 신뢰성
   - Quality-Assurance
   - 품질보증
   - Feedback

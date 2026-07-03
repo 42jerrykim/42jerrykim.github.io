@@ -14,13 +14,10 @@ tags:
   - C++11
   - C++20
   - Thread
-  - Memory
-  - 메모리
-  - Concurrency
-  - 동시성
+  - Memory(메모리)
+  - Concurrency(동시성)
   - Atomic
   - Synchronization
-  - 동기화
   - Race-Condition
   - Data-Race
   - Memory-Order
@@ -40,28 +37,18 @@ tags:
   - std::thread
   - std::atomic
   - Standard-Library
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Design-Pattern
-  - 디자인패턴
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Performance(성능)
+  - Optimization(최적화)
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Deep-Dive
-  - Technology
-  - 기술
+  - Technology(기술)
 slug: getting-started-cpp-concurrency-fundamentals-memory-model
 ---
 

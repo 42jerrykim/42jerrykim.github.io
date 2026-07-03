@@ -5,62 +5,36 @@ lastmod: 2026-03-17
 description: "Hyper-V 기본 세션에서 가상 머신 해상도를 PowerShell Set-VMVideo·Get-VMVideo로 설정하는 방법을 다룬다. ResolutionType(Single·Maximum·Default), VM 전원 조건, Gen1/Gen2 차이, Windows·Linux 게스트 확인 방법과 트러블슈팅까지 실무에 바로 쓸 수 있도록 정리했다."
 tags:
   - PowerShell
-  - Windows
-  - 윈도우
-  - Linux
-  - 리눅스
-  - Configuration
-  - 설정
+  - Windows(윈도우)
+  - Linux(리눅스)
+  - Configuration(설정)
   - RDP
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Technology
-  - 기술
-  - Documentation
-  - 문서화
-  - Troubleshooting
-  - 트러블슈팅
-  - Hardware
-  - 하드웨어
-  - Shell
-  - 셸
-  - Reference
-  - 참고
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Technology(기술)
+  - Documentation(문서화)
+  - Troubleshooting(트러블슈팅)
+  - Hardware(하드웨어)
+  - Shell(셸)
+  - Reference(참고)
   - Best-Practices
-  - Security
-  - 보안
+  - Security(보안)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Review
-  - 리뷰
-  - Networking
-  - 네트워킹
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Cloud
-  - 클라우드
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
+  - Comparison(비교)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Education(교육)
+  - Review(리뷰)
+  - Networking(네트워킹)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Cloud(클라우드)
+  - Automation(자동화)
+  - Deployment(배포)
   - DevOps
   - Beginner
   - Advanced
@@ -71,64 +45,41 @@ tags:
   - GitHub
   - IDE
   - VSCode
-  - Performance
-  - 성능
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
-  - Code-Quality
-  - 코드품질
+  - Performance(성능)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Implementation(구현)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
   - Modularity
   - Adapter
-  - Design-Pattern
-  - 디자인패턴
-  - Memory
-  - 메모리
-  - OS
-  - 운영체제
+  - Design-Pattern(디자인패턴)
+  - Memory(메모리)
+  - OS(운영체제)
   - Process
   - Thread
   - IO
   - File-System
-  - Web
-  - 웹
+  - Web(웹)
   - API
-  - Backend
-  - 백엔드
-  - Terminal
-  - 터미널
-  - Agile
-  - 애자일
-  - Career
-  - 커리어
-  - Internet
-  - 인터넷
-  - Self-Hosted
-  - 셀프호스팅
+  - Backend(백엔드)
+  - Terminal(터미널)
+  - Agile(애자일)
+  - Career(커리어)
+  - Internet(인터넷)
+  - Self-Hosted(셀프호스팅)
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - Refactoring
-  - 리팩토링
-  - Code-Review
-  - 코드리뷰
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
+  - Cheatsheet(치트시트)
+  - Refactoring(리팩토링)
+  - Code-Review(코드리뷰)
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
   - Jekyll
   - Hugo
-  - Domain
-  - 도메인
+  - Domain(도메인)
 categories:
   - Hyper-V
   - Windows

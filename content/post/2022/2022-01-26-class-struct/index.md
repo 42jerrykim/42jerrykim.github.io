@@ -10,111 +10,66 @@ header:
 tags:
   - CSharp
   - .NET
-  - OOP
-  - 객체지향
-  - Memory
-  - 메모리
-  - Stack
-  - 스택
-  - Data-Structures
-  - 자료구조
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Comparison
-  - 비교
+  - OOP(객체지향)
+  - Memory(메모리)
+  - Stack(스택)
+  - Data-Structures(자료구조)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Comparison(비교)
   - Best-Practices
-  - Performance
-  - 성능
-  - Implementation
-  - 구현
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Education
-  - 교육
-  - Documentation
-  - 문서화
+  - Performance(성능)
+  - Implementation(구현)
+  - Reference(참고)
+  - Technology(기술)
+  - Blog(블로그)
+  - Education(교육)
+  - Documentation(문서화)
   - How-To
   - Tips
-  - Clean-Code
-  - 클린코드
+  - Clean-Code(클린코드)
   - Type-Safety
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Optimization
-  - 최적화
-  - Code-Quality
-  - 코드품질
-  - Refactoring
-  - 리팩토링
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - Productivity
-  - 생산성
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Open-Source
-  - 오픈소스
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Networking
-  - 네트워킹
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
+  - Web(웹)
+  - Backend(백엔드)
+  - Productivity(생산성)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Open-Source(오픈소스)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Markdown(마크다운)
+  - Review(리뷰)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Networking(네트워킹)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Compiler
-  - 컴파일러
-  - Profiling
-  - 프로파일링
+  - Compiler(컴파일러)
+  - Profiling(프로파일링)
   - Benchmark
-  - Pitfalls
-  - 함정
-  - Error-Handling
-  - 에러처리
-  - Composition
-  - 합성
-  - Inheritance
-  - 상속
-  - Polymorphism
-  - 다형성
-  - Abstraction
-  - 추상화
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Composition(합성)
+  - Inheritance(상속)
+  - Polymorphism(다형성)
+  - Abstraction(추상화)
   - Maintainability
   - Readability
   - Modularity
-  - Edge-Cases
-  - Testing
-  - 테스트
+  - Edge-Cases(엣지케이스)
+  - Testing(테스트)
   - Quick-Reference
-  - Array
-  - 배열
+  - Array(배열)
   - Cache
   - Process
   - Thread

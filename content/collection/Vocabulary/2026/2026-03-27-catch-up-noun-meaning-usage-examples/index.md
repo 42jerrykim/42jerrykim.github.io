@@ -13,42 +13,31 @@ tags:
   - 영단어
   - 영어명사
   - catch-up
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
   - Study-English
   - Vocabulary-Building
   - EN-KR-Examples
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - meeting
   - schedule
   - progress
   - backlog
   - deadline
   - update
-  - Review
-  - Communication
+  - Review(리뷰)
+  - 의사소통
   - conversation
-  - Networking
+  - Networking(네트워킹)
   - 재정비
   - 밀린 일
   - 따라잡기
@@ -58,13 +47,13 @@ tags:
   - 업무 회의
   - 학습 계획
   - 시간 관리
-  - 생산성
+  - Productivity(생산성)
   - 업무영어
   - 회화 영어
-  - Tutorial
-  - Guide
-  - Reference
-  - Comparison
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Comparison(비교)
 image: "wordcloud.png"
 ---
 

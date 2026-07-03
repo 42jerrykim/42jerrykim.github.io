@@ -7,19 +7,14 @@ title: "[Performance 10] Introduction: Low-latency 성능 회귀 방지·유지�
 slug: getting-started-performance-regression-prevention-strategies
 description: "Low-latency 성능 회귀 방지·유지보수 트랙의 도입 챕터입니다. 성능 테스트 자동화와 PR 게이트, performance budget 운영을 정리하고, '빠른 상태를 지키는' 운영 원칙을 한 번에 소개합니다."
 tags:
-  - Performance
-  - Profiling
-  - Testing
+  - Performance(성능)
+  - Profiling(프로파일링)
+  - Testing(테스트)
   - CI-CD
-  - Automation
-  - Monitoring
-  - Code-Review
-  - Code-Quality
-  - 성능
-  - 프로파일링
-  - 자동화
-  - 코드리뷰
-  - 코드품질
+  - Automation(자동화)
+  - Monitoring(모니터링)
+  - Code-Review(코드리뷰)
+  - Code-Quality(코드품질)
 ---
 
 이 트랙은 "성능이 다시 느려지지 않게 만드는 시스템"을 책임집니다. µs 단위에서는 작은 변경도 레이턴시 분포를 망칠 수 있으므로, 성능을 제품 품질의 일부로 운영합니다.

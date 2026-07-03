@@ -13,13 +13,10 @@ categories:
 - Practice
 - Business Logic
 tags:
-- Tutorial
-- Implementation
-- Design-Pattern
-- Software-Architecture
-- 구현
-- 디자인패턴
-- 소프트웨어아키텍처
+- Tutorial(튜토리얼)
+- Implementation(구현)
+- Design-Pattern(디자인패턴)
+- Software-Architecture(소프트웨어아키텍처)
 ---
 
 이 실습에서는 도서관 도메인 모델링과 전자상거래 주문 처리를 통해 DDD 패턴을 직접 구현합니다.

@@ -7,16 +7,13 @@ title: "[Clean Architecture] 14. SOLID 원칙 서론"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
+  - Clean-Architecture(클린아키텍처)
   - SOLID
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Code-Quality
-  - 코드품질
-  - Testing
-  - 결합도
-  - 응집도
+  - Software-Architecture(소프트웨어아키텍처)
+  - Code-Quality(코드품질)
+  - Testing(테스트)
+  - Coupling(결합도)
+  - Cohesion(응집도)
 ---
 
 SOLID 원칙은 객체 지향 설계의 기초가 되는 다섯 가지 원칙이다. 이 원칙들은 2000년대 초반 Robert C. Martin에 의해 체계화되었으며, 오늘날 소프트웨어 개발자들에게 필수적인 지식이 되었다.

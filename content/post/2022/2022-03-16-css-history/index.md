@@ -9,108 +9,68 @@ tags:
   - CSS
   - HTML
   - JavaScript
-  - Web
-  - 웹
-  - Frontend
-  - 프론트엔드
-  - History
-  - 역사
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Web(웹)
+  - Frontend(프론트엔드)
+  - History(역사)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Best-Practices
-  - Review
-  - 리뷰
-  - Blog
-  - 블로그
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Review(리뷰)
+  - Blog(블로그)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Education
-  - 교육
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Performance
-  - 성능
-  - Design-Pattern
-  - 디자인패턴
+  - Comparison(비교)
+  - Career(커리어)
+  - Education(교육)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Performance(성능)
+  - Design-Pattern(디자인패턴)
   - React
   - Vue
   - Angular
   - Node.js
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
   - Maintainability
   - Modularity
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Software-Architecture(소프트웨어아키텍처)
   - Git
   - GitHub
   - IDE
   - VSCode
-  - Backend
-  - 백엔드
+  - Backend(백엔드)
   - API
   - JSON
-  - Security
-  - 보안
-  - Caching
-  - 캐싱
+  - Security(보안)
+  - Caching(캐싱)
   - SEO
-  - Scalability
-  - 확장성
-  - Async
-  - 비동기
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Scalability(확장성)
+  - Async(비동기)
+  - Deployment(배포)
+  - Automation(자동화)
   - DevOps
-  - Agile
-  - 애자일
-  - Networking
-  - 네트워킹
-  - Culture
-  - 문화
-  - Science
-  - 과학
-  - Markdown
-  - 마크다운
-  - Internet
-  - 인터넷
+  - Agile(애자일)
+  - Networking(네트워킹)
+  - Culture(문화)
+  - Science(과학)
+  - Markdown(마크다운)
+  - Internet(인터넷)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Productivity
-  - 생산성
-  - Cloud
-  - 클라우드
-  - Mobile
-  - 모바일
+  - Productivity(생산성)
+  - Cloud(클라우드)
+  - Mobile(모바일)
 title: "[CSS] CSS 역사로 알아보는 CSS가 어려워진 이유"
 image: "wordcloud.png"
 ---

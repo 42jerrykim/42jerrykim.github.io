@@ -9,53 +9,35 @@ categories:
 tags:
   - Vocabulary
   - English
-  - Psychology
-  - Education
-  - Security
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Pronunciation
-  - Etymology
-  - Grammar
+  - Psychology(심리학)
+  - Education(교육)
+  - Security(보안)
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Pronunciation(발음)
+  - Etymology(어원)
+  - Grammar(문법)
   - 영단어
   - 영어명사
-  - 문법
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
   - REST
   - API
   - Process
-  - 교육
-  - Antonym
-  - 반의어
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Reference
-  - 참고
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Antonym(반의어)
+  - Daily-Life(일상표현)
+  - Reference(참고)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Technology
-  - 기술
-  - Guide
-  - 가이드
-  - Documentation
-  - 문서화
+  - Markdown(마크다운)
+  - Technology(기술)
+  - Guide(가이드)
+  - Documentation(문서화)
   - Best-Practices
 image: wordcloud.png
 ---

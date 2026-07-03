@@ -10,52 +10,34 @@ tags:
   - Vocabulary
   - English
   - 영단어
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Business-English
-  - Performance
-  - Grammar
-  - Pronunciation
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Business-English(비즈니스영어)
+  - Performance(성능)
+  - Grammar(문법)
+  - Pronunciation(발음)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
   - Go
   - Sci-Fi
   - Factory
-  - Design-Pattern
-  - Education
-  - 교육
-  - Innovation
-  - Technology
-  - Antonym
-  - 반의어
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Reference
-  - 참고
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Design-Pattern(디자인패턴)
+  - Education(교육)
+  - Innovation(혁신)
+  - Technology(기술)
+  - Antonym(반의어)
+  - Daily-Life(일상표현)
+  - Reference(참고)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - 기술
-  - Guide
-  - 가이드
-  - Documentation
-  - 문서화
+  - Markdown(마크다운)
+  - Guide(가이드)
+  - Documentation(문서화)
   - Best-Practices
 image: wordcloud.png
 ---

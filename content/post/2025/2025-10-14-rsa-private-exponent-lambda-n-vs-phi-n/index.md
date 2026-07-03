@@ -6,97 +6,57 @@ categories:
   - Cryptography
   - Math
 tags:
-  - Math
-  - 수학
-  - Algorithm
-  - 알고리즘
-  - Number-Theory
-  - 정수론
-  - Modular-Arithmetic
-  - 모듈러
-  - Security
-  - 보안
-  - Implementation
-  - 구현
-  - Performance
-  - 성능
+  - Math(수학)
+  - Algorithm(알고리즘)
+  - Number-Theory(정수론)
+  - Modular-Arithmetic(모듈러)
+  - Security(보안)
+  - Implementation(구현)
+  - Performance(성능)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Reference
-  - 참고
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Technology
-  - 기술
-  - Problem-Solving
-  - 문제해결
-  - Education
-  - 교육
-  - Comparison
-  - 비교
-  - Open-Source
-  - 오픈소스
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Markdown
-  - 마크다운
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Reference(참고)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Technology(기술)
+  - Problem-Solving(문제해결)
+  - Education(교육)
+  - Comparison(비교)
+  - Open-Source(오픈소스)
+  - Blog(블로그)
+  - Web(웹)
+  - Markdown(마크다운)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Career
-  - 커리어
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Networking
-  - 네트워킹
-  - Optimization
-  - 최적화
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - 코드품질
+  - Career(커리어)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Networking(네트워킹)
+  - Optimization(최적화)
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Backend
-  - 백엔드
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Backend(백엔드)
   - API
-  - Science
-  - 과학
-  - History
-  - 역사
+  - Science(과학)
+  - History(역사)
   - Deep-Dive
   - Case-Study
   - Beginner
   - Advanced
-  - Privacy
-  - 프라이버시
+  - Privacy(프라이버시)
   - Go
-  - Productivity
-  - 생산성
-  - Workflow
-  - 워크플로우
-  - Design-Pattern
-  - 디자인패턴
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
-  - Error-Handling
-  - 에러처리
-  - Profiling
-  - 프로파일링
+  - Productivity(생산성)
+  - Workflow(워크플로우)
+  - Design-Pattern(디자인패턴)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Profiling(프로파일링)
   - Benchmark
   - 실습
 description: "현대 RSA에서 개인지수 d는 φ(n)이 아닌 λ(n)=lcm(p−1,q−1) 기준의 모듈러 역원으로 정의된다. IETF RFC 8017과 NIST SP 800-56B를 인용해 이 변화, λ(n) 채택 이유, CRT·Garner와의 관계, 실무·보안 관점을 정리한다."

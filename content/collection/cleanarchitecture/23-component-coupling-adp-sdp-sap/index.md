@@ -7,15 +7,12 @@ title: "[Clean Architecture] 23. 컴포넌트 결합: ADP, SDP, SAP"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
-  - 결합도
-  - Dependency-Injection
-  - Code-Quality
-  - Abstraction
-  - 추상화
-  - 소프트웨어아키텍처
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Coupling(결합도)
+  - Dependency-Injection(의존성주입)
+  - Code-Quality(코드품질)
+  - Abstraction(추상화)
 ---
 
 컴포넌트 응집도가 **무엇을 포함할 것인가**에 관한 것이라면, 컴포넌트 결합은 **컴포넌트 간 관계**에 관한 것이다. 이 장에서는 컴포넌트 의존성을 관리하는 세 가지 원칙을 다룬다.

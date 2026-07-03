@@ -8,117 +8,72 @@ categories:
   - "Science"
   - "Ocean"
 tags:
-  - Science
-  - 과학
-  - History
-  - 역사
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
-  - Mystery
-  - 미스터리
-  - Documentation
-  - 문서화
+  - Science(과학)
+  - History(역사)
+  - Education(교육)
+  - Reference(참고)
+  - Review(리뷰)
+  - Technology(기술)
+  - Mystery(미스터리)
+  - Documentation(문서화)
   - Best-Practices
   - Case-Study
   - Deep-Dive
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - How-To
   - Tips
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Blog
-  - 블로그
-  - Productivity
-  - 생산성
-  - Innovation
-  - 혁신
-  - Networking
-  - 네트워킹
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Blog(블로그)
+  - Productivity(생산성)
+  - Innovation(혁신)
+  - Networking(네트워킹)
   - Beginner
   - Advanced
-  - Psychology
-  - 심리학
-  - Math
-  - 수학
-  - Culture
-  - 문화
+  - Psychology(심리학)
+  - Math(수학)
+  - Culture(문화)
   - Hugo
-  - Markdown
-  - 마크다운
-  - Security
-  - 보안
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Error-Handling
-  - 에러처리
+  - Markdown(마크다운)
+  - Security(보안)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Error-Handling(에러처리)
   - Readability
   - Maintainability
-  - Agile
-  - 애자일
-  - Internet
-  - 인터넷
+  - Agile(애자일)
+  - Internet(인터넷)
   - Git
   - GitHub
-  - Deployment
-  - 배포
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
-  - Cloud
-  - 클라우드
-  - Open-Source
-  - 오픈소스
-  - Book-Review
-  - 서평
+  - Deployment(배포)
+  - Configuration(설정)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
+  - Cloud(클라우드)
+  - Open-Source(오픈소스)
+  - Book-Review(서평)
   - Jekyll
   - API
   - HTTP
-  - Database
-  - 데이터베이스
+  - Database(데이터베이스)
   - IDE
   - VSCode
-  - Terminal
-  - 터미널
-  - Domain
-  - 도메인
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Mobile
-  - 모바일
-  - Conference
-  - 컨퍼런스
-  - Privacy
-  - 프라이버시
-  - Self-Hosted
-  - 셀프호스팅
+  - Terminal(터미널)
+  - Domain(도메인)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
+  - Conference(컨퍼런스)
+  - Privacy(프라이버시)
+  - Self-Hosted(셀프호스팅)
   - Real-Time
   - Latency
   - Throughput
   - JSON
-  - Logging
-  - 로깅
-  - Debugging
-  - 디버깅
+  - Logging(로깅)
+  - Debugging(디버깅)
   - Modularity
 image: "wordcloud.png"
 ---

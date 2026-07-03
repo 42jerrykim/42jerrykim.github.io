@@ -15,12 +15,10 @@ tags:
   - Actor-Model
   - Message-Queue
   - Thread-Per-Object
-  - Design-Pattern
-  - 디자인패턴
-  - Implementation
-  - 구현
-  - Tutorial
-  - Guide
+  - Design-Pattern(디자인패턴)
+  - Implementation(구현)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
 slug: cpp-active-object-async-method-invocation
 ---
 

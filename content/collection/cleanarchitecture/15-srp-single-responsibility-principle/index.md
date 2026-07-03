@@ -8,18 +8,14 @@ date: 2026-01-18
 lastmod: 2026-07-02
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
+  - Clean-Architecture(클린아키텍처)
   - SOLID
-  - Software-Architecture
-  - 응집도
-  - OOP
-  - 소프트웨어아키텍처
-  - Code-Quality
-  - 코드품질
-  - Implementation
-  - Refactoring
-  - 리팩토링
+  - Software-Architecture(소프트웨어아키텍처)
+  - Cohesion(응집도)
+  - OOP(객체지향)
+  - Code-Quality(코드품질)
+  - Implementation(구현)
+  - Refactoring(리팩토링)
 ---
 
 SOLID의 첫 번째 원칙인 **SRP(Single Responsibility Principle)**는 가장 이해하기 쉬워 보이지만, 가장 많이 오해받는 원칙이기도 하다. "클래스는 하나의 일만 해야 한다"라는 설명은 SRP의 의미를 왜곡한다.

@@ -8,103 +8,65 @@ categories:
   - Toast
   - Notification
 tags:
-  - Windows
-  - 윈도우
+  - Windows(윈도우)
   - CSharp
   - .NET
   - Builder
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - Process
-  - Queue
-  - 큐
-  - String
+  - Queue(큐)
+  - String(문자열)
   - Best-Practices
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - How-To
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Reference
-  - 참고
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Comparison
-  - 비교
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Technology(기술)
+  - Blog(블로그)
+  - Reference(참고)
+  - Productivity(생산성)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Comparison(비교)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
   - Tips
-  - Markdown
-  - 마크다운
-  - Shell
-  - Documentation
-  - 문서화
-  - Implementation
-  - 구현
-  - Error-Handling
-  - 에러처리
-  - Performance
-  - 성능
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
-  - Networking
-  - 네트워킹
+  - Markdown(마크다운)
+  - Shell(셸)
+  - Documentation(문서화)
+  - Implementation(구현)
+  - Error-Handling(에러처리)
+  - Performance(성능)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
+  - Networking(네트워킹)
   - API
-  - Backend
-  - 백엔드
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
-  - OS
-  - 운영체제
+  - Backend(백엔드)
+  - Concurrency(동시성)
+  - Async(비동기)
+  - OS(운영체제)
   - Thread
-  - Memory
-  - 메모리
+  - Memory(메모리)
   - IDE
   - VSCode
-  - Automation
-  - 자동화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
+  - Automation(자동화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
   - Creational-Pattern
   - GoF
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Software-Architecture(소프트웨어아키텍처)
   - Git
   - GitHub
   - Case-Study
   - Deep-Dive
   - 실습
   - Beginner
-  - Pitfalls
-  - 함정
+  - Pitfalls(함정)
 image: image02.png
 ---
 

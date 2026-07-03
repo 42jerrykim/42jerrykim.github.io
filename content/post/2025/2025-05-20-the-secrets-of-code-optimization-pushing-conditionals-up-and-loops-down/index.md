@@ -6,114 +6,70 @@ categories:
   - CleanCode
   - Programming
 tags:
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Code-Quality
-  - 코드품질
-  - OOP
-  - 객체지향
-  - Design-Pattern
-  - 디자인패턴
-  - Code-Review
-  - 코드리뷰
-  - Documentation
-  - 문서화
-  - Clean-Architecture
-  - 클린아키텍처
-  - Implementation
-  - 구현
-  - Functional-Programming
-  - 함수형프로그래밍
-  - Data-Structures
-  - 자료구조
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Code-Quality(코드품질)
+  - OOP(객체지향)
+  - Design-Pattern(디자인패턴)
+  - Code-Review(코드리뷰)
+  - Documentation(문서화)
+  - Clean-Architecture(클린아키텍처)
+  - Implementation(구현)
+  - Functional-Programming(함수형프로그래밍)
+  - Data-Structures(자료구조)
   - CSharp
   - .NET
   - Best-Practices
-  - Optimization
-  - 최적화
-  - Performance
-  - 성능
+  - Optimization(최적화)
+  - Performance(성능)
   - Readability
   - Maintainability
   - Modularity
   - Type-Safety
-  - Error-Handling
-  - 에러처리
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Profiling
-  - 프로파일링
+  - Error-Handling(에러처리)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Profiling(프로파일링)
   - Benchmark
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Abstraction
-  - 추상화
-  - Composition
-  - 합성
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Abstraction(추상화)
+  - Composition(합성)
+  - Coupling(결합도)
+  - Cohesion(응집도)
   - Strategy
   - Template-Method
   - Iterator
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Reference
-  - 참고
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Technology(기술)
+  - Web(웹)
+  - Reference(참고)
+  - Productivity(생산성)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Blog(블로그)
+  - Markdown(마크다운)
   - Git
   - GitHub
-  - Review
-  - 리뷰
+  - Review(리뷰)
   - How-To
   - Tips
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Concurrency(동시성)
+  - Async(비동기)
   - Cache
-  - 캐싱
-  - Algorithm
-  - 알고리즘
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
+  - Caching(캐싱)
+  - Algorithm(알고리즘)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
 description: "Push Ifs Up and Fors Down 원칙을 적용해 조건문은 호출부로 올리고 반복문은 하위·배치로 내리는 방법을 정리한다. C# 예시, Mermaid 제어 흐름 다이어그램, enum 해체·배치 API 패턴으로 가독성·성능·유지보수성을 높이는 실전 리팩토링 기법과 참고 문헌을 소개한다."
 image: index.png
 ---

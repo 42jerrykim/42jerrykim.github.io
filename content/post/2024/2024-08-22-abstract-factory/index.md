@@ -7,39 +7,25 @@ lastmod: "2026-03-17"
 header:
   teaser: /assets/images/2024/2024-08-22-abstract-factory.png
 tags:
-  - Design-Pattern
-  - 디자인패턴
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
   - Creational-Pattern
   - GoF
   - Factory
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Abstraction
-  - 추상화
-  - Polymorphism
-  - 다형성
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Abstraction(추상화)
+  - Polymorphism(다형성)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
   - SOLID
-  - Composition
-  - 합성
-  - Dependency-Injection
-  - 의존성주입
-  - Coupling
-  - 결합도
+  - Composition(합성)
+  - Dependency-Injection(의존성주입)
+  - Coupling(결합도)
   - Maintainability
   - Modularity
   - Python
@@ -49,45 +35,28 @@ tags:
   - Builder
   - Singleton
   - Template-Method
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Guide
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Backend
-  - 백엔드
-  - Scalability
-  - 확장성
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Education(교육)
+  - Reference(참고)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Backend(백엔드)
+  - Scalability(확장성)
   - How-To
   - Tips
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Beginner
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Productivity
-  - 생산성
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
-  - Configuration
-  - 설정
-  - Windows
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Productivity(생산성)
+  - Markdown(마크다운)
+  - Review(리뷰)
+  - Configuration(설정)
+  - Windows(윈도우)
   - Case-Study
   - Deep-Dive
   - 실습

@@ -8,102 +8,63 @@ categories:
   - Microservices
   - SoftwareDevelopment
 tags:
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Microservices
-  - 마이크로서비스
+  - Software-Architecture(소프트웨어아키텍처)
+  - Microservices(마이크로서비스)
   - Event-Driven
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - CQRS
   - Domain-Driven-Design
   - Kafka
   - RabbitMQ
   - Message-Queue
-  - Backend
-  - 백엔드
+  - Backend(백엔드)
   - API
   - REST
-  - Async
-  - 비동기
-  - Scalability
-  - 확장성
-  - Concurrency
-  - 동시성
-  - Database
-  - 데이터베이스
+  - Async(비동기)
+  - Scalability(확장성)
+  - Concurrency(동시성)
+  - Database(데이터베이스)
   - CSharp
   - .NET
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Clean-Architecture
-  - 클린아키텍처
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
+  - Documentation(문서화)
+  - Clean-Architecture(클린아키텍처)
+  - Coupling(결합도)
+  - Cohesion(응집도)
   - Command
   - Observer
-  - Web
-  - 웹
-  - Networking
-  - 네트워킹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Education
-  - 교육
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
-  - Logging
-  - 로깅
-  - Performance
-  - 성능
-  - Refactoring
-  - 리팩토링
+  - Web(웹)
+  - Networking(네트워킹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Education(교육)
+  - Technology(기술)
+  - Blog(블로그)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
+  - Logging(로깅)
+  - Performance(성능)
+  - Refactoring(리팩토링)
   - Maintainability
   - DevOps
-  - Deployment
-  - 배포
-  - Cloud
-  - 클라우드
+  - Deployment(배포)
+  - Cloud(클라우드)
   - Azure
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Review
-  - 리뷰
-  - Workflow
-  - 워크플로우
-  - Interface
-  - 인터페이스
-  - Optimization
-  - 최적화
+  - Comparison(비교)
+  - Review(리뷰)
+  - Workflow(워크플로우)
+  - Interface(인터페이스)
+  - Optimization(최적화)
 image: "wordcloud.png"
 draft: false
 ---

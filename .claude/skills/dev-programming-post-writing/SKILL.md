@@ -37,7 +37,7 @@ lastmod: YYYY-MM-DD
 categories:
   - 주제분류  # 예: Programming, Python, CSharp
   - 보조분류  # 예: Language, Data-Structures, Optimization
-tags:  # 50개 이상, 영어+한글 쌍
+tags:  # 25개 이상, 영/한 병용 개념은 Tag(태그) 형식
   - Programming
   - 프로그래밍
 image: "image.png"
@@ -61,13 +61,13 @@ image: "image.png"
 
 ## 5. 태그 전략
 
-`data/tags.yaml`의 `programming_languages`, `code_quality`, `software_engineering`, `data_structures`, `complexity_analysis`, `general_topics` 카테고리에서 50개 이상 선정. 다루는 언어(예: Python, C++)와 개념(예: Recursion/재귀, Compiler/컴파일러)을 영어+한글 쌍으로 채운다.
+`data/tags.yaml`의 `programming_languages`, `code_quality`, `software_engineering`, `data_structures`, `complexity_analysis`, `general_topics` 카테고리에서 25개 이상 선정. 다루는 언어(예: Python, C++)와 병기 승인 태그(예: Recursion(재귀), Compiler(컴파일러))로 채운다.
 
 ## 6. 작성 체크리스트
 
 - [ ] 경로가 `content/post/<연도>/YYYY-MM-DD-<슬러그>/index.md`인가?
 - [ ] title 70자 이내, description 150자 내외인가?
-- [ ] tags 50개 이상(영어+한글)이고 무관한 보일러플레이트 태그가 없는가?
+- [ ] tags 25개 이상(`data/tags.yaml` 승인 태그)이고 무관한 보일러플레이트 태그가 없는가?
 - [ ] `draft: true`(신규 글), date/lastmod가 오늘 날짜인가?
 - [ ] 핵심 코드 블록이 언어 지정 + 컴파일/실행 가능한가?
 - [ ] "자주 하는 실수"류 절에 각 항목마다 근거가 있는가? (답 없는 리스트 금지)

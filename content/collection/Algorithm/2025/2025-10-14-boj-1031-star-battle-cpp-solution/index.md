@@ -7,56 +7,38 @@ categories:
   - Algorithm
   - Graph
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
+  - Algorithm(알고리즘)
+  - BOJ(백준)
   - Baekjoon
   - C++
-  - Graph
-  - 그래프
+  - Graph(그래프)
   - Network-Flow
-  - String
-  - Greedy
-  - 그리디
-  - Implementation
+  - String(문자열)
+  - Greedy(그리디)
+  - Implementation(구현)
   - BFS
   - DFS
-  - Complexity-Analysis
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - 구현
-  - Edge-Cases
-  - 엣지케이스
-  - Editorial
-  - 에디토리얼
-  - Tutorial
-  - 튜토리얼
-  - Pitfalls
-  - 함정
-  - Competitive-Programming
-  - Problem-Solving
-  - Time-Complexity
-  - Coding-Test
-  - 코딩테스트
-  - Data-Structures
-  - 자료구조
-  - Optimization
-  - 최적화
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Complexity-Analysis(복잡도분석)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Edge-Cases(엣지케이스)
+  - Editorial(에디토리얼)
+  - Tutorial(튜토리얼)
+  - Pitfalls(함정)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Data-Structures(자료구조)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
   - Go
   - .NET
   - Git
   - GitHub
-  - Queue
-  - Memory
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Queue(큐)
+  - Memory(메모리)
+  - Testing(테스트)
+  - Documentation(문서화)
 image: "wordcloud.png"
 ---
 

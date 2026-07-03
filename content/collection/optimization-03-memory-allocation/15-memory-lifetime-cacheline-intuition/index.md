@@ -8,11 +8,11 @@ slug: memory-lifetime-cache-line-intuition-fundamentals
 description: "스택·힙·객체 수명·캐시 라인 단위 접근이 할당과 지연에 미치는 영향을 그림으로 잡는 기초 장입니다. Tr.01 실행 모델과 Tr.06 캐시 해석의 선행 개념으로 쓰고 이 트랙 심화 학습으로 연결합니다."
 tags:
   - C++
-  - Performance
-  - Optimization
-  - Memory
-  - Stack
-  - Heap
+  - Performance(성능)
+  - Optimization(최적화)
+  - Memory(메모리)
+  - Stack(스택)
+  - Heap(힙)
   - Allocator
   - Lifetime
   - RAII
@@ -22,51 +22,42 @@ tags:
   - CPU
   - Latency
   - Throughput
-  - Profiling
+  - Profiling(프로파일링)
   - Benchmark
-  - Concurrency
-  - Linux
-  - Windows
-  - Embedded
-  - Backend
-  - Code-Quality
-  - Software-Architecture
+  - Concurrency(동시성)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - Embedded(임베디드)
+  - Backend(백엔드)
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
   - Best-Practices
-  - Implementation
-  - Data-Structures
-  - Testing
-  - Debugging
-  - Documentation
+  - Implementation(구현)
+  - Data-Structures(자료구조)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Documentation(문서화)
   - Git
   - CI-CD
-  - Refactoring
-  - Clean-Code
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
   - Pointer
   - Alignment
   - False-Sharing
-  - Edge-Cases
-  - Pitfalls
-  - Error-Handling
-  - Guide
-  - Reference
-  - Technology
-  - Tutorial
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
   - Fundamentals
   - Deep-Dive
   - 기초
-  - 성능
-  - 최적화
-  - 메모리
   - 캐시
   - 지역성
   - 수명
   - 할당
-  - 백엔드
-  - 임베디드
-  - 코드품질
-  - 가이드
-  - 참고
-  - 튜토리얼
 ---
 
 본 장은 **기초** 난이도입니다. 이 트랙의 본문 챕터들은 할당기·풀·레이아웃 등으로 빠르게 들어가는데, 독자마다 **“메모리가 왜 비싼가”**에 대한 머릿속 그림이 다르면 같은 조언도 다르게 읽힙니다. 여기서는 수식 대신 **직관**만 맞춥니다.

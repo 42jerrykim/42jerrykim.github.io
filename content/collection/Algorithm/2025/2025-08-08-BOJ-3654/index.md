@@ -7,56 +7,37 @@ categories:
 description: "격자에서 빈 칸을 L자 타일로 겹치지 않게 모두 덮을 수 있는지 판정하는 문제입니다. 그래프 모델링과 최대 유량(디닉) 알고리즘을 활용하여, 각 칸을 노드로 변환하고 L자 타일의 배치 가능성을 간선으로 연결해 해를 구합니다. C++로 효율적으로 구현하는 방법과, 이분 그래프, 유량 네트워크의 개념, 좌표 매핑 및 간선 구성 등 다양한 알고리즘적 아이디어를 다룹니다."
 lastmod: 2025-08-08
 tags:
-  - Algorithm
-  - 알고리즘
-  - Graph
-  - 그래프
+  - Algorithm(알고리즘)
+  - Graph(그래프)
   - Network-Flow
   - Bipartite-Matching
-  - Implementation
-  - 구현
-  - BOJ
-  - 백준
-  - Competitive-Programming
-  - Problem-Solving
+  - Implementation(구현)
+  - BOJ(백준)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Problem-Solving(문제해결)
   - C++
-  - Time-Complexity
-  - 시간복잡도
-  - Coding-Test
-  - 코딩테스트
-  - Data-Structures
-  - 자료구조
-  - Optimization
-  - 최적화
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Time-Complexity(시간복잡도)
+  - Coding-Test(코딩테스트)
+  - Data-Structures(자료구조)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
   - Go
   - .NET
   - BFS
   - DFS
-  - Queue
-  - Memory
-  - Space-Complexity
-  - 공간복잡도
-  - Edge-Cases
-  - 엣지케이스
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Queue(큐)
+  - Memory(메모리)
+  - Space-Complexity(공간복잡도)
+  - Edge-Cases(엣지케이스)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Pitfalls
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Pitfalls(함정)
 date: 2025-08-08
 image: "wordcloud.png"
 ---

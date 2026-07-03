@@ -8,73 +8,45 @@ slug: build-parallelization-ccache-distcc-sccache
 description: "ccache·sccache로 재컴파일 감소, distcc 분산 빌드, -j와 메모리·캐시 균형, CI에서의 캐시 아티팩트·캐시 키·분산 전략을 다룹니다. LTO·PGO와 캐시 키 관계와 언제 ccache/distcc를 쓸지 판단 기준을 제시합니다."
 tags:
   - C++
-  - Performance
-  - Optimization
-  - Compiler
+  - Performance(성능)
+  - Optimization(최적화)
+  - Compiler(컴파일러)
   - CPU
   - Cache
-  - Memory
+  - Memory(메모리)
   - Benchmark
-  - Profiling
+  - Profiling(프로파일링)
   - CI-CD
-  - Testing
-  - 성능
-  - 최적화
-  - 컴파일러
-  - 프로파일링
-  - 테스트
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Linux
-  - Windows
-  - OS
-  - 운영체제
-  - Concurrency
-  - 동시성
+  - Testing(테스트)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - OS(운영체제)
+  - Concurrency(동시성)
   - Latency
   - Throughput
-  - Backend
-  - 백엔드
-  - Embedded
-  - 임베디드
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
+  - Backend(백엔드)
+  - Embedded(임베디드)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
   - Best-Practices
   - Git
-  - Automation
-  - 자동화
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Data-Structures
-  - 자료구조
-  - Time-Complexity
-  - 시간복잡도
-  - Complexity-Analysis
-  - 복잡도분석
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
-  - Error-Handling
-  - 에러처리
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
+  - Automation(자동화)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Data-Structures(자료구조)
+  - Time-Complexity(시간복잡도)
+  - Complexity-Analysis(복잡도분석)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
   - Advanced
   - Deep-Dive
   - 실습

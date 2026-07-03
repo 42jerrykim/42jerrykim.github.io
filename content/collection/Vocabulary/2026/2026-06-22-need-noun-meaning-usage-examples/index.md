@@ -12,12 +12,9 @@ tags:
   - need
   - 영단어
   - 영어명사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Context
-  - 맥락
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Context(맥락)
   - necessity
   - requirement
   - demand
@@ -35,13 +32,13 @@ tags:
   - basic needs
   - human needs
   - emotional needs
-  - Business
-  - Psychology
+  - 비즈니스
+  - Psychology(심리학)
   - welfare
   - social services
   - economics
   - healthcare
-  - Education
+  - Education(교육)
   - relationship
   - 필요
   - 필요성
@@ -54,13 +51,13 @@ tags:
   - 절실함
   - 기본 욕구
   - 정서적 욕구
-  - 일상표현
+  - Daily-Life(일상표현)
   - 비즈니스 용어
   - 심리 용어
   - 복지 용어
   - Usage-Notes
-  - Grammar
-  - Pronunciation
+  - Grammar(문법)
+  - Pronunciation(발음)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English

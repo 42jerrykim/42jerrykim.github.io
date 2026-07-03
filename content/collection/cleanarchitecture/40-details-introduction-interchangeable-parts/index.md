@@ -7,20 +7,14 @@ title: "[Clean Architecture] 40. 세부사항 서론"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Database
-  - 데이터베이스
-  - Web
-  - 웹
-  - Software-Architecture
-  - Security
-  - 소프트웨어아키텍처
-  - Dependency-Injection
-  - Abstraction
-  - 추상화
-  - Interface
-  - 인터페이스
+  - Clean-Architecture(클린아키텍처)
+  - Database(데이터베이스)
+  - Web(웹)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Security(보안)
+  - Dependency-Injection(의존성주입)
+  - Abstraction(추상화)
+  - Interface(인터페이스)
   - MySQL
   - PostgreSQL
   - MongoDB
@@ -28,8 +22,7 @@ tags:
   - Angular
   - Spring
   - Django
-  - Implementation
-  - 구현
+  - Implementation(구현)
   - Adapter
 ---
 

@@ -7,24 +7,17 @@ title: "[Clean Architecture] 06. 서론: 설계와 아키텍처"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Code-Quality
-  - 코드품질
-  - Scalability
-  - 확장성
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Code-Quality(코드품질)
+  - Scalability(확장성)
   - SOLID
-  - Productivity
-  - 생산성
-  - Refactoring
-  - 리팩토링
+  - Productivity(생산성)
+  - Refactoring(리팩토링)
   - Best-Practices
-  - Implementation
+  - Implementation(구현)
   - Ruby
-  - Code-Review
-  - 코드리뷰
+  - Code-Review(코드리뷰)
 ---
 
 **프로그램이 동작하도록 만드는 데 엄청난 수준의 지식과 기술이 필요하지는 않다.** 언제든 어린 고등학생이라도 할 수 있는 일이다.

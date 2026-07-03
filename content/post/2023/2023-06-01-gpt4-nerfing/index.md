@@ -7,100 +7,62 @@ lastmod: "2026-03-17T00:00:00Z"
 header:
   teaser: /assets/images/2023/2023-06-chatgpt-tile_tcm7-315735.jpg
 tags:
-  - AI
-  - 인공지능
+  - AI(인공지능)
   - ChatGPT
   - LLM
   - GPT
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
   - NLP
   - Neural-Network
-  - Data-Science
-  - 데이터사이언스
-  - Technology
-  - 기술
-  - Review
-  - 리뷰
+  - Data-Science(데이터사이언스)
+  - Technology(기술)
+  - Review(리뷰)
   - API
-  - Web
-  - 웹
-  - Open-Source
-  - 오픈소스
-  - Security
-  - 보안
-  - Privacy
-  - 프라이버시
-  - Innovation
-  - 혁신
+  - Web(웹)
+  - Open-Source(오픈소스)
+  - Security(보안)
+  - Privacy(프라이버시)
+  - Innovation(혁신)
   - Case-Study
   - Deep-Dive
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
+  - Reference(참고)
+  - Comparison(비교)
   - Best-Practices
-  - Documentation
-  - 문서화
+  - Documentation(문서화)
   - Git
   - GitHub
-  - Tutorial
-  - 가이드
-  - Guide
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Blog
-  - 블로그
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Productivity(생산성)
+  - Education(교육)
+  - Blog(블로그)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Performance
-  - 성능
-  - Code-Quality
-  - 코드품질
-  - Backend
-  - 백엔드
-  - Frontend
-  - 프론트엔드
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Performance(성능)
+  - Code-Quality(코드품질)
+  - Backend(백엔드)
+  - Frontend(프론트엔드)
   - REST
   - HTTP
   - JSON
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Implementation
-  - 구현
-  - Design-Pattern
-  - 디자인패턴
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Implementation(구현)
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
   - Python
-  - 파이썬
   - JavaScript
-  - Markdown
-  - 마크다운
-  - History
-  - 역사
-  - Science
-  - 과학
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
+  - Markdown(마크다운)
+  - History(역사)
+  - Science(과학)
+  - Prompt-Engineering(프롬프트엔지니어링)
   - Beginner
   - Advanced
 title: "[ChatGPT] GPT-4 품질 저하(너핑) 논란과 비조정형 AI 논의"

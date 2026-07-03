@@ -6,86 +6,52 @@ lastmod: "2026-03-16"
 header:
   teaser: /assets/images/2022/2022-02-24-145445.png
 tags:
-  - Markdown
-  - 마크다운
+  - Markdown(마크다운)
   - Jekyll
-  - Math
-  - 수학
+  - Math(수학)
   - JavaScript
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Implementation
-  - 구현
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Blog(블로그)
+  - Web(웹)
+  - Technology(기술)
+  - Education(교육)
+  - Reference(참고)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Implementation(구현)
   - How-To
   - Tips
-  - Configuration
-  - 설정
+  - Configuration(설정)
   - HTML
-  - Science
-  - 과학
+  - Science(과학)
   - Best-Practices
-  - Troubleshooting
-  - 트러블슈팅
+  - Troubleshooting(트러블슈팅)
   - Git
   - GitHub
   - Beginner
-  - Cheatsheet
-  - 치트시트
-  - Comparison
-  - 비교
-  - Code-Quality
+  - Cheatsheet(치트시트)
+  - Comparison(비교)
+  - Code-Quality(코드품질)
   - Readability
-  - Performance
-  - 성능
-  - Frontend
-  - 프론트엔드
-  - Productivity
-  - 생산성
-  - Innovation
-  - 혁신
-  - Review
-  - 리뷰
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Async
-  - 비동기
-  - String
-  - 문자열
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
-  - Data-Structures
-  - 자료구조
+  - Performance(성능)
+  - Frontend(프론트엔드)
+  - Productivity(생산성)
+  - Innovation(혁신)
+  - Review(리뷰)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Async(비동기)
+  - String(문자열)
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
+  - Data-Structures(자료구조)
   - API
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Deployment(배포)
+  - Automation(자동화)
   - SEO
   - YAML
   - TypeScript
@@ -93,14 +59,11 @@ tags:
   - Case-Study
   - Deep-Dive
   - 실습
-  - Design-Pattern
-  - Clean-Code
-  - Caching
-  - 캐싱
-  - Scalability
-  - 확장성
-  - Concurrency
-  - 동시성
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
+  - Caching(캐싱)
+  - Scalability(확장성)
+  - Concurrency(동시성)
 title: "[Tutorial] Markdown·Jekyll에서 LaTeX(MathJax)로 수식 작성하기"
 ---
 

@@ -6,83 +6,51 @@ categories:
 date: "2021-08-18T00:00:00Z"
 lastmod: "2026-03-16"
 tags:
-  - String
-  - 문자열
+  - String(문자열)
   - CSharp
   - .NET
-  - Implementation
-  - 구현
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Implementation(구현)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - How-To
   - Tips
-  - Reference
-  - 참고
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
+  - Documentation(문서화)
   - JSON
   - IDE
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
-  - Markdown
-  - 마크다운
-  - Functional-Programming
-  - 함수형프로그래밍
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - 코드품질
+  - Technology(기술)
+  - Web(웹)
+  - Blog(블로그)
+  - Productivity(생산성)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Workflow(워크플로우)
+  - Markdown(마크다운)
+  - Functional-Programming(함수형프로그래밍)
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
   - Readability
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Performance
-  - 성능
-  - Backend
-  - 백엔드
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Performance(성능)
+  - Backend(백엔드)
   - API
   - Regex
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
   - Beginner
   - Case-Study
   - 실습
-  - Comparison
-  - 비교
-  - Review
-  - 리뷰
-  - Migration
-  - 마이그레이션
-  - Automation
-  - 자동화
-  - Windows
-  - 윈도우
+  - Comparison(비교)
+  - Review(리뷰)
+  - Migration(마이그레이션)
+  - Automation(자동화)
+  - Windows(윈도우)
   - VSCode
 title: "[Regex] C#에서 Regex 검색 결과(Match) 재사용하기"
 ---

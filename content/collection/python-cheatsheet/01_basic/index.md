@@ -8,55 +8,34 @@ lastmod: 2026-01-18
 collection_order: 1
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Implementation
-  - 문법
-  - Math
+  - Implementation(구현)
+  - Grammar(문법)
+  - Math(수학)
   - IO
-  - 문서화
-  - 문자열
+  - Documentation(문서화)
+  - String(문자열)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Clean-Code
-  - Debugging
-  - 디버깅
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Pitfalls(함정)
+  - Clean-Code(클린코드)
+  - Debugging(디버깅)
+  - Tutorial(튜토리얼)
+  - Code-Quality(코드품질)
   - Go
-  - String
-  - Action
-  - 액션
+  - Action(액션)
   - HTML
-  - Error-Handling
-  - 에러처리
-  - Documentation
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
+  - Error-Handling(에러처리)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
 last_modified_at: 2023-01-17
 date: 2022-01-17
 categories: Python

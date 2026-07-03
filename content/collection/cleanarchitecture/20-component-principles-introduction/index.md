@@ -7,16 +7,13 @@ title: "[Clean Architecture] 20. 컴포넌트 원칙 서론"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
-  - 응집도
-  - 결합도
-  - 소프트웨어아키텍처
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Cohesion(응집도)
+  - Coupling(결합도)
   - CI-CD
   - SOLID
-  - History
-  - 역사
+  - History(역사)
 ---
 
 SOLID 원칙이 벽돌(클래스, 모듈)을 만드는 방법이라면, **컴포넌트 원칙**은 벽돌을 벽과 방으로 조합하는 방법이다. 이 파트에서는 컴포넌트가 무엇인지, 그리고 어떻게 좋은 컴포넌트를 설계하는지 다룬다.

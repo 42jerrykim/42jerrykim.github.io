@@ -10,55 +10,40 @@ categories:
   - Cyberpunk
   - Paramount Pictures
 tags:
-  - Movie
-  - 영화
+  - Movie(영화)
   - Sci-Fi
   - SF
-  - Action
-  - 액션
-  - Thriller
-  - 스릴러
+  - Action(액션)
+  - Thriller(스릴러)
   - Drama
-  - Animation
-  - Fantasy
-  - Romance
-  - Crime
-  - Mystery
-  - Adventure
-  - Horror
-  - Documentary
-  - Cinematography
-  - 촬영기법
-  - Soundtrack
-  - 사운드트랙
-  - Visual-Effects
-  - 시각효과
+  - Animation(애니메이션)
+  - Fantasy(판타지)
+  - Romance(로맨스)
+  - Crime(범죄)
+  - Mystery(미스터리)
+  - Adventure(모험)
+  - Horror(공포)
+  - Documentary(다큐멘터리)
+  - Cinematography(촬영기법)
+  - Soundtrack(사운드트랙)
+  - Visual-Effects(시각효과)
   - 2010s
   - 2020s
-  - Culture
-  - 문화
-  - Technology
-  - 기술
-  - Review
-  - 리뷰
-  - AI
-  - 인공지능
-  - Memory
+  - Culture(문화)
+  - Technology(기술)
+  - Review(리뷰)
+  - AI(인공지능)
+  - Memory(메모리)
   - Adaptation
   - Blockbuster
-  - Biography
-  - 전기영화
-  - Family
-  - 가족
-  - History
-  - 역사
-  - Psychology
-  - 심리학
+  - Biography(전기영화)
+  - Family(가족)
+  - History(역사)
+  - Psychology(심리학)
   - Ghost-in-the-Shell
   - 공각기동대
   - Cyberpunk
   - 사이버펑크
-  - Identity
   - 정체성
   - Scarlett-Johansson
   - Rupert-Sanders

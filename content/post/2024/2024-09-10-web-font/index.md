@@ -9,77 +9,51 @@ header:
 tags:
   - CSS
   - JavaScript
-  - Performance
-  - Frontend
-  - Web
-  - 웹
+  - Performance(성능)
+  - Frontend(프론트엔드)
+  - Web(웹)
   - API
-  - Async
-  - 비동기
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Tutorial
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Implementation
-  - 구현
-  - Design-Pattern
-  - 디자인패턴
-  - Guide
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Async(비동기)
+  - Blog(블로그)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Implementation(구현)
+  - Design-Pattern(디자인패턴)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
   - HTML
-  - Caching
-  - 캐싱
+  - Caching(캐싱)
   - CDN
-  - Optimization
-  - 최적화
-  - Code-Quality
-  - Testing
-  - 테스트
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
+  - Testing(테스트)
   - Readability
   - Maintainability
   - Beginner
   - Deep-Dive
   - Case-Study
   - 실습
-  - Networking
-  - Security
-  - 보안
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Networking(네트워킹)
+  - Security(보안)
+  - Deployment(배포)
+  - Automation(자동화)
   - Latency
-  - Scalability
-  - 확장성
+  - Scalability(확장성)
   - Browser
   - 브라우저
   - Typography

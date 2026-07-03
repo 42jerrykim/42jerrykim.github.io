@@ -13,14 +13,12 @@ categories:
 - Practice
 - Design Debate
 tags:
-- Dependency-Injection
-- Tutorial
-- Implementation
-- Design-Pattern
+- Dependency-Injection(의존성주입)
+- Tutorial(튜토리얼)
+- Implementation(구현)
+- Design-Pattern(디자인패턴)
 - GoF
-- 구현
-- 디자인패턴
-- Testing
+- Testing(테스트)
 ---
 
 이 실습에서는 Singleton 패턴의 다양한 구현 방식과 멀티스레드 안전성, 그리고 현대적 대안을 직접 구현해봅니다.

@@ -8,100 +8,63 @@ lastmod: "2026-03-16"
 header:
   teaser: /assets/images/undefined/securityfs.png
 tags:
-  - Linux
-  - 리눅스
+  - Linux(리눅스)
   - File-System
-  - Memory
-  - 메모리
-  - Security
-  - 보안
+  - Memory(메모리)
+  - Security(보안)
   - Process
   - Thread
-  - Networking
-  - 네트워킹
-  - OS
-  - 운영체제
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Technology
-  - 기술
-  - Debugging
-  - 디버깅
-  - Configuration
-  - 설정
+  - Networking(네트워킹)
+  - OS(운영체제)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Technology(기술)
+  - Debugging(디버깅)
+  - Configuration(설정)
   - Best-Practices
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Education
-  - 교육
+  - Comparison(비교)
+  - Education(교육)
   - DevOps
-  - Shell
-  - 셸
-  - Deployment
-  - 배포
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Performance
-  - 성능
-  - Concurrency
-  - 동시성
+  - Shell(셸)
+  - Deployment(배포)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Performance(성능)
+  - Concurrency(동시성)
   - IO
-  - Implementation
-  - 구현
+  - Implementation(구현)
   - Deep-Dive
   - 실습
   - Case-Study
   - Beginner
   - Advanced
-  - Troubleshooting
-  - 트러블슈팅
-  - Terminal
-  - 터미널
-  - Markdown
-  - 마크다운
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Web
-  - 웹
-  - Productivity
-  - 생산성
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Automation
-  - 자동화
-  - Design-Pattern
-  - 디자인패턴
+  - Troubleshooting(트러블슈팅)
+  - Terminal(터미널)
+  - Markdown(마크다운)
+  - Blog(블로그)
+  - Review(리뷰)
+  - Web(웹)
+  - Productivity(생산성)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Automation(자동화)
+  - Design-Pattern(디자인패턴)
   - Mediator
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Software-Architecture(소프트웨어아키텍처)
   - Modularity
-  - Encapsulation
-  - 캡슐화
+  - Encapsulation(캡슐화)
   - API
-  - Backend
-  - 백엔드
+  - Backend(백엔드)
   - Cache
-  - 캐싱
+  - Caching(캐싱)
   - Git
   - GitHub
-  - Monitoring
-  - 모니터링
+  - Monitoring(모니터링)
 title: "[Linux] DebugFS, SecurityFS, PipeFS, SockFS 가상 파일시스템 정리"
 draft: false
 ---

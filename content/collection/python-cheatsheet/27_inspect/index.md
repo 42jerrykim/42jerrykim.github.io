@@ -8,55 +8,34 @@ lastmod: 2026-01-18
 collection_order: 27
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Implementation
-  - Stack
-  - 스택
-  - Debugging
-  - 디버깅
+  - Implementation(구현)
+  - Stack(스택)
+  - Debugging(디버깅)
   - Decorator
-  - Documentation
-  - 문서화
-  - Software-Architecture
-  - OOP
-  - Design-Pattern
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - War
-  - 전쟁
+  - Documentation(문서화)
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
+  - Design-Pattern(디자인패턴)
+  - Tutorial(튜토리얼)
+  - Code-Quality(코드품질)
+  - War(전쟁)
   - Sci-Fi
-  - Error-Handling
-  - 에러처리
+  - Error-Handling(에러처리)
   - Best-Practices
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
 ---
 `inspect` 모듈은 **런타임에 객체를 검사**하는 도구입니다. 함수 시그니처 분석, 소스 코드 조회, 스택 추적 등 메타프로그래밍과 디버깅에 필수적입니다.
 

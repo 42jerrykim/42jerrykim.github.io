@@ -9,56 +9,37 @@ image: "wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-22-builder.png
 tags:
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - Builder
   - GoF
-  - Code-Quality
-  - Implementation
-  - 코드품질
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
+  - Code-Quality(코드품질)
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
   - Java
   - C++
   - Python
   - CSharp
-  - Configuration
-  - 설정
+  - Configuration(설정)
   - SOLID
-  - 구현
-  - String
+  - String(문자열)
   - Singleton
   - Factory
-  - Blog
-  - 블로그
+  - Blog(블로그)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Documentation
-  - 문서화
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Composition
-  - 합성
-  - Dependency-Injection
-  - 의존성주입
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Education
-  - 교육
-  - Tutorial
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Documentation(문서화)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Composition(합성)
+  - Dependency-Injection(의존성주입)
+  - Testing(테스트)
+  - Performance(성능)
+  - Education(교육)
+  - Tutorial(튜토리얼)
 ---
 
 

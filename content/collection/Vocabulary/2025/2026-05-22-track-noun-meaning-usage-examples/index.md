@@ -12,12 +12,9 @@ tags:
   - track
   - 영단어
   - 영어명사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Context
-  - 맥락
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Context(맥락)
   - PATH
   - route
   - railway
@@ -33,30 +30,23 @@ tags:
   - 음악
   - 트랙
   - 추적
-  - Etymology
+  - Etymology(어원)
   - origin
   - Usage-Notes
-  - Grammar
-  - Pronunciation
+  - Grammar(문법)
+  - Pronunciation(발음)
   - examples
   - EN/KR
   - Study-English
   - Vocabulary-Building
   - Transportation
   - 교통
-  - Sports
   - 스포츠
   - Film
-  - 영화
-  - Business
+  - Movie(영화)
   - 비즈니스
-  - 문법
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - 발음
+  - Synonym(유의어)
+  - Antonym(반의어)
 image: "wordcloud.png"
 ---
 

@@ -12,22 +12,14 @@ tags:
   - duel
   - 영단어
   - 영어명사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Context
-  - 맥락
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Grammar
-  - 문법
-  - Pronunciation
-  - 발음
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Context(맥락)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Grammar(문법)
+  - Pronunciation(발음)
   - combat
   - fight
   - contest
@@ -38,26 +30,18 @@ tags:
   - 대결
   - 맞대결
   - 격돌
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - War
-  - 전쟁
-  - Sports
+  - History(역사)
+  - Culture(문화)
+  - War(전쟁)
   - 스포츠
-  - Gaming
-  - 게임
-  - Business-English
-  - 비즈니스영어
-  - Daily-Life
-  - 일상표현
+  - Gaming(게임)
+  - Business-English(비즈니스영어)
+  - Daily-Life(일상표현)
   - Literature
   - 문학
-  - Movie
-  - 영화
+  - Movie(영화)
   - Drama
-  - 드라마
+  - TV-Show(드라마)
   - challenge
   - 도전
   - competition
@@ -72,14 +56,10 @@ tags:
   - EN-KR-Examples
   - Study-English
   - Vocabulary-Building
-  - Tutorial
-  - 튜토리얼
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
+  - Tutorial(튜토리얼)
+  - Education(교육)
+  - Reference(참고)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner

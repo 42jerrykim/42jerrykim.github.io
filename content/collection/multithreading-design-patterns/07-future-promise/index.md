@@ -12,20 +12,16 @@ categories:
 tags:
   - Future
   - Promise
-  - Async
+  - Async(비동기)
   - packaged_task
   - Asynchronous
-  - 비동기
   - Result-Transfer
   - Exception-Handling
   - Synchronization
-  - 동기화
-  - Design-Pattern
-  - 디자인패턴
-  - Implementation
-  - 구현
-  - Tutorial
-  - Guide
+  - Design-Pattern(디자인패턴)
+  - Implementation(구현)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
 slug: cpp-future-promise-async-packaged-task
 ---
 

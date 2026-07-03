@@ -8,55 +8,35 @@ lastmod: 2026-01-17
 collection_order: 35
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - JSON
-  - Implementation
+  - Implementation(구현)
   - IO
-  - Data-Structures
-  - Performance
-  - 성능
+  - Data-Structures(자료구조)
+  - Performance(성능)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Security
-  - 보안
-  - Testing
-  - Error-Handling
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Pitfalls(함정)
+  - Security(보안)
+  - Testing(테스트)
+  - Error-Handling(에러처리)
+  - Tutorial(튜토리얼)
+  - Code-Quality(코드품질)
   - API
-  - String
+  - String(문자열)
   - HTML
-  - Windows
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
+  - Windows(윈도우)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
 ---
 JSON과 CSV는 데이터 교환의 표준 포맷입니다. 이 치트시트는 json/csv 표준 라이브러리로 안전하게 읽고 쓰는 패턴과 encoding/newline 설정의 함정을 정리합니다.
 

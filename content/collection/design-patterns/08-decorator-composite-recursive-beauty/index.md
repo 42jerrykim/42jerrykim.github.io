@@ -12,10 +12,9 @@ categories:
 - Recursive Patterns
 - Dynamic Composition
 tags:
-- Design-Pattern
+- Design-Pattern(디자인패턴)
 - GoF
-- Functional-Programming
-- 디자인패턴
+- Functional-Programming(함수형프로그래밍)
 ---
 
 Decorator와 Composite 패턴을 통해 재귀적 구조의 아름다움을 탐구합니다. 동적 기능 확장과 트리 구조 표현의 우아한 해결책을 학습합니다.

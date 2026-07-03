@@ -8,100 +8,63 @@ date: "2021-04-06T00:00:00Z"
 lastmod: "2026-03-16"
 tags:
   - Jekyll
-  - Blog
-  - 블로그
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Configuration
-  - 설정
-  - Web
-  - 웹
+  - Blog(블로그)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Configuration(설정)
+  - Web(웹)
   - HTML
-  - Markdown
-  - 마크다운
+  - Markdown(마크다운)
   - YAML
-  - Documentation
-  - 문서화
+  - Documentation(문서화)
   - How-To
   - Tips
-  - Open-Source
-  - 오픈소스
+  - Open-Source(오픈소스)
   - GitHub
   - Git
-  - Productivity
-  - 생산성
+  - Productivity(생산성)
   - Best-Practices
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Education
-  - 교육
+  - Reference(참고)
+  - Technology(기술)
+  - Education(교육)
   - Beginner
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
-  - Comparison
-  - 비교
-  - Review
-  - 리뷰
-  - Implementation
-  - 구현
-  - Design-Pattern
-  - 디자인패턴
-  - Clean-Code
-  - 클린코드
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
+  - Comparison(비교)
+  - Review(리뷰)
+  - Implementation(구현)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
   - Maintainability
   - Modularity
-  - Frontend
-  - 프론트엔드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Frontend(프론트엔드)
+  - Deployment(배포)
+  - Automation(자동화)
   - Case-Study
   - Deep-Dive
   - 실습
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - Self-Hosted
-  - 셀프호스팅
-  - Domain
-  - 도메인
+  - Cheatsheet(치트시트)
+  - Self-Hosted(셀프호스팅)
+  - Domain(도메인)
   - IDE
   - VSCode
   - Readability
-  - Code-Quality
-  - 코드품질
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
+  - Linux(리눅스)
+  - Windows(윈도우)
   - macOS
-  - Networking
-  - 인터넷
-  - Innovation
-  - 혁신
+  - Networking(네트워킹)
+  - Internet(인터넷)
+  - Innovation(혁신)
 ---
 
 ## 개요

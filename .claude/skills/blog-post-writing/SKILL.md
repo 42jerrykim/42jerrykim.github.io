@@ -49,7 +49,7 @@ description: >-
 | AI·도구 활용(AI 서비스·에이전트·플러그인 가이드) | [`ai-tools-post-writing`](../ai-tools-post-writing/SKILL.md) |
 | 교양·생활(역사, 과학, 자기계발, 하드웨어·기기 리뷰) | [`life-knowledge-post-writing`](../life-knowledge-post-writing/SKILL.md) |
 
-4. **태그 후보 수집**: `data/tags.yaml` 읽어 관련 카테고리에서 태그 50개 이상 선정
+4. **태그 후보 수집**: `data/tags.yaml` 읽어 관련 카테고리에서 태그 25개 이상 선정
 
 ### Phase 2: 폴더 및 파일 생성
 
@@ -83,9 +83,9 @@ lastmod: YYYY-MM-DD
 draft: true
 categories:
   - 주카테고리
-tags:  # 50개 이상, 영어+한글 쌍, data/tags.yaml 참조
-  - Tag1
-  - 태그1
+tags:  # 25개 이상, data/tags.yaml 참조 (영/한 병용 개념은 Tag1(태그1) 형식의 단일 승인 태그 사용)
+  - Tag1(태그1)
+  - Tag2
 image: "image.png"
 ---
 ```
@@ -152,7 +152,7 @@ image: "image.png"
 - [ ] `draft: true` 설정됨
 - [ ] title 70자 이하
 - [ ] description 150자 내외
-- [ ] tags 50개 이상 (영어+한글, `data/tags.yaml` 기반)
+- [ ] tags 25개 이상 (`data/tags.yaml` 기반, 영/한 병용 개념은 `Tag(태그)` 형식 승인 태그 사용)
 - [ ] date/lastmod가 오늘 날짜 (터미널 확인값)
 - [ ] 카테고리 접두어가 올바름
 - [ ] 본문 링크 전부 HTTP 접근 확인 완료 (404/5xx 없음)
@@ -184,10 +184,10 @@ image: "image.png"
 태그 선정 전략 (상세 카테고리 목록은 [reference.md](reference.md) 참조):
 
 1. `data/tags.yaml`에서 해당 주제의 **직접 관련 카테고리** 태그 선정
-2. **영어+한글 쌍**으로 작성하여 양쪽 검색 커버
+2. 영/한이 실제로 병용되는 개념은 목록에 등재된 **`Tag(태그)` 병기 형식의 단일 승인 태그**를 그대로 사용(임의로 `Tag`, `태그` 두 줄로 쪼개지 않는다 — Phase 8 통합 이후 두 줄로 쓰면 승인 목록과 표기가 어긋난다)
 3. **구체적 태그** 우선 (예: `Dynamic-Programming` > `Algorithm`)
-4. 주제와 **간접 관련** 카테고리도 포함 (예: Python 글에 `코딩테스트`, `자동화` 등)
-5. 최종 **50개 이상** 달성
+4. 주제와 **간접 관련** 카테고리도 포함 (예: Python 글에 `Coding-Test(코딩테스트)`, `Automation(자동화)` 등)
+5. 최종 **25개 이상** 달성
 
 ---
 
@@ -225,7 +225,7 @@ image: "image.png"
 - **기술 용어**: 첫 등장 시 **영어(한국어)** 형태로 병기, 이후 한국어 사용
   - 예: **Dynamic Programming(동적 계획법)**은 ... 이후 "동적 계획법"으로 표기
 - **코드/명령어**: 원문(영어) 그대로 사용
-- **태그**: 영어+한글 쌍으로 50개 이상
+- **태그**: `data/tags.yaml` 승인 태그(영/한 병용 개념은 `Tag(태그)` 형식)로 25개 이상
 - **인용문**: 원문 유지 후 한국어 번역 병기 가능
 
 ---

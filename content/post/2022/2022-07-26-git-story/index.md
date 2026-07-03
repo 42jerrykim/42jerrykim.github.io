@@ -8,104 +8,62 @@ header:
 tags:
   - Git
   - GitHub
-  - History
-  - Animation
-  - 애니메이션
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Documentation
-  - 문서화
+  - History(역사)
+  - Animation(애니메이션)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Review(리뷰)
+  - Technology(기술)
+  - Web(웹)
+  - Blog(블로그)
+  - Documentation(문서화)
   - DevOps
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
+  - Comparison(비교)
+  - Reference(참고)
   - Best-Practices
-  - Education
-  - 교육
-  - Markdown
-  - 마크다운
-  - Deployment
-  - 배포
-  - Terminal
-  - 터미널
+  - Education(교육)
+  - Markdown(마크다운)
+  - Deployment(배포)
+  - Terminal(터미널)
   - IDE
   - VSCode
   - Python
-  - 파이썬
   - Beginner
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Career
-  - 커리어
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Career(커리어)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - 코드품질
-  - Cheatsheet
-  - 치트시트
+  - Implementation(구현)
+  - Testing(테스트)
+  - Performance(성능)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Conference
-  - 컨퍼런스
-  - Culture
-  - 문화
-  - Internet
-  - 인터넷
-  - Photography
-  - 사진
-  - Hardware
-  - 하드웨어
-  - Agile
-  - 애자일
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
+  - Conference(컨퍼런스)
+  - Culture(문화)
+  - Internet(인터넷)
+  - Photography(사진)
+  - Hardware(하드웨어)
+  - Agile(애자일)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
   - Maintainability
   - Modularity
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
 title: "[Git] git-story - 커밋 히스토리를 애니메이션으로 시각화하기"
 ---
 

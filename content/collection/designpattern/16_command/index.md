@@ -9,56 +9,37 @@ image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - Command
   - GoF
-  - Encapsulation
-  - 캡슐화
-  - Queue
-  - 큐
-  - Database
-  - Logging
-  - 로깅
-  - Action
-  - 액션
-  - Code-Quality
-  - 코드품질
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
+  - Encapsulation(캡슐화)
+  - Queue(큐)
+  - Database(데이터베이스)
+  - Logging(로깅)
+  - Action(액션)
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
   - Java
   - C++
   - Python
   - CSharp
-  - Frontend
-  - Implementation
-  - 구현
-  - Stack
+  - Frontend(프론트엔드)
+  - Implementation(구현)
+  - Stack(스택)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Documentation
-  - 문서화
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Documentation(문서화)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
   - SOLID
-  - Polymorphism
-  - 다형성
-  - Composition
-  - 합성
-  - Dependency-Injection
-  - 의존성주입
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Education
+  - Polymorphism(다형성)
+  - Composition(합성)
+  - Dependency-Injection(의존성주입)
+  - Testing(테스트)
+  - Performance(성능)
+  - Education(교육)
 ---
 
 커맨드 패턴(Command Pattern)은 요청을 객체로 캡슐화하여 요청을 보내는 객체와 요청을 수행하는 객체를 분리하는 행위 디자인 패턴이다. 이 패턴을 통해 요청의 큐잉, 로깅, 실행 취소(Undo)/재실행(Redo) 등 다양한 기능을 유연하게 구현할 수 있다.

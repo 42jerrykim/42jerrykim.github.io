@@ -12,29 +12,18 @@ tags:
   - 영단어
   - 영어명사
   - absenteeism
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
   - EN-KR-Examples
-  - Context
-  - 맥락
+  - Context(맥락)
   - HR
   - human resources
   - 인사
@@ -42,8 +31,7 @@ tags:
   - 직장
   - labor
   - 노동
-  - Education
-  - 교육
+  - Education(교육)
   - school attendance
   - 출석
   - truancy
@@ -52,17 +40,16 @@ tags:
   - 상습결근
   - attendance policy
   - 출근관리
-  - Productivity
-  - 생산성
+  - Productivity(생산성)
   - wellbeing
   - 웰빙
   - mental health
   - 정신건강
-  - Tutorial
-  - Guide
-  - Reference
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Tips
-  - Comparison
+  - Comparison(비교)
   - Study-English
   - Vocabulary-Building
   - Usage-Notes

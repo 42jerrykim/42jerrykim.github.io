@@ -11,52 +11,33 @@ tags:
   - English
   - 영단어
   - 영어명사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
   - BIT
-  - Segment-Tree
-  - Software-Architecture
-  - Composition
-  - 게임
-  - 일상표현
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
-  - Gaming
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Segment-Tree(세그먼트트리)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Composition(합성)
+  - Gaming(게임)
+  - Daily-Life(일상표현)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Education(교육)
+  - Reference(참고)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Technology
-  - 기술
-  - Guide
-  - 가이드
-  - Documentation
-  - 문서화
+  - Markdown(마크다운)
+  - Technology(기술)
+  - Guide(가이드)
+  - Documentation(문서화)
 image: wordcloud.png
 ---
 

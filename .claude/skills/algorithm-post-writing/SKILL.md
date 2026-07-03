@@ -2,7 +2,7 @@
 name: algorithm-post-writing
 description: >-
   알고리즘 문제 풀이(BOJ) 글 작성 가이드. 표준화된 문제 정보, Mermaid 기반 로직 시각화, 복잡도 분석 표,
-  코너 케이스 체크리스트, 50개 이상 태그 작성 규칙을 포함한다. content/collection/Algorithm/ 하위
+  코너 케이스 체크리스트, 25개 이상 태그 작성 규칙을 포함한다. content/collection/Algorithm/ 하위
   포스트 작성·보강 시 사용한다.
 ---
 
@@ -63,7 +63,7 @@ lastmod: {{ .Date }}
 categories:
 - Algorithm
 - 주요알고리즘 # 예: Graph, DP, Greedy
-tags:  # 최소 50개 이상 (한글/영어 쌍으로 작성 권장)
+tags:  # 최소 25개 이상 (data/tags.yaml 승인 태그, 병용 개념은 Tag(태그) 형식)
 - Algorithm
 - 알고리즘
 - BOJ
@@ -235,7 +235,7 @@ input = sys.stdin.readline
 ## 작성 체크리스트
 
 - [ ] 폴더명이 `YYYY-MM-DD-BOJ-번호-슬러그` 형식인가?
-- [ ] Front Matter의 tags가 50개 이상인가? (한글/영어 쌍 활용)
+- [ ] Front Matter의 tags가 25개 이상인가? (data/tags.yaml 승인 태그 활용)
 - [ ] description이 150자 내외로 핵심을 잘 요약했는가?
 - [ ] `image: "wordcloud.png"`가 설정되어 있고, `python script/wordcloud_generator.py "<콘텐츠 번들 경로>"`로 워드클라우드를 생성했는가?
 - [ ] Mermaid 다이어그램으로 로직을 시각화했는가?

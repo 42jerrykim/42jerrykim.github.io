@@ -5,91 +5,54 @@ categories:
   - datasolutions
   - personalgrowth
 tags:
-  - AI
-  - 인공지능
-  - Machine-Learning
-  - 머신러닝
-  - Data-Science
-  - 데이터사이언스
-  - Deep-Learning
-  - 딥러닝
+  - AI(인공지능)
+  - Machine-Learning(머신러닝)
+  - Data-Science(데이터사이언스)
+  - Deep-Learning(딥러닝)
   - Python
-  - 파이썬
-  - Implementation
-  - 구현
-  - Innovation
-  - 혁신
-  - Algorithm
-  - 알고리즘
-  - Productivity
-  - 생산성
-  - Problem-Solving
-  - 문제해결
-  - Open-Source
-  - 오픈소스
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
+  - Implementation(구현)
+  - Innovation(혁신)
+  - Algorithm(알고리즘)
+  - Productivity(생산성)
+  - Problem-Solving(문제해결)
+  - Open-Source(오픈소스)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
   - Go
   - Git
   - GitHub
-  - Science
-  - 과학
-  - Culture
-  - 문화
-  - Education
-  - 교육
-  - Career
-  - 커리어
-  - Reference
-  - 참고
+  - Science(과학)
+  - Culture(문화)
+  - Education(교육)
+  - Career(커리어)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Book-Review
-  - 서평
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
+  - Documentation(문서화)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Book-Review(서평)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Backend
-  - 백엔드
+  - Backend(백엔드)
   - API
-  - Cloud
-  - 클라우드
+  - Cloud(클라우드)
   - DevOps
-  - Networking
-  - 네트워킹
-  - Performance
-  - 성능
-  - Code-Quality
-  - 코드품질
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - 테스트
+  - Networking(네트워킹)
+  - Performance(성능)
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
   - Beginner
   - Advanced
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - How-To
   - Tips
 image: "Screenshot-2024-12-27-094857.png"

@@ -8,55 +8,33 @@ lastmod: 2026-01-18
 collection_order: 8
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - OOP
-  - 객체지향
-  - Inheritance
-  - 상속
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Composition
-  - 합성
+  - OOP(객체지향)
+  - Inheritance(상속)
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Composition(합성)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Design-Pattern
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Hashing
-  - String
-  - Memory
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
+  - Pitfalls(함정)
+  - Design-Pattern(디자인패턴)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Hashing(해싱)
+  - String(문자열)
+  - Memory(메모리)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
 ---
 파이썬의 클래스는 데이터와 동작을 묶는 기본 단위입니다. 이 치트시트는 class 정의, 상속과 super(), @property, __slots__, 자주 쓰는 매직 메서드를 빠르게 정리합니다.
 

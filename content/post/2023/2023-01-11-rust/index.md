@@ -7,115 +7,70 @@ header:
   teaser: /assets/images/2023/cover.jpg
 tags:
   - Rust
-  - Book-Review
-  - 서평
-  - Concurrency
-  - 동시성
-  - Memory
-  - 메모리
+  - Book-Review(서평)
+  - Concurrency(동시성)
+  - Memory(메모리)
   - Thread
   - Process
-  - OS
-  - 운영체제
-  - Compiler
-  - 컴파일러
+  - OS(운영체제)
+  - Compiler(컴파일러)
   - CPU
   - Cache
   - Git
   - GitHub
-  - Implementation
-  - 구현
+  - Implementation(구현)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Tutorial
-  - 가이드
-  - Guide
-  - Reference
-  - 참고
-  - Performance
-  - 성능
-  - Code-Quality
-  - 코드품질
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Performance(성능)
+  - Code-Quality(코드품질)
   - Type-Safety
-  - Clean-Code
-  - 클린코드
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Error-Handling
-  - 에러처리
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
-  - Optimization
-  - 최적화
+  - Clean-Code(클린코드)
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Error-Handling(에러처리)
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
+  - Optimization(최적화)
   - Benchmark
-  - Profiling
-  - 프로파일링
-  - Refactoring
-  - 리팩토링
-  - Design-Pattern
-  - 디자인패턴
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Hardware
-  - 하드웨어
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Backend
-  - 백엔드
+  - Profiling(프로파일링)
+  - Refactoring(리팩토링)
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Review(리뷰)
+  - Technology(기술)
+  - Education(교육)
+  - Blog(블로그)
+  - Web(웹)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Hardware(하드웨어)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Backend(백엔드)
   - API
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
+  - Linux(리눅스)
+  - Windows(윈도우)
   - DevOps
-  - Data-Structures
-  - 자료구조
-  - Async
-  - 비동기
+  - Data-Structures(자료구조)
+  - Async(비동기)
   - Deep-Dive
   - 실습
   - Case-Study
-  - Markdown
-  - 마크다운
+  - Markdown(마크다운)
   - How-To
   - Tips
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Beginner
   - Advanced
-  - Innovation
-  - 혁신
-  - Migration
-  - 마이그레이션
-  - Productivity
-  - 생산성
+  - Innovation(혁신)
+  - Migration(마이그레이션)
+  - Productivity(생산성)
 title: "[Rust] Rust Atomics and Locks 서평"
 ---
 

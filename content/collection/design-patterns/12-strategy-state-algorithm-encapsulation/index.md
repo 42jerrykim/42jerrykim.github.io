@@ -12,11 +12,10 @@ categories:
 - Algorithm Design
 - State Management
 tags:
-- Design-Pattern
+- Design-Pattern(디자인패턴)
 - GoF
-- Functional-Programming
+- Functional-Programming(함수형프로그래밍)
 - SOLID
-- 디자인패턴
 ---
 
 Strategy와 State 패턴의 철학적 차이를 탐구합니다. 알고리즘 교체와 상태 기반 행동 변화를 통해 유연한 시스템을 설계하는 방법을 학습합니다.

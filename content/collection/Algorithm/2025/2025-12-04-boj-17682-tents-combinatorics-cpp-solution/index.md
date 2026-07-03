@@ -7,56 +7,37 @@ categories:
   - Algorithm
   - Combinatorics
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
-  - 조합론
-  - Combinatorics
-  - 동적계획법
+  - Algorithm(알고리즘)
+  - BOJ(백준)
+  - Combinatorics(조합론)
+  - DP(동적계획법)
   - Dynamic-Programming
-  - DP
-  - Math
-  - Modular-Arithmetic
-  - Graph
-  - Edge-Cases
-  - 수학
+  - Math(수학)
+  - Modular-Arithmetic(모듈러)
+  - Graph(그래프)
+  - Edge-Cases(엣지케이스)
   - C++
-  - Implementation
-  - 경쟁프로그래밍
-  - Competitive-Programming
-  - Divide-and-Conquer
-  - 최적화
-  - Optimization
-  - Editorial
-  - Problem-Solving
-  - 구현
-  - Time-Complexity
-  - 시간복잡도
-  - Coding-Test
-  - 코딩테스트
-  - Data-Structures
-  - 자료구조
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Implementation(구현)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Divide-and-Conquer(분할정복)
+  - Optimization(최적화)
+  - Editorial(에디토리얼)
+  - Problem-Solving(문제해결)
+  - Time-Complexity(시간복잡도)
+  - Coding-Test(코딩테스트)
+  - Data-Structures(자료구조)
+  - Code-Quality(코드품질)
   - Go
   - .NET
   - Git
   - GitHub
-  - Space-Complexity
-  - 공간복잡도
-  - 엣지케이스
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Space-Complexity(공간복잡도)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
-  - Refactoring
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
 image: "wordcloud.png"
 ---
 

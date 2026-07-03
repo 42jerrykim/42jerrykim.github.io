@@ -9,18 +9,13 @@ image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - Facade
   - GoF
-  - Encapsulation
-  - 캡슐화
-  - Software-Architecture
-  - Code-Quality
-  - 코드품질
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
+  - Encapsulation(캡슐화)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Code-Quality(코드품질)
+  - OOP(객체지향)
   - Java
   - C++
   - Python
@@ -28,37 +23,23 @@ tags:
   - Go
   - Git
   - GitHub
-  - Implementation
-  - 구현
-  - Movie
-  - 영화
-  - Review
-  - 리뷰
+  - Implementation(구현)
+  - Movie(영화)
+  - Review(리뷰)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Documentation
-  - 문서화
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Documentation(문서화)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
   - SOLID
-  - Polymorphism
-  - 다형성
-  - Composition
-  - 합성
-  - Dependency-Injection
-  - 의존성주입
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Education
-  - 교육
-  - Tutorial
+  - Polymorphism(다형성)
+  - Composition(합성)
+  - Dependency-Injection(의존성주입)
+  - Testing(테스트)
+  - Performance(성능)
+  - Education(교육)
+  - Tutorial(튜토리얼)
 ---
 
 퍼사드 패턴(Facade Pattern)은 복잡한 서브시스템에 대한 단순화된 인터페이스를 제공하는 구조적 디자인 패턴이다. 건물의 정면(Facade)처럼, 복잡한 내부 구조를 숨기고 깔끔한 외관만 보여주는 역할을 한다. 클라이언트는 서브시스템의 복잡한 상호작용을 알 필요 없이 퍼사드를 통해 간단하게 기능을 사용할 수 있다.

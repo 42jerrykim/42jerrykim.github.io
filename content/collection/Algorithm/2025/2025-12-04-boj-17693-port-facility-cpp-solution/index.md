@@ -8,55 +8,37 @@ categories:
   - Algorithm
   - Graph Theory
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
+  - Algorithm(알고리즘)
+  - BOJ(백준)
   - C++
-  - Graph-Theory
-  - 그래프
-  - Graph
+  - Graph-Theory(그래프이론)
+  - Graph(그래프)
   - BFS
   - DFS
-  - Segment-Tree
-  - 세그먼트트리
+  - Segment-Tree(세그먼트트리)
   - Range-Query
-  - 스택
-  - Data-Structures
-  - 자료구조
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Combinatorics
-  - 조합론
-  - Competitive-Programming
-  - 경쟁프로그래밍
-  - Problem-Solving
-  - Implementation
-  - Edge-Cases
-  - 구현
-  - Coding-Test
-  - 코딩테스트
-  - Optimization
-  - 최적화
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Stack(스택)
+  - Data-Structures(자료구조)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Combinatorics(조합론)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Problem-Solving(문제해결)
+  - Implementation(구현)
+  - Edge-Cases(엣지케이스)
+  - Coding-Test(코딩테스트)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
   - Go
   - .NET
   - Git
   - GitHub
-  - Sorting
-  - Tree
-  - Stack
-  - Queue
-  - Memory
-  - 엣지케이스
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Sorting(정렬)
+  - Tree(트리)
+  - Queue(큐)
+  - Memory(메모리)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
 image: "wordcloud.png"
 ---

@@ -7,21 +7,16 @@ title: "[Clean Architecture] 27. 경계: 선 긋기와 플러그인 아키텍처
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Edge-Cases
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Database
-  - 데이터베이스
-  - Frontend
-  - Interface
-  - 인터페이스
-  - Dependency-Injection
-  - 의존성주입
+  - Clean-Architecture(클린아키텍처)
+  - Edge-Cases(엣지케이스)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Database(데이터베이스)
+  - Frontend(프론트엔드)
+  - Interface(인터페이스)
+  - Dependency-Injection(의존성주입)
   - IO
-  - 결합도
-  - Testing
+  - Coupling(결합도)
+  - Testing(테스트)
 ---
 
 아키텍처에서 **경계(Boundary)**란 관심사를 분리하는 선이다. 경계의 한쪽에는 비즈니스 규칙이, 다른 쪽에는 세부사항이 있다. 경계를 제대로 그으면 **플러그인 아키텍처**가 된다.

@@ -7,113 +7,66 @@ lastmod: "2026-03-17T00:00:00Z"
 header: null
 image: "wordcloud.png"
 tags:
-  - Algorithm
-  - 알고리즘
-  - Tree
-  - 트리
-  - Data-Structures
-  - 자료구조
-  - Recursion
-  - 재귀
-  - Divide-and-Conquer
-  - 분할정복
-  - Implementation
-  - 구현
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Problem-Solving
-  - 문제해결
-  - Coding-Test
-  - 코딩테스트
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Database
-  - 데이터베이스
+  - Algorithm(알고리즘)
+  - Tree(트리)
+  - Data-Structures(자료구조)
+  - Recursion(재귀)
+  - Divide-and-Conquer(분할정복)
+  - Implementation(구현)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Database(데이터베이스)
   - Geometry
-  - 기하학
-  - Gaming
-  - 게임
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Gaming(게임)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Technology(기술)
+  - Web(웹)
+  - Blog(블로그)
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
   - How-To
   - Tips
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Clean-Code
-  - 클린코드
-  - Edge-Cases
-  - 엣지케이스
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Code-Quality
-  - 코드품질
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Clean-Code(클린코드)
+  - Edge-Cases(엣지케이스)
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
   - Maintainability
   - Modularity
-  - OOP
-  - 객체지향
-  - Interface
-  - 인터페이스
+  - OOP(객체지향)
+  - Interface(인터페이스)
   - Python
   - C++
-  - Memory
-  - 메모리
-  - Backend
-  - 백엔드
+  - Memory(메모리)
+  - Backend(백엔드)
   - Case-Study
   - Deep-Dive
   - 실습
   - Beginner
-  - Complexity-Analysis
-  - 복잡도분석
-  - Refactoring
-  - 리팩토링
-  - Pitfalls
-  - 함정
-  - Design-Pattern
-  - 디자인패턴
-  - Abstraction
-  - 추상화
+  - Complexity-Analysis(복잡도분석)
+  - Refactoring(리팩토링)
+  - Pitfalls(함정)
+  - Design-Pattern(디자인패턴)
+  - Abstraction(추상화)
   - Git
   - GitHub
-  - Configuration
-  - 설정
+  - Configuration(설정)
 teaser: /assets/images/undefined/teaser.jpg
 ---
 

@@ -8,92 +8,57 @@ title: "[OOP] 디미터의 법칙(Law of Demeter)과 결합도 낮추기"
 description: "디미터의 법칙(Law of Demeter)은 객체가 가까운 이웃과만 상호작용하도록 하여 결합도를 낮추고 응집도를 높이는 설계 원칙이다. 1987년 Demeter 프로젝트에서 유래했으며, 위반 신호, 기차 충돌 안티패턴, 리팩터링 전략, 실전 예제와 적용·완화 판단 기준을 정리했다."
 draft: false
 tags:
-  - OOP
-  - 객체지향
-  - Encapsulation
-  - 캡슐화
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
+  - OOP(객체지향)
+  - Encapsulation(캡슐화)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
   - SOLID
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Dependency-Injection
-  - 의존성주입
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Dependency-Injection(의존성주입)
   - Facade
-  - Code-Quality
-  - 코드품질
-  - Testing
-  - 테스트
+  - Code-Quality(코드품질)
+  - Testing(테스트)
   - Best-Practices
-  - Composition
-  - 합성
+  - Composition(합성)
   - Maintainability
   - Readability
   - Java
   - API
-  - Backend
-  - 백엔드
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Productivity
-  - 생산성
-  - Pitfalls
-  - 함정
-  - Code-Review
-  - 코드리뷰
+  - Backend(백엔드)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Education(교육)
+  - Reference(참고)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Productivity(생산성)
+  - Pitfalls(함정)
+  - Code-Review(코드리뷰)
   - Modularity
-  - Implementation
-  - 구현
-  - Performance
-  - 성능
+  - Implementation(구현)
+  - Performance(성능)
   - How-To
   - Tips
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Case-Study
   - Deep-Dive
   - 실습
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
-  - Agile
-  - 애자일
+  - Markdown(마크다운)
+  - Review(리뷰)
+  - Agile(애자일)
   - TDD
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
   - Domain-Driven-Design
   - Builder
   - Strategy
@@ -103,17 +68,13 @@ tags:
   - Behavioral-Pattern
   - Creational-Pattern
   - GoF
-  - Polymorphism
-  - 다형성
-  - Inheritance
-  - 상속
-  - Microservices
-  - 마이크로서비스
+  - Polymorphism(다형성)
+  - Inheritance(상속)
+  - Microservices(마이크로서비스)
   - Event-Driven
   - CQRS
   - Type-Safety
-  - Edge-Cases
-  - 엣지케이스
+  - Edge-Cases(엣지케이스)
 ---
 
 객체지향 설계에서 **결합도**를 낮추고 **응집도**를 높이려면, 객체가 "누구에게 말할 수 있는지"를 명확히 제한하는 것이 중요하다. **디미터의 법칙(Law of Demeter)**은 바로 그 기준을 제시한다. 이 글에서는 법칙의 정의와 탄생 배경, 위반 시 나타나는 신호, 대표적인 안티패턴인 기차 충돌(Train Wreck), 리팩터링 전략, 그리고 언제 적용하고 언제 완화할지에 대한 판단 기준을 다룬다. 규칙을 맹목적으로 따르기보다, 변화에 강한 협력 구조를 만들기 위한 가이드레인으로 활용하는 방법을 정리했다.

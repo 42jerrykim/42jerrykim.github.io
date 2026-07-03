@@ -227,7 +227,7 @@ description: >-
 
 ### 7.3 태그=본문 일치 (frontmatter 과약속 금지)
 
-frontmatter 태그는 **본문에 실재하는 내용만** 약속한다. `Etymology`, `Pronunciation`, `Antonym`, `History` 같은 내용성 태그를 달았으면 해당 절/문단이 본문에 있어야 하고, 없으면 본문을 채우거나 태그를 뺀다. `Markdown`, `Technology`, `Deployment`처럼 주제와 무관한 보일러플레이트 태그를 개수 채우기로 넣지 않는다 — 태그 50개는 [`blog-post-writing`](../blog-post-writing/SKILL.md)의 단어/의미/도메인 특화 조합으로 채운다.
+frontmatter 태그는 **본문에 실재하는 내용만** 약속한다. `Etymology`, `Pronunciation`, `Antonym`, `History` 같은 내용성 태그를 달았으면 해당 절/문단이 본문에 있어야 하고, 없으면 본문을 채우거나 태그를 뺀다. `Markdown`, `Technology`, `Deployment`처럼 주제와 무관한 보일러플레이트 태그를 개수 채우기로 넣지 않는다 — 태그 25개는 [`blog-post-writing`](../blog-post-writing/SKILL.md)의 단어/의미/도메인 특화 조합으로 채운다.
 
 ---
 

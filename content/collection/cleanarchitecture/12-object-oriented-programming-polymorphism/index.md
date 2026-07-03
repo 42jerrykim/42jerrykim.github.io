@@ -7,23 +7,16 @@ title: "[Clean Architecture] 12. 객체 지향 프로그래밍"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - OOP
-  - Encapsulation
-  - 캡슐화
-  - Inheritance
-  - 상속
-  - Polymorphism
-  - 다형성
-  - Dependency-Injection
-  - 의존성주입
-  - Software-Architecture
-  - Interface
-  - 인터페이스
+  - Clean-Architecture(클린아키텍처)
+  - OOP(객체지향)
+  - Encapsulation(캡슐화)
+  - Inheritance(상속)
+  - Polymorphism(다형성)
+  - Dependency-Injection(의존성주입)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Interface(인터페이스)
   - SOLID
-  - 소프트웨어아키텍처
-  - Performance
+  - Performance(성능)
   - C++
   - Java
 ---

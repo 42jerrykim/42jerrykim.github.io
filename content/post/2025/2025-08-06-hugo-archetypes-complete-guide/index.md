@@ -9,68 +9,42 @@ categories:
   - "Content Management"
 tags:
   - Hugo
-  - Markdown
-  - 마크다운
+  - Markdown(마크다운)
   - YAML
   - JSON
-  - Documentation
-  - 문서화
-  - Data-Structures
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
+  - Documentation(문서화)
+  - Data-Structures(자료구조)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
   - Go
   - Bash
-  - Shell
-  - 셸
-  - Configuration
-  - 설정
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Workflow
-  - 워크플로우
-  - Automation
-  - 자동화
-  - Troubleshooting
-  - 트러블슈팅
+  - Shell(셸)
+  - Configuration(설정)
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Workflow(워크플로우)
+  - Automation(자동화)
+  - Troubleshooting(트러블슈팅)
   - Best-Practices
-  - Deployment
-  - 배포
+  - Deployment(배포)
   - DevOps
-  - Reference
-  - 참고
+  - Reference(참고)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Migration
-  - 마이그레이션
-  - Education
-  - 교육
-  - Review
-  - 리뷰
-  - Innovation
-  - 혁신
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Comparison(비교)
+  - Career(커리어)
+  - Migration(마이그레이션)
+  - Education(교육)
+  - Review(리뷰)
+  - Innovation(혁신)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Maintainability
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
   - Case-Study
   - Deep-Dive
   - 실습
@@ -81,16 +55,12 @@ tags:
   - Git
   - GitHub
   - File-System
-  - Backend
-  - 백엔드
+  - Backend(백엔드)
   - API
-  - Performance
-  - 성능
+  - Performance(성능)
   - Modularity
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
   - Template-Method
   - Builder
   - Jekyll

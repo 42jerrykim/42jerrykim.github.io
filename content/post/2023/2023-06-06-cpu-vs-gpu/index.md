@@ -8,78 +8,46 @@ header:
   teaser: /assets/images/2023/CPU2.jpg
 tags:
   - CPU
-  - Technology
-  - Hardware
-  - 하드웨어
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
-  - Data-Structures
-  - 자료구조
-  - Math
-  - 수학
-  - Memory
-  - 메모리
+  - Technology(기술)
+  - Hardware(하드웨어)
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
+  - Data-Structures(자료구조)
+  - Math(수학)
+  - Memory(메모리)
   - Process
   - Thread
   - Cache
-  - Algorithm
-  - 알고리즘
-  - Blog
-  - 블로그
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Gaming
-  - 게임
-  - Science
-  - 과학
-  - Culture
-  - 문화
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Algorithm(알고리즘)
+  - Blog(블로그)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Gaming(게임)
+  - Science(과학)
+  - Culture(문화)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Performance
-  - 성능
-  - Concurrency
-  - 동시성
-  - AI
-  - 인공지능
+  - Comparison(비교)
+  - Career(커리어)
+  - Performance(성능)
+  - Concurrency(동시성)
+  - AI(인공지능)
   - Computer-Vision
-  - Data-Science
-  - 데이터사이언스
+  - Data-Science(데이터사이언스)
   - Neural-Network
-  - Optimization
-  - 최적화
+  - Optimization(최적화)
   - Latency
   - Throughput
   - Beginner
@@ -87,18 +55,12 @@ tags:
   - Case-Study
   - Deep-Dive
   - 실습
-  - OS
-  - 운영체제
-  - Implementation
-  - 구현
-  - Cloud
-  - 클라우드
-  - Embedded
-  - 임베디드
+  - OS(운영체제)
+  - Implementation(구현)
+  - Cloud(클라우드)
+  - Embedded(임베디드)
   - Tablet
-  - 태블릿
-  - Mobile
-  - 모바일
+  - Mobile(모바일)
 title: "[Processor] CPU vs GPU: 구조·역할·사용처 완전 정리"
 image: "wordcloud.png"
 ---

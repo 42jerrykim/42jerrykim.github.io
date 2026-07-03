@@ -39,7 +39,7 @@ lastmod: YYYY-MM-DD
 categories:
   - 주제분류  # 예: History, Science, Cycling
   - 보조분류
-tags:  # 50개 이상, 영어+한글 쌍
+tags:  # 25개 이상, 영/한 병용 개념은 Tag(태그) 형식
   - Tutorial
   - 가이드
 image: "image.png"
@@ -76,13 +76,13 @@ image: "image.png"
 
 ## 5. 태그 전략
 
-`data/tags.yaml`의 `general_topics` 및 주제별 카테고리(역사=`Culture`/역사 관련, 과학=`ai_and_data`/`system_and_low_level`와 무관하면 일반, 기기=하드웨어 관련)에서 50개 이상 선정. 주제 고유명사(제품명, 인물명, 사건명)와 개념어를 영어+한글 쌍으로 채운다.
+`data/tags.yaml`의 `general_topics` 및 주제별 카테고리(역사=`Culture`/역사 관련, 과학=`ai_and_data`/`system_and_low_level`와 무관하면 일반, 기기=하드웨어 관련)에서 25개 이상 선정. 주제 고유명사(제품명, 인물명, 사건명)와 병기 승인 태그(Tag(태그) 형식)로 채운다.
 
 ## 6. 작성 체크리스트
 
 - [ ] 경로가 `content/post/<연도>/YYYY-MM-DD-<슬러그>/index.md`인가?
 - [ ] title 70자 이내, description 150자 내외인가?
-- [ ] tags 50개 이상(영어+한글)인가?
+- [ ] tags 25개 이상(`data/tags.yaml` 승인 태그)인가?
 - [ ] `draft: true`(신규 글), date/lastmod가 오늘 날짜인가?
 - [ ] (역사·과학형) 연도·인물·수치에 출처가 있고, 불확실한 부분은 완화 표현을 썼는가?
 - [ ] (역사·과학형) 타임라인/비교 구조로 전체 흐름을 먼저 보여주는가?

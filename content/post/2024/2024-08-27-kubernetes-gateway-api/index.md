@@ -11,81 +11,50 @@ tags:
   - GCP
   - AWS
   - DevOps
-  - Deployment
-  - 배포
-  - Networking
-  - 네트워킹
+  - Deployment(배포)
+  - Networking(네트워킹)
   - API
-  - Security
-  - 보안
-  - Tutorial
-  - 튜토리얼
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Guide
-  - 가이드
-  - Implementation
-  - 구현
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Configuration
-  - 설정
+  - Security(보안)
+  - Tutorial(튜토리얼)
+  - Technology(기술)
+  - Web(웹)
+  - Guide(가이드)
+  - Implementation(구현)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Microservices
-  - 마이크로서비스
-  - Cloud
-  - 클라우드
+  - Comparison(비교)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Microservices(마이크로서비스)
+  - Cloud(클라우드)
   - Load-Balancing
-  - Backend
-  - 백엔드
-  - Automation
-  - 자동화
-  - Monitoring
-  - 모니터링
-  - Scalability
-  - 확장성
+  - Backend(백엔드)
+  - Automation(자동화)
+  - Monitoring(모니터링)
+  - Scalability(확장성)
   - Best-Practices
-  - Troubleshooting
-  - 트러블슈팅
-  - Reference
-  - 참고
+  - Troubleshooting(트러블슈팅)
+  - Reference(참고)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Software-Architecture(소프트웨어아키텍처)
   - YAML
   - Docker
   - Git
   - CI-CD
-  - Performance
-  - 성능
-  - Testing
-  - 테스트
-  - Code-Quality
-  - 코드품질
-  - Blog
-  - 블로그
-  - Education
-  - 교육
-  - Innovation
-  - 혁신
+  - Performance(성능)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
+  - Blog(블로그)
+  - Education(교육)
+  - Innovation(혁신)
   - Beginner
-  - Review
-  - 리뷰
-  - Graph
-  - 그래프
+  - Review(리뷰)
+  - Graph(그래프)
 title: "[Kubernetes] Gateway API로 멀티클러스터 게이트웨이 설정하기"
 image: "wordcloud.png"
 ---

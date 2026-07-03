@@ -8,108 +8,63 @@ categories:
   - Intel-NUC
   - Pulse-Eight
 tags:
-  - Hardware
-  - 하드웨어
-  - Automation
-  - 자동화
-  - Windows
-  - 윈도우
-  - Linux
-  - 리눅스
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Hardware(하드웨어)
+  - Automation(자동화)
+  - Windows(윈도우)
+  - Linux(리눅스)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - How-To
   - Tips
-  - Configuration
-  - 설정
-  - Networking
-  - 네트워킹
-  - Open-Source
-  - 오픈소스
-  - Technology
-  - 기술
-  - Troubleshooting
-  - 트러블슈팅
-  - Productivity
-  - 생산성
-  - Implementation
-  - 구현
-  - Reference
-  - 참고
+  - Configuration(설정)
+  - Networking(네트워킹)
+  - Open-Source(오픈소스)
+  - Technology(기술)
+  - Troubleshooting(트러블슈팅)
+  - Productivity(생산성)
+  - Implementation(구현)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Comparison
-  - 비교
-  - Workflow
-  - 워크플로우
-  - Gadget
-  - 가젯
+  - Documentation(문서화)
+  - Comparison(비교)
+  - Workflow(워크플로우)
+  - Gadget(가젯)
   - Samsung
   - Android
-  - Mobile
-  - 모바일
-  - Blog
-  - 블로그
-  - Education
-  - 교육
-  - Innovation
-  - 혁신
-  - Self-Hosted
-  - 셀프호스팅
+  - Mobile(모바일)
+  - Blog(블로그)
+  - Education(교육)
+  - Innovation(혁신)
+  - Self-Hosted(셀프호스팅)
   - Beginner
   - Case-Study
   - Deep-Dive
   - 실습
-  - Performance
-  - 성능
-  - Deployment
-  - 배포
-  - Terminal
-  - 터미널
-  - Shell
-  - 셸
+  - Performance(성능)
+  - Deployment(배포)
+  - Terminal(터미널)
+  - Shell(셸)
   - API
-  - Security
-  - 보안
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - 코드품질
-  - Review
-  - 리뷰
-  - History
-  - 역사
-  - Science
-  - 과학
+  - Security(보안)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
+  - Review(리뷰)
+  - History(역사)
+  - Science(과학)
   - macOS
   - DevOps
-  - Monitoring
-  - 모니터링
-  - Migration
-  - 마이그레이션
-  - Agile
-  - 애자일
-  - Internet
-  - 인터넷
-  - Keyboard
-  - 키보드
-  - Markdown
-  - 마크다운
-  - Career
-  - 커리어
+  - Monitoring(모니터링)
+  - Migration(마이그레이션)
+  - Agile(애자일)
+  - Internet(인터넷)
+  - Keyboard(키보드)
+  - Markdown(마크다운)
+  - Career(커리어)
 description: "HDMI-CEC와 Pulse-Eight USB-CEC 어댑터로 PC와 TV 전원을 자동 연동하는 방법을 소개한다. Intel NUC·일반 PC에서 CEC 사용이 어려운 이유, 어댑터 연결·설정 절차, CEC-Tray·tv_on.cmd·tv_off.cmd 활용법, 전원 연동 시나리오와 장단점·유의사항을 정리했다."
 image: "0000237_555.png"
 ---

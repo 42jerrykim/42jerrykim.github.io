@@ -8,55 +8,35 @@ lastmod: 2026-01-18
 collection_order: 17
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Shell
-  - Action
-  - Automation
-  - 자동화
+  - Shell(셸)
+  - Action(액션)
+  - Automation(자동화)
   - DevOps
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Design-Pattern
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Pitfalls(함정)
+  - Design-Pattern(디자인패턴)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Bash
   - Git
   - GitHub
-  - 액션
   - Command
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Workflow
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Workflow(워크플로우)
 ---
 argparse는 커맨드라인 인자를 파싱하는 파이썬 표준 라이브러리입니다. 이 치트시트는 위치/옵션 인자, 타입 변환, 서브커맨드, 도움말 생성의 핵심 패턴을 정리합니다.
 

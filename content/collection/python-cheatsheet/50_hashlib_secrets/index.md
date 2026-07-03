@@ -8,55 +8,34 @@ lastmod: 2026-01-18
 collection_order: 50
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Security
-  - 보안
+  - Security(보안)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Pitfalls(함정)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Go
   - API
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
-  - Hashing
-  - String
-  - Memory
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
+  - Hashing(해싱)
+  - String(문자열)
+  - Memory(메모리)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
 ---
 hashlib은 해시 함수를, secrets는 보안 난수를 제공합니다. 이 치트시트는 MD5/SHA 해시 생성, 파일 체크섬, 보안 토큰 생성, random vs secrets 차이를 정리합니다.
 

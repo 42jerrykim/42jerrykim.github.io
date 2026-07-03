@@ -10,56 +10,33 @@ categories:
   - Romance
   - tvN
 tags:
-  - 액션
-  - Action
-  - 스릴러
-  - Thriller
-  - 전쟁
-  - War
-  - Cinematography
-  - TV-Show
-  - 드라마
-  - Review
-  - 리뷰
-  - Romance
-  - Tree
-  - Movie
-  - 영화
-  - History
-  - 역사
+  - Action(액션)
+  - Thriller(스릴러)
+  - War(전쟁)
+  - Cinematography(촬영기법)
+  - TV-Show(드라마)
+  - Review(리뷰)
+  - Romance(로맨스)
+  - Tree(트리)
+  - Movie(영화)
+  - History(역사)
   - Drama
-  - Comedy
-  - 코미디
-  - Fantasy
-  - 판타지
-  - 로맨스
-  - Mystery
-  - 미스터리
-  - Crime
-  - 범죄
-  - Adventure
-  - 모험
-  - Culture
-  - 문화
+  - Comedy(코미디)
+  - Fantasy(판타지)
+  - Mystery(미스터리)
+  - Crime(범죄)
+  - Adventure(모험)
+  - Culture(문화)
   - 2020s
   - 2010s
-  - 촬영기법
-  - Soundtrack
-  - 사운드트랙
-  - Family
-  - 가족
-  - Biography
-  - 전기영화
-  - Science
-  - 과학
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Soundtrack(사운드트랙)
+  - Family(가족)
+  - Biography(전기영화)
+  - Science(과학)
+  - Technology(기술)
+  - Education(교육)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
 image: "poster.png"
 ---
 

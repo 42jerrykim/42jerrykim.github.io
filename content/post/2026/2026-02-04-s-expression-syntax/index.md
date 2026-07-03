@@ -8,86 +8,48 @@ categories:
   - Lisp
   - Language
 tags:
-  - Data-Structures
-  - 자료구조
-  - String
-  - 문자열
-  - Recursion
-  - 재귀
-  - Functional-Programming
-  - 함수형프로그래밍
-  - Compiler
-  - 컴파일러
-  - Implementation
-  - 구현
-  - Documentation
-  - 문서화
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Cheatsheet
-  - 치트시트
-  - Reference
-  - 참고
+  - Data-Structures(자료구조)
+  - String(문자열)
+  - Recursion(재귀)
+  - Functional-Programming(함수형프로그래밍)
+  - Compiler(컴파일러)
+  - Implementation(구현)
+  - Documentation(문서화)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Cheatsheet(치트시트)
+  - Reference(참고)
   - Best-Practices
-  - Grammar
-  - 문법
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Grammar(문법)
+  - Technology(기술)
+  - Web(웹)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Blog
-  - 블로그
-  - Code-Quality
-  - 코드품질
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Productivity(생산성)
+  - Education(교육)
+  - Blog(블로그)
+  - Code-Quality(코드품질)
   - Readability
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Abstraction
-  - 추상화
-  - Interface
-  - 인터페이스
-  - History
-  - 역사
-  - Science
-  - 과학
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Abstraction(추상화)
+  - Interface(인터페이스)
+  - History(역사)
+  - Science(과학)
   - Deep-Dive
   - Beginner
   - Advanced
@@ -95,10 +57,8 @@ tags:
   - Quick-Reference
   - Map
   - Linked-List
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
 image: "wordcloud.png"
 draft: false
 ---

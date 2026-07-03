@@ -5,103 +5,63 @@ categories:
   - RemoteDesktop
   - VSCode
 tags:
-  - Windows
-  - 윈도우
+  - Windows(윈도우)
   - VSCode
   - IDE
-  - Keyboard
-  - 키보드
-  - Troubleshooting
-  - 트러블슈팅
+  - Keyboard(키보드)
+  - Troubleshooting(트러블슈팅)
   - DevOps
-  - Security
-  - 보안
-  - Productivity
-  - 생산성
-  - Configuration
-  - 설정
-  - Tutorial
-  - Guide
-  - 가이드
+  - Security(보안)
+  - Productivity(생산성)
+  - Configuration(설정)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - How-To
   - Tips
-  - Reference
-  - 참고
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Education
-  - 교육
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Technology(기술)
+  - Web(웹)
+  - Blog(블로그)
+  - Education(교육)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
   - RDP
-  - Networking
-  - 네트워킹
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Problem-Solving
-  - 문제해결
-  - Automation
-  - 자동화
-  - Terminal
-  - 터미널
-  - Shell
-  - 셸
+  - Networking(네트워킹)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Problem-Solving(문제해결)
+  - Automation(자동화)
+  - Terminal(터미널)
+  - Shell(셸)
   - Beginner
-  - Markdown
-  - 마크다운
-  - Performance
-  - 성능
-  - Pitfalls
-  - 함정
-  - Implementation
-  - 구현
-  - Refactoring
-  - 리팩토링
-  - Code-Quality
-  - 코드품질
+  - Markdown(마크다운)
+  - Performance(성능)
+  - Pitfalls(함정)
+  - Implementation(구현)
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
   - Maintainability
   - API
-  - Backend
-  - 백엔드
-  - Cloud
-  - 클라우드
-  - Privacy
-  - 프라이버시
-  - Authentication
-  - 인증
+  - Backend(백엔드)
+  - Cloud(클라우드)
+  - Privacy(프라이버시)
+  - Authentication(인증)
   - Case-Study
   - Deep-Dive
   - 실습
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Review
-  - 리뷰
-  - Innovation
-  - 혁신
+  - Cheatsheet(치트시트)
+  - Comparison(비교)
+  - Career(커리어)
+  - Review(리뷰)
+  - Innovation(혁신)
   - Git
   - GitHub
-  - Deployment
-  - 배포
+  - Deployment(배포)
 image: "image.png"
 date: 2025-01-13
 lastmod: 2026-03-17

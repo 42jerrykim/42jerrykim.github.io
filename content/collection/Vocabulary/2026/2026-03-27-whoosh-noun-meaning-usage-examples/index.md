@@ -12,26 +12,16 @@ tags:
   - 영단어
   - 영어명사
   - whoosh
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Pronunciation
-  - 발음
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Daily-Life
-  - 일상표현
-  - Academic-English
-  - 학술영어
-  - Business-English
-  - 비즈니스영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Pronunciation(발음)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Daily-Life(일상표현)
+  - Academic-English(학술영어)
+  - Business-English(비즈니스영어)
   - onomatopoeia
   - sound effect
   - rushing sound
@@ -44,22 +34,22 @@ tags:
   - narration
   - creative writing
   - audio design
-  - Media
-  - Culture
+  - 미디어
+  - Culture(문화)
   - 감탄사표현
   - 의성어
   - 속도감
   - 소리표현
   - 움직임표현
   - 문맥
-  - Context
+  - Context(맥락)
   - EN-KR-Examples
   - Study-English
   - Vocabulary-Building
-  - Guide
-  - Tutorial
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
   - Tips
-  - Reference
+  - Reference(참고)
   - How-To
 image: "wordcloud.png"
 ---

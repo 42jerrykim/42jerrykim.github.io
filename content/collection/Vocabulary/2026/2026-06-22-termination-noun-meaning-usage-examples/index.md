@@ -12,12 +12,9 @@ tags:
   - 영단어
   - termination
   - 영어명사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Context
-  - 맥락
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Context(맥락)
   - end
   - ending
   - conclusion
@@ -36,7 +33,7 @@ tags:
   - 임신중절
   - 중단
   - 만료
-  - Business
+  - 비즈니스
   - employment
   - contract law
   - legal terminology
@@ -60,9 +57,9 @@ tags:
   - procedure
   - formal notice
   - Usage-Notes
-  - Grammar
-  - Pronunciation
-  - Etymology
+  - Grammar(문법)
+  - Pronunciation(발음)
+  - Etymology(어원)
   - origin
   - EN-KR-Examples
   - Study-English

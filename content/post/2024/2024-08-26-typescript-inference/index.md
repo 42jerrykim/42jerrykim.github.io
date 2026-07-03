@@ -8,89 +8,51 @@ header:
 tags:
   - TypeScript
   - JavaScript
-  - Compiler
-  - 컴파일러
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - 코드품질
+  - Compiler(컴파일러)
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
   - Best-Practices
   - Type-Safety
   - Readability
   - Maintainability
-  - Web
-  - 웹
-  - Frontend
-  - 프론트엔드
-  - Backend
-  - 백엔드
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Documentation
-  - 문서화
-  - Reference
-  - 참고
-  - Open-Source
-  - 오픈소스
-  - Interface
-  - 인터페이스
-  - OOP
-  - 객체지향
-  - Refactoring
-  - 리팩토링
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
-  - Performance
-  - 성능
-  - Data-Structures
-  - 자료구조
-  - String
-  - 문자열
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
-  - Education
-  - 교육
-  - Technology
-  - 기술
-  - Innovation
-  - 혁신
-  - Configuration
-  - 설정
+  - Web(웹)
+  - Frontend(프론트엔드)
+  - Backend(백엔드)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Documentation(문서화)
+  - Reference(참고)
+  - Open-Source(오픈소스)
+  - Interface(인터페이스)
+  - OOP(객체지향)
+  - Refactoring(리팩토링)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
+  - Performance(성능)
+  - Data-Structures(자료구조)
+  - String(문자열)
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
+  - Education(교육)
+  - Technology(기술)
+  - Innovation(혁신)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Blog(블로그)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Productivity(생산성)
   - Modularity
-  - Abstraction
-  - 추상화
-  - Polymorphism
-  - 다형성
-  - Design-Pattern
-  - 디자인패턴
+  - Abstraction(추상화)
+  - Polymorphism(다형성)
+  - Design-Pattern(디자인패턴)
   - IDE
   - VSCode
   - Git
@@ -98,14 +60,10 @@ tags:
   - Node.js
   - API
   - JSON
-  - Async
-  - 비동기
-  - Concurrency
-  - 동시성
-  - Graph
-  - 그래프
-  - Troubleshooting
-  - 트러블슈팅
+  - Async(비동기)
+  - Concurrency(동시성)
+  - Graph(그래프)
+  - Troubleshooting(트러블슈팅)
   - Beginner
   - Advanced
   - Deep-Dive

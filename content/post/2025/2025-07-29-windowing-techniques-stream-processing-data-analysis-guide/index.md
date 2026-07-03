@@ -6,82 +6,49 @@ categories:
   - Software Architecture
 tags:
   - Python
-  - 파이썬
   - Kafka
   - Redis
-  - Database
-  - 데이터베이스
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
+  - Database(데이터베이스)
+  - Performance(성능)
+  - Optimization(최적화)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Backend
-  - 백엔드
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Backend(백엔드)
   - API
-  - Scalability
-  - 확장성
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
+  - Scalability(확장성)
+  - Concurrency(동시성)
+  - Async(비동기)
   - Latency
   - Throughput
   - Message-Queue
-  - Data-Science
-  - 데이터사이언스
-  - Memory
-  - 메모리
-  - Time-Complexity
-  - 시간복잡도
-  - Code-Quality
-  - 코드품질
-  - Implementation
-  - 구현
-  - Monitoring
-  - 모니터링
+  - Data-Science(데이터사이언스)
+  - Memory(메모리)
+  - Time-Complexity(시간복잡도)
+  - Code-Quality(코드품질)
+  - Implementation(구현)
+  - Monitoring(모니터링)
   - DevOps
-  - Cloud
-  - 클라우드
+  - Cloud(클라우드)
   - AWS
   - GCP
-  - Networking
-  - 네트워킹
+  - Networking(네트워킹)
   - Sliding-Window
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
-  - Data-Structures
-  - 자료구조
-  - Testing
-  - 테스트
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Blog
-  - 블로그
-  - Comparison
-  - 비교
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
+  - Data-Structures(자료구조)
+  - Testing(테스트)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Technology(기술)
+  - Education(교육)
+  - Blog(블로그)
+  - Comparison(비교)
   - How-To
   - Tips
   - Beginner
@@ -90,48 +57,30 @@ tags:
   - Deep-Dive
   - 실습
   - Event-Driven
-  - Caching
-  - 캐싱
-  - Error-Handling
-  - 에러처리
-  - Logging
-  - 로깅
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Web
-  - 웹
+  - Caching(캐싱)
+  - Error-Handling(에러처리)
+  - Logging(로깅)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Web(웹)
   - JSON
   - REST
-  - Security
-  - 보안
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
-  - Career
-  - 커리어
-  - Productivity
-  - 생산성
-  - Review
-  - 리뷰
-  - Migration
-  - 마이그레이션
-  - Markdown
-  - 마크다운
+  - Security(보안)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Workflow(워크플로우)
+  - Career(커리어)
+  - Productivity(생산성)
+  - Review(리뷰)
+  - Migration(마이그레이션)
+  - Markdown(마크다운)
   - Docker
   - Kubernetes
   - Git
   - GitHub
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
+  - Linux(리눅스)
+  - Windows(윈도우)
   - IDE
   - VSCode
   - Type-Safety

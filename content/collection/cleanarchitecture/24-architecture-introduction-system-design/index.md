@@ -7,19 +7,15 @@ title: "[Clean Architecture] 24. 아키텍처 서론"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Implementation
-  - Deployment
-  - 배포
-  - 코드품질
-  - Security
-  - Testing
-  - Code-Quality
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Implementation(구현)
+  - Deployment(배포)
+  - Code-Quality(코드품질)
+  - Security(보안)
+  - Testing(테스트)
   - SOLID
-  - Edge-Cases
+  - Edge-Cases(엣지케이스)
 ---
 
 지금까지 프로그래밍 패러다임, SOLID 원칙, 컴포넌트 원칙을 살펴보았다. 이제 이 모든 것을 통합하는 **아키텍처**를 다룰 차례다. 아키텍처란 무엇이고, 좋은 아키텍처는 어떤 특성을 가지는가?

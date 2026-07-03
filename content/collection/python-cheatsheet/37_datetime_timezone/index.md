@@ -8,55 +8,33 @@ lastmod: 2026-01-17
 collection_order: 37
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Implementation
-  - 함정
-  - Pitfalls
+  - Implementation(구현)
+  - Pitfalls(함정)
   - Best-Practices
   - JSON
-  - Logging
-  - 로깅
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - String
-  - War
-  - 전쟁
+  - Logging(로깅)
+  - Testing(테스트)
+  - Performance(성능)
+  - Tutorial(튜토리얼)
+  - Code-Quality(코드품질)
+  - String(문자열)
+  - War(전쟁)
   - HTML
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Optimization
-  - 최적화
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
-  - Education
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Optimization(최적화)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
+  - Education(교육)
 ---
 날짜와 시간은 버그가 숨기 쉬운 영역입니다. 이 치트시트는 naive/aware 구분, UTC 기준 저장, ISO 파싱/포맷, 타임존 변환의 핵심 원칙과 흔한 함정을 정리합니다.
 

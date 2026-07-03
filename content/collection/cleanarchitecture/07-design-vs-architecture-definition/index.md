@@ -7,19 +7,14 @@ title: "[Clean Architecture] 07. 설계와 아키텍처란?"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - Productivity
-  - 생산성
-  - Code-Quality
-  - 코드품질
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Productivity(생산성)
+  - Code-Quality(코드품질)
   - SOLID
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
 ---
 
 **설계(Design)와 아키텍처(Architecture) 사이에는 오랫동안 많은 혼란이 있었다.** 결론부터 얘기하면 **둘 사이에는 차이가 없다.**

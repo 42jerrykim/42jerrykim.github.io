@@ -12,13 +12,12 @@ categories:
 - Code Refactoring
 - Software Quality
 tags:
-- Code-Quality
-- Clean-Code
-- Code-Review
-- Software-Architecture
+- Code-Quality(코드품질)
+- Clean-Code(클린코드)
+- Code-Review(코드리뷰)
+- Software-Architecture(소프트웨어아키텍처)
 - Best-Practices
 - SOLID
-- 코드리뷰
 ---
 
 실무에서 자주 발생하는 안티패턴을 식별하고 체계적인 리팩토링 방법을 탐구합니다. 코드 스멜, 설계 부채, 패턴 남용의 문제를 해결하는 방법을 학습합니다.

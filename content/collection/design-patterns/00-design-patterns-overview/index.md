@@ -12,21 +12,16 @@ categories:
 - Programming Education
 - Software Engineering
 tags:
-- Design-Pattern
+- Design-Pattern(디자인패턴)
 - GoF
-- Software-Architecture
-- Code-Quality
+- Software-Architecture(소프트웨어아키텍처)
+- Code-Quality(코드품질)
 - Best-Practices
-- Clean-Code
+- Clean-Code(클린코드)
 - SOLID
-- Refactoring
-- Code-Review
-- Implementation
-- 디자인패턴
-- 소프트웨어아키텍처
-- 코드품질
-- 리팩토링
-- 코드리뷰
+- Refactoring(리팩토링)
+- Code-Review(코드리뷰)
+- Implementation(구현)
 ---
 
 GoF 23개 패턴을 완전히 마스터하는 체계적인 학습 가이드입니다. 기초 철학부터 고급 응용까지 디자인 패턴의 모든 측면을 포괄하는 전문가 수준의 커리큘럼을 제공합니다.

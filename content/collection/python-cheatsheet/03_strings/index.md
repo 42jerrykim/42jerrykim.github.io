@@ -8,55 +8,33 @@ lastmod: 2026-01-17
 collection_order: 3
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - String
-  - 문자열
-  - Data-Structures
-  - Implementation
+  - String(문자열)
+  - Data-Structures(자료구조)
+  - Implementation(구현)
   - IO
-  - Performance
-  - 성능
-  - Clean-Code
-  - Code-Quality
+  - Performance(성능)
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - 코드품질
+  - Pitfalls(함정)
+  - Tutorial(튜토리얼)
   - HTML
-  - Memory
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - 클린코드
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
+  - Memory(메모리)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
 ---
 문자열(str)은 파이썬에서 가장 자주 다루는 타입입니다. 이 치트시트는 슬라이싱, split/join, 검색/치환, f-string 포맷팅, bytes 변환의 핵심 패턴과 흔한 실수를 빠르게 훑습니다.
 

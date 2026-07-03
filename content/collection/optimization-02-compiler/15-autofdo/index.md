@@ -8,73 +8,45 @@ slug: autofdo-workflow-sampling-based
 description: "별도 instrumented 빌드 없이 perf/LBR 샘플링으로 프로파일을 수집해 컴파일러에 반영하는 AutoFDO 워크플로우, GCC/Clang 적용 방법, PGO(instrumented)와의 운영 비용·품질 비교, 언제 AutoFDO를 선택할지 판단 기준을 다룹니다."
 tags:
   - C++
-  - Performance
-  - Optimization
-  - Compiler
+  - Performance(성능)
+  - Optimization(최적화)
+  - Compiler(컴파일러)
   - CPU
   - Cache
-  - Memory
+  - Memory(메모리)
   - Benchmark
-  - Profiling
+  - Profiling(프로파일링)
   - CI-CD
-  - Testing
-  - 성능
-  - 최적화
-  - 컴파일러
-  - 프로파일링
-  - 테스트
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Linux
-  - Windows
-  - OS
-  - 운영체제
-  - Concurrency
-  - 동시성
+  - Testing(테스트)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - OS(운영체제)
+  - Concurrency(동시성)
   - Latency
   - Throughput
-  - Backend
-  - 백엔드
-  - Embedded
-  - 임베디드
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
+  - Backend(백엔드)
+  - Embedded(임베디드)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
   - Best-Practices
   - Git
-  - Automation
-  - 자동화
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Data-Structures
-  - 자료구조
-  - Time-Complexity
-  - 시간복잡도
-  - Complexity-Analysis
-  - 복잡도분석
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
-  - Error-Handling
-  - 에러처리
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
+  - Automation(자동화)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Data-Structures(자료구조)
+  - Time-Complexity(시간복잡도)
+  - Complexity-Analysis(복잡도분석)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
   - Advanced
   - Deep-Dive
   - 실습

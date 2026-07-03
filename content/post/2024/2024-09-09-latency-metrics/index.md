@@ -7,109 +7,68 @@ lastmod: "2026-03-17"
 header:
   teaser: /assets/images/2024/2024-09-09-latency-metrics.png
 tags:
-  - Performance
-  - 성능
+  - Performance(성능)
   - Latency
-  - Monitoring
-  - 모니터링
+  - Monitoring(모니터링)
   - API
-  - Backend
-  - 백엔드
-  - Web
-  - 웹
+  - Backend(백엔드)
+  - Web(웹)
   - AWS
-  - Cloud
-  - 클라우드
+  - Cloud(클라우드)
   - DevOps
   - Throughput
-  - Caching
-  - 캐싱
+  - Caching(캐싱)
   - Load-Balancing
   - Message-Queue
   - Redis
-  - Database
-  - 데이터베이스
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Database(데이터베이스)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Networking
-  - 네트워킹
-  - Scalability
-  - 확장성
-  - Async
-  - 비동기
-  - Concurrency
-  - 동시성
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Networking(네트워킹)
+  - Scalability(확장성)
+  - Async(비동기)
+  - Concurrency(동시성)
   - Docker
   - Kubernetes
-  - Linux
-  - 리눅스
+  - Linux(리눅스)
   - Python
-  - 파이썬
-  - Profiling
-  - 프로파일링
+  - Profiling(프로파일링)
   - Benchmark
-  - Logging
-  - 로깅
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Microservices
-  - 마이크로서비스
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Comparison
-  - 비교
+  - Logging(로깅)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Microservices(마이크로서비스)
+  - Reference(참고)
+  - Technology(기술)
+  - Education(교육)
+  - Productivity(생산성)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Comparison(비교)
   - How-To
   - Tips
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Frontend
-  - 프론트엔드
+  - Blog(블로그)
+  - Review(리뷰)
+  - Frontend(프론트엔드)
   - HTTP
   - REST
-  - Optimization
-  - 최적화
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Error-Handling
-  - 에러처리
-  - Clean-Code
-  - 클린코드
+  - Optimization(최적화)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Error-Handling(에러처리)
+  - Clean-Code(클린코드)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Code-Quality
-  - 코드품질
+  - Code-Quality(코드품질)
   - Git
   - GitHub
   - CI-CD

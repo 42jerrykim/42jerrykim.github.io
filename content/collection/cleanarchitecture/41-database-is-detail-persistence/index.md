@@ -7,23 +7,18 @@ title: "[Clean Architecture] 41. 데이터베이스는 세부사항이다"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Database
-  - 데이터베이스
+  - Clean-Architecture(클린아키텍처)
+  - Database(데이터베이스)
   - SQL
   - MySQL
   - PostgreSQL
   - MongoDB
   - Redis
-  - Memory
-  - 메모리
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - History
-  - 역사
-  - Technology
-  - Data-Structures
+  - Memory(메모리)
+  - Software-Architecture(소프트웨어아키텍처)
+  - History(역사)
+  - Technology(기술)
+  - Data-Structures(자료구조)
 ---
 
 데이터베이스는 아키텍처에서 **세부사항**이다. 비즈니스 규칙은 데이터베이스가 관계형인지, NoSQL인지, 파일 시스템인지 **신경 쓰지 않아야** 한다.

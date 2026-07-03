@@ -4,56 +4,37 @@ description: "인접한 원소만 swap 가능할 때 배열 정렬에 필요한 
 date: 2025-12-04
 lastmod: 2025-12-04
 tags:
-  - BOJ
-  - Sorting
-  - 알고리즘
+  - BOJ(백준)
+  - Sorting(정렬)
+  - Algorithm(알고리즘)
   - C++
-  - Implementation
-  - Divide-and-Conquer
-  - Competitive-Programming
-  - Algorithm
-  - 백준
-  - Combinatorics
-  - Time-Complexity
-  - 구현
-  - 최적화
-  - Optimization
-  - Data-Structures
-  - 그래프
-  - 수학
-  - Math
-  - 코딩테스트
-  - Coding-Test
-  - Problem-Solving
-  - 시간복잡도
-  - 자료구조
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Implementation(구현)
+  - Divide-and-Conquer(분할정복)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Combinatorics(조합론)
+  - Time-Complexity(시간복잡도)
+  - Optimization(최적화)
+  - Data-Structures(자료구조)
+  - Graph(그래프)
+  - Math(수학)
+  - Coding-Test(코딩테스트)
+  - Problem-Solving(문제해결)
+  - Code-Quality(코드품질)
   - Go
   - Git
   - GitHub
-  - Tree
-  - Space-Complexity
-  - 공간복잡도
-  - Edge-Cases
-  - 엣지케이스
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Tree(트리)
+  - Space-Complexity(공간복잡도)
+  - Edge-Cases(엣지케이스)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Pitfalls
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Pitfalls(함정)
 image: "wordcloud.png"
 ---
 

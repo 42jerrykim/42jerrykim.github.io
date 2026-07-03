@@ -7,20 +7,17 @@ title: "[Clean Architecture] 35. 레이어와 경계"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Edge-Cases
-  - 게임
+  - Clean-Architecture(클린아키텍처)
+  - Edge-Cases(엣지케이스)
+  - Gaming(게임)
   - API
   - English
-  - Shell
-  - Cloud
-  - 클라우드
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Dependency-Injection
+  - Shell(셸)
+  - Cloud(클라우드)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Dependency-Injection(의존성주입)
   - IO
-  - Complexity-Analysis
+  - Complexity-Analysis(복잡도분석)
 ---
 
 지금까지 경계의 개념을 배웠다. 이 장에서는 **실제 시스템**에서 경계를 어떻게 설정하는지 살펴본다.

@@ -9,73 +9,43 @@ draft: false
 
 tags:
   - CSharp
-  - OOP
-  - 객체지향
+  - OOP(객체지향)
   - .NET
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Inheritance
-  - 상속
-  - Abstraction
-  - 추상화
-  - Interface
-  - 인터페이스
-  - Design-Pattern
-  - 디자인패턴
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Inheritance(상속)
+  - Abstraction(추상화)
+  - Interface(인터페이스)
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
   - SOLID
-  - Clean-Code
-  - 클린코드
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
+  - Clean-Code(클린코드)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Refactoring
-  - 리팩토링
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Documentation
-  - 문서화
-  - Web
-  - 웹
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Open-Source
-  - 오픈소스
-  - Productivity
-  - 생산성
+  - Refactoring(리팩토링)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Education(교육)
+  - Reference(참고)
+  - Documentation(문서화)
+  - Web(웹)
+  - Technology(기술)
+  - Blog(블로그)
+  - Open-Source(오픈소스)
+  - Productivity(생산성)
   - Maintainability
   - Java
   - Python
-  - 파이썬
   - Beginner
-  - Data-Structures
-  - 자료구조
-  - Error-Handling
-  - 에러처리
+  - Data-Structures(자료구조)
+  - Error-Handling(에러처리)
   - Type-Safety
-  - Composition
-  - 합성
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
+  - Composition(합성)
+  - Coupling(결합도)
+  - Cohesion(응집도)
   - GoF
   - Creational-Pattern
   - Structural-Pattern
@@ -86,8 +56,7 @@ tags:
   - UML
   - 실습
   - How-To
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Deep-Dive
 
 teaser: /assets/images/undefined/teaser.jpg

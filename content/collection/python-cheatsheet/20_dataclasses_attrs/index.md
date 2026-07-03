@@ -8,55 +8,34 @@ lastmod: 2026-01-17
 collection_order: 20
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Code-Quality
-  - 함정
-  - Pitfalls
-  - 정렬
-  - 코드품질
-  - Clean-Code
-  - Performance
-  - 성능
-  - Implementation
-  - Design-Pattern
+  - Code-Quality(코드품질)
+  - Pitfalls(함정)
+  - Sorting(정렬)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Implementation(구현)
+  - Design-Pattern(디자인패턴)
   - Best-Practices
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - Recursion
+  - Tutorial(튜토리얼)
+  - Recursion(재귀)
   - HTML
-  - Memory
+  - Memory(메모리)
   - Factory
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - 클린코드
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
 ---
 dataclass는 데이터 컨테이너 클래스를 보일러플레이트 없이 만드는 표준 방법입니다. 이 치트시트는 field(default_factory), frozen, slots 옵션과 흔한 함정을 정리합니다.
 

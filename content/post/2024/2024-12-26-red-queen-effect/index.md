@@ -6,105 +6,63 @@ categories:
   - Competition
 tags:
   - Biology
-  - 생물학
-  - Science
-  - 과학
-  - Education
-  - 교육
-  - Innovation
-  - 혁신
-  - Technology
-  - 기술
-  - Security
-  - 보안
-  - Tutorial
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Review
-  - 리뷰
+  - Science(과학)
+  - Education(교육)
+  - Innovation(혁신)
+  - Technology(기술)
+  - Security(보안)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Review(리뷰)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Productivity
-  - 생산성
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Comparison
-  - 비교
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Productivity(생산성)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Comparison(비교)
   - How-To
   - Tips
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Mobile
-  - 모바일
-  - Cloud
-  - 클라우드
-  - Agile
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - Psychology
-  - 심리학
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
+  - Cloud(클라우드)
+  - Agile(애자일)
+  - History(역사)
+  - Culture(문화)
+  - Psychology(심리학)
   - Deep-Dive
   - Case-Study
   - Beginner
   - Advanced
   - 실습
-  - Data-Science
-  - 데이터사이언스
-  - AI
-  - 인공지능
-  - Networking
-  - 네트워킹
-  - Problem-Solving
-  - 문제해결
+  - Data-Science(데이터사이언스)
+  - AI(인공지능)
+  - Networking(네트워킹)
+  - Problem-Solving(문제해결)
   - Game-Theory
-  - Design-Pattern
-  - 디자인패턴
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Testing
-  - 테스트
-  - Code-Quality
-  - 코드품질
-  - Interface
-  - 인터페이스
+  - Design-Pattern(디자인패턴)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
+  - Interface(인터페이스)
   - Strategy
   - Observer
   - Event-Driven
-  - Conference
-  - 컨퍼런스
-  - Book-Review
-  - 서평
-  - Cheatsheet
-  - 치트시트
+  - Conference(컨퍼런스)
+  - Book-Review(서평)
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Web
-  - 웹
+  - Web(웹)
   - API
-  - Database
-  - 데이터베이스
-  - Machine-Learning
-  - 머신러닝
+  - Database(데이터베이스)
+  - Machine-Learning(머신러닝)
 image: "maxresdefault.png"
 date: "2024-12-26"
 lastmod: "2026-03-17"

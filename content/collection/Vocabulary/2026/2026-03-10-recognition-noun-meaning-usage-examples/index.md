@@ -12,30 +12,18 @@ tags:
   - 영단어
   - 영어명사
   - recognition
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Academic-English
-  - 학술영어
-  - Business-English
-  - 비즈니스영어
-  - Politics
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Academic-English(학술영어)
+  - Business-English(비즈니스영어)
   - 정치
-  - Technology
-  - 기술
-  - Psychology
-  - 심리학
+  - Technology(기술)
+  - Psychology(심리학)
   - acknowledge
   - identification
   - appreciation
@@ -51,8 +39,7 @@ tags:
   - 알아봄
   - 칭찬
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English
@@ -64,9 +51,9 @@ tags:
   - 성과
   - 외교
   - 기술용어
-  - 일상표현
-  - Reference
-  - Comparison
+  - Daily-Life(일상표현)
+  - Reference(참고)
+  - Comparison(비교)
 image: wordcloud.png
 ---
 

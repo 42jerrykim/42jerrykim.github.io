@@ -7,78 +7,52 @@ lastmod: "2026-03-17T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-21-factory-method.png
 tags:
-  - Design-Pattern
-  - 디자인패턴
-  - OOP
-  - 객체지향
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Design-Pattern(디자인패턴)
+  - OOP(객체지향)
+  - Software-Architecture(소프트웨어아키텍처)
   - Creational-Pattern
-  - Implementation
-  - 구현
+  - Implementation(구현)
   - UML
   - Java
   - CSharp
   - Python
   - JavaScript
-  - Inheritance
-  - 상속
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
+  - Inheritance(상속)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
   - Factory
-  - Code-Quality
-  - 코드품질
-  - Refactoring
-  - 리팩토링
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
+  - Clean-Code(클린코드)
   - SOLID
-  - Polymorphism
-  - 다형성
-  - Encapsulation
-  - 캡슐화
-  - Coupling
-  - 결합도
+  - Polymorphism(다형성)
+  - Encapsulation(캡슐화)
+  - Coupling(결합도)
   - GoF
   - Template-Method
   - Builder
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Documentation
-  - 문서화
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Blog
-  - 블로그
-  - Web
-  - 웹
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Documentation(문서화)
+  - Technology(기술)
+  - Education(교육)
+  - Blog(블로그)
+  - Web(웹)
   - C++
   - Go
-  - Open-Source
-  - 오픈소스
+  - Open-Source(오픈소스)
   - Maintainability
-  - Backend
-  - 백엔드
-  - Comparison
-  - 비교
+  - Backend(백엔드)
+  - Comparison(비교)
   - Case-Study
   - Deep-Dive
   - 실습
   - Beginner
-  - Clean-Architecture
-  - 클린아키텍처
-  - Dependency-Injection
-  - Cohesion
-  - 응집도
+  - Clean-Architecture(클린아키텍처)
+  - Dependency-Injection(의존성주입)
+  - Cohesion(응집도)
   - Spring
 image: "wordcloud.png"
 ---

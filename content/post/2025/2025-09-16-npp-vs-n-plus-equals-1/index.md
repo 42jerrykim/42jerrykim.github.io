@@ -10,12 +10,9 @@ categories:
   - "C/C++"
   - "Java"
 tags:
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Compiler
-  - 컴파일러
+  - Performance(성능)
+  - Optimization(최적화)
+  - Compiler(컴파일러)
   - C
   - C++
   - Java
@@ -24,71 +21,42 @@ tags:
   - Rust
   - Assembly
   - Iterator
-  - Clean-Code
+  - Clean-Code(클린코드)
   - Best-Practices
   - CPU
-  - Memory
-  - 메모리
+  - Memory(메모리)
   - Benchmark
-  - Profiling
-  - 프로파일링
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
+  - Profiling(프로파일링)
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
   - .NET
-  - Code-Quality
-  - 코드품질
+  - Code-Quality(코드품질)
   - Readability
-  - Documentation
-  - 문서화
-  - Concurrency
-  - 동시성
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
+  - Documentation(문서화)
+  - Concurrency(동시성)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Blog(블로그)
   - Cache
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
-  - Implementation
-  - 구현
-  - Debugging
-  - 디버깅
-  - Time-Complexity
-  - 시간복잡도
-  - Data-Structures
-  - 자료구조
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Open-Source
-  - 오픈소스
-  - Education
-  - 교육
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Comparison
-  - 비교
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
+  - Implementation(구현)
+  - Debugging(디버깅)
+  - Time-Complexity(시간복잡도)
+  - Data-Structures(자료구조)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Open-Source(오픈소스)
+  - Education(교육)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Web(웹)
+  - Backend(백엔드)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Comparison(비교)
   - How-To
   - Tips
   - Case-Study

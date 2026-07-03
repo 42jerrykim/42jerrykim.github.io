@@ -7,19 +7,17 @@ categories:
 - "Software"
 - "Self-Hosted"
 tags:
-- Self-Hosted
-- Open-Source
+- Self-Hosted(셀프호스팅)
+- Open-Source(오픈소스)
 - TypeScript
 - Docker
 - Kubernetes
 - PostgreSQL
-- Machine-Learning
+- Machine-Learning(머신러닝)
 - Map
-- Privacy
-- 프라이버시
-- 셀프호스팅
-- 웹
-- 모바일
+- Privacy(프라이버시)
+- Web(웹)
+- Mobile(모바일)
 image: "image.png"
 draft: true
 ---

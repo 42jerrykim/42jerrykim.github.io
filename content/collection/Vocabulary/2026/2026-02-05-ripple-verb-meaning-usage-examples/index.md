@@ -9,52 +9,34 @@ categories:
 tags:
   - Vocabulary
   - English
-  - Pronunciation
-  - Grammar
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Business-English
+  - Pronunciation(발음)
+  - Grammar(문법)
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Business-English(비즈니스영어)
   - Finance
-  - Security
+  - Security(보안)
   - 영단어
   - 영어동사
-  - 일상표현
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
-  - Windows
-  - Productivity
-  - Antonym
-  - 반의어
-  - 발음
-  - Daily-Life
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Daily-Life(일상표현)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
+  - Windows(윈도우)
+  - Productivity(생산성)
+  - Antonym(반의어)
+  - Education(교육)
+  - Reference(참고)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Technology
-  - 기술
-  - Guide
-  - 가이드
-  - Documentation
-  - 문서화
+  - Markdown(마크다운)
+  - Technology(기술)
+  - Guide(가이드)
+  - Documentation(문서화)
   - Best-Practices
   - Case-Study
 image: wordcloud.png

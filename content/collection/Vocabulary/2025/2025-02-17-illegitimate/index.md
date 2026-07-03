@@ -6,54 +6,35 @@ categories:
 tags:
   - English
   - Vocabulary
-  - Education
-  - OOP
-  - Nuance
+  - Education(교육)
+  - OOP(객체지향)
+  - Nuance(뉘앙스)
   - 영단어
   - Go
   - Git
   - GitHub
-  - Collocation
-  - 콜로케이션
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - 뉘앙스
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - 교육
-  - Reference
-  - 참고
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Collocation(콜로케이션)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - History(역사)
+  - Culture(문화)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Reference(참고)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Technology
-  - 기술
-  - Guide
+  - Markdown(마크다운)
+  - Technology(기술)
+  - Guide(가이드)
 image: index.png
 description: "illegitimate(불법)이라는 용어의 의미와 용법을 다룬다. 법적, 사회적, 역사적 맥락에서의 다양한 의미와 사용법을 설명하며, 사생아, 비합법 정부, 부당한 주장 등 구체적인 예시를 통해 이해를 돕는다. 유의어와 반의어를 포함한 어휘 학습 자료로 활용할 수 있다."
 ---

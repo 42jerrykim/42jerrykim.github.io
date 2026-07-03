@@ -13,17 +13,13 @@ categories:
 - Practice
 - Code Quality
 tags:
-- Code-Quality
-- Clean-Code
+- Code-Quality(코드품질)
+- Clean-Code(클린코드)
 - SOLID
-- Tutorial
-- Implementation
-- Design-Pattern
-- Software-Architecture
-- 코드품질
-- 구현
-- 디자인패턴
-- 소프트웨어아키텍처
+- Tutorial(튜토리얼)
+- Implementation(구현)
+- Design-Pattern(디자인패턴)
+- Software-Architecture(소프트웨어아키텍처)
 ---
 
 이 실습에서는 God Object 리팩토링, Spaghetti Code 정리, 안티패턴 탐지기 구현을 통해 나쁜 설계를 개선합니다.

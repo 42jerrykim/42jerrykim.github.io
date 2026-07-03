@@ -11,88 +11,54 @@ tags:
   - CSharp
   - .NET
   - Generics
-  - OOP
-  - 객체지향
-  - Interface
-  - 인터페이스
-  - Algorithm
-  - 알고리즘
-  - Data-Structures
-  - 자료구조
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Performance
-  - 성능
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
+  - OOP(객체지향)
+  - Interface(인터페이스)
+  - Algorithm(알고리즘)
+  - Data-Structures(자료구조)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Performance(성능)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
   - Type-Safety
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Documentation(문서화)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - API
-  - Problem-Solving
-  - 문제해결
-  - Async
-  - 비동기
-  - Backend
-  - 백엔드
-  - Web
-  - 웹
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Polymorphism
-  - 다형성
-  - Abstraction
-  - 추상화
-  - Inheritance
-  - 상속
-  - Encapsulation
-  - 캡슐화
+  - Problem-Solving(문제해결)
+  - Async(비동기)
+  - Backend(백엔드)
+  - Web(웹)
+  - Technology(기술)
+  - Blog(블로그)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Polymorphism(다형성)
+  - Abstraction(추상화)
+  - Inheritance(상속)
+  - Encapsulation(캡슐화)
   - Factory
   - Singleton
-  - Memory
-  - 메모리
-  - Compiler
-  - 컴파일러
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - String
-  - Sorting
-  - 정렬
+  - Memory(메모리)
+  - Compiler(컴파일러)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - String(문자열)
+  - Sorting(정렬)
   - How-To
   - Tips
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Beginner
   - Advanced
   - Deep-Dive
   - 실습
   - Creational-Pattern
   - Structural-Pattern
-  - Dependency-Injection
-  - 의존성주입
+  - Dependency-Injection(의존성주입)
   - Modularity
   - Maintainability
   - Readability

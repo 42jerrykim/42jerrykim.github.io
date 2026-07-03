@@ -8,55 +8,33 @@ lastmod: 2026-01-18
 collection_order: 22
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Data-Structures
-  - OOP
-  - Memory
-  - 메모리
-  - Pitfalls
-  - 함정
-  - Debugging
-  - 디버깅
+  - Data-Structures(자료구조)
+  - OOP(객체지향)
+  - Memory(메모리)
+  - Pitfalls(함정)
+  - Debugging(디버깅)
   - Best-Practices
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Recursion
-  - Error-Handling
-  - 에러처리
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
-  - Education
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Recursion(재귀)
+  - Error-Handling(에러처리)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
+  - Education(교육)
 ---
 파이썬에서 객체 복사는 의도치 않은 버그의 원인이 됩니다. 이 치트시트는 할당, 얕은 복사, 깊은 복사의 차이와 copy 모듈 사용법을 정리합니다.
 

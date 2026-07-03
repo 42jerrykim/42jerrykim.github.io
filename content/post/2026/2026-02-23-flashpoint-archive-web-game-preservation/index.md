@@ -9,130 +9,81 @@ categories:
   - WebHistory
   - Gaming
 tags:
-  - Open-Source
-  - 오픈소스
+  - Open-Source(오픈소스)
   - Proxy
   - WebSocket
-  - Gaming
-  - 게임
+  - Gaming(게임)
   - Java
   - Git
   - GitHub
-  - Graph
-  - 그래프
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Action
-  - 액션
-  - Animation
-  - 애니메이션
+  - Graph(그래프)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Action(액션)
+  - Animation(애니메이션)
   - HTML
-  - Design-Pattern
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - Guide
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Design-Pattern(디자인패턴)
+  - History(역사)
+  - Culture(문화)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Security
-  - 보안
-  - Backend
-  - 백엔드
+  - Documentation(문서화)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Security(보안)
+  - Backend(백엔드)
   - API
-  - Networking
-  - 네트워킹
+  - Networking(네트워킹)
   - DevOps
-  - Automation
-  - 자동화
+  - Automation(자동화)
   - Case-Study
   - Deep-Dive
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - How-To
   - Tips
   - Beginner
-  - Software-Architecture
-  - 인터페이스
-  - Interface
-  - Migration
-  - 마이그레이션
-  - Self-Hosted
-  - 셀프호스팅
-  - Internet
-  - 인터넷
-  - Workflow
-  - 워크플로우
-  - Career
-  - 커리어
-  - Conference
-  - 컨퍼런스
-  - Refactoring
-  - 리팩토링
-  - Code-Quality
-  - 코드품질
-  - Performance
-  - 성능
-  - Deployment
-  - 배포
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
+  - Software-Architecture(소프트웨어아키텍처)
+  - Interface(인터페이스)
+  - Migration(마이그레이션)
+  - Self-Hosted(셀프호스팅)
+  - Internet(인터넷)
+  - Workflow(워크플로우)
+  - Career(커리어)
+  - Conference(컨퍼런스)
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
+  - Performance(성능)
+  - Deployment(배포)
+  - Linux(리눅스)
+  - Windows(윈도우)
   - VSCode
   - IDE
   - JSON
   - YAML
   - HTTP
-  - Caching
-  - 캐싱
-  - Async
-  - 비동기
-  - Concurrency
-  - 동시성
+  - Caching(캐싱)
+  - Async(비동기)
+  - Concurrency(동시성)
   - Rust
-  - 모바일
-  - Mobile
-  - Cloud
-  - 클라우드
-  - Agile
-  - 애자일
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Logging
-  - 로깅
-  - Error-Handling
-  - 에러처리
+  - Mobile(모바일)
+  - Cloud(클라우드)
+  - Agile(애자일)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Logging(로깅)
+  - Error-Handling(에러처리)
   - Maintainability
   - Readability
   - Modularity
-  - Clean-Code
-  - 클린코드
+  - Clean-Code(클린코드)
 ---
 
 2020년 12월 31일, Adobe는 **Flash Player**에 대한 공식 지원을 종료했다. 이 날짜는 단순한 소프트웨어 하나의 종료가 아니었다. 1990년대 말부터 2010년대 초까지 인터넷 문화를 수놓았던 수십만 개의 웹 게임과 애니메이션이 함께 사라질 위기에 처했다. Newgrounds에서 즐기던 괴작 애니메이션, Miniclip에서 밤을 새웠던 플래시 게임들, Kongregate나 Armor Games의 무수한 명작들이 말이다. 그러나 이 콘텐츠들이 영원히 사라지지 않도록 수백 명의 자원봉사자가 수년 전부터 조용히 싸워왔고, 그 결과물이 **Flashpoint Archive**다.

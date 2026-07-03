@@ -10,56 +10,35 @@ categories:
   - Universal Pictures
   - DreamWorks Animation
 tags:
-  - Fantasy
-  - Adventure
-  - Family
-  - 판타지
-  - Movie
+  - Fantasy(판타지)
+  - Adventure(모험)
+  - Family(가족)
+  - Movie(영화)
   - Drama
-  - Soundtrack
-  - 영화
-  - Review
-  - 리뷰
-  - Thriller
-  - 스릴러
-  - Action
-  - 액션
+  - Soundtrack(사운드트랙)
+  - Review(리뷰)
+  - Thriller(스릴러)
+  - Action(액션)
   - Sci-Fi
-  - Animation
-  - 애니메이션
-  - Comedy
-  - 코미디
-  - Romance
-  - 로맨스
+  - Animation(애니메이션)
+  - Comedy(코미디)
+  - Romance(로맨스)
   - Go
-  - Tree
-  - Horror
-  - Security
-  - Culture
-  - 문화
-  - Cinematography
-  - 촬영기법
-  - 사운드트랙
-  - 가족
-  - Biography
-  - 전기영화
-  - Visual-Effects
-  - 시각효과
-  - Documentary
-  - 다큐멘터리
-  - Crime
-  - 범죄
-  - Mystery
-  - 미스터리
-  - War
-  - 전쟁
-  - 모험
-  - 공포
+  - Tree(트리)
+  - Horror(공포)
+  - Security(보안)
+  - Culture(문화)
+  - Cinematography(촬영기법)
+  - Biography(전기영화)
+  - Visual-Effects(시각효과)
+  - Documentary(다큐멘터리)
+  - Crime(범죄)
+  - Mystery(미스터리)
+  - War(전쟁)
   - 2020s
   - 2010s
   - 2000s
-  - History
-  - 역사
+  - History(역사)
 image: "WvSmGgCduVA-b5cU4Z0SvHeRCclUn2uv1SXCiX6auiaTaUFmAO1BdbxsQ4UK-OOI08m3455CSGHzT7sRSTpi2Q.webp"
 ---
 

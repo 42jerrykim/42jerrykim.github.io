@@ -7,12 +7,9 @@ title: "[Clean Architecture] 30. 업무 규칙: 엔티티와 유스케이스"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-- Clean-Architecture
-- 클린아키텍처
-- Software-Architecture
-- 소프트웨어아키텍처
-- Domain
-- 도메인
+- Clean-Architecture(클린아키텍처)
+- Software-Architecture(소프트웨어아키텍처)
+- Domain(도메인)
 ---
 
 업무 규칙은 시스템에서 가장 **핵심적인 부분**이다. 마틴은 업무 규칙을 두 가지로 구분한다: **엔터티**(핵심 업무 규칙)와 **유스케이스**(애플리케이션 업무 규칙).

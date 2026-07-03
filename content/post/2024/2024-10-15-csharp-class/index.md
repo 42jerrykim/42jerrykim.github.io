@@ -9,92 +9,63 @@ draft: false
 tags:
   - CSharp
   - .NET
-  - OOP
-  - 객체지향
-  - Inheritance
-  - 상속
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Interface
-  - 인터페이스
-  - Memory
-  - 메모리
-  - Code-Quality
-  - Software-Architecture
-  - Implementation
-  - 구현
-  - Design-Pattern
-  - 디자인패턴
-  - Performance
-  - Data-Structures
-  - Algorithm
-  - Testing
+  - OOP(객체지향)
+  - Inheritance(상속)
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Interface(인터페이스)
+  - Memory(메모리)
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Implementation(구현)
+  - Design-Pattern(디자인패턴)
+  - Performance(성능)
+  - Data-Structures(자료구조)
+  - Algorithm(알고리즘)
+  - Testing(테스트)
   - Best-Practices
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Guide
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Education(교육)
+  - Reference(참고)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
   - SOLID
-  - Clean-Code
-  - Refactoring
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
   - Type-Safety
-  - Abstraction
-  - 추상화
-  - Debugging
-  - 디버깅
+  - Abstraction(추상화)
+  - Debugging(디버깅)
   - Maintainability
   - Readability
   - Modularity
-  - Dependency-Injection
-  - Composition
-  - 합성
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
+  - Dependency-Injection(의존성주입)
+  - Composition(합성)
+  - Coupling(결합도)
+  - Cohesion(응집도)
   - Creational-Pattern
   - Structural-Pattern
   - Behavioral-Pattern
   - Singleton
   - Factory
   - Builder
-  - Backend
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
-  - Scalability
-  - 확장성
-  - Productivity
-  - 생산성
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
+  - Backend(백엔드)
+  - Concurrency(동시성)
+  - Async(비동기)
+  - Scalability(확장성)
+  - Productivity(생산성)
+  - Review(리뷰)
+  - Markdown(마크다운)
   - Beginner
   - Deep-Dive
   - 실습
   - How-To
   - Tips
-  - Comparison
-  - 비교
+  - Comparison(비교)
 image: "wordcloud.png"
 ---
 

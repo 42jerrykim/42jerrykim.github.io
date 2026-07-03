@@ -9,54 +9,35 @@ categories:
 tags:
   - Vocabulary
   - English
-  - Competitive-Programming
-  - Academic-English
-  - Collocation
-  - Nuance
-  - Etymology
-  - Synonym
+  - Competitive-Programming(경쟁프로그래밍)
+  - Academic-English(학술영어)
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Etymology(어원)
+  - Synonym(유의어)
   - 영단어
   - 영어형용사
-  - 비즈니스영어
-  - 콜로케이션
-  - 뉘앙스
-  - 어원
-  - 유의어
-  - Grammar
-  - 문법
-  - Tutorial
-  - 튜토리얼
+  - Business-English(비즈니스영어)
+  - Grammar(문법)
+  - Tutorial(튜토리얼)
   - Go
-  - Tree
-  - Gaming
-  - 게임
-  - Security
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Business-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Tree(트리)
+  - Gaming(게임)
+  - Security(보안)
+  - History(역사)
+  - Culture(문화)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Education(교육)
+  - Reference(참고)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Technology
-  - 기술
+  - Markdown(마크다운)
+  - Technology(기술)
 image: wordcloud.png
 ---
 

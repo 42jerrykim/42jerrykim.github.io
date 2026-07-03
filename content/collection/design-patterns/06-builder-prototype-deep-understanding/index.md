@@ -12,12 +12,10 @@ categories:
 - Object Construction
 - Pattern Implementation
 tags:
-- Design-Pattern
+- Design-Pattern(디자인패턴)
 - GoF
-- Software-Architecture
+- Software-Architecture(소프트웨어아키텍처)
 - SOLID
-- 디자인패턴
-- 소프트웨어아키텍처
 ---
 
 Builder와 Prototype 패턴을 통해 복잡한 객체 생성 문제를 해결하는 방법을 탐구합니다. 구성의 명확성과 생성의 효율성을 모두 잡는 설계 기법을 학습합니다.

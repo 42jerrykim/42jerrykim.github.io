@@ -13,152 +13,92 @@ tags:
   - CSharp
   - C++
   - .NET
-  - OOP
-  - 객체지향
-  - Memory
-  - 메모리
+  - OOP(객체지향)
+  - Memory(메모리)
   - Thread
-  - 동시성
-  - Implementation
-  - 구현
+  - Concurrency(동시성)
+  - Implementation(구현)
   - Best-Practices
-  - Performance
-  - 성능
-  - Pitfalls
-  - 함정
-  - Documentation
-  - 문서화
-  - Reference
-  - 참고
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Comparison
-  - 비교
-  - Troubleshooting
-  - 트러블슈팅
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Clean-Code
-  - 클린코드
-  - Interface
-  - 인터페이스
-  - Design-Pattern
-  - 디자인패턴
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Windows
-  - 윈도우
-  - Migration
-  - 마이그레이션
+  - Performance(성능)
+  - Pitfalls(함정)
+  - Documentation(문서화)
+  - Reference(참고)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Comparison(비교)
+  - Troubleshooting(트러블슈팅)
+  - Technology(기술)
+  - Education(교육)
+  - Blog(블로그)
+  - Web(웹)
+  - Clean-Code(클린코드)
+  - Interface(인터페이스)
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Windows(윈도우)
+  - Migration(마이그레이션)
   - How-To
   - Tips
   - Case-Study
   - Deep-Dive
   - 실습
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
-  - Error-Handling
-  - 에러처리
-  - Markdown
-  - 마크다운
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
-  - Career
-  - 커리어
-  - Review
-  - 리뷰
-  - Encapsulation
-  - 캡슐화
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
+  - Error-Handling(에러처리)
+  - Markdown(마크다운)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Configuration(설정)
+  - Workflow(워크플로우)
+  - Career(커리어)
+  - Review(리뷰)
+  - Encapsulation(캡슐화)
   - Process
-  - OS
-  - 운영체제
-  - Compiler
-  - 컴파일러
-  - Backend
-  - 백엔드
-  - Concurrency
-  - Async
-  - 비동기
-  - Refactoring
-  - 리팩토링
+  - OS(운영체제)
+  - Compiler(컴파일러)
+  - Backend(백엔드)
+  - Async(비동기)
+  - Refactoring(리팩토링)
   - Maintainability
   - Readability
-  - Edge-Cases
-  - 엣지케이스
-  - Profiling
-  - 프로파일링
+  - Edge-Cases(엣지케이스)
+  - Profiling(프로파일링)
   - Benchmark
   - Git
   - GitHub
   - IDE
-  - Dependency-Injection
-  - 의존성주입
-  - Abstraction
-  - 추상화
-  - Composition
-  - 합성
-  - Clean-Architecture
-  - 클린아키텍처
+  - Dependency-Injection(의존성주입)
+  - Abstraction(추상화)
+  - Composition(합성)
+  - Clean-Architecture(클린아키텍처)
   - Type-Safety
   - Modularity
-  - Code-Review
-  - 코드리뷰
-  - Testing
-  - 테스트
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Scalability
-  - 확장성
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
+  - Code-Review(코드리뷰)
+  - Testing(테스트)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Scalability(확장성)
+  - Automation(자동화)
+  - Deployment(배포)
   - DevOps
   - CI-CD
-  - Linux
-  - 리눅스
-  - Shell
-  - 셸
+  - Linux(리눅스)
+  - Shell(셸)
   - Docker
   - Kubernetes
-  - Database
-  - 데이터베이스
+  - Database(데이터베이스)
   - API
   - REST
   - HTTP
   - JSON
   - XML
   - YAML
-  - Caching
-  - 캐싱
-  - Monitoring
-  - 모니터링
-  - Agile
-  - 애자일
-  - Productivity
-  - 생산성
+  - Caching(캐싱)
+  - Monitoring(모니터링)
+  - Agile(애자일)
+  - Productivity(생산성)
   - Beginner
   - Advanced
 ---

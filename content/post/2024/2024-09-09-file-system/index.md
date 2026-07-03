@@ -9,86 +9,53 @@ header:
   teaser: /assets/images/2024/2024-09-09-file-system.png
 title: "[Linux] 리눅스 파일 시스템 종류·구조·관리 실무 가이드"
 tags:
-  - Linux
-  - 리눅스
+  - Linux(리눅스)
   - File-System
-  - OS
-  - 운영체제
+  - OS(운영체제)
   - DevOps
-  - Deployment
-  - 배포
-  - Security
-  - 보안
-  - Tree
+  - Deployment(배포)
+  - Security(보안)
+  - Tree(트리)
   - Process
-  - Tutorial
-  - 가이드
-  - Guide
-  - Reference
-  - 참고
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
-  - Automation
-  - 자동화
-  - Monitoring
-  - 모니터링
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Innovation
-  - 혁신
-  - Review
-  - 리뷰
+  - Comparison(비교)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Technology(기술)
+  - Education(교육)
+  - Productivity(생산성)
+  - Automation(자동화)
+  - Monitoring(모니터링)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Innovation(혁신)
+  - Review(리뷰)
   - Beginner
   - Deep-Dive
-  - Shell
-  - 셸
-  - Terminal
-  - 터미널
-  - Performance
-  - 성능
-  - Data-Structures
-  - 자료구조
+  - Shell(셸)
+  - Terminal(터미널)
+  - Performance(성능)
+  - Data-Structures(자료구조)
   - Backup
-  - 백업
-  - Networking
-  - 네트워킹
-  - Cloud
-  - 클라우드
-  - Scalability
-  - 확장성
+  - Networking(네트워킹)
+  - Cloud(클라우드)
+  - Scalability(확장성)
   - Case-Study
   - 실습
-  - Code-Quality
-  - Web
-  - 웹
-  - Career
-  - 커리어
-  - Mobile
+  - Code-Quality(코드품질)
+  - Web(웹)
+  - Career(커리어)
+  - Mobile(모바일)
 ---
 
 리눅스 파일 시스템은 리눅스 기반 운영 체제의 기초로, 파일이 저장·조직·접근되는 방식을 규정한다. 이 시스템을 이해하는 것은 DevOps 엔지니어에게 필수이며, 시스템 성능·보안·배포 프로세스에 직접 영향을 미친다. 이 글에서는 리눅스 파일 시스템의 구조, 주요 개념, 실무 관리 방법을 포괄적으로 다룬다. 리눅스는 단일 트리 구조를 가지며 **모든 것을 파일로 취급**한다. 하드웨어 장치, 프로세스, 데이터 파일까지 파일 형태로 추상화되어 상호작용이 단순해지고 유연성이 높아진다. 루트 디렉토리(`/`)를 루트로 한 계층 구조는 모든 리눅스 배포판에서 일관되며, FHS(Filesystem Hierarchy Standard)가 디렉토리 구조와 내용을 정의해 소프트웨어의 예측 가능한 동작을 보장한다. ext4, XFS, Btrfs, ZFS 등 주요 파일 시스템의 특징·장단점·적합한 사용처를 정리한다.

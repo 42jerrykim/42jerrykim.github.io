@@ -11,90 +11,53 @@ header:
 
 tags:
   - Python
-  - 파이썬
-  - OOP
-  - 객체지향
-  - Memory
-  - 메모리
-  - Testing
-  - 테스트
-  - Implementation
-  - 구현
-  - Software-Architecture
-  - Design-Pattern
-  - 디자인패턴
-  - Machine-Learning
-  - 머신러닝
-  - Web
-  - 웹
+  - OOP(객체지향)
+  - Memory(메모리)
+  - Testing(테스트)
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Machine-Learning(머신러닝)
+  - Web(웹)
   - Django
   - Flask
-  - Backend
-  - 데이터베이스
-  - Data-Science
-  - 데이터사이언스
-  - AI
-  - Deep-Learning
-  - 딥러닝
+  - Backend(백엔드)
+  - Database(데이터베이스)
+  - Data-Science(데이터사이언스)
+  - AI(인공지능)
+  - Deep-Learning(딥러닝)
   - Decorator
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Refactoring
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - Error-Handling
-  - 에러처리
-  - Inheritance
-  - 상속
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
+  - Error-Handling(에러처리)
+  - Inheritance(상속)
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
   - Iterator
-  - Functional-Programming
-  - 함수형프로그래밍
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
-  - Algorithm
-  - 알고리즘
-  - Data-Structures
-  - 자료구조
-  - String
-  - 문자열
-  - Graph
-  - 그래프
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Productivity
-  - 생산성
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
-  - Science
-  - 과학
+  - Functional-Programming(함수형프로그래밍)
+  - Concurrency(동시성)
+  - Async(비동기)
+  - Algorithm(알고리즘)
+  - Data-Structures(자료구조)
+  - String(문자열)
+  - Graph(그래프)
+  - Technology(기술)
+  - Education(교육)
+  - Reference(참고)
+  - Productivity(생산성)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Review(리뷰)
+  - Science(과학)
   - Beginner
   - Advanced
   - Case-Study
@@ -102,8 +65,7 @@ tags:
   - 실습
   - How-To
   - Tips
-  - Comparison
-  - 비교
+  - Comparison(비교)
 image: "wordcloud.png"
 ---
 

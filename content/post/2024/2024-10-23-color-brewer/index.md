@@ -9,111 +9,68 @@ categories:
   - tools
 tags:
   - Python
-  - 파이썬
-  - Data-Structures
-  - Graph
-  - 그래프
-  - Science
-  - 과학
-  - History
-  - 역사
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Guide
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Data-Structures(자료구조)
+  - Graph(그래프)
+  - Science(과학)
+  - History(역사)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Deployment
-  - Frontend
-  - 프론트엔드
-  - Data-Science
-  - 데이터사이언스
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
-  - Design-Pattern
-  - 디자인패턴
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Deployment(배포)
+  - Frontend(프론트엔드)
+  - Data-Science(데이터사이언스)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
+  - Design-Pattern(디자인패턴)
   - API
   - JSON
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
+  - Networking(네트워킹)
+  - Security(보안)
   - Case-Study
   - Deep-Dive
   - 실습
   - Beginner
   - Advanced
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
   - Git
   - GitHub
-  - Automation
-  - 자동화
-  - Performance
-  - 성능
+  - Automation(자동화)
+  - Performance(성능)
   - Readability
   - Maintainability
   - Modularity
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
   - YAML
   - SEO
-  - Scalability
-  - 확장성
-  - Internet
-  - 인터넷
-  - Caching
-  - 캐싱
-  - Monitoring
-  - 모니터링
-  - Logging
-  - 로깅
-  - Culture
-  - 문화
+  - Scalability(확장성)
+  - Internet(인터넷)
+  - Caching(캐싱)
+  - Monitoring(모니터링)
+  - Logging(로깅)
+  - Culture(문화)
 image: "wordcloud.png"
 draft: false
 ---

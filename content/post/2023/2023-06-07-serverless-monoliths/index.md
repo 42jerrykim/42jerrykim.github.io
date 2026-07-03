@@ -8,84 +8,52 @@ header:
   teaser: /assets/images/2023/zvmLbKImlWKrQSE54qZ8fw.jpg
 tags:
   - Serverless
-  - Microservices
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Scalability
-  - 확장성
-  - Deployment
-  - 배포
-  - Performance
-  - 성능
-  - Security
-  - 보안
-  - Testing
-  - 테스트
+  - Microservices(마이크로서비스)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Scalability(확장성)
+  - Deployment(배포)
+  - Performance(성능)
+  - Security(보안)
+  - Testing(테스트)
   - DevOps
   - AWS
-  - Cloud
-  - 클라우드
-  - Backend
-  - 백엔드
+  - Cloud(클라우드)
+  - Backend(백엔드)
   - API
-  - Database
-  - 데이터베이스
-  - Code-Quality
-  - 코드품질
+  - Database(데이터베이스)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Automation
-  - 자동화
-  - Monitoring
-  - 모니터링
-  - Refactoring
-  - 리팩토링
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Automation(자동화)
+  - Monitoring(모니터링)
+  - Refactoring(리팩토링)
   - Maintainability
   - Modularity
-  - Design-Pattern
-  - 디자인패턴
-  - Clean-Architecture
-  - 클린아키텍처
+  - Design-Pattern(디자인패턴)
+  - Clean-Architecture(클린아키텍처)
   - Event-Driven
   - Latency
   - Throughput
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Reference
-  - 참고
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Reference(참고)
   - Case-Study
   - Deep-Dive
   - How-To
   - Tips
-  - Education
-  - 교육
-  - Review
-  - 리뷰
+  - Education(교육)
+  - Review(리뷰)
   - Beginner
   - Advanced
 title: "[Serverless] 서버리스 모놀리스: 개념·비교·적용 시기"

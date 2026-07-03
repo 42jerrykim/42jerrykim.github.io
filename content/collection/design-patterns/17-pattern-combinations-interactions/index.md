@@ -12,13 +12,11 @@ categories:
 - System Architecture
 - Advanced Design
 tags:
-- Design-Pattern
+- Design-Pattern(디자인패턴)
 - GoF
-- Software-Architecture
+- Software-Architecture(소프트웨어아키텍처)
 - Best-Practices
 - SOLID
-- 디자인패턴
-- 소프트웨어아키텍처
 ---
 
 여러 패턴의 조합과 상호작용을 통해 시너지 효과를 내는 방법을 탐구합니다. 실제 시스템에서 패턴들이 어떻게 협력하는지 학습합니다.

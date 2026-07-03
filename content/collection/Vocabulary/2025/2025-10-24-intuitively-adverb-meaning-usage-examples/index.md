@@ -9,54 +9,35 @@ categories:
 tags:
   - Vocabulary
   - English
-  - Design-Pattern
-  - Interface
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
   - 영단어
   - 영어부사
-  - 인터페이스
-  - 콜로케이션
-  - 뉘앙스
-  - Nuance
-  - 유의어
-  - 반의어
-  - Collocation
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - Tutorial
-  - 튜토리얼
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Tutorial(튜토리얼)
   - Go
   - React
-  - Psychology
-  - 심리학
-  - Antonym
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Psychology(심리학)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Education(교육)
+  - Reference(참고)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Technology
-  - 기술
-  - Guide
-  - 가이드
-  - Documentation
+  - Markdown(마크다운)
+  - Technology(기술)
+  - Guide(가이드)
+  - Documentation(문서화)
 image: wordcloud.png
 ---
 

@@ -8,9 +8,9 @@ slug: global-allocator-jemalloc-tcmalloc-tuning-expert
 description: "전역 할당자 교체·튜닝의 효과와 한계, 워크로드·프레그멘테이션·스레드 경합 관점에서의 검증 절차를 전문 난이도로 정리합니다. Tr.01 문자열·컨테이너 경계와 충돌하지 않게 쓰는 실무 판단을 다룹니다."
 tags:
   - C++
-  - Performance
-  - Optimization
-  - Memory
+  - Performance(성능)
+  - Optimization(최적화)
+  - Memory(메모리)
   - Allocator
   - jemalloc
   - tcmalloc
@@ -18,55 +18,43 @@ tags:
   - Fragmentation
   - Thread
   - Contention
-  - Scalability
+  - Scalability(확장성)
   - Latency
   - Throughput
-  - Profiling
+  - Profiling(프로파일링)
   - Benchmark
-  - Linux
-  - Windows
-  - Backend
-  - Embedded
-  - Concurrency
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - Backend(백엔드)
+  - Embedded(임베디드)
+  - Concurrency(동시성)
   - NUMA
-  - Code-Quality
-  - Software-Architecture
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
   - Best-Practices
-  - Implementation
-  - Testing
-  - Debugging
-  - Documentation
+  - Implementation(구현)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Documentation(문서화)
   - Git
   - CI-CD
-  - Refactoring
-  - Clean-Code
-  - Data-Structures
-  - Heap
-  - Edge-Cases
-  - Pitfalls
-  - Error-Handling
-  - Guide
-  - Reference
-  - Technology
-  - Tutorial
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Data-Structures(자료구조)
+  - Heap(힙)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
   - Advanced
   - Deep-Dive
   - Expert
   - Case-Study
-  - 성능
-  - 최적화
-  - 메모리
   - 할당
   - 전문
-  - 동시성
-  - 확장성
-  - 백엔드
-  - 프로파일링
-  - 코드품질
-  - 구현
-  - 테스트
-  - 가이드
-  - 참고
   - 실습
 ---
 

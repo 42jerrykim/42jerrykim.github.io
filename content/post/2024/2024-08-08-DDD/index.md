@@ -7,90 +7,54 @@ lastmod: "2026-03-17T00:00:00Z"
 header: null
 tags:
   - Domain-Driven-Design
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Microservices
-  - 마이크로서비스
-  - Design-Pattern
-  - 디자인패턴
-  - Clean-Architecture
-  - 클린아키텍처
-  - OOP
-  - 객체지향
-  - Agile
-  - 애자일
+  - Software-Architecture(소프트웨어아키텍처)
+  - Microservices(마이크로서비스)
+  - Design-Pattern(디자인패턴)
+  - Clean-Architecture(클린아키텍처)
+  - OOP(객체지향)
+  - Agile(애자일)
   - Best-Practices
   - CQRS
   - Event-Driven
-  - Implementation
-  - 구현
-  - Refactoring
-  - 리팩토링
-  - Code-Quality
-  - 코드품질
+  - Implementation(구현)
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
   - Maintainability
   - Modularity
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Education(교육)
+  - Blog(블로그)
+  - Web(웹)
+  - Backend(백엔드)
   - API
   - REST
-  - Database
-  - 데이터베이스
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Clean-Code
-  - 클린코드
-  - History
-  - 역사
-  - Comparison
-  - 비교
+  - Database(데이터베이스)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Clean-Code(클린코드)
+  - History(역사)
+  - Comparison(비교)
   - How-To
   - Tips
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Career
-  - 커리어
+  - Workflow(워크플로우)
+  - Configuration(설정)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Career(커리어)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Migration
-  - 마이그레이션
-  - Troubleshooting
-  - 트러블슈팅
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Abstraction
-  - 추상화
-  - Dependency-Injection
-  - 의존성주입
+  - Migration(마이그레이션)
+  - Troubleshooting(트러블슈팅)
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Abstraction(추상화)
+  - Dependency-Injection(의존성주입)
   - UML
   - Repository
   - Factory

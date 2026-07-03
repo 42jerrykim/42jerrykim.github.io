@@ -7,56 +7,37 @@ categories:
   - Algorithm
   - Segment Tree
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
+  - Algorithm(알고리즘)
+  - BOJ(백준)
   - C++
-  - Segment-Tree
-  - 세그먼트트리
+  - Segment-Tree(세그먼트트리)
   - Lazy-Propagation
   - Range-Query
-  - Math
-  - Data-Structures
-  - 자료구조
-  - Time-Complexity
-  - Space-Complexity
-  - Optimization
-  - 최적화
-  - Implementation
-  - 구현
-  - Problem-Solving
-  - 문제해결
-  - Coding-Test
-  - 코딩테스트
-  - Competitive-Programming
-  - Tree
-  - 트리
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - 시간복잡도
-  - Code-Quality
-  - 코드품질
+  - Math(수학)
+  - Data-Structures(자료구조)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Optimization(최적화)
+  - Implementation(구현)
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Tree(트리)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Code-Quality(코드품질)
   - Go
   - .NET
   - Git
   - GitHub
-  - Recursion
-  - Memory
-  - 공간복잡도
-  - Edge-Cases
-  - 엣지케이스
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Recursion(재귀)
+  - Memory(메모리)
+  - Edge-Cases(엣지케이스)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
 image: "wordcloud.png"
 ---
 

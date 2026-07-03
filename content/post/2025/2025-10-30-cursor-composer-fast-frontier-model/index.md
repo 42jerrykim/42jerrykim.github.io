@@ -11,102 +11,63 @@ description: "Cursor가 2025년 10월 공개한 에이전트 모델 Composer를 
 image: composer-main.png
 draft: false
 tags:
-  - AI
-  - 인공지능
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
+  - AI(인공지능)
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
   - LLM
   - NLP
   - IDE
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
+  - Software-Architecture(소프트웨어아키텍처)
+  - Performance(성능)
+  - Optimization(최적화)
   - Benchmark
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Code-Quality
-  - 코드품질
-  - Automation
-  - 자동화
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Tutorial
-  - 가이드
-  - Guide
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Innovation
-  - 혁신
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Implementation(구현)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
+  - Automation(자동화)
+  - Blog(블로그)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Innovation(혁신)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Web
-  - 웹
+  - Web(웹)
   - DevOps
-  - Deployment
-  - 배포
-  - Scalability
-  - 확장성
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
+  - Deployment(배포)
+  - Scalability(확장성)
+  - Concurrency(동시성)
+  - Async(비동기)
   - Latency
   - Throughput
-  - Cloud
-  - 클라우드
-  - Comparison
-  - 비교
+  - Cloud(클라우드)
+  - Comparison(비교)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Workflow
-  - 워크플로우
+  - Workflow(워크플로우)
   - Git
   - GitHub
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Debugging
-  - 디버깅
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Debugging(디버깅)
+  - Prompt-Engineering(프롬프트엔지니어링)
   - ChatGPT
   - VSCode
-  - Terminal
-  - 터미널
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Data-Science
-  - 데이터사이언스
+  - Terminal(터미널)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Data-Science(데이터사이언스)
   - Beginner
   - Advanced
 ---

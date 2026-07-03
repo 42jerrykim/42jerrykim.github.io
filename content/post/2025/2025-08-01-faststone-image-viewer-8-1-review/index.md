@@ -7,111 +7,66 @@ categories:
   - Software
   - Review
 tags:
-  - Review
-  - 리뷰
-  - Windows
-  - 윈도우
-  - Technology
-  - 기술
-  - Tutorial
-  - 가이드
-  - Guide
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
+  - Review(리뷰)
+  - Windows(윈도우)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Comparison(비교)
+  - Reference(참고)
   - How-To
   - Tips
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
-  - Photography
-  - 사진
+  - Configuration(설정)
+  - Workflow(워크플로우)
+  - Photography(사진)
   - File-System
-  - Performance
-  - 성능
+  - Performance(성능)
   - Best-Practices
-  - Documentation
-  - 문서화
+  - Documentation(문서화)
   - Beginner
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Education
-  - 교육
-  - Interface
-  - 인터페이스
-  - Automation
-  - 자동화
-  - Optimization
-  - 최적화
-  - Hardware
-  - 하드웨어
-  - Gadget
-  - 가젯
-  - Keyboard
-  - 키보드
-  - Privacy
-  - 프라이버시
-  - Security
-  - 보안
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Education(교육)
+  - Interface(인터페이스)
+  - Automation(자동화)
+  - Optimization(최적화)
+  - Hardware(하드웨어)
+  - Gadget(가젯)
+  - Keyboard(키보드)
+  - Privacy(프라이버시)
+  - Security(보안)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Deployment
-  - 배포
-  - Migration
-  - 마이그레이션
+  - Deployment(배포)
+  - Migration(마이그레이션)
   - Compression
-  - Networking
-  - 네트워킹
-  - Cloud
-  - 클라우드
-  - Self-Hosted
-  - 셀프호스팅
-  - Web
-  - 웹
+  - Networking(네트워킹)
+  - Cloud(클라우드)
+  - Self-Hosted(셀프호스팅)
+  - Web(웹)
   - API
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
-  - Implementation
-  - 구현
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
+  - Implementation(구현)
   - Modularity
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
   - Git
   - GitHub
-  - Terminal
-  - 터미널
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - Science
-  - 과학
-  - Internet
-  - 인터넷
-  - Domain
-  - 도메인
+  - Terminal(터미널)
+  - History(역사)
+  - Culture(문화)
+  - Science(과학)
+  - Internet(인터넷)
+  - Domain(도메인)
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Advanced
 image: "FSViewer.png"
 ---

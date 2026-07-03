@@ -7,18 +7,14 @@ title: "[Clean Architecture] 45. 빠진 장: 패키지 구조"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-- Clean-Architecture
-- 클린아키텍처
-- Compiler
-- 컴파일러
-- Software-Architecture
-- 소프트웨어아키텍처
+- Clean-Architecture(클린아키텍처)
+- Compiler(컴파일러)
+- Software-Architecture(소프트웨어아키텍처)
 - Java
 - Kotlin
 - CSharp
-- Encapsulation
-- 캡슐화
-- Dependency-Injection
+- Encapsulation(캡슐화)
+- Dependency-Injection(의존성주입)
 ---
 
 마틴의 책에는 **빠져 있는** 중요한 주제가 있다: **패키지 구조**. 이 장은 사이먼 브라운(Simon Brown)이 기고했다.

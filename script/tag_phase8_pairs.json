@@ -1,0 +1,1690 @@
+[
+  {
+    "category": "programming_languages",
+    "en": "Python",
+    "ko": "파이썬",
+    "en_count": 332,
+    "ko_count": 157,
+    "verdict": "en_only"
+  },
+  {
+    "category": "algorithm_core",
+    "en": "Algorithm",
+    "ko": "알고리즘",
+    "en_count": 463,
+    "ko_count": 456,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_core",
+    "en": "BOJ",
+    "ko": "백준",
+    "en_count": 360,
+    "ko_count": 360,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_core",
+    "en": "Competitive-Programming",
+    "ko": "경쟁프로그래밍",
+    "en_count": 363,
+    "ko_count": 185,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_core",
+    "en": "Problem-Solving",
+    "ko": "문제해결",
+    "en_count": 411,
+    "ko_count": 411,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_core",
+    "en": "Coding-Test",
+    "ko": "코딩테스트",
+    "en_count": 347,
+    "ko_count": 347,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_core",
+    "en": "Editorial",
+    "ko": "에디토리얼",
+    "en_count": 145,
+    "ko_count": 110,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Graph",
+    "ko": "그래프",
+    "en_count": 226,
+    "ko_count": 194,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "DP",
+    "ko": "동적계획법",
+    "en_count": 56,
+    "ko_count": 55,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Greedy",
+    "ko": "그리디",
+    "en_count": 103,
+    "ko_count": 92,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "BFS",
+    "ko": "너비우선탐색",
+    "en_count": 50,
+    "ko_count": 1,
+    "verdict": "en_only"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Binary-Search",
+    "ko": "이분탐색",
+    "en_count": 72,
+    "ko_count": 64,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Sorting",
+    "ko": "정렬",
+    "en_count": 139,
+    "ko_count": 71,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Tree",
+    "ko": "트리",
+    "en_count": 176,
+    "ko_count": 65,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Segment-Tree",
+    "ko": "세그먼트트리",
+    "en_count": 81,
+    "ko_count": 57,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "String",
+    "ko": "문자열",
+    "en_count": 192,
+    "ko_count": 88,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Math",
+    "ko": "수학",
+    "en_count": 201,
+    "ko_count": 113,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Geometry",
+    "ko": "기하학",
+    "en_count": 68,
+    "ko_count": 9,
+    "verdict": "en_only"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Hashing",
+    "ko": "해싱",
+    "en_count": 51,
+    "ko_count": 41,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Prefix-Sum",
+    "ko": "누적합",
+    "en_count": 57,
+    "ko_count": 1,
+    "verdict": "en_only"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Simulation",
+    "ko": "시뮬레이션",
+    "en_count": 44,
+    "ko_count": 25,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Shortest-Path",
+    "ko": "최단경로",
+    "en_count": 49,
+    "ko_count": 37,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Divide-and-Conquer",
+    "ko": "분할정복",
+    "en_count": 35,
+    "ko_count": 26,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Combinatorics",
+    "ko": "조합론",
+    "en_count": 36,
+    "ko_count": 18,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Number-Theory",
+    "ko": "정수론",
+    "en_count": 25,
+    "ko_count": 22,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Graph-Theory",
+    "ko": "그래프이론",
+    "en_count": 37,
+    "ko_count": 18,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Coordinate-Compression",
+    "ko": "좌표압축",
+    "en_count": 24,
+    "ko_count": 22,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Backtracking",
+    "ko": "백트래킹",
+    "en_count": 11,
+    "ko_count": 7,
+    "verdict": "en_only"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Brute-Force",
+    "ko": "완전탐색",
+    "en_count": 26,
+    "ko_count": 11,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Recursion",
+    "ko": "재귀",
+    "en_count": 65,
+    "ko_count": 31,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Topological-Sort",
+    "ko": "위상정렬",
+    "en_count": 8,
+    "ko_count": 9,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "MST",
+    "ko": "최소신장트리",
+    "en_count": 8,
+    "ko_count": 2,
+    "verdict": "en_only"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Modular-Arithmetic",
+    "ko": "모듈러",
+    "en_count": 61,
+    "ko_count": 55,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Stack",
+    "ko": "스택",
+    "en_count": 60,
+    "ko_count": 26,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Queue",
+    "ko": "큐",
+    "en_count": 78,
+    "ko_count": 22,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Priority-Queue",
+    "ko": "우선순위큐",
+    "en_count": 19,
+    "ko_count": 10,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Heap",
+    "ko": "힙",
+    "en_count": 15,
+    "ko_count": 14,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "algorithm_topics",
+    "en": "Deque",
+    "ko": "덱",
+    "en_count": 11,
+    "ko_count": 5,
+    "verdict": "en_only"
+  },
+  {
+    "category": "data_structures",
+    "en": "Data-Structures",
+    "ko": "자료구조",
+    "en_count": 490,
+    "ko_count": 466,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "data_structures",
+    "en": "Array",
+    "ko": "배열",
+    "en_count": 59,
+    "ko_count": 43,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "data_structures",
+    "en": "Matrix",
+    "ko": "행렬",
+    "en_count": 10,
+    "ko_count": 10,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "complexity_analysis",
+    "en": "Time-Complexity",
+    "ko": "시간복잡도",
+    "en_count": 403,
+    "ko_count": 403,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "complexity_analysis",
+    "en": "Space-Complexity",
+    "ko": "공간복잡도",
+    "en_count": 371,
+    "ko_count": 371,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "complexity_analysis",
+    "en": "Complexity-Analysis",
+    "ko": "복잡도분석",
+    "en_count": 367,
+    "ko_count": 350,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Implementation",
+    "ko": "구현",
+    "en_count": 895,
+    "ko_count": 820,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Optimization",
+    "ko": "최적화",
+    "en_count": 573,
+    "ko_count": 570,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Testing",
+    "ko": "테스트",
+    "en_count": 766,
+    "ko_count": 724,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Debugging",
+    "ko": "디버깅",
+    "en_count": 581,
+    "ko_count": 558,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Code-Review",
+    "ko": "코드리뷰",
+    "en_count": 112,
+    "ko_count": 112,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Refactoring",
+    "ko": "리팩토링",
+    "en_count": 522,
+    "ko_count": 488,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Clean-Code",
+    "ko": "클린코드",
+    "en_count": 593,
+    "ko_count": 549,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Performance",
+    "ko": "성능",
+    "en_count": 560,
+    "ko_count": 518,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Edge-Cases",
+    "ko": "엣지케이스",
+    "en_count": 454,
+    "ko_count": 425,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Pitfalls",
+    "ko": "함정",
+    "en_count": 368,
+    "ko_count": 344,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Error-Handling",
+    "ko": "에러처리",
+    "en_count": 351,
+    "ko_count": 321,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Logging",
+    "ko": "로깅",
+    "en_count": 199,
+    "ko_count": 186,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Profiling",
+    "ko": "프로파일링",
+    "en_count": 70,
+    "ko_count": 64,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Documentation",
+    "ko": "문서화",
+    "en_count": 897,
+    "ko_count": 867,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Code-Quality",
+    "ko": "코드품질",
+    "en_count": 784,
+    "ko_count": 750,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "code_quality",
+    "en": "Type-Safety",
+    "ko": "타입안전성",
+    "en_count": 49,
+    "ko_count": 1,
+    "verdict": "en_only"
+  },
+  {
+    "category": "software_engineering",
+    "en": "Software-Architecture",
+    "ko": "소프트웨어아키텍처",
+    "en_count": 362,
+    "ko_count": 292,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "software_engineering",
+    "en": "Design-Pattern",
+    "ko": "디자인패턴",
+    "en_count": 363,
+    "ko_count": 283,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "software_engineering",
+    "en": "OOP",
+    "ko": "객체지향",
+    "en_count": 166,
+    "ko_count": 143,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "software_engineering",
+    "en": "Functional-Programming",
+    "ko": "함수형프로그래밍",
+    "en_count": 33,
+    "ko_count": 23,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "software_engineering",
+    "en": "Clean-Architecture",
+    "ko": "클린아키텍처",
+    "en_count": 77,
+    "ko_count": 70,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "software_engineering",
+    "en": "Microservices",
+    "ko": "마이크로서비스",
+    "en_count": 42,
+    "ko_count": 40,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "software_engineering",
+    "en": "Interface",
+    "ko": "인터페이스",
+    "en_count": 155,
+    "ko_count": 150,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "software_engineering",
+    "en": "Encapsulation",
+    "ko": "캡슐화",
+    "en_count": 84,
+    "ko_count": 83,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "software_engineering",
+    "en": "Polymorphism",
+    "ko": "다형성",
+    "en_count": 63,
+    "ko_count": 62,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "software_engineering",
+    "en": "Inheritance",
+    "ko": "상속",
+    "en_count": 37,
+    "ko_count": 34,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "software_engineering",
+    "en": "Abstraction",
+    "ko": "추상화",
+    "en_count": 94,
+    "ko_count": 92,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "software_engineering",
+    "en": "Composition",
+    "ko": "합성",
+    "en_count": 52,
+    "ko_count": 46,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "software_engineering",
+    "en": "Dependency-Injection",
+    "ko": "의존성주입",
+    "en_count": 82,
+    "ko_count": 59,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "software_engineering",
+    "en": "Coupling",
+    "ko": "결합도",
+    "en_count": 24,
+    "ko_count": 37,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "software_engineering",
+    "en": "Cohesion",
+    "ko": "응집도",
+    "en_count": 21,
+    "ko_count": 31,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "devops_and_tools",
+    "en": "Linux",
+    "ko": "리눅스",
+    "en_count": 252,
+    "ko_count": 212,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "devops_and_tools",
+    "en": "Windows",
+    "ko": "윈도우",
+    "en_count": 224,
+    "ko_count": 168,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "devops_and_tools",
+    "en": "Shell",
+    "ko": "셸",
+    "en_count": 194,
+    "ko_count": 169,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "devops_and_tools",
+    "en": "Deployment",
+    "ko": "배포",
+    "en_count": 384,
+    "ko_count": 368,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "devops_and_tools",
+    "en": "Automation",
+    "ko": "자동화",
+    "en_count": 369,
+    "ko_count": 391,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "devops_and_tools",
+    "en": "Monitoring",
+    "ko": "모니터링",
+    "en_count": 167,
+    "ko_count": 163,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "web_and_backend",
+    "en": "Web",
+    "ko": "웹",
+    "en_count": 383,
+    "ko_count": 380,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "web_and_backend",
+    "en": "Backend",
+    "ko": "백엔드",
+    "en_count": 307,
+    "ko_count": 299,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "web_and_backend",
+    "en": "Frontend",
+    "ko": "프론트엔드",
+    "en_count": 56,
+    "ko_count": 48,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "web_and_backend",
+    "en": "Database",
+    "ko": "데이터베이스",
+    "en_count": 110,
+    "ko_count": 104,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "web_and_backend",
+    "en": "Networking",
+    "ko": "네트워킹",
+    "en_count": 241,
+    "ko_count": 203,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "web_and_backend",
+    "en": "Security",
+    "ko": "보안",
+    "en_count": 308,
+    "ko_count": 278,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "web_and_backend",
+    "en": "Authentication",
+    "ko": "인증",
+    "en_count": 27,
+    "ko_count": 27,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "web_and_backend",
+    "en": "Caching",
+    "ko": "캐싱",
+    "en_count": 54,
+    "ko_count": 55,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "web_and_backend",
+    "en": "Scalability",
+    "ko": "확장성",
+    "en_count": 100,
+    "ko_count": 106,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "web_and_backend",
+    "en": "Concurrency",
+    "ko": "동시성",
+    "en_count": 149,
+    "ko_count": 134,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "web_and_backend",
+    "en": "Async",
+    "ko": "비동기",
+    "en_count": 104,
+    "ko_count": 100,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "web_and_backend",
+    "en": "Reliability",
+    "ko": "신뢰성",
+    "en_count": 8,
+    "ko_count": 8,
+    "verdict": "en_only"
+  },
+  {
+    "category": "web_and_backend",
+    "en": "Pipeline",
+    "ko": "파이프라인",
+    "en_count": 8,
+    "ko_count": 1,
+    "verdict": "en_only"
+  },
+  {
+    "category": "ai_and_data",
+    "en": "AI",
+    "ko": "인공지능",
+    "en_count": 58,
+    "ko_count": 49,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "ai_and_data",
+    "en": "Machine-Learning",
+    "ko": "머신러닝",
+    "en_count": 42,
+    "ko_count": 41,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "ai_and_data",
+    "en": "Deep-Learning",
+    "ko": "딥러닝",
+    "en_count": 25,
+    "ko_count": 25,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "ai_and_data",
+    "en": "Data-Science",
+    "ko": "데이터사이언스",
+    "en_count": 37,
+    "ko_count": 38,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "system_and_low_level",
+    "en": "Memory",
+    "ko": "메모리",
+    "en_count": 290,
+    "ko_count": 96,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "system_and_low_level",
+    "en": "Compiler",
+    "ko": "컴파일러",
+    "en_count": 78,
+    "ko_count": 70,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "system_and_low_level",
+    "en": "OS",
+    "ko": "운영체제",
+    "en_count": 169,
+    "ko_count": 158,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "system_and_low_level",
+    "en": "Embedded",
+    "ko": "임베디드",
+    "en_count": 46,
+    "ko_count": 43,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "system_and_low_level",
+    "en": "Kernel",
+    "ko": "커널",
+    "en_count": 3,
+    "ko_count": 3,
+    "verdict": "en_only"
+  },
+  {
+    "category": "system_and_low_level",
+    "en": "Synchronization",
+    "ko": "동기화",
+    "en_count": 6,
+    "ko_count": 6,
+    "verdict": "en_only"
+  },
+  {
+    "category": "system_and_low_level",
+    "en": "Environment",
+    "ko": "환경",
+    "en_count": 3,
+    "ko_count": 2,
+    "verdict": "en_only"
+  },
+  {
+    "category": "system_and_low_level",
+    "en": "Permission",
+    "ko": "권한",
+    "en_count": 2,
+    "ko_count": 2,
+    "verdict": "en_only"
+  },
+  {
+    "category": "system_and_low_level",
+    "en": "Backup",
+    "ko": "백업",
+    "en_count": 4,
+    "ko_count": 2,
+    "verdict": "en_only"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "English",
+    "ko": "영어",
+    "en_count": 128,
+    "ko_count": 1,
+    "verdict": "en_only"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Collocation",
+    "ko": "콜로케이션",
+    "en_count": 122,
+    "ko_count": 122,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Nuance",
+    "ko": "뉘앙스",
+    "en_count": 125,
+    "ko_count": 121,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Grammar",
+    "ko": "문법",
+    "en_count": 126,
+    "ko_count": 127,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Etymology",
+    "ko": "어원",
+    "en_count": 121,
+    "ko_count": 118,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Synonym",
+    "ko": "유의어",
+    "en_count": 115,
+    "ko_count": 114,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Antonym",
+    "ko": "반의어",
+    "en_count": 113,
+    "ko_count": 112,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Pronunciation",
+    "ko": "발음",
+    "en_count": 120,
+    "ko_count": 116,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Daily-Life",
+    "ko": "일상표현",
+    "en_count": 113,
+    "ko_count": 116,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Business-English",
+    "ko": "비즈니스영어",
+    "en_count": 106,
+    "ko_count": 104,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Academic-English",
+    "ko": "학술영어",
+    "en_count": 107,
+    "ko_count": 107,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Medical-English",
+    "ko": "의학영어",
+    "en_count": 5,
+    "ko_count": 5,
+    "verdict": "en_only"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Phrasal-Verb",
+    "ko": "구동사",
+    "en_count": 6,
+    "ko_count": 5,
+    "verdict": "en_only"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Context",
+    "ko": "맥락",
+    "en_count": 43,
+    "ko_count": 42,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Legal-English",
+    "ko": "법률영어",
+    "en_count": 5,
+    "ko_count": 3,
+    "verdict": "en_only"
+  },
+  {
+    "category": "english_vocabulary",
+    "en": "Idiom",
+    "ko": "숙어",
+    "en_count": 2,
+    "ko_count": 1,
+    "verdict": "en_only"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Movie",
+    "ko": "영화",
+    "en_count": 109,
+    "ko_count": 110,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "TV-Show",
+    "ko": "드라마",
+    "en_count": 30,
+    "ko_count": 35,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Action",
+    "ko": "액션",
+    "en_count": 124,
+    "ko_count": 114,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Adventure",
+    "ko": "모험",
+    "en_count": 104,
+    "ko_count": 99,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Comedy",
+    "ko": "코미디",
+    "en_count": 99,
+    "ko_count": 98,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Thriller",
+    "ko": "스릴러",
+    "en_count": 102,
+    "ko_count": 96,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Horror",
+    "ko": "공포",
+    "en_count": 83,
+    "ko_count": 80,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Fantasy",
+    "ko": "판타지",
+    "en_count": 98,
+    "ko_count": 96,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Romance",
+    "ko": "로맨스",
+    "en_count": 96,
+    "ko_count": 93,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Animation",
+    "ko": "애니메이션",
+    "en_count": 86,
+    "ko_count": 84,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Documentary",
+    "ko": "다큐멘터리",
+    "en_count": 90,
+    "ko_count": 89,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Crime",
+    "ko": "범죄",
+    "en_count": 103,
+    "ko_count": 101,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Mystery",
+    "ko": "미스터리",
+    "en_count": 100,
+    "ko_count": 98,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "War",
+    "ko": "전쟁",
+    "en_count": 130,
+    "ko_count": 128,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Musical",
+    "ko": "뮤지컬",
+    "en_count": 15,
+    "ko_count": 12,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Family",
+    "ko": "가족",
+    "en_count": 105,
+    "ko_count": 99,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Biography",
+    "ko": "전기영화",
+    "en_count": 95,
+    "ko_count": 95,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Cinematography",
+    "ko": "촬영기법",
+    "en_count": 109,
+    "ko_count": 106,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Soundtrack",
+    "ko": "사운드트랙",
+    "en_count": 107,
+    "ko_count": 107,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Visual-Effects",
+    "ko": "시각효과",
+    "en_count": 95,
+    "ko_count": 94,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Blockbuster",
+    "ko": "블록버스터",
+    "en_count": 20,
+    "ko_count": 1,
+    "verdict": "en_only"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Marvel",
+    "ko": "마블",
+    "en_count": 9,
+    "ko_count": 1,
+    "verdict": "en_only"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Superhero",
+    "ko": "슈퍼히어로",
+    "en_count": 11,
+    "ko_count": 7,
+    "verdict": "en_only"
+  },
+  {
+    "category": "movie_and_tv",
+    "en": "Disney",
+    "ko": "디즈니",
+    "en_count": 4,
+    "ko_count": 2,
+    "verdict": "en_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Tutorial",
+    "ko": "튜토리얼",
+    "en_count": 679,
+    "ko_count": 554,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Guide",
+    "ko": "가이드",
+    "en_count": 616,
+    "ko_count": 581,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Cheatsheet",
+    "ko": "치트시트",
+    "en_count": 126,
+    "ko_count": 128,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Productivity",
+    "ko": "생산성",
+    "en_count": 385,
+    "ko_count": 383,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Open-Source",
+    "ko": "오픈소스",
+    "en_count": 319,
+    "ko_count": 315,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Career",
+    "ko": "커리어",
+    "en_count": 183,
+    "ko_count": 178,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Education",
+    "ko": "교육",
+    "en_count": 573,
+    "ko_count": 556,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Conference",
+    "ko": "컨퍼런스",
+    "en_count": 17,
+    "ko_count": 17,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Book-Review",
+    "ko": "서평",
+    "en_count": 16,
+    "ko_count": 16,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Innovation",
+    "ko": "혁신",
+    "en_count": 247,
+    "ko_count": 242,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Troubleshooting",
+    "ko": "트러블슈팅",
+    "en_count": 415,
+    "ko_count": 404,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Migration",
+    "ko": "마이그레이션",
+    "en_count": 162,
+    "ko_count": 162,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Workflow",
+    "ko": "워크플로우",
+    "en_count": 382,
+    "ko_count": 374,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Configuration",
+    "ko": "설정",
+    "en_count": 446,
+    "ko_count": 442,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Hardware",
+    "ko": "하드웨어",
+    "en_count": 114,
+    "ko_count": 98,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Mobile",
+    "ko": "모바일",
+    "en_count": 51,
+    "ko_count": 50,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Cloud",
+    "ko": "클라우드",
+    "en_count": 109,
+    "ko_count": 104,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Agile",
+    "ko": "애자일",
+    "en_count": 61,
+    "ko_count": 58,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "History",
+    "ko": "역사",
+    "en_count": 222,
+    "ko_count": 204,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Culture",
+    "ko": "문화",
+    "en_count": 168,
+    "ko_count": 163,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Science",
+    "ko": "과학",
+    "en_count": 95,
+    "ko_count": 96,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Review",
+    "ko": "리뷰",
+    "en_count": 415,
+    "ko_count": 410,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Technology",
+    "ko": "기술",
+    "en_count": 594,
+    "ko_count": 582,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Cycling",
+    "ko": "자전거",
+    "en_count": 5,
+    "ko_count": 5,
+    "verdict": "en_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Photography",
+    "ko": "사진",
+    "en_count": 12,
+    "ko_count": 12,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Gaming",
+    "ko": "게임",
+    "en_count": 59,
+    "ko_count": 61,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Finance",
+    "ko": "재무",
+    "en_count": 10,
+    "ko_count": 2,
+    "verdict": "en_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Accounting",
+    "ko": "회계",
+    "en_count": 8,
+    "ko_count": 3,
+    "verdict": "en_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Self-Hosted",
+    "ko": "셀프호스팅",
+    "en_count": 54,
+    "ko_count": 38,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Privacy",
+    "ko": "프라이버시",
+    "en_count": 62,
+    "ko_count": 56,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Psychology",
+    "ko": "심리학",
+    "en_count": 52,
+    "ko_count": 49,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Keyboard",
+    "ko": "키보드",
+    "en_count": 22,
+    "ko_count": 22,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Markdown",
+    "ko": "마크다운",
+    "en_count": 434,
+    "ko_count": 430,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Internet",
+    "ko": "인터넷",
+    "en_count": 52,
+    "ko_count": 52,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Biology",
+    "ko": "생물학",
+    "en_count": 8,
+    "ko_count": 7,
+    "verdict": "en_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Space",
+    "ko": "우주",
+    "en_count": 13,
+    "ko_count": 12,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Brand",
+    "ko": "브랜드",
+    "en_count": 18,
+    "ko_count": 17,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Watch",
+    "ko": "시계",
+    "en_count": 25,
+    "ko_count": 5,
+    "verdict": "en_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Speaker",
+    "ko": "스피커",
+    "en_count": 6,
+    "ko_count": 5,
+    "verdict": "en_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Tablet",
+    "ko": "태블릿",
+    "en_count": 9,
+    "ko_count": 9,
+    "verdict": "en_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Gadget",
+    "ko": "가젯",
+    "en_count": 29,
+    "ko_count": 29,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Prompt-Engineering",
+    "ko": "프롬프트엔지니어링",
+    "en_count": 25,
+    "ko_count": 23,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Blog",
+    "ko": "블로그",
+    "en_count": 365,
+    "ko_count": 364,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Domain",
+    "ko": "도메인",
+    "en_count": 26,
+    "ko_count": 26,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Comparison",
+    "ko": "비교",
+    "en_count": 500,
+    "ko_count": 486,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Reference",
+    "ko": "참고",
+    "en_count": 569,
+    "ko_count": 540,
+    "verdict": "bilingual"
+  },
+  {
+    "category": "general_topics",
+    "en": "Leadership",
+    "ko": "리더십",
+    "en_count": 4,
+    "ko_count": 2,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Communication",
+    "ko": "의사소통",
+    "en_count": 6,
+    "ko_count": 2,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Interview",
+    "ko": "인터뷰",
+    "en_count": 2,
+    "ko_count": 1,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Management",
+    "ko": "경영",
+    "en_count": 2,
+    "ko_count": 1,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Decision-Making",
+    "ko": "의사결정",
+    "en_count": 5,
+    "ko_count": 2,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Trust",
+    "ko": "신뢰",
+    "en_count": 3,
+    "ko_count": 3,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Business",
+    "ko": "비즈니스",
+    "en_count": 3,
+    "ko_count": 4,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Society",
+    "ko": "사회",
+    "en_count": 2,
+    "ko_count": 3,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Ethics",
+    "ko": "윤리",
+    "en_count": 2,
+    "ko_count": 2,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Politics",
+    "ko": "정치",
+    "en_count": 4,
+    "ko_count": 5,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Safety",
+    "ko": "안전",
+    "en_count": 2,
+    "ko_count": 2,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Accessibility",
+    "ko": "접근성",
+    "en_count": 2,
+    "ko_count": 2,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Health",
+    "ko": "건강",
+    "en_count": 3,
+    "ko_count": 4,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Sports",
+    "ko": "스포츠",
+    "en_count": 4,
+    "ko_count": 7,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Identity",
+    "ko": "정체성",
+    "en_count": 2,
+    "ko_count": 3,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Media",
+    "ko": "미디어",
+    "en_count": 6,
+    "ko_count": 3,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "general_topics",
+    "en": "Revolution",
+    "ko": "혁명",
+    "en_count": 4,
+    "ko_count": 1,
+    "verdict": "ko_only"
+  },
+  {
+    "category": "devops_and_tools",
+    "en": "Terminal",
+    "ko": "터미널",
+    "en_count": 204,
+    "ko_count": 202,
+    "verdict": "bilingual"
+  }
+]

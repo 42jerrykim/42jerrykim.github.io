@@ -4,55 +4,33 @@ title: "15. 컨텍스트 매니저"
 description: "with 문과 컨텍스트 프로토콜을 통해 리소스를 안전하게 관리하는 원리를 설명합니다. 파일/락/트랜잭션 같은 실무 예로 예외 상황에서도 정리(cleanup)가 보장되는 구조를 익힙니다."
 tags:
   - Python
-  - 파이썬
-  - Implementation
-  - Software-Architecture
-  - Algorithm
-  - 알고리즘
-  - Backend
-  - 백엔드
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Algorithm(알고리즘)
+  - Backend(백엔드)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Logging
-  - 로깅
-  - Security
-  - 보안
-  - Performance
-  - 성능
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
-  - OOP
-  - 객체지향
-  - Data-Structures
-  - 자료구조
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Logging(로깅)
+  - Security(보안)
+  - Performance(성능)
+  - Concurrency(동시성)
+  - Async(비동기)
+  - OOP(객체지향)
+  - Data-Structures(자료구조)
   - DevOps
-  - Deployment
-  - 배포
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Web
-  - 웹
-  - Database
-  - 데이터베이스
-  - Networking
-  - 네트워킹
+  - Deployment(배포)
+  - Design-Pattern(디자인패턴)
+  - Web(웹)
+  - Database(데이터베이스)
+  - Networking(네트워킹)
   - CI-CD
-  - 자동화
-  - Documentation
-  - 문서화
+  - Automation(자동화)
+  - Documentation(문서화)
   - Git
-  - Code-Quality
-  - 코드품질
+  - Code-Quality(코드품질)
 lastmod: 2026-01-17
 collection_order: 15
 ---

@@ -7,30 +7,24 @@ collection_order: 4
 draft: true
 tags:
   - SOLID
-  - OOP
-  - Refactoring
-  - 리팩토링
-  - Dependency-Injection
-  - Interface
-  - 인터페이스
-  - Clean-Architecture
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - 응집도
-  - 결합도
-  - Testing
-  - Code-Quality
-  - 코드품질
-  - 확장성
+  - OOP(객체지향)
+  - Refactoring(리팩토링)
+  - Dependency-Injection(의존성주입)
+  - Interface(인터페이스)
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Cohesion(응집도)
+  - Coupling(결합도)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
+  - Scalability(확장성)
   - Factory
-  - Database
-  - Monitoring
-  - 로깅
-  - Error-Handling
-  - Documentation
-  - 문서화
-  - Code-Review
-  - 코드리뷰
+  - Database(데이터베이스)
+  - Monitoring(모니터링)
+  - Logging(로깅)
+  - Error-Handling(에러처리)
+  - Documentation(문서화)
+  - Code-Review(코드리뷰)
 ---
 
 # 04. SOLID 원칙 실무 적용

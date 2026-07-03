@@ -10,101 +10,60 @@ tags:
   - Go
   - Git
   - GitHub
-  - Memory
-  - 메모리
-  - Concurrency
-  - 동시성
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Review
-  - 리뷰
-  - Guide
-  - 가이드
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Memory(메모리)
+  - Concurrency(동시성)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Review(리뷰)
+  - Guide(가이드)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Mobile
-  - 모바일
-  - Markdown
-  - 마크다운
-  - Error-Handling
-  - 에러처리
-  - Testing
-  - 테스트
-  - Design-Pattern
-  - 디자인패턴
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
+  - Markdown(마크다운)
+  - Error-Handling(에러처리)
+  - Testing(테스트)
+  - Design-Pattern(디자인패턴)
   - Type-Safety
-  - Compiler
-  - 컴파일러
-  - OS
-  - 운영체제
+  - Compiler(컴파일러)
+  - OS(운영체제)
   - Thread
   - Process
   - Android
-  - Embedded
-  - 임베디드
+  - Embedded(임베디드)
   - Beginner
   - Advanced
   - Deep-Dive
   - 실습
-  - Code-Quality
-  - 코드품질
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
+  - Code-Quality(코드품질)
+  - Clean-Code(클린코드)
+  - Performance(성능)
   - Modularity
-  - Interface
-  - 인터페이스
-  - Terminal
-  - 터미널
+  - Interface(인터페이스)
+  - Terminal(터미널)
   - DevOps
-  - Automation
-  - 자동화
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Async
-  - 비동기
-  - Implementation
-  - 구현
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
+  - Automation(자동화)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Async(비동기)
+  - Implementation(구현)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
   - Case-Study
   - C
   - C++
@@ -113,73 +72,46 @@ tags:
   - JavaScript
   - Kotlin
   - Swift
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
-  - Data-Structures
-  - 자료구조
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Functional-Programming
-  - 함수형프로그래밍
-  - Abstraction
-  - 추상화
-  - Encapsulation
-  - 캡슐화
-  - Cloud
-  - 클라우드
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
+  - Data-Structures(자료구조)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Functional-Programming(함수형프로그래밍)
+  - Abstraction(추상화)
+  - Encapsulation(캡슐화)
+  - Cloud(클라우드)
+  - Linux(리눅스)
+  - Windows(윈도우)
   - IDE
   - VSCode
-  - Deployment
-  - 배포
+  - Deployment(배포)
   - API
-  - Backend
-  - 백엔드
-  - Scalability
-  - 확장성
+  - Backend(백엔드)
+  - Scalability(확장성)
   - Latency
   - Throughput
   - CI-CD
   - Docker
   - Kubernetes
-  - Monitoring
-  - 모니터링
-  - Logging
-  - 로깅
-  - Profiling
-  - 프로파일링
+  - Monitoring(모니터링)
+  - Logging(로깅)
+  - Profiling(프로파일링)
   - Benchmark
-  - Code-Review
-  - 코드리뷰
+  - Code-Review(코드리뷰)
   - Maintainability
   - Readability
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - Conference
-  - 컨퍼런스
-  - Book-Review
-  - 서평
-  - Self-Hosted
-  - 셀프호스팅
-  - Agile
-  - 애자일
+  - Cheatsheet(치트시트)
+  - Conference(컨퍼런스)
+  - Book-Review(서평)
+  - Self-Hosted(셀프호스팅)
+  - Agile(애자일)
   - TDD
-  - History
-  - 역사
-  - Science
-  - 과학
-  - Domain
-  - 도메인
+  - History(역사)
+  - Science(과학)
+  - Domain(도메인)
   - CSharp
   - TypeScript
   - Node.js
@@ -187,14 +119,10 @@ tags:
   - Vue
   - JSON
   - YAML
-  - Database
-  - 데이터베이스
-  - Caching
-  - 캐싱
-  - Authentication
-  - 인증
-  - Microservices
-  - 마이크로서비스
+  - Database(데이터베이스)
+  - Caching(캐싱)
+  - Authentication(인증)
+  - Microservices(마이크로서비스)
   - Event-Driven
   - Builder
   - Iterator
@@ -211,23 +139,15 @@ tags:
   - Visitor
   - Mediator
   - Facade
-  - Composition
-  - 합성
-  - Polymorphism
-  - 다형성
-  - Inheritance
-  - 상속
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
-  - Dependency-Injection
-  - 의존성주입
-  - Clean-Architecture
-  - 클린아키텍처
+  - Composition(합성)
+  - Polymorphism(다형성)
+  - Inheritance(상속)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Dependency-Injection(의존성주입)
+  - Clean-Architecture(클린아키텍처)
   - SOLID
-  - OOP
-  - 객체지향
+  - OOP(객체지향)
   - Domain-Driven-Design
   - CQRS
   - UML
@@ -241,38 +161,24 @@ tags:
   - File-System
   - Cache
   - CPU
-  - Binary-Search
-  - 이분탐색
-  - Sorting
-  - 정렬
-  - String
-  - 문자열
-  - Recursion
-  - 재귀
+  - Binary-Search(이분탐색)
+  - Sorting(정렬)
+  - String(문자열)
+  - Recursion(재귀)
   - Dynamic-Programming
-  - DP
-  - 동적계획법
-  - Greedy
-  - 그리디
-  - Graph
-  - 그래프
-  - Tree
-  - 트리
-  - Stack
-  - 스택
-  - Queue
-  - 큐
+  - DP(동적계획법)
+  - Greedy(그리디)
+  - Graph(그래프)
+  - Tree(트리)
+  - Stack(스택)
+  - Queue(큐)
   - Hash-Map
   - Set
   - Map
-  - Array
-  - 배열
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Optimization
-  - 최적화
+  - Array(배열)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Optimization(최적화)
 image: "wordcloud.png"
 ---
 

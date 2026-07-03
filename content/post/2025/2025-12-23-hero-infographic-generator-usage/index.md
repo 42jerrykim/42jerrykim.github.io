@@ -8,104 +8,66 @@ categories:
   - Blog
 tags:
   - Python
-  - 파이썬
   - Hugo
-  - Automation
-  - 자동화
-  - Shell
+  - Automation(자동화)
+  - Shell(셸)
   - JSON
-  - Productivity
-  - 생산성
-  - Windows
-  - 윈도우
+  - Productivity(생산성)
+  - Windows(윈도우)
   - PowerShell
-  - Web
-  - 웹
+  - Web(웹)
   - SEO
-  - Markdown
-  - 마크다운
-  - 블로그
-  - Blog
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
+  - Markdown(마크다운)
+  - Blog(블로그)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
   - Git
   - GitHub
-  - Graph
-  - 그래프
-  - String
+  - Graph(그래프)
+  - String(문자열)
   - Process
-  - Privacy
-  - 프라이버시
-  - Brand
-  - 브랜드
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Privacy(프라이버시)
+  - Brand(브랜드)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Workflow(워크플로우)
+  - Configuration(설정)
   - How-To
   - Tips
   - Beginner
-  - Implementation
-  - 구현
+  - Implementation(구현)
   - VSCode
-  - Deployment
-  - 배포
-  - Design-Pattern
-  - 디자인패턴
-  - Code-Quality
-  - 코드품질
-  - Error-Handling
-  - 에러처리
+  - Deployment(배포)
+  - Design-Pattern(디자인패턴)
+  - Code-Quality(코드품질)
+  - Error-Handling(에러처리)
   - Modularity
-  - Interface
-  - 인터페이스
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Linux
-  - 리눅스
-  - Terminal
-  - 터미널
+  - Interface(인터페이스)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Linux(리눅스)
+  - Terminal(터미널)
   - Jekyll
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - HTML
   - CSS
-  - Backend
-  - 백엔드
+  - Backend(백엔드)
   - API
   - Case-Study
   - Deep-Dive
   - 실습
   - YAML
-  - Data-Structures
-  - 자료구조
+  - Data-Structures(자료구조)
   - Go
   - Bash
   - C++

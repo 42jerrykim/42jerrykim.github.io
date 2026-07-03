@@ -8,101 +8,63 @@ lastmod: "2026-03-16"
 header:
   teaser: /assets/images/2022/2022-06-07-101710.png
 tags:
-  - Algorithm
+  - Algorithm(알고리즘)
   - API
-  - Backend
+  - Backend(백엔드)
   - Best-Practices
-  - Blog
-  - 블로그
+  - Blog(블로그)
   - Case-Study
-  - Cloud
-  - Comparison
-  - 비교
-  - Configuration
-  - 설정
-  - Documentation
-  - 문서화
-  - Domain
-  - 도메인
-  - Education
-  - 교육
-  - Frontend
-  - 프론트엔드
-  - Guide
-  - 가이드
+  - Cloud(클라우드)
+  - Comparison(비교)
+  - Configuration(설정)
+  - Documentation(문서화)
+  - Domain(도메인)
+  - Education(교육)
+  - Frontend(프론트엔드)
+  - Guide(가이드)
   - How-To
-  - Innovation
-  - 혁신
-  - Internet
-  - 인터넷
+  - Innovation(혁신)
+  - Internet(인터넷)
   - JSON
-  - Markdown
-  - 마크다운
-  - Migration
-  - 마이그레이션
-  - Mobile
-  - 모바일
-  - Networking
-  - 네트워킹
-  - Open-Source
-  - 오픈소스
-  - Performance
-  - 성능
-  - Photography
-  - 사진
-  - Productivity
-  - 생산성
-  - Reference
-  - 참고
-  - Review
-  - 리뷰
-  - Security
-  - 보안
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Troubleshooting
-  - 트러블슈팅
-  - Web
-  - 웹
-  - Workflow
-  - 워크플로우
+  - Markdown(마크다운)
+  - Migration(마이그레이션)
+  - Mobile(모바일)
+  - Networking(네트워킹)
+  - Open-Source(오픈소스)
+  - Performance(성능)
+  - Photography(사진)
+  - Productivity(생산성)
+  - Reference(참고)
+  - Review(리뷰)
+  - Security(보안)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Troubleshooting(트러블슈팅)
+  - Web(웹)
+  - Workflow(워크플로우)
   - Beginner
-  - Career
-  - 커리어
-  - Hardware
-  - 하드웨어
+  - Career(커리어)
+  - Hardware(하드웨어)
   - Tips
-  - Privacy
-  - 프라이버시
-  - Scalability
-  - 확장성
+  - Privacy(프라이버시)
+  - Scalability(확장성)
   - SEO
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Deployment(배포)
+  - Automation(자동화)
   - Git
   - GitHub
   - HTTP
   - REST
-  - Caching
-  - 캐싱
+  - Caching(캐싱)
   - CDN
-  - Data-Science
-  - 데이터사이언스
+  - Data-Science(데이터사이언스)
   - Deep-Dive
   - 실습
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - Science
-  - 과학
+  - Cheatsheet(치트시트)
+  - History(역사)
+  - Culture(문화)
+  - Science(과학)
 title: "[SearchEngine] OpenVerse - 오픈 라이선스 미디어 검색엔진"
 ---
 

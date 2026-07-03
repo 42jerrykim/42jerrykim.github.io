@@ -11,96 +11,59 @@ tags:
   - GitHub
   - CSS
   - HTML
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Tutorial
-  - 가이드
-  - Guide
-  - Technology
-  - 기술
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Web(웹)
+  - Blog(블로그)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Technology(기술)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Markdown
-  - 마크다운
-  - Frontend
-  - 프론트엔드
-  - Deployment
-  - 배포
+  - Markdown(마크다운)
+  - Frontend(프론트엔드)
+  - Deployment(배포)
   - Beginner
-  - Reference
-  - 참고
+  - Reference(참고)
   - Best-Practices
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Review
-  - 리뷰
-  - Innovation
-  - 혁신
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
+  - Productivity(생산성)
+  - Education(교육)
+  - Review(리뷰)
+  - Innovation(혁신)
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Clean-Code(클린코드)
+  - Performance(성능)
   - Readability
   - Maintainability
   - Modularity
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - IDE
   - VSCode
-  - Automation
-  - 자동화
+  - Automation(자동화)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Error-Handling
-  - 에러처리
-  - Refactoring
-  - 리팩토링
-  - Code-Quality
-  - 코드품질
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Error-Handling(에러처리)
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Software-Architecture(소프트웨어아키텍처)
   - YAML
-  - Networking
-  - 네트워킹
-  - Self-Hosted
-  - 셀프호스팅
-  - Domain
-  - 도메인
+  - Networking(네트워킹)
+  - Self-Hosted(셀프호스팅)
+  - Domain(도메인)
   - Quick-Reference
-  - 치트시트
-  - Code-Review
-  - 코드리뷰
-  - Pitfalls
-  - 함정
-  - Scalability
-  - 확장성
+  - Cheatsheet(치트시트)
+  - Code-Review(코드리뷰)
+  - Pitfalls(함정)
+  - Scalability(확장성)
 title: "[Jekyll] Minimal Mistakes 페이지 넓게 보기"
 ---
 

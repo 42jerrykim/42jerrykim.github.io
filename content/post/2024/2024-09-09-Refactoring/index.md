@@ -11,108 +11,64 @@ header:
 title: "[Refactoring] 코드 리팩토링의 중요성과 모범 사례"
 
 tags:
-  - Refactoring
-  - 리팩토링
-  - Code-Quality
-  - 코드품질
-  - Clean-Code
-  - 클린코드
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
+  - Clean-Code(클린코드)
   - Best-Practices
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Documentation
-  - 문서화
-  - Code-Review
-  - 코드리뷰
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Testing(테스트)
+  - Performance(성능)
+  - Documentation(문서화)
+  - Code-Review(코드리뷰)
   - Maintainability
   - Readability
-  - Error-Handling
-  - 에러처리
-  - Optimization
-  - 최적화
-  - Debugging
-  - 디버깅
-  - OOP
-  - 객체지향
+  - Error-Handling(에러처리)
+  - Optimization(최적화)
+  - Debugging(디버깅)
+  - OOP(객체지향)
   - SOLID
   - Python
-  - 파이썬
   - TDD
-  - Agile
-  - 애자일
+  - Agile(애자일)
   - IDE
   - Git
   - GitHub
   - CI-CD
   - DevOps
-  - Backend
-  - 백엔드
-  - Web
-  - 웹
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Blog
-  - 블로그
+  - Backend(백엔드)
+  - Web(웹)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
+  - Blog(블로그)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Career
-  - 커리어
-  - Culture
-  - 문화
-  - Review
-  - 리뷰
+  - Comparison(비교)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Career(커리어)
+  - Culture(문화)
+  - Review(리뷰)
   - Modularity
   - Type-Safety
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
-  - Implementation
-  - 구현
-  - Clean-Architecture
-  - 클린아키텍처
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
-  - Monitoring
-  - 모니터링
-  - Automation
-  - 자동화
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
+  - Implementation(구현)
+  - Clean-Architecture(클린아키텍처)
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Monitoring(모니터링)
+  - Automation(자동화)
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
   - Beginner
   - Case-Study
   - Deep-Dive

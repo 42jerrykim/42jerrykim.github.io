@@ -10,101 +10,62 @@ description: "VSCode에서 정규식(Regex)으로 검색·치환하는 방법을
 tags:
   - VSCode
   - IDE
-  - String
-  - 문자열
-  - Implementation
-  - 구현
-  - Automation
-  - 자동화
-  - Productivity
-  - 생산성
-  - Code-Quality
-  - 코드품질
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Debugging
-  - 디버깅
+  - String(문자열)
+  - Implementation(구현)
+  - Automation(자동화)
+  - Productivity(생산성)
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Debugging(디버깅)
   - GitHub
-  - Open-Source
-  - 오픈소스
+  - Open-Source(오픈소스)
   - DevOps
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
   - JavaScript
-  - Refactoring
-  - 리팩토링
+  - Refactoring(리팩토링)
   - Readability
   - Maintainability
-  - Clean-Code
-  - 클린코드
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
+  - Clean-Code(클린코드)
+  - Testing(테스트)
+  - Performance(성능)
+  - Optimization(최적화)
   - Beginner
   - Advanced
   - 실습
   - Deep-Dive
   - Case-Study
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Migration
-  - 마이그레이션
-  - Terminal
-  - 터미널
-  - Shell
+  - Migration(마이그레이션)
+  - Terminal(터미널)
+  - Shell(셸)
   - 셀
-  - Deployment
-  - 배포
+  - Deployment(배포)
   - Regex
-  - Problem-Solving
-  - 문제해결
-  - Error-Handling
-  - 에러처리
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
+  - Problem-Solving(문제해결)
+  - Error-Handling(에러처리)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
 image: "wordcloud.png"
 draft: false
 ---

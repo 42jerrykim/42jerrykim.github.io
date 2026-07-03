@@ -19,9 +19,9 @@ categories:
   - 주카테고리
   - 보조카테고리
 tags:
-  # data/tags.yaml에서 50개 이상 선정 (영어+한글 쌍)
-  - Tag1
-  - 태그1
+  # data/tags.yaml에서 25개 이상 선정 (영/한 병용 개념은 Tag1(태그1) 형식의 단일 승인 태그)
+  - Tag1(태그1)
+  - Tag2
 image: "image.png"
 slug: "kebab-case-url-friendly-slug"
 ---
@@ -39,9 +39,9 @@ draft: true
 categories:
   - 주카테고리
 tags:
-  # 50개 이상
-  - Tag1
-  - 태그1
+  # 25개 이상
+  - Tag1(태그1)
+  - Tag2
 image: "image.png"
 ---
 ```
@@ -70,8 +70,8 @@ slug: "getting-started-시리즈키워드"
 categories:
   - 주카테고리
 tags:
-  # 50개 이상
-  - Tag1
+  # 25개 이상
+  - Tag1(태그1)
 image: "image.png"
 ---
 ```
@@ -101,31 +101,33 @@ image: "image.png"
 
 ### 카테고리 → 대표 태그 (발췌)
 
-| 카테고리 | 대표 태그 (영어) | 대표 태그 (한글) |
-|----------|-----------------|-----------------|
-| `programming_languages` | Python, C++, Java, JavaScript, Go, Rust, ... | 파이썬 |
-| `frameworks_and_platforms` | .NET, Django, React, Docker, AWS, Hugo, ... | — |
-| `algorithm_core` | Algorithm, BOJ, Competitive-Programming, Problem-Solving, Coding-Test | 알고리즘, 백준, 코딩테스트, 문제해결 |
-| `algorithm_topics` | Graph, DP, Greedy, BFS, DFS, Binary-Search, Tree, ... | 그래프, 동적계획법, 그리디, 이분탐색, 트리, ... |
-| `data_structures` | Data-Structures, Array, Matrix, Set, Map | 자료구조, 배열, 행렬 |
-| `complexity_analysis` | Time-Complexity, Space-Complexity, Complexity-Analysis | 시간복잡도, 공간복잡도, 복잡도분석 |
-| `code_quality` | Implementation, Optimization, Testing, Clean-Code, Performance, ... | 구현, 최적화, 테스트, 클린코드, 성능, ... |
-| `software_engineering` | Software-Architecture, Design-Pattern, OOP, SOLID, Clean-Architecture, ... | 소프트웨어아키텍처, 디자인패턴, 객체지향, ... |
-| `devops_and_tools` | Git, GitHub, CI-CD, Linux, Docker, Shell, ... | 리눅스, 셸, 배포, 자동화, ... |
-| `web_and_backend` | Web, Backend, Frontend, API, REST, Database, Security, ... | 웹, 백엔드, 프론트엔드, 데이터베이스, 보안, ... |
-| `ai_and_data` | AI, Machine-Learning, Deep-Learning, NLP, LLM, GPT | 인공지능, 머신러닝, 딥러닝 |
-| `system_and_low_level` | Memory, CPU, Cache, Compiler, OS, Thread | 메모리, 컴파일러, 운영체제 |
-| `english_vocabulary` | Vocabulary, English, Collocation, Nuance, Grammar, Etymology, ... | 영단어, 콜로케이션, 뉘앙스, 문법, 어원, ... |
-| `movie_and_tv` | Movie, TV-Show, Action, Comedy, Drama, Thriller, Sci-Fi, ... | 영화, 드라마, 액션, 코미디, 스릴러, SF, ... |
-| `general_topics` | Tutorial, Guide, Cheatsheet, Open-Source, Career, Education, ... | 튜토리얼, 가이드, 치트시트, 오픈소스, 교육, ... |
-| `python_specific` | asyncio, type-hints, pytest, venv, pip | — |
+Phase 8 통합 이후 대부분의 영/한 병용 개념은 `Tag(태그)` 형식의 단일 승인 태그다(예: `Algorithm(알고리즘)`, `Testing(테스트)`). 언어·프레임워크·제품명(`Python`, `Docker`, `AWS` 등)은 한글 병기 없이 영어 단독이 승인 표기다. 아래는 카테고리별 대표 태그 발췌(정확한 표기는 항상 `data/tags.yaml` 원본을 확인한다):
 
-### 태그 50개 달성 전략
+| 카테고리 | 대표 태그(발췌) |
+|----------|-----------------|
+| `programming_languages` | Python, C++, Java, JavaScript, Go, Rust, ... |
+| `frameworks_and_platforms` | .NET, Django, React, Docker, AWS, Hugo, ... |
+| `algorithm_core` | Algorithm(알고리즘), BOJ(백준), Competitive-Programming(경쟁프로그래밍), Problem-Solving(문제해결), Coding-Test(코딩테스트) |
+| `algorithm_topics` | Graph(그래프), DP(동적계획법), Greedy(그리디), BFS, Binary-Search(이분탐색), Tree(트리), ... |
+| `data_structures` | Data-Structures(자료구조), Array(배열), Matrix(행렬), Set, Map |
+| `complexity_analysis` | Time-Complexity(시간복잡도), Space-Complexity(공간복잡도), Complexity-Analysis(복잡도분석) |
+| `code_quality` | Implementation(구현), Optimization(최적화), Testing(테스트), Clean-Code(클린코드), Performance(성능), ... |
+| `software_engineering` | Software-Architecture(소프트웨어아키텍처), Design-Pattern(디자인패턴), OOP(객체지향), SOLID, Clean-Architecture(클린아키텍처), ... |
+| `devops_and_tools` | Git, GitHub, CI-CD, Linux(리눅스), Docker, Shell(셸), Deployment(배포), Automation(자동화), ... |
+| `web_and_backend` | Web(웹), Backend(백엔드), Frontend(프론트엔드), API, REST, Database(데이터베이스), Security(보안), ... |
+| `ai_and_data` | AI(인공지능), Machine-Learning(머신러닝), Deep-Learning(딥러닝), NLP, LLM, GPT |
+| `system_and_low_level` | Memory(메모리), CPU, Cache, Compiler(컴파일러), OS(운영체제), Thread |
+| `english_vocabulary` | Vocabulary, English, Collocation(콜로케이션), Nuance(뉘앙스), Grammar(문법), Etymology(어원), ... |
+| `movie_and_tv` | Movie(영화), TV-Show(드라마), Action(액션), Comedy(코미디), Drama, Thriller(스릴러), Sci-Fi, ... |
+| `general_topics` | Tutorial(튜토리얼), Guide(가이드), Cheatsheet(치트시트), Open-Source(오픈소스), Career(커리어), Education(교육), ... |
+| `python_specific` | asyncio, type-hints, pytest, venv, pip |
 
-1. **직접 관련** (20-25개): 글의 핵심 주제 카테고리에서 영어+한글 쌍
-2. **기술 스택** (10-15개): 사용된 언어, 프레임워크, 도구
-3. **메타/범용** (10-15개): `general_topics`에서 Tutorial, Guide, How-To 등
-4. **간접 관련** (5-10개): 글이 간접적으로 다루는 영역
+### 태그 25개 달성 전략
+
+1. **직접 관련** (10-13개): 글의 핵심 주제 카테고리에서 선정(영/한 병용 개념은 `Tag(태그)` 단일 태그로 카운트)
+2. **기술 스택** (5-8개): 사용된 언어, 프레임워크, 도구
+3. **메타/범용** (5-8개): `general_topics`에서 Tutorial, Guide, How-To 등
+4. **간접 관련** (3-5개): 글이 간접적으로 다루는 영역
 
 ---
 

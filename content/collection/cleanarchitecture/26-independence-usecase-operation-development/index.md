@@ -7,21 +7,15 @@ title: "[Clean Architecture] 26. 독립성: 유스케이스, 운영, 개발, 배
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
-  - Implementation
-  - Deployment
-  - 배포
-  - 소프트웨어아키텍처
-  - Scalability
-  - 확장성
-  - Microservices
-  - 마이크로서비스
-  - Edge-Cases
-  - Testing
-  - Code-Quality
-  - 코드품질
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Implementation(구현)
+  - Deployment(배포)
+  - Scalability(확장성)
+  - Microservices(마이크로서비스)
+  - Edge-Cases(엣지케이스)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
 ---
 
 좋은 아키텍처는 다양한 **독립성**을 제공해야 한다. 유스케이스의 독립성, 운영의 독립성, 개발의 독립성, 배포의 독립성이 그것이다.

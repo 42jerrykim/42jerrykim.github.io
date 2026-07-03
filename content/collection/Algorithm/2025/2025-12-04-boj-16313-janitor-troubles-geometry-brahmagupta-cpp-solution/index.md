@@ -7,56 +7,35 @@ categories:
   - Algorithm
   - Geometry
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
+  - Algorithm(알고리즘)
+  - BOJ(백준)
   - C++
-  - 기하학
   - Geometry
-  - Math
+  - Math(수학)
   - ICPC
-  - 구현
-  - Implementation
-  - 최적화
-  - Optimization
-  - Problem-Solving
-  - Data-Structures
-  - 자료구조
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
-  - Competitive-Programming
-  - 경쟁프로그래밍
-  - 수학
-  - Coding-Test
-  - 코딩테스트
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Implementation(구현)
+  - Optimization(최적화)
+  - Problem-Solving(문제해결)
+  - Data-Structures(자료구조)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Coding-Test(코딩테스트)
+  - Code-Quality(코드품질)
   - Go
   - .NET
   - Git
   - GitHub
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
 image: "wordcloud.png"
 ---
 

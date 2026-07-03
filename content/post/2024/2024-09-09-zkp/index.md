@@ -6,69 +6,46 @@ header:
   teaser: /assets/images/2024/2024-09-09-zkp.png
 lastmod: "2026-03-17T00:00:00Z"
 tags:
-  - Privacy
-  - Security
-  - Scalability
-  - Code-Quality
+  - Privacy(프라이버시)
+  - Security(보안)
+  - Scalability(확장성)
+  - Code-Quality(코드품질)
   - Go
   - Rust
-  - OOP
-  - Graph
-  - 그래프
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Math
-  - 수학
+  - OOP(객체지향)
+  - Graph(그래프)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Math(수학)
   - Process
-  - Guide
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Clean-Code
-  - 클린코드
-  - Software-Architecture
-  - Algorithm
-  - 알고리즘
-  - Backend
+  - Comparison(비교)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Performance(성능)
+  - Clean-Code(클린코드)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Algorithm(알고리즘)
+  - Backend(백엔드)
   - API
-  - Database
-  - Authentication
-  - 인증
-  - Networking
+  - Database(데이터베이스)
+  - Authentication(인증)
+  - Networking(네트워킹)
   - Git
   - GitHub
   - Deep-Dive
@@ -77,18 +54,10 @@ tags:
   - REST
   - HTTP
   - JSON
-  - Async
-  - 비동기
+  - Async(비동기)
   - DevOps
-  - Monitoring
-  - 모니터링
-  - Cloud
-  - 클라우드
-  - 프라이버시
-  - 보안
-  - 확장성
-  - 코드품질
-  - 객체지향
+  - Monitoring(모니터링)
+  - Cloud(클라우드)
 title: "[Blockchain] 제로 지식 증명(ZKP) 개념·유형·활용 완벽 가이드"
 image: "wordcloud.png"
 ---
