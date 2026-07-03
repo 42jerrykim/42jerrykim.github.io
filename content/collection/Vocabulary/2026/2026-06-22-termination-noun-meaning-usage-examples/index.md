@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - termination
   - termination meaning
@@ -24,7 +23,7 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - context
+  - Context
   - 맥락
   - end
   - ending
@@ -44,7 +43,7 @@ tags:
   - 임신중절
   - 중단
   - 만료
-  - business
+  - Business
   - employment
   - contract law
   - legal terminology
@@ -67,14 +66,14 @@ tags:
   - Process
   - procedure
   - formal notice
-  - usage notes
+  - Usage-Notes
   - Grammar
   - Pronunciation
   - Etymology
   - origin
-  - EN/KR examples
-  - study English
-  - vocabulary building
+  - EN-KR-Examples
+  - Study-English
+  - Vocabulary-Building
 image: "wordcloud.png"
 ---
 

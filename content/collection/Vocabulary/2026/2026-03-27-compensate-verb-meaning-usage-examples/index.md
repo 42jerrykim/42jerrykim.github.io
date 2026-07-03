@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어동사
   - compensate
@@ -40,8 +39,8 @@ tags:
   - 비즈니스영어
   - Academic-English
   - 학술영어
-  - EN/KR examples
-  - context
+  - EN-KR-Examples
+  - Context
   - 맥락
   - compensation
   - offset
@@ -61,14 +60,14 @@ tags:
   - 커리어
   - Education
   - 교육
-  - communication
+  - Communication
   - negotiation
   - workplace
-  - legal English
+  - Legal-English
   - 업무영어
-  - usage notes
-  - study English
-  - vocabulary building
+  - Usage-Notes
+  - Study-English
+  - Vocabulary-Building
   - Tutorial
   - Guide
   - Reference

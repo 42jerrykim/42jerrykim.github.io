@@ -9,13 +9,12 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - act on
   - act on meaning
   - act on usage
   - act on examples
-  - phrasal verb
+  - Phrasal-Verb
   - 구동사
   - 영어동사
   - Collocation
@@ -67,10 +66,10 @@ tags:
   - 비교
   - Tips
   - How-To
-  - context
+  - Context
   - 맥락
-  - usage notes
-  - EN/KR examples
+  - Usage-Notes
+  - EN-KR-Examples
   - TOEFL
   - IELTS
   - Action

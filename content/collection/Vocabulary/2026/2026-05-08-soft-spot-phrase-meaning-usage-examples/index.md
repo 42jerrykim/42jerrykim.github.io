@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어구어
   - soft spot
@@ -36,8 +35,8 @@ tags:
   - 구어
   - 일상표현
   - Daily-Life
-  - EN/KR examples
-  - context
+  - EN-KR-Examples
+  - Context
   - 맥락
   - affection
   - 애착
@@ -62,7 +61,7 @@ tags:
   - 신체
   - fontanelle
   - 숫구멍
-  - sports
+  - Sports
   - 스포츠
   - defense
   - 수비

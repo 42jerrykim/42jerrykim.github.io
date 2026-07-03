@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
   - consumption
@@ -40,14 +39,14 @@ tags:
   - 비즈니스영어
   - Academic-English
   - 학술영어
-  - EN/KR examples
-  - context
+  - EN-KR-Examples
+  - Context
   - 맥락
   - economy
   - 경제
   - energy
   - 에너지
-  - environment
+  - Environment
   - 환경
   - sustainability
   - 지속가능
@@ -62,9 +61,9 @@ tags:
   - Reference
   - Tips
   - Comparison
-  - study English
-  - vocabulary building
-  - usage notes
+  - Study-English
+  - Vocabulary-Building
+  - Usage-Notes
   - countable noun
   - uncountable noun
   - 가산명사

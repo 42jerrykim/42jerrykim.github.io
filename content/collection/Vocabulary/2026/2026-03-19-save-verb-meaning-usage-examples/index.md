@@ -10,7 +10,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어동사
   - save
@@ -38,12 +37,12 @@ tags:
   - 비즈니스영어
   - IT English
   - 컴퓨터영어
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - 저축하다
   - 구하다
   - 저장하다
@@ -52,12 +51,12 @@ tags:
   - conserve
   - preserve
   - store
-  - backup
+  - Backup
   - Finance
   - 금융
   - emergency
   - 응급
-  - software
+  - Software
   - 소프트웨어
   - save money
   - save time

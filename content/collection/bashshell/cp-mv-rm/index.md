@@ -70,7 +70,7 @@ tags:
 - 삭제
 - recursive
 - force
-- backup
+- Backup
 image: "wordcloud.png"
 ---
 

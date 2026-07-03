@@ -39,8 +39,8 @@ tags:
   - 비즈니스영어
   - Academic-English
   - 학술영어
-  - EN/KR examples
-  - context
+  - EN-KR-Examples
+  - Context
   - 맥락
   - deliberation
   - jury
@@ -50,10 +50,10 @@ tags:
   - discuss
   - debate
   - ponder
-  - decision-making
+  - Decision-Making
   - meeting
   - negotiation
-  - legal English
+  - Legal-English
   - Tutorial
   - Guide
   - Reference
@@ -65,9 +65,9 @@ tags:
   - 커리어
   - Education
   - 교육
-  - study English
-  - vocabulary building
-  - usage notes
+  - Study-English
+  - Vocabulary-Building
+  - Usage-Notes
   - formal English
   - 격식 영어
   - discussion

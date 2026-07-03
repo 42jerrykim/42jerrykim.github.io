@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어동사
   - rev
@@ -53,13 +52,13 @@ tags:
   - 자동차
   - 스포츠
   - 비즈니스
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
-  - revolution
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
+  - Revolution
   - revving
   - revved
   - 부스트

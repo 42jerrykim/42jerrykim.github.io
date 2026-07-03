@@ -344,6 +344,12 @@ web_and_backend:
   - Throughput
   - Load-Balancing
   - Message-Queue
+  - System-Design
+  - Reliability
+  - 신뢰성
+  - Production
+  - Observability
+  - Pipeline
 
 ai_and_data:
   - AI
@@ -375,6 +381,24 @@ system_and_low_level:
   - File-System
   - Embedded
   - 임베디드
+  - Mutex
+  - RAII
+  - Kernel
+  - 커널
+  - Synchronization
+  - 동기화
+  - Condition-Variable
+  - Memory-Order
+  - Signal
+  - Stdin
+  - Stdout
+  - Environment
+  - PATH
+  - Permission
+  - Backup
+  - SSH
+  - PWD
+  - ELF
 
 english_vocabulary:
   - Vocabulary
@@ -409,6 +433,19 @@ english_vocabulary:
   - TOEFL
   - IELTS
   - GRE
+  - Phrasal-Verb
+  - 구동사
+  - Context
+  - 맥락
+  - Usage-Notes
+  - Vocabulary-Building
+  - Study-English
+  - EN-KR-Examples
+  - Legal-English
+  - 법률영어
+  - Idiom
+  - Slip-Up
+  - Ghost-Write
 
 movie_and_tv:
   - Movie
@@ -478,6 +515,12 @@ movie_and_tv:
   - Adaptation
   - Sequel
   - Prequel
+  - Marvel
+  - MCU
+  - Superhero
+  - 슈퍼히어로
+  - Disney
+  - Netflix
 
 general_topics:
   - Tutorial
@@ -598,6 +641,27 @@ general_topics:
   - Case-Study
   - Deep-Dive
   - 실습
+  - Leadership
+  - Communication
+  - Interview
+  - Management
+  - Decision-Making
+  - Trust
+  - Business
+  - 업무영어
+  - Society
+  - Ethics
+  - Politics
+  - Governance
+  - Compliance
+  - Safety
+  - Accessibility
+  - Health
+  - Sports
+  - Identity
+  - Music
+  - Media
+  - Revolution
 
 python_specific:
   - asyncio

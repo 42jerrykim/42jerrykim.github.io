@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
   - toxicologist
@@ -32,8 +31,8 @@ tags:
   - 유의어
   - Pronunciation
   - 발음
-  - EN/KR examples
-  - context
+  - EN-KR-Examples
+  - Context
   - 맥락
   - toxicology
   - 독물학
@@ -63,13 +62,13 @@ tags:
   - 과다복용
   - environmental health
   - 환경보건
-  - safety
+  - Safety
   - 안전
   - regulation
   - 규제
-  - study English
-  - vocabulary building
-  - usage notes
+  - Study-English
+  - Vocabulary-Building
+  - Usage-Notes
   - STEM
   - Biology
   - 생물학

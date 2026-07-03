@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - ethically
   - ethically meaning
@@ -17,7 +16,7 @@ tags:
   - ethically examples
   - ethically adverb
   - ethical
-  - ethics
+  - Ethics
   - morality
   - moral standards
   - 윤리
@@ -53,9 +52,9 @@ tags:
   - bias
   - discrimination
   - policy
-  - governance
-  - compliance
-  - decision making
+  - Governance
+  - Compliance
+  - Decision-Making
   - 윤리 경영
   - 연구 윤리
   - 의료 윤리
@@ -65,12 +64,12 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - context
+  - Context
   - 맥락
   - Pronunciation
   - 발음
-  - EN/KR examples
-  - study English
+  - EN-KR-Examples
+  - Study-English
 image: "wordcloud.png"
 ---
 

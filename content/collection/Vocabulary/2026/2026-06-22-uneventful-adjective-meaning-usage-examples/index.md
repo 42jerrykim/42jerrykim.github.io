@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - uneventful
   - uneventful meaning
   - uneventful usage
@@ -24,7 +23,7 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - context
+  - Context
   - 맥락
   - quiet
   - calm
@@ -61,7 +60,7 @@ tags:
   - 의료 용어
   - 일상표현
   - 뉴스 용어
-  - usage notes
+  - Usage-Notes
   - Grammar
   - Pronunciation
   - Etymology
@@ -69,9 +68,9 @@ tags:
   - Antonym
   - eventful
   - Synonym
-  - EN/KR examples
-  - study English
-  - vocabulary building
+  - EN-KR-Examples
+  - Study-English
+  - Vocabulary-Building
 image: "wordcloud.png"
 ---
 

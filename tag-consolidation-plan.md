@@ -1,8 +1,17 @@
 ---
 title: 태그 파편화 분석 및 통합 계획
 date: 2026-07-03
-status: 분석 완료, 실행 대기
+status: Phase 1·2 실행 완료 (script/normalize_tags.py), Phase 3·4 대기
 ---
+
+## 실행 결과 (2026-07-03)
+
+- Phase 1 (승인 태그의 대소문자/하이픈 변형 병합, 135건): 178개 파일 수정, 중복 15줄 제거
+- Phase 2 (미승인 표기 통일 + `data/tags.yaml` 신규 승인 태그 64개 추가, 63건 매핑): 약 100개 파일 수정
+- 결과: 고유 태그 3,876개 → **3,687개**, 1회성 태그 2,928개 → **2,811개**, 승인 태그 커버리지 93.6% → **95.4%**
+- 사용한 스크립트: `script/normalize_tags.py`(적용기), `script/tag_normalization_phase1_mapping.json` / `script/tag_normalization_phase2_mapping.json`(매핑 근거, 감사용으로 보존)
+- 모든 변경 후 `content/**/index.md` 1,324개 frontmatter가 YAML로 정상 파싱됨을 확인. 대소문자 정규화 과정에서 우연히 발견된 기존 완전 중복 태그(같은 파일 내 동일 태그 2회 기입)도 함께 정리됨.
+- Phase 3(포스트당 연결 태그 최소 보장 룰)과 Phase 4(린트/CI 검사)는 아직 미실행 — 사람 판단이 더 필요한 정책 변경이라 별도 확인 후 진행 권장.
 
 ## 1. 현황 데이터
 

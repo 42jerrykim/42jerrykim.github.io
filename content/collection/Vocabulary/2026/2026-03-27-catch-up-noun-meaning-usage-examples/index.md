@@ -10,7 +10,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
   - catch-up
@@ -38,11 +37,11 @@ tags:
   - 비즈니스영어
   - Academic-English
   - 학술영어
-  - Study English
-  - vocabulary building
-  - EN/KR examples
-  - usage notes
-  - context
+  - Study-English
+  - Vocabulary-Building
+  - EN-KR-Examples
+  - Usage-Notes
+  - Context
   - 맥락
   - meeting
   - schedule
@@ -51,7 +50,7 @@ tags:
   - deadline
   - update
   - Review
-  - communication
+  - Communication
   - conversation
   - Networking
   - 재정비
@@ -64,7 +63,7 @@ tags:
   - 학습 계획
   - 시간 관리
   - 생산성
-  - 업무 영어
+  - 업무영어
   - 회화 영어
   - Tutorial
   - Guide

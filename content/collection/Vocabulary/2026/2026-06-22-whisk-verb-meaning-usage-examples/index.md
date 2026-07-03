@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - whisk
   - whisk meaning
   - whisk usage
@@ -24,7 +23,7 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - context
+  - Context
   - 맥락
   - sweep
   - hurry
@@ -54,11 +53,11 @@ tags:
   - 일상표현
   - 신속한 동작
   - 순간적 움직임
-  - usage notes
+  - Usage-Notes
   - Grammar
   - Pronunciation
-  - EN/KR examples
-  - phrasal verb
+  - EN-KR-Examples
+  - Phrasal-Verb
   - whisk away
   - whisk off
   - whisk up

@@ -10,7 +10,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - faceless
   - faceless meaning
@@ -49,7 +48,7 @@ tags:
   - 온라인 익명성
   - social criticism
   - 사회 비판
-  - identity
+  - Identity
   - 정체성
   - 개성 없는
   - 몰개성한
@@ -58,9 +57,9 @@ tags:
   - 저널리즘
   - digital culture
   - 디지털 문화
-  - politics
+  - Politics
   - 정치
-  - society
+  - Society
   - 사회
   - literary expression
   - 문학 표현
@@ -77,12 +76,12 @@ tags:
   - 비즈니스영어
   - Comparison
   - 비교
-  - usage notes
+  - Usage-Notes
   - Pronunciation
   - 발음
-  - EN/KR examples
-  - study English
-  - vocabulary building
+  - EN-KR-Examples
+  - Study-English
+  - Vocabulary-Building
 image: "wordcloud.png"
 ---
 

@@ -9,10 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
-  - slip-up
+  - Slip-Up
   - slip-up meaning
   - slip-up usage
   - slip-up examples
@@ -47,15 +46,14 @@ tags:
   - 착오
   - 부주의
   - 오류
-  - slip up
   - careless mistake
   - minor error
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - Education
   - 교육
   - Psychology
@@ -81,7 +79,7 @@ tags:
   - 비격식
   - noun
   - 명사
-  - phrasal verb
+  - Phrasal-Verb
   - 구동사
   - Academic-English
   - 학술영어

@@ -10,13 +10,12 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - narrow down
   - narrow down meaning
   - narrow down usage
   - narrow down examples
-  - phrasal verb
+  - Phrasal-Verb
   - 구동사
   - 영어동사
   - Collocation
@@ -50,7 +49,7 @@ tags:
   - 특정 짓다
   - 좁히다
   - 압축하다
-  - decision-making
+  - Decision-Making
   - 의사결정
   - search
   - 검색
@@ -59,10 +58,10 @@ tags:
   - options
   - 선택지
   - choices
-  - context
+  - Context
   - 맥락
-  - usage notes
-  - EN/KR examples
+  - Usage-Notes
+  - EN-KR-Examples
   - TOEFL
   - IELTS
   - reduce options
@@ -77,8 +76,8 @@ tags:
   - 비교
   - Tips
   - How-To
-  - vocabulary building
-  - study English
+  - Vocabulary-Building
+  - Study-English
   - Guide
   - Documentation
   - Best-Practices
@@ -88,7 +87,7 @@ tags:
   - 문제해결
   - research
   - 연구
-  - filter
+  - Filter
   - 필터
 image: "wordcloud.png"
 ---

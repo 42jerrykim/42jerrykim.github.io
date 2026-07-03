@@ -66,7 +66,7 @@ tags:
 - chown
 - chgrp
 - 권한
-- permission
+- Permission
 - 소유자
 - owner
 - 755

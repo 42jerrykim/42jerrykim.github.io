@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - shaggy
   - shaggy meaning
@@ -58,7 +57,7 @@ tags:
   - 외관
   - animal
   - 동물
-  - dog
+  - Dog
   - 개
   - shaggy dog story
   - 우스운이야기

@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어형용사
   - standout
@@ -47,16 +46,16 @@ tags:
   - 뛰어난
   - 일류의
   - 두드러진
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - standout performance
   - standout player
   - standout feature
-  - sports
+  - Sports
   - 스포츠
   - Performance
   - 성과

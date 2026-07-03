@@ -9,13 +9,12 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - zone out
   - zone out meaning
   - zone out usage
   - zone out examples
-  - phrasal verb
+  - Phrasal-Verb
   - 구동사
   - 영어동사
   - Collocation
@@ -55,15 +54,15 @@ tags:
   - Tutorial
   - Reference
   - Comparison
-  - context
+  - Context
   - 맥락
-  - usage notes
-  - EN/KR examples
+  - Usage-Notes
+  - EN-KR-Examples
   - TOEFL
   - IELTS
   - Beginner
-  - vocabulary building
-  - study English
+  - Vocabulary-Building
+  - Study-English
   - zoned out
   - zoning out
   - zone

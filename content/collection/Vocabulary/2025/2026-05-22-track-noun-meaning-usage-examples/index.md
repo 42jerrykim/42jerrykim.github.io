@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - track
   - track meaning
   - track usage
@@ -24,12 +23,12 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - context
+  - Context
   - 맥락
-  - path
+  - PATH
   - route
   - railway
-  - music
+  - Music
   - footprint
   - trajectory
   - follow
@@ -43,16 +42,15 @@ tags:
   - 추적
   - Etymology
   - origin
-  - usage notes
+  - Usage-Notes
   - Grammar
   - Pronunciation
   - examples
   - EN/KR
-  - study English
-  - vocabulary building
+  - Study-English
+  - Vocabulary-Building
   - Transportation
   - 교통
-  - Music
   - Sports
   - 스포츠
   - Film

@@ -10,7 +10,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
   - disposition
@@ -50,12 +49,12 @@ tags:
   - 배치
   - 처분
   - 양도
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - personality
   - Psychology
   - 심리학

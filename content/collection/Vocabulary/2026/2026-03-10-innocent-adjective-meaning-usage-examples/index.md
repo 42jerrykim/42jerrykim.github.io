@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어형용사
   - innocent
@@ -51,12 +50,12 @@ tags:
   - 해 없는
   - 순수한
   - 단순한
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - innocence
   - 법률
   - 법
@@ -73,7 +72,7 @@ tags:
   - 희생자
   - child
   - 아이
-  - trust
+  - Trust
   - 신뢰
   - 유죄
   - wrongful conviction

@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어동사
   - layer
@@ -40,12 +39,12 @@ tags:
   - 비즈니스영어
   - Academic-English
   - 학술영어
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - Stack
   - overlay
   - coat
@@ -57,15 +56,15 @@ tags:
   - 레이어
   - 디자인영어
   - 요리영어
-  - writing
+  - Writing
   - design
   - cooking
   - fashion
-  - architecture
+  - System-Design
   - texture
   - depth
   - Composition
-  - style
+  - Style
   - 표현력
   - 묘사
   - storytelling

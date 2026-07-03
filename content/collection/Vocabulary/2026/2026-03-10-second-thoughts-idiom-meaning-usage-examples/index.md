@@ -9,14 +9,13 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - second thoughts
   - second thought
   - second thoughts meaning
   - second thoughts usage
   - second thoughts examples
-  - idiom
+  - Idiom
   - 숙어
   - 구
   - Collocation
@@ -63,10 +62,10 @@ tags:
   - 비교
   - Tips
   - How-To
-  - context
+  - Context
   - 맥락
-  - usage notes
-  - EN/KR examples
+  - Usage-Notes
+  - EN-KR-Examples
   - TOEFL
   - IELTS
   - Psychology
@@ -82,12 +81,12 @@ tags:
   - 주저하다
   - 재고하다
   - reluctance
-  - commitment
+  - Commitment
   - 약속
   - reservation
   - 유보
-  - vocabulary building
-  - study English
+  - Vocabulary-Building
+  - Study-English
   - Culture
   - 심리
   - Cheatsheet

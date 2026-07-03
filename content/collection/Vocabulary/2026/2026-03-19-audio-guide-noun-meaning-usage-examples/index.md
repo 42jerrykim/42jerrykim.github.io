@@ -10,7 +10,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
   - audio guide
@@ -32,12 +31,12 @@ tags:
   - 발음
   - Daily-Life
   - 일상표현
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - Comparison
   - Reference
   - Tutorial
@@ -70,7 +69,7 @@ tags:
   - Culture
   - Technology
   - 기술
-  - accessibility
+  - Accessibility
   - 접근성
   - Visitor
   - 방문자

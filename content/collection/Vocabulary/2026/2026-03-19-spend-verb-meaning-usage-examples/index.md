@@ -10,7 +10,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어동사
   - spend
@@ -36,12 +35,12 @@ tags:
   - 일상표현
   - Business-English
   - 비즈니스영어
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - 돈 쓰다
   - 시간 보내다
   - 노력 쓰다

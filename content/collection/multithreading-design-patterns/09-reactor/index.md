@@ -22,7 +22,7 @@ tags:
   - Non-blocking
   - Design-Pattern
   - 디자인패턴
-  - Architecture
+  - System-Design
   - Network
   - Server
   - Tutorial

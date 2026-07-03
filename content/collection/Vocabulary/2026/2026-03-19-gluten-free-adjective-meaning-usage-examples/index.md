@@ -10,11 +10,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어형용사
-  - gluten-free
-  - gluten free
+  - Gluten-Free
   - gluten-free meaning
   - gluten-free usage
   - gluten-free examples
@@ -35,17 +33,17 @@ tags:
   - 발음
   - Daily-Life
   - 일상표현
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - food labeling
   - 식품 라벨
   - diet
   - 식단
-  - health
+  - Health
   - 건강
   - celiac disease
   - 셀리악

@@ -73,7 +73,7 @@ tags:
 - 파이프
 - Pipeline
 - 텍스트
-- stdout
+- Stdout
 image: "wordcloud.png"
 ---
 

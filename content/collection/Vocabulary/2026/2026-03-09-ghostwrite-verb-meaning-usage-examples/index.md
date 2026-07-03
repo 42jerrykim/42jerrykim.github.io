@@ -9,10 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어동사
-  - ghostwrite
+  - Ghost-Write
   - ghostwrite meaning
   - ghostwrite usage
   - ghostwrite examples
@@ -50,17 +49,17 @@ tags:
   - memoir
   - speech
   - article
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - publishing
   - 출판
-  - media
+  - Media
   - 미디어
-  - politics
+  - Politics
   - 정치
   - celebrity
   - 유명인
@@ -73,7 +72,6 @@ tags:
   - TOEFL
   - IELTS
   - GRE
-  - ghost write
   - ghostwriting
   - 대리 집필
   - 집필

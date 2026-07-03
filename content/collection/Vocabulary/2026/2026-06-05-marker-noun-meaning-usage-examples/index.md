@@ -9,8 +9,7 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - marker
+  - Marker
   - marker meaning
   - marker usage
   - marker examples
@@ -24,7 +23,7 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - context
+  - Context
   - 맥락
   - pen
   - sign
@@ -57,9 +56,9 @@ tags:
   - gene marker
   - DNA marker
   - 유전자 표지
-  - study English
+  - Study-English
   - 영어 학습
-  - usage notes
+  - Usage-Notes
   - Grammar
   - Pronunciation
   - 발음

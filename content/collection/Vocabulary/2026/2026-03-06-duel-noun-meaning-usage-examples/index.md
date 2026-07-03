@@ -9,7 +9,6 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - duel
   - duel meaning
   - duel usage
@@ -24,7 +23,7 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - context
+  - Context
   - 맥락
   - Etymology
   - 어원
@@ -76,10 +75,10 @@ tags:
   - pistol
   - 검
   - 권총
-  - usage notes
-  - EN/KR examples
-  - study English
-  - vocabulary building
+  - Usage-Notes
+  - EN-KR-Examples
+  - Study-English
+  - Vocabulary-Building
   - Tutorial
   - 튜토리얼
   - Education

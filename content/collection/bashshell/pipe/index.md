@@ -65,8 +65,8 @@ tags:
 - pipe
 - 파이프
 - Pipeline
-- stdout
-- stdin
+- Stdout
+- Stdin
 - Redirection
 - 리디렉션
 image: "wordcloud.png"
