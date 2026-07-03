@@ -11,9 +11,6 @@ tags:
   - English
   - 영단어
   - zone out
-  - zone out meaning
-  - zone out usage
-  - zone out examples
   - Phrasal-Verb
   - 구동사
   - 영어동사

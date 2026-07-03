@@ -1,17 +1,19 @@
 ---
 title: 태그 파편화 분석 및 통합 계획
 date: 2026-07-03
-status: Phase 1·2 실행 완료 (script/normalize_tags.py), Phase 3·4 대기
+status: Phase 1~5 실행 완료
 ---
 
 ## 실행 결과 (2026-07-03)
 
 - Phase 1 (승인 태그의 대소문자/하이픈 변형 병합, 135건): 178개 파일 수정, 중복 15줄 제거
 - Phase 2 (미승인 표기 통일 + `data/tags.yaml` 신규 승인 태그 64개 추가, 63건 매핑): 약 100개 파일 수정
-- 결과: 고유 태그 3,876개 → **3,687개**, 1회성 태그 2,928개 → **2,811개**, 승인 태그 커버리지 93.6% → **95.4%**
-- 사용한 스크립트: `script/normalize_tags.py`(적용기), `script/tag_normalization_phase1_mapping.json` / `script/tag_normalization_phase2_mapping.json`(매핑 근거, 감사용으로 보존)
-- 모든 변경 후 `content/**/index.md` 1,324개 frontmatter가 YAML로 정상 파싱됨을 확인. 대소문자 정규화 과정에서 우연히 발견된 기존 완전 중복 태그(같은 파일 내 동일 태그 2회 기입)도 함께 정리됨.
-- Phase 3(포스트당 연결 태그 최소 보장 룰)과 Phase 4(린트/CI 검사)는 아직 미실행 — 사람 판단이 더 필요한 정책 변경이라 별도 확인 후 진행 권장.
+- Phase 3 (`rules-that-must-be-followed`에 "최소 10개는 승인 태그" 규칙 명문화)
+- Phase 4 (`script/lint_frontmatter.py`/CI에 태그 표기 검사 추가, 들여쓰기 태그 카운트 버그 수정)
+- Phase 5 (Vocabulary 컬렉션의 "표제어+meaning/usage/examples/noun/의미/용법/예문" 노이즈 태그 제거, `script/clean_vocabulary_noise_tags.py`): 그 글의 표제어를 그대로 접미사와 결합한 태그(`track meaning`, `track 의미` 등)는 구조적으로 다른 글과 절대 겹칠 수 없어 롱테일이 아니라 순수 중복이었음. 45개 포스트에서 246개 제거, 50개 미만으로 떨어진 3개 포스트는 `data/tags.yaml` `english_vocabulary` 카테고리(품사 전용 태그 제외)에서 보충.
+- 최종 결과: 고유 태그 3,876개 → **3,441개**, 1회성 태그 2,928개 → **2,565개**, 승인 태그 커버리지 93.6% → **95.4%**
+- 사용한 스크립트: `script/normalize_tags.py`(Phase 1/2 적용기), `script/clean_vocabulary_noise_tags.py`(Phase 5), 매핑 근거는 `script/tag_normalization_phase1_mapping.json` / `phase2_mapping.json`에 감사용으로 보존
+- 모든 변경 후 `content/**/index.md` 1,324개 frontmatter가 YAML로 정상 파싱됨을 확인. 정규화 과정에서 우연히 발견된 기존 완전 중복 태그(같은 파일 내 동일 태그 2회 기입)도 함께 정리됨.
 
 ## 1. 현황 데이터
 

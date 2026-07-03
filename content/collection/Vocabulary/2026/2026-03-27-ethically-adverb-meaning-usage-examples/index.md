@@ -11,10 +11,6 @@ tags:
   - English
   - 영단어
   - ethically
-  - ethically meaning
-  - ethically usage
-  - ethically examples
-  - ethically adverb
   - ethical
   - Ethics
   - morality
@@ -25,7 +21,6 @@ tags:
   - 도덕 기준
   - 영어부사
   - 부사
-  - 부사 용법
   - 영어 어휘
   - 비즈니스영어
   - Business-English

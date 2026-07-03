@@ -11,9 +11,6 @@ tags:
   - English
   - 영단어
   - act on
-  - act on meaning
-  - act on usage
-  - act on examples
   - Phrasal-Verb
   - 구동사
   - 영어동사

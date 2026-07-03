@@ -10,15 +10,8 @@ tags:
   - Vocabulary
   - English
   - whisk
-  - whisk meaning
-  - whisk usage
-  - whisk examples
-  - whisk verb
   - 영단어
   - 영어동사
-  - whisk 의미
-  - whisk 용법
-  - whisk 예문
   - Collocation
   - 콜로케이션
   - Nuance
@@ -61,6 +54,9 @@ tags:
   - whisk away
   - whisk off
   - whisk up
+  - 문법
+  - Etymology
+  - 어원
 image: "wordcloud.png"
 ---
 

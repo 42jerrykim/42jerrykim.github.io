@@ -13,10 +13,6 @@ tags:
   - 영단어
   - 영어동사
   - spend
-  - spend meaning
-  - spend usage
-  - spend examples
-  - spend verb
   - Collocation
   - 콜로케이션
   - Nuance
@@ -64,8 +60,6 @@ tags:
   - How-To
   - Education
   - 교육
-  - transitive verb
-  - irregular verb
   - spent
   - spending
   - spend on

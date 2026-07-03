@@ -13,10 +13,6 @@ tags:
   - 영단어
   - 영어동사
   - save
-  - save meaning
-  - save usage
-  - save examples
-  - save verb
   - Collocation
   - 콜로케이션
   - Nuance
@@ -65,7 +61,6 @@ tags:
   - save for
   - savings
   - saver
-  - regular verb
   - Reference
   - Tutorial
   - Tips

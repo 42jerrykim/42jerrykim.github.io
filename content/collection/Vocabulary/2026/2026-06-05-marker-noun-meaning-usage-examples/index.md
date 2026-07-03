@@ -10,15 +10,8 @@ tags:
   - Vocabulary
   - English
   - Marker
-  - marker meaning
-  - marker usage
-  - marker examples
-  - marker noun
   - 영단어
   - 영어명사
-  - marker 의미
-  - marker 용법
-  - marker 예문
   - Collocation
   - 콜로케이션
   - Nuance
@@ -62,6 +55,8 @@ tags:
   - Grammar
   - Pronunciation
   - 발음
+  - 문법
+  - Etymology
 image: "wordcloud.png"
 ---
 

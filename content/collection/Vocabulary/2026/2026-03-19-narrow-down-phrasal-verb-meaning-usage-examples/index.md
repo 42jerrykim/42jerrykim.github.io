@@ -12,9 +12,6 @@ tags:
   - English
   - 영단어
   - narrow down
-  - narrow down meaning
-  - narrow down usage
-  - narrow down examples
   - Phrasal-Verb
   - 구동사
   - 영어동사

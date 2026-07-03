@@ -12,13 +12,6 @@ tags:
   - 영단어
   - 영어명사
   - consumption
-  - consumption meaning
-  - consumption usage
-  - consumption examples
-  - consumption noun
-  - consumption 의미
-  - consumption 용법
-  - consumption 예문
   - Collocation
   - 콜로케이션
   - Nuance
@@ -64,8 +57,6 @@ tags:
   - Study-English
   - Vocabulary-Building
   - Usage-Notes
-  - countable noun
-  - uncountable noun
   - 가산명사
   - 불가산명사
 image: "wordcloud.png"

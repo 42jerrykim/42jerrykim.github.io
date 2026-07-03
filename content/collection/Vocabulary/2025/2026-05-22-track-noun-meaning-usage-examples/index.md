@@ -10,15 +10,8 @@ tags:
   - Vocabulary
   - English
   - track
-  - track meaning
-  - track usage
-  - track examples
-  - track noun
   - 영단어
   - 영어명사
-  - track 의미
-  - track 용법
-  - track 예문
   - Collocation
   - 콜로케이션
   - Nuance
@@ -57,6 +50,13 @@ tags:
   - 영화
   - Business
   - 비즈니스
+  - 문법
+  - 어원
+  - Synonym
+  - 유의어
+  - Antonym
+  - 반의어
+  - 발음
 image: "wordcloud.png"
 ---
 

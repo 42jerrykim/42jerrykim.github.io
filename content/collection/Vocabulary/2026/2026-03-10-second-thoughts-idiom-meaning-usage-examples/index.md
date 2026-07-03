@@ -12,9 +12,6 @@ tags:
   - 영단어
   - second thoughts
   - second thought
-  - second thoughts meaning
-  - second thoughts usage
-  - second thoughts examples
   - Idiom
   - 숙어
   - 구

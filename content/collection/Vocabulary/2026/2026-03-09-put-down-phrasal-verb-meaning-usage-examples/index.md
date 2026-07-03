@@ -11,9 +11,6 @@ tags:
   - English
   - 영단어
   - put down
-  - put down meaning
-  - put down usage
-  - put down examples
   - Phrasal-Verb
   - 구동사
   - 영어동사
