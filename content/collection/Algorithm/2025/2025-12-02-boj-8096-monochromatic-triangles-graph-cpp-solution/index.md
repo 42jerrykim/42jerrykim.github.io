@@ -6,7 +6,7 @@ categories:
 tags:
 - Algorithm
 - Graph-Theory
-- adjacency-list
+- Adjacency-List
 - Binary-Search
 - C++
 - BOJ
