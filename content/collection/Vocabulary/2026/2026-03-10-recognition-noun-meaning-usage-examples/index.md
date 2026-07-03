@@ -9,14 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
   - recognition
-  - recognition meaning
-  - recognition usage
-  - recognition examples
-  - recognition noun
   - Collocation
   - 콜로케이션
   - Nuance
@@ -55,12 +50,12 @@ tags:
   - 승인
   - 알아봄
   - 칭찬
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - recognize
   - diplomatic recognition
   - facial recognition
@@ -70,8 +65,8 @@ tags:
   - 외교
   - 기술용어
   - 일상표현
-  - reference
-  - comparison
+  - Reference
+  - Comparison
 image: wordcloud.png
 ---
 

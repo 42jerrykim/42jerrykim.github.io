@@ -12,21 +12,21 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - logging
+  - Logging
   - 로깅
-  - debugging
+  - Debugging
   - 디버깅
-  - error-handling
+  - Error-Handling
   - Monitoring
   - 모니터링
-  - troubleshooting
+  - Troubleshooting
   - 트러블슈팅
   - 성능
   - Performance
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
-  - testing
+  - Testing
   - 테스트
   - Tutorial
   - 튜토리얼

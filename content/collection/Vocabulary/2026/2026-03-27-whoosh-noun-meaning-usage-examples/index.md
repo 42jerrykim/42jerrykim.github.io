@@ -10,13 +10,8 @@ tags:
   - Vocabulary
   - English
   - 영단어
-  - English Words
   - 영어명사
   - whoosh
-  - whoosh meaning
-  - whoosh usage
-  - whoosh examples
-  - whoosh noun
   - Collocation
   - 콜로케이션
   - Nuance
@@ -49,18 +44,18 @@ tags:
   - narration
   - creative writing
   - audio design
-  - media
-  - culture
+  - Media
+  - Culture
   - 감탄사표현
   - 의성어
   - 속도감
   - 소리표현
   - 움직임표현
   - 문맥
-  - context
-  - EN/KR examples
-  - study English
-  - vocabulary building
+  - Context
+  - EN-KR-Examples
+  - Study-English
+  - Vocabulary-Building
   - Guide
   - Tutorial
   - Tips

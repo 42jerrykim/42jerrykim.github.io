@@ -15,7 +15,7 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - psychology
+  - Psychology
   - 심리학
   - Etymology
   - Grammar

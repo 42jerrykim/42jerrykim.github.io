@@ -12,11 +12,11 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - string
+  - String
   - 문자열
   - Implementation
   - Shell
-  - terminal
+  - Terminal
   - 터미널
   - Design-Pattern
   - Best-Practices

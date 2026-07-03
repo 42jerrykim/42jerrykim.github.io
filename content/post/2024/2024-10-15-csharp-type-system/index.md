@@ -8,7 +8,7 @@ tags:
 - .NET
 - OOP
 - Interface
-- inheritance
+- Inheritance
 - Implementation
 - Software-Architecture
 - Code-Quality

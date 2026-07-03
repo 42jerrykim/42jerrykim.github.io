@@ -11,10 +11,10 @@ tags:
 - English
 - DevOps
 - Software-Architecture
-- workflow
+- Workflow
 - OS
 - Performance
-- queue
+- Queue
 - Collocation
 - 비즈니스영어
 - TOEFL

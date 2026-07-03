@@ -9,17 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
   - consumption
-  - consumption meaning
-  - consumption usage
-  - consumption examples
-  - consumption noun
-  - consumption 의미
-  - consumption 용법
-  - consumption 예문
   - Collocation
   - 콜로케이션
   - Nuance
@@ -40,14 +32,14 @@ tags:
   - 비즈니스영어
   - Academic-English
   - 학술영어
-  - EN/KR examples
-  - context
+  - EN-KR-Examples
+  - Context
   - 맥락
   - economy
   - 경제
   - energy
   - 에너지
-  - environment
+  - Environment
   - 환경
   - sustainability
   - 지속가능
@@ -62,11 +54,9 @@ tags:
   - Reference
   - Tips
   - Comparison
-  - study English
-  - vocabulary building
-  - usage notes
-  - countable noun
-  - uncountable noun
+  - Study-English
+  - Vocabulary-Building
+  - Usage-Notes
   - 가산명사
   - 불가산명사
 image: "wordcloud.png"

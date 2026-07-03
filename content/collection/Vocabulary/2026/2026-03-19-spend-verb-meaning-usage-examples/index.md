@@ -10,14 +10,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어동사
   - spend
-  - spend meaning
-  - spend usage
-  - spend examples
-  - spend verb
   - Collocation
   - 콜로케이션
   - Nuance
@@ -36,12 +31,12 @@ tags:
   - 일상표현
   - Business-English
   - 비즈니스영어
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - 돈 쓰다
   - 시간 보내다
   - 노력 쓰다
@@ -65,18 +60,15 @@ tags:
   - How-To
   - Education
   - 교육
-  - transitive verb
-  - irregular verb
   - spent
   - spending
   - spend on
   - spend doing
   - spend with
   - 일상 영어
-  - 비즈니스 영어
   - 금융
   - 시간 관리
-  - productivity
+  - Productivity
   - 생산성
   - money
   - time

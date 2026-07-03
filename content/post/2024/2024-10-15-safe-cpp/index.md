@@ -13,7 +13,7 @@ tags:
 - OOP
 - Functional-Programming
 - Code-Quality
-- concurrency
+- Concurrency
 - Blog
 - 블로그
 - Technology

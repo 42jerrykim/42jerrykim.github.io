@@ -12,7 +12,7 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - os
+  - OS
   - 운영체제
   - Graph
   - Design-Pattern

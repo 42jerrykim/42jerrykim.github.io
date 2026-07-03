@@ -12,21 +12,21 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - testing
+  - Testing
   - 테스트
-  - refactoring
+  - Refactoring
   - 리팩토링
-  - debugging
+  - Debugging
   - 디버깅
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - CI-CD
-  - automation
+  - Automation
   - 자동화
   - Code-Quality
   - Design-Pattern
-  - dependency-injection
+  - Dependency-Injection
   - 의존성주입
   - Tutorial
   - 튜토리얼

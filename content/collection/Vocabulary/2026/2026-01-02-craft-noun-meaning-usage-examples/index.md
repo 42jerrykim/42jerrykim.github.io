@@ -17,9 +17,9 @@ tags:
   - 뉘앙스
   - Design-Pattern
   - Technology
-  - brand
+  - Brand
   - Implementation
-  - grammar
+  - Grammar
   - Pronunciation
   - 문법
   - Etymology

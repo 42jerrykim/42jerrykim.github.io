@@ -9,22 +9,14 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - need
-  - need meaning
-  - need usage
-  - need examples
-  - need noun
   - 영단어
   - 영어명사
-  - need 의미
-  - need 용법
-  - need 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
+  - Context
   - 맥락
   - necessity
   - requirement
@@ -43,13 +35,13 @@ tags:
   - basic needs
   - human needs
   - emotional needs
-  - business
-  - psychology
+  - Business
+  - Psychology
   - welfare
   - social services
   - economics
   - healthcare
-  - education
+  - Education
   - relationship
   - 필요
   - 필요성
@@ -62,16 +54,16 @@ tags:
   - 절실함
   - 기본 욕구
   - 정서적 욕구
-  - 일상 표현
+  - 일상표현
   - 비즈니스 용어
   - 심리 용어
   - 복지 용어
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - Usage-Notes
+  - Grammar
+  - Pronunciation
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
 image: "wordcloud.png"
 ---
 

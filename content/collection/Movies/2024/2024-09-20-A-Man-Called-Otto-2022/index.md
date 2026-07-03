@@ -3,11 +3,11 @@ image: "CcFBsxy-fu98wNTFoQB2Pp44rBi654GeCAZXGZCmR0vfBSwYK1M6E9hFgOj268w_hbfcAKTc
 categories: Movie
 date: "2024-09-20T00:00:00Z"
 tags:
-- drama
-- comedy
-- cinematography
-- soundtrack
-- review
+- Drama
+- Comedy
+- Cinematography
+- Soundtrack
+- Review
 - Movie
 - 영화
 - 리뷰

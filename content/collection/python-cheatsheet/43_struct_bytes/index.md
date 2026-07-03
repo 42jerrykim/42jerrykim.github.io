@@ -15,7 +15,7 @@ tags:
   - Networking
   - Implementation
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼

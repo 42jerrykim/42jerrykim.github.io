@@ -12,16 +12,16 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - configuration
+  - Configuration
   - 설정
-  - security
+  - Security
   - 보안
-  - deployment
+  - Deployment
   - 배포
-  - docker
-  - os
+  - Docker
+  - OS
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Implementation
   - Tutorial

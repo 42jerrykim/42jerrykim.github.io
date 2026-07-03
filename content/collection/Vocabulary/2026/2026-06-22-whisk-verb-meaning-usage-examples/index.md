@@ -9,22 +9,14 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - whisk
-  - whisk meaning
-  - whisk usage
-  - whisk examples
-  - whisk verb
   - 영단어
   - 영어동사
-  - whisk 의미
-  - whisk 용법
-  - whisk 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
+  - Context
   - 맥락
   - sweep
   - hurry
@@ -41,7 +33,7 @@ tags:
   - baking
   - news
   - travel
-  - security
+  - Security
   - 재빨리 데려가다
   - 휘젓다
   - 휙 움직이다
@@ -51,17 +43,20 @@ tags:
   - 요리 용어
   - 베이킹 용어
   - 뉴스 표현
-  - 일상 표현
+  - 일상표현
   - 신속한 동작
   - 순간적 움직임
-  - usage notes
-  - grammar
-  - pronunciation
-  - EN/KR examples
-  - phrasal verb
+  - Usage-Notes
+  - Grammar
+  - Pronunciation
+  - EN-KR-Examples
+  - Phrasal-Verb
   - whisk away
   - whisk off
   - whisk up
+  - 문법
+  - Etymology
+  - 어원
 image: "wordcloud.png"
 ---
 

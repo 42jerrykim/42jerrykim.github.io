@@ -12,21 +12,21 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - concurrency
+  - Concurrency
   - 동시성
   - Thread
   - OS
-  - map
+  - Map
   - Queue
   - 큐
   - Performance
   - 성능
-  - scalability
+  - Scalability
   - 확장성
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
-  - debugging
+  - Debugging
   - 디버깅
   - 비동기
   - Tutorial

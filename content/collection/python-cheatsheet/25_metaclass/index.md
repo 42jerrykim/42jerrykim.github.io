@@ -12,15 +12,15 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - singleton
-  - inheritance
+  - Singleton
+  - Inheritance
   - 상속
-  - oop
+  - OOP
   - 객체지향
-  - decorator
+  - Decorator
   - Design-Pattern
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼

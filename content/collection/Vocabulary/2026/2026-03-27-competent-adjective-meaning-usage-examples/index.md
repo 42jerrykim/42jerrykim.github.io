@@ -9,17 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어형용사
   - competent
-  - competent meaning
-  - competent usage
-  - competent examples
-  - competent adjective
-  - competent 의미
-  - competent 용법
-  - competent 예문
   - Collocation
   - 콜로케이션
   - Nuance
@@ -41,29 +33,29 @@ tags:
   - Academic-English
   - 학술영어
   - Legal-English
-  - Study English
-  - vocabulary building
-  - EN/KR examples
-  - usage notes
-  - context
+  - Study-English
+  - Vocabulary-Building
+  - EN-KR-Examples
+  - Usage-Notes
+  - Context
   - 맥락
   - skill
   - ability
   - qualification
   - expertise
   - proficiency
-  - performance
-  - leadership
+  - Performance
+  - Leadership
   - teamwork
-  - communication
-  - decision-making
+  - Communication
+  - Decision-Making
   - professional
   - workplace
-  - interview
+  - Interview
   - hiring
-  - management
+  - Management
   - standards
-  - compliance
+  - Compliance
   - authority
   - jurisdiction
   - 법률영어

@@ -9,13 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - put down
-  - put down meaning
-  - put down usage
-  - put down examples
-  - phrasal verb
+  - Phrasal-Verb
   - 구동사
   - 영어동사
   - Collocation
@@ -60,10 +56,10 @@ tags:
   - 참고
   - Comparison
   - 비교
-  - context
+  - Context
   - 맥락
-  - usage notes
-  - EN/KR examples
+  - Usage-Notes
+  - EN-KR-Examples
   - TOEFL
   - IELTS
   - Psychology
@@ -75,9 +71,7 @@ tags:
   - put down to
   - lay down
   - set down
-  - write down
   - take down
-  - criticize
   - ridicule
   - 억누르다
   - 제압하다

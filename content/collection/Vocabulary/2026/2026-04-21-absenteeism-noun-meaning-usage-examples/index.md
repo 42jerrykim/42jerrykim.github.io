@@ -9,17 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
   - absenteeism
-  - absenteeism meaning
-  - absenteeism usage
-  - absenteeism examples
-  - absenteeism noun
-  - absenteeism 의미
-  - absenteeism 용법
-  - absenteeism 예문
   - Collocation
   - 콜로케이션
   - Nuance
@@ -40,8 +32,8 @@ tags:
   - 비즈니스영어
   - Academic-English
   - 학술영어
-  - EN/KR examples
-  - context
+  - EN-KR-Examples
+  - Context
   - 맥락
   - HR
   - human resources
@@ -50,7 +42,7 @@ tags:
   - 직장
   - labor
   - 노동
-  - education
+  - Education
   - 교육
   - school attendance
   - 출석
@@ -60,7 +52,7 @@ tags:
   - 상습결근
   - attendance policy
   - 출근관리
-  - productivity
+  - Productivity
   - 생산성
   - wellbeing
   - 웰빙
@@ -71,9 +63,9 @@ tags:
   - Reference
   - Tips
   - Comparison
-  - study English
-  - vocabulary building
-  - usage notes
+  - Study-English
+  - Vocabulary-Building
+  - Usage-Notes
   - phenomenon
   - 현상
   - policy

@@ -9,27 +9,19 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - track
-  - track meaning
-  - track usage
-  - track examples
-  - track noun
   - 영단어
   - 영어명사
-  - track 의미
-  - track 용법
-  - track 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
+  - Context
   - 맥락
-  - path
+  - PATH
   - route
   - railway
-  - music
+  - Music
   - footprint
   - trajectory
   - follow
@@ -41,25 +33,30 @@ tags:
   - 음악
   - 트랙
   - 추적
-  - etymology
+  - Etymology
   - origin
-  - usage notes
-  - grammar
-  - pronunciation
+  - Usage-Notes
+  - Grammar
+  - Pronunciation
   - examples
   - EN/KR
-  - study English
-  - vocabulary building
+  - Study-English
+  - Vocabulary-Building
   - Transportation
   - 교통
-  - Music
-  - 음악
   - Sports
   - 스포츠
   - Film
   - 영화
   - Business
   - 비즈니스
+  - 문법
+  - 어원
+  - Synonym
+  - 유의어
+  - Antonym
+  - 반의어
+  - 발음
 image: "wordcloud.png"
 ---
 

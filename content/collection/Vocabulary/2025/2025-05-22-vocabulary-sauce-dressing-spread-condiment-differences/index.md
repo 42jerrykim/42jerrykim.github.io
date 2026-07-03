@@ -6,7 +6,7 @@ categories:
   - Food
 tags:
   - Vocabulary
-  - english
+  - English
   - 영단어
   - AI
   - Photography

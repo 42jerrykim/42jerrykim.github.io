@@ -13,17 +13,17 @@ tags:
   - 치트시트
   - Quick-Reference
   - OS
-  - shell
+  - Shell
   - 셸
-  - command
+  - Command
   - IO
-  - automation
+  - Automation
   - 자동화
   - DevOps
-  - security
+  - Security
   - 보안
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼

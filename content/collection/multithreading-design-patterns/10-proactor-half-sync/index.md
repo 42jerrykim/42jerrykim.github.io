@@ -19,7 +19,7 @@ tags:
   - Thread-Pool
   - Design-Pattern
   - 디자인패턴
-  - Architecture
+  - System-Design
   - Async
   - 비동기
   - Tutorial

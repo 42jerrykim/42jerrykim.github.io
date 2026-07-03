@@ -9,17 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
   - toxicologist
-  - toxicologist meaning
-  - toxicologist usage
-  - toxicologist examples
-  - toxicologist noun
-  - toxicologist 의미
-  - toxicologist 용법
-  - toxicologist 예문
   - Collocation
   - 콜로케이션
   - Nuance
@@ -32,8 +24,8 @@ tags:
   - 유의어
   - Pronunciation
   - 발음
-  - EN/KR examples
-  - context
+  - EN-KR-Examples
+  - Context
   - 맥락
   - toxicology
   - 독물학
@@ -63,15 +55,15 @@ tags:
   - 과다복용
   - environmental health
   - 환경보건
-  - safety
+  - Safety
   - 안전
   - regulation
   - 규제
-  - study English
-  - vocabulary building
-  - usage notes
+  - Study-English
+  - Vocabulary-Building
+  - Usage-Notes
   - STEM
-  - biology
+  - Biology
   - 생물학
   - chemistry
   - 화학

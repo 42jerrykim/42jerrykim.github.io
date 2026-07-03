@@ -18,14 +18,14 @@ tags:
   - DevOps
   - 배포
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
-  - debugging
+  - Debugging
   - 디버깅
-  - clean-code
+  - Clean-Code
   - 클린코드
   - 소프트웨어아키텍처
-  - testing
+  - Testing
   - 테스트
   - Tutorial
   - 튜토리얼

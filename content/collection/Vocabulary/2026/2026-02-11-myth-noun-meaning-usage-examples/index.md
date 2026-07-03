@@ -15,7 +15,7 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - science
+  - Science
   - Business-English
   - 문화
   - 과학

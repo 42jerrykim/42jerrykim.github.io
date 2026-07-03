@@ -66,7 +66,7 @@ tags:
 - export
 - env
 - 환경변수
-- environment
+- Environment
 - variable
 - PATH
 image: "wordcloud.png"

@@ -14,18 +14,18 @@ tags:
   - Quick-Reference
   - 자료구조
   - Data-Structures
-  - set
+  - Set
   - Math
   - Implementation
-  - sorting
+  - Sorting
   - 정렬
   - Performance
   - 성능
   - 시간복잡도
-  - hashing
+  - Hashing
   - Code-Quality
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼

@@ -14,9 +14,9 @@ tags:
   - Quick-Reference
   - Database
   - 데이터베이스
-  - error-handling
+  - Error-Handling
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Design-Pattern
   - Tutorial

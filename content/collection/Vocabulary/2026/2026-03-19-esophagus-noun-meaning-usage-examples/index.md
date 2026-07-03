@@ -10,14 +10,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
   - esophagus
-  - esophagus meaning
-  - esophagus usage
-  - esophagus examples
-  - esophagus noun
   - Collocation
   - 콜로케이션
   - Nuance
@@ -49,12 +44,12 @@ tags:
   - 해부학
   - 의학
   - 건강
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - swallow
   - swallowing
   - GERD

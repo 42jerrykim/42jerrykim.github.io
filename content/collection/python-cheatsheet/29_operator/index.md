@@ -12,11 +12,11 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - sorting
+  - Sorting
   - 정렬
   - Performance
   - 성능
-  - map
+  - Map
   - Implementation
   - Design-Pattern
   - Best-Practices

@@ -15,16 +15,16 @@ tags:
   - Iterator
   - Math
   - Data-Structures
-  - set
+  - Set
   - Clean-Code
   - Code-Quality
   - 코드품질
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
-  - testing
+  - Testing
   - 테스트
-  - refactoring
+  - Refactoring
   - 리팩토링
   - Tutorial
   - 튜토리얼

@@ -10,14 +10,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어형용사
   - unclaimed
-  - unclaimed meaning
-  - unclaimed usage
-  - unclaimed examples
-  - unclaimed adjective
   - Collocation
   - 콜로케이션
   - Nuance
@@ -48,7 +43,7 @@ tags:
   - 자금
   - estate
   - 유산
-  - inheritance
+  - Inheritance
   - 상속
   - bank account
   - 은행 계좌
@@ -64,12 +59,12 @@ tags:
   - 주인 없는
   - remain unclaimed
   - 미인도
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - Education
   - 교육
   - Reference
@@ -84,7 +79,7 @@ tags:
   - 격식체
   - government
   - 정부
-  - finance
+  - Finance
   - 금융
   - lottery
   - 복권

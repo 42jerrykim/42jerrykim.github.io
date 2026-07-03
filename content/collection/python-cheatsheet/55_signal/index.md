@@ -13,7 +13,7 @@ tags:
   - 치트시트
   - Quick-Reference
   - OS
-  - linux
+  - Linux
   - Design-Pattern
   - Best-Practices
   - Tutorial

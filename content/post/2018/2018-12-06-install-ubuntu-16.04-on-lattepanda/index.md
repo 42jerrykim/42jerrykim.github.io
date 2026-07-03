@@ -297,7 +297,6 @@ tags:
   - 결합도
   - Cohesion
   - 응집도
-  - Modularity
   - Functional-Programming
   - 함수형프로그래밍
   - Problem-Solving

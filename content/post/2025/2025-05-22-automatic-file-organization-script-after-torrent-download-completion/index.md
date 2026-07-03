@@ -71,7 +71,7 @@ tags:
   - Tips
   - Case-Study
   - 실습
-  - Path
+  - PATH
   - Regex
   - 정규표현식
   - Scripting

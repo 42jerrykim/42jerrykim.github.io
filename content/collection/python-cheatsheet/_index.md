@@ -6,13 +6,12 @@ featured_image: "/images/home-banner.jpg"
 lastmod: 2026-01-18
 collection_order: 2
 tags:
-  - python
   - Python
   - python3
   - 파이썬
   - 치트시트
-  - cheatsheet
-  - quick-reference
+  - Cheatsheet
+  - Quick-Reference
   - 빠른참조
   - basics
   - 기초
@@ -53,7 +52,7 @@ tags:
   - dict
   - dictionary
   - 딕셔너리
-  - set
+  - Set
   - 세트
   - iteration
   - 반복
@@ -69,14 +68,14 @@ tags:
   - 컴프리헨션
   - files
   - 파일
-  - io
+  - IO
   - 입출력
   - pathlib
   - 예외처리
   - exceptions
-  - debugging
+  - Debugging
   - 디버깅
-  - logging
+  - Logging
   - 로깅
   - modules
   - 모듈
@@ -99,11 +98,11 @@ tags:
   - 날짜시간
   - itertools
   - functools
-  - json
+  - JSON
   - csv
-  - testing
+  - Testing
   - 테스트
-  - database
+  - Database
   - sqlite3
   - 데이터베이스
   - environment-variables
@@ -132,7 +131,7 @@ tags:
   - pickle
   - struct
   - bytes
-  - deque
+  - Deque
   - namedtuple
   - ChainMap
   - abc
@@ -148,19 +147,19 @@ tags:
   - textwrap
   - pprint
   - reprlib
-  - xml
+  - XML
   - zoneinfo
   - urllib
   - weakref
-  - math
+  - Math
   - statistics
   - decimal
   - fractions
   - random
   - uuid
-  - os
+  - OS
   - sys
-  - signal
+  - Signal
   - atexit
   - pdb
   - mock
@@ -169,7 +168,7 @@ tags:
   - email
   - smtplib
   - asyncio
-  - concurrency
+  - Concurrency
   - threading
   - multiprocessing
 ---

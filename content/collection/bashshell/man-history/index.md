@@ -63,7 +63,6 @@ tags:
 - History
 - 역사
 - man
-- history
 - 매뉴얼
 - manual
 - 히스토리

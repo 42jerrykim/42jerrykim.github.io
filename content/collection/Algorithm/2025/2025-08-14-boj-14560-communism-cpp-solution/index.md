@@ -17,7 +17,7 @@ tags:
 - 이분탐색
 - Binary-Search
 - 정렬
-- sorting
+- Sorting
 - 시간복잡도
 - Time-Complexity
 - 공간복잡도

@@ -9,22 +9,14 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - uneventful
-  - uneventful meaning
-  - uneventful usage
-  - uneventful examples
-  - uneventful adjective
   - 영단어
   - 영어형용사
-  - uneventful 의미
-  - uneventful 용법
-  - uneventful 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
+  - Context
   - 맥락
   - quiet
   - calm
@@ -50,7 +42,7 @@ tags:
   - flight
   - journey
   - workday
-  - daily life
+  - Daily-Life
   - medical
   - surgery
   - recovery
@@ -59,19 +51,19 @@ tags:
   - vacation
   - 여행 용어
   - 의료 용어
-  - 일상 표현
+  - 일상표현
   - 뉴스 용어
-  - usage notes
-  - grammar
-  - pronunciation
-  - etymology
+  - Usage-Notes
+  - Grammar
+  - Pronunciation
+  - Etymology
   - origin
-  - antonym
+  - Antonym
   - eventful
-  - synonym
-  - EN/KR examples
-  - study English
-  - vocabulary building
+  - Synonym
+  - EN-KR-Examples
+  - Study-English
+  - Vocabulary-Building
 image: "wordcloud.png"
 ---
 

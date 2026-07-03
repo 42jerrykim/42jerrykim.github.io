@@ -61,7 +61,7 @@ tags:
 - 캐싱
 - Recursion
 - 재귀
-- Divide-And-Conquer
+- Divide-and-Conquer
 - 분할정복
 - Code-Quality
 - 코드품질

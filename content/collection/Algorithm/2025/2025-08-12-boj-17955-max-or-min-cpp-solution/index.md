@@ -14,9 +14,9 @@ tags:
 - Prefix-Sum
 - Segment-Tree
 - 그리디
-- greedy
+- Greedy
 - 구현
-- implementation
+- Implementation
 - C++
 - IO
 - Time-Complexity
@@ -25,10 +25,10 @@ tags:
 - 자료구조
 - Range-Query
 - Math
-- editorial
+- Editorial
 - 알고리즘
 - Algorithm
-- array
+- Array
 - 배열
 - ICPC
 - Competitive-Programming

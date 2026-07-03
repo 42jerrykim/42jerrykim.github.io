@@ -14,12 +14,12 @@ tags:
   - Quick-Reference
   - Implementation
   - OOP
-  - security
+  - Security
   - 보안
   - JSON
   - Cache
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼

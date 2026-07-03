@@ -10,14 +10,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
   - catch-up
-  - catch-up meaning
-  - catch-up usage
-  - catch-up examples
-  - catch-up noun
   - Collocation
   - 콜로케이션
   - Nuance
@@ -38,11 +33,11 @@ tags:
   - 비즈니스영어
   - Academic-English
   - 학술영어
-  - Study English
-  - vocabulary building
-  - EN/KR examples
-  - usage notes
-  - context
+  - Study-English
+  - Vocabulary-Building
+  - EN-KR-Examples
+  - Usage-Notes
+  - Context
   - 맥락
   - meeting
   - schedule
@@ -50,10 +45,10 @@ tags:
   - backlog
   - deadline
   - update
-  - review
-  - communication
+  - Review
+  - Communication
   - conversation
-  - networking
+  - Networking
   - 재정비
   - 밀린 일
   - 따라잡기
@@ -64,7 +59,7 @@ tags:
   - 학습 계획
   - 시간 관리
   - 생산성
-  - 업무 영어
+  - 업무영어
   - 회화 영어
   - Tutorial
   - Guide

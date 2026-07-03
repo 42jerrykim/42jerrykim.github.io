@@ -9,14 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어동사
   - rev
-  - rev meaning
-  - rev usage
-  - rev examples
-  - rev verb
   - rev up
   - Collocation
   - 콜로케이션
@@ -37,9 +32,6 @@ tags:
   - Business-English
   - Academic-English
   - 학술영어
-  - rev 의미
-  - rev 용법
-  - rev 예문
   - accelerate
   - boost
   - energize
@@ -53,13 +45,13 @@ tags:
   - 자동차
   - 스포츠
   - 비즈니스
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
-  - revolution
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
+  - Revolution
   - revving
   - revved
   - 부스트

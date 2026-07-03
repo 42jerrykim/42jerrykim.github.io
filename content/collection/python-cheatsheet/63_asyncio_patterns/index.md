@@ -12,20 +12,20 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - async
+  - Async
   - 비동기
-  - concurrency
+  - Concurrency
   - 동시성
-  - networking
+  - Networking
   - 네트워킹
-  - http
+  - HTTP
   - Performance
   - 성능
-  - queue
+  - Queue
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
-  - debugging
+  - Debugging
   - 디버깅
   - Tutorial
   - 튜토리얼

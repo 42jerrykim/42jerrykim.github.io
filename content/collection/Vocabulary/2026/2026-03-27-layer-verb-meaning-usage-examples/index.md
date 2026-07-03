@@ -9,17 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어동사
   - layer
-  - layer meaning
-  - layer usage
-  - layer examples
-  - layer verb
-  - layer 의미
-  - layer 용법
-  - layer 예문
   - Collocation
   - 콜로케이션
   - Nuance
@@ -40,13 +32,13 @@ tags:
   - 비즈니스영어
   - Academic-English
   - 학술영어
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
-  - stack
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
+  - Stack
   - overlay
   - coat
   - arrange
@@ -57,15 +49,15 @@ tags:
   - 레이어
   - 디자인영어
   - 요리영어
-  - writing
+  - Writing
   - design
   - cooking
   - fashion
-  - architecture
+  - System-Design
   - texture
   - depth
-  - composition
-  - style
+  - Composition
+  - Style
   - 표현력
   - 묘사
   - storytelling

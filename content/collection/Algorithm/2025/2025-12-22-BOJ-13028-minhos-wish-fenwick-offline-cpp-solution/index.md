@@ -37,7 +37,7 @@ tags:
 - 공간복잡도
 - C++
 - Array
-- map
+- Map
 - Edge-Cases
 - 엣지케이스
 - Coding-Test

@@ -14,14 +14,14 @@ tags:
   - Quick-Reference
   - JSON
   - Implementation
-  - io
+  - IO
   - Data-Structures
   - Performance
   - 성능
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
-  - security
+  - Security
   - 보안
   - Testing
   - Error-Handling

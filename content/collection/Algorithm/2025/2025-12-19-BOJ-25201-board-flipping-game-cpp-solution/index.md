@@ -19,7 +19,7 @@ tags:
 - Set
 - Edge-Cases
 - 수학
-- Bit
+- BIT
 - Implementation
 - 구현
 - IO

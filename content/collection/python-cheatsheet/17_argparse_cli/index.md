@@ -13,12 +13,12 @@ tags:
   - 치트시트
   - Quick-Reference
   - Shell
-  - action
-  - automation
+  - Action
+  - Automation
   - 자동화
   - DevOps
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Design-Pattern
   - Tutorial

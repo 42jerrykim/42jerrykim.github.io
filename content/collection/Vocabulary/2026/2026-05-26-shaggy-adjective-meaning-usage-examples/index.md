@@ -9,16 +9,8 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - shaggy
-  - shaggy meaning
-  - shaggy usage
-  - shaggy examples
-  - shaggy adjective
-  - shaggy 의미
-  - shaggy 용법
-  - shaggy 예문
   - 영어형용사
   - Collocation
   - 콜로케이션
@@ -58,7 +50,7 @@ tags:
   - 외관
   - animal
   - 동물
-  - dog
+  - Dog
   - 개
   - shaggy dog story
   - 우스운이야기

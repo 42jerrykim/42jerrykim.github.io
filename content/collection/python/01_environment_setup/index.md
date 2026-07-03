@@ -10,42 +10,42 @@ tags:
   - Software-Architecture
   - Algorithm
   - 알고리즘
-  - backend
+  - Backend
   - 백엔드
   - Best-Practices
-  - clean-code
+  - Clean-Code
   - 클린코드
-  - refactoring
+  - Refactoring
   - 리팩토링
-  - testing
+  - Testing
   - 테스트
-  - debugging
+  - Debugging
   - 디버깅
-  - logging
+  - Logging
   - 로깅
-  - security
+  - Security
   - 보안
   - Performance
   - 성능
-  - concurrency
+  - Concurrency
   - 동시성
-  - async
+  - Async
   - 비동기
-  - oop
+  - OOP
   - 객체지향
   - Data-Structures
   - 자료구조
   - DevOps
-  - deployment
+  - Deployment
   - 배포
   - 소프트웨어아키텍처
   - Design-Pattern
   - 디자인패턴
-  - web
+  - Web
   - 웹
-  - database
+  - Database
   - 데이터베이스
-  - networking
+  - Networking
   - 네트워킹
   - CI-CD
   - 자동화

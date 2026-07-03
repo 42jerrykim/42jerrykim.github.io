@@ -10,15 +10,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어형용사
-  - gluten-free
-  - gluten free
-  - gluten-free meaning
-  - gluten-free usage
-  - gluten-free examples
-  - gluten-free adjective
+  - Gluten-Free
   - Collocation
   - 콜로케이션
   - Nuance
@@ -35,17 +29,17 @@ tags:
   - 발음
   - Daily-Life
   - 일상표현
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - food labeling
   - 식품 라벨
   - diet
   - 식단
-  - health
+  - Health
   - 건강
   - celiac disease
   - 셀리악
@@ -53,9 +47,7 @@ tags:
   - 밀 알레르기
   - restaurant English
   - 외식 영어
-  - hyphenated adjective
   - 하이픈 형용사
-  - compound adjective
   - 복합 형용사
   - allergy-friendly
   - 알레르기 친화

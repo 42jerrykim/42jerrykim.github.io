@@ -12,23 +12,23 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - iterator
-  - map
+  - Iterator
+  - Map
   - Implementation
   - Performance
   - 성능
-  - memory
+  - Memory
   - 메모리
   - Clean-Code
   - Design-Pattern
-  - pitfalls
+  - Pitfalls
   - 함정
   - Best-Practices
-  - debugging
+  - Debugging
   - 디버깅
-  - async
+  - Async
   - 비동기
-  - error-handling
+  - Error-Handling
   - Tutorial
   - 튜토리얼
   - 구현

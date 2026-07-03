@@ -13,11 +13,11 @@ tags:
   - 치트시트
   - Quick-Reference
   - Implementation
-  - stack
+  - Stack
   - 스택
-  - debugging
+  - Debugging
   - 디버깅
-  - decorator
+  - Decorator
   - Documentation
   - 문서화
   - Software-Architecture

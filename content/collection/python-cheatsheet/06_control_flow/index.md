@@ -17,14 +17,14 @@ tags:
   - Performance
   - 성능
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
-  - error-handling
+  - Error-Handling
   - Design-Pattern
-  - debugging
+  - Debugging
   - 디버깅
   - 클린코드
-  - refactoring
+  - Refactoring
   - 리팩토링
   - Tutorial
   - 튜토리얼

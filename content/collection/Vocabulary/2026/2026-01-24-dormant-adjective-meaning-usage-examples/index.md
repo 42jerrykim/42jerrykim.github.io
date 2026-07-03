@@ -15,9 +15,9 @@ tags:
   - 콜로케이션
   - Nuance
   - 뉘앙스
-  - biology
+  - Biology
   - 생물학
-  - psychology
+  - Psychology
   - 심리학
   - Business-English
   - 애니메이션

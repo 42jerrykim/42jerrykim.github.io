@@ -9,22 +9,14 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
-  - marker
-  - marker meaning
-  - marker usage
-  - marker examples
-  - marker noun
+  - Marker
   - 영단어
   - 영어명사
-  - marker 의미
-  - marker 용법
-  - marker 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
+  - Context
   - 맥락
   - pen
   - sign
@@ -57,13 +49,14 @@ tags:
   - gene marker
   - DNA marker
   - 유전자 표지
-  - study English
+  - Study-English
   - 영어 학습
-  - usage notes
-  - grammar
-  - pronunciation
+  - Usage-Notes
+  - Grammar
+  - Pronunciation
   - 발음
-  - 영어 명사
+  - 문법
+  - Etymology
 image: "wordcloud.png"
 ---
 

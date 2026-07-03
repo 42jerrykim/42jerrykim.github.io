@@ -9,14 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어형용사
   - playful
-  - playful meaning
-  - playful usage
-  - playful examples
-  - playful adjective
   - Collocation
   - 콜로케이션
   - Nuance
@@ -64,12 +59,12 @@ tags:
   - 경쾌한
   - 재미있는
   - 말장난
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - play
   - playfulness
   - personality

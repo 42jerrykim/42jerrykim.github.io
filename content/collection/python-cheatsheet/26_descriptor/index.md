@@ -12,14 +12,14 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - oop
+  - OOP
   - 객체지향
   - Testing
-  - caching
+  - Caching
   - 캐싱
   - Design-Pattern
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼

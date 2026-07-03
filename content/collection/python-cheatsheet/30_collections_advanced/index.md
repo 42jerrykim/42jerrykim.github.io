@@ -12,19 +12,19 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - deque
+  - Deque
   - 덱
   - Data-Structures
   - 자료구조
-  - queue
+  - Queue
   - 큐
-  - stack
+  - Stack
   - 스택
   - Performance
   - 성능
   - Time-Complexity
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Tutorial
   - 튜토리얼

@@ -12,23 +12,23 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - iterator
+  - Iterator
   - Implementation
   - Cache
-  - memoization
+  - Memoization
   - Performance
   - 성능
-  - memory
+  - Memory
   - 메모리
-  - pitfalls
+  - Pitfalls
   - 함정
   - Best-Practices
   - Design-Pattern
-  - functional-programming
-  - map
-  - debugging
+  - Functional-Programming
+  - Map
+  - Debugging
   - 디버깅
-  - testing
+  - Testing
   - 테스트
   - Tutorial
   - 튜토리얼

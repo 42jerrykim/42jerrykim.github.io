@@ -12,13 +12,6 @@ tags:
   - 영단어
   - 영어동사
   - deliberate
-  - deliberate meaning
-  - deliberate usage
-  - deliberate examples
-  - deliberate verb
-  - deliberate 의미
-  - deliberate 용법
-  - deliberate 예문
   - Collocation
   - 콜로케이션
   - Nuance
@@ -39,8 +32,8 @@ tags:
   - 비즈니스영어
   - Academic-English
   - 학술영어
-  - EN/KR examples
-  - context
+  - EN-KR-Examples
+  - Context
   - 맥락
   - deliberation
   - jury
@@ -50,10 +43,10 @@ tags:
   - discuss
   - debate
   - ponder
-  - decision-making
+  - Decision-Making
   - meeting
   - negotiation
-  - legal English
+  - Legal-English
   - Tutorial
   - Guide
   - Reference
@@ -65,9 +58,9 @@ tags:
   - 커리어
   - Education
   - 교육
-  - study English
-  - vocabulary building
-  - usage notes
+  - Study-English
+  - Vocabulary-Building
+  - Usage-Notes
   - formal English
   - 격식 영어
   - discussion

@@ -18,9 +18,9 @@ tags:
   - Dependency-Injection
   - Shell
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
-  - automation
+  - Automation
   - 자동화
   - Tutorial
   - 튜토리얼

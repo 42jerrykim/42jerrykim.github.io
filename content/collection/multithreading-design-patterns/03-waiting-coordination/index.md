@@ -12,7 +12,6 @@ categories:
 tags:
   - C++
   - Condition-Variable
-  - condition_variable
   - Monitor-Object
   - Guarded-Suspension
   - Balking

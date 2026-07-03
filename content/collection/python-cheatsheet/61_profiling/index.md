@@ -16,13 +16,13 @@ tags:
   - 프로파일링
   - Performance
   - 성능
-  - optimization
+  - Optimization
   - 최적화
   - CPU
-  - debugging
+  - Debugging
   - 디버깅
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Shell
   - Tutorial

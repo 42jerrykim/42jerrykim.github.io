@@ -9,17 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
   - lacquerware
-  - lacquerware meaning
-  - lacquerware usage
-  - lacquerware examples
-  - lacquerware noun
-  - lacquerware 의미
-  - lacquerware 용법
-  - lacquerware 예문
   - Collocation
   - 콜로케이션
   - Nuance
@@ -40,8 +32,8 @@ tags:
   - 학술영어
   - TOEFL
   - IELTS
-  - EN/KR examples
-  - context
+  - EN-KR-Examples
+  - Context
   - 맥락
   - handicraft
   - 수공예
@@ -68,9 +60,9 @@ tags:
   - 전시
   - curation
   - 큐레이션
-  - study English
-  - vocabulary building
-  - usage notes
+  - Study-English
+  - Vocabulary-Building
+  - Usage-Notes
   - collectible
   - 소장품
   - tableware

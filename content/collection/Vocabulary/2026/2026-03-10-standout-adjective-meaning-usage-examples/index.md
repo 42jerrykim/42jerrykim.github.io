@@ -9,14 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어형용사
   - standout
-  - standout meaning
-  - standout usage
-  - standout examples
-  - standout adjective
   - Collocation
   - 콜로케이션
   - Nuance
@@ -47,18 +42,18 @@ tags:
   - 뛰어난
   - 일류의
   - 두드러진
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - standout performance
   - standout player
   - standout feature
-  - sports
+  - Sports
   - 스포츠
-  - performance
+  - Performance
   - 성과
   - achievement
   - 성취

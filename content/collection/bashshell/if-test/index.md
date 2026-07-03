@@ -67,7 +67,6 @@ tags:
 - 조건문
 - 스크립트
 - Script
-- 비교
 - 파일테스트
 - 문자열테스트
 image: "wordcloud.png"

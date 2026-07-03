@@ -15,7 +15,7 @@ tags:
   - 뉘앙스
   - 영단어
   - Business-English
-  - grammar
+  - Grammar
   - Pronunciation
   - 문법
   - Etymology

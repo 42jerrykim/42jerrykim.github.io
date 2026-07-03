@@ -83,6 +83,7 @@ algorithm_topics:
   - Greedy
   - 그리디
   - BFS
+  - 너비우선탐색
   - DFS
   - Binary-Search
   - 이분탐색
@@ -107,6 +108,7 @@ algorithm_topics:
   - Sliding-Window
   - Range-Query
   - Prefix-Sum
+  - 누적합
   - Simulation
   - 시뮬레이션
   - Shortest-Path
@@ -223,6 +225,7 @@ code_quality:
   - Code-Quality
   - 코드품질
   - Type-Safety
+  - 타입안전성
   - Readability
   - Maintainability
   - Modularity
@@ -344,6 +347,14 @@ web_and_backend:
   - Throughput
   - Load-Balancing
   - Message-Queue
+  - System-Design
+  - Reliability
+  - 신뢰성
+  - Production
+  - Observability
+  - Pipeline
+  - 파이프라인
+  - 프로덕션
 
 ai_and_data:
   - AI
@@ -375,10 +386,32 @@ system_and_low_level:
   - File-System
   - Embedded
   - 임베디드
+  - Mutex
+  - RAII
+  - Kernel
+  - 커널
+  - Synchronization
+  - 동기화
+  - Condition-Variable
+  - Memory-Order
+  - Signal
+  - Stdin
+  - Stdout
+  - Environment
+  - 환경
+  - PATH
+  - Permission
+  - 권한
+  - Backup
+  - 백업
+  - SSH
+  - PWD
+  - ELF
 
 english_vocabulary:
   - Vocabulary
   - English
+  - 영어
   - 영단어
   - 영어동사
   - 영어명사
@@ -409,6 +442,21 @@ english_vocabulary:
   - TOEFL
   - IELTS
   - GRE
+  - Phrasal-Verb
+  - 구동사
+  - Context
+  - 맥락
+  - Usage-Notes
+  - Vocabulary-Building
+  - Study-English
+  - EN-KR-Examples
+  - Legal-English
+  - 법률영어
+  - Idiom
+  - 숙어
+  - 관용어
+  - Slip-Up
+  - Ghost-Write
 
 movie_and_tv:
   - Movie
@@ -474,10 +522,19 @@ movie_and_tv:
   - 2010s
   - 2020s
   - Blockbuster
+  - 블록버스터
   - Indie
   - Adaptation
   - Sequel
   - Prequel
+  - Marvel
+  - 마블
+  - MCU
+  - Superhero
+  - 슈퍼히어로
+  - Disney
+  - 디즈니
+  - Netflix
 
 general_topics:
   - Tutorial
@@ -541,6 +598,7 @@ general_topics:
   - 게임
   - Finance
   - 재무
+  - 금융
   - Accounting
   - 회계
   - Self-Hosted
@@ -598,6 +656,45 @@ general_topics:
   - Case-Study
   - Deep-Dive
   - 실습
+  - Leadership
+  - 리더십
+  - Communication
+  - 의사소통
+  - 커뮤니케이션
+  - Interview
+  - 인터뷰
+  - Management
+  - 경영
+  - Decision-Making
+  - 의사결정
+  - Trust
+  - 신뢰
+  - Business
+  - 비즈니스
+  - 업무영어
+  - Society
+  - 사회
+  - Ethics
+  - 윤리
+  - Politics
+  - 정치
+  - Governance
+  - Compliance
+  - Safety
+  - 안전
+  - Accessibility
+  - 접근성
+  - Health
+  - 건강
+  - Sports
+  - 스포츠
+  - Identity
+  - 정체성
+  - Music
+  - Media
+  - 미디어
+  - Revolution
+  - 혁명
 
 python_specific:
   - asyncio

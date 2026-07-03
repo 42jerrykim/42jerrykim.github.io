@@ -15,7 +15,7 @@ tags:
 - Python
 - Greedy
 - 그리디
-- Bit
+- BIT
 - Math
 - Recursion
 - 재귀

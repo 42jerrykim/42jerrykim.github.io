@@ -14,12 +14,12 @@ tags:
   - Quick-Reference
   - Implementation
   - 함정
-  - pitfalls
+  - Pitfalls
   - Best-Practices
   - JSON
-  - logging
+  - Logging
   - 로깅
-  - testing
+  - Testing
   - 테스트
   - Performance
   - 성능

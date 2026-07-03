@@ -5,7 +5,6 @@ title: "Python 마스터 커리큘럼"
 description: "파이썬을 초급부터 전문가 수준까지 체계적으로 학습하는 커리큘럼입니다. 문법·OOP·동시성·웹·테스트·배포까지 단계별로 연결해 실무 감각과 문제 해결력을 함께 키웁니다."
 featured_image: "/images/home-banner.jpg"
 tags:
-  - python
   - Python
   - 파이썬
   - programming
@@ -14,33 +13,33 @@ tags:
   - 소프트웨어공학
   - computer-science
   - 컴퓨터과학
-  - backend
+  - Backend
   - 백엔드
   - development
   - 개발
-  - best-practices
+  - Best-Practices
   - 베스트프랙티스
-  - clean-code
+  - Clean-Code
   - 클린코드
-  - refactoring
+  - Refactoring
   - 리팩토링
-  - testing
+  - Testing
   - 테스트
-  - debugging
+  - Debugging
   - 디버깅
-  - logging
+  - Logging
   - 로깅
-  - security
+  - Security
   - 보안
-  - performance
+  - Performance
   - 성능
-  - concurrency
+  - Concurrency
   - 동시성
-  - async
+  - Async
   - 비동기
-  - oop
+  - OOP
   - 객체지향
-  - data-structures
+  - Data-Structures
   - 자료구조
   - algorithms
   - 알고리즘
@@ -48,27 +47,27 @@ tags:
   - 표준라이브러리
   - packaging
   - 패키징
-  - deployment
+  - Deployment
   - 배포
-  - architecture
+  - System-Design
   - 아키텍처
   - design-patterns
   - 디자인패턴
-  - web
+  - Web
   - 웹
-  - database
+  - Database
   - 데이터베이스
-  - networking
+  - Networking
   - 네트워킹
-  - ci-cd
+  - CI-CD
   - 자동화
-  - documentation
+  - Documentation
   - 문서화
-  - git
+  - Git
   - 버전관리
   - tooling
   - 개발도구
-  - code-quality
+  - Code-Quality
   - 코드품질
 lastmod: 2026-01-17
 collection_order: 2

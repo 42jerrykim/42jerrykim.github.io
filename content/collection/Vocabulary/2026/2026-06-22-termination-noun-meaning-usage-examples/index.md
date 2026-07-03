@@ -9,22 +9,14 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - termination
-  - termination meaning
-  - termination usage
-  - termination examples
-  - termination noun
   - 영어명사
-  - termination 의미
-  - termination 용법
-  - termination 예문
-  - collocation
+  - Collocation
   - 콜로케이션
-  - nuance
+  - Nuance
   - 뉘앙스
-  - context
+  - Context
   - 맥락
   - end
   - ending
@@ -44,7 +36,7 @@ tags:
   - 임신중절
   - 중단
   - 만료
-  - business
+  - Business
   - employment
   - contract law
   - legal terminology
@@ -64,17 +56,17 @@ tags:
   - termination of employment
   - termination of contract
   - termination of pregnancy
-  - process
+  - Process
   - procedure
   - formal notice
-  - usage notes
-  - grammar
-  - pronunciation
-  - etymology
+  - Usage-Notes
+  - Grammar
+  - Pronunciation
+  - Etymology
   - origin
-  - EN/KR examples
-  - study English
-  - vocabulary building
+  - EN-KR-Examples
+  - Study-English
+  - Vocabulary-Building
 image: "wordcloud.png"
 ---
 

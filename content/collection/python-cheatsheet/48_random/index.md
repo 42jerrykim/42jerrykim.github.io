@@ -12,7 +12,7 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - simulation
+  - Simulation
   - 시뮬레이션
   - 게임
   - Design-Pattern

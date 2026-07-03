@@ -67,7 +67,7 @@ tags:
 - jobs
 - fg
 - bg
-- signal
+- Signal
 - SIGTERM
 - SIGKILL
 - background

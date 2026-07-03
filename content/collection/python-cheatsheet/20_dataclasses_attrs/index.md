@@ -14,7 +14,7 @@ tags:
   - Quick-Reference
   - Code-Quality
   - 함정
-  - pitfalls
+  - Pitfalls
   - 정렬
   - 코드품질
   - Clean-Code

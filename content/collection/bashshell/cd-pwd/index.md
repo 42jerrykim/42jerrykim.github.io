@@ -63,14 +63,13 @@ tags:
 - History
 - 역사
 - cd
-- pwd
+- PWD
 - 디렉터리
 - 경로
 - 작업디렉터리
 - current-directory
 - 홈디렉터리
 - 심볼릭링크
-- PWD
 - OLDPWD
 image: "wordcloud.png"
 ---

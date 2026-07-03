@@ -9,10 +9,10 @@ tags:
 - Software-Architecture
 - .NET
 - Interface
-- async
+- Async
 - Error-Handling
 - OOP
-- debugging
+- Debugging
 - Performance
 - Best-Practices
 - Testing

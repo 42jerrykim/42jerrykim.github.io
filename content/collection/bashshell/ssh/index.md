@@ -62,10 +62,9 @@ tags:
 - 오픈소스
 - History
 - 역사
-- ssh
+- SSH
 - 원격
 - remote
-- SSH
 - 키인증
 - Security
 - 보안

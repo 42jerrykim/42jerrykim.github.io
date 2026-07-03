@@ -12,20 +12,20 @@ tags:
   - Cheatsheet
   - 치트시트
   - Quick-Reference
-  - decorator
+  - Decorator
   - Implementation
   - 문법
-  - logging
+  - Logging
   - 로깅
-  - caching
+  - Caching
   - 캐싱
   - Testing
-  - authentication
+  - Authentication
   - 인증
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
-  - debugging
+  - Debugging
   - 디버깅
   - Design-Pattern
   - Tutorial

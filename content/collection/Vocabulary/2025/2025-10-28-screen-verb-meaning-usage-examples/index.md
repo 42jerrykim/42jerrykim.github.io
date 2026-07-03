@@ -10,7 +10,7 @@ tags:
   - Vocabulary
   - English
   - Implementation
-  - review
+  - Review
   - Collocation
   - Nuance
   - Synonym

@@ -14,7 +14,7 @@ tags:
   - Quick-Reference
   - Math
   - Best-Practices
-  - pitfalls
+  - Pitfalls
   - 함정
   - Clean-Code
   - Tutorial

@@ -10,13 +10,13 @@ tags:
   - Vocabulary
   - English
   - Pronunciation
-  - grammar
+  - Grammar
   - Collocation
   - 콜로케이션
   - Nuance
   - 뉘앙스
   - Business-English
-  - finance
+  - Finance
   - Security
   - 영단어
   - 영어동사

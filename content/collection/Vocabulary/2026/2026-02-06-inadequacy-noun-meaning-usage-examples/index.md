@@ -9,8 +9,8 @@ categories:
 tags:
   - Vocabulary
   - English
-  - psychology
-  - education
+  - Psychology
+  - Education
   - Security
   - Collocation
   - 콜로케이션

@@ -9,14 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
   - seniority
-  - seniority meaning
-  - seniority usage
-  - seniority examples
-  - seniority noun
   - Collocation
   - 콜로케이션
   - Nuance
@@ -49,12 +44,12 @@ tags:
   - 경력
   - 서열
   - 우선권
-  - usage notes
-  - context
+  - Usage-Notes
+  - Context
   - 맥락
-  - EN/KR examples
-  - vocabulary building
-  - study English
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - senior
   - workforce
   - HR

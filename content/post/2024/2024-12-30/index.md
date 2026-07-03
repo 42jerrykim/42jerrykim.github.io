@@ -6,7 +6,7 @@ categories:
 - VirtualMachines
 tags:
 - Implementation
-- tutorial
+- Tutorial
 image: "wordcloud.png"
 date: 2024-12-30
 draft: true

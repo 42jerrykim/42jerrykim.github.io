@@ -9,14 +9,9 @@ categories:
 tags:
   - Vocabulary
   - English
-  - English Words
   - 영단어
   - 영어명사
   - overuse
-  - overuse meaning
-  - overuse usage
-  - overuse examples
-  - overuse noun
   - Collocation
   - 콜로케이션
   - Nuance
@@ -47,15 +42,12 @@ tags:
   - 기술
   - Health
   - 건강
-  - context
+  - Context
   - 맥락
-  - usage notes
-  - EN/KR examples
-  - vocabulary building
-  - study English
-  - overuse 의미
-  - overuse 용법
-  - overuse 예문
+  - Usage-Notes
+  - EN-KR-Examples
+  - Vocabulary-Building
+  - Study-English
   - excessive use
   - misuse
   - 남용
@@ -63,9 +55,9 @@ tags:
   - 과도한 사용
   - dependency
   - 의존
-  - communication
+  - Communication
   - 의사소통
-  - media
+  - Media
   - 미디어
   - workplace
   - 직장

@@ -38,7 +38,7 @@ tags:
 - Competitive-Programming
 - 경쟁프로그래밍
 - ICPC
-- editorial
+- Editorial
 - 에디토리얼
 - Testing
 - 테스트

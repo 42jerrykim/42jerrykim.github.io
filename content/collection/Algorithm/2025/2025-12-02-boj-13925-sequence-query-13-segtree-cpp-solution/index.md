@@ -12,9 +12,9 @@ tags:
   - Modular-Arithmetic
   - Data-Structures
   - Competitive-Programming
-  - algorithm
+  - Algorithm
   - 백준
-  - baekjoon
+  - Baekjoon
   - BOJ
   - 최적화
   - 분할정복
