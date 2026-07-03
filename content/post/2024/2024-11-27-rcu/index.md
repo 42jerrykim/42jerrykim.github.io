@@ -8,98 +8,59 @@ categories:
   - Kernel
   - Concurrency
 tags:
-  - Linux
-  - 리눅스
-  - Concurrency
-  - 동시성
+  - Linux(리눅스)
+  - Concurrency(동시성)
   - C
-  - Data-Structures
-  - 자료구조
-  - Memory
-  - 메모리
-  - Performance
-  - 성능
+  - Data-Structures(자료구조)
+  - Memory(메모리)
+  - Performance(성능)
   - API
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Optimization
-  - 최적화
-  - Debugging
-  - 디버깅
-  - Scalability
-  - 확장성
-  - Implementation
-  - 구현
+  - Software-Architecture(소프트웨어아키텍처)
+  - Optimization(최적화)
+  - Debugging(디버깅)
+  - Scalability(확장성)
+  - Implementation(구현)
   - Process
   - Thread
-  - Async
-  - 비동기
-  - History
-  - 역사
-  - Innovation
-  - 혁신
-  - Guide
-  - 가이드
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Async(비동기)
+  - History(역사)
+  - Innovation(혁신)
+  - Guide(가이드)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Review
-  - 리뷰
-  - Code-Quality
-  - 코드품질
-  - Blog
-  - 블로그
-  - Productivity
-  - 생산성
-  - Markdown
-  - 마크다운
-  - Web
-  - 웹
-  - Testing
-  - 테스트
+  - Comparison(비교)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Review(리뷰)
+  - Code-Quality(코드품질)
+  - Blog(블로그)
+  - Productivity(생산성)
+  - Markdown(마크다운)
+  - Web(웹)
+  - Testing(테스트)
   - Cache
   - CPU
-  - OS
-  - 운영체제
-  - Design-Pattern
-  - 디자인패턴
-  - Interface
-  - 인터페이스
+  - OS(운영체제)
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Networking
-  - 네트워킹
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Pitfalls
-  - 함정
-  - Error-Handling
-  - 에러처리
-  - Profiling
-  - 프로파일링
+  - Networking(네트워킹)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Profiling(프로파일링)
   - Benchmark
   - Readability
   - Maintainability

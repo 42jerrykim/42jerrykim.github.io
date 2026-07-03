@@ -7,14 +7,11 @@ title: "[Clean Architecture] 32. 클린 아키텍처: 동심원과 의존성 규
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Edge-Cases
-  - Dependency-Injection
-  - 의존성주입
-  - Testing
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Edge-Cases(엣지케이스)
+  - Dependency-Injection(의존성주입)
+  - Testing(테스트)
 ---
 
 드디어 Clean Architecture의 핵심에 도달했다. 이 장에서는 육각형 아키텍처, 양파 아키텍처, BCE 등 기존 아키텍처들의 공통점을 추출하여 정제한 **Clean Architecture**의 구조를 상세히 다룬다.

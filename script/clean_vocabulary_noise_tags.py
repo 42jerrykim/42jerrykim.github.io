@@ -4,8 +4,8 @@ long-tail cleanup). These tags embed that post's own headword plus a fixed suffi
 (e.g. "track meaning", "track 의미") and can never recur on another post by
 construction -- they add tag-list length without any connecting value.
 
-For posts that would drop below the 50-tag minimum after removal, backfills with
-unused approved tags (data/tags.yaml, english_vocabulary category) to stay >=50.
+For posts that would drop below the 25-tag minimum after removal, backfills with
+unused approved tags (data/tags.yaml, english_vocabulary category) to stay >=25.
 
 Usage:
     python script/clean_vocabulary_noise_tags.py [--apply]
@@ -22,7 +22,7 @@ NOISE_SUFFIXES_KO = ["의미", "용법", "예문"]
 TAG_LINE_RE = re.compile(r"^([ ]*)-[ ]?(.*?)[ \t]*\r?$")
 TAGS_KEY_RE = re.compile(r"^tags:\s*\r?$")
 
-TAGS_MIN = 50
+TAGS_MIN = 25
 
 
 def strip_quotes(v: str):

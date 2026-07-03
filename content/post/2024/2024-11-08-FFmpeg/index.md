@@ -7,102 +7,61 @@ categories:
   - FFmpeg
   - Technology
 tags:
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Implementation
-  - 구현
+  - Performance(성능)
+  - Optimization(최적화)
+  - Implementation(구현)
   - C++
-  - Open-Source
-  - 오픈소스
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Memory
-  - 메모리
-  - Compiler
-  - 컴파일러
+  - Open-Source(오픈소스)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Memory(메모리)
+  - Compiler(컴파일러)
   - CPU
-  - Hardware
-  - 하드웨어
+  - Hardware(하드웨어)
   - Assembly
   - Benchmark
-  - Documentation
-  - 문서화
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Reference
-  - 참고
-  - Code-Quality
-  - 코드품질
-  - Profiling
-  - 프로파일링
-  - Testing
-  - 테스트
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
-  - Networking
-  - 네트워킹
-  - Concurrency
-  - 동시성
-  - Data-Structures
-  - 자료구조
+  - Documentation(문서화)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Technology(기술)
+  - Blog(블로그)
+  - Reference(참고)
+  - Code-Quality(코드품질)
+  - Profiling(프로파일링)
+  - Testing(테스트)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - Networking(네트워킹)
+  - Concurrency(동시성)
+  - Data-Structures(자료구조)
   - Case-Study
   - Deep-Dive
   - 실습
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Education
-  - 교육
-  - Review
-  - 리뷰
+  - Comparison(비교)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Education(교육)
+  - Review(리뷰)
   - Best-Practices
-  - Refactoring
-  - 리팩토링
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
+  - Refactoring(리팩토링)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
   - Git
   - GitHub
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Design-Pattern
-  - 디자인패턴
-  - OOP
-  - 객체지향
-  - Abstraction
-  - 추상화
-  - Productivity
-  - 생산성
-  - History
-  - 역사
+  - Deployment(배포)
+  - Automation(자동화)
+  - Design-Pattern(디자인패턴)
+  - OOP(객체지향)
+  - Abstraction(추상화)
+  - Productivity(생산성)
+  - History(역사)
   - Beginner
   - Advanced
-  - Workflow
-  - 워크플로우
-  - Cloud
-  - 클라우드
-  - Security
-  - 보안
+  - Workflow(워크플로우)
+  - Cloud(클라우드)
+  - Security(보안)
 image: "nzCbjfNC5zwoShThjeSBxM-650-80.webp"
 ---
 

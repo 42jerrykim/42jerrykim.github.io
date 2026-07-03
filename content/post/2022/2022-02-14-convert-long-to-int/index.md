@@ -10,84 +10,47 @@ tags:
   - CSharp
   - .NET
   - Type-Safety
-  - 타입안전성
-  - Error-Handling
-  - 에러처리
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
-  - Memory
-  - 메모리
-  - Implementation
-  - 구현
+  - Error-Handling(에러처리)
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
+  - Memory(메모리)
+  - Implementation(구현)
   - Best-Practices
-  - Code-Quality
-  - 코드품질
-  - Documentation
-  - 문서화
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Code-Quality(코드품질)
+  - Documentation(문서화)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Beginner
-  - Clean-Code
-  - 클린코드
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
+  - Clean-Code(클린코드)
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Performance(성능)
   - API
-  - Networking
-  - 네트워킹
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
+  - Networking(네트워킹)
+  - Technology(기술)
+  - Blog(블로그)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
-  - Web
-  - 웹
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Career
-  - 커리어
-  - Hardware
-  - 하드웨어
-  - Mobile
-  - 모바일
-  - Cloud
-  - 클라우드
-  - OOP
-  - 객체지향
-  - Interface
-  - 인터페이스
-  - Refactoring
-  - 리팩토링
+  - Comparison(비교)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Education(교육)
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
+  - Web(웹)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Career(커리어)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
+  - Cloud(클라우드)
+  - OOP(객체지향)
+  - Interface(인터페이스)
+  - Refactoring(리팩토링)
   - Maintainability
   - Readability
   - Case-Study

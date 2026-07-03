@@ -7,16 +7,12 @@ title: "[Clean Architecture] 34. 부분적 경계"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Interface
-  - 인터페이스
-  - Software-Architecture
-  - Deployment
-  - 배포
-  - 소프트웨어아키텍처
-  - Edge-Cases
-  - Code-Quality
+  - Clean-Architecture(클린아키텍처)
+  - Interface(인터페이스)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Deployment(배포)
+  - Edge-Cases(엣지케이스)
+  - Code-Quality(코드품질)
 ---
 
 완전한 경계를 만드는 비용은 **상당하다**. 때로는 완전한 경계가 **과도할** 수 있다. 부분적 경계는 비용을 줄이면서 일부 이점을 얻는 방법이다.

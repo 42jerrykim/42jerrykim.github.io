@@ -9,56 +9,38 @@ image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - GoF
-  - Grammar
-  - 문법
-  - Nuance
-  - Code-Quality
-  - 코드품질
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
+  - Grammar(문법)
+  - Nuance(뉘앙스)
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
   - Java
   - C++
   - Python
   - CSharp
-  - Compiler
-  - 컴파일러
+  - Compiler(컴파일러)
   - SQL
   - Git
   - GitHub
-  - Implementation
-  - 구현
-  - Tree
-  - Math
+  - Implementation(구현)
+  - Tree(트리)
+  - Math(수학)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Documentation
-  - 문서화
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Documentation(문서화)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
   - SOLID
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Composition
-  - 합성
-  - Dependency-Injection
-  - 의존성주입
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Education
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Composition(합성)
+  - Dependency-Injection(의존성주입)
+  - Testing(테스트)
+  - Performance(성능)
+  - Education(교육)
 ---
 
 인터프리터 패턴(Interpreter Pattern)은 특정 언어나 문법을 해석하고 실행하는 방법을 정의하는 행위 디자인 패턴이다. 이 패턴을 사용하면 간단한 언어의 문법을 클래스로 표현하고, 문장을 해석하는 인터프리터를 구현할 수 있다.

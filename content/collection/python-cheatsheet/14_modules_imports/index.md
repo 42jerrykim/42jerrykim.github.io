@@ -8,55 +8,34 @@ lastmod: 2026-01-17
 collection_order: 14
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Software-Architecture
-  - Shell
-  - Graph
+  - Software-Architecture(소프트웨어아키텍처)
+  - Shell(셸)
+  - Graph(그래프)
   - DevOps
-  - 배포
+  - Deployment(배포)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Debugging
-  - 디버깅
-  - Clean-Code
-  - 클린코드
-  - 소프트웨어아키텍처
-  - Testing
-  - 테스트
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Tree
+  - Pitfalls(함정)
+  - Debugging(디버깅)
+  - Clean-Code(클린코드)
+  - Testing(테스트)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Tree(트리)
   - HTML
-  - Error-Handling
-  - 에러처리
-  - Documentation
-  - 문서화
-  - Refactoring
-  - 리팩토링
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
+  - Error-Handling(에러처리)
+  - Documentation(문서화)
+  - Refactoring(리팩토링)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
 ---
 모듈과 패키지 구조는 프로젝트 규모가 커질수록 중요해집니다. 이 치트시트는 import 패턴, `__name__ == "__main__"` 가드, sys.path 함정, 순환 import 해결 등을 정리합니다.
 

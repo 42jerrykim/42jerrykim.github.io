@@ -6,67 +6,43 @@ lastmod: 2026-07-01
 categories:
   - AI
 tags:
-  - AI
-  - 인공지능
+  - AI(인공지능)
   - LLM
   - GPT
-  - Machine-Learning
-  - 머신러닝
-  - Data-Science
-  - 데이터사이언스
-  - Automation
-  - 자동화
-  - Open-Source
-  - 오픈소스
+  - Machine-Learning(머신러닝)
+  - Data-Science(데이터사이언스)
+  - Automation(자동화)
+  - Open-Source(오픈소스)
   - GitHub
-  - Productivity
-  - 생산성
-  - Workflow
-  - 워크플로우
-  - Comparison
-  - 비교
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
+  - Productivity(생산성)
+  - Workflow(워크플로우)
+  - Comparison(비교)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
   - Tips
   - How-To
   - Case-Study
   - Deep-Dive
   - 실습
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Innovation
-  - 혁신
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Web
-  - 웹
+  - Documentation(문서화)
+  - Innovation(혁신)
+  - Technology(기술)
+  - Blog(블로그)
+  - Web(웹)
   - API
-  - Reference
-  - 참고
-  - Education
-  - 교육
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Terminal
-  - 터미널
+  - Reference(참고)
+  - Education(교육)
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Terminal(터미널)
   - IDE
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Refactoring
-  - 리팩토링
+  - Markdown(마크다운)
+  - Refactoring(리팩토링)
 image: wordcloud.png
 draft: false
 ---

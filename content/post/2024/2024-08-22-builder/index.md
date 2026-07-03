@@ -7,83 +7,52 @@ header:
   teaser: /assets/images/2024/2024-08-22-builder.png
 tags:
   - Builder
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - Java
   - Creational-Pattern
   - GoF
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
   - Factory
   - Singleton
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
   - Best-Practices
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Testing(테스트)
+  - Documentation(문서화)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Education(교육)
+  - Open-Source(오픈소스)
   - Maintainability
   - Readability
   - How-To
   - Tips
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Beginner
   - UML
-  - Composition
-  - 합성
-  - Abstraction
-  - 추상화
-  - Polymorphism
-  - 다형성
-  - Dependency-Injection
-  - 의존성주입
-  - Configuration
-  - 설정
-  - Productivity
-  - 생산성
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Markdown
-  - 마크다운
+  - Composition(합성)
+  - Abstraction(추상화)
+  - Polymorphism(다형성)
+  - Dependency-Injection(의존성주입)
+  - Configuration(설정)
+  - Productivity(생산성)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Markdown(마크다운)
   - Spring
-  - Backend
-  - 백엔드
+  - Backend(백엔드)
   - API
   - JSON
-  - Concurrency
-  - 동시성
+  - Concurrency(동시성)
 title: "[DesignPattern] 빌더 패턴(Builder Pattern) 정리와 Java 예제"
 image: "wordcloud.png"
 ---

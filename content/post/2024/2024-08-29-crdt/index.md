@@ -8,143 +8,91 @@ lastmod: "2026-03-17"
 header:
   teaser: /assets/images/2024/2024-08-29-crdt.png
 tags:
-  - Data-Structures
-  - 자료구조
-  - Algorithm
-  - 알고리즘
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Concurrency
-  - 동시성
-  - Implementation
-  - 구현
-  - Code-Quality
-  - Performance
-  - 성능
-  - Memory
-  - 메모리
+  - Data-Structures(자료구조)
+  - Algorithm(알고리즘)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Concurrency(동시성)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Performance(성능)
+  - Memory(메모리)
   - JavaScript
   - TypeScript
   - Go
   - Rust
   - Redis
-  - Frontend
-  - 프론트엔드
-  - Backend
-  - 백엔드
-  - Database
-  - 데이터베이스
-  - Web
-  - 웹
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Problem-Solving
-  - 문제해결
-  - Math
-  - 수학
-  - Innovation
-  - 혁신
+  - Frontend(프론트엔드)
+  - Backend(백엔드)
+  - Database(데이터베이스)
+  - Web(웹)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Problem-Solving(문제해결)
+  - Math(수학)
+  - Innovation(혁신)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Reference
-  - 참고
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Networking
-  - 네트워킹
-  - Async
-  - 비동기
-  - Scalability
-  - 확장성
-  - Design-Pattern
-  - 디자인패턴
-  - Clean-Code
-  - 클린코드
-  - Testing
-  - 테스트
-  - Optimization
-  - 최적화
-  - Refactoring
-  - 리팩토링
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Reference(참고)
+  - Education(교육)
+  - Productivity(생산성)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Networking(네트워킹)
+  - Async(비동기)
+  - Scalability(확장성)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
+  - Testing(테스트)
+  - Optimization(최적화)
+  - Refactoring(리팩토링)
+  - Blog(블로그)
+  - Markdown(마크다운)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Beginner
   - Advanced
   - Git
   - GitHub
-  - Cloud
-  - 클라우드
+  - Cloud(클라우드)
   - API
   - JSON
   - DevOps
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - OOP
-  - 객체지향
-  - Abstraction
-  - 추상화
-  - Interface
-  - 인터페이스
+  - Deployment(배포)
+  - Automation(자동화)
+  - OOP(객체지향)
+  - Abstraction(추상화)
+  - Interface(인터페이스)
   - Event-Driven
   - Node.js
   - How-To
   - Tips
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
   - Set
   - Map
-  - Array
-  - 배열
-  - String
-  - 문자열
-  - Debugging
-  - 디버깅
+  - Array(배열)
+  - String(문자열)
+  - Debugging(디버깅)
   - Benchmark
   - Readability
   - Maintainability
-  - Error-Handling
-  - 에러처리
+  - Error-Handling(에러처리)
   - TDD
-  - Agile
-  - 애자일
+  - Agile(애자일)
   - Docker
   - Kubernetes
   - HTTP
   - WebSocket
-  - Security
-  - 보안
-  - Caching
-  - 캐싱
+  - Security(보안)
+  - Caching(캐싱)
   - Process
   - Thread
   - Python
-  - 파이썬
   - C++
   - Java
 title: "[Technology] CRDT(Conflict-Free Replicated Data Types) 개요와 활용"

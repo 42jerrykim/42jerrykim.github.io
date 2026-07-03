@@ -6,98 +6,59 @@ draft: false
 categories:
   - Technology
 tags:
-  - Open-Source
-  - 오픈소스
-  - Technology
-  - 기술
+  - Open-Source(오픈소스)
+  - Technology(기술)
   - Docker
-  - Deployment
-  - 배포
-  - AI
-  - 인공지능
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Deployment(배포)
+  - AI(인공지능)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Workflow(워크플로우)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Cloud
-  - 클라우드
-  - Career
-  - 커리어
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Networking
-  - 네트워킹
-  - Automation
-  - 자동화
+  - Comparison(비교)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Cloud(클라우드)
+  - Career(커리어)
+  - Blog(블로그)
+  - Web(웹)
+  - Networking(네트워킹)
+  - Automation(자동화)
   - Computer-Vision
-  - Data-Science
-  - 데이터사이언스
+  - Data-Science(데이터사이언스)
   - NLP
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
+  - Linux(리눅스)
+  - Windows(윈도우)
   - macOS
   - DevOps
   - Beginner
   - Case-Study
   - Deep-Dive
   - 실습
-  - Interface
-  - 인터페이스
-  - Security
-  - 보안
-  - Self-Hosted
-  - 셀프호스팅
-  - History
-  - 역사
-  - Science
-  - 과학
-  - Terminal
-  - 터미널
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
+  - Interface(인터페이스)
+  - Security(보안)
+  - Self-Hosted(셀프호스팅)
+  - History(역사)
+  - Science(과학)
+  - Terminal(터미널)
+  - Performance(성능)
+  - Optimization(최적화)
   - API
-  - Backend
-  - 백엔드
+  - Backend(백엔드)
   - File-System
-  - Scalability
-  - 확장성
-  - Privacy
-  - 프라이버시
+  - Scalability(확장성)
+  - Privacy(프라이버시)
 image: image.png
 description: "OCR4all은 무료·오픈소스 OCR 솔루션으로, 수기·인쇄 문서의 고품질 인식, LAREX 기반 레이아웃 주석, Docker 원클릭 배포, OCR-D 생태계 호환을 제공합니다. 문서 디지털화와 텍스트 추출이 필요한 연구자·기관·개인에게 적합합니다."
 ---

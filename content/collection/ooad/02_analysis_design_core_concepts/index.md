@@ -6,25 +6,19 @@ lastmod: 2026-01-17
 collection_order: 2
 draft: true
 tags:
-  - OOP
-  - Design-Pattern
-  - Software-Architecture
+  - OOP(객체지향)
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
   - UML
-  - Abstraction
-  - 추상화
-  - Encapsulation
-  - 캡슐화
-  - 응집도
-  - 결합도
-  - 소프트웨어아키텍처
-  - Clean-Architecture
+  - Abstraction(추상화)
+  - Encapsulation(캡슐화)
+  - Cohesion(응집도)
+  - Coupling(결합도)
+  - Clean-Architecture(클린아키텍처)
   - SOLID
-  - 테스트
-  - Testing
-  - Refactoring
-  - 리팩토링
-  - Documentation
-  - 문서화
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Documentation(문서화)
 ---
 
 # 02. 분석과 설계의 핵심 개념

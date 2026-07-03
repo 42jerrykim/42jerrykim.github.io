@@ -27,22 +27,16 @@ tags:
   - std::scoped_lock
   - Memory-Order
   - Synchronization
-  - 동기화
-  - Encapsulation
-  - 캡슐화
-  - Design-Pattern
-  - 디자인패턴
-  - Code-Quality
-  - 코드품질
+  - Encapsulation(캡슐화)
+  - Design-Pattern(디자인패턴)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Implementation
-  - 구현
-  - Tutorial
-  - Guide
-  - Reference
+  - Implementation(구현)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Deep-Dive
-  - Concurrency
-  - 동시성
+  - Concurrency(동시성)
 slug: cpp-locking-idioms-scoped-locking-thread-safe-interface
 ---
 

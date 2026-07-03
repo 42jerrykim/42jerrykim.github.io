@@ -7,14 +7,11 @@ title: "[Clean Architecture] 36. 메인 컴포넌트"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Configuration
-  - 설정
-  - Dependency-Injection
+  - Clean-Architecture(클린아키텍처)
+  - Configuration(설정)
+  - Dependency-Injection(의존성주입)
   - Factory
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Software-Architecture(소프트웨어아키텍처)
   - Spring
 ---
 

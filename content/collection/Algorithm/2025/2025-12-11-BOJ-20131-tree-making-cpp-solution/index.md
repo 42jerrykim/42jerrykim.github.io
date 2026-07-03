@@ -8,56 +8,35 @@ categories:
   - Graph
   - Tree
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
-  - Tree
-  - 트리
-  - Graph
-  - 그래프
-  - Graph-Theory
-  - 그래프이론
-  - Priority-Queue
-  - 우선순위큐
-  - Implementation
-  - 구현
-  - Simulation
-  - 시뮬레이션
-  - Data-Structures
-  - 자료구조
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Edge-Cases
-  - 엣지케이스
-  - Competitive-Programming
-  - 경쟁프로그래밍
+  - Algorithm(알고리즘)
+  - BOJ(백준)
+  - Tree(트리)
+  - Graph(그래프)
+  - Graph-Theory(그래프이론)
+  - Priority-Queue(우선순위큐)
+  - Implementation(구현)
+  - Simulation(시뮬레이션)
+  - Data-Structures(자료구조)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Edge-Cases(엣지케이스)
+  - Competitive-Programming(경쟁프로그래밍)
   - C++
-  - Problem-Solving
-  - 문제해결
-  - Coding-Test
-  - 코딩테스트
-  - Math
-  - Sorting
-  - 정렬
-  - Optimization
-  - 최적화
-  - Code-Quality
-  - 코드품질
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Math(수학)
+  - Sorting(정렬)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
   - Go
   - .NET
-  - Queue
-  - Memory
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Queue(큐)
+  - Memory(메모리)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
 image: "wordcloud.png"
 ---
 

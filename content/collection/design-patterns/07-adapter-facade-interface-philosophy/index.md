@@ -12,15 +12,11 @@ categories:
 - Interface Design
 - System Integration
 tags:
-- Design-Pattern
+- Design-Pattern(디자인패턴)
 - GoF
-- Software-Architecture
-- Code-Quality
-- Clean-Architecture
-- 디자인패턴
-- 소프트웨어아키텍처
-- 코드품질
-- 클린아키텍처
+- Software-Architecture(소프트웨어아키텍처)
+- Code-Quality(코드품질)
+- Clean-Architecture(클린아키텍처)
 ---
 
 Adapter와 Facade 패턴을 통해 인터페이스 설계의 철학을 탐구합니다. 시스템 간 호환성 문제를 해결하고, 복잡한 서브시스템을 단순화하는 방법을 학습합니다.

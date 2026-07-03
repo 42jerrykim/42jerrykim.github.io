@@ -8,101 +8,58 @@ categories:
   - SpaceX
   - Scrap
 tags:
-  - Space
-  - 우주
-  - Technology
-  - 기술
-  - Science
-  - 과학
-  - Innovation
-  - 혁신
-  - History
-  - 역사
-  - Hardware
-  - 하드웨어
-  - Review
-  - 리뷰
-  - Blog
-  - 블로그
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Reference
-  - 참고
-  - Education
-  - 교육
-  - Career
-  - 커리어
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
+  - Space(우주)
+  - Technology(기술)
+  - Science(과학)
+  - Innovation(혁신)
+  - History(역사)
+  - Hardware(하드웨어)
+  - Review(리뷰)
+  - Blog(블로그)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
+  - Education(교육)
+  - Career(커리어)
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Workflow
-  - 워크플로우
-  - Markdown
-  - 마크다운
-  - Documentation
-  - 문서화
+  - Comparison(비교)
+  - Workflow(워크플로우)
+  - Markdown(마크다운)
+  - Documentation(문서화)
   - Best-Practices
   - Case-Study
   - Deep-Dive
   - 실습
   - Beginner
   - Advanced
-  - Networking
-  - 네트워킹
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Testing
-  - 테스트
-  - Implementation
-  - 구현
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
-  - Cloud
-  - 클라우드
-  - Scalability
-  - 확장성
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Security
-  - 보안
-  - Monitoring
-  - 모니터링
+  - Networking(네트워킹)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Testing(테스트)
+  - Implementation(구현)
+  - Automation(자동화)
+  - Deployment(배포)
+  - Cloud(클라우드)
+  - Scalability(확장성)
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Security(보안)
+  - Monitoring(모니터링)
   - DevOps
-  - Agile
-  - 애자일
-  - Clean-Code
-  - 클린코드
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Code-Quality
-  - 코드품질
-  - Design-Pattern
-  - 디자인패턴
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Culture
-  - 문화
-  - Gadget
-  - 가젯
-  - Web
-  - 웹
+  - Agile(애자일)
+  - Clean-Code(클린코드)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Culture(문화)
+  - Gadget(가젯)
+  - Web(웹)
 ---
 
 ## 개요

@@ -7,19 +7,14 @@ title: "[Clean Architecture] 31. 소리치는 아키텍처"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
-  - Domain
-  - 도메인
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Domain(도메인)
   - Spring
   - Django
   - Accounting
-  - 회계
-  - 소프트웨어아키텍처
-  - Web
-  - 웹
-  - Testing
+  - Web(웹)
+  - Testing(테스트)
 ---
 
 아키텍처는 시스템의 **의도를 소리쳐야** 한다. 최상위 디렉토리 구조를 보면 이것이 건강 관리 시스템인지, 회계 시스템인지 알 수 있어야 한다.

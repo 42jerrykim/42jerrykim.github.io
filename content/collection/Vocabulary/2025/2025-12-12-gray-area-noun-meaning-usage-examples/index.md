@@ -11,52 +11,35 @@ tags:
   - English
   - 영단어
   - 영어명사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Edge-Cases
-  - Business-English
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Edge-Cases(엣지케이스)
+  - Business-English(비즈니스영어)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
   - Go
   - AWS
-  - Cloud
-  - Action
-  - 액션
-  - War
-  - 전쟁
-  - Security
-  - Privacy
+  - Cloud(클라우드)
+  - Action(액션)
+  - War(전쟁)
+  - Security(보안)
+  - Privacy(프라이버시)
   - Finance
   - Accounting
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Education(교육)
+  - Reference(참고)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
+  - Markdown(마크다운)
 image: wordcloud.png
 ---
 

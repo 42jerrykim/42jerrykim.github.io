@@ -16,8 +16,7 @@ tags:
   - 양자컴퓨팅
   - Cryptography
   - 암호학
-  - Security
-  - 보안
+  - Security(보안)
   - ECDSA
   - Shor-Algorithm
   - 쇼어알고리즘
@@ -27,8 +26,7 @@ tags:
   - 구글
   - Cryptocurrency
   - 암호화폐
-  - Technology
-  - 기술
+  - Technology(기술)
 ---
 
 ## "9분 해킹"의 진실

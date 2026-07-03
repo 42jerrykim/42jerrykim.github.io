@@ -8,80 +8,46 @@ categories:
   - Virtualization
 tags:
   - RDP
-  - Authentication
-  - 인증
-  - Troubleshooting
-  - 트러블슈팅
-  - Windows
-  - 윈도우
-  - Security
-  - 보안
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Authentication(인증)
+  - Troubleshooting(트러블슈팅)
+  - Windows(윈도우)
+  - Security(보안)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - How-To
   - Tips
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
-  - Productivity
-  - 생산성
-  - Reference
-  - 참고
+  - Configuration(설정)
+  - Workflow(워크플로우)
+  - Productivity(생산성)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Problem-Solving
-  - 문제해결
-  - Networking
-  - 네트워킹
-  - Hardware
-  - 하드웨어
+  - Documentation(문서화)
+  - Problem-Solving(문제해결)
+  - Networking(네트워킹)
+  - Hardware(하드웨어)
   - DevOps
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Deployment(배포)
+  - Automation(자동화)
   - PowerShell
-  - Terminal
-  - 터미널
+  - Terminal(터미널)
   - Beginner
-  - Education
-  - 교육
-  - Comparison
-  - 비교
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Keyboard
-  - 키보드
-  - Career
-  - 커리어
-  - Error-Handling
-  - 에러처리
-  - Implementation
-  - 구현
-  - Debugging
-  - 디버깅
-  - Performance
-  - 성능
-  - Privacy
-  - 프라이버시
-  - Cloud
-  - 클라우드
-  - Self-Hosted
-  - 셀프호스팅
+  - Education(교육)
+  - Comparison(비교)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Web(웹)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Keyboard(키보드)
+  - Career(커리어)
+  - Error-Handling(에러처리)
+  - Implementation(구현)
+  - Debugging(디버깅)
+  - Performance(성능)
+  - Privacy(프라이버시)
+  - Cloud(클라우드)
+  - Self-Hosted(셀프호스팅)
   - Virtualization
   - 가상화
   - Remote-Desktop

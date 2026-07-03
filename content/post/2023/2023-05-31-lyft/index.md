@@ -6,91 +6,54 @@ lastmod: "2026-03-17T00:00:00Z"
 header:
   teaser: /assets/images/2023/LyftMaps_ImageHeader_01.jpg
 tags:
-  - Technology
-  - 기술
-  - Innovation
-  - 혁신
-  - Mobile
-  - 모바일
-  - Open-Source
-  - 오픈소스
-  - Review
-  - 리뷰
+  - Technology(기술)
+  - Innovation(혁신)
+  - Mobile(모바일)
+  - Open-Source(오픈소스)
+  - Review(리뷰)
   - Case-Study
-  - Data-Science
-  - 데이터사이언스
-  - Networking
-  - 네트워킹
+  - Data-Science(데이터사이언스)
+  - Networking(네트워킹)
   - API
-  - Backend
-  - 백엔드
-  - Cloud
-  - 클라우드
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
+  - Backend(백엔드)
+  - Cloud(클라우드)
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Tutorial
-  - 가이드
-  - Guide
+  - Documentation(문서화)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - How-To
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - History
-  - 역사
-  - Web
-  - 웹
-  - Markdown
-  - 마크다운
-  - Blog
-  - 블로그
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Comparison(비교)
+  - Reference(참고)
+  - Productivity(생산성)
+  - Education(교육)
+  - History(역사)
+  - Web(웹)
+  - Markdown(마크다운)
+  - Blog(블로그)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - Tips
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
   - Deep-Dive
   - Git
   - GitHub
   - DevOps
-  - Automation
-  - 자동화
-  - Scalability
-  - 확장성
-  - Performance
-  - 성능
-  - Security
-  - 보안
-  - Database
-  - 데이터베이스
+  - Automation(자동화)
+  - Scalability(확장성)
+  - Performance(성능)
+  - Security(보안)
+  - Database(데이터베이스)
   - JSON
-  - Design-Pattern
-  - 디자인패턴
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Microservices
-  - 마이크로서비스
-  - Monitoring
-  - 모니터링
-  - Deployment
-  - 배포
-  - Caching
-  - 캐싱
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Microservices(마이크로서비스)
+  - Monitoring(모니터링)
+  - Deployment(배포)
+  - Caching(캐싱)
   - Latency
   - Throughput
   - Real-Time

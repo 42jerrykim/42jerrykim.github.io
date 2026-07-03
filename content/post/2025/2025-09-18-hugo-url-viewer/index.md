@@ -11,76 +11,48 @@ tags:
   - Hugo
   - SEO
   - HTTP
-  - Caching
+  - Caching(캐싱)
   - CDN
-  - Debugging
-  - 테스트
-  - 모바일
-  - 보안
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Mobile(모바일)
+  - Security(보안)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
   - Go
-  - Deployment
-  - Guide
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Deployment(배포)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - Mobile
-  - Security
-  - Networking
-  - 네트워킹
-  - Frontend
-  - 프론트엔드
-  - Backend
-  - 백엔드
+  - Comparison(비교)
+  - Career(커리어)
+  - Networking(네트워킹)
+  - Frontend(프론트엔드)
+  - Backend(백엔드)
   - API
-  - Scalability
-  - 확장성
-  - Performance
-  - 성능
-  - Testing
+  - Scalability(확장성)
+  - Performance(성능)
   - DevOps
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Domain
-  - 도메인
-  - Internet
-  - 인터넷
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Domain(도메인)
+  - Internet(인터넷)
   - Beginner
   - Case-Study
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
 image: "image.png"
 ---

@@ -6,78 +6,47 @@ categories:
   - MicrosoftOffice
   - How-To
 tags:
-  - Windows
-  - 윈도우
-  - Productivity
-  - 생산성
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Windows(윈도우)
+  - Productivity(생산성)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - How-To
-  - Configuration
-  - 설정
-  - Automation
-  - 자동화
-  - Security
-  - 보안
-  - Workflow
-  - 워크플로우
-  - Reference
-  - 참고
+  - Configuration(설정)
+  - Automation(자동화)
+  - Security(보안)
+  - Workflow(워크플로우)
+  - Reference(참고)
   - Best-Practices
-  - Troubleshooting
-  - 트러블슈팅
-  - Documentation
-  - 문서화
+  - Troubleshooting(트러블슈팅)
+  - Documentation(문서화)
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Education
-  - 교육
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Migration
-  - 마이그레이션
-  - Innovation
-  - 혁신
+  - Comparison(비교)
+  - Career(커리어)
+  - Education(교육)
+  - Technology(기술)
+  - Web(웹)
+  - Blog(블로그)
+  - Migration(마이그레이션)
+  - Innovation(혁신)
   - Beginner
-  - Open-Source
-  - 오픈소스
+  - Open-Source(오픈소스)
   - DevOps
-  - Networking
-  - 네트워킹
-  - Error-Handling
-  - 에러처리
-  - Logging
-  - 로깅
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Markdown
-  - 마크다운
+  - Networking(네트워킹)
+  - Error-Handling(에러처리)
+  - Logging(로깅)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Markdown(마크다운)
   - API
   - HTTP
-  - Internet
-  - 인터넷
-  - Privacy
-  - 프라이버시
+  - Internet(인터넷)
+  - Privacy(프라이버시)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Performance
-  - 성능
-  - Code-Quality
-  - 코드품질
+  - Performance(성능)
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
   - Modularity
@@ -85,18 +54,12 @@ tags:
   - GitHub
   - IDE
   - VSCode
-  - Terminal
-  - 터미널
-  - Agile
-  - 애자일
-  - Design-Pattern
-  - 디자인패턴
-  - Interface
-  - 인터페이스
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Review
-  - 리뷰
+  - Terminal(터미널)
+  - Agile(애자일)
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Review(리뷰)
   - Advanced
 image: "index.png"
 date: 2025-01-13

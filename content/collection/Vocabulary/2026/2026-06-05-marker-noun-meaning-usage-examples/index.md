@@ -12,12 +12,9 @@ tags:
   - Marker
   - 영단어
   - 영어명사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Context
-  - 맥락
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Context(맥락)
   - pen
   - sign
   - indicator
@@ -52,11 +49,9 @@ tags:
   - Study-English
   - 영어 학습
   - Usage-Notes
-  - Grammar
-  - Pronunciation
-  - 발음
-  - 문법
-  - Etymology
+  - Grammar(문법)
+  - Pronunciation(발음)
+  - Etymology(어원)
 image: "wordcloud.png"
 ---
 

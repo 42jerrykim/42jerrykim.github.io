@@ -8,55 +8,34 @@ lastmod: 2026-01-18
 collection_order: 66
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - HTTP
-  - Implementation
-  - Testing
-  - 테스트
-  - Design-Pattern
+  - Implementation(구현)
+  - Testing(테스트)
+  - Design-Pattern(디자인패턴)
   - Best-Practices
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Tutorial(튜토리얼)
+  - Code-Quality(코드품질)
   - Bash
-  - Shell
+  - Shell(셸)
   - API
   - HTML
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
-  - Education
-  - 교육
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
+  - Education(교육)
 ---
 `http.server`는 **간단한 HTTP 서버**를 제공합니다. 정적 파일 서빙, 개발 테스트, 로컬 파일 공유 등에 유용합니다. (프로덕션용 아님)
 

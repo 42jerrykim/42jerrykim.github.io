@@ -8,95 +8,55 @@ header: null
 tags:
   - CSharp
   - .NET
-  - Implementation
-  - 구현
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - String
-  - 문자열
-  - Memory
-  - 메모리
-  - Compiler
-  - 컴파일러
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - String(문자열)
+  - Memory(메모리)
+  - Compiler(컴파일러)
   - Type-Safety
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - OOP
-  - 객체지향
-  - Data-Structures
-  - 자료구조
-  - Array
-  - 배열
-  - Code-Quality
-  - 코드품질
-  - Performance
-  - 성능
-  - Backend
-  - 백엔드
-  - Database
-  - 데이터베이스
-  - Error-Handling
-  - 에러처리
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - OOP(객체지향)
+  - Data-Structures(자료구조)
+  - Array(배열)
+  - Code-Quality(코드품질)
+  - Performance(성능)
+  - Backend(백엔드)
+  - Database(데이터베이스)
+  - Error-Handling(에러처리)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Education
-  - 교육
-  - Innovation
-  - 혁신
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - Review
-  - 리뷰
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Education(교육)
+  - Innovation(혁신)
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Review(리뷰)
   - Beginner
   - Deep-Dive
   - 실습
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Design-Pattern
-  - 디자인패턴
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Design-Pattern(디자인패턴)
   - API
   - IDE
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Optimization
-  - 최적화
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Optimization(최적화)
   - Maintainability
   - Readability
 teaser: /assets/images/undefined/teaser.jpg

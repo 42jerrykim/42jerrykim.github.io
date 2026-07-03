@@ -11,81 +11,47 @@ title: "[TypeScript] Reverse Mapped Types 이해와 실전 활용"
 tags:
   - TypeScript
   - JavaScript
-  - Compiler
-  - 컴파일러
-  - Implementation
-  - 구현
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Code-Quality
-  - 코드품질
-  - Edge-Cases
-  - 엣지케이스
-  - Recursion
-  - 재귀
-  - Functional-Programming
-  - 함수형프로그래밍
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Reference
-  - 참고
+  - Compiler(컴파일러)
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Code-Quality(코드품질)
+  - Edge-Cases(엣지케이스)
+  - Recursion(재귀)
+  - Functional-Programming(함수형프로그래밍)
+  - Web(웹)
+  - Blog(블로그)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
   - Type-Safety
-  - Interface
-  - 인터페이스
-  - Design-Pattern
-  - 디자인패턴
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Testing
-  - 테스트
-  - Frontend
-  - 프론트엔드
+  - Interface(인터페이스)
+  - Design-Pattern(디자인패턴)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Testing(테스트)
+  - Frontend(프론트엔드)
   - API
   - Maintainability
   - Readability
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Migration
-  - 마이그레이션
-  - Education
-  - 교육
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
-  - Productivity
-  - 생산성
-  - Markdown
-  - 마크다운
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
-  - Abstraction
-  - 추상화
-  - Polymorphism
-  - 다형성
+  - Comparison(비교)
+  - Migration(마이그레이션)
+  - Education(교육)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Workflow(워크플로우)
+  - Productivity(생산성)
+  - Markdown(마크다운)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
+  - Abstraction(추상화)
+  - Polymorphism(다형성)
   - Generic
   - 제네릭
   - Infer

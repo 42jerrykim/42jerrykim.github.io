@@ -10,88 +10,53 @@ tags:
   - API
   - REST
   - GraphQL
-  - Microservices
-  - 마이크로서비스
-  - Security
-  - 보안
-  - Deployment
-  - 배포
-  - Backend
-  - 백엔드
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Implementation
-  - 구현
-  - Networking
-  - 네트워킹
-  - Innovation
-  - 혁신
-  - Reference
-  - 참고
+  - Microservices(마이크로서비스)
+  - Security(보안)
+  - Deployment(배포)
+  - Backend(백엔드)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Implementation(구현)
+  - Networking(네트워킹)
+  - Innovation(혁신)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Monitoring
-  - 모니터링
+  - Comparison(비교)
+  - Monitoring(모니터링)
   - DevOps
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Clean-Architecture
-  - Authentication
-  - 인증
-  - Caching
-  - 캐싱
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Clean-Architecture(클린아키텍처)
+  - Authentication(인증)
+  - Caching(캐싱)
   - Load-Balancing
-  - Scalability
-  - 확장성
+  - Scalability(확장성)
   - HTTP
   - JSON
-  - Testing
-  - 테스트
-  - Code-Quality
-  - 코드품질
-  - Performance
-  - 성능
-  - Cloud
-  - 클라우드
-  - Agile
-  - Education
-  - 교육
+  - Testing(테스트)
+  - Code-Quality(코드품질)
+  - Performance(성능)
+  - Cloud(클라우드)
+  - Agile(애자일)
+  - Education(교육)
   - Case-Study
   - Deep-Dive
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Productivity
-  - 생산성
-  - Error-Handling
-  - 에러처리
-  - Logging
-  - 로깅
+  - Blog(블로그)
+  - Review(리뷰)
+  - Productivity(생산성)
+  - Error-Handling(에러처리)
+  - Logging(로깅)
   - Maintainability
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
 title: "[API] API Strategy의 중요성과 구현 방법"
 draft: false
 ---

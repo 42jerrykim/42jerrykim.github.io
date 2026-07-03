@@ -4,55 +4,33 @@ title: "10. 객체지향 프로그래밍 고급"
 description: "상속·다형성·추상화의 트레이드오프를 이해하고, 조합/상속 선택 기준을 배웁니다. 실무에서 유지보수 가능한 OOP 설계를 위한 패턴과 주의점을 정리합니다."
 tags:
   - Python
-  - 파이썬
-  - Implementation
-  - Software-Architecture
-  - Algorithm
-  - 알고리즘
-  - Backend
-  - 백엔드
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Algorithm(알고리즘)
+  - Backend(백엔드)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Logging
-  - 로깅
-  - Security
-  - 보안
-  - Performance
-  - 성능
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
-  - OOP
-  - 객체지향
-  - Data-Structures
-  - 자료구조
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Logging(로깅)
+  - Security(보안)
+  - Performance(성능)
+  - Concurrency(동시성)
+  - Async(비동기)
+  - OOP(객체지향)
+  - Data-Structures(자료구조)
   - DevOps
-  - Deployment
-  - 배포
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Web
-  - 웹
-  - Database
-  - 데이터베이스
-  - Networking
-  - 네트워킹
+  - Deployment(배포)
+  - Design-Pattern(디자인패턴)
+  - Web(웹)
+  - Database(데이터베이스)
+  - Networking(네트워킹)
   - CI-CD
-  - 자동화
-  - Documentation
-  - 문서화
+  - Automation(자동화)
+  - Documentation(문서화)
   - Git
-  - Code-Quality
-  - 코드품질
+  - Code-Quality(코드품질)
 lastmod: 2026-01-17
 collection_order: 10
 ---

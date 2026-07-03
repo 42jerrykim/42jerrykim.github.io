@@ -9,19 +9,13 @@ image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - GoF
-  - Inheritance
-  - 상속
-  - Polymorphism
-  - 다형성
-  - 코드품질
-  - Software-Architecture
-  - Code-Quality
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
+  - Inheritance(상속)
+  - Polymorphism(다형성)
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
   - Java
   - C++
   - Python
@@ -29,36 +23,22 @@ tags:
   - Spring
   - Git
   - GitHub
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
-  - Implementation
-  - 구현
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
+  - Implementation(구현)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Documentation
-  - 문서화
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Documentation(문서화)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
   - SOLID
-  - Encapsulation
-  - 캡슐화
-  - Composition
-  - 합성
-  - Dependency-Injection
-  - 의존성주입
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Education
-  - 교육
+  - Encapsulation(캡슐화)
+  - Composition(합성)
+  - Dependency-Injection(의존성주입)
+  - Testing(테스트)
+  - Performance(성능)
+  - Education(교육)
 ---
 
 템플릿 메서드 패턴(Template Method Pattern)은 알고리즘의 골격을 상위 클래스에 정의하고, 일부 단계의 구현을 하위 클래스에 위임하는 행위 디자인 패턴이다. 이 패턴을 사용하면 알고리즘의 전체 구조를 변경하지 않으면서 특정 단계만 재정의할 수 있다.

@@ -13,26 +13,17 @@ categories:
 - Design Principles
 tags:
 - SOLID
-- Encapsulation
-- Inheritance
-- Polymorphism
-- Abstraction
-- Design-Pattern
-- Code-Quality
-- Software-Architecture
-- Composition
-- Dependency-Injection
-- Clean-Code
-- Refactoring
-- 캡슐화
-- 상속
-- 다형성
-- 추상화
-- 디자인패턴
-- 코드품질
-- 소프트웨어아키텍처
-- 의존성주입
-- 리팩토링
+- Encapsulation(캡슐화)
+- Inheritance(상속)
+- Polymorphism(다형성)
+- Abstraction(추상화)
+- Design-Pattern(디자인패턴)
+- Code-Quality(코드품질)
+- Software-Architecture(소프트웨어아키텍처)
+- Composition(합성)
+- Dependency-Injection(의존성주입)
+- Clean-Code(클린코드)
+- Refactoring(리팩토링)
 ---
 
 객체지향 프로그래밍의 근본 원리와 설계 철학을 심도 있게 탐구합니다. SOLID 원칙, 캡슐화, 상속, 다형성의 본질을 이해하고, 이러한 개념들이 어떻게 패턴으로 구현되는지 학습합니다.

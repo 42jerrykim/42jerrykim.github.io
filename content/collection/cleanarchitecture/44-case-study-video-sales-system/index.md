@@ -7,12 +7,10 @@ title: "[Clean Architecture] 44. 사례 연구: 비디오 판매 시스템"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - Edge-Cases
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Edge-Cases(엣지케이스)
 ---
 
 이 장에서는 **비디오 판매 시스템**을 예제로 Clean Architecture 설계 과정을 살펴본다.

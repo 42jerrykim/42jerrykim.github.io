@@ -13,13 +13,10 @@ categories:
 - Practice
 - Advanced Design
 tags:
-- Tutorial
-- Implementation
-- Design-Pattern
-- Software-Architecture
-- 구현
-- 디자인패턴
-- 소프트웨어아키텍처
+- Tutorial(튜토리얼)
+- Implementation(구현)
+- Design-Pattern(디자인패턴)
+- Software-Architecture(소프트웨어아키텍처)
 ---
 
 이 실습에서는 반복되는 설계 문제에서 새로운 패턴을 발견하고, 문서화하고, 검증하는 전 과정을 경험합니다.

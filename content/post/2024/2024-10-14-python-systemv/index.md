@@ -7,95 +7,60 @@ title: "[Python] System V IPC 공유 메모리와 세마포어 활용 가이드"
 categories: python
 tags:
   - Python
-  - 파이썬
-  - Linux
-  - 리눅스
-  - Memory
-  - 메모리
+  - Linux(리눅스)
+  - Memory(메모리)
   - Process
-  - Concurrency
-  - 동시성
-  - Implementation
-  - 구현
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Error-Handling
-  - 에러처리
-  - Performance
-  - 성능
-  - Open-Source
-  - 오픈소스
-  - Optimization
-  - 최적화
-  - Debugging
-  - 디버깅
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Concurrency(동시성)
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Error-Handling(에러처리)
+  - Performance(성능)
+  - Open-Source(오픈소스)
+  - Optimization(최적화)
+  - Debugging(디버깅)
+  - Blog(블로그)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - Git
   - GitHub
   - API
-  - Queue
+  - Queue(큐)
   - Message-Queue
-  - Windows
-  - Documentation
-  - 문서화
-  - Reference
-  - 참고
+  - Windows(윈도우)
+  - Documentation(문서화)
+  - Reference(참고)
   - Best-Practices
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - C
   - File-System
   - IO
-  - Backend
-  - 백엔드
-  - Code-Quality
-  - 코드품질
+  - Backend(백엔드)
+  - Code-Quality(코드품질)
   - How-To
   - POSIX
   - Deep-Dive
   - Case-Study
   - Beginner
   - Advanced
-  - Networking
-  - 네트워킹
-  - OS
-  - 운영체제
-  - Async
-  - 비동기
+  - Networking(네트워킹)
+  - OS(운영체제)
+  - Async(비동기)
   - Modularity
-  - Clean-Code
-  - 클린코드
-  - Pitfalls
-  - 함정
-  - Logging
-  - 로깅
+  - Clean-Code(클린코드)
+  - Pitfalls(함정)
+  - Logging(로깅)
   - Type-Safety
   - Readability
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
-  - Innovation
-  - 혁신
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
-  - Comparison
-  - 비교
+  - Automation(자동화)
+  - Deployment(배포)
+  - Education(교육)
+  - Productivity(생산성)
+  - Innovation(혁신)
+  - Markdown(마크다운)
+  - Review(리뷰)
+  - Comparison(비교)
   - Tips
   - 실습
 ---

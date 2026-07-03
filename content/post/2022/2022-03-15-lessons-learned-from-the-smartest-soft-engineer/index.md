@@ -9,111 +9,66 @@ image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/image001.jpg
 tags:
-  - Career
-  - 커리어
-  - Testing
-  - 테스트
+  - Career(커리어)
+  - Testing(테스트)
   - TDD
-  - Clean-Code
-  - 클린코드
+  - Clean-Code(클린코드)
   - Best-Practices
-  - Refactoring
-  - 리팩토링
-  - Code-Review
-  - 코드리뷰
-  - Documentation
-  - 문서화
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Workflow
-  - 워크플로우
-  - Technology
-  - 기술
-  - Guide
-  - 가이드
-  - Tutorial
-  - Reference
-  - 참고
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Blog
-  - 블로그
-  - Web
-  - 웹
+  - Refactoring(리팩토링)
+  - Code-Review(코드리뷰)
+  - Documentation(문서화)
+  - Productivity(생산성)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Workflow(워크플로우)
+  - Technology(기술)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Blog(블로그)
+  - Web(웹)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Configuration
-  - 설정
-  - Migration
-  - 마이그레이션
-  - Code-Quality
-  - 코드품질
+  - Comparison(비교)
+  - Configuration(설정)
+  - Migration(마이그레이션)
+  - Code-Quality(코드품질)
   - Maintainability
-  - Performance
-  - 성능
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Agile
-  - 애자일
-  - Networking
-  - 네트워킹
-  - Hardware
-  - 하드웨어
-  - Mobile
-  - 모바일
-  - Cloud
-  - 클라우드
+  - Performance(성능)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Agile(애자일)
+  - Networking(네트워킹)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
+  - Cloud(클라우드)
   - Case-Study
   - Deep-Dive
   - 실습
   - Beginner
-  - OOP
-  - 객체지향
-  - Interface
-  - 인터페이스
+  - OOP(객체지향)
+  - Interface(인터페이스)
   - Git
   - GitHub
   - CI-CD
-  - Automation
-  - 자동화
+  - Automation(자동화)
   - DevOps
-  - Deployment
-  - 배포
-  - Backend
-  - 백엔드
-  - Frontend
-  - 프론트엔드
+  - Deployment(배포)
+  - Backend(백엔드)
+  - Frontend(프론트엔드)
   - API
-  - Problem-Solving
-  - 문제해결
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Pitfalls
-  - 함정
-  - Psychology
-  - 심리학
+  - Problem-Solving(문제해결)
+  - Implementation(구현)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Pitfalls(함정)
+  - Psychology(심리학)
 ---
 
 이 글은 저자가 실제로 함께 일하며 만난, 가장 뛰어나다고 느꼈던 소프트웨어 엔지니어에게서 배우고 느낀 **10가지 교훈**을 정리한 것이다. 원문은 Santiago Pino의 「Lessons learned from the smartest Software Engineer I've met」이며, 해당 원문 URL은 현재 접근 불가하여 링크는 생략했다. 학교와 독학만으로는 채우기 어려웠던 **실전에서의 판단과 습관**을 한 사람의 스타일을 통해 요약한 글로, 주니어·미들 개발자와 개발자 성장에 관심 있는 독자에게 도움이 되도록 구성했다.

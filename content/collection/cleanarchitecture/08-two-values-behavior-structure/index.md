@@ -7,15 +7,11 @@ title: "[Clean Architecture] 08. 두 가지 가치: 행위와 구조"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Code-Quality
-  - 코드품질
-  - Hardware
-  - 하드웨어
-  - Implementation
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Code-Quality(코드품질)
+  - Hardware(하드웨어)
+  - Implementation(구현)
   - SOLID
 ---
 

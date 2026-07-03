@@ -10,8 +10,7 @@ categories:
 - Sports
 - Action
 tags:
-- Movie
-- 영화
+- Movie(영화)
 - Shaolin-Soccer
 - 소림축구
 - Stephen-Chow
@@ -24,8 +23,7 @@ tags:
 - 사현
 - Hong-Kong-Cinema
 - 홍콩영화
-- Comedy
-- 코미디
+- Comedy(코미디)
 - Sports-Film
 - 스포츠영화
 - Soccer
@@ -36,15 +34,12 @@ tags:
 - 쿵푸
 - Action-Comedy
 - 액션코미디
-- Fantasy
-- 판타지
-- Visual-Effects
-- 시각효과
+- Fantasy(판타지)
+- Visual-Effects(시각효과)
 - Cult-Film
 - 컬트영화
 - 2001
-- Review
-- 리뷰
+- Review(리뷰)
 - Underdog
 - 약자서사
 - Team-Evil
@@ -57,7 +52,6 @@ tags:
 - Mo-lei-tau
 - 홍콩코미디풍
 - Blockbuster
-- 블록버스터
 - Tournament
 - 토너먼트
 - Doping
@@ -80,7 +74,7 @@ tags:
 - 황금다리
 - Screenplay
 - 각본
-- Cinematography
+- Cinematography(촬영기법)
 - 촬영
 - Sound-Design
 - 사운드디자인

@@ -7,71 +7,48 @@ title: "[Performance 07] Introduction: OS·런타임 Low-latency 운영환경"
 slug: getting-started-os-runtime-performance-tuning
 description: "OS·런타임 Low-latency 운영환경 트랙의 도입 챕터입니다. process/thread·syscall·affinity·realtime scheduling의 진입 순서와 플랫폼별 관찰 포인트를 정리하고, 환경 변화가 지연 분포에 미치는 영향을 검증하는 방법을 소개합니다."
 tags:
-  - Performance
-  - Profiling
-  - Optimization
+  - Performance(성능)
+  - Profiling(프로파일링)
+  - Optimization(최적화)
   - C++
-  - Compiler
-  - Memory
+  - Compiler(컴파일러)
+  - Memory(메모리)
   - CPU
   - Cache
-  - Concurrency
-  - OS
-  - Linux
-  - Windows
-  - Networking
+  - Concurrency(동시성)
+  - OS(운영체제)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - Networking(네트워킹)
   - IO
-  - Testing
+  - Testing(테스트)
   - CI-CD
-  - Monitoring
+  - Monitoring(모니터링)
   - Benchmark
   - Latency
   - Throughput
-  - Backend
-  - Embedded
-  - Code-Quality
+  - Backend(백엔드)
+  - Embedded(임베디드)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Refactoring
-  - Software-Architecture
-  - Tutorial
-  - Guide
-  - Reference
-  - Technology
+  - Refactoring(리팩토링)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
   - Deep-Dive
   - Production
-  - Scalability
+  - Scalability(확장성)
   - Reliability
-  - Implementation
-  - Documentation
-  - Debugging
-  - Automation
+  - Implementation(구현)
+  - Documentation(문서화)
+  - Debugging(디버깅)
+  - Automation(자동화)
   - System-Design
-  - Data-Structures
-  - Clean-Code
-  - 성능
-  - 프로파일링
-  - 최적화
-  - 컴파일러
-  - 메모리
-  - 운영체제
-  - 리눅스
-  - 윈도우
-  - 동시성
+  - Data-Structures(자료구조)
+  - Clean-Code(클린코드)
   - 네트워크
-  - 코드품질
-  - 가이드
-  - 참고
-  - 기술
-  - 튜토리얼
-  - 구현
-  - 문서화
-  - 디버깅
-  - 자동화
-  - 백엔드
-  - 임베디드
-  - 신뢰성
-  - 확장성
-  - 모니터링
 ---
 
 이 트랙은 "코드는 빠른데 프로세스가 느린 이유"를 운영환경에서 찾고 고칩니다. µs 단위에서는 context switch, syscall, 스케줄링 정책, 코어 배치가 지연시간의 바닥을 결정합니다.

@@ -13,28 +13,17 @@ tags:
   - 영단어
   - narrow down
   - Phrasal-Verb
-  - 구동사
   - 영어동사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
   - reduce
   - limit
   - focus
@@ -46,7 +35,6 @@ tags:
   - 특정 짓다
   - 좁히다
   - 압축하다
-  - Decision-Making
   - 의사결정
   - search
   - 검색
@@ -55,8 +43,7 @@ tags:
   - options
   - 선택지
   - choices
-  - Context
-  - 맥락
+  - Context(맥락)
   - Usage-Notes
   - EN-KR-Examples
   - TOEFL
@@ -65,23 +52,20 @@ tags:
   - narrow the field
   - shortlist
   - 후보 압축
-  - Tutorial
-  - Education
-  - 교육
-  - Reference
-  - Comparison
-  - 비교
+  - Tutorial(튜토리얼)
+  - Education(교육)
+  - Reference(참고)
+  - Comparison(비교)
   - Tips
   - How-To
   - Vocabulary-Building
   - Study-English
-  - Guide
-  - Documentation
+  - Guide(가이드)
+  - Documentation(문서화)
   - Best-Practices
   - Beginner
   - Advanced
-  - Problem-Solving
-  - 문제해결
+  - Problem-Solving(문제해결)
   - research
   - 연구
   - Filter

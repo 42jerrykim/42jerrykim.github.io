@@ -7,18 +7,14 @@ title: "[Clean Architecture] 10. 패러다임 개요: 세 가지 패러다임"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - OOP
-  - Functional-Programming
+  - Clean-Architecture(클린아키텍처)
+  - OOP(객체지향)
+  - Functional-Programming(함수형프로그래밍)
   - Dijkstra
-  - Code-Quality
-  - Polymorphism
-  - 다형성
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Heap
-  - 힙
+  - Code-Quality(코드품질)
+  - Polymorphism(다형성)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Heap(힙)
 ---
 
 이번 장에서 살펴볼 3가지 패러다임은 **부정적인 의도**를 가지는 일종의 추가적인 규칙을 부과한다. 즉, 패러다임은 무엇을 해야 할지를 말하기보다는 **무엇을 해서는 안 되는지**를 말해준다.

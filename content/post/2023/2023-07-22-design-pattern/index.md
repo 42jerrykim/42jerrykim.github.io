@@ -4,8 +4,7 @@ description: "디자인 패턴의 정의와 생성·구조·행동 패턴 분류
 date: "2023-07-22T00:00:00Z"
 lastmod: "2026-03-17T00:00:00Z"
 tags:
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - Creational-Pattern
   - Structural-Pattern
   - Behavioral-Pattern
@@ -18,83 +17,51 @@ tags:
   - Command
   - Factory
   - GoF
-  - OOP
-  - 객체지향
+  - OOP(객체지향)
   - Python
-  - 파이썬
-  - Implementation
-  - 구현
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Clean-Code
-  - 클린코드
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Clean-Code(클린코드)
   - Best-Practices
-  - Refactoring
-  - 리팩토링
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Composition
-  - 합성
-  - Dependency-Injection
-  - 의존성주입
+  - Refactoring(리팩토링)
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Composition(합성)
+  - Dependency-Injection(의존성주입)
   - Template-Method
   - State
   - Iterator
   - Mediator
   - Visitor
   - UML
-  - Blog
-  - 블로그
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Documentation
-  - 문서화
-  - Web
-  - 웹
-  - Memory
-  - 메모리
+  - Blog(블로그)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Technology(기술)
+  - Education(교육)
+  - Reference(참고)
+  - Documentation(문서화)
+  - Web(웹)
+  - Memory(메모리)
   - Thread
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Code-Quality
-  - 코드품질
+  - Comparison(비교)
+  - Career(커리어)
+  - Code-Quality(코드품질)
   - Maintainability
   - Modularity
-  - Microservices
-  - 마이크로서비스
+  - Microservices(마이크로서비스)
   - Event-Driven
-  - Backend
-  - 백엔드
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Review
-  - 리뷰
+  - Backend(백엔드)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Review(리뷰)
   - Beginner
   - Case-Study
 title: "[DesignPattern] 디자인 패턴 개요와 생성·구조·행동 패턴"

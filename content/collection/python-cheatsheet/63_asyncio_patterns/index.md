@@ -8,55 +8,34 @@ lastmod: 2026-01-18
 collection_order: 63
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Async
-  - 비동기
-  - Concurrency
-  - 동시성
-  - Networking
-  - 네트워킹
+  - Async(비동기)
+  - Concurrency(동시성)
+  - Networking(네트워킹)
   - HTTP
-  - Performance
-  - 성능
-  - Queue
+  - Performance(성능)
+  - Queue(큐)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Debugging
-  - 디버깅
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Simulation
+  - Pitfalls(함정)
+  - Debugging(디버깅)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Simulation(시뮬레이션)
   - HTML
   - Thread
-  - Error-Handling
-  - 에러처리
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
+  - Error-Handling(에러처리)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
 ---
 asyncio는 I/O 바운드 작업을 효율적으로 처리하는 파이썬의 비동기 프레임워크입니다. 이 치트시트는 async/await 기본, gather로 동시 실행, 타임아웃 처리, 동기 코드와 혼용 시 주의점을 정리합니다.
 

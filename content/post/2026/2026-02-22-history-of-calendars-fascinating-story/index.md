@@ -8,107 +8,62 @@ categories:
   - Culture
   - Science
 tags:
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - Science
-  - 과학
-  - Math
-  - 수학
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Innovation
-  - 혁신
-  - Comparison
-  - 비교
-  - Documentation
-  - 문서화
+  - History(역사)
+  - Culture(문화)
+  - Science(과학)
+  - Math(수학)
+  - Education(교육)
+  - Reference(참고)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Blog(블로그)
+  - Technology(기술)
+  - Innovation(혁신)
+  - Comparison(비교)
+  - Documentation(문서화)
   - Deep-Dive
   - Case-Study
   - Beginner
-  - Etymology
-  - 어원
-  - Review
-  - 리뷰
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
+  - Etymology(어원)
+  - Review(리뷰)
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
   - How-To
   - Tips
   - Best-Practices
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
-  - Hardware
-  - 하드웨어
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Performance
-  - 성능
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
-  - Algorithm
-  - 알고리즘
-  - Data-Structures
-  - 자료구조
-  - Problem-Solving
-  - 문제해결
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
+  - Configuration(설정)
+  - Hardware(하드웨어)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Performance(성능)
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Implementation(구현)
+  - Optimization(최적화)
+  - Algorithm(알고리즘)
+  - Data-Structures(자료구조)
+  - Problem-Solving(문제해결)
   - Git
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
-  - Markdown
-  - 마크다운
-  - Web
-  - 웹
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - Markdown(마크다운)
+  - Web(웹)
   - API
-  - Database
-  - 데이터베이스
-  - Agile
-  - 애자일
-  - Design-Pattern
-  - 디자인패턴
-  - Refactoring
-  - 리팩토링
-  - Code-Quality
-  - 코드품질
+  - Database(데이터베이스)
+  - Agile(애자일)
+  - Design-Pattern(디자인패턴)
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
   - Modularity
-  - Book-Review
-  - 서평
-  - Conference
-  - 컨퍼런스
-  - Troubleshooting
-  - 트러블슈팅
-  - Career
-  - 커리어
-  - War
-  - 전쟁
+  - Book-Review(서평)
+  - Conference(컨퍼런스)
+  - Troubleshooting(트러블슈팅)
+  - Career(커리어)
+  - War(전쟁)
 image: "poster.png"
 draft: false
 ---

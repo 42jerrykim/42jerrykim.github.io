@@ -10,74 +10,48 @@ tags:
   - Docker
   - Kubernetes
   - DevOps
-  - Software-Architecture
-  - Microservices
-  - Deployment
-  - Open-Source
-  - Linux
-  - Windows
-  - Implementation
-  - Agile
-  - Scalability
-  - Performance
-  - Security
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Review
-  - 리뷰
+  - Software-Architecture(소프트웨어아키텍처)
+  - Microservices(마이크로서비스)
+  - Deployment(배포)
+  - Open-Source(오픈소스)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - Implementation(구현)
+  - Agile(애자일)
+  - Scalability(확장성)
+  - Performance(성능)
+  - Security(보안)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
   - Process
   - CI-CD
-  - History
-  - 역사
-  - Innovation
-  - Guide
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - History(역사)
+  - Innovation(혁신)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - 오픈소스
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
-  - Automation
-  - 자동화
-  - Monitoring
-  - 모니터링
-  - Cloud
-  - 클라우드
-  - Networking
-  - 네트워킹
-  - Backend
-  - 백엔드
+  - Automation(자동화)
+  - Monitoring(모니터링)
+  - Cloud(클라우드)
+  - Networking(네트워킹)
+  - Backend(백엔드)
   - API
-  - Testing
-  - 테스트
-  - Comparison
-  - 비교
+  - Testing(테스트)
+  - Comparison(비교)
   - Deep-Dive
   - 실습
   - Case-Study
-  - 배포
-  - 마이크로서비스
-  - 소프트웨어아키텍처
-  - 구현
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
   - Git
   - GitHub
 title: "[Docker] 컨테이너: 진정한 혁신인가?"

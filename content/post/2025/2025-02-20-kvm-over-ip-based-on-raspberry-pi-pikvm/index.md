@@ -6,86 +6,52 @@ categories:
   - KVM
   - Raspberry Pi
 tags:
-  - Open-Source
-  - 오픈소스
+  - Open-Source(오픈소스)
   - React
   - API
-  - Linux
-  - 리눅스
-  - Deployment
-  - 배포
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Implementation
-  - 구현
-  - Keyboard
-  - 키보드
-  - Hardware
-  - 하드웨어
-  - Automation
-  - 자동화
-  - Innovation
-  - 혁신
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Linux(리눅스)
+  - Deployment(배포)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Implementation(구현)
+  - Keyboard(키보드)
+  - Hardware(하드웨어)
+  - Automation(자동화)
+  - Innovation(혁신)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Self-Hosted
-  - 셀프호스팅
-  - Embedded
-  - 임베디드
-  - Performance
-  - 성능
-  - Monitoring
-  - 모니터링
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Self-Hosted(셀프호스팅)
+  - Embedded(임베디드)
+  - Performance(성능)
+  - Monitoring(모니터링)
   - DevOps
-  - Terminal
-  - 터미널
-  - Backend
-  - 백엔드
+  - Terminal(터미널)
+  - Backend(백엔드)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Gadget
-  - 가젯
+  - Gadget(가젯)
   - Beginner
   - Advanced
-  - Tree
-  - Markdown
-  - 마크다운
+  - Tree(트리)
+  - Markdown(마크다운)
 description: "PiKVM은 라즈베리 파이 기반 오픈소스 KVM over IP로, 1080P 초저지연 스트리밍·H.264·WebRTC로 BIOS 레벨 원격 제어가 가능하다. 웹 브라우저만으로 전원·콘솔·가상 미디어를 제어하며, NVMe 가상화·IPMI/Redfish 호환, DIY·상용 대비 1/10 비용으로 데이터센터급 관리 기능을 제공한다."
 image: "pikvm_webui.png"
 draft: false

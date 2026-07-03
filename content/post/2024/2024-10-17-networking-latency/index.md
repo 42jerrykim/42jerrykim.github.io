@@ -9,100 +9,62 @@ categories:
   - Technology
   - Internet
 tags:
-  - Internet
-  - 인터넷
-  - Performance
-  - 성능
-  - Networking
-  - 네트워킹
-  - Technology
-  - 기술
+  - Internet(인터넷)
+  - Performance(성능)
+  - Networking(네트워킹)
+  - Technology(기술)
   - Latency
   - Throughput
-  - Queue
-  - 큐
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Guide
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Queue(큐)
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
+  - Blog(블로그)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Monitoring
-  - 모니터링
+  - Monitoring(모니터링)
   - DevOps
-  - Backend
+  - Backend(백엔드)
   - API
   - HTTP
-  - Security
-  - 보안
-  - Scalability
-  - 확장성
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
+  - Security(보안)
+  - Scalability(확장성)
+  - Concurrency(동시성)
+  - Async(비동기)
   - Load-Balancing
-  - Linux
-  - 리눅스
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Linux(리눅스)
+  - Deployment(배포)
+  - Automation(자동화)
   - Git
   - GitHub
   - Deep-Dive
   - 실습
   - Beginner
   - Case-Study
-  - Clean-Code
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
-  - Code-Quality
-  - 코드품질
-  - Caching
-  - 캐싱
+  - Clean-Code(클린코드)
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Implementation(구현)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
+  - Caching(캐싱)
   - Python
-  - 파이썬
   - IDE
   - VSCode
 image: "wordcloud.png"

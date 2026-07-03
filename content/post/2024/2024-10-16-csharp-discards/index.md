@@ -7,86 +7,50 @@ categories:
 tags:
   - CSharp
   - .NET
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - 코드품질
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
-  - Implementation
-  - 구현
+  - Implementation(구현)
   - Best-Practices
-  - Error-Handling
-  - 에러처리
-  - Functional-Programming
-  - 함수형프로그래밍
-  - OOP
-  - 객체지향
-  - Refactoring
-  - 리팩토링
-  - Documentation
-  - 문서화
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
-  - Debugging
-  - 디버깅
-  - Optimization
-  - 최적화
-  - Performance
-  - 성능
-  - Async
-  - 비동기
-  - Compiler
-  - 컴파일러
+  - Error-Handling(에러처리)
+  - Functional-Programming(함수형프로그래밍)
+  - OOP(객체지향)
+  - Refactoring(리팩토링)
+  - Documentation(문서화)
+  - Reference(참고)
+  - Technology(기술)
+  - Blog(블로그)
+  - Education(교육)
+  - Productivity(생산성)
+  - Debugging(디버깅)
+  - Optimization(최적화)
+  - Performance(성능)
+  - Async(비동기)
+  - Compiler(컴파일러)
   - Type-Safety
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Interface
-  - 인터페이스
-  - Backend
-  - 백엔드
-  - Concurrency
-  - 동시성
-  - Testing
-  - 테스트
-  - Code-Review
-  - 코드리뷰
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
+  - Backend(백엔드)
+  - Concurrency(동시성)
+  - Testing(테스트)
+  - Code-Review(코드리뷰)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Web
-  - 웹
-  - Markdown
-  - 마크다운
-  - Graph
-  - String
+  - Comparison(비교)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Web(웹)
+  - Markdown(마크다운)
+  - Graph(그래프)
+  - String(문자열)
   - Process
   - Beginner
   - Advanced
@@ -94,8 +58,7 @@ tags:
   - Deep-Dive
   - 실습
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
 image: "wordcloud.png"
 date: 2024-10-16
 lastmod: 2026-03-17

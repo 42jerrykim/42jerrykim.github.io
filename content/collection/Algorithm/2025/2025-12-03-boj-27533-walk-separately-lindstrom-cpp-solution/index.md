@@ -2,56 +2,37 @@
 title: "[Algorithm] C++ 백준 27533번 따로 걸어가기"
 description: "토끼 부부가 격자 위에서 만나지 않고 이동하는 경로의 수를 구하는 비교차 경로(non-intersecting paths) 문제로, Lindström-Gessel-Viennot 보조정리를 사용하여 해결합니다. 조합론과 모듈로 연산을 활용한 효율적인 풀이입니다."
 tags:
-  - 조합론
-  - Combinatorics
-  - Modular-Arithmetic
+  - Combinatorics(조합론)
+  - Modular-Arithmetic(모듈러)
   - Dynamic-Programming
-  - 그래프이론
-  - Graph-Theory
-  - 수학
-  - Math
-  - 알고리즘
-  - Algorithm
-  - Graph
-  - 문제해결
-  - Problem-Solving
-  - BOJ
+  - Graph-Theory(그래프이론)
+  - Math(수학)
+  - Algorithm(알고리즘)
+  - Graph(그래프)
+  - Problem-Solving(문제해결)
+  - BOJ(백준)
   - Baekjoon
   - C++
-  - Implementation
-  - 백준
-  - Competitive-Programming
-  - 구현
-  - Time-Complexity
-  - 시간복잡도
-  - Coding-Test
-  - 코딩테스트
-  - Data-Structures
-  - 자료구조
-  - Optimization
-  - 최적화
-  - Code-Quality
-  - 코드품질
+  - Implementation(구현)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Time-Complexity(시간복잡도)
+  - Coding-Test(코딩테스트)
+  - Data-Structures(자료구조)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
   - Go
   - .NET
   - Git
   - GitHub
-  - Space-Complexity
-  - 공간복잡도
-  - Edge-Cases
-  - 엣지케이스
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Space-Complexity(공간복잡도)
+  - Edge-Cases(엣지케이스)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
 date: 2025-12-03
 lastmod: 2025-12-03
 draft: false

@@ -12,11 +12,9 @@ categories:
 - Architectural Patterns
 - Enterprise Patterns
 tags:
-- Clean-Architecture
-- Microservices
-- 소프트웨어아키텍처
-- 클린아키텍처
-- 마이크로서비스
+- Clean-Architecture(클린아키텍처)
+- Microservices(마이크로서비스)
+- Software-Architecture(소프트웨어아키텍처)
 ---
 
 Domain-Driven Design과 디자인 패턴의 융합을 탐구합니다. Aggregate, Repository, Domain Event 등 DDD 전술 패턴을 통한 비즈니스 도메인 모델링을 학습합니다.

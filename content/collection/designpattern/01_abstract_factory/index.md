@@ -9,56 +9,37 @@ image: "wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-22-abstract-factory.png
 tags:
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - GoF
   - Factory
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Encapsulation
-  - 캡슐화
-  - Dependency-Injection
-  - Software-Architecture
-  - Code-Quality
-  - 코드품질
-  - 확장성
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Encapsulation(캡슐화)
+  - Dependency-Injection(의존성주입)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Code-Quality(코드품질)
+  - Scalability(확장성)
+  - OOP(객체지향)
   - Java
   - C++
   - Python
   - CSharp
-  - Configuration
-  - 설정
+  - Configuration(설정)
   - Sci-Fi
-  - Windows
+  - Windows(윈도우)
   - Singleton
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Documentation
-  - 문서화
-  - Implementation
-  - 구현
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Documentation(문서화)
+  - Implementation(구현)
   - SOLID
-  - Polymorphism
-  - 다형성
-  - Composition
-  - 합성
-  - 의존성주입
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Education
-  - 교육
-  - Tutorial
-  - 튜토리얼
+  - Polymorphism(다형성)
+  - Composition(합성)
+  - Testing(테스트)
+  - Performance(성능)
+  - Education(교육)
+  - Tutorial(튜토리얼)
 ---
 
 

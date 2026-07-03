@@ -13,26 +13,16 @@ tags:
   - 영단어
   - 영어명사
   - esophagus
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
   - Medical-English
-  - 의학영어
-  - Academic-English
-  - 학술영어
-  - Daily-Life
-  - 일상표현
+  - Academic-English(학술영어)
+  - Daily-Life(일상표현)
   - gullet
   - throat
   - stomach
@@ -45,8 +35,7 @@ tags:
   - 의학
   - 건강
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English
@@ -54,14 +43,12 @@ tags:
   - swallowing
   - GERD
   - reflux
-  - 비교
-  - Comparison
-  - Reference
-  - Tutorial
+  - Comparison(비교)
+  - Reference(참고)
+  - Tutorial(튜토리얼)
   - Tips
   - How-To
-  - Education
-  - 교육
+  - Education(교육)
   - oesophagus
   - British spelling
   - American spelling

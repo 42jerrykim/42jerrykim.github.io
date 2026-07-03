@@ -8,56 +8,35 @@ categories:
 - String
 - Data Structures
 tags:
- - Algorithm
- - Data-Structures
- - String
- - 문자열
- - BOJ
+ - Algorithm(알고리즘)
+ - Data-Structures(자료구조)
+ - String(문자열)
+ - BOJ(백준)
  - C++
- - Binary-Search
- - Time-Complexity
- - Space-Complexity
- - Implementation
- - Competitive-Programming
- - 이분탐색
- - 백준
- - 최적화
- - 구현
- - 알고리즘
- - Problem-Solving
- - 시간복잡도
- - Coding-Test
- - 코딩테스트
- - 자료구조
- - Optimization
- - 문제해결
- - Code-Quality
- - 코드품질
+ - Binary-Search(이분탐색)
+ - Time-Complexity(시간복잡도)
+ - Space-Complexity(공간복잡도)
+ - Implementation(구현)
+ - Competitive-Programming(경쟁프로그래밍)
+ - Optimization(최적화)
+ - Problem-Solving(문제해결)
+ - Coding-Test(코딩테스트)
+ - Code-Quality(코드품질)
  - Go
  - .NET
- - Sorting
- - Memory
- - 공간복잡도
- - Edge-Cases
- - 엣지케이스
- - Testing
- - 테스트
- - Documentation
- - 문서화
+ - Sorting(정렬)
+ - Memory(메모리)
+ - Edge-Cases(엣지케이스)
+ - Testing(테스트)
+ - Documentation(문서화)
  - Best-Practices
- - Complexity-Analysis
- - 복잡도분석
- - Debugging
- - 디버깅
- - Refactoring
- - 리팩토링
- - Clean-Code
- - 클린코드
- - Performance
- - 성능
- - Pitfalls
- - 함정
- - Error-Handling
+ - Complexity-Analysis(복잡도분석)
+ - Debugging(디버깅)
+ - Refactoring(리팩토링)
+ - Clean-Code(클린코드)
+ - Performance(성능)
+ - Pitfalls(함정)
+ - Error-Handling(에러처리)
 image: "wordcloud.png"
 ---
 

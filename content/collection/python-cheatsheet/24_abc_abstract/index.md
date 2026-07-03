@@ -8,55 +8,32 @@ lastmod: 2026-01-18
 collection_order: 24
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Interface
-  - 인터페이스
-  - Inheritance
-  - 상속
-  - Polymorphism
-  - 다형성
-  - Math
-  - Design-Pattern
-  - 디자인패턴
-  - OOP
-  - 객체지향
+  - Interface(인터페이스)
+  - Inheritance(상속)
+  - Polymorphism(다형성)
+  - Math(수학)
+  - Design-Pattern(디자인패턴)
+  - OOP(객체지향)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Pitfalls(함정)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - API
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
 ---
 abc 모듈은 추상 기반 클래스(Abstract Base Class)를 정의하는 도구를 제공합니다. 이 치트시트는 ABC/abstractmethod로 인터페이스 정의, collections.abc 활용, Protocol과의 비교를 정리합니다.
 

@@ -58,7 +58,7 @@ categories:
 - 주요장르
 - 보조장르
 - 제작사명
-tags:  # 최소 50개 이상(한/영 혼합, 고유명+키워드 권장)
+tags:  # 최소 25개 이상(data/tags.yaml 승인 태그, 고유명+키워드 권장)
 - 감독명
 - 각본가명
 - 주연배우명
@@ -317,7 +317,7 @@ flowchart LR
 ## 작성 체크리스트
 
 - [ ] 폴더명이 `YYYY-MM-DD-영화제목-개봉연도-소제목-키워드` 형식인가?
-- [ ] Front Matter의 tags가 50개 이상인가?
+- [ ] Front Matter의 tags가 25개 이상인가?
 - [ ] description이 150자 내외인가?
 - [ ] 포스터 이미지(`poster.png`)가 있는가?
 - [ ] Act 5단계 구조가 명확한가?

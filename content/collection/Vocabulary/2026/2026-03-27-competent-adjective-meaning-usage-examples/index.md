@@ -12,60 +12,48 @@ tags:
   - 영단어
   - 영어형용사
   - competent
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
   - Legal-English
   - Study-English
   - Vocabulary-Building
   - EN-KR-Examples
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - skill
   - ability
   - qualification
   - expertise
   - proficiency
-  - Performance
-  - Leadership
+  - Performance(성능)
+  - 리더십
   - teamwork
-  - Communication
-  - Decision-Making
+  - 의사소통
+  - 의사결정
   - professional
   - workplace
-  - Interview
+  - 인터뷰
   - hiring
-  - Management
+  - 경영
   - standards
   - Compliance
   - authority
   - jurisdiction
-  - 법률영어
   - 업무영어
   - 시험영어
   - 실무영어
-  - Guide
-  - Tutorial
-  - Reference
-  - Comparison
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
+  - Comparison(비교)
 image: "wordcloud.png"
 ---
 

@@ -13,25 +13,16 @@ tags:
   - 영어동사
   - rev
   - rev up
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - Academic-English
-  - 학술영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
   - accelerate
   - boost
   - energize
@@ -46,21 +37,19 @@ tags:
   - 스포츠
   - 비즈니스
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English
-  - Revolution
+  - 혁명
   - revving
   - revved
   - 부스트
   - 활기
   - 속도
-  - Reference
-  - Tutorial
-  - Education
-  - 교육
+  - Reference(참고)
+  - Tutorial(튜토리얼)
+  - Education(교육)
   - TOEFL
   - IELTS
   - 회전

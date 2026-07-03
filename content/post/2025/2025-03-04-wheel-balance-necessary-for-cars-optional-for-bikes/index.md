@@ -6,112 +6,65 @@ date: 2025-03-04
 lastmod: 2026-03-17
 tags:
   - Cycling
-  - 자전거
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Comparison
-  - 비교
-  - Hardware
-  - 하드웨어
-  - Technology
-  - 기술
-  - Reference
-  - 참고
-  - Review
-  - 리뷰
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Comparison(비교)
+  - Hardware(하드웨어)
+  - Technology(기술)
+  - Reference(참고)
+  - Review(리뷰)
   - How-To
   - Tips
-  - Education
-  - 교육
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Productivity
-  - 생산성
-  - Innovation
-  - 혁신
-  - Workflow
-  - 워크플로우
-  - Blog
-  - 블로그
+  - Education(교육)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Productivity(생산성)
+  - Innovation(혁신)
+  - Workflow(워크플로우)
+  - Blog(블로그)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Science
-  - 과학
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Science(과학)
   - Case-Study
   - Deep-Dive
   - Beginner
-  - Performance
-  - 성능
+  - Performance(성능)
   - Maintainability
-  - Refactoring
-  - 리팩토링
-  - Code-Quality
-  - History
-  - 역사
-  - Gadget
-  - 가젯
-  - Migration
-  - 마이그레이션
-  - Career
-  - 커리어
-  - Markdown
-  - 마크다운
-  - Math
-  - 수학
-  - Optimization
-  - 최적화
-  - Implementation
-  - 구현
-  - Error-Handling
-  - Edge-Cases
-  - Pitfalls
-  - 함정
-  - Monitoring
-  - 모니터링
-  - Automation
-  - 자동화
-  - Networking
-  - 네트워킹
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
-  - Web
-  - 웹
-  - Mobile
-  - 모바일
-  - Cloud
-  - 클라우드
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
+  - History(역사)
+  - Gadget(가젯)
+  - Migration(마이그레이션)
+  - Career(커리어)
+  - Markdown(마크다운)
+  - Math(수학)
+  - Optimization(최적화)
+  - Implementation(구현)
+  - Error-Handling(에러처리)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Monitoring(모니터링)
+  - Automation(자동화)
+  - Networking(네트워킹)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - Web(웹)
+  - Mobile(모바일)
+  - Cloud(클라우드)
   - Git
   - GitHub
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Clean-Code
-  - 클린코드
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Clean-Code(클린코드)
   - Readability
-  - Deployment
-  - 배포
-  - Agile
-  - 애자일
-  - Self-Hosted
-  - 셀프호스팅
-  - Privacy
-  - 프라이버시
-  - Book-Review
-  - 서평
-  - Conference
-  - 컨퍼런스
-  - Culture
-  - 문화
+  - Deployment(배포)
+  - Agile(애자일)
+  - Self-Hosted(셀프호스팅)
+  - Privacy(프라이버시)
+  - Book-Review(서평)
+  - Conference(컨퍼런스)
+  - Culture(문화)
 description: "자동차와 자전거의 휠 밸런스 필요성을 속도·무게·구조로 비교하고, 공학적 계산(허용 편심 등)과 실무 우선순위를 제시한다. 자동차는 필수, 자전거는 대부분 선택인 이유와 휠 트루잉·공기압·스포크 점검 등 실용 가이드와 참고 문헌을 담았다."
 image: index.png
 ---

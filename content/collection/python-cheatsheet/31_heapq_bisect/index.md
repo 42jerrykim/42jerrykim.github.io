@@ -8,55 +8,34 @@ lastmod: 2026-01-18
 collection_order: 31
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Heap
-  - 힙
-  - Priority-Queue
-  - 우선순위큐
-  - Binary-Search
-  - Algorithm
-  - 알고리즘
-  - 자료구조
-  - Performance
-  - 성능
-  - Time-Complexity
+  - Heap(힙)
+  - Priority-Queue(우선순위큐)
+  - Binary-Search(이분탐색)
+  - Algorithm(알고리즘)
+  - Data-Structures(자료구조)
+  - Performance(성능)
+  - Time-Complexity(시간복잡도)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Pitfalls(함정)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - API
-  - Sorting
-  - Queue
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
+  - Sorting(정렬)
+  - Queue(큐)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
 ---
 heapq는 우선순위 큐를, bisect는 정렬된 리스트에서 이진 검색을 제공합니다. 이 치트시트는 최소/최대 힙, 정렬 유지 삽입, nlargest/nsmallest 패턴을 정리합니다.
 

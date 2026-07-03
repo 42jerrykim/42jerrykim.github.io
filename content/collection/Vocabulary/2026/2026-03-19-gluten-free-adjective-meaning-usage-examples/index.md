@@ -13,25 +13,16 @@ tags:
   - 영단어
   - 영어형용사
   - Gluten-Free
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English
@@ -39,7 +30,6 @@ tags:
   - 식품 라벨
   - diet
   - 식단
-  - Health
   - 건강
   - celiac disease
   - 셀리악
@@ -59,12 +49,11 @@ tags:
   - 영양
   - special diet
   - 특수 식단
-  - Reference
-  - Tutorial
+  - Reference(참고)
+  - Tutorial(튜토리얼)
   - Tips
   - How-To
-  - Education
-  - 교육
+  - Education(교육)
   - 글루텐 없는
   - 글루텐 프리
   - 무글루텐

@@ -7,16 +7,13 @@ title: "[Clean Architecture] 05. 클린 아키텍처의 탄생"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
+  - Clean-Architecture(클린아키텍처)
   - SOLID
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - Clean-Code
-  - Dependency-Injection
-  - 의존성주입
-  - Testing
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
+  - Dependency-Injection(의존성주입)
+  - Testing(테스트)
 ---
 
 2012년 8월 13일, 로버트 C. 마틴(Robert C. Martin)은 자신의 블로그 "The Clean Code Blog"에 "The Clean Architecture"라는 제목의 글을 게시했다. 이 글은 육각형 아키텍처, 양파 아키텍처, BCE(Boundary-Control-Entity) 등 기존 아키텍처 패턴들의 공통점을 추출하여 하나의 통합된 개념으로 정리했다. 이것이 Clean Architecture의 공식적인 탄생이었다.

@@ -12,29 +12,18 @@ tags:
   - 영단어
   - 영어동사
   - compensate
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
   - EN-KR-Examples
-  - Context
-  - 맥락
+  - Context(맥락)
   - compensation
   - offset
   - make up for
@@ -45,15 +34,11 @@ tags:
   - insurance
   - Finance
   - Accounting
-  - Productivity
-  - 생산성
-  - Psychology
-  - 심리학
-  - Career
-  - 커리어
-  - Education
-  - 교육
-  - Communication
+  - Productivity(생산성)
+  - Psychology(심리학)
+  - Career(커리어)
+  - Education(교육)
+  - 의사소통
   - negotiation
   - workplace
   - Legal-English
@@ -61,11 +46,11 @@ tags:
   - Usage-Notes
   - Study-English
   - Vocabulary-Building
-  - Tutorial
-  - Guide
-  - Reference
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Tips
-  - Comparison
+  - Comparison(비교)
 image: "wordcloud.png"
 ---
 

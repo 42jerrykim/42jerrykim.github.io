@@ -8,79 +8,46 @@ redirect_from:
   - /2018/12/06/
 title: "[Hardware] LattePanda Alpha에 Ubuntu 16.04 LTS 설치 가이드"
 tags:
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
-  - Hardware
-  - 하드웨어
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - Hardware(하드웨어)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - How-To
   - Tips
-  - Security
-  - 보안
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Open-Source
-  - 오픈소스
-  - Documentation
-  - 문서화
+  - Security(보안)
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Open-Source(오픈소스)
+  - Documentation(문서화)
   - DevOps
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - OS
-  - 운영체제
-  - Embedded
-  - 임베디드
-  - Technology
-  - 기술
-  - Reference
-  - 참고
+  - Deployment(배포)
+  - Automation(자동화)
+  - OS(운영체제)
+  - Embedded(임베디드)
+  - Technology(기술)
+  - Reference(참고)
   - Best-Practices
   - Beginner
-  - Education
-  - 교육
-  - Workflow
-  - 워크플로우
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Web
-  - 웹
-  - Networking
-  - 네트워킹
-  - Productivity
-  - 생산성
-  - Innovation
-  - 혁신
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Gadget
-  - 가젯
-  - Terminal
-  - 터미널
-  - Shell
-  - 셸
+  - Education(교육)
+  - Workflow(워크플로우)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Web(웹)
+  - Networking(네트워킹)
+  - Productivity(생산성)
+  - Innovation(혁신)
+  - Comparison(비교)
+  - Career(커리어)
+  - Gadget(가젯)
+  - Terminal(터미널)
+  - Shell(셸)
   - File-System
-  - Clean-Code
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
+  - Clean-Code(클린코드)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Performance(성능)
   - Case-Study
   - 실습
   - Deep-Dive
@@ -91,24 +58,17 @@ tags:
   - Docker
   - Kubernetes
   - AWS
-  - Cloud
-  - 클라우드
-  - Mobile
-  - 모바일
+  - Cloud(클라우드)
+  - Mobile(모바일)
   - CPU
-  - Memory
-  - 메모리
+  - Memory(메모리)
   - Process
   - HTTP
   - API
-  - Database
-  - 데이터베이스
-  - Review
-  - 리뷰
-  - Algorithm
-  - 알고리즘
+  - Database(데이터베이스)
+  - Review(리뷰)
+  - Algorithm(알고리즘)
   - Python
-  - 파이썬
   - JavaScript
   - Go
   - C
@@ -132,71 +92,45 @@ tags:
   - Terraform
   - Ansible
   - CI-CD
-  - Monitoring
-  - 모니터링
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
-  - Logging
-  - 로깅
-  - Code-Quality
-  - 코드품질
+  - Monitoring(모니터링)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
+  - Logging(로깅)
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
   - Modularity
-  - Design-Pattern
-  - 디자인패턴
-  - OOP
-  - 객체지향
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Inheritance
-  - 상속
-  - Composition
-  - 합성
-  - Dependency-Injection
-  - 의존성주입
-  - Refactoring
-  - 리팩토링
-  - Code-Review
-  - 코드리뷰
+  - Design-Pattern(디자인패턴)
+  - OOP(객체지향)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Inheritance(상속)
+  - Composition(합성)
+  - Dependency-Injection(의존성주입)
+  - Refactoring(리팩토링)
+  - Code-Review(코드리뷰)
   - TDD
-  - Agile
-  - 애자일
+  - Agile(애자일)
   - Scrum
-  - Microservices
-  - 마이크로서비스
+  - Microservices(마이크로서비스)
   - REST
   - GraphQL
   - WebSocket
-  - Caching
-  - 캐싱
-  - Scalability
-  - 확장성
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
+  - Caching(캐싱)
+  - Scalability(확장성)
+  - Concurrency(동시성)
+  - Async(비동기)
   - Latency
   - Throughput
   - Load-Balancing
   - Message-Queue
-  - Authentication
-  - 인증
+  - Authentication(인증)
   - SEO
-  - Frontend
-  - 프론트엔드
-  - Backend
-  - 백엔드
+  - Frontend(프론트엔드)
+  - Backend(백엔드)
   - JSON
   - XML
   - YAML
@@ -208,31 +142,22 @@ tags:
   - Scala
   - Lua
   - Assembly
-  - Compiler
-  - 컴파일러
+  - Compiler(컴파일러)
   - Thread
   - IO
   - Cache
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - Science
-  - 과학
-  - Internet
-  - 인터넷
-  - Privacy
-  - 프라이버시
-  - Self-Hosted
-  - 셀프호스팅
+  - History(역사)
+  - Culture(문화)
+  - Science(과학)
+  - Internet(인터넷)
+  - Privacy(프라이버시)
+  - Self-Hosted(셀프호스팅)
   - Jekyll
   - Hugo
-  - Domain
-  - 도메인
+  - Domain(도메인)
   - ChatGPT
   - LLM
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
+  - Prompt-Engineering(프롬프트엔지니어링)
   - Tmux
   - Unzip
   - Compression
@@ -241,41 +166,25 @@ tags:
   - iOS
   - Samsung
   - Tablet
-  - 태블릿
-  - Keyboard
-  - 키보드
+  - Keyboard(키보드)
   - Watch
-  - 시계
   - Speaker
-  - 스피커
-  - Photography
-  - 사진
-  - Gaming
-  - 게임
+  - Photography(사진)
+  - Gaming(게임)
   - Cycling
-  - 자전거
-  - Brand
-  - 브랜드
-  - Conference
-  - 컨퍼런스
-  - Book-Review
-  - 서평
-  - Cheatsheet
-  - 치트시트
+  - Brand(브랜드)
+  - Conference(컨퍼런스)
+  - Book-Review(서평)
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - Advanced
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
-  - Profiling
-  - 프로파일링
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
+  - Profiling(프로파일링)
   - Benchmark
-  - Optimization
-  - 최적화
+  - Optimization(최적화)
   - Type-Safety
-  - Clean-Architecture
-  - 클린아키텍처
+  - Clean-Architecture(클린아키텍처)
   - SOLID
   - Domain-Driven-Design
   - Event-Driven
@@ -293,83 +202,49 @@ tags:
   - Builder
   - Iterator
   - UML
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
-  - Functional-Programming
-  - 함수형프로그래밍
-  - Problem-Solving
-  - 문제해결
-  - Coding-Test
-  - 코딩테스트
-  - Competitive-Programming
-  - 경쟁프로그래밍
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Data-Structures
-  - 자료구조
-  - Array
-  - 배열
-  - Graph
-  - 그래프
-  - Tree
-  - 트리
-  - String
-  - 문자열
-  - Math
-  - 수학
-  - Simulation
-  - 시뮬레이션
-  - Greedy
-  - 그리디
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Functional-Programming(함수형프로그래밍)
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Data-Structures(자료구조)
+  - Array(배열)
+  - Graph(그래프)
+  - Tree(트리)
+  - String(문자열)
+  - Math(수학)
+  - Simulation(시뮬레이션)
+  - Greedy(그리디)
   - Dynamic-Programming
-  - DP
-  - 동적계획법
-  - Binary-Search
-  - 이분탐색
+  - DP(동적계획법)
+  - Binary-Search(이분탐색)
   - BFS
   - DFS
-  - Sorting
-  - 정렬
-  - Recursion
-  - 재귀
+  - Sorting(정렬)
+  - Recursion(재귀)
   - Backtracking
-  - 백트래킹
-  - Brute-Force
-  - 완전탐색
-  - Divide-and-Conquer
-  - 분할정복
-  - Graph-Theory
-  - 그래프이론
-  - Number-Theory
-  - 정수론
-  - Combinatorics
-  - 조합론
-  - Hashing
-  - 해싱
-  - Stack
-  - 스택
-  - Queue
-  - 큐
-  - Heap
-  - 힙
+  - Brute-Force(완전탐색)
+  - Divide-and-Conquer(분할정복)
+  - Graph-Theory(그래프이론)
+  - Number-Theory(정수론)
+  - Combinatorics(조합론)
+  - Hashing(해싱)
+  - Stack(스택)
+  - Queue(큐)
+  - Heap(힙)
   - Set
   - Map
   - Hash-Map
   - Trie
   - Prefix-Sum
-  - Segment-Tree
-  - 세그먼트트리
+  - Segment-Tree(세그먼트트리)
   - Binary-Indexed-Tree
-  - Shortest-Path
-  - 최단경로
+  - Shortest-Path(최단경로)
   - Dijkstra
   - MST
-  - 최소신장트리
-  - Topological-Sort
   - 위상정렬
   - DSU
   - Disjoint-Set
@@ -378,16 +253,12 @@ tags:
   - Range-Query
   - Memoization
   - Lazy-Propagation
-  - Modular-Arithmetic
-  - 모듈러
-  - Matrix
-  - 행렬
+  - Modular-Arithmetic(모듈러)
+  - Matrix(행렬)
   - Geometry
-  - 기하학
   - Convex-Hull
   - Sweep-Line
-  - Coordinate-Compression
-  - 좌표압축
+  - Coordinate-Compression(좌표압축)
   - LCA
   - Euler-Tour
   - Game-Theory
@@ -399,13 +270,11 @@ tags:
   - Heavy-Light-Decomposition
   - Mo-Algorithm
   - Persistent-Structure
-  - BOJ
-  - 백준
+  - BOJ(백준)
   - Baekjoon
   - ICPC
   - USACO
-  - Editorial
-  - 에디토리얼
+  - Editorial(에디토리얼)
 image: "wordcloud.png"
 ---
 

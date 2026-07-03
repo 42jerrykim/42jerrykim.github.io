@@ -11,92 +11,58 @@ tags:
   - gRPC
   - Protobuf
   - API
-  - Backend
-  - 백엔드
+  - Backend(백엔드)
   - CSharp
   - .NET
   - Best-Practices
-  - Deployment
-  - 배포
-  - Networking
-  - 네트워킹
-  - Microservices
-  - 마이크로서비스
+  - Deployment(배포)
+  - Networking(네트워킹)
+  - Microservices(마이크로서비스)
   - JSON
-  - Documentation
-  - 문서화
-  - Error-Handling
-  - 에러처리
-  - Code-Quality
-  - 코드품질
+  - Documentation(문서화)
+  - Error-Handling(에러처리)
+  - Code-Quality(코드품질)
   - Maintainability
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
   - Git
   - CI-CD
   - DevOps
-  - Testing
-  - 테스트
-  - Clean-Code
-  - 클린코드
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
+  - Testing(테스트)
+  - Clean-Code(클린코드)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Technology
-  - 기술
-  - Troubleshooting
-  - 트러블슈팅
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Interface
-  - 인터페이스
+  - Comparison(비교)
+  - Technology(기술)
+  - Troubleshooting(트러블슈팅)
+  - Productivity(생산성)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Interface(인터페이스)
   - REST
   - HTTP
-  - Automation
-  - 자동화
-  - Monitoring
-  - 모니터링
-  - Problem-Solving
-  - 문제해결
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
+  - Automation(자동화)
+  - Monitoring(모니터링)
+  - Problem-Solving(문제해결)
+  - Blog(블로그)
+  - Markdown(마크다운)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Web
-  - 웹
-  - Career
-  - 커리어
-  - Review
-  - 리뷰
+  - Web(웹)
+  - Career(커리어)
+  - Review(리뷰)
   - Type-Safety
-  - Refactoring
-  - 리팩토링
-  - Performance
-  - 성능
+  - Refactoring(리팩토링)
+  - Performance(성능)
 image: "wordcloud.png"
 draft: false
 ---

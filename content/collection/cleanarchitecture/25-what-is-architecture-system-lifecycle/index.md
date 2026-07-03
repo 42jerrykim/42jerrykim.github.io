@@ -7,22 +7,16 @@ title: "[Clean Architecture] 25. 아키텍처란?"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Implementation
-  - Deployment
-  - 배포
-  - 코드품질
-  - Security
-  - Database
-  - 데이터베이스
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Implementation(구현)
+  - Deployment(배포)
+  - Code-Quality(코드품질)
+  - Security(보안)
+  - Database(데이터베이스)
   - CI-CD
-  - Scalability
-  - 확장성
-  - Performance
-  - 성능
+  - Scalability(확장성)
+  - Performance(성능)
 ---
 
 소프트웨어 아키텍처란 무엇인가? 마틴은 아키텍처를 시스템의 **형태를 결정**하고, 시스템의 **생명주기를 지원**하는 것으로 정의한다.

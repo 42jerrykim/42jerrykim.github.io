@@ -8,55 +8,35 @@ lastmod: 2026-01-18
 collection_order: 51
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - OS
-  - 운영체제
-  - Graph
-  - Design-Pattern
+  - OS(운영체제)
+  - Graph(그래프)
+  - Design-Pattern(디자인패턴)
   - Best-Practices
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Git
   - GitHub
-  - Recursion
+  - Recursion(재귀)
   - Sci-Fi
   - Process
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
 ---
 `os` 모듈은 **운영체제와 상호작용**하는 기능을 제공합니다. 파일 시스템 조작, 환경 변수, 프로세스 정보 등을 다룹니다. 경로 처리는 `pathlib`을 권장하지만, `os`도 여전히 유용합니다.
 

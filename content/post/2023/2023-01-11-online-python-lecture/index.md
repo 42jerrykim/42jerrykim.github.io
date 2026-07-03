@@ -8,130 +8,76 @@ header:
 title: "[Tutorial] futurecoder - 초보자용 파이썬 무료·오픈소스 인터랙티브 강의"
 tags:
   - Python
-  - 파이썬
-  - Open-Source
-  - 오픈소스
-  - Education
-  - 교육
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Open-Source(오픈소스)
+  - Education(교육)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - Beginner
-  - Review
-  - 리뷰
-  - Web
-  - 웹
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
+  - Review(리뷰)
+  - Web(웹)
+  - Debugging(디버깅)
+  - Testing(테스트)
   - 실습
-  - Data-Structures
-  - 자료구조
-  - OOP
-  - 객체지향
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
+  - Data-Structures(자료구조)
+  - OOP(객체지향)
+  - Reference(참고)
+  - Comparison(비교)
   - How-To
   - Tips
-  - Career
-  - 커리어
-  - Productivity
-  - 생산성
-  - Technology
-  - 기술
-  - Innovation
-  - 혁신
-  - Documentation
-  - 문서화
+  - Career(커리어)
+  - Productivity(생산성)
+  - Technology(기술)
+  - Innovation(혁신)
+  - Documentation(문서화)
   - Best-Practices
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Problem-Solving
-  - 문제해결
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Problem-Solving(문제해결)
   - Git
   - GitHub
   - IDE
-  - Markdown
-  - 마크다운
-  - Blog
-  - 블로그
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
-  - Cloud
-  - 클라우드
+  - Markdown(마크다운)
+  - Blog(블로그)
+  - Workflow(워크플로우)
+  - Configuration(설정)
+  - Cloud(클라우드)
   - API
   - HTTP
-  - Networking
-  - 네트워킹
-  - Agile
-  - 애자일
+  - Networking(네트워킹)
+  - Agile(애자일)
   - TDD
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Algorithm
-  - 알고리즘
-  - Array
-  - 배열
-  - String
-  - 문자열
-  - Error-Handling
-  - 에러처리
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Algorithm(알고리즘)
+  - Array(배열)
+  - String(문자열)
+  - Error-Handling(에러처리)
   - Readability
-  - Recursion
-  - 재귀
-  - Code-Review
-  - 코드리뷰
-  - Performance
-  - 성능
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Recursion(재귀)
+  - Code-Review(코드리뷰)
+  - Performance(성능)
+  - Deployment(배포)
+  - Automation(자동화)
   - VSCode
-  - Terminal
-  - 터미널
-  - Frontend
-  - 프론트엔드
-  - Backend
-  - 백엔드
-  - Security
-  - 보안
-  - Pitfalls
-  - 함정
+  - Terminal(터미널)
+  - Frontend(프론트엔드)
+  - Backend(백엔드)
+  - Security(보안)
+  - Pitfalls(함정)
   - Maintainability
-  - Abstraction
-  - 추상화
-  - Design-Pattern
-  - 디자인패턴
-  - Time-Complexity
-  - 시간복잡도
-  - Coding-Test
-  - 코딩테스트
-  - Stack
-  - 스택
-  - Queue
-  - 큐
-  - Internet
-  - 인터넷
-  - Science
-  - 과학
-  - History
-  - 역사
+  - Abstraction(추상화)
+  - Design-Pattern(디자인패턴)
+  - Time-Complexity(시간복잡도)
+  - Coding-Test(코딩테스트)
+  - Stack(스택)
+  - Queue(큐)
+  - Internet(인터넷)
+  - Science(과학)
+  - History(역사)
   - Case-Study
   - Deep-Dive
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
 ---
 
 프로그래밍을 처음 배울 때 **어디서부터 어떻게** 시작할지 고민하는 경우가 많다. 서적, 유튜브, 유료 플랫폼까지 선택지가 넓지만, **무료이면서도 손으로 직접 타이핑하고 실행해 보는 경험**을 주는 도구는 생각보다 많지 않다. 이 글에서는 **futurecoder**를 소개한다. futurecoder는 **완전 무료**이자 **오픈소스**인 온라인 파이썬 학습 플랫폼으로, 초보자가 조건문·반복문·자료구조 등 기초 코딩을 **실습 중심**으로 익힐 수 있게 설계되어 있다.

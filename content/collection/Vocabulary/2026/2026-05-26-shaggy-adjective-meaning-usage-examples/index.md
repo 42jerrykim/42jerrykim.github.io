@@ -12,22 +12,14 @@ tags:
   - 영단어
   - shaggy
   - 영어형용사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
   - unkempt
   - disheveled
   - tousled
@@ -56,22 +48,15 @@ tags:
   - 우스운이야기
   - humor
   - 유머
-  - Education
-  - 교육
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Education(교육)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Beginner
   - Advanced
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - Academic-English
-  - 학술영어
+  - History(역사)
+  - Culture(문화)
+  - Academic-English(학술영어)
   - Tips
   - How-To
 image: "wordcloud.png"

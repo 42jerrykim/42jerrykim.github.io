@@ -8,113 +8,66 @@ categories:
   - Mathematics
   - Logic
 tags:
-  - Algorithm
-  - 알고리즘
-  - Math
-  - 수학
-  - Functional-Programming
-  - 함수형프로그래밍
-  - Implementation
-  - 구현
-  - History
-  - 역사
-  - Science
-  - 과학
-  - Education
-  - 교육
-  - Technology
-  - 기술
-  - AI
-  - 인공지능
-  - Machine-Learning
-  - 머신러닝
-  - Compiler
-  - 컴파일러
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Algorithm(알고리즘)
+  - Math(수학)
+  - Functional-Programming(함수형프로그래밍)
+  - Implementation(구현)
+  - History(역사)
+  - Science(과학)
+  - Education(교육)
+  - Technology(기술)
+  - AI(인공지능)
+  - Machine-Learning(머신러닝)
+  - Compiler(컴파일러)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Innovation
-  - 혁신
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Review
-  - 리뷰
-  - Problem-Solving
-  - 문제해결
-  - Data-Structures
-  - 자료구조
-  - Code-Quality
-  - 코드품질
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
+  - Documentation(문서화)
+  - Innovation(혁신)
+  - Blog(블로그)
+  - Web(웹)
+  - Review(리뷰)
+  - Problem-Solving(문제해결)
+  - Data-Structures(자료구조)
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
   - JavaScript
   - Python
   - Git
   - GitHub
-  - Backend
-  - 백엔드
-  - Database
-  - 데이터베이스
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Concurrency
-  - 동시성
-  - Deep-Learning
-  - 딥러닝
-  - Memory
-  - 메모리
+  - Backend(백엔드)
+  - Database(데이터베이스)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Concurrency(동시성)
+  - Deep-Learning(딥러닝)
+  - Memory(메모리)
   - CPU
-  - OS
-  - 운영체제
-  - Recursion
-  - 재귀
-  - Abstraction
-  - 추상화
-  - Career
-  - 커리어
-  - Culture
-  - 문화
-  - Comparison
-  - 비교
+  - OS(운영체제)
+  - Recursion(재귀)
+  - Abstraction(추상화)
+  - Career(커리어)
+  - Culture(문화)
+  - Comparison(비교)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Performance
-  - 성능
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Performance(성능)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Graph
-  - 그래프
-  - Markdown
-  - 마크다운
+  - Graph(그래프)
+  - Markdown(마크다운)
 image: "Alonzo_Church.jpg"
 draft: false
 ---

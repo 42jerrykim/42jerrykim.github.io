@@ -13,12 +13,10 @@ categories:
 - Pattern Theory
 tags:
 - GoF
-- Software-Architecture
+- Software-Architecture(소프트웨어아키텍처)
 - SOLID
-- Code-Quality
-- 소프트웨어아키텍처
-- Design-Pattern
-- 코드품질
+- Code-Quality(코드품질)
+- Design-Pattern(디자인패턴)
 ---
 
 GoF 패턴을 체계적으로 분석하고 평가하는 과학적 방법론을 제시합니다. Intent 분석부터 Trade-off 평가까지, 패턴의 본질을 꿰뚫어보는 전문가적 사고 과정을 학습합니다.

@@ -13,15 +13,11 @@ categories:
 - Practice
 - Efficiency
 tags:
-- Profiling
-- Tutorial
-- Implementation
-- Design-Pattern
-- Software-Architecture
-- 프로파일링
-- 구현
-- 디자인패턴
-- 소프트웨어아키텍처
+- Profiling(프로파일링)
+- Tutorial(튜토리얼)
+- Implementation(구현)
+- Design-Pattern(디자인패턴)
+- Software-Architecture(소프트웨어아키텍처)
 ---
 
 이 실습에서는 성능 벤치마크 작성, 메모리 효율적인 패턴 구현, JIT 최적화 분석을 직접 수행합니다.

@@ -10,56 +10,34 @@ categories:
   - Family
   - Warner Bros
 tags:
-  - 판타지
-  - Fantasy
-  - 코미디
-  - Comedy
-  - Movie
-  - 영화
-  - Review
-  - 리뷰
-  - Adventure
-  - Family
+  - Fantasy(판타지)
+  - Comedy(코미디)
+  - Movie(영화)
+  - Review(리뷰)
+  - Adventure(모험)
+  - Family(가족)
   - Drama
-  - Thriller
-  - 스릴러
-  - Action
-  - 액션
+  - Thriller(스릴러)
+  - Action(액션)
   - Sci-Fi
-  - Animation
-  - 애니메이션
-  - Romance
-  - 로맨스
-  - War
-  - 전쟁
-  - Gaming
-  - 게임
-  - Cinematography
-  - 촬영기법
-  - Soundtrack
-  - 사운드트랙
-  - 가족
-  - Biography
-  - 전기영화
-  - Visual-Effects
-  - 시각효과
-  - Documentary
-  - 다큐멘터리
-  - Crime
-  - 범죄
-  - Mystery
-  - 미스터리
-  - 모험
-  - Horror
-  - 공포
+  - Animation(애니메이션)
+  - Romance(로맨스)
+  - War(전쟁)
+  - Gaming(게임)
+  - Cinematography(촬영기법)
+  - Soundtrack(사운드트랙)
+  - Biography(전기영화)
+  - Visual-Effects(시각효과)
+  - Documentary(다큐멘터리)
+  - Crime(범죄)
+  - Mystery(미스터리)
+  - Horror(공포)
   - 2020s
   - 2010s
   - 2000s
-  - Culture
-  - 문화
-  - History
-  - 역사
-  - Technology
+  - Culture(문화)
+  - History(역사)
+  - Technology(기술)
 draft: false
 ---
 

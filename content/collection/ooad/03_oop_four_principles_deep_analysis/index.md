@@ -6,38 +6,28 @@ lastmod: 2026-01-17
 collection_order: 3
 draft: true
 tags:
-  - OOP
-  - Abstraction
-  - 추상화
-  - Encapsulation
-  - 캡슐화
-  - Inheritance
-  - 상속
-  - Polymorphism
-  - 다형성
-  - Interface
-  - 인터페이스
-  - Software-Architecture
-  - 응집도
-  - 결합도
-  - Composition
-  - Combinatorics
+  - OOP(객체지향)
+  - Abstraction(추상화)
+  - Encapsulation(캡슐화)
+  - Inheritance(상속)
+  - Polymorphism(다형성)
+  - Interface(인터페이스)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Cohesion(응집도)
+  - Coupling(결합도)
+  - Composition(합성)
+  - Combinatorics(조합론)
   - SOLID
-  - Refactoring
-  - 리팩토링
-  - 테스트
-  - Testing
-  - Code-Quality
-  - 코드품질
-  - 확장성
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
+  - Scalability(확장성)
   - Factory
   - Template-Method
-  - Clean-Code
-  - 클린코드
+  - Clean-Code(클린코드)
   - UML
-  - 소프트웨어아키텍처
   - TDD
-  - Microservices
+  - Microservices(마이크로서비스)
 ---
 
 # 03. 객체지향 4대 원칙 심층 분석

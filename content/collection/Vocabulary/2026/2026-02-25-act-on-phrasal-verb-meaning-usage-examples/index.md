@@ -12,30 +12,18 @@ tags:
   - 영단어
   - act on
   - Phrasal-Verb
-  - 구동사
   - 영어동사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
   - Medical-English
-  - 의학영어
   - follow advice
   - take action
   - 행동하다
@@ -53,35 +41,24 @@ tags:
   - 명령
   - decision
   - 결정
-  - Tutorial
-  - 튜토리얼
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
+  - Tutorial(튜토리얼)
+  - Education(교육)
+  - Reference(참고)
+  - Comparison(비교)
   - Tips
   - How-To
-  - Context
-  - 맥락
+  - Context(맥락)
   - Usage-Notes
   - EN-KR-Examples
   - TOEFL
   - IELTS
-  - Action
-  - 액션
-  - Performance
-  - Science
-  - 과학
-  - Psychology
-  - 심리학
-  - Technology
-  - 기술
-  - Guide
-  - 가이드
-  - Documentation
-  - 문서화
+  - Action(액션)
+  - Performance(성능)
+  - Science(과학)
+  - Psychology(심리학)
+  - Technology(기술)
+  - Guide(가이드)
+  - Documentation(문서화)
   - Best-Practices
   - Beginner
   - Advanced

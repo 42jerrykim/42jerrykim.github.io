@@ -7,93 +7,62 @@ draft: false
 categories: null
 image: https://miro.medium.com/v2/resize:fit:1400/format:webp/1*5h5WIpLjdlh2Iiu_WG2_AA.jpeg
 tags:
-  - Networking
-  - 네트워킹
+  - Networking(네트워킹)
   - API
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - Microservices
-  - 마이크로서비스
+  - Web(웹)
+  - Backend(백엔드)
+  - Microservices(마이크로서비스)
   - Load-Balancing
-  - Scalability
-  - 확장성
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Security
-  - 보안
-  - Authentication
-  - 인증
-  - Caching
-  - 캐싱
+  - Scalability(확장성)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Security(보안)
+  - Authentication(인증)
+  - Caching(캐싱)
   - HTTP
   - REST
   - DevOps
-  - Deployment
-  - 배포
+  - Deployment(배포)
   - Kubernetes
   - Docker
   - AWS
-  - Cloud
-  - 클라우드
-  - Performance
-  - 성능
+  - Cloud(클라우드)
+  - Performance(성능)
   - Latency
   - Throughput
-  - Concurrency
-  - 동시성
-  - Monitoring
-  - 모니터링
-  - Troubleshooting
-  - 트러블슈팅
+  - Concurrency(동시성)
+  - Monitoring(모니터링)
+  - Troubleshooting(트러블슈팅)
   - Best-Practices
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - Proxy
   - Facade
   - Adapter
-  - Comparison
-  - 비교
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Reference
-  - 참고
-  - Documentation
-  - 문서화
+  - Comparison(비교)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
+  - Documentation(문서화)
   - Case-Study
   - Deep-Dive
-  - Technology
-  - 기술
-  - Innovation
-  - 혁신
-  - Configuration
-  - 설정
-  - Error-Handling
-  - 에러처리
-  - Logging
-  - 로깅
+  - Technology(기술)
+  - Innovation(혁신)
+  - Configuration(설정)
+  - Error-Handling(에러처리)
+  - Logging(로깅)
   - Nginx
   - Apache
   - Message-Queue
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
+  - Interface(인터페이스)
+  - Abstraction(추상화)
   - Modularity
   - Maintainability
-  - Open-Source
-  - 오픈소스
+  - Open-Source(오픈소스)
   - How-To
   - Tips
   - Beginner
   - Advanced
-  - Education
-  - 교육
-  - Blog
-  - 블로그
+  - Education(교육)
+  - Blog(블로그)
 ---
 
 ## 개요

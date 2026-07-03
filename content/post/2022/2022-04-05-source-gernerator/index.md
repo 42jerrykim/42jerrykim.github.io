@@ -8,94 +8,59 @@ header:
 tags:
   - CSharp
   - .NET
-  - OOP
+  - OOP(객체지향)
   - API
-  - String
+  - String(문자열)
   - Builder
-  - Design-Pattern
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Security
-  - Guide
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Design-Pattern(디자인패턴)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Security(보안)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Backend
-  - 백엔드
-  - Compiler
-  - 컴파일러
-  - Automation
-  - 자동화
-  - Performance
-  - 성능
-  - Code-Quality
-  - 코드품질
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Backend(백엔드)
+  - Compiler(컴파일러)
+  - Automation(자동화)
+  - Performance(성능)
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
   - Type-Safety
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
+  - Implementation(구현)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
   - Modularity
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Software-Architecture(소프트웨어아키텍처)
   - Maintainability
   - Beginner
   - Deep-Dive
   - 실습
-  - Optimization
-  - 최적화
-  - Error-Handling
-  - 에러처리
+  - Optimization(최적화)
+  - Error-Handling(에러처리)
   - Readability
-  - Code-Review
-  - 코드리뷰
+  - Code-Review(코드리뷰)
   - Case-Study
-  - Hardware
-  - 하드웨어
+  - Hardware(하드웨어)
 title: "[C#] Source Generator 개요와 Hello World 예제"
 ---
 

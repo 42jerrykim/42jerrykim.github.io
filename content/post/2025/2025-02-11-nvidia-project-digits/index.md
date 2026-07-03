@@ -6,106 +6,62 @@ categories:
   - NVIDIA
   - Technology
 tags:
-  - AI
-  - 인공지능
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
+  - AI(인공지능)
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
   - LLM
-  - Data-Science
-  - 데이터사이언스
-  - Technology
-  - 기술
-  - Hardware
-  - 하드웨어
+  - Data-Science(데이터사이언스)
+  - Technology(기술)
+  - Hardware(하드웨어)
   - Git
   - GitHub
-  - Linux
-  - 리눅스
-  - Memory
-  - 메모리
-  - Deployment
-  - 배포
-  - Blog
-  - 블로그
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Innovation
-  - 혁신
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Linux(리눅스)
+  - Memory(메모리)
+  - Deployment(배포)
+  - Blog(블로그)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Innovation(혁신)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Cloud
-  - 클라우드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Scalability
-  - 확장성
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Cloud(클라우드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Scalability(확장성)
   - DevOps
-  - Automation
-  - 자동화
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
+  - Automation(자동화)
+  - Networking(네트워킹)
+  - Security(보안)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Productivity
-  - 생산성
-  - Markdown
-  - 마크다운
-  - Web
-  - 웹
+  - Software-Architecture(소프트웨어아키텍처)
+  - Productivity(생산성)
+  - Markdown(마크다운)
+  - Web(웹)
   - Docker
   - Kubernetes
-  - Testing
-  - 테스트
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Clean-Code
-  - 클린코드
-  - Design-Pattern
-  - 디자인패턴
-  - Gadget
-  - 가젯
-  - Science
-  - 과학
-  - History
-  - 역사
-  - Culture
-  - 문화
+  - Testing(테스트)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Clean-Code(클린코드)
+  - Design-Pattern(디자인패턴)
+  - Gadget(가젯)
+  - Science(과학)
+  - History(역사)
+  - Culture(문화)
   - Beginner
   - Advanced
 image: "nvidia-project-digits-exploded-vew-ari-22.png"

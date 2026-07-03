@@ -8,85 +8,50 @@ date: 2025-02-28
 lastmod: 2026-03-17
 draft: false
 tags:
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Review
-  - 리뷰
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Innovation
-  - 혁신
-  - Blog
-  - 블로그
-  - Reference
-  - 참고
-  - Science
-  - 과학
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Hardware
-  - 하드웨어
-  - Mobile
-  - 모바일
-  - Networking
-  - 네트워킹
-  - Web
-  - 웹
+  - History(역사)
+  - Culture(문화)
+  - Technology(기술)
+  - Education(교육)
+  - Review(리뷰)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Innovation(혁신)
+  - Blog(블로그)
+  - Reference(참고)
+  - Science(과학)
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
+  - Networking(네트워킹)
+  - Web(웹)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Documentation
-  - 문서화
+  - Comparison(비교)
+  - Documentation(문서화)
   - Best-Practices
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Migration
-  - 마이그레이션
-  - Markdown
-  - 마크다운
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Migration(마이그레이션)
+  - Markdown(마크다운)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Documentary
-  - 다큐멘터리
-  - Brand
-  - 브랜드
-  - Musical
-  - 뮤지컬
-  - Performance
-  - Conference
-  - 컨퍼런스
-  - Book-Review
-  - 서평
-  - Photography
-  - 사진
-  - Gaming
-  - 게임
-  - Psychology
-  - 심리학
-  - Internet
-  - 인터넷
-  - AI
-  - 인공지능
+  - Documentary(다큐멘터리)
+  - Brand(브랜드)
+  - Musical(뮤지컬)
+  - Performance(성능)
+  - Conference(컨퍼런스)
+  - Book-Review(서평)
+  - Photography(사진)
+  - Gaming(게임)
+  - Psychology(심리학)
+  - Internet(인터넷)
+  - AI(인공지능)
 description: "비트박스는 입과 성대로 드럼·효과음을 만드는 보컬 퍼커션이다. 1980년대 뉴욕 힙합에서 태동해 한국에서는 TTL 광고로 대중화되었고, WING의 Dopamine처럼 독립 장르·디지털 프로덕션으로 진화했다. 기원, 기법 변천, 매체·한국 씬, 미래 전망까지 정리한 개설."
 image: index.png
 ---

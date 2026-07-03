@@ -7,17 +7,14 @@ title: "[Clean Architecture] 37. 서비스: 아키텍처 경계인가?"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - 마이크로서비스
-  - Networking
-  - Performance
-  - Software-Architecture
-  - Interface
-  - 인터페이스
-  - 소프트웨어아키텍처
-  - Implementation
-  - Edge-Cases
+  - Clean-Architecture(클린아키텍처)
+  - Microservices(마이크로서비스)
+  - Networking(네트워킹)
+  - Performance(성능)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Interface(인터페이스)
+  - Implementation(구현)
+  - Edge-Cases(엣지케이스)
 ---
 
 서비스는 아키텍처에서 특별한 위치를 차지하는가? 마틴은 **서비스에 대한 오해**를 지적한다.

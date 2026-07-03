@@ -7,21 +7,17 @@ title: "[Clean Architecture] 43. 프레임워크는 세부사항이다"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
   - Spring
   - Django
   - React
   - Angular
   - Vue
-  - Dependency-Injection
-  - 소프트웨어아키텍처
-  - Inheritance
-  - 상속
-  - Migration
-  - 마이그레이션
-  - Technology
+  - Dependency-Injection(의존성주입)
+  - Inheritance(상속)
+  - Migration(마이그레이션)
+  - Technology(기술)
 ---
 
 프레임워크는 아키텍처에서 **세부사항**이다. 프레임워크와 **결혼하지 마라**. 프레임워크를 **팔 길이 거리**에 두어라.

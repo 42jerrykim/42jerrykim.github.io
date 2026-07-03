@@ -9,101 +9,62 @@ header:
 tags:
   - CSharp
   - .NET
-  - Async
-  - 비동기
+  - Async(비동기)
   - Thread
-  - Concurrency
-  - 동시성
+  - Concurrency(동시성)
   - API
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Implementation
-  - 구현
-  - Performance
-  - 성능
+  - Web(웹)
+  - Backend(백엔드)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Implementation(구현)
+  - Performance(성능)
   - CPU
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Code-Quality
-  - 코드품질
-  - Error-Handling
-  - 에러처리
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Education
-  - 교육
+  - Documentation(문서화)
+  - Code-Quality(코드품질)
+  - Error-Handling(에러처리)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Reference(참고)
+  - Technology(기술)
+  - Education(교육)
   - Beginner
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
-  - Workflow
-  - 워크플로우
-  - Career
-  - 커리어
-  - Innovation
-  - 혁신
-  - String
+  - Comparison(비교)
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Blog(블로그)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
+  - Workflow(워크플로우)
+  - Career(커리어)
+  - Innovation(혁신)
+  - String(문자열)
   - HTML
-  - Gaming
-  - 게임
+  - Gaming(게임)
   - IO
-  - Memory
-  - 메모리
+  - Memory(메모리)
   - Process
-  - Networking
-  - 네트워킹
-  - Scalability
-  - 확장성
-  - Clean-Code
-  - 클린코드
-  - Design-Pattern
-  - 디자인패턴
-  - Interface
-  - 인터페이스
+  - Networking(네트워킹)
+  - Scalability(확장성)
+  - Clean-Code(클린코드)
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
   - Maintainability
-  - Refactoring
-  - 리팩토링
+  - Refactoring(리팩토링)
   - Readability
   - Case-Study
   - Deep-Dive
   - 실습
-  - Pitfalls
-  - 함정
+  - Pitfalls(함정)
   - Latency
-  - Microservices
-  - 마이크로서비스
-  - Optimization
-  - 최적화
-  - Profiling
-  - 프로파일링
+  - Microservices(마이크로서비스)
+  - Optimization(최적화)
+  - Profiling(프로파일링)
 title: "[C#] async/await 비동기 프로그래밍 정리"
 ---
 

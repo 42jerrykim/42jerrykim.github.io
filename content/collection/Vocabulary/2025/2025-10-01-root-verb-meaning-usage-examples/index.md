@@ -9,54 +9,37 @@ categories:
 tags:
   - Vocabulary
   - English
-  - Algorithm
-  - Collocation
-  - Grammar
-  - Nuance
-  - Etymology
-  - Synonym
-  - Antonym
+  - Algorithm(알고리즘)
+  - Collocation(콜로케이션)
+  - Grammar(문법)
+  - Nuance(뉘앙스)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
   - TOEFL
   - IELTS
   - 영단어
   - 영어동사
-  - 콜로케이션
-  - 문법
-  - 뉘앙스
-  - 어원
-  - 유의어
-  - 반의어
-  - Tutorial
-  - 튜토리얼
+  - Tutorial(튜토리얼)
   - Go
   - REST
   - API
   - Sci-Fi
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Education(교육)
+  - Reference(참고)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Technology
-  - 기술
-  - Guide
-  - 가이드
-  - Documentation
+  - Markdown(마크다운)
+  - Technology(기술)
+  - Guide(가이드)
+  - Documentation(문서화)
 image: wordcloud.png
 ---
 

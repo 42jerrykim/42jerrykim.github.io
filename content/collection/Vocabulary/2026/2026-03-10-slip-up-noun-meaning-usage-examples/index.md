@@ -12,24 +12,15 @@ tags:
   - 영단어
   - 영어명사
   - Slip-Up
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - 비즈니스영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
   - mistake
   - error
   - blunder
@@ -45,25 +36,18 @@ tags:
   - careless mistake
   - minor error
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English
-  - Education
-  - 교육
-  - Psychology
-  - 심리학
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Tutorial
+  - Education(교육)
+  - Psychology(심리학)
+  - Comparison(비교)
+  - Reference(참고)
+  - Tutorial(튜토리얼)
   - Tips
   - How-To
-  - Culture
-  - 문화
-  - Communication
+  - Culture(문화)
   - 의사소통
   - workplace
   - 직장
@@ -76,9 +60,7 @@ tags:
   - noun
   - 명사
   - Phrasal-Verb
-  - 구동사
-  - Academic-English
-  - 학술영어
+  - Academic-English(학술영어)
 image: wordcloud.png
 ---
 

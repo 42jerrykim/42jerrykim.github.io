@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: pip install pyyaml
 
-      # 신규 글은 title<=70자·tags>=50개·승인 태그 표기(data/tags.yaml)를 강제(fail), 기존 글 수정은 경고만.
+      # 신규 글은 title<=70자·tags>=25개·승인 태그 표기(data/tags.yaml)를 강제(fail), 기존 글 수정은 경고만.
       # 근거: .claude/skills/rules-that-must-be-followed/SKILL.md §1
       - name: Lint frontmatter (title/description/tags)
         env:

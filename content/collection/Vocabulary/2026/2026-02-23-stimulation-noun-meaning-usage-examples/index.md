@@ -11,48 +11,30 @@ tags:
   - English
   - 영단어
   - 영어명사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Psychology
-  - Education
-  - Technology
-  - 심리학
-  - 교육
-  - Grammar
-  - Pronunciation
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Psychology(심리학)
+  - Education(교육)
+  - Technology(기술)
+  - Grammar(문법)
+  - Pronunciation(발음)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
   - REST
   - API
-  - Movie
-  - 영화
-  - Review
-  - 리뷰
-  - Action
-  - 액션
+  - Movie(영화)
+  - Review(리뷰)
+  - Action(액션)
   - Neural-Network
-  - AI
-  - Security
-  - Antonym
-  - 반의어
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Reference
-  - 참고
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - AI(인공지능)
+  - Security(보안)
+  - Antonym(반의어)
+  - Daily-Life(일상표현)
+  - Reference(참고)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner

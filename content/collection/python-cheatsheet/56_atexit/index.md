@@ -8,55 +8,32 @@ lastmod: 2026-01-18
 collection_order: 56
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Design-Pattern
+  - Design-Pattern(디자인패턴)
   - Best-Practices
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Go
-  - War
-  - 전쟁
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
-  - Education
-  - 교육
-  - Technology
-  - 기술
+  - War(전쟁)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
+  - Education(교육)
+  - Technology(기술)
 ---
 `atexit` 모듈은 **프로그램 정상 종료 시 실행할 함수를 등록**합니다. 리소스 정리, 임시 파일 삭제, 로그 기록 등 종료 작업에 유용합니다.
 

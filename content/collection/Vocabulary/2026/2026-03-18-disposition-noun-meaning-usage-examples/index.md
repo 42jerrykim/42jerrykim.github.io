@@ -13,26 +13,16 @@ tags:
   - 영단어
   - 영어명사
   - disposition
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Daily-Life
-  - 일상표현
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
+  - Daily-Life(일상표현)
   - tendency
   - character
   - temperament
@@ -46,27 +36,23 @@ tags:
   - 처분
   - 양도
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English
   - personality
-  - Psychology
-  - 심리학
+  - Psychology(심리학)
   - 법률
   - legal
   - military
   - 군사
-  - 비교
-  - Comparison
-  - Reference
-  - Tutorial
+  - Comparison(비교)
+  - Reference(참고)
+  - Tutorial(튜토리얼)
   - Tips
   - How-To
-  - Culture
-  - 교육
-  - Education
+  - Culture(문화)
+  - Education(교육)
   - disposition to
   - disposition of
   - cheerful disposition

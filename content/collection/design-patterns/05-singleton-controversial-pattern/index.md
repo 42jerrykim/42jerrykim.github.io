@@ -12,17 +12,14 @@ categories:
 - Controversial Patterns
 - Design Debate
 tags:
-- Design-Pattern
-- Dependency-Injection
+- Design-Pattern(디자인패턴)
+- Dependency-Injection(의존성주입)
 - GoF
 - SOLID
-- Software-Architecture
-- Code-Quality
+- Software-Architecture(소프트웨어아키텍처)
+- Code-Quality(코드품질)
 - Best-Practices
-- 디자인패턴
-- Testing
-- 소프트웨어아키텍처
-- 코드품질
+- Testing(테스트)
 ---
 
 가장 논란이 많은 디자인 패턴인 Singleton의 장단점을 객관적으로 분석합니다. 전역 상태의 위험성, 테스트의 어려움, 멀티스레드 환경에서의 문제점과 대안 패턴을 탐구합니다.

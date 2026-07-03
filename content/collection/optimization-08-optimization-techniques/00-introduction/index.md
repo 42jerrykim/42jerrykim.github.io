@@ -7,18 +7,14 @@ title: "[Performance 08] Introduction: 극한 Low-latency 최적화 특수기술
 slug: getting-started-extreme-performance-optimization-techniques
 description: "극한 Low-latency 최적화 특수기술 트랙의 도입 챕터입니다. SIMD/asm/prefetch/branchless를 언제 써야 하는지 경계를 명확히 하고, 노이즈 통제된 측정·검증 루프를 전제로 한 적용 원칙을 정리합니다."
 tags:
-  - Performance
-  - Profiling
-  - Optimization
+  - Performance(성능)
+  - Profiling(프로파일링)
+  - Optimization(최적화)
   - Assembly
   - CPU
   - Cache
-  - Memory
-  - Testing
-  - 성능
-  - 프로파일링
-  - 최적화
-  - 메모리
+  - Memory(메모리)
+  - Testing(테스트)
 ---
 
 이 트랙은 "정말로 필요할 때만" 접근하는 특수 기술 묶음입니다. 잘못된 조기 진입은 복잡도만 키우고 회귀를 부르기 쉬우므로, 반드시 목표/측정/검증이 준비된 상황에서 사용합니다.

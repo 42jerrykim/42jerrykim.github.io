@@ -12,29 +12,19 @@ tags:
   - 영단어
   - 영어명사
   - lacquerware
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Academic-English
-  - 학술영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Academic-English(학술영어)
   - TOEFL
   - IELTS
   - EN-KR-Examples
-  - Context
-  - 맥락
+  - Context(맥락)
   - handicraft
   - 수공예
   - traditional crafts
@@ -71,9 +61,9 @@ tags:
   - 기념품
   - design
   - 디자인
-  - Tutorial
-  - Guide
-  - Reference
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Tips
 image: "wordcloud.png"
 ---

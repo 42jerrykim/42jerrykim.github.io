@@ -13,18 +13,12 @@ tags:
   - 영단어
   - faceless
   - 영어형용사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
   - anonymous
   - 익명의
   - nameless
@@ -41,7 +35,6 @@ tags:
   - 온라인 익명성
   - social criticism
   - 사회 비판
-  - Identity
   - 정체성
   - 개성 없는
   - 몰개성한
@@ -50,28 +43,20 @@ tags:
   - 저널리즘
   - digital culture
   - 디지털 문화
-  - Politics
   - 정치
-  - Society
   - 사회
   - literary expression
   - 문학 표현
   - criminal reporting
   - 범죄 보도
   - 익명성
-  - Daily-Life
-  - 일상표현
-  - Education
-  - 교육
-  - Academic-English
-  - 학술영어
-  - Business-English
-  - 비즈니스영어
-  - Comparison
-  - 비교
+  - Daily-Life(일상표현)
+  - Education(교육)
+  - Academic-English(학술영어)
+  - Business-English(비즈니스영어)
+  - Comparison(비교)
   - Usage-Notes
-  - Pronunciation
-  - 발음
+  - Pronunciation(발음)
   - EN-KR-Examples
   - Study-English
   - Vocabulary-Building

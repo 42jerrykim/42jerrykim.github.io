@@ -2,97 +2,59 @@
 title: "[Hardware] EasyLink U2U 기계식 키보드 QMK·VIAL 리뷰"
 description: "EasyLink U2U는 유선 기계식 키보드를 QMK/VIAL로 업그레이드하는 범용 핫스왑 모듈이다. 매크로·레이어·탭댄스 지원, VIA 웹·VIAL 앱 호환, JSON 레이아웃으로 초보부터 고급 사용자까지 커스터마이징 가능하다. 사양·설정 방법·장단점을 정리했다."
 tags:
-  - Keyboard
-  - 키보드
-  - Hardware
-  - 하드웨어
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
-  - Open-Source
-  - 오픈소스
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Reference
-  - 참고
+  - Keyboard(키보드)
+  - Hardware(하드웨어)
+  - Review(리뷰)
+  - Technology(기술)
+  - Open-Source(오픈소스)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Gadget
-  - 가젯
-  - Productivity
-  - 생산성
-  - Workflow
-  - 워크플로우
-  - Implementation
-  - Troubleshooting
-  - 트러블슈팅
-  - Documentation
+  - Comparison(비교)
+  - Gadget(가젯)
+  - Productivity(생산성)
+  - Workflow(워크플로우)
+  - Implementation(구현)
+  - Troubleshooting(트러블슈팅)
+  - Documentation(문서화)
   - Best-Practices
-  - Migration
-  - 마이그레이션
-  - Innovation
-  - 혁신
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Markdown
-  - 마크다운
-  - Education
-  - 교육
-  - Career
-  - 커리어
-  - Performance
-  - 성능
-  - Interface
-  - 인터페이스
-  - Automation
-  - 자동화
-  - Error-Handling
-  - 에러처리
-  - Code-Quality
-  - 코드품질
-  - Testing
-  - 테스트
-  - Deployment
-  - 배포
+  - Migration(마이그레이션)
+  - Innovation(혁신)
+  - Blog(블로그)
+  - Web(웹)
+  - Markdown(마크다운)
+  - Education(교육)
+  - Career(커리어)
+  - Performance(성능)
+  - Interface(인터페이스)
+  - Automation(자동화)
+  - Error-Handling(에러처리)
+  - Code-Quality(코드품질)
+  - Testing(테스트)
+  - Deployment(배포)
   - DevOps
   - Git
   - GitHub
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Optimization
-  - 최적화
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Optimization(최적화)
   - Case-Study
   - Deep-Dive
   - Beginner
   - Advanced
-  - Security
-  - 보안
-  - Networking
-  - 네트워킹
+  - Security(보안)
+  - Networking(네트워킹)
   - API
   - JSON
-  - Windows
-  - 윈도우
+  - Windows(윈도우)
   - macOS
-  - Linux
-  - 리눅스
-  - Embedded
-  - 임베디드
-  - Mobile
-  - 모바일
-  - Cloud
-  - 클라우드
+  - Linux(리눅스)
+  - Embedded(임베디드)
+  - Mobile(모바일)
+  - Cloud(클라우드)
 date: 2025-12-10
 lastmod: 2026-03-17
 categories:

@@ -7,69 +7,46 @@ title: "[Performance 04] Introduction: Low-latency 동시성·멀티스레드"
 slug: getting-started-concurrency-multithreading-performance-tuning
 description: "Low-latency 동시성·멀티스레드 트랙의 도입 챕터입니다. mutex/atomic/lock-free의 책임 경계와 입문자 진입 순서를 정리하고, 경합·false sharing·꼬리 지연을 측정해 개선하는 기본 접근을 소개합니다."
 tags:
-  - Performance
-  - Profiling
-  - Optimization
+  - Performance(성능)
+  - Profiling(프로파일링)
+  - Optimization(최적화)
   - C++
-  - Compiler
-  - Memory
+  - Compiler(컴파일러)
+  - Memory(메모리)
   - CPU
   - Cache
-  - Concurrency
-  - Linux
-  - Windows
-  - OS
-  - Testing
+  - Concurrency(동시성)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - OS(운영체제)
+  - Testing(테스트)
   - CI-CD
-  - Monitoring
+  - Monitoring(모니터링)
   - Benchmark
   - Latency
   - Throughput
-  - Backend
-  - Embedded
-  - Code-Quality
+  - Backend(백엔드)
+  - Embedded(임베디드)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Refactoring
-  - Software-Architecture
-  - Tutorial
-  - Guide
-  - Reference
-  - Technology
+  - Refactoring(리팩토링)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
   - Deep-Dive
   - Production
-  - Scalability
+  - Scalability(확장성)
   - Reliability
-  - Implementation
-  - Documentation
-  - Debugging
-  - Automation
+  - Implementation(구현)
+  - Documentation(문서화)
+  - Debugging(디버깅)
+  - Automation(자동화)
   - System-Design
-  - Data-Structures
-  - Clean-Code
-  - 성능
-  - 프로파일링
-  - 최적화
-  - 컴파일러
-  - 메모리
-  - 동시성
-  - 운영체제
-  - 리눅스
-  - 윈도우
+  - Data-Structures(자료구조)
+  - Clean-Code(클린코드)
   - 네트워크
-  - 코드품질
-  - 가이드
-  - 참고
-  - 기술
-  - 튜토리얼
-  - 구현
-  - 문서화
-  - 디버깅
-  - 자동화
-  - 백엔드
-  - 임베디드
-  - 신뢰성
-  - 확장성
-  - 모니터링
 ---
 
 이 트랙은 "스레드가 늘어날수록 느려지는 이유"를 비용 관점으로 설명하고 통제합니다. µs 시스템에서는 lock 경합, cache line ping-pong, 잘못된 atomic 사용이 지연시간의 지배항이 되기 쉽습니다.

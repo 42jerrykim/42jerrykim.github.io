@@ -13,14 +13,11 @@ categories:
 - Practice
 - Pattern Implementation
 tags:
-- Design-Pattern
+- Design-Pattern(디자인패턴)
 - GoF
-- Tutorial
-- Implementation
-- Software-Architecture
-- 디자인패턴
-- 구현
-- 소프트웨어아키텍처
+- Tutorial(튜토리얼)
+- Implementation(구현)
+- Software-Architecture(소프트웨어아키텍처)
 ---
 
 이 실습에서는 Decorator와 Composite 패턴을 활용하여 동적 기능 확장과 트리 구조 객체 처리를 구현합니다.

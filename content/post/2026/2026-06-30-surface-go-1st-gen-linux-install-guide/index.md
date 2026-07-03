@@ -8,13 +8,11 @@ categories:
   - Linux
   - Hardware
 tags:
-  - Linux
-  - 리눅스
+  - Linux(리눅스)
   - Surface
   - 서피스
   - Surface-Go
   - Kernel
-  - 커널
   - UEFI
   - BIOS
   - Driver
@@ -31,63 +29,39 @@ tags:
   - 파티션
   - Camera
   - 카메라
-  - Windows
-  - 윈도우
-  - Shell
-  - 셸
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Hardware
-  - 하드웨어
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Windows(윈도우)
+  - Shell(셸)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Hardware(하드웨어)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Reference
-  - 참고
+  - Reference(참고)
   - Beginner
   - Advanced
   - Tablet
-  - 태블릿
-  - Gadget
-  - 가젯
-  - Open-Source
-  - 오픈소스
-  - Mobile
-  - 모바일
-  - Cheatsheet
-  - 치트시트
+  - Gadget(가젯)
+  - Open-Source(오픈소스)
+  - Mobile(모바일)
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Productivity
-  - 생산성
-  - Technology
-  - 기술
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
+  - Productivity(생산성)
+  - Technology(기술)
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Comparison
-  - 비교
-  - OS
-  - 운영체제
-  - Embedded
-  - 임베디드
+  - Comparison(비교)
+  - OS(운영체제)
+  - Embedded(임베디드)
   - File-System
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
+  - Networking(네트워킹)
+  - Security(보안)
 image: "wordcloud.png"
 ---
 

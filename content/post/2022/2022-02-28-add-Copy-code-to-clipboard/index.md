@@ -11,58 +11,37 @@ tags:
   - JavaScript
   - HTML
   - CSS
-  - Markdown
-  - 마크다운
-  - Blog
-  - 블로그
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Web
-  - 웹
-  - Frontend
-  - 프론트엔드
-  - Technology
-  - 기술
+  - Markdown(마크다운)
+  - Blog(블로그)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Web(웹)
+  - Frontend(프론트엔드)
+  - Technology(기술)
   - How-To
   - Tips
-  - Configuration
-  - 설정
-  - Open-Source
-  - 오픈소스
-  - Reference
-  - 참고
+  - Configuration(설정)
+  - Open-Source(오픈소스)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Troubleshooting
-  - 트러블슈팅
+  - Documentation(문서화)
+  - Productivity(생산성)
+  - Education(교육)
+  - Troubleshooting(트러블슈팅)
   - Git
   - GitHub
-  - Implementation
-  - 구현
-  - Workflow
-  - 워크플로우
-  - Code-Quality
-  - 코드품질
+  - Implementation(구현)
+  - Workflow(워크플로우)
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
   - Beginner
   - Modularity
-  - Interface
-  - 인터페이스
+  - Interface(인터페이스)
   - API
-  - Clean-Code
-  - 클린코드
-  - Design-Pattern
-  - 디자인패턴
+  - Clean-Code(클린코드)
+  - Design-Pattern(디자인패턴)
   - User-Experience
-  - Accessibility
   - 접근성
   - DOM
   - Clipboard-API
@@ -74,23 +53,15 @@ tags:
   - 코드복사
   - UX
   - 실습
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Migration
-  - 마이그레이션
-  - Comparison
-  - 비교
-  - Review
-  - 리뷰
-  - Innovation
-  - 혁신
-  - Career
-  - 커리어
-  - History
-  - 역사
-  - Internet
-  - 인터넷
+  - Migration(마이그레이션)
+  - Comparison(비교)
+  - Review(리뷰)
+  - Innovation(혁신)
+  - Career(커리어)
+  - History(역사)
+  - Internet(인터넷)
   - Case-Study
   - Deep-Dive
 image: "wordcloud.png"

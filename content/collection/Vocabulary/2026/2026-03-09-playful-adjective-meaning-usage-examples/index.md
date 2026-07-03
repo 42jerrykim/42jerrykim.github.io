@@ -12,35 +12,21 @@ tags:
   - 영단어
   - 영어형용사
   - playful
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Academic-English
-  - 학술영어
-  - Education
-  - 교육
-  - Culture
-  - 문화
-  - Psychology
-  - 심리학
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
-  - Tutorial
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Academic-English(학술영어)
+  - Education(교육)
+  - Culture(문화)
+  - Psychology(심리학)
+  - Reference(참고)
+  - Comparison(비교)
+  - Tutorial(튜토리얼)
   - Tips
   - How-To
   - fun
@@ -60,8 +46,7 @@ tags:
   - 재미있는
   - 말장난
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English

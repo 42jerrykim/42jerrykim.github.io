@@ -8,55 +8,34 @@ lastmod: 2026-01-18
 collection_order: 19
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - Iterator
-  - Math
-  - Data-Structures
+  - Math(수학)
+  - Data-Structures(자료구조)
   - Set
-  - Clean-Code
-  - Code-Quality
-  - 코드품질
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Review
-  - 리뷰
+  - Pitfalls(함정)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Review(리뷰)
   - Process
-  - Configuration
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
+  - Configuration(설정)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
 ---
 타입힌트는 코드의 의도를 명확히 하고 리팩토링 안정성을 높입니다. 이 치트시트는 기본 타입부터 Generic, TypeVar, Literal까지 실무에서 바로 쓰는 타입힌트 패턴을 정리합니다.
 

@@ -10,107 +10,63 @@ categories:
   - "Sim Racing"
   - "Company Profile"
 tags:
-  - Technology
-  - 기술
-  - Gaming
-  - 게임
-  - Hardware
-  - 하드웨어
-  - Review
-  - 리뷰
-  - Innovation
-  - 혁신
-  - Performance
-  - 성능
-  - History
-  - 역사
-  - Brand
-  - 브랜드
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
+  - Technology(기술)
+  - Gaming(게임)
+  - Hardware(하드웨어)
+  - Review(리뷰)
+  - Innovation(혁신)
+  - Performance(성능)
+  - History(역사)
+  - Brand(브랜드)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Comparison(비교)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Blog
-  - 블로그
-  - Education
-  - 교육
-  - Workflow
-  - 워크플로우
-  - Productivity
-  - 생산성
+  - Blog(블로그)
+  - Education(교육)
+  - Workflow(워크플로우)
+  - Productivity(생산성)
   - Case-Study
   - Deep-Dive
   - Beginner
   - Advanced
-  - Web
-  - 웹
-  - Markdown
-  - 마크다운
-  - Implementation
-  - 구현
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Career
-  - 커리어
-  - Open-Source
-  - 오픈소스
-  - Gadget
-  - 가젯
-  - Science
-  - 과학
-  - Culture
-  - 문화
-  - Privacy
-  - 프라이버시
-  - Security
-  - 보안
-  - Networking
-  - 네트워킹
-  - Automation
-  - 자동화
-  - Design-Pattern
-  - 디자인패턴
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Optimization
-  - 최적화
+  - Web(웹)
+  - Markdown(마크다운)
+  - Implementation(구현)
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Career(커리어)
+  - Open-Source(오픈소스)
+  - Gadget(가젯)
+  - Science(과학)
+  - Culture(문화)
+  - Privacy(프라이버시)
+  - Security(보안)
+  - Networking(네트워킹)
+  - Automation(자동화)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Optimization(최적화)
   - Benchmark
-  - Code-Quality
-  - 코드품질
+  - Code-Quality(코드품질)
   - Maintainability
   - Readability
-  - Interface
-  - 인터페이스
+  - Interface(인터페이스)
   - Modularity
-  - Self-Hosted
-  - 셀프호스팅
-  - Internet
-  - 인터넷
-  - Domain
-  - 도메인
+  - Self-Hosted(셀프호스팅)
+  - Internet(인터넷)
+  - Domain(도메인)
   - ChatGPT
   - LLM
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
+  - Prompt-Engineering(프롬프트엔지니어링)
 image: "wordcloud.png"
 draft: false
 ---

@@ -7,21 +7,14 @@ title: "[Clean Architecture] 39. 클린 임베디드 아키텍처"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-- Clean-Architecture
-- 클린아키텍처
-- Embedded
-- 임베디드
-- Hardware
-- 하드웨어
-- Software-Architecture
-- 소프트웨어아키텍처
-- Testing
-- Dependency-Injection
-- 의존성주입
-- Interface
-- 인터페이스
-- Abstraction
-- 추상화
+- Clean-Architecture(클린아키텍처)
+- Embedded(임베디드)
+- Hardware(하드웨어)
+- Software-Architecture(소프트웨어아키텍처)
+- Testing(테스트)
+- Dependency-Injection(의존성주입)
+- Interface(인터페이스)
+- Abstraction(추상화)
 ---
 
 임베디드 소프트웨어는 **하드웨어와 밀접**하다. 그러나 Clean Architecture의 원칙은 임베디드에도 적용된다. 핵심은 **하드웨어에서 소프트웨어를 분리**하는 것이다.

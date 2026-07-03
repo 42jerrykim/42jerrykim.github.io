@@ -8,64 +8,56 @@ slug: ebpf-xdp-kernel-boundary-performance-safety-expert
 description: "eBPF·XDP가 커널 경계에서 주는 성능 이점과 검증·보안·업그레이드 리스크를 함께 보는 전문 장입니다. 지연·처리량·관측 가능성의 트레이드오프를 Tr.12·Tr.09 의사결정과 연결해 정리합니다."
 tags:
   - C++
-  - Performance
-  - Optimization
-  - Linux
+  - Performance(성능)
+  - Optimization(최적화)
+  - Linux(리눅스)
   - Kernel
   - eBPF
   - XDP
-  - Networking
+  - Networking(네트워킹)
   - Latency
   - Throughput
-  - Security
+  - Security(보안)
   - Observability
   - Tracing
   - Syscall
-  - Backend
-  - Embedded
-  - Concurrency
+  - Backend(백엔드)
+  - Embedded(임베디드)
+  - Concurrency(동시성)
   - CPU
-  - Memory
-  - Profiling
+  - Memory(메모리)
+  - Profiling(프로파일링)
   - Benchmark
   - CI-CD
-  - Testing
-  - Debugging
-  - Documentation
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Documentation(문서화)
   - Git
-  - Automation
-  - Code-Quality
-  - Software-Architecture
+  - Automation(자동화)
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
   - Best-Practices
-  - Implementation
-  - Refactoring
-  - Clean-Code
-  - Data-Structures
-  - Edge-Cases
-  - Pitfalls
-  - Error-Handling
-  - Guide
-  - Reference
-  - Technology
-  - Tutorial
+  - Implementation(구현)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Data-Structures(자료구조)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
   - Advanced
   - Deep-Dive
   - Expert
   - Case-Study
   - Container
   - cgroup
-  - 성능
-  - 최적화
-  - 커널
-  - 보안
   - 관측성
-  - 백엔드
   - 전문
-  - 가이드
-  - 참고
   - 실습
-  - 운영체제
-  - 네트워킹
+  - OS(운영체제)
 ---
 
 본 장은 **전문** 난이도입니다. **eBPF**는 커널 내부에 **검증된 프로그램**을 로드해 패킷 필터링·관측·성능 진단을 수행하는 기술로 널리 쓰입니다. **XDP**는 그중 **조기 패킷 경로**에 가까운 지점을 다룰 때 자주 함께 언급됩니다. 이 트랙의 챕터 09는 “개요”에 머물렀고, 본 장은 **운영 가능한 의사결정**을 위한 프레임입니다.

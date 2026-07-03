@@ -7,78 +7,46 @@ header:
   teaser: /assets/images/2024/2024-08-28-sql-index.png
 tags:
   - SQL
-  - Database
-  - 데이터베이스
+  - Database(데이터베이스)
   - MySQL
   - PostgreSQL
-  - Performance
-  - 성능
-  - Data-Structures
-  - 자료구조
-  - Tree
-  - 트리
-  - Implementation
-  - 구현
+  - Performance(성능)
+  - Data-Structures(자료구조)
+  - Tree(트리)
+  - Implementation(구현)
   - Best-Practices
-  - Optimization
-  - 최적화
-  - Code-Quality
-  - 코드품질
-  - Documentation
-  - 문서화
-  - Backend
-  - 백엔드
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
+  - Documentation(문서화)
+  - Backend(백엔드)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Profiling
-  - 프로파일링
+  - Comparison(비교)
+  - Technology(기술)
+  - Blog(블로그)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Profiling(프로파일링)
   - Benchmark
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
   - Maintainability
   - Readability
-  - Caching
-  - 캐싱
-  - Scalability
-  - 확장성
+  - Caching(캐싱)
+  - Scalability(확장성)
   - Latency
   - Throughput
   - Case-Study
@@ -88,11 +56,9 @@ tags:
   - Advanced
   - API
   - REST
-  - Monitoring
-  - 모니터링
+  - Monitoring(모니터링)
   - DevOps
-  - Automation
-  - 자동화
+  - Automation(자동화)
 title: "[Database] SQL 인덱스의 이해와 활용"
 image: "wordcloud.png"
 ---

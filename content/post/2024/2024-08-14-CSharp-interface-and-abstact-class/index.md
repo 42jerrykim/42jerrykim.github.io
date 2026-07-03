@@ -8,58 +8,33 @@ header: null
 tags:
   - CSharp
   - .NET
-  - OOP
-  - 객체지향
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Inheritance
-  - 상속
+  - OOP(객체지향)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Inheritance(상속)
   - SOLID
-  - Design-Pattern
-  - 디자인패턴
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Composition
-  - 합성
-  - Dependency-Injection
-  - 의존성주입
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Web(웹)
+  - Blog(블로그)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Composition(합성)
+  - Dependency-Injection(의존성주입)
   - Strategy
   - Template-Method
   - Adapter
@@ -67,22 +42,16 @@ tags:
   - Maintainability
   - Modularity
   - Type-Safety
-  - Performance
-  - 성능
-  - Backend
-  - 백엔드
+  - Performance(성능)
+  - Backend(백엔드)
   - API
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - How-To
   - Tips
   - Beginner
-  - Clean-Architecture
-  - 클린아키텍처
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
+  - Clean-Architecture(클린아키텍처)
+  - Coupling(결합도)
+  - Cohesion(응집도)
 teaser: /assets/images/undefined/teaser.jpg
 title: "[C#] 인터페이스와 추상 클래스 차이·활용 가이드"
 draft: false

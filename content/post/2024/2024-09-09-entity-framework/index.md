@@ -9,85 +9,49 @@ header:
 tags:
   - .NET
   - CSharp
-  - Database
-  - 데이터베이스
+  - Database(데이터베이스)
   - SQL
-  - Performance
-  - 성능
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Implementation
-  - 구현
+  - Performance(성능)
+  - Web(웹)
+  - Backend(백엔드)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Implementation(구현)
   - API
-  - Microservices
-  - 마이크로서비스
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Optimization
-  - 최적화
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Microservices(마이크로서비스)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Optimization(최적화)
+  - Blog(블로그)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Comparison(비교)
+  - Career(커리어)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Design-Pattern
-  - 디자인패턴
-  - OOP
-  - 객체지향
-  - Dependency-Injection
-  - 의존성주입
-  - Code-Quality
-  - 코드품질
-  - Refactoring
-  - 리팩토링
-  - Logging
-  - 로깅
-  - Migration
-  - 마이그레이션
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
+  - Design-Pattern(디자인패턴)
+  - OOP(객체지향)
+  - Dependency-Injection(의존성주입)
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
+  - Logging(로깅)
+  - Migration(마이그레이션)
+  - Concurrency(동시성)
+  - Async(비동기)
   - REST
-  - Caching
-  - 캐싱
+  - Caching(캐싱)
   - Maintainability
-  - History
-  - 역사
-  - Productivity
-  - 생산성
+  - History(역사)
+  - Productivity(생산성)
   - Beginner
   - Advanced
   - Case-Study

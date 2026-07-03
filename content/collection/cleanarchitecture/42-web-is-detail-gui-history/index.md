@@ -7,25 +7,19 @@ title: "[Clean Architecture] 42. 웹은 세부사항이다"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Web
-  - 웹
-  - Frontend
+  - Clean-Architecture(클린아키텍처)
+  - Web(웹)
+  - Frontend(프론트엔드)
   - HTTP
   - REST
   - GraphQL
   - HTML
   - JavaScript
-  - Terminal
-  - 터미널
-  - Mobile
-  - 모바일
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Technology
-  - History
-  - 역사
+  - Terminal(터미널)
+  - Mobile(모바일)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Technology(기술)
+  - History(역사)
 ---
 
 웹은 아키텍처에서 **세부사항**이다. 비즈니스 규칙은 데이터가 웹으로 전달되는지, 콘솔로 전달되는지 **신경 쓰지 않아야** 한다.

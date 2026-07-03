@@ -8,65 +8,58 @@ slug: regulated-secure-performance-tradeoffs-expert
 description: "규정 준수·보안 통제·감사 요구와 성능 예산이 충돌할 때의 트레이드오프와 완화책을 전문 난이도로 정리합니다. Tr.07·Tr.12 운영 제약과 연계해 의사결정 기록·SLO 협상 프레임을 제시합니다."
 tags:
   - C++
-  - Performance
-  - Optimization
-  - Security
+  - Performance(성능)
+  - Optimization(최적화)
+  - Security(보안)
   - Compliance
   - Governance
   - Risk
   - Latency
   - Throughput
-  - Backend
-  - Linux
-  - Windows
-  - Networking
+  - Backend(백엔드)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - Networking(네트워킹)
   - Observability
-  - Privacy
+  - Privacy(프라이버시)
   - Audit
-  - Software-Architecture
-  - Code-Quality
+  - Software-Architecture(소프트웨어아키텍처)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Implementation
-  - Testing
+  - Implementation(구현)
+  - Testing(테스트)
   - CI-CD
-  - Documentation
+  - Documentation(문서화)
   - Git
-  - Automation
-  - Refactoring
-  - Clean-Code
-  - Concurrency
-  - Memory
+  - Automation(자동화)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Concurrency(동시성)
+  - Memory(메모리)
   - CPU
-  - Profiling
+  - Profiling(프로파일링)
   - Benchmark
-  - Debugging
-  - Data-Structures
-  - Edge-Cases
-  - Pitfalls
-  - Error-Handling
-  - Guide
-  - Reference
-  - Technology
-  - Tutorial
+  - Debugging(디버깅)
+  - Data-Structures(자료구조)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
   - Advanced
   - Deep-Dive
   - Expert
   - Case-Study
-  - Embedded
+  - Embedded(임베디드)
   - Container
-  - 성능
-  - 최적화
-  - 보안
   - 규제
   - 거버넌스
   - 리스크
-  - 백엔드
   - 전문
   - 아키텍처
-  - 가이드
-  - 참고
   - 실습
-  - 문서화
 ---
 
 본 장은 **전문** 난이도입니다. 실무에서 **가장 빠른 설계**와 **가장 안전한 설계**가 같지 않은 경우가 많습니다. 암호화·로깅·접근 통제·데이터 상주 규정은 **지연과 처리량**에 직접 영향을 주고, 때로는 **아키텍처 형태**(in-process vs sidecar vs HSM)를 바꿉니다.

@@ -7,71 +7,48 @@ title: "[Performance 11] Introduction: Low-latency I/O 최적화"
 slug: getting-started-io-performance-tuning
 description: "Low-latency I/O 최적화 트랙의 도입 챕터입니다. I/O 비용 직관부터 비동기 I/O·zero-copy·filesystem 선택까지의 진입 순서를 정리하고, 시스템콜·복사 횟수·지연 분포를 연결해 검증하는 접근을 소개합니다."
 tags:
-  - Performance
-  - Profiling
-  - Optimization
+  - Performance(성능)
+  - Profiling(프로파일링)
+  - Optimization(최적화)
   - C++
-  - Compiler
-  - Memory
+  - Compiler(컴파일러)
+  - Memory(메모리)
   - CPU
   - Cache
-  - Concurrency
-  - Linux
-  - Windows
-  - OS
-  - Networking
+  - Concurrency(동시성)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - OS(운영체제)
+  - Networking(네트워킹)
   - IO
-  - Testing
+  - Testing(테스트)
   - CI-CD
-  - Monitoring
+  - Monitoring(모니터링)
   - Benchmark
   - Latency
   - Throughput
-  - Backend
-  - Embedded
-  - Code-Quality
+  - Backend(백엔드)
+  - Embedded(임베디드)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Refactoring
-  - Software-Architecture
-  - Tutorial
-  - Guide
-  - Reference
-  - Technology
+  - Refactoring(리팩토링)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
   - Deep-Dive
   - Production
-  - Scalability
+  - Scalability(확장성)
   - Reliability
-  - Implementation
-  - Documentation
-  - Debugging
-  - Automation
+  - Implementation(구현)
+  - Documentation(문서화)
+  - Debugging(디버깅)
+  - Automation(자동화)
   - System-Design
-  - Data-Structures
-  - Clean-Code
-  - 성능
-  - 프로파일링
-  - 최적화
-  - 컴파일러
-  - 메모리
-  - 동시성
-  - 운영체제
-  - 리눅스
-  - 윈도우
+  - Data-Structures(자료구조)
+  - Clean-Code(클린코드)
   - 네트워크
-  - 코드품질
-  - 가이드
-  - 참고
-  - 기술
-  - 튜토리얼
-  - 구현
-  - 문서화
-  - 디버깅
-  - 자동화
-  - 백엔드
-  - 임베디드
-  - 신뢰성
-  - 확장성
-  - 모니터링
 ---
 
 이 트랙은 "데이터가 저장장치를 오가는 경로"의 지연시간을 줄이는 영역을 책임집니다. µs 단위에서는 시스템콜 비용, 복사 횟수, I/O 스케줄링이 지연시간의 상당 부분을 차지합니다.

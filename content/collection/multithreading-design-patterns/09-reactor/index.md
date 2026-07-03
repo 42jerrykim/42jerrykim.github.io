@@ -20,13 +20,12 @@ tags:
   - Synchronous-I-O
   - Event-Loop
   - Non-blocking
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - System-Design
   - Network
   - Server
-  - Tutorial
-  - Guide
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
 slug: cpp-reactor-event-driven-single-thread
 ---
 

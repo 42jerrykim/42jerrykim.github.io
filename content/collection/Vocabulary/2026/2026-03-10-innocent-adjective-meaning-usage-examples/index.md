@@ -12,24 +12,15 @@ tags:
   - 영단어
   - 영어형용사
   - innocent
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Academic-English
-  - 학술영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Academic-English(학술영어)
   - guilt
   - guiltless
   - blameless
@@ -47,8 +38,7 @@ tags:
   - 순수한
   - 단순한
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English
@@ -56,27 +46,21 @@ tags:
   - 법률
   - 법
   - 도덕
-  - 교육
-  - Education
-  - Crime
-  - 범죄
-  - Psychology
-  - 심리학
+  - Education(교육)
+  - Crime(범죄)
+  - Psychology(심리학)
   - morality
   - 도덕성
   - victim
   - 희생자
   - child
   - 아이
-  - Trust
   - 신뢰
   - 유죄
   - wrongful conviction
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Tutorial
+  - Comparison(비교)
+  - Reference(참고)
+  - Tutorial(튜토리얼)
   - Tips
   - How-To
 image: wordcloud.png

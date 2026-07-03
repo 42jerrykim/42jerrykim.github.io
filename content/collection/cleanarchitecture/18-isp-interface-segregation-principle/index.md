@@ -7,16 +7,13 @@ title: "[Clean Architecture] 18. ISP: 인터페이스 분리 원칙"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
+  - Clean-Architecture(클린아키텍처)
   - SOLID
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - 결합도
-  - Dependency-Injection
-  - Code-Quality
-  - 코드품질
-  - 응집도
+  - Software-Architecture(소프트웨어아키텍처)
+  - Coupling(결합도)
+  - Dependency-Injection(의존성주입)
+  - Code-Quality(코드품질)
+  - Cohesion(응집도)
 ---
 
 **ISP(Interface Segregation Principle)**는 1996년 Robert C. Martin이 Xerox 컨설팅 중에 발견한 원칙이다. 이 원칙은 불필요한 의존성으로 인한 문제를 해결하기 위해 **인터페이스를 분리**해야 한다고 말한다.

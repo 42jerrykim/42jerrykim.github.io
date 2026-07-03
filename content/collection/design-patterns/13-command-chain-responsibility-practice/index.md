@@ -13,14 +13,11 @@ categories:
 - Practice
 - Action Systems
 tags:
-- Design-Pattern
+- Design-Pattern(디자인패턴)
 - GoF
-- Tutorial
-- Implementation
-- Software-Architecture
-- 디자인패턴
-- 구현
-- 소프트웨어아키텍처
+- Tutorial(튜토리얼)
+- Implementation(구현)
+- Software-Architecture(소프트웨어아키텍처)
 ---
 
 이 실습에서는 Command 패턴으로 Undo/Redo 시스템을, Chain of Responsibility로 요청 처리 체인을 구현합니다.

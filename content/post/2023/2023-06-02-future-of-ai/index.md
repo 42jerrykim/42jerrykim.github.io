@@ -9,103 +9,63 @@ header:
   teaser: /assets/images/2023/GettyImages-676338286-1-scaled.jpg
 
 tags:
-  - AI
-  - 인공지능
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
+  - AI(인공지능)
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
   - LLM
   - GPT
   - ChatGPT
   - Neural-Network
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Education
-  - 교육
-  - Security
-  - 보안
-  - Science
-  - 과학
-  - Technology
-  - 기술
-  - Career
-  - 커리어
-  - Review
-  - 리뷰
-  - Blog
-  - 블로그
-  - Tutorial
-  - Guide
-  - 가이드
-  - Productivity
-  - 생산성
-  - Reference
-  - 참고
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Education(교육)
+  - Security(보안)
+  - Science(과학)
+  - Technology(기술)
+  - Career(커리어)
+  - Review(리뷰)
+  - Blog(블로그)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Productivity(생산성)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Workflow
-  - 워크플로우
+  - Comparison(비교)
+  - Workflow(워크플로우)
   - Case-Study
-  - Prompt-Engineering
-  - Data-Science
-  - 데이터사이언스
-  - Privacy
-  - 프라이버시
-  - Psychology
-  - 심리학
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
-  - Deployment
-  - 배포
-  - Web
-  - 웹
-  - Markdown
-  - 마크다운
-  - Networking
-  - 네트워킹
-  - Cloud
-  - 클라우드
+  - Prompt-Engineering(프롬프트엔지니어링)
+  - Data-Science(데이터사이언스)
+  - Privacy(프라이버시)
+  - Psychology(심리학)
+  - History(역사)
+  - Culture(문화)
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
+  - Deployment(배포)
+  - Web(웹)
+  - Markdown(마크다운)
+  - Networking(네트워킹)
+  - Cloud(클라우드)
   - Beginner
   - Advanced
   - Deep-Dive
   - API
-  - Backend
-  - 백엔드
-  - Database
-  - 데이터베이스
+  - Backend(백엔드)
+  - Database(데이터베이스)
   - Git
   - GitHub
   - DevOps
-  - Performance
-  - 성능
-  - Code-Quality
-  - 코드품질
-  - Design-Pattern
-  - 디자인패턴
-  - Testing
-  - 테스트
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
+  - Performance(성능)
+  - Code-Quality(코드품질)
+  - Design-Pattern(디자인패턴)
+  - Testing(테스트)
+  - Implementation(구현)
+  - Optimization(최적화)
 
 title: "[AI] AI의 미래 - 기회, 위험, 오픈소스 연구의 필요성"
 ---

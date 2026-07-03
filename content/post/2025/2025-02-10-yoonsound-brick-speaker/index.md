@@ -6,102 +6,63 @@ categories:
   - Speaker
 tags:
   - Speaker
-  - 스피커
-  - Review
-  - 리뷰
-  - Hardware
-  - 하드웨어
-  - Technology
-  - 기술
-  - Innovation
-  - 혁신
-  - Blog
-  - 블로그
-  - Guide
-  - 가이드
-  - Tutorial
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
+  - Review(리뷰)
+  - Hardware(하드웨어)
+  - Technology(기술)
+  - Innovation(혁신)
+  - Blog(블로그)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
+  - Comparison(비교)
   - How-To
   - Tips
-  - Documentation
+  - Documentation(문서화)
   - Best-Practices
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Open-Source
-  - Privacy
-  - 프라이버시
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
-  - Career
-  - 커리어
-  - Mobile
-  - 모바일
-  - Implementation
-  - Web
-  - 웹
-  - Markdown
-  - Networking
-  - 네트워킹
-  - Performance
-  - 성능
+  - Productivity(생산성)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Privacy(프라이버시)
+  - Configuration(설정)
+  - Workflow(워크플로우)
+  - Career(커리어)
+  - Mobile(모바일)
+  - Implementation(구현)
+  - Web(웹)
+  - Markdown(마크다운)
+  - Networking(네트워킹)
+  - Performance(성능)
   - Case-Study
-  - Gadget
-  - 가젯
+  - Gadget(가젯)
   - Beginner
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Security
-  - 보안
-  - Science
-  - 과학
-  - Brand
-  - 브랜드
-  - Design-Pattern
-  - Clean-Code
-  - Deployment
-  - Automation
-  - 자동화
-  - Monitoring
-  - 모니터링
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Security(보안)
+  - Science(과학)
+  - Brand(브랜드)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Monitoring(모니터링)
   - DevOps
   - Git
   - GitHub
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Code-Quality
-  - 코드품질
-  - Optimization
-  - 최적화
-  - Error-Handling
-  - 에러처리
-  - Logging
-  - 로깅
-  - Interface
-  - 인터페이스
-  - Cloud
-  - 클라우드
-  - Scalability
-  - 확장성
-  - Async
-  - 비동기
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
+  - Optimization(최적화)
+  - Error-Handling(에러처리)
+  - Logging(로깅)
+  - Interface(인터페이스)
+  - Cloud(클라우드)
+  - Scalability(확장성)
+  - Async(비동기)
   - Latency
   - Throughput
   - API
-  - Database
-  - 데이터베이스
-  - Caching
-  - 캐싱
+  - Database(데이터베이스)
+  - Caching(캐싱)
 image: image.png
 description: "윤사운드 Brick 지향성 파워드 스피커는 100W 고출력, Bluetooth 무선, 초지향 기술, SD카드·외부입력 지원의 국내 제조 프리미엄 오디오 제품이다. 박물관·컨퍼런스·전시장 등에서 음향 집중과 설치 유연성을 제공하며, 본문에서 기술 원리·사양·활용 시나리오·장단점을 정리했다."
 draft: false

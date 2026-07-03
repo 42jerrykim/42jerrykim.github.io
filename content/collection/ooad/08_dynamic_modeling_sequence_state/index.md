@@ -7,20 +7,19 @@ collection_order: 8
 draft: true
 tags:
   - UML
-  - Software-Architecture
-  - Database
-  - Algorithm
-  - OOP
-  - Error-Handling
-  - Monitoring
-  - 로깅
-  - Testing
-  - 테스트
+  - Software-Architecture(소프트웨어아키텍처)
+  - Database(데이터베이스)
+  - Algorithm(알고리즘)
+  - OOP(객체지향)
+  - Error-Handling(에러처리)
+  - Monitoring(모니터링)
+  - Logging(로깅)
+  - Testing(테스트)
   - TDD
   - CQRS
-  - Microservices
-  - Clean-Architecture
-  - Refactoring
+  - Microservices(마이크로서비스)
+  - Clean-Architecture(클린아키텍처)
+  - Refactoring(리팩토링)
 ---
 
 # 08. 동적 모델링: 시퀀스와 상태 다이어그램

@@ -8,53 +8,35 @@ tags:
   - Vocabulary
   - English
   - 영단어
-  - AI
-  - Photography
-  - Technology
-  - Collocation
-  - 콜로케이션
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
-  - Nuance
-  - 뉘앙스
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - AI(인공지능)
+  - Photography(사진)
+  - Technology(기술)
+  - Collocation(콜로케이션)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
+  - Nuance(뉘앙스)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Education(교육)
+  - Reference(참고)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - 기술
-  - Guide
-  - 가이드
-  - Documentation
-  - 문서화
+  - Markdown(마크다운)
+  - Guide(가이드)
+  - Documentation(문서화)
   - Best-Practices
   - Case-Study
   - Deep-Dive
   - 실습
-  - Review
+  - Review(리뷰)
 description: "요리 레시피나 음식 관련 영어 용어에서 자주 등장하는 Sauce(소스), Dressing(드레싱), Spread(스프레드), Condiment(콘디멘트)의 차이점을 설명하는 글이다. 각 용어의 정의와 사용 예시를 통해 쉽게 이해할 수 있도록 정리했다."
 image: image05.png
 ---

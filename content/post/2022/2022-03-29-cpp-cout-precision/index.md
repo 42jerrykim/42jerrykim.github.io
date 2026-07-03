@@ -9,118 +9,71 @@ description: "C++에서 cout으로 실수를 출력할 때 precision과 std::fix
 tags:
   - C++
   - C
-  - Implementation
-  - 구현
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Implementation(구현)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Debugging
-  - 디버깅
-  - Pitfalls
-  - 함정
-  - Code-Quality
-  - 코드품질
+  - Documentation(문서화)
+  - Debugging(디버깅)
+  - Pitfalls(함정)
+  - Code-Quality(코드품질)
   - Readability
   - Beginner
-  - Performance
-  - 성능
-  - Testing
-  - 테스트
+  - Performance(성능)
+  - Testing(테스트)
   - 실습
-  - Education
-  - 교육
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Configuration
-  - 설정
-  - Comparison
-  - 비교
+  - Education(교육)
+  - Technology(기술)
+  - Blog(블로그)
+  - Web(웹)
+  - Configuration(설정)
+  - Comparison(비교)
   - Tips
   - How-To
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Open-Source
-  - 오픈소스
-  - Productivity
-  - 생산성
-  - Troubleshooting
-  - 트러블슈팅
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Career
-  - 커리어
+  - Open-Source(오픈소스)
+  - Productivity(생산성)
+  - Troubleshooting(트러블슈팅)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Career(커리어)
   - Maintainability
   - Modularity
-  - String
-  - 문자열
-  - Math
-  - 수학
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
-  - Clean-Code
-  - 클린코드
+  - String(문자열)
+  - Math(수학)
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
+  - Clean-Code(클린코드)
   - API
-  - Edge-Cases
-  - 엣지케이스
-  - Error-Handling
-  - 에러처리
-  - Code-Review
-  - 코드리뷰
-  - Refactoring
-  - 리팩토링
+  - Edge-Cases(엣지케이스)
+  - Error-Handling(에러처리)
+  - Code-Review(코드리뷰)
+  - Refactoring(리팩토링)
   - Case-Study
   - Deep-Dive
-  - Design-Pattern
-  - 디자인패턴
-  - Interface
-  - 인터페이스
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
   - Git
   - GitHub
-  - Review
-  - 리뷰
-  - Innovation
-  - 혁신
-  - Markdown
-  - 마크다운
-  - Compiler
-  - 컴파일러
-  - Memory
-  - 메모리
-  - OS
-  - 운영체제
-  - Data-Structures
-  - 자료구조
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Profiling
-  - 프로파일링
+  - Review(리뷰)
+  - Innovation(혁신)
+  - Markdown(마크다운)
+  - Compiler(컴파일러)
+  - Memory(메모리)
+  - OS(운영체제)
+  - Data-Structures(자료구조)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Profiling(프로파일링)
   - Benchmark
   - Type-Safety
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Software-Architecture(소프트웨어아키텍처)
   - IDE
   - VSCode
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
+  - Linux(리눅스)
+  - Windows(윈도우)
 image: "wordcloud.png"
 ---
 

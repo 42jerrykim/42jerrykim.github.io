@@ -7,92 +7,58 @@ categories:
   - Geopolitics
   - Internet
 tags:
-  - Internet
-  - 인터넷
-  - Domain
-  - 도메인
-  - History
-  - 역사
-  - Technology
-  - 기술
-  - Web
-  - 웹
+  - Internet(인터넷)
+  - Domain(도메인)
+  - History(역사)
+  - Technology(기술)
+  - Web(웹)
   - Git
   - GitHub
-  - Blog
-  - 블로그
-  - Tutorial
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Open-Source
-  - 오픈소스
-  - Reference
-  - 참고
+  - Blog(블로그)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Open-Source(오픈소스)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Education
-  - 교육
-  - Culture
-  - 문화
-  - Science
-  - 과학
+  - Comparison(비교)
+  - Career(커리어)
+  - Education(교육)
+  - Culture(문화)
+  - Science(과학)
   - Case-Study
   - Deep-Dive
-  - Migration
-  - 마이그레이션
-  - Privacy
-  - 프라이버시
+  - Migration(마이그레이션)
+  - Privacy(프라이버시)
   - API
-  - Backend
-  - 백엔드
+  - Backend(백엔드)
   - DevOps
-  - Deployment
-  - 배포
-  - Performance
-  - 성능
-  - Scalability
-  - 확장성
+  - Deployment(배포)
+  - Performance(성능)
+  - Scalability(확장성)
   - IO
   - DNS
   - SEO
   - Browser
   - HTTP
-  - Cloud
-  - 클라우드
-  - Windows
-  - 윈도우
-  - Linux
-  - 리눅스
-  - Markdown
-  - 마크다운
+  - Cloud(클라우드)
+  - Windows(윈도우)
+  - Linux(리눅스)
+  - Markdown(마크다운)
   - Beginner
   - Advanced
   - 실습
-  - Workflow
-  - 워크플로우
-  - Automation
-  - 자동화
-  - Monitoring
-  - 모니터링
+  - Workflow(워크플로우)
+  - Automation(자동화)
+  - Monitoring(모니터링)
 image: "wordcloud.png"
 draft: false
 ---

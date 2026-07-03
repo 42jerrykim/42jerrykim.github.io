@@ -4,100 +4,60 @@ categories:
   - Windows
   - RemoteDesktop
 tags:
-  - Windows
-  - 윈도우
+  - Windows(윈도우)
   - RDP
-  - Troubleshooting
-  - 트러블슈팅
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
+  - Troubleshooting(트러블슈팅)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
   - How-To
-  - Configuration
-  - 설정
+  - Configuration(설정)
   - Process
-  - OS
-  - 운영체제
-  - Productivity
-  - 생산성
-  - Technology
-  - 기술
-  - Networking
-  - 네트워킹
-  - Reference
-  - 참고
+  - OS(운영체제)
+  - Productivity(생산성)
+  - Technology(기술)
+  - Networking(네트워킹)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
+  - Documentation(문서화)
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Hardware
-  - 하드웨어
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Implementation
-  - 구현
-  - Automation
-  - 자동화
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Hardware(하드웨어)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Implementation(구현)
+  - Automation(자동화)
   - DevOps
   - Thread
-  - Cloud
-  - 클라우드
+  - Cloud(클라우드)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Markdown
-  - 마크다운
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Web
-  - 웹
+  - Markdown(마크다운)
+  - Blog(블로그)
+  - Review(리뷰)
+  - Web(웹)
   - Git
   - GitHub
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Problem-Solving
-  - 문제해결
-  - Cheatsheet
-  - 치트시트
+  - Performance(성능)
+  - Optimization(최적화)
+  - Problem-Solving(문제해결)
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - Beginner
-  - Terminal
-  - 터미널
-  - Shell
-  - 셸
-  - Self-Hosted
-  - 셀프호스팅
-  - Security
-  - 보안
-  - Deployment
-  - 배포
-  - Testing
-  - 테스트
-  - Code-Quality
-  - 코드품질
-  - Monitoring
-  - 모니터링
-  - Migration
-  - 마이그레이션
+  - Terminal(터미널)
+  - Shell(셸)
+  - Self-Hosted(셀프호스팅)
+  - Security(보안)
+  - Deployment(배포)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
+  - Monitoring(모니터링)
+  - Migration(마이그레이션)
 image: "image2.png"
 date: 2025-02-04
 lastmod: 2026-03-17

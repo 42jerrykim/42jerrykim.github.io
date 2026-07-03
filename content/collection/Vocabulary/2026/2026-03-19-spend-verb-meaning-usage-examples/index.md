@@ -13,27 +13,17 @@ tags:
   - 영단어
   - 영어동사
   - spend
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - 비즈니스영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English
@@ -52,14 +42,12 @@ tags:
   - save
   - afford
   - waste
-  - 비교
-  - Comparison
-  - Reference
-  - Tutorial
+  - Comparison(비교)
+  - Reference(참고)
+  - Tutorial(튜토리얼)
   - Tips
   - How-To
-  - Education
-  - 교육
+  - Education(교육)
   - spent
   - spending
   - spend on
@@ -68,8 +56,7 @@ tags:
   - 일상 영어
   - 금융
   - 시간 관리
-  - Productivity
-  - 생산성
+  - Productivity(생산성)
   - money
   - time
   - effort

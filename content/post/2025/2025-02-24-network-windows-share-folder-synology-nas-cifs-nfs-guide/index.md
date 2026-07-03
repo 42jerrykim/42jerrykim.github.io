@@ -4,111 +4,68 @@ date: 2025-02-24
 lastmod: 2026-03-17
 categories: Network
 tags:
-  - Networking
-  - 네트워킹
-  - Windows
-  - 윈도우
-  - Linux
-  - 리눅스
+  - Networking(네트워킹)
+  - Windows(윈도우)
+  - Linux(리눅스)
   - File-System
-  - Security
-  - 보안
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Self-Hosted
-  - 셀프호스팅
+  - Security(보안)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
+  - Comparison(비교)
+  - Reference(참고)
+  - Technology(기술)
+  - Self-Hosted(셀프호스팅)
   - How-To
   - Tips
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Implementation
-  - 구현
-  - Performance
-  - 성능
-  - Hardware
-  - 하드웨어
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Implementation(구현)
+  - Performance(성능)
+  - Hardware(하드웨어)
   - DevOps
-  - Monitoring
-  - 모니터링
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
+  - Monitoring(모니터링)
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Blog
-  - 블로그
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
-  - History
-  - 역사
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Innovation
-  - 혁신
-  - Internet
-  - 인터넷
-  - Scalability
-  - 확장성
-  - Concurrency
-  - 동시성
+  - Blog(블로그)
+  - Education(교육)
+  - Productivity(생산성)
+  - History(역사)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Innovation(혁신)
+  - Internet(인터넷)
+  - Scalability(확장성)
+  - Concurrency(동시성)
   - Latency
   - Throughput
-  - Authentication
-  - 인증
-  - Optimization
-  - 최적화
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Code-Quality
-  - 코드품질
+  - Authentication(인증)
+  - Optimization(최적화)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
   - Maintainability
   - Modularity
-  - Backend
-  - 백엔드
+  - Backend(백엔드)
   - API
-  - Caching
-  - 캐싱
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Caching(캐싱)
+  - Deployment(배포)
+  - Automation(자동화)
   - Git
   - GitHub
   - IDE
   - VSCode
-  - Terminal
-  - 터미널
-  - Privacy
-  - 프라이버시
+  - Terminal(터미널)
+  - Privacy(프라이버시)
 description: "윈도우 공유 폴더를 시놀로지 NAS에 마운트할 때 CIFS와 NFS 중 선택하는 방법을 다룬다. 두 프로토콜의 기술적 특성, 성능·보안 비교, 운영 체제 호환성, 초기 구성·장애 대응 난이도, 의사결정 플로우와 사용 사례별 권장을 정리한 실전 가이드이다."
 image: index.png
 ---

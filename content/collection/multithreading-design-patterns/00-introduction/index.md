@@ -14,76 +14,50 @@ tags:
   - C++
   - Thread
   - Process
-  - Memory
-  - 메모리
+  - Memory(메모리)
   - CPU
   - Cache
-  - OS
-  - 운영체제
+  - OS(운영체제)
   - IO
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
-  - Scalability
-  - 확장성
+  - Concurrency(동시성)
+  - Async(비동기)
+  - Scalability(확장성)
   - Latency
   - Throughput
   - Message-Queue
   - Event-Driven
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Design-Pattern
-  - 디자인패턴
+  - Performance(성능)
+  - Optimization(최적화)
+  - Design-Pattern(디자인패턴)
   - GoF
   - SOLID
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
   - Behavioral-Pattern
   - Singleton
   - Observer
   - Command
   - Strategy
   - Proxy
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Abstraction
-  - 추상화
-  - Data-Structures
-  - 자료구조
-  - Algorithm
-  - 알고리즘
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Clean-Code
-  - 클린코드
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Abstraction(추상화)
+  - Data-Structures(자료구조)
+  - Algorithm(알고리즘)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Clean-Code(클린코드)
   - Best-Practices
-  - Code-Quality
-  - 코드품질
-  - Refactoring
-  - 리팩토링
-  - Backend
-  - 백엔드
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
+  - Backend(백엔드)
   - Benchmark
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Deep-Dive
-  - Technology
-  - 기술
+  - Technology(기술)
 ---
 
 멀티스레드 코드가 무너지는 순간은 대부분 `mutex`를 몰라서가 아니라, **어디에 어떤 구조로 동기화를 배치할지**를 설계하지 않아서 온다. 락을 잡는 문법은 한 줄이면 배우지만, "이 클래스의 공개 메서드끼리 서로를 호출하면 자기 데드락이 난다", "큐에 빠르게 넣는 쪽과 느리게 빼는 쪽의 속도 차이를 누가 흡수하는가" 같은 질문은 문법이 아니라 **구조의 문제**다. 그리고 이런 구조 문제에는 이미 수십 년에 걸쳐 검증된 표준 해법, 즉 **동시성 디자인 패턴(Concurrency Design Pattern)**이 존재한다.

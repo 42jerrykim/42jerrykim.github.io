@@ -9,86 +9,52 @@ header:
 tags:
   - CSharp
   - .NET
-  - Implementation
-  - Software-Architecture
-  - Memory
-  - 메모리
-  - String
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Memory(메모리)
+  - String(문자열)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Code-Quality
-  - 코드품질
+  - Documentation(문서화)
+  - Code-Quality(코드품질)
   - Type-Safety
   - Readability
   - Maintainability
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Blog
-  - 블로그
-  - Comparison
-  - 비교
+  - Technology(기술)
+  - Education(교육)
+  - Blog(블로그)
+  - Comparison(비교)
   - How-To
   - Tips
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - OOP
-  - 객체지향
-  - Encapsulation
-  - 캡슐화
-  - Data-Structures
-  - 자료구조
-  - Compiler
-  - 컴파일러
-  - Performance
-  - 성능
-  - Pitfalls
-  - 함정
-  - Error-Handling
-  - 에러처리
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
-  - Workflow
-  - 워크플로우
-  - Career
-  - 커리어
-  - Innovation
-  - 혁신
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
-  - Migration
-  - 마이그레이션
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - OOP(객체지향)
+  - Encapsulation(캡슐화)
+  - Data-Structures(자료구조)
+  - Compiler(컴파일러)
+  - Performance(성능)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
+  - Workflow(워크플로우)
+  - Career(커리어)
+  - Innovation(혁신)
+  - Markdown(마크다운)
+  - Review(리뷰)
+  - Migration(마이그레이션)
   - Beginner
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
+  - Web(웹)
+  - Backend(백엔드)
   - API
-  - Linux
-  - Windows
-  - 윈도우
+  - Linux(리눅스)
+  - Windows(윈도우)
 title: "[C#] 변수와 상수: 로컬·필드·const·readonly·var 완벽 정리"
 ---
 

@@ -10,93 +10,56 @@ header: null
 tags:
   - CSharp
   - .NET
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Implementation
-  - 구현
-  - OOP
-  - 객체지향
-  - Software-Architecture
-  - Interface
-  - Error-Handling
-  - 에러처리
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Implementation(구현)
+  - OOP(객체지향)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Interface(인터페이스)
+  - Error-Handling(에러처리)
   - Best-Practices
-  - Async
-  - 비동기
-  - Compiler
-  - 컴파일러
-  - Documentation
-  - 문서화
-  - Reference
-  - 참고
-  - Web
-  - 웹
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Debugging
-  - 디버깅
-  - Performance
-  - 성능
-  - Blog
-  - 블로그
-  - Open-Source
-  - 오픈소스
-  - Productivity
-  - 생산성
-  - Configuration
-  - 설정
+  - Async(비동기)
+  - Compiler(컴파일러)
+  - Documentation(문서화)
+  - Reference(참고)
+  - Web(웹)
+  - Technology(기술)
+  - Education(교육)
+  - Debugging(디버깅)
+  - Performance(성능)
+  - Blog(블로그)
+  - Open-Source(오픈소스)
+  - Productivity(생산성)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Code-Quality
-  - Clean-Code
-  - 클린코드
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Code-Quality(코드품질)
+  - Clean-Code(클린코드)
   - Type-Safety
-  - Concurrency
-  - 동시성
-  - Backend
-  - 백엔드
+  - Concurrency(동시성)
+  - Backend(백엔드)
   - API
-  - Networking
-  - 네트워킹
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
+  - Networking(네트워킹)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
   - Maintainability
   - Modularity
-  - Design-Pattern
-  - 디자인패턴
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Inheritance
-  - 상속
-  - Abstraction
-  - 추상화
+  - Design-Pattern(디자인패턴)
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Inheritance(상속)
+  - Abstraction(추상화)
   - IDE
   - Beginner
-  - Problem-Solving
-  - 문제해결
+  - Problem-Solving(문제해결)
   - 실습
-  - Markdown
-  - 마크다운
-  - Troubleshooting
-  - 트러블슈팅
-  - Innovation
-  - 혁신
-  - Review
-  - 리뷰
+  - Markdown(마크다운)
+  - Troubleshooting(트러블슈팅)
+  - Innovation(혁신)
+  - Review(리뷰)
 
 teaser: /assets/images/undefined/teaser.jpg
 title: "[C#] C# 프로그램 구조와 진입점 정리"

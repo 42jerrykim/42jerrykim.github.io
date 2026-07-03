@@ -9,95 +9,58 @@ header:
 tags:
   - .NET
   - CSharp
-  - Compiler
-  - 컴파일러
-  - Windows
-  - 윈도우
-  - Linux
-  - 리눅스
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Configuration
-  - 설정
+  - Compiler(컴파일러)
+  - Windows(윈도우)
+  - Linux(리눅스)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Configuration(설정)
   - CI-CD
   - DevOps
-  - Documentation
-  - 문서화
+  - Documentation(문서화)
   - Best-Practices
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Open-Source
-  - 오픈소스
-  - Design-Pattern
-  - 디자인패턴
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Technology(기술)
+  - Web(웹)
+  - Open-Source(오픈소스)
+  - Design-Pattern(디자인패턴)
+  - Productivity(생산성)
+  - Education(교육)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
-  - Performance
-  - 성능
-  - Clean-Code
-  - 클린코드
+  - Comparison(비교)
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
+  - Automation(자동화)
+  - Deployment(배포)
+  - Performance(성능)
+  - Clean-Code(클린코드)
   - Maintainability
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
   - Process
   - Command
-  - Stack
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Career
-  - 커리어
-  - Innovation
-  - 혁신
+  - Stack(스택)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Career(커리어)
+  - Innovation(혁신)
   - Beginner
   - Case-Study
   - Deep-Dive
   - 실습
   - IDE
   - Docker
-  - Backend
-  - 백엔드
-  - OS
-  - 운영체제
-  - Error-Handling
-  - 에러처리
-  - Logging
-  - 로깅
-  - Refactoring
-  - 리팩토링
+  - Backend(백엔드)
+  - OS(운영체제)
+  - Error-Handling(에러처리)
+  - Logging(로깅)
+  - Refactoring(리팩토링)
   - Modularity
   - Readability
   - Build

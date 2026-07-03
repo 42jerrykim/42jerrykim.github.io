@@ -11,129 +11,82 @@ header:
   teaser: /assets/images/2022/2022-04-15-122101.png
 title: "[Linux] btop++ 시스템 리소스 모니터 소개"
 tags:
-  - Linux
-  - 리눅스
+  - Linux(리눅스)
   - CPU
-  - Memory
-  - 메모리
-  - Networking
-  - 네트워킹
-  - Monitoring
-  - 모니터링
+  - Memory(메모리)
+  - Networking(네트워킹)
+  - Monitoring(모니터링)
   - Process
-  - Terminal
-  - 터미널
-  - Shell
-  - 셸
+  - Terminal(터미널)
+  - Shell(셸)
   - Bash
   - C++
-  - Open-Source
-  - 오픈소스
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Open-Source(오픈소스)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - How-To
   - Tips
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Configuration
-  - 설정
-  - Performance
-  - 성능
-  - Productivity
-  - 생산성
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
-  - Documentation
-  - 문서화
+  - Reference(참고)
+  - Comparison(비교)
+  - Review(리뷰)
+  - Technology(기술)
+  - Blog(블로그)
+  - Configuration(설정)
+  - Performance(성능)
+  - Productivity(생산성)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
+  - Documentation(문서화)
   - Best-Practices
-  - Deployment
+  - Deployment(배포)
   - DevOps
-  - Automation
-  - 자동화
-  - Graph
-  - 그래프
+  - Automation(자동화)
+  - Graph(그래프)
   - Git
   - GitHub
-  - Education
-  - 교육
-  - Innovation
-  - 혁신
-  - Hardware
-  - 하드웨어
-  - Cloud
-  - 클라우드
-  - Migration
-  - 마이그레이션
-  - Career
-  - 커리어
-  - Markdown
-  - 마크다운
-  - Web
-  - 웹
+  - Education(교육)
+  - Innovation(혁신)
+  - Hardware(하드웨어)
+  - Cloud(클라우드)
+  - Migration(마이그레이션)
+  - Career(커리어)
+  - Markdown(마크다운)
+  - Web(웹)
   - IO
   - File-System
-  - Profiling
+  - Profiling(프로파일링)
   - Benchmark
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Self-Hosted
-  - 셀프호스팅
+  - Self-Hosted(셀프호스팅)
   - Tmux
-  - Implementation
-  - 구현
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
-  - Clean-Code
-  - 클린코드
-  - OS
-  - 운영체제
+  - Implementation(구현)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
+  - Clean-Code(클린코드)
+  - OS(운영체제)
   - Thread
   - Cache
-  - Scalability
-  - 확장성
-  - Concurrency
-  - 동시성
+  - Scalability(확장성)
+  - Concurrency(동시성)
   - Latency
   - Throughput
-  - Backend
-  - 백엔드
+  - Backend(백엔드)
   - API
   - JSON
   - YAML
-  - Security
-  - 보안
-  - Caching
-  - 캐싱
-  - Logging
-  - 로깅
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Design-Pattern
-  - 디자인패턴
-  - Interface
-  - 인터페이스
+  - Security(보안)
+  - Caching(캐싱)
+  - Logging(로깅)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
   - Modularity
   - Readability
   - Maintainability

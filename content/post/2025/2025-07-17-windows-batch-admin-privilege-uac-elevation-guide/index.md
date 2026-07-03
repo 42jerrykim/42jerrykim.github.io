@@ -5,117 +5,75 @@ lastmod: 2026-03-17
 description: "Windows CMD 배치 파일(.bat)에서 BatchGotAdmin 스크립트로 UAC 관리자 권한을 자동 요청하는 방법을 다룬다. 지원 환경(Windows Vista 이후 CMD), 사용법과 옵션, 실전 예시, 주의사항과 FAQ까지 담았으며 배치 스크립트 작성자와 시스템 관리자에게 실무 참고용이다. Mermaid 흐름도와 블록별 역할 표 포함."
 draft: false
 tags:
-  - Windows
-  - 윈도우
-  - Shell
-  - 셸
-  - Terminal
-  - 터미널
-  - Security
-  - 보안
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Windows(윈도우)
+  - Shell(셸)
+  - Terminal(터미널)
+  - Security(보안)
+  - Guide(가이드)
+  - Reference(참고)
   - How-To
-  - Documentation
-  - 문서화
-  - Tutorial
-  - 튜토리얼
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
+  - Documentation(문서화)
+  - Tutorial(튜토리얼)
+  - Automation(자동화)
+  - Deployment(배포)
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
   - Beginner
-  - Open-Source
-  - 오픈소스
+  - Open-Source(오픈소스)
   - Best-Practices
-  - Error-Handling
-  - 에러처리
+  - Error-Handling(에러처리)
   - PowerShell
   - Bash
   - Git
   - GitHub
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Workflow
-  - 워크플로우
-  - Technology
-  - 기술
-  - Markdown
-  - 마크다운
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
+  - Productivity(생산성)
+  - Education(교육)
+  - Workflow(워크플로우)
+  - Technology(기술)
+  - Markdown(마크다운)
+  - Blog(블로그)
+  - Review(리뷰)
   - Tips
-  - Implementation
-  - 구현
-  - Debugging
-  - 디버깅
-  - OS
-  - 운영체제
+  - Implementation(구현)
+  - Debugging(디버깅)
+  - OS(운영체제)
   - Process
   - File-System
-  - Performance
-  - 성능
-  - Pitfalls
-  - 함정
+  - Performance(성능)
+  - Pitfalls(함정)
   - DevOps
-  - Monitoring
-  - 모니터링
-  - Networking
-  - 네트워킹
+  - Monitoring(모니터링)
+  - Networking(네트워킹)
   - Case-Study
   - Deep-Dive
   - 실습
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - RDP
-  - Linux
-  - 리눅스
-  - Backend
-  - 백엔드
-  - Testing
-  - 테스트
+  - Linux(리눅스)
+  - Backend(백엔드)
+  - Testing(테스트)
   - Readability
   - Maintainability
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Innovation
-  - 혁신
-  - Web
-  - 웹
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Comparison(비교)
+  - Career(커리어)
+  - Innovation(혁신)
+  - Web(웹)
   - API
   - HTTP
   - YAML
   - JSON
   - Modularity
-  - Interface
-  - 인터페이스
+  - Interface(인터페이스)
   - Command
   - Proxy
   - IDE
   - VSCode
-  - Privacy
-  - 프라이버시
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - 코드품질
+  - Privacy(프라이버시)
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
 categories:
   - Windows
   - CMD
