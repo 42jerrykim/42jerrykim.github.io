@@ -40,6 +40,15 @@ description: >-
 | TV-Show | [`tv-series-review-writing`](../tv-series-review-writing/SKILL.md) |
 | bashshell / cmd | [`shell-command-post-writing`](../shell-command-post-writing/SKILL.md) |
 
+3-1. **일반 포스트(`content/post/`) 성격별 전용 스킬 확인**: 컬렉션이 아닌 자유 주제 글이면, 주제 성격에 따라 아래 스킬을 함께 호출한다.
+
+| 글 성격 | 전용 스킬 |
+|--------|----------|
+| 개발·프로그래밍(언어 문법, 구현·최적화, 설계 원칙) | [`dev-programming-post-writing`](../dev-programming-post-writing/SKILL.md) |
+| 시스템·인프라(OS, 가상화, 네트워킹, 보안, CI/CD·빌드) | [`systems-infra-post-writing`](../systems-infra-post-writing/SKILL.md) |
+| AI·도구 활용(AI 서비스·에이전트·플러그인 가이드) | [`ai-tools-post-writing`](../ai-tools-post-writing/SKILL.md) |
+| 교양·생활(역사, 과학, 자기계발, 하드웨어·기기 리뷰) | [`life-knowledge-post-writing`](../life-knowledge-post-writing/SKILL.md) |
+
 4. **태그 후보 수집**: `data/tags.yaml` 읽어 관련 카테고리에서 태그 50개 이상 선정
 
 ### Phase 2: 폴더 및 파일 생성

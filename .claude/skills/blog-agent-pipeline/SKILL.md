@@ -40,6 +40,15 @@ description: >-
 | `TV-Show/` | [`tv-series-review-writing`](../tv-series-review-writing/SKILL.md) |
 | `bashshell/` / `cmd/` | [`shell-command-post-writing`](../shell-command-post-writing/SKILL.md) |
 
+**일반 포스트 성격별 작성 스킬 (`content/post/` 글일 때, 주제 성격으로 판단)**
+
+| 성격 | 적용 스킬 |
+|------|-----------|
+| 개발·프로그래밍 | [`dev-programming-post-writing`](../dev-programming-post-writing/SKILL.md) |
+| 시스템·인프라 | [`systems-infra-post-writing`](../systems-infra-post-writing/SKILL.md) |
+| AI·도구 활용 | [`ai-tools-post-writing`](../ai-tools-post-writing/SKILL.md) |
+| 교양·생활 | [`life-knowledge-post-writing`](../life-knowledge-post-writing/SKILL.md) |
+
 ---
 
 ## Stage 1 — Research
