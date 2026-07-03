@@ -16,7 +16,7 @@
 {{- partialCached "tag-page/site-data.html" . "global" -}}
 <script>
 var T={t:{{ .Title | jsonify | safeJS }},s:{{ .Site.Title | jsonify | safeJS }},c:{{ len .Pages }},p:[
-{{- range .Pages -}}[{{ .Title | jsonify | safeJS }},{{ .RelPermalink | jsonify | safeJS }},"{{ .Date.Format "2006-01-02" }}",{{ with .Params.description }}{{ . | jsonify | safeJS }}{{ else }}""{{ end }}],
+{{- range .Pages -}}[{{ .Title | jsonify | safeJS }},{{ .RelPermalink | jsonify | safeJS }},"{{ .Date.Format "2006-01-02" }}",{{ with .Params.description }}{{ . | jsonify | safeJS }}{{ else }}""{{ end }},{{ if .Draft }}1{{ else }}0{{ end }}],
 {{- end -}}]};
 </script>
 {{- partialCached "tag-page/widget-data.html" . "global" -}}
