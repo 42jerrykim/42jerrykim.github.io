@@ -143,14 +143,14 @@ if(w.c&&w.c.length){
 h+='<section class="widget tagCloud"><div class="widget-icon">'+I.categories+'</div>';
 h+='<h2 class="widget-title section-title">Categories</h2>';
 h+='<div class="tagCloud-tags">';
-for(var i=0;i<w.c.length;i++)h+='<a href="'+w.c[i][1]+'" class="font_size_'+w.c[i][2]+'">'+esc(w.c[i][0])+'</a>';
+for(var i=0;i<w.c.length;i++)h+='<a href="'+w.c[i][1]+'" class="font_size_'+w.c[i][2]+'">'+esc(w.c[i][0])+' ('+w.c[i][2]+')</a>';
 h+='</div></section>';
 }
 if(w.tg&&w.tg.length){
 h+='<section class="widget tagCloud"><div class="widget-icon">'+I.tag+'</div>';
 h+='<h2 class="widget-title section-title">Tags</h2>';
 h+='<div class="tagCloud-tags">';
-for(var i=0;i<w.tg.length;i++)h+='<a href="'+w.tg[i][1]+'">'+esc(w.tg[i][0])+'</a>';
+for(var i=0;i<w.tg.length;i++)h+='<a href="'+w.tg[i][1]+'">'+esc(w.tg[i][0])+' ('+w.tg[i][2]+')</a>';
 h+='</div></section>';
 }
 if(w.ar&&w.ar.length){
