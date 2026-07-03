@@ -31,7 +31,7 @@ tags:
   - Workflow(워크플로우)
   - Testing(테스트)
   - GitHub
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - DevOps
   - Performance(성능)
   - Implementation(구현)
@@ -40,10 +40,10 @@ tags:
   - Markdown(마크다운)
   - Keyboard(키보드)
   - Web(웹)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Deployment(배포)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Async(비동기)
   - Debugging(디버깅)

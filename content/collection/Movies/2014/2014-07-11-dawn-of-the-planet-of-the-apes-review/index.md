@@ -8,7 +8,7 @@ categories:
 - Sci-Fi
 - Drama
 tags:
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Matt-Reeves
 - 매트 리브스
 - Andy-Serkis

@@ -11,19 +11,19 @@ tags:
 - Baekjoon
 - String(문자열)
 - Network-Flow
-- LCA
-- BFS
+- LCA(Lowest Common Ancestor)
+- BFS(Breadth-First Search)
 - Queue(큐)
 - Graph-Theory(그래프이론)
 - Graph(그래프)
 - Time-Complexity(시간복잡도)
 - Implementation(구현)
 - C++
-- IO
+- IO(Input/Output)
 - Editorial(에디토리얼)
 - Problem-Solving(문제해결)
 - Algorithm(알고리즘)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Competitive-Programming(경쟁프로그래밍)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)

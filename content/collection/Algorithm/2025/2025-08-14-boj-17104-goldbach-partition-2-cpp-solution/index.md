@@ -11,7 +11,7 @@ tags:
 - BOJ(백준)
 - C++
 - Number-Theory(정수론)
-- FFT
+- FFT(Fast Fourier Transform)
 - Convolution
 - Edge-Cases(엣지케이스)
 - Time-Complexity(시간복잡도)
@@ -20,7 +20,7 @@ tags:
 - Range-Query
 - Optimization(최적화)
 - Competitive-Programming(경쟁프로그래밍)
-- IO
+- IO(Input/Output)
 - Memory(메모리)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

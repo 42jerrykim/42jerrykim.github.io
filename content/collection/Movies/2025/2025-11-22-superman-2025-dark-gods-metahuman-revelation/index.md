@@ -11,13 +11,12 @@ categories:
 - DC Studios
 tags:
 - Action(액션)
-- SF
+- Sci-Fi(Science Fiction)
 - Family(가족)
 - Movie(영화)
 - Review(리뷰)
 - Drama
 - Thriller(스릴러)
-- Sci-Fi
 - Animation(애니메이션)
 - Comedy(코미디)
 - Fantasy(판타지)

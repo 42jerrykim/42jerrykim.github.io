@@ -47,7 +47,7 @@ tags:
 - Space-Complexity(공간복잡도)
 - Complexity-Analysis(복잡도분석)
 - Edge-Cases(엣지케이스)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Editorial(에디토리얼)
 - Construction
 - 구성

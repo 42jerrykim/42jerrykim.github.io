@@ -14,7 +14,7 @@ tags:
   - Code-Quality(코드품질)
   - Security(보안)
   - Database(데이터베이스)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Scalability(확장성)
   - Performance(성능)
 ---

@@ -13,11 +13,10 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - Baekjoon
-- USACO
+- USACO(USA Computing Olympiad)
 - Graph(그래프)
 - Range-Query
-- DSU
-- Disjoint-Set
+- DSU(Disjoint Set Union)
 - Software-Architecture(소프트웨어아키텍처)
 - Combinatorics(조합론)
 - Implementation(구현)

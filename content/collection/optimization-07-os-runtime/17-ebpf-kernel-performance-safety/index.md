@@ -24,11 +24,11 @@ tags:
   - Backend(백엔드)
   - Embedded(임베디드)
   - Concurrency(동시성)
-  - CPU
+  - CPU(Central Processing Unit)
   - Memory(메모리)
   - Profiling(프로파일링)
   - Benchmark
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Testing(테스트)
   - Debugging(디버깅)
   - Documentation(문서화)

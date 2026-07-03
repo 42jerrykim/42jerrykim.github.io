@@ -14,7 +14,7 @@ tags:
   - Data-Structures(자료구조)
   - Prefix-Sum
   - Time-Complexity(시간복잡도)
-  - IO
+  - IO(Input/Output)
   - Queue(큐)
   - Memory(메모리)
   - BOJ(백준)

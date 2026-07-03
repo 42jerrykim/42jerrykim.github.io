@@ -21,7 +21,7 @@ tags:
 - Optimization(최적화)
 - Code-Quality(코드품질)
 - .NET
-- DFS
+- DFS(Depth-First Search)
 - Graph(그래프)
 - Tree(트리)
 - Space-Complexity(공간복잡도)

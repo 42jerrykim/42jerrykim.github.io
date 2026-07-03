@@ -38,7 +38,7 @@ tags:
   - Beginner
   - Comparison(비교)
   - Performance(성능)
-  - IO
+  - IO(Input/Output)
   - OS(운영체제)
   - Process
   - Blog(블로그)

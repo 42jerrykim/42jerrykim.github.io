@@ -9,7 +9,7 @@ categories:
 - "Computational Geometry"
 tags:
 - BOJ(백준)
-- USACO
+- USACO(USA Computing Olympiad)
 - Algorithm(알고리즘)
 - Computational-Geometry
 - Geometry
@@ -17,7 +17,7 @@ tags:
 - Range-Query
 - C++
 - Data-Structures(자료구조)
-- IO
+- IO(Input/Output)
 - Optimization(최적화)
 - Baekjoon
 - Problem-Solving(문제해결)

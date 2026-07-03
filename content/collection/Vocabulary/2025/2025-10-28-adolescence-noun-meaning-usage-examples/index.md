@@ -19,7 +19,7 @@ tags:
   - Etymology(어원)
   - Tutorial(튜토리얼)
   - Go
-  - API
+  - API(Application Programming Interface)
   - Education(교육)
   - Psychology(심리학)
   - Pronunciation(발음)

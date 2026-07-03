@@ -11,7 +11,7 @@ header:
 tags:
   - Design-Pattern(디자인패턴)
   - Proxy
-  - GoF
+  - GoF(Gang of Four)
   - Logging(로깅)
   - Security(보안)
   - Code-Quality(코드품질)

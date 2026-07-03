@@ -30,7 +30,7 @@ tags:
   - Abstraction(추상화)
   - Inheritance(상속)
   - Polymorphism(다형성)
-  - UML
+  - UML(Unified Modeling Language)
   - Use-Case
   - 유스케이스
   - 도메인-모델
@@ -54,7 +54,7 @@ tags:
   - Bounded-Context
   - Aggregate
   - Repository-Pattern
-  - CQRS
+  - CQRS(Command Query Responsibility Segregation)
   - Event-Driven-Architecture
   - Microservices(마이크로서비스)
   - 레거시-현대화

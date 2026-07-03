@@ -33,8 +33,8 @@ tags:
 - Graph(그래프)
 - Tree(트리)
 - Segment-Tree(세그먼트트리)
-- Fenwick-Tree
-- Disjoint-Set
+- BIT(Binary Indexed Tree)
+- DSU(Disjoint Set Union)
 - Shortest-Path(최단경로)
 - Dijkstra
 - Modular-Arithmetic(모듈러)

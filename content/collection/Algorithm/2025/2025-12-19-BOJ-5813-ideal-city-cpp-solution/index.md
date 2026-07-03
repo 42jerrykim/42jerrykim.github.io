@@ -34,7 +34,7 @@ tags:
 - Code-Quality(코드품질)
 - Go
 - .NET
-- BFS
+- BFS(Breadth-First Search)
 - Memory(메모리)
 - Testing(테스트)
 - Documentation(문서화)

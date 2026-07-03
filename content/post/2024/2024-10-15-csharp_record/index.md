@@ -14,7 +14,7 @@ tags:
 - Inheritance(상속)
 - Data-Structures(자료구조)
 - .NET
-- API
+- API(Application Programming Interface)
 - Compiler(컴파일러)
 - Education(교육)
 - Technology(기술)
@@ -28,7 +28,7 @@ tags:
 - Graph(그래프)
 - Hashing(해싱)
 - String(문자열)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Productivity(생산성)
 - Reference(참고)
 - Documentation(문서화)

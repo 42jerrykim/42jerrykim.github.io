@@ -13,7 +13,6 @@ tags:
   - Priority-Queue(우선순위큐)
   - Graph-Theory(그래프이론)
   - Optimization(최적화)
-  - Dynamic-Programming
   - DP(동적계획법)
   - Time-Complexity(시간복잡도)
   - Space-Complexity(공간복잡도)

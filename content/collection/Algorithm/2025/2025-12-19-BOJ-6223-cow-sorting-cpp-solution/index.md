@@ -22,7 +22,7 @@ tags:
 - Array(배열)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
-- USACO
+- USACO(USA Computing Olympiad)
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)
 - C++

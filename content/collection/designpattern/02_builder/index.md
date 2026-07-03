@@ -11,7 +11,7 @@ header:
 tags:
   - Design-Pattern(디자인패턴)
   - Builder
-  - GoF
+  - GoF(Gang of Four)
   - Code-Quality(코드품질)
   - Implementation(구현)
   - Software-Architecture(소프트웨어아키텍처)

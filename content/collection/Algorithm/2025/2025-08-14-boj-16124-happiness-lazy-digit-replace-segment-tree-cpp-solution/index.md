@@ -22,7 +22,7 @@ tags:
 - Optimization(최적화)
 - Competitive-Programming(경쟁프로그래밍)
 - Implementation(구현)
-- IO
+- IO(Input/Output)
 - Memory(메모리)
 - Array(배열)
 - Number-Theory(정수론)

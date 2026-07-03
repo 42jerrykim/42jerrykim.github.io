@@ -9,10 +9,10 @@ categories:
   - SEO
 tags:
   - Hugo
-  - SEO
-  - HTTP
+  - SEO(Search Engine Optimization)
+  - HTTP(HyperText Transfer Protocol)
   - Caching(캐싱)
-  - CDN
+  - CDN(Content Delivery Network)
   - Debugging(디버깅)
   - Testing(테스트)
   - Mobile(모바일)
@@ -42,7 +42,7 @@ tags:
   - Networking(네트워킹)
   - Frontend(프론트엔드)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Scalability(확장성)
   - Performance(성능)
   - DevOps

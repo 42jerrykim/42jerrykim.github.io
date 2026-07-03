@@ -17,8 +17,8 @@ tags:
   - Tutorial(튜토리얼)
   - Implementation(구현)
   - Code-Quality(코드품질)
-  - API
-  - TDD
+  - API(Application Programming Interface)
+  - TDD(Test-Driven Development)
   - Error-Handling(에러처리)
   - Debugging(디버깅)
   - Documentation(문서화)

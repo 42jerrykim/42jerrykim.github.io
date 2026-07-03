@@ -18,7 +18,7 @@ tags:
 - Code-Quality(코드품질)
 - Performance(성능)
 - Frontend(프론트엔드)
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Git
 - GitHub
@@ -40,9 +40,9 @@ tags:
 - OS(운영체제)
 - Backend(백엔드)
 - Networking(네트워킹)
-- HTTP
+- HTTP(HyperText Transfer Protocol)
 - File-System
-- JSON
+- JSON(JavaScript Object Notation)
 - Python
 - JavaScript
 - Java

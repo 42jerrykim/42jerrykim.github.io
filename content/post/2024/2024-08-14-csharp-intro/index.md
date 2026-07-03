@@ -42,13 +42,13 @@ tags:
   - Career(커리어)
   - OOP(객체지향)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Database(데이터베이스)
   - Type-Safety
   - Clean-Code(클린코드)
   - Design-Pattern(디자인패턴)
   - Compiler(컴파일러)
-  - IDE
+  - IDE(Integrated Development Environment)
   - Beginner
   - Mobile(모바일)
   - Cloud(클라우드)

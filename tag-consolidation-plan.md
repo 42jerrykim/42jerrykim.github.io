@@ -1,11 +1,12 @@
 ---
 title: 태그 파편화 분석 및 통합 계획
 date: 2026-07-03
-status: Phase 1~8 실행 완료
+status: Phase 1~9 실행 완료
 ---
 
 ## 실행 결과 (2026-07-03)
 
+- Phase 9 (약어 태그의 "약어(Full Name)" 통합): Phase 8 이후 `data/tags.yaml`에 남아있던 순수 약어 태그(괄호 병기가 없는 것) 39개를 표준 영문 풀네임과 병기하는 형식(`SQL(Structured Query Language)`, `API(Application Programming Interface)` 등)으로 일괄 개명했다. 이미 Phase 8에서 한글과 병기된 약어(`BOJ(백준)`, `DP(동적계획법)`, `OOP(객체지향)`, `AI(인공지능)`, `OS(운영체제)`)는 한글 병기가 이미 같은 역할을 하므로 손대지 않았다. 검토 중 같은 개념이 약어/영문 전체 표기로 각각 따로 승인돼 있던 것 4쌍(`Dynamic-Programming`↔`DP`, `Binary-Indexed-Tree`/`Fenwick-Tree`↔`BIT`, `Disjoint-Set`↔`DSU`, `Sci-Fi`↔`SF`)을 발견해 하나의 `약어(Full Name)` 태그로 병합했다. `SOLID`(다섯 원칙의 머리글자 조합이라 하나의 연속된 풀네임이 없음)와 `PATH`(애초에 약어가 아님)는 대상에서 제외했다. 승인 태그 454개 → **450개**(병합 4건). `content/**/*index.md` 1,270개 중 **834개 파일** 수정(태그 라인 175줄 중복 제거, 25개 미만으로 떨어진 포스트 0건). 매핑·적용 스크립트는 `script/tag_phase9_build_mapping.py`, `script/normalize_tags.py --mapping script/tag_phase9_mapping.json --apply`, `script/tag_phase9_apply_yaml.py`. `hugo --buildDrafts=false --gc --minify` 빌드 재확인 완료(에러 0건).
 - Phase 8 (영·한 병기 태그 "영어(한글)" 통합, 아래 6절 분석 그대로 실행): `data/tags.yaml`을 211개 En/Ko 쌍의 판정대로 재작성(병기 162건 → `En(Ko)` 단일 태그, 영어 단독 31건, 한글 단독 18건) — 승인 태그 551개(중복 제외) → **454개**. `content/**/*index.md` 1,387개 중 태그가 있는 1,270개에 매핑 적용, **1,266개 파일 수정**(태그 라인 76,312 → 47,468, 중복 28,844줄 제거). 매핑 산출·적용 스크립트는 `script/tag_phase8_build_mapping.py`(분류 재현 + `tag_phase8_pairs.json`/`tag_phase8_mapping.json` 생성), `script/normalize_tags.py --mapping script/tag_phase8_mapping.json --apply`(콘텐츠 치환, 기존 Phase 1/2/7 스크립트 재사용), `script/tag_phase8_apply_yaml.py`(`data/tags.yaml` 재작성).
 - **부작용과 후속 결정**: 병기 통합만 적용하면 영/한 쌍이 "태그 50개 채우기" 관행으로 함께 쓰인 경우가 대부분이라 1,269개 중 977개 포스트가 기존 "50개 이상" 규칙 미만으로 떨어지는 것을 실행 전 확인했다. 사람에게 확인한 결과 **"50개" 규칙 자체를 재검토**하기로 결정 — 병합 후 실제 분포(중간값 33개, 25개 미만 113개(8.9%), 28개 미만 130개, 30개 미만 278개로 BOJ 템플릿 군집이 29~33에 몰림)를 근거로 최소 태그 수를 **25개**로 재조정했다. `script/lint_frontmatter.py`(`TAGS_MIN`), `.github/workflows/lint-content.yml` 주석, `script/clean_vocabulary_noise_tags.py`(`TAGS_MIN`), `script/md-improve/generate-improve-commands.ps1`, 그리고 `rules-that-must-be-followed`/`blog-post-writing`/각 컬렉션·주제별 작성 스킬(총 13개 스킬 파일) 전부를 25개 기준과 `Tag(태그)` 병기 표기로 갱신했다.
 - 병합 후에도 25개 미만인 113개 포스트(전체의 8.9%)는 이번 범위에서 손대지 않았다 — 별도 후속 작업(각 포스트에 관련 승인 태그 보충)으로 처리한다.

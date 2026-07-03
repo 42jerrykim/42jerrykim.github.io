@@ -9,12 +9,12 @@ tags:
   - Performance(성능)
   - Optimization(최적화)
   - Compiler(컴파일러)
-  - CPU
+  - CPU(Central Processing Unit)
   - Cache
   - Memory(메모리)
   - Benchmark
   - Profiling(프로파일링)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Testing(테스트)
   - Implementation(구현)
   - Code-Quality(코드품질)

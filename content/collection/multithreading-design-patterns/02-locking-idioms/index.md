@@ -14,7 +14,7 @@ tags:
   - Locking
   - Mutex
   - Lock-Guard
-  - RAII
+  - RAII(Resource Acquisition Is Initialization)
   - Scoped-Locking
   - Thread-Safe-Interface
   - Strategized-Locking

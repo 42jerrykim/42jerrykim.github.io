@@ -20,7 +20,7 @@ tags:
 - Space-Complexity(공간복잡도)
 - Implementation(구현)
 - C++
-- IO
+- IO(Input/Output)
 - Edge-Cases(엣지케이스)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

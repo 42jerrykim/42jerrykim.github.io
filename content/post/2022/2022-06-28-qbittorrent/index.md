@@ -38,7 +38,7 @@ tags:
   - Markdown(마크다운)
   - Deployment(배포)
   - Beginner
-  - HTTP
+  - HTTP(HyperText Transfer Protocol)
   - Security(보안)
   - Privacy(프라이버시)
   - Internet(인터넷)
@@ -65,15 +65,15 @@ tags:
   - Terminal(터미널)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Docker
   - macOS
-  - JSON
-  - XML
-  - YAML
-  - API
-  - REST
+  - JSON(JavaScript Object Notation)
+  - XML(eXtensible Markup Language)
+  - YAML(YAML Ain't Markup Language)
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Scalability(확장성)
   - Maintainability
   - Readability

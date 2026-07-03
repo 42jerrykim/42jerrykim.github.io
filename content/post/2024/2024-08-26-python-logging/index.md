@@ -48,12 +48,12 @@ tags:
   - Automation(자동화)
   - Deployment(배포)
   - Networking(네트워킹)
-  - API
-  - JSON
-  - YAML
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
+  - YAML(YAML Ain't Markup Language)
   - Linux(리눅스)
   - Windows(윈도우)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Git
   - GitHub

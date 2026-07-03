@@ -24,7 +24,6 @@ tags:
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
 - Greedy(그리디)
-- Dynamic-Programming
 - DP(동적계획법)
 - Sorting(정렬)
 - Graph(그래프)
@@ -35,9 +34,9 @@ tags:
 - Two-Pointers
 - Sliding-Window
 - Hashing(해싱)
-- Disjoint-Set
+- DSU(Disjoint Set Union)
 - Segment-Tree(세그먼트트리)
-- Fenwick-Tree
+- BIT(Binary Indexed Tree)
 - Dijkstra
 - Shortest-Path(최단경로)
 image: "wordcloud.png"

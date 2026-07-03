@@ -17,8 +17,8 @@ tags:
   - Tutorial(튜토리얼)
   - Implementation(구현)
   - Code-Quality(코드품질)
-  - REST
-  - API
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
   - Sorting(정렬)
   - String(문자열)
   - Error-Handling(에러처리)

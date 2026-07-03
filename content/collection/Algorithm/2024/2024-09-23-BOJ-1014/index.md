@@ -7,7 +7,7 @@ date: "2024-09-23T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- Dynamic-Programming
+- DP(동적계획법)
 - Memoization
 - Optimization(최적화)
 - Problem-Solving(문제해결)
@@ -23,7 +23,6 @@ tags:
 - Python
 - Go
 - .NET
-- DP(동적계획법)
 - String(문자열)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)

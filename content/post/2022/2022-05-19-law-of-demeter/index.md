@@ -28,7 +28,7 @@ tags:
   - Maintainability
   - Readability
   - Java
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Tutorial(튜토리얼)
   - Guide(가이드)
@@ -56,7 +56,7 @@ tags:
   - Markdown(마크다운)
   - Review(리뷰)
   - Agile(애자일)
-  - TDD
+  - TDD(Test-Driven Development)
   - Debugging(디버깅)
   - Error-Handling(에러처리)
   - Domain-Driven-Design
@@ -67,12 +67,12 @@ tags:
   - Structural-Pattern
   - Behavioral-Pattern
   - Creational-Pattern
-  - GoF
+  - GoF(Gang of Four)
   - Polymorphism(다형성)
   - Inheritance(상속)
   - Microservices(마이크로서비스)
   - Event-Driven
-  - CQRS
+  - CQRS(Command Query Responsibility Segregation)
   - Type-Safety
   - Edge-Cases(엣지케이스)
 ---

@@ -31,7 +31,7 @@ tags:
 - Optimization(최적화)
 - C++
 - Python
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Asia-Regional
 - Thailand
 - Recurrence

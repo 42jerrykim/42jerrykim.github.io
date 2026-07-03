@@ -7,7 +7,7 @@ date: "2022-07-05T00:00:00Z"
 lastmod: "2026-03-16"
 tags:
   - Windows(윈도우)
-  - RDP
+  - RDP(Remote Desktop Protocol)
   - Security(보안)
   - Memory(메모리)
   - Hardware(하드웨어)
@@ -53,8 +53,8 @@ tags:
   - Case-Study
   - Deep-Dive
   - 실습
-  - HTTP
-  - API
+  - HTTP(HyperText Transfer Protocol)
+  - API(Application Programming Interface)
   - Cloud(클라우드)
   - DevOps
   - Git

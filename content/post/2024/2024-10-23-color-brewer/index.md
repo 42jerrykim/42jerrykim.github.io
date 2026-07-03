@@ -41,8 +41,8 @@ tags:
   - Debugging(디버깅)
   - Code-Quality(코드품질)
   - Design-Pattern(디자인패턴)
-  - API
-  - JSON
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
   - Networking(네트워킹)
   - Security(보안)
   - Case-Study
@@ -63,8 +63,8 @@ tags:
   - Abstraction(추상화)
   - Clean-Code(클린코드)
   - Refactoring(리팩토링)
-  - YAML
-  - SEO
+  - YAML(YAML Ain't Markup Language)
+  - SEO(Search Engine Optimization)
   - Scalability(확장성)
   - Internet(인터넷)
   - Caching(캐싱)

@@ -9,13 +9,13 @@ tags:
 - Markdown(마크다운)
 - Hugo
 - VSCode
-- IDE
-- SEO
+- IDE(Integrated Development Environment)
+- SEO(Search Engine Optimization)
 - Automation(자동화)
 - DevOps
 - Windows(윈도우)
 - Implementation(구현)
-- YAML
+- YAML(YAML Ain't Markup Language)
 - Workflow(워크플로우)
 - Productivity(생산성)
 - Shell(셸)
@@ -55,7 +55,7 @@ tags:
 - Error-Handling(에러처리)
 - Monitoring(모니터링)
 - Backend(백엔드)
-- API
+- API(Application Programming Interface)
 - Technology(기술)
 date: 2025-12-20
 lastmod: 2026-03-17

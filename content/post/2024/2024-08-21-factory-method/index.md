@@ -12,7 +12,7 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Creational-Pattern
   - Implementation(구현)
-  - UML
+  - UML(Unified Modeling Language)
   - Java
   - CSharp
   - Python
@@ -29,7 +29,7 @@ tags:
   - Polymorphism(다형성)
   - Encapsulation(캡슐화)
   - Coupling(결합도)
-  - GoF
+  - GoF(Gang of Four)
   - Template-Method
   - Builder
   - Tutorial(튜토리얼)

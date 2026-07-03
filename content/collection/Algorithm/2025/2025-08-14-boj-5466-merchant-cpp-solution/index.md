@@ -11,9 +11,7 @@ tags:
 - BOJ(백준)
 - C++
 - Data-Structures(자료구조)
-- Fenwick-Tree
-- Binary-Indexed-Tree
-- BIT
+- BIT(Binary Indexed Tree)
 - Coordinate-Compression(좌표압축)
 - DP(동적계획법)
 - Greedy(그리디)

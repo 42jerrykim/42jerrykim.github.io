@@ -10,7 +10,6 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - C++
-- Dynamic-Programming
 - DP(동적계획법)
 - Sorting(정렬)
 - Time-Complexity(시간복잡도)
@@ -19,7 +18,7 @@ tags:
 - Edge-Cases(엣지케이스)
 - Pitfalls(함정)
 - Implementation(구현)
-- IO
+- IO(Input/Output)
 - Data-Structures(자료구조)
 - Binary-Search(이분탐색)
 - Editorial(에디토리얼)

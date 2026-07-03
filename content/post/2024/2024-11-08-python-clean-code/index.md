@@ -31,7 +31,7 @@ tags:
 - Logging(로깅)
 - Interface(인터페이스)
 - Encapsulation(캡슐화)
-- CI-CD
+- CI-CD(Continuous Integration/Continuous Deployment)
 - Git
 - GitHub
 - Tutorial(튜토리얼)
@@ -46,7 +46,7 @@ tags:
 - Comparison(비교)
 - Reference(참고)
 - Agile(애자일)
-- TDD
+- TDD(Test-Driven Development)
 - Web(웹)
 - Scalability(확장성)
 - Markdown(마크다운)

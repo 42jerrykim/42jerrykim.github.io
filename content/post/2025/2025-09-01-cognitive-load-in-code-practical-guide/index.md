@@ -27,7 +27,7 @@ tags:
 - Markdown(마크다운)
 - Git
 - GitHub
-- API
+- API(Application Programming Interface)
 - Best-Practices
 - Documentation(문서화)
 - Open-Source(오픈소스)
@@ -42,7 +42,7 @@ tags:
 - Maintainability
 - Readability
 - Modularity
-- CI-CD
+- CI-CD(Continuous Integration/Continuous Deployment)
 - DevOps
 - Implementation(구현)
 - Debugging(디버깅)

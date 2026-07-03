@@ -13,7 +13,7 @@ tags:
 - Divide-and-Conquer(분할정복)
 - Modular-Arithmetic(모듈러)
 - C++
-- IO
+- IO(Input/Output)
 - Algorithm(알고리즘)
 - Competitive-Programming(경쟁프로그래밍)
 - Coding-Test(코딩테스트)

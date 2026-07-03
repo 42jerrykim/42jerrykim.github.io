@@ -13,7 +13,7 @@ tags:
   - Async(비동기)
   - Concurrency(동시성)
   - Networking(네트워킹)
-  - HTTP
+  - HTTP(HyperText Transfer Protocol)
   - Performance(성능)
   - Queue(큐)
   - Best-Practices
@@ -23,7 +23,7 @@ tags:
   - Implementation(구현)
   - Code-Quality(코드품질)
   - Simulation(시뮬레이션)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Thread
   - Error-Handling(에러처리)
   - Documentation(문서화)

@@ -5,7 +5,7 @@ categories:
   - Windows
 tags:
   - Windows(윈도우)
-  - RDP
+  - RDP(Remote Desktop Protocol)
   - Troubleshooting(트러블슈팅)
   - PowerShell
   - Process
@@ -57,12 +57,12 @@ tags:
   - Terminal(터미널)
   - Internet(인터넷)
   - Security(보안)
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Beginner
   - Deployment(배포)
   - VSCode
-  - IDE
+  - IDE(Integrated Development Environment)
   - Problem-Solving(문제해결)
   - Testing(테스트)
   - Readability

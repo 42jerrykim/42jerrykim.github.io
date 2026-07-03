@@ -10,7 +10,7 @@ tags:
   - Design-Pattern(디자인패턴)
   - Java
   - Creational-Pattern
-  - GoF
+  - GoF(Gang of Four)
   - Software-Architecture(소프트웨어아키텍처)
   - OOP(객체지향)
   - Interface(인터페이스)
@@ -38,7 +38,7 @@ tags:
   - Tips
   - Comparison(비교)
   - Beginner
-  - UML
+  - UML(Unified Modeling Language)
   - Composition(합성)
   - Abstraction(추상화)
   - Polymorphism(다형성)
@@ -50,8 +50,8 @@ tags:
   - Markdown(마크다운)
   - Spring
   - Backend(백엔드)
-  - API
-  - JSON
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
   - Concurrency(동시성)
 title: "[DesignPattern] 빌더 패턴(Builder Pattern) 정리와 Java 예제"
 image: "wordcloud.png"

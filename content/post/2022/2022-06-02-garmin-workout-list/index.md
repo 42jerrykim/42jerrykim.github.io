@@ -55,7 +55,7 @@ tags:
   - Implementation(구현)
   - Testing(테스트)
   - Performance(성능)
-  - API
+  - API(Application Programming Interface)
   - Data-Structures(자료구조)
   - Algorithm(알고리즘)
   - Problem-Solving(문제해결)

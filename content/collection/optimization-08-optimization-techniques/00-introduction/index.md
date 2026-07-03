@@ -11,7 +11,7 @@ tags:
   - Profiling(프로파일링)
   - Optimization(최적화)
   - Assembly
-  - CPU
+  - CPU(Central Processing Unit)
   - Cache
   - Memory(메모리)
   - Testing(테스트)

@@ -29,8 +29,8 @@ tags:
 - Type-Safety
 - Design-Pattern(디자인패턴)
 - Backend(백엔드)
-- API
-- JSON
+- API(Application Programming Interface)
+- JSON(JavaScript Object Notation)
 - Database(데이터베이스)
 - Caching(캐싱)
 - Security(보안)
@@ -39,7 +39,7 @@ tags:
 - Testing(테스트)
 - Refactoring(리팩토링)
 - Memory(메모리)
-- CPU
+- CPU(Central Processing Unit)
 - Cache
 - Compiler(컴파일러)
 - Blog(블로그)
@@ -62,7 +62,7 @@ tags:
 - Git
 - GitHub
 - Windows(윈도우)
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Web(웹)
 - Networking(네트워킹)

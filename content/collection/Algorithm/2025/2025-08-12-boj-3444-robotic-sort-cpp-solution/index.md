@@ -13,7 +13,7 @@ tags:
 - Lazy-Propagation
 - Data-Structures(자료구조)
 - Algorithm(알고리즘)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Competitive-Programming(경쟁프로그래밍)
 - Coding-Test(코딩테스트)
 - C++

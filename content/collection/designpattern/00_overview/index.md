@@ -10,7 +10,7 @@ header:
   teaser: /assets/images/2024/2024-08-22-designpattern-overview.png
 tags:
   - Design-Pattern(디자인패턴)
-  - GoF
+  - GoF(Gang of Four)
   - Software-Architecture(소프트웨어아키텍처)
   - OOP(객체지향)
   - Code-Quality(코드품질)

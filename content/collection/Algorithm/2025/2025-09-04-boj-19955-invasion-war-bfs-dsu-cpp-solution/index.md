@@ -12,10 +12,9 @@ tags:
 - C++
 - Simulation(시뮬레이션)
 - Graph(그래프)
-- BFS
+- BFS(Breadth-First Search)
 - Shortest-Path(최단경로)
-- DSU
-- Disjoint-Set
+- DSU(Disjoint Set Union)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)
@@ -24,7 +23,7 @@ tags:
 - Competitive-Programming(경쟁프로그래밍)
 - Implementation(구현)
 - Data-Structures(자료구조)
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Code-Quality(코드품질)
@@ -32,7 +31,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- API
+- API(Application Programming Interface)
 - Queue(큐)
 - War(전쟁)
 - Gaming(게임)

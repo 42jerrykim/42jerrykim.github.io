@@ -66,7 +66,7 @@ tags:
   - 컴프리헨션
   - files
   - 파일
-  - IO
+  - IO(Input/Output)
   - 입출력
   - pathlib
   - 예외처리
@@ -94,7 +94,7 @@ tags:
   - 날짜시간
   - itertools
   - functools
-  - JSON
+  - JSON(JavaScript Object Notation)
   - csv
   - Testing(테스트)
   - Database(데이터베이스)
@@ -141,7 +141,7 @@ tags:
   - textwrap
   - pprint
   - reprlib
-  - XML
+  - XML(eXtensible Markup Language)
   - zoneinfo
   - urllib
   - weakref

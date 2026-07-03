@@ -13,14 +13,14 @@ tags:
   - String(문자열)
   - Data-Structures(자료구조)
   - Implementation(구현)
-  - IO
+  - IO(Input/Output)
   - Performance(성능)
   - Clean-Code(클린코드)
   - Code-Quality(코드품질)
   - Best-Practices
   - Pitfalls(함정)
   - Tutorial(튜토리얼)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Memory(메모리)
   - Error-Handling(에러처리)
   - Debugging(디버깅)

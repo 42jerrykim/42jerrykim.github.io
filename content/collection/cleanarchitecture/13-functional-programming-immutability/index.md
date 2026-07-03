@@ -12,7 +12,7 @@ tags:
   - Code-Quality(코드품질)
   - State
   - Concurrency(동시성)
-  - CQRS
+  - CQRS(Command Query Responsibility Segregation)
   - Scala
   - Software-Architecture(소프트웨어아키텍처)
   - Database(데이터베이스)

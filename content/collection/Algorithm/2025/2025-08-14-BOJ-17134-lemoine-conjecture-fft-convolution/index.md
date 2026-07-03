@@ -24,17 +24,16 @@ tags:
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
 - Greedy(그리디)
-- Dynamic-Programming
 - DP(동적계획법)
 - Graph(그래프)
 - Tree(트리)
-- BFS
-- DFS
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
 - Shortest-Path(최단경로)
 - Dijkstra
 - Number-Theory(정수론)
 - Convolution
-- FFT
+- FFT(Fast Fourier Transform)
 - Math(수학)
 - Modular-Arithmetic(모듈러)
 image: "wordcloud.png"

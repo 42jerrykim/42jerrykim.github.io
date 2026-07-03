@@ -15,7 +15,7 @@ tags:
   - TV-Show(드라마)
   - Hardware(하드웨어)
   - Networking(네트워킹)
-  - SEO
+  - SEO(Search Engine Optimization)
   - Web(웹)
   - Gaming(게임)
   - Culture(문화)

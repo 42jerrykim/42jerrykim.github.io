@@ -9,10 +9,10 @@ header:
 image: "wordcloud.png"
 tags:
   - AI(인공지능)
-  - LLM
+  - LLM(Large Language Model)
   - Machine-Learning(머신러닝)
   - Deep-Learning(딥러닝)
-  - NLP
+  - NLP(Natural Language Processing)
   - Software-Architecture(소프트웨어아키텍처)
   - Design-Pattern(디자인패턴)
   - Database(데이터베이스)
@@ -26,7 +26,7 @@ tags:
   - Technology(기술)
   - Web(웹)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Tutorial(튜토리얼)
   - Guide(가이드)
   - Reference(참고)
@@ -55,7 +55,7 @@ tags:
   - 실습
   - Prompt-Engineering(프롬프트엔지니어링)
   - ChatGPT
-  - GPT
+  - GPT(Generative Pre-trained Transformer)
   - Data-Science(데이터사이언스)
   - Neural-Network
   - Transfer-Learning

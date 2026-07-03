@@ -13,7 +13,7 @@ tags:
   - Debugging(디버깅)
   - Logging(로깅)
   - Data-Structures(자료구조)
-  - JSON
+  - JSON(JavaScript Object Notation)
   - Implementation(구현)
   - Graph(그래프)
   - Design-Pattern(디자인패턴)
@@ -21,11 +21,11 @@ tags:
   - Tutorial(튜토리얼)
   - Code-Quality(코드품질)
   - JavaScript
-  - SQL
-  - API
+  - SQL(Structured Query Language)
+  - API(Application Programming Interface)
   - Sorting(정렬)
   - String(문자열)
-  - SEO
+  - SEO(Search Engine Optimization)
   - Web(웹)
   - Error-Handling(에러처리)
   - Documentation(문서화)

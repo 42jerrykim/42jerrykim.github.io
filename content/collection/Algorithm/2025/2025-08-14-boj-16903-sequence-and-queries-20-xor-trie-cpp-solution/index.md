@@ -23,7 +23,7 @@ tags:
 - Pitfalls(함정)
 - Testing(테스트)
 - Optimization(최적화)
-- IO
+- IO(Input/Output)
 - Performance(성능)
 - Baekjoon
 - Array(배열)

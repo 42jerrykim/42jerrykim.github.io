@@ -40,7 +40,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- BFS
+- BFS(Breadth-First Search)
 - Queue(큐)
 image: "wordcloud.png"
 ---

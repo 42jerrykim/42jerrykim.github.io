@@ -25,7 +25,7 @@ tags:
   - Synonym(유의어)
   - Tutorial(튜토리얼)
   - Go
-  - API
+  - API(Application Programming Interface)
   - Graph(그래프)
   - War(전쟁)
   - Science(과학)

@@ -50,10 +50,10 @@ tags:
 - Testing(테스트)
 - Clean-Code(클린코드)
 - Web(웹)
-- API
-- REST
-- JSON
-- YAML
+- API(Application Programming Interface)
+- REST(Representational State Transfer)
+- JSON(JavaScript Object Notation)
+- YAML(YAML Ain't Markup Language)
 - DevOps
 - Deployment(배포)
 - Maintainability

@@ -11,9 +11,7 @@ tags:
 - BOJ(백준)
 - C++
 - Data-Structures(자료구조)
-- Fenwick-Tree
-- Binary-Indexed-Tree
-- BIT
+- BIT(Binary Indexed Tree)
 - Segment-Tree(세그먼트트리)
 - Range-Query
 - Coordinate-Compression(좌표압축)
@@ -29,12 +27,11 @@ tags:
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
 - Greedy(그리디)
-- Dynamic-Programming
 - DP(동적계획법)
 - Graph(그래프)
 - Tree(트리)
-- BFS
-- DFS
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
 - Two-Pointers
 - Sliding-Window
 - Hashing(해싱)

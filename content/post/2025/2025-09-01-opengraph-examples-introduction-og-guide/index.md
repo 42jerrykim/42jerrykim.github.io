@@ -7,7 +7,7 @@ categories:
 - "SEO"
 - "Open Graph"
 tags:
-- SEO
+- SEO(Search Engine Optimization)
 - Cache
 - Caching(캐싱)
 - Debugging(디버깅)
@@ -22,10 +22,10 @@ tags:
 - Technology(기술)
 - Web(웹)
 - Markdown(마크다운)
-- API
+- API(Application Programming Interface)
 - Implementation(구현)
 - Graph(그래프)
-- HTML
+- HTML(HyperText Markup Language)
 - Brand(브랜드)
 - Productivity(생산성)
 - Education(교육)
@@ -36,7 +36,7 @@ tags:
 - Troubleshooting(트러블슈팅)
 - Configuration(설정)
 - Frontend(프론트엔드)
-- CDN
+- CDN(Content Delivery Network)
 - Deployment(배포)
 - Automation(자동화)
 - JavaScript
@@ -49,15 +49,15 @@ tags:
 - Git
 - GitHub
 - Docker
-- AWS
+- AWS(Amazon Web Services)
 - Cloud(클라우드)
-- HTTP
-- REST
+- HTTP(HyperText Transfer Protocol)
+- REST(Representational State Transfer)
 - Security(보안)
 - Scalability(확장성)
 - Networking(네트워킹)
 - DevOps
-- CI-CD
+- CI-CD(Continuous Integration/Continuous Deployment)
 - Workflow(워크플로우)
 - How-To
 - Tips

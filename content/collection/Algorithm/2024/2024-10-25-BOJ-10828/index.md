@@ -7,7 +7,7 @@ categories:
 tags:
 - Stack(스택)
 - Implementation(구현)
-- IO
+- IO(Input/Output)
 - Time-Complexity(시간복잡도)
 - Data-Structures(자료구조)
 - Problem-Solving(문제해결)

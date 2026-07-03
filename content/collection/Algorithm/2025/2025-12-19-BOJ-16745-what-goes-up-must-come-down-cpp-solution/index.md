@@ -12,9 +12,7 @@ tags:
 - BOJ(백준)
 - Baekjoon
 - Math(수학)
-- Fenwick-Tree
-- Binary-Indexed-Tree
-- BIT
+- BIT(Binary Indexed Tree)
 - Prefix-Sum
 - Greedy(그리디)
 - Optimization(최적화)
@@ -22,7 +20,7 @@ tags:
 - Implementation(구현)
 - Problem-Solving(문제해결)
 - Competitive-Programming(경쟁프로그래밍)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
 - C++

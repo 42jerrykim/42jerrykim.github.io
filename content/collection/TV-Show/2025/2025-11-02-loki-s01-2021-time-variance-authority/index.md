@@ -11,7 +11,7 @@ categories:
 - Disney Plus
 tags:
 - Mystery(미스터리)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Fantasy(판타지)
 - Action(액션)
 - TV-Show(드라마)

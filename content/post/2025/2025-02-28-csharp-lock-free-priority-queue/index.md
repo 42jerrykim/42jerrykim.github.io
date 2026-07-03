@@ -62,7 +62,7 @@ tags:
 - Profiling(프로파일링)
 - Logging(로깅)
 - Cache
-- CPU
+- CPU(Central Processing Unit)
 - Process
 - OS(운영체제)
 - Networking(네트워킹)
@@ -71,7 +71,7 @@ tags:
 - Open-Source(오픈소스)
 - Git
 - GitHub
-- API
+- API(Application Programming Interface)
 - Event-Driven
 description: "동시성 프로그래밍에서 C#으로 lock-free·thread-safe 우선순위 큐를 구현하는 방법을 다룬다. CAS 기반 구현, ReaderWriterLockSlim, .NET 6 PriorityQueue 래핑, 다중 우선순위·await 가능 큐와 ABA 문제·성능 최적화·활용 사례를 포함한다. 멀티스레드 고성능 애플리케이션 개발자 실무 참고용."
 image: index.png

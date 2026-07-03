@@ -12,7 +12,7 @@ tags:
   - BOJ(백준)
   - Baekjoon
   - C++
-  - FFT
+  - FFT(Fast Fourier Transform)
   - Convolution
   - Code-Quality(코드품질)
   - Edge-Cases(엣지케이스)
@@ -22,7 +22,7 @@ tags:
   - Editorial(에디토리얼)
   - Tutorial(튜토리얼)
   - Pitfalls(함정)
-  - IO
+  - IO(Input/Output)
   - Complexity-Analysis(복잡도분석)
   - Competitive-Programming(경쟁프로그래밍)
   - Problem-Solving(문제해결)

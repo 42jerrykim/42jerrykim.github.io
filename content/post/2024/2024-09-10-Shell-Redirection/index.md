@@ -13,7 +13,7 @@ tags:
   - Shell(셸)
   - Linux(리눅스)
   - Terminal(터미널)
-  - IO
+  - IO(Input/Output)
   - File-System
   - Process
   - Guide(가이드)
@@ -58,7 +58,7 @@ tags:
   - Interface(인터페이스)
   - Web(웹)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Networking(네트워킹)
   - Security(보안)
   - C

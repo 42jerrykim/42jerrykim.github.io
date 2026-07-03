@@ -25,8 +25,8 @@ tags:
 - Complexity-Analysis(복잡도분석)
 - Greedy(그리디)
 - Graph(그래프)
-- DFS
-- BFS
+- DFS(Depth-First Search)
+- BFS(Breadth-First Search)
 - String(문자열)
 - Tree(트리)
 - Problem-Solving(문제해결)

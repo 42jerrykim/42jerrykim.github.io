@@ -10,8 +10,7 @@ categories:
 - Legendary Pictures
 tags:
 - Movie(영화)
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Action(액션)
 - Adventure(모험)
 - Drama

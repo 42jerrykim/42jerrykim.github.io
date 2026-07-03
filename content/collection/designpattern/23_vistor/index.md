@@ -11,7 +11,7 @@ header:
 tags:
   - Design-Pattern(디자인패턴)
   - Visitor
-  - GoF
+  - GoF(Gang of Four)
   - SOLID
   - Polymorphism(다형성)
   - Code-Quality(코드품질)
@@ -27,7 +27,7 @@ tags:
   - Implementation(구현)
   - Tree(트리)
   - Math(수학)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Best-Practices
   - Clean-Code(클린코드)
   - Refactoring(리팩토링)

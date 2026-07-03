@@ -12,7 +12,7 @@ tags:
   - Quick-Reference
   - DevOps
   - Dependency-Injection(의존성주입)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Windows(윈도우)
   - PowerShell
   - macOS
@@ -28,7 +28,7 @@ tags:
   - Code-Quality(코드품질)
   - Bash
   - Shell(셸)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Deployment(배포)
   - Error-Handling(에러처리)
   - Debugging(디버깅)

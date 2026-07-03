@@ -9,7 +9,7 @@ teaser: /assets/images/2024/2024-08-22-Relational-vs-Non-Relational-Datebase.png
 header: null
 tags:
   - Database(데이터베이스)
-  - SQL
+  - SQL(Structured Query Language)
   - PostgreSQL
   - MySQL
   - MongoDB
@@ -31,9 +31,9 @@ tags:
   - Documentation(문서화)
   - Open-Source(오픈소스)
   - Comparison(비교)
-  - API
-  - REST
-  - JSON
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - JSON(JavaScript Object Notation)
   - Caching(캐싱)
   - Security(보안)
   - Cloud(클라우드)
@@ -53,9 +53,9 @@ tags:
   - Case-Study
   - 실습
   - Kafka
-  - AWS
+  - AWS(Amazon Web Services)
   - Azure
-  - GCP
+  - GCP(Google Cloud Platform)
   - Concurrency(동시성)
   - Graph(그래프)
   - Problem-Solving(문제해결)

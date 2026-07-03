@@ -8,7 +8,7 @@ categories:
   - "SEO"
   - "Hugo"
 tags:
-  - SEO
+  - SEO(Search Engine Optimization)
   - Hugo
   - Git
   - GitHub
@@ -29,9 +29,9 @@ tags:
   - Reference(참고)
   - Implementation(구현)
   - Deployment(배포)
-  - HTTP
-  - YAML
-  - HTML
+  - HTTP(HyperText Transfer Protocol)
+  - YAML(YAML Ain't Markup Language)
+  - HTML(HyperText Markup Language)
   - PowerShell
   - Shell(셸)
   - Education(교육)
@@ -48,11 +48,11 @@ tags:
   - Networking(네트워킹)
   - Frontend(프론트엔드)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Code-Quality(코드품질)
   - Testing(테스트)
   - Debugging(디버깅)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - DevOps
   - Cloud(클라우드)
   - Internet(인터넷)

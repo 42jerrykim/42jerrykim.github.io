@@ -42,7 +42,7 @@ tags:
 - Embedded(임베디드)
 - Cloud(클라우드)
 - Design-Pattern(디자인패턴)
-- API
+- API(Application Programming Interface)
 - Database(데이터베이스)
 - Caching(캐싱)
 - Latency

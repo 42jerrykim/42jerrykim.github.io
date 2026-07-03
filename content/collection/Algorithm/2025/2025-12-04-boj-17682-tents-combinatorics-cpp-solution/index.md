@@ -11,7 +11,6 @@ tags:
   - BOJ(백준)
   - Combinatorics(조합론)
   - DP(동적계획법)
-  - Dynamic-Programming
   - Math(수학)
   - Modular-Arithmetic(모듈러)
   - Graph(그래프)

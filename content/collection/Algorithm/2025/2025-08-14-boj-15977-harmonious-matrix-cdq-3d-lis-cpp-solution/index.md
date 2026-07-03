@@ -22,12 +22,9 @@ tags:
 - Code-Review(코드리뷰)
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
-- Dynamic-Programming
 - DP(동적계획법)
 - Divide-and-Conquer(분할정복)
-- Fenwick-Tree
-- BIT
-- Binary-Indexed-Tree
+- BIT(Binary Indexed Tree)
 - Coordinate-Compression(좌표압축)
 - Math(수학)
 - Sorting(정렬)

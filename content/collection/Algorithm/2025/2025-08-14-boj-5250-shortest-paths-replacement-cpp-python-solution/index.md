@@ -28,7 +28,7 @@ tags:
 - Dijkstra
 - Priority-Queue(우선순위큐)
 - Heap(힙)
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Code-Quality(코드품질)

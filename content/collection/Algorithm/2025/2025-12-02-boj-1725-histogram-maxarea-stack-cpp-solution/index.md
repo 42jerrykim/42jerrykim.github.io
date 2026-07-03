@@ -21,7 +21,7 @@ tags:
 - Implementation(구현)
 - Pitfalls(함정)
 - Optimization(최적화)
-- IO
+- IO(Input/Output)
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
 - Coding-Test(코딩테스트)

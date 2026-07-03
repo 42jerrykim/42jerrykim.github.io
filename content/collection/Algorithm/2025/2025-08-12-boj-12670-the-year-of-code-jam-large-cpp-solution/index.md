@@ -13,7 +13,7 @@ tags:
 - Editorial(에디토리얼)
 - Algorithm(알고리즘)
 - C++
-- IO
+- IO(Input/Output)
 - Time-Complexity(시간복잡도)
 - Implementation(구현)
 - Graph(그래프)
@@ -27,8 +27,8 @@ tags:
 - .NET
 - Git
 - GitHub
-- BFS
-- DFS
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
 - Queue(큐)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)

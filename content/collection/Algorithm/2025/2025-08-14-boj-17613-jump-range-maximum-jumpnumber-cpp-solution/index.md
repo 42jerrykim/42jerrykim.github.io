@@ -12,7 +12,7 @@ tags:
 - C++
 - Python
 - Greedy(그리디)
-- BIT
+- BIT(Binary Indexed Tree)
 - Math(수학)
 - Recursion(재귀)
 - Implementation(구현)
@@ -29,7 +29,7 @@ tags:
 - Binary-Search(이분탐색)
 - Number-Theory(정수론)
 - Divide-and-Conquer(분할정복)
-- Dynamic-Programming
+- DP(동적계획법)
 - Debugging(디버깅)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

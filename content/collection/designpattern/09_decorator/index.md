@@ -11,11 +11,11 @@ header:
 tags:
   - Design-Pattern(디자인패턴)
   - Decorator
-  - GoF
+  - GoF(Gang of Four)
   - Composition(합성)
   - SOLID
   - Software-Architecture(소프트웨어아키텍처)
-  - IO
+  - IO(Input/Output)
   - Code-Quality(코드품질)
   - OOP(객체지향)
   - Java

@@ -14,7 +14,7 @@ tags:
   - Frontend(프론트엔드)
   - Interface(인터페이스)
   - Dependency-Injection(의존성주입)
-  - IO
+  - IO(Input/Output)
   - Coupling(결합도)
   - Testing(테스트)
 ---

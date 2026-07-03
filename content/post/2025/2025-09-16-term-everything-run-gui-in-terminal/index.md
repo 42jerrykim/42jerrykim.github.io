@@ -49,7 +49,7 @@ tags:
 - Latency
 - Throughput
 - Async(비동기)
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Clean-Code(클린코드)
 - Refactoring(리팩토링)
@@ -59,7 +59,7 @@ tags:
 - Software-Architecture(소프트웨어아키텍처)
 - Interface(인터페이스)
 - Modularity
-- RDP
+- RDP(Remote Desktop Protocol)
 - Self-Hosted(셀프호스팅)
 image: "wordcloud.png"
 draft: false

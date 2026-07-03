@@ -9,13 +9,13 @@ categories:
 tags:
   - ChatGPT
   - AI(인공지능)
-  - LLM
-  - GPT
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - Prompt-Engineering(프롬프트엔지니어링)
   - Cloud(클라우드)
-  - AWS
+  - AWS(Amazon Web Services)
   - Azure
-  - GCP
+  - GCP(Google Cloud Platform)
   - Security(보안)
   - Automation(자동화)
   - Monitoring(모니터링)
@@ -45,7 +45,7 @@ tags:
   - Logging(로깅)
   - Deployment(배포)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Performance(성능)
   - Scalability(확장성)
   - Software-Architecture(소프트웨어아키텍처)
@@ -53,7 +53,7 @@ tags:
   - Code-Quality(코드품질)
   - Testing(테스트)
   - Git
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Docker
   - Kubernetes
   - Workflow(워크플로우)

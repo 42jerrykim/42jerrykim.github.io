@@ -10,7 +10,7 @@ header:
   teaser: /assets/images/2024/2024-08-21-factory-method.png
 tags:
   - Design-Pattern(디자인패턴)
-  - GoF
+  - GoF(Gang of Four)
   - Inheritance(상속)
   - Polymorphism(다형성)
   - Interface(인터페이스)

@@ -23,7 +23,7 @@ tags:
   - Iterator
   - Clean-Code(클린코드)
   - Best-Practices
-  - CPU
+  - CPU(Central Processing Unit)
   - Memory(메모리)
   - Benchmark
   - Profiling(프로파일링)

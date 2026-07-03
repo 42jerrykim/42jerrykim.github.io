@@ -26,7 +26,7 @@ tags:
   - Code-Quality(코드품질)
   - OOP(객체지향)
   - Tree(트리)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Documentation(문서화)
   - Testing(테스트)
   - Refactoring(리팩토링)

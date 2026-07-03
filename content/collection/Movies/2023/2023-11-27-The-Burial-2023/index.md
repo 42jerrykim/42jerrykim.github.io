@@ -57,8 +57,7 @@ tags:
 - War(전쟁)
 - Horror(공포)
 - Animation(애니메이션)
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - History(역사)
 - Blockbuster
 - Indie

@@ -11,7 +11,7 @@ tags:
   - Security(보안)
   - Dependency-Injection(의존성주입)
   - Software-Architecture(소프트웨어아키텍처)
-  - IO
+  - IO(Input/Output)
   - Shortest-Path(최단경로)
   - Interface(인터페이스)
   - Abstraction(추상화)

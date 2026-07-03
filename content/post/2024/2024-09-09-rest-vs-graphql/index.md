@@ -7,14 +7,14 @@ lastmod: "2026-03-17"
 header:
   teaser: /assets/images/2024/2024-09-09-rest-vs-graphql.png
 tags:
-  - REST
+  - REST(Representational State Transfer)
   - GraphQL
-  - API
+  - API(Application Programming Interface)
   - Web(웹)
   - Backend(백엔드)
-  - HTTP
-  - JSON
-  - XML
+  - HTTP(HyperText Transfer Protocol)
+  - JSON(JavaScript Object Notation)
+  - XML(eXtensible Markup Language)
   - Software-Architecture(소프트웨어아키텍처)
   - Performance(성능)
   - Scalability(확장성)
@@ -56,7 +56,7 @@ tags:
   - Beginner
   - Blog(블로그)
   - Markdown(마크다운)
-  - YAML
+  - YAML(YAML Ain't Markup Language)
   - Maintainability
   - Modularity
   - Interface(인터페이스)

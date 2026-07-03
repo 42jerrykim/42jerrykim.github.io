@@ -22,7 +22,7 @@ tags:
 - Code-Quality(코드품질)
 - Go
 - .NET
-- DFS
+- DFS(Depth-First Search)
 - Stack(스택)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)

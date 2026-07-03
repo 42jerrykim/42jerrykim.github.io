@@ -13,7 +13,6 @@ tags:
 - BOJ(백준)
 - Baekjoon
 - Concurrency(동시성)
-- Dynamic-Programming
 - DP(동적계획법)
 - Optimization(최적화)
 - Deque

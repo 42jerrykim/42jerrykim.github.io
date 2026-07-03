@@ -17,13 +17,13 @@ tags:
 - Math(수학)
 - Implementation(구현)
 - C++
-- IO
+- IO(Input/Output)
 - Modular-Arithmetic(모듈러)
 - Editorial(에디토리얼)
 - Algorithm(알고리즘)
 - Coding-Test(코딩테스트)
 - Competitive-Programming(경쟁프로그래밍)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Data-Structures(자료구조)
 - Divide-and-Conquer(분할정복)
 - Testing(테스트)
@@ -34,8 +34,8 @@ tags:
 - .NET
 - Git
 - GitHub
-- REST
-- API
+- REST(Representational State Transfer)
+- API(Application Programming Interface)
 - Memory(메모리)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)

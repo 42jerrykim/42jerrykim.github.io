@@ -11,7 +11,7 @@ tags:
 - Baekjoon
 - String(문자열)
 - Implementation(구현)
-- IO
+- IO(Input/Output)
 - Python
 - C++
 - Problem-Solving(문제해결)

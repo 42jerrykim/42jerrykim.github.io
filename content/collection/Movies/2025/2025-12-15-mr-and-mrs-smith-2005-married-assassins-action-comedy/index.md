@@ -18,7 +18,7 @@ tags:
 - Review(리뷰)
 - Tree(트리)
 - Drama
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Animation(애니메이션)
 - Fantasy(판타지)
 - Gaming(게임)

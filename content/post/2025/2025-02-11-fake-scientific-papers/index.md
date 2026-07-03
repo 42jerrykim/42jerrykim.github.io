@@ -9,8 +9,8 @@ categories:
 tags:
   - AI(인공지능)
   - ChatGPT
-  - LLM
-  - GPT
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - Science(과학)
   - Technology(기술)
   - Review(리뷰)
@@ -40,7 +40,7 @@ tags:
   - Best-Practices
   - Machine-Learning(머신러닝)
   - Data-Science(데이터사이언스)
-  - NLP
+  - NLP(Natural Language Processing)
   - Privacy(프라이버시)
   - Beginner
   - Advanced

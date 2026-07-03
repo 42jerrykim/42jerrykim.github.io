@@ -16,7 +16,7 @@ tags:
   - Decorator
   - Command
   - Factory
-  - GoF
+  - GoF(Gang of Four)
   - OOP(객체지향)
   - Python
   - Implementation(구현)
@@ -34,7 +34,7 @@ tags:
   - Iterator
   - Mediator
   - Visitor
-  - UML
+  - UML(Unified Modeling Language)
   - Blog(블로그)
   - Tutorial(튜토리얼)
   - Guide(가이드)

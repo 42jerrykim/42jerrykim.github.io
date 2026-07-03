@@ -56,8 +56,8 @@ tags:
 - Blog(블로그)
 - Web(웹)
 - Backend(백엔드)
-- API
-- JSON
+- API(Application Programming Interface)
+- JSON(JavaScript Object Notation)
 - Security(보안)
 - Data-Structures(자료구조)
 - Algorithm(알고리즘)

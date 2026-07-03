@@ -22,7 +22,6 @@ tags:
 - Code-Review(코드리뷰)
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
-- Dynamic-Programming
 - DP(동적계획법)
 - Sliding-Window
 - Deque

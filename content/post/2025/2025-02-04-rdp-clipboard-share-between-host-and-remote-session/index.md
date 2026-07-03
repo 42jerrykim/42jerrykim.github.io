@@ -5,7 +5,7 @@ categories:
   - RemoteDesktop
 tags:
   - Windows(윈도우)
-  - RDP
+  - RDP(Remote Desktop Protocol)
   - Troubleshooting(트러블슈팅)
   - Guide(가이드)
   - Tutorial(튜토리얼)

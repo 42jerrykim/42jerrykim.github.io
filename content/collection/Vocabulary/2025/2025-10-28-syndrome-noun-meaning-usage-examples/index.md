@@ -18,8 +18,8 @@ tags:
   - Grammar(문법)
   - Etymology(어원)
   - Tutorial(튜토리얼)
-  - REST
-  - API
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
   - War(전쟁)
   - Culture(문화)
   - Psychology(심리학)

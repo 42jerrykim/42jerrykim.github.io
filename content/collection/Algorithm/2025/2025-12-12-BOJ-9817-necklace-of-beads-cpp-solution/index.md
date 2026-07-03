@@ -9,7 +9,7 @@ categories:
 tags:
 - BOJ(백준)
 - Baekjoon
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Combinatorics(조합론)
 - Implementation(구현)
 - Math(수학)
@@ -19,7 +19,7 @@ tags:
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
 - C++
-- IO
+- IO(Input/Output)
 - Algorithm(알고리즘)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

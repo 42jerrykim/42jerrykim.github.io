@@ -13,7 +13,7 @@ tags:
   - Implementation(구현)
   - Pitfalls(함정)
   - Best-Practices
-  - JSON
+  - JSON(JavaScript Object Notation)
   - Logging(로깅)
   - Testing(테스트)
   - Performance(성능)
@@ -21,7 +21,7 @@ tags:
   - Code-Quality(코드품질)
   - String(문자열)
   - War(전쟁)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Error-Handling(에러처리)
   - Debugging(디버깅)
   - Documentation(문서화)

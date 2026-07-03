@@ -18,7 +18,7 @@ tags:
 - Thriller(스릴러)
 - Horror(공포)
 - Drama
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Animation(애니메이션)
 - Comedy(코미디)
 - Fantasy(판타지)

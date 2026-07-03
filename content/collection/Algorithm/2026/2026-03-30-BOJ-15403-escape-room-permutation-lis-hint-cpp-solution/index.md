@@ -38,7 +38,7 @@ tags:
 - 관찰
 - Construction
 - 구성
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - SEERC
 - Europe-Regional
 - 유럽리저널

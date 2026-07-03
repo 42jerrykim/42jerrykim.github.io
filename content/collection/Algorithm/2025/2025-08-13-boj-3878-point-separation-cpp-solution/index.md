@@ -19,7 +19,7 @@ tags:
 - Implementation(구현)
 - Optimization(최적화)
 - Testing(테스트)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Editorial(에디토리얼)
 - Code-Review(코드리뷰)
 - Competitive-Programming(경쟁프로그래밍)

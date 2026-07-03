@@ -19,11 +19,11 @@ tags:
 - Comedy(코미디)
 - Drama
 - Thriller(스릴러)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Fantasy(판타지)
 - Romance(로맨스)
 - War(전쟁)
-- SEO
+- SEO(Search Engine Optimization)
 - Web(웹)
 - TV-Show(드라마)
 - Culture(문화)

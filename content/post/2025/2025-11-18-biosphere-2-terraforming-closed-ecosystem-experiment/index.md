@@ -48,8 +48,8 @@ tags:
 - Windows(윈도우)
 - Database(데이터베이스)
 - Web(웹)
-- API
-- REST
+- API(Application Programming Interface)
+- REST(Representational State Transfer)
 - Backend(백엔드)
 - AI(인공지능)
 - Machine-Learning(머신러닝)

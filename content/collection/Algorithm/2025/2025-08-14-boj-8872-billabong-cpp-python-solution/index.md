@@ -27,11 +27,10 @@ tags:
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
 - Greedy(그리디)
-- Dynamic-Programming
 - DP(동적계획법)
-- BFS
-- DFS
-- Disjoint-Set
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
+- DSU(Disjoint Set Union)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)

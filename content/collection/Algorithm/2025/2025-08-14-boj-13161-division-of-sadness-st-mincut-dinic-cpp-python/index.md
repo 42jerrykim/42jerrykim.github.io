@@ -26,7 +26,7 @@ tags:
 - Competitive-Programming(경쟁프로그래밍)
 - Editorial(에디토리얼)
 - Testing(테스트)
-- BFS
+- BFS(Breadth-First Search)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Code-Quality(코드품질)
@@ -34,7 +34,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- DFS
+- DFS(Depth-First Search)
 - Queue(큐)
 - Documentation(문서화)
 - Best-Practices

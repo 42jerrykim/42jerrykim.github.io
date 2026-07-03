@@ -27,7 +27,7 @@ programming_languages:
   - Ruby
   - Kotlin
   - Swift
-  - SQL
+  - SQL(Structured Query Language)
   - Bash
   - PowerShell
   - Assembly
@@ -47,9 +47,9 @@ frameworks_and_platforms:
   - Hugo
   - Docker
   - Kubernetes
-  - AWS
+  - AWS(Amazon Web Services)
   - Azure
-  - GCP
+  - GCP(Google Cloud Platform)
   - Redis
   - PostgreSQL
   - MySQL
@@ -67,25 +67,24 @@ algorithm_core:
   - BOJ(백준)
   - Baekjoon
   - Competitive-Programming(경쟁프로그래밍)
-  - ICPC
-  - USACO
+  - ICPC(International Collegiate Programming Contest)
+  - USACO(USA Computing Olympiad)
   - Problem-Solving(문제해결)
   - Coding-Test(코딩테스트)
   - Editorial(에디토리얼)
 
 algorithm_topics:
   - Graph(그래프)
-  - Dynamic-Programming
+  - DP(동적계획법)
   - DP(동적계획법)
   - Greedy(그리디)
-  - BFS
-  - DFS
+  - BFS(Breadth-First Search)
+  - DFS(Depth-First Search)
   - Binary-Search(이분탐색)
   - Sorting(정렬)
   - Tree(트리)
   - Segment-Tree(세그먼트트리)
-  - Fenwick-Tree
-  - BIT
+  - BIT(Binary Indexed Tree)
   - String(문자열)
   - Math(수학)
   - Geometry
@@ -106,13 +105,12 @@ algorithm_topics:
   - Number-Theory(정수론)
   - Graph-Theory(그래프이론)
   - Coordinate-Compression(좌표압축)
-  - LCA
+  - LCA(Lowest Common Ancestor)
   - Euler-Tour
-  - DSU
-  - Disjoint-Set
+  - DSU(Disjoint Set Union)
   - Game-Theory
   - Bipartite-Matching
-  - FFT
+  - FFT(Fast Fourier Transform)
   - Convolution
   - Backtracking
   - Brute-Force(완전탐색)
@@ -120,9 +118,8 @@ algorithm_topics:
   - Memoization
   - Lazy-Propagation
   - 위상정렬
-  - MST
+  - MST(Minimum Spanning Tree)
   - Modular-Arithmetic(모듈러)
-  - Binary-Indexed-Tree
   - Stack(스택)
   - Queue(큐)
   - Priority-Queue(우선순위큐)
@@ -193,7 +190,7 @@ software_engineering:
   - Dependency-Injection(의존성주입)
   - Coupling(결합도)
   - Cohesion(응집도)
-  - GoF
+  - GoF(Gang of Four)
   - Behavioral-Pattern
   - Creational-Pattern
   - Structural-Pattern
@@ -212,15 +209,15 @@ software_engineering:
   - Iterator
   - Mediator
   - Visitor
-  - UML
+  - UML(Unified Modeling Language)
   - Domain-Driven-Design
   - Event-Driven
-  - CQRS
+  - CQRS(Command Query Responsibility Segregation)
 
 devops_and_tools:
   - Git
   - GitHub
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Linux(리눅스)
   - Windows(윈도우)
   - macOS
@@ -231,7 +228,7 @@ devops_and_tools:
   - Automation(자동화)
   - Monitoring(모니터링)
   - DevOps
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Vim
 
@@ -239,21 +236,21 @@ web_and_backend:
   - Web(웹)
   - Backend(백엔드)
   - Frontend(프론트엔드)
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - GraphQL
-  - HTTP
+  - HTTP(HyperText Transfer Protocol)
   - WebSocket
   - Database(데이터베이스)
-  - JSON
-  - XML
-  - YAML
+  - JSON(JavaScript Object Notation)
+  - XML(eXtensible Markup Language)
+  - YAML(YAML Ain't Markup Language)
   - Networking(네트워킹)
   - Security(보안)
   - Authentication(인증)
   - Caching(캐싱)
-  - CDN
-  - SEO
+  - CDN(Content Delivery Network)
+  - SEO(Search Engine Optimization)
   - Scalability(확장성)
   - Concurrency(동시성)
   - Async(비동기)
@@ -272,26 +269,26 @@ ai_and_data:
   - AI(인공지능)
   - Machine-Learning(머신러닝)
   - Deep-Learning(딥러닝)
-  - NLP
+  - NLP(Natural Language Processing)
   - Computer-Vision
   - Data-Science(데이터사이언스)
-  - LLM
-  - GPT
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - Neural-Network
 
 system_and_low_level:
   - Memory(메모리)
-  - CPU
+  - CPU(Central Processing Unit)
   - Cache
   - Compiler(컴파일러)
   - OS(운영체제)
   - Process
   - Thread
-  - IO
+  - IO(Input/Output)
   - File-System
   - Embedded(임베디드)
   - Mutex
-  - RAII
+  - RAII(Resource Acquisition Is Initialization)
   - Kernel
   - Synchronization
   - Condition-Variable
@@ -303,9 +300,9 @@ system_and_low_level:
   - PATH
   - Permission
   - Backup
-  - SSH
-  - PWD
-  - ELF
+  - SSH(Secure Shell)
+  - PWD(Print Working Directory)
+  - ELF(Executable and Linkable Format)
 
 english_vocabulary:
   - Vocabulary
@@ -326,9 +323,9 @@ english_vocabulary:
   - Business-English(비즈니스영어)
   - Academic-English(학술영어)
   - Medical-English
-  - TOEFL
-  - IELTS
-  - GRE
+  - TOEFL(Test of English as a Foreign Language)
+  - IELTS(International English Language Testing System)
+  - GRE(Graduate Record Examination)
   - Phrasal-Verb
   - Context(맥락)
   - Usage-Notes
@@ -350,8 +347,7 @@ movie_and_tv:
   - Drama
   - Thriller(스릴러)
   - Horror(공포)
-  - Sci-Fi
-  - SF
+  - Sci-Fi(Science Fiction)
   - Fantasy(판타지)
   - Romance(로맨스)
   - Animation(애니메이션)
@@ -390,7 +386,7 @@ movie_and_tv:
   - Sequel
   - Prequel
   - Marvel
-  - MCU
+  - MCU(Marvel Cinematic Universe)
   - Superhero
   - Disney
   - Netflix
@@ -416,16 +412,16 @@ general_topics:
   - Cloud(클라우드)
   - Agile(애자일)
   - Scrum
-  - TDD
-  - RDP
+  - TDD(Test-Driven Development)
+  - RDP(Remote Desktop Protocol)
   - Networking
   - History(역사)
   - Culture(문화)
   - Science(과학)
   - Review(리뷰)
   - Technology(기술)
-  - CSS
-  - HTML
+  - CSS(Cascading Style Sheets)
+  - HTML(HyperText Markup Language)
   - Cycling
   - Photography(사진)
   - Gaming(게임)
@@ -449,7 +445,7 @@ general_topics:
   - Android
   - iOS
   - ChatGPT
-  - LLM
+  - LLM(Large Language Model)
   - Prompt-Engineering(프롬프트엔지니어링)
   - Tmux
   - Terminal

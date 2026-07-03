@@ -16,9 +16,7 @@ tags:
 - Tree(트리)
 - Range-Query
 - Data-Structures(자료구조)
-- Fenwick-Tree
-- BIT
-- Binary-Indexed-Tree
+- BIT(Binary Indexed Tree)
 - Prefix-Sum
 - Segment-Tree(세그먼트트리)
 - Euler-Tour
@@ -36,7 +34,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- DFS
+- DFS(Depth-First Search)
 - Graph(그래프)
 - Memory(메모리)
 - Culture(문화)

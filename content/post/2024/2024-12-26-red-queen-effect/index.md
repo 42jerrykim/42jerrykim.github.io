@@ -60,7 +60,7 @@ tags:
   - Cheatsheet(치트시트)
   - Quick-Reference
   - Web(웹)
-  - API
+  - API(Application Programming Interface)
   - Database(데이터베이스)
   - Machine-Learning(머신러닝)
 image: "maxresdefault.png"

@@ -21,8 +21,7 @@ tags:
 - Action(액션)
 - Adventure(모험)
 - Fantasy(판타지)
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Superhero
 - DC
 - Warner-Bros

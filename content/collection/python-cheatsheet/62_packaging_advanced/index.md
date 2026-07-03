@@ -11,7 +11,7 @@ tags:
   - Cheatsheet(치트시트)
   - Quick-Reference
   - DevOps
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Deployment(배포)
   - Dependency-Injection(의존성주입)
   - Shell(셸)

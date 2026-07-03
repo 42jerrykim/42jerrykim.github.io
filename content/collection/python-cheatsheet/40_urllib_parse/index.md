@@ -12,8 +12,8 @@ tags:
   - Quick-Reference
   - Implementation(구현)
   - Web(웹)
-  - HTTP
-  - API
+  - HTTP(HyperText Transfer Protocol)
+  - API(Application Programming Interface)
   - Design-Pattern(디자인패턴)
   - Best-Practices
   - Security(보안)
@@ -22,7 +22,7 @@ tags:
   - Code-Quality(코드품질)
   - .NET
   - String(문자열)
-  - SEO
+  - SEO(Search Engine Optimization)
   - Error-Handling(에러처리)
   - Debugging(디버깅)
   - Documentation(문서화)

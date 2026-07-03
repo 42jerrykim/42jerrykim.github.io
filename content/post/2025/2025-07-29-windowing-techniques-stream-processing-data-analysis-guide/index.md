@@ -20,7 +20,7 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Design-Pattern(디자인패턴)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Scalability(확장성)
   - Concurrency(동시성)
   - Async(비동기)
@@ -35,8 +35,8 @@ tags:
   - Monitoring(모니터링)
   - DevOps
   - Cloud(클라우드)
-  - AWS
-  - GCP
+  - AWS(Amazon Web Services)
+  - GCP(Google Cloud Platform)
   - Networking(네트워킹)
   - Sliding-Window
   - Algorithm(알고리즘)
@@ -63,8 +63,8 @@ tags:
   - Clean-Code(클린코드)
   - Refactoring(리팩토링)
   - Web(웹)
-  - JSON
-  - REST
+  - JSON(JavaScript Object Notation)
+  - REST(Representational State Transfer)
   - Security(보안)
   - Innovation(혁신)
   - Troubleshooting(트러블슈팅)
@@ -81,7 +81,7 @@ tags:
   - GitHub
   - Linux(리눅스)
   - Windows(윈도우)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Type-Safety
   - Readability

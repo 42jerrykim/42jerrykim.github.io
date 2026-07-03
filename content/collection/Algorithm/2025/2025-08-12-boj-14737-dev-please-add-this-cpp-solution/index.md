@@ -15,9 +15,9 @@ tags:
 - Algorithm(알고리즘)
 - Implementation(구현)
 - C++
-- IO
+- IO(Input/Output)
 - Software-Architecture(소프트웨어아키텍처)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Problem-Solving(문제해결)
 - Editorial(에디토리얼)
 - Competitive-Programming(경쟁프로그래밍)
@@ -30,9 +30,9 @@ tags:
 - .NET
 - Git
 - GitHub
-- DFS
+- DFS(Depth-First Search)
 - String(문자열)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)
 - Testing(테스트)

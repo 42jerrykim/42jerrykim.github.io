@@ -11,14 +11,14 @@ tags:
   - AI(인공지능)
   - Machine-Learning(머신러닝)
   - Deep-Learning(딥러닝)
-  - LLM
-  - GPT
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - ChatGPT
-  - NLP
+  - NLP(Natural Language Processing)
   - Computer-Vision
   - Data-Science(데이터사이언스)
   - Neural-Network
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Web(웹)
   - Tutorial(튜토리얼)

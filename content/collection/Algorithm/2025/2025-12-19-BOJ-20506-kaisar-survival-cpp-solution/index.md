@@ -13,10 +13,10 @@ tags:
 - BOJ(백준)
 - Baekjoon
 - Tree(트리)
-- LCA
+- LCA(Lowest Common Ancestor)
 - Math(수학)
 - Combinatorics(조합론)
-- DFS
+- DFS(Depth-First Search)
 - Stack(스택)
 - Sorting(정렬)
 - Data-Structures(자료구조)

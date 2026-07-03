@@ -16,7 +16,7 @@ tags:
 - Greedy(그리디)
 - Number-Theory(정수론)
 - Competitive-Programming(경쟁프로그래밍)
-- USACO
+- USACO(USA Computing Olympiad)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Implementation(구현)

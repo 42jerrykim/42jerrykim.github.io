@@ -10,7 +10,7 @@ tags:
   - Performance(성능)
   - Profiling(프로파일링)
   - Testing(테스트)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Automation(자동화)
   - Monitoring(모니터링)
   - Code-Review(코드리뷰)

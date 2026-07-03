@@ -18,8 +18,7 @@ tags:
 - Lena-Hall
 - Alison-Wright
 - Archie-Panjabi
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Drama
 - TV-Show(드라마)
 - Thriller(스릴러)

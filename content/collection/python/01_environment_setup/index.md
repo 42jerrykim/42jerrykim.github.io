@@ -27,7 +27,7 @@ tags:
   - Web(웹)
   - Database(데이터베이스)
   - Networking(네트워킹)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Automation(자동화)
   - Documentation(문서화)
   - Git

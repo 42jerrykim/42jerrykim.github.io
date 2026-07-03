@@ -42,7 +42,7 @@ tags:
 - Open-Source(오픈소스)
 - History(역사)
 - cd
-- PWD
+- PWD(Print Working Directory)
 - 디렉터리
 - 경로
 - 작업디렉터리

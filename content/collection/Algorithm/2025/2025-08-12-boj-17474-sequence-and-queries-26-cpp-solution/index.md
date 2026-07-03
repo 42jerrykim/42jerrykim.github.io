@@ -18,7 +18,7 @@ tags:
 - Problem-Solving(문제해결)
 - Editorial(에디토리얼)
 - C++
-- IO
+- IO(Input/Output)
 - Time-Complexity(시간복잡도)
 - Implementation(구현)
 - Optimization(최적화)

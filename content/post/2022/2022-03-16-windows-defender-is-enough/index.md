@@ -48,16 +48,16 @@ tags:
   - Monitoring(모니터링)
   - Terminal(터미널)
   - VSCode
-  - IDE
+  - IDE(Integrated Development Environment)
   - Case-Study
   - Deep-Dive
   - 실습
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Testing(테스트)
   - Debugging(디버깅)
   - Code-Quality(코드품질)
-  - RDP
+  - RDP(Remote Desktop Protocol)
   - History(역사)
   - Internet(인터넷)
 title: "[Windows] 설정만 잘 한다면 Windows Defender로도 충분하다"

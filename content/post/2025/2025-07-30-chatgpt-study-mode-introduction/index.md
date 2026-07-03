@@ -9,8 +9,8 @@ lastmod: 2026-03-17
 tags:
 - AI(인공지능)
 - ChatGPT
-- LLM
-- GPT
+- LLM(Large Language Model)
+- GPT(Generative Pre-trained Transformer)
 - Education(교육)
 - Tutorial(튜토리얼)
 - Guide(가이드)
@@ -39,7 +39,7 @@ tags:
 - Web(웹)
 - Machine-Learning(머신러닝)
 - Deep-Learning(딥러닝)
-- NLP
+- NLP(Natural Language Processing)
 - Data-Science(데이터사이언스)
 - Prompt-Engineering(프롬프트엔지니어링)
 - Beginner

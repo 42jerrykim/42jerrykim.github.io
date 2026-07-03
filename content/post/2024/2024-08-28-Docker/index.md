@@ -28,7 +28,7 @@ tags:
   - Guide(가이드)
   - Review(리뷰)
   - Process
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - History(역사)
   - Innovation(혁신)
   - Productivity(생산성)
@@ -44,7 +44,7 @@ tags:
   - Cloud(클라우드)
   - Networking(네트워킹)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Testing(테스트)
   - Comparison(비교)
   - Deep-Dive

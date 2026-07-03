@@ -17,8 +17,8 @@ tags:
 - Queue(큐)
 - Collocation(콜로케이션)
 - Business-English(비즈니스영어)
-- TOEFL
-- IELTS
+- TOEFL(Test of English as a Foreign Language)
+- IELTS(International English Language Testing System)
 - Academic-English(학술영어)
 - 영단어
 - 영어명사
@@ -31,10 +31,10 @@ tags:
 - GitHub
 - Review(리뷰)
 - Action(액션)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Process
 - Deployment(배포)
-- CI-CD
+- CI-CD(Continuous Integration/Continuous Deployment)
 - Python
 - Antonym(반의어)
 - Pronunciation(발음)

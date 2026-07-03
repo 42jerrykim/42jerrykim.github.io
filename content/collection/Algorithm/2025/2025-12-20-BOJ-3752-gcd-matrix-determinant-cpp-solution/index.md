@@ -20,7 +20,7 @@ tags:
 - Edge-Cases(엣지케이스)
 - Implementation(구현)
 - C++
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)
 - Time-Complexity(시간복잡도)

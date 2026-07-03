@@ -11,7 +11,6 @@ tags:
 - BOJ(백준)
 - Baekjoon
 - DP(동적계획법)
-- Dynamic-Programming
 - Divide-and-Conquer(분할정복)
 - Prefix-Sum
 - Binary-Search(이분탐색)
@@ -22,7 +21,7 @@ tags:
 - Complexity-Analysis(복잡도분석)
 - Implementation(구현)
 - C++
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Competitive-Programming(경쟁프로그래밍)
 - Editorial(에디토리얼)

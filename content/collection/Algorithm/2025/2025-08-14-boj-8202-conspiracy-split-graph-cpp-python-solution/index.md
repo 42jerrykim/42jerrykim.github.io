@@ -17,16 +17,15 @@ tags:
 - Space-Complexity(공간복잡도)
 - Complexity-Analysis(복잡도분석)
 - Greedy(그리디)
-- Dynamic-Programming
 - DP(동적계획법)
 - Graph-Theory(그래프이론)
-- BFS
-- DFS
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
 - Shortest-Path(최단경로)
 - Dijkstra
 - Segment-Tree(세그먼트트리)
-- Fenwick-Tree
-- Disjoint-Set
+- BIT(Binary Indexed Tree)
+- DSU(Disjoint Set Union)
 - Binary-Search(이분탐색)
 - Two-Pointers
 - Sliding-Window

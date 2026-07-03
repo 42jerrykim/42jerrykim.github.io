@@ -26,9 +26,9 @@ tags:
 - Code-Review(코드리뷰)
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
-- BFS
-- DFS
-- ICPC
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
+- ICPC(International Collegiate Programming Contest)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)

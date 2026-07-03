@@ -17,7 +17,7 @@ tags:
 - Geometry
 - Math(수학)
 - Combinatorics(조합론)
-- FFT
+- FFT(Fast Fourier Transform)
 - Convolution
 - Edge-Cases(엣지케이스)
 - Coordinate-Compression(좌표압축)
@@ -27,7 +27,7 @@ tags:
 - Space-Complexity(공간복잡도)
 - Optimization(최적화)
 - C++
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

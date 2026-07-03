@@ -15,15 +15,13 @@ tags:
 - Baekjoon
 - Combinatorics(조합론)
 - Math(수학)
-- Fenwick-Tree
-- BIT
-- Binary-Indexed-Tree
+- BIT(Binary Indexed Tree)
 - Prefix-Sum
 - Data-Structures(자료구조)
 - Greedy(그리디)
 - Segment-Tree(세그먼트트리)
 - Implementation(구현)
-- IO
+- IO(Input/Output)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)

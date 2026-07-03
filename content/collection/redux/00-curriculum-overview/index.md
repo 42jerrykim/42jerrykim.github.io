@@ -27,7 +27,7 @@ tags:
   - Functional-Programming(함수형프로그래밍)
   - Observer
   - Event-Driven
-  - API
+  - API(Application Programming Interface)
   - Async(비동기)
   - Caching(캐싱)
   - Scalability(확장성)
@@ -38,7 +38,7 @@ tags:
   - Edge-Cases(엣지케이스)
   - Data-Structures(자료구조)
   - Git
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - How-To
   - Tips
@@ -53,8 +53,8 @@ tags:
   - Modularity
   - Readability
   - Workflow(워크플로우)
-  - JSON
-  - HTTP
+  - JSON(JavaScript Object Notation)
+  - HTTP(HyperText Transfer Protocol)
   - Optimization(최적화)
   - Type-Safety
   - Interface(인터페이스)

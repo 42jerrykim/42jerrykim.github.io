@@ -20,7 +20,7 @@ tags:
   - Git
   - GitHub
   - Recursion(재귀)
-  - Sci-Fi
+  - Sci-Fi(Science Fiction)
   - Process
   - Error-Handling(에러처리)
   - Debugging(디버깅)

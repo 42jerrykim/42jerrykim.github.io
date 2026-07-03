@@ -11,12 +11,12 @@ tags:
 - BOJ(백준)
 - C++
 - Graph(그래프)
-- MST
-- Disjoint-Set
-- LCA
+- MST(Minimum Spanning Tree)
+- DSU(Disjoint Set Union)
+- LCA(Lowest Common Ancestor)
 - Range-Query
 - Tree(트리)
-- BFS
+- BFS(Breadth-First Search)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
 - Complexity-Analysis(복잡도분석)

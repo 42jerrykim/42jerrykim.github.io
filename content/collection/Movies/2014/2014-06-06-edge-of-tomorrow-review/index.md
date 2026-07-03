@@ -8,7 +8,7 @@ categories:
 - Sci-Fi
 - Action
 tags:
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Action(액션)
 - War(전쟁)
 - Doug-Liman

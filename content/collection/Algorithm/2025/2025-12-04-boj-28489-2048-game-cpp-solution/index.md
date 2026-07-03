@@ -12,7 +12,7 @@ tags:
 - C++
 - Simulation(시뮬레이션)
 - AI(인공지능)
-- DFS
+- DFS(Depth-First Search)
 - Backtracking
 - Implementation(구현)
 - Competitive-Programming(경쟁프로그래밍)

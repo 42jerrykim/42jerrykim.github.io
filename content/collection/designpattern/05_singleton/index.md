@@ -11,7 +11,7 @@ header:
 tags:
   - Design-Pattern(디자인패턴)
   - Singleton
-  - GoF
+  - GoF(Gang of Four)
   - Configuration(설정)
   - Cache
   - Dependency-Injection(의존성주입)

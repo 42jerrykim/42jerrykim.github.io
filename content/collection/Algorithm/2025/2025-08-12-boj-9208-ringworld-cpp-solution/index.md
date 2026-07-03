@@ -9,11 +9,10 @@ categories:
 tags:
 - BOJ(백준)
 - Baekjoon
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Range-Query
 - Coordinate-Compression(좌표압축)
-- DSU
-- Disjoint-Set
+- DSU(Disjoint Set Union)
 - Algorithm(알고리즘)
 - Greedy(그리디)
 - Segment-Tree(세그먼트트리)
@@ -23,7 +22,7 @@ tags:
 - Binary-Search(이분탐색)
 - String(문자열)
 - C++
-- IO
+- IO(Input/Output)
 - Implementation(구현)
 - Data-Structures(자료구조)
 - Coding-Test(코딩테스트)

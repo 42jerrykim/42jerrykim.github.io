@@ -27,10 +27,10 @@ tags:
   - Education(교육)
   - Productivity(생산성)
   - DevOps
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Automation(자동화)
   - Agile(애자일)
-  - TDD
+  - TDD(Test-Driven Development)
   - Python
   - Java
   - CSharp
@@ -58,10 +58,10 @@ tags:
   - Deployment(배포)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Security(보안)
   - Database(데이터베이스)
   - Networking(네트워킹)

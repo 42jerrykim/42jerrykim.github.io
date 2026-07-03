@@ -11,7 +11,7 @@ header:
 tags:
   - Design-Pattern(디자인패턴)
   - State
-  - GoF
+  - GoF(Gang of Four)
   - Nuance(뉘앙스)
   - Polymorphism(다형성)
   - Encapsulation(캡슐화)

@@ -46,7 +46,7 @@ tags:
 - Design-Pattern(디자인패턴)
 - Git
 - GitHub
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Beginner
 - Advanced
@@ -56,11 +56,11 @@ tags:
 - Culture(문화)
 - Internet(인터넷)
 - Memory(메모리)
-- CPU
+- CPU(Central Processing Unit)
 - OS(운영체제)
 - Backend(백엔드)
 - Frontend(프론트엔드)
-- API
+- API(Application Programming Interface)
 - Database(데이터베이스)
 - Security(보안)
 - Clean-Code(클린코드)

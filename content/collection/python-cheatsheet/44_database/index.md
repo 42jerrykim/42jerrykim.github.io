@@ -11,9 +11,9 @@ tags:
   - Cheatsheet(치트시트)
   - Quick-Reference
   - Database(데이터베이스)
-  - SQL
+  - SQL(Structured Query Language)
   - Range-Query
-  - IDE
+  - IDE(Integrated Development Environment)
   - Security(보안)
   - Best-Practices
   - Pitfalls(함정)

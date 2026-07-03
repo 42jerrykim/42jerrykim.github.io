@@ -23,7 +23,7 @@ tags:
   - Design-Pattern(디자인패턴)
   - Tutorial(튜토리얼)
   - Code-Quality(코드품질)
-  - API
+  - API(Application Programming Interface)
   - War(전쟁)
   - Error-Handling(에러처리)
   - Documentation(문서화)

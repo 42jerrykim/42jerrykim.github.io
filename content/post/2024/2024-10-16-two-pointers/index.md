@@ -27,7 +27,6 @@ tags:
   - Binary-Search(이분탐색)
   - Hashing(해싱)
   - Sorting(정렬)
-  - Dynamic-Programming
   - DP(동적계획법)
   - Greedy(그리디)
   - String(문자열)

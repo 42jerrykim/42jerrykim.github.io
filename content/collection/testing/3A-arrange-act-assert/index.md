@@ -5,13 +5,13 @@ title : "3A – Arrange, Act, Assert"
 date: 2022-01-01
 tags:
 - Testing(테스트)
-- TDD
+- TDD(Test-Driven Development)
 - Code-Quality(코드품질)
 - Go
 - Rust
 - React
-- REST
-- API
+- REST(Representational State Transfer)
+- API(Application Programming Interface)
 - Action(액션)
 - Best-Practices
 - Refactoring(리팩토링)

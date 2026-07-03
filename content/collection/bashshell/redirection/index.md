@@ -42,7 +42,7 @@ tags:
 - Markdown(마크다운)
 - Productivity(생산성)
 - Quick-Reference
-- IO
+- IO(Input/Output)
 - Redirection
 - 파이프
 - Pipeline

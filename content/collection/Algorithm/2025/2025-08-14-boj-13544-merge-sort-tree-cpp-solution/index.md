@@ -21,7 +21,7 @@ tags:
 - Edge-Cases(엣지케이스)
 - Pitfalls(함정)
 - Implementation(구현)
-- IO
+- IO(Input/Output)
 - Sorting(정렬)
 - Array(배열)
 - Python

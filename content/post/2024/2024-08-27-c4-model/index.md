@@ -9,7 +9,7 @@ header:
 tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Agile(애자일)
-  - UML
+  - UML(Unified Modeling Language)
   - Documentation(문서화)
   - Microservices(마이크로서비스)
   - Design-Pattern(디자인패턴)
@@ -57,8 +57,8 @@ tags:
   - Clean-Code(클린코드)
   - Domain-Driven-Design
   - Event-Driven
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Database(데이터베이스)
   - Networking(네트워킹)
   - Cloud(클라우드)

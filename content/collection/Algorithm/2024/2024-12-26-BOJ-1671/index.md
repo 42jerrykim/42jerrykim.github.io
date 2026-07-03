@@ -11,7 +11,7 @@ tags:
 - Time-Complexity(시간복잡도)
 - Data-Structures(자료구조)
 - Graph-Theory(그래프이론)
-- Dynamic-Programming
+- DP(동적계획법)
 - Algorithm(알고리즘)
 - BOJ(백준)
 - Competitive-Programming(경쟁프로그래밍)
@@ -23,7 +23,7 @@ tags:
 - Python
 - Go
 - .NET
-- DFS
+- DFS(Depth-First Search)
 - Graph(그래프)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)

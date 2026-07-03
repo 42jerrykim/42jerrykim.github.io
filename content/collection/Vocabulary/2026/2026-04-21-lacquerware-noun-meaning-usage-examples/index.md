@@ -21,8 +21,8 @@ tags:
   - Pronunciation(발음)
   - Daily-Life(일상표현)
   - Academic-English(학술영어)
-  - TOEFL
-  - IELTS
+  - TOEFL(Test of English as a Foreign Language)
+  - IELTS(International English Language Testing System)
   - EN-KR-Examples
   - Context(맥락)
   - handicraft

@@ -35,8 +35,7 @@ tags:
 - 2020s
 - TV-Show(드라마)
 - Fantasy(판타지)
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Comedy(코미디)
 - Romance(로맨스)
 - Horror(공포)

@@ -11,7 +11,7 @@ tags:
 - Web(웹)
 - Frontend(프론트엔드)
 - Backend(백엔드)
-- HTML
+- HTML(HyperText Markup Language)
 - Clean-Code(클린코드)
 - Documentation(문서화)
 - Tutorial(튜토리얼)
@@ -46,10 +46,10 @@ tags:
 - Error-Handling(에러처리)
 - Modularity
 - Design-Pattern(디자인패턴)
-- API
-- JSON
+- API(Application Programming Interface)
+- JSON(JavaScript Object Notation)
 - Security(보안)
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Git
 - GitHub

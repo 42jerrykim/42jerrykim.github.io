@@ -15,15 +15,15 @@ tags:
   - Debugging(디버깅)
   - Best-Practices
   - Pitfalls(함정)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Automation(자동화)
   - Code-Quality(코드품질)
   - Design-Pattern(디자인패턴)
   - Dependency-Injection(의존성주입)
   - Tutorial(튜토리얼)
   - Implementation(구현)
-  - TDD
-  - HTML
+  - TDD(Test-Driven Development)
+  - HTML(HyperText Markup Language)
   - Error-Handling(에러처리)
   - Documentation(문서화)
   - Clean-Code(클린코드)

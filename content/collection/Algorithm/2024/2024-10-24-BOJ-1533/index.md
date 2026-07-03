@@ -7,7 +7,7 @@ categories:
 - MatrixExponentiation
 tags:
 - Graph-Theory(그래프이론)
-- Dynamic-Programming
+- DP(동적계획법)
 - Math(수학)
 - Algorithm(알고리즘)
 - BOJ(백준)

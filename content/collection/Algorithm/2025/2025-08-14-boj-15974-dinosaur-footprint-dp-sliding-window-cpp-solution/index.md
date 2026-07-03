@@ -21,7 +21,6 @@ tags:
 - Code-Review(코드리뷰)
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
-- Dynamic-Programming
 - DP(동적계획법)
 - Sliding-Window
 - Geometry
@@ -29,7 +28,7 @@ tags:
 - Graph(그래프)
 - Sorting(정렬)
 - Debugging(디버깅)
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)

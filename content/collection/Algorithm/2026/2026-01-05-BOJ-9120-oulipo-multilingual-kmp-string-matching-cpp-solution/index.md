@@ -20,10 +20,10 @@ tags:
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
-- IO
+- IO(Input/Output)
 - Edge-Cases(엣지케이스)
 - Two-Pointers
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - C++
 - Data-Structures(자료구조)
 - Optimization(최적화)

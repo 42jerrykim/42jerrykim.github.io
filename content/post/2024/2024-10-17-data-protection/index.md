@@ -20,8 +20,8 @@ tags:
   - Guide(가이드)
   - Technology(기술)
   - Web(웹)
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Networking(네트워킹)
   - Backend(백엔드)
   - Problem-Solving(문제해결)

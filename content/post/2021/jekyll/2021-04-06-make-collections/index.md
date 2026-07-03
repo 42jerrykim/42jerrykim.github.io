@@ -13,9 +13,9 @@ tags:
   - Guide(가이드)
   - Configuration(설정)
   - Web(웹)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Markdown(마크다운)
-  - YAML
+  - YAML(YAML Ain't Markup Language)
   - Documentation(문서화)
   - How-To
   - Tips
@@ -48,7 +48,7 @@ tags:
   - Cheatsheet(치트시트)
   - Self-Hosted(셀프호스팅)
   - Domain(도메인)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Readability
   - Code-Quality(코드품질)

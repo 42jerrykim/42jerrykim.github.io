@@ -22,7 +22,7 @@ tags:
   - Tutorial(튜토리얼)
   - Code-Quality(코드품질)
   - OOP(객체지향)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Process
   - Documentation(문서화)
   - Testing(테스트)

@@ -13,7 +13,7 @@ categories:
 - Collection Processing
 tags:
 - Design-Pattern(디자인패턴)
-- GoF
+- GoF(Gang of Four)
 ---
 
 Template Method와 Iterator 패턴을 통해 알고리즘 골격 정의와 순회 추상화를 탐구합니다. 재사용 가능한 구조와 유연한 접근 방법을 설계합니다.

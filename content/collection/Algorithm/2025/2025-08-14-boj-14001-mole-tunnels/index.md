@@ -13,7 +13,6 @@ tags:
 - Heap(힙)
 - Network-Flow
 - DP(동적계획법)
-- Dynamic-Programming
 - Greedy(그리디)
 - Shortest-Path(최단경로)
 - Graph(그래프)
@@ -23,7 +22,7 @@ tags:
 - Tutorial(튜토리얼)
 - BOJ(백준)
 - Baekjoon
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)
 - Performance(성능)

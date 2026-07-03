@@ -35,17 +35,17 @@ tags:
   - Problem-Solving(문제해결)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - Markdown(마크다운)
   - Blog(블로그)
   - Workflow(워크플로우)
   - Configuration(설정)
   - Cloud(클라우드)
-  - API
-  - HTTP
+  - API(Application Programming Interface)
+  - HTTP(HyperText Transfer Protocol)
   - Networking(네트워킹)
   - Agile(애자일)
-  - TDD
+  - TDD(Test-Driven Development)
   - Refactoring(리팩토링)
   - Clean-Code(클린코드)
   - Algorithm(알고리즘)

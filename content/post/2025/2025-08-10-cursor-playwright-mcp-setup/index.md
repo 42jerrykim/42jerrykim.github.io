@@ -9,11 +9,11 @@ categories:
 - "MCP"
 - "Cursor"
 tags:
-- IDE
+- IDE(Integrated Development Environment)
 - Node.js
 - Windows(윈도우)
 - Configuration(설정)
-- HTTP
+- HTTP(HyperText Transfer Protocol)
 - Automation(자동화)
 - Testing(테스트)
 - Shell(셸)
@@ -24,7 +24,7 @@ tags:
 - Linux(리눅스)
 - Git
 - GitHub
-- API
+- API(Application Programming Interface)
 - Deployment(배포)
 - Command
 - Design-Pattern(디자인패턴)
@@ -43,13 +43,13 @@ tags:
 - Bash
 - PowerShell
 - Blog(블로그)
-- JSON
-- YAML
+- JSON(JavaScript Object Notation)
+- YAML(YAML Ain't Markup Language)
 - Networking(네트워킹)
 - Workflow(워크플로우)
 - VSCode
 - AI(인공지능)
-- LLM
+- LLM(Large Language Model)
 - ChatGPT
 - Prompt-Engineering(프롬프트엔지니어링)
 - How-To

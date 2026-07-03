@@ -44,7 +44,7 @@ tags:
   - Type-Safety
   - Performance(성능)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Comparison(비교)
   - How-To
   - Tips

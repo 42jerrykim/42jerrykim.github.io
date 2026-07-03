@@ -22,7 +22,7 @@ tags:
   - Best-Practices
   - Pitfalls(함정)
   - Tutorial(튜토리얼)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Error-Handling(에러처리)
   - Debugging(디버깅)
   - Documentation(문서화)

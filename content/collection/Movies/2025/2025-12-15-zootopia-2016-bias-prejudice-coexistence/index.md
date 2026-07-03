@@ -18,7 +18,7 @@ tags:
 - Comedy(코미디)
 - Drama
 - Thriller(스릴러)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Fantasy(판타지)
 - Romance(로맨스)
 - Crime(범죄)

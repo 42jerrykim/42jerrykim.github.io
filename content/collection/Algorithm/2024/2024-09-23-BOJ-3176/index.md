@@ -6,8 +6,8 @@ date: "2024-09-23T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- LCA
-- DFS
+- LCA(Lowest Common Ancestor)
+- DFS(Depth-First Search)
 - Tree(트리)
 - Data-Structures(자료구조)
 - Algorithm(알고리즘)

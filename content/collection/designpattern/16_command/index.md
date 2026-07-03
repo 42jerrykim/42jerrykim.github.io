@@ -11,7 +11,7 @@ header:
 tags:
   - Design-Pattern(디자인패턴)
   - Command
-  - GoF
+  - GoF(Gang of Four)
   - Encapsulation(캡슐화)
   - Queue(큐)
   - Database(데이터베이스)

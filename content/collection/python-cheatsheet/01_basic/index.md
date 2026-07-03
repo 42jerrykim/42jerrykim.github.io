@@ -13,7 +13,7 @@ tags:
   - Implementation(구현)
   - Grammar(문법)
   - Math(수학)
-  - IO
+  - IO(Input/Output)
   - Documentation(문서화)
   - String(문자열)
   - Best-Practices
@@ -24,7 +24,7 @@ tags:
   - Code-Quality(코드품질)
   - Go
   - Action(액션)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Error-Handling(에러처리)
   - Testing(테스트)
   - Refactoring(리팩토링)

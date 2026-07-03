@@ -16,7 +16,7 @@ tags:
 - Time-Complexity(시간복잡도)
 - Implementation(구현)
 - C++
-- IO
+- IO(Input/Output)
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)
 - Editorial(에디토리얼)

@@ -16,9 +16,9 @@ tags:
 - Complexity-Analysis(복잡도분석)
 - Time-Complexity(시간복잡도)
 - C++
-- IO
+- IO(Input/Output)
 - Implementation(구현)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Combinatorics(조합론)
 - Algorithm(알고리즘)
 - Competitive-Programming(경쟁프로그래밍)
@@ -31,8 +31,8 @@ tags:
 - .NET
 - Git
 - GitHub
-- BFS
-- DFS
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
 - Queue(큐)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)

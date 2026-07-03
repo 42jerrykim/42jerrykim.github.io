@@ -43,14 +43,14 @@ tags:
   - Debugging(디버깅)
   - Code-Quality(코드품질)
   - Networking(네트워킹)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Concurrency(동시성)
   - Async(비동기)
   - OS(운영체제)
   - Thread
   - Memory(메모리)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Automation(자동화)
   - Testing(테스트)
@@ -58,7 +58,7 @@ tags:
   - Interface(인터페이스)
   - Encapsulation(캡슐화)
   - Creational-Pattern
-  - GoF
+  - GoF(Gang of Four)
   - Software-Architecture(소프트웨어아키텍처)
   - Git
   - GitHub

@@ -41,7 +41,7 @@ tags:
   - OS(운영체제)
   - Linux(리눅스)
   - Windows(윈도우)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Git
   - GitHub

@@ -12,8 +12,8 @@ tags:
   - Event-Driven
   - Design-Pattern(디자인패턴)
   - Backend(백엔드)
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Scalability(확장성)
   - Error-Handling(에러처리)
   - Documentation(문서화)
@@ -30,7 +30,7 @@ tags:
   - Async(비동기)
   - Concurrency(동시성)
   - Database(데이터베이스)
-  - JSON
+  - JSON(JavaScript Object Notation)
   - Web(웹)
   - Networking(네트워킹)
   - Tutorial(튜토리얼)
@@ -65,7 +65,7 @@ tags:
   - Latency
   - Throughput
   - Load-Balancing
-  - CQRS
+  - CQRS(Command Query Responsibility Segregation)
   - Domain-Driven-Design
   - Observer
   - Command

@@ -10,7 +10,7 @@ categories:
 tags:
   - gRPC
   - Protobuf
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - CSharp
   - .NET
@@ -18,7 +18,7 @@ tags:
   - Deployment(배포)
   - Networking(네트워킹)
   - Microservices(마이크로서비스)
-  - JSON
+  - JSON(JavaScript Object Notation)
   - Documentation(문서화)
   - Error-Handling(에러처리)
   - Code-Quality(코드품질)
@@ -26,7 +26,7 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Design-Pattern(디자인패턴)
   - Git
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - DevOps
   - Testing(테스트)
   - Clean-Code(클린코드)
@@ -45,8 +45,8 @@ tags:
   - Education(교육)
   - Open-Source(오픈소스)
   - Interface(인터페이스)
-  - REST
-  - HTTP
+  - REST(Representational State Transfer)
+  - HTTP(HyperText Transfer Protocol)
   - Automation(자동화)
   - Monitoring(모니터링)
   - Problem-Solving(문제해결)

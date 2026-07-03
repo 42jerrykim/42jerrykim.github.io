@@ -7,7 +7,7 @@ collection_order: 6
 draft: true
 tags:
   - Software-Architecture(소프트웨어아키텍처)
-  - UML
+  - UML(Unified Modeling Language)
   - OOP(객체지향)
   - Testing(테스트)
   - Documentation(문서화)

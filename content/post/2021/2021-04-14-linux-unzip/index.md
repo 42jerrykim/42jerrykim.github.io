@@ -48,11 +48,11 @@ tags:
   - Code-Quality(코드품질)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Docker
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Security(보안)
   - Innovation(혁신)
   - Career(커리어)

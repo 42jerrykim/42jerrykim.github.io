@@ -22,7 +22,7 @@ tags:
 - Competitive-Programming(경쟁프로그래밍)
 - Edge-Cases(엣지케이스)
 - Testing(테스트)
-- IO
+- IO(Input/Output)
 - Complexity-Analysis(복잡도분석)
 - Queue(큐)
 - Problem-Solving(문제해결)
@@ -32,7 +32,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- LLM
+- LLM(Large Language Model)
 - AI(인공지능)
 - Memory(메모리)
 - Documentation(문서화)

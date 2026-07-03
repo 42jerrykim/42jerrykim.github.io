@@ -9,13 +9,13 @@ categories:
 tags:
 - BOJ(백준)
 - Baekjoon
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Graph(그래프)
 - 위상정렬
 - Range-Query
 - Time-Complexity(시간복잡도)
 - C++
-- IO
+- IO(Input/Output)
 - Memory(메모리)
 - Implementation(구현)
 - Editorial(에디토리얼)
@@ -30,7 +30,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- DFS
+- DFS(Depth-First Search)
 - Sorting(정렬)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)

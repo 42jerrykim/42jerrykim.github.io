@@ -56,13 +56,13 @@ tags:
   - Maintainability
   - Modularity
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Caching(캐싱)
   - Deployment(배포)
   - Automation(자동화)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Terminal(터미널)
   - Privacy(프라이버시)

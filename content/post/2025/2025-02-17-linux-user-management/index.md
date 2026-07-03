@@ -46,7 +46,7 @@ tags:
   - OS(운영체제)
   - Networking(네트워킹)
   - Cloud(클라우드)
-  - AWS
+  - AWS(Amazon Web Services)
   - Case-Study
   - Deep-Dive
   - 실습

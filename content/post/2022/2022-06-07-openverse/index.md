@@ -9,7 +9,7 @@ header:
   teaser: /assets/images/2022/2022-06-07-101710.png
 tags:
   - Algorithm(알고리즘)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Best-Practices
   - Blog(블로그)
@@ -25,7 +25,7 @@ tags:
   - How-To
   - Innovation(혁신)
   - Internet(인터넷)
-  - JSON
+  - JSON(JavaScript Object Notation)
   - Markdown(마크다운)
   - Migration(마이그레이션)
   - Mobile(모바일)
@@ -48,15 +48,15 @@ tags:
   - Tips
   - Privacy(프라이버시)
   - Scalability(확장성)
-  - SEO
+  - SEO(Search Engine Optimization)
   - Deployment(배포)
   - Automation(자동화)
   - Git
   - GitHub
-  - HTTP
-  - REST
+  - HTTP(HyperText Transfer Protocol)
+  - REST(Representational State Transfer)
   - Caching(캐싱)
-  - CDN
+  - CDN(Content Delivery Network)
   - Data-Science(데이터사이언스)
   - Deep-Dive
   - 실습

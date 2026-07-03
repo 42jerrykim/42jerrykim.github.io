@@ -12,7 +12,7 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - Baekjoon
-- USACO
+- USACO(USA Computing Olympiad)
 - Computational-Geometry
 - Geometry
 - Sorting(정렬)

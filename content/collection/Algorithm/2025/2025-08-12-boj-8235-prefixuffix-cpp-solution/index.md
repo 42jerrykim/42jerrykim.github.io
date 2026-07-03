@@ -16,7 +16,7 @@ tags:
 - Time-Complexity(시간복잡도)
 - Editorial(에디토리얼)
 - C++
-- IO
+- IO(Input/Output)
 - Edge-Cases(엣지케이스)
 - Code-Quality(코드품질)
 - Data-Structures(자료구조)

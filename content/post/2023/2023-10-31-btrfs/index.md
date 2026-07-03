@@ -56,7 +56,7 @@ tags:
   - Design-Pattern(디자인패턴)
   - OS(운영체제)
   - Memory(메모리)
-  - IO
+  - IO(Input/Output)
   - Cache
   - Automation(자동화)
   - Markdown(마크다운)

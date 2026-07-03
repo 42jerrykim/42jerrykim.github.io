@@ -25,7 +25,7 @@ tags:
   - Implementation(구현)
   - Code-Quality(코드품질)
   - Simulation(시뮬레이션)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Windows(윈도우)
   - Memory(메모리)
   - Process

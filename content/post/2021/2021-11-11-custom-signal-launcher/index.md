@@ -41,7 +41,7 @@ tags:
   - Configuration(설정)
   - Compiler(컴파일러)
   - File-System
-  - IO
+  - IO(Input/Output)
   - Embedded(임베디드)
   - Case-Study
   - Deep-Dive

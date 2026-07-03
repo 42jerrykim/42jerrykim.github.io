@@ -17,13 +17,13 @@ tags:
   - Clean-Code(클린코드)
   - Encapsulation(캡슐화)
   - Interface(인터페이스)
-  - GoF
+  - GoF(Gang of Four)
   - Documentation(문서화)
   - Tutorial(튜토리얼)
   - Guide(가이드)
   - Reference(참고)
   - Open-Source(오픈소스)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Code-Quality(코드품질)
   - Readability
@@ -37,11 +37,11 @@ tags:
   - Cohesion(응집도)
   - Factory
   - Singleton
-  - UML
+  - UML(Unified Modeling Language)
   - Testing(테스트)
   - Debugging(디버깅)
-  - HTTP
-  - REST
+  - HTTP(HyperText Transfer Protocol)
+  - REST(Representational State Transfer)
   - Android
   - Spring
   - Lombok

@@ -10,8 +10,8 @@ categories:
 tags:
   - Hugo
   - Markdown(마크다운)
-  - YAML
-  - JSON
+  - YAML(YAML Ain't Markup Language)
+  - JSON(JavaScript Object Notation)
   - Documentation(문서화)
   - Data-Structures(자료구조)
   - Tutorial(튜토리얼)
@@ -50,13 +50,13 @@ tags:
   - 실습
   - Beginner
   - Advanced
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Git
   - GitHub
   - File-System
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Performance(성능)
   - Modularity
   - Software-Architecture(소프트웨어아키텍처)

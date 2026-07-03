@@ -12,8 +12,8 @@ tags:
 - Business-English(비즈니스영어)
 - Collocation(콜로케이션)
 - Nuance(뉘앙스)
-- TOEFL
-- IELTS
+- TOEFL(Test of English as a Foreign Language)
+- IELTS(International English Language Testing System)
 - 영단어
 - 영어동사
 - Grammar(문법)
@@ -21,8 +21,8 @@ tags:
 - Synonym(유의어)
 - Tutorial(튜토리얼)
 - Go
-- REST
-- API
+- REST(Representational State Transfer)
+- API(Application Programming Interface)
 - Gaming(게임)
 - Innovation(혁신)
 - Technology(기술)

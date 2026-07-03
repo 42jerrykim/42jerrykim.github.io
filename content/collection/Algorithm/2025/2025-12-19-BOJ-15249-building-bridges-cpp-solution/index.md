@@ -12,7 +12,6 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - Baekjoon
-- Dynamic-Programming
 - DP(동적계획법)
 - Optimization(최적화)
 - Prefix-Sum

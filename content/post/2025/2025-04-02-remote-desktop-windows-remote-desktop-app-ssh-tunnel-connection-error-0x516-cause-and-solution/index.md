@@ -4,7 +4,7 @@ categories:
   - Remote Desktop
 tags:
   - Windows(윈도우)
-  - RDP
+  - RDP(Remote Desktop Protocol)
   - Networking(네트워킹)
   - Security(보안)
   - Troubleshooting(트러블슈팅)
@@ -29,7 +29,7 @@ tags:
   - Productivity(생산성)
   - Beginner
   - Problem-Solving(문제해결)
-  - HTTP
+  - HTTP(HyperText Transfer Protocol)
   - Cloud(클라우드)
   - DevOps
   - Performance(성능)
@@ -54,11 +54,11 @@ tags:
   - Git
   - GitHub
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Web(웹)
   - Deployment(배포)
   - Automation(자동화)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Maintainability
   - Readability

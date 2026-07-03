@@ -10,7 +10,7 @@ tags:
 - Software-Architecture(소프트웨어아키텍처)
 - Design-Pattern(디자인패턴)
 - Microservices(마이크로서비스)
-- CQRS
+- CQRS(Command Query Responsibility Segregation)
 - Scalability(확장성)
 - Abstraction(추상화)
 - Blog(블로그)
@@ -39,7 +39,7 @@ tags:
 - Clean-Architecture(클린아키텍처)
 - Event-Driven
 - OOP(객체지향)
-- API
+- API(Application Programming Interface)
 - Database(데이터베이스)
 - Performance(성능)
 - Refactoring(리팩토링)
@@ -52,7 +52,7 @@ tags:
 - Adapter
 - Facade
 - Mediator
-- UML
+- UML(Unified Modeling Language)
 - Case-Study
 - Deep-Dive
 - 실습

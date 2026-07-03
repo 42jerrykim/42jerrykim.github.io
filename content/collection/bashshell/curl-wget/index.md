@@ -43,10 +43,10 @@ tags:
 - History(역사)
 - curl
 - wget
-- HTTP
+- HTTP(HyperText Transfer Protocol)
 - 다운로드
 - download
-- API
+- API(Application Programming Interface)
 - Networking(네트워킹)
 image: "wordcloud.png"
 ---

@@ -10,7 +10,7 @@ header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
   - Design-Pattern(디자인패턴)
-  - GoF
+  - GoF(Gang of Four)
   - Grammar(문법)
   - Nuance(뉘앙스)
   - Code-Quality(코드품질)
@@ -21,7 +21,7 @@ tags:
   - Python
   - CSharp
   - Compiler(컴파일러)
-  - SQL
+  - SQL(Structured Query Language)
   - Git
   - GitHub
   - Implementation(구현)

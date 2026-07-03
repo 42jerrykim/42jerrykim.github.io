@@ -22,8 +22,7 @@ tags:
 - Thriller(스릴러)
 - Mystery(미스터리)
 - Animation(애니메이션)
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Romance(로맨스)
 - Horror(공포)
 - War(전쟁)

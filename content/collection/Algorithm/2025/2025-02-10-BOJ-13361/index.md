@@ -6,7 +6,7 @@ categories:
 - Graph Theory
 - Union-Find
 tags:
-- Disjoint-Set
+- DSU(Disjoint Set Union)
 - Graph-Theory(그래프이론)
 - Greedy(그리디)
 - Coordinate-Compression(좌표압축)

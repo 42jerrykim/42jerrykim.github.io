@@ -14,7 +14,7 @@ tags:
 - Baekjoon
 - Implementation(구현)
 - Divide-and-Conquer(분할정복)
-- Dynamic-Programming
+- DP(동적계획법)
 - Recursion(재귀)
 - Design-Pattern(디자인패턴)
 - Combinatorics(조합론)

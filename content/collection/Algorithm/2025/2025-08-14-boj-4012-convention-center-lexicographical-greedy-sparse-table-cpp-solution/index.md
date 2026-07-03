@@ -13,7 +13,7 @@ tags:
 - C++
 - Greedy(그리디)
 - Concurrency(동시성)
-- LCA
+- LCA(Lowest Common Ancestor)
 - Map
 - Set
 - Sorting(정렬)

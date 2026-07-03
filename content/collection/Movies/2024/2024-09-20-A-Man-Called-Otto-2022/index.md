@@ -12,7 +12,7 @@ tags:
 - Go
 - Action(액션)
 - Thriller(스릴러)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Animation(애니메이션)
 - Fantasy(판타지)
 - Romance(로맨스)

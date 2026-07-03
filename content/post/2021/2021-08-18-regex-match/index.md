@@ -17,8 +17,8 @@ tags:
   - Reference(참고)
   - Best-Practices
   - Documentation(문서화)
-  - JSON
-  - IDE
+  - JSON(JavaScript Object Notation)
+  - IDE(Integrated Development Environment)
   - Technology(기술)
   - Web(웹)
   - Blog(블로그)
@@ -39,7 +39,7 @@ tags:
   - Refactoring(리팩토링)
   - Performance(성능)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Regex
   - Algorithm(알고리즘)
   - Problem-Solving(문제해결)

@@ -15,9 +15,7 @@ tags:
 - Number-Theory(정수론)
 - Range-Query
 - Segment-Tree(세그먼트트리)
-- Fenwick-Tree
-- BIT
-- Binary-Indexed-Tree
+- BIT(Binary Indexed Tree)
 - Complexity-Analysis(복잡도분석)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
@@ -26,7 +24,7 @@ tags:
 - Editorial(에디토리얼)
 - Testing(테스트)
 - Prefix-Sum
-- IO
+- IO(Input/Output)
 - Edge-Cases(엣지케이스)
 - Problem-Solving(문제해결)
 - Implementation(구현)

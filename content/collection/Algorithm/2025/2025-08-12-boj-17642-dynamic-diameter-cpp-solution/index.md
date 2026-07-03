@@ -20,7 +20,7 @@ tags:
 - Shortest-Path(최단경로)
 - Edge-Cases(엣지케이스)
 - C++
-- IO
+- IO(Input/Output)
 - Implementation(구현)
 - Complexity-Analysis(복잡도분석)
 - Time-Complexity(시간복잡도)

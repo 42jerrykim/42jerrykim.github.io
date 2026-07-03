@@ -24,7 +24,7 @@ tags:
 - Complexity-Analysis(복잡도분석)
 - Geometry
 - Sorting(정렬)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Greedy(그리디)
 - Graph(그래프)
 - Math(수학)

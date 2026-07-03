@@ -13,7 +13,7 @@ tags:
 - Python
 - String(문자열)
 - Trie
-- BFS
+- BFS(Breadth-First Search)
 - Range-Query
 - Implementation(구현)
 - Time-Complexity(시간복잡도)
@@ -29,7 +29,7 @@ tags:
 - Graph(그래프)
 - Queue(큐)
 - Memory(메모리)
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)

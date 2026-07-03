@@ -14,13 +14,12 @@ tags:
 - BOJ(백준)
 - Baekjoon
 - Graph(그래프)
-- MST
-- DSU
-- Disjoint-Set
+- MST(Minimum Spanning Tree)
+- DSU(Disjoint Set Union)
 - Greedy(그리디)
 - Tree(트리)
 - Euler-Tour
-- DFS
+- DFS(Depth-First Search)
 - Optimization(최적화)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)

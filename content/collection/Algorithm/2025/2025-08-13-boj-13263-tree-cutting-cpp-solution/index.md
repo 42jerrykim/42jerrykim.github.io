@@ -10,7 +10,6 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - C++
-- Dynamic-Programming
 - DP(동적계획법)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)

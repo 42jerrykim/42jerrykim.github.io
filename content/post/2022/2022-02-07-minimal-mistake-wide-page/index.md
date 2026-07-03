@@ -9,8 +9,8 @@ tags:
   - Jekyll
   - Git
   - GitHub
-  - CSS
-  - HTML
+  - CSS(Cascading Style Sheets)
+  - HTML(HyperText Markup Language)
   - Web(웹)
   - Blog(블로그)
   - Tutorial(튜토리얼)
@@ -42,7 +42,7 @@ tags:
   - Maintainability
   - Modularity
   - Design-Pattern(디자인패턴)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Automation(자동화)
   - Case-Study
@@ -55,7 +55,7 @@ tags:
   - Testing(테스트)
   - Debugging(디버깅)
   - Software-Architecture(소프트웨어아키텍처)
-  - YAML
+  - YAML(YAML Ain't Markup Language)
   - Networking(네트워킹)
   - Self-Hosted(셀프호스팅)
   - Domain(도메인)

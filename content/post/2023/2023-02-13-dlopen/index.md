@@ -27,7 +27,7 @@ tags:
   - Performance(성능)
   - Pitfalls(함정)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - File-System
   - Embedded(임베디드)
   - Interface(인터페이스)
@@ -40,7 +40,7 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - Vim
   - Terminal(터미널)
   - Deployment(배포)
@@ -62,7 +62,7 @@ tags:
   - 실습
   - Beginner
   - Advanced
-  - CPU
+  - CPU(Central Processing Unit)
   - Profiling(프로파일링)
   - Modularity
   - Readability

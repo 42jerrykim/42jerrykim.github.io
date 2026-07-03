@@ -30,7 +30,7 @@ tags:
   - Mobile(모바일)
   - Networking(네트워킹)
   - AI(인공지능)
-  - CPU
+  - CPU(Central Processing Unit)
   - Implementation(구현)
   - Education(교육)
   - How-To
@@ -45,7 +45,7 @@ tags:
   - DevOps
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Terminal(터미널)
   - Beginner
@@ -63,7 +63,7 @@ tags:
   - Modularity
   - Software-Architecture(소프트웨어아키텍처)
   - Cloud(클라우드)
-  - API
+  - API(Application Programming Interface)
   - Database(데이터베이스)
   - Privacy(프라이버시)
   - Migration(마이그레이션)

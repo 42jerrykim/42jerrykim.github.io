@@ -60,7 +60,7 @@ tags:
 - Deep-Dive
 - 실습
 - Case-Study
-- GoF
+- GoF(Gang of Four)
 image: "wordcloud.png"
 ---
 

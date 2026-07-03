@@ -35,7 +35,7 @@ tags:
   - Clean-Code(클린코드)
   - Testing(테스트)
   - Frontend(프론트엔드)
-  - API
+  - API(Application Programming Interface)
   - Maintainability
   - Readability
   - How-To

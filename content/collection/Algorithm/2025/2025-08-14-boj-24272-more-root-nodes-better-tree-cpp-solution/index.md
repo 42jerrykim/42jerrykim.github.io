@@ -28,11 +28,10 @@ tags:
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
 - Greedy(그리디)
-- Dynamic-Programming
 - DP(동적계획법)
 - Graph-Theory(그래프이론)
-- DFS
-- LCA
+- DFS(Depth-First Search)
+- LCA(Lowest Common Ancestor)
 - Range-Query
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

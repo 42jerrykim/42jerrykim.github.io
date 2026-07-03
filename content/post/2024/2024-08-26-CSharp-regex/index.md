@@ -35,7 +35,7 @@ tags:
 - Workflow(워크플로우)
 - Migration(마이그레이션)
 - Backend(백엔드)
-- API
+- API(Application Programming Interface)
 - Testing(테스트)
 - Debugging(디버깅)
 - Code-Quality(코드품질)

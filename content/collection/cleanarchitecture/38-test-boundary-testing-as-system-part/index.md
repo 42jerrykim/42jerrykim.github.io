@@ -9,7 +9,7 @@ categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
   - Testing(테스트)
-  - TDD
+  - TDD(Test-Driven Development)
   - Software-Architecture(소프트웨어아키텍처)
   - Dependency-Injection(의존성주입)
 ---

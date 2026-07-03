@@ -13,9 +13,9 @@ tags:
 - Python
 - Graph(그래프)
 - Tree(트리)
-- LCA
+- LCA(Lowest Common Ancestor)
 - Shortest-Path(최단경로)
-- BFS
+- BFS(Breadth-First Search)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
 - Complexity-Analysis(복잡도분석)

@@ -24,7 +24,7 @@ tags:
 - Editorial(에디토리얼)
 - Debugging(디버깅)
 - Sorting(정렬)
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)

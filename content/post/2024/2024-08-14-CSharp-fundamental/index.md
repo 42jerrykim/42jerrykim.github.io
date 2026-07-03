@@ -41,7 +41,7 @@ tags:
   - Type-Safety
   - Concurrency(동시성)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Networking(네트워킹)
   - Testing(테스트)
   - Refactoring(리팩토링)
@@ -52,7 +52,7 @@ tags:
   - Polymorphism(다형성)
   - Inheritance(상속)
   - Abstraction(추상화)
-  - IDE
+  - IDE(Integrated Development Environment)
   - Beginner
   - Problem-Solving(문제해결)
   - 실습

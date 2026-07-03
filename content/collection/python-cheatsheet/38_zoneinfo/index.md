@@ -17,7 +17,7 @@ tags:
   - Code-Quality(코드품질)
   - String(문자열)
   - War(전쟁)
-  - SEO
+  - SEO(Search Engine Optimization)
   - Web(웹)
   - Error-Handling(에러처리)
   - Debugging(디버깅)

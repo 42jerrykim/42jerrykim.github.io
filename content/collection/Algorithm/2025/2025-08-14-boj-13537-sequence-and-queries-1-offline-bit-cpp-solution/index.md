@@ -12,9 +12,7 @@ tags:
 - C++
 - Data-Structures(자료구조)
 - Range-Query
-- Fenwick-Tree
-- BIT
-- Binary-Indexed-Tree
+- BIT(Binary Indexed Tree)
 - Segment-Tree(세그먼트트리)
 - Math(수학)
 - Sorting(정렬)
@@ -32,7 +30,7 @@ tags:
 - Editorial(에디토리얼)
 - Testing(테스트)
 - Array(배열)
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Code-Quality(코드품질)

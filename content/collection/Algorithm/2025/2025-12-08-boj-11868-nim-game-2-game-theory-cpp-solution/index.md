@@ -11,7 +11,6 @@ tags:
 - C++
 - Game-Theory
 - Math(수학)
-- Dynamic-Programming
 - DP(동적계획법)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

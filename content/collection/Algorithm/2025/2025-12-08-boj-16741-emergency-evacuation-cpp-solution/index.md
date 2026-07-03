@@ -15,7 +15,7 @@ tags:
 - Optimization(최적화)
 - Sorting(정렬)
 - Problem-Solving(문제해결)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Game-Theory
 - Data-Structures(자료구조)
 - Competitive-Programming(경쟁프로그래밍)

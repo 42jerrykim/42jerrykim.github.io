@@ -9,7 +9,7 @@ tags:
   - OOP(객체지향)
   - Design-Pattern(디자인패턴)
   - Software-Architecture(소프트웨어아키텍처)
-  - UML
+  - UML(Unified Modeling Language)
   - Abstraction(추상화)
   - Encapsulation(캡슐화)
   - Cohesion(응집도)

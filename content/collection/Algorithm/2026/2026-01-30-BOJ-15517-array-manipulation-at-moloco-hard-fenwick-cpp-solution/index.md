@@ -14,15 +14,13 @@ tags:
 - BOJ(백준)
 - Baekjoon
 - Data-Structures(자료구조)
-- Fenwick-Tree
-- Binary-Indexed-Tree
-- BIT
+- BIT(Binary Indexed Tree)
 - Prefix-Sum
 - Math(수학)
 - Coordinate-Compression(좌표압축)
 - Binary-Search(이분탐색)
 - Sorting(정렬)
-- IO
+- IO(Input/Output)
 - Optimization(최적화)
 - Implementation(구현)
 - Competitive-Programming(경쟁프로그래밍)

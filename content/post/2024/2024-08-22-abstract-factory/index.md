@@ -11,7 +11,7 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - OOP(객체지향)
   - Creational-Pattern
-  - GoF
+  - GoF(Gang of Four)
   - Factory
   - Interface(인터페이스)
   - Encapsulation(캡슐화)
@@ -31,7 +31,7 @@ tags:
   - Python
   - Java
   - CSharp
-  - UML
+  - UML(Unified Modeling Language)
   - Builder
   - Singleton
   - Template-Method

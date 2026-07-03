@@ -25,8 +25,8 @@ tags:
   - Factory
   - Template-Method
   - Clean-Code(클린코드)
-  - UML
-  - TDD
+  - UML(Unified Modeling Language)
+  - TDD(Test-Driven Development)
   - Microservices(마이크로서비스)
 ---
 

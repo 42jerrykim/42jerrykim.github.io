@@ -12,7 +12,7 @@ categories:
 - Design Analysis
 - Pattern Theory
 tags:
-- GoF
+- GoF(Gang of Four)
 - Software-Architecture(소프트웨어아키텍처)
 - SOLID
 - Code-Quality(코드품질)

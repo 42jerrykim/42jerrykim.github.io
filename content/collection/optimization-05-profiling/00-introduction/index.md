@@ -11,10 +11,10 @@ tags:
   - Profiling(프로파일링)
   - Optimization(최적화)
   - Testing(테스트)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Monitoring(모니터링)
   - Data-Structures(자료구조)
-  - CPU
+  - CPU(Central Processing Unit)
   - Cache
   - Memory(메모리)
   - Concurrency(동시성)

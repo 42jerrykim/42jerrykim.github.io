@@ -14,12 +14,11 @@ tags:
 - Network-Flow
 - Greedy(그리디)
 - DP(동적계획법)
-- Dynamic-Programming
 - Algorithm(알고리즘)
 - Problem-Solving(문제해결)
 - C++
-- IO
-- ICPC
+- IO(Input/Output)
+- ICPC(International Collegiate Programming Contest)
 - Competitive-Programming(경쟁프로그래밍)
 - Implementation(구현)
 - Time-Complexity(시간복잡도)

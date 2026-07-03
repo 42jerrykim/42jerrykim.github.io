@@ -23,12 +23,12 @@ tags:
   - Workflow(워크플로우)
   - Agile(애자일)
   - Scrum
-  - TDD
+  - TDD(Test-Driven Development)
   - Refactoring(리팩토링)
   - Testing(테스트)
   - Debugging(디버깅)
   - Design-Pattern(디자인패턴)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Vim
   - Git

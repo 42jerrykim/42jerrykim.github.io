@@ -10,12 +10,9 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - C++
-- Dynamic-Programming
 - DP(동적계획법)
 - Graph(그래프)
-- Fenwick-Tree
-- BIT
-- Binary-Indexed-Tree
+- BIT(Binary Indexed Tree)
 - Segment-Tree(세그먼트트리)
 - Prefix-Sum
 - Competitive-Programming(경쟁프로그래밍)
@@ -28,7 +25,7 @@ tags:
 - Optimization(최적화)
 - Editorial(에디토리얼)
 - Data-Structures(자료구조)
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Code-Quality(코드품질)

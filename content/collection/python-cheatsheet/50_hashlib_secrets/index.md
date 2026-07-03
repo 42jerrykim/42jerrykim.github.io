@@ -17,7 +17,7 @@ tags:
   - Implementation(구현)
   - Code-Quality(코드품질)
   - Go
-  - API
+  - API(Application Programming Interface)
   - Algorithm(알고리즘)
   - Problem-Solving(문제해결)
   - Hashing(해싱)

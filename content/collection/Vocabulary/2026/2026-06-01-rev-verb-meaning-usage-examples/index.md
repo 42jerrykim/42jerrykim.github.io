@@ -50,8 +50,8 @@ tags:
   - Reference(참고)
   - Tutorial(튜토리얼)
   - Education(교육)
-  - TOEFL
-  - IELTS
+  - TOEFL(Test of English as a Foreign Language)
+  - IELTS(International English Language Testing System)
   - 회전
   - 가속하다
   - 끌어올리다

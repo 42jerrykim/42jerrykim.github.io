@@ -29,8 +29,8 @@ tags:
   - Comparison(비교)
   - CSharp
   - .NET
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Hardware(하드웨어)
   - DevOps
   - Deployment(배포)
@@ -56,7 +56,7 @@ tags:
   - OS(운영체제)
   - Terminal(터미널)
   - VSCode
-  - IDE
+  - IDE(Integrated Development Environment)
   - Git
   - GitHub
 image: "wordcloud.png"

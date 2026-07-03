@@ -19,8 +19,8 @@ tags:
   - Etymology(어원)
   - Tutorial(튜토리얼)
   - Go
-  - REST
-  - API
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
   - Tree(트리)
   - Review(리뷰)
   - Action(액션)

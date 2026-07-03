@@ -20,7 +20,7 @@ tags:
   - Synonym(유의어)
   - Tutorial(튜토리얼)
   - Go
-  - Sci-Fi
+  - Sci-Fi(Science Fiction)
   - Factory
   - Design-Pattern(디자인패턴)
   - Education(교육)

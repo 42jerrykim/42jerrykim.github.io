@@ -10,7 +10,7 @@ tags:
   - AI(인공지능)
   - Machine-Learning(머신러닝)
   - Deep-Learning(딥러닝)
-  - NLP
+  - NLP(Natural Language Processing)
   - Open-Source(오픈소스)
   - Python
   - Docker
@@ -33,7 +33,7 @@ tags:
   - GitHub
   - Implementation(구현)
   - Web(웹)
-  - API
+  - API(Application Programming Interface)
   - Performance(성능)
   - Optimization(최적화)
   - Git
@@ -64,7 +64,7 @@ tags:
   - Concurrency(동시성)
   - Monitoring(모니터링)
   - DevOps
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Debugging(디버깅)
   - Error-Handling(에러처리)
   - Modularity

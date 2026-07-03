@@ -46,7 +46,7 @@ tags:
   - Algorithm(알고리즘)
   - Problem-Solving(문제해결)
   - Clean-Code(클린코드)
-  - API
+  - API(Application Programming Interface)
   - Edge-Cases(엣지케이스)
   - Error-Handling(에러처리)
   - Code-Review(코드리뷰)
@@ -70,7 +70,7 @@ tags:
   - Benchmark
   - Type-Safety
   - Software-Architecture(소프트웨어아키텍처)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Linux(리눅스)
   - Windows(윈도우)

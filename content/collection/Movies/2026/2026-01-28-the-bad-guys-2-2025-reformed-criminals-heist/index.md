@@ -19,7 +19,7 @@ tags:
 - Drama
 - Thriller(스릴러)
 - Action(액션)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Comedy(코미디)
 - Fantasy(판타지)
 - Tree(트리)

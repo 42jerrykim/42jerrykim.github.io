@@ -22,7 +22,7 @@ tags:
 - Complexity-Analysis(복잡도분석)
 - Implementation(구현)
 - Edge-Cases(엣지케이스)
-- IO
+- IO(Input/Output)
 - C++
 - Problem-Solving(문제해결)
 - Competitive-Programming(경쟁프로그래밍)

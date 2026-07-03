@@ -21,7 +21,7 @@ tags:
 - Competitive-Programming(경쟁프로그래밍)
 - Data-Structures(자료구조)
 - Array(배열)
-- IO
+- IO(Input/Output)
 - Testing(테스트)
 - Pitfalls(함정)
 - Complexity-Analysis(복잡도분석)

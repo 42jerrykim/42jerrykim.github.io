@@ -16,8 +16,8 @@ tags:
   - String(문자열)
   - Greedy(그리디)
   - Implementation(구현)
-  - BFS
-  - DFS
+  - BFS(Breadth-First Search)
+  - DFS(Depth-First Search)
   - Complexity-Analysis(복잡도분석)
   - Time-Complexity(시간복잡도)
   - Space-Complexity(공간복잡도)

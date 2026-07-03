@@ -17,14 +17,14 @@ tags:
 - String(문자열)
 - Shortest-Path(최단경로)
 - Convolution
-- FFT
+- FFT(Fast Fourier Transform)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
 - Optimization(최적화)
 - Implementation(구현)
 - Data-Structures(자료구조)
 - Edge-Cases(엣지케이스)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

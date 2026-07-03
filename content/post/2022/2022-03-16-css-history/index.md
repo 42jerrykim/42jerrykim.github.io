@@ -6,8 +6,8 @@ lastmod: "2026-03-16"
 description: "CSS의 탄생(1996)과 서식·컨텐츠 분리 의도부터 시멘틱 웹, BEM, Flexbox, CSS Modules·CSS in JS, Tailwind·Atomic CSS에 이르기까지, 문서에서 웹 앱으로 전환되며 복잡해진 CSS의 역사와 방법론·스펙·도구의 흐름을 상세히 정리하고, IE11 퇴장 이후의 최신 스펙과 프론트엔드 CSS 선택 가이드를 제시한다."
 draft: false
 tags:
-  - CSS
-  - HTML
+  - CSS(Cascading Style Sheets)
+  - HTML(HyperText Markup Language)
   - JavaScript
   - Web(웹)
   - Frontend(프론트엔드)
@@ -44,14 +44,14 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Backend(백엔드)
-  - API
-  - JSON
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
   - Security(보안)
   - Caching(캐싱)
-  - SEO
+  - SEO(Search Engine Optimization)
   - Scalability(확장성)
   - Async(비동기)
   - Deployment(배포)

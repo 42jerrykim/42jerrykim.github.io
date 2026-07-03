@@ -12,7 +12,7 @@ tags:
   - Optimization(최적화)
   - C++
   - Compiler(컴파일러)
-  - CPU
+  - CPU(Central Processing Unit)
   - Cache
   - Backend(백엔드)
   - Memory(메모리)
@@ -22,7 +22,7 @@ tags:
   - Windows(윈도우)
   - OS(운영체제)
   - Testing(테스트)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Monitoring(모니터링)
   - Benchmark
   - Latency

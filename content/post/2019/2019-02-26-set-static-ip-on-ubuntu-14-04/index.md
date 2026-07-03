@@ -45,7 +45,7 @@ tags:
 - Hardware(하드웨어)
 - Git
 - GitHub
-- IDE
+- IDE(Integrated Development Environment)
 - Vim
 - Markdown(마크다운)
 - Clean-Code(클린코드)

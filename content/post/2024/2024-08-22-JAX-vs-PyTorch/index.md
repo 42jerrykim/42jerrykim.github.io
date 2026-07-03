@@ -17,7 +17,7 @@ tags:
   - Optimization(최적화)
   - Open-Source(오픈소스)
   - Scalability(확장성)
-  - API
+  - API(Application Programming Interface)
   - Documentation(문서화)
   - Implementation(구현)
   - Graph(그래프)
@@ -52,7 +52,7 @@ tags:
   - 실습
   - Automation(자동화)
   - GPU
-  - CPU
+  - CPU(Central Processing Unit)
   - Backend(백엔드)
   - Networking(네트워킹)
   - Security(보안)

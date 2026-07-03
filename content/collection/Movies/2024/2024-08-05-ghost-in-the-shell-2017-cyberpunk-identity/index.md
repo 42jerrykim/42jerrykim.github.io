@@ -11,8 +11,7 @@ categories:
   - Paramount Pictures
 tags:
   - Movie(영화)
-  - Sci-Fi
-  - SF
+  - Sci-Fi(Science Fiction)
   - Action(액션)
   - Thriller(스릴러)
   - Drama

@@ -21,7 +21,7 @@ tags:
   - Tutorial(튜토리얼)
   - Code-Quality(코드품질)
   - War(전쟁)
-  - Sci-Fi
+  - Sci-Fi(Science Fiction)
   - Error-Handling(에러처리)
   - Best-Practices
   - Testing(테스트)

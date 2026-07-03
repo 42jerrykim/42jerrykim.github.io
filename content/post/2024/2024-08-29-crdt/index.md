@@ -59,8 +59,8 @@ tags:
   - Git
   - GitHub
   - Cloud(클라우드)
-  - API
-  - JSON
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
   - DevOps
   - Deployment(배포)
   - Automation(자동화)
@@ -82,11 +82,11 @@ tags:
   - Readability
   - Maintainability
   - Error-Handling(에러처리)
-  - TDD
+  - TDD(Test-Driven Development)
   - Agile(애자일)
   - Docker
   - Kubernetes
-  - HTTP
+  - HTTP(HyperText Transfer Protocol)
   - WebSocket
   - Security(보안)
   - Caching(캐싱)

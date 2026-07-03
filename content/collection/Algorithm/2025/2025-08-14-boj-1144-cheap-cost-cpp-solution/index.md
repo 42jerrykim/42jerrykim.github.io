@@ -11,7 +11,6 @@ tags:
 - BOJ(백준)
 - C++
 - Python
-- Dynamic-Programming
 - DP(동적계획법)
 - Graph(그래프)
 - Implementation(구현)
@@ -25,8 +24,8 @@ tags:
 - Code-Review(코드리뷰)
 - Testing(테스트)
 - Greedy(그리디)
-- BFS
-- DFS
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
 - Shortest-Path(최단경로)
 - Binary-Search(이분탐색)
 - Two-Pointers

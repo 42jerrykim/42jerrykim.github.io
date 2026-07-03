@@ -21,7 +21,6 @@ tags:
   - Edge-Cases(엣지케이스)
   - Competitive-Programming(경쟁프로그래밍)
   - Implementation(구현)
-  - Dynamic-Programming
   - DP(동적계획법)
   - Problem-Solving(문제해결)
   - Coding-Test(코딩테스트)

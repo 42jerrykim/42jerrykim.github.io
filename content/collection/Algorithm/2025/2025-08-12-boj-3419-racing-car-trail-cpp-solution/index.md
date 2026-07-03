@@ -31,8 +31,8 @@ tags:
 - .NET
 - Git
 - GitHub
-- BFS
-- DFS
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
 - Queue(큐)
 - String(문자열)
 - Edge-Cases(엣지케이스)

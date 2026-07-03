@@ -5,7 +5,7 @@ lastmod: 2026-03-17
 categories:
 - Programming
 tags:
-- HTML
+- HTML(HyperText Markup Language)
 - Web(웹)
 - JavaScript
 - Algorithm(알고리즘)
@@ -31,7 +31,7 @@ tags:
 - Workflow(워크플로우)
 - Frontend(프론트엔드)
 - Backend(백엔드)
-- API
+- API(Application Programming Interface)
 - Clean-Code(클린코드)
 - Design-Pattern(디자인패턴)
 - OOP(객체지향)
@@ -47,8 +47,8 @@ tags:
 - Readability
 - Maintainability
 - Modularity
-- XML
-- JSON
+- XML(eXtensible Markup Language)
+- JSON(JavaScript Object Notation)
 - Networking(네트워킹)
 - Performance(성능)
 - Debugging(디버깅)
@@ -56,7 +56,7 @@ tags:
 - History(역사)
 - Review(리뷰)
 - Productivity(생산성)
-- CSS
+- CSS(Cascading Style Sheets)
 - Compiler(컴파일러)
 - Software-Architecture(소프트웨어아키텍처)
 - Code-Review(코드리뷰)

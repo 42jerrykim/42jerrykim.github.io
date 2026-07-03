@@ -37,7 +37,7 @@ tags:
   - Automation(자동화)
   - Computer-Vision
   - Data-Science(데이터사이언스)
-  - NLP
+  - NLP(Natural Language Processing)
   - Linux(리눅스)
   - Windows(윈도우)
   - macOS
@@ -54,7 +54,7 @@ tags:
   - Terminal(터미널)
   - Performance(성능)
   - Optimization(최적화)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - File-System
   - Scalability(확장성)

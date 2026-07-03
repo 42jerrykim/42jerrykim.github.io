@@ -15,7 +15,6 @@ tags:
 - Shortest-Path(최단경로)
 - Dijkstra
 - Prefix-Sum
-- Dynamic-Programming
 - DP(동적계획법)
 - Sorting(정렬)
 - Complexity-Analysis(복잡도분석)
@@ -25,7 +24,7 @@ tags:
 - Edge-Cases(엣지케이스)
 - Pitfalls(함정)
 - Competitive-Programming(경쟁프로그래밍)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Editorial(에디토리얼)
 - Testing(테스트)
 - Math(수학)

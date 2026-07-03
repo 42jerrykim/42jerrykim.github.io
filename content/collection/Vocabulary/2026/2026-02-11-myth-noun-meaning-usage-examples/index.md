@@ -24,7 +24,7 @@ tags:
   - Go
   - Documentary(다큐멘터리)
   - War(전쟁)
-  - Sci-Fi
+  - Sci-Fi(Science Fiction)
   - Antonym(반의어)
   - Daily-Life(일상표현)
   - Education(교육)

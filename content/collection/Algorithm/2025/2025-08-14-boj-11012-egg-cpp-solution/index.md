@@ -22,9 +22,7 @@ tags:
 - Code-Review(코드리뷰)
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
-- Binary-Indexed-Tree
-- Fenwick-Tree
-- BIT
+- BIT(Binary Indexed Tree)
 - Coordinate-Compression(좌표압축)
 - Range-Query
 - Prefix-Sum

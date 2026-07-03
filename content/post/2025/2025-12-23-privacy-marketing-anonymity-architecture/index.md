@@ -44,7 +44,7 @@ tags:
   - Data-Structures(자료구조)
   - Database(데이터베이스)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Code-Quality(코드품질)
   - Error-Handling(에러처리)
   - Refactoring(리팩토링)

@@ -41,7 +41,7 @@ tags:
   - Testing(테스트)
   - Debugging(디버깅)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Science(과학)
   - History(역사)
   - Deep-Dive

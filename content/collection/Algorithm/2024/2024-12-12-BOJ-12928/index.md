@@ -11,7 +11,6 @@ tags:
 - Graph-Theory(그래프이론)
 - Optimization(최적화)
 - Combinatorics(조합론)
-- Dynamic-Programming
 - Implementation(구현)
 - Algorithm(알고리즘)
 - BOJ(백준)

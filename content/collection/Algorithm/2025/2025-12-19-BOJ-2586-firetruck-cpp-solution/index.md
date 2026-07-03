@@ -18,7 +18,6 @@ tags:
 - Bipartite-Matching
 - Greedy(그리디)
 - DP(동적계획법)
-- Dynamic-Programming
 - Range-Query
 - Graph(그래프)
 - Stack(스택)

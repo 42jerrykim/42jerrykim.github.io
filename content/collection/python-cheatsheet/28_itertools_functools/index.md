@@ -27,7 +27,7 @@ tags:
   - Code-Quality(코드품질)
   - OOP(객체지향)
   - Sorting(정렬)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Error-Handling(에러처리)
   - Documentation(문서화)
   - Refactoring(리팩토링)

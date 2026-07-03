@@ -9,7 +9,7 @@ header:
 tags:
 - Combinatorics(조합론)
 - Implementation(구현)
-- Dynamic-Programming
+- DP(동적계획법)
 - Algorithm(알고리즘)
 - BOJ(백준)
 - Competitive-Programming(경쟁프로그래밍)

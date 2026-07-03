@@ -45,7 +45,7 @@ tags:
 - Innovation(혁신)
 - Career(커리어)
 - Hardware(하드웨어)
-- IO
+- IO(Input/Output)
 - Memory(메모리)
 - Embedded(임베디드)
 - Pitfalls(함정)
@@ -53,7 +53,7 @@ tags:
 - Monitoring(모니터링)
 - Git
 - GitHub
-- IDE
+- IDE(Integrated Development Environment)
 - Vim
 - VSCode
 - Cloud(클라우드)

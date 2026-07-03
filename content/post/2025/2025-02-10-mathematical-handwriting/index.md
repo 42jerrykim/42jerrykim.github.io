@@ -43,7 +43,7 @@ tags:
   - Modularity
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Windows(윈도우)
   - Linux(리눅스)
@@ -70,8 +70,8 @@ tags:
   - Design-Pattern(디자인패턴)
   - History(역사)
   - Culture(문화)
-  - HTML
-  - CSS
+  - HTML(HyperText Markup Language)
+  - CSS(Cascading Style Sheets)
   - Testing(테스트)
   - Type-Safety
   - Backend(백엔드)

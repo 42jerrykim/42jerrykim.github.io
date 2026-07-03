@@ -5,7 +5,7 @@ title : "Software Unit Test Smells"
 date: 2022-03-18
 tags:
 - Testing(테스트)
-- TDD
+- TDD(Test-Driven Development)
 - Code-Quality(코드품질)
 - Java
 - Git

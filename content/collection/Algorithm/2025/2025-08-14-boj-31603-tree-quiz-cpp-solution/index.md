@@ -11,10 +11,9 @@ tags:
 - BOJ(백준)
 - C++
 - Tree(트리)
-- LCA
+- LCA(Lowest Common Ancestor)
 - Euler-Tour
-- Fenwick-Tree
-- Binary-Indexed-Tree
+- BIT(Binary Indexed Tree)
 - Segment-Tree(세그먼트트리)
 - Range-Query
 - Binary-Search(이분탐색)
@@ -27,7 +26,7 @@ tags:
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)
-- IO
+- IO(Input/Output)
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
@@ -37,7 +36,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- DFS
+- DFS(Depth-First Search)
 - Memory(메모리)
 - Testing(테스트)
 - Documentation(문서화)

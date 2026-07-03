@@ -33,8 +33,8 @@ tags:
   - Privacy(프라이버시)
   - Mobile(모바일)
   - Web(웹)
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Markdown(마크다운)
   - Blog(블로그)
   - Comparison(비교)

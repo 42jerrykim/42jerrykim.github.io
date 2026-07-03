@@ -13,8 +13,8 @@ tags:
 - OOP(객체지향)
 - Review(리뷰)
 - Markdown(마크다운)
-- CSS
-- HTML
+- CSS(Cascading Style Sheets)
+- HTML(HyperText Markup Language)
 - Collocation(콜로케이션)
 - Grammar(문법)
 - Etymology(어원)

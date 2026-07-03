@@ -8,25 +8,25 @@ categories:
   - AI
 tags:
   - AI(인공지능)
-  - LLM
-  - GPT
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - Machine-Learning(머신러닝)
   - Deep-Learning(딥러닝)
-  - NLP
+  - NLP(Natural Language Processing)
   - Data-Science(데이터사이언스)
   - Prompt-Engineering(프롬프트엔지니어링)
   - ChatGPT
   - Software-Architecture(소프트웨어아키텍처)
   - Testing(테스트)
-  - TDD
-  - CI-CD
+  - TDD(Test-Driven Development)
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - DevOps
   - GitHub
   - Open-Source(오픈소스)
   - Python
   - Docker
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Backend(백엔드)
   - Implementation(구현)
   - Optimization(최적화)

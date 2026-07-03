@@ -6,12 +6,11 @@ date: "2024-09-23T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- Dynamic-Programming
+- DP(동적계획법)
 - Optimization(최적화)
 - Memoization
 - Time-Complexity(시간복잡도)
-- DP(동적계획법)
-- BFS
+- BFS(Breadth-First Search)
 - Algorithm(알고리즘)
 - BOJ(백준)
 - Competitive-Programming(경쟁프로그래밍)

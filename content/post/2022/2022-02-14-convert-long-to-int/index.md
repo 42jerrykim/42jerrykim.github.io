@@ -26,7 +26,7 @@ tags:
   - Debugging(디버깅)
   - Testing(테스트)
   - Performance(성능)
-  - API
+  - API(Application Programming Interface)
   - Networking(네트워킹)
   - Technology(기술)
   - Blog(블로그)

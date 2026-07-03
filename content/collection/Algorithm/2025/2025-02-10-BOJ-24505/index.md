@@ -7,12 +7,10 @@ categories:
 - Data Structures
 tags:
 - DP(동적계획법)
-- Binary-Indexed-Tree
+- BIT(Binary Indexed Tree)
 - Brute-Force(완전탐색)
 - Memoization
 - Time-Complexity(시간복잡도)
-- Fenwick-Tree
-- Dynamic-Programming
 - Algorithm(알고리즘)
 - BOJ(백준)
 - Competitive-Programming(경쟁프로그래밍)

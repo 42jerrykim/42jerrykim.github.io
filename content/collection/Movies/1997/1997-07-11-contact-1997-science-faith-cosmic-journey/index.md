@@ -12,8 +12,7 @@ categories:
 - Warner Bros
 tags:
 - Movie(영화)
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Drama
 - Thriller(스릴러)
 - Mystery(미스터리)

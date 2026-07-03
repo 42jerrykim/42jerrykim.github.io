@@ -38,17 +38,17 @@ tags:
   - Deep-Dive
   - Migration(마이그레이션)
   - Privacy(프라이버시)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - DevOps
   - Deployment(배포)
   - Performance(성능)
   - Scalability(확장성)
-  - IO
+  - IO(Input/Output)
   - DNS
-  - SEO
+  - SEO(Search Engine Optimization)
   - Browser
-  - HTTP
+  - HTTP(HyperText Transfer Protocol)
   - Cloud(클라우드)
   - Windows(윈도우)
   - Linux(리눅스)

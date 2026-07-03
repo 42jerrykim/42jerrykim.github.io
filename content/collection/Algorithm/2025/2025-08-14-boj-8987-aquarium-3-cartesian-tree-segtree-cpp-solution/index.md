@@ -23,7 +23,7 @@ tags:
 - Complexity-Analysis(복잡도분석)
 - Greedy(그리디)
 - Segment-Tree(세그먼트트리)
-- DFS
+- DFS(Depth-First Search)
 - Priority-Queue(우선순위큐)
 - Divide-and-Conquer(분할정복)
 - Data-Structures(자료구조)

@@ -18,8 +18,8 @@ tags:
   - Etymology(어원)
   - Synonym(유의어)
   - Tutorial(튜토리얼)
-  - REST
-  - API
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
   - War(전쟁)
   - Security(보안)
   - Culture(문화)

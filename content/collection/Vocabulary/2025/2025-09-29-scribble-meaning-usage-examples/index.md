@@ -11,8 +11,8 @@ tags:
 - English
 - Collocation(콜로케이션)
 - Nuance(뉘앙스)
-- TOEFL
-- IELTS
+- TOEFL(Test of English as a Foreign Language)
+- IELTS(International English Language Testing System)
 - 영단어
 - 영어명사
 - Grammar(문법)

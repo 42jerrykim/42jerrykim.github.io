@@ -10,7 +10,7 @@ tags:
   - Python
   - Cheatsheet(치트시트)
   - Quick-Reference
-  - IO
+  - IO(Input/Output)
   - Graph(그래프)
   - Error-Handling(에러처리)
   - Performance(성능)
@@ -25,7 +25,7 @@ tags:
   - Code-Quality(코드품질)
   - OOP(객체지향)
   - String(문자열)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Memory(메모리)
   - Process
   - File-System

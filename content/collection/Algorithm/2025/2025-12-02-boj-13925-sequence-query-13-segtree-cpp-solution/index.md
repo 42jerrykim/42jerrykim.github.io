@@ -15,7 +15,7 @@ tags:
   - Baekjoon
   - Optimization(최적화)
   - Divide-and-Conquer(분할정복)
-  - Fenwick-Tree
+  - BIT(Binary Indexed Tree)
   - Problem-Solving(문제해결)
   - C++
   - Implementation(구현)

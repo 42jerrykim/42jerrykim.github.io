@@ -31,7 +31,7 @@ tags:
 - 비트XOR
 - Bitwise-XOR
 - 비트연산
-- BFS
+- BFS(Breadth-First Search)
 - Subtree
 - 서브트리
 - Subtree-Size

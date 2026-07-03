@@ -13,14 +13,14 @@ tags:
 - Math(수학)
 - Tree(트리)
 - Stack(스택)
-- DFS
+- DFS(Depth-First Search)
 - Time-Complexity(시간복잡도)
 - Complexity-Analysis(복잡도분석)
 - C++
-- IO
+- IO(Input/Output)
 - Implementation(구현)
 - Editorial(에디토리얼)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Combinatorics(조합론)
 - Edge-Cases(엣지케이스)
 - Network-Flow
@@ -35,9 +35,8 @@ tags:
 - .NET
 - Git
 - GitHub
-- REST
-- API
-- Dynamic-Programming
+- REST(Representational State Transfer)
+- API(Application Programming Interface)
 - DP(동적계획법)
 - Space-Complexity(공간복잡도)
 - Testing(테스트)

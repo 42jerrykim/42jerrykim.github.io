@@ -22,7 +22,7 @@ tags:
 - Array(배열)
 - Edge-Cases(엣지케이스)
 - Testing(테스트)
-- IO
+- IO(Input/Output)
 - Complexity-Analysis(복잡도분석)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

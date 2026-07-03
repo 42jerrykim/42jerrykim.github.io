@@ -15,8 +15,8 @@ tags:
 - Nuance(뉘앙스)
 - Business-English(비즈니스영어)
 - Academic-English(학술영어)
-- TOEFL
-- IELTS
+- TOEFL(Test of English as a Foreign Language)
+- IELTS(International English Language Testing System)
 - 영단어
 - 영어동사
 - Etymology(어원)

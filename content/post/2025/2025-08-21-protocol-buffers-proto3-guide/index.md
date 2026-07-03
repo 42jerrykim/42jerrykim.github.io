@@ -11,7 +11,7 @@ categories:
   - "API 설계"
 tags:
   - Implementation(구현)
-  - API
+  - API(Application Programming Interface)
   - Java
   - Python
   - C++
@@ -31,11 +31,11 @@ tags:
   - Open-Source(오픈소스)
   - Best-Practices
   - Type-Safety
-  - JSON
+  - JSON(JavaScript Object Notation)
   - Web(웹)
   - Database(데이터베이스)
-  - REST
-  - HTTP
+  - REST(Representational State Transfer)
+  - HTTP(HyperText Transfer Protocol)
   - Scalability(확장성)
   - Concurrency(동시성)
   - Async(비동기)
@@ -64,8 +64,8 @@ tags:
   - Interface(인터페이스)
   - Encapsulation(캡슐화)
   - Software-Architecture(소프트웨어아키텍처)
-  - YAML
-  - XML
+  - YAML(YAML Ain't Markup Language)
+  - XML(eXtensible Markup Language)
   - Configuration(설정)
   - Troubleshooting(트러블슈팅)
   - Migration(마이그레이션)

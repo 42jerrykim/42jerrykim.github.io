@@ -6,10 +6,10 @@ categories:
 - GraphTheory
 - MinimumSpanningTree
 tags:
-- MST
+- MST(Minimum Spanning Tree)
 - Graph(그래프)
 - Greedy(그리디)
-- Disjoint-Set
+- DSU(Disjoint Set Union)
 - Implementation(구현)
 - Graph-Theory(그래프이론)
 - Algorithm(알고리즘)

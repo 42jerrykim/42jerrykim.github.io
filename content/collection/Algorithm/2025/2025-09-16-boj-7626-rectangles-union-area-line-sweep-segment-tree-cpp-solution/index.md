@@ -25,7 +25,7 @@ tags:
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
 - Geometry
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Code-Quality(코드품질)

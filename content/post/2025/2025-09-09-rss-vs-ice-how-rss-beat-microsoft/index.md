@@ -8,9 +8,9 @@ categories:
   - "Web"
   - "Standards"
 tags:
-  - XML
+  - XML(eXtensible Markup Language)
   - Web(웹)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Blog(블로그)
   - Technology(기술)
   - Tutorial(튜토리얼)
@@ -37,9 +37,9 @@ tags:
   - Complexity-Analysis(복잡도분석)
   - Deployment(배포)
   - Markdown(마크다운)
-  - API
-  - REST
-  - HTTP
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - HTTP(HyperText Transfer Protocol)
   - Networking(네트워킹)
   - Security(보안)
   - Internet(인터넷)
@@ -57,8 +57,8 @@ tags:
   - DevOps
   - Frontend(프론트엔드)
   - Backend(백엔드)
-  - JSON
-  - SEO
+  - JSON(JavaScript Object Notation)
+  - SEO(Search Engine Optimization)
   - Beginner
   - Advanced
   - Domain(도메인)

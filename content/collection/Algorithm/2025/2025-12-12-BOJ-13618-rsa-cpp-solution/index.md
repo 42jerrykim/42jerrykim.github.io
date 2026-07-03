@@ -22,7 +22,7 @@ tags:
 - Security(보안)
 - Problem-Solving(문제해결)
 - Competitive-Programming(경쟁프로그래밍)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)
 - Optimization(최적화)

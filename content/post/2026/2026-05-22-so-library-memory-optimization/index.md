@@ -19,7 +19,7 @@ tags:
   - Process
   - Thread
   - Cache
-  - CPU
+  - CPU(Central Processing Unit)
   - Embedded(임베디드)
   - Security(보안)
   - Assembly
@@ -29,7 +29,7 @@ tags:
   - Profiling(프로파일링)
   - Benchmark
   - File-System
-  - IO
+  - IO(Input/Output)
   - Software-Architecture(소프트웨어아키텍처)
   - Clean-Code(클린코드)
   - Code-Quality(코드품질)
@@ -43,7 +43,7 @@ tags:
   - 공유라이브러리
   - Dynamic-Linking
   - 동적링킹
-  - ELF
+  - ELF(Executable and Linkable Format)
   - 동적라이브러리
 image: "image.png"
 ---

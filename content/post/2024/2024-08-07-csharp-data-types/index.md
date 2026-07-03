@@ -52,8 +52,8 @@ tags:
   - Interface(인터페이스)
   - Encapsulation(캡슐화)
   - Design-Pattern(디자인패턴)
-  - API
-  - IDE
+  - API(Application Programming Interface)
+  - IDE(Integrated Development Environment)
   - Debugging(디버깅)
   - Testing(테스트)
   - Optimization(최적화)

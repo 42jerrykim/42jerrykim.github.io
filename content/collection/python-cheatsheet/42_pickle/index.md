@@ -13,14 +13,14 @@ tags:
   - Implementation(구현)
   - OOP(객체지향)
   - Security(보안)
-  - JSON
+  - JSON(JavaScript Object Notation)
   - Cache
   - Best-Practices
   - Pitfalls(함정)
   - Tutorial(튜토리얼)
   - Code-Quality(코드품질)
-  - REST
-  - API
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
   - Error-Handling(에러처리)
   - Debugging(디버깅)
   - Documentation(문서화)

@@ -17,7 +17,7 @@ tags:
   - Editorial(에디토리얼)
   - Tutorial(튜토리얼)
   - Time-Complexity(시간복잡도)
-  - ICPC
+  - ICPC(International Collegiate Programming Contest)
   - Optimization(최적화)
   - Code-Quality(코드품질)
   - Go

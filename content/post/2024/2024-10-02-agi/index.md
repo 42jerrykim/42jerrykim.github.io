@@ -10,15 +10,15 @@ tags:
   - AI(인공지능)
   - Machine-Learning(머신러닝)
   - Deep-Learning(딥러닝)
-  - LLM
-  - GPT
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - ChatGPT
   - Neural-Network
   - Technology(기술)
   - Innovation(혁신)
   - Automation(자동화)
   - Graph(그래프)
-  - Sci-Fi
+  - Sci-Fi(Science Fiction)
   - Blog(블로그)
   - Web(웹)
   - Tutorial(튜토리얼)
@@ -39,11 +39,11 @@ tags:
   - Comparison(비교)
   - Career(커리어)
   - Security(보안)
-  - NLP
+  - NLP(Natural Language Processing)
   - Data-Science(데이터사이언스)
   - Software-Architecture(소프트웨어아키텍처)
   - Design-Pattern(디자인패턴)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Database(데이터베이스)
   - Testing(테스트)

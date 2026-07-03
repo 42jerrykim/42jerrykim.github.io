@@ -15,7 +15,7 @@ tags:
   - Code-Quality(코드품질)
   - Clean-Code(클린코드)
   - Testing(테스트)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
 ---
 
 이 트랙은 "기술의 경계를 정하는 트랙"입니다. µs 요구가 들어오면 모든 레이어가 얽히기 때문에, 무엇을 어떤 트랙이 책임지는지 합의하지 않으면 최적화가 끝나지 않습니다.

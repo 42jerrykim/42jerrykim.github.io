@@ -9,8 +9,7 @@ categories:
 - Science Fiction
 - Pixar Animation Studios
 tags:
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Adventure(모험)
 - Drama
 - Family(가족)

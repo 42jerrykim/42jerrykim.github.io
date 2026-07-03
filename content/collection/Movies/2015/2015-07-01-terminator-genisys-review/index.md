@@ -6,7 +6,7 @@ lastmod: 2015-07-01
 tags:
 - Movie(영화)
 - Review(리뷰)
-- SF
+- Sci-Fi(Science Fiction)
 - Action(액션)
 - Alan-Taylor
 - 앨런 테일러
@@ -17,7 +17,6 @@ tags:
 - Adventure(모험)
 - Drama
 - Thriller(스릴러)
-- Sci-Fi
 - Fantasy(판타지)
 - Romance(로맨스)
 - Animation(애니메이션)

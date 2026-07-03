@@ -14,7 +14,7 @@ tags:
   - Linux(리눅스)
   - Review(리뷰)
   - Performance(성능)
-  - API
+  - API(Application Programming Interface)
   - Web(웹)
   - Tutorial(튜토리얼)
   - Guide(가이드)
@@ -33,7 +33,7 @@ tags:
   - Reference(참고)
   - Git
   - GitHub
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Keyboard(키보드)
   - Backend(백엔드)
   - Frontend(프론트엔드)
@@ -50,7 +50,7 @@ tags:
   - Tips
   - Blog(블로그)
   - Markdown(마크다운)
-  - CSS
+  - CSS(Cascading Style Sheets)
   - Memory(메모리)
   - Terminal(터미널)
   - Beginner

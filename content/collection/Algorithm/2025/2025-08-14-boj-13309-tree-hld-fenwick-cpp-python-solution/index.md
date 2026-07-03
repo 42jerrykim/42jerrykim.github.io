@@ -23,15 +23,12 @@ tags:
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
 - Greedy(그리디)
-- Dynamic-Programming
 - DP(동적계획법)
 - Graph(그래프)
 - Tree(트리)
-- Fenwick-Tree
-- BIT
-- Binary-Indexed-Tree
+- BIT(Binary Indexed Tree)
 - Segment-Tree(세그먼트트리)
-- Disjoint-Set
+- DSU(Disjoint Set Union)
 - Binary-Search(이분탐색)
 - Two-Pointers
 - Sliding-Window

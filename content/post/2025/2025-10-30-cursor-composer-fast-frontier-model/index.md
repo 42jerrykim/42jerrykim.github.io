@@ -14,9 +14,9 @@ tags:
   - AI(인공지능)
   - Machine-Learning(머신러닝)
   - Deep-Learning(딥러닝)
-  - LLM
-  - NLP
-  - IDE
+  - LLM(Large Language Model)
+  - NLP(Natural Language Processing)
+  - IDE(Integrated Development Environment)
   - Software-Architecture(소프트웨어아키텍처)
   - Performance(성능)
   - Optimization(최적화)

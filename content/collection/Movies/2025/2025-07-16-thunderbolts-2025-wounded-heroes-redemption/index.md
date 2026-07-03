@@ -13,8 +13,8 @@ tags:
   - Action(액션)
   - Review(리뷰)
   - Tree(트리)
-  - Sci-Fi
-  - LLM
+  - Sci-Fi(Science Fiction)
+  - LLM(Large Language Model)
   - AI(인공지능)
   - Drama
   - Thriller(스릴러)

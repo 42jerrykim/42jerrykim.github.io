@@ -7,7 +7,7 @@ categories:
   - Hyper-V
   - Virtualization
 tags:
-  - RDP
+  - RDP(Remote Desktop Protocol)
   - Authentication(인증)
   - Troubleshooting(트러블슈팅)
   - Windows(윈도우)

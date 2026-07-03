@@ -12,7 +12,7 @@ tags:
   - C++
   - Geometry
   - Math(수학)
-  - ICPC
+  - ICPC(International Collegiate Programming Contest)
   - Implementation(구현)
   - Optimization(최적화)
   - Problem-Solving(문제해결)

@@ -14,7 +14,7 @@ tags:
   - OOP(객체지향)
   - Agile(애자일)
   - Best-Practices
-  - CQRS
+  - CQRS(Command Query Responsibility Segregation)
   - Event-Driven
   - Implementation(구현)
   - Refactoring(리팩토링)
@@ -31,8 +31,8 @@ tags:
   - Blog(블로그)
   - Web(웹)
   - Backend(백엔드)
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Database(데이터베이스)
   - Documentation(문서화)
   - Testing(테스트)
@@ -55,7 +55,7 @@ tags:
   - Encapsulation(캡슐화)
   - Abstraction(추상화)
   - Dependency-Injection(의존성주입)
-  - UML
+  - UML(Unified Modeling Language)
   - Repository
   - Factory
   - Builder

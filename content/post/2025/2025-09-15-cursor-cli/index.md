@@ -9,7 +9,7 @@ categories:
 - "Developer Tools"
 - "CLI"
 tags:
-- IDE
+- IDE(Integrated Development Environment)
 - Shell(셸)
 - Terminal(터미널)
 - Automation(자동화)
@@ -41,18 +41,18 @@ tags:
 - Configuration(설정)
 - Deployment(배포)
 - AI(인공지능)
-- LLM
-- GPT
+- LLM(Large Language Model)
+- GPT(Generative Pre-trained Transformer)
 - Open-Source(오픈소스)
 - Reference(참고)
 - Education(교육)
 - Troubleshooting(트러블슈팅)
 - Clean-Code(클린코드)
 - Design-Pattern(디자인패턴)
-- API
+- API(Application Programming Interface)
 - Backend(백엔드)
 - Networking(네트워킹)
-- CI-CD
+- CI-CD(Continuous Integration/Continuous Deployment)
 - Monitoring(모니터링)
 - How-To
 - Tips

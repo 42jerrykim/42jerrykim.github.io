@@ -13,9 +13,7 @@ tags:
 - BOJ(백준)
 - Baekjoon
 - Math(수학)
-- BIT
-- Binary-Indexed-Tree
-- Fenwick-Tree
+- BIT(Binary Indexed Tree)
 - Coordinate-Compression(좌표압축)
 - Sorting(정렬)
 - Prefix-Sum

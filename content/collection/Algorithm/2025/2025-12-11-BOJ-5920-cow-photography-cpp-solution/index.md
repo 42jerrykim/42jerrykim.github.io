@@ -10,7 +10,7 @@ categories:
 tags:
   - Algorithm(알고리즘)
   - BOJ(백준)
-  - USACO
+  - USACO(USA Computing Olympiad)
   - Combinatorics(조합론)
   - Sorting(정렬)
   - Implementation(구현)

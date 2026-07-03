@@ -14,7 +14,7 @@ tags:
 - Baekjoon
 - Math(수학)
 - Modular-Arithmetic(모듈러)
-- Dynamic-Programming
+- DP(동적계획법)
 - Divide-and-Conquer(분할정복)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)

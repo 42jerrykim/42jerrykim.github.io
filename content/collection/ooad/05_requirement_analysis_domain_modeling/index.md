@@ -11,7 +11,7 @@ tags:
   - Command
   - Security(보안)
   - OOP(객체지향)
-  - UML
+  - UML(Unified Modeling Language)
   - Domain-Driven-Design
   - Clean-Architecture(클린아키텍처)
   - Refactoring(리팩토링)

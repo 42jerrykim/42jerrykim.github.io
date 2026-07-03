@@ -34,8 +34,8 @@ tags:
   - Markdown(마크다운)
   - Blog(블로그)
   - Web(웹)
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - .NET
   - Go
   - Linux(리눅스)
@@ -54,7 +54,7 @@ tags:
   - Quick-Reference
   - Case-Study
   - 실습
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Git
   - GitHub

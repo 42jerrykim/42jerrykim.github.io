@@ -9,8 +9,7 @@ categories:
 - Action
 - 20th Century Studios
 tags:
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Action(액션)
 - Adventure(모험)
 - Cinematography(촬영기법)

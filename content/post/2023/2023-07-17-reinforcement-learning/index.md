@@ -39,14 +39,13 @@ tags:
   - Advanced
   - Web(웹)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Performance(성능)
   - Design-Pattern(디자인패턴)
   - Strategy
   - State
   - Interface(인터페이스)
   - Abstraction(추상화)
-  - Dynamic-Programming
   - DP(동적계획법)
   - Graph(그래프)
   - Math(수학)
@@ -57,7 +56,7 @@ tags:
   - DevOps
   - Git
   - GitHub
-  - NLP
+  - NLP(Natural Language Processing)
   - Computer-Vision
   - Cloud(클라우드)
   - Security(보안)

@@ -12,7 +12,6 @@ tags:
 - C++
 - Tree(트리)
 - Graph(그래프)
-- Dynamic-Programming
 - DP(동적계획법)
 - Shortest-Path(최단경로)
 - Time-Complexity(시간복잡도)
@@ -36,7 +35,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- DFS
+- DFS(Depth-First Search)
 - Memory(메모리)
 image: "wordcloud.png"
 ---

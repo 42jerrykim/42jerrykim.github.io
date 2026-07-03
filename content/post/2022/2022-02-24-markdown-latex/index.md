@@ -23,7 +23,7 @@ tags:
   - How-To
   - Tips
   - Configuration(설정)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Science(과학)
   - Best-Practices
   - Troubleshooting(트러블슈팅)
@@ -49,11 +49,11 @@ tags:
   - Algorithm(알고리즘)
   - Problem-Solving(문제해결)
   - Data-Structures(자료구조)
-  - API
+  - API(Application Programming Interface)
   - Deployment(배포)
   - Automation(자동화)
-  - SEO
-  - YAML
+  - SEO(Search Engine Optimization)
+  - YAML(YAML Ain't Markup Language)
   - TypeScript
   - Node.js
   - Case-Study

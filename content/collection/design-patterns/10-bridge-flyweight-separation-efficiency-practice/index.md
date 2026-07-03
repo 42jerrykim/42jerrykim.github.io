@@ -15,7 +15,7 @@ categories:
 tags:
 - Memory(메모리)
 - Design-Pattern(디자인패턴)
-- GoF
+- GoF(Gang of Four)
 - Tutorial(튜토리얼)
 - Implementation(구현)
 - Software-Architecture(소프트웨어아키텍처)

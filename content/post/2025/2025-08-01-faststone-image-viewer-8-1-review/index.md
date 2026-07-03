@@ -49,7 +49,7 @@ tags:
   - Cloud(클라우드)
   - Self-Hosted(셀프호스팅)
   - Web(웹)
-  - API
+  - API(Application Programming Interface)
   - Testing(테스트)
   - Debugging(디버깅)
   - Code-Quality(코드품질)

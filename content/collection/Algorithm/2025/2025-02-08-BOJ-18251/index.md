@@ -7,8 +7,8 @@ categories:
 - Dynamic Programming
 - Graph Theory
 tags:
-- Dynamic-Programming
-- DFS
+- DP(동적계획법)
+- DFS(Depth-First Search)
 - Brute-Force(완전탐색)
 - Tree(트리)
 - Graph-Theory(그래프이론)

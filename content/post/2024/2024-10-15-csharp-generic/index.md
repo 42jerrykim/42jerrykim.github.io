@@ -26,7 +26,7 @@ tags:
   - Tutorial(튜토리얼)
   - Guide(가이드)
   - Reference(참고)
-  - API
+  - API(Application Programming Interface)
   - Problem-Solving(문제해결)
   - Async(비동기)
   - Backend(백엔드)

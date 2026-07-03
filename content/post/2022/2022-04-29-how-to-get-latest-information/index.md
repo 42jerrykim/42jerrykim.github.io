@@ -40,7 +40,7 @@ tags:
   - Review(리뷰)
   - Automation(자동화)
   - Networking(네트워킹)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Frontend(프론트엔드)
   - DevOps
@@ -51,7 +51,7 @@ tags:
   - Case-Study
   - Deep-Dive
   - 실습
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Deployment(배포)
   - Security(보안)

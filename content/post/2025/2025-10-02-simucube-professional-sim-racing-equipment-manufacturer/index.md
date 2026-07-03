@@ -65,7 +65,7 @@ tags:
   - Internet(인터넷)
   - Domain(도메인)
   - ChatGPT
-  - LLM
+  - LLM(Large Language Model)
   - Prompt-Engineering(프롬프트엔지니어링)
 image: "wordcloud.png"
 draft: false

@@ -34,14 +34,14 @@ tags:
   - Troubleshooting(트러블슈팅)
   - Git
   - Security(보안)
-  - API
+  - API(Application Programming Interface)
   - Testing(테스트)
   - Performance(성능)
   - Beginner
   - Privacy(프라이버시)
   - Internet(인터넷)
   - JavaScript
-  - REST
+  - REST(Representational State Transfer)
   - Authentication(인증)
   - Design-Pattern(디자인패턴)
   - Clean-Code(클린코드)
@@ -49,7 +49,7 @@ tags:
   - Code-Quality(코드품질)
   - Automation(자동화)
   - DevOps
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Monitoring(모니터링)
   - Scalability(확장성)
   - Innovation(혁신)
@@ -60,10 +60,10 @@ tags:
   - Quick-Reference
   - Cheatsheet(치트시트)
   - Networking(네트워킹)
-  - JSON
-  - HTML
-  - CSS
-  - SEO
+  - JSON(JavaScript Object Notation)
+  - HTML(HyperText Markup Language)
+  - CSS(Cascading Style Sheets)
+  - SEO(Search Engine Optimization)
   - Self-Hosted(셀프호스팅)
   - Terminal(터미널)
   - Command

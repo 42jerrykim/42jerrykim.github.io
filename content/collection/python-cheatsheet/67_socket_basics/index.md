@@ -16,7 +16,6 @@ tags:
   - Tutorial(튜토리얼)
   - Implementation(구현)
   - Code-Quality(코드품질)
-  - Dynamic-Programming
   - DP(동적계획법)
   - Queue(큐)
   - Thread

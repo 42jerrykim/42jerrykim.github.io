@@ -14,7 +14,7 @@ tags:
   - Process
   - OS(운영체제)
   - Compiler(컴파일러)
-  - CPU
+  - CPU(Central Processing Unit)
   - Cache
   - Git
   - GitHub
@@ -53,7 +53,7 @@ tags:
   - Networking(네트워킹)
   - Security(보안)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Linux(리눅스)
   - Windows(윈도우)
   - DevOps

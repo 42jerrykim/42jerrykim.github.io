@@ -8,15 +8,15 @@ categories:
 - "AI"
 tags:
 - AI(인공지능)
-- LLM
-- GPT
+- LLM(Large Language Model)
+- GPT(Generative Pre-trained Transformer)
 - ChatGPT
 - Machine-Learning(머신러닝)
 - Deep-Learning(딥러닝)
-- NLP
+- NLP(Natural Language Processing)
 - Data-Science(데이터사이언스)
 - Neural-Network
-- API
+- API(Application Programming Interface)
 - Security(보안)
 - Technology(기술)
 - Innovation(혁신)

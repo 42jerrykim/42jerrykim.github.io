@@ -15,7 +15,6 @@ tags:
 - Baekjoon
 - Graph(그래프)
 - Matrix(행렬)
-- Dynamic-Programming
 - DP(동적계획법)
 - Modular-Arithmetic(모듈러)
 - Edge-Cases(엣지케이스)

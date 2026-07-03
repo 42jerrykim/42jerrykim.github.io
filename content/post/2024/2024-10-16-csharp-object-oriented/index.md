@@ -46,7 +46,7 @@ tags:
 - Composition(합성)
 - Data-Structures(자료구조)
 - Backend(백엔드)
-- API
+- API(Application Programming Interface)
 - Testing(테스트)
 - Debugging(디버깅)
 - Maintainability

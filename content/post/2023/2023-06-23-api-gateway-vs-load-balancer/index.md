@@ -8,7 +8,7 @@ categories: null
 image: https://miro.medium.com/v2/resize:fit:1400/format:webp/1*5h5WIpLjdlh2Iiu_WG2_AA.jpeg
 tags:
   - Networking(네트워킹)
-  - API
+  - API(Application Programming Interface)
   - Web(웹)
   - Backend(백엔드)
   - Microservices(마이크로서비스)
@@ -18,13 +18,13 @@ tags:
   - Security(보안)
   - Authentication(인증)
   - Caching(캐싱)
-  - HTTP
-  - REST
+  - HTTP(HyperText Transfer Protocol)
+  - REST(Representational State Transfer)
   - DevOps
   - Deployment(배포)
   - Kubernetes
   - Docker
-  - AWS
+  - AWS(Amazon Web Services)
   - Cloud(클라우드)
   - Performance(성능)
   - Latency

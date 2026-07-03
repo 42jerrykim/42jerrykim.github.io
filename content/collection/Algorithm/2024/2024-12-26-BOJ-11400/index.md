@@ -19,7 +19,7 @@ tags:
 - Python
 - Go
 - .NET
-- DFS
+- DFS(Depth-First Search)
 - Graph(그래프)
 - Sorting(정렬)
 - Tree(트리)

@@ -53,13 +53,13 @@ tags:
   - Abstraction(추상화)
   - Polymorphism(다형성)
   - Design-Pattern(디자인패턴)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Git
   - GitHub
   - Node.js
-  - API
-  - JSON
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
   - Async(비동기)
   - Concurrency(동시성)
   - Graph(그래프)

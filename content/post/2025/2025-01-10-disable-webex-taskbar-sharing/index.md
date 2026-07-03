@@ -35,8 +35,8 @@ tags:
 - Blog(블로그)
 - Markdown(마크다운)
 - Review(리뷰)
-- RDP
-- IDE
+- RDP(Remote Desktop Protocol)
+- IDE(Integrated Development Environment)
 - Terminal(터미널)
 - Automation(자동화)
 - Deployment(배포)
@@ -54,11 +54,11 @@ tags:
 - Software-Architecture(소프트웨어아키텍처)
 - Design-Pattern(디자인패턴)
 - Interface(인터페이스)
-- API
-- REST
-- HTTP
-- JSON
-- YAML
+- API(Application Programming Interface)
+- REST(Representational State Transfer)
+- HTTP(HyperText Transfer Protocol)
+- JSON(JavaScript Object Notation)
+- YAML(YAML Ain't Markup Language)
 date: 2025-01-10
 lastmod: 2026-03-17
 image: "img1.daumcdn.png"

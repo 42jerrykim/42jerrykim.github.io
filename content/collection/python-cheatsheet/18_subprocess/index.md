@@ -13,7 +13,7 @@ tags:
   - OS(운영체제)
   - Shell(셸)
   - Command
-  - IO
+  - IO(Input/Output)
   - Automation(자동화)
   - DevOps
   - Security(보안)

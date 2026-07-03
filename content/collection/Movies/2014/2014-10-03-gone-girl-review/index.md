@@ -20,7 +20,7 @@ tags:
 - Movie(영화)
 - Action(액션)
 - Adventure(모험)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Fantasy(판타지)
 - Romance(로맨스)
 - Animation(애니메이션)

@@ -12,7 +12,7 @@ tags:
   - OOP(객체지향)
   - Design-Pattern(디자인패턴)
   - Dijkstra
-  - GoF
+  - GoF(Gang of Four)
   - Microservices(마이크로서비스)
   - Code-Quality(코드품질)
   - Scalability(확장성)

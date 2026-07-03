@@ -9,12 +9,12 @@ categories:
   - "트렌드"
 tags:
   - AI(인공지능)
-  - LLM
+  - LLM(Large Language Model)
   - ChatGPT
   - Prompt-Engineering(프롬프트엔지니어링)
   - Machine-Learning(머신러닝)
   - Data-Science(데이터사이언스)
-  - NLP
+  - NLP(Natural Language Processing)
   - Productivity(생산성)
   - Education(교육)
   - Career(커리어)
@@ -23,8 +23,8 @@ tags:
   - Blog(블로그)
   - Technology(기술)
   - Web(웹)
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Markdown(마크다운)
   - Review(리뷰)
   - Reference(참고)
@@ -42,7 +42,7 @@ tags:
   - GitHub
   - Windows(윈도우)
   - Design-Pattern(디자인패턴)
-  - SEO
+  - SEO(Search Engine Optimization)
   - Networking(네트워킹)
   - Security(보안)
   - Agile(애자일)

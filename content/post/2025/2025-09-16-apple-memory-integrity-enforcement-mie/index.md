@@ -58,7 +58,7 @@ tags:
 - Error-Handling(에러처리)
 - Edge-Cases(엣지케이스)
 - Type-Safety
-- CPU
+- CPU(Central Processing Unit)
 - OS(운영체제)
 - Process
 - Compiler(컴파일러)

@@ -43,14 +43,14 @@ tags:
   - Quick-Reference
   - DevOps
   - Automation(자동화)
-  - IDE
+  - IDE(Integrated Development Environment)
   - Git
   - GitHub
   - Web(웹)
-  - API
-  - HTTP
-  - JSON
-  - YAML
+  - API(Application Programming Interface)
+  - HTTP(HyperText Transfer Protocol)
+  - JSON(JavaScript Object Notation)
+  - YAML(YAML Ain't Markup Language)
   - Database(데이터베이스)
   - Caching(캐싱)
   - Performance(성능)
@@ -87,8 +87,8 @@ tags:
   - Domain(도메인)
   - Agile(애자일)
   - Scrum
-  - TDD
-  - RDP
+  - TDD(Test-Driven Development)
+  - RDP(Remote Desktop Protocol)
   - History(역사)
   - Culture(문화)
   - Science(과학)
@@ -108,7 +108,7 @@ tags:
   - Samsung
   - Brand(브랜드)
   - ChatGPT
-  - LLM
+  - LLM(Large Language Model)
   - Prompt-Engineering(프롬프트엔지니어링)
   - Hugo
   - Jekyll

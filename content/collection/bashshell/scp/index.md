@@ -44,7 +44,7 @@ tags:
 - scp
 - 복사
 - 전송
-- SSH
+- SSH(Secure Shell)
 - 원격
 - remote
 - Security(보안)

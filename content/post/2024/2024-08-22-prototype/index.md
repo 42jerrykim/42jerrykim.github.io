@@ -16,13 +16,13 @@ tags:
   - Inheritance(상속)
   - Abstraction(추상화)
   - Composition(합성)
-  - GoF
+  - GoF(Gang of Four)
   - Java
   - CSharp
   - C++
   - Builder
   - Singleton
-  - UML
+  - UML(Unified Modeling Language)
   - Implementation(구현)
   - Code-Quality(코드품질)
   - Best-Practices

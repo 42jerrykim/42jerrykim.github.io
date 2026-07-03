@@ -18,16 +18,16 @@ tags:
   - Data-Structures(자료구조)
   - Set
   - Error-Handling(에러처리)
-  - IO
+  - IO(Input/Output)
   - Software-Architecture(소프트웨어아키텍처)
-  - JSON
+  - JSON(JavaScript Object Notation)
   - Logging(로깅)
   - Debugging(디버깅)
   - Testing(테스트)
   - Database(데이터베이스)
   - Priority-Queue(우선순위큐)
   - Deque
-  - XML
+  - XML(eXtensible Markup Language)
   - Math(수학)
   - OS(운영체제)
   - Tutorial(튜토리얼)

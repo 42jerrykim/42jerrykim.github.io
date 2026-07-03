@@ -32,7 +32,7 @@ tags:
   - Markdown(마크다운)
   - Deployment(배포)
   - Terminal(터미널)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Python
   - Beginner

@@ -28,7 +28,7 @@ tags:
   - Best-Practices
   - Implementation(구현)
   - Testing(테스트)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Documentation(문서화)
   - Git
   - Automation(자동화)
@@ -36,7 +36,7 @@ tags:
   - Clean-Code(클린코드)
   - Concurrency(동시성)
   - Memory(메모리)
-  - CPU
+  - CPU(Central Processing Unit)
   - Profiling(프로파일링)
   - Benchmark
   - Debugging(디버깅)

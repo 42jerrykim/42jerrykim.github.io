@@ -37,7 +37,7 @@ tags:
   - Innovation(혁신)
   - DevOps
   - Monitoring(모니터링)
-  - IO
+  - IO(Input/Output)
   - Compression
   - Terminal(터미널)
   - Beginner
@@ -64,7 +64,7 @@ tags:
   - Edge-Cases(엣지케이스)
   - Readability
   - VSCode
-  - IDE
+  - IDE(Integrated Development Environment)
   - Git
   - GitHub
 image: ui-classic-bd3481be0133059729c5a937070f8b69.png

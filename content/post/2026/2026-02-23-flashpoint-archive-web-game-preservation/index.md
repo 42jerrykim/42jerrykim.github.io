@@ -26,7 +26,7 @@ tags:
   - Markdown(마크다운)
   - Action(액션)
   - Animation(애니메이션)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Design-Pattern(디자인패턴)
   - History(역사)
   - Culture(문화)
@@ -40,7 +40,7 @@ tags:
   - Configuration(설정)
   - Security(보안)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Networking(네트워킹)
   - DevOps
   - Automation(자동화)
@@ -65,10 +65,10 @@ tags:
   - Linux(리눅스)
   - Windows(윈도우)
   - VSCode
-  - IDE
-  - JSON
-  - YAML
-  - HTTP
+  - IDE(Integrated Development Environment)
+  - JSON(JavaScript Object Notation)
+  - YAML(YAML Ain't Markup Language)
+  - HTTP(HyperText Transfer Protocol)
   - Caching(캐싱)
   - Async(비동기)
   - Concurrency(동시성)

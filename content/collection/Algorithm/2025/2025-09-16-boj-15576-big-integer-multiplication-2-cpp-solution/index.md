@@ -10,7 +10,7 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - C++
-- FFT
+- FFT(Fast Fourier Transform)
 - Convolution
 - String(문자열)
 - Implementation(구현)

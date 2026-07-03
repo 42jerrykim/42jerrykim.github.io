@@ -53,18 +53,18 @@ tags:
   - Deep-Dive
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Docker
   - Kubernetes
-  - AWS
+  - AWS(Amazon Web Services)
   - Cloud(클라우드)
   - Mobile(모바일)
-  - CPU
+  - CPU(Central Processing Unit)
   - Memory(메모리)
   - Process
-  - HTTP
-  - API
+  - HTTP(HyperText Transfer Protocol)
+  - API(Application Programming Interface)
   - Database(데이터베이스)
   - Review(리뷰)
   - Algorithm(알고리즘)
@@ -91,7 +91,7 @@ tags:
   - Elasticsearch
   - Terraform
   - Ansible
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Monitoring(모니터링)
   - Debugging(디버깅)
   - Error-Handling(에러처리)
@@ -112,11 +112,11 @@ tags:
   - Dependency-Injection(의존성주입)
   - Refactoring(리팩토링)
   - Code-Review(코드리뷰)
-  - TDD
+  - TDD(Test-Driven Development)
   - Agile(애자일)
   - Scrum
   - Microservices(마이크로서비스)
-  - REST
+  - REST(Representational State Transfer)
   - GraphQL
   - WebSocket
   - Caching(캐싱)
@@ -128,23 +128,23 @@ tags:
   - Load-Balancing
   - Message-Queue
   - Authentication(인증)
-  - SEO
+  - SEO(Search Engine Optimization)
   - Frontend(프론트엔드)
   - Backend(백엔드)
-  - JSON
-  - XML
-  - YAML
+  - JSON(JavaScript Object Notation)
+  - XML(eXtensible Markup Language)
+  - YAML(YAML Ain't Markup Language)
   - TypeScript
   - Kotlin
   - Swift
-  - SQL
+  - SQL(Structured Query Language)
   - R
   - Scala
   - Lua
   - Assembly
   - Compiler(컴파일러)
   - Thread
-  - IO
+  - IO(Input/Output)
   - Cache
   - History(역사)
   - Culture(문화)
@@ -156,7 +156,7 @@ tags:
   - Hugo
   - Domain(도메인)
   - ChatGPT
-  - LLM
+  - LLM(Large Language Model)
   - Prompt-Engineering(프롬프트엔지니어링)
   - Tmux
   - Unzip
@@ -188,8 +188,8 @@ tags:
   - SOLID
   - Domain-Driven-Design
   - Event-Driven
-  - CQRS
-  - GoF
+  - CQRS(Command Query Responsibility Segregation)
+  - GoF(Gang of Four)
   - Factory
   - Singleton
   - Observer
@@ -201,7 +201,7 @@ tags:
   - State
   - Builder
   - Iterator
-  - UML
+  - UML(Unified Modeling Language)
   - Coupling(결합도)
   - Cohesion(응집도)
   - Functional-Programming(함수형프로그래밍)
@@ -218,11 +218,10 @@ tags:
   - Math(수학)
   - Simulation(시뮬레이션)
   - Greedy(그리디)
-  - Dynamic-Programming
   - DP(동적계획법)
   - Binary-Search(이분탐색)
-  - BFS
-  - DFS
+  - BFS(Breadth-First Search)
+  - DFS(Depth-First Search)
   - Sorting(정렬)
   - Recursion(재귀)
   - Backtracking
@@ -241,13 +240,12 @@ tags:
   - Trie
   - Prefix-Sum
   - Segment-Tree(세그먼트트리)
-  - Binary-Indexed-Tree
+  - BIT(Binary Indexed Tree)
   - Shortest-Path(최단경로)
   - Dijkstra
-  - MST
+  - MST(Minimum Spanning Tree)
   - 위상정렬
-  - DSU
-  - Disjoint-Set
+  - DSU(Disjoint Set Union)
   - Two-Pointers
   - Sliding-Window
   - Range-Query
@@ -259,12 +257,12 @@ tags:
   - Convex-Hull
   - Sweep-Line
   - Coordinate-Compression(좌표압축)
-  - LCA
+  - LCA(Lowest Common Ancestor)
   - Euler-Tour
   - Game-Theory
   - Bipartite-Matching
   - Network-Flow
-  - FFT
+  - FFT(Fast Fourier Transform)
   - Convolution
   - Suffix-Array
   - Heavy-Light-Decomposition
@@ -272,8 +270,8 @@ tags:
   - Persistent-Structure
   - BOJ(백준)
   - Baekjoon
-  - ICPC
-  - USACO
+  - ICPC(International Collegiate Programming Contest)
+  - USACO(USA Computing Olympiad)
   - Editorial(에디토리얼)
 image: "wordcloud.png"
 ---

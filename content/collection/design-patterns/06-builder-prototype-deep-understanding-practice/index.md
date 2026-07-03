@@ -16,7 +16,7 @@ tags:
 - Tutorial(튜토리얼)
 - Implementation(구현)
 - Design-Pattern(디자인패턴)
-- GoF
+- GoF(Gang of Four)
 ---
 
 이 실습에서는 Builder와 Prototype 패턴을 활용하여 복잡한 객체 생성 문제를 해결하는 다양한 기법을 직접 구현합니다.

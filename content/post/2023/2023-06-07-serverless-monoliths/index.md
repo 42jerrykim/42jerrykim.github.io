@@ -16,10 +16,10 @@ tags:
   - Security(보안)
   - Testing(테스트)
   - DevOps
-  - AWS
+  - AWS(Amazon Web Services)
   - Cloud(클라우드)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Database(데이터베이스)
   - Code-Quality(코드품질)
   - Best-Practices

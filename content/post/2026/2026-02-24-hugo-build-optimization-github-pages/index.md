@@ -11,21 +11,21 @@ categories:
 tags:
   - Hugo
   - JavaScript
-  - SEO
+  - SEO(Search Engine Optimization)
   - PowerShell
   - Optimization(최적화)
   - Go
   - Blog(블로그)
   - Git
   - GitHub
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Technology(기술)
   - Web(웹)
   - Tutorial(튜토리얼)
   - Guide(가이드)
   - Markdown(마크다운)
-  - CSS
-  - HTML
+  - CSS(Cascading Style Sheets)
+  - HTML(HyperText Markup Language)
   - Configuration(설정)
   - Productivity(생산성)
   - Education(교육)
@@ -45,7 +45,7 @@ tags:
   - Automation(자동화)
   - Windows(윈도우)
   - Linux(리눅스)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Debugging(디버깅)
   - Refactoring(리팩토링)
@@ -54,8 +54,8 @@ tags:
   - Migration(마이그레이션)
   - Backend(백엔드)
   - Frontend(프론트엔드)
-  - API
-  - JSON
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
   - Scalability(확장성)
   - Networking(네트워킹)
   - Innovation(혁신)

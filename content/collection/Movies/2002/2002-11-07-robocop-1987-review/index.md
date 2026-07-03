@@ -9,8 +9,7 @@ categories:
 - Action
 - Orion Pictures
 tags:
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Action(액션)
 - Crime(범죄)
 - 1980s

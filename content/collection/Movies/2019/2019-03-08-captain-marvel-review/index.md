@@ -7,17 +7,16 @@ tags:
 - Movie(영화)
 - Review(리뷰)
 - Action(액션)
-- SF
+- Sci-Fi(Science Fiction)
 - Anna-Boden
 - Ryan-Fleck
 - Brie-Larson
 - Samuel-L-Jackson
 - Marvel
-- MCU
+- MCU(Marvel Cinematic Universe)
 - Adventure(모험)
 - Drama
 - Thriller(스릴러)
-- Sci-Fi
 - Fantasy(판타지)
 - Romance(로맨스)
 - Animation(애니메이션)

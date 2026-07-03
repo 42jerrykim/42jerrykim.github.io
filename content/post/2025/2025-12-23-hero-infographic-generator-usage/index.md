@@ -11,12 +11,12 @@ tags:
   - Hugo
   - Automation(자동화)
   - Shell(셸)
-  - JSON
+  - JSON(JavaScript Object Notation)
   - Productivity(생산성)
   - Windows(윈도우)
   - PowerShell
   - Web(웹)
-  - SEO
+  - SEO(Search Engine Optimization)
   - Markdown(마크다운)
   - Blog(블로그)
   - Technology(기술)
@@ -59,14 +59,14 @@ tags:
   - Terminal(터미널)
   - Jekyll
   - Comparison(비교)
-  - HTML
-  - CSS
+  - HTML(HyperText Markup Language)
+  - CSS(Cascading Style Sheets)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Case-Study
   - Deep-Dive
   - 실습
-  - YAML
+  - YAML(YAML Ain't Markup Language)
   - Data-Structures(자료구조)
   - Go
   - Bash

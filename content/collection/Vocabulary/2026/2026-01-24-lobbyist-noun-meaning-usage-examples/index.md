@@ -20,8 +20,8 @@ tags:
   - Synonym(유의어)
   - Tutorial(튜토리얼)
   - Go
-  - REST
-  - API
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
   - Privacy(프라이버시)
   - Antonym(반의어)
   - Education(교육)

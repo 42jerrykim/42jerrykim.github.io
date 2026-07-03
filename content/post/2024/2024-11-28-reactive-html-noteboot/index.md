@@ -6,7 +6,7 @@ categories:
 - Programming
 - Visualization
 tags:
-- HTML
+- HTML(HyperText Markup Language)
 - Data-Structures(자료구조)
 - Implementation(구현)
 - Web(웹)
@@ -16,7 +16,7 @@ tags:
 - Open-Source(오픈소스)
 - Documentation(문서화)
 - JavaScript
-- CSS
+- CSS(Cascading Style Sheets)
 - Innovation(혁신)
 - Technology(기술)
 - Education(교육)
@@ -41,8 +41,8 @@ tags:
 - Comparison(비교)
 - Data-Science(데이터사이언스)
 - R
-- API
-- JSON
+- API(Application Programming Interface)
+- JSON(JavaScript Object Notation)
 - Async(비동기)
 - Performance(성능)
 - Clean-Code(클린코드)
@@ -57,7 +57,7 @@ tags:
 - Observer
 - Design-Pattern(디자인패턴)
 - Database(데이터베이스)
-- HTTP
+- HTTP(HyperText Transfer Protocol)
 image: "wordcloud.png"
 date: 2024-11-28
 lastmod: 2026-03-17

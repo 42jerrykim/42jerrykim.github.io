@@ -65,7 +65,7 @@ tags:
 - Tmux
 - Git
 - GitHub
-- CI-CD
+- CI-CD(Continuous Integration/Continuous Deployment)
 - Docker
 - Kubernetes
 - Nginx
@@ -73,9 +73,9 @@ tags:
 - PostgreSQL
 - MySQL
 - Redis
-- AWS
+- AWS(Amazon Web Services)
 - Azure
-- GCP
+- GCP(Google Cloud Platform)
 - Ansible
 - Terraform
 ---

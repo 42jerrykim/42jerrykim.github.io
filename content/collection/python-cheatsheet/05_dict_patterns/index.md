@@ -13,7 +13,7 @@ tags:
   - Implementation(구현)
   - Sorting(정렬)
   - Algorithm(알고리즘)
-  - JSON
+  - JSON(JavaScript Object Notation)
   - Performance(성능)
   - Time-Complexity(시간복잡도)
   - Best-Practices
@@ -21,7 +21,7 @@ tags:
   - Error-Handling(에러처리)
   - Tutorial(튜토리얼)
   - Code-Quality(코드품질)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Debugging(디버깅)
   - Documentation(문서화)
   - Testing(테스트)

@@ -26,8 +26,7 @@ tags:
 - Greedy(그리디)
 - Graph(그래프)
 - Network-Flow
-- Disjoint-Set
-- DSU
+- DSU(Disjoint Set Union)
 - Modular-Arithmetic(모듈러)
 - Math(수학)
 - Problem-Solving(문제해결)

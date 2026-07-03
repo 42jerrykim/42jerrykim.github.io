@@ -21,7 +21,7 @@ tags:
 - Code-Quality(코드품질)
 - Go
 - .NET
-- DFS
+- DFS(Depth-First Search)
 - Graph(그래프)
 - Sorting(정렬)
 - Space-Complexity(공간복잡도)

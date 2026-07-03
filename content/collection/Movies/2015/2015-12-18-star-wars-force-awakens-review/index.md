@@ -6,7 +6,7 @@ lastmod: 2015-12-18
 tags:
 - Movie(영화)
 - Review(리뷰)
-- SF
+- Sci-Fi(Science Fiction)
 - Action(액션)
 - Adventure(모험)
 - J-J-Abrams
@@ -19,7 +19,6 @@ tags:
 - Disney
 - Drama
 - Thriller(스릴러)
-- Sci-Fi
 - Fantasy(판타지)
 - Romance(로맨스)
 - Animation(애니메이션)

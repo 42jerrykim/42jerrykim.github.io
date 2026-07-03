@@ -7,8 +7,8 @@ categories:
   - AI
 tags:
   - AI(인공지능)
-  - LLM
-  - GPT
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - Machine-Learning(머신러닝)
   - Data-Science(데이터사이언스)
   - Automation(자동화)
@@ -31,14 +31,14 @@ tags:
   - Technology(기술)
   - Blog(블로그)
   - Web(웹)
-  - API
+  - API(Application Programming Interface)
   - Reference(참고)
   - Education(교육)
   - Configuration(설정)
   - Troubleshooting(트러블슈팅)
   - Software-Architecture(소프트웨어아키텍처)
   - Terminal(터미널)
-  - IDE
+  - IDE(Integrated Development Environment)
   - Beginner
   - Advanced
   - Markdown(마크다운)

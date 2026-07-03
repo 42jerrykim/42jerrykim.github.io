@@ -14,8 +14,7 @@ tags:
 - Movie(영화)
 - Drama
 - TV-Show(드라마)
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Romance(로맨스)
 - Family(가족)
 - Comedy(코미디)

@@ -12,7 +12,7 @@ tags:
   - JavaScript
   - Web(웹)
   - Frontend(프론트엔드)
-  - API
+  - API(Application Programming Interface)
   - React
   - Performance(성능)
   - Implementation(구현)
@@ -39,8 +39,8 @@ tags:
   - Innovation(혁신)
   - Debugging(디버깅)
   - WebSocket
-  - HTTP
-  - JSON
+  - HTTP(HyperText Transfer Protocol)
+  - JSON(JavaScript Object Notation)
   - Networking(네트워킹)
   - Caching(캐싱)
   - Concurrency(동시성)

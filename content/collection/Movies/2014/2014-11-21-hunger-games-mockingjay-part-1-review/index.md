@@ -9,7 +9,7 @@ categories:
 - Sci-Fi
 tags:
 - Drama
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Francis-Lawrence
 - 프랜시스 로렌스
 - Jennifer-Lawrence

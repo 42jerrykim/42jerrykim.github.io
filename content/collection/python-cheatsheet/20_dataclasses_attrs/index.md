@@ -20,7 +20,7 @@ tags:
   - Best-Practices
   - Tutorial(튜토리얼)
   - Recursion(재귀)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Memory(메모리)
   - Factory
   - Error-Handling(에러처리)

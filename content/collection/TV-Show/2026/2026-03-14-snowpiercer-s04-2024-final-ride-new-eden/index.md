@@ -25,8 +25,7 @@ tags:
 - Sheila-Vand
 - Clark-Gregg
 - Michael-Aronov
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Drama
 - TV-Show(드라마)
 - Thriller(스릴러)

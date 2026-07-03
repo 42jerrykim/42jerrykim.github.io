@@ -13,7 +13,7 @@ tags:
 - macOS
 - Linux(리눅스)
 - VSCode
-- IDE
+- IDE(Integrated Development Environment)
 - Best-Practices
 - Troubleshooting(트러블슈팅)
 - Tutorial(튜토리얼)
@@ -40,7 +40,7 @@ tags:
 - Comparison(비교)
 - Career(커리어)
 - DevOps
-- CI-CD
+- CI-CD(Continuous Integration/Continuous Deployment)
 - Deployment(배포)
 - Automation(자동화)
 - Error-Handling(에러처리)

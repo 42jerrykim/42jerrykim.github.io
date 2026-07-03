@@ -13,7 +13,6 @@ tags:
 - Brute-Force(완전탐색)
 - Array(배열)
 - Data-Structures(자료구조)
-- Dynamic-Programming
 - Algorithm(알고리즘)
 - BOJ(백준)
 - Competitive-Programming(경쟁프로그래밍)

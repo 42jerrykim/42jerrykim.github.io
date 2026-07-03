@@ -6,7 +6,7 @@ date: "2024-05-18T00:00:00Z"
 header:
   teaser: /assets/images/2024/1005.JPG
 tags:
-- Dynamic-Programming
+- DP(동적계획법)
 - Graph-Theory(그래프이론)
 - Algorithm(알고리즘)
 - BOJ(백준)
@@ -22,7 +22,6 @@ tags:
 - Code-Quality(코드품질)
 - Go
 - .NET
-- DP(동적계획법)
 - Sorting(정렬)
 - Graph(그래프)
 - Queue(큐)

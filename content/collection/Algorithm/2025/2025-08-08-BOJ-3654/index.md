@@ -23,8 +23,8 @@ tags:
   - Code-Quality(코드품질)
   - Go
   - .NET
-  - BFS
-  - DFS
+  - BFS(Breadth-First Search)
+  - DFS(Depth-First Search)
   - Queue(큐)
   - Memory(메모리)
   - Space-Complexity(공간복잡도)

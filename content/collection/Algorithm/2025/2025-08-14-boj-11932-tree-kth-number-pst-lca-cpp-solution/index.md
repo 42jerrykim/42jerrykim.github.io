@@ -12,7 +12,7 @@ tags:
 - C++
 - Tree(트리)
 - Segment-Tree(세그먼트트리)
-- LCA
+- LCA(Lowest Common Ancestor)
 - Coordinate-Compression(좌표압축)
 - Range-Query
 - Implementation(구현)
@@ -21,9 +21,9 @@ tags:
 - Complexity-Analysis(복잡도분석)
 - Edge-Cases(엣지케이스)
 - Pitfalls(함정)
-- IO
-- DFS
-- BFS
+- IO(Input/Output)
+- DFS(Depth-First Search)
+- BFS(Breadth-First Search)
 - Data-Structures(자료구조)
 - Competitive-Programming(경쟁프로그래밍)
 - Testing(테스트)

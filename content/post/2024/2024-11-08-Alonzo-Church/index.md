@@ -46,7 +46,7 @@ tags:
   - Concurrency(동시성)
   - Deep-Learning(딥러닝)
   - Memory(메모리)
-  - CPU
+  - CPU(Central Processing Unit)
   - OS(운영체제)
   - Recursion(재귀)
   - Abstraction(추상화)

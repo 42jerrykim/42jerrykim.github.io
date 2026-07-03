@@ -26,7 +26,7 @@ tags:
 - Optimization(최적화)
 - C++
 - Python
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Asia-Regional
 - Ternary-Search
 - 삼분탐색

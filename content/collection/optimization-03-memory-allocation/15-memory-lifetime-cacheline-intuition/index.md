@@ -15,11 +15,11 @@ tags:
   - Heap(힙)
   - Allocator
   - Lifetime
-  - RAII
+  - RAII(Resource Acquisition Is Initialization)
   - Cache
   - Cache-Line
   - Locality
-  - CPU
+  - CPU(Central Processing Unit)
   - Latency
   - Throughput
   - Profiling(프로파일링)
@@ -38,7 +38,7 @@ tags:
   - Debugging(디버깅)
   - Documentation(문서화)
   - Git
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Refactoring(리팩토링)
   - Clean-Code(클린코드)
   - Pointer

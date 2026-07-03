@@ -12,8 +12,8 @@ tags:
   - AI(인공지능)
   - Machine-Learning(머신러닝)
   - Deep-Learning(딥러닝)
-  - LLM
-  - GPT
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - ChatGPT
   - Neural-Network
   - Open-Source(오픈소스)
@@ -54,7 +54,7 @@ tags:
   - Beginner
   - Advanced
   - Deep-Dive
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Database(데이터베이스)
   - Git

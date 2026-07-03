@@ -10,10 +10,9 @@ categories:
 - Marvel Studios
 tags:
 - Action(액션)
-- SF
+- Sci-Fi(Science Fiction)
 - Space(우주)
 - Visual-Effects(시각효과)
-- Sci-Fi
 - 1960s
 - Movie(영화)
 - Review(리뷰)

@@ -9,7 +9,7 @@ header:
   teaser: /assets/images/2024/2024-09-10-LangGraph.png
 title: "[Tech] LangGraph로 LLM 에이전트·워크플로우 구축하기"
 tags:
-  - LLM
+  - LLM(Large Language Model)
   - AI(인공지능)
   - Machine-Learning(머신러닝)
   - Python
@@ -21,10 +21,10 @@ tags:
   - Open-Source(오픈소스)
   - Automation(자동화)
   - Error-Handling(에러처리)
-  - SQL
+  - SQL(Structured Query Language)
   - Memory(메모리)
   - Scalability(확장성)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Documentation(문서화)
   - Git
@@ -50,7 +50,7 @@ tags:
   - Database(데이터베이스)
   - Concurrency(동시성)
   - Async(비동기)
-  - NLP
+  - NLP(Natural Language Processing)
   - Prompt-Engineering(프롬프트엔지니어링)
   - Deep-Dive
   - Case-Study

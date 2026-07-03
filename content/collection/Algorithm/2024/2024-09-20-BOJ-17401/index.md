@@ -6,7 +6,7 @@ date: "2024-09-20T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- Dynamic-Programming
+- DP(동적계획법)
 - Time-Complexity(시간복잡도)
 - Graph-Theory(그래프이론)
 - Optimization(최적화)

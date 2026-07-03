@@ -10,7 +10,7 @@ tags:
 - Optimization(최적화)
 - Time-Complexity(시간복잡도)
 - Data-Structures(자료구조)
-- Dynamic-Programming
+- DP(동적계획법)
 - Algorithm(알고리즘)
 - BOJ(백준)
 - Competitive-Programming(경쟁프로그래밍)

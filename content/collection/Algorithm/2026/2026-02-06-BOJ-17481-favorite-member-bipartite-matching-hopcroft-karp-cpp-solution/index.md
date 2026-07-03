@@ -17,8 +17,8 @@ tags:
 - Bipartite-Matching
 - String(문자열)
 - Network-Flow
-- BFS
-- DFS
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
 - Queue(큐)
 - Stack(스택)
 - C++

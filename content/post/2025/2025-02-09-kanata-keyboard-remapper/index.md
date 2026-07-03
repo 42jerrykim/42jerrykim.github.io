@@ -39,7 +39,7 @@ tags:
   - Innovation(혁신)
   - Implementation(구현)
   - Clean-Code(클린코드)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Vim
   - Terminal(터미널)

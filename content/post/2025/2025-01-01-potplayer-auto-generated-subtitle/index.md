@@ -24,7 +24,7 @@ tags:
 - Documentation(문서화)
 - Best-Practices
 - Beginner
-- NLP
+- NLP(Natural Language Processing)
 - Machine-Learning(머신러닝)
 - Deep-Learning(딥러닝)
 - Git
@@ -41,13 +41,13 @@ tags:
 - Internet(인터넷)
 - Quick-Reference
 - Migration(마이그레이션)
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Terminal(터미널)
 - Shell(셸)
-- API
-- REST
-- JSON
+- API(Application Programming Interface)
+- REST(Representational State Transfer)
+- JSON(JavaScript Object Notation)
 - Web(웹)
 - Frontend(프론트엔드)
 - Backend(백엔드)

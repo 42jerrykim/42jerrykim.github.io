@@ -12,8 +12,7 @@ tags:
 - Segment-Tree(세그먼트트리)
 - Coordinate-Compression(좌표압축)
 - Computational-Geometry
-- Disjoint-Set
-- DSU
+- DSU(Disjoint Set Union)
 - Data-Structures(자료구조)
 - Geometry
 - Range-Query
@@ -21,11 +20,11 @@ tags:
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
 - C++
-- IO
+- IO(Input/Output)
 - Implementation(구현)
 - Debugging(디버깅)
 - Competitive-Programming(경쟁프로그래밍)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Algorithm(알고리즘)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

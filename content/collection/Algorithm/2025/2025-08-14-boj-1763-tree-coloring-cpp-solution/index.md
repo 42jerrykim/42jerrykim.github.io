@@ -12,8 +12,7 @@ tags:
 - C++
 - Tree(트리)
 - Greedy(그리디)
-- Disjoint-Set
-- DSU
+- DSU(Disjoint Set Union)
 - Sorting(정렬)
 - 위상정렬
 - Implementation(구현)
@@ -38,8 +37,8 @@ tags:
 - .NET
 - Git
 - GitHub
-- REST
-- API
+- REST(Representational State Transfer)
+- API(Application Programming Interface)
 - Memory(메모리)
 image: "wordcloud.png"
 ---

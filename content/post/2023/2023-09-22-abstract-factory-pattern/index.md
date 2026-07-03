@@ -9,7 +9,7 @@ header:
   teaser: /assets/images/undefined/teaser.jpg
 tags:
   - Design-Pattern(디자인패턴)
-  - GoF
+  - GoF(Gang of Four)
   - Creational-Pattern
   - Factory
   - Interface(인터페이스)
@@ -58,7 +58,7 @@ tags:
   - Case-Study
   - Deep-Dive
   - 실습
-  - UML
+  - UML(Unified Modeling Language)
   - Java
   - Python
   - C++

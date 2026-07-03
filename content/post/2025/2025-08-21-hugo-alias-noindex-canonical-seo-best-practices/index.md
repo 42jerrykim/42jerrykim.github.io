@@ -9,7 +9,7 @@ categories:
 - "웹 최적화"
 tags:
 - Hugo
-- SEO
+- SEO(Search Engine Optimization)
 - Web(웹)
 - Blog(블로그)
 - Jekyll
@@ -31,8 +31,8 @@ tags:
 - Implementation(구현)
 - Testing(테스트)
 - Performance(성능)
-- HTML
-- HTTP
+- HTML(HyperText Markup Language)
+- HTTP(HyperText Transfer Protocol)
 - Networking(네트워킹)
 - Troubleshooting(트러블슈팅)
 - Case-Study

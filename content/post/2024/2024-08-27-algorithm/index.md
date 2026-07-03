@@ -11,7 +11,6 @@ tags:
   - Problem-Solving(문제해결)
   - Coding-Test(코딩테스트)
   - Graph(그래프)
-  - Dynamic-Programming
   - DP(동적계획법)
   - Greedy(그리디)
   - Binary-Search(이분탐색)
@@ -21,8 +20,8 @@ tags:
   - Math(수학)
   - Hashing(해싱)
   - Divide-and-Conquer(분할정복)
-  - BFS
-  - DFS
+  - BFS(Breadth-First Search)
+  - DFS(Depth-First Search)
   - Time-Complexity(시간복잡도)
   - Space-Complexity(공간복잡도)
   - Complexity-Analysis(복잡도분석)
@@ -36,7 +35,7 @@ tags:
   - Shortest-Path(최단경로)
   - Dijkstra
   - Bellman-Ford
-  - MST
+  - MST(Minimum Spanning Tree)
   - Tutorial(튜토리얼)
   - Guide(가이드)
   - Education(교육)

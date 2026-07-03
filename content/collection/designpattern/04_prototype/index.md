@@ -10,7 +10,7 @@ header:
   teaser: /assets/images/2024/2024-08-22-prototype.png
 tags:
   - Design-Pattern(디자인패턴)
-  - GoF
+  - GoF(Gang of Four)
   - Cache
   - Performance(성능)
   - Memory(메모리)

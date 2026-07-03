@@ -24,7 +24,7 @@ tags:
 - Graph(그래프)
 - Network-Flow
 - Matrix(행렬)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)
@@ -33,11 +33,11 @@ tags:
 - .NET
 - Git
 - GitHub
-- BFS
-- DFS
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
 - Queue(큐)
 - String(문자열)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Memory(메모리)
 image: "wordcloud.png"
 ---

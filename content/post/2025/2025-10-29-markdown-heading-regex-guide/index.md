@@ -21,7 +21,7 @@ tags:
   - Web(웹)
   - Tutorial(튜토리얼)
   - Guide(가이드)
-  - IDE
+  - IDE(Integrated Development Environment)
   - Education(교육)
   - Reference(참고)
   - Best-Practices
@@ -31,7 +31,7 @@ tags:
   - Tips
   - Comparison(비교)
   - JavaScript
-  - HTML
+  - HTML(HyperText Markup Language)
   - Debugging(디버깅)
   - Code-Quality(코드품질)
   - Readability

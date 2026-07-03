@@ -10,13 +10,13 @@ tags:
   - Clean-Architecture(클린아키텍처)
   - Edge-Cases(엣지케이스)
   - Gaming(게임)
-  - API
+  - API(Application Programming Interface)
   - English
   - Shell(셸)
   - Cloud(클라우드)
   - Software-Architecture(소프트웨어아키텍처)
   - Dependency-Injection(의존성주입)
-  - IO
+  - IO(Input/Output)
   - Complexity-Analysis(복잡도분석)
 ---
 

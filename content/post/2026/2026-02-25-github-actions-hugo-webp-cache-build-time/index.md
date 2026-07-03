@@ -9,7 +9,7 @@ categories:
 tags:
   - GitHub
   - Hugo
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - DevOps
   - Git
   - Linux(리눅스)
@@ -24,10 +24,10 @@ tags:
   - Frontend(프론트엔드)
   - Caching(캐싱)
   - Cache
-  - YAML
-  - API
-  - REST
-  - HTTP
+  - YAML(YAML Ain't Markup Language)
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - HTTP(HyperText Transfer Protocol)
   - Documentation(문서화)
   - Best-Practices
   - Implementation(구현)
@@ -47,7 +47,7 @@ tags:
   - Async(비동기)
   - Networking(네트워킹)
   - Database(데이터베이스)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Windows(윈도우)
   - macOS
@@ -57,14 +57,14 @@ tags:
   - Process
   - Software-Architecture(소프트웨어아키텍처)
   - Design-Pattern(디자인패턴)
-  - JSON
-  - XML
-  - CDN
-  - SEO
+  - JSON(JavaScript Object Notation)
+  - XML(eXtensible Markup Language)
+  - CDN(Content Delivery Network)
+  - SEO(Search Engine Optimization)
   - Kubernetes
-  - AWS
+  - AWS(Amazon Web Services)
   - Azure
-  - GCP
+  - GCP(Google Cloud Platform)
   - Node.js
   - JavaScript
   - TypeScript

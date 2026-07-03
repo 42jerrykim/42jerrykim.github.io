@@ -9,8 +9,8 @@ tags:
 - Business-English(비즈니스영어)
 - Code-Quality(코드품질)
 - 영단어
-- REST
-- API
+- REST(Representational State Transfer)
+- API(Application Programming Interface)
 - Performance(성능)
 - Optimization(최적화)
 - Action(액션)
@@ -20,7 +20,7 @@ tags:
 - Synonym(유의어)
 - Tutorial(튜토리얼)
 - War(전쟁)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Prompt-Engineering(프롬프트엔지니어링)
 - AI(인공지능)
 - Career(커리어)

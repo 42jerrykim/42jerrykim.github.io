@@ -8,7 +8,7 @@ lastmod: "2026-03-17"
 header:
   teaser: /assets/images/2024/2024-08-27-Database.png
 tags:
-- API
+- API(Application Programming Interface)
 - Database(데이터베이스)
 - Performance(성능)
 - Optimization(최적화)
@@ -21,10 +21,10 @@ tags:
 - Implementation(구현)
 - Profiling(프로파일링)
 - Monitoring(모니터링)
-- SQL
+- SQL(Structured Query Language)
 - Documentation(문서화)
 - Hardware(하드웨어)
-- CPU
+- CPU(Central Processing Unit)
 - Frontend(프론트엔드)
 - Backend(백엔드)
 - Blog(블로그)

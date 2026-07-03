@@ -13,7 +13,7 @@ tags:
   - 영어명사
   - Collocation(콜로케이션)
   - Nuance(뉘앙스)
-  - BIT
+  - BIT(Binary Indexed Tree)
   - Segment-Tree(세그먼트트리)
   - Software-Architecture(소프트웨어아키텍처)
   - Composition(합성)

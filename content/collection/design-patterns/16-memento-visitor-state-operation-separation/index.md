@@ -13,7 +13,7 @@ categories:
 - Operation Extension
 tags:
 - Design-Pattern(디자인패턴)
-- GoF
+- GoF(Gang of Four)
 - SOLID
 ---
 

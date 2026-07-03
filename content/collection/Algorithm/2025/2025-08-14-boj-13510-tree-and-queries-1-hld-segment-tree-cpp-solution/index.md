@@ -25,7 +25,7 @@ tags:
 - Graph(그래프)
 - Tree(트리)
 - Segment-Tree(세그먼트트리)
-- LCA
+- LCA(Lowest Common Ancestor)
 - Range-Query
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
@@ -34,7 +34,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- DFS
+- DFS(Depth-First Search)
 - Stack(스택)
 - Memory(메모리)
 image: "wordcloud.png"

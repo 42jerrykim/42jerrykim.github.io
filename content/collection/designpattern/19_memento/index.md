@@ -10,7 +10,7 @@ header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
   - Design-Pattern(디자인패턴)
-  - GoF
+  - GoF(Gang of Four)
   - State
   - History(역사)
   - Code-Quality(코드품질)
@@ -23,8 +23,8 @@ tags:
   - Database(데이터베이스)
   - Git
   - GitHub
-  - REST
-  - API
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
   - Implementation(구현)
   - Memory(메모리)
   - Gaming(게임)

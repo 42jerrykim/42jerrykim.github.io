@@ -17,11 +17,11 @@ tags:
 - Stack(스택)
 - Sorting(정렬)
 - Segment-Tree(세그먼트트리)
-- Dynamic-Programming
+- DP(동적계획법)
 - Greedy(그리디)
 - Implementation(구현)
 - C++
-- IO
+- IO(Input/Output)
 - Time-Complexity(시간복잡도)
 - Editorial(에디토리얼)
 - Problem-Solving(문제해결)
@@ -34,7 +34,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- DFS
+- DFS(Depth-First Search)
 - Graph(그래프)
 - Queue(큐)
 - Self-Hosted(셀프호스팅)

@@ -43,7 +43,7 @@ tags:
 - Reference(참고)
 - Book-Review(서평)
 - Agile(애자일)
-- TDD
+- TDD(Test-Driven Development)
 - Workflow(워크플로우)
 - Troubleshooting(트러블슈팅)
 - Innovation(혁신)

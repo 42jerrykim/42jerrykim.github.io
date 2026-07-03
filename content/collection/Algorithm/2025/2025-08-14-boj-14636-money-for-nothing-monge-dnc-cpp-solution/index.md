@@ -24,9 +24,9 @@ tags:
 - Editorial(에디토리얼)
 - Code-Review(코드리뷰)
 - Testing(테스트)
-- IO
+- IO(Input/Output)
 - Coordinate-Compression(좌표압축)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)

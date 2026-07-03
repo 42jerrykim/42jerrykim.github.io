@@ -11,7 +11,7 @@ header:
   teaser: /assets/images/2024/2024-09-01-aicd.png
 tags:
   - Database(데이터베이스)
-  - SQL
+  - SQL(Structured Query Language)
   - MongoDB
   - PostgreSQL
   - MySQL
@@ -51,9 +51,9 @@ tags:
   - Markdown(마크다운)
   - Review(리뷰)
   - Graph(그래프)
-  - API
+  - API(Application Programming Interface)
   - Cloud(클라우드)
-  - AWS
+  - AWS(Amazon Web Services)
   - Deployment(배포)
   - Case-Study
   - Deep-Dive

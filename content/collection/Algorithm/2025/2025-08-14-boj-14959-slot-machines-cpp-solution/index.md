@@ -26,7 +26,7 @@ tags:
 - Math(수학)
 - Array(배열)
 - Design-Pattern(디자인패턴)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)

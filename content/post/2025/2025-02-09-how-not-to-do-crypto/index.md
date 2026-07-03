@@ -18,7 +18,7 @@ tags:
   - Error-Handling(에러처리)
   - Web(웹)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Tutorial(튜토리얼)
   - Guide(가이드)
   - Documentation(문서화)
@@ -59,7 +59,7 @@ tags:
   - Beginner
   - Advanced
   - Cloud(클라우드)
-  - AWS
+  - AWS(Amazon Web Services)
   - Productivity(생산성)
   - Innovation(혁신)
 image: "index.png"

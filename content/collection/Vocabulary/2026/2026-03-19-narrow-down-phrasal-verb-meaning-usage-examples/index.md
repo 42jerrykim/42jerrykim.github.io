@@ -46,8 +46,8 @@ tags:
   - Context(맥락)
   - Usage-Notes
   - EN-KR-Examples
-  - TOEFL
-  - IELTS
+  - TOEFL(Test of English as a Foreign Language)
+  - IELTS(International English Language Testing System)
   - reduce options
   - narrow the field
   - shortlist

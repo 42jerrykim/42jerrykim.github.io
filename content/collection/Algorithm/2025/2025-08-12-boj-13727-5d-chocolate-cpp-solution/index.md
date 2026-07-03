@@ -14,7 +14,6 @@ tags:
 - Time-Complexity(시간복잡도)
 - Math(수학)
 - DP(동적계획법)
-- Dynamic-Programming
 - Graph-Theory(그래프이론)
 - String(문자열)
 - Competitive-Programming(경쟁프로그래밍)
@@ -30,9 +29,9 @@ tags:
 - .NET
 - Git
 - GitHub
-- DFS
+- DFS(Depth-First Search)
 - Graph(그래프)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)
 - Testing(테스트)

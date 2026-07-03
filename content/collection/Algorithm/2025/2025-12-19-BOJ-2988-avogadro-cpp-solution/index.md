@@ -15,7 +15,7 @@ tags:
 - Graph(그래프)
 - Combinatorics(조합론)
 - Queue(큐)
-- BFS
+- BFS(Breadth-First Search)
 - Software-Architecture(소프트웨어아키텍처)
 - Greedy(그리디)
 - Implementation(구현)

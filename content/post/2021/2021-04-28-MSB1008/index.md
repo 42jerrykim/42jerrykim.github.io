@@ -11,7 +11,7 @@ title: "[.NET] MSB1008 한 프로젝트만 지정 오류 원인과 해결"
 tags:
 - .NET
 - CSharp
-- CI-CD
+- CI-CD(Continuous Integration/Continuous Deployment)
 - Troubleshooting(트러블슈팅)
 - Configuration(설정)
 - Debugging(디버깅)
@@ -31,7 +31,7 @@ tags:
 - Bash
 - Windows(윈도우)
 - Linux(리눅스)
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Backend(백엔드)
 - Testing(테스트)
@@ -62,8 +62,8 @@ tags:
 - Software-Architecture(소프트웨어아키텍처)
 - Design-Pattern(디자인패턴)
 - Web(웹)
-- API
-- REST
+- API(Application Programming Interface)
+- REST(Representational State Transfer)
 - Networking(네트워킹)
 - Cloud(클라우드)
 - Beginner

@@ -28,12 +28,11 @@ tags:
 - Complexity-Analysis(복잡도분석)
 - Sliding-Window
 - Greedy(그리디)
-- Dynamic-Programming
 - DP(동적계획법)
 - Graph(그래프)
 - Tree(트리)
-- BFS
-- DFS
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
 - Shortest-Path(최단경로)
 - Dijkstra
 - Binary-Search(이분탐색)

@@ -18,8 +18,8 @@ tags:
   - Implementation(구현)
   - Code-Quality(코드품질)
   - Go
-  - REST
-  - API
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
   - Process
   - Command
   - Design-Pattern(디자인패턴)

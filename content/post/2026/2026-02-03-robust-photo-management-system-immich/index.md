@@ -36,7 +36,7 @@ tags:
   - Reference(참고)
   - File-System
   - Networking(네트워킹)
-  - API
+  - API(Application Programming Interface)
   - Security(보안)
   - Privacy(프라이버시)
   - Deployment(배포)
@@ -60,7 +60,7 @@ tags:
   - Advanced
   - Linux(리눅스)
   - Shell(셸)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
 image: "wordcloud.png"
 ---

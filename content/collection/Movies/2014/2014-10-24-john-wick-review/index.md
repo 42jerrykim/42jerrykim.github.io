@@ -30,8 +30,7 @@ tags:
 - Comedy(코미디)
 - Fantasy(판타지)
 - Romance(로맨스)
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Animation(애니메이션)
 - 2010s
 - 2000s

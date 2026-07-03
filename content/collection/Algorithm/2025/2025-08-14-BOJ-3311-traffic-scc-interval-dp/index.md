@@ -13,8 +13,8 @@ tags:
 - Graph(그래프)
 - 위상정렬
 - Geometry
-- DFS
-- BFS
+- DFS(Depth-First Search)
+- BFS(Breadth-First Search)
 - Stack(스택)
 - Queue(큐)
 - Sorting(정렬)
@@ -23,7 +23,7 @@ tags:
 - Edge-Cases(엣지케이스)
 - Implementation(구현)
 - Competitive-Programming(경쟁프로그래밍)
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)

@@ -12,8 +12,7 @@ tags:
 - Snowpiercer
 - 설국열차
 - TV-Show(드라마)
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Thriller(스릴러)
 - Drama
 - Mystery(미스터리)

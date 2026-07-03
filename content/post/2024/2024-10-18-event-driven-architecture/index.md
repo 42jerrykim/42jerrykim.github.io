@@ -12,14 +12,14 @@ tags:
   - Microservices(마이크로서비스)
   - Event-Driven
   - Design-Pattern(디자인패턴)
-  - CQRS
+  - CQRS(Command Query Responsibility Segregation)
   - Domain-Driven-Design
   - Kafka
   - RabbitMQ
   - Message-Queue
   - Backend(백엔드)
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Async(비동기)
   - Scalability(확장성)
   - Concurrency(동시성)

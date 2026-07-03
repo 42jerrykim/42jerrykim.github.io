@@ -24,7 +24,7 @@ tags:
 - Network-Flow
 - Performance(성능)
 - Software-Architecture(소프트웨어아키텍처)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Education(교육)
 - Tutorial(튜토리얼)
 - Guide(가이드)

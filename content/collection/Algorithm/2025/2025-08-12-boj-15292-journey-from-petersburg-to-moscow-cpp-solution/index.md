@@ -19,8 +19,8 @@ tags:
 - Complexity-Analysis(복잡도분석)
 - Implementation(구현)
 - C++
-- IO
-- ICPC
+- IO(Input/Output)
+- ICPC(International Collegiate Programming Contest)
 - Editorial(에디토리얼)
 - Algorithm(알고리즘)
 - Competitive-Programming(경쟁프로그래밍)

@@ -14,10 +14,10 @@ tags:
 - BOJ(백준)
 - Baekjoon
 - Graph(그래프)
-- DFS
+- DFS(Depth-First Search)
 - Stack(스택)
 - Implementation(구현)
-- IO
+- IO(Input/Output)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
 - C++

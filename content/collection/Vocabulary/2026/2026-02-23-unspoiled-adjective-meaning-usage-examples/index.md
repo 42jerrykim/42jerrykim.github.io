@@ -19,8 +19,8 @@ tags:
   - Synonym(유의어)
   - Tutorial(튜토리얼)
   - Go
-  - REST
-  - API
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
   - Movie(영화)
   - Review(리뷰)
   - Antonym(반의어)

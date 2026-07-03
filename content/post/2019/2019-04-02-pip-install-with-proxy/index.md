@@ -37,7 +37,7 @@ tags:
 - DevOps
 - Web(웹)
 - Backend(백엔드)
-- HTTP
+- HTTP(HyperText Transfer Protocol)
 - Security(보안)
 - Productivity(생산성)
 - Education(교육)
@@ -49,15 +49,15 @@ tags:
 - Case-Study
 - 실습
 - venv
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Git
 - GitHub
 - Docker
 - Cloud(클라우드)
-- API
-- JSON
-- YAML
+- API(Application Programming Interface)
+- JSON(JavaScript Object Notation)
+- YAML(YAML Ain't Markup Language)
 - Markdown(마크다운)
 - Blog(블로그)
 - Comparison(비교)

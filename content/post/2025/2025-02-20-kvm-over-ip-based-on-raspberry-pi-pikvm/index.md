@@ -8,7 +8,7 @@ categories:
 tags:
   - Open-Source(오픈소스)
   - React
-  - API
+  - API(Application Programming Interface)
   - Linux(리눅스)
   - Deployment(배포)
   - Blog(블로그)

@@ -14,9 +14,7 @@ tags:
 - BOJ(백준)
 - Baekjoon
 - Range-Query
-- Fenwick-Tree
-- Binary-Indexed-Tree
-- BIT
+- BIT(Binary Indexed Tree)
 - Data-Structures(자료구조)
 - Math(수학)
 - Two-Pointers

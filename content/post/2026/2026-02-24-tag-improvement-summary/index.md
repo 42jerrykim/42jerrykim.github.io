@@ -43,10 +43,10 @@ tags:
   - Case-Study
   - Deep-Dive
   - 실습
-  - SEO
+  - SEO(Search Engine Optimization)
   - Self-Hosted(셀프호스팅)
   - History(역사)
-  - YAML
+  - YAML(YAML Ain't Markup Language)
   - Script
   - Deployment(배포)
   - DevOps

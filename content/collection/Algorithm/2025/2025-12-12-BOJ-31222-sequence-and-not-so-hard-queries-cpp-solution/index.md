@@ -12,9 +12,7 @@ tags:
 - Baekjoon
 - Range-Query
 - Segment-Tree(세그먼트트리)
-- Fenwick-Tree
-- Binary-Indexed-Tree
-- BIT
+- BIT(Binary Indexed Tree)
 - Prefix-Sum
 - Data-Structures(자료구조)
 - Array(배열)
@@ -23,7 +21,7 @@ tags:
 - Problem-Solving(문제해결)
 - Editorial(에디토리얼)
 - C++
-- IO
+- IO(Input/Output)
 - Time-Complexity(시간복잡도)
 - Implementation(구현)
 - Optimization(최적화)

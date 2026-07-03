@@ -38,8 +38,8 @@ tags:
   - Testing(테스트)
   - Debugging(디버깅)
   - Markdown(마크다운)
-  - API
-  - HTTP
+  - API(Application Programming Interface)
+  - HTTP(HyperText Transfer Protocol)
   - Internet(인터넷)
   - Privacy(프라이버시)
   - Case-Study
@@ -52,7 +52,7 @@ tags:
   - Modularity
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Terminal(터미널)
   - Agile(애자일)

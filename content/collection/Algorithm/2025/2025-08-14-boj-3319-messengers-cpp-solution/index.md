@@ -14,7 +14,6 @@ tags:
 - DP(동적계획법)
 - Graph(그래프)
 - Shortest-Path(최단경로)
-- Dynamic-Programming
 - Segment-Tree(세그먼트트리)
 - Complexity-Analysis(복잡도분석)
 - Time-Complexity(시간복잡도)
@@ -34,7 +33,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- DFS
+- DFS(Depth-First Search)
 - Stack(스택)
 - Recursion(재귀)
 - Memory(메모리)

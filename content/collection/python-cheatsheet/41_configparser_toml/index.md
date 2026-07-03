@@ -16,7 +16,7 @@ tags:
   - Pitfalls(함정)
   - Tutorial(튜토리얼)
   - Code-Quality(코드품질)
-  - API
+  - API(Application Programming Interface)
   - String(문자열)
   - Error-Handling(에러처리)
   - Debugging(디버깅)

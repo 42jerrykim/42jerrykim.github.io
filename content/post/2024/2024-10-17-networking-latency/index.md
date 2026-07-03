@@ -41,8 +41,8 @@ tags:
   - Monitoring(모니터링)
   - DevOps
   - Backend(백엔드)
-  - API
-  - HTTP
+  - API(Application Programming Interface)
+  - HTTP(HyperText Transfer Protocol)
   - Security(보안)
   - Scalability(확장성)
   - Concurrency(동시성)
@@ -65,7 +65,7 @@ tags:
   - Code-Quality(코드품질)
   - Caching(캐싱)
   - Python
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
 image: "wordcloud.png"
 ---

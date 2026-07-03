@@ -34,7 +34,7 @@ tags:
   - Configuration(설정)
   - OS(운영체제)
   - Process
-  - IO
+  - IO(Input/Output)
   - Technology(기술)
   - Cheatsheet(치트시트)
   - Quick-Reference
@@ -43,7 +43,7 @@ tags:
   - GitHub
   - Windows(윈도우)
   - macOS
-  - IDE
+  - IDE(Integrated Development Environment)
   - Vim
   - Debugging(디버깅)
   - Testing(테스트)

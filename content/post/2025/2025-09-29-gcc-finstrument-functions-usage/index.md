@@ -41,8 +41,8 @@ tags:
   - Benchmark
   - OS(운영체제)
   - Process
-  - CPU
-  - IDE
+  - CPU(Central Processing Unit)
+  - IDE(Integrated Development Environment)
   - Automation(자동화)
   - Comparison(비교)
   - Software-Architecture(소프트웨어아키텍처)

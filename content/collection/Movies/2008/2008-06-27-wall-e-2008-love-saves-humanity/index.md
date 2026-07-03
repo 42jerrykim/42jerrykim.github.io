@@ -11,8 +11,7 @@ categories:
 tags:
 - Movie(영화)
 - Animation(애니메이션)
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Romance(로맨스)
 - Adventure(모험)
 - Family(가족)

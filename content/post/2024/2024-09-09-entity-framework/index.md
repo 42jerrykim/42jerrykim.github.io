@@ -10,13 +10,13 @@ tags:
   - .NET
   - CSharp
   - Database(데이터베이스)
-  - SQL
+  - SQL(Structured Query Language)
   - Performance(성능)
   - Web(웹)
   - Backend(백엔드)
   - Software-Architecture(소프트웨어아키텍처)
   - Implementation(구현)
-  - API
+  - API(Application Programming Interface)
   - Microservices(마이크로서비스)
   - Testing(테스트)
   - Debugging(디버깅)
@@ -47,7 +47,7 @@ tags:
   - Migration(마이그레이션)
   - Concurrency(동시성)
   - Async(비동기)
-  - REST
+  - REST(Representational State Transfer)
   - Caching(캐싱)
   - Maintainability
   - History(역사)

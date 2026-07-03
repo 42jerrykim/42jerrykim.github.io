@@ -11,7 +11,7 @@ header:
 tags:
   - Career(커리어)
   - Testing(테스트)
-  - TDD
+  - TDD(Test-Driven Development)
   - Clean-Code(클린코드)
   - Best-Practices
   - Refactoring(리팩토링)
@@ -56,13 +56,13 @@ tags:
   - Interface(인터페이스)
   - Git
   - GitHub
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Automation(자동화)
   - DevOps
   - Deployment(배포)
   - Backend(백엔드)
   - Frontend(프론트엔드)
-  - API
+  - API(Application Programming Interface)
   - Problem-Solving(문제해결)
   - Implementation(구현)
   - Optimization(최적화)

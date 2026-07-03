@@ -9,7 +9,7 @@ categories:
 - "Mystery Thriller"
 - "Netflix"
 tags:
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Soundtrack(사운드트랙)
 - Cinematography(촬영기법)
 - Game-Theory

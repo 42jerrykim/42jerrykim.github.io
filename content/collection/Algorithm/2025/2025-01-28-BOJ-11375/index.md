@@ -8,7 +8,7 @@ categories:
 - Bipartite Matching
 tags:
 - Bipartite-Matching
-- DFS
+- DFS(Depth-First Search)
 - Graph(그래프)
 - Problem-Solving(문제해결)
 - Algorithm(알고리즘)

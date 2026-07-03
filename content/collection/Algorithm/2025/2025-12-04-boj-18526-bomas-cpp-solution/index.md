@@ -11,7 +11,6 @@ tags:
 - BOJ(백준)
 - C++
 - Competitive-Programming(경쟁프로그래밍)
-- Dynamic-Programming
 - DP(동적계획법)
 - Geometry
 - Graph-Theory(그래프이론)

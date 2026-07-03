@@ -34,8 +34,8 @@ tags:
 - .NET
 - Git
 - GitHub
-- BFS
-- DFS
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
 - Queue(큐)
 - Documentation(문서화)
 image: "wordcloud.png"

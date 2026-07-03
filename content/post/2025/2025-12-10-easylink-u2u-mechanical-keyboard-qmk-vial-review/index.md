@@ -47,8 +47,8 @@ tags:
   - Advanced
   - Security(보안)
   - Networking(네트워킹)
-  - API
-  - JSON
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
   - Windows(윈도우)
   - macOS
   - Linux(리눅스)

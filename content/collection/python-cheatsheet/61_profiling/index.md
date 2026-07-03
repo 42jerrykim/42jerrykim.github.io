@@ -13,7 +13,7 @@ tags:
   - Profiling(프로파일링)
   - Performance(성능)
   - Optimization(최적화)
-  - CPU
+  - CPU(Central Processing Unit)
   - Debugging(디버깅)
   - Best-Practices
   - Pitfalls(함정)
@@ -29,7 +29,7 @@ tags:
   - Sorting(정렬)
   - Graph(그래프)
   - String(문자열)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Process
   - Deployment(배포)
   - Error-Handling(에러처리)

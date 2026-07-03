@@ -45,8 +45,8 @@ tags:
   - Context(맥락)
   - Usage-Notes
   - EN-KR-Examples
-  - TOEFL
-  - IELTS
+  - TOEFL(Test of English as a Foreign Language)
+  - IELTS(International English Language Testing System)
   - Psychology(심리학)
   - Guide(가이드)
   - Documentation(문서화)

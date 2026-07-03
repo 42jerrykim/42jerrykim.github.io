@@ -15,7 +15,6 @@ tags:
 - Combinatorics(조합론)
 - Math(수학)
 - DP(동적계획법)
-- Dynamic-Programming
 - Implementation(구현)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)

@@ -57,13 +57,12 @@ tags:
 - Productivity(생산성)
 - Markdown(마크다운)
 - Backend(백엔드)
-- API
+- API(Application Programming Interface)
 - Database(데이터베이스)
 - OOP(객체지향)
 - Graph(그래프)
 - Tree(트리)
 - Greedy(그리디)
-- Dynamic-Programming
 - DP(동적계획법)
 image: image01.png
 ---

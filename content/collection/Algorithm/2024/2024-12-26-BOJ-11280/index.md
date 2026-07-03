@@ -9,7 +9,7 @@ tags:
 - Graph(그래프)
 - Implementation(구현)
 - Complexity-Analysis(복잡도분석)
-- DFS
+- DFS(Depth-First Search)
 - Problem-Solving(문제해결)
 - Algorithm(알고리즘)
 - BOJ(백준)

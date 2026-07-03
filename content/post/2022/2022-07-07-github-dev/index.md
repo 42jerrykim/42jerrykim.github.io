@@ -10,7 +10,7 @@ header:
   teaser: /assets/images/2022/2022-07-07-135907.png
 tags:
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Web(웹)
   - Git
@@ -54,7 +54,7 @@ tags:
   - Terminal(터미널)
   - Networking(네트워킹)
   - Security(보안)
-  - API
+  - API(Application Programming Interface)
   - Quick-Reference
   - Cheatsheet(치트시트)
   - Case-Study

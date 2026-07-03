@@ -28,7 +28,7 @@ tags:
 - Debugging(디버깅)
 - Software-Architecture(소프트웨어아키텍처)
 - Backend(백엔드)
-- API
+- API(Application Programming Interface)
 - Open-Source(오픈소스)
 - Technology(기술)
 - Education(교육)

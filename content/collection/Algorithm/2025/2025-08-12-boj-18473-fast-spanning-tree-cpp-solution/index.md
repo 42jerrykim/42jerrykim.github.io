@@ -10,12 +10,11 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - Baekjoon
-- DSU
-- Disjoint-Set
+- DSU(Disjoint Set Union)
 - Priority-Queue(우선순위큐)
 - Software-Architecture(소프트웨어아키텍처)
 - Graph(그래프)
-- MST
+- MST(Minimum Spanning Tree)
 - Greedy(그리디)
 - Simulation(시뮬레이션)
 - OS(운영체제)
@@ -23,7 +22,7 @@ tags:
 - Time-Complexity(시간복잡도)
 - Implementation(구현)
 - C++
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Editorial(에디토리얼)
 - Competitive-Programming(경쟁프로그래밍)

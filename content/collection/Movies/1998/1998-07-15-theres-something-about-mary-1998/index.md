@@ -30,8 +30,7 @@ tags:
 - Horror(공포)
 - Thriller(스릴러)
 - Action(액션)
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - War(전쟁)
 - Musical(뮤지컬)
 - Western

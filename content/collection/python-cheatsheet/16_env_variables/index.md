@@ -25,7 +25,7 @@ tags:
   - Kubernetes
   - Git
   - GitHub
-  - API
+  - API(Application Programming Interface)
   - String(문자열)
   - Process
   - Error-Handling(에러처리)

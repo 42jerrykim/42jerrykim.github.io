@@ -22,7 +22,7 @@ tags:
   - Tutorial(튜토리얼)
   - Implementation(구현)
   - Code-Quality(코드품질)
-  - API
+  - API(Application Programming Interface)
   - Sorting(정렬)
   - Queue(큐)
   - Error-Handling(에러처리)

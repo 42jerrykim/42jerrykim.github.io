@@ -60,11 +60,11 @@ tags:
   - Readability
   - Maintainability
   - Modularity
-  - API
-  - JSON
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Windows(윈도우)
   - Gaming(게임)

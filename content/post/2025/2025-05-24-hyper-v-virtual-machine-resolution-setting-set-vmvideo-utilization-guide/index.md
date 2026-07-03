@@ -8,7 +8,7 @@ tags:
   - Windows(윈도우)
   - Linux(리눅스)
   - Configuration(설정)
-  - RDP
+  - RDP(Remote Desktop Protocol)
   - Tutorial(튜토리얼)
   - Guide(가이드)
   - Technology(기술)
@@ -43,7 +43,7 @@ tags:
   - 실습
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Performance(성능)
   - Error-Handling(에러처리)
@@ -61,10 +61,10 @@ tags:
   - OS(운영체제)
   - Process
   - Thread
-  - IO
+  - IO(Input/Output)
   - File-System
   - Web(웹)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Terminal(터미널)
   - Agile(애자일)

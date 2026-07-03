@@ -10,7 +10,7 @@ tags:
   - Python
   - Cheatsheet(치트시트)
   - Quick-Reference
-  - XML
+  - XML(eXtensible Markup Language)
   - Implementation(구현)
   - Security(보안)
   - Design-Pattern(디자인패턴)

@@ -18,7 +18,7 @@ tags:
   - Sampling
   - Benchmark
   - Profiling(프로파일링)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Testing(테스트)
   - Automation(자동화)
   - Backend(백엔드)
@@ -35,7 +35,7 @@ tags:
   - Git
   - Debugging(디버깅)
   - Memory(메모리)
-  - CPU
+  - CPU(Central Processing Unit)
   - Networking(네트워킹)
   - Data-Structures(자료구조)
   - Edge-Cases(엣지케이스)

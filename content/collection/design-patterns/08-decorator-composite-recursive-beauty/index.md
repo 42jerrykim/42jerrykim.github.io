@@ -13,7 +13,7 @@ categories:
 - Dynamic Composition
 tags:
 - Design-Pattern(디자인패턴)
-- GoF
+- GoF(Gang of Four)
 - Functional-Programming(함수형프로그래밍)
 ---
 

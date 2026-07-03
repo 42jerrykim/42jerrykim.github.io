@@ -10,7 +10,7 @@ tags:
   - Python
   - Cheatsheet(치트시트)
   - Quick-Reference
-  - IO
+  - IO(Input/Output)
   - Map
   - Implementation(구현)
   - Data-Structures(자료구조)
@@ -21,7 +21,7 @@ tags:
   - Sorting(정렬)
   - Hashing(해싱)
   - String(문자열)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Security(보안)
   - Self-Hosted(셀프호스팅)
   - Memory(메모리)

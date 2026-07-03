@@ -9,13 +9,12 @@ categories:
 tags:
 - BOJ(백준)
 - Baekjoon
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Problem-Solving(문제해결)
 - Algorithm(알고리즘)
 - C++
-- IO
+- IO(Input/Output)
 - DP(동적계획법)
-- Dynamic-Programming
 - Time-Complexity(시간복잡도)
 - Prefix-Sum
 - Greedy(그리디)
@@ -32,8 +31,8 @@ tags:
 - .NET
 - Git
 - GitHub
-- REST
-- API
+- REST(Representational State Transfer)
+- API(Application Programming Interface)
 - Sorting(정렬)
 - Space-Complexity(공간복잡도)
 - Testing(테스트)

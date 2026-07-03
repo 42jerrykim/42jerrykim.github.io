@@ -10,7 +10,7 @@ tags:
   - Python
   - Cheatsheet(치트시트)
   - Quick-Reference
-  - HTTP
+  - HTTP(HyperText Transfer Protocol)
   - Implementation(구현)
   - Testing(테스트)
   - Design-Pattern(디자인패턴)
@@ -19,8 +19,8 @@ tags:
   - Code-Quality(코드품질)
   - Bash
   - Shell(셸)
-  - API
-  - HTML
+  - API(Application Programming Interface)
+  - HTML(HyperText Markup Language)
   - Error-Handling(에러처리)
   - Debugging(디버깅)
   - Documentation(문서화)

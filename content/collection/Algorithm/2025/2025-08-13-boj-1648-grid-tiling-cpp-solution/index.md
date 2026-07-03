@@ -10,7 +10,6 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - C++
-- Dynamic-Programming
 - DP(동적계획법)
 - Graph(그래프)
 - Implementation(구현)
@@ -35,7 +34,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- DFS
+- DFS(Depth-First Search)
 - Windows(윈도우)
 - Memory(메모리)
 image: "wordcloud.png"

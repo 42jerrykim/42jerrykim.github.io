@@ -41,7 +41,7 @@ tags:
 - Markdown(마크다운)
 - Open-Source(오픈소스)
 - History(역사)
-- SSH
+- SSH(Secure Shell)
 - 원격
 - remote
 - 키인증

@@ -42,7 +42,7 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Algorithm(알고리즘)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Database(데이터베이스)
   - Authentication(인증)
   - Networking(네트워킹)
@@ -51,9 +51,9 @@ tags:
   - Deep-Dive
   - Case-Study
   - Beginner
-  - REST
-  - HTTP
-  - JSON
+  - REST(Representational State Transfer)
+  - HTTP(HyperText Transfer Protocol)
+  - JSON(JavaScript Object Notation)
   - Async(비동기)
   - DevOps
   - Monitoring(모니터링)

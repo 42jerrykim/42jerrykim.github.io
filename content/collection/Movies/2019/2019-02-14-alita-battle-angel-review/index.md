@@ -9,7 +9,7 @@ categories:
 - Sci-Fi
 - Action
 tags:
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Action(액션)
 - Robert-Rodriguez
 - 로버트 로드리게스

@@ -7,7 +7,7 @@ header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
 - Trie
-- DFS
+- DFS(Depth-First Search)
 - Recursion(재귀)
 - Data-Structures(자료구조)
 - Algorithm(알고리즘)

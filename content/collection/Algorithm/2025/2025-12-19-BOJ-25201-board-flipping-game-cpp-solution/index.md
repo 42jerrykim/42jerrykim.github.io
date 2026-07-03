@@ -16,9 +16,9 @@ tags:
 - Math(수학)
 - Set
 - Edge-Cases(엣지케이스)
-- BIT
+- BIT(Binary Indexed Tree)
 - Implementation(구현)
-- IO
+- IO(Input/Output)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
 - Problem-Solving(문제해결)

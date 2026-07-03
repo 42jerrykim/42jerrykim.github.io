@@ -6,12 +6,12 @@ categories:
 date: 2025-02-28
 lastmod: 2026-03-17
 tags:
-- LLM
+- LLM(Large Language Model)
 - AI(인공지능)
 - Open-Source(오픈소스)
 - Machine-Learning(머신러닝)
 - Deep-Learning(딥러닝)
-- NLP
+- NLP(Natural Language Processing)
 - Automation(자동화)
 - Git
 - GitHub
@@ -40,7 +40,7 @@ tags:
 - Markdown(마크다운)
 - Python
 - Backend(백엔드)
-- API
+- API(Application Programming Interface)
 - Database(데이터베이스)
 - Cloud(클라우드)
 - Scalability(확장성)
@@ -55,7 +55,7 @@ tags:
 - Deployment(배포)
 - Monitoring(모니터링)
 - DevOps
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Terminal(터미널)
 - Async(비동기)

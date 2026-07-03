@@ -10,10 +10,10 @@ tags:
   - Clean-Architecture(클린아키텍처)
   - Web(웹)
   - Frontend(프론트엔드)
-  - HTTP
-  - REST
+  - HTTP(HyperText Transfer Protocol)
+  - REST(Representational State Transfer)
   - GraphQL
-  - HTML
+  - HTML(HyperText Markup Language)
   - JavaScript
   - Terminal(터미널)
   - Mobile(모바일)

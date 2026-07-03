@@ -24,7 +24,7 @@ tags:
 - String(문자열)
 - Hashing(해싱)
 - Convolution
-- FFT
+- FFT(Fast Fourier Transform)
 - Sliding-Window
 - Graph(그래프)
 - Geometry

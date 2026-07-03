@@ -34,7 +34,7 @@ tags:
   - Career(커리어)
   - Workflow(워크플로우)
   - Migration(마이그레이션)
-  - IDE
+  - IDE(Integrated Development Environment)
   - Deployment(배포)
   - Automation(자동화)
   - DevOps

@@ -7,8 +7,8 @@ lastmod: "2026-03-17"
 header:
   teaser: /assets/images/2024/2024-09-10-api-strategy.png
 tags:
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - GraphQL
   - Microservices(마이크로서비스)
   - Security(보안)
@@ -39,8 +39,8 @@ tags:
   - Caching(캐싱)
   - Load-Balancing
   - Scalability(확장성)
-  - HTTP
-  - JSON
+  - HTTP(HyperText Transfer Protocol)
+  - JSON(JavaScript Object Notation)
   - Testing(테스트)
   - Code-Quality(코드품질)
   - Performance(성능)

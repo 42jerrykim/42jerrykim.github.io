@@ -35,7 +35,7 @@ tags:
 - iOS
 - Samsung
 - Web(웹)
-- API
+- API(Application Programming Interface)
 - Git
 - GitHub
 - .NET

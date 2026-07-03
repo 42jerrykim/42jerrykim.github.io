@@ -13,15 +13,13 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - Baekjoon
-- USACO
+- USACO(USA Computing Olympiad)
 - Competitive-Programming(경쟁프로그래밍)
 - Math(수학)
 - Range-Query
 - Array(배열)
 - Implementation(구현)
-- Fenwick-Tree
-- Binary-Indexed-Tree
-- BIT
+- BIT(Binary Indexed Tree)
 - Data-Structures(자료구조)
 - Prefix-Sum
 - Segment-Tree(세그먼트트리)

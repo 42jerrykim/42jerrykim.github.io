@@ -18,7 +18,7 @@ tags:
 - Complexity-Analysis(복잡도분석)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

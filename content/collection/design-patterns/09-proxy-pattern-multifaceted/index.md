@@ -14,7 +14,7 @@ categories:
 tags:
 - Design-Pattern(디자인패턴)
 - Performance(성능)
-- GoF
+- GoF(Gang of Four)
 - Memory(메모리)
 ---
 

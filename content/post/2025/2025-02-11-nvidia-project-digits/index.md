@@ -9,7 +9,7 @@ tags:
   - AI(인공지능)
   - Machine-Learning(머신러닝)
   - Deep-Learning(딥러닝)
-  - LLM
+  - LLM(Large Language Model)
   - Data-Science(데이터사이언스)
   - Technology(기술)
   - Hardware(하드웨어)

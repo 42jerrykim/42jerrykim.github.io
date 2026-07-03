@@ -11,11 +11,9 @@ categories:
 tags:
   - Algorithm(알고리즘)
   - BOJ(백준)
-  - USACO
+  - USACO(USA Computing Olympiad)
   - Data-Structures(자료구조)
-  - Fenwick-Tree
-  - BIT
-  - Binary-Indexed-Tree
+  - BIT(Binary Indexed Tree)
   - Coordinate-Compression(좌표압축)
   - Math(수학)
   - Prefix-Sum

@@ -7,12 +7,12 @@ lastmod: "2026-03-17"
 header:
   teaser: /assets/images/2024/2024-09-10-web-font.png
 tags:
-  - CSS
+  - CSS(Cascading Style Sheets)
   - JavaScript
   - Performance(성능)
   - Frontend(프론트엔드)
   - Web(웹)
-  - API
+  - API(Application Programming Interface)
   - Async(비동기)
   - Blog(블로그)
   - Technology(기술)
@@ -36,9 +36,9 @@ tags:
   - Comparison(비교)
   - Career(커리어)
   - Workflow(워크플로우)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Caching(캐싱)
-  - CDN
+  - CDN(Content Delivery Network)
   - Optimization(최적화)
   - Code-Quality(코드품질)
   - Testing(테스트)

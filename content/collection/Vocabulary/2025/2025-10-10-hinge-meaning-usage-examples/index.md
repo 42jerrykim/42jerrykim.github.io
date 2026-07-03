@@ -13,8 +13,8 @@ tags:
 - Academic-English(학술영어)
 - Collocation(콜로케이션)
 - Nuance(뉘앙스)
-- TOEFL
-- IELTS
+- TOEFL(Test of English as a Foreign Language)
+- IELTS(International English Language Testing System)
 - 영단어
 - 영어동사
 - Grammar(문법)
@@ -23,8 +23,8 @@ tags:
 - Tutorial(튜토리얼)
 - Go
 - Rust
-- REST
-- API
+- REST(Representational State Transfer)
+- API(Application Programming Interface)
 - OOP(객체지향)
 - Performance(성능)
 - Optimization(최적화)

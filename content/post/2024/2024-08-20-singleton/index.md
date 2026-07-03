@@ -13,7 +13,7 @@ tags:
   - OOP(객체지향)
   - Software-Architecture(소프트웨어아키텍처)
   - Creational-Pattern
-  - GoF
+  - GoF(Gang of Four)
   - CSharp
   - Java
   - C++
@@ -29,7 +29,7 @@ tags:
   - Best-Practices
   - Code-Quality(코드품질)
   - Performance(성능)
-  - UML
+  - UML(Unified Modeling Language)
   - Dependency-Injection(의존성주입)
   - Interface(인터페이스)
   - Encapsulation(캡슐화)

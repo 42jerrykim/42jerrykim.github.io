@@ -49,7 +49,7 @@ tags:
   - 실습
   - Quick-Reference
   - Cheatsheet(치트시트)
-  - RDP
+  - RDP(Remote Desktop Protocol)
   - Linux(리눅스)
   - Backend(백엔드)
   - Testing(테스트)
@@ -61,15 +61,15 @@ tags:
   - Career(커리어)
   - Innovation(혁신)
   - Web(웹)
-  - API
-  - HTTP
-  - YAML
-  - JSON
+  - API(Application Programming Interface)
+  - HTTP(HyperText Transfer Protocol)
+  - YAML(YAML Ain't Markup Language)
+  - JSON(JavaScript Object Notation)
   - Modularity
   - Interface(인터페이스)
   - Command
   - Proxy
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Privacy(프라이버시)
   - Clean-Code(클린코드)

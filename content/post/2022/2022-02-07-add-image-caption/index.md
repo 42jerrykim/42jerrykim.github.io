@@ -10,8 +10,8 @@ tags:
 - Markdown(마크다운)
 - Git
 - GitHub
-- CSS
-- HTML
+- CSS(Cascading Style Sheets)
+- HTML(HyperText Markup Language)
 - Blog(블로그)
 - Technology(기술)
 - Web(웹)

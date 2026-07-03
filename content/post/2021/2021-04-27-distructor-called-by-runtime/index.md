@@ -66,7 +66,7 @@ tags:
   - Benchmark
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - Dependency-Injection(의존성주입)
   - Abstraction(추상화)
   - Composition(합성)
@@ -83,18 +83,18 @@ tags:
   - Automation(자동화)
   - Deployment(배포)
   - DevOps
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Linux(리눅스)
   - Shell(셸)
   - Docker
   - Kubernetes
   - Database(데이터베이스)
-  - API
-  - REST
-  - HTTP
-  - JSON
-  - XML
-  - YAML
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - HTTP(HyperText Transfer Protocol)
+  - JSON(JavaScript Object Notation)
+  - XML(eXtensible Markup Language)
+  - YAML(YAML Ain't Markup Language)
   - Caching(캐싱)
   - Monitoring(모니터링)
   - Agile(애자일)

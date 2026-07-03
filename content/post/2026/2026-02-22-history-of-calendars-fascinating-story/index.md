@@ -50,7 +50,7 @@ tags:
   - Windows(윈도우)
   - Markdown(마크다운)
   - Web(웹)
-  - API
+  - API(Application Programming Interface)
   - Database(데이터베이스)
   - Agile(애자일)
   - Design-Pattern(디자인패턴)

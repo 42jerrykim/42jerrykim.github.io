@@ -10,10 +10,10 @@ tags:
   - Performance(성능)
   - Latency
   - Monitoring(모니터링)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Web(웹)
-  - AWS
+  - AWS(Amazon Web Services)
   - Cloud(클라우드)
   - DevOps
   - Throughput
@@ -56,8 +56,8 @@ tags:
   - Blog(블로그)
   - Review(리뷰)
   - Frontend(프론트엔드)
-  - HTTP
-  - REST
+  - HTTP(HyperText Transfer Protocol)
+  - REST(Representational State Transfer)
   - Optimization(최적화)
   - Implementation(구현)
   - Testing(테스트)
@@ -71,7 +71,7 @@ tags:
   - Code-Quality(코드품질)
   - Git
   - GitHub
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Elasticsearch
   - Nginx
   - Node.js

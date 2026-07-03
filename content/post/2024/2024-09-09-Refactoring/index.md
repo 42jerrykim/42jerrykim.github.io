@@ -29,12 +29,12 @@ tags:
   - OOP(객체지향)
   - SOLID
   - Python
-  - TDD
+  - TDD(Test-Driven Development)
   - Agile(애자일)
-  - IDE
+  - IDE(Integrated Development Environment)
   - Git
   - GitHub
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - DevOps
   - Backend(백엔드)
   - Web(웹)

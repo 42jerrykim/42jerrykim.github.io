@@ -24,7 +24,7 @@ tags:
   - Code-Quality(코드품질)
   - Stack(스택)
   - String(문자열)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Configuration(설정)
   - Documentation(문서화)
   - Refactoring(리팩토링)

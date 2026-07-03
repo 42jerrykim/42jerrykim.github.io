@@ -43,7 +43,7 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Interface(인터페이스)
   - Encapsulation(캡슐화)
-  - RAII
+  - RAII(Resource Acquisition Is Initialization)
   - Smart-Pointer
   - unique_ptr
   - Lambda
@@ -52,7 +52,7 @@ tags:
   - Git
   - GitHub
   - String(문자열)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Markdown(마크다운)
   - Review(리뷰)
   - Hardware(하드웨어)

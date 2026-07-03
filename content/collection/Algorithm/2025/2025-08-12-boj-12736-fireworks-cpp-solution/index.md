@@ -11,9 +11,8 @@ tags:
 - BOJ(백준)
 - Tree(트리)
 - DP(동적계획법)
-- Dynamic-Programming
 - Priority-Queue(우선순위큐)
-- DFS
+- DFS(Depth-First Search)
 - Optimization(최적화)
 - Time-Complexity(시간복잡도)
 - Implementation(구현)
@@ -30,7 +29,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- API
+- API(Application Programming Interface)
 - Graph(그래프)
 - Queue(큐)
 - Space-Complexity(공간복잡도)

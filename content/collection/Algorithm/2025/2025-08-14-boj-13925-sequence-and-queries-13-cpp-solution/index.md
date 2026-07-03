@@ -21,7 +21,7 @@ tags:
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)
 - Pitfalls(함정)
-- IO
+- IO(Input/Output)
 - Competitive-Programming(경쟁프로그래밍)
 - Testing(테스트)
 - Range-Query

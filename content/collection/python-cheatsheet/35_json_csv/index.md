@@ -10,9 +10,9 @@ tags:
   - Python
   - Cheatsheet(치트시트)
   - Quick-Reference
-  - JSON
+  - JSON(JavaScript Object Notation)
   - Implementation(구현)
-  - IO
+  - IO(Input/Output)
   - Data-Structures(자료구조)
   - Performance(성능)
   - Best-Practices
@@ -22,9 +22,9 @@ tags:
   - Error-Handling(에러처리)
   - Tutorial(튜토리얼)
   - Code-Quality(코드품질)
-  - API
+  - API(Application Programming Interface)
   - String(문자열)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Windows(윈도우)
   - Debugging(디버깅)
   - Documentation(문서화)

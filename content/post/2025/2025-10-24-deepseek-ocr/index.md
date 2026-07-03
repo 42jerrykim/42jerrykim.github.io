@@ -12,10 +12,10 @@ tags:
   - AI(인공지능)
   - Machine-Learning(머신러닝)
   - Deep-Learning(딥러닝)
-  - NLP
+  - NLP(Natural Language Processing)
   - Computer-Vision
   - Data-Science(데이터사이언스)
-  - LLM
+  - LLM(Large Language Model)
   - Neural-Network
   - Python
   - Git
@@ -38,10 +38,10 @@ tags:
   - Optimization(최적화)
   - Code-Quality(코드품질)
   - Software-Architecture(소프트웨어아키텍처)
-  - API
+  - API(Application Programming Interface)
   - Database(데이터베이스)
-  - JSON
-  - YAML
+  - JSON(JavaScript Object Notation)
+  - YAML(YAML Ain't Markup Language)
   - Security(보안)
   - Scalability(확장성)
   - Concurrency(동시성)

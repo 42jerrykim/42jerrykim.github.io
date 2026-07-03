@@ -11,9 +11,9 @@ tags:
 - BOJ(백준)
 - C++
 - Data-Structures(자료구조)
-- Dynamic-Programming
+- DP(동적계획법)
 - Segment-Tree(세그먼트트리)
-- IO
+- IO(Input/Output)
 - Complexity-Analysis(복잡도분석)
 - Competitive-Programming(경쟁프로그래밍)
 - Implementation(구현)
@@ -29,7 +29,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- DFS
+- DFS(Depth-First Search)
 - Graph(그래프)
 - Tree(트리)
 - Stack(스택)

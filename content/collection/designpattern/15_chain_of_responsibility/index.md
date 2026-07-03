@@ -10,7 +10,7 @@ header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
   - Design-Pattern(디자인패턴)
-  - GoF
+  - GoF(Gang of Four)
   - Software-Architecture(소프트웨어아키텍처)
   - Implementation(구현)
   - Logging(로깅)

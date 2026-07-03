@@ -28,8 +28,8 @@ tags:
   - Reference(참고)
   - GitHub
   - Git
-  - CSS
-  - HTML
+  - CSS(Cascading Style Sheets)
+  - HTML(HyperText Markup Language)
   - Technology(기술)
   - Education(교육)
   - Comparison(비교)
@@ -41,7 +41,7 @@ tags:
   - Liquid
   - Static-Site
   - 정적사이트
-  - YAML
+  - YAML(YAML Ain't Markup Language)
   - Frontend(프론트엔드)
   - Developer-Experience
   - 개발자경험

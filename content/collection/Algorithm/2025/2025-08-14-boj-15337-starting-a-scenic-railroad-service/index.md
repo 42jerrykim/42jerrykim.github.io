@@ -27,7 +27,7 @@ tags:
 - Greedy(그리디)
 - Data-Structures(자료구조)
 - Array(배열)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Code-Quality(코드품질)

@@ -19,7 +19,7 @@ tags:
   - Web(웹)
   - Tutorial(튜토리얼)
   - Guide(가이드)
-  - UML
+  - UML(Unified Modeling Language)
   - Documentation(문서화)
   - Open-Source(오픈소스)
   - Deployment(배포)
@@ -33,16 +33,16 @@ tags:
   - Education(교육)
   - Troubleshooting(트러블슈팅)
   - Technology(기술)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Automation(자동화)
   - Workflow(워크플로우)
   - Migration(마이그레이션)
   - Design-Pattern(디자인패턴)
   - Software-Architecture(소프트웨어아키텍처)
   - VSCode
-  - IDE
-  - YAML
-  - JSON
+  - IDE(Integrated Development Environment)
+  - YAML(YAML Ain't Markup Language)
+  - JSON(JavaScript Object Notation)
   - Networking(네트워킹)
   - Beginner
   - Review(리뷰)
@@ -53,14 +53,14 @@ tags:
   - Refactoring(리팩토링)
   - Linux(리눅스)
   - Career(커리어)
-  - HTML
-  - CSS
+  - HTML(HyperText Markup Language)
+  - CSS(Cascading Style Sheets)
   - Terminal(터미널)
   - Testing(테스트)
   - Debugging(디버깅)
   - Security(보안)
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Modularity
   - Deep-Dive
   - 실습

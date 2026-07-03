@@ -15,7 +15,7 @@ tags:
   - Number-Theory(정수론)
   - Modular-Arithmetic(모듈러)
   - Convolution
-  - FFT
+  - FFT(Fast Fourier Transform)
   - Edge-Cases(엣지케이스)
   - Combinatorics(조합론)
   - Time-Complexity(시간복잡도)

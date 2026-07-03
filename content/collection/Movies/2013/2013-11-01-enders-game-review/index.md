@@ -8,7 +8,7 @@ categories:
 - Sci-Fi
 - Drama
 tags:
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - War(전쟁)
 - Gavin-Hood
 - 개빈 후드

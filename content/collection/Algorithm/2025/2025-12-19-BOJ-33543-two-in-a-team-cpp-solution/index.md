@@ -22,7 +22,7 @@ tags:
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
 - Implementation(구현)
-- IO
+- IO(Input/Output)
 - Edge-Cases(엣지케이스)
 - C++
 - Competitive-Programming(경쟁프로그래밍)

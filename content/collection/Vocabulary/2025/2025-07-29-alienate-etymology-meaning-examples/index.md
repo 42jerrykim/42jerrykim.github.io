@@ -10,7 +10,7 @@ tags:
 - 영단어
 - Go
 - Action(액션)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Collocation(콜로케이션)
 - Grammar(문법)
 - Synonym(유의어)

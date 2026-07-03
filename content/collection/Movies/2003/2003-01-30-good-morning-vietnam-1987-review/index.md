@@ -42,7 +42,7 @@ tags:
 - Mystery(미스터리)
 - Crime(범죄)
 - Animation(애니메이션)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Fantasy(판타지)
 - Horror(공포)
 - Musical(뮤지컬)

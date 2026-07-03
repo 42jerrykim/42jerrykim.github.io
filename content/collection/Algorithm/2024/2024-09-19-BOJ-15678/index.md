@@ -6,7 +6,7 @@ date: "2024-09-19T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- Dynamic-Programming
+- DP(동적계획법)
 - Data-Structures(자료구조)
 - Implementation(구현)
 - Optimization(최적화)
@@ -22,7 +22,6 @@ tags:
 - Python
 - Go
 - .NET
-- DP(동적계획법)
 - Windows(윈도우)
 - Gaming(게임)
 - Space-Complexity(공간복잡도)

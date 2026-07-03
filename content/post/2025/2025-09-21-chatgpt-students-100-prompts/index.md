@@ -10,8 +10,8 @@ tags:
 - ChatGPT
 - Claude
 - AI(인공지능)
-- LLM
-- GPT
+- LLM(Large Language Model)
+- GPT(Generative Pre-trained Transformer)
 - Prompt-Engineering(프롬프트엔지니어링)
 - Education(교육)
 - Career(커리어)
@@ -33,8 +33,8 @@ tags:
 - Comparison(비교)
 - Workflow(워크플로우)
 - Web(웹)
-- API
-- REST
+- API(Application Programming Interface)
+- REST(Representational State Transfer)
 - Beginner
 - Deep-Learning(딥러닝)
 - Machine-Learning(머신러닝)

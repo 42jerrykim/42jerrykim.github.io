@@ -8,12 +8,12 @@ categories:
 - "Open Source"
 tags:
 - AI(인공지능)
-- LLM
+- LLM(Large Language Model)
 - ChatGPT
 - Prompt-Engineering(프롬프트엔지니어링)
-- API
-- REST
-- HTTP
+- API(Application Programming Interface)
+- REST(Representational State Transfer)
+- HTTP(HyperText Transfer Protocol)
 - Web(웹)
 - Backend(백엔드)
 - Markdown(마크다운)
@@ -43,7 +43,7 @@ tags:
 - Configuration(설정)
 - How-To
 - Tips
-- JSON
+- JSON(JavaScript Object Notation)
 - Networking(네트워킹)
 - Security(보안)
 - Async(비동기)
@@ -60,7 +60,7 @@ tags:
 - Implementation(구현)
 - Proxy
 - Cache
-- HTML
+- HTML(HyperText Markup Language)
 - Internet(인터넷)
 image: "image.png"
 draft: false

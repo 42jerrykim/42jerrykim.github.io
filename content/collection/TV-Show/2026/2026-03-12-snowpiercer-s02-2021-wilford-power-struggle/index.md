@@ -20,8 +20,7 @@ tags:
 - Steven-Ogg
 - TV-Show(드라마)
 - Drama
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Thriller(스릴러)
 - Post-Apocalyptic
 - Dystopian

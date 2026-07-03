@@ -9,8 +9,8 @@ categories:
   - WebDevelopment
   - Frontend
 tags:
-  - CSS
-  - HTML
+  - CSS(Cascading Style Sheets)
+  - HTML(HyperText Markup Language)
   - Web(웹)
   - Frontend(프론트엔드)
   - JavaScript
@@ -42,7 +42,7 @@ tags:
   - Modularity
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Software-Architecture(소프트웨어아키텍처)
   - Design-Pattern(디자인패턴)
@@ -59,7 +59,7 @@ tags:
   - Agile(애자일)
   - History(역사)
   - Markdown(마크다운)
-  - API
+  - API(Application Programming Interface)
   - Security(보안)
   - Scalability(확장성)
   - Automation(자동화)

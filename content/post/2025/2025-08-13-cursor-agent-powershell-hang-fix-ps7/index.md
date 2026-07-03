@@ -7,7 +7,7 @@ categories:
 - "Troubleshooting"
 - "DevTools"
 tags:
-- IDE
+- IDE(Integrated Development Environment)
 - PowerShell
 - Windows(윈도우)
 - Terminal(터미널)
@@ -49,7 +49,7 @@ tags:
 - Networking(네트워킹)
 - Beginner
 - Case-Study
-- IO
+- IO(Input/Output)
 - Performance(성능)
 - Pitfalls(함정)
 - Clean-Code(클린코드)

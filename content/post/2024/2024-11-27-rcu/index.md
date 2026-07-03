@@ -14,7 +14,7 @@ tags:
   - Data-Structures(자료구조)
   - Memory(메모리)
   - Performance(성능)
-  - API
+  - API(Application Programming Interface)
   - Software-Architecture(소프트웨어아키텍처)
   - Optimization(최적화)
   - Debugging(디버깅)
@@ -46,7 +46,7 @@ tags:
   - Web(웹)
   - Testing(테스트)
   - Cache
-  - CPU
+  - CPU(Central Processing Unit)
   - OS(운영체제)
   - Design-Pattern(디자인패턴)
   - Interface(인터페이스)

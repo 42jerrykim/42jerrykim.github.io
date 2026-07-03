@@ -5,7 +5,7 @@ date: "2024-05-15T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-05-15-illustration_of_fft_approach_for_BOJ_1067.webp
 tags:
-- FFT
+- FFT(Fast Fourier Transform)
 - DP(동적계획법)
 - Algorithm(알고리즘)
 - BOJ(백준)

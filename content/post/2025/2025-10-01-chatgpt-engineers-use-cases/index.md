@@ -5,15 +5,15 @@ lastmod: 2026-03-17
 tags:
   - ChatGPT
   - AI(인공지능)
-  - LLM
-  - GPT
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - Prompt-Engineering(프롬프트엔지니어링)
   - Implementation(구현)
   - Documentation(문서화)
   - Code-Review(코드리뷰)
   - Debugging(디버깅)
-  - AWS
-  - GCP
+  - AWS(Amazon Web Services)
+  - GCP(Google Cloud Platform)
   - Azure
   - Cloud(클라우드)
   - DevOps
@@ -21,8 +21,8 @@ tags:
   - Machine-Learning(머신러닝)
   - Data-Science(데이터사이언스)
   - Microservices(마이크로서비스)
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Software-Architecture(소프트웨어아키텍처)
   - Backend(백엔드)
   - Web(웹)
@@ -42,7 +42,7 @@ tags:
   - Markdown(마크다운)
   - Git
   - GitHub
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Deployment(배포)
   - Automation(자동화)
   - Migration(마이그레이션)

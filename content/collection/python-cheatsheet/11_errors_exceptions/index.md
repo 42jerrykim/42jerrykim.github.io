@@ -22,7 +22,7 @@ tags:
   - Clean-Code(클린코드)
   - Tutorial(튜토리얼)
   - Implementation(구현)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Documentation(문서화)
   - Refactoring(리팩토링)
   - Performance(성능)

@@ -9,8 +9,8 @@ header:
 tags:
   - Jekyll
   - JavaScript
-  - HTML
-  - CSS
+  - HTML(HyperText Markup Language)
+  - CSS(Cascading Style Sheets)
   - Markdown(마크다운)
   - Blog(블로그)
   - Tutorial(튜토리얼)
@@ -38,7 +38,7 @@ tags:
   - Beginner
   - Modularity
   - Interface(인터페이스)
-  - API
+  - API(Application Programming Interface)
   - Clean-Code(클린코드)
   - Design-Pattern(디자인패턴)
   - User-Experience

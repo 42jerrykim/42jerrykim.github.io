@@ -16,15 +16,15 @@ tags:
   - Etymology(어원)
   - Synonym(유의어)
   - Antonym(반의어)
-  - TOEFL
-  - IELTS
+  - TOEFL(Test of English as a Foreign Language)
+  - IELTS(International English Language Testing System)
   - 영단어
   - 영어동사
   - Tutorial(튜토리얼)
   - Go
-  - REST
-  - API
-  - Sci-Fi
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
+  - Sci-Fi(Science Fiction)
   - Pronunciation(발음)
   - Daily-Life(일상표현)
   - Education(교육)

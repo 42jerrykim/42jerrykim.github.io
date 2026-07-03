@@ -24,7 +24,7 @@ tags:
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
 - Competitive-Programming(경쟁프로그래밍)
-- IO
+- IO(Input/Output)
 - Editorial(에디토리얼)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
@@ -34,7 +34,6 @@ tags:
 - .NET
 - Git
 - GitHub
-- Dynamic-Programming
 - String(문자열)
 - Gaming(게임)
 - Testing(테스트)

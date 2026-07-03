@@ -12,14 +12,14 @@ tags:
   - Async(비동기)
   - Thread
   - Concurrency(동시성)
-  - API
+  - API(Application Programming Interface)
   - Web(웹)
   - Backend(백엔드)
   - Tutorial(튜토리얼)
   - Guide(가이드)
   - Implementation(구현)
   - Performance(성능)
-  - CPU
+  - CPU(Central Processing Unit)
   - Best-Practices
   - Documentation(문서화)
   - Code-Quality(코드품질)
@@ -44,9 +44,9 @@ tags:
   - Career(커리어)
   - Innovation(혁신)
   - String(문자열)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Gaming(게임)
-  - IO
+  - IO(Input/Output)
   - Memory(메모리)
   - Process
   - Networking(네트워킹)

@@ -35,12 +35,12 @@ tags:
 - Migration(마이그레이션)
 - Frontend(프론트엔드)
 - Backend(백엔드)
-- API
-- JSON
-- YAML
+- API(Application Programming Interface)
+- JSON(JavaScript Object Notation)
+- YAML(YAML Ain't Markup Language)
 - Automation(자동화)
 - Deployment(배포)
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Git
 - GitHub
@@ -57,8 +57,8 @@ tags:
 - Beginner
 - Agile(애자일)
 - Data-Structures(자료구조)
-- HTML
-- CSS
+- HTML(HyperText Markup Language)
+- CSS(Cascading Style Sheets)
 - JavaScript
 - Node.js
 - Linux(리눅스)

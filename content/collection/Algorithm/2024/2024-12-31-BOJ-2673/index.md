@@ -23,7 +23,7 @@ tags:
 - Python
 - Go
 - .NET
-- DFS
+- DFS(Depth-First Search)
 - Sorting(정렬)
 - Watch
 - Space-Complexity(공간복잡도)

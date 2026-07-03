@@ -42,7 +42,7 @@ tags:
   - Deep-Dive
   - 실습
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Cloud(클라우드)
   - DevOps
   - Networking(네트워킹)

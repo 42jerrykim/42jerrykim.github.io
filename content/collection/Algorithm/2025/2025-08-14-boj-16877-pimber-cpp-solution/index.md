@@ -12,7 +12,6 @@ tags:
 - C++
 - Game-Theory
 - DP(동적계획법)
-- Dynamic-Programming
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
 - Complexity-Analysis(복잡도분석)

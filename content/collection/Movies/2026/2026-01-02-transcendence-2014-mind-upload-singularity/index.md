@@ -9,8 +9,7 @@ categories:
 - Thriller
 - Warner Bros. Pictures
 tags:
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Thriller(스릴러)
 - AI(인공지능)
 - Security(보안)
@@ -24,7 +23,7 @@ tags:
 - Comedy(코미디)
 - Fantasy(판타지)
 - Romance(로맨스)
-- API
+- API(Application Programming Interface)
 - War(전쟁)
 - Horror(공포)
 - Soundtrack(사운드트랙)

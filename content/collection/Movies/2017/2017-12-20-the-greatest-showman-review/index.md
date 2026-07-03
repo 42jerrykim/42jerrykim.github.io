@@ -16,7 +16,7 @@ tags:
 - Action(액션)
 - Adventure(모험)
 - Thriller(스릴러)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Fantasy(판타지)
 - Romance(로맨스)
 - Animation(애니메이션)

@@ -7,10 +7,9 @@ categories:
 - Data Structures
 - Binary Indexed Tree
 tags:
-- Fenwick-Tree
+- BIT(Binary Indexed Tree)
 - Greedy(그리디)
 - Time-Complexity(시간복잡도)
-- Binary-Indexed-Tree
 - Competitive-Programming(경쟁프로그래밍)
 - Implementation(구현)
 - Algorithm(알고리즘)

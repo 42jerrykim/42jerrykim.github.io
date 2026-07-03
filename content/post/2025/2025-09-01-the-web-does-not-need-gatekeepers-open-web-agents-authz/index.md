@@ -11,8 +11,8 @@ tags:
   - Security(보안)
   - Authentication(인증)
   - Privacy(프라이버시)
-  - API
-  - HTTP
+  - API(Application Programming Interface)
+  - HTTP(HyperText Transfer Protocol)
   - Open-Source(오픈소스)
   - Cloud(클라우드)
   - Networking(네트워킹)
@@ -32,7 +32,7 @@ tags:
   - DevOps
   - Git
   - GitHub
-  - AWS
+  - AWS(Amazon Web Services)
   - Docker
   - Kubernetes
   - Testing(테스트)
@@ -46,7 +46,7 @@ tags:
   - 실습
   - Blog(블로그)
   - Markdown(마크다운)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Internet(인터넷)
   - History(역사)
   - Science(과학)
@@ -54,8 +54,8 @@ tags:
   - Performance(성능)
   - Scalability(확장성)
   - Caching(캐싱)
-  - CDN
-  - LLM
+  - CDN(Content Delivery Network)
+  - LLM(Large Language Model)
   - AI(인공지능)
   - ChatGPT
   - Prompt-Engineering(프롬프트엔지니어링)
@@ -73,15 +73,15 @@ tags:
   - Domain-Driven-Design
   - Event-Driven
   - Database(데이터베이스)
-  - JSON
-  - YAML
+  - JSON(JavaScript Object Notation)
+  - YAML(YAML Ain't Markup Language)
   - TypeScript
   - JavaScript
   - Python
   - Go
   - Rust
   - OAuth
-  - TDD
+  - TDD(Test-Driven Development)
   - Monitoring(모니터링)
   - Deployment(배포)
   - Automation(자동화)

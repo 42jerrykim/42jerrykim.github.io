@@ -46,14 +46,14 @@ tags:
   - Composition(합성)
   - Coupling(결합도)
   - Cohesion(응집도)
-  - GoF
+  - GoF(Gang of Four)
   - Creational-Pattern
   - Structural-Pattern
   - Behavioral-Pattern
   - Factory
   - Strategy
   - Template-Method
-  - UML
+  - UML(Unified Modeling Language)
   - 실습
   - How-To
   - Comparison(비교)

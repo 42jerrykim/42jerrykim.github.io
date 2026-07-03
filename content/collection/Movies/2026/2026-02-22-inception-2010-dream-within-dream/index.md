@@ -10,7 +10,7 @@ categories:
 - Thriller
 - Heist
 tags:
-- SF
+- Sci-Fi(Science Fiction)
 - Action(액션)
 - Thriller(스릴러)
 - Memory(메모리)
@@ -18,7 +18,6 @@ tags:
 - Movie(영화)
 - Review(리뷰)
 - Drama
-- Sci-Fi
 - Animation(애니메이션)
 - Comedy(코미디)
 - Fantasy(판타지)

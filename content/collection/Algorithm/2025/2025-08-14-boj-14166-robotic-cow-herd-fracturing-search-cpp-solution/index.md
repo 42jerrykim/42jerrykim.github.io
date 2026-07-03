@@ -10,7 +10,7 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - C++
-- USACO
+- USACO(USA Computing Olympiad)
 - Backtracking
 - Math(수학)
 - Binary-Search(이분탐색)
@@ -27,9 +27,9 @@ tags:
 - Editorial(에디토리얼)
 - Code-Review(코드리뷰)
 - Testing(테스트)
-- DFS
+- DFS(Depth-First Search)
 - Recursion(재귀)
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)

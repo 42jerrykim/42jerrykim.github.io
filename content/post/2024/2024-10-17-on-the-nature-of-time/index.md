@@ -88,14 +88,14 @@ tags:
   - Functional-Programming(함수형프로그래밍)
   - Composition(합성)
   - Event-Driven
-  - CQRS
+  - CQRS(Command Query Responsibility Segregation)
   - Networking(네트워킹)
   - Security(보안)
   - AI(인공지능)
   - Data-Science(데이터사이언스)
   - Machine-Learning(머신러닝)
   - Deep-Learning(딥러닝)
-  - LLM
+  - LLM(Large Language Model)
   - ChatGPT
   - Prompt-Engineering(프롬프트엔지니어링)
   - Terminal(터미널)

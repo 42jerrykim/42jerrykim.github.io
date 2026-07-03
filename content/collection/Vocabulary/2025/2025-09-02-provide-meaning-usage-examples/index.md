@@ -11,8 +11,8 @@ tags:
 - English
 - 영어동사
 - Business-English(비즈니스영어)
-- TOEFL
-- IELTS
+- TOEFL(Test of English as a Foreign Language)
+- IELTS(International English Language Testing System)
 - Academic-English(학술영어)
 - Grammar(문법)
 - Collocation(콜로케이션)

@@ -27,7 +27,7 @@ tags:
   - State
   - Observer
   - Event-Driven
-  - API
+  - API(Application Programming Interface)
   - Async(비동기)
   - Caching(캐싱)
   - Scalability(확장성)
@@ -44,14 +44,14 @@ tags:
   - Documentation(문서화)
   - Error-Handling(에러처리)
   - Git
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Modularity
   - Maintainability
   - Readability
   - Type-Safety
-  - HTTP
-  - JSON
+  - HTTP(HyperText Transfer Protocol)
+  - JSON(JavaScript Object Notation)
   - Comparison(비교)
   - Education(교육)
   - How-To

@@ -11,7 +11,6 @@ tags:
   - Algorithm(알고리즘)
   - BOJ(백준)
   - C++
-  - Dynamic-Programming
   - DP(동적계획법)
   - Math(수학)
   - Divide-and-Conquer(분할정복)

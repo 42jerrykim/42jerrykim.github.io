@@ -9,7 +9,7 @@ tags:
   - AI(인공지능)
   - Machine-Learning(머신러닝)
   - Deep-Learning(딥러닝)
-  - NLP
+  - NLP(Natural Language Processing)
   - Implementation(구현)
   - Software-Architecture(소프트웨어아키텍처)
   - Grammar(문법)
@@ -21,7 +21,7 @@ tags:
   - Markdown(마크다운)
   - Problem-Solving(문제해결)
   - Guide(가이드)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Productivity(생산성)
   - Education(교육)
   - Reference(참고)
@@ -35,12 +35,12 @@ tags:
   - Tips
   - Frontend(프론트엔드)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Performance(성능)
   - Code-Quality(코드품질)
   - Testing(테스트)
   - String(문자열)
-  - SEO
+  - SEO(Search Engine Optimization)
   - Deployment(배포)
   - Automation(자동화)
   - Data-Science(데이터사이언스)

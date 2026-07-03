@@ -12,7 +12,7 @@ header:
 title: "[Linux] btop++ 시스템 리소스 모니터 소개"
 tags:
   - Linux(리눅스)
-  - CPU
+  - CPU(Central Processing Unit)
   - Memory(메모리)
   - Networking(네트워킹)
   - Monitoring(모니터링)
@@ -52,7 +52,7 @@ tags:
   - Career(커리어)
   - Markdown(마크다운)
   - Web(웹)
-  - IO
+  - IO(Input/Output)
   - File-System
   - Profiling(프로파일링)
   - Benchmark
@@ -77,9 +77,9 @@ tags:
   - Latency
   - Throughput
   - Backend(백엔드)
-  - API
-  - JSON
-  - YAML
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
+  - YAML(YAML Ain't Markup Language)
   - Security(보안)
   - Caching(캐싱)
   - Logging(로깅)

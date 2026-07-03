@@ -10,7 +10,7 @@ header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
   - Design-Pattern(디자인패턴)
-  - GoF
+  - GoF(Gang of Four)
   - Inheritance(상속)
   - Polymorphism(다형성)
   - Code-Quality(코드품질)

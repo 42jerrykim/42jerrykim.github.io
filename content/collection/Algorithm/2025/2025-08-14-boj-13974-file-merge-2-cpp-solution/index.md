@@ -10,7 +10,6 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - C++
-- Dynamic-Programming
 - DP(동적계획법)
 - Prefix-Sum
 - Optimization(최적화)
@@ -22,7 +21,7 @@ tags:
 - Pitfalls(함정)
 - Data-Structures(자료구조)
 - Array(배열)
-- IO
+- IO(Input/Output)
 - Memory(메모리)
 - Problem-Solving(문제해결)
 - Competitive-Programming(경쟁프로그래밍)

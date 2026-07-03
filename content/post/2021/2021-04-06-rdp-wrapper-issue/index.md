@@ -10,7 +10,7 @@ header:
   teaser: https://user-images.githubusercontent.com/11385249/112481810-73097380-8d88-11eb-90ae-27adaa456182.png
 tags:
   - Windows(윈도우)
-  - RDP
+  - RDP(Remote Desktop Protocol)
   - Git
   - GitHub
   - Tutorial(튜토리얼)
@@ -54,7 +54,7 @@ tags:
   - Privacy(프라이버시)
   - Performance(성능)
   - Debugging(디버깅)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Shell(셸)
   - Terminal(터미널)

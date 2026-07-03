@@ -10,7 +10,7 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - C++
-- Dynamic-Programming
+- DP(동적계획법)
 - Modular-Arithmetic(모듈러)
 - Matrix(행렬)
 - Time-Complexity(시간복잡도)
@@ -19,8 +19,8 @@ tags:
 - Implementation(구현)
 - Number-Theory(정수론)
 - Math(수학)
-- IO
-- ICPC
+- IO(Input/Output)
+- ICPC(International Collegiate Programming Contest)
 - Competitive-Programming(경쟁프로그래밍)
 - Editorial(에디토리얼)
 - Testing(테스트)

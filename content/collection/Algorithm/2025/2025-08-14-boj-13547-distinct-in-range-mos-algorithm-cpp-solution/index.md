@@ -21,12 +21,11 @@ tags:
 - Testing(테스트)
 - Code-Review(코드리뷰)
 - Greedy(그리디)
-- Dynamic-Programming
 - DP(동적계획법)
 - Graph(그래프)
 - Tree(트리)
-- BFS
-- DFS
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
 - Shortest-Path(최단경로)
 - Binary-Search(이분탐색)
 - Two-Pointers

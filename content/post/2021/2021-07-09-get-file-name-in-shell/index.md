@@ -41,7 +41,7 @@ tags:
 - Blog(블로그)
 - OS(운영체제)
 - Process
-- IO
+- IO(Input/Output)
 - Clean-Code(클린코드)
 - Readability
 - Maintainability
@@ -54,7 +54,7 @@ tags:
 - GitHub
 - Windows(윈도우)
 - macOS
-- IDE
+- IDE(Integrated Development Environment)
 - Vim
 - Networking(네트워킹)
 - Parameter-Expansion

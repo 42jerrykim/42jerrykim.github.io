@@ -16,11 +16,10 @@ tags:
 - Graph(그래프)
 - Stack(스택)
 - Queue(큐)
-- Dynamic-Programming
 - DP(동적계획법)
 - Greedy(그리디)
-- BFS
-- DFS
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
 - Binary-Search(이분탐색)
 - Sorting(정렬)
 - String(문자열)

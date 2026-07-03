@@ -20,7 +20,7 @@ tags:
 - Drama
 - Thriller(스릴러)
 - Action(액션)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Animation(애니메이션)
 - Comedy(코미디)
 - Fantasy(판타지)

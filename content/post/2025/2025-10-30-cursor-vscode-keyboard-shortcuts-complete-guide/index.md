@@ -11,7 +11,7 @@ categories:
 - VSCode
 - IDE
 tags:
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Productivity(생산성)
 - Debugging(디버깅)

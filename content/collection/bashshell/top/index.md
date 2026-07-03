@@ -44,7 +44,7 @@ tags:
 - History(역사)
 - top
 - Monitoring(모니터링)
-- CPU
+- CPU(Central Processing Unit)
 - Memory(메모리)
 - 프로세스
 - 시스템

@@ -37,7 +37,7 @@ tags:
   - Debugging(디버깅)
   - Documentation(문서화)
   - Git
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Refactoring(리팩토링)
   - Clean-Code(클린코드)
   - Data-Structures(자료구조)

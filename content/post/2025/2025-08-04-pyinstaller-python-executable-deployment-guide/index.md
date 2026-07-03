@@ -13,7 +13,7 @@ tags:
 - Windows(윈도우)
 - Linux(리눅스)
 - macOS
-- CI-CD
+- CI-CD(Continuous Integration/Continuous Deployment)
 - Automation(자동화)
 - Tutorial(튜토리얼)
 - Guide(가이드)
@@ -37,7 +37,7 @@ tags:
 - Git
 - GitHub
 - Backend(백엔드)
-- API
+- API(Application Programming Interface)
 - Markdown(마크다운)
 - Productivity(생산성)
 - Innovation(혁신)
@@ -52,16 +52,16 @@ tags:
 - Flask
 - Blog(블로그)
 - Review(리뷰)
-- YAML
-- JSON
+- YAML(YAML Ain't Markup Language)
+- JSON(JavaScript Object Notation)
 - File-System
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Modularity
 - Interface(인터페이스)
 - Clean-Code(클린코드)
 - Pitfalls(함정)
-- TDD
+- TDD(Test-Driven Development)
 - Agile(애자일)
 image: wordcloud.png
 ---

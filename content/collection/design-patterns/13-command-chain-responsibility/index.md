@@ -13,7 +13,7 @@ categories:
 - System Architecture
 tags:
 - Design-Pattern(디자인패턴)
-- GoF
+- GoF(Gang of Four)
 ---
 
 Command와 Chain of Responsibility 패턴을 통해 요청 처리의 우아한 설계를 탐구합니다. 요청 객체화와 책임의 연쇄로 유연한 시스템을 구축합니다.

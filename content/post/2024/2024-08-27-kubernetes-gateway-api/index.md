@@ -8,12 +8,12 @@ header:
   teaser: /assets/images/2024/2024-08-27-kubernetes-gateway-api.png
 tags:
   - Kubernetes
-  - GCP
-  - AWS
+  - GCP(Google Cloud Platform)
+  - AWS(Amazon Web Services)
   - DevOps
   - Deployment(배포)
   - Networking(네트워킹)
-  - API
+  - API(Application Programming Interface)
   - Security(보안)
   - Tutorial(튜토리얼)
   - Technology(기술)
@@ -42,10 +42,10 @@ tags:
   - Deep-Dive
   - 실습
   - Software-Architecture(소프트웨어아키텍처)
-  - YAML
+  - YAML(YAML Ain't Markup Language)
   - Docker
   - Git
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Performance(성능)
   - Testing(테스트)
   - Code-Quality(코드품질)

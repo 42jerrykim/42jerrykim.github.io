@@ -45,7 +45,7 @@ tags:
   - Domain(도메인)
   - Migration(마이그레이션)
   - Design-Pattern(디자인패턴)
-  - RDP
+  - RDP(Remote Desktop Protocol)
   - Agile(애자일)
   - Conference(컨퍼런스)
   - Book-Review(서평)
@@ -60,7 +60,7 @@ tags:
   - Refactoring(리팩토링)
   - Testing(테스트)
   - Debugging(디버깅)
-  - SEO
+  - SEO(Search Engine Optimization)
 image: "ur-100v-magic-t.png"
 date: "2024-12-25T00:22:56+09:00"
 lastmod: "2026-03-17"

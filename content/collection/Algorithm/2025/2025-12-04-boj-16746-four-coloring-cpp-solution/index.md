@@ -11,13 +11,13 @@ tags:
   - BOJ(백준)
   - C++
   - Graph(그래프)
-  - BFS
-  - DFS
+  - BFS(Breadth-First Search)
+  - DFS(Depth-First Search)
   - Implementation(구현)
   - Time-Complexity(시간복잡도)
   - Space-Complexity(공간복잡도)
   - Competitive-Programming(경쟁프로그래밍)
-  - ICPC
+  - ICPC(International Collegiate Programming Contest)
   - Graph-Theory(그래프이론)
   - Data-Structures(자료구조)
   - Problem-Solving(문제해결)

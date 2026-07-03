@@ -7,7 +7,7 @@ categories:
 - ShortestPath
 tags:
 - Dijkstra
-- DSU
+- DSU(Disjoint Set Union)
 - Optimization(최적화)
 - Time-Complexity(시간복잡도)
 - Graph-Theory(그래프이론)

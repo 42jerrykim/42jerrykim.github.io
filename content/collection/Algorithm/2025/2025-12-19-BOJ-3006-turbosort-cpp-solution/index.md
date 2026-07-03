@@ -16,9 +16,7 @@ tags:
 - Sorting(정렬)
 - Combinatorics(조합론)
 - Data-Structures(자료구조)
-- Fenwick-Tree
-- Binary-Indexed-Tree
-- BIT
+- BIT(Binary Indexed Tree)
 - Prefix-Sum
 - Segment-Tree(세그먼트트리)
 - Math(수학)
@@ -29,7 +27,7 @@ tags:
 - Space-Complexity(공간복잡도)
 - Implementation(구현)
 - C++
-- IO
+- IO(Input/Output)
 - Array(배열)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

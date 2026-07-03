@@ -17,7 +17,7 @@ tags:
 - Drama
 - Thriller(스릴러)
 - Action(액션)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Fantasy(판타지)
 - Romance(로맨스)
 - Family(가족)

@@ -27,7 +27,7 @@ tags:
 - Math(수학)
 - Modular-Arithmetic(모듈러)
 - Segment-Tree(세그먼트트리)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Range-Query
 - Simulation(시뮬레이션)
 - Sliding-Window

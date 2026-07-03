@@ -9,7 +9,7 @@ tags:
   - CSharp
   - .NET
   - OOP(객체지향)
-  - API
+  - API(Application Programming Interface)
   - String(문자열)
   - Builder
   - Design-Pattern(디자인패턴)

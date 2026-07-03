@@ -15,7 +15,7 @@ tags:
 - Range-Query
 - Coordinate-Compression(좌표압축)
 - Prefix-Sum
-- IO
+- IO(Input/Output)
 - Memory(메모리)
 - Complexity-Analysis(복잡도분석)
 - Edge-Cases(엣지케이스)
@@ -24,7 +24,7 @@ tags:
 - Competitive-Programming(경쟁프로그래밍)
 - Tutorial(튜토리얼)
 - Editorial(에디토리얼)
-- Fenwick-Tree
+- BIT(Binary Indexed Tree)
 - Binary-Search(이분탐색)
 - Hashing(해싱)
 - Sliding-Window

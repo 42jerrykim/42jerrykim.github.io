@@ -9,11 +9,11 @@ categories:
 tags:
 - BOJ(백준)
 - Baekjoon
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Graph(그래프)
 - Shortest-Path(최단경로)
 - Dijkstra
-- LCA
+- LCA(Lowest Common Ancestor)
 - Segment-Tree(세그먼트트리)
 - Euler-Tour
 - Binary-Search(이분탐색)
@@ -35,7 +35,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- DFS
+- DFS(Depth-First Search)
 - Tree(트리)
 - Queue(큐)
 - Space-Complexity(공간복잡도)

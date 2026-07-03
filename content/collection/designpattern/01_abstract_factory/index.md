@@ -10,7 +10,7 @@ header:
   teaser: /assets/images/2024/2024-08-22-abstract-factory.png
 tags:
   - Design-Pattern(디자인패턴)
-  - GoF
+  - GoF(Gang of Four)
   - Factory
   - Interface(인터페이스)
   - Abstraction(추상화)
@@ -25,7 +25,7 @@ tags:
   - Python
   - CSharp
   - Configuration(설정)
-  - Sci-Fi
+  - Sci-Fi(Science Fiction)
   - Windows(윈도우)
   - Singleton
   - Best-Practices

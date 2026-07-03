@@ -41,8 +41,8 @@ tags:
   - Monitoring(모니터링)
   - DevOps
   - Networking(네트워킹)
-  - API
-  - HTTP
+  - API(Application Programming Interface)
+  - HTTP(HyperText Transfer Protocol)
   - Implementation(구현)
   - Error-Handling(에러처리)
   - Performance(성능)

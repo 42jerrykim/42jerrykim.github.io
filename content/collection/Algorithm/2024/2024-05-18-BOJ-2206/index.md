@@ -6,7 +6,7 @@ date: "2024-05-18T00:00:00Z"
 header:
   teaser: /assets/images/2024/diagram_understanding_breaking_walls.png
 tags:
-- BFS
+- BFS(Breadth-First Search)
 - Graph(그래프)
 - Algorithm(알고리즘)
 - BOJ(백준)

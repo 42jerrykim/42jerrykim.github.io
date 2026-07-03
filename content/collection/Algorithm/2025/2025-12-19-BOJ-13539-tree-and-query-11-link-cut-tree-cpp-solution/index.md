@@ -14,7 +14,7 @@ tags:
 - BOJ(백준)
 - Baekjoon
 - Tree(트리)
-- LCA
+- LCA(Lowest Common Ancestor)
 - Range-Query
 - Network-Flow
 - Graph(그래프)

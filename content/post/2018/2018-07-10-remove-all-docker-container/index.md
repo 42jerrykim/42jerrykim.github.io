@@ -28,7 +28,7 @@ tags:
 - Quick-Reference
 - Cheatsheet(치트시트)
 - Kubernetes
-- AWS
+- AWS(Amazon Web Services)
 - Cloud(클라우드)
 - Configuration(설정)
 - Open-Source(오픈소스)
@@ -47,7 +47,7 @@ tags:
 - Testing(테스트)
 - Git
 - GitHub
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Blog(블로그)
 - Markdown(마크다운)

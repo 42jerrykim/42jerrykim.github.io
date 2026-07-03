@@ -27,7 +27,7 @@ tags:
 - Divide-and-Conquer(분할정복)
 - Code-Quality(코드품질)
 - Math(수학)
-- IO
+- IO(Input/Output)
 - Memory(메모리)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

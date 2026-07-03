@@ -23,7 +23,6 @@ tags:
 - Code-Review(코드리뷰)
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
-- Dynamic-Programming
 - DP(동적계획법)
 - Prefix-Sum
 - Math(수학)
@@ -33,8 +32,8 @@ tags:
 - String(문자열)
 - Hashing(해싱)
 - Segment-Tree(세그먼트트리)
-- Fenwick-Tree
-- Disjoint-Set
+- BIT(Binary Indexed Tree)
+- DSU(Disjoint Set Union)
 - Two-Pointers
 - Sliding-Window
 - Debugging(디버깅)

@@ -10,7 +10,7 @@ tags:
   - Documentation(문서화)
   - Productivity(생산성)
   - Graph(그래프)
-  - UML
+  - UML(Unified Modeling Language)
   - Software-Architecture(소프트웨어아키텍처)
   - Implementation(구현)
   - Open-Source(오픈소스)
@@ -20,8 +20,8 @@ tags:
   - Tutorial(튜토리얼)
   - Guide(가이드)
   - Review(리뷰)
-  - API
-  - IDE
+  - API(Application Programming Interface)
+  - IDE(Integrated Development Environment)
   - Windows(윈도우)
   - Configuration(설정)
   - How-To
@@ -31,7 +31,7 @@ tags:
   - Best-Practices
   - Innovation(혁신)
   - Troubleshooting(트러블슈팅)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Git
   - GitHub
   - Code-Quality(코드품질)
@@ -42,8 +42,8 @@ tags:
   - Education(교육)
   - Frontend(프론트엔드)
   - Backend(백엔드)
-  - JSON
-  - YAML
+  - JSON(JavaScript Object Notation)
+  - YAML(YAML Ain't Markup Language)
   - Performance(성능)
   - Refactoring(리팩토링)
   - Clean-Code(클린코드)
@@ -58,7 +58,7 @@ tags:
   - Deep-Dive
   - 실습
   - Interface(인터페이스)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Debugging(디버깅)
 image: "image03.png"
 date: 2025-10-16

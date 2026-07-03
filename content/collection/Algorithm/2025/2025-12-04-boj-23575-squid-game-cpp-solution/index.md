@@ -23,12 +23,12 @@ tags:
   - Space-Complexity(공간복잡도)
   - Array(배열)
   - Sorting(정렬)
-  - ICPC
+  - ICPC(International Collegiate Programming Contest)
   - Optimization(최적화)
   - Strategy
   - Testing(테스트)
   - Code-Review(코드리뷰)
-  - IO
+  - IO(Input/Output)
   - Editorial(에디토리얼)
   - Coding-Test(코딩테스트)
   - Data-Structures(자료구조)

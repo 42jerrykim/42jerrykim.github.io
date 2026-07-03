@@ -62,9 +62,9 @@ tags:
 - Git
 - GitHub
 - Cloud(클라우드)
-- API
-- JSON
-- YAML
+- API(Application Programming Interface)
+- JSON(JavaScript Object Notation)
+- YAML(YAML Ain't Markup Language)
 - Clean-Code(클린코드)
 ---
 

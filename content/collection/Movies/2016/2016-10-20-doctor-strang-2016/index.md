@@ -13,8 +13,7 @@ tags:
 - Action(액션)
 - Adventure(모험)
 - Fantasy(판타지)
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Drama
 - Thriller(스릴러)
 - Comedy(코미디)
@@ -56,7 +55,7 @@ tags:
 - Michael-Giacchino
 - Scott-Derrickson
 - Marvel
-- MCU
+- MCU(Marvel Cinematic Universe)
 - Superhero
 - Narrative-Structure
 - Visual-Style

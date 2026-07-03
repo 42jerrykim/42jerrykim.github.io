@@ -16,7 +16,7 @@ tags:
 - Implementation(구현)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Competitive-Programming(경쟁프로그래밍)
 - Testing(테스트)

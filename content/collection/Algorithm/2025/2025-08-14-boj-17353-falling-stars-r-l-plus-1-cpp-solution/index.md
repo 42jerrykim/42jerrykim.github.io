@@ -11,9 +11,7 @@ tags:
 - BOJ(백준)
 - C++
 - Data-Structures(자료구조)
-- Fenwick-Tree
-- BIT
-- Binary-Indexed-Tree
+- BIT(Binary Indexed Tree)
 - Prefix-Sum
 - Segment-Tree(세그먼트트리)
 - Range-Query
@@ -26,7 +24,7 @@ tags:
 - Optimization(최적화)
 - Competitive-Programming(경쟁프로그래밍)
 - Math(수학)
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Code-Quality(코드품질)

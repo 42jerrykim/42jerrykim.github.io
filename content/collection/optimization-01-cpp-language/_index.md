@@ -12,14 +12,14 @@ tags:
   - Memory(메모리)
   - Compiler(컴파일러)
   - Assembly
-  - CPU
+  - CPU(Central Processing Unit)
   - Cache
   - Concurrency(동시성)
   - Linux(리눅스)
   - Windows(윈도우)
   - OS(운영체제)
   - Testing(테스트)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Code-Quality(코드품질)
   - Software-Architecture(소프트웨어아키텍처)
   - Latency

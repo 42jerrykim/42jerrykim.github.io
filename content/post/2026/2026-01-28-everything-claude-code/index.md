@@ -7,13 +7,13 @@ categories:
   - AI
 tags:
   - AI(인공지능)
-  - LLM
+  - LLM(Large Language Model)
   - ChatGPT
   - Prompt-Engineering(프롬프트엔지니어링)
   - Automation(자동화)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
-  - TDD
+  - TDD(Test-Driven Development)
   - Testing(테스트)
   - Software-Architecture(소프트웨어아키텍처)
   - GitHub
@@ -28,8 +28,8 @@ tags:
   - Review(리뷰)
   - Markdown(마크다운)
   - Git
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Refactoring(리팩토링)
   - Implementation(구현)
   - Security(보안)

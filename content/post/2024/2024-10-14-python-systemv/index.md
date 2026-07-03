@@ -24,7 +24,7 @@ tags:
   - Guide(가이드)
   - Git
   - GitHub
-  - API
+  - API(Application Programming Interface)
   - Queue(큐)
   - Message-Queue
   - Windows(윈도우)
@@ -35,7 +35,7 @@ tags:
   - Configuration(설정)
   - C
   - File-System
-  - IO
+  - IO(Input/Output)
   - Backend(백엔드)
   - Code-Quality(코드품질)
   - How-To

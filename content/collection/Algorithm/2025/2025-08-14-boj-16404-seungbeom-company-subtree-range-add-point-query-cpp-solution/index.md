@@ -10,12 +10,11 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - C++
-- Fenwick-Tree
-- Binary-Indexed-Tree
+- BIT(Binary Indexed Tree)
 - Euler-Tour
 - Segment-Tree(세그먼트트리)
 - Tree(트리)
-- DFS
+- DFS(Depth-First Search)
 - Graph(그래프)
 - Implementation(구현)
 - Data-Structures(자료구조)
@@ -27,7 +26,7 @@ tags:
 - Optimization(최적화)
 - Competitive-Programming(경쟁프로그래밍)
 - Testing(테스트)
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Code-Quality(코드품질)

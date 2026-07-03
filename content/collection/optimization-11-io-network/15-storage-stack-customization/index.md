@@ -20,7 +20,7 @@ tags:
   - SSD
   - Latency
   - Throughput
-  - IO
+  - IO(Input/Output)
   - Backend(백엔드)
   - Networking(네트워킹)
   - Observability
@@ -31,7 +31,7 @@ tags:
   - Best-Practices
   - Implementation(구현)
   - Testing(테스트)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Documentation(문서화)
   - Git
   - Debugging(디버깅)
@@ -39,7 +39,7 @@ tags:
   - Benchmark
   - Concurrency(동시성)
   - Memory(메모리)
-  - CPU
+  - CPU(Central Processing Unit)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - Error-Handling(에러처리)

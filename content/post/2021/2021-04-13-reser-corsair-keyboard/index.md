@@ -49,7 +49,7 @@ tags:
   - Performance(성능)
   - Deployment(배포)
   - DevOps
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Shell(셸)
   - Terminal(터미널)

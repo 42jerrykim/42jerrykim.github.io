@@ -60,7 +60,7 @@ tags:
   - Async(비동기)
   - Latency
   - Throughput
-  - API
+  - API(Application Programming Interface)
   - Database(데이터베이스)
   - Caching(캐싱)
 image: image.png

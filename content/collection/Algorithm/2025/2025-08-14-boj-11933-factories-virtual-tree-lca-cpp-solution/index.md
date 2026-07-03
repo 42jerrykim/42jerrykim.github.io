@@ -23,14 +23,14 @@ tags:
 - Complexity-Analysis(복잡도분석)
 - Graph(그래프)
 - Tree(트리)
-- LCA
+- LCA(Lowest Common Ancestor)
 - Shortest-Path(최단경로)
-- DFS
+- DFS(Depth-First Search)
 - Euler-Tour
 - Stack(스택)
 - Sorting(정렬)
 - Memory(메모리)
-- IO
+- IO(Input/Output)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)
@@ -39,7 +39,6 @@ tags:
 - .NET
 - Git
 - GitHub
-- Dynamic-Programming
 - DP(동적계획법)
 image: "wordcloud.png"
 ---

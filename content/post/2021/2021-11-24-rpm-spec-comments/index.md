@@ -45,18 +45,18 @@ tags:
   - Productivity(생산성)
   - Migration(마이그레이션)
   - Networking(네트워킹)
-  - YAML
+  - YAML(YAML Ain't Markup Language)
   - File-System
   - OS(운영체제)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - Markdown(마크다운)
   - Testing(테스트)
   - Docker
   - Kubernetes
   - Ansible
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Monitoring(모니터링)
   - Web(웹)
   - Blog(블로그)
@@ -74,13 +74,13 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Modularity
   - Security(보안)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Database(데이터베이스)
-  - JSON
-  - XML
-  - HTTP
-  - REST
+  - JSON(JavaScript Object Notation)
+  - XML(eXtensible Markup Language)
+  - HTTP(HyperText Transfer Protocol)
+  - REST(Representational State Transfer)
   - Caching(캐싱)
   - Scalability(확장성)
   - Concurrency(동시성)
@@ -89,7 +89,7 @@ tags:
   - Compiler(컴파일러)
   - Process
   - Thread
-  - IO
+  - IO(Input/Output)
   - Logging(로깅)
   - Profiling(프로파일링)
   - Benchmark

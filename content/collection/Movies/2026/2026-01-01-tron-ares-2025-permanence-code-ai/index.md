@@ -9,8 +9,7 @@ description: 그리드에서 태어난 병기형 프로그램 ‘아레스’가
 draft: false
 lastmod: 2026-01-01
 tags:
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Action(액션)
 - AI(인공지능)
 - Graph(그래프)

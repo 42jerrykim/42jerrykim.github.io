@@ -52,9 +52,9 @@ tags:
   - Tutorial(튜토리얼)
   - Tips
   - How-To
-  - TOEFL
-  - IELTS
-  - GRE
+  - TOEFL(Test of English as a Foreign Language)
+  - IELTS(International English Language Testing System)
+  - GRE(Graduate Record Examination)
   - ghostwriting
   - 대리 집필
   - 집필

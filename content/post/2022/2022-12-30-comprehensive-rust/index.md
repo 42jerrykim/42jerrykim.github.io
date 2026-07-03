@@ -82,15 +82,15 @@ tags:
   - Cloud(클라우드)
   - Linux(리눅스)
   - Windows(윈도우)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Deployment(배포)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Scalability(확장성)
   - Latency
   - Throughput
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Docker
   - Kubernetes
   - Monitoring(모니터링)
@@ -108,7 +108,7 @@ tags:
   - Book-Review(서평)
   - Self-Hosted(셀프호스팅)
   - Agile(애자일)
-  - TDD
+  - TDD(Test-Driven Development)
   - History(역사)
   - Science(과학)
   - Domain(도메인)
@@ -117,8 +117,8 @@ tags:
   - Node.js
   - React
   - Vue
-  - JSON
-  - YAML
+  - JSON(JavaScript Object Notation)
+  - YAML(YAML Ain't Markup Language)
   - Database(데이터베이스)
   - Caching(캐싱)
   - Authentication(인증)
@@ -149,23 +149,22 @@ tags:
   - SOLID
   - OOP(객체지향)
   - Domain-Driven-Design
-  - CQRS
-  - UML
+  - CQRS(Command Query Responsibility Segregation)
+  - UML(Unified Modeling Language)
   - GraphQL
-  - REST
-  - HTTP
+  - REST(Representational State Transfer)
+  - HTTP(HyperText Transfer Protocol)
   - WebSocket
   - Message-Queue
   - Load-Balancing
-  - IO
+  - IO(Input/Output)
   - File-System
   - Cache
-  - CPU
+  - CPU(Central Processing Unit)
   - Binary-Search(이분탐색)
   - Sorting(정렬)
   - String(문자열)
   - Recursion(재귀)
-  - Dynamic-Programming
   - DP(동적계획법)
   - Greedy(그리디)
   - Graph(그래프)

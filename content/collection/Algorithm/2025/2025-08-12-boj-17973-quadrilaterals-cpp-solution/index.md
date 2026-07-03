@@ -15,8 +15,8 @@ tags:
 - Time-Complexity(시간복잡도)
 - Implementation(구현)
 - C++
-- IO
-- ICPC
+- IO(Input/Output)
+- ICPC(International Collegiate Programming Contest)
 - Competitive-Programming(경쟁프로그래밍)
 - Coding-Test(코딩테스트)
 - Problem-Solving(문제해결)

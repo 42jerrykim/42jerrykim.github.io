@@ -23,7 +23,7 @@ tags:
 - Space-Complexity(공간복잡도)
 - Implementation(구현)
 - C++
-- IO
+- IO(Input/Output)
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

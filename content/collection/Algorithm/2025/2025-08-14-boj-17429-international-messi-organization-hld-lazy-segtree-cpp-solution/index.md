@@ -22,14 +22,13 @@ tags:
 - Testing(테스트)
 - Complexity-Analysis(복잡도분석)
 - Greedy(그리디)
-- Dynamic-Programming
 - DP(동적계획법)
 - Graph(그래프)
 - Tree(트리)
 - Segment-Tree(세그먼트트리)
 - Lazy-Propagation
 - Euler-Tour
-- LCA
+- LCA(Lowest Common Ancestor)
 - Modular-Arithmetic(모듈러)
 - Data-Structures(자료구조)
 - Math(수학)

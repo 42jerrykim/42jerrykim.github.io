@@ -48,7 +48,7 @@ tags:
 - Hardware(하드웨어)
 - Cloud(클라우드)
 - Vim
-- IDE
+- IDE(Integrated Development Environment)
 - Deployment(배포)
 - Git
 - GitHub

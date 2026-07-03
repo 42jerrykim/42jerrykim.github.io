@@ -12,7 +12,6 @@ tags:
 - Baekjoon
 - Tree(트리)
 - String(문자열)
-- Dynamic-Programming
 - DP(동적계획법)
 - Binary-Search(이분탐색)
 - Optimization(최적화)
@@ -22,7 +21,7 @@ tags:
 - Edge-Cases(엣지케이스)
 - Implementation(구현)
 - C++
-- IO
+- IO(Input/Output)
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)
 - Algorithm(알고리즘)

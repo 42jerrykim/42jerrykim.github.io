@@ -6,7 +6,7 @@ lastmod: 2026-01-17
 collection_order: 7
 draft: true
 tags:
-  - UML
+  - UML(Unified Modeling Language)
   - Composition(합성)
   - Inheritance(상속)
   - Interface(인터페이스)

@@ -9,7 +9,6 @@ tags:
 - Education(교육)
 - Go
 - Algorithm(알고리즘)
-- Dynamic-Programming
 - DP(동적계획법)
 - Greedy(그리디)
 - Tutorial(튜토리얼)

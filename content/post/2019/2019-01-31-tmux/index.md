@@ -32,7 +32,7 @@ tags:
 - Deployment(배포)
 - DevOps
 - Vim
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Windows(윈도우)
 - macOS
@@ -74,7 +74,7 @@ tags:
 - Cloud(클라우드)
 - Concurrency(동시성)
 - Monitoring(모니터링)
-- CI-CD
+- CI-CD(Continuous Integration/Continuous Deployment)
 ---
 
 ## 개요

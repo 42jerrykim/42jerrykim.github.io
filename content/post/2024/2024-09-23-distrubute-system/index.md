@@ -12,7 +12,7 @@ tags:
   - Microservices(마이크로서비스)
   - Scalability(확장성)
   - Caching(캐싱)
-  - CQRS
+  - CQRS(Command Query Responsibility Segregation)
   - Design-Pattern(디자인패턴)
   - Software-Architecture(소프트웨어아키텍처)
   - Performance(성능)
@@ -31,7 +31,7 @@ tags:
   - Review(리뷰)
   - Markdown(마크다운)
   - Go
-  - SQL
+  - SQL(Structured Query Language)
   - Stack(스택)
   - Security(보안)
   - Concurrency(동시성)
@@ -61,8 +61,8 @@ tags:
   - Deep-Dive
   - 실습
   - Cloud(클라우드)
-  - API
-  - REST
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Async(비동기)
   - Latency
   - Throughput

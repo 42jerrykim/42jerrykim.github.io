@@ -7,7 +7,7 @@ categories:
   - Programming
 tags:
   - Windows(윈도우)
-  - API
+  - API(Application Programming Interface)
   - Implementation(구현)
   - Security(보안)
   - Process
@@ -32,7 +32,7 @@ tags:
   - Optimization(최적화)
   - Pitfalls(함정)
   - Clean-Code(클린코드)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - OS(운영체제)
   - Interface(인터페이스)

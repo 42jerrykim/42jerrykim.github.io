@@ -14,8 +14,7 @@ tags:
 - BOJ(백준)
 - Baekjoon
 - Data-Structures(자료구조)
-- Fenwick-Tree
-- Binary-Indexed-Tree
+- BIT(Binary Indexed Tree)
 - Prefix-Sum
 - Combinatorics(조합론)
 - Simulation(시뮬레이션)

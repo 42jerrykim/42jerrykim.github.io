@@ -40,7 +40,7 @@ tags:
 - Productivity(생산성)
 - Refactoring(리팩토링)
 - Async(비동기)
-- API
+- API(Application Programming Interface)
 - Backend(백엔드)
 - Web(웹)
 - Innovation(혁신)

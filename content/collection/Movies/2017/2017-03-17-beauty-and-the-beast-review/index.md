@@ -18,7 +18,7 @@ tags:
 - Adventure(모험)
 - Drama
 - Thriller(스릴러)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Animation(애니메이션)
 - Family(가족)
 - Cinematography(촬영기법)

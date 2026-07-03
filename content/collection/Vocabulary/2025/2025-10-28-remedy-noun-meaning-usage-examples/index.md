@@ -20,7 +20,7 @@ tags:
   - Etymology(어원)
   - Tutorial(튜토리얼)
   - Go
-  - AWS
+  - AWS(Amazon Web Services)
   - Cloud(클라우드)
   - Education(교육)
   - Pronunciation(발음)

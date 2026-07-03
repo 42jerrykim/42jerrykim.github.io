@@ -21,8 +21,8 @@ tags:
   - Etymology(어원)
   - Synonym(유의어)
   - Tutorial(튜토리얼)
-  - REST
-  - API
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
   - Movie(영화)
   - Review(리뷰)
   - Action(액션)

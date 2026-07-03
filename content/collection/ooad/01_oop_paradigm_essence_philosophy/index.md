@@ -21,7 +21,7 @@ tags:
   - Scalability(확장성)
   - Testing(테스트)
   - SOLID
-  - UML
+  - UML(Unified Modeling Language)
   - Domain-Driven-Design
   - Microservices(마이크로서비스)
   - Event-Driven

@@ -20,7 +20,7 @@ tags:
 - Movie(영화)
 - Action(액션)
 - Thriller(스릴러)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Romance(로맨스)
 - Animation(애니메이션)
 - Family(가족)
@@ -42,7 +42,7 @@ tags:
 - Middle-Earth
 - Smaug
 - Dwarf
-- ELF
+- ELF(Executable and Linkable Format)
 draft: true
 image: "poster.png"
 ---

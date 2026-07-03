@@ -20,7 +20,7 @@ tags:
   - Synonym(유의어)
   - Tutorial(튜토리얼)
   - Go
-  - AWS
+  - AWS(Amazon Web Services)
   - Cloud(클라우드)
   - Action(액션)
   - War(전쟁)

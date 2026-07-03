@@ -11,7 +11,7 @@ tags:
 - BOJ(백준)
 - C++
 - Graph(그래프)
-- DFS
+- DFS(Depth-First Search)
 - 위상정렬
 - Software-Architecture(소프트웨어아키텍처)
 - Complexity-Analysis(복잡도분석)
@@ -25,7 +25,7 @@ tags:
 - Editorial(에디토리얼)
 - Debugging(디버깅)
 - Shortest-Path(최단경로)
-- Disjoint-Set
+- DSU(Disjoint Set Union)
 - Binary-Search(이분탐색)
 - Hashing(해싱)
 - String(문자열)
@@ -40,7 +40,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Gaming(게임)
 - TV-Show(드라마)
 image: "wordcloud.png"

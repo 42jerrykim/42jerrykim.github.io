@@ -36,7 +36,7 @@ tags:
   - Reference(참고)
   - Comparison(비교)
   - Blog(블로그)
-  - API
+  - API(Application Programming Interface)
   - Graph(그래프)
   - Math(수학)
   - Configuration(설정)

@@ -13,8 +13,8 @@ tags:
   - C++
   - Graph-Theory(그래프이론)
   - Graph(그래프)
-  - BFS
-  - DFS
+  - BFS(Breadth-First Search)
+  - DFS(Depth-First Search)
   - Segment-Tree(세그먼트트리)
   - Range-Query
   - Stack(스택)

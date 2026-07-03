@@ -14,7 +14,7 @@ tags:
   - OOP(객체지향)
   - Design-Pattern(디자인패턴)
   - Factory
-  - API
+  - API(Application Programming Interface)
   - String(문자열)
   - Linux(리눅스)
   - Tutorial(튜토리얼)

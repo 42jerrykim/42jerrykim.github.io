@@ -7,7 +7,7 @@ categories:
 tags:
   - Windows(윈도우)
   - VSCode
-  - IDE
+  - IDE(Integrated Development Environment)
   - Keyboard(키보드)
   - Troubleshooting(트러블슈팅)
   - DevOps
@@ -29,7 +29,7 @@ tags:
   - Workflow(워크플로우)
   - Migration(마이그레이션)
   - Hardware(하드웨어)
-  - RDP
+  - RDP(Remote Desktop Protocol)
   - Networking(네트워킹)
   - Error-Handling(에러처리)
   - Debugging(디버깅)
@@ -45,7 +45,7 @@ tags:
   - Refactoring(리팩토링)
   - Code-Quality(코드품질)
   - Maintainability
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Cloud(클라우드)
   - Privacy(프라이버시)

@@ -29,7 +29,7 @@ tags:
   - Mutex
   - Lock
   - Lock-Free
-  - CPU
+  - CPU(Central Processing Unit)
   - Cache
   - Instruction-Reordering
   - Compiler-Optimization

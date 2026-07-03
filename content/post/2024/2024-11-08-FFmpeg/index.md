@@ -15,7 +15,7 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Memory(메모리)
   - Compiler(컴파일러)
-  - CPU
+  - CPU(Central Processing Unit)
   - Hardware(하드웨어)
   - Assembly
   - Benchmark

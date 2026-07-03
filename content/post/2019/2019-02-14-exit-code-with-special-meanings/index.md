@@ -51,7 +51,7 @@ tags:
   - Innovation(혁신)
   - Markdown(마크다운)
   - Web(웹)
-  - API
+  - API(Application Programming Interface)
   - Design-Pattern(디자인패턴)
   - Clean-Code(클린코드)
   - Edge-Cases(엣지케이스)

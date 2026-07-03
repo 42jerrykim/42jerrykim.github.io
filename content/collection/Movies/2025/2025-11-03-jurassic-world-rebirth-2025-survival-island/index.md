@@ -10,7 +10,7 @@ categories:
 - Adventure
 - Universal Pictures
 tags:
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Action(액션)
 - Adventure(모험)
 - Thriller(스릴러)

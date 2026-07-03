@@ -23,7 +23,7 @@ tags:
 - Implementation(구현)
 - Process
 - Command
-- RDP
+- RDP(Remote Desktop Protocol)
 - Networking(네트워킹)
 - Error-Handling(에러처리)
 - Logging(로깅)

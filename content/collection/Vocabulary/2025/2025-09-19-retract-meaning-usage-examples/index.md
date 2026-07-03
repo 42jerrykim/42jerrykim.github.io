@@ -13,15 +13,15 @@ tags:
 - Academic-English(학술영어)
 - Collocation(콜로케이션)
 - Nuance(뉘앙스)
-- TOEFL
-- IELTS
+- TOEFL(Test of English as a Foreign Language)
+- IELTS(International English Language Testing System)
 - 영단어
 - 영어동사
 - Grammar(문법)
 - Etymology(어원)
 - Synonym(유의어)
 - Tutorial(튜토리얼)
-- AWS
+- AWS(Amazon Web Services)
 - Cloud(클라우드)
 - Action(액션)
 - Antonym(반의어)

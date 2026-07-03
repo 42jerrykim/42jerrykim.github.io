@@ -7,11 +7,11 @@ header:
 title: "[Tutorial] Learn Prompting - 프롬프트 엔지니어링 무료 가이드 정리"
 tags:
   - AI(인공지능)
-  - LLM
-  - GPT
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - ChatGPT
   - Machine-Learning(머신러닝)
-  - NLP
+  - NLP(Natural Language Processing)
   - Prompt-Engineering(프롬프트엔지니어링)
   - Tutorial(튜토리얼)
   - Guide(가이드)
@@ -43,11 +43,11 @@ tags:
   - Networking(네트워킹)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Automation(자동화)
   - Data-Science(데이터사이언스)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Frontend(프론트엔드)
   - Testing(테스트)
@@ -75,8 +75,8 @@ tags:
   - DevOps
   - Monitoring(모니터링)
   - Terminal(터미널)
-  - JSON
-  - YAML
+  - JSON(JavaScript Object Notation)
+  - YAML(YAML Ain't Markup Language)
   - Database(데이터베이스)
   - Caching(캐싱)
   - Authentication(인증)
@@ -95,7 +95,7 @@ tags:
   - Windows(윈도우)
   - macOS
   - Shell(셸)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Conference(컨퍼런스)
   - Book-Review(서평)
   - Self-Hosted(셀프호스팅)
@@ -117,22 +117,22 @@ tags:
   - Benchmark
   - Code-Review(코드리뷰)
   - Optimization(최적화)
-  - TDD
+  - TDD(Test-Driven Development)
   - Microservices(마이크로서비스)
   - Event-Driven
-  - REST
+  - REST(Representational State Transfer)
   - GraphQL
-  - HTTP
+  - HTTP(HyperText Transfer Protocol)
   - WebSocket
   - Message-Queue
   - Load-Balancing
   - Latency
   - Throughput
-  - CDN
-  - SEO
-  - CQRS
+  - CDN(Content Delivery Network)
+  - SEO(Search Engine Optimization)
+  - CQRS(Command Query Responsibility Segregation)
   - Domain-Driven-Design
-  - UML
+  - UML(Unified Modeling Language)
   - Composition(합성)
   - Polymorphism(다형성)
   - Encapsulation(캡슐화)

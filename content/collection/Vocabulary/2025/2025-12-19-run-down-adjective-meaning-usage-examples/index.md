@@ -18,9 +18,9 @@ tags:
   - Pronunciation(발음)
   - Synonym(유의어)
   - Tutorial(튜토리얼)
-  - API
-  - REST
-  - Sci-Fi
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - Sci-Fi(Science Fiction)
   - Factory
   - Design-Pattern(디자인패턴)
   - Antonym(반의어)

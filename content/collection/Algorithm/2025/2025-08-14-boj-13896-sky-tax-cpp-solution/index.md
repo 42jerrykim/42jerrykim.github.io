@@ -12,10 +12,10 @@ tags:
 - C++
 - Implementation(구현)
 - Tree(트리)
-- LCA
+- LCA(Lowest Common Ancestor)
 - Euler-Tour
 - Graph(그래프)
-- DFS
+- DFS(Depth-First Search)
 - Complexity-Analysis(복잡도분석)
 - Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
@@ -25,7 +25,7 @@ tags:
 - Competitive-Programming(경쟁프로그래밍)
 - Testing(테스트)
 - Debugging(디버깅)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)
@@ -34,7 +34,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- API
+- API(Application Programming Interface)
 - Stack(스택)
 - Memory(메모리)
 - Documentation(문서화)

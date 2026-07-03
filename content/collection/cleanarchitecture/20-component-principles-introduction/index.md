@@ -11,7 +11,7 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Cohesion(응집도)
   - Coupling(결합도)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - SOLID
   - History(역사)
 ---

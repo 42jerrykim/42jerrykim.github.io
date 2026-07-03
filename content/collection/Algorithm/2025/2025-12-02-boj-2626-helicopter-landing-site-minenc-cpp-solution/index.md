@@ -19,7 +19,7 @@ tags:
 - Competitive-Programming(경쟁프로그래밍)
 - Edge-Cases(엣지케이스)
 - Testing(테스트)
-- IO
+- IO(Input/Output)
 - Complexity-Analysis(복잡도분석)
 - Recursion(재귀)
 - Problem-Solving(문제해결)

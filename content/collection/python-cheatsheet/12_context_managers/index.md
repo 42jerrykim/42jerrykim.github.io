@@ -20,7 +20,7 @@ tags:
   - Code-Quality(코드품질)
   - Tree(트리)
   - Stack(스택)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Debugging(디버깅)
   - Documentation(문서화)
   - Testing(테스트)

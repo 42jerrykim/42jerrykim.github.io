@@ -14,8 +14,7 @@ tags:
 - BOJ(백준)
 - Baekjoon
 - Graph(그래프)
-- DSU
-- Disjoint-Set
+- DSU(Disjoint Set Union)
 - Data-Structures(자료구조)
 - Implementation(구현)
 - Time-Complexity(시간복잡도)

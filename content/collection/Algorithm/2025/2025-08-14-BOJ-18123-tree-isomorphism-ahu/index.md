@@ -26,8 +26,8 @@ tags:
 - Graph(그래프)
 - String(문자열)
 - Hashing(해싱)
-- DFS
-- BFS
+- DFS(Depth-First Search)
+- BFS(Breadth-First Search)
 - Sorting(정렬)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

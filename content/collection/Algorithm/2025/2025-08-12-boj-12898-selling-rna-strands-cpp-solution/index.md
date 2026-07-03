@@ -13,18 +13,17 @@ tags:
 - Prefix-Sum
 - Trie
 - Euler-Tour
-- Fenwick-Tree
-- BIT
+- BIT(Binary Indexed Tree)
 - Range-Query
 - Algorithm(알고리즘)
 - Data-Structures(자료구조)
-- IO
+- IO(Input/Output)
 - Memory(메모리)
 - C++
 - Editorial(에디토리얼)
 - Coding-Test(코딩테스트)
 - Competitive-Programming(경쟁프로그래밍)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Problem-Solving(문제해결)
 - Implementation(구현)
 - Time-Complexity(시간복잡도)

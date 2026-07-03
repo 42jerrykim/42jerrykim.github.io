@@ -12,7 +12,6 @@ tags:
 - Baekjoon
 - Divide-and-Conquer(분할정복)
 - DP(동적계획법)
-- Dynamic-Programming
 - Memory(메모리)
 - Space-Complexity(공간복잡도)
 - Time-Complexity(시간복잡도)
@@ -20,7 +19,7 @@ tags:
 - String(문자열)
 - Implementation(구현)
 - C++
-- IO
+- IO(Input/Output)
 - Edge-Cases(엣지케이스)
 - Optimization(최적화)
 - Code-Quality(코드품질)
@@ -36,7 +35,7 @@ tags:
 - GitHub
 - Recursion(재귀)
 - War(전쟁)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Testing(테스트)
 - Documentation(문서화)
 - Best-Practices

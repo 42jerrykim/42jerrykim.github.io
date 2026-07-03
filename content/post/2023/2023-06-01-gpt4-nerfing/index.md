@@ -9,16 +9,16 @@ header:
 tags:
   - AI(인공지능)
   - ChatGPT
-  - LLM
-  - GPT
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - Machine-Learning(머신러닝)
   - Deep-Learning(딥러닝)
-  - NLP
+  - NLP(Natural Language Processing)
   - Neural-Network
   - Data-Science(데이터사이언스)
   - Technology(기술)
   - Review(리뷰)
-  - API
+  - API(Application Programming Interface)
   - Web(웹)
   - Open-Source(오픈소스)
   - Security(보안)
@@ -48,9 +48,9 @@ tags:
   - Code-Quality(코드품질)
   - Backend(백엔드)
   - Frontend(프론트엔드)
-  - REST
-  - HTTP
-  - JSON
+  - REST(Representational State Transfer)
+  - HTTP(HyperText Transfer Protocol)
+  - JSON(JavaScript Object Notation)
   - Testing(테스트)
   - Debugging(디버깅)
   - Implementation(구현)

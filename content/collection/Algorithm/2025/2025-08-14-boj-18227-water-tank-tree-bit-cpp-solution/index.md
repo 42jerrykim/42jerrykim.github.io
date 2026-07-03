@@ -13,11 +13,9 @@ tags:
 - Data-Structures(자료구조)
 - Graph(그래프)
 - Tree(트리)
-- DFS
+- DFS(Depth-First Search)
 - Euler-Tour
-- Fenwick-Tree
-- BIT
-- Binary-Indexed-Tree
+- BIT(Binary Indexed Tree)
 - Prefix-Sum
 - Range-Query
 - Segment-Tree(세그먼트트리)
@@ -28,7 +26,7 @@ tags:
 - Edge-Cases(엣지케이스)
 - Pitfalls(함정)
 - Optimization(최적화)
-- IO
+- IO(Input/Output)
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
@@ -37,7 +35,7 @@ tags:
 - .NET
 - Git
 - GitHub
-- API
+- API(Application Programming Interface)
 - Stack(스택)
 - Testing(테스트)
 - Documentation(문서화)

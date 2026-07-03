@@ -52,7 +52,7 @@ tags:
   - Beginner
   - Web(웹)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Linux(리눅스)
   - Windows(윈도우)
 title: "[C#] 변수와 상수: 로컬·필드·const·readonly·var 완벽 정리"

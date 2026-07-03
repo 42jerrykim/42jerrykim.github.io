@@ -21,8 +21,8 @@ tags:
   - Tutorial(튜토리얼)
   - Go
   - Rust
-  - REST
-  - API
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
   - War(전쟁)
   - Education(교육)
   - Career(커리어)

@@ -14,7 +14,7 @@ tags:
   - OS(운영체제)
   - Thread
   - Networking(네트워킹)
-  - REST
+  - REST(Representational State Transfer)
   - Memory(메모리)
   - Dependency-Injection(의존성주입)
   - Performance(성능)

@@ -10,7 +10,6 @@ tags:
 - Algorithm(알고리즘)
 - BOJ(백준)
 - C++
-- Dynamic-Programming
 - DP(동적계획법)
 - Prefix-Sum
 - Matrix(행렬)
@@ -21,7 +20,7 @@ tags:
 - Complexity-Analysis(복잡도분석)
 - Edge-Cases(엣지케이스)
 - Pitfalls(함정)
-- IO
+- IO(Input/Output)
 - Memory(메모리)
 - Editorial(에디토리얼)
 - Competitive-Programming(경쟁프로그래밍)

@@ -7,9 +7,8 @@ categories:
 - Segment Tree
 - Binary Search
 tags:
-- Binary-Indexed-Tree
+- BIT(Binary Indexed Tree)
 - Simulation(시뮬레이션)
-- Fenwick-Tree
 - Binary-Search(이분탐색)
 - Algorithm(알고리즘)
 - BOJ(백준)

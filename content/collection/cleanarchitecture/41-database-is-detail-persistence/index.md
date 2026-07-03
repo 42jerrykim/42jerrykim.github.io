@@ -9,7 +9,7 @@ categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
   - Database(데이터베이스)
-  - SQL
+  - SQL(Structured Query Language)
   - MySQL
   - PostgreSQL
   - MongoDB

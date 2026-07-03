@@ -36,7 +36,7 @@ tags:
   - Abstraction(추상화)
   - Performance(성능)
   - Concurrency(동시성)
-  - IO
+  - IO(Input/Output)
   - Implementation(구현)
   - Deep-Dive
   - 실습
@@ -58,7 +58,7 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Modularity
   - Encapsulation(캡슐화)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Cache
   - Caching(캐싱)

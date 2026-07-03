@@ -14,7 +14,7 @@ tags:
   - Case-Study
   - Data-Science(데이터사이언스)
   - Networking(네트워킹)
-  - API
+  - API(Application Programming Interface)
   - Backend(백엔드)
   - Cloud(클라우드)
   - Algorithm(알고리즘)
@@ -47,7 +47,7 @@ tags:
   - Performance(성능)
   - Security(보안)
   - Database(데이터베이스)
-  - JSON
+  - JSON(JavaScript Object Notation)
   - Design-Pattern(디자인패턴)
   - Software-Architecture(소프트웨어아키텍처)
   - Microservices(마이크로서비스)

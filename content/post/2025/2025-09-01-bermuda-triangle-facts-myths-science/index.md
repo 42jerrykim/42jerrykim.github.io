@@ -55,10 +55,10 @@ tags:
   - Open-Source(오픈소스)
   - Book-Review(서평)
   - Jekyll
-  - API
-  - HTTP
+  - API(Application Programming Interface)
+  - HTTP(HyperText Transfer Protocol)
   - Database(데이터베이스)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Terminal(터미널)
   - Domain(도메인)
@@ -71,7 +71,7 @@ tags:
   - Real-Time
   - Latency
   - Throughput
-  - JSON
+  - JSON(JavaScript Object Notation)
   - Logging(로깅)
   - Debugging(디버깅)
   - Modularity

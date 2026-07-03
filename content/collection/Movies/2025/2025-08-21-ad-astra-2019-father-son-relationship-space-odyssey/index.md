@@ -10,9 +10,8 @@ categories:
 - Adventure
 - 20th Century Fox
 tags:
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Movie(영화)
-- SF
 - Drama
 - Adventure(모험)
 - Review(리뷰)

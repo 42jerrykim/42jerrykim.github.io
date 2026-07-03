@@ -9,19 +9,18 @@ categories:
 tags:
 - BOJ(백준)
 - Baekjoon
-- MST
-- Disjoint-Set
-- DSU
+- MST(Minimum Spanning Tree)
+- DSU(Disjoint Set Union)
 - Binary-Search(이분탐색)
 - Greedy(그리디)
 - Graph(그래프)
 - Algorithm(알고리즘)
 - Implementation(구현)
 - C++
-- IO
+- IO(Input/Output)
 - Time-Complexity(시간복잡도)
 - Editorial(에디토리얼)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Tree(트리)
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)

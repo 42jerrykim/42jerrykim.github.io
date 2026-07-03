@@ -19,10 +19,10 @@ tags:
   - Layout
   - I-Cache
   - Branch-Prediction
-  - CPU
+  - CPU(Central Processing Unit)
   - Profiling(프로파일링)
   - Benchmark
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Linux(리눅스)
   - Backend(백엔드)
   - Embedded(임베디드)

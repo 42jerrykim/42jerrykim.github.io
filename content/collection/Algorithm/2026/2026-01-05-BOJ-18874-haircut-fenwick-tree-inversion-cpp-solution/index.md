@@ -13,14 +13,12 @@ tags:
 - BOJ(백준)
 - Baekjoon
 - Math(수학)
-- Fenwick-Tree
-- Binary-Indexed-Tree
-- BIT
+- BIT(Binary Indexed Tree)
 - Data-Structures(자료구조)
 - Segment-Tree(세그먼트트리)
 - Range-Query
 - Prefix-Sum
-- USACO
+- USACO(USA Computing Olympiad)
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)

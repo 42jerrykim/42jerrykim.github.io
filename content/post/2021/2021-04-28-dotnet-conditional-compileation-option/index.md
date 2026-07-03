@@ -16,7 +16,7 @@ tags:
   - Guide(가이드)
   - Reference(참고)
   - Configuration(설정)
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - DevOps
   - Documentation(문서화)
   - Best-Practices
@@ -54,7 +54,7 @@ tags:
   - Case-Study
   - Deep-Dive
   - 실습
-  - IDE
+  - IDE(Integrated Development Environment)
   - Docker
   - Backend(백엔드)
   - OS(운영체제)

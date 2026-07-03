@@ -17,7 +17,7 @@ tags:
   - Tutorial(튜토리얼)
   - Implementation(구현)
   - Code-Quality(코드품질)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Error-Handling(에러처리)
   - Debugging(디버깅)
   - Documentation(문서화)

@@ -11,7 +11,7 @@ tags:
 - Implementation(구현)
 - CSharp
 - .NET
-- API
+- API(Application Programming Interface)
 - Tutorial(튜토리얼)
 - Guide(가이드)
 - Technology(기술)

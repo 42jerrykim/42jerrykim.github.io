@@ -58,9 +58,9 @@ tags:
   - Deep-Dive
   - 실습
   - Git
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - DevOps
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Vim
   - File-System

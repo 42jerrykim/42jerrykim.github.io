@@ -36,8 +36,8 @@ tags:
   - Networking(네트워킹)
   - Psychology(심리학)
   - AI(인공지능)
-  - LLM
-  - GPT
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - Machine-Learning(머신러닝)
   - Innovation(혁신)
   - Workflow(워크플로우)

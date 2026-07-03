@@ -21,7 +21,7 @@ tags:
 - Go
 - Thriller(스릴러)
 - Action(액션)
-- Sci-Fi
+- Sci-Fi(Science Fiction)
 - Animation(애니메이션)
 - Comedy(코미디)
 - Romance(로맨스)

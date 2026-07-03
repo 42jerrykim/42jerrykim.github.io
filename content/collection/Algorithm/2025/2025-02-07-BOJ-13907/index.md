@@ -12,7 +12,6 @@ tags:
 - Memoization
 - Array(배열)
 - Bellman-Ford
-- Dynamic-Programming
 - Algorithm(알고리즘)
 - BOJ(백준)
 - Competitive-Programming(경쟁프로그래밍)
@@ -28,7 +27,7 @@ tags:
 - Go
 - .NET
 - Graph(그래프)
-- LLM
+- LLM(Large Language Model)
 - AI(인공지능)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)

@@ -44,7 +44,7 @@ tags:
   - Testing(테스트)
   - Web(웹)
   - Backend(백엔드)
-  - API
+  - API(Application Programming Interface)
   - Team
   - 팀
   - 리더십

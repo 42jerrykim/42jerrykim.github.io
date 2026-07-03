@@ -50,7 +50,7 @@ tags:
   - Networking(네트워킹)
   - Deployment(배포)
   - Automation(자동화)
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Clean-Code(클린코드)
   - Code-Quality(코드품질)

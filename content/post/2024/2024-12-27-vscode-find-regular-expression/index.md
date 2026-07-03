@@ -9,7 +9,7 @@ lastmod: 2026-03-17
 description: "VSCode에서 정규식(Regex)으로 검색·치환하는 방법을 단축키, Find/Replace 패턴, 캡처 그룹, 대소문자 변환(\\u, \\l)까지 상세히 다룬다. 실무 활용 예시와 워크플로우, 참고 문서를 포함해 생산성을 높이는 튜토리얼이다."
 tags:
   - VSCode
-  - IDE
+  - IDE(Integrated Development Environment)
   - String(문자열)
   - Implementation(구현)
   - Automation(자동화)

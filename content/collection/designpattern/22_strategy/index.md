@@ -11,7 +11,7 @@ header:
 tags:
   - Design-Pattern(디자인패턴)
   - Strategy
-  - GoF
+  - GoF(Gang of Four)
   - Algorithm(알고리즘)
   - Encapsulation(캡슐화)
   - Nuance(뉘앙스)
@@ -32,7 +32,7 @@ tags:
   - GitHub
   - Problem-Solving(문제해결)
   - Implementation(구현)
-  - RDP
+  - RDP(Remote Desktop Protocol)
   - Windows(윈도우)
   - Best-Practices
   - Clean-Code(클린코드)

@@ -10,10 +10,10 @@ tags:
   - Python
   - Cheatsheet(치트시트)
   - Quick-Reference
-  - HTTP
-  - REST
-  - API
-  - JSON
+  - HTTP(HyperText Transfer Protocol)
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
   - Error-Handling(에러처리)
   - Authentication(인증)
   - Proxy
@@ -25,7 +25,7 @@ tags:
   - Tutorial(튜토리얼)
   - Implementation(구현)
   - Code-Quality(코드품질)
-  - HTML
+  - HTML(HyperText Markup Language)
   - Deployment(배포)
   - Debugging(디버깅)
   - Documentation(문서화)

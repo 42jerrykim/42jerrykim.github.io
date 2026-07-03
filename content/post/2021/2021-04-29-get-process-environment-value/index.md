@@ -41,14 +41,14 @@ tags:
 - Productivity(생산성)
 - Networking(네트워킹)
 - DevOps
-- IDE
+- IDE(Integrated Development Environment)
 - VSCode
 - Git
 - GitHub
 - Docker
 - Kubernetes
 - Backend(백엔드)
-- API
+- API(Application Programming Interface)
 - Security(보안)
 - Testing(테스트)
 - Code-Quality(코드품질)

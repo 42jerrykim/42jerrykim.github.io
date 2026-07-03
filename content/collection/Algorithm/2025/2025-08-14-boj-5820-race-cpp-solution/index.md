@@ -14,7 +14,7 @@ tags:
 - Graph(그래프)
 - Shortest-Path(최단경로)
 - Optimization(최적화)
-- DFS
+- DFS(Depth-First Search)
 - Recursion(재귀)
 - Complexity-Analysis(복잡도분석)
 - Time-Complexity(시간복잡도)
@@ -22,7 +22,7 @@ tags:
 - Implementation(구현)
 - Edge-Cases(엣지케이스)
 - Pitfalls(함정)
-- IO
+- IO(Input/Output)
 - Data-Structures(자료구조)
 - Memory(메모리)
 - Competitive-Programming(경쟁프로그래밍)

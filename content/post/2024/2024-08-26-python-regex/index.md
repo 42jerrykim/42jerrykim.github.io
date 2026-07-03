@@ -33,7 +33,7 @@ tags:
   - How-To
   - Tips
   - Markdown(마크다운)
-  - HTML
+  - HTML(HyperText Markup Language)
   - JavaScript
   - Java
   - Blog(블로그)
@@ -47,16 +47,16 @@ tags:
   - Clean-Code(클린코드)
   - Software-Architecture(소프트웨어아키텍처)
   - Machine-Learning(머신러닝)
-  - NLP
+  - NLP(Natural Language Processing)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Linux(리눅스)
   - Windows(윈도우)
   - Backend(백엔드)
-  - API
-  - JSON
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
   - Security(보안)
   - Regex
   - 정규표현식

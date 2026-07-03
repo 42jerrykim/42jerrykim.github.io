@@ -24,7 +24,7 @@ tags:
 - Graph(그래프)
 - Prefix-Sum
 - Binary-Search(이분탐색)
-- ICPC
+- ICPC(International Collegiate Programming Contest)
 - Problem-Solving(문제해결)
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)

@@ -44,7 +44,7 @@ tags:
   - Deployment(배포)
   - Terminal(터미널)
   - Shell(셸)
-  - API
+  - API(Application Programming Interface)
   - Security(보안)
   - Testing(테스트)
   - Debugging(디버깅)
