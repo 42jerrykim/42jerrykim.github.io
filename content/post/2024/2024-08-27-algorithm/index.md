@@ -7,106 +7,59 @@ lastmod: "2026-03-17T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-08-27-algorithm.png
 tags:
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
-  - Coding-Test
-  - 코딩테스트
-  - Graph
-  - 그래프
-  - Dynamic-Programming
-  - DP
-  - 동적계획법
-  - Greedy
-  - 그리디
-  - Binary-Search
-  - 이분탐색
-  - Sorting
-  - 정렬
-  - Tree
-  - 트리
-  - String
-  - 문자열
-  - Math
-  - 수학
-  - Hashing
-  - 해싱
-  - Divide-and-Conquer
-  - 분할정복
-  - BFS
-  - DFS
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Complexity-Analysis
-  - 복잡도분석
-  - Data-Structures
-  - 자료구조
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Graph(그래프)
+  - DP(동적계획법)
+  - Greedy(그리디)
+  - Binary-Search(이분탐색)
+  - Sorting(정렬)
+  - Tree(트리)
+  - String(문자열)
+  - Math(수학)
+  - Hashing(해싱)
+  - Divide-and-Conquer(분할정복)
+  - BFS(Breadth-First Search)
+  - DFS(Depth-First Search)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Complexity-Analysis(복잡도분석)
+  - Data-Structures(자료구조)
+  - Implementation(구현)
+  - Optimization(최적화)
   - Python
-  - 파이썬
-  - Array
-  - 배열
-  - Recursion
-  - 재귀
+  - Array(배열)
+  - Recursion(재귀)
   - Backtracking
-  - 백트래킹
-  - Shortest-Path
-  - 최단경로
+  - Shortest-Path(최단경로)
   - Dijkstra
   - Bellman-Ford
-  - MST
-  - 최소신장트리
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - MST(Minimum Spanning Tree)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Education(교육)
+  - Reference(참고)
   - Beginner
-  - Performance
-  - 성능
-  - Edge-Cases
-  - 엣지케이스
-  - Code-Quality
-  - 코드품질
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Web
-  - 웹
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Machine-Learning
-  - 머신러닝
-  - Science
-  - 과학
-  - Comparison
-  - 비교
+  - Performance(성능)
+  - Edge-Cases(엣지케이스)
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Web(웹)
+  - Technology(기술)
+  - Blog(블로그)
+  - Machine-Learning(머신러닝)
+  - Science(과학)
+  - Comparison(비교)
   - Deep-Dive
   - 실습
-  - Brute-Force
-  - 완전탐색
-  - Simulation
-  - 시뮬레이션
+  - Brute-Force(완전탐색)
+  - Simulation(시뮬레이션)
   - Hash-Map
-  - Queue
-  - 큐
-  - Stack
-  - 스택
-  - Priority-Queue
-  - 우선순위큐
-  - Graph-Theory
-  - 그래프이론
-  - Topological-Sort
+  - Queue(큐)
+  - Stack(스택)
+  - Priority-Queue(우선순위큐)
+  - Graph-Theory(그래프이론)
   - 위상정렬
   - KMP
   - Rabin-Karp

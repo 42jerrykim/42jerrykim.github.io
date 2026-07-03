@@ -8,89 +8,55 @@ header:
   teaser: /assets/images/2024/2024-08-27-gen-ai-architecture.png
 image: "wordcloud.png"
 tags:
-  - AI
-  - 인공지능
-  - LLM
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
-  - NLP
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Database
-  - 데이터베이스
-  - Data-Structures
-  - Graph
-  - 그래프
-  - Automation
-  - 자동화
-  - Performance
-  - 성능
-  - Scalability
-  - 확장성
+  - AI(인공지능)
+  - LLM(Large Language Model)
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
+  - NLP(Natural Language Processing)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Database(데이터베이스)
+  - Data-Structures(자료구조)
+  - Graph(그래프)
+  - Automation(자동화)
+  - Performance(성능)
+  - Scalability(확장성)
   - Best-Practices
-  - Innovation
-  - 혁신
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - API
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Comparison
-  - 비교
+  - Innovation(혁신)
+  - Technology(기술)
+  - Web(웹)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Comparison(비교)
   - How-To
   - Tips
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Education
-  - 교육
-  - Deployment
-  - 배포
-  - Cloud
-  - 클라우드
+  - Blog(블로그)
+  - Review(리뷰)
+  - Education(교육)
+  - Deployment(배포)
+  - Cloud(클라우드)
   - Azure
   - Python
-  - 파이썬
   - DevOps
-  - Testing
-  - 테스트
-  - Code-Quality
-  - 코드품질
-  - Clean-Code
-  - 클린코드
+  - Testing(테스트)
+  - Code-Quality(코드품질)
+  - Clean-Code(클린코드)
   - Domain-Driven-Design
-  - Caching
-  - 캐싱
-  - Security
-  - 보안
-  - Monitoring
-  - 모니터링
+  - Caching(캐싱)
+  - Security(보안)
+  - Monitoring(모니터링)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
+  - Prompt-Engineering(프롬프트엔지니어링)
   - ChatGPT
-  - GPT
-  - Data-Science
-  - 데이터사이언스
+  - GPT(Generative Pre-trained Transformer)
+  - Data-Science(데이터사이언스)
   - Neural-Network
   - Transfer-Learning
   - 전이학습

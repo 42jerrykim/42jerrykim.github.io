@@ -7,99 +7,59 @@ categories:
   - Algorithm
   - TwoPointers
 tags:
-  - Algorithm
-  - 알고리즘
+  - Algorithm(알고리즘)
   - Two-Pointers
   - Sliding-Window
-  - Array
-  - 배열
-  - Data-Structures
-  - 자료구조
-  - Problem-Solving
-  - 문제해결
-  - Coding-Test
-  - 코딩테스트
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Optimization
-  - 최적화
-  - Implementation
-  - 구현
+  - Array(배열)
+  - Data-Structures(자료구조)
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Optimization(최적화)
+  - Implementation(구현)
   - Python
-  - 파이썬
   - C++
   - Java
   - JavaScript
   - CSharp
   - C
-  - Binary-Search
-  - 이분탐색
-  - Hashing
-  - 해싱
-  - Sorting
-  - 정렬
-  - Dynamic-Programming
-  - DP
-  - Greedy
-  - 그리디
-  - String
-  - 문자열
+  - Binary-Search(이분탐색)
+  - Hashing(해싱)
+  - Sorting(정렬)
+  - DP(동적계획법)
+  - Greedy(그리디)
+  - String(문자열)
   - Linked-List
   - Hash-Map
   - Prefix-Sum
-  - Brute-Force
-  - 완전탐색
-  - Edge-Cases
-  - 엣지케이스
+  - Brute-Force(완전탐색)
+  - Edge-Cases(엣지케이스)
   - Best-Practices
-  - Performance
-  - 성능
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Education
-  - 교육
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Documentation
-  - 문서화
-  - Code-Quality
-  - 코드품질
-  - Complexity-Analysis
-  - 복잡도분석
-  - BOJ
-  - 백준
-  - Competitive-Programming
-  - 경쟁프로그래밍
+  - Performance(성능)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Education(교육)
+  - Technology(기술)
+  - Blog(블로그)
+  - Documentation(문서화)
+  - Code-Quality(코드품질)
+  - Complexity-Analysis(복잡도분석)
+  - BOJ(백준)
+  - Competitive-Programming(경쟁프로그래밍)
   - LeetCode
-  - Interview
   - 인터뷰
-  - Recursion
-  - 재귀
-  - Divide-and-Conquer
-  - 분할정복
-  - Stack
-  - 스택
-  - Queue
-  - 큐
-  - Graph
-  - 그래프
-  - Math
-  - 수학
-  - Simulation
-  - 시뮬레이션
+  - Recursion(재귀)
+  - Divide-and-Conquer(분할정복)
+  - Stack(스택)
+  - Queue(큐)
+  - Graph(그래프)
+  - Math(수학)
+  - Simulation(시뮬레이션)
   - Backtracking
-  - 백트래킹
   - Memoization
-  - Open-Source
-  - 오픈소스
+  - Open-Source(오픈소스)
   - How-To
   - Tips
   - Beginner
@@ -107,20 +67,13 @@ tags:
   - Case-Study
   - Deep-Dive
   - 실습
-  - Markdown
-  - 마크다운
-  - Web
-  - 웹
-  - Innovation
-  - 혁신
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
+  - Markdown(마크다운)
+  - Web(웹)
+  - Innovation(혁신)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Debugging(디버깅)
   - TypeScript
   - Go
   - Rust

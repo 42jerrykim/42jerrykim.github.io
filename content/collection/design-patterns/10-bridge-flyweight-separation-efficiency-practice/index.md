@@ -13,15 +13,12 @@ categories:
 - Practice
 - Memory Efficiency
 tags:
-- Memory
-- Design-Pattern
-- GoF
-- Tutorial
-- Implementation
-- Software-Architecture
-- 디자인패턴
-- 구현
-- 소프트웨어아키텍처
+- Memory(메모리)
+- Design-Pattern(디자인패턴)
+- GoF(Gang of Four)
+- Tutorial(튜토리얼)
+- Implementation(구현)
+- Software-Architecture(소프트웨어아키텍처)
 ---
 
 이 실습에서는 Bridge 패턴으로 다중 플랫폼 시스템을, Flyweight 패턴으로 메모리 효율적인 시스템을 직접 구현합니다.

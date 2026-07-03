@@ -8,56 +8,39 @@ categories:
   - Math
   - FFT
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
+  - Algorithm(알고리즘)
+  - BOJ(백준)
   - Baekjoon
   - C++
-  - FFT
+  - FFT(Fast Fourier Transform)
   - Convolution
-  - Code-Quality
-  - Edge-Cases
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Implementation
-  - 구현
-  - 엣지케이스
-  - Editorial
-  - 에디토리얼
-  - Tutorial
-  - 튜토리얼
-  - Pitfalls
-  - 함정
-  - IO
-  - Complexity-Analysis
-  - 복잡도분석
-  - Competitive-Programming
-  - Problem-Solving
-  - Coding-Test
-  - 코딩테스트
-  - Data-Structures
-  - 자료구조
-  - Optimization
-  - 최적화
-  - 문제해결
-  - 코드품질
-  - Math
+  - Code-Quality(코드품질)
+  - Edge-Cases(엣지케이스)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Implementation(구현)
+  - Editorial(에디토리얼)
+  - Tutorial(튜토리얼)
+  - Pitfalls(함정)
+  - IO(Input/Output)
+  - Complexity-Analysis(복잡도분석)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Data-Structures(자료구조)
+  - Optimization(최적화)
+  - Math(수학)
   - Go
   - .NET
   - Git
   - GitHub
-  - String
-  - Self-Hosted
-  - Memory
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - String(문자열)
+  - Self-Hosted(셀프호스팅)
+  - Memory(메모리)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Debugging
+  - Debugging(디버깅)
 image: "wordcloud.png"
 ---
 

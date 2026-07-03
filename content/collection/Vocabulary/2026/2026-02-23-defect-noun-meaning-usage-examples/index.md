@@ -11,49 +11,30 @@ tags:
   - English
   - 영단어
   - 영어명사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Implementation
-  - Etymology
-  - Grammar
-  - Pronunciation
-  - 문법
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
-  - War
-  - 전쟁
-  - Antonym
-  - 반의어
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Implementation(구현)
+  - Etymology(어원)
+  - Grammar(문법)
+  - Pronunciation(발음)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
+  - War(전쟁)
+  - Antonym(반의어)
+  - Daily-Life(일상표현)
+  - Education(교육)
+  - Reference(참고)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Technology
-  - 기술
-  - Guide
-  - 가이드
-  - Documentation
-  - 문서화
+  - Markdown(마크다운)
+  - Technology(기술)
+  - Guide(가이드)
+  - Documentation(문서화)
   - Best-Practices
   - Case-Study
   - Deep-Dive

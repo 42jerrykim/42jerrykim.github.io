@@ -7,64 +7,40 @@ categories:
 - Algorithm
 - Brute Force
 tags:
-- Algorithm
-- 알고리즘
-- BOJ
-- 백준
+- Algorithm(알고리즘)
+- BOJ(백준)
 - C++
-- 완전탐색
+- Brute-Force(완전탐색)
 - Two-Pointers
-- 이분탐색
-- Binary-Search
-- 정렬
-- Sorting
-- 시간복잡도
-- Time-Complexity
-- 공간복잡도
-- Space-Complexity
-- Edge-Cases
-- 엣지케이스
-- Pitfalls
-- 함정
-- Optimization
-- 최적화
-- Competitive-Programming
-- 경쟁프로그래밍
-- Editorial
-- 에디토리얼
-- Implementation
-- 구현
-- Complexity-Analysis
-- 복잡도분석
-- Greedy
-- 그리디
-- Dynamic-Programming
-- 동적계획법
-- Graph
-- 그래프
-- Tree
-- 트리
-- BFS
-- DFS
-- Shortest-Path
-- 최단경로
+- Binary-Search(이분탐색)
+- Sorting(정렬)
+- Time-Complexity(시간복잡도)
+- Space-Complexity(공간복잡도)
+- Edge-Cases(엣지케이스)
+- Pitfalls(함정)
+- Optimization(최적화)
+- Competitive-Programming(경쟁프로그래밍)
+- Editorial(에디토리얼)
+- Implementation(구현)
+- Complexity-Analysis(복잡도분석)
+- Greedy(그리디)
+- DP(동적계획법)
+- Graph(그래프)
+- Tree(트리)
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
+- Shortest-Path(최단경로)
 - Dijkstra
-- Segment-Tree
-- 세그먼트트리
-- Fenwick-Tree
-- Disjoint-Set
+- Segment-Tree(세그먼트트리)
+- BIT(Binary Indexed Tree)
+- DSU(Disjoint Set Union)
 - Sliding-Window
-- Hashing
-- 해싱
-- String
-- 문자열
+- Hashing(해싱)
+- String(문자열)
 - Geometry
-- Math
-- 수학
-- Modular-Arithmetic
-- 모듈러
-- Debugging
-- 디버깅
+- Math(수학)
+- Modular-Arithmetic(모듈러)
+- Debugging(디버깅)
 image: "wordcloud.png"
 ---
 

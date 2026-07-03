@@ -11,52 +11,33 @@ tags:
   - English
   - 영단어
   - 영어형용사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
   - Biology
-  - 생물학
-  - Psychology
-  - 심리학
-  - Business-English
-  - 애니메이션
-  - Grammar
-  - Pronunciation
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
+  - Psychology(심리학)
+  - Business-English(비즈니스영어)
+  - Animation(애니메이션)
+  - Grammar(문법)
+  - Pronunciation(발음)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
   - React
-  - REST
-  - API
-  - Antonym
-  - 반의어
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
+  - Antonym(반의어)
+  - Daily-Life(일상표현)
+  - Education(교육)
+  - Reference(참고)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Technology
-  - 기술
-  - Guide
-  - 가이드
+  - Markdown(마크다운)
+  - Technology(기술)
+  - Guide(가이드)
 image: wordcloud.png
 ---
 

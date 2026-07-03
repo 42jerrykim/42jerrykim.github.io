@@ -16,19 +16,14 @@ tags:
   - CoW
   - thread_local
   - Lock-Free
-  - Concurrency
-  - 동시성
-  - Design-Pattern
-  - 디자인패턴
-  - Performance
-  - 성능
-  - Safety
+  - Concurrency(동시성)
+  - Design-Pattern(디자인패턴)
+  - Performance(성능)
   - 안전
-  - Functional-Programming
-  - Implementation
-  - 구현
-  - Tutorial
-  - Guide
+  - Functional-Programming(함수형프로그래밍)
+  - Implementation(구현)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
 slug: cpp-avoiding-shared-state-immutable-cow-thread-local
 ---
 

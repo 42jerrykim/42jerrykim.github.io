@@ -8,88 +8,55 @@ categories:
   - Automation
 tags:
   - PowerShell
-  - Windows
-  - 윈도우
-  - Automation
-  - 자동화
-  - Shell
-  - 셸
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Problem-Solving
-  - 문제해결
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
+  - Windows(윈도우)
+  - Automation(자동화)
+  - Shell(셸)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Problem-Solving(문제해결)
+  - Technology(기술)
+  - Blog(블로그)
   - How-To
   - Tips
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Reference
-  - 참고
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Reference(참고)
   - Best-Practices
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Comparison
-  - 비교
+  - Productivity(생산성)
+  - Education(교육)
+  - Comparison(비교)
   - CSharp
   - .NET
-  - API
-  - REST
-  - Hardware
-  - 하드웨어
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - Hardware(하드웨어)
   - DevOps
-  - Deployment
-  - 배포
-  - Error-Handling
-  - 에러처리
-  - Implementation
-  - 구현
-  - Performance
-  - 성능
-  - Code-Quality
-  - 코드품질
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
+  - Deployment(배포)
+  - Error-Handling(에러처리)
+  - Implementation(구현)
+  - Performance(성능)
+  - Code-Quality(코드품질)
+  - Markdown(마크다운)
+  - Review(리뷰)
   - Beginner
   - Case-Study
   - Deep-Dive
   - 실습
-  - Workflow
-  - 워크플로우
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Clean-Code
-  - 클린코드
+  - Workflow(워크플로우)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Clean-Code(클린코드)
   - Maintainability
   - Modularity
-  - Interface
-  - 인터페이스
-  - OS
-  - 운영체제
-  - Terminal
-  - 터미널
+  - Interface(인터페이스)
+  - OS(운영체제)
+  - Terminal(터미널)
   - VSCode
-  - IDE
+  - IDE(Integrated Development Environment)
   - Git
   - GitHub
 image: "wordcloud.png"

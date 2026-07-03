@@ -6,104 +6,65 @@ lastmod: "2026-03-17T00:00:00Z"
 header:
   teaser: /assets/images/2023/2023-01-25-103941.png
 tags:
-  - Automation
-  - 자동화
+  - Automation(자동화)
   - Node.js
   - JavaScript
   - TypeScript
-  - Windows
-  - 윈도우
-  - Linux
-  - 리눅스
+  - Windows(윈도우)
+  - Linux(리눅스)
   - macOS
-  - Open-Source
-  - 오픈소스
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Open-Source(오픈소스)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Technology(기술)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Workflow
-  - 워크플로우
-  - Testing
-  - 테스트
+  - Comparison(비교)
+  - Workflow(워크플로우)
+  - Testing(테스트)
   - GitHub
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - DevOps
-  - Performance
-  - 성능
-  - Implementation
-  - 구현
+  - Performance(성능)
+  - Implementation(구현)
   - Beginner
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Keyboard
-  - 키보드
-  - Web
-  - 웹
-  - API
-  - Backend
-  - 백엔드
-  - Deployment
-  - 배포
-  - IDE
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Keyboard(키보드)
+  - Web(웹)
+  - API(Application Programming Interface)
+  - Backend(백엔드)
+  - Deployment(배포)
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Async
-  - 비동기
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
-  - Interface
-  - 인터페이스
-  - Innovation
-  - 혁신
+  - Async(비동기)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
+  - Interface(인터페이스)
+  - Innovation(혁신)
   - Case-Study
   - Deep-Dive
   - 실습
   - Git
-  - Shell
+  - Shell(셸)
   - 셀
-  - Terminal
-  - 터미널
-  - Monitoring
-  - 모니터링
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Career
-  - 커리어
-  - Error-Handling
-  - 에러처리
-  - Security
-  - 보안
-  - Clean-Code
-  - 클린코드
-  - Design-Pattern
-  - 디자인패턴
+  - Terminal(터미널)
+  - Monitoring(모니터링)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Career(커리어)
+  - Error-Handling(에러처리)
+  - Security(보안)
+  - Clean-Code(클린코드)
+  - Design-Pattern(디자인패턴)
 title: "[Automation] Nut.js - Node.js 데스크톱 자동화 프레임워크"
 ---
 

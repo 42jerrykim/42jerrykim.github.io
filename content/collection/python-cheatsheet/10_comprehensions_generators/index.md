@@ -8,55 +8,34 @@ lastmod: 2026-01-17
 collection_order: 10
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - Iterator
   - Map
-  - Implementation
-  - Performance
-  - 성능
-  - Memory
-  - 메모리
-  - Clean-Code
-  - Design-Pattern
-  - Pitfalls
-  - 함정
+  - Implementation(구현)
+  - Performance(성능)
+  - Memory(메모리)
+  - Clean-Code(클린코드)
+  - Design-Pattern(디자인패턴)
+  - Pitfalls(함정)
   - Best-Practices
-  - Debugging
-  - 디버깅
-  - Async
-  - 비동기
-  - Error-Handling
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - OOP
-  - 객체지향
-  - Tree
-  - HTML
-  - 에러처리
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - 클린코드
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
+  - Debugging(디버깅)
+  - Async(비동기)
+  - Error-Handling(에러처리)
+  - Tutorial(튜토리얼)
+  - Code-Quality(코드품질)
+  - OOP(객체지향)
+  - Tree(트리)
+  - HTML(HyperText Markup Language)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
 ---
 컴프리헨션과 제너레이터는 파이썬다운 코드를 작성하는 핵심 도구입니다. 이 치트시트는 list/dict/set comprehension과 generator expression의 선택 기준(가독성 vs 메모리)을 빠르게 정리합니다.
 

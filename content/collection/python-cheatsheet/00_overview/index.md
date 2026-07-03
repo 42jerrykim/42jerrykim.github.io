@@ -8,54 +8,39 @@ lastmod: 2026-01-18
 collection_order: 0
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Education
-  - Guide
-  - 가이드
-  - Implementation
-  - 문법
-  - 문자열
-  - 자료구조
-  - Data-Structures
+  - Education(교육)
+  - Guide(가이드)
+  - Implementation(구현)
+  - Grammar(문법)
+  - String(문자열)
+  - Data-Structures(자료구조)
   - Set
-  - Error-Handling
-  - IO
-  - Software-Architecture
-  - String
-  - JSON
-  - Logging
-  - Debugging
-  - Testing
-  - 테스트
-  - Database
-  - 데이터베이스
-  - 우선순위큐
+  - Error-Handling(에러처리)
+  - IO(Input/Output)
+  - Software-Architecture(소프트웨어아키텍처)
+  - JSON(JavaScript Object Notation)
+  - Logging(로깅)
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Database(데이터베이스)
+  - Priority-Queue(우선순위큐)
   - Deque
-  - XML
-  - Math
-  - OS
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - OOP
-  - 객체지향
-  - Tree
-  - War
-  - 전쟁
+  - XML(eXtensible Markup Language)
+  - Math(수학)
+  - OS(운영체제)
+  - Tutorial(튜토리얼)
+  - Code-Quality(코드품질)
+  - OOP(객체지향)
+  - Tree(트리)
+  - War(전쟁)
   - Process
   - Factory
-  - Design-Pattern
+  - Design-Pattern(디자인패턴)
   - Decorator
-  - Deployment
-  - 에러처리
-  - 디버깅
-  - Documentation
-  - 문서화
+  - Deployment(배포)
+  - Documentation(문서화)
   - Best-Practices
 ---
 이 컬렉션은 파이썬을 이미 어느 정도 아는 개발자가 **필요할 때 빠르게 꺼내 쓸 수 있도록** 핵심 패턴과 함정을 정리한 치트시트입니다. 처음 배우는 분보다는 "예전에 했는데 문법이 기억 안 날 때" 참고하기 좋습니다.

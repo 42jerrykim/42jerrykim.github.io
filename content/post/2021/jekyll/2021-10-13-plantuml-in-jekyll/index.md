@@ -12,90 +12,59 @@ header:
   teaser: /plantuml/md-sample-sequence.svg
 tags:
   - Jekyll
-  - Blog
-  - 블로그
+  - Blog(블로그)
   - Git
   - GitHub
-  - Markdown
-  - 마크다운
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - UML
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Deployment
-  - 배포
-  - Configuration
-  - 설정
+  - Markdown(마크다운)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - UML(Unified Modeling Language)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Deployment(배포)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
+  - Comparison(비교)
+  - Reference(참고)
   - Best-Practices
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Troubleshooting
-  - 트러블슈팅
-  - Technology
-  - 기술
-  - CI-CD
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Design-Pattern
-  - 디자인패턴
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Productivity(생산성)
+  - Education(교육)
+  - Troubleshooting(트러블슈팅)
+  - Technology(기술)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
   - VSCode
-  - IDE
-  - YAML
-  - JSON
-  - Networking
-  - 네트워킹
+  - IDE(Integrated Development Environment)
+  - YAML(YAML Ain't Markup Language)
+  - JSON(JavaScript Object Notation)
+  - Networking(네트워킹)
   - Beginner
-  - Review
-  - 리뷰
+  - Review(리뷰)
   - Case-Study
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Maintainability
-  - Refactoring
-  - 리팩토링
-  - Linux
-  - 리눅스
-  - Career
-  - 커리어
-  - HTML
-  - CSS
-  - Terminal
-  - 터미널
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Security
-  - 보안
-  - API
-  - REST
+  - Refactoring(리팩토링)
+  - Linux(리눅스)
+  - Career(커리어)
+  - HTML(HyperText Markup Language)
+  - CSS(Cascading Style Sheets)
+  - Terminal(터미널)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Security(보안)
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
   - Modularity
   - Deep-Dive
   - 실습
-  - Action
+  - Action(액션)
 ---
 
 ## 개요

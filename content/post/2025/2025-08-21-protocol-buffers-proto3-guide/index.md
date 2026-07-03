@@ -10,10 +10,9 @@ categories:
   - "데이터 직렬화"
   - "API 설계"
 tags:
-  - Implementation
-  - API
+  - Implementation(구현)
+  - API(Application Programming Interface)
   - Java
-  - 파이썬
   - Python
   - C++
   - Go
@@ -21,103 +20,65 @@ tags:
   - Ruby
   - Kotlin
   - Rust
-  - Performance
-  - 성능
-  - Microservices
-  - 마이크로서비스
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Backend
-  - 백엔드
-  - Networking
-  - 네트워킹
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
+  - Performance(성능)
+  - Microservices(마이크로서비스)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Backend(백엔드)
+  - Networking(네트워킹)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
   - Best-Practices
   - Type-Safety
-  - JSON
-  - Web
-  - 웹
-  - Database
-  - 데이터베이스
-  - REST
-  - HTTP
-  - Scalability
-  - 확장성
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
+  - JSON(JavaScript Object Notation)
+  - Web(웹)
+  - Database(데이터베이스)
+  - REST(Representational State Transfer)
+  - HTTP(HyperText Transfer Protocol)
+  - Scalability(확장성)
+  - Concurrency(동시성)
+  - Async(비동기)
   - Message-Queue
   - DevOps
   - Docker
   - Kubernetes
   - Git
   - GitHub
-  - Markdown
-  - 마크다운
-  - Blog
-  - 블로그
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
+  - Markdown(마크다운)
+  - Blog(블로그)
+  - Reference(참고)
+  - Comparison(비교)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Education
-  - 교육
-  - Code-Quality
-  - 코드품질
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - YAML
-  - XML
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
+  - Education(교육)
+  - Code-Quality(코드품질)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Software-Architecture(소프트웨어아키텍처)
+  - YAML(YAML Ain't Markup Language)
+  - XML(eXtensible Markup Language)
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
   - Latency
   - Throughput
-  - Security
-  - 보안
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Monitoring
-  - 모니터링
+  - Security(보안)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Monitoring(모니터링)
   - How-To
   - Tips
-  - Review
-  - 리뷰
-  - 구현
+  - Review(리뷰)
 image: "wordcloud.png"
 ---
 

@@ -8,112 +8,66 @@ categories:
   - Hardware
   - Simulation
 tags:
-  - Gaming
-  - 게임
-  - Hardware
-  - 하드웨어
-  - Simulation
-  - 시뮬레이션
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
-  - Gadget
-  - 가젯
-  - Space
-  - 우주
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Comparison
-  - 비교
-  - Configuration
-  - 설정
-  - Innovation
-  - 혁신
+  - Gaming(게임)
+  - Hardware(하드웨어)
+  - Simulation(시뮬레이션)
+  - Review(리뷰)
+  - Technology(기술)
+  - Gadget(가젯)
+  - Space(우주)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Comparison(비교)
+  - Configuration(설정)
+  - Innovation(혁신)
   - Best-Practices
-  - Reference
-  - 참고
+  - Reference(참고)
   - How-To
   - Tips
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Education
-  - 교육
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Workflow
-  - 워크플로우
-  - Performance
-  - 성능
-  - Interface
-  - 인터페이스
-  - Automation
-  - 자동화
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Education(교육)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Workflow(워크플로우)
+  - Performance(성능)
+  - Interface(인터페이스)
+  - Automation(자동화)
   - Case-Study
   - Deep-Dive
   - Beginner
   - Advanced
-  - Productivity
-  - 생산성
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Networking
-  - 네트워킹
-  - Cloud
-  - 클라우드
-  - Career
-  - 커리어
-  - Mobile
-  - 모바일
-  - Security
-  - 보안
-  - Testing
-  - 테스트
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
+  - Productivity(생산성)
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Networking(네트워킹)
+  - Cloud(클라우드)
+  - Career(커리어)
+  - Mobile(모바일)
+  - Security(보안)
+  - Testing(테스트)
+  - Implementation(구현)
+  - Optimization(최적화)
   - Modularity
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
   - Git
   - GitHub
-  - Terminal
-  - 터미널
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - Science
-  - 과학
-  - Internet
-  - 인터넷
-  - Brand
-  - 브랜드
+  - Terminal(터미널)
+  - History(역사)
+  - Culture(문화)
+  - Science(과학)
+  - Internet(인터넷)
+  - Brand(브랜드)
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - Code-Quality
-  - 코드품질
-  - Design-Pattern
-  - 디자인패턴
+  - Cheatsheet(치트시트)
+  - Code-Quality(코드품질)
+  - Design-Pattern(디자인패턴)
   - Readability
   - Maintainability
   - 실습
-  - Deployment
-  - 배포
-  - Monitoring
-  - 모니터링
+  - Deployment(배포)
+  - Monitoring(모니터링)
 image: Website_ProductPageGallery-SolR2_1920x1080_1.webp
 ---
 

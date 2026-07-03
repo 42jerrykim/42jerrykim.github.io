@@ -10,56 +10,35 @@ categories:
   - Netflix
   - Comedy
 tags:
-  - Comedy
-  - Review
-  - 리뷰
-  - TV-Show
-  - 드라마
-  - Hardware
-  - Networking
-  - SEO
-  - Web
-  - Gaming
-  - 게임
-  - Culture
-  - 문화
+  - Comedy(코미디)
+  - Review(리뷰)
+  - TV-Show(드라마)
+  - Hardware(하드웨어)
+  - Networking(네트워킹)
+  - SEO(Search Engine Optimization)
+  - Web(웹)
+  - Gaming(게임)
+  - Culture(문화)
   - Drama
-  - Thriller
-  - 스릴러
-  - 코미디
-  - Fantasy
-  - 판타지
-  - Romance
-  - 로맨스
-  - Action
-  - 액션
-  - Mystery
-  - 미스터리
-  - Crime
-  - 범죄
-  - Adventure
-  - 모험
+  - Thriller(스릴러)
+  - Fantasy(판타지)
+  - Romance(로맨스)
+  - Action(액션)
+  - Mystery(미스터리)
+  - Crime(범죄)
+  - Adventure(모험)
   - 2020s
   - 2010s
-  - Cinematography
-  - 촬영기법
-  - Soundtrack
-  - 사운드트랙
-  - Family
-  - 가족
-  - Biography
-  - 전기영화
-  - History
-  - 역사
-  - Science
-  - 과학
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Tutorial
-  - 튜토리얼
-  - Guide
+  - Cinematography(촬영기법)
+  - Soundtrack(사운드트랙)
+  - Family(가족)
+  - Biography(전기영화)
+  - History(역사)
+  - Science(과학)
+  - Technology(기술)
+  - Education(교육)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
 image: "image02.png"
 ---
 

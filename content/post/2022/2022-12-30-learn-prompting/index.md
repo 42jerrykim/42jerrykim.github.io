@@ -6,139 +6,83 @@ header:
   teaser: /assets/images/undefined/towards_ai-8ba6f0df56a97d31c30cf8711647f549.png
 title: "[Tutorial] Learn Prompting - 프롬프트 엔지니어링 무료 가이드 정리"
 tags:
-  - AI
-  - 인공지능
-  - LLM
-  - GPT
+  - AI(인공지능)
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - ChatGPT
-  - Machine-Learning
-  - 머신러닝
-  - NLP
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Productivity
-  - 생산성
-  - Reference
-  - 참고
+  - Machine-Learning(머신러닝)
+  - NLP(Natural Language Processing)
+  - Prompt-Engineering(프롬프트엔지니어링)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Review(리뷰)
+  - Technology(기술)
+  - Web(웹)
+  - Blog(블로그)
+  - Productivity(생산성)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Markdown
-  - 마크다운
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Markdown(마크다운)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Security
-  - 보안
-  - Networking
-  - 네트워킹
+  - Security(보안)
+  - Networking(네트워킹)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Automation
-  - 자동화
-  - Data-Science
-  - 데이터사이언스
-  - API
-  - Backend
-  - 백엔드
-  - Frontend
-  - 프론트엔드
-  - Testing
-  - 테스트
-  - Code-Quality
-  - 코드품질
-  - Design-Pattern
-  - 디자인패턴
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Mobile
-  - 모바일
-  - Cloud
-  - 클라우드
-  - Agile
-  - 애자일
-  - History
-  - 역사
-  - Science
-  - 과학
+  - Automation(자동화)
+  - Data-Science(데이터사이언스)
+  - API(Application Programming Interface)
+  - Backend(백엔드)
+  - Frontend(프론트엔드)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
+  - Cloud(클라우드)
+  - Agile(애자일)
+  - History(역사)
+  - Science(과학)
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - Domain
-  - 도메인
-  - Interface
-  - 인터페이스
-  - Implementation
-  - 구현
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Error-Handling
-  - 에러처리
-  - Logging
-  - 로깅
-  - Deployment
-  - 배포
+  - Cheatsheet(치트시트)
+  - Domain(도메인)
+  - Interface(인터페이스)
+  - Implementation(구현)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Error-Handling(에러처리)
+  - Logging(로깅)
+  - Deployment(배포)
   - DevOps
-  - Monitoring
-  - 모니터링
-  - Terminal
-  - 터미널
-  - JSON
-  - YAML
-  - Database
-  - 데이터베이스
-  - Caching
-  - 캐싱
-  - Authentication
-  - 인증
-  - Scalability
-  - 확장성
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
+  - Monitoring(모니터링)
+  - Terminal(터미널)
+  - JSON(JavaScript Object Notation)
+  - YAML(YAML Ain't Markup Language)
+  - Database(데이터베이스)
+  - Caching(캐싱)
+  - Authentication(인증)
+  - Scalability(확장성)
+  - Concurrency(동시성)
+  - Async(비동기)
   - Python
   - JavaScript
   - TypeScript
@@ -147,77 +91,54 @@ tags:
   - Vue
   - Docker
   - Kubernetes
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
+  - Linux(리눅스)
+  - Windows(윈도우)
   - macOS
-  - Shell
-  - 셸
-  - CI-CD
-  - Conference
-  - 컨퍼런스
-  - Book-Review
-  - 서평
-  - Self-Hosted
-  - 셀프호스팅
-  - Privacy
-  - 프라이버시
-  - Psychology
-  - 심리학
-  - Internet
-  - 인터넷
-  - Deep-Learning
-  - 딥러닝
+  - Shell(셸)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Conference(컨퍼런스)
+  - Book-Review(서평)
+  - Self-Hosted(셀프호스팅)
+  - Privacy(프라이버시)
+  - Psychology(심리학)
+  - Internet(인터넷)
+  - Deep-Learning(딥러닝)
   - Neural-Network
   - Computer-Vision
   - Process
   - Thread
-  - Memory
-  - 메모리
-  - Abstraction
-  - 추상화
+  - Memory(메모리)
+  - Abstraction(추상화)
   - Modularity
   - Readability
   - Maintainability
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
   - Benchmark
-  - Code-Review
-  - 코드리뷰
-  - Optimization
-  - 최적화
-  - TDD
-  - Microservices
-  - 마이크로서비스
+  - Code-Review(코드리뷰)
+  - Optimization(최적화)
+  - TDD(Test-Driven Development)
+  - Microservices(마이크로서비스)
   - Event-Driven
-  - REST
+  - REST(Representational State Transfer)
   - GraphQL
-  - HTTP
+  - HTTP(HyperText Transfer Protocol)
   - WebSocket
   - Message-Queue
   - Load-Balancing
   - Latency
   - Throughput
-  - CDN
-  - SEO
-  - CQRS
+  - CDN(Content Delivery Network)
+  - SEO(Search Engine Optimization)
+  - CQRS(Command Query Responsibility Segregation)
   - Domain-Driven-Design
-  - UML
-  - Composition
-  - 합성
-  - Polymorphism
-  - 다형성
-  - Encapsulation
-  - 캡슐화
-  - OOP
-  - 객체지향
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
+  - UML(Unified Modeling Language)
+  - Composition(합성)
+  - Polymorphism(다형성)
+  - Encapsulation(캡슐화)
+  - OOP(객체지향)
+  - Coupling(결합도)
+  - Cohesion(응집도)
   - Strategy
   - Observer
   - Factory
@@ -233,15 +154,11 @@ tags:
   - Visitor
   - Mediator
   - Facade
-  - Clean-Architecture
-  - 클린아키텍처
+  - Clean-Architecture(클린아키텍처)
   - SOLID
-  - Dependency-Injection
-  - 의존성주입
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Functional-Programming
-  - 함수형프로그래밍
+  - Dependency-Injection(의존성주입)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Functional-Programming(함수형프로그래밍)
   - Type-Safety
 image: "wordcloud.png"
 ---

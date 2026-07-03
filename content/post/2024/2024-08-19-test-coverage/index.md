@@ -9,128 +9,79 @@ header: null
 teaser: /assets/images/undefined/teaser.jpg
 title: "[SoftwareTesting] 소스 코드 테스트 커버리지 메트릭과 활용"
 tags:
-  - Testing
-  - 테스트
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Code-Quality
-  - 코드품질
+  - Testing(테스트)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Implementation
-  - 구현
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Implementation(구현)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Blog(블로그)
+  - Web(웹)
+  - Education(교육)
+  - Productivity(생산성)
   - DevOps
-  - CI-CD
-  - Automation
-  - 자동화
-  - Agile
-  - 애자일
-  - TDD
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Automation(자동화)
+  - Agile(애자일)
+  - TDD(Test-Driven Development)
   - Python
   - Java
   - CSharp
   - JavaScript
-  - Edge-Cases
-  - Error-Handling
-  - 에러처리
-  - Performance
-  - 성능
+  - Edge-Cases(엣지케이스)
+  - Error-Handling(에러처리)
+  - Performance(성능)
   - Maintainability
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Open-Source
-  - 오픈소스
-  - Review
-  - 리뷰
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Open-Source(오픈소스)
+  - Review(리뷰)
   - Beginner
   - Deep-Dive
   - Case-Study
-  - Markdown
-  - 마크다운
-  - Migration
-  - 마이그레이션
-  - Monitoring
-  - 모니터링
-  - Deployment
-  - 배포
+  - Markdown(마크다운)
+  - Migration(마이그레이션)
+  - Monitoring(모니터링)
+  - Deployment(배포)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Backend
-  - 백엔드
-  - API
-  - Security
-  - 보안
-  - Database
-  - 데이터베이스
-  - Networking
-  - 네트워킹
-  - Scalability
-  - 확장성
-  - Concurrency
-  - 동시성
-  - Optimization
-  - 최적화
-  - Code-Review
-  - 코드리뷰
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Security(보안)
+  - Database(데이터베이스)
+  - Networking(네트워킹)
+  - Scalability(확장성)
+  - Concurrency(동시성)
+  - Optimization(최적화)
+  - Code-Review(코드리뷰)
   - Modularity
   - Readability
-  - Pitfalls
-  - 함정
-  - Logging
-  - 로깅
-  - Profiling
-  - 프로파일링
+  - Pitfalls(함정)
+  - Logging(로깅)
+  - Profiling(프로파일링)
   - Benchmark
-  - Clean-Architecture
-  - 클린아키텍처
-  - Interface
-  - 인터페이스
-  - Dependency-Injection
-  - 의존성주입
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
+  - Clean-Architecture(클린아키텍처)
+  - Interface(인터페이스)
+  - Dependency-Injection(의존성주입)
+  - Coupling(결합도)
+  - Cohesion(응집도)
   - SOLID
-  - OOP
-  - 객체지향
+  - OOP(객체지향)
   - 실습
 ---
 

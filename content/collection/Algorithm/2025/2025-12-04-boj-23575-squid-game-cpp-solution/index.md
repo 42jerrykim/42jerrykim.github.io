@@ -7,59 +7,38 @@ categories:
   - Algorithm
   - Math
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
+  - Algorithm(알고리즘)
+  - BOJ(백준)
   - C++
-  - Math
-  - 수학
-  - Number-Theory
-  - 정수론
-  - Simulation
-  - 시뮬레이션
-  - Implementation
-  - 구현
-  - Problem-Solving
-  - 문제해결
-  - Competitive-Programming
-  - 경쟁프로그래밍
-  - Greedy
-  - 모듈러
-  - Edge-Cases
-  - 엣지케이스
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Array
-  - Sorting
-  - 정렬
-  - ICPC
-  - Optimization
-  - 최적화
+  - Math(수학)
+  - Number-Theory(정수론)
+  - Simulation(시뮬레이션)
+  - Implementation(구현)
+  - Problem-Solving(문제해결)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Greedy(그리디)
+  - Modular-Arithmetic(모듈러)
+  - Edge-Cases(엣지케이스)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Array(배열)
+  - Sorting(정렬)
+  - ICPC(International Collegiate Programming Contest)
+  - Optimization(최적화)
   - Strategy
-  - Testing
-  - Code-Review
-  - 코드리뷰
-  - 테스트
-  - IO
-  - Editorial
-  - 에디토리얼
-  - Coding-Test
-  - 코딩테스트
-  - Data-Structures
-  - 자료구조
-  - Code-Quality
-  - 코드품질
+  - Testing(테스트)
+  - Code-Review(코드리뷰)
+  - IO(Input/Output)
+  - Editorial(에디토리얼)
+  - Coding-Test(코딩테스트)
+  - Data-Structures(자료구조)
+  - Code-Quality(코드품질)
   - Go
   - .NET
   - Git
   - GitHub
-  - Gaming
-  - 게임
-  - TV-Show
-  - 드라마
+  - Gaming(게임)
+  - TV-Show(드라마)
 image: "wordcloud.png"
 ---
 

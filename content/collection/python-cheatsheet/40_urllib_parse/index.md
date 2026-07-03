@@ -8,55 +8,35 @@ lastmod: 2026-01-18
 collection_order: 40
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Implementation
-  - Web
-  - 웹
-  - HTTP
-  - API
-  - Design-Pattern
+  - Implementation(구현)
+  - Web(웹)
+  - HTTP(HyperText Transfer Protocol)
+  - API(Application Programming Interface)
+  - Design-Pattern(디자인패턴)
   - Best-Practices
-  - Security
-  - 보안
-  - Graph
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Security(보안)
+  - Graph(그래프)
+  - Tutorial(튜토리얼)
+  - Code-Quality(코드품질)
   - .NET
-  - String
-  - SEO
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
+  - String(문자열)
+  - SEO(Search Engine Optimization)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
 ---
 `urllib.parse`는 **URL을 파싱하고 조립**하는 표준 라이브러리입니다. 쿼리 문자열 처리, URL 인코딩, 상대/절대 URL 변환 등 웹 프로그래밍에 필수적입니다.
 

@@ -7,57 +7,38 @@ categories:
 - "Algorithm"
 - "Graph"
 tags:
-- Algorithm
-- 알고리즘
-- BOJ
-- 백준
+- Algorithm(알고리즘)
+- BOJ(백준)
 - C++
-- Implementation
-- 구현
-- Time-Complexity
-- 시간복잡도
-- Space-Complexity
-- 공간복잡도
-- Edge-Cases
-- 엣지케이스
-- Pitfalls
-- 함정
-- Optimization
-- 최적화
-- Competitive-Programming
-- 경쟁프로그래밍
-- Editorial
-- 에디토리얼
-- Code-Review
-- 코드리뷰
-- Testing
-- 테스트
-- Complexity-Analysis
-- 복잡도분석
-- Graph
-- 그래프
+- Implementation(구현)
+- Time-Complexity(시간복잡도)
+- Space-Complexity(공간복잡도)
+- Edge-Cases(엣지케이스)
+- Pitfalls(함정)
+- Optimization(최적화)
+- Competitive-Programming(경쟁프로그래밍)
+- Editorial(에디토리얼)
+- Code-Review(코드리뷰)
+- Testing(테스트)
+- Complexity-Analysis(복잡도분석)
+- Graph(그래프)
 - Network-Flow
-- Matrix
-- 행렬
-- ICPC
-- Problem-Solving
-- Coding-Test
-- 코딩테스트
-- Data-Structures
-- 자료구조
-- 문제해결
-- Code-Quality
-- 코드품질
+- Matrix(행렬)
+- ICPC(International Collegiate Programming Contest)
+- Problem-Solving(문제해결)
+- Coding-Test(코딩테스트)
+- Data-Structures(자료구조)
+- Code-Quality(코드품질)
 - Go
 - .NET
 - Git
 - GitHub
-- BFS
-- DFS
-- Queue
-- String
-- Sci-Fi
-- Memory
+- BFS(Breadth-First Search)
+- DFS(Depth-First Search)
+- Queue(큐)
+- String(문자열)
+- Sci-Fi(Science Fiction)
+- Memory(메모리)
 image: "wordcloud.png"
 ---
 

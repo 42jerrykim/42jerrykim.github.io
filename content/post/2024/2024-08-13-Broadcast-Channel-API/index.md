@@ -10,80 +10,49 @@ image: "wordcloud.png"
 
 tags:
   - JavaScript
-  - Web
-  - Frontend
-  - 프론트엔드
-  - API
+  - Web(웹)
+  - Frontend(프론트엔드)
+  - API(Application Programming Interface)
   - React
-  - Performance
-  - 성능
-  - Implementation
-  - 구현
-  - Tutorial
-  - 튜토리얼
-  - Education
-  - 교육
-  - Technology
-  - 기술
-  - Open-Source
-  - 오픈소스
-  - Blog
-  - 블로그
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Performance(성능)
+  - Implementation(구현)
+  - Tutorial(튜토리얼)
+  - Education(교육)
+  - Technology(기술)
+  - Open-Source(오픈소스)
+  - Blog(블로그)
+  - Guide(가이드)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Security
-  - 보안
+  - Documentation(문서화)
+  - Security(보안)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
-  - 웹
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - 혁신
-  - Innovation
-  - Debugging
-  - 디버깅
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Innovation(혁신)
+  - Debugging(디버깅)
   - WebSocket
-  - HTTP
-  - JSON
-  - Networking
-  - 네트워킹
-  - Caching
-  - 캐싱
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
-  - Testing
-  - 테스트
+  - HTTP(HyperText Transfer Protocol)
+  - JSON(JavaScript Object Notation)
+  - Networking(네트워킹)
+  - Caching(캐싱)
+  - Concurrency(동시성)
+  - Async(비동기)
+  - Testing(테스트)
   - Beginner
   - Deep-Dive
   - Case-Study
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Windows
-  - 윈도우
+  - Software-Architecture(소프트웨어아키텍처)
+  - Windows(윈도우)
   - Event-Driven
-  - Code-Quality
-  - 코드품질
+  - Code-Quality(코드품질)
   - Maintainability
   - Browser
   - 브라우저

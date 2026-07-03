@@ -8,56 +8,35 @@ categories:
   - Algorithm
   - Greedy
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
+  - Algorithm(알고리즘)
+  - BOJ(백준)
   - C++
-  - Greedy
-  - Priority-Queue
-  - 우선순위큐
-  - Heap
-  - 힙
-  - Optimization
-  - 최적화
-  - Data-Structures
-  - 자료구조
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Edge-Cases
-  - 엣지케이스
-  - Competitive-Programming
-  - 경쟁프로그래밍
-  - Implementation
-  - 구현
-  - Dynamic-Programming
-  - 동적계획법
-  - Problem-Solving
-  - 문제해결
-  - Coding-Test
-  - 코딩테스트
-  - Code-Quality
-  - 코드품질
+  - Greedy(그리디)
+  - Priority-Queue(우선순위큐)
+  - Heap(힙)
+  - Optimization(최적화)
+  - Data-Structures(자료구조)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Edge-Cases(엣지케이스)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Implementation(구현)
+  - DP(동적계획법)
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Code-Quality(코드품질)
   - Go
   - .NET
-  - 그리디
-  - Stack
-  - Queue
-  - Memory
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Stack(스택)
+  - Queue(큐)
+  - Memory(메모리)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
 image: "wordcloud.png"
 ---
 

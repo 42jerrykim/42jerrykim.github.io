@@ -11,13 +11,12 @@ tags:
   - Object-Oriented-Design
   - OOA
   - OOD
-  - OOP
-  - 객체지향
+  - OOP(객체지향)
   - 객체지향-분석
   - 객체지향-설계
   - 소프트웨어-설계
   - 설계-원칙
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - Design-Patterns
   - SOLID
   - SRP
@@ -25,19 +24,13 @@ tags:
   - LSP
   - ISP
   - DIP
-  - 응집도
-  - 결합도
-  - Cohesion
-  - Coupling
-  - 캡슐화
-  - Encapsulation
-  - 추상화
-  - Abstraction
-  - 상속
-  - Inheritance
-  - 다형성
-  - Polymorphism
-  - UML
+  - Cohesion(응집도)
+  - Coupling(결합도)
+  - Encapsulation(캡슐화)
+  - Abstraction(추상화)
+  - Inheritance(상속)
+  - Polymorphism(다형성)
+  - UML(Unified Modeling Language)
   - Use-Case
   - 유스케이스
   - 도메인-모델
@@ -53,7 +46,7 @@ tags:
   - 아키텍처
   - System-Design
   - Layered-Architecture
-  - Clean-Architecture
+  - Clean-Architecture(클린아키텍처)
   - Hexagonal-Architecture
   - Ports-and-Adapters
   - DDD
@@ -61,9 +54,9 @@ tags:
   - Bounded-Context
   - Aggregate
   - Repository-Pattern
-  - CQRS
+  - CQRS(Command Query Responsibility Segregation)
   - Event-Driven-Architecture
-  - Microservices
+  - Microservices(마이크로서비스)
   - 레거시-현대화
   - Legacy-Modernization
 ---

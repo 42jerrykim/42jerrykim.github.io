@@ -7,58 +7,38 @@ draft: true
 categories:
   - AI
 tags:
-  - AI
-  - 인공지능
-  - LLM
-  - GPT
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
-  - NLP
-  - Data-Science
-  - 데이터사이언스
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
+  - AI(인공지능)
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
+  - NLP(Natural Language Processing)
+  - Data-Science(데이터사이언스)
+  - Prompt-Engineering(프롬프트엔지니어링)
   - ChatGPT
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Testing
-  - 테스트
-  - TDD
-  - CI-CD
+  - Software-Architecture(소프트웨어아키텍처)
+  - Testing(테스트)
+  - TDD(Test-Driven Development)
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - DevOps
   - GitHub
-  - Open-Source
-  - 오픈소스
+  - Open-Source(오픈소스)
   - Python
-  - 파이썬
   - Docker
-  - API
-  - REST
-  - Backend
-  - 백엔드
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
-  - Code-Quality
-  - 코드품질
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - Backend(백엔드)
+  - Implementation(구현)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Workflow
-  - 워크플로우
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Documentation(문서화)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Workflow(워크플로우)
+  - Technology(기술)
+  - Education(교육)
+  - Reference(참고)
   - How-To
   - Tips
   - Case-Study
@@ -66,26 +46,16 @@ tags:
   - 실습
   - Beginner
   - Advanced
-  - Innovation
-  - 혁신
-  - Productivity
-  - 생산성
-  - Troubleshooting
-  - 트러블슈팅
-  - Debugging
-  - 디버깅
-  - Security
-  - 보안
-  - Monitoring
-  - 모니터링
-  - Performance
-  - 성능
-  - Design-Pattern
-  - 디자인패턴
-  - Clean-Code
-  - 클린코드
-  - Automation
-  - 자동화
+  - Innovation(혁신)
+  - Productivity(생산성)
+  - Troubleshooting(트러블슈팅)
+  - Debugging(디버깅)
+  - Security(보안)
+  - Monitoring(모니터링)
+  - Performance(성능)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
+  - Automation(자동화)
 image: "wordcloud.png"
 slug: "ai-harness-engineering"
 ---

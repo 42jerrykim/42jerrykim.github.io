@@ -6,89 +6,56 @@ date: "2024-08-13T00:00:00Z"
 lastmod: "2026-03-17T00:00:00Z"
 header: null
 tags:
-  - Productivity
-  - 생산성
-  - Innovation
-  - 혁신
-  - Culture
-  - 문화
-  - Career
-  - 커리어
-  - Agile
-  - 애자일
+  - Productivity(생산성)
+  - Innovation(혁신)
+  - Culture(문화)
+  - Career(커리어)
+  - Agile(애자일)
   - Best-Practices
-  - History
-  - 역사
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Reference
-  - 참고
-  - Education
-  - 교육
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - History(역사)
+  - Technology(기술)
+  - Blog(블로그)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Reference(참고)
+  - Education(교육)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Performance
-  - 성능
-  - Software-Architecture
-  - Design-Pattern
-  - 디자인패턴
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - 코드품질
+  - Comparison(비교)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Performance(성능)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
   - Maintainability
   - Modularity
-  - Problem-Solving
-  - 문제해결
+  - Problem-Solving(문제해결)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Implementation
-  - 구현
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - 테스트
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - API
+  - Implementation(구현)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Web(웹)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
   - Team
   - 팀
-  - Leadership
   - 리더십
-  - Decision-Making
   - 의사결정
   - Collaboration
   - 협업
-  - Management
   - 경영
   - Organization
   - 조직
-  - Trust
   - 신뢰
-  - Communication
+  - 의사소통
   - 커뮤니케이션
   - Conflict-Resolution
   - 갈등해결

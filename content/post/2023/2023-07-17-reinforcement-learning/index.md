@@ -5,117 +5,70 @@ categories: Reinforcement Learning
 date: "2023-07-17T00:00:00Z"
 lastmod: "2026-03-17T00:00:00Z"
 tags:
-  - AI
-  - 인공지능
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
-  - Data-Science
-  - 데이터사이언스
+  - AI(인공지능)
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
+  - Data-Science(데이터사이언스)
   - Neural-Network
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Education
-  - 교육
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Education(교육)
   - Python
-  - 파이썬
-  - Gaming
-  - 게임
-  - Automation
-  - 자동화
-  - Innovation
-  - 혁신
+  - Gaming(게임)
+  - Automation(자동화)
+  - Innovation(혁신)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Comparison
-  - 비교
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Comparison(비교)
   - How-To
   - Tips
-  - Blog
-  - 블로그
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Optimization
-  - 최적화
-  - Simulation
-  - 시뮬레이션
+  - Blog(블로그)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Optimization(최적화)
+  - Simulation(시뮬레이션)
   - Case-Study
   - Deep-Dive
   - 실습
   - Beginner
   - Advanced
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - API
-  - Performance
-  - 성능
-  - Design-Pattern
-  - 디자인패턴
+  - Web(웹)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Performance(성능)
+  - Design-Pattern(디자인패턴)
   - Strategy
   - State
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Dynamic-Programming
-  - DP
-  - 동적계획법
-  - Graph
-  - 그래프
-  - Math
-  - 수학
-  - Review
-  - 리뷰
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - DP(동적계획법)
+  - Graph(그래프)
+  - Math(수학)
+  - Review(리뷰)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Configuration(설정)
   - DevOps
   - Git
   - GitHub
-  - NLP
+  - NLP(Natural Language Processing)
   - Computer-Vision
-  - Cloud
-  - 클라우드
-  - Security
-  - 보안
-  - Monitoring
-  - 모니터링
-  - Markdown
-  - 마크다운
-  - Cheatsheet
-  - 치트시트
+  - Cloud(클라우드)
+  - Security(보안)
+  - Monitoring(모니터링)
+  - Markdown(마크다운)
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Productivity
-  - 생산성
-  - Troubleshooting
-  - 트러블슈팅
-  - Code-Quality
-  - 코드품질
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
+  - Productivity(생산성)
+  - Troubleshooting(트러블슈팅)
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
 title: "[Reinforcement Learning] 강화 학습 이해와 실전 가이드"
 ---
 

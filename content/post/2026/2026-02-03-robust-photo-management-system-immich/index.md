@@ -9,94 +9,58 @@ categories:
   - Photography
   - Backup
 tags:
-  - Self-Hosted
-  - 셀프호스팅
+  - Self-Hosted(셀프호스팅)
   - Docker
   - PostgreSQL
-  - Database
-  - 데이터베이스
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Photography
-  - 사진
+  - Database(데이터베이스)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Photography(사진)
   - Git
   - GitHub
-  - Implementation
-  - 구현
-  - Open-Source
-  - 오픈소스
-  - Documentation
-  - 문서화
+  - Implementation(구현)
+  - Open-Source(오픈소스)
+  - Documentation(문서화)
   - Best-Practices
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
+  - Comparison(비교)
+  - Reference(참고)
   - File-System
-  - Networking
-  - 네트워킹
-  - API
-  - Security
-  - 보안
-  - Privacy
-  - 프라이버시
-  - Deployment
-  - 배포
+  - Networking(네트워킹)
+  - API(Application Programming Interface)
+  - Security(보안)
+  - Privacy(프라이버시)
+  - Deployment(배포)
   - DevOps
-  - Migration
-  - 마이그레이션
-  - Cloud
-  - 클라우드
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Innovation
-  - 혁신
-  - Markdown
-  - 마크다운
+  - Migration(마이그레이션)
+  - Cloud(클라우드)
+  - Productivity(생산성)
+  - Education(교육)
+  - Innovation(혁신)
+  - Markdown(마크다운)
   - Case-Study
   - Deep-Dive
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Performance
-  - 성능
+  - Software-Architecture(소프트웨어아키텍처)
+  - Performance(성능)
   - Maintainability
-  - Error-Handling
-  - 에러처리
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
+  - Error-Handling(에러처리)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
   - Beginner
   - Advanced
-  - Linux
-  - 리눅스
-  - Shell
-  - 셸
-  - IDE
+  - Linux(리눅스)
+  - Shell(셸)
+  - IDE(Integrated Development Environment)
   - VSCode
 image: "wordcloud.png"
 ---

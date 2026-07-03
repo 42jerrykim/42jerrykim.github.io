@@ -8,122 +8,76 @@ lastmod: "2026-03-16"
 header:
   teaser: /assets/images/undefined/800px-Qbittorrent_4.1.5.png
 tags:
-  - Windows
-  - 윈도우
-  - Linux
-  - 리눅스
-  - Self-Hosted
-  - 셀프호스팅
-  - Networking
-  - 네트워킹
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Open-Source
-  - 오픈소스
-  - Configuration
-  - 설정
+  - Windows(윈도우)
+  - Linux(리눅스)
+  - Self-Hosted(셀프호스팅)
+  - Networking(네트워킹)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Open-Source(오픈소스)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
+  - Comparison(비교)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Workflow
-  - 워크플로우
-  - Productivity
-  - 생산성
-  - Automation
-  - 자동화
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Mobile
-  - 모바일
-  - Cloud
-  - 클라우드
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Education
-  - 교육
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Deployment
-  - 배포
+  - Documentation(문서화)
+  - Workflow(워크플로우)
+  - Productivity(생산성)
+  - Automation(자동화)
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
+  - Cloud(클라우드)
+  - Web(웹)
+  - Blog(블로그)
+  - Education(교육)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Deployment(배포)
   - Beginner
-  - HTTP
-  - Security
-  - 보안
-  - Privacy
-  - 프라이버시
-  - Internet
-  - 인터넷
-  - Performance
-  - 성능
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
-  - Logging
-  - 로깅
-  - Monitoring
-  - 모니터링
+  - HTTP(HyperText Transfer Protocol)
+  - Security(보안)
+  - Privacy(프라이버시)
+  - Internet(인터넷)
+  - Performance(성능)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
+  - Logging(로깅)
+  - Monitoring(모니터링)
   - DevOps
-  - Backend
-  - 백엔드
-  - Frontend
-  - 프론트엔드
-  - Async
-  - 비동기
+  - Backend(백엔드)
+  - Frontend(프론트엔드)
+  - Async(비동기)
   - File-System
-  - Innovation
-  - 혁신
-  - Career
-  - 커리어
-  - Cheatsheet
-  - 치트시트
+  - Innovation(혁신)
+  - Career(커리어)
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - Case-Study
   - Deep-Dive
   - 실습
-  - Gadget
-  - 가젯
-  - Terminal
-  - 터미널
+  - Gadget(가젯)
+  - Terminal(터미널)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Docker
   - macOS
-  - JSON
-  - XML
-  - YAML
-  - API
-  - REST
-  - Scalability
-  - 확장성
+  - JSON(JavaScript Object Notation)
+  - XML(eXtensible Markup Language)
+  - YAML(YAML Ain't Markup Language)
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - Scalability(확장성)
   - Maintainability
   - Readability
-  - Code-Quality
-  - 코드품질
+  - Code-Quality(코드품질)
 image: "wordcloud.png"
 ---
 

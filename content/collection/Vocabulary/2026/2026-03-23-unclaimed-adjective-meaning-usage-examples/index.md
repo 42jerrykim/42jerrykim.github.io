@@ -13,26 +13,16 @@ tags:
   - 영단어
   - 영어형용사
   - unclaimed
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - 비즈니스영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
   - Legal-English
-  - 법률영어
   - airport English
   - 공항 영어
   - baggage
@@ -43,8 +33,7 @@ tags:
   - 자금
   - estate
   - 유산
-  - Inheritance
-  - 상속
+  - Inheritance(상속)
   - bank account
   - 은행 계좌
   - official language
@@ -60,15 +49,13 @@ tags:
   - remain unclaimed
   - 미인도
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English
-  - Education
-  - 교육
-  - Reference
-  - Tutorial
+  - Education(교육)
+  - Reference(참고)
+  - Tutorial(튜토리얼)
   - Tips
   - How-To
   - prefix un

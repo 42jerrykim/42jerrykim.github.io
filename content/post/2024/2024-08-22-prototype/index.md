@@ -6,96 +6,59 @@ description: "프로토타입(Prototype) 디자인 패턴의 의도·구조·구
 header:
   teaser: /assets/images/2024/2024-08-22-prototype.png
 tags:
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - Creational-Pattern
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Inheritance
-  - 상속
-  - Abstraction
-  - 추상화
-  - Composition
-  - 합성
-  - GoF
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Inheritance(상속)
+  - Abstraction(추상화)
+  - Composition(합성)
+  - GoF(Gang of Four)
   - Java
   - CSharp
   - C++
   - Builder
   - Singleton
-  - UML
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - UML(Unified Modeling Language)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Performance
-  - 성능
-  - Memory
-  - 메모리
-  - Documentation
-  - 문서화
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Performance(성능)
+  - Memory(메모리)
+  - Documentation(문서화)
   - .NET
-  - Backend
-  - 백엔드
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Graph
-  - 그래프
-  - Tree
-  - 트리
-  - Gaming
-  - 게임
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Comparison
-  - 비교
+  - Backend(백엔드)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Education(교육)
+  - Reference(참고)
+  - Technology(기술)
+  - Blog(블로그)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Graph(그래프)
+  - Tree(트리)
+  - Gaming(게임)
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Comparison(비교)
   - Beginner
   - Deep-Dive
   - Case-Study
   - Factory
-  - Caching
-  - 캐싱
+  - Caching(캐싱)
   - Modularity
   - Maintainability
-  - Testing
-  - 테스트
-  - Configuration
-  - 설정
-  - Data-Structures
-  - 자료구조
+  - Testing(테스트)
+  - Configuration(설정)
+  - Data-Structures(자료구조)
   - Clone
   - 복제
 title: "[DesignPattern] 프로토타입 패턴"

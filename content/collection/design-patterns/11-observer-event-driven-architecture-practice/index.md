@@ -13,15 +13,12 @@ categories:
 - Practice
 - Reactive Systems
 tags:
-- Performance
-- Software-Architecture
-- Design-Pattern
-- GoF
-- Tutorial
-- Implementation
-- 디자인패턴
-- 구현
-- 소프트웨어아키텍처
+- Performance(성능)
+- Software-Architecture(소프트웨어아키텍처)
+- Design-Pattern(디자인패턴)
+- GoF(Gang of Four)
+- Tutorial(튜토리얼)
+- Implementation(구현)
 ---
 
 이 실습에서는 Observer 패턴을 활용하여 주식 시세 모니터링, 센서 알림 시스템 등 이벤트 주도 아키텍처를 구현합니다.

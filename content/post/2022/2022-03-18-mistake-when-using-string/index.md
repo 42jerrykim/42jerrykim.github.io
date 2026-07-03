@@ -8,95 +8,56 @@ header:
 tags:
   - CSharp
   - .NET
-  - Implementation
-  - 구현
-  - String
-  - 문자열
+  - Implementation(구현)
+  - String(문자열)
   - Builder
-  - Design-Pattern
-  - 디자인패턴
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Design-Pattern(디자인패턴)
+  - Blog(블로그)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Troubleshooting
-  - 트러블슈팅
+  - Documentation(문서화)
+  - Troubleshooting(트러블슈팅)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Memory
-  - 메모리
-  - Pitfalls
-  - 함정
-  - Code-Quality
-  - 코드품질
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - OOP
-  - 객체지향
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Education
-  - 교육
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Configuration
-  - 설정
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Data-Structures
-  - 자료구조
-  - Profiling
-  - 프로파일링
+  - Comparison(비교)
+  - Reference(참고)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Memory(메모리)
+  - Pitfalls(함정)
+  - Code-Quality(코드품질)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - OOP(객체지향)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Education(교육)
+  - Web(웹)
+  - Backend(백엔드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Configuration(설정)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Data-Structures(자료구조)
+  - Profiling(프로파일링)
   - Benchmark
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
   - Case-Study
   - Deep-Dive
   - 실습
   - Beginner
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Software-Architecture(소프트웨어아키텍처)
   - Creational-Pattern
   - Go
-  - Stack
-  - 스택
+  - Stack(스택)
 title: "[C#] string 반복 연결 시 흔한 실수와 StringBuilder 사용법"
 draft: false
 ---

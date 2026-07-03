@@ -12,26 +12,16 @@ tags:
   - 영단어
   - 영어동사
   - Ghost-Write
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
   - ghostwriter
   - write
   - author
@@ -46,28 +36,25 @@ tags:
   - speech
   - article
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English
   - publishing
   - 출판
-  - Media
   - 미디어
-  - Politics
   - 정치
   - celebrity
   - 유명인
   - autobiography
-  - Reference
-  - Comparison
-  - Tutorial
+  - Reference(참고)
+  - Comparison(비교)
+  - Tutorial(튜토리얼)
   - Tips
   - How-To
-  - TOEFL
-  - IELTS
-  - GRE
+  - TOEFL(Test of English as a Foreign Language)
+  - IELTS(International English Language Testing System)
+  - GRE(Graduate Record Examination)
   - ghostwriting
   - 대리 집필
   - 집필

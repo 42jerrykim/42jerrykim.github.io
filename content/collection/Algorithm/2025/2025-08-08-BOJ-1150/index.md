@@ -6,56 +6,35 @@ categories:
 - Data Structures
 description: "BOJ 1150번 백업 문제다. N개 지점에서 K개 케이블을 선택해 총 길이를 최소화하는 greedy 알고리즘이다. 우선순위 큐와 이중연결리스트로 인접한 케이블 쌍을 효율적으로 관리하며, 선택 시 겹치지 않게 처리한다. O((N+K)logN) 시간복잡도로 해결한다."
 tags:
-  - Algorithm
-  - 알고리즘
-  - Data-Structures
-  - 자료구조
-  - Greedy
-  - 그리디
-  - String
-  - Priority-Queue
-  - 우선순위큐
-  - Graph-Theory
-  - 그래프이론
-  - Optimization
-  - 최적화
-  - Dynamic-Programming
-  - 동적계획법
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - BOJ
-  - 백준
+  - Algorithm(알고리즘)
+  - Data-Structures(자료구조)
+  - Greedy(그리디)
+  - String(문자열)
+  - Priority-Queue(우선순위큐)
+  - Graph-Theory(그래프이론)
+  - Optimization(최적화)
+  - DP(동적계획법)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - BOJ(백준)
   - C++
-  - Implementation
-  - 구현
-  - Competitive-Programming
-  - 경쟁프로그래밍
-  - Networking
-  - Shortest-Path
-  - Problem-Solving
-  - Coding-Test
-  - 코딩테스트
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Implementation(구현)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Networking(네트워킹)
+  - Shortest-Path(최단경로)
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Code-Quality(코드품질)
   - Go
   - .NET
-  - Graph
-  - 그래프
-  - Queue
-  - Edge-Cases
-  - 엣지케이스
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Graph(그래프)
+  - Queue(큐)
+  - Edge-Cases(엣지케이스)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
 date: 2025-08-08
 lastmod: 2025-08-08
 image: "wordcloud.png"

@@ -7,82 +7,50 @@ categories:
   - Algorithm
   - Math
 tags:
-  - Algorithm
-  - 알고리즘
-  - Math
-  - 수학
+  - Algorithm(알고리즘)
+  - Math(수학)
   - Geometry
-  - 기하학
   - Computational-Geometry
   - Range-Query
-  - Problem-Solving
-  - 문제해결
-  - Coding-Test
-  - 코딩테스트
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
   - Python
-  - 파이썬
   - C++
   - JavaScript
   - TypeScript
   - Go
-  - Implementation
-  - 구현
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Optimization
-  - 최적화
-  - Edge-Cases
-  - 엣지케이스
+  - Implementation(구현)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Optimization(최적화)
+  - Edge-Cases(엣지케이스)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
-  - Performance
-  - 성능
-  - Documentation
-  - 문서화
-  - Concurrency
-  - 동시성
-  - Guide
-  - 가이드
-  - Tutorial
-  - Reference
-  - 참고
+  - Pitfalls(함정)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
+  - Performance(성능)
+  - Documentation(문서화)
+  - Concurrency(동시성)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
   - How-To
   - Tips
-  - Web
-  - 웹
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Open-Source
-  - 오픈소스
-  - Clean-Code
-  - 클린코드
-  - Error-Handling
-  - 에러처리
-  - Complexity-Analysis
-  - 복잡도분석
+  - Web(웹)
+  - Technology(기술)
+  - Education(교육)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Open-Source(오픈소스)
+  - Clean-Code(클린코드)
+  - Error-Handling(에러처리)
+  - Complexity-Analysis(복잡도분석)
   - Sweep-Line
-  - Data-Structures
-  - 자료구조
-  - Sorting
-  - 정렬
-  - Divide-and-Conquer
-  - 분할정복
-  - Comparison
+  - Data-Structures(자료구조)
+  - Sorting(정렬)
+  - Divide-and-Conquer(분할정복)
+  - Comparison(비교)
   - Beginner
   - Advanced
   - Case-Study

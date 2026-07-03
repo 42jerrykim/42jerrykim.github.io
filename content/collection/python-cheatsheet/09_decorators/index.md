@@ -8,55 +8,33 @@ lastmod: 2026-01-18
 collection_order: 9
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - Decorator
-  - Implementation
-  - 문법
-  - Logging
-  - 로깅
-  - Caching
-  - 캐싱
-  - Testing
-  - Authentication
-  - 인증
+  - Implementation(구현)
+  - Grammar(문법)
+  - Logging(로깅)
+  - Caching(캐싱)
+  - Testing(테스트)
+  - Authentication(인증)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Debugging
-  - 디버깅
-  - Design-Pattern
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - API
-  - War
-  - 전쟁
-  - Error-Handling
-  - 에러처리
-  - Documentation
-  - 문서화
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Pitfalls(함정)
+  - Debugging(디버깅)
+  - Design-Pattern(디자인패턴)
+  - Tutorial(튜토리얼)
+  - Code-Quality(코드품질)
+  - API(Application Programming Interface)
+  - War(전쟁)
+  - Error-Handling(에러처리)
+  - Documentation(문서화)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
 ---
 데코레이터는 함수나 클래스를 감싸서 동작을 확장하는 파이썬의 강력한 패턴입니다. 이 치트시트는 함수 데코레이터 기본, @wraps, 인자 있는 데코레이터, 실무 패턴을 정리합니다.
 

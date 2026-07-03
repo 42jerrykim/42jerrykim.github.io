@@ -7,113 +7,68 @@ categories:
   - Tablet
 tags:
   - Tablet
-  - 태블릿
-  - Review
-  - 리뷰
-  - Hardware
-  - 하드웨어
-  - Windows
-  - 윈도우
-  - Technology
-  - 기술
-  - Productivity
-  - 생산성
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
-  - Education
-  - 교육
-  - Gaming
-  - 게임
-  - Mobile
-  - 모바일
-  - Gadget
-  - 가젯
-  - Performance
-  - 성능
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
+  - Review(리뷰)
+  - Hardware(하드웨어)
+  - Windows(윈도우)
+  - Technology(기술)
+  - Productivity(생산성)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
+  - Comparison(비교)
+  - Education(교육)
+  - Gaming(게임)
+  - Mobile(모바일)
+  - Gadget(가젯)
+  - Performance(성능)
+  - Configuration(설정)
+  - Workflow(워크플로우)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
   - How-To
   - Tips
-  - Career
-  - 커리어
-  - Web
-  - 웹
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Clean-Code
-  - 클린코드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Monitoring
-  - 모니터링
+  - Career(커리어)
+  - Web(웹)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Clean-Code(클린코드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Monitoring(모니터링)
   - DevOps
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Terminal
-  - 터미널
+  - Terminal(터미널)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Keyboard
-  - 키보드
-  - Design-Pattern
-  - Code-Quality
-  - 코드품질
-  - Optimization
-  - 최적화
-  - Error-Handling
-  - 에러처리
-  - Refactoring
-  - 리팩토링
+  - Keyboard(키보드)
+  - Design-Pattern(디자인패턴)
+  - Code-Quality(코드품질)
+  - Optimization(최적화)
+  - Error-Handling(에러처리)
+  - Refactoring(리팩토링)
   - Maintainability
   - Readability
   - Modularity
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Cloud
-  - 클라우드
-  - API
-  - Database
-  - 데이터베이스
-  - Privacy
-  - 프라이버시
-  - Migration
-  - 마이그레이션
-  - Brand
-  - 브랜드
+  - Software-Architecture(소프트웨어아키텍처)
+  - Cloud(클라우드)
+  - API(Application Programming Interface)
+  - Database(데이터베이스)
+  - Privacy(프라이버시)
+  - Migration(마이그레이션)
+  - Brand(브랜드)
 description: "CHUWI Hi10 Max는 Windows 11 탑재 2-in-1 태블릿으로, 10.1인치 2K IPS·Intel N100·12GB RAM·256GB SSD를 갖췄다. 7.9mm·560g으로 휴대성이 좋고, 키보드·스타일러스 지원으로 업무·교육·엔터테인먼트에 활용 가능하며, 본문에서 스펙·활용 시나리오·장단점을 정리했다."
 image: p_3-new.webp
 draft: false

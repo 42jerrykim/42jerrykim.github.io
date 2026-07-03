@@ -8,55 +8,36 @@ lastmod: 2026-01-18
 collection_order: 34
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Debugging
-  - 디버깅
-  - Logging
-  - 로깅
-  - 자료구조
-  - Data-Structures
-  - JSON
-  - Implementation
-  - Graph
-  - Design-Pattern
+  - Debugging(디버깅)
+  - Logging(로깅)
+  - Data-Structures(자료구조)
+  - JSON(JavaScript Object Notation)
+  - Implementation(구현)
+  - Graph(그래프)
+  - Design-Pattern(디자인패턴)
   - Best-Practices
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Tutorial(튜토리얼)
+  - Code-Quality(코드품질)
   - JavaScript
-  - SQL
-  - API
-  - Sorting
-  - String
-  - SEO
-  - Web
-  - Error-Handling
-  - 에러처리
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - SQL(Structured Query Language)
+  - API(Application Programming Interface)
+  - Sorting(정렬)
+  - String(문자열)
+  - SEO(Search Engine Optimization)
+  - Web(웹)
+  - Error-Handling(에러처리)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
 ---
 `pprint`는 복잡한 자료구조를 **들여쓰기와 줄바꿈으로 읽기 좋게** 출력합니다. `reprlib`는 긴 객체를 **적절한 길이로 요약**합니다. 디버깅과 로깅에 유용합니다.
 

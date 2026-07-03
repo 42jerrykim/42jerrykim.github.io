@@ -12,10 +12,9 @@ categories:
 - Language Processing
 - Communication Patterns
 tags:
-- Design-Pattern
-- GoF
-- Software-Architecture
-- 디자인패턴
+- Design-Pattern(디자인패턴)
+- GoF(Gang of Four)
+- Software-Architecture(소프트웨어아키텍처)
 ---
 
 Interpreter와 Mediator 패턴을 통해 언어 처리와 객체 관계 관리를 탐구합니다. DSL 구현과 복잡한 상호작용의 중앙 집중화 방법을 학습합니다.

@@ -14,23 +14,17 @@ tags:
   - soft spot
   - soft spot phrase
   - have a soft spot for
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
   - Idiom
   - 관용어
   - Phrase
   - 구어
-  - 일상표현
-  - Daily-Life
+  - Daily-Life(일상표현)
   - EN-KR-Examples
-  - Context
-  - 맥락
+  - Context(맥락)
   - affection
   - 애착
   - 애정
@@ -54,7 +48,6 @@ tags:
   - 신체
   - fontanelle
   - 숫구멍
-  - Sports
   - 스포츠
   - defense
   - 수비

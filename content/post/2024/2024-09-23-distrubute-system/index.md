@@ -9,103 +9,64 @@ header:
   teaser: /assets/images/2024/2024-09-23-distrubute-system.png
 title: "[Distributed Systems] 분산 시스템 패턴과 아키텍처 가이드"
 tags:
-  - Microservices
-  - 마이크로서비스
-  - Scalability
-  - 확장성
-  - Caching
-  - 캐싱
-  - CQRS
-  - Design-Pattern
-  - 디자인패턴
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Performance
-  - 성능
-  - Data-Structures
-  - 자료구조
-  - Algorithm
-  - 알고리즘
-  - Monitoring
-  - 모니터링
-  - Logging
-  - 로깅
-  - Error-Handling
-  - 에러처리
-  - Implementation
-  - 구현
+  - Microservices(마이크로서비스)
+  - Scalability(확장성)
+  - Caching(캐싱)
+  - CQRS(Command Query Responsibility Segregation)
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Performance(성능)
+  - Data-Structures(자료구조)
+  - Algorithm(알고리즘)
+  - Monitoring(모니터링)
+  - Logging(로깅)
+  - Error-Handling(에러처리)
+  - Implementation(구현)
   - Best-Practices
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
   - Go
-  - SQL
-  - Stack
-  - 스택
-  - Security
-  - 보안
-  - Concurrency
-  - 동시성
+  - SQL(Structured Query Language)
+  - Stack(스택)
+  - Security(보안)
+  - Concurrency(동시성)
   - Command
   - Docker
   - Kubernetes
-  - Backend
-  - 백엔드
+  - Backend(백엔드)
   - Load-Balancing
-  - Networking
-  - 네트워킹
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Database
-  - 데이터베이스
+  - Networking(네트워킹)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Database(데이터베이스)
   - Message-Queue
   - Kafka
   - Event-Driven
   - DevOps
-  - Deployment
-  - 배포
-  - Code-Quality
-  - 코드품질
-  - Clean-Architecture
-  - 클린아키텍처
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
+  - Deployment(배포)
+  - Code-Quality(코드품질)
+  - Clean-Architecture(클린아키텍처)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Cloud
-  - 클라우드
-  - API
-  - REST
-  - Async
-  - 비동기
+  - Cloud(클라우드)
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - Async(비동기)
   - Latency
   - Throughput
-  - Problem-Solving
-  - 문제해결
+  - Problem-Solving(문제해결)
 ---
 
 분산 시스템은 여러 컴퓨터나 장치에 걸쳐 다양한 구성 요소가 분산되어 있는 컴퓨팅 환경을 의미한다. 이러한 시스템은 데이터 저장, 메시징, 시스템 관리 및 컴퓨팅 기능을 처리하는 핵심 소프트웨어를 포함하고 있으며, 여러 복사본의 데이터를 동기화해야 하는 도전 과제를 안고 있다. 그러나 처리 노드가 신뢰할 수 없고 네트워크 지연이 발생할 수 있기 때문에 일관성을 유지하는 것이 어렵다. 이러한 문제를 해결하기 위해 다양한 패턴이 개발되었으며, 이들은 공통적인 문제를 해결하기 위해 유사한 솔루션을 제공한다. 2020년부터 이러한 패턴을 수집하여 이 사이트에 게시하였고, 2023년에는 "Patterns of Distributed Systems"라는 책으로 출판되었다. 이 책에서는 각 패턴에 대한 간략한 요약과 함께 관련 장으로의 깊은 링크를 제공하고 있다. 분산 시스템의 설계 및 구현에 있어 이러한 패턴을 이해하고 활용하는 것은 시스템의 효율성과 안정성을 높이는 데 큰 도움이 된다.

@@ -9,16 +9,12 @@ image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design-Pattern
-  - 디자인패턴
-  - GoF
-  - Software-Architecture
-  - 재귀
-  - Code-Quality
-  - 코드품질
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
+  - Design-Pattern(디자인패턴)
+  - GoF(Gang of Four)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Recursion(재귀)
+  - Code-Quality(코드품질)
+  - OOP(객체지향)
   - Java
   - C++
   - Python
@@ -26,39 +22,25 @@ tags:
   - Iterator
   - Git
   - GitHub
-  - Implementation
-  - 구현
-  - Tree
-  - Recursion
-  - Windows
+  - Implementation(구현)
+  - Tree(트리)
+  - Windows(윈도우)
   - File-System
-  - Linux
+  - Linux(리눅스)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Documentation
-  - 문서화
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Documentation(문서화)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
   - SOLID
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Composition
-  - 합성
-  - Dependency-Injection
-  - 의존성주입
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Education
-  - 교육
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Composition(합성)
+  - Dependency-Injection(의존성주입)
+  - Testing(테스트)
+  - Performance(성능)
+  - Education(교육)
 ---
 
 컴포지트 패턴(Composite Pattern)은 객체들을 트리 구조로 구성하여 부분-전체 계층을 표현하는 구조적 디자인 패턴이다. 이 패턴을 사용하면 클라이언트가 단일 객체(Leaf)와 복합 객체(Composite)를 동일하게 다룰 수 있어, 재귀적 구조를 단순하고 일관되게 처리할 수 있다.

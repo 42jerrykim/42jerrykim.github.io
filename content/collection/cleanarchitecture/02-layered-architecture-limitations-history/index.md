@@ -7,17 +7,14 @@ title: "[Clean Architecture] 02. 계층형 아키텍처의 역사와 한계"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
+  - Clean-Architecture(클린아키텍처)
   - SOLID
-  - Software-Architecture
-  - 결합도
-  - Dependency-Injection
-  - Testing
-  - Code-Quality
-  - 코드품질
-  - 소프트웨어아키텍처
-  - Design-Pattern
+  - Software-Architecture(소프트웨어아키텍처)
+  - Coupling(결합도)
+  - Dependency-Injection(의존성주입)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
+  - Design-Pattern(디자인패턴)
 ---
 
 계층형 아키텍처는 수십 년간 소프트웨어 개발의 표준으로 자리 잡았다. 대부분의 엔터프라이즈 애플리케이션이 이 구조를 따랐고, 많은 프레임워크들이 이 패턴을 기본으로 제공했다. 그러나 이 검증된 패턴에도 근본적인 한계가 있었고, 이 한계를 극복하기 위해 새로운 아키텍처 패턴들이 등장하게 되었다.

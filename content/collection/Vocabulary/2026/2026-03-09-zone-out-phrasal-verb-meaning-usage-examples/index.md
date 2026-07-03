@@ -12,30 +12,18 @@ tags:
   - 영단어
   - zone out
   - Phrasal-Verb
-  - 구동사
   - 영어동사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Academic-English
-  - 학술영어
-  - Psychology
-  - 심리학
-  - Education
-  - 교육
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Academic-English(학술영어)
+  - Psychology(심리학)
+  - Education(교육)
   - daydream
   - space out
   - tune out
@@ -48,15 +36,14 @@ tags:
   - attention
   - concentration
   - focus
-  - Tutorial
-  - Reference
-  - Comparison
-  - Context
-  - 맥락
+  - Tutorial(튜토리얼)
+  - Reference(참고)
+  - Comparison(비교)
+  - Context(맥락)
   - Usage-Notes
   - EN-KR-Examples
-  - TOEFL
-  - IELTS
+  - TOEFL(Test of English as a Foreign Language)
+  - IELTS(International English Language Testing System)
   - Beginner
   - Vocabulary-Building
   - Study-English
@@ -76,8 +63,8 @@ tags:
   - attention span
   - 집중력
   - 명상
-  - Technology
-  - Guide
+  - Technology(기술)
+  - Guide(가이드)
   - Tips
   - How-To
 image: wordcloud.png

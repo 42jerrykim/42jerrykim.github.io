@@ -10,96 +10,56 @@ categories:
   - Programming
 tags:
   - Python
-  - 파이썬
-  - OOP
-  - 객체지향
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Inheritance
-  - 상속
-  - Abstraction
-  - 추상화
-  - Design-Pattern
-  - 디자인패턴
+  - OOP(객체지향)
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Inheritance(상속)
+  - Abstraction(추상화)
+  - Design-Pattern(디자인패턴)
   - SOLID
-  - Clean-Code
-  - 클린코드
+  - Clean-Code(클린코드)
   - Best-Practices
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Implementation
-  - 구현
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Code-Quality
-  - 코드품질
-  - Refactoring
-  - 리팩토링
-  - Composition
-  - 합성
-  - Interface
-  - 인터페이스
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
+  - Software-Architecture(소프트웨어아키텍처)
+  - Implementation(구현)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
+  - Composition(합성)
+  - Interface(인터페이스)
+  - Documentation(문서화)
+  - Testing(테스트)
   - Beginner
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Education(교육)
+  - Reference(참고)
   - How-To
   - Tips
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Open-Source
-  - 오픈소스
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
+  - Blog(블로그)
+  - Technology(기술)
+  - Open-Source(오픈소스)
+  - Web(웹)
+  - Backend(백엔드)
   - Maintainability
   - Modularity
-  - Error-Handling
-  - 에러처리
+  - Error-Handling(에러처리)
   - Factory
   - Singleton
   - Creational-Pattern
   - Behavioral-Pattern
-  - Clean-Architecture
-  - 클린아키텍처
-  - Dependency-Injection
-  - 의존성주입
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
-  - Agile
-  - 애자일
-  - Career
-  - 커리어
-  - Productivity
-  - 생산성
-  - Comparison
-  - 비교
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
+  - Clean-Architecture(클린아키텍처)
+  - Dependency-Injection(의존성주입)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Agile(애자일)
+  - Career(커리어)
+  - Productivity(생산성)
+  - Comparison(비교)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Workflow(워크플로우)
   - Deep-Dive
   - 실습
 image: "wordcloud.png"

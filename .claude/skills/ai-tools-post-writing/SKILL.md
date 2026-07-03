@@ -36,7 +36,7 @@ date: YYYY-MM-DDTHH:MM:SS+09:00
 lastmod: YYYY-MM-DD
 categories:
   - AI
-tags:  # 50개 이상, 영어+한글 쌍
+tags:  # 25개 이상, 영/한 병용 개념은 Tag(태그) 형식
   - AI
   - 인공지능
 image: "image.png"
@@ -62,13 +62,13 @@ image: "image.png"
 
 ## 5. 태그 전략
 
-`data/tags.yaml`의 `ai_and_data`, `devops_and_tools`, `general_topics` 카테고리에서 50개 이상 선정. 도구명(Claude Code, ChatGPT, Cursor)과 개념(Prompt-Engineering/프롬프트엔지니어링, Automation/자동화)을 영어+한글 쌍으로 채운다.
+`data/tags.yaml`의 `ai_and_data`, `devops_and_tools`, `general_topics` 카테고리에서 25개 이상 선정. 도구명(Claude Code, ChatGPT, Cursor)과 병기 승인 태그(Prompt-Engineering(프롬프트엔지니어링), Automation(자동화))로 채운다.
 
 ## 6. 작성 체크리스트
 
 - [ ] 경로가 `content/post/<연도>/YYYY-MM-DD-<슬러그>/index.md`인가?
 - [ ] title 70자 이내, description 150자 내외인가?
-- [ ] tags 50개 이상(영어+한글)인가?
+- [ ] tags 25개 이상(`data/tags.yaml` 승인 태그, 병용 개념은 Tag(태그) 형식)인가?
 - [ ] `draft: true`(신규 글), date/lastmod가 오늘 날짜인가?
 - [ ] "개요 → 아키텍처 → 기능 상세 → 적용 시나리오/판단 기준 → 장단점" 구조를 따랐는가?
 - [ ] **판단 기준**(언제 적합/부적합)과 **한계·리스크**를 반드시 다뤘는가? (무조건 추천 금지)

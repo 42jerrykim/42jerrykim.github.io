@@ -10,96 +10,63 @@ header:
   teaser: /assets/images/2024/2024-09-10-Shell-Redirection.png
 tags:
   - Bash
-  - Shell
-  - 셸
-  - Linux
-  - 리눅스
-  - Terminal
-  - 터미널
-  - IO
+  - Shell(셸)
+  - Linux(리눅스)
+  - Terminal(터미널)
+  - IO(Input/Output)
   - File-System
   - Process
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Reference
-  - 참고
-  - Error-Handling
-  - 에러처리
-  - Troubleshooting
-  - 트러블슈팅
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
-  - Documentation
-  - 문서화
-  - Workflow
-  - 워크플로우
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
+  - Error-Handling(에러처리)
+  - Troubleshooting(트러블슈팅)
+  - Automation(자동화)
+  - Deployment(배포)
+  - Documentation(문서화)
+  - Workflow(워크플로우)
   - Best-Practices
   - Quick-Reference
-  - Productivity
-  - 생산성
+  - Productivity(생산성)
   - Command
-  - String
-  - Sorting
-  - Implementation
-  - Debugging
-  - 디버깅
-  - Logging
-  - 로깅
+  - String(문자열)
+  - Sorting(정렬)
+  - Implementation(구현)
+  - Debugging(디버깅)
+  - Logging(로깅)
   - DevOps
-  - Configuration
-  - 설정
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
+  - Comparison(비교)
+  - Technology(기술)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Blog(블로그)
+  - Markdown(마크다운)
   - Beginner
   - Case-Study
   - Deep-Dive
   - 실습
-  - Data-Structures
-  - 자료구조
-  - Performance
-  - 성능
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
-  - Clean-Code
-  - 클린코드
+  - Data-Structures(자료구조)
+  - Performance(성능)
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
+  - Clean-Code(클린코드)
   - Readability
   - Maintainability
-  - Interface
-  - 인터페이스
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - API
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
+  - Interface(인터페이스)
+  - Web(웹)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Networking(네트워킹)
+  - Security(보안)
   - C
   - Script
   - 스크립트
   - Text-Processing
   - 텍스트처리
   - Pipeline
-  - 파이프라인
   - Stdin
   - Stdout
   - Stderr

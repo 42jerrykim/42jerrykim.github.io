@@ -8,105 +8,64 @@ categories:
   - "연구 분석"
   - "트렌드"
 tags:
-  - AI
-  - 인공지능
-  - LLM
+  - AI(인공지능)
+  - LLM(Large Language Model)
   - ChatGPT
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
-  - Machine-Learning
-  - 머신러닝
-  - Data-Science
-  - 데이터사이언스
-  - NLP
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Career
-  - 커리어
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - API
-  - REST
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
-  - Reference
-  - 참고
+  - Prompt-Engineering(프롬프트엔지니어링)
+  - Machine-Learning(머신러닝)
+  - Data-Science(데이터사이언스)
+  - NLP(Natural Language Processing)
+  - Productivity(생산성)
+  - Education(교육)
+  - Career(커리어)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - Markdown(마크다운)
+  - Review(리뷰)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Workflow
-  - 워크플로우
+  - Comparison(비교)
+  - Workflow(워크플로우)
   - Git
   - GitHub
-  - Windows
-  - Design-Pattern
-  - 디자인패턴
-  - SEO
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Agile
-  - 애자일
-  - Science
-  - 과학
-  - Psychology
-  - 심리학
+  - Windows(윈도우)
+  - Design-Pattern(디자인패턴)
+  - SEO(Search Engine Optimization)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Agile(애자일)
+  - Science(과학)
+  - Psychology(심리학)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - 코드품질
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
-  - Performance
-  - 성능
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Problem-Solving
-  - 문제해결
-  - Interface
-  - 인터페이스
-  - Migration
-  - 마이그레이션
-  - History
-  - 역사
-  - Culture
-  - 문화
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Implementation(구현)
+  - Optimization(최적화)
+  - Performance(성능)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Problem-Solving(문제해결)
+  - Interface(인터페이스)
+  - Migration(마이그레이션)
+  - History(역사)
+  - Culture(문화)
 image: "wordcloud.png"
 draft: false
 ---

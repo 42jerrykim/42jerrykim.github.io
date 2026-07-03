@@ -5,104 +5,63 @@ lastmod: 2026-03-17
 categories:
   - Security
 tags:
-  - Security
-  - 보안
+  - Security(보안)
   - Best-Practices
-  - Authentication
-  - 인증
-  - Privacy
-  - 프라이버시
+  - Authentication(인증)
+  - Privacy(프라이버시)
   - Go
-  - Algorithm
-  - 알고리즘
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Code-Review
-  - 코드리뷰
-  - Pitfalls
-  - 함정
-  - Error-Handling
-  - 에러처리
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - API
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Documentation
-  - 문서화
-  - Reference
-  - 참고
+  - Algorithm(알고리즘)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Code-Review(코드리뷰)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Web(웹)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Documentation(문서화)
+  - Reference(참고)
   - Case-Study
   - Deep-Dive
-  - Problem-Solving
-  - 문제해결
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - 코드품질
+  - Problem-Solving(문제해결)
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
   - DevOps
   - Git
   - GitHub
-  - Linux
-  - 리눅스
+  - Linux(리눅스)
   - Docker
-  - Deployment
-  - 배포
-  - Networking
-  - 네트워킹
-  - Database
-  - 데이터베이스
-  - Open-Source
-  - 오픈소스
-  - Education
-  - 교육
-  - Technology
-  - 기술
+  - Deployment(배포)
+  - Networking(네트워킹)
+  - Database(데이터베이스)
+  - Open-Source(오픈소스)
+  - Education(교육)
+  - Technology(기술)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
-  - Career
-  - 커리어
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Hashing
-  - 해싱
-  - Performance
-  - 성능
-  - Edge-Cases
-  - 엣지케이스
+  - Comparison(비교)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Workflow(워크플로우)
+  - Career(커리어)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Hashing(해싱)
+  - Performance(성능)
+  - Edge-Cases(엣지케이스)
   - Maintainability
   - Modularity
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Review
-  - 리뷰
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Review(리뷰)
   - Beginner
   - Advanced
-  - Cloud
-  - 클라우드
-  - AWS
-  - Productivity
-  - 생산성
-  - Innovation
-  - 혁신
+  - Cloud(클라우드)
+  - AWS(Amazon Web Services)
+  - Productivity(생산성)
+  - Innovation(혁신)
 image: "index.png"
 description: "Latacora의 How to Not Do Crypto를 바탕으로, 직접 암호화 구현·잘못된 난수·취약한 패스워드·키 관리 오류 등 보안 실수 사례를 정리하고, 검증된 라이브러리·CSPRNG·Argon2/bcrypt·KMS 등 올바른 접근과 실무 체크리스트를 제시한다. 개발자·DevOps 대상 보안 가이드."
 draft: false

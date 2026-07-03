@@ -7,15 +7,12 @@ title: "[Clean Architecture] 22. 컴포넌트 응집도: REP, CCP, CRP"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
-  - 응집도
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Cohesion(응집도)
   - SOLID
-  - 소프트웨어아키텍처
-  - Dependency-Injection
-  - Code-Quality
-  - 코드품질
+  - Dependency-Injection(의존성주입)
+  - Code-Quality(코드품질)
 ---
 
 컴포넌트에 **어떤 클래스들을 포함**시켜야 하는가? 이것은 중요한 설계 결정이다. 너무 많이 묶으면 불필요한 의존성이 생기고, 너무 적게 묶으면 관리가 어려워진다. 세 가지 원칙이 이 결정을 도와준다.

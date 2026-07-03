@@ -8,8 +8,8 @@ slug: distributed-cluster-performance-regression-expert
 description: "샤딩·다중 리전·샘플링 마이크로벤치와 엔드투엔드 게이트를 어떻게 조합할지 정리하는 전문 장입니다. 분산 환경에서의 성능 회귀 탐지·오탐·비용을 Tr.05 측정 관점과 연결합니다."
 tags:
   - C++
-  - Performance
-  - Optimization
+  - Performance(성능)
+  - Optimization(최적화)
   - Regression
   - Distributed-Systems
   - Cluster
@@ -17,34 +17,34 @@ tags:
   - Multi-Region
   - Sampling
   - Benchmark
-  - Profiling
-  - CI-CD
-  - Testing
-  - Automation
-  - Backend
-  - Linux
-  - Concurrency
+  - Profiling(프로파일링)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Testing(테스트)
+  - Automation(자동화)
+  - Backend(백엔드)
+  - Linux(리눅스)
+  - Concurrency(동시성)
   - Latency
   - Throughput
   - Observability
-  - Software-Architecture
-  - Code-Quality
+  - Software-Architecture(소프트웨어아키텍처)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Implementation
-  - Documentation
+  - Implementation(구현)
+  - Documentation(문서화)
   - Git
-  - Debugging
-  - Memory
-  - CPU
-  - Networking
-  - Data-Structures
-  - Edge-Cases
-  - Pitfalls
-  - Error-Handling
-  - Guide
-  - Reference
-  - Technology
-  - Tutorial
+  - Debugging(디버깅)
+  - Memory(메모리)
+  - CPU(Central Processing Unit)
+  - Networking(네트워킹)
+  - Data-Structures(자료구조)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
   - Advanced
   - Deep-Dive
   - Expert
@@ -53,19 +53,12 @@ tags:
   - SRE
   - DevOps
   - Container
-  - 성능
-  - 최적화
   - 회귀
   - 분산시스템
   - 클러스터
   - 샤딩
   - 샘플링
-  - 백엔드
   - 전문
-  - 테스트
-  - 자동화
-  - 가이드
-  - 참고
   - 실습
   - CI
 ---

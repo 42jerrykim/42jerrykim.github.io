@@ -12,11 +12,10 @@ categories:
 - Proxy Patterns
 - System Design
 tags:
-- Design-Pattern
-- Performance
-- GoF
-- Memory
-- 디자인패턴
+- Design-Pattern(디자인패턴)
+- Performance(성능)
+- GoF(Gang of Four)
+- Memory(메모리)
 ---
 
 Proxy 패턴의 다양한 형태와 활용법을 탐구합니다. 지연 로딩, 접근 제어, 원격 투명성 등 대리자의 강력한 능력을 학습합니다.

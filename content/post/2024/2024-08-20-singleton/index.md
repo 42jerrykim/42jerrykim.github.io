@@ -9,14 +9,11 @@ header:
 
 tags:
   - Singleton
-  - Design-Pattern
-  - 디자인패턴
-  - OOP
-  - 객체지향
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Design-Pattern(디자인패턴)
+  - OOP(객체지향)
+  - Software-Architecture(소프트웨어아키텍처)
   - Creational-Pattern
-  - GoF
+  - GoF(Gang of Four)
   - CSharp
   - Java
   - C++
@@ -25,73 +22,44 @@ tags:
   - Python
   - JavaScript
   - .NET
-  - Memory
-  - 메모리
-  - Implementation
-  - 구현
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
+  - Memory(메모리)
+  - Implementation(구현)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
   - Best-Practices
-  - Code-Quality
-  - 코드품질
-  - Performance
-  - 성능
-  - UML
-  - Dependency-Injection
-  - 의존성주입
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Code-Quality(코드품질)
+  - Performance(성능)
+  - UML(Unified Modeling Language)
+  - Dependency-Injection(의존성주입)
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Thread
-  - Concurrency
-  - 동시성
-  - Database
-  - 데이터베이스
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - Tutorial
-  - 가이드
-  - Guide
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
+  - Concurrency(동시성)
+  - Database(데이터베이스)
+  - Web(웹)
+  - Backend(백엔드)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Education(교육)
+  - Reference(참고)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
   - SOLID
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
-  - Abstraction
-  - 추상화
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Abstraction(추상화)
   - Factory
   - Builder
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Productivity
-  - 생산성
-  - Review
-  - 리뷰
+  - Blog(블로그)
+  - Technology(기술)
+  - Productivity(생산성)
+  - Review(리뷰)
   - Maintainability
   - Modularity
-  - Logging
-  - 로깅
+  - Logging(로깅)
 
 title: "[DesignPattern] 싱글턴 패턴(Singleton Pattern) 정리와 C# 구현"
 image: "wordcloud.png"

@@ -7,7 +7,7 @@ categories:
 - Thriller
 - Drama
 tags:
-- Thriller
+- Thriller(스릴러)
 - Drama
 - David-Fincher
 - 데이비드 핀처
@@ -17,53 +17,32 @@ tags:
 - 로자먼드 파이크
 - Gillian-Flynn
 - 질리언 플린
-- Movie
-- 영화
-- Action
-- 액션
-- Adventure
-- 모험
-- Sci-Fi
-- Fantasy
-- 판타지
-- Romance
-- 로맨스
-- Animation
-- 애니메이션
-- Family
-- 가족
-- Cinematography
-- 촬영기법
-- Soundtrack
-- 사운드트랙
-- Visual-Effects
-- 시각효과
-- Review
-- 리뷰
-- Biography
-- 전기영화
-- Documentary
-- 다큐멘터리
-- Crime
-- 범죄
-- Mystery
-- 미스터리
-- War
-- 전쟁
-- Horror
-- 공포
-- Comedy
-- 코미디
+- Movie(영화)
+- Action(액션)
+- Adventure(모험)
+- Sci-Fi(Science Fiction)
+- Fantasy(판타지)
+- Romance(로맨스)
+- Animation(애니메이션)
+- Family(가족)
+- Cinematography(촬영기법)
+- Soundtrack(사운드트랙)
+- Visual-Effects(시각효과)
+- Review(리뷰)
+- Biography(전기영화)
+- Documentary(다큐멘터리)
+- Crime(범죄)
+- Mystery(미스터리)
+- War(전쟁)
+- Horror(공포)
+- Comedy(코미디)
 - 2010s
 - 2000s
-- Culture
-- 문화
-- History
-- 역사
-- Technology
-- 기술
+- Culture(문화)
+- History(역사)
+- Technology(기술)
 - Marriage
-- Media
+- 미디어
 - Psychological-Thriller
 description: "결혼 5주년 기념일 아침 아내가 실종된다. 데이비드 핀처 감독의 질리언 플린 원작 심리 스릴러. 결혼의 어두운 진실과 미디어 조작을 그렸으며, 로자먼드 파이크의 연기가 압도한다."
 image: "poster.png"

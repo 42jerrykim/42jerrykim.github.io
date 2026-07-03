@@ -8,55 +8,33 @@ lastmod: 2026-01-17
 collection_order: 59
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Debugging
-  - 디버깅
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Debugging(디버깅)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - CI-CD
-  - Automation
-  - 자동화
-  - Code-Quality
-  - Design-Pattern
-  - Dependency-Injection
-  - 의존성주입
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - 코드품질
-  - TDD
-  - HTML
-  - Error-Handling
-  - 에러처리
-  - Documentation
-  - 문서화
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
+  - Pitfalls(함정)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Automation(자동화)
+  - Code-Quality(코드품질)
+  - Design-Pattern(디자인패턴)
+  - Dependency-Injection(의존성주입)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - TDD(Test-Driven Development)
+  - HTML(HyperText Markup Language)
+  - Error-Handling(에러처리)
+  - Documentation(문서화)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
 ---
 테스트는 코드 변경에 대한 자신감을 주고 리팩토링을 안전하게 합니다. 이 치트시트는 AAA 패턴, pytest/unittest 기본, fixture, mock의 최소 사용 원칙을 정리합니다.
 

@@ -7,18 +7,14 @@ title: "[Clean Architecture] 33. 프레젠터와 험블 객체"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Testing
-  - Frontend
-  - Edge-Cases
-  - Database
-  - 데이터베이스
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Implementation
-  - String
-  - 문자열
+  - Clean-Architecture(클린아키텍처)
+  - Testing(테스트)
+  - Frontend(프론트엔드)
+  - Edge-Cases(엣지케이스)
+  - Database(데이터베이스)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Implementation(구현)
+  - String(문자열)
 ---
 
 **험블 객체 패턴(Humble Object Pattern)**은 테스트하기 어려운 행위와 쉬운 행위를 분리하는 패턴이다. 이 패턴은 아키텍처 경계에서 자주 사용된다.

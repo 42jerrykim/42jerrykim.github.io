@@ -5,137 +5,81 @@ date: 2024-02-13
 lastmod: 2026-03-17
 draft: false
 tags:
-  - Math
-  - 수학
-  - Science
-  - 과학
-  - Education
-  - 교육
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Math(수학)
+  - Science(과학)
+  - Education(교육)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - Tips
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Reference
-  - 참고
-  - Productivity
-  - 생산성
+  - Documentation(문서화)
+  - Reference(참고)
+  - Productivity(생산성)
   - How-To
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
+  - Technology(기술)
+  - Blog(블로그)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
   - Beginner
-  - Problem-Solving
-  - 문제해결
+  - Problem-Solving(문제해결)
   - Readability
-  - Clean-Code
-  - 클린코드
-  - Pitfalls
-  - 함정
-  - Error-Handling
-  - 에러처리
-  - Refactoring
-  - 리팩토링
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Cheatsheet
-  - 치트시트
+  - Clean-Code(클린코드)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Refactoring(리팩토링)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - Deep-Dive
   - 실습
   - Case-Study
-  - Debugging
-  - 디버깅
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
-  - Performance
-  - 성능
+  - Debugging(디버깅)
+  - Implementation(구현)
+  - Optimization(최적화)
+  - Performance(성능)
   - Maintainability
   - Modularity
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Windows
-  - 윈도우
-  - Linux
-  - 리눅스
-  - Shell
-  - 셸
-  - Keyboard
-  - 키보드
-  - Grammar
-  - 문법
+  - Windows(윈도우)
+  - Linux(리눅스)
+  - Shell(셸)
+  - Keyboard(키보드)
+  - Grammar(문법)
   - Vocabulary
-  - Academic-English
-  - 학술영어
-  - Data-Science
-  - 데이터사이언스
+  - Academic-English(학술영어)
+  - Data-Science(데이터사이언스)
   - Geometry
-  - 기하학
-  - Number-Theory
-  - 정수론
-  - Combinatorics
-  - 조합론
-  - String
-  - 문자열
-  - Array
-  - 배열
-  - Matrix
-  - 행렬
-  - Web
-  - 웹
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Comparison
-  - 비교
-  - Configuration
-  - 설정
-  - Hardware
-  - 하드웨어
-  - Algorithm
-  - 알고리즘
-  - Code-Quality
-  - 코드품질
-  - Design-Pattern
-  - 디자인패턴
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - HTML
-  - CSS
-  - Testing
-  - 테스트
+  - Number-Theory(정수론)
+  - Combinatorics(조합론)
+  - String(문자열)
+  - Array(배열)
+  - Matrix(행렬)
+  - Web(웹)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Comparison(비교)
+  - Configuration(설정)
+  - Hardware(하드웨어)
+  - Algorithm(알고리즘)
+  - Code-Quality(코드품질)
+  - Design-Pattern(디자인패턴)
+  - History(역사)
+  - Culture(문화)
+  - HTML(HyperText Markup Language)
+  - CSS(Cascading Style Sheets)
+  - Testing(테스트)
   - Type-Safety
-  - Backend
-  - 백엔드
-  - Mobile
-  - 모바일
-  - Migration
-  - 마이그레이션
-  - Graph-Theory
-  - 그래프이론
-  - Machine-Learning
-  - 머신러닝
-  - Cloud
-  - 클라우드
+  - Backend(백엔드)
+  - Mobile(모바일)
+  - Migration(마이그레이션)
+  - Graph-Theory(그래프이론)
+  - Machine-Learning(머신러닝)
+  - Cloud(클라우드)
 categories:
   - Study
 image: "index.png"

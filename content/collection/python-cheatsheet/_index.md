@@ -8,15 +8,13 @@ collection_order: 2
 tags:
   - Python
   - python3
-  - 파이썬
-  - 치트시트
-  - Cheatsheet
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - 빠른참조
   - basics
   - 기초
   - syntax
-  - 문법
+  - Grammar(문법)
   - operators
   - 연산자
   - variables
@@ -26,7 +24,7 @@ tags:
   - numbers
   - 숫자
   - strings
-  - 문자열
+  - String(문자열)
   - formatting
   - 문자열포맷
   - f-string
@@ -44,7 +42,7 @@ tags:
   - standard-library
   - 표준라이브러리
   - collections
-  - 자료구조
+  - Data-Structures(자료구조)
   - list
   - 리스트
   - tuple
@@ -68,15 +66,13 @@ tags:
   - 컴프리헨션
   - files
   - 파일
-  - IO
+  - IO(Input/Output)
   - 입출력
   - pathlib
   - 예외처리
   - exceptions
-  - Debugging
-  - 디버깅
-  - Logging
-  - 로깅
+  - Debugging(디버깅)
+  - Logging(로깅)
   - modules
   - 모듈
   - packages
@@ -85,7 +81,7 @@ tags:
   - 가상환경
   - pip
   - packaging
-  - 배포
+  - Deployment(배포)
   - typing
   - 타입힌트
   - Generic
@@ -98,13 +94,11 @@ tags:
   - 날짜시간
   - itertools
   - functools
-  - JSON
+  - JSON(JavaScript Object Notation)
   - csv
-  - Testing
-  - 테스트
-  - Database
+  - Testing(테스트)
+  - Database(데이터베이스)
   - sqlite3
-  - 데이터베이스
   - environment-variables
   - 환경변수
   - dotenv
@@ -118,7 +112,7 @@ tags:
   - 패턴매칭
   - heapq
   - bisect
-  - 우선순위큐
+  - Priority-Queue(우선순위큐)
   - shutil
   - tempfile
   - zipfile
@@ -147,17 +141,17 @@ tags:
   - textwrap
   - pprint
   - reprlib
-  - XML
+  - XML(eXtensible Markup Language)
   - zoneinfo
   - urllib
   - weakref
-  - Math
+  - Math(수학)
   - statistics
   - decimal
   - fractions
   - random
   - uuid
-  - OS
+  - OS(운영체제)
   - sys
   - Signal
   - atexit
@@ -168,7 +162,7 @@ tags:
   - email
   - smtplib
   - asyncio
-  - Concurrency
+  - Concurrency(동시성)
   - threading
   - multiprocessing
 ---

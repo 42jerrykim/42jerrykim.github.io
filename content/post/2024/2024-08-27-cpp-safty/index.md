@@ -10,107 +10,64 @@ tags:
   - C++
   - Rust
   - C
-  - Security
-  - 보안
-  - Memory
-  - 메모리
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Performance
-  - 성능
-  - Debugging
-  - 디버깅
-  - Concurrency
-  - 동시성
-  - OOP
-  - 객체지향
-  - Functional-Programming
-  - 함수형프로그래밍
-  - Testing
-  - 테스트
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Security(보안)
+  - Memory(메모리)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Performance(성능)
+  - Debugging(디버깅)
+  - Concurrency(동시성)
+  - OOP(객체지향)
+  - Functional-Programming(함수형프로그래밍)
+  - Testing(테스트)
+  - Software-Architecture(소프트웨어아키텍처)
   - Best-Practices
-  - Documentation
-  - 문서화
+  - Documentation(문서화)
   - Type-Safety
-  - Error-Handling
-  - 에러처리
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Compiler
-  - 컴파일러
-  - OS
-  - 운영체제
+  - Error-Handling(에러처리)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Compiler(컴파일러)
+  - OS(운영체제)
   - Thread
   - Process
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Technology(기술)
+  - Education(교육)
+  - Reference(참고)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
   - How-To
   - Tips
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
-  - Profiling
-  - 프로파일링
+  - Blog(블로그)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
+  - Profiling(프로파일링)
   - Benchmark
-  - Optimization
-  - 최적화
+  - Optimization(최적화)
   - Maintainability
   - Readability
   - Modularity
-  - Design-Pattern
-  - 디자인패턴
-  - Encapsulation
-  - 캡슐화
-  - Data-Structures
-  - 자료구조
-  - Array
-  - 배열
-  - Networking
-  - 네트워킹
+  - Design-Pattern(디자인패턴)
+  - Encapsulation(캡슐화)
+  - Data-Structures(자료구조)
+  - Array(배열)
+  - Networking(네트워킹)
   - Case-Study
   - Deep-Dive
   - 실습
   - Beginner
   - Advanced
-  - Web
-  - 웹
-  - Configuration
-  - 설정
+  - Web(웹)
+  - Configuration(설정)
 title: "[C++] C++ 안전성과 보안: 메모리·타입·경계 안전성과 실무 대응"
 image: "wordcloud.png"
 ---

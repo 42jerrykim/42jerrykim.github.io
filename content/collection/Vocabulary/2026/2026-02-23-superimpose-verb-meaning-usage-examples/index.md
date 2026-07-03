@@ -11,51 +11,32 @@ tags:
   - English
   - 영단어
   - 영어동사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Stack
-  - Algorithm
-  - Psychology
-  - Memory
-  - 심리학
-  - Design-Pattern
-  - 사진
-  - Grammar
-  - Pronunciation
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Stack(스택)
+  - Algorithm(알고리즘)
+  - Psychology(심리학)
+  - Memory(메모리)
+  - Design-Pattern(디자인패턴)
+  - Photography(사진)
+  - Grammar(문법)
+  - Pronunciation(발음)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
   - Go
-  - API
-  - Graph
-  - 그래프
-  - War
-  - 전쟁
-  - Science
-  - 과학
-  - History
-  - 역사
-  - Antonym
-  - 반의어
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - API(Application Programming Interface)
+  - Graph(그래프)
+  - War(전쟁)
+  - Science(과학)
+  - History(역사)
+  - Antonym(반의어)
+  - Daily-Life(일상표현)
+  - Education(교육)
+  - Reference(참고)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
 image: wordcloud.png
 ---

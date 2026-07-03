@@ -12,11 +12,10 @@ categories:
 - Event Driven Architecture
 - Reactive Programming
 tags:
-- Design-Pattern
-- Software-Architecture
-- GoF
-- Implementation
-- 디자인패턴
+- Design-Pattern(디자인패턴)
+- Software-Architecture(소프트웨어아키텍처)
+- GoF(Gang of Four)
+- Implementation(구현)
 ---
 
 Observer 패턴을 통해 이벤트 기반 아키텍처의 기초를 탐구합니다. 느슨한 결합과 일대다 의존성 관리로 반응형 시스템을 구축하는 방법을 학습합니다.

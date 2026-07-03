@@ -7,104 +7,63 @@ categories:
   - Algorithm
   - Sorting
 tags:
-  - Algorithm
-  - 알고리즘
-  - Sorting
-  - 정렬
-  - Data-Structures
-  - 자료구조
-  - Array
-  - 배열
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Complexity-Analysis
-  - 복잡도분석
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
+  - Algorithm(알고리즘)
+  - Sorting(정렬)
+  - Data-Structures(자료구조)
+  - Array(배열)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Complexity-Analysis(복잡도분석)
+  - Implementation(구현)
+  - Optimization(최적화)
   - C++
   - C
   - Java
   - Python
   - JavaScript
   - CSharp
-  - Problem-Solving
-  - 문제해결
-  - Coding-Test
-  - 코딩테스트
-  - Education
-  - 교육
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Education(교육)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - Beginner
-  - Reference
-  - 참고
+  - Reference(참고)
   - Best-Practices
-  - Performance
-  - 성능
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Edge-Cases
-  - 엣지케이스
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Markdown
-  - 마크다운
-  - Documentation
-  - 문서화
-  - Open-Source
-  - Comparison
-  - 비교
-  - Review
-  - 리뷰
-  - Science
-  - 과학
-  - History
-  - 역사
+  - Performance(성능)
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Edge-Cases(엣지케이스)
+  - Blog(블로그)
+  - Technology(기술)
+  - Markdown(마크다운)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Comparison(비교)
+  - Review(리뷰)
+  - Science(과학)
+  - History(역사)
   - How-To
   - Tips
   - Deep-Dive
   - 실습
-  - Code-Quality
-  - 코드품질
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
-  - Recursion
-  - 재귀
-  - Divide-and-Conquer
-  - 분할정복
-  - Greedy
-  - 그리디
-  - Graph
-  - 그래프
-  - Math
-  - 수학
-  - Simulation
-  - 시뮬레이션
-  - Brute-Force
-  - 완전탐색
-  - Stack
-  - 스택
-  - Queue
-  - 큐
-  - Productivity
-  - 생산성
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Software-Architecture
-  - Design-Pattern
-  - 디자인패턴
+  - Recursion(재귀)
+  - Divide-and-Conquer(분할정복)
+  - Greedy(그리디)
+  - Graph(그래프)
+  - Math(수학)
+  - Simulation(시뮬레이션)
+  - Brute-Force(완전탐색)
+  - Stack(스택)
+  - Queue(큐)
+  - Productivity(생산성)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
 image: "wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-08-26-bubble-sort.png

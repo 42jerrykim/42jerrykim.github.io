@@ -9,88 +9,57 @@ tags:
   - JavaScript
   - TypeScript
   - React
-  - Frontend
-  - 프론트엔드
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
+  - Frontend(프론트엔드)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
   - State
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Performance
-  - 성능
-  - Functional-Programming
-  - 함수형프로그래밍
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Performance(성능)
+  - Functional-Programming(함수형프로그래밍)
   - Observer
   - Event-Driven
-  - API
-  - Async
-  - 비동기
-  - Caching
-  - 캐싱
-  - Scalability
-  - 확장성
-  - Reference
-  - 참고
-  - Documentation
-  - 문서화
-  - Error-Handling
-  - 에러처리
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
-  - Data-Structures
-  - 자료구조
+  - API(Application Programming Interface)
+  - Async(비동기)
+  - Caching(캐싱)
+  - Scalability(확장성)
+  - Reference(참고)
+  - Documentation(문서화)
+  - Error-Handling(에러처리)
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
+  - Data-Structures(자료구조)
   - Git
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - How-To
   - Tips
-  - Technology
-  - 기술
-  - Education
-  - 교육
+  - Technology(기술)
+  - Education(교육)
   - Case-Study
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Deep-Dive
   - Beginner
   - Advanced
   - Maintainability
   - Modularity
   - Readability
-  - Workflow
-  - 워크플로우
-  - JSON
-  - HTTP
-  - Optimization
-  - 최적화
+  - Workflow(워크플로우)
+  - JSON(JavaScript Object Notation)
+  - HTTP(HyperText Transfer Protocol)
+  - Optimization(최적화)
   - Type-Safety
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Configuration
-  - 설정
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Configuration(설정)
 collection_order: 0
 ---
 

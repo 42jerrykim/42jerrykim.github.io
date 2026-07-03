@@ -7,107 +7,64 @@ description: "C4 모델은 소프트웨어 아키텍처를 Context·Containers·
 header:
   teaser: /assets/images/2024/2024-08-27-c4-model.png
 tags:
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Agile
-  - 애자일
-  - UML
-  - Documentation
-  - 문서화
-  - Microservices
-  - 마이크로서비스
-  - Design-Pattern
-  - 디자인패턴
+  - Software-Architecture(소프트웨어아키텍처)
+  - Agile(애자일)
+  - UML(Unified Modeling Language)
+  - Documentation(문서화)
+  - Microservices(마이크로서비스)
+  - Design-Pattern(디자인패턴)
   - Best-Practices
-  - Frontend
-  - 프론트엔드
-  - Backend
-  - 백엔드
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Guide
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Implementation
-  - 구현
-  - Graph
-  - 그래프
+  - Frontend(프론트엔드)
+  - Backend(백엔드)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Implementation(구현)
+  - Graph(그래프)
   - Docker
-  - History
-  - 역사
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
-  - Reference
-  - 참고
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - History(역사)
+  - Education(교육)
+  - Productivity(생산성)
+  - Reference(참고)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Abstraction
-  - 추상화
-  - Clean-Architecture
-  - 클린아키텍처
-  - OOP
-  - 객체지향
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Dependency-Injection
-  - 의존성주입
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
+  - Abstraction(추상화)
+  - Clean-Architecture(클린아키텍처)
+  - OOP(객체지향)
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Dependency-Injection(의존성주입)
+  - Coupling(결합도)
+  - Cohesion(응집도)
   - DevOps
-  - Deployment
-  - 배포
-  - Scalability
-  - 확장성
-  - Comparison
-  - 비교
+  - Deployment(배포)
+  - Scalability(확장성)
+  - Comparison(비교)
   - Case-Study
   - Deep-Dive
   - Beginner
   - Maintainability
-  - Code-Quality
-  - 코드품질
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
   - Domain-Driven-Design
   - Event-Driven
-  - API
-  - REST
-  - Database
-  - 데이터베이스
-  - Networking
-  - 네트워킹
-  - Cloud
-  - 클라우드
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - Database(데이터베이스)
+  - Networking(네트워킹)
+  - Cloud(클라우드)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
 title: "[Architecture] C4 모델 쉽게 이해하기"
 ---
 

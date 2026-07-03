@@ -7,52 +7,33 @@ categories:
 tags:
   - English
   - Vocabulary
-  - Implementation
-  - Competitive-Programming
+  - Implementation(구현)
+  - Competitive-Programming(경쟁프로그래밍)
   - Strategy
   - 영단어
-  - Collocation
-  - 콜로케이션
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
-  - Brand
-  - 브랜드
-  - Nuance
-  - 뉘앙스
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Collocation(콜로케이션)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
+  - Brand(브랜드)
+  - Nuance(뉘앙스)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Education(교육)
+  - Reference(참고)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Technology
-  - 기술
-  - Guide
-  - 가이드
-  - Documentation
-  - 문서화
+  - Markdown(마크다운)
+  - Technology(기술)
+  - Guide(가이드)
+  - Documentation(문서화)
   - Best-Practices
   - Case-Study
 image: index.png

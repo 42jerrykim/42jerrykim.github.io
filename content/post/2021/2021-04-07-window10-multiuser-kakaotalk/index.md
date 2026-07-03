@@ -6,182 +6,110 @@ categories:
 date: "2021-04-07T00:00:00Z"
 lastmod: "2026-03-16T00:00:00Z"
 tags:
-  - Windows
-  - 윈도우
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Windows(윈도우)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - How-To
   - Tips
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Reference
-  - 참고
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Technology(기술)
+  - Blog(블로그)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Networking
-  - 네트워킹
-  - Mobile
-  - 모바일
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Cloud
-  - 클라우드
-  - Review
-  - 리뷰
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Markdown
-  - 마크다운
-  - Security
-  - 보안
-  - OS
-  - 운영체제
+  - Documentation(문서화)
+  - Productivity(생산성)
+  - Education(교육)
+  - Networking(네트워킹)
+  - Mobile(모바일)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Cloud(클라우드)
+  - Review(리뷰)
+  - Comparison(비교)
+  - Career(커리어)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Markdown(마크다운)
+  - Security(보안)
+  - OS(운영체제)
   - Beginner
   - Case-Study
-  - Error-Handling
-  - 에러처리
+  - Error-Handling(에러처리)
   - 실습
   - Deep-Dive
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - DevOps
-  - Automation
-  - 자동화
-  - IDE
+  - Automation(자동화)
+  - IDE(Integrated Development Environment)
   - Git
   - GitHub
-  - Web
-  - 웹
-  - API
-  - HTTP
-  - JSON
-  - YAML
-  - Database
-  - 데이터베이스
-  - Caching
-  - 캐싱
-  - Performance
-  - 성능
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Implementation
-  - 구현
-  - Design-Pattern
-  - 디자인패턴
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Clean-Code
-  - 클린코드
+  - Web(웹)
+  - API(Application Programming Interface)
+  - HTTP(HyperText Transfer Protocol)
+  - JSON(JavaScript Object Notation)
+  - YAML(YAML Ain't Markup Language)
+  - Database(데이터베이스)
+  - Caching(캐싱)
+  - Performance(성능)
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Implementation(구현)
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Clean-Code(클린코드)
   - Readability
   - Maintainability
   - Modularity
-  - Code-Quality
-  - 코드품질
-  - Refactoring
-  - 리팩토링
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
-  - Logging
-  - 로깅
-  - Profiling
-  - 프로파일링
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
+  - Logging(로깅)
+  - Profiling(프로파일링)
   - Benchmark
-  - Deployment
-  - 배포
-  - Monitoring
-  - 모니터링
-  - Self-Hosted
-  - 셀프호스팅
-  - Privacy
-  - 프라이버시
-  - Gadget
-  - 가젯
+  - Deployment(배포)
+  - Monitoring(모니터링)
+  - Self-Hosted(셀프호스팅)
+  - Privacy(프라이버시)
+  - Gadget(가젯)
   - Android
   - iOS
   - Tablet
-  - 태블릿
-  - Keyboard
-  - 키보드
-  - Terminal
-  - 터미널
-  - Shell
-  - 셸
-  - Linux
-  - 리눅스
+  - Keyboard(키보드)
+  - Terminal(터미널)
+  - Shell(셸)
+  - Linux(리눅스)
   - macOS
-  - Internet
-  - 인터넷
-  - Domain
-  - 도메인
-  - Agile
-  - 애자일
+  - Internet(인터넷)
+  - Domain(도메인)
+  - Agile(애자일)
   - Scrum
-  - TDD
-  - RDP
-  - History
-  - 역사
-  - Culture
-  - 문화
-  - Science
-  - 과학
-  - Psychology
-  - 심리학
+  - TDD(Test-Driven Development)
+  - RDP(Remote Desktop Protocol)
+  - History(역사)
+  - Culture(문화)
+  - Science(과학)
+  - Psychology(심리학)
   - Finance
-  - 재무
   - Accounting
-  - 회계
   - Vocabulary
   - English
   - 영단어
-  - Conference
-  - 컨퍼런스
-  - Book-Review
-  - 서평
-  - Photography
-  - 사진
-  - Gaming
-  - 게임
+  - Conference(컨퍼런스)
+  - Book-Review(서평)
+  - Photography(사진)
+  - Gaming(게임)
   - Cycling
-  - 자전거
   - Watch
-  - 시계
   - Speaker
-  - 스피커
   - Samsung
-  - Brand
-  - 브랜드
+  - Brand(브랜드)
   - ChatGPT
-  - LLM
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
+  - LLM(Large Language Model)
+  - Prompt-Engineering(프롬프트엔지니어링)
   - Hugo
   - Jekyll
   - Tmux

@@ -9,34 +9,26 @@ image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design-Pattern
-  - 디자인패턴
-  - GoF
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - 객체지향
-  - OOP
+  - Design-Pattern(디자인패턴)
+  - GoF(Gang of Four)
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
   - SOLID
-  - Clean-Code
-  - Refactoring
-  - 리팩토링
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
   - Best-Practices
-  - Code-Quality
-  - 코드품질
-  - 확장성
-  - Implementation
+  - Code-Quality(코드품질)
+  - Scalability(확장성)
+  - Implementation(구현)
   - Java
   - C++
   - Python
   - CSharp
   - Go
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
-  - 구현
-  - Tree
-  - Queue
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
+  - Tree(트리)
+  - Queue(큐)
   - Builder
   - Singleton
   - Factory
@@ -45,20 +37,13 @@ tags:
   - Decorator
   - Command
   - Proxy
-  - 클린코드
-  - Documentation
-  - 문서화
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Composition
-  - 합성
-  - Dependency-Injection
+  - Documentation(문서화)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Composition(합성)
+  - Dependency-Injection(의존성주입)
 ---
 
 이 글에서는 지금까지 학습한 GoF의 23가지 디자인 패턴을 총정리하고, 각 패턴을 언제 어떻게 선택해야 하는지, 그리고 실무에서 패턴을 효과적으로 적용하는 방법을 다룬다.

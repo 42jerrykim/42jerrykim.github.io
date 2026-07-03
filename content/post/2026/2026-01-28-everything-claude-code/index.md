@@ -6,99 +6,61 @@ lastmod: 2026-03-17
 categories:
   - AI
 tags:
-  - AI
-  - 인공지능
-  - LLM
+  - AI(인공지능)
+  - LLM(Large Language Model)
   - ChatGPT
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
-  - Automation
-  - 자동화
-  - IDE
+  - Prompt-Engineering(프롬프트엔지니어링)
+  - Automation(자동화)
+  - IDE(Integrated Development Environment)
   - VSCode
-  - TDD
-  - Testing
-  - 테스트
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - TDD(Test-Driven Development)
+  - Testing(테스트)
+  - Software-Architecture(소프트웨어아키텍처)
   - GitHub
-  - Open-Source
-  - 오픈소스
-  - Code-Quality
-  - 코드품질
-  - Code-Review
-  - 코드리뷰
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
+  - Open-Source(오픈소스)
+  - Code-Quality(코드품질)
+  - Code-Review(코드리뷰)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
   - Git
-  - API
-  - REST
-  - Refactoring
-  - 리팩토링
-  - Implementation
-  - 구현
-  - Security
-  - 보안
-  - Design-Pattern
-  - 디자인패턴
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - Refactoring(리팩토링)
+  - Implementation(구현)
+  - Security(보안)
+  - Design-Pattern(디자인패턴)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
-  - Clean-Code
-  - 클린코드
-  - Agile
-  - 애자일
+  - Documentation(문서화)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Workflow(워크플로우)
+  - Clean-Code(클린코드)
+  - Agile(애자일)
   - DevOps
-  - Backend
-  - 백엔드
-  - Frontend
-  - 프론트엔드
-  - Debugging
-  - 디버깅
-  - Terminal
-  - 터미널
+  - Backend(백엔드)
+  - Frontend(프론트엔드)
+  - Debugging(디버깅)
+  - Terminal(터미널)
   - How-To
   - Tips
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Case-Study
   - Deep-Dive
   - 실습
   - Modularity
-  - Performance
-  - 성능
-  - Deployment
-  - 배포
-  - Machine-Learning
-  - 머신러닝
-  - Data-Science
-  - 데이터사이언스
+  - Performance(성능)
+  - Deployment(배포)
+  - Machine-Learning(머신러닝)
+  - Data-Science(데이터사이언스)
   - Beginner
   - Advanced
 image: wordcloud.png

@@ -7,56 +7,35 @@ categories:
   - Algorithm
   - Probability
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
-  - Dynamic-Programming
-  - 동적계획법
-  - DP
-  - Modular-Arithmetic
-  - 수학
-  - Math
+  - Algorithm(알고리즘)
+  - BOJ(백준)
+  - DP(동적계획법)
+  - Modular-Arithmetic(모듈러)
+  - Math(수학)
   - C++
-  - Implementation
-  - 경쟁프로그래밍
-  - Competitive-Programming
-  - Editorial
-  - 조합론
-  - Combinatorics
-  - 최적화
-  - Optimization
-  - Problem-Solving
-  - 구현
-  - Time-Complexity
-  - 시간복잡도
-  - Coding-Test
-  - 코딩테스트
-  - Data-Structures
-  - 자료구조
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Implementation(구현)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Editorial(에디토리얼)
+  - Combinatorics(조합론)
+  - Optimization(최적화)
+  - Problem-Solving(문제해결)
+  - Time-Complexity(시간복잡도)
+  - Coding-Test(코딩테스트)
+  - Data-Structures(자료구조)
+  - Code-Quality(코드품질)
   - Go
   - .NET
   - Git
   - GitHub
-  - Recursion
-  - Space-Complexity
-  - 공간복잡도
-  - Edge-Cases
-  - 엣지케이스
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Recursion(재귀)
+  - Space-Complexity(공간복잡도)
+  - Edge-Cases(엣지케이스)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
 image: "wordcloud.png"
 ---
 

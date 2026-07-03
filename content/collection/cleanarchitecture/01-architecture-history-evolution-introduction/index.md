@@ -7,21 +7,15 @@ title: "[Clean Architecture] 01. 소프트웨어 아키텍처의 탄생과 진�
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - OOP
-  - Design-Pattern
-  - 디자인패턴
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
+  - Design-Pattern(디자인패턴)
   - Dijkstra
-  - GoF
-  - Microservices
-  - 마이크로서비스
-  - Code-Quality
-  - 코드품질
-  - Scalability
-  - 확장성
+  - GoF(Gang of Four)
+  - Microservices(마이크로서비스)
+  - Code-Quality(코드품질)
+  - Scalability(확장성)
   - SOLID
 ---
 

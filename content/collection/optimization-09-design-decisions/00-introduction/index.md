@@ -7,21 +7,15 @@ title: "[Performance 09] Introduction: Low-latency 성능 설계·의사결정"
 slug: getting-started-performance-design-decision-making
 description: "Low-latency 성능 설계·의사결정 트랙의 도입 챕터입니다. 최적화의 시작/중단 기준과 팀 합의, trade-off 판단을 정리하고, 다른 트랙과의 경계(책임 분리)를 명확히 하는 프레임을 제공합니다."
 tags:
-  - Performance
-  - Profiling
-  - Optimization
-  - Software-Architecture
-  - Code-Review
-  - Code-Quality
-  - Clean-Code
-  - Testing
-  - CI-CD
-  - 성능
-  - 프로파일링
-  - 최적화
-  - 소프트웨어아키텍처
-  - 코드리뷰
-  - 코드품질
+  - Performance(성능)
+  - Profiling(프로파일링)
+  - Optimization(최적화)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Code-Review(코드리뷰)
+  - Code-Quality(코드품질)
+  - Clean-Code(클린코드)
+  - Testing(테스트)
+  - CI-CD(Continuous Integration/Continuous Deployment)
 ---
 
 이 트랙은 "기술의 경계를 정하는 트랙"입니다. µs 요구가 들어오면 모든 레이어가 얽히기 때문에, 무엇을 어떤 트랙이 책임지는지 합의하지 않으면 최적화가 끝나지 않습니다.

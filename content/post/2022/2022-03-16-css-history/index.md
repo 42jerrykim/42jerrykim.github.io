@@ -6,111 +6,71 @@ lastmod: "2026-03-16"
 description: "CSS의 탄생(1996)과 서식·컨텐츠 분리 의도부터 시멘틱 웹, BEM, Flexbox, CSS Modules·CSS in JS, Tailwind·Atomic CSS에 이르기까지, 문서에서 웹 앱으로 전환되며 복잡해진 CSS의 역사와 방법론·스펙·도구의 흐름을 상세히 정리하고, IE11 퇴장 이후의 최신 스펙과 프론트엔드 CSS 선택 가이드를 제시한다."
 draft: false
 tags:
-  - CSS
-  - HTML
+  - CSS(Cascading Style Sheets)
+  - HTML(HyperText Markup Language)
   - JavaScript
-  - Web
-  - 웹
-  - Frontend
-  - 프론트엔드
-  - History
-  - 역사
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Web(웹)
+  - Frontend(프론트엔드)
+  - History(역사)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Best-Practices
-  - Review
-  - 리뷰
-  - Blog
-  - 블로그
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Review(리뷰)
+  - Blog(블로그)
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Education
-  - 교육
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Performance
-  - 성능
-  - Design-Pattern
-  - 디자인패턴
+  - Comparison(비교)
+  - Career(커리어)
+  - Education(교육)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Performance(성능)
+  - Design-Pattern(디자인패턴)
   - React
   - Vue
   - Angular
   - Node.js
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
   - Maintainability
   - Modularity
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Software-Architecture(소프트웨어아키텍처)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Backend
-  - 백엔드
-  - API
-  - JSON
-  - Security
-  - 보안
-  - Caching
-  - 캐싱
-  - SEO
-  - Scalability
-  - 확장성
-  - Async
-  - 비동기
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
+  - Security(보안)
+  - Caching(캐싱)
+  - SEO(Search Engine Optimization)
+  - Scalability(확장성)
+  - Async(비동기)
+  - Deployment(배포)
+  - Automation(자동화)
   - DevOps
-  - Agile
-  - 애자일
-  - Networking
-  - 네트워킹
-  - Culture
-  - 문화
-  - Science
-  - 과학
-  - Markdown
-  - 마크다운
-  - Internet
-  - 인터넷
+  - Agile(애자일)
+  - Networking(네트워킹)
+  - Culture(문화)
+  - Science(과학)
+  - Markdown(마크다운)
+  - Internet(인터넷)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Productivity
-  - 생산성
-  - Cloud
-  - 클라우드
-  - Mobile
-  - 모바일
+  - Productivity(생산성)
+  - Cloud(클라우드)
+  - Mobile(모바일)
 title: "[CSS] CSS 역사로 알아보는 CSS가 어려워진 이유"
 image: "wordcloud.png"
 ---

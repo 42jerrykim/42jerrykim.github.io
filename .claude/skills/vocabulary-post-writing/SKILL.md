@@ -2,7 +2,7 @@
 name: vocabulary-post-writing
 description: >-
   Vocabulary 컬렉션 영단어 글 작성 가이드. 제목/메타데이터 규칙(70자 이하 title, 150자 내외 description,
-  50개 이상 tags), 폴더명·날짜·워드클라우드 이미지 규칙, EN/KR 예문 구조, 콜로케이션·유의어·문법 포인트·한눈에
+  25개 이상 tags), 폴더명·날짜·워드클라우드 이미지 규칙, EN/KR 예문 구조, 콜로케이션·유의어·문법 포인트·한눈에
   정리 섹션 템플릿과 작성 체크리스트를 포함한다. content/collection/Vocabulary/ 하위 포스트 작성·보강
   시 사용한다.
 ---
@@ -31,7 +31,7 @@ description: >-
 
 ### tags 규칙 (필수)
 
-- **개수**: 최소 50개 이상 (영어 + 한글 혼합)
+- **개수**: 최소 25개 이상 (`data/tags.yaml` 승인 태그, 병용 개념은 Tag(태그) 형식)
 - **구성 패턴**:
   - 기본 메타: `Vocabulary`, `English`, `English Words`, `영단어`
   - 단어 직접 관련: `{Word}`, `{word} meaning`, `{word} usage`, `{word} examples`, `{word} {part-of-speech}` (예: `bulk`, `bulk meaning`, `bulk usage`, `bulk examples`, `bulk verb`)
@@ -40,7 +40,7 @@ description: >-
   - 도메인/상황: 헬스/운동/건설/비즈니스/사회/의학/건축/교육/법률/심리 등 (`fitness`, `bodybuilding`, `medical`, `business`, `architecture` 등)
   - 빈도/패턴/추상 개념: `pattern`, `frequency`, `cycle`, `repetition`, `behavior`, `phenomenon`, `situation`
   - 메타 태그: `etymology`, `origin`, `usage notes`, `grammar`, `pronunciation`, `examples`, `EN/KR`, `study English`, `vocabulary building`
-- **실행 규칙**: 재사용 가능한 공통 태그 + 단어/품사/도메인 특화 태그를 조합해 50개 이상을 채운다. 한글/영어를 섞어서 검색 노출과 학습 검색성을 동시에 확보한다.
+- **실행 규칙**: 재사용 가능한 공통 태그 + 단어/품사/도메인 특화 태그를 조합해 25개 이상을 채운다. 영/한 병용 개념은 `data/tags.yaml`의 Tag(태그) 형식 승인 태그로 검색 노출과 학습 검색성을 동시에 확보한다.
 
 ## 날짜/버전 관리 (필수)
 
@@ -85,7 +85,7 @@ lastmod: {{ .Date }}
 categories:
   - English
   - Vocabulary
-tags: # 최소 50개 이상 (영어/한국어 혼합)
+tags: # 최소 25개 이상 (data/tags.yaml 승인 태그)
   - Vocabulary
   - English
   - English Words
@@ -138,7 +138,7 @@ image: "wordcloud.png"
 ---
 ```
 
-> 실제 작성 시 `title`, `description`, `tags`는 단어/품사/의미/도메인에 맞게 수정하되, **길이 규칙(70자 이하 title, 150자 내외 description, 50개 이상 tags)**은 반드시 지킨다.
+> 실제 작성 시 `title`, `description`, `tags`는 단어/품사/의미/도메인에 맞게 수정하되, **길이 규칙(70자 이하 title, 150자 내외 description, 25개 이상 tags)**은 반드시 지킨다.
 
 ## 본문 구조 가이드
 
@@ -291,7 +291,7 @@ New-Item -ItemType Directory -Force -Path "content/collection/Vocabulary/2025/YY
 ```
 
 2. **`index.md`에 글 전체 작성**
-   - Front Matter: `title`(`[Vocabulary] ...` 70자 이하), `description`(한국어 150자 내외), `tags`(영어/한글 50개 이상), `date`/`lastmod`(폴더명 날짜와 동일), `categories`(`English`, `Vocabulary`), `image`(`"wordcloud.png"`)
+   - Front Matter: `title`(`[Vocabulary] ...` 70자 이하), `description`(한국어 150자 내외), `tags`(`data/tags.yaml` 승인 태그 25개 이상), `date`/`lastmod`(폴더명 날짜와 동일), `categories`(`English`, `Vocabulary`), `image`(`"wordcloud.png"`)
    - 본문: 도입부 → `{word}의 핵심 의미 ({품사})` → 어원 → 자주 쓰는 패턴과 콜로케이션 → 비슷한 말과 차이 → 문법/표기 포인트 → 주요 표현과 숙어 → 예문 모음 (EN/KR, 50문장 이상) → 한눈에 정리
 
 3. **워드클라우드 생성** — **반드시 글(Front Matter + 본문)을 먼저 완전히 작성한 뒤** 실행한다.
@@ -305,7 +305,7 @@ python script/wordcloud_generator.py "content/collection/Vocabulary/2025/YYYY-MM
 - [ ] 폴더명이 `YYYY-MM-DD-단어-품사-meaning-usage-examples` 형식인가?
 - [ ] Front Matter의 `title`이 `[Vocabulary] {단어}의 의미와 쓰임 - {품사} 핵심 정리` 패턴이며 70자 이하인가?
 - [ ] `description`이 한국어로 150자 내외이며, 핵심 의미·용법·예문 구조를 잘 요약했는가?
-- [ ] `tags`가 영어/한국어 포함 50개 이상인가? (단어/품사/도메인/메타 태그 조합)
+- [ ] `tags`가 `data/tags.yaml` 승인 태그 25개 이상인가? (단어/품사/도메인/메타 태그 조합)
 - [ ] `categories`가 `English`, `Vocabulary`로 설정되었는가?
 - [ ] `image: "wordcloud.png"`가 설정되어 있고, 실제로 워드클라우드가 생성되었는가?
 - [ ] 본문에 핵심 의미/어원/콜로케이션/유의어 비교/문법 포인트/주요 표현/예문 50개 이상/한눈에 정리가 모두 포함되어 있는가?

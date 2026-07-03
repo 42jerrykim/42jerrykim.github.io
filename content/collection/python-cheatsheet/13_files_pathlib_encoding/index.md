@@ -8,55 +8,36 @@ lastmod: 2026-01-17
 collection_order: 13
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - IO
-  - Graph
-  - Error-Handling
-  - Performance
-  - 성능
+  - IO(Input/Output)
+  - Graph(그래프)
+  - Error-Handling(에러처리)
+  - Performance(성능)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Logging
-  - 로깅
-  - Windows
-  - Linux
+  - Pitfalls(함정)
+  - Logging(로깅)
+  - Windows(윈도우)
+  - Linux(리눅스)
   - macOS
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - OOP
-  - 객체지향
-  - String
-  - HTML
-  - Memory
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - OOP(객체지향)
+  - String(문자열)
+  - HTML(HyperText Markup Language)
+  - Memory(메모리)
   - Process
   - File-System
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Optimization
-  - 최적화
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Optimization(최적화)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
 ---
 파일 입출력과 경로 처리는 대부분의 프로그램에서 필요합니다. 이 치트시트는 pathlib 경로 다루기, encoding 명시, 텍스트/바이너리 모드의 핵심 패턴과 OS별 함정을 정리합니다.
 

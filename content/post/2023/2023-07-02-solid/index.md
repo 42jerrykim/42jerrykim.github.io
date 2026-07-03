@@ -8,85 +8,49 @@ header:
   teaser: https://images.velog.io/images/haero_kim/post/169ef81a-0c8c-4241-a73a-135d5b67ffea/1_XOMTPWTpDLypkp079p9XXg.png
 title: "[Software] SOLID 원칙 이해 — 유지보수·확장 가능한 코드의 핵심"
 tags:
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
-  - Design-Pattern
-  - 디자인패턴
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
+  - Design-Pattern(디자인패턴)
   - SOLID
-  - Clean-Code
-  - 클린코드
+  - Clean-Code(클린코드)
   - Best-Practices
-  - Code-Quality
-  - 코드품질
-  - Refactoring
-  - 리팩토링
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
   - Maintainability
   - Modularity
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Polymorphism
-  - 다형성
-  - Inheritance
-  - 상속
-  - Encapsulation
-  - 캡슐화
-  - Dependency-Injection
-  - 의존성주입
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Polymorphism(다형성)
+  - Inheritance(상속)
+  - Encapsulation(캡슐화)
+  - Dependency-Injection(의존성주입)
+  - Coupling(결합도)
+  - Cohesion(응집도)
   - Python
-  - 파이썬
-  - Implementation
-  - 구현
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Education
-  - 교육
-  - Career
-  - 커리어
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Reference
-  - 참고
-  - Clean-Architecture
-  - 클린아키텍처
+  - Implementation(구현)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Education(교육)
+  - Career(커리어)
+  - Technology(기술)
+  - Web(웹)
+  - Blog(블로그)
+  - Reference(참고)
+  - Clean-Architecture(클린아키텍처)
   - Readability
-  - Performance
-  - 성능
-  - Agile
-  - 애자일
-  - Backend
-  - 백엔드
-  - Scalability
-  - 확장성
+  - Performance(성능)
+  - Agile(애자일)
+  - Backend(백엔드)
+  - Scalability(확장성)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Review
-  - 리뷰
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Workflow
-  - 워크플로우
+  - Comparison(비교)
+  - Review(리뷰)
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Workflow(워크플로우)
   - Beginner
   - Case-Study
   - Deep-Dive

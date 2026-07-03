@@ -4,104 +4,64 @@ date: 2025-10-01
 lastmod: 2026-03-17
 tags:
   - ChatGPT
-  - AI
-  - 인공지능
-  - LLM
-  - GPT
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
-  - Implementation
-  - 구현
-  - Documentation
-  - 문서화
-  - Code-Review
-  - 코드리뷰
-  - Debugging
-  - 디버깅
-  - AWS
-  - GCP
+  - AI(인공지능)
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
+  - Prompt-Engineering(프롬프트엔지니어링)
+  - Implementation(구현)
+  - Documentation(문서화)
+  - Code-Review(코드리뷰)
+  - Debugging(디버깅)
+  - AWS(Amazon Web Services)
+  - GCP(Google Cloud Platform)
   - Azure
-  - Cloud
-  - 클라우드
+  - Cloud(클라우드)
   - DevOps
-  - Monitoring
-  - 모니터링
-  - Machine-Learning
-  - 머신러닝
-  - Data-Science
-  - 데이터사이언스
-  - Microservices
-  - 마이크로서비스
-  - API
-  - REST
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Backend
-  - 백엔드
-  - Web
-  - 웹
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
+  - Monitoring(모니터링)
+  - Machine-Learning(머신러닝)
+  - Data-Science(데이터사이언스)
+  - Microservices(마이크로서비스)
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Backend(백엔드)
+  - Web(웹)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
   - Best-Practices
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Open-Source
-  - 오픈소스
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
+  - Performance(성능)
+  - Optimization(최적화)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
+  - Open-Source(오픈소스)
+  - Technology(기술)
+  - Blog(블로그)
+  - Markdown(마크다운)
   - Git
   - GitHub
-  - CI-CD
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
-  - Comparison
-  - 비교
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
+  - Comparison(비교)
   - How-To
   - Tips
   - Case-Study
   - 실습
   - Beginner
-  - Edge-Cases
-  - 엣지케이스
-  - Error-Handling
-  - 에러처리
-  - Logging
-  - 로깅
+  - Edge-Cases(엣지케이스)
+  - Error-Handling(에러처리)
+  - Logging(로깅)
   - Benchmark
-  - Database
-  - 데이터베이스
-  - Scalability
-  - 확장성
-  - Security
-  - 보안
-  - Review
-  - 리뷰
+  - Database(데이터베이스)
+  - Scalability(확장성)
+  - Security(보안)
+  - Review(리뷰)
 categories:
   - AI
   - Engineering

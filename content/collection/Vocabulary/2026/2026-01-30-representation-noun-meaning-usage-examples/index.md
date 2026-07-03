@@ -11,50 +11,32 @@ tags:
   - English
   - 영단어
   - 영어명사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
   - Map
-  - Software-Architecture
-  - Abstraction
-  - Design-Pattern
+  - Software-Architecture(소프트웨어아키텍처)
+  - Abstraction(추상화)
+  - Design-Pattern(디자인패턴)
   - Proxy
-  - Business-English
-  - Grammar
-  - Pronunciation
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
+  - Business-English(비즈니스영어)
+  - Grammar(문법)
+  - Pronunciation(발음)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
   - Go
-  - Graph
-  - 그래프
-  - Movie
-  - 영화
-  - Review
-  - 리뷰
-  - Self-Hosted
+  - Graph(그래프)
+  - Movie(영화)
+  - Review(리뷰)
+  - Self-Hosted(셀프호스팅)
   - Process
-  - Culture
-  - 문화
-  - Antonym
-  - 반의어
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Culture(문화)
+  - Antonym(반의어)
+  - Daily-Life(일상표현)
+  - Education(교육)
+  - Reference(참고)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
 image: wordcloud.png

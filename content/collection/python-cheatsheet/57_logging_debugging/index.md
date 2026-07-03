@@ -8,55 +8,33 @@ lastmod: 2026-01-17
 collection_order: 57
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Logging
-  - 로깅
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - Monitoring
-  - 모니터링
-  - Troubleshooting
-  - 트러블슈팅
-  - 성능
-  - Performance
+  - Logging(로깅)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
+  - Monitoring(모니터링)
+  - Troubleshooting(트러블슈팅)
+  - Performance(성능)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Testing
-  - 테스트
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Stack
-  - String
-  - HTML
-  - Configuration
-  - 에러처리
-  - Documentation
-  - 문서화
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Optimization
-  - 최적화
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Education
+  - Pitfalls(함정)
+  - Testing(테스트)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Stack(스택)
+  - String(문자열)
+  - HTML(HyperText Markup Language)
+  - Configuration(설정)
+  - Documentation(문서화)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Optimization(최적화)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Education(교육)
 ---
 로깅과 디버깅은 문제를 빠르게 찾고 운영 환경을 모니터링하는 핵심 도구입니다. 이 치트시트는 logging 설정, 예외 로깅, traceback 읽는 법, breakpoint 활용을 정리합니다.
 

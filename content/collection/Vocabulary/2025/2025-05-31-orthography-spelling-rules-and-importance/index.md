@@ -4,52 +4,32 @@ date: 2025-05-31
 description: "Orthography(철자법)의 개념과 어원, 현대에서의 활용, 그리고 학습 방법에 대해 설명하는 글이다. 언어의 정확한 표기 규칙과 그 중요성을 다루며, 철자법 학습을 위한 실용적인 방법을 제시한다."
 tags:
   - Vocabulary
-  - Grammar
-  - Education
+  - Grammar(문법)
+  - Education(교육)
   - English
   - 영단어
-  - Graph
-  - 그래프
-  - Collocation
-  - 콜로케이션
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
-  - History
-  - 역사
-  - Nuance
-  - 뉘앙스
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - 교육
-  - Reference
-  - 참고
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Graph(그래프)
+  - Collocation(콜로케이션)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
+  - History(역사)
+  - Nuance(뉘앙스)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Reference(참고)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Technology
-  - 기술
-  - Guide
-  - 가이드
-  - Documentation
-  - 문서화
+  - Markdown(마크다운)
+  - Technology(기술)
+  - Guide(가이드)
+  - Documentation(문서화)
   - Best-Practices
   - Case-Study
   - Deep-Dive

@@ -8,96 +8,58 @@ lastmod: "2026-03-16"
 tags:
   - C
   - C++
-  - Linux
-  - 리눅스
+  - Linux(리눅스)
   - Process
   - Thread
-  - OS
-  - 운영체제
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - OS(운영체제)
+  - Concurrency(동시성)
+  - Async(비동기)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Best-Practices
-  - Error-Handling
-  - 에러처리
-  - Documentation
-  - 문서화
-  - Implementation
-  - 구현
-  - Debugging
-  - 디버깅
-  - Shell
-  - 셸
-  - Terminal
-  - 터미널
-  - Memory
-  - 메모리
-  - Security
-  - 보안
-  - Networking
-  - 네트워킹
+  - Error-Handling(에러처리)
+  - Documentation(문서화)
+  - Implementation(구현)
+  - Debugging(디버깅)
+  - Shell(셸)
+  - Terminal(터미널)
+  - Memory(메모리)
+  - Security(보안)
+  - Networking(네트워킹)
   - How-To
   - Tips
-  - Troubleshooting
-  - 트러블슈팅
-  - Code-Quality
-  - 코드품질
-  - Performance
-  - 성능
-  - Clean-Code
-  - 클린코드
-  - Pitfalls
-  - 함정
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
-  - Compiler
-  - 컴파일러
+  - Troubleshooting(트러블슈팅)
+  - Code-Quality(코드품질)
+  - Performance(성능)
+  - Clean-Code(클린코드)
+  - Pitfalls(함정)
+  - Technology(기술)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Workflow(워크플로우)
+  - Configuration(설정)
+  - Compiler(컴파일러)
   - File-System
-  - IO
-  - Embedded
-  - 임베디드
+  - IO(Input/Output)
+  - Embedded(임베디드)
   - Case-Study
   - Deep-Dive
   - 실습
   - Beginner
   - Advanced
-  - Backend
-  - 백엔드
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Design-Pattern
-  - 디자인패턴
-  - Interface
-  - 인터페이스
+  - Backend(백엔드)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
   - Event-Driven
-  - Automation
-  - 자동화
+  - Automation(자동화)
   - Quick-Reference
-  - Productivity
-  - 생산성
-  - Review
-  - 리뷰
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
+  - Productivity(생산성)
+  - Review(리뷰)
+  - Comparison(비교)
+  - Career(커리어)
 title: "[Linux] Custom Signal Handler 만들기: sigaction과 안전한 시그널 처리"
 ---
 

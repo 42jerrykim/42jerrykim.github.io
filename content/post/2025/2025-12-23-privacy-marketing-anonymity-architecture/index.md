@@ -6,114 +6,66 @@ categories:
   - Privacy
   - Architecture
 tags:
-  - Privacy
-  - Security
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - 보안
-  - 프라이버시
-  - Logging
-  - 로깅
-  - Monitoring
-  - 모니터링
-  - Authentication
-  - 인증
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Implementation
-  - 구현
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Privacy(프라이버시)
+  - Security(보안)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Logging(로깅)
+  - Monitoring(모니터링)
+  - Authentication(인증)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Implementation(구현)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Networking
-  - 네트워킹
-  - Design-Pattern
-  - 디자인패턴
-  - Clean-Architecture
-  - 클린아키텍처
+  - Comparison(비교)
+  - Networking(네트워킹)
+  - Design-Pattern(디자인패턴)
+  - Clean-Architecture(클린아키텍처)
   - DevOps
-  - Cloud
-  - 클라우드
+  - Cloud(클라우드)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Data-Structures
-  - Database
-  - 데이터베이스
-  - Backend
-  - 백엔드
-  - API
-  - Code-Quality
-  - 코드품질
-  - Error-Handling
-  - 에러처리
-  - Refactoring
-  - 리팩토링
-  - Productivity
-  - 생산성
-  - Agile
-  - 애자일
-  - Workflow
-  - 워크플로우
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Scalability
-  - 확장성
+  - Data-Structures(자료구조)
+  - Database(데이터베이스)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Code-Quality(코드품질)
+  - Error-Handling(에러처리)
+  - Refactoring(리팩토링)
+  - Productivity(생산성)
+  - Agile(애자일)
+  - Workflow(워크플로우)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Scalability(확장성)
   - Latency
-  - Concurrency
-  - 동시성
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Code-Review
-  - 코드리뷰
+  - Concurrency(동시성)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Code-Review(코드리뷰)
   - Domain-Driven-Design
   - Event-Driven
-  - Microservices
-  - 마이크로서비스
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Encapsulation
-  - 캡슐화
-  - Internet
-  - 인터넷
+  - Microservices(마이크로서비스)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Encapsulation(캡슐화)
+  - Internet(인터넷)
   - Beginner
   - Advanced
 date: 2025-12-23

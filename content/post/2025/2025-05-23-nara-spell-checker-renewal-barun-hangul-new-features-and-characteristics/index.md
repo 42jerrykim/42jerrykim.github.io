@@ -5,95 +5,56 @@ lastmod: 2026-03-17
 description: "부산대학교와 ㈜나라인포테크가 개발한 바른 한글(구 나라맞춤법검사기)의 24년 만 전면 리뉴얼을 소개한다. 반응형 UI, 5천 자 검사·교정 정확도 강화, 사용자 피드백·도움말 확충, 향후 AI 접목 계획까지 핵심 변경 사항과 추천 대상·장단점·참고 문헌을 정리했다."
 draft: false
 tags:
-  - Algorithm
-  - 알고리즘
-  - AI
-  - 인공지능
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
-  - NLP
-  - Implementation
-  - 구현
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Grammar
-  - 문법
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Problem-Solving
-  - 문제해결
-  - Guide
-  - 가이드
-  - HTML
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Algorithm(알고리즘)
+  - AI(인공지능)
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
+  - NLP(Natural Language Processing)
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Grammar(문법)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Problem-Solving(문제해결)
+  - Guide(가이드)
+  - HTML(HyperText Markup Language)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Frontend
-  - 프론트엔드
-  - Backend
-  - 백엔드
-  - API
-  - Performance
-  - 성능
-  - Code-Quality
-  - 코드품질
-  - Testing
-  - 테스트
-  - String
-  - 문자열
-  - SEO
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Data-Science
-  - 데이터사이언스
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Error-Handling
-  - 에러처리
+  - Frontend(프론트엔드)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Performance(성능)
+  - Code-Quality(코드품질)
+  - Testing(테스트)
+  - String(문자열)
+  - SEO(Search Engine Optimization)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Data-Science(데이터사이언스)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Error-Handling(에러처리)
   - Readability
   - Maintainability
   - Beginner
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Case-Study
-  - Mobile
-  - 모바일
+  - Mobile(모바일)
   - Tablet
-  - 태블릿
-  - Graph
-  - 그래프
+  - Graph(그래프)
 categories:
   - Orthography
   - Spell Checking

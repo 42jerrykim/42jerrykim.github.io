@@ -9,96 +9,61 @@ categories:
   - WebDevelopment
   - Frontend
 tags:
-  - CSS
-  - HTML
-  - Web
-  - 웹
-  - Frontend
-  - 프론트엔드
+  - CSS(Cascading Style Sheets)
+  - HTML(HyperText Markup Language)
+  - Web(웹)
+  - Frontend(프론트엔드)
   - JavaScript
   - TypeScript
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Education
-  - 교육
-  - Blog
-  - 블로그
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Code-Quality
-  - 코드품질
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Education(교육)
+  - Blog(블로그)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
   - Modularity
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Software-Architecture
-  - Design-Pattern
-  - 디자인패턴
-  - Review
-  - 리뷰
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Review(리뷰)
   - Beginner
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Implementation(구현)
+  - Optimization(최적화)
   - React
   - Vue
   - Node.js
-  - Productivity
-  - 생산성
-  - Agile
-  - 애자일
-  - History
-  - 역사
-  - Markdown
-  - 마크다운
-  - API
-  - Security
-  - 보안
-  - Scalability
-  - 확장성
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
+  - Productivity(생산성)
+  - Agile(애자일)
+  - History(역사)
+  - Markdown(마크다운)
+  - API(Application Programming Interface)
+  - Security(보안)
+  - Scalability(확장성)
+  - Automation(자동화)
+  - Deployment(배포)
   - Deep-Dive
   - Case-Study
   - 실습

@@ -11,52 +11,34 @@ tags:
   - English
   - 영단어
   - 영어형용사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Graph
-  - Software-Architecture
-  - Etymology
-  - Grammar
-  - Pronunciation
-  - 문법
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
-  - War
-  - 전쟁
-  - Security
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Graph(그래프)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Etymology(어원)
+  - Grammar(문법)
+  - Pronunciation(발음)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
+  - War(전쟁)
+  - Security(보안)
   - Python
-  - Deployment
-  - Antonym
-  - 반의어
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Deployment(배포)
+  - Antonym(반의어)
+  - Daily-Life(일상표현)
+  - Education(교육)
+  - Reference(참고)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Technology
-  - 기술
-  - Guide
-  - 가이드
-  - Documentation
+  - Markdown(마크다운)
+  - Technology(기술)
+  - Guide(가이드)
+  - Documentation(문서화)
 image: wordcloud.png
 ---
 

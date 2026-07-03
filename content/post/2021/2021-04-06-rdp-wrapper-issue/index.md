@@ -9,88 +9,55 @@ lastmod: "2026-03-16"
 header:
   teaser: https://user-images.githubusercontent.com/11385249/112481810-73097380-8d88-11eb-90ae-27adaa456182.png
 tags:
-  - Windows
-  - 윈도우
-  - RDP
+  - Windows(윈도우)
+  - RDP(Remote Desktop Protocol)
   - Git
   - GitHub
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Reference
-  - 참고
-  - Open-Source
-  - 오픈소스
-  - Technology
-  - 기술
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
+  - Reference(참고)
+  - Open-Source(오픈소스)
+  - Technology(기술)
+  - Productivity(생산성)
+  - Education(교육)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Documentation(문서화)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Deployment(배포)
+  - Automation(자동화)
   - Beginner
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Web
-  - 웹
-  - Review
-  - 리뷰
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Innovation
-  - 혁신
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Web(웹)
+  - Review(리뷰)
+  - Comparison(비교)
+  - Career(커리어)
+  - Innovation(혁신)
   - DevOps
-  - Error-Handling
-  - 에러처리
-  - Implementation
-  - 구현
-  - Clean-Code
-  - 클린코드
+  - Error-Handling(에러처리)
+  - Implementation(구현)
+  - Clean-Code(클린코드)
   - Case-Study
   - Deep-Dive
   - 실습
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - Self-Hosted
-  - 셀프호스팅
-  - Privacy
-  - 프라이버시
-  - Performance
-  - 성능
-  - Debugging
-  - 디버깅
-  - IDE
+  - Cheatsheet(치트시트)
+  - Self-Hosted(셀프호스팅)
+  - Privacy(프라이버시)
+  - Performance(성능)
+  - Debugging(디버깅)
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Shell
-  - 터미널
+  - Shell(셸)
+  - Terminal(터미널)
 ---
 
 ## 개요

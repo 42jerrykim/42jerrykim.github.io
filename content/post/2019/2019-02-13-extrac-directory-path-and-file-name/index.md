@@ -7,87 +7,55 @@ description: "파일 경로 문자열에서 디렉터리 경로와 파일명을 
 redirect_from:
   - /2019/02/13/
 tags:
-  - Shell
-  - 셸
+  - Shell(셸)
   - Bash
-  - Linux
-  - 리눅스
+  - Linux(리눅스)
   - File-System
-  - String
-  - 문자열
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Terminal
-  - 터미널
+  - String(문자열)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Terminal(터미널)
   - DevOps
-  - Automation
-  - 자동화
-  - Implementation
-  - 구현
+  - Automation(자동화)
+  - Implementation(구현)
   - Best-Practices
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
-  - Error-Handling
-  - 에러처리
-  - Documentation
-  - 문서화
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Documentation(문서화)
   - How-To
   - Tips
-  - Reference
-  - 참고
+  - Reference(참고)
   - Beginner
-  - Comparison
-  - 비교
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - OS
-  - 운영체제
+  - Comparison(비교)
+  - Productivity(생산성)
+  - Education(교육)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - OS(운영체제)
   - Process
-  - IO
-  - Technology
-  - 기술
-  - Cheatsheet
-  - 치트시트
+  - IO(Input/Output)
+  - Technology(기술)
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Open-Source
-  - 오픈소스
+  - Open-Source(오픈소스)
   - Git
   - GitHub
-  - Windows
-  - 윈도우
+  - Windows(윈도우)
   - macOS
-  - IDE
+  - IDE(Integrated Development Environment)
   - Vim
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
+  - Debugging(디버깅)
+  - Testing(테스트)
   - Readability
   - Maintainability
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Performance
-  - 성능
-  - Markdown
-  - 마크다운
-  - Blog
-  - 블로그
-  - Networking
-  - 네트워킹
-  - Workflow
-  - 워크플로우
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Performance(성능)
+  - Markdown(마크다운)
+  - Blog(블로그)
+  - Networking(네트워킹)
+  - Workflow(워크플로우)
   - Case-Study
   - Deep-Dive
   - 실습

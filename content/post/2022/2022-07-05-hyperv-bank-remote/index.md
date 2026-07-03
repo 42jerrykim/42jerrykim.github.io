@@ -6,118 +6,69 @@ categories:
 date: "2022-07-05T00:00:00Z"
 lastmod: "2026-03-16"
 tags:
-  - Windows
-  - 윈도우
-  - RDP
-  - Security
-  - 보안
-  - Memory
-  - 메모리
-  - Hardware
-  - 하드웨어
+  - Windows(윈도우)
+  - RDP(Remote Desktop Protocol)
+  - Security(보안)
+  - Memory(메모리)
+  - Hardware(하드웨어)
   - Tablet
-  - 태블릿
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Mobile
-  - 모바일
-  - Networking
-  - 네트워킹
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Mobile(모바일)
+  - Networking(네트워킹)
   - Beginner
-  - Authentication
-  - 인증
-  - Privacy
-  - 프라이버시
-  - Internet
-  - 인터넷
-  - Performance
-  - 성능
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - OS
-  - 운영체제
+  - Authentication(인증)
+  - Privacy(프라이버시)
+  - Internet(인터넷)
+  - Performance(성능)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Deployment(배포)
+  - Automation(자동화)
+  - OS(운영체제)
   - Process
-  - Interface
-  - 인터페이스
-  - Design-Pattern
-  - 디자인패턴
+  - Interface(인터페이스)
+  - Design-Pattern(디자인패턴)
   - Case-Study
   - Deep-Dive
   - 실습
-  - HTTP
-  - API
-  - Cloud
-  - 클라우드
+  - HTTP(HyperText Transfer Protocol)
+  - API(Application Programming Interface)
+  - Cloud(클라우드)
   - DevOps
   - Git
   - GitHub
-  - Backend
-  - 백엔드
-  - Frontend
-  - 프론트엔드
-  - Code-Quality
-  - 코드품질
-  - Pitfalls
-  - 함정
-  - Error-Handling
-  - 에러처리
-  - Logging
-  - 로깅
-  - Gadget
-  - 가젯
-  - Self-Hosted
-  - 셀프호스팅
-  - Monitoring
-  - 모니터링
-  - Scalability
-  - 확장성
+  - Backend(백엔드)
+  - Frontend(프론트엔드)
+  - Code-Quality(코드품질)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Logging(로깅)
+  - Gadget(가젯)
+  - Self-Hosted(셀프호스팅)
+  - Monitoring(모니터링)
+  - Scalability(확장성)
 image: "wordcloud.png"
 ---
 

@@ -7,42 +7,26 @@ categories:
   - Shell
 tags:
   - Bash
-  - Shell
-  - 셸
-  - Linux
-  - 리눅스
-  - Terminal
-  - 터미널
+  - Shell(셸)
+  - Linux(리눅스)
+  - Terminal(터미널)
   - Command
   - Process
-  - Error-Handling
-  - 에러처리
-  - Troubleshooting
-  - 트러블슈팅
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Reference
-  - 참고
-  - Documentation
-  - 문서화
+  - Error-Handling(에러처리)
+  - Troubleshooting(트러블슈팅)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
+  - Documentation(문서화)
   - Best-Practices
-  - Workflow
-  - 워크플로우
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
+  - Workflow(워크플로우)
+  - Automation(자동화)
+  - Deployment(배포)
   - Quick-Reference
-  - Productivity
-  - 생산성
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
-  - Pitfalls
-  - 함정
+  - Productivity(생산성)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
+  - Pitfalls(함정)
   - C++
   - C
   - Scripting
@@ -53,48 +37,30 @@ tags:
   - Signal
   - PATH
   - Permission
-  - 권한
   - sysexits
-  - Open-Source
-  - 오픈소스
-  - Technology
-  - 기술
+  - Open-Source(오픈소스)
+  - Technology(기술)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Blog
-  - 블로그
-  - Education
-  - 교육
+  - Comparison(비교)
+  - Blog(블로그)
+  - Education(교육)
   - DevOps
-  - Configuration
-  - 설정
-  - Migration
-  - 마이그레이션
-  - Innovation
-  - 혁신
-  - Markdown
-  - 마크다운
-  - Web
-  - 웹
-  - API
-  - Design-Pattern
-  - 디자인패턴
-  - Clean-Code
-  - 클린코드
-  - Edge-Cases
-  - 엣지케이스
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
+  - Configuration(설정)
+  - Migration(마이그레이션)
+  - Innovation(혁신)
+  - Markdown(마크다운)
+  - Web(웹)
+  - API(Application Programming Interface)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
+  - Edge-Cases(엣지케이스)
+  - Implementation(구현)
+  - Testing(테스트)
   - Maintainability
   - Modularity
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - OS
-  - 운영체제
+  - Software-Architecture(소프트웨어아키텍처)
+  - OS(운영체제)
   - File-System
   - Beginner
   - Advanced

@@ -8,94 +8,58 @@ lastmod: "2026-03-16T00:00:00Z"
 header:
   teaser: /assets/images/undefined/Windows-Defender.jpg
 tags:
-  - Windows
-  - 윈도우
-  - Security
-  - 보안
+  - Windows(윈도우)
+  - Security(보안)
   - PowerShell
-  - Networking
-  - 네트워킹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Configuration
-  - 설정
+  - Networking(네트워킹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Technology(기술)
+  - Blog(블로그)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Reference
-  - 참고
+  - Reference(참고)
   - Best-Practices
-  - Troubleshooting
-  - 트러블슈팅
-  - Education
-  - 교육
-  - Documentation
-  - 문서화
-  - Automation
-  - 자동화
-  - OS
-  - 운영체제
-  - Privacy
-  - 프라이버시
-  - Performance
-  - 성능
+  - Troubleshooting(트러블슈팅)
+  - Education(교육)
+  - Documentation(문서화)
+  - Automation(자동화)
+  - OS(운영체제)
+  - Privacy(프라이버시)
+  - Performance(성능)
   - DevOps
   - Git
   - GitHub
-  - Web
-  - 웹
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Comparison
-  - 비교
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Cloud
-  - 클라우드
+  - Web(웹)
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Comparison(비교)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Cloud(클라우드)
   - Beginner
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Career
-  - 커리어
-  - Innovation
-  - 혁신
-  - Deployment
-  - 배포
-  - Monitoring
-  - 모니터링
-  - Terminal
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Career(커리어)
+  - Innovation(혁신)
+  - Deployment(배포)
+  - Monitoring(모니터링)
+  - Terminal(터미널)
   - VSCode
-  - IDE
+  - IDE(Integrated Development Environment)
   - Case-Study
   - Deep-Dive
   - 실습
-  - API
-  - Backend
-  - 백엔드
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
-  - RDP
-  - History
-  - 역사
-  - Internet
-  - 인터넷
+  - API(Application Programming Interface)
+  - Backend(백엔드)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
+  - RDP(Remote Desktop Protocol)
+  - History(역사)
+  - Internet(인터넷)
 title: "[Windows] 설정만 잘 한다면 Windows Defender로도 충분하다"
 ---
 

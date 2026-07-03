@@ -7,76 +7,42 @@ header:
   teaser: /assets/images/2024/2024-08-22-JAX-vs-PyTorch.png
 tags:
   - Python
-  - 파이썬
-  - AI
-  - 인공지능
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
-  - Data-Science
-  - 데이터사이언스
+  - AI(인공지능)
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
+  - Data-Science(데이터사이언스)
   - Neural-Network
-  - Functional-Programming
-  - 함수형프로그래밍
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Optimization
-  - 최적화
-  - Open-Source
-  - 오픈소스
-  - Scalability
-  - 확장성
-  - API
-  - Documentation
-  - 문서화
-  - Implementation
-  - 구현
-  - Graph
-  - 그래프
-  - Math
-  - 수학
-  - Deployment
-  - 배포
-  - Performance
-  - 성능
+  - Functional-Programming(함수형프로그래밍)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Optimization(최적화)
+  - Open-Source(오픈소스)
+  - Scalability(확장성)
+  - API(Application Programming Interface)
+  - Documentation(문서화)
+  - Implementation(구현)
+  - Graph(그래프)
+  - Math(수학)
+  - Deployment(배포)
+  - Performance(성능)
   - Best-Practices
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Cloud
-  - 클라우드
-  - Memory
-  - 메모리
-  - Compiler
-  - 컴파일러
-  - Concurrency
-  - 동시성
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Code-Quality
-  - 코드품질
-  - Innovation
-  - 혁신
-  - History
-  - 역사
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Comparison(비교)
+  - Reference(참고)
+  - Technology(기술)
+  - Education(교육)
+  - Cloud(클라우드)
+  - Memory(메모리)
+  - Compiler(컴파일러)
+  - Concurrency(동시성)
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
+  - Innovation(혁신)
+  - History(역사)
+  - Blog(블로그)
+  - Review(리뷰)
+  - Markdown(마크다운)
   - How-To
   - Tips
   - Beginner
@@ -84,29 +50,19 @@ tags:
   - Case-Study
   - Deep-Dive
   - 실습
-  - Automation
-  - 자동화
+  - Automation(자동화)
   - GPU
-  - CPU
-  - Backend
-  - 백엔드
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
+  - CPU(Central Processing Unit)
+  - Backend(백엔드)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
   - Modularity
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Pitfalls
-  - 함정
-  - Profiling
-  - 프로파일링
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Pitfalls(함정)
+  - Profiling(프로파일링)
   - Benchmark
   - DevOps
   - MLOps

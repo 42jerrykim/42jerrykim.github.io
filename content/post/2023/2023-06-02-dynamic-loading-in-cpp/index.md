@@ -8,94 +8,58 @@ title: "[C++] C++ 동적 로딩(dlopen API) 완벽 가이드"
 tags:
   - C++
   - C
-  - Implementation
-  - Polymorphism
-  - Software-Architecture
-  - OOP
-  - 객체지향
-  - 다형성
-  - Design-Pattern
-  - 디자인패턴
+  - Implementation(구현)
+  - Polymorphism(다형성)
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
+  - Design-Pattern(디자인패턴)
   - Factory
-  - API
-  - String
-  - Linux
-  - 리눅스
-  - Tutorial
-  - 가이드
-  - Guide
-  - Technology
-  - 기술
-  - Memory
-  - 메모리
-  - Compiler
-  - 컴파일러
+  - API(Application Programming Interface)
+  - String(문자열)
+  - Linux(리눅스)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Technology(기술)
+  - Memory(메모리)
+  - Compiler(컴파일러)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
   - How-To
   - Tips
-  - Reference
-  - 참고
-  - Career
-  - 커리어
-  - Education
-  - 교육
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Error-Handling
-  - 에러처리
+  - Reference(참고)
+  - Career(커리어)
+  - Education(교육)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Error-Handling(에러처리)
   - Modularity
-  - Shell
-  - 셸
+  - Shell(셸)
   - Bash
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Markdown
-  - 마크다운
-  - Comparison
-  - 비교
-  - Configuration
-  - 설정
-  - Code-Quality
-  - 코드품질
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Debugging
-  - 디버깅
-  - Windows
-  - 윈도우
-  - OS
-  - 운영체제
-  - Backend
-  - 백엔드
+  - Blog(블로그)
+  - Web(웹)
+  - Markdown(마크다운)
+  - Comparison(비교)
+  - Configuration(설정)
+  - Code-Quality(코드품질)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Debugging(디버깅)
+  - Windows(윈도우)
+  - OS(운영체제)
+  - Backend(백엔드)
   - Deep-Dive
   - 실습
   - Beginner
   - Advanced
   - Case-Study
-  - Review
-  - 리뷰
-  - Productivity
-  - 생산성
-  - Innovation
-  - 혁신
-  - Workflow
-  - 워크플로우
-  - Networking
-  - 네트워킹
-  - History
-  - 역사
+  - Review(리뷰)
+  - Productivity(생산성)
+  - Innovation(혁신)
+  - Workflow(워크플로우)
+  - Networking(네트워킹)
+  - History(역사)
 ---
 
 ## 개요

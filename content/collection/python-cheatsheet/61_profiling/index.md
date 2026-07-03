@@ -8,55 +8,36 @@ lastmod: 2026-01-18
 collection_order: 61
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Profiling
-  - 프로파일링
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - CPU
-  - Debugging
-  - 디버깅
+  - Profiling(프로파일링)
+  - Performance(성능)
+  - Optimization(최적화)
+  - CPU(Central Processing Unit)
+  - Debugging(디버깅)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Shell
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Pitfalls(함정)
+  - Shell(셸)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Bash
   - Git
   - GitHub
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
-  - Sorting
-  - Graph
-  - 그래프
-  - String
-  - HTML
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
+  - Sorting(정렬)
+  - Graph(그래프)
+  - String(문자열)
+  - HTML(HyperText Markup Language)
   - Process
-  - Deployment
-  - Error-Handling
-  - 에러처리
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Logging
-  - 로깅
+  - Deployment(배포)
+  - Error-Handling(에러처리)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Logging(로깅)
 ---
 성능 최적화는 "측정 먼저, 최적화 나중"이 원칙입니다. 이 치트시트는 timeit으로 마이크로벤치마크, cProfile로 함수별 분석, py-spy로 운영 환경 샘플링하는 방법을 정리합니다.
 

@@ -7,83 +7,54 @@ lastmod: "2026-03-17T00:00:00Z"
 header:
   teaser: /assets/images/2024/2024-10-02-agi.png
 tags:
-  - AI
-  - 인공지능
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
-  - LLM
-  - GPT
+  - AI(인공지능)
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - ChatGPT
   - Neural-Network
-  - Technology
-  - 기술
-  - Innovation
-  - 혁신
-  - Automation
-  - 자동화
-  - Graph
-  - 그래프
-  - Sci-Fi
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Guide
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
+  - Technology(기술)
+  - Innovation(혁신)
+  - Automation(자동화)
+  - Graph(그래프)
+  - Sci-Fi(Science Fiction)
+  - Blog(블로그)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
   - Process
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
-  - Reference
-  - 참고
+  - Education(교육)
+  - Productivity(생산성)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Security
-  - 보안
-  - NLP
-  - Data-Science
-  - 데이터사이언스
-  - Software-Architecture
-  - Design-Pattern
-  - API
-  - Backend
-  - Database
-  - 데이터베이스
-  - Testing
-  - 테스트
+  - Comparison(비교)
+  - Career(커리어)
+  - Security(보안)
+  - NLP(Natural Language Processing)
+  - Data-Science(데이터사이언스)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - API(Application Programming Interface)
+  - Backend(백엔드)
+  - Database(데이터베이스)
+  - Testing(테스트)
   - Deep-Dive
   - Case-Study
-  - History
-  - 역사
-  - Science
-  - 과학
-  - Privacy
-  - 프라이버시
+  - History(역사)
+  - Science(과학)
+  - Privacy(프라이버시)
   - Beginner
   - Advanced
-  - Gaming
-  - 게임
+  - Gaming(게임)
 title: "[AI] 인공 일반 지능(AGI)의 정의, 5단계 발전, 기술 기반과 미래 전망"
 ---
 

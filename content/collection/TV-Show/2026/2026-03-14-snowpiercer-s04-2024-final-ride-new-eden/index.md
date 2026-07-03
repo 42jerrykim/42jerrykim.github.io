@@ -25,12 +25,10 @@ tags:
 - Sheila-Vand
 - Clark-Gregg
 - Michael-Aronov
-- Sci-Fi
-- SF
+- Sci-Fi(Science Fiction)
 - Drama
-- 드라마
-- Thriller
-- 스릴러
+- TV-Show(드라마)
+- Thriller(스릴러)
 - Post-Apocalyptic
 - 디스토피아
 - Class-Struggle
@@ -40,9 +38,7 @@ tags:
 - New-Eden
 - AMC
 - TNT
-- TV-Show
-- Review
-- 리뷰
+- Review(리뷰)
 - Adaptation
 - Bong-Joon-ho
 - 원작
@@ -56,12 +52,9 @@ tags:
 - Atmospheric-Threat
 - TVLine
 - Recap-Source
-- Cinematography
-- 촬영기법
-- Soundtrack
-- 사운드트랙
-- Visual-Effects
-- 시각효과
+- Cinematography(촬영기법)
+- Soundtrack(사운드트랙)
+- Visual-Effects(시각효과)
 - 2020s
 - 2024
 - Final-Season
@@ -82,16 +75,13 @@ tags:
 - Dr-Nima-Rousseau
 - Animal-Squad
 - IPF
-- Action
-- 액션
+- Action(액션)
 - Survival
 - 생존
-- Leadership
 - 리더십
 - Redemption
 - 구원
-- Family
-- 가족
+- Family(가족)
 image: "image.png"
 ---
 

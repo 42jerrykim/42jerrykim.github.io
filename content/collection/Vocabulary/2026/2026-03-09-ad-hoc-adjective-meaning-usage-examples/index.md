@@ -12,24 +12,15 @@ tags:
   - 영단어
   - 영어형용사
   - ad hoc
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
   - impromptu
   - makeshift
   - temporary
@@ -44,8 +35,7 @@ tags:
   - 특별 목적
   - 일시적
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English
@@ -66,7 +56,6 @@ tags:
   - measure
   - 조치
   - Legal-English
-  - 법률영어
   - Technical-English
   - 기술영어
   - planning

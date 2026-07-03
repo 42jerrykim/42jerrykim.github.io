@@ -5,107 +5,68 @@ date: "2023-09-21T00:00:00Z"
 lastmod: "2026-03-17T00:00:00Z"
 title: "[DesignPattern] Builder pattern - 생성과 표현의 분리"
 tags:
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - Builder
   - Creational-Pattern
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Software-Architecture(소프트웨어아키텍처)
   - Java
-  - OOP
-  - 객체지향
-  - Implementation
-  - 구현
+  - OOP(객체지향)
+  - Implementation(구현)
   - Best-Practices
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Encapsulation
-  - 캡슐화
-  - Interface
-  - 인터페이스
-  - GoF
-  - Documentation
-  - 문서화
-  - Tutorial
-  - Guide
-  - Reference
-  - 참고
-  - Open-Source
-  - 오픈소스
-  - API
-  - Backend
-  - 백엔드
-  - Code-Quality
-  - 코드품질
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Encapsulation(캡슐화)
+  - Interface(인터페이스)
+  - GoF(Gang of Four)
+  - Documentation(문서화)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Open-Source(오픈소스)
+  - API(Application Programming Interface)
+  - Backend(백엔드)
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
   - Modularity
   - Type-Safety
-  - Composition
-  - 합성
-  - Abstraction
-  - 추상화
-  - Dependency-Injection
-  - 의존성주입
-  - Coupling
-  - 결합도
-  - Cohesion
-  - 응집도
+  - Composition(합성)
+  - Abstraction(추상화)
+  - Dependency-Injection(의존성주입)
+  - Coupling(결합도)
+  - Cohesion(응집도)
   - Factory
   - Singleton
-  - UML
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - HTTP
-  - REST
+  - UML(Unified Modeling Language)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - HTTP(HyperText Transfer Protocol)
+  - REST(Representational State Transfer)
   - Android
   - Spring
   - Lombok
-  - 블로그
-  - Blog
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Education(교육)
+  - Productivity(생산성)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Migration
-  - 마이그레이션
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
+  - Comparison(비교)
+  - Migration(마이그레이션)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
   - Process
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
-  - 가이드
-  - Edge-Cases
-  - Pitfalls
-  - 함정
-  - Error-Handling
-  - 에러처리
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
+  - Markdown(마크다운)
+  - Review(리뷰)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Performance(성능)
+  - Optimization(최적화)
 ---
 
 소프트웨어 개발에서 **선택적 속성이 많은 복잡한 객체**를 만들 때, 생성자 인자가 많아지거나 점층적 생성자·자바빈 패턴의 한계가 드러납니다. 이때 **빌더 패턴(Builder pattern)** 은 객체의 **구성(construction)** 과 **표현(representation)** 을 분리해, 같은 구성 과정으로도 서로 다른 표현을 만들 수 있게 해줍니다. 이 글에서는 빌더 패턴의 개념, GoF와 Effective Java 관점, Java 구현 절차, 실전 라이브러리 사례, 관련 패턴·기술, FAQ까지 정리합니다.

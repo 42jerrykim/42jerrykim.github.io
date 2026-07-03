@@ -3,102 +3,62 @@ title: "[Remote Desktop] RDP UWP 앱 SSH 터널 오류 0x516 원인 및 해결"
 categories:
   - Remote Desktop
 tags:
-  - Windows
-  - 윈도우
-  - RDP
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Troubleshooting
-  - 트러블슈팅
+  - Windows(윈도우)
+  - RDP(Remote Desktop Protocol)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Troubleshooting(트러블슈팅)
   - PowerShell
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
   - How-To
   - Tips
-  - Configuration
-  - 설정
-  - Reference
-  - 참고
-  - Documentation
-  - 문서화
+  - Configuration(설정)
+  - Reference(참고)
+  - Documentation(문서화)
   - Best-Practices
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Education
-  - 교육
-  - Workflow
-  - 워크플로우
-  - Shell
-  - 셸
-  - Terminal
-  - 터미널
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
-  - Open-Source
-  - 오픈소스
-  - Productivity
-  - 생산성
+  - Technology(기술)
+  - Blog(블로그)
+  - Education(교육)
+  - Workflow(워크플로우)
+  - Shell(셸)
+  - Terminal(터미널)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
+  - Open-Source(오픈소스)
+  - Productivity(생산성)
   - Beginner
-  - Problem-Solving
-  - 문제해결
-  - HTTP
-  - Cloud
-  - 클라우드
+  - Problem-Solving(문제해결)
+  - HTTP(HyperText Transfer Protocol)
+  - Cloud(클라우드)
   - DevOps
-  - Performance
-  - 성능
-  - Testing
-  - 테스트
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Performance(성능)
+  - Testing(테스트)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Markdown
-  - 마크다운
-  - Comparison
-  - 비교
-  - Review
-  - 리뷰
-  - Hardware
-  - 하드웨어
-  - Mobile
-  - 모바일
-  - Career
-  - 커리어
-  - Migration
-  - 마이그레이션
-  - Agile
-  - 애자일
-  - Linux
-  - 리눅스
+  - Markdown(마크다운)
+  - Comparison(비교)
+  - Review(리뷰)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
+  - Career(커리어)
+  - Migration(마이그레이션)
+  - Agile(애자일)
+  - Linux(리눅스)
   - Docker
-  - Authentication
-  - 인증
-  - Privacy
-  - 프라이버시
+  - Authentication(인증)
+  - Privacy(프라이버시)
   - Git
   - GitHub
-  - Backend
-  - 백엔드
-  - API
-  - Web
-  - 웹
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - IDE
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Web(웹)
+  - Deployment(배포)
+  - Automation(자동화)
+  - IDE(Integrated Development Environment)
   - VSCode
   - Maintainability
   - Readability

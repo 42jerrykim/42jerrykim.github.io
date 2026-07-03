@@ -7,91 +7,58 @@ categories:
   - Documentation
   - VSCode
 tags:
-  - Markdown
-  - 마크다운
-  - String
-  - 문자열
+  - Markdown(마크다운)
+  - String(문자열)
   - VSCode
-  - Documentation
-  - 문서화
-  - Implementation
-  - 구현
-  - Clean-Code
-  - 클린코드
-  - Productivity
-  - 생산성
-  - Workflow
-  - 워크플로우
-  - Automation
-  - 자동화
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - IDE
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Documentation(문서화)
+  - Implementation(구현)
+  - Clean-Code(클린코드)
+  - Productivity(생산성)
+  - Workflow(워크플로우)
+  - Automation(자동화)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - IDE(Integrated Development Environment)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - JavaScript
-  - HTML
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
+  - HTML(HyperText Markup Language)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
   - Beginner
   - Advanced
   - Case-Study
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Migration
-  - 마이그레이션
-  - Innovation
-  - 혁신
-  - Review
-  - 리뷰
+  - Migration(마이그레이션)
+  - Innovation(혁신)
+  - Review(리뷰)
   - Jekyll
   - Hugo
-  - Terminal
-  - 터미널
+  - Terminal(터미널)
   - Deep-Dive
   - 실습
-  - Testing
-  - 테스트
+  - Testing(테스트)
   - Git
   - GitHub
-  - Performance
-  - 성능
-  - Open-Source
-  - 오픈소스
-  - Career
-  - 커리어
-  - Refactoring
-  - 리팩토링
-  - Problem-Solving
-  - 문제해결
-  - Edge-Cases
-  - 엣지케이스
-  - Error-Handling
-  - 에러처리
+  - Performance(성능)
+  - Open-Source(오픈소스)
+  - Career(커리어)
+  - Refactoring(리팩토링)
+  - Problem-Solving(문제해결)
+  - Edge-Cases(엣지케이스)
+  - Error-Handling(에러처리)
 description: "VSCode에서 마크다운 heading의 번호(1., 10.1.1 등)와 이모티콘을 제거하는 세 가지 정규식 패턴을 소개합니다. 계층적 번호·명시적 이모티콘·유니코드 범위 활용법, 실전 워크플로우와 주의사항을 담은 실용 가이드입니다."
 image: wordcloud.png
 ---

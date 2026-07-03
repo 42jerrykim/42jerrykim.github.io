@@ -6,56 +6,37 @@ date: "2024-09-23T00:00:00Z"
 header:
   teaser: /assets/images/undefined/algorithm.png
 tags:
-- LCA
-- DFS
-- Tree
-- Data-Structures
-- Algorithm
-- 알고리즘
-- BOJ
-- 백준
-- Competitive-Programming
-- Problem-Solving
+- LCA(Lowest Common Ancestor)
+- DFS(Depth-First Search)
+- Tree(트리)
+- Data-Structures(자료구조)
+- Algorithm(알고리즘)
+- BOJ(백준)
+- Competitive-Programming(경쟁프로그래밍)
+- Problem-Solving(문제해결)
 - C++
-- Implementation
-- 구현
-- Time-Complexity
-- 시간복잡도
-- Coding-Test
-- 코딩테스트
-- 자료구조
-- Optimization
-- 최적화
-- 문제해결
-- Code-Quality
-- 코드품질
+- Implementation(구현)
+- Time-Complexity(시간복잡도)
+- Coding-Test(코딩테스트)
+- Optimization(최적화)
+- Code-Quality(코드품질)
 - Python
 - Go
 - .NET
-- Graph
-- String
-- Recursion
-- Space-Complexity
-- 공간복잡도
-- Edge-Cases
-- 엣지케이스
-- Testing
-- 테스트
-- Documentation
-- 문서화
+- Graph(그래프)
+- String(문자열)
+- Recursion(재귀)
+- Space-Complexity(공간복잡도)
+- Edge-Cases(엣지케이스)
+- Testing(테스트)
+- Documentation(문서화)
 - Best-Practices
-- Complexity-Analysis
-- 복잡도분석
-- Debugging
-- 디버깅
-- Refactoring
-- 리팩토링
-- Clean-Code
-- 클린코드
-- Performance
-- 성능
-- Pitfalls
-- 함정
+- Complexity-Analysis(복잡도분석)
+- Debugging(디버깅)
+- Refactoring(리팩토링)
+- Clean-Code(클린코드)
+- Performance(성능)
+- Pitfalls(함정)
 title: '[Algorithm] C++/Python 백준 3176번 : 도로 네트워크'
 ---
 

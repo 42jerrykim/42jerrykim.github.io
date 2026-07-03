@@ -7,20 +7,15 @@ title: "[Clean Architecture] 29. 정책과 수준"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Security
-  - Dependency-Injection
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - IO
-  - Shortest-Path
-  - 의존성주입
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Code-Quality
+  - Clean-Architecture(클린아키텍처)
+  - Security(보안)
+  - Dependency-Injection(의존성주입)
+  - Software-Architecture(소프트웨어아키텍처)
+  - IO(Input/Output)
+  - Shortest-Path(최단경로)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Code-Quality(코드품질)
 ---
 
 소프트웨어 시스템은 여러 **정책(Policy)**의 집합이다. 정책들은 서로 다른 **수준(Level)**에 존재하며, 의존성은 수준의 방향으로 흘러야 한다.

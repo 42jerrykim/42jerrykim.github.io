@@ -7,93 +7,56 @@ categories:
   - Linux
   - Shell
 tags:
-  - Linux
-  - 리눅스
-  - Shell
-  - 셸
+  - Linux(리눅스)
+  - Shell(셸)
   - Bash
-  - Security
-  - 보안
+  - Security(보안)
   - Process
-  - Deployment
-  - 배포
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Documentation
-  - 문서화
+  - Deployment(배포)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Documentation(문서화)
   - Best-Practices
-  - Authentication
-  - 인증
+  - Authentication(인증)
   - File-System
-  - Automation
-  - 자동화
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Open-Source
-  - 오픈소스
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
+  - Automation(자동화)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Open-Source(오픈소스)
+  - Productivity(생산성)
+  - Education(교육)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Implementation
-  - 구현
-  - History
-  - 역사
-  - Error-Handling
-  - 에러처리
-  - Logging
-  - 로깅
+  - Comparison(비교)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Technology(기술)
+  - Web(웹)
+  - Implementation(구현)
+  - History(역사)
+  - Error-Handling(에러처리)
+  - Logging(로깅)
   - DevOps
-  - Monitoring
-  - 모니터링
-  - Terminal
-  - 터미널
+  - Monitoring(모니터링)
+  - Terminal(터미널)
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Beginner
-  - OS
-  - 운영체제
-  - Networking
-  - 네트워킹
-  - Cloud
-  - 클라우드
-  - AWS
+  - OS(운영체제)
+  - Networking(네트워킹)
+  - Cloud(클라우드)
+  - AWS(Amazon Web Services)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Code-Quality
-  - 코드품질
-  - Clean-Code
-  - 클린코드
-  - Markdown
-  - 마크다운
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Innovation
-  - 혁신
-  - Career
-  - 커리어
+  - Code-Quality(코드품질)
+  - Clean-Code(클린코드)
+  - Markdown(마크다운)
+  - Blog(블로그)
+  - Review(리뷰)
+  - Innovation(혁신)
+  - Career(커리어)
 description: "리눅스에서 사용자·그룹 계정 생성·수정·삭제, /etc/passwd·shadow·group 구조, useradd·usermod·passwd·sudo·PAM 등 핵심 명령과 보안 설정을 실무 예제와 함께 정리한 가이드입니다. 서버·데스크톱 관리자와 DevOps 실무자에게 유용합니다."
 image: "wordcloud.png"
 ---

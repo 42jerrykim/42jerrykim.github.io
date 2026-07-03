@@ -6,17 +6,14 @@ lastmod: 2026-01-17
 collection_order: 6
 draft: true
 tags:
-  - Software-Architecture
-  - UML
-  - OOP
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
-  - Clean-Architecture
-  - Refactoring
-  - Code-Quality
-  - 코드품질
+  - Software-Architecture(소프트웨어아키텍처)
+  - UML(Unified Modeling Language)
+  - OOP(객체지향)
+  - Testing(테스트)
+  - Documentation(문서화)
+  - Clean-Architecture(클린아키텍처)
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
 ---
 
 # 06. 유스케이스 기반 분석 기법

@@ -10,81 +10,54 @@ tags:
   - TypeScript
   - React
   - Node.js
-  - Frontend
-  - 프론트엔드
-  - Web
-  - 웹
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Frontend(프론트엔드)
+  - Web(웹)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Functional-Programming
-  - 함수형프로그래밍
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Functional-Programming(함수형프로그래밍)
   - State
   - Observer
   - Event-Driven
-  - API
-  - Async
-  - 비동기
-  - Caching
-  - 캐싱
-  - Scalability
-  - 확장성
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Technology
-  - 기술
+  - API(Application Programming Interface)
+  - Async(비동기)
+  - Caching(캐싱)
+  - Scalability(확장성)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Data-Structures
-  - 자료구조
-  - Documentation
-  - 문서화
-  - Error-Handling
-  - 에러처리
+  - Data-Structures(자료구조)
+  - Documentation(문서화)
+  - Error-Handling(에러처리)
   - Git
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Modularity
   - Maintainability
   - Readability
   - Type-Safety
-  - HTTP
-  - JSON
-  - Comparison
-  - 비교
-  - Education
-  - 교육
+  - HTTP(HyperText Transfer Protocol)
+  - JSON(JavaScript Object Notation)
+  - Comparison(비교)
+  - Education(교육)
   - How-To
   - Tips
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
+  - Workflow(워크플로우)
+  - Configuration(설정)
 ---
 
 이 컬렉션의 전체 소개와 커리큘럼은 [00. 커리큘럼](00-curriculum-overview/)에서 확인할 수 있습니다.

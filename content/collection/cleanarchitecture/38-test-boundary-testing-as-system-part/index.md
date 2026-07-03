@@ -7,14 +7,11 @@ title: "[Clean Architecture] 38. 테스트 경계"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - 테스트
-  - Testing
-  - TDD
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Dependency-Injection
+  - Clean-Architecture(클린아키텍처)
+  - Testing(테스트)
+  - TDD(Test-Driven Development)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Dependency-Injection(의존성주입)
 ---
 
 테스트는 시스템의 **일부**다. 아키텍처에서 테스트를 어떻게 다뤄야 하는가?

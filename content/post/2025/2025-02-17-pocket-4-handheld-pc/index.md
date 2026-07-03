@@ -5,119 +5,72 @@ lastmod: 2026-03-17T00:00:00+09:00
 categories:
   - PC
 tags:
-  - Hardware
-  - 하드웨어
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
-  - Gadget
-  - 가젯
-  - Windows
-  - 윈도우
+  - Hardware(하드웨어)
+  - Review(리뷰)
+  - Technology(기술)
+  - Gadget(가젯)
+  - Windows(윈도우)
   - Tablet
-  - 태블릿
-  - Gaming
-  - 게임
-  - Productivity
-  - 생산성
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
-  - Innovation
-  - 혁신
-  - Performance
-  - 성능
-  - Configuration
-  - 설정
+  - Gaming(게임)
+  - Productivity(생산성)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
+  - Comparison(비교)
+  - Innovation(혁신)
+  - Performance(성능)
+  - Configuration(설정)
   - Best-Practices
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Documentation
-  - 문서화
-  - Keyboard
-  - 키보드
-  - Mobile
-  - 모바일
-  - Networking
-  - 네트워킹
-  - AI
-  - 인공지능
-  - CPU
-  - Implementation
-  - 구현
-  - Education
-  - 교육
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Documentation(문서화)
+  - Keyboard(키보드)
+  - Mobile(모바일)
+  - Networking(네트워킹)
+  - AI(인공지능)
+  - CPU(Central Processing Unit)
+  - Implementation(구현)
+  - Education(교육)
   - How-To
   - Tips
-  - Career
-  - 커리어
-  - Web
-  - 웹
-  - Security
-  - 보안
-  - Testing
-  - 테스트
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Monitoring
-  - 모니터링
+  - Career(커리어)
+  - Web(웹)
+  - Security(보안)
+  - Testing(테스트)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Monitoring(모니터링)
   - DevOps
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Terminal
-  - 터미널
+  - Terminal(터미널)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Design-Pattern
-  - Code-Quality
-  - 코드품질
-  - Optimization
-  - 최적화
-  - Error-Handling
-  - 에러처리
-  - Refactoring
-  - 리팩토링
+  - Design-Pattern(디자인패턴)
+  - Code-Quality(코드품질)
+  - Optimization(최적화)
+  - Error-Handling(에러처리)
+  - Refactoring(리팩토링)
   - Maintainability
   - Readability
   - Modularity
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Cloud
-  - 클라우드
-  - API
-  - Database
-  - 데이터베이스
-  - Privacy
-  - 프라이버시
-  - Migration
-  - 마이그레이션
-  - Brand
-  - 브랜드
-  - Science
-  - 과학
-  - Machine-Learning
-  - 머신러닝
-  - Linux
-  - 리눅스
+  - Software-Architecture(소프트웨어아키텍처)
+  - Cloud(클라우드)
+  - API(Application Programming Interface)
+  - Database(데이터베이스)
+  - Privacy(프라이버시)
+  - Migration(마이그레이션)
+  - Brand(브랜드)
+  - Science(과학)
+  - Machine-Learning(머신러닝)
+  - Linux(리눅스)
 description: "GPD Pocket 4는 AMD Ryzen AI 300 시리즈·8.8인치 144Hz WQXGA·모듈식 확장을 갖춘 핸드헬드 AI PC다. 50TOPS NPU·풀사이즈 키보드·RS-232·KVM·4G LTE 등 산업용 모듈로 이동형 업무·엣지 AI·서버 관리까지 커버하며, 본문에서 스펙·구조·장단점·참고 문헌을 정리했다."
 image: seuhp3ikkrty5uvr0um6.webp
 draft: false

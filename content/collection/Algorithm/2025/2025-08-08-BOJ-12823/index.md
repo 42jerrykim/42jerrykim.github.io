@@ -7,56 +7,36 @@ categories:
 - Topological Sort
 description: "BOJ 12823 Critical Projects 문제다. DAG에서 모든 정점이 임계 정점인지 판단하는 문제다. 위상 정렬과 도달 가능성을 활용해 O(N+M) 시간복잡도로 해결한다. 차분 배열과 접두사 합으로 임계성을 효율적으로 검사한다."
 tags:
-  - Algorithm
-  - 알고리즘
-  - Graph-Theory
-  - 그래프이론
-  - Topological-Sort
-  - Graph
-  - Data-Structures
+  - Algorithm(알고리즘)
+  - Graph-Theory(그래프이론)
+  - 위상정렬
+  - Graph(그래프)
+  - Data-Structures(자료구조)
   - Prefix-Sum
-  - Time-Complexity
-  - IO
-  - Queue
-  - 큐
-  - Memory
-  - BOJ
-  - 백준
+  - Time-Complexity(시간복잡도)
+  - IO(Input/Output)
+  - Queue(큐)
+  - Memory(메모리)
+  - BOJ(백준)
   - C++
-  - Competitive-Programming
-  - Problem-Solving
-  - Implementation
-  - 구현
-  - 시간복잡도
-  - Coding-Test
-  - 코딩테스트
-  - 자료구조
-  - Optimization
-  - 최적화
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Competitive-Programming(경쟁프로그래밍)
+  - Problem-Solving(문제해결)
+  - Implementation(구현)
+  - Coding-Test(코딩테스트)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
   - Go
   - .NET
-  - Sorting
-  - 그래프
-  - War
-  - 전쟁
-  - Space-Complexity
-  - 공간복잡도
-  - Edge-Cases
-  - 엣지케이스
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Sorting(정렬)
+  - War(전쟁)
+  - Space-Complexity(공간복잡도)
+  - Edge-Cases(엣지케이스)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
 date: 2025-08-08
 lastmod: 2025-08-08
 image: "wordcloud.png"

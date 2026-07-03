@@ -7,21 +7,14 @@ title: "[Clean Architecture] 17. LSP: 리스코프 치환 원칙"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
+  - Clean-Architecture(클린아키텍처)
   - SOLID
-  - Inheritance
-  - 상속
-  - Interface
-  - 인터페이스
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Polymorphism
-  - 다형성
-  - Algorithm
-  - 알고리즘
-  - Code-Quality
-  - 코드품질
+  - Inheritance(상속)
+  - Interface(인터페이스)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Polymorphism(다형성)
+  - Algorithm(알고리즘)
+  - Code-Quality(코드품질)
 ---
 
 **LSP(Liskov Substitution Principle)**는 1988년 Barbara Liskov가 정의한 원칙이다. 처음에는 상속에 관한 원칙으로 보이지만, 실제로는 인터페이스와 구현에 관한 더 넓은 설계 원칙이다.

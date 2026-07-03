@@ -12,28 +12,17 @@ tags:
   - 영단어
   - put down
   - Phrasal-Verb
-  - 구동사
   - 영어동사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - 비즈니스영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
   - Medical-English
-  - 의학영어
   - place
   - write down
   - record
@@ -49,23 +38,18 @@ tags:
   - 깔보다
   - 진압하다
   - 안락사
-  - Tutorial
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
-  - Context
-  - 맥락
+  - Tutorial(튜토리얼)
+  - Education(교육)
+  - Reference(참고)
+  - Comparison(비교)
+  - Context(맥락)
   - Usage-Notes
   - EN-KR-Examples
-  - TOEFL
-  - IELTS
-  - Psychology
-  - 심리학
-  - Guide
-  - Documentation
+  - TOEFL(Test of English as a Foreign Language)
+  - IELTS(International English Language Testing System)
+  - Psychology(심리학)
+  - Guide(가이드)
+  - Documentation(문서화)
   - put something down
   - put down a rebellion
   - put down to

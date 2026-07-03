@@ -12,38 +12,22 @@ tags:
   - 영단어
   - 영어명사
   - overuse
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
   - Medical-English
-  - 의학영어
-  - Education
-  - 교육
-  - Psychology
-  - 심리학
-  - Technology
-  - 기술
-  - Health
+  - Education(교육)
+  - Psychology(심리학)
+  - Technology(기술)
   - 건강
-  - Context
-  - 맥락
+  - Context(맥락)
   - Usage-Notes
   - EN-KR-Examples
   - Vocabulary-Building
@@ -55,18 +39,15 @@ tags:
   - 과도한 사용
   - dependency
   - 의존
-  - Communication
   - 의사소통
-  - Media
   - 미디어
   - workplace
   - 직장
-  - Reference
-  - Guide
+  - Reference(참고)
+  - Guide(가이드)
   - Tips
   - How-To
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Beginner
   - Advanced
 image: "wordcloud.png"

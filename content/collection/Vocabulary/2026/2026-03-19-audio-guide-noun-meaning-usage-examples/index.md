@@ -13,34 +13,24 @@ tags:
   - 영단어
   - 영어명사
   - audio guide
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English
-  - Comparison
-  - Reference
-  - Tutorial
+  - Comparison(비교)
+  - Reference(참고)
+  - Tutorial(튜토리얼)
   - Tips
-  - Education
-  - 교육
-  - Guide
-  - 가이드
+  - Education(교육)
+  - Guide(가이드)
   - museum
   - 박물관
   - gallery
@@ -61,11 +51,8 @@ tags:
   - guided tour
   - 음성 안내
   - 오디오 가이드
-  - 문화
-  - Culture
-  - Technology
-  - 기술
-  - Accessibility
+  - Culture(문화)
+  - Technology(기술)
   - 접근성
   - Visitor
   - 방문자

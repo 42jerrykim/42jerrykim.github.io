@@ -7,103 +7,59 @@ header: null
 description: "충돌 감지(Collision Detection)는 2D·3D 공간에서 오브젝트 간 교차를 판별하는 계산 기하학의 핵심 주제이다. AABB, OBB, 원형, 스윕 앤 프룬(Sweep and Prune), 계층적 경계 볼륨(BVH) 등 다양한 알고리즘과 브로드/내로우 단계 최적화, 정확도와 속도의 균형, 게임·물리 시뮬레이션·로봇공학에서의 활용을 코드 예제와 함께 상세히 다룬다."
 title: "[Algorithm] 충돌 감지 알고리즘 정리"
 tags:
-  - Algorithm
-  - 알고리즘
+  - Algorithm(알고리즘)
   - Geometry
-  - 기하학
-  - Math
-  - 수학
-  - Simulation
-  - 시뮬레이션
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
-  - Performance
-  - 성능
-  - Problem-Solving
-  - 문제해결
+  - Math(수학)
+  - Simulation(시뮬레이션)
+  - Implementation(구현)
+  - Optimization(최적화)
+  - Performance(성능)
+  - Problem-Solving(문제해결)
   - Python
-  - Data-Structures
-  - 자료구조
-  - Time-Complexity
-  - 시간복잡도
-  - Sorting
-  - 정렬
+  - Data-Structures(자료구조)
+  - Time-Complexity(시간복잡도)
+  - Sorting(정렬)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Reference
-  - 참고
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Education
-  - 교육
-  - Technology
-  - 기술
-  - Gaming
-  - 게임
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Configuration
-  - 설정
-  - Coding-Test
-  - 코딩테스트
-  - Complexity-Analysis
-  - 복잡도분석
-  - Code-Quality
-  - 코드품질
-  - Design-Pattern
-  - 디자인패턴
-  - Graph
-  - Tree
-  - Array
-  - 배열
+  - Documentation(문서화)
+  - Reference(참고)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Education(교육)
+  - Technology(기술)
+  - Gaming(게임)
+  - Blog(블로그)
+  - Review(리뷰)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Configuration(설정)
+  - Coding-Test(코딩테스트)
+  - Complexity-Analysis(복잡도분석)
+  - Code-Quality(코드품질)
+  - Design-Pattern(디자인패턴)
+  - Graph(그래프)
+  - Tree(트리)
+  - Array(배열)
   - Set
   - Map
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Clean-Code
-  - 클린코드
-  - Edge-Cases
-  - 엣지케이스
-  - Divide-and-Conquer
-  - 분할정복
-  - Recursion
-  - 재귀
-  - Queue
-  - 큐
-  - Stack
-  - 스택
-  - Hashing
-  - 해싱
-  - String
-  - 문자열
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Clean-Code(클린코드)
+  - Edge-Cases(엣지케이스)
+  - Divide-and-Conquer(분할정복)
+  - Recursion(재귀)
+  - Queue(큐)
+  - Stack(스택)
+  - Hashing(해싱)
+  - String(문자열)
   - Computational-Geometry
-  - Web
-  - 웹
+  - Web(웹)
   - How-To
   - Tips
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - Troubleshooting
-  - 트러블슈팅
-  - Networking
-  - 네트워킹
-  - Comparison
-  - 비교
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Troubleshooting(트러블슈팅)
+  - Networking(네트워킹)
+  - Comparison(비교)
   - Beginner
   - Case-Study
   - Deep-Dive

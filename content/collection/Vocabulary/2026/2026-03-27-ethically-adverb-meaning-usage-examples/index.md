@@ -12,18 +12,16 @@ tags:
   - 영단어
   - ethically
   - ethical
-  - Ethics
+  - 윤리
   - morality
   - moral standards
-  - 윤리
   - 윤리적으로
   - 도덕적으로
   - 도덕 기준
   - 영어부사
   - 부사
   - 영어 어휘
-  - 비즈니스영어
-  - Business-English
+  - Business-English(비즈니스영어)
   - workplace ethics
   - corporate ethics
   - AI ethics
@@ -43,26 +41,22 @@ tags:
   - harm prevention
   - human rights
   - consent
-  - Privacy
+  - Privacy(프라이버시)
   - bias
   - discrimination
   - policy
   - Governance
   - Compliance
-  - Decision-Making
+  - 의사결정
   - 윤리 경영
   - 연구 윤리
   - 의료 윤리
   - 데이터 윤리
   - 책임 있는 AI
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Context
-  - 맥락
-  - Pronunciation
-  - 발음
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Context(맥락)
+  - Pronunciation(발음)
   - EN-KR-Examples
   - Study-English
 image: "wordcloud.png"

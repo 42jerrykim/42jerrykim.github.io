@@ -8,88 +8,56 @@ categories:
 date: "2022-04-29T00:00:00Z"
 lastmod: "2026-03-16"
 tags:
-  - Implementation
+  - Implementation(구현)
   - Go
   - .NET
   - Samsung
   - Android
-  - Mobile
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Mobile(모바일)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Cloud
-  - 클라우드
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
-  - Automation
-  - 자동화
-  - Networking
-  - 네트워킹
-  - API
-  - Backend
-  - 백엔드
-  - Frontend
-  - 프론트엔드
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Cloud(클라우드)
+  - Markdown(마크다운)
+  - Review(리뷰)
+  - Automation(자동화)
+  - Networking(네트워킹)
+  - API(Application Programming Interface)
+  - Backend(백엔드)
+  - Frontend(프론트엔드)
   - DevOps
   - Git
   - GitHub
   - Beginner
-  - Internet
-  - 인터넷
+  - Internet(인터넷)
   - Case-Study
   - Deep-Dive
   - 실습
-  - 모바일
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Deployment
-  - 배포
-  - Security
-  - 보안
-  - Agile
-  - 애자일
-  - Refactoring
-  - 리팩토링
-  - Code-Quality
-  - 코드품질
+  - Deployment(배포)
+  - Security(보안)
+  - Agile(애자일)
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
 title: "[Util] Google Alerts·Blogtrottr로 개발·IT 최신 정보 수집하기"
 ---
 

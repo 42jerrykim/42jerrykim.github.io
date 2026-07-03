@@ -8,55 +8,37 @@ lastmod: 2026-01-18
 collection_order: 18
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - OS
-  - Shell
-  - 셸
+  - OS(운영체제)
+  - Shell(셸)
   - Command
-  - IO
-  - Automation
-  - 자동화
+  - IO(Input/Output)
+  - Automation(자동화)
   - DevOps
-  - Security
-  - 보안
+  - Security(보안)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Pitfalls(함정)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Git
   - GitHub
-  - String
+  - String(문자열)
   - Process
-  - Design-Pattern
+  - Design-Pattern(디자인패턴)
   - Bash
-  - Deployment
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
+  - Deployment(배포)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
 ---
 subprocess는 외부 명령어와 프로세스를 실행하는 파이썬 표준 라이브러리입니다. 이 치트시트는 `run()` 기본 사용, 출력 캡처, 타임아웃, 에러 처리, 보안 주의점을 정리합니다.
 

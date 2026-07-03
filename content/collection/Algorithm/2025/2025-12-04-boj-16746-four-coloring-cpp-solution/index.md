@@ -7,56 +7,37 @@ categories:
   - Algorithm
   - Graph
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
+  - Algorithm(알고리즘)
+  - BOJ(백준)
   - C++
-  - Graph
-  - 그래프
-  - BFS
-  - DFS
-  - Implementation
-  - 구현
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Competitive-Programming
-  - 경쟁프로그래밍
-  - ICPC
-  - Graph-Theory
-  - 그래프이론
-  - Data-Structures
-  - 자료구조
-  - Problem-Solving
-  - Coding-Test
-  - 코딩테스트
-  - Optimization
-  - 최적화
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Graph(그래프)
+  - BFS(Breadth-First Search)
+  - DFS(Depth-First Search)
+  - Implementation(구현)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Competitive-Programming(경쟁프로그래밍)
+  - ICPC(International Collegiate Programming Contest)
+  - Graph-Theory(그래프이론)
+  - Data-Structures(자료구조)
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
   - Go
   - .NET
   - Git
   - GitHub
-  - Stack
-  - Memory
-  - Edge-Cases
-  - 엣지케이스
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Stack(스택)
+  - Memory(메모리)
+  - Edge-Cases(엣지케이스)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
 image: "wordcloud.png"
 ---
 

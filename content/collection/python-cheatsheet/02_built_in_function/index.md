@@ -8,55 +8,38 @@ lastmod: 2026-01-17
 collection_order: 2
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - IO
+  - IO(Input/Output)
   - Map
-  - Implementation
-  - Data-Structures
+  - Implementation(구현)
+  - Data-Structures(자료구조)
   - Set
-  - OOP
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Sorting
-  - Hashing
-  - String
-  - HTML
-  - Security
-  - Self-Hosted
-  - Memory
-  - Async
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
+  - OOP(객체지향)
+  - Tutorial(튜토리얼)
+  - Code-Quality(코드품질)
+  - Sorting(정렬)
+  - Hashing(해싱)
+  - String(문자열)
+  - HTML(HyperText Markup Language)
+  - Security(보안)
+  - Self-Hosted(셀프호스팅)
+  - Memory(메모리)
+  - Async(비동기)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
   - Best-Practices
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
 last_modified_at: 2023-01-20
 date: 2022-01-17
 categories: Python

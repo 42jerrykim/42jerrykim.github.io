@@ -4,55 +4,33 @@ title: "03. 제어 구조"
 description: "조건문과 반복문으로 프로그램 흐름을 제어하는 원리를 익힙니다. break/continue/else의 의미와 활용 기준을 이해하고 복잡한 분기 로직을 읽기 쉽게 구성합니다."
 tags:
   - Python
-  - 파이썬
-  - Implementation
-  - Software-Architecture
-  - Algorithm
-  - 알고리즘
-  - Backend
-  - 백엔드
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Algorithm(알고리즘)
+  - Backend(백엔드)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Logging
-  - 로깅
-  - Security
-  - 보안
-  - Performance
-  - 성능
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
-  - OOP
-  - 객체지향
-  - Data-Structures
-  - 자료구조
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Logging(로깅)
+  - Security(보안)
+  - Performance(성능)
+  - Concurrency(동시성)
+  - Async(비동기)
+  - OOP(객체지향)
+  - Data-Structures(자료구조)
   - DevOps
-  - Deployment
-  - 배포
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Web
-  - 웹
-  - Database
-  - 데이터베이스
-  - Networking
-  - 네트워킹
-  - CI-CD
-  - 자동화
-  - Documentation
-  - 문서화
+  - Deployment(배포)
+  - Design-Pattern(디자인패턴)
+  - Web(웹)
+  - Database(데이터베이스)
+  - Networking(네트워킹)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Automation(자동화)
+  - Documentation(문서화)
   - Git
-  - Code-Quality
-  - 코드품질
+  - Code-Quality(코드품질)
 lastmod: 2026-01-17
 collection_order: 3
 ---

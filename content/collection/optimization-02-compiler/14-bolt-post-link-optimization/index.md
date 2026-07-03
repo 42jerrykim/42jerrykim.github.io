@@ -8,9 +8,9 @@ slug: bolt-post-link-binary-layout-optimization
 description: "링크된 바이너리 레이아웃을 프로파일로 재배열하는 후링크 최적화(BOLT 등)의 직관과, PGO·LTO와의 파이프라인 순서·프로파일 대표성·CI 재현성을 Tr.02 빌드 관점에서 정리하고 적용 판단 기준을 제시합니다."
 tags:
   - C++
-  - Performance
-  - Optimization
-  - Compiler
+  - Performance(성능)
+  - Optimization(최적화)
+  - Compiler(컴파일러)
   - Linker
   - LTO
   - PGO
@@ -19,55 +19,43 @@ tags:
   - Layout
   - I-Cache
   - Branch-Prediction
-  - CPU
-  - Profiling
+  - CPU(Central Processing Unit)
+  - Profiling(프로파일링)
   - Benchmark
-  - CI-CD
-  - Linux
-  - Backend
-  - Embedded
-  - Memory
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Linux(리눅스)
+  - Backend(백엔드)
+  - Embedded(임베디드)
+  - Memory(메모리)
   - Latency
   - Throughput
-  - Code-Quality
-  - Software-Architecture
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
   - Best-Practices
-  - Implementation
-  - Testing
-  - Debugging
-  - Documentation
+  - Implementation(구현)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Documentation(문서화)
   - Git
-  - Automation
-  - Refactoring
-  - Clean-Code
-  - Data-Structures
-  - Concurrency
-  - Edge-Cases
-  - Pitfalls
-  - Error-Handling
-  - Guide
-  - Reference
-  - Technology
-  - Tutorial
+  - Automation(자동화)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Data-Structures(자료구조)
+  - Concurrency(동시성)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
   - Advanced
   - Deep-Dive
   - Expert
   - Case-Study
   - Assembly
-  - 성능
-  - 최적화
-  - 컴파일러
   - 링커
-  - 프로파일링
-  - 백엔드
-  - 임베디드
-  - 코드품질
-  - 소프트웨어아키텍처
-  - 구현
-  - 테스트
   - 전문
-  - 가이드
-  - 참고
   - 실습
 ---
 

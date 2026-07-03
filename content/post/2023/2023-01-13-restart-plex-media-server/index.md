@@ -6,131 +6,78 @@ lastmod: "2026-03-17"
 header:
   teaser: /assets/images/2023/plex.png
 tags:
-  - Windows
-  - 윈도우
+  - Windows(윈도우)
   - Python
-  - 파이썬
-  - Linux
-  - 리눅스
-  - Shell
-  - 셸
+  - Linux(리눅스)
+  - Shell(셸)
   - Bash
   - Git
   - GitHub
-  - Self-Hosted
-  - 셀프호스팅
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Self-Hosted(셀프호스팅)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
-  - Monitoring
-  - 모니터링
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Automation(자동화)
+  - Deployment(배포)
+  - Monitoring(모니터링)
   - DevOps
-  - Networking
-  - 네트워킹
-  - API
-  - HTTP
-  - Implementation
-  - 구현
-  - Error-Handling
-  - 에러처리
-  - Performance
-  - 성능
+  - Networking(네트워킹)
+  - API(Application Programming Interface)
+  - HTTP(HyperText Transfer Protocol)
+  - Implementation(구현)
+  - Error-Handling(에러처리)
+  - Performance(성능)
   - Beginner
   - Case-Study
   - 실습
-  - Terminal
-  - 터미널
+  - Terminal(터미널)
   - Process
-  - OS
-  - 운영체제
-  - Security
-  - 보안
-  - Privacy
-  - 프라이버시
-  - Internet
-  - 인터넷
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
+  - OS(운영체제)
+  - Security(보안)
+  - Privacy(프라이버시)
+  - Internet(인터넷)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
   - Maintainability
   - Readability
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
   - Modularity
-  - Scalability
-  - 확장성
+  - Scalability(확장성)
   - Latency
-  - Async
-  - 비동기
-  - Backend
-  - 백엔드
-  - Caching
-  - 캐싱
-  - Logging
-  - 로깅
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
-  - Hardware
-  - 하드웨어
-  - Mobile
-  - 모바일
-  - Cloud
-  - 클라우드
-  - Agile
-  - 애자일
+  - Async(비동기)
+  - Backend(백엔드)
+  - Caching(캐싱)
+  - Logging(로깅)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
+  - Cloud(클라우드)
+  - Agile(애자일)
   - Deep-Dive
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
 image: "wordcloud.png"
 ---
 

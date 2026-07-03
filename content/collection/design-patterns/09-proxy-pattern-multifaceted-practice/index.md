@@ -13,19 +13,14 @@ categories:
 - Practice
 - Performance Optimization
 tags:
-- Caching
-- Performance
-- Security
-- Design-Pattern
-- GoF
-- Tutorial
-- Implementation
-- Software-Architecture
-- 캐싱
-- 보안
-- 디자인패턴
-- 구현
-- 소프트웨어아키텍처
+- Caching(캐싱)
+- Performance(성능)
+- Security(보안)
+- Design-Pattern(디자인패턴)
+- GoF(Gang of Four)
+- Tutorial(튜토리얼)
+- Implementation(구현)
+- Software-Architecture(소프트웨어아키텍처)
 ---
 
 이 실습에서는 Virtual, Protection, Remote, Caching 등 다양한 Proxy 유형을 직접 구현하며 성능 최적화 기법을 익힙니다.

@@ -8,56 +8,35 @@ categories:
   - Graph
   - Matrix Exponentiation
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
-  - 그래프
-  - Graph
-  - Divide-and-Conquer
-  - 모듈러
-  - Modular-Arithmetic
+  - Algorithm(알고리즘)
+  - BOJ(백준)
+  - Graph(그래프)
+  - Divide-and-Conquer(분할정복)
+  - Modular-Arithmetic(모듈러)
   - C++
-  - Implementation
-  - 경쟁프로그래밍
-  - Competitive-Programming
-  - 시간복잡도
-  - Time-Complexity
-  - 공간복잡도
-  - Space-Complexity
-  - Editorial
-  - 에디토리얼
-  - 수학
-  - Math
-  - Problem-Solving
-  - 구현
-  - Coding-Test
-  - 코딩테스트
-  - Data-Structures
-  - 자료구조
-  - Optimization
-  - 최적화
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Implementation(구현)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Editorial(에디토리얼)
+  - Math(수학)
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Data-Structures(자료구조)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
   - Go
   - .NET
   - Git
   - GitHub
-  - Science
-  - 과학
-  - Edge-Cases
-  - 엣지케이스
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Science(과학)
+  - Edge-Cases(엣지케이스)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
-  - Refactoring
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
 image: "wordcloud.png"
 ---
 

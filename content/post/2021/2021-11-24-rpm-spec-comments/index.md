@@ -7,154 +7,96 @@ categories:
 date: "2021-11-24T00:00:00Z"
 lastmod: "2026-03-16"
 tags:
-  - Linux
-  - 리눅스
-  - Shell
-  - 셸
+  - Linux(리눅스)
+  - Shell(셸)
   - Bash
-  - Configuration
-  - 설정
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Configuration(설정)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
   - How-To
   - Tips
-  - Deployment
-  - 배포
+  - Deployment(배포)
   - DevOps
-  - Pitfalls
-  - 함정
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
-  - Automation
-  - 자동화
-  - Technology
-  - 기술
-  - Education
-  - 교육
+  - Automation(자동화)
+  - Technology(기술)
+  - Education(교육)
   - Beginner
-  - Implementation
-  - 구현
-  - Edge-Cases
-  - 엣지케이스
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Terminal
-  - 터미널
-  - Comparison
-  - 비교
+  - Implementation(구현)
+  - Edge-Cases(엣지케이스)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Terminal(터미널)
+  - Comparison(비교)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Workflow
-  - 워크플로우
-  - Productivity
-  - 생산성
-  - Migration
-  - 마이그레이션
-  - Networking
-  - 네트워킹
-  - YAML
+  - Workflow(워크플로우)
+  - Productivity(생산성)
+  - Migration(마이그레이션)
+  - Networking(네트워킹)
+  - YAML(YAML Ain't Markup Language)
   - File-System
-  - OS
-  - 운영체제
+  - OS(운영체제)
   - Git
   - GitHub
-  - IDE
-  - Markdown
-  - 마크다운
-  - Testing
-  - 테스트
+  - IDE(Integrated Development Environment)
+  - Markdown(마크다운)
+  - Testing(테스트)
   - Docker
   - Kubernetes
   - Ansible
-  - CI-CD
-  - Monitoring
-  - 모니터링
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Monitoring(모니터링)
+  - Web(웹)
+  - Blog(블로그)
+  - Review(리뷰)
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - Innovation
-  - 혁신
-  - Career
-  - 커리어
-  - Cloud
-  - 클라우드
-  - Hardware
-  - 하드웨어
-  - Agile
-  - 애자일
-  - Refactoring
-  - 리팩토링
-  - Code-Review
-  - 코드리뷰
-  - Design-Pattern
-  - 디자인패턴
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Cheatsheet(치트시트)
+  - Innovation(혁신)
+  - Career(커리어)
+  - Cloud(클라우드)
+  - Hardware(하드웨어)
+  - Agile(애자일)
+  - Refactoring(리팩토링)
+  - Code-Review(코드리뷰)
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
   - Modularity
-  - Security
-  - 보안
-  - API
-  - Backend
-  - 백엔드
-  - Database
-  - 데이터베이스
-  - JSON
-  - XML
-  - HTTP
-  - REST
-  - Caching
-  - 캐싱
-  - Scalability
-  - 확장성
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
-  - Memory
-  - 메모리
-  - Compiler
-  - 컴파일러
+  - Security(보안)
+  - API(Application Programming Interface)
+  - Backend(백엔드)
+  - Database(데이터베이스)
+  - JSON(JavaScript Object Notation)
+  - XML(eXtensible Markup Language)
+  - HTTP(HyperText Transfer Protocol)
+  - REST(Representational State Transfer)
+  - Caching(캐싱)
+  - Scalability(확장성)
+  - Concurrency(동시성)
+  - Async(비동기)
+  - Memory(메모리)
+  - Compiler(컴파일러)
   - Process
   - Thread
-  - IO
-  - Logging
-  - 로깅
-  - Profiling
-  - 프로파일링
+  - IO(Input/Output)
+  - Logging(로깅)
+  - Profiling(프로파일링)
   - Benchmark
   - Type-Safety
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Abstraction
-  - 추상화
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Abstraction(추상화)
 draft: false
 ---
 

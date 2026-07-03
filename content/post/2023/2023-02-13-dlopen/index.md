@@ -6,109 +6,67 @@ lastmod: "2026-03-17T00:00:00Z"
 tags:
   - C++
   - C
-  - Linux
-  - 리눅스
-  - Shell
-  - 셸
-  - Compiler
-  - 컴파일러
-  - OS
-  - 운영체제
-  - Memory
-  - 메모리
+  - Linux(리눅스)
+  - Shell(셸)
+  - Compiler(컴파일러)
+  - OS(운영체제)
+  - Memory(메모리)
   - Process
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Implementation
-  - 구현
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Reference
-  - 참고
+  - Documentation(문서화)
+  - Implementation(구현)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Reference(참고)
   - How-To
   - Tips
-  - Open-Source
-  - 오픈소스
-  - Technology
-  - 기술
-  - Performance
-  - 성능
-  - Pitfalls
-  - 함정
-  - Backend
-  - 백엔드
-  - API
+  - Open-Source(오픈소스)
+  - Technology(기술)
+  - Performance(성능)
+  - Pitfalls(함정)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
   - File-System
-  - Embedded
-  - 임베디드
-  - Interface
-  - 인터페이스
-  - Code-Quality
-  - 코드품질
-  - Testing
-  - 테스트
-  - Logging
-  - 로깅
-  - Optimization
-  - 최적화
-  - Clean-Code
-  - 클린코드
-  - Design-Pattern
-  - 디자인패턴
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Embedded(임베디드)
+  - Interface(인터페이스)
+  - Code-Quality(코드품질)
+  - Testing(테스트)
+  - Logging(로깅)
+  - Optimization(최적화)
+  - Clean-Code(클린코드)
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - Vim
-  - Terminal
-  - 터미널
-  - Deployment
-  - 배포
+  - Terminal(터미널)
+  - Deployment(배포)
   - DevOps
-  - Web
-  - 웹
-  - Networking
-  - 네트워킹
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Career
-  - 커리어
-  - Blog
-  - 블로그
-  - Comparison
-  - 비교
+  - Web(웹)
+  - Networking(네트워킹)
+  - Education(교육)
+  - Productivity(생산성)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Career(커리어)
+  - Blog(블로그)
+  - Comparison(비교)
   - Case-Study
   - Deep-Dive
   - 실습
   - Beginner
   - Advanced
-  - CPU
-  - Profiling
-  - 프로파일링
+  - CPU(Central Processing Unit)
+  - Profiling(프로파일링)
   - Modularity
   - Readability
-  - Concurrency
-  - 동시성
+  - Concurrency(동시성)
 title: "[C/C++] gcc로 dlopen 동적 라이브러리 로딩 방법"
 ---
 

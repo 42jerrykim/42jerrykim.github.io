@@ -12,8 +12,8 @@ categories:
 - Pattern Analysis
 - System Performance
 tags:
-- Performance
-- Memory
+- Performance(성능)
+- Memory(메모리)
 ---
 
 각 디자인 패턴의 성능 특성을 정량적으로 분석하고 최적화 기법을 탐구합니다. 성능과 설계의 균형을 찾는 실무적 접근법을 학습합니다.

@@ -9,56 +9,36 @@ categories:
   - Fenwick Tree
   - Coordinate Compression
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
-  - USACO
-  - 자료구조
-  - Data-Structures
-  - Fenwick-Tree
-  - BIT
-  - Binary-Indexed-Tree
-  - Coordinate-Compression
-  - 좌표압축
-  - Math
+  - Algorithm(알고리즘)
+  - BOJ(백준)
+  - USACO(USA Computing Olympiad)
+  - Data-Structures(자료구조)
+  - BIT(Binary Indexed Tree)
+  - Coordinate-Compression(좌표압축)
+  - Math(수학)
   - Prefix-Sum
-  - Sorting
-  - 정렬
-  - Implementation
-  - 구현
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Competitive-Programming
-  - 경쟁프로그래밍
+  - Sorting(정렬)
+  - Implementation(구현)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Competitive-Programming(경쟁프로그래밍)
   - C++
-  - Edge-Cases
-  - 엣지케이스
-  - Array
-  - 배열
-  - Problem-Solving
-  - Coding-Test
-  - 코딩테스트
-  - Optimization
-  - 최적화
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Edge-Cases(엣지케이스)
+  - Array(배열)
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
   - Go
   - .NET
   - Git
   - GitHub
-  - Tree
-  - Memory
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Tree(트리)
+  - Memory(메모리)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
+  - Complexity-Analysis(복잡도분석)
 image: "wordcloud.png"
 ---
 

@@ -7,22 +7,16 @@ title: "[Clean Architecture] 04. 어니언 아키텍처: 도메인 중심 설계
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Software-Architecture
-  - Dependency-Injection
-  - 의존성주입
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - Testing
-  - Code-Quality
-  - 코드품질
-  - 결합도
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Edge-Cases
+  - Clean-Architecture(클린아키텍처)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Dependency-Injection(의존성주입)
+  - Design-Pattern(디자인패턴)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
+  - Coupling(결합도)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Edge-Cases(엣지케이스)
 ---
 
 2008년, 제프리 팔레르모(Jeffrey Palermo)는 자신의 블로그에 "The Onion Architecture"라는 시리즈 글을 게시했다. 육각형 아키텍처의 아이디어를 계승하면서, 더 명확한 계층 구조와 의존성 규칙을 제시한 이 아키텍처는 Clean Architecture의 또 다른 중요한 선조가 되었다.

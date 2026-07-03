@@ -19,20 +19,15 @@ tags:
   - once_flag
   - Read-Optimization
   - Synchronization
-  - 동기화
-  - Design-Pattern
-  - 디자인패턴
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
+  - Design-Pattern(디자인패턴)
+  - Performance(성능)
+  - Optimization(최적화)
   - Memory-Order
   - Volatile
   - Singleton
-  - Implementation
-  - 구현
-  - Tutorial
-  - Guide
+  - Implementation(구현)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
 slug: cpp-read-write-lock-dclp-call-once-lazy-init
 ---
 

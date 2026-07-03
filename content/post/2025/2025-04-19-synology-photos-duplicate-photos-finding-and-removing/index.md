@@ -6,88 +6,53 @@ categories:
   - Synology Photos
   - Synology
 tags:
-  - AI
-  - 인공지능
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - AI(인공지능)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - How-To
   - Tips
-  - Photography
-  - 사진
-  - Technology
-  - 기술
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
-  - Productivity
-  - 생산성
-  - Self-Hosted
-  - 셀프호스팅
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Troubleshooting
-  - 트러블슈팅
-  - Open-Source
-  - 오픈소스
-  - Reference
-  - 참고
+  - Photography(사진)
+  - Technology(기술)
+  - Configuration(설정)
+  - Workflow(워크플로우)
+  - Productivity(생산성)
+  - Self-Hosted(셀프호스팅)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Troubleshooting(트러블슈팅)
+  - Open-Source(오픈소스)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Review
-  - 리뷰
-  - Education
-  - 교육
-  - Cloud
-  - 클라우드
-  - Automation
-  - 자동화
-  - Networking
-  - 네트워킹
-  - Innovation
-  - 혁신
-  - Privacy
-  - 프라이버시
-  - Mobile
-  - 모바일
-  - Web
-  - 웹
-  - API
-  - REST
-  - Markdown
-  - 마크다운
-  - Blog
-  - 블로그
-  - Comparison
-  - 비교
+  - Documentation(문서화)
+  - Review(리뷰)
+  - Education(교육)
+  - Cloud(클라우드)
+  - Automation(자동화)
+  - Networking(네트워킹)
+  - Innovation(혁신)
+  - Privacy(프라이버시)
+  - Mobile(모바일)
+  - Web(웹)
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - Markdown(마크다운)
+  - Blog(블로그)
+  - Comparison(비교)
   - Beginner
   - Case-Study
   - Deep-Dive
   - 실습
-  - Deployment
-  - 배포
-  - Monitoring
-  - 모니터링
+  - Deployment(배포)
+  - Monitoring(모니터링)
   - File-System
-  - Performance
-  - 성능
-  - Code-Quality
-  - 코드품질
+  - Performance(성능)
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
-  - Error-Handling
-  - 에러처리
-  - Testing
-  - 테스트
-  - Logging
-  - 로깅
-  - Profiling
-  - 프로파일링
+  - Error-Handling(에러처리)
+  - Testing(테스트)
+  - Logging(로깅)
+  - Profiling(프로파일링)
   - Quick-Reference
 description: "Synology Photos의 AI 기반 유사 항목 스택(Stack) 기능을 활용하면 중복·유사 사진을 자동으로 감지할 수 있다. 이 글에서는 AI 기능 활성화, 타임라인에서 스택 아이콘 확인, 중복 검토 및 제거, Similar Items 앨범 활용까지 단계별로 소개하며, 저장 공간 확보와 깔끔한 사진 라이브러리 관리 요령을 정리한다. NAS 사용자를 위한 실전 가이드다."
 image: "image03.png"

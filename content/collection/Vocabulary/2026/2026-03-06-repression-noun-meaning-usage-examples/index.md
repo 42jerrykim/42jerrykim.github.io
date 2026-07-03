@@ -12,37 +12,22 @@ tags:
   - 영단어
   - 영어명사
   - repression
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Academic-English
-  - 학술영어
-  - Psychology
-  - 심리학
-  - Culture
-  - 문화
-  - History
-  - 역사
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
-  - Tutorial
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Academic-English(학술영어)
+  - Psychology(심리학)
+  - Culture(문화)
+  - History(역사)
+  - Education(교육)
+  - Reference(참고)
+  - Comparison(비교)
+  - Tutorial(튜토리얼)
   - Tips
   - How-To
   - suppression
@@ -68,8 +53,7 @@ tags:
   - 사회
   - 심리
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English

@@ -12,10 +12,8 @@ categories:
 - Design Review
 - Quality Assurance
 tags:
-- Code-Review
-- Code-Quality
-- 코드리뷰
-- 코드품질
+- Code-Review(코드리뷰)
+- Code-Quality(코드품질)
 ---
 
 디자인 패턴을 활용한 효과적인 코드 리뷰와 설계 리뷰 방법을 탐구합니다. 패턴이라는 공통 언어로 팀의 설계 품질을 향상시키는 방법을 학습합니다.

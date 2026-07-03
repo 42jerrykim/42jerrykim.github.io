@@ -18,7 +18,6 @@ tags:
   - Notify
   - Spurious-Wakeup
   - Synchronization
-  - 동기화
   - Waiting
   - 대기
   - Mutex
@@ -29,15 +28,12 @@ tags:
   - wait
   - Predicate
   - Memory-Model
-  - Design-Pattern
-  - 디자인패턴
-  - Code-Quality
-  - 코드품질
-  - Implementation
-  - 구현
-  - Tutorial
-  - Guide
-  - Reference
+  - Design-Pattern(디자인패턴)
+  - Code-Quality(코드품질)
+  - Implementation(구현)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
 slug: cpp-condition-variable-monitor-object-guarded-suspension
 ---
 

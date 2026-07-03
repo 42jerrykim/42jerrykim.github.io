@@ -11,87 +11,55 @@ categories:
 tags:
   - Hugo
   - JavaScript
-  - SEO
+  - SEO(Search Engine Optimization)
   - PowerShell
-  - Optimization
+  - Optimization(최적화)
   - Go
-  - Blog
+  - Blog(블로그)
   - Git
   - GitHub
-  - CI-CD
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Markdown
-  - 마크다운
-  - CSS
-  - HTML
-  - Configuration
-  - 설정
-  - Guide
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Markdown(마크다운)
+  - CSS(Cascading Style Sheets)
+  - HTML(HyperText Markup Language)
+  - Configuration(설정)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Performance
-  - 성능
-  - Caching
-  - 캐싱
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Windows
-  - 윈도우
-  - Linux
-  - 리눅스
-  - IDE
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Performance(성능)
+  - Caching(캐싱)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Windows(윈도우)
+  - Linux(리눅스)
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Code-Quality
-  - 코드품질
-  - Profiling
-  - 프로파일링
-  - Migration
-  - 마이그레이션
-  - Backend
-  - 백엔드
-  - Frontend
-  - 프론트엔드
-  - API
-  - JSON
-  - Scalability
-  - 확장성
-  - Networking
-  - 네트워킹
-  - Innovation
-  - 혁신
-  - Review
-  - 리뷰
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
+  - Profiling(프로파일링)
+  - Migration(마이그레이션)
+  - Backend(백엔드)
+  - Frontend(프론트엔드)
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
+  - Scalability(확장성)
+  - Networking(네트워킹)
+  - Innovation(혁신)
+  - Review(리뷰)
   - Case-Study
   - 실습
   - Deep-Dive

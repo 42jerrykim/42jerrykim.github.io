@@ -8,102 +8,63 @@ categories:
   - Blog
   - Automation
 tags:
-  - Blog
-  - 블로그
+  - Blog(블로그)
   - Hugo
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Automation
-  - 자동화
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Automation(자동화)
   - PowerShell
   - Git
   - GitHub
-  - Code-Quality
-  - 코드품질
-  - Refactoring
-  - 리팩토링
-  - Implementation
-  - 구현
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
+  - Implementation(구현)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - SEO
-  - Self-Hosted
-  - 셀프호스팅
-  - History
-  - 역사
-  - YAML
+  - SEO(Search Engine Optimization)
+  - Self-Hosted(셀프호스팅)
+  - History(역사)
+  - YAML(YAML Ain't Markup Language)
   - Script
-  - Deployment
-  - 배포
+  - Deployment(배포)
   - DevOps
-  - Testing
-  - 테스트
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Debugging
-  - 디버깅
-  - Windows
-  - 윈도우
-  - Shell
-  - 셸
-  - Terminal
-  - 터미널
+  - Testing(테스트)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Debugging(디버깅)
+  - Windows(윈도우)
+  - Shell(셸)
+  - Terminal(터미널)
   - Jekyll
-  - Domain
-  - 도메인
-  - Internet
-  - 인터넷
+  - Domain(도메인)
+  - Internet(인터넷)
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - Agile
-  - 애자일
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
+  - Cheatsheet(치트시트)
+  - Agile(애자일)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
   - Maintainability
   - Modularity
   - Readability

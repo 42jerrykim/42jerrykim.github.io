@@ -9,71 +9,41 @@ image: "wordcloud.png"
 tags:
   - C++
   - C
-  - Memory
-  - 메모리
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Memory(메모리)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - How-To
   - Tips
-  - Reference
-  - 참고
-  - Implementation
-  - 구현
+  - Reference(참고)
+  - Implementation(구현)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Productivity
-  - 생산성
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Comparison
-  - 비교
-  - Design-Pattern
-  - 디자인패턴
-  - OOP
-  - 객체지향
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - 코드품질
-  - Error-Handling
-  - 에러처리
-  - Pitfalls
-  - 함정
+  - Documentation(문서화)
+  - Technology(기술)
+  - Education(교육)
+  - Blog(블로그)
+  - Web(웹)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Productivity(생산성)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Comparison(비교)
+  - Design-Pattern(디자인패턴)
+  - OOP(객체지향)
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
+  - Error-Handling(에러처리)
+  - Pitfalls(함정)
   - Type-Safety
-  - Optimization
-  - 최적화
-  - Performance
-  - 성능
-  - Debugging
-  - 디버깅
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - RAII
+  - Optimization(최적화)
+  - Performance(성능)
+  - Debugging(디버깅)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - RAII(Resource Acquisition Is Initialization)
   - Smart-Pointer
   - unique_ptr
   - Lambda
@@ -81,23 +51,18 @@ tags:
   - Cpp11
   - Git
   - GitHub
-  - String
-  - HTML
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
-  - Hardware
-  - 하드웨어
+  - String(문자열)
+  - HTML(HyperText Markup Language)
+  - Markdown(마크다운)
+  - Review(리뷰)
+  - Hardware(하드웨어)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - 컴파일러
-  - Compiler
-  - OS
-  - 운영체제
+  - Compiler(컴파일러)
+  - OS(운영체제)
   - 시스템프로그래밍
 ---
 

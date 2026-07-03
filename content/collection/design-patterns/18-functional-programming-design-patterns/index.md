@@ -12,8 +12,8 @@ categories:
 - Design Evolution
 - Programming Paradigms
 tags:
-- Functional-Programming
-- Code-Quality
+- Functional-Programming(함수형프로그래밍)
+- Code-Quality(코드품질)
 ---
 
 함수형 프로그래밍이 전통적인 디자인 패턴에 가져온 변화를 탐구합니다. 고차 함수, 불변성, 함수 합성을 통한 패턴의 진화를 학습합니다.

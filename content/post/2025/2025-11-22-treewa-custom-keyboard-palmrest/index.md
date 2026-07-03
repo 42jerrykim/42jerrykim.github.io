@@ -6,98 +6,58 @@ draft: false
 categories:
   - Product Review
 tags:
-  - Keyboard
-  - 키보드
-  - Hardware
-  - 하드웨어
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Productivity
-  - 생산성
-  - Culture
-  - 문화
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Reference
-  - 참고
+  - Keyboard(키보드)
+  - Hardware(하드웨어)
+  - Review(리뷰)
+  - Technology(기술)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Productivity(생산성)
+  - Culture(문화)
+  - Blog(블로그)
+  - Web(웹)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Gadget
-  - 가젯
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Gadget(가젯)
   - macOS
-  - Design-Pattern
-  - 디자인패턴
-  - Brand
-  - 브랜드
+  - Design-Pattern(디자인패턴)
+  - Brand(브랜드)
   - Case-Study
   - Beginner
   - Advanced
-  - Education
-  - 교육
-  - Performance
-  - 성능
-  - Interface
-  - 인터페이스
-  - History
-  - 역사
-  - Science
-  - 과학
-  - Gaming
-  - 게임
-  - Markdown
-  - 마크다운
-  - Internet
-  - 인터넷
-  - Privacy
-  - 프라이버시
-  - Photography
-  - 사진
-  - Agile
-  - 애자일
-  - Networking
-  - 네트워킹
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - IDE
+  - Education(교육)
+  - Performance(성능)
+  - Interface(인터페이스)
+  - History(역사)
+  - Science(과학)
+  - Gaming(게임)
+  - Markdown(마크다운)
+  - Internet(인터넷)
+  - Privacy(프라이버시)
+  - Photography(사진)
+  - Agile(애자일)
+  - Networking(네트워킹)
+  - Deployment(배포)
+  - Automation(자동화)
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - 코드품질
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
   - Modularity
-  - Tree
-  - 트리
+  - Tree(트리)
 image: image03.png
 description: "트리와(Treewa)는 천연 원목으로 키보드 손목받침대·매직 키보드·트랙패드 트레이를 커스텀 제작하는 한국 업체다. 북미산 원목, 3~5일 제작, 폴리우레탄 마감. 길이·폭·높이 맞춤 제작과 해피해킹·Apple 전용 제품으로 데스크 환경과 손목 건강을 함께 챙기고 싶은 이에게 추천한다."
 ---

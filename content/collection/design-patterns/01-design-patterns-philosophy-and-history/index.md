@@ -12,14 +12,11 @@ categories:
 - Design Principles  
 - Programming Philosophy
 tags:
-- Design-Pattern
-- GoF
-- Software-Architecture
-- Code-Quality
+- Design-Pattern(디자인패턴)
+- GoF(Gang of Four)
+- Software-Architecture(소프트웨어아키텍처)
+- Code-Quality(코드품질)
 - SOLID
-- 디자인패턴
-- 소프트웨어아키텍처
-- 코드품질
 ---
 
 ## 서론: 패턴이라는 이름의 시

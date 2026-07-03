@@ -6,93 +6,56 @@ categories:
 date: "2021-04-13T00:00:00Z"
 lastmod: "2026-03-16"
 tags:
-  - Keyboard
-  - 키보드
-  - Hardware
-  - 하드웨어
-  - Troubleshooting
-  - 트러블슈팅
-  - Guide
-  - 가이드
+  - Keyboard(키보드)
+  - Hardware(하드웨어)
+  - Troubleshooting(트러블슈팅)
+  - Guide(가이드)
   - How-To
   - Tips
-  - Configuration
-  - 설정
-  - Tutorial
-  - 튜토리얼
-  - Reference
-  - 참고
+  - Configuration(설정)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Productivity
-  - 생산성
-  - Technology
-  - 기술
-  - Windows
-  - 윈도우
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Web
-  - 웹
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Security
-  - 보안
-  - Mobile
-  - 모바일
-  - Cloud
-  - 클라우드
-  - Review
-  - 리뷰
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Gadget
-  - 가젯
+  - Documentation(문서화)
+  - Productivity(생산성)
+  - Technology(기술)
+  - Windows(윈도우)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Web(웹)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Security(보안)
+  - Mobile(모바일)
+  - Cloud(클라우드)
+  - Review(리뷰)
+  - Comparison(비교)
+  - Career(커리어)
+  - Gadget(가젯)
   - Beginner
-  - Implementation
-  - 구현
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
+  - Implementation(구현)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
   - Case-Study
   - Deep-Dive
   - 실습
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - Networking
-  - 네트워킹
-  - Automation
-  - 자동화
-  - Performance
-  - 성능
-  - Deployment
-  - 배포
+  - Cheatsheet(치트시트)
+  - Networking(네트워킹)
+  - Automation(자동화)
+  - Performance(성능)
+  - Deployment(배포)
   - DevOps
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Shell
-  - 터미널
-  - Self-Hosted
-  - 셀프호스팅
-  - Privacy
-  - 프라이버시
-  - Clean-Code
-  - 클린코드
+  - Shell(셸)
+  - Terminal(터미널)
+  - Self-Hosted(셀프호스팅)
+  - Privacy(프라이버시)
+  - Clean-Code(클린코드)
 image: "wordcloud.png"
 ---
 

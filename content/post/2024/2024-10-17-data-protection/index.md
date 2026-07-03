@@ -7,103 +7,66 @@ categories:
   - DataProtection
   - Security
 tags:
-  - Security
-  - 보안
-  - Privacy
-  - 프라이버시
-  - Database
-  - 데이터베이스
-  - Cloud
-  - 클라우드
-  - Algorithm
-  - 알고리즘
-  - Performance
-  - 성능
-  - Code-Quality
+  - Security(보안)
+  - Privacy(프라이버시)
+  - Database(데이터베이스)
+  - Cloud(클라우드)
+  - Algorithm(알고리즘)
+  - Performance(성능)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Tutorial
-  - 가이드
-  - Guide
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - API
-  - REST
-  - Networking
-  - 네트워킹
-  - Backend
-  - 백엔드
-  - Problem-Solving
-  - 문제해결
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
+  - Documentation(문서화)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Technology(기술)
+  - Web(웹)
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - Networking(네트워킹)
+  - Backend(백엔드)
+  - Problem-Solving(문제해결)
+  - Reference(참고)
+  - Comparison(비교)
   - How-To
   - Tips
-  - Configuration
-  - 설정
+  - Configuration(설정)
   - DevOps
-  - Monitoring
-  - 모니터링
-  - Automation
-  - 자동화
-  - Windows
-  - 윈도우
-  - Linux
-  - 리눅스
+  - Monitoring(모니터링)
+  - Automation(자동화)
+  - Windows(윈도우)
+  - Linux(리눅스)
   - macOS
-  - Open-Source
-  - 오픈소스
-  - Education
-  - 교육
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
+  - Open-Source(오픈소스)
+  - Education(교육)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
   - Finance
   - Accounting
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Review(리뷰)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
-  - Implementation
-  - Testing
-  - 테스트
-  - Software-Architecture
-  - Design-Pattern
-  - Clean-Code
+  - Implementation(구현)
+  - Testing(테스트)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
   - Maintainability
   - Modularity
-  - Deployment
-  - 배포
-  - Authentication
-  - 인증
-  - Scalability
-  - 확장성
-  - Error-Handling
-  - Logging
-  - 로깅
-  - Optimization
-  - 최적화
-  - Edge-Cases
-  - Refactoring
-  - 리팩토링
-  - Productivity
-  - 생산성
-  - 튜토리얼
-  - 코드품질
-  - 디버깅
-  - 데이터사이언스
+  - Deployment(배포)
+  - Authentication(인증)
+  - Scalability(확장성)
+  - Error-Handling(에러처리)
+  - Logging(로깅)
+  - Optimization(최적화)
+  - Edge-Cases(엣지케이스)
+  - Refactoring(리팩토링)
+  - Productivity(생산성)
+  - Debugging(디버깅)
+  - Data-Science(데이터사이언스)
 image: "wordcloud.png"
 ---
 

@@ -10,84 +10,54 @@ draft: false
 tags:
   - CSharp
   - .NET
-  - Implementation
-  - Software-Architecture
-  - Open-Source
-  - Performance
-  - Productivity
-  - Memory
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Guide
-  - Review
-  - 리뷰
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Open-Source(오픈소스)
+  - Performance(성능)
+  - Productivity(생산성)
+  - Memory(메모리)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
   - C++
   - Java
-  - String
-  - Windows
-  - Async
-  - 비동기
-  - Gaming
-  - 게임
-  - History
-  - 역사
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - String(문자열)
+  - Windows(윈도우)
+  - Async(비동기)
+  - Gaming(게임)
+  - History(역사)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - OOP
-  - 객체지향
-  - Backend
-  - 백엔드
-  - API
-  - Database
-  - 데이터베이스
+  - Comparison(비교)
+  - Career(커리어)
+  - OOP(객체지향)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Database(데이터베이스)
   - Type-Safety
-  - Clean-Code
-  - 클린코드
-  - Design-Pattern
-  - 디자인패턴
-  - Compiler
-  - 컴파일러
-  - IDE
+  - Clean-Code(클린코드)
+  - Design-Pattern(디자인패턴)
+  - Compiler(컴파일러)
+  - IDE(Integrated Development Environment)
   - Beginner
-  - Mobile
-  - 모바일
-  - Cloud
-  - 클라우드
-  - Concurrency
-  - 동시성
-  - Functional-Programming
-  - 함수형프로그래밍
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Inheritance
-  - 상속
+  - Mobile(모바일)
+  - Cloud(클라우드)
+  - Concurrency(동시성)
+  - Functional-Programming(함수형프로그래밍)
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Inheritance(상속)
 teaser: /assets/images/undefined/teaser.jpg
 ---
 

@@ -7,101 +7,63 @@ lastmod: "2026-03-17"
 header:
   teaser: /assets/images/2024/2024-09-09-rest-vs-graphql.png
 tags:
-  - REST
+  - REST(Representational State Transfer)
   - GraphQL
-  - API
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - HTTP
-  - JSON
-  - XML
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Performance
-  - 성능
-  - Scalability
-  - 확장성
-  - Caching
-  - 캐싱
-  - Error-Handling
-  - 에러처리
-  - Microservices
-  - 마이크로서비스
-  - Open-Source
-  - 오픈소스
-  - Networking
-  - 네트워킹
-  - Database
-  - 데이터베이스
-  - Documentation
-  - 문서화
+  - API(Application Programming Interface)
+  - Web(웹)
+  - Backend(백엔드)
+  - HTTP(HyperText Transfer Protocol)
+  - JSON(JavaScript Object Notation)
+  - XML(eXtensible Markup Language)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Performance(성능)
+  - Scalability(확장성)
+  - Caching(캐싱)
+  - Error-Handling(에러처리)
+  - Microservices(마이크로서비스)
+  - Open-Source(오픈소스)
+  - Networking(네트워킹)
+  - Database(데이터베이스)
+  - Documentation(문서화)
   - Best-Practices
-  - Code-Quality
-  - 코드품질
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Implementation
-  - 구현
-  - Graph
-  - 그래프
+  - Code-Quality(코드품질)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Comparison(비교)
+  - Reference(참고)
+  - Technology(기술)
+  - Implementation(구현)
+  - Graph(그래프)
   - Type-Safety
   - WebSocket
-  - Authentication
-  - 인증
-  - Security
-  - 보안
+  - Authentication(인증)
+  - Security(보안)
   - Latency
   - Throughput
-  - Design-Pattern
-  - 디자인패턴
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - 테스트
+  - Design-Pattern(디자인패턴)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
   - DevOps
-  - Deployment
-  - 배포
-  - Frontend
-  - 프론트엔드
-  - Async
-  - 비동기
-  - Education
-  - 교육
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
+  - Deployment(배포)
+  - Frontend(프론트엔드)
+  - Async(비동기)
+  - Education(교육)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
   - Case-Study
   - Deep-Dive
   - 실습
   - Beginner
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - YAML
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - YAML(YAML Ain't Markup Language)
   - Maintainability
   - Modularity
-  - Interface
-  - 인터페이스
-  - Clean-Code
-  - 클린코드
-  - History
-  - 역사
-  - Productivity
-  - 생산성
-  - Review
-  - 리뷰
+  - Interface(인터페이스)
+  - Clean-Code(클린코드)
+  - History(역사)
+  - Productivity(생산성)
+  - Review(리뷰)
 image: "wordcloud.png"
 ---
 

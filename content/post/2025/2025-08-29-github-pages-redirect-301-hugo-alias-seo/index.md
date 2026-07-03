@@ -8,93 +8,59 @@ categories:
   - "SEO"
   - "Hugo"
 tags:
-  - SEO
+  - SEO(Search Engine Optimization)
   - Hugo
   - Git
   - GitHub
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Blog(블로그)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Configuration
-  - 설정
-  - Markdown
-  - 마크다운
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Technology
-  - 기술
+  - Documentation(문서화)
+  - Configuration(설정)
+  - Markdown(마크다운)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Technology(기술)
   - How-To
   - Tips
-  - Reference
-  - 참고
-  - Implementation
-  - 구현
-  - Deployment
-  - 배포
-  - HTTP
-  - YAML
-  - HTML
+  - Reference(참고)
+  - Implementation(구현)
+  - Deployment(배포)
+  - HTTP(HyperText Transfer Protocol)
+  - YAML(YAML Ain't Markup Language)
+  - HTML(HyperText Markup Language)
   - PowerShell
-  - Shell
-  - 셸
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
-  - Domain
-  - 도메인
+  - Shell(셸)
+  - Education(교육)
+  - Productivity(생산성)
+  - Domain(도메인)
   - Jekyll
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Beginner
   - Case-Study
-  - Workflow
-  - 워크플로우
-  - Automation
-  - 자동화
-  - Performance
-  - 성능
-  - Security
-  - 보안
-  - Networking
-  - 네트워킹
-  - Frontend
-  - 프론트엔드
-  - Backend
-  - 백엔드
-  - API
-  - Code-Quality
-  - 코드품질
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - CI-CD
+  - Workflow(워크플로우)
+  - Automation(자동화)
+  - Performance(성능)
+  - Security(보안)
+  - Networking(네트워킹)
+  - Frontend(프론트엔드)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Code-Quality(코드품질)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - DevOps
-  - Cloud
-  - 클라우드
-  - Internet
-  - 인터넷
-  - Innovation
-  - 혁신
-  - Review
-  - 리뷰
+  - Cloud(클라우드)
+  - Internet(인터넷)
+  - Innovation(혁신)
+  - Review(리뷰)
   - Deep-Dive
   - 실습
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
 image: "wordcloud.png"
 ---

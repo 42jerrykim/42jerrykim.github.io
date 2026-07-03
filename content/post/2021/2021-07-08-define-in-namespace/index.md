@@ -8,114 +8,70 @@ lastmod: "2026-03-16"
 tags:
   - C++
   - C
-  - Compiler
-  - 컴파일러
-  - Implementation
-  - 구현
+  - Compiler(컴파일러)
+  - Implementation(구현)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Code-Quality
-  - 코드품질
-  - Documentation
-  - 문서화
-  - Pitfalls
-  - 함정
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
+  - Documentation(문서화)
+  - Pitfalls(함정)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - How-To
   - Tips
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Type-Safety
   - Readability
   - Maintainability
   - Modularity
-  - OOP
-  - 객체지향
-  - Encapsulation
-  - 캡슐화
-  - Abstraction
-  - 추상화
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Troubleshooting
-  - 트러블슈팅
-  - Debugging
-  - 디버깅
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
+  - OOP(객체지향)
+  - Encapsulation(캡슐화)
+  - Abstraction(추상화)
+  - Technology(기술)
+  - Education(교육)
+  - Troubleshooting(트러블슈팅)
+  - Debugging(디버깅)
+  - Performance(성능)
+  - Optimization(최적화)
   - Process
   - Thread
-  - Memory
-  - 메모리
-  - OS
-  - 운영체제
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
-  - IDE
+  - Memory(메모리)
+  - OS(운영체제)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - IDE(Integrated Development Environment)
   - VSCode
   - Git
   - GitHub
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - Networking
-  - 네트워킹
-  - Concurrency
-  - 동시성
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Open-Source
-  - 오픈소스
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
-  - Career
-  - 커리어
-  - Migration
-  - 마이그레이션
+  - Web(웹)
+  - Backend(백엔드)
+  - Networking(네트워킹)
+  - Concurrency(동시성)
+  - Blog(블로그)
+  - Review(리뷰)
+  - Open-Source(오픈소스)
+  - Configuration(설정)
+  - Workflow(워크플로우)
+  - Career(커리어)
+  - Migration(마이그레이션)
   - Beginner
   - Case-Study
   - Deep-Dive
-  - Markdown
-  - 마크다운
+  - Markdown(마크다운)
   - Python
-  - 파이썬
   - Java
   - JavaScript
   - Go
   - Rust
-  - Algorithm
-  - 알고리즘
-  - Data-Structures
-  - 자료구조
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Interface
-  - 인터페이스
-  - Error-Handling
-  - 에러처리
-  - Testing
-  - 테스트
+  - Algorithm(알고리즘)
+  - Data-Structures(자료구조)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
+  - Error-Handling(에러처리)
+  - Testing(테스트)
 title: "[C/C++] namespace 안의 #define은 범위를 제한하지 않는다"
 ---
 

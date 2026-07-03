@@ -7,66 +7,39 @@ categories:
   - Python
   - Automation
 tags:
-  - 자동화
-  - Automation
-  - 파이썬
+  - Automation(자동화)
   - Python
-  - Shell
-  - 셸
-  - 로깅
-  - Logging
-  - 워크플로우
-  - Workflow
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Shell(셸)
+  - Logging(로깅)
+  - Workflow(워크플로우)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - How-To
-  - Technology
-  - 기술
-  - Implementation
-  - 구현
-  - Self-Hosted
-  - 셀프호스팅
-  - Networking
-  - 네트워킹
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Technology(기술)
+  - Implementation(구현)
+  - Self-Hosted(셀프호스팅)
+  - Networking(네트워킹)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Windows
-  - 윈도우
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Windows(윈도우)
   - File-System
-  - Error-Handling
-  - 에러처리
-  - Code-Quality
-  - 코드품질
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
-  - Innovation
-  - 혁신
+  - Error-Handling(에러처리)
+  - Code-Quality(코드품질)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Review(리뷰)
+  - Innovation(혁신)
   - DevOps
-  - Monitoring
-  - 모니터링
-  - IO
+  - Monitoring(모니터링)
+  - IO(Input/Output)
   - Compression
-  - Terminal
-  - 터미널
+  - Terminal(터미널)
   - Beginner
   - Tips
   - Case-Study
@@ -76,33 +49,22 @@ tags:
   - 정규표현식
   - Scripting
   - 스크립팅
-  - Media
   - 미디어
   - Backup
-  - 백업
-  - Migration
-  - 마이그레이션
-  - Performance
-  - 성능
-  - Debugging
-  - 디버깅
-  - Clean-Code
-  - 클린코드
+  - Migration(마이그레이션)
+  - Performance(성능)
+  - Debugging(디버깅)
+  - Clean-Code(클린코드)
   - Maintainability
-  - Refactoring
-  - 리팩토링
+  - Refactoring(리팩토링)
   - Modularity
-  - Interface
-  - 인터페이스
-  - Testing
-  - 테스트
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
+  - Interface(인터페이스)
+  - Testing(테스트)
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
   - Readability
   - VSCode
-  - IDE
+  - IDE(Integrated Development Environment)
   - Git
   - GitHub
 image: ui-classic-bd3481be0133059729c5a937070f8b69.png

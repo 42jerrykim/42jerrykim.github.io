@@ -8,77 +8,47 @@ lastmod: "2026-03-16"
 tags:
   - Git
   - GitHub
-  - Technology
-  - Tutorial
-  - Guide
-  - Implementation
-  - Blog
-  - 블로그
-  - 기술
-  - Web
-  - 웹
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Implementation(구현)
+  - Blog(블로그)
+  - Web(웹)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
   - DevOps
-  - Shell
-  - 셸
-  - Terminal
-  - 터미널
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
-  - Error-Handling
-  - 에러처리
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - 코드품질
-  - Refactoring
-  - 리팩토링
-  - Debugging
-  - 디버깅
-  - Cheatsheet
-  - 치트시트
+  - Shell(셸)
+  - Terminal(터미널)
+  - Automation(자동화)
+  - Deployment(배포)
+  - Error-Handling(에러처리)
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
+  - Debugging(디버깅)
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - Beginner
-  - Innovation
-  - 혁신
-  - Agile
-  - 애자일
+  - Innovation(혁신)
+  - Agile(애자일)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Pitfalls
-  - 함정
+  - Pitfalls(함정)
 title: "[Git] git reset 사용법과 restore로 파일 되돌리기"
 ---
 

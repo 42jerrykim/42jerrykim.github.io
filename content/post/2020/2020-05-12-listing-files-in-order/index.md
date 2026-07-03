@@ -7,92 +7,55 @@ date: "2020-05-12T00:00:00Z"
 lastmod: "2026-03-16"
 excerpt_separator: <!--more-->
 tags:
-  - Shell
-  - 셸
+  - Shell(셸)
   - Bash
-  - Linux
-  - 리눅스
-  - Terminal
-  - 터미널
+  - Linux(리눅스)
+  - Terminal(터미널)
   - Command
   - File-System
-  - Sorting
-  - 정렬
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Reference
-  - 참고
+  - Sorting(정렬)
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
   - How-To
   - Tips
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - Productivity
-  - 생산성
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
+  - Cheatsheet(치트시트)
+  - Productivity(생산성)
+  - Automation(자동화)
+  - Workflow(워크플로우)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Troubleshooting
-  - 트러블슈팅
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Troubleshooting(트러블슈팅)
+  - Logging(로깅)
+  - Configuration(설정)
   - DevOps
-  - Deployment
-  - 배포
-  - Monitoring
-  - 모니터링
-  - Open-Source
-  - 오픈소스
-  - Technology
-  - 기술
-  - Education
-  - 교육
+  - Deployment(배포)
+  - Monitoring(모니터링)
+  - Open-Source(오픈소스)
+  - Technology(기술)
+  - Education(교육)
   - Beginner
-  - Comparison
-  - 비교
-  - Performance
-  - 성능
-  - IO
-  - OS
-  - 운영체제
+  - Comparison(비교)
+  - Performance(성능)
+  - IO(Input/Output)
+  - OS(운영체제)
   - Process
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
-  - Web
-  - 웹
-  - Migration
-  - 마이그레이션
-  - Career
-  - 커리어
-  - Innovation
-  - 혁신
-  - Hardware
-  - 하드웨어
-  - Design-Pattern
-  - Clean-Code
-  - 클린코드
-  - Implementation
-  - 구현
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Review(리뷰)
+  - Web(웹)
+  - Migration(마이그레이션)
+  - Career(커리어)
+  - Innovation(혁신)
+  - Hardware(하드웨어)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
+  - Implementation(구현)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
   - Case-Study
   - 실습
 title: "[Shell] 날짜로 정렬해 파일 목록 보기"

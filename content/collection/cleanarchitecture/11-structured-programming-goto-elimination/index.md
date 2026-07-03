@@ -7,18 +7,15 @@ title: "[Clean Architecture] 11. 구조적 프로그래밍"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
+  - Clean-Architecture(클린아키텍처)
   - Dijkstra
-  - Math
-  - Implementation
-  - Algorithm
-  - 테스트
-  - Software-Architecture
-  - Code-Quality
-  - 코드품질
-  - Clean-Code
-  - 알고리즘
+  - Math(수학)
+  - Implementation(구현)
+  - Algorithm(알고리즘)
+  - Testing(테스트)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Code-Quality(코드품질)
+  - Clean-Code(클린코드)
 ---
 
 1968년, 에츠허르 비버 데이크스트라(Edsger Wybe Dijkstra)는 CACM(Communications of the ACM)에 보낸 편지에서 프로그래밍 역사상 가장 유명한 논쟁을 시작했다. "Go To Statement Considered Harmful"이라는 제목의 이 글은 구조적 프로그래밍의 시대를 열었다.

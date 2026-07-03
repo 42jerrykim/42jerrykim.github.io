@@ -20,14 +20,11 @@ tags:
   - BoundedQueue
   - Throughput
   - Latency
-  - Performance
-  - 성능
-  - Design-Pattern
-  - 디자인패턴
-  - Implementation
-  - 구현
-  - Tutorial
-  - Guide
+  - Performance(성능)
+  - Design-Pattern(디자인패턴)
+  - Implementation(구현)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
 slug: cpp-thread-pool-work-queue-work-stealing
 ---
 

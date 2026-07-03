@@ -8,70 +8,44 @@ image: "wordcloud.png"
 teaser: /assets/images/2024/2024-08-22-Relational-vs-Non-Relational-Datebase.png
 header: null
 tags:
-  - Database
-  - SQL
+  - Database(데이터베이스)
+  - SQL(Structured Query Language)
   - PostgreSQL
   - MySQL
   - MongoDB
   - Redis
   - Elasticsearch
-  - Data-Structures
-  - 자료구조
-  - Scalability
-  - 확장성
-  - Performance
-  - 성능
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Implementation
-  - 구현
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Data-Structures(자료구조)
+  - Scalability(확장성)
+  - Performance(성능)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Implementation(구현)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Backend(백엔드)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Comparison
-  - 비교
-  - API
-  - REST
-  - JSON
-  - Caching
-  - 캐싱
-  - Security
-  - 보안
-  - Cloud
-  - 클라우드
-  - Code-Quality
-  - 코드품질
-  - Design-Pattern
-  - 디자인패턴
-  - Microservices
-  - 마이크로서비스
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Comparison(비교)
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - JSON(JavaScript Object Notation)
+  - Caching(캐싱)
+  - Security(보안)
+  - Cloud(클라우드)
+  - Code-Quality(코드품질)
+  - Design-Pattern(디자인패턴)
+  - Microservices(마이크로서비스)
   - Maintainability
-  - Education
-  - 교육
-  - Career
-  - 커리어
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Education(교육)
+  - Career(커리어)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
   - Beginner
@@ -79,27 +53,18 @@ tags:
   - Case-Study
   - 실습
   - Kafka
-  - AWS
+  - AWS(Amazon Web Services)
   - Azure
-  - GCP
-  - Concurrency
-  - 동시성
-  - Graph
-  - 그래프
-  - Problem-Solving
-  - 문제해결
-  - Optimization
-  - 최적화
-  - Deployment
-  - 배포
-  - Monitoring
-  - 모니터링
-  - Testing
-  - 테스트
-  - Clean-Code
-  - 클린코드
-  - Review
-  - 리뷰
+  - GCP(Google Cloud Platform)
+  - Concurrency(동시성)
+  - Graph(그래프)
+  - Problem-Solving(문제해결)
+  - Optimization(최적화)
+  - Deployment(배포)
+  - Monitoring(모니터링)
+  - Testing(테스트)
+  - Clean-Code(클린코드)
+  - Review(리뷰)
   - Latency
   - Throughput
 ---

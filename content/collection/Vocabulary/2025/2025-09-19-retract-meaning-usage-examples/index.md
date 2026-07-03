@@ -9,54 +9,35 @@ categories:
 tags:
 - Vocabulary
 - English
-- Business-English
-- Academic-English
-- Collocation
-- Nuance
-- TOEFL
-- IELTS
+- Business-English(비즈니스영어)
+- Academic-English(학술영어)
+- Collocation(콜로케이션)
+- Nuance(뉘앙스)
+- TOEFL(Test of English as a Foreign Language)
+- IELTS(International English Language Testing System)
 - 영단어
 - 영어동사
-- 비즈니스영어
-- 뉘앙스
-- 콜로케이션
-- Grammar
-- 문법
-- Etymology
-- 어원
-- Synonym
-- 유의어
-- Tutorial
-- 튜토리얼
-- AWS
-- Cloud
-- Action
-- 액션
-- Antonym
-- 반의어
-- Pronunciation
-- 발음
-- Daily-Life
-- 일상표현
-- Education
-- 교육
-- Reference
-- 참고
-- 학술영어
-- Comparison
-- 비교
+- Grammar(문법)
+- Etymology(어원)
+- Synonym(유의어)
+- Tutorial(튜토리얼)
+- AWS(Amazon Web Services)
+- Cloud(클라우드)
+- Action(액션)
+- Antonym(반의어)
+- Pronunciation(발음)
+- Daily-Life(일상표현)
+- Education(교육)
+- Reference(참고)
+- Comparison(비교)
 - Tips
 - How-To
 - Beginner
 - Advanced
-- Markdown
-- 마크다운
-- Technology
-- 기술
-- Guide
-- 가이드
-- Documentation
-- 문서화
+- Markdown(마크다운)
+- Technology(기술)
+- Guide(가이드)
+- Documentation(문서화)
 image: "wordcloud.png"
 ---
 

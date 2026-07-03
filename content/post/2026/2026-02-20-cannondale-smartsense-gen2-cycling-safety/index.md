@@ -9,82 +9,47 @@ categories:
   - Safety
 tags:
   - Cycling
-  - 자전거
-  - Technology
-  - 기술
-  - Review
-  - 리뷰
-  - Hardware
-  - 하드웨어
-  - Gadget
-  - 가젯
-  - Innovation
-  - 혁신
-  - Guide
-  - 가이드
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Blog
-  - 블로그
-  - Tutorial
-  - 튜토리얼
+  - Technology(기술)
+  - Review(리뷰)
+  - Hardware(하드웨어)
+  - Gadget(가젯)
+  - Innovation(혁신)
+  - Guide(가이드)
+  - Comparison(비교)
+  - Reference(참고)
+  - Blog(블로그)
+  - Tutorial(튜토리얼)
   - How-To
   - Tips
-  - Configuration
-  - 설정
+  - Configuration(설정)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Troubleshooting
-  - 트러블슈팅
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Mobile
-  - 모바일
-  - Web
-  - 웹
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Markdown
-  - 마크다운
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
-  - Open-Source
-  - 오픈소스
-  - Performance
-  - 성능
-  - Automation
-  - 자동화
-  - Cloud
-  - 클라우드
+  - Documentation(문서화)
+  - Troubleshooting(트러블슈팅)
+  - Productivity(생산성)
+  - Education(교육)
+  - Mobile(모바일)
+  - Web(웹)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Markdown(마크다운)
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
+  - Open-Source(오픈소스)
+  - Performance(성능)
+  - Automation(자동화)
+  - Cloud(클라우드)
   - Case-Study
   - Deep-Dive
   - Beginner
   - Advanced
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
-  - Clean-Code
-  - 클린코드
-  - Career
-  - 커리어
-  - History
-  - 역사
-  - Science
-  - 과학
+  - Implementation(구현)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
+  - Clean-Code(클린코드)
+  - Career(커리어)
+  - History(역사)
+  - Science(과학)
   - 실습
 image: "image.png"
 ---

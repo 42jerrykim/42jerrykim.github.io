@@ -4,55 +4,33 @@ title: "00. 왜 파이썬인가?"
 description: "파이썬을 배워야 하는 이유, 활용 분야, 커리어 관점까지 큰 그림을 잡습니다. 학습 목표를 세우고 앞으로의 커리큘럼을 어떤 순서로 따라갈지 방향성을 확립합니다."
 tags:
   - Python
-  - 파이썬
-  - Implementation
-  - Software-Architecture
-  - Algorithm
-  - 알고리즘
-  - Backend
-  - 백엔드
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Algorithm(알고리즘)
+  - Backend(백엔드)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Logging
-  - 로깅
-  - Security
-  - 보안
-  - Performance
-  - 성능
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
-  - OOP
-  - 객체지향
-  - Data-Structures
-  - 자료구조
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Logging(로깅)
+  - Security(보안)
+  - Performance(성능)
+  - Concurrency(동시성)
+  - Async(비동기)
+  - OOP(객체지향)
+  - Data-Structures(자료구조)
   - DevOps
-  - Deployment
-  - 배포
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Web
-  - 웹
-  - Database
-  - 데이터베이스
-  - Networking
-  - 네트워킹
-  - CI-CD
-  - 자동화
-  - Documentation
-  - 문서화
+  - Deployment(배포)
+  - Design-Pattern(디자인패턴)
+  - Web(웹)
+  - Database(데이터베이스)
+  - Networking(네트워킹)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Automation(자동화)
+  - Documentation(문서화)
   - Git
-  - Code-Quality
-  - 코드품질
+  - Code-Quality(코드품질)
 lastmod: 2026-01-17
 collection_order: 0
 ---

@@ -15,15 +15,11 @@ categories:
 tags:
 - SOLID
 - Best-Practices
-- Code-Quality
-- Tutorial
-- Implementation
-- Design-Pattern
-- Software-Architecture
-- 코드품질
-- 구현
-- 디자인패턴
-- 소프트웨어아키텍처
+- Code-Quality(코드품질)
+- Tutorial(튜토리얼)
+- Implementation(구현)
+- Design-Pattern(디자인패턴)
+- Software-Architecture(소프트웨어아키텍처)
 ---
 
 이 실습에서는 패턴별 리뷰 체크리스트 작성, 자동 검증 도구 구현, 팀 리뷰 프로세스 개선을 직접 수행합니다.

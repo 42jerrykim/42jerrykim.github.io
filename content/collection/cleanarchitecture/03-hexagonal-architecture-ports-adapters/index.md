@@ -7,21 +7,16 @@ title: "[Clean Architecture] 03. 헥사고날 아키텍처 (Ports and Adapters)"
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-  - Clean-Architecture
-  - 클린아키텍처
-  - Dependency-Injection
-  - 의존성주입
-  - Testing
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
+  - Clean-Architecture(클린아키텍처)
+  - Dependency-Injection(의존성주입)
+  - Testing(테스트)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
   - SOLID
-  - 결합도
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Edge-Cases
+  - Coupling(결합도)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Edge-Cases(엣지케이스)
 ---
 
 2005년, 알리스테어 콕번(Alistair Cockburn)은 "Hexagonal Architecture" 또는 "Ports and Adapters" 패턴을 제안했다. 이 아키텍처는 전통적인 계층형 아키텍처의 근본적인 문제를 해결하기 위해 등장했으며, Clean Architecture에 직접적인 영향을 미친 중요한 선행 패턴이다.

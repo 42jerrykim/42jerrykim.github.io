@@ -8,62 +8,56 @@ slug: storage-stack-customization-kernel-fs-drivers-expert
 description: "커널 모듈·특수 파일시스템·벤더 드라이버까지 건드릴 때의 성능 이득과 운영·보안 리스크를 전문 난이도로 정리합니다. Tr.09 의사결정·Tr.07 런타임 경계와 연계해 검증·롤밹 프레임을 제시합니다."
 tags:
   - C++
-  - Performance
-  - Optimization
+  - Performance(성능)
+  - Optimization(최적화)
   - Storage
   - File-System
   - Kernel
-  - Linux
+  - Linux(리눅스)
   - Driver
   - Block-Device
   - NVMe
   - SSD
   - Latency
   - Throughput
-  - IO
-  - Backend
-  - Networking
+  - IO(Input/Output)
+  - Backend(백엔드)
+  - Networking(네트워킹)
   - Observability
-  - Security
+  - Security(보안)
   - Risk
-  - Software-Architecture
-  - Code-Quality
+  - Software-Architecture(소프트웨어아키텍처)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Implementation
-  - Testing
-  - CI-CD
-  - Documentation
+  - Implementation(구현)
+  - Testing(테스트)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Documentation(문서화)
   - Git
-  - Debugging
-  - Profiling
+  - Debugging(디버깅)
+  - Profiling(프로파일링)
   - Benchmark
-  - Concurrency
-  - Memory
-  - CPU
-  - Edge-Cases
-  - Pitfalls
-  - Error-Handling
-  - Guide
-  - Reference
-  - Technology
-  - Tutorial
+  - Concurrency(동시성)
+  - Memory(메모리)
+  - CPU(Central Processing Unit)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
   - Advanced
   - Deep-Dive
   - Expert
   - Case-Study
   - Container
   - Virtualization
-  - 성능
-  - 최적화
   - 스토리지
   - 파일시스템
-  - 커널
   - 드라이버
-  - 백엔드
   - 전문
   - 리스크
-  - 가이드
-  - 참고
   - 실습
   - 운영
 ---

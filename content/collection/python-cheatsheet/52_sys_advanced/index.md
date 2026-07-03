@@ -8,55 +8,36 @@ lastmod: 2026-01-18
 collection_order: 52
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Graph
-  - Software-Architecture
-  - Recursion
-  - 재귀
-  - 메모리
-  - Performance
-  - Design-Pattern
+  - Graph(그래프)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Recursion(재귀)
+  - Memory(메모리)
+  - Performance(성능)
+  - Design-Pattern(디자인패턴)
   - Best-Practices
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Go
-  - Stack
-  - String
-  - Linux
-  - Memory
+  - Stack(스택)
+  - String(문자열)
+  - Linux(리눅스)
   - C++
-  - Compiler
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
+  - Compiler(컴파일러)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
 ---
 `sys` 모듈은 **파이썬 인터프리터와 런타임 환경**에 접근합니다. 명령행 인자, 모듈 시스템, 표준 스트림, 인터프리터 설정 등을 다룹니다.
 

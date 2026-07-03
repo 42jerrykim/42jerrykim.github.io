@@ -8,56 +8,35 @@ categories:
   - Sorting
   - Implementation
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
-  - USACO
-  - Combinatorics
-  - Sorting
-  - 정렬
-  - Implementation
-  - 구현
-  - Simulation
-  - 시뮬레이션
-  - Data-Structures
-  - 자료구조
-  - Array
-  - 배열
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Competitive-Programming
-  - 경쟁프로그래밍
+  - Algorithm(알고리즘)
+  - BOJ(백준)
+  - USACO(USA Computing Olympiad)
+  - Combinatorics(조합론)
+  - Sorting(정렬)
+  - Implementation(구현)
+  - Simulation(시뮬레이션)
+  - Data-Structures(자료구조)
+  - Array(배열)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Competitive-Programming(경쟁프로그래밍)
   - C++
-  - Problem-Solving
-  - 문제해결
-  - Coding-Test
-  - 코딩테스트
-  - Edge-Cases
-  - 엣지케이스
-  - Editorial
-  - Optimization
-  - 최적화
-  - Code-Quality
-  - 코드품질
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Edge-Cases(엣지케이스)
+  - Editorial(에디토리얼)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
   - Go
   - .NET
-  - Graph
-  - 그래프
-  - Memory
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Graph(그래프)
+  - Memory(메모리)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
 image: "wordcloud.png"
 ---
 

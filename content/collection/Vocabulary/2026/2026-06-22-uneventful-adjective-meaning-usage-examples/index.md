@@ -12,12 +12,9 @@ tags:
   - uneventful
   - 영단어
   - 영어형용사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Context
-  - 맥락
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Context(맥락)
   - quiet
   - calm
   - uninteresting
@@ -42,7 +39,7 @@ tags:
   - flight
   - journey
   - workday
-  - Daily-Life
+  - Daily-Life(일상표현)
   - medical
   - surgery
   - recovery
@@ -51,16 +48,15 @@ tags:
   - vacation
   - 여행 용어
   - 의료 용어
-  - 일상표현
   - 뉴스 용어
   - Usage-Notes
-  - Grammar
-  - Pronunciation
-  - Etymology
+  - Grammar(문법)
+  - Pronunciation(발음)
+  - Etymology(어원)
   - origin
-  - Antonym
+  - Antonym(반의어)
   - eventful
-  - Synonym
+  - Synonym(유의어)
   - EN-KR-Examples
   - Study-English
   - Vocabulary-Building

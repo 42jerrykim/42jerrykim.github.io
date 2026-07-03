@@ -10,84 +10,51 @@ image: "wordcloud.png"
 header:
   teaser: /assets/images/2024/2024-09-01-aicd.png
 tags:
-  - Database
-  - 데이터베이스
-  - SQL
+  - Database(데이터베이스)
+  - SQL(Structured Query Language)
   - MongoDB
   - PostgreSQL
   - MySQL
-  - Concurrency
-  - 동시성
-  - Backend
-  - 백엔드
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Concurrency(동시성)
+  - Backend(백엔드)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - Best-Practices
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Error-Handling
-  - 에러처리
-  - Documentation
-  - 문서화
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Web
-  - 웹
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Error-Handling(에러처리)
+  - Documentation(문서화)
+  - Reference(참고)
+  - Technology(기술)
+  - Blog(블로그)
+  - Web(웹)
   - Process
   - Thread
-  - Design-Pattern
-  - 디자인패턴
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Performance
-  - 성능
-  - Scalability
-  - 확장성
-  - Caching
-  - 캐싱
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Performance(성능)
+  - Scalability(확장성)
+  - Caching(캐싱)
   - DevOps
-  - Testing
-  - 테스트
-  - Clean-Code
-  - 클린코드
+  - Testing(테스트)
+  - Clean-Code(클린코드)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
-  - Graph
-  - 그래프
-  - API
-  - Cloud
-  - 클라우드
-  - AWS
-  - Deployment
-  - 배포
+  - Comparison(비교)
+  - Career(커리어)
+  - Education(교육)
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Markdown(마크다운)
+  - Review(리뷰)
+  - Graph(그래프)
+  - API(Application Programming Interface)
+  - Cloud(클라우드)
+  - AWS(Amazon Web Services)
+  - Deployment(배포)
   - Case-Study
   - Deep-Dive
   - 실습

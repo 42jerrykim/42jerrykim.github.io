@@ -8,56 +8,35 @@ categories:
   - Algorithm
   - Dynamic Programming
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
+  - Algorithm(알고리즘)
+  - BOJ(백준)
   - C++
-  - Dynamic-Programming
-  - 동적계획법
-  - DP
-  - Math
-  - Divide-and-Conquer
-  - Optimization
-  - 최적화
-  - Data-Structures
-  - 자료구조
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
-  - Competitive-Programming
-  - 경쟁프로그래밍
-  - Implementation
-  - 구현
-  - Code-Review
-  - 코드리뷰
-  - Testing
-  - 테스트
-  - Complexity-Analysis
-  - 복잡도분석
-  - Greedy
-  - 그리디
-  - Brute-Force
-  - 완전탐색
+  - DP(동적계획법)
+  - Math(수학)
+  - Divide-and-Conquer(분할정복)
+  - Optimization(최적화)
+  - Data-Structures(자료구조)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Implementation(구현)
+  - Code-Review(코드리뷰)
+  - Testing(테스트)
+  - Complexity-Analysis(복잡도분석)
+  - Greedy(그리디)
+  - Brute-Force(완전탐색)
   - Memoization
-  - Problem-Solving
-  - Coding-Test
-  - 코딩테스트
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Code-Quality(코드품질)
   - Go
   - .NET
-  - Memory
-  - Documentation
-  - 문서화
+  - Memory(메모리)
+  - Documentation(문서화)
   - Best-Practices
-  - Debugging
+  - Debugging(디버깅)
 image: "wordcloud.png"
 ---
 

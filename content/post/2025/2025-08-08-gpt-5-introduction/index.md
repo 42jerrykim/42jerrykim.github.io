@@ -8,97 +8,59 @@ date: 2025-08-08
 lastmod: 2026-03-17
 description: "OpenAI GPT-5 완전 가이드. 통합 시스템(스마트·추론·라우터)과 AIME·SWE-bench·HealthBench 벤치마크, 모델 라인업별 가격·가용성, API 신규 기능(reasoning_effort·verbosity·Custom Tools)·40만 토큰, Safe Completions과 참고 문헌까지 한눈에 정리합니다."
 tags:
-  - AI
-  - 인공지능
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
-  - LLM
-  - GPT
+  - AI(인공지능)
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
   - ChatGPT
-  - NLP
+  - NLP(Natural Language Processing)
   - Computer-Vision
-  - Data-Science
-  - 데이터사이언스
+  - Data-Science(데이터사이언스)
   - Neural-Network
-  - API
-  - Backend
-  - 백엔드
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
-  - Innovation
-  - 혁신
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - API(Application Programming Interface)
+  - Backend(백엔드)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Technology(기술)
+  - Innovation(혁신)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Implementation
-  - 구현
-  - Performance
-  - 성능
-  - Testing
-  - 테스트
-  - Code-Quality
-  - 코드품질
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Security
-  - 보안
-  - Automation
-  - 자동화
-  - Cloud
-  - 클라우드
-  - Frontend
-  - 프론트엔드
-  - Math
-  - 수학
-  - Science
-  - 과학
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Gaming
-  - 게임
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Implementation(구현)
+  - Performance(성능)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Security(보안)
+  - Automation(자동화)
+  - Cloud(클라우드)
+  - Frontend(프론트엔드)
+  - Math(수학)
+  - Science(과학)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Gaming(게임)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
+  - Prompt-Engineering(프롬프트엔지니어링)
   - Git
   - GitHub
-  - Agile
-  - 애자일
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
+  - Agile(애자일)
+  - Career(커리어)
+  - Workflow(워크플로우)
 image: image01.png
 ---
 

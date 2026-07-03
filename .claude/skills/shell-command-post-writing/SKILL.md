@@ -2,7 +2,7 @@
 name: shell-command-post-writing
 description: >-
   셸/터미널 명령어 글 작성 가이드 — Bash Shell(content/collection/bashshell/)과 CMD(content/collection/cmd/)
-  공통. 플랫폼별 접두어([Bash Shell]/[CMD])·경로·태그 풀, 70자 이하 title, 150자 description, 50개 이상 tags,
+  공통. 플랫폼별 접두어([Bash Shell]/[CMD])·경로·태그 풀, 70자 이하 title, 150자 description, 25개 이상 tags,
   본문 구조(명령어 참조형·개념/가이드형), 정신 모델·이식성 주의, Mermaid 준수, 작성 체크리스트를 포함한다.
   bashshell·cmd 컬렉션 포스트 작성·보강 시 사용한다. (구 bashshell-post-writing·cmd-post-writing 통합)
 ---
@@ -29,7 +29,7 @@ description: >-
 
 - **title**: 접두어 + `명령어 - 핵심 역할` 형식, 70자 이내.
 - **description**: 150자 내외. 명령어 역할·주요 옵션·활용 맥락(또는 대상 독자)을 2~3문장으로.
-- **tags**: 최소 50개 이상(한글·영어 혼합), `data/tags.yaml` 승인 태그 우선. **명령어·기능·도메인과 실제 관련 있는 태그만** 사용한다 — Markdown, Deployment처럼 본문과 무관한 보일러플레이트로 개수를 채우지 않는다([`educational-content-writing`](../educational-content-writing/SKILL.md) §7.3 태그=본문 일치).
+- **tags**: 최소 25개 이상, `data/tags.yaml` 승인 태그 우선. **명령어·기능·도메인과 실제 관련 있는 태그만** 사용한다 — Markdown, Deployment처럼 본문과 무관한 보일러플레이트로 개수를 채우지 않는다([`educational-content-writing`](../educational-content-writing/SKILL.md) §7.3 태그=본문 일치).
 - **date / lastmod**: 작성·수정 당일(로컬 타임존, `Get-Date -Format "yyyy-MM-dd"`). 폴더명에 날짜를 쓰면 `date`와 동일 유지. 의미 있는 개정 시 `lastmod` 갱신.
 - **draft**: 신규 글은 `draft: true`. 배포 전 검토 후 사람이 `draft: false`로 변경.
 - **categories**: 리스트 형식(문자열 금지).
@@ -68,7 +68,7 @@ description: >-
 
 - [ ] 경로·접두어·categories가 §1 표의 해당 플랫폼과 일치하는가?
 - [ ] title 70자 이내, description 150자 내외인가?
-- [ ] tags 50개 이상이고, 본문과 무관한 보일러플레이트 태그가 없는가?
+- [ ] tags 25개 이상이고, 본문과 무관한 보일러플레이트 태그가 없는가?
 - [ ] 신규 글에 `draft: true`가 있는가? date/lastmod가 정확한가?
 - [ ] 옵션 나열 전에 **정신 모델** 단락이 있는가?
 - [ ] 본문이 참조형(§3.1) 또는 개념형(§3.2) 구조를 따랐는가?

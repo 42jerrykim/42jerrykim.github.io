@@ -8,61 +8,42 @@ categories:
   - Linux
   - SystemProgramming
 tags:
-  - Memory
-  - 메모리
-  - Linux
-  - 리눅스
+  - Memory(메모리)
+  - Linux(리눅스)
   - C++
   - C
-  - Optimization
-  - 최적화
-  - Performance
-  - 성능
-  - Compiler
-  - 컴파일러
-  - OS
-  - 운영체제
+  - Optimization(최적화)
+  - Performance(성능)
+  - Compiler(컴파일러)
+  - OS(운영체제)
   - Process
   - Thread
   - Cache
-  - CPU
-  - Embedded
-  - 임베디드
-  - Security
-  - 보안
+  - CPU(Central Processing Unit)
+  - Embedded(임베디드)
+  - Security(보안)
   - Assembly
-  - Shell
-  - 셸
-  - Debugging
-  - 디버깅
+  - Shell(셸)
+  - Debugging(디버깅)
   - Best-Practices
-  - Profiling
-  - 프로파일링
+  - Profiling(프로파일링)
   - Benchmark
   - File-System
-  - IO
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Clean-Code
-  - 클린코드
-  - Code-Quality
-  - 코드품질
+  - IO(Input/Output)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Clean-Code(클린코드)
+  - Code-Quality(코드품질)
   - Latency
-  - Concurrency
-  - 동시성
-  - Caching
-  - 캐싱
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Troubleshooting
-  - 트러블슈팅
+  - Concurrency(동시성)
+  - Caching(캐싱)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Troubleshooting(트러블슈팅)
   - Shared-Library
   - 공유라이브러리
   - Dynamic-Linking
   - 동적링킹
-  - ELF
+  - ELF(Executable and Linkable Format)
   - 동적라이브러리
 image: "image.png"
 ---

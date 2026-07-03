@@ -8,55 +8,33 @@ lastmod: 2026-01-18
 collection_order: 12
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Database
-  - 데이터베이스
-  - Error-Handling
+  - Database(데이터베이스)
+  - Error-Handling(에러처리)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Design-Pattern
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Tree
-  - Stack
-  - HTML
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
+  - Pitfalls(함정)
+  - Design-Pattern(디자인패턴)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Tree(트리)
+  - Stack(스택)
+  - HTML(HyperText Markup Language)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
 ---
 컨텍스트 매니저는 리소스의 획득과 해제를 안전하게 관리하는 파이썬의 핵심 패턴입니다. 이 치트시트는 with문, `__enter__/__exit__`, @contextmanager, 실무 패턴을 정리합니다.
 

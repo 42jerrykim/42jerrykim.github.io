@@ -5,69 +5,45 @@ title: "[Optimization(C++)] 01. Low-latency C++ 언어 최적화 트랙"
 slug: cpp-optimization
 description: "C++ 언어 레벨에서 추상화 비용을 측정하고 줄이는 트랙입니다. 가상 함수·RTTI·예외, STL 컨테이너·문자열, 객체 수명·임시·템플릿/constexpr, 코루틴·variant·span·람다·SBO·파라미터 전달을 다루며, 마이크로벤치마크 기반 검증과 전문가 판단 기준을 제시합니다. CPU/OS/동시성 영역은 별도 트랙에서 다룹니다."
 tags:
-  - Performance
-  - Profiling
-  - Optimization
+  - Performance(성능)
+  - Profiling(프로파일링)
+  - Optimization(최적화)
   - C++
-  - Memory
-  - Compiler
+  - Memory(메모리)
+  - Compiler(컴파일러)
   - Assembly
-  - CPU
+  - CPU(Central Processing Unit)
   - Cache
-  - Concurrency
-  - Linux
-  - Windows
-  - OS
-  - Testing
-  - CI-CD
-  - 성능
-  - 프로파일링
-  - 최적화
-  - 컴파일러
-  - 메모리
-  - 동시성
-  - 운영체제
-  - 코드품질
-  - Software-Architecture
+  - Concurrency(동시성)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - OS(운영체제)
+  - Testing(테스트)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
   - Latency
   - Throughput
-  - Backend
-  - 백엔드
-  - Embedded
-  - 임베디드
-  - Code-Quality
+  - Backend(백엔드)
+  - Embedded(임베디드)
   - Benchmark
-  - Refactoring
-  - 리팩토링
+  - Refactoring(리팩토링)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Implementation
-  - 구현
-  - Design-Pattern
-  - 디자인패턴
-  - Data-Structures
-  - 자료구조
-  - Time-Complexity
-  - 시간복잡도
-  - Documentation
-  - 문서화
+  - Clean-Code(클린코드)
+  - Implementation(구현)
+  - Design-Pattern(디자인패턴)
+  - Data-Structures(자료구조)
+  - Time-Complexity(시간복잡도)
+  - Documentation(문서화)
   - Git
   - Deep-Dive
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Abstraction
-  - 추상화
-  - String
-  - 문자열
-  - Error-Handling
-  - 에러처리
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Abstraction(추상화)
+  - String(문자열)
+  - Error-Handling(에러처리)
   - Type-Safety
   - Advanced
 ---

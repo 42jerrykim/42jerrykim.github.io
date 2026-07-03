@@ -10,104 +10,63 @@ header:
   teaser: /assets/images/2022/2022-07-07-135907.png
 tags:
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Web
-  - 웹
+  - Web(웹)
   - Git
-  - Keyboard
-  - 키보드
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Keyboard(키보드)
+  - Blog(블로그)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Hardware
-  - 하드웨어
-  - Mobile
-  - 모바일
-  - Cloud
-  - 클라우드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
+  - Cloud(클라우드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Deployment(배포)
+  - Automation(자동화)
   - DevOps
-  - Backend
-  - 백엔드
-  - Frontend
-  - 프론트엔드
-  - Debugging
-  - 디버깅
-  - Code-Review
-  - 코드리뷰
-  - Refactoring
-  - 리팩토링
+  - Backend(백엔드)
+  - Frontend(프론트엔드)
+  - Debugging(디버깅)
+  - Code-Review(코드리뷰)
+  - Refactoring(리팩토링)
   - Beginner
-  - Windows
-  - 윈도우
+  - Windows(윈도우)
   - macOS
-  - Linux
-  - 리눅스
-  - Terminal
-  - 터미널
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - API
+  - Linux(리눅스)
+  - Terminal(터미널)
+  - Networking(네트워킹)
+  - Security(보안)
+  - API(Application Programming Interface)
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Code-Quality
-  - 코드품질
-  - Agile
-  - 애자일
-  - History
-  - 역사
-  - Internet
-  - 인터넷
+  - Code-Quality(코드품질)
+  - Agile(애자일)
+  - History(역사)
+  - Internet(인터넷)
   - Jekyll
   - Hugo
-  - Domain
-  - 도메인
+  - Domain(도메인)
 ---
 
 아는 사람만 아는 숨은(?) 서비스 **github.dev**를 알고 계신가요? GitHub 저장소를 브라우저에서 바로 VS Code 스타일로 열어 수정·커밋까지 할 수 있는 **무료 웹 기반 IDE**입니다. 설치 없이 키 하나로 진입할 수 있어, 급한 문서 수정이나 작은 PR 작업에 매우 유용합니다.

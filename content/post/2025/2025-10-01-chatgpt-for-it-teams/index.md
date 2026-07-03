@@ -8,110 +8,67 @@ categories:
   - ChatGPT
 tags:
   - ChatGPT
-  - AI
-  - 인공지능
-  - LLM
-  - GPT
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
-  - Cloud
-  - 클라우드
-  - AWS
+  - AI(인공지능)
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
+  - Prompt-Engineering(프롬프트엔지니어링)
+  - Cloud(클라우드)
+  - AWS(Amazon Web Services)
   - Azure
-  - GCP
-  - Security
-  - 보안
-  - Automation
-  - 자동화
-  - Monitoring
-  - 모니터링
+  - GCP(Google Cloud Platform)
+  - Security(보안)
+  - Automation(자동화)
+  - Monitoring(모니터링)
   - DevOps
-  - Documentation
-  - 문서화
+  - Documentation(문서화)
   - Best-Practices
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Technology
-  - 기술
-  - Implementation
-  - 구현
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Productivity(생산성)
+  - Education(교육)
+  - Technology(기술)
+  - Implementation(구현)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
-  - Networking
-  - 네트워킹
-  - Authentication
-  - 인증
-  - Logging
-  - 로깅
-  - Deployment
-  - 배포
-  - Backend
-  - 백엔드
-  - API
-  - Performance
-  - 성능
-  - Scalability
-  - 확장성
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Code-Quality
-  - 코드품질
-  - Testing
-  - 테스트
+  - Comparison(비교)
+  - Reference(참고)
+  - Web(웹)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Review(리뷰)
+  - Networking(네트워킹)
+  - Authentication(인증)
+  - Logging(로깅)
+  - Deployment(배포)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Performance(성능)
+  - Scalability(확장성)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Code-Quality(코드품질)
+  - Testing(테스트)
   - Git
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Docker
   - Kubernetes
-  - Workflow
-  - 워크플로우
+  - Workflow(워크플로우)
   - Case-Study
   - Deep-Dive
   - Beginner
   - Advanced
-  - Machine-Learning
-  - 머신러닝
-  - Data-Science
-  - 데이터사이언스
-  - Agile
-  - 애자일
-  - Privacy
-  - 프라이버시
-  - Error-Handling
-  - 에러처리
-  - Database
-  - 데이터베이스
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
+  - Machine-Learning(머신러닝)
+  - Data-Science(데이터사이언스)
+  - Agile(애자일)
+  - Privacy(프라이버시)
+  - Error-Handling(에러처리)
+  - Database(데이터베이스)
+  - Linux(리눅스)
+  - Windows(윈도우)
 description: "IT 팀이 ChatGPT로 클라우드·벤더 평가, 데이터 레지던시·GDPR·SOC2 컴플라이언스, 모니터링·로그 분석·재해복구 플레이북 작성 등 핵심 업무를 자동화하는 실용 프롬프트와 활용 팁을 정리했다. Deep Research·웹 검색 활용법, 활용 시 장단점·한 줄 평, 참고 문헌 3편을 포함한 실무용 가이드이다."
 image: Work-Users-Cover-Images-19--49e19084-0ea8-4a42-b4a2-1a9679cfa0b7-1754316734132.png
 ---

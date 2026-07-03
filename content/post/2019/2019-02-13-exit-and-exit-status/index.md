@@ -10,107 +10,66 @@ redirect_from:
   - /2019/02/13/
 tags:
   - Bash
-  - Shell
-  - 셸
-  - Linux
-  - 리눅스
-  - Terminal
-  - 터미널
+  - Shell(셸)
+  - Linux(리눅스)
+  - Terminal(터미널)
   - Process
   - Command
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Reference
-  - 참고
-  - Error-Handling
-  - 에러처리
-  - Troubleshooting
-  - 트러블슈팅
-  - Workflow
-  - 워크플로우
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
+  - Error-Handling(에러처리)
+  - Troubleshooting(트러블슈팅)
+  - Workflow(워크플로우)
   - Best-Practices
-  - Documentation
-  - 문서화
+  - Documentation(문서화)
   - Quick-Reference
-  - Productivity
-  - 생산성
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
+  - Productivity(생산성)
+  - Automation(자동화)
+  - Deployment(배포)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Technology
-  - 기술
-  - Configuration
-  - 설정
-  - Career
-  - 커리어
-  - Migration
-  - 마이그레이션
-  - Cloud
-  - 클라우드
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Design-Pattern
-  - 디자인패턴
-  - Innovation
-  - 혁신
-  - Hardware
-  - 하드웨어
-  - Mobile
-  - 모바일
+  - Comparison(비교)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Technology(기술)
+  - Configuration(설정)
+  - Career(커리어)
+  - Migration(마이그레이션)
+  - Cloud(클라우드)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Design-Pattern(디자인패턴)
+  - Innovation(혁신)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
   - Beginner
-  - Code-Quality
-  - 코드품질
-  - Debugging
-  - 디버깅
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Pitfalls
-  - 함정
-  - Logging
-  - 로깅
+  - Code-Quality(코드품질)
+  - Debugging(디버깅)
+  - Implementation(구현)
+  - Testing(테스트)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Pitfalls(함정)
+  - Logging(로깅)
   - Maintainability
   - Readability
   - Case-Study
   - Deep-Dive
   - 실습
   - Git
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - DevOps
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Vim
   - File-System
-  - OS
-  - 운영체제
-  - Memory
-  - 메모리
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
+  - OS(운영체제)
+  - Memory(메모리)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Web(웹)
+  - Backend(백엔드)
   - Script
   - 스크립트
   - Builtin

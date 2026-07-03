@@ -17,13 +17,11 @@ tags:
   - Event-Architecture
   - Multi-threaded-Reactor
   - Thread-Pool
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - System-Design
-  - Async
-  - 비동기
-  - Tutorial
-  - Guide
+  - Async(비동기)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
 slug: cpp-proactor-async-io-half-sync-half-async
 ---
 

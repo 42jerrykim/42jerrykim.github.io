@@ -8,78 +8,46 @@ header:
 tags:
   - CSharp
   - .NET
-  - Implementation
-  - 구현
-  - Performance
-  - 성능
-  - Open-Source
-  - 오픈소스
-  - Documentation
-  - 문서화
+  - Implementation(구현)
+  - Performance(성능)
+  - Open-Source(오픈소스)
+  - Documentation(문서화)
   - Best-Practices
   - Git
   - GitHub
-  - Review
-  - 리뷰
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Review(리뷰)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Backend
-  - 백엔드
-  - API
-  - Compiler
-  - 컴파일러
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Code-Quality
-  - 코드품질
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Windows
-  - 윈도우
-  - Linux
-  - 리눅스
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Compiler(컴파일러)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Windows(윈도우)
+  - Linux(리눅스)
   - Docker
-  - String
-  - 문자열
-  - Tree
-  - Hardware
-  - 하드웨어
+  - String(문자열)
+  - Tree(트리)
+  - Hardware(하드웨어)
   - Beginner
   - Advanced
   - Case-Study

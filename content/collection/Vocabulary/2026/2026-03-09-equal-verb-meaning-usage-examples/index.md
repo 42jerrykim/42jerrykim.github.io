@@ -12,25 +12,16 @@ tags:
   - 영단어
   - 영어동사
   - equal
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - Academic-English
-  - 학술영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
   - match
   - reach
   - amount
@@ -38,12 +29,11 @@ tags:
   - 같다
   - 필적하다
   - 도달하다
-  - 수학
+  - Math(수학)
   - 비즈니스
   - 스포츠
   - Usage-Notes
-  - Context
-  - 맥락
+  - Context(맥락)
   - EN-KR-Examples
   - Vocabulary-Building
   - Study-English
@@ -53,14 +43,12 @@ tags:
   - balance
   - 균등
   - 동등
-  - 비교
-  - Comparison
-  - Reference
-  - Tutorial
-  - Education
-  - 교육
-  - TOEFL
-  - IELTS
+  - Comparison(비교)
+  - Reference(참고)
+  - Tutorial(튜토리얼)
+  - Education(교육)
+  - TOEFL(Test of English as a Foreign Language)
+  - IELTS(International English Language Testing System)
   - 수치
   - 기록
   - 기준

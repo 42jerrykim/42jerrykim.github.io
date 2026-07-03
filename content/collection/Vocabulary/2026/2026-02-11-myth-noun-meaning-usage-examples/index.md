@@ -11,52 +11,32 @@ tags:
   - English
   - 영단어
   - 영어명사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Science
-  - Business-English
-  - 문화
-  - 과학
-  - Grammar
-  - Pronunciation
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Tutorial
-  - 튜토리얼
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Science(과학)
+  - Business-English(비즈니스영어)
+  - Culture(문화)
+  - Grammar(문법)
+  - Pronunciation(발음)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Tutorial(튜토리얼)
   - Go
-  - Documentary
-  - 다큐멘터리
-  - War
-  - 전쟁
-  - Sci-Fi
-  - Culture
-  - Antonym
-  - 반의어
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
-  - Comparison
-  - 비교
+  - Documentary(다큐멘터리)
+  - War(전쟁)
+  - Sci-Fi(Science Fiction)
+  - Antonym(반의어)
+  - Daily-Life(일상표현)
+  - Education(교육)
+  - Reference(참고)
+  - Academic-English(학술영어)
+  - Comparison(비교)
   - Tips
   - How-To
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Technology
-  - 기술
+  - Markdown(마크다운)
+  - Technology(기술)
 image: wordcloud.png
 ---
 

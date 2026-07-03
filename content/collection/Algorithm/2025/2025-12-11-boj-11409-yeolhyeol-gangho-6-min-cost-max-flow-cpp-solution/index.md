@@ -2,56 +2,38 @@
 title: "[Algorithm] C++ 백준 11409번: 열혈강호 6"
 description: "BOJ 11409 열혈강호 6 문제는 직원과 일을 이분 매칭한 뒤, 먼저 처리 가능한 일의 개수를 최대로 하고 그 상태에서 월급 총합을 최대로 만드는 최소 비용 최대 유량(Min Cost Max Flow) 유형입니다. 이 글에서는 문제 해석부터 그래프 모델링, 음수 비용 간선 구성, SPFA 기반 최소 비용 최대 유량 구현까지 전체 풀이 과정을 C++ 코드와 함께 자세히 정리합니다."
 tags:
-  - BOJ
-  - 백준
+  - BOJ(백준)
   - Baekjoon
-  - 알고리즘
-  - Algorithm
-  - 그래프
-  - Graph
+  - Algorithm(알고리즘)
+  - Graph(그래프)
   - Network-Flow
   - C++
   - Dijkstra
-  - Problem-Solving
-  - Competitive-Programming
-  - 코딩테스트
-  - 구현
-  - 자료구조
-  - Implementation
-  - Editorial
-  - 튜토리얼
-  - 시간복잡도
-  - ICPC
-  - Time-Complexity
-  - Coding-Test
-  - Data-Structures
-  - Optimization
-  - 최적화
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Problem-Solving(문제해결)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Coding-Test(코딩테스트)
+  - Implementation(구현)
+  - Data-Structures(자료구조)
+  - Editorial(에디토리얼)
+  - Tutorial(튜토리얼)
+  - Time-Complexity(시간복잡도)
+  - ICPC(International Collegiate Programming Contest)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
   - Go
   - .NET
   - Git
   - GitHub
-  - Memory
-  - Space-Complexity
-  - 공간복잡도
-  - Edge-Cases
-  - 엣지케이스
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Memory(메모리)
+  - Space-Complexity(공간복잡도)
+  - Edge-Cases(엣지케이스)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
 date: 2025-12-11
 lastmod: 2025-12-11
 categories:

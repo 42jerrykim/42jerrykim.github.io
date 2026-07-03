@@ -8,86 +8,50 @@ header:
   teaser: /assets/images/2024/2024-08-26-Function-programming.png
 title: "[Python] 함수형 프로그래밍 HOWTO: 개념·파이썬 활용·장단점"
 tags:
-  - Functional-Programming
-  - 함수형프로그래밍
+  - Functional-Programming(함수형프로그래밍)
   - Python
-  - 파이썬
-  - Recursion
-  - 재귀
-  - Code-Quality
-  - 코드품질
-  - Data-Structures
-  - 자료구조
-  - Algorithm
-  - 알고리즘
-  - Concurrency
-  - 동시성
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
-  - Performance
-  - 성능
-  - Abstraction
-  - 추상화
-  - OOP
-  - 객체지향
-  - Design-Pattern
-  - 디자인패턴
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
+  - Recursion(재귀)
+  - Code-Quality(코드품질)
+  - Data-Structures(자료구조)
+  - Algorithm(알고리즘)
+  - Concurrency(동시성)
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Implementation(구현)
+  - Optimization(최적화)
+  - Performance(성능)
+  - Abstraction(추상화)
+  - OOP(객체지향)
+  - Design-Pattern(디자인패턴)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
   - JavaScript
-  - Graph
-  - 그래프
-  - Math
-  - 수학
-  - History
-  - 역사
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Graph(그래프)
+  - Math(수학)
+  - History(역사)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
   - Iterator
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
   - Maintainability
   - Modularity
-  - Backend
-  - Async
-  - 비동기
+  - Backend(백엔드)
+  - Async(비동기)
   - Beginner
   - How-To
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Case-Study
   - Deep-Dive
   - 실습

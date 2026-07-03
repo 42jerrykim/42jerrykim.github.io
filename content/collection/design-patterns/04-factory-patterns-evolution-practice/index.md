@@ -13,14 +13,12 @@ categories:
 - Practice
 - Object Creation
 tags:
-- Design-Pattern
-- GoF
-- Dependency-Injection
-- Tutorial
-- Implementation
-- Software-Architecture
-- 디자인패턴
-- 구현
+- Design-Pattern(디자인패턴)
+- GoF(Gang of Four)
+- Dependency-Injection(의존성주입)
+- Tutorial(튜토리얼)
+- Implementation(구현)
+- Software-Architecture(소프트웨어아키텍처)
 ---
 
 이 실습에서는 Simple Factory, Factory Method, Abstract Factory 패턴을 직접 구현하며 다양한 생성 전략을 익힙니다.

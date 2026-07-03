@@ -9,56 +9,37 @@ image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - State
-  - GoF
-  - Nuance
-  - Polymorphism
-  - 다형성
-  - Encapsulation
-  - 캡슐화
+  - GoF(Gang of Four)
+  - Nuance(뉘앙스)
+  - Polymorphism(다형성)
+  - Encapsulation(캡슐화)
   - SOLID
-  - Code-Quality
-  - 코드품질
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
   - Java
   - C++
   - Python
   - CSharp
-  - Workflow
-  - 워크플로우
+  - Workflow(워크플로우)
   - Git
   - GitHub
-  - Implementation
-  - 구현
-  - Action
-  - 액션
-  - Gaming
-  - 게임
+  - Implementation(구현)
+  - Action(액션)
+  - Gaming(게임)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Documentation
-  - 문서화
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Composition
-  - 합성
-  - Dependency-Injection
-  - 의존성주입
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Education
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Documentation(문서화)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Composition(합성)
+  - Dependency-Injection(의존성주입)
+  - Testing(테스트)
+  - Performance(성능)
+  - Education(교육)
 ---
 
 상태 패턴(State Pattern)은 객체의 내부 상태가 변경될 때 객체의 행동이 바뀌도록 하는 행위 디자인 패턴이다. 이 패턴을 사용하면 복잡한 조건문 없이도 상태에 따른 다양한 동작을 구현할 수 있으며, 상태별 행동을 별도의 클래스로 분리하여 유지보수성을 높인다.

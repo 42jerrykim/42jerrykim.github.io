@@ -6,92 +6,60 @@ categories:
   - Tools
 tags:
   - VSCode
-  - Markdown
-  - 마크다운
-  - Documentation
-  - 문서화
-  - Productivity
-  - 생산성
-  - Graph
-  - 그래프
-  - UML
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Implementation
-  - Open-Source
-  - 오픈소스
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Review
-  - 리뷰
-  - API
-  - IDE
-  - Windows
-  - 윈도우
-  - Configuration
-  - 설정
+  - Markdown(마크다운)
+  - Documentation(문서화)
+  - Productivity(생산성)
+  - Graph(그래프)
+  - UML(Unified Modeling Language)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Implementation(구현)
+  - Open-Source(오픈소스)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - API(Application Programming Interface)
+  - IDE(Integrated Development Environment)
+  - Windows(윈도우)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
+  - Comparison(비교)
+  - Reference(참고)
   - Best-Practices
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - HTML
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - HTML(HyperText Markup Language)
   - Git
   - GitHub
-  - Code-Quality
-  - 코드품질
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
+  - Code-Quality(코드품질)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
   - Beginner
-  - Guide
-  - Education
-  - 교육
-  - Frontend
-  - Backend
-  - 백엔드
-  - JSON
-  - YAML
-  - Performance
-  - 성능
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Code-Review
-  - 코드리뷰
+  - Education(교육)
+  - Frontend(프론트엔드)
+  - Backend(백엔드)
+  - JSON(JavaScript Object Notation)
+  - YAML(YAML Ain't Markup Language)
+  - Performance(성능)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Code-Review(코드리뷰)
   - DevOps
-  - Design-Pattern
-  - 디자인패턴
-  - Testing
-  - 테스트
-  - Terminal
-  - 터미널
+  - Design-Pattern(디자인패턴)
+  - Testing(테스트)
+  - Terminal(터미널)
   - Hugo
   - Jekyll
   - Case-Study
   - Deep-Dive
   - 실습
-  - Interface
-  - 인터페이스
-  - CI-CD
-  - Debugging
-  - 디버깅
+  - Interface(인터페이스)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Debugging(디버깅)
 image: "image03.png"
 date: 2025-10-16
 lastmod: 2026-03-17

@@ -7,118 +7,77 @@ image: "wordcloud.png"
 categories:
   - Utterances
 tags:
-  - Blog
-  - 블로그
+  - Blog(블로그)
   - GitHub
-  - Tutorial
-  - 튜토리얼
-  - Web
-  - 웹
-  - Guide
-  - 가이드
-  - Markdown
-  - 마크다운
+  - Tutorial(튜토리얼)
+  - Web(웹)
+  - Guide(가이드)
+  - Markdown(마크다운)
   - Hugo
-  - Open-Source
-  - 오픈소스
-  - Configuration
-  - 설정
+  - Open-Source(오픈소스)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
-  - Frontend
-  - Deployment
-  - 배포
-  - Implementation
-  - 구현
-  - Documentation
-  - 문서화
+  - Comparison(비교)
+  - Reference(참고)
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
+  - Frontend(프론트엔드)
+  - Deployment(배포)
+  - Implementation(구현)
+  - Documentation(문서화)
   - Best-Practices
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Technology
-  - 기술
-  - Review
-  - 리뷰
-  - Troubleshooting
-  - 트러블슈팅
+  - Productivity(생산성)
+  - Education(교육)
+  - Technology(기술)
+  - Review(리뷰)
+  - Troubleshooting(트러블슈팅)
   - Git
-  - Security
-  - 보안
-  - API
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
+  - Security(보안)
+  - API(Application Programming Interface)
+  - Testing(테스트)
+  - Performance(성능)
   - Beginner
-  - Privacy
-  - 프라이버시
-  - Internet
-  - 인터넷
+  - Privacy(프라이버시)
+  - Internet(인터넷)
   - JavaScript
-  - REST
-  - Authentication
-  - 인증
-  - Design-Pattern
-  - Clean-Code
-  - Refactoring
-  - Code-Quality
-  - 코드품질
-  - Automation
-  - 자동화
+  - REST(Representational State Transfer)
+  - Authentication(인증)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Code-Quality(코드품질)
+  - Automation(자동화)
   - DevOps
-  - CI-CD
-  - Monitoring
-  - 모니터링
-  - Scalability
-  - 확장성
-  - Innovation
-  - 혁신
-  - Career
-  - 커리어
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Monitoring(모니터링)
+  - Scalability(확장성)
+  - Innovation(혁신)
+  - Career(커리어)
   - Case-Study
   - Deep-Dive
   - 실습
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - Networking
-  - 네트워킹
-  - JSON
-  - HTML
-  - CSS
-  - SEO
-  - Self-Hosted
-  - 셀프호스팅
-  - Terminal
-  - 터미널
+  - Cheatsheet(치트시트)
+  - Networking(네트워킹)
+  - JSON(JavaScript Object Notation)
+  - HTML(HyperText Markup Language)
+  - CSS(Cascading Style Sheets)
+  - SEO(Search Engine Optimization)
+  - Self-Hosted(셀프호스팅)
+  - Terminal(터미널)
   - Command
   - Process
-  - Error-Handling
-  - 에러처리
-  - Logging
-  - 로깅
-  - Debugging
-  - 디버깅
+  - Error-Handling(에러처리)
+  - Logging(로깅)
+  - Debugging(디버깅)
   - Maintainability
   - Readability
   - Modularity
-  - Interface
-  - 인터페이스
+  - Interface(인터페이스)
   - Type-Safety
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
 ---
 
 정적 사이트인 GitHub Pages에는 기본적으로 댓글 기능이 없습니다. Disqus, Utterances, Giscus 같은 위젯을 붙여야 독자와 소통할 수 있습니다. 이 글에서는 **Utterances**를 선택하는 이유, Disqus와의 차이, 설치·설정 방법, 그리고 언제 쓰고 피할지까지 정리합니다.

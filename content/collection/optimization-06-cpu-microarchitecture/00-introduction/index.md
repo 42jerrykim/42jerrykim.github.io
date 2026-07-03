@@ -7,70 +7,47 @@ title: "[Performance 06] Introduction: CPU 마이크로아키텍처 Low-latency"
 slug: getting-started-cpu-microarchitecture-performance-tuning
 description: "CPU 마이크로아키텍처 Low-latency 트랙의 도입 챕터입니다. TopDown 직관부터 파이프라인·캐시·분기·ILP의 책임 범위를 연결하고, 하드웨어 이벤트와 p99 지연을 함께 해석하는 기본 흐름을 정리합니다."
 tags:
-  - Performance
-  - Profiling
-  - Optimization
+  - Performance(성능)
+  - Profiling(프로파일링)
+  - Optimization(최적화)
   - C++
-  - Compiler
-  - CPU
+  - Compiler(컴파일러)
+  - CPU(Central Processing Unit)
   - Cache
-  - Backend
-  - Memory
+  - Backend(백엔드)
+  - Memory(메모리)
   - Assembly
-  - Concurrency
-  - Linux
-  - Windows
-  - OS
-  - Testing
-  - CI-CD
-  - Monitoring
+  - Concurrency(동시성)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - OS(운영체제)
+  - Testing(테스트)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Monitoring(모니터링)
   - Benchmark
   - Latency
   - Throughput
-  - Embedded
-  - Code-Quality
+  - Embedded(임베디드)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Refactoring
-  - Software-Architecture
-  - Tutorial
-  - Guide
-  - Reference
-  - Technology
+  - Refactoring(리팩토링)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
   - Deep-Dive
   - Production
-  - Scalability
+  - Scalability(확장성)
   - Reliability
-  - Implementation
-  - Documentation
-  - Debugging
-  - Automation
+  - Implementation(구현)
+  - Documentation(문서화)
+  - Debugging(디버깅)
+  - Automation(자동화)
   - System-Design
-  - Data-Structures
-  - Clean-Code
-  - 성능
-  - 프로파일링
-  - 최적화
-  - 컴파일러
-  - 메모리
-  - 동시성
-  - 운영체제
-  - 리눅스
-  - 윈도우
+  - Data-Structures(자료구조)
+  - Clean-Code(클린코드)
   - 네트워크
-  - 코드품질
-  - 가이드
-  - 참고
-  - 기술
-  - 튜토리얼
-  - 구현
-  - 문서화
-  - 디버깅
-  - 자동화
-  - 백엔드
-  - 임베디드
-  - 신뢰성
-  - 확장성
-  - 모니터링
 ---
 
 이 트랙은 "왜 이 코드가 캐시 미스를 내는가", "왜 분기 예측이 깨지는가" 같은 질문에 답합니다. µs 최적화에서는 CPU 이벤트가 지연시간 분포를 흔들기 때문에, 하드웨어 관점의 비용 모델이 필요합니다.

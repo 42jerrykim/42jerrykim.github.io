@@ -8,55 +8,32 @@ lastmod: 2026-01-18
 collection_order: 30
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - Deque
-  - 덱
-  - Data-Structures
-  - 자료구조
-  - Queue
-  - 큐
-  - Stack
-  - 스택
-  - Performance
-  - 성능
-  - Time-Complexity
+  - Data-Structures(자료구조)
+  - Queue(큐)
+  - Stack(스택)
+  - Performance(성능)
+  - Time-Complexity(시간복잡도)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - Windows
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Pitfalls(함정)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - Windows(윈도우)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
 ---
 collections 모듈은 기본 자료구조를 확장한 특수 컨테이너를 제공합니다. 이 치트시트는 deque, namedtuple, ChainMap, OrderedDict의 실전 패턴을 정리합니다.
 

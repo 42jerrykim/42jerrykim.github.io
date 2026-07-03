@@ -8,55 +8,32 @@ lastmod: 2026-01-18
 collection_order: 41
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - 설정
-  - Configuration
-  - Implementation
+  - Configuration(설정)
+  - Implementation(구현)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - API
-  - String
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Workflow
-  - 워크플로우
-  - Troubleshooting
-  - 트러블슈팅
-  - Education
-  - 교육
-  - Technology
-  - 기술
+  - Pitfalls(함정)
+  - Tutorial(튜토리얼)
+  - Code-Quality(코드품질)
+  - API(Application Programming Interface)
+  - String(문자열)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Guide(가이드)
+  - Deployment(배포)
+  - Automation(자동화)
+  - Workflow(워크플로우)
+  - Troubleshooting(트러블슈팅)
+  - Education(교육)
+  - Technology(기술)
 ---
 configparser는 INI 형식을, tomllib(Py3.11+)은 TOML 형식의 설정 파일을 처리합니다. 이 치트시트는 설정 파일 읽기/쓰기, 섹션 접근, 기본값 처리 패턴을 정리합니다.
 

@@ -8,87 +8,50 @@ lastmod: "2026-03-17T00:00:00Z"
 header: null
 
 tags:
-  - Machine-Learning
-  - 머신러닝
-  - AI
-  - 인공지능
-  - Deep-Learning
-  - 딥러닝
+  - Machine-Learning(머신러닝)
+  - AI(인공지능)
+  - Deep-Learning(딥러닝)
   - Python
-  - 파이썬
-  - Performance
-  - 성능
-  - Scalability
-  - 확장성
-  - Compiler
-  - 컴파일러
-  - Functional-Programming
-  - 함수형프로그래밍
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
-  - Open-Source
-  - 오픈소스
-  - Documentation
-  - 문서화
+  - Performance(성능)
+  - Scalability(확장성)
+  - Compiler(컴파일러)
+  - Functional-Programming(함수형프로그래밍)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Implementation(구현)
+  - Optimization(최적화)
+  - Open-Source(오픈소스)
+  - Documentation(문서화)
   - Best-Practices
-  - Code-Quality
-  - 코드품질
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
-  - Innovation
-  - 혁신
-  - Productivity
-  - 생산성
-  - Tutorial
-  - 가이드
-  - Guide
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
-  - Science
-  - 과학
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
-  - Blog
-  - 블로그
-  - API
-  - Graph
-  - 그래프
-  - Math
-  - 수학
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
-  - Testing
-  - 테스트
+  - Code-Quality(코드품질)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
+  - Innovation(혁신)
+  - Productivity(생산성)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Technology(기술)
+  - Science(과학)
+  - Education(교육)
+  - Reference(참고)
+  - Comparison(비교)
+  - Blog(블로그)
+  - API(Application Programming Interface)
+  - Graph(그래프)
+  - Math(수학)
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
+  - Testing(테스트)
   - Maintainability
-  - Design-Pattern
-  - Clean-Code
-  - 클린코드
-  - Concurrency
-  - 동시성
-  - Deployment
-  - 배포
-  - Data-Science
-  - 데이터사이언스
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
+  - Concurrency(동시성)
+  - Deployment(배포)
+  - Data-Science(데이터사이언스)
   - Neural-Network
   - GPU
-  - Cloud
-  - 클라우드
-  - Migration
-  - 마이그레이션
+  - Cloud(클라우드)
+  - Migration(마이그레이션)
   - Case-Study
   - Deep-Dive
   - How-To

@@ -9,63 +9,40 @@ categories:
   - Time
 tags:
   - Observer
-  - Concurrency
-  - Complexity-Analysis
-  - Memory
-  - History
+  - Concurrency(동시성)
+  - Complexity-Analysis(복잡도분석)
+  - Memory(메모리)
+  - History(역사)
   - Network-Flow
-  - Software-Architecture
-  - Abstraction
-  - Math
-  - Design-Pattern
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
-  - Graph
-  - 그래프
-  - Science
-  - 과학
-  - 역사
-  - Psychology
-  - 심리학
-  - Guide
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Software-Architecture(소프트웨어아키텍처)
+  - Abstraction(추상화)
+  - Math(수학)
+  - Design-Pattern(디자인패턴)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
+  - Graph(그래프)
+  - Science(과학)
+  - Psychology(심리학)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - Python
-  - 파이썬
-  - Time-Complexity
-  - 시간복잡도
-  - Simulation
-  - 시뮬레이션
-  - Data-Structures
-  - 자료구조
+  - Time-Complexity(시간복잡도)
+  - Simulation(시뮬레이션)
+  - Data-Structures(자료구조)
   - Deep-Dive
   - Case-Study
   - Philosophy
@@ -82,102 +59,62 @@ tags:
   - 계산적사고
   - Ruliad
   - Wolfram
-  - Book-Review
-  - 서평
+  - Book-Review(서평)
   - How-To
   - Tips
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Beginner
   - Advanced
-  - Space
-  - 우주
-  - Culture
-  - 문화
+  - Space(우주)
+  - Culture(문화)
   - Biology
-  - 생물학
   - State
   - Strategy
-  - Interface
-  - 인터페이스
-  - Encapsulation
-  - 캡슐화
-  - Recursion
-  - 재귀
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
-  - Code-Quality
-  - 코드품질
+  - Interface(인터페이스)
+  - Encapsulation(캡슐화)
+  - Recursion(재귀)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Implementation(구현)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
   - Readability
   - Maintainability
   - Modularity
-  - OOP
-  - 객체지향
-  - Functional-Programming
-  - 함수형프로그래밍
-  - Composition
-  - 합성
+  - OOP(객체지향)
+  - Functional-Programming(함수형프로그래밍)
+  - Composition(합성)
   - Event-Driven
-  - CQRS
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - AI
-  - 인공지능
-  - Data-Science
-  - 데이터사이언스
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
-  - LLM
+  - CQRS(Command Query Responsibility Segregation)
+  - Networking(네트워킹)
+  - Security(보안)
+  - AI(인공지능)
+  - Data-Science(데이터사이언스)
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
+  - LLM(Large Language Model)
   - ChatGPT
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
-  - Terminal
-  - 터미널
+  - Prompt-Engineering(프롬프트엔지니어링)
+  - Terminal(터미널)
   - Jekyll
   - Hugo
-  - Domain
-  - 도메인
-  - Cheatsheet
-  - 치트시트
+  - Domain(도메인)
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - Career
-  - 커리어
-  - Conference
-  - 컨퍼런스
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
-  - Hardware
-  - 하드웨어
-  - Cloud
-  - 클라우드
-  - Agile
-  - 애자일
-  - Privacy
-  - 프라이버시
-  - Internet
-  - 인터넷
-  - Keyboard
-  - 키보드
-  - Gadget
-  - 가젯
+  - Career(커리어)
+  - Conference(컨퍼런스)
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
+  - Hardware(하드웨어)
+  - Cloud(클라우드)
+  - Agile(애자일)
+  - Privacy(프라이버시)
+  - Internet(인터넷)
+  - Keyboard(키보드)
+  - Gadget(가젯)
   - 실습
 draft: false
 image: "wordcloud.png"

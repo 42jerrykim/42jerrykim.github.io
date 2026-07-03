@@ -8,106 +8,66 @@ header: null
 tags:
   - CSharp
   - .NET
-  - Array
-  - 배열
-  - Data-Structures
-  - 자료구조
-  - Implementation
-  - 구현
-  - Software-Architecture
-  - Tutorial
-  - 가이드
-  - Guide
+  - Array(배열)
+  - Data-Structures(자료구조)
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Backend
-  - Memory
-  - 메모리
-  - String
-  - 문자열
-  - Sorting
-  - 정렬
-  - Performance
-  - 성능
-  - Clean-Code
-  - 클린코드
-  - OOP
-  - 객체지향
-  - Interface
-  - 인터페이스
+  - Documentation(문서화)
+  - Reference(참고)
+  - Technology(기술)
+  - Web(웹)
+  - Backend(백엔드)
+  - Memory(메모리)
+  - String(문자열)
+  - Sorting(정렬)
+  - Performance(성능)
+  - Clean-Code(클린코드)
+  - OOP(객체지향)
+  - Interface(인터페이스)
   - Type-Safety
   - Beginner
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Blog
-  - 블로그
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Problem-Solving
-  - 문제해결
-  - Matrix
-  - 행렬
-  - Time-Complexity
-  - 시간복잡도
-  - Code-Quality
-  - 코드품질
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Optimization
-  - 최적화
-  - Algorithm
-  - 알고리즘
-  - Coding-Test
-  - 코딩테스트
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - Innovation
-  - 혁신
-  - Review
-  - 리뷰
+  - Comparison(비교)
+  - Blog(블로그)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Problem-Solving(문제해결)
+  - Matrix(행렬)
+  - Time-Complexity(시간복잡도)
+  - Code-Quality(코드품질)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Optimization(최적화)
+  - Algorithm(알고리즘)
+  - Coding-Test(코딩테스트)
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Innovation(혁신)
+  - Review(리뷰)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Error-Handling
-  - 에러처리
+  - Error-Handling(에러처리)
   - Readability
   - Maintainability
   - Modularity
-  - API
-  - JSON
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Windows
-  - 윈도우
-  - Gaming
-  - 게임
+  - Windows(윈도우)
+  - Gaming(게임)
 teaser: /assets/images/undefined/teaser.jpg
 title: "[C#] 배열(Array) 정리: 선언·초기화·System.Array·실전 예제"
 ---

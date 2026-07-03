@@ -9,96 +9,60 @@ categories:
   - Computer Vision
   - Open Source
 tags:
-  - AI
-  - 인공지능
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
-  - NLP
+  - AI(인공지능)
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
+  - NLP(Natural Language Processing)
   - Computer-Vision
-  - Data-Science
-  - 데이터사이언스
-  - LLM
+  - Data-Science(데이터사이언스)
+  - LLM(Large Language Model)
   - Neural-Network
   - Python
-  - 파이썬
   - Git
   - GitHub
-  - Open-Source
-  - 오픈소스
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Technology
-  - 기술
-  - Review
-  - 리뷰
-  - Documentation
-  - 문서화
+  - Open-Source(오픈소스)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Technology(기술)
+  - Review(리뷰)
+  - Documentation(문서화)
   - Best-Practices
-  - Performance
-  - 성능
+  - Performance(성능)
   - Benchmark
-  - Innovation
-  - 혁신
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Education
-  - 교육
-  - Productivity
-  - 생산성
-  - Implementation
-  - 구현
-  - Optimization
-  - 최적화
-  - Code-Quality
-  - 코드품질
-  - Software-Architecture
-  - API
-  - Database
-  - 데이터베이스
-  - JSON
-  - YAML
-  - Security
-  - 보안
-  - Scalability
-  - 확장성
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
+  - Innovation(혁신)
+  - Comparison(비교)
+  - Reference(참고)
+  - Education(교육)
+  - Productivity(생산성)
+  - Implementation(구현)
+  - Optimization(최적화)
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
+  - API(Application Programming Interface)
+  - Database(데이터베이스)
+  - JSON(JavaScript Object Notation)
+  - YAML(YAML Ain't Markup Language)
+  - Security(보안)
+  - Scalability(확장성)
+  - Concurrency(동시성)
+  - Async(비동기)
   - Docker
   - DevOps
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Web
-  - 웹
-  - Markdown
-  - 마크다운
-  - Windows
-  - Memory
-  - 메모리
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Deployment(배포)
+  - Automation(자동화)
+  - Web(웹)
+  - Markdown(마크다운)
+  - Windows(윈도우)
+  - Memory(메모리)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Workflow
-  - 워크플로우
+  - Workflow(워크플로우)
   - Compression
-  - Blog
-  - 블로그
+  - Blog(블로그)
 image: "image.png"
 draft: false
 ---

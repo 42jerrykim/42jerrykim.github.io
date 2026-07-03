@@ -7,73 +7,44 @@ date: "2022-06-02T00:00:00Z"
 lastmod: "2026-03-16T00:00:00Z"
 tags:
   - Garmin
-  - Gadget
-  - 가젯
-  - Hardware
-  - 하드웨어
+  - Gadget(가젯)
+  - Hardware(하드웨어)
   - Watch
-  - 시계
-  - Guide
-  - 가이드
-  - Tutorial
-  - 튜토리얼
-  - Reference
-  - 참고
+  - Guide(가이드)
+  - Tutorial(튜토리얼)
+  - Reference(참고)
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - Documentation
-  - 문서화
+  - Cheatsheet(치트시트)
+  - Documentation(문서화)
   - How-To
   - Tips
   - Best-Practices
-  - Productivity
-  - 생산성
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
+  - Productivity(생산성)
+  - Workflow(워크플로우)
+  - Configuration(설정)
   - Cycling
-  - 자전거
-  - Technology
-  - 기술
-  - Mobile
-  - 모바일
-  - Blog
-  - 블로그
-  - Education
-  - 교육
-  - Review
-  - 리뷰
-  - Comparison
-  - 비교
-  - Markdown
-  - 마크다운
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Career
-  - 커리어
-  - Migration
-  - 마이그레이션
-  - Web
-  - 웹
+  - Technology(기술)
+  - Mobile(모바일)
+  - Blog(블로그)
+  - Education(교육)
+  - Review(리뷰)
+  - Comparison(비교)
+  - Markdown(마크다운)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Career(커리어)
+  - Migration(마이그레이션)
+  - Web(웹)
   - Beginner
   - Case-Study
-  - History
-  - 역사
-  - Science
-  - 과학
-  - Brand
-  - 브랜드
+  - History(역사)
+  - Science(과학)
+  - Brand(브랜드)
   - Fitness
   - 워크아웃
   - Exercise
   - 운동
-  - Health
   - 건강
   - Checklist
   - 체크리스트
@@ -81,19 +52,13 @@ tags:
   - 요약
   - Deep-Dive
   - 실습
-  - Implementation
-  - 구현
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - API
-  - Data-Structures
-  - 자료구조
-  - Algorithm
-  - 알고리즘
-  - Problem-Solving
-  - 문제해결
+  - Implementation(구현)
+  - Testing(테스트)
+  - Performance(성능)
+  - API(Application Programming Interface)
+  - Data-Structures(자료구조)
+  - Algorithm(알고리즘)
+  - Problem-Solving(문제해결)
 title: "[Garmin] 가민 워크아웃 전체 목록 — 한글 자음별 참고 정리"
 ---
 이 문서는 **가민(Garmin)** 워크아웃·피트니스 기능에서 제공하는 운동 목록을 한 곳에 모아, 한글 이름·원어 표기·번호를 함께 정리한 **참고 자료**이다. 가민 Connect 앱, 가민 워치, 서드파티 앱에서 운동을 고를 때 검색·대조용으로 쓰거나, 트레이닝 설계 시 전체 목록을 한눈에 보고 싶을 때 활용할 수 있다.

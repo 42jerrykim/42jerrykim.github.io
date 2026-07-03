@@ -6,89 +6,56 @@ categories:
 date: "2021-04-14T00:00:00Z"
 lastmod: "2026-03-16T00:00:00Z"
 tags:
-  - Shell
-  - 셸
+  - Shell(셸)
   - Bash
-  - Linux
-  - 리눅스
-  - Terminal
-  - 터미널
+  - Linux(리눅스)
+  - Terminal(터미널)
   - Unzip
   - Compression
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - How-To
   - Tips
-  - Reference
-  - 참고
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Comparison
-  - 비교
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Documentation
-  - 문서화
+  - Reference(참고)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Comparison(비교)
+  - Productivity(생산성)
+  - Education(교육)
+  - Documentation(문서화)
   - Best-Practices
   - File-System
-  - OS
-  - 운영체제
+  - OS(운영체제)
   - DevOps
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
-  - Testing
-  - 테스트
-  - Implementation
-  - 구현
-  - Performance
-  - 성능
-  - Error-Handling
-  - 에러처리
-  - Networking
-  - 네트워킹
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
+  - Automation(자동화)
+  - Deployment(배포)
+  - Testing(테스트)
+  - Implementation(구현)
+  - Performance(성능)
+  - Error-Handling(에러처리)
+  - Networking(네트워킹)
+  - Technology(기술)
+  - Web(웹)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
   - Beginner
   - Quick-Reference
-  - Cheatsheet
-  - 치트시트
-  - Debugging
-  - 디버깅
-  - Code-Quality
+  - Cheatsheet(치트시트)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
   - Docker
-  - Backend
-  - 백엔드
-  - API
-  - Security
-  - 보안
-  - Innovation
-  - 혁신
-  - Career
-  - 커리어
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Security(보안)
+  - Innovation(혁신)
+  - Career(커리어)
   - Case-Study
   - Deep-Dive
   - 실습

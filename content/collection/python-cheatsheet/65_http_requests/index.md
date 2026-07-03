@@ -8,55 +8,34 @@ lastmod: 2026-01-18
 collection_order: 65
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
-  - HTTP
-  - REST
-  - API
-  - JSON
-  - Error-Handling
-  - 에러처리
-  - Authentication
-  - 인증
+  - HTTP(HyperText Transfer Protocol)
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
+  - Error-Handling(에러처리)
+  - Authentication(인증)
   - Proxy
-  - Networking
-  - 네트워킹
-  - Web
-  - 웹
+  - Networking(네트워킹)
+  - Web(웹)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Performance
-  - 성능
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - HTML
-  - Deployment
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - 배포
+  - Pitfalls(함정)
+  - Performance(성능)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
+  - HTML(HyperText Markup Language)
+  - Deployment(배포)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
 ---
 HTTP 요청은 API 연동과 웹 데이터 수집의 기본입니다. 이 치트시트는 requests 라이브러리의 핵심 패턴(GET/POST/JSON), 세션, 타임아웃, 에러 핸들링과 urllib 표준 라이브러리 기본을 정리합니다.
 

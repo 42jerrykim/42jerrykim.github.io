@@ -7,81 +7,49 @@ categories:
   - AI
   - Research
 tags:
-  - AI
-  - 인공지능
+  - AI(인공지능)
   - ChatGPT
-  - LLM
-  - GPT
-  - Science
-  - 과학
-  - Technology
-  - 기술
-  - Review
-  - 리뷰
-  - Education
-  - 교육
-  - Blog
-  - 블로그
-  - Reference
-  - 참고
-  - Innovation
-  - 혁신
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Productivity
-  - 생산성
-  - Web
-  - 웹
-  - History
-  - 역사
-  - Culture
-  - 문화
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
+  - Science(과학)
+  - Technology(기술)
+  - Review(리뷰)
+  - Education(교육)
+  - Blog(블로그)
+  - Reference(참고)
+  - Innovation(혁신)
+  - Comparison(비교)
+  - Career(커리어)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Productivity(생산성)
+  - Web(웹)
+  - History(역사)
+  - Culture(문화)
   - Biology
-  - 생물학
-  - Psychology
-  - 심리학
-  - Security
-  - 보안
+  - Psychology(심리학)
+  - Security(보안)
   - Case-Study
   - Deep-Dive
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
   - How-To
   - Tips
-  - Workflow
-  - 워크플로우
+  - Workflow(워크플로우)
   - Best-Practices
-  - Machine-Learning
-  - 머신러닝
-  - Data-Science
-  - 데이터사이언스
-  - NLP
-  - Privacy
-  - 프라이버시
+  - Machine-Learning(머신러닝)
+  - Data-Science(데이터사이언스)
+  - NLP(Natural Language Processing)
+  - Privacy(프라이버시)
   - Beginner
   - Advanced
-  - Markdown
-  - 마크다운
-  - Configuration
-  - 설정
-  - Migration
-  - 마이그레이션
-  - Networking
-  - 네트워킹
-  - Testing
-  - 테스트
-  - Code-Quality
-  - 코드품질
+  - Markdown(마크다운)
+  - Configuration(설정)
+  - Migration(마이그레이션)
+  - Networking(네트워킹)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
 image: image.png
 description: "AI가 작성한 가짜 학술 논문이 암·코로나19 연구 등에 침투하는 현상, Peer Review의 한계(심사 의뢰의 상당 부분이 ChatGPT 작성), Problematic Paper Screener 등 식별 방법, 양보다 질을 중시하는 연구·펀딩 체계의 필요성까지 정리한다. 독자·연구자·정책 입안자가 신뢰할 수 있는 과학 생태계를 이해하는 데 도움이 되는 참고 자료."
 ---

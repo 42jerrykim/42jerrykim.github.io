@@ -8,77 +8,47 @@ lastmod: "2026-03-16"
 tags:
   - Git
   - GitHub
-  - Windows
-  - 윈도우
-  - Shell
+  - Windows(윈도우)
+  - Shell(셸)
   - Bash
-  - Linux
-  - 리눅스
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Linux(리눅스)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - IDE
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - IDE(Integrated Development Environment)
+  - Deployment(배포)
+  - Automation(자동화)
   - DevOps
-  - Performance
-  - 성능
-  - Debugging
-  - 디버깅
+  - Performance(성능)
+  - Debugging(디버깅)
   - Beginner
   - Quick-Reference
-  - Code-Quality
-  - 코드품질
-  - Networking
-  - 네트워킹
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
+  - Code-Quality(코드품질)
+  - Networking(네트워킹)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
   - Case-Study
   - 실습
-  - Terminal
-  - 터미널
+  - Terminal(터미널)
 title: "[Tool] GitHub Desktop 2.7.1 업데이트 후 commit·push 속도 개선"
 ---
 

@@ -12,10 +12,9 @@ categories:
 - State Management
 - Operation Extension
 tags:
-- Design-Pattern
-- GoF
+- Design-Pattern(디자인패턴)
+- GoF(Gang of Four)
 - SOLID
-- 디자인패턴
 ---
 
 Memento와 Visitor 패턴을 통해 상태 보존과 연산 분리를 탐구합니다. 과거 상태로의 복원과 객체 구조의 확장 가능한 설계 방법을 학습합니다.

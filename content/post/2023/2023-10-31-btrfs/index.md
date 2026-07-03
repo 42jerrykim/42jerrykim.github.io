@@ -10,110 +10,66 @@ header:
 
 tags:
   - File-System
-  - Linux
-  - 리눅스
-  - Open-Source
-  - 오픈소스
-  - Tutorial
-  - Guide
-  - 가이드
-  - Documentation
-  - 문서화
+  - Linux(리눅스)
+  - Open-Source(오픈소스)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Documentation(문서화)
   - Best-Practices
-  - Implementation
-  - 구현
-  - Networking
-  - 네트워킹
-  - Hardware
-  - 하드웨어
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
-  - Review
-  - 리뷰
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
+  - Implementation(구현)
+  - Networking(네트워킹)
+  - Hardware(하드웨어)
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Comparison(비교)
+  - Reference(참고)
+  - Technology(기술)
+  - Blog(블로그)
+  - Review(리뷰)
+  - Productivity(생산성)
+  - Education(교육)
   - How-To
   - Tips
-  - Self-Hosted
-  - 셀프호스팅
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Security
-  - 보안
-  - Scalability
-  - 확장성
+  - Self-Hosted(셀프호스팅)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Security(보안)
+  - Scalability(확장성)
   - Compression
-  - Cloud
-  - 클라우드
+  - Cloud(클라우드)
   - DevOps
-  - Deployment
-  - 배포
-  - Monitoring
-  - 모니터링
-  - Innovation
-  - 혁신
-  - Workflow
-  - 워크플로우
-  - Career
-  - 커리어
+  - Deployment(배포)
+  - Monitoring(모니터링)
+  - Innovation(혁신)
+  - Workflow(워크플로우)
+  - Career(커리어)
   - Case-Study
   - Deep-Dive
-  - Algorithm
-  - 알고리즘
-  - Tree
-  - 트리
-  - Data-Structures
-  - 자료구조
-  - Code-Quality
-  - 코드품질
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - OS
-  - 운영체제
-  - Memory
-  - 메모리
-  - IO
+  - Algorithm(알고리즘)
+  - Tree(트리)
+  - Data-Structures(자료구조)
+  - Code-Quality(코드품질)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - OS(운영체제)
+  - Memory(메모리)
+  - IO(Input/Output)
   - Cache
-  - Automation
-  - 자동화
-  - Markdown
-  - 마크다운
+  - Automation(자동화)
+  - Markdown(마크다운)
   - Benchmark
   - Maintainability
   - Readability
   - Modularity
-  - Backend
-  - 백엔드
-  - Database
-  - 데이터베이스
+  - Backend(백엔드)
+  - Database(데이터베이스)
   - Git
   - Docker
-  - Pitfalls
-  - 함정
-  - Error-Handling
-  - 에러처리
+  - Pitfalls(함정)
+  - Error-Handling(에러처리)
   - Beginner
   - Advanced
 image: "wordcloud.png"

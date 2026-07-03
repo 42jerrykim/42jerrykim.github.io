@@ -12,10 +12,8 @@ categories:
 - Distributed Systems
 - Scalability Patterns
 tags:
-- Microservices
-- Scalability
-- 마이크로서비스
-- 확장성
+- Microservices(마이크로서비스)
+- Scalability(확장성)
 ---
 
 동시성과 분산 시스템 환경에서 전통적 패턴의 진화와 새로운 패턴을 탐구합니다. 확장 가능한 시스템 설계를 위한 동시성 제어와 분산 패턴을 학습합니다.

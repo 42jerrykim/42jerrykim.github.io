@@ -7,115 +7,75 @@ lastmod: "2026-03-17"
 header:
   teaser: /assets/images/2024/2024-08-29-microservices-communication.png
 tags:
-  - Microservices
-  - 마이크로서비스
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Microservices(마이크로서비스)
+  - Software-Architecture(소프트웨어아키텍처)
   - Event-Driven
-  - Design-Pattern
-  - 디자인패턴
-  - Backend
-  - 백엔드
-  - API
-  - REST
-  - Scalability
-  - 확장성
-  - Error-Handling
-  - 에러처리
-  - Documentation
-  - 문서화
+  - Design-Pattern(디자인패턴)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - Scalability(확장성)
+  - Error-Handling(에러처리)
+  - Documentation(문서화)
   - Best-Practices
-  - Implementation
-  - 구현
+  - Implementation(구현)
   - Kafka
   - RabbitMQ
   - Message-Queue
-  - Deployment
-  - 배포
+  - Deployment(배포)
   - Docker
   - Kubernetes
   - DevOps
-  - Monitoring
-  - 모니터링
-  - Async
-  - 비동기
-  - Concurrency
-  - 동시성
-  - Database
-  - 데이터베이스
-  - JSON
-  - Web
-  - 웹
-  - Networking
-  - 네트워킹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Clean-Architecture
-  - 클린아키텍처
-  - Coupling
-  - 결합도
+  - Monitoring(모니터링)
+  - Async(비동기)
+  - Concurrency(동시성)
+  - Database(데이터베이스)
+  - JSON(JavaScript Object Notation)
+  - Web(웹)
+  - Networking(네트워킹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Comparison(비교)
+  - Reference(참고)
+  - Technology(기술)
+  - Clean-Architecture(클린아키텍처)
+  - Coupling(결합도)
   - Maintainability
-  - Code-Quality
-  - 코드품질
-  - Testing
-  - 테스트
+  - Code-Quality(코드품질)
+  - Testing(테스트)
   - Process
-  - Blog
-  - 블로그
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Blog(블로그)
+  - Productivity(생산성)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Performance
-  - 성능
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Performance(성능)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Graph
-  - 그래프
+  - Graph(그래프)
   - Modularity
-  - Logging
-  - 로깅
+  - Logging(로깅)
   - Latency
   - Throughput
   - Load-Balancing
-  - CQRS
+  - CQRS(Command Query Responsibility Segregation)
   - Domain-Driven-Design
   - Observer
   - Command
   - Mediator
-  - Markdown
-  - 마크다운
+  - Markdown(마크다운)
   - Beginner
   - Advanced
-  - Automation
-  - 자동화
-  - Refactoring
-  - 리팩토링
-  - Pitfalls
-  - 함정
+  - Automation(자동화)
+  - Refactoring(리팩토링)
+  - Pitfalls(함정)
 image: "wordcloud.png"
 ---
 

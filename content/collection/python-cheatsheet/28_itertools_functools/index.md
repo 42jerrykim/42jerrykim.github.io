@@ -8,55 +8,35 @@ lastmod: 2026-01-17
 collection_order: 28
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - Iterator
-  - Implementation
+  - Implementation(구현)
   - Cache
   - Memoization
-  - Performance
-  - 성능
-  - Memory
-  - 메모리
-  - Pitfalls
-  - 함정
+  - Performance(성능)
+  - Memory(메모리)
+  - Pitfalls(함정)
   - Best-Practices
-  - Design-Pattern
-  - Functional-Programming
+  - Design-Pattern(디자인패턴)
+  - Functional-Programming(함수형프로그래밍)
   - Map
-  - Debugging
-  - 디버깅
-  - Testing
-  - 테스트
-  - Tutorial
-  - 튜토리얼
-  - 구현
-  - Code-Quality
-  - 코드품질
-  - OOP
-  - 객체지향
-  - Sorting
-  - HTML
-  - Error-Handling
-  - 에러처리
-  - Documentation
-  - 문서화
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
-  - 설정
-  - Guide
-  - 가이드
-  - Deployment
-  - 배포
+  - Debugging(디버깅)
+  - Testing(테스트)
+  - Tutorial(튜토리얼)
+  - Code-Quality(코드품질)
+  - OOP(객체지향)
+  - Sorting(정렬)
+  - HTML(HyperText Markup Language)
+  - Error-Handling(에러처리)
+  - Documentation(문서화)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
+  - Guide(가이드)
+  - Deployment(배포)
 ---
 itertools와 functools는 함수형 스타일의 데이터 처리와 성능 최적화를 돕는 표준 라이브러리입니다. 이 치트시트는 chain, islice, groupby, lru_cache 등 자주 쓰는 조합과 함정을 정리합니다.
 

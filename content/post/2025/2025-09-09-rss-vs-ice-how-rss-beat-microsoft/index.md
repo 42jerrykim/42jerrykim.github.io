@@ -8,94 +8,60 @@ categories:
   - "Web"
   - "Standards"
 tags:
-  - XML
-  - Web
-  - 웹
-  - HTML
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Tutorial
-  - 가이드
-  - Guide
-  - Review
-  - 리뷰
-  - Implementation
-  - 구현
-  - History
-  - 역사
-  - Brand
-  - 브랜드
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - XML(eXtensible Markup Language)
+  - Web(웹)
+  - HTML(HyperText Markup Language)
+  - Blog(블로그)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Implementation(구현)
+  - History(역사)
+  - Brand(브랜드)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Complexity-Analysis
-  - Deployment
-  - Markdown
-  - 마크다운
-  - API
-  - REST
-  - HTTP
-  - Networking
-  - 네트워킹
-  - Security
-  - 보안
-  - Internet
-  - 인터넷
-  - Culture
-  - 문화
-  - Science
-  - 과학
+  - Comparison(비교)
+  - Career(커리어)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Complexity-Analysis(복잡도분석)
+  - Deployment(배포)
+  - Markdown(마크다운)
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - HTTP(HyperText Transfer Protocol)
+  - Networking(네트워킹)
+  - Security(보안)
+  - Internet(인터넷)
+  - Culture(문화)
+  - Science(과학)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Clean-Code
-  - 클린코드
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
   - Maintainability
-  - Scalability
-  - 확장성
-  - Automation
-  - 자동화
+  - Scalability(확장성)
+  - Automation(자동화)
   - DevOps
-  - Frontend
-  - 프론트엔드
-  - Backend
-  - 백엔드
-  - JSON
-  - SEO
+  - Frontend(프론트엔드)
+  - Backend(백엔드)
+  - JSON(JavaScript Object Notation)
+  - SEO(Search Engine Optimization)
   - Beginner
   - Advanced
-  - Domain
-  - 도메인
+  - Domain(도메인)
   - Jekyll
   - Hugo
 image: "wordcloud.png"

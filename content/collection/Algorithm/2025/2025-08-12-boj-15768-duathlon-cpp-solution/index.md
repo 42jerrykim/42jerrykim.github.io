@@ -7,56 +7,39 @@ categories:
 - "Algorithm"
 - "BOJ"
 tags:
-- BOJ
+- BOJ(백준)
 - Baekjoon
-- 백준
-- 그래프
-- Graph
-- Math
-- Tree
-- 트리
-- 스택
-- DFS
-- Time-Complexity
-- 시간복잡도
-- Complexity-Analysis
+- Graph(그래프)
+- Math(수학)
+- Tree(트리)
+- Stack(스택)
+- DFS(Depth-First Search)
+- Time-Complexity(시간복잡도)
+- Complexity-Analysis(복잡도분석)
 - C++
-- IO
-- Implementation
-- 구현
-- Editorial
-- 에디토리얼
-- ICPC
-- 조합론
-- Edge-Cases
+- IO(Input/Output)
+- Implementation(구현)
+- Editorial(에디토리얼)
+- ICPC(International Collegiate Programming Contest)
+- Combinatorics(조합론)
+- Edge-Cases(엣지케이스)
 - Network-Flow
-- Algorithm
-- 알고리즘
-- Competitive-Programming
-- Problem-Solving
-- Coding-Test
-- 코딩테스트
-- Data-Structures
-- 자료구조
-- Optimization
-- 최적화
-- 문제해결
-- Code-Quality
-- 코드품질
+- Algorithm(알고리즘)
+- Competitive-Programming(경쟁프로그래밍)
+- Problem-Solving(문제해결)
+- Coding-Test(코딩테스트)
+- Data-Structures(자료구조)
+- Optimization(최적화)
+- Code-Quality(코드품질)
 - Go
 - .NET
 - Git
 - GitHub
-- REST
-- API
-- Dynamic-Programming
-- DP
-- Stack
-- Space-Complexity
-- 공간복잡도
-- 엣지케이스
-- Testing
-- 테스트
+- REST(Representational State Transfer)
+- API(Application Programming Interface)
+- DP(동적계획법)
+- Space-Complexity(공간복잡도)
+- Testing(테스트)
 image: "wordcloud.png"
 ---
 

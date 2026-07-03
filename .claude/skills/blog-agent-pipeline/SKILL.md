@@ -24,7 +24,7 @@ description: >-
 | 항상 | [`rules-that-must-be-followed`](../rules-that-must-be-followed/SKILL.md) | draft, tags, description, title, 날짜, 링크 검증, Mermaid |
 | 항상 | [`blog-post-writing`](../blog-post-writing/SKILL.md) | 경로, frontmatter, 본문 구조, 검증 체크리스트 |
 | 항상 | [`reference.md`](../blog-post-writing/reference.md) | 제목·날짜·접두어, Hugo 내부 링크 |
-| 항상 | `data/tags.yaml` | tags 50개 이상 선정 |
+| 항상 | `data/tags.yaml` | tags 25개 이상 선정 |
 | 컬렉션 `index.md` 등 내부 링크 편집 시 | [`reference.md`](../blog-post-writing/reference.md)의 Hugo 컬렉션 내부 링크 절 | 내부 링크 형식 |
 | 컬렉션 글 작성 시 | [`collection-writing-standards`](../collection-writing-standards/SKILL.md) | 이론 중심 작성 표준 |
 | optimization·designpattern 등 교육 시리즈 글 | [`educational-content-writing`](../educational-content-writing/SKILL.md) | 품질 3원칙, 안티패딩 |

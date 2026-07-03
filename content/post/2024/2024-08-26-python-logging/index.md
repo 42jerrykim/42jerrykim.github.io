@@ -7,88 +7,53 @@ header:
   teaser: /assets/images/2024/2024-08-26-python-logging.png
 tags:
   - Python
-  - 파이썬
-  - Logging
-  - 로깅
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Implementation
-  - 구현
-  - Debugging
-  - 디버깅
+  - Logging(로깅)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Implementation(구현)
+  - Debugging(디버깅)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Configuration
-  - 설정
-  - Error-Handling
-  - 에러처리
-  - Code-Quality
-  - 코드품질
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
+  - Documentation(문서화)
+  - Configuration(설정)
+  - Error-Handling(에러처리)
+  - Code-Quality(코드품질)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
   - How-To
   - Tips
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Backend
-  - 백엔드
+  - Reference(참고)
+  - Technology(기술)
+  - Backend(백엔드)
   - DevOps
-  - Monitoring
-  - 모니터링
-  - Security
-  - 보안
-  - Performance
-  - 성능
-  - Testing
-  - 테스트
-  - Web
-  - 웹
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Innovation
-  - 혁신
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
+  - Monitoring(모니터링)
+  - Security(보안)
+  - Performance(성능)
+  - Testing(테스트)
+  - Web(웹)
+  - Productivity(생산성)
+  - Education(교육)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Comparison(비교)
+  - Career(커리어)
+  - Innovation(혁신)
+  - Blog(블로그)
+  - Markdown(마크다운)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
-  - Networking
-  - 네트워킹
-  - API
-  - JSON
-  - YAML
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
-  - IDE
+  - Software-Architecture(소프트웨어아키텍처)
+  - Automation(자동화)
+  - Deployment(배포)
+  - Networking(네트워킹)
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
+  - YAML(YAML Ain't Markup Language)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - IDE(Integrated Development Environment)
   - VSCode
   - Git
   - GitHub

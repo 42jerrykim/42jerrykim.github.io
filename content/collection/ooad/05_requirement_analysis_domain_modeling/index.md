@@ -6,17 +6,16 @@ lastmod: 2026-01-17
 collection_order: 5
 draft: true
 tags:
-  - Software-Architecture
-  - Nuance
+  - Software-Architecture(소프트웨어아키텍처)
+  - Nuance(뉘앙스)
   - Command
-  - Security
-  - OOP
-  - UML
+  - Security(보안)
+  - OOP(객체지향)
+  - UML(Unified Modeling Language)
   - Domain-Driven-Design
-  - Clean-Architecture
-  - Refactoring
-  - 테스트
-  - Testing
+  - Clean-Architecture(클린아키텍처)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
 ---
 
 # 05. 요구사항 분석과 도메인 모델링

@@ -12,21 +12,14 @@ tags:
   - 영단어
   - 영어명사
   - toxicologist
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Pronunciation
-  - 발음
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Pronunciation(발음)
   - EN-KR-Examples
-  - Context
-  - 맥락
+  - Context(맥락)
   - toxicology
   - 독물학
   - poison
@@ -55,7 +48,6 @@ tags:
   - 과다복용
   - environmental health
   - 환경보건
-  - Safety
   - 안전
   - regulation
   - 규제
@@ -64,14 +56,13 @@ tags:
   - Usage-Notes
   - STEM
   - Biology
-  - 생물학
   - chemistry
   - 화학
   - careers
-  - 커리어
-  - Tutorial
-  - Guide
-  - Reference
+  - Career(커리어)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Tips
 image: "wordcloud.png"
 ---

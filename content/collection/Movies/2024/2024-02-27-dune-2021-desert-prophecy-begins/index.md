@@ -9,33 +9,22 @@ categories:
 - Epic
 - Legendary Pictures
 tags:
-- Movie
-- 영화
-- Sci-Fi
-- SF
-- Action
-- 액션
-- Adventure
-- 모험
+- Movie(영화)
+- Sci-Fi(Science Fiction)
+- Action(액션)
+- Adventure(모험)
 - Drama
-- 드라마
-- Thriller
-- 스릴러
-- Fantasy
-- 판타지
-- Cinematography
-- 촬영기법
-- Soundtrack
-- 사운드트랙
-- Visual-Effects
-- 시각효과
-- Review
-- 리뷰
+- TV-Show(드라마)
+- Thriller(스릴러)
+- Fantasy(판타지)
+- Cinematography(촬영기법)
+- Soundtrack(사운드트랙)
+- Visual-Effects(시각효과)
+- Review(리뷰)
 - 2020s
 - Blockbuster
 - Adaptation
-- Culture
-- 문화
+- Culture(문화)
 - Denis-Villeneuve
 - 드니빌뇌브
 - Timothée-Chalamet
@@ -52,7 +41,6 @@ tags:
 - 사막
 - Prophecy
 - 예언
-- Politics
 - 정치
 - Ecology
 - 생태
@@ -61,8 +49,7 @@ tags:
 - 프레먼
 - Sandworm
 - 스파이스
-- Implementation
-- 구현
+- Implementation(구현)
 - Star-4.0
 - IMAX
 - Academy-Awards

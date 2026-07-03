@@ -9,56 +9,39 @@ categories:
   - "Computational Geometry"
   - "UCPC 2018"
 tags:
-  - Algorithm
-  - 알고리즘
-  - BOJ
-  - 백준
+  - Algorithm(알고리즘)
+  - BOJ(백준)
   - Geometry
   - Computational-Geometry
-  - Segment-Tree
+  - Segment-Tree(세그먼트트리)
   - Two-Pointers
-  - Binary-Search
+  - Binary-Search(이분탐색)
   - Prefix-Sum
-  - Optimization
-  - 최적화
-  - Time-Complexity
+  - Optimization(최적화)
+  - Time-Complexity(시간복잡도)
   - C++
-  - Edge-Cases
-  - Shortest-Path
-  - 최단경로
+  - Edge-Cases(엣지케이스)
+  - Shortest-Path(최단경로)
   - Range-Query
-  - Implementation
-  - 구현
-  - Math
-  - 수학
-  - Competitive-Programming
-  - Problem-Solving
-  - 시간복잡도
-  - Coding-Test
-  - 코딩테스트
-  - Data-Structures
-  - 자료구조
-  - 문제해결
-  - Code-Quality
-  - 코드품질
+  - Implementation(구현)
+  - Math(수학)
+  - Competitive-Programming(경쟁프로그래밍)
+  - Problem-Solving(문제해결)
+  - Coding-Test(코딩테스트)
+  - Data-Structures(자료구조)
+  - Code-Quality(코드품질)
   - Go
   - .NET
   - Git
   - GitHub
   - Watch
-  - Space-Complexity
-  - 공간복잡도
-  - 엣지케이스
-  - Testing
-  - 테스트
-  - Documentation
-  - 문서화
+  - Space-Complexity(공간복잡도)
+  - Testing(테스트)
+  - Documentation(문서화)
   - Best-Practices
-  - Complexity-Analysis
-  - 복잡도분석
-  - Debugging
-  - 디버깅
-  - Refactoring
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
 image: "wordcloud.png"
 ---
 

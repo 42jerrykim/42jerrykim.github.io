@@ -10,56 +10,34 @@ categories:
   - Comedy
   - Disney
 tags:
-  - Animation
-  - 애니메이션
-  - Adventure
-  - 모험
-  - Comedy
-  - 코미디
-  - Mystery
-  - 미스터리
-  - Movie
-  - 영화
-  - Review
-  - 리뷰
+  - Animation(애니메이션)
+  - Adventure(모험)
+  - Comedy(코미디)
+  - Mystery(미스터리)
+  - Movie(영화)
+  - Review(리뷰)
   - Drama
-  - Thriller
-  - 스릴러
-  - Action
-  - 액션
-  - Sci-Fi
-  - Fantasy
-  - 판타지
-  - Romance
-  - 로맨스
+  - Thriller(스릴러)
+  - Action(액션)
+  - Sci-Fi(Science Fiction)
+  - Fantasy(판타지)
+  - Romance(로맨스)
   - Go
-  - War
-  - 전쟁
-  - History
-  - 역사
-  - Cinematography
-  - 촬영기법
-  - Soundtrack
-  - 사운드트랙
-  - Family
-  - 가족
-  - Biography
-  - 전기영화
-  - Visual-Effects
-  - 시각효과
-  - Documentary
-  - 다큐멘터리
-  - Crime
-  - 범죄
-  - Horror
-  - 공포
+  - War(전쟁)
+  - History(역사)
+  - Cinematography(촬영기법)
+  - Soundtrack(사운드트랙)
+  - Family(가족)
+  - Biography(전기영화)
+  - Visual-Effects(시각효과)
+  - Documentary(다큐멘터리)
+  - Crime(범죄)
+  - Horror(공포)
   - 2020s
   - 2010s
   - 2000s
-  - Culture
-  - 문화
-  - Technology
-  - 기술
+  - Culture(문화)
+  - Technology(기술)
 image: "poster.png"
 draft: false
 ---

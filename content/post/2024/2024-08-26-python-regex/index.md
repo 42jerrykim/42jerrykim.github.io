@@ -10,89 +10,54 @@ header:
   teaser: /assets/images/2024/2024-08-26-python-regex.png
 tags:
   - Python
-  - 파이썬
-  - String
-  - 문자열
-  - Algorithm
-  - 알고리즘
-  - Implementation
-  - 구현
-  - Data-Structures
-  - 자료구조
-  - Greedy
-  - 그리디
-  - Automation
-  - 자동화
-  - Debugging
-  - 디버깅
-  - Optimization
-  - 최적화
-  - Performance
-  - 성능
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - String(문자열)
+  - Algorithm(알고리즘)
+  - Implementation(구현)
+  - Data-Structures(자료구조)
+  - Greedy(그리디)
+  - Automation(자동화)
+  - Debugging(디버깅)
+  - Optimization(최적화)
+  - Performance(성능)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Web
-  - 웹
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Web(웹)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Markdown
-  - 마크다운
-  - HTML
+  - Markdown(마크다운)
+  - HTML(HyperText Markup Language)
   - JavaScript
   - Java
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Productivity
-  - 생산성
-  - Code-Quality
-  - 코드품질
+  - Blog(블로그)
+  - Technology(기술)
+  - Productivity(생산성)
+  - Code-Quality(코드품질)
   - Readability
-  - Error-Handling
-  - 에러처리
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
-  - Clean-Code
-  - 클린코드
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Machine-Learning
-  - 머신러닝
-  - NLP
+  - Error-Handling(에러처리)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Clean-Code(클린코드)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Machine-Learning(머신러닝)
+  - NLP(Natural Language Processing)
   - Git
   - GitHub
-  - IDE
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
-  - Backend
-  - 백엔드
-  - API
-  - JSON
-  - Security
-  - 보안
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - JSON(JavaScript Object Notation)
+  - Security(보안)
   - Regex
   - 정규표현식
 title: "[Python] 정규 표현식(Regex) 기초부터 고급·실전 활용까지"

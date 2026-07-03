@@ -8,104 +8,66 @@ image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/teaser.jpg
 tags:
-  - Design-Pattern
-  - 디자인패턴
-  - GoF
+  - Design-Pattern(디자인패턴)
+  - GoF(Gang of Four)
   - Creational-Pattern
   - Factory
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
-  - Encapsulation
-  - 캡슐화
-  - Dependency-Injection
-  - 의존성주입
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Encapsulation(캡슐화)
+  - Dependency-Injection(의존성주입)
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
   - CSharp
   - .NET
-  - Implementation
-  - 구현
+  - Implementation(구현)
   - SOLID
-  - Polymorphism
-  - 다형성
-  - Composition
-  - 합성
-  - Coupling
-  - 결합도
-  - Code-Quality
-  - 코드품질
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
+  - Polymorphism(다형성)
+  - Composition(합성)
+  - Coupling(결합도)
+  - Code-Quality(코드품질)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Testing
-  - 테스트
-  - Education
-  - 교육
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Documentation(문서화)
+  - Testing(테스트)
+  - Education(교육)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
   - Maintainability
   - Modularity
-  - Inheritance
-  - 상속
+  - Inheritance(상속)
   - Builder
   - Singleton
-  - Algorithm
-  - 알고리즘
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Review
-  - 리뷰
-  - Markdown
-  - 마크다운
-  - Backend
-  - 백엔드
-  - Performance
-  - 성능
-  - Debugging
-  - 디버깅
-  - Complexity-Analysis
-  - 복잡도분석
-  - Scalability
-  - 확장성
+  - Algorithm(알고리즘)
+  - Blog(블로그)
+  - Technology(기술)
+  - Web(웹)
+  - Review(리뷰)
+  - Markdown(마크다운)
+  - Backend(백엔드)
+  - Performance(성능)
+  - Debugging(디버깅)
+  - Complexity-Analysis(복잡도분석)
+  - Scalability(확장성)
   - How-To
   - Tips
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Beginner
   - Case-Study
   - Deep-Dive
   - 실습
-  - UML
+  - UML(Unified Modeling Language)
   - Java
   - Python
   - C++
-  - Windows
-  - Configuration
-  - 설정
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Productivity
-  - 생산성
-  - Gaming
-  - 게임
+  - Windows(윈도우)
+  - Configuration(설정)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Productivity(생산성)
+  - Gaming(게임)
 ---
 
 소프트웨어에서 **관련된 객체들의 제품군**을 일관되게 만들면서, 클라이언트가 구체 클래스 이름에 묶이지 않게 하려면 생성 책임을 한곳에 모아야 한다. **추상 팩토리 패턴(Abstract Factory Pattern)**은 GoF(Gang of Four)가 정리한 생성 패턴 중 하나로, “구체 클래스를 지정하지 않고 관련·종속 객체들의 패밀리를 생성하는 인터페이스”를 제공한다. 이 글에서는 추상 팩토리의 정의와 목적, C# 구현 절차, 실용 예제, Factory Method와의 차이, 언제 쓰고 피할지 판단 기준까지 정리한다.

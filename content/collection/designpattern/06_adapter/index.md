@@ -9,56 +9,35 @@ image: "wordcloud.png"
 header:
   teaser: /assets/images/undefined/design-pattern-nedir-2021-12-18-143754.jpg
 tags:
-  - Design-Pattern
-  - 디자인패턴
+  - Design-Pattern(디자인패턴)
   - Adapter
-  - GoF
-  - Code-Quality
-  - 코드품질
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - OOP
-  - 객체지향
+  - GoF(Gang of Four)
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
   - Java
   - C++
   - Python
   - CSharp
-  - Composition
-  - 합성
-  - Inheritance
-  - 상속
-  - Implementation
-  - 구현
+  - Composition(합성)
+  - Inheritance(상속)
+  - Implementation(구현)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Documentation
-  - 문서화
-  - Interface
-  - 인터페이스
-  - Abstraction
-  - 추상화
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Documentation(문서화)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
   - SOLID
-  - Encapsulation
-  - 캡슐화
-  - Polymorphism
-  - 다형성
-  - Dependency-Injection
-  - 의존성주입
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Education
-  - 교육
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Technology
-  - 기술
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
+  - Dependency-Injection(의존성주입)
+  - Testing(테스트)
+  - Performance(성능)
+  - Education(교육)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Technology(기술)
 ---
 
 어댑터 패턴(Adapter Pattern)은 호환되지 않는 인터페이스를 가진 클래스들이 함께 동작할 수 있도록 중간에서 인터페이스를 변환해주는 구조적 디자인 패턴이다. 마치 해외여행 시 사용하는 전원 어댑터처럼, 서로 다른 인터페이스 사이에서 다리 역할을 수행한다. 이 패턴을 사용하면 기존 코드를 수정하지 않고도 새로운 인터페이스와 호환되도록 만들 수 있어, 레거시 시스템 통합이나 서드파티 라이브러리 활용 시 매우 유용하다.

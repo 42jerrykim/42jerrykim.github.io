@@ -13,28 +13,17 @@ tags:
   - second thoughts
   - second thought
   - Idiom
-  - 숙어
   - 구
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Grammar
-  - 문법
-  - Etymology
-  - 어원
-  - Synonym
-  - 유의어
-  - Antonym
-  - 반의어
-  - Pronunciation
-  - 발음
-  - Daily-Life
-  - 일상표현
-  - Business-English
-  - 비즈니스영어
-  - Academic-English
-  - 학술영어
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Grammar(문법)
+  - Etymology(어원)
+  - Synonym(유의어)
+  - Antonym(반의어)
+  - Pronunciation(발음)
+  - Daily-Life(일상표현)
+  - Business-English(비즈니스영어)
+  - Academic-English(학술영어)
   - have second thoughts
   - on second thought
   - without a second thought
@@ -50,25 +39,20 @@ tags:
   - 결정
   - change one's mind
   - 마음 바꾸다
-  - Tutorial
-  - Education
-  - 교육
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
+  - Tutorial(튜토리얼)
+  - Education(교육)
+  - Reference(참고)
+  - Comparison(비교)
   - Tips
   - How-To
-  - Context
-  - 맥락
+  - Context(맥락)
   - Usage-Notes
   - EN-KR-Examples
-  - TOEFL
-  - IELTS
-  - Psychology
-  - 심리학
-  - Guide
-  - Documentation
+  - TOEFL(Test of English as a Foreign Language)
+  - IELTS(International English Language Testing System)
+  - Psychology(심리학)
+  - Guide(가이드)
+  - Documentation(문서화)
   - Beginner
   - Advanced
   - 생각
@@ -84,9 +68,9 @@ tags:
   - 유보
   - Vocabulary-Building
   - Study-English
-  - Culture
+  - Culture(문화)
   - 심리
-  - Cheatsheet
+  - Cheatsheet(치트시트)
   - Quick-Reference
 image: wordcloud.png
 ---

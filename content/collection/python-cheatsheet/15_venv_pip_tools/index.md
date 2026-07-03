@@ -8,55 +8,37 @@ lastmod: 2026-01-17
 collection_order: 15
 tags:
   - Python
-  - 파이썬
-  - Cheatsheet
-  - 치트시트
+  - Cheatsheet(치트시트)
   - Quick-Reference
   - DevOps
-  - Dependency-Injection
-  - CI-CD
-  - Windows
+  - Dependency-Injection(의존성주입)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Windows(윈도우)
   - PowerShell
   - macOS
-  - Linux
+  - Linux(리눅스)
   - Best-Practices
-  - Pitfalls
-  - 함정
-  - Troubleshooting
-  - 트러블슈팅
-  - Security
-  - 보안
-  - Automation
-  - 자동화
-  - Testing
-  - 테스트
-  - Tutorial
-  - 튜토리얼
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Pitfalls(함정)
+  - Troubleshooting(트러블슈팅)
+  - Security(보안)
+  - Automation(자동화)
+  - Testing(테스트)
+  - Tutorial(튜토리얼)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Bash
-  - Shell
-  - HTML
-  - Deployment
-  - Error-Handling
-  - 에러처리
-  - Debugging
-  - 디버깅
-  - Documentation
-  - 문서화
-  - Refactoring
-  - 리팩토링
-  - Clean-Code
-  - 클린코드
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Logging
-  - 로깅
-  - Configuration
+  - Shell(셸)
+  - HTML(HyperText Markup Language)
+  - Deployment(배포)
+  - Error-Handling(에러처리)
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Logging(로깅)
+  - Configuration(설정)
 ---
 가상환경과 의존성 관리는 재현 가능한 개발 환경의 기본입니다. 이 치트시트는 venv 생성/활성화, pip 설치, requirements.txt 관리의 핵심 체크리스트를 정리합니다.
 

@@ -15,22 +15,18 @@ tags:
   - Backpressure
   - Flow-Control
   - Data-Flow
-  - Queue
+  - Queue(큐)
   - Synchronization
-  - 동기화
   - Throughput
   - Latency
-  - Memory
-  - 메모리
+  - Memory(메모리)
   - capacity
   - blocking
   - Non-blocking
-  - Design-Pattern
-  - 디자인패턴
-  - Implementation
-  - 구현
-  - Tutorial
-  - Guide
+  - Design-Pattern(디자인패턴)
+  - Implementation(구현)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
 slug: cpp-producer-consumer-bounded-buffer-backpressure
 ---
 

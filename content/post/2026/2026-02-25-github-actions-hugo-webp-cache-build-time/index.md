@@ -9,91 +9,62 @@ categories:
 tags:
   - GitHub
   - Hugo
-  - CI-CD
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - DevOps
   - Git
-  - Linux
-  - Shell
-  - 셸
+  - Linux(리눅스)
+  - Shell(셸)
   - Docker
-  - Deployment
-  - 배포
-  - Automation
-  - 자동화
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Web
-  - 웹
-  - Backend
-  - 백엔드
-  - Frontend
-  - 프론트엔드
-  - Caching
-  - 캐싱
+  - Deployment(배포)
+  - Automation(자동화)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Web(웹)
+  - Backend(백엔드)
+  - Frontend(프론트엔드)
+  - Caching(캐싱)
   - Cache
-  - YAML
-  - API
-  - REST
-  - HTTP
-  - Documentation
-  - 문서화
+  - YAML(YAML Ain't Markup Language)
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - HTTP(HyperText Transfer Protocol)
+  - Documentation(문서화)
   - Best-Practices
-  - Implementation
-  - 구현
-  - Code-Quality
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Maintainability
-  - Clean-Code
-  - 클린코드
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Logging
-  - 로깅
-  - Profiling
-  - 프로파일링
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Logging(로깅)
+  - Profiling(프로파일링)
   - Benchmark
-  - Monitoring
-  - 모니터링
-  - Security
-  - 보안
-  - Scalability
-  - 확장성
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
-  - Networking
-  - 네트워킹
-  - Database
-  - 데이터베이스
-  - IDE
+  - Monitoring(모니터링)
+  - Security(보안)
+  - Scalability(확장성)
+  - Concurrency(동시성)
+  - Async(비동기)
+  - Networking(네트워킹)
+  - Database(데이터베이스)
+  - IDE(Integrated Development Environment)
   - VSCode
-  - Windows
-  - 윈도우
+  - Windows(윈도우)
   - macOS
   - File-System
-  - Memory
-  - 메모리
-  - OS
-  - 운영체제
+  - Memory(메모리)
+  - OS(운영체제)
   - Process
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - JSON
-  - XML
-  - CDN
-  - SEO
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - JSON(JavaScript Object Notation)
+  - XML(eXtensible Markup Language)
+  - CDN(Content Delivery Network)
+  - SEO(Search Engine Optimization)
   - Kubernetes
-  - AWS
+  - AWS(Amazon Web Services)
   - Azure
-  - GCP
+  - GCP(Google Cloud Platform)
   - Node.js
   - JavaScript
   - TypeScript
@@ -101,51 +72,33 @@ tags:
   - Bash
   - PowerShell
   - Nginx
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Migration
-  - 마이그레이션
-  - Workflow
-  - 워크플로우
-  - Configuration
-  - 설정
-  - Technology
-  - 기술
-  - Reference
-  - 참고
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Migration(마이그레이션)
+  - Workflow(워크플로우)
+  - Configuration(설정)
+  - Technology(기술)
+  - Reference(참고)
   - How-To
   - Tips
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Education
-  - 교육
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Education(교육)
   - Case-Study
   - Deep-Dive
   - 실습
   - Beginner
   - Advanced
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - Jekyll
-  - Terminal
-  - 터미널
+  - Terminal(터미널)
   - Compression
-  - Self-Hosted
-  - 셀프호스팅
-  - Internet
-  - 인터넷
-  - Domain
-  - 도메인
+  - Self-Hosted(셀프호스팅)
+  - Internet(인터넷)
+  - Domain(도메인)
 image: "wordcloud.png"
 draft: false
 ---

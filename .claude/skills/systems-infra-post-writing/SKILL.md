@@ -38,7 +38,7 @@ lastmod: YYYY-MM-DD
 categories:
   - 도구/플랫폼  # 예: Hugo, Linux, Windows
   - 보조분류  # 예: Optimization, CI-CD, Security
-tags:  # 50개 이상, 영어+한글 쌍
+tags:  # 25개 이상, 영/한 병용 개념은 Tag(태그) 형식
   - Technology
   - 기술
 image: "image.png"
@@ -64,13 +64,13 @@ image: "image.png"
 
 ## 5. 태그 전략
 
-`data/tags.yaml`의 `devops_and_tools`, `system_and_low_level`, `web_and_backend`, `frameworks_and_platforms`, `general_topics` 카테고리에서 50개 이상 선정. 도구명(Hugo, Docker, GitHub Actions)과 개념(CI-CD/지속통합, Optimization/최적화)을 영어+한글 쌍으로 채운다.
+`data/tags.yaml`의 `devops_and_tools`, `system_and_low_level`, `web_and_backend`, `frameworks_and_platforms`, `general_topics` 카테고리에서 25개 이상 선정. 도구명(Hugo, Docker, GitHub Actions)과 병기 승인 태그(CI-CD, Optimization(최적화))로 채운다.
 
 ## 6. 작성 체크리스트
 
 - [ ] 경로가 `content/post/<연도>/YYYY-MM-DD-<슬러그>/index.md`인가?
 - [ ] title 70자 이내, description 150자 내외인가? 정량 성과가 있으면 제목/description에 반영했는가?
-- [ ] tags 50개 이상(영어+한글)인가?
+- [ ] tags 25개 이상(`data/tags.yaml` 승인 태그)인가?
 - [ ] `draft: true`(신규 글), date/lastmod가 오늘 날짜인가?
 - [ ] "문제 → 해결 전략 → 구현 → 전후 비교" 구조를 따랐는가?
 - [ ] 설정·명령·스크립트가 그대로 재현 가능한 형태인가?

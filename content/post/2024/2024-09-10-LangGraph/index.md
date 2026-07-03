@@ -9,112 +9,68 @@ header:
   teaser: /assets/images/2024/2024-09-10-LangGraph.png
 title: "[Tech] LangGraph로 LLM 에이전트·워크플로우 구축하기"
 tags:
-  - LLM
-  - AI
-  - 인공지능
-  - Machine-Learning
-  - 머신러닝
+  - LLM(Large Language Model)
+  - AI(인공지능)
+  - Machine-Learning(머신러닝)
   - Python
-  - 파이썬
-  - Graph
-  - 그래프
-  - Graph-Theory
-  - Data-Structures
-  - 자료구조
-  - Implementation
-  - 구현
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Open-Source
-  - 오픈소스
-  - Automation
-  - 자동화
-  - Error-Handling
-  - 에러처리
-  - SQL
-  - Memory
-  - 메모리
-  - Scalability
-  - 확장성
-  - API
-  - Backend
-  - 백엔드
-  - Documentation
-  - 문서화
+  - Graph(그래프)
+  - Graph-Theory(그래프이론)
+  - Data-Structures(자료구조)
+  - Implementation(구현)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Open-Source(오픈소스)
+  - Automation(자동화)
+  - Error-Handling(에러처리)
+  - SQL(Structured Query Language)
+  - Memory(메모리)
+  - Scalability(확장성)
+  - API(Application Programming Interface)
+  - Backend(백엔드)
+  - Documentation(문서화)
   - Git
   - GitHub
-  - OOP
-  - 객체지향
-  - Design-Pattern
-  - 디자인패턴
-  - Testing
-  - 테스트
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
-  - Web
-  - 웹
-  - Blog
-  - 블로그
-  - Reference
-  - 참고
+  - OOP(객체지향)
+  - Design-Pattern(디자인패턴)
+  - Testing(테스트)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Technology(기술)
+  - Web(웹)
+  - Blog(블로그)
+  - Reference(참고)
   - Best-Practices
-  - Education
-  - 교육
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
+  - Education(교육)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
   - Process
-  - Productivity
-  - 생산성
-  - Markdown
-  - 마크다운
+  - Productivity(생산성)
+  - Markdown(마크다운)
   - Node.js
-  - Database
-  - 데이터베이스
-  - Concurrency
-  - 동시성
-  - Async
-  - 비동기
-  - NLP
-  - Prompt-Engineering
-  - 프롬프트엔지니어링
+  - Database(데이터베이스)
+  - Concurrency(동시성)
+  - Async(비동기)
+  - NLP(Natural Language Processing)
+  - Prompt-Engineering(프롬프트엔지니어링)
   - Deep-Dive
   - Case-Study
-  - Comparison
-  - 비교
+  - Comparison(비교)
   - How-To
   - Tips
-  - Configuration
-  - 설정
-  - Workflow
-  - 워크플로우
-  - Deployment
-  - 배포
-  - Debugging
-  - 디버깅
-  - Code-Quality
-  - 코드품질
+  - Configuration(설정)
+  - Workflow(워크플로우)
+  - Deployment(배포)
+  - Debugging(디버깅)
+  - Code-Quality(코드품질)
   - Modularity
-  - Interface
-  - 인터페이스
+  - Interface(인터페이스)
   - State
   - Event-Driven
-  - Clean-Architecture
-  - 클린아키텍처
-  - Microservices
-  - 마이크로서비스
-  - Performance
-  - 성능
+  - Clean-Architecture(클린아키텍처)
+  - Microservices(마이크로서비스)
+  - Performance(성능)
   - Maintainability
-  - Refactoring
-  - 리팩토링
+  - Refactoring(리팩토링)
 ---
 
 LangChain의 생태계에서 LangGraph는 대규모 언어 모델(LLM)을 활용한 애플리케이션 구축을 위한 강력한 프레임워크이다. LangGraph는 복잡한 작업 흐름을 정의하고 실행하는 데 필요한 다양한 기능을 제공하며, 특히 순환 그래프를 통해 에이전트 간의 상호작용을 효율적으로 관리할 수 있다. 이 글에서는 LangGraph의 기본 개념과 주요 기능을 살펴보고, 이를 활용하여 다양한 질문에 답변할 수 있는 시스템을 구축하는 방법을 소개한다. LangGraph는 상태(state) 관리, 에이전트 조정, 인간-인-루프(human-in-the-loop) 상호작용을 지원하여 복잡한 비즈니스 로직 구현에 유용하며, 기존 LangChain 도구와의 통합으로 개발 생산성을 높인다.

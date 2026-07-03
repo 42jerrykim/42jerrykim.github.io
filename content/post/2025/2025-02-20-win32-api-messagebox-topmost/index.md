@@ -6,106 +6,66 @@ categories:
   - Win32
   - Programming
 tags:
-  - Windows
-  - 윈도우
-  - API
-  - Implementation
-  - 구현
-  - Security
-  - 보안
+  - Windows(윈도우)
+  - API(Application Programming Interface)
+  - Implementation(구현)
+  - Security(보안)
   - Process
   - Thread
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Documentation
-  - 문서화
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Documentation(문서화)
   - Best-Practices
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - How-To
   - Tips
-  - Reference
-  - 참고
-  - Technology
-  - 기술
-  - Blog
-  - 블로그
+  - Reference(참고)
+  - Technology(기술)
+  - Blog(블로그)
   - C++
-  - Code-Quality
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
-  - Testing
-  - 테스트
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
-  - Pitfalls
-  - 함정
-  - Clean-Code
-  - 클린코드
-  - IDE
+  - Code-Quality(코드품질)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
+  - Testing(테스트)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Pitfalls(함정)
+  - Clean-Code(클린코드)
+  - IDE(Integrated Development Environment)
   - VSCode
-  - OS
-  - 운영체제
-  - Interface
-  - 인터페이스
-  - Software-Architecture
-  - Design-Pattern
-  - 디자인패턴
-  - Web
-  - 웹
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Open-Source
-  - 오픈소스
-  - Innovation
-  - 혁신
-  - Workflow
-  - 워크플로우
-  - Comparison
-  - 비교
-  - Career
-  - 커리어
-  - Markdown
-  - 마크다운
-  - Review
-  - 리뷰
+  - OS(운영체제)
+  - Interface(인터페이스)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Web(웹)
+  - Productivity(생산성)
+  - Education(교육)
+  - Open-Source(오픈소스)
+  - Innovation(혁신)
+  - Workflow(워크플로우)
+  - Comparison(비교)
+  - Career(커리어)
+  - Markdown(마크다운)
+  - Review(리뷰)
   - Beginner
   - Case-Study
   - Deep-Dive
   - 실습
-  - Refactoring
-  - 리팩토링
+  - Refactoring(리팩토링)
   - Maintainability
   - Modularity
   - Readability
-  - Edge-Cases
-  - 엣지케이스
-  - Logging
-  - 로깅
-  - Backend
-  - 백엔드
-  - Concurrency
-  - 동시성
-  - Compiler
-  - 컴파일러
-  - Embedded
-  - 임베디드
+  - Edge-Cases(엣지케이스)
+  - Logging(로깅)
+  - Backend(백엔드)
+  - Concurrency(동시성)
+  - Compiler(컴파일러)
+  - Embedded(임베디드)
   - Git
   - GitHub
-  - Memory
-  - 메모리
-  - Networking
-  - 네트워킹
+  - Memory(메모리)
+  - Networking(네트워킹)
 description: "Win32 API 환경에서 MessageBox가 최상단에 포커스를 갖지 못하는 문제와 해결 방법을 다룬다. MB_SETFOREGROUND 한계, CBT 후크를 이용한 HWND_TOPMOST 강제 적용, AllowSetForegroundWindow API 활용 등 두 가지 실전 방법을 코드와 함께 소개하고, 적용 시 주의사항과 방법 선택 가이드를 제공한다."
 image: messagebox_02.png
 ---

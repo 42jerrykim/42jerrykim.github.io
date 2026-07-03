@@ -18,7 +18,7 @@ import yaml
 TITLE_MAX = 70
 DESC_MIN = 120
 DESC_MAX = 170
-TAGS_MIN = 50
+TAGS_MIN = 25
 
 FRONTMATTER_RE = re.compile(r"^---\r?\n(.*?)\r?\n---\r?\n", re.DOTALL)
 TITLE_RE = re.compile(r'^title:\s*"?(.*?)"?\s*$', re.MULTILINE)
@@ -137,7 +137,7 @@ def main():
             print(f"::warning file={path}::{msg} (기존 글 수정 — 경고만, 신규 글만 강제)")
 
     if hard_fail:
-        print("\n신규 콘텐츠 파일의 frontmatter가 필수 규칙(title<=70자, tags>=50개)을 위반했습니다.")
+        print("\n신규 콘텐츠 파일의 frontmatter가 필수 규칙(title<=70자, tags>=25개)을 위반했습니다.")
         sys.exit(1)
 
     print(f"frontmatter 린트 통과 (added={len(added)}, modified={len(modified)}).")

@@ -12,12 +12,9 @@ tags:
   - whisk
   - 영단어
   - 영어동사
-  - Collocation
-  - 콜로케이션
-  - Nuance
-  - 뉘앙스
-  - Context
-  - 맥락
+  - Collocation(콜로케이션)
+  - Nuance(뉘앙스)
+  - Context(맥락)
   - sweep
   - hurry
   - rush
@@ -33,7 +30,7 @@ tags:
   - baking
   - news
   - travel
-  - Security
+  - Security(보안)
   - 재빨리 데려가다
   - 휘젓다
   - 휙 움직이다
@@ -43,20 +40,18 @@ tags:
   - 요리 용어
   - 베이킹 용어
   - 뉴스 표현
-  - 일상표현
+  - Daily-Life(일상표현)
   - 신속한 동작
   - 순간적 움직임
   - Usage-Notes
-  - Grammar
-  - Pronunciation
+  - Grammar(문법)
+  - Pronunciation(발음)
   - EN-KR-Examples
   - Phrasal-Verb
   - whisk away
   - whisk off
   - whisk up
-  - 문법
-  - Etymology
-  - 어원
+  - Etymology(어원)
 image: "wordcloud.png"
 ---
 

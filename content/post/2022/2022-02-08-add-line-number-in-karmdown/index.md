@@ -8,48 +8,32 @@ header:
 title: "[Jekyll] Kramdown 코드 블록에 줄 번호 표시하기"
 tags:
   - Jekyll
-  - Markdown
-  - 마크다운
+  - Markdown(마크다운)
   - Kramdown
   - Rouge
-  - Configuration
-  - 설정
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Blog
-  - 블로그
-  - Web
-  - 웹
-  - Documentation
-  - 문서화
+  - Configuration(설정)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Blog(블로그)
+  - Web(웹)
+  - Documentation(문서화)
   - How-To
   - Tips
   - Best-Practices
-  - Code-Quality
-  - 코드품질
+  - Code-Quality(코드품질)
   - Readability
-  - Productivity
-  - 생산성
-  - Open-Source
-  - 오픈소스
-  - Troubleshooting
-  - 트러블슈팅
-  - Reference
-  - 참고
+  - Productivity(생산성)
+  - Open-Source(오픈소스)
+  - Troubleshooting(트러블슈팅)
+  - Reference(참고)
   - GitHub
   - Git
-  - CSS
-  - HTML
-  - Technology
-  - 기술
-  - Education
-  - 교육
-  - Comparison
-  - 비교
-  - Workflow
-  - 워크플로우
+  - CSS(Cascading Style Sheets)
+  - HTML(HyperText Markup Language)
+  - Technology(기술)
+  - Education(교육)
+  - Comparison(비교)
+  - Workflow(워크플로우)
   - Beginner
   - 실습
   - Syntax-Highlighting
@@ -57,17 +41,15 @@ tags:
   - Liquid
   - Static-Site
   - 정적사이트
-  - YAML
-  - Frontend
-  - 프론트엔드
+  - YAML(YAML Ain't Markup Language)
+  - Frontend(프론트엔드)
   - Developer-Experience
   - 개발자경험
   - Minimal-Mistakes
   - 테마
   - Theme
   - GitHub-Pages
-  - 배포
-  - Deployment
+  - Deployment(배포)
   - 가독성
   - 코드블록
   - Code-Block
@@ -90,7 +72,6 @@ tags:
   - 도구
   - Tool
   - 환경설정
-  - 환경
   - Environment
   - 옵션
   - Option
@@ -142,7 +123,7 @@ tags:
   - Custom
   - 개선
   - Improvement
-  - 최적화
+  - Optimization(최적화)
   - 최적
   - 활용
   - 활용법

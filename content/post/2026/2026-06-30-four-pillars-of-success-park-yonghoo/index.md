@@ -30,47 +30,30 @@ tags:
   - 인사이트
   - Life-Design
   - 인생설계
-  - Career
-  - 커리어
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Networking
-  - 네트워킹
-  - Psychology
-  - 심리학
-  - AI
-  - 인공지능
-  - LLM
-  - GPT
-  - Machine-Learning
-  - 머신러닝
-  - Innovation
-  - 혁신
-  - Workflow
-  - 워크플로우
-  - Culture
-  - 문화
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
+  - Career(커리어)
+  - Productivity(생산성)
+  - Education(교육)
+  - Networking(네트워킹)
+  - Psychology(심리학)
+  - AI(인공지능)
+  - LLM(Large Language Model)
+  - GPT(Generative Pre-trained Transformer)
+  - Machine-Learning(머신러닝)
+  - Innovation(혁신)
+  - Workflow(워크플로우)
+  - Culture(문화)
+  - Review(리뷰)
+  - Technology(기술)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
+  - Comparison(비교)
+  - Reference(참고)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
   - Case-Study
   - Deep-Dive
   - 실습
-  - Conference
-  - 컨퍼런스
+  - Conference(컨퍼런스)
 image: "wordcloud.png"
 ---
 

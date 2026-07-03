@@ -6,29 +6,21 @@ lastmod: 2026-01-17
 collection_order: 7
 draft: true
 tags:
-  - UML
-  - Composition
-  - 합성
-  - Inheritance
-  - 상속
-  - Interface
-  - 인터페이스
-  - Dependency-Injection
-  - Software-Architecture
-  - 응집도
-  - 결합도
-  - OOP
-  - Encapsulation
-  - 캡슐화
-  - Abstraction
-  - 추상화
+  - UML(Unified Modeling Language)
+  - Composition(합성)
+  - Inheritance(상속)
+  - Interface(인터페이스)
+  - Dependency-Injection(의존성주입)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Cohesion(응집도)
+  - Coupling(결합도)
+  - OOP(객체지향)
+  - Encapsulation(캡슐화)
+  - Abstraction(추상화)
   - SOLID
-  - Refactoring
-  - 리팩토링
-  - Testing
-  - Documentation
-  - 문서화
-  - 소프트웨어아키텍처
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Documentation(문서화)
 ---
 
 # 07. 클래스 다이어그램과 관계 모델링

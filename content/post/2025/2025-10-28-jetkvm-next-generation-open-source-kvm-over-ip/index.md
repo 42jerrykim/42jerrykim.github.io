@@ -7,84 +7,52 @@ categories:
   - Remote Access
   - Open Source
 tags:
-  - Hardware
-  - 하드웨어
-  - Open-Source
-  - 오픈소스
+  - Hardware(하드웨어)
+  - Open-Source(오픈소스)
   - Go
   - React
-  - Linux
-  - 리눅스
-  - Review
-  - 리뷰
-  - Performance
-  - 성능
-  - API
-  - Web
-  - 웹
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Technology
-  - 기술
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
-  - Documentation
-  - 문서화
+  - Linux(리눅스)
+  - Review(리뷰)
+  - Performance(성능)
+  - API(Application Programming Interface)
+  - Web(웹)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Technology(기술)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
+  - Documentation(문서화)
   - Best-Practices
-  - Innovation
-  - 혁신
-  - Security
-  - 보안
-  - Privacy
-  - 프라이버시
-  - Networking
-  - 네트워킹
-  - Automation
-  - 자동화
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Reference
-  - 참고
+  - Innovation(혁신)
+  - Security(보안)
+  - Privacy(프라이버시)
+  - Networking(네트워킹)
+  - Automation(자동화)
+  - Productivity(생산성)
+  - Education(교육)
+  - Reference(참고)
   - Git
   - GitHub
-  - CI-CD
-  - Keyboard
-  - 키보드
-  - Backend
-  - 백엔드
-  - Frontend
-  - 프론트엔드
-  - Deployment
-  - 배포
-  - Monitoring
-  - 모니터링
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Keyboard(키보드)
+  - Backend(백엔드)
+  - Frontend(프론트엔드)
+  - Deployment(배포)
+  - Monitoring(모니터링)
   - DevOps
-  - Embedded
-  - 임베디드
-  - Self-Hosted
-  - 셀프호스팅
-  - Gadget
-  - 가젯
-  - Comparison
-  - 비교
+  - Embedded(임베디드)
+  - Self-Hosted(셀프호스팅)
+  - Gadget(가젯)
+  - Comparison(비교)
   - Case-Study
   - Deep-Dive
   - How-To
   - Tips
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - CSS
-  - Memory
-  - Terminal
-  - 터미널
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - CSS(Cascading Style Sheets)
+  - Memory(메모리)
+  - Terminal(터미널)
   - Beginner
   - Advanced
 description: "JetKVM은 1080p 60FPS·30~60ms 초저지연, H.264·WebRTC 기반 오픈소스 KVM over IP다. Golang·React·Buildroot로 구축되었고, Kickstarter 600만 달러·GitHub 4K+ 스타를 기록했다. 데이터센터·홈랩·원격 트러블슈팅에 적합한 차세대 원격 제어 솔루션으로, 확장 보드와 선택적 클라우드로 유연하게 활용할 수 있다."

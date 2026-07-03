@@ -7,115 +7,71 @@ categories:
   - AI
   - OpenSource
 tags:
-  - AI
-  - 인공지능
-  - Machine-Learning
-  - 머신러닝
-  - Deep-Learning
-  - 딥러닝
-  - NLP
-  - Open-Source
-  - 오픈소스
+  - AI(인공지능)
+  - Machine-Learning(머신러닝)
+  - Deep-Learning(딥러닝)
+  - NLP(Natural Language Processing)
+  - Open-Source(오픈소스)
   - Python
-  - 파이썬
   - Docker
-  - Blog
-  - 블로그
-  - Technology
-  - 기술
-  - Tutorial
-  - 가이드
-  - Guide
-  - Review
-  - 리뷰
-  - Documentation
-  - 문서화
+  - Blog(블로그)
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Review(리뷰)
+  - Documentation(문서화)
   - Best-Practices
-  - Reference
-  - 참고
-  - Comparison
-  - 비교
+  - Reference(참고)
+  - Comparison(비교)
   - How-To
   - Tips
-  - Productivity
-  - 생산성
-  - Education
-  - 교육
-  - Innovation
-  - 혁신
-  - Troubleshooting
-  - 트러블슈팅
-  - Configuration
-  - 설정
+  - Productivity(생산성)
+  - Education(교육)
+  - Innovation(혁신)
+  - Troubleshooting(트러블슈팅)
+  - Configuration(설정)
   - GitHub
-  - Implementation
-  - 구현
-  - Web
-  - 웹
-  - API
-  - Performance
-  - 성능
-  - Optimization
-  - 최적화
+  - Implementation(구현)
+  - Web(웹)
+  - API(Application Programming Interface)
+  - Performance(성능)
+  - Optimization(최적화)
   - Git
-  - Linux
-  - 리눅스
-  - Automation
-  - 자동화
-  - Deployment
-  - 배포
-  - Backend
-  - 백엔드
-  - Data-Science
-  - 데이터사이언스
-  - Software-Architecture
-  - Design-Pattern
-  - Clean-Code
-  - Refactoring
-  - 리팩토링
-  - Markdown
-  - 마크다운
-  - Workflow
-  - 워크플로우
-  - Migration
-  - 마이그레이션
-  - Privacy
-  - 프라이버시
-  - Self-Hosted
-  - 셀프호스팅
+  - Linux(리눅스)
+  - Automation(자동화)
+  - Deployment(배포)
+  - Backend(백엔드)
+  - Data-Science(데이터사이언스)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Design-Pattern(디자인패턴)
+  - Clean-Code(클린코드)
+  - Refactoring(리팩토링)
+  - Markdown(마크다운)
+  - Workflow(워크플로우)
+  - Migration(마이그레이션)
+  - Privacy(프라이버시)
+  - Self-Hosted(셀프호스팅)
   - Beginner
   - Case-Study
-  - Terminal
-  - 터미널
+  - Terminal(터미널)
   - Hugo
   - Neural-Network
-  - Security
-  - 보안
-  - Testing
-  - 테스트
-  - Code-Quality
-  - 코드품질
-  - Caching
-  - 캐싱
-  - Async
-  - 비동기
-  - Concurrency
-  - 동시성
-  - Monitoring
-  - 모니터링
+  - Security(보안)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
+  - Caching(캐싱)
+  - Async(비동기)
+  - Concurrency(동시성)
+  - Monitoring(모니터링)
   - DevOps
-  - CI-CD
-  - Debugging
-  - 디버깅
-  - Error-Handling
-  - 에러처리
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Debugging(디버깅)
+  - Error-Handling(에러처리)
   - Modularity
-  - Interface
-  - 인터페이스
+  - Interface(인터페이스)
   - Type-Safety
   - Maintainability
-  - Scalability
-  - 확장성
+  - Scalability(확장성)
 image: "wordcloud.png"
 ---
 

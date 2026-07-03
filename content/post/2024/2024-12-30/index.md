@@ -5,8 +5,8 @@ categories:
 - ComputerArchitecture
 - VirtualMachines
 tags:
-- Implementation
-- Tutorial
+- Implementation(구현)
+- Tutorial(튜토리얼)
 image: "wordcloud.png"
 date: 2024-12-30
 draft: true

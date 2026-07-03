@@ -12,11 +12,10 @@ categories:
 - Performance Optimization
 - Memory Management
 tags:
-- Design-Pattern
-- Memory
+- Design-Pattern(디자인패턴)
+- Memory(메모리)
 - SOLID
-- GoF
-- 디자인패턴
+- GoF(Gang of Four)
 ---
 
 Bridge와 Flyweight 패턴을 통해 분리와 효율성의 철학을 탐구합니다. 변화의 축을 분리하고, 공유를 통해 메모리 효율성을 극대화하는 방법을 학습합니다.

@@ -5,91 +5,59 @@ lastmod: 2026-03-17
 categories:
   - Tool
 tags:
-  - Keyboard
-  - 키보드
+  - Keyboard(키보드)
   - Rust
-  - Linux
-  - 리눅스
-  - Windows
-  - 윈도우
+  - Linux(리눅스)
+  - Windows(윈도우)
   - macOS
-  - Shell
-  - 셸
+  - Shell(셸)
   - PowerShell
   - Bash
   - Git
   - GitHub
-  - Open-Source
-  - 오픈소스
-  - Productivity
-  - 생산성
-  - Tutorial
-  - 튜토리얼
-  - Guide
-  - 가이드
-  - Configuration
-  - 설정
-  - Troubleshooting
-  - 트러블슈팅
-  - Workflow
-  - 워크플로우
-  - Review
-  - 리뷰
-  - Technology
-  - 기술
+  - Open-Source(오픈소스)
+  - Productivity(생산성)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Configuration(설정)
+  - Troubleshooting(트러블슈팅)
+  - Workflow(워크플로우)
+  - Review(리뷰)
+  - Technology(기술)
   - How-To
   - Tips
-  - Comparison
-  - 비교
-  - Reference
-  - 참고
+  - Comparison(비교)
+  - Reference(참고)
   - Best-Practices
-  - Documentation
-  - 문서화
-  - Performance
-  - 성능
-  - Automation
-  - 자동화
-  - Hardware
-  - 하드웨어
-  - Blog
-  - 블로그
-  - Markdown
-  - 마크다운
-  - Education
-  - 교육
-  - Innovation
-  - 혁신
-  - Implementation
-  - 구현
-  - Clean-Code
-  - 클린코드
-  - IDE
+  - Documentation(문서화)
+  - Performance(성능)
+  - Automation(자동화)
+  - Hardware(하드웨어)
+  - Blog(블로그)
+  - Markdown(마크다운)
+  - Education(교육)
+  - Innovation(혁신)
+  - Implementation(구현)
+  - Clean-Code(클린코드)
+  - IDE(Integrated Development Environment)
   - VSCode
   - Vim
-  - Terminal
-  - 터미널
+  - Terminal(터미널)
   - DevOps
-  - Deployment
-  - 배포
-  - Testing
-  - 테스트
-  - Code-Quality
-  - 코드품질
+  - Deployment(배포)
+  - Testing(테스트)
+  - Code-Quality(코드품질)
   - Beginner
   - Advanced
   - Case-Study
   - Deep-Dive
   - 실습
-  - Career
-  - 커리어
-  - Debugging
-  - 디버깅
+  - Career(커리어)
+  - Debugging(디버깅)
   - Maintainability
   - Readability
   - Modularity
-  - Software-Architecture
-  - 소프트웨어아키텍처
+  - Software-Architecture(소프트웨어아키텍처)
 image: "image.png"
 description: "Kanata는 Rust로 작성된 멀티플랫폼 키보드 리매퍼로, 다중 레이어·tap-hold·복합키·매크로를 지원합니다. Windows·Linux·macOS에서 동일 설정으로 사용 가능하며, 텍스트 설정 파일 기반으로 커스터마이징과 공유가 쉽습니다. 설치 방법·기본 설정·활용 시나리오를 정리했습니다."
 ---

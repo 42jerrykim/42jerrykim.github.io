@@ -69,7 +69,7 @@ WebSearch 결과에서 유용한 URL을 선별하여 방문한다.
 1. 터미널에서 오늘 날짜 확인: `Get-Date -Format "yyyy-MM-dd"`
 2. [`movies-collection-rules.md`](movies-collection-rules.md)의 폴더명 규칙과 Front Matter 템플릿을 따른다
 3. `draft: true` 필수
-4. tags 50개 이상 (영어+한글 쌍)
+4. tags 25개 이상 (`data/tags.yaml` 승인 태그, 병용 개념은 Tag(태그) 형식)
 5. 대상 영화 및 **추천·인용할 타 작품**의 한글 제목을 네이버 영화·KOFIC·한글 위키 등에서 확인해, [`movies-collection-rules.md`](movies-collection-rules.md)의 「본문·추천 작품의 한국어 제목」에 맞게 메모해 둔다.
 
 ### Step 5: 본문 작성

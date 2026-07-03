@@ -9,53 +9,32 @@ categories:
   - Marvel
   - Superhero
 tags:
-  - Movie
-  - Action
-  - 영화
-  - Review
-  - 리뷰
-  - Tree
-  - Sci-Fi
-  - LLM
-  - AI
+  - Movie(영화)
+  - Action(액션)
+  - Review(리뷰)
+  - Tree(트리)
+  - Sci-Fi(Science Fiction)
+  - LLM(Large Language Model)
+  - AI(인공지능)
   - Drama
-  - Thriller
-  - 스릴러
-  - 액션
-  - Animation
-  - 애니메이션
-  - Comedy
-  - 코미디
-  - Fantasy
-  - 판타지
-  - Romance
-  - 로맨스
-  - Gaming
-  - 게임
-  - TV-Show
-  - 드라마
-  - Cinematography
-  - 촬영기법
-  - Soundtrack
-  - 사운드트랙
-  - Family
-  - 가족
-  - Biography
-  - 전기영화
-  - Visual-Effects
-  - 시각효과
-  - Documentary
-  - 다큐멘터리
-  - Crime
-  - 범죄
-  - Mystery
-  - 미스터리
-  - War
-  - 전쟁
-  - Adventure
-  - 모험
-  - Horror
-  - 공포
+  - Thriller(스릴러)
+  - Animation(애니메이션)
+  - Comedy(코미디)
+  - Fantasy(판타지)
+  - Romance(로맨스)
+  - Gaming(게임)
+  - TV-Show(드라마)
+  - Cinematography(촬영기법)
+  - Soundtrack(사운드트랙)
+  - Family(가족)
+  - Biography(전기영화)
+  - Visual-Effects(시각효과)
+  - Documentary(다큐멘터리)
+  - Crime(범죄)
+  - Mystery(미스터리)
+  - War(전쟁)
+  - Adventure(모험)
+  - Horror(공포)
   - 2020s
   - 2010s
   - 2000s

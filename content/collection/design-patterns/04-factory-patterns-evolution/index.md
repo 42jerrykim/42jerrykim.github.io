@@ -12,13 +12,11 @@ categories:
 - Factory Patterns
 - Object Creation
 tags:
-- Design-Pattern
-- GoF
-- Dependency-Injection
-- Software-Architecture
+- Design-Pattern(디자인패턴)
+- GoF(Gang of Four)
+- Dependency-Injection(의존성주입)
+- Software-Architecture(소프트웨어아키텍처)
 - SOLID
-- 디자인패턴
-- 소프트웨어아키텍처
 ---
 
 Simple Factory부터 Abstract Factory까지, Factory 패턴군의 진화 과정을 탐구합니다. 객체 생성의 복잡성을 어떻게 캡슐화하고, 유연한 시스템을 구축하는지 학습합니다.
