@@ -16,12 +16,15 @@ param(
     [switch]$Pagefind
 )
 
+# PowerShell 출력 인코딩을 UTF-8로 설정 (한글 표시용)
+$OutputEncoding = [System.Text.UTF8Encoding]::new($false)
+
 # --- Windows Defender 제외 확인 ---
 # Hugo 공식 문서: Defender가 빌드 시간을 400% 이상 증가시킬 수 있음
 $hugoCmd = Get-Command hugo -ErrorAction SilentlyContinue
 if ($hugoCmd) {
     $hugoPath = $hugoCmd.Source
-    try { 
+    try {
         $defenderExclusions = @((Get-MpPreference).ExclusionProcess)
         if ("hugo.exe" -notin $defenderExclusions -and $hugoPath -notin $defenderExclusions) {
             Write-Host "[성능 경고] hugo.exe가 Windows Defender 제외 목록에 없습니다." -ForegroundColor Red
