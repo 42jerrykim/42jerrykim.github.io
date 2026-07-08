@@ -298,6 +298,8 @@ flowchart TD
 | ooad | 주제별 | — |
 | android-hardware-development | 주제별 | — |
 
+> `전용 스킬: —`인 시리즈형·커리큘럼형 컬렉션(예: design-patterns, cleanarchitecture, optimization-00-series-overview~12)은 [`educational-content-writing`](../educational-content-writing/SKILL.md)을 기본 적용 대상으로 한다.
+
 ## 일반 포스트(`content/post/`) 성격별 전용 스킬 (참고)
 
 컬렉션에 속하지 않는 자유 주제 글은 아래 성격 분류에 따라 전용 스킬을 함께 적용한다. 실제 파일 이동 없이(폴더 구분 없음) 주제 성격만으로 판단한다.
