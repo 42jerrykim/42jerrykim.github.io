@@ -37,7 +37,7 @@ tags:
   - Benchmark
   - Security(보안)
 image: wordcloud.png
-draft: true
+draft: false
 ---
 
 Claude Code 플러그인 마켓플레이스에는 2026년 7월 기준 "딥리서치"를 표방하는 프로젝트가 최소 6종 있다. 저마다 "타사 대비 압도적"이라고 홍보하지만, 정작 API 키 요구 여부·라이선스·실사용 중 파이프라인이 멈추는지 같은 실무 질문에는 대답이 별로 없다. 이 글은 [insane-research](https://github.com/fivetaku/insane-research), [claude-deep-research-skill](https://github.com/199-biotechnologies/claude-deep-research-skill)(199-biotechnologies), [Deep-Research-skills](https://github.com/Weizhena/Deep-Research-skills)(Weizhena), [hyperresearch](https://github.com/jordan-gibbs/hyperresearch)(Jordan Gibbs), [deep-research](https://github.com/daymade/claude-code-skills/blob/main/deep-research/SKILL.md)(daymade), [deep-research-plugin](https://github.com/Defiect/deep-research-plugin)(Defiect) 6종을 GitHub API 통계·이슈 트래커·Hacker News·X/Threads에서 직접 조사하고, insane-research의 claim ledger 검증 게이트로 "타사 대비 우위" 주장 자체를 검증해봤다.
