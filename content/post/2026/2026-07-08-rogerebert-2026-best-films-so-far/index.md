@@ -3,7 +3,7 @@ title: "[Movie] 순위 없는 '2026 상반기 20편' — RogerEbert 리스트와
 description: "2026년 6월 RogerEbert.com이 발행한 순위 없는 상반기 20편 리스트를 통해, Obsession·Backrooms 두 초저예산 인디 호러가 합쳐 7억 달러 넘게 벌어들인 흥행 데이터와 순위 없는 결산 포맷이 말해주는 비평·산업 신호의 간극을 짚었다."
 date: 2026-07-08
 lastmod: 2026-07-08
-draft: true
+draft: false
 categories:
   - Movie
   - Culture
