@@ -1,7 +1,7 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 09. 이벤트 아키텍처 I: Reactor"
-description: "단일 스레드에서 여러 이벤트 소스를 효율적으로 처리하는 Reactor 패턴을 학습합니다."
+description: "단일 스레드에서 여러 이벤트 소스를 효율적으로 처리하는 Reactor 패턴을 학습합니다. select/poll/epoll의 차이를 비교하고, 컴파일 가능한 poll() 기반 이벤트 루프를 직접 구현·검증하며 Windows IOCP와도 비교합니다."
 date: 2026-06-19
 lastmod: 2026-07-09
 draft: false
@@ -26,6 +26,15 @@ tags:
   - Server
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Concurrency(동시성)
+  - Thread
+  - IO(Input/Output)
+  - Backend(백엔드)
+  - Scalability(확장성)
+  - Best-Practices
+  - Deep-Dive
+  - Testing(테스트)
 slug: cpp-reactor-event-driven-single-thread
 ---
 

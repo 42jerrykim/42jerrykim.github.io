@@ -1,7 +1,7 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 02. 락 관용구"
-description: "RAII 기반 Scoped Locking, Strategized Locking, Thread-Safe Interface 패턴을 구현하고, 자기 데드락과 인터페이스 위반을 코드로 재현 후 고치는 장입니다."
+description: "RAII 기반 Scoped Locking, Strategized Locking, Thread-Safe Interface 패턴을 구현하고, 자기 데드락과 인터페이스 위반을 코드로 재현 후 고치는 장입니다. hierarchical mutex로 락 순서 위반도 실시간 검출합니다."
 date: 2026-06-12
 lastmod: 2026-07-09
 draft: false

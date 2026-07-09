@@ -1,7 +1,7 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 10. 이벤트 아키텍처 II: Proactor와 Half-Sync/Half-Async"
-description: "비동기 I/O (Proactor), 멀티스레드 이벤트 처리, 그리고 동기/비동기 경계를 관리하는 Half-Sync/Half-Async 패턴을 학습합니다."
+description: "비동기 I/O(Proactor), 멀티스레드 이벤트 처리, 동기/비동기 경계를 관리하는 Half-Sync/Half-Async 패턴을 학습합니다. io_uring·IOCP 비교와 이벤트 루프의 블로킹 함정도 함께 다룹니다."
 date: 2026-06-20
 lastmod: 2026-07-09
 draft: false
@@ -22,6 +22,19 @@ tags:
   - Async(비동기)
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Concurrency(동시성)
+  - Thread
+  - Mutex
+  - Condition-Variable
+  - IO(Input/Output)
+  - Backend(백엔드)
+  - Scalability(확장성)
+  - Best-Practices
+  - Deep-Dive
+  - Testing(테스트)
+  - Reference(참고)
+  - Software-Architecture(소프트웨어아키텍처)
 slug: cpp-proactor-async-io-half-sync-half-async
 ---
 
