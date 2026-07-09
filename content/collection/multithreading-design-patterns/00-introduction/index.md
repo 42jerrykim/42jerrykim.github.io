@@ -2,7 +2,7 @@
 image: wordcloud.png
 collection_order: 0
 date: 2026-06-10
-lastmod: 2026-06-11
+lastmod: 2026-07-09
 draft: false
 title: "[Concurrency Patterns] 00. 멀티스레딩 디자인 패턴 시리즈 소개와 커리큘럼"
 slug: getting-started-multithreading-design-patterns
@@ -133,7 +133,7 @@ int main() {
 
 - **성능 정량 분석**: mutex vs spinlock 비용 측정, false sharing, lock-free 자료구조의 벤치마크는 [Low-latency 동시성·멀티스레드 트랙](/post/concurrency-optimization/getting-started-concurrency-multithreading-performance-tuning/)이 담당한다. 이 시리즈에서 구조를 익히고, 그 트랙에서 비용을 측정하면 두 관점이 맞물린다.
 - **GoF 패턴 전반**: Singleton·Observer·Command 등 GoF 23패턴의 일반론은 [디자인 패턴 마스터 시리즈의 동시성·분산 챕터](/post/design-patterns/19-concurrency-distributed-patterns/)를 포함한 해당 컬렉션이 다룬다. 여기서는 GoF 패턴이 멀티스레드 환경에서 어떻게 변형되는지(예: Singleton의 DCLP 문제)만 교차점으로 다룬다.
-- **OS 커널·스케줄러 내부**와 **C++20 코루틴 기반 비동기 모델**: 전자는 운영체제 영역이고, 후자는 그 자체로 별도 시리즈가 필요한 주제라 마지막 챕터에서 전망만 제시한다.
+- **OS 커널·스케줄러 내부**, **C++20 코루틴 기반 비동기 모델**, **std::execution(senders/receivers, C++26)**: 첫째는 운영체제 영역이고, 나머지 둘은 마지막 챕터에서 전망만 제시한다. 코루틴은 그 자체로 별도 시리즈가 필요한 주제이고, std::execution은 2026년 3월 Croydon 총회에서 C++26 표준 채택이 확정됐지만 이 글을 쓰는 시점까지 GCC·Clang·MSVC 표준 라이브러리 어디에도 구현되지 않아 "컴파일 가능한 구현 + ThreadSanitizer 검증"이라는 이 시리즈의 원칙과 아직 맞지 않는다. 컴파일러 지원이 성숙하면 별도 챕터나 후속 시리즈의 후보다.
 
 ## 패턴 계보: POSA2에서 모던 C++까지
 
@@ -155,6 +155,8 @@ flowchart TD
     williamsBook --> thisSeries
 ```
 
+이 계보는 2026년 현재도 닫히지 않았다. C++26 표준(2026년 3월 Croydon 총회에서 확정)은 Meta의 folly 라이브러리에서 실전 검증된 **Hazard Pointer(P2530)**와 **RCU(P2545)**를 표준 라이브러리에 편입시켰고, 이는 11장이 다루는 "공유 회피" 전략의 최신 표준 도구로 직접 이어진다. 같은 C++26에 채택된 **std::execution**(senders/receivers, P2300)은 Nathaniel J. Smith가 제안한 구조적 동시성(structured concurrency) 개념의 C++판 구현이지만, 앞서 밝힌 대로 컴파일러 구현이 아직 없어 이 시리즈의 범위 밖에 둔다(다루지 않는 것 참고).
+
 ## 커리큘럼
 
 커리큘럼은 네 단계로 올라간다. **기초(01)**에서 메모리 모델과 데이터 레이스라는 공통 어휘를 만들고, **락 관용구와 대기 구조(02~05)**에서 단일 객체를 안전하게 만드는 패턴을 익힌다. 그 위에서 **데이터 흐름과 실행 관리(04, 06~08)**로 스레드 사이의 협력을 설계하고, 마지막으로 **아키텍처 패턴(09~10)**과 **공유 회피 전략(11)**으로 시스템 수준의 그림을 완성한다. 각 단계는 앞 단계의 어휘를 전제하므로 순서대로 읽는 것을 기본으로 한다.
@@ -171,7 +173,7 @@ flowchart TD
 | 08 | 비동기 객체 | Active Object | 심화 | POSA2 |
 | 09 | 이벤트 아키텍처 I | Reactor, Proactor, 이벤트 디멀티플렉싱 | 심화 | POSA2 |
 | 10 | 이벤트 아키텍처 II | Half-Sync/Half-Async, Leader/Followers | 심화 | POSA2 |
-| 11 | 공유 회피 | Immutable, Copy-on-Write, Thread-Specific Storage(`thread_local`), Lock-Free 전망 | 심화 | JCiP, POSA2 |
+| 11 | 공유 회피 | Immutable, Copy-on-Write, Thread-Specific Storage(`thread_local`), Hazard Pointer·RCU(C++26 표준화) 개관 | 심화 | JCiP, POSA2, P2530/P2545 |
 
 이 순서를 두는 이유는 패턴 간 **개념 의존성** 때문이다. 01의 메모리 모델 없이 05의 DCLP를 읽으면 "왜 이중 검사가 깨지는가"를 끝내 납득할 수 없고, 03의 condition_variable 대기 구조 없이 04의 Blocking Queue를 보면 spurious wakeup 처리가 주술처럼 보인다. 08의 Active Object는 04의 큐와 07의 future를 조립한 종합 패턴이며, 09~10의 서버 아키텍처는 그 모든 부품 위에 선다. 거꾸로 말해 급한 독자가 06(Thread Pool)부터 펼치는 것 자체는 막지 않지만, 구현 중 막히는 지점은 거의 확실히 01~03의 어휘 부족에서 온다.
 
