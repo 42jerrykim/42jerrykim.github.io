@@ -1,7 +1,7 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 11. 공유 회피"
-description: "공유 상태를 애초에 없애는 전략: Immutable 패턴, Copy-on-Write, thread_local, 그리고 lock-free 자료구조의 전망을 다룹니다."
+description: "공유 상태를 애초에 없애는 전략을 다룹니다. Immutable 패턴, Copy-on-Write, thread_local로 공유를 회피하고, SPSC Lock-Free 큐를 직접 구현합니다. 메모리 회수 심화는 13장에서 이어집니다."
 date: 2026-06-21
 lastmod: 2026-07-09
 draft: false
@@ -24,6 +24,17 @@ tags:
   - Implementation(구현)
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Thread
+  - Mutex
+  - Memory(메모리)
+  - Memory-Order
+  - Software-Architecture(소프트웨어아키텍처)
+  - Best-Practices
+  - Deep-Dive
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Reference(참고)
 slug: cpp-avoiding-shared-state-immutable-cow-thread-local
 ---
 
