@@ -3,7 +3,7 @@ image: wordcloud.png
 title: "[Concurrency Patterns] 02. 락 관용구"
 description: "RAII 기반 Scoped Locking, Strategized Locking, Thread-Safe Interface 패턴을 구현하고, 자기 데드락과 인터페이스 위반을 코드로 재현 후 고치는 장입니다."
 date: 2026-06-12
-lastmod: 2026-06-13
+lastmod: 2026-07-09
 draft: false
 collection_order: 2
 categories:
@@ -237,6 +237,11 @@ public:
         }
     }
 
+    void deposit(int amount) {
+        std::lock_guard<std::mutex> lock(mu);
+        balance += amount;
+    }
+
     // 위험한 호출 패턴:
     void unsafeTransfer(Account& other, int amount) {
         if (canWithdraw(amount)) {  // (1) unlock
@@ -267,6 +272,10 @@ private:
         }
     }
 
+    void deposit_unlocked(int amount) {
+        balance += amount;
+    }
+
 public:
     // Public: 사용자가 호출, 내부에서 락 획득
     int getBalance() const {
@@ -290,8 +299,7 @@ public:
 
         if (this->getBalance_unlocked() >= amount) {
             this->withdraw_unlocked(amount);
-            other.getBalance_unlocked();  // 읽으려면 _unlocked 호출
-            // other.balance += amount; 대신 other의 내부 메서드 쓰기
+            other.deposit_unlocked(amount);  // other도 이미 잠겨 있으므로 _unlocked로 직접 갱신
         }
     }
 };

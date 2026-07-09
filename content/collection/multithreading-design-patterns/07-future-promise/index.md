@@ -3,7 +3,7 @@ image: wordcloud.png
 title: "[Concurrency Patterns] 07. 실행 관리 II: Future와 Promise"
 description: "std::future, std::promise, std::async, std::packaged_task로 비동기 작업의 결과와 예외를 안전하게 전달하는 법을 다룹니다. launch policy의 함정과 Thread Pool 결합 패턴도 포함합니다."
 date: 2026-06-17
-lastmod: 2026-06-18
+lastmod: 2026-07-09
 draft: false
 collection_order: 7
 categories:
@@ -67,7 +67,9 @@ slug: cpp-future-promise-async-packaged-task
 **Future**: 미래의 값을 받는 쪽
 
 ```cpp
+#include <chrono>
 #include <future>
+#include <iostream>
 #include <thread>
 
 int main() {
@@ -98,7 +100,10 @@ int main() {
 `std::async`는 Promise/Future를 직접 다루지 않고, 함수를 비동기로 실행하고 결과의 Future를 반환한다.
 
 ```cpp
+#include <chrono>
 #include <future>
+#include <iostream>
+#include <thread>
 
 int compute() {
     std::this_thread::sleep_for(std::chrono::seconds(1));

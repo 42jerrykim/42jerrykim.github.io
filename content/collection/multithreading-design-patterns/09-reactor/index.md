@@ -3,7 +3,7 @@ image: wordcloud.png
 title: "[Concurrency Patterns] 09. 이벤트 아키텍처 I: Reactor"
 description: "단일 스레드에서 여러 이벤트 소스를 효율적으로 처리하는 Reactor 패턴을 학습합니다."
 date: 2026-06-19
-lastmod: 2026-06-20
+lastmod: 2026-07-09
 draft: false
 collection_order: 9
 categories:
@@ -123,13 +123,15 @@ public:
 ```cpp
 // reactor_poll.cpp
 // 빌드: g++ -std=c++20 -pthread -Wall -Wextra -O2 reactor_poll.cpp -o reactor_poll
+#include <cerrno>
+#include <cstdio>
+#include <cstring>
 #include <iostream>
 #include <map>
 #include <functional>
 #include <vector>
 #include <poll.h>
 #include <unistd.h>
-#include <cstring>
 
 class PollReactor {
 public:
@@ -289,7 +291,7 @@ for (int i = 0; i < n; ++i) {
 
 ### Windows에서는?
 
-Windows에는 `epoll`이 없다. `select`는 지원되지만 `FD_SETSIZE` 제한과 성능 문제가 동일하게 존재하고, `poll`에 대응하는 `WSAPoll`은 있지만 널리 쓰이지 않는다. Windows의 표준 답은 **IOCP(I/O Completion Port)**인데, IOCP는 "준비됐다"가 아니라 "**완료됐다**"를 통지하는 근본적으로 다른 모델이다 — 이것이 바로 10장에서 다루는 **Proactor** 패턴이다. 즉, Linux/macOS에서 Reactor(이 장)를 선택하는 자리에 Windows는 처음부터 Proactor 스타일(IOCP)을 강제한다고 볼 수 있다.
+Windows에는 `epoll`이 없다. `select`는 지원되지만 O(N) 순회라는 근본적인 성능 문제는 마찬가지로 존재한다 — 다만 `FD_SETSIZE` 자체는 POSIX(보통 1024)와 다르게 기본 64이고 내부 구현도 비트마스크가 아닌 소켓 배열 방식이라, "동일한 제한"이라기보다는 "같은 종류의 한계를 다른 방식으로 가진다"고 보는 것이 더 정확하다. `poll`에 대응하는 `WSAPoll`은 있지만 널리 쓰이지 않는다. Windows의 표준 답은 **IOCP(I/O Completion Port)**인데, IOCP는 "준비됐다"가 아니라 "**완료됐다**"를 통지하는 근본적으로 다른 모델이다 — 이것이 바로 10장에서 다루는 **Proactor** 패턴이다. 즉, Linux/macOS에서 Reactor(이 장)를 선택하는 자리에 Windows는 처음부터 Proactor 스타일(IOCP)을 강제한다고 볼 수 있다.
 
 ## 학습 성과 평가 기준
 

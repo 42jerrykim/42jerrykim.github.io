@@ -162,6 +162,30 @@ private:
     std::mutex retireMutex_;
     std::vector<Node*> retired_;
 };
+
+int main() {
+    HazardPointerStack stack;
+    constexpr int kThreads = 4;
+    constexpr int kOpsPerThread = 20000;
+
+    std::vector<std::thread> workers;
+    for (int t = 0; t < kThreads; ++t) {
+        workers.emplace_back([&stack, t] {
+            for (int i = 0; i < kOpsPerThread; ++i) {
+                stack.push(t * kOpsPerThread + i);
+                stack.pop();  // 다른 스레드가 방금 push한 노드를 꺼낼 수도 있다 — 값 자체보다
+                              // 동시 push/pop이 안전한지(ASAN 리포트가 없는지)가 이 데모의 목적이다
+            }
+        });
+    }
+    for (auto& w : workers) w.join();
+
+    while (stack.pop()) {
+        // 남은 노드를 모두 비운다.
+    }
+    std::cout << "OK: " << kThreads << "개 스레드가 동시에 push/pop을 마쳤다\n";
+    return 0;
+}
 ```
 
 `pop()`에서 `HazardGuard`를 세운 직후 `head_`를 다시 읽어 확인하는 줄이 이 구현의 핵심이다. 게시판에 적는 것과 노드를 실제로 들여다보는 것 사이에는 항상 아주 짧은 틈이 있고, 그 틈에 다른 스레드가 이미 같은 노드를 꺼내 회수해 버렸을 수 있기 때문이다 — 게시 후 재확인은 "게시한 시점에 이 노드가 여전히 유효했는가"를 보장하는 안전장치다. `retire()`는 노드를 회수 대기 목록에 넣고, 목록이 일정 크기를 넘으면 게시판을 훑어 아무도 보고 있지 않은 노드만 골라 지운다.
@@ -195,7 +219,7 @@ std::optional<int> pop() {
 
 ## RCU: 세대 교체 방식
 
-**RCU(Read-Copy-Update)**는 다른 전략을 쓴다. 읽는 쪽은 게시판에 아무것도 적지 않고 그냥 포인터를 읽어 따라간다 — 원자적 읽기-수정-쓰기(RMW)조차 필요 없다. 대신 쓰는 쪽이 새 버전을 만들어 포인터를 교체한 뒤, "이 교체 이전에 시작된 모든 읽기가 끝날 때까지"(이 구간을 **grace period**라 부른다) 기다린 다음에야 이전 버전을 해제한다. 11장의 Copy-on-Write는 `shared_ptr`의 참조 카운팅으로 이 문제를 풀었다 — 리더가 스냅샷을 들고 있는 한 참조 카운트가 0이 되지 않으므로 안전하다. RCU는 참조 카운팅조차 생략한다. 참조 카운트를 증감하는 원자적 RMW는 읽기가 몰릴수록 같은 캐시 라인을 여러 코어가 다투게 만드는데, RCU는 그 비용을 아예 읽기 경로에서 없애고 드물게 일어나는 쓰기 경로로 미룬다.
+**RCU(Read-Copy-Update)**는 다른 전략을 쓴다. 읽는 쪽은 게시판에 아무것도 적지 않고 그냥 포인터를 읽어 따라간다 — Hazard Pointer처럼 매번 전역 배열에 값을 저장하는 원자적 쓰기가 없다(순수 RCU 구현에서는 원자적 읽기-수정-쓰기(RMW)조차 필요 없다. 다만 아래 예제는 `shared_ptr`을 그대로 재사용해 grace period 계산만 보여 주므로, `atomic_load_explicit`가 내부적으로 하는 참조 카운트 증가만큼의 RMW 비용은 남아 있다). 대신 쓰는 쪽이 새 버전을 만들어 포인터를 교체한 뒤, "이 교체 이전에 시작된 모든 읽기가 끝날 때까지"(이 구간을 **grace period**라 부른다) 기다린 다음에야 이전 버전을 해제한다. 11장의 Copy-on-Write는 `shared_ptr`의 참조 카운팅으로 이 문제를 풀었다 — 리더가 스냅샷을 들고 있는 한 참조 카운트가 0이 되지 않으므로 안전하다. RCU는 참조 카운팅조차 생략한다. 참조 카운트를 증감하는 원자적 RMW는 읽기가 몰릴수록 같은 캐시 라인을 여러 코어가 다투게 만드는데, RCU는 그 비용을 아예 읽기 경로에서 없애고 드물게 일어나는 쓰기 경로로 미룬다.
 
 grace period를 구현하는 가장 단순한 방법은 전역 세대 번호(epoch)와, 각 스레드가 "마지막으로 관찰한 세대"를 기록하는 것이다.
 
@@ -220,10 +244,20 @@ std::atomic<uint64_t> gReaderEpoch[kMaxThreads];
 thread_local int tlRcuSlot = -1;
 std::atomic<int> gNextRcuSlot{0};
 
+// 정적 초기화: 프로그램 시작 시 모든 슬롯을 "읽는 중 아님"으로 채운다.
+// gReaderEpoch는 전역 배열이라 기본값은 0인데, 아직 아무 스레드도 배정받지
+// 않은 슬롯이 0으로 남으면 rcuSynchronize()가 그 슬롯을 영원히 기다리게 된다
+// (0은 kNotReading도, target 이상도 아니기 때문이다) — 이 초기화가 없으면
+// update()를 한 번만 호출해도 무한 루프에 빠진다.
+struct RcuSlotInit {
+    RcuSlotInit() {
+        for (auto& slot : gReaderEpoch) slot.store(kNotReading, std::memory_order_relaxed);
+    }
+} gRcuSlotInit;
+
 int myRcuSlot() {
     if (tlRcuSlot == -1) {
         tlRcuSlot = gNextRcuSlot.fetch_add(1, std::memory_order_relaxed);
-        gReaderEpoch[tlRcuSlot].store(kNotReading, std::memory_order_relaxed);
     }
     return tlRcuSlot;
 }
@@ -259,13 +293,19 @@ public:
     explicit RcuConfigStore(std::shared_ptr<const Config> initial)
         : current_(std::move(initial)) {}
 
-    // 리더: 원자적 RMW 없이 그냥 포인터를 읽는다.
+    // 리더: 게시판에 아무것도 적지 않고 그냥 포인터를 읽는다(shared_ptr 참조 카운트
+    // 증가만큼의 비용은 남아 있다 — 순수 RCU라면 이마저 없다).
     std::shared_ptr<const Config> get() const {
         RcuReadGuard guard;
         return std::atomic_load_explicit(&current_, std::memory_order_acquire);
     }
 
     // 라이터: 새 버전을 교체한 뒤, 이전 버전을 읽던 리더가 모두 빠져나갈 때까지 기다린다.
+    // 주의: 이 update()는 "라이터가 하나뿐"이라는 가정에 기대고 있다. compare_exchange가
+    // 아니라 단순 store이므로, 두 스레드가 동시에 update()를 호출하면 둘 다 같은 oldCfg를
+    // 읽고 각자 새 버전을 만들어 나중에 store하는 쪽이 앞선 갱신을 통째로 덮어쓴다 —
+    // 11장 CoW의 compare_exchange_weak 재시도 루프와 달리 여기엔 라이터 간 동기화가 없다.
+    // 라이터가 여러 개라면 별도의 writer 락으로 update() 호출 자체를 직렬화해야 한다.
     void update(const std::string& key, const std::string& value) {
         auto oldCfg = std::atomic_load_explicit(&current_, std::memory_order_acquire);
         auto newCfg = std::make_shared<Config>(*oldCfg);
@@ -279,6 +319,31 @@ public:
 private:
     mutable std::shared_ptr<const Config> current_;
 };
+
+int main() {
+    auto initial = std::make_shared<Config>();
+    initial->values["timeout"] = "30s";
+    RcuConfigStore store(initial);
+
+    constexpr int kReaders = 4;
+    std::vector<std::thread> readers;
+    for (int i = 0; i < kReaders; ++i) {
+        readers.emplace_back([&store, i] {
+            for (int j = 0; j < 1000; ++j) {
+                auto cfg = store.get();  // RcuReadGuard로 보호된 스냅샷
+                std::cout << "reader " << i << ": timeout="
+                          << cfg->values.at("timeout") << '\n';
+            }
+        });
+    }
+
+    // 라이터는 하나뿐이다 — update() 자체는 writer-writer 동기화가 없기 때문이다.
+    std::thread writer([&store] { store.update("timeout", "60s"); });
+
+    for (auto& r : readers) r.join();
+    writer.join();
+    return 0;
+}
 ```
 
 `update()`가 새 포인터를 `release` 순서로 저장한 뒤 `rcuSynchronize()`가 전역 세대를 올리는 순서가 중요하다. 어떤 리더가 `rcuSynchronize()`의 새 세대 값을 관찰했다면, 같은 원자 변수의 release-acquire 관계 덕분에 그 리더는 반드시 방금 교체된 새 포인터도 함께 보게 된다 — 새 세대를 봤는데 여전히 옛 포인터를 읽는 일은 일어나지 않는다. 반대로 아직 옛 세대에 머물러 있는 리더가 있다면, `rcuSynchronize()`는 그 리더의 슬롯이 `kNotReading`이 되거나 새 세대 이상이 될 때까지 기다린다. 이 대기가 끝난 뒤에야 `oldCfg`가 회수돼도 안전하다는 것이 보장된다.

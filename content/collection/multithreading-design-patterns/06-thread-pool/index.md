@@ -3,7 +3,7 @@ image: wordcloud.png
 title: "[Concurrency Patterns] 06. 실행 관리 I: Thread Pool"
 description: "스레드 풀, 작업 큐, Work Stealing 알고리즘을 std::thread와 mutex/condition_variable만으로 직접 구현합니다. 백프레셔가 있는 스레드 풀, 풀 크기 결정 기준, 실전 선택 가이드까지 다룹니다."
 date: 2026-06-16
-lastmod: 2026-06-17
+lastmod: 2026-07-09
 draft: false
 collection_order: 6
 categories:
@@ -84,7 +84,6 @@ private:
                 std::unique_lock<std::mutex> lock(mu);
                 cv.wait(lock, [this] { return !tasks.empty() || shutdown; });
                 if (shutdown && tasks.empty()) break;
-                if (tasks.empty()) continue;
                 task = std::move(tasks.front());
                 tasks.pop();
             }
@@ -142,10 +141,10 @@ int main() {
 
 ```cpp
 #include <atomic>
+#include <deque>
 #include <functional>
 #include <memory>
 #include <mutex>
-#include <queue>
 #include <thread>
 #include <vector>
 
@@ -155,7 +154,7 @@ public:
 
 private:
     struct Worker {
-        std::queue<Task> localQueue;
+        std::deque<Task> localQueue;
         mutable std::mutex mu;
     };
 
@@ -167,23 +166,26 @@ private:
         while (true) {
             Task task;
 
-            // 자신의 큐에서 먼저 시도
+            // 자신의 큐에서 먼저 시도 — 뒤(back)에서 꺼낸다(LIFO): 가장 최근에
+            // 넣은 작업을 먼저 처리해 캐시 지역성이 좋다.
             {
                 std::lock_guard<std::mutex> lock(workers[id]->mu);
                 if (!workers[id]->localQueue.empty()) {
-                    task = std::move(workers[id]->localQueue.front());
-                    workers[id]->localQueue.pop();
+                    task = std::move(workers[id]->localQueue.back());
+                    workers[id]->localQueue.pop_back();
                 }
             }
 
             if (!task) {
-                // 자신의 큐가 비었으면, 다른 워커에서 훔친다
+                // 자신의 큐가 비었으면, 다른 워커에서 훔친다 — 앞(front)에서
+                // 훔친다(FIFO): 가장 오래된 작업을 가져가 owner와 같은 쪽 끝을
+                // 두고 경쟁하지 않는다.
                 for (size_t i = 1; i < workers.size(); ++i) {
                     size_t victimId = (id + i) % workers.size();
                     std::lock_guard<std::mutex> lock(workers[victimId]->mu);
                     if (!workers[victimId]->localQueue.empty()) {
-                        task = std::move(workers[victimId]->localQueue.back());
-                        workers[victimId]->localQueue.pop();
+                        task = std::move(workers[victimId]->localQueue.front());
+                        workers[victimId]->localQueue.pop_front();
                         break;
                     }
                 }
@@ -216,7 +218,7 @@ public:
     void enqueue(Task task, size_t preferredWorker = 0) {
         size_t id = preferredWorker % workers.size();
         std::lock_guard<std::mutex> lock(workers[id]->mu);
-        workers[id]->localQueue.push(std::move(task));
+        workers[id]->localQueue.push_back(std::move(task));
     }
 };
 ```
@@ -225,7 +227,7 @@ public:
 
 **실전에서의 함정**: 위 구현은 개념을 보여주기 위해 단순화했다. 실제 work-stealing 큐를 프로덕션에 쓰려면 다음을 고려해야 한다.
 
-- **자기 큐는 뒤(front)에서 꺼내고, 도둑은 앞(back)에서 훔치게** 하면 자기 자신의 작업 추가/제거(LIFO, 캐시 지역성이 좋음)와 도둑의 steal(FIFO)이 서로 다른 쪽 끝을 사용해 락 경합이 줄어든다. 위 코드는 단순화를 위해 둘 다 `mutex`로 보호하지만, Chase-Lev deque 같은 알고리즘은 **owner는 락 없이, 도둑만 CAS(`compare_exchange`)로 경쟁**하게 만들어 owner 쪽 오버헤드를 거의 0으로 줄인다.
+- **자기 큐는 뒤(back)에서 꺼내고, 도둑은 앞(front)에서 훔치게** 하면 자기 자신의 작업 추가/제거(LIFO, 캐시 지역성이 좋음)와 도둑의 steal(FIFO)이 서로 다른 쪽 끝을 사용해 락 경합이 줄어든다. 이 때문에 로컬 큐는 앞뒤 양쪽에서 꺼낼 수 있는 `std::deque`여야 한다 — `std::queue`는 `pop()`이 항상 앞쪽 원소만 제거하므로 뒤쪽 원소를 안전하게 훔칠 수 없다. 위 코드는 단순화를 위해 둘 다 `mutex`로 보호하지만, Chase-Lev deque 같은 알고리즘은 **owner는 락 없이, 도둑만 CAS(`compare_exchange`)로 경쟁**하게 만들어 owner 쪽 오버헤드를 거의 0으로 줄인다.
 - **빈 풀에서의 busy-yield**: 위 `workerLoop`는 작업이 없으면 `yield()`로 스핀한다. 작업이 드문 워크로드에서는 CPU를 불필요하게 점유한다 — 04장의 `condition_variable` 기반 대기와 결합하거나, 일정 횟수 스핀 후 짧게 잠드는 하이브리드 전략이 흔히 쓰인다.
 - **안전성 검증**: 이런 멀티-락, 멀티-큐 구조는 데드락(락 순서 역전)과 데이터 레이스(shutdown 플래그, 큐 크기 확인 시점) 둘 다의 위험이 있다. `g++ -std=c++20 -pthread -fsanitize=thread -g`로 빌드해 다수의 enqueue/steal이 동시에 일어나는 스트레스 테스트를 돌려 보는 것이 좋다.
 

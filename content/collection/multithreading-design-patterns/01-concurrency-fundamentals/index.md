@@ -3,7 +3,7 @@ image: wordcloud.png
 title: "[Concurrency Patterns] 01. 동시성 기초와 C++ 메모리 모델"
 description: "멀티스레드 프로그래밍의 기반이 되는 C++ 메모리 모델을 다룹니다. 데이터 레이스, happens-before 관계, memory_order별 acquire-release/relaxed 의미, atomic 기초를 표준 문서와 컴파일 가능한 예제로 학습합니다."
 date: 2026-06-11
-lastmod: 2026-06-12
+lastmod: 2026-07-09
 draft: false
 collection_order: 1
 categories:
@@ -113,7 +113,7 @@ int main() {
 
 ## 데이터 레이스의 정의
 
-C++ 표준은 데이터 레이스를 이렇게 정의한다: **같은 메모리 위치에 대한 두 접근(A 접근, B 접근)이 있을 때, (1) 최소 하나가 쓰기이고, (2) 두 접근이 **동기화(synchronize)**되지 않으면 데이터 레이스다.** "동기화된다"는 것은 표준 라이브러리의 락, atomic, 또는 표준에서 인정하는 다른 메커니즘으로 순서를 강제했다는 뜻이다.
+C++ 표준은 데이터 레이스를 이렇게 정의한다: **같은 메모리 위치에 대한 두 접근(A 접근, B 접근)이 있을 때, (1) 최소 하나가 쓰기이고, (2) 최소 하나가 non-atomic이며, (3) 두 접근 사이에 happens-before 관계가 없으면 데이터 레이스다.** 두 접근이 **모두 atomic**이면(설령 둘 다 `memory_order_relaxed`라도) 데이터 레이스는 아니다 — 순서가 안 정해질 뿐 미정의 동작은 아니라는 뜻이다. 뒤에서 다룰 `memory_order_relaxed` 카운터가 "동기화는 안 됐지만 안전하다"고 말할 수 있는 이유가 바로 이 조건 (2) 때문이다. "동기화된다"는 것은 표준 라이브러리의 락, atomic, 또는 표준에서 인정하는 다른 메커니즘으로 happens-before 순서를 만들었다는 뜻이다.
 
 예컨대 아래 코드는 **명확한 데이터 레이스**다:
 
@@ -141,7 +141,7 @@ int main() {
 
 멀티스레드 코드의 안전성을 논하려면 "A가 B보다 먼저 완료됐다"는 개념이 필요하다. C++ 표준은 이를 **happens-before** 관계로 정의한다.
 
-**Sequentially-Consistent (순차 일관성)** 메모리 모델에서는 모든 메모리 접근이 전역 시간 순서대로 보인다. 즉, 스레드 1의 쓰기 A가 스레드 2의 읽기 B보다 happen-before이면, B는 A가 쓴 값을 반드시 본다. 이것이 가장 직관적이고 강력한 메모리 모델이지만, 최신 CPU에서는 이를 구현하는 데 비용이 많이 든다.
+**Sequentially-Consistent (순차 일관성)** 메모리 모델에서는 `memory_order_seq_cst`로 태그된 atomic 연산들이 모든 스레드에서 같은 전역 순서로 보인다(non-atomic 접근이나 다른 memory_order의 연산까지 이 전역 순서에 포함되는 것은 아니다). 즉, 스레드 1의 seq_cst 쓰기 A가 스레드 2의 seq_cst 읽기 B보다 happen-before이면, B는 A가 쓴 값을 반드시 본다. 이것이 가장 직관적이고 강력한 메모리 모델이지만, 최신 CPU에서는 이를 구현하는 데 비용이 많이 든다.
 
 C++11부터 표준은 다음과 같은 happens-before 관계를 정의한다:
 
@@ -188,6 +188,7 @@ int main() {
 
 ```cpp
 #include <atomic>
+#include <iostream>
 
 std::atomic<int> x(0);
 
@@ -197,9 +198,11 @@ void writer() {
 
 void reader() {
     int val = x.load();             // 읽기
-    std::cout << val << '\n';       // 항상 42 (정의된 동작)
+    std::cout << val << '\n';       // 0 또는 42만 나온다 — 중간에 걸친 값(torn read)은 없다
 }
 ```
+
+`writer()`와 `reader()`가 어느 순서로 실행되는지는 이 코드만으로 정해지지 않는다. atomic이 보장하는 것은 **"둘 중 하나의 완전한 값만 보인다"**는 것이지, "항상 최신 값을 본다"는 것이 아니다 — reader()가 writer()보다 먼저 실행되면 `val`은 0이고, 그것도 완전히 정의된 동작이다. reader가 항상 42만 보게 하려면 03장에서 볼 `join()`이나 조건 변수 같은 방법으로 "writer가 끝난 뒤에 reader가 실행된다"는 happens-before 관계를 별도로 만들어야 한다.
 
 기본값(파라미터 없음)으로 `store`와 `load`를 호출하면 `memory_order_seq_cst`(sequential consistency)가 사용되므로, 모든 스레드가 일관된 순서를 본다.
 
@@ -207,7 +210,7 @@ void reader() {
 
 메모리 순서는 크게 세 가지다.
 
-**1. Sequentially-Consistent (`memory_order_seq_cst`)**: 모든 스레드가 같은 전역 순서를 본다. 가장 강력하지만 가장 비싸다. x86에서는 거의 무료(몇 CPU 사이클), ARM에서는 명시적 배리어 명령이 필요하다.
+**1. Sequentially-Consistent (`memory_order_seq_cst`)**: 모든 스레드가 같은 전역 순서를 본다. 가장 강력하지만 가장 비싸다. x86에서 seq_cst **load**는 일반 `mov`로 충분해 거의 무료지만, seq_cst **store**는 `mfence`(또는 `lock` 접두사가 붙은 명령) 같은 배리어가 필요해 store buffer를 비우는 비용이 든다. ARM에서는 load·store 양쪽 다 명시적 배리어 명령이 필요해 비용이 더 크다.
 
 ```cpp
 // 모든 atomic 연산이 동일한 순서로 보인다
@@ -216,7 +219,7 @@ y.store(2, std::memory_order_seq_cst);
 // 다른 스레드는 x=1, y=2 또는 둘 다 미정, 절대 x=1, y=미정 조합 불가
 ```
 
-**2. Acquire-Release (`memory_order_acquire` / `memory_order_release`)**: release 쓰기와 acquire 읽기 사이에만 synchronization을 강제한다. 다른 atomic들과의 순서는 강제하지 않는다. x86에서는 store에서 약간의 비용, ARM에서는 read의 비용을 아낄 수 있다.
+**2. Acquire-Release (`memory_order_acquire` / `memory_order_release`)**: release 쓰기와 acquire 읽기 사이에만 synchronization을 강제한다. 다른 atomic들과의 순서는 강제하지 않는다. x86에서는 load·store 모두 일반 `mov`로 충분해 사실상 무료다 — seq_cst store에 필요한 배리어 비용을 피할 수 있다는 뜻이다. ARM에서는 acquire/release 전용의 비교적 가벼운 명령(`ldar`/`stlr` 계열)이 쓰여, 전체 배리어보다는 저렴하지만 relaxed보다는 비싸다.
 
 ```cpp
 // Writer
@@ -241,9 +244,9 @@ counter.fetch_add(1, std::memory_order_relaxed);  // 카운터만 증가
 | 연산 조합 | Happens-Before 보장? | 비용 (상대적) |
 |---------|-------------------|----------|
 | seq_cst ↔ seq_cst | ✅ 전역 순서 | 높음 |
-| release → acquire | ✅ 이 쌍 | 중간 |
+| release → acquire | ✅ 이 쌍만 | 중간 |
 | relaxed ↔ relaxed | ❌ 없음 | 낮음 |
-| mutex lock/unlock | ✅ 전역 순서 | 중간 |
+| mutex lock/unlock | ✅ 같은 mutex끼리만 | 중간 |
 
 ## Compiler & CPU 최적화의 현실
 

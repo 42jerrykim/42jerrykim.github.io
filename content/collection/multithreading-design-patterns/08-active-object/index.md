@@ -3,7 +3,7 @@ image: wordcloud.png
 title: "[Concurrency Patterns] 08. 비동기 객체 (Active Object)"
 description: "스스로 스레드를 가지고 메서드 호출을 큐로 받아 순서대로 처리하는 Active Object 패턴을 구현합니다. Actor 모델과의 차이, 우선순위 큐, Thread Pool·Future와의 하이브리드 구조도 다룹니다."
 date: 2026-06-18
-lastmod: 2026-06-19
+lastmod: 2026-07-09
 draft: false
 collection_order: 8
 categories:
@@ -213,7 +213,24 @@ g++ -std=c++20 -pthread -fsanitize=thread -g naive_counter.cpp -o naive_counter
 # WARNING: ThreadSanitizer: data race on 'value'
 ```
 
-반면, `ActiveCounter`에 대해 같은 4개 스레드가 `increment()`를 호출하면(각자 `.wait()`로 동기화하든 아니든), `value`에 대한 실제 증가는 항상 Active Object의 내부 스레드 하나에서만 일어난다.
+반면, `ActiveCounter`에 대해 같은 4개 스레드가 `increment()`를 호출하면(각자 `.wait()`로 동기화하든 안 하든), 호출자 스레드들은 각자 `packaged_task`를 큐에 넣기만 할 뿐 `value`를 직접 건드리지 않는다 — 실제 증가는 항상 Active Object의 내부 스레드 하나에서만 일어난다.
+
+```cpp
+// active_counter.cpp — 4개 호출자 스레드가 동시에 increment()를 호출한다.
+int main() {
+    ActiveCounter ac;
+    std::vector<std::thread> callers;
+    for (int i = 0; i < 4; ++i) {
+        callers.emplace_back([&ac] {
+            for (int j = 0; j < 100000; ++j) ac.increment();  // .wait() 없이 fire-and-forget
+        });
+    }
+    for (auto& t : callers) t.join();
+
+    int final = ac.getValue().get();  // 모든 increment 요청이 큐에 들어간 뒤 최종값 확인
+    std::cout << final << '\n';  // 항상 400000
+}
+```
 
 ```bash
 g++ -std=c++20 -pthread -fsanitize=thread -g active_counter.cpp -o active_counter

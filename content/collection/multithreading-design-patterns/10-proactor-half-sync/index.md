@@ -3,7 +3,7 @@ image: wordcloud.png
 title: "[Concurrency Patterns] 10. 이벤트 아키텍처 II: Proactor와 Half-Sync/Half-Async"
 description: "비동기 I/O (Proactor), 멀티스레드 이벤트 처리, 그리고 동기/비동기 경계를 관리하는 Half-Sync/Half-Async 패턴을 학습합니다."
 date: 2026-06-20
-lastmod: 2026-06-21
+lastmod: 2026-07-09
 draft: false
 collection_order: 10
 categories:
@@ -76,6 +76,7 @@ Proactor의 핵심 의미는 다음 세 단계다.
 #include <future>
 #include <functional>
 #include <iostream>
+#include <string>
 #include <thread>
 #include <vector>
 #include <unistd.h>
@@ -183,6 +184,7 @@ POSIX AIO는 복잡하고 느려서, 많은 라이브러리(Asio, libuv)는 Linu
 #include <mutex>
 #include <poll.h>
 #include <queue>
+#include <string>
 #include <thread>
 #include <unistd.h>
 #include <vector>
@@ -325,7 +327,7 @@ int main() {
 }
 ```
 
-이 스켈레톤에서 **비동기 계층(이벤트 루프)은 절대 블로킹되지 않는다** — `read()`로 짧게 데이터를 가져온 뒤 즉시 `taskQueue_.push()`로 워커에 넘긴다. **동기 계층(워커 스레드)은 자유롭게 블로킹 I/O나 무거운 연산을 수행**할 수 있다 — 이벤트 루프와 별개의 스레드이기 때문이다. `BoundedQueue`가 가득 차면 `push()`가 대기하므로(backpressure), 워커가 느릴 때 이벤트 루프가 무한정 작업을 쌓지 않는다.
+이 스켈레톤에서 **동기 계층(워커 스레드)은 자유롭게 블로킹 I/O나 무거운 연산을 수행**할 수 있다 — 이벤트 루프와 별개의 스레드이기 때문이다. 하지만 **비동기 계층(이벤트 루프)이 "절대" 블로킹되지 않는 것은 아니다.** `read()`로 짧게 데이터를 가져온 뒤 즉시 `taskQueue_.push()`로 워커에 넘기지만, `BoundedQueue`가 가득 차면 `push()` 자체가 대기한다(backpressure) — 그리고 이 `push()`는 이벤트 루프 스레드 안에서 직접 호출된다. 즉 워커가 느려 큐가 가득 차면, 이벤트 루프가 그 순간 새 이벤트를 하나도 처리하지 못하고 `push()` 안에서 멈춘다. 이것이 Half-Sync/Half-Async 설계에서 실제로 자주 논의되는 함정이다 — backpressure가 워커를 보호하는 대신 이벤트 루프 자체를 막아 버릴 수 있다. 실전에서는 큐가 가득 찼을 때 대기하지 않고 즉시 실패를 반환하는 `try_push()`(가득 차면 드롭하거나 클라이언트에 거절 응답)를 쓰거나, 이벤트 수신과 큐 투입을 맡는 별도의 acceptor 스레드를 두어 이벤트 루프 자체가 절대 블로킹되지 않게 분리한다.
 
 ### 안전성 검증
 

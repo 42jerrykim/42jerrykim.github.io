@@ -3,7 +3,7 @@ image: wordcloud.png
 title: "[Concurrency Patterns] 04. 데이터 흐름: Producer-Consumer"
 description: "Bounded Buffer, Unbounded Queue, Backpressure 메커니즘을 통해 Producer-Consumer 패턴의 확장성과 트레이드오프를 학습합니다. 다중 프로듀서/컨슈머 구조와 lock contention 최적화도 다룹니다."
 date: 2026-06-14
-lastmod: 2026-06-15
+lastmod: 2026-07-09
 draft: false
 collection_order: 4
 categories:
@@ -316,6 +316,8 @@ public:
 ```
 
 `tail.store(..., release)` 다음에 일어난 `head.load(..., acquire)`은 happens-before 관계를 만들어, 프로듀서가 `buf[t]`에 쓴 값을 컨슈머가 안전하게 읽을 수 있게 한다. 이 패턴이 **mutex 없이도 안전한 이유**와, 멀티 프로듀서/멀티 컨슈머(MPMC)로 확장할 때 왜 이렇게 단순하지 않은지는 11장 "공유 회피"에서 다룬다.
+
+한 가지 주의점: `(t + 1) % N == h`로 가득 참을 판정하는 방식은 슬롯 하나를 항상 비워 둔다 — `head == tail`이 "가득 참"과 "비어 있음"을 동시에 뜻하지 않게 하려는 것이다. 그래서 이 링 버퍼가 실제로 저장할 수 있는 원소는 `N`개가 아니라 **`N - 1`개**다. 처음 접하면 흔히 놓치는 지점이라, 용량을 정확히 `N`으로 맞추려면 배열 크기를 `N + 1`로 잡거나 별도의 원소 개수 카운터를 둬야 한다.
 
 ## 학습 성과 평가 기준
 
