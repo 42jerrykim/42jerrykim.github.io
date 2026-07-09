@@ -94,6 +94,7 @@ int main() {
 - Promise는 이동만 가능 (복사 불가).
 - `set_value()` 호출 전에 `get()`을 호출하면 블로킹.
 - 예외도 전달 가능: `set_exception()`.
+- **`set_value()`도 `set_exception()`도 호출하지 않은 채 Promise가 소멸되면**(예: 워커 스레드가 예외로 죽거나 함수를 일찍 `return`해 버리면), Future 쪽의 `get()`은 값 대신 `std::future_error`(`broken_promise`)를 던진다. "약속을 어긴 Promise"라는 이름 그대로, 이 실패 모드는 실무에서 워커 스레드의 예외 처리를 빠뜨렸을 때 흔히 마주친다.
 
 ## std::async
 

@@ -303,6 +303,8 @@ int main() {
 
 ### 1. Per-Object Initialization
 
+지금까지 본 Singleton의 DCLP는 **전역으로 하나뿐인 인스턴스**를 지연 생성하는 경우였다. 하지만 실무에서는 "객체마다 하나씩, 필요할 때만 만드는" 리소스가 더 흔하다 — 예를 들어 각 커넥션 객체가 자신만의 캐시나 버퍼를 첫 사용 시점에만 할당하는 경우다. 이때는 정적 변수 하나로 해결할 수 없고, 객체마다 자신의 DCLP 상태(`ptr`, `initMu`)를 멤버로 들고 있어야 한다.
+
 ```cpp
 #include <atomic>
 #include <mutex>
@@ -331,6 +333,8 @@ public:
 ```
 
 ### 2. Static Initialization (가장 간단)
+
+Per-Object Initialization이 필요 없는 "전역 하나뿐" 상황이라면, DCLP를 손으로 구현할 필요조차 없다. C++11부터 표준은 함수 지역 `static` 변수의 초기화 자체를 스레드 안전하게 만들도록(이른바 **"매직 스태틱", magic statics**) 요구한다 — 여러 스레드가 동시에 이 함수에 처음 진입해도, 컴파일러가 내부적으로 락(또는 이와 동등한 메커니즘)을 삽입해 생성자가 정확히 한 번만 실행되도록 보장한다.
 
 ```cpp
 class Singleton {

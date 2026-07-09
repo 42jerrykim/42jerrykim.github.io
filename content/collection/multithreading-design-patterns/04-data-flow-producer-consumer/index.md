@@ -39,7 +39,7 @@ tags:
 slug: cpp-producer-consumer-bounded-buffer-backpressure
 ---
 
-생산자가 컨슈머보다 빠르면 어딘가에 데이터가 쌓인다. 그 "어딘가"를 무한히 키우면 메모리가 터지고, 무작정 막으면 생산자가 멈춘다. 04장은 데이터가 **프로듀서(생산)에서 컨슈머(소비)로 흘러가는 구조**를 다룬다. 핵심 트레이드오프는 두 가지다:
+생산자가 컨슈머보다 빠르면 어딘가에 데이터가 쌓인다. 그 "어딘가"를 무한히 키우면 메모리가 터지고, 무작정 막으면 생산자가 멈춘다. 이 문제는 새로운 것이 아니다 — Edsger Dijkstra가 1965년 세마포어(semaphore)를 도입하며 다룬 원래 문제가 바로 "생산자와 소비자가 유한한 버퍼를 공유할 때 서로를 어떻게 막고 깨울 것인가"였다. 04장은 그 문제를 `condition_variable` 기반으로 다시 풀며, 데이터가 **프로듀서(생산)에서 컨슈머(소비)로 흘러가는 구조**를 다룬다. 핵심 트레이드오프는 두 가지다:
 
 1. **Bounded Buffer vs Unbounded**: 메모리 제한 vs 응답성
 2. **Blocking Backpressure vs Dropping**: 대기 vs 손실
@@ -274,7 +274,26 @@ int main() {
 }
 ```
 
-위 코드의 종료 조건(`consumedCount.fetch_add(...) < totalItems`)은 "전체 아이템 수를 미리 알고 있다"는 단순화다. 실전에서는 보통 **종료 신호(poison pill)**를 큐에 넣거나, 모든 프로듀서가 끝났음을 알리는 별도의 플래그/카운터를 두어 컨슈머가 "더 이상 올 데이터가 없음"을 판단하게 한다.
+위 코드의 종료 조건(`consumedCount.fetch_add(...) < totalItems`)은 "전체 아이템 수를 미리 알고 있다"는 단순화다. 실전에서는 보통 **종료 신호(poison pill)**를 큐에 넣거나, 모든 프로듀서가 끝났음을 알리는 별도의 플래그/카운터를 두어 컨슈머가 "더 이상 올 데이터가 없음"을 판단하게 한다. 큐의 원소 타입을 `std::optional<T>`로 두면, "값이 있으면 처리할 데이터, `nullopt`면 종료 신호"라는 뜻으로 poison pill을 표현할 수 있다.
+
+```cpp
+// 프로듀서: 데이터를 다 보낸 뒤 nullopt를 넣어 "더 이상 없음"을 알린다.
+void producer(BoundedQueue<std::optional<int>>& q, int count) {
+    for (int i = 0; i < count; ++i) q.push(i);
+    q.push(std::nullopt);  // poison pill
+}
+
+// 컨슈머: nullopt를 받으면 종료한다.
+void consumer(BoundedQueue<std::optional<int>>& q) {
+    while (true) {
+        std::optional<int> item = q.pop();
+        if (!item.has_value()) break;  // poison pill 수신 → 종료
+        // item.value() 처리
+    }
+}
+```
+
+컨슈머가 여러 개라면 poison pill 하나로는 부족하다 — 그 pill을 받은 컨슈머 하나만 종료하고 나머지는 계속 기다리기 때문이다. 컨슈머 수만큼 pill을 넣거나, 종료 플래그와 `notify_all()`을 함께 쓰는 방식으로 확장해야 한다.
 
 ## 성능 고려사항
 

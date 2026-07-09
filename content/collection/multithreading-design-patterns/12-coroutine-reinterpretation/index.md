@@ -143,6 +143,8 @@ private:
 
 `promise_type::continuation`과 `doneCallback`은 "이 Task가 끝나면 누구를 깨울지"를 표현하는 두 가지 경로다. 다른 코루틴이 `co_await`으로 기다렸다면 `continuation`에 그 코루틴의 핸들이 들어 있고, `final_suspend`가 대칭 전이(symmetric transfer)로 그 핸들을 직접 재개한다. 아무도 `co_await`하지 않고 `runAndNotify`로 구동했다면 `doneCallback`이 대신 호출된다. 이 두 경로를 갈라 둔 이유는 `main` 같은 최상위 진입점은 코루틴이 아니라서 `co_await`을 쓸 수 없기 때문이다.
 
+**왜 `continuation.resume()`을 직접 호출하지 않고 핸들을 반환할까?** `await_suspend`나 `final_suspend`의 `await_suspend`가 다른 코루틴 핸들을 직접 `.resume()`으로 호출하면, 그 재개된 코루틴이 다시 `co_return`하며 또 다른 코루틴을 재개하고, 그 코루틴이 또 재개하고… 하는 식으로 `co_await` 체인이 길어질수록 함수 호출이 계속 중첩된다 — 재귀 호출과 똑같이 스택 프레임이 계속 쌓이므로, 체인이 충분히 길면 스택 오버플로가 날 수 있다. 반면 `await_suspend`가 **핸들을 반환**하면(그리고 반환 타입이 `std::coroutine_handle<>`이면), 컴파일러는 이를 "재귀 호출"이 아니라 "제어를 다음 코루틴으로 그대로 넘겨라"는 뜻으로 해석해 현재 스택 프레임을 정리한 뒤 넘긴다 — 이것이 **대칭 전이(symmetric transfer)**이며, 체인이 아무리 길어도 스택 깊이가 늘지 않는다. `Task::await_suspend`(마지막 줄에서 `handle_`을 반환)와 `FinalAwaiter::await_suspend`(continuation을 반환) 둘 다 이 방식을 쓰는 이유가 여기에 있다.
+
 이제 이 `Task<T>`가 실제로 다른 스레드로 넘어가게 만드는 awaiter가 필요하다. 아래 `RunOnThread`는 `co_await` 지점에서 백그라운드 스레드를 하나 띄우고, 그 스레드가 작업을 마치면 직접 코루틴을 재개한다 — 이것이 07장에서 `std::promise::set_value`가 하던 일을 코루틴 방식으로 표현한 것이다.
 
 ```cpp

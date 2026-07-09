@@ -408,6 +408,8 @@ public:
 
 ### 패턴 2: 시간제한 대기
 
+지금까지의 `wait(lock, predicate)`는 조건이 참이 될 때까지 무한정 기다린다. 하지만 실전 시스템에서는 "언젠가는 응답이 온다"를 보장할 수 없는 경우가 많다 — 네트워크 큐라면 상대가 죽었을 수도, 작업 큐라면 생산자가 멈췄을 수도 있다. 이럴 때 무한 대기 대신 **일정 시간 안에 안 오면 포기**하게 만드는 것이 `wait_for`/`wait_until`이다.
+
 ```cpp
 T pop_timeout(int milliseconds) {
     std::unique_lock<std::mutex> lock(mu);

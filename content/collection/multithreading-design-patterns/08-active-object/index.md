@@ -138,7 +138,6 @@ private:
                 std::unique_lock<std::mutex> lock(mu);
                 cv.wait(lock, [this] { return !queue.empty() || shutdown; });
                 if (shutdown && queue.empty()) break;
-                if (queue.empty()) continue;
                 task = std::move(queue.front());
                 queue.pop();
             }
@@ -165,7 +164,7 @@ private:
 };
 ```
 
-**사용**:
+호출하는 쪽 코드에서는 `increment()`가 마치 평범한 메서드처럼 보이지만, 실제로는 즉시 반환되는 `std::future<void>`를 돌려줄 뿐이다. `.wait()`로 완료를 기다릴지, 완전히 무시하고 fire-and-forget으로 쓸지는 호출자가 결정한다.
 
 ```cpp
 int main() {
@@ -240,7 +239,7 @@ g++ -std=c++20 -pthread -fsanitize=thread -g active_counter.cpp -o active_counte
 
 ## 고급: 메서드 타입 안전성
 
-위의 코드는 런타임에 메서드를 큐에 추가할 때 동작하지만, 컴파일 시 타입 체크가 약하다. **Template 기반 접근**:
+위의 코드는 런타임에 메서드를 큐에 추가할 때 동작하지만, 컴파일 시 타입 체크가 약하다 — `std::function<void()>`로 감싸는 순간 원래 메서드의 시그니처(인자·반환 타입) 정보가 지워지기 때문에, 잘못된 인자를 넘겨도 컴파일러가 잡아 주지 못하고 런타임에야 드러난다. **Template 기반 접근**은 감쌀 대상 타입(`T`) 자체를 템플릿 파라미터로 받아, 호출하는 람다의 인자·반환 타입을 컴파일 시점에 `std::invoke_result_t`로 추론하게 만든다.
 
 ```cpp
 template<typename T>
@@ -259,7 +258,6 @@ private:
                 std::unique_lock<std::mutex> lock(mu);
                 cv.wait(lock, [this] { return !queue.empty() || shutdown; });
                 if (shutdown && queue.empty()) break;
-                if (queue.empty()) continue;
                 task = std::move(queue.front());
                 queue.pop();
             }
@@ -300,6 +298,8 @@ int main() {
     return 0;
 }
 ```
+
+`ac.call([](Counter& c) { c.inc(); })`처럼 잘못된 시그니처의 람다를 넘기면, `std::invoke_result_t<F, T&>`를 계산하는 시점에 컴파일 에러가 나서 그 자리에서 바로 잡힌다 — 앞선 `std::function<void()>` 버전이었다면 같은 실수가 런타임까지 넘어갔을 것이다. 다만 이 안전성은 공짜가 아니다. `ActiveObject<T>`가 템플릿이므로 사용하는 타입 `T`마다 별도의 인스턴스화가 일어나고, 헤더에 구현을 노출해야 한다는 비용을 감수해야 한다.
 
 ## Actor 모델과의 차이
 
@@ -378,7 +378,6 @@ private:
                 std::unique_lock<std::mutex> lock(mu);
                 cv.wait(lock, [this] { return !queue.empty() || shutdown; });
                 if (queue.empty() && shutdown) return;
-                if (queue.empty()) continue;
                 // priority_queue::top()은 const 참조만 반환하므로,
                 // function을 move하기 위해 const_cast가 필요하다.
                 task = std::move(const_cast<MethodRequest&>(queue.top()).task);
