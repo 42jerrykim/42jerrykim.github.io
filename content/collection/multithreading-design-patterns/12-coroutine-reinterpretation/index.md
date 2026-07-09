@@ -1,6 +1,6 @@
 ---
 title: "[Concurrency Patterns] 12. 코루틴 기반 비동기 재해석"
-description: "C++20 코루틴으로 Future/Promise와 Active Object를 재구현하고, co_await 원리와 lost wakeup, 코루틴·멀티스레딩의 관계를 다룹니다."
+description: "C++20 코루틴으로 07장 Future/Promise와 08장 Active Object를 다시 구현합니다. co_await의 동작 원리, 스레드 재개 시 생기는 lost wakeup, 코루틴과 멀티스레딩의 관계를 다룹니다."
 date: 2026-07-09
 lastmod: 2026-07-09
 draft: true
@@ -55,8 +55,8 @@ slug: cpp-coroutine-reinterpretation-future-active-object
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
-| **중급자** | "코루틴 핵심 개념" ~ "Future/Promise 재해석" | `co_await`/`promise_type`의 최소 어휘 습득 |
-| **고급자** | 전체, 특히 "Active Object 재해석" | 코루틴과 스레드가 섞일 때 생기는 새로운 동시성 버그 이해 |
+| **중급자** | "코루틴 핵심 개념" ~ "Future/Promise 재해석: 최소 Task 타입" | `co_await`/`promise_type`의 최소 어휘 습득 |
+| **고급자** | 전체, 특히 "Active Object 재해석: 콜백으로 채우는 awaiter" | 코루틴과 스레드가 섞일 때 생기는 새로운 동시성 버그 이해 |
 | **아키텍트** | "코루틴과 멀티스레딩의 관계" | 언제 코루틴이 유리하고, 언제 여전히 스레드 기반이 나은지 판단 |
 
 ---

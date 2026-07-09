@@ -1,6 +1,6 @@
 ---
 title: "[Concurrency Patterns] 13. Lock-Free 심화: Hazard Pointer와 RCU"
-description: "C++26에 채택된 Hazard Pointer·RCU를 직접 구현하며, 11장이 미룬 메모리 회수 문제를 use-after-free 재현과 ASAN 검증으로 다룹니다."
+description: "C++26 표준에 채택된 Hazard Pointer와 RCU를 std::atomic만으로 직접 구현합니다. 11장이 미뤄둔 lock-free 메모리 회수 문제를 use-after-free 재현과 ASAN·TSAN 검증으로 다룹니다."
 date: 2026-07-09
 lastmod: 2026-07-09
 draft: true
@@ -55,9 +55,9 @@ slug: cpp-hazard-pointer-rcu-lockfree-reclamation
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
-| **중급자** | "왜 회수가 어려운가" ~ "Hazard Pointer" | use-after-free가 왜 생기는지, 어떻게 막는지 이해 |
-| **고급자** | 전체, 특히 "RCU" | 참조 카운팅과 grace period 기반 회수의 차이 이해 |
-| **아키텍트** | "Hazard Pointer vs RCU 선택 기준" | 실제 시스템에서 어느 쪽을 쓸지 판단 |
+| **중급자** | "왜 회수가 어려운가" ~ "Hazard Pointer: 게시판 방식" | use-after-free가 왜 생기는지, 어떻게 막는지 이해 |
+| **고급자** | 전체, 특히 "RCU: 세대 교체 방식" | 참조 카운팅과 grace period 기반 회수의 차이 이해 |
+| **아키텍트** | "Hazard Pointer vs RCU: 선택 기준" | 실제 시스템에서 어느 쪽을 쓸지 판단 |
 
 ---
 
