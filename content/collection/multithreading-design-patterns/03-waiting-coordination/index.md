@@ -1,7 +1,7 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 03. 대기와 조정"
-description: "Monitor Object, Guarded Suspension, Balking 패턴을 condition_variable로 구현합니다. spurious wakeup 처리와 효율적인 신호 메커니즘을 다룹니다."
+description: "Monitor Object, Guarded Suspension, Balking 패턴을 condition_variable로 구현합니다. spurious wakeup과 lost wakeup을 재현·검증하고, std::latch/barrier/semaphore와의 관계도 비교합니다."
 date: 2026-06-13
 lastmod: 2026-06-14
 draft: false
@@ -34,6 +34,11 @@ tags:
   - Tutorial(튜토리얼)
   - Guide(가이드)
   - Reference(참고)
+  - Barrier
+  - Latch
+  - Semaphore
+  - Best-Practices
+  - Testing(테스트)
 slug: cpp-condition-variable-monitor-object-guarded-suspension
 ---
 

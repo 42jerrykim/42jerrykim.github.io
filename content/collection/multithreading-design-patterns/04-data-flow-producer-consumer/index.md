@@ -1,7 +1,7 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 04. 데이터 흐름: Producer-Consumer"
-description: "Bounded Buffer, Unbounded Queue, Backpressure 메커니즘을 통해 프로듀서-컨슈머 패턴의 확장성과 트레이드오프를 학습합니다."
+description: "Bounded Buffer, Unbounded Queue, Backpressure 메커니즘을 통해 Producer-Consumer 패턴의 확장성과 트레이드오프를 학습합니다. 다중 프로듀서/컨슈머 구조와 lock contention 최적화도 다룹니다."
 date: 2026-06-14
 lastmod: 2026-06-15
 draft: false
@@ -27,6 +27,15 @@ tags:
   - Implementation(구현)
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Concurrency(동시성)
+  - Mutex
+  - Condition-Variable
+  - Thread
+  - Scalability(확장성)
+  - Best-Practices
+  - Testing(테스트)
+  - Deep-Dive
 slug: cpp-producer-consumer-bounded-buffer-backpressure
 ---
 

@@ -1,7 +1,7 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 01. 동시성 기초와 C++ 메모리 모델"
-description: "멀티스레드 프로그래밍의 기반이 되는 메모리 모델, 데이터 레이스, happens-before 관계, atomic 기초를 C++ 표준 문서와 실제 컴파일 예제를 통해 학습합니다."
+description: "멀티스레드 프로그래밍의 기반이 되는 C++ 메모리 모델을 다룹니다. 데이터 레이스, happens-before 관계, memory_order별 acquire-release/relaxed 의미, atomic 기초를 표준 문서와 컴파일 가능한 예제로 학습합니다."
 date: 2026-06-11
 lastmod: 2026-06-12
 draft: false

@@ -1,7 +1,7 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 08. 비동기 객체 (Active Object)"
-description: "스스로 스레드를 가지고 메서드 호출을 큐로 받는 Active Object 패턴을 구현합니다."
+description: "스스로 스레드를 가지고 메서드 호출을 큐로 받아 순서대로 처리하는 Active Object 패턴을 구현합니다. Actor 모델과의 차이, 우선순위 큐, Thread Pool·Future와의 하이브리드 구조도 다룹니다."
 date: 2026-06-18
 lastmod: 2026-06-19
 draft: false
@@ -19,6 +19,22 @@ tags:
   - Implementation(구현)
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Concurrency(동시성)
+  - Thread
+  - Mutex
+  - Condition-Variable
+  - Async(비동기)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Performance(성능)
+  - Best-Practices
+  - Deep-Dive
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Reference(참고)
+  - Scalability(확장성)
+  - OOP(객체지향)
+  - Backend(백엔드)
 slug: cpp-active-object-async-method-invocation
 ---
 

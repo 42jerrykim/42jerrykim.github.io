@@ -1,7 +1,7 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 05. 읽기 최적화와 지연 초기화"
-description: "shared_mutex로 읽기/쓰기 락 분리, DCLP의 함정과 해결, call_once를 통한 안전한 지연 초기화를 학습합니다."
+description: "shared_mutex로 읽기/쓰기 락을 분리하고, DCLP(Double-Checked Locking)의 역사적 함정과 C++11 이후 올바른 구현, call_once를 통한 안전한 지연 초기화까지 실전 코드로 학습합니다."
 date: 2026-06-15
 lastmod: 2026-06-16
 draft: false
@@ -28,6 +28,14 @@ tags:
   - Implementation(구현)
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Concurrency(동시성)
+  - Mutex
+  - Thread
+  - Memory(메모리)
+  - Best-Practices
+  - Deep-Dive
+  - Testing(테스트)
 slug: cpp-read-write-lock-dclp-call-once-lazy-init
 ---
 

@@ -1,7 +1,7 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 06. 실행 관리 I: Thread Pool"
-description: "스레드 풀, 작업 큐, Work Stealing 알고리즘을 구현하고, 부하 분산과 응답성의 트레이드오프를 학습합니다."
+description: "스레드 풀, 작업 큐, Work Stealing 알고리즘을 std::thread와 mutex/condition_variable만으로 직접 구현합니다. 백프레셔가 있는 스레드 풀, 풀 크기 결정 기준, 실전 선택 가이드까지 다룹니다."
 date: 2026-06-16
 lastmod: 2026-06-17
 draft: false
@@ -25,6 +25,16 @@ tags:
   - Implementation(구현)
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Concurrency(동시성)
+  - Thread
+  - Mutex
+  - Condition-Variable
+  - Scalability(확장성)
+  - Backend(백엔드)
+  - Best-Practices
+  - Deep-Dive
+  - Testing(테스트)
 slug: cpp-thread-pool-work-queue-work-stealing
 ---
 

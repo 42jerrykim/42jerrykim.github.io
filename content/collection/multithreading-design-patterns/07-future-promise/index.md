@@ -1,7 +1,7 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 07. 실행 관리 II: Future와 Promise"
-description: "std::future, std::promise, std::async, std::packaged_task로 비동기 작업의 결과를 안전하게 전달합니다."
+description: "std::future, std::promise, std::async, std::packaged_task로 비동기 작업의 결과와 예외를 안전하게 전달하는 법을 다룹니다. launch policy의 함정과 Thread Pool 결합 패턴도 포함합니다."
 date: 2026-06-17
 lastmod: 2026-06-18
 draft: false
@@ -22,6 +22,19 @@ tags:
   - Implementation(구현)
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Concurrency(동시성)
+  - Thread
+  - Mutex
+  - Condition-Variable
+  - Memory(메모리)
+  - Performance(성능)
+  - Best-Practices
+  - Deep-Dive
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Reference(참고)
 slug: cpp-future-promise-async-packaged-task
 ---
 
