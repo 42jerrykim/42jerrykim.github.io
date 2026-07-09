@@ -1,0 +1,353 @@
+---
+title: "[Concurrency Patterns] 13. Lock-Free 심화: Hazard Pointer와 RCU"
+description: "C++26에 채택된 Hazard Pointer·RCU를 직접 구현하며, 11장이 미룬 메모리 회수 문제를 use-after-free 재현과 ASAN 검증으로 다룹니다."
+date: 2026-07-09
+lastmod: 2026-07-09
+draft: true
+collection_order: 13
+categories:
+  - Design Patterns
+  - Concurrency Patterns
+tags:
+  - C++
+  - C++26
+  - Concurrency(동시성)
+  - Thread
+  - Memory(메모리)
+  - Memory-Order
+  - Synchronization
+  - RAII(Resource Acquisition Is Initialization)
+  - Design-Pattern(디자인패턴)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Implementation(구현)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Performance(성능)
+  - Best-Practices
+  - Code-Quality(코드품질)
+  - Compiler(컴파일러)
+  - Reference(참고)
+  - Deep-Dive
+  - Technology(기술)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Hazard-Pointer
+  - RCU(Read-Copy-Update)
+  - Lock-Free
+  - ABA-Problem
+  - Grace-Period
+  - Reclamation
+  - Treiber-Stack
+slug: cpp-hazard-pointer-rcu-lockfree-reclamation
+---
+
+11장은 SPSC(단일 생산자·단일 소비자) Lock-Free 큐를 구현하면서 "메모리 회수 문제(ABA, hazard pointer)는 이 장의 범위 밖"이라고 명시적으로 미뤄 두었다. 생산자와 소비자가 각각 하나뿐인 SPSC 구조에서는 애초에 이 문제가 발생하지 않기 때문이다. 하지만 여러 스레드가 동시에 같은 자료구조에서 노드를 꺼내고 지우는 일반적인(MPMC) 상황에서는 사정이 다르다 — 한 스레드가 아직 들여다보고 있는 노드를 다른 스레드가 지워 버릴 수 있다. 이 장은 그 문제를 정면으로 다루고, 2026년 3월 Croydon 총회에서 C++26 표준에 채택된 두 해법 — **Hazard Pointer**(P2530)와 **RCU**(P2545) — 를 직접 구현한다.
+
+## 이 장을 읽기 전에
+
+**완전한 초보자?** 이 장은 [11장 「공유 회피」](/post/multithreading-patterns/cpp-avoiding-shared-state-immutable-cow-thread-local/)의 SPSC Lock-Free 큐와 Copy-on-Write, 그리고 01장의 메모리 모델(happens-before, `memory_order`)을 알고 있다고 가정합니다. "SPSC에서는 왜 회수 문제가 없었는가"를 알아야 "MPMC에서는 왜 필요한가"를 이해할 수 있기 때문입니다.
+
+**이 장의 깊이**: 이 장은 **심화(advanced)** 수준입니다. Treiber 스택(가장 단순한 형태의 lock-free 스택)에 Hazard Pointer 기반 안전한 회수를 직접 구현하고, epoch 기반 RCU의 최소 형태로 Copy-on-Write를 재구현하는 것이 목표입니다.
+
+**다루지 않는 것**: 이 장의 구현은 **교육용**이다. 실제 C++26 표준 라이브러리는 `std::hazard_pointer`나 RCU 관련 API를 제공할 예정이지만(P2530, P2545), 이 글을 쓰는 시점까지 GCC·Clang·MSVC 표준 라이브러리 어디에도 구현되어 있지 않다. 그래서 이 장은 표준 API를 그대로 쓰는 대신, `std::atomic`만으로 그 API가 해결하려는 문제와 알고리즘을 직접 재현한다 — 실제 프로덕션에서는 folly의 `folly::hazptr`, `folly::rcu`나 향후 표준 라이브러리 구현을 쓸 것을 권장한다. 범용 MPMC 큐, 여러 개의 hazard pointer 슬롯을 스레드당 여러 개 쓰는 최적화, epoch 기반이 아닌 다른 RCU 구현(예: 신호 기반 QSBR)은 범위 밖이다.
+
+## 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **중급자** | "왜 회수가 어려운가" ~ "Hazard Pointer" | use-after-free가 왜 생기는지, 어떻게 막는지 이해 |
+| **고급자** | 전체, 특히 "RCU" | 참조 카운팅과 grace period 기반 회수의 차이 이해 |
+| **아키텍트** | "Hazard Pointer vs RCU 선택 기준" | 실제 시스템에서 어느 쪽을 쓸지 판단 |
+
+---
+
+## 왜 회수가 어려운가
+
+Lock-Free 자료구조에서 노드를 안전하게 지우는 일이 어려운 이유는 **"누가 이 노드를 아직 보고 있는지"를 락 없이는 알 방법이 없기 때문**이다. 뮤텍스 기반 코드에서는 임계 구역에 들어간 스레드만 데이터에 접근할 수 있으므로, 그 스레드가 나가기 전까지는 아무도 그 데이터를 지울 수 없다는 것이 락 자체로 보장된다. 하지만 lock-free 코드에는 그런 "출입문"이 없다 — 스레드 A가 포인터를 읽어 막 `->next`를 따라가려는 순간, 스레드 B가 같은 노드를 이미 꺼내서 `delete`해 버릴 수 있다. A가 그 다음 줄에서 해제된 메모리를 읽으면 **use-after-free**이고, 운이 나쁘면 그 자리에 다른 스레드가 이미 새 데이터를 할당해 넣어 완전히 엉뚱한 값을 "정상적으로" 읽어 버리는 ABA 문제로 이어진다. Hazard Pointer와 RCU는 이 문제에 대해 서로 다른 답을 낸다 — 전자는 "각 스레드가 지금 무엇을 보고 있는지 게시판에 적어 둔다"는 전략이고, 후자는 "다음 세대(epoch)로 넘어가기 전까지는 이전 세대의 메모리를 치우지 않는다"는 전략이다.
+
+## Hazard Pointer: 게시판 방식
+
+**Hazard Pointer**는 스레드가 공유 포인터를 역참조하기 전에 "나는 지금 이 포인터를 보고 있다"고 전역 게시판(hazard pointer 배열)에 적어 두는 방식이다. 다른 스레드가 어떤 노드를 지우려 할 때는 먼저 이 게시판을 훑어, 아무도 그 포인터를 게시해 두지 않았을 때만 실제로 `delete`한다. 아직 누군가 보고 있다면 그 노드를 "회수 대기 목록"에 넣어 두고 나중에 다시 확인한다.
+
+```cpp
+// hazard_pointer_stack.cpp
+// 빌드: g++ -std=c++20 -pthread -Wall -Wextra -O2 -g -fsanitize=address hazard_pointer_stack.cpp -o hp_stack
+#include <algorithm>
+#include <atomic>
+#include <iostream>
+#include <mutex>
+#include <optional>
+#include <thread>
+#include <vector>
+
+constexpr int kMaxThreads = 8;
+std::atomic<void*> gHazardPointers[kMaxThreads] = {};
+thread_local int tlHazardSlot = -1;
+std::atomic<int> gNextSlot{0};
+
+// 스레드마다 게시판 슬롯을 하나씩 배정한다 (교육용 단순화: 슬롯 반납은 생략).
+int myHazardSlot() {
+    if (tlHazardSlot == -1) {
+        tlHazardSlot = gNextSlot.fetch_add(1, std::memory_order_relaxed);
+    }
+    return tlHazardSlot;
+}
+
+bool isHazarded(void* ptr) {
+    for (auto& slot : gHazardPointers) {
+        if (slot.load(std::memory_order_acquire) == ptr) return true;
+    }
+    return false;
+}
+
+// RAII: 생성되는 동안 "이 포인터를 지금 보고 있다"고 게시판에 적고, 소멸 시 지운다.
+struct HazardGuard {
+    int slot = myHazardSlot();
+    explicit HazardGuard(void* ptr) {
+        gHazardPointers[slot].store(ptr, std::memory_order_release);
+    }
+    ~HazardGuard() { gHazardPointers[slot].store(nullptr, std::memory_order_release); }
+};
+
+struct Node {
+    int value;
+    Node* next;
+};
+
+class HazardPointerStack {
+public:
+    void push(int value) {
+        Node* node = new Node{value, head_.load(std::memory_order_relaxed)};
+        while (!head_.compare_exchange_weak(
+            node->next, node, std::memory_order_release, std::memory_order_relaxed)) {
+            // 실패하면 node->next가 head_의 최신값으로 자동 갱신된다
+        }
+    }
+
+    std::optional<int> pop() {
+        Node* node = head_.load(std::memory_order_acquire);
+        while (node != nullptr) {
+            HazardGuard guard(node);  // "이 노드를 지금 보고 있다"고 게시
+            // 게시 이후 head_가 그 사이 바뀌지 않았는지 재확인한다 — 바뀌었다면
+            // 방금 게시한 node가 이미 지워졌을 수 있으므로 처음부터 다시 읽는다.
+            if (head_.load(std::memory_order_acquire) != node) {
+                node = head_.load(std::memory_order_acquire);
+                continue;
+            }
+            Node* next = node->next;
+            if (head_.compare_exchange_weak(
+                    node, next, std::memory_order_acq_rel, std::memory_order_relaxed)) {
+                int value = node->value;
+                retire(node);  // 즉시 delete하지 않는다
+                return value;
+            }
+        }
+        return std::nullopt;
+    }
+
+private:
+    void retire(Node* node) {
+        std::lock_guard<std::mutex> lock(retireMutex_);
+        retired_.push_back(node);
+        if (retired_.size() < 4) return;  // 교육용: 아주 작은 임계값에서만 회수 시도
+        auto it = std::remove_if(retired_.begin(), retired_.end(), [](Node* p) {
+            if (isHazarded(p)) return false;  // 아직 누군가 이 포인터를 보고 있다
+            delete p;
+            return true;
+        });
+        retired_.erase(it, retired_.end());
+    }
+
+    std::atomic<Node*> head_{nullptr};
+    std::mutex retireMutex_;
+    std::vector<Node*> retired_;
+};
+```
+
+`pop()`에서 `HazardGuard`를 세운 직후 `head_`를 다시 읽어 확인하는 줄이 이 구현의 핵심이다. 게시판에 적는 것과 노드를 실제로 들여다보는 것 사이에는 항상 아주 짧은 틈이 있고, 그 틈에 다른 스레드가 이미 같은 노드를 꺼내 회수해 버렸을 수 있기 때문이다 — 게시 후 재확인은 "게시한 시점에 이 노드가 여전히 유효했는가"를 보장하는 안전장치다. `retire()`는 노드를 회수 대기 목록에 넣고, 목록이 일정 크기를 넘으면 게시판을 훑어 아무도 보고 있지 않은 노드만 골라 지운다.
+
+### 왜 use-after-free가 발생하는가: 원인과 수정
+
+`HazardGuard`와 `retire()` 없이, `pop()`이 노드를 꺼내자마자 바로 지우면 어떻게 될까.
+
+```cpp
+// 깨진 버전: 게시판 없이 pop이 끝나자마자 바로 delete한다
+std::optional<int> pop() {
+    Node* node = head_.load(std::memory_order_acquire);
+    while (node != nullptr) {
+        Node* next = node->next;  // 다른 스레드가 이미 이 node를 delete했을 수도 있다
+        if (head_.compare_exchange_weak(node, next, std::memory_order_acq_rel,
+                                         std::memory_order_relaxed)) {
+            int value = node->value;
+            delete node;  // 다른 스레드가 아직 node->next를 읽는 중일 수도 있다
+            return value;
+        }
+    }
+    return std::nullopt;
+}
+```
+
+스레드 A가 `Node* node = head_.load(...)`로 어떤 노드를 읽고 `node->next`에 접근하려는 바로 그 순간, 스레드 B가 같은 노드를 이미 pop해서 `delete`했다면 A는 이미 해제된 메모리를 읽는다. `compare_exchange_weak`가 그 사이 `head_`가 바뀌었으면 실패하고 재시도하도록 되어 있지만, **`node->next`를 읽는 시점은 이미 CAS보다 먼저**이므로 CAS 실패 여부와 무관하게 use-after-free가 먼저 일어난다. 이것이 11장에서 "일반적인 MPMC lock-free 자료구조는 책으로 배우기 어렵다"고 한 말의 구체적인 실체다.
+
+### 안전성 검증
+
+이 버그는 메모리 안전성 위반(해제된 메모리 접근)이므로 ThreadSanitizer보다 **AddressSanitizer**(`-fsanitize=address`)가 더 직접적으로 잡아낸다. 여러 스레드가 동시에 `push`/`pop`을 반복하도록 스트레스 테스트를 돌리면, 깨진 버전은 재현 빈도가 스레드 수·반복 횟수·시스템 부하에 따라 다르지만 결국 `heap-use-after-free`를 보고해야 한다. `HazardGuard`를 적용한 고친 버전은 같은 테스트에서 그런 리포트가 없어야 한다. 다만 이 역시 "여러 번 통과했다"가 "증명됐다"는 뜻은 아니다 — 11장에서 강조한 대로, 타이밍에 의존하는 버그는 특정 스레드 수·CPU·부하에서만 드러날 수 있다.
+
+## RCU: 세대 교체 방식
+
+**RCU(Read-Copy-Update)**는 다른 전략을 쓴다. 읽는 쪽은 게시판에 아무것도 적지 않고 그냥 포인터를 읽어 따라간다 — 원자적 읽기-수정-쓰기(RMW)조차 필요 없다. 대신 쓰는 쪽이 새 버전을 만들어 포인터를 교체한 뒤, "이 교체 이전에 시작된 모든 읽기가 끝날 때까지"(이 구간을 **grace period**라 부른다) 기다린 다음에야 이전 버전을 해제한다. 11장의 Copy-on-Write는 `shared_ptr`의 참조 카운팅으로 이 문제를 풀었다 — 리더가 스냅샷을 들고 있는 한 참조 카운트가 0이 되지 않으므로 안전하다. RCU는 참조 카운팅조차 생략한다. 참조 카운트를 증감하는 원자적 RMW는 읽기가 몰릴수록 같은 캐시 라인을 여러 코어가 다투게 만드는데, RCU는 그 비용을 아예 읽기 경로에서 없애고 드물게 일어나는 쓰기 경로로 미룬다.
+
+grace period를 구현하는 가장 단순한 방법은 전역 세대 번호(epoch)와, 각 스레드가 "마지막으로 관찰한 세대"를 기록하는 것이다.
+
+```cpp
+// rcu_config.cpp
+// 빌드: g++ -std=c++20 -pthread -Wall -Wextra -O2 -g rcu_config.cpp -o rcu_demo
+#include <atomic>
+#include <cstdint>
+#include <iostream>
+#include <limits>
+#include <map>
+#include <memory>
+#include <string>
+#include <thread>
+#include <vector>
+
+constexpr int kMaxThreads = 8;
+constexpr uint64_t kNotReading = std::numeric_limits<uint64_t>::max();
+
+std::atomic<uint64_t> gGlobalEpoch{0};
+std::atomic<uint64_t> gReaderEpoch[kMaxThreads];
+thread_local int tlRcuSlot = -1;
+std::atomic<int> gNextRcuSlot{0};
+
+int myRcuSlot() {
+    if (tlRcuSlot == -1) {
+        tlRcuSlot = gNextRcuSlot.fetch_add(1, std::memory_order_relaxed);
+        gReaderEpoch[tlRcuSlot].store(kNotReading, std::memory_order_relaxed);
+    }
+    return tlRcuSlot;
+}
+
+// RAII: 이 구간에 들어와 있는 동안 "나는 현재 세대를 읽는 중"이라고 알린다.
+struct RcuReadGuard {
+    int slot = myRcuSlot();
+    RcuReadGuard() {
+        gReaderEpoch[slot].store(gGlobalEpoch.load(std::memory_order_acquire),
+                                  std::memory_order_release);
+    }
+    ~RcuReadGuard() { gReaderEpoch[slot].store(kNotReading, std::memory_order_release); }
+};
+
+// 새 세대로 넘어가고, 이전 세대를 읽고 있던 모든 리더가 빠져나갈 때까지 기다린다.
+void rcuSynchronize() {
+    uint64_t target = gGlobalEpoch.fetch_add(1, std::memory_order_acq_rel) + 1;
+    for (auto& readerEpoch : gReaderEpoch) {
+        while (true) {
+            uint64_t seen = readerEpoch.load(std::memory_order_acquire);
+            if (seen == kNotReading || seen >= target) break;
+            std::this_thread::yield();  // 그 리더가 새 세대를 볼 때까지 잠시 양보
+        }
+    }
+}
+
+struct Config {
+    std::map<std::string, std::string> values;
+};
+
+class RcuConfigStore {
+public:
+    explicit RcuConfigStore(std::shared_ptr<const Config> initial)
+        : current_(std::move(initial)) {}
+
+    // 리더: 원자적 RMW 없이 그냥 포인터를 읽는다.
+    std::shared_ptr<const Config> get() const {
+        RcuReadGuard guard;
+        return std::atomic_load_explicit(&current_, std::memory_order_acquire);
+    }
+
+    // 라이터: 새 버전을 교체한 뒤, 이전 버전을 읽던 리더가 모두 빠져나갈 때까지 기다린다.
+    void update(const std::string& key, const std::string& value) {
+        auto oldCfg = std::atomic_load_explicit(&current_, std::memory_order_acquire);
+        auto newCfg = std::make_shared<Config>(*oldCfg);
+        newCfg->values[key] = value;
+        std::atomic_store_explicit(&current_, newCfg, std::memory_order_release);
+        rcuSynchronize();
+        // 이 시점 이후에는 oldCfg를 아무도 읽고 있지 않다고 보장된다.
+        // oldCfg는 함수가 끝나며 소멸하고, 마지막 참조라면 여기서 해제된다.
+    }
+
+private:
+    mutable std::shared_ptr<const Config> current_;
+};
+```
+
+`update()`가 새 포인터를 `release` 순서로 저장한 뒤 `rcuSynchronize()`가 전역 세대를 올리는 순서가 중요하다. 어떤 리더가 `rcuSynchronize()`의 새 세대 값을 관찰했다면, 같은 원자 변수의 release-acquire 관계 덕분에 그 리더는 반드시 방금 교체된 새 포인터도 함께 보게 된다 — 새 세대를 봤는데 여전히 옛 포인터를 읽는 일은 일어나지 않는다. 반대로 아직 옛 세대에 머물러 있는 리더가 있다면, `rcuSynchronize()`는 그 리더의 슬롯이 `kNotReading`이 되거나 새 세대 이상이 될 때까지 기다린다. 이 대기가 끝난 뒤에야 `oldCfg`가 회수돼도 안전하다는 것이 보장된다.
+
+### 안전성 검증
+
+`rcuSynchronize()` 호출을 생략하고 `update()`가 곧바로 다음 코드로 넘어가도록 바꾸면, 그 사이에 실행 중이던 `get()` 호출이 아직 `oldCfg`(정확히는 `atomic_load_explicit`로 얻은 스냅샷 자체)를 들고 있는 동안 다른 스레드가 그 값을 마지막 참조로 착각해 자원을 정리하는 코드를 실행할 경우 데이터 레이스로 이어질 수 있다. 이 구현에서는 `shared_ptr`의 참조 카운팅이 이미 실제 메모리 해제 시점 자체는 안전하게 지연시켜 주므로, `rcuSynchronize` 생략의 실질적 위험은 "회수를 그레이스 피리어드 없이 조기에 트리거하는 로직"(예: 참조 카운팅 없이 원시 포인터를 직접 `delete`하는 RCU 변형)에서 더 뚜렷해진다. 이 장의 `shared_ptr` 기반 구현은 grace period 계산 로직 자체를 안전하게 연습하는 데 목적이 있다.
+
+## Hazard Pointer vs RCU: 선택 기준
+
+두 기법 모두 "락 없이 안전하게 회수한다"는 목표는 같지만, 비용을 지불하는 위치가 다르다. Hazard Pointer는 **읽기마다 원자적 저장 하나**(게시판에 적는 비용)를 치르는 대신 회수가 비교적 빠르게 일어날 수 있고, 자료구조 종류에 크게 구애받지 않는다(Treiber 스택, 큐, 트리 어디에나 같은 방식으로 적용 가능). RCU는 **읽기 경로에 원자적 연산이 전혀 없는 대신**, 쓰기가 반드시 grace period(모든 기존 리더가 빠져나가길 기다림)를 거쳐야 하므로 회수가 늦어질 수 있고, 리더 수가 많고 읽기 구간이 길수록 그 지연이 커진다.
+
+| 기준 | Hazard Pointer | RCU |
+|------|---------------|-----|
+| 읽기 비용 | 원자적 저장 1회 | 없음 (또는 카운터 갱신 1회) |
+| 회수 지연 | 짧음 (게시판 확인 즉시) | 김 (grace period 대기) |
+| 적용 자료구조 | 범용 (스택, 큐, 트리 등) | 읽기가 압도적으로 많은 구조에 적합 |
+| 대표 사례 | lock-free 스택/큐의 노드 회수 | 설정 객체, 라우팅 테이블, 커널 자료구조 |
+
+실무 판단 기준은 단순하다. **쓰기가 아주 드물고 읽기가 압도적으로 많다면**(11장의 CoW ConfigStore 같은 경우) RCU가 읽기 경로 비용을 거의 0으로 만들어 준다. **쓰기와 읽기가 비슷한 빈도로 섞여 있거나 자료구조가 스택/큐처럼 자주 변형된다면** Hazard Pointer가 더 예측 가능한 회수 지연을 준다. 두 기법 모두 손으로 정확하게 구현하기는 까다로우므로, 실제 프로덕션에서는 이 장의 코드를 그대로 쓰지 말고 folly의 `folly::hazptr`나 검증된 RCU 구현, 또는 미래의 표준 라이브러리 구현을 쓰는 것이 안전하다.
+
+## 흔한 오개념
+
+가장 흔한 오해는 **"lock-free는 락이 없으니 무조건 더 빠르다"**는 것이다. 실제로는 Hazard Pointer의 게시판 확인이나 RCU의 grace period 대기 자체가 새로운 형태의 동기화 비용이며, 경쟁이 심하지 않은 상황에서는 잘 만든 `mutex`가 더 빠를 수도 있다(11장의 "성능 이득이 실제로 필요한 경우는 드물다"는 결론이 여기서도 그대로 적용된다). 두 번째 오해는 **"RCU는 읽기 잠금이 없으니 아무 자료구조에나 넣으면 이득"**이라는 것이다. RCU는 "포인터 하나를 원자적으로 교체하고 이전 버전은 grace period 이후 버리는" 구조에 최적화돼 있다 — 여러 필드를 부분적으로 갱신해야 하는 자료구조에는 이 장의 CoW 패턴처럼 "통째로 새 버전을 만드는" 재구성이 필요하다.
+
+## 학습 성과 평가 기준
+
+- [ ] Lock-Free 자료구조에서 메모리 회수가 왜 뮤텍스 기반 코드보다 어려운지 설명할 수 있는가?
+- [ ] Hazard Pointer를 직접 구현하고, "게시 후 재확인"이 왜 필요한지 설명할 수 있는가?
+- [ ] use-after-free 버그를 재현하고, AddressSanitizer로 그 차이를 검증할 수 있는가?
+- [ ] RCU의 grace period 개념을 epoch 기반으로 구현하고, 참조 카운팅과 무엇이 다른지 설명할 수 있는가?
+- [ ] 주어진 상황(쓰기 빈도, 읽기 구간 길이, 자료구조 종류)에서 Hazard Pointer와 RCU 중 무엇을 선택할지 판단할 수 있는가?
+
+## 시리즈 완수 평가 기준
+
+이 컬렉션 전체를 완주하면 [00장 「시리즈 소개」](/post/multithreading-patterns/getting-started-multithreading-design-patterns/)에서 제시한 목표 — "락을 어디에 넣지?"가 아니라 "이 문제는 어떤 패턴의 변형이지?"라는 어휘로 사고하는 것 — 를 다음 구체적 역량으로 점검할 수 있어야 한다.
+
+- [ ] 멀티스레드 문제를 "메모리 모델" 언어로 진단할 수 있다. (01)
+- [ ] 데이터 레이스를 Scoped Locking, Monitor Object, Guarded Suspension으로 해결할 수 있다. (02~03)
+- [ ] Producer-Consumer를 Bounded Buffer로 구현하고 backpressure를 제어할 수 있다. (04)
+- [ ] 읽기 위주 워크로드를 shared_mutex나 call_once로 최적화할 수 있다. (05)
+- [ ] Thread Pool, Future/Promise, Active Object를 설계하고 구현할 수 있다. (06~08)
+- [ ] `poll()` 기반 Reactor와 Proactor(완료 통지) 의미의 차이를 코드로 구현·구분할 수 있다. (09~10)
+- [ ] Immutable, Copy-on-Write, thread_local로 공유를 회피하고, SPSC Lock-Free 큐의 동작 원리를 설명할 수 있다. (11)
+- [ ] Future/Promise와 Active Object를 코루틴으로 재구현하고, 코루틴이 멀티스레딩과 어떻게 다른지 설명할 수 있다. (12)
+- [ ] Hazard Pointer와 RCU로 MPMC lock-free 자료구조의 메모리 회수를 안전하게 구현할 수 있다. (13)
+- [ ] 각 패턴의 트레이드오프(메모리, 성능, 복잡도)를 이해하고, 보호(02, 05)·대기(03)·흐름(04)·실행(06~08)·아키텍처(09~10)·회피(11)·최신 확장(12~13)의 7개 층위로 문제를 분류해 설계 리뷰에서 대안을 제시할 수 있다.
+
+## 마치며
+
+[00장 「시리즈 소개」](/post/multithreading-patterns/getting-started-multithreading-design-patterns/)는 "멀티스레드 코드가 무너지는 순간은 락 문법을 몰라서가 아니라, 어디에 어떤 구조로 동기화를 배치할지 설계하지 않아서 온다"는 문제의식에서 출발했다. 13개 장을 거치며 우리는 그 질문에 답하는 어휘 체계를 하나씩 쌓았다 — 01장의 메모리 모델은 "안전하다"는 말의 정의를 주었고, 02~05장은 단일 객체를 보호하는 관용구를, 04·06~08장은 스레드 사이의 데이터 흐름과 실행 관리를, 09~10장은 시스템 수준의 이벤트 아키텍처를, 11장은 공유 자체를 없애는 전략을 다뤘다.
+
+12~13장은 이 어휘 체계가 고정된 것이 아니라는 것을 보여 준다. 코루틴은 07~08장의 문제를 다른 문법으로 다시 표현했고, Hazard Pointer와 RCU는 11장이 미뤄 둔 문제에 대해 표준이 이제 막 답을 내놓기 시작한 참이다. C++26이 확정한 것이 이 두 가지로 끝나지 않듯, 이 시리즈에서 배운 것은 특정 API 목록이 아니라 **"이 동시성 문제는 보호·대기·흐름·실행·아키텍처·회피 중 어느 층위의 문제인가"를 분류하는 사고방식**이다. 새로운 언어 기능이 나올 때마다 이 어휘로 되돌아가 "이건 결국 어떤 패턴의 변형인가"를 물으면, 표준의 변화 속도를 따라가는 것이 훨씬 수월해진다.
+
+실무에서:
+- **작은 시스템**: Scoped Locking + Monitor Object로 충분
+- **중간 시스템**: Thread Pool + Future, Half-Sync/Half-Async 조합
+- **대규모 시스템**: Event-Driven(Reactor/Proactor) + thread_local + Immutable/CoW 혼합, 핫패스에 한정해 Hazard Pointer/RCU 검토
+- **비동기 체이닝이 많은 코드**: 코루틴 기반 재구성 검토(12장)
+
+무엇보다 중요한 것은 **"왜 동기화가 필요한가"를 이해하고, 가장 간단한 패턴부터 시작**하는 것이다. 복잡한 패턴은 필요할 때만, 그리고 프로파일링으로 그 필요성이 증명된 뒤에만 도입한다. 이 시리즈에서 익힌 구조적 어휘를 가지고, [Low-latency 동시성·멀티스레드 트랙](/post/concurrency-optimization/getting-started-concurrency-multithreading-performance-tuning/)에서 같은 패턴들을 "비용"의 관점으로 다시 보면, 구조와 성능이라는 두 축이 맞물려 입체적인 그림이 완성된다.
+
+## 참고 및 출처
+
+- Maged Michael, Michael Wong, JF Bastien et al., "P2530R3: Why Hazard Pointers Should be in C++26"(2023-2024), WG21
+- Paul E. McKenney et al., "P2545R4: Read-Copy Update (RCU)"(2023-2024), WG21
+- Mateusz Pusz, "Report from the Croydon 2026 ISO C++ Committee meeting"(2026-03-28) — C++26 표준 확정과 Hazard Pointer/RCU 채택 경위
+- Rainer Grimm, "Deferred Reclamation in C++26: Read-Copy Update and Hazard Pointers", modernescpp.com(2025-01)
+- Maged M. Michael, "Hazard Pointers: Safe Memory Reclamation for Lock-Free Objects", IEEE TPDS(2004) — Hazard Pointer 원 논문
+- Paul E. McKenney, Jonathan Walpole, "What is RCU, Fundamentally?", Linux Weekly News — RCU의 grace period 개념 원 설명
+- Anthony Williams, 『C++ Concurrency in Action』(2nd ed., 2019) — Lock-Free 자료구조와 memory_order 실전 활용
+- POSA2(Schmidt et al., 2000) — 이 시리즈 전체 패턴의 원형
