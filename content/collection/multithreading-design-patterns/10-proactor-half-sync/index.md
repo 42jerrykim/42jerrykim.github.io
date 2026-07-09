@@ -60,14 +60,14 @@ slug: cpp-proactor-async-io-half-sync-half-async
 ## Reactor vs Proactor
 
 **Reactor** (동기 I/O):
-```
+```text
 1. "읽을 데이터 있나?" 확인 (select/poll/epoll)
 2. 있으면 read() 호출 (블로킹, 하지만 준비됨)
 3. 데이터 처리
 ```
 
 **Proactor** (비동기 I/O):
-```
+```text
 1. "이 소켓에서 읽어줘" 요청 (즉시 반환)
 2. 나중에 OS가 "읽기 완료, 데이터 있음" 통지
 3. 콜백에서 데이터 처리
@@ -169,7 +169,7 @@ POSIX AIO는 복잡하고 느려서, 많은 라이브러리(Asio, libuv)는 Linu
 
 ## Half-Sync/Half-Async의 구조도
 
-```
+```text
 ┌─────────────────────────────────────────┐
 │  Synchronous Service Layer (Workers)    │
 │  - CPU-intensive processing             │
@@ -375,6 +375,6 @@ int main() {
 
 - POSA2 (Schmidt et al.), Chapter 7 — Half-Sync/Half-Async 원형
 - Douglas C. Schmidt, "Proactor: An Object Behavioral Pattern for Demultiplexing and Dispatching Handles for Asynchronous Events"
-- Mark Vinoski, "Boost.Asio C++ Network Programming" (2010)
+- Christopher Kohlhoff, Boost.Asio 공식 문서 — Proactor 스타일 비동기 인터페이스의 대표적 실제 구현
 
 

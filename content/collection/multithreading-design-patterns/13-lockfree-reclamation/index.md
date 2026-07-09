@@ -1,4 +1,5 @@
 ---
+image: wordcloud.png
 title: "[Concurrency Patterns] 13. Lock-Free 심화: Hazard Pointer와 RCU"
 description: "C++26 표준에 채택된 Hazard Pointer와 RCU를 std::atomic만으로 직접 구현합니다. 11장이 미뤄둔 lock-free 메모리 회수 문제를 use-after-free 재현과 ASAN·TSAN 검증으로 다룹니다."
 date: 2026-07-09
@@ -41,7 +42,7 @@ tags:
 slug: cpp-hazard-pointer-rcu-lockfree-reclamation
 ---
 
-11장은 SPSC(단일 생산자·단일 소비자) Lock-Free 큐를 구현하면서 "메모리 회수 문제(ABA, hazard pointer)는 이 장의 범위 밖"이라고 명시적으로 미뤄 두었다. 생산자와 소비자가 각각 하나뿐인 SPSC 구조에서는 애초에 이 문제가 발생하지 않기 때문이다. 하지만 여러 스레드가 동시에 같은 자료구조에서 노드를 꺼내고 지우는 일반적인(MPMC) 상황에서는 사정이 다르다 — 한 스레드가 아직 들여다보고 있는 노드를 다른 스레드가 지워 버릴 수 있다. 이 장은 그 문제를 정면으로 다루고, 2026년 3월 Croydon 총회에서 C++26 표준에 채택된 두 해법 — **Hazard Pointer**(P2530)와 **RCU**(P2545) — 를 직접 구현한다.
+11장은 SPSC(단일 생산자·단일 소비자) Lock-Free 큐를 구현하면서 "메모리 회수 문제(ABA, hazard pointer)는 이 장의 범위 밖"이라고 명시적으로 미뤄 두었다. 생산자와 소비자가 각각 하나뿐인 SPSC 구조에서는 애초에 이 문제가 발생하지 않기 때문이다. 하지만 여러 스레드가 동시에 같은 자료구조에서 노드를 꺼내고 지우는 일반적인(MPMC) 상황에서는 사정이 다르다 — 한 스레드가 아직 들여다보고 있는 노드를 다른 스레드가 지워 버릴 수 있다. 이 장은 그 문제를 정면으로 다루고, C++26 표준(2026년 3월 Croydon 총회에서 최종 확정)에 포함된 두 해법 — **Hazard Pointer**(P2530)와 **RCU**(P2545) — 를 직접 구현한다.
 
 ## 이 장을 읽기 전에
 
@@ -49,7 +50,7 @@ slug: cpp-hazard-pointer-rcu-lockfree-reclamation
 
 **이 장의 깊이**: 이 장은 **심화(advanced)** 수준입니다. Treiber 스택(가장 단순한 형태의 lock-free 스택)에 Hazard Pointer 기반 안전한 회수를 직접 구현하고, epoch 기반 RCU의 최소 형태로 Copy-on-Write를 재구현하는 것이 목표입니다.
 
-**다루지 않는 것**: 이 장의 구현은 **교육용**이다. 실제 C++26 표준 라이브러리는 `std::hazard_pointer`나 RCU 관련 API를 제공할 예정이지만(P2530, P2545), 이 글을 쓰는 시점까지 GCC·Clang·MSVC 표준 라이브러리 어디에도 구현되어 있지 않다. 그래서 이 장은 표준 API를 그대로 쓰는 대신, `std::atomic`만으로 그 API가 해결하려는 문제와 알고리즘을 직접 재현한다 — 실제 프로덕션에서는 folly의 `folly::hazptr`, `folly::rcu`나 향후 표준 라이브러리 구현을 쓸 것을 권장한다. 범용 MPMC 큐, 여러 개의 hazard pointer 슬롯을 스레드당 여러 개 쓰는 최적화, epoch 기반이 아닌 다른 RCU 구현(예: 신호 기반 QSBR)은 범위 밖이다.
+**다루지 않는 것**: 이 장의 구현은 **교육용**입니다. 실제 C++26 표준 라이브러리는 `std::hazard_pointer`나 RCU 관련 API를 제공할 예정이지만(P2530, P2545), 이 글을 쓰는 시점까지 GCC·Clang·MSVC 표준 라이브러리 어디에도 구현되어 있지 않습니다. 그래서 이 장은 표준 API를 그대로 쓰는 대신, `std::atomic`만으로 그 API가 해결하려는 문제와 알고리즘을 직접 재현합니다 — 실제 프로덕션에서는 folly의 `folly::hazptr`, `folly::rcu`나 향후 표준 라이브러리 구현을 쓸 것을 권장합니다. 범용 MPMC 큐, 스레드당 hazard pointer 슬롯을 여러 개 두는 최적화, epoch 기반이 아닌 다른 RCU 구현(예: 신호 기반 QSBR)은 범위 밖입니다.
 
 ## 당신의 수준에 맞는 경로
 

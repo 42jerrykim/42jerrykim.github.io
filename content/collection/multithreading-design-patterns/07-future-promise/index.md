@@ -48,7 +48,7 @@ slug: cpp-future-promise-async-packaged-task
 
 **이 장의 깊이**: 이 장은 **중급~고급** 수준입니다. `std::promise`/`std::future`의 기본 계약, `std::async`의 launch policy가 만드는 함정, 예외 전파의 정확한 의미, 그리고 `packaged_task`를 Thread Pool과 결합해 "Future를 반환하는 작업 큐"를 만드는 실전 패턴까지 다룹니다.
 
-**다루지 않는 것**: `std::shared_future`를 이용한 다중 소비자 브로드캐스트, `std::experimental::future`의 `.then()` 체이닝, 그리고 `std::async`의 구현별(libstdc++ vs MSVC) 스케줄링 차이의 세부 사항은 다루지 않습니다. 이 장의 보일러플레이트를 C++20 코루틴으로 다시 쓰는 방법은 [12장 「코루틴 기반 비동기 재해석」](/post/multithreading-patterns/cpp-coroutine-reinterpretation-future-active-object/)에서 다룬다.
+**다루지 않는 것**: `std::shared_future`를 이용한 다중 소비자 브로드캐스트, `std::experimental::future`의 `.then()` 체이닝, 그리고 `std::async`의 구현별(libstdc++ vs MSVC) 스케줄링 차이의 세부 사항은 다루지 않습니다. 이 장의 보일러플레이트를 C++20 코루틴으로 다시 쓰는 방법은 [12장 「코루틴 기반 비동기 재해석」](/post/multithreading-patterns/cpp-coroutine-reinterpretation-future-active-object/)에서 다룹니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -374,7 +374,7 @@ g++ -std=c++20 -pthread -fsanitize=thread -g future_pool_example.cpp -o future_p
 ./future_pool_example
 ```
 
-TSAN은 `set_value`/`set_exception`과 `get()` 사이의 happens-before 관계가 깨졌을 때(예: 공유 상태에 직접 접근하는 잘못된 수동 구현) 데이터 레이스를 보고한다. 표준 `std::future`/`std::promise` 자체는 내부적으로 적절한 동기화를 제공하므로, 이 장의 예제처럼 표준 API만 사용하면 TSAN 경고가 발생하지 않는 것이 정상이다 — 경고가 뜬다면 future로 전달해야 할 데이터를 별도의 비동기 공유 변수로 우회 접근하고 있다는 신호다.
+TSAN은 `set_value`/`set_exception`과 `get()` 사이의 happens-before 관계가 깨졌을 때(예: 공유 상태에 직접 접근하는 잘못된 수동 구현) 데이터 레이스를 보고한다. 표준 `std::future`/`std::promise` 자체는 내부적으로 적절한 동기화를 제공하므로, 이 장의 예제처럼 표준 API만 사용하면 TSAN 경고가 발생하지 않는 것이 정상이다 — 경고가 뜬다면 future로 전달해야 할 데이터를 future 밖의 동기화되지 않은 공유 변수로 우회 접근하고 있다는 신호다.
 
 ## 학습 성과 평가 기준
 

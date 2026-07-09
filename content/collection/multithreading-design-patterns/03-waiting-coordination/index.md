@@ -246,7 +246,7 @@ timeout 3 ./signal_no_predicate || echo "hang detected (lost wakeup)"
 
 ## Guarded Suspension 패턴
 
-**Guarded Suspension**은 Monitor Object와 유사하지만, 조건이 만족되지 않으면 "대기"가 아니라 "보류(suspend)"한다. 다음은 큐의 예제다:
+**Guarded Suspension**은 "조건(guard)이 만족될 때까지 호출을 중단(suspension)했다가, 만족되면 이어서 실행한다"는 패턴이다. Monitor Object가 "메서드 호출의 직렬화"에 초점을 둔다면, Guarded Suspension은 그 위에 "전제 조건이 채워질 때까지 기다린다"는 규칙을 얹는다 — 그리고 뒤에 나올 Balking은 정확히 반대로, 조건이 안 맞으면 기다리지 않고 즉시 포기한다. 다음은 큐의 예제다:
 
 ```cpp
 #include <queue>
@@ -355,7 +355,7 @@ if (data.validate(42)) {
 
 ### notify를 락 안에서 호출할까, 밖에서 호출할까
 
-`set()`/`push()` 예제들은 모두 `notify_one()`을 **락을 잡은 상태에서** 호출한다. 하지만 가장 앞의 `DataHolder::set()` 예제는 `notify_one()`을 **락 해제 후** 호출했다. 둘 다 정답이 될 수 있지만 트레이드오프가 다르다.
+이 장의 예제들을 다시 보면 notify 위치가 통일되어 있지 않다는 것을 눈치챘을 것이다 — `FixedSignal::set()`은 `notify_one()`을 **락을 잡은 상태에서** 호출하지만, 가장 앞의 `DataHolder::set()`과 `BlockingQueue::push()`는 **락 해제 후** 호출했다. 이것은 실수가 아니라 둘 다 정답이 될 수 있는 선택이며, 트레이드오프가 다르다.
 
 ```cpp
 // (A) 락 안에서 notify — 더 안전, 약간 더 비효율적
@@ -375,7 +375,7 @@ void push_B(int val) {
 }
 ```
 
-(A)는 notify된 스레드가 즉시 깨어나도 곧바로 `mu`를 다시 기다려야 하는 "hurry up and wait" 현상이 있을 수 있다(대부분의 구현은 이를 최적화하지만 표준이 보장하진 않는다). (B)는 이 낭비를 줄이지만, **notify와 unlock 사이에 컨텍스트 스위치가 끼어들 여지가 생긴다는 점에서 "더 위험해 보일 수 있다** — 그러나 predicate 기반 `wait`를 쓴다면 (B)도 안전하다. 정답이 없으므로, 측정 후 결정하되 **predicate를 항상 쓴다**는 원칙은 둘 다에서 동일하게 적용된다.
+(A)는 notify된 스레드가 즉시 깨어나도 곧바로 `mu`를 다시 기다려야 하는 "hurry up and wait" 현상이 있을 수 있다(대부분의 구현은 이를 최적화하지만 표준이 보장하진 않는다). (B)는 이 낭비를 줄이지만, unlock과 notify 사이에 컨텍스트 스위치가 끼어들 여지가 생긴다는 점에서 **더 위험해 보일 수 있다** — 그러나 predicate 기반 `wait`를 쓴다면 (B)도 안전하다. 정답이 없으므로, 측정 후 결정하되 **predicate를 항상 쓴다**는 원칙은 둘 다에서 동일하게 적용된다.
 
 ### 패턴 1: Single Condition, Multiple Waiters
 

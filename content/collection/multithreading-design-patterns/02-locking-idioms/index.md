@@ -118,7 +118,7 @@ c.increment();            // Thread 2: 값 증가
 int v2 = c.getValue();    // Thread 1: 값 다시 읽음
 ```
 
-Thread 1이 getValue() → unlock() → increment() 호출 → getValue() 사이에 Thread 2가 increment를 완료하므로, v2 > v1이지만 그사이 increment()는 호출되지 않았다. **즉, 클래스 불변식이 깨진다**.
+`getValue()`와 `increment()` 각각은 락으로 보호되어 안전하다. 하지만 Thread 1 입장에서는 자신이 아무것도 바꾸지 않았는데 두 읽기 사이에 값이 변해 있다(`v2 > v1`) — 개별 호출의 안전성이 **호출 시퀀스의 원자성**까지 보장해 주지는 않기 때문이다. "읽고 → 판단하고 → 행동한다"는 로직을 이렇게 여러 번의 락 획득으로 쪼개면, 그 사이사이에 다른 스레드가 끼어들 수 있다. 이런 check-then-act 시퀀스 전체를 하나의 락 범위로 묶는 방법이 이 장 뒷부분의 Thread-Safe Interface에서 다루는 주제다.
 
 ## Scoped Locking 패턴 (RAII)
 
@@ -204,7 +204,27 @@ TSAN_OPTIONS="second_deadlock_stack=1" ./counter
 
 ## Thread-Safe Interface 패턴
 
-**문제**: Scoped Locking만으로는 부족하다. 공개 메서드가 여러 개면, 메서드끼리 호출할 때 같은 mutex를 두 번 잡으려고 시도할 수 있다 (데드락). 또는 메서드들 사이의 불변식이 깨질 수 있다.
+**문제**: Scoped Locking만으로는 부족하다. 공개 메서드가 여러 개면, 메서드끼리 호출할 때 같은 mutex를 두 번 잡으려고 시도할 수 있다 — 이것이 **자기 데드락(self-deadlock)**이다. 가장 작은 재현은 다음과 같다.
+
+```cpp
+class SelfDeadlock {
+    std::mutex mu;
+    int value = 0;
+public:
+    int getValue() {
+        std::lock_guard<std::mutex> lock(mu);
+        return value;
+    }
+    void printIfPositive() {
+        std::lock_guard<std::mutex> lock(mu);   // (1) mu를 잡는다
+        if (getValue() > 0) {                   // (2) getValue()가 mu를 또 잡으려 한다 → 여기서 영원히 멈춤
+            std::cout << value << '\n';
+        }
+    }
+};
+```
+
+`std::mutex`는 재진입을 허용하지 않으므로, `printIfPositive()`가 락을 쥔 채 `getValue()`를 호출하는 순간 같은 스레드가 자기 자신을 기다리는 교착에 빠진다. 이 문제는 "공개 메서드가 다른 공개 메서드를 호출하지 않게" 인터페이스를 재설계해야 근본적으로 사라지며, 그 방법이 이 절의 주제다. 자기 데드락 외에도, 메서드들 사이의 불변식이 깨지는 문제가 있다.
 
 예를 들어:
 
@@ -319,7 +339,7 @@ public:
         return balance;
     }
 
-    // 원자적 연산: 한 번에 unlock, getBalance 수행
+    // 원자적 연산: 한 번의 락 획득으로 withdraw와 getBalance를 함께 수행
     int withdrawAndGetBalance(int amount) {
         std::lock_guard<std::mutex> lock(mu);
         if (balance >= amount) {
@@ -459,7 +479,7 @@ void save() {
 
 **규칙 3: 락 안에서 콜백·가상 함수 호출 금지**
 
-락을 잡은 채로 외부에서 전달받은 콜백이나 가상 함수를 호출하면, 그 함수 내부에서 무슨 일이 일어나는지 호출하는 쪽은 알 수 없다. 만약 그 콜백이 (직접 또는 간접적으로) 같은 mutex를 다시 잠그려 하면 02장 도입부에서 본 자기 데드락이 되고, 다른 mutex를 반대 순서로 잠그면 이 장 앞부분의 순환 대기 데드락이 된다. 안전한 방법은 락을 잡은 짧은 구간 안에서 필요한 데이터(여기서는 콜백 자체)만 꺼내고, 락을 놓은 뒤에 호출하는 것이다.
+락을 잡은 채로 외부에서 전달받은 콜백이나 가상 함수를 호출하면, 그 함수 내부에서 무슨 일이 일어나는지 호출하는 쪽은 알 수 없다. 만약 그 콜백이 (직접 또는 간접적으로) 같은 mutex를 다시 잠그려 하면 Thread-Safe Interface 절에서 본 자기 데드락이 되고, 다른 mutex를 반대 순서로 잠그면 이 장 앞부분의 순환 대기 데드락이 된다. 안전한 방법은 락을 잡은 짧은 구간 안에서 필요한 데이터(여기서는 콜백 자체)만 꺼내고, 락을 놓은 뒤에 호출하는 것이다.
 
 ```cpp
 // 나쁜 예

@@ -1,4 +1,5 @@
 ---
+image: wordcloud.png
 title: "[Concurrency Patterns] 12. 코루틴 기반 비동기 재해석"
 description: "C++20 코루틴으로 07장 Future/Promise와 08장 Active Object를 다시 구현합니다. co_await의 동작 원리, 스레드 재개 시 생기는 lost wakeup, 코루틴과 멀티스레딩의 관계를 다룹니다."
 date: 2026-07-09
@@ -367,7 +368,7 @@ bool await_suspend(std::coroutine_handle<> h) {
 
 ## 다음 장에서는
 
-13장에서는 11장이 "범위 밖"으로 미뤄 둔 문제 — lock-free 자료구조의 메모리 회수(reclamation) — 를 정면으로 다룬다. 2026년 3월 Croydon 총회에서 C++26 표준에 채택된 **Hazard Pointer**(P2530)와 **RCU**(P2545)를 표준 라이브러리 사용법 수준으로 구현하고 검증한다.
+13장에서는 11장이 "범위 밖"으로 미뤄 둔 문제 — lock-free 자료구조의 메모리 회수(reclamation) — 를 정면으로 다룬다. C++26 표준(2026년 3월 최종 확정)에 포함된 **Hazard Pointer**(P2530)와 **RCU**(P2545)의 알고리즘을 `std::atomic`만으로 직접 구현하고 검증한다.
 
 ## 참고 및 출처
 

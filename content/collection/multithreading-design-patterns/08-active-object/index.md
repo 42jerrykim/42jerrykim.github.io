@@ -48,7 +48,7 @@ slug: cpp-active-object-async-method-invocation
 
 **이 장의 깊이**: 이 장은 **고급(설계자)** 수준입니다. 단순히 "스레드 하나를 두고 큐로 메서드 호출을 직렬화한다"는 아이디어를 넘어, Active Object와 Actor 모델의 설계상 차이, 우선순위가 있는 메서드 요청 큐, 그리고 Active Object를 06장의 Thread Pool과 07장의 Future 위에 올리는 하이브리드 구조까지 다룹니다.
 
-**다루지 않는 것**: 분산 시스템에서의 Actor 구현(Erlang/Akka류의 메시지 패싱, 위치 투명성, 장애 복구)은 이 시리즈의 경계 밖입니다. 이 장에서 "Actor"는 비교 대상으로만 언급되며, C++ 구현은 제공하지 않습니다. 이 장의 요청-응답 구조를 C++20 코루틴으로 다시 쓰는 방법은 [12장 「코루틴 기반 비동기 재해석」](/post/multithreading-patterns/cpp-coroutine-reinterpretation-future-active-object/)에서 다룬다.
+**다루지 않는 것**: 분산 시스템에서의 Actor 구현(Erlang/Akka류의 메시지 패싱, 위치 투명성, 장애 복구)은 이 시리즈의 경계 밖입니다. 이 장에서 "Actor"는 비교 대상으로만 언급되며, C++ 구현은 제공하지 않습니다. 이 장의 요청-응답 구조를 C++20 코루틴으로 다시 쓰는 방법은 [12장 「코루틴 기반 비동기 재해석」](/post/multithreading-patterns/cpp-coroutine-reinterpretation-future-active-object/)에서 다룹니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -299,7 +299,7 @@ int main() {
 }
 ```
 
-`ac.call([](Counter& c) { c.inc(); })`처럼 잘못된 시그니처의 람다를 넘기면, `std::invoke_result_t<F, T&>`를 계산하는 시점에 컴파일 에러가 나서 그 자리에서 바로 잡힌다 — 앞선 `std::function<void()>` 버전이었다면 같은 실수가 런타임까지 넘어갔을 것이다. 다만 이 안전성은 공짜가 아니다. `ActiveObject<T>`가 템플릿이므로 사용하는 타입 `T`마다 별도의 인스턴스화가 일어나고, 헤더에 구현을 노출해야 한다는 비용을 감수해야 한다.
+만약 `ac.call([](std::string& s) { s.clear(); })`처럼 `Counter&`가 아닌 잘못된 타입을 받는 람다를 넘기면, `std::invoke_result_t<F, T&>`를 계산하는 시점에 컴파일 에러가 나서 그 자리에서 바로 잡힌다 — 타입 정보를 지워버리는 `std::function<void()>` 기반 설계였다면 이런 실수를 컴파일러가 잡을 방법 자체가 없었을 것이다. 다만 이 안전성은 공짜가 아니다. `ActiveObject<T>`가 템플릿이므로 사용하는 타입 `T`마다 별도의 인스턴스화가 일어나고, 헤더에 구현을 노출해야 한다는 비용을 감수해야 한다.
 
 ## Actor 모델과의 차이
 
