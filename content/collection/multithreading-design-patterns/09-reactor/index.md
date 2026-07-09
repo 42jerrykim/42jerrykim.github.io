@@ -53,7 +53,7 @@ slug: cpp-reactor-event-driven-single-thread
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
 | **고급자** | "문제" ~ "Reactor의 기본 구조" | Reactor 개념 이해 |
-| **시스템 설계자** | 전체, 특히 "실전: poll() 기반 Reactor 구현" | select/poll/epoll 선택 기준과 실제 동작 |
+| **설계자** | 전체, 특히 "실전: poll() 기반 Reactor 구현" | select/poll/epoll 선택 기준과 실제 동작 |
 
 ---
 

@@ -57,7 +57,7 @@ slug: cpp-hazard-pointer-rcu-lockfree-reclamation
 |------|---------|---------|
 | **중급자** | "왜 회수가 어려운가" ~ "Hazard Pointer: 게시판 방식" | use-after-free가 왜 생기는지, 어떻게 막는지 이해 |
 | **고급자** | 전체, 특히 "RCU: 세대 교체 방식" | 참조 카운팅과 grace period 기반 회수의 차이 이해 |
-| **아키텍트** | "Hazard Pointer vs RCU: 선택 기준" | 실제 시스템에서 어느 쪽을 쓸지 판단 |
+| **설계자** | "Hazard Pointer vs RCU: 선택 기준" | 실제 시스템에서 어느 쪽을 쓸지 판단 |
 
 ---
 

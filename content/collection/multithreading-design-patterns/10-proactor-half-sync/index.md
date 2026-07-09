@@ -53,7 +53,7 @@ slug: cpp-proactor-async-io-half-sync-half-async
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
 | **고급자** | "Reactor vs Proactor" ~ "Half-Sync/Half-Async 패턴" | 패턴 비교 이해 |
-| **시스템 설계자** | 전체, 특히 "실전: Half-Sync/Half-Async 서버 스켈레톤" | 실제 서버 설계에 적용 |
+| **설계자** | 전체, 특히 "실전: Half-Sync/Half-Async 서버 스켈레톤" | 실제 서버 설계에 적용 |
 
 ---
 
