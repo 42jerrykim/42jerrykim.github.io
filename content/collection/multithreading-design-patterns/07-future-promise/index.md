@@ -31,11 +31,11 @@ slug: cpp-future-promise-async-packaged-task
 
 ## 이 장을 읽기 전에
 
-**완전한 초보자?** 이 장은 06장 「[실행 관리 I: Thread Pool](/post/multithreading-design-patterns/cpp-thread-pool-work-queue-work-stealing/)」에서 다룬 작업 큐(work queue)와 `std::mutex`/`std::condition_variable`의 기본 동작을 이미 안다고 가정합니다. 아직이라면 06장을 먼저 읽고 오세요. 또한 01장의 happens-before 개념(`std::future::get()`이 내부적으로 동기화 지점을 제공한다는 사실의 근거)을 가볍게 복습해 두면 좋습니다.
+**완전한 초보자?** 이 장은 06장 「[실행 관리 I: Thread Pool](/post/multithreading-patterns/cpp-thread-pool-work-queue-work-stealing/)」에서 다룬 작업 큐(work queue)와 `std::mutex`/`std::condition_variable`의 기본 동작을 이미 안다고 가정합니다. 아직이라면 06장을 먼저 읽고 오세요. 또한 01장의 happens-before 개념(`std::future::get()`이 내부적으로 동기화 지점을 제공한다는 사실의 근거)을 가볍게 복습해 두면 좋습니다.
 
 **이 장의 깊이**: 이 장은 **중급~고급** 수준입니다. `std::promise`/`std::future`의 기본 계약, `std::async`의 launch policy가 만드는 함정, 예외 전파의 정확한 의미, 그리고 `packaged_task`를 Thread Pool과 결합해 "Future를 반환하는 작업 큐"를 만드는 실전 패턴까지 다룹니다.
 
-**다루지 않는 것**: `std::shared_future`를 이용한 다중 소비자 브로드캐스트, `std::experimental::future`의 `.then()` 체이닝(코루틴 기반 비동기 모델은 00장에서 명시한 대로 이 시리즈의 경계 밖입니다), 그리고 `std::async`의 구현별(libstdc++ vs MSVC) 스케줄링 차이의 세부 사항은 다루지 않습니다.
+**다루지 않는 것**: `std::shared_future`를 이용한 다중 소비자 브로드캐스트, `std::experimental::future`의 `.then()` 체이닝, 그리고 `std::async`의 구현별(libstdc++ vs MSVC) 스케줄링 차이의 세부 사항은 다루지 않습니다. 이 장의 보일러플레이트를 C++20 코루틴으로 다시 쓰는 방법은 [12장 「코루틴 기반 비동기 재해석」](/post/multithreading-patterns/cpp-coroutine-reinterpretation-future-active-object/)에서 다룬다.
 
 ## 당신의 수준에 맞는 경로
 

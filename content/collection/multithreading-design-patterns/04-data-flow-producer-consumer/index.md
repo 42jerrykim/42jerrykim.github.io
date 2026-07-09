@@ -47,7 +47,7 @@ slug: cpp-producer-consumer-bounded-buffer-backpressure
 |------|---------|---------|
 | **초보자** | "Unbounded Queue" ~ "Bounded Buffer" | 생산-소비 큐 구현 |
 | **중급자** | 전체 (성능 섹션 제외) | Backpressure 이해 및 적용 |
-| **전문가** | "성능 고려사항" ~ "다중 프로듀서/컨슈머" | Lock contention과 최적화 |
+| **전문가** | "다중 프로듀서/컨슈머" ~ "성능 고려사항" | Lock contention과 최적화 |
 
 ---
 

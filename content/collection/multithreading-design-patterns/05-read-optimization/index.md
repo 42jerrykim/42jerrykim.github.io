@@ -37,7 +37,7 @@ slug: cpp-read-write-lock-dclp-call-once-lazy-init
 
 **완전한 초보자?** 이 장은 [02장: 락 관용구](/post/multithreading-patterns/cpp-locking-idioms-scoped-locking-thread-safe-interface/)에서 다룬 `std::mutex`, `std::lock_guard`, 그리고 01장의 `memory_order_acquire`/`memory_order_release`를 전제로 합니다. 특히 DCLP 섹션은 01장의 happens-before 개념 없이는 "왜 위험했는지"가 와닿지 않으니, 아직이라면 01장과 02장을 먼저 보세요.
 
-**이 장의 깊이**: 이 장은 **중급~전문가**까지를 포괄합니다. `std::shared_mutex`로 읽기/쓰기를 분리하는 기본기부터 시작해, DCLP의 역사적 함정과 C++11 이후의 올바른 구현, 그리고 `call_once`/정적 지연 초기화까지 다룹니다. 전문가 구간에서는 `shared_mutex`가 실제로 손해인 상황과 플랫폼별 구현 차이까지 다룹니다. **다루지 않는 것**: lock-free 읽기 전용 자료구조(hazard pointer, RCU)의 구현은 11장의 전망 섹션 이상으로는 다루지 않습니다.
+**이 장의 깊이**: 이 장은 **중급~전문가**까지를 포괄합니다. `std::shared_mutex`로 읽기/쓰기를 분리하는 기본기부터 시작해, DCLP의 역사적 함정과 C++11 이후의 올바른 구현, 그리고 `call_once`/정적 지연 초기화까지 다룹니다. 전문가 구간에서는 `shared_mutex`가 실제로 손해인 상황과 플랫폼별 구현 차이까지 다룹니다. **다루지 않는 것**: lock-free 읽기 전용 자료구조의 구현은 이 장에서 다루지 않는다. 11장이 그 전망만 짧게 언급하고, [13장 「Lock-Free 심화: Hazard Pointer와 RCU」](/post/multithreading-patterns/cpp-hazard-pointer-rcu-lockfree-reclamation/)에서 Hazard Pointer와 RCU를 직접 구현하며 본격적으로 다룬다.
 
 ## 당신의 수준에 맞는 경로
 

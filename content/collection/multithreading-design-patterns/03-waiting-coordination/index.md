@@ -399,6 +399,8 @@ public:
 };
 ```
 
+이 `Barrier`는 손으로 만든 교육용 축소판이다. C++20은 정확히 이 문제(N개 스레드가 모두 도착할 때까지 기다렸다가 함께 출발)를 표준 라이브러리 타입 `std::barrier`로 제공한다. `std::barrier`는 재사용 가능하다는 점에서 더 강력하다 — 위 `Barrier`는 `total`에 도달하면 그걸로 끝이지만, `std::barrier`는 각 단계(phase)가 끝날 때마다 자동으로 다음 단계를 위해 초기화되며, 마지막 도착 스레드가 실행할 완료 콜백(completion function)도 등록할 수 있다. 비슷하게, "N개 이벤트가 모두 끝날 때까지 딱 한 번만 기다린다"는 **재사용 불가능한** 대기는 `std::latch`가 더 간단하다 — `Barrier`처럼 `wait`/`arrive`를 매번 조합하지 않고 `arrive_and_wait()` 한 번으로 끝난다. 리소스 슬롯을 N개로 제한하는 카운팅 문제(예: 동시 접속 수 제한)라면 `std::counting_semaphore`가 이 장의 조건 변수 조합보다 더 적은 코드로 같은 효과를 낸다. 이 장이 조건 변수로 이 패턴들을 손수 구현하는 이유는 "왜 이 표준 타입들이 내부적으로 안전한지"를 이해하려면 그 밑바탕의 대기·통지 메커니즘을 먼저 알아야 하기 때문이다 — 실무에서 새 코드를 짤 때는 이 손수 구현 대신 표준 타입을 우선 고려해야 한다.
+
 ### 패턴 2: 시간제한 대기
 
 ```cpp
@@ -482,7 +484,7 @@ timeout 5 ./bq && echo OK || echo "hang or race detected"
 
 ## 다음 장에서는
 
-04장 **「데이터 흐름(Data Flow)」**에서는 Producer-Consumer의 심화 패턴, bounded buffer와 backpressure, 그리고 비동기 파이프라인을 다룬다.
+04장 **「데이터 흐름(Data Flow)」**에서는 Producer-Consumer의 심화 패턴, Bounded Buffer와 backpressure, 그리고 다중 프로듀서/컨슈머 구조를 다룬다.
 
 ## 참고 및 출처
 

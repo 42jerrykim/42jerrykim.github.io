@@ -28,11 +28,11 @@ slug: cpp-active-object-async-method-invocation
 
 ## 이 장을 읽기 전에
 
-**완전한 초보자?** 이 장은 04장의 작업 큐(생산자-소비자), 06장 「[실행 관리 I: Thread Pool](/post/multithreading-design-patterns/cpp-thread-pool-work-queue-work-stealing/)」의 워커 스레드 구조, 그리고 07장 「[실행 관리 II: Future와 Promise](/post/multithreading-design-patterns/cpp-future-promise-async-packaged-task/)」의 `std::packaged_task`/`std::future` 조합을 이미 알고 있다고 가정합니다. 특히 07장의 "Thread Pool과 packaged_task 결합" 절은 이 장의 기본 구현과 거의 동일한 패턴을 사용하므로, 아직 읽지 않았다면 먼저 읽고 오세요.
+**완전한 초보자?** 이 장은 04장의 작업 큐(생산자-소비자), 06장 「[실행 관리 I: Thread Pool](/post/multithreading-patterns/cpp-thread-pool-work-queue-work-stealing/)」의 워커 스레드 구조, 그리고 07장 「[실행 관리 II: Future와 Promise](/post/multithreading-patterns/cpp-future-promise-async-packaged-task/)」의 `std::packaged_task`/`std::future` 조합을 이미 알고 있다고 가정합니다. 특히 07장의 "Thread Pool과 packaged_task 결합" 절은 이 장의 기본 구현과 거의 동일한 패턴을 사용하므로, 아직 읽지 않았다면 먼저 읽고 오세요.
 
 **이 장의 깊이**: 이 장은 **고급(설계자)** 수준입니다. 단순히 "스레드 하나를 두고 큐로 메서드 호출을 직렬화한다"는 아이디어를 넘어, Active Object와 Actor 모델의 설계상 차이, 우선순위가 있는 메서드 요청 큐, 그리고 Active Object를 06장의 Thread Pool과 07장의 Future 위에 올리는 하이브리드 구조까지 다룹니다.
 
-**다루지 않는 것**: 분산 시스템에서의 Actor 구현(Erlang/Akka류의 메시지 패싱, 위치 투명성, 장애 복구)은 이 시리즈의 경계 밖입니다. 이 장에서 "Actor"는 비교 대상으로만 언급되며, C++ 구현은 제공하지 않습니다.
+**다루지 않는 것**: 분산 시스템에서의 Actor 구현(Erlang/Akka류의 메시지 패싱, 위치 투명성, 장애 복구)은 이 시리즈의 경계 밖입니다. 이 장에서 "Actor"는 비교 대상으로만 언급되며, C++ 구현은 제공하지 않습니다. 이 장의 요청-응답 구조를 C++20 코루틴으로 다시 쓰는 방법은 [12장 「코루틴 기반 비동기 재해석」](/post/multithreading-patterns/cpp-coroutine-reinterpretation-future-active-object/)에서 다룬다.
 
 ## 당신의 수준에 맞는 경로
 
