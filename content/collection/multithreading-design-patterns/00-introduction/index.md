@@ -175,7 +175,7 @@ flowchart TD
 | 09 | 이벤트 아키텍처 I | Reactor, Proactor, 이벤트 디멀티플렉싱 | 심화 | POSA2 |
 | 10 | 이벤트 아키텍처 II | Half-Sync/Half-Async, Leader/Followers | 심화 | POSA2 |
 | 11 | 공유 회피 | Immutable, Copy-on-Write, Thread-Specific Storage(`thread_local`), 교육용 SPSC Lock-Free 큐 | 심화 | JCiP, POSA2 |
-| 12 | 코루틴 기반 비동기 재해석 | `co_await`으로 다시 쓰는 Future/Promise·Active Object, 코루틴 프레임의 비용 | 심화 | cppreference, Kostruba 2024 |
+| 12 | 코루틴 기반 비동기 재해석 | `co_await`으로 다시 쓰는 Future/Promise·Active Object, 코루틴 프레임의 비용 | 심화 | cppreference, Kostruba 2023 |
 | 13 | Lock-Free 심화: 회수 전략 | Hazard Pointer(P2530), RCU(P2545) 직접 구현 + C++26 표준 제안 대조 | 심화 | P2530, P2545, Grimm 2025 |
 
 이 순서를 두는 이유는 패턴 간 **개념 의존성** 때문이다. 01의 메모리 모델 없이 05의 DCLP를 읽으면 "왜 이중 검사가 깨지는가"를 끝내 납득할 수 없고, 03의 condition_variable 대기 구조 없이 04의 Blocking Queue를 보면 spurious wakeup 처리가 주술처럼 보인다. 08의 Active Object는 04의 큐와 07의 future를 조립한 종합 패턴이며, 09~10의 서버 아키텍처는 그 모든 부품 위에 선다. 12의 코루틴 재해석은 07~08의 개념을 `co_await` 문법으로 다시 표현한 것이라 07~08 없이는 왜 코루틴이 스레드 기반 구현을 대체하는지 납득하기 어렵고, 13의 Hazard Pointer·RCU는 11이 "범위 밖"으로 미뤄 둔 메모리 회수 문제를 이어받으므로 11 이후에 놓인다. 거꾸로 말해 급한 독자가 06(Thread Pool)부터 펼치는 것 자체는 막지 않지만, 구현 중 막히는 지점은 거의 확실히 01~03의 어휘 부족에서 온다.

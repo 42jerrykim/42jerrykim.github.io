@@ -18,7 +18,6 @@ tags:
   - Thread
   - Synchronization
   - Condition-Variable
-  - Memory-Order
   - RAII(Resource Acquisition Is Initialization)
   - Design-Pattern(디자인패턴)
   - Software-Architecture(소프트웨어아키텍처)
@@ -192,6 +191,28 @@ int main() {
 
 `syncWait`의 `cv.wait`는 03장의 Guarded Suspension과 정확히 같은 구조다 — 조건(`done`)이 참이 될 때까지 기다린다. 다른 점은 기다리는 대상이 "다른 스레드가 채우는 값"이 아니라 "코루틴이 다시 스레드를 넘겨받아 끝났다는 신호"라는 것뿐이다. `computeAsync(7)`을 호출하는 시점에는 아무 코드도 실행되지 않는다 — `initial_suspend`가 `std::suspend_always`이므로, `runAndNotify`가 `handle_.resume()`을 호출하는 순간에야 비로소 함수 본문이 시작된다.
 
+실행 흐름을 스레드 사이의 제어권 이동으로 그려 보면 다음과 같다.
+
+```mermaid
+sequenceDiagram
+    participant Main as 메인 스레드
+    participant Task as computeAsync 코루틴
+    participant Worker as 백그라운드 스레드
+
+    Main->>Task: runAndNotify() → 첫 resume (initial_suspend 통과)
+    Task->>Worker: co_await RunOnThread{} → 스레드 생성
+    Task-->>Main: await_suspend가 void 반환 → 제어권 복귀
+    Main->>Main: cv.wait(lock, done) 대기 진입
+    Worker->>Worker: sleep_for(10ms) (무거운 작업 흉내)
+    Worker->>Task: handle.resume() → 코루틴 재개
+    Task->>Task: co_return x*x → result 저장
+    Task->>Worker: final_suspend → doneCallback() 호출
+    Worker->>Main: done=true, cv.notify_one()
+    Main->>Main: cv.wait 깨어남 → task.result() 반환
+```
+
+`Task-->>Main`으로 표시한 지점이 이 장 전체의 핵심이다 — 코루틴이 스레드를 넘겨준 뒤에도 메인 스레드는 멈추지 않고 계속 실행되며, 최종 재개와 완료 통지는 전혀 다른 스레드(Worker)에서 일어난다.
+
 ### 왜 discard가 위험한가: 원인과 수정
 
 이 `Task<T>`를 쓸 때 흔히 저지르는 실수는 반환값을 버리는 것이다.
@@ -346,9 +367,9 @@ bool await_suspend(std::coroutine_handle<> h) {
 
 지금까지의 두 예제를 나란히 놓고 보면 코루틴이 정확히 어디에 기여하는지가 분명해진다. 코루틴은 "결과를 어떻게 표현하고 어떻게 이어받을지"의 **문법**을 컴파일러가 생성한 상태 머신으로 대체했을 뿐, 실제로 다른 스레드에서 작업을 실행하고 그 완료를 안전하게 통지하는 책임은 여전히 `mutex`·`condition_variable`·`atomic` 같은 이 시리즈의 앞선 어휘가 진다. `RunOnThread`와 `CoroFuture`는 결국 07~08장에서 만든 것과 같은 종류의 동기화 구조를 awaiter 인터페이스 뒤로 옮겨 감춘 것이다.
 
-이 재구성이 실질적으로 남기는 이득은 **호출부의 표현력**이다. `std::future<int> f = calc.square(7); int r = f.get();`와 `int r = co_await calc.square(7);`은 둘 다 "비동기 결과를 기다린다"는 뜻이지만, 코루틴 버전은 여러 비동기 호출을 마치 동기 코드처럼 순서대로 이어 쓸 수 있게 해 준다 — 중간에 콜백 지옥이나 명시적 `.then()` 체이닝 없이, `co_await` 세 글자로 "여기서 기다렸다가 다음 줄로" 넘어간다. 대신 그 대가로 이 장에서 본 것처럼 `promise_type`·awaiter·코루틴 프레임 수명이라는 새로운 복잡도를 감수해야 한다. Ivan Kostruba는 Active Object를 코루틴으로 재구현하는 사례를 다루며 이 표현력 이득을 "동기 코드처럼 읽히는 비동기"로 요약한다.
+이 재구성이 실질적으로 남기는 이득은 **호출부의 표현력**이다. `std::future<int> f = calc.square(7); int r = f.get();`와 `int r = co_await calc.square(7);`은 둘 다 "비동기 결과를 기다린다"는 뜻이지만, 코루틴 버전은 여러 비동기 호출을 마치 동기 코드처럼 순서대로 이어 쓸 수 있게 해 준다 — 중간에 콜백 지옥이나 명시적 `.then()` 체이닝 없이, `co_await` 세 글자로 "여기서 기다렸다가 다음 줄로" 넘어간다. 대신 그 대가로 이 장에서 본 것처럼 `promise_type`·awaiter·코루틴 프레임 수명이라는 새로운 복잡도를 감수해야 한다. Ivan Kostruba는 Active Object를 코루틴으로 재구현하는 글에서, 콜백 기반 설계가 단계가 늘어날수록 왜 읽기 어려워지는지를 이렇게 짚는다.
 
-> "Coroutines... allow expressing asynchronous logic in a way that reads like synchronous code." — Ivan Kostruba, "Modern C++ Features and Proven Concepts: Active Object, External Polymorphism and Coroutines", DEV Community(2024)
+> "This approach will work, but the business logic will be scattered across two different functions, making it harder to read. And what if we have not two, but five or ten steps? Must we divide the logic into ten parts?" — Ivan Kostruba, "Modern C++ Features and Proven Concepts: Active Object, External Polymorphism and Coroutines", DEV Community(2023-01-09)
 
 이 트레이드오프 때문에 실무에서의 선택 기준은 명확하다. 호출 하나하나가 단순하고 콜백이 한두 단계로 끝난다면 07~08장의 스레드 기반 구현으로 충분하다 — `promise_type`을 직접 구현하는 비용이 그 이득보다 크다. 반면 여러 비동기 작업을 순차적으로 엮어야 하는 코드(예: "A를 기다린 뒤 그 결과로 B를 호출하고, 다시 그 결과로 C를 호출")가 반복된다면 코루틴이 가독성을 크게 개선한다. 다만 이 장의 `Task`/`CoroFuture`는 교육용 최소 구현이며, 프로덕션에서는 cppcoro나 각 프레임워크가 제공하는 검증된 코루틴 타입을 쓰는 것이 안전하다 — 이는 11장에서 "손으로 만든 lock-free 자료구조 대신 검증된 라이브러리를 쓰라"고 한 것과 같은 이유다.
 
@@ -373,7 +394,7 @@ bool await_suspend(std::coroutine_handle<> h) {
 ## 참고 및 출처
 
 - cppreference.com, "Coroutines (C++20)" — `promise_type`, awaiter, `std::coroutine_handle` 표준 문서
-- Ivan Kostruba, "Modern C++ Features and Proven Concepts: Active Object, External Polymorphism and Coroutines", DEV Community(2024)
+- Ivan Kostruba, "Modern C++ Features and Proven Concepts: Active Object, External Polymorphism and Coroutines", DEV Community(2023-01-09)
 - Anthony Williams, 『C++ Concurrency in Action』(2nd ed., 2019) — Future/Promise와 스레드 기반 비동기의 원형
 - POSA2(Schmidt et al., 2000) — Active Object 패턴의 원형
 - Vito Gamberini, "Strong Structured Concurrency: How to Avoid Lifetime Footguns in std::execution"(2025-12) — 코루틴 프레임 수명 문제와 `std::execution`의 `async_scope`가 같은 문제를 다루는 방식

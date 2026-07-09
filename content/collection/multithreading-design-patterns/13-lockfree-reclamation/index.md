@@ -193,7 +193,25 @@ int main() {
 }
 ```
 
-`pop()`에서 `HazardGuard`를 세운 직후 `head_`를 다시 읽어 확인하는 줄이 이 구현의 핵심이다. 게시판에 적는 것과 노드를 실제로 들여다보는 것 사이에는 항상 아주 짧은 틈이 있고, 그 틈에 다른 스레드가 이미 같은 노드를 꺼내 회수해 버렸을 수 있기 때문이다 — 게시 후 재확인은 "게시한 시점에 이 노드가 여전히 유효했는가"를 보장하는 안전장치다. `retire()`는 노드를 회수 대기 목록에 넣고, 목록이 일정 크기를 넘으면 게시판을 훑어 아무도 보고 있지 않은 노드만 골라 지운다.
+`pop()`에서 `HazardGuard`를 세운 직후 `head_`를 다시 읽어 확인하는 줄이 이 구현의 핵심이다. 게시판에 적는 것과 노드를 실제로 들여다보는 것 사이에는 항상 아주 짧은 틈이 있고, 그 틈에 다른 스레드가 이미 같은 노드를 꺼내 회수해 버렸을 수 있기 때문이다 — 게시 후 재확인은 "게시한 시점에 이 노드가 여전히 유효했는가"를 보장하는 안전장치다. `retire()`는 노드를 회수 대기 목록에 넣고, 목록이 일정 크기를 넘으면 게시판을 훑어 아무도 보고 있지 않은 노드만 골라 지운다. 두 스레드가 게시-확인-회수를 어떻게 주고받는지 시간 순서로 그리면 다음과 같다.
+
+```mermaid
+sequenceDiagram
+    participant A as 스레드 A (pop)
+    participant HP as 전역 Hazard Pointer 배열
+    participant B as 스레드 B (retire)
+
+    A->>HP: gHazardPointers[slotA] = node (게시)
+    A->>A: head_ 재확인 (게시 이후 안 바뀌었는지)
+    B->>HP: isHazarded(node) 조회
+    HP-->>B: true (A가 아직 보고 있음)
+    B->>B: retired_ 목록에 유지 (delete 보류)
+    A->>A: CAS 성공, node 처리 완료
+    A->>HP: gHazardPointers[slotA] = nullptr (게시 해제)
+    B->>HP: isHazarded(node) 재조회
+    HP-->>B: false (아무도 안 보고 있음)
+    B->>B: delete node (안전하게 회수)
+```
 
 ### 왜 use-after-free가 발생하는가: 원인과 수정
 
@@ -355,7 +373,23 @@ int main() {
 }
 ```
 
-`update()`가 새 포인터를 `release` 순서로 저장한 뒤 `rcuSynchronize()`가 전역 세대를 올리는 순서가 중요하다. 어떤 리더가 `rcuSynchronize()`의 새 세대 값을 관찰했다면, 같은 원자 변수의 release-acquire 관계 덕분에 그 리더는 반드시 방금 교체된 새 포인터도 함께 보게 된다 — 새 세대를 봤는데 여전히 옛 포인터를 읽는 일은 일어나지 않는다. 반대로 아직 옛 세대에 머물러 있는 리더가 있다면, `rcuSynchronize()`는 그 리더의 슬롯이 `kNotReading`이 되거나 새 세대 이상이 될 때까지 기다린다. 이 대기가 끝난 뒤에야 `oldCfg`가 회수돼도 안전하다는 것이 보장된다.
+`update()`가 새 포인터를 `release` 순서로 저장한 뒤 `rcuSynchronize()`가 전역 세대를 올리는 순서가 중요하다. 어떤 리더가 `rcuSynchronize()`의 새 세대 값을 관찰했다면, 같은 원자 변수의 release-acquire 관계 덕분에 그 리더는 반드시 방금 교체된 새 포인터도 함께 보게 된다 — 새 세대를 봤는데 여전히 옛 포인터를 읽는 일은 일어나지 않는다. 반대로 아직 옛 세대에 머물러 있는 리더가 있다면, `rcuSynchronize()`는 그 리더의 슬롯이 `kNotReading`이 되거나 새 세대 이상이 될 때까지 기다린다. 이 대기가 끝난 뒤에야 `oldCfg`가 회수돼도 안전하다는 것이 보장된다. grace period가 실제로 무엇을 기다리는지 시간 순서로 그리면 다음과 같다.
+
+```mermaid
+sequenceDiagram
+    participant Reader as 리더 스레드
+    participant Epoch as gGlobalEpoch / gReaderEpoch[]
+    participant Writer as 라이터 스레드 (update)
+
+    Reader->>Epoch: RcuReadGuard 생성 → 현재 epoch 기록
+    Reader->>Reader: get()으로 현재 포인터 스냅샷 읽기
+    Writer->>Writer: 새 버전 생성 후 atomic_store(release)
+    Writer->>Epoch: gGlobalEpoch.fetch_add(1) (세대 전진)
+    Writer->>Epoch: 모든 리더 슬롯이 새 세대 이상인지 spin 확인
+    Reader->>Epoch: RcuReadGuard 소멸 → 슬롯 = kNotReading
+    Epoch-->>Writer: 마지막 구세대 리더 이탈 확인됨
+    Writer->>Writer: oldCfg 소멸 (참조 카운트 0이면 회수)
+```
 
 ### 안전성 검증
 
@@ -403,15 +437,9 @@ int main() {
 
 ## 마치며
 
-[00장 「시리즈 소개」](/post/multithreading-patterns/getting-started-multithreading-design-patterns/)는 "멀티스레드 코드가 무너지는 순간은 락 문법을 몰라서가 아니라, 어디에 어떤 구조로 동기화를 배치할지 설계하지 않아서 온다"는 문제의식에서 출발했다. 13개 장을 거치며 우리는 그 질문에 답하는 어휘 체계를 하나씩 쌓았다 — 01장의 메모리 모델은 "안전하다"는 말의 정의를 주었고, 02~05장은 단일 객체를 보호하는 관용구를, 04·06~08장은 스레드 사이의 데이터 흐름과 실행 관리를, 09~10장은 시스템 수준의 이벤트 아키텍처를, 11장은 공유 자체를 없애는 전략을 다뤘다.
+위 체크리스트가 "무엇을 할 수 있게 됐는가"를 점검했다면, 여기서는 그 능력이 어디로 이어지는지를 짚는다. 12~13장은 01~11장에서 쌓은 어휘 체계가 고정된 것이 아니라는 것을 보여 준다. 코루틴은 07~08장의 문제를 다른 문법으로 다시 표현했고, Hazard Pointer와 RCU는 11장이 미뤄 둔 문제에 대해 표준이 이제 막 답을 내놓기 시작한 참이다. C++26이 확정한 것이 이 두 가지로 끝나지 않듯, 이 시리즈에서 배운 것은 특정 API 목록이 아니라 **"이 동시성 문제는 보호·대기·흐름·실행·아키텍처·회피 중 어느 층위의 문제인가"를 분류하는 사고방식**이다. 새로운 언어 기능이 나올 때마다 이 어휘로 되돌아가 "이건 결국 어떤 패턴의 변형인가"를 물으면, 표준의 변화 속도를 따라가는 것이 훨씬 수월해진다.
 
-12~13장은 이 어휘 체계가 고정된 것이 아니라는 것을 보여 준다. 코루틴은 07~08장의 문제를 다른 문법으로 다시 표현했고, Hazard Pointer와 RCU는 11장이 미뤄 둔 문제에 대해 표준이 이제 막 답을 내놓기 시작한 참이다. C++26이 확정한 것이 이 두 가지로 끝나지 않듯, 이 시리즈에서 배운 것은 특정 API 목록이 아니라 **"이 동시성 문제는 보호·대기·흐름·실행·아키텍처·회피 중 어느 층위의 문제인가"를 분류하는 사고방식**이다. 새로운 언어 기능이 나올 때마다 이 어휘로 되돌아가 "이건 결국 어떤 패턴의 변형인가"를 물으면, 표준의 변화 속도를 따라가는 것이 훨씬 수월해진다.
-
-실무에서:
-- **작은 시스템**: Scoped Locking + Monitor Object로 충분
-- **중간 시스템**: Thread Pool + Future, Half-Sync/Half-Async 조합
-- **대규모 시스템**: Event-Driven(Reactor/Proactor) + thread_local + Immutable/CoW 혼합, 핫패스에 한정해 Hazard Pointer/RCU 검토
-- **비동기 체이닝이 많은 코드**: 코루틴 기반 재구성 검토(12장)
+실무에서는 시스템 규모에 따라 이 어휘 중 필요한 것만 골라 쓰면 된다. 작은 시스템은 Scoped Locking과 Monitor Object만으로 충분하고, 중간 규모는 Thread Pool과 Future, Half-Sync/Half-Async 조합으로 확장한다. 대규모 시스템은 Event-Driven(Reactor/Proactor)에 thread_local과 Immutable/CoW를 섞고, 핫패스에 한정해서만 Hazard Pointer/RCU를 검토한다. 비동기 호출 체이닝이 많은 코드라면 12장의 코루틴 기반 재구성이 가독성을 크게 높여 준다.
 
 무엇보다 중요한 것은 **"왜 동기화가 필요한가"를 이해하고, 가장 간단한 패턴부터 시작**하는 것이다. 복잡한 패턴은 필요할 때만, 그리고 프로파일링으로 그 필요성이 증명된 뒤에만 도입한다. 이 시리즈에서 익힌 구조적 어휘를 가지고, [Low-latency 동시성·멀티스레드 트랙](/post/concurrency-optimization/getting-started-concurrency-multithreading-performance-tuning/)에서 같은 패턴들을 "비용"의 관점으로 다시 보면, 구조와 성능이라는 두 축이 맞물려 입체적인 그림이 완성된다.
 
@@ -419,8 +447,8 @@ int main() {
 
 - Maged Michael, Michael Wong, JF Bastien et al., "P2530R3: Why Hazard Pointers Should be in C++26"(2023-2024), WG21
 - Paul E. McKenney et al., "P2545R4: Read-Copy Update (RCU)"(2023-2024), WG21
-- Mateusz Pusz, "Report from the Croydon 2026 ISO C++ Committee meeting"(2026-03-28) — C++26 표준 확정과 Hazard Pointer/RCU 채택 경위
-- Rainer Grimm, "Deferred Reclamation in C++26: Read-Copy Update and Hazard Pointers", modernescpp.com(2025-01)
+- Mateusz Pusz, ["Report from the Croydon 2026 ISO C++ Committee meeting"](https://mpusz.github.io/mp-units/HEAD/blog/2026/03/28/report-from-the-croydon-2026-iso-c-committee-meeting/)(2026-03-28) — C++26 표준 확정과 Hazard Pointer/RCU 채택 경위
+- Rainer Grimm, ["Deferred Reclamation in C++26: Read-Copy Update and Hazard Pointers"](https://www.modernescpp.com/index.php/deferred-reclamation-in-c26-read-copy-update-and-hazard-pointers/), modernescpp.com(2025-01)
 - Maged M. Michael, "Hazard Pointers: Safe Memory Reclamation for Lock-Free Objects", IEEE TPDS(2004) — Hazard Pointer 원 논문
 - Paul E. McKenney, Jonathan Walpole, "What is RCU, Fundamentally?", Linux Weekly News — RCU의 grace period 개념 원 설명
 - Anthony Williams, 『C++ Concurrency in Action』(2nd ed., 2019) — Lock-Free 자료구조와 memory_order 실전 활용

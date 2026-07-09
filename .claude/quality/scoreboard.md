@@ -9,4 +9,5 @@
 
 | 글 경로 | 최신점수 | 채점일 | 반복수 | 상태 | 주요 미달항목 |
 |---------|---------:|--------|-------:|------|---------------|
-| _(시딩 전 — 비어 있음)_ | - | - | - | - | - |
+| content/collection/multithreading-design-patterns/12-coroutine-reinterpretation/index.md | 93.1 | 2026-07-09 | 2 | 통과 | 없음(경미: ActiveObject 104줄 코드 블록의 문단 비율) |
+| content/collection/multithreading-design-patterns/13-lockfree-reclamation/index.md | 96.1 | 2026-07-09 | 2 | 통과 | 없음 |
