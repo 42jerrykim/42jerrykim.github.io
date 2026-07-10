@@ -3,8 +3,8 @@ image: wordcloud.png
 title: "[Concurrency Patterns] 13. Lock-Free 심화: Hazard Pointer와 RCU"
 description: "C++26 표준에 채택된 Hazard Pointer와 RCU를 std::atomic만으로 직접 구현합니다. 11장이 미뤄둔 lock-free 메모리 회수 문제를 use-after-free 재현과 ASAN·TSAN 검증으로 다룹니다."
 date: 2026-07-09
-lastmod: 2026-07-09
-draft: true
+lastmod: 2026-07-10
+draft: false
 collection_order: 13
 categories:
   - Design Patterns

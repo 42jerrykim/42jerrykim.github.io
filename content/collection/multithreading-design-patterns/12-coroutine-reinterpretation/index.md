@@ -3,8 +3,8 @@ image: wordcloud.png
 title: "[Concurrency Patterns] 12. 코루틴 기반 비동기 재해석"
 description: "C++20 코루틴으로 07장 Future/Promise와 08장 Active Object를 다시 구현합니다. co_await의 동작 원리, 스레드 재개 시 생기는 lost wakeup, 코루틴과 멀티스레딩의 관계를 다룹니다."
 date: 2026-07-09
-lastmod: 2026-07-09
-draft: true
+lastmod: 2026-07-10
+draft: false
 collection_order: 12
 categories:
   - Design Patterns
