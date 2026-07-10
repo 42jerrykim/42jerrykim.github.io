@@ -81,13 +81,13 @@ tags:
 |------|------|--------|-----------|
 | 01 | I/O 패턴과 비용 | 기초 | 동기/비동기, 블로킹/논블로킹 비용 모델 |
 | 02 | 비동기 I/O 기초 | 중급 | select, poll, epoll, kqueue 비교 |
-| 03 | io_uring 심화 | 심화 | 심화(본 트랙); 개요는 Tr.07 |
+| 03 | io_uring 심화 | 심화 | 심화(본 트랙); 개요는 Tr.07; epoll 통합(6.15)·NAPI busy-poll·uring_cmd(NVMe passthrough), PostgreSQL 18 io_uring 통합 사례(트랜잭션 처리량 2.05배) |
 | 04 | IOCP와 Windows I/O | 중급 | Windows IOCP 모델과 최적화 |
 | 05 | Zero-copy 기법 | 심화 | sendfile, splice, copy_file_range 활용 |
 | 06 | Memory-mapped I/O | 중급 | mmap 활용과 주의사항 |
 | 07 | Direct I/O | 심화 | O_DIRECT와 페이지 캐시 바이패스 |
-| 08 | 파일시스템 특성 | 중급 | ext4, XFS, ZFS 등 성능 특성 |
-| 09 | 블록 디바이스 최적화 | 심화 | NVMe, SSD 특성과 I/O 스케줄러 |
+| 08 | 파일시스템 특성 | 중급 | ext4, XFS, ZFS 등 성능 특성, ext4 단일 블록 원자적 쓰기(6.13+)·XFS FORCEALIGN 기반 atomic writes |
+| 09 | 블록 디바이스 최적화 | 심화 | NVMe, SSD 특성과 I/O 스케줄러, NVMe 2.1 + FDP(Flexible Data Placement, TP4146b)로 쓰기 증폭 완화 |
 | 10 | I/O 멀티플렉싱 패턴 | 중급 | Reactor, Proactor 패턴 구현 |
 | 11 | Vectored I/O | 중급 | readv/writev, preadv2/pwritev2 활용 |
 | 12 | POSIX AIO vs io_uring | 심화 | POSIX AIO와 io_uring 성능 비교 |
