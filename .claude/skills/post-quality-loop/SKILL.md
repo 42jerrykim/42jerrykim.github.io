@@ -131,3 +131,4 @@ hugo --gc --minify
 1. 충돌 시 **전역 규칙**([`rules-that-must-be-followed`](../rules-that-must-be-followed/SKILL.md))이 우선한다.
 2. 본 스킬은 **루프 제어**(선정·정지조건·기록·게이트)만 담당하고, 채점은 critic·작성은 작성 스킬에 위임한다.
 3. 어떤 경우에도 루프가 스스로 `draft: false`로 바꾸지 않는다.
+4. 신규 챕터 다수 추가·커리큘럼 개편 같은 **대규모 개정 작업**이라면, 정식 채점(Stage 1)에 들어가기 전에 [`collection-writing-standards`](../collection-writing-standards/SKILL.md) §6(대규모 개정의 다단계 검토 캐스케이드)을 먼저 적용하는 것을 권장한다 — 저렴하게 잡을 수 있는 결함(깨진 형제 참조, 오탈자, 코드 버그 등)을 quality-critic의 반복 채점으로 잡는 것은 비효율적이다.

@@ -9,7 +9,7 @@
 - **내부 링크**: `/post/<section-slug>/<page-slug>/` (대상 `_index.md`의 `slug` 확인)
 - **날짜**: 터미널에서 `Get-Date -Format "yyyy-MM-dd"` 확인
 - **링크 검증**: HTTP 접근 확인 필수 (404/5xx 불가)
-- **tags**: 50개 이상, `data/tags.yaml` 기반
+- **tags**: 25개 이상, `data/tags.yaml` 기반
 - **브랜치 정리**: PR merge/close 시 원격 브랜치는 자동 삭제됨(`delete_branch_on_merge` + `.github/workflows/branch-cleanup.yml`). 로컬 브랜치는 주기적으로 `git fetch --prune && git branch --merged main | grep -v '^\*\|main' | xargs -r git branch -d` 로 정리
 
 ## 작업별 가이드
