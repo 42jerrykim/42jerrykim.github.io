@@ -1,7 +1,7 @@
 ﻿---
 collection_order: 18
 date: 2026-03-24
-lastmod: 2026-06-01
+lastmod: 2026-07-10
 draft: false
 image: wordcloud.png
 title: "[Optimization(C++) 18] ABI·링크 경계와 극한 성능 (전문)"
@@ -123,6 +123,8 @@ LTO는 TU 경계를 넘는 **죽은 코드 제거**, **인라이닝**, **상수 
 int scale(int x) { return x * 3 + 1; }
 ```
 
+`hot.cpp`는 `scale`의 **선언**만 보고 컴파일됩니다 — 본문이 다른 TU(`cold.cpp`)에 있으므로, LTO 없이는 컴파일러가 이 시점에 `scale`을 인라인할 근거(본문)를 갖지 못합니다.
+
 ```cpp
 // hot.cpp — 핫 루프에서 다른 TU의 함수를 호출
 int scale(int x);             // 선언만 보임(본문은 cold.cpp)
@@ -137,6 +139,8 @@ int main() {
     return hot_sum(1000);
 }
 ```
+
+아래 두 빌드는 같은 소스를 LTO 없이/있이 각각 빌드해, 인라인 여부가 실제로 갈리는지 비교합니다.
 
 ```bash
 # LTO 없음: scale 호출이 out-of-line으로 남는다
@@ -163,6 +167,8 @@ __attribute__((visibility("default"))) int public_api(int x) { return x + 1; }
 int internal_helper(int x) { return x * 2; }  // 숨김 대상
 ```
 
+이 소스를 `-fvisibility=hidden`으로 공유 라이브러리로 빌드한 뒤, 동적 심볼 테이블에 실제로 무엇이 노출되는지 `nm -D`로 확인합니다.
+
 ```bash
 g++ -O2 -fvisibility=hidden -fPIC -shared lib.cpp -o liblib.so
 nm -D --defined-only liblib.so | c++filt
@@ -188,8 +194,11 @@ flowchart LR
     E["호출 규약"]
     F["동적 로딩"]
   end
-  B --> C
+  A --> C
+  B --> D
+  C --> E
   D --> E
+  D --> F
 ```
 
 ## Tr.02·Tr.08과의 역할 나누기
@@ -235,6 +244,12 @@ Tr.02는 **플래그·리포트·PGO 워크플로**를 다룹니다. 본 장은 
 
 세부는 플랫폼 문서가 정답이며, 본 장은 “**경계가 있으면 최적화 정보가 끊긴다**”는 틀만 제공합니다.
 
+## 흔한 오해
+
+**"LTO를 켜면 TU 경계 문제가 전부 사라진다"**는 오해입니다. LTO는 정적으로 함께 링크되는 오브젝트 사이의 경계는 되살릴 수 있지만, **동적 로딩**·**dlsym**·**플러그인 ABI**처럼 링크 시점에도 구현이 보이지 않는 경계는 여전히 정보 부족 상태로 남습니다. "LTO를 켰는데도 인라인이 안 된다"는 증상은 대부분 이 경우입니다.
+
+**"심볼을 다 숨기면 항상 이득이다"**도 위험한 통념입니다. `-fvisibility=hidden`으로 노출을 줄이면 동적 링크 비용은 줄어들지만, 동적 로더가 이름으로 심볼을 찾는 플러그인 구조나 테스트 더블 삽입과 충돌할 수 있습니다. 가시성 축소는 성능 튜닝이자 동시에 **API 계약 변경**이므로, 무엇이 외부에 필요한지 먼저 확인한 뒤 적용해야 합니다.
+
 ## 비판적 시각
 
 ABI를 핑계로 **모듈화를 깨는** 선택을 정당화하기 쉽습니다. 전문 튜닝은 **회귀 비용**이 크므로 Tr.10 성능 게이트·코드 리뷰(Tr.09)와 묶지 않으면 팀 전체 속도가 떨어질 수 있습니다. 또한 플랫폼마다 ABI 세부가 다르므로, **이식성**을 명시적으로 포기할 때만 “전문 장치”를 켜는 것이 안전합니다. 한 줄로 정리하면, ABI·링크 경계는 “성능의 천장”이자 “유지보수의 안전벨트”이며, 이 장은 천장을 부수는 법이 아니라 **어디까지가 합리적인 전문 영역인지**를 짚는 데 쓰입니다.
@@ -264,6 +279,12 @@ ABI를 핑계로 **모듈화를 깨는** 선택을 정당화하기 쉽습니다.
 - [ ] `new`/`delete`가 크로스 모듈에서 짝이 맞고, 할당자가 모듈마다 다르게 링크되지 않는가?
 - [ ] `-fvisibility=hidden` 전역 적용이나 Windows `dllexport` 누락으로 테스트·플러그인 로더가 깨지지 않는가?
 - [ ] 여러 컴파일러·표준 라이브러리 버전을 동시에 지원하며, ABI 변경 시 **롤백 플랜**이 있는가?
+
+### 더 읽을 거리
+
+- [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html) — 이 장에서 다룬 이름 맹글링·객체 레이아웃·가상 테이블 등 ABI 규칙의 1차 사양 문서입니다.
+- [GCC Wiki: Visibility](https://gcc.gnu.org/wiki/Visibility) — `-fvisibility=hidden`·`visibility("default")` 속성이 동적 심볼 노출과 링크·로딩 비용에 미치는 영향을 정리한 GCC 공식 가이드입니다.
+- [cppreference: Definitions and ODR](https://en.cppreference.com/w/cpp/language/definition) — One Definition Rule의 정확한 범위(함수·클래스·템플릿에 대한 예외 포함)를 정리한 레퍼런스로, "ODR과 템플릿·인라인" 절과 함께 보면 좋습니다.
 
 ## 다음 장에서는
 

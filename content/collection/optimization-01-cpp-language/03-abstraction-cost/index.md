@@ -1,7 +1,7 @@
 ﻿---
 collection_order: 3
 date: 2026-03-10
-lastmod: 2026-06-01
+lastmod: 2026-07-10
 draft: false
 image: wordcloud.png
 title: "[Optimization(C++) 03] 추상화 비용 분석"
@@ -186,8 +186,28 @@ static void BM_DirectCall(benchmark::State& state) {
 }
 BENCHMARK(BM_DirectCall);
 
+// 다형(polymorphic) 호출: 서로 다른 파생 타입을 번갈아 호출해
+// 매번 실제 타깃이 바뀌게 만든다 (분기 예측기의 타깃 캐시가 misprediction을 겪기 쉬움).
+struct Derived2 final : Base {
+  int compute(int x) const override { return x * 3 - 1; }
+};
+
+static void BM_VirtualCallPolymorphic(benchmark::State& state) {
+  Derived d1;
+  Derived2 d2;
+  Base* objs[2] = {&d1, &d2};
+  int x = 0;
+  for (auto _ : state) {
+    x = objs[x & 1]->compute(x);   // 실제 타입이 매 호출 바뀜 → 간접 분기 예측 실패 유발
+    benchmark::DoNotOptimize(x);
+  }
+}
+BENCHMARK(BM_VirtualCallPolymorphic);
+
 BENCHMARK_MAIN();
 ```
+
+위 `BM_VirtualCall`은 언제나 같은 `Derived` 객체 하나만 호출하는 **단형(monomorphic)** 케이스이고, `BM_VirtualCallPolymorphic`은 `Derived`·`Derived2`를 번갈아 호출해 분기 예측기가 타깃을 매번 갱신해야 하는 **다형(polymorphic)** 케이스입니다. 아래 자릿수 표의 "단형"·"다형" 행은 각각 이 두 벤치마크에 대응합니다.
 
 `Derived`를 `final`로 두고 LTO를 켜면 많은 컴파일러가 `p->compute(x)`를 직접 호출로 바꿔(devirtualization) 두 벤치마크의 차이가 거의 사라질 수 있습니다. `-S`로 어셈블리를 뽑으면 가상 호출 경로는 `call *rax`(간접), 직접/devirtualized 경로는 `call _ZNK7Derived7computeEi` 같은 직접 호출로 나타납니다. (측정값은 CPU·플래그에 따라 다름)
 
@@ -227,7 +247,7 @@ int get_tag(const Var& v) {
 
 C++ 예외는 정상 경로에서의 오버헤드를 최소화하는 **zero-cost exception** 모델을 목표로 합니다.
 
-> "With zero-cost exception handling, the cost of adding exception handling to a program is negligible when no exception is thrown; the cost is paid when an exception is thrown." — Itanium C++ ABI: Exception Handling (https://itanium-cxx-abi.github.io/cxx-abi/abi-eh.html)
+> "With zero-cost exception handling, the cost of adding exception handling to a program is negligible when no exception is thrown; the cost is paid when an exception is thrown." — Itanium C++ ABI: Exception Handling, 문서 개정 이력상 최초 초안 1999년(990909)·최신 개정 2005년(050504)으로 확인됨 (https://itanium-cxx-abi.github.io/cxx-abi/abi-eh.html)
 
 즉, 예외를 던지지 않는 경로에서는 추가 분기나 테이블 조회 비용을 최소화합니다. 반면 **예외가 발생한 경로**에서는 스택 언와인딩, landing pad 탐색, catch 블록 타입 매칭 등으로 상당한 비용이 듭니다.
 
@@ -381,6 +401,11 @@ A: 확장이 필요 없는 구체 타입(내부 구현 클래스)에만 final을
 - [ ] RTTI 사용처가 있는지 검색하고, 타입 집합이 고정이면 variant·Visitor 대체를 검토했는가?
 - [ ] 핫패스에서 예외를 던지는지 확인하고, 실패 가능 시 expected·에러 코드 도입을 검토했는가?
 - [ ] 변경 후 관련 벤치마크로 회귀 검증을 했는가?
+
+## 더 읽을 거리
+
+- [cppreference: dynamic_cast](https://en.cppreference.com/w/cpp/language/dynamic_cast) — RTTI 기반 다운캐스트·크로스캐스트의 정확한 동작 규칙과 실패 시 처리(포인터는 null, 참조는 예외)를 정리한 1차 레퍼런스입니다. "RTTI 비용" 절의 배경 문서로 함께 보면 좋습니다.
+- [cppreference: typeid](https://en.cppreference.com/w/cpp/language/typeid) — `typeid` 연산자가 다형 타입과 비다형 타입에서 각각 어떻게 동작하는지, 반환되는 `std::type_info`의 의미를 설명합니다.
 
 ## 다음 장에서는
 

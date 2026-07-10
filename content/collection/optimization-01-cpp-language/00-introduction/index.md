@@ -1,7 +1,7 @@
 ﻿---
 collection_order: 0
 date: 2026-03-11
-lastmod: 2026-06-01
+lastmod: 2026-07-10
 draft: false
 image: wordcloud.png
 title: "[Optimization(C++) 00] Introduction: Low-latency C++ 언어 최적화"
@@ -83,6 +83,7 @@ tags:
 - 핫패스 개념: [Hot spot (computer programming)](https://en.wikipedia.org/wiki/Hot_spot_(computer_programming)) — 프로파일러에서 지배적인 코드 경로.
 - 마이크로벤치마크: [google/benchmark](https://github.com/google/benchmark), [nanobench](https://github.com/martinus/nanobench) — 격리 측정용 프레임워크.
 - CPU 프로파일링: [gperftools](https://github.com/gperftools/gperftools), [perf wiki](https://perf.wiki.kernel.org/index.php/Main_Page) — 핫패스 식별 도구·개요.
+- CI 성능 회귀 감지: [CodSpeed C++ Support](https://codspeed.io/changelog/2025-03-27-cpp-support), [Bencher: Track C++ Google Benchmark in CI](https://bencher.dev/learn/track-in-ci/cpp/google-benchmark/) — Google Benchmark 결과를 PR마다 자동으로 게이트하는 SaaS.
 - 트랙 내부: [C++ 실행 모델·µs 최적화 어휘](/post/cpp-optimization/cpp-execution-model-microsecond-vocabulary-fundamentals/) (챕터 01), [추상화 비용 분석](/post/cpp-optimization/abstraction-cost/) (챕터 03).
 
 ## 이 트랙이 책임지는 범위
@@ -193,7 +194,7 @@ BENCHMARK_MAIN();
 | `-fopt-info-inline`, `-S` | 인라이닝·간접/직접 호출 여부 확인 |
 | 메모리 프로파일러 | 할당 횟수·크기로 추상화별 할당 비용 확인 |
 
-실무에서는 먼저 프로파일러로 병목을 찾고, 해당 구간에 어떤 추상화(가상 호출, map 접근, string 할당 등)가 있는지 코드로 확인한 뒤, 위 도구로 격리 측정합니다. 벤치마크는 CI에 넣어 회귀를 방지하는 것이 좋고, 각 챕터에서 제시하는 "추상화 1개" 단위 벤치마크 패턴을 그대로 재사용할 수 있습니다.
+실무에서는 먼저 프로파일러로 병목을 찾고, 해당 구간에 어떤 추상화(가상 호출, map 접근, string 할당 등)가 있는지 코드로 확인한 뒤, 위 도구로 격리 측정합니다. 벤치마크는 CI에 넣어 회귀를 방지하는 것이 좋고, 각 챕터에서 제시하는 "추상화 1개" 단위 벤치마크 패턴을 그대로 재사용할 수 있습니다. Google Benchmark 결과를 CI 성능 회귀 감지에 직접 연결하고 싶다면 **CodSpeed**나 **Bencher** 같은 SaaS가 Google Benchmark의 JSON 출력을 표준 어댑터로 지원하므로, 직접 스크립트를 짜지 않고도 PR마다 회귀 여부를 자동으로 게이트할 수 있습니다.
 
 ### 벤치마크 작성 시 유의사항
 

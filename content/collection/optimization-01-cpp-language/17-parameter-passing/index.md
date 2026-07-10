@@ -1,7 +1,7 @@
 ﻿---
 collection_order: 17
 date: 2026-03-10
-lastmod: 2026-06-01
+lastmod: 2026-07-10
 draft: false
 image: wordcloud.png
 title: "[Optimization(C++) 17] Parameter Passing 전략"
@@ -109,7 +109,7 @@ tags:
 
 C++03에서는 "큰 타입은 const 참조로"가 일반적이었습니다. C++11에서 **이동 의미론**과 **RVO/NRVO** 강화로 "값으로 받고 이동"의 비용이 줄어들었고, **Effective Modern C++** 등에서 "작은 타입·이동 가능 타입은 값 전달을 기본으로" 권장하는 흐름이 생겼습니다. 오늘날에는 **작으면 값**, **크거나 읽기만 하면 const ref**, **소유권 이전 시 값+std::move 또는 T&&** 조합이 널리 쓰입니다.
 
-> "For copyable types that are cheap to copy, pass by value. For types that are expensive to copy, pass by reference to const." — Scott Meyers, *Effective Modern C++*.
+> "For copyable types that are cheap to copy, pass by value. For types that are expensive to copy, pass by reference to const." — Scott Meyers, *Effective Modern C++* (2014), Item 41 취지 요약.
 
 ## by value
 
@@ -178,6 +178,42 @@ public:
 | by value(sink)+move | `std::string` rvalue | 이동 1 | 없음 | ~1x |
 | by value | `std::string` lvalue | 복사 1 (힙 할당) | 없음 | ~10x+ |
 
+**"~10x+"라는 표의 마지막 행을 실제로 재현**하면 다음과 같습니다. 아래는 `setName`에 긴 `std::string`을 lvalue로 넘길 때(복사 발생)와 rvalue로 넘길 때(이동만 발생)를 같은 틀에서 비교하는 Google Benchmark 코드입니다.
+
+```cpp
+#include <benchmark/benchmark.h>
+#include <string>
+#include <utility>
+
+class Widget {
+    std::string name_;
+public:
+    void setName(std::string name) { name_ = std::move(name); }
+};
+
+static void BM_SinkLvalue(benchmark::State& state) {
+  std::string long_name(64, 'x');  // SSO 임계값(챕터 05) 초과 → 힙 버퍼
+  Widget w;
+  for (auto _ : state) {
+    w.setName(long_name);          // lvalue → 복사 1회 + 이동 1회
+  }
+}
+BENCHMARK(BM_SinkLvalue);
+
+static void BM_SinkRvalue(benchmark::State& state) {
+  Widget w;
+  for (auto _ : state) {
+    std::string tmp(64, 'x');
+    w.setName(std::move(tmp));     // rvalue → 이동만 (복사 없음)
+  }
+}
+BENCHMARK(BM_SinkRvalue);
+
+BENCHMARK_MAIN();
+```
+
+`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면(x86-64, GCC 13, `-O2` 기준 예시 수치), `BM_SinkLvalue`가 `BM_SinkRvalue`보다 대략 5~15배 느리게 나오는 경우가 흔합니다 — 차이의 근원은 힙 할당을 동반하는 문자열 **복사** 1회입니다. 정확한 배율은 문자열 길이·할당자·플랫폼에 따라 달라지므로, 표의 "~10x+"는 방향성을 보여주는 예시로만 참고하고 대상 환경에서 재측정해야 합니다.
+
 ```mermaid
 flowchart TD
     Arg["'in' 인자 전달?"] --> Q1{"복사가 저렴/작은 타입?"}
@@ -186,6 +222,12 @@ flowchart TD
     Q2 -->|"아니오, 읽기만"| Cref["const T&"]
     Q2 -->|"예, 멤버로 저장"| Sink["값으로 받아 std::move (sink)"]
 ```
+
+## 흔한 오해
+
+**"참조 전달(const T&)이 항상 값 전달보다 빠르다"**는 흔한 오해입니다. 위 표에서 보듯 8바이트 `Point`는 by value가 레지스터로 그대로 전달되어 간접 접근이 없는 반면, const ref는 포인터를 넘기고 멤버에 접근할 때마다 한 번의 간접 참조가 추가로 듭니다. "작은 타입은 참조가 항상 유리하다"고 습관적으로 적용하면 오히려 손해를 볼 수 있습니다.
+
+**"T&&는 항상 rvalue reference다"**도 자주 틀리는 지점입니다. `template<typename T> void fwd(T&& x)`처럼 **템플릿 타입 파라미터**에 붙은 `T&&`는 **forwarding reference**(universal reference)로, T가 추론되는 문맥에서만 적용되는 특수 규칙에 따라 lvalue·rvalue를 모두 받을 수 있습니다. 반면 `void f(std::string&& x)`처럼 **구체 타입**에 붙은 `T&&`는 진짜 rvalue reference이며 lvalue를 받을 수 없습니다. 이 둘을 혼동하면 "왜 lvalue를 넘겼는데 컴파일이 되지?"라는 의문으로 이어집니다.
 
 ## 비판적 시각: 한계와 트레이드오프
 
@@ -217,6 +259,11 @@ A: C++11 이동 의미론 도입 후 "작은 타입은 value, 큰 타입은 cons
 - [ ] 작은 타입은 value, 큰 타입 읽기 전용은 const ref를 적용했는가?
 - [ ] 멤버로 저장하는 경로에 값+`std::move` 또는 perfect forwarding을 사용했는가?
 - [ ] 정량 분석·벤치마크로 전달 비용을 확인했는가?
+
+### 더 읽을 거리
+
+- [cppreference: 값 카테고리 (Value categories)](https://en.cppreference.com/w/cpp/language/value_category) — lvalue/rvalue/xvalue 등 값 카테고리의 정확한 정의를 다루는 언어 표준 명세입니다.
+- [cppreference: std::forward](https://en.cppreference.com/w/cpp/utility/forward) — perfect forwarding에 쓰이는 `std::forward`의 동작과 forwarding reference와의 관계를 확인할 수 있습니다.
 
 ## 다음 장에서는
 
