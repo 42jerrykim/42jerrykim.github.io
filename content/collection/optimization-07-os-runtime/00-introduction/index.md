@@ -80,13 +80,13 @@ tags:
 | 02 | Syscall 최적화 | 중급 | Syscall 비용과 최소화 기법 |
 | 03 | CPU Pinning/Affinity | 중급 | CPU pinning/affinity 전략 |
 | 04 | NUMA CPU Affinity | 심화 | NUMA에서 CPU affinity·스레드 배치 (메모리 할당은 Tr.03과 연계) |
-| 05 | Realtime 스케줄링 | 심화 | Realtime 스케줄링 적용 |
+| 05 | Realtime 스케줄링 | 심화 | Realtime 스케줄링 적용, sched_ext(BPF 스케줄러, 6.12+)·EEVDF 전환 완료(6.12~6.13)·Cache-Aware Scheduling 커널 패치(2026 병합 목표) |
 | 06 | 정밀 시간 측정 | 중급 | RDTSC, clock_gettime 등 정밀 타이밍 |
 | 07 | 커널 바이패스 개요 | 중급 | 개요(본 트랙); 심화·실전은 Tr.11·Tr.12 |
-| 08 | io_uring 개요 | 중급 | 개요(본 트랙); 파일 I/O 심화는 Tr.11 |
-| 09 | XDP/eBPF 개요 | 중급 | 개요(본 트랙); 패킷 처리 심화는 Tr.12 |
+| 08 | io_uring 개요 | 중급 | 개요(본 트랙); 파일 I/O 심화는 Tr.11; epoll 통합(6.15)·NAPI busy-poll·IORING_OP_URING_CMD(NVMe passthrough) 최신 기능 |
+| 09 | XDP/eBPF 개요 | 중급 | 개요(본 트랙); 패킷 처리 심화는 Tr.12; eBPF verifier 확장(토큰, 동적 스택 alloca 논의) |
 | 10 | Huge TLB Pages | 심화 | Huge TLB Pages 활용 |
-| 11 | 컨테이너 성능 | 기초 | 컨테이너/가상화 성능 고려사항 |
+| 11 | 컨테이너 성능 | 기초 | 컨테이너/가상화 성능 고려사항, Kubernetes "CPU limit 지양 + isolcpus/Intel RDT(CAT·MBA) 병행" 실무 전환 |
 | 12 | IRQ 최적화 | 심화 | IRQ 처리와 인터럽트 최적화 |
 | 13 | cgroups v2 | 중급 | cgroups v2 기반 리소스 제어와 성능 영향 |
 | 14 | Memory Locking | 심화 | mlock/mlockall을 활용한 메모리 고정 전략 |

@@ -52,17 +52,17 @@ tags:
 | 03 | 샘플링 프로파일링 | 기초 | 샘플링 프로파일러 원리와 활용 (perf, VTune) |
 | 04 | 트레이싱 프로파일링 | 중급 | 트레이싱 프로파일러 (Perfetto, Tracy) |
 | 05 | Flame Graph 분석 | 중급 | Flame Graph 해석과 병목 추적 |
-| 06 | Intel VTune 심화 | 심화 | Intel VTune 심화 활용 |
-| 07 | Linux perf 고급 | 심화 | Linux perf 고급 사용법 |
+| 06 | Intel VTune 심화 | 심화 | Intel VTune 심화 활용, 통합 XPU Offload Analysis(CPU/GPU/NPU 통합 분석) |
+| 07 | Linux perf 고급 | 심화 | Linux perf 고급 사용법, perf --latency(Linux 6.15, wall-clock 지연 기준 프로파일링) |
 | 08 | 하드웨어 카운터 | 심화 | 하드웨어 성능 카운터 활용 |
 | 09 | Tail Latency 분석 | 심화 | 꼬리 지연시간(p95/p99/p999) 분석 |
 | 10 | 통계적 벤치마킹 | 심화 | 벤치마크 통계 분석 (신뢰 구간, 유의성) |
-| 11 | 지속적 프로파일링 | 심화 | 지속적 프로파일링 (production profiling) |
+| 11 | 지속적 프로파일링 | 심화 | 지속적 프로파일링 (production profiling), Grafana Pyroscope 2.0(2026-05, diskless·stateless 아키텍처)의 대규모 운영 사례 |
 | 12 | 성능 A/B 테스트 | 중급 | 성능 A/B 테스트 방법론 |
-| 13 | AMD μProf 활용 | 심화 | AMD μProf 프로파일러 활용과 AMD CPU 분석 |
+| 13 | AMD μProf 활용 | 심화 | AMD μProf 프로파일러 활용과 AMD CPU 분석, uProf 5.3(2026-05, DuckDB 백엔드) 최신 기능 |
 | 14 | Windows ETW | 심화 | Event Tracing for Windows 기반 성능 분석 |
 | 15 | Valgrind/Callgrind | 기초 | 메모리 프로파일링, 캐시 시뮬레이션, 호출 그래프 분석 |
-| 16 | BPF 기반 프로파일링 | 전문 | bpftrace, BCC를 활용한 동적 프로파일링 |
+| 16 | BPF 기반 프로파일링 | 전문 | bpftrace, BCC를 활용한 동적 프로파일링, eBPF 기반 GPU(CUDA) 상시 프로파일링과 USDT 프로브 연계(Polar Signals 사례) |
 | 17 | 분산 트레이싱 오버헤드 | 심화 | OpenTelemetry 기반 µs 단위 분산 트레이싱과 꼬리 지연 탐지 |
 | 18 | 프로파일링 워크플로우 가이드 | 중급 | 측정→가설→변경→검증 루프 실전 적용과 팀 표준화 |
 | 19 | 프로파일러 출력 해석 실전 | 중급 | 샘플링·트레이싱 리포트를 병목 후보로 연결하는 해석 패턴 |

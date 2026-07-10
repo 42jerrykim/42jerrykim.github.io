@@ -71,7 +71,7 @@ tags:
 
 **난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치). **Tr.NN**은 `optimization-NN-*` 트랙을 가리킵니다.
 
-동시성 배경이 약하다면 **01 → 02 → 03 → 18 → 19 → 04** 순서로 진입하는 것을 권장합니다. 01~03은 비용·경합·false sharing의 직관을 만들고, 18~19는 표준 프리미티브의 실제 사용 비용을 체감하게 해 주며, 그다음 04~08의 메모리 모델·lock-free로 들어가면 경사가 훨씬 완만해집니다.
+동시성 배경이 약하다면 **01 → 02 → 03 → 19 → 20 → 04** 순서로 진입하는 것을 권장합니다. 01~03은 비용·경합·false sharing의 직관을 만들고, 19~20은 표준 프리미티브의 실제 사용 비용을 체감하게 해 주며, 그다음 04~08의 메모리 모델·lock-free로 들어가면 경사가 훨씬 완만해집니다.
 
 여기서도 **표 순서는 커리큘럼 참조용으로 유지**합니다. 표는 “이 트랙이 어떤 주제를 어디까지 다루는지”를 보여 주는 지도이고, 위 추천 순서는 초심자가 **개념 의존성**에 맞춰 들어오는 경로입니다.
 
@@ -81,11 +81,11 @@ tags:
 | 02 | Lock 선택 기준 | 기초 | 동기화 프리미티브 선택 가이드 |
 | 03 | False Sharing 회피 | 중급 | False sharing 탐지와 해결 |
 | 04 | 메모리 모델 실무 | 심화 | C++ 메모리 모델 실무 해석 (acquire/release/seq_cst) |
-| 05 | Lock-free 기초 | 심화 | Lock-free 설계 기초와 적용 판단 |
+| 05 | Lock-free 기초 | 심화 | Lock-free 설계 기초와 적용 판단 (HTM/Intel TSX는 2021년부터 기본 비활성화로 사실상 폐기) |
 | 06 | Lock-free 자료구조 | 전문 | Lock-free 큐, 스택, 해시맵 구현 |
-| 07 | Hazard Pointers/RCU | 전문 | Hazard Pointers와 RCU 패턴 |
+| 07 | Hazard Pointers/RCU | 전문 | C++26 표준 hazard_pointer/rcu(P2530/P2545)와 컴파일러 구현 현황(GCC trunk·Bloomberg Clang 실험, MSVC 미구현) |
 | 08 | SPSC/MPMC 큐 | 심화 | SPSC/MPMC 큐와 링버퍼 구현 |
-| 09 | C++20 Atomics | 중급 | C++20 atomic wait/notify 활용 |
+| 09 | C++20 Atomics | 중급 | C++20 atomic wait/notify 활용, C++26 fetch_max/fetch_min 확장 |
 | 10 | 스레드 풀 최적화 | 중급 | 스레드 풀 최적화와 워크 스틸링 |
 | 11 | 코루틴 동시성 | 심화 | 코루틴 기반 동시성 패턴 (Tr.01 코루틴 성능과 연계) |
 | 12 | Wait-free 프로그래밍 | 전문 | Wait-free 프로그래밍 기초 |
@@ -93,9 +93,11 @@ tags:
 | 14 | Seqlock 패턴 | 심화 | Reader-writer 시나리오 최적화를 위한 Seqlock |
 | 15 | Thread-local Storage | 중급 | TLS 비용 분석과 활용 패턴 |
 | 16 | Executors 기초 | 심화 | C++23/26 Executors 개념과 비동기 실행 모델 |
-| 17 | std::execution 병렬 알고리즘 | 중급 | C++17/20 병렬 정책(par, par_unseq)과 실전 성능 특성 |
-| 18 | Condition Variable 성능 패턴 | 중급 | condition_variable 비용, spurious wakeup 대응, 대안 비교 |
-| 19 | C++20 Barrier/Latch 활용 | 중급 | std::barrier/std::latch 비용과 동기 지점 설계 패턴 |
+| 17 | C++26 std::execution: Senders/Receivers 실전 | 전문 | P2300 확정, 스케줄러·센더·리시버 조합 모델, NVIDIA stdexec 레퍼런스 구현과 Citadel Securities 프로덕션 사례 |
+| 18 | 실행 정책 병렬 알고리즘 | 중급 | C++17/20 병렬 정책(par, par_unseq)과 실전 성능 특성 |
+| 19 | Condition Variable 성능 패턴 | 중급 | condition_variable 비용, spurious wakeup 대응, 대안 비교 |
+| 20 | C++20 Barrier/Latch 활용 | 중급 | std::barrier/std::latch 비용과 동기 지점 설계 패턴 |
+| 21 | Thread-per-core 아키텍처와 io_uring 연계 | 심화 | IORING_SETUP_SINGLE_ISSUER 락 생략 최적화와 thread-per-core 설계 (Apache Iggy 사례) |
 
 ## 측정과 검증 (이 트랙 기준)
 
@@ -111,18 +113,18 @@ tags:
 
 ## Phase별 학습 궤적
 
-**Phase A — 동기화 기초 (챕터 01~04, 18~19)** 비용·락 선택·false sharing·표준 동기화 프리미티브의 사용 감각을 먼저 익히지 않으면, 이후 lock-free를 **맞는지 틀린지조차** 검증하기 어렵습니다.
+**Phase A — 동기화 기초 (챕터 01~04, 19~20)** 비용·락 선택·false sharing·표준 동기화 프리미티브의 사용 감각을 먼저 익히지 않으면, 이후 lock-free를 **맞는지 틀린지조차** 검증하기 어렵습니다.
 
-**Phase B — 구조와 큐 (챕터 08~11, 13~15, 17~19)** SPSC/MPMC·스레드 풀·TLS는 서버·파이프라인 코드에서 바로 적용 빈도가 높습니다. 코루틴 동시성(챕터 11)은 Tr.01 코루틴 성능과 연결해 읽으면 설계 일관성이 좋아집니다. 챕터 17~19의 병렬 알고리즘·condition_variable·barrier/latch는 표준 라이브러리 동시성 프리미티브의 비용과 올바른 사용 패턴을 다루며, lock-free 진입 전에 익히면 기반이 단단해집니다.
+**Phase B — 구조와 큐 (챕터 08~11, 13~15, 18~21)** SPSC/MPMC·스레드 풀·TLS는 서버·파이프라인 코드에서 바로 적용 빈도가 높습니다. 코루틴 동시성(챕터 11)은 Tr.01 코루틴 성능과 연결해 읽으면 설계 일관성이 좋아집니다. 챕터 18~20의 병렬 알고리즘·condition_variable·barrier/latch는 표준 라이브러리 동시성 프리미티브의 비용과 올바른 사용 패턴을 다루며, lock-free 진입 전에 익히면 기반이 단단해집니다. 챕터 21의 thread-per-core 아키텍처는 이 구조들을 실제 서버 설계로 묶어내는 마무리 성격입니다.
 
-**Phase C — lock-free·wait-free·Executors (챕터 05~07, 12, 16)** 표에서 **전문** 난이도가 많습니다. 유지보수·정확성 리스크가 크므로, Tr.05로 경합과 꼬리 지연이 **실제 병목**임을 확인한 뒤 진입하는 것을 권장합니다.
+**Phase C — lock-free·wait-free·Executors·std::execution (챕터 05~07, 12, 16~17)** 표에서 **전문** 난이도가 많습니다. 유지보수·정확성 리스크가 크므로, Tr.05로 경합과 꼬리 지연이 **실제 병목**임을 확인한 뒤 진입하는 것을 권장합니다. 챕터 17의 std::execution(senders/receivers)은 C++26에 확정됐지만 컴파일러·라이브러리 생태계가 아직 초기 단계이므로, 프로덕션 도입 전 NVIDIA stdexec 같은 레퍼런스 구현으로 먼저 검증하는 것을 권장합니다.
 
 ## 이 트랙을 마친 후 달성할 목표
 
 - **측정**: 스레드 수·경합 조건에서 p50/p99 변화를 벤치마크로 재현할 수 있다.
 - **선택**: mutex vs spin vs lock-free 후보를 **비용·위험** 기준으로 고를 수 있다.
 - **구현**: false sharing·캐시 라인 정렬 등 레이아웃 대응을 코드에 반영할 수 있다.
-- **표준 동시성**: std::execution 병렬 정책, condition_variable, barrier/latch의 비용을 이해하고 올바르게 적용할 수 있다.
+- **표준 동시성**: 실행 정책 병렬 알고리즘(C++17/20), condition_variable, barrier/latch의 비용을 이해하고 올바르게 적용할 수 있다. C++26 std::execution(senders/receivers)이 무엇을 새로 표준화했고 기존 실행 정책과 어떻게 다른지 구분할 수 있다.
 - **경계**: OS 스케줄러(Tr.07)·CPU 미세구조(Tr.06)와 역할을 나눌 수 있다.
 
 ## 평가 기준과 이 장을 읽은 후 확인
@@ -150,7 +152,7 @@ flowchart LR
 
 ## 심화·전문가 확장 궤적
 
-Hazard pointer·RCU·wait-free·일부 lock-free 자료구조는 **전문** 난이도로 표시했습니다. 운영 중인 시스템에 도입할 때는 코드 리뷰·모델 검증·회귀 벤치마크(Tr.10)를 함께 계획하는 것이 안전합니다.
+Hazard pointer·RCU·wait-free·일부 lock-free 자료구조·std::execution(senders/receivers)은 **전문** 난이도로 표시했습니다. 운영 중인 시스템에 도입할 때는 코드 리뷰·모델 검증·회귀 벤치마크(Tr.10)를 함께 계획하는 것이 안전합니다.
 
 ## 시리즈 전체 로드맵
 

@@ -88,12 +88,12 @@ tags:
 | 05 | AoS vs SoA | 중급 | 데이터 레이아웃 설계와 성능 영향 |
 | 06 | 캐시 친화적 패턴 | 중급 | 순차 접근, stride, batching 전략 |
 | 07 | 패딩과 정렬 | 중급 | 구조체 패딩과 정렬 최적화 |
-| 08 | Large Pages | 심화 | Huge Pages / Large Pages 활용 |
+| 08 | Large Pages | 심화 | Huge Pages / Large Pages 활용, madvise 모드 + mTHP(multi-size THP)가 2025-2026 실무 표준으로 정착 |
 | 09 | NUMA 메모리 할당 | 심화 | NUMA에서 메모리 할당·지역성 (CPU affinity는 Tr.07과 연계) |
 | 10 | 메모리 단편화 | 심화 | 단편화 분석과 대응 전략 |
-| 11 | 메모리 대역폭 | 심화 | 메모리 대역폭 최적화 기법 |
+| 11 | 메모리 대역폭 | 심화 | 메모리 대역폭 최적화 기법, CXL 4.0 스펙 발표(2025-11) vs 실제 배포는 CXL 2.0 세대라는 괴리 |
 | 12 | Stack vs Heap 전략 | 중급 | Stack/Heap 할당 비용 정량 분석과 선택 기준 |
-| 13 | Virtual Memory 관리 | 심화 | madvise, msync 등 가상 메모리 힌트 활용 |
+| 13 | Virtual Memory 관리 | 심화 | madvise, msync 등 가상 메모리 힌트 활용, ARM MTE 오버헤드가 1.18~1.40배로 낮아져 실용 구간 진입 |
 | 14 | 메모리 누수 탐지 | 중급 | Valgrind, ASan을 활용한 누수 탐지와 성능 영향 |
 | 15 | 메모리·수명·캐시 라인 직관 | 기초 | 스택/힙·수명·캐시 라인·할당이 지연에 미치는 그림 잡기 (Tr.01·Tr.06 선행 개념) |
 | 16 | 전역 할당자·jemalloc·tcmalloc | 전문 | 전역 할당자 교체·튜닝과 프로파일 기반 검증 (Tr.01 문자열·컨테이너와 경계 명시) |
