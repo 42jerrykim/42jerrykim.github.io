@@ -1,9 +1,9 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 08. 비동기 객체 (Active Object)"
-description: "스스로 스레드를 가지고 메서드 호출을 큐로 받는 Active Object 패턴을 구현합니다."
+description: "스스로 스레드를 가지고 메서드 호출을 큐로 받아 순서대로 처리하는 Active Object 패턴을 구현합니다. Actor 모델과의 차이, 우선순위 큐, Thread Pool·Future와의 하이브리드 구조도 다룹니다."
 date: 2026-06-18
-lastmod: 2026-06-19
+lastmod: 2026-07-09
 draft: false
 collection_order: 8
 categories:
@@ -19,6 +19,22 @@ tags:
   - Implementation(구현)
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Concurrency(동시성)
+  - Thread
+  - Mutex
+  - Condition-Variable
+  - Async(비동기)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Performance(성능)
+  - Best-Practices
+  - Deep-Dive
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Reference(참고)
+  - Scalability(확장성)
+  - OOP(객체지향)
+  - Backend(백엔드)
 slug: cpp-active-object-async-method-invocation
 ---
 
@@ -28,11 +44,11 @@ slug: cpp-active-object-async-method-invocation
 
 ## 이 장을 읽기 전에
 
-**완전한 초보자?** 이 장은 04장의 작업 큐(생산자-소비자), 06장 「[실행 관리 I: Thread Pool](/post/multithreading-design-patterns/cpp-thread-pool-work-queue-work-stealing/)」의 워커 스레드 구조, 그리고 07장 「[실행 관리 II: Future와 Promise](/post/multithreading-design-patterns/cpp-future-promise-async-packaged-task/)」의 `std::packaged_task`/`std::future` 조합을 이미 알고 있다고 가정합니다. 특히 07장의 "Thread Pool과 packaged_task 결합" 절은 이 장의 기본 구현과 거의 동일한 패턴을 사용하므로, 아직 읽지 않았다면 먼저 읽고 오세요.
+**완전한 초보자?** 이 장은 04장의 작업 큐(생산자-소비자), 06장 「[실행 관리 I: Thread Pool](/post/multithreading-patterns/cpp-thread-pool-work-queue-work-stealing/)」의 워커 스레드 구조, 그리고 07장 「[실행 관리 II: Future와 Promise](/post/multithreading-patterns/cpp-future-promise-async-packaged-task/)」의 `std::packaged_task`/`std::future` 조합을 이미 알고 있다고 가정합니다. 특히 07장의 "Thread Pool과 packaged_task 결합" 절은 이 장의 기본 구현과 거의 동일한 패턴을 사용하므로, 아직 읽지 않았다면 먼저 읽고 오세요.
 
 **이 장의 깊이**: 이 장은 **고급(설계자)** 수준입니다. 단순히 "스레드 하나를 두고 큐로 메서드 호출을 직렬화한다"는 아이디어를 넘어, Active Object와 Actor 모델의 설계상 차이, 우선순위가 있는 메서드 요청 큐, 그리고 Active Object를 06장의 Thread Pool과 07장의 Future 위에 올리는 하이브리드 구조까지 다룹니다.
 
-**다루지 않는 것**: 분산 시스템에서의 Actor 구현(Erlang/Akka류의 메시지 패싱, 위치 투명성, 장애 복구)은 이 시리즈의 경계 밖입니다. 이 장에서 "Actor"는 비교 대상으로만 언급되며, C++ 구현은 제공하지 않습니다.
+**다루지 않는 것**: 분산 시스템에서의 Actor 구현(Erlang/Akka류의 메시지 패싱, 위치 투명성, 장애 복구)은 이 시리즈의 경계 밖입니다. 이 장에서 "Actor"는 비교 대상으로만 언급되며, C++ 구현은 제공하지 않습니다. 이 장의 요청-응답 구조를 C++20 코루틴으로 다시 쓰는 방법은 [12장 「코루틴 기반 비동기 재해석」](/post/multithreading-patterns/cpp-coroutine-reinterpretation-future-active-object/)에서 다룹니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -122,7 +138,6 @@ private:
                 std::unique_lock<std::mutex> lock(mu);
                 cv.wait(lock, [this] { return !queue.empty() || shutdown; });
                 if (shutdown && queue.empty()) break;
-                if (queue.empty()) continue;
                 task = std::move(queue.front());
                 queue.pop();
             }
@@ -149,7 +164,7 @@ private:
 };
 ```
 
-**사용**:
+호출하는 쪽 코드에서는 `increment()`가 마치 평범한 메서드처럼 보이지만, 실제로는 즉시 반환되는 `std::future<void>`를 돌려줄 뿐이다. `.wait()`로 완료를 기다릴지, 완전히 무시하고 fire-and-forget으로 쓸지는 호출자가 결정한다.
 
 ```cpp
 int main() {
@@ -197,7 +212,24 @@ g++ -std=c++20 -pthread -fsanitize=thread -g naive_counter.cpp -o naive_counter
 # WARNING: ThreadSanitizer: data race on 'value'
 ```
 
-반면, `ActiveCounter`에 대해 같은 4개 스레드가 `increment()`를 호출하면(각자 `.wait()`로 동기화하든 아니든), `value`에 대한 실제 증가는 항상 Active Object의 내부 스레드 하나에서만 일어난다.
+반면, `ActiveCounter`에 대해 같은 4개 스레드가 `increment()`를 호출하면(각자 `.wait()`로 동기화하든 안 하든), 호출자 스레드들은 각자 `packaged_task`를 큐에 넣기만 할 뿐 `value`를 직접 건드리지 않는다 — 실제 증가는 항상 Active Object의 내부 스레드 하나에서만 일어난다.
+
+```cpp
+// active_counter.cpp — 4개 호출자 스레드가 동시에 increment()를 호출한다.
+int main() {
+    ActiveCounter ac;
+    std::vector<std::thread> callers;
+    for (int i = 0; i < 4; ++i) {
+        callers.emplace_back([&ac] {
+            for (int j = 0; j < 100000; ++j) ac.increment();  // .wait() 없이 fire-and-forget
+        });
+    }
+    for (auto& t : callers) t.join();
+
+    int final = ac.getValue().get();  // 모든 increment 요청이 큐에 들어간 뒤 최종값 확인
+    std::cout << final << '\n';  // 항상 400000
+}
+```
 
 ```bash
 g++ -std=c++20 -pthread -fsanitize=thread -g active_counter.cpp -o active_counter
@@ -207,7 +239,7 @@ g++ -std=c++20 -pthread -fsanitize=thread -g active_counter.cpp -o active_counte
 
 ## 고급: 메서드 타입 안전성
 
-위의 코드는 런타임에 메서드를 큐에 추가할 때 동작하지만, 컴파일 시 타입 체크가 약하다. **Template 기반 접근**:
+위의 코드는 런타임에 메서드를 큐에 추가할 때 동작하지만, 컴파일 시 타입 체크가 약하다 — `std::function<void()>`로 감싸는 순간 원래 메서드의 시그니처(인자·반환 타입) 정보가 지워지기 때문에, 잘못된 인자를 넘겨도 컴파일러가 잡아 주지 못하고 런타임에야 드러난다. **Template 기반 접근**은 감쌀 대상 타입(`T`) 자체를 템플릿 파라미터로 받아, 호출하는 람다의 인자·반환 타입을 컴파일 시점에 `std::invoke_result_t`로 추론하게 만든다.
 
 ```cpp
 template<typename T>
@@ -226,7 +258,6 @@ private:
                 std::unique_lock<std::mutex> lock(mu);
                 cv.wait(lock, [this] { return !queue.empty() || shutdown; });
                 if (shutdown && queue.empty()) break;
-                if (queue.empty()) continue;
                 task = std::move(queue.front());
                 queue.pop();
             }
@@ -267,6 +298,8 @@ int main() {
     return 0;
 }
 ```
+
+만약 `ac.call([](std::string& s) { s.clear(); })`처럼 `Counter&`가 아닌 잘못된 타입을 받는 람다를 넘기면, `std::invoke_result_t<F, T&>`를 계산하는 시점에 컴파일 에러가 나서 그 자리에서 바로 잡힌다 — 타입 정보를 지워버리는 `std::function<void()>` 기반 설계였다면 이런 실수를 컴파일러가 잡을 방법 자체가 없었을 것이다. 다만 이 안전성은 공짜가 아니다. `ActiveObject<T>`가 템플릿이므로 사용하는 타입 `T`마다 별도의 인스턴스화가 일어나고, 헤더에 구현을 노출해야 한다는 비용을 감수해야 한다.
 
 ## Actor 모델과의 차이
 
@@ -345,7 +378,6 @@ private:
                 std::unique_lock<std::mutex> lock(mu);
                 cv.wait(lock, [this] { return !queue.empty() || shutdown; });
                 if (queue.empty() && shutdown) return;
-                if (queue.empty()) continue;
                 // priority_queue::top()은 const 참조만 반환하므로,
                 // function을 move하기 위해 const_cast가 필요하다.
                 task = std::move(const_cast<MethodRequest&>(queue.top()).task);

@@ -1,9 +1,9 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 07. 실행 관리 II: Future와 Promise"
-description: "std::future, std::promise, std::async, std::packaged_task로 비동기 작업의 결과를 안전하게 전달합니다."
+description: "std::future, std::promise, std::async, std::packaged_task로 비동기 작업의 결과와 예외를 안전하게 전달하는 법을 다룹니다. launch policy의 함정과 Thread Pool 결합 패턴도 포함합니다."
 date: 2026-06-17
-lastmod: 2026-06-18
+lastmod: 2026-07-09
 draft: false
 collection_order: 7
 categories:
@@ -22,6 +22,19 @@ tags:
   - Implementation(구현)
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Concurrency(동시성)
+  - Thread
+  - Mutex
+  - Condition-Variable
+  - Memory(메모리)
+  - Performance(성능)
+  - Best-Practices
+  - Deep-Dive
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Reference(참고)
 slug: cpp-future-promise-async-packaged-task
 ---
 
@@ -31,11 +44,11 @@ slug: cpp-future-promise-async-packaged-task
 
 ## 이 장을 읽기 전에
 
-**완전한 초보자?** 이 장은 06장 「[실행 관리 I: Thread Pool](/post/multithreading-design-patterns/cpp-thread-pool-work-queue-work-stealing/)」에서 다룬 작업 큐(work queue)와 `std::mutex`/`std::condition_variable`의 기본 동작을 이미 안다고 가정합니다. 아직이라면 06장을 먼저 읽고 오세요. 또한 01장의 happens-before 개념(`std::future::get()`이 내부적으로 동기화 지점을 제공한다는 사실의 근거)을 가볍게 복습해 두면 좋습니다.
+**완전한 초보자?** 이 장은 06장 「[실행 관리 I: Thread Pool](/post/multithreading-patterns/cpp-thread-pool-work-queue-work-stealing/)」에서 다룬 작업 큐(work queue)와 `std::mutex`/`std::condition_variable`의 기본 동작을 이미 안다고 가정합니다. 아직이라면 06장을 먼저 읽고 오세요. 또한 01장의 happens-before 개념(`std::future::get()`이 내부적으로 동기화 지점을 제공한다는 사실의 근거)을 가볍게 복습해 두면 좋습니다.
 
 **이 장의 깊이**: 이 장은 **중급~고급** 수준입니다. `std::promise`/`std::future`의 기본 계약, `std::async`의 launch policy가 만드는 함정, 예외 전파의 정확한 의미, 그리고 `packaged_task`를 Thread Pool과 결합해 "Future를 반환하는 작업 큐"를 만드는 실전 패턴까지 다룹니다.
 
-**다루지 않는 것**: `std::shared_future`를 이용한 다중 소비자 브로드캐스트, `std::experimental::future`의 `.then()` 체이닝(코루틴 기반 비동기 모델은 00장에서 명시한 대로 이 시리즈의 경계 밖입니다), 그리고 `std::async`의 구현별(libstdc++ vs MSVC) 스케줄링 차이의 세부 사항은 다루지 않습니다.
+**다루지 않는 것**: `std::shared_future`를 이용한 다중 소비자 브로드캐스트, `std::experimental::future`의 `.then()` 체이닝, 그리고 `std::async`의 구현별(libstdc++ vs MSVC) 스케줄링 차이의 세부 사항은 다루지 않습니다. 이 장의 보일러플레이트를 C++20 코루틴으로 다시 쓰는 방법은 [12장 「코루틴 기반 비동기 재해석」](/post/multithreading-patterns/cpp-coroutine-reinterpretation-future-active-object/)에서 다룹니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -54,7 +67,9 @@ slug: cpp-future-promise-async-packaged-task
 **Future**: 미래의 값을 받는 쪽
 
 ```cpp
+#include <chrono>
 #include <future>
+#include <iostream>
 #include <thread>
 
 int main() {
@@ -79,13 +94,17 @@ int main() {
 - Promise는 이동만 가능 (복사 불가).
 - `set_value()` 호출 전에 `get()`을 호출하면 블로킹.
 - 예외도 전달 가능: `set_exception()`.
+- **`set_value()`도 `set_exception()`도 호출하지 않은 채 Promise가 소멸되면**(예: 워커 스레드가 예외로 죽거나 함수를 일찍 `return`해 버리면), Future 쪽의 `get()`은 값 대신 `std::future_error`(`broken_promise`)를 던진다. "약속을 어긴 Promise"라는 이름 그대로, 이 실패 모드는 실무에서 워커 스레드의 예외 처리를 빠뜨렸을 때 흔히 마주친다.
 
 ## std::async
 
 `std::async`는 Promise/Future를 직접 다루지 않고, 함수를 비동기로 실행하고 결과의 Future를 반환한다.
 
 ```cpp
+#include <chrono>
 #include <future>
+#include <iostream>
+#include <thread>
 
 int compute() {
     std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -355,7 +374,7 @@ g++ -std=c++20 -pthread -fsanitize=thread -g future_pool_example.cpp -o future_p
 ./future_pool_example
 ```
 
-TSAN은 `set_value`/`set_exception`과 `get()` 사이의 happens-before 관계가 깨졌을 때(예: 공유 상태에 직접 접근하는 잘못된 수동 구현) 데이터 레이스를 보고한다. 표준 `std::future`/`std::promise` 자체는 내부적으로 적절한 동기화를 제공하므로, 이 장의 예제처럼 표준 API만 사용하면 TSAN 경고가 발생하지 않는 것이 정상이다 — 경고가 뜬다면 future로 전달해야 할 데이터를 별도의 비동기 공유 변수로 우회 접근하고 있다는 신호다.
+TSAN은 `set_value`/`set_exception`과 `get()` 사이의 happens-before 관계가 깨졌을 때(예: 공유 상태에 직접 접근하는 잘못된 수동 구현) 데이터 레이스를 보고한다. 표준 `std::future`/`std::promise` 자체는 내부적으로 적절한 동기화를 제공하므로, 이 장의 예제처럼 표준 API만 사용하면 TSAN 경고가 발생하지 않는 것이 정상이다 — 경고가 뜬다면 future로 전달해야 할 데이터를 future 밖의 동기화되지 않은 공유 변수로 우회 접근하고 있다는 신호다.
 
 ## 학습 성과 평가 기준
 

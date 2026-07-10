@@ -1,9 +1,9 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 06. 실행 관리 I: Thread Pool"
-description: "스레드 풀, 작업 큐, Work Stealing 알고리즘을 구현하고, 부하 분산과 응답성의 트레이드오프를 학습합니다."
+description: "스레드 풀, 작업 큐, Work Stealing 알고리즘을 std::thread와 mutex/condition_variable만으로 직접 구현합니다. 백프레셔가 있는 스레드 풀, 풀 크기 결정 기준, 실전 선택 가이드까지 다룹니다."
 date: 2026-06-16
-lastmod: 2026-06-17
+lastmod: 2026-07-09
 draft: false
 collection_order: 6
 categories:
@@ -25,6 +25,16 @@ tags:
   - Implementation(구현)
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Concurrency(동시성)
+  - Thread
+  - Mutex
+  - Condition-Variable
+  - Scalability(확장성)
+  - Backend(백엔드)
+  - Best-Practices
+  - Deep-Dive
+  - Testing(테스트)
 slug: cpp-thread-pool-work-queue-work-stealing
 ---
 
@@ -41,8 +51,8 @@ slug: cpp-thread-pool-work-queue-work-stealing
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
 | **중급자** | "기본 Thread Pool" | 워커 스레드 풀 구현 |
-| **고급자** | 전체, 특히 "Work Stealing" | 부하 분산 알고리즘 이해 |
-| **시스템 설계자** | "성능 비교" ~ 마무리 | 스레드 풀 선택 기준 이해 |
+| **고급자** | 전체, 특히 "Work Stealing 패턴" | 부하 분산 알고리즘 이해 |
+| **시스템 설계자** | "풀 크기 결정" ~ "스레드 풀 선택 기준" | 스레드 풀 선택 기준 이해 |
 
 ---
 
@@ -74,7 +84,6 @@ private:
                 std::unique_lock<std::mutex> lock(mu);
                 cv.wait(lock, [this] { return !tasks.empty() || shutdown; });
                 if (shutdown && tasks.empty()) break;
-                if (tasks.empty()) continue;
                 task = std::move(tasks.front());
                 tasks.pop();
             }
@@ -132,10 +141,10 @@ int main() {
 
 ```cpp
 #include <atomic>
+#include <deque>
 #include <functional>
 #include <memory>
 #include <mutex>
-#include <queue>
 #include <thread>
 #include <vector>
 
@@ -145,7 +154,7 @@ public:
 
 private:
     struct Worker {
-        std::queue<Task> localQueue;
+        std::deque<Task> localQueue;
         mutable std::mutex mu;
     };
 
@@ -157,23 +166,26 @@ private:
         while (true) {
             Task task;
 
-            // 자신의 큐에서 먼저 시도
+            // 자신의 큐에서 먼저 시도 — 뒤(back)에서 꺼낸다(LIFO): 가장 최근에
+            // 넣은 작업을 먼저 처리해 캐시 지역성이 좋다.
             {
                 std::lock_guard<std::mutex> lock(workers[id]->mu);
                 if (!workers[id]->localQueue.empty()) {
-                    task = std::move(workers[id]->localQueue.front());
-                    workers[id]->localQueue.pop();
+                    task = std::move(workers[id]->localQueue.back());
+                    workers[id]->localQueue.pop_back();
                 }
             }
 
             if (!task) {
-                // 자신의 큐가 비었으면, 다른 워커에서 훔친다
+                // 자신의 큐가 비었으면, 다른 워커에서 훔친다 — 앞(front)에서
+                // 훔친다(FIFO): 가장 오래된 작업을 가져가 owner와 같은 쪽 끝을
+                // 두고 경쟁하지 않는다.
                 for (size_t i = 1; i < workers.size(); ++i) {
                     size_t victimId = (id + i) % workers.size();
                     std::lock_guard<std::mutex> lock(workers[victimId]->mu);
                     if (!workers[victimId]->localQueue.empty()) {
-                        task = std::move(workers[victimId]->localQueue.back());
-                        workers[victimId]->localQueue.pop();
+                        task = std::move(workers[victimId]->localQueue.front());
+                        workers[victimId]->localQueue.pop_front();
                         break;
                     }
                 }
@@ -206,7 +218,7 @@ public:
     void enqueue(Task task, size_t preferredWorker = 0) {
         size_t id = preferredWorker % workers.size();
         std::lock_guard<std::mutex> lock(workers[id]->mu);
-        workers[id]->localQueue.push(std::move(task));
+        workers[id]->localQueue.push_back(std::move(task));
     }
 };
 ```
@@ -215,7 +227,7 @@ public:
 
 **실전에서의 함정**: 위 구현은 개념을 보여주기 위해 단순화했다. 실제 work-stealing 큐를 프로덕션에 쓰려면 다음을 고려해야 한다.
 
-- **자기 큐는 뒤(front)에서 꺼내고, 도둑은 앞(back)에서 훔치게** 하면 자기 자신의 작업 추가/제거(LIFO, 캐시 지역성이 좋음)와 도둑의 steal(FIFO)이 서로 다른 쪽 끝을 사용해 락 경합이 줄어든다. 위 코드는 단순화를 위해 둘 다 `mutex`로 보호하지만, Chase-Lev deque 같은 알고리즘은 **owner는 락 없이, 도둑만 CAS(`compare_exchange`)로 경쟁**하게 만들어 owner 쪽 오버헤드를 거의 0으로 줄인다.
+- **자기 큐는 뒤(back)에서 꺼내고, 도둑은 앞(front)에서 훔치게** 하면 자기 자신의 작업 추가/제거(LIFO, 캐시 지역성이 좋음)와 도둑의 steal(FIFO)이 서로 다른 쪽 끝을 사용해 락 경합이 줄어든다. 이 때문에 로컬 큐는 앞뒤 양쪽에서 꺼낼 수 있는 `std::deque`여야 한다 — `std::queue`는 `pop()`이 항상 앞쪽 원소만 제거하므로 owner가 뒤쪽(가장 최근에 넣은 쪽)에서 꺼내는 LIFO 접근 자체가 불가능하다. 위 코드는 단순화를 위해 둘 다 `mutex`로 보호하지만, Chase-Lev deque 같은 알고리즘은 **owner는 락 없이, 도둑만 CAS(`compare_exchange`)로 경쟁**하게 만들어 owner 쪽 오버헤드를 거의 0으로 줄인다.
 - **빈 풀에서의 busy-yield**: 위 `workerLoop`는 작업이 없으면 `yield()`로 스핀한다. 작업이 드문 워크로드에서는 CPU를 불필요하게 점유한다 — 04장의 `condition_variable` 기반 대기와 결합하거나, 일정 횟수 스핀 후 짧게 잠드는 하이브리드 전략이 흔히 쓰인다.
 - **안전성 검증**: 이런 멀티-락, 멀티-큐 구조는 데드락(락 순서 역전)과 데이터 레이스(shutdown 플래그, 큐 크기 확인 시점) 둘 다의 위험이 있다. `g++ -std=c++20 -pthread -fsanitize=thread -g`로 빌드해 다수의 enqueue/steal이 동시에 일어나는 스트레스 테스트를 돌려 보는 것이 좋다.
 
@@ -311,7 +323,7 @@ ThreadPool pool(n);
 
 **I/O 바운드 작업** (네트워크 응답, 디스크 읽기 대기): 워커가 I/O를 기다리는 동안 CPU는 비어 있으므로, 코어 수보다 훨씬 많은 워커를 둬도 이득이 있다. 흔히 쓰는 경험적 공식은 다음과 같다.
 
-```
+```text
 워커 수 ≈ 코어 수 × (1 + 평균 대기 시간 / 평균 계산 시간)
 ```
 
@@ -330,12 +342,19 @@ ThreadPool pool(n);
 
 **선택**: 대부분의 작업이 균등하면 기본 풀, 편차가 크면 Work Stealing.
 
+## 흔한 오개념
+
+**"작업(task)이 예외를 던지면 그 작업만 실패하고 풀은 계속 동작한다"**는 생각은 위 세 가지 구현 어디에도 해당하지 않는다. `workerLoop()`의 `task();` 호출은 `try`/`catch`로 감싸여 있지 않으므로, 큐에서 꺼낸 작업이 예외를 던지면 그 예외가 워커 스레드의 최상위까지 전파되어 `std::terminate()`가 호출되고 **프로그램 전체가 죽는다** — 다른 작업이 안전하게 남아 있는 게 아니라, 풀 자체가 통째로 사라진다. 이 문제를 회피하려면 `workerLoop()` 안에서 `task()` 호출을 `try { task(); } catch (...) { /* 로깅 후 계속 */ }`로 감싸거나, 07장에서 다룰 `packaged_task`처럼 예외를 결과값 통로(Future)로 옮겨 담는 방식을 써야 한다 — 이 장의 Thread Pool은 "작업을 어디서 실행할지"만 해결하고, "예외를 어떻게 돌려받을지"는 의도적으로 07장의 몫으로 남겨 둔 것이다.
+
+**"스레드 풀을 쓰면 코드가 자동으로 더 빨라진다"**도 흔한 오해다. 스레드 풀이 없애는 비용은 오직 **스레드 생성·소멸 비용**뿐이다. 작업 자체가 CPU 바운드이고 이미 코어 수만큼 병렬화돼 있다면, 스레드 풀을 도입해도 처리량은 그대로다 — 오히려 워커 수를 잘못 잡으면(위 "풀 크기 결정" 참고) 컨텍스트 스위칭 비용만 늘어 더 느려질 수 있다. 스레드 풀은 "병렬성을 만들어 내는 도구"가 아니라 "이미 존재하는 병렬 작업을 스레드에 효율적으로 배분하는 도구"다.
+
 ## 학습 성과 평가 기준
 
 - [ ] 기본 Thread Pool을 구현하고, 작업 큐에서 안전하게 읽을 수 있는가?
 - [ ] Work Stealing 알고리즘의 목표와 구현을 설명할 수 있는가?
 - [ ] Shutdown 시 모든 작업이 완료될 때까지 대기하는 메커니즘을 이해하는가?
 - [ ] Backpressure (큐 크기 제한)를 어디에 적용할지 판단할 수 있는가?
+- [ ] 작업이 예외를 던지면 이 장의 구현이 왜 위험한지, 07장의 어떤 도구가 이를 해결하는지 설명할 수 있는가?
 
 ## 다음 장에서는
 

@@ -1,9 +1,9 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 11. 공유 회피"
-description: "공유 상태를 애초에 없애는 전략: Immutable 패턴, Copy-on-Write, thread_local, 그리고 lock-free 자료구조의 전망을 다룹니다."
+description: "공유 상태를 애초에 없애는 전략을 다룹니다. Immutable 패턴, Copy-on-Write, thread_local로 공유를 회피하고, SPSC Lock-Free 큐를 직접 구현합니다. 메모리 회수 심화는 13장에서 이어집니다."
 date: 2026-06-21
-lastmod: 2026-06-22
+lastmod: 2026-07-09
 draft: false
 collection_order: 11
 categories:
@@ -24,10 +24,21 @@ tags:
   - Implementation(구현)
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Thread
+  - Mutex
+  - Memory(메모리)
+  - Memory-Order
+  - Software-Architecture(소프트웨어아키텍처)
+  - Best-Practices
+  - Deep-Dive
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Reference(참고)
 slug: cpp-avoiding-shared-state-immutable-cow-thread-local
 ---
 
-이 시리즈의 마지막 장은 **공유 상태 자체를 없애는 전략**을 다룬다. 지금까지 "공유 상태를 보호하는 방법"을 배웠다면, 11장은 "공유하지 않는 방법"을 배운다. 이것이 가장 근본적인 해결책이다. 락은 잘 설계해도 경쟁(contention)과 데드락 위험이 남는다. 반면 "처음부터 공유하지 않는다"는 전략은 그 위험을 설계 단계에서 제거한다 — 대신 메모리와 복사라는 다른 비용을 지불할 뿐이다.
+이 장은 **공유 상태 자체를 없애는 전략**을 다룬다. 지금까지 "공유 상태를 보호하는 방법"을 배웠다면, 11장은 "공유하지 않는 방법"을 배운다. 이것이 가장 근본적인 해결책이다. 락은 잘 설계해도 경쟁(contention)과 데드락 위험이 남는다. 반면 "처음부터 공유하지 않는다"는 전략은 그 위험을 설계 단계에서 제거한다 — 대신 메모리와 복사라는 다른 비용을 지불할 뿐이다.
 
 ## 이 장을 읽기 전에
 
@@ -43,7 +54,7 @@ slug: cpp-avoiding-shared-state-immutable-cow-thread-local
 |------|---------|---------|
 | **중급자** | "Immutable 패턴" ~ "thread_local" | 기본 공유 회피 기법 습득 |
 | **고급자** | 전체, "Copy-on-Write" 섹션 | 패턴 간의 트레이드오프 이해 |
-| **성능 전문가** | "패턴 선택 가이드" | 실제 시스템에서 어떤 패턴 쓸지 판단 |
+| **설계자** | "패턴 선택 가이드" | 실제 시스템에서 어떤 패턴 쓸지 판단 |
 
 ---
 
@@ -51,12 +62,12 @@ slug: cpp-avoiding-shared-state-immutable-cow-thread-local
 
 **공유 상태가 없으면 동기화도 필요 없다.** 그 대신의 비용은 메모리와 복사다. 이 트레이드오프는 상황마다 다르다.
 
-| 패턴 | 메모리 | 성능 | 복잡도 |
-|------|--------|------|--------|
-| Immutable | 높음 | 빠름 (복사 비용) | 낮음 |
-| Copy-on-Write | 중간 | 높음 (읽기 최적화) | 높음 |
-| thread_local | 높음 | 매우 빠름 | 중간 |
-| Lock-Free | 중간 | 매우 높음 (비용) | 매우 높음 |
+| 패턴 | 메모리 비용 | 읽기 성능 | 쓰기 성능 | 구현 복잡도 |
+|------|-----------|----------|----------|------------|
+| Immutable | 높음 (수정마다 새 객체) | 매우 빠름 | 느림 (전체 복사) | 낮음 |
+| Copy-on-Write | 중간 | 매우 빠름 | 느림 (쓰기 시 복사) | 높음 |
+| thread_local | 높음 (스레드 수 × 크기) | 매우 빠름 | 매우 빠름 | 중간 |
+| Lock-Free | 중간 | 빠름 | 빠름 | 매우 높음 |
 
 ## Immutable 패턴
 
@@ -376,12 +387,12 @@ int main() {
 
 **현실**:
 - 일반적인(MPMC) lock-free 자료구조는 **책으로는 배우기 어렵고**, 보증된 라이브러리 (Boost.Lockfree, TBB, folly)를 사용할 것을 강력히 권장한다.
-- 정확성 검증이 매우 어렵다 (10년 경력 해서도 버그 있음). SPSC처럼 제약이 강한 특수 케이스만 손으로 구현을 시도할 가치가 있다.
+- 정확성 검증이 매우 어렵다 (10년 경력의 전문가가 만든 구현에서도 버그가 발견되곤 한다). SPSC처럼 제약이 강한 특수 케이스만 손으로 구현을 시도할 가치가 있다.
 - 성능 이득이 실제로 필요한 경우는 드물다 (보통 mutex가 충분하다 — 이 시리즈의 02장에서 본 Scoped Locking으로 시작하고, 프로파일링 후에만 lock-free를 고려한다).
 
 ## 패턴 선택 가이드
 
-```
+```text
 1. 공유 상태가 필요한가?
    → 아니오: thread_local 사용
    
@@ -395,6 +406,12 @@ int main() {
    → 예: lock-free (라이브러리 사용)
 ```
 
+## 흔한 오개념
+
+**"멤버가 전부 `const`거나 읽기 전용 메서드만 있으면 Immutable이다"**는 흔한 오해다. 클래스가 `const T* ptr`나 `std::shared_ptr<T>` 같은 **참조/포인터 멤버**를 들고 있다면, 그 클래스 자체는 값을 바꾸지 않아도 포인터가 가리키는 대상을 다른 코드가 바꿀 수 있다 — 진짜 Immutable은 "이 객체의 멤버가 `const`다"가 아니라 "이 객체가 도달할 수 있는 모든 상태가 생성 이후 절대 바뀌지 않는다"는 훨씬 강한 보장이다. 이 장의 `ImmutableString`이 안전한 이유는 `const std::string data`가 값 타입이라 애초에 외부에서 가리킬 대상이 없기 때문이지, 단순히 `const`가 붙어서가 아니다.
+
+**"`thread_local`이면 그 안에 뭘 담든 항상 안전하다"**도 마찬가지로 위험한 일반화다. `thread_local`이 격리하는 것은 "그 변수 자체가 저장되는 위치"이지, 그 변수가 **가리키는** 대상까지 자동으로 격리해 주지는 않는다. 예를 들어 `thread_local std::shared_ptr<SharedCache> cache;`처럼 모든 스레드의 `thread_local` 포인터가 결국 같은 힙 객체를 가리킨다면, 포인터 자체는 스레드마다 따로 있어도 그 객체에 대한 접근은 여전히 동기화가 필요하다. 이 장의 `threadLocalRandomInt` 예제가 안전한 이유는 `std::mt19937 engine`이 **값으로** 스레드마다 통째로 복제되기 때문이지, `thread_local` 키워드 자체가 마법을 부려서가 아니다.
+
 ## 학습 성과 평가 기준
 
 - [ ] Immutable 패턴을 구현하고, 왜 안전한지 설명할 수 있는가?
@@ -403,32 +420,13 @@ int main() {
 - [ ] `std::atomic`만으로 SPSC Lock-Free 큐를 구현하고, `memory_order_release`/`acquire` 쌍이 왜 필요한지 설명할 수 있는가?
 - [ ] Lock-Free가 왜 어렵고 위험한지, SPSC와 MPMC의 난이도 차이를 이해하는가?
 
-## 시리즈 완수 평가 기준
+## 핵심 정리
 
-이 컬렉션 전체를 완주하면 [00장 「시리즈 소개」](/post/multithreading-patterns/getting-started-multithreading-design-patterns/)에서 제시한 목표 — "락을 어디에 넣지?"가 아니라 "이 문제는 어떤 패턴의 변형이지?"라는 어휘로 사고하는 것 — 를 다음 구체적 역량으로 점검할 수 있어야 한다.
+지금까지 11개 장을 거치며 "공유 상태를 어떻게 안전하게 보호할 것인가"를 물었다면, 이 장은 그 전제를 뒤집어 "이 상태를 정말 공유해야 하는가"를 먼저 묻는다. Immutable과 Copy-on-Write는 "데이터를 공유하지만 변경 시점을 분리"하고, thread_local은 "데이터 자체를 분리"하며, Lock-Free는 "보호 메커니즘(락)을 atomic 연산으로 대체"한다. 세 전략 모두 02장에서 시작한 "락이 필요한 이유"를 거꾸로 비추는 거울이다 — 락이 왜 필요한지 모르면, 락이 왜 필요 없어지는지도 알 수 없다.
 
-- [ ] 멀티스레드 문제를 "메모리 모델" 언어로 진단할 수 있다. (01)
-- [ ] 데이터 레이스를 Scoped Locking, Monitor Object, Guarded Suspension으로 해결할 수 있다. (02~03)
-- [ ] Producer-Consumer를 Bounded Buffer로 구현하고 backpressure를 제어할 수 있다. (04)
-- [ ] 읽기 위주 워크로드를 shared_mutex나 call_once로 최적화할 수 있다. (05)
-- [ ] Thread Pool, Future/Promise, Active Object를 설계하고 구현할 수 있다. (06~08)
-- [ ] `poll()` 기반 Reactor와 Proactor(완료 통지) 의미의 차이를 코드로 구현·구분할 수 있다. (09~10)
-- [ ] `condition_variable` 기반 큐로 비동기 계층과 동기 계층을 분리하는 Half-Sync/Half-Async 구조를 설계할 수 있다. (10)
-- [ ] Immutable, Copy-on-Write, thread_local로 공유를 회피하고, SPSC Lock-Free 큐의 동작 원리를 설명할 수 있다. (11)
-- [ ] 각 패턴의 트레이드오프(메모리, 성능, 복잡도)를 이해하고, 보호(02, 05)·대기(03)·흐름(04)·실행(06~08)·아키텍처(09~10)·회피(11)의 6개 층위로 문제를 분류해 설계 리뷰에서 대안을 제시할 수 있다.
+## 다음 장에서는
 
-## 마치며
-
-[00장 「시리즈 소개」](/post/multithreading-patterns/getting-started-multithreading-design-patterns/)는 "멀티스레드 코드가 무너지는 순간은 락 문법을 몰라서가 아니라, 어디에 어떤 구조로 동기화를 배치할지 설계하지 않아서 온다"는 문제의식에서 출발했다. 11개 장을 거치며 우리는 그 질문에 답하는 어휘 체계를 하나씩 쌓았다 — 01장의 메모리 모델은 "안전하다"는 말의 정의를 주었고, 02~05장은 단일 객체를 보호하는 관용구를, 04·06~08장은 스레드 사이의 데이터 흐름과 실행 관리를, 09~10장은 시스템 수준의 이벤트 아키텍처를 다뤘다.
-
-마지막 11장은 이 모든 것의 **전제를 뒤집는다**: 지금까지 "공유 상태를 어떻게 안전하게 보호할 것인가"를 물었다면, 이제는 "이 상태를 정말 공유해야 하는가"를 먼저 묻는다. Immutable과 Copy-on-Write는 "데이터를 공유하지만 변경 시점을 분리"하고, thread_local은 "데이터 자체를 분리"하며, Lock-Free는 "보호 메커니즘(락)을 atomic 연산으로 대체"한다. 세 전략 모두 02장에서 시작한 "락이 필요한 이유"를 거꾸로 비추는 거울이다 — 락이 왜 필요한지 모르면, 락이 왜 필요 없어지는지도 알 수 없다.
-
-실무에서:
-- **작은 시스템**: Scoped Locking + Monitor Object로 충분
-- **중간 시스템**: Thread Pool + Future, Half-Sync/Half-Async 조합
-- **대규모 시스템**: Event-Driven (Reactor/Proactor) + thread_local + Immutable/CoW 혼합, 핫패스에 한정해 SPSC Lock-Free 큐 검토
-
-무엇보다 중요한 것은 **"왜 동기화가 필요한가"를 이해하고, 가장 간단한 패턴부터 시작**하는 것이다. 복잡한 패턴은 필요할 때만, 그리고 프로파일링으로 그 필요성이 증명된 뒤에만 도입한다. 이 시리즈에서 익힌 구조적 어휘를 가지고, [Low-latency 동시성·멀티스레드 트랙](/post/concurrency-optimization/getting-started-concurrency-multithreading-performance-tuning/)에서 같은 패턴들을 "비용"의 관점으로 다시 보면, 구조와 성능이라는 두 축이 맞물려 입체적인 그림이 완성된다.
+12장에서는 지금까지 스레드 기반으로 구현한 07장의 Future/Promise와 08장의 Active Object를 **C++20 코루틴**으로 다시 써 본다. `co_await` 문법이 같은 문제를 어떻게 다른 비용 구조로 풀어내는지, 그리고 언제 코루틴이 스레드 기반 구현보다 유리한지를 다룬다. 이 장이 "범위 밖"으로 미뤄 둔 ABA 문제와 메모리 회수(hazard pointer, epoch-based reclamation)는 13장에서 정면으로 다룬다.
 
 ## 참고 및 출처
 

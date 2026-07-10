@@ -1,9 +1,9 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 04. 데이터 흐름: Producer-Consumer"
-description: "Bounded Buffer, Unbounded Queue, Backpressure 메커니즘을 통해 프로듀서-컨슈머 패턴의 확장성과 트레이드오프를 학습합니다."
+description: "Bounded Buffer, Unbounded Queue, Backpressure 메커니즘을 통해 Producer-Consumer 패턴의 확장성과 트레이드오프를 학습합니다. 다중 프로듀서/컨슈머 구조와 lock contention 최적화도 다룹니다."
 date: 2026-06-14
-lastmod: 2026-06-15
+lastmod: 2026-07-09
 draft: false
 collection_order: 4
 categories:
@@ -27,10 +27,19 @@ tags:
   - Implementation(구현)
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Concurrency(동시성)
+  - Mutex
+  - Condition-Variable
+  - Thread
+  - Scalability(확장성)
+  - Best-Practices
+  - Testing(테스트)
+  - Deep-Dive
 slug: cpp-producer-consumer-bounded-buffer-backpressure
 ---
 
-생산자가 컨슈머보다 빠르면 어딘가에 데이터가 쌓인다. 그 "어딘가"를 무한히 키우면 메모리가 터지고, 무작정 막으면 생산자가 멈춘다. 04장은 데이터가 **프로듀서(생산)에서 컨슈머(소비)로 흘러가는 구조**를 다룬다. 핵심 트레이드오프는 두 가지다:
+생산자가 컨슈머보다 빠르면 어딘가에 데이터가 쌓인다. 그 "어딘가"를 무한히 키우면 메모리가 터지고, 무작정 막으면 생산자가 멈춘다. 이 문제는 새로운 것이 아니다 — Edsger Dijkstra가 1965년 세마포어(semaphore)를 도입하며 다룬 원래 문제가 바로 "생산자와 소비자가 유한한 버퍼를 공유할 때 서로를 어떻게 막고 깨울 것인가"였다. 04장은 그 문제를 `condition_variable` 기반으로 다시 풀며, 데이터가 **프로듀서(생산)에서 컨슈머(소비)로 흘러가는 구조**를 다룬다. 핵심 트레이드오프는 두 가지다:
 
 1. **Bounded Buffer vs Unbounded**: 메모리 제한 vs 응답성
 2. **Blocking Backpressure vs Dropping**: 대기 vs 손실
@@ -47,7 +56,7 @@ slug: cpp-producer-consumer-bounded-buffer-backpressure
 |------|---------|---------|
 | **초보자** | "Unbounded Queue" ~ "Bounded Buffer" | 생산-소비 큐 구현 |
 | **중급자** | 전체 (성능 섹션 제외) | Backpressure 이해 및 적용 |
-| **전문가** | "성능 고려사항" ~ "다중 프로듀서/컨슈머" | Lock contention과 최적화 |
+| **전문가** | "다중 프로듀서/컨슈머" ~ "성능 고려사항" | Lock contention과 최적화 |
 
 ---
 
@@ -86,11 +95,11 @@ public:
 
 **단점**: 메모리 사용량 제한 없음. 프로듀서가 매우 빠르고 컨슈머가 느리면 메모리 부족.
 
-**흔한 실수**: `pop()`에서 `cv.wait(lock, predicate)` 대신 `if (q.empty()) cv.wait(lock);`처럼 조건 없는 `wait`를 쓰면 **lost wakeup**이 발생할 수 있다. `push()`의 `notify_one()`이 `pop()`이 `wait()`에 들어가기 *전*에 호출되면, 그 알림은 그냥 사라지고 컨슈머는 영원히 깬다. 위 구현처럼 술어(predicate)를 넘기는 `wait(lock, [this]{...})` 형태는 "락을 다시 잡았을 때 조건을 한 번 더 검사"하므로 이 경쟁을 원천적으로 막는다. 이 차이는 03장의 Monitor Object에서 다룬 내용 그대로다.
+**흔한 실수**: `pop()`에서 `cv.wait(lock, predicate)` 대신 `if (q.empty()) cv.wait(lock);`처럼 조건 없는 `wait`를 쓰면 **lost wakeup**이 발생할 수 있다. `push()`의 `notify_one()`이 `pop()`이 `wait()`에 들어가기 *전*에 호출되면, 그 알림은 그냥 사라지고 컨슈머는 영원히 깨어나지 못한다. 위 구현처럼 술어(predicate)를 넘기는 `wait(lock, [this]{...})` 형태는 "락을 다시 잡았을 때 조건을 한 번 더 검사"하므로 이 경쟁을 원천적으로 막는다. 이 차이는 03장의 Monitor Object에서 다룬 내용 그대로다.
 
 ## Bounded Buffer (유한 버퍼)
 
-큐의 크기를 제한한다. 가득 차면 프로듀서는 대기한다 (**backpressure**).
+큐의 크기를 제한한다. 가득 차면 프로듀서는 대기한다 (**backpressure**). 03장의 "실전: 여러 조건 변수" 절에서 이미 같은 이름의 `BoundedQueue`를 만들어 봤다면 낯익을 것이다 — 여기서는 그 개념을 이 장의 흐름 제어 관점에서 다시 짚는다. 다만 아래 구현은 `notify_one()`을 **락을 쥔 채로** 호출한다(03장이 "(A) 방식"이라 부른 쪽). 이 장에서는 backpressure 자체에 집중하기 위해 더 단순한 (A) 방식을 썼다 — notify를 락 해제 후로 옮기는 (B) 방식과의 트레이드오프는 03장을 참고하라.
 
 ```cpp
 template<typename T>
@@ -265,7 +274,26 @@ int main() {
 }
 ```
 
-위 코드의 종료 조건(`consumedCount.fetch_add(...) < totalItems`)은 "전체 아이템 수를 미리 알고 있다"는 단순화다. 실전에서는 보통 **종료 신호(poison pill)**를 큐에 넣거나, 모든 프로듀서가 끝났음을 알리는 별도의 플래그/카운터를 두어 컨슈머가 "더 이상 올 데이터가 없음"을 판단하게 한다.
+위 코드의 종료 조건(`consumedCount.fetch_add(...) < totalItems`)은 "전체 아이템 수를 미리 알고 있다"는 단순화다. 실전에서는 보통 **종료 신호(poison pill)**를 큐에 넣거나, 모든 프로듀서가 끝났음을 알리는 별도의 플래그/카운터를 두어 컨슈머가 "더 이상 올 데이터가 없음"을 판단하게 한다. 큐의 원소 타입을 `std::optional<T>`로 두면, "값이 있으면 처리할 데이터, `nullopt`면 종료 신호"라는 뜻으로 poison pill을 표현할 수 있다.
+
+```cpp
+// 프로듀서: 데이터를 다 보낸 뒤 nullopt를 넣어 "더 이상 없음"을 알린다.
+void producer(BoundedQueue<std::optional<int>>& q, int count) {
+    for (int i = 0; i < count; ++i) q.push(i);
+    q.push(std::nullopt);  // poison pill
+}
+
+// 컨슈머: nullopt를 받으면 종료한다.
+void consumer(BoundedQueue<std::optional<int>>& q) {
+    while (true) {
+        std::optional<int> item = q.pop();
+        if (!item.has_value()) break;  // poison pill 수신 → 종료
+        // item.value() 처리
+    }
+}
+```
+
+컨슈머가 여러 개라면 poison pill 하나로는 부족하다 — 그 pill을 받은 컨슈머 하나만 종료하고 나머지는 계속 기다리기 때문이다. 컨슈머 수만큼 pill을 넣거나, 종료 플래그와 `notify_all()`을 함께 쓰는 방식으로 확장해야 한다.
 
 ## 성능 고려사항
 
@@ -306,7 +334,9 @@ public:
 };
 ```
 
-`tail.store(..., release)` 다음에 일어난 `head.load(..., acquire)`은 happens-before 관계를 만들어, 프로듀서가 `buf[t]`에 쓴 값을 컨슈머가 안전하게 읽을 수 있게 한다. 이 패턴이 **mutex 없이도 안전한 이유**와, 멀티 프로듀서/멀티 컨슈머(MPMC)로 확장할 때 왜 이렇게 단순하지 않은지는 11장 "공유 회피"에서 다룬다.
+프로듀서의 `tail.store(..., release)`와 컨슈머의 `tail.load(..., acquire)`가 짝을 이뤄 happens-before 관계를 만들고, 이 덕분에 프로듀서가 `buf[t]`에 쓴 값을 컨슈머가 안전하게 읽을 수 있다. 이 패턴이 **mutex 없이도 안전한 이유**와, 멀티 프로듀서/멀티 컨슈머(MPMC)로 확장할 때 왜 이렇게 단순하지 않은지는 11장 "공유 회피"에서 다룬다.
+
+한 가지 주의점: `(t + 1) % N == h`로 가득 참을 판정하는 방식은 슬롯 하나를 항상 비워 둔다 — `head == tail`이 "가득 참"과 "비어 있음"을 동시에 뜻하지 않게 하려는 것이다. 그래서 이 링 버퍼가 실제로 저장할 수 있는 원소는 `N`개가 아니라 **`N - 1`개**다. 처음 접하면 흔히 놓치는 지점이라, 용량을 정확히 `N`으로 맞추려면 배열 크기를 `N + 1`로 잡거나 별도의 원소 개수 카운터를 둬야 한다.
 
 ## 학습 성과 평가 기준
 

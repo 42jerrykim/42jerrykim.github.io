@@ -1,9 +1,9 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 05. 읽기 최적화와 지연 초기화"
-description: "shared_mutex로 읽기/쓰기 락 분리, DCLP의 함정과 해결, call_once를 통한 안전한 지연 초기화를 학습합니다."
+description: "shared_mutex로 읽기/쓰기 락을 분리하고, DCLP(Double-Checked Locking)의 역사적 함정과 C++11 이후 올바른 구현, call_once를 통한 안전한 지연 초기화까지 실전 코드로 학습합니다."
 date: 2026-06-15
-lastmod: 2026-06-16
+lastmod: 2026-07-09
 draft: false
 collection_order: 5
 categories:
@@ -28,6 +28,14 @@ tags:
   - Implementation(구현)
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Concurrency(동시성)
+  - Mutex
+  - Thread
+  - Memory(메모리)
+  - Best-Practices
+  - Deep-Dive
+  - Testing(테스트)
 slug: cpp-read-write-lock-dclp-call-once-lazy-init
 ---
 
@@ -37,7 +45,7 @@ slug: cpp-read-write-lock-dclp-call-once-lazy-init
 
 **완전한 초보자?** 이 장은 [02장: 락 관용구](/post/multithreading-patterns/cpp-locking-idioms-scoped-locking-thread-safe-interface/)에서 다룬 `std::mutex`, `std::lock_guard`, 그리고 01장의 `memory_order_acquire`/`memory_order_release`를 전제로 합니다. 특히 DCLP 섹션은 01장의 happens-before 개념 없이는 "왜 위험했는지"가 와닿지 않으니, 아직이라면 01장과 02장을 먼저 보세요.
 
-**이 장의 깊이**: 이 장은 **중급~전문가**까지를 포괄합니다. `std::shared_mutex`로 읽기/쓰기를 분리하는 기본기부터 시작해, DCLP의 역사적 함정과 C++11 이후의 올바른 구현, 그리고 `call_once`/정적 지연 초기화까지 다룹니다. 전문가 구간에서는 `shared_mutex`가 실제로 손해인 상황과 플랫폼별 구현 차이까지 다룹니다. **다루지 않는 것**: lock-free 읽기 전용 자료구조(hazard pointer, RCU)의 구현은 11장의 전망 섹션 이상으로는 다루지 않습니다.
+**이 장의 깊이**: 이 장은 **중급~전문가**까지를 포괄합니다. `std::shared_mutex`로 읽기/쓰기를 분리하는 기본기부터 시작해, DCLP의 역사적 함정과 C++11 이후의 올바른 구현, 그리고 `call_once`/정적 지연 초기화까지 다룹니다. 전문가 구간에서는 `shared_mutex`가 실제로 손해인 상황과 플랫폼별 구현 차이까지 다룹니다. **다루지 않는 것**: lock-free 읽기 전용 자료구조의 구현은 이 장에서 다루지 않습니다. 11장이 교육용 SPSC 큐로 입문을 다루고, [13장 「Lock-Free 심화: Hazard Pointer와 RCU」](/post/multithreading-patterns/cpp-hazard-pointer-rcu-lockfree-reclamation/)에서 Hazard Pointer와 RCU를 직접 구현하며 본격적으로 다룹니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -196,10 +204,12 @@ static Singleton* getInstance() {
 }
 ```
 
-이 코드는 **C++98에서는 위험**하다. 왜냐하면:
+이 코드는 **C++98에서도, C++11 이후에도 여전히 위험**하다. "C++11부터 메모리 모델이 생겼으니 그냥 괜찮아지는 것 아닌가"라고 생각하기 쉽지만, `instance`가 `std::atomic`이 아닌 평범한 포인터인 이상 표준 버전과 무관하게 데이터 레이스다. 왜냐하면:
 
-1. (1)에서 읽은 `instance == nullptr`이 (2)에서 보장되지 않는다 (메모리 배리어 부족).
-2. CPU가 생성자 코드를 메모리 쓰기 이후로 재정렬할 수 있다.
+1. (1)의 락 없는 읽기와 (2)의 락 있는 쓰기가 같은 non-atomic 변수 `instance`에 대한 동시 접근이라, 최소 하나가 쓰기이고 최소 하나가 non-atomic이면 데이터 레이스라는 01장의 정의를 그대로 만족한다 — 이는 표준 버전이 무엇이든 항상 미정의 동작이다.
+2. 설령 이 레이스를 눈감아 주더라도, CPU나 컴파일러가 생성자 코드를 `instance` 대입 이후로 재정렬할 수 있어 다른 스레드가 "생성이 덜 끝난" 객체를 볼 수 있다(메모리 배리어 부족).
+
+C++11이 실제로 바꾼 것은 "이 문제를 고칠 도구(`std::atomic`과 `memory_order`)가 표준에 생겼다"는 것이지, "이 코드가 저절로 안전해졌다"는 것이 아니다.
 
 ### 올바른 DCLP (C++11 이상)
 
@@ -222,8 +232,8 @@ static Singleton* getInstance() {
 ```
 
 **왜 이게 안전한가?**:
-- `acquire` 로드와 `release` 저장이 happens-before을 만든다.
-- 다른 스레드의 생성자 코드가 모두 완료될 때까지 대기한다.
+- `acquire` 로드와 `release` 저장이 happens-before을 만든다. 별도로 "기다리는" 로직은 없다 — `ptr`이 `nullptr`이 아닌 값으로 관찰되는 바로 그 순간, `release` 저장 이전에 있었던 생성자의 모든 쓰기가 이미 이 스레드에 보이도록 acquire-release 쌍이 보장한다.
+- 즉 "아직 생성 중인 객체를 가리키는 포인터"를 보는 일 자체가 없다 — 포인터가 non-null로 보이면 그 객체는 이미 완전히 생성된 상태다.
 
 ### 안전성 검증: ThreadSanitizer로 DCLP 비교
 
@@ -293,6 +303,8 @@ int main() {
 
 ### 1. Per-Object Initialization
 
+지금까지 본 Singleton의 DCLP는 **전역으로 하나뿐인 인스턴스**를 지연 생성하는 경우였다. 하지만 실무에서는 "객체마다 하나씩, 필요할 때만 만드는" 리소스가 더 흔하다 — 예를 들어 각 커넥션 객체가 자신만의 캐시나 버퍼를 첫 사용 시점에만 할당하는 경우다. 이때는 정적 변수 하나로 해결할 수 없고, 객체마다 자신의 DCLP 상태(`ptr`, `initMu`)를 멤버로 들고 있어야 한다.
+
 ```cpp
 #include <atomic>
 #include <mutex>
@@ -321,6 +333,8 @@ public:
 ```
 
 ### 2. Static Initialization (가장 간단)
+
+Per-Object Initialization이 필요 없는 "전역 하나뿐" 상황이라면, DCLP를 손으로 구현할 필요조차 없다. C++11부터 표준은 함수 지역 `static` 변수의 초기화 자체를 스레드 안전하게 만들도록(이른바 **"매직 스태틱", magic statics**) 요구한다 — 여러 스레드가 동시에 이 함수에 처음 진입해도, 컴파일러가 내부적으로 락(또는 이와 동등한 메커니즘)을 삽입해 생성자가 정확히 한 번만 실행되도록 보장한다.
 
 ```cpp
 class Singleton {

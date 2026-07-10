@@ -2,11 +2,11 @@
 image: wordcloud.png
 collection_order: 0
 date: 2026-06-10
-lastmod: 2026-06-11
+lastmod: 2026-07-09
 draft: false
 title: "[Concurrency Patterns] 00. 멀티스레딩 디자인 패턴 시리즈 소개와 커리큘럼"
 slug: getting-started-multithreading-design-patterns
-description: "C++ 표준 라이브러리로 구현하는 멀티스레딩 디자인 패턴 시리즈의 도입 챕터입니다. 왜 락 사용법이 아니라 동시성 구조 설계를 배워야 하는지, POSA2 계보와 12챕터 커리큘럼, 학습 후 달성할 역량을 안내합니다."
+description: "C++ 표준 라이브러리로 구현하는 멀티스레딩 디자인 패턴 시리즈의 도입 챕터입니다. 왜 락 사용법이 아니라 동시성 구조 설계를 배워야 하는지, POSA2 계보와 14챕터 커리큘럼, 학습 후 달성할 역량을 안내합니다."
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -68,7 +68,7 @@ tags:
 
 ## 이 컬렉션이 책임지는 범위
 
-이 시리즈가 다루는 것은 **스레드 간 협력 구조의 설계**다. 구체적으로는 공유 상태를 보호하는 락 관용구(RAII 기반 Scoped Locking), 조건이 충족될 때까지 안전하게 기다리는 구조(Monitor Object, Guarded Suspension), 스레드 사이로 데이터를 흘려보내는 구조(Producer-Consumer), 작업 실행을 관리하는 구조(Thread Pool, Future/Promise, Active Object), 그리고 이벤트 기반 서버의 골격(Reactor, Proactor, Half-Sync/Half-Async)까지를 포괄한다.
+이 시리즈가 다루는 것은 **스레드 간 협력 구조의 설계**다. 구체적으로는 공유 상태를 보호하는 락 관용구(RAII 기반 Scoped Locking), 조건이 충족될 때까지 안전하게 기다리는 구조(Monitor Object, Guarded Suspension), 스레드 사이로 데이터를 흘려보내는 구조(Producer-Consumer), 작업 실행을 관리하는 구조(Thread Pool, Future/Promise, Active Object), 이벤트 기반 서버의 골격(Reactor, Proactor, Half-Sync/Half-Async), 그리고 최신 표준으로 확장되는 두 주제 — Future/Promise·Active Object를 C++20 코루틴으로 재해석하는 법과 락-프리 회수 전략(Hazard Pointer, RCU)까지를 포괄한다.
 
 모든 챕터는 다음 세 가지를 공통으로 담는다. 첫째, 패턴이 해결하는 **문제 상황**을 깨진 코드(데이터 레이스, 데드락, lost wakeup)로 먼저 보여 준다. 둘째, C++ 표준 라이브러리만으로 **컴파일 가능한 구현**을 제시한다. 셋째, 그 패턴을 **언제 쓰고 언제 피해야 하는지** 판단 기준을 정리한다. 패턴은 무조건 적용하는 규칙이 아니라 트레이드오프가 있는 선택지이기 때문이다.
 
@@ -133,7 +133,8 @@ int main() {
 
 - **성능 정량 분석**: mutex vs spinlock 비용 측정, false sharing, lock-free 자료구조의 벤치마크는 [Low-latency 동시성·멀티스레드 트랙](/post/concurrency-optimization/getting-started-concurrency-multithreading-performance-tuning/)이 담당한다. 이 시리즈에서 구조를 익히고, 그 트랙에서 비용을 측정하면 두 관점이 맞물린다.
 - **GoF 패턴 전반**: Singleton·Observer·Command 등 GoF 23패턴의 일반론은 [디자인 패턴 마스터 시리즈의 동시성·분산 챕터](/post/design-patterns/19-concurrency-distributed-patterns/)를 포함한 해당 컬렉션이 다룬다. 여기서는 GoF 패턴이 멀티스레드 환경에서 어떻게 변형되는지(예: Singleton의 DCLP 문제)만 교차점으로 다룬다.
-- **OS 커널·스케줄러 내부**와 **C++20 코루틴 기반 비동기 모델**: 전자는 운영체제 영역이고, 후자는 그 자체로 별도 시리즈가 필요한 주제라 마지막 챕터에서 전망만 제시한다.
+- **OS 커널·스케줄러 내부**: 운영체제 영역이라 이 시리즈의 범위 밖이다.
+- **std::execution(senders/receivers, C++26)**: 2026년 3월 Croydon 총회에서 C++26 표준 채택이 확정됐지만 이 글을 쓰는 시점까지 GCC·Clang·MSVC 표준 라이브러리 어디에도 구현되지 않아 "컴파일 가능한 구현 + ThreadSanitizer 검증"이라는 이 시리즈의 원칙과 아직 맞지 않는다. 컴파일러 지원이 성숙하면 별도 챕터나 후속 시리즈의 후보다. (C++20 코루틴 자체는 범위 밖이 아니다 — 12장에서 07~08장 패턴의 코루틴 재해석을 다루되, 제너레이터·코루틴 기반 파서 같은 범용 활용은 계속 경계 밖에 둔다.)
 
 ## 패턴 계보: POSA2에서 모던 C++까지
 
@@ -155,9 +156,11 @@ flowchart TD
     williamsBook --> thisSeries
 ```
 
+이 계보는 2026년 현재도 닫히지 않았다. C++26 표준(2026년 3월 Croydon 총회에서 확정)은 Meta의 folly 라이브러리에서 실전 검증된 **Hazard Pointer(P2530)**와 **RCU(P2545)**를 표준 라이브러리에 편입시켰고, 이는 11장이 "범위 밖"으로 미뤄 둔 메모리 회수 문제를 13장에서 정면으로 다룰 표준 도구로 이어진다. 같은 C++26에 채택된 **std::execution**(senders/receivers, P2300)은 Nathaniel J. Smith가 제안한 구조적 동시성(structured concurrency) 개념의 C++판 구현이지만, 앞서 밝힌 대로 컴파일러 구현이 아직 없어 이 시리즈의 범위 밖에 둔다(다루지 않는 것 참고).
+
 ## 커리큘럼
 
-커리큘럼은 네 단계로 올라간다. **기초(01)**에서 메모리 모델과 데이터 레이스라는 공통 어휘를 만들고, **락 관용구와 대기 구조(02~05)**에서 단일 객체를 안전하게 만드는 패턴을 익힌다. 그 위에서 **데이터 흐름과 실행 관리(04, 06~08)**로 스레드 사이의 협력을 설계하고, 마지막으로 **아키텍처 패턴(09~10)**과 **공유 회피 전략(11)**으로 시스템 수준의 그림을 완성한다. 각 단계는 앞 단계의 어휘를 전제하므로 순서대로 읽는 것을 기본으로 한다.
+커리큘럼은 다섯 단계로 올라간다. **기초(01)**에서 메모리 모델과 데이터 레이스라는 공통 어휘를 만들고, **락 관용구와 대기 구조(02~03, 05)**에서 단일 객체를 안전하게 만드는 패턴을 익힌다. 그 위에서 **데이터 흐름과 실행 관리(04, 06~08)**로 스레드 사이의 협력을 설계하고, **아키텍처 패턴(09~10)**과 **공유 회피 전략(11)**으로 시스템 수준의 그림을 완성한다. 마지막으로 **최신 표준 확장 주제(12~13)**에서 C++20 코루틴 재해석과 C++26 Lock-Free 회수 전략까지 시야를 넓힌다. 각 단계는 앞 단계의 어휘를 전제하므로 순서대로 읽는 것을 기본으로 한다.
 
 | 챕터 | 주제 | 핵심 패턴 | 난이도 | 주 근거 문헌 |
 |------|------|----------|--------|-------------|
@@ -171,9 +174,11 @@ flowchart TD
 | 08 | 비동기 객체 | Active Object | 심화 | POSA2 |
 | 09 | 이벤트 아키텍처 I | Reactor, Proactor, 이벤트 디멀티플렉싱 | 심화 | POSA2 |
 | 10 | 이벤트 아키텍처 II | Half-Sync/Half-Async, Leader/Followers | 심화 | POSA2 |
-| 11 | 공유 회피 | Immutable, Copy-on-Write, Thread-Specific Storage(`thread_local`), Lock-Free 전망 | 심화 | JCiP, POSA2 |
+| 11 | 공유 회피 | Immutable, Copy-on-Write, Thread-Specific Storage(`thread_local`), 교육용 SPSC Lock-Free 큐 | 심화 | JCiP, POSA2 |
+| 12 | 코루틴 기반 비동기 재해석 | `co_await`으로 다시 쓰는 Future/Promise·Active Object, 코루틴 프레임의 비용 | 심화 | cppreference, Kostruba 2023 |
+| 13 | Lock-Free 심화: 회수 전략 | Hazard Pointer(P2530), RCU(P2545) 직접 구현 + C++26 표준 제안 대조 | 심화 | P2530, P2545, Grimm 2025 |
 
-이 순서를 두는 이유는 패턴 간 **개념 의존성** 때문이다. 01의 메모리 모델 없이 05의 DCLP를 읽으면 "왜 이중 검사가 깨지는가"를 끝내 납득할 수 없고, 03의 condition_variable 대기 구조 없이 04의 Blocking Queue를 보면 spurious wakeup 처리가 주술처럼 보인다. 08의 Active Object는 04의 큐와 07의 future를 조립한 종합 패턴이며, 09~10의 서버 아키텍처는 그 모든 부품 위에 선다. 거꾸로 말해 급한 독자가 06(Thread Pool)부터 펼치는 것 자체는 막지 않지만, 구현 중 막히는 지점은 거의 확실히 01~03의 어휘 부족에서 온다.
+이 순서를 두는 이유는 패턴 간 **개념 의존성** 때문이다. 01의 메모리 모델 없이 05의 DCLP를 읽으면 "왜 이중 검사가 깨지는가"를 끝내 납득할 수 없고, 03의 condition_variable 대기 구조 없이 04의 Blocking Queue를 보면 spurious wakeup 처리가 주술처럼 보인다. 08의 Active Object는 04의 큐와 07의 future를 조립한 종합 패턴이며, 09~10의 서버 아키텍처는 그 모든 부품 위에 선다. 12의 코루틴 재해석은 07~08의 개념을 `co_await` 문법으로 다시 표현한 것이라 07~08 없이는 왜 코루틴이 스레드 기반 구현을 대체하는지 납득하기 어렵고, 13의 Hazard Pointer·RCU는 11이 "범위 밖"으로 미뤄 둔 메모리 회수 문제를 이어받으므로 11 이후에 놓인다. 거꾸로 말해 급한 독자가 06(Thread Pool)부터 펼치는 것 자체는 막지 않지만, 구현 중 막히는 지점은 거의 확실히 01~03의 어휘 부족에서 온다.
 
 ## 추천 선행·병행 컬렉션
 
@@ -196,7 +201,7 @@ g++ -std=c++20 -pthread -Wall -Wextra -O2 example.cpp -o example
 
 완주하면 멀티스레드 코드를 "락을 어디에 넣지?"가 아니라 "이 문제는 어떤 패턴의 변형이지?"라는 어휘로 사고할 수 있게 된다. 신규 설계에서는 공유 상태 보호·대기·데이터 흐름·실행 관리 중 어느 층의 문제인지 분류한 뒤 해당 패턴을 꺼내 쓸 수 있고, 레거시 코드 리뷰에서는 자기 데드락 가능성이 있는 Thread-Safe Interface 위반이나 깨진 DCLP 같은 패턴 위반을 짚어낼 수 있다. 또한 Boost.Asio의 Proactor, Java Executor의 Thread Pool처럼 주요 프레임워크의 내부 구조를 패턴 이름으로 역추적할 수 있게 된다.
 
-- **분류**: 동시성 문제를 보호(02, 05)·대기(03)·흐름(04)·실행(06~08)·아키텍처(09~10)·회피(11) 층위로 구분할 수 있다.
+- **분류**: 동시성 문제를 보호(02, 05)·대기(03)·흐름(04)·실행(06~08)·아키텍처(09~10)·회피(11)·최신 확장(12~13) 층위로 구분할 수 있다.
 - **구현**: 각 패턴을 C++ 표준 라이브러리만으로 컴파일 가능하게 구현하고 TSAN으로 검증할 수 있다.
 - **선택**: 패턴별 적용/회피 기준을 근거로 설계 리뷰에서 대안을 제시할 수 있다.
 - **연결**: 패턴 구조와 성능 비용([동시성 최적화 트랙](/post/concurrency-optimization/getting-started-concurrency-multithreading-performance-tuning/))을 연결해 판단할 수 있다.
@@ -211,6 +216,8 @@ g++ -std=c++20 -pthread -Wall -Wextra -O2 example.cpp -o example
 - [ ] Active Object를 "언제 쓰고 언제 과한지"(메서드 호출 빈도, 응답 지연 허용치 기준) 판단할 수 있는가?
 - [ ] Reactor와 Proactor의 차이를 이벤트 통지 시점(준비 완료 vs 작업 완료) 기준으로 구분할 수 있는가?
 - [ ] 공유 자체를 없애는 전략(Immutable, thread_local)이 락 기반 패턴보다 나은 상황을 제시할 수 있는가?
+- [ ] 코루틴 기반 Future/Promise·Active Object 재구현이 스레드 기반 구현과 어떤 트레이드오프(가독성 vs 코루틴 프레임 오버헤드)를 갖는지 설명할 수 있는가?
+- [ ] Hazard Pointer와 RCU가 각각 어떤 회수 지연(reclamation) 전략을 쓰는지, 언제 서로를 선택하는지 설명할 수 있는가?
 
 ## 다음 장에서는
 

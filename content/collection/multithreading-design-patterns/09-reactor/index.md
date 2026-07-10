@@ -1,9 +1,9 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 09. 이벤트 아키텍처 I: Reactor"
-description: "단일 스레드에서 여러 이벤트 소스를 효율적으로 처리하는 Reactor 패턴을 학습합니다."
+description: "단일 스레드에서 여러 이벤트 소스를 효율적으로 처리하는 Reactor 패턴을 학습합니다. select/poll/epoll의 차이를 비교하고, 컴파일 가능한 poll() 기반 이벤트 루프를 직접 구현·검증하며 Windows IOCP와도 비교합니다."
 date: 2026-06-19
-lastmod: 2026-06-20
+lastmod: 2026-07-09
 draft: false
 collection_order: 9
 categories:
@@ -26,6 +26,15 @@ tags:
   - Server
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Concurrency(동시성)
+  - Thread
+  - IO(Input/Output)
+  - Backend(백엔드)
+  - Scalability(확장성)
+  - Best-Practices
+  - Deep-Dive
+  - Testing(테스트)
 slug: cpp-reactor-event-driven-single-thread
 ---
 
@@ -44,20 +53,20 @@ slug: cpp-reactor-event-driven-single-thread
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
 | **고급자** | "문제" ~ "Reactor의 기본 구조" | Reactor 개념 이해 |
-| **시스템 설계자** | 전체, 특히 "실전: poll() 기반 Reactor 구현" | select/poll/epoll 선택 기준과 실제 동작 |
+| **설계자** | 전체, 특히 "실전: poll() 기반 Reactor 구현" | select/poll/epoll 선택 기준과 실제 동작 |
 
 ---
 
 ## 문제: 스레드 풀 vs 이벤트 루프
 
 **방식 1: 스레드 풀** (지금까지 배운 방식)
-```
+```text
 각 연결마다 스레드 또는 작업 생성
 → 수천 개 연결 시 스레드 오버헤드
 ```
 
 **방식 2: 이벤트 루프 (Reactor)**
-```
+```text
 한 스레드가 "누가 데이터를 받을 준비가 되었나?"를 폴링
 → 연결 수에 관계없이 한 스레드
 ```
@@ -123,13 +132,15 @@ public:
 ```cpp
 // reactor_poll.cpp
 // 빌드: g++ -std=c++20 -pthread -Wall -Wextra -O2 reactor_poll.cpp -o reactor_poll
+#include <cerrno>
+#include <cstdio>
+#include <cstring>
 #include <iostream>
 #include <map>
 #include <functional>
 #include <vector>
 #include <poll.h>
 #include <unistd.h>
-#include <cstring>
 
 class PollReactor {
 public:
@@ -220,7 +231,7 @@ int main() {
 
 실행하면 다음과 같은 출력을 볼 수 있다(순서는 커널 스케줄링에 따라 달라질 수 있다).
 
-```
+```text
 [B] received: hello
 [B] closed
 [A] closed
@@ -249,7 +260,8 @@ int main() {
 
 ## Reactor 구현 레벨
 
-**수준 1: Select** (POSIX 표준, 느림)
+**수준 1: Select** (POSIX 표준, 느림) — 감시할 fd 집합을 비트마스크(`fd_set`)로 채워 커널에 넘기면, 커널이 그중 준비된 fd만 표시해 돌려준다. 호출할 때마다 이 비트마스크를 처음부터 다시 채워야 하고, fd 번호가 `FD_SETSIZE`(보통 1024)를 넘으면 아예 감시할 수 없다.
+
 ```cpp
 fd_set readfds;
 FD_ZERO(&readfds);
@@ -257,7 +269,8 @@ for (int fd : myFds) FD_SET(fd, &readfds);
 int ready = select(maxFd + 1, &readfds, NULL, NULL, &timeout);
 ```
 
-**수준 2: Poll** (더 효율적)
+**수준 2: Poll** (더 효율적) — `select`의 `FD_SETSIZE` 제한과 매번 비트마스크를 재구성하는 비용을 없앤 것이 `poll`이다. fd마다 관심 이벤트를 담은 구조체(`pollfd`) 배열을 넘기면, 커널이 준비된 fd의 `revents` 필드만 채워 돌려준다.
+
 ```cpp
 std::vector<struct pollfd> pollfds;
 for (int fd : myFds) {
@@ -266,7 +279,8 @@ for (int fd : myFds) {
 poll(pollfds.data(), pollfds.size(), timeout);
 ```
 
-**수준 3: Epoll** (Linux 전용, 가장 효율적)
+**수준 3: Epoll** (Linux 전용, 가장 효율적) — `poll`도 호출할 때마다 전체 배열을 커널에 복사하고 커널이 O(N)으로 순회해야 하는 비용은 그대로 남아 있다. `epoll`은 관심 있는 fd 집합을 커널에 **한 번만** 등록해 두고(`epoll_ctl`), 이후 `epoll_wait`는 매번 전체 목록을 다시 넘길 필요 없이 준비된 fd만 반환한다.
+
 ```cpp
 int epollFd = epoll_create1(0);
 for (int fd : myFds) {
@@ -283,13 +297,15 @@ for (int i = 0; i < n; ++i) {
 }
 ```
 
-`select`는 fd마다 비트마스크를 매번 다시 채워야 하고 fd 개수에 `FD_SETSIZE`(보통 1024) 제한이 있다. `poll`은 이 제한이 없고 `pollfd` 배열을 재사용할 수 있지만, 여전히 매 호출마다 전체 배열을 커널에 복사하고 O(N)으로 순회한다. `epoll`은 관심 있는 fd 집합을 커널에 한 번 등록해 두고(`epoll_ctl`), `epoll_wait`는 **준비된 fd만** 반환하므로 연결 수가 많을수록(특히 대부분이 idle인 "C10K" 상황) 압도적으로 효율적이다. 앞의 poll() 예제를 epoll로 바꾸는 것은 `pfds` 배열 구성과 `poll()` 호출 부분만 `epoll_ctl`/`epoll_wait`로 교체하면 되고, 핸들러 디스패치 로직은 동일하다.
+세 방식을 종합하면, `select`는 fd마다 비트마스크를 매번 다시 채워야 하고 개수 제한이 있는 반면, `poll`은 그 제한이 없고 배열을 재사용할 수 있지만 여전히 매 호출마다 전체 배열을 커널에 복사하고 O(N)으로 순회한다. `epoll`은 연결 수가 많을수록(특히 대부분이 idle인 "C10K" 상황) 압도적으로 효율적이다. 앞의 poll() 예제를 epoll로 바꾸는 것은 `pfds` 배열 구성과 `poll()` 호출 부분만 `epoll_ctl`/`epoll_wait`로 교체하면 되고, 핸들러 디스패치 로직은 동일하다.
+
+**주의**: `epoll`에는 두 가지 통지 모드가 있다. 위 예제처럼 `events`에 별다른 플래그를 주지 않으면 기본값인 **level-triggered**로 동작한다 — 소켓 버퍼에 아직 읽지 않은 데이터가 남아 있는 한 `epoll_wait`가 매번 그 fd를 다시 알려준다. `EPOLLET` 플래그를 주면 **edge-triggered**로 바뀌는데, 이 모드에서는 fd 상태가 "바뀐 순간"에만 딱 한 번 통지하므로, 핸들러가 `EAGAIN`을 받을 때까지 `read()`를 반복하지 않으면 버퍼에 남은 데이터를 놓치고 그 fd는 다시는 통지되지 않는다. 이 장의 예제는 계속 level-triggered를 쓰므로 이 함정을 만나지 않지만, edge-triggered를 쓰는 코드(고성능 서버에서 흔하다)를 읽거나 작성할 때는 반드시 기억해야 한다.
 
 이 장에서는 패턴의 뼈대에 집중했고, 실전 프로젝트에서는 라이브러리(Asio, libuv, Boost.Asio)가 플랫폼별 최적 메커니즘(epoll/kqueue/IOCP)을 자동으로 선택해 준다.
 
 ### Windows에서는?
 
-Windows에는 `epoll`이 없다. `select`는 지원되지만 `FD_SETSIZE` 제한과 성능 문제가 동일하게 존재하고, `poll`에 대응하는 `WSAPoll`은 있지만 널리 쓰이지 않는다. Windows의 표준 답은 **IOCP(I/O Completion Port)**인데, IOCP는 "준비됐다"가 아니라 "**완료됐다**"를 통지하는 근본적으로 다른 모델이다 — 이것이 바로 10장에서 다루는 **Proactor** 패턴이다. 즉, Linux/macOS에서 Reactor(이 장)를 선택하는 자리에 Windows는 처음부터 Proactor 스타일(IOCP)을 강제한다고 볼 수 있다.
+Windows에는 `epoll`이 없다. `select`는 지원되지만 O(N) 순회라는 근본적인 성능 문제는 마찬가지로 존재한다 — 다만 `FD_SETSIZE` 자체는 POSIX(보통 1024)와 다르게 기본 64이고 내부 구현도 비트마스크가 아닌 소켓 배열 방식이라, "동일한 제한"이라기보다는 "같은 종류의 한계를 다른 방식으로 가진다"고 보는 것이 더 정확하다. `poll`에 대응하는 `WSAPoll`은 있지만 널리 쓰이지 않는다. Windows의 표준 답은 **IOCP(I/O Completion Port)**인데, IOCP는 "준비됐다"가 아니라 "**완료됐다**"를 통지하는 근본적으로 다른 모델이다 — 이것이 바로 10장에서 다루는 **Proactor** 패턴이다. 즉, Linux/macOS에서 Reactor(이 장)를 선택하는 자리에 Windows는 처음부터 Proactor 스타일(IOCP)을 강제한다고 볼 수 있다.
 
 ## 학습 성과 평가 기준
 

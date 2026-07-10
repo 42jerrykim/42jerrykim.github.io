@@ -1,7 +1,7 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 03. 대기와 조정"
-description: "Monitor Object, Guarded Suspension, Balking 패턴을 condition_variable로 구현합니다. spurious wakeup 처리와 효율적인 신호 메커니즘을 다룹니다."
+description: "Monitor Object, Guarded Suspension, Balking 패턴을 condition_variable로 구현합니다. spurious wakeup과 lost wakeup을 재현·검증하고, std::latch/barrier/semaphore와의 관계도 비교합니다."
 date: 2026-06-13
 lastmod: 2026-06-14
 draft: false
@@ -34,6 +34,11 @@ tags:
   - Tutorial(튜토리얼)
   - Guide(가이드)
   - Reference(참고)
+  - Barrier
+  - Latch
+  - Semaphore
+  - Best-Practices
+  - Testing(테스트)
 slug: cpp-condition-variable-monitor-object-guarded-suspension
 ---
 
@@ -241,7 +246,7 @@ timeout 3 ./signal_no_predicate || echo "hang detected (lost wakeup)"
 
 ## Guarded Suspension 패턴
 
-**Guarded Suspension**은 Monitor Object와 유사하지만, 조건이 만족되지 않으면 "대기"가 아니라 "보류(suspend)"한다. 다음은 큐의 예제다:
+**Guarded Suspension**은 "조건(guard)이 만족될 때까지 호출을 중단(suspension)했다가, 만족되면 이어서 실행한다"는 패턴이다. Monitor Object가 "메서드 호출의 직렬화"에 초점을 둔다면, Guarded Suspension은 그 위에 "전제 조건이 채워질 때까지 기다린다"는 규칙을 얹는다 — 그리고 뒤에 나올 Balking은 정확히 반대로, 조건이 안 맞으면 기다리지 않고 즉시 포기한다. 다음은 큐의 예제다:
 
 ```cpp
 #include <queue>
@@ -350,7 +355,7 @@ if (data.validate(42)) {
 
 ### notify를 락 안에서 호출할까, 밖에서 호출할까
 
-`set()`/`push()` 예제들은 모두 `notify_one()`을 **락을 잡은 상태에서** 호출한다. 하지만 가장 앞의 `DataHolder::set()` 예제는 `notify_one()`을 **락 해제 후** 호출했다. 둘 다 정답이 될 수 있지만 트레이드오프가 다르다.
+이 장의 예제들을 다시 보면 notify 위치가 통일되어 있지 않다는 것을 눈치챘을 것이다 — `FixedSignal::set()`은 `notify_one()`을 **락을 잡은 상태에서** 호출하지만, 가장 앞의 `DataHolder::set()`과 `BlockingQueue::push()`는 **락 해제 후** 호출했다. 이것은 실수가 아니라 둘 다 정답이 될 수 있는 선택이며, 트레이드오프가 다르다.
 
 ```cpp
 // (A) 락 안에서 notify — 더 안전, 약간 더 비효율적
@@ -370,7 +375,7 @@ void push_B(int val) {
 }
 ```
 
-(A)는 notify된 스레드가 즉시 깨어나도 곧바로 `mu`를 다시 기다려야 하는 "hurry up and wait" 현상이 있을 수 있다(대부분의 구현은 이를 최적화하지만 표준이 보장하진 않는다). (B)는 이 낭비를 줄이지만, **notify와 unlock 사이에 컨텍스트 스위치가 끼어들 여지가 생긴다는 점에서 "더 위험해 보일 수 있다** — 그러나 predicate 기반 `wait`를 쓴다면 (B)도 안전하다. 정답이 없으므로, 측정 후 결정하되 **predicate를 항상 쓴다**는 원칙은 둘 다에서 동일하게 적용된다.
+(A)는 notify된 스레드가 즉시 깨어나도 곧바로 `mu`를 다시 기다려야 하는 "hurry up and wait" 현상이 있을 수 있다(대부분의 구현은 이를 최적화하지만 표준이 보장하진 않는다). (B)는 이 낭비를 줄이지만, unlock과 notify 사이에 컨텍스트 스위치가 끼어들 여지가 생긴다는 점에서 **더 위험해 보일 수 있다** — 그러나 predicate 기반 `wait`를 쓴다면 (B)도 안전하다. 정답이 없으므로, 측정 후 결정하되 **predicate를 항상 쓴다**는 원칙은 둘 다에서 동일하게 적용된다.
 
 ### 패턴 1: Single Condition, Multiple Waiters
 
@@ -399,7 +404,11 @@ public:
 };
 ```
 
+이 `Barrier`는 손으로 만든 교육용 축소판이다. C++20은 정확히 이 문제(N개 스레드가 모두 도착할 때까지 기다렸다가 함께 출발)를 표준 라이브러리 타입 `std::barrier`로 제공한다. `std::barrier`는 재사용 가능하다는 점에서 더 강력하다 — 위 `Barrier`는 `total`에 도달하면 그걸로 끝이지만, `std::barrier`는 각 단계(phase)가 끝날 때마다 자동으로 다음 단계를 위해 초기화되며, 마지막 도착 스레드가 실행할 완료 콜백(completion function)도 등록할 수 있다. 비슷하게, "N개 이벤트가 모두 끝날 때까지 딱 한 번만 기다린다"는 **재사용 불가능한** 대기는 `std::latch`가 더 간단하다 — `Barrier`처럼 `wait`/`arrive`를 매번 조합하지 않고 `arrive_and_wait()` 한 번으로 끝난다. 리소스 슬롯을 N개로 제한하는 카운팅 문제(예: 동시 접속 수 제한)라면 `std::counting_semaphore`가 이 장의 조건 변수 조합보다 더 적은 코드로 같은 효과를 낸다. 이 장이 조건 변수로 이 패턴들을 손수 구현하는 이유는 "왜 이 표준 타입들이 내부적으로 안전한지"를 이해하려면 그 밑바탕의 대기·통지 메커니즘을 먼저 알아야 하기 때문이다 — 실무에서 새 코드를 짤 때는 이 손수 구현 대신 표준 타입을 우선 고려해야 한다.
+
 ### 패턴 2: 시간제한 대기
+
+지금까지의 `wait(lock, predicate)`는 조건이 참이 될 때까지 무한정 기다린다. 하지만 실전 시스템에서는 "언젠가는 응답이 온다"를 보장할 수 없는 경우가 많다 — 네트워크 큐라면 상대가 죽었을 수도, 작업 큐라면 생산자가 멈췄을 수도 있다. 이럴 때 무한 대기 대신 **일정 시간 안에 안 오면 포기**하게 만드는 것이 `wait_for`/`wait_until`이다.
 
 ```cpp
 T pop_timeout(int milliseconds) {
@@ -482,7 +491,7 @@ timeout 5 ./bq && echo OK || echo "hang or race detected"
 
 ## 다음 장에서는
 
-04장 **「데이터 흐름(Data Flow)」**에서는 Producer-Consumer의 심화 패턴, bounded buffer와 backpressure, 그리고 비동기 파이프라인을 다룬다.
+04장 **「데이터 흐름(Data Flow)」**에서는 Producer-Consumer의 심화 패턴, Bounded Buffer와 backpressure, 그리고 다중 프로듀서/컨슈머 구조를 다룬다.
 
 ## 참고 및 출처
 

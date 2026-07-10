@@ -1,9 +1,9 @@
 ---
 image: wordcloud.png
 title: "[Concurrency Patterns] 10. 이벤트 아키텍처 II: Proactor와 Half-Sync/Half-Async"
-description: "비동기 I/O (Proactor), 멀티스레드 이벤트 처리, 그리고 동기/비동기 경계를 관리하는 Half-Sync/Half-Async 패턴을 학습합니다."
+description: "비동기 I/O(Proactor), 멀티스레드 이벤트 처리, 동기/비동기 경계를 관리하는 Half-Sync/Half-Async 패턴을 학습합니다. io_uring·IOCP 비교와 이벤트 루프의 블로킹 함정도 함께 다룹니다."
 date: 2026-06-20
-lastmod: 2026-06-21
+lastmod: 2026-07-09
 draft: false
 collection_order: 10
 categories:
@@ -22,6 +22,19 @@ tags:
   - Async(비동기)
   - Tutorial(튜토리얼)
   - Guide(가이드)
+  - C++
+  - Concurrency(동시성)
+  - Thread
+  - Mutex
+  - Condition-Variable
+  - IO(Input/Output)
+  - Backend(백엔드)
+  - Scalability(확장성)
+  - Best-Practices
+  - Deep-Dive
+  - Testing(테스트)
+  - Reference(참고)
+  - Software-Architecture(소프트웨어아키텍처)
 slug: cpp-proactor-async-io-half-sync-half-async
 ---
 
@@ -40,21 +53,21 @@ slug: cpp-proactor-async-io-half-sync-half-async
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
 | **고급자** | "Reactor vs Proactor" ~ "Half-Sync/Half-Async 패턴" | 패턴 비교 이해 |
-| **시스템 설계자** | 전체, 특히 "실전: Half-Sync/Half-Async 서버 스켈레톤" | 실제 서버 설계에 적용 |
+| **설계자** | 전체, 특히 "실전: Half-Sync/Half-Async 서버 스켈레톤" | 실제 서버 설계에 적용 |
 
 ---
 
 ## Reactor vs Proactor
 
 **Reactor** (동기 I/O):
-```
+```text
 1. "읽을 데이터 있나?" 확인 (select/poll/epoll)
 2. 있으면 read() 호출 (블로킹, 하지만 준비됨)
 3. 데이터 처리
 ```
 
 **Proactor** (비동기 I/O):
-```
+```text
 1. "이 소켓에서 읽어줘" 요청 (즉시 반환)
 2. 나중에 OS가 "읽기 완료, 데이터 있음" 통지
 3. 콜백에서 데이터 처리
@@ -76,6 +89,7 @@ Proactor의 핵심 의미는 다음 세 단계다.
 #include <future>
 #include <functional>
 #include <iostream>
+#include <string>
 #include <thread>
 #include <vector>
 #include <unistd.h>
@@ -135,6 +149,8 @@ int main() {
 
 출력 순서는 "요청 발행 직후" 메시지가 먼저(또는 거의 동시에) 나오고, 그 후 "완료: ..." 메시지가 나온다 — Reactor의 `read()`는 "준비된 뒤 호출자가 직접 읽는" 모델이지만, Proactor는 "읽기 자체도 위임하고 결과만 받는" 모델이라는 차이가 코드 구조에 그대로 드러난다.
 
+**주의**: 이 `SimulatedProactor`는 `std::async(std::launch::async, ...)`로 **호출마다 새 스레드를 만들어** Proactor의 "요청 즉시 반환 + 완료 콜백" *의미(semantics)*만 재현한다. 09장이 Reactor를 도입한 핵심 동기가 "스레드는 적게 두고 이벤트만 많이 처리한다"는 것이었는데, 이 시뮬레이션은 정확히 그 반대로 요청마다 스레드를 하나씩 쓴다. 실제 `IOCP`/`io_uring`은 커널이 소수의 스레드로 수많은 비동기 I/O를 처리하므로 이런 비용이 없다 — 이 코드는 "인터페이스가 어떻게 보이는가"를 보여줄 뿐, 스레드 비용 문제까지 해결한 것은 아니다. 실전 코드에서 요청마다 스레드를 새로 만드는 것은 06장에서 이미 다룬 것과 같은 이유로 피해야 한다.
+
 ## 플랫폼별 지원
 
 | OS | 기법 | 효율성 |
@@ -153,7 +169,7 @@ POSIX AIO는 복잡하고 느려서, 많은 라이브러리(Asio, libuv)는 Linu
 
 ## Half-Sync/Half-Async의 구조도
 
-```
+```text
 ┌─────────────────────────────────────────┐
 │  Synchronous Service Layer (Workers)    │
 │  - CPU-intensive processing             │
@@ -166,6 +182,8 @@ POSIX AIO는 복잡하고 느려서, 많은 라이브러리(Asio, libuv)는 Linu
 │  - Non-blocking I/O (poll)              │
 └─────────────────────────────────────────┘
 ```
+
+POSA2 원전은 이 패턴을 세 계층 — 동기 계층, **큐잉 계층(Queueing Layer)**, 비동기 계층 — 으로 구분한다. 위 그림은 큐잉 계층을 별도 상자로 그리는 대신 두 계층 사이의 화살표(`condition_variable` 기반 Bounded Queue)로 단순화했다. 개념적으로는 03~04장의 `BoundedQueue`가 바로 그 큐잉 계층이다 — 두 계층이 서로 직접 호출하지 않고 반드시 이 큐를 통해서만 통신하게 강제하는 것이 이 패턴의 핵심이다.
 
 ## 실전: Half-Sync/Half-Async 서버 스켈레톤
 
@@ -183,6 +201,7 @@ POSIX AIO는 복잡하고 느려서, 많은 라이브러리(Asio, libuv)는 Linu
 #include <mutex>
 #include <poll.h>
 #include <queue>
+#include <string>
 #include <thread>
 #include <unistd.h>
 #include <vector>
@@ -325,7 +344,7 @@ int main() {
 }
 ```
 
-이 스켈레톤에서 **비동기 계층(이벤트 루프)은 절대 블로킹되지 않는다** — `read()`로 짧게 데이터를 가져온 뒤 즉시 `taskQueue_.push()`로 워커에 넘긴다. **동기 계층(워커 스레드)은 자유롭게 블로킹 I/O나 무거운 연산을 수행**할 수 있다 — 이벤트 루프와 별개의 스레드이기 때문이다. `BoundedQueue`가 가득 차면 `push()`가 대기하므로(backpressure), 워커가 느릴 때 이벤트 루프가 무한정 작업을 쌓지 않는다.
+이 스켈레톤에서 **동기 계층(워커 스레드)은 자유롭게 블로킹 I/O나 무거운 연산을 수행**할 수 있다 — 이벤트 루프와 별개의 스레드이기 때문이다. 하지만 **비동기 계층(이벤트 루프)이 "절대" 블로킹되지 않는 것은 아니다.** `read()`로 짧게 데이터를 가져온 뒤 즉시 `taskQueue_.push()`로 워커에 넘기지만, `BoundedQueue`가 가득 차면 `push()` 자체가 대기한다(backpressure) — 그리고 이 `push()`는 이벤트 루프 스레드 안에서 직접 호출된다. 즉 워커가 느려 큐가 가득 차면, 이벤트 루프가 그 순간 새 이벤트를 하나도 처리하지 못하고 `push()` 안에서 멈춘다. 이것이 Half-Sync/Half-Async 설계에서 실제로 자주 논의되는 함정이다 — backpressure가 워커를 보호하는 대신 이벤트 루프 자체를 막아 버릴 수 있다. 실전에서는 큐가 가득 찼을 때 대기하지 않고 즉시 실패를 반환하는 `try_push()`(가득 차면 드롭하거나 클라이언트에 거절 응답)를 쓰거나, 이벤트 수신과 큐 투입을 맡는 별도의 acceptor 스레드를 두어 이벤트 루프 자체가 절대 블로킹되지 않게 분리한다.
 
 ### 안전성 검증
 
@@ -356,6 +375,6 @@ int main() {
 
 - POSA2 (Schmidt et al.), Chapter 7 — Half-Sync/Half-Async 원형
 - Douglas C. Schmidt, "Proactor: An Object Behavioral Pattern for Demultiplexing and Dispatching Handles for Asynchronous Events"
-- Mark Vinoski, "Boost.Asio C++ Network Programming" (2010)
+- Christopher Kohlhoff, Boost.Asio 공식 문서 — Proactor 스타일 비동기 인터페이스의 대표적 실제 구현
 
 
