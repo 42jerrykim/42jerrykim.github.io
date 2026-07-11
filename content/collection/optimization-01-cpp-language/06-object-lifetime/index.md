@@ -1,7 +1,7 @@
 ﻿---
 collection_order: 6
 date: 2026-03-10
-lastmod: 2026-06-01
+lastmod: 2026-07-10
 draft: false
 image: wordcloud.png
 title: "[Optimization(C++) 06] 객체 수명 최적화"
@@ -103,7 +103,7 @@ tags:
 
 **RVO/NRVO**는 C++98 시대부터 컴파일러가 적용해 오던 최적화였고, C++11에서 **이동 의미론**(rvalue reference, `std::move`)이 도입되면서 "복사 대신 이동"이 표준화되었습니다. C++17에서는 **mandatory copy elision**으로 prvalue 반환 시 복사/이동을 생략하는 것이 언어 규칙이 되었고, 이로써 반환값으로 큰 객체를 넘길 때의 비용을 이론적으로 제거할 수 있게 되었습니다.
 
-> "When a prvalue of class type X is used to initialize an object of the same type X, the copy/move construction may be omitted to construct the result object directly." — ISO C++ (copy elision). C++17부터 일부 경우 elision이 "선택"이 아니라 "필수"입니다.
+> "When a prvalue of class type X is used to initialize an object of the same type X, the copy/move construction may be omitted to construct the result object directly." — [cppreference: Copy elision](https://en.cppreference.com/w/cpp/language/copy_elision) 문서 (ISO C++ 표준 기반). C++17부터 일부 경우 elision이 "선택"이 아니라 "필수"입니다.
 
 ## Copy Elision
 
@@ -252,6 +252,10 @@ A: `std::vector` 같은 컨테이너는 재할당 시 이동 생성자가 noexce
 - [ ] 호출자가 `T result = f();` 형태로 받아 RVO를 활용하는가?
 - [ ] 생성자/이동 카운터 또는 어셈블리로 호출 횟수를 검증했는가?
 - [ ] 변경 후 벤치마크로 회귀 검증했는가?
+
+### 더 읽을 거리
+
+- [cppreference: Copy elision](https://en.cppreference.com/w/cpp/language/copy_elision) — RVO/NRVO와 C++17 mandatory copy elision의 정확한 적용 조건을 정리한 표준 라이브러리 참조 문서
 
 ## 다음 장에서는
 

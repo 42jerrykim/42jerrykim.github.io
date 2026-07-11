@@ -1,7 +1,7 @@
 ﻿---
 collection_order: 14
 date: 2026-03-10
-lastmod: 2026-06-01
+lastmod: 2026-07-10
 draft: false
 image: wordcloud.png
 title: "[Optimization(C++) 14] std::span과 뷰 패턴"
@@ -212,6 +212,11 @@ A: 인자로 받은 뷰(호출자가 소유한 버퍼)를 그대로 반환하는
 - [ ] API 경계에서 뷰 수명이 원본보다 짧지 않게 설계했는가?
 - [ ] string_view 사용 시 null 종료 필요 여부를 확인했는가?
 - [ ] 포인터+크기 대신 span으로 타입 안전성을 높였는가?
+
+### 더 읽을 거리
+
+- [cppreference: std::span](https://en.cppreference.com/w/cpp/container/span) — C++20에 추가된 non-owning 뷰의 표준 레퍼런스로, 생성자·`subspan`·`extent` 등 정확한 인터페이스를 확인할 수 있습니다.
+- [cppreference: std::basic_string_view](https://en.cppreference.com/w/cpp/string/basic_string_view) — `string_view`의 멤버 함수와 null 종료 여부, `remove_prefix`/`remove_suffix` 동작을 확인할 수 있습니다.
 
 ## 다음 장에서는
 

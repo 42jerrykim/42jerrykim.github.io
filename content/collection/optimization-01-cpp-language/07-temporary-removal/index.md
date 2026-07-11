@@ -1,7 +1,7 @@
 ﻿---
 collection_order: 7
 date: 2026-03-10
-lastmod: 2026-06-01
+lastmod: 2026-07-10
 draft: false
 image: wordcloud.png
 title: "[Optimization(C++) 07] 임시 객체 제거"
@@ -103,7 +103,7 @@ tags:
 
 C++ 표준은 **temporary materialization** 등으로 "임시가 언제 생성되는지"를 정의합니다. 연산자 오버로딩으로 반환값을 받을 때, 암시적 변환으로 인자를 맞출 때, 값 반환 시(RVO가 없을 때) 임시가 생길 수 있습니다. 컴파일러는 **copy elision**으로 일부 임시를 제거하지만, 사용자 코드가 `operator+` 체이닝·암시적 변환을 유발하면 임시가 남을 수 있어, Low-latency 경로에서는 패턴을 인지하고 제거하는 것이 중요합니다.
 
-> "Temporary objects are created when a prvalue is materialized so that it can be used as a glvalue." — ISO C++ (temporaries). 연산 결과·변환 결과가 "사용되기 위해 구체화"될 때 임시가 생성됩니다.
+> "Temporary objects are created when a prvalue is materialized so that it can be used as a glvalue." — [cppreference: Implicit conversions - Temporary materialization](https://en.cppreference.com/w/cpp/language/implicit_conversion#Temporary_materialization) 문서 (ISO C++ 표준 기반). 연산 결과·변환 결과가 "사용되기 위해 구체화"될 때 임시가 생성됩니다.
 
 ## 임시 객체 생성 패턴
 
@@ -263,6 +263,11 @@ A: `const T&`는 호출자가 임시를 넘겨도 수명이 함수 종료까지 
 - [ ] 연산자 설계에서 `+=`를 제공하고 `+`는 `tmp+=` 반환으로 했는가?
 - [ ] 컴파일러 덤프·어셈블리·카운터로 생성자 호출 횟수를 확인했는가?
 - [ ] 제거 전/후 벤치마크로 회귀 검증했는가?
+
+### 더 읽을 거리
+
+- [cppreference: Implicit conversions - Temporary materialization](https://en.cppreference.com/w/cpp/language/implicit_conversion#Temporary_materialization) — prvalue가 xvalue로 변환되며 임시 객체가 구체화되는 규칙을 정의하는 참조 문서
+- [cppreference: Value categories](https://en.cppreference.com/w/cpp/language/value_category) — prvalue/xvalue/lvalue와 결과 객체(result object) 개념을 정의하는 참조 문서
 
 ## 다음 장에서는
 

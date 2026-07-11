@@ -1,7 +1,7 @@
 ﻿---
 collection_order: 9
 date: 2026-03-10
-lastmod: 2026-06-01
+lastmod: 2026-07-10
 draft: false
 image: wordcloud.png
 title: "[Optimization(C++) 09] Modern C++ 기능"
@@ -101,7 +101,7 @@ tags:
 
 **Ranges**는 C++20에서 표준에 들어왔고, 범위 기반 연산과 뷰·지연 평가를 제공합니다. **Concepts**도 C++20에서 도입되어 템플릿 제약을 타입 시스템으로 표현합니다. **Modules**는 C++20에서 표준화되어 헤더 대신 모듈 단위로 인터페이스를 나누어 컴파일 시간과 노출 범위를 줄입니다. 각 기능은 "표현력·안전성·빌드"에 이점이 있으나, Low-latency에서는 **런타임 오버헤드**가 있는지(예: ranges 파이프라인 인라인, concepts의 런타임 비용 없음)를 구분해 핫패스에 쓸지 결정해야 합니다.
 
-> "A range is a sequence of elements that can be iterated. A view is a non-owning range that is O(1) to copy and move." — cppreference (std::ranges). 뷰는 복사가 저렴하고 지연 평가되므로, 파이프라인으로 연결해도 중간 컨테이너 할당을 줄일 수 있습니다.
+> "A range is a sequence of elements that can be iterated. A view is a non-owning range that is O(1) to copy and move." — [cppreference: Ranges library](https://en.cppreference.com/w/cpp/ranges). 뷰는 복사가 저렴하고 지연 평가되므로, 파이프라인으로 연결해도 중간 컨테이너 할당을 줄일 수 있습니다.
 
 ## Ranges (C++20)
 
@@ -167,6 +167,8 @@ export module math;
 export int add(int a, int b) { return a + b; }
 ```
 
+사용하는 쪽은 이 인터페이스 단위를 헤더처럼 `#include`하는 대신 `import`합니다. 컴파일러는 `math.ixx`를 파싱하지 않고 이미 만들어진 모듈 메타데이터만 읽으므로, 헤더를 매 TU마다 재파싱하는 비용이 사라집니다.
+
 ```cpp
 // main.cpp — 모듈 사용 측
 import math;             // 헤더 #include 대신 import
@@ -190,7 +192,7 @@ int main() { return add(2, 3); }
 - **Modules**가 컴파일 시간·노출 범위에 미치는 영향을 설명하고, 도입 시 빌드·성능을 측정할 수 있다.
 - if constexpr, 구조화된 바인딩, [[likely]]/[[unlikely]] 등이 성능에 미치는 맥락을 구분할 수 있다.
 
-## 판단 기준 (언제 쓸고 언제 피할지)
+## 판단 기준 (언제 쓰고 언제 피할지)
 
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
@@ -198,7 +200,21 @@ int main() { return add(2, 3); }
 | 템플릿 제약 | concepts로 가독성·에러 메시지 개선 | 런타임 비용 기대 (없음) |
 | 빌드 시간·모듈화 | modules 실험·측정 후 도입 | 도구 미지원 환경에서 강제 |
 
-**적용 체크리스트**: (1) 핫패스에 ranges 넣기 전 동일 알고리즘으로 벤치마크. (2) concepts는 표현력·검사용, 런타임 비용 없음 인지. (3) [[likely]]/[[unlikely]]는 중요 경로에만, 효과는 측정으로 확인.
+### 자주 하는 실수
+
+- **ranges를 핫패스에 무검증 도입**: 벤치마크 후 오버헤드가 허용될 때만 도입합니다.
+- **concepts에 런타임 비용 기대**: concepts는 컴파일 타임만; 런타임 비용 없음.
+- **modules를 도구 미지원 환경에서 강제**: 지원 여부와 빌드 시간 이득을 먼저 확인합니다.
+
+### 리팩토링 시 주의
+
+기존 for 루프를 ranges로 바꿀 때 동일 알고리즘인지 확인하고, 벤치마크로 회귀가 없는지 검증합니다. modules 도입 시 include 순서·헤더 노출이 바뀌므로 빌드·테스트를 충분히 수행합니다.
+
+## 흔한 오해
+
+**"ranges는 항상 for 루프보다 느리다"**(또는 그 반대로 "항상 같다")는 둘 다 성급한 단정입니다. 어댑터가 충분히 인라인되면 수동 루프와 동등한 코드가 나오는 구현체도 있지만, 인라인이 안 되면 반복자 래핑 비용이 그대로 남습니다. "구현체·최적화 수준에 따라 다르다"가 정확한 답이며, 핫패스에 넣기 전에는 반드시 같은 알고리즘으로 벤치마크해야 합니다.
+
+**"concepts를 쓰면 실행 속도가 빨라진다"**도 흔한 오해입니다. concepts는 **컴파일 타임 제약**일 뿐이며, 제약을 만족하는 타입에 대해서는 concepts가 없을 때의 일반 템플릿과 **동일한 코드**가 생성됩니다. concepts가 주는 이득은 런타임 속도가 아니라 컴파일 타임 오류 메시지와 오버로드 해석의 명확성입니다.
 
 ## 비판적 시각: 한계와 트레이드오프
 
@@ -223,14 +239,6 @@ int main() { return add(2, 3); }
 | **concept** | 템플릿 파라미터 제약; 컴파일 타임 검사, 런타임 비용 없음 |
 | **module** | 헤더 대체; export한 선언만 노출, 빌드 시간·노출 감소 |
 
-### 벤치마크 결과 해석 가이드
-
-| 관찰 | 해석·다음 단계 |
-|------|----------------|
-| ranges 파이프라인이 for 루프보다 느림 | 구현체·컴파일러에 따라 다름; 동일 알고리즘으로 벤치마크 후 도입 |
-| concepts 도입 후 런타임 차이 없음 | 정상; concepts는 컴파일 타임 제약, 런타임 오버헤드 없음 |
-| modules 도입 후 빌드 시간 감소 | 컴파일 시간 절감; 도구 지원 확인 |
-
 ### 자주 묻는 질문 (FAQ)
 
 **Q: ranges가 항상 for 루프보다 느리나요?**  
@@ -250,29 +258,14 @@ A: 빌드 시스템·컴파일러 지원이 프로젝트마다 다릅니다. 실
 - [ ] [[likely]]/[[unlikely]]는 효과를 측정한 뒤 적용했는가?
 - [ ] 변경 후 벤치마크·빌드 시간으로 회귀 검증했는가?
 
-### 진단 도구 요약
-
-| 목적 | 도구·방법 |
-|------|-----------|
-| ranges vs for 성능 | 격리 벤치마크(동일 알고리즘) |
-| concepts | 런타임 비용 없음; 컴파일 시간만 확인 |
-| modules | 빌드 시간 측정, 도구 지원 확인 |
-
-### 자주 하는 실수
-
-- **ranges를 핫패스에 무검증 도입**: 벤치마크 후 오버헤드가 허용될 때만 도입합니다.
-- **concepts에 런타임 비용 기대**: concepts는 컴파일 타임만; 런타임 비용 없음.
-- **modules를 도구 미지원 환경에서 강제**: 지원 여부와 빌드 시간 이득을 먼저 확인합니다.
-
-### 리팩토링 시 주의
-
-기존 for 루프를 ranges로 바꿀 때 동일 알고리즘인지 확인하고, 벤치마크로 회귀가 없는지 검증합니다. modules 도입 시 include 순서·헤더 노출이 바뀌므로 빌드·테스트를 충분히 수행합니다.
-
 ### 추가 읽기 및 관련 챕터
 
 - **챕터 08 (템플릿/constexpr)**: 컴파일 타임 전략과 연계.
 - **챕터 10 (코루틴)**: C++20 비동기 기능.
 - **챕터 14 (span과 뷰)**: 뷰 패턴·non-owning.
+- [cppreference: Ranges library](https://en.cppreference.com/w/cpp/ranges) — 뷰(view)·어댑터·지연 평가 모델을 정의하는 1차 출처.
+- [cppreference: Constraints and concepts](https://en.cppreference.com/w/cpp/language/constraints) — concepts·requires 절의 문법과 제약 해석 규칙을 다루는 1차 출처.
+- [cppreference: Modules](https://en.cppreference.com/w/cpp/language/modules) — 모듈 인터페이스/구현 단위, `export`/`import` 의미론을 다루는 1차 출처.
 
 ### C++26 전망 (짧은 갱신 노트)
 
