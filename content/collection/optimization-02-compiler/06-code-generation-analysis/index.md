@@ -1,8 +1,9 @@
 ---
 collection_order: 6
 date: 2026-03-11
-lastmod: 2026-06-01
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] 어셈블리 레벨 코드 생성 분석"
 slug: code-generation-analysis-assembly
 description: "컴파일 산출물 확인(-S, objdump, Godbolt), 함수 경계·호출 규약과 성능, hot 함수 형태·벡터화/루프가 어셈블리에서 드러나는 방식을 다룹니다. LTO 사용 시 최종 바이너리 확인 필요성과 인라인·SIMD·루프 언롤링 해석 방법을 제시합니다."

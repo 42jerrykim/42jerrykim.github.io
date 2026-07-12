@@ -1,11 +1,12 @@
 ---
 collection_order: 9
 date: 2026-03-11
-lastmod: 2026-06-01
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] Sanitizer 성능 오버헤드"
 slug: sanitizer-overhead-performance
-description: "AddressSanitizer, UBSan, TSan 등 동작 개요와 런타임 오버헤드, 디버그/CI vs 릴리즈 전략, 성능 측정 시 비활성화 필요성을 다룹니다."
+description: "AddressSanitizer, UBSan, ThreadSanitizer 등 주요 새니타이저의 동작 원리와 런타임 오버헤드를 정량적으로 비교하고, 디버그·CI 빌드와 릴리즈 빌드의 적용 전략, 성능 측정 시 새니타이저를 비활성화해야 하는 이유를 다룹니다."
 tags:
   - C++
   - Performance(성능)

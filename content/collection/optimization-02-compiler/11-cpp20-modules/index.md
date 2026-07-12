@@ -1,8 +1,9 @@
 ---
 collection_order: 11
 date: 2026-03-11
-lastmod: 2026-06-01
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] C++20 Modules와 빌드·성능"
 slug: cpp20-modules-build-performance
 description: "C++20 Modules가 빌드 시간에 미치는 영향(헤더 반복 파싱 감소), 런타임 성능과의 관계(인라인·코드 생성), 점진적 모듈화와 기존 헤더 혼용 전략을 다룹니다. 컴파일러·버전별 모듈 지원과 도입 시 판단 기준을 제시합니다."

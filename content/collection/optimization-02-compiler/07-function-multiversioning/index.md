@@ -1,11 +1,12 @@
 ---
 collection_order: 7
 date: 2026-03-11
-lastmod: 2026-03-11
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] CPU 기능별 함수 다중 버전"
 slug: function-multiversioning-cpu
-description: "런타임 CPU 기능에 따른 구현 선택(멀티버저닝), GCC/Clang target 속성, 디스패치 비용, AVX2/AVX-512 등 경로별 설계·검증을 다룹니다."
+description: "런타임 CPU 기능 감지에 따라 최적 구현을 선택하는 함수 멀티버저닝을 다룹니다. GCC/Clang의 target·target_clones 속성 사용법, IFUNC 디스패치 비용, AVX2/AVX-512 등 경로별 빌드·배포 설계와 검증 방법을 정리합니다."
 tags:
   - C++
   - Performance(성능)

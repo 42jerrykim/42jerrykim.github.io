@@ -1,8 +1,9 @@
 ---
 collection_order: 1
 date: 2026-03-11
-lastmod: 2026-06-01
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] 최적화 플래그: -O2/-O3/-Ofast"
 slug: optimization-flags-o2-o3-ofast
 description: "컴파일러 최적화 레벨 -O0~-Ofast의 의미와 켜지는 최적화 종류, -O2 vs -O3 trade-off, 릴리즈/디버그/프로파일 빌드 전략을 다룹니다. 언제 어떤 레벨을 쓸지 판단 기준과 측정 방법을 제시합니다."

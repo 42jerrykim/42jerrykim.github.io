@@ -1,8 +1,9 @@
 ---
 collection_order: 12
 date: 2026-03-11
-lastmod: 2026-06-01
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] 빌드 병렬화: ccache, distcc, sccache"
 slug: build-parallelization-ccache-distcc-sccache
 description: "ccache·sccache로 재컴파일 감소, distcc 분산 빌드, -j와 메모리·캐시 균형, CI에서의 캐시 아티팩트·캐시 키·분산 전략을 다룹니다. LTO·PGO와 캐시 키 관계와 언제 ccache/distcc를 쓸지 판단 기준을 제시합니다."

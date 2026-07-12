@@ -1,8 +1,9 @@
 ---
 collection_order: 13
 date: 2026-03-11
-lastmod: 2026-06-01
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] 성능 관련 정적 분석"
 slug: static-analyzer-performance
 description: "성능 관련 컴파일러·정적 분석 경고(미사용 결과·불필요한 복사·비효율 루프), Clang Static Analyzer·GCC -fanalyzer, CI에 경고 통합하고 벤치마크와 분리해 성능 회귀와 연계하는 방법을 다룹니다."

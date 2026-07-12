@@ -1,8 +1,9 @@
 ---
 collection_order: 0
 date: 2026-03-11
-lastmod: 2026-03-25
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] Introduction: Low-latency 컴파일러·빌드 최적화"
 slug: getting-started-compiler-build-performance-tuning
 description: "Low-latency 컴파일러·빌드 최적화 트랙의 도입 챕터입니다. 옵션 설계와 LTO/PGO, 인라이닝·코드 생성 분석의 책임 범위를 정리하고, 동일 벤치마크로 설정 변경을 검증하는 방법과 이 트랙을 마친 후 달성할 학습 목표를 안내합니다."

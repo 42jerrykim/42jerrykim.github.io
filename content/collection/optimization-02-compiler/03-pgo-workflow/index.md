@@ -1,8 +1,9 @@
 ---
 collection_order: 3
 date: 2026-03-11
-lastmod: 2026-06-01
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] PGO 고급 워크플로우"
 slug: pgo-workflow-advanced
 description: "Profile-Guided Optimization의 3단계 워크플로우(Instrumented 빌드·프로파일 수집·Optimized 빌드), 프로파일 대표성과 PGO 전/후 검증, CI에서의 PGO 적용 시 캐시·재현성·비용 고려사항을 다룹니다. 언제 PGO를 쓸지/피할지 판단 기준을 제시합니다."

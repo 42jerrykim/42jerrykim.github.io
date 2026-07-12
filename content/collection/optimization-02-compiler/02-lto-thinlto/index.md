@@ -1,8 +1,9 @@
 ---
 collection_order: 2
 date: 2026-03-11
-lastmod: 2026-06-01
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] LTO와 ThinLTO 실전 적용"
 slug: lto-thinlto-practical
 description: "Link-Time Optimization 개념과 GCC/Clang/MSVC 활성화 방법, ThinLTO trade-off, LTO on/off 성능·크기 검증을 다룹니다. 크로스-TU 인라이닝과 빌드 캐시 연동 시 주의점을 포함합니다."

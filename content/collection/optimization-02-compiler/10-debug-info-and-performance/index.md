@@ -1,11 +1,12 @@
 ---
 collection_order: 10
 date: 2026-03-11
-lastmod: 2026-06-01
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] 디버그 정보와 릴리즈 성능"
 slug: debug-info-and-release-performance
-description: "디버그 심볼이 코드 생성에 미치는 영향, 릴리즈에서 심볼 유지 전략, strip·FDO·LTO와 디버그 정보 조합 시 주의를 다룹니다."
+description: "디버그 심볼이 코드 생성과 바이너리 크기에 미치는 영향, -g와 최적화 플래그의 상호작용, 릴리즈 빌드에서 심볼 유지·분리(split DWARF) 전략, strip·FDO·LTO와 디버그 정보를 조합할 때의 주의점을 다룹니다."
 tags:
   - C++
   - Performance(성능)

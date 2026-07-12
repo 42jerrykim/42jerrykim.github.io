@@ -1,8 +1,9 @@
 ---
 collection_order: 15
 date: 2026-06-01
-lastmod: 2026-06-01
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] AutoFDO 워크플로우: 샘플링 기반 프로파일 최적화"
 slug: autofdo-workflow-sampling-based
 description: "별도 instrumented 빌드 없이 perf/LBR 샘플링으로 프로파일을 수집해 컴파일러에 반영하는 AutoFDO 워크플로우, GCC/Clang 적용 방법, PGO(instrumented)와의 운영 비용·품질 비교, 언제 AutoFDO를 선택할지 판단 기준을 다룹니다."

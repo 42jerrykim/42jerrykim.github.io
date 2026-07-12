@@ -1,8 +1,9 @@
 ---
 collection_order: 14
 date: 2026-03-24
-lastmod: 2026-06-01
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] BOLT·후링크(post-link) 최적화"
 slug: bolt-post-link-binary-layout-optimization
 description: "링크된 바이너리 레이아웃을 프로파일로 재배열하는 후링크 최적화(BOLT 등)의 직관과, PGO·LTO와의 파이프라인 순서·프로파일 대표성·CI 재현성을 Tr.02 빌드 관점에서 정리하고 적용 판단 기준을 제시합니다."

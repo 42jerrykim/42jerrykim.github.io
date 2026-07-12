@@ -1,8 +1,9 @@
 ---
 collection_order: 5
 date: 2026-03-11
-lastmod: 2026-06-01
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] 인라이닝 실패 진단"
 slug: inlining-diagnostics
 description: "인라이닝이 되지 않는 원인(가시성, ODR/ABI, 코드 크기), GCC -fopt-info-inline·Clang -Rpass=inline 리포트 확인 방법, inline·LTO와 Tr.01(인라이닝 유도) 연계를 다룹니다. 진단 후 같은 TU·헤더 인라인·LTO로 대처하는 판단 기준을 제시합니다."

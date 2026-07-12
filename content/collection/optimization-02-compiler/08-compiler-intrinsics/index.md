@@ -1,11 +1,12 @@
 ---
 collection_order: 8
 date: 2026-03-11
-lastmod: 2026-03-11
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] 컴파일러 intrinsics 카탈로그"
 slug: compiler-intrinsics-catalog
-description: "intrinsics의 역할, SIMD·atomic·비트 조작 등 카테고리별 예, GCC/Clang/MSVC·x86/ARM 차이, 인라인·ABI·이식성 주의를 다룹니다."
+description: "컴파일러 intrinsics가 인라인 어셈블리를 대체하는 원리와 역할, SIMD·atomic·비트 조작 등 카테고리별 대표 함수, GCC/Clang/MSVC와 x86/ARM 플랫폼별 차이, 인라이닝·ABI·이식성 관점의 주의점을 다룹니다."
 tags:
   - C++
   - Performance(성능)

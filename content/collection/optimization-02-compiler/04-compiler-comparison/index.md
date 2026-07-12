@@ -1,8 +1,9 @@
 ---
 collection_order: 4
 date: 2026-03-11
-lastmod: 2026-06-01
-draft: true
+lastmod: 2026-07-12
+draft: false
+image: wordcloud.png
 title: "[Compiler 02] GCC vs Clang vs MSVC 최적화 차이"
 slug: compiler-comparison-gcc-clang-msvc
 description: "동일 소스·플래그에서 GCC/Clang/MSVC의 속도·크기 차이, 벡터화·인라이닝·루프 최적화 영역별 차이, 플랫폼별 선택 기준을 다룹니다. 동일 벤치마크로 컴파일러별 수치 비교 방법과 다중 컴파일러 빌드·회귀 검증 절차를 제시합니다."
