@@ -2,7 +2,8 @@
 collection_order: 17
 date: 2026-03-24
 lastmod: 2026-03-24
-draft: true
+draft: false
+image: wordcloud.png
 title: "[OS 07] eBPF·커널 경계와 성능·안전 (전문)"
 slug: ebpf-xdp-kernel-boundary-performance-safety-expert
 description: "eBPF·XDP가 커널 경계에서 주는 성능 이점과 검증·보안·업그레이드 리스크를 함께 보는 전문 장입니다. 지연·처리량·관측 가능성의 트레이드오프를 Tr.12·Tr.09 의사결정과 연결해 정리합니다."
