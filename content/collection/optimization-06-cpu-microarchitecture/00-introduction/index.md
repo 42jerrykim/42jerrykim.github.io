@@ -2,7 +2,8 @@
 collection_order: 0
 date: 2026-03-24
 lastmod: 2026-03-25
-draft: true
+draft: false
+image: wordcloud.png
 title: "[Performance 06] Introduction: CPU 마이크로아키텍처 Low-latency"
 slug: getting-started-cpu-microarchitecture-performance-tuning
 description: "CPU 마이크로아키텍처 Low-latency 트랙의 도입 챕터입니다. TopDown 직관부터 파이프라인·캐시·분기·ILP의 책임 범위를 연결하고, 하드웨어 이벤트와 p99 지연을 함께 해석하는 기본 흐름을 정리합니다."
@@ -159,7 +160,8 @@ flowchart LR
 
 ## 지금 바로 이어 읽을 곳
 
-CPU 카운터를 해석한 뒤 실제 코드 변경으로 이어 가려면, 보통 **Tr.03**의 레이아웃 변경이나 **Tr.08**의 극한 기법 판단으로 연결됩니다.
+**01 → 17 → 02 → 03** 순으로 읽으면 파이프라인 기초에서 TopDown 직관, 분기 예측, 캐시 계층까지 자연스럽게 이어집니다.
 
-- [Tr.03 Introduction: Low-latency 메모리·할당·레이아웃](/post/memory-optimization/getting-started-memory-allocation-data-layout-tuning/)
-- [Tr.08 Introduction: 극한 Low-latency 최적화 특수기술](/post/extreme-optimization/getting-started-extreme-performance-optimization-techniques/)
+- [CPU 파이프라인 기초](/post/cpu-optimization/cpu-pipeline-fundamentals/) (챕터 01)
+- [Frontend vs Backend Bound 개념](/post/cpu-optimization/frontend-backend-bound-topdown-basics/) (챕터 17)
+- [분기 예측 메커니즘과 비용](/post/cpu-optimization/branch-prediction-mechanisms-cost/) (챕터 02)
