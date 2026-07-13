@@ -2,7 +2,8 @@
 collection_order: 0
 date: 2026-03-24
 lastmod: 2026-03-25
-draft: true
+draft: false
+image: wordcloud.png
 title: "[Performance 03] Introduction: Low-latency 메모리·할당·레이아웃"
 slug: getting-started-memory-allocation-data-layout-tuning
 description: "Low-latency 메모리·할당·데이터 레이아웃 트랙의 도입 챕터입니다. 컨테이너·할당·레이아웃의 책임 경계와 입문자 진입 순서를 정리하고, allocation·캐시·레이턴시 변화를 벤치마크로 검증하는 기본 흐름을 제공합니다."
@@ -158,6 +159,8 @@ flowchart LR
 
 ## 지금 바로 이어 읽을 장
 
-현재 공개된 장 중에서는 **챕터 15**가 가장 좋은 출발점입니다. 챕터 01 계열이 모두 공개되면 `15 → 01 → 02` 흐름으로 이어 읽는 것을 권장합니다.
+**15 → 01 → 02 → 12 → 04 → 05** 순서로 읽으면 직관·컨테이너·할당 정책의 실무 기반을 먼저 다진 뒤 레이아웃 최적화로 자연스럽게 넘어갑니다.
 
-→ [메모리·수명·캐시 라인 직관](/post/memory-optimization/memory-lifetime-cache-line-intuition-fundamentals/)
+- [메모리·수명·캐시 라인 직관](/post/memory-optimization/memory-lifetime-cache-line-intuition-fundamentals/) (챕터 15)
+- [컨테이너 비용 모델](/post/memory-optimization/container-cost-model-selection/) (챕터 01)
+- [할당 전략: 풀·아레나](/post/memory-optimization/pool-arena-allocation-strategy/) (챕터 02)

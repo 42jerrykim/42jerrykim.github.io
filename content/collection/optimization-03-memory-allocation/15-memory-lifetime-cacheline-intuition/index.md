@@ -2,7 +2,8 @@
 collection_order: 15
 date: 2026-03-24
 lastmod: 2026-03-24
-draft: true
+draft: false
+image: wordcloud.png
 title: "[Memory 03] 메모리·수명·캐시 라인 직관 (기초)"
 slug: memory-lifetime-cache-line-intuition-fundamentals
 description: "스택·힙·객체 수명·캐시 라인 단위 접근이 할당과 지연에 미치는 영향을 그림으로 잡는 기초 장입니다. Tr.01 실행 모델과 Tr.06 캐시 해석의 선행 개념으로 쓰고 이 트랙 심화 학습으로 연결합니다."

@@ -2,7 +2,8 @@
 collection_order: 16
 date: 2026-03-24
 lastmod: 2026-03-24
-draft: true
+draft: false
+image: wordcloud.png
 title: "[Memory 03] 전역 할당자·jemalloc·tcmalloc (전문)"
 slug: global-allocator-jemalloc-tcmalloc-tuning-expert
 description: "전역 할당자 교체·튜닝의 효과와 한계, 워크로드·프레그멘테이션·스레드 경합 관점에서의 검증 절차를 전문 난이도로 정리합니다. Tr.01 문자열·컨테이너 경계와 충돌하지 않게 쓰는 실무 판단을 다룹니다."
