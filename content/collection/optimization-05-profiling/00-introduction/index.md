@@ -2,7 +2,8 @@
 collection_order: 0
 date: 2026-03-24
 lastmod: 2026-03-25
-draft: true
+draft: false
+image: wordcloud.png
 title: "[Performance 05] Introduction: Low-latency 프로파일링·성능 분석"
 slug: getting-started-profiling-performance-analysis-fundamentals
 description: "Low-latency 프로파일링·성능 분석 트랙의 도입 챕터입니다. microbenchmark/프로파일링으로 hot path를 찾고, 지표를 해석해 회귀를 자동화하는 공통 기반을 한 번에 정리합니다."
@@ -21,6 +22,18 @@ tags:
   - Linux(리눅스)
   - Windows(윈도우)
   - Automation(자동화)
+  - Benchmark
+  - Latency
+  - Throughput
+  - C++
+  - Compiler(컴파일러)
+  - OS(운영체제)
+  - Debugging(디버깅)
+  - Observability
+  - Best-Practices
+  - Implementation(구현)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
 ---
 
 이 트랙은 모든 트랙의 공통 기반입니다. µs 단위 최적화는 "측정→가설→변경→검증→회귀 방지" 루프가 없으면 재현 불가능한 우연이 되기 때문에, 분석 역량을 표준화합니다.
@@ -131,7 +144,8 @@ BPF·일부 플랫폼 전용 도구는 **전문** 난이도입니다. 팀 표준
 
 ## 지금 바로 이어 읽을 곳
 
-이 트랙의 본챕터가 아직 공개되기 전에는, **무엇을 측정할지**가 궁금하면 `Tr.01`로, **측정을 어떻게 운영에 고정할지**가 궁금하면 `Tr.10`으로 이어 가면 흐름이 자연스럽습니다.
+이 트랙은 **01 → 02 → 03 → 12 → 18** 순으로 읽으면 벤치마크·프로파일링 기초부터 팀 워크플로우까지 이어집니다.
 
-- [Tr.01 Introduction: Low-latency C++ 언어 최적화](/post/cpp-optimization/getting-started-cpp-language-performance-tuning/)
-- [Tr.10 Introduction: Low-latency 성능 회귀 방지·유지보수](/post/regression-prevention/getting-started-performance-regression-prevention-strategies/)
+- [Microbenchmark 설계 원칙](/post/profiling-analysis/microbenchmark-design-principles/) (챕터 01)
+- [Google Benchmark 실전](/post/profiling-analysis/google-benchmark-practical/) (챕터 02)
+- [샘플링 프로파일링: perf·VTune 원리](/post/profiling-analysis/sampling-profiling-perf-vtune/) (챕터 03)
