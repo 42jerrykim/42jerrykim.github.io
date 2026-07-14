@@ -2,7 +2,8 @@
 collection_order: 0
 date: 2026-03-24
 lastmod: 2026-03-25
-draft: true
+draft: false
+image: wordcloud.png
 title: "[Performance 08] Introduction: 극한 Low-latency 최적화 특수기술"
 slug: getting-started-extreme-performance-optimization-techniques
 description: "극한 Low-latency 최적화 특수기술 트랙의 도입 챕터입니다. SIMD/asm/prefetch/branchless를 언제 써야 하는지 경계를 명확히 하고, 노이즈 통제된 측정·검증 루프를 전제로 한 적용 원칙을 정리합니다."
@@ -15,6 +16,34 @@ tags:
   - Cache
   - Memory(메모리)
   - Testing(테스트)
+  - C++
+  - C
+  - Compiler(컴파일러)
+  - Hardware(하드웨어)
+  - Embedded(임베디드)
+  - Benchmark
+  - Latency
+  - Throughput
+  - Concurrency(동시성)
+  - OS(운영체제)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - Implementation(구현)
+  - Best-Practices
+  - Code-Quality(코드품질)
+  - Debugging(디버깅)
+  - Data-Structures(자료구조)
+  - System-Design
+  - Production
+  - Reliability
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Automation(자동화)
+  - Machine-Learning(머신러닝)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Deep-Dive
+  - Advanced
 ---
 
 이 트랙은 "정말로 필요할 때만" 접근하는 특수 기술 묶음입니다. 잘못된 조기 진입은 복잡도만 키우고 회귀를 부르기 쉬우므로, 반드시 목표/측정/검증이 준비된 상황에서 사용합니다.
@@ -123,7 +152,8 @@ flowchart LR
 
 ## 지금 바로 이어 읽을 곳
 
-이 트랙은 보통 CPU 해석과 측정 근거가 갖춰진 뒤에 여는 편이 안전합니다. 아직 진입이 이른지 확신이 없다면 **Tr.06**과 **Tr.05** 도입을 먼저 다시 확인한 뒤 돌아오세요.
+**01 → 04 → 11** 순으로 읽으면 SIMD 감각과 자동 벡터화의 경계, 유지보수성 판단 기준까지 안전하게 이어집니다.
 
-- [Tr.06 Introduction: CPU 마이크로아키텍처 Low-latency](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/)
-- [Tr.05 Introduction: Low-latency 프로파일링·성능 분석](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)
+- [SIMD 기초: SSE·AVX](/post/extreme-optimization/simd-fundamentals-sse-avx/) (챕터 01)
+- [자동 벡터화 유도와 검증](/post/extreme-optimization/auto-vectorization-guidance-verification/) (챕터 04)
+- [극한 최적화와 유지보수성 균형](/post/extreme-optimization/extreme-optimization-maintainability-balance/) (챕터 11)
