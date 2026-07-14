@@ -2,7 +2,8 @@
 collection_order: 0
 date: 2026-03-24
 lastmod: 2026-03-25
-draft: true
+draft: false
+image: wordcloud.png
 title: "[Performance 11] Introduction: Low-latency I/O 최적화"
 slug: getting-started-io-performance-tuning
 description: "Low-latency I/O 최적화 트랙의 도입 챕터입니다. I/O 비용 직관부터 비동기 I/O·zero-copy·filesystem 선택까지의 진입 순서를 정리하고, 시스템콜·복사 횟수·지연 분포를 연결해 검증하는 접근을 소개합니다."
@@ -162,7 +163,8 @@ Direct I/O·저널링·스케줄러는 환경별로 튜닝 여지가 큽니다. 
 
 ## 지금 바로 이어 읽을 곳
 
-현재 공개된 장 중에서는 운영 리스크가 큰 스토리지 경계를 다루는 **챕터 15**로 바로 들어갈 수 있습니다. 패킷 경로까지 병목이 이어진다면 `Tr.12` 도입으로 확장하세요.
+**16 → 01 → 02 → 03** 순으로 읽으면 I/O 비용 직관에서 패턴·비동기 I/O·io_uring 심화까지 이어집니다.
 
-- [스토리지 스택 커스터마이징](/post/io-optimization/storage-stack-customization-kernel-fs-drivers-expert/)
-- [Tr.12 Introduction: Low-latency 네트워크 최적화](/post/network-optimization/getting-started-network-performance-tuning/)
+- [I/O 비용 직관](/post/io-optimization/io-cost-intuition-sync-async-copy-fundamentals/) (챕터 16)
+- [I/O 패턴과 비용](/post/io-optimization/io-patterns-blocking-nonblocking-cost-model/) (챕터 01)
+- [비동기 I/O 기초: select·poll·epoll·kqueue](/post/io-optimization/async-io-select-poll-epoll-kqueue/) (챕터 02)
