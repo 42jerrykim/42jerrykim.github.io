@@ -2,7 +2,8 @@
 collection_order: 0
 date: 2026-03-24
 lastmod: 2026-03-25
-draft: true
+draft: false
+image: wordcloud.png
 title: "[Performance 04] Introduction: Low-latency 동시성·멀티스레드"
 slug: getting-started-concurrency-multithreading-performance-tuning
 description: "Low-latency 동시성·멀티스레드 트랙의 도입 챕터입니다. mutex/atomic/lock-free의 책임 경계와 입문자 진입 순서를 정리하고, 경합·false sharing·꼬리 지연을 측정해 개선하는 기본 접근을 소개합니다."
@@ -160,7 +161,8 @@ Hazard pointer·RCU·wait-free·일부 lock-free 자료구조·std::execution(se
 
 ## 지금 바로 이어 읽을 곳
 
-이 트랙의 본챕터가 더 공개되기 전에는 **Tr.05**와 **Tr.03** 도입을 함께 읽고 돌아오면, 경합·측정·레이아웃 경계가 더 선명해집니다.
+**01 → 02 → 03 → 04** 순으로 읽으면 동기화 비용 정량 분석에서 lock 선택 기준, false sharing 회피, 메모리 모델까지 이어집니다.
 
-- [Tr.05 Introduction: 프로파일링·성능 분석](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)
-- [Tr.03 Introduction: 메모리·할당·레이아웃](/post/memory-optimization/getting-started-memory-allocation-data-layout-tuning/)
+- [동기화 비용 정량 분석](/post/concurrency-optimization/synchronization-primitive-cost-analysis/) (챕터 01)
+- [Lock 선택 기준](/post/concurrency-optimization/lock-selection-criteria-guide/) (챕터 02)
+- [False Sharing 탐지와 회피](/post/concurrency-optimization/false-sharing-detection-avoidance/) (챕터 03)
