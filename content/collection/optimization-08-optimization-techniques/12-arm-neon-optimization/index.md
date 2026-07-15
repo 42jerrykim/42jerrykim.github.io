@@ -4,7 +4,6 @@ date: 2026-07-14
 lastmod: 2026-07-14
 draft: false
 image: wordcloud.png
-image: wordcloud.png
 title: "[Extreme 08] ARM NEON 최적화"
 slug: arm-neon-simd-optimization
 description: "ARM NEON intrinsics로 128비트 벡터 연산을 다루는 법을 x86 SSE/AVX 개념과 대응시키고, Apple Silicon·AWS Graviton 등 ARM 서버 배포에서 확인해야 할 판단 기준을 정리합니다."
