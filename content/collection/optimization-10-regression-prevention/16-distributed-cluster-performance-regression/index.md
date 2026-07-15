@@ -2,7 +2,8 @@
 collection_order: 16
 date: 2026-03-24
 lastmod: 2026-03-24
-draft: true
+draft: false
+image: wordcloud.png
 title: "[Regression 10] 분산·클러스터 성능 회귀 (전문)"
 slug: distributed-cluster-performance-regression-expert
 description: "샤딩·다중 리전·샘플링 마이크로벤치와 엔드투엔드 게이트를 어떻게 조합할지 정리하는 전문 장입니다. 분산 환경에서의 성능 회귀 탐지·오탐·비용을 Tr.05 측정 관점과 연결합니다."

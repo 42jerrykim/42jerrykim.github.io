@@ -2,7 +2,8 @@
 collection_order: 0
 date: 2026-03-24
 lastmod: 2026-03-25
-draft: true
+draft: false
+image: wordcloud.png
 title: "[Performance 10] Introduction: Low-latency 성능 회귀 방지·유지보수"
 slug: getting-started-performance-regression-prevention-strategies
 description: "Low-latency 성능 회귀 방지·유지보수 트랙의 도입 챕터입니다. 성능 테스트 자동화와 PR 게이트, performance budget 운영을 정리하고, '빠른 상태를 지키는' 운영 원칙을 한 번에 소개합니다."
@@ -15,6 +16,32 @@ tags:
   - Monitoring(모니터링)
   - Code-Review(코드리뷰)
   - Code-Quality(코드품질)
+  - Observability
+  - Benchmark
+  - Latency
+  - Throughput
+  - DevOps
+  - Production
+  - Reliability
+  - Scalability(확장성)
+  - System-Design
+  - Backend(백엔드)
+  - Cloud(클라우드)
+  - Best-Practices
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Git
+  - GitHub
+  - Deployment(배포)
+  - Troubleshooting(트러블슈팅)
+  - Logging(로깅)
+  - C++
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Deep-Dive
+  - Advanced
+  - Workflow(워크플로우)
 ---
 
 이 트랙은 "성능이 다시 느려지지 않게 만드는 시스템"을 책임집니다. µs 단위에서는 작은 변경도 레이턴시 분포를 망칠 수 있으므로, 성능을 제품 품질의 일부로 운영합니다.
@@ -121,7 +148,8 @@ flowchart LR
 
 ## 지금 바로 이어 읽을 곳
 
-분산 환경까지 회귀 범위를 넓혀야 한다면 현재 공개된 **챕터 16**을 먼저 읽을 수 있습니다. 아직 팀 게이트의 바탕이 약하다면 **Tr.05** 도입을 다시 확인한 뒤 돌아오는 것도 좋습니다.
+**17 → 01 → 02** 순으로 읽으면 성능 회귀의 정의에서 테스트 자동화·벤치마크 CI 통합까지 이어집니다.
 
-- [분산·클러스터 성능 회귀](/post/regression-prevention/distributed-cluster-performance-regression-expert/)
-- [Tr.05 Introduction: Low-latency 프로파일링·성능 분석](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)
+- [성능 회귀란 무엇인가](/post/regression-prevention/performance-regression-definition-detection-fundamentals/) (챕터 17)
+- [성능 테스트 자동화 구축](/post/regression-prevention/performance-test-automation-fundamentals/) (챕터 01)
+- [벤치마크 CI 통합](/post/regression-prevention/benchmark-ci-integration-codspeed-bencher/) (챕터 02)
