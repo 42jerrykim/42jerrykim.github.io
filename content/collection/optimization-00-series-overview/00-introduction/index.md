@@ -169,13 +169,13 @@ flowchart TB
 
 | Tr | 주제 | 챕터 수 | 도입(00) |
 |----|------|---------|-----------|
-| 05 | 프로파일링·성능 분석 | 20 | [Tr.05 00](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/) |
 | 01 | C++ 언어 최적화 | 19 | [Tr.01 00](/post/cpp-optimization/getting-started-cpp-language-performance-tuning/) |
 | 02 | 컴파일러·빌드 | 15 | [Tr.02 00](/post/compiler-optimization/getting-started-compiler-build-performance-tuning/) |
 | 03 | 메모리·할당·레이아웃 | 16 | [Tr.03 00](/post/memory-optimization/getting-started-memory-allocation-data-layout-tuning/) |
+| 04 | 동시성 | 21 | [Tr.04 00](/post/concurrency-optimization/getting-started-concurrency-multithreading-performance-tuning/) |
+| 05 | 프로파일링·성능 분석 | 20 | [Tr.05 00](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/) |
 | 06 | CPU 마이크로아키텍처 | 18 | [Tr.06 00](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/) |
 | 07 | OS·런타임 | 18 | [Tr.07 00](/post/os-optimization/getting-started-os-runtime-performance-tuning/) |
-| 04 | 동시성 | 21 | [Tr.04 00](/post/concurrency-optimization/getting-started-concurrency-multithreading-performance-tuning/) |
 | 08 | 극한 최적화 기법 | 18 | [Tr.08 00](/post/extreme-optimization/getting-started-extreme-performance-optimization-techniques/) |
 | 09 | 성능 설계·의사결정 | 18 | [Tr.09 00](/post/design-decisions/getting-started-performance-design-decision-making/) |
 | 10 | 성능 회귀 방지 | 17 | [Tr.10 00](/post/regression-prevention/getting-started-performance-regression-prevention-strategies/) |
