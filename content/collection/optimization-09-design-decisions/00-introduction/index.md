@@ -2,7 +2,8 @@
 collection_order: 0
 date: 2026-03-24
 lastmod: 2026-03-25
-draft: true
+draft: false
+image: wordcloud.png
 title: "[Performance 09] Introduction: Low-latency 성능 설계·의사결정"
 slug: getting-started-performance-design-decision-making
 description: "Low-latency 성능 설계·의사결정 트랙의 도입 챕터입니다. 최적화의 시작/중단 기준과 팀 합의, trade-off 판단을 정리하고, 다른 트랙과의 경계(책임 분리)를 명확히 하는 프레임을 제공합니다."
@@ -16,6 +17,32 @@ tags:
   - Clean-Code(클린코드)
   - Testing(테스트)
   - CI-CD(Continuous Integration/Continuous Deployment)
+  - System-Design
+  - Best-Practices
+  - Benchmark
+  - Latency
+  - Throughput
+  - Monitoring(모니터링)
+  - Observability
+  - Automation(자동화)
+  - Backend(백엔드)
+  - Production
+  - Reliability
+  - Scalability(확장성)
+  - Cloud(클라우드)
+  - Database(데이터베이스)
+  - Caching(캐싱)
+  - C++
+  - DevOps
+  - Documentation(문서화)
+  - Refactoring(리팩토링)
+  - Maintainability
+  - Readability
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Deep-Dive
+  - Advanced
 ---
 
 이 트랙은 "기술의 경계를 정하는 트랙"입니다. µs 요구가 들어오면 모든 레이어가 얽히기 때문에, 무엇을 어떤 트랙이 책임지는지 합의하지 않으면 최적화가 끝나지 않습니다.
@@ -123,7 +150,8 @@ flowchart LR
 
 ## 지금 바로 이어 읽을 곳
 
-규제·보안·운영 제약이 성능 목표와 충돌하는 팀이라면 현재 공개된 **챕터 15**를 먼저 읽는 편이 좋고, 목표를 실제 게이트로 고정하려면 **Tr.10** 도입으로 이어 가면 흐름이 자연스럽습니다.
+**17 → 01 → 02** 순으로 읽으면 성능 용어·지표 입문에서 최적화 시작·중단 시점 판단까지 이어집니다.
 
-- [규제·보안 제약 하 성능](/post/design-decisions/regulated-secure-performance-tradeoffs-expert/)
-- [Tr.10 Introduction: Low-latency 성능 회귀 방지·유지보수](/post/regression-prevention/getting-started-performance-regression-prevention-strategies/)
+- [성능 용어·지표 입문](/post/design-decisions/performance-terminology-metrics-fundamentals/) (챕터 17)
+- [최적화 시작 시점](/post/design-decisions/when-to-start-optimizing-performance/) (챕터 01)
+- [최적화 중단 시점](/post/design-decisions/when-to-stop-optimizing-cost-effect-risk/) (챕터 02)

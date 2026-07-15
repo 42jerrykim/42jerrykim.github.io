@@ -2,7 +2,8 @@
 collection_order: 15
 date: 2026-03-24
 lastmod: 2026-03-24
-draft: true
+draft: false
+image: wordcloud.png
 title: "[Design 09] 규제·보안 제약 하 성능 (전문)"
 slug: regulated-secure-performance-tradeoffs-expert
 description: "규정 준수·보안 통제·감사 요구와 성능 예산이 충돌할 때의 트레이드오프와 완화책을 전문 난이도로 정리합니다. Tr.07·Tr.12 운영 제약과 연계해 의사결정 기록·SLO 협상 프레임을 제시합니다."
