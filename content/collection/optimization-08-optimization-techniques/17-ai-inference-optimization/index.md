@@ -42,7 +42,7 @@ tags:
 
 ## 이 장을 읽기 전에
 
-이 장은 [16장: GPU Offloading 기초](/post/extreme-optimization/gpu-offloading-cuda-opencl-sycl-fundamentals/)에서 다룬 "CPU-GPU 협업 판단 기준"과 호스트-디바이스 데이터 이동 비용 개념을 전제로 합니다. CUDA/OpenCL/SYCL의 커널 실행 모델을 모른다면 16장을 먼저 읽는 것이 좋습니다. 또한 [Tr.06 CPU 마이크로아키텍처](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/)에서 다루는 캐시·파이프라인 개념과, [Tr.05 프로파일링](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)에서 다루는 p99 지연시간 측정 방법을 알고 있으면 이 장의 판단 기준을 더 깊이 이해할 수 있습니다.
+이 장은 [16장: GPU Offloading 기초](/post/extreme-optimization/gpu-offloading-cuda-opencl-sycl-fundamentals/)에서 다룬 "CPU-GPU 협업 판단 기준"과 호스트-디바이스 데이터 이동 비용 개념을 전제로 합니다. CUDA/OpenCL/SYCL의 커널 실행 모델을 모른다면 16장을 먼저 읽는 것이 좋습니다. 또한 [Tr.05 CPU 마이크로아키텍처](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/)에서 다루는 캐시·파이프라인 개념과, [Tr.01 프로파일링](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)에서 다루는 p99 지연시간 측정 방법을 알고 있으면 이 장의 판단 기준을 더 깊이 이해할 수 있습니다.
 
 **이 장의 깊이**: NPU와 Tensor Core가 왜 범용 코어보다 특정 연산에서 빠른지, 혼합 정밀도와 양자화가 왜 지연시간을 줄이는지, 그리고 언제 어떤 정밀도·장치를 선택해야 하는지를 다룹니다. **다루지 않는 것**: SIMD 명령어 자체의 사용법(→ [01장](/post/extreme-optimization/simd-fundamentals-sse-avx/), [03장](/post/extreme-optimization/avx512-avx10-optimization/)), 학습(training) 단계의 최적화, 모델 아키텍처 설계, 그리고 CPU 벡터 명령어를 이용한 문자열·파싱 가속(→ [18장](/post/extreme-optimization/simd-string-json-parsing-simdjson/))입니다.
 
@@ -70,7 +70,7 @@ tags:
 
 ```mermaid
 flowchart TD
-  start["지연시간 목표 확인"] --> profile["Tr.05 프로파일링으로</br>병목 위치 확인"]
+  start["지연시간 목표 확인"] --> profile["Tr.01 프로파일링으로</br>병목 위치 확인"]
   profile --> device{"연산 특성?"}
   device -->|"저전력·단일 요청"| npuPath["NPU 경로:</br>INT8/INT4 양자화"]
   device -->|"고처리량·배치 추론"| gpuPath["Tensor Core 경로:</br>FP8/NVFP4"]

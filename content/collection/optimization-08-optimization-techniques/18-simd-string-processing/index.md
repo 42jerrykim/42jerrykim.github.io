@@ -179,7 +179,7 @@ BENCHMARK(BM_SimdjsonOnDemandParse);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O3 -march=native bench.cpp -lsimdjson -lbenchmark -lpthread`(x86-64, GCC 13 이상, simdjson v4.x 기준)로 빌드하고 `--benchmark_counters_tabular=true`를 붙이면 `SetBytesProcessed`가 계산한 바이트/초를 확인할 수 있습니다. 같은 파일을 nlohmann::json 같은 DOM 기반 파서로도 측정해 나란히 비교하면, 이득이 파서 자체에서 오는지 아니면 애플리케이션이 애초에 필드 일부만 쓰는 구조에서 오는지 분리해서 볼 수 있습니다. 측정 방법론 자체는 [Tr.05 프로파일링 인트로](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)의 노이즈 통제 원칙을 그대로 따릅니다.
+`g++ -O3 -march=native bench.cpp -lsimdjson -lbenchmark -lpthread`(x86-64, GCC 13 이상, simdjson v4.x 기준)로 빌드하고 `--benchmark_counters_tabular=true`를 붙이면 `SetBytesProcessed`가 계산한 바이트/초를 확인할 수 있습니다. 같은 파일을 nlohmann::json 같은 DOM 기반 파서로도 측정해 나란히 비교하면, 이득이 파서 자체에서 오는지 아니면 애플리케이션이 애초에 필드 일부만 쓰는 구조에서 오는지 분리해서 볼 수 있습니다. 측정 방법론 자체는 [Tr.01 프로파일링 인트로](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)의 노이즈 통제 원칙을 그대로 따릅니다.
 
 ## 자주 하는 오해
 

@@ -47,7 +47,7 @@ tags:
 
 ## 이 장을 읽기 전에
 
-이 장은 캐시 계층과 접근 지연에 대한 기초 감각을 전제로 합니다. L1/L2/LLC의 크기·지연 차이를 아직 정리하지 못했다면 [Tr.03 캐시 친화적 접근 패턴](/post/memory-optimization/cache-friendly-access-patterns/)을 먼저 읽는 것이 좋습니다. 분기 예측 실패 비용을 수치로 이해하고 싶다면 [Tr.06 분기 예측 메커니즘과 비용](/post/cpu-optimization/branch-prediction-mechanisms-cost/)을 참고하세요.
+이 장은 캐시 계층과 접근 지연에 대한 기초 감각을 전제로 합니다. L1/L2/LLC의 크기·지연 차이를 아직 정리하지 못했다면 [Tr.04 캐시 친화적 접근 패턴](/post/memory-optimization/cache-friendly-access-patterns/)을 먼저 읽는 것이 좋습니다. 분기 예측 실패 비용을 수치로 이해하고 싶다면 [Tr.05 분기 예측 메커니즘과 비용](/post/cpu-optimization/branch-prediction-mechanisms-cost/)을 참고하세요.
 
 **이 장의 깊이**: 스칼라 코드에서 LUT를 설계하는 원리, 테이블 크기와 캐시 적중률의 트레이드오프, 분기를 LUT로 대체할지 판단하는 기준을 다룹니다. **다루지 않는 것**: SIMD 레지스터 내부에서 병렬로 룩업하는 `pshufb`/`vpshufb` 같은 셔플 기반 기법은 [Tr.08 02장](/post/extreme-optimization/simd-intrinsics-practical-usage/)과 [Tr.08 18장](/post/extreme-optimization/simd-string-json-parsing-simdjson/)에서 다루므로 여기서는 스칼라 LUT에 집중합니다. 분기 자체를 없애는 일반적인 branchless 기법은 [Tr.08 06장](/post/extreme-optimization/branchless-programming-techniques/)에 위임하고, 테이블 대신 비트 연산으로 같은 문제를 푸는 방법은 [Tr.08 09장](/post/extreme-optimization/bit-manipulation-optimization-techniques/)에서, 캐시 크기에 독립적인 알고리즘 설계는 [Tr.08 15장](/post/extreme-optimization/cache-oblivious-algorithm-design/)에서 각각 이어집니다.
 
@@ -69,7 +69,7 @@ CPU 명령어 집합도 같은 트레이드오프를 반영해 왔습니다. 예
 
 ## 핵심 개념: 연산을 메모리 접근으로 치환하기
 
-LUT의 핵심 조건은 입력 도메인이 유한하고 실용적인 크기여야 한다는 것입니다. 함수 `f(x)`의 입력 `x`가 가질 수 있는 값의 개수가 작다면(바이트 하나, 16비트 인덱스 등) `table[x] = f(x)`를 미리 채워 두고, 런타임에는 `f(x)`를 재계산하는 대신 `table[x]`를 읽기만 하면 됩니다. 문제는 이 읽기가 공짜가 아니라는 점입니다. 테이블이 L1 데이터 캐시(대개 32~48KB)에 상주한다면 접근은 수 cycle 안에 끝나지만, 테이블이 L1을 벗어나 L2(수백 KB~1MB급)나 LLC(수 MB급)까지 밀려나면 접근 지연은 수십에서 수백 cycle로 늘어나고, 캐시 밖 DRAM까지 나가면 수십~수백 ns가 추가됩니다. 정확한 지연 수치는 마이크로아키텍처·클럭·메모리 구성에 따라 달라지는 구현 정의 영역이므로, 이 장에서는 상대적 크기 관계만 다루고 절대 수치는 [Tr.06 CPU 마이크로아키텍처 트랙](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/)의 측정 방법으로 직접 확인하는 것을 전제로 합니다.
+LUT의 핵심 조건은 입력 도메인이 유한하고 실용적인 크기여야 한다는 것입니다. 함수 `f(x)`의 입력 `x`가 가질 수 있는 값의 개수가 작다면(바이트 하나, 16비트 인덱스 등) `table[x] = f(x)`를 미리 채워 두고, 런타임에는 `f(x)`를 재계산하는 대신 `table[x]`를 읽기만 하면 됩니다. 문제는 이 읽기가 공짜가 아니라는 점입니다. 테이블이 L1 데이터 캐시(대개 32~48KB)에 상주한다면 접근은 수 cycle 안에 끝나지만, 테이블이 L1을 벗어나 L2(수백 KB~1MB급)나 LLC(수 MB급)까지 밀려나면 접근 지연은 수십에서 수백 cycle로 늘어나고, 캐시 밖 DRAM까지 나가면 수십~수백 ns가 추가됩니다. 정확한 지연 수치는 마이크로아키텍처·클럭·메모리 구성에 따라 달라지는 구현 정의 영역이므로, 이 장에서는 상대적 크기 관계만 다루고 절대 수치는 [Tr.05 CPU 마이크로아키텍처 트랙](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/)의 측정 방법으로 직접 확인하는 것을 전제로 합니다.
 
 아래 다이어그램은 이 판단 흐름을 정리한 것입니다. 연산 비용이 메모리 접근보다 충분히 클 때만 LUT로 옮기는 것이 이득이고, 그다음에는 테이블이 상위 캐시에 상주하는지가 실제 승패를 가릅니다.
 

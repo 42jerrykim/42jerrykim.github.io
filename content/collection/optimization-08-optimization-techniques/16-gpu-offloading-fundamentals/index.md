@@ -50,7 +50,7 @@ tags:
 
 ## 이 장을 읽기 전에
 
-**완전한 초보자?** 이 장은 [15장: Cache-oblivious 알고리즘 설계](/post/extreme-optimization/cache-oblivious-algorithm-design/)에서 다룬 "메모리 계층과 캐시 인식 알고리즘" 감각과, [Tr.06 CPU 마이크로아키텍처 인트로](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/)에서 다루는 CPU 실행 모델 기초를 전제로 합니다. 스레드·병렬성·메모리 대역폭이라는 개념만 알면 충분합니다.
+**완전한 초보자?** 이 장은 [15장: Cache-oblivious 알고리즘 설계](/post/extreme-optimization/cache-oblivious-algorithm-design/)에서 다룬 "메모리 계층과 캐시 인식 알고리즘" 감각과, [Tr.05 CPU 마이크로아키텍처 인트로](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/)에서 다루는 CPU 실행 모델 기초를 전제로 합니다. 스레드·병렬성·메모리 대역폭이라는 개념만 알면 충분합니다.
 
 **이 장의 깊이**: 이 장은 **심화** 수준으로, CUDA/OpenCL/SYCL의 프로그래밍 모델 개념과 PCIe/NVLink 기반 데이터 전송 비용, 오프로딩 적용 판단 기준을 다룹니다. **다루지 않는 것**: CPU 측 SIMD 벡터화는 [01장](/post/extreme-optimization/simd-fundamentals-sse-avx/), [12장](/post/extreme-optimization/arm-neon-simd-optimization/), [13장](/post/extreme-optimization/portable-simd-libraries-highway-xsimd/)에서 이미 다뤘으므로 여기서는 반복하지 않습니다. CUDA 커널 내부의 occupancy 튜닝·warp divergence·메모리 coalescing 같은 GPU 커널 최적화 세부 기법과 다중 GPU 스케일링, AI 추론 전용 NPU/Tensor Core·양자화는 [17장: AI 추론 최적화](/post/extreme-optimization/ai-inference-latency-optimization-npu-quantization/)로 넘깁니다.
 

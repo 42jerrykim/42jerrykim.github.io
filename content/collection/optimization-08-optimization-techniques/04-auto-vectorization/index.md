@@ -49,7 +49,7 @@ tags:
 
 ## 이 장을 읽기 전에
 
-**전제 지식**: [01장: SIMD 기초](/post/extreme-optimization/simd-fundamentals-sse-avx/)에서 다룬 SIMD 레지스터·레인(lane) 개념과, Tr.02 [컴파일러·빌드 최적화 인트로](/post/compiler-optimization/getting-started-compiler-build-performance-tuning/)에서 다룬 최적화 레벨(`-O2`/`-O3`)의 의미를 안다고 가정합니다. 어셈블리를 눈으로 읽을 필요는 없지만, 벡터화 리포트에 나오는 "vectorized loop" 같은 문구를 컴파일러 출력으로 다뤄 본 경험이 있으면 좋습니다.
+**전제 지식**: [01장: SIMD 기초](/post/extreme-optimization/simd-fundamentals-sse-avx/)에서 다룬 SIMD 레지스터·레인(lane) 개념과, Tr.03 [컴파일러·빌드 최적화 인트로](/post/compiler-optimization/getting-started-compiler-build-performance-tuning/)에서 다룬 최적화 레벨(`-O2`/`-O3`)의 의미를 안다고 가정합니다. 어셈블리를 눈으로 읽을 필요는 없지만, 벡터화 리포트에 나오는 "vectorized loop" 같은 문구를 컴파일러 출력으로 다뤄 본 경험이 있으면 좋습니다.
 
 **이 장의 깊이**: 이 장은 **중급** 난이도로, 자동 벡터화가 요구하는 루프 형태·벡터화 리포트 읽는 법·자주 하는 오해 교정까지를 다룹니다. **다루지 않는 것**: SIMD 명령어 자체의 동작 원리(→ [01장](/post/extreme-optimization/simd-fundamentals-sse-avx/)), intrinsics를 손으로 쓰는 방법(→ [02장](/post/extreme-optimization/simd-intrinsics-practical-usage/)), AVX-512 전용 마스크·임베디드 반올림 등 명령어 집합별 세부(→ [03장](/post/extreme-optimization/avx512-avx10-optimization/)), 분기 제거 기법 자체(→ [06장](/post/extreme-optimization/branchless-programming-techniques/)), 포터블 SIMD 라이브러리(→ [13장](/post/extreme-optimization/portable-simd-libraries-highway-xsimd/))입니다. 이 장은 그 앞 단계, 즉 "손대기 전에 컴파일러에게 먼저 맡겨 보는" 판단을 다룹니다.
 
@@ -170,7 +170,7 @@ clang++ -O2 -Rpass=loop-vectorize -Rpass-missed=loop-vectorize \
         -Rpass-analysis=loop-vectorize -c loop.cpp -o /dev/null
 ```
 
-`add_plain`처럼 별칭 가능성이 남은 함수를 이 옵션으로 컴파일하면 "vectorized loop"가 아니라 "loop not vectorized: cannot prove pointers refer to disjoint arrays" 계열의 메시지가 나오는 것이 전형적입니다. 이 메시지가 나오면 앞 절의 `__restrict` 패턴을 적용하고 다시 컴파일해, 메시지가 "vectorized loop"로 바뀌는지 확인합니다. Tr.02의 [컴파일러 intrinsics 카탈로그](/post/compiler-optimization/compiler-intrinsics-catalog/)에는 컴파일러가 최종적으로 어떤 intrinsics로 벡터 연산을 내보내는지까지 연결되어 있어, 리포트만으로 부족할 때 생성된 어셈블리를 함께 대조하면 도움이 됩니다.
+`add_plain`처럼 별칭 가능성이 남은 함수를 이 옵션으로 컴파일하면 "vectorized loop"가 아니라 "loop not vectorized: cannot prove pointers refer to disjoint arrays" 계열의 메시지가 나오는 것이 전형적입니다. 이 메시지가 나오면 앞 절의 `__restrict` 패턴을 적용하고 다시 컴파일해, 메시지가 "vectorized loop"로 바뀌는지 확인합니다. Tr.03의 [컴파일러 intrinsics 카탈로그](/post/compiler-optimization/compiler-intrinsics-catalog/)에는 컴파일러가 최종적으로 어떤 intrinsics로 벡터 연산을 내보내는지까지 연결되어 있어, 리포트만으로 부족할 때 생성된 어셈블리를 함께 대조하면 도움이 됩니다.
 
 리포트가 "vectorized"라고 확인해 주는 것은 **컴파일이 벡터 명령을 냈다는 사실**이지 **실제로 더 빨라졌다는 보장**은 아닙니다. 아래는 `add_plain`과 `add_restrict`를 같은 입력으로 반복 호출해 실측하는 Google Benchmark 스켈레톤입니다(x86-64, GCC 13 이상 또는 Clang 17 이상, `-O2 -march=native` 기준 예시이며 실제 배율은 배열 크기·정렬·타겟 아키텍처에 따라 달라집니다).
 

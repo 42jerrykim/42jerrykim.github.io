@@ -42,9 +42,9 @@ tags:
 
 ## 이 장을 읽기 전에
 
-**전제 지식**: 이 장은 [Tr.06 CPU 마이크로아키텍처 트랙](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/)에서 다루는 캐시 계층(L1/L2/L3) 구조와 캐시 미스 개념, 그리고 분할 정복 알고리즘의 재귀 호출 비용 감각을 전제로 합니다. 캐시 라인이 무엇인지, 순차 접근이 왜 빠른지 모른다면 [Tr.03 캐시 친화적 접근 패턴](/post/memory-optimization/cache-friendly-access-patterns/)을 먼저 읽는 편이 좋습니다.
+**전제 지식**: 이 장은 [Tr.05 CPU 마이크로아키텍처 트랙](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/)에서 다루는 캐시 계층(L1/L2/L3) 구조와 캐시 미스 개념, 그리고 분할 정복 알고리즘의 재귀 호출 비용 감각을 전제로 합니다. 캐시 라인이 무엇인지, 순차 접근이 왜 빠른지 모른다면 [Tr.04 캐시 친화적 접근 패턴](/post/memory-optimization/cache-friendly-access-patterns/)을 먼저 읽는 편이 좋습니다.
 
-**이 장의 깊이**: 이 장은 **전문** 난이도입니다. ideal-cache 모델의 정의와 tall cache assumption, 분할 정복이 캐시 계층에 자동으로 적응하는 원리, 대표 자료구조(van Emde Boas 레이아웃, cache-oblivious B-tree)까지 다룹니다. **다루지 않는 것**: 캐시 크기를 명시적으로 아는 상태에서 블록 크기를 튜닝하는 loop tiling의 세부 구현(→ [Tr.03 캐시 친화적 접근 패턴](/post/memory-optimization/cache-friendly-access-patterns/)), SIMD 벡터화 자체(→ [01장](/post/extreme-optimization/simd-fundamentals-sse-avx/), [04장](/post/extreme-optimization/auto-vectorization-guidance-verification/)), GPU 메모리 계층(→ [16장](/post/extreme-optimization/gpu-offloading-cuda-opencl-sycl-fundamentals/))입니다.
+**이 장의 깊이**: 이 장은 **전문** 난이도입니다. ideal-cache 모델의 정의와 tall cache assumption, 분할 정복이 캐시 계층에 자동으로 적응하는 원리, 대표 자료구조(van Emde Boas 레이아웃, cache-oblivious B-tree)까지 다룹니다. **다루지 않는 것**: 캐시 크기를 명시적으로 아는 상태에서 블록 크기를 튜닝하는 loop tiling의 세부 구현(→ [Tr.04 캐시 친화적 접근 패턴](/post/memory-optimization/cache-friendly-access-patterns/)), SIMD 벡터화 자체(→ [01장](/post/extreme-optimization/simd-fundamentals-sse-avx/), [04장](/post/extreme-optimization/auto-vectorization-guidance-verification/)), GPU 메모리 계층(→ [16장](/post/extreme-optimization/gpu-offloading-cuda-opencl-sycl-fundamentals/))입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -145,7 +145,7 @@ BENCHMARK_MAIN();
 
 ## Cache-oblivious와 cache-aware의 차이
 
-두 접근은 목표가 같습니다(캐시 미스를 줄이는 것). 차이는 그 목표를 코드에 어떻게 반영하느냐에 있습니다. cache-aware 방식의 대표 사례인 루프 타일링(loop tiling)은 [Tr.03 캐시 친화적 접근 패턴](/post/memory-optimization/cache-friendly-access-patterns/)에서 다루는 것처럼, 목표 캐시 레벨의 크기를 알고 그에 맞춰 블록 크기 상수를 코드에 박아 넣습니다. cache-oblivious 방식은 그 상수 자체를 없애고 재귀 깊이가 모든 레벨을 대신 커버하게 만듭니다.
+두 접근은 목표가 같습니다(캐시 미스를 줄이는 것). 차이는 그 목표를 코드에 어떻게 반영하느냐에 있습니다. cache-aware 방식의 대표 사례인 루프 타일링(loop tiling)은 [Tr.04 캐시 친화적 접근 패턴](/post/memory-optimization/cache-friendly-access-patterns/)에서 다루는 것처럼, 목표 캐시 레벨의 크기를 알고 그에 맞춰 블록 크기 상수를 코드에 박아 넣습니다. cache-oblivious 방식은 그 상수 자체를 없애고 재귀 깊이가 모든 레벨을 대신 커버하게 만듭니다.
 
 | 항목 | Cache-aware (루프 타일링) | Cache-oblivious |
 |------|--------------------------|-----------------|

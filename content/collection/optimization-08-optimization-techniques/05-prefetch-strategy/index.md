@@ -40,7 +40,7 @@ tags:
 
 ## 이 장을 읽기 전에
 
-이 장은 [자동 벡터화 유도와 검증](/post/extreme-optimization/auto-vectorization-guidance-verification/)에서 다룬 "컴파일러가 이미 하는 일과 사람이 개입해야 하는 일을 구분한다"는 태도를 그대로 이어받습니다. 캐시 라인 크기, L1/L2/L3 계층 구조, 배열의 순차 접근이 왜 빠른지에 대한 기본 감각이 있다면 충분하며, 필요하면 [Tr.03 캐시 친화적 접근 패턴](/post/memory-optimization/cache-friendly-access-patterns/)을 먼저 읽는 것이 도움이 됩니다. 이 장의 깊이는 **심화**입니다: `_mm_prefetch`/`__builtin_prefetch`의 힌트 레벨, 프리페치 거리 계산, 하드웨어 프리페처와의 상호작용까지 다룹니다. **다루지 않는 것**은 하드웨어 프리페처 자체를 MSR·BIOS 설정으로 끄거나 조정하는 방법([Tr.06 CPU 마이크로아키텍처](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/) 영역), 그리고 캐시 배치 자체를 바꾸는 자료구조 재설계([Cache-oblivious 알고리즘 설계](/post/extreme-optimization/cache-oblivious-algorithm-design/))입니다.
+이 장은 [자동 벡터화 유도와 검증](/post/extreme-optimization/auto-vectorization-guidance-verification/)에서 다룬 "컴파일러가 이미 하는 일과 사람이 개입해야 하는 일을 구분한다"는 태도를 그대로 이어받습니다. 캐시 라인 크기, L1/L2/L3 계층 구조, 배열의 순차 접근이 왜 빠른지에 대한 기본 감각이 있다면 충분하며, 필요하면 [Tr.04 캐시 친화적 접근 패턴](/post/memory-optimization/cache-friendly-access-patterns/)을 먼저 읽는 것이 도움이 됩니다. 이 장의 깊이는 **심화**입니다: `_mm_prefetch`/`__builtin_prefetch`의 힌트 레벨, 프리페치 거리 계산, 하드웨어 프리페처와의 상호작용까지 다룹니다. **다루지 않는 것**은 하드웨어 프리페처 자체를 MSR·BIOS 설정으로 끄거나 조정하는 방법([Tr.05 CPU 마이크로아키텍처](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/) 영역), 그리고 캐시 배치 자체를 바꾸는 자료구조 재설계([Cache-oblivious 알고리즘 설계](/post/extreme-optimization/cache-oblivious-algorithm-design/))입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -54,7 +54,7 @@ tags:
 
 ## 프리페치 명령어의 등장 배경
 
-**PREFETCHh** 계열 명령(`PREFETCHT0`, `PREFETCHT1`, `PREFETCHT2`, `PREFETCHNTA`)은 1999년 Intel Pentium III의 SSE(Streaming SIMD Extensions)와 함께 x86에 추가되었습니다. 당시 목표는 명확했습니다 — 컴파일러가 접근 패턴을 정적으로 알 수 있는 루프(배열 순회, 행렬 연산)에서, 프로그래머나 컴파일러가 실제 로드보다 몇 회전 앞서 프리페치 명령을 넣어 메모리 지연시간을 계산과 겹치게 하는 것입니다. GCC는 이를 [`__builtin_prefetch`](https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html)라는 컴파일러 내장 함수로 감싸 x86 외 타깃(ARM의 `PLD`/`PLDW` 등)에도 이식 가능하게 만들었고, MSVC와 Clang은 `<xmmintrin.h>`의 `_mm_prefetch`로 x86 인트린식을 직접 노출합니다. 두 인터페이스 모두 "힌트"이지 명령이 아니라는 점은 동일합니다 — CPU는 이를 무시할 수 있고, 실제 프리페치 여부와 깊이는 마이크로아키텍처 구현에 달려 있습니다. 컴파일러별 인트린식 대응표는 [Tr.02 컴파일러 intrinsics 카탈로그](/post/compiler-optimization/compiler-intrinsics-catalog/)에서 확인할 수 있습니다.
+**PREFETCHh** 계열 명령(`PREFETCHT0`, `PREFETCHT1`, `PREFETCHT2`, `PREFETCHNTA`)은 1999년 Intel Pentium III의 SSE(Streaming SIMD Extensions)와 함께 x86에 추가되었습니다. 당시 목표는 명확했습니다 — 컴파일러가 접근 패턴을 정적으로 알 수 있는 루프(배열 순회, 행렬 연산)에서, 프로그래머나 컴파일러가 실제 로드보다 몇 회전 앞서 프리페치 명령을 넣어 메모리 지연시간을 계산과 겹치게 하는 것입니다. GCC는 이를 [`__builtin_prefetch`](https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html)라는 컴파일러 내장 함수로 감싸 x86 외 타깃(ARM의 `PLD`/`PLDW` 등)에도 이식 가능하게 만들었고, MSVC와 Clang은 `<xmmintrin.h>`의 `_mm_prefetch`로 x86 인트린식을 직접 노출합니다. 두 인터페이스 모두 "힌트"이지 명령이 아니라는 점은 동일합니다 — CPU는 이를 무시할 수 있고, 실제 프리페치 여부와 깊이는 마이크로아키텍처 구현에 달려 있습니다. 컴파일러별 인트린식 대응표는 [Tr.03 컴파일러 intrinsics 카탈로그](/post/compiler-optimization/compiler-intrinsics-catalog/)에서 확인할 수 있습니다.
 
 ## 하드웨어 프리페처의 동작 원리
 
@@ -194,7 +194,7 @@ BENCHMARK(BM_WithPrefetch)->Arg(1)->Arg(4)->Arg(16)->Arg(64);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 -march=native bench.cpp -lbenchmark -lpthread`로 빌드해 실행합니다(x86-64, GCC 13 기준 예시 환경). 노드 1M개, 8바이트 정수 `value` 기준으로는 `distance=4~16` 구간에서 `BM_NoPrefetch` 대비 개선이 나타나고, `distance`가 지나치게 커지면(예: 64 이상, 리스트 길이 대비 상대적으로) 개선 폭이 줄어들거나 역전되는 경우가 흔합니다 — 정확한 배율과 최적 거리는 메모리 컨트롤러·DRAM 세대·NUMA 구성에 따라 달라지므로 반드시 대상 플랫폼에서 재현합니다. `__builtin_prefetch`는 GCC/Clang 전용 내장 함수이므로 MSVC에서는 `_mm_prefetch`로 바꿔야 하며, 이런 컴파일러별 차이는 [Tr.02 컴파일러 intrinsics 카탈로그](/post/compiler-optimization/compiler-intrinsics-catalog/)에서 대응표로 확인할 수 있습니다.
+`g++ -O2 -march=native bench.cpp -lbenchmark -lpthread`로 빌드해 실행합니다(x86-64, GCC 13 기준 예시 환경). 노드 1M개, 8바이트 정수 `value` 기준으로는 `distance=4~16` 구간에서 `BM_NoPrefetch` 대비 개선이 나타나고, `distance`가 지나치게 커지면(예: 64 이상, 리스트 길이 대비 상대적으로) 개선 폭이 줄어들거나 역전되는 경우가 흔합니다 — 정확한 배율과 최적 거리는 메모리 컨트롤러·DRAM 세대·NUMA 구성에 따라 달라지므로 반드시 대상 플랫폼에서 재현합니다. `__builtin_prefetch`는 GCC/Clang 전용 내장 함수이므로 MSVC에서는 `_mm_prefetch`로 바꿔야 하며, 이런 컴파일러별 차이는 [Tr.03 컴파일러 intrinsics 카탈로그](/post/compiler-optimization/compiler-intrinsics-catalog/)에서 대응표로 확인할 수 있습니다.
 
 ## 하드웨어 프리페처와의 상호작용
 

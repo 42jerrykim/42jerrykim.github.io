@@ -49,7 +49,7 @@ tags:
 
 ## 이 장을 읽기 전에
 
-이 장은 이 트랙의 개별 기법 장들, 특히 [SIMD 기초](/post/extreme-optimization/simd-fundamentals-sse-avx/), [Prefetch 전략과 적용 판단](/post/extreme-optimization/software-prefetch-strategy/), [Branchless 프로그래밍 기법](/post/extreme-optimization/branchless-programming-techniques/), [Hand-written 어셈블리 적용과 위험 관리](/post/extreme-optimization/hand-written-assembly-risk-management/), [Lookup Table 최적화](/post/extreme-optimization/lookup-table-optimization-techniques/), [비트 조작 최적화 기법](/post/extreme-optimization/bit-manipulation-optimization-techniques/)을 이미 읽었다고 가정합니다. 각 기법이 왜, 어떻게 동작하는지는 해당 장에서 다뤘으므로 여기서는 반복하지 않고, "이미 아는 여러 기법을 하나의 핫패스에 합쳤을 때 무엇을 측정하고 어떻게 각각의 몫을 갚아 오는가"에만 집중합니다. 측정 결과를 해석하려면 [Tr.05 프로파일링 인트로](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)의 기본 도구(perf, 마이크로벤치마크)와 [Tr.06 CPU 마이크로아키텍처 인트로](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/)의 파이프라인·캐시 개념이 필요합니다. **이 장의 깊이**는 **전문** 수준이며, **다루지 않는 것**은 GPU/NPU 기반 사례([16](/post/extreme-optimization/gpu-offloading-cuda-opencl-sycl-fundamentals/), [17](/post/extreme-optimization/ai-inference-latency-optimization-npu-quantization/)의 몫), 캐시 크기와 무관한 알고리즘 재설계([Cache-oblivious 알고리즘 설계](/post/extreme-optimization/cache-oblivious-algorithm-design/)), 그리고 hand-written 어셈블리 자체의 위험 관리 절차([07장](/post/extreme-optimization/hand-written-assembly-risk-management/)에 위임)입니다.
+이 장은 이 트랙의 개별 기법 장들, 특히 [SIMD 기초](/post/extreme-optimization/simd-fundamentals-sse-avx/), [Prefetch 전략과 적용 판단](/post/extreme-optimization/software-prefetch-strategy/), [Branchless 프로그래밍 기법](/post/extreme-optimization/branchless-programming-techniques/), [Hand-written 어셈블리 적용과 위험 관리](/post/extreme-optimization/hand-written-assembly-risk-management/), [Lookup Table 최적화](/post/extreme-optimization/lookup-table-optimization-techniques/), [비트 조작 최적화 기법](/post/extreme-optimization/bit-manipulation-optimization-techniques/)을 이미 읽었다고 가정합니다. 각 기법이 왜, 어떻게 동작하는지는 해당 장에서 다뤘으므로 여기서는 반복하지 않고, "이미 아는 여러 기법을 하나의 핫패스에 합쳤을 때 무엇을 측정하고 어떻게 각각의 몫을 갚아 오는가"에만 집중합니다. 측정 결과를 해석하려면 [Tr.01 프로파일링 인트로](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)의 기본 도구(perf, 마이크로벤치마크)와 [Tr.05 CPU 마이크로아키텍처 인트로](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/)의 파이프라인·캐시 개념이 필요합니다. **이 장의 깊이**는 **전문** 수준이며, **다루지 않는 것**은 GPU/NPU 기반 사례([16](/post/extreme-optimization/gpu-offloading-cuda-opencl-sycl-fundamentals/), [17](/post/extreme-optimization/ai-inference-latency-optimization-npu-quantization/)의 몫), 캐시 크기와 무관한 알고리즘 재설계([Cache-oblivious 알고리즘 설계](/post/extreme-optimization/cache-oblivious-algorithm-design/)), 그리고 hand-written 어셈블리 자체의 위험 관리 절차([07장](/post/extreme-optimization/hand-written-assembly-risk-management/)에 위임)입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -215,7 +215,7 @@ BENCHMARK_MAIN();
 
 **"사다리에 기법을 쌓는 순서는 결과에 영향을 주지 않는다"**도 사실이 아닙니다. 먼저 얹은 기법이 이미 병목의 상당 부분을 없애 버리면, 뒤에 얹은 기법이 측정하는 "개선폭"은 원래의 몫이 아니라 앞 기법이 남겨 둔 나머지일 뿐입니다. 두 기법의 진짜 기여도를 알려면 순서를 바꿔서도 측정하거나, 최소한 leave-one-out으로 대조해야 합니다.
 
-**"마이크로벤치마크에서 확인한 개선폭은 운영 환경의 p99 지연시간에도 그대로 반영된다"**는 것도 흔한 착각입니다. 마이크로벤치마크는 대개 캐시가 예열된 상태에서, 다른 스레드·다른 코드 경로의 간섭 없이 실행됩니다. 실제 운영 환경에서는 인접한 코드가 같은 캐시 라인·같은 분기 예측기 히스토리 테이블을 공유하므로, 격리된 벤치마크에서 확인한 개선이 [Tr.05 프로파일링](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/) 방법으로 실제 배포 환경의 p99까지 이어지는지 별도로 검증해야 합니다.
+**"마이크로벤치마크에서 확인한 개선폭은 운영 환경의 p99 지연시간에도 그대로 반영된다"**는 것도 흔한 착각입니다. 마이크로벤치마크는 대개 캐시가 예열된 상태에서, 다른 스레드·다른 코드 경로의 간섭 없이 실행됩니다. 실제 운영 환경에서는 인접한 코드가 같은 캐시 라인·같은 분기 예측기 히스토리 테이블을 공유하므로, 격리된 벤치마크에서 확인한 개선이 [Tr.01 프로파일링](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/) 방법으로 실제 배포 환경의 p99까지 이어지는지 별도로 검증해야 합니다.
 
 ## 판단 기준
 
@@ -224,7 +224,7 @@ BENCHMARK_MAIN();
 | 두 기법이 서로 다른 병목을 겨냥(분기 vs 메모리)하고 각각 검증됨 | 순차 적용 후 결합 측정으로 가산성만 확인 | 개별 벤치마크 숫자를 더해 결합 효과라고 보고 |
 | 두 기법이 같은 자원을 두고 경쟁할 가능성이 있음(포트 압박, L1 용량) | leave-one-out으로 상호작용 명시적 확인 | 순서 하나만 측정하고 종료 |
 | 기법이 4개 이상으로 늘어나 완전 요인 조합이 비현실적 | 의심되는 한두 쌍만 leave-one-out, 나머지는 사다리 순서로 | 2^n 조합 전수 조사 시도 |
-| 마이크로벤치마크 개선폭이 운영 p99에 반영되는지 불확실 | Tr.05 방법으로 배포 환경에서 재검증 | 벤치마크 숫자만으로 배포 승인 |
+| 마이크로벤치마크 개선폭이 운영 p99에 반영되는지 불확실 | Tr.01 방법으로 배포 환경에서 재검증 | 벤치마크 숫자만으로 배포 승인 |
 | 기법을 더할수록 복잡성·리뷰 비용이 급격히 증가 | [11장 유지보수성 균형](/post/extreme-optimization/extreme-optimization-maintainability-balance/) 기준으로 예산 판단 | 성능 숫자만으로 무조건 채택 |
 
 ### 자주 하는 실수
