@@ -1,10 +1,10 @@
 ---
 title: "[OOAD] 01. 객체지향 패러다임의 본질과 철학"
-description: "객체지향은 클래스 문법이 아니라 ‘변화에 대응하는 모델링 방식’입니다. 객체·책임·협력·메시지 관점으로 절차적 사고를 전환하고, 현대 개발에서 OO가 유효한 이유와 한계를 함께 정리합니다."
+description: "객체지향은 클래스 문법이 아니라 ‘변화에 대응하는 모델링 방식’입니다. 객체·책임·협력·메시지 관점으로 절차적 사고를 전환하고, Alan Kay의 관점과 현대 개발에서 OO가 유효한 이유와 한계까지 함께 정리합니다."
 date: 2026-01-17
 lastmod: 2026-01-17
 collection_order: 1
-draft: true
+draft: false
 image: "wordcloud.png"
 tags:
   - OOP(객체지향)
@@ -26,6 +26,12 @@ tags:
   - Domain-Driven-Design
   - Microservices(마이크로서비스)
   - Event-Driven
+  - Composition(합성)
+  - Interface(인터페이스)
+  - Design-Pattern(디자인패턴)
+  - Best-Practices
+  - Documentation(문서화)
+  - Maintainability
 ---
 
 # 01. 객체지향 패러다임의 본질과 철학

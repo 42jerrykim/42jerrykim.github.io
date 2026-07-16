@@ -1,10 +1,10 @@
 ---
 title: "[OOAD] 03. 객체지향 4대 원칙 심층 분석"
-description: "추상화·캡슐화·상속·다형성을 ‘문법’이 아닌 ‘설계 선택’으로 재정의합니다. 원칙을 적용해야 할 신호와 남용 시 안티패턴을 Before/After 예제로 비교해, 실무에서 판단 기준을 갖게 합니다."
+description: "추상화·캡슐화·상속·다형성을 ‘문법’이 아닌 ‘설계 선택’으로 재정의합니다. 원칙을 적용해야 할 신호와 남용 시 나타나는 안티패턴을 Before/After 코드 예제로 비교해, 실무에서 바로 쓰는 판단 기준을 갖게 합니다."
 date: 2026-01-17
 lastmod: 2026-01-17
 collection_order: 3
-draft: true
+draft: false
 image: "wordcloud.png"
 tags:
   - OOP(객체지향)
@@ -17,7 +17,7 @@ tags:
   - Cohesion(응집도)
   - Coupling(결합도)
   - Composition(합성)
-  - Combinatorics(조합론)
+  - Strategy
   - SOLID
   - Refactoring(리팩토링)
   - Testing(테스트)
@@ -29,6 +29,8 @@ tags:
   - UML(Unified Modeling Language)
   - TDD(Test-Driven Development)
   - Microservices(마이크로서비스)
+  - Best-Practices
+  - Maintainability
 ---
 
 # 03. 객체지향 4대 원칙 심층 분석

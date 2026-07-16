@@ -4,7 +4,7 @@ description: "정적 모델이 ‘구조’를 보여준다면 동적 모델은 
 date: 2026-01-17
 lastmod: 2026-01-17
 collection_order: 8
-draft: true
+draft: false
 image: "wordcloud.png"
 tags:
   - UML(Unified Modeling Language)
@@ -21,6 +21,16 @@ tags:
   - Microservices(마이크로서비스)
   - Clean-Architecture(클린아키텍처)
   - Refactoring(리팩토링)
+  - Event-Driven
+  - Reliability
+  - System-Design
+  - Best-Practices
+  - Code-Quality(코드품질)
+  - Documentation(문서화)
+  - Domain(도메인)
+  - Concurrency(동시성)
+  - Async(비동기)
+  - Interface(인터페이스)
 ---
 
 # 08. 동적 모델링: 시퀀스와 상태 다이어그램
@@ -135,6 +145,12 @@ stateDiagram-v2
 - 시퀀스는 협력과 예외 흐름을 검증한다.
 - 상태 머신은 규칙과 생명주기를 고정한다.
 - 성공보다 실패/지연을 먼저 모델링하라.
+
+## 참고 문헌 및 출처(추천)
+
+- David Harel, "Statecharts: A Visual Formalism for Complex Systems"(Science of Computer Programming, 1987) — UML 상태 다이어그램 표기법의 이론적 기원
+- Object Management Group(OMG), 『Unified Modeling Language Specification』 — 시퀀스/상태 다이어그램 공식 표기 정의
+- Martin Fowler, 『UML Distilled』(3판, 2003) — 시퀀스 다이어그램의 실무적 활용
 
 ---
 

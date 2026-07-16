@@ -1,22 +1,37 @@
 ---
 title: "[OOAD] 05. 요구사항 분석과 도메인 모델링"
-description: "좋은 설계는 좋은 요구사항에서 시작합니다. 인터뷰/워크숍/문서 분석으로 요구를 수집하고, 유비쿼터스 언어로 개념을 정제해 도메인 모델(개념 클래스/관계/규칙)을 만드는 실무 프로세스를 제공합니다."
+description: "좋은 설계는 좋은 요구사항에서 시작합니다. 인터뷰/워크숍/문서 분석으로 요구를 수집하고, 유비쿼터스 언어로 개념을 정제해 CRC 카드와 이벤트 스토밍으로 도메인 모델(개념/관계/규칙)을 만드는 실무 프로세스를 제공합니다."
 date: 2026-01-17
 lastmod: 2026-01-17
 collection_order: 5
-draft: true
+draft: false
 image: "wordcloud.png"
 tags:
   - Software-Architecture(소프트웨어아키텍처)
-  - Nuance(뉘앙스)
+  - Domain(도메인)
   - Command
-  - Security(보안)
+  - Requirement-Analysis
   - OOP(객체지향)
   - UML(Unified Modeling Language)
   - Domain-Driven-Design
   - Clean-Architecture(클린아키텍처)
   - Refactoring(리팩토링)
   - Testing(테스트)
+  - Documentation(문서화)
+  - Best-Practices
+  - Code-Quality(코드품질)
+  - Event-Driven
+  - 요구사항-분석
+  - 도메인-모델
+  - 유비쿼터스언어
+  - CRC카드
+  - 이벤트스토밍
+  - Interface(인터페이스)
+  - Composition(합성)
+  - Abstraction(추상화)
+  - Maintainability
+  - Modularity
+  - Domain-Modeling
 ---
 
 # 05. 요구사항 분석과 도메인 모델링
@@ -148,6 +163,12 @@ flowchart LR
 - 요구사항의 품질이 설계의 품질을 결정한다.
 - 도메인 모델은 개념+관계+규칙이다.
 - CRC/이벤트 스토밍/시나리오 검증으로 빠르게 정제한다.
+
+## 참고 문헌 및 출처(추천)
+
+- Kent Beck, Ward Cunningham, "A Laboratory For Teaching Object-Oriented Thinking"(OOPSLA, 1989) — CRC 카드 원전
+- Alberto Brandolini, 『Introducing EventStorming』(2021) — 이벤트 스토밍 창시자의 정리
+- Dai Clegg가 1994년 고안했다고 알려진 MoSCoW 우선순위 기법(DSDM 방법론에서 정리)
 
 ---
 

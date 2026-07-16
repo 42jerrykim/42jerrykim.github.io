@@ -1,10 +1,10 @@
 ---
 title: "[OOAD] 02. 분석과 설계의 핵심 개념"
-description: "분석은 ‘무엇(What)’을, 설계는 ‘어떻게(How)’를 다룹니다. 요구사항→도메인 모델→설계 모델로 이어지는 변환을 예제로 따라가며 추적가능성, 일관성, 검증가능성을 실무 체크리스트로 정리합니다."
+description: "분석은 ‘무엇(What)’을, 설계는 ‘어떻게(How)’를 다룹니다. 요구사항→도메인 모델→설계 모델로 이어지는 변환을 주문 생성 예제로 따라가며, 추적가능성·일관성·검증가능성까지 실무 체크리스트와 함께 정리합니다."
 date: 2026-01-17
 lastmod: 2026-01-17
 collection_order: 2
-draft: true
+draft: false
 image: "wordcloud.png"
 tags:
   - OOP(객체지향)
@@ -20,6 +20,17 @@ tags:
   - Testing(테스트)
   - Refactoring(리팩토링)
   - Documentation(문서화)
+  - Interface(인터페이스)
+  - Composition(합성)
+  - Requirement-Analysis
+  - 요구사항-분석
+  - Domain-Modeling
+  - 도메인-모델
+  - Traceability
+  - Best-Practices
+  - Code-Quality(코드품질)
+  - System-Design
+  - Maintainability
 ---
 
 # 02. 분석과 설계의 핵심 개념

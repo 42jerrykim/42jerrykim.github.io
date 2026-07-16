@@ -1,10 +1,10 @@
 ---
 title: "[OOAD] 07. 클래스 다이어그램과 관계 모델링"
-description: "클래스 다이어그램은 ‘클래스 그림’이 아니라 관계와 경계를 검증하는 도구입니다. 연관/집합/합성/일반화/실현의 의미를 실무 예제로 구분하고, 다중성·생명주기·의존성 방향까지 포함해 모델 품질을 높입니다."
+description: "클래스 다이어그램은 ‘클래스 그림’이 아니라 관계와 경계를 검증하는 도구입니다. 연관/집합/합성/일반화/실현의 의미를 실무 예제로 구분하고, 다중성·생명주기·의존성 방향까지 포함해 모델 품질을 높이는 방법을 다룹니다."
 date: 2026-01-17
 lastmod: 2026-01-17
 collection_order: 7
-draft: true
+draft: false
 image: "wordcloud.png"
 tags:
   - UML(Unified Modeling Language)
@@ -22,6 +22,15 @@ tags:
   - Refactoring(리팩토링)
   - Testing(테스트)
   - Documentation(문서화)
+  - Aggregation
+  - Domain(도메인)
+  - Best-Practices
+  - Code-Quality(코드품질)
+  - Maintainability
+  - Design-Pattern(디자인패턴)
+  - Factory
+  - Adapter
+  - Domain-Driven-Design
 ---
 
 # 07. 클래스 다이어그램과 관계 모델링
@@ -134,6 +143,12 @@ classDiagram
 - 클래스 다이어그램의 핵심은 관계/경계/의존성 검증이다.
 - 합성은 소유/생명주기, 연관은 참조다.
 - 다중성은 구현이 아니라 규칙이다.
+
+## 참고 문헌 및 출처(추천)
+
+- Object Management Group(OMG), 『Unified Modeling Language Specification』 — 연관/집합/합성/일반화/실현 표기의 공식 정의
+- Martin Fowler, 『UML Distilled』(초판 1997, 3판 2003) — 실무 관점의 UML 관계 해석
+- Grady Booch, 『Object-Oriented Analysis and Design with Applications』 — 관계 모델링과 생명주기 관점
 
 ---
 

@@ -1,10 +1,10 @@
 ---
 title: "[OOAD] 06. 유스케이스 기반 분석 기법"
-description: "유스케이스는 기능 목록이 아니라 ‘사용자 목표를 달성하는 시나리오’입니다. 액터/경계/기본·대안 흐름을 구조화해 작성하고, 유스케이스에서 시퀀스/클래스/설계로 연결하는 실무 변환법을 제시합니다."
+description: "유스케이스는 기능 목록이 아니라 ‘사용자 목표를 달성하는 시나리오’입니다. 액터/경계/기본·대안 흐름을 구조화해 작성하고, 유스케이스에서 시퀀스·클래스·설계로 연결하는 실무 변환법을 명세서 템플릿과 함께 제시합니다."
 date: 2026-01-17
 lastmod: 2026-01-17
 collection_order: 6
-draft: true
+draft: false
 image: "wordcloud.png"
 tags:
   - Software-Architecture(소프트웨어아키텍처)
@@ -15,6 +15,23 @@ tags:
   - Clean-Architecture(클린아키텍처)
   - Refactoring(리팩토링)
   - Code-Quality(코드품질)
+  - Use-Case
+  - 유스케이스
+  - Interface(인터페이스)
+  - API(Application Programming Interface)
+  - Error-Handling(에러처리)
+  - Best-Practices
+  - Domain(도메인)
+  - Maintainability
+  - Composition(합성)
+  - Abstraction(추상화)
+  - Requirement-Analysis
+  - 액터
+  - 경계제어엔티티
+  - System-Design
+  - Reliability
+  - Modularity
+  - Coupling(결합도)
 ---
 
 # 06. 유스케이스 기반 분석 기법
@@ -149,6 +166,12 @@ sequenceDiagram
 - 유스케이스는 기능 목록이 아니라 목표 중심 시나리오다.
 - 대안/예외 흐름이 설계 품질을 좌우한다.
 - B-C-E 관점과 시퀀스 다이어그램으로 검증하며 설계로 연결한다.
+
+## 참고 문헌 및 출처(추천)
+
+- Ivar Jacobson, 『Object-Oriented Software Engineering: A Use Case Driven Approach』(1992) — 유스케이스 원전
+- Alistair Cockburn, 『Writing Effective Use Cases』(2000) — 기본/대안 흐름 명세 템플릿의 실무 표준
+- Ivar Jacobson, "Object-Oriented Analysis and Design"의 견고성 분석(Robustness Analysis) — Boundary-Control-Entity 관점의 기원
 
 ---
 
