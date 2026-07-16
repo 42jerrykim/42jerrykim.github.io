@@ -31,6 +31,7 @@ tags:
   - Factory
   - Adapter
   - Domain-Driven-Design
+  - System-Design
 ---
 
 # 07. 클래스 다이어그램과 관계 모델링

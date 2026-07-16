@@ -31,6 +31,7 @@ tags:
   - Microservices(마이크로서비스)
   - Best-Practices
   - Maintainability
+  - System-Design
 ---
 
 # 03. 객체지향 4대 원칙 심층 분석
