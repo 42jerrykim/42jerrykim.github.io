@@ -74,28 +74,26 @@ tags:
 
 **난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치). **Tr.NN**은 `optimization-NN-*` 트랙을 가리킵니다. **심화(본 트랙)** 행은 Tr.06에 있는 동일 주제 **개요**를 이어 받습니다.
 
-입문자는 **16 → 01 → 02 → 06 → 10 → 11** 순서로 먼저 읽는 것을 권장합니다. 16은 I/O 지연의 그림을 먼저 잡아 주고, 01~02는 동기/비동기와 이벤트 모델의 차이를 정리하며, 06·10·11은 mmap·Reactor/Proactor·Vectored I/O처럼 이후 심화 챕터의 공통 바닥을 만들어 줍니다.
-
-표 순서는 그대로 두는 편이 더 좋습니다. I/O 트랙은 `03`, `05`, `07`, `12`, `13`, `15`처럼 서로 다른 심화 축을 장 번호 기준으로 참조하는 일이 많아서, 표는 **주제 지도**로 남겨 두고 추천 순서는 **입문자용 진입 경로**로 분리하는 편이 덜 혼란스럽습니다.
+이 트랙은 **번호 순서대로(01 → 17) 읽으면 됩니다.** 01은 I/O 지연의 그림을 먼저 잡아 주고, 02~03은 동기/비동기와 이벤트 모델의 차이를 정리하며, 07·11·12는 mmap·Reactor/Proactor·Vectored I/O처럼 이후 심화 챕터의 공통 바닥을 만들어 줍니다.
 
 | 챕터 | 제목 | 난이도 | 핵심 내용 |
 |------|------|--------|-----------|
-| 01 | I/O 패턴과 비용 | 기초 | 동기/비동기, 블로킹/논블로킹 비용 모델 |
-| 02 | 비동기 I/O 기초 | 중급 | select, poll, epoll, kqueue 비교 |
-| 03 | io_uring 심화 | 심화 | 심화(본 트랙); 개요는 Tr.06; epoll 통합(6.15)·NAPI busy-poll·uring_cmd(NVMe passthrough), PostgreSQL 18 io_uring 통합 사례(트랜잭션 처리량 2.05배) |
-| 04 | IOCP와 Windows I/O | 중급 | Windows IOCP 모델과 최적화 |
-| 05 | Zero-copy 기법 | 심화 | sendfile, splice, copy_file_range 활용 |
-| 06 | Memory-mapped I/O | 중급 | mmap 활용과 주의사항 |
-| 07 | Direct I/O | 심화 | O_DIRECT와 페이지 캐시 바이패스 |
-| 08 | 파일시스템 특성 | 중급 | ext4, XFS, ZFS 등 성능 특성, ext4 단일 블록 원자적 쓰기(6.13+)·XFS FORCEALIGN 기반 atomic writes |
-| 09 | 블록 디바이스 최적화 | 심화 | NVMe, SSD 특성과 I/O 스케줄러, NVMe 2.1 + FDP(Flexible Data Placement, TP4146b)로 쓰기 증폭 완화 |
-| 10 | I/O 멀티플렉싱 패턴 | 중급 | Reactor, Proactor 패턴 구현 |
-| 11 | Vectored I/O | 중급 | readv/writev, preadv2/pwritev2 활용 |
-| 12 | POSIX AIO vs io_uring | 심화 | POSIX AIO와 io_uring 성능 비교 |
-| 13 | Database I/O 패턴 | 심화 | WAL, fsync, 저널링 전략과 성능 영향 |
-| 14 | File Locking 성능 | 중급 | 파일 잠금이 성능에 미치는 영향과 대안 |
-| 15 | 스토리지 스택 커스터마이징 | 전문 | 커널 모듈·특수 FS·벤더 드라이버와의 경계 (운영 리스크·Tr.11 연계) |
-| 16 | I/O 비용 직관 | 기초 | 동기/비동기·블로킹/논블로킹·복사 횟수가 지연에 미치는 그림 잡기 (선행: 챕터 01 전에 읽기 권장) |
+| 01 | I/O 비용 직관 | 기초 | 동기/비동기·블로킹/논블로킹·복사 횟수가 지연에 미치는 그림 잡기 |
+| 02 | I/O 패턴과 비용 | 기초 | 동기/비동기, 블로킹/논블로킹 비용 모델 |
+| 03 | 비동기 I/O 기초 | 중급 | select, poll, epoll, kqueue 비교 |
+| 04 | io_uring 심화 | 심화 | 심화(본 트랙); 개요는 Tr.06; epoll 통합(6.15)·NAPI busy-poll·uring_cmd(NVMe passthrough), PostgreSQL 18 io_uring 통합 사례(트랜잭션 처리량 2.05배) |
+| 05 | IOCP와 Windows I/O | 중급 | Windows IOCP 모델과 최적화 |
+| 06 | Zero-copy 기법 | 심화 | sendfile, splice, copy_file_range 활용 |
+| 07 | Memory-mapped I/O | 중급 | mmap 활용과 주의사항 |
+| 08 | Direct I/O | 심화 | O_DIRECT와 페이지 캐시 바이패스 |
+| 09 | 파일시스템 특성 | 중급 | ext4, XFS, ZFS 등 성능 특성, ext4 단일 블록 원자적 쓰기(6.13+)·XFS FORCEALIGN 기반 atomic writes |
+| 10 | 블록 디바이스 최적화 | 심화 | NVMe, SSD 특성과 I/O 스케줄러, NVMe 2.1 + FDP(Flexible Data Placement, TP4146b)로 쓰기 증폭 완화 |
+| 11 | I/O 멀티플렉싱 패턴 | 중급 | Reactor, Proactor 패턴 구현 |
+| 12 | Vectored I/O | 중급 | readv/writev, preadv2/pwritev2 활용 |
+| 13 | POSIX AIO vs io_uring | 심화 | POSIX AIO와 io_uring 성능 비교 |
+| 14 | Database I/O 패턴 | 심화 | WAL, fsync, 저널링 전략과 성능 영향 |
+| 15 | File Locking 성능 | 중급 | 파일 잠금이 성능에 미치는 영향과 대안 |
+| 16 | 스토리지 스택 커스터마이징 | 전문 | 커널 모듈·특수 FS·벤더 드라이버와의 경계 (운영 리스크·Tr.11 연계) |
 | 17 | 로깅 성능 전략 | 중급 | 핫패스 로깅 비용 제어, 비동기 로거, 로그 레벨 분리와 I/O 영향 |
 
 ## 측정과 검증 (이 트랙 기준)
@@ -119,11 +117,11 @@ tags:
 
 ## Phase별 학습 궤적
 
-**Phase A — 패턴 (챕터 01~02)** 동기/비동기·멀티플렉싱 기초 없이 고급 API만 쓰면 디버깅이 어렵습니다.
+**Phase A — 직관·패턴 (챕터 01~03)** I/O 지연의 기본 그림과 동기/비동기·멀티플렉싱 기초 없이 고급 API만 쓰면 디버깅이 어렵습니다.
 
-**Phase B — 고급 I/O (챕터 03~07, 10~12)** io_uring **심화(본 트랙)**는 Tr.06 개요를 전제로 합니다. zero-copy·mmap·O_DIRECT는 캐시 일관성·이식성 이슈가 큽니다.
+**Phase B — 고급 I/O (챕터 04~08, 11~13)** io_uring **심화(본 트랙)**는 Tr.06 개요를 전제로 합니다. zero-copy·mmap·O_DIRECT는 캐시 일관성·이식성 이슈가 큽니다.
 
-**Phase C — 스토리지·DB (챕터 08~09, 13~14, 17)** 파일시스템·NVMe·WAL/fsync·핫패스 로깅 비용은 **심화**입니다. Tr.04 메모리·Tr.11 용량 계획과 연결됩니다.
+**Phase C — 스토리지·DB (챕터 09~10, 14~15, 17)** 파일시스템·NVMe·WAL/fsync·핫패스 로깅 비용은 **심화**입니다. Tr.04 메모리·Tr.11 용량 계획과 연결됩니다.
 
 ## 이 트랙을 마친 후 달성할 목표
 
@@ -133,7 +131,7 @@ tags:
 
 ## 평가 기준과 이 장을 읽은 후 확인
 
-- [ ] Tr.06 챕터 08(io_uring 개요)과 본 트랙 챕터 03(심화)의 관계를 말할 수 있는가?
+- [ ] Tr.06 챕터 08(io_uring 개요)과 본 트랙 챕터 04(심화)의 관계를 말할 수 있는가?
 - [ ] zero-copy 적용 전후에 무엇을 수치로 비교할지 세 가지 이상 말할 수 있는가?
 
 ## 범위와 경계
@@ -163,8 +161,8 @@ Direct I/O·저널링·스케줄러는 환경별로 튜닝 여지가 큽니다. 
 
 ## 지금 바로 이어 읽을 곳
 
-**16 → 01 → 02 → 03** 순으로 읽으면 I/O 비용 직관에서 패턴·비동기 I/O·io_uring 심화까지 이어집니다.
+**01 → 02 → 03 → 04** 순으로 읽으면 I/O 비용 직관에서 패턴·비동기 I/O·io_uring 심화까지 이어집니다.
 
-- [I/O 비용 직관](/post/io-optimization/io-cost-intuition-sync-async-copy-fundamentals/) (챕터 16)
-- [I/O 패턴과 비용](/post/io-optimization/io-patterns-blocking-nonblocking-cost-model/) (챕터 01)
-- [비동기 I/O 기초: select·poll·epoll·kqueue](/post/io-optimization/async-io-select-poll-epoll-kqueue/) (챕터 02)
+- [I/O 비용 직관](/post/io-optimization/io-cost-intuition-sync-async-copy-fundamentals/) (챕터 01)
+- [I/O 패턴과 비용](/post/io-optimization/io-patterns-blocking-nonblocking-cost-model/) (챕터 02)
+- [비동기 I/O 기초: select·poll·epoll·kqueue](/post/io-optimization/async-io-select-poll-epoll-kqueue/) (챕터 03)

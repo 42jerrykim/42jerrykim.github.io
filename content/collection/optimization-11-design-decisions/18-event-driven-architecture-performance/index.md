@@ -46,9 +46,9 @@ tags:
 
 ## 이 장을 읽기 전에
 
-이 장은 [06장: 지연시간 vs 처리량](/post/design-decisions/latency-vs-throughput-architecture-decisions/)에서 다룬 Little's Law·큐잉·배칭의 구조적 상충과, [07장: Low-latency 아키텍처 패턴](/post/design-decisions/low-latency-architecture-design-patterns/)에서 다룬 이벤트 루프·비동기 I/O 실행 모델, [17장: 성능 용어·지표 입문](/post/design-decisions/performance-terminology-metrics-fundamentals/)에서 다룬 지연시간·처리량의 기본 정의를 전제로 합니다. 메시지 큐, pub/sub, 비동기 처리라는 단어가 낯설지 않은 정도면 충분합니다.
+이 장은 [07장: 지연시간 vs 처리량](/post/design-decisions/latency-vs-throughput-architecture-decisions/)에서 다룬 Little's Law·큐잉·배칭의 구조적 상충과, [08장: Low-latency 아키텍처 패턴](/post/design-decisions/low-latency-architecture-design-patterns/)에서 다룬 이벤트 루프·비동기 I/O 실행 모델, [01장: 성능 용어·지표 입문](/post/design-decisions/performance-terminology-metrics-fundamentals/)에서 다룬 지연시간·처리량의 기본 정의를 전제로 합니다. 메시지 큐, pub/sub, 비동기 처리라는 단어가 낯설지 않은 정도면 충분합니다.
 
-**이 장의 깊이**: **심화** 난이도로, 메시지 브로커가 직접 호출 대비 지연시간·처리량 곡선을 왜, 어디서 바꾸는지를 전달 보장(delivery semantics)과 결합 구조(choreography/orchestration) 관점에서 설명하고, 브로커 도입 여부를 판단하는 기준을 제공합니다. **다루지 않는 것**: 큐잉·배칭 자체의 수학적 근거(Little's Law, 유틸리제이션)는 [06장](/post/design-decisions/latency-vs-throughput-architecture-decisions/)에서, 브로커를 도입한 뒤 그 실행 경로를 어떤 스레드 모델로 짤지는 [07장](/post/design-decisions/low-latency-architecture-design-patterns/)에서, 특정 브로커 제품의 클러스터 운영·튜닝 상세와 네트워크 스택 최적화는 [Tr.10 네트워크 최적화 트랙](/post/network-optimization/getting-started-network-performance-tuning/)에서 다룹니다. 이 장은 "브로커를 쓸지 말지, 쓴다면 무엇을 대가로 치르는지"라는 설계 판단에 집중합니다.
+**이 장의 깊이**: **심화** 난이도로, 메시지 브로커가 직접 호출 대비 지연시간·처리량 곡선을 왜, 어디서 바꾸는지를 전달 보장(delivery semantics)과 결합 구조(choreography/orchestration) 관점에서 설명하고, 브로커 도입 여부를 판단하는 기준을 제공합니다. **다루지 않는 것**: 큐잉·배칭 자체의 수학적 근거(Little's Law, 유틸리제이션)는 [07장](/post/design-decisions/latency-vs-throughput-architecture-decisions/)에서, 브로커를 도입한 뒤 그 실행 경로를 어떤 스레드 모델로 짤지는 [08장](/post/design-decisions/low-latency-architecture-design-patterns/)에서, 특정 브로커 제품의 클러스터 운영·튜닝 상세와 네트워크 스택 최적화는 [Tr.10 네트워크 최적화 트랙](/post/network-optimization/getting-started-network-performance-tuning/)에서 다룹니다. 이 장은 "브로커를 쓸지 말지, 쓴다면 무엇을 대가로 치르는지"라는 설계 판단에 집중합니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -144,13 +144,13 @@ acks=all                  # 모든 in-sync replica의 확인을 기다림
 transactional.id=svc-a-tx # exactly-once를 위한 트랜잭션 프로듀서 식별자
 ```
 
-`acks=all`은 리더 파티션뿐 아니라 팔로워 복제본까지 기록을 확인한 뒤에야 발행이 완료된 것으로 보므로, `acks=1`(리더만 확인)보다 지연이 늘어납니다. 트랜잭션까지 켜면 소비자 쪽에서도 커밋되지 않은 메시지를 걸러내는 절차가 추가로 필요합니다. 정리하면 "유실 없음"과 "중복 없음"을 강하게 보장할수록 발행·소비 경로의 지연은 늘어나며, 이 트레이드오프를 어느 수준에서 받아들일지는 05장에서 정의한 latency budget과 SLO([05장: SLO/SLA 정의](/post/design-decisions/slo-sla-definition-team-alignment/))에 맞춰 결정해야 합니다.
+`acks=all`은 리더 파티션뿐 아니라 팔로워 복제본까지 기록을 확인한 뒤에야 발행이 완료된 것으로 보므로, `acks=1`(리더만 확인)보다 지연이 늘어납니다. 트랜잭션까지 켜면 소비자 쪽에서도 커밋되지 않은 메시지를 걸러내는 절차가 추가로 필요합니다. 정리하면 "유실 없음"과 "중복 없음"을 강하게 보장할수록 발행·소비 경로의 지연은 늘어나며, 이 트레이드오프를 어느 수준에서 받아들일지는 06장에서 정의한 latency budget과 SLO([06장: SLO/SLA 정의](/post/design-decisions/slo-sla-definition-team-alignment/))에 맞춰 결정해야 합니다.
 
 ## 결합 구조의 선택: Choreography vs Orchestration, 그리고 Outbox 패턴
 
 여러 서비스가 이벤트로 연쇄 반응을 일으켜야 하는 워크플로(예: 주문 생성 → 결제 → 재고 차감 → 배송 준비)는 두 가지 방식으로 조율할 수 있습니다. **오케스트레이션(orchestration)**은 중앙 조정자가 각 단계를 명령형으로 호출·감시하는 방식으로, 전체 흐름을 한곳에서 볼 수 있어 추적과 디버깅이 쉽지만 조정자가 단일 장애점이자 결합점이 됩니다. **코레오그래피(choreography)**는 각 서비스가 이전 단계의 이벤트를 구독하고 자율적으로 다음 이벤트를 발행하는 방식으로, 중앙 의존성은 없지만 이벤트 체인이 길어질수록 "지금 이 요청이 전체적으로 어디까지 진행됐는지"를 추적하기 어려워집니다. 지연시간 관점에서 코레오그래피는 각 홉마다 브로커 왕복이 추가되어 전체 워크플로의 종단 간 지연이 홉 수에 비례해 늘어나는 경향이 있고, 오케스트레이션은 조정자가 각 단계를 동기 또는 병렬로 호출할 수 있어 지연을 더 세밀하게 통제할 수 있습니다.
 
-이런 다단계 워크플로에서 흔히 발생하는 문제는 "DB에는 주문이 기록됐는데 이벤트는 발행되지 못했다" 같은 원자성 붕괴입니다. 이를 막는 표준 해법이 **아웃박스 패턴(outbox pattern)**으로, 상태 변경과 이벤트를 같은 DB 트랜잭션 안에서 아웃박스 테이블에 함께 기록한 뒤, 별도 프로세스(CDC 또는 폴러)가 그 테이블을 읽어 브로커에 발행합니다. 이 패턴은 DB 트랜잭션 경계와 브로커 발행 사이에 폴링 지연을 하나 더 끼워 넣는 대신 원자성을 보장하며, DB 접근 경로에서의 배칭·풀링 판단은 [09장: 데이터베이스 접근 최적화](/post/design-decisions/database-access-optimization-strategy/)에서 다루는 기준을 그대로 따릅니다.
+이런 다단계 워크플로에서 흔히 발생하는 문제는 "DB에는 주문이 기록됐는데 이벤트는 발행되지 못했다" 같은 원자성 붕괴입니다. 이를 막는 표준 해법이 **아웃박스 패턴(outbox pattern)**으로, 상태 변경과 이벤트를 같은 DB 트랜잭션 안에서 아웃박스 테이블에 함께 기록한 뒤, 별도 프로세스(CDC 또는 폴러)가 그 테이블을 읽어 브로커에 발행합니다. 이 패턴은 DB 트랜잭션 경계와 브로커 발행 사이에 폴링 지연을 하나 더 끼워 넣는 대신 원자성을 보장하며, DB 접근 경로에서의 배칭·풀링 판단은 [10장: 데이터베이스 접근 최적화](/post/design-decisions/database-access-optimization-strategy/)에서 다루는 기준을 그대로 따릅니다.
 
 ## 흔한 오개념
 
@@ -193,7 +193,7 @@ transactional.id=svc-a-tx # exactly-once를 위한 트랜잭션 프로듀서 식
 - [ ] choreography와 orchestration의 지연·추적성 트레이드오프를 구분하고, 아웃박스 패턴이 해결하는 문제를 말할 수 있다.
 - [ ] 워크로드 특성(실시간 응답 필요 여부, 팬아웃, 전달 보장 수준)에 따라 직접 호출과 이벤트 기반을 선택·조합할 수 있다.
 
-**이전 장**: [성능 용어·지표 입문](/post/design-decisions/performance-terminology-metrics-fundamentals/) (챕터 17)
+**이전 장**: [메모리 안전성 트레이드오프](/post/design-decisions/memory-safety-performance-tradeoffs-rust-ffi/) (챕터 17)
 
 이 장으로 **Low-latency 성능 설계·의사결정 트랙**의 커리큘럼을 마칩니다. 지금까지 언제 최적화를 시작·중단할지, 가독성과 성능을 어떻게 저울질할지, SLO와 latency budget을 어떻게 세울지, 그리고 이 장에서 다룬 아키텍처 수준의 통신 방식 선택까지가 이 트랙이 다루는 "결정의 지도"입니다. 실제 코드·플랫폼 수준의 구체 기법은 Tr.02(C++ 언어 최적화)부터 Tr.10(네트워크 최적화)까지 각 기술 트랙에서 다루며, 그 전체 지도는 아래 시리즈 개요에 정리돼 있습니다. 이 장에서 내린 결정들이 시간이 지나도 지켜지는지 검증하는 방법은 [Tr.12 성능 회귀 방지](/post/regression-prevention/getting-started-performance-regression-prevention-strategies/)에서 이어집니다.
 

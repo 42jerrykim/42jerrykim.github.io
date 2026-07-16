@@ -49,7 +49,7 @@ tags:
 
 ## 이 장을 읽기 전에
 
-**선행 지식**: 이 장은 [16장: I/O 비용 직관](/post/io-optimization/io-cost-intuition-sync-async-copy-fundamentals/)에서 다룬 "동기/비동기와 복사 횟수가 지연에 미치는 그림"과 [1장: I/O 패턴과 비용](/post/io-optimization/io-patterns-blocking-nonblocking-cost-model/)에서 다룬 시스템 콜 진입 비용·대기 방식 모델을 전제로 합니다. 스레드 간 동기화(뮤텍스, 원자적 연산)의 기본 개념도 필요합니다. **이 장의 깊이**: **중급**입니다. 동기 로깅이 핫패스에서 지불하는 비용의 종류, 로그 레벨 분리가 I/O에 미치는 영향, 비동기 로거의 링 버퍼·배치 설계를 다룹니다. **다루지 않는 것**: 특정 로깅 라이브러리(spdlog, glog, quill 등)의 전체 API 튜토리얼, 로그 수집·색인·검색 인프라(ELK 스택 등 중앙화 로깅 파이프라인), 여러 스레드가 같은 로그 파일에 `flock`으로 잠그는 상황의 세부 비용([14장: File Locking 성능](/post/io-optimization/file-locking-performance-impact-alternatives/)에서 다룹니다), WAL·fsync 기반 내구성 보장 전략([13장: Database I/O 패턴](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)에서 다룹니다)입니다.
+**선행 지식**: 이 장은 [01장: I/O 비용 직관](/post/io-optimization/io-cost-intuition-sync-async-copy-fundamentals/)에서 다룬 "동기/비동기와 복사 횟수가 지연에 미치는 그림"과 [1장: I/O 패턴과 비용](/post/io-optimization/io-patterns-blocking-nonblocking-cost-model/)에서 다룬 시스템 콜 진입 비용·대기 방식 모델을 전제로 합니다. 스레드 간 동기화(뮤텍스, 원자적 연산)의 기본 개념도 필요합니다. **이 장의 깊이**: **중급**입니다. 동기 로깅이 핫패스에서 지불하는 비용의 종류, 로그 레벨 분리가 I/O에 미치는 영향, 비동기 로거의 링 버퍼·배치 설계를 다룹니다. **다루지 않는 것**: 특정 로깅 라이브러리(spdlog, glog, quill 등)의 전체 API 튜토리얼, 로그 수집·색인·검색 인프라(ELK 스택 등 중앙화 로깅 파이프라인), 여러 스레드가 같은 로그 파일에 `flock`으로 잠그는 상황의 세부 비용([15장: File Locking 성능](/post/io-optimization/file-locking-performance-impact-alternatives/)에서 다룹니다), WAL·fsync 기반 내구성 보장 전략([14장: Database I/O 패턴](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)에서 다룹니다)입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -209,7 +209,7 @@ BENCHMARK_MAIN();
 
 **"로그 레벨만 낮추면 핫패스 비용이 사라진다"**는 정확하지 않습니다. 레벨 검사가 인자 평가보다 나중에 일어나는 구조라면, 걸러진 로그도 포맷팅·객체 변환 비용을 이미 지불한 뒤입니다. 지연 평가나 컴파일 타임 제거 없이 레벨만 조정하는 것은 I/O 이전 단계의 비용을 그대로 남겨둡니다.
 
-**"비동기 로깅은 항상 안전(무손실)하다"**는 것도 흔한 오해입니다. 큐가 가득 차거나 프로세스가 크래시하면 아직 소비되지 않은 레코드는 유실됩니다. 감사·컴플라이언스 목적으로 "반드시 남아야 하는" 로그는 순수 비동기 drop 정책이 아니라, [13장](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)에서 다루는 그룹 커밋·fsync 기반의 내구성 보장과 유사한 전략이 필요합니다.
+**"비동기 로깅은 항상 안전(무손실)하다"**는 것도 흔한 오해입니다. 큐가 가득 차거나 프로세스가 크래시하면 아직 소비되지 않은 레코드는 유실됩니다. 감사·컴플라이언스 목적으로 "반드시 남아야 하는" 로그는 순수 비동기 drop 정책이 아니라, [14장](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)에서 다루는 그룹 커밋·fsync 기반의 내구성 보장과 유사한 전략이 필요합니다.
 
 **"printf 계열이 iostream보다 항상 빠르다"** 또는 반대로 **"로깅 자체가 항상 병목이다"**라는 일반화도 과합니다. 실제 비용은 호출 빈도, 락 경합 여부, flush 정책의 조합에서 나오며, 호출 빈도가 낮은 초기화 코드에서는 어떤 방식을 써도 차이가 무의미합니다. 프로파일러로 실제 호출 빈도와 지연 기여도를 먼저 확인한 뒤 최적화 대상을 정하는 것이 순서입니다.
 
@@ -218,8 +218,8 @@ BENCHMARK_MAIN();
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
 | 초당 수만 건 이상 로그가 발생하는 핫패스 | 링 버퍼 기반 비동기 로거 + 배치 flush | 매 호출마다 락 + `fflush` |
-| 감사·컴플라이언스용 필수 보존 로그 | 동기 기록 또는 그룹 커밋형 내구성 전략(→[13장](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)) | 순수 drop 정책의 비동기 큐 |
-| 여러 스레드가 같은 로그 파일에 직접 기록 | 전용 로거 스레드로 단일화해 락 경합 제거 | 스레드마다 개별 lock+write (→[14장](/post/io-optimization/file-locking-performance-impact-alternatives/)) |
+| 감사·컴플라이언스용 필수 보존 로그 | 동기 기록 또는 그룹 커밋형 내구성 전략(→[14장](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)) | 순수 drop 정책의 비동기 큐 |
+| 여러 스레드가 같은 로그 파일에 직접 기록 | 전용 로거 스레드로 단일화해 락 경합 제거 | 스레드마다 개별 lock+write (→[15장](/post/io-optimization/file-locking-performance-impact-alternatives/)) |
 | 디버그 레벨 로그가 프로덕션 빌드에도 존재 | 컴파일 타임 매크로/`if constexpr`로 호출 자체 제거 | 런타임 `if`만으로 인자 평가는 방치 |
 | 큐 오버플로우 정책이 미정 | drop-with-counter 또는 명시적 백프레셔(블로킹 여부를 SLA로 결정) | 정책 없이 무한정 블로킹하며 핫패스로 전파 |
 
