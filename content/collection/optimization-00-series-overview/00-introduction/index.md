@@ -5,7 +5,7 @@ lastmod: 2026-03-27
 draft: false
 title: "[Optimization(Series)] Introduction: Low-latency 최적화 12트랙 로드맵"
 slug: getting-started-low-latency-optimization-series-overview
-description: "Low-latency C++ 최적화 12트랙 로드맵입니다. 권장 학습 순서·심화 진입·Tr.06 개요와 Tr.09·10 심화 연계·난이도 정책을 한 페이지에 정리합니다. 프로파일링을 공통 기반으로 두고 언어·빌드·메모리·CPU·OS·동시성·극한기법·설계·회귀·I/O·네트워크까지 확장하는 흐름을 안내합니다."
+description: "Low-latency C++ 최적화 12트랙 로드맵입니다. 트랙 번호가 의존 순서와 같아 Tr.01부터 오름차순으로 읽으면 됩니다. 프로파일링을 기반으로 언어·빌드·메모리·CPU·OS·동시성·극한기법·I/O·네트워크·설계·회귀까지 심화 진입 조건과 난이도 정책을 정리합니다."
 tags:
   - Performance(성능)
   - Profiling(프로파일링)
