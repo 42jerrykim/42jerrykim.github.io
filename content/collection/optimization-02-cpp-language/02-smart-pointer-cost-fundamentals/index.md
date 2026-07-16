@@ -1,0 +1,326 @@
+﻿---
+collection_order: 2
+date: 2026-03-28
+lastmod: 2026-07-10
+draft: false
+image: wordcloud.png
+title: "[Optimization(C++) 02] Smart Pointer 비용 기초"
+slug: smart-pointer-cost-fundamentals
+description: "Low-latency C++에서 unique_ptr·shared_ptr·원시 포인터의 런타임 비용을 비교합니다. 제어 블록·원자적 참조 카운트·make_shared 이점, 핫패스에서 shared_ptr 복사 비용과 weak_ptr 개요를 정리하고 챕터 06·17과 연결합니다."
+tags:
+  - C++
+  - Performance
+  - Optimization
+  - 성능
+  - 최적화
+  - Memory
+  - 메모리
+  - Latency
+  - Throughput
+  - Profiling
+  - 프로파일링
+  - Benchmark
+  - Code-Quality
+  - 코드품질
+  - Best-Practices
+  - Clean-Code
+  - 클린코드
+  - Implementation
+  - 구현
+  - Refactoring
+  - 리팩토링
+  - Testing
+  - 테스트
+  - Debugging
+  - 디버깅
+  - Software-Architecture
+  - Backend
+  - 백엔드
+  - Embedded
+  - 임베디드
+  - Linux
+  - Windows
+  - Compiler
+  - 컴파일러
+  - Assembly
+  - CPU
+  - Cache
+  - Concurrency
+  - 동시성
+  - Documentation
+  - 문서화
+  - Git
+  - CI-CD
+  - Advanced
+  - Deep-Dive
+  - Guide
+  - 가이드
+  - Reference
+  - 참고
+  - Tutorial
+  - 튜토리얼
+  - Technology
+  - 기술
+  - Case-Study
+  - Pitfalls
+  - 함정
+  - Edge-Cases
+  - 엣지케이스
+  - Abstraction
+  - 추상화
+  - OOP
+  - 객체지향
+  - Data-Structures
+  - 자료구조
+  - Time-Complexity
+  - 시간복잡도
+  - Design-Pattern
+  - 디자인패턴
+  - Modularity
+  - Encapsulation
+  - 캡슐화
+  - Type-Safety
+---
+
+**스마트 포인터**는 소유권·수명을 표현하는 표준 도구이지만, Low-latency 경로에서는 **참조 카운트의 원자적 연산**, **제어 블록 접근**, **간접 한 단계**가 핫패스에 누적될 수 있습니다. 본 장은 `std::unique_ptr`, `std::shared_ptr`, 원시 포인터를 **같은 작업(역참조·전달·복사)** 기준으로 나누어 이해하고, “언제 스마트 포인터를 유지하고 언제 설계를 바꿀지” 판단할 근거를 제공합니다.
+
+챕터 06(객체 수명)·챕터 17(파라미터 전달)와 함께 읽으면, **값/참조/이동**과 **소유권 단일성**이 만나는 지점에서 비용이 어떻게 달라지는지 한 그림으로 정리할 수 있습니다.
+
+## 이 장을 읽기 전에
+
+**완전한 초보자?** 이 장은 이 트랙의 **두 번째 기초 장**으로, 바로 앞 [01장: C++ 실행 모델·µs 최적화 어휘](/post/cpp-optimization/cpp-execution-model-microsecond-vocabulary-fundamentals/) 다음에 둡니다. `std::unique_ptr`·`std::shared_ptr`가 "객체 수명을 자동 관리한다"는 정도와 원시 포인터(`T*`)의 개념만 알면 충분합니다. 뒤에서 이 주제를 더 확장하는 장은 [06장: 객체 수명](/post/cpp-optimization/object-lifetime/)·[17장: Parameter Passing](/post/cpp-optimization/parameter-passing/)입니다.
+
+**이 장의 깊이**: 이 장은 **기초~전문가**를 포괄합니다. 세 포인터를 같은 작업(역참조·전달·복사) 기준으로 비교하는 것부터 시작해, 전문가 구간에서는 `shared_ptr` 참조 카운트의 원자적 연산·제어 블록·`make_shared`, 스레드 경계, 격리 벤치마크 아이디어까지 다룹니다. **다루지 않는 것**: 커스텀 할당자·메모리 풀(Tr.04)과 락-프리 자료구조(Tr.07 동시성 트랙)입니다.
+
+## 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| **초보자** | "정의와 원칙" ~ "제어 블록과 make_shared" | 세 포인터의 비용 출처 이해 |
+| **중급자** | "코드로 보는 차이 (개념)" ~ "실무 권장과 리팩토링" | 핫패스에서 스마트 포인터 유지/교체 판단 |
+| **전문가** | "스레드 경계와 원자적 연산" ~ "커스텀 삭제자와 인라인화" | 원자적 카운트 비용을 격리 측정하고 API 계약·삭제자 설계까지 다룸 |
+
+---
+
+## 정의와 원칙
+
+**unique_ptr**은 **독점 소유권**을 표현합니다. 일반적으로 크기는 원시 포인터 한 개와 같고, 역참조 비용도 원시 포인터와 동일한 한 단계 간접입니다. 소멸 시점에 커스텀 삭제자가 있으면 그 호출이 추가되지만, **참조 카운트나 원자적 연산은 없습니다**.
+
+**shared_ptr**은 **공유 소유권**을 표현합니다. 구현은 보통 **제어 블록**(참조 강한 카운트, 약한 카운트, 삭제자, 할당자 등)과 **관리되는 객체 포인터**를 둡니다. **복사**는 강한 참조를 원자적으로 증가시키고, **이동**은 포인터만 옮기므로 원자적 연산이 없습니다. 따라서 핫패스에서 `shared_ptr`을 **값으로 자주 복사**하면, 객체 자체의 일보다 **원자적 증가/감소**가 먼저 의심됩니다.
+
+**원시 포인터**는 표현력은 없지만 간접 한 단계만 있으므로 최소 비용에 가깝습니다. 대신 **수명 규약**을 문서·코드로 보장해야 하며, 실수 시 미정의 동작으로 이어집니다.
+
+## 제어 블록과 make_shared
+
+`std::make_shared<T>(args...)`는 **객체 T와 제어 블록을 한 번의 할당**에 묶는 경우가 많습니다. 반면 `std::shared_ptr<T>(new T(...))`는 **T용 블록**과 **제어 블록**이 분리 할당될 수 있어, 할당 횟수·캐시 지역성이 불리할 수 있습니다. µs 예산에서 할당 횟수를 줄이는 것이 목표라면 `make_shared`를 기본으로 두고, 커스텀 삭제자·약한 포인터 패턴 등으로 예외를 정하는 편이 안전합니다.
+
+**weak_ptr**은 제어 블록의 약한 카운트만 건드리며, 객체 접근 전 `lock()`으로 `shared_ptr`을 얻습니다. `lock()`은 원자적 연산과 분기가 포함되므로, **매 틱마다** 호출하는 경로에서는 비용이 눈에 띌 수 있습니다. 캐시된 `shared_ptr`을 짧은 범위에서 재사용할 수 있는지 검토합니다.
+
+## 코드로 보는 차이 (개념)
+
+아래는 “동일한 힙 객체를 가리키며 루프 안에서 반복 사용”할 때의 **패턴만** 비교한 것입니다. 실제 수치는 빌드·CPU·컴파일러에 따라 달라지므로, 본인 환경에서 **격리 벤치마크**(챕터 00)로 확인해야 합니다.
+
+```cpp
+#include <memory>
+
+void use_raw(int* p, int n) {
+    for (int i = 0; i < n; ++i) {
+        (void)(*p + i);  // 역참조만
+    }
+}
+
+void use_unique(std::unique_ptr<int>& up, int n) {
+    int* p = up.get();
+    for (int i = 0; i < n; ++i) {
+        (void)(*p + i);
+    }
+}
+
+void use_shared_by_ref(const std::shared_ptr<int>& sp, int n) {
+    int* p = sp.get();
+    for (int i = 0; i < n; ++i) {
+        (void)(*p + i);
+    }
+}
+
+void use_shared_copy_each_iter(std::shared_ptr<int> sp, int n) {
+    for (int i = 0; i < n; ++i) {
+        std::shared_ptr<int> local = sp;  // 매 반복 복사 → 원자적 inc/dec 위험
+        (void)(*local + i);
+    }
+}
+```
+
+**핵심**: 루프 안에서 `shared_ptr`을 **복사하지 않고** `const shared_ptr&` 또는 캐시한 `T*`로 일하면, 본문 비용은 `unique_ptr`·원시 포인터와 유사해질 **여지**가 큽니다. 반대로 **매번 복사**하는 패턴은 “로직은 가벼운데도 느리다”는 프로파일을 만들기 쉽습니다.
+
+## 비교: 한눈에 보기
+
+| 항목 | unique_ptr | shared_ptr (복사 시) | 원시 포인터 |
+|------|------------|----------------------|-------------|
+| 역참조 | 1단계 간접 | get() 후 1단계 간접 | 1단계 간접 |
+| 소유권 표현 | 단일 | 공유 | 없음(약속) |
+| 루프 내 복사 비용 | 이동만 저렴 | 원자적 카운트 | 포인터 복사만 |
+| 수명 안전성 | RAII로 높음 | RAII로 높음 | 개발자 책임 |
+
+## 핫패스 판단 흐름
+
+```mermaid
+flowchart TD
+  start["프로파일러에서</br>의심 구간"]
+  q1["shared_ptr</br>복사가 루프 안?"]
+  fix1["const ref 또는</br>로컬 T* 캐시"]
+  q2["소유권이</br>실제로 공유?"]
+  fix2["unique_ptr 또는</br>명시적 수명"]
+  q3["할당이</br>과다?"]
+  fix3["make_shared·</br>객체 풀 검토"]
+  start --> q1
+  q1 -->|"예"| fix1
+  q1 -->|"아니오"| q2
+  q2 -->|"아니오"| fix2
+  q2 -->|"예"| q3
+  q3 --> fix3
+```
+
+## 챕터 06·17과의 연결
+
+**챕터 06**에서 다룬 **RVO·NRVO·이동**은 `unique_ptr`을 **값으로 반환**할 때 흔히 등장합니다. 이동은 저렴하고 소유권 이전이 명확하므로, API가 “단일 소유권 이전”이면 `unique_ptr` 반환이 자연스럽습니다.
+
+**챕터 17**의 **const T& vs T&&** 논의는 `shared_ptr`에도 그대로 적용됩니다. 핫 함수 인자로 `shared_ptr`을 넘길 때 **불필요한 복사**를 피하려면 `const std::shared_ptr<T>&` 또는 `std::shared_ptr<T>&&`(소비)를 상황에 맞게 선택합니다. “스레드 간 공유”가 아니라면 **참조 카운트 자체를 핫패스에서 제거**할 수 있는지 먼저 묻습니다.
+
+## 시나리오: 로그 파이프라인
+
+비동기 로거가 **메시지 소유권**을 `shared_ptr<std::string>`으로 넘긴다고 가정합니다. 큐에 넣을 때마다 복사가 일어나면 **카운트 증가**가 큐 처리 비용에 섞입니다. 대안으로 (1) **고정 버퍼 풀 + 핸들**, (2) **이동 가능한 unique_ptr**을 워커 하나에만 넘김, (3) **string_view + 상위 수명 보장** 등을 비교합니다. 어떤 대안이든 **수명 문서**가 따라와야 합니다.
+
+## 시나리오: 캐시 히트 경로
+
+캐시 조회 결과를 `shared_ptr<const T>`로 돌려준다면, 조회가 성공할 때마다 호출자가 **복사**를 하지 않도록 API를 설계합니다. 예를 들어 `optional<shared_ptr<const T>>` 대신 **내부 저장소에 대한 const 참조 + explicit 수명**을 쓸 수 있는지 검토합니다. µs 단위에서는 **API 형태가 복사 횟수를 결정**합니다.
+
+## 실무 권장과 리팩토링
+
+- **기본 소유권**은 `unique_ptr`로 두고, 정말로 여러 경로가 같은 수명을 공유할 때만 `shared_ptr`로 승격합니다.
+- **그래프·캐시**처럼 공유가 필수면, 핫패스에서는 **제어 블록 접근 횟수**를 줄이기 위해 로컬 `T*` 캐시·짧은 범위의 `shared_ptr` 재사용을 검토합니다.
+- **weak_ptr::lock()**을 고빈도 경로에 두지 말고, 상위에서 유효성을 한 번 검증한 `shared_ptr`을 넘기는 구조가 가능한지 봅니다.
+- 벤치마크는 **“shared_ptr 복사 n회” vs “T* n회 역참조”**처럼 한 요인만 분리합니다 (챕터 00).
+
+## 스레드 경계와 원자적 연산
+
+`shared_ptr`의 참조 카운트는 표준적으로 스레드 안전해야 하므로, 복사·소멸 경로에 **원자적 연산**이 들어갑니다. 단일 스레드 프로그램에서도 이 비용은 사라지지 않습니다(구현이 항상 동일 코드 경로를 쓰는 경우). 반면 `unique_ptr`은 **이동만** 스레드 간 안전 의미가 명확하고, 복사 자체가 없어 카운트가 없습니다. “멀티스레드가 아니니까 shared_ptr 복사가 공짜”라고 생각하기 쉬운데, 이는 **틀린 직관**입니다.
+
+## 격리 벤치마크 아이디어
+
+챕터 00에서 권장한 도구(Google Benchmark, nanobench)로 아래를 **동일 머신·동일 최적화 옵션**에서 비교해 볼 수 있습니다.
+
+1. **역참조만**: `int*` vs `unique_ptr<int>` vs `shared_ptr<int>`(루프 밖에서 한 번만 복사해 `get()` 사용).
+2. **복사 비용**: 루프 안에서 `shared_ptr` 복사 n회 vs 루프 밖 한 번 복사 후 `T*` 사용.
+3. **make_shared vs 분리 할당**: 생성·소멸만 반복하는 마이크로 케이스(할당 훅으로 횟수 확인).
+
+해석할 때는 **인라인·LTO**가 `get()` 호출을 어떻게 접는지도 함께 보고, 어셈블리에서 **lock cmpxchg** 류가 루프에 남는지 확인합니다.
+
+아래는 “같은 힙 객체를 N회 다루기”를 세 가지 방식으로 잰 **예시 수치**입니다(x86-64, `-O2`, 단일 스레드 가정). 절대값은 환경마다 다르므로 **상대 배수**만 의미가 있으며, 본인 머신에서 재현해야 합니다.
+
+```cpp
+#include <memory>
+
+// (1) shared_ptr를 루프 안에서 매번 복사 → 원자적 inc/dec
+long bench_shared_copy(std::shared_ptr<int> sp, int n) {
+    long acc = 0;
+    for (int i = 0; i < n; ++i) {
+        std::shared_ptr<int> local = sp;   // 강한 카운트 원자적 증가
+        acc += *local + i;
+    }                                       // 스코프 종료마다 원자적 감소
+    return acc;
+}
+
+// (2) 원시 T*를 그대로 N회 역참조 → 카운트 없음
+long bench_raw(int* p, int n) {
+    long acc = 0;
+    for (int i = 0; i < n; ++i) acc += *p + i;
+    return acc;
+}
+```
+
+| 방식 (N = 1e8) | 예시 시간 | 상대 배수 | 핵심 비용 |
+|----------------|-----------|-----------|-----------|
+| `bench_raw` (`int*`) | ~40 ms | 1.0× | 역참조만 |
+| `shared_ptr` 루프 밖 1회 복사 후 `get()` | ~42 ms | ~1.05× | 역참조 + 1회 복사 |
+| `bench_shared_copy` (루프마다 복사) | ~210 ms | ~5× | 원자적 inc/dec ×N |
+
+핵심은 `shared_ptr` **복사**가 참조 카운트를 **원자적으로** 갱신한다는 점입니다. 스레드 안전을 위해 구현은 `lock` 프리픽스가 붙은 RMW 명령을 쓰며, 단일 스레드에서도 사라지지 않습니다. `g++ -O2 -S`로 보면 복사·소멸 경로에 대략 다음이 남습니다.
+
+```text
+lock add  DWORD PTR [rax+8], 1     ; 강한 카운트 원자적 증가(복사)
+lock xadd DWORD PTR [rax+8], edx   ; 감소 후 0이면 소멸 분기(소멸)
+```
+
+이 `lock`-프리픽스 연산은 캐시 라인을 잠그고 메모리 순서를 강제하므로, 핫 루프에서 N번 반복되면 “로직은 가벼운데 느린” 프로파일을 만듭니다.
+
+## 소유권은 곧 API 계약이다
+
+성능 튜닝에서 `shared_ptr`을 걷어내면, 바뀌는 것은 타입뿐 아니라 **호출자와 피호출자의 계약**입니다. `unique_ptr`로 바꾼 순간 “이 이후 객체는 받는 쪽이 소유한다”는 규칙이 강해지고, **다른 스레드가 같은 객체를 붙잡는** 패턴과 충돌할 수 있습니다. 따라서 리팩토링은 (1) 수명 다이어그램을 그린 뒤 (2) 핫패스에서 복사 횟수를 잰 다음 (3) 계약을 문서화하는 순서가 안전합니다.
+
+## 커스텀 삭제자와 인라인화
+
+`unique_ptr<T, Deleter>`에서 `Deleter`가 상태 없는 함수 객체면, 컴파일러가 **비용 없는 소멸**에 가깝게 접을 가능성이 큽니다. 반면 타입 소거된 삭제(예: 런타임에만 알려지는 삭제 정책)는 간접 호출을 남길 수 있습니다. “스마트 포인터가 느리다”기보다 **삭제 경로가 가상화**되어 있는지를 분리해 봅니다.
+
+## 자주 하는 실수
+
+첫째, **멤버를 `std::shared_ptr<T>`로 두고** public API마다 값 복사로 넘깁니다. 호출이 잦으면 카운트 증가가 API 경계마다 반복됩니다. **const shared_ptr&** 로 받거나, 호출자가 이미 수명을 보장한다면 **T&** / **T*** 로 좁히는 설계를 검토합니다.
+
+둘째, **`shared_ptr`을 컨테이너에 넣고** 매번 전체 벡터를 순회하며 복사해 새 컨테이너를 만듭니다. 이동·참조로 줄일 수 있는지, 아니면 **인덱스·핸들**로 간접 참조할 수 있는지 봅니다.
+
+셋째, **`enable_shared_from_this` 없이** `this`로 임시 `shared_ptr`을 만들려 합니다. 이는 미정의 동작으로 이어질 수 있어 성능 이전에 **정확성** 문제입니다. 비동기 콜백에 `this`를 넘길 때는 수명 계약을 명시적으로 설계합니다.
+
+## 비판적 시각
+
+스마트 포인터를 없애고 원시 포인터만 쓰는 것이 항상 빠른 것은 아닙니다. **수명 버그**로 인한 재현 어려운 장애는 성능 이슈보다 비용이 클 수 있습니다. 반대로 **과도한 shared_ptr**은 “안전해 보이지만 원자적 연산이 숨어 있는” 패턴이 됩니다. 측정으로 복사 횟수를 확인한 뒤, 소유권 모델을 바꾸는 순서가 안전합니다.
+
+## 평가 기준: 이 장을 읽은 후
+
+- [ ] unique_ptr과 shared_ptr의 런타임 차이(참조 카운트·원자적 연산)를 한 문장으로 설명할 수 있는가?
+- [ ] make_shared가 분리 할당보다 유리할 수 있는 이유를 말할 수 있는가?
+- [ ] 핫 루프에서 shared_ptr 복사를 피하는 두 가지 방법을 제시할 수 있는가?
+- [ ] “공유가 필요 없다”고 판단할 때 어떤 타입으로 리팩토링할지 말할 수 있는가?
+
+## 핵심 메시지 요약
+
+| 구분 | 내용 |
+|------|------|
+| 비용 핵심 | shared_ptr **복사** = 원자적 카운트; 역참조만이면 get() 후에는 T*와 유사해질 수 있음 |
+| 할당 | make_shared로 객체+제어 블록 묶기 검토 |
+| 설계 | 공유가 진짜 필요한지 먼저 판단한 뒤 타입 선택 |
+| 검증 | 격리 벤치마크·프로파일러·할당 훅 |
+
+## 용어 정리
+
+- **제어 블록**: `shared_ptr`이 공유하는 메타데이터(강한/약한 카운트, 삭제자 등)가 들어 있는 할당 블록.
+- **강한 참조**: 객체 수명을 유지하는 `shared_ptr` 개수.
+- **원자적 참조 카운트**: 다중 스레드에서 안전하게 증가·감소시키기 위한 연산; 단일 스레드 핫패스에서도 비용은 남습니다.
+
+## 더 읽을 거리 (트랙 내)
+
+- [객체 수명 최적화](/post/cpp-optimization/object-lifetime/) (챕터 06)
+- [Parameter Passing 전략](/post/cpp-optimization/parameter-passing/) (챕터 17)
+- [Small Buffer Optimization](/post/cpp-optimization/small-buffer-optimization/) (챕터 16) — 타입 소거 타입과 연계
+- [도입·측정 방법론](/post/cpp-optimization/getting-started-cpp-language-performance-tuning/) (챕터 00)
+- [cppreference: std::shared_ptr](https://en.cppreference.com/w/cpp/memory/shared_ptr) — 제어 블록·원자적 참조 카운트·복사/이동 의미론을 정의하는 표준 라이브러리 참조 문서
+- [cppreference: std::unique_ptr](https://en.cppreference.com/w/cpp/memory/unique_ptr) — 독점 소유권·커스텀 삭제자·이동 전용 의미론을 정의하는 참조 문서
+- [cppreference: std::make_shared](https://en.cppreference.com/w/cpp/memory/shared_ptr/make_shared) — 객체와 제어 블록을 한 번의 할당으로 묶는 make_shared의 동작·예외 안전성을 설명하는 문서
+
+## FAQ
+
+**Q. 단일 스레드인데도 shared_ptr 복사가 비싼가요?**  
+A. 구현은 스레드 안전한 참조 카운트를 쓰는 경우가 많아, 원자적 연산이 남을 수 있습니다. 벤치마크로 확인하세요.
+
+**Q. shared_ptr를 멤버로만 두고 get()만 쓰면 안전한가요?**  
+A. `this` 수명과 별개로 객체가 파괴될 수 있으면 위험합니다. 수명 계약이 명확할 때만 `T*` 캐시를 씁니다.
+
+**Q. weak_ptr만 있으면 순환 참조가 항상 해결되나요?**  
+A. 순환을 끊는 데 도움이 되지만, `lock()` 비용과 설계 복잡도가 늘 수 있습니다. 소유권 그래프를 단순화하는 편이 근본적입니다.
+
+## 다음 장에서는
+
+**이전 장**: [C++ 실행 모델·µs 최적화 어휘](/post/cpp-optimization/cpp-execution-model-microsecond-vocabulary-fundamentals/) (챕터 01). 두 기초 장(실행 모델·소유권)으로 공통 어휘를 맞췄다면, 이제 본격적으로 추상화 비용을 측정할 차례입니다.
+
+다음은 **추상화 비용 분석**입니다. 가상 함수·RTTI·예외의 정량적 비용을 마이크로벤치마크로 재고, 이 장에서 본 소유권·간접 비용이 핫패스에서 어떻게 드러나는지 이어 갑니다.
+
+→ [추상화 비용 분석](/post/cpp-optimization/abstraction-cost/) (챕터 03)

@@ -2,7 +2,8 @@
 collection_order: 0
 date: 2026-03-24
 lastmod: 2026-03-25
-draft: true
+draft: false
+image: wordcloud.png
 title: "[Performance 08] Introduction: 극한 Low-latency 최적화 특수기술"
 slug: getting-started-extreme-performance-optimization-techniques
 description: "극한 Low-latency 최적화 특수기술 트랙의 도입 챕터입니다. SIMD/asm/prefetch/branchless를 언제 써야 하는지 경계를 명확히 하고, 노이즈 통제된 측정·검증 루프를 전제로 한 적용 원칙을 정리합니다."
@@ -15,6 +16,34 @@ tags:
   - Cache
   - Memory(메모리)
   - Testing(테스트)
+  - C++
+  - C
+  - Compiler(컴파일러)
+  - Hardware(하드웨어)
+  - Embedded(임베디드)
+  - Benchmark
+  - Latency
+  - Throughput
+  - Concurrency(동시성)
+  - OS(운영체제)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - Implementation(구현)
+  - Best-Practices
+  - Code-Quality(코드품질)
+  - Debugging(디버깅)
+  - Data-Structures(자료구조)
+  - System-Design
+  - Production
+  - Reliability
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Automation(자동화)
+  - Machine-Learning(머신러닝)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Deep-Dive
+  - Advanced
 ---
 
 이 트랙은 "정말로 필요할 때만" 접근하는 특수 기술 묶음입니다. 잘못된 조기 진입은 복잡도만 키우고 회귀를 부르기 쉬우므로, 반드시 목표/측정/검증이 준비된 상황에서 사용합니다.
@@ -28,7 +57,7 @@ tags:
 
 ## 이 트랙이 다루지 않는 것 (경계)
 
-- 기본적인 언어/컴파일러/메모리/동시성 최적화의 기초 (→ Tr.01~Tr.04 선행 권장)
+- 기본적인 언어/컴파일러/메모리/동시성 최적화의 기초 (→ Tr.02~Tr.07 선행 권장)
 - 운영환경(스케줄링/affinity) 변경 중심의 튜닝 (→ OS/런타임 트랙)
 
 ## 커리큘럼
@@ -44,7 +73,7 @@ tags:
 | 01 | SIMD 기초 | 기초 | SIMD 기초 (SSE, AVX) |
 | 02 | SIMD Intrinsics | 중급 | SIMD intrinsics 실전 활용 |
 | 03 | AVX-512/AVX10.2 최적화 | 전문 | AVX-512 최적화 기법과 AVX10.2 통합(Nova Lake의 P/E코어 512비트 실행 통일) |
-| 04 | 자동 벡터화 | 중급 | 자동 벡터화 유도와 검증 (Tr.02와 연계) |
+| 04 | 자동 벡터화 | 중급 | 자동 벡터화 유도와 검증 (Tr.03와 연계) |
 | 05 | Prefetch 전략 | 심화 | Prefetch 전략과 적용 판단 |
 | 06 | Branchless 프로그래밍 | 심화 | Branchless 프로그래밍 기법 |
 | 07 | Hand-written ASM | 전문 | Hand-written 어셈블리 적용과 위험 관리 |
@@ -68,32 +97,32 @@ tags:
 
 ## 추천 선행/병행 트랙
 
-- **선행**: Low-latency 프로파일링·성능 분석 (Tr.05), CPU 마이크로아키텍처 (Tr.06)
-- **병행**: 메모리·할당·레이아웃 (Tr.03), 컴파일러·빌드 최적화 (Tr.02)
+- **선행**: Low-latency 프로파일링·성능 분석 (Tr.01), CPU 마이크로아키텍처 (Tr.05)
+- **병행**: 메모리·할당·레이아웃 (Tr.04), 컴파일러·빌드 최적화 (Tr.03)
 
-> **주의**: 이 트랙은 측정 기반 최적화의 **후반 단계**입니다. Tr.01~06에서 병목을 좁힌 뒤 진입하는 것을 권장합니다.
+> **주의**: 이 트랙은 측정 기반 최적화의 **후반 단계**입니다. Tr.01~05·Tr.07에서 병목을 좁힌 뒤 진입하는 것을 권장합니다.
 
 ## 왜 이 트랙인가 (동기)
 
-컴파일러 자동 벡터화·인라이닝으로 부족할 때, 사람이 SIMD·prefetch·branchless·어셈블리로 핫패스를 압축할 수 있습니다. 대신 **이식성·검증 비용·회귀 위험**이 급격히 올라갑니다. 이 트랙은 “할 수 있다”가 아니라 **언제 해야 하는지**를 Tr.05·Tr.06의 증거와 연결해 판단하는 것을 목표로 합니다.
+컴파일러 자동 벡터화·인라이닝으로 부족할 때, 사람이 SIMD·prefetch·branchless·어셈블리로 핫패스를 압축할 수 있습니다. 대신 **이식성·검증 비용·회귀 위험**이 급격히 올라갑니다. 이 트랙은 “할 수 있다”가 아니라 **언제 해야 하는지**를 Tr.01·Tr.05의 증거와 연결해 판단하는 것을 목표로 합니다.
 
 ## Phase별 학습 궤적
 
-**Phase A — SIMD 파이프라인 (챕터 01~04, 12~14)** 기초 intrinsics와 자동 벡터화 검증은 Tr.02와 연계해 읽으면 빌드 플래그까지 일관됩니다. 챕터 14의 C++26 std::simd는 13의 서드파티 라이브러리 감각을 먼저 익힌 뒤 표준 라이브러리 대안으로 비교하며 읽는 편이 자연스럽습니다.
+**Phase A — SIMD 파이프라인 (챕터 01~04, 12~14)** 기초 intrinsics와 자동 벡터화 검증은 Tr.03와 연계해 읽으면 빌드 플래그까지 일관됩니다. 챕터 14의 C++26 std::simd는 13의 서드파티 라이브러리 감각을 먼저 익힌 뒤 표준 라이브러리 대안으로 비교하며 읽는 편이 자연스럽습니다.
 
-**Phase B — 메모리·제어 흐름 (챕터 05~06, 08~09)** prefetch·branchless·LUT·비트 연산은 캐시·분기 이벤트(Tr.06) 해석이 있을 때 효과가 큽니다.
+**Phase B — 메모리·제어 흐름 (챕터 05~06, 08~09)** prefetch·branchless·LUT·비트 연산은 캐시·분기 이벤트(Tr.05) 해석이 있을 때 효과가 큽니다.
 
-**Phase C — 극한·이질 디바이스 (챕터 07, 10, 15~17)** 핸드튜닝 asm, 핫패스 사례, cache-oblivious, GPU/NPU 추론 최적화는 **전문~심화**입니다. Tr.09·Tr.10과 함께 “되돌리기 비용”을 문서화하세요.
+**Phase C — 극한·이질 디바이스 (챕터 07, 10, 15~17)** 핸드튜닝 asm, 핫패스 사례, cache-oblivious, GPU/NPU 추론 최적화는 **전문~심화**입니다. Tr.11·Tr.12과 함께 “되돌리기 비용”을 문서화하세요.
 
 ## 이 트랙을 마친 후 달성할 목표
 
 - **판단**: SIMD/asm이 **필요한지** 증거 기준으로 말할 수 있다.
-- **검증**: Tr.05 방법으로 개선이 p99까지 전달되는지 확인할 수 있다.
+- **검증**: Tr.01 방법으로 개선이 p99까지 전달되는지 확인할 수 있다.
 - **균형**: 유지보수성(챕터 11)과 성능을 trade-off로 설명할 수 있다.
 
 ## 평가 기준과 이 장을 읽은 후 확인
 
-- [ ] Tr.01~03만으로 해결 가능한 병목과 본 트랙이 필요한 병목을 구분할 수 있는가?
+- [ ] Tr.02~04만으로 해결 가능한 병목과 본 트랙이 필요한 병목을 구분할 수 있는가?
 - [ ] **전문** 난이도 챕터에 들어가기 전 체크할 측정 항목을 세 가지 이상 말할 수 있는가?
 
 ## 범위와 경계
@@ -106,16 +135,16 @@ flowchart LR
     C["asm·GPU 기초"]
   end
   subgraph outScope [경계 밖]
-    D["기초 언어 Tr.01"]
-    E["OS 튜닝 Tr.07"]
-    F["네트워크 스택 Tr.12"]
+    D["기초 언어 Tr.02"]
+    E["OS 튜닝 Tr.06"]
+    F["네트워크 스택 Tr.10"]
   end
   inScope --> outScope
 ```
 
 ## 심화·전문가 확장 궤적
 
-커리큘럼 표에서 **전문**으로 표시된 챕터는 팀 리뷰·회귀 게이트(Tr.10) 없이 도입하지 않는 것을 권장합니다.
+커리큘럼 표에서 **전문**으로 표시된 챕터는 팀 리뷰·회귀 게이트(Tr.12) 없이 도입하지 않는 것을 권장합니다.
 
 ## 시리즈 전체 로드맵
 
@@ -123,7 +152,8 @@ flowchart LR
 
 ## 지금 바로 이어 읽을 곳
 
-이 트랙은 보통 CPU 해석과 측정 근거가 갖춰진 뒤에 여는 편이 안전합니다. 아직 진입이 이른지 확신이 없다면 **Tr.06**과 **Tr.05** 도입을 먼저 다시 확인한 뒤 돌아오세요.
+**01 → 04 → 11** 순으로 읽으면 SIMD 감각과 자동 벡터화의 경계, 유지보수성 판단 기준까지 안전하게 이어집니다.
 
-- [Tr.06 Introduction: CPU 마이크로아키텍처 Low-latency](/post/cpu-optimization/getting-started-cpu-microarchitecture-performance-tuning/)
-- [Tr.05 Introduction: Low-latency 프로파일링·성능 분석](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)
+- [SIMD 기초: SSE·AVX](/post/extreme-optimization/simd-fundamentals-sse-avx/) (챕터 01)
+- [자동 벡터화 유도와 검증](/post/extreme-optimization/auto-vectorization-guidance-verification/) (챕터 04)
+- [극한 최적화와 유지보수성 균형](/post/extreme-optimization/extreme-optimization-maintainability-balance/) (챕터 11)

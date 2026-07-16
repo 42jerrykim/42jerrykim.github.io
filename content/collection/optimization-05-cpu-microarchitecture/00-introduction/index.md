@@ -1,0 +1,167 @@
+---
+collection_order: 0
+date: 2026-03-24
+lastmod: 2026-03-25
+draft: false
+image: wordcloud.png
+title: "[Performance 05] Introduction: CPU 마이크로아키텍처 Low-latency"
+slug: getting-started-cpu-microarchitecture-performance-tuning
+description: "CPU 마이크로아키텍처 Low-latency 트랙의 도입 챕터입니다. TopDown 직관부터 파이프라인·캐시·분기·ILP의 책임 범위를 연결하고, 하드웨어 이벤트와 p99 지연을 함께 해석하는 기본 흐름을 정리합니다."
+tags:
+  - Performance(성능)
+  - Profiling(프로파일링)
+  - Optimization(최적화)
+  - C++
+  - Compiler(컴파일러)
+  - CPU(Central Processing Unit)
+  - Cache
+  - Backend(백엔드)
+  - Memory(메모리)
+  - Assembly
+  - Concurrency(동시성)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - OS(운영체제)
+  - Testing(테스트)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Monitoring(모니터링)
+  - Benchmark
+  - Latency
+  - Throughput
+  - Embedded(임베디드)
+  - Code-Quality(코드품질)
+  - Best-Practices
+  - Refactoring(리팩토링)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Tutorial(튜토리얼)
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Deep-Dive
+  - Production
+  - Scalability(확장성)
+  - Reliability
+  - Implementation(구현)
+  - Documentation(문서화)
+  - Debugging(디버깅)
+  - Automation(자동화)
+  - System-Design
+  - Data-Structures(자료구조)
+  - Clean-Code(클린코드)
+  - 네트워크
+---
+
+이 트랙은 "왜 이 코드가 캐시 미스를 내는가", "왜 분기 예측이 깨지는가" 같은 질문에 답합니다. µs 최적화에서는 CPU 이벤트가 지연시간 분포를 흔들기 때문에, 하드웨어 관점의 비용 모델이 필요합니다.
+
+## 이 트랙이 책임지는 범위
+
+- 파이프라인과 기본 성능 모델(명령 처리 흐름)
+- branch predictor 동작과 분기 형태의 비용
+- cache hierarchy와 캐시 미스가 지연시간에 미치는 영향
+- instruction-level parallelism(ILP)과 병목 형태
+
+## 이 트랙이 다루지 않는 것 (경계)
+
+- 언어 레벨 비용(추상화/할당/수명) (→ C++ 트랙)
+- 빌드/옵션/LTO/PGO 같은 컴파일러 설계 (→ 컴파일러 트랙)
+- OS 스케줄링/CPU pinning/syscall 비용 (→ OS/런타임 트랙)
+
+## 커리큘럼
+
+**난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치). **Tr.NN**은 `optimization-NN-*` 트랙을 가리킵니다.
+
+입문자라면 표 순서만 따라가기보다 **17 → 01 → 02 → 03 → 05** 순서로 읽는 편이 좋습니다. 17은 TopDown에서 말하는 Frontend/Backend bound의 최소 직관을 만들고, 01~05는 그 직관을 파이프라인·분기·캐시·ILP로 연결합니다. 이후 Tr.03의 코드 생성 분석, Tr.04의 레이아웃 변경과 함께 읽으면 카운터 해석이 훨씬 빨라집니다.
+
+여기서도 표 순서는 **참조와 재방문을 위한 지도**로 유지합니다. CPU 트랙은 캐시, TLB, SMT, μOp cache 같은 주제를 장 번호로 다시 찾아보는 일이 많기 때문에, 표는 구조를 고정하고 위 추천 순서는 입문자의 이해 의존성을 맞추는 용도로 분리합니다.
+
+| 챕터 | 제목 | 난이도 | 핵심 내용 |
+|------|------|--------|-----------|
+| 01 | CPU 파이프라인 기초 | 기초 | 현대 CPU 파이프라인 이해 |
+| 02 | 분기 예측 | 중급 | 분기 예측 메커니즘과 비용 |
+| 03 | 캐시 계층 구조 | 중급 | L1/L2/L3 캐시 계층과 미스 비용 |
+| 04 | 캐시 미스 분석 | 심화 | 캐시 미스 분석과 대응 전략, CLDEMOTE/PREFETCHRST2/MOVRS 등 신규 캐시 힌트 명령 활용 |
+| 05 | ILP 기초 | 중급 | 명령 수준 병렬성(ILP) 이해 |
+| 06 | Out-of-Order 실행 | 심화 | Out-of-Order 실행과 성능 영향 |
+| 07 | TLB 최적화 | 심화 | TLB 미스 최적화 |
+| 08 | 현대 CPU 아키텍처 | 중급 | Intel/AMD/ARM 아키텍처 비교, Clearwater Forest·Diamond Rapids·AMD Zen6·Nova Lake(AVX10.2+APX) 최신 세대 반영 |
+| 09 | CPU 하드웨어 카운터 | 심화 | CPU 하드웨어 카운터 활용, perf --cpu-type(하이브리드 코어별 카운터 분리)과 TMA HBM_Bound 등 신규 메트릭 |
+| 10 | 추측 실행 | 심화 | 추측 실행과 보안 영향 (Spectre/Meltdown) |
+| 11 | 주파수 스케일링 | 중급 | CPU 주파수 스케일링과 성능 |
+| 12 | 전력 관리 | 중급 | 전력 관리가 성능에 미치는 영향 |
+| 13 | Apple Silicon 아키텍처 | 심화 | M 시리즈 칩 특성, P/E 코어, Unified Memory 아키텍처 |
+| 14 | SMT/Hyper-Threading | 심화 | 동시 멀티스레딩 성능 영향과 최적화 전략 |
+| 15 | μOp Cache와 DSB | 전문 | Decoded Stream Buffer, μOp 캐시 활용과 최적화 |
+| 16 | RISC-V 아키텍처 기초 | 전문 | RISC-V ISA 특성과 성능 고려사항 (니치·임베디드 대비) |
+| 17 | Frontend vs Backend Bound 개념 | 기초 | TopDown 분석의 기초 직관과 병목 범주 구분 (선행: 챕터 01과 함께 읽기 권장) |
+| 18 | 의존성 체인·포트 압력 분석 | 중급 | 명령 의존성 체인 길이와 실행 포트 경합이 ILP에 미치는 영향 |
+
+ARM Neoverse V4는 2026년 상반기까지 공식 세부 사양이 공개되지 않아 이 표에서 의도적으로 다루지 않습니다. 사양이 확정되면 13장(Apple Silicon 아키텍처) 인근에 서버 ARM 코어 비교로 추가하는 것을 검토합니다.
+
+## 측정과 검증 (이 트랙 기준)
+
+- 프로파일러/하드웨어 이벤트 기반으로 병목을 "원인"까지 연결
+- 코드 변경 전후에 캐시/분기 관련 지표와 레이턴시를 함께 비교
+- 과최적화 방지: 지표 개선이 실제 p99 개선으로 이어지는지 검증
+
+## 추천 선행/병행 트랙
+
+- **선행**: Low-latency 프로파일링·성능 분석 (Tr.01)
+- **병행**: 메모리·할당·레이아웃 (Tr.04), 극한 최적화 기법 (Tr.08)
+
+## 왜 이 트랙인가 (동기)
+
+프로파일러는 “어느 함수가 뜨거운지”를 보여 주지만, **왜** 그 함수가 뜨거운지는 CPU 관점에서 풀어야 할 때가 많습니다. 분기 예측 실패, 캐시 미스, TLB 미스, 포트 경합은 모두 **나노초~수백 나노초** 단위로 쌓여 µs 단위 요청 예산을 잠식합니다. 이 트랙은 하드웨어 이벤트와 코드 형태를 연결해, Tr.04의 레이아웃·Tr.03의 벡터화·Tr.08의 intrinsics 선택에 **근거**를 제공합니다.
+
+## Phase별 학습 궤적
+
+**Phase A — 모델 (챕터 17, 01~03, 05)** Frontend/Backend bound 직관 없이 카운터만 보면 숫자가 뜬금없이 느껴집니다. 17을 01과 함께 읽으면 이후 챕터에서 "어느 종류의 병목인지"를 먼저 분류할 수 있습니다.
+
+**Phase B — 병목 해석 (챕터 04, 06~10)** 캐시 미스·OoO·TLB·추측 실행은 **심화**입니다. Tr.01의 perf/VTune과 같이 읽을 때 해석이 빨라집니다.
+
+**Phase C — 벤더·전문 (챕터 08, 11~16)** Apple Silicon, SMT, μOp 캐시, RISC-V 등은 **플랫폼별·전문**에 가깝습니다. 배포 타깃이 정해졌을 때 집중하면 효율이 좋습니다.
+
+## 이 트랙을 마친 후 달성할 목표
+
+- **설명**: 캐시 미스·분기 오답·ILP 한계가 지연에 어떻게 기여하는지 말로 설명할 수 있다.
+- **연결**: Tr.04 레이아웃 변경과 하드웨어 이벤트 변화를 대응시킬 수 있다.
+- **검증**: “지표는 좋아졌는데 p99는 그대로”인 경우를 의심하고 Tr.01로 재확인할 수 있다.
+- **경계**: 언어·컴파일러·OS 트랙과 질문을 나눌 수 있다.
+
+## 평가 기준과 이 장을 읽은 후 확인
+
+- [ ] 이 트랙이 답하는 질문(하드 이벤트)과 Tr.02·Tr.03가 답하는 질문을 구분할 수 있는가?
+- [ ] **심화** 챕터를 읽기 전에 Tr.01로 어떤 이벤트를 봐야 할지 정할 수 있는가?
+- [ ] 과최적화 시 “p99까지 확인” 습관을 말로 설명할 수 있는가?
+
+## 범위와 경계
+
+```mermaid
+flowchart LR
+  subgraph inScope [이 트랙]
+    A["파이프라인·분기"]
+    B["캐시·TLB·ILP"]
+    C["하드웨어 카운터"]
+  end
+  subgraph outScope [경계 밖]
+    D["할당·레이아웃 Tr.04"]
+    E["LTO·PGO Tr.03"]
+    F["스케줄링 Tr.06"]
+  end
+  inScope --> outScope
+```
+
+## 심화·전문가 확장 궤적
+
+μOp 캐시·특정 ISA 심화는 **전문** 난이도입니다. 범용 서버라면 챕터 01~07·09를 먼저 완성하고, 모바일/임베디드·특정 벤더 락인이 있을 때 Phase C로 확장하세요.
+
+## 시리즈 전체 로드맵
+
+12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**를 참고하세요.
+
+## 지금 바로 이어 읽을 곳
+
+**01 → 17 → 02 → 03** 순으로 읽으면 파이프라인 기초에서 TopDown 직관, 분기 예측, 캐시 계층까지 자연스럽게 이어집니다.
+
+- [CPU 파이프라인 기초](/post/cpu-optimization/cpu-pipeline-fundamentals/) (챕터 01)
+- [Frontend vs Backend Bound 개념](/post/cpu-optimization/frontend-backend-bound-topdown-basics/) (챕터 17)
+- [분기 예측 메커니즘과 비용](/post/cpu-optimization/branch-prediction-mechanisms-cost/) (챕터 02)
