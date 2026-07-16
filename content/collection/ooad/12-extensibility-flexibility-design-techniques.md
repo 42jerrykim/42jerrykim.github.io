@@ -1,5 +1,8 @@
 ---
 draft: true
+build:
+  list: false
+  render: false
 ---
 # 12장: 확장성과 유연성을 위한 설계 기법
 

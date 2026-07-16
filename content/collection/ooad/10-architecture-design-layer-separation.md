@@ -1,5 +1,8 @@
 ---
 draft: true
+build:
+  list: false
+  render: false
 ---
 # 10장: 아키텍처 설계와 레이어 분리
 
