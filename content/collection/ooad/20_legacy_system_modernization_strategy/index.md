@@ -30,6 +30,7 @@ tags:
   - 점진적마이그레이션
   - 위험기반순서
   - Modularity
+  - Documentation(문서화)
 ---
 
 # 20. 레거시 시스템 현대화 전략
