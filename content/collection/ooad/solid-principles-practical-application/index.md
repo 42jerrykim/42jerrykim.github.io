@@ -5,6 +5,7 @@ date: 2026-01-17
 lastmod: 2026-01-17
 collection_order: 4
 draft: true
+image: "wordcloud.png"
 tags:
   - SOLID
   - OOP(객체지향)

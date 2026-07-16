@@ -5,6 +5,7 @@ date: 2026-01-17
 lastmod: 2026-01-17
 collection_order: 2
 draft: true
+image: "wordcloud.png"
 tags:
   - OOP(객체지향)
   - Design-Pattern(디자인패턴)

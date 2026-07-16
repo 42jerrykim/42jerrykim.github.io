@@ -5,6 +5,7 @@ date: 2026-01-17
 lastmod: 2026-01-17
 collection_order: 5
 draft: true
+image: "wordcloud.png"
 tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Nuance(뉘앙스)

@@ -5,6 +5,7 @@ date: 2026-01-17
 lastmod: 2026-01-17
 collection_order: 8
 draft: true
+image: "wordcloud.png"
 tags:
   - UML(Unified Modeling Language)
   - Software-Architecture(소프트웨어아키텍처)
