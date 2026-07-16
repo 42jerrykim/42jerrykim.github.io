@@ -4,7 +4,7 @@ date: 2026-03-24
 lastmod: 2026-03-24
 draft: false
 image: wordcloud.png
-title: "[I/O 11] 스토리지 스택 커스터마이징 (전문)"
+title: "[IO 09] 스토리지 스택 커스터마이징 (전문)"
 slug: storage-stack-customization-kernel-fs-drivers-expert
 description: "커널 모듈·특수 파일시스템·벤더 드라이버까지 건드릴 때의 성능 이득과 운영·보안 리스크를 전문 난이도로 정리합니다. Tr.11 의사결정·Tr.06 런타임 경계와 연계해 검증·롤밹 프레임을 제시합니다."
 tags:
