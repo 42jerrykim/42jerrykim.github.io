@@ -1,6 +1,6 @@
 ---
 title: "[Redux] 29. Redux 성능 최적화와 디버깅 심화"
-description: "13편의 컴포넌트 최적화를 넘어, Redux DevTools의 액션 필터·상태 diff·시간 여행 디버깅을 실전 워크플로로 정리합니다. 대규모 상태에서 리듀서 자체가 병목이 되는 경우와 그 진단법도 다룹니다."
+description: "13편의 컴포넌트 최적화를 넘어, Redux DevTools의 액션 필터·상태 diff·시간 여행 디버깅을 실전 워크플로로 정리합니다. 대규모 상태에서 리듀서 자체가 병목이 되는 경우와 그 진단법, 프로덕션 디버깅 전략까지 다룹니다."
 date: 2026-07-17
 lastmod: 2026-07-17
 collection_order: 29
@@ -188,4 +188,4 @@ const errorReportingMiddleware = (store) => (next) => (action) => {
 
 ## 다음 글
 
-- 다음: [30. 테스팅과 실전 프로젝트 - E-Commerce 앱](../testing-ecommerce-app/)
+- 다음: [30. 테스팅과 실전 프로젝트 - E-Commerce 앱 (시리즈 마무리)](../testing-ecommerce-app/)

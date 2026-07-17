@@ -89,6 +89,8 @@ export function counterReducer(state = initialState, action) {
 }
 ```
 
+리듀서와 별도로, 이 상태에 접근하는 방법도 selector로 분리해둡니다. 컴포넌트는 `state.counter.count`라는 경로를 직접 알 필요 없이 이 함수 하나만 가져다 씁니다.
+
 ```javascript
 // features/counter/counterSelectors.js
 export const selectCount = (state) => state.counter.count; // 14편: 이름 있는 selector로 분리
@@ -119,6 +121,8 @@ export function todosReducer(state = initialState, action) {
   }
 }
 ```
+
+todos는 완료 개수처럼 계산이 필요한 파생 데이터를 자주 필요로 하므로, 이 selector 파일에서 14편의 `createSelector`를 바로 사용합니다.
 
 ```javascript
 // features/todos/todosSelectors.js
@@ -151,6 +155,8 @@ export const store = createStore(rootReducer);
 
 ## UI 컴포넌트
 
+가장 단순한 `Counter`부터 조립합니다. 12편에서 배운 대로 `useSelector`가 원시값(`count`)을 구독하므로, 이 컴포넌트는 다른 상태가 바뀌어도 불필요하게 리렌더되지 않습니다.
+
 ```jsx
 // features/counter/Counter.jsx
 import { useSelector, useDispatch } from "react-redux";
@@ -170,6 +176,8 @@ export function Counter() {
   );
 }
 ```
+
+`TodoList`는 `Counter`보다 복잡합니다. 13편의 항목 분리 패턴(`TodoItem`을 별도 컴포넌트로 두기)과 `useCallback`으로 핸들러 참조를 안정시키는 기법을 함께 적용합니다.
 
 ```jsx
 // features/todos/TodoList.jsx
@@ -216,6 +224,8 @@ export function TodoList() {
   );
 }
 ```
+
+마지막으로 이 두 컴포넌트를 하나의 앱으로 묶습니다. 11편에서 배운 `Provider`가 `store`를 트리 전체에 주입해야, `Counter`와 `TodoList` 어디에서든 `useSelector`/`useDispatch`를 쓸 수 있습니다.
 
 ```jsx
 // App.jsx

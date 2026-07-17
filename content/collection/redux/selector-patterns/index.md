@@ -55,6 +55,8 @@ export const selectCartItemCount = (state) => state.cart.items.length;
 export const selectTodoById = (state, id) => state.todos.find((todo) => todo.id === id);
 ```
 
+컴포넌트는 이 selector를 가져다 `useSelector`에 넘기기만 하면 되고, 상태가 `state.cart.items`에 있는지 다른 경로에 있는지는 알 필요가 없습니다.
+
 ```jsx
 import { useSelector } from "react-redux";
 import { selectCartItemCount } from "./selectors";
@@ -87,7 +89,7 @@ export const selectCartTotal = (state) =>
 **Reselect** 라이브러리의 `createSelector`는 **메모이제이션**된 selector를 만듭니다. 입력값이 이전과 같으면 저장해둔 결과를 재사용하고, 입력이 바뀔 때만 실제로 다시 계산합니다.
 
 ```javascript
-import { createSelector } from "@reduxjs/toolkit"; // Redux Toolkit은 Reselect를 내장한다
+import { createSelector } from "reselect"; // 15편까지는 Toolkit 없이 이 라이브러리를 직접 설치해 쓴다(16편부터는 @reduxjs/toolkit이 재수출하는 동일한 함수를 쓴다)
 
 const selectTodos = (state) => state.todos; // 입력 selector: 원본 상태 조각을 그대로 반환
 

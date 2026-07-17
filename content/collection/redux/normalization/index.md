@@ -1,6 +1,6 @@
 ---
 title: "[Redux] 27. 정규화(Normalization) - 복잡한 데이터 관리"
-description: "중첩된 게시글·댓글·작성자 데이터를 배열 그대로 저장할 때 생기는 중복 업데이트 문제를, ID를 키로 쓰는 정규화된 상태 구조와 createEntityAdapter로 해결합니다."
+description: "중첩된 게시글·댓글·작성자 데이터를 배열 그대로 저장할 때 생기는 중복 업데이트 문제를, ID를 키로 쓰는 정규화된 상태 구조와 Redux Toolkit의 createEntityAdapter로 해결하는 방법을 다룹니다."
 date: 2026-07-17
 lastmod: 2026-07-17
 collection_order: 27

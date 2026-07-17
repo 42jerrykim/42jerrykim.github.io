@@ -1,6 +1,6 @@
 ---
 title: "[Redux] 09. Redux 데이터 흐름 이해하기"
-description: "07편에서 만든 세 요소가 실제로 dispatch 한 번에 어떤 순서로 실행되는지 단계별로 추적합니다. 동기 흐름과 비동기 흐름을 구분해, DevTools로 각 단계를 실제로 관찰하는 방법까지 다룹니다."
+description: "07편에서 만든 세 요소가 실제로 dispatch 한 번에 어떤 순서로 실행되는지 단계별로 추적합니다. 동기 흐름과 비동기 흐름을 구분해, DevTools로 각 단계를 실제로 관찰하는 방법까지 코드와 함께 다룹니다."
 date: 2026-07-17
 lastmod: 2026-07-17
 collection_order: 9

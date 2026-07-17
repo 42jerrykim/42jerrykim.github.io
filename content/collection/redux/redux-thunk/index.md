@@ -80,9 +80,9 @@ store.dispatch(incrementLater()); // thunkMiddleware가 이 함수를 감지해 
 
 `store.dispatch(incrementLater())`를 호출하면, `incrementLater()`가 반환한 함수가 `thunkMiddleware`에 도달합니다. `typeof action === "function"`이 참이므로, 21편의 `next(action)` 대신 **그 함수 자체를 호출**합니다. 이 함수 안에서 원하는 시점에 `dispatch`를 호출해 실제 액션을 발생시킬 수 있습니다.
 
-## 09편의 fetchTodos를 thunk로 이해하기
+## fetchTodos를 thunk로 이해하기
 
-09편과 19편에서 이미 사용했던 비동기 액션 패턴이 사실 thunk였습니다. 이제 그 구조를 명확히 짚어봅니다.
+09편(user 도메인)과 19편(todos 도메인)에서 이미 사용했던 비동기 액션 패턴이 사실 thunk였습니다. 이제 그 구조를 명확히 짚어봅니다.
 
 ```javascript
 function fetchTodos() {

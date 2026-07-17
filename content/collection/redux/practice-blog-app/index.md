@@ -228,4 +228,4 @@ flowchart TD
 
 ## 다음 글
 
-- 다음: [26. 프로젝트 구조 - 확장 가능한 Redux 아키텍처](../redux-project-structure/)
+- 다음: [26. Redux 프로젝트 구조 - 확장 가능한 설계](../redux-project-structure/)

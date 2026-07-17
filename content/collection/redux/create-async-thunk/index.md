@@ -44,10 +44,12 @@ tags:
 - `extraReducers`에서 이 세 상태를 처리해 로딩 상태를 관리할 수 있다.
 - `rejectWithValue`로 에러 정보를 커스터마이징해 전달할 수 있다.
 
-## 09편 복습: 손으로 만든 비동기 액션 3종
+## 09편 패턴 복습: 손으로 만든 비동기 액션 3종
+
+09편에서는 `user` 도메인으로 이 패턴을 봤습니다. 이번 편은 20편의 실습 프로젝트와 이어지도록 `todos` 도메인으로 같은 패턴을 다시 짜봅니다.
 
 ```javascript
-// 09편: 순수 Redux로 작성한 비동기 흐름
+// 09편과 동일한 패턴을 todos 도메인으로 다시 쓴 순수 Redux 비동기 흐름
 const todosLoadStarted = () => ({ type: "todos/loadStarted" });
 const todosLoadSucceeded = (todos) => ({ type: "todos/loadSucceeded", payload: todos });
 const todosLoadFailed = (error) => ({ type: "todos/loadFailed", payload: error, error: true });
@@ -86,9 +88,9 @@ export const fetchTodos = createAsyncThunk(
 
 | 자동 생성되는 액션 타입 | 발생 시점 |
 |---|---|
-| `todos/fetchTodos/pending` | 09편의 `todosLoadStarted`에 대응, 호출 시작 시 |
-| `todos/fetchTodos/fulfilled` | 09편의 `todosLoadSucceeded`에 대응, `return`한 값이 `payload` |
-| `todos/fetchTodos/rejected` | 09편의 `todosLoadFailed`에 대응, 예외 발생 시 |
+| `todos/fetchTodos/pending` | 위 `todosLoadStarted`에 대응, 호출 시작 시 |
+| `todos/fetchTodos/fulfilled` | 위 `todosLoadSucceeded`에 대응, `return`한 값이 `payload` |
+| `todos/fetchTodos/rejected` | 위 `todosLoadFailed`에 대응, 예외 발생 시 |
 
 액션 생성자 3개와 `try/catch`를 손으로 쓸 필요 없이, `async` 함수 하나만 작성하면 됩니다.
 
@@ -185,6 +187,8 @@ export const fetchTodos = createAsyncThunk(
   }
 );
 ```
+
+이렇게 `rejectWithValue`로 감싼 값은 리듀서 쪽에서도 짝을 맞춰 읽어야 합니다. `extraReducers`의 `rejected` 케이스에서 `action.payload`를 우선 확인하도록 고칩니다.
 
 ```javascript
 .addCase(fetchTodos.rejected, (state, action) => {

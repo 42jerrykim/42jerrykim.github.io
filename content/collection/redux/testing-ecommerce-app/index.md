@@ -1,6 +1,6 @@
 ---
 title: "[Redux] 30. 테스팅과 실전 프로젝트 - E-Commerce 앱 (시리즈 마무리)"
-description: "리듀서·thunk·컴포넌트 테스트 작성법을 정리하고, 1~29편의 개념을 모두 조합한 장바구니·상품 목록·주문 E-Commerce 미니 프로젝트로 시리즈를 마무리합니다. 전체 30편 대응표를 포함합니다."
+description: "리듀서·thunk·RTK Query·컴포넌트 테스트 작성법을 정리하고, 1~29편의 개념을 모두 조합한 장바구니·상품 목록·주문 E-Commerce 미니 프로젝트로 시리즈를 마무리합니다. 전체 30편 대응표를 포함합니다."
 date: 2026-07-17
 lastmod: 2026-07-17
 collection_order: 30
@@ -72,18 +72,16 @@ test("itemAdded는 새 상품을 장바구니에 추가한다", () => {
 
 ```javascript
 // checkoutThunk.test.js
-import { checkoutCart } from "./cartSlice";
+import { submitOrder } from "./checkoutThunk";
+import { checkoutRejected } from "./checkoutSlice";
 
 test("장바구니가 비어있으면 checkoutRejected를 dispatch한다", async () => {
   const dispatch = jest.fn(); // 실제 Store 없이 함수 호출만 기록하는 가짜 dispatch
   const getState = () => ({ cart: { items: [] } });
 
-  await checkoutCart()(dispatch, getState); // thunk 함수를 직접 호출
+  await submitOrder()(dispatch, getState); // thunk 함수를 직접 호출
 
-  expect(dispatch).toHaveBeenCalledWith({
-    type: "cart/checkoutRejected",
-    payload: "장바구니가 비어 있습니다",
-  });
+  expect(dispatch).toHaveBeenCalledWith(checkoutRejected("장바구니가 비어 있습니다"));
 });
 ```
 
@@ -115,6 +113,20 @@ test("getProducts는 상품 목록을 가져와 캐시한다", async () => {
 ```
 
 MSW는 실제 네트워크 계층(fetch)을 가로채므로, `fetchBaseQuery` 내부 구현을 몰라도 됩니다. "이 URL로 요청이 오면 이 응답을 준다"는 선언만으로 24편에서 만든 API 슬라이스 전체를 검증할 수 있습니다.
+
+에러 경로도 같은 방식으로 검증합니다. MSW 핸들러가 실패 응답을 반환하도록 재정의하기만 하면, 19편의 `rejected` 상태와 동일한 원리로 RTK Query의 에러 상태를 확인할 수 있습니다.
+
+```javascript
+test("서버 에러 시 isError가 true가 된다", async () => {
+  server.use(http.get("/api/products", () => HttpResponse.json({ message: "서버 오류" }, { status: 500 })));
+
+  const storeRef = setupApiStore(productsApi);
+  const result = await storeRef.store.dispatch(productsApi.endpoints.getProducts.initiate());
+
+  expect(result.isError).toBe(true);
+  expect(result.error.status).toBe(500);
+});
+```
 
 ## 컴포넌트 테스트: React Testing Library
 
@@ -166,7 +178,8 @@ src/
       cartSelectors.ts     # 14편: createSelector로 합계 메모이제이션
       Cart.tsx
     checkout/
-      checkoutThunk.ts     # 22편: 복잡한 검증+dispatch 조합
+      checkoutSlice.ts      # 17편: 체크아웃 상태 전이 관리
+      checkoutThunk.ts      # 22편: 복잡한 검증+dispatch 조합
       OrderConfirmation.tsx
   shared/
     api/baseApi.ts         # 26편: injectEndpoints 공유 기반
@@ -220,25 +233,102 @@ export const selectCartTotal = createSelector([selectCartItems], (items) =>
 );
 ```
 
+`features/products/productsApi.ts`는 24편의 RTK Query와 27편의 `createEntityAdapter`를 결합합니다. 쿼리가 반환한 배열을 `transformResponse`로 정규화된 `{ ids, entities }` 형태로 변환해 캐시에 저장하고, `getSelectors()`로 표준 selector를 뽑아 씁니다.
+
+```typescript
+// features/products/productsApi.ts — 24·27·28편 통합: RTK Query + createEntityAdapter
+import { createEntityAdapter, createSelector, EntityState } from "@reduxjs/toolkit";
+import { baseApi } from "../../shared/api/baseApi"; // 26편: injectEndpoints 공유 기반
+import type { RootState } from "../../app/store";
+
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+}
+
+const productsAdapter = createEntityAdapter<Product>();
+
+export const productsApi = baseApi.injectEndpoints({
+  endpoints: (builder) => ({
+    getProducts: builder.query<EntityState<Product>, void>({
+      query: () => "/products",
+      transformResponse: (response: Product[]) =>
+        productsAdapter.setAll(productsAdapter.getInitialState(), response), // 배열 → 정규화된 캐시 형태
+      providesTags: ["Product"],
+    }),
+  }),
+});
+
+export const { useGetProductsQuery } = productsApi;
+
+// 쿼리 캐시 결과에서 정규화된 데이터만 추출한 뒤 표준 selector로 감싼다
+const selectProductsResult = productsApi.endpoints.getProducts.select();
+const selectProductsData = createSelector(selectProductsResult, (result) => result.data);
+
+export const { selectAll: selectAllProducts, selectById: selectProductById } =
+  productsAdapter.getSelectors(
+    (state: RootState) => selectProductsData(state) ?? productsAdapter.getInitialState()
+  );
+```
+
+`selectAllProducts(state)`처럼 호출하면, 컴포넌트는 쿼리가 아직 로딩 중인지 캐시가 비었는지 신경 쓸 필요 없이 항상 정규화된 배열(또는 빈 배열)을 받습니다. `productsAdapter.getSelectors()`가 반환하는 `selectAll`/`selectById`는 15편·20편에서 손으로 만들었던 selector와 동일한 역할을, 정규화된 쿼리 캐시 위에서 자동으로 제공합니다.
+
+```typescript
+// features/checkout/checkoutSlice.ts — 17편: createSlice로 체크아웃 상태 전이 관리
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+interface CheckoutState {
+  status: "idle" | "loading" | "succeeded" | "failed"; // 19편과 동일한 상태 모델
+  error: string | null;
+}
+
+const checkoutSlice = createSlice({
+  name: "checkout",
+  initialState: { status: "idle", error: null } as CheckoutState,
+  reducers: {
+    checkoutStarted: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    checkoutSucceeded: (state) => {
+      state.status = "succeeded";
+    },
+    checkoutFailed: (state, action: PayloadAction<string>) => {
+      state.status = "failed";
+      state.error = action.payload;
+    },
+    checkoutRejected: (state, action: PayloadAction<string>) => {
+      state.status = "failed";
+      state.error = action.payload;
+    },
+  },
+});
+
+export const { checkoutStarted, checkoutSucceeded, checkoutFailed, checkoutRejected } = checkoutSlice.actions;
+export default checkoutSlice.reducer;
+```
+
 ```typescript
 // features/checkout/checkoutThunk.ts — 22·28편
 import type { AppDispatch, RootState } from "../../app/store";
 import { itemRemoved } from "../cart/cartSlice";
+import { checkoutStarted, checkoutSucceeded, checkoutFailed, checkoutRejected } from "./checkoutSlice";
 
 export const submitOrder = () => async (dispatch: AppDispatch, getState: () => RootState) => {
   const { items } = getState().cart;
   if (items.length === 0) {
-    dispatch({ type: "checkout/rejected", payload: "장바구니가 비어 있습니다" });
+    dispatch(checkoutRejected("장바구니가 비어 있습니다"));
     return;
   }
-  dispatch({ type: "checkout/started" });
+  dispatch(checkoutStarted());
   try {
     const response = await fetch("/api/orders", { method: "POST", body: JSON.stringify({ items }) });
-    const order = await response.json();
-    dispatch({ type: "checkout/succeeded", payload: order });
+    if (!response.ok) throw new Error("주문 처리에 실패했습니다");
+    dispatch(checkoutSucceeded());
     items.forEach((item) => dispatch(itemRemoved(item.id))); // 09편: 성공 후 후속 액션 조합
   } catch (error) {
-    dispatch({ type: "checkout/failed", payload: (error as Error).message });
+    dispatch(checkoutFailed((error as Error).message));
   }
 };
 ```

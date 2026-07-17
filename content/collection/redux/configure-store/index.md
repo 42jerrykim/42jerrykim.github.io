@@ -122,6 +122,8 @@ dispatch({ type: "log/added", payload: { createdAt: new Date() } });
 // "A non-serializable value was detected in the state, in the path `log.createdAt`..."
 ```
 
+이 경고를 없애려면 `Date` 객체 자체를 상태에 넣지 않고, 직렬화 가능한 형태로 바꿔서 저장하면 됩니다.
+
 ```javascript
 // 개선: Date 대신 직렬화 가능한 타임스탬프 문자열/숫자를 저장한다
 dispatch({ type: "log/added", payload: { createdAt: Date.now() } }); // 숫자

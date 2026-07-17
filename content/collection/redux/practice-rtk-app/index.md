@@ -262,4 +262,4 @@ export function TodoList() {
 
 ## 다음 글
 
-- 다음: [21. 미들웨어 심화 - Redux 미들웨어 직접 만들기](../redux-middleware/)
+- 다음: [21. Redux 미들웨어의 이해](../redux-middleware/)

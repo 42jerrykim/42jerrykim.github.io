@@ -383,11 +383,11 @@ Phase 1 (1-5편) → Phase 2 (6-10편) → Phase 3 (11-15편) → Phase 4 (16-20
 **예상 소요 시간**: 3-4개월 (하루 1-2시간)
 
 **2. JavaScript는 알지만 Redux는 처음**  
-Phase 1 (빠르게 복습) → Phase 2 (6-10편) → Phase 4 (16-20편) → Phase 3 (11-15편) → Phase 5 (21-25편) → Phase 6-7 (26-30편).  
+Phase 1 (빠르게 복습) → Phase 2 (6-10편) → Phase 3 (11-15편) → Phase 4 (16-20편) → Phase 5 (21-25편) → Phase 6-7 (26-30편). Phase 4(16·17·20편)가 Phase 3의 실습(15편)을 그대로 리팩터링하므로, Phase 3을 건너뛰지 않는 것이 중요합니다.  
 **예상 소요 시간**: 2-3개월
 
 **3. 기존 Redux 사용자 (RTK 학습 목적)**  
-Phase 4 (16-20편) → Phase 5 (21-25편) → Phase 6-7 (26-30편).  
+Phase 4 (16-20편) → Phase 5 (21-25편) → Phase 6-7 (26-30편). 단, 16·17·20편은 15편(Phase 3 실습)의 `counterSlice`/`todosSlice` 코드를 그대로 리팩터링하므로, Phase 4를 시작하기 전 최소 [15편](practice-counter-todo/)만이라도 먼저 훑어보길 권장합니다.  
 **예상 소요 시간**: 1-2개월
 
 ### **참고 학습 방법**
@@ -434,7 +434,7 @@ Phase 4 (16-20편) → Phase 5 (21-25편) → Phase 6-7 (26-30편).
 
 ## 커리큘럼 맵
 
-Phase 1부터 7까지의 **진행 순서**와 **Phase 간 연결 관계**를 한눈에 보려면 아래 다이어그램을 참고하세요. Phase 2(Redux 핵심)를 마친 뒤에는 Phase 3(React-Redux)과 Phase 4(Redux Toolkit) 중 어느 쪽을 먼저 갈지 선택할 수 있고, 두 경로 모두 Phase 5(미들웨어)로 합쳐집니다. 자신의 수준(JS 초보인지, Redux만 새로 배우는지)에 맞는 경로를 골라 순서대로 진행하면 됩니다.
+Phase 1부터 7까지의 **진행 순서**와 **Phase 간 연결 관계**를 한눈에 보려면 아래 다이어그램을 참고하세요. Phase 4(16·17·20편)는 Phase 3의 실습(15편)에서 만든 `counterSlice`/`todosSlice`를 그대로 리팩터링하므로, Phase 3 → Phase 4 순서가 기본 경로입니다. 기존 Redux 사용자가 Phase 3을 건너뛰고 싶다면 위 "추천 학습 경로" 3번처럼 최소 15편만 훑어보고 Phase 4로 넘어가세요.
 
 ```mermaid
 flowchart TD
@@ -461,8 +461,7 @@ flowchart TD
   end
   JS --> ReduxCore
   ReduxCore --> ReactRedux
-  ReduxCore --> RTK
-  ReactRedux --> Middleware
+  ReactRedux --> RTK
   RTK --> Middleware
   Middleware --> Advanced
   Advanced --> Master

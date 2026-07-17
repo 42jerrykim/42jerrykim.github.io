@@ -1,6 +1,6 @@
 ---
 title: "[Redux] 03. 배열과 객체 다루기 - map, filter, reduce"
-description: "Redux의 selector와 리듀서는 map/filter/reduce 같은 고차 함수로 상태를 조회·변환합니다. 원본을 바꾸지 않는 배열 메서드와 바꾸는 메서드를 명확히 구분해 불변성을 지키는 습관을 다룹니다."
+description: "Redux의 selector와 리듀서는 map/filter/reduce 같은 고차 함수로 상태를 조회·변환합니다. 원본을 바꾸지 않는 배열·객체 메서드와 바꾸는 메서드를 명확히 구분해 불변성을 지키는 습관을 코드로 다룹니다."
 date: 2026-07-17
 lastmod: 2026-07-17
 collection_order: 3
@@ -127,6 +127,37 @@ console.log(confirmedTotal); // 30000
 
 이런 체이닝은 14편(Selector 패턴)에서 `useSelector`와 함께 쓰이며, 컴포넌트가 필요로 하는 파생 데이터를 상태로부터 계산하는 표준적인 방식이 됩니다.
 
+## 객체 순회와 변환: Object.keys/values/entries
+
+Redux 상태에서 배열 못지않게 자주 마주치는 형태가, 방금 `reduce()`로 만든 `todosById`처럼 **id를 키로 쓰는 객체**입니다. 이런 객체는 배열이 아니므로 `map`/`filter`를 바로 쓸 수 없습니다. JavaScript는 객체를 배열로 변환하는 세 가지 메서드로 이 문제를 해결합니다.
+
+```javascript
+Object.keys(todosById);   // ["1", "2"] — 키만 담은 배열
+Object.values(todosById); // [{...}, {...}] — 값만 담은 배열
+Object.entries(todosById); // [["1", {...}], ["2", {...}]] — [키, 값] 쌍의 배열
+```
+
+`Object.values()`로 객체를 배열로 바꾸고 나면, 앞서 배운 map/filter/reduce를 그대로 이어 쓸 수 있습니다. 예를 들어 완료된 todo 개수를 세려면 `Object.values(todosById).filter((todo) => todo.done).length`처럼 씁니다. 27편(정규화)에서 `state.entities`(id 기반 객체)로부터 목록을 뽑아낼 때 바로 이 패턴을 다시 사용합니다.
+
+## 객체를 불변하게 업데이트하기: Object.assign과 스프레드
+
+배열에 `push`/`splice`(변경)와 `concat`/`filter`(새 배열 반환)가 있듯, 객체에도 원본을 직접 바꾸는 방식과 새 객체를 반환하는 방식이 있습니다. 리듀서 안에서는 항상 새 객체를 반환하는 쪽을 씁니다.
+
+```javascript
+const todo = { id: 1, text: "학습", done: false };
+
+// 나쁜 예: 원본 객체를 직접 변경
+todo.done = true;
+
+// 좋은 예 1: Object.assign의 첫 인자로 빈 객체를 넘겨 새 객체를 만든다
+const updated1 = Object.assign({}, todo, { done: true });
+
+// 좋은 예 2: 스프레드 연산자(02편)로 새 객체 생성 — 실무에서 더 널리 쓰인다
+const updated2 = { ...todo, done: true };
+```
+
+`Object.assign({}, todo, { done: true })`은 빈 객체 `{}`에 `todo`의 속성을 먼저 복사하고, 그 위에 `{ done: true }`를 덮어씁니다. 첫 인자를 빈 객체가 아니라 `todo` 자체로 쓰면(`Object.assign(todo, { done: true })`) 원본을 직접 변경해버리는 흔한 실수가 됩니다. 02편에서 배운 스프레드 연산자가 같은 일을 더 짧고 안전하게 하므로, 실무에서는 스프레드를 더 많이 씁니다.
+
 ## 원본을 바꾸는 메서드는 리듀서에서 쓰지 않는다
 
 JavaScript 배열 메서드 중 일부는 **원본을 직접 변경(mutate)**합니다. Redux 리듀서 안에서는 이런 메서드를 쓰면 안 됩니다.
@@ -137,6 +168,7 @@ JavaScript 배열 메서드 중 일부는 **원본을 직접 변경(mutate)**합
 | `splice()` | `slice()`, `filter()` |
 | `sort()`, `reverse()` (원본 정렬) | `[...arr].sort()` (복사본 정렬) |
 | 인덱스 직접 대입(`arr[0] = x`) | `map()`으로 새 배열 생성 |
+| 객체 속성 직접 대입(`obj.x = y`) | `{ ...obj, x: y }` 또는 `Object.assign({}, obj, { x: y })` |
 
 `sort()`와 `reverse()`는 특히 자주 놓치는 함정입니다. 정렬 자체는 새 배열을 반환하는 것처럼 보이지만, 실제로는 **원본 배열을 제자리에서 정렬한 뒤 그 원본을 반환**합니다.
 
@@ -153,7 +185,7 @@ const safelySorted = [...numbers].sort();
 
 - `map`/`filter`로 새 배열을 만들 때, 조건에 해당하지 않는 항목까지 불필요하게 새 객체로 만들고 있지 않은가?
 - `reduce`의 초기값 타입(배열/객체/숫자)이 최종적으로 원하는 결과 타입과 일치하는가?
-- 리듀서 코드에 `push`, `splice`, `sort()`(원본 정렬) 같은 변경 메서드가 섞여 있지 않은가?
+- 리듀서 코드에 `push`, `splice`, `sort()`(원본 정렬), 객체 속성 직접 대입(`obj.x = y`) 같은 변경이 섞여 있지 않은가?
 
 ## 연습 과제
 
@@ -162,6 +194,7 @@ const safelySorted = [...numbers].sort();
 
 ### 중급(★★☆)
 - `todos` 배열을 `reduce`로 `{ done: [...], active: [...] }` 형태의 객체로 분류해보세요.
+- `todosById` 객체에서 `Object.values()`와 `filter()`를 조합해 완료되지 않은 todo 개수를 구해보세요.
 
 ### 고급(★★★)
 - `map`, `filter`, `reduce`를 체이닝해 "완료되지 않은 할 일 중 텍스트 길이가 5자 이상인 항목의 개수"를 계산하는 코드를 작성해보세요.
@@ -170,6 +203,7 @@ const safelySorted = [...numbers].sort();
 
 - `map`은 변환, `filter`는 선별, `reduce`는 누적이라는 각자의 역할이 있고 조합해서 복잡한 파생 데이터를 계산한다.
 - `reduce`의 발상(초기값 + 누적 함수)은 Redux 리듀서 개념과 본질적으로 같다.
+- `Object.keys/values/entries`로 id 기반 객체를 배열로 바꾸면 map/filter/reduce를 그대로 이어 쓸 수 있고, 객체 업데이트는 스프레드나 `Object.assign({}, obj, patch)`로 새 객체를 반환해야 한다.
 - 리듀서 안에서는 원본을 바꾸는 배열 메서드(`push`, `splice`, `sort()`)를 절대 쓰지 않는다.
 
 ## 참고 문헌 및 출처(추천)

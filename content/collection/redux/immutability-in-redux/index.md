@@ -1,6 +1,6 @@
 ---
 title: "[Redux] 08. 불변성의 중요성 - Immutability in Redux"
-description: "리듀서에서 상태를 직접 변경하면 리렌더가 일어나지 않거나, Redux DevTools의 시간여행 디버깅이 무의미해집니다. 불변성이 왜 필요한지, 얕은 비교가 이를 어떻게 이용하는지 코드로 확인합니다."
+description: "리듀서에서 상태를 직접 변경하면 리렌더가 일어나지 않거나, Redux DevTools의 시간여행 디버깅이 무의미해집니다. 불변성이 왜 필요한지, 얕은 비교가 이를 어떻게 이용하는지 실제 버그 재현 코드로 확인합니다."
 date: 2026-07-17
 lastmod: 2026-07-17
 collection_order: 8

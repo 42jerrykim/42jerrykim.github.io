@@ -243,4 +243,4 @@ export const postsApi = createApi({
 
 ## 다음 글
 
-- 다음: [29. 성능 최적화와 디버깅 심화](../redux-performance-debugging/)
+- 다음: [29. Redux 성능 최적화와 디버깅 심화](../redux-performance-debugging/)
