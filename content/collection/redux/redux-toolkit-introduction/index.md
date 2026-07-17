@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 16
 draft: false
 slug: redux-toolkit-introduction
+image: "wordcloud.png"
 tags:
   - Redux
   - Redux-Toolkit

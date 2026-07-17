@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 15
 draft: false
 slug: practice-counter-todo
+image: "wordcloud.png"
 tags:
   - Redux
   - React

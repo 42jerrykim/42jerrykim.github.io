@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 30
 draft: false
 slug: testing-ecommerce-app
+image: "wordcloud.png"
 tags:
   - Redux
   - Testing(테스트)

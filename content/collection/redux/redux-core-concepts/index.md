@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 7
 draft: false
 slug: redux-core-concepts
+image: "wordcloud.png"
 tags:
   - Redux
   - JavaScript

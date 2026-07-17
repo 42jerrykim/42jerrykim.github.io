@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 5
 draft: false
 slug: typescript-basics
+image: "wordcloud.png"
 tags:
   - TypeScript
   - JavaScript

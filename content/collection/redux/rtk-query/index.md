@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 24
 draft: false
 slug: rtk-query
+image: "wordcloud.png"
 tags:
   - Redux
   - Redux-Toolkit

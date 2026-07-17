@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 1
 draft: false
 slug: javascript-fundamentals
+image: "wordcloud.png"
 tags:
   - JavaScript
   - Frontend(프론트엔드)

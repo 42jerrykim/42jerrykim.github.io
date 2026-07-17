@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 17
 draft: false
 slug: create-slice
+image: "wordcloud.png"
 tags:
   - Redux
   - Redux-Toolkit

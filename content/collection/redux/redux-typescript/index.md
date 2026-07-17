@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 28
 draft: false
 slug: redux-typescript
+image: "wordcloud.png"
 tags:
   - Redux
   - TypeScript

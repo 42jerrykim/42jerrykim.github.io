@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 25
 draft: false
 slug: practice-blog-app
+image: "wordcloud.png"
 tags:
   - Redux
   - RTK-Query

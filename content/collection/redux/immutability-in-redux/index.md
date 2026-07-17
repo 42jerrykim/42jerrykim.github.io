@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 8
 draft: false
 slug: immutability-in-redux
+image: "wordcloud.png"
 tags:
   - Redux
   - JavaScript

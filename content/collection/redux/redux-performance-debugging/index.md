@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 29
 draft: false
 slug: redux-performance-debugging
+image: "wordcloud.png"
 tags:
   - Redux
   - Performance(성능)

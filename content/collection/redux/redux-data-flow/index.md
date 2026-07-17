@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 9
 draft: false
 slug: redux-data-flow
+image: "wordcloud.png"
 tags:
   - Redux
   - JavaScript

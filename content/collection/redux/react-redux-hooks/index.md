@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 12
 draft: false
 slug: react-redux-hooks
+image: "wordcloud.png"
 tags:
   - Redux
   - React

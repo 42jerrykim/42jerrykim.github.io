@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 26
 draft: false
 slug: redux-project-structure
+image: "wordcloud.png"
 tags:
   - Redux
   - Software-Architecture(소프트웨어아키텍처)

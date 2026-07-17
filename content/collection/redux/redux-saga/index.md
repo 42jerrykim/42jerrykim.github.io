@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 23
 draft: false
 slug: redux-saga
+image: "wordcloud.png"
 tags:
   - Redux
   - Redux-Saga

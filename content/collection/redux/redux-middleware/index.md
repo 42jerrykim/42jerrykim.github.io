@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 21
 draft: false
 slug: redux-middleware
+image: "wordcloud.png"
 tags:
   - Redux
   - JavaScript

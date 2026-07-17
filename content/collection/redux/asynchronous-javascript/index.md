@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 4
 draft: false
 slug: asynchronous-javascript
+image: "wordcloud.png"
 tags:
   - JavaScript
   - Async(비동기)

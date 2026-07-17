@@ -5,6 +5,7 @@ date: 2026-03-11
 lastmod: 2026-07-17
 description: "Redux 완전 정복 시리즈의 전체 커리큘럼과 Phase별 챕터 목록, 추천 학습 경로를 한눈에 정리한 도입 챕터. JavaScript 기초부터 실무 마스터까지 30편 구성과 학습 순서를 확인한 뒤 01편부터 순서대로 시작할 수 있습니다."
 slug: getting-started-redux
+image: "wordcloud.png"
 tags:
   - JavaScript
   - TypeScript

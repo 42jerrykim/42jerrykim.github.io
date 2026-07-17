@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 19
 draft: false
 slug: create-async-thunk
+image: "wordcloud.png"
 tags:
   - Redux
   - Redux-Toolkit

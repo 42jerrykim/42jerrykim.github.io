@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 2
 draft: false
 slug: es6-essential-syntax
+image: "wordcloud.png"
 tags:
   - JavaScript
   - Frontend(프론트엔드)

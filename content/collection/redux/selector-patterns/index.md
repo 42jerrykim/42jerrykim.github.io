@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 14
 draft: false
 slug: selector-patterns
+image: "wordcloud.png"
 tags:
   - Redux
   - React

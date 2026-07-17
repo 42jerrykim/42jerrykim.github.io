@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 20
 draft: false
 slug: practice-rtk-app
+image: "wordcloud.png"
 tags:
   - Redux
   - Redux-Toolkit

@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 22
 draft: false
 slug: redux-thunk
+image: "wordcloud.png"
 tags:
   - Redux
   - Redux-Thunk

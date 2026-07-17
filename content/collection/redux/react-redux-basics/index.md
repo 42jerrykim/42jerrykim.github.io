@@ -6,6 +6,7 @@ lastmod: 2026-07-17
 collection_order: 11
 draft: false
 slug: react-redux-basics
+image: "wordcloud.png"
 tags:
   - Redux
   - React
