@@ -1,5 +1,8 @@
 ---
 draft: true
+build:
+  list: false
+  render: false
 ---
 # 4장: SOLID 원칙의 실무 적용
 

@@ -47,34 +47,40 @@
     {{- $pages := .Pages -}}
     {{- if hasPrefix .RelPermalink "/collection/" -}}
         {{- $sortedPages := partialCached "helper/sort-by-collection-order" .Pages .RelPermalink -}}
-        {{- $pageSize := .Site.Params.pagination.pagerSize | default 20 -}}
         {{- $totalPages := len $sortedPages -}}
-        {{- $totalPaginatorPages := int (math.Ceil (div (float $totalPages) (float $pageSize))) -}}
-        
-        {{- /* Get current page number from URL */ -}}
-        {{- $currentPageNum := 1 -}}
-        {{- if .Paginator -}}
-            {{- $currentPageNum = .Paginator.PageNumber -}}
-        {{- end -}}
-        
+
+        {{- /* The theme's <head> (head/head.html → data/title.html →
+               helper/paginator.html) calls .Paginate on this page — using
+               .Pages and the site's native pagerSize — before this template
+               ever runs, to build the page <title>. Hugo locks in a page's
+               paginator on its FIRST invocation and silently ignores any
+               later .Paginate call with different arguments, so trying to
+               establish our own here (with a different page size or a
+               different, collection_order-sorted sequence) is a no-op.
+               Instead, read back whatever got locked in and reuse its
+               PagerSize/PageNumber for our sorted slice, so the article
+               list, the nav, and the /page/N/ pages Hugo generates all
+               agree on the same page boundaries. */ -}}
+        {{- $paginator := .Paginator -}}
+        {{- $pageSize := $paginator.PagerSize -}}
+        {{- $currentPageNum := $paginator.PageNumber -}}
+
         {{- /* Calculate slice range */ -}}
         {{- $startIdx := mul (sub $currentPageNum 1) $pageSize -}}
         {{- $endIdx := add $startIdx $pageSize -}}
         {{- if gt $endIdx $totalPages -}}
             {{- $endIdx = $totalPages -}}
         {{- end -}}
-        
+
         {{- /* Get current page's items */ -}}
         {{- $currentPageItems := first $endIdx $sortedPages | after $startIdx -}}
-        
+
         <section class="article-list--compact">
             {{ range $currentPageItems }}
                 {{ partial "article-list/collection-compact" . }}
             {{ end }}
         </section>
-        
-        {{- /* Use default paginator for pagination UI */ -}}
-        {{- $paginator := .Paginate .Pages }}
+
         {{- partial "pagination.html" . -}}
     {{- else -}}
         {{- $paginator := .Paginate $pages }}

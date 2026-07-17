@@ -1,5 +1,8 @@
 ---
 draft: true
+build:
+  list: false
+  render: false
 ---
 # 5장: 요구사항 분석과 도메인 모델링
 

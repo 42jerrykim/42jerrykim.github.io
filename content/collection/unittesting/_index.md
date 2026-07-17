@@ -1,16 +1,36 @@
 ---
-title: "UnitTesting"
-description: "unit test에 대한 개념, 원리, 실전 적용 방법을 다루는 컬렉션이다. 소프트웨어 개발에서 unit test의 중요성과 작성 방법, 다양한 testing framework, best practice, 그리고 자동화 전략까지 폭넓게 정리하였다."
+title: "[UnitTesting] 단위 테스트 원칙과 실전 패턴"
+description: "단위 테스트의 목표부터 좋은 테스트를 가르는 4대 요소, 목(mock) 사용 원칙, 단위/통합 테스트 구분, 흔한 안티패턴까지 12편으로 정리합니다. 테스트가 있어도 개발 속도가 느려지는 문제를 구조적으로 진단하고 해결합니다."
+date: 2026-07-16
+lastmod: 2026-07-16
 slug: unittesting
+tags:
+  - Testing(테스트)
+  - TDD(Test-Driven Development)
+  - Code-Quality(코드품질)
+  - Refactoring(리팩토링)
+  - Clean-Code(클린코드)
+  - Best-Practices
+  - pytest
+  - unittest
+  - Debugging(디버깅)
+  - Documentation(문서화)
+  - Maintainability
+  - Software-Architecture(소프트웨어아키텍처)
+  - OOP(객체지향)
+  - Database(데이터베이스)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Dependency-Injection(의존성주입)
+  - Interface(인터페이스)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - 단위테스트
+  - 테스트더블
+  - 목객체
+  - 테스트커버리지
+  - 리팩터링
+  - 통합테스트
+  - 회귀방지
 ---
 
-이 컬렉션은 개발자가 효율적으로 unit test를 작성하고 관리할 수 있도록 실질적인 가이드와 예시를 제공하는 공간이다.
-
-- unit test의 정의 및 필요성
-- 대표적인 unit testing framework(JUnit, pytest, unittest 등) 소개
-- mock, stub, fixture 등 test double 활용법
-- 코드 coverage 측정 및 향상 방법
-- TDD(test-driven development)와의 연계 전략
-- 실무에서 자주 발생하는 문제와 해결법
-
-unit test에 관심 있는 개발자, QA 엔지니어, 그리고 소프트웨어 품질 향상에 관심 있는 모든 이에게 도움이 되는 정보를 제공하는 것이 목적이다.
+전체 소개와 12편 커리큘럼은 [00. 단위 테스트, 왜 다시 배워야 하는가](unit-testing-overview/) 참고.
