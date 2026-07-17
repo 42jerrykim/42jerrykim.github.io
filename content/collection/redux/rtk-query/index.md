@@ -1,6 +1,6 @@
 ---
 title: "[Redux] 24. RTK Query - 데이터 페칭의 혁명"
-description: "10편에서 언급한 서버 상태 전용 도구의 필요성을 RTK Query로 해결합니다. createApi로 캐싱·자동 재요청·뮤테이션을 선언적으로 다루고, 19편의 createAsyncThunk 방식과 코드량을 비교합니다."
+description: "10편에서 언급한 서버 상태 전용 도구의 필요성을 RTK Query로 해결합니다. createApi로 캐싱·자동 재요청·뮤테이션을 다루고, keepUnusedDataFor·skip·useLazyQuery, React Query/SWR과의 관계까지 다룹니다."
 date: 2026-07-17
 lastmod: 2026-07-17
 collection_order: 24
@@ -32,6 +32,9 @@ tags:
   - 뮤테이션엔드포인트
   - 폴링
   - Caching(캐싱)
+  - useLazyQuery
+  - keepUnusedDataFor
+  - Comparison(비교)
 ---
 
 # 24. RTK Query - 데이터 페칭의 혁명
@@ -163,6 +166,54 @@ const todosApi = createApi({
 });
 ```
 
+## 캐시 수명과 조건부 요청: keepUnusedDataFor, skip, useLazyQuery
+
+캐시가 언제까지 살아있는지, 그리고 항상 즉시 요청을 보내야 하는지도 상황에 따라 조정이 필요합니다.
+
+```javascript
+// 이 쿼리를 구독하는 컴포넌트가 모두 사라진 뒤에도 60초간 캐시를 유지한다(기본값은 60초)
+getTodos: builder.query({
+  query: () => "/todos",
+  keepUnusedDataFor: 60,
+}),
+```
+
+컴포넌트가 언마운트되어도 `keepUnusedDataFor`에 지정한 시간 동안은 캐시가 남아있어서, 사용자가 화면을 잠깐 벗어났다 돌아와도 재요청 없이 즉시 이전 데이터를 보여줄 수 있습니다. 조건에 따라 요청 자체를 보내지 않아야 할 때는 `skip` 옵션을 씁니다.
+
+```jsx
+function TodoDetail({ todoId }) {
+  // todoId가 없으면(예: 아직 선택된 항목이 없음) 요청 자체를 보내지 않는다
+  const { data: todo } = useGetTodoByIdQuery(todoId, { skip: !todoId });
+  // ...
+}
+```
+
+지금까지 본 `useGetTodosQuery()`는 컴포넌트가 **마운트되자마자 자동으로** 요청을 보냅니다. 반면 "버튼을 클릭해야만" 요청을 보내고 싶다면 `useLazyQuery` 버전을 씁니다.
+
+```jsx
+import { useLazyGetTodosQuery } from "./todosApi"; // use + Lazy + 엔드포인트이름 + Query 규칙으로 자동 생성됨
+
+function SearchButton() {
+  const [trigger, { data, isFetching }] = useLazyGetTodosQuery();
+  return <button onClick={() => trigger()}>{isFetching ? "불러오는 중..." : "검색"}</button>;
+}
+```
+
+`useLazyGetTodosQuery`는 데이터를 담은 결과 대신 **`trigger` 함수**를 반환하고, 이 함수를 호출한 시점에만 실제로 요청이 나갑니다.
+
+## RTK Query와 React Query/SWR의 관계
+
+RTK Query는 아이디어를 처음부터 새로 고안한 것이 아니라, 이미 널리 쓰이던 **React Query(TanStack Query)**와 **SWR** 같은 서버 상태 전용 라이브러리의 설계(캐싱, 자동 재요청, `stale-while-revalidate` 전략)에서 직접 영향을 받아 만들어졌습니다. "이미 React Query가 있는데 왜 RTK Query를 쓰는가"라는 질문에 대한 답은 **생태계 통합**에 있습니다.
+
+| 구분 | RTK Query | React Query / SWR |
+|---|---|---|
+| 상태 저장 위치 | 기존 Redux Store 안(같은 DevTools로 관찰 가능) | 별도의 자체 캐시 저장소 |
+| 클라이언트 상태와의 통합 | 같은 Store 안에서 `useSelector`로 함께 조합하기 쉬움 | 별도 라이브러리라 조합에 추가 작업 필요 |
+| 이미 Redux를 쓰는 프로젝트 | 새 의존성 없이 바로 도입 가능 | 상태 관리 계층이 두 개로 나뉨 |
+| Redux를 쓰지 않는 프로젝트 | Redux 전체를 들여와야 해 과함 | 가볍게 바로 도입 가능 |
+
+이미 Redux(Toolkit)를 쓰고 있고 클라이언트 상태와 서버 상태를 같은 DevTools·같은 Store 안에서 함께 다루고 싶다면 RTK Query가 자연스러운 선택이고, Redux를 쓰지 않는(또는 쓸 계획이 없는) 프로젝트라면 React Query나 SWR을 단독으로 쓰는 것이 더 가볍습니다.
+
 ## RTK Query vs Thunk/Saga: 언제 무엇을 쓰는가
 
 | 상황 | 적합한 도구 |
@@ -188,6 +239,8 @@ export const store = configureStore({
 - 서버 데이터를 다루는 코드에서 `createAsyncThunk` + 수동 `status` 관리를 반복하고 있다면, RTK Query로 전환할 여지가 있는지 검토했는가?
 - 뮤테이션 후 관련 쿼리가 자동으로 최신화되도록 `tagTypes`/`providesTags`/`invalidatesTags`를 올바르게 연결했는가?
 - 실시간성이 필요한 데이터에 폴링(`pollingInterval`)이나 포커스 재요청(`refetchOnFocus`)을 고려했는가?
+- 조건에 따라 요청을 건너뛰어야 하는 곳에 `skip`을, 사용자 액션에만 반응해야 하는 곳에 `useLazyQuery`를 쓰고 있는가?
+- Redux를 쓰지 않는 프로젝트인데도 관성적으로 RTK Query를 도입하려 하지 않는가(그런 경우 React Query/SWR이 더 가벼울 수 있다)?
 
 ## 연습 과제
 
@@ -199,18 +252,21 @@ export const store = configureStore({
 
 ### 고급(★★★)
 - `getTodoById(id)` 쿼리를 추가하고, 특정 Todo 하나만 무효화하는 세밀한 태그(`{ type: "Todo", id }`) 구조로 리팩터링해보세요.
+- `useLazyGetTodosQuery`로 "검색" 버튼을 눌렀을 때만 요청이 나가는 컴포넌트를 만들고, `skip` 옵션으로 특정 조건에서 `useGetTodoByIdQuery`가 아예 요청을 보내지 않는지 확인해보세요.
 
 ## 요약
 
 - RTK Query는 서버 상태의 조회·캐싱·로딩 상태 관리·자동 갱신을 `createApi` 선언 하나로 표준화한다.
 - 같은 쿼리를 여러 컴포넌트가 호출해도 네트워크 요청은 한 번만 발생하고 결과가 공유된다.
-- `tagTypes`/`providesTags`/`invalidatesTags`로 뮤테이션 후 관련 쿼리의 자동 재요청을 선언적으로 연결한다.
+- `tagTypes`/`providesTags`/`invalidatesTags`로 뮤테이션 후 관련 쿼리의 자동 재요청을 선언적으로 연결하고, `keepUnusedDataFor`/`skip`/`useLazyQuery`로 캐시 수명과 요청 시점을 세밀하게 제어한다.
+- RTK Query는 React Query/SWR의 설계에서 영향을 받았으며, 이미 Redux를 쓰는 프로젝트에서는 같은 Store·DevTools로 통합된다는 점이 차별점이다.
 
 ## 참고 문헌 및 출처(추천)
 
 - Redux Toolkit 공식 문서, "RTK Query Overview"
 - Redux Toolkit 공식 문서, "RTK Query, Automated Re-fetching"
 - Redux 공식 문서, "Redux Essentials, Part 7: RTK Query Basics"
+- Redux Toolkit 공식 문서, "RTK Query vs React Query" — 비교 관점의 공식 안내
 
 ---
 

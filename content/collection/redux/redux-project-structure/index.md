@@ -32,6 +32,7 @@ tags:
   - Modularity
   - Coupling(결합도)
   - Cohesion(응집도)
+  - eslint경계강제
 ---
 
 # 26. Redux 프로젝트 구조 - 확장 가능한 설계
@@ -115,6 +116,30 @@ src/
 
 이 분리는 08편에서 강조한 "예측 가능성"을 구조 수준으로 확장한 것입니다. 어떤 코드를 찾을 때 "이건 특정 기능의 것인가, 앱 전역 설정인가, 공용 유틸인가"를 폴더 이름만으로 짐작할 수 있습니다.
 
+## 경계를 코드 리뷰가 아니라 도구로 강제하기
+
+"`features`끼리 서로 직접 import하지 않는다"는 규칙은 팀원 모두가 기억하고 지켜야 하는 **약속**으로만 두면, 프로젝트가 커질수록 조금씩 어겨지기 쉽습니다. `eslint-plugin-boundaries` 같은 ESLint 플러그인은 이 규칙을 정적 분석으로 강제해, 어기는 import가 있으면 커밋 전에 에러로 잡아냅니다.
+
+```javascript
+// eslint.config.js (개념 예시 — 실제 옵션은 플러그인 문서를 따른다)
+module.exports = {
+  plugins: ["boundaries"],
+  rules: {
+    "boundaries/element-types": [
+      "error",
+      {
+        rules: [
+          // features는 서로를 직접 import할 수 없고, shared/app만 참조 가능
+          { from: "features", disallow: ["features"], allow: ["shared", "app"] },
+        ],
+      },
+    ],
+  },
+};
+```
+
+이렇게 하면 "리뷰어가 눈으로 발견해야 하는 규칙"이 "빌드가 실패하는 규칙"으로 바뀌어, 팀 규모가 커져도 경계가 조용히 무너지는 것을 막을 수 있습니다.
+
 ## RTK Query의 baseApi 분리 패턴
 
 25편에서 `postsApi`를 만들 때 `createApi`를 직접 호출했지만, 여러 API 슬라이스가 있는 프로젝트에서는 `injectEndpoints`로 기본 설정을 공유하는 것이 일반적입니다.
@@ -177,6 +202,7 @@ import { selectAllTodos } from "features/todos/todosSelectors";
 
 - 새 기능을 추가할 때 하나의 `features/<기능명>/` 폴더 안에서 대부분의 작업이 끝나는가?
 - 여러 기능이 공유하는 코드가 특정 feature 폴더 안에 우연히 놓여있지 않고 `shared/`로 분리되어 있는가?
+- "feature끼리 직접 import하지 않는다"는 규칙을 사람의 리뷰에만 의존하지 않고, ESLint 같은 도구로 강제하고 있는가?
 - 배럴 파일을 쓴다면, 프로젝트 규모와 번들러 설정을 고려해 의도적으로 선택한 것인가?
 
 ## 연습 과제

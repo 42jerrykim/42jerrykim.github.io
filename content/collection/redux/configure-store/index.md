@@ -1,6 +1,6 @@
 ---
 title: "[Redux] 18. configureStore - Store 설정 자동화"
-description: "07편의 createStore+combineReducers+applyMiddleware 조합을 configureStore 한 번의 호출로 대체합니다. 개발 환경에서 자동으로 켜지는 상태 변경 감지·직렬화 감지 미들웨어와 DevTools 연결까지 다룹니다."
+description: "07편의 createStore+combineReducers+applyMiddleware 조합을 configureStore 한 번의 호출로 대체합니다. 개발 환경 검사 미들웨어와 DevTools 연결은 물론, preloadedState로 SSR·영속화된 초기 상태를 주입하는 방법까지 다룹니다."
 date: 2026-07-17
 lastmod: 2026-07-17
 collection_order: 18
@@ -32,6 +32,8 @@ tags:
   - 개발환경전용검사
   - Configuration(설정)
   - System-Design
+  - preloadedState
+  - enhancers확장
 ---
 
 # 18. configureStore - Store 설정 자동화
@@ -164,9 +166,41 @@ export const store = configureStore({
 
 `getDefaultMiddleware()`가 이미 thunk와 개발용 검사 미들웨어를 포함하고 있으므로, 이 배열을 통째로 교체하지 않고 `.concat()`으로 이어 붙이는 것이 기본값을 잃지 않는 방법입니다.
 
+## preloadedState: Store를 빈 상태가 아닌 값으로 시작하기
+
+실무에서는 Store를 항상 `initialState`(각 slice의 기본값)로만 시작하지 않습니다. 서버에서 미리 렌더링한 데이터를 그대로 이어받거나(SSR hydration), 이전 세션에서 `localStorage`에 저장해둔 상태를 복원해야 할 때는 `preloadedState` 옵션을 씁니다.
+
+```javascript
+import { configureStore } from "@reduxjs/toolkit";
+
+// localStorage에 저장해둔 상태를 복원(직렬화된 문자열을 다시 객체로)
+const persistedState = JSON.parse(localStorage.getItem("reduxState") ?? "null");
+
+export const store = configureStore({
+  reducer: { /* ... */ },
+  preloadedState: persistedState ?? undefined, // 저장된 값이 없으면 각 slice의 initialState를 그대로 사용
+});
+```
+
+`preloadedState`로 넘긴 값은 각 slice의 `initialState`를 **덮어씁니다.** SSR 환경에서는 서버가 이미 계산한 상태를 HTML에 직렬화해 내려보내고, 클라이언트 쪽 `configureStore`가 이를 `preloadedState`로 받아 "서버와 클라이언트가 같은 상태에서 시작하는" 하이드레이션을 구현합니다.
+
+## enhancers: Store 생성 과정 자체를 확장하기
+
+`enhancers` 옵션은 `middleware`보다 더 근본적인 확장 지점으로, **Store 생성 함수(`createStore`) 자체를 감싸는 고차 함수**를 추가합니다. 대부분의 프로젝트는 `configureStore`가 기본 제공하는 DevTools 연결만으로 충분하므로 이 옵션을 직접 쓸 일은 드물지만, 오프라인 지원이나 상태 영속화 같은 라이브러리가 내부적으로 이 지점을 사용합니다.
+
+```javascript
+export const store = configureStore({
+  reducer: { /* ... */ },
+  enhancers: (getDefaultEnhancers) => getDefaultEnhancers().concat(myCustomEnhancer),
+});
+```
+
+`middleware`가 "액션이 리듀서에 도달하기 전"을 확장하는 지점이라면, `enhancers`는 그보다 바깥쪽인 "Store 자체가 어떻게 만들어지는가"를 확장하는 지점입니다. 이 둘의 관계는 21편에서 미들웨어 구조를 다룰 때 다시 짚습니다.
+
 ## 실무 체크리스트
 
 - 새 프로젝트의 Store를 `createStore` + `applyMiddleware` 조합이 아니라 `configureStore`로 만들고 있는가?
+- SSR이나 상태 영속화가 필요한 프로젝트라면 `preloadedState`로 초기 상태를 올바르게 주입하고 있는가?
 - 개발 환경 콘솔에 상태 변경 감지·직렬화 감지 경고가 뜨면 무시하지 않고 원인을 찾아 고치고 있는가?
 - 커스텀 미들웨어를 추가할 때 `getDefaultMiddleware()`를 대체하지 않고 확장하는 방식으로 쓰고 있는가?
 
@@ -180,12 +214,13 @@ export const store = configureStore({
 
 ### 고급(★★★)
 - 액션 페이로드에 `File` 객체(직렬화 불가능)를 담아 직렬화 감지 경고를 발생시킨 뒤, `ignoredActions`로 해당 액션 타입만 예외 처리해보세요.
+- `localStorage`에 상태를 저장하는 코드와, 새로고침 시 그 값을 `preloadedState`로 복원하는 코드를 작성해 상태가 유지되는지 확인해보세요.
 
 ## 요약
 
 - `configureStore`는 `combineReducers`, `applyMiddleware`, DevTools 연결을 한 번의 호출로 자동 설정한다.
 - 개발 환경에서는 상태 변경 감지와 직렬화 감지 미들웨어가 기본으로 켜져 흔한 실수를 조기에 발견하게 해준다.
-- 커스텀 미들웨어는 `getDefaultMiddleware()`를 대체하지 않고 이어 붙이는 방식으로 추가한다.
+- 커스텀 미들웨어는 `getDefaultMiddleware()`를 대체하지 않고 이어 붙이는 방식으로 추가하고, `preloadedState`로 SSR·영속화된 초기 상태를 주입할 수 있다.
 
 ## 참고 문헌 및 출처(추천)
 

@@ -148,6 +148,11 @@ flowchart TD
 
 `connect()`는 React-Redux의 원조 API이며 지금도 완전히 지원됩니다. 하지만 클래스형 컴포넌트가 흔하던 시절에 설계된 패턴이라, `mapStateToProps`/`mapDispatchToProps`를 따로 정의하고 `connect()`로 감싸는 절차가 함수형 컴포넌트에서는 다소 번거롭게 느껴집니다. React 16.8 이후 Hooks가 도입되면서, React-Redux도 `useSelector`/`useDispatch`라는 더 간결한 API를 제공하기 시작했고, 지금은 대부분의 신규 코드가 Hooks 방식을 씁니다. 이 흐름은 12편에서 다룹니다.
 
+## 흔한 오개념
+
+- **`connect()`는 폐기(deprecated)된 API라 새 코드에서 쓰면 안 된다**: 사실이 아닙니다. `connect()`는 지금도 React-Redux가 공식적으로 완전히 지원하는 API입니다. 다만 함수형 컴포넌트·Hooks가 주류가 되면서 실무 관행이 바뀐 것이지, `connect()` 자체가 낡거나 제거될 예정인 것은 아닙니다. 기존에 `connect()`로 작성된 코드베이스를 굳이 Hooks로 전면 재작성할 필요는 없습니다.
+- **`mapStateToProps`는 결과를 자동으로 캐싱(메모이제이션)해준다**: 그렇지 않습니다. `mapStateToProps`는 상태가 바뀔 때마다(정확히는 관련 없는 상태가 바뀌어도) 매번 새로 호출되는 평범한 함수입니다. 함수 안에서 무거운 계산(정렬, 필터링)을 하면 매번 다시 계산되며, 이를 피하려면 14편에서 다룰 메모이제이션된 selector(`createSelector`)를 명시적으로 적용해야 합니다.
+
 ## 실무 체크리스트
 
 - `<Provider>`가 앱의 최상위에서 한 번만 Store를 감싸고 있는가?

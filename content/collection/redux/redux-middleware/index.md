@@ -32,6 +32,8 @@ tags:
   - 커링함수
   - Composition(합성)
   - System-Design
+  - compose함수
+  - Express미들웨어영향
 ---
 
 # 21. Redux 미들웨어의 이해
@@ -130,6 +132,16 @@ sequenceDiagram
 
 `loggerMiddleware`의 `next`가 호출하는 것은 `blockNegativeMiddleware`의 `(action) => {...}` 부분이고, `blockNegativeMiddleware`의 `next`가 호출하는 것은 실제 리듀서를 감싼 내부 dispatch 함수입니다. **등록 순서가 실행 순서를 결정**하며, 앞선 미들웨어가 `next(action)`을 호출해야만 뒤의 미들웨어가 실행됩니다.
 
+`applyMiddleware(loggerMiddleware, blockNegativeMiddleware)`가 내부적으로 하는 일은, 각 미들웨어의 `next` 자리에 "다음 미들웨어를 호출하는 함수"를 차례로 끼워 넣어 하나의 함수로 합성하는 것입니다. Redux는 이 합성을 `compose()`라는 별도의 유틸리티 함수로 구현합니다.
+
+```javascript
+// applyMiddleware가 내부적으로 하는 일을 단순화하면 이런 모습이다
+const chain = middlewares.map((middleware) => middleware(store));
+const dispatch = compose(...chain)(store.dispatch); // 여러 함수를 오른쪽에서 왼쪽으로 합성
+```
+
+`compose(f, g, h)(x)`는 `f(g(h(x)))`와 같습니다. 미들웨어 체인이 "첫 번째로 등록된 미들웨어가 가장 바깥에서 감싼다"는 구조를 갖는 이유가 바로 이 합성 방향 때문입니다. Redux의 미들웨어 구조는 Node.js의 Express 프레임워크가 요청을 여러 핸들러가 순서대로 처리하도록 만든 미들웨어 패턴에서 영감을 받았습니다 — "각 단계가 다음 단계로 넘길지 말지 결정한다"는 발상이 그대로 이어집니다.
+
 ## 타이밍 측정 미들웨어 예시
 
 미들웨어의 실용적인 활용 예로, 액션 처리 시간을 측정하는 미들웨어를 만들어봅니다.
@@ -157,6 +169,11 @@ const timingMiddleware = (store) => (next) => (action) => {
 - **RTK Query**: 내부적으로 Thunk와 유사한 미들웨어를 통해 캐싱된 데이터 페칭을 관리한다(24편).
 
 이 편에서 미들웨어의 기본 구조를 이해했다면, 이후 세 편은 "이 구조 위에 무엇을 얹었는가"로 훨씬 쉽게 읽힙니다.
+
+## 흔한 오개념
+
+- **미들웨어는 리듀서가 상태를 갱신한 뒤에 실행된다**: 그렇지 않습니다. 미들웨어는 액션이 **리듀서에 도달하기 전** 단계에서 실행됩니다. `next(action)`을 호출한 뒤에 실행되는 코드(`loggerMiddleware`의 두 번째 `console.log`)는 "리듀서까지 포함한 나머지 체인이 모두 끝난 후"를 의미하는 것이지, 미들웨어 자체가 리듀서 뒤에 있다는 뜻이 아닙니다.
+- **`next(action)`을 호출하지 않으면 에러가 난다**: 에러는 나지 않습니다. 단지 액션이 조용히 그 자리에서 멈출 뿐입니다. `blockNegativeMiddleware` 예시처럼 이는 의도적으로 쓸 수도 있는 정상적인 패턴이지만, 실수로 빠뜨리면 "액션을 dispatch했는데 아무 반응이 없다"는 디버깅하기 까다로운 버그가 됩니다.
 
 ## 실무 체크리스트
 

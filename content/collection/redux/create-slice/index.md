@@ -32,6 +32,8 @@ tags:
   - prepare콜백
   - Type-Safety
   - Error-Handling(에러처리)
+  - addMatcher패턴
+  - breaking체인지주의
 ---
 
 # 17. createSlice - 간결한 리듀서 작성
@@ -66,6 +68,8 @@ const counterSlice = createSlice({
 - **`name: "counter"`**: `reducers`의 각 키(`incremented`)와 결합해 `"counter/incremented"`라는 액션 타입 문자열을 만든다.
 - **`initialState`**: 07편에서 리듀서 함수의 기본 매개변수로 썼던 것과 동일하다.
 - **`reducers`**: 각 함수가 07편의 `switch` 문 케이스 하나에 대응한다. 함수 이름이 곧 액션 타입의 나머지 부분이 된다.
+
+**흔한 오개념 하나**: `reducers`의 키(`incremented`)는 단순한 함수 이름이 아니라, `name`과 결합해 **실제로 dispatch되는 액션 타입 문자열의 일부**가 됩니다. 즉 `incremented`를 `handleIncrement`로 리네이밍하면, 액션 타입도 `"counter/incremented"`에서 `"counter/handleIncrement"`로 바뀝니다. DevTools 로그에 남은 과거 기록이나, 이 액션 타입 문자열을 직접 참조하는 다른 코드(예: 다른 slice의 `extraReducers`)가 있다면 이 리네이밍은 **겉보기와 달리 브레이킹 체인지**입니다.
 
 `createSlice`가 반환하는 객체는 `{ name, reducer, actions, caseReducers }`를 갖습니다. 이 중 `slice.reducer`(합쳐진 리듀서 함수)와 `slice.actions`(액션 생성자 모음)를 주로 씁니다.
 
@@ -207,6 +211,23 @@ const todosSlice = createSlice({
 
 `extraReducers`는 19편에서 다룰 `createAsyncThunk`가 자동 생성하는 pending/fulfilled/rejected 액션을 처리할 때 가장 자주 쓰입니다. 지금은 "slice 밖에서 정의된 액션에도 반응할 수 있다"는 것만 기억해두면 충분합니다.
 
+`builder`는 `addCase` 외에도 두 가지 메서드를 더 제공합니다. **`addMatcher`**는 정확한 액션 타입이 아니라 **조건 함수**로 여러 액션에 한 번에 반응할 때 씁니다.
+
+```javascript
+import { isAnyOf } from "@reduxjs/toolkit";
+
+extraReducers: (builder) => {
+  builder.addMatcher(
+    isAnyOf(fetchTodos.pending, fetchUser.pending), // 여러 thunk의 pending을 한 번에 매칭
+    (state) => {
+      state.status = "loading";
+    }
+  );
+},
+```
+
+여러 개의 `createAsyncThunk`가 공통으로 "로딩 시작" 처리를 해야 할 때, `addCase`를 각 thunk마다 반복해서 쓰는 대신 `addMatcher` + `isAnyOf`로 한 번에 묶을 수 있습니다. **`addDefaultCase`**는 어떤 `addCase`/`addMatcher`에도 걸리지 않은 액션에 대한 기본 동작을 정의합니다(자주 쓰이지는 않지만, 알아두면 "매칭되지 않은 나머지"를 명시적으로 다룰 수 있습니다).
+
 ## 실무 체크리스트
 
 - `reducers`의 함수 이름이 액션 타입의 의미를 명확히 드러내는가(`incremented`가 아니라 `handleClick` 같은 모호한 이름은 피한다)?
@@ -223,6 +244,7 @@ const todosSlice = createSlice({
 
 ### 고급(★★★)
 - `extraReducers`로 `counterSlice`가 `allDataReset` 액션에 반응해 `count`를 0으로 되돌리도록 구현해보세요.
+- 두 개의 서로 다른 `createAsyncThunk`를 만들고, `addMatcher` + `isAnyOf`로 두 thunk의 `pending` 상태를 하나의 매처에서 함께 처리해보세요.
 
 ## 요약
 

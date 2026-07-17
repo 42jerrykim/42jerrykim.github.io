@@ -1,6 +1,6 @@
 ---
 title: "[Redux] 27. 정규화(Normalization) - 복잡한 데이터 관리"
-description: "중첩된 게시글·댓글·작성자 데이터를 배열 그대로 저장할 때 생기는 중복 업데이트 문제를, ID를 키로 쓰는 정규화된 상태 구조와 Redux Toolkit의 createEntityAdapter로 해결하는 방법을 다룹니다."
+description: "중첩된 게시글·댓글·작성자 데이터를 배열 그대로 저장할 때 생기는 중복 업데이트 문제를, ID를 키로 쓰는 정규화된 상태 구조와 createEntityAdapter로 해결합니다. selectId·sortComparer로 기본 동작을 바꾸는 법도 다룹니다."
 date: 2026-07-17
 lastmod: 2026-07-17
 collection_order: 27
@@ -32,6 +32,8 @@ tags:
   - Database(데이터베이스)
   - System-Design
   - Optimization(최적화)
+  - selectId커스터마이징
+  - sortComparer정렬
 ---
 
 # 27. 정규화(Normalization) - 복잡한 데이터 관리
@@ -167,6 +169,28 @@ export const {
 
 `createEntityAdapter`가 만드는 상태 구조는 앞서 손으로 만든 `byId`/`allIds`와 사실상 동일하며, 필드 이름만 `entities`/`ids`로 관례화되어 있습니다. `addOne`, `updateOne`, `removeOne`, `setAll` 같은 리듀서 함수를 직접 구현할 필요 없이 그대로 `reducers`에 연결할 수 있고, `getSelectors()`가 `selectAll`, `selectById` 같은 표준 selector도 함께 만들어줍니다.
 
+## selectId와 sortComparer: 기본 동작을 커스터마이징하기
+
+`createEntityAdapter`는 기본적으로 각 엔티티의 **`id` 필드**를 키로 쓰고, **삽입 순서**대로 `ids` 배열을 유지합니다. 하지만 실무 데이터가 항상 이 가정에 맞는 것은 아닙니다.
+
+```javascript
+// 엔티티의 고유 키가 id가 아니라 _id(예: MongoDB)인 경우
+const postsAdapter = createEntityAdapter({
+  selectId: (post) => post._id, // 기본값(post => post.id) 대신 커스텀 키 추출 함수
+});
+```
+
+`selectId`를 지정하지 않으면 `createEntityAdapter`는 각 엔티티에 `.id` 속성이 있다고 가정합니다. 백엔드가 `_id`나 `postId` 같은 다른 이름을 쓴다면, `selectId`로 "이 엔티티에서 고유 키를 어떻게 뽑아낼지"를 알려줘야 합니다.
+
+```javascript
+// 항상 최신 글이 먼저 오도록 정렬 순서를 유지
+const postsAdapter = createEntityAdapter({
+  sortComparer: (a, b) => b.createdAt.localeCompare(a.createdAt), // 기본값(삽입 순서) 대신 정렬 기준 지정
+});
+```
+
+`sortComparer`를 지정하면 `ids` 배열이 삽입 순서가 아니라 **항상 이 비교 함수 기준으로 정렬된 상태**를 유지합니다. `selectAllPosts`로 뽑은 목록이 이미 정렬돼 있으므로, 컴포넌트에서 매번 `.sort()`를 호출할 필요가 없습니다.
+
 ## 서버 응답을 정규화하기: setAll
 
 25편의 `getPosts` 쿼리가 반환하는 배열을 `postsReceived`로 dispatch하면, `setAll`이 배열을 자동으로 정규화된 구조로 변환합니다.
@@ -196,6 +220,7 @@ dispatch(postsReceived([
 - 같은 엔티티가 여러 목록에 중복으로 나타나 업데이트 시 여러 곳을 고쳐야 하는 상태가 있는가?
 - 그런 데이터가 있다면 `createEntityAdapter`로 정규화해 O(1) 업데이트 구조로 바꿨는가?
 - 모든 상태를 습관적으로 정규화하려 하고 있지는 않은가(재사용되지 않는 데이터는 정규화가 불필요할 수 있다)?
+- 엔티티의 고유 키가 `id`가 아니라면 `selectId`를, 항상 특정 순서를 유지해야 한다면 `sortComparer`를 지정했는가?
 
 ## 연습 과제
 
@@ -207,12 +232,13 @@ dispatch(postsReceived([
 
 ### 고급(★★★)
 - 정규화된 `posts`와 `users` 두 엔티티를 조합해, 특정 작성자가 쓴 모든 게시글 제목 목록을 반환하는 메모이제이션 selector(14편의 `createSelector` 활용)를 작성해보세요.
+- `postsAdapter`에 `sortComparer`를 추가해 게시글이 항상 최신순으로 정렬되게 만들고, `selectId`를 커스터마이징해 `_id` 필드를 쓰는 가상의 백엔드 응답을 정규화해보세요.
 
 ## 요약
 
 - 중첩·중복된 배열 구조는 엔티티 하나를 바꿀 때 전체를 순회해야 하는 비효율과 누락 위험을 만든다.
 - ID를 키로 쓰는 정규화된 구조는 엔티티 하나의 업데이트를 O(1)로 만들고, 중복 저장을 없앤다.
-- `createEntityAdapter`가 정규화된 CRUD 리듀서와 표준 selector를 자동 생성해준다.
+- `createEntityAdapter`가 정규화된 CRUD 리듀서와 표준 selector를 자동 생성해주며, `selectId`/`sortComparer`로 키 필드와 정렬 기준을 커스터마이징할 수 있다.
 
 ## 참고 문헌 및 출처(추천)
 

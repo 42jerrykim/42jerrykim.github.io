@@ -1,6 +1,6 @@
 ---
 title: "[Redux] 19. createAsyncThunk - 비동기 로직 단순화"
-description: "09편에서 손으로 만들었던 시작·성공·실패 세 액션과 04편의 async/await를 createAsyncThunk 하나로 대체합니다. extraReducers의 pending/fulfilled/rejected 케이스로 로딩 상태를 관리하는 표준 패턴을 다룹니다."
+description: "09편에서 손으로 만들었던 시작·성공·실패 세 액션과 04편의 async/await를 createAsyncThunk 하나로 대체합니다. extraReducers의 pending/fulfilled/rejected 케이스, unwrap, condition/signal로 중복 요청을 막는 방법까지 다룹니다."
 date: 2026-07-17
 lastmod: 2026-07-17
 collection_order: 19
@@ -32,6 +32,8 @@ tags:
   - rejectWithValue
   - Error-Handling(에러처리)
   - Concurrency(동시성)
+  - unwrap메서드
+  - condition옵션
 ---
 
 # 19. createAsyncThunk - 비동기 로직 단순화
@@ -216,11 +218,68 @@ export const fetchTodoById = createAsyncThunk(
 
 두 번째 매개변수는 `{ dispatch, getState, rejectWithValue, ... }`를 담은 thunkAPI 객체로, 위 `rejectWithValue` 예시에서 이미 사용했습니다.
 
+## unwrap: 호출 지점에서 곧바로 성공/실패를 처리하기
+
+지금까지는 `extraReducers`에서만 성공/실패를 처리했습니다. 하지만 폼 제출처럼 "이 dispatch가 성공했는지 바로 이 자리에서 알아야 하는" 상황도 자주 있습니다. `dispatch(thunk())`가 반환하는 Promise는 기본적으로 성공하든 실패하든 **resolve**되기 때문에(리듀서가 항상 `fulfilled`나 `rejected` 액션을 받아야 하므로), 일반적인 `try/catch`로는 실패를 잡을 수 없습니다. 이때 `.unwrap()`을 씁니다.
+
+```javascript
+function SubmitButton() {
+  const dispatch = useDispatch();
+
+  const handleSubmit = async () => {
+    try {
+      const todo = await dispatch(addTodo(text)).unwrap(); // fulfilled면 payload를, rejected면 예외를 던진다
+      showToast(`"${todo.text}" 추가됨`);
+    } catch (error) {
+      showToast(`추가 실패: ${error.message}`); // rejectWithValue를 썼다면 error가 그 값
+    }
+  };
+
+  return <button onClick={handleSubmit}>추가</button>;
+}
+```
+
+`.unwrap()`이 없으면 `dispatch(addTodo(text))`가 반환하는 Promise는 실패했을 때도 그냥 `rejected` 액션 객체를 담은 채 정상적으로 resolve되므로, 컴포넌트 코드에서 `try/catch`로 실패를 감지할 수 없습니다. `.unwrap()`은 이 Promise를 "진짜 성공하면 resolve, 진짜 실패하면 reject"하는 일반적인 Promise로 바꿔줘서, 컴포넌트가 익숙한 `try/catch`로 후속 처리를 할 수 있게 해줍니다.
+
+## 중복 요청 방지와 취소: condition과 signal
+
+같은 요청이 이미 진행 중일 때 중복 dispatch를 막고 싶다면, `condition` 옵션으로 실행 여부를 직접 판단할 수 있습니다.
+
+```javascript
+export const fetchTodos = createAsyncThunk(
+  "todos/fetchTodos",
+  async () => {
+    const response = await fetch("/api/todos");
+    return await response.json();
+  },
+  {
+    condition: (_, { getState }) => {
+      const { status } = getState().todos;
+      return status !== "loading"; // false를 반환하면 이 dispatch 자체가 실행되지 않는다
+    },
+  }
+);
+```
+
+`condition`이 `false`를 반환하면 `pending`조차 dispatch되지 않고 요청 자체가 취소됩니다 — 22편의 thunk에서 `getState`로 직접 가드를 작성했던 것과 같은 목적을, `createAsyncThunk`의 옵션으로 선언적으로 표현한 것입니다. 진행 중인 요청을 명시적으로 중단하고 싶다면, thunkAPI가 제공하는 `signal`(표준 `AbortController`의 signal)을 `fetch`에 그대로 전달합니다.
+
+```javascript
+export const fetchTodos = createAsyncThunk(
+  "todos/fetchTodos",
+  async (_, { signal }) => {
+    const response = await fetch("/api/todos", { signal }); // dispatch(fetchTodos.abort())로 취소하면 fetch도 함께 중단됨
+    return await response.json();
+  }
+);
+```
+
 ## 실무 체크리스트
 
 - API 호출을 09편 스타일의 손으로 만든 3-액션 thunk 대신 `createAsyncThunk`로 작성하고 있는가?
 - 로딩 상태를 boolean(`isLoading`)이 아니라 `'idle'/'loading'/'succeeded'/'failed'` 같은 명시적 상태로 관리해, "로딩 끝 + 결과 없음"과 "로딩 중"을 구분하고 있는가?
 - 서버의 구조화된 에러 응답을 그대로 전달해야 한다면 `rejectWithValue`를 사용하고 있는가?
+- 폼 제출처럼 dispatch 지점에서 바로 성공/실패를 알아야 하는 곳에서 `.unwrap()`을 쓰고 있는가?
+- 이미 진행 중인 요청의 중복 dispatch를 막아야 한다면 `condition` 옵션을 검토했는가?
 
 ## 연습 과제
 
@@ -232,12 +291,14 @@ export const fetchTodoById = createAsyncThunk(
 
 ### 고급(★★★)
 - 서버가 404일 때 `{ code: "NOT_FOUND" }`를 응답한다고 가정하고, `rejectWithValue`로 이 정보를 받아 "해당 항목을 찾을 수 없습니다"라는 전용 메시지를 표시해보세요.
+- `fetchTodos`에 `condition` 옵션을 추가해, `status`가 `"loading"`일 때 같은 thunk를 두 번 연속 dispatch해도 네트워크 요청이 한 번만 발생하는지 확인해보세요.
 
 ## 요약
 
 - `createAsyncThunk`는 API 호출 함수 하나로부터 pending/fulfilled/rejected 세 액션을 자동 생성한다.
 - `extraReducers`의 `addCase`로 이 세 상태를 처리해 로딩 상태를 명시적으로 관리한다.
 - `rejectWithValue`로 반환한 값은 `action.error`가 아니라 `action.payload`에 담긴다.
+- `.unwrap()`으로 dispatch 지점에서 바로 성공/실패를 `try/catch`로 처리할 수 있고, `condition`/`signal`로 중복 요청 방지와 취소를 구현할 수 있다.
 
 ## 참고 문헌 및 출처(추천)
 

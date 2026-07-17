@@ -1,6 +1,6 @@
 ---
 title: "[Redux] 28. Redux와 TypeScript - 타입 안전한 상태 관리"
-description: "05편의 TypeScript 기초를 Redux에 적용해 RootState·AppDispatch 타입을 추출하고, 타입 지정된 useSelector/useDispatch 훅과 createSlice의 PayloadAction 타입을 다룹니다."
+description: "05편의 TypeScript 기초를 Redux에 적용해 RootState·AppDispatch 타입을 추출하고, 타입 지정된 useSelector/useDispatch 훅, createSlice의 PayloadAction, createAsyncThunk의 rejectValue 타입까지 다룹니다."
 date: 2026-07-17
 lastmod: 2026-07-17
 collection_order: 28
@@ -32,6 +32,8 @@ tags:
   - Interface(인터페이스)
   - API(Application Programming Interface)
   - Error-Handling(에러처리)
+  - rejectValue타이핑
+  - withTypes헬퍼
 ---
 
 # 28. Redux와 TypeScript - 타입 안전한 상태 관리
@@ -96,6 +98,19 @@ function Counter() {
 ```
 
 `state.counter.count`를 입력하는 순간 에디터가 `state.counter`가 어떤 필드를 가지는지 자동완성으로 제안합니다. 오타(`state.coutner`)가 있으면 컴파일 타임에 바로 에러가 발생합니다. 26편의 `app/` 폴더가 바로 이 `hooks.ts`와 `store.ts`를 담는 위치입니다.
+
+React-Redux 최신 버전은 `TypedUseSelectorHook` 대신 더 짧게 쓸 수 있는 `.withTypes()` 헬퍼도 제공합니다.
+
+```typescript
+// app/hooks.ts — .withTypes()를 쓴 대안 (React-Redux 9+)
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "./store";
+
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
+export const useAppSelector = useSelector.withTypes<RootState>();
+```
+
+두 방식은 결과적으로 동일한 타입 안전성을 제공하며, `TypedUseSelectorHook`은 여전히 널리 쓰이는 기존 관용구이고 `.withTypes()`는 더 최근에 추가된 축약형입니다. 어느 쪽을 쓰든 팀 안에서 일관되게만 사용하면 됩니다.
 
 ## createSlice와 PayloadAction
 
@@ -189,6 +204,36 @@ extraReducers: (builder) => {
 },
 ```
 
+19편에서 `rejectWithValue`로 반환한 값은 `action.payload`에 담긴다고 배웠습니다. 이 값에도 타입을 붙이려면 `createAsyncThunk`의 **세 번째 제네릭 인자**(`{ rejectValue: T }`)를 지정합니다.
+
+```typescript
+interface ApiError {
+  code: string;
+  message: string;
+}
+
+// <성공 시 payload 타입, thunk 인자 타입, { rejectValue: 실패 시 payload 타입 }>
+export const fetchTodoById = createAsyncThunk<Todo, string, { rejectValue: ApiError }>(
+  "todos/fetchTodoById",
+  async (todoId, { rejectWithValue }) => {
+    const response = await fetch(`/api/todos/${todoId}`);
+    if (!response.ok) {
+      const errorBody: ApiError = await response.json();
+      return rejectWithValue(errorBody); // ApiError 타입으로 체크됨
+    }
+    return (await response.json()) as Todo;
+  }
+);
+
+extraReducers: (builder) => {
+  builder.addCase(fetchTodoById.rejected, (state, action) => {
+    state.error = action.payload?.message; // action.payload: ApiError | undefined 로 정확히 추론됨
+  });
+},
+```
+
+이 세 번째 제네릭을 생략하면 `action.payload`는 `unknown`으로 추론되어, 실패 응답의 구조를 활용하는 코드에서 타입 체크의 이점을 잃게 됩니다.
+
 ## RTK Query의 타입 지정
 
 24편의 `createApi`도 `builder.query<반환타입, 인자타입>` 형태로 제네릭을 받습니다.
@@ -215,6 +260,7 @@ export const postsApi = createApi({
 - `RootState`/`AppDispatch`를 Store로부터 `ReturnType`/`typeof`로 추출해 손으로 중복 정의하지 않았는가?
 - 컴포넌트 전체에서 `useSelector`/`useDispatch` 대신 타입이 지정된 `useAppSelector`/`useAppDispatch`를 사용하고 있는가?
 - `reducers`의 각 함수에서 `action.payload`의 타입을 `PayloadAction<T>`로 명시했는가?
+- `createAsyncThunk`가 구조화된 에러 응답을 반환한다면, 세 번째 제네릭(`{ rejectValue: T }`)으로 실패 시 `action.payload`의 타입도 명시했는가?
 
 ## 연습 과제
 
@@ -226,12 +272,13 @@ export const postsApi = createApi({
 
 ### 고급(★★★)
 - 25편의 `postsApi`를 TypeScript로 옮기고, `getPosts`/`getPostById`/`addPost` 각각에 정확한 `<반환타입, 인자타입>` 제네릭을 지정해보세요.
+- `fetchTodoById`에 `{ rejectValue: ApiError }`를 지정한 뒤, 세 번째 제네릭을 일부러 빼보고 `action.payload`의 추론 타입이 `ApiError | undefined`에서 `unknown`으로 어떻게 바뀌는지 비교해보세요.
 
 ## 요약
 
 - `RootState`와 `AppDispatch`는 Store로부터 `ReturnType`/`typeof`로 자동 추출해, 구조 변경 시 타입이 자동으로 따라오게 한다.
-- `useAppSelector`/`useAppDispatch` 커스텀 훅으로 매 컴포넌트에서 타입을 반복 명시하는 것을 피한다.
-- `PayloadAction<T>`와 `createApi`의 제네릭으로 액션 페이로드와 API 응답 모두에 타입 안전성을 확보할 수 있다.
+- `useAppSelector`/`useAppDispatch` 커스텀 훅(`TypedUseSelectorHook` 또는 `.withTypes()`)으로 매 컴포넌트에서 타입을 반복 명시하는 것을 피한다.
+- `PayloadAction<T>`와 `createApi`의 제네릭으로 액션 페이로드와 API 응답 모두에 타입 안전성을 확보하고, `createAsyncThunk`의 세 번째 제네릭(`rejectValue`)으로 실패 응답까지 타입을 붙인다.
 
 ## 참고 문헌 및 출처(추천)
 

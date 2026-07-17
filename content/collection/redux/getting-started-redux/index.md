@@ -37,9 +37,9 @@ tags:
   - Pitfalls(함정)
   - Edge-Cases(엣지케이스)
   - Data-Structures(자료구조)
-  - Git
-  - IDE(Integrated Development Environment)
-  - VSCode
+  - Immutability
+  - Concurrency(동시성)
+  - Database(데이터베이스)
   - How-To
   - Tips
   - Technology(기술)
@@ -70,6 +70,12 @@ collection_order: 0
 > "You might not need Redux." — Dan Abramov, [You Might Not Need Redux (2016)](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367). Redux는 만능이 아니지만, **상태 관리**가 복잡해지는 순간 선택지가 됩니다. 이 시리즈는 그 선택을 할 수 있도록, 기초부터 실무까지 체계적으로 다룹니다.
 
 이 챕터는 시리즈 소개이자 커리큘럼·학습 방법·참고 자료를 한곳에 모은 도입 페이지입니다. **왜 이 페이지부터 읽어야 할까요?** 실제 Redux 코드를 작성하기 전에, 전체 로드맵을 보면 "지금 내가 어디쯤에 있는지"와 "다음에 무엇을 배우면 되는지"를 항상 확인할 수 있습니다. 그래서 01편으로 들어가기 직전에, 이 커리큘럼 한 번만 훑어 두는 것을 권합니다.
+
+## Redux의 탄생 배경
+
+Redux는 2015년 5월, Dan Abramov가 프랑스 파리에서 열린 React Europe 콘퍼런스 발표를 준비하며 만들었습니다. 원래 목표는 라이브러리를 만드는 것이 아니라, **핫 리로딩(hot reloading) 중에도 애플리케이션 상태를 잃지 않고, 액션 히스토리를 되감아 재생(시간 여행 디버깅)할 수 있는 데모**를 보여주는 것이었습니다. 이를 위해서는 상태 변경이 예측 가능하고 재현 가능해야 했고, Abramov는 Facebook의 **Flux** 아키텍처(단방향 데이터 흐름)와 **Elm**(순수 함수형 언어로, 상태를 액션에 따라 변환하는 모델)의 아이디어를 결합했습니다. 발표 직후 Redux는 빠르게 커뮤니티의 표준 상태 관리 도구로 자리 잡았고, 이후 Andrew Clark을 비롯한 여러 기여자가 합류하며 지금의 생태계(React-Redux, Redux Toolkit, Redux Saga 등)로 발전했습니다.
+
+이 탄생 배경은 이 시리즈의 여러 편에서 다시 등장합니다. 09편의 DevTools 시간 여행 디버깅, 08편의 불변성 원칙은 모두 "핫 리로딩 중에도 재현 가능한 디버깅"이라는 최초 목표에서 직접 파생된 설계입니다.
 
 ## 왜 Redux를 배워야 하는가
 

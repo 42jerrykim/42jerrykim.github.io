@@ -108,6 +108,20 @@ const loggerMiddleware = (store) => (next) => (action) => {
 
 `next(action)`을 호출하지 않으면 Action이 리듀서까지 도달하지 못합니다. 이 구조 덕분에 미들웨어는 Action을 **가로채서 변형하거나, 아예 막거나, 비동기 작업 후 다른 Action을 대신 dispatch**할 수 있습니다. 21편에서 미들웨어를 직접 만들어보고, 22~24편에서 Thunk·Saga·RTK Query가 이 지점을 어떻게 활용하는지 다룹니다.
 
+**흔한 오개념 하나**: 미들웨어를 여러 개 등록하면 "순서는 상관없다"고 생각하기 쉽지만, 실제로는 **등록 순서가 실행 순서를 그대로 결정**합니다.
+
+```javascript
+// thunkMiddleware가 loggerMiddleware보다 먼저 등록되면
+applyMiddleware(thunkMiddleware, loggerMiddleware)
+// → thunk 함수가 먼저 실행되어 액션 객체로 풀린 뒤, logger는 그 결과(순수 액션 객체)를 로깅한다
+
+// 반대로 등록하면
+applyMiddleware(loggerMiddleware, thunkMiddleware)
+// → logger가 먼저 실행되어, 아직 처리되지 않은 "함수 자체"를 그대로 로깅해버린다
+```
+
+`loggerMiddleware`가 `thunkMiddleware`보다 먼저 오면, 콘솔에는 `{ type: "...", payload: ... }` 같은 액션 객체 대신 **함수 자체**가 찍혀서 디버깅에 도움이 되지 않습니다. 미들웨어를 조합할 때는 "이 미들웨어가 처리하고 넘긴 결과를 다음 미들웨어가 받는다"는 순서를 항상 염두에 둬야 합니다.
+
 ## 비동기 흐름: 세 개의 액션으로 쪼개기
 
 04편에서 리듀서는 비동기를 다룰 수 없다고 했습니다. 그래서 실무의 비동기 흐름은 **하나의 요청을 세 개의 동기 액션으로 쪼개** 표현합니다.
@@ -145,6 +159,7 @@ Redux DevTools 브라우저 확장은 dispatch된 모든 Action과 그로 인한
 ## 실무 체크리스트
 
 - Action이 dispatch된 시점부터 화면이 갱신되는 시점까지 5단계를 순서대로 설명할 수 있는가?
+- 여러 미들웨어를 등록할 때 순서가 의도한 실행 흐름(예: logger가 실제 액션 객체를 로깅하는지)과 일치하는가?
 - 비동기 작업을 리듀서가 아니라 미들웨어에서 처리하고, 리듀서에는 결과를 알리는 동기 액션만 전달하는가?
 - Redux DevTools에서 Action 목록과 Diff를 실제로 열어 상태 변화를 확인해본 적이 있는가?
 
