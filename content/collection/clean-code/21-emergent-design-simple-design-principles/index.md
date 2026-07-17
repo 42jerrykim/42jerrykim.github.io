@@ -1,564 +1,121 @@
 ---
 draft: true
+collection_order: 21
+slug: emergent-design-simple-design-principles
+title: "[Clean Code] 21장. 창발적 설계 네 가지 규칙"
+date: 2026-07-17
+last_modified_at: 2026-07-17
+description: "켄트 벡이 제시한 단순한 설계 네 규칙(테스트 통과, 중복 제거, 의도 표현, 클래스·메서드 최소화)을 우선순위 순서로 설명하고, 사전 설계(BDUF)와 창발적 설계 사이의 오래된 논쟁을 규칙 충돌 판단 기준과 함께 다룬다."
+categories: Clean Code
+tags:
+- Clean-Code(클린코드)
+- Design-Pattern(디자인패턴)
+- Refactoring(리팩토링)
+- Code-Quality(코드품질)
+- Best-Practices
+- Readability
+- Maintainability
+- Testing(테스트)
+- TDD(Test-Driven Development)
+- Software-Architecture(소프트웨어아키텍처)
+- Template-Method
+- Java
+- Implementation(구현)
+- Pitfalls(함정)
+- SOLID
+- Tutorial(튜토리얼)
+- Guide(가이드)
+- Education(교육)
+- Career(커리어)
+- Productivity(생산성)
+- Code-Review(코드리뷰)
+- Modularity
+- Coupling(결합도)
+- OOP(객체지향)
+- System-Design
 ---
-# 12장: 창발성
 
-## 강의 목표
-- 창발적 설계를 통한 깔끔한 코드 구현 방법 이해
-- 단순한 설계 규칙 4가지 습득과 적용
-- 코드 중복 제거와 표현력 향상 기법 학습
+## 이 장을 읽기 전에
 
-## 내용 구성 전략
+이 장은 [16~17장](/post/clean-code/unit-testing-tdd-test-driven-development/)에서 다룬 TDD와 [18장](/post/clean-code/clean-classes-solid-principles-oop/)에서 다룬 SOLID를 하나의 우선순위 체계로 묶는다. 이 시리즈 전반의 원칙을 이미 접했다는 전제로 진행하는 통합적인 장이다.
 
-### 창발적 설계로 깔끔한 코드를 구현하자
-**접근 방법**:
-- 창발성(Emergence) 개념의 이해
-- 단순한 규칙에서 복잡한 시스템이 나오는 원리
+| 수준 | 읽을 부분 | 핵심 목표 |
+|:--:|:--|:--|
+| 입문자 | 네 규칙 전체 | 각 규칙이 무엇을 요구하는지 이해한다 |
+| 실무자 | "판단 기준", "비판적 시각" | 규칙끼리 충돌할 때 우선순위에 따라 판단한다 |
 
-**주요 내용**:
-- 단순한 설계 규칙을 따르면 우수한 설계가 '창발'한다
-- 켄트 벡이 제시한 단순한 설계 규칙 네 개가 소프트웨어 설계 품질을 크게 높여준다
-- 이 규칙들을 따르면 코드 구조와 설계를 파악하기 쉬워진다
+## 창발성: 단순한 규칙에서 좋은 설계가 나온다
 
-**창발성의 정의**:
-- 창발성이란 단순한 요소들이 상호작용하여 복잡하고 예상치 못한 특성이나 행동이 나타나는 현상
-- 소프트웨어에서는 단순한 설계 원칙들이 상호작용하여 우수한 전체 아키텍처가 나타나는 것
+**창발성(Emergence)**은 단순한 요소들의 상호작용에서 예상보다 복잡하고 정교한 성질이 나타나는 현상을 가리킨다. 개미 한 마리의 행동 규칙은 단순하지만, 수천 마리가 상호작용하면 정교한 군집 행동이 나타나는 것이 대표적인 예다. Kent Beck은 이 개념을 소프트웨어 설계에 적용해, 복잡한 아키텍처를 처음부터 완벽하게 설계하려 하기보다 **네 가지 단순한 규칙을 꾸준히 따르면 좋은 설계가 자연스럽게 드러난다**고 제안했다. 이 네 규칙은 우선순위 순서로 나열된다 — 뒤 규칙은 앞 규칙을 위반하지 않는 한도 내에서만 적용한다.
 
-### 단순한 설계 규칙 4가지
-**접근 방법**:
-- 켄트 벡의 단순한 설계 규칙 소개
-- 중요도 순서에 따른 규칙 배열
+## 규칙 1: 모든 테스트를 통과한다
 
-**주요 내용**:
-켄트 벡이 제시한 단순한 설계 규칙은 다음과 같다 (중요도 순):
+가장 먼저, 그리고 가장 우선하는 규칙은 시스템이 의도한 대로 동작함을 검증하는 테스트를 모두 통과하는 것이다. 테스트가 통과하지 않는 시스템은 애초에 "설계가 좋은가"를 논할 자격이 없다 — 검증되지 않은 코드는 그 자체로 신뢰할 수 없기 때문이다. 이 규칙은 [16장](/post/clean-code/unit-testing-tdd-test-driven-development/)에서 다룬 TDD와 직결된다. 테스트를 통과시키려는 압박은 부수적인 효과도 낳는다 — 시스템을 테스트하기 쉽게 만들려면 자연히 클래스는 작아지고 결합도는 낮아지는 경향이 있다. 테스트 가능성을 추구하는 것만으로도 18장에서 다룬 SRP, DIP에 가까워지는 설계가 얻어지는 셈이다.
 
-1. **모든 테스트를 실행한다**
-2. **중복을 없앤다**
-3. **프로그래머 의도를 표현한다**
-4. **클래스와 메서드 수를 최소로 줄인다**
+## 규칙 2: 중복을 제거한다
 
-이 규칙들을 따르면 코드의 구조와 설계를 파악하기 쉬워진다.
+중복된 코드는 변경이 필요할 때 같은 수정을 여러 곳에 반복해야 하고, 한 곳이라도 빠뜨리면 버그가 된다. 중복 제거는 05장에서 다룬 함수 추출, 11장에서 다룬 다형성 등 이 시리즈 전체에서 반복적으로 등장한 기법들의 공통 목적이기도 하다.
 
-### 단순한 설계 규칙 1: 모든 테스트를 실행하라
-**접근 방법**:
-- 테스트 가능한 시스템의 특징
-- 테스트가 설계에 미치는 영향
-
-**주요 내용**:
-- 설계는 의도한 대로 돌아가는 시스템을 내놓아야 한다
-- 문서로는 시스템을 완벽하게 설계했지만, 시스템이 의도한 대로 돌아가는지 검증할 간단한 방법이 없다면, 문서 작성을 위해 투자한 노력에 대한 가치는 인정받기 힘들다
-- 테스트를 철저히 거쳐 모든 테스트 케이스를 항상 통과하는 시스템은 '테스트가 가능한 시스템'이다
-
-**테스트가 가능한 시스템의 특징**:
 ```java
-// Bad: 테스트하기 어려운 코드
-public class OrderProcessor {
-    public void processOrder(Order order) {
-        // 직접적인 의존성
-        EmailService emailService = new EmailService();
-        DatabaseService dbService = new DatabaseService();
-        
-        // 하드코딩된 로직
-        if (order.getTotal() > 1000) {
-            emailService.sendEmail(order.getCustomer().getEmail(), 
-                "Your order exceeds $1000");
-        }
-        
-        // 현재 시간에 직접 의존
-        order.setProcessedDate(new Date());
-        
-        dbService.save(order);
+// 중복: 두 메서드가 거의 동일한 로직을 반복한다
+public void printWeekdaySchedule() {
+    System.out.println("=== 평일 일정 ===");
+    for (Task task : weekdayTasks) {
+        System.out.println(task.getTime() + " - " + task.getName());
+    }
+}
+public void printWeekendSchedule() {
+    System.out.println("=== 주말 일정 ===");
+    for (Task task : weekendTasks) {
+        System.out.println(task.getTime() + " - " + task.getName());
     }
 }
 
-// Good: 테스트 가능한 코드
-public class OrderProcessor {
-    private final EmailService emailService;
-    private final DatabaseService dbService;
-    private final Clock clock;
-    
-    public OrderProcessor(EmailService emailService, 
-                         DatabaseService dbService, 
-                         Clock clock) {
-        this.emailService = emailService;
-        this.dbService = dbService;
-        this.clock = clock;
-    }
-    
-    public void processOrder(Order order) {
-        if (order.getTotal() > 1000) {
-            sendHighValueOrderNotification(order);
-        }
-        
-        order.setProcessedDate(clock.getCurrentTime());
-        dbService.save(order);
-    }
-    
-    private void sendHighValueOrderNotification(Order order) {
-        emailService.sendEmail(order.getCustomer().getEmail(), 
-            "Your order exceeds $1000");
-    }
-}
-
-// 테스트 코드
-@Test
-public void shouldSendEmailForHighValueOrder() {
-    // Given
-    EmailService mockEmailService = mock(EmailService.class);
-    DatabaseService mockDbService = mock(DatabaseService.class);
-    Clock mockClock = mock(Clock.class);
-    Date fixedDate = new Date();
-    when(mockClock.getCurrentTime()).thenReturn(fixedDate);
-    
-    OrderProcessor processor = new OrderProcessor(
-        mockEmailService, mockDbService, mockClock);
-    
-    Order highValueOrder = new Order();
-    highValueOrder.setTotal(1500);
-    Customer customer = new Customer("test@example.com");
-    highValueOrder.setCustomer(customer);
-    
-    // When
-    processor.processOrder(highValueOrder);
-    
-    // Then
-    verify(mockEmailService).sendEmail("test@example.com", 
-        "Your order exceeds $1000");
-    assertEquals(fixedDate, highValueOrder.getProcessedDate());
-}
-```
-
-**테스트가 설계에 미치는 긍정적 영향**:
-- 크기가 작고 목적 하나만 수행하는 클래스가 나온다
-- SRP를 준수하는 클래스는 테스트가 훨씬 더 쉽다
-- 결합도가 높으면 테스트 작성이 어렵다
-- DIP와 같은 원칙을 적용하고 의존성 주입, Mock 객체, 인터페이스를 사용해 테스트 케이스를 작성한다
-
-### 단순한 설계 규칙 2-4: 리팩토링
-**접근 방법**:
-- 테스트 케이스 작성 후 리팩토링 단계
-- 중복 제거, 표현력 향상, 구조 개선
-
-**주요 내용**:
-- 테스트 케이스를 모두 작성했다면 이제 코드와 클래스를 정리해도 괜찮다
-- 구체적으로는 코드를 점진적으로 리팩토링해 나간다
-- 테스트 케이스가 있으니까 코드를 정리하면서 시스템이 깨질까 걱정할 필요가 없다
-
-### 중복을 없애라
-**접근 방법**:
-- 중복의 다양한 형태 식별
-- 중복 제거 기법과 패턴
-
-**주요 내용**:
-- 우수한 설계에서 중복은 커다란 적이다
-- 중복은 추가 작업, 추가 위험, 불필요한 복잡도를 뜻한다
-- 중복은 여러 가지 형태로 나타난다
-
-#### 명백한 중복
-**예시**:
-```java
-// Bad: 명백한 중복
-public class VacationPolicy {
-    public void accrueUSDivisionVacation() {
-        // 미국 직원 휴가 적립 로직
-        // 근무 개월 수 계산
-        // 휴가 일수 계산
-        // 데이터베이스 업데이트
-    }
-    
-    public void accrueEUDivisionVacation() {
-        // 유럽 직원 휴가 적립 로직  
-        // 근무 개월 수 계산
-        // 휴가 일수 계산 (다른 정책)
-        // 데이터베이스 업데이트
-    }
-}
-
-// Good: 중복 제거
-public abstract class VacationPolicy {
-    public void accrueVacation() {
-        int monthsWorked = calculateMonthsWorked();
-        int vacationDays = calculateVacationDays(monthsWorked);
-        updateDatabase(vacationDays);
-    }
-    
-    protected abstract int calculateVacationDays(int monthsWorked);
-    
-    private int calculateMonthsWorked() {
-        // 공통 로직
-    }
-    
-    private void updateDatabase(int vacationDays) {
-        // 공통 로직
-    }
-}
-
-public class USVacationPolicy extends VacationPolicy {
-    @Override
-    protected int calculateVacationDays(int monthsWorked) {
-        // 미국 휴가 정책에 따른 계산
-        return monthsWorked * 2;
-    }
-}
-
-public class EUVacationPolicy extends VacationPolicy {
-    @Override
-    protected int calculateVacationDays(int monthsWorked) {
-        // 유럽 휴가 정책에 따른 계산
-        return monthsWorked * 3;
+// 중복 제거: 공통 절차는 템플릿 메서드로, 달라지는 부분만 인수로 분리
+public void printSchedule(String title, List<Task> tasks) {
+    System.out.println("=== " + title + " ===");
+    for (Task task : tasks) {
+        System.out.println(task.getTime() + " - " + task.getName());
     }
 }
 ```
 
-#### 더 미묘한 중복
-**예시**:
-```java
-// Bad: 미묘한 중복 (구조적 중복)
-public class Line {
-    public Line(Point start, Point end) {
-        this.start = start;
-        this.end = end;
-    }
-    
-    public double getLength() {
-        double dx = end.x - start.x;
-        double dy = end.y - start.y;
-        return Math.sqrt(dx*dx + dy*dy);
-    }
-}
+이 예제는 단순한 매개변수화로 해결됐지만, 중복되는 부분이 알고리즘의 뼈대는 같고 세부 단계만 다르다면 GoF의 **템플릿 메서드 패턴(Template Method Pattern)**을 적용해 상위 클래스가 알고리즘 구조를 정의하고 하위 클래스가 세부 단계를 채우는 방식으로 확장할 수 있다.
 
-public class Rectangle {
-    private Point topLeft;
-    private Point bottomRight;
-    
-    public double getDiagonalLength() {
-        double dx = bottomRight.x - topLeft.x;
-        double dy = bottomRight.y - topLeft.y;
-        return Math.sqrt(dx*dx + dy*dy);
-    }
-}
+## 규칙 3: 프로그래머의 의도를 표현한다
 
-// Good: 중복 제거
-public class Point {
-    public final double x, y;
-    
-    public Point(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-    
-    public double distanceTo(Point other) {
-        double dx = other.x - this.x;
-        double dy = other.y - this.y;
-        return Math.sqrt(dx*dx + dy*dy);
-    }
-}
+코드는 동작할 뿐 아니라, 읽는 사람에게 "왜 이렇게 작성했는지"를 전달해야 한다. 이 규칙은 이 시리즈에서 이미 여러 챕터에 걸쳐 다뤄진 원칙들—[03장](/post/clean-code/meaningful-naming-conventions-variables-functions/)의 좋은 이름, [05장](/post/clean-code/clean-functions-single-responsibility-principle/)의 작은 함수, [16장](/post/clean-code/unit-testing-tdd-test-driven-development/)의 좋은 테스트—을 하나의 상위 목표로 묶는다. 잘 작성된 표준 디자인 패턴의 이름(`Factory`, `Observer`, `Strategy`)을 코드에 그대로 사용하는 것도 의도 표현에 도움이 된다 — 그 패턴을 아는 독자에게는 클래스 이름 자체가 구조에 대한 설명이 되기 때문이다.
 
-public class Line {
-    private Point start, end;
-    
-    public Line(Point start, Point end) {
-        this.start = start;
-        this.end = end;
-    }
-    
-    public double getLength() {
-        return start.distanceTo(end);
-    }
-}
+## 규칙 4: 클래스와 메서드 수를 최소로 줄인다
 
-public class Rectangle {
-    private Point topLeft;
-    private Point bottomRight;
-    
-    public double getDiagonalLength() {
-        return topLeft.distanceTo(bottomRight);
-    }
-}
-```
+앞의 세 규칙을 지키려다 보면 함수와 클래스를 계속 잘게 나누는 방향으로 흐르기 쉽다. 네 번째 규칙은 이 경향에 제동을 거는 균형추다 — 클래스와 메서드 수는 낮게 유지해야 하지만, 이는 **앞의 세 규칙(테스트 통과, 중복 제거, 의도 표현)을 해치지 않는 한도 내에서**만 적용된다. 즉 "무조건 클래스를 적게 만들라"는 뜻이 아니라, "의도 표현과 중복 제거를 위해 클래스를 나눴다면 그 이상으로 과도하게 쪼개지 말라"는 뜻이다.
 
-#### Template Method 패턴을 활용한 중복 제거
-**예시**:
-```java
-// Bad: 중복된 고차원 정책
-public class HourlyEmployee {
-    public Money calculatePay() {
-        int straightTime = Math.min(40, timeCard.getHours());
-        int overTime = Math.max(0, timeCard.getHours() - 40);
-        int straightPay = straightTime * payRate;
-        int overtimePay = (int)Math.round(overTime * payRate * 1.5);
-        return new Money(straightPay + overtimePay);
-    }
-}
+## 흔한 오개념
 
-public class SalariedEmployee {
-    public Money calculatePay() {
-        return new Money(salary);
-    }
-}
+**"창발적 설계는 사전 설계가 전혀 필요 없다는 뜻이다"**는 오해가 흔하다. 실제로 Kent Beck이 이 규칙을 제시한 맥락은 익스트림 프로그래밍(XP)의 반복적 개발 방식이며, 이는 "처음에 대략적인 방향조차 없이 무작정 코드를 작성한다"는 뜻이 아니라 "세부 설계를 한 번에 완벽하게 확정하려 하지 않고, 테스트를 통과시키고 리팩토링하는 짧은 반복을 거치며 설계를 다듬어 나간다"는 뜻이다.
 
-// Good: Template Method 패턴 적용
-public abstract class Employee {
-    public Money calculatePay() {
-        int regularHours = calculateRegularHours();
-        int overtimeHours = calculateOvertimeHours();
-        int regularPay = regularHours * getRegularRate();
-        int overtimePay = overtimeHours * getOvertimeRate();
-        return new Money(regularPay + overtimePay);
-    }
-    
-    protected abstract int getRegularRate();
-    protected abstract int getOvertimeRate();
-    
-    private int calculateRegularHours() {
-        return Math.min(40, timeCard.getHours());
-    }
-    
-    private int calculateOvertimeHours() {
-        return Math.max(0, timeCard.getHours() - 40);
-    }
-}
+**"규칙 4(클래스·메서드 최소화)가 가장 중요한 규칙이다"**는 오해도 있다. 네 규칙은 명시적으로 우선순위가 매겨져 있으며, 규칙 4는 가장 낮은 우선순위다. 클래스 수를 줄이기 위해 테스트가 깨지거나(규칙 1 위반) 중복이 다시 생기거나(규칙 2 위반) 의도가 불분명해진다면(규칙 3 위반), 그 통합은 정당화되지 않는다.
 
-public class HourlyEmployee extends Employee {
-    @Override
-    protected int getRegularRate() {
-        return payRate;
-    }
-    
-    @Override
-    protected int getOvertimeRate() {
-        return (int)Math.round(payRate * 1.5);
-    }
-}
+## 판단 기준: 규칙이 충돌할 때
 
-public class SalariedEmployee extends Employee {
-    @Override
-    protected int getRegularRate() {
-        return salary / 2080; // 연봉을 시간당으로 환산
-    }
-    
-    @Override
-    protected int getOvertimeRate() {
-        return 0; // 급여직원은 초과근무수당 없음
-    }
-}
-```
+두 규칙이 서로 다른 방향을 가리킬 때는 항상 앞선 규칙을 우선한다. 예를 들어 중복을 제거하기 위한 추상화(규칙 2)가 오히려 코드의 의도를 흐리게 만든다면(규칙 3과 충돌), 이는 "거짓 중복"—우연히 비슷해 보일 뿐 실제로는 서로 다른 개념—일 가능성이 높으므로 중복 제거를 강행하지 않는 편이 낫다. 클래스를 통합해 개수를 줄이는 것(규칙 4)이 테스트를 작성하기 어렵게 만든다면(규칙 1과 충돌), 통합을 포기한다.
 
-### 표현하라
-**접근 방법**:
-- 코드의 의도를 명확하게 표현하는 방법
-- 가독성과 유지보수성 향상 기법
+## 비판적 시각
 
-**주요 내용**:
-- 소프트웨어 프로젝트 비용 중 대다수는 장기적인 유지보수에 들어간다
-- 시스템이 점차 복잡해지면서 유지보수 개발자가 시스템을 이해하느라 보내는 시간은 늘어만 간다
-- 코드는 개발자의 의도를 분명히 표현해야 한다
+창발적 설계는 애자일·XP 진영의 산물이며, "빅 디자인 업 프론트(Big Design Up Front, BDUF)"를 지지하는 전통적 소프트웨어 공학 관점과 오랫동안 대비되어 왔다. BDUF 지지자들은 대규모 시스템, 특히 분산 시스템의 근본적인 아키텍처 결정(데이터 일관성 모델, 서비스 경계)은 나중에 리팩토링으로 되돌리기에는 비용이 너무 커서, 어느 정도의 사전 설계 없이 창발에만 의존하는 것은 위험하다고 본다. 실무에서는 두 접근이 배타적이라기보다 스케일의 문제로 다뤄진다 — 클래스·함수 수준의 세부 설계는 창발적 접근(테스트를 통과시키며 리팩토링)이 효과적이지만, 서비스 경계나 데이터 모델처럼 되돌리기 비용이 큰 결정은 최소한의 사전 설계를 거치는 절충이 널리 쓰인다.
 
-#### 표현력을 높이는 방법들
+## 다음 장에서는
 
-**1. 좋은 이름 선택하기**
-```java
-// Bad: 모호한 이름
-public class DtaRcrd102 {
-    private Date genymdhms;
-    private Date modymdhms;
-    private final String pszqint = "102";
-}
-
-// Good: 의미있는 이름
-public class Customer {
-    private Date generationTimestamp;
-    private Date modificationTimestamp;
-    private final String recordId = "102";
-}
-```
-
-**2. 함수와 클래스 크기를 작게 유지하기**
-```java
-// Bad: 큰 함수
-public void processOrder(Order order) {
-    // 100줄의 복잡한 로직
-    // 주문 검증, 재고 확인, 결제 처리, 배송 등
-}
-
-// Good: 작은 함수들로 분해
-public void processOrder(Order order) {
-    validateOrder(order);
-    checkInventory(order);
-    processPayment(order);
-    scheduleShipping(order);
-}
-
-private void validateOrder(Order order) { /* ... */ }
-private void checkInventory(Order order) { /* ... */ }
-private void processPayment(Order order) { /* ... */ }
-private void scheduleShipping(Order order) { /* ... */ }
-```
-
-**3. 표준 명칭 사용하기**
-```java
-// Command 패턴 사용 예시
-public interface Command {
-    void execute();
-    void undo();
-}
-
-public class DeleteFileCommand implements Command {
-    private File file;
-    private boolean wasDeleted;
-    
-    public DeleteFileCommand(File file) {
-        this.file = file;
-    }
-    
-    @Override
-    public void execute() {
-        wasDeleted = file.delete();
-    }
-    
-    @Override
-    public void undo() {
-        if (wasDeleted) {
-            // 파일 복원 로직
-        }
-    }
-}
-```
-
-**4. 단위 테스트 케이스를 꼼꼼히 작성하기**
-```java
-@Test
-public void shouldCalculateAreaCorrectlyForRectangle() {
-    // Given
-    Rectangle rectangle = new Rectangle(5, 3);
-    
-    // When
-    double area = rectangle.calculateArea();
-    
-    // Then
-    assertEquals(15.0, area, 0.001);
-}
-
-@Test
-public void shouldReturnZeroAreaForNegativeDimensions() {
-    // Given
-    Rectangle rectangle = new Rectangle(-5, 3);
-    
-    // When
-    double area = rectangle.calculateArea();
-    
-    // Then
-    assertEquals(0.0, area, 0.001);
-}
-```
-
-### 클래스와 메서드 수를 최소로 줄여라
-**접근 방법**:
-- 과도한 추상화의 위험성
-- 실용적인 접근법의 중요성
-
-**주요 내용**:
-- 때로는 무의미하고 독단적인 정책 탓에 클래스 수와 메서드 수가 늘어나기도 한다
-- 클래스마다 무조건 인터페이스를 생성하라고 요구하는 구현 표준이 좋은 예다
-- 자료 클래스와 동작 클래스는 무조건 분리해야 한다고 주장하는 개발자도 좋은 예다
-- 가능한 독단적인 견해는 멀리하고 실용적인 방식을 택한다
-
-**균형잡힌 접근법**:
-```java
-// Bad: 과도한 추상화
-public interface UserDataAccessInterface {
-    UserEntity getUserEntityById(Long id);
-}
-
-public class UserDataAccessImplementation implements UserDataAccessInterface {
-    @Override
-    public UserEntity getUserEntityById(Long id) {
-        // 구현
-    }
-}
-
-public interface UserBusinessLogicInterface {
-    UserDTO processUserBusinessLogic(Long id);
-}
-
-public class UserBusinessLogicImplementation implements UserBusinessLogicInterface {
-    // 구현
-}
-
-// Good: 실용적인 접근
-public class UserRepository {
-    public User findById(Long id) {
-        // 구현
-    }
-}
-
-public class UserService {
-    private UserRepository userRepository;
-    
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-    
-    public User getUser(Long id) {
-        return userRepository.findById(id);
-    }
-}
-```
-
-**우선순위**:
-이 규칙은 함수와 클래스 수를 가능한 줄이라고 제안한다. 하지만 이 규칙은 4개 규칙 중 우선순위가 가장 낮다:
-
-1. 테스트 케이스 작성
-2. 중복 제거  
-3. 의도 표현
-4. **클래스와 메서드 수 최소화** ← 가장 낮은 우선순위
-
-### 결론
-**접근 방법**:
-- 단순한 설계 규칙의 종합적 적용
-- 지속적인 개선의 중요성
-
-**주요 내용**:
-- 경험을 대신할 단순한 개발 기법이 있을까? 당연히 없다
-- 하지만 이 장에서 소개한 기법은 켄트 벡이 수십 년간 쌓은 경험의 정수다
-- 이 규칙들을 따르면 우수한 기법과 원칙을 단번에 활용할 수 있다
-
-## 강의 진행 방식
-1. **도입 (10분)**: 창발성 개념과 사례 소개
-2. **이론 (25분)**: 단순한 설계 규칙 4가지 상세 설명
-3. **실습 (40분)**: 중복 제거와 표현력 향상 리팩토링
-4. **회고 (15분)**: 설계 개선 과정 공유 및 토론
-
-## 실습 과제
-1. **중복 제거**: 제공된 코드에서 다양한 형태의 중복 찾기 및 제거
-2. **표현력 향상**: 의도가 불분명한 코드를 명확하게 표현하도록 개선
-3. **테스트 주도 리팩토링**: 테스트를 먼저 작성한 후 안전하게 리팩토링
+[22장: 동시성 결함과 방어 원칙](/post/clean-code/concurrency-multithreading-parallel-programming/)에서는 단일 스레드를 전제로 한 지금까지의 원칙이 동시성 환경에서 어떻게 달라지는지 다룬다.
 
 ## 평가 기준
-- 중복 식별 및 제거 능력 (35%)
-- 코드 표현력 향상 능력 (35%)
-- 단순한 설계 규칙 종합 적용 (30%)
 
-## 창발적 설계 체크리스트
-- [ ] 모든 테스트가 통과하는가?
-- [ ] 명백한 중복이 제거되었는가?
-- [ ] 구조적/의미적 중복도 제거되었는가?
-- [ ] 코드가 의도를 명확히 표현하는가?
-- [ ] 클래스와 메서드 이름이 적절한가?
-- [ ] 함수와 클래스 크기가 적당한가?
-- [ ] 표준 명칭을 적절히 사용했는가?
-- [ ] 단위 테스트가 코드를 설명하는가?
-- [ ] 과도한 추상화를 피했는가?
+- [ ] Kent Beck의 단순한 설계 네 규칙을 우선순위 순서로 나열하고 설명할 수 있다.
+- [ ] 중복 코드를 템플릿 메서드 패턴 등으로 제거할 수 있다.
+- [ ] 두 규칙이 충돌하는 상황에서 우선순위에 따라 어느 쪽을 따를지 판단할 수 있다.
+- [ ] 창발적 설계와 사전 설계(BDUF)가 서로 다른 스케일에 적용되는 상호보완적 접근임을 설명할 수 있다.
 
-## 리팩토링 우선순위
-1. **테스트 케이스 확보** (안전망 구축)
-2. **중복 제거** (구조 개선)
-3. **의도 표현** (가독성 향상)
-4. **크기 최소화** (복잡도 감소)
+## 참고 및 출처
 
-## 추가 자료
-- Kent Beck의 "Extreme Programming Explained"
-- Martin Fowler의 "Refactoring: Improving the Design of Existing Code"
-- "Design Patterns" Gang of Four
-- "Effective Java" - Joshua Bloch
-- 실제 오픈소스 프로젝트의 리팩토링 사례 
+- Martin, R. C. (2008). *Clean Code: A Handbook of Agile Software Craftsmanship*. Prentice Hall. 12장.
+- Beck, K. (2004). *Extreme Programming Explained: Embrace Change* (2nd ed.). Addison-Wesley.
