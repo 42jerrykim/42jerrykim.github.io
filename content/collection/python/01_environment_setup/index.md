@@ -566,7 +566,7 @@ graph TD
 
 ## 실습 프로젝트
 
-###️ 프로젝트 1: 개발 환경 완전 구축
+### 프로젝트 1: 개발 환경 완전 구축
 
 **목표:** 실제 프로젝트에서 사용할 수 있는 완전한 개발 환경 구축
 
@@ -661,7 +661,7 @@ def test_greet_empty_string():
     assert result == "Hello, !"
 ```
 
-###️ 프로젝트 2: 다중 환경 관리
+### 프로젝트 2: 다중 환경 관리
 
 **목표:** 여러 프로젝트를 위한 독립적인 환경 구성
 
@@ -694,7 +694,7 @@ pip freeze > requirements.txt
 deactivate
 ```
 
-###️ 프로젝트 3: VS Code 완전 설정
+### 프로젝트 3: VS Code 완전 설정
 
 **workspace 설정 파일 (.vscode/settings.json):**
 

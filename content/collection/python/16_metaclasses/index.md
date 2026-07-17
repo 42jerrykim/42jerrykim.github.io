@@ -630,7 +630,7 @@ except NotImplementedError as e:
 
 ## 실습 프로젝트
 
-###️ 프로젝트 1: 자동 속성 검증 시스템
+### 프로젝트 1: 자동 속성 검증 시스템
 
 ```python
 class ValidationError(Exception):
@@ -746,7 +746,7 @@ except ValidationError as e:
     print(f"Validation error: {e}")
 ```
 
-###️ 프로젝트 2: 간단한 ORM 프레임워크
+### 프로젝트 2: 간단한 ORM 프레임워크
 
 ```python
 import sqlite3

@@ -746,7 +746,7 @@ if __name__ == "__main__":
 
 ## 실습 프로젝트
 
-###️ 프로젝트 1: 웹 크롤러 (멀티스레딩)
+### 프로젝트 1: 웹 크롤러 (멀티스레딩)
 
 ```python
 import threading
@@ -904,7 +904,7 @@ if __name__ == "__main__":
     crawler_demo()
 ```
 
-###️ 프로젝트 2: 이미지 처리 도구 (멀티프로세싱)
+### 프로젝트 2: 이미지 처리 도구 (멀티프로세싱)
 
 ```python
 import multiprocessing

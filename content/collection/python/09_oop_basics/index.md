@@ -208,7 +208,7 @@ print(len(v1))      # 5
 
 ## 실습 프로젝트
 
-###️ 학생 관리 시스템
+### 학생 관리 시스템
 
 ```python
 class Student:
@@ -307,7 +307,7 @@ print(f"전체 학생 수: {stats['total_students']}")
 print(f"반 평균: {stats['class_average']:.1f}")
 ```
 
-###️ 도서관 관리 시스템
+### 도서관 관리 시스템
 
 ```python
 from datetime import datetime, timedelta

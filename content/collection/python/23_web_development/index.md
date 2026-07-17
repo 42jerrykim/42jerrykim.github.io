@@ -439,7 +439,7 @@ if __name__ == '__main__':
 
 ## 실습 프로젝트
 
-###️ 프로젝트 1: 완전한 블로그 시스템
+### 프로젝트 1: 완전한 블로그 시스템
 
 ```python
 from flask import Flask, render_template, request, redirect, url_for, flash, session

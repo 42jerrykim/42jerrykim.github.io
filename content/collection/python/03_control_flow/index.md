@@ -87,54 +87,6 @@ flowchart TD
     skipBlock --> nextCode
 ```
 
-## 핵심 내용
-
-### 조건문 (if, elif, else)
-- **기본 구조**: if-elif-else 체인
-- **조건 표현식**: 단축 평가와 논리 연산
-- **중첩 조건문**: 복잡한 논리 구조
-- **삼항 연산자**: 조건부 표현식 활용
-
-### 반복문
-- **for 문**: 시퀀스 순회, range() 활용
-- **while 문**: 조건 기반 반복
-- **중첩 반복문**: 다차원 데이터 처리
-- **무한 루프**: 주의사항과 활용법
-
-### 제어 키워드
-- **break**: 반복문 완전 탈출
-- **continue**: 현재 반복 건너뛰기
-- **else**: 반복문의 정상 완료 처리
-- **pass**: 빈 코드 블록 처리
-
-### 고급 제어 구조
-- **enumerate()**: 인덱스와 값 동시 처리
-- **zip()**: 다중 시퀀스 병렬 처리
-- **reversed()**: 역순 순회
-- **sorted()**: 정렬된 순회
-
-### 예외 기반 제어
-- **try-except**: 예외 처리 기본
-- **try-except-else-finally**: 완전한 예외 처리
-- **raise**: 예외 발생시키기
-- **assert**: 디버깅용 검증
-
-## 실습 프로젝트
-1. 학점 계산기 (조건문 활용)
-2. 구구단 출력 프로그램 (중첩 반복문)
-3. 숫자 맞추기 게임 (while 문과 break)
-4. 메뉴 시스템 구현 (복합 제어 구조)
-
-## 체크리스트
-- [ ] if-elif-else 구조 이해
-- [ ] for, while 반복문 구분
-- [ ] break, continue 적절한 사용
-- [ ] 중첩 구조 작성 능력
-- [ ] 예외 처리 기본 이해
-
-## 다음 단계
-제어 구조를 마스터했다면, 코드 재사용성을 높이는 함수 정의와 호출을 학습합니다. 
-
 **기본 if 문:**
 
 ```python
@@ -717,6 +669,71 @@ for name, score in sorted(students, key=lambda x: x[1], reverse=True):
     print(f"{name}: {score}")
 ```
 
+### 조건부 반복: any()와 all()
+
+```python
+# any()와 all() 활용
+numbers = [2, 4, 6, 8, 10]
+
+# 모든 수가 짝수인지 확인
+if all(num % 2 == 0 for num in numbers):
+    print("모든 수가 짝수입니다.")
+
+# 하나라도 10보다 큰 수가 있는지 확인
+if any(num > 10 for num in numbers):
+    print("10보다 큰 수가 있습니다.")
+
+# 조건을 만족하는 첫 번째 항목 찾기
+names = ["Alice", "Bob", "Charlie", "Anna"]
+for name in names:
+    if name.startswith("A"):
+        print(f"A로 시작하는 첫 번째 이름: {name}")
+        break
+else:
+    print("A로 시작하는 이름을 찾지 못했습니다.")
+
+# 조건을 만족하는 모든 항목 찾기
+print("\nA로 시작하는 모든 이름:")
+a_names = [name for name in names if name.startswith("A")]
+for name in a_names:
+    print(f"- {name}")
+```
+
+### 반복문 최적화: 컴프리헨션과 제너레이터 표현식
+
+명시적인 `for` 반복으로 리스트를 채우는 코드는 의도(무엇을 만드는가)보다 절차(어떻게 채우는가)를 먼저 드러낸다. 컴프리헨션은 결과의 형태를 먼저 보여주므로 짧은 변환/필터링 로직에서는 가독성과 속도 모두에서 유리하지만, 로직이 복잡해지면 오히려 일반 반복문이 더 읽기 쉽다.
+
+```python
+# 리스트 컴프리헨션 (더 빠르고 간결)
+# 기존 방식
+squares = []
+for i in range(10):
+    squares.append(i ** 2)
+print("제곱수 (기존):", squares)
+
+# 리스트 컴프리헨션
+squares = [i ** 2 for i in range(10)]
+print("제곱수 (컴프리헨션):", squares)
+
+# 조건부 컴프리헨션
+even_squares = [i ** 2 for i in range(10) if i % 2 == 0]
+print("짝수의 제곱:", even_squares)
+
+# 딕셔너리 컴프리헨션
+square_dict = {i: i ** 2 for i in range(5)}
+print("제곱 딕셔너리:", square_dict)
+
+# 집합 컴프리헨션
+unique_lengths = {len(word) for word in ["hello", "world", "python", "code"]}
+print("고유 길이들:", unique_lengths)
+
+# 제너레이터 표현식 (메모리 절약, 값을 한 번에 만들지 않고 필요할 때 하나씩 계산)
+sum_squares = sum(i ** 2 for i in range(1000000))
+print(f"백만개 수의 제곱합: {sum_squares}")
+```
+
+컴프리헨션과 제너레이터 표현식은 5장(자료구조)에서 성능 특성까지 더 깊이 다룬다. 여기서는 반복문을 대체할 수 있는 선택지로 감을 잡는 정도면 충분하다.
+
 ## 중첩 반복문과 실전 예제
 
 ### 구구단 마스터
@@ -1141,212 +1158,3 @@ grade_management_system()
 - 반복문에서는 항상 종료 조건을 명확히 하세요
 - break와 continue는 적절히 사용하여 코드를 간결하게 만드세요
 - 복잡한 로직은 함수로 분리하여 가독성을 높이세요
-
-print("반복문 종료\n")
-
-# 중첩 반복문에서 break
-print("=== 중첩 반복문 break ===")
-found = False
-for i in range(1, 6):
-    for j in range(1, 6):
-        if i * j == 12:
-            print(f"{i} × {j} = 12를 찾았습니다!")
-            found = True
-            break
-    if found:
-        break
-
-# while문에서 break와 continue
-print("\n=== while문 제어 ===")
-count = 0
-while count < 10:
-    count += 1
-    
-    if count == 3:
-        print("3은 건너뛰기")
-        continue
-        
-    if count == 7:
-        print("7에서 종료")
-        break
-        
-    print(f"카운트: {count}")
-```
-
-### else 절과 함께 사용
-
-```python
-# for-else: 정상 완료시에만 실행
-print("=== for-else 예제 ===")
-numbers = [2, 4, 6, 8, 10]
-
-for num in numbers:
-    print(f"검사: {num}")
-    if num % 2 != 0:  # 홀수 발견
-        print("홀수를 발견했습니다!")
-        break
-else:
-    print("모든 수가 짝수입니다.")
-
-# while-else: 조건이 False가 되어 종료시 실행
-print("\n=== while-else 예제 ===")
-password_attempts = 0
-max_attempts = 3
-
-while password_attempts < max_attempts:
-    password = input(f"비밀번호 입력 ({password_attempts + 1}/{max_attempts}): ")
-    password_attempts += 1
-    
-    if password == "secret":
-        print("로그인 성공!")
-        break
-    else:
-        print("틀렸습니다.")
-else:
-    print("로그인 실패: 시도 횟수 초과")
-
-# 소수 판별 예제
-def is_prime(n):
-    if n < 2:
-        return False
-    
-    for i in range(2, int(n ** 0.5) + 1):
-        if n % i == 0:
-            return False
-    else:
-        return True
-
-number = 17
-if is_prime(number):
-    print(f"{number}는 소수입니다.")
-else:
-    print(f"{number}는 소수가 아닙니다.")
-```
-
-### pass 문
-
-```python
-# pass - 빈 코드 블록 (문법상 필요할 때)
-def future_function():
-    """나중에 구현할 함수"""
-    pass  # 임시로 비워둠
-
-class FutureClass:
-    """나중에 구현할 클래스"""
-    pass
-
-# 조건문에서 pass
-age = 25
-if age >= 18:
-    pass  # 성인인 경우 아무것도 하지 않음
-else:
-    print("미성년자입니다.")
-
-# 예외 처리에서 pass
-try:
-    result = 10 / 0
-except ZeroDivisionError:
-    pass  # 에러 무시
-
-# 반복문에서 pass
-for i in range(5):
-    if i == 2:
-        pass  # 2일 때는 아무것도 하지 않음
-    else:
-        print(f"숫자: {i}")
-```
-
-## 고급 제어 구조
-
-### 컬렉션 순회 고급 기법
-
-```python
-# reversed() - 역순 순회
-fruits = ["사과", "바나나", "체리"]
-print("역순 출력:")
-for fruit in reversed(fruits):
-    print(fruit)
-
-# sorted() - 정렬된 순회 (원본 변경 안함)
-numbers = [3, 1, 4, 1, 5, 9, 2, 6]
-print("\n정렬된 순서로 출력:")
-for num in sorted(numbers):
-    print(num, end=" ")
-
-print("\n역순 정렬:")
-for num in sorted(numbers, reverse=True):
-    print(num, end=" ")
-
-# 딕셔너리를 값으로 정렬
-scores = {"Alice": 85, "Bob": 92, "Charlie": 78, "Diana": 96}
-print("\n\n점수순 정렬 (높은 순):")
-for name in sorted(scores, key=scores.get, reverse=True):
-    print(f"{name}: {scores[name]}점")
-
-# 문자열 길이로 정렬
-words = ["python", "java", "c", "javascript", "go"]
-print("\n길이순 정렬:")
-for word in sorted(words, key=len):
-    print(f"{word} ({len(word)}글자)")
-```
-
-### 조건부 반복
-
-```python
-# any()와 all() 활용
-numbers = [2, 4, 6, 8, 10]
-
-# 모든 수가 짝수인지 확인
-if all(num % 2 == 0 for num in numbers):
-    print("모든 수가 짝수입니다.")
-
-# 하나라도 10보다 큰 수가 있는지 확인
-if any(num > 10 for num in numbers):
-    print("10보다 큰 수가 있습니다.")
-
-# 조건을 만족하는 첫 번째 항목 찾기
-names = ["Alice", "Bob", "Charlie", "Anna"]
-for name in names:
-    if name.startswith("A"):
-        print(f"A로 시작하는 첫 번째 이름: {name}")
-        break
-else:
-    print("A로 시작하는 이름을 찾지 못했습니다.")
-
-# 조건을 만족하는 모든 항목 찾기
-print("\nA로 시작하는 모든 이름:")
-a_names = [name for name in names if name.startswith("A")]
-for name in a_names:
-    print(f"- {name}")
-```
-
-### 반복문 최적화
-
-```python
-# 리스트 컴프리헨션 (더 빠르고 간결)
-# 기존 방식
-squares = []
-for i in range(10):
-    squares.append(i ** 2)
-print("제곱수 (기존):", squares)
-
-# 리스트 컴프리헨션
-squares = [i ** 2 for i in range(10)]
-print("제곱수 (컴프리헨션):", squares)
-
-# 조건부 컴프리헨션
-even_squares = [i ** 2 for i in range(10) if i % 2 == 0]
-print("짝수의 제곱:", even_squares)
-
-# 딕셔너리 컴프리헨션
-square_dict = {i: i ** 2 for i in range(5)}
-print("제곱 딕셔너리:", square_dict)
-
-# 집합 컴프리헨션
-unique_lengths = {len(word) for word in ["hello", "world", "python", "code"]}
-print("고유 길이들:", unique_lengths)
-
-# 제너레이터 표현식 (메모리 효율적)
-sum_squares = sum(i ** 2 for i in range(1000000))  # 메모리 절약
-print(f"백만개 수의 제곱합: {sum_squares}")
-
