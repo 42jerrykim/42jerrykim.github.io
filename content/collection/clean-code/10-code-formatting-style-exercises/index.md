@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 10
 slug: code-formatting-style-exercises
 title: "[Clean Code] 10장. 포맷팅·린팅 자동화 실습"

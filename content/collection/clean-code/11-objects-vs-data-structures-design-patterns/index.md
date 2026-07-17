@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 11
 slug: objects-vs-data-structures-design-patterns
 title: "[Clean Code] 11장. 객체와 자료구조의 비대칭"

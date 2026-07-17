@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 13
 slug: error-handling-exceptions-best-practices
 title: "[Clean Code] 13장. 오류 코드 대신 예외를 써라"

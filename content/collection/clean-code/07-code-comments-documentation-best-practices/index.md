@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 7
 slug: code-comments-documentation-best-practices
 title: "[Clean Code] 07장. 주석은 실패를 의미한다"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 19
 slug: clean-classes-solid-principles-exercises
 title: "[Clean Code] 19장. SOLID 원칙 리팩토링 실습"

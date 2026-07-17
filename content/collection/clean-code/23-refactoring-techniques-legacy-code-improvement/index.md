@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 23
 slug: refactoring-techniques-legacy-code-improvement
 title: "[Clean Code] 23장. 리팩토링과 레거시 코드 개선"

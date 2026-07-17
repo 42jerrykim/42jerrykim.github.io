@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 2
 slug: clean-code-fundamentals-exercises
 title: "[Clean Code] 02장. 나쁜 코드 진단과 개선 실습"

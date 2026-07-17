@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 3
 slug: meaningful-naming-conventions-variables-functions
 title: "[Clean Code] 03장. 의미있는 이름 짓기"

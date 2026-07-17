@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 21
 slug: emergent-design-simple-design-principles
 title: "[Clean Code] 21장. 창발적 설계 네 가지 규칙"

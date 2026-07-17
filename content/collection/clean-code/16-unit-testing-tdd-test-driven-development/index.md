@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 16
 slug: unit-testing-tdd-test-driven-development
 title: "[Clean Code] 16장. TDD 법칙과 F.I.R.S.T 원칙"

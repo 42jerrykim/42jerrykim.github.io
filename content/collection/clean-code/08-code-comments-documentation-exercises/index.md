@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 8
 slug: code-comments-documentation-exercises
 title: "[Clean Code] 08장. 주석 걷어내기 실습"

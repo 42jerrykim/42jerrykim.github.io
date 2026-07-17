@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 4
 slug: meaningful-naming-conventions-exercises
 title: "[Clean Code] 04장. 네이밍 리팩토링 실습"

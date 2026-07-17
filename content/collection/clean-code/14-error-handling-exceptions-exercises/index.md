@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 14
 slug: error-handling-exceptions-exercises
 title: "[Clean Code] 14장. 오류 처리 리팩토링 실습"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 5
 slug: clean-functions-single-responsibility-principle
 title: "[Clean Code] 05장. 함수는 작게, 한 가지만"

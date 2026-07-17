@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 1
 slug: clean-code-fundamentals-what-is-clean-code
 title: "[Clean Code] 01장. Clean Code란 무엇인가"

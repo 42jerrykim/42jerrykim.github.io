@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 15
 slug: api-boundaries-third-party-integration
 title: "[Clean Code] 15장. 경계 — 외부 라이브러리 사용법"

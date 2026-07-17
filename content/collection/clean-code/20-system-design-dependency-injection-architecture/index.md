@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 20
 slug: system-design-dependency-injection-architecture
 title: "[Clean Code] 20장. 시스템과 의존성 주입"

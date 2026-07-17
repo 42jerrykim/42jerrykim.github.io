@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 9
 slug: code-formatting-style-consistency
 title: "[Clean Code] 09장. 형식 맞추기와 코드 스타일"

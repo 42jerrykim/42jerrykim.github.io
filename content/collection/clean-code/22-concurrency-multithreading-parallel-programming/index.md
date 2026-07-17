@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 22
 slug: concurrency-multithreading-parallel-programming
 title: "[Clean Code] 22장. 동시성 결함과 방어 원칙"

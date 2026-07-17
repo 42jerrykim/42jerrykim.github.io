@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 6
 slug: clean-functions-refactoring-exercises
 title: "[Clean Code] 06장. 함수 리팩토링 실습"

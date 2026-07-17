@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 12
 slug: objects-vs-data-structures-exercises
 title: "[Clean Code] 12장. 디미터 법칙 리팩토링 실습"

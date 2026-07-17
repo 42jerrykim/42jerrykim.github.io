@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 18
 slug: clean-classes-solid-principles-oop
 title: "[Clean Code] 18장. 클래스는 작아야 한다"

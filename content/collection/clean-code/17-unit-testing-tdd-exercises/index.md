@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 17
 slug: unit-testing-tdd-exercises
 title: "[Clean Code] 17장. 단위 테스트 리팩토링 실습"
