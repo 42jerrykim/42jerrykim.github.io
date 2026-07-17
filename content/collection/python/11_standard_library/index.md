@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "11. 표준 라이브러리"
+image: "wordcloud.png"
+title: "[Python Master] 11. 표준 라이브러리 - os/pathlib/datetime/itertools"
+slug: "python-standard-library-os-pathlib-datetime-itertools-guide"
 description: "표준 라이브러리의 핵심 모듈(os/pathlib, datetime, collections, itertools 등)을 실무 관점으로 소개합니다. 외부 라이브러리 전에 표준 도구로 문제를 푸는 감각을 기릅니다."
 tags:
   - Python
@@ -200,7 +202,7 @@ for pair in combinations(players, 2):
 
 ### functools로 함수 재사용하기
 
-`functools.reduce`는 시퀀스를 하나의 값으로 접는 범용 도구이지만, `sum`이나 `math.prod`처럼 더 명확한 대안이 있으면 그쪽을 우선하는 것이 가독성에 좋다. `lru_cache`는 순수 함수(같은 입력에 항상 같은 출력을 내는 함수)의 반복 호출 결과를 메모이제이션하는데, 동작 원리와 데코레이터로서의 세부 구조는 [13장 데코레이터](../13_decorators/)에서 다룬다. `partial`은 함수의 인수 일부를 미리 고정해 새 함수를 만들며, 콜백에 추가 인수를 넘겨야 하는 상황에서 람다 대신 쓰기 좋다.
+`functools.reduce`는 시퀀스를 하나의 값으로 접는 범용 도구이지만, `sum`이나 `math.prod`처럼 더 명확한 대안이 있으면 그쪽을 우선하는 것이 가독성에 좋다. `lru_cache`는 순수 함수(같은 입력에 항상 같은 출력을 내는 함수)의 반복 호출 결과를 메모이제이션하는데, 동작 원리와 데코레이터로서의 세부 구조는 [13장 데코레이터](/post/python/python-decorators-closures-caching-logging-pattern-guide/)에서 다룬다. `partial`은 함수의 인수 일부를 미리 고정해 새 함수를 만들며, 콜백에 추가 인수를 넘겨야 하는 상황에서 람다 대신 쓰기 좋다.
 
 ```python
 from functools import reduce, lru_cache, partial
@@ -506,7 +508,7 @@ if __name__ == "__main__":
 
 🎉 **축하합니다!** 파이썬 표준 라이브러리를 마스터했습니다.
 
-이제 [12. 정규표현식](../12_regex/)로 넘어가서 텍스트 처리의 강력한 도구를 학습해봅시다.
+이제 [12. 정규표현식](/post/python/python-regex-re-module-pattern-matching-performance-guide/)로 넘어가서 텍스트 처리의 강력한 도구를 학습해봅시다.
 
 ---
 

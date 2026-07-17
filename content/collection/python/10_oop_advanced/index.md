@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "10. 객체지향 프로그래밍 고급"
+image: "wordcloud.png"
+title: "[Python Master] 10. 객체지향 고급 - 상속/다형성/추상화"
+slug: "python-oop-advanced-inheritance-polymorphism-abstraction-guide"
 description: "상속·다형성·추상화의 트레이드오프를 이해하고, 조합/상속 선택 기준을 배웁니다. 실무에서 유지보수 가능한 OOP 설계를 위한 패턴과 주의점을 정리합니다."
 tags:
   - Python
@@ -676,7 +678,7 @@ if __name__ == "__main__":
 
 🎉 **축하합니다!** 파이썬 객체지향 프로그래밍 고급 기능을 마스터했습니다.
 
-이제 [11. 표준 라이브러리](../11_standard_library/)로 넘어가서 파이썬의 강력한 내장 모듈들을 활용하는 방법을 학습해봅시다.
+이제 [11. 표준 라이브러리](/post/python/python-standard-library-os-pathlib-datetime-itertools-guide/)로 넘어가서 파이썬의 강력한 내장 모듈들을 활용하는 방법을 학습해봅시다.
 
 ---
 

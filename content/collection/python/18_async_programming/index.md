@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "18. 비동기 프로그래밍"
+image: "wordcloud.png"
+title: "[Python Master] 18. 비동기 프로그래밍 - asyncio/async-await"
+slug: "python-async-programming-asyncio-async-await-event-loop-guide"
 description: "asyncio 이벤트 루프와 async/await 모델을 개념 중심으로 설명합니다. I/O 중심 워크로드에서의 장점과 타임아웃/취소/에러 전파 같은 실무 포인트를 정리합니다."
 tags:
   - Python
@@ -709,7 +711,7 @@ if __name__ == "__main__":
 
 🎉 **축하합니다!** 비동기 프로그래밍을 마스터했습니다.
 
-비동기 프로그래밍은 현대 웹 애플리케이션과 마이크로서비스의 핵심 기술입니다. 이제 [19. 성능 최적화](../19_performance_optimization/)로 넘어가서 파이썬 애플리케이션의 성능을 극한까지 끌어올리는 기법을 학습해봅시다.
+비동기 프로그래밍은 현대 웹 애플리케이션과 마이크로서비스의 핵심 기술입니다. 이제 [19. 성능 최적화](/post/python/python-performance-optimization-profiling-bottleneck-guide/)로 넘어가서 파이썬 애플리케이션의 성능을 극한까지 끌어올리는 기법을 학습해봅시다.
 
 ---
 

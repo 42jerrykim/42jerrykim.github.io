@@ -71,7 +71,7 @@ collection_order: 2
 
 ### 0단계: 동기부여 (Motivation)
 
-#### [00. 왜 파이썬인가?](00_why_python/)
+#### [00. 왜 파이썬인가?](/post/python/why-learn-python-motivation-career-roadmap-guide/)
 - 파이썬을 배워야 하는 이유
 - 파이썬으로 할 수 있는 일들
 - 개발자 커리어와 성장 가능성
@@ -79,160 +79,160 @@ collection_order: 2
 
 ### 1단계: 기초 (Foundation) - 챕터 1-5
 
-#### [01. 파이썬 환경 설정](01_environment_setup/)
+#### [01. 파이썬 환경 설정](/post/python/python-installation-venv-ide-setup-guide/)
 - 파이썬 설치와 개발 환경 구축
 - 가상 환경과 패키지 관리
 - IDE 설정과 개발 도구
 
-#### [02. 파이썬 기본 문법](02_basic_syntax/)
+#### [02. 파이썬 기본 문법](/post/python/python-basic-syntax-variables-types-operators-io-guide/)
 - 변수, 데이터 타입, 연산자
 - 입출력과 문자열 처리
 - 주석과 독스트링
 
-#### [03. 제어 구조](03_control_flow/)
+#### [03. 제어 구조](/post/python/python-control-flow-if-for-while-break-continue-guide/)
 - 조건문과 반복문
 - 중첩 구조와 제어 키워드
 - 예외 기반 제어
 
-#### [04. 함수](04_functions/)
+#### [04. 함수](/post/python/python-functions-parameters-scope-lambda-closure-guide/)
 - 함수 정의와 매개변수
 - 스코프와 네임스페이스
 - 람다 함수와 고차 함수
 
-#### [05. 자료구조](05_data_structures/)
+#### [05. 자료구조](/post/python/python-data-structures-list-tuple-dict-set-complexity-guide/)
 - 리스트, 튜플, 딕셔너리, 세트
 - 컴프리헨션과 내장 함수
 - 성능 특성과 활용법
 
 ### 2단계: 중급 (Intermediate) - 챕터 6-10
 
-#### [06. 파일 입출력](06_file_io/)
+#### [06. 파일 입출력](/post/python/python-file-io-pathlib-json-csv-encoding-guide/)
 - 파일 읽기/쓰기와 경로 처리
 - 다양한 파일 형식 다루기
 - 컨텍스트 매니저 활용
 
-#### [07. 예외 처리](07_error_handling/)
+#### [07. 예외 처리](/post/python/python-exception-handling-try-except-finally-custom-errors-guide/)
 - 예외 처리 구문과 사용자 정의 예외
 - 디버깅과 로깅 기법
 - 견고한 프로그램 작성
 
-#### [08. 모듈과 패키지](08_modules_packages/)
+#### [08. 모듈과 패키지](/post/python/python-modules-packages-import-init-public-api-design-guide/)
 - 모듈 생성과 import 방식
 - 패키지 구조와 설계
 - 표준 라이브러리 활용
 
-#### [09. 객체지향 프로그래밍 기초](09_oop_basics/)
+#### [09. 객체지향 프로그래밍 기초](/post/python/python-oop-basics-class-encapsulation-magic-methods-guide/)
 - 클래스와 객체, 메서드
 - 캡슐화와 특수 메서드
 - 기본적인 OOP 설계
 
-#### [10. 객체지향 프로그래밍 고급](10_oop_advanced/)
+#### [10. 객체지향 프로그래밍 고급](/post/python/python-oop-advanced-inheritance-polymorphism-abstraction-guide/)
 - 상속과 다형성
 - 추상 클래스와 인터페이스
 - 고급 OOP 패턴
 
 ### 3단계: 중고급 (Intermediate-Advanced) - 챕터 11-15
 
-#### [11. 표준 라이브러리](11_standard_library/)
+#### [11. 표준 라이브러리](/post/python/python-standard-library-os-pathlib-datetime-itertools-guide/)
 - 파이썬 표준 라이브러리 활용
 - 주요 모듈들의 실무 적용
 - 문제 해결을 위한 도구 선택
 
-#### [12. 정규 표현식](12_regex/)
+#### [12. 정규 표현식](/post/python/python-regex-re-module-pattern-matching-performance-guide/)
 - 정규 표현식 문법과 패턴
 - 텍스트 처리와 패턴 매칭
 - 실제 데이터 처리 적용
 
-#### [13. 데코레이터](13_decorators/)
+#### [13. 데코레이터](/post/python/python-decorators-closures-caching-logging-pattern-guide/)
 - 함수와 클래스 데코레이터
 - 메타데이터 보존과 고급 패턴
 - 실용적인 데코레이터 구현
 
-#### [14. 제너레이터와 이터레이터](14_generators_iterators/)
+#### [14. 제너레이터와 이터레이터](/post/python/python-generators-iterators-lazy-evaluation-memory-guide/)
 - 메모리 효율적인 데이터 처리
 - 제너레이터 함수와 표현식
 - 대용량 데이터 스트리밍
 
-#### [15. 컨텍스트 매니저](15_context_managers/)
+#### [15. 컨텍스트 매니저](/post/python/python-context-managers-with-statement-resource-cleanup-guide/)
 - 리소스 관리와 자동 정리
 - with 문과 컨텍스트 프로토콜
 - 안전한 프로그래밍 패턴
 
 ### 4단계: 고급 (Advanced) - 챕터 16-20
 
-#### [16. 메타클래스](16_metaclasses/)
+#### [16. 메타클래스](/post/python/python-metaclasses-class-creation-metaprogramming-guide/)
 - 클래스 생성 제어와 메타프로그래밍
 - 동적 클래스 생성
 - 고급 객체 시스템 설계
 
-#### [17. 동시성 프로그래밍](17_concurrency/)
+#### [17. 동시성 프로그래밍](/post/python/python-concurrency-threading-multiprocessing-gil-guide/)
 - 멀티스레딩과 멀티프로세싱
 - 동기화와 통신 메커니즘
 - 병렬 처리 최적화
 
-#### [18. 비동기 프로그래밍](18_async_programming/)
+#### [18. 비동기 프로그래밍](/post/python/python-async-programming-asyncio-async-await-event-loop-guide/)
 - asyncio와 이벤트 루프
 - 비동기 I/O와 실시간 처리
 - 현대적 비동기 패턴
 
-#### [19. 성능 최적화](19_performance_optimization/)
+#### [19. 성능 최적화](/post/python/python-performance-optimization-profiling-bottleneck-guide/)
 - 프로파일링과 병목 지점 분석
 - 알고리즘과 데이터 구조 최적화
 - 고급 최적화 기법
 
-#### [20. 메모리 관리](20_memory_management/)
+#### [20. 메모리 관리](/post/python/python-memory-management-reference-counting-garbage-collection-guide/)
 - 파이썬 메모리 모델과 가비지 컬렉션
 - 메모리 누수 진단과 최적화
 - 대용량 데이터 처리 기법
 
 ### 💻 5단계: 전문가 (Expert) - 챕터 21-30
 
-#### [21. 네트워킹](21_networking/)
+#### [21. 네트워킹](/post/python/python-networking-http-tcp-socket-programming-guide/)
 - 네트워크 프로그래밍과 프로토콜
 - HTTP 클라이언트/서버 개발
 - 실시간 통신과 보안
 
-#### [22. 데이터베이스](22_database/)
+#### [22. 데이터베이스](/post/python/python-database-sql-nosql-orm-transaction-guide/)
 - SQL과 NoSQL 데이터베이스 연동
 - ORM과 데이터 모델링
 - 성능과 확장성 고려
 
-#### [23. 웹 개발](23_web_development/)
+#### [23. 웹 개발](/post/python/python-web-development-flask-django-rest-api-guide/)
 - Flask와 Django 프레임워크
 - RESTful API 설계와 구현
 - 웹 애플리케이션 아키텍처
 
-#### [24. 테스팅과 디버깅](24_testing_debugging/)
+#### [24. 테스팅과 디버깅](/post/python/python-testing-debugging-pytest-tdd-mocking-guide/)
 - 단위 테스트와 통합 테스트
 - TDD와 BDD 방법론
 - 효과적인 디버깅 기법
 
-#### [25. 패키징과 배포](25_packaging_deployment/)
+#### [25. 패키징과 배포](/post/python/python-packaging-deployment-pyproject-toml-ci-cd-guide/)
 - 파이썬 패키지 생성과 배포
 - 의존성 관리와 버전 제어
 - 배포 자동화와 CI/CD
 
-#### [26. 디자인 패턴](26_design_patterns/)
+#### [26. 디자인 패턴](/post/python/python-design-patterns-gof-singleton-factory-observer-guide/)
 - GoF 디자인 패턴의 파이썬 구현
 - 아키텍처 패턴과 설계 원칙
 - 재사용 가능한 코드 설계
 
-#### [27. 고급 알고리즘과 자료구조](27_algorithms_data_structures/)
+#### [27. 고급 알고리즘과 자료구조](/post/python/python-advanced-algorithms-data-structures-big-o-guide/)
 - 복잡도 분석과 최적화
 - 고급 알고리즘 설계와 구현
 - 실제 문제 해결 적용
 
-#### [28. 프로젝트 아키텍처](28_project_architecture/)
+#### [28. 프로젝트 아키텍처](/post/python/python-project-architecture-layered-clean-architecture-guide/)
 - 대규모 시스템 설계
 - 모듈화와 의존성 관리
 - 확장 가능한 아키텍처 패턴
 
-#### [29. 코드 품질 관리](29_code_quality/)
+#### [29. 코드 품질 관리](/post/python/python-code-quality-lint-type-check-refactoring-guide/)
 - 정적 분석과 코딩 표준
 - 리팩토링과 기술 부채 관리
 - 개발 프로세스 최적화
 
-#### [30. 고급 주제들](30_advanced_topics/)
+#### [30. 고급 주제들](/post/python/python-advanced-topics-gil-typing-c-extension-guide/)
 - 파이썬 내부 구조와 고급 기능
 - 최신 트렌드와 도구
 - 전문가로 성장하는 방법
@@ -294,5 +294,5 @@ collection_order: 2
 
 ---
 
-💡 **TIP**: [00. 왜 파이썬인가?](00_why_python/)부터 시작하여 학습 동기를 명확히 한 후, 단계별로 진행하시길 권장합니다.
+💡 **TIP**: [00. 왜 파이썬인가?](/post/python/why-learn-python-motivation-career-roadmap-guide/)부터 시작하여 학습 동기를 명확히 한 후, 단계별로 진행하시길 권장합니다.
 

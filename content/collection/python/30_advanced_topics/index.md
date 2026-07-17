@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "30. 고급 주제들"
+image: "wordcloud.png"
+title: "[Python Master] 30. 고급 주제들 - GIL/타입 시스템/C 확장"
+slug: "python-advanced-topics-gil-typing-c-extension-guide"
 description: "파이썬 고급 주제를 학습 로드맵으로 정리합니다. 내부 동작, 타입 시스템, 성능/동시성, C 확장 등에서 무엇을 언제 배우고 적용할지 결정 기준과 위험 포인트를 제공합니다."
 tags:
   - Python
@@ -156,7 +158,7 @@ if __name__ == "__main__":
     print(f"multiprocessing: {run_with_processes(N, WORKERS):.2f}s")
 ```
 
-`run_with_threads`는 워커 수를 늘려도 GIL 때문에 실행 시간이 거의 줄지 않는 반면, `run_with_processes`는 각 프로세스가 독립된 인터프리터와 메모리 공간을 가지므로 코어 수만큼 실질적으로 단축됩니다. 대신 프로세스는 시작 비용과 IPC(프로세스 간 통신) 직렬화 비용이 스레드보다 크므로, 작업 단위가 너무 작으면 오히려 오버헤드가 이득을 잠식합니다. 스레드/프로세스/비동기 중 무엇을 선택할지에 대한 판단 기준과 동기화 패턴은 [17장: 동시성 프로그래밍](../17_concurrency/)에서 더 자세히 다룹니다.
+`run_with_threads`는 워커 수를 늘려도 GIL 때문에 실행 시간이 거의 줄지 않는 반면, `run_with_processes`는 각 프로세스가 독립된 인터프리터와 메모리 공간을 가지므로 코어 수만큼 실질적으로 단축됩니다. 대신 프로세스는 시작 비용과 IPC(프로세스 간 통신) 직렬화 비용이 스레드보다 크므로, 작업 단위가 너무 작으면 오히려 오버헤드가 이득을 잠식합니다. 스레드/프로세스/비동기 중 무엇을 선택할지에 대한 판단 기준과 동기화 패턴은 [17장: 동시성 프로그래밍](/post/python/python-concurrency-threading-multiprocessing-gil-guide/)에서 더 자세히 다룹니다.
 
 ### `__slots__`로 메모리 최적화하기
 
@@ -192,7 +194,7 @@ if __name__ == "__main__":
     print(f"PointSlots: {slots_size} bytes")
 ```
 
-정확한 바이트 수는 파이썬 버전과 플랫폼에 따라 달라지는 구현 정의 값이므로 절대값보다 "슬롯 버전이 더 작다"는 상대적 절감 폭에 주목해야 합니다. 대가도 있습니다. `__slots__`를 쓴 클래스는 기본적으로 새 속성을 동적으로 추가할 수 없고, 여러 클래스를 다중 상속할 때 슬롯 레이아웃이 충돌하지 않도록 주의해야 하며, 약한 참조(`weakref`)가 필요하면 `__slots__`에 `"__weakref__"`를 명시적으로 포함해야 합니다. [20장: 메모리 관리](../20_memory_management/)에서 다룬 측정 도구로 실제 적용 전후를 비교해 보는 것이 안전합니다.
+정확한 바이트 수는 파이썬 버전과 플랫폼에 따라 달라지는 구현 정의 값이므로 절대값보다 "슬롯 버전이 더 작다"는 상대적 절감 폭에 주목해야 합니다. 대가도 있습니다. `__slots__`를 쓴 클래스는 기본적으로 새 속성을 동적으로 추가할 수 없고, 여러 클래스를 다중 상속할 때 슬롯 레이아웃이 충돌하지 않도록 주의해야 하며, 약한 참조(`weakref`)가 필요하면 `__slots__`에 `"__weakref__"`를 명시적으로 포함해야 합니다. [20장: 메모리 관리](/post/python/python-memory-management-reference-counting-garbage-collection-guide/)에서 다룬 측정 도구로 실제 적용 전후를 비교해 보는 것이 안전합니다.
 
 ### 고급 프로그래밍 기법
 - **메타프로그래밍**: 코드 생성 코드

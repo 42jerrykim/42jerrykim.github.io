@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "27. 고급 알고리즘과 자료구조"
+image: "wordcloud.png"
+title: "[Python Master] 27. 고급 알고리즘과 자료구조 - 복잡도 분석"
+slug: "python-advanced-algorithms-data-structures-big-o-guide"
 description: "시간복잡도 관점에서 고급 자료구조와 알고리즘 설계 방법을 정리합니다. 문제를 모델링하고 최적화하는 사고 과정을 중심으로 실제 구현과 성능 판단 기준을 함께 다룹니다."
 tags:
   - Python
@@ -720,4 +722,4 @@ if __name__ == "__main__":
 - [ ] 스택과 큐 중 어느 쪽이 주어진 문제(괄호 검사, 너비 우선 탐색 등)에 적합한지 구조적 근거를 들어 선택할 수 있다
 
 ## 다음 단계
-알고리즘과 자료구조의 복잡도 분석과 직접 구현 능력을 갖췄다면, [28. 프로젝트 아키텍처](../28_project_architecture/)로 넘어가 이 지식을 대규모 프로젝트 구조 설계에 적용하는 방법을 학습합니다.
+알고리즘과 자료구조의 복잡도 분석과 직접 구현 능력을 갖췄다면, [28. 프로젝트 아키텍처](/post/python/python-project-architecture-layered-clean-architecture-guide/)로 넘어가 이 지식을 대규모 프로젝트 구조 설계에 적용하는 방법을 학습합니다.

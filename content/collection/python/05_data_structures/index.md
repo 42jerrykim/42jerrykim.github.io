@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "05. 자료구조"
+image: "wordcloud.png"
+title: "[Python Master] 05. 자료구조 - 리스트/튜플/딕셔너리/세트"
+slug: "python-data-structures-list-tuple-dict-set-complexity-guide"
 description: "리스트·튜플·딕셔너리·세트의 특성과 시간복잡도 관점을 함께 설명합니다. 상황별 선택 기준과 파이썬다운 조작 패턴을 통해 데이터 처리를 단단히 만듭니다."
 tags:
   - Python
@@ -510,7 +512,7 @@ print(f"첫 글자별 그룹: {result['by_first_letter']}")
 
 🎉 **축하합니다!** 파이썬 자료구조를 마스터했습니다.
 
-이제 [06. 파일 입출력](../06_file_io/)으로 넘어가서 파일과 외부 데이터를 처리하는 방법을 학습해봅시다.
+이제 [06. 파일 입출력](/post/python/python-file-io-pathlib-json-csv-encoding-guide/)으로 넘어가서 파일과 외부 데이터를 처리하는 방법을 학습해봅시다.
 
 ---
 

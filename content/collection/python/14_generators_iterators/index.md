@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "14. 제너레이터와 이터레이터"
+image: "wordcloud.png"
+title: "[Python Master] 14. 제너레이터와 이터레이터 - 지연 평가/메모리 효율"
+slug: "python-generators-iterators-lazy-evaluation-memory-guide"
 description: "이터레이터/제너레이터 프로토콜을 이해해 메모리 효율적인 데이터 처리를 설계합니다. lazy evaluation이 유리한 상황과 디버깅/예외 처리 포인트를 함께 정리합니다."
 tags:
   - Python
@@ -673,7 +675,7 @@ if __name__ == "__main__":
 
 🎉 **축하합니다!** 파이썬 제너레이터와 이터레이터를 마스터했습니다.
 
-이제 [15. 컨텍스트 매니저](../15_context_managers/)로 넘어가서 리소스를 안전하게 관리하는 방법을 학습해봅시다.
+이제 [15. 컨텍스트 매니저](/post/python/python-context-managers-with-statement-resource-cleanup-guide/)로 넘어가서 리소스를 안전하게 관리하는 방법을 학습해봅시다.
 
 ---
 

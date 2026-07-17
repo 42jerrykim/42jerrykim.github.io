@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "23. 웹 개발"
+image: "wordcloud.png"
+title: "[Python Master] 23. 웹 개발 - Flask/Django/REST API"
+slug: "python-web-development-flask-django-rest-api-guide"
 description: "Flask/Django로 웹 앱과 API를 만드는 핵심 개념을 설명합니다. 라우팅, 요청/응답, 데이터베이스 연동, 인증/보안, 배포 관점까지 연결해 전체 흐름을 잡습니다."
 tags:
   - Python
@@ -753,7 +755,7 @@ if __name__ == '__main__':
 
 🎉 **축하합니다!** 웹 개발을 마스터했습니다.
 
-Flask를 통해 웹 개발의 기초를 익혔습니다. 이제 [24. 테스팅과 디버깅](../24_testing_debugging/)으로 넘어가서 코드 품질을 보장하는 방법을 학습해봅시다.
+Flask를 통해 웹 개발의 기초를 익혔습니다. 이제 [24. 테스팅과 디버깅](/post/python/python-testing-debugging-pytest-tdd-mocking-guide/)으로 넘어가서 코드 품질을 보장하는 방법을 학습해봅시다.
 
 ---
 

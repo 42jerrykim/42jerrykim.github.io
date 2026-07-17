@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "13. 데코레이터"
+image: "wordcloud.png"
+title: "[Python Master] 13. 데코레이터 - 클로저/캐싱/로깅 패턴"
+slug: "python-decorators-closures-caching-logging-pattern-guide"
 description: "데코레이터의 동작 원리(클로저, 함수 객체)를 설명하고, 실무에서 로그/캐시/권한 같은 횡단 관심사를 구현하는 패턴을 정리합니다. 과도한 사용의 위험도 함께 다룹니다."
 tags:
   - Python
@@ -683,7 +685,7 @@ if __name__ == "__main__":
 
 🎉 **축하합니다!** 파이썬 데코레이터를 마스터했습니다.
 
-이제 [14. 제너레이터와 이터레이터](../14_generators_iterators/)로 넘어가서 메모리 효율적인 데이터 처리 방법을 학습해봅시다.
+이제 [14. 제너레이터와 이터레이터](/post/python/python-generators-iterators-lazy-evaluation-memory-guide/)로 넘어가서 메모리 효율적인 데이터 처리 방법을 학습해봅시다.
 
 ---
 

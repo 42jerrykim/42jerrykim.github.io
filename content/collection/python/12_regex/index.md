@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "12. 정규표현식"
+image: "wordcloud.png"
+title: "[Python Master] 12. 정규표현식 - re 모듈/패턴 매칭/성능"
+slug: "python-regex-re-module-pattern-matching-performance-guide"
 description: "정규표현식의 문법과 동작 원리를 배우고, 실제 텍스트 처리에서 언제 regex를 쓰고 피해야 하는지 판단 기준을 제공합니다. 성능·가독성·디버깅 팁도 함께 다룹니다."
 tags:
   - Python
@@ -448,7 +450,7 @@ analyzer.display_results(results)
 
 파이썬 정규표현식의 매칭 원리, re 모듈 함수, 그룹과 전방/후방 탐색, 컴파일 재사용, 그리고 정규식이 적합하지 않은 경계까지 살펴봤습니다.
 
-이제 [13. 데코레이터](../13_decorators/)로 넘어가서 함수와 클래스를 강화하는 고급 기법을 학습해봅시다.
+이제 [13. 데코레이터](/post/python/python-decorators-closures-caching-logging-pattern-guide/)로 넘어가서 함수와 클래스를 강화하는 고급 기법을 학습해봅시다.
 
 ---
 

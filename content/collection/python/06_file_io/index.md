@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "06. 파일 입출력"
+image: "wordcloud.png"
+title: "[Python Master] 06. 파일 입출력 - 경로/인코딩/JSON·CSV"
+slug: "python-file-io-pathlib-json-csv-encoding-guide"
 description: "파일 읽기/쓰기, 경로 처리, 인코딩, 다양한 포맷(JSON/CSV 등) 기본을 다룹니다. 예외 처리와 컨텍스트 매니저를 통해 안전하게 I/O를 처리하는 습관을 만듭니다."
 tags:
   - Python
@@ -541,7 +543,7 @@ if __name__ == "__main__":
 
 ## 다음 단계
 
-파일 입출력의 기본기를 다졌습니다. 이제 [07. 예외 처리](../07_error_handling/)로 넘어가서 파일이 없거나 손상된 경우처럼 예측 가능한 실패를 안전하게 다루는 방법을 학습해봅시다.
+파일 입출력의 기본기를 다졌습니다. 이제 [07. 예외 처리](/post/python/python-exception-handling-try-except-finally-custom-errors-guide/)로 넘어가서 파일이 없거나 손상된 경우처럼 예측 가능한 실패를 안전하게 다루는 방법을 학습해봅시다.
 
 ---
 

@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "21. 네트워킹"
+image: "wordcloud.png"
+title: "[Python Master] 21. 네트워킹 - HTTP/TCP/소켓 프로그래밍"
+slug: "python-networking-http-tcp-socket-programming-guide"
 description: "네트워크 기초(HTTP/TCP)와 파이썬 네트워킹 도구를 개념 중심으로 정리합니다. 요청/응답, 타임아웃, 재시도, 보안(SSL) 같은 실무 기본기를 함께 다룹니다."
 tags:
   - Python
@@ -83,7 +85,7 @@ collection_order: 21
 
 ### TCP 소켓 프로그래밍
 
-소켓(socket)은 운영체제가 제공하는 네트워크 통신의 최소 단위 추상화로, IP 주소와 포트 번호로 식별되는 통신 종단점(endpoint)입니다. 파이썬의 `socket` 모듈은 BSD 소켓 API를 거의 그대로 감싼 저수준 인터페이스이며, `requests`나 웹 프레임워크 같은 상위 도구들도 결국 이 계층 위에서 동작합니다. TCP(Transmission Control Protocol)는 3-way handshake로 연결을 맺고 순서 보장과 재전송으로 신뢰성을 확보하는 대신 UDP보다 지연이 크고, UDP는 그 반대로 순서·도달을 보장하지 않는 대신 오버헤드가 작습니다. 아래 예제는 `socket.SOCK_STREAM`(TCP)으로 연결을 맺고 클라이언트가 보낸 메시지를 그대로 돌려주는 에코 서버/클라이언트를 스레드 기반으로 구현합니다. 여러 클라이언트를 동시에 받으려면 연결마다 별도 스레드로 처리해야 하며, 이는 [17장: 동시성](../17_concurrency/)에서 다룬 스레딩 모델을 그대로 활용한 것입니다.
+소켓(socket)은 운영체제가 제공하는 네트워크 통신의 최소 단위 추상화로, IP 주소와 포트 번호로 식별되는 통신 종단점(endpoint)입니다. 파이썬의 `socket` 모듈은 BSD 소켓 API를 거의 그대로 감싼 저수준 인터페이스이며, `requests`나 웹 프레임워크 같은 상위 도구들도 결국 이 계층 위에서 동작합니다. TCP(Transmission Control Protocol)는 3-way handshake로 연결을 맺고 순서 보장과 재전송으로 신뢰성을 확보하는 대신 UDP보다 지연이 크고, UDP는 그 반대로 순서·도달을 보장하지 않는 대신 오버헤드가 작습니다. 아래 예제는 `socket.SOCK_STREAM`(TCP)으로 연결을 맺고 클라이언트가 보낸 메시지를 그대로 돌려주는 에코 서버/클라이언트를 스레드 기반으로 구현합니다. 여러 클라이언트를 동시에 받으려면 연결마다 별도 스레드로 처리해야 하며, 이는 [17장: 동시성](/post/python/python-concurrency-threading-multiprocessing-gil-guide/)에서 다룬 스레딩 모델을 그대로 활용한 것입니다.
 
 ```python
 import socket
@@ -251,7 +253,7 @@ if __name__ == "__main__":
     print(f"POST 응답: {result['status_code']}")
 ```
 
-`raise_for_status()`는 4xx/5xx 응답을 예외로 승격시켜 상태 코드를 매번 수동으로 확인하지 않아도 되게 해 줍니다. 이 코드처럼 `Timeout`, `ConnectionError`, `HTTPError`를 개별적으로 잡으면 호출자가 실패 원인(응답이 늦었는지, 연결 자체가 안 됐는지, 서버가 오류를 반환했는지)을 구분해 재시도 여부를 판단할 수 있습니다. 원인을 뭉뚱그려 `except Exception`으로 처리하면 디버깅 시 원인 파악이 어려워지고, 재시도해서는 안 되는 오류(예: 400 Bad Request)까지 무한 재시도하는 버그로 이어지기 쉽습니다. 예외 처리 자체의 설계 원칙은 [7장: 예외 처리](../07_error_handling/)를 참고하십시오.
+`raise_for_status()`는 4xx/5xx 응답을 예외로 승격시켜 상태 코드를 매번 수동으로 확인하지 않아도 되게 해 줍니다. 이 코드처럼 `Timeout`, `ConnectionError`, `HTTPError`를 개별적으로 잡으면 호출자가 실패 원인(응답이 늦었는지, 연결 자체가 안 됐는지, 서버가 오류를 반환했는지)을 구분해 재시도 여부를 판단할 수 있습니다. 원인을 뭉뚱그려 `except Exception`으로 처리하면 디버깅 시 원인 파악이 어려워지고, 재시도해서는 안 되는 오류(예: 400 Bad Request)까지 무한 재시도하는 버그로 이어지기 쉽습니다. 예외 처리 자체의 설계 원칙은 [7장: 예외 처리](/post/python/python-exception-handling-try-except-finally-custom-errors-guide/)를 참고하십시오.
 
 ### 타임아웃과 재시도 전략
 
@@ -288,7 +290,7 @@ if __name__ == "__main__":
 
 ### HTTP 서버 만들기: http.server와 socketserver
 
-`requests`가 클라이언트 쪽 추상화라면, `http.server`와 `socketserver`는 파이썬 표준 라이브러리가 제공하는 서버 쪽 최소 도구입니다. 이 둘은 실무용 프로덕션 서버(Flask, FastAPI 등은 [23장: 웹 개발](../23_web_development/)에서 다룹니다)를 대체하려는 것이 아니라, 클라이언트 코드를 테스트할 목(mock) 서버를 빠르게 띄우거나 로컬 파일을 임시로 공유할 때 유용합니다. `http.server.BaseHTTPRequestHandler`를 상속해 `do_GET`, `do_POST` 같은 메서드를 오버라이드하면 요청 메서드별 처리를 정의할 수 있고, `socketserver.ThreadingMixIn`을 함께 사용하면 요청마다 별도 스레드에서 처리해 한 클라이언트가 서버를 독점하는 상황을 막을 수 있습니다.
+`requests`가 클라이언트 쪽 추상화라면, `http.server`와 `socketserver`는 파이썬 표준 라이브러리가 제공하는 서버 쪽 최소 도구입니다. 이 둘은 실무용 프로덕션 서버(Flask, FastAPI 등은 [23장: 웹 개발](/post/python/python-web-development-flask-django-rest-api-guide/)에서 다룹니다)를 대체하려는 것이 아니라, 클라이언트 코드를 테스트할 목(mock) 서버를 빠르게 띄우거나 로컬 파일을 임시로 공유할 때 유용합니다. `http.server.BaseHTTPRequestHandler`를 상속해 `do_GET`, `do_POST` 같은 메서드를 오버라이드하면 요청 메서드별 처리를 정의할 수 있고, `socketserver.ThreadingMixIn`을 함께 사용하면 요청마다 별도 스레드에서 처리해 한 클라이언트가 서버를 독점하는 상황을 막을 수 있습니다.
 
 ```python
 import json
@@ -436,7 +438,7 @@ if __name__ == "__main__":
     print_report(checker.check_all(urls))
 ```
 
-이 도구는 URL을 하나씩 순차적으로 점검하므로 목록이 길어지면 느려집니다. [18장: 비동기 프로그래밍](../18_async_programming/)의 `asyncio`나 [17장: 동시성](../17_concurrency/)의 스레드 풀을 적용하면 여러 URL을 동시에 점검하도록 확장할 수 있습니다.
+이 도구는 URL을 하나씩 순차적으로 점검하므로 목록이 길어지면 느려집니다. [18장: 비동기 프로그래밍](/post/python/python-async-programming-asyncio-async-await-event-loop-guide/)의 `asyncio`나 [17장: 동시성](/post/python/python-concurrency-threading-multiprocessing-gil-guide/)의 스레드 풀을 적용하면 여러 URL을 동시에 점검하도록 확장할 수 있습니다.
 
 ### 프로젝트 2: 스레드 기반 TCP 에코 서버와 자동 검증 클라이언트
 
@@ -486,7 +488,7 @@ if __name__ == "__main__":
         server.shutdown()
 ```
 
-이 검증 스크립트는 별도 테스트 프레임워크 없이 `assert`만으로 서버 동작을 확인합니다. 실제 프로젝트라면 [24장: 테스트와 디버깅](../24_testing_debugging/)에서 다루는 `pytest` 같은 도구로 이 검증 로직을 정식 테스트 케이스로 옮기는 것이 좋습니다.
+이 검증 스크립트는 별도 테스트 프레임워크 없이 `assert`만으로 서버 동작을 확인합니다. 실제 프로젝트라면 [24장: 테스트와 디버깅](/post/python/python-testing-debugging-pytest-tdd-mocking-guide/)에서 다루는 `pytest` 같은 도구로 이 검증 로직을 정식 테스트 케이스로 옮기는 것이 좋습니다.
 
 ## 체크리스트
 
@@ -517,7 +519,7 @@ if __name__ == "__main__":
 
 🎉 **축하합니다!** 네트워킹 기초를 마스터했습니다.
 
-이제 [22. 데이터베이스](../22_database/)로 넘어가서 데이터 저장과 관리 기술을 학습해봅시다.
+이제 [22. 데이터베이스](/post/python/python-database-sql-nosql-orm-transaction-guide/)로 넘어가서 데이터 저장과 관리 기술을 학습해봅시다.
 
 ---
 

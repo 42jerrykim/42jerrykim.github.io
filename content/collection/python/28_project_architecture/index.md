@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "28. 프로젝트 아키텍처"
+image: "wordcloud.png"
+title: "[Python Master] 28. 프로젝트 아키텍처 - 레이어드/클린 아키텍처"
+slug: "python-project-architecture-layered-clean-architecture-guide"
 description: "대규모 파이썬 프로젝트에서 경계와 의존성 방향을 설계하는 방법을 다룹니다. 레이어드/클린 아키텍처 선택 기준과 폴더 구조, 테스트 용이성 관점의 규칙을 정리합니다."
 tags:
   - Python
@@ -222,7 +224,7 @@ class Order:
 domain 계층은 "주문에 최소 1줄이 있어야 한다", "수량은 1 이상이어야 한다" 같은 규칙을 스스로 지킵니다. 이 규칙이 DB 스키마나 API 검증 로직에 흩어져 있지 않고 `Order`/`OrderLine` 안에 모여 있다는 점이 핵심입니다. application과 infrastructure는 이 domain 객체를 사용할 뿐, domain은 그 위 계층을 전혀 알지 못합니다.
 
 ### 인터페이스 설계: abc.ABC로 모듈 간 결합도 낮추기
-application 계층이 "주문을 저장한다"는 동작이 필요할 때, 곧바로 `SqliteOrderRepository` 같은 구체 클래스를 참조하면 application이 특정 DB 구현에 결합됩니다. 이를 피하기 위해 application/domain 쪽에 **포트(port)**, 즉 추상 인터페이스를 두고 infrastructure가 그 인터페이스를 구현하게 만듭니다. 파이썬에서는 `abc.ABC`와 `@abstractmethod`로 이 계약을 코드로 강제할 수 있습니다. `abc.ABC`를 상속한 클래스는 추상 메서드를 하나라도 구현하지 않으면 인스턴스화 시점에 `TypeError`가 발생하므로, "구현을 깜빡한 메서드"가 런타임 초반에 바로 드러납니다. 이는 [10장: 고급 OOP](../10_oop_advanced/)에서 다룬 상속·추상화 개념을 아키텍처 경계에 적용한 것입니다.
+application 계층이 "주문을 저장한다"는 동작이 필요할 때, 곧바로 `SqliteOrderRepository` 같은 구체 클래스를 참조하면 application이 특정 DB 구현에 결합됩니다. 이를 피하기 위해 application/domain 쪽에 **포트(port)**, 즉 추상 인터페이스를 두고 infrastructure가 그 인터페이스를 구현하게 만듭니다. 파이썬에서는 `abc.ABC`와 `@abstractmethod`로 이 계약을 코드로 강제할 수 있습니다. `abc.ABC`를 상속한 클래스는 추상 메서드를 하나라도 구현하지 않으면 인스턴스화 시점에 `TypeError`가 발생하므로, "구현을 깜빡한 메서드"가 런타임 초반에 바로 드러납니다. 이는 [10장: 고급 OOP](/post/python/python-oop-advanced-inheritance-polymorphism-abstraction-guide/)에서 다룬 상속·추상화 개념을 아키텍처 경계에 적용한 것입니다.
 
 ```python
 # application/ports.py
@@ -304,7 +306,7 @@ class PlaceOrderUseCase:
         self._notifier.notify(f"주문 {order.order_id}가 접수되었습니다")
 ```
 
-이제 테스트는 진짜 DB나 네트워크 없이, `OrderRepository`/`Notifier`를 구현한 가짜(fake) 객체만으로 `PlaceOrderUseCase`의 로직을 검증할 수 있습니다. 이 테스트는 밀리초 단위로 끝나고, 외부 상태에 의존하지 않아 반복 실행해도 결과가 항상 같습니다. 자세한 테스트 작성 기법은 [24장: 테스팅과 디버깅](../24_testing_debugging/)에서 다룹니다.
+이제 테스트는 진짜 DB나 네트워크 없이, `OrderRepository`/`Notifier`를 구현한 가짜(fake) 객체만으로 `PlaceOrderUseCase`의 로직을 검증할 수 있습니다. 이 테스트는 밀리초 단위로 끝나고, 외부 상태에 의존하지 않아 반복 실행해도 결과가 항상 같습니다. 자세한 테스트 작성 기법은 [24장: 테스팅과 디버깅](/post/python/python-testing-debugging-pytest-tdd-mocking-guide/)에서 다룹니다.
 
 ```python
 # tests/unit/test_place_order.py
@@ -357,7 +359,7 @@ def test_place_order_rejects_empty_order() -> None:
         pass
 ```
 
-이처럼 생성자 주입은 "테스트를 쉽게 만들기 위한 도구"에 가깝습니다. 프로젝트 규모가 커지면 `dependency-injector` 같은 DI 컨테이너 라이브러리로 조립을 자동화하기도 하지만, 원리는 동일한 생성자 주입입니다. 팩토리 패턴과 DI 컨테이너의 관계는 [26장: 디자인 패턴](../26_design_patterns/)에서 더 다룹니다.
+이처럼 생성자 주입은 "테스트를 쉽게 만들기 위한 도구"에 가깝습니다. 프로젝트 규모가 커지면 `dependency-injector` 같은 DI 컨테이너 라이브러리로 조립을 자동화하기도 하지만, 원리는 동일한 생성자 주입입니다. 팩토리 패턴과 DI 컨테이너의 관계는 [26장: 디자인 패턴](/post/python/python-design-patterns-gof-singleton-factory-observer-guide/)에서 더 다룹니다.
 
 ### 인프라 구현체와 조립(Composition Root)
 infrastructure 계층은 application이 정의한 포트를 실제로 구현합니다. 이 구현체들은 domain/application을 import할 수 있지만, 그 반대는 금지됩니다. 그리고 이 구현체를 어디서 골라 조립할지는 애플리케이션 전체에서 **단 한 곳**, 흔히 **조립 루트(composition root)**라고 부르는 지점에서만 결정합니다. 아래 `main.py`가 그 역할을 합니다.
@@ -438,7 +440,7 @@ if __name__ == "__main__":
     use_case.execute(order)
 ```
 
-`sqlite3`를 import하는 파일은 `infrastructure/db/sqlite_order_repository.py`와 `main.py`뿐입니다. domain과 application 어디에도 `sqlite3`라는 이름이 등장하지 않으므로, 나중에 SQLite를 PostgreSQL이나 인메모리 저장소로 바꾸더라도 domain/application 코드는 한 줄도 건드릴 필요가 없습니다. DB 연동 자체의 상세한 기법(커넥션 풀, 트랜잭션 등)은 [22장: 데이터베이스](../22_database/)를 참고하세요.
+`sqlite3`를 import하는 파일은 `infrastructure/db/sqlite_order_repository.py`와 `main.py`뿐입니다. domain과 application 어디에도 `sqlite3`라는 이름이 등장하지 않으므로, 나중에 SQLite를 PostgreSQL이나 인메모리 저장소로 바꾸더라도 domain/application 코드는 한 줄도 건드릴 필요가 없습니다. DB 연동 자체의 상세한 기법(커넥션 풀, 트랜잭션 등)은 [22장: 데이터베이스](/post/python/python-database-sql-nosql-orm-transaction-guide/)를 참고하세요.
 
 ### 설정 관리: 환경별 config 분리
 운영 환경(development/test/production)마다 DB 주소, 디버그 여부, 비밀키 같은 값이 달라집니다. 이런 값을 코드에 하드코딩하면 배포 환경을 바꿀 때마다 코드를 고쳐야 하고, 비밀키가 소스 저장소에 그대로 노출되는 사고로 이어지기 쉽습니다. **12-Factor App** 원칙은 이런 설정 값을 코드가 아니라 환경변수로 주입하라고 권장합니다. 아래 `load_config`는 `APP_ENV` 값에 따라 다른 설정을 조립하고, 운영 환경에서는 필수 환경변수가 없으면 즉시(가능한 한 앱 시작 시점에) `KeyError`로 실패하게 만듭니다. 이 "빠르게 실패하기(fail fast)"는 설정 누락을 요청 처리 도중이 아니라 배포 직후에 드러나게 해 줍니다.
@@ -764,4 +766,4 @@ if __name__ == "__main__":
 - [ ] 확장성 고려 설계
 
 ## 다음 단계
-프로젝트 아키텍처를 마스터했다면, [29장: 코드 품질](../29_code_quality/)로 넘어가 코드 품질 관리와 개발 프로세스를 학습합니다.
+프로젝트 아키텍처를 마스터했다면, [29장: 코드 품질](/post/python/python-code-quality-lint-type-check-refactoring-guide/)로 넘어가 코드 품질 관리와 개발 프로세스를 학습합니다.

@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "03. 제어 구조"
+image: "wordcloud.png"
+title: "[Python Master] 03. 제어 구조 - 조건문/반복문/break-continue"
+slug: "python-control-flow-if-for-while-break-continue-guide"
 description: "조건문과 반복문으로 프로그램 흐름을 제어하는 원리를 익힙니다. break/continue/else의 의미와 활용 기준을 이해하고 복잡한 분기 로직을 읽기 쉽게 구성합니다."
 tags:
   - Python
@@ -1149,7 +1151,7 @@ grade_management_system()
 
 🎉 **축하합니다!** 파이썬 제어 구조를 마스터했습니다.
 
-이제 [04. 함수](../04_functions/)로 넘어가서 코드의 재사용성을 높이는 함수 정의와 활용을 학습해봅시다.
+이제 [04. 함수](/post/python/python-functions-parameters-scope-lambda-closure-guide/)로 넘어가서 코드의 재사용성을 높이는 함수 정의와 활용을 학습해봅시다.
 
 ---
 

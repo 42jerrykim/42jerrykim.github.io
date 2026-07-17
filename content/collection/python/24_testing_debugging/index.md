@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "24. 테스팅과 디버깅"
+image: "wordcloud.png"
+title: "[Python Master] 24. 테스팅과 디버깅 - pytest/TDD/mocking"
+slug: "python-testing-debugging-pytest-tdd-mocking-guide"
 description: "테스트 피라미드와 TDD를 포함해 단위/통합 테스트 전략을 정리합니다. unittest/pytest, mocking, 디버깅(로깅/pdb)까지 실무 품질 확보 방법을 한 챕터로 연결합니다."
 tags:
   - Python

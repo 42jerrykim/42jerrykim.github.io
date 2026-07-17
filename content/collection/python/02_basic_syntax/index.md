@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "02. 파이썬 기본 문법"
+image: "wordcloud.png"
+title: "[Python Master] 02. 기본 문법 - 변수/타입/연산자/입출력"
+slug: "python-basic-syntax-variables-types-operators-io-guide"
 description: "변수·타입·연산자·입출력·주석/독스트링을 핵심 개념 중심으로 정리합니다. 타입 변환과 우선순위 같은 함정을 피하고 파이썬다운 기본기를 단단히 다집니다."
 tags:
   - Python
@@ -1029,7 +1031,7 @@ if __name__ == "__main__":
 
 🎉 **축하합니다!** 파이썬 기본 문법을 마스터했습니다.
 
-이제 [03. 제어 구조](../03_control_flow/)로 넘어가서 조건문과 반복문을 활용한 프로그램 흐름 제어를 학습해봅시다.
+이제 [03. 제어 구조](/post/python/python-control-flow-if-for-while-break-continue-guide/)로 넘어가서 조건문과 반복문을 활용한 프로그램 흐름 제어를 학습해봅시다.
 
 ---
 

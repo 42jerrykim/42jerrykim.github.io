@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "25. 패키징과 배포"
+image: "wordcloud.png"
+title: "[Python Master] 25. 패키징과 배포 - pyproject.toml/CI-CD"
+slug: "python-packaging-deployment-pyproject-toml-ci-cd-guide"
 description: "패키징과 배포를 도구 나열이 아니라 표준과 선택 기준으로 정리합니다. pyproject.toml, wheel/sdist, 의존성 범위/고정, CI 배포 흐름과 흔한 함정을 함께 다룹니다."
 tags:
   - Python
@@ -404,4 +406,4 @@ jobs:
 - [ ] 테스트 통과를 배포 조건으로 거는 GitHub Actions 워크플로를 작성할 수 있다
 
 ## 다음 단계
-패키징과 배포를 마스터했다면, [26. 디자인 패턴](../26_design_patterns/)으로 넘어가 소프트웨어 설계 패턴과 아키텍처를 학습합니다.
+패키징과 배포를 마스터했다면, [26. 디자인 패턴](/post/python/python-design-patterns-gof-singleton-factory-observer-guide/)으로 넘어가 소프트웨어 설계 패턴과 아키텍처를 학습합니다.

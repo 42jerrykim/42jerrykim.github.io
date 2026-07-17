@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "07. 예외 처리"
+image: "wordcloud.png"
+title: "[Python Master] 07. 예외 처리 - try-except-finally/사용자 정의 예외"
+slug: "python-exception-handling-try-except-finally-custom-errors-guide"
 description: "예외의 종류와 처리 범위를 이해하고, try/except/else/finally를 실무적으로 적용합니다. 사용자 정의 예외와 예외 체인으로 오류를 의미 있게 전달하는 방법을 익힙니다."
 tags:
   - Python
@@ -945,7 +947,7 @@ if __name__ == "__main__":
 
 🎉 **축하합니다!** 파이썬 예외 처리를 마스터했습니다.
 
-이제 [08. 모듈과 패키지](../08_modules_packages/)로 넘어가서 코드를 체계적으로 구조화하고 재사용하는 방법을 학습해봅시다.
+이제 [08. 모듈과 패키지](/post/python/python-modules-packages-import-init-public-api-design-guide/)로 넘어가서 코드를 체계적으로 구조화하고 재사용하는 방법을 학습해봅시다.
 
 ---
 

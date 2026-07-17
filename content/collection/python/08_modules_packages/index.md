@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "08. 모듈과 패키지"
+image: "wordcloud.png"
+title: "[Python Master] 08. 모듈과 패키지 - import/__init__/공개 API"
+slug: "python-modules-packages-import-init-public-api-design-guide"
 description: "모듈/패키지 구조와 import 메커니즘을 이해해 코드를 재사용 가능하게 구성합니다. 의존성 경계와 공개 API 설계 기준을 정리해 프로젝트 구조화를 시작합니다."
 tags:
   - Python
@@ -188,7 +190,7 @@ def is_email(email):
 
 ### 표준 라이브러리 활용
 
-파이썬은 "배터리 포함(batteries included)" 철학으로 유명합니다. 파일 처리, 날짜 계산, 정규식, 자료구조 확장까지 별도 설치 없이 표준 라이브러리만으로 상당 부분을 해결할 수 있습니다. 아래 표는 자주 쓰이는 모듈을 용도별로 정리한 것이며, 각 모듈의 세부 API와 활용 패턴은 [11장 표준 라이브러리 탐구](../11_standard_library/)에서 더 자세히 다룹니다.
+파이썬은 "배터리 포함(batteries included)" 철학으로 유명합니다. 파일 처리, 날짜 계산, 정규식, 자료구조 확장까지 별도 설치 없이 표준 라이브러리만으로 상당 부분을 해결할 수 있습니다. 아래 표는 자주 쓰이는 모듈을 용도별로 정리한 것이며, 각 모듈의 세부 API와 활용 패턴은 [11장 표준 라이브러리 탐구](/post/python/python-standard-library-os-pathlib-datetime-itertools-guide/)에서 더 자세히 다룹니다.
 
 | 모듈 | 주요 용도 |
 |------|----------|
@@ -385,7 +387,7 @@ print(config)  # {'debug': 'true'}
 
 축하합니다. 파이썬 모듈과 패키지의 동작 원리를 익혔습니다.
 
-이제 [09. 객체지향 프로그래밍 기초](../09_oop_basics/)로 넘어가서 클래스와 객체를 통한 코드 구조화 방법을 학습해봅시다.
+이제 [09. 객체지향 프로그래밍 기초](/post/python/python-oop-basics-class-encapsulation-magic-methods-guide/)로 넘어가서 클래스와 객체를 통한 코드 구조화 방법을 학습해봅시다.
 
 ---
 

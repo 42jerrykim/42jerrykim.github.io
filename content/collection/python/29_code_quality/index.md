@@ -1,6 +1,8 @@
 ---
 draft: false
-title: "29. 코드 품질 관리"
+image: "wordcloud.png"
+title: "[Python Master] 29. 코드 품질 관리 - 린트/타입체크/리팩토링"
+slug: "python-code-quality-lint-type-check-refactoring-guide"
 description: "코드 품질을 변경 비용을 줄이는 시스템으로 정의하고, 포맷/린트/타입/테스트/보안을 역할별로 정리합니다. 자동화와 코드리뷰 체크리스트로 팀 품질을 유지하는 방법을 다룹니다."
 tags:
   - Python
