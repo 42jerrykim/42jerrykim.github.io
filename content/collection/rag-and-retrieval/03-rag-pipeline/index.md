@@ -3,7 +3,7 @@ collection_order: 3
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[RAG(Series) 03] RAG 파이프라인 구축 — Retriever-Reader"
+title: "[RAG 03] RAG 파이프라인 구축 — Retriever-Reader"
 slug: rag-pipeline-fundamentals
 description: "검색과 생성을 잇는 Retriever-Reader 구조를 Lewis et al. 원 논문과 LlamaIndex 실습으로 다룹니다. Chunk Size 트레이드오프, 불확실성 기반 검색 트리거까지 RAG 파이프라인 설계의 실전 포인트를 정리합니다."
 tags:

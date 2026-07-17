@@ -3,7 +3,7 @@ collection_order: 2
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[RAG(Series) 02] Dense Retrieval — BERT로 의미를 검색하기"
+title: "[RAG 02] Dense Retrieval — BERT로 의미를 검색하기"
 slug: dense-retrieval-fundamentals
 description: "희소 벡터 대신 신경망 임베딩으로 검색하는 Dense Retrieval을 다룹니다. Bi-encoder와 Cross-encoder의 정확도-속도 트레이드오프, DPR의 대조 학습, Re-ranking 2단계 구조를 원 논문과 함께 정리합니다."
 tags:

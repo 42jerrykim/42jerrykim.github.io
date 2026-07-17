@@ -3,7 +3,7 @@ collection_order: 6
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[On-Device AI(Series) 06] Efficient Transformer 추론 — Speculative Decoding과 FlashAttention"
+title: "[On-Device AI 06] Efficient Transformer 추론 — Speculative Decoding과 FlashAttention"
 slug: efficient-transformer-inference
 description: "압축이 아니라 연산·메모리 접근 패턴을 최적화하는 추론 가속 기법을 다룹니다. 작은 모델의 추측을 큰 모델이 검증하는 Speculative Decoding, 타일링으로 메모리 접근을 줄이는 FlashAttention, 중요 토큰만 남기는 H2O를 원 논문과 함께 정리합니다. 시리즈 C의 마지막 챕터입니다."
 tags:

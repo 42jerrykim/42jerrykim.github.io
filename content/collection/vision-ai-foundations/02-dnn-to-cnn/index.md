@@ -3,7 +3,7 @@ collection_order: 2
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[Vision AI(Series) 02] DNN에서 CNN으로 — 합성곱과 ResNet"
+title: "[Vision AI 02] DNN에서 CNN으로 — 합성곱과 ResNet"
 slug: dnn-to-cnn
 description: "완전연결 신경망이 픽셀을 통계적 패턴으로만 처리한다는 한계 실험부터, Convolution·Padding·Stride·Pooling·Receptive Field, 그리고 ResNet의 Skip Connection까지 CNN 아키텍처의 핵심을 정리합니다."
 tags:

@@ -3,7 +3,7 @@ collection_order: 0
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[RAG(Series) 00] Introduction: RAG와 정보검색"
+title: "[RAG 00] Introduction: RAG와 정보검색"
 slug: getting-started-rag-and-retrieval
 description: "검색과 LLM을 결합하는 시리즈의 도입 챕터입니다. LLM만으로는 부족한 세 가지 이유, 고전 IR부터 GraphRAG·MCP까지 이어지는 8개 챕터 커리큘럼과 학습 목표를 정리합니다."
 tags:

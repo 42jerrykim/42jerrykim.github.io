@@ -3,7 +3,7 @@ collection_order: 6
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[LLM(Series) 06] GPT 아키텍처 해부 — 정규화, FFN, Residual, 샘플링"
+title: "[LLM 06] GPT 아키텍처 해부 — 정규화, FFN, Residual, 샘플링"
 slug: gpt-architecture-anatomy
 description: "Multi-head Attention을 감싸는 GPT 블록의 나머지 구성요소인 LayerNorm, Feed Forward Network, Residual Connection, Dropout을 조립하고, Temperature·Top-K 샘플링으로 다음 토큰을 생성하는 과정을 다룹니다."
 tags:

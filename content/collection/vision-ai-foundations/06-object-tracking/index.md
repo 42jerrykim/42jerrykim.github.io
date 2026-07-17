@@ -3,7 +3,7 @@ collection_order: 6
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[Vision AI(Series) 06] Tracking — ByteTrack과 TrackFormer"
+title: "[Vision AI 06] Tracking — ByteTrack과 TrackFormer"
 slug: object-tracking-fundamentals
 description: "여러 프레임에 걸쳐 같은 물체를 이어 붙이는 Multi-Object Tracking을, Tracking-by-Detection과 Tracking-by-Regression 두 접근으로 나눠 설명합니다. 저신뢰도 검출까지 활용하는 ByteTrack과 DETR 기반 TrackFormer를 다룹니다."
 tags:

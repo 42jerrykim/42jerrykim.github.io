@@ -3,7 +3,7 @@ collection_order: 8
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[LLM(Series) 08] 파인튜닝 실전 — Classification Fine-tuning과 LoRA"
+title: "[LLM 08] 파인튜닝 실전 — Classification Fine-tuning과 LoRA"
 slug: fine-tuning-and-lora
 description: "사전학습된 GPT를 특정 과제에 맞추는 Classification Fine-tuning과, 전체 가중치 대신 저차원 행렬만 학습하는 LoRA·QLoRA를 다룹니다. 왜 파인튜닝마다 다른 전략이 필요한지 데이터 규모 관점에서 설명합니다."
 tags:

@@ -3,7 +3,7 @@ collection_order: 3
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[On-Device AI(Series) 03] Knowledge Distillation — Teacher와 Student"
+title: "[On-Device AI 03] Knowledge Distillation — Teacher와 Student"
 slug: knowledge-distillation-fundamentals
 description: "작은 모델이 처음부터 학습되기 어려운 이유부터, Temperature로 만드는 Soft Label, Forward·Reverse KL Divergence의 차이, 중간 레이어를 비교하는 Feature-based KD까지 지식 증류의 핵심을 Hinton 원 논문과 함께 정리합니다."
 tags:

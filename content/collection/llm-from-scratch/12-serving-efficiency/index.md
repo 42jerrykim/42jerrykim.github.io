@@ -3,7 +3,7 @@ collection_order: 12
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[LLM(Series) 12] LLM 서빙 효율화 — KV Cache, GQA, MLA"
+title: "[LLM 12] LLM 서빙 효율화 — KV Cache, GQA, MLA"
 slug: llm-serving-efficiency
 description: "이미 계산한 Key·Value를 재사용하는 KV Cache부터, 메모리 사용량을 줄이는 GQA와 MLA, Sliding Window Attention까지 LLM 추론을 빠르게 만드는 서빙 효율화 기법을 다룹니다. 시리즈 A의 마지막 챕터입니다."
 tags:

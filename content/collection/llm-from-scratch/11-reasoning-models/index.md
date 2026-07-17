@@ -3,7 +3,7 @@ collection_order: 11
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[LLM(Series) 11] 추론 모델의 시대 — Chain-of-Thought와 GRPO"
+title: "[LLM 11] 추론 모델의 시대 — Chain-of-Thought와 GRPO"
 slug: reasoning-models
 description: "중간 추론 과정을 생성하면 왜 정답률이 올라가는지 Chain-of-Thought로 설명하고, 정답 채점의 어려움과 이를 해결하는 GRPO 강화학습 방식까지 최근 추론 모델의 학습 원리를 다룹니다."
 tags:

@@ -3,7 +3,7 @@ collection_order: 5
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[LLM(Series) 05] Self-Attention 완전분해 — Q, K, V부터 Multi-head까지"
+title: "[LLM 05] Self-Attention 완전분해 — Q, K, V부터 Multi-head까지"
 slug: self-attention-explained
 description: "Query, Key, Value로 나누는 이유부터 Scaled Dot-Product Attention, Causal Masking, Multi-head Attention까지 Self-Attention의 계산 과정을 수식과 PyTorch 코드로 분해합니다."
 tags:

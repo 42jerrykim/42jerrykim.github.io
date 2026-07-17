@@ -3,7 +3,7 @@ collection_order: 1
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[On-Device AI(Series) 01] Pruning — 가지치기로 모델 슬림화하기"
+title: "[On-Device AI 01] Pruning — 가지치기로 모델 슬림화하기"
 slug: model-pruning-fundamentals
 description: "신경망이 과잉 설계되는 이유부터, Fine-grained와 Coarse-grained Pruning의 정확도-가속 트레이드오프, Magnitude 기반 선택, N:M Sparsity, 희소 행렬 저장 방식까지 Pruning의 핵심을 정리합니다."
 tags:

@@ -3,7 +3,7 @@ collection_order: 2
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[LLM(Series) 02] 신경망은 어떻게 학습하는가 — 역전파와 Adam"
+title: "[LLM 02] 신경망은 어떻게 학습하는가 — 역전파와 Adam"
 slug: neural-network-training
 description: "순전파·손실 계산·역전파로 이어지는 신경망 학습 과정을 Chain Rule과 경사하강법 관점에서 정리합니다. Adam Optimizer, Batch Size·Epoch·Step 개념을 코드와 함께 다룹니다."
 tags:

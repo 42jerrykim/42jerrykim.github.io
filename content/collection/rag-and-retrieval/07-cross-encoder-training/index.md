@@ -3,7 +3,7 @@ collection_order: 7
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[RAG(Series) 07] Cross-Encoder 파인튜닝 — InfoNCE로 재정렬 모델 학습하기"
+title: "[RAG 07] Cross-Encoder 파인튜닝 — InfoNCE로 재정렬 모델 학습하기"
 slug: cross-encoder-fine-tuning
 description: "02장에서 재정렬(re-ranking)용으로 소개한 Cross-Encoder를 직접 학습시키는 방법을 다룹니다. In-batch Negative와 Hard Negative 구성, InfoNCE Loss의 수식, 전체 학습 파이프라인을 원 논문과 함께 정리합니다. 시리즈 D의 마지막 챕터입니다."
 tags:

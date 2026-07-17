@@ -3,7 +3,7 @@ collection_order: 0
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[Vision AI(Series) 00] Introduction: Vision AI 파운데이션"
+title: "[Vision AI 00] Introduction: Vision AI 파운데이션"
 slug: getting-started-vision-ai-foundations
 description: "손으로 설계한 특징에서 CNN, Vision Transformer로 이어지는 컴퓨터 비전의 진화를 정리하는 시리즈의 도입 챕터입니다. 8개 챕터 커리큘럼과 학습 목표, LLM 시리즈와의 연결점을 다룹니다."
 tags:

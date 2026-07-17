@@ -3,7 +3,7 @@ collection_order: 5
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[On-Device AI(Series) 05] LLM Quantization — SmoothQuant와 AWQ"
+title: "[On-Device AI 05] LLM Quantization — SmoothQuant와 AWQ"
 slug: llm-quantization-fundamentals
 description: "LLM Activation의 Outlier가 왜 다루기 어려운지부터, 어려움을 Weight로 옮기는 SmoothQuant, 중요 채널만 보호하는 AWQ, OBS 계열의 GPTQ, QLoRA의 NF4·Double Quantization까지 LLM 전용 Quantization 기법을 원 논문과 함께 정리합니다."
 tags:

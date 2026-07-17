@@ -3,7 +3,7 @@ collection_order: 7
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[Vision AI(Series) 07] Segmentation — FCN에서 SAM까지"
+title: "[Vision AI 07] Segmentation — FCN에서 SAM까지"
 slug: image-segmentation-fundamentals
 description: "픽셀 단위로 분류하는 Segmentation을 FCN의 Skip Fusion부터 Mask R-CNN, U-Net의 Encoder-Decoder 구조, Transformer 기반 SegFormer, 범용 파운데이션 모델 SAM까지 원 논문과 함께 정리합니다. 시리즈 B의 마지막 챕터입니다."
 tags:

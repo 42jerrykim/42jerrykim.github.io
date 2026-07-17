@@ -3,7 +3,7 @@ collection_order: 1
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[LLM(Series) 01] AI 수학 기초 — 내적, Softmax, KL Divergence"
+title: "[LLM 01] AI 수학 기초 — 내적, Softmax, KL Divergence"
 slug: ai-math-foundations
 description: "Attention과 신경망 학습을 이해하는 데 필요한 최소한의 수학을 정리합니다. 벡터 내적과 코사인 유사도, 선형함수와 활성화함수, Softmax·Sigmoid, KL Divergence와 Cross Entropy를 코드와 함께 다룹니다."
 tags:

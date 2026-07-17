@@ -3,7 +3,7 @@ collection_order: 0
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[LLM(Series) 00] Introduction: LLM 밑바닥부터 이해하기"
+title: "[LLM 00] Introduction: LLM 밑바닥부터 이해하기"
 slug: getting-started-llm-from-scratch
 description: "Transformer/GPT 아키텍처를 밑바닥부터 이해하는 시리즈의 도입 챕터입니다. RNN에서 Attention으로 이어지는 언어모델의 진화, 13개 챕터 커리큘럼, 학습 목표와 실습 연계 방법을 정리합니다."
 tags:

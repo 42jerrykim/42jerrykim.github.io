@@ -3,7 +3,7 @@ collection_order: 0
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: true
-title: "[On-Device AI(Series) 00] Introduction: On-Device AI 경량화"
+title: "[On-Device AI 00] Introduction: On-Device AI 경량화"
 slug: getting-started-on-device-ai-compression
 description: "모델을 자원이 제한된 기기에서 빠르게 돌리는 경량화 시리즈의 도입 챕터입니다. Prefill/Decode의 서로 다른 병목, Pruning·Quantization·Distillation 3대 기법의 관계, 7개 챕터 커리큘럼을 정리합니다."
 tags:
