@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: "14. 제너레이터와 이터레이터"
 description: "이터레이터/제너레이터 프로토콜을 이해해 메모리 효율적인 데이터 처리를 설계합니다. lazy evaluation이 유리한 상황과 디버깅/예외 처리 포인트를 함께 정리합니다."
 tags:

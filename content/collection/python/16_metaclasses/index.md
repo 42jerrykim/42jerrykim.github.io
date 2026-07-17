@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: "16. 메타클래스"
 description: "메타클래스와 클래스 생성 과정을 이해해 파이썬의 객체 모델을 깊게 봅니다. 언제 메타프로그래밍이 필요한지, 대안(데코레이터, __init_subclass__)과 함께 판단 기준을 제공합니다."
 tags:

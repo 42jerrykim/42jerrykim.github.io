@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: "08. 모듈과 패키지"
 description: "모듈/패키지 구조와 import 메커니즘을 이해해 코드를 재사용 가능하게 구성합니다. 의존성 경계와 공개 API 설계 기준을 정리해 프로젝트 구조화를 시작합니다."
 tags:

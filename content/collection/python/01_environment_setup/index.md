@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: "01. 파이썬 환경 설정"
 description: "Windows/macOS/Linux에서 파이썬 설치부터 가상환경, 패키지 관리, IDE 설정까지 정리합니다. 실무에서 재현 가능한 개발 환경을 만들고 흔한 설치/경로 문제를 해결합니다."
 image: /favicon.ico

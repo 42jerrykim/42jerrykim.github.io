@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: "25. 패키징과 배포"
 description: "패키징과 배포를 도구 나열이 아니라 표준과 선택 기준으로 정리합니다. pyproject.toml, wheel/sdist, 의존성 범위/고정, CI 배포 흐름과 흔한 함정을 함께 다룹니다."
 tags:

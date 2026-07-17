@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: "06. 파일 입출력"
 description: "파일 읽기/쓰기, 경로 처리, 인코딩, 다양한 포맷(JSON/CSV 등) 기본을 다룹니다. 예외 처리와 컨텍스트 매니저를 통해 안전하게 I/O를 처리하는 습관을 만듭니다."
 tags:

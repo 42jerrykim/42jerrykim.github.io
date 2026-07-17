@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: "23. 웹 개발"
 description: "Flask/Django로 웹 앱과 API를 만드는 핵심 개념을 설명합니다. 라우팅, 요청/응답, 데이터베이스 연동, 인증/보안, 배포 관점까지 연결해 전체 흐름을 잡습니다."
 tags:

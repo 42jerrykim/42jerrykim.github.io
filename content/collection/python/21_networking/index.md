@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: "21. 네트워킹"
 description: "네트워크 기초(HTTP/TCP)와 파이썬 네트워킹 도구를 개념 중심으로 정리합니다. 요청/응답, 타임아웃, 재시도, 보안(SSL) 같은 실무 기본기를 함께 다룹니다."
 tags:

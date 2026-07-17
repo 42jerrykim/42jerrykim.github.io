@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: "11. 표준 라이브러리"
 description: "표준 라이브러리의 핵심 모듈(os/pathlib, datetime, collections, itertools 등)을 실무 관점으로 소개합니다. 외부 라이브러리 전에 표준 도구로 문제를 푸는 감각을 기릅니다."
 tags:

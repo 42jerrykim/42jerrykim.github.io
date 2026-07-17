@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: "22. 데이터베이스"
 description: "관계형 DB와 NoSQL의 차이, 트랜잭션(ACID), ORM의 장단점을 설명합니다. 파이썬에서 DB를 안전하게 다루는 패턴과 성능/모델링의 핵심 선택 기준을 정리합니다."
 tags:

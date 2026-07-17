@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: "07. 예외 처리"
 description: "예외의 종류와 처리 범위를 이해하고, try/except/else/finally를 실무적으로 적용합니다. 사용자 정의 예외와 예외 체인으로 오류를 의미 있게 전달하는 방법을 익힙니다."
 tags:

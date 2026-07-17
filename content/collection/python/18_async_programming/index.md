@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: "18. 비동기 프로그래밍"
 description: "asyncio 이벤트 루프와 async/await 모델을 개념 중심으로 설명합니다. I/O 중심 워크로드에서의 장점과 타임아웃/취소/에러 전파 같은 실무 포인트를 정리합니다."
 tags:

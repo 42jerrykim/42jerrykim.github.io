@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 title: "03. 제어 구조"
 description: "조건문과 반복문으로 프로그램 흐름을 제어하는 원리를 익힙니다. break/continue/else의 의미와 활용 기준을 이해하고 복잡한 분기 로직을 읽기 쉽게 구성합니다."
 tags:
