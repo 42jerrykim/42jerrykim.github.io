@@ -1,6 +1,8 @@
 ---
-draft: true
-title: "16. 메타클래스"
+draft: false
+image: "wordcloud.png"
+title: "[Python Master] 16. 메타클래스 - 클래스 생성/메타프로그래밍"
+slug: "python-metaclasses-class-creation-metaprogramming-guide"
 description: "메타클래스와 클래스 생성 과정을 이해해 파이썬의 객체 모델을 깊게 봅니다. 언제 메타프로그래밍이 필요한지, 대안(데코레이터, __init_subclass__)과 함께 판단 기준을 제공합니다."
 tags:
   - Python
@@ -630,7 +632,7 @@ except NotImplementedError as e:
 
 ## 실습 프로젝트
 
-###️ 프로젝트 1: 자동 속성 검증 시스템
+### 프로젝트 1: 자동 속성 검증 시스템
 
 ```python
 class ValidationError(Exception):
@@ -746,7 +748,7 @@ except ValidationError as e:
     print(f"Validation error: {e}")
 ```
 
-###️ 프로젝트 2: 간단한 ORM 프레임워크
+### 프로젝트 2: 간단한 ORM 프레임워크
 
 ```python
 import sqlite3
@@ -1005,7 +1007,7 @@ if __name__ == "__main__":
 
 🎉 **축하합니다!** 메타클래스를 마스터했습니다.
 
-메타클래스는 파이썬의 가장 고급 기능 중 하나입니다. 이제 [17. 동시성 프로그래밍](../17_concurrency/)으로 넘어가서 멀티스레딩과 멀티프로세싱을 활용한 병렬 처리를 학습해봅시다.
+메타클래스는 파이썬의 가장 고급 기능 중 하나입니다. 이제 [17. 동시성 프로그래밍](/post/python/python-concurrency-threading-multiprocessing-gil-guide/)으로 넘어가서 멀티스레딩과 멀티프로세싱을 활용한 병렬 처리를 학습해봅시다.
 
 ---
 

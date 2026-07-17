@@ -1,6 +1,8 @@
 ---
-draft: true
-title: "20. 메모리 관리"
+draft: false
+image: "wordcloud.png"
+title: "[Python Master] 20. 메모리 관리 - 참조 카운팅/가비지 컬렉션"
+slug: "python-memory-management-reference-counting-garbage-collection-guide"
 description: "파이썬의 메모리 모델, 참조 카운팅/GC, 누수 진단 관점을 다룹니다. 대용량 데이터 처리에서 복사/뷰, 객체 수 관리, 메모리 측정 도구 활용까지 연결합니다."
 tags:
   - Python

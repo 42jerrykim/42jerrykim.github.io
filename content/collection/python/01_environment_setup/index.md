@@ -1,8 +1,9 @@
 ---
-draft: true
-title: "01. 파이썬 환경 설정"
+draft: false
+title: "[Python Master] 01. 환경 설정 - 설치/가상환경/IDE 구성"
+slug: "python-installation-venv-ide-setup-guide"
 description: "Windows/macOS/Linux에서 파이썬 설치부터 가상환경, 패키지 관리, IDE 설정까지 정리합니다. 실무에서 재현 가능한 개발 환경을 만들고 흔한 설치/경로 문제를 해결합니다."
-image: /favicon.ico
+image: "wordcloud.png"
 tags:
   - Python
   - Implementation(구현)
@@ -566,7 +567,7 @@ graph TD
 
 ## 실습 프로젝트
 
-###️ 프로젝트 1: 개발 환경 완전 구축
+### 프로젝트 1: 개발 환경 완전 구축
 
 **목표:** 실제 프로젝트에서 사용할 수 있는 완전한 개발 환경 구축
 
@@ -661,7 +662,7 @@ def test_greet_empty_string():
     assert result == "Hello, !"
 ```
 
-###️ 프로젝트 2: 다중 환경 관리
+### 프로젝트 2: 다중 환경 관리
 
 **목표:** 여러 프로젝트를 위한 독립적인 환경 구성
 
@@ -694,7 +695,7 @@ pip freeze > requirements.txt
 deactivate
 ```
 
-###️ 프로젝트 3: VS Code 완전 설정
+### 프로젝트 3: VS Code 완전 설정
 
 **workspace 설정 파일 (.vscode/settings.json):**
 
@@ -867,7 +868,7 @@ make clean    # 캐시 정리
 
 🎉 **축하합니다!** 파이썬 개발 환경 구축을 완료했습니다.
 
-이제 [02. 파이썬 기본 문법](../02_basic_syntax/)으로 넘어가서 파이썬의 기본 문법과 데이터 타입을 학습해봅시다.
+이제 [02. 파이썬 기본 문법](/post/python/python-basic-syntax-variables-types-operators-io-guide/)으로 넘어가서 파이썬의 기본 문법과 데이터 타입을 학습해봅시다.
 
 **학습 완료 후 확인사항:**
 - 가상 환경에서 간단한 Python 코드 실행
