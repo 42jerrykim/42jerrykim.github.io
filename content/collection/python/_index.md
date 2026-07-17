@@ -1,7 +1,7 @@
 ---
 slug: python
 draft: false
-title: "Python 마스터 커리큘럼"
+title: "[Python Master] 파이썬 마스터 커리큘럼"
 description: "파이썬을 초급부터 전문가 수준까지 체계적으로 학습하는 커리큘럼입니다. 문법·OOP·동시성·웹·테스트·배포까지 단계별로 연결해 실무 감각과 문제 해결력을 함께 키웁니다."
 featured_image: "/images/home-banner.jpg"
 tags:
@@ -53,7 +53,7 @@ tags:
 lastmod: 2026-01-17
 collection_order: 2
 ---
-# Python 마스터 커리큘럼
+# [Python Master] 파이썬 마스터 커리큘럼
 
 파이썬을 전문가 수준까지 마스터할 수 있는 체계적이고 실무 중심적인 커리큘럼입니다. 31개 챕터를 통해 동기부여부터 고급 기능까지 단계적으로 학습할 수 있습니다.
 
