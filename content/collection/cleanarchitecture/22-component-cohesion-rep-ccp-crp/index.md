@@ -16,20 +16,23 @@ tags:
   - Code-Quality(코드품질)
   - Coupling(결합도)
   - Modularity
-  - Design-Pattern(디자인패턴)
   - Interface(인터페이스)
-  - Abstraction(추상화)
   - Best-Practices
   - Maintainability
   - Refactoring(리팩토링)
   - Case-Study
   - Deep-Dive
-  - Technology(기술)
   - Deployment(배포)
   - System-Design
   - Java
   - Documentation(문서화)
   - Readability
+  - Spring
+  - Microservices(마이크로서비스)
+  - Domain(도메인)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Scalability(확장성)
 ---
 
 컴포넌트에 **어떤 클래스들을 포함**시켜야 하는가? 이것은 중요한 설계 결정이다. 너무 많이 묶으면 불필요한 의존성이 생기고, 너무 적게 묶으면 관리가 어려워진다. 세 가지 원칙이 이 결정을 도와준다.
@@ -269,7 +272,7 @@ flowchart TB
 
 ### 균형점 찾기
 
-프로젝트 단계에 따라 균형점이 다르다:
+이 균형점이 고정된 값이 아니라는 사실이 중요하다. 프로젝트 초기에는 요구사항 자체가 계속 바뀌므로 "무엇이 함께 재사용될지" 예측하기 어렵고, 그래서 변경 편의성(CCP)이 재사용성(REP·CRP)보다 우선한다. 프로젝트가 성숙해 다른 팀·다른 프로젝트가 이 컴포넌트를 가져다 쓰기 시작하면, 이번에는 릴리스 단위와 재사용 단위를 정교하게 맞추는 것이 더 중요해진다. 프로젝트 단계에 따라 균형점이 이렇게 이동한다:
 
 ```mermaid
 flowchart LR
@@ -295,6 +298,8 @@ flowchart LR
 | 재사용 중심 | REP, CRP | 재사용 용이성 중요 |
 
 ## 실제 적용 예시
+
+실제 백엔드 시스템이나 마이크로서비스 아키텍처에서 도메인별로 모듈을 나눌 때도 근본적으로는 같은 질문(함께 릴리스·변경·재사용되는가)을 던진다. 각 모듈이 인터페이스로 외부에 노출할 API를 명확히 하고 의존성 주입으로 구체 구현을 교체 가능하게 만들어 두면, CRP 위반이 뒤늦게 발견되더라도 리팩토링으로 분리하기 쉽고, 트래픽이 몰리는 모듈만 별도로 확장(scale)할 수 있으며, 무엇보다 각 모듈의 책임이 명확해 코드 가독성도 높아진다.
 
 ### 스프링 프레임워크
 
@@ -364,19 +369,6 @@ public class HttpUtils { }
 | REP | 함께 릴리스되는가? | 그룹화 촉진 |
 | CCP | 함께 변경되는가? | 그룹화 촉진 |
 | CRP | 함께 사용되는가? | 그룹화 억제 |
-
-```mermaid
-flowchart TB
-    Q1{함께 재사용?}
-    Q2{함께 변경?}
-    Q3{함께 릴리스?}
-    
-    Q1 -->|Yes| SAME[같은 컴포넌트]
-    Q2 -->|Yes| SAME
-    Q3 -->|Yes| SAME
-    
-    Q1 -->|No| DIFF[다른 컴포넌트]
-```
 
 마틴은 세 원칙이 서로 경쟁한다고 말한다. REP와 CCP는 포함을, CRP는 배제를 강조하며, 좋은 아키텍트는 이 장력에서 현재 개발팀의 요구에 맞는 균형점을 찾는다(Martin, 『Clean Architecture』, 2017, 13장).
 

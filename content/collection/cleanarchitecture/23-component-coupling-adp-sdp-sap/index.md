@@ -2,7 +2,7 @@
 draft: true
 collection_order: 230
 image: "wordcloud.png"
-description: "컴포넌트 결합의 세 가지 원칙(ADP, SDP, SAP)을 상세히 다룹니다. 순환 의존성 제거, 안정성 방향의 의존, 추상화와 안정성의 관계를 불안정성·추상화 메트릭과 주계열 개념을 통해 설명합니다."
+description: "컴포넌트 결합의 세 가지 원칙(ADP, SDP, SAP)을 상세히 다룹니다. 순환 의존성 제거, 안정성 방향의 의존, 추상화와 안정성의 관계를 불안정성·추상화 메트릭과 주계열 개념, 실제 리팩토링 예제와 함께 설명합니다."
 title: "[Clean Architecture] 23. 컴포넌트 결합: ADP, SDP, SAP"
 slug: component-coupling-adp-sdp-sap
 date: 2026-01-18
@@ -16,15 +16,15 @@ tags:
   - Abstraction(추상화)
   - Cohesion(응집도)
   - Modularity
-  - Design-Pattern(디자인패턴)
   - Interface(인터페이스)
   - Best-Practices
   - Maintainability
   - Refactoring(리팩토링)
-  - History(역사)
+  - Domain(도메인)
+  - OOP(객체지향)
+  - Graph(그래프)
   - Case-Study
   - Deep-Dive
-  - Technology(기술)
   - Deployment(배포)
   - System-Design
   - Complexity-Analysis(복잡도분석)
@@ -35,7 +35,7 @@ tags:
   - Math(수학)
 ---
 
-컴포넌트 응집도가 **무엇을 포함할 것인가**에 관한 것이라면, 컴포넌트 결합은 **컴포넌트 간 관계**에 관한 것이다. 이 장에서는 컴포넌트 의존성을 관리하는 세 가지 원칙을 다룬다.
+컴포넌트 응집도가 **무엇을 포함할 것인가**에 관한 것이라면, 컴포넌트 결합은 **컴포넌트 간 관계**에 관한 것이다. 이 장에서는 컴포넌트 의존성을 관리하는 세 가지 원칙을, 객체 지향 설계로 구성된 쇼핑몰 도메인(주문·결제·알림)의 컴포넌트 분리 사례를 통해 다룬다.
 
 ## ADP: 비순환 의존성 원칙
 
@@ -54,19 +54,11 @@ tags:
 
 ### 해결책 1: 주간 빌드 (Weekly Build)
 
-과거에는 이 문제를 일정으로 통제했다. 주 4일은 각자 독립적으로 개발하고, 금요일 하루를 정해 전체를 통합 빌드한다. 그러면 최소한 나머지 요일에는 서로의 변경에 방해받지 않는다.
-- 주 4일은 각자 독립 개발
-- 금요일에 전체 통합
-
-그러나 이 방식은 프로젝트가 커질수록 한계를 드러낸다. 통합해야 할 변경 사항이 많아질수록 금요일 하루 안에 충돌을 다 해결하기 어려워지고, 결국 통합 자체가 프로젝트의 병목이 된다.
-- 통합이 갈수록 어려워짐
-- 프로젝트가 커지면 금요일 하루로 부족
+과거에는 이 문제를 일정으로 통제했다. 주 4일은 각자 독립적으로 개발하고, 금요일 하루를 정해 전체를 통합 빌드한다. 그러면 최소한 나머지 요일에는 서로의 변경에 방해받지 않는다. 그러나 이 방식은 프로젝트가 커질수록 한계를 드러낸다. 통합해야 할 변경 사항이 많아질수록 금요일 하루 안에 충돌을 다 해결하기 어려워지고, 결국 통합 자체가 프로젝트의 병목이 된다.
 
 ### 해결책 2: 릴리스 기반 개발
 
 현대적 해결책은 시간이 아니라 컴포넌트 단위로 통합 시점을 분리하는 것이다. 각 컴포넌트를 **독립적으로 릴리스**하고, 그것을 사용하는 팀은 자신이 **준비되었을 때** 새 버전으로 업그레이드한다. "언제 통합할지"를 전체 팀이 아니라 각 팀이 스스로 결정하게 되는 것이 핵심 차이다.
-- 각 컴포넌트를 **독립적으로 릴리스**
-- 다른 팀은 **준비되면** 새 버전 사용
 
 ```mermaid
 flowchart LR
@@ -152,7 +144,9 @@ flowchart TB
 package com.shop.order;
 
 class OrderService {
-    void markInvoiced() { /* 주문 상태를 "청구 완료"로 변경 */ }
+    private boolean invoiced = false;
+
+    void markInvoiced() { this.invoiced = true; }
 }
 ```
 
@@ -202,8 +196,10 @@ package com.shop.order;
 import com.shop.invoice.Invoiceable;
 
 class OrderService implements Invoiceable {  // A -> Interface (구현)
+    private boolean invoiced = false;
+
     @Override
-    public void markInvoiced() { /* 주문 상태를 "청구 완료"로 변경 */ }
+    public void markInvoiced() { this.invoiced = true; }
 }
 ```
 
@@ -391,7 +387,7 @@ flowchart TB
 
 `Stable`이 `Unstable`을 직접 참조하던 것을, `Stable`이 정의하는 `Interface`를 `Unstable`이 구현하는 구조로 바꾸면 화살표 방향이 뒤집힌다. `Interface`는 `Stable` 안에 속하므로 I=0에 가깝게 유지되고, `Stable`은 이제 안정된 것(자신이 정의한 인터페이스)에만 의존한다 — 겉보기엔 여전히 두 컴포넌트가 연결되어 있지만, 소스 코드 의존성의 방향은 SDP를 만족하도록 바뀐 것이다.
 
-`order`(안정, 많은 곳이 의존)가 `notification`(불안정, 이메일·SMS·푸시 등 채널이 자주 바뀜)에 직접 의존하는 상황을 보자:
+`order`(안정, 많은 곳이 의존)가 `notification`(불안정, 이메일·SMS·푸시 등 채널이 자주 바뀜)에 직접 의존하는 상황을 보자. 아래 예제들은 생성자를 통해 구체 구현을 외부에서 넘겨받는 의존성 주입 방식을 일관되게 쓴다 — 그래야 나중에 인터페이스로 바꿔 끼우기가 쉽다:
 
 ```java
 // SDP 위반: 안정된 order가 불안정한 notification에 직접 의존
@@ -416,7 +412,9 @@ class OrderService {
 package com.shop.notification;
 
 public class EmailNotifier {
-    public void sendReceipt(String orderId) { /* 이메일 발송 */ }
+    public void sendReceipt(String orderId) {
+        System.out.println("이메일 발송: 주문 " + orderId + " 영수증");
+    }
 }
 ```
 
@@ -449,7 +447,9 @@ import com.shop.order.NotificationPort;
 
 public class EmailNotifier implements NotificationPort {  // Unstable -> Interface(구현)
     @Override
-    public void sendReceipt(String orderId) { /* 이메일 발송 */ }
+    public void sendReceipt(String orderId) {
+        System.out.println("이메일 발송: 주문 " + orderId + " 영수증");
+    }
 }
 ```
 
@@ -590,6 +590,8 @@ I(불안정성)와 A(추상화) 메트릭을 "이 값만 계산하면 설계 품
 - 이 컴포넌트가 자신보다 불안정한(I 값이 큰) 컴포넌트에 의존하고 있는가?
 - 안정적인(I 값이 작은) 컴포넌트가 구체 클래스 위주로 구성되어 있는가, 추상화 위주로 구성되어 있는가?
 - D 값이 주계열에서 크게 벗어난 컴포넌트가 있다면, 그것이 실제 설계 문제인지 아니면 태생적으로 불가피한 경우(예: 데이터베이스 스키마)인지 구분했는가?
+
+이 세 원칙을 지키면 부수적인 이점도 따라온다. 인터페이스로 분리된 컴포넌트는 테스트할 때 실제 구현 대신 Mock으로 대체하기 쉽고, 배포 단위와 의존 방향이 명확해 릴리스 문서화 부담이 줄어들며, 의존성 그래프가 한 방향으로만 흐르므로 코드를 읽는 사람이 전체 구조를 파악하기도 쉬워진다.
 
 ## 참고 자료
 
