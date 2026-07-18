@@ -2,14 +2,13 @@
 draft: true
 collection_order: 270
 image: "wordcloud.png"
-description: "아키텍처에서 경계를 긋는 방법과 시점을 다룹니다. 비즈니스 규칙과 세부사항 사이에 경계를 설정하여 플러그인 아키텍처를 구현하는 방법을 설명합니다."
+description: "아키텍처에서 경계를 긋는 방법과 시점을 다룹니다. 비즈니스 규칙과 세부사항 사이에 경계를 설정해 플러그인 아키텍처를 구현하는 방법을, 마틴의 FitNesse 프로젝트 실제 사례와 결제 게이트웨이 예제로 자세히 설명합니다."
 title: "[Clean Architecture] 27. 경계: 선 긋기와 플러그인 아키텍처"
 slug: boundaries-drawing-lines-plugin-architecture
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
-  - Edge-Cases(엣지케이스)
   - Software-Architecture(소프트웨어아키텍처)
   - Database(데이터베이스)
   - Frontend(프론트엔드)
@@ -21,20 +20,19 @@ tags:
   - Design-Pattern(디자인패턴)
   - Abstraction(추상화)
   - Modularity
-  - Cohesion(응집도)
   - Best-Practices
   - Maintainability
   - Refactoring(리팩토링)
   - History(역사)
   - Case-Study
-  - Deep-Dive
   - Technology(기술)
   - Backend(백엔드)
   - API(Application Programming Interface)
-  - TDD(Test-Driven Development)
   - OOP(객체지향)
-  - System-Design
-  - Documentation(문서화)
+  - Java
+  - Domain(도메인)
+  - Web(웹)
+  - Encapsulation(캡슐화)
 ---
 
 아키텍처에서 **경계(Boundary)**란 관심사를 분리하는 선이다. 경계의 한쪽에는 비즈니스 규칙이, 다른 쪽에는 세부사항이 있다. 경계를 제대로 그으면 **플러그인 아키텍처**가 된다.
@@ -374,6 +372,32 @@ public class OrderController {
 }
 ```
 
+## 흔한 오해
+
+경계를 "처음부터 모든 곳에 완벽하게" 그어야 한다는 오해가 흔하다. FitNesse 사례가 보여주듯, 마틴은 오히려 결정을 미룬 채로 개발을 진행했고 결과적으로 MySQL 자체가 필요 없다는 것을 발견했다. 경계를 긋는 목적은 "지금 당장 완벽한 구조를 만드는 것"이 아니라 "나중에 바꿀 수 있는 여지를 남기는 것"이다. 또 다른 오해는 입력과 출력(Web, CLI, DB, 파일)을 아키텍처의 중심으로 여기는 것이다. 이 장이 강조하듯 입력·출력은 세부사항이고, 진짜 중심은 그 사이에서 가치를 만드는 비즈니스 규칙이다 — 입출력 기술이 바뀌어도 비즈니스 규칙은 그대로여야 한다.
+
+## 학습 목표
+
+이 장을 읽은 후 다음을 스스로 점검한다.
+
+- 경계가 "관심사를 분리하는 선"이라는 정의를 실제 코드(경계 전/후)로 설명할 수 있는가?
+- FitNesse 사례에서 "결정을 미루는 데 성공했다"는 말이 구체적으로 무엇을 의미하는지 설명할 수 있는가?
+- 플러그인 아키텍처에서 의존성이 항상 플러그인 → 코어 방향인 이유를 설명할 수 있는가?
+- "입력과 출력은 중요치 않다"는 주장의 의미를, 비즈니스 규칙이 중심이라는 관점에서 설명할 수 있는가?
+- 경계를 늦게 그었을 때 발생하는 구체적 문제(결합도 증가, 테스트 어려움 등)를 코드 예로 설명할 수 있는가?
+
+## 판단 기준
+
+새 기능이나 외부 의존성을 추가할 때 다음을 확인한다.
+
+- 이 코드가 비즈니스 규칙과 세부사항(UI, DB, 프레임워크, 외부 서비스) 중 무엇에 속하는가?
+- 비즈니스 규칙 코드에 특정 기술(HTTP 요청 객체, JDBC 커넥션 등)의 이름이 등장하는가? 등장한다면 경계가 없는 것이다.
+- 이 세부사항을 나중에 다른 구현으로 교체해야 한다면, 지금 구조에서 얼마나 많은 코드를 수정해야 하는가?
+
+## 참고 자료
+
+- Robert C. Martin, 『Clean Architecture』, 2017, 17장 — 경계와 플러그인 아키텍처, FitNesse 사례의 원 출처.
+
 ## 핵심 요약
 
 | 항목 | 내용 |
@@ -384,5 +408,4 @@ public class OrderController {
 | 의존성 방향 | 세부사항 → 비즈니스 규칙 |
 | 핵심 이점 | 세부사항 교체 가능 |
 
-> **"경계를 제대로 그으면, 나중에 세부사항을 바꿀 수 있다. 경계가 없으면 갇히게 된다."**
-> — Robert C. Martin
+마틴은 경계를 제대로 그으면 나중에 세부사항을 바꿀 수 있지만, 경계가 없으면 갇히게 된다고 말한다(Martin, 『Clean Architecture』, 2017, 17장).
