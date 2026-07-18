@@ -27,9 +27,7 @@ tags:
   - Case-Study
   - Deep-Dive
   - Technology(기술)
-  - Testing(테스트)
   - Strategy
-  - Factory
   - Modularity
   - Readability
   - Encapsulation(캡슐화)
@@ -293,9 +291,24 @@ class QuickSort implements SortStrategy {
 
 class MergeSort implements SortStrategy {
     public void sort(int[] array) {
-        // 실무에서는 Arrays.sort(Object[])가 병합정렬 기반이지만,
-        // 여기서는 전략 패턴 구조를 보여주기 위해 별도 구현이 있다고 가정한다.
-        Arrays.sort(array);
+        mergeSort(array, 0, array.length - 1);
+    }
+
+    private void mergeSort(int[] array, int left, int right) {
+        if (left >= right) return;
+        int mid = (left + right) / 2;
+        mergeSort(array, left, mid);
+        mergeSort(array, mid + 1, right);
+        merge(array, left, mid, right);
+    }
+
+    private void merge(int[] array, int left, int mid, int right) {
+        int[] tmp = new int[right - left + 1];
+        int i = left, j = mid + 1, k = 0;
+        while (i <= mid && j <= right) tmp[k++] = array[i] <= array[j] ? array[i++] : array[j++];
+        while (i <= mid) tmp[k++] = array[i++];
+        while (j <= right) tmp[k++] = array[j++];
+        System.arraycopy(tmp, 0, array, left, tmp.length);
     }
 }
 
@@ -309,6 +322,8 @@ class Sorter {
     }
 }
 ```
+
+Strategy 패턴은 알고리즘 전체를 객체로 캡슐화해 **런타임에** 교체한다. `Sorter`는 어떤 정렬 알고리즘이 주입될지 컴파일 시점에 몰라도 되므로, 새 정렬 알고리즘을 추가해도 `Sorter`는 손대지 않는다. 다만 알고리즘 사이에 공유할 코드가 많다면 매 구현마다 중복이 생기기 쉽다 — 그런 경우에는 아래 Template Method가 더 적합하다.
 
 ### 2. Template Method 패턴
 
@@ -339,6 +354,8 @@ class ConsoleReportGenerator extends ReportGenerator {
 }
 ```
 
+Template Method는 Strategy와 달리 알고리즘의 **골격(순서)**을 상위 클래스에 고정하고, 달라지는 단계만 하위 클래스가 채워 넣는다. `prepareData()`처럼 모든 하위 클래스가 공유하는 로직은 상위 클래스에 한 번만 구현하면 되므로 Strategy보다 중복이 적다. 대신 상속을 쓰므로 하위 클래스가 상위 클래스의 골격에 강하게 결합되고, 런타임에 알고리즘을 바꿔 끼울 수는 없다.
+
 ### 3. Plugin 아키텍처
 
 핵심에 플러그인을 꽂는 구조:
@@ -356,6 +373,8 @@ flowchart TB
     P3 --> Core
 ```
 
+Plugin 아키텍처는 Strategy·Template Method를 배포 단위 수준으로 확장한 것이다. 각 플러그인은 핵심 시스템이 정의한 인터페이스에만 의존하고, 핵심 시스템은 어떤 플러그인이 붙는지 전혀 모른다. 그 결과 새 플러그인을 추가·제거해도 핵심 시스템은 재컴파일·재배포할 필요가 없다 — OCP를 클래스 수준이 아니라 컴포넌트·배포 수준으로 끌어올린 형태다.
+
 ## OCP의 한계
 
 ### 완벽한 OCP는 불가능
@@ -372,7 +391,7 @@ flowchart TB
 
 ### 첫 번째 탄환
 
-마틴은 이를 "첫 번째 탄환을 맞는다. 그리고 그 후에 리팩토링한다"고 표현한다(Martin, *Clean Architecture*, 2017). 완벽한 예측은 불가능하다. 변경이 발생하면 그때 OCP를 적용하여 미래의 유사한 변경에 대비한다.
+마틴은 이를 "첫 번째 탄환을 맞는다. 그리고 그 후에 리팩토링한다"고 표현한다(Martin, *Clean Architecture*, 2017, 8장). 완벽한 예측은 불가능하다. 변경이 발생하면 그때 OCP를 적용하여 미래의 유사한 변경에 대비한다.
 
 ## 흔한 오해
 
@@ -402,7 +421,7 @@ flowchart TB
 | 목표 | 변경 영향 최소화 |
 | 패턴 | Strategy, Template Method, Plugin |
 
-마틴은 이렇게 요약한다: OCP의 목표는 시스템을 확장하기 쉬운 동시에 변경으로 인해 시스템이 너무 많은 영향을 받지 않도록 하는 데 있다(Martin, *Clean Architecture*, 2017).
+마틴은 이렇게 요약한다: OCP의 목표는 시스템을 확장하기 쉬운 동시에 변경으로 인해 시스템이 너무 많은 영향을 받지 않도록 하는 데 있다(Martin, *Clean Architecture*, 2017, 8장).
 
 ## 다음 장에서는
 

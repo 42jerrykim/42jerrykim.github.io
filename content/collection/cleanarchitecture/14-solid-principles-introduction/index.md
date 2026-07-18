@@ -132,64 +132,13 @@ flowchart LR
 
 > 소프트웨어 엔터티는 **확장에는 열려** 있어야 하고, **수정에는 닫혀** 있어야 한다.
 
-기존 코드를 수정하지 않고도 새로운 기능을 추가할 수 있어야 한다.
-
-```java
-import java.util.List;
-
-// OCP 적용 전 - 수정에 열려있음
-class ReportGenerator {
-    String generate(String type, List<String> rows) {
-        if (type.equals("PDF")) {
-            return "%PDF-1.4\n" + String.join("\\n", rows);
-        } else if (type.equals("Excel")) {
-            return String.join(",", rows);
-        }
-        // 새 형식 추가 시 이 메서드 자체를 수정해야 한다
-        throw new IllegalArgumentException("지원하지 않는 형식: " + type);
-    }
-}
-
-// OCP 적용 후 - 확장에 열려있음
-interface ReportFormat {
-    String generate(List<String> rows);
-}
-
-class PdfFormat implements ReportFormat {
-    public String generate(List<String> rows) {
-        return "%PDF-1.4\n" + String.join("\\n", rows);
-    }
-}
-
-class ExcelFormat implements ReportFormat {
-    public String generate(List<String> rows) {
-        return String.join(",", rows);
-    }
-}
-// 새 형식: 기존 코드 수정 없이 ReportFormat을 구현하는 새 클래스만 추가
-```
+기존 코드를 수정하지 않고도 새로운 기능을 추가할 수 있어야 한다. 예를 들어 보고서 생성기가 `if (type.equals("PDF")) ... else if (type.equals("Excel"))`처럼 형식을 분기하면, 새 형식을 추가할 때마다 이 메서드 자체를 고쳐야 한다. 형식을 `ReportFormat` 인터페이스로 추상화하면 기존 코드를 건드리지 않고 새 구현 클래스만 추가하면 된다. 이 리팩터링의 전체 과정과 Strategy·Template Method 등 구체적인 적용 패턴은 16장(OCP: 개방-폐쇄 원칙)에서 자세히 다룬다.
 
 ### LSP: 리스코프 치환 원칙
 
 > **하위 타입**은 **상위 타입**을 대체할 수 있어야 한다.
 
-Barbara Liskov가 1987년 제시하고 1994년 정식화한 이 원칙은, 상속 관계에서 하위 클래스가 상위 클래스의 계약을 지켜야 한다는 것이다.
-
-```java
-// LSP 위반
-class Rectangle {
-    void setWidth(int w) { this.width = w; }
-    void setHeight(int h) { this.height = h; }
-}
-
-class Square extends Rectangle {
-    void setWidth(int w) { 
-        this.width = w; 
-        this.height = w;  // 정사각형이므로 높이도 같이 변경
-    }
-    // 부모와 다른 행동 → LSP 위반!
-}
-```
+Barbara Liskov가 1987년 제시하고 1994년 정식화한 이 원칙은, 상속 관계에서 하위 클래스가 상위 클래스의 계약을 지켜야 한다는 것이다. 대표적인 반례가 `Rectangle`을 상속한 `Square`다. `Square`는 `setWidth()`를 오버라이드하면서 높이까지 함께 바꾸는데, 이는 "너비와 높이는 독립적으로 설정된다"는 `Rectangle`의 계약을 깬다. `Rectangle`을 사용하도록 작성된 클라이언트 코드에 `Square`를 넣으면 예상과 다른 결과가 나온다. 정사각형/직사각형 문제의 전체 분석과 계약에 의한 설계는 17장(LSP: 리스코프 치환 원칙)에서 자세히 다룬다.
 
 ### ISP: 인터페이스 분리 원칙
 
@@ -210,6 +159,8 @@ interface Workable { void work(); }
 interface Eatable { void eat(); }
 interface Sleepable { void sleep(); }
 ```
+
+로봇처럼 먹지도 자지도 않는 클라이언트가 있다면, `Workable`만 구현하면 된다. 뚱뚱한 `Worker` 인터페이스였다면 사용하지도 않을 `eat()`·`sleep()`까지 억지로 구현해야 했을 것이다.
 
 ### DIP: 의존성 역전 원칙
 
@@ -233,6 +184,8 @@ flowchart TB
         L2 --> I
     end
 ```
+
+역전 전에는 고수준 모듈이 저수준 모듈을 직접 가리켜, 저수준 모듈이 바뀌면 고수준 모듈도 함께 바뀐다. 역전 후에는 두 모듈 모두 인터페이스를 가리키고, 저수준 모듈의 화살표만 방향이 뒤바뀐다 — 이 화살표 방향의 역전이 원칙의 이름이 된 이유다.
 
 ## SOLID와 Clean Architecture
 
@@ -307,8 +260,12 @@ SOLID는 만능 규칙이 아니다. 다섯 원칙을 기계적으로 전부 적
 ## 참고 자료
 
 - Martin, R. C. (2017). *Clean Architecture: A Craftsman's Guide to Software Structure and Design*. Prentice Hall.
-- Meyer, B. (1988). *Object-Oriented Software Construction*. Prentice Hall.
-- Liskov, B., & Wing, J. (1994). "A Behavioral Notion of Subtyping". *ACM TOPLAS*, 16(6).
+- Martin, R. C. (2003). *Agile Software Development: Principles, Patterns, and Practices*. Prentice Hall. — SRP 정식화.
+- Meyer, B. (1988). *Object-Oriented Software Construction*. Prentice Hall. — OCP 최초 제시.
+- Liskov, B., & Wing, J. (1994). "A Behavioral Notion of Subtyping". *ACM TOPLAS*, 16(6). — LSP 정식화.
+- Martin, R. C. (1996). "The Interface Segregation Principle". *C++ Report*. — ISP 정식화.
+- Martin, R. C. (1996). "The Dependency Inversion Principle". *C++ Report*. — DIP 정식화.
+- Feathers, M. — SOLID 약어를 다섯 원칙의 앞글자로 처음 제안한 것으로 알려져 있다(원 출처는 개별 논문이 아닌 커뮤니티 구전으로, Martin이 여러 강연·저작에서 이를 인정한 바 있다).
 
 ## 다음 장에서는
 
