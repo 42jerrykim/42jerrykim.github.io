@@ -2,7 +2,7 @@
 collection_order: 8
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[LLM 08] 파인튜닝 실전 — Classification Fine-tuning과 LoRA"
 slug: fine-tuning-and-lora
 description: "사전학습된 GPT를 특정 과제에 맞추는 Classification Fine-tuning과, 전체 가중치 대신 저차원 행렬만 학습하는 LoRA·QLoRA를 다룹니다. 왜 파인튜닝마다 다른 전략이 필요한지 데이터 규모 관점에서 설명합니다."
@@ -32,6 +32,9 @@ tags:
   - Implementation(구현)
   - Best-Practices
   - Model-Compression(모델경량화)
+  - Prompt-Engineering(프롬프트엔지니어링)
+  - ChatGPT
+
 ---
 
 07장까지 만든 GPT는 "다음 토큰을 예측"할 뿐, 스팸 메일을 분류하거나 특정 형식으로 답하는 등 구체적인 과제를 수행하도록 만들어지지는 않았습니다. **파인튜닝(Fine-tuning)**은 이렇게 사전학습된 베이스 모델을 특정 목적에 맞게 추가로 학습시키는 과정입니다. 이 장은 가장 단순한 형태인 Classification Fine-tuning에서 시작해, 전체 가중치를 건드리지 않고도 모델을 조정할 수 있는 LoRA로 넘어갑니다.

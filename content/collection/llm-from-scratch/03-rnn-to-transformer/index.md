@@ -2,7 +2,7 @@
 collection_order: 3
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[LLM 03] RNN에서 Transformer까지 — 언어모델의 진화"
 slug: rnn-to-transformer
 description: "인코더-디코더 RNN의 장기 의존성 문제부터 RNN Attention, 그리고 순차 구조 자체를 끊어낸 Transformer까지 언어모델 아키텍처의 진화 과정을 정리합니다. BERT·GPT·T5 구조의 차이도 함께 다룹니다."
@@ -33,6 +33,8 @@ tags:
   - Reference(참고)
   - Comparison(비교)
   - Technology(기술)
+  - Prompt-Engineering(프롬프트엔지니어링)
+
 ---
 
 기계 번역기가 "그가 그녀를 좋아한다"와 "그녀가 그를 좋아한다"를 구분하지 못하던 시절이 있었습니다. 규칙 기반 번역기는 문장을 형태소 단위로 쪼개 품사를 판별하고 변화표를 적용하는 파이프라인이었는데, 언어의 예외와 문맥 의존성을 규칙으로 완벽히 정의하는 것이 사실상 불가능했습니다. 이 장은 그 한계를 극복하기 위해 등장한 세 세대의 구조 — RNN, RNN+Attention, Transformer — 가 각각 무엇을 해결하고 무엇을 남겼는지를 순서대로 따라갑니다.

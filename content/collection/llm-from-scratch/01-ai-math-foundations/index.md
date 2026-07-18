@@ -2,7 +2,7 @@
 collection_order: 1
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[LLM 01] AI 수학 기초 — 내적, Softmax, KL Divergence"
 slug: ai-math-foundations
 description: "Attention과 신경망 학습을 이해하는 데 필요한 최소한의 수학을 정리합니다. 벡터 내적과 코사인 유사도, 선형함수와 활성화함수, Softmax·Sigmoid, KL Divergence와 Cross Entropy를 코드와 함께 다룹니다."
@@ -33,6 +33,8 @@ tags:
   - Reference(참고)
   - Time-Complexity(시간복잡도)
   - Implementation(구현)
+  - Prompt-Engineering(프롬프트엔지니어링)
+
 ---
 
 Attention 메커니즘의 핵심 연산은 결국 벡터의 내적이고, 신경망 학습의 핵심 연산은 결국 미분과 확률분포 비교입니다. 이 장에서는 이후 챕터에서 반복적으로 등장할 다섯 가지 수학 도구 — 내적과 코사인 유사도, 행렬 곱셈, 선형함수와 활성화함수, 지수·로그함수와 Softmax·Sigmoid, KL Divergence와 Cross Entropy — 를 코드와 함께 최소한으로 정리합니다. 목표는 수학을 증명하는 것이 아니라, 03장 이후 Attention 수식을 봤을 때 "이 부분이 뭘 계산하는지" 막히지 않는 것입니다.

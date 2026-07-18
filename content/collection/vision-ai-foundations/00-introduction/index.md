@@ -2,10 +2,10 @@
 collection_order: 0
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[Vision AI 00] Introduction: Vision AI 파운데이션"
 slug: getting-started-vision-ai-foundations
-description: "손으로 설계한 특징에서 CNN, Vision Transformer로 이어지는 컴퓨터 비전의 진화를 정리하는 시리즈의 도입 챕터입니다. 8개 챕터 커리큘럼과 학습 목표, LLM 시리즈와의 연결점을 다룹니다."
+description: "손으로 설계한 특징에서 CNN, Vision Transformer로 이어지는 컴퓨터 비전의 진화를 정리하는 시리즈의 도입 챕터입니다. 8개 챕터의 커리큘럼과 학습 목표, LLM 시리즈와의 연결점까지 상세히 다룹니다."
 tags:
   - Computer-Vision
   - CNN(Convolutional Neural Network)
@@ -30,6 +30,11 @@ tags:
   - Deep-Dive
   - Education(교육)
   - History(역사)
+  - Beginner
+  - Advanced
+  - Case-Study
+  - Reference(참고)
+
 ---
 
 사람은 조각난 이미지를 뒤섞어도 "자동차 범퍼가 보이고 하늘이 보인다"는 식으로 대략적인 내용을 짐작할 수 있습니다. 그런데 같은 방식으로 뒤섞은 이미지로 신경망을 학습시켜 보면, 원본으로 학습했을 때와 비슷한 정확도가 나옵니다. 이 실험이 말해주는 것은 신경망이 이미지를 "형태(사람이 보는 방식)"가 아니라 "픽셀 사이의 통계적 패턴"으로 처리한다는 사실입니다. 이 시리즈는 이 발견에서 출발해, 사람의 시각 처리에 조금이라도 더 가까운 구조(Convolution의 지역성, Attention의 전역성)를 찾아가는 컴퓨터 비전의 발전 과정을 다룹니다.

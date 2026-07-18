@@ -2,7 +2,7 @@
 collection_order: 10
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[LLM 10] RLHF와 DPO — 사람의 선호를 학습시키는 법"
 slug: rlhf-and-dpo
 description: "Reward Model로 응답 순위를 학습하고 강화학습으로 정책을 조정하는 RLHF 파이프라인과, Reward Model 없이 선호 데이터를 직접 손실함수로 바꾸는 DPO를 비교합니다. InstructGPT·DPO 원 논문을 인용합니다."
@@ -30,6 +30,11 @@ tags:
   - Advanced
   - Reference(참고)
   - Comparison(비교)
+  - Prompt-Engineering(프롬프트엔지니어링)
+  - ChatGPT
+  - Hugging-Face
+  - Attention(어텐션)
+
 ---
 
 09장에서 다룬 지시 미세튜닝은 "정답 응답 하나"를 그대로 따라 하도록 학습시킵니다. 하지만 실제로 좋은 응답에는 여러 가지가 있고, 그중에서도 "더 도움이 되는 것"과 "덜 도움이 되는 것"의 미묘한 차이가 있습니다. 이 장은 이 차이를 사람의 판단으로부터 학습시키는 두 가지 방법 — Reward Model을 거치는 RLHF와, 그 과정을 생략하는 DPO — 을 다룹니다.

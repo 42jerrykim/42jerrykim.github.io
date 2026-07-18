@@ -2,10 +2,10 @@
 collection_order: 5
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[On-Device AI 05] LLM Quantization — SmoothQuant와 AWQ"
 slug: llm-quantization-fundamentals
-description: "LLM Activation의 Outlier가 왜 다루기 어려운지부터, 어려움을 Weight로 옮기는 SmoothQuant, 중요 채널만 보호하는 AWQ, OBS 계열의 GPTQ, QLoRA의 NF4·Double Quantization까지 LLM 전용 Quantization 기법을 원 논문과 함께 정리합니다."
+description: "LLM Activation의 Outlier가 왜 다루기 어려운지부터, 어려움을 Weight로 옮기는 SmoothQuant, 중요 채널만 보호하는 AWQ, OBS 계열의 GPTQ, QLoRA의 NF4·Double Quantization까지 LLM 전용 Quantization 기법을 정리합니다."
 tags:
   - Quantization(양자화)
   - LLM(Large Language Model)
@@ -28,6 +28,13 @@ tags:
   - Reference(참고)
   - Implementation(구현)
   - Comparison(비교)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
+  - Embedded(임베디드)
+  - Beginner
+  - Case-Study
+  - Technology(기술)
+
 ---
 
 02장에서 다룬 Quantization을 LLM에 그대로 적용하면, CNN에서는 크게 문제 되지 않던 현상이 발목을 잡습니다 — Activation 값의 일부가 극단적으로 커지는 **outlier**입니다. 이 장은 이 outlier를 다루는 여러 접근을 살펴본 뒤, LLM에서는 왜 Weight만 양자화하는 방식이 더 널리 쓰이는지, 그리고 LoRA와 결합한 QLoRA가 어떻게 메모리를 더 아끼는지를 다룹니다.

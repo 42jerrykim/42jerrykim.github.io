@@ -2,10 +2,10 @@
 collection_order: 0
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[RAG 00] Introduction: RAG와 정보검색"
 slug: getting-started-rag-and-retrieval
-description: "검색과 LLM을 결합하는 시리즈의 도입 챕터입니다. LLM만으로는 부족한 세 가지 이유, 고전 IR부터 GraphRAG·MCP까지 이어지는 8개 챕터 커리큘럼과 학습 목표를 정리합니다."
+description: "검색과 LLM을 결합하는 시리즈의 도입 챕터입니다. LLM만으로는 부족한 세 가지 이유부터, 고전 IR에서 GraphRAG·MCP까지 이어지는 8개 챕터 커리큘럼과 학습 목표, 챕터별 우선순위 로드맵을 자세히 정리합니다."
 tags:
   - Retrieval-Augmented-Generation(RAG)
   - Information-Retrieval(정보검색)
@@ -29,6 +29,12 @@ tags:
   - Guide(가이드)
   - Deep-Dive
   - Education(교육)
+  - Data-Science(데이터사이언스)
+  - PyTorch
+  - Beginner
+  - Advanced
+  - Case-Study
+
 ---
 
 LLM에게 인덱스에 없는 도시(예: 신장)에 대해 질문하면, 실제 지진 규모 7.1을 6.1이라고 답하는 것처럼 그럴듯하지만 틀린 답을 내놓습니다. 같은 질문을 인덱스에 포함된 도시에 대해 물으면 정확한 답이 나옵니다. 이 차이가 이 시리즈의 출발점입니다 — 아무리 큰 LLM도 검색이라는 외부 장치와 결합하지 않으면, "안다고 착각하는 것"과 "정말로 아는 것"을 스스로 구분하지 못합니다.

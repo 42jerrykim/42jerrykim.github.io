@@ -2,7 +2,7 @@
 collection_order: 2
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[On-Device AI 02] Quantization — 비트 수를 줄이는 법"
 slug: model-quantization-fundamentals
 description: "Linear Quantization의 Scale·Zero-point 계산부터 Symmetric·Asymmetric 방식, Static·Dynamic Quantization, PTQ와 QAT의 트레이드오프까지 모델을 저비트로 표현하는 Quantization의 핵심을 정리합니다."
@@ -29,6 +29,12 @@ tags:
   - Implementation(구현)
   - Time-Complexity(시간복잡도)
   - Best-Practices
+  - Mobile(모바일)
+  - Embedded(임베디드)
+  - LLM(Large Language Model)
+  - Case-Study
+  - Comparison(비교)
+
 ---
 
 01장의 Pruning이 "연결을 끊는" 방식이라면, **Quantization(양자화)**은 각 값을 표현하는 비트 수를 줄이는 방식입니다. 32비트 부동소수점으로 저장하던 가중치를 8비트나 4비트 정수로 바꾸면, 같은 모델도 저장 공간과 메모리 대역폭 사용량이 그만큼 줄어듭니다. 이 장은 값을 정수로 매핑하는 계산 과정부터, 언제 양자화 파라미터를 계산할지, 그리고 학습을 포함시킬지 여부에 따른 트레이드오프를 다룹니다.

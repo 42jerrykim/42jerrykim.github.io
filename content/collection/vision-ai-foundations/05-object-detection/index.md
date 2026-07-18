@@ -2,7 +2,7 @@
 collection_order: 5
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[Vision AI 05] Object Detection — R-CNN에서 DETR까지"
 slug: object-detection-fundamentals
 description: "IoU와 mAP 같은 평가지표부터, Two-stage인 R-CNN·Faster R-CNN과 Transformer 기반 DETR까지 Object Detection의 핵심 개념과 발전 과정을 다룹니다. Recall-Precision 트레이드오프를 실무 사례로 설명합니다."
@@ -28,6 +28,13 @@ tags:
   - Comparison(비교)
   - Case-Study(케이스스터디)
   - Best-Practices
+  - Attention(어텐션)
+  - Beginner
+  - Case-Study
+  - Technology(기술)
+  - Implementation(구현)
+  - Time-Complexity(시간복잡도)
+
 ---
 
 이미지 분류가 "이 사진에 무엇이 있는가"를 답한다면, **Object Detection**은 "무엇이, 어디에" 있는가를 동시에 답하는 문제입니다. 즉 물체의 **클래스(class)**와 **경계 상자(bounding box)**를 함께 맞춰야 합니다. 이 장은 이 문제를 어떻게 평가하는지부터 시작해, 후보 영역을 먼저 제안하는 전통적인 방식에서 그 과정 자체를 없애버린 DETR까지의 흐름을 다룹니다.

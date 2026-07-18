@@ -2,7 +2,7 @@
 collection_order: 4
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[Vision AI 04] ViT의 변형들 — DeiT, Swin, CLIP, DINO"
 slug: vit-variants
 description: "ViT의 데이터 효율성을 지식 증류로 보완한 DeiT, 연산량을 윈도우 기법으로 줄인 Swin, 자연어로 지도학습하는 CLIP, 레이블 없이 자기 증류로 학습하는 DINO까지 4가지 ViT 변형을 원 논문과 함께 다룹니다."
@@ -28,6 +28,13 @@ tags:
   - Reference(참고)
   - Comparison(비교)
   - Case-Study(케이스스터디)
+  - Beginner
+  - Case-Study
+  - Technology(기술)
+  - Best-Practices
+  - Implementation(구현)
+  - Time-Complexity(시간복잡도)
+
 ---
 
 03장에서 다룬 원조 ViT는 성능을 내려면 대량의 사전학습 데이터가 필요하고, 모든 패치 쌍 사이의 관계를 계산해야 해서 연산량이 이미지 크기의 제곱으로 늘어나며, 레이블링 비용도 여전히 큽니다. 이 장에서 다루는 네 가지 변형 — DeiT, Swin, CLIP, DINO — 은 각각 이 세 가지 제약 중 하나 이상을 겨냥해 등장했습니다.

@@ -2,7 +2,7 @@
 collection_order: 6
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[RAG 06] MCP 기반 Text2SQL — LLM과 데이터베이스 연결하기"
 slug: mcp-text2sql-fundamentals
 description: "N×M 통합 문제를 표준 프로토콜로 푸는 MCP(Model Context Protocol)의 구조를 다룹니다. Resources·Tools·Prompts 3요소, FastMCP 서버와 LlamaIndex 클라이언트로 구현하는 Text2SQL, 그리고 에이전틱 워크플로우의 실전 한계까지 정리합니다."
@@ -26,6 +26,15 @@ tags:
   - Best-Practices
   - Case-Study(케이스스터디)
   - SQL(Structured Query Language)
+  - Information-Retrieval(정보검색)
+  - Vector-Database(벡터데이터베이스)
+  - Machine-Learning(머신러닝)
+  - Data-Science(데이터사이언스)
+  - Neural-Network
+  - Beginner
+  - Case-Study
+  - Comparison(비교)
+
 ---
 
 지금까지 다룬 검색은 텍스트 문서(01~04장)와 그래프(05장)를 대상으로 했습니다. 이 장은 세 번째 데이터 형태인 **정형 데이터베이스**를 다룹니다. LLM이 자연어 질문을 SQL로 바꿔 데이터베이스를 조회하게 하려면, 단순히 프롬프트에 스키마를 적어 넣는 것만으로는 안전하지도 표준화되지도 않습니다. 이 장은 이 문제를 표준 프로토콜로 해결하는 **MCP(Model Context Protocol)**를 다룹니다.

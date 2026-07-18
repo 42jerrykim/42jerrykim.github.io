@@ -2,10 +2,10 @@
 collection_order: 6
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
-title: "[On-Device AI 06] Efficient Transformer 추론 — Speculative Decoding과 FlashAttention"
+draft: false
+title: "[On-Device AI 06] 추론 가속 — Speculative Decoding, FlashAttention"
 slug: efficient-transformer-inference
-description: "압축이 아니라 연산·메모리 접근 패턴을 최적화하는 추론 가속 기법을 다룹니다. 작은 모델의 추측을 큰 모델이 검증하는 Speculative Decoding, 타일링으로 메모리 접근을 줄이는 FlashAttention, 중요 토큰만 남기는 H2O를 원 논문과 함께 정리합니다. 시리즈 C의 마지막 챕터입니다."
+description: "압축이 아니라 연산·메모리 접근 패턴을 최적화하는 추론 가속 기법을 다룹니다. Speculative Decoding, FlashAttention, 중요 토큰만 남기는 H2O를 원 논문과 함께 정리하는 시리즈의 마지막 챕터입니다."
 tags:
   - On-Device-AI(온디바이스AI)
   - LLM(Large Language Model)
@@ -28,6 +28,13 @@ tags:
   - Implementation(구현)
   - Time-Complexity(시간복잡도)
   - Case-Study(케이스스터디)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
+  - Embedded(임베디드)
+  - Beginner
+  - Case-Study
+  - Comparison(비교)
+
 ---
 
 01~05장은 모델 자체를 작게 만드는 압축 기법을 다뤘습니다. 이 장은 관점을 바꿔, 모델 크기는 그대로 두고 **연산 순서와 메모리 접근 패턴**을 최적화해 추론을 빠르게 만드는 기법들을 다룹니다. 00장에서 짚은 Decode 단계의 메모리 바운드 병목을 직접 겨냥한 기법들이라는 공통점이 있습니다.

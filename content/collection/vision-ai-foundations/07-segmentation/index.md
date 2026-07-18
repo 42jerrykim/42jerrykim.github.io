@@ -2,7 +2,7 @@
 collection_order: 7
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[Vision AI 07] Segmentation — FCN에서 SAM까지"
 slug: image-segmentation-fundamentals
 description: "픽셀 단위로 분류하는 Segmentation을 FCN의 Skip Fusion부터 Mask R-CNN, U-Net의 Encoder-Decoder 구조, Transformer 기반 SegFormer, 범용 파운데이션 모델 SAM까지 원 논문과 함께 정리합니다. 시리즈 B의 마지막 챕터입니다."
@@ -28,6 +28,13 @@ tags:
   - Comparison(비교)
   - Case-Study(케이스스터디)
   - Implementation(구현)
+  - Attention(어텐션)
+  - Beginner
+  - Case-Study
+  - Technology(기술)
+  - Best-Practices
+  - Time-Complexity(시간복잡도)
+
 ---
 
 Object Detection이 박스 단위로 물체 위치를 찾는다면, **Segmentation**은 **픽셀 단위**로 어느 물체에 속하는지를 분류합니다. 이 장은 이 문제를 처음으로 완전한 CNN 구조로 푼 FCN에서 시작해, Detection과 결합한 Mask R-CNN, 의료 영상에서 출발해 지금도 널리 쓰이는 U-Net, Transformer 기반 SegFormer, 그리고 프롬프트 하나로 무엇이든 분할하는 SAM까지 다룹니다.

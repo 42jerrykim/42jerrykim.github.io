@@ -2,7 +2,7 @@
 collection_order: 2
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[RAG 02] Dense Retrieval — BERT로 의미를 검색하기"
 slug: dense-retrieval-fundamentals
 description: "희소 벡터 대신 신경망 임베딩으로 검색하는 Dense Retrieval을 다룹니다. Bi-encoder와 Cross-encoder의 정확도-속도 트레이드오프, DPR의 대조 학습, Re-ranking 2단계 구조를 원 논문과 함께 정리합니다."
@@ -29,6 +29,12 @@ tags:
   - Reference(참고)
   - Comparison(비교)
   - Implementation(구현)
+  - LLM(Large Language Model)
+  - Data-Science(데이터사이언스)
+  - Beginner
+  - Case-Study
+  - Technology(기술)
+
 ---
 
 01장에서 다룬 BM25는 단어가 정확히 일치해야 검색이 됩니다. "자동차"로 검색하면 "차량"이라는 단어만 쓰인 문서는 찾지 못합니다. **Dense Retrieval**은 이 한계를 신경망 임베딩으로 넘어섭니다 — 단어의 표면형이 아니라 의미가 비슷한 문서를 찾습니다. 이 장은 Dense Retrieval을 학습하는 두 가지 구조와, 그 사이의 정확도-속도 트레이드오프를 다룹니다.

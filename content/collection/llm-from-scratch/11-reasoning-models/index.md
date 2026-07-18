@@ -2,10 +2,10 @@
 collection_order: 11
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[LLM 11] 추론 모델의 시대 — Chain-of-Thought와 GRPO"
 slug: reasoning-models
-description: "중간 추론 과정을 생성하면 왜 정답률이 올라가는지 Chain-of-Thought로 설명하고, 정답 채점의 어려움과 이를 해결하는 GRPO 강화학습 방식까지 최근 추론 모델의 학습 원리를 다룹니다."
+description: "중간 추론 과정을 생성하면 왜 정답률이 올라가는지 Chain-of-Thought로 설명하고, 정답 채점의 어려움과 이를 해결하는 GRPO 강화학습 방식까지 최근 추론 모델이 학습되는 원리를 논문과 함께 자세히 정리합니다."
 tags:
   - LLM(Large Language Model)
   - Reinforcement-Learning(강화학습)
@@ -28,6 +28,13 @@ tags:
   - Reference(참고)
   - Case-Study(케이스스터디)
   - Comparison(비교)
+  - Prompt-Engineering(프롬프트엔지니어링)
+  - ChatGPT
+  - Hugging-Face
+  - PyTorch
+  - Attention(어텐션)
+  - Beginner
+
 ---
 
 10장에서 다룬 RLHF·DPO는 "어떤 응답이 더 나은가"라는 선호를 학습시켰습니다. 이 장에서 다루는 **추론 모델(reasoning model)**은 한 걸음 더 나아가, 정답을 곧바로 내놓는 대신 중간 풀이 과정을 스스로 생성하도록 학습된 모델입니다. 이 장은 왜 중간 과정을 생성하는 것만으로 정답률이 오르는지, 그리고 정답이 있는 과제에서 이 능력을 강화학습으로 어떻게 강화하는지를 다룹니다.

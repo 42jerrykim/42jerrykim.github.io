@@ -2,10 +2,10 @@
 collection_order: 9
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[LLM 09] 지시 미세튜닝 — 프롬프트 포맷과 마스킹"
 slug: instruction-tuning
-description: "베이스 모델이 지시를 따르지 못하는 이유부터, 프롬프트 포맷 설계, 패딩과 -100 마스킹으로 손실 계산에서 정답 아닌 부분을 제외하는 방법, 3단계 파인튜닝 피라미드까지 지시 미세튜닝의 실전을 다룹니다."
+description: "베이스 모델이 지시를 따르지 못하는 이유부터, 프롬프트 포맷 설계, 패딩과 -100 마스킹으로 손실 계산에서 정답이 아닌 부분을 제외하는 방법, 3단계 파인튜닝 피라미드까지 지시 미세튜닝의 실전을 코드와 함께 자세히 다룹니다."
 tags:
   - LLM(Large Language Model)
   - Fine-Tuning(파인튜닝)
@@ -30,6 +30,11 @@ tags:
   - Reference(참고)
   - Implementation(구현)
   - Best-Practices
+  - Prompt-Engineering(프롬프트엔지니어링)
+  - ChatGPT
+  - Attention(어텐션)
+  - Case-Study
+
 ---
 
 00장에서 짚었듯, 사전학습만 마친 **베이스 모델**은 "다음에 올 가능성이 높은 텍스트"를 이어 쓸 뿐, 질문에 답하도록 설계되어 있지 않습니다. `프랑스의 수도는?`이라는 입력에 베이스 모델은 정답을 말하는 대신 비슷한 질문을 더 나열하는 식으로 이어 쓸 수도 있습니다. **지시 미세튜닝(Instruction Fine-tuning)**은 "질문-답변" 또는 "지시-수행" 형태의 데이터로 추가 학습시켜, 모델이 대화 상대처럼 반응하도록 만드는 과정입니다.

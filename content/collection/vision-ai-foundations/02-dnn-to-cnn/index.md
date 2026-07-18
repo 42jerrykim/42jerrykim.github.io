@@ -2,7 +2,7 @@
 collection_order: 2
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[Vision AI 02] DNN에서 CNN으로 — 합성곱과 ResNet"
 slug: dnn-to-cnn
 description: "완전연결 신경망이 픽셀을 통계적 패턴으로만 처리한다는 한계 실험부터, Convolution·Padding·Stride·Pooling·Receptive Field, 그리고 ResNet의 Skip Connection까지 CNN 아키텍처의 핵심을 정리합니다."
@@ -29,6 +29,12 @@ tags:
   - Implementation(구현)
   - Time-Complexity(시간복잡도)
   - Case-Study(케이스스터디)
+  - Transformer
+  - Attention(어텐션)
+  - Case-Study
+  - Comparison(비교)
+  - Technology(기술)
+
 ---
 
 이미지의 조각을 큼직하게 잘라 위치를 뒤섞어도 사람은 "자동차 범퍼, 하늘"처럼 대략적인 내용을 짐작합니다. 하지만 픽셀 단위로 완전히 뒤섞으면 사람 눈에는 노이즈로만 보입니다. 흥미로운 점은, 이렇게 픽셀 단위로 뒤섞은 이미지로 완전연결 신경망(DNN)을 학습시켜도 원본으로 학습했을 때와 비슷한 정확도가 나온다는 것입니다. 이 장은 이 실험이 드러내는 DNN의 한계에서 출발해, 그 한계를 보완하는 Convolution 구조와 ResNet의 Skip Connection까지 다룹니다.

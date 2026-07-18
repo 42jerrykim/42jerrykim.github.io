@@ -2,7 +2,7 @@
 collection_order: 12
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[LLM 12] LLM 서빙 효율화 — KV Cache, GQA, MLA"
 slug: llm-serving-efficiency
 description: "이미 계산한 Key·Value를 재사용하는 KV Cache부터, 메모리 사용량을 줄이는 GQA와 MLA, Sliding Window Attention까지 LLM 추론을 빠르게 만드는 서빙 효율화 기법을 다룹니다. 시리즈 A의 마지막 챕터입니다."
@@ -31,6 +31,10 @@ tags:
   - Implementation(구현)
   - Time-Complexity(시간복잡도)
   - Best-Practices
+  - Prompt-Engineering(프롬프트엔지니어링)
+  - ChatGPT
+  - Hugging-Face
+
 ---
 
 지금까지 다룬 모든 기법은 "모델을 어떻게 만들고 조정하는가"에 관한 것이었습니다. 이 마지막 장은 관점을 바꿔, 이미 학습이 끝난 모델을 실제 서비스에서 **얼마나 빠르게 응답하게 만들 것인가**를 다룹니다. 05장에서 구현한 Self-Attention을 그대로 서비스에 쓰면 사용자가 메시지를 한 글자씩 더 보낼 때마다 이전 전체 문장에 대한 Attention을 처음부터 다시 계산하게 되는데, 이 장은 그 낭비를 없애는 KV Cache에서 출발해 최근 대형 모델들이 채택하는 메모리 절약 기법으로 이어집니다.

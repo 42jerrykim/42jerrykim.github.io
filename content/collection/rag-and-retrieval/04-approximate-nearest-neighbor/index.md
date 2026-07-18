@@ -2,10 +2,10 @@
 collection_order: 4
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[RAG 04] 고차원 근사 검색 — LSH와 그래프 인덱스"
 slug: approximate-nearest-neighbor-search
-description: "차원의 저주 때문에 정확한 최근접 이웃 탐색이 고차원에서 왜 어려워지는지부터, 해시 기반 LSH와 HNSW 같은 그래프 인덱스로 근사 검색을 빠르게 만드는 방법, CLIP을 이용한 멀티모달 검색까지 다룹니다."
+description: "차원의 저주 때문에 정확한 최근접 이웃 탐색이 고차원에서 왜 어려워지는지부터, 해시 기반 LSH와 HNSW 같은 그래프 인덱스로 근사 검색을 빠르게 만드는 방법, CLIP을 이용한 멀티모달 검색까지 자세히 다룹니다."
 tags:
   - Information-Retrieval(정보검색)
   - Vector-Database(벡터데이터베이스)
@@ -26,6 +26,15 @@ tags:
   - Reference(참고)
   - Implementation(구현)
   - Comparison(비교)
+  - LLM(Large Language Model)
+  - NLP(Natural Language Processing)
+  - Data-Science(데이터사이언스)
+  - PyTorch
+  - Neural-Network
+  - Beginner
+  - Case-Study
+  - Technology(기술)
+
 ---
 
 02장에서 다룬 Dense Retrieval은 질문과 문서를 수백 차원의 벡터로 인코딩합니다. 문서가 수백만 개라면, 매 질문마다 모든 문서 벡터와 유사도를 계산하는 것은 비현실적입니다. 이 장은 왜 고차원 공간에서는 정확한 탐색이 근본적으로 어려운지, 그리고 정확함을 조금 포기하는 대신 속도를 얻는 근사 탐색 기법들을 다룹니다.

@@ -2,7 +2,7 @@
 collection_order: 5
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[RAG 05] GraphRAG — 지식을 그래프로 검색하기"
 slug: graph-rag-fundamentals
 description: "문서 대신 지식그래프를 검색 대상으로 삼는 GraphRAG의 색인-검색-생성 3단계 파이프라인을 다룹니다. Retriever의 종류, CRAG 벤치마크 평가 방식, 그리고 고정된 질의 생성이 실습에서 드러낸 한계와 에이전틱 전환까지 정리합니다."
@@ -26,6 +26,15 @@ tags:
   - Reference(참고)
   - Case-Study(케이스스터디)
   - Comparison(비교)
+  - Vector-Database(벡터데이터베이스)
+  - Data-Science(데이터사이언스)
+  - PyTorch
+  - Beginner
+  - Case-Study
+  - Technology(기술)
+  - Best-Practices
+  - Implementation(구현)
+
 ---
 
 01~04장까지 다룬 검색은 모두 **텍스트 문서**를 검색 단위로 삼는 TextRAG였습니다. **GraphRAG**는 검색 대상을 문서가 아니라 **그래프**로 바꿉니다. 이 장은 지식을 그래프로 표현하는 방법부터, 실제 벤치마크에서 이 접근이 어떤 한계에 부딪혔고 어떻게 개선되었는지까지 다룹니다.

@@ -2,7 +2,7 @@
 collection_order: 6
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[Vision AI 06] Tracking — ByteTrack과 TrackFormer"
 slug: object-tracking-fundamentals
 description: "여러 프레임에 걸쳐 같은 물체를 이어 붙이는 Multi-Object Tracking을, Tracking-by-Detection과 Tracking-by-Regression 두 접근으로 나눠 설명합니다. 저신뢰도 검출까지 활용하는 ByteTrack과 DETR 기반 TrackFormer를 다룹니다."
@@ -27,6 +27,14 @@ tags:
   - Reference(참고)
   - Comparison(비교)
   - Case-Study(케이스스터디)
+  - Attention(어텐션)
+  - Beginner
+  - Case-Study
+  - Technology(기술)
+  - Best-Practices
+  - Implementation(구현)
+  - Time-Complexity(시간복잡도)
+
 ---
 
 05장에서 다룬 Object Detection은 프레임 하나에서 "무엇이 어디에 있는가"를 답합니다. **Tracking(추적)**은 여기서 한 걸음 더 나아가, 여러 프레임에 걸쳐 등장하는 물체가 "같은 개체인가"를 판단하는 문제입니다. 이 문제는 **MOT(Multi-Object Tracking)**라고 불리며, 이 장은 두 가지 접근 방식과 그중 최근 대세가 된 방식의 대표 기법 두 가지를 다룹니다.

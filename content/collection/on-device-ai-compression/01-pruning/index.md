@@ -2,7 +2,7 @@
 collection_order: 1
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[On-Device AI 01] Pruning — 가지치기로 모델 슬림화하기"
 slug: model-pruning-fundamentals
 description: "신경망이 과잉 설계되는 이유부터, Fine-grained와 Coarse-grained Pruning의 정확도-가속 트레이드오프, Magnitude 기반 선택, N:M Sparsity, 희소 행렬 저장 방식까지 Pruning의 핵심을 정리합니다."
@@ -29,6 +29,12 @@ tags:
   - Implementation(구현)
   - Time-Complexity(시간복잡도)
   - Best-Practices
+  - Mobile(모바일)
+  - Embedded(임베디드)
+  - LLM(Large Language Model)
+  - Case-Study
+  - Comparison(비교)
+
 ---
 
 완전연결 레이어는 원래 모든 노드가 서로 연결되어 있지만, 이 연결 전부가 추론 시점에 똑같이 중요하게 쓰이지는 않습니다. **Pruning(가지치기)**은 중요도가 낮은 연결을 끊어(0으로 만들어) 모델을 경량화하는 기법입니다. 이 장은 왜 이런 가지치기가 가능한지, 그리고 어떤 단위로 얼마나 잘라낼지가 왜 정확도와 하드웨어 가속 사이의 트레이드오프를 만드는지를 다룹니다.

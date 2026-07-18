@@ -2,7 +2,7 @@
 collection_order: 3
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[On-Device AI 03] Knowledge Distillation — Teacher와 Student"
 slug: knowledge-distillation-fundamentals
 description: "작은 모델이 처음부터 학습되기 어려운 이유부터, Temperature로 만드는 Soft Label, Forward·Reverse KL Divergence의 차이, 중간 레이어를 비교하는 Feature-based KD까지 지식 증류의 핵심을 Hinton 원 논문과 함께 정리합니다."
@@ -26,6 +26,15 @@ tags:
   - Implementation(구현)
   - Comparison(비교)
   - Case-Study(케이스스터디)
+  - Hardware(하드웨어)
+  - Mobile(모바일)
+  - Embedded(임베디드)
+  - LLM(Large Language Model)
+  - Beginner
+  - Case-Study
+  - Technology(기술)
+  - Best-Practices
+
 ---
 
 01~02장에서 다룬 Pruning과 Quantization은 이미 학습된 모델에서 무언가를 "덜어내는" 접근이었습니다. **Knowledge Distillation(지식 증류)**은 방향이 다릅니다 — 작은 모델을 처음부터 잘 학습시키는 것 자체가 어렵다는 문제의식에서 출발해, 이미 잘 학습된 큰 모델의 지식을 작은 모델에 옮겨 담습니다. 이 장은 이 "옮겨 담는" 과정이 구체적으로 어떤 신호를 어떻게 전달하는지를 다룹니다.

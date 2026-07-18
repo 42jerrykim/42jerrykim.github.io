@@ -2,10 +2,10 @@
 collection_order: 1
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[RAG 01] Classical IR — 역색인, TF-IDF, BM25"
 slug: classical-information-retrieval
-description: "역색인 자료구조부터 단어 빈도의 한계를 보정하는 TF-IDF, 오랫동안 사실상 표준이었던 BM25, 그리고 MRR·Precision·Recall 같은 검색 평가 지표까지 신경망 이전 정보검색의 핵심을 정리합니다."
+description: "역색인 자료구조부터 단어 빈도의 한계를 보정하는 TF-IDF, 오랫동안 사실상 표준이었던 BM25, 그리고 MRR·Precision·Recall 같은 검색 평가 지표까지 신경망 이전 정보검색의 핵심을 자세히 정리합니다."
 tags:
   - Information-Retrieval(정보검색)
   - Retrieval-Augmented-Generation(RAG)
@@ -28,6 +28,13 @@ tags:
   - Data-Structures(자료구조)
   - Comparison(비교)
   - Best-Practices
+  - Vector-Database(벡터데이터베이스)
+  - LLM(Large Language Model)
+  - PyTorch
+  - Neural-Network
+  - Advanced
+  - Case-Study
+
 ---
 
 검색엔진이 등장한 지 수십 년이 지났지만, 그 근간이 되는 아이디어는 지금도 RAG 시스템의 일부로 살아 있습니다. 이 장은 신경망이 등장하기 전, "쿼리가 주어지면 관련 문서를 어떻게 빠르게 찾을 것인가"라는 문제를 검색엔진이 어떻게 풀어왔는지를 다룹니다.

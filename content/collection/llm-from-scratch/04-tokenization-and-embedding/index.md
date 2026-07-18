@@ -2,7 +2,7 @@
 collection_order: 4
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[LLM 04] 토크나이징과 임베딩 — 텍스트를 벡터로"
 slug: tokenization-and-embedding
 description: "텍스트를 토큰 ID로 바꾸는 토크나이징, 토큰을 벡터로 바꾸는 임베딩, 그리고 절대·상대 위치 인코딩과 RoPE까지 GPT 입력 표현을 다룹니다. PyTorch Dataset/DataLoader 구현 예제를 포함합니다."
@@ -32,6 +32,9 @@ tags:
   - Reference(참고)
   - Implementation(구현)
   - Best-Practices
+  - Prompt-Engineering(프롬프트엔지니어링)
+  - ChatGPT
+
 ---
 
 Transformer는 03장에서 본 것처럼 문장 전체를 한 번에 병렬로 입력받습니다. 하지만 신경망은 숫자 연산만 할 수 있고, 병렬로 넣는 순간 "몇 번째 단어인가"라는 순서 정보는 저절로 사라집니다. 이 장은 문장을 모델이 받아들일 수 있는 숫자로 바꾸는 과정 — 토크나이징과 임베딩 — 과, 사라진 순서 정보를 되살리는 위치 인코딩을 다룹니다.

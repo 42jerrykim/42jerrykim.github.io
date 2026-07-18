@@ -2,7 +2,7 @@
 collection_order: 0
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[On-Device AI 00] Introduction: On-Device AI 경량화"
 slug: getting-started-on-device-ai-compression
 description: "모델을 자원이 제한된 기기에서 빠르게 돌리는 경량화 시리즈의 도입 챕터입니다. Prefill/Decode의 서로 다른 병목, Pruning·Quantization·Distillation 3대 기법의 관계, 7개 챕터 커리큘럼을 정리합니다."
@@ -29,6 +29,12 @@ tags:
   - Guide(가이드)
   - Deep-Dive
   - Education(교육)
+  - Mobile(모바일)
+  - Beginner
+  - Advanced
+  - Case-Study
+  - Reference(참고)
+
 ---
 
 같은 트랜스포머 연산인데도, LLM이 프롬프트를 읽을 때(Prefill)와 답을 한 글자씩 뱉을 때(Decode)는 병목의 성격이 완전히 다릅니다. Prefill은 GPU 연산 능력이 부족해서 느리고, Decode는 GPU가 놀고 있는데도 메모리에서 가중치를 읽어오는 속도 때문에 느립니다. 이 시리즈는 "모델을 어떻게 만들고 학습시키는가"를 다룬 LLM·Vision 시리즈에서 관점을 바꿔, "이미 만든 모델을 자원이 제한된 환경에서 어떻게 빠르고 가볍게 돌릴 것인가"를 다룹니다.

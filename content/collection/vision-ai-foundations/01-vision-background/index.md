@@ -2,10 +2,10 @@
 collection_order: 1
 date: 2026-07-17
 lastmod: 2026-07-17
-draft: true
+draft: false
 title: "[Vision AI 01] 비전을 위한 배경지식 — 카메라와 확률통계"
 slug: vision-background-knowledge
-description: "카메라 센서가 이미지를 만드는 ISP 파이프라인부터, 행렬-벡터 곱의 가중합 해석, Likelihood와 Bayes' Rule, MLE·MAP, Entropy까지 컴퓨터 비전에 필요한 배경지식을 정리합니다."
+description: "카메라 센서가 이미지를 만드는 ISP 파이프라인부터, 행렬-벡터 곱의 가중합 해석, Likelihood와 Bayes' Rule, MLE·MAP, Entropy까지 컴퓨터 비전에 필요한 배경지식을 코드와 함께 정리합니다."
 tags:
   - Computer-Vision
   - Machine-Learning(머신러닝)
@@ -29,6 +29,12 @@ tags:
   - Image-Processing
   - Comparison(비교)
   - Time-Complexity(시간복잡도)
+  - Transformer
+  - Attention(어텐션)
+  - Advanced
+  - Case-Study
+  - Technology(기술)
+
 ---
 
 LLM 시리즈에서는 텍스트가 토큰 ID로 바뀐 뒤 임베딩되는 과정을 다뤘습니다. 비전 모델의 입력은 그 이전 단계, 즉 빛이 카메라 센서를 거쳐 픽셀값의 배열이 되는 과정에서 이미 여러 가공을 거칩니다. 이 장은 그 가공 과정을 간단히 짚은 뒤, CNN·ViT를 이해하는 데 필요한 벡터·확률통계의 직관을 정리합니다.
