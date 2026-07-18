@@ -10,19 +10,12 @@ tags:
 - Java
 - Git
 - GitHub
-- Tree(트리)
-- String(문자열)
-- Async(비동기)
 - Best-Practices
 - Refactoring(리팩토링)
-- War(전쟁)
-- Adapter
-- Design-Pattern(디자인패턴)
 - Clean-Code(클린코드)
 - Documentation(문서화)
 - Implementation(구현)
 - Debugging(디버깅)
-- Performance(성능)
 - Automation(자동화)
 - Education(교육)
 - Tutorial(튜토리얼)
@@ -36,8 +29,8 @@ tags:
 - Comparison(비교)
 - Case-Study
 - Deep-Dive
-- 실습
 - Review(리뷰)
+- 단위테스트
 ---
 
 일반적인 소스 코드와 마찬가지로 단위 테스트 코드는 안티 패턴, 결함 및 냄새라고도 하는 잘못된 프로그래밍 관행의 영향을 받는다.
