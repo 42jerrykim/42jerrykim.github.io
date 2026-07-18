@@ -27,7 +27,7 @@ tags:
   - Deep-Dive
   - Deployment(배포)
   - System-Design
-  - Complexity-Analysis(복잡도분석)
+  - Encapsulation(캡슐화)
   - Java
   - Documentation(문서화)
   - Readability
