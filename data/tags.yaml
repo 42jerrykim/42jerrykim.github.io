@@ -275,6 +275,36 @@ ai_and_data:
   - LLM(Large Language Model)
   - GPT(Generative Pre-trained Transformer)
   - Neural-Network
+  - Transformer
+  - Attention(어텐션)
+  - Self-Attention
+  - Embedding(임베딩)
+  - Tokenization(토크나이징)
+  - Fine-Tuning(파인튜닝)
+  - LoRA(Low-Rank Adaptation)
+  - RLHF(Reinforcement Learning from Human Feedback)
+  - DPO(Direct Preference Optimization)
+  - Reinforcement-Learning(강화학습)
+  - BERT
+  - ResNet
+  - CNN(Convolutional Neural Network)
+  - Vision-Transformer(ViT)
+  - Object-Detection(객체탐지)
+  - Image-Segmentation(이미지분할)
+  - Quantization(양자화)
+  - Pruning(가지치기)
+  - Knowledge-Distillation(지식증류)
+  - On-Device-AI(온디바이스AI)
+  - MLOps
+  - Retrieval-Augmented-Generation(RAG)
+  - Information-Retrieval(정보검색)
+  - Vector-Database(벡터데이터베이스)
+  - Hugging-Face
+  - PyTorch
+  - Model-Compression(모델경량화)
+  - Text-to-SQL
+  - MCP(Model Context Protocol)
+  - Knowledge-Graph(지식그래프)
 
 system_and_low_level:
   - Memory(메모리)
