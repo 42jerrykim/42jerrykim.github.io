@@ -35,6 +35,7 @@ tags:
   - Comparison(비교)
   - Technology(기술)
 
+image: "wordcloud.png"
 ---
 
 01~02장에서 다룬 검색은 "관련 문서를 찾는" 절반의 문제였습니다. **RAG(Retrieval-Augmented Generation)**는 여기에 "찾은 문서를 읽고 답하는" 나머지 절반을 결합합니다. 이 장은 이 결합 구조가 수식으로 어떻게 표현되는지부터, 실제로 LlamaIndex로 구축했을 때 마주치는 청킹·프롬프트 설계 같은 실전 튜닝 포인트까지 다룹니다.

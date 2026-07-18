@@ -35,6 +35,7 @@ tags:
   - ChatGPT
   - Hugging-Face
 
+image: "wordcloud.png"
 ---
 
 05장에서 만든 Multi-head Attention 하나만으로는 GPT가 되지 않습니다. 실제 GPT 블록은 Attention 앞뒤로 정규화를 두르고, Attention 뒤에 Feed Forward Network를 이어붙이고, 각 서브층의 입력을 출력에 그대로 더하는 Residual Connection으로 감싼 구조입니다. 이 장은 이 나머지 부품들을 하나씩 조립해 완전한 GPT 블록을 완성하고, 마지막으로 이 블록이 만든 확률 분포에서 실제로 다음 토큰을 어떻게 골라내는지까지 다룹니다.

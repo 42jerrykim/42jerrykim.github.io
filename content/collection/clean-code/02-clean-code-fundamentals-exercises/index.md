@@ -34,6 +34,7 @@ tags:
 - OOP(객체지향)
 - Encapsulation(캡슐화)
 - Abstraction(추상화)
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

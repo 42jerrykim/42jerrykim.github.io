@@ -37,6 +37,7 @@ tags:
 - Vendor-Partition
 - Stable-AIDL
 - SoC
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

@@ -43,6 +43,7 @@ tags:
 - Diagnostic-App
 - Android-bp
 - Vendor-Partition
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

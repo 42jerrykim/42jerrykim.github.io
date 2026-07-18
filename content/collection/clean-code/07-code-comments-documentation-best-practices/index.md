@@ -33,6 +33,7 @@ tags:
 - Interface(인터페이스)
 - Software-Architecture(소프트웨어아키텍처)
 - Productivity(생산성)
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

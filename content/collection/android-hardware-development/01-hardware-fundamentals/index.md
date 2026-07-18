@@ -42,6 +42,7 @@ tags:
 - Thermal-Management
 - HAL
 - NNAPI
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

@@ -40,6 +40,7 @@ tags:
 - Choreographer
 - Big-LITTLE
 - Low-Memory-Killer
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

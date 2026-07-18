@@ -38,6 +38,7 @@ tags:
 - Local-Reference
 - Global-Reference
 - Advanced
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

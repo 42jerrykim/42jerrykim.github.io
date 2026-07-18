@@ -35,6 +35,7 @@ tags:
 - Pitfalls(함정)
 - Coupling(결합도)
 - Cohesion(응집도)
+image: "wordcloud.png"
 ---
 
 ## 이 시리즈에 대하여

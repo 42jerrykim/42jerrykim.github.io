@@ -33,6 +33,7 @@ tags:
 - Design-Pattern(디자인패턴)
 - System-Design
 - SOLID
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

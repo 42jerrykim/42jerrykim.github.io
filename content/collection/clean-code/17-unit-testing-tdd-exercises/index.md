@@ -33,6 +33,7 @@ tags:
 - Interface(인터페이스)
 - Dependency-Injection(의존성주입)
 - Database(데이터베이스)
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

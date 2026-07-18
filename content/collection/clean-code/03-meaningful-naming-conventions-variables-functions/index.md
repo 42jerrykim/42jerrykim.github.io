@@ -34,6 +34,7 @@ tags:
 - IDE(Integrated Development Environment)
 - VSCode
 - Domain-Driven-Design
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

@@ -34,6 +34,7 @@ tags:
 - Type-Safety
 - OOP(객체지향)
 - Software-Architecture(소프트웨어아키텍처)
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

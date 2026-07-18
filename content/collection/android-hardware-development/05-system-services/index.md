@@ -41,6 +41,7 @@ tags:
 - AOSP
 - IPC
 - Zygote
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

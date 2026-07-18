@@ -1,6 +1,7 @@
 ---
 title: "[Vocabulary] Sauce, Dressing, Spread, Condiment의 차이점"
 date: 2025-05-22
+lastmod: 2026-07-18
 categories:
   - Vocabulary
   - Food
@@ -38,7 +39,7 @@ tags:
   - 실습
   - Review(리뷰)
 description: "요리 레시피나 음식 관련 영어 용어에서 자주 등장하는 Sauce(소스), Dressing(드레싱), Spread(스프레드), Condiment(콘디멘트)의 차이점을 설명하는 글이다. 각 용어의 정의와 사용 예시를 통해 쉽게 이해할 수 있도록 정리했다."
-image: image05.png
+image: "wordcloud.png"
 ---
 
 요리를 하다 보면 미국식 레시피나 음식 이야기를 읽을 때 "Sauce", "Dressing", "Spread", "Condiment" 같은 영어 용어를 볼 수 있다. 이 네 가지는 모두 음식에 풍미를 더해주는 역할을 하지만, 사용되는 방식이나 형태가 조금씩 다르다. 이 글에서는 각 용어의 뜻과 쓰임새를 쉽게 설명하고, 케첩(ketchup), 마요네즈(mayonnaise), 딸기잼(strawberry jam), 버터(butter), 랜치 드레싱(ranch dressing), 토마토 소스(tomato sauce) 같은 친숙한 예시를 통해 차이점을 알아보고자 한다.

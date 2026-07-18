@@ -35,6 +35,7 @@ tags:
   - Technology(기술)
   - Best-Practices
 
+image: "wordcloud.png"
 ---
 
 01~02장에서 다룬 Pruning과 Quantization은 이미 학습된 모델에서 무언가를 "덜어내는" 접근이었습니다. **Knowledge Distillation(지식 증류)**은 방향이 다릅니다 — 작은 모델을 처음부터 잘 학습시키는 것 자체가 어렵다는 문제의식에서 출발해, 이미 잘 학습된 큰 모델의 지식을 작은 모델에 옮겨 담습니다. 이 장은 이 "옮겨 담는" 과정이 구체적으로 어떤 신호를 어떻게 전달하는지를 다룹니다.

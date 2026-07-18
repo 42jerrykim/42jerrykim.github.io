@@ -33,6 +33,7 @@ tags:
 - Refactoring(리팩토링)
 - IDE(Integrated Development Environment)
 - Modularity
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

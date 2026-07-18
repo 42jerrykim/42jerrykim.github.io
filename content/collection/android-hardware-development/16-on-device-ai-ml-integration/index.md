@@ -40,6 +40,7 @@ tags:
 - On-Device-AI
 - HAL
 - SoC
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에
