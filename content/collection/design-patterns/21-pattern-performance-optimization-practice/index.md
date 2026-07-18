@@ -2,10 +2,10 @@
 draft: true
 collection_order: 211
 title: "[Design Patterns] 패턴 성능 최적화 실습 - 효율적인 설계와 구현"
-description: "디자인 패턴의 성능 특성을 분석하고 최적화하는 실습입니다. 객체 풀링, 지연 로딩, 캐싱, 플라이웨이트 등의 최적화 기법을 적용하여 패턴의 장점은 유지하면서 성능 오버헤드를 최소화하는 고급 구현 기법을 학습합니다."
+description: "디자인 패턴의 성능 특성을 측정하고 최적화하는 실습입니다. JMH 벤치마크 작성, 객체 풀링, 지연 로딩, 캐싱, 플라이웨이트 등의 최적화 기법을 적용하며 JIT 컴파일러 인라이닝 분석까지 다뤄 패턴의 장점을 유지하면서 성능 오버헤드를 최소화하는 구현 기법을 학습합니다."
 image: "wordcloud.png"
 date: 2024-12-21T11:00:00+09:00
-lastmod: 2024-12-15T14:30:00+09:00
+lastmod: 2026-07-17T14:30:00+09:00
 categories:
 - Design Patterns
 - Performance Optimization
@@ -13,11 +13,33 @@ categories:
 - Practice
 - Efficiency
 tags:
-- Profiling(프로파일링)
-- Tutorial(튜토리얼)
-- Implementation(구현)
 - Design-Pattern(디자인패턴)
-- Software-Architecture(소프트웨어아키텍처)
+- GoF(Gang of Four)
+- Performance(성능)
+- Optimization(최적화)
+- Benchmark
+- Profiling(프로파일링)
+- Memory(메모리)
+- Compiler(컴파일러)
+- CPU(Central Processing Unit)
+- Cache
+- Factory
+- Proxy
+- Strategy
+- Observer
+- Behavioral-Pattern
+- Creational-Pattern
+- Structural-Pattern
+- OOP(객체지향)
+- Java
+- Implementation(구현)
+- Tutorial(튜토리얼)
+- Best-Practices
+- Code-Quality(코드품질)
+- Concurrency(동시성)
+- Thread
+- Advanced
+- Case-Study
 ---
 
 이 실습에서는 성능 벤치마크 작성, 메모리 효율적인 패턴 구현, JIT 최적화 분석을 직접 수행합니다.
@@ -29,6 +51,8 @@ tags:
 3. JIT 최적화와 패턴의 상관관계 분석
 
 ## 과제 1: 성능 벤치마크 작성
+
+`System.nanoTime()`으로 전후 시간을 재는 방식은 JIT 워밍업 전 상태를 측정하거나, 결과를 사용하지 않는 계산이 컴파일러에 의해 통째로 제거(Dead Code Elimination)되어 실제보다 훨씬 빠른 값이 나오는 함정이 있습니다. JMH(Java Microbenchmark Harness)는 워밍업 반복, 여러 포크(fork) 실행, 결과 강제 사용(blackhole) 등을 자동으로 처리해 이런 함정을 피합니다. 아래 세 벤치마크는 생성 패턴이 직접 생성 대비 어느 정도의 상대적 오버헤드를 갖는지 측정하는 예시입니다.
 
 ### Factory Method vs Direct Instantiation
 ```java
@@ -51,6 +75,18 @@ public class CreationPatternBenchmark {
     public Object abstractFactory() {
         AbstractFactory factory = new ConcreteFactory();
         return factory.createProduct();
+    }
+}
+
+// Product 최소 스텁 (벤치마크가 컴파일되려면 반환 타입이 필요합니다)
+interface Product {
+    String getName();
+}
+
+class ConcreteProduct implements Product {
+    @Override
+    public String getName() {
+        return "concrete";
     }
 }
 
@@ -131,9 +167,42 @@ abstract class DataProcessorDecorator implements DataProcessor {
     }
 }
 
-// TODO: 구체적인 Decorator들 구현
+// 최소 구현: 세 Decorator 모두 process()를 오버라이드해야 컴파일됩니다.
 class CompressionDecorator extends DataProcessorDecorator {
-    // TODO: 구현
+    public CompressionDecorator(DataProcessor processor) {
+        super(processor);
+    }
+
+    @Override
+    public String process(String data) {
+        String upstream = processor.process(data);
+        return "[compressed]" + upstream; // TODO: 실제 압축 로직으로 교체
+    }
+}
+
+class EncryptionDecorator extends DataProcessorDecorator {
+    public EncryptionDecorator(DataProcessor processor) {
+        super(processor);
+    }
+
+    @Override
+    public String process(String data) {
+        String upstream = processor.process(data);
+        return "[encrypted]" + upstream; // TODO: 실제 암호화 로직으로 교체
+    }
+}
+
+class LoggingDecorator extends DataProcessorDecorator {
+    public LoggingDecorator(DataProcessor processor) {
+        super(processor);
+    }
+
+    @Override
+    public String process(String data) {
+        String result = processor.process(data);
+        System.out.println("[log] processed length=" + result.length());
+        return result;
+    }
 }
 ```
 
@@ -173,6 +242,25 @@ public class ObserverBenchmark {
 ```
 
 ## 과제 2: 메모리 효율적인 패턴 구현
+
+메모리 효율화의 핵심은 "많이 만들지 않기"(Flyweight로 공유 상태 재사용), "다시 만들지 않기"(Object Pool로 재사용), "필요할 때만 만들기"(Proxy로 지연 로딩) 세 가지 전략으로 요약됩니다. 세 전략 모두 객체 생성 자체를 줄이거나 늦춰서 할당·GC 비용을 낮춘다는 공통점이 있지만, 적용 대상(공유 가능한 불변 데이터 vs 재사용 가능한 자원 vs 로딩 비용이 큰 자원)이 다릅니다.
+
+| 전략 | 무엇을 줄이는가 | 적용 대상 | 재사용 단위 | 대가 |
+|---|---|---|---|---|
+| Flyweight | 중복 객체 생성 | 공유 가능한 불변(intrinsic) 데이터 | 타입/속성 단위 공유 | 외재적 상태를 매번 인자로 전달해야 함 |
+| Object Pool | 생성·해제 비용 | 생성 비용이 큰 재사용 가능 자원(커넥션, 스레드) | 인스턴스 단위 재사용 | 풀 관리(동기화·상태 추적) 오버헤드 |
+| Proxy(지연 로딩) | 불필요한 초기화 | 로딩 비용이 크지만 당장 쓰이지 않을 수 있는 자원 | 요청 시점까지 생성 지연 | 최초 접근 시 지연 발생, 프록시 계층 추가 |
+
+```mermaid
+flowchart TD
+    A[클라이언트 요청] --> B{이미 생성된 인스턴스가 있는가?}
+    B -- Flyweight: 캐시에 있음 --> C[캐시된 공유 인스턴스 반환]
+    B -- Object Pool: 반납된 것이 있음 --> D[풀에서 꺼내 재사용]
+    B -- Proxy: 아직 없음 --> E[실제 객체 생성 후 위임]
+    C --> F[외재적 상태 적용]
+    D --> G[사용 후 풀에 반납]
+    E --> H[다음 호출부터는 생성된 실제 객체로 위임]
+```
 
 ### Flyweight 패턴으로 게임 캐릭터 시스템
 ```java
@@ -241,7 +329,22 @@ public class GameCharacter {
 ```
 
 ### Object Pool 패턴으로 네트워크 연결 관리
+
 ```java
+// Connection 최소 스텁
+class Connection {
+    private final String id = UUID.randomUUID().toString();
+    private volatile boolean closed = false;
+
+    boolean isValid() {
+        return !closed;
+    }
+
+    void close() {
+        this.closed = true;
+    }
+}
+
 public class ConnectionPool {
     private final Queue<Connection> availableConnections;
     private final Set<Connection> usedConnections;
@@ -255,19 +358,27 @@ public class ConnectionPool {
         this.currentSize = new AtomicInteger(0);
     }
     
+    // 연결 획득: 1) 재사용 가능한 연결이 있으면 큐에서 꺼내 반환
+    //          2) 없고 아직 maxSize 미만이면 새로 생성
+    //          3) maxSize에 도달했으면 예외로 알림 (실무에서는 대기/타임아웃으로 대체 가능)
     public Connection getConnection() {
-        // TODO: 연결 풀에서 연결 가져오기
-        // 1. 사용 가능한 연결이 있으면 반환
-        // 2. 없으면 새로 생성 (최대 크기 제한)
-        // 3. 최대 크기 초과 시 대기 또는 예외
-        return null;
+        Connection connection = availableConnections.poll();
+        if (connection == null) {
+            if (currentSize.get() >= maxSize) {
+                throw new IllegalStateException("Connection pool exhausted (max=" + maxSize + ")");
+            }
+            connection = new Connection();
+            currentSize.incrementAndGet();
+        }
+        usedConnections.add(connection);
+        return connection;
     }
     
     public void returnConnection(Connection connection) {
-        // TODO: 연결을 풀로 반환
-        // 1. 사용 중 목록에서 제거
-        // 2. 연결 상태 검증
-        // 3. 정상이면 사용 가능 목록에 추가
+        // TODO: getConnection()과 대칭이 되도록 아래 3단계로 구현하세요
+        // 1. usedConnections에서 제거
+        // 2. connection.isValid()로 상태 검증
+        // 3. 유효하면 availableConnections에 반환, 무효하면 currentSize를 감소시키고 폐기
     }
     
     // 성능 모니터링
@@ -408,6 +519,8 @@ public void benchmarkImageProxy() {
 
 ## 과제 3: JIT 최적화 분석
 
+HotSpot JIT은 호출 지점(call site)에서 실제로 나타나는 구체 타입의 수를 기준으로 인라이닝 여부를 결정합니다. 타입이 하나뿐인 단형성(monomorphic) 호출은 적극적으로 인라이닝되지만, 타입이 3개 이상인 megamorphic 호출은 인라이닝을 포기하고 가상 메서드 테이블을 조회합니다. Strategy 배열처럼 여러 구현체를 순환 호출하는 코드는 megamorphic 상황을 만들기 쉬우므로, 아래 벤치마크로 그 차이를 직접 확인합니다.
+
 ### 단형성 vs 다형성 호출 성능
 ```java
 @BenchmarkMode(Mode.AverageTime)
@@ -511,23 +624,30 @@ public class InliningAnalysis {
 
 ## 완성도 체크리스트
 
-### 벤치마크 작성
-- [ ] JMH를 사용한 마이크로 벤치마크
-- [ ] 워밍업 단계 고려
-- [ ] 통계적으로 유의미한 결과
-- [ ] 메모리 사용량 측정
+- [ ] **JMH 벤치마크가 워밍업을 포함하는가** — `@Warmup`, `@Measurement` 애노테이션 없이 `System.nanoTime()`으로만 측정하면 JIT 컴파일 전 상태를 재는 것이라 결과가 왜곡됩니다.
+- [ ] **벤치마크 결과가 Dead Code Elimination에서 안전한가** — `@Benchmark` 메서드가 값을 반환하거나 `Blackhole`에 값을 소비시켜, 컴파일러가 "사용되지 않는 계산"으로 판단해 통째로 제거하지 않는지 확인합니다.
+- [ ] **`ConnectionPool.getConnection()`이 maxSize를 실제로 지키는가** — 풀이 가득 찼을 때 예외를 던지거나 대기하는지, 무한정 새 연결을 생성하지 않는지 테스트로 확인합니다.
+- [ ] **Flyweight의 메모리 절약이 실측치로 뒷받침되는가** — `Runtime.totalMemory() - freeMemory()`나 프로파일러로 Flyweight 적용 전후 힙 사용량을 직접 비교했는지 확인합니다.
+- [ ] **단형성/다형성/megamorphic 벤치마크가 서로 다른 결과를 보이는가** — 세 벤치마크 실행 결과에서 megamorphic 케이스가 실제로 더 느리게 나오는지 확인하고, 나오지 않는다면 JIT 워밍업 부족을 의심합니다.
+- [ ] **최적화 전후를 같은 조건에서 비교했는가** — JVM 플래그, 데이터 크기, 워밍업 횟수를 동일하게 맞춘 상태에서 Before/After를 측정했는지 확인합니다.
 
-### 메모리 최적화
-- [ ] Object Pool 구현 및 성능 측정
-- [ ] Flyweight 패턴 메모리 절약 확인
-- [ ] Lazy Loading 효과 측정
-- [ ] GC 압박 분석
+## 이 최적화가 오히려 손해인 경우
 
-### JIT 최적화
-- [ ] 단형성/다형성 호출 성능 차이 측정  
-- [ ] 메서드 인라이닝 효과 분석
-- [ ] 분기 예측 최적화 적용
-- [ ] 핫스팟 식별
+성능 최적화는 공짜가 아닙니다. 아래 기준에 해당하면 최적화를 적용하기 전에 다시 생각해야 합니다.
+
+- **객체 생성 비용이 이미 낮다면 Object Pool은 손해입니다.** 단순 POJO처럼 생성 비용이 수 ns~수십 ns 수준인 객체는, 풀의 동기화·상태 추적 오버헤드가 순수 생성 비용보다 커질 수 있습니다. "생성 비용 ≫ 풀 관리 비용"일 때만 적용하세요.
+- **호출 빈도가 낮은 콜드 패스에서는 Flyweight·Strategy 최적화가 가독성만 해칩니다.** I/O나 네트워크 호출이 섞인 경로에서는 패턴 오버헤드가 전체 지연의 1% 미만이라, 최적화로 얻는 이득보다 코드 복잡도 증가가 더 클 수 있습니다.
+- **측정 없이 적용한 최적화는 검증할 수 없습니다.** JMH로 Before/After를 측정하지 않고 "이론적으로 빠를 것"이라는 추정만으로 코드를 복잡하게 만들면, 실제 이득이 없거나 오히려 느려져도 알아챌 방법이 없습니다.
+- **동시성 오버헤드가 순차 처리보다 클 수 있습니다.** Lock-free 자료구조나 스레드 풀 기반 비동기 처리는 경합이 거의 없는 저빈도 작업에서는 컨텍스트 스위칭·메모리 배리어 비용이 순차 처리보다 오히려 비쌀 수 있습니다.
+
+## 평가 기준
+
+이 실습을 완료했다면 다음을 스스로 설명할 수 있어야 합니다.
+
+- JMH가 `System.nanoTime()` 수동 측정 대비 왜 더 신뢰할 수 있는지, 워밍업과 Dead Code Elimination 회피가 각각 어떤 문제를 막는지 설명할 수 있다.
+- Flyweight, Object Pool, Proxy(지연 로딩)가 각각 어떤 종류의 메모리 낭비를 줄이는지, 세 패턴을 서로 바꿔 적용하면 안 되는 이유를 근거를 들어 말할 수 있다.
+- 단형성/다형성/megamorphic 호출에서 JIT 인라이닝 결정이 어떻게 달라지는지, 실제 벤치마크 수치로 그 차이를 뒷받침할 수 있다.
+- 이번 실습에서 만든 최적화 중 "측정 없이는 적용하지 말아야 할" 것이 무엇인지 하나 이상 지목할 수 있다.
 
 ## 추가 도전 과제
 

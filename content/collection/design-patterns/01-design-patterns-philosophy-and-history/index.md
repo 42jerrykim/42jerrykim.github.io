@@ -5,7 +5,7 @@ title: "[Design Patterns] 디자인 패턴의 철학과 역사"
 description: "Christopher Alexander의 건축 패턴에서 시작된 디자인 패턴의 근본 철학과 Gang of Four까지의 발전 과정을 탐구합니다. 패턴이 단순한 코드 템플릿이 아닌 설계 지혜의 결정체임을 이해하고, 패턴 언어의 본질과 소프트웨어 설계에 미친 혁명적 영향을 깊이 있게 살펴봅니다."
 image: "wordcloud.png"
 date: 2024-12-01T10:00:00+09:00
-lastmod: 2024-12-15T14:30:00+09:00
+lastmod: 2026-07-17T14:30:00+09:00
 categories:
 - Design Patterns
 - Software Architecture
@@ -17,6 +17,30 @@ tags:
 - Software-Architecture(소프트웨어아키텍처)
 - Code-Quality(코드품질)
 - SOLID
+- OOP(객체지향)
+- Observer
+- Strategy
+- Factory
+- Visitor
+- Template-Method
+- Interface(인터페이스)
+- Abstraction(추상화)
+- Encapsulation(캡슐화)
+- Polymorphism(다형성)
+- Composition(합성)
+- Coupling(결합도)
+- Cohesion(응집도)
+- UML(Unified Modeling Language)
+- Creational-Pattern
+- Structural-Pattern
+- Behavioral-Pattern
+- Java
+- JavaScript
+- History(역사)
+- Deep-Dive
+- Advanced
+- Tutorial(튜토리얼)
+- Guide(가이드)
 ---
 
 ## 서론: 패턴이라는 이름의 시
@@ -96,7 +120,7 @@ Alexander는 좋은 설계가 가진 특별한 품질을 "이름 없는 품질(Q
 ### 최초의 소프트웨어 패턴들
 
 **Kent Beck과 Ward Cunningham (1987)**
-가장 먼저 Alexander의 아이디어를 프로그래밍에 적용한 사람들입니다. 그들은 Smalltalk 프로그래밍을 위한 간단한 패턴들을 정리했습니다:
+가장 먼저 Alexander의 아이디어를 프로그래밍에 적용한 사람들입니다(위키백과 Design Patterns 항목 기준). 그들은 Smalltalk 프로그래밍을 위한 간단한 패턴들을 정리했습니다:
 
 ```
 초기 소프트웨어 패턴 예시:
@@ -106,7 +130,7 @@ Alexander는 좋은 설계가 가진 특별한 품질을 "이름 없는 품질(Q
 ```
 
 **Erich Gamma의 박사 논문 (1991)**
-Erich Gamma는 박사 논문에서 소프트웨어 설계의 패턴을 체계적으로 연구했습니다. 이것이 훗날 GoF 패턴의 씨앗이 되었습니다.
+Erich Gamma는 박사 논문에서 소프트웨어 설계의 패턴을 체계적으로 연구했습니다(위키백과 Design Patterns 항목 기준). 이것이 훗날 GoF 패턴의 씨앗이 되었습니다.
 
 ### Gang of Four의 등장
 
@@ -424,6 +448,23 @@ sort(quickSort)([3, 1, 4, 1, 5]);
 | | 행동(Behavioral) | 11개 |
 | 범위별 | 클래스 (상속 관계) | 4개 |
 | | 객체 (객체 관계) | 19개 |
+
+### 흔한 오해
+
+**"GoF가 디자인 패턴을 발명했다"는 오해**
+
+디자인 패턴을 처음 접하는 개발자들이 가장 흔히 갖는 오해는 Gamma, Helm, Johnson, Vlissides 네 사람이 패턴이라는 개념 자체를 창안했다고 생각하는 것입니다. 하지만 이 글에서 살펴본 것처럼 패턴 개념의 원조는 건축가 Christopher Alexander이며, GoF는 이미 1977년부터 존재하던 "패턴 언어"라는 아이디어를 소프트웨어 설계에 체계적으로 **차용하고 정제**한 것입니다. GoF의 진짜 기여는 패턴이라는 개념의 발명이 아니라, 객체지향 설계에서 반복적으로 나타나는 23개의 구체적 해법을 수집하고 표준화된 형식으로 문서화하여 업계 전체가 공유할 수 있는 어휘로 만든 데 있습니다.
+
+## 평가 기준
+
+이 글을 읽고 나면 다음 항목들을 스스로 점검해볼 수 있습니다.
+
+- 패턴 언어(Pattern Language)를 구성하는 컨텍스트, 문제, 해법, 결과 4요소를 설명할 수 있다.
+- Christopher Alexander의 건축 패턴 개념과 GoF의 소프트웨어 패턴 개념의 공통점과 차이를 구분할 수 있다.
+- Beck & Cunningham(1987)과 Gamma의 박사 논문(1991)이 GoF 책(1994) 탄생 과정에서 각각 어떤 역할을 했는지 설명할 수 있다.
+- GoF 23개 패턴이 생성/구조/행동으로 분류되는 기준을 말할 수 있다.
+- "패턴은 발견되는가, 발명되는가"라는 철학적 질문에서 발견론적 관점과 발명론적 관점의 차이를 설명할 수 있다.
+- "GoF가 패턴을 발명했다"는 흔한 오해가 왜 틀렸는지 근거를 들어 반박할 수 있다.
 
 ---
 

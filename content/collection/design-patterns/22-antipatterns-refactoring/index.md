@@ -2,22 +2,44 @@
 draft: true
 collection_order: 220
 title: "[Design Patterns] 안티패턴 식별과 리팩토링"
-description: "소프트웨어 개발에서 자주 발생하는 안티패턴을 식별하고 체계적으로 리팩토링하는 전문가 기법을 학습합니다. God Object, Spaghetti Code 등 주요 안티패턴 분석, Strangler Fig Pattern을 활용한 점진적 개선, 코드 품질 측정과 기술 부채 관리를 통해 지속 가능한 소프트웨어를 만드는 방법을 탐구합니다."
+description: "소프트웨어 개발에서 자주 발생하는 안티패턴을 식별하고 체계적으로 리팩토링하는 전문가 기법을 학습합니다. God Object, Spaghetti Code 분석과 Strangler Fig Pattern 기반 점진적 개선, 코드 품질 측정을 통해 지속 가능한 소프트웨어를 만드는 방법을 탐구합니다."
 image: "wordcloud.png"
 date: 2024-12-22T10:00:00+09:00
-lastmod: 2024-12-15T14:30:00+09:00
+lastmod: 2026-07-17T14:30:00+09:00
 categories:
 - Design Patterns
 - Anti Patterns
 - Code Refactoring
 - Software Quality
 tags:
-- Code-Quality(코드품질)
+- Design-Pattern(디자인패턴)
+- Refactoring(리팩토링)
 - Clean-Code(클린코드)
+- Code-Quality(코드품질)
 - Code-Review(코드리뷰)
-- Software-Architecture(소프트웨어아키텍처)
 - Best-Practices
 - SOLID
+- Coupling(결합도)
+- Cohesion(응집도)
+- Maintainability
+- Readability
+- Modularity
+- Pitfalls(함정)
+- Software-Architecture(소프트웨어아키텍처)
+- OOP(객체지향)
+- Singleton
+- Factory
+- Observer
+- Strategy
+- Decorator
+- Command
+- Behavioral-Pattern
+- Creational-Pattern
+- Structural-Pattern
+- Java
+- Deep-Dive
+- Advanced
+- Case-Study
 ---
 
 실무에서 자주 발생하는 안티패턴을 식별하고 체계적인 리팩토링 방법을 탐구합니다. 코드 스멜, 설계 부채, 패턴 남용의 문제를 해결하는 방법을 학습합니다.
@@ -34,9 +56,15 @@ tags:
 - **패턴 오남용**: 적절한 맥락이 아닌 곳에서의 패턴 사용
 - **과도한 추상화**: 불필요한 복잡성 증가
 
+### 흔한 오해: 안티패턴은 처음부터 나쁜 코드다
+
+안티패턴을 "처음부터 잘못 설계된 코드"로 오해하기 쉽지만, 실제로는 그 반대인 경우가 더 많습니다. 아래 God Object 예시의 `UserManager`도 처음에는 사용자 생성 메서드 하나짜리 작고 멀쩡한 클래스였을 가능성이 높습니다. 매 스프린트마다 "일단 여기 추가하자"는 합리적으로 보이는 선택이 누적되면서, 각 시점의 결정은 국소적으로 타당했지만 전체 결과는 God Object가 되는 것입니다. 이는 God Object가 한 번의 실수가 아니라 여러 번의 작은 타협이 쌓인 결과임을 뜻하며, 따라서 리팩토링도 "처음부터 다시 설계"가 아니라 그 타협들을 하나씩 되짚어 되돌리는 점진적 작업이어야 합니다.
+
 ## 주요 안티패턴 분석
 
 ### God Object (신 객체)
+
+God Object는 "일단 여기에 추가하면 편하니까"라는 판단이 반복되면서 만들어집니다. 새 기능이 필요할 때마다 기존 클래스에 필드와 메서드를 얹는 쪽이, 새 클래스를 만들고 의존성을 연결하는 것보다 눈앞에서는 더 빨라 보이기 때문입니다. 그 결과 한 클래스가 데이터베이스 접근, 비즈니스 규칙, 외부 서비스 연동까지 모두 떠안게 되며, 이는 단일 책임 원칙(SRP) 위반의 가장 전형적인 형태입니다. Martin Fowler는 이런 축적형 코드 스멜을 *Refactoring: Improving the Design of Existing Code*(2nd ed., 2018)에서 "Large Class"로 분류하고, 책임이 늘어날 때마다 즉시 Extract Class로 분리할 것을 권고합니다. 아래 `UserManager`는 사용자 생성·인증·프로필·권한 관리를 800줄 넘는 하나의 클래스에 모아둔 예시입니다.
 
 ```java
 // 안티패턴: 모든 책임을 가진 거대한 클래스
@@ -201,6 +229,8 @@ public class UserRegistrationEventHandler {
 
 ### Spaghetti Code (스파게티 코드)
 
+Spaghetti Code는 조건문 하나하나는 정당한 검증 로직인데도, 그 검증들을 순서대로 중첩시키다 보니 전체 흐름을 한눈에 파악할 수 없게 된 상태를 가리킵니다. "null 체크 → 빈 값 체크 → 각 항목 검증 → 고객 상태 확인 → 한도 확인"처럼 서로 다른 층위의 검증이 들여쓰기 depth로만 구분되면, 예외 조건 하나를 추가하거나 순서를 바꿀 때마다 전체 중첩 구조를 다시 읽어야 합니다. Fowler(2018)는 이런 깊은 중첩을 "Nested Conditional" 계열의 코드 스멜로 다루며, Guard Clause 도입과 [Decompose Conditional](https://refactoring.guru/refactoring/smells) 리팩토링으로 조건들을 같은 층위로 평탄화할 것을 제안합니다. 아래 `OrderProcessor.processOrder()`는 5단계 검증이 중첩 if-else로 얽혀 있는 예시입니다.
+
 ```java
 // 안티패턴: 복잡하게 얽힌 제어 흐름
 public class OrderProcessor {
@@ -263,6 +293,33 @@ public class OrderProcessor {
 **리팩토링: Command Pattern + Validation Chain**
 
 ```java
+// 0. 지원 타입 최소 스텁 (컴파일 가능하도록 핵심 필드만 포함)
+public enum ProcessingStatus { IN_PROGRESS, COMPLETED, FAILED, ERROR }
+
+public class ProcessingResult {
+    private final boolean failed;
+    private final boolean warning;
+    private final String message;
+
+    private ProcessingResult(boolean failed, boolean warning, String message) {
+        this.failed = failed;
+        this.warning = warning;
+        this.message = message;
+    }
+
+    public static ProcessingResult success(String message) {
+        return new ProcessingResult(false, false, message);
+    }
+
+    public static ProcessingResult failed(List<String> errors) {
+        return new ProcessingResult(true, false, String.join(", ", errors));
+    }
+
+    public boolean isFailed() { return failed; }
+    public boolean isWarning() { return warning; }
+    public String getMessage() { return message; }
+}
+
 // 1. 주문 처리 단계를 명확한 커맨드로 분리
 public interface OrderProcessingStep {
     ProcessingResult execute(OrderProcessingContext context);
@@ -360,6 +417,10 @@ public class OrderProcessingOrchestrator {
 
 ```java
 // 기존 레거시 시스템
+// 아래 processOrder()는 실존하는 레거시 코드를 그대로 옮긴 것이 아니라,
+// "이미 있고 당장 손댈 수 없는 500줄짜리 코드"라는 상황을 나타내는 자리표시자입니다.
+// Strangler Fig 전략의 핵심은 이 내부를 뜯어고치지 않고도 트래픽을 점진적으로 새 서비스로 옮기는 데 있으므로,
+// 본문 구현은 의도적으로 생략합니다.
 @Component
 public class LegacyOrderService {
     
@@ -369,6 +430,91 @@ public class LegacyOrderService {
         // 하드코딩된 비즈니스 규칙
         // 예외 처리 부족
     }
+}
+
+// 아래는 OrderServiceProxy / NewOrderService가 최소한이나마 컴파일되도록 하는 지원 타입 스텁입니다.
+// 실제 필드·검증 로직은 프로젝트 도메인에 맞게 채워야 합니다.
+class OrderData { /* 레거시 포맷 DTO */ }
+
+interface FeatureToggle {
+    boolean isEnabled(String key);
+}
+
+class OrderItem {}
+class PaymentInfo {}
+
+class Order {
+    private long customerId;
+    private List<OrderItem> items;
+    private PaymentInfo paymentInfo;
+
+    public long getCustomerId() { return customerId; }
+    public List<OrderItem> getItems() { return items; }
+    public PaymentInfo getPaymentInfo() { return paymentInfo; }
+    public Order confirm(String transactionId) { return this; }
+}
+
+interface OrderValidator {
+    ValidationResult validate(Order order);
+}
+
+class ValidationResult {
+    private final boolean valid;
+    private final List<String> errors;
+    ValidationResult(boolean valid, List<String> errors) { this.valid = valid; this.errors = errors; }
+    boolean isValid() { return valid; }
+    List<String> getErrors() { return errors; }
+}
+
+interface InventoryService {
+    ReservationResult reserveItems(List<OrderItem> items);
+    void cancelReservation(String reservationId);
+}
+
+class ReservationResult {
+    private final boolean successful;
+    private final String reservationId;
+    private final List<OrderItem> unavailableItems;
+    ReservationResult(boolean successful, String reservationId, List<OrderItem> unavailableItems) {
+        this.successful = successful;
+        this.reservationId = reservationId;
+        this.unavailableItems = unavailableItems;
+    }
+    boolean isSuccessful() { return successful; }
+    String getReservationId() { return reservationId; }
+    List<OrderItem> getUnavailableItems() { return unavailableItems; }
+}
+
+class PaymentException extends Exception {}
+
+interface PaymentProcessor {
+    PaymentResult processPayment(PaymentInfo paymentInfo) throws PaymentException;
+}
+
+class PaymentResult {
+    private final String transactionId;
+    PaymentResult(String transactionId) { this.transactionId = transactionId; }
+    String getTransactionId() { return transactionId; }
+}
+
+interface NotificationService {
+    void sendOrderConfirmation(Order order);
+}
+
+interface OrderRepository {
+    Order save(Order order);
+}
+
+class OrderResult {
+    static OrderResult success(Order order) { return new OrderResult(); }
+}
+
+class OrderValidationException extends RuntimeException {
+    OrderValidationException(List<String> errors) { super(String.join(", ", errors)); }
+}
+
+class InsufficientStockException extends RuntimeException {
+    InsufficientStockException(List<OrderItem> items) { super("insufficient stock"); }
 }
 
 // 1단계: 프록시 도입
@@ -395,6 +541,11 @@ public class OrderServiceProxy {
         // 카나리 배포: 특정 조건의 주문만 새 서비스 사용
         return order.getCustomerId() % 10 == 0; // 10% 트래픽
     }
+
+    private OrderData convertToLegacyFormat(Order order) {
+        // TODO: 신규 도메인 모델(Order) -> 레거시 스키마(OrderData) 변환
+        return new OrderData();
+    }
 }
 
 // 2단계: 새 서비스 구현
@@ -404,6 +555,7 @@ public class NewOrderService {
     private final PaymentProcessor paymentProcessor;
     private final InventoryService inventoryService;
     private final NotificationService notificationService;
+    private final OrderRepository orderRepository;
     
     @Transactional
     public OrderResult processOrder(Order order) {
@@ -495,44 +647,41 @@ public class RefactoringMetrics {
 
 ## 한눈에 보는 안티패턴과 리팩토링
 
-### 안티패턴 vs 올바른 패턴 비교표
+원래 이 절에는 6개의 표가 있었지만 상당수가 같은 안티패턴을 다른 각도로 반복하고 있었습니다(예: God Class와 Blob은 사실상 같은 문제입니다). 아래 3개 표로 통합합니다.
 
-| 안티패턴 | 문제점 | 해결 패턴 | 리팩토링 방향 |
-|---------|-------|----------|-------------|
-| God Class | 과도한 책임, 낮은 응집도 | SRP 적용 | Extract Class |
-| Spaghetti Code | 얽힌 의존성, 이해 불가 | 계층화 | Extract Method, Move |
-| Golden Hammer | 하나의 해법만 고집 | 상황별 적절한 패턴 | 요구사항 재분석 |
-| Lava Flow | 죽은 코드 방치 | 정기적 정리 | Remove Dead Code |
-| Blob | 하나의 클래스에 모든 것 | Facade, Mediator | 책임 분리 |
-| Copy-Paste | 코드 중복 | Template Method, Strategy | Extract Method/Class |
-| Poltergeist | 불필요한 중간 클래스 | 직접 호출 | Inline Class |
-| Boat Anchor | 미사용 코드 보존 | 제거 | Remove |
+### 안티패턴 심각도와 해결 방향
 
-### 코드 스멜과 리팩토링 매핑
+| 안티패턴 | 문제점 | 심각도 | 수정 우선순위 | 해결 패턴 → 리팩토링 방향 |
+|---------|-------|-------|-------------|------------------------|
+| God Class / Blob | 과도한 책임, 낮은 응집도 (하나의 클래스에 모든 것) | 높음 | 높음 (시스템 전체 영향) | SRP 적용 → Extract Class |
+| Spaghetti Code | 얽힌 의존성, 중첩된 흐름으로 이해 불가 | 높음 | 높음 (해당 모듈 영향) | 계층화 → Extract Method, Move |
+| Copy-Paste | 코드 중복 | 중간 | 높음 (변경 시 버그 위험) | Template Method, Strategy → Extract Method/Class |
+| Golden Hammer | 하나의 해법만 고집 | 중간 | 중간 (설계 품질 저하) | 상황별 적절한 패턴 → 요구사항 재분석 |
+| Lava Flow | 죽은 코드 방치 | 낮음 | 낮음 (유지보수성 저하) | 정기적 정리 → Remove Dead Code |
+| Poltergeist | 불필요한 중간 클래스 | 낮음 | 낮음 (가독성 저하) | 직접 호출 → Inline Class |
+| Boat Anchor | 미사용 코드 보존 | 낮음 | 낮음 (가독성 저하) | 제거 → Remove |
 
-| 코드 스멜 | 징후 | 권장 리팩토링 | 관련 패턴 |
-|----------|------|-------------|----------|
-| Long Method | 50+ 줄 | Extract Method | Template Method |
-| Large Class | 500+ 줄 | Extract Class | Facade |
-| Long Parameter List | 5+ 파라미터 | Introduce Parameter Object | Builder |
-| Duplicate Code | 동일 코드 반복 | Extract Method | Strategy, Template |
-| Feature Envy | 다른 클래스 데이터 사용 | Move Method | - |
-| Data Clumps | 함께 다니는 데이터 | Extract Class | Value Object |
-| Primitive Obsession | 원시 타입 남용 | Replace Primitive with Object | Value Object |
-| Switch Statements | switch/if 연쇄 | Replace with Polymorphism | Strategy, State |
-| Parallel Inheritance | 계층 구조 동기화 필요 | Move/Merge | Bridge |
-| Speculative Generality | 미래 대비 과설계 | Collapse Hierarchy | YAGNI |
+### 코드 스멜·패턴 오용과 권장 대응
 
-### 안티패턴 심각도 및 우선순위
+코드 스멜(구현 층위의 징후)과 패턴 오용(설계 층위의 징후)은 발견 지점은 다르지만 "리팩토링으로 대응한다"는 결론은 같으므로 하나의 표로 봅니다.
 
-| 안티패턴 | 심각도 | 수정 우선순위 | 영향 범위 |
-|---------|-------|-------------|----------|
-| God Class | 높음 | 높음 | 시스템 전체 |
-| Spaghetti Code | 높음 | 높음 | 해당 모듈 |
-| Copy-Paste | 중간 | 높음 | 변경 시 버그 |
-| Golden Hammer | 중간 | 중간 | 설계 품질 |
-| Lava Flow | 낮음 | 낮음 | 유지보수성 |
-| Boat Anchor | 낮음 | 낮음 | 가독성 |
+| 구분 | 항목 | 징후 / 오용 상황 | 권장 대응 |
+|------|------|-----------------|----------|
+| 코드 스멜 | Long Method | 50+ 줄 | Extract Method (Template Method) |
+| 코드 스멜 | Large Class | 500+ 줄 | Extract Class (Facade) |
+| 코드 스멜 | Long Parameter List | 5+ 파라미터 | Introduce Parameter Object (Builder) |
+| 코드 스멜 | Duplicate Code | 동일 코드 반복 | Extract Method (Strategy, Template) |
+| 코드 스멜 | Feature Envy | 다른 클래스 데이터 과다 사용 | Move Method |
+| 코드 스멜 | Data Clumps | 함께 다니는 데이터 | Extract Class (Value Object) |
+| 코드 스멜 | Primitive Obsession | 원시 타입 남용 | Replace Primitive with Object (Value Object) |
+| 코드 스멜 | Switch Statements | switch/if 연쇄 | Replace with Polymorphism (Strategy, State) |
+| 코드 스멜 | Parallel Inheritance | 계층 구조 동기화 필요 | Move/Merge (Bridge) |
+| 코드 스멜 | Speculative Generality | 미래 대비 과설계 | Collapse Hierarchy (YAGNI) |
+| 패턴 오용 | Singleton | 전역 상태 남용 | 진짜 유일해야 하는 자원에만 사용 |
+| 패턴 오용 | Factory | 단순 생성에 과사용 | 생성 로직이 복잡할 때만 사용 |
+| 패턴 오용 | Observer | 이벤트 지옥 (과도한 통지 체인) | 명확한 1:N 관계에만 사용 |
+| 패턴 오용 | Strategy | 단일 알고리즘에 적용 | 교체 가능한 알고리즘이 여럿일 때 사용 |
+| 패턴 오용 | Decorator | 과도한 래핑 | 동적 기능 조합이 실제로 필요할 때 사용 |
 
 ### 리팩토링 안전성 가이드
 
@@ -545,34 +694,33 @@ public class RefactoringMetrics {
 | Replace Inheritance | 높음 | 설계 검토 | X |
 | Introduce Pattern | 높음 | 팀 합의 | X |
 
-### 패턴 오용 vs 올바른 사용
+### 안전한 리팩토링을 위한 체크리스트
 
-| 패턴 | 오용 상황 | 올바른 사용 |
-|------|----------|-----------|
-| Singleton | 전역 상태 남용 | 진짜 유일해야 하는 자원 |
-| Factory | 단순 생성에 과사용 | 생성 로직 복잡할 때 |
-| Observer | 이벤트 지옥 | 명확한 1:N 관계 |
-| Strategy | 단일 알고리즘에 적용 | 교체 가능한 알고리즘 |
-| Decorator | 과도한 래핑 | 동적 기능 조합 필요 시 |
+체크박스에 "완료" 여부만 표시하는 대신, 각 항목이 왜 필요한지 근거를 함께 적었습니다.
 
-### 리팩토링 체크리스트
+- **기존 테스트가 통과하는가** — 리팩토링 시작 전 테스트가 초록불이어야, 이후 실패가 리팩토링 때문인지 기존 버그인지 구분할 수 있습니다.
+- **변경 범위를 식별했는가** — 영향받는 클래스·모듈을 미리 나열해야 리팩토링 도중 범위가 예상보다 커지는 것을 막을 수 있습니다.
+- **작은 단위로 분할했는가** — 위 "리팩토링 안전성 가이드"에서 위험도가 높은 항목(Replace Inheritance, Introduce Pattern)일수록 단계를 잘게 쪼개야 각 단계를 쉽게 되돌릴 수 있습니다.
+- **각 단계 후 테스트를 실행했는가** — 자동화 가능(O)한 리팩토링이라도 매 단계 실행해야 누적된 실수를 조기에 발견합니다.
+- **커밋을 단계별로 분리했는가** — 하나의 커밋에 여러 변경을 섞으면 문제 발생 시 원인을 좁히기 어렵습니다.
+- **코드 리뷰를 요청했는가** — 위험도가 "높음"인 리팩토링은 설계 변경을 수반하므로, 팀 합의 없이 병합하면 되돌리기 비용이 큽니다.
 
-| 단계 | 체크 항목 | 완료 |
-|------|----------|------|
-| 1 | 기존 테스트 통과 확인 | - |
-| 2 | 변경 범위 식별 | - |
-| 3 | 작은 단위로 분할 | - |
-| 4 | 각 단계 후 테스트 | - |
-| 5 | 커밋 메시지 작성 | - |
-| 6 | 코드 리뷰 요청 | - |
+## 평가 기준
+
+이 글을 읽고 다음을 스스로 설명할 수 있다면 핵심을 이해한 것입니다.
+
+- God Object 예제에서 왜 단일 책임 원칙 위반이 "테스트 어려움"과 "변경 영향도"라는 두 가지 실무 문제로 이어지는지 설명할 수 있다.
+- Spaghetti Code를 Command Pattern으로 리팩토링했을 때, `OrderProcessingStep`의 `canHandle`/`execute` 분리가 왜 새 검증 단계 추가를 쉽게 만드는지 설명할 수 있다.
+- Strangler Fig Pattern에서 `FeatureToggle`과 카나리 배포 비율(`% 10 == 0`)이 왜 "한 번에 전환"보다 안전한지 설명할 수 있다.
+- 위 표에서 God Class와 Blob을 하나로 묶은 이유처럼, 서로 다른 이름의 안티패턴이 실제로는 같은 근본 원인(과도한 책임)을 공유하는 경우를 스스로 식별할 수 있다.
 
 ---
 
 ## 참고 자료
 
-- **도서**: "Refactoring: Improving the Design of Existing Code" by Martin Fowler
-- **도서**: "Working Effectively with Legacy Code" by Michael Feathers
-- **도서**: "Clean Code" by Robert C. Martin
+- **도서**: "Refactoring: Improving the Design of Existing Code" by Martin Fowler (1999, 2nd ed. 2018)
+- **도서**: "Working Effectively with Legacy Code" by Michael Feathers (2004)
+- **도서**: "Clean Code" by Robert C. Martin (2008)
 - **온라인**: [Refactoring Guru - Code Smells](https://refactoring.guru/refactoring/smells)
 - **도구**: SonarQube, PMD, SpotBugs, Checkstyle
 
@@ -580,6 +728,6 @@ public class RefactoringMetrics {
 
 ## 다음 단계
 
-안티패턴을 식별하고 체계적으로 리팩토링할 수 있게 되었다면, 다음 글에서는 **패턴을 활용한 코드 리뷰와 설계 리뷰**에 대해 알아보겠습니다. 팀 차원에서 좋은 설계를 유지하고 발전시키는 방법을 탐구해보겠습니다.
+안티패턴을 식별하고 체계적으로 리팩토링할 수 있게 되었다면, 다음 글([패턴을 활용한 코드 리뷰와 설계 리뷰](/post/design-patterns/23-pattern-code-review-design-review/))에서는 팀 차원에서 좋은 설계를 유지하고 발전시키는 방법을 탐구해보겠습니다.
 
 > *"좋은 코드는 한 번에 만들어지지 않는다. 지속적인 개선을 통해 진화한다."*

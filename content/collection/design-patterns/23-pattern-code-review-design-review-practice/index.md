@@ -5,7 +5,7 @@ title: "[Design Patterns] 패턴 코드 리뷰와 설계 리뷰 실습 - 품질 
 description: "디자인 패턴 관점에서 코드 리뷰와 설계 리뷰를 수행하는 실습입니다. 패턴 적용의 적절성, 구현 품질, 확장성 등을 체계적으로 평가하고 개선 방안을 제시하는 리뷰 프로세스를 학습하며, 팀 차원의 설계 품질 향상 방법을 마스터합니다."
 image: "wordcloud.png"
 date: 2024-12-23T11:00:00+09:00
-lastmod: 2024-12-15T14:30:00+09:00
+lastmod: 2026-07-17T14:30:00+09:00
 categories:
 - Design Patterns
 - Code Review
@@ -13,13 +13,32 @@ categories:
 - Practice
 - Quality Assurance
 tags:
-- SOLID
-- Best-Practices
-- Code-Quality(코드품질)
-- Tutorial(튜토리얼)
-- Implementation(구현)
 - Design-Pattern(디자인패턴)
+- Code-Review(코드리뷰)
+- Code-Quality(코드품질)
+- Best-Practices
+- SOLID
 - Software-Architecture(소프트웨어아키텍처)
+- Observer
+- Strategy
+- Factory
+- Behavioral-Pattern
+- Creational-Pattern
+- Structural-Pattern
+- OOP(객체지향)
+- Java
+- Implementation(구현)
+- Tutorial(튜토리얼)
+- Testing(테스트)
+- Maintainability
+- Documentation(문서화)
+- Advanced
+- Case-Study
+- CI-CD(Continuous Integration/Continuous Deployment)
+- Automation(자동화)
+- Concurrency(동시성)
+- Thread
+- Monitoring(모니터링)
 ---
 
 이 실습에서는 패턴별 리뷰 체크리스트 작성, 자동 검증 도구 구현, 팀 리뷰 프로세스 개선을 직접 수행합니다.
@@ -31,6 +50,10 @@ tags:
 3. 팀 리뷰 프로세스 개선 계획 수립
 
 ## 과제 1: Observer 패턴 리뷰 체크리스트
+
+이 과제는 Observer 패턴이 적용된 코드를 리뷰할 때 놓치기 쉬운 동시성, 메모리 누수, 예외 안전성 문제를 체크리스트로 미리 정리해두는 연습입니다. 완성된 체크리스트를 실제 `StockPrice` 예시 코드에 적용해보면서, 이론적 체크 항목이 실제 코드의 어떤 결함과 대응되는지 확인합니다.
+
+**흔한 오해: 체크리스트 = 완전한 검증.** 체크박스를 모두 채웠다고 해서 그 코드에 결함이 없다는 뜻은 아닙니다. 체크리스트는 "리뷰어가 매번 떠올리기 어려운 항목을 놓치지 않게" 돕는 기억 보조 도구일 뿐, 목록에 없는 문제(예: 이 도메인에서 Observer 순서가 비즈니스 규칙상 중요한가)까지 걸러주지는 못합니다. 아래 `StockPrice` 예시에 체크리스트를 적용할 때도, 항목을 기계적으로 체크하는 것과 각 항목이 왜 이 코드에 적용되는지 근거를 드는 것은 다른 작업임을 염두에 두세요.
 
 ### 기본 체크리스트 템플릿
 ```markdown
@@ -97,6 +120,8 @@ public class StockPrice implements Subject {
 
 ## 과제 2: Strategy 패턴 자동 검증 도구
 
+이 과제는 사람이 매번 눈으로 확인하던 "Strategy 인터페이스가 있는가", "구현체가 2개 이상인가" 같은 판단을 리플렉션 기반 검증 로직으로 자동화하는 연습입니다. 검증 규칙을 먼저 설계하고, 이를 정적 분석 도구(PMD 스타일 규칙)와 CI 파이프라인에 통합하는 순서로 접근합니다.
+
 ### 검증 규칙 정의
 ```java
 // TODO: Strategy 패턴 검증 규칙 구현
@@ -129,21 +154,30 @@ public class StrategyPatternValidator {
         return result;
     }
     
+    // 이 메서드가 필요한 이유: Strategy 패턴이라고 부르려면 최소한 "교체 가능한 알고리즘"을 표현하는
+    // 인터페이스가 있어야 합니다. 이 확인이 없으면 아래 hasStrategyDependency() 이하의 검증들이
+    // 애초에 무엇을 기준으로 "Strategy"인지 판단할 근거를 잃습니다.
     private boolean hasStrategyInterface(Class<?> contextClass) {
         // TODO: 리플렉션으로 Strategy 인터페이스 탐지
         return false;
     }
     
+    // 이 메서드가 필요한 이유: 인터페이스가 존재해도 Context가 그것을 실제로 의존(필드/생성자 파라미터)하지
+    // 않는다면 패턴이 아니라 단순히 같은 패키지에 있는 무관한 타입일 수 있습니다.
     private boolean hasStrategyDependency(Class<?> contextClass) {
         // TODO: 필드나 생성자에서 Strategy 의존성 확인
         return false;
     }
     
+    // 이 메서드가 필요한 이유: 구현체가 1개뿐이면 "교체 가능성"이라는 Strategy의 핵심 의도가 실현되지
+    // 않은 것이므로, 굳이 인터페이스로 추상화할 필요가 없었다는 신호(과설계 의심)로 활용됩니다.
     private List<Class<?>> findStrategyImplementations(Class<?> contextClass) {
         // TODO: 클래스패스에서 Strategy 구현체들 찾기
         return new ArrayList<>();
     }
     
+    // 이 메서드가 필요한 이유: 인터페이스와 구현체가 있어도 런타임에 전략을 바꿔 끼울 통로(setter,
+    // 생성자 주입 등)가 없으면 사실상 하드코딩된 것과 같아 Strategy 패턴의 목적을 달성하지 못합니다.
     private boolean hasStrategySetterOrConstructor(Class<?> contextClass) {
         // TODO: Strategy 설정 메커니즘 확인
         return false;
@@ -226,6 +260,33 @@ public class AutomatedPatternReviewService {
 ```
 
 ## 과제 3: 팀 리뷰 프로세스 개선
+
+이 과제는 팀의 현재 리뷰 프로세스를 참여도·패턴 적용 비율·효과성 지표로 진단하고, 진단 결과에 따라 교육/도구/프로세스 개선 액션을 선택하는 연습입니다. 정량 지표를 먼저 수집한 뒤 개선 계획을 세우는 순서를 따라야 임의의 처방이 아닌 데이터 기반 개선이 가능합니다.
+
+### 현재 프로세스 vs 개선 프로세스
+
+패턴 기반 리뷰를 도입하기 전과 후의 프로세스 차이는 다음과 같습니다.
+
+| 구분 | 현재 프로세스 | 개선 프로세스 |
+|------|-------------|-------------|
+| 리뷰 기준 | 리뷰어 개인 경험에 의존 | 패턴 체크리스트로 표준화 |
+| 패턴 검증 | 리뷰어가 수동으로 확인 | 정적 분석 도구가 1차 자동 검증 |
+| 피드백 형식 | 자유 형식 코멘트 | Critical/Major/Minor/Nit 등급 코멘트 |
+| 지식 공유 | 리뷰 코멘트에만 남고 휘발 | 패턴 레지스트리에 축적 |
+| 효과 측정 | 측정하지 않음 | 결함 발견율·참여도 지표 추적 |
+
+```mermaid
+flowchart LR
+    A[PR 생성] --> B{현재: 리뷰어 수동 확인}
+    B --> C[자유 형식 코멘트]
+    C --> D[머지]
+
+    A2[PR 생성] --> B2[개선: 정적 분석 자동 검증]
+    B2 --> C2[패턴 체크리스트 기반 코멘트]
+    C2 --> D2[등급별 우선순위 처리]
+    D2 --> E2[패턴 레지스트리 반영]
+    E2 --> F2[머지]
+```
 
 ### 현재 상태 분석
 ```java
@@ -402,8 +463,13 @@ public class StrategyPatternViolationRule extends BaseJavaFileRule {
 
 ---
 
-**실습 팁**
-- 실제 팀의 코드베이스로 테스트
-- 점진적으로 자동화 수준 높이기
-- 팀원 피드백 적극 수렴
-- 정량적 지표로 효과 측정 
+## 참고 자료
+
+- **가이드**: SmartBear, "Best Practices for Peer Code Review" (SmartBear 코드 리뷰 가이드)
+- **도서**: Erich Gamma 외, *Design Patterns: Elements of Reusable Object-Oriented Software* (GoF, 1994) — Strategy/Observer 패턴 원문 정의
+- **도구 문서**: PMD, SpotBugs, SonarQube 공식 문서 (커스텀 규칙 작성 레퍼런스)
+- **플랫폼**: GitHub Actions 공식 문서 (PR 워크플로우 자동화)
+
+---
+
+이 실습에서 만든 체크리스트·검증 도구·개선 계획은 한 번 작성하고 끝나는 산출물이 아닙니다. "완성도 체크리스트"에서 확인한 항목들을 실제 팀 코드베이스에 적용해보고, 그 결과로 얻은 피드백을 다시 체크리스트와 검증 규칙에 반영하는 순환이 과제 3에서 다룬 "정량 지표 기반 개선"의 본질입니다. 
