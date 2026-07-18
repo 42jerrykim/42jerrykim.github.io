@@ -157,7 +157,7 @@ flowchart TB
 
 다른 팀들이 동시에 Employee 클래스를 수정하면:
 
-```
+```text
 [CTO 팀 브랜치]
 class Employee {
     // save() 메서드 수정
@@ -343,9 +343,9 @@ SRP를 잘못 이해하면, 모든 메서드를 별도 클래스로 분리하는
 
 ```java
 // 과도한 분리 - 이건 SRP가 아님
-class NameGetter { String getName() { ... } }
-class NameSetter { void setName(String name) { ... } }
-class AgeGetter { int getAge() { ... } }
+class NameGetter { private String name; String getName() { return name; } }
+class NameSetter { private String name; void setName(String n) { this.name = n; } }
+class AgeGetter { private int age; int getAge() { return age; } }
 // ...
 ```
 
@@ -392,7 +392,7 @@ SRP는 클래스뿐 아니라 **컴포넌트** 수준에서도 적용된다 — 
 ## 참고 문헌
 
 - Robert C. Martin, 『Clean Architecture: A Craftsman's Guide to Software Structure and Design』(2017), 7장 — 이 글의 원전
-- Robert C. Martin, 『Agile Software Development: Principles, Patterns, and Practices』(2003) — SRP가 처음 정식화된 책
+- Robert C. Martin, 『Agile Software Development: Principles, Patterns, and Practices』(2002) — SRP가 처음 정식화된 책
 - Robert C. Martin, ["The Single Responsibility Principle"](https://blog.cleancoder.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html) (2014) — 저자가 직접 오해를 교정하는 글
 - Melvin E. Conway, ["How Do Committees Invent?"](https://www.melconway.com/Home/Committees_Paper.html) (1968) — Conway's Law의 원 논문
 

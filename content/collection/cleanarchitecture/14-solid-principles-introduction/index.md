@@ -33,8 +33,6 @@ tags:
   - Case-Study
   - Deep-Dive
   - Clean-Code(클린코드)
-  - Documentation(문서화)
-  - TDD(Test-Driven Development)
 ---
 
 SOLID 원칙은 객체 지향 설계의 기초가 되는 다섯 가지 원칙이다. 이 원칙들은 2000년대 초반 Robert C. Martin에 의해 체계화되었으며, 오늘날 소프트웨어 개발자들에게 필수적인 지식이 되었다.
@@ -47,7 +45,7 @@ SOLID의 각 원칙은 서로 다른 시기에 서로 다른 사람들에 의해
 
 | 원칙 | 제안자 | 시기 |
 |------|--------|------|
-| SRP | Robert C. Martin | 2003 |
+| SRP | Robert C. Martin | 2002 |
 | OCP | Bertrand Meyer | 1988 |
 | LSP | Barbara Liskov | 1987/1994 |
 | ISP | Robert C. Martin | 1996 |
@@ -57,7 +55,7 @@ SOLID의 각 원칙은 서로 다른 시기에 서로 다른 사람들에 의해
 
 2004년경, Michael Feathers는 이 다섯 가지 원칙의 첫 글자를 따서 **SOLID**라는 약어를 제안했다. 마틴은 이 약어를 채택하여 널리 알렸다.
 
-```
+```text
 S - Single Responsibility Principle (단일 책임 원칙)
 O - Open-Closed Principle (개방-폐쇄 원칙)
 L - Liskov Substitution Principle (리스코프 치환 원칙)
@@ -260,7 +258,7 @@ SOLID는 만능 규칙이 아니다. 다섯 원칙을 기계적으로 전부 적
 ## 참고 자료
 
 - Martin, R. C. (2017). *Clean Architecture: A Craftsman's Guide to Software Structure and Design*. Prentice Hall.
-- Martin, R. C. (2003). *Agile Software Development: Principles, Patterns, and Practices*. Prentice Hall. — SRP 정식화.
+- Martin, R. C. (2002). *Agile Software Development: Principles, Patterns, and Practices*. Prentice Hall. — SRP 정식화.
 - Meyer, B. (1988). *Object-Oriented Software Construction*. Prentice Hall. — OCP 최초 제시.
 - Liskov, B., & Wing, J. (1994). "A Behavioral Notion of Subtyping". *ACM TOPLAS*, 16(6). — LSP 정식화.
 - Martin, R. C. (1996). "The Interface Segregation Principle". *C++ Report*. — ISP 정식화.

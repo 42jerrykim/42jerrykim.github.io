@@ -293,6 +293,8 @@ class ReadOnlyFile implements Readable {  // 읽기만
 }
 ```
 
+역할 인터페이스는 "이 타입이 무엇을 할 수 있는가"를 여러 개의 작은 계약으로 쪼갠다. `NetworkStream`처럼 위치 이동 개념이 없는 스트림은 애초에 `Seekable`을 구현하지 않으면 되므로, "지원하지 않는 연산은 예외를 던진다" 같은 LSP 위반 코드를 쓸 필요가 없다. 다만 역할이 지나치게 세분화되면 한 클래스가 구현해야 할 인터페이스 목록이 길어지므로, 실제로 독립적으로 조합되는 역할만 나누는 것이 좋다.
+
 ### 2. 클라이언트 전용 인터페이스
 
 각 클라이언트를 위한 **전용 인터페이스**:
@@ -314,6 +316,8 @@ interface GuestOperations {
     void viewPublicContent();
 }
 ```
+
+역할 인터페이스가 "기능 단위"로 나눈다면, 클라이언트 전용 인터페이스는 애초부터 "이 인터페이스를 쓸 사용자 그룹"을 기준으로 나눈다. `AdminOperations`가 바뀌어도 `GuestOperations`만 의존하는 코드는 재컴파일 대상이 아니다. 사용자 역할이 코드베이스 전반에 이미 명확히 구분돼 있는 시스템(권한 체계가 있는 서비스 등)에서 특히 잘 맞는다.
 
 ### 3. 인터페이스 상속
 
@@ -344,6 +348,8 @@ class AdvancedUser {
 }
 ```
 
+`AdvancedOperations`가 `BasicOperations`를 확장하므로, 고급 기능이 필요한 클라이언트는 상위 인터페이스 하나만 의존하면 기본·고급 연산을 모두 쓸 수 있다. 반면 기본 기능만 필요한 클라이언트는 `BasicOperations`만 알면 되어 `op2()`·`op3()`의 변경에 영향받지 않는다. 계층이 깊어질수록(3단계 이상) 어떤 인터페이스가 어떤 메서드를 포함하는지 추적하기 어려워지므로, 상속 깊이는 2단계 안팎으로 유지하는 것이 실용적이다.
+
 ## ISP vs SRP
 
 | 원칙 | 초점 | 기준 |
@@ -356,6 +362,8 @@ class AdvancedUser {
 - **SRP**: 내부 관점 - 모듈이 왜 변경되는가?
 - **ISP**: 외부 관점 - 클라이언트가 무엇을 사용하는가?
 
+분리된 인터페이스는 의존성 주입(DI) 프레임워크와도 잘 맞는다. `Readable`·`Writable`처럼 역할이 좁을수록 "이 클라이언트에는 어떤 구현체를 주입해야 하는가"가 명확해지고, 테스트에서는 필요한 역할의 목(mock)만 만들면 된다. 인터페이스 자체가 좁고 이름이 명확하면, 그 인터페이스를 보는 것만으로 클라이언트가 실제로 무엇을 필요로 하는지 알 수 있어 별도 문서 없이도 사용 의도가 드러난다 — 잘 분리된 인터페이스는 그 자체로 살아있는 문서 역할을 한다.
+
 ## 실제 예시: Java의 인터페이스
 
 ### 나쁜 예: java.util.Collection
@@ -363,6 +371,8 @@ class AdvancedUser {
 `java.util.Collection`은 읽기 연산(`size()`, `contains()`, `iterator()`)과 쓰기 연산(`add()`, `remove()`, `clear()`)을 하나의 인터페이스에 모두 담고 있다. 읽기 전용 컬렉션을 만들려는 클라이언트도 이 인터페이스를 구현하는 한 쓰기 메서드 시그니처까지 떠안아야 한다.
 
 ```java
+import java.util.Iterator;
+
 interface Collection<E> {
     boolean add(E e);
     boolean remove(Object o);
@@ -381,6 +391,8 @@ interface Collection<E> {
 읽기·쓰기·순회·크기 조회를 각각 별도 인터페이스로 나누면, `ImmutableList`는 `Writable`을 구현하지 않는 것만으로 "쓰기를 지원하지 않는다"는 사실을 타입 시스템에 드러낼 수 있다. 더 이상 `add()`를 예외로 막을 필요가 없다 — 애초에 그 메서드가 타입에 존재하지 않기 때문이다.
 
 ```java
+import java.util.Iterator;
+
 interface Iterable<E> {
     Iterator<E> iterator();
 }
