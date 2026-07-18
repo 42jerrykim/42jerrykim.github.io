@@ -34,3 +34,5 @@ tags:
 ---
 
 전체 소개와 12편 커리큘럼은 [00. 단위 테스트, 왜 다시 배워야 하는가](unit-testing-overview/) 참고.
+
+관련 실전 자료: [3A - Arrange, Act, Assert](/post/testing/3A-arrange-act-assert/), [Software Unit Test Smells](/post/testing/test-smell/) ([Testing 컬렉션](/collection/testing/)).

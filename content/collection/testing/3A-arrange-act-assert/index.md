@@ -7,21 +7,14 @@ tags:
 - Testing(테스트)
 - TDD(Test-Driven Development)
 - Code-Quality(코드품질)
-- Go
-- Rust
-- React
-- REST(Representational State Transfer)
-- API(Application Programming Interface)
-- Action(액션)
+- Design-Pattern(디자인패턴)
+- OOP(객체지향)
 - Best-Practices
 - Refactoring(리팩토링)
-- Command
-- Design-Pattern(디자인패턴)
 - Clean-Code(클린코드)
 - Documentation(문서화)
 - Implementation(구현)
 - Debugging(디버깅)
-- Performance(성능)
 - Automation(자동화)
 - Education(교육)
 - Tutorial(튜토리얼)
@@ -35,9 +28,8 @@ tags:
 - Comparison(비교)
 - Case-Study
 - Deep-Dive
-- 실습
 - Review(리뷰)
-- Markdown(마크다운)
+- 단위테스트
 ---
 
 > 본 글은 [Bill Wake](https://xp123.com/articles/contact/)의 [3A – Arrange, Act, Assert](https://xp123.com/articles/3a-arrange-act-assert/)내용을 번역한 글 입니다.
