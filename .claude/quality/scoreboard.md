@@ -16,7 +16,7 @@
 | content/collection/design-patterns/02-pattern-analysis-framework/index.md | 56.5(치명결함 직접수정 완료, 미재채점) | 2026-07-18 | 3 | 에스컬레이션 | 가중평균 계산오류 치명결함 수정 완료(L532-533), 오개념 절 부재, 문단 비율 부족 |
 | content/collection/design-patterns/03-oop-design-deep-understanding/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 없음(경미: 핵심메시지/결론 중복) |
 | content/collection/design-patterns/04-factory-patterns-evolution/index.md | 85.3 | 2026-07-18 | 3 | 에스컬레이션 | 오개념 절 부재, 선택가이드/판단기준 텍스트 중복, Abstract Factory 구조 Mermaid 부재 |
-| content/collection/design-patterns/04-factory-patterns-evolution-practice/index.md | 71.8 | 2026-07-18 | 3 | 에스컬레이션 | 문단 비율 부족, 추가도전/실무적용 답없는 리스트, 표/Mermaid 부재 |
+| content/collection/design-patterns/04-factory-patterns-evolution-practice/index.md | 92.2 | 2026-07-19 | 3 | 통과 | 없음(경미: 실습 특성상 문단 비율 줄기준 4.5%로 40% 앵커 미달이지만 통과 임계엔 영향 없음) |
 | content/collection/design-patterns/05-singleton-controversial-pattern/index.md | 79.9 | 2026-07-18 | 3 | 에스컬레이션 | 오개념 절 부재, 결정트리 Mermaid 미전환, GoF 인용 출처태그 누락 |
 | content/collection/design-patterns/05-singleton-controversial-pattern-practice/index.md | 75.7 | 2026-07-18 | 3 | 에스컬레이션 | 체크리스트/추가도전 근거 부족, 멀티스레드 시나리오 Mermaid 부재 |
 | content/collection/design-patterns/06-builder-prototype-deep-understanding/index.md | 82.3 | 2026-07-18 | 3 | 에스컬레이션 | 오개념 절 부재, Type-Safe Builder/ComplexConfig 미완성 로직, 결정트리 Mermaid 미전환 |
