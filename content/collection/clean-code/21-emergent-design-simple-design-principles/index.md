@@ -33,6 +33,7 @@ tags:
 - Coupling(결합도)
 - OOP(객체지향)
 - System-Design
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

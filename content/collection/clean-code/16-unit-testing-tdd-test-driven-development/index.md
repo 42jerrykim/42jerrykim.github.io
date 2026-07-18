@@ -33,6 +33,7 @@ tags:
 - OOP(객체지향)
 - Dependency-Injection(의존성주입)
 - Software-Architecture(소프트웨어아키텍처)
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

@@ -33,6 +33,7 @@ tags:
 - SOLID
 - Abstraction(추상화)
 - TDD(Test-Driven Development)
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

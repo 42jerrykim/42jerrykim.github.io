@@ -35,6 +35,7 @@ tags:
   - Technology(기술)
   - Best-Practices
 
+image: "wordcloud.png"
 ---
 
 01장에서 다룬 절댓값(magnitude) 기준 Pruning은 단순하고 빠르지만, LLM처럼 파라미터가 방대하고 서로 복잡하게 얽힌 모델에서는 정교함이 부족합니다. 이 장은 "이 가중치를 제거하면 손실이 얼마나 늘어나는가"를 더 정밀하게 근사하는 방법에서 출발해, 이를 LLM 규모에서 실제로 계산 가능하게 만든 SparseGPT까지 다룹니다.

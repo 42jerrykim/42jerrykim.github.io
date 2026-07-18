@@ -35,6 +35,7 @@ tags:
   - Prompt-Engineering(프롬프트엔지니어링)
   - ChatGPT
 
+image: "wordcloud.png"
 ---
 
 같은 단어라도 문맥에 따라 뜻이 달라집니다. `an apple and orange`에서는 오렌지를 주목해 "사과(과일)"라는 뜻이 강해지고, `apple phone`에서는 phone을 주목해 "브랜드 애플"이라는 뜻이 강해집니다. **Attention**은 이렇게 "주변 단어로부터 몇 %씩 의미를 가져와 현재 단어의 진짜 의미를 결정하는" 계산입니다. 이 장은 04장에서 만든 입력 임베딩이 Attention을 거치며 어떤 계산을 통과하는지, Query·Key·Value 세 벡터로 쪼개는 이유부터 시작해 끝까지 분해합니다.

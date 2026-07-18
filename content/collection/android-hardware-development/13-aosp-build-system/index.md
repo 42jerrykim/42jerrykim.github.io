@@ -44,6 +44,7 @@ tags:
 - ELF(Executable and Linkable Format)
 - File-System
 - IO(Input/Output)
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

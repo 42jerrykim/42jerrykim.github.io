@@ -35,6 +35,7 @@ tags:
   - PyTorch
   - Case-Study
 
+image: "wordcloud.png"
 ---
 
 06장에서 조립한 GPT 블록의 파라미터 중 약 3분의 2는 Attention이 아니라 **Feed Forward Network(FFN)**에 있습니다. Attention이 "지금 이 토큰이 문맥 안에서 무엇을 봐야 하는가"를 계산하는 역할이라면, FFN은 그렇게 파악된 문맥을 바탕으로 구체적인 사실(지식)을 저장하고 꺼내는 역할을 맡습니다. 이 장은 그 지식이 벡터 공간의 어떤 성질을 이용해 저장되는지, 그리고 그 성질이 왜 환각(hallucination)과 해석 불가능성이라는 대가를 함께 요구하는지를 다룹니다.

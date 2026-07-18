@@ -35,6 +35,7 @@ tags:
   - Case-Study
   - Technology(기술)
 
+image: "wordcloud.png"
 ---
 
 02장에서 다룬 Quantization을 LLM에 그대로 적용하면, CNN에서는 크게 문제 되지 않던 현상이 발목을 잡습니다 — Activation 값의 일부가 극단적으로 커지는 **outlier**입니다. 이 장은 이 outlier를 다루는 여러 접근을 살펴본 뒤, LLM에서는 왜 Weight만 양자화하는 방식이 더 널리 쓰이는지, 그리고 LoRA와 결합한 QLoRA가 어떻게 메모리를 더 아끼는지를 다룹니다.

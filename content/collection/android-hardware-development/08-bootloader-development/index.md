@@ -43,6 +43,7 @@ tags:
 - Vbmeta
 - Device-Tree
 - Recovery-Mode
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

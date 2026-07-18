@@ -35,6 +35,7 @@ tags:
   - Comparison(비교)
   - Technology(기술)
 
+image: "wordcloud.png"
 ---
 
 02장에서 Cross-Encoder를 "정확하지만 느린" 재정렬기로 소개했습니다. 이 마지막 장은 그 Cross-Encoder를 실제로 어떻게 학습시키는지를 다룹니다. 핵심은 "정답 문서와 오답 문서를 어떻게 구성하는가"와 "그 구성으로 어떤 손실 함수를 최적화하는가" 두 가지입니다.

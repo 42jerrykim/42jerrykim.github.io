@@ -38,6 +38,7 @@ tags:
 - Secure-Boot
 - HAL
 - Secure-Element
+image: "wordcloud.png"
 ---
 
 # 10장. 보안 구현

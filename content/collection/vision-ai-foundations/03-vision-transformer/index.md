@@ -35,6 +35,7 @@ tags:
   - Technology(기술)
   - Best-Practices
 
+image: "wordcloud.png"
 ---
 
 02장까지 다룬 CNN은 커널이라는 지역적 창을 통해 이미지를 봅니다. **Vision Transformer(ViT)**는 완전히 다른 접근을 취합니다 — 이미지를 작은 조각(패치)으로 잘라 언어모델의 토큰처럼 취급하고, LLM 시리즈에서 다룬 Self-Attention을 그대로 적용합니다. 이 장은 ViT가 등장한 배경과, 이미지가 패치에서 분류 결과까지 이어지는 전체 파이프라인을 다룹니다.

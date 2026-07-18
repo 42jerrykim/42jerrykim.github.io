@@ -40,6 +40,7 @@ tags:
 - CDD
 - CTS
 - Curriculum
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

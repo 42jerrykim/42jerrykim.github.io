@@ -34,6 +34,7 @@ tags:
 - Abstraction(추상화)
 - OOP(객체지향)
 - Performance(성능)
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

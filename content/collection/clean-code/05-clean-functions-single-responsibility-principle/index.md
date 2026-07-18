@@ -34,6 +34,7 @@ tags:
 - Guide(가이드)
 - Education(교육)
 - Career(커리어)
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

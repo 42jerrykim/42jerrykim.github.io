@@ -35,6 +35,7 @@ tags:
   - Implementation(구현)
   - Time-Complexity(시간복잡도)
 
+image: "wordcloud.png"
 ---
 
 이미지 분류가 "이 사진에 무엇이 있는가"를 답한다면, **Object Detection**은 "무엇이, 어디에" 있는가를 동시에 답하는 문제입니다. 즉 물체의 **클래스(class)**와 **경계 상자(bounding box)**를 함께 맞춰야 합니다. 이 장은 이 문제를 어떻게 평가하는지부터 시작해, 후보 영역을 먼저 제안하는 전통적인 방식에서 그 과정 자체를 없애버린 DETR까지의 흐름을 다룹니다.

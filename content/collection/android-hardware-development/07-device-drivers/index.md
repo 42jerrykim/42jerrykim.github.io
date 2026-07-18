@@ -38,6 +38,7 @@ tags:
 - V4L2
 - Media-Controller
 - cdev
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

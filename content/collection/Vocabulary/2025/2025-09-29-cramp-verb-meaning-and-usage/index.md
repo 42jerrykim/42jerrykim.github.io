@@ -3,13 +3,14 @@ draft: true
 title: "[Vocabulary] 동사 'Cramp': 우리의 삶을 어떻게 제한하는가"
 description: "영어 동사 'cramp'에 대해 탐구해보세요. 누군가의 자유나 즐거움을 제한하거나 방해하는 의미를 가진 이 단어의 정의, 예시, 관용어 'cramp someone's style', 그리고 일상 대화에서의 실용적인 사용 팁을 배워보세요."
 date: 2025-09-29
-lastmod: 2025-09-29
+lastmod: 2026-07-18
 categories:
 - "영어"
 - "Vocabulary"
 tags:
 - Vocabulary
 - English
+image: "wordcloud.png"
 ---
 
 많은 영어 단어는 품사에 따라 여러 의미를 가집니다. 오늘은 더 흔한 명사 형태(근육 통증을 가리키는) 너머의 동사 'cramp'를 살펴보겠습니다. 동사로서 'cramp'는 누군가를 제한하거나 한정짓는 의미로, 종종 삶을 온전히 즐기거나 자신을 자유롭게 표현하는 것을 막습니다. 이 용법은 특히 관용 표현과 일상 언어에서 흥미롭습니다.

@@ -33,6 +33,7 @@ tags:
 - Software-Architecture(소프트웨어아키텍처)
 - System-Design
 - Encapsulation(캡슐화)
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

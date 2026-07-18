@@ -33,6 +33,7 @@ tags:
 - Software-Architecture(소프트웨어아키텍처)
 - Documentation(문서화)
 - Code-Review(코드리뷰)
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에

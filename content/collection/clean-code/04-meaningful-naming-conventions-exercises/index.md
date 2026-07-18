@@ -36,6 +36,7 @@ tags:
 - Abstraction(추상화)
 - Type-Safety
 - Documentation(문서화)
+image: "wordcloud.png"
 ---
 
 ## 이 장을 읽기 전에
