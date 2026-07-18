@@ -4,6 +4,7 @@ collection_order: 10
 image: "wordcloud.png"
 description: "소프트웨어 아키텍처의 탄생부터 현재까지의 진화 과정을 살펴봅니다. 1960년대 구조적 프로그래밍의 등장부터 2010년대 Clean Architecture까지, 아키텍처 패턴이 어떻게 발전해왔는지 역사적 맥락에서 이해합니다."
 title: "[Clean Architecture] 01. 소프트웨어 아키텍처의 탄생과 진화"
+slug: architecture-history-evolution-introduction
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

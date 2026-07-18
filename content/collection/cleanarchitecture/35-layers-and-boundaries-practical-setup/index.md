@@ -4,6 +4,7 @@ collection_order: 350
 image: "wordcloud.png"
 description: "실제 시스템에서 계층과 경계를 설정하는 방법을 다룹니다. Hunt the Wumpus 게임을 예로 들어 경계 설정의 실제 과정과 고려사항을 설명합니다."
 title: "[Clean Architecture] 35. 레이어와 경계"
+slug: layers-and-boundaries-practical-setup
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

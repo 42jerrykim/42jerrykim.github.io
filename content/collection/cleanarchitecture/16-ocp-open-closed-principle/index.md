@@ -4,6 +4,7 @@ collection_order: 160
 image: "wordcloud.png"
 description: "개방-폐쇄 원칙(OCP)이 소프트웨어 아키텍처의 근본 원칙인 이유를 설명합니다. Bertrand Meyer의 원래 정의부터 현대적 해석, 그리고 컴포넌트 수준에서의 적용까지 다룹니다."
 title: "[Clean Architecture] 16. OCP: 개방-폐쇄 원칙"
+slug: ocp-open-closed-principle
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

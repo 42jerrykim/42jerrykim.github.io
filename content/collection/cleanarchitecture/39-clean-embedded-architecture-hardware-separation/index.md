@@ -4,6 +4,7 @@ collection_order: 390
 image: "wordcloud.png"
 description: "임베디드 소프트웨어에 Clean Architecture를 적용하는 방법을 다룹니다. 하드웨어에서 소프트웨어를 분리하고, 펌웨어를 최소화하는 전략을 설명합니다."
 title: "[Clean Architecture] 39. 클린 임베디드 아키텍처"
+slug: clean-embedded-architecture-hardware-separation
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

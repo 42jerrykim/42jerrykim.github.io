@@ -4,6 +4,7 @@ collection_order: 420
 image: "wordcloud.png"
 description: "웹이 왜 아키텍처의 세부사항인지 다룹니다. GUI의 역사적 진자 운동, 클라이언트-서버의 변천, 그리고 웹 기술이 비즈니스 규칙과 분리되어야 하는 이유를 설명합니다."
 title: "[Clean Architecture] 42. 웹은 세부사항이다"
+slug: web-is-detail-gui-history
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

@@ -4,6 +4,7 @@ collection_order: 300
 image: "wordcloud.png"
 description: "업무 규칙의 두 가지 유형인 엔터티와 유스케이스를 다룹니다. 핵심 업무 규칙과 애플리케이션 특화 규칙의 차이, 그리고 요청/응답 모델의 설계 방법을 설명합니다."
 title: "[Clean Architecture] 30. 업무 규칙: 엔티티와 유스케이스"
+slug: business-rules-entities-usecases
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

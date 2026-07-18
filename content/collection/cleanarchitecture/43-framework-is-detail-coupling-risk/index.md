@@ -4,6 +4,7 @@ collection_order: 430
 image: "wordcloud.png"
 description: "프레임워크가 왜 아키텍처의 세부사항인지 다룹니다. 프레임워크와의 결혼 위험, 프레임워크 저자와 사용자의 관계, 그리고 프레임워크를 팔 길이 거리에 두는 방법을 설명합니다."
 title: "[Clean Architecture] 43. 프레임워크는 세부사항이다"
+slug: framework-is-detail-coupling-risk
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

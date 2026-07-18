@@ -4,6 +4,7 @@ collection_order: 220
 image: "wordcloud.png"
 description: "컴포넌트 응집도의 세 가지 원칙(REP, CCP, CRP)을 상세히 다룹니다. 어떤 클래스들을 하나의 컴포넌트에 묶어야 하는지, 그리고 이 원칙들 간의 균형점을 찾는 방법을 설명합니다."
 title: "[Clean Architecture] 22. 컴포넌트 응집도: REP, CCP, CRP"
+slug: component-cohesion-rep-ccp-crp
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

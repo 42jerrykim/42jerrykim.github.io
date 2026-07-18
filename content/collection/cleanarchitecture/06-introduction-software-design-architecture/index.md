@@ -4,36 +4,35 @@ collection_order: 60
 image: "wordcloud.png"
 description: "1부 소개에서는 소프트웨어를 단순히 '동작하게 만드는 것'과 올바르게 설계하여 '유지보수와 확장성까지 갖춘 제대로 된 시스템'을 만드는 것의 차이를 설명합니다. 경험이 부족한 개발자와 열정적인 전문가의 태도 차이, 그리고 훌륭한 아키텍처의 중요성을 다룹니다."
 title: "[Clean Architecture] 06. 서론: 설계와 아키텍처"
+slug: introduction-software-design-architecture
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
   - Software-Architecture(소프트웨어아키텍처)
   - Code-Quality(코드품질)
-  - Scalability(확장성)
-  - SOLID
   - Productivity(생산성)
   - Refactoring(리팩토링)
   - Best-Practices
   - Implementation(구현)
-  - Ruby
-  - Code-Review(코드리뷰)
   - Maintainability
-  - Readability
-  - Documentation(문서화)
   - Coupling(결합도)
   - Cohesion(응집도)
-  - Testing(테스트)
-  - TDD(Test-Driven Development)
   - Clean-Code(클린코드)
-  - Career(커리어)
-  - History(역사)
-  - Case-Study
-  - Deep-Dive
-  - Technology(기술)
-  - Agile(애자일)
-  - Debugging(디버깅)
   - Modularity
+  - Guide(가이드)
+  - System-Design
+  - Comparison(비교)
+  - Database(데이터베이스)
+  - SQL(Structured Query Language)
+  - Error-Handling(에러처리)
+  - Documentation(문서화)
+  - Readability
+  - Debugging(디버깅)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Deep-Dive
+  - Case-Study
 ---
 
 **프로그램이 동작하도록 만드는 데 엄청난 수준의 지식과 기술이 필요하지는 않다.** 언제든 어린 고등학생이라도 할 수 있는 일이다.
@@ -61,9 +60,11 @@ flowchart LR
 ### 동작하는 코드의 특징
 
 ```java
+import java.sql.*;
+
 // 동작은 하지만... 좋은 코드인가?
 public class OrderService {
-    public void processOrder(String customerId, String productId, int qty) {
+    public void processOrder(String customerId, String productId, int qty) throws SQLException {
         // 데이터베이스 직접 접근
         Connection conn = DriverManager.getConnection("jdbc:mysql://...");
         Statement stmt = conn.createStatement();
@@ -71,10 +72,10 @@ public class OrderService {
         // 비즈니스 로직과 SQL이 뒤섞임
         ResultSet rs = stmt.executeQuery(
             "SELECT * FROM products WHERE id = '" + productId + "'");
-        // ... 수백 줄의 코드
+        // ... 수백 줄의 코드가 이런 식으로 이어지며 재고 확인, 가격 계산, 주문 저장을 전부 이 메서드 안에서 처리한다
         
-        // 에러 처리? 트랜잭션? 로깅?
-        // "나중에 하자..."
+        // 에러 처리? 트랜잭션? 로깅? "나중에 하자..." — 결국 아무도 하지 않는다
+        conn.close();
     }
 }
 ```
@@ -178,12 +179,25 @@ flowchart TB
 | 나쁜 시스템 설계 | 팀의 사기 저하 |
 | 형편없는 소프트웨어 구조 | 팀, 부서, 회사 실패 |
 
+이 증상들은 대체로 한 방향으로 이어진다. 강한 결합이 사소한 변경조차 며칠~몇 주짜리 작업으로 바꾸고, 그 지연이 반복되면 관리자는 인내심을 잃고 더 많은 인력을 투입하며, 그 인력이 다시 결합을 늘리는 악순환에 빠진다. 결국 이 순환을 끊지 못하면 07장에서 다룰 "인력을 늘려도 산출은 늘지 않는" 상태에 도달한다.
+
 ## 우리의 현실
 
 마틴은 자신을 포함해 대다수의 개발자가 "천국"보다는 "지옥"에 훨씬 가까운 경험을 더 자주 한다고 인정한다(Martin, *Clean Architecture*, 2017). 아래는 그런 "지옥"의 전형적인 모습이다 — 원저자도, 리팩토링을 시도한 사람도, 지금 유지보수하는 사람도 이 코드의 전체 동작을 설명하지 못한다.
 
 ```java
-// 현실: 레거시 코드와의 싸움
+// 현실: 레거시 코드와의 싸움 (Order/Customer/Inventory/Receipt는 각 도메인 레코드)
+record Order(String productId, String customerId) {
+    public String getProductId() { return productId; }
+}
+record Customer(int tier) {
+    public int getTier() { return tier; }
+}
+record Inventory(boolean backordered) {
+    public boolean hasBackorder(String productId) { return backordered; }
+}
+record Receipt(Order order, int discountCode) {}
+
 public class LegacyOrderProcessor {
     // 2005년에 작성됨. 아무도 이해 못함.
     // TODO: 리팩토링 필요 (2010년 작성)
@@ -208,6 +222,8 @@ public class LegacyOrderProcessor {
 훌륭한 소프트웨어 설계를 바탕으로 작업하면서 **즐거움을 느끼기보다는**, 형편없는 소프트웨어 설계와 **맞서 싸우는 일**을 훨씬 더 자주 맞닥뜨린다.
 
 ## 이 파트에서 다룰 내용
+
+이 장은 "설계와 아키텍처가 왜 중요한가"라는 동기를 먼저 보여준다. 정작 "설계와 아키텍처란 정확히 무엇인가"라는 정의 자체는 다음 장으로 미루는데, 이는 의도적인 순서다 — 정의부터 외우기보다, 왜 이 구분에 신경 써야 하는지 절감한 뒤에 정의를 접하는 편이 기억에 남는다.
 
 ```mermaid
 flowchart LR

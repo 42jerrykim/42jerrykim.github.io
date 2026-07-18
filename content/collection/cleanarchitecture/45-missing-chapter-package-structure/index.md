@@ -4,6 +4,7 @@ collection_order: 450
 image: "wordcloud.png"
 description: "패키지 구조의 네 가지 접근법을 다룹니다. 계층별, 기능별, 포트와 어댑터, 컴포넌트별 패키지 구성과 각각의 장단점, 그리고 컴파일러 기반 강제 방법을 설명합니다."
 title: "[Clean Architecture] 45. 빠진 장: 패키지 구조"
+slug: missing-chapter-package-structure
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

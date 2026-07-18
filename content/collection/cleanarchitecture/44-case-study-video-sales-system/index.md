@@ -4,6 +4,7 @@ collection_order: 440
 image: "wordcloud.png"
 description: "비디오 판매 시스템을 예제로 Clean Architecture를 적용하는 과정을 다룹니다. 유스케이스 분석부터 컴포넌트 아키텍처까지 실제 설계 과정을 설명합니다."
 title: "[Clean Architecture] 44. 사례 연구: 비디오 판매 시스템"
+slug: case-study-video-sales-system
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

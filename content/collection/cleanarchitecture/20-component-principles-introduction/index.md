@@ -4,6 +4,7 @@ collection_order: 200
 image: "wordcloud.png"
 description: "컴포넌트의 정의와 역사, 그리고 컴포넌트 수준의 설계 원칙 개요를 다룹니다. jar, dll, gem 등 배포 단위가 어떻게 발전해왔는지, SOLID가 컴포넌트 수준에서 어떻게 확장되는지 설명합니다."
 title: "[Clean Architecture] 20. 컴포넌트 원칙 서론"
+slug: component-principles-introduction
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

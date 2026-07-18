@@ -4,6 +4,7 @@ collection_order: 80
 image: "wordcloud.png"
 description: "소프트웨어가 제공하는 두 가지 핵심 가치인 행위(기능)와 구조(아키텍처)에 대해 설명합니다. 왜 두 가치가 모두 중요하며, 소프트웨어를 변경하기 쉽게 만드는 것이 장기적으로 얼마나 큰 가치를 가지는지 아이젠하워 매트릭스와 함께 다룹니다."
 title: "[Clean Architecture] 08. 두 가지 가치: 행위와 구조"
+slug: two-values-behavior-structure
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
@@ -16,8 +17,6 @@ tags:
   - Best-Practices
   - Productivity(생산성)
   - Technology(기술)
-  - Career(커리어)
-  - Agile(애자일)
   - Case-Study
   - Deep-Dive
   - Comparison(비교)
@@ -26,13 +25,14 @@ tags:
   - System-Design
   - Guide(가이드)
   - 의사결정
-  - Workflow(워크플로우)
   - Governance
-  - Tips
-  - Beginner
-  - Advanced
-  - Documentation(문서화)
+  - Interface(인터페이스)
+  - Design-Pattern(디자인패턴)
+  - OOP(객체지향)
+  - Abstraction(추상화)
   - Refactoring(리팩토링)
+  - Coupling(결합도)
+  - Modularity
 ---
 
 모든 소프트웨어 시스템은 이해관계자에게 서로 다른 **두 가지 가치**를 제공하는데, **행위(Behavior)**와 **구조(Structure)**가 바로 그것이다.
@@ -138,6 +138,8 @@ flowchart TB
 - ❌ **현실**: 변경사항의 **형태(shape)**와 관련이 있음
 
 ### 사각형 마개와 동그란 구멍
+
+아키텍처가 처음 정한 "형태"와 새 요구사항의 "형태"가 어긋나면, 요구사항을 억지로 기존 구조에 끼워 맞추는 코드가 쌓인다. 아래 예제는 컨트롤러 하나가 새 요구사항이 생길 때마다 메서드를 계속 늘려가는 전형적인 패턴을 보여준다.
 
 ```java
 // 나쁜 아키텍처의 증상: MVC 컨트롤러 하나에 모든 신규 기능이 몰리는 경우
@@ -283,7 +285,15 @@ flowchart LR
 
 ## 아키텍처를 위해 투쟁하라
 
+개발자가 침묵하면 아키텍처 개선 요청은 기능 요청에 밀려 항상 후순위가 된다. 아래 예제는 개발자를 다른 이해관계자와 동등하게 "우려 사항을 제기할 권리와 의무가 있는 주체"로 모델링한 것이다.
+
 ```java
+enum Priority { URGENT, IMPORTANT }
+
+interface ArchitectureBoard {
+    void submitConcern(String issue, Priority priority);
+}
+
 public interface Stakeholder {
     void raiseConcern(String issue, Priority priority);
 }

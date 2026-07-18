@@ -4,6 +4,7 @@ collection_order: 320
 image: "wordcloud.png"
 description: "Clean Architecture의 핵심인 동심원 구조와 의존성 규칙을 상세히 다룹니다. Entities, Use Cases, Interface Adapters, Frameworks의 4계층과 경계를 넘는 데이터 흐름을 설명합니다."
 title: "[Clean Architecture] 32. 클린 아키텍처: 동심원과 의존성 규칙"
+slug: clean-architecture-concentric-circles-dependency
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

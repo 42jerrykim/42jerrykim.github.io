@@ -4,6 +4,7 @@ collection_order: 20
 image: "wordcloud.png"
 description: "전통적인 계층형 아키텍처(N-Tier Architecture)의 등장 배경과 구조를 살펴보고, MVC 패턴과 3계층 구조가 가진 근본적인 한계점을 분석합니다. 왜 새로운 아키텍처 패턴이 필요했는지, 육각형·양파·클린 아키텍처로 이어지는 흐름과 함께 이해합니다."
 title: "[Clean Architecture] 02. 계층형 아키텍처의 역사와 한계"
+slug: layered-architecture-limitations-history
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

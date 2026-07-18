@@ -4,6 +4,7 @@ collection_order: 70
 image: "wordcloud.png"
 description: "설계(Design)와 아키텍처(Architecture)의 개념적 차이와 공통점을 다룹니다. 둘 사이에는 차이가 없으며, 좋은 아키텍처의 목표는 인력 최소화라는 실무적 관점을 실제와 유사한 사례 연구, 그리고 '나중에 정리하면 된다'는 거짓말에 대한 반박과 함께 설명합니다."
 title: "[Clean Architecture] 07. 설계와 아키텍처란?"
+slug: design-vs-architecture-definition
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
@@ -26,14 +27,12 @@ tags:
   - Cohesion(응집도)
   - Modularity
   - Testing(테스트)
-  - TDD(Test-Driven Development)
-  - Agile(애자일)
-  - Career(커리어)
   - Guide(가이드)
-  - Comparison(비교)
-  - History(역사)
-  - Abstraction(추상화)
-  - Interface(인터페이스)
+  - System-Design
+  - Database(데이터베이스)
+  - Web(웹)
+  - Deployment(배포)
+  - Reliability
 ---
 
 **설계(Design)와 아키텍처(Architecture) 사이에는 오랫동안 많은 혼란이 있었다.** 결론부터 얘기하면 **둘 사이에는 차이가 없다.**
@@ -87,6 +86,7 @@ flowchart TB
 // - Data Access Layer
 
 // 저수준 결정: 구체적인 구현 (ORM 선택, 캐시 전략)
+// EntityManager(JPA)·Cache(캐시 추상화)·OrderId·Order는 각 프레임워크/도메인이 제공하는 타입
 public class OrderRepository {
     private final EntityManager em;
     private final Cache<OrderId, Order> cache;
@@ -133,7 +133,7 @@ flowchart LR
 
 ## 사례 연구: 실제 회사의 데이터
 
-마틴은 실제 회사의 데이터를 통해 나쁜 설계의 결과를 보여준다.
+마틴은 원저 1장에서 실제 컨설팅 경험을 근거로 이와 유사한 4개의 그래프(엔지니어 수·생산성·코드 라인당 비용·출시별 생산성)를 제시하며 나쁜 설계의 결과를 보여준다. 아래 수치는 그 패턴을 예시로 재구성한 것으로, 원저 도표의 정확한 값이 아니라 "무슨 일이 벌어지는가"라는 형태를 보여주기 위한 것이다.
 
 ### 1. 엔지니어링 직원 수의 증가
 
@@ -191,7 +191,7 @@ xychart-beta
     line [100, 80, 50, 30, 15, 8, 4, 2]
 ```
 
-시스템을 급하게 만들거나, 결과물의 총량을 순전히 프로그래머 수만으로 결정하거나, 코드와 설계의 구조를 깔끔하게 만들려는 생각을 전혀 하지 않으면 **생산성이 0으로 수렴**한다.
+앞선 세 그래프(직원 수 증가·생산성 정체·비용 증가)를 시간축으로 이어보면 이 곡선이 나온다. 시스템을 급하게 만들거나, 결과물의 총량을 순전히 프로그래머 수만으로 결정하거나, 코드와 설계의 구조를 깔끔하게 만들려는 생각을 전혀 하지 않으면 **생산성이 0으로 수렴**한다.
 
 ### 개발자의 절망
 
@@ -235,6 +235,8 @@ xychart-beta
 |------|--------|--------|
 | 1차 | 수십만 달러 | 많은 기능 |
 | 8차 | 2천만 달러 | 거의 없음 |
+
+경영자에게는 이 표가 가장 뼈아프다 — 지출은 40배 늘었는데 산출은 거의 0에 수렴했으니, 개발팀·경영진·고객 세 이해관계자 모두가 같은 원인(설계 품질 저하)의 서로 다른 증상을 겪고 있는 셈이다.
 
 ## 무엇이 잘못되었나?
 

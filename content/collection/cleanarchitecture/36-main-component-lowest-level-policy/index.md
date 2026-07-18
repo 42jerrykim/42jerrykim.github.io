@@ -4,6 +4,7 @@ collection_order: 360
 image: "wordcloud.png"
 description: "Main 컴포넌트의 역할과 위치를 다룹니다. Main이 가장 저수준의 정책이자 시스템의 초기 진입점으로서 모든 구체 클래스를 알고 조립하는 역할을 설명합니다."
 title: "[Clean Architecture] 36. 메인 컴포넌트"
+slug: main-component-lowest-level-policy
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

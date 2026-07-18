@@ -4,6 +4,7 @@ collection_order: 40
 image: "wordcloud.png"
 description: "2008년 제프리 팔레르모가 제안한 양파 아키텍처(Onion Architecture)를 상세히 분석합니다. 도메인 중심 설계, 동심원 구조의 의존성 방향, 인프라스트럭처 독립성의 원리, 그리고 Clean Architecture와의 관계를 설명합니다."
 title: "[Clean Architecture] 04. 어니언 아키텍처: 도메인 중심 설계"
+slug: onion-architecture-domain-centric-design
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

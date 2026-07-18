@@ -4,6 +4,7 @@ collection_order: 230
 image: "wordcloud.png"
 description: "컴포넌트 결합의 세 가지 원칙(ADP, SDP, SAP)을 상세히 다룹니다. 순환 의존성 제거, 안정성 방향의 의존, 그리고 추상화와 안정성의 관계를 메트릭과 함께 설명합니다."
 title: "[Clean Architecture] 23. 컴포넌트 결합: ADP, SDP, SAP"
+slug: component-coupling-adp-sdp-sap
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

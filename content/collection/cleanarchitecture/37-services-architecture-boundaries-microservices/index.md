@@ -4,6 +4,7 @@ collection_order: 370
 image: "wordcloud.png"
 description: "서비스 아키텍처에 대한 오해와 진실을 다룹니다. 서비스가 아키텍처 경계가 아닐 수 있으며, 마이크로서비스가 만병통치약이 아닌 이유를 설명합니다."
 title: "[Clean Architecture] 37. 서비스: 아키텍처 경계인가?"
+slug: services-architecture-boundaries-microservices
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

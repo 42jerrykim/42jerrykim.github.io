@@ -4,6 +4,7 @@ collection_order: 280
 image: "wordcloud.png"
 description: "경계의 다양한 구현 방식을 다룹니다. 함수 호출, 로컬 프로세스, 서비스까지 경계 횡단의 물리적 형태와 각각의 비용과 장단점을 설명합니다."
 title: "[Clean Architecture] 28. 경계 해부학: 모놀리스에서 서비스까지"
+slug: boundary-anatomy-monolith-to-services
 date: 2026-01-18
 categories: CleanArchitecture
 tags:

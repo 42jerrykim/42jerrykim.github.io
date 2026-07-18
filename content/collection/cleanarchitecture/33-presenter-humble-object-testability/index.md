@@ -4,6 +4,7 @@ collection_order: 330
 image: "wordcloud.png"
 description: "프레젠터와 험블 객체 패턴을 다룹니다. 테스트하기 어려운 부분을 분리하여 테스트 용이성을 높이는 방법과 아키텍처 경계에서의 활용을 설명합니다."
 title: "[Clean Architecture] 33. 프레젠터와 험블 객체"
+slug: presenter-humble-object-testability
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
