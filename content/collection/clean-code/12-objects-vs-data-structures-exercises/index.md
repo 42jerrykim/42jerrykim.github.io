@@ -1,976 +1,140 @@
 ---
-draft: true
+draft: false
+collection_order: 12
+slug: objects-vs-data-structures-exercises
+title: "[Clean Code] 12장. 디미터 법칙 리팩토링 실습"
+date: 2026-07-17
+last_modified_at: 2026-07-17
+description: "정수 타입 코드로 도형 종류를 분기하는 절차적 계산기 코드를 다형성 객체로 변환하고, 여러 단계를 파고드는 기차 충돌 코드를 디미터 법칙에 따라 정리하는 두 가지 리팩토링 실습을 변경 시나리오 검증과 함께 진행한다."
+categories: Clean Code
+tags:
+- Clean-Code(클린코드)
+- OOP(객체지향)
+- Refactoring(리팩토링)
+- Encapsulation(캡슐화)
+- Design-Pattern(디자인패턴)
+- Code-Quality(코드품질)
+- Best-Practices
+- Readability
+- Maintainability
+- Coupling(결합도)
+- Java
+- Implementation(구현)
+- Pitfalls(함정)
+- Polymorphism(다형성)
+- Tutorial(튜토리얼)
+- Guide(가이드)
+- Education(교육)
+- Career(커리어)
+- Code-Review(코드리뷰)
+- Testing(테스트)
+- Interface(인터페이스)
+- Abstraction(추상화)
+- SOLID
+- Software-Architecture(소프트웨어아키텍처)
+- Composition(합성)
 ---
-# Chapter 6: 객체와 자료구조 - 실습 과제
 
-## 실습 개요
-이 실습은 객체와 자료구조의 차이를 이해하고, 적절한 데이터 추상화를 적용하며, 디미터 법칙을 준수하는 코드를 작성하는 것을 목표로 합니다.
+## 이 장을 읽기 전에
 
-## 실습 1: 구조 변환 (45분)
+이 장은 [11장: 객체와 자료구조의 비대칭](/post/clean-code/objects-vs-data-structures-design-patterns/)에서 다룬 개념(자료 추상화, 디미터 법칙, 기차 충돌)을 실제 코드에 적용하는 실습이다. 11장을 먼저 읽었다는 전제로 진행한다.
 
-### 목표
-제공된 절차적 코드를 객체지향으로 변환하거나, 과도한 객체지향 코드를 적절한 자료구조로 변환합니다.
+| 수준 | 읽을 부분 | 핵심 목표 |
+|:--:|:--|:--|
+| 입문자 | 실습 1 전체 | 타입 코드 분기를 다형성으로 바꾸는 절차를 따라 한다 |
+| 실무자 | 실습 2, "판단 기준" | 리팩토링이 실제로 변경 비용을 낮췄는지 시나리오로 검증한다 |
 
-### 변환 대상 코드 - 절차적 → 객체지향
+## 실습 1: 타입 코드를 다형성으로 변환
 
-#### Java 예시 - 기하학 도형 계산
+아래 코드는 정수 타입 코드(`SQUARE`, `RECTANGLE`, `CIRCLE`)로 도형을 구분하고, 넓이 계산 함수 안에서 이 타입 코드를 분기한다.
+
 ```java
-// Bad: 절차적 프로그래밍 스타일
+// 실습 대상: 타입 코드로 분기하는 절차적 코드
 public class GeometryCalculator {
     public static final int SQUARE = 1;
     public static final int RECTANGLE = 2;
     public static final int CIRCLE = 3;
-    
-    public static class Point {
-        public double x, y;
-    }
-    
-    public static class Square {
-        public Point topLeft;
-        public double side;
-    }
-    
-    public static class Rectangle {
-        public Point topLeft;
-        public double height, width;
-    }
-    
-    public static class Circle {
-        public Point center;
-        public double radius;
-    }
-    
-    public double calculateArea(Object shape) throws NoSuchShapeException {
-        if (shape instanceof Square) {
-            Square s = (Square) shape;
-            return s.side * s.side;
-        } else if (shape instanceof Rectangle) {
-            Rectangle r = (Rectangle) shape;
-            return r.height * r.width;
-        } else if (shape instanceof Circle) {
-            Circle c = (Circle) shape;
-            return Math.PI * c.radius * c.radius;
-        }
-        throw new NoSuchShapeException();
-    }
-    
-    public double calculatePerimeter(Object shape) throws NoSuchShapeException {
-        if (shape instanceof Square) {
-            Square s = (Square) shape;
-            return 4 * s.side;
-        } else if (shape instanceof Rectangle) {
-            Rectangle r = (Rectangle) shape;
-            return 2 * (r.height + r.width);
-        } else if (shape instanceof Circle) {
-            Circle c = (Circle) shape;
-            return 2 * Math.PI * c.radius;
-        }
-        throw new NoSuchShapeException();
-    }
-    
-    public void draw(Object shape) throws NoSuchShapeException {
-        if (shape instanceof Square) {
-            Square s = (Square) shape;
-            System.out.println("Drawing Square at (" + s.topLeft.x + "," + s.topLeft.y + ") with side " + s.side);
-        } else if (shape instanceof Rectangle) {
-            Rectangle r = (Rectangle) shape;
-            System.out.println("Drawing Rectangle at (" + r.topLeft.x + "," + r.topLeft.y + ") " + r.width + "x" + r.height);
-        } else if (shape instanceof Circle) {
-            Circle c = (Circle) shape;
-            System.out.println("Drawing Circle at (" + c.center.x + "," + c.center.y + ") with radius " + c.radius);
-        }
-        throw new NoSuchShapeException();
-    }
-}
 
-class NoSuchShapeException extends Exception {
-    public NoSuchShapeException() {
-        super("Unknown shape type");
+    public double calculateArea(int shapeType, double... params) {
+        switch (shapeType) {
+            case SQUARE:    return params[0] * params[0];
+            case RECTANGLE: return params[0] * params[1];
+            case CIRCLE:    return Math.PI * params[0] * params[0];
+            default: throw new IllegalArgumentException("Unknown shape type");
+        }
     }
 }
 ```
 
-### 변환 과제 1: 객체지향 방식으로 변환
+이 코드의 문제는 11장에서 다룬 표 그대로다. 새 도형(`Triangle`)을 추가하려면 `calculateArea`뿐 아니라, 만약 `calculatePerimeter` 같은 함수가 더 있었다면 그 함수들도 모두 찾아 분기를 추가해야 한다. 게다가 `params[0]`, `params[1]`이라는 위치 기반 인수는 어떤 도형이 몇 개의 인수를 요구하는지 타입 시스템으로 보장하지 못한다.
 
-다음 원칙을 적용하여 객체지향으로 변환하세요:
-
-1. **다형성 활용**: 타입 체크 대신 다형성 사용
-2. **캡슐화**: 데이터와 행동을 함께 묶기
-3. **확장성**: 새로운 도형 추가가 쉽도록 설계
-
-### 변환 결과 템플릿
-
-#### Java 객체지향 변환 결과
 ```java
-// Good: 객체지향 방식
-public abstract class Shape {
-    protected final Point position;
-    
-    public Shape(Point position) {
-        this.position = new Point(position.x, position.y);
-    }
-    
-    public abstract double calculateArea();
-    public abstract double calculatePerimeter();
-    public abstract void draw();
-    
-    public Point getPosition() {
-        return new Point(position.x, position.y);
-    }
+// 리팩토링 결과: 각 도형이 자신의 넓이 계산 책임을 가진다
+public interface Shape {
+    double calculateArea();
 }
 
-public class Point {
-    private final double x;
-    private final double y;
-    
-    public Point(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-    
-    public double getX() { return x; }
-    public double getY() { return y; }
-    
-    @Override
-    public String toString() {
-        return String.format("(%.1f, %.1f)", x, y);
-    }
-}
-
-public class Square extends Shape {
+public class Square implements Shape {
     private final double side;
-    
-    public Square(Point topLeft, double side) {
-        super(topLeft);
-        this.side = side;
-    }
-    
-    @Override
-    public double calculateArea() {
-        return side * side;
-    }
-    
-    @Override
-    public double calculatePerimeter() {
-        return 4 * side;
-    }
-    
-    @Override
-    public void draw() {
-        System.out.printf("Drawing Square at %s with side %.1f%n", 
-                         position, side);
-    }
-    
-    public double getSide() { return side; }
+    public Square(double side) { this.side = side; }
+    public double calculateArea() { return side * side; }
 }
 
-public class Rectangle extends Shape {
-    private final double width;
-    private final double height;
-    
-    public Rectangle(Point topLeft, double width, double height) {
-        super(topLeft);
-        this.width = width;
-        this.height = height;
-    }
-    
-    @Override
-    public double calculateArea() {
-        return width * height;
-    }
-    
-    @Override
-    public double calculatePerimeter() {
-        return 2 * (width + height);
-    }
-    
-    @Override
-    public void draw() {
-        System.out.printf("Drawing Rectangle at %s %.1fx%.1f%n", 
-                         position, width, height);
-    }
+public class Rectangle implements Shape {
+    private final double width, height;
+    public Rectangle(double width, double height) { this.width = width; this.height = height; }
+    public double calculateArea() { return width * height; }
 }
 
-public class Circle extends Shape {
+public class Circle implements Shape {
     private final double radius;
-    
-    public Circle(Point center, double radius) {
-        super(center);
-        this.radius = radius;
-    }
-    
-    @Override
-    public double calculateArea() {
-        return Math.PI * radius * radius;
-    }
-    
-    @Override
-    public double calculatePerimeter() {
-        return 2 * Math.PI * radius;
-    }
-    
-    @Override
-    public void draw() {
-        System.out.printf("Drawing Circle at %s with radius %.1f%n", 
-                         position, radius);
-    }
-    
-    public double getRadius() { return radius; }
-}
-
-// 사용 예시
-public class ShapeManager {
-    private final List<Shape> shapes = new ArrayList<>();
-    
-    public void addShape(Shape shape) {
-        shapes.add(shape);
-    }
-    
-    public double calculateTotalArea() {
-        return shapes.stream()
-                    .mapToDouble(Shape::calculateArea)
-                    .sum();
-    }
-    
-    public void drawAllShapes() {
-        shapes.forEach(Shape::draw);
-    }
+    public Circle(double radius) { this.radius = radius; }
+    public double calculateArea() { return Math.PI * radius * radius; }
 }
 ```
 
-### 변환 대상 코드 - 객체지향 → 자료구조
+이제 새 도형을 추가하려면 `Shape`를 구현하는 클래스 하나만 작성하면 되고, 기존 `Square`, `Rectangle`, `Circle`은 전혀 건드릴 필요가 없다. 대신 이 설계는 11장에서 짚은 트레이드오프대로, 만약 나중에 "모든 도형의 둘레를 출력하는 새 리포트 기능"처럼 새로운 연산이 자주 추가되는 시스템이라면 오히려 모든 클래스를 순회하며 고쳐야 하는 비용이 생긴다는 점도 함께 기억해야 한다.
 
-#### Java 예시 - 과도한 캡슐화
+## 실습 2: 기차 충돌 코드 정리
+
+다음 코드는 주문 시스템에서 배송지의 우편번호를 가져오는 과정을 보여준다.
+
 ```java
-// Bad: 과도한 객체지향 (자료구조가 더 적합한 경우)
-public class Employee {
-    private String firstName;
-    private String lastName;
-    private String department;
-    private double salary;
-    private LocalDate hireDate;
-    private String email;
-    private String phoneNumber;
-    
-    // 수많은 getter/setter들
-    public String getFirstName() { return firstName; }
-    public void setFirstName(String firstName) { this.firstName = firstName; }
-    
-    public String getLastName() { return lastName; }
-    public void setLastName(String lastName) { this.lastName = lastName; }
-    
-    public String getDepartment() { return department; }
-    public void setDepartment(String department) { this.department = department; }
-    
-    public double getSalary() { return salary; }
-    public void setSalary(double salary) { this.salary = salary; }
-    
-    public LocalDate getHireDate() { return hireDate; }
-    public void setHireDate(LocalDate hireDate) { this.hireDate = hireDate; }
-    
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-    
-    public String getPhoneNumber() { return phoneNumber; }
-    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
-    
-    // 의미 있는 행동이 없음
-    public String getFullName() {
-        return firstName + " " + lastName;
-    }
-    
-    public boolean isLongTermEmployee() {
-        return ChronoUnit.YEARS.between(hireDate, LocalDate.now()) >= 5;
-    }
-}
-
-public class EmployeeProcessor {
-    public void processEmployeeData(Employee employee) {
-        // 모든 필드에 접근하기 위해 수많은 getter 호출
-        String report = String.format(
-            "Employee: %s %s\nDepartment: %s\nSalary: %.2f\nHire Date: %s\nEmail: %s\nPhone: %s",
-            employee.getFirstName(),
-            employee.getLastName(), 
-            employee.getDepartment(),
-            employee.getSalary(),
-            employee.getHireDate(),
-            employee.getEmail(),
-            employee.getPhoneNumber()
-        );
-        
-        System.out.println(report);
-    }
-}
+// 실습 대상: 여러 단계를 파고드는 기차 충돌
+String zipCode = order.getCustomer().getAddress().getShippingAddress().getZipCode();
 ```
 
-### 변환 과제 2: 자료구조 방식으로 변환
+이 한 줄은 `order`가 `Customer`를 갖고, `Customer`가 `Address`를 갖고, `Address`가 다시 `ShippingAddress`를 갖는다는 네 단계의 내부 구조를 호출자에게 그대로 노출한다. `Customer`의 주소 저장 방식이 바뀌면(예: `Address`와 `ShippingAddress`를 하나로 합치는 리팩토링) 이 코드를 사용하는 모든 곳이 함께 깨진다. 디미터 법칙에 따라 `Order`가 필요한 동작을 직접 제공하도록 고친다.
 
-다음 상황에서는 자료구조가 더 적합합니다:
-- 단순한 데이터 전송 객체(DTO)
-- 설정 정보 저장
-- 데이터베이스 레코드 표현
-
-### 변환 결과 템플릿
-
-#### Java 자료구조 변환 결과
 ```java
-// Good: 단순한 자료구조 (Record 사용 - Java 14+)
-public record EmployeeData(
-    String firstName,
-    String lastName,
-    String department,
-    double salary,
-    LocalDate hireDate,
-    String email,
-    String phoneNumber
-) {
-    // 생성자에서 유효성 검사
-    public EmployeeData {
-        if (firstName == null || firstName.trim().isEmpty()) {
-            throw new IllegalArgumentException("First name cannot be empty");
-        }
-        if (lastName == null || lastName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Last name cannot be empty");
-        }
-        if (salary < 0) {
-            throw new IllegalArgumentException("Salary cannot be negative");
-        }
-    }
-    
-    // 파생 데이터를 위한 메서드
-    public String fullName() {
-        return firstName + " " + lastName;
-    }
-    
-    public long yearsOfService() {
-        return ChronoUnit.YEARS.between(hireDate, LocalDate.now());
-    }
-}
-
-// 비즈니스 로직은 별도 서비스에서 처리
-public class EmployeeService {
-    public boolean isEligibleForPromotion(EmployeeData employee) {
-        return employee.yearsOfService() >= 2 && employee.salary() >= 50000;
-    }
-    
-    public double calculateBonus(EmployeeData employee) {
-        if (employee.yearsOfService() >= 5) {
-            return employee.salary() * 0.1;
-        } else if (employee.yearsOfService() >= 2) {
-            return employee.salary() * 0.05;
-        }
-        return 0;
-    }
-    
-    public String generateReport(EmployeeData employee) {
-        return String.format("""
-            Employee Report
-            ===============
-            Name: %s
-            Department: %s
-            Salary: $%.2f
-            Years of Service: %d
-            Bonus Eligible: $%.2f
-            """, 
-            employee.fullName(),
-            employee.department(),
-            employee.salary(),
-            employee.yearsOfService(),
-            calculateBonus(employee)
-        );
-    }
-}
-```
-
-### 구조 변환 체크리스트
-```markdown
-## 구조 변환 체크리스트
-
-### 객체지향 설계 체크 (절차적 → 객체지향)
-- [ ] 타입 체크 코드를 다형성으로 대체
-- [ ] 데이터와 행동을 함께 묶음
-- [ ] 새로운 타입 추가 시 기존 코드 수정 불필요
-- [ ] 캡슐화를 통한 데이터 보호
-
-### 자료구조 설계 체크 (객체지향 → 자료구조)
-- [ ] 단순한 데이터 저장 목적
-- [ ] 의미 있는 행동 부재
-- [ ] 모든 필드 접근이 필요한 경우
-- [ ] 불변성 보장 (final, record 등)
-
-### 설계 선택 기준
-| 상황 | 객체 지향 | 자료구조 |
-|------|-----------|----------|
-| 새로운 타입 추가 빈번 | ✅ 적합 | ❌ 부적합 |
-| 새로운 함수 추가 빈번 | ❌ 부적합 | ✅ 적합 |
-| 복잡한 비즈니스 로직 | ✅ 적합 | ❌ 부적합 |
-| 단순한 데이터 전송 | ❌ 부적합 | ✅ 적합 |
-```
-
-## 실습 2: 디미터 법칙 적용 (35분)
-
-### 목표
-기차 충돌(Train Wreck)이 일어나는 코드를 디미터 법칙에 맞게 수정합니다.
-
-### 개선 대상 코드
-
-#### Java 예시 - 주문 시스템
-```java
-// Bad: 디미터 법칙 위반 (기차 충돌)
-public class OrderProcessor {
-    public void processOrder(Order order) {
-        // 기차 충돌 - 여러 단계의 객체 체인 접근
-        String customerCity = order.getCustomer().getAddress().getCity();
-        String customerCountry = order.getCustomer().getAddress().getCountry();
-        
-        // 배송비 계산을 위한 복잡한 체인
-        double shippingFee = order.getShippingInfo()
-                                 .getDestination()
-                                 .getRegion()
-                                 .getShippingRate()
-                                 .getStandardRate();
-        
-        // 할인 정보 접근
-        boolean isVipCustomer = order.getCustomer()
-                                    .getMembership()
-                                    .getLevel()
-                                    .equals("VIP");
-        
-        // 재고 확인
-        for (OrderItem item : order.getItems()) {
-            int availableStock = item.getProduct()
-                                    .getInventory()
-                                    .getWarehouse()
-                                    .getStock()
-                                    .getAvailableQuantity();
-            
-            if (availableStock < item.getQuantity()) {
-                throw new InsufficientStockException("Not enough stock for " + 
-                    item.getProduct().getName());
-            }
-        }
-        
-        // 결제 정보 처리
-        String paymentMethod = order.getPayment()
-                                   .getMethod()
-                                   .getType()
-                                   .toString();
-        
-        if (paymentMethod.equals("CREDIT_CARD")) {
-            String cardNumber = order.getPayment()
-                                    .getMethod()
-                                    .getCreditCard()
-                                    .getNumber();
-            // 카드 처리...
-        }
-        
-        System.out.println("Processing order for " + customerCity + ", " + customerCountry);
-        System.out.println("Shipping fee: " + shippingFee);
-        System.out.println("VIP customer: " + isVipCustomer);
-    }
-}
-
-// 관련 클래스들 (문제가 있는 구조)
-class Order {
-    private Customer customer;
-    private List<OrderItem> items;
-    private ShippingInfo shippingInfo;
-    private Payment payment;
-    
-    // getter들...
-    public Customer getCustomer() { return customer; }
-    public List<OrderItem> getItems() { return items; }
-    public ShippingInfo getShippingInfo() { return shippingInfo; }
-    public Payment getPayment() { return payment; }
-}
-
-class Customer {
-    private Address address;
-    private Membership membership;
-    
-    public Address getAddress() { return address; }
-    public Membership getMembership() { return membership; }
-}
-
-class Address {
-    private String city;
-    private String country;
-    
-    public String getCity() { return city; }
-    public String getCountry() { return country; }
-}
-```
-
-### 개선 과제
-
-다음 디미터 법칙을 적용하여 개선하세요:
-
-1. **최소 지식 원칙**: 객체는 자신과 직접 관련된 객체만 알아야 함
-2. **메서드 위임**: 복잡한 탐색 대신 적절한 메서드 제공
-3. **캡슐화 강화**: 내부 구조를 숨기고 인터페이스 제공
-
-### 개선 결과 템플릿
-
-#### Java 디미터 법칙 적용 결과
-```java
-// Good: 디미터 법칙 준수
-public class OrderProcessor {
-    private final ShippingCalculator shippingCalculator;
-    private final StockValidator stockValidator;
-    private final PaymentProcessor paymentProcessor;
-    
-    public OrderProcessor(ShippingCalculator shippingCalculator,
-                         StockValidator stockValidator,
-                         PaymentProcessor paymentProcessor) {
-        this.shippingCalculator = shippingCalculator;
-        this.stockValidator = stockValidator;
-        this.paymentProcessor = paymentProcessor;
-    }
-    
-    public void processOrder(Order order) {
-        // 디미터 법칙 준수 - 직접적인 메서드 호출
-        String customerLocation = order.getCustomerLocation();
-        double shippingFee = order.calculateShippingFee();
-        boolean isVipCustomer = order.isVipCustomer();
-        
-        // 재고 검증 - 책임을 적절한 객체에 위임
-        if (!stockValidator.hasEnoughStock(order)) {
-            throw new InsufficientStockException("Insufficient stock for order");
-        }
-        
-        // 결제 처리 - 결제 관련 로직은 결제 처리기에 위임
-        PaymentResult result = paymentProcessor.processPayment(order);
-        if (!result.isSuccessful()) {
-            throw new PaymentException("Payment failed: " + result.getErrorMessage());
-        }
-        
-        System.out.println("Processing order for " + customerLocation);
-        System.out.println("Shipping fee: " + shippingFee);
-        System.out.println("VIP customer: " + isVipCustomer);
-    }
-}
-
-// 개선된 Order 클래스 - 적절한 메서드 제공
+// 리팩토링 결과: order 자신에게 필요한 동작을 직접 요청한다
 public class Order {
-    private final Customer customer;
-    private final List<OrderItem> items;
-    private final ShippingInfo shippingInfo;
-    private final Payment payment;
-    
-    public Order(Customer customer, List<OrderItem> items, 
-                ShippingInfo shippingInfo, Payment payment) {
-        this.customer = customer;
-        this.items = new ArrayList<>(items);
-        this.shippingInfo = shippingInfo;
-        this.payment = payment;
-    }
-    
-    // 디미터 법칙 준수 - 위임 메서드들
-    public String getCustomerLocation() {
-        return customer.getFullAddress();
-    }
-    
-    public double calculateShippingFee() {
-        return shippingInfo.calculateFee(customer.getShippingRegion());
-    }
-    
-    public boolean isVipCustomer() {
-        return customer.isVipMember();
-    }
-    
-    public List<OrderItem> getItems() {
-        return new ArrayList<>(items);
-    }
-    
-    public boolean hasPaymentMethod(PaymentType type) {
-        return payment.isOfType(type);
-    }
-    
-    public PaymentDetails getPaymentDetails() {
-        return payment.getPaymentDetails();
-    }
-    
-    public double getTotalAmount() {
-        return items.stream()
-                   .mapToDouble(OrderItem::getSubtotal)
-                   .sum();
+    public String getShippingZipCode() {
+        return customer.getAddress().getShippingAddress().getZipCode();
     }
 }
 
-// 개선된 Customer 클래스
-public class Customer {
-    private final String id;
-    private final String name;
-    private final Address address;
-    private final Membership membership;
-    
-    public Customer(String id, String name, Address address, Membership membership) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.membership = membership;
-    }
-    
-    // 위임 메서드들 - 내부 구조를 숨김
-    public String getFullAddress() {
-        return address.getFullAddress();
-    }
-    
-    public String getShippingRegion() {
-        return address.getRegion();
-    }
-    
-    public boolean isVipMember() {
-        return membership.isVipLevel();
-    }
-    
-    public String getId() { return id; }
-    public String getName() { return name; }
-}
-
-// 개선된 Address 클래스
-public class Address {
-    private final String street;
-    private final String city;
-    private final String state;
-    private final String country;
-    private final String postalCode;
-    
-    public Address(String street, String city, String state, 
-                  String country, String postalCode) {
-        this.street = street;
-        this.city = city;
-        this.state = state;
-        this.country = country;
-        this.postalCode = postalCode;
-    }
-    
-    public String getFullAddress() {
-        return String.format("%s, %s, %s, %s %s", 
-                           street, city, state, country, postalCode);
-    }
-    
-    public String getRegion() {
-        return country; // 또는 더 복잡한 지역 결정 로직
-    }
-    
-    public String getCity() { return city; }
-    public String getCountry() { return country; }
-}
-
-// 보조 서비스 클래스들
-public class StockValidator {
-    public boolean hasEnoughStock(Order order) {
-        return order.getItems().stream()
-                   .allMatch(this::hasEnoughStockForItem);
-    }
-    
-    private boolean hasEnoughStockForItem(OrderItem item) {
-        return item.isStockAvailable();
-    }
-}
-
-public class PaymentProcessor {
-    public PaymentResult processPayment(Order order) {
-        if (order.hasPaymentMethod(PaymentType.CREDIT_CARD)) {
-            return processCreditCardPayment(order);
-        } else if (order.hasPaymentMethod(PaymentType.PAYPAL)) {
-            return processPayPalPayment(order);
-        }
-        return PaymentResult.failure("Unsupported payment method");
-    }
-    
-    private PaymentResult processCreditCardPayment(Order order) {
-        // 신용카드 결제 처리
-        return PaymentResult.success("Credit card payment processed");
-    }
-    
-    private PaymentResult processPayPalPayment(Order order) {
-        // PayPal 결제 처리
-        return PaymentResult.success("PayPal payment processed");
-    }
-}
+// 호출부는 내부 구조를 몰라도 된다
+String zipCode = order.getShippingZipCode();
 ```
 
-### 디미터 법칙 체크리스트
-```markdown
-## 디미터 법칙 체크리스트
+`getShippingZipCode()` 내부에서는 여전히 여러 단계를 거치지만, 이는 `Order` 클래스 하나의 책임 안에 갇혀 있다. `Customer`나 `Address`의 내부 구조가 바뀌어도, 그 변경은 `Order` 클래스 안에서만 수정하면 되고 외부 호출자는 영향을 받지 않는다.
 
-### 위반 패턴 확인
-- [ ] 메서드 체이닝 (a.getB().getC().getD())
-- [ ] 깊은 탐색 (3단계 이상의 객체 접근)
-- [ ] 내부 구조에 대한 과도한 지식
-- [ ] 기차 충돌 코드
+## 판단 기준: 리팩토링이 실제로 결합도를 낮췄는지 검증하기
 
-### 개선 방법
-- [ ] 위임 메서드 제공
-- [ ] 적절한 추상화 레벨 유지
-- [ ] 책임 분산
-- [ ] 인터페이스 단순화
+리팩토링 후에는 "배송지 저장 방식이 바뀐다면 몇 개의 파일을 고쳐야 하는가"라는 질문으로 결과를 검증한다. 리팩토링 전에는 `order.getCustomer().getAddress()...` 패턴이 코드베이스 여러 곳에 흩어져 있었다면, 그 모든 위치를 찾아 고쳐야 한다. 리팩토링 후에는 `Order.getShippingZipCode()` 내부 한 곳만 고치면 된다. 이 질문에 "한 곳만 고치면 된다"고 답할 수 있어야 디미터 법칙 적용이 실질적인 효과를 낸 것이다. 단순히 문법적으로 메서드 호출을 한 단계 감쌌다고 해서 항상 결합도가 낮아지는 것은 아니라는 점에 주의한다 — 만약 `getShippingZipCode()`가 여전히 `Customer`, `Address`의 구체적인 타입을 매개변수로 노출한다면, 겉보기만 정리됐을 뿐 실질적인 결합도는 그대로일 수 있다.
 
-### 개선 효과
-| 항목 | Before | After |
-|------|--------|--------|
-| 결합도 | 높음 | 낮음 |
-| 유지보수성 | 어려움 | 쉬움 |
-| 테스트 용이성 | 어려움 | 쉬움 |
-| 캡슐화 | 약함 | 강함 |
-```
+## 다음 장에서는
 
-## 실습 3: DTO 설계 (30분)
-
-### 목표
-실제 시스템에서 사용할 DTO(Data Transfer Object)와 비즈니스 객체를 분리하여 설계합니다.
-
-### 설계 요구사항
-
-다음 시나리오에 대한 DTO와 비즈니스 객체를 설계하세요:
-
-**시나리오**: 온라인 쇼핑몰의 상품 관리 시스템
-- 상품 정보 조회 API
-- 상품 생성/수정 API
-- 상품 검색 API
-
-### 설계 과제
-
-1. **API 응답용 DTO** 설계
-2. **API 요청용 DTO** 설계  
-3. **비즈니스 도메인 객체** 설계
-4. **매핑 로직** 구현
-
-### 설계 결과 템플릿
-
-#### DTO 설계 결과
-```java
-// API 응답용 DTO
-public record ProductResponseDto(
-    Long id,
-    String name,
-    String description,
-    BigDecimal price,
-    String category,
-    int stockQuantity,
-    boolean available,
-    LocalDateTime createdAt,
-    LocalDateTime updatedAt,
-    List<String> imageUrls,
-    ProductRatingDto rating
-) {}
-
-public record ProductRatingDto(
-    double averageRating,
-    int totalReviews
-) {}
-
-// API 요청용 DTO (생성)
-public record CreateProductRequestDto(
-    @NotBlank String name,
-    @NotBlank String description,
-    @NotNull @DecimalMin("0.01") BigDecimal price,
-    @NotBlank String category,
-    @NotNull @Min(0) Integer stockQuantity,
-    List<String> imageUrls
-) {}
-
-// API 요청용 DTO (수정)
-public record UpdateProductRequestDto(
-    String name,
-    String description,
-    BigDecimal price,
-    String category,
-    Integer stockQuantity,
-    List<String> imageUrls
-) {}
-
-// 검색용 DTO
-public record ProductSearchDto(
-    String keyword,
-    String category,
-    BigDecimal minPrice,
-    BigDecimal maxPrice,
-    Boolean availableOnly,
-    String sortBy,
-    String sortDirection,
-    int page,
-    int size
-) {
-    public ProductSearchDto {
-        // 기본값 설정
-        page = Math.max(0, page);
-        size = Math.max(1, Math.min(100, size));
-        sortBy = sortBy != null ? sortBy : "name";
-        sortDirection = sortDirection != null ? sortDirection : "ASC";
-    }
-}
-
-// 비즈니스 도메인 객체
-public class Product {
-    private final ProductId id;
-    private ProductName name;
-    private ProductDescription description;
-    private Price price;
-    private Category category;
-    private Stock stock;
-    private final List<ProductImage> images;
-    private final ProductMetadata metadata;
-    
-    public Product(ProductId id, ProductName name, ProductDescription description,
-                  Price price, Category category, Stock stock) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.category = category;
-        this.stock = stock;
-        this.images = new ArrayList<>();
-        this.metadata = new ProductMetadata();
-    }
-    
-    // 비즈니스 로직 메서드들
-    public boolean isAvailable() {
-        return stock.isAvailable();
-    }
-    
-    public void updatePrice(Price newPrice) {
-        if (newPrice.isLowerThan(this.price)) {
-            // 가격 인하 시 특별 처리
-            metadata.recordPriceChange(this.price, newPrice);
-        }
-        this.price = newPrice;
-    }
-    
-    public void reserveStock(int quantity) {
-        if (!stock.canReserve(quantity)) {
-            throw new InsufficientStockException(
-                "Cannot reserve " + quantity + " items. Available: " + stock.getAvailable()
-            );
-        }
-        stock.reserve(quantity);
-    }
-    
-    public void addImage(ProductImage image) {
-        if (images.size() >= 10) {
-            throw new IllegalStateException("Maximum 10 images allowed per product");
-        }
-        images.add(image);
-    }
-    
-    // 도메인 이벤트 발생
-    public void markAsOutOfStock() {
-        if (stock.isEmpty()) {
-            DomainEvents.publish(new ProductOutOfStockEvent(this.id));
-        }
-    }
-    
-    // Getters for necessary fields
-    public ProductId getId() { return id; }
-    public ProductName getName() { return name; }
-    public ProductDescription getDescription() { return description; }
-    public Price getPrice() { return price; }
-    public Category getCategory() { return category; }
-    public Stock getStock() { return stock; }
-    public List<ProductImage> getImages() { return new ArrayList<>(images); }
-    public ProductMetadata getMetadata() { return metadata; }
-}
-
-// 값 객체들
-public record ProductId(Long value) {
-    public ProductId {
-        if (value == null || value <= 0) {
-            throw new IllegalArgumentException("Product ID must be positive");
-        }
-    }
-}
-
-public record Price(BigDecimal amount) {
-    public Price {
-        if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("Price must be positive");
-        }
-    }
-    
-    public boolean isLowerThan(Price other) {
-        return this.amount.compareTo(other.amount) < 0;
-    }
-}
-
-// 매핑 서비스
-@Service
-public class ProductMapper {
-    
-    public ProductResponseDto toResponseDto(Product product) {
-        return new ProductResponseDto(
-            product.getId().value(),
-            product.getName().value(),
-            product.getDescription().value(),
-            product.getPrice().amount(),
-            product.getCategory().name(),
-            product.getStock().getAvailable(),
-            product.isAvailable(),
-            product.getMetadata().getCreatedAt(),
-            product.getMetadata().getUpdatedAt(),
-            product.getImages().stream()
-                   .map(ProductImage::getUrl)
-                   .toList(),
-            new ProductRatingDto(
-                product.getMetadata().getAverageRating(),
-                product.getMetadata().getTotalReviews()
-            )
-        );
-    }
-    
-    public Product fromCreateRequest(CreateProductRequestDto dto) {
-        return new Product(
-            null, // ID는 저장 시 생성
-            new ProductName(dto.name()),
-            new ProductDescription(dto.description()),
-            new Price(dto.price()),
-            Category.valueOf(dto.category()),
-            new Stock(dto.stockQuantity())
-        );
-    }
-    
-    public void updateFromRequest(Product product, UpdateProductRequestDto dto) {
-        if (dto.name() != null) {
-            product.updateName(new ProductName(dto.name()));
-        }
-        if (dto.description() != null) {
-            product.updateDescription(new ProductDescription(dto.description()));
-        }
-        if (dto.price() != null) {
-            product.updatePrice(new Price(dto.price()));
-        }
-        // ... 기타 필드 업데이트
-    }
-}
-```
+[13장: 오류 코드 대신 예외를 써라](/post/clean-code/error-handling-exceptions-best-practices/)에서는 자료구조와 객체를 넘어, 실패를 다루는 방식을 살펴본다.
 
 ## 평가 기준
 
-### 실습 1: 구조 변환 (40점)
-- 적절한 설계 패턴 선택 (20점)
-- 객체지향/자료구조 원칙 적용 (15점)
-- 확장성과 유지보수성 고려 (5점)
+- [ ] 타입 코드 분기를 다형성 클래스 계층으로 변환할 수 있다.
+- [ ] 기차 충돌 코드를 식별하고 디미터 법칙에 따라 캡슐화할 수 있다.
+- [ ] 리팩토링이 실제로 결합도를 낮췄는지 "변경 시나리오"로 검증할 수 있다.
 
-### 실습 2: 디미터 법칙 적용 (35점)
-- 기차 충돌 제거 (15점)
-- 적절한 위임 메서드 설계 (15점)
-- 캡슐화 강화 (5점)
+## 참고 및 출처
 
-### 실습 3: DTO 설계 (25점)
-- DTO와 도메인 객체 분리 (15점)
-- 적절한 매핑 로직 (10점)
-
-## 제출 형식
-- 파일명: `06_objects-vs-data-structures_실습_[이름].md`
-- 제출 기한: 다음 강의 시작 전
-- 포함 내용: 
-  - 변환된 코드
-  - 디미터 법칙 적용 결과
-  - DTO 설계 문서
-
-## 추가 자료
-- Martin Fowler의 "Refactoring" - Data Class와 Feature Envy
-- Domain-Driven Design 관련 자료
-- DTO vs Entity 설계 패턴
-- Law of Demeter 상세 가이드 
+- Martin, R. C. (2008). *Clean Code: A Handbook of Agile Software Craftsmanship*. Prentice Hall. 6장.
+- Lieberherr, K., & Holland, I. (1989). "Assuring Good Style for Object-Oriented Programs." *IEEE Software*, 6(5), 38–48.
