@@ -26,7 +26,6 @@ tags:
   - Deep-Dive
   - Technology(기술)
   - Deployment(배포)
-  - CI-CD(Continuous Integration/Continuous Deployment)
   - System-Design
   - Complexity-Analysis(복잡도분석)
   - Java
@@ -45,27 +44,27 @@ tags:
 
 ### 아침에 출근했더니 코드가 망가져 있다?
 
-팀 개발에서 흔한 문제:
+여러 팀이 같은 코드베이스를 동시에 수정하는 환경에서 자주 반복되는 시나리오가 있다.
 
 1. 당신이 무언가를 만들어 퇴근
 2. 다음 날 출근했더니 **작동하지 않음**
 3. 누군가 당신이 의존하는 코드를 변경함
 
-이것을 "아침 증후군(Morning After Syndrome)"이라고 부른다.
+내 코드는 어제와 똑같은데, 내가 의존하는 다른 팀의 코드가 밤사이 바뀌어 있었던 것이다. 이것을 "아침 증후군(Morning After Syndrome)"이라고 부른다.
 
 ### 해결책 1: 주간 빌드 (Weekly Build)
 
-과거의 해결책:
+과거에는 이 문제를 일정으로 통제했다. 주 4일은 각자 독립적으로 개발하고, 금요일 하루를 정해 전체를 통합 빌드한다. 그러면 최소한 나머지 요일에는 서로의 변경에 방해받지 않는다.
 - 주 4일은 각자 독립 개발
 - 금요일에 전체 통합
 
-문제:
+그러나 이 방식은 프로젝트가 커질수록 한계를 드러낸다. 통합해야 할 변경 사항이 많아질수록 금요일 하루 안에 충돌을 다 해결하기 어려워지고, 결국 통합 자체가 프로젝트의 병목이 된다.
 - 통합이 갈수록 어려워짐
 - 프로젝트가 커지면 금요일 하루로 부족
 
 ### 해결책 2: 릴리스 기반 개발
 
-현대적 해결책:
+현대적 해결책은 시간이 아니라 컴포넌트 단위로 통합 시점을 분리하는 것이다. 각 컴포넌트를 **독립적으로 릴리스**하고, 그것을 사용하는 팀은 자신이 **준비되었을 때** 새 버전으로 업그레이드한다. "언제 통합할지"를 전체 팀이 아니라 각 팀이 스스로 결정하게 되는 것이 핵심 차이다.
 - 각 컴포넌트를 **독립적으로 릴리스**
 - 다른 팀은 **준비되면** 새 버전 사용
 
@@ -97,11 +96,11 @@ flowchart TB
     end
 ```
 
-순환이 있으면:
+릴리스 기반 개발은 "이 컴포넌트가 의존하는 것들이 먼저 릴리스되어 있다"는 전제 위에서 작동한다. 순환이 있으면 이 전제 자체가 성립하지 않는다.
 - A를 릴리스하려면 C가 필요
 - C를 릴리스하려면 B가 필요
 - B를 릴리스하려면 A가 필요
-- **데드락!**
+- **데드락!** — 셋 중 어느 것도 먼저 릴리스할 수 없다
 
 ### DAG (방향성 비순환 그래프)
 
@@ -146,6 +145,70 @@ flowchart TB
 
 `C`가 `A`를 직접 호출해야 하는 상황이라면, `A`가 구현할 인터페이스를 `C` 쪽(또는 둘 사이의 새 컴포넌트)에 정의하고 `A`가 그 인터페이스를 구현하게 한다. 그러면 `C → A`였던 화살표가 `A → Interface ← C`로 바뀌어, `C`는 더 이상 `A`에 직접 의존하지 않는다. DIP를 컴포넌트 단위로 적용한 것과 같다.
 
+순환이 있는 상태의 예를 보자. `order` 컴포넌트(A)는 `payment`(B)에 의존하고, `payment`는 `invoice`(C)에 의존하는데, `invoice`가 "결제 완료 시 주문 상태를 갱신"하기 위해 다시 `order`를 참조하면서 순환이 생긴다:
+
+```java
+// 순환 있음: invoice(C) → order(A)로 역방향 의존이 생김
+package com.shop.order;
+
+class OrderService {
+    void markInvoiced() { /* 주문 상태를 "청구 완료"로 변경 */ }
+}
+```
+
+```java
+package com.shop.invoice;
+
+import com.shop.order.OrderService;
+
+class InvoiceService {
+    private final OrderService orderService;  // C -> A: 순환의 원인
+
+    InvoiceService(OrderService orderService) {
+        this.orderService = orderService;
+    }
+
+    void issue() {
+        orderService.markInvoiced();
+    }
+}
+```
+
+`invoice`가 필요로 하는 것은 `OrderService` 전체가 아니라 "청구 완료를 알릴 수 있는 대상"뿐이다. 그 필요를 인터페이스로 뽑아 `invoice` 쪽에 정의하면, `order`가 그 인터페이스를 구현하는 방향으로 화살표가 뒤집힌다:
+
+```java
+package com.shop.invoice;
+
+interface Invoiceable {
+    void markInvoiced();
+}
+
+class InvoiceService {
+    private final Invoiceable target;  // C -> Interface (자신이 정의)
+
+    InvoiceService(Invoiceable target) {
+        this.target = target;
+    }
+
+    void issue() {
+        target.markInvoiced();
+    }
+}
+```
+
+```java
+package com.shop.order;
+
+import com.shop.invoice.Invoiceable;
+
+class OrderService implements Invoiceable {  // A -> Interface (구현)
+    @Override
+    public void markInvoiced() { /* 주문 상태를 "청구 완료"로 변경 */ }
+}
+```
+
+이제 `order`는 여전히 `payment`에 의존하고 `invoice`의 인터페이스를 구현하지만, `invoice`가 `order`를 직접 참조하는 화살표는 사라졌다 — 순환이 끊겼다.
+
 #### 방법 2: 새 컴포넌트 추출
 
 ```mermaid
@@ -165,7 +228,83 @@ flowchart TB
     end
 ```
 
-`X`와 `Y`가 서로를 필요로 하는 이유가 실제로는 둘 다 의존하는 공통 로직 때문인 경우가 많다. 그 공통 부분을 `Z`라는 새 컴포넌트로 뽑아내면, `X`와 `Y`는 서로가 아니라 `Z`에만 의존하게 되어 순환이 사라진다. 다만 이 방법은 컴포넌트 수를 늘리므로, 인터페이스 도입만으로 충분한 경우에는 방법 1을 먼저 고려하는 것이 낫다.
+`X`와 `Y`가 서로를 필요로 하는 이유가 실제로는 둘 다 의존하는 공통 로직 때문인 경우가 많다. `order`(X)의 할인 검증과 `payment`(Y)의 세금 계산이 둘 다 "금액 반올림 규칙"을 서로에게서 가져다 쓰려 한다고 하자:
+
+```java
+// 순환 있음: order가 payment의 반올림 로직을, payment가 order의 반올림 로직을 재사용하려 함
+package com.shop.order;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+class OrderValidator {
+    BigDecimal roundToCents(BigDecimal amount) {
+        return amount.setScale(2, RoundingMode.HALF_UP);
+    }
+}
+```
+
+```java
+package com.shop.payment;
+
+import com.shop.order.OrderValidator;
+import java.math.BigDecimal;
+
+class TaxCalculator {
+    private final OrderValidator orderValidator;  // Y -> X: 순환의 원인
+
+    TaxCalculator(OrderValidator orderValidator) {
+        this.orderValidator = orderValidator;
+    }
+
+    BigDecimal calculateTax(BigDecimal amount) {
+        return orderValidator.roundToCents(amount.multiply(BigDecimal.valueOf(0.1)));
+    }
+}
+```
+
+반올림 규칙은 `order`나 `payment` 어느 쪽에도 속하지 않는, 둘 다 필요로 하는 공통 로직이다. 이를 새 컴포넌트 `money`로 추출하면 둘 다 `money`에만 의존하게 되어 순환이 사라진다:
+
+```java
+package com.shop.money;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+public class MoneyRules {
+    public static BigDecimal roundToCents(BigDecimal amount) {
+        return amount.setScale(2, RoundingMode.HALF_UP);
+    }
+}
+```
+
+```java
+package com.shop.order;
+
+import com.shop.money.MoneyRules;
+import java.math.BigDecimal;
+
+class OrderValidator {
+    BigDecimal roundToCents(BigDecimal amount) {
+        return MoneyRules.roundToCents(amount);  // X -> Z
+    }
+}
+```
+
+```java
+package com.shop.payment;
+
+import com.shop.money.MoneyRules;
+import java.math.BigDecimal;
+
+class TaxCalculator {
+    BigDecimal calculateTax(BigDecimal amount) {
+        return MoneyRules.roundToCents(amount.multiply(BigDecimal.valueOf(0.1)));  // Y -> Z
+    }
+}
+```
+
+다만 이 방법은 컴포넌트 수를 늘리므로, 인터페이스 도입만으로 충분한 경우에는 방법 1을 먼저 고려하는 것이 낫다.
 
 ## SDP: 안정된 의존성 원칙
 
@@ -252,6 +391,70 @@ flowchart TB
 
 `Stable`이 `Unstable`을 직접 참조하던 것을, `Stable`이 정의하는 `Interface`를 `Unstable`이 구현하는 구조로 바꾸면 화살표 방향이 뒤집힌다. `Interface`는 `Stable` 안에 속하므로 I=0에 가깝게 유지되고, `Stable`은 이제 안정된 것(자신이 정의한 인터페이스)에만 의존한다 — 겉보기엔 여전히 두 컴포넌트가 연결되어 있지만, 소스 코드 의존성의 방향은 SDP를 만족하도록 바뀐 것이다.
 
+`order`(안정, 많은 곳이 의존)가 `notification`(불안정, 이메일·SMS·푸시 등 채널이 자주 바뀜)에 직접 의존하는 상황을 보자:
+
+```java
+// SDP 위반: 안정된 order가 불안정한 notification에 직접 의존
+package com.shop.order;
+
+import com.shop.notification.EmailNotifier;
+
+class OrderService {
+    private final EmailNotifier notifier;  // Stable -> Unstable
+
+    OrderService(EmailNotifier notifier) {
+        this.notifier = notifier;
+    }
+
+    void complete(String orderId) {
+        notifier.sendReceipt(orderId);
+    }
+}
+```
+
+```java
+package com.shop.notification;
+
+public class EmailNotifier {
+    public void sendReceipt(String orderId) { /* 이메일 발송 */ }
+}
+```
+
+알림 채널이 SMS로 바뀌거나 추가되면, 그때마다 안정된 `order`가 함께 변경돼야 한다. `order`가 필요로 하는 것을 인터페이스로 정의하고 `notification`이 그것을 구현하도록 뒤집으면 이 결합이 사라진다:
+
+```java
+package com.shop.order;
+
+interface NotificationPort {  // Stable 안에 정의 -> I=0에 가까움
+    void sendReceipt(String orderId);
+}
+
+class OrderService {
+    private final NotificationPort notifier;
+
+    OrderService(NotificationPort notifier) {
+        this.notifier = notifier;
+    }
+
+    void complete(String orderId) {
+        notifier.sendReceipt(orderId);
+    }
+}
+```
+
+```java
+package com.shop.notification;
+
+import com.shop.order.NotificationPort;
+
+public class EmailNotifier implements NotificationPort {  // Unstable -> Interface(구현)
+    @Override
+    public void sendReceipt(String orderId) { /* 이메일 발송 */ }
+}
+```
+
+이제 알림 채널을 SMS로 바꾸거나 채널을 추가해도 `SmsNotifier`가 `NotificationPort`를 새로 구현하기만 하면 되고, `order`는 전혀 수정되지 않는다.
+
 ## SAP: 안정된 추상화 원칙
 
 > **"안정된 컴포넌트는 추상적이어야 한다."**
@@ -308,14 +511,20 @@ A
 
 ### 두 가지 위험 구역
 
+주계열에서 멀어진 두 극단은 각각 다른 이유로 나쁜 설계 신호가 된다.
+
 #### 고통의 구역 (Zone of Pain)
+
+안정적인데 구체적인 컴포넌트는 앞서 본 이중고(변경도 어렵고 확장도 어려움)에 그대로 빠진다. 많은 곳이 의존하므로 함부로 못 바꾸는데, 인터페이스가 없으니 확장하려면 결국 그 코드를 직접 건드려야 한다.
 
 - 위치: (I=0, A=0) 근처
 - 안정적이면서 구체적
 - 변경도 어렵고 확장도 어려움
-- 예: 데이터베이스 스키마, 구체적 유틸리티
+- 예: 데이터베이스 스키마, 구체적 유틸리티 — 이런 컴포넌트는 태생적으로 고통의 구역에 속할 수밖에 없는 경우도 있다(뒤의 "흔한 오해" 참고)
 
 #### 쓸모없음의 구역 (Zone of Uselessness)
+
+반대로 불안정하면서 추상적인 컴포넌트는 존재 이유 자체가 의심스럽다. 인터페이스를 만들어 뒀는데 아무도 그 인터페이스에 의존하지 않는다면, 확장 가능성만 열어두고 실제로는 아무 역할도 하지 못하는 죽은 코드다.
 
 - 위치: (I=1, A=1) 근처
 - 불안정하면서 추상적
@@ -346,16 +555,18 @@ D = |A + I - 1|
 
 ## 종합: 컴포넌트 메트릭 분석
 
+앞서 다룬 쇼핑몰 예제로 세 컴포넌트를 실제로 분석해보자. `notification`은 여러 채널(`EmailNotifier`, `SmsNotifier` 등)이 계속 추가되는 구체 클래스 위주 컴포넌트이므로 I=0.8(불안정), A=0.3(대부분 구체)에 가깝다. `order`는 `NotificationPort` 같은 인터페이스를 다수 정의하고 여러 컴포넌트가 그것에 의존하므로 I=0.2(안정), A=0.7(대부분 추상)에 가깝다. 반면 `money`(반올림 규칙)는 `order`·`payment` 둘 다 의존하지만(I=0.1, 안정) 그 자체는 정적 메서드로만 구성된 구체 클래스라 A=0.1이다:
+
 ```mermaid
 flowchart TB
     subgraph Analysis [컴포넌트 분석]
-        C1["Component A</br>I=0.2, A=0.7</br>D=0.1 ✓"]
-        C2["Component B</br>I=0.1, A=0.1</br>D=0.8 ✗"]
-        C3["Component C</br>I=0.8, A=0.3</br>D=0.1 ✓"]
+        C1["order</br>I=0.2, A=0.7</br>D=0.1 ✓"]
+        C2["money</br>I=0.1, A=0.1</br>D=0.8 ✗"]
+        C3["notification</br>I=0.8, A=0.3</br>D=0.1 ✓"]
     end
 ```
 
-Component B는 고통의 구역에 있다 → 리팩토링 필요.
+`money`는 고통의 구역에 있다 → 리팩토링 필요. 안정적인데 추상화가 거의 없다는 뜻이므로, `MoneyRules`를 인터페이스(`RoundingPolicy` 등)로 뽑아내 반올림 방식을 교체 가능하게 만드는 것을 고려할 만하다.
 
 ## 흔한 오해
 
