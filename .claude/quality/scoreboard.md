@@ -25,12 +25,12 @@
 | content/collection/cleanarchitecture/11-structured-programming-goto-elimination/index.md | 87.7 | 2026-07-18 | 3 | 에스컬레이션 | 항목5 checkCustomerCredit 중복 정의, 항목1 "로마에서" 미검증 서술. 90점에 2.3점 차 |
 | content/collection/cleanarchitecture/12-object-oriented-programming-polymorphism/index.md | 93.1 | 2026-07-18 | 3 | 통과 | 없음(경미: 플러그인 절 리드문단 부재, drawAll 클래스 밖 선언) |
 | content/collection/cleanarchitecture/13-functional-programming-immutability/index.md | 94.6 | 2026-07-18 | 2 | 통과 | 없음(경미: 람다계산법 연도 서술 단순화, Order 생성자 방어적 복사 부재) |
-| content/collection/cleanarchitecture/14-solid-principles-introduction/index.md | - | - | 0 | 미채점 | - |
-| content/collection/cleanarchitecture/15-srp-single-responsibility-principle/index.md | - | - | 0 | 미채점 | - |
-| content/collection/cleanarchitecture/16-ocp-open-closed-principle/index.md | - | - | 0 | 미채점 | - |
-| content/collection/cleanarchitecture/17-lsp-liskov-substitution-principle/index.md | - | - | 0 | 미채점 | - |
-| content/collection/cleanarchitecture/18-isp-interface-segregation-principle/index.md | - | - | 0 | 미채점 | - |
-| content/collection/cleanarchitecture/19-dip-dependency-inversion-principle/index.md | - | - | 0 | 미채점 | - |
+| content/collection/cleanarchitecture/14-solid-principles-introduction/index.md | 94 | 2026-07-18 | 2 | 통과 | 없음(경미: SRP 정의 blockquote 옆 인라인 출처 미표기) |
+| content/collection/cleanarchitecture/15-srp-single-responsibility-principle/index.md | 91.6 | 2026-07-18 | 2 | 통과 | 없음 |
+| content/collection/cleanarchitecture/16-ocp-open-closed-principle/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 없음(경미: "두 가지 의미"·"요구사항" 절 리스트-only) |
+| content/collection/cleanarchitecture/17-lsp-liskov-substitution-principle/index.md | 97 | 2026-07-18 | 2 | 통과 | 없음(경미: Algorithm 태그 본문 불일치) |
+| content/collection/cleanarchitecture/18-isp-interface-segregation-principle/index.md | 90.1 | 2026-07-18 | 2 | 통과 | 없음(임계값 근접, 이후 보강 완료) |
+| content/collection/cleanarchitecture/19-dip-dependency-inversion-principle/index.md | 97 | 2026-07-18 | 3 | 통과 | 없음(경미: 소스코드의존성 vs 제어흐름 절 문단 얇음) |
 | content/collection/cleanarchitecture/20-component-principles-introduction/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/21-components-deployment-units-history/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/22-component-cohesion-rep-ccp-crp/index.md | - | - | 0 | 미채점 | - |

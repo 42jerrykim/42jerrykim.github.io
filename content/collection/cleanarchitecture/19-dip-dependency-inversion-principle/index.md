@@ -222,8 +222,12 @@ class OrderService {
 }
 
 // 사용 (main 또는 DI 프레임워크)
-Repository repo = new MySQLRepository();  // 구체 클래스는 여기서만
-OrderService service = new OrderService(repo);
+class Bootstrap {
+    public static void main(String[] args) {
+        Repository repo = new MySQLRepository();  // 구체 클래스는 여기서만
+        OrderService service = new OrderService(repo);
+    }
+}
 ```
 
 ## 아키텍처 경계와 DIP
@@ -291,7 +295,7 @@ Main은 가장 낮은 수준의 정책이다. 모든 것에 의존하지만, 아
 
 런타임에 실행이 흐르는 방향:
 
-```
+```text
 Controller → UseCase → Repository → Database
 ```
 
@@ -331,15 +335,17 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 // Mock으로 쉽게 테스트
-@Test
-void testOrderService() {
-    Repository mockRepo = mock(Repository.class);
-    OrderService service = new OrderService(mockRepo);
-    Entity order = new Entity("order-1", "주문 데이터");
+class OrderServiceTest {
+    @Test
+    void testOrderService() {
+        Repository mockRepo = mock(Repository.class);
+        OrderService service = new OrderService(mockRepo);
+        Entity order = new Entity("order-1", "주문 데이터");
 
-    service.save(order);
+        service.save(order);
 
-    verify(mockRepo).save(order);
+        verify(mockRepo).save(order);
+    }
 }
 ```
 
@@ -348,10 +354,14 @@ void testOrderService() {
 같은 이유로, 운영 환경과 테스트 환경에서 서로 다른 구현체를 아무 코드 변경 없이 갈아 끼울 수 있다. `OrderService`는 자신이 `MySQLRepository`를 쓰는지 `InMemoryRepository`를 쓰는지 전혀 모른다.
 
 ```java
-// 쉽게 구현 교체
-Repository repo = isProduction() 
-    ? new MySQLRepository() 
-    : new InMemoryRepository();
+class Bootstrap {
+    // 쉽게 구현 교체
+    static Repository createRepository(boolean isProduction) {
+        return isProduction
+            ? new MySQLRepository()
+            : new InMemoryRepository();
+    }
+}
 ```
 
 ### 3. 독립적 개발
