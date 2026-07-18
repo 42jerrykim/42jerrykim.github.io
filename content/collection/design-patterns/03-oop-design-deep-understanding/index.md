@@ -2,6 +2,7 @@
 draft: true
 collection_order: 30
 title: "[Design Patterns] 객체지향 설계의 깊이 있는 이해"
+slug: "oop-design-deep-understanding"
 description: "객체지향 프로그래밍의 근본 원리와 설계 철학을 심도 있게 탐구합니다. SOLID 원칙, 캡슐화, 상속, 다형성의 본질을 이해하고, 실제 코드에서 이러한 개념들이 어떻게 패턴으로 구현되는지 학습합니다. 좋은 객체지향 설계와 나쁜 설계를 구분하는 안목을 기르고, 설계 품질을 향상시키는 실무 기법을 익힙니다."
 image: "wordcloud.png"
 date: 2024-12-03T10:00:00+09:00

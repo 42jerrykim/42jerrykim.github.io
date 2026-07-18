@@ -2,6 +2,7 @@
 draft: true
 collection_order: 111
 title: "[Design Patterns] 옵저버 패턴 실습 - 이벤트 주도 아키텍처"
+slug: "observer-event-driven-architecture-practice"
 description: "Observer 패턴을 활용해 주식 시세 모니터링과 온도 센서 알림 시스템, MVC 아키텍처를 직접 구현합니다. WeakReference와 비동기 처리를 적용해 느슨한 결합과 성능을 동시에 확보하는 방법을 실습합니다."
 image: "wordcloud.png"
 date: 2024-12-11T11:00:00+09:00

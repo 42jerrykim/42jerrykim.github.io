@@ -2,6 +2,7 @@
 draft: true
 collection_order: 131
 title: "[Design Patterns] 커맨드와 책임 연쇄 패턴 실습 - 요청 캡슐화와 처리 체인"
+slug: "command-chain-responsibility-practice"
 description: "Command 패턴으로 Undo/Redo가 가능한 텍스트 에디터를, Chain of Responsibility로 다단계 지원 요청 체인과 인증·속도제한·로깅·압축을 처리하는 웹 미들웨어 체인을 직접 구현합니다. 매크로 명령과 요청 라우팅 기법까지 폭넓게 실습합니다."
 image: "wordcloud.png"
 date: 2024-12-13T11:00:00+09:00

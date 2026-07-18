@@ -2,6 +2,7 @@
 draft: true
 collection_order: 41
 title: "[Design Patterns] Factory 패턴 실습 - 다양한 생성 전략 마스터하기"
+slug: "factory-patterns-evolution-practice"
 description: "Simple Factory부터 Abstract Factory까지 다양한 Factory 패턴을 직접 구현하는 실습입니다. 결제 시스템과 게임 캐릭터 생성 예제로 각 패턴의 특징을 체험하고, DI Container 등 현대적 Factory 구현 기법까지 익힙니다."
 image: "wordcloud.png"
 date: 2024-12-04T11:00:00+09:00

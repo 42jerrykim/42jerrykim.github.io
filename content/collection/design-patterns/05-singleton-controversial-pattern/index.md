@@ -2,6 +2,7 @@
 draft: true
 collection_order: 50
 title: "[Design Patterns] 싱글톤: 논란이 많은 패턴"
+slug: "singleton-controversial-pattern"
 description: "가장 논란이 많은 디자인 패턴인 Singleton의 장단점을 객관적으로 분석합니다. 전역 상태의 위험성, 테스트의 어려움, 멀티스레드 환경에서의 문제점을 깊이 있게 다루고, 언제 사용해야 하고 언제 피해야 하는지에 대한 명확한 가이드라인을 제시합니다. 대안 패턴과 현대적 접근법도 함께 탐구합니다."
 image: "wordcloud.png"
 date: 2024-12-05T10:00:00+09:00

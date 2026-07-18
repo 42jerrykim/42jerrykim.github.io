@@ -2,6 +2,7 @@
 draft: true
 collection_order: 130
 title: "[Design Patterns] 커맨드와 체인 오브 리스폰시빌리티: 요청 처리의 예술"
+slug: "command-chain-responsibility"
 description: "요청을 객체로 캡슐화하는 Command 패턴과 처리자들을 체인으로 연결하는 Chain of Responsibility 패턴을 심도 있게 분석합니다. Undo/Redo, 매크로 명령, 요청 파이프라인, 미들웨어 아키텍처 설계 기법을 다룹니다."
 image: "wordcloud.png"
 date: 2024-12-13T10:00:00+09:00

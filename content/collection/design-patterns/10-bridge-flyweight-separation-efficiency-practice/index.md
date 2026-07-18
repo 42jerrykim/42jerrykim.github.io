@@ -2,6 +2,7 @@
 draft: true
 collection_order: 101
 title: "[Design Patterns] 브리지와 플라이웨이트 패턴 실습 - 분리와 효율성"
+slug: "bridge-flyweight-separation-efficiency-practice"
 description: "Bridge 패턴으로 다중 플랫폼 파일 시스템을, Flyweight 패턴으로 메모리 효율적인 텍스트 렌더링 시스템을 직접 구현합니다. 패턴 적용 전후의 메모리 사용량과 성능 차이를 비교 분석하며 실전 감각을 익히는 실습형 글입니다."
 image: "wordcloud.png"
 date: 2024-12-10T11:00:00+09:00

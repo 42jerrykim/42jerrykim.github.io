@@ -2,6 +2,7 @@
 draft: true
 collection_order: 100
 title: "[Design Patterns] 브릿지와 플라이웨이트: 분리와 효율성"
+slug: "bridge-flyweight-separation-efficiency"
 description: "추상화와 구현을 분리해 조합 폭발을 막는 Bridge 패턴과, 객체 상태를 공유해 메모리를 절약하는 Flyweight 패턴을 비교합니다. 내재적·외재적 상태 분리, 성능 벤치마크, 두 패턴의 결합 사례까지 폭넓게 다룹니다."
 image: "wordcloud.png"
 date: 2024-12-10T10:00:00+09:00

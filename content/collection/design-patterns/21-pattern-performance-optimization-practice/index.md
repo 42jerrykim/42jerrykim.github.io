@@ -2,6 +2,7 @@
 draft: true
 collection_order: 211
 title: "[Design Patterns] 패턴 성능 최적화 실습 - 효율적인 설계와 구현"
+slug: "pattern-performance-optimization-practice"
 description: "디자인 패턴의 성능 특성을 측정하고 최적화하는 실습입니다. JMH 벤치마크 작성, 객체 풀링, 지연 로딩, 캐싱, 플라이웨이트 등의 최적화 기법을 적용하며 JIT 컴파일러 인라이닝 분석까지 다뤄 패턴의 장점을 유지하면서 성능 오버헤드를 최소화하는 구현 기법을 학습합니다."
 image: "wordcloud.png"
 date: 2024-12-21T11:00:00+09:00

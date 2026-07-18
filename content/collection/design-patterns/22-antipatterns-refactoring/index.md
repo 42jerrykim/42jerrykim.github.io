@@ -2,6 +2,7 @@
 draft: true
 collection_order: 220
 title: "[Design Patterns] 안티패턴 식별과 리팩토링"
+slug: "antipatterns-refactoring"
 description: "소프트웨어 개발에서 자주 발생하는 안티패턴을 식별하고 체계적으로 리팩토링하는 전문가 기법을 학습합니다. God Object, Spaghetti Code 분석과 Strangler Fig Pattern 기반 점진적 개선, 코드 품질 측정을 통해 지속 가능한 소프트웨어를 만드는 방법을 탐구합니다."
 image: "wordcloud.png"
 date: 2024-12-22T10:00:00+09:00
@@ -728,6 +729,6 @@ public class RefactoringMetrics {
 
 ## 다음 단계
 
-안티패턴을 식별하고 체계적으로 리팩토링할 수 있게 되었다면, 다음 글([패턴을 활용한 코드 리뷰와 설계 리뷰](/post/design-patterns/23-pattern-code-review-design-review/))에서는 팀 차원에서 좋은 설계를 유지하고 발전시키는 방법을 탐구해보겠습니다.
+안티패턴을 식별하고 체계적으로 리팩토링할 수 있게 되었다면, 다음 글([패턴을 활용한 코드 리뷰와 설계 리뷰](/post/design-patterns/pattern-code-review-design-review/))에서는 팀 차원에서 좋은 설계를 유지하고 발전시키는 방법을 탐구해보겠습니다.
 
 > *"좋은 코드는 한 번에 만들어지지 않는다. 지속적인 개선을 통해 진화한다."*

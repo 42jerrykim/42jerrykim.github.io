@@ -2,6 +2,7 @@
 draft: true
 collection_order: 210
 title: "[Design Patterns] 패턴의 성능 분석과 최적화"
+slug: "pattern-performance-optimization"
 description: "디자인 패턴의 성능 특성을 정량적으로 분석하고 최적화하는 전문가 기법을 학습합니다. 메모리 사용량, CPU 오버헤드, JIT 컴파일러 최적화, 캐시 친화성 등을 고려한 고성능 패턴 구현 방법과 성능 측정, 프로파일링 기법을 통해 실무에서 성능과 설계의 균형을 찾는 방법을 탐구합니다."
 image: "wordcloud.png"
 date: 2024-12-21T10:00:00+09:00
@@ -833,7 +834,7 @@ public class ProductionOptimizedConfig {
 - Object Pool이 "생성 비용 >> 풀 관리 비용"일 때만 이득이라는 조건을 설명하고, 반대의 경우(단순 POJO 등)에 풀링이 손해인 이유를 말할 수 있다.
 - 핫 패스와 콜드 패스에서 왜 서로 다른 최적화 전략(패턴 최소화 vs 가독성 우선)을 선택해야 하는지 설명할 수 있다.
 
-다음 글([안티패턴 식별과 리팩토링](/post/design-patterns/22-antipatterns-refactoring/))에서는 성능이 아닌 유지보수성 관점에서, 패턴이 오히려 코드를 나쁘게 만드는 상황(안티패턴)과 그 리팩토링 방법을 다룹니다.
+다음 글([안티패턴 식별과 리팩토링](/post/design-patterns/antipatterns-refactoring/))에서는 성능이 아닌 유지보수성 관점에서, 패턴이 오히려 코드를 나쁘게 만드는 상황(안티패턴)과 그 리팩토링 방법을 다룹니다.
 
 ---
 

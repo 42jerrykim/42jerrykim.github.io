@@ -2,6 +2,7 @@
 draft: true
 collection_order: 90
 title: "[Design Patterns] 프록시 패턴의 다면성"
+slug: "proxy-pattern-multifaceted"
 description: "대리자 역할을 수행하는 Proxy 패턴의 다양한 형태와 활용법을 심도 있게 분석합니다. Virtual, Protection, Remote, Cache Proxy의 특징과 적용 시나리오를 탐구하고, 현대 시스템에서의 프록시 활용(AOP, 지연 로딩, 보안)까지 다룹니다."
 image: "wordcloud.png"
 date: 2024-12-09T10:00:00+09:00
