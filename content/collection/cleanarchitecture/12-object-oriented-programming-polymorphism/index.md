@@ -2,7 +2,7 @@
 draft: true
 collection_order: 120
 image: "wordcloud.png"
-description: "객체 지향 프로그래밍의 세 가지 핵심인 캡슐화, 상속, 다형성을 아키텍처 관점에서 재해석합니다. 특히 다형성이 의존성 역전을 가능하게 하여 아키텍처에 혁명을 가져온 원리를 설명합니다."
+description: "객체 지향 프로그래밍의 세 가지 핵심인 캡슐화, 상속, 다형성을 아키텍처 관점에서 재해석합니다. 특히 다형성이 의존성 역전을 가능하게 하여 아키텍처에 혁명을 가져온 원리를, 가상 디스패치 비용과 과잉 추상화 리스크까지 포함해 설명합니다."
 title: "[Clean Architecture] 12. 객체 지향 프로그래밍"
 slug: object-oriented-programming-polymorphism
 date: 2026-01-18
@@ -37,7 +37,7 @@ tags:
   - Testing(테스트)
 ---
 
-객체 지향 프로그래밍(OOP)은 1966년에 올레 요한 달(Ole Johan Dahl)과 크리스텐 니가드(Kristen Nygaard)가 Simula 67을 개발하면서 시작되었다. 이후 Smalltalk, C++, Java를 거치며 주류 패러다임이 되었다. 하지만 OOP가 아키텍처에 제공하는 진정한 가치는 무엇일까? 로버트 마틴은 그것이 **다형성을 통한 의존성 역전**이라고 말한다.
+객체 지향 프로그래밍(OOP)은 올레 요한 달(Ole Johan Dahl)과 크리스텐 니가드(Kristen Nygaard)가 1960년대 초부터 개발해 1967년 Simula 67로 발표하면서 시작되었다. 이후 Smalltalk, C++, Java를 거치며 주류 패러다임이 되었다. 하지만 OOP가 아키텍처에 제공하는 진정한 가치는 무엇일까? 로버트 마틴은 그것이 **다형성을 통한 의존성 역전**이라고 말한다.
 
 ## 객체 지향의 세 기둥
 
@@ -175,11 +175,15 @@ interface Shape {
 }
 
 class Circle implements Shape {
-    public void draw() { /* 원 그리기 */ }
+    private final double radius;
+    Circle(double radius) { this.radius = radius; }
+    public void draw() { System.out.println("Circle r=" + radius); }
 }
 
 class Square implements Shape {
-    public void draw() { /* 사각형 그리기 */ }
+    private final double side;
+    Square(double side) { this.side = side; }
+    public void draw() { System.out.println("Square side=" + side); }
 }
 
 // 다형적 호출
@@ -207,7 +211,7 @@ typedef struct {
 
 void drawCircle(void* self) {
     Circle* c = (Circle*)self;
-    // 원 그리기
+    printf("Circle r=%f\n", c->radius);
 }
 
 void drawAll(Shape** shapes, int count) {
@@ -221,7 +225,7 @@ void drawAll(Shape** shapes, int count) {
 
 그렇다면 OOP가 가져온 것은 무엇인가?
 
-> **OOP는 다형성을 안전하고 편리하게 만들었다.**
+**OOP는 다형성을 안전하고 편리하게 만들었다.** 위 두 코드를 비교하면 차이가 드러난다 — C 버전은 `Shape` 구조체의 `draw` 필드에 올바른 함수 포인터를 수동으로 채워 넣어야 하고, 타입이 틀려도 컴파일러가 잡아주지 않는다. Java 버전은 `implements`만 선언하면 컴파일러가 나머지를 보장한다.
 
 C의 함수 포인터는:
 - 위험하다 (잘못된 타입 캐스팅)
@@ -389,35 +393,28 @@ flowchart TB
 | 상속 | 코드 재사용 (한정적) |
 | 다형성 | **의존성 역전**, 플러그인 아키텍처 |
 
-> **"OOP란 다형성을 이용하여 전체 시스템의 모든 소스 코드 의존성에 대한 절대적인 제어 권한을 획득할 수 있는 능력이다."**
-> — Robert C. Martin
+마틴은 이렇게 요약한다: OOP란 다형성을 이용하여 전체 시스템의 모든 소스 코드 의존성에 대한 절대적인 제어 권한을 획득할 수 있는 능력이다(Martin, *Clean Architecture*, 2017). OOP는 함수 포인터를 직접 사용하는 것을 **금지**하고, 대신 **안전하고 편리한 다형성**을 제공한다. 이 제한 덕분에 아키텍트는 소스 코드 의존성을 완전히 제어할 수 있게 되었다.
 
-## 핵심 요약
+## 다형성과 DI의 한계
 
-### 다형성의 힘
+다형성과 의존성 주입이 공짜는 아니다. 실무에서 흔히 부딪히는 세 가지 비용을 알아두어야 한다.
 
-```mermaid
-flowchart LR
-    subgraph Before [다형성 없이]
-        A1[High] -->|의존| B1[Low]
-    end
-    
-    subgraph After [다형성으로]
-        A2[High] -->|사용| I[Interface]
-        B2[Low] -->|구현| I
-    end
-```
+- **가상 디스패치 비용**: 인터페이스를 통한 호출은 컴파일 시점에 실제 구현이 결정되지 않으므로, 컴파일러의 인라이닝 최적화가 어려워지고 vtable 조회 비용이 추가된다. 대부분의 애플리케이션 코드에서는 무시할 수준이지만, 초당 수백만 번 호출되는 저수준 루프에서는 체감될 수 있다.
+- **인터페이스 남용(과잉 추상화)**: 구현체가 하나뿐인데도 "언젠가 바뀔 수 있다"는 이유로 모든 클래스에 인터페이스를 씌우면, 코드를 읽을 때 실제 구현을 찾아가는 간접 단계만 늘어난다.
+- **정적 다형성 대안**: 런타임에 구현을 교체할 필요가 없다면, 제네릭(Java)이나 템플릿(C++) 같은 정적 다형성이 가상 디스패치 없이 같은 유연성을 제공하기도 한다.
 
-### OOP의 진정한 가치
+## 학습 목표
 
-1. **캡슐화**: OOP의 독점물 아님
-2. **상속**: 편리해졌지만 새로운 것 아님
-3. **다형성**: **의존성 방향을 제어**할 수 있게 함
+이 장을 읽은 후 다음을 할 수 있어야 한다.
 
-> **"객체 지향 프로그래밍은 제어흐름의 간접적인 전환에 대해 규칙을 부과한다."**
-> — Robert C. Martin
+- 캡슐화·상속이 왜 "OOP의 독점물"이 아닌지, C 코드 예제로 설명할 수 있다.
+- 다형성이 어떻게 제어 흐름과 소스 코드 의존성의 방향을 분리시키는지 설명할 수 있다.
+- 다형성·DI를 적용할 때 고려해야 할 비용(가상 디스패치, 과잉 추상화)을 판단 기준으로 제시할 수 있다.
 
-OOP는 함수 포인터를 직접 사용하는 것을 **금지**하고, 대신 **안전하고 편리한 다형성**을 제공한다. 이 제한 덕분에 아키텍트는 소스 코드 의존성을 완전히 제어할 수 있게 되었다.
+## 참고 자료
+
+- Martin, R. C. (2017). *Clean Architecture: A Craftsman's Guide to Software Structure and Design*. Prentice Hall.
+- Dahl, O.-J., & Nygaard, K. (1967). *Simula 67 Common Base Language*. Norwegian Computing Center.
 
 ## 다음 장에서는
 

@@ -2,7 +2,7 @@
 draft: true
 collection_order: 110
 image: "wordcloud.png"
-description: "1968년 데이크스트라가 발견한 구조적 프로그래밍의 핵심을 다룹니다. goto문 해로움 논쟁, 순차/선택/반복 구조, 기능적 분해와 증명 가능한 프로그램의 개념을 상세히 설명합니다."
+description: "1968년 데이크스트라가 발견한 구조적 프로그래밍의 핵심을 다룹니다. goto문 해로움 논쟁, 순차/선택/반복 구조, 기능적 분해와 증명 가능한 프로그램의 개념을 반증 가능성 이론과 함께 상세히 설명합니다."
 title: "[Clean Architecture] 11. 구조적 프로그래밍"
 slug: structured-programming-goto-elimination
 date: 2026-01-18
@@ -18,21 +18,21 @@ tags:
   - Code-Quality(코드품질)
   - Clean-Code(클린코드)
   - History(역사)
-  - Recursion(재귀)
-  - Complexity-Analysis(복잡도분석)
   - Debugging(디버깅)
   - Best-Practices
   - Refactoring(리팩토링)
   - Readability
   - Maintainability
   - C
-  - Assembly
   - Case-Study
   - Deep-Dive
   - Technology(기술)
-  - Documentation(문서화)
   - Error-Handling(에러처리)
-  - Design-Pattern(디자인패턴)
+  - Science(과학)
+  - Comparison(비교)
+  - TDD(Test-Driven Development)
+  - Modularity
+  - Guide(가이드)
 ---
 
 1968년, 에츠허르 비버 데이크스트라(Edsger Wybe Dijkstra)는 CACM(Communications of the ACM)에 보낸 편지에서 프로그래밍 역사상 가장 유명한 논쟁을 시작했다. "Go To Statement Considered Harmful"이라는 제목의 이 글은 구조적 프로그래밍의 시대를 열었다.
@@ -43,8 +43,7 @@ tags:
 
 데이크스트라는 수학자이자 프로그래머였다. 그는 프로그램이 올바른지 **수학적으로 증명**할 수 있어야 한다고 믿었다. 수학에서 정리를 증명하듯이, 프로그램도 증명할 수 있어야 한다는 것이었다.
 
-> "테스팅은 버그의 존재를 보여줄 수 있지만, 버그가 없음을 보여줄 수는 없다."
-> — Edsger Dijkstra
+데이크스트라는 이렇게 남겼다: 테스팅은 버그의 존재를 보여줄 수 있지만, 버그가 없음을 보여줄 수는 없다(Dijkstra, "Notes on Structured Programming", EWD249, 1970년경).
 
 그러나 그가 프로그램을 증명하려 시도하자, 심각한 문제에 부딪혔다. **goto 문**이 있는 프로그램은 증명하기가 극도로 어려웠다.
 
@@ -56,8 +55,8 @@ goto 문은 프로그램의 제어 흐름을 임의의 위치로 점프시킨다
 2. **증명 불가능**: 수학적 귀납법을 적용하기 어려움
 3. **디버깅 지옥**: 버그를 찾고 수정하기 어려움
 
-```
-// goto를 사용한 혼란스러운 코드
+```text
+// goto를 사용한 혼란스러운 코드(의사코드)
 START:
     read input
     if input < 0 goto ERROR
@@ -87,7 +86,7 @@ END:
 
 명령문을 위에서 아래로 순서대로 실행한다.
 
-```
+```text
 statement1;
 statement2;
 statement3;
@@ -105,7 +104,7 @@ flowchart TB
 
 조건에 따라 다른 경로를 실행한다.
 
-```
+```text
 if (condition) {
     path1;
 } else {
@@ -128,7 +127,7 @@ flowchart TB
 
 조건이 참인 동안 반복 실행한다.
 
-```
+```text
 while (condition) {
     body;
 }
@@ -181,7 +180,7 @@ flowchart TB
 - 입력을 받아 출력을 반환
 - 순차, 선택, 반복만 사용
 
-```
+```javascript
 // 기능적 분해 예시
 function processOrder(order) {
     validateOrder(order);
@@ -193,6 +192,14 @@ function processOrder(order) {
 function validateOrder(order) {
     checkInventory(order.items);
     checkCustomerCredit(order.customer);
+}
+
+function checkInventory(items) {
+    return items.every(item => item.stock > 0);
+}
+
+function checkCustomerCredit(customer) {
+    return customer.creditLimit >= 0;
 }
 ```
 
@@ -230,11 +237,7 @@ flowchart TB
 
 ### 테스트의 역할
 
-데이크스트라는 유명한 말을 남겼다:
-
-> "프로그램 테스팅은 버그가 **있음**을 보여줄 수 있지만, 버그가 **없음**을 보여줄 수는 없다."
-
-그러나 과학도 마찬가지다. 칼 포퍼(Karl Popper)의 **반증 가능성(Falsifiability)** 개념에 따르면:
+데이크스트라의 이 말은 프로그램 테스팅은 버그가 **있음**을 보여줄 수 있지만, 버그가 **없음**을 보여줄 수는 없다는 뜻이다. 그러나 과학도 마찬가지다. 칼 포퍼(Karl Popper)의 **반증 가능성(Falsifiability)** 개념에 따르면:
 - 과학 이론은 **증명**할 수 없다
 - 과학 이론은 **반증**할 수 있다
 - 반증되지 않은 이론은 **잠정적으로 참**이다
@@ -289,39 +292,31 @@ flowchart TB
 
 ## 구조적 프로그래밍의 교훈
 
-### 1. 제한이 힘이다
+오늘날 구조적 프로그래밍은 **당연한 것**이 되어 대부분의 개발자는 goto 없이 if-else와 while을 자연스럽게 쓴다. 하지만 그 정신 — goto를 제거함으로써 프로그램이 더 좋아졌다는 사실 — 은 세 가지 교훈으로 여전히 유효하다.
 
-goto를 **제거**함으로써 프로그램이 더 좋아졌다. 패러다임은 프로그래머에게 **무엇을 하지 말아야 하는지**를 알려준다.
+1. **제한이 힘이다**: 패러다임은 프로그래머에게 무엇을 하지 말아야 하는지 알려줌으로써 더 나은 구조를 강제한다.
+2. **증명보다 테스트**: 완벽한 증명은 불가능하지만, 충분한 테스트는 가능하다.
+3. **분해의 힘**: 복잡한 문제를 작은 문제로 나누면 관리할 수 있다.
 
-### 2. 증명보다 테스트
+마틴은 이를 이렇게 요약한다: 구조적 프로그래밍은 제어흐름의 직접적인 전환에 대해 규칙을 부과한다(Martin, *Clean Architecture*, 2017).
 
-완벽한 증명은 불가능하지만, 충분한 테스트는 가능하다.
+## 판단 기준
 
-### 3. 분해의 힘
+"goto는 무조건 금지"라는 규칙을 문자 그대로 적용하기보다, 이 장이 실제로 증명한 것("순차·선택·반복만으로 모든 프로그램을 표현할 수 있다")과 그로부터 따라오는 실무 원칙("제어 흐름은 위에서 아래로 읽을 수 있어야 한다")을 구분해서 적용하는 것이 좋다. C의 `goto cleanup;` 관용구나 중첩 루프 탈출처럼, 지역적이고 예측 가능한 점프는 대부분의 스타일 가이드에서도 허용된다 — 문제는 goto 자체가 아니라 임의의 위치로 튀는 예측 불가능한 점프다.
 
-복잡한 문제를 작은 문제로 나누면 관리할 수 있다.
+## 학습 목표
 
-## 현대적 의미
+이 장을 읽은 후 다음을 할 수 있어야 한다.
 
-오늘날 구조적 프로그래밍은 **당연한 것**이 되었다. 대부분의 개발자는 goto를 사용하지 않으며, if-else와 while을 자연스럽게 사용한다.
+- 순차·선택·반복 세 가지 제어 구조만으로 모든 프로그램을 표현할 수 있다는 Böhm-Jacopini 정리의 의미를 설명할 수 있다.
+- "증명 가능"과 "테스트 가능"의 차이, 그리고 반증 가능성 개념이 소프트웨어 테스트에 어떻게 적용되는지 설명할 수 있다.
+- goto가 오늘날에도 정당화되는 제한적 경우(cleanup 관용구 등)와 데이크스트라가 비판한 무분별한 점프를 구분할 수 있다.
 
-그러나 구조적 프로그래밍의 **정신**은 여전히 중요하다:
-- 코드를 작은 단위로 분해하라
-- 각 단위를 테스트 가능하게 만들어라
-- 제어 흐름을 단순하게 유지하라
+## 참고 자료
 
-## 핵심 요약
-
-| 항목 | 내용 |
-|------|------|
-| 발견자 | Edsger Dijkstra (1968) |
-| 핵심 | goto 제거, 순차/선택/반복만 사용 |
-| 목적 | 프로그램을 증명 가능/테스트 가능하게 |
-| 방법 | 기능적 분해, 하향식 설계 |
-| 교훈 | 제한이 힘이다 |
-
-> **"구조적 프로그래밍은 제어흐름의 직접적인 전환에 대해 규칙을 부과한다."**
-> — Robert C. Martin
+- Dijkstra, E. W. (1968). "Go To Statement Considered Harmful". *Communications of the ACM*, 11(3).
+- Böhm, C., & Jacopini, G. (1966). "Flow diagrams, Turing machines and languages with only two formation rules". *Communications of the ACM*, 9(5).
+- Martin, R. C. (2017). *Clean Architecture: A Craftsman's Guide to Software Structure and Design*. Prentice Hall.
 
 ## 다음 장에서는
 
