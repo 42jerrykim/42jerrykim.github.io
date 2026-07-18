@@ -2,7 +2,7 @@
 draft: true
 collection_order: 150
 image: "wordcloud.png"
-description: "단일 책임 원칙(SRP)의 진정한 의미를 다룹니다. '하나의 일만 해야 한다'는 오해를 바로잡고, 액터(Actor) 개념과 Conway's Law와의 연결을 통해 SRP의 아키텍처적 의미를 설명합니다."
+description: "단일 책임 원칙(SRP)의 진정한 의미를 다룹니다. '하나의 일만 해야 한다'는 오해를 바로잡고, 액터(Actor) 개념과 Conway's Law와의 연결을 통해 SRP의 아키텍처적 의미를, 과도한 분리라는 반대쪽 함정과 함께 설명합니다."
 title: "[Clean Architecture] 15. SRP: 단일 책임 원칙"
 slug: srp-single-responsibility-principle
 date: 2026-01-18
@@ -76,11 +76,23 @@ SOLID의 첫 번째 원칙인 **SRP(Single Responsibility Principle)**는 가장
 마틴은 Employee 클래스 예제로 SRP를 설명한다:
 
 ```java
+record Money(int cents) {}
+record Hours(int value) {}
+
 // SRP 위반 - 여러 액터에게 책임
 public class Employee {
-    public Money calculatePay() { /* CFO */ }
-    public Hours reportHours() { /* COO */ }
-    public void save() { /* CTO */ }
+    private int regularHoursWorked;
+    private int hourlyRateCents;
+
+    public Money calculatePay() {              // CFO 액터
+        return new Money(regularHoursWorked * hourlyRateCents);
+    }
+    public Hours reportHours() {                // COO 액터
+        return new Hours(regularHoursWorked);
+    }
+    public void save() {                        // CTO 액터
+        // 데이터베이스에 저장
+    }
 }
 ```
 
@@ -103,20 +115,21 @@ flowchart TB
 
 ```java
 public class Employee {
+    private int rawHoursLogged;
+    private int hourlyRateCents;
+
     public Money calculatePay() {
-        // ...
         int hours = regularHours();  // 공유 메서드 사용
-        // ...
+        return new Money(hours * hourlyRateCents);
     }
     
     public Hours reportHours() {
-        // ...
         int hours = regularHours();  // 공유 메서드 사용
-        // ...
+        return new Hours(hours);
     }
     
     private int regularHours() {
-        // 정규 근무 시간 계산
+        return Math.min(rawHoursLogged, 40);  // 정규 근무 시간 계산
     }
 }
 ```
@@ -167,26 +180,43 @@ class Employee {
 SRP를 적용하려면, 각 액터에 대응하는 별도의 클래스를 만든다:
 
 ```java
+record EmployeeId(String value) {}
+
 // 급여 계산 - CFO 액터
 public class PayCalculator {
-    public Money calculatePay(Employee employee) { /* ... */ }
+    public Money calculatePay(Employee employee) {
+        return new Money(employee.getRegularHours() * employee.getHourlyRateCents());
+    }
 }
 
 // 근무 시간 보고 - COO 액터
 public class HourReporter {
-    public Hours reportHours(Employee employee) { /* ... */ }
+    public Hours reportHours(Employee employee) {
+        return new Hours(employee.getRegularHours());
+    }
 }
 
 // 직원 데이터 저장 - CTO 액터
 public class EmployeeSaver {
-    public void save(Employee employee) { /* ... */ }
+    public void save(Employee employee) {
+        // 데이터베이스에 저장
+    }
 }
 
 // 데이터 구조만 갖는 Employee
 public class Employee {
-    private String name;
-    private EmployeeId id;
-    // getter/setter만...
+    private final EmployeeId id;
+    private final int regularHours;
+    private final int hourlyRateCents;
+
+    public Employee(EmployeeId id, int regularHours, int hourlyRateCents) {
+        this.id = id;
+        this.regularHours = regularHours;
+        this.hourlyRateCents = hourlyRateCents;
+    }
+
+    public int getRegularHours() { return regularHours; }
+    public int getHourlyRateCents() { return hourlyRateCents; }
 }
 ```
 
@@ -215,20 +245,29 @@ flowchart TB
 ```java
 // 퍼사드 - 여러 클래스를 하나의 인터페이스로
 public class EmployeeFacade {
-    private PayCalculator payCalculator;
-    private HourReporter hourReporter;
-    private EmployeeSaver employeeSaver;
-    
+    private final Employee employee;
+    private final PayCalculator payCalculator;
+    private final HourReporter hourReporter;
+    private final EmployeeSaver employeeSaver;
+
+    public EmployeeFacade(Employee employee, PayCalculator payCalculator,
+                           HourReporter hourReporter, EmployeeSaver employeeSaver) {
+        this.employee = employee;
+        this.payCalculator = payCalculator;
+        this.hourReporter = hourReporter;
+        this.employeeSaver = employeeSaver;
+    }
+
     public Money calculatePay() {
-        return payCalculator.calculatePay();
+        return payCalculator.calculatePay(employee);
     }
     
     public Hours reportHours() {
-        return hourReporter.reportHours();
+        return hourReporter.reportHours(employee);
     }
     
     public void save() {
-        employeeSaver.save();
+        employeeSaver.save(employee);
     }
 }
 ```
@@ -265,6 +304,8 @@ flowchart LR
 
 ## SRP 적용하기
 
+SRP를 실제 코드에 적용하는 과정은 세 단계로 이어진다 — 누가 변경을 요청하는지 알아내고, 그 기준으로 코드를 나누고, 나뉜 결과를 다시 편리하게 묶는다.
+
 ### 1. 액터 식별
 
 먼저 시스템의 액터들을 식별한다:
@@ -279,7 +320,7 @@ flowchart LR
 
 ### 3. 인터페이스 정의
 
-필요하다면 퍼사드나 인터페이스로 묶는다:
+분리된 클래스가 많아지면 호출하는 쪽이 여러 객체를 일일이 다뤄야 하는 불편이 생긴다. 필요하다면 앞서 본 퍼사드나 인터페이스로 묶는다:
 - 사용하는 쪽의 편의를 위해
 - 내부 구현 숨김
 
@@ -307,7 +348,7 @@ SRP는 **액터** 기준이지, **메서드** 기준이 아니다.
 
 ## 컴포넌트 수준의 SRP
 
-SRP는 클래스뿐 아니라 **컴포넌트** 수준에서도 적용된다:
+SRP는 클래스뿐 아니라 **컴포넌트** 수준에서도 적용된다 — "하나의 변경 이유"라는 기준 자체는 그대로 유지한 채, 적용 범위만 함수→클래스→컴포넌트로 넓어지는 것이다.
 
 | 수준 | 원칙 | 의미 |
 |------|------|------|
@@ -327,8 +368,15 @@ SRP는 클래스뿐 아니라 **컴포넌트** 수준에서도 적용된다:
 | 해결 | 책임 분리, 퍼사드 패턴 |
 | 연결 | Conway's Law |
 
-> **"SRP는 '변경의 이유'에 관한 것이다. 하나의 모듈을 변경해야 하는 이유는 하나여야 한다."**
-> — Robert C. Martin
+마틴은 이렇게 요약한다: SRP는 '변경의 이유'에 관한 것이다. 하나의 모듈을 변경해야 하는 이유는 하나여야 한다(Martin, *Clean Architecture*, 2017).
+
+## 학습 목표
+
+이 장을 읽은 후 다음을 할 수 있어야 한다.
+
+- "클래스는 하나의 일만 해야 한다"는 통념과 "하나의 액터에게만 책임진다"는 실제 SRP 정의를 구분해 설명할 수 있다.
+- 우발적 중복과 병합 충돌이 SRP 위반에서 어떻게 발생하는지 코드로 설명할 수 있다.
+- SRP를 과도하게 적용해 메서드 단위로 클래스를 쪼개는 실수를 식별하고 교정할 수 있다.
 
 ## 참고 문헌
 

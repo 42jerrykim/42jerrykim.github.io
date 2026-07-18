@@ -2,7 +2,7 @@
 draft: true
 collection_order: 180
 image: "wordcloud.png"
-description: "인터페이스 분리 원칙(ISP)이 불필요한 의존성을 제거하여 시스템을 어떻게 유연하게 만드는지 설명합니다. 뚱뚱한 인터페이스의 문제점과 분리 전략, 그리고 아키텍처 수준에서의 적용을 다룹니다."
+description: "인터페이스 분리 원칙(ISP)이 불필요한 의존성을 제거하여 시스템을 어떻게 유연하게 만드는지 설명합니다. 뚱뚱한 인터페이스의 문제점, 역할 기반 분리 전략, ISP와 SRP의 관점 차이, 아키텍처 수준에서의 적용을 실제 예시와 함께 다룹니다."
 title: "[Clean Architecture] 18. ISP: 인터페이스 분리 원칙"
 slug: isp-interface-segregation-principle
 date: 2026-01-18
@@ -43,11 +43,11 @@ tags:
 
 ### 뚱뚱한 인터페이스의 문제
 
-하나의 인터페이스에 많은 메서드가 있으면:
+하나의 인터페이스에 많은 메서드가 있으면 세 가지 문제가 연쇄적으로 발생한다.
 
-1. 사용하지 않는 메서드에도 **의존**하게 됨
-2. 사용하지 않는 메서드의 변경에도 **영향**받음
-3. **재컴파일, 재배포** 필요
+1. 사용하지 않는 메서드에도 **의존**하게 됨 — 클라이언트는 자신이 호출하지 않는 메서드의 시그니처까지 소스 코드 의존성으로 떠안는다.
+2. 사용하지 않는 메서드의 변경에도 **영향**받음 — 다른 클라이언트가 쓰는 메서드가 바뀌어도, 나와 무관한 변경 때문에 내 코드가 재컴파일 대상이 된다.
+3. **재컴파일, 재배포** 필요 — 정적 타입 언어에서는 인터페이스 파일이 바뀌면 그 인터페이스를 import하는 모든 클라이언트가 다시 컴파일·배포되어야 한다.
 
 ## OPS 예제
 
@@ -64,9 +64,9 @@ interface OPS {
 }
 
 class OPSImpl implements OPS {
-    public void op1() { /* ... */ }
-    public void op2() { /* ... */ }
-    public void op3() { /* ... */ }
+    public void op1() { System.out.println("op1 실행"); }
+    public void op2() { System.out.println("op2 실행"); }
+    public void op3() { System.out.println("op3 실행"); }
 }
 ```
 
@@ -131,9 +131,9 @@ interface U3OPS {
 }
 
 class OPSImpl implements U1OPS, U2OPS, U3OPS {
-    public void op1() { /* ... */ }
-    public void op2() { /* ... */ }
-    public void op3() { /* ... */ }
+    public void op1() { System.out.println("op1 실행"); }
+    public void op2() { System.out.println("op2 실행"); }
+    public void op3() { System.out.println("op3 실행"); }
 }
 ```
 
@@ -269,9 +269,28 @@ interface Seekable {
 }
 
 // 필요한 역할만 구현
-class FileStream implements Readable, Writable, Seekable { /* ... */ }
-class NetworkStream implements Readable, Writable { /* ... */ }  // Seekable 필요 없음
-class ReadOnlyFile implements Readable { /* ... */ }  // 읽기만
+class FileStream implements Readable, Writable, Seekable {
+    private final StringBuilder buffer = new StringBuilder();
+    private int position;
+
+    public String read() { return buffer.substring(position); }
+    public void write(String data) { buffer.append(data); }
+    public void seek(int position) { this.position = position; }
+}
+
+class NetworkStream implements Readable, Writable {  // Seekable 필요 없음
+    private final StringBuilder buffer = new StringBuilder();
+
+    public String read() { return buffer.toString(); }
+    public void write(String data) { buffer.append(data); }
+}
+
+class ReadOnlyFile implements Readable {  // 읽기만
+    private final String content;
+
+    ReadOnlyFile(String content) { this.content = content; }
+    public String read() { return content; }
+}
 ```
 
 ### 2. 클라이언트 전용 인터페이스
@@ -312,12 +331,16 @@ interface AdvancedOperations extends BasicOperations {
 
 // 기본 사용자
 class BasicUser {
-    void use(BasicOperations ops) { /* ... */ }
+    void use(BasicOperations ops) { ops.op1(); }
 }
 
 // 고급 사용자
 class AdvancedUser {
-    void use(AdvancedOperations ops) { /* ... */ }
+    void use(AdvancedOperations ops) {
+        ops.op1();
+        ops.op2();
+        ops.op3();
+    }
 }
 ```
 
@@ -373,6 +396,10 @@ interface Writable<E> {
 }
 ```
 
+## 흔한 오해
+
+ISP를 "인터페이스는 항상 메서드 하나만 가져야 한다"는 규칙으로 오해하는 경우가 있다. 그러나 ISP의 기준은 메서드 개수가 아니라 **클라이언트별 사용 패턴**이다. 여러 클라이언트가 항상 같은 메서드 집합을 함께 사용한다면, 그 메서드들을 굳이 별도 인터페이스로 쪼갤 이유가 없다. 반대로 클라이언트마다 사용하는 부분이 겹치지 않는데 하나의 인터페이스로 묶여 있다면, 그것이 ISP가 지적하는 "뚱뚱한 인터페이스"다. 또 다른 오해는 동적 타입 언어에서는 ISP가 무의미하다는 생각이다. 컴파일 의존성은 사라지지만, 불필요한 메서드에 대한 개념적 의존은 여전히 코드를 읽고 테스트하기 어렵게 만든다.
+
 ## 핵심 요약
 
 | 항목 | 내용 |
@@ -382,8 +409,31 @@ interface Writable<E> {
 | 해결 | 인터페이스 분리, 역할 기반 인터페이스 |
 | 적용 범위 | 클래스, 모듈, 아키텍처 수준 |
 
-> **"필요 이상으로 많은 것을 포함하는 모듈에 의존하는 것은 해로운 일이다. 소스 코드 의존성의 경우 불필요한 재컴파일과 재배포를 강제하기 때문이다."**
-> — Robert C. Martin
+마틴은 필요 이상으로 많은 것을 포함하는 모듈에 의존하는 것은 해로운 일이라고 말한다. 소스 코드 의존성의 경우 불필요한 재컴파일과 재배포를 강제하기 때문이다(Martin, 『Clean Architecture』, 2017).
+
+## 학습 목표
+
+이 장을 읽은 후 다음을 스스로 점검한다.
+
+- "뚱뚱한 인터페이스"가 왜 문제인지 재컴파일·재배포 관점에서 설명할 수 있는가?
+- OPS 예제에서 인터페이스 분리 전후로 `op2()` 변경의 영향 범위가 어떻게 달라지는지 설명할 수 있는가?
+- ISP와 SRP가 각각 "무엇을 기준으로" 응집도를 판단하는지 구분할 수 있는가?
+- 정적 타입 언어와 동적 타입 언어에서 ISP의 중요도가 왜 다른지 설명할 수 있는가?
+- 역할 인터페이스, 클라이언트 전용 인터페이스, 인터페이스 상속 세 가지 분리 전략의 차이를 구분할 수 있는가?
+
+## 판단 기준
+
+인터페이스를 설계하거나 검토할 때 다음을 확인한다.
+
+- 이 인터페이스를 구현하는 클래스 중 일부 메서드를 빈 구현이나 예외로 처리하는 경우가 있는가? (LSP 위반과 동시에 ISP 위반일 가능성이 높다)
+- 인터페이스의 메서드 중 일부만 사용하는 클라이언트가 존재하는가?
+- 인터페이스 변경이 그 변경과 무관한 클라이언트의 재컴파일을 강제하는가?
+- 인터페이스를 클라이언트의 역할 단위로 쪼갰을 때 오히려 인터페이스 수가 과도하게 늘어나 관리 비용이 더 커지지는 않는가?
+
+## 참고 자료
+
+- Robert C. Martin, 『Clean Architecture』, 2017 — ISP의 OPS 예제와 아키텍처 수준 적용의 원 출처.
+- Robert C. Martin, "The Interface Segregation Principle", C++ Report, 1996 — ISP를 처음 정식화한 원 논문.
 
 ## 다음 장에서는
 
