@@ -15,11 +15,25 @@ tags:
   - GraphQL
   - HTML(HyperText Markup Language)
   - JavaScript
-  - Terminal(터미널)
+  - Terminal
   - Mobile(모바일)
   - Software-Architecture(소프트웨어아키텍처)
   - Technology(기술)
   - History(역사)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - CSS(Cascading Style Sheets)
+  - Case-Study
+  - Deep-Dive
+  - Best-Practices
+  - Maintainability
+  - Coupling(결합도)
+  - Design-Pattern(디자인패턴)
+  - System-Design
+  - WebSocket
+  - Node.js
+  - React
+  - Vue
 ---
 
 웹은 아키텍처에서 **세부사항**이다. 비즈니스 규칙은 데이터가 웹으로 전달되는지, 콘솔로 전달되는지 **신경 쓰지 않아야** 한다.

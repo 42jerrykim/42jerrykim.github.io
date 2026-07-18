@@ -11,6 +11,29 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Deployment(배포)
   - Performance(성능)
+  - History(역사)
+  - Modularity
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Microservices(마이크로서비스)
+  - Compiler(컴파일러)
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Docker
+  - DevOps
+  - Technology(기술)
+  - Case-Study
+  - Deep-Dive
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Java
+  - C++
+  - System-Design
 ---
 
 컴포넌트는 **배포의 단위**다. Java에서는 jar 파일, .NET에서는 dll 파일, Ruby에서는 gem 파일이다. 컴파일형 언어에서는 바이너리 파일의 묶음이고, 인터프리터형 언어에서는 소스 파일의 묶음이다.

@@ -14,6 +14,24 @@ tags:
   - Dependency-Injection(의존성주입)
   - Code-Quality(코드품질)
   - Cohesion(응집도)
+  - Interface(인터페이스)
+  - OOP(객체지향)
+  - Design-Pattern(디자인패턴)
+  - Abstraction(추상화)
+  - Encapsulation(캡슐화)
+  - Inheritance(상속)
+  - Polymorphism(다형성)
+  - Refactoring(리팩토링)
+  - Best-Practices
+  - Maintainability
+  - Modularity
+  - Java
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Testing(테스트)
+  - Readability
+  - Documentation(문서화)
 ---
 
 **ISP(Interface Segregation Principle)**는 1996년 Robert C. Martin이 Xerox 컨설팅 중에 발견한 원칙이다. 이 원칙은 불필요한 의존성으로 인한 문제를 해결하기 위해 **인터페이스를 분리**해야 한다고 말한다.

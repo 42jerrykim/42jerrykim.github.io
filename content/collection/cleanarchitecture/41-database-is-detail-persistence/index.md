@@ -19,6 +19,21 @@ tags:
   - History(역사)
   - Technology(기술)
   - Data-Structures(자료구조)
+  - Backend(백엔드)
+  - Performance(성능)
+  - Optimization(최적화)
+  - Case-Study
+  - Deep-Dive
+  - Best-Practices
+  - Maintainability
+  - Coupling(결합도)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Migration(마이그레이션)
+  - System-Design
+  - Scalability(확장성)
+  - Caching(캐싱)
+  - Domain-Driven-Design
 ---
 
 데이터베이스는 아키텍처에서 **세부사항**이다. 비즈니스 규칙은 데이터베이스가 관계형인지, NoSQL인지, 파일 시스템인지 **신경 쓰지 않아야** 한다.

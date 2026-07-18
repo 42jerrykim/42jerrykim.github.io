@@ -13,6 +13,26 @@ tags:
   - Dependency-Injection(의존성주입)
   - Code-Quality(코드품질)
   - Abstraction(추상화)
+  - Cohesion(응집도)
+  - Modularity
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Deployment(배포)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - System-Design
+  - Complexity-Analysis(복잡도분석)
+  - Java
+  - Documentation(문서화)
+  - Readability
+  - Testing(테스트)
+  - Math(수학)
 ---
 
 컴포넌트 응집도가 **무엇을 포함할 것인가**에 관한 것이라면, 컴포넌트 결합은 **컴포넌트 간 관계**에 관한 것이다. 이 장에서는 컴포넌트 의존성을 관리하는 세 가지 원칙을 다룬다.

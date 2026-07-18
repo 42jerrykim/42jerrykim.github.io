@@ -15,6 +15,25 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Implementation(구현)
   - String(문자열)
+  - Design-Pattern(디자인패턴)
+  - TDD(Test-Driven Development)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Backend(백엔드)
+  - Web(웹)
+  - API(Application Programming Interface)
+  - React
+  - JavaScript
+  - Debugging(디버깅)
 ---
 
 **험블 객체 패턴(Humble Object Pattern)**은 테스트하기 어려운 행위와 쉬운 행위를 분리하는 패턴이다. 이 패턴은 아키텍처 경계에서 자주 사용된다.

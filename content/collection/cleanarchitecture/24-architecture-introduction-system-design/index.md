@@ -16,6 +16,24 @@ tags:
   - Testing(테스트)
   - SOLID
   - Edge-Cases(엣지케이스)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Modularity
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Best-Practices
+  - Maintainability
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - System-Design
+  - Scalability(확장성)
+  - Design-Pattern(디자인패턴)
+  - Refactoring(리팩토링)
+  - Documentation(문서화)
+  - TDD(Test-Driven Development)
+  - Reliability
 ---
 
 지금까지 프로그래밍 패러다임, SOLID 원칙, 컴포넌트 원칙을 살펴보았다. 이제 이 모든 것을 통합하는 **아키텍처**를 다룰 차례다. 아키텍처란 무엇이고, 좋은 아키텍처는 어떤 특성을 가지는가?

@@ -16,6 +16,24 @@ tags:
   - Interface(인터페이스)
   - Abstraction(추상화)
   - Code-Quality(코드품질)
+  - Design-Pattern(디자인패턴)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Modularity
+  - History(역사)
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Testing(테스트)
+  - OOP(객체지향)
+  - Polymorphism(다형성)
+  - System-Design
+  - Documentation(문서화)
+  - Readability
+  - TDD(Test-Driven Development)
 ---
 
 소프트웨어 시스템은 여러 **정책(Policy)**의 집합이다. 정책들은 서로 다른 **수준(Level)**에 존재하며, 의존성은 수준의 방향으로 흘러야 한다.

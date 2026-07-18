@@ -15,6 +15,24 @@ tags:
   - Polymorphism(다형성)
   - Algorithm(알고리즘)
   - Code-Quality(코드품질)
+  - OOP(객체지향)
+  - Abstraction(추상화)
+  - Design-Pattern(디자인패턴)
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
+  - Testing(테스트)
+  - Refactoring(리팩토링)
+  - Best-Practices
+  - Maintainability
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Encapsulation(캡슐화)
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Java
+  - Python
+  - Error-Handling(에러처리)
 ---
 
 **LSP(Liskov Substitution Principle)**는 1988년 Barbara Liskov가 정의한 원칙이다. 처음에는 상속에 관한 원칙으로 보이지만, 실제로는 인터페이스와 구현에 관한 더 넓은 설계 원칙이다.

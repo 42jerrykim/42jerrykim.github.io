@@ -16,6 +16,24 @@ tags:
   - Code-Quality(코드품질)
   - Polymorphism(다형성)
   - SOLID
+  - History(역사)
+  - Abstraction(추상화)
+  - Encapsulation(캡슐화)
+  - Inheritance(상속)
+  - Interface(인터페이스)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Design-Pattern(디자인패턴)
+  - Technology(기술)
+  - Case-Study
+  - Deep-Dive
+  - Best-Practices
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Assembly
+  - C
+  - C++
+  - Concurrency(동시성)
 ---
 
 소프트웨어 아키텍처는 **코드(code)**로부터 시작한다. 따라서 아키텍처에 대한 논의도 코드가 최초로 작성된 시점부터, 우리가 코드를 통해 배운 내용을 살펴보는 데서 출발하고자 한다.
@@ -24,7 +42,7 @@ tags:
 
 1945년경에 앨런 튜링(Alan Turing)은 사람이 식별할 수 있는 형태의 실질적인 프로그램을 실제 컴퓨터에서 코드로 작성했다. 이들 프로그램은 반복문, 분기문, 할당문, 서브루틴(Subroutine), 스택(Stack) 등 우리에게 익숙한 구조를 사용했다. 그리고 **바이너리 언어**를 사용했다.
 
-```
+```text
 // 초기 컴퓨터의 바이너리 코드 예시 (개념적)
 0001 0100 0010 0000  // LOAD R1, 32
 0010 0100 0011 0000  // ADD R1, 48
@@ -48,16 +66,16 @@ STORE R1, RESULT
 
 ### 최초의 컴파일러: A-0 (1951년)
 
-1951년 **그레이스 호퍼(Grace Hopper)**는 최초의 컴파일러인 **A-0**를 발명했다. 사실 '컴파일러(compiler)'라는 용어도 그레이스가 처음으로 만들었다.
+1951~1952년 **그레이스 호퍼(Grace Hopper)**는 최초의 컴파일러로 널리 알려진 **A-0**를 완성했다. '컴파일러(compiler)'라는 용어도 그레이스가 만든 것으로 알려져 있다(다만 "최초의 컴파일러" 타이틀에는 정의에 따라 이견도 있다).
 
 ### 고급 언어의 홍수
 
-**포트란(Fortran)**은 1953년에 발명되었다. 이처럼 새로운 프로그래밍 언어는 쉴 틈 없이 홍수처럼 쏟아졌다.
+**포트란(Fortran)**은 1954년 존 배커스(John Backus)가 이끄는 IBM 팀이 설계를 제안했고, 1957년 최초의 컴파일러가 출시되었다. 이처럼 새로운 프로그래밍 언어는 쉴 틈 없이 홍수처럼 쏟아졌다.
 
 ```mermaid
 timeline
     title 프로그래밍 언어의 역사
-    1953 : Fortran
+    1957 : Fortran
     1959 : COBOL
     1964 : PL/1
     1969 : C
@@ -69,7 +87,7 @@ timeline
 
 | 연도 | 언어 | 특징 |
 |------|------|------|
-| 1953 | Fortran | 과학 계산용 최초의 고급 언어 |
+| 1957 | Fortran | 과학 계산용 최초의 고급 언어(설계는 1954년 시작) |
 | 1959 | COBOL | 비즈니스 처리용 |
 | 1969 | C | 시스템 프로그래밍 |
 | 1970 | Pascal | 교육용, 구조적 프로그래밍 |
@@ -82,8 +100,7 @@ timeline
 
 ### 패러다임이란?
 
-> "패러다임이란 프로그래밍을 하는 방법으로, 대체로 언어에는 독립적이다."
-> — Robert C. Martin
+마틴은 패러다임을 이렇게 정의한다: 패러다임이란 프로그래밍을 하는 방법으로, 대체로 언어에는 독립적이다(Martin, *Clean Architecture*, 2017).
 
 패러다임은 어떤 프로그래밍 구조를 사용할지, 그리고 언제 이 구조를 사용해야 하는지를 결정한다.
 
@@ -122,6 +139,8 @@ flowchart TB
 
 ### 구조적 프로그래밍 → 알고리즘
 
+구조적 프로그래밍은 goto를 없애고 순차·선택·반복 세 가지 제어 구조만 허용함으로써, 함수 내부의 알고리즘을 증명 가능하고 예측 가능한 형태로 제한한다. 아래 코드는 이 세 구조만으로 로직을 표현한 예다.
+
 ```java
 // 구조적 프로그래밍: 순차, 선택, 반복만 사용
 public int calculateSum(int[] numbers) {
@@ -137,6 +156,8 @@ public int calculateSum(int[] numbers) {
 
 ### 객체 지향 프로그래밍 → 경계와 다형성
 
+OOP는 함수 포인터의 위험한 사용을 다형성이라는 안전한 형태로 제한한다. 이 다형성 덕분에 고수준 코드가 저수준 구현을 몰라도 되는 경계(포트/어댑터 패턴의 기반)를 그을 수 있다.
+
 ```java
 // 다형성을 통한 경계 횡단
 public interface Repository {
@@ -144,15 +165,25 @@ public interface Repository {
 }
 
 public class MySqlRepository implements Repository {
-    public void save(Entity entity) { /* MySQL 구현 */ }
+    private final JdbcTemplate jdbcTemplate;
+    public MySqlRepository(JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; }
+    public void save(Entity entity) {
+        jdbcTemplate.update("INSERT INTO entities VALUES (?)", entity.getId());
+    }
 }
 
 public class MongoRepository implements Repository {
-    public void save(Entity entity) { /* MongoDB 구현 */ }
+    private final MongoTemplate mongoTemplate;
+    public MongoRepository(MongoTemplate mongoTemplate) { this.mongoTemplate = mongoTemplate; }
+    public void save(Entity entity) {
+        mongoTemplate.save(entity);
+    }
 }
 ```
 
 ### 함수형 프로그래밍 → 불변성과 데이터 흐름
+
+FP는 할당문(변수 재대입)을 제한함으로써 데이터가 어디서 변경되는지 추적할 필요를 없앤다. 아래 코드는 원본 리스트를 변경하지 않고 새 리스트를 만들어내는 방식을 보여준다.
 
 ```java
 // 불변성: 데이터를 변경하지 않고 새로 생성
@@ -165,22 +196,24 @@ List<Integer> doubled = numbers.stream()
 
 ```mermaid
 flowchart LR
-    P2[2부: 패러다임] --> C3[3장: 패러다임 개요]
-    P2 --> C4[4장: 구조적 프로그래밍]
-    P2 --> C5[5장: 객체 지향 프로그래밍]
-    P2 --> C6[6장: 함수형 프로그래밍]
+    P2[Part 2: 패러다임] --> C10[10장: 패러다임 개요]
+    P2 --> C11[11장: 구조적 프로그래밍]
+    P2 --> C12[12장: 객체 지향 프로그래밍]
+    P2 --> C13[13장: 함수형 프로그래밍]
 ```
+
+이 시리즈에서는 원저 Part 2(패러다임)의 4개 챕터가 10~13장으로 이어진다.
 
 | 장 | 제목 | 핵심 내용 |
 |----|------|----------|
-| 3장 | 패러다임 개요 | 세 패러다임의 부정적 규칙 |
-| 4장 | 구조적 프로그래밍 | goto 문 제거와 증명 가능한 프로그램 |
-| 5장 | 객체 지향 프로그래밍 | 다형성과 의존성 역전 |
-| 6장 | 함수형 프로그래밍 | 불변성과 동시성 |
+| 10장 | 패러다임 개요 | 세 패러다임의 부정적 규칙 |
+| 11장 | 구조적 프로그래밍 | goto 문 제거와 증명 가능한 프로그램 |
+| 12장 | 객체 지향 프로그래밍 | 다형성과 의존성 역전 |
+| 13장 | 함수형 프로그래밍 | 불변성과 동시성 |
 
 ## 핵심 요약
 
-> "아키텍처의 벽돌은 패러다임이다. 패러다임은 무엇을 해서는 안 되는지를 알려줌으로써, 우리가 더 나은 구조를 만들도록 이끈다."
+마틴은 이렇게 요약한다: 아키텍처의 벽돌은 패러다임이다. 패러다임은 무엇을 해서는 안 되는지를 알려줌으로써, 우리가 더 나은 구조를 만들도록 이끈다(Martin, *Clean Architecture*, 2017).
 
 | 항목 | 설명 |
 |------|------|
@@ -188,5 +221,21 @@ flowchart LR
 | 패러다임의 수 | 딱 3가지 (앞으로도 추가 없음) |
 | 패러다임의 본질 | 프로그래머에게서 무언가를 빼앗음 |
 | 아키텍처와의 관계 | 모든 패러다임이 아키텍처에 영향 |
+
+## 비판적 시각
+
+"패러다임은 정확히 3개뿐이며 앞으로도 늘지 않는다"는 마틴의 주장은 논쟁적이다. 이는 각 패러다임이 "무엇을 금지하는가"라는 기준으로 분류했을 때 성립하는 주장이며, 실제로 논리형 프로그래밍(Prolog)이나 액터 모델(Erlang) 등은 이 3분류에 깔끔하게 들어맞지 않는다는 반론도 있다. 또한 대부분의 현대 언어(Java, Python, TypeScript 등)는 세 패러다임의 요소를 함께 지원하는 다중 패러다임 언어이므로, "언어=패러다임"으로 단순화해 이해하지 않는 것이 중요하다.
+
+## 학습 목표
+
+이 장을 읽은 후 다음을 할 수 있어야 한다.
+
+- 코드→어셈블러→컴파일러→고급 언어로 이어지는 발전이 왜 아키텍처 논의의 출발점이 되는지 설명할 수 있다.
+- 세 가지 패러다임이 각각 무엇을 "금지"하는지, 그리고 그 금지가 왜 아키텍처에 영향을 주는지 설명할 수 있다.
+- "패러다임은 정확히 3개"라는 주장의 한계를 예를 들어 설명할 수 있다.
+
+## 참고 자료
+
+- Martin, R. C. (2017). *Clean Architecture: A Craftsman's Guide to Software Structure and Design*. Prentice Hall.
 
 다음 장에서는 이 세 가지 패러다임을 더 자세히 살펴보고, 각 패러다임이 아키텍처에 어떤 영향을 미치는지 알아본다.

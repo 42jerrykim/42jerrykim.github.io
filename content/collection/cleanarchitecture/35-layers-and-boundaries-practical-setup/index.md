@@ -18,6 +18,22 @@ tags:
   - Dependency-Injection(의존성주입)
   - IO(Input/Output)
   - Complexity-Analysis(복잡도분석)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Modularity
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Design-Pattern(디자인패턴)
+  - System-Design
+  - Backend(백엔드)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Best-Practices
+  - Maintainability
+  - History(역사)
+  - Testing(테스트)
+  - Documentation(문서화)
 ---
 
 지금까지 경계의 개념을 배웠다. 이 장에서는 **실제 시스템**에서 경계를 어떻게 설정하는지 살펴본다.

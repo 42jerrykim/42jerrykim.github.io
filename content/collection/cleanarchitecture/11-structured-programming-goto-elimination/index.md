@@ -16,6 +16,22 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Code-Quality(코드품질)
   - Clean-Code(클린코드)
+  - History(역사)
+  - Recursion(재귀)
+  - Complexity-Analysis(복잡도분석)
+  - Debugging(디버깅)
+  - Best-Practices
+  - Refactoring(리팩토링)
+  - Readability
+  - Maintainability
+  - C
+  - Assembly
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Documentation(문서화)
+  - Error-Handling(에러처리)
+  - Design-Pattern(디자인패턴)
 ---
 
 1968년, 에츠허르 비버 데이크스트라(Edsger Wybe Dijkstra)는 CACM(Communications of the ACM)에 보낸 편지에서 프로그래밍 역사상 가장 유명한 논쟁을 시작했다. "Go To Statement Considered Harmful"이라는 제목의 이 글은 구조적 프로그래밍의 시대를 열었다.

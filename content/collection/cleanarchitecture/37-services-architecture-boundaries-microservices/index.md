@@ -15,6 +15,25 @@ tags:
   - Interface(인터페이스)
   - Implementation(구현)
   - Edge-Cases(엣지케이스)
+  - REST(Representational State Transfer)
+  - API(Application Programming Interface)
+  - Backend(백엔드)
+  - System-Design
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Scalability(확장성)
+  - Deployment(배포)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - DevOps
+  - Best-Practices
+  - Maintainability
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Latency
+  - Throughput
+  - Reliability
 ---
 
 서비스는 아키텍처에서 특별한 위치를 차지하는가? 마틴은 **서비스에 대한 오해**를 지적한다.

@@ -13,6 +13,26 @@ tags:
   - Factory
   - Software-Architecture(소프트웨어아키텍처)
   - Spring
+  - Design-Pattern(디자인패턴)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Modularity
+  - Abstraction(추상화)
+  - Interface(인터페이스)
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Testing(테스트)
+  - Documentation(문서화)
+  - .NET
+  - Node.js
+  - System-Design
+  - Backend(백엔드)
+  - Deployment(배포)
 ---
 
 **Main**은 시스템의 **초기 진입점**이다. Clean Architecture에서 Main은 가장 **저수준의 정책**이며, 가장 **더러운** 컴포넌트다.

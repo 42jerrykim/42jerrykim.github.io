@@ -15,6 +15,25 @@ tags:
   - Accounting
   - Web(웹)
   - Testing(테스트)
+  - Design-Pattern(디자인패턴)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Domain-Driven-Design
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Modularity
+  - Best-Practices
+  - Maintainability
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - System-Design
+  - Refactoring(리팩토링)
+  - Readability
+  - Documentation(문서화)
+  - Node.js
+  - Flask
 ---
 
 아키텍처는 시스템의 **의도를 소리쳐야** 한다. 최상위 디렉토리 구조를 보면 이것이 건강 관리 시스템인지, 회계 시스템인지 알 수 있어야 한다.

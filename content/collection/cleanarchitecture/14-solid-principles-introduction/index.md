@@ -14,6 +14,26 @@ tags:
   - Testing(테스트)
   - Coupling(결합도)
   - Cohesion(응집도)
+  - Design-Pattern(디자인패턴)
+  - OOP(객체지향)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Encapsulation(캡슐화)
+  - Inheritance(상속)
+  - Polymorphism(다형성)
+  - Dependency-Injection(의존성주입)
+  - Refactoring(리팩토링)
+  - Best-Practices
+  - Maintainability
+  - Readability
+  - Modularity
+  - History(역사)
+  - Technology(기술)
+  - Case-Study
+  - Deep-Dive
+  - Clean-Code(클린코드)
+  - Documentation(문서화)
+  - TDD(Test-Driven Development)
 ---
 
 SOLID 원칙은 객체 지향 설계의 기초가 되는 다섯 가지 원칙이다. 이 원칙들은 2000년대 초반 Robert C. Martin에 의해 체계화되었으며, 오늘날 소프트웨어 개발자들에게 필수적인 지식이 되었다.

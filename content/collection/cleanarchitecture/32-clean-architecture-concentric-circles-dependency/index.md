@@ -12,6 +12,28 @@ tags:
   - Edge-Cases(엣지케이스)
   - Dependency-Injection(의존성주입)
   - Testing(테스트)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Design-Pattern(디자인패턴)
+  - Modularity
+  - Best-Practices
+  - Maintainability
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - System-Design
+  - OOP(객체지향)
+  - Domain-Driven-Design
+  - Refactoring(리팩토링)
+  - Backend(백엔드)
+  - Database(데이터베이스)
+  - Web(웹)
+  - Documentation(문서화)
+  - TDD(Test-Driven Development)
+  - Readability
 ---
 
 드디어 Clean Architecture의 핵심에 도달했다. 이 장에서는 육각형 아키텍처, 양파 아키텍처, BCE 등 기존 아키텍처들의 공통점을 추출하여 정제한 **Clean Architecture**의 구조를 상세히 다룬다.

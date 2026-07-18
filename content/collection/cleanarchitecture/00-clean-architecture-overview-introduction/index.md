@@ -4,7 +4,7 @@ collection_order: 0
 title: "[Clean Architecture] 00. 클린 아키텍처 개요"
 date: 2024-01-01
 last_modified_at: 2026-01-18
-description: "Clean Architecture는 Robert C. Martin이 제안한 소프트웨어 설계 원칙으로, 의존성 역전과 경계 분리를 통해 유지보수성, 테스트 용이성, 유연성을 극대화하는 아키텍처 패턴입니다."
+description: "Clean Architecture는 Robert C. Martin이 제안한 소프트웨어 설계 원칙으로, 의존성 역전과 경계 분리를 통해 유지보수성, 테스트 용이성, 유연성을 극대화합니다. 동심원 구조와 의존성 규칙, 그리고 이 시리즈 45개 챕터의 전체 커리큘럼을 함께 소개합니다."
 image: "wordcloud.png"
 categories: Clean Architecture
 tags:
@@ -20,14 +20,30 @@ tags:
 - Database(데이터베이스)
 - Web(웹)
 - Microservices(마이크로서비스)
+- OOP(객체지향)
+- Functional-Programming(함수형프로그래밍)
+- Coupling(결합도)
+- Cohesion(응집도)
+- Interface(인터페이스)
+- Abstraction(추상화)
+- Encapsulation(캡슐화)
+- Polymorphism(다형성)
+- Inheritance(상속)
+- Refactoring(리팩토링)
+- Maintainability
+- Best-Practices
+- Guide(가이드)
+- System-Design
+- Domain-Driven-Design
+- Java
+- Python
 ---
 
 ## Clean Architecture란
 
 **Clean Architecture**는 Robert C. Martin(Uncle Bob)이 2017년 출간한 동명의 책에서 체계화한 소프트웨어 아키텍처 설계 원칙이다. 이 아키텍처의 핵심 목표는 **의존성 방향을 안쪽(고수준 정책)으로 향하게** 하여, 비즈니스 규칙을 프레임워크, 데이터베이스, UI 등의 세부 사항으로부터 분리하는 것이다.
 
-> "좋은 아키텍처는 결정을 내리는 것이 아니라, 결정을 최대한 미룰 수 있게 해주는 것이다."
-> — Robert C. Martin
+마틴은 책 전반에서 좋은 아키텍처의 역할을 이렇게 요약한다: 좋은 아키텍처는 프레임워크·데이터베이스·UI 같은 세부사항에 대한 결정을 **강제로 미리 내리게 하지 않고, 최대한 뒤로 미룰 수 있게** 해주는 것이다(Martin, 2017, Ch. 15 "What Is Architecture?").
 
 Clean Architecture는 단순히 하나의 새로운 패턴이 아니라, **Hexagonal Architecture(Ports & Adapters)**, **Onion Architecture**, **BCE(Boundary-Control-Entity)** 등 기존의 우수한 아키텍처 패턴들의 핵심 원칙을 통합하고 정제한 결과물이다.
 
@@ -98,7 +114,7 @@ graph TB
 
 ## 책의 구성
 
-이 시리즈는 Robert C. Martin의 *Clean Architecture: A Craftsman's Guide to Software Structure and Design*을 기반으로 총 **6개 파트, 45개 챕터**로 구성되어 있다.
+원저는 Part I~VI 34개 챕터와 Appendix A "Architecture Archaeology"로 구성된다. 이 시리즈는 그 34개 챕터를 근간으로, 이해를 돕는 역사·비교 챕터(육각형·어니언 아키텍처, SOLID·컴포넌트 원칙 서론 등) 11개를 더해 **6개 파트, 45개 챕터**로 재구성했다.
 
 ### Part 1: 서론 (Introduction)
 
@@ -175,149 +191,38 @@ graph TB
 |44|사례 연구: 비디오 판매 시스템|실전 적용 예시|
 |45|빠진 장: 패키지 구조|패키지 조직 방법|
 
-## 핵심 개념 요약
+> 원저의 Appendix A "Architecture Archaeology"(마틴 자신의 과거 프로젝트 회고)는 이 시리즈의 커리큘럼 범위에서 제외했다 — 역사적 일화 위주로, 다른 챕터와 달리 재사용 가능한 원칙을 담고 있지 않기 때문이다.
 
-### 1. 엔티티(Entities)
-- 가장 핵심적인 비즈니스 규칙을 캡슐화
-- 애플리케이션이 아닌 **기업 전체**에 적용되는 규칙
-- 외부 변경에 가장 영향을 적게 받음
+## 핵심 개념: 4개 계층
 
-### 2. 유스케이스(Use Cases)
-- 애플리케이션 고유의 비즈니스 규칙
-- 시스템의 **행위**를 정의
-- 엔티티를 조작하여 목표 달성
+동심원의 4개 계층은 각각 명확히 구분된 책임을 가지며, 아래로 갈수록(바깥쪽일수록) 변경 빈도가 높고 위로 갈수록(안쪽일수록) 안정적이다.
 
-### 3. 인터페이스 어댑터(Interface Adapters)
-- 외부와 내부 사이의 **데이터 변환**
-- Controller, Presenter, Gateway
-- 프레임워크와 비즈니스 로직 연결
+**엔티티(Entities)**는 가장 핵심적인 비즈니스 규칙을 캡슐화한다. 특정 애플리케이션이 아닌 **기업 전체**에 적용되는 규칙이며, 외부 변경에 가장 영향을 적게 받는다. **유스케이스(Use Cases)**는 애플리케이션 고유의 비즈니스 규칙으로, 시스템의 **행위**를 정의하고 엔티티를 조작해 목표를 달성한다. **인터페이스 어댑터(Interface Adapters)**는 Controller·Presenter·Gateway로 외부와 내부 사이의 데이터 변환을 담당하며, 프레임워크와 비즈니스 로직을 연결한다. 가장 바깥쪽인 **프레임워크와 드라이버(Frameworks & Drivers)**는 Web·Database·UI Framework 등 **교체 가능한 세부사항**이다.
 
-### 4. 프레임워크와 드라이버(Frameworks & Drivers)
-- 가장 바깥쪽 레이어
-- Web, Database, UI Framework
-- **교체 가능한 세부사항**
+## 흔한 오해
 
-## Java 코드 예시
+Clean Architecture를 처음 접하면 다음 두 가지를 오해하기 쉽다.
 
-```java
-// Entity - 핵심 비즈니스 규칙
-public class Order {
-    private List<OrderItem> items;
-    private Money totalAmount;
-    
-    public Money calculateTotal() {
-        return items.stream()
-            .map(OrderItem::getSubtotal)
-            .reduce(Money.ZERO, Money::add);
-    }
-}
+**오해 1: "Clean Architecture는 특정 폴더 구조다."** 동심원 다이어그램이 유명해지면서 `entities/`, `usecases/`, `adapters/`, `frameworks/` 같은 폴더를 만들면 끝이라고 생각하기 쉽다. 하지만 핵심은 폴더 이름이 아니라 **의존성 방향**이다. 폴더를 나눠도 안쪽 계층이 바깥쪽 구체 클래스를 직접 import하면 의존성 규칙은 깨진 것이다.
 
-// Use Case - 애플리케이션 비즈니스 규칙
-public class PlaceOrderUseCase {
-    private final OrderRepository orderRepository;
-    private final PaymentGateway paymentGateway;
-    
-    public PlaceOrderUseCase(
-        OrderRepository orderRepository,
-        PaymentGateway paymentGateway
-    ) {
-        this.orderRepository = orderRepository;
-        this.paymentGateway = paymentGateway;
-    }
-    
-    public OrderResult execute(PlaceOrderRequest request) {
-        Order order = createOrder(request);
-        paymentGateway.charge(order.calculateTotal());
-        orderRepository.save(order);
-        return new OrderResult(order.getId());
-    }
-}
+**오해 2: "4개 계층을 정확히 지켜야 한다."** 마틴 본인도 원저에서 계층 수는 "4개가 유일한 정답이 아니다"라고 밝힌다. 계층은 필요에 따라 더 늘어나거나 줄어들 수 있으며, 지켜야 할 불변 원칙은 계층 개수가 아니라 **의존성이 항상 안쪽으로만 향해야 한다**는 규칙 자체다.
 
-// Interface Adapter - 외부 연결
-public interface OrderRepository {
-    void save(Order order);
-    Order findById(OrderId id);
-}
+## 학습 목표
 
-public interface PaymentGateway {
-    void charge(Money amount);
-}
-```
+이 개요 챕터를 읽은 후 다음을 할 수 있어야 한다.
 
-## Python 코드 예시
+- 동심원 4계층(엔티티, 유스케이스, 인터페이스 어댑터, 프레임워크·드라이버)의 책임을 각각 설명할 수 있다.
+- 의존성 규칙("의존성은 항상 안쪽으로만 향한다")이 무엇을 금지하는지 구체적인 예로 들 수 있다.
+- Hexagonal·Onion Architecture와 Clean Architecture의 공통점과 차이를 비교할 수 있다.
+- "Clean Architecture = 특정 폴더 구조"라는 오해가 왜 틀렸는지 설명할 수 있다.
 
-```python
-# Entity
-from dataclasses import dataclass
-from decimal import Decimal
-from typing import List
-
-@dataclass
-class OrderItem:
-    product_id: str
-    quantity: int
-    unit_price: Decimal
-    
-    @property
-    def subtotal(self) -> Decimal:
-        return self.unit_price * self.quantity
-
-@dataclass
-class Order:
-    items: List[OrderItem]
-    
-    def calculate_total(self) -> Decimal:
-        return sum(item.subtotal for item in self.items)
-
-# Use Case
-from abc import ABC, abstractmethod
-
-class OrderRepository(ABC):
-    @abstractmethod
-    def save(self, order: Order) -> str:
-        pass
-
-class PaymentGateway(ABC):
-    @abstractmethod
-    def charge(self, amount: Decimal) -> bool:
-        pass
-
-class PlaceOrderUseCase:
-    def __init__(
-        self,
-        order_repository: OrderRepository,
-        payment_gateway: PaymentGateway
-    ):
-        self.order_repository = order_repository
-        self.payment_gateway = payment_gateway
-    
-    def execute(self, request: dict) -> dict:
-        order = self._create_order(request)
-        self.payment_gateway.charge(order.calculate_total())
-        order_id = self.order_repository.save(order)
-        return {"order_id": order_id, "status": "placed"}
-```
-
-## 결론
-
-Clean Architecture는 단순한 폴더 구조나 코딩 규칙이 아니다. 이는 **소프트웨어의 본질적인 가치**인 유연성과 유지보수성을 극대화하기 위한 설계 철학이다.
-
-핵심은 다음 세 가지로 요약된다:
-
-1. **의존성 역전**: 고수준 정책이 저수준 세부사항에 의존하지 않도록 한다
-2. **경계 분리**: 비즈니스 규칙과 인프라스트럭처를 명확히 분리한다
-3. **결정 지연**: 중요하지 않은 결정(DB, 프레임워크 등)을 최대한 늦춘다
-
-이 시리즈를 통해 Clean Architecture의 원칙을 깊이 이해하고, 실무에 적용할 수 있는 역량을 키우길 바란다.
-
-## 핵심 개념 상세 설명
+## 코드로 보는 4개 계층
 
 ### 엔티티(Entities)
 
 엔티티는 가장 핵심적인 비즈니스 규칙을 캡슐화한다. 이는 특정 애플리케이션이 아닌 **기업 전체**에 적용되는 규칙이다.
 
 ```java
-// 42jerrykim.github.io에서 더 많은 정보를 확인 할 수 있다
 public class Order {
     private OrderId id;
     private CustomerId customerId;
@@ -349,11 +254,23 @@ public class Order {
 유스케이스는 애플리케이션 고유의 비즈니스 규칙을 정의한다.
 
 ```java
-// 42jerrykim.github.io에서 더 많은 정보를 확인 할 수 있다
 public class PlaceOrderUseCase implements PlaceOrderInputBoundary {
     private final OrderRepository orderRepository;
+    private final CustomerRepository customerRepository;
     private final PaymentGateway paymentGateway;
     private final PlaceOrderOutputBoundary presenter;
+    
+    public PlaceOrderUseCase(
+        OrderRepository orderRepository,
+        CustomerRepository customerRepository,
+        PaymentGateway paymentGateway,
+        PlaceOrderOutputBoundary presenter
+    ) {
+        this.orderRepository = orderRepository;
+        this.customerRepository = customerRepository;
+        this.paymentGateway = paymentGateway;
+        this.presenter = presenter;
+    }
     
     @Override
     public void execute(PlaceOrderRequest request) {
@@ -381,8 +298,9 @@ public class PlaceOrderUseCase implements PlaceOrderInputBoundary {
 
 ### 인터페이스 어댑터(Interface Adapters)
 
+인터페이스 어댑터는 유스케이스와 외부 세계를 잇는 변환 계층이다. `OrderController`는 HTTP 요청을 유스케이스가 이해하는 `PlaceOrderRequest`로 변환해 전달하고, `JpaOrderRepository`는 JPA 엔티티와 도메인 `Order` 객체 사이를 오간다. 두 클래스 모두 바깥쪽(웹 프레임워크·JPA)의 세부사항을 알지만, 안쪽(유스케이스)은 이 어댑터의 존재조차 모른다는 점이 의존성 규칙의 핵심이다.
+
 ```java
-// 42jerrykim.github.io에서 더 많은 정보를 확인 할 수 있다
 @RestController
 @RequestMapping("/api/orders")
 public class OrderController {
@@ -401,6 +319,12 @@ public class OrderController {
 @Repository
 public class JpaOrderRepository implements OrderRepository {
     private final OrderJpaRepository jpaRepository;
+    private final OrderMapper mapper;
+    
+    public JpaOrderRepository(OrderJpaRepository jpaRepository, OrderMapper mapper) {
+        this.jpaRepository = jpaRepository;
+        this.mapper = mapper;
+    }
     
     @Override
     public void save(Order order) {
@@ -410,10 +334,12 @@ public class JpaOrderRepository implements OrderRepository {
 }
 ```
 
-## Python 코드 예시
+### Python 통합 예제
+
+위 3개 계층(엔티티·유스케이스·인터페이스 어댑터)을 하나의 흐름으로 재구성한 Python 버전이다.
 
 ```python
-# 42jerrykim.github.io에서 더 많은 정보를 확인 할 수 있다
+import uuid
 from dataclasses import dataclass
 from decimal import Decimal
 from typing import List, Optional
@@ -481,6 +407,8 @@ class PlaceOrderUseCase:
 
 ### 장점
 
+의존성이 안쪽으로만 향하도록 강제하면 다음 다섯 가지 이점이 구조적으로 따라온다.
+
 1. **테스트 용이성**: 비즈니스 로직을 프레임워크나 데이터베이스 없이 테스트할 수 있다
 2. **유연성**: 프레임워크, 데이터베이스, UI를 쉽게 교체할 수 있다
 3. **독립적 개발**: 팀이 각 레이어를 독립적으로 개발할 수 있다
@@ -489,6 +417,8 @@ class PlaceOrderUseCase:
 
 ### 단점
 
+반대로 계층·경계를 나누는 데는 비용이 따르며, 프로젝트 규모에 맞지 않게 적용하면 이점보다 비용이 커질 수 있다.
+
 1. **초기 복잡성**: 작은 프로젝트에는 과도한 구조일 수 있다
 2. **학습 곡선**: 팀원들이 원칙을 이해하는 데 시간이 필요하다
 3. **보일러플레이트 코드**: 레이어 간 데이터 변환 코드가 많아질 수 있다
@@ -496,12 +426,25 @@ class PlaceOrderUseCase:
 
 ### 적용 시 고려사항
 
+장단점을 감안하면 "항상 전면 적용"이 정답은 아니다. 프로젝트 규모와 수명에 따라 적용 수준을 조절하는 것이 실용적이다.
+
 |프로젝트 규모|권장 수준|
 |:--:|:--|
 |소규모 (1-2명, 3개월 미만)|간소화된 레이어 구조|
 |중규모 (3-10명, 6개월-1년)|표준 Clean Architecture|
 |대규모 (10명 이상, 1년 이상)|완전한 Clean Architecture + 마이크로서비스|
 
+## 결론
+
+Clean Architecture는 단순한 폴더 구조나 코딩 규칙이 아니다. 이는 **소프트웨어의 본질적인 가치**인 유연성과 유지보수성을 극대화하기 위한 설계 철학이다.
+
+핵심은 다음 세 가지로 요약된다:
+
+1. **의존성 역전**: 고수준 정책이 저수준 세부사항에 의존하지 않도록 한다
+2. **경계 분리**: 비즈니스 규칙과 인프라스트럭처를 명확히 분리한다
+3. **결정 지연**: 중요하지 않은 결정(DB, 프레임워크 등)을 최대한 늦춘다
+
+이 시리즈를 통해 Clean Architecture의 원칙을 깊이 이해하고, 실무에 적용할 수 있는 역량을 키우길 바란다.
 
 ## 참고 자료
 

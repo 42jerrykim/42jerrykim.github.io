@@ -15,6 +15,25 @@ tags:
   - Polymorphism(다형성)
   - Software-Architecture(소프트웨어아키텍처)
   - Heap(힙)
+  - Recursion(재귀)
+  - Abstraction(추상화)
+  - Encapsulation(캡슐화)
+  - Inheritance(상속)
+  - Interface(인터페이스)
+  - Design-Pattern(디자인패턴)
+  - Concurrency(동시성)
+  - Async(비동기)
+  - History(역사)
+  - Technology(기술)
+  - Case-Study
+  - Deep-Dive
+  - Best-Practices
+  - Refactoring(리팩토링)
+  - Testing(테스트)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Java
+  - C++
 ---
 
 이번 장에서 살펴볼 3가지 패러다임은 **부정적인 의도**를 가지는 일종의 추가적인 규칙을 부과한다. 즉, 패러다임은 무엇을 해야 할지를 말하기보다는 **무엇을 해서는 안 되는지**를 말해준다.

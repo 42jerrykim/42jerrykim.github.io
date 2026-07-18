@@ -15,6 +15,24 @@ tags:
   - OOP(객체지향)
   - Code-Quality(코드품질)
   - Implementation(구현)
+  - Coupling(결합도)
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Best-Practices
+  - Maintainability
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Modularity
+  - Readability
+  - Testing(테스트)
+  - Documentation(문서화)
+  - Clean-Code(클린코드)
+  - Dependency-Injection(의존성주입)
+  - Encapsulation(캡슐화)
+  - Polymorphism(다형성)
   - Refactoring(리팩토링)
 ---
 

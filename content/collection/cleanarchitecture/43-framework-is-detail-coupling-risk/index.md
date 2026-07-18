@@ -18,6 +18,22 @@ tags:
   - Inheritance(상속)
   - Migration(마이그레이션)
   - Technology(기술)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Abstraction(추상화)
+  - Interface(인터페이스)
+  - Design-Pattern(디자인패턴)
+  - Best-Practices
+  - Maintainability
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Node.js
+  - Flask
+  - .NET
+  - Backend(백엔드)
+  - System-Design
+  - Refactoring(리팩토링)
 ---
 
 프레임워크는 아키텍처에서 **세부사항**이다. 프레임워크와 **결혼하지 마라**. 프레임워크를 **팔 길이 거리**에 두어라.

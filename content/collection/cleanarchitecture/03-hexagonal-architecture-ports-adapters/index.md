@@ -17,6 +17,23 @@ tags:
   - Interface(인터페이스)
   - Abstraction(추상화)
   - Edge-Cases(엣지케이스)
+  - Cohesion(응집도)
+  - Modularity
+  - Maintainability
+  - Best-Practices
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - System-Design
+  - Backend(백엔드)
+  - Domain-Driven-Design
+  - Adapter
+  - TDD(Test-Driven Development)
+  - Refactoring(리팩토링)
+  - OOP(객체지향)
+  - API(Application Programming Interface)
+  - Database(데이터베이스)
 ---
 
 2005년, 알리스테어 콕번(Alistair Cockburn)은 "Hexagonal Architecture" 또는 "Ports and Adapters" 패턴을 제안했다. 이 아키텍처는 전통적인 계층형 아키텍처의 근본적인 문제를 해결하기 위해 등장했으며, Clean Architecture에 직접적인 영향을 미친 중요한 선행 패턴이다.
@@ -32,7 +49,7 @@ tags:
 3. **테스트의 어려움**: 실제 DB나 UI 없이 비즈니스 로직 테스트 불가
 
 > "애플리케이션이 사용자, 프로그램, 자동화된 테스트, 또는 배치 스크립트에 의해 동등하게 구동될 수 있도록 하고, 최종적인 실행 장치와 데이터베이스로부터 분리되어 개발되고 테스트될 수 있도록 하라."
-> — Alistair Cockburn
+> — Alistair Cockburn, "Hexagonal Architecture" (2005), [alistair.cockburn.us/hexagonal-architecture](https://alistair.cockburn.us/hexagonal-architecture/)
 
 ### 왜 "육각형"인가?
 
@@ -75,7 +92,7 @@ flowchart TB
 - 어떤 데이터베이스가 사용되는지 모름 (MySQL? MongoDB? File?)
 - 어떤 외부 서비스가 연결되는지 모름 (Email? SMS? Push?)
 
-```
+```java
 // 순수한 애플리케이션 코어 - 외부 의존성 없음
 public class OrderService {
     private final OrderRepository orderRepository;  // 인터페이스
@@ -234,6 +251,8 @@ flowchart LR
 
 ### 전통적 계층형과의 비교
 
+02장에서 살펴본 계층형 아키텍처와 나란히 놓으면 의존성 방향의 차이가 뚜렷하게 드러난다.
+
 | 항목 | 계층형 아키텍처 | 육각형 아키텍처 |
 |------|----------------|----------------|
 | 의존성 방향 | 위 → 아래 (단방향) | 바깥 → 안 (방사형) |
@@ -258,7 +277,7 @@ void shouldPlaceOrder() {
     // 애플리케이션 코어 테스트
     OrderService service = new OrderService(mockRepository, mockProcessor);
     
-    OrderRequest request = new OrderRequest(/* ... */);
+    OrderRequest request = new OrderRequest(List.of(new OrderItem("SKU-1", 2)));
     Order order = service.placeOrder(request);
     
     assertThat(order.getStatus()).isEqualTo(OrderStatus.PLACED);
@@ -298,7 +317,7 @@ public class AlwaysSuccessPaymentProcessor implements PaymentProcessor {
 
 전형적인 육각형 아키텍처의 패키지 구조:
 
-```
+```text
 src/
 ├── application/          # 애플리케이션 코어
 │   ├── domain/           # 도메인 모델
@@ -328,7 +347,11 @@ src/
 
 ## 육각형 아키텍처의 장점
 
+포트와 어댑터로 경계를 나누면 아래 네 가지 이점이 동시에 따라온다. 공통점은 모두 "코어가 외부를 모른다"는 한 가지 규칙에서 파생된다는 것이다.
+
 ### 1. 기술 독립성
+
+포트가 코어와 외부 기술 사이의 유일한 접점이므로, 그 접점 뒤의 기술은 자유롭게 바뀔 수 있다.
 
 - **UI 독립**: REST, GraphQL, gRPC, CLI 등 다양한 인터페이스 지원
 - **DB 독립**: JPA, MongoDB, Redis 등 저장소 교체 용이
@@ -336,28 +359,40 @@ src/
 
 ### 2. 테스트 용이성
 
+코어가 포트(인터페이스)에만 의존하므로, 테스트에서는 그 인터페이스를 구현한 가벼운 대역으로 실제 어댑터를 대체할 수 있다.
+
 - 애플리케이션 코어를 외부 의존성 없이 테스트
 - Mock/Stub으로 쉽게 대체 가능
 - 빠른 단위 테스트 실행
 
 ### 3. 점진적 마이그레이션
 
+어댑터가 코어로부터 독립적이므로, 레거시 시스템을 한 번에 다시 쓰지 않고 어댑터 단위로 순차 교체할 수 있다.
+
 - 한 번에 하나의 어댑터만 교체 가능
 - 기존 시스템의 점진적 현대화 용이
 
 ### 4. 도메인 중심 설계
+
+코어가 외부를 모르므로, 설계 논의의 중심이 자연스럽게 "어떤 프레임워크를 쓸까"가 아니라 "도메인 규칙이 무엇인가"로 옮겨간다.
 
 - 비즈니스 로직이 기술적 결정으로부터 보호됨
 - 도메인 모델의 순수성 유지
 
 ## 육각형 아키텍처의 한계와 주의점
 
+다만 이 경계 분리는 공짜가 아니다. 아래 세 가지는 특히 소규모 프로젝트에서 이점보다 비용이 클 수 있는 지점이다.
+
 ### 1. 복잡성 증가
+
+포트마다 인터페이스가 하나씩 늘어나고, 어댑터마다 구현 클래스가 하나씩 늘어난다.
 
 - 포트와 어댑터 인터페이스로 인한 코드량 증가
 - 작은 프로젝트에는 과도할 수 있음
 
 ### 2. 매핑 비용
+
+어댑터와 코어 사이를 오갈 때마다 엔티티↔도메인 모델 변환이 필요하다. 계층이 늘어날수록 이 매핑 코드도 함께 늘어난다.
 
 ```java
 // 어댑터와 코어 사이의 데이터 변환이 필요
@@ -369,8 +404,22 @@ public Order findById(OrderId id) {
 
 ### 3. 학습 곡선
 
+"인터페이스는 코어 안에, 구현은 코어 밖에"라는 배치는 처음 접하는 개발자에게는 직관에 어긋나 보인다.
+
 - 새로운 팀원이 구조를 이해하는 데 시간 필요
 - 포트/어댑터 개념에 대한 충분한 이해 필요
+
+### 도입 여부 판단
+
+| 상황 | 권장 |
+|------|------|
+| 포트/어댑터 후보가 1~2개뿐이고 프로젝트 수명이 짧음 | 생략하고 단순한 계층 구조로 시작 |
+| UI·DB·외부 서비스 중 하나 이상을 교체할 계획이 있음 | 그 경계에만 포트/어댑터 도입 |
+| 여러 UI(웹·CLI·배치)가 같은 비즈니스 로직을 공유해야 함 | 전면 도입 |
+
+## 흔한 오해
+
+**"포트는 곧 인터페이스 클래스다"**라는 이해는 절반만 맞다. 포트는 코어와 외부 사이의 **계약**이라는 개념이고, 인터페이스는 그 계약을 코드로 표현하는 한 가지 수단일 뿐이다. 동적 타입 언어에서는 덕 타이핑만으로도 포트 역할을 할 수 있다. 또한 **"육각형이니 반드시 여섯 개의 변(포트)이 있어야 한다"**는 것도 오해다. 콕번 본인이 밝혔듯 육각형이라는 모양 자체는 임의적이며, 포트의 개수는 애플리케이션이 실제로 필요로 하는 진입점·의존성의 수에 따라 정해진다.
 
 ## Clean Architecture와의 관계
 
@@ -407,6 +456,18 @@ flowchart TB
 | 보조 포트 | 코어가 필요로 하는 기능 | OrderRepository |
 | 구동 어댑터 | 외부 → 코어 연결 | RestController |
 | 피구동 어댑터 | 코어 → 외부 연결 | JpaRepository |
+
+## 학습 목표
+
+이 장을 읽은 후 다음을 할 수 있어야 한다.
+
+- 주 포트(Driving Port)와 보조 포트(Driven Port)의 역할 차이를 설명할 수 있다.
+- 육각형 아키텍처와 계층형 아키텍처의 테스트 전략 차이를 비교할 수 있다.
+- "포트=인터페이스 클래스"라는 오해가 왜 절반만 맞는지 설명할 수 있다.
+
+## 참고 자료
+
+- Cockburn, A. (2005). "Hexagonal Architecture". [alistair.cockburn.us/hexagonal-architecture](https://alistair.cockburn.us/hexagonal-architecture/)
 
 ## 다음 장에서는
 

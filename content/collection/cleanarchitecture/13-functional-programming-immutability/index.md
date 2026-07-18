@@ -15,6 +15,24 @@ tags:
   - CQRS(Command Query Responsibility Segregation)
   - Scala
   - Software-Architecture(소프트웨어아키텍처)
+  - History(역사)
+  - Async(비동기)
+  - Event-Driven
+  - Testing(테스트)
+  - Best-Practices
+  - Maintainability
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Design-Pattern(디자인패턴)
+  - Domain-Driven-Design
+  - Recursion(재귀)
+  - Math(수학)
+  - Thread
+  - Mutex
+  - Synchronization
+  - Refactoring(리팩토링)
+  - Abstraction(추상화)
   - Database(데이터베이스)
 ---
 

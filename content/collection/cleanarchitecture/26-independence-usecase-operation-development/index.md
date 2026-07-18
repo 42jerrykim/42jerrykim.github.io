@@ -16,6 +16,23 @@ tags:
   - Edge-Cases(엣지케이스)
   - Testing(테스트)
   - Code-Quality(코드품질)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Modularity
+  - DevOps
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Agile(애자일)
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - History(역사)
+  - Technology(기술)
+  - Case-Study
+  - Deep-Dive
+  - System-Design
+  - Reliability
+  - TDD(Test-Driven Development)
+  - Automation(자동화)
 ---
 
 좋은 아키텍처는 다양한 **독립성**을 제공해야 한다. 유스케이스의 독립성, 운영의 독립성, 개발의 독립성, 배포의 독립성이 그것이다.

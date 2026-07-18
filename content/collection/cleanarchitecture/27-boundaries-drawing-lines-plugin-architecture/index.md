@@ -17,6 +17,23 @@ tags:
   - IO(Input/Output)
   - Coupling(결합도)
   - Testing(테스트)
+  - Design-Pattern(디자인패턴)
+  - Abstraction(추상화)
+  - Modularity
+  - Cohesion(응집도)
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - TDD(Test-Driven Development)
+  - OOP(객체지향)
+  - System-Design
+  - Documentation(문서화)
 ---
 
 아키텍처에서 **경계(Boundary)**란 관심사를 분리하는 선이다. 경계의 한쪽에는 비즈니스 규칙이, 다른 쪽에는 세부사항이 있다. 경계를 제대로 그으면 **플러그인 아키텍처**가 된다.

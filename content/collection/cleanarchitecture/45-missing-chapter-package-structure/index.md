@@ -15,6 +15,24 @@ tags:
 - CSharp
 - Encapsulation(캡슐화)
 - Dependency-Injection(의존성주입)
+- Modularity
+- Coupling(결합도)
+- Cohesion(응집도)
+- Interface(인터페이스)
+- Abstraction(추상화)
+- Design-Pattern(디자인패턴)
+- Best-Practices
+- Maintainability
+- Refactoring(리팩토링)
+- History(역사)
+- Case-Study
+- Deep-Dive
+- Technology(기술)
+- System-Design
+- .NET
+- C++
+- C
+- Documentation(문서화)
 ---
 
 마틴의 책에는 **빠져 있는** 중요한 주제가 있다: **패키지 구조**. 이 장은 사이먼 브라운(Simon Brown)이 기고했다.

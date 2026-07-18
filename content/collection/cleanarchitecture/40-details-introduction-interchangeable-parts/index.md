@@ -24,6 +24,16 @@ tags:
   - Django
   - Implementation(구현)
   - Adapter
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Design-Pattern(디자인패턴)
+  - Modularity
+  - Best-Practices
+  - Maintainability
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
 ---
 
 지금까지 아키텍처의 핵심 원칙들을 다루었다. 이제 **세부사항(Details)**을 살펴본다. 세부사항은 아키텍처에서 **교체 가능한** 부분들이다.

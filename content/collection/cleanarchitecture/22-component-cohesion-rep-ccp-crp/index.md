@@ -13,6 +13,26 @@ tags:
   - SOLID
   - Dependency-Injection(의존성주입)
   - Code-Quality(코드품질)
+  - Coupling(결합도)
+  - Modularity
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Deployment(배포)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - System-Design
+  - Java
+  - Documentation(문서화)
+  - Readability
+  - Testing(테스트)
+  - Encapsulation(캡슐화)
 ---
 
 컴포넌트에 **어떤 클래스들을 포함**시켜야 하는가? 이것은 중요한 설계 결정이다. 너무 많이 묶으면 불필요한 의존성이 생기고, 너무 적게 묶으면 관리가 어려워진다. 세 가지 원칙이 이 결정을 도와준다.

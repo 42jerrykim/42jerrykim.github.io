@@ -18,6 +18,22 @@ tags:
   - Memory(메모리)
   - Dependency-Injection(의존성주입)
   - Performance(성능)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - System-Design
+  - Scalability(확장성)
+  - Backend(백엔드)
+  - API(Application Programming Interface)
+  - Latency
+  - Throughput
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Best-Practices
+  - Maintainability
+  - Deployment(배포)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - DevOps
 ---
 
 경계는 다양한 **물리적 형태**로 존재한다. 단순한 함수 호출부터 네트워크를 통한 서비스 호출까지, 각각의 비용과 장단점이 다르다.

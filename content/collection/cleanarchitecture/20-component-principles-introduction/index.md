@@ -14,6 +14,26 @@ tags:
   - CI-CD(Continuous Integration/Continuous Deployment)
   - SOLID
   - History(역사)
+  - Modularity
+  - Design-Pattern(디자인패턴)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Deployment(배포)
+  - Compiler(컴파일러)
+  - Linux(리눅스)
+  - Docker
+  - System-Design
+  - Java
+  - C++
+  - Testing(테스트)
+  - Documentation(문서화)
+  - Readability
 ---
 
 SOLID 원칙이 벽돌(클래스, 모듈)을 만드는 방법이라면, **컴포넌트 원칙**은 벽돌을 벽과 방으로 조합하는 방법이다. 이 파트에서는 컴포넌트가 무엇인지, 그리고 어떻게 좋은 컴포넌트를 설계하는지 다룬다.

@@ -15,6 +15,25 @@ tags:
   - Polymorphism(다형성)
   - Dependency-Injection(의존성주입)
   - Code-Quality(코드품질)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Design-Pattern(디자인패턴)
+  - OOP(객체지향)
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Testing(테스트)
+  - Strategy
+  - Factory
+  - Modularity
+  - Readability
+  - Encapsulation(캡슐화)
+  - Inheritance(상속)
+  - Clean-Code(클린코드)
 ---
 
 **OCP(Open-Closed Principle)**는 1988년 Bertrand Meyer가 "Object-Oriented Software Construction"에서 처음 제안했다. 마틴은 이 원칙이 **소프트웨어 아키텍처를 연구하는 근본적인 이유**라고 말한다.

@@ -11,6 +11,29 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Design-Pattern(디자인패턴)
   - Edge-Cases(엣지케이스)
+  - SOLID
+  - Testing(테스트)
+  - TDD(Test-Driven Development)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Dependency-Injection(의존성주입)
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - History(역사)
+  - System-Design
+  - Backend(백엔드)
+  - Web(웹)
+  - Database(데이터베이스)
+  - Implementation(구현)
+  - Documentation(문서화)
+  - Readability
+  - Modularity
 ---
 
 이 장에서는 **비디오 판매 시스템**을 예제로 Clean Architecture 설계 과정을 살펴본다.

@@ -13,6 +13,27 @@ tags:
   - Deployment(배포)
   - Edge-Cases(엣지케이스)
   - Code-Quality(코드품질)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Modularity
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - Design-Pattern(디자인패턴)
+  - Dependency-Injection(의존성주입)
+  - Abstraction(추상화)
+  - Testing(테스트)
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - System-Design
+  - Comparison(비교)
+  - Reliability
+  - Documentation(문서화)
+  - Readability
+  - TDD(Test-Driven Development)
+  - Scalability(확장성)
 ---
 
 완전한 경계를 만드는 비용은 **상당하다**. 때로는 완전한 경계가 **과도할** 수 있다. 부분적 경계는 비용을 줄이면서 일부 이점을 얻는 방법이다.

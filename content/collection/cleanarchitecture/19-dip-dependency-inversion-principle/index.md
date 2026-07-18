@@ -15,6 +15,24 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Code-Quality(코드품질)
   - Edge-Cases(엣지케이스)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Design-Pattern(디자인패턴)
+  - OOP(객체지향)
+  - Factory
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Testing(테스트)
+  - Polymorphism(다형성)
+  - Encapsulation(캡슐화)
+  - Modularity
+  - Readability
+  - Clean-Code(클린코드)
 ---
 
 **DIP(Dependency Inversion Principle)**는 SOLID 원칙 중 가장 중요하며, Clean Architecture의 **핵심 원칙**이다. 이 원칙은 소스 코드 의존성이 추상화를 향해야 하며, 구체적인 것을 향해서는 안 된다고 말한다.

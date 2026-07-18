@@ -15,6 +15,24 @@ tags:
 - Dependency-Injection(의존성주입)
 - Interface(인터페이스)
 - Abstraction(추상화)
+- Coupling(결합도)
+- Cohesion(응집도)
+- Modularity
+- Design-Pattern(디자인패턴)
+- Best-Practices
+- Maintainability
+- Refactoring(리팩토링)
+- History(역사)
+- Case-Study
+- Deep-Dive
+- Technology(기술)
+- C
+- C++
+- OS(운영체제)
+- Kernel
+- System-Design
+- Reliability
+- Deployment(배포)
 ---
 
 임베디드 소프트웨어는 **하드웨어와 밀접**하다. 그러나 Clean Architecture의 원칙은 임베디드에도 적용된다. 핵심은 **하드웨어에서 소프트웨어를 분리**하는 것이다.

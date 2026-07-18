@@ -10,6 +10,31 @@ tags:
 - Clean-Architecture(클린아키텍처)
 - Software-Architecture(소프트웨어아키텍처)
 - Domain(도메인)
+- Domain-Driven-Design
+- Encapsulation(캡슐화)
+- Interface(인터페이스)
+- Abstraction(추상화)
+- Coupling(결합도)
+- Cohesion(응집도)
+- Design-Pattern(디자인패턴)
+- OOP(객체지향)
+- Testing(테스트)
+- Best-Practices
+- Maintainability
+- Refactoring(리팩토링)
+- History(역사)
+- Case-Study
+- Deep-Dive
+- Technology(기술)
+- System-Design
+- Modularity
+- SOLID
+- TDD(Test-Driven Development)
+- Documentation(문서화)
+- Readability
+- Code-Quality(코드품질)
+- Clean-Code(클린코드)
+- Dependency-Injection(의존성주입)
 ---
 
 업무 규칙은 시스템에서 가장 **핵심적인 부분**이다. 마틴은 업무 규칙을 두 가지로 구분한다: **엔터티**(핵심 업무 규칙)와 **유스케이스**(애플리케이션 업무 규칙).

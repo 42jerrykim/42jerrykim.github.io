@@ -19,6 +19,21 @@ tags:
   - Performance(성능)
   - C++
   - Java
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Abstraction(추상화)
+  - Design-Pattern(디자인패턴)
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Refactoring(리팩토링)
+  - Best-Practices
+  - Maintainability
+  - GoF(Gang of Four)
+  - CSharp
+  - Composition(합성)
+  - Testing(테스트)
 ---
 
 객체 지향 프로그래밍(OOP)은 1966년에 올레 요한 달(Ole Johan Dahl)과 크리스텐 니가드(Kristen Nygaard)가 Simula 67을 개발하면서 시작되었다. 이후 Smalltalk, C++, Java를 거치며 주류 패러다임이 되었다. 하지만 OOP가 아키텍처에 제공하는 진정한 가치는 무엇일까? 로버트 마틴은 그것이 **다형성을 통한 의존성 역전**이라고 말한다.

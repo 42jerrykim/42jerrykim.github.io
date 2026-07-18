@@ -12,6 +12,27 @@ tags:
   - TDD(Test-Driven Development)
   - Software-Architecture(소프트웨어아키텍처)
   - Dependency-Injection(의존성주입)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - Design-Pattern(디자인패턴)
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Documentation(문서화)
+  - Readability
+  - Code-Review(코드리뷰)
+  - Debugging(디버깅)
+  - Edge-Cases(엣지케이스)
+  - System-Design
+  - Automation(자동화)
+  - CI-CD(Continuous Integration/Continuous Deployment)
+  - Reliability
 ---
 
 테스트는 시스템의 **일부**다. 아키텍처에서 테스트를 어떻게 다뤄야 하는가?

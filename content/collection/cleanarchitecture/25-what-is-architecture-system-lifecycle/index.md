@@ -17,6 +17,23 @@ tags:
   - CI-CD(Continuous Integration/Continuous Deployment)
   - Scalability(확장성)
   - Performance(성능)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Modularity
+  - System-Design
+  - Best-Practices
+  - Maintainability
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Interface(인터페이스)
+  - Abstraction(추상화)
+  - Design-Pattern(디자인패턴)
+  - Testing(테스트)
+  - Reliability
+  - Documentation(문서화)
+  - DevOps
 ---
 
 소프트웨어 아키텍처란 무엇인가? 마틴은 아키텍처를 시스템의 **형태를 결정**하고, 시스템의 **생명주기를 지원**하는 것으로 정의한다.
