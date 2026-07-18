@@ -1,6 +1,6 @@
 ---
 collection_order: 4
-title: "[Design Pattern] Prototype - 프로토타입 패턴"
+title: "[Design Pattern] 04. Prototype - 프로토타입 패턴"
 description: "Prototype 패턴은 기존 객체를 복제해 새 인스턴스를 생성하여 객체 생성의 복잡성을 줄이고 효율성을 높입니다. 복제 메서드로 유사 객체를 빠르게 만들 수 있습니다."
 date: 2022-01-01
 last_modified_at: 2022-08-22

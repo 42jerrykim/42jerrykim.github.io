@@ -1,6 +1,6 @@
 ---
 collection_order: 16
-title: "[Design Pattern] Command - 커맨드 패턴"
+title: "[Design Pattern] 16. Command - 커맨드 패턴"
 description: "Command 패턴은 요청을 객체로 캡슐화하여 호출자와 수신자를 분리합니다. 명령의 실행 취소(undo), 큐잉, 로깅 등 다양한 기능을 유연하게 구현할 수 있습니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

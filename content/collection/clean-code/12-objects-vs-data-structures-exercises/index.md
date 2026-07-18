@@ -2,7 +2,7 @@
 draft: false
 collection_order: 12
 slug: objects-vs-data-structures-exercises
-title: "[Clean Code] 12장. 디미터 법칙 리팩토링 실습"
+title: "[Clean Code] 12. 디미터 법칙 리팩토링 실습"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "정수 타입 코드로 도형 종류를 분기하는 절차적 계산기 코드를 다형성 객체로 변환하고, 여러 단계를 파고드는 기차 충돌 코드를 디미터 법칙에 따라 정리하는 두 가지 리팩토링 실습을 변경 시나리오 검증과 함께 진행한다."

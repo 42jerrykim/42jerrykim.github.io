@@ -1,6 +1,7 @@
 ---
 collection_order: 14
-title: "[Design Pattern] Template Method - 템플릿 메서드 패턴"
+slug: "template-method-pattern"
+title: "[Design Pattern] 14. Template Method - 템플릿 메서드 패턴"
 description: "Template Method 패턴은 알고리즘 구조를 상위 클래스에서 정의하고 하위 클래스에서 세부 구현을 제공합니다. 전체 흐름은 고정하고 특정 단계만 유연하게 변경합니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

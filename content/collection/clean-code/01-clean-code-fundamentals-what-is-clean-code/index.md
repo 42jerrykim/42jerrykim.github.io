@@ -2,7 +2,7 @@
 draft: false
 collection_order: 1
 slug: clean-code-fundamentals-what-is-clean-code
-title: "[Clean Code] 01장. Clean Code란 무엇인가"
+title: "[Clean Code] 01. Clean Code란 무엇인가"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "나쁜 코드가 낳는 기술 부채와 개발 속도 저하를 짚고, Stroustrup·Booch 등 소프트웨어 거장들의 정의로 Clean Code의 본질과 프로그래머의 전문가 윤리를 설명한다. 23개 챕터로 구성된 시리즈 전체 커리큘럼도 함께 소개한다."

@@ -253,6 +253,41 @@ Phase 8 통합 이후 대부분의 영/한 병용 개념은 `Tag(태그)` 형식
 
 ---
 
+## 시리즈·챕터 명명 규칙 (챕터형 컬렉션)
+
+00~NN 번호로 이어지는 챕터형 시리즈 컬렉션은 아래 규칙을 따른다. **정본 예시**: [`content/collection/multithreading-design-patterns`](../../../content/collection/multithreading-design-patterns)(`_index.md` + `02-locking-idioms/index.md` 등).
+
+### 시리즈 `_index.md`
+
+```yaml
+---
+title: "[영문 짧은 접두어] 한글 시리즈 제목"
+description: "..."
+slug: "짧은-section-slug"
+---
+```
+
+- **접두어**: 영문 대괄호(예: `[Concurrency Patterns]`, `[Clean Architecture]`, `[Software Architecture]`). 한글 접두어는 쓰지 않는다(사이트 전체에서 영문 접두어로 통일).
+- **`slug`**: 짧고 안정적인 section-slug. 내부 링크(`/post/<section-slug>/...`)의 기준이 되므로 챕터가 늘어나도 값이 바뀌지 않게 한다.
+
+### 각 챕터
+
+```yaml
+---
+title: "[접두어] NN. 한글 챕터 제목"
+slug: "설명적인-영문-kebab-case-slug"
+collection_order: NN
+---
+```
+
+- **번호 위치**: 대괄호 접두어 **다음에** `NN. `을 붙인다. `[LLM 05] 제목`처럼 번호를 대괄호 안에 넣거나, `05장.`처럼 단위를 붙이는 방식은 쓰지 않는다.
+- **번호 자릿수**: 두 자리(`00`, `01`, ... `24`)로 통일.
+- **이론/실습이 챕터를 나눠 갖는 경우**(예: design-patterns): 같은 번호를 재사용하고 실습 쪽 제목에 `— 실습`을 접미한다. 예: `[Design Patterns] 04. 팩토리 패턴의 진화` / `[Design Patterns] 04. 팩토리 패턴의 진화 — 실습`.
+- **`slug`**: 폴더명을 그대로 반복하지 않고, 챕터의 핵심 키워드를 담아 설명적으로 작성한다(예: `cpp-locking-idioms-scoped-locking-thread-safe-interface`). 이미 배포된(`draft: false`) 챕터의 slug를 바꾸면 URL이 바뀌므로, 변경 전 사이트 전역에서 옛 slug를 참조하는 내부 링크를 grep으로 찾아 함께 갱신한다.
+- 순차적 커리큘럼이 아닌 용어사전/참고자료형 컬렉션(예: `computerterms`)은 번호를 붙이지 않고 접두어만 통일한다.
+
+---
+
 ## Mermaid 다이어그램 빠른 참조
 
 ### 안전한 작성 패턴

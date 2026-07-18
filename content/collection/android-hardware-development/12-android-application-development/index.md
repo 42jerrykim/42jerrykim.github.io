@@ -2,7 +2,7 @@
 draft: false
 collection_order: 120
 slug: android-application-development
-title: "[안드로이드 하드웨어 개발] 12장. 안드로이드 애플리케이션 개발"
+title: "[Android Hardware] 12. 안드로이드 애플리케이션 개발"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "벤더 설정/진단 앱이 priv-app 권한 화이트리스트로 특권을 얻는 구조와 Jetpack/Compose 선언형 UI 아키텍처를 정리하고, 앱이 커스텀 시스템 서비스·HAL에 접근하는 세 가지 경로와 각각의 트레이드오프를 실전 코드로 비교한다."

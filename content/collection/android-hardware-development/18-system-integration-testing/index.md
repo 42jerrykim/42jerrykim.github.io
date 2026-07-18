@@ -2,7 +2,7 @@
 draft: false
 collection_order: 180
 slug: system-integration-testing
-title: "[안드로이드 하드웨어 개발] 18장. 시스템 통합 및 최종 테스팅"
+title: "[Android Hardware] 18. 시스템 통합 및 최종 테스팅"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "CTS·VTS·GTS 인증 전략과 Trade Federation 기반 회귀 테스트 체계, 상용화 전 QA 체크리스트를 다루며, 17개 챕터에 걸쳐 쌓은 부트로더·커널·HAL·그래픽 역량이 하나의 출하 가능한 안드로이드 제품으로 수렴하는 과정을 정리한다."

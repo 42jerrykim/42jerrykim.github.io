@@ -3,7 +3,7 @@ collection_order: 3
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: false
-title: "[Vision AI 03] Vision Transformer — 이미지를 패치로 자르기"
+title: "[Vision AI] 03. Vision Transformer — 이미지를 패치로 자르기"
 slug: vision-transformer-explained
 description: "이미지를 16x16 패치로 잘라 언어모델의 토큰처럼 다루는 ViT 아키텍처를 Patch Embedding부터 CLS 토큰, Pre-LN 구조까지 분해합니다. CNN과 ViT의 근본적인 차이도 표로 자세히 정리합니다."
 tags:

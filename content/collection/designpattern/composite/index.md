@@ -1,6 +1,6 @@
 ---
 collection_order: 8
-title: "[Design Pattern] Composite - 컴포지트 패턴"
+title: "[Design Pattern] 08. Composite - 컴포지트 패턴"
 description: "Composite 패턴은 객체들을 트리 구조로 구성하여 부분-전체 계층을 표현합니다. 단일 객체와 복합 객체를 동일하게 다루어 재귀적 처리를 단순화하는 구조 패턴입니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

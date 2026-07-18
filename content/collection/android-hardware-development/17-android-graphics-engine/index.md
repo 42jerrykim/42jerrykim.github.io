@@ -2,7 +2,7 @@
 draft: false
 collection_order: 170
 slug: android-graphics-engine
-title: "[안드로이드 하드웨어 개발] 17장. 안드로이드 그래픽 엔진"
+title: "[Android Hardware] 17. 안드로이드 그래픽 엔진"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "Skia 렌더링 구조, Hardware Composer의 오버레이 합성, GPU 타일 기반 렌더링 파이프라인, OpenGL ES와 Vulkan의 역할 차이를 이론과 AOSP 예제로 정리해 안드로이드 그래픽 스택을 설계 수준까지 이해한다."

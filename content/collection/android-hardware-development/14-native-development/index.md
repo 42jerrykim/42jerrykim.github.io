@@ -2,7 +2,7 @@
 draft: false
 collection_order: 140
 slug: native-development
-title: "[안드로이드 하드웨어 개발] 14장. 네이티브 개발(NDK/JNI)"
+title: "[Android Hardware] 14. 네이티브 개발(NDK/JNI)"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "NDK가 Java/Kotlin 코드에 네이티브 C/C++ 라이브러리를 통합하는 구조와 JNI 브리지의 참조 관리 원리, CMake·ndk-build 빌드 시스템과 ABI 선택 기준, JNI 호출 오버헤드의 원인과 최소화 전략을 실전 코드로 정리한다."

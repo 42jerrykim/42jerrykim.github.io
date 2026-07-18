@@ -2,7 +2,7 @@
 draft: false
 collection_order: 100
 slug: security-implementation
-title: "[안드로이드 하드웨어 개발] 10장. 보안 구현"
+title: "[Android Hardware] 10. 보안 구현"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "SELinux 강제 접근 제어, Android Verified Boot의 신뢰 체인, TrustZone 기반 TEE, 하드웨어 백엔드 Keystore와 Key Attestation의 동작 원리를 다루고 Zero Trust·Hardware Attestation의 실제 표준화 수준을 짚는다."

@@ -1,6 +1,6 @@
 ---
 collection_order: 2
-title: "[Design Pattern] Builder - 빌더 패턴"
+title: "[Design Pattern] 02. Builder - 빌더 패턴"
 description: "빌더 패턴은 복잡한 객체 생성을 단계별로 분리하여 동일한 생성 로직으로 다양한 표현의 객체를 만들 수 있게 하며, 가독성과 불변성을 높여 안전한 객체 생성을 지원합니다."
 date: 2022-01-01
 last_modified_at: 2024-08-22

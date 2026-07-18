@@ -3,7 +3,7 @@ collection_order: 4
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: false
-title: "[LLM 04] 토크나이징과 임베딩 — 텍스트를 벡터로"
+title: "[LLM] 04. 토크나이징과 임베딩 — 텍스트를 벡터로"
 slug: tokenization-and-embedding
 description: "텍스트를 토큰 ID로 바꾸는 토크나이징, 토큰을 벡터로 바꾸는 임베딩, 그리고 절대·상대 위치 인코딩과 RoPE까지 GPT 입력 표현을 다룹니다. PyTorch Dataset/DataLoader 구현 예제를 포함합니다."
 tags:

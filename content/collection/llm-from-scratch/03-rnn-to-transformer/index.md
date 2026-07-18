@@ -3,7 +3,7 @@ collection_order: 3
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: false
-title: "[LLM 03] RNN에서 Transformer까지 — 언어모델의 진화"
+title: "[LLM] 03. RNN에서 Transformer까지 — 언어모델의 진화"
 slug: rnn-to-transformer
 description: "인코더-디코더 RNN의 장기 의존성 문제부터 RNN Attention, 그리고 순차 구조 자체를 끊어낸 Transformer까지 언어모델 아키텍처의 진화 과정을 정리합니다. BERT·GPT·T5 구조의 차이도 함께 다룹니다."
 tags:

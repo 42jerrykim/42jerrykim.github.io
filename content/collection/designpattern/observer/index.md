@@ -1,6 +1,6 @@
 ---
 collection_order: 20
-title: "[Design Pattern] Observer - 옵저버 패턴"
+title: "[Design Pattern] 20. Observer - 옵저버 패턴"
 description: "Observer 패턴은 객체의 상태 변화가 있을 때 의존 객체들에게 자동으로 알림을 보냅니다. 객체 간 결합도를 낮추고 효율적으로 이벤트를 전달하여 확장성을 높입니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

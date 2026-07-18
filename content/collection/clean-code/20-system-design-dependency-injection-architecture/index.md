@@ -2,7 +2,7 @@
 draft: false
 collection_order: 20
 slug: system-design-dependency-injection-architecture
-title: "[Clean Code] 20장. 시스템과 의존성 주입"
+title: "[Clean Code] 20. 시스템과 의존성 주입"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "객체를 만드는 과정(제작)과 그 객체를 사용하는 로직(사용)을 분리해야 하는 이유를 설명하고, Composition Root와 의존성 주입 컨테이너를 이용한 시스템 조립 전략을 서비스 로케이터 안티패턴 비판과 함께 다룬다."

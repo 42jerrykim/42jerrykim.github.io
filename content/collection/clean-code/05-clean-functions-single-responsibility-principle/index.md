@@ -2,7 +2,7 @@
 draft: false
 collection_order: 5
 slug: clean-functions-single-responsibility-principle
-title: "[Clean Code] 05장. 함수는 작게, 한 가지만"
+title: "[Clean Code] 05. 함수는 작게, 한 가지만"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "함수를 작게 만들고 한 가지 일만 하도록 설계하는 원칙을 추상화 수준, 인수 개수, 부수 효과, 명령-조회 분리라는 네 가지 관점에서 다룬다. switch 문을 다형성으로 대체하는 방법과 과도한 분해의 한계도 함께 살펴본다."

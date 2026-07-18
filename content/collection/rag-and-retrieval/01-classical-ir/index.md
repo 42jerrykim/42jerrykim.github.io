@@ -3,7 +3,7 @@ collection_order: 1
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: false
-title: "[RAG 01] Classical IR — 역색인, TF-IDF, BM25"
+title: "[RAG] 01. Classical IR — 역색인, TF-IDF, BM25"
 slug: classical-information-retrieval
 description: "역색인 자료구조부터 단어 빈도의 한계를 보정하는 TF-IDF, 오랫동안 사실상 표준이었던 BM25, 그리고 MRR·Precision·Recall 같은 검색 평가 지표까지 신경망 이전 정보검색의 핵심을 자세히 정리합니다."
 tags:

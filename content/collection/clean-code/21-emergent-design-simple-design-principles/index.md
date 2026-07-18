@@ -2,7 +2,7 @@
 draft: false
 collection_order: 21
 slug: emergent-design-simple-design-principles
-title: "[Clean Code] 21장. 창발적 설계 네 가지 규칙"
+title: "[Clean Code] 21. 창발적 설계 네 가지 규칙"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "켄트 벡이 제시한 단순한 설계 네 규칙(테스트 통과, 중복 제거, 의도 표현, 클래스·메서드 최소화)을 우선순위 순서로 설명하고, 사전 설계(BDUF)와 창발적 설계 사이의 오래된 논쟁을 규칙 충돌 판단 기준과 함께 다룬다."

@@ -1,6 +1,6 @@
 ---
 collection_order: 9
-title: "[Design Pattern] Decorator - 데코레이터 패턴"
+title: "[Design Pattern] 09. Decorator - 데코레이터 패턴"
 description: "Decorator 패턴은 객체에 동적으로 새로운 기능을 추가하는 구조적 패턴입니다. 상속 대신 합성을 활용하여 기존 코드 수정 없이 여러 기능을 유연하게 조합합니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

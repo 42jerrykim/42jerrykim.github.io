@@ -1,6 +1,6 @@
 ---
 collection_order: 24
-title: "[Design Pattern] 디자인 패턴 총정리 및 실전 적용"
+title: "[Design Pattern] 24. 디자인 패턴 총정리 및 실전 적용"
 description: "디자인 패턴의 개념과 등장 배경, 객체지향 설계 원리를 정리합니다. 실무에서 패턴을 적용하는 이유와 역사, 실제 소프트웨어 개발에서 패턴의 역할을 다룹니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

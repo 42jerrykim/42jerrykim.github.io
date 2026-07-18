@@ -1,6 +1,6 @@
 ---
 collection_order: 0
-title: "[Design Pattern] 디자인 패턴 개요 및 분류"
+title: "[Design Pattern] 00. 디자인 패턴 개요 및 분류"
 description: "디자인 패턴은 소프트웨어 설계에서 반복되는 문제를 해결하는 검증된 방법론으로, 코드 재사용성과 유지보수성을 높이고 팀 의사소통을 원활하게 하는 설계 지침입니다."
 date: 2022-01-01
 last_modified_at: 2024-08-20

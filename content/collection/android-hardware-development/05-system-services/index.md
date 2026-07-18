@@ -2,7 +2,7 @@
 draft: false
 collection_order: 50
 slug: system-services
-title: "[안드로이드 하드웨어 개발] 05장. 시스템 서비스 개발"
+title: "[Android Hardware] 05. 시스템 서비스 개발"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "SystemServer 부팅 흐름과 ServiceManager 레지스트리, AIDL 인터페이스 설계를 중심으로 AMS·PMS의 내부 구조를 분석하고, 커스텀 시스템 서비스를 SystemServer에 등록하는 전 과정을 실제 AOSP 코드로 다룬다."

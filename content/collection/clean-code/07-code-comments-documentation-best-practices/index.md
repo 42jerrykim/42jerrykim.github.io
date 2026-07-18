@@ -2,7 +2,7 @@
 draft: false
 collection_order: 7
 slug: code-comments-documentation-best-practices
-title: "[Clean Code] 07장. 주석은 실패를 의미한다"
+title: "[Clean Code] 07. 주석은 실패를 의미한다"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "주석이 코드 표현력 부족을 감추는 임시방편일 수 있다는 관점에서 좋은 주석과 나쁜 주석을 구분하고, 주석 대신 코드로 의도를 표현하는 방법과 공개 API 문서화 도구의 역할을 실전 예제와 판단 기준으로 함께 다룬다."

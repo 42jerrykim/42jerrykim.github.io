@@ -1,7 +1,7 @@
 ---
 draft: true
 collection_order: 120
-title: "[Design Patterns] 전략과 상태: 알고리즘 캡슐화의 미학"
+title: "[Design Patterns] 12. 전략과 상태: 알고리즘 캡슐화의 미학"
 slug: "strategy-state-algorithm-encapsulation"
 description: "런타임에 알고리즘을 교체하는 Strategy 패턴과 상태에 따라 행동을 바꾸는 State 패턴의 철학적 차이를 비교 분석합니다. 상태 기계 설계와 개방-폐쇄 원칙, 함수형 프로그래밍과의 연계까지 폭넓게 다루는 심화 이론편입니다."
 image: "wordcloud.png"

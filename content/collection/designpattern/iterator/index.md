@@ -1,6 +1,6 @@
 ---
 collection_order: 17
-title: "[Design Pattern] Iterator - 반복자 패턴"
+title: "[Design Pattern] 17. Iterator - 반복자 패턴"
 description: "Iterator 패턴은 컬렉션 내부 구조를 노출하지 않고 요소들을 순차적으로 접근하게 합니다. 일관된 인터페이스로 다양한 집합체를 순회하며 유연성을 높입니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

@@ -3,7 +3,7 @@ collection_order: 9
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: false
-title: "[LLM 09] 지시 미세튜닝 — 프롬프트 포맷과 마스킹"
+title: "[LLM] 09. 지시 미세튜닝 — 프롬프트 포맷과 마스킹"
 slug: instruction-tuning
 description: "베이스 모델이 지시를 따르지 못하는 이유부터, 프롬프트 포맷 설계, 패딩과 -100 마스킹으로 손실 계산에서 정답이 아닌 부분을 제외하는 방법, 3단계 파인튜닝 피라미드까지 지시 미세튜닝의 실전을 코드와 함께 자세히 다룹니다."
 tags:

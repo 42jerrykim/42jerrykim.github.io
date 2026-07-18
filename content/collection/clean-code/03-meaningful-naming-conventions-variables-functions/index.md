@@ -2,7 +2,7 @@
 draft: false
 collection_order: 3
 slug: meaningful-naming-conventions-variables-functions
-title: "[Clean Code] 03장. 의미있는 이름 짓기"
+title: "[Clean Code] 03. 의미있는 이름 짓기"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "변수·함수·클래스 이름이 왜 코드의 첫 번째 문서 역할을 하는지 설명하고, 그릇된 정보 피하기·발음 가능성·검색 가능성·헝가리안 표기법 지양 등 구체적 네이밍 원칙을 실전 예제와 판단 기준·비판적 시각으로 상세히 다룬다."

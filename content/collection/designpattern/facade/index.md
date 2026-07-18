@@ -1,6 +1,6 @@
 ---
 collection_order: 10
-title: "[Design Pattern] Facade - 퍼사드 패턴"
+title: "[Design Pattern] 10. Facade - 퍼사드 패턴"
 description: "Facade 패턴은 복잡한 서브시스템에 간단한 인터페이스를 제공하여 클라이언트가 내부 구현에 신경 쓰지 않고 사용할 수 있게 합니다. 결합도를 낮추고 가독성을 높입니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

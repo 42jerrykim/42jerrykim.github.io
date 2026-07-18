@@ -2,7 +2,7 @@
 draft: false
 collection_order: 110
 slug: certification-compliance
-title: "[안드로이드 하드웨어 개발] 11장. 인증 및 컴플라이언스"
+title: "[Android Hardware] 11. 인증 및 컴플라이언스"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "CDD/CTS/VTS로 구성되는 안드로이드 호환성 검증 구조와 GMS 인증 절차, FCC·CE 등 지역별 전파 인증 개요, GDPR 같은 개인정보보호 규제 대응 방법을 실무 판단 기준과 재작업 비용 비교표까지 함께 정리한 안드로이드 하드웨어 인증 실무 가이드다."

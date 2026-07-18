@@ -1,6 +1,6 @@
 ---
 collection_order: 21
-title: "[Design Pattern] State - 상태 패턴"
+title: "[Design Pattern] 21. State - 상태 패턴"
 description: "State 패턴은 객체의 내부 상태가 변경될 때 행동이 바뀌도록 합니다. 조건문 없이도 상태 변경에 따른 다양한 동작을 구현하여 유지보수성과 확장성을 높입니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

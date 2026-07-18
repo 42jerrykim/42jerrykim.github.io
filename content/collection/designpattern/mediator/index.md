@@ -1,6 +1,6 @@
 ---
 collection_order: 18
-title: "[Design Pattern] Mediator - 중재자 패턴"
+title: "[Design Pattern] 18. Mediator - 중재자 패턴"
 description: "Mediator 패턴은 객체들 간의 직접 통신을 제한하고 중재자를 통해 상호작용하게 합니다. 복잡한 의존성을 줄이고 유연하게 시스템을 구성할 수 있습니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

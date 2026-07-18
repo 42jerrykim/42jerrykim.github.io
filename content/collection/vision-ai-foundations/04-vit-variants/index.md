@@ -3,7 +3,7 @@ collection_order: 4
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: false
-title: "[Vision AI 04] ViT의 변형들 — DeiT, Swin, CLIP, DINO"
+title: "[Vision AI] 04. ViT의 변형들 — DeiT, Swin, CLIP, DINO"
 slug: vit-variants
 description: "ViT의 데이터 효율성을 지식 증류로 보완한 DeiT, 연산량을 윈도우 기법으로 줄인 Swin, 자연어로 지도학습하는 CLIP, 레이블 없이 자기 증류로 학습하는 DINO까지 4가지 ViT 변형을 원 논문과 함께 다룹니다."
 tags:

@@ -2,7 +2,7 @@
 draft: false
 collection_order: 13
 slug: error-handling-exceptions-best-practices
-title: "[Clean Code] 13장. 오류 코드 대신 예외를 써라"
+title: "[Clean Code] 13. 오류 코드 대신 예외를 써라"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "오류 코드가 호출자 코드를 어떻게 오염시키는지 보이고, 예외에 의미 있는 컨텍스트를 담는 방법과 null 반환·전달을 피하는 기법을 다룬다. Optional·Result 타입 같은 현대적 오류 처리도 함께 비교한다."

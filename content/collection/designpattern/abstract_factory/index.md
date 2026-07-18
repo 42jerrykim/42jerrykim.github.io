@@ -1,6 +1,6 @@
 ---
 collection_order: 1
-title: "[Design Pattern] Abstract Factory - 추상 팩토리 패턴"
+title: "[Design Pattern] 01. Abstract Factory - 추상 팩토리 패턴"
 description: "Abstract Factory 패턴은 관련 객체 집합을 생성하는 인터페이스를 제공하여 클라이언트가 구체 클래스에 의존하지 않고 다양한 제품군을 일관되게 생성할 수 있게 합니다."
 date: 2022-01-01
 last_modified_at: 2023-01-12

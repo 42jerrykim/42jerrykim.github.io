@@ -1,6 +1,6 @@
 ---
 collection_order: 7
-title: "[Design Pattern] Bridge - 브릿지 패턴"
+title: "[Design Pattern] 07. Bridge - 브릿지 패턴"
 description: "Bridge 패턴은 구현부와 추상부를 분리하여 독립적으로 확장 가능하게 하는 구조적 패턴입니다. 다양한 구현체와 추상을 조합해 복잡한 기능 변경을 쉽게 처리합니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

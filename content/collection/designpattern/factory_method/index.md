@@ -1,6 +1,6 @@
 ---
 collection_order: 3
-title: "[Design Pattern] Factory Method - 팩토리 메서드 패턴"
+title: "[Design Pattern] 03. Factory Method - 팩토리 메서드 패턴"
 description: "팩토리 메서드 패턴은 객체 생성을 서브클래스에 위임하여 확장성과 유지보수성을 높이며, 클라이언트가 구체 클래스에 의존하지 않고 인터페이스로 객체를 생성하게 합니다."
 date: 2022-01-01
 last_modified_at: 2024-08-22

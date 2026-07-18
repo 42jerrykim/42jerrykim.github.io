@@ -2,7 +2,7 @@
 draft: false
 collection_order: 90
 slug: performance-optimization
-title: "[안드로이드 하드웨어 개발] 09장. 성능 최적화"
+title: "[Android Hardware] 09. 성능 최적화"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "Perfetto·systrace로 시스템을 트레이싱하는 원리, ANR·Jank의 판정 기준과 임계값, 힙/네이티브 메모리 프로파일링, cpufreq 거버너 기반 DVFS 튜닝까지 성능 진단 절차를 이론과 실전 코드로 정리한다."

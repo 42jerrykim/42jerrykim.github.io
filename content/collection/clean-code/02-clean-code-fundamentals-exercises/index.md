@@ -2,7 +2,7 @@
 draft: false
 collection_order: 2
 slug: clean-code-fundamentals-exercises
-title: "[Clean Code] 02장. 나쁜 코드 진단과 개선 실습"
+title: "[Clean Code] 02. 나쁜 코드 진단과 개선 실습"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "학생 성적 처리 코드를 예제로 나쁜 코드의 다섯 가지 증상(매직 넘버, 모호한 이름, 다중 책임 함수 등)을 진단하고 단계적으로 리팩토링하는 실습을 진행한다. 01장에서 배운 Clean Code 판단 기준을 실제 코드에 적용해 보는 연습이다."

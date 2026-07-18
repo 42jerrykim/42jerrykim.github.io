@@ -2,7 +2,7 @@
 draft: false
 collection_order: 22
 slug: concurrency-multithreading-parallel-programming
-title: "[Clean Code] 22장. 동시성 결함과 방어 원칙"
+title: "[Clean Code] 22. 동시성 결함과 방어 원칙"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "동시성이 무엇(what)과 언제(when)를 분리하는 전략임을 설명하고, 자료 범위 제한·자료 사본 사용 같은 동시성 방어 원칙을 경쟁 조건 예제와 jcstress 검증 절차, 암달의 법칙 기반 판단 기준으로 함께 다룬다."
