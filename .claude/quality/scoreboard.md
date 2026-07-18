@@ -11,7 +11,7 @@
 |---------|---------:|--------|-------:|------|---------------|
 | content/collection/multithreading-design-patterns/12-coroutine-reinterpretation/index.md | 93.1 | 2026-07-09 | 2 | 통과 | 없음(경미: ActiveObject 104줄 코드 블록의 문단 비율) |
 | content/collection/multithreading-design-patterns/13-lockfree-reclamation/index.md | 96.1 | 2026-07-09 | 2 | 통과 | 없음 |
-| content/collection/design-patterns/00-design-patterns-overview/index.md | 73.6 | 2026-07-18 | 3 | 에스컬레이션 | 문단 비율(10%), Phase 의존관계 Mermaid 부재, 패턴선택가이드 트레이드오프 열 부족 |
+| content/collection/design-patterns/00-design-patterns-overview/index.md | 95.2 | 2026-07-18 | 3(2차 라운드, 총 6회) | 통과 | 없음(경미: 문단 비율 29.4%로 40% 앵커 미달이지만 통과 임계엔 영향 없음) |
 | content/collection/design-patterns/01-design-patterns-philosophy-and-history/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 없음(경미: 핵심메시지/결론 중복) |
 | content/collection/design-patterns/02-pattern-analysis-framework/index.md | 56.5(치명결함 직접수정 완료, 미재채점) | 2026-07-18 | 3 | 에스컬레이션 | 가중평균 계산오류 치명결함 수정 완료(L532-533), 오개념 절 부재, 문단 비율 부족 |
 | content/collection/design-patterns/03-oop-design-deep-understanding/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 없음(경미: 핵심메시지/결론 중복) |
