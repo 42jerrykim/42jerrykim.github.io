@@ -31,10 +31,10 @@
 | content/collection/cleanarchitecture/17-lsp-liskov-substitution-principle/index.md | 97 | 2026-07-18 | 2 | 통과 | 없음(경미: Algorithm 태그 본문 불일치) |
 | content/collection/cleanarchitecture/18-isp-interface-segregation-principle/index.md | 90.1 | 2026-07-18 | 2 | 통과 | 없음(임계값 근접, 이후 보강 완료) |
 | content/collection/cleanarchitecture/19-dip-dependency-inversion-principle/index.md | 97 | 2026-07-18 | 3 | 통과 | 없음(경미: 소스코드의존성 vs 제어흐름 절 문단 얇음) |
-| content/collection/cleanarchitecture/20-component-principles-introduction/index.md | - | - | 0 | 미채점 | - |
-| content/collection/cleanarchitecture/21-components-deployment-units-history/index.md | - | - | 0 | 미채점 | - |
-| content/collection/cleanarchitecture/22-component-cohesion-rep-ccp-crp/index.md | - | - | 0 | 미채점 | - |
-| content/collection/cleanarchitecture/23-component-coupling-adp-sdp-sap/index.md | - | - | 0 | 미채점 | - |
+| content/collection/cleanarchitecture/20-component-principles-introduction/index.md | 92.2 | 2026-07-19 | 3 | 통과 | 없음 |
+| content/collection/cleanarchitecture/21-components-deployment-units-history/index.md | 90.7 | 2026-07-19 | 2 | 통과 | 없음 |
+| content/collection/cleanarchitecture/22-component-cohesion-rep-ccp-crp/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 없음(경미: 문단비율 34.9%, 40% 기준 근소 미달이나 통과) |
+| content/collection/cleanarchitecture/23-component-coupling-adp-sdp-sap/index.md | 97 | 2026-07-19 | 3 | 통과 | 없음 |
 | content/collection/cleanarchitecture/24-architecture-introduction-system-design/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/25-what-is-architecture-system-lifecycle/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/26-independence-usecase-operation-development/index.md | - | - | 0 | 미채점 | - |
