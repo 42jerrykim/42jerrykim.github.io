@@ -2,7 +2,7 @@
 draft: true
 collection_order: 250
 image: "wordcloud.png"
-description: "아키텍처의 정의와 시스템 생명주기 전반에 걸친 목표를 다룹니다. 개발, 배포, 운영, 유지보수를 지원하는 좋은 아키텍처의 특성, 결정 지연의 가치, 정책과 세부사항의 분리를 예제와 함께 설명합니다."
+description: "아키텍처의 정의와 시스템 생명주기 전반에 걸친 목표를 다룹니다. 개발, 배포, 운영, 유지보수를 지원하는 좋은 아키텍처의 특성, 결정 지연의 가치, 정책과 세부사항의 분리를 실제 코드 예제와 함께 자세히 설명합니다."
 title: "[Clean Architecture] 25. 아키텍처란?"
 slug: what-is-architecture-system-lifecycle
 date: 2026-01-18
@@ -28,8 +28,7 @@ tags:
   - Technology(기술)
   - Interface(인터페이스)
   - Abstraction(추상화)
-  - Domain(도메인)
-  - Backend(백엔드)
+  - Hardware(하드웨어)
   - Microservices(마이크로서비스)
   - Web(웹)
   - Testing(테스트)
@@ -44,7 +43,7 @@ tags:
 > **"시스템 아키텍처란 시스템을 구축한 사람들이 그 시스템에 부여한 형태다."**
 > — Robert C. Martin
 
-아키텍처는 시스템을:
+이 정의를 풀어보면 아키텍처는 세 가지 결정으로 이뤄진다. 시스템을 어떤 단위로 **분할**할지, 그 단위들을 어디에 **배치**할지, 그리고 그 단위들이 서로 어떻게 **통신**할지를 정하는 것이다. 이 세 결정이 곧 "시스템에 부여한 형태"이며, 나중에 코드를 아무리 잘 짜도 이 형태 자체를 바꾸는 것은 비용이 크다. 정리하면 아키텍처는 시스템을:
 - **컴포넌트로 분할**
 - **컴포넌트를 배치**
 - **컴포넌트 간 통신 정의**
@@ -140,6 +139,8 @@ public class ShippingService { }
 
 > "좋은 아키텍처는 시스템을 **단일 액션**으로 쉽게 배포할 수 있게 한다."
 
+개발 초기에는 배포를 거의 신경 쓰지 않다가, 서비스 수가 늘어나면서 뒤늦게 배포 순서와 설정을 손으로 맞추는 상황에 빠지는 경우가 많다. 아키텍처가 배포 방식을 처음부터 고려하지 않으면, 서비스가 늘어날수록 배포 절차도 함께 복잡해진다.
+
 **나쁜 배포 경험:**
 
 ```mermaid
@@ -161,6 +162,8 @@ flowchart LR
 - 복잡한 연결 설정
 - 배포마다 문제 발생
 - 수동 개입 필요
+
+반대로 좋은 아키텍처는 배포를 하나의 자동화된 절차로 압축한다. 배포 단위와 순서 의존성을 아키텍처 차원에서 미리 없애 두면, 실제 배포는 코드를 밀어넣는 것만으로 끝난다.
 
 **좋은 배포 경험:**
 
@@ -194,10 +197,10 @@ flowchart TB
 
 ### 4. 유지보수 (Maintenance)
 
-유지보수는 소프트웨어 비용의 **대부분**을 차지한다.
+유지보수는 소프트웨어 비용의 **대부분**을 차지한다. 소프트웨어 공학에서 자주 인용되는 근사치로는 전체 생애주기 비용의 60~80% 이상이 초기 개발 이후의 유지보수 단계에서 발생한다고 알려져 있다(정확한 비율은 프로젝트·산업군마다 다르며, 여기서는 마틴이 이 장에서 강조하는 논지를 따라 80%로 단순화해 표기한다).
 
 ```mermaid
-pie title 소프트웨어 비용 분포
+pie title 소프트웨어 비용 분포(근사치)
     "초기 개발" : 20
     "유지보수" : 80
 ```
@@ -212,17 +215,44 @@ pie title 소프트웨어 비용 분포
 
 ```java
 // 탐사: 어디를 고쳐야 하는지 찾기
-// 나쁜 아키텍처
+// 나쁜 아키텍처 - 주문·결제·배송 로직이 한 클래스에 뒤섞임
 class GodClass {
-    // 10,000줄의 코드
-    // 어디를 수정해야 할까?
+    boolean createOrder(OrderRequest r) {
+        return r.items().size() > 0 && r.customerId() != null;
+    }
+
+    boolean chargeCard(PaymentRequest r) {
+        return r.amount().compareTo(java.math.BigDecimal.ZERO) > 0;
+    }
+
+    String dispatchCarrier(ShippingRequest r) {
+        return "CARRIER-" + r.orderId();
+    }
+    // 이 외 47개 메서드, 총 10,000줄 — "배송 버그"를 고치려 해도
+    // 어디서부터 봐야 할지 클래스 전체를 훑어야 한다
+}
+```
+
+```java
+// 좋은 아키텍처 - 책임별로 클래스가 분리되어 있음
+class OrderProcessor {
+    boolean createOrder(OrderRequest request) {
+        return request.items().size() > 0 && request.customerId() != null;
+    }
 }
 
-// 좋은 아키텍처
-class OrderProcessor { /* 주문 처리만 */ }
-class PaymentProcessor { /* 결제 처리만 */ }
-class ShippingProcessor { /* 배송 처리만 */ }
-// 주문 관련 버그? OrderProcessor만 보면 됨
+class PaymentProcessor {
+    boolean chargeCard(PaymentRequest request) {
+        return request.amount().compareTo(java.math.BigDecimal.ZERO) > 0;
+    }
+}
+
+class ShippingProcessor {
+    String dispatchCarrier(ShippingRequest request) {
+        return "CARRIER-" + request.orderId();
+    }
+}
+// 배송 버그? ShippingProcessor 하나만 보면 된다 — "탐사" 범위가 확 줄어든다
 ```
 
 ## 선택지를 열어두기 (결정 지연)
@@ -341,6 +371,8 @@ flowchart LR
 - 개발·배포·운영·유지보수 네 가지 목표가 서로 상충할 수 있는 상황을 예로 들 수 있는가?
 - 어떤 결정은 지연할 수 있고 어떤 결정은 지연할 수 없는지, 그 기준을 설명할 수 있는가?
 - 정책과 세부사항을 구분하는 기준(변경 빈도·의존성 방향)을 코드 예제로 설명할 수 있는가?
+
+네 가지 목표는 종종 서로 충돌한다. 예를 들어 개발 독립성을 극대화하려고 팀마다 완전히 분리된 마이크로서비스를 만들면, 운영 시점에는 여러 서비스에 흩어진 로그를 모아 하나의 요청 흐름을 추적해야 하므로 운영 용이성이 오히려 떨어진다. 반대로 운영 편의를 위해 모든 로직을 하나의 모놀리스에 모으면, 팀이 늘어날수록 서로의 코드를 밟고 지나가는 병합 충돌이 잦아져 개발 독립성이 희생된다. 좋은 아키텍처는 이 상충을 완전히 없애는 것이 아니라, 지금 이 시스템에 어느 쪽이 더 중요한지 의식적으로 선택하고 그 대가를 감수하는 것이다.
 
 ## 판단 기준
 
