@@ -1,6 +1,7 @@
 ---
 collection_order: 23
-title: "[Design Pattern] Visitor - 방문자 패턴"
+slug: "visitor-pattern"
+title: "[Design Pattern] 23. Visitor - 방문자 패턴"
 description: "Visitor 패턴은 객체 구조와 오퍼레이션을 분리하여 새로운 기능 추가를 쉽게 합니다. 복잡한 객체 구조에서도 기능의 유연한 확장과 유지보수가 가능합니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

@@ -2,7 +2,7 @@
 draft: false
 collection_order: 10
 slug: code-formatting-style-exercises
-title: "[Clean Code] 10장. 포맷팅·린팅 자동화 실습"
+title: "[Clean Code] 10. 포맷팅·린팅 자동화 실습"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "한 줄에 여러 문장이 압축된 사용자 관리 코드를 정리하고, Prettier·ESLint 같은 포매터·린터를 pre-commit 훅과 CI 파이프라인에 연결해 형식 논쟁을 팀 차원에서 자동으로 없애는 방법을 단계별로 실습한다."

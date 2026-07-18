@@ -2,7 +2,7 @@
 draft: false
 collection_order: 150
 slug: graphics-media-framework
-title: "[안드로이드 하드웨어 개발] 15장. 그래픽 및 미디어 프레임워크"
+title: "[Android Hardware] 15. 그래픽 및 미디어 프레임워크"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "SurfaceFlinger의 컴포지션 구조, Codec2/MediaCodec 인코딩 파이프라인, Camera2/CameraX 스택, 오디오 HAL 경로를 이론과 실전 코드로 설명하는 안드로이드 그래픽·미디어 프레임워크 심화 가이드."

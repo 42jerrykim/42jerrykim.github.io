@@ -3,7 +3,7 @@ collection_order: 7
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: false
-title: "[LLM 07] 지식은 어디에 저장되는가 — FFN과 Superposition"
+title: "[LLM] 07. 지식은 어디에 저장되는가 — FFN과 Superposition"
 slug: llm-knowledge-storage
 description: "LLM 파라미터의 3분의 2를 차지하는 Feed Forward Network가 지식을 저장하는 원리를, 직교 벡터와 Johnson-Lindenstrauss 보조정리, Superposition 개념으로 설명합니다. 환각과 기계적 해석가능성 연구도 함께 다룹니다."
 tags:

@@ -1,6 +1,6 @@
 ---
 collection_order: 6
-title: "[Design Pattern] Adapter - 어댑터 패턴"
+title: "[Design Pattern] 06. Adapter - 어댑터 패턴"
 description: "Adapter 패턴은 호환되지 않는 인터페이스를 가진 클래스들을 함께 동작하게 하는 구조적 패턴입니다. 기존 코드 수정 없이 인터페이스를 변환하여 재사용성을 높입니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

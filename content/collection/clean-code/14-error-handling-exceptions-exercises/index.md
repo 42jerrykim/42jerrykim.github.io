@@ -2,7 +2,7 @@
 draft: false
 collection_order: 14
 slug: error-handling-exceptions-exercises
-title: "[Clean Code] 14장. 오류 처리 리팩토링 실습"
+title: "[Clean Code] 14. 오류 처리 리팩토링 실습"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "정수 오류 코드로 뒤덮인 파일 처리 코드를 의미 있는 예외 계층과 Optional로 재설계하는 실습을 통해 13장에서 배운 오류 처리 원칙을 직접 적용하고, 예외 계층을 얼마나 세분화해야 하는지 실무 판단 기준으로 함께 검증한다."

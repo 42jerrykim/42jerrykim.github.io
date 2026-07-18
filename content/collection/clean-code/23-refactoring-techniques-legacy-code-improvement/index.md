@@ -2,7 +2,7 @@
 draft: false
 collection_order: 23
 slug: refactoring-techniques-legacy-code-improvement
-title: "[Clean Code] 23장. 리팩토링과 레거시 코드 개선"
+title: "[Clean Code] 23. 리팩토링과 레거시 코드 개선"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "테스트 없는 코드를 레거시로 정의하고, 특성화 테스트로 안전망을 세운 뒤 보이스카우트 규칙에 따라 점진적으로 개선하는 전략을 시리즈 전체를 통합하는 관점에서 다룬다. 전면 재작성의 위험과 스트랭글러 무화과 패턴도 함께 살펴본다."

@@ -2,7 +2,7 @@
 draft: false
 collection_order: 160
 slug: on-device-ai-ml-integration
-title: "[안드로이드 하드웨어 개발] 16장. On-Device AI/ML 통합"
+title: "[Android Hardware] 16. On-Device AI/ML 통합"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "NNAPI에서 LiteRT로 이어지는 안드로이드 온디바이스 AI 추론 스택을 정리하고, NPU/GPU 델리게이트 가속과 모델 양자화 원리, Google AI Edge 플랫폼 구성, 온디바이스 처리의 프라이버시 이점과 한계를 코드와 함께 설명한다."

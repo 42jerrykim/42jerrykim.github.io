@@ -2,7 +2,7 @@
 draft: false
 collection_order: 80
 slug: bootloader-development
-title: "[안드로이드 하드웨어 개발] 08장. 부트로더 개발"
+title: "[Android Hardware] 08. 부트로더 개발"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "BootROM부터 커널까지 이어지는 부트 체인의 단계와 LK·ABL·U-Boot의 역할, A/B 파티션 기반 무중단 업데이트, Android Verified Boot의 서명·롤백 검증, fastboot 프로토콜의 동작 원리를 실전 코드로 정리한다."

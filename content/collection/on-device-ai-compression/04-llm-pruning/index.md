@@ -3,7 +3,7 @@ collection_order: 4
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: false
-title: "[On-Device AI 04] LLM을 위한 Pruning — OBS와 SparseGPT"
+title: "[On-Device AI] 04. LLM을 위한 Pruning — OBS와 SparseGPT"
 slug: llm-pruning-fundamentals
 description: "단순 절댓값 기준 Pruning이 LLM에서 왜 부족한지부터, 테일러 급수 기반 OBD·OBS, 이를 레이어 단위로 확장한 SparseGPT, Activation 크기까지 고려하는 Wanda까지 LLM 전용 Pruning 기법을 원 논문과 함께 정리합니다."
 tags:

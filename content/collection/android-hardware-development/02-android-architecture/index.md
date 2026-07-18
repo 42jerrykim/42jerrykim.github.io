@@ -2,7 +2,7 @@
 draft: false
 collection_order: 20
 slug: android-architecture
-title: "[안드로이드 하드웨어 개발] 02장. 안드로이드 아키텍처"
+title: "[Android Hardware] 02. 안드로이드 아키텍처"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "안드로이드의 5-레이어 소프트웨어 스택과 Zygote 프로세스 모델, Binder IPC 메커니즘, ART의 AOT/JIT 하이브리드 컴파일 구조를 이론 중심으로 분석하고 AIDL 기반 시스템 서비스 구현으로 실전 감각을 잡는다."

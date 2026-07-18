@@ -2,7 +2,7 @@
 draft: false
 collection_order: 19
 slug: clean-classes-solid-principles-exercises
-title: "[Clean Code] 19장. SOLID 원칙 리팩토링 실습"
+title: "[Clean Code] 19. SOLID 원칙 리팩토링 실습"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "DB 연결, 검증, 이메일 발송, 캐시 관리를 모두 떠맡은 God Class UserManager를 SRP와 DIP에 따라 네 개의 협력 클래스로 분해하는 실습을 통해 18장의 SOLID 원칙을 실제 코드와 조립 지점 설계에 적용한다."

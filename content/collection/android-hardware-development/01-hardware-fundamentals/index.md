@@ -2,7 +2,7 @@
 draft: false
 collection_order: 10
 slug: hardware-fundamentals
-title: "[안드로이드 하드웨어 개발] 01장. 하드웨어 기초"
+title: "[Android Hardware] 01. 하드웨어 기초"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "SoC와 Cortex-A big.LITTLE 구조, GPU·NPU, LPDDR·UFS 메모리 계층, 무선 연결성, 센서·디스플레이, DVFS·열 관리까지 안드로이드 단말 하드웨어의 핵심 구성 요소를 이론 중심으로 정리한다."

@@ -2,7 +2,7 @@
 draft: false
 collection_order: 8
 slug: code-comments-documentation-exercises
-title: "[Clean Code] 08장. 주석 걷어내기 실습"
+title: "[Clean Code] 08. 주석 걷어내기 실습"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "중복 주석과 이력 기록 주석, 주석 처리된 죽은 코드로 뒤덮인 주문 서비스 코드를 07장의 기준에 따라 정리하며, 지운다·옮긴다·유지한다는 3단계 판단 절차를 실제 리뷰 상황처럼 적용해 어떤 주석을 남길지 직접 확인하는 실습이다."

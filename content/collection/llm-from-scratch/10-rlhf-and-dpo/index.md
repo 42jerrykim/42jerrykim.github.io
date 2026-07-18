@@ -3,7 +3,7 @@ collection_order: 10
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: false
-title: "[LLM 10] RLHF와 DPO — 사람의 선호를 학습시키는 법"
+title: "[LLM] 10. RLHF와 DPO — 사람의 선호를 학습시키는 법"
 slug: rlhf-and-dpo
 description: "Reward Model로 응답 순위를 학습하고 강화학습으로 정책을 조정하는 RLHF 파이프라인과, Reward Model 없이 선호 데이터를 직접 손실함수로 바꾸는 DPO를 비교합니다. InstructGPT·DPO 원 논문을 인용합니다."
 tags:

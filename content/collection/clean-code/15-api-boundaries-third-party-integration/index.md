@@ -2,7 +2,7 @@
 draft: false
 collection_order: 15
 slug: api-boundaries-third-party-integration
-title: "[Clean Code] 15장. 경계 — 외부 라이브러리 사용법"
+title: "[Clean Code] 15. 경계 — 외부 라이브러리 사용법"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "외부 라이브러리 제공자와 사용자의 상반된 요구가 만드는 긴장을 짚고, 학습 테스트로 경계를 검증하는 방법과 어댑터 패턴으로 서드파티 API를 감싸 변경에 대비하는 전략을 판단 기준과 과잉 설계 비판까지 함께 다룬다."

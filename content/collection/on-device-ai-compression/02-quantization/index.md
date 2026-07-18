@@ -3,7 +3,7 @@ collection_order: 2
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: false
-title: "[On-Device AI 02] Quantization — 비트 수를 줄이는 법"
+title: "[On-Device AI] 02. Quantization — 비트 수를 줄이는 법"
 slug: model-quantization-fundamentals
 description: "Linear Quantization의 Scale·Zero-point 계산부터 Symmetric·Asymmetric 방식, Static·Dynamic Quantization, PTQ와 QAT의 트레이드오프까지 모델을 저비트로 표현하는 Quantization의 핵심을 정리합니다."
 tags:

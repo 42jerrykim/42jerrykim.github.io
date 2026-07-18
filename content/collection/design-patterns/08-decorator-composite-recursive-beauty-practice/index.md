@@ -1,7 +1,7 @@
 ---
 draft: true
 collection_order: 81
-title: "[Design Patterns] 데코레이터와 컴포지트 패턴 실습 - 재귀적 구조의 미학"
+title: "[Design Patterns] 08. 데코레이터와 컴포지트: 재귀적 아름다움 — 실습"
 slug: "decorator-composite-recursive-beauty-practice"
 description: "Decorator와 Composite 패턴을 통해 재귀적 구조와 동적 기능 확장을 실습합니다. 음료 주문 시스템, 파일 시스템, GUI 컴포넌트, 로깅 시스템 등의 프로젝트를 통해 객체 구조의 투명성과 확장성을 체험하고 실무에서의 강력한 설계 기법을 학습합니다."
 image: "wordcloud.png"

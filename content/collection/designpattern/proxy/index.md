@@ -1,6 +1,6 @@
 ---
 collection_order: 12
-title: "[Design Pattern] Proxy - 프록시 패턴"
+title: "[Design Pattern] 12. Proxy - 프록시 패턴"
 description: "Proxy 패턴은 객체에 대한 접근을 제어하기 위해 대리자 객체를 제공합니다. 프록시를 통해 접근 제어, 로깅, 지연 로딩 등 부가 기능을 손쉽게 추가할 수 있습니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

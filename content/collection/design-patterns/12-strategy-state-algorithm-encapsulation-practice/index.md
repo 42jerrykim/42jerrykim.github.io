@@ -1,7 +1,7 @@
 ---
 draft: true
 collection_order: 121
-title: "[Design Patterns] 전략과 상태 패턴 실습 - 알고리즘 캡슐화"
+title: "[Design Patterns] 12. 전략과 상태: 알고리즘 캡슐화의 미학 — 실습"
 slug: "strategy-state-algorithm-encapsulation-practice"
 description: "Strategy 패턴으로 할인 정책을, State 패턴으로 자판기와 게임 캐릭터 상태 관리를 직접 구현합니다. 개방-폐쇄 원칙을 실현하고 함수형 프로그래밍 스타일의 Strategy 구현까지 실습하는 실전형 글입니다."
 image: "wordcloud.png"

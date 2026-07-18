@@ -2,7 +2,7 @@
 draft: false
 collection_order: 30
 slug: kernel-development
-title: "[안드로이드 하드웨어 개발] 03장. 커널 개발"
+title: "[Android Hardware] 03. 커널 개발"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "Android Common Kernel과 GKI 구조, ashmem·Binder·Wakelock·Low Memory Killer 같은 안드로이드 전용 커널 서브시스템, Device Tree 기반 하드웨어 기술, 커스텀 커널 빌드·플래시 절차를 이론과 실전 코드로 정리한다."

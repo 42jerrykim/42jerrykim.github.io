@@ -2,7 +2,7 @@
 draft: false
 collection_order: 9
 slug: code-formatting-style-consistency
-title: "[Clean Code] 09장. 형식 맞추기와 코드 스타일"
+title: "[Clean Code] 09. 형식 맞추기와 코드 스타일"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "코드 형식이 왜 미학이 아니라 의사소통의 일부인지 세로 밀집도·수직 거리·가로 정렬 원칙으로 설명하고, 개인 취향에 좌우되던 형식 논쟁을 자동 포매터와 팀 컨벤션으로 해소하는 방법을 우선순위 판단 기준과 함께 다룬다."

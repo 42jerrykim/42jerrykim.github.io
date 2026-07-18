@@ -1,6 +1,6 @@
 ---
 collection_order: 19
-title: "[Design Pattern] Memento - 메멘토 패턴"
+title: "[Design Pattern] 19. Memento - 메멘토 패턴"
 description: "Memento 패턴은 객체의 내부 상태를 캡슐화해 외부에 노출하지 않고 이전 상태로 복원합니다. 상태 저장 및 복원으로 실행 취소나 롤백 기능을 구현합니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

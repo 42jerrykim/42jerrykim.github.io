@@ -2,7 +2,7 @@
 draft: false
 collection_order: 130
 slug: aosp-build-system
-title: "[안드로이드 하드웨어 개발] 13장. AOSP 빌드 시스템 및 개발 도구"
+title: "[Android Hardware] 13. AOSP 빌드 시스템 및 개발 도구"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "repo로 수백 개 AOSP 저장소를 관리하는 법부터 Soong/Kati가 Android.bp를 ninja 빌드 그래프로 변환하는 과정, lunch 타겟 선택 기준, ccache로 반복 빌드 시간을 단축하는 실전 방법까지 다룬다."

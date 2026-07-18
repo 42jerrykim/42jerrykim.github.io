@@ -2,7 +2,7 @@
 draft: false
 collection_order: 4
 slug: meaningful-naming-conventions-exercises
-title: "[Clean Code] 04장. 네이밍 리팩토링 실습"
+title: "[Clean Code] 04. 네이밍 리팩토링 실습"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "한 글자 변수와 줄임말로 뒤덮인 주문 처리 코드를 03장의 네이밍 원칙에 따라 단계적으로 리팩토링하며, 이름 변경만으로 코드 이해 속도가 얼마나 달라지는지 Before/After 표와 코드 리뷰 우선순위 기준으로 직접 확인하는 실습이다."

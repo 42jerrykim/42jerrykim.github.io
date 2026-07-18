@@ -2,7 +2,7 @@
 draft: false
 collection_order: 70
 slug: device-drivers
-title: "[안드로이드 하드웨어 개발] 07장. 디바이스 드라이버 개발"
+title: "[Android Hardware] 07. 디바이스 드라이버 개발"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "커널 모듈과 캐릭터·플랫폼 드라이버 구조, sysfs·ioctl 두 제어 경로의 트레이드오프를 이론적으로 정리하고, IMU 센서 드라이버를 실제로 작성해 AIDL 센서 HAL과 연결하는 과정과 V4L2 카메라 드라이버가 카메라 HAL로 이어지는 방식을 실전 예제로 설명한다."

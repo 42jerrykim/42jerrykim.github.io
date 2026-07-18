@@ -1,6 +1,6 @@
 ---
 collection_order: 5
-title: "[Design Pattern] Singleton - 싱글턴 패턴"
+title: "[Design Pattern] 05. Singleton - 싱글턴 패턴"
 description: "싱글턴 패턴은 클래스의 인스턴스가 하나만 존재하도록 보장하고 전역 접근점을 제공합니다. 데이터베이스 연결, 설정 관리 등 단일 인스턴스가 필요한 경우에 사용됩니다."
 date: 2022-01-01
 last_modified_at: 2024-08-20

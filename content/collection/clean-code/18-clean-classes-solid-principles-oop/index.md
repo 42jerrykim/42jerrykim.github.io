@@ -2,7 +2,7 @@
 draft: false
 collection_order: 18
 slug: clean-classes-solid-principles-oop
-title: "[Clean Code] 18장. 클래스는 작아야 한다"
+title: "[Clean Code] 18. 클래스는 작아야 한다"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "클래스 크기를 책임의 개수로 측정하는 이유를 설명하고, 단일 책임 원칙과 응집도를 중심으로 SOLID 5원칙 전체를 개괄한다. God Class를 작은 클래스들로 분해하는 실전 예제와 과잉 설계 판단 기준을 포함한다."

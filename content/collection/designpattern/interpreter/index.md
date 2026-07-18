@@ -1,6 +1,6 @@
 ---
 collection_order: 13
-title: "[Design Pattern] Interpreter - 인터프리터 패턴"
+title: "[Design Pattern] 13. Interpreter - 인터프리터 패턴"
 description: "Interpreter 패턴은 특정 언어나 문법을 해석하는 과정을 객체로 표현합니다. 간단한 문법 규칙을 객체 조합으로 구축하고 해석 로직을 유연하게 확장할 수 있습니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

@@ -1,7 +1,7 @@
 ---
 draft: true
 collection_order: 60
-title: "[Design Patterns] 빌더와 프로토타입 패턴의 깊이 있는 이해"
+title: "[Design Patterns] 06. 빌더와 프로토타입 패턴의 깊이 있는 이해"
 slug: "builder-prototype-deep-understanding"
 description: "복잡한 객체 생성과 복제를 우아하게 해결하는 Builder와 Prototype 패턴을 심도 있게 분석합니다. Fluent Interface와 복사 전략 등 고급 기법을 다루고, 현대 언어에서의 발전된 형태와 실무 적용 시나리오까지 탐구합니다."
 image: "wordcloud.png"

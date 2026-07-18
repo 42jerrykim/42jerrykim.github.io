@@ -1,7 +1,7 @@
 ---
 draft: true
 collection_order: 220
-title: "[Design Patterns] 안티패턴 식별과 리팩토링"
+title: "[Design Patterns] 22. 안티패턴 식별과 리팩토링"
 slug: "antipatterns-refactoring"
 description: "소프트웨어 개발에서 자주 발생하는 안티패턴을 식별하고 체계적으로 리팩토링하는 전문가 기법을 학습합니다. God Object, Spaghetti Code 분석과 Strangler Fig Pattern 기반 점진적 개선, 코드 품질 측정을 통해 지속 가능한 소프트웨어를 만드는 방법을 탐구합니다."
 image: "wordcloud.png"

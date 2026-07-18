@@ -2,7 +2,7 @@
 draft: false
 collection_order: 60
 slug: framework-customization
-title: "[안드로이드 하드웨어 개발] 06장. 프레임워크 커스터마이징"
+title: "[Android Hardware] 06. 프레임워크 커스터마이징"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "AOSP frameworks/base 수정 범위를 정의하고 Runtime Resource Overlay·config.xml 오버레이로 리소스를 안전하게 교체하며 SystemUI를 커스터마이징하는 절차와 판단 기준을 다룬다."

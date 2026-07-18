@@ -1,7 +1,7 @@
 ---
 draft: true
 collection_order: 110
-title: "[Design Patterns] 옵저버: 이벤트 드리븐 아키텍처의 핵심"
+title: "[Design Patterns] 11. 옵저버: 이벤트 드리븐 아키텍처의 핵심"
 slug: "observer-event-driven-architecture"
 description: "일대다 의존성을 관리하는 Observer 패턴의 구조와 원리를 깊이 있게 살펴보고, 느슨한 결합을 바탕으로 이벤트 드리븐 아키텍처, 리액티브 프로그래밍, Event Bus, MVC 패턴으로 확장되는 과정을 탐구합니다."
 image: "wordcloud.png"

@@ -1,7 +1,7 @@
 ---
 draft: true
 collection_order: 0
-title: "[Design Patterns] 디자인 패턴 마스터 시리즈 개요"
+title: "[Design Patterns] 00. 디자인 패턴 마스터 시리즈 개요"
 slug: "design-patterns-overview"
 description: "GoF 23개 패턴을 철학적 배경부터 실무 적용까지 체계적으로 다루는 24편 분량의 디자인 패턴 마스터 시리즈입니다. 기초 이론과 분석 프레임워크, 생성·구조·행동 패턴을 단계별로 학습하며 전문가 수준의 설계 역량을 기를 수 있습니다."
 image: "wordcloud.png"

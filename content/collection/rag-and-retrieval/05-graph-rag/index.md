@@ -3,7 +3,7 @@ collection_order: 5
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: false
-title: "[RAG 05] GraphRAG — 지식을 그래프로 검색하기"
+title: "[RAG] 05. GraphRAG — 지식을 그래프로 검색하기"
 slug: graph-rag-fundamentals
 description: "문서 대신 지식그래프를 검색 대상으로 삼는 GraphRAG의 색인-검색-생성 3단계 파이프라인을 다룹니다. Retriever의 종류, CRAG 벤치마크 평가 방식, 그리고 고정된 질의 생성이 실습에서 드러낸 한계와 에이전틱 전환까지 정리합니다."
 tags:

@@ -2,7 +2,7 @@
 draft: false
 collection_order: 0
 slug: getting-started-android-hardware-development
-title: "[안드로이드 하드웨어 개발] 00장. 과정 개요와 커리큘럼"
+title: "[Android Hardware] 00. 과정 개요와 커리큘럼"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "안드로이드 하드웨어 개발자가 필요한 이유와 앱 개발자와의 차이, AOSP 5계층 구조와 Treble 아키텍처, Phase 1~4 구성 근거, 00~18장 전체 목차, 선수 지식과 완주 후 갖추는 구체적 실무 역량을 정리한 과정 개요 챕터."

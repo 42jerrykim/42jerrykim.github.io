@@ -3,7 +3,7 @@ collection_order: 4
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: false
-title: "[RAG 04] 고차원 근사 검색 — LSH와 그래프 인덱스"
+title: "[RAG] 04. 고차원 근사 검색 — LSH와 그래프 인덱스"
 slug: approximate-nearest-neighbor-search
 description: "차원의 저주 때문에 정확한 최근접 이웃 탐색이 고차원에서 왜 어려워지는지부터, 해시 기반 LSH와 HNSW 같은 그래프 인덱스로 근사 검색을 빠르게 만드는 방법, CLIP을 이용한 멀티모달 검색까지 자세히 다룹니다."
 tags:

@@ -1,7 +1,7 @@
 ---
 draft: true
 collection_order: 190
-title: "[Design Patterns] 동시성과 분산 시스템에서의 패턴"
+title: "[Design Patterns] 19. 동시성과 분산 시스템에서의 패턴"
 slug: "concurrency-distributed-patterns"
 description: "동시성과 분산 시스템 환경에서 적용되는 고급 디자인 패턴을 탐구합니다. Thread-Safe Singleton과 Producer-Consumer 등 동시성 패턴, Circuit Breaker와 CQRS 등 분산 시스템 패턴으로 확장성과 안정성을 갖춘 아키텍처 설계 기법을 학습합니다."
 image: "wordcloud.png"

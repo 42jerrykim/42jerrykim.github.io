@@ -1,6 +1,6 @@
 ---
 collection_order: 15
-title: "[Design Pattern] Chain of Responsibility - 책임 연쇄 패턴"
+title: "[Design Pattern] 15. Chain of Responsibility - 책임 연쇄 패턴"
 description: "Chain of Responsibility 패턴은 요청 처리 객체들을 체인으로 연결하여 책임을 분산합니다. 클라이언트와 처리 객체의 결합도를 낮추고 동적으로 처리자를 변경합니다."
 date: 2022-01-01
 last_modified_at: 2022-03-01

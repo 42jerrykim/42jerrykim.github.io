@@ -2,7 +2,7 @@
 draft: false
 collection_order: 11
 slug: objects-vs-data-structures-design-patterns
-title: "[Clean Code] 11장. 객체와 자료구조의 비대칭"
+title: "[Clean Code] 11. 객체와 자료구조의 비대칭"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "객체는 동작을 노출하고 자료를 감추며, 자료구조는 자료를 노출하고 동작이 없다는 근본적 비대칭을 설명한다. 디미터 법칙, 기차 충돌 코드, DTO 설계 원칙을 실전 예제와 새 타입·새 연산 추가 트레이드오프 표로 다룬다."

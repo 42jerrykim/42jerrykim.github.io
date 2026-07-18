@@ -3,7 +3,7 @@ collection_order: 5
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: false
-title: "[Vision AI 05] Object Detection — R-CNN에서 DETR까지"
+title: "[Vision AI] 05. Object Detection — R-CNN에서 DETR까지"
 slug: object-detection-fundamentals
 description: "IoU와 mAP 같은 평가지표부터, Two-stage인 R-CNN·Faster R-CNN과 Transformer 기반 DETR까지 Object Detection의 핵심 개념과 발전 과정을 다룹니다. Recall-Precision 트레이드오프를 실무 사례로 설명합니다."
 tags:

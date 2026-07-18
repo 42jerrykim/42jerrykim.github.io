@@ -2,7 +2,7 @@
 draft: false
 collection_order: 6
 slug: clean-functions-refactoring-exercises
-title: "[Clean Code] 06장. 함수 리팩토링 실습"
+title: "[Clean Code] 06. 함수 리팩토링 실습"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "80줄짜리 긴 주문 처리 함수를 파싱·검증·계산·저장 네 단계로 분해하는 실습을 통해 05장의 함수 설계 원칙을 직접 적용하고, 분해 전후의 테스트 용이성 차이와 분해를 어디서 멈춰야 하는지 판단 기준을 함께 살펴본다."

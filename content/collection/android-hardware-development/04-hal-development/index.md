@@ -2,7 +2,7 @@
 draft: false
 collection_order: 40
 slug: hal-development
-title: "[안드로이드 하드웨어 개발] 04장. 하드웨어 추상화 계층(HAL) 개발"
+title: "[Android Hardware] 04. 하드웨어 추상화 계층(HAL) 개발"
 date: 2026-07-18
 last_modified_at: 2026-07-18
 description: "Legacy HAL의 단일 프로세스 구조와 Project Treble이 도입한 HIDL·AIDL 기반 벤더 인터페이스를 비교하고, VINTF 호환성 검증 메커니즘과 커스텀 AIDL HAL을 설계·구현·등록하는 전체 흐름을 실전 예제로 설명한다."

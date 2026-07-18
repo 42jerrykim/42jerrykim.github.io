@@ -1,7 +1,7 @@
 ---
 draft: true
 collection_order: 51
-title: "[Design Patterns] 싱글톤 패턴 실습 - 올바른 구현과 현대적 대안"
+title: "[Design Patterns] 05. 싱글톤: 논란이 많은 패턴 — 실습"
 slug: "singleton-controversial-pattern-practice"
 description: "다양한 Singleton 구현 방식을 실제로 구현해보고 멀티스레드 환경에서의 안전성을 확보하는 실습입니다. Thread-safe 구현부터 현대적 DI Container 활용까지, Singleton의 문제점과 대안을 체험하며 실무에서 올바른 설계 방향을 학습합니다."
 image: "wordcloud.png"

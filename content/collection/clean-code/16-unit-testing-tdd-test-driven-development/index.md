@@ -2,7 +2,7 @@
 draft: false
 collection_order: 16
 slug: unit-testing-tdd-test-driven-development
-title: "[Clean Code] 16장. TDD 법칙과 F.I.R.S.T 원칙"
+title: "[Clean Code] 16. TDD 법칙과 F.I.R.S.T 원칙"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "테스트 코드를 먼저 작성하도록 강제하는 TDD 세 가지 법칙과 Red-Green-Refactor 사이클을 설명하고, 좋은 테스트가 갖춰야 할 F.I.R.S.T 원칙을 예제로 다룬다. 2014년 TDD 논쟁도 함께 짚는다."

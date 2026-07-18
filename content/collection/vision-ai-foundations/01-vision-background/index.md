@@ -3,7 +3,7 @@ collection_order: 1
 date: 2026-07-17
 lastmod: 2026-07-17
 draft: false
-title: "[Vision AI 01] 비전을 위한 배경지식 — 카메라와 확률통계"
+title: "[Vision AI] 01. 비전을 위한 배경지식 — 카메라와 확률통계"
 slug: vision-background-knowledge
 description: "카메라 센서가 이미지를 만드는 ISP 파이프라인부터, 행렬-벡터 곱의 가중합 해석, Likelihood와 Bayes' Rule, MLE·MAP, Entropy까지 컴퓨터 비전에 필요한 배경지식을 코드와 함께 정리합니다."
 tags:

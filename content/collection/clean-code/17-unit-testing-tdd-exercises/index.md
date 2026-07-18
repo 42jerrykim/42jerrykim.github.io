@@ -2,7 +2,7 @@
 draft: false
 collection_order: 17
 slug: unit-testing-tdd-exercises
-title: "[Clean Code] 17장. 단위 테스트 리팩토링 실습"
+title: "[Clean Code] 17. 단위 테스트 리팩토링 실습"
 date: 2026-07-17
 last_modified_at: 2026-07-17
 description: "간단한 계산기를 Red-Green-Refactor 사이클로 직접 구현하고, 실제 DB에 의존하는 F.I.R.S.T 원칙 위반 테스트 코드를 정리하며 16장에서 배운 테스트 설계 원칙을 실제 코드로 손에 익히는 실습이다."

@@ -1,7 +1,7 @@
 ---
 draft: true
 collection_order: 40
-title: "[Design Patterns] 팩토리 패턴의 진화"
+title: "[Design Patterns] 04. 팩토리 패턴의 진화"
 slug: "factory-patterns-evolution"
 description: "Simple Factory부터 Abstract Factory까지 객체 생성 패턴의 진화 과정을 탐구합니다. 각 팩토리 패턴의 특징과 적용 시나리오를 분석하고, 의존성 주입과 IoC 컨테이너로 이어지는 현대적 발전 과정을 실무 관점에서 학습합니다."
 image: "wordcloud.png"

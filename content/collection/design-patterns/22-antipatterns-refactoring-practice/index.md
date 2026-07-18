@@ -1,7 +1,7 @@
 ---
 draft: true
 collection_order: 221
-title: "[Design Patterns] 안티패턴과 리팩토링 실습 - 나쁜 설계 개선"
+title: "[Design Patterns] 22. 안티패턴 식별과 리팩토링 — 실습"
 slug: "antipatterns-refactoring-practice"
 description: "안티패턴을 식별하고 디자인 패턴을 활용해 리팩토링하는 실습입니다. God Object, Spaghetti Code, Singleton 남용 등의 문제를 체계적으로 분석하고 적절한 패턴 적용을 통해 깔끔하고 유지보수 가능한 코드로 개선하는 실무 기법을 학습합니다."
 image: "wordcloud.png"
