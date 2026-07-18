@@ -2,10 +2,11 @@
 draft: true
 collection_order: 200
 title: "[Design Patterns] 도메인 주도 설계와 디자인 패턴"
-description: "도메인 주도 설계(DDD) 철학과 GoF 디자인 패턴의 융합을 탐구합니다. Entity, Value Object, Aggregate, Repository 등 DDD의 핵심 빌딩 블록과 패턴의 결합을 통해 비즈니스 도메인을 효과적으로 표현하는 방법을 학습하고, CQRS, Event Sourcing 등 현대적 아키텍처 패턴까지 다룹니다."
+slug: "ddd-design-patterns"
+description: "도메인 주도 설계(DDD) 철학과 GoF 디자인 패턴의 융합을 탐구합니다. Entity, Aggregate, Repository 등 DDD 핵심 빌딩 블록과 패턴을 결합해 비즈니스 도메인을 표현하는 방법과 CQRS, Event Sourcing 같은 현대적 아키텍처 패턴을 학습합니다."
 image: "wordcloud.png"
 date: 2024-12-20T10:00:00+09:00
-lastmod: 2024-12-15T14:30:00+09:00
+lastmod: 2026-07-18T07:18:00+09:00
 categories:
 - Design Patterns
 - Domain Driven Design
@@ -15,6 +16,30 @@ tags:
 - Clean-Architecture(클린아키텍처)
 - Microservices(마이크로서비스)
 - Software-Architecture(소프트웨어아키텍처)
+- Design-Pattern(디자인패턴)
+- GoF(Gang of Four)
+- Domain-Driven-Design
+- CQRS(Command Query Responsibility Segregation)
+- Event-Driven
+- SOLID
+- OOP(객체지향)
+- Encapsulation(캡슐화)
+- Abstraction(추상화)
+- Composition(합성)
+- Interface(인터페이스)
+- Coupling(결합도)
+- Cohesion(응집도)
+- Implementation(구현)
+- Best-Practices
+- Maintainability
+- System-Design
+- Database(데이터베이스)
+- Java
+- Tutorial(튜토리얼)
+- Deep-Dive
+- Advanced
+- Case-Study
+- Guide(가이드)
 ---
 
 Domain-Driven Design과 디자인 패턴의 융합을 탐구합니다. Aggregate, Repository, Domain Event 등 DDD 전술 패턴을 통한 비즈니스 도메인 모델링을 학습합니다.
@@ -32,6 +57,19 @@ Domain-Driven Design과 디자인 패턴의 융합을 탐구합니다. Aggregate
 - **Anti-Corruption Layer**: 레거시 시스템과의 통합
 
 ## DDD Building Blocks와 디자인 패턴
+
+이 글의 모든 예제는 아래 임포트를 전제로 합니다.
+
+```java
+import java.util.*;
+import java.math.BigDecimal;
+import java.util.Currency;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+```
+
+또한 예제는 DDD 개념을 보여주는 데 집중하기 위해 `OrderId`, `CustomerId`, `ProductId`, `Money`, `ShippingAddress`, `OrderLine`, `OrderStatus`, `BusinessRule`과 그 구현체(`OrderCanBeModifiedRule` 등), `DomainEvent`와 그 하위 이벤트, `DomainEventPublisher`, `OrderMapper`, `OrderEntity`, `Customer`, `CustomerRepository` 같은 도메인 타입의 전체 구현은 생략했다. 실제 프로젝트에서는 이 타입들을 각각 명시적으로 정의해야 하며, 여기서는 Entity·Value Object·Aggregate·Repository가 서로 어떻게 협력하는지의 구조에 집중한다.
 
 ### Entity 패턴과 Identity 관리
 
@@ -113,6 +151,8 @@ public class Money {
 
 ### Aggregate Root 패턴
 
+앞서 본 `Entity`와 `Money`(Value Object)는 그 자체로는 일관성 경계를 갖지 않는다. `Order`가 `OrderLine`들을 담고 있을 때 "주문 총액이 각 라인의 합과 일치해야 한다"처럼 여러 객체에 걸친 불변식을 누가 지킬 것인가라는 문제가 남는다. Aggregate Root는 이 문제에 대한 답이다 — 하나의 Aggregate 안에서는 오직 루트(`Order`)만 외부에 공개되고, 내부 구성 요소(`OrderLine`)는 루트를 거치지 않고서는 변경할 수 없도록 강제한다. `AggregateRoot`가 `Entity`를 상속하는 것도 이 때문이다: Aggregate Root 자신도 식별자를 가진 Entity이며, 여기에 "내부 상태 변경 시 도메인 이벤트를 기록한다"는 책임이 추가된 것뿐이다.
+
 ```java
 // Aggregate Root - 복합체 패턴과 도메인 이벤트 결합
 public abstract class AggregateRoot<ID> extends Entity<ID> {
@@ -182,6 +222,25 @@ public class Order extends AggregateRoot<OrderId> {
 }
 ```
 
+`Order` Aggregate의 경계를 그림으로 보면 "무엇이 안에 있고 무엇이 밖에 있는지"가 분명해진다. `OrderLine`과 `Money`는 `Order` 내부에 완전히 소속되어 `Order`를 거치지 않고는 접근할 수 없지만, `CustomerId`는 다른 Aggregate(`Customer`)를 가리키는 참조일 뿐 `Order`가 `Customer` 전체를 포함하지는 않는다. 외부(`OrderProcessingService` 등)는 오직 `Order`(루트)를 통해서만 이 경계 안으로 들어올 수 있다.
+
+```mermaid
+flowchart TB
+    Client["OrderProcessingService"] -->|"루트를 통해서만 접근"| Root["Order (Aggregate Root)"]
+
+    subgraph Boundary["Order Aggregate 경계"]
+        Root --> Lines["List&lt;OrderLine&gt;"]
+        Root --> Total["totalAmount: Money"]
+        Root --> Status["status: OrderStatus"]
+        Root --> Events["domainEvents: List&lt;DomainEvent&gt;"]
+    end
+
+    Root -.ID로만 참조.-> CustomerRef["CustomerId</br>(다른 Aggregate)"]
+    Lines -->|"참조"| ProductRef["ProductId</br>(다른 Aggregate)"]
+```
+
+Aggregate가 이렇게 자신의 경계를 스스로 지키더라도, 그 상태를 어딘가에 저장하고 다시 불러오는 책임은 Aggregate 자신의 몫이 아니다. 이 저장·조회 책임을 분리하는 것이 다음에 볼 Repository 패턴이다.
+
 ## Repository 패턴과 데이터 접근
 
 ```java
@@ -229,6 +288,8 @@ public class JpaOrderRepository implements OrderRepository {
     }
 }
 ```
+
+`JpaOrderRepository`는 `Order` Aggregate를 저장할 뿐 아니라, 저장이 끝난 뒤 그 Aggregate가 쌓아둔 도메인 이벤트(`getDomainEvents()`)를 발행하고 비운다. 이 지점이 지금까지 다룬 Entity·Aggregate·Repository 세 빌딩 블록이 CQRS·Event Sourcing으로 이어지는 연결고리다 — Repository가 저장 시점에 발행하는 이벤트를, 다음 절의 Query 모델이 구독해 자신만의 조회 전용 뷰를 만들거나, Event Store가 아예 상태 대신 이벤트 자체를 영속화 대상으로 삼을 수 있다.
 
 ## CQRS와 Event Sourcing 패턴
 
@@ -278,6 +339,26 @@ public class OrderProcessingService {
 }
 ```
 
+`OrderCommandService`와 `OrderQueryService`는 같은 `Order` 데이터를 다루지만 서로 다른 모델로 접근한다. Command 측은 `Order` Aggregate 전체를 로드해 비즈니스 규칙을 검증하며 쓰기를 수행하고, Query 측은 Aggregate를 거치지 않고 조회에 최적화된 별도 모델(`OrderSummary`, `OrderListItem`)을 직접 읽는다. 두 모델의 구조적 분리가 CQRS의 핵심이다.
+
+```mermaid
+flowchart LR
+    subgraph CommandSide["Command 모델"]
+        CmdClient["PlaceOrderCommand"] --> Service["OrderProcessingService"]
+        Service --> Customer["CustomerRepository.findById()"]
+        Service --> AggCreate["Order.create()"]
+        AggCreate --> AddLine["order.addOrderLine()"]
+        AddLine --> Confirm["order.confirm()"]
+        Confirm --> Save["orderRepository.save()"]
+    end
+
+    subgraph QuerySide["Query 모델"]
+        QueryClient["getOrderSummary() /</br>getOrdersByCustomer()"] --> ReadModel["OrderSummary /</br>OrderListItem</br>(조회 전용 뷰)"]
+    end
+
+    Save -.도메인 이벤트 발행.-> ReadModel
+```
+
 ### Event Sourcing 패턴
 
 ```java
@@ -325,6 +406,33 @@ public abstract class EventSourcedAggregateRoot<ID> {
         uncommittedEvents.clear();
     }
 }
+```
+
+Event Sourcing에서는 Aggregate의 "현재 상태"를 직접 저장하지 않고, 상태에 이르게 한 이벤트들만 저장한다. 새 명령이 들어오면 이벤트를 만들어 저장하고(쓰기), Aggregate를 다시 사용해야 할 때는 저장된 이벤트를 처음부터 순서대로 재생해 상태를 복원한다(읽기 위한 재구성). 아래 시퀀스 다이어그램은 `loadFromHistory()`가 이벤트 목록으로부터 Aggregate 상태를 재구성하는 과정과, 새 명령이 새 이벤트를 만들어 `EventStore`에 반영되는 과정을 함께 보여준다.
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Store as EventStore
+    participant Agg as "order: EventSourcedAggregateRoot"
+
+    Note over Client,Agg: 1. 기존 Aggregate 재구성 (읽기)
+    Client->>Store: getEvents(aggregateId)
+    Store-->>Client: List&lt;DomainEvent&gt;
+    Client->>Agg: loadFromHistory(events)
+    loop 각 이벤트마다
+        Agg->>Agg: applyEvent(event, isNew=false)
+        Agg->>Agg: handleEvent(event)</br>version++
+    end
+
+    Note over Client,Agg: 2. 새 명령 처리 (쓰기)
+    Client->>Agg: 비즈니스 메서드 호출
+    Agg->>Agg: applyEvent(newEvent, isNew=true)
+    Agg->>Agg: handleEvent(newEvent)</br>uncommittedEvents.add(newEvent)
+    Client->>Agg: getUncommittedEvents()
+    Agg-->>Client: List&lt;DomainEvent&gt;
+    Client->>Store: saveEvents(aggregateId, events, expectedVersion)
+    Client->>Agg: markEventsAsCommitted()
 ```
 
 ## 실습 과제
@@ -429,6 +537,23 @@ Event Sourcing을 적용한 주문 처리 시스템을 구현하세요:
 | Aggregate 경계 적절한가? | 일관성 범위 검토 |
 | Event Sourcing 필요한가? | 이력/감사 요구사항 확인 |
 
+## 흔한 오해 바로잡기
+
+DDD 전술 패턴을 처음 적용할 때 자주 빠지는 오해 두 가지를 짚어본다.
+
+첫째, "Aggregate는 클수록 안전하다"는 오해다. Aggregate를 크게 만들면 한 번에 더 많은 불변식을 보장할 수 있어 안전해 보이지만, 실제로는 정반대의 효과가 난다. "Aggregate 설계 원칙" 표에서 보듯 Aggregate는 하나의 트랜잭션 경계이므로, 커질수록 동시에 수정하려는 요청끼리 충돌(낙관적 잠금 실패)이 잦아지고 로드해야 할 데이터도 늘어나 성능이 떨어진다. `Order` Aggregate가 `OrderLine`만 포함하고 `Customer` 전체를 포함하지 않는 이유가 바로 이것이다 — 정말로 함께 원자적으로 변경되어야 하는 최소 단위만 하나의 Aggregate로 묶어야 한다.
+
+둘째, "Repository는 단순 DAO(Data Access Object)다"는 오해다. DAO는 테이블이나 쿼리 중심으로 설계되어 `findByColumnX`, `updateColumnY` 같은 메서드를 노출하는 경우가 많지만, Repository는 도메인 모델(Aggregate) 중심으로 설계되어 "컬렉션처럼 동작"해야 한다. `OrderRepository`가 `save(Order)`와 `findById(OrderId)`만 노출하고 내부 `OrderLine`을 위한 별도 조회 메서드를 두지 않는 것은, DAO처럼 데이터 접근 편의성을 우선하는 것이 아니라 Aggregate 경계(루트를 통해서만 접근)를 Repository 계층에서도 그대로 지키기 위해서다. Repository는 영속성 기술을 도메인 언어로 감싸는 추상화이지, 테이블에 대응하는 CRUD 창구가 아니다.
+
+## 평가 기준
+
+이 글을 읽고 다음을 스스로 설명할 수 있다면 핵심을 이해한 것이다.
+
+- Aggregate를 작게 유지해야 하는 이유를 트랜잭션 경계·동시성 충돌 관점에서 설명할 수 있다.
+- Repository가 DAO와 다른 이유를, "컬렉션처럼 동작한다"는 관점과 Aggregate 경계 보호라는 관점에서 설명할 수 있다.
+- Entity와 Value Object를 구분하는 기준(식별자 vs 속성 값)을 `Order`(Entity)와 `Money`(Value Object) 예시로 설명할 수 있다.
+- CQRS·Event Sourcing을 도입하기 전에 확인해야 할 조건(읽기/쓰기 비율, 감사 요구사항, 팀의 학습 비용)을 말할 수 있다.
+
 ---
 
 ## 참고 자료
@@ -439,9 +564,9 @@ Event Sourcing을 적용한 주문 처리 시스템을 구현하세요:
 - Scott Millett, "Patterns, Principles, and Practices of Domain-Driven Design" (2015)
 
 ### 현대적 접근법
-- Greg Young, "Event Sourcing" 
-- Udi Dahan, "Advanced Distributed Systems Design"
-- Martin Fowler, "Event Sourcing", "CQRS"
+- Greg Young, "CQRS and Event Sourcing"(강연, Code on the Beach, 2010)
+- Udi Dahan, "Advanced Distributed Systems Design"(온라인 강좌·강연 시리즈, 2010년대)
+- Martin Fowler, martinfowler.com "CQRS"(2011), "Event Sourcing"(2005)
 
 ---
 
