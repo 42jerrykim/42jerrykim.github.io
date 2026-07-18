@@ -17,8 +17,6 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Heap(힙)
   - Abstraction(추상화)
-  - Encapsulation(캡슐화)
-  - Inheritance(상속)
   - Interface(인터페이스)
   - Design-Pattern(디자인패턴)
   - History(역사)
@@ -26,13 +24,15 @@ tags:
   - Case-Study
   - Deep-Dive
   - Best-Practices
-  - Refactoring(리팩토링)
-  - Testing(테스트)
-  - Coupling(결합도)
-  - Cohesion(응집도)
   - Java
   - C++
   - Comparison(비교)
+  - Math(수학)
+  - Recursion(재귀)
+  - Guide(가이드)
+  - System-Design
+  - Domain-Driven-Design
+  - Modularity
 ---
 
 이번 장에서 살펴볼 3가지 패러다임은 **부정적인 의도**를 가지는 일종의 추가적인 규칙을 부과한다. 즉, 패러다임은 무엇을 해야 할지를 말하기보다는 **무엇을 해서는 안 되는지**를 말해준다.
@@ -220,15 +220,26 @@ timeline
 람다 계산법의 기초가 되는 개념은 **불변성(Immutability)**으로, 심볼(Symbol)의 값이 변경되지 않는다는 개념이다. 이는 함수형 언어에는 **할당문이 전혀 없다**는 뜻이기도 하다.
 
 ```java
-// 명령형: 변수 값 변경
-int sumImperative = 0;
-for (int i = 0; i < numbers.length; i++) {
-    sumImperative += numbers[i];  // 할당문 사용
-}
+import java.util.Arrays;
 
-// 함수형: 불변성 유지
-int sumFunctional = Arrays.stream(numbers)
-    .reduce(0, (a, b) -> a + b);  // 할당문 없음
+class SumExample {
+    static int[] numbers = {1, 2, 3, 4, 5};
+
+    static int sumImperative() {
+        // 명령형: 변수 값 변경
+        int sum = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            sum += numbers[i];  // 할당문 사용
+        }
+        return sum;
+    }
+
+    static int sumFunctional() {
+        // 함수형: 불변성 유지
+        return Arrays.stream(numbers)
+            .reduce(0, (a, b) -> a + b);  // 할당문 없음
+    }
+}
 ```
 
 ### 제한적 가변성
@@ -244,6 +255,10 @@ let x = 5 in x + 1  -- x는 여전히 5
 ### 패러다임 요약
 
 > **함수형 프로그래밍은 할당문에 대해 규칙을 부과한다.**
+
+## 흔한 오해
+
+세 패러다임을 처음 배우면 흔히 두 가지를 오해한다. **"다형성을 지원하는 언어를 쓰면 자동으로 OOP 규율이 지켜진다"**는 오해가 흔한데, 실제로는 언어가 다형성을 지원하는 것과 팀이 실제로 인터페이스를 통해 경계를 분리하는 것은 별개다 — `instanceof` 분기로 타입을 매번 확인한다면 다형성이 있어도 OOP의 규율은 지켜지지 않는다. **"함수형 언어는 변수를 아예 쓸 수 없다"**는 것도 오해다. 위 Haskell 예제처럼 `let`으로 값을 이름에 바인딩하는 것은 가능하며, 금지되는 것은 그 이름이 가리키는 값을 나중에 **재할당**하는 것뿐이다.
 
 ## 생각할 거리
 

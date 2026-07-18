@@ -2,7 +2,7 @@
 draft: true
 collection_order: 110
 image: "wordcloud.png"
-description: "1968년 데이크스트라가 발견한 구조적 프로그래밍의 핵심을 다룹니다. goto문 해로움 논쟁, 순차/선택/반복 구조, 기능적 분해와 증명 가능한 프로그램의 개념을 반증 가능성 이론과 함께 상세히 설명합니다."
+description: "1968년 데이크스트라가 발견한 구조적 프로그래밍의 핵심을 다룹니다. goto문 해로움 논쟁, 순차/선택/반복 구조, 기능적 분해와 증명 가능한 프로그램의 개념을 반증 가능성 이론, 그리고 goto에 대한 흔한 오해와 함께 상세히 설명합니다."
 title: "[Clean Architecture] 11. 구조적 프로그래밍"
 slug: structured-programming-goto-elimination
 date: 2026-01-18
@@ -30,9 +30,9 @@ tags:
   - Error-Handling(에러처리)
   - Science(과학)
   - Comparison(비교)
-  - TDD(Test-Driven Development)
   - Modularity
   - Guide(가이드)
+  - Recursion(재귀)
 ---
 
 1968년, 에츠허르 비버 데이크스트라(Edsger Wybe Dijkstra)는 CACM(Communications of the ACM)에 보낸 편지에서 프로그래밍 역사상 가장 유명한 논쟁을 시작했다. "Go To Statement Considered Harmful"이라는 제목의 이 글은 구조적 프로그래밍의 시대를 열었다.
@@ -80,7 +80,7 @@ END:
 
 ## 세 가지 제어 구조
 
-데이크스트라와 그의 동료 Corrado Bohm, Giuseppe Jacopini는 중요한 사실을 발견했다. **모든 프로그램은 단 세 가지 구조만으로 표현할 수 있다:**
+데이크스트라의 통찰과 별개로, 코라도 뵘(Corrado Böhm)과 주세페 자코피니(Giuseppe Jacopini)는 로마에서 독립적으로 중요한 사실을 증명했다. **모든 프로그램은 단 세 가지 구조만으로 표현할 수 있다:**
 
 ### 1. 순차 (Sequence)
 
@@ -157,6 +157,8 @@ flowchart TB
 
 ### 핵심 주장
 
+편지의 논증은 앞서 살펴본 Böhm-Jacopini 정리를 실무 규범으로 전환한다: 증명 가능성이라는 이론적 성과를, "goto를 쓰지 마라"는 실천적 규칙으로 압축한 것이다.
+
 1. **goto 문은 프로그램의 품질을 떨어뜨린다**
 2. **goto 문을 제거하면 프로그램을 증명할 수 있다**
 3. **순차, 선택, 반복만 사용해야 한다**
@@ -184,8 +186,8 @@ flowchart TB
 // 기능적 분해 예시
 function processOrder(order) {
     validateOrder(order);
-    calculateTotal(order);
-    processPayment(order);
+    const total = calculateTotal(order);
+    processPayment(order, total);
     sendConfirmation(order);
 }
 
@@ -196,6 +198,22 @@ function validateOrder(order) {
 
 function checkInventory(items) {
     return items.every(item => item.stock > 0);
+}
+
+function checkCustomerCredit(customer) {
+    return customer.creditLimit >= 0;
+}
+
+function calculateTotal(order) {
+    return order.items.reduce((sum, item) => sum + item.price * item.qty, 0);
+}
+
+function processPayment(order, total) {
+    return order.paymentGateway.charge(order.customer, total);
+}
+
+function sendConfirmation(order) {
+    return order.notifier.send(order.customer, `주문 ${order.id} 완료`);
 }
 
 function checkCustomerCredit(customer) {
@@ -299,6 +317,10 @@ flowchart TB
 3. **분해의 힘**: 복잡한 문제를 작은 문제로 나누면 관리할 수 있다.
 
 마틴은 이를 이렇게 요약한다: 구조적 프로그래밍은 제어흐름의 직접적인 전환에 대해 규칙을 부과한다(Martin, *Clean Architecture*, 2017).
+
+## 흔한 오해
+
+세 가지 오해가 특히 흔하다. **"goto는 무조건, 어떤 경우에도 금지"**라는 오해와 달리 데이크스트라 본인도 무분별한 점프를 문제 삼았을 뿐, `goto cleanup;` 같은 지역적이고 예측 가능한 점프까지 금지한 것은 아니다. **"증명 가능하면 테스트가 필요 없다"**는 것도 오해다 — 오히려 이 장이 보여주듯 완벽한 증명은 현실적으로 불가능하기 때문에 테스트가 필요하다. **"구조적 프로그래밍은 옛날 이야기이고 아키텍처와 무관하다"**는 것도 오해다. 순차·선택·반복이라는 규율은 오늘날에도 모든 함수 내부 로직에 그대로 적용되며, 기능적 분해는 시스템→컴포넌트→클래스→함수로 이어지는 아키텍처 계층 구조의 원형이다.
 
 ## 판단 기준
 

@@ -20,21 +20,19 @@ tags:
   - Performance(성능)
   - C++
   - Java
-  - Coupling(결합도)
-  - Cohesion(응집도)
   - Abstraction(추상화)
   - Design-Pattern(디자인패턴)
   - History(역사)
   - Case-Study
   - Deep-Dive
   - Technology(기술)
-  - Refactoring(리팩토링)
   - Best-Practices
   - Maintainability
-  - GoF(Gang of Four)
-  - CSharp
-  - Composition(합성)
-  - Testing(테스트)
+  - C
+  - Database(데이터베이스)
+  - System-Design
+  - Guide(가이드)
+  - Comparison(비교)
 ---
 
 객체 지향 프로그래밍(OOP)은 올레 요한 달(Ole Johan Dahl)과 크리스텐 니가드(Kristen Nygaard)가 1960년대 초부터 개발해 1967년 Simula 67로 발표하면서 시작되었다. 이후 Smalltalk, C++, Java를 거치며 주류 패러다임이 되었다. 하지만 OOP가 아키텍처에 제공하는 진정한 가치는 무엇일까? 로버트 마틴은 그것이 **다형성을 통한 의존성 역전**이라고 말한다.
@@ -83,6 +81,7 @@ double distance(struct Point* p1, struct Point* p2);
 // point.c - 구현 파일 (숨겨진 구현)
 #include "point.h"
 #include <math.h>
+#include <stdlib.h>
 
 struct Point {
     double x, y;  // 구현 세부사항
@@ -200,6 +199,8 @@ C에서 함수 포인터를 사용하면 다형성을 구현할 수 있었다:
 
 ```c
 // C의 다형성 (함수 포인터)
+#include <stdio.h>
+
 typedef struct {
     void (*draw)(void* self);
 } Shape;
@@ -402,6 +403,10 @@ flowchart TB
 - **가상 디스패치 비용**: 인터페이스를 통한 호출은 컴파일 시점에 실제 구현이 결정되지 않으므로, 컴파일러의 인라이닝 최적화가 어려워지고 vtable 조회 비용이 추가된다. 대부분의 애플리케이션 코드에서는 무시할 수준이지만, 초당 수백만 번 호출되는 저수준 루프에서는 체감될 수 있다.
 - **인터페이스 남용(과잉 추상화)**: 구현체가 하나뿐인데도 "언젠가 바뀔 수 있다"는 이유로 모든 클래스에 인터페이스를 씌우면, 코드를 읽을 때 실제 구현을 찾아가는 간접 단계만 늘어난다.
 - **정적 다형성 대안**: 런타임에 구현을 교체할 필요가 없다면, 제네릭(Java)이나 템플릿(C++) 같은 정적 다형성이 가상 디스패치 없이 같은 유연성을 제공하기도 한다.
+
+## 판단 기준
+
+인터페이스와 DI를 도입할지 결정할 때는 "지금 구현체를 교체할 계획이 있는가", "테스트에서 이 의존성을 대역으로 바꿔야 하는가"를 먼저 물어야 한다. 둘 다 아니라면(구현체가 하나뿐이고, 테스트도 실제 구현으로 충분하다면) 인터페이스 도입은 과잉 추상화일 가능성이 높다. 반대로 저장소·외부 API·결제 게이트웨이처럼 구현이 바뀔 가능성이 있거나 테스트에서 반드시 대체해야 하는 경계라면, 가상 디스패치 비용을 감수하더라도 인터페이스로 분리하는 편이 유리하다.
 
 ## 학습 목표
 

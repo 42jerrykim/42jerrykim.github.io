@@ -14,7 +14,6 @@ tags:
   - State
   - Concurrency(동시성)
   - CQRS(Command Query Responsibility Segregation)
-  - Scala
   - Software-Architecture(소프트웨어아키텍처)
   - History(역사)
   - Async(비동기)
@@ -27,14 +26,13 @@ tags:
   - Technology(기술)
   - Design-Pattern(디자인패턴)
   - Domain-Driven-Design
-  - Recursion(재귀)
   - Math(수학)
   - Thread
-  - Mutex
   - Synchronization
   - Refactoring(리팩토링)
   - Abstraction(추상화)
   - Database(데이터베이스)
+  - Guide(가이드)
 ---
 
 함수형 프로그래밍(FP)은 세 가지 패러다임 중 가장 오래되었지만, 가장 최근에 주목받기 시작했다. 1936년 알론조 처치(Alonzo Church)의 람다 계산법에서 시작된 이 패러다임은, **불변성(Immutability)**이라는 개념을 통해 현대 소프트웨어 아키텍처에 중요한 통찰을 제공한다.
@@ -240,6 +238,17 @@ flowchart TB
 - **불변 컴포넌트**: 가능한 많이, 순수 함수로 구성
 - **가변 컴포넌트**: 최소화, 격리
 
+### 판단 기준
+
+모든 코드를 불변으로 만들려는 시도는 비현실적이다. 아래 기준으로 어디에 얼마나 불변성을 적용할지 정하는 것이 실용적이다.
+
+| 상황 | 권장 |
+|------|------|
+| 계산·검증·변환 로직(비즈니스 규칙) | 순수 함수 + 불변 데이터로 작성 |
+| 여러 스레드가 동시에 접근하는 공유 상태 | 불변 객체로 만들어 락 자체를 제거 |
+| DB·파일·네트워크처럼 외부 세계와 맞닿는 지점 | 가변성을 인정하되, 그 범위를 이 지점으로만 한정 |
+| 성능이 critical한 대량 데이터 처리 루프 | 매 단계 객체 생성 비용을 측정해보고, 필요하면 국소적으로 가변 자료구조 허용 |
+
 ### 트랜잭션 메모리와 동시성
 
 가변 컴포넌트를 완전히 없앨 수는 없지만, 최소화한 뒤 그 좁은 영역에만 동시성 제어 기법을 집중시키면 관리 범위가 크게 줄어든다. 가변 상태가 필요한 곳에서는:
@@ -267,19 +276,35 @@ Clojure의 예:
 - 모든 변경을 이벤트로 저장
 - 현재 상태는 이벤트들의 결과
 
+전통적인 방식은 계좌의 현재 잔액만 필드에 저장하고, 입금이 일어날 때마다 그 필드를 직접 덮어쓴다.
+
 ```java
-// 전통적인 방식
+import java.math.BigDecimal;
+
 class Account {
-    private BigDecimal balance;
+    private BigDecimal balance = BigDecimal.ZERO;
     
     void deposit(BigDecimal amount) {
         balance = balance.add(amount);  // 상태 변경
     }
 }
+```
 
-// 이벤트 소싱
+이벤트 소싱은 잔액을 직접 저장하지 않는다. 대신 "입금이 있었다"는 사실 자체를 이벤트로 쌓아두고, 현재 잔액이 필요할 때마다 그 이벤트들을 처음부터 재생해 계산한다.
+
+```java
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+interface Event {
+    BigDecimal amount();
+}
+
+record DepositEvent(BigDecimal amount) implements Event {}
+
 class AccountEventStore {
-    private List<Event> events = new ArrayList<>();
+    private final List<Event> events = new ArrayList<>();
     
     void deposit(BigDecimal amount) {
         events.add(new DepositEvent(amount));  // 이벤트 추가
@@ -287,7 +312,11 @@ class AccountEventStore {
     
     BigDecimal getBalance() {
         return events.stream()
-            .reduce(BigDecimal.ZERO, this::applyEvent);  // 이벤트 재생
+            .reduce(BigDecimal.ZERO, this::applyEvent, BigDecimal::add);  // 이벤트 재생
+    }
+    
+    private BigDecimal applyEvent(BigDecimal balance, Event event) {
+        return balance.add(event.amount());
     }
 }
 ```
@@ -364,11 +393,23 @@ flowchart TB
 ### 1. 불변성을 최대화하라
 
 ```java
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+record OrderId(String value) {}
+record OrderLine(String productId, int quantity) {}
+
 // 가능한 한 불변으로
 public final class Order {
     private final OrderId id;
     private final List<OrderLine> lines;  // 불변 리스트
-    
+
+    public Order(OrderId id, List<OrderLine> lines) {
+        this.id = id;
+        this.lines = lines;
+    }
+
     public Order addLine(OrderLine line) {
         List<OrderLine> newLines = new ArrayList<>(lines);
         newLines.add(line);
