@@ -17,10 +17,10 @@
 | content/collection/cleanarchitecture/03-hexagonal-architecture-ports-adapters/index.md | 89.2 | 2026-07-18 | 3 | 에스컬레이션 | 항목3 구조(장점/한계 절 문단비율 20%), 항목5 코드(Order/Money 등 보조타입 미정의). 90점에 0.8점 차 |
 | content/collection/cleanarchitecture/04-onion-architecture-domain-centric-design/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 없음(경미: 패키지구조 절 리드문단 부재, 코드 보조타입 미정의) |
 | content/collection/cleanarchitecture/05-clean-architecture-birth-uncle-bob/index.md | 85 | 2026-07-18 | 3 | 에스컬레이션 | 항목5 코드(코드예제 전무), 항목2 흔한오해 절 부재 |
-| content/collection/cleanarchitecture/06-introduction-software-design-architecture/index.md | - | - | 0 | 미채점 | - |
-| content/collection/cleanarchitecture/07-design-vs-architecture-definition/index.md | - | - | 0 | 미채점 | - |
-| content/collection/cleanarchitecture/08-two-values-behavior-structure/index.md | - | - | 0 | 미채점 | - |
-| content/collection/cleanarchitecture/09-programming-paradigms-introduction/index.md | - | - | 0 | 미채점 | - |
+| content/collection/cleanarchitecture/06-introduction-software-design-architecture/index.md | 78.7 | 2026-07-18 | 3 | 에스컬레이션 | 항목3 구조(문단비율 34.8%), 항목1 인용 출처 미검증, 00장 커리큘럼 표 문구 불일치 |
+| content/collection/cleanarchitecture/07-design-vs-architecture-definition/index.md | 88.6 | 2026-07-18 | 3 | 에스컬레이션 | 항목5 코드(OrderRepository 보조타입 미정의), 항목7 무관 태그 5개. 90점에 1.4점 차 |
+| content/collection/cleanarchitecture/08-two-values-behavior-structure/index.md | 80.2 | 2026-07-18 | 3 | 에스컬레이션 | 항목2 판단기준 얕음, 항목4 우선순위 3중 반복, 항목5 OrderController 미정의 타입 |
+| content/collection/cleanarchitecture/09-programming-paradigms-introduction/index.md | 78.1 | 2026-07-18 | 3 | 에스컬레이션 | 항목7 태그 6개 본문 불일치, 항목2 흔한오개념 절 없음 |
 | content/collection/cleanarchitecture/10-paradigm-overview-three-types/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/11-structured-programming-goto-elimination/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/12-object-oriented-programming-polymorphism/index.md | - | - | 0 | 미채점 | - |
