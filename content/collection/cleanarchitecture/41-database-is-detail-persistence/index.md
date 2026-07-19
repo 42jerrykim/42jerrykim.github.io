@@ -300,6 +300,8 @@ flowchart TB
 
 `OrderRepository` 인터페이스는 코어에 위치하며, "주문을 저장하고 조회할 수 있다"는 **능력**만 선언한다. 이 인터페이스 자체는 MySQL도, MongoDB도, 심지어 파일 시스템도 언급하지 않는다 — 비즈니스 규칙이 알아야 할 것은 오직 이 계약뿐이다.
 
+이 인터페이스를 어디에 둘지는 설계에서 가장 자주 틀리는 지점이다. `OrderRepository`를 인프라 패키지(`infrastructure.repository`)가 아니라 유스케이스 패키지 옆에 두어야 코어가 세부사항을 참조하지 않는다는 의존성 규칙이 코드 배치로도 드러난다. 인터페이스의 메서드 이름도 "저장소가 무엇을 하는지"가 아니라 "비즈니스가 무엇을 필요로 하는지"를 기준으로 짓는다 — `executeQuery(String sql)`이 아니라 `findByCustomer(CustomerId customerId)`인 이유다.
+
 ```java
 import java.util.List;
 import java.util.Optional;
@@ -361,7 +363,11 @@ public class JpaOrderRepository implements OrderRepository {
     }
 
     @Override
-    public java.util.List<Order> findByCustomer(CustomerId customerId) { return java.util.List.of(); }
+    public java.util.List<Order> findByCustomer(CustomerId customerId) {
+        // 실제로는 jpaRepo.findByCustomerId(customerId.getValue())처럼 파생 쿼리로 구현한다.
+        // 이 예제의 범위는 save/findById 경로의 매핑 로직 검증까지로 한정한다.
+        return java.util.List.of();
+    }
 
     @Override
     public void delete(OrderId id) { jpaRepo.deleteById(id.getValue()); }
@@ -371,6 +377,8 @@ public class JpaOrderRepository implements OrderRepository {
 ### 매퍼의 역할
 
 `JpaOrderRepository`가 `OrderEntity`(데이터 모델)와 `Order`(비즈니스 모델) 사이를 직접 변환하면, Repository 구현체 하나가 두 가지 책임(영속성 접근 + 모델 변환)을 동시에 지게 된다. `OrderMapper`는 이 변환 책임만 따로 떼어내, 두 모델이 서로의 존재를 몰라도 되게 만든다.
+
+매퍼를 별도 클래스로 분리하는 이득은 테스트에서 가장 뚜렷하게 드러난다. `toDomain()`·`toEntity()` 변환 로직에 버그가 있는지 확인하려고 실제 DB 커넥션이나 Spring 컨텍스트를 띄울 필요가 없다 — `OrderMapper`는 순수 Java 객체 두 개를 받아 다른 순수 Java 객체를 반환하는 함수이므로, 밀리초 단위의 단위 테스트로 검증할 수 있다. 반대로 매핑 로직이 Repository 구현체 안에 흩어져 있었다면, 그 로직 하나를 검증하기 위해서도 JPA 전체를 부트스트랩해야 했을 것이다.
 
 ```java
 import java.math.BigDecimal;
@@ -467,6 +475,8 @@ public class OrderMapper {
 
 지금까지 설계한 구조가 실제로 "교체 가능"한지 확인하는 가장 확실한 방법은, 실제로 DB를 바꿔보는 것이다. 아래는 MySQL에서 MongoDB로 저장소를 옮기는 상황을 가정한다 — `OrderRepository` 인터페이스와 이를 사용하는 Use Case는 단 한 줄도 바뀌지 않고, 새 구현체(`MongoOrderRepository`)만 추가된다.
 
+다만 이 교체가 "공짜"는 아니라는 점을 짚어야 한다. 관계형 DB의 트랜잭션·외래 키 제약과 MongoDB의 문서 단위 원자성은 보장 범위가 다르므로, `save()` 메서드 하나의 시그니처는 같아도 그 안에서 지켜지는 일관성 수준은 달라질 수 있다. Repository 패턴이 없애는 것은 "Use Case 코드를 다시 쓰는 비용"이지, "각 저장소 기술의 특성을 이해하고 검증하는 비용"이 아니다.
+
 ```mermaid
 flowchart LR
     subgraph Before [MySQL 사용]
@@ -508,6 +518,8 @@ class Order {
         this.id = id; this.customer = customer; this.status = status;
     }
     OrderId getId() { return id; }
+    Customer getCustomer() { return customer; }
+    OrderStatus getStatus() { return status; }
 }
 interface OrderRepository {
     void save(Order order);
@@ -537,7 +549,11 @@ public class MongoOrderRepository implements OrderRepository {
     }
 
     @Override
-    public List<Order> findByCustomer(CustomerId customerId) { return List.of(); }
+    public List<Order> findByCustomer(CustomerId customerId) {
+        // 실제로는 mongo.find(query(where("customerId").is(customerId.getValue())), ...) 로 조회한다.
+        // 이 예제의 범위는 save/findById 경로의 매핑 로직 검증까지로 한정한다.
+        return List.of();
+    }
 
     @Override
     public void delete(OrderId id) { mongo.remove(new OrderId(id.getValue()), "orders"); }
@@ -545,6 +561,8 @@ public class MongoOrderRepository implements OrderRepository {
     private OrderDocument toDocument(Order order) {
         OrderDocument doc = new OrderDocument();
         doc.id = order.getId().getValue();
+        doc.customerId = order.getCustomer().getId().getValue();
+        doc.status = order.getStatus().name();
         return doc;
     }
 
