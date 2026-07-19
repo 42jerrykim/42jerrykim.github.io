@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 71
 title: "[Design Patterns] 07. 어댑터와 파사드: 인터페이스의 철학 — 실습"
 slug: "adapter-facade-interface-philosophy-practice"
@@ -284,6 +284,25 @@ public class EcommerceFacade {
 }
 ```
 
+### placeOrder 흐름
+
+`placeOrder()`는 네 개의 독립된 서비스를 정해진 순서로 호출하지만, 각 단계는 이전 단계의 성공을 전제로 하므로 어느 단계에서든 실패하면 이후 단계를 진행하지 않고 즉시 `OrderResult.failure()`를 반환해야 합니다. 아래 다이어그램은 이 제어 흐름과, 각 실패 지점에서 어떤 보상 동작이 필요한지를 함께 보여줍니다.
+
+```mermaid
+flowchart TD
+    Start["클라이언트가 placeOrder(request) 호출"] --> CheckStock{"1. 재고 확인</br>checkAvailability()"}
+    CheckStock -->|"재고 부족"| FailStock["OrderResult.failure(재고 부족)</br>반환, 이후 단계 진행 안 함"]
+    CheckStock -->|"재고 있음"| Reserve["reserveItems()</br>재고 예약"]
+    Reserve --> Pay{"2. 결제 처리</br>processPayment()"}
+    Pay -->|"결제 실패"| FailPay["예약된 재고 해제</br>OrderResult.failure(결제 실패) 반환"]
+    Pay -->|"결제 성공"| Ship{"3. 배송 예약</br>scheduleDelivery()"}
+    Ship -->|"예약 실패"| FailShip["결제 취소 트리거</br>OrderResult.failure(배송 실패) 반환"]
+    Ship -->|"예약 성공"| Notify["4. 알림 발송</br>sendOrderConfirmation()"]
+    Notify --> Success["OrderResult.success(orderId, trackingNumber) 반환"]
+```
+
+주의할 점은 이 흐름의 앞부분 세 단계(재고→결제→배송)만 실패 시 되돌릴 대상이 있고, 마지막 알림 발송은 실패해도 주문 자체를 취소할 이유가 없다는 것입니다. 즉 알림 발송 실패는 로그를 남기고 별도로 재시도하는 정도로 처리하고, `OrderResult`는 이미 확정된 주문 성공으로 반환하는 편이 자연스럽습니다. `placeOrder()`를 구현할 때는 이렇게 단계별로 "실패 시 무엇을 되돌릴지"와 "실패해도 주문을 무효화할 필요가 없는지"를 구분해서 다뤄야 합니다.
+
 ### 보조 타입 정의 (컴파일용 최소 스텁)
 
 `OrderRequest`/`OrderResult`/`PaymentInfo`/`Address`도 마찬가지로 아래 최소 스텁이 있어야 `EcommerceFacade`가 컴파일됩니다.
@@ -407,6 +426,16 @@ public class UnifiedDataService {
     }
 }
 ```
+
+## 흔한 오개념
+
+이 실습을 진행하며 자주 빠지는 오해 세 가지를 짚어봅니다.
+
+**오해 1: "Adapter가 있으면 어댑티(adaptee)의 기능을 그대로 다 쓸 수 있다."** `LegacyPaymentAdapter.refundPayment()`가 항상 `false`를 반환하는 이유는 `LegacyPaymentSystem` 자체가 애초에 환불 API를 제공하지 않기 때문입니다. Adapter는 인터페이스의 시그니처 차이만 흡수할 뿐, 어댑티가 갖지 않은 기능을 새로 만들어내지는 못합니다. 어댑티에 없는 기능은 예외를 던지거나 별도 배치/수동 프로세스로 우회하는 등 실패를 명시적으로 드러내야 하며, 조용히 `false`만 반환하고 넘어가면 클라이언트는 왜 환불이 안 되는지 알 방법이 없습니다.
+
+**오해 2: "Facade로 여러 단계를 하나의 메서드로 묶으면 DB 트랜잭션처럼 자동으로 롤백된다."** `EcommerceFacade.placeOrder()`는 재고 확인, 결제, 배송 예약, 알림이라는 네 개의 독립된 서비스를 순차 호출할 뿐이며, 언어나 프레임워크가 실패 시 이전 단계를 알아서 되돌려주지 않습니다. 배송 예약이 실패했는데 이미 처리된 결제를 그대로 둔 채 실패만 반환하면 고객은 결제는 됐지만 배송은 안 되는 상태에 놓입니다. 위 "placeOrder 흐름" 다이어그램에서 보듯, 각 단계 실패 시 이전 단계를 되돌리는 보상 로직은 Facade 패턴이 저절로 제공하는 것이 아니라 구현자가 직접 작성해야 하는 책임입니다.
+
+**오해 3: "Adapter와 Facade는 둘 다 다른 클래스를 감싸므로 사실상 같은 패턴이다."** 두 패턴 모두 클라이언트와 실제 구현 사이에 간접 계층을 두지만, Adapter는 이미 존재하는 인터페이스 하나를 클라이언트가 기대하는 다른 인터페이스로 1:1 변환하는 것이 목적이고(`LegacyPaymentAdapter`), Facade는 서로 다른 여러 인터페이스를 하나의 단순화된 진입점으로 조합하는 것이 목적입니다(`EcommerceFacade`). Adapter는 기존 인터페이스를 사실상 대체하는 반면, Facade는 기존 서브시스템 클래스 위에 새 계층을 얹을 뿐 서브시스템에 대한 직접 접근 자체를 막지는 않습니다. 두 패턴의 차이는 아래 "Adapter vs Facade 비교" 표에서 항목별로 다시 정리합니다.
 
 ## 체크리스트
 

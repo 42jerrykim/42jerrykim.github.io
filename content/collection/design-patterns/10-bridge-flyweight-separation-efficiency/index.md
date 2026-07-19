@@ -1,12 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 100
 title: "[Design Patterns] 10. 브릿지와 플라이웨이트: 분리와 효율성"
 slug: "bridge-flyweight-separation-efficiency"
 description: "추상화와 구현을 분리해 조합 폭발을 막는 Bridge 패턴과, 객체 상태를 공유해 메모리를 절약하는 Flyweight 패턴을 비교합니다. 내재적·외재적 상태 분리, 성능 벤치마크, 두 패턴의 결합 사례까지 폭넓게 다룹니다."
 image: "wordcloud.png"
 date: 2024-12-10T10:00:00+09:00
-lastmod: 2026-07-17T14:30:00+09:00
+lastmod: 2026-07-18T10:00:00+09:00
 categories:
 - Design Patterns
 - Structural Patterns
@@ -113,6 +113,11 @@ Bridge 패턴의 구조는 추상화 계층(`Notification` 등)과 구현 계층
 아래 예제는 알림 시스템을 통해 이 구조를 보여준다. `Notification` 계층(추상화)은 "무엇을 언제 보낼지"를 책임지고, `MessageSender` 계층(구현)은 "어떻게 전달할지"를 책임진다. `setSender` 메서드로 런타임에 구현체를 교체할 수 있다는 점이 이 구조의 실질적 이점이다.
 
 ```java
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.Timer;
+import java.util.TimerTask;
+
 // 문제 상황: 조합 폭발을 피하고 싶은 경우
 // 여러 종류의 메시징 시스템 × 여러 종류의 전송 방식
 
@@ -423,9 +428,16 @@ Flyweight의 설계 의도는 객체가 가진 상태를 두 종류로 구분하
 
 이 구분이 성립하려면 내재적 상태를 불변 객체로 만들고, 외재적 상태는 별도의 Context 객체나 메서드 매개변수로 전달해야 한다. Flyweight Factory는 동일한 내재적 상태를 갖는 객체를 캐싱해 재사용함으로써, 개별 인스턴스를 새로 생성하는 대신 이미 존재하는 Flyweight를 공유한다.
 
+Flyweight는 "캐시가 있는 팩토리"라는 표면적 형태 때문에 오브젝트 풀(Object Pool)이나 단순 캐싱과 자주 혼동되지만, 셋은 해결하는 문제와 인스턴스의 생애주기가 다르다. 오브젝트 풀은 DB 커넥션이나 스레드처럼 **생성 비용이 비싼 가변 객체**를 미리 만들어 두고 "대여(checkout) → 사용 → 반납(release)" 주기로 재사용하는 기법이다. 반납된 객체는 내부 상태가 초기화되어 다음 대여자에게 다른 용도로 다시 쓰인다 — 즉 풀 안의 한 인스턴스가 시간에 따라 여러 논리적 신원을 거쳐 간다. 단순 캐싱은 "같은 입력에 같은 계산 결과"를 재사용해 재계산을 피하는 것이 목적이며, 캐시 항목은 각자 독립적으로 존재하다가 개별적으로 축출(evict)된다. 반면 Flyweight의 목적은 재계산 회피나 생성 비용 회피가 아니라 **동시에 살아 있는 논리적 인스턴스 수를 물리적 인스턴스 수보다 훨씬 적게 유지하는 것**이다 — `ConcreteCharacter('A', "Arial", 12)`는 대여되었다가 반납되는 것이 아니라, 프로그램이 종료될 때까지 동일한 신원으로 계속 공유되는 불변 객체이며, 문서에 'A'가 10만 번 등장해도 그 인스턴스는 결코 늘어나지 않는다. 따라서 "캐시에 값을 담아 재사용하니 Flyweight"라고 판단해 가변 상태를 캐시 대상 객체에 그대로 남겨두면, 한 인스턴스를 공유하는 여러 컨텍스트가 서로의 상태를 오염시키는 버그로 이어진다 — 이것이 Flyweight를 흉내 낸 캐싱에서 가장 흔히 발생하는 오적용이다.
+
 아래 텍스트 에디터 예제에서 `ConcreteCharacter`(내재적 상태: 문자, 폰트, 글리프 데이터)는 팩토리에 의해 공유되고, `CharacterContext`(외재적 상태: 좌표, 색상)만 문자 하나하나마다 새로 생성된다. 알파벳과 특수문자 수십 종만 있으면 되므로, 수십만 자를 렌더링해도 Flyweight 인스턴스 수는 수십 개 수준에 머문다.
 
 ```java
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 // 문제 상황: 텍스트 에디터에서 백만 개의 문자를 렌더링
 // 각 문자마다 폰트, 크기, 색상 정보를 개별적으로 저장한다면?
 
@@ -668,8 +680,15 @@ enum Color {
 ### 게임 개발에서의 Flyweight 활용
 
 ```java
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+
 // 게임에서 파티클 시스템 최적화
 // 수만 개의 파티클이 동시에 존재하는 상황
+// 아래 Texture / Graphics / TextureManager / SparkParticle / ExplosionParticle 는
+// 실제 게임 엔진(예: libGDX, LWJGL)이 제공한다고 가정한 가상 타입이며, 이 파일 안에서는 정의하지 않는다.
 
 // Flyweight 인터페이스
 interface ParticleFlyweight {
@@ -884,71 +903,96 @@ Flyweight 패턴:
 
 ### 언제 어떤 패턴을 선택할 것인가?
 
+Bridge와 Flyweight 중 무엇을 적용할지는 막연한 감이 아니라 설계 상황이 가진 두 가지 정량적 특성으로 판단할 수 있다. Bridge는 추상화 축의 변형 수와 구현 축의 변형 수를 곱한 값(N×M, 조합해서 만들 때 필요한 클래스 수)이 두 축을 단순히 더한 값(N+M, 분리했을 때 필요한 클래스 수)보다 클 때, 또는 런타임에 구현체를 교체해야 할 때 적용을 검토한다. Flyweight는 예상 인스턴스 수가 일정 임계치를 넘고 내재적 상태와 외재적 상태를 분리할 수 있을 때 적용을 검토한다. 두 조건이 동시에 성립하면 두 패턴을 결합해야 한다는 신호다.
+
+아래 `PatternDecisionGuide`는 이 두 조건을 실제로 계산하는 판단 로직이다. `DesignContext`에 설계 상황(추상화/구현 변형 수, 런타임 교체 필요 여부, 예상 인스턴스 수, 상태 분리 가능 여부)을 채워 넣으면 `recommend`가 `BRIDGE`, `FLYWEIGHT`, `BOTH`, `NEITHER` 중 하나를 결정론적으로 반환한다.
+
 ```java
-// 선택 가이드라인과 결합 가능성
+// 선택 가이드라인을 실제로 계산하는 의사결정 로직
+
+import java.util.List;
 
 public class PatternDecisionGuide {
-    
-    // Bridge 패턴 선택 시나리오
-    public void bridgeScenarios() {
-        /*
-        Bridge 패턴을 선택해야 하는 경우:
-        
-        1. 플랫폼 독립적 코드가 필요할 때
-           - 크로스 플랫폼 라이브러리
-           - 다중 데이터베이스 지원
-           - 다양한 OS 지원
-        
-        2. 런타임에 구현체를 교체해야 할 때
-           - A/B 테스트
-           - 설정에 따른 동작 변경
-           - 환경별 다른 구현
-        
-        3. 추상화와 구현이 독립적으로 확장되어야 할 때
-           - 새로운 추상화 타입 추가
-           - 새로운 구현 방식 추가
-           - 양쪽 모두 빈번한 변경
-        */
+
+    enum RecommendedPattern { BRIDGE, FLYWEIGHT, BOTH, NEITHER }
+
+    // 설계 상황을 나타내는 입력값
+    static class DesignContext {
+        final String name;
+        final int abstractionVariants;    // 추상화 축의 변형 수 (예: 알림 종류)
+        final int implementationVariants; // 구현 축의 변형 수 (예: 전송 방식)
+        final boolean needsRuntimeSwap;   // 런타임에 구현체를 교체해야 하는가
+        final long expectedInstanceCount; // 예상 인스턴스 수
+        final boolean stateSeparable;     // 내재적/외재적 상태 분리가 자연스러운가
+
+        DesignContext(String name, int abstractionVariants, int implementationVariants,
+                      boolean needsRuntimeSwap, long expectedInstanceCount, boolean stateSeparable) {
+            this.name = name;
+            this.abstractionVariants = abstractionVariants;
+            this.implementationVariants = implementationVariants;
+            this.needsRuntimeSwap = needsRuntimeSwap;
+            this.expectedInstanceCount = expectedInstanceCount;
+            this.stateSeparable = stateSeparable;
+        }
     }
-    
-    // Flyweight 패턴 선택 시나리오
-    public void flyweightScenarios() {
-        /*
-        Flyweight 패턴을 선택해야 하는 경우:
-        
-        1. 대량의 유사한 객체가 필요할 때
-           - 게임의 파티클 시스템
-           - 문서 편집기의 문자 객체
-           - 맵 타일 시스템
-        
-        2. 메모리 사용량이 병목일 때
-           - 모바일 환경
-           - 임베디드 시스템
-           - 대용량 데이터 처리
-        
-        3. 객체의 외재적 상태가 명확히 분리 가능할 때
-           - 위치, 색상, 크기 등이 개별적
-           - 공통 데이터가 대용량
-           - 불변 데이터 위주
-        */
+
+    // Flyweight를 검토할 인스턴스 수 임계치 (프로젝트 상황에 맞게 조정 가능한 예시값)
+    private static final long FLYWEIGHT_INSTANCE_THRESHOLD = 10_000L;
+
+    // N×M(조합 시 클래스 수)이 N+M(분리 시 클래스 수)보다 큰지로 조합 폭발 여부를 판정
+    static boolean combinationExplosionExpected(DesignContext ctx) {
+        long combined = (long) ctx.abstractionVariants * ctx.implementationVariants;
+        long separated = ctx.abstractionVariants + ctx.implementationVariants;
+        return combined > separated;
     }
-    
-    // 두 패턴의 결합
-    public void combinedPattern() {
-        /*
-        🔄 Bridge + Flyweight 결합 사례:
-        
-        게임 엔진의 렌더링 시스템:
-        - Bridge: 다양한 그래픽 API (OpenGL, DirectX, Vulkan)
-        - Flyweight: 대량의 스프라이트/텍스처 공유
-        
-        문서 편집기:
-        - Bridge: 다양한 렌더링 엔진 (PDF, HTML, Print)
-        - Flyweight: 글꼴과 문자 정보 공유
-        */
+
+    static boolean shouldApplyBridge(DesignContext ctx) {
+        return combinationExplosionExpected(ctx) || ctx.needsRuntimeSwap;
+    }
+
+    static boolean shouldApplyFlyweight(DesignContext ctx) {
+        return ctx.expectedInstanceCount >= FLYWEIGHT_INSTANCE_THRESHOLD && ctx.stateSeparable;
+    }
+
+    static RecommendedPattern recommend(DesignContext ctx) {
+        boolean bridge = shouldApplyBridge(ctx);
+        boolean flyweight = shouldApplyFlyweight(ctx);
+        if (bridge && flyweight) return RecommendedPattern.BOTH;
+        if (bridge) return RecommendedPattern.BRIDGE;
+        if (flyweight) return RecommendedPattern.FLYWEIGHT;
+        return RecommendedPattern.NEITHER;
+    }
+
+    public static void main(String[] args) {
+        List<DesignContext> scenarios = List.of(
+            new DesignContext("알림 시스템 (알림 3종 x 전송 3종, 런타임 교체 필요)", 3, 3, true, 0L, false),
+            new DesignContext("텍스트 에디터 (문자 10만개 렌더링)", 1, 1, false, 100_000L, true),
+            new DesignContext("게임 렌더링 (API 2종 x 렌더러 3종 + 스프라이트 5만개)", 2, 3, true, 50_000L, true),
+            new DesignContext("단순 CRUD 서비스 (변형 1종, 인스턴스 10개)", 1, 1, false, 10L, false)
+        );
+
+        for (DesignContext ctx : scenarios) {
+            RecommendedPattern result = recommend(ctx);
+            System.out.printf("%-55s -> %-9s (조합폭발=%b, 대량공유=%b)%n",
+                ctx.name, result, combinationExplosionExpected(ctx), shouldApplyFlyweight(ctx));
+        }
     }
 }
 
+/*
+ * 실행 결과:
+ * 알림 시스템 (알림 3종 x 전송 3종, 런타임 교체 필요)      -> BRIDGE    (조합폭발=true, 대량공유=false)
+ * 텍스트 에디터 (문자 10만개 렌더링)                       -> FLYWEIGHT (조합폭발=false, 대량공유=true)
+ * 게임 렌더링 (API 2종 x 렌더러 3종 + 스프라이트 5만개)     -> BOTH      (조합폭발=true, 대량공유=true)
+ * 단순 CRUD 서비스 (변형 1종, 인스턴스 10개)               -> NEITHER   (조합폭발=false, 대량공유=false)
+ */
+```
+
+첫 번째 시나리오는 3×3=9개 클래스가 3+3=6개보다 많아 조합 폭발 조건을 만족하고 런타임 교체도 필요하므로 `BRIDGE`로 판정된다. 두 번째 시나리오는 인스턴스 수(10만)가 임계치를 넘고 상태 분리가 가능하므로 `FLYWEIGHT`로, 세 번째는 두 조건을 모두 만족해 `BOTH`로, 네 번째는 어느 조건도 만족하지 않아 `NEITHER`로 판정된다. 여기서 쓴 임계치(1만 개)와 조합 폭발 기준(N×M > N+M)은 절대적 규칙이 아니라 판단의 출발점이며, 실제 임계치는 클래스 관리 비용과 메모리 제약에 따라 팀이 조정해야 한다.
+
+아래는 Bridge와 Flyweight를 실제로 결합한 게임 렌더링 시스템 예시다. 그래픽 API(OpenGL/DirectX/Vulkan)를 Bridge로 교체 가능하게 하고, 스프라이트 데이터는 Flyweight로 공유한다.
+
+```java
 // 실제 결합 예시: 게임 렌더링 시스템
 interface RenderingEngine {  // Bridge의 구현 인터페이스
     void drawSprite(SpriteData sprite, float x, float y, float scale);
@@ -988,6 +1032,8 @@ class GameRenderer {  // Bridge의 추상화
 
 ### 성능 측정 결과
 
+Bridge의 간접 호출 비용과 Flyweight의 메모리 절감 효과를 논하기 전에, 무엇이 상대적으로 무시할 만한 오버헤드이고 무엇이 실측이 필요한 수치인지부터 구분해야 한다. 인터페이스를 통한 가상 호출(virtual call)은 JIT가 충분히 워밍업된 이후에는 인라인화나 분기 예측으로 비용이 거의 사라지는 경우가 많지만, 그 정도는 JVM 구현·호출 지점의 다형성(monomorphic/polymorphic)·JIT 컴파일 단계에 따라 달라지므로 "20% 오버헤드"처럼 고정된 수치로 일반화할 수 없다. 반대로 Flyweight의 메모리 절감률은 원리상 예측 가능하다 — 공유되는 내재적 상태 인스턴스 수가 K개로 고정된 채 컨텍스트 수 N이 늘어나면, 절감률은 N이 커질수록 100%에 점근한다. 아래 표는 이 두 가지 서로 다른 성격의 수치를 보여주기 위한 예시이며 실제 벤치마크 실행 결과가 아니다.
+
 ```java
 // 예시 성능 특성 (실측 아님)
 
@@ -1014,6 +1060,29 @@ Flyweight 패턴 메모리 효율성:
 
 ※ 위 수치는 이해를 돕기 위한 예시이며 실측치가 아닙니다. 실제 절약률은 객체 크기, JVM/런타임, 힙 설정에 따라 달라집니다.
 */
+
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
+import java.lang.management.MemoryUsage;
+import java.util.ArrayList;
+import java.util.List;
+
+// 이 벤치마크가 "Flyweight 미적용" 대조군으로 쓰는 문자 객체.
+// 위쪽 Character_BAD와 같은 문제(폰트/크기/색상을 매번 중복 보관)를 보여주기 위한 별도 클래스다.
+class RegularCharacter {
+    private final char character;
+    private final String fontFamily;
+    private final int fontSize;
+    private final int x, y;
+
+    public RegularCharacter(char character, String fontFamily, int fontSize, int x, int y) {
+        this.character = character;
+        this.fontFamily = fontFamily;
+        this.fontSize = fontSize;
+        this.x = x;
+        this.y = y;
+    }
+}
 
 // 메모리 사용량 실시간 측정
 public class PerformanceMonitor {
@@ -1053,9 +1122,24 @@ public class PerformanceMonitor {
 }
 ```
 
+`PerformanceMonitor`는 표의 예시 수치를 감으로 받아들이지 않고 실제 힙 사용량으로 검증하는 최소한의 방법을 보여준다. `MemoryMXBean.getHeapMemoryUsage()`는 JVM이 관리하는 힙의 현재 사용량·최대치를 조회하는 표준 API이며, 객체 10만 개를 일반 방식과 Flyweight 방식으로 각각 생성한 뒤 그 사이의 힙 사용량 변화를 비교하는 데 쓸 수 있다. 다만 `System.gc()` 호출은 JVM에 가비지 컬렉션을 강력히 "요청"할 뿐 즉시 실행이나 완전한 회수를 보장하지 않으므로(GC 실행 여부와 시점은 명세상 구현 정의다), 이 방식으로 얻은 측정값에는 노이즈가 섞일 수 있다. 실무에서 신뢰도 높은 비교가 필요하다면 이 수동 측정보다 JFR(Java Flight Recorder)이나 프로파일러의 힙 덤프 비교, 혹은 JMH 같은 벤치마크 도구를 사용하는 편이 안전하다.
+
 ### 실무 적용 가이드라인
 
+Bridge와 Flyweight를 실무에 적용할 때 실제로 부딪히는 문제는 "이 패턴을 쓸지 말지"가 아니라 패턴 주변의 세부 구현이다. Bridge는 구현체 호출 방식(동기 단건 호출 대 비동기 배치 호출)에 따라 처리량이 수 배 차이 날 수 있고, Flyweight는 팩토리 캐시가 무한정 자라나 "메모리를 아끼려던 캐시 자체가 새로운 메모리 누수원이 되는" 역설을 어떻게 막느냐가 관건이다. 아래 `PracticalGuidelines`는 이 두 문제에 대한 구체적인 대응 — Bridge 쪽은 큐잉을 통한 메시지 배치 전송, Flyweight 쪽은 캐시 크기 제한과 LRU 축출 — 을 코드로 보여준다.
+
 ```java
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
+
 // 실무에서의 주의사항과 최적화 팁
 
 public class PracticalGuidelines {
@@ -1081,6 +1165,18 @@ public class PracticalGuidelines {
            - 생명주기 관리
         */
         
+        // 큐에 쌓인 메시지 한 건을 나타내는 값 객체.
+        // MessageSender는 Bridge 절(위 BridgePatternExample)에서 정의한 인터페이스를 재사용한다고 가정한다.
+        class Message {
+            final String text;
+            final String recipient;
+
+            Message(String text, String recipient) {
+                this.text = text;
+                this.recipient = recipient;
+            }
+        }
+
         // 예시: 최적화된 Bridge 구현
         class OptimizedMessageBridge {
             private MessageSender sender;
@@ -1103,7 +1199,12 @@ public class PracticalGuidelines {
                     batch.add(messageQueue.poll());
                 }
                 if (!batch.isEmpty()) {
-                    sender.sendBatch(batch);  // 배치 전송으로 효율성 향상
+                    // MessageSender 인터페이스는 sendBatch를 선언하지 않으므로 개별 호출로 대체한다.
+                    // 실제 전송 프로토콜이 배치 API를 지원한다면 인터페이스에 sendBatch(List<Message>)를
+                    // 추가해 한 번의 네트워크 호출로 묶는 것이 효율적이다.
+                    for (Message m : batch) {
+                        sender.sendMessage(m.text, m.recipient);
+                    }
                 }
             }
         }
@@ -1160,6 +1261,8 @@ public class PracticalGuidelines {
     }
 }
 ```
+
+두 구현에서 눈여겨볼 지점은 최적화가 패턴 자체의 구조를 바꾸지 않고 그 접점에 표준적인 시스템 프로그래밍 기법을 얹는 방식으로 이뤄진다는 것이다. `OptimizedMessageBridge`는 Bridge가 정의하는 위임 호출(`sender.sendMessage`) 자체는 그대로 둔 채 앞단에 큐와 스케줄러를 얹어 호출 빈도만 조절했고, `OptimizedFlyweightFactory`도 Flyweight의 공유 개념은 그대로 두고 `maxSize`라는 캐시 상한과 축출 정책만 추가했다. 다만 위 `evictOldest()`는 `HashMap`/`ConcurrentHashMap`의 반복 순서가 삽입 순서를 보장하지 않으므로 실제로는 "임의의 한 항목 제거"에 가깝다 — 진짜 LRU가 필요하다면 `LinkedHashMap`을 `accessOrder=true`로 생성해 `removeEldestEntry`를 오버라이드하거나, `Caffeine`처럼 검증된 캐시 라이브러리를 쓰는 편이 안전하다.
 
 ## 한눈에 보는 Bridge & Flyweight 패턴
 
@@ -1252,27 +1355,13 @@ Flyweight Pattern →
 - IoT 디바이스 최적화
 ```
 
-### 실무자를 위한 핵심 가이드라인:
+### 패턴 결합의 리스크와 흔한 오적용
 
-```
-Bridge 패턴 적용 시점:
-- 추상화와 구현이 독립적으로 변화해야 할 때
-- 런타임에 동작을 바꿔야 하는 경우
-- 플랫폼/환경 독립적 코드가 필요할 때
-- 조합 폭발 문제가 예상될 때
+두 패턴을 결합할 때 가장 흔히 저지르는 실수는 Flyweight 인스턴스가 Bridge의 구현체(Implementor) 참조를 필드로 붙들고 있는 것이다. 앞서 게임 렌더링 결합 예제에서 `SpriteData.render(RenderingEngine engine, ...)`가 `engine`을 매개변수로만 받고 필드로 저장하지 않은 것은 우연이 아니라 핵심 설계 결정이다. 만약 `SpriteData`가 `RenderingEngine`을 내재적 상태(필드)로 들고 있었다면, 같은 스프라이트라도 OpenGL로 그릴 때와 Vulkan으로 그릴 때 서로 다른 `SpriteData` 인스턴스가 필요해져 캐시 키에 렌더러 종류까지 포함해야 한다. 이는 텍스처 종류 몇 개면 충분했던 Flyweight 풀을 "텍스처 종류 × 렌더러 종류"로 다시 곱해 불리는 셈이어서, Bridge가 막으려던 조합 폭발이 Flyweight 캐시 내부에서 그대로 재현된다. 두 패턴을 결합할 때는 항상 "Bridge가 다루는 변화 축(구현체)이 Flyweight의 내재적 상태에 섞여 들어가지 않는가"를 점검해야 한다.
 
-Flyweight 패턴 적용 시점:
-- 동일한 타입의 객체를 대량으로 생성할 때
-- 메모리 사용량이 성능 병목일 때
-- 객체의 외재적 상태가 명확히 분리 가능할 때
-- 불변 데이터 위주의 객체일 때
+Bridge의 흔한 오적용은 구현체가 실제로는 하나뿐인데 "나중에 확장될지 모른다"는 이유만으로 추상화-구현 계층을 미리 분리해두는 경우다. SMTP 서버 하나만 쓰는 시스템에 `MessageSender` 인터페이스와 `EmailSender` 구현체를 미리 나눠두는 것은, 두 번째 구현체가 실제로 필요해지는 시점에 리팩터링으로 충분히 감당할 수 있는 비용을 미리 지불하는 것과 같다(YAGNI 위반). 앞서 `PatternDecisionGuide`가 판정 기준으로 삼은 조합 폭발 조건(N×M > N+M)은 N과 M이 모두 2 이상일 때 의미가 있으며, 구현체가 하나뿐인 M=1 상황에서는 애초에 조합 폭발이 발생할 수 없으므로 Bridge를 도입할 근거가 없다.
 
-주의사항:
-- Bridge: 과도한 추상화로 인한 복잡성 증가
-- Flyweight: 외재적 상태 관리의 복잡성
-- 두 패턴 모두 설계 복잡도 증가 비용 고려
-- 성능 측정을 통한 효과 검증 필수
-```
+Flyweight의 흔한 오적용은 두 갈래로 나타난다. 첫째는 인스턴스 수가 수백 개 수준에 그치는데도 미리 팩토리·캐시 계층을 도입해, 절감되는 메모리(수십 KB 단위)보다 캐시 수명 관리·동시성 제어에 드는 코드 복잡성이 더 커지는 경우다 — `PatternDecisionGuide`의 `FLYWEIGHT_INSTANCE_THRESHOLD`처럼 명시적 임계치를 정하지 않고 "일단 캐싱해두면 좋겠지"라는 감으로 도입할 때 생긴다. 둘째는 위 오개념 교정 절에서 다룬 것과 같이, 외재적 상태를 끝까지 분리하지 못하고 가변 필드(예: 마지막으로 렌더링한 좌표, 마지막 색상)를 내재적 상태 객체에 남겨두는 경우다. 이때 캐시는 이름만 Flyweight일 뿐 실질적으로는 여러 컨텍스트가 하나의 가변 인스턴스를 공유해 서로의 상태를 덮어쓰는 버그의 근원이 된다.
 
 Bridge와 Flyweight 패턴은 **"어떻게 더 유연하고 효율적인 시스템을 만들 것인가?"**라는 소프트웨어 엔지니어링의 영원한 질문에 대한 두 가지 다른 접근법을 제시합니다. 이들을 적절히 조합하여 활용할 때, 우리는 변화에 유연하면서도 자원을 효율적으로 사용하는 시스템을 구축할 수 있습니다.
 

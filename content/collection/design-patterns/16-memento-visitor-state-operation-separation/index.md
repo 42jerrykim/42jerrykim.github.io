@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 160
 title: "[Design Patterns] 16. 메멘토와 비지터: 상태 보존과 연산 분리"
 slug: "memento-visitor-state-operation-separation"

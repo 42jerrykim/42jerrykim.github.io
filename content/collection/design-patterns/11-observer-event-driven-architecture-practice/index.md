@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 111
 title: "[Design Patterns] 11. 옵저버: 이벤트 드리븐 아키텍처의 핵심 — 실습"
 slug: "observer-event-driven-architecture-practice"
@@ -40,7 +40,6 @@ tags:
 - System-Design
 - Reliability
 - Scalability(확장성)
-- Refactoring(리팩토링)
 - Code-Quality(코드품질)
 ---
 
@@ -63,6 +62,9 @@ tags:
 아래는 `Stock`의 attach/detach/notifyObservers와 `StockLogger` 옵저버까지 포함한 완성 참조 구현이다. `StockDisplay`, `StockAlert`는 이 구조를 참고해 직접 구현한다.
 
 ```java
+import java.util.ArrayList;
+import java.util.List;
+
 // Subject 인터페이스
 public interface StockSubject {
     void attach(StockObserver observer);
@@ -127,20 +129,36 @@ public class StockLogger implements StockObserver {
 
 ## 과제 2: 온도 센서 알림
 
-이 과제는 단순 통지가 아니라 조건부 통지(임계값을 넘었을 때만 반응)를 Observer 구조 위에 얹는 감각을 익히는 것이 목적이다. `TemperatureSensor`는 값이 바뀌었다는 사실만 알리고, 임계값 판단과 알림 채널 선택은 각 Observer가 책임진다는 역할 분리에 주목한다.
+이 과제는 단순 통지가 아니라 조건부 통지(임계값을 넘었을 때만 반응)를 Observer 구조 위에 얹는 감각을 익히는 것이 목적이다. `TemperatureSensor`는 값이 바뀌었다는 사실만 알리고, 임계값 판단과 알림 채널 선택은 각 Observer가 책임진다는 역할 분리에 주목한다. attach/detach/notifyObservers는 과제 1의 `Stock`과 동일한 방식으로 이미 완성해 두었으니, 이번 과제에서는 그 위에 얹을 조건부 로직(임계값, 채널, 빈도 제한)에 집중한다.
 
 ### 기본 구조
 ```java
+import java.util.ArrayList;
+import java.util.List;
+
 public class TemperatureSensor {
     private double temperature;
-    private List<TemperatureObserver> observers = new ArrayList<>();
-    
+    private final List<TemperatureObserver> observers = new ArrayList<>();
+
+    public void attach(TemperatureObserver observer) {
+        observers.add(observer);
+    }
+
+    public void detach(TemperatureObserver observer) {
+        observers.remove(observer);
+    }
+
     public void setTemperature(double temperature) {
         this.temperature = temperature;
         notifyObservers();
     }
-    
-    // TODO: Observer 관리 메서드 구현
+
+    private void notifyObservers() {
+        // 통지 도중 attach/detach가 호출될 수 있으므로 방어적으로 복사한다
+        for (TemperatureObserver observer : new ArrayList<>(observers)) {
+            observer.onTemperatureChanged(temperature);
+        }
+    }
 }
 
 public interface TemperatureObserver {
@@ -149,7 +167,7 @@ public interface TemperatureObserver {
 ```
 
 ### 구현 과제
-- 임계값 기반 알림 시스템
+- 임계값 기반 알림 시스템 — `onTemperatureChanged` 내부에서 임계값을 넘었을 때만 실제 알림을 발생시키는 Observer 구현
 - 다양한 알림 채널 (이메일, SMS, 로그)
 - 알림 빈도 제한 기능
 
@@ -169,26 +187,56 @@ public interface TemperatureObserver {
 | 적합한 상황 | 전역 캐시, 이벤트 버스 | UI 컴포넌트, 명확한 스코프 객체 |
 
 ### WeakReference Observer
+
+이 예시는 별도의 `Observer` 타입을 새로 만들지 않고, 과제 1에서 정의한 `StockSubject`/`StockObserver`를 그대로 구현한다. `update`의 시그니처가 `update(String symbol, double price, double change)`이므로, `Stock`처럼 symbol/price/change 필드를 두고 통지 시 이 값을 넘긴다.
+
 ```java
-public class WeakReferenceSubject {
-    private List<WeakReference<Observer>> observers = new ArrayList<>();
-    
-    public void attach(Observer observer) {
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+// StockSubject/StockObserver(위 과제 1 정의)를 구현하는 WeakReference 기반 Subject
+public class WeakReferenceStock implements StockSubject {
+    private final String symbol;
+    private double price;
+    private double change;
+    private final List<WeakReference<StockObserver>> observers = new ArrayList<>();
+
+    public WeakReferenceStock(String symbol, double initialPrice) {
+        this.symbol = symbol;
+        this.price = initialPrice;
+    }
+
+    @Override
+    public void attach(StockObserver observer) {
         observers.add(new WeakReference<>(observer));
     }
-    
+
+    @Override
+    public void detach(StockObserver observer) {
+        observers.removeIf(ref -> ref.get() == observer);
+    }
+
+    @Override
     public void notifyObservers() {
-        Iterator<WeakReference<Observer>> iterator = observers.iterator();
+        Iterator<WeakReference<StockObserver>> iterator = observers.iterator();
         while (iterator.hasNext()) {
-            WeakReference<Observer> ref = iterator.next();
-            Observer observer = ref.get();
-            
+            WeakReference<StockObserver> ref = iterator.next();
+            StockObserver observer = ref.get();
+
             if (observer == null) {
                 iterator.remove(); // GC된 Observer 제거
             } else {
-                observer.update(this);
+                observer.update(symbol, price, change);
             }
         }
+    }
+
+    public void setPrice(double newPrice) {
+        this.change = newPrice - this.price;
+        this.price = newPrice;
+        notifyObservers();
     }
 }
 ```
@@ -218,7 +266,8 @@ public class AsyncObserver implements StockObserver {
     }
 
     private void processUpdate(String symbol, double price, double change) {
-        // 실제 처리 로직: 가격 변동을 별도 로그 저장소에 비동기로 기록
+        // 이 자리에서 실제로는 가격 이력 집계, 알림 발송 등 무거운 작업을 수행한다.
+        // 여기서는 단순화를 위해 콘솔 출력으로 대체한다.
         System.out.printf("[Async] %s price change recorded: $%.2f (%+.2f)%n",
             symbol, price, change);
     }
@@ -226,6 +275,8 @@ public class AsyncObserver implements StockObserver {
 ```
 
 ## 완성도 체크리스트
+
+아래 체크리스트는 과제 1~3에서 다룬 결함을 실제로 재현해 검증했는지 확인하는 용도다. 예를 들어 "메모리 누수 시나리오 테스트" 항목은 `WeakReferenceStock` 없이 순수 `Stock`에 10,000개의 Observer를 attach만 하고 detach하지 않은 채 힙 덤프를 떠 보면, 과제 3에서 설명한 강한 참조로 인한 누수가 실제로 관찰되는지 확인하라는 뜻이다. 체크박스에 표시하기 전에 해당 시나리오를 코드로 직접 재현해 보는 것을 권장한다.
 
 ### 기본 구현
 - [ ] Subject/Observer 인터페이스 구현 — `Stock`이 구체 Observer 타입을 몰라도 `StockObserver` 인터페이스만으로 통지할 수 있는지 확인
@@ -253,56 +304,101 @@ public class AsyncObserver implements StockObserver {
 
 ## 실무 적용 예시
 
-### MVC 아키텍처
-```java
-// Model이 Subject 역할
-public class UserModel extends Observable {
-    private String username;
-    
-    public void setUsername(String username) {
-        this.username = username;
-        setChanged();
-        notifyObservers(username);
-    }
-}
+### MVC 아키텍처와 Observer
 
-// View가 Observer 역할
-public class UserView implements Observer {
-    @Override
-    public void update(Observable o, Object arg) {
-        if (o instanceof UserModel) {
-            updateDisplay((String) arg);
-        }
-    }
-}
+Model이 Subject, View가 Observer를 맡는 이유와 Swing/Spring/Android 각 프레임워크가 이를 어떻게 구현하는지는 [이론편의 "실무 프레임워크에서의 Observer 패턴"](/post/design-patterns/observer-event-driven-architecture/)에서 이미 다뤘으므로 여기서 다시 설명하지 않는다. 이 실습에서는 그 이론을 과제 1의 `StockSubject`/`StockObserver`에 직접 적용해본다. `java.util.Observable`/`Observer`는 Java 9부터 `@Deprecated`이므로 새 코드에서는 사용하지 않는다.
+
+#### 구현 과제
+- `Stock`을 Model로 두고, 화면 출력만 담당하는 `StockView`를 `StockObserver`로 구현한다(과제 1의 `StockLogger`와 동일한 인터페이스를 그대로 따른다).
+- Controller 역할의 클래스가 사용자 입력(예: 콘솔에서 받은 새 가격)을 받아 `Stock.setPrice()`를 호출하도록 구성하고, `StockView`는 `Stock`만 관찰할 뿐 Controller를 직접 참조하지 않도록 한다.
+- 완성 후 Controller → Model → View로 이어지는 호출 흐름이 단방향인지, View를 교체해도 Model과 Controller 코드가 바뀌지 않는지 확인한다.
+
+```mermaid
+sequenceDiagram
+    participant User as "사용자"
+    participant Ctrl as "Controller"
+    participant Model as "Stock (Model)"
+    participant View as "StockView (Observer)"
+    User->>Ctrl: 새 가격 입력
+    Ctrl->>Model: setPrice(newPrice)
+    Model->>Model: notifyObservers()
+    Model->>View: update(symbol, price, change)
+    View->>View: 화면 갱신
+    Note over Ctrl,View: View는 Model만 관찰하고 Controller를 직접 참조하지 않는다
 ```
 
 ### Spring Events
-```java
-@Component
-public class OrderService {
-    @Autowired
-    private ApplicationEventPublisher eventPublisher;
-    
-    public void processOrder(Order order) {
-        // 주문 처리 로직
-        eventPublisher.publishEvent(new OrderCreatedEvent(order));
-    }
-}
 
-@EventListener
-@Component
+이론편에서 `ApplicationEventPublisher`/`@EventListener`를 이용한 발행-구독 메커니즘 자체는 이미 다뤘으므로 여기서 반복하지 않는다. 대신 실무에서 자주 발생하는 오개념 하나를 짚는다 — `@EventListener`는 리스너로 등록할 **메서드**에 붙여야 한다. `@EventListener`의 선언(`@Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})`)은 클래스 선언에는 애초에 붙을 수 없도록 제한되어 있으므로, 클래스에 붙이면 "annotation type not applicable to this kind of declaration"라는 컴파일 오류로 즉시 드러난다 — 조용히 넘어가는 실수가 아니다.
+
+실무에서 실제로 자주 발생하는, 훨씬 더 성가신 경우는 따로 있다. 메서드에 `@EventListener`를 정확히 붙였는데도 리스너가 등록되지 않는 경우인데, 원인은 그 클래스 자체가 Spring 빈으로 관리되지 않을 때다. 아래 `EmailService`는 문법적으로도 아무 문제가 없고 어노테이션 위치도 올바르지만, `@Component`(또는 다른 스테레오타입 어노테이션)가 없어 컴포넌트 스캔 대상이 아니므로 `EventListenerMethodProcessor`가 이 클래스를 아예 훑지 않는다. 그 결과 `handleOrderCreated`는 컴파일도 되고 어노테이션 위치도 맞지만 이벤트 리스너로 등록되지 않는다.
+
+```java
+// 흔한 실수: 메서드 위치는 맞지만 클래스가 Spring 빈으로 등록되지 않음
+// -> 컴파일은 되지만 컴포넌트 스캔 대상이 아니므로 handleOrderCreated가
+//    이벤트 리스너로 등록되지 않는다
+// (OrderCreatedEvent, sendConfirmationEmail 정의는 아래 수정본 참고)
 public class EmailService {
+    @EventListener
     public void handleOrderCreated(OrderCreatedEvent event) {
         sendConfirmationEmail(event.getOrder());
     }
 }
 ```
 
----
+```java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 
-**실습 팁**
-- Observer 패턴의 메모리 누수 위험성 항상 고려
-- 비동기 처리 시 스레드 안전성 확보
-- 대량 Observer 등록 시 성능 영향 측정
-- 실제 GUI 프레임워크나 이벤트 시스템 분석 
+// 이 예시를 위한 최소 도메인 타입 (Spring이 제공하는 타입이 아니라 이 글에서 정의)
+class Order {
+    private final String id;
+
+    public Order(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+}
+
+class OrderCreatedEvent {
+    private final Order order;
+
+    public OrderCreatedEvent(Order order) {
+        this.order = order;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+}
+
+@Component
+public class OrderService {
+    @Autowired
+    private ApplicationEventPublisher eventPublisher;
+
+    public void processOrder(Order order) {
+        // 주문 처리 로직
+        eventPublisher.publishEvent(new OrderCreatedEvent(order));
+    }
+}
+
+// 수정: @Component를 추가해 Spring 빈으로 등록되어야 컴포넌트 스캔에
+// 걸리고, 그래야 메서드에 붙은 @EventListener도 실제로 등록된다
+@Component
+public class EmailService {
+    @EventListener
+    public void handleOrderCreated(OrderCreatedEvent event) {
+        sendConfirmationEmail(event.getOrder());
+    }
+
+    private void sendConfirmationEmail(Order order) {
+        System.out.println("Confirmation email sent for order " + order.getId());
+    }
+}
+``` 

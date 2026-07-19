@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 30
 title: "[Design Patterns] 03. 객체지향 설계의 깊이 있는 이해"
 slug: "oop-design-deep-understanding"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 180
 title: "[Design Patterns] 18. 함수형 프로그래밍과 디자인 패턴: 패러다임의 진화"
 slug: "functional-programming-design-patterns"
@@ -66,6 +66,101 @@ import java.util.stream.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
 import java.time.Duration;
+```
+
+또한 이후 예제들은 `PaymentResult`, `User`, `UserRole`, `UserRequest`, `Observer`, `Subject`처럼 여러 절에 걸쳐 반복 등장하는 도메인 타입을 공유합니다. 아래에서 한 번만 정의해두고, 이후 코드 블록에서는 이 타입들이 이미 임포트된 것으로 가정하고 재사용합니다.
+
+```java
+// 이 글의 여러 절(Strategy, Factory, Monad, 성능 벤치마크)이 공통으로 참조하는 도메인 타입
+enum UserRole { USER, ADMIN, PREMIUM, MANAGER }
+
+final class PaymentResult {
+    private final String method;
+    private final double amount;
+    private final boolean success;
+
+    public PaymentResult(String method, double amount, boolean success) {
+        this.method = method;
+        this.amount = amount;
+        this.success = success;
+    }
+
+    public String getMethod() { return method; }
+    public double getAmount() { return amount; }
+    public boolean isSuccess() { return success; }
+
+    @Override
+    public String toString() {
+        return method + " $" + amount + " (" + (success ? "성공" : "실패") + ")";
+    }
+}
+
+class User {
+    private final String name;
+    private final String email;
+    private final UserRole role;
+
+    public User(String name, String email, UserRole role) {
+        this.name = name;
+        this.email = email;
+        this.role = role;
+    }
+
+    public String getName() { return name; }
+    public String getEmail() { return email; }
+    public UserRole getRole() { return role; }
+}
+
+// User와 필드 구성은 같지만, 관리자 전용 로직을 얹을 확장 지점으로 타입을 분리한다
+class Admin extends User {
+    public Admin(String name, String email, UserRole role) {
+        super(name, email, role);
+    }
+}
+
+class UserRequest {
+    private final String name;
+    private final String domain;
+    private final boolean manager;
+    private final boolean admin;
+    private final boolean premium;
+
+    // FunctionalFactoryDemo에서 사용하는 3개 인자 생성자 (일반 사용자/매니저 후보)
+    public UserRequest(String name, String domain, boolean manager) {
+        this(name, domain, manager, false, false);
+    }
+
+    // conditionalFactory처럼 관리자·프리미엄 여부까지 필요한 전체 생성자
+    public UserRequest(String name, String domain, boolean manager, boolean admin, boolean premium) {
+        this.name = name;
+        this.domain = domain;
+        this.manager = manager;
+        this.admin = admin;
+        this.premium = premium;
+    }
+
+    public String getName() { return name; }
+    public String getDomain() { return domain; }
+    public String getEmail() { return name.toLowerCase() + "@" + domain; }
+    public boolean isManager() { return manager; }
+    public boolean isAdmin() { return admin; }
+    public boolean isPremium() { return premium; }
+}
+
+// "성능과 실용성 분석" 절의 전통적 Observer 패턴 벤치마크에서만 사용하는 타입
+interface Observer {
+    void update(String message);
+}
+
+class Subject {
+    private final List<Observer> observers = new ArrayList<>();
+
+    public void addObserver(Observer observer) { observers.add(observer); }
+    public void removeObserver(Observer observer) { observers.remove(observer); }
+    public void notifyObservers(String message) {
+        observers.forEach(o -> o.update(message));
+    }
+}
 ```
 
 ## 전통적 패턴의 함수형 혁명
@@ -1114,6 +1209,8 @@ public class FunctionalPatternBenchmark {
 
 ## 한눈에 보는 OOP vs 함수형 패턴
 
+지금까지는 개별 패턴(Strategy, Observer, Factory, Monad, 파이프라인)을 하나씩 함수형으로 옮기며 성능과 가독성의 트레이드오프를 살펴봤다. 이제 관점을 넓혀, GoF의 대표 패턴 여덟 개 전체를 대상으로 "OOP에서 무엇을 담당하던 요소가 FP에서 무엇으로 대체되는가"를 한 번에 정리한다.
+
 ### GoF 패턴의 함수형 변환 비교
 
 | GoF 패턴 | OOP 구현 | FP 구현 | 변환 효과 |
@@ -1127,6 +1224,8 @@ public class FunctionalPatternBenchmark {
 | Iterator | Iterator 인터페이스 | Stream API | 내부 반복 |
 | Singleton | static 필드 | 불필요 (순수 함수) | 전역 상태 제거 |
 
+여덟 개 패턴의 변환 방식은 제각각이지만 공통된 축이 하나 있다: OOP는 "무엇을 하는가"를 클래스 계층(인터페이스·구현체·상속)으로 표현하고, FP는 같은 역할을 함수 값(고차 함수·함수 합성)으로 표현한다. 아래 표는 이 축을 상태 관리·확장 방식·테스트 전략 등 여섯 가지 차원으로 나눠 정면으로 대비한다.
+
 ### OOP vs FP 접근법 비교
 
 | 측면 | OOP 패턴 | FP 패턴 |
@@ -1138,6 +1237,8 @@ public class FunctionalPatternBenchmark {
 | 테스트 | Mock 필요 | 순수 함수 테스트 |
 | 부수 효과 | 허용 | 격리/제어 |
 
+그러나 이 대비표가 "FP가 항상 우월하다"는 뜻은 아니다. 앞선 "함수형 전환 적합성과 성능 특성" 표에서 확인했듯, State처럼 상태 전이가 빈번한 도메인에서는 불변 객체 기반 전이가 오히려 GC 압력과 코드 복잡도를 늘릴 수 있다. 실무에서는 두 접근을 상황에 맞게 섞어 쓰는 편이 합리적이며, 아래 표는 대표적인 상황별 권장안을 정리한 것이다.
+
 ### 하이브리드 접근법 가이드
 
 | 상황 | 권장 접근 | 이유 |
@@ -1147,6 +1248,8 @@ public class FunctionalPatternBenchmark {
 | 데이터 변환 | FP (Stream) | 선언적 처리 |
 | 도메인 모델 | OOP + 불변성 | 캡슐화 + 안전성 |
 | 콜백 처리 | FP (Consumer) | 간결한 핸들링 |
+
+하이브리드 전략을 팀의 관행으로 정착시키려면, "이 인터페이스를 함수형으로 바꿀지"를 매번 감으로 판단하기보다 반복 가능한 기준이 필요하다. 아래 다섯 가지 질문은 코드 리뷰에서 실제로 적용할 수 있는 최소 체크리스트다.
 
 ### 적용 체크리스트
 

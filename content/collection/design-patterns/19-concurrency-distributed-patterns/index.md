@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 190
 title: "[Design Patterns] 19. 동시성과 분산 시스템에서의 패턴"
 slug: "concurrency-distributed-patterns"
@@ -72,6 +72,8 @@ import java.net.http.HttpResponse;
 
 ### Thread-Safe Singleton - 동시성의 첫 번째 시험
 
+단일 스레드 환경에서 Singleton은 `instance == null` 검사와 생성을 순서대로 실행하기만 하면 충분했다. 그러나 다중 스레드가 동시에 `getInstance()`에 진입하면 두 스레드가 모두 `instance == null`을 참으로 확인한 직후 각자 `new`를 실행해 인스턴스가 두 번 만들어지거나, JIT/CPU가 명령어를 재배치해 필드가 다 채워지기 전의 반쯤 초기화된 객체를 다른 스레드가 읽어버릴 수도 있다. 아래 세 구현은 이 문제를 서로 다른 지점에서 차단한다. enum은 JVM 명세가 클래스 로딩 자체를 스레드 안전하게 보장한다는 데 기대고, DCL(Double-Checked Locking)은 `volatile`로 재배치를 막으면서 `synchronized` 블록을 최초 생성 시점에만 국한시켜 이후 호출의 동기화 비용을 없애며, holder 패턴은 클래스 초기화가 지연되면서도 스레드 안전하다는 JVM 명세를 이용해 락 코드 없이 지연 초기화를 구현한다.
+
 ```java
 // 현대적 Thread-Safe Singleton 구현들
 public class ModernSingleton {
@@ -133,6 +135,8 @@ public class ModernSingleton {
 
 ### Producer-Consumer 패턴 - 동시성의 핵심
 
+Producer-Consumer 패턴의 목적은 생산자와 소비자의 처리 속도 차이를 완충하는 데 있다. 생산자가 소비자보다 빠르면 생산자는 소비자를 기다리지 않고 큐에 쌓아두면 되고, 반대로 소비자가 더 빠르면 큐가 비었을 때만 대기하면 된다. 아래 구현이 별도의 동기화 코드 없이 `BlockingQueue`만으로 이를 처리하는 이유가 여기에 있다 — `put()`과 `poll()`이 내부적으로 락과 대기/통지 메커니즘을 캡슐화하고 있으므로, 생산자 풀과 소비자 풀을 각각 여러 스레드로 띄워도 개발자가 직접 임계 구역을 관리할 필요가 없다.
+
 ```java
 // 현대적 Producer-Consumer 구현
 public class ModernProducerConsumer<T> {
@@ -193,6 +197,8 @@ public class ModernProducerConsumer<T> {
 
 ### Actor 패턴 - 동시성의 새로운 접근
 
+Actor 패턴이 풀려는 문제는 Producer-Consumer와 언뜻 비슷해 보이지만 출발점이 다르다. Producer-Consumer는 "여러 생산자와 여러 소비자가 하나의 큐를 어떻게 공유할 것인가"를 다루는 반면, Actor는 "가변 상태를 단 하나의 실행 흐름만 건드리게 만들어 락 자체를 없앨 수 없는가"를 다룬다. 아래 `Actor<T>`가 인스턴스마다 자신만의 `mailbox`(큐)를 갖고 그 mailbox를 처리하는 스레드를 `messageLoop()` 하나로 고정한 이유가 여기에 있다 — 외부 스레드는 `send()`로 메시지를 큐에 넣을 뿐 액터의 내부 상태에 직접 접근하지 못하므로, `handle()` 내부 로직은 마치 단일 스레드 프로그램처럼 락 없이 작성할 수 있다.
+
 ```java
 // Java에서의 Actor 패턴 구현
 public abstract class Actor<T> {
@@ -242,6 +248,52 @@ public abstract class Actor<T> {
 }
 
 // 구체적인 Actor 구현
+//
+// 액터가 주고받는 주문 페이로드는 `OrderRequest`라는 별도 타입으로 정의한다. 뒤의 "Event Sourcing" 절에서
+// 다룰 Aggregate `Order`(id·customerId·items·status를 갖는 상태 전체)와 이름을 공유하면, 액터 메시지의
+// 페이로드(상품 ID와 수량만 담은 값 객체)와 애그리게잇(주문의 전체 생명주기를 관리하는 도메인 객체)이 같은
+// 개념인 것처럼 오독될 수 있기 때문이다. 두 타입은 필드도 책임도 다르므로 이름부터 구분한다.
+public enum OrderMessageType { PROCESS_ORDER, GET_STATS }
+
+public class OrderRequest {
+    private final String productId;
+    private final int quantity;
+
+    public OrderRequest(String productId, int quantity) {
+        this.productId = productId;
+        this.quantity = quantity;
+    }
+
+    public String getProductId() { return productId; }
+    public int getQuantity() { return quantity; }
+}
+
+public class StatsMessage {
+    private final Map<String, Integer> counts;
+
+    public StatsMessage(Map<String, Integer> counts) {
+        this.counts = counts;
+    }
+
+    public Map<String, Integer> getCounts() { return counts; }
+}
+
+public class OrderMessage {
+    private final OrderMessageType type;
+    private final OrderRequest order;
+    private final Actor<StatsMessage> sender;
+
+    public OrderMessage(OrderMessageType type, OrderRequest order, Actor<StatsMessage> sender) {
+        this.type = type;
+        this.order = order;
+        this.sender = sender;
+    }
+
+    public OrderMessageType getType() { return type; }
+    public OrderRequest getOrder() { return order; }
+    public Actor<StatsMessage> getSender() { return sender; }
+}
+
 public class OrderProcessorActor extends Actor<OrderMessage> {
     private final Map<String, Integer> orderCounts = new ConcurrentHashMap<>();
     
@@ -261,7 +313,7 @@ public class OrderProcessorActor extends Actor<OrderMessage> {
         }
     }
     
-    private void processOrder(Order order) {
+    private void processOrder(OrderRequest order) {
         // 주문 처리 로직
         orderCounts.merge(order.getProductId(), 1, Integer::sum);
         System.out.println("Processed order for: " + order.getProductId());
@@ -279,6 +331,8 @@ public class OrderProcessorActor extends Actor<OrderMessage> {
 ## 분산 시스템 패턴들
 
 ### Circuit Breaker - 장애 전파 방지
+
+분산 시스템에서 한 서비스의 장애는 그 서비스를 호출하는 클라이언트의 스레드·커넥션을 붙잡아 두는 방식으로 전파되기 쉽다. 응답이 오지 않는 외부 서비스를 계속 호출하면 호출자 쪽 스레드 풀이 타임아웃을 기다리는 요청들로 가득 차, 결국 호출자 자신도 응답 불가 상태에 빠진다 — 흔히 말하는 연쇄 장애(cascading failure)다. Circuit Breaker는 실패가 임계값을 넘으면 아예 호출을 시도하지 않고 즉시 예외를 던져 이 전파 경로를 끊는다. 아래 구현이 `CLOSED`/`OPEN`/`HALF_OPEN` 세 상태를 두는 이유는, "정상 호출"과 "호출 전면 차단" 사이에 "소량만 시험적으로 흘려보내 복구 여부를 확인"하는 중간 단계가 없으면 장애가 끝난 뒤에도 차단 상태에서 영영 벗어나지 못하기 때문이다.
 
 ```java
 // Circuit Breaker 패턴 구현
@@ -392,6 +446,8 @@ stateDiagram-v2
 
 ### Event Sourcing - 분산 상태 관리
 
+지금까지의 `Order` 같은 도메인 객체를 다루는 일반적인 방식은 "현재 상태"만 테이블에 저장하고 덮어쓰는 것이다. 이 방식은 구현이 단순하지만, 상태가 어떤 경로를 거쳐 지금 모습이 되었는지에 대한 정보를 잃어버린다 — 주문이 왜 취소되었는지, 배송지가 언제 바뀌었는지는 현재 값만으로는 복원할 수 없다. Event Sourcing은 이 손실을 되돌리기 위해 "현재 상태"가 아니라 "상태를 변화시킨 사건들"을 원본 데이터로 저장한다. 즉 `OrderCreatedEvent`, `OrderShippedEvent`처럼 실제로 일어난 사실을 하나씩 이벤트로 남기고, `Order`(Aggregate)의 현재 상태는 그 이벤트들을 처음부터 순서대로 재생(replay)한 결과로만 얻어진다. 아래 `Order.fromHistory()`가 이벤트 목록을 순회하며 `apply()`를 반복 호출하는 것이 바로 이 재생 과정이며, `EventStore`가 상태가 아니라 `List<Event>`를 스트림별로 쌓아두는 것도 같은 이유에서다. 이 구조의 대가는 명확하다 — 조회할 때마다(스냅샷 최적화 없이는) 이벤트 전체를 처음부터 재생해야 하므로 조회 지연이 늘고, 이벤트를 영구 보관해야 하므로 저장 공간도 계속 늘어난다. 뒤의 "패턴별 성능 특성" 표에서 Event Sourcing의 지연시간을 "높음"으로 평가한 근거가 바로 이 재생 비용이다.
+
 ```java
 // Event Sourcing 패턴
 public abstract class Event {
@@ -403,6 +459,27 @@ public abstract class Event {
     public LocalDateTime getTimestamp() { return timestamp; }
     public String getEventType() { return eventType; }
 }
+
+// 이 글 전체에서 재사용하는 값 객체/열거형. 실제 서비스라면 별도 파일로 분리하고
+// 검증 로직(수량 > 0 등)이 붙지만, 여기서는 이후 코드가 컴파일되도록 필드와
+// 표준 getter만 정의한다.
+public class OrderItem {
+    private final String productId;
+    private final int quantity;
+    private final BigDecimal price;
+
+    public OrderItem(String productId, int quantity, BigDecimal price) {
+        this.productId = productId;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public String getProductId() { return productId; }
+    public int getQuantity() { return quantity; }
+    public BigDecimal getPrice() { return price; }
+}
+
+public enum OrderStatus { CREATED, CONFIRMED, SHIPPED }
 
 // 도메인 이벤트들
 public class OrderCreatedEvent extends Event {
@@ -416,7 +493,9 @@ public class OrderCreatedEvent extends Event {
         this.items = items;
     }
     
-    // getters...
+    public String getOrderId() { return orderId; }
+    public String getCustomerId() { return customerId; }
+    public List<OrderItem> getItems() { return items; }
 }
 
 public class OrderShippedEvent extends Event {
@@ -428,7 +507,21 @@ public class OrderShippedEvent extends Event {
         this.trackingNumber = trackingNumber;
     }
     
-    // getters...
+    public String getOrderId() { return orderId; }
+    public String getTrackingNumber() { return trackingNumber; }
+}
+
+// CONFIRMED로의 전이(결제 승인 등)를 일으키는 이벤트. Order.ship()이 요구하는
+// 선행 상태를 실제로 만들어주는 경로가 없으면 ship()은 항상 예외를 던지게 되므로,
+// 아래 Order 클래스의 confirm()과 함께 최소 구현을 남긴다.
+public class OrderConfirmedEvent extends Event {
+    private final String orderId;
+
+    public OrderConfirmedEvent(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getOrderId() { return orderId; }
 }
 
 // Event Store
@@ -465,6 +558,13 @@ public class Order {
         return order;
     }
     
+    public void confirm() {
+        if (status != OrderStatus.CREATED) {
+            throw new IllegalStateException("Order must be created before confirmation");
+        }
+        apply(new OrderConfirmedEvent(id));
+    }
+    
     public void ship(String trackingNumber) {
         if (status != OrderStatus.CONFIRMED) {
             throw new IllegalStateException("Order must be confirmed before shipping");
@@ -485,6 +585,8 @@ public class Order {
     private void apply(Event event) {
         if (event instanceof OrderCreatedEvent) {
             handle((OrderCreatedEvent) event);
+        } else if (event instanceof OrderConfirmedEvent) {
+            handle((OrderConfirmedEvent) event);
         } else if (event instanceof OrderShippedEvent) {
             handle((OrderShippedEvent) event);
         }
@@ -497,6 +599,10 @@ public class Order {
         this.customerId = event.getCustomerId();
         this.items = new ArrayList<>(event.getItems());
         this.status = OrderStatus.CREATED;
+    }
+    
+    private void handle(OrderConfirmedEvent event) {
+        this.status = OrderStatus.CONFIRMED;
     }
     
     private void handle(OrderShippedEvent event) {
@@ -514,6 +620,8 @@ public class Order {
 ```
 
 ### CQRS - 읽기/쓰기 분리
+
+Event Sourcing만으로는 "주문 목록을 고객별로 조회"와 같은 질의가 여전히 느리다 — 매 조회마다 이벤트를 재생해야 하기 때문이다. CQRS(Command Query Responsibility Segregation)는 이 문제를 쓰기 모델과 읽기 모델을 아예 분리하는 방식으로 해결한다. 쓰기 경로는 앞서 본 `Order` Aggregate와 `EventStore`를 그대로 사용해 이벤트를 기록하는 데만 집중하고, 읽기 경로는 그 이벤트를 구독해 조회에 최적화된 별도의 비정규화 뷰(`OrderSummaryView`)를 미리 계산해 둔다. 아래 `OrderQueryService`가 `EventStore`를 전혀 참조하지 않고 자신만의 `Map<String, OrderSummaryView>`를 유지하는 이유가 여기에 있다 — 조회 요청은 이벤트를 재생하지 않고 이미 계산된 맵을 읽기만 하면 되므로 응답이 빠르다. 그 대가로 쓰기가 반영된 시점과 읽기 모델이 갱신되는 시점 사이에 지연(최종 일관성)이 생긴다.
 
 ```java
 // CQRS 패턴 구현
@@ -535,7 +643,8 @@ public class CreateOrderCommand extends Command {
         this.items = items;
     }
     
-    // getters...
+    public String getCustomerId() { return customerId; }
+    public List<OrderItem> getItems() { return items; }
 }
 
 public interface CommandHandler<T extends Command> {
@@ -580,7 +689,11 @@ public class OrderSummaryView {
         this.createdAt = createdAt;
     }
     
-    // getters...
+    public String getOrderId() { return orderId; }
+    public String getCustomerId() { return customerId; }
+    public BigDecimal getTotalAmount() { return totalAmount; }
+    public OrderStatus getStatus() { return status; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
 }
 
 public class OrderQueryService {
@@ -680,6 +793,8 @@ flowchart LR
 
 ### CAP 정리와 패턴 선택
 
+앞의 비교표에서 SAGA는 "일관성 복잡성 감수", Event Sourcing·CQRS는 "구현 복잡성 감수"라고 적었는데, 이 감수의 정체는 결국 CAP 정리가 강제하는 트레이드오프다. 분할(네트워크 파티션)이 실제로 일어났을 때 일관성(Consistency)과 가용성(Availability) 중 하나를 포기해야 하므로, 어떤 패턴을 쓰느냐는 사실상 이 둘 중 무엇을 포기할지를 미리 선택하는 것과 같다.
+
 | 선택 | 패턴 적합성 | 사용 예 |
 |------|-----------|--------|
 | CP (일관성+분할내성) | SAGA, 2PC | 금융 시스템 |
@@ -687,6 +802,8 @@ flowchart LR
 | CA (일관성+가용성) | 전통적 ACID | 단일 DB 시스템 |
 
 ### 마이크로서비스 패턴 매트릭스
+
+CAP 선택이 "데이터 일관성을 어떻게 다룰지"를 결정한다면, 그와는 별개로 "서비스들을 어떤 통신 구조로 묶을지"도 설계자가 정해야 한다. API Gateway로 진입점을 단일화할지, Service Mesh로 서비스 간 통신을 인프라 계층에서 처리할지, 혹은 이벤트로 서비스를 완전히 분리할지에 따라 디커플링 정도와 성능이 상충 관계를 이룬다.
 
 | 패턴 | 서비스 디커플링 | 장애 내성 | 성능 | 복잡도 |
 |------|---------------|---------|------|--------|
@@ -698,6 +815,8 @@ flowchart LR
 
 ### 비동기 통신 패턴
 
+위 매트릭스에서 Event-Driven과 Choreography가 높은 디커플링·성능을 보이는 이유는 서비스 간 호출이 동기식 응답 대기를 거치지 않기 때문이다. 이 절에서는 그 "비동기"라는 특성을 더 세분화해, 서비스가 실제로 메시지를 주고받는 방식 네 가지를 비교한다. 요청-응답을 완전히 없앨지, 응답을 포기하고 던지기만 할지, 다수에게 방송할지, 큐로 버퍼링할지는 각기 다른 장단점을 갖는다.
+
 | 패턴 | 특징 | 장점 | 단점 |
 |------|------|------|------|
 | Request-Reply | 동기식 대기 | 단순함 | 블로킹 |
@@ -706,6 +825,8 @@ flowchart LR
 | Message Queue | 버퍼링 + 전달 보장 | 신뢰성 | 복잡성 증가 |
 
 ### 적용 체크리스트
+
+앞의 세 표가 패턴별 특성을 비교했다면, 실제 설계 시점에는 "지금 내 문제가 어떤 특성을 요구하는가"를 먼저 물어야 한다. 아래 체크리스트는 동시성 패턴과 분산 패턴 각각에서 그 질문을 되짚어보는 목록이며, 답이 "예"로 나오는 항목이 많을수록 위 표에서 해당 특성이 강한 패턴(예: 장애 격리가 중요하면 Circuit Breaker, 확장성이 중요하면 CQRS)으로 좁혀 들어갈 수 있다.
 
 | 동시성 패턴 체크 | 분산 패턴 체크 |
 |----------------|---------------|
@@ -739,12 +860,9 @@ flowchart LR
 
 분산 시스템과 동시성 환경은 디자인 패턴에 **새로운 차원**을 열어주었습니다:
 
-### 핵심 인사이트
+### 도입 전에 따져야 할 비용
 
-1. **상태 관리의 복잡성**: 분산 환경에서 상태 일관성 유지의 도전
-2. **장애 내성**: Circuit Breaker, Bulkhead 패턴을 통한 회복력 구축
-3. **비동기 통신**: Event-driven 아키텍처의 중요성 증대
-4. **확장성 vs 일관성**: CAP 정리에 따른 트레이드오프 관리
+이 글에서 다룬 패턴들은 대부분 "되돌리기 어려운" 선택이라는 공통점이 있다. Event Sourcing으로 이벤트를 원본 데이터로 삼기 시작하면 상태 기반 CRUD로 되돌아가기 위해 전체 이벤트 스트림을 다시 마이그레이션해야 하고, CQRS로 읽기·쓰기 모델을 분리하면 두 모델 간 정합성을 검증하는 테스트 인프라(프로젝션 재구축, 최종 일관성 시나리오 테스트)를 별도로 갖춰야 한다. Circuit Breaker나 Actor 같은 동시성·장애 격리 패턴도 마찬가지다 — 도입 자체보다 운영 단계에서 상태 전이를 관찰할 모니터링(지금 OPEN·HALF_OPEN 상태인 서비스가 무엇인지, 액터 mailbox가 얼마나 쌓여 있는지)을 갖추지 않으면 패턴이 오히려 장애 진단을 더 어렵게 만든다. 따라서 패턴 선택의 기준은 "이 문제를 해결할 수 있는가"뿐 아니라 "이 복잡성을 팀이 지속적으로 운영할 여력이 있는가"까지 포함해야 한다.
 
 > *"분산 시스템에서는 완벽한 해결책은 없다. 있는 것은 적절한 트레이드오프뿐이다."*
 

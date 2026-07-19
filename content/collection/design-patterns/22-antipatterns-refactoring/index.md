@@ -1,12 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 220
 title: "[Design Patterns] 22. 안티패턴 식별과 리팩토링"
 slug: "antipatterns-refactoring"
 description: "소프트웨어 개발에서 자주 발생하는 안티패턴을 식별하고 체계적으로 리팩토링하는 전문가 기법을 학습합니다. God Object, Spaghetti Code 분석과 Strangler Fig Pattern 기반 점진적 개선, 코드 품질 측정을 통해 지속 가능한 소프트웨어를 만드는 방법을 탐구합니다."
 image: "wordcloud.png"
 date: 2024-12-22T10:00:00+09:00
-lastmod: 2026-07-17T14:30:00+09:00
+lastmod: 2026-07-18T10:00:00+09:00
 categories:
 - Design Patterns
 - Anti Patterns
@@ -148,6 +148,24 @@ public class UserManager {
 // 4. 변경 영향도 큼 - 한 부분 변경이 전체에 영향
 ```
 
+`UserManager` 하나를 쪼갤 때 관건은 "몇 개의 클래스로 나누는가"가 아니라 "어떤 기준으로 나누는가"입니다. 아래 리팩토링은 책임을 세 층위로 나눕니다. `UserDomainService`는 순수한 도메인 규칙(검증, 비밀번호 인코딩)만 다루고 외부 시스템을 전혀 모릅니다. `UserApplicationService`는 도메인 로직을 호출한 뒤 이벤트를 발행할 뿐, 이메일·결제·감사 로그가 어떻게 처리되는지는 알지 못합니다. `UserRegistrationEventHandler`는 그 이벤트를 구독해 후속 작업을 처리합니다. 이렇게 계층을 나누면 각 층이 서로 다른 이유로만 변경됩니다 — 비밀번호 정책이 바뀌면 도메인 서비스만, 결제 공급자가 바뀌면 이벤트 핸들러만 수정하면 되므로, 변경 원인과 변경 대상 클래스가 1:1로 대응합니다.
+
+아래 다이어그램은 회원가입 요청 한 건이 세 계층을 어떤 순서로 통과하는지 보여줍니다. 실선 화살표는 동기 호출(요청자가 결과를 기다림)을, 점선 화살표는 이벤트 발행 이후의 비동기 구독(요청자가 기다리지 않음)을 나타냅니다. `UserApplicationService`의 트랜잭션은 이벤트를 발행하는 순간 끝나며, 그 뒤에 실행되는 이메일·결제·감사 로그 세 작업은 서로를 기다리지 않고 병렬로 처리됩니다.
+
+```mermaid
+flowchart LR
+    Client["회원가입 요청"] --> UAS["UserApplicationService</br>registerUser()"]
+    UAS --> UDS["UserDomainService</br>createUser()"]
+    UDS --> Validate["UserValidator</br>validate()"]
+    UDS --> Encode["PasswordService</br>encode()"]
+    UDS --> Repo["UserRepository</br>save()"]
+    UAS --> Publish["UserEventPublisher</br>publish UserRegisteredEvent"]
+    Publish -.->|"비동기 구독"| Handler["UserRegistrationEventHandler</br>handleUserRegistered()"]
+    Handler --> Email["EmailService</br>sendWelcomeEmailAsync()"]
+    Handler --> Payment["PaymentService</br>createCustomerAccountAsync()"]
+    Handler --> Audit["AuditService</br>logUserCreationAsync()"]
+```
+
 **리팩토링: 책임 분산과 의존성 주입**
 
 ```java
@@ -187,6 +205,7 @@ public class UserDomainService {
 // 2. 사용자 애플리케이션 서비스 (오케스트레이션)
 @Service
 @Transactional
+@RequiredArgsConstructor // Lombok: final 필드를 받는 생성자를 컴파일 시 자동 생성
 public class UserApplicationService {
     private final UserDomainService userDomainService;
     private final UserEventPublisher eventPublisher;
@@ -203,13 +222,16 @@ public class UserApplicationService {
 }
 
 // 3. 이벤트 핸들러들 (각자의 책임)
-@EventListener
+// 주의: @EventListener는 메서드 레벨 애너테이션이므로 클래스에는 붙지 않는다.
+// (원 코드에서 클래스 위에 있던 @EventListener는 실제 컴파일이 되지 않는 오류였다.)
 @Component
+@RequiredArgsConstructor // Lombok: final 필드를 받는 생성자를 컴파일 시 자동 생성
 public class UserRegistrationEventHandler {
     private final EmailService emailService;
     private final PaymentService paymentService;
     private final AuditService auditService;
     
+    @EventListener
     @Async
     public void handleUserRegistered(UserRegisteredEvent event) {
         // 병렬로 처리 가능한 후속 작업들
@@ -227,6 +249,8 @@ public class UserRegistrationEventHandler {
 // 3. 테스트 용이성: 각 컴포넌트를 독립적으로 테스트
 // 4. 확장성: 새로운 기능 추가 시 기존 코드 변경 최소화
 ```
+
+이 리팩토링에는 트레이드오프가 있습니다. 원래 `UserManager.createUser()`는 이메일 발송·결제 계정 생성·감사 로그 기록이 한 트랜잭션 흐름 안에서 순서대로 실행되므로, 어느 하나가 실패하면 호출자가 즉시 예외를 받아 전체 실패를 알 수 있었습니다. 반면 `UserRegistrationEventHandler.handleUserRegistered()`는 `@Async`로 분리되어 회원가입 트랜잭션 자체는 빠르게 끝나지만, 이후 후속 작업(이메일·결제·감사) 중 하나가 실패해도 이미 커밋된 회원가입을 되돌리지 않습니다. 즉 강한 일관성(strong consistency)을 결과적 일관성(eventual consistency)과 맞바꾼 것이며, 이 대가를 받아들이려면 실패한 후속 작업을 재시도하거나 알림을 보내는 별도의 보상 메커니즘이 필요합니다. 단일 책임 원칙을 지키는 리팩토링이 항상 "공짜 개선"은 아니라는 점을 보여주는 사례입니다.
 
 ### Spaghetti Code (스파게티 코드)
 
@@ -291,6 +315,8 @@ public class OrderProcessor {
 // 4. 예외 상황 처리가 흩어져 있음
 ```
 
+앞서 언급한 Guard Clause는 조건 하나를 다루는 국소적 처방이지만, 검증 단계 자체가 5개 이상으로 늘어나면 그 처방만으로는 부족합니다. 각 단계를 별도의 클래스(Command)로 승격시키면, 개별 단계는 `canHandle`로 적용 여부를, `execute`로 실행 결과를 각각 독립적으로 정의하게 되어 "이 단계가 왜 실행됐는지"와 "이 단계가 무엇을 검사하는지"가 분리됩니다. 이는 Guard Clause를 메서드 하나가 아니라 시스템 전체의 설계 원칙으로 확장한 것과 같습니다. 아래 예제에서 `OrderProcessingOrchestrator`는 개별 단계의 순서(`getOrder()`)만 알 뿐 각 단계의 내부 검증 로직은 전혀 알지 못하며, 이 무지(無知)가 바로 새 검증 단계를 추가할 때 기존 코드를 한 줄도 건드리지 않아도 되는 이유입니다.
+
 **리팩토링: Command Pattern + Validation Chain**
 
 ```java
@@ -321,6 +347,63 @@ public class ProcessingResult {
     public String getMessage() { return message; }
 }
 
+// 0-1. 이 예제에서만 쓰는 최소 도메인 스텁 (실제 필드는 프로젝트 도메인에 맞게 확장)
+class OrderItem {
+    private final int quantity;
+    private final BigDecimal price;
+
+    OrderItem(int quantity, BigDecimal price) {
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public int getQuantity() { return quantity; }
+    public BigDecimal getPrice() { return price; }
+}
+
+class Order {
+    private final Long customerId;
+    private final List<OrderItem> items;
+
+    Order(Long customerId, List<OrderItem> items) {
+        this.customerId = customerId;
+        this.items = items;
+    }
+
+    public Long getCustomerId() { return customerId; }
+    public List<OrderItem> getItems() { return items; }
+}
+
+class Customer {
+    private final String status;
+    private final BigDecimal creditLimit;
+
+    Customer(String status, BigDecimal creditLimit) {
+        this.status = status;
+        this.creditLimit = creditLimit;
+    }
+
+    public String getStatus() { return status; }
+    public BigDecimal getCreditLimit() { return creditLimit; }
+}
+
+interface OrderValidator {
+    ValidationResult validate(Order order);
+}
+
+class ValidationResult {
+    private final boolean valid;
+    private final List<String> errors;
+
+    ValidationResult(boolean valid, List<String> errors) {
+        this.valid = valid;
+        this.errors = errors;
+    }
+
+    public boolean isValid() { return valid; }
+    public List<String> getErrors() { return errors; }
+}
+
 // 1. 주문 처리 단계를 명확한 커맨드로 분리
 public interface OrderProcessingStep {
     ProcessingResult execute(OrderProcessingContext context);
@@ -328,20 +411,35 @@ public interface OrderProcessingStep {
     int getOrder(); // 실행 순서
 }
 
-// 2. 처리 컨텍스트
+// 2. 처리 컨텍스트 - 각 단계(Step)가 공유하는 가변 상태를 한 곳에 모은다
 public class OrderProcessingContext {
     private final Order order;
     private Customer customer;
     private BigDecimal totalAmount;
-    private List<ProcessingMessage> messages = new ArrayList<>();
+    private final List<String> messages = new ArrayList<>();
     private ProcessingStatus status = ProcessingStatus.IN_PROGRESS;
-    
-    // getters, setters, builder pattern
+
+    public OrderProcessingContext(Order order) {
+        this.order = order;
+    }
+
+    public Order getOrder() { return order; }
+    public Customer getCustomer() { return customer; }
+    public void setCustomer(Customer customer) { this.customer = customer; }
+    public BigDecimal getTotalAmount() { return totalAmount; }
+    public void setTotalAmount(BigDecimal totalAmount) { this.totalAmount = totalAmount; }
+    public List<String> getMessages() { return messages; }
+    public void addMessage(String message) { this.messages.add(message); }
+    public ProcessingStatus getStatus() { return status; }
+    public void setStatus(ProcessingStatus status) { this.status = status; }
 }
 
 // 3. 각 단계별 구체적인 구현
+// 주의: 이 예제 블록에는 도메인 타입 Order가 별도로 정의되어 있으므로,
+// Spring의 실행 순서 지정 애너테이션은 단순 이름 충돌을 피하기 위해 완전 한정 이름으로 표기한다.
 @Component
-@Order(1)
+@org.springframework.core.annotation.Order(1)
+@RequiredArgsConstructor // Lombok: final 필드를 받는 생성자를 컴파일 시 자동 생성
 public class OrderValidationStep implements OrderProcessingStep {
     private final OrderValidator orderValidator;
     
@@ -364,6 +462,7 @@ public class OrderValidationStep implements OrderProcessingStep {
 
 // 4. 주문 처리 오케스트레이터
 @Service
+@Slf4j // Lombok: 컴파일 시 private static final Logger log = ... 필드를 자동 생성
 public class OrderProcessingOrchestrator {
     private final List<OrderProcessingStep> steps;
     
@@ -405,6 +504,39 @@ public class OrderProcessingOrchestrator {
     }
 }
 
+// 5. 처리 결과 - 성공/실패/에러 세 가지 종료 상태를 컨텍스트와 함께 캡슐화
+public class OrderProcessingResult {
+    private final boolean success;
+    private final ProcessingStatus status;
+    private final List<String> messages;
+    private final String errorMessage;
+
+    private OrderProcessingResult(boolean success, ProcessingStatus status,
+                                   List<String> messages, String errorMessage) {
+        this.success = success;
+        this.status = status;
+        this.messages = messages;
+        this.errorMessage = errorMessage;
+    }
+
+    public static OrderProcessingResult success(OrderProcessingContext context) {
+        return new OrderProcessingResult(true, context.getStatus(), context.getMessages(), null);
+    }
+
+    public static OrderProcessingResult failed(OrderProcessingContext context, String reason) {
+        return new OrderProcessingResult(false, context.getStatus(), context.getMessages(), reason);
+    }
+
+    public static OrderProcessingResult error(OrderProcessingContext context, String errorMessage) {
+        return new OrderProcessingResult(false, context.getStatus(), context.getMessages(), errorMessage);
+    }
+
+    public boolean isSuccess() { return success; }
+    public ProcessingStatus getStatus() { return status; }
+    public List<String> getMessages() { return messages; }
+    public String getErrorMessage() { return errorMessage; }
+}
+
 // 개선 효과:
 // 1. 명확한 단계별 처리 - 각 단계의 책임이 명확
 // 2. 테스트 용이성 - 각 단계를 독립적으로 테스트
@@ -412,9 +544,13 @@ public class OrderProcessingOrchestrator {
 // 4. 오류 처리 집중화 - 일관된 예외 처리
 ```
 
+이 리팩토링에서 `OrderProcessingContext`와 `OrderProcessingResult`는 서로 다른 시점의 상태를 담당하는 별개의 타입이라는 점이 중요합니다. `OrderProcessingContext`는 파이프라인이 **실행되는 동안** 각 단계(`OrderProcessingStep`)가 공유하는 가변 상태——원본 주문, 조회된 고객, 누적 메시지, 현재 상태——를 들고 다니는 그릇입니다. 단계가 늘어나도 메서드 시그니처(`execute(OrderProcessingContext context)`)가 바뀌지 않는 이유가 여기에 있습니다. 반면 `OrderProcessingResult`는 파이프라인이 **끝난 뒤** 호출자에게 돌려주는 불변 값으로, `success`/`failed`/`error` 세 가지 종료 상태를 정적 팩토리 메서드로 구분해 호출부가 `if-else`로 분기하는 대신 이미 확정된 결과 객체를 그대로 소비하게 만듭니다. 두 타입을 분리하지 않고 하나로 합쳤다면, 파이프라인 도중에만 유효한 필드(예: 처리 중인 단계 인덱스)와 종료 후에만 의미 있는 필드(예: 최종 성공 여부)가 한 클래스에 뒤섞여 어떤 필드를 언제 읽어도 되는지 알기 어려워졌을 것입니다.
+
 ## 리팩토링 전략
 
 ### Strangler Fig Pattern (점진적 교체)
+
+Strangler Fig Pattern은 Martin Fowler가 2004년경 자신의 bliki에 "Strangler Application"이라는 이름으로 처음 소개했고, 이후 "Strangler"라는 단어의 폭력적 어감 문제로 제목을 "Strangler Fig Application"으로 개명한 개념입니다. Fowler 본인은 이 개명 배경을 "The original post was just entitled 'Strangler Application'... As the term gained popularity I became concerned about this due to its connotations of violence"(원문 게시물의 제목은 그냥 'Strangler Application'이었다... 용어가 널리 퍼지면서 나는 그 폭력적 어감이 우려되기 시작했다)라고 설명합니다.[^strangler-fig] 열대 무화과나무가 숙주 나무를 감싸며 서서히 자라 결국 그 자리를 대체하는 모습에서 이름을 따왔습니다. 레거시 시스템을 한 번에 새 시스템으로 갈아엎는 "빅뱅 재작성"은 전환 시점에 문제가 생기면 되돌리기 어렵고, 재작성 기간 내내 신규 기능 개발이 멈추는 대가를 치릅니다. Strangler Fig는 대신 기존 시스템 앞에 프록시(또는 라우팅 계층)를 두고, 트래픽의 일부만 새 구현으로 흘려보내면서 점차 그 비율을 늘려가는 방식을 취합니다. 이 접근의 핵심은 레거시 코드를 건드리지 않고도 전환이 가능하다는 점이며, 문제가 발견되면 트래픽 비율을 즉시 되돌려 위험을 국소화할 수 있습니다.
 
 ```java
 // 기존 레거시 시스템
@@ -520,6 +656,7 @@ class InsufficientStockException extends RuntimeException {
 
 // 1단계: 프록시 도입
 @Service
+@RequiredArgsConstructor // Lombok: final 필드를 받는 생성자를 컴파일 시 자동 생성
 public class OrderServiceProxy {
     private final LegacyOrderService legacyService;
     private final NewOrderService newService;
@@ -551,6 +688,7 @@ public class OrderServiceProxy {
 
 // 2단계: 새 서비스 구현
 @Service
+@RequiredArgsConstructor // Lombok: final 필드를 받는 생성자를 컴파일 시 자동 생성
 public class NewOrderService {
     private final OrderValidator validator;
     private final PaymentProcessor paymentProcessor;
@@ -593,7 +731,23 @@ public class NewOrderService {
 }
 ```
 
+`OrderServiceProxy.shouldUseNewService()`가 `order.getCustomerId() % 10 == 0` 조건 하나로 10%를 가른다는 점은 실무에서 놓치기 쉬운 함정을 보여줍니다. 고객 ID가 가입 순서대로 순차 발급된다면, 나머지가 0인 고객군은 대체로 특정 시기에 가입한 사람들로 고정되어 시간이 지나도 계속 같은 사람들만 새 서비스를 타게 됩니다. 즉 "트래픽의 10%"라는 말과 달리 실제로는 "특정 코호트 전체"를 새 서비스로 보내는 셈이어서, 다른 시기·다른 특성의 고객군에서만 발생하는 회귀를 canary 단계에서 영영 발견하지 못할 수 있습니다. 진짜 무작위 카나리를 원한다면 `hash(customerId, releaseVersion) % 100 < percentage`처럼 릴리스마다 값이 바뀌는 해시 기반 분배가 필요합니다. 아울러 `convertToLegacyFormat()`의 TODO가 가리키듯, 전환 기간에는 신규 도메인 모델과 레거시 스키마 사이의 양방향 변환 계층이 함께 유지되어야 하며, 이 변환 계층 자체가 새로운 버그의 원천이 될 수 있다는 점도 Strangler Fig 적용 시 흔히 과소평가되는 비용입니다.
+
+아래 다이어그램은 `OrderServiceProxy`가 주문 한 건을 legacy와 new 서비스 중 어디로 보낼지 결정하는 두 단계 분기를 보여줍니다. 첫 번째 분기는 기능 자체의 on/off를 결정하는 `featureToggle`이고, 두 번째 분기는 그 기능이 켜져 있을 때만 평가되는 카나리 조건(`shouldUseNewService`)입니다. 두 분기 모두 "아니오"인 경로는 legacy로 합류하므로, 실제로 new 서비스에 도달하는 주문은 두 조건을 모두 통과한 일부뿐입니다.
+
+```mermaid
+flowchart TD
+    Req["주문 요청 Order"] --> Proxy["OrderServiceProxy</br>processOrder()"]
+    Proxy --> ToggleCheck{"featureToggle</br>isEnabled('new-order-service')"}
+    ToggleCheck -->|"false"| Legacy["LegacyOrderService</br>processOrder()"]
+    ToggleCheck -->|"true"| CanaryCheck{"shouldUseNewService</br>customerId % 10 == 0"}
+    CanaryCheck -->|"false, 약 90%"| Legacy
+    CanaryCheck -->|"true, 약 10%"| New["NewOrderService</br>processOrder()"]
+```
+
 ## 성과 측정
+
+리팩토링이 "느낌상 더 나아졌다"에 머물지 않으려면, 개선 전후를 비교할 수 있는 정량 지표가 필요합니다. 순환 복잡도(Cyclomatic Complexity)는 Thomas McCabe가 1976년 논문 "A Complexity Measure"에서 제안한 지표로, 코드 내 독립적인 실행 경로의 수를 세어 테스트에 필요한 최소 케이스 수를 근사합니다. 위 God Object와 Spaghetti Code 예제처럼 중첩 조건문이 깊어질수록 이 값이 커지며, 값이 커질수록 같은 동작을 검증하는 데 필요한 테스트 케이스도 함께 늘어납니다. 기술 부채(Technical Debt)는 Ward Cunningham이 1992년 처음 제시한 은유로, "지금 빠르게 가되 나중에 이자를 물듯 정리 비용을 치른다"는 관점에서 코드 품질 저하를 금융 부채에 비유합니다. SonarQube 같은 정적 분석 도구는 이 은유를 실제 지표(기술 부채 비율, 특정 코드 스멜 개수)로 환산해 리팩토링 우선순위를 정하는 데 활용합니다.
 
 ### 리팩토링 효과 측정
 
@@ -626,6 +780,8 @@ public class RefactoringMetrics {
 }
 ```
 
+`measureCodeQuality()`와 `measureProductivity()`를 나란히 둔 이유는 코드 품질 지표만으로는 리팩토링의 가치를 온전히 설명할 수 없기 때문입니다. 순환 복잡도나 기술 부채 같은 코드 품질 지표는 "코드가 얼마나 이해하기 쉬워졌는가"를 보여주지만, 그 개선이 실제로 팀의 일하는 방식을 바꿨는지는 배포 빈도(Deployment Frequency)나 평균 복구 시간(MTTR) 같은 생산성 지표를 봐야 드러납니다. 예컨대 God Object를 이벤트 기반 구조로 분리한 뒤 순환 복잡도가 낮아졌더라도, 배포 빈도가 그대로거나 코드 리뷰 시간이 오히려 늘었다면 리팩토링이 조직 차원의 병목을 해소하지 못했다는 신호입니다. 두 지표군을 함께 추적해야 "설계가 좋아졌다"는 주관적 인상과 "팀이 더 빠르고 안전하게 배포한다"는 객관적 결과를 분리해서 검증할 수 있습니다.
+
 ## 실습 과제
 
 ### 과제 1: God Object 리팩토링
@@ -642,9 +798,9 @@ public class RefactoringMetrics {
 
 ## 토론 주제
 
-1. **기술 부채와 비즈니스 가치**: 언제 리팩토링에 투자해야 하는가?
-2. **레거시 시스템 현대화**: 대규모 레거시 시스템을 안전하게 리팩토링하는 전략
-3. **팀 차원의 코드 품질**: 코드 리뷰와 페어 프로그래밍의 역할
+1. **기술 부채와 비즈니스 가치**: 언제 리팩토링에 투자해야 하는가? — 새 기능 추가 속도가 눈에 띄게 느려지거나(위 "순환 복잡도" 상승), 같은 종류의 버그가 반복 발생하는 시점이 신호다. 기능 개발을 멈추고 리팩토링만 하기보다, 기능을 추가하면서 그 경로에 있는 코드를 조금씩 개선하는 편이 비즈니스 이해관계자를 설득하기 쉽다.
+2. **레거시 시스템 현대화**: 대규모 레거시 시스템을 안전하게 리팩토링하는 전략은 무엇인가? — 위 Strangler Fig Pattern처럼 트래픽을 점진적으로 옮기는 방식이 기본이며, 전환 중 신구 시스템의 데이터 정합성을 어떻게 보장할지가 대개 가장 어려운 부분이다.
+3. **팀 차원의 코드 품질**: 코드 리뷰와 페어 프로그래밍은 어떤 역할을 하는가? — 개인은 자신이 누적시킨 타협(위 "흔한 오해" 절 참고)을 스스로 알아차리기 어렵지만, 리뷰어나 페어는 그 코드를 처음 보는 시점에 God Object 초기 징후를 더 쉽게 포착할 수 있다.
 
 ## 한눈에 보는 안티패턴과 리팩토링
 
@@ -686,6 +842,8 @@ public class RefactoringMetrics {
 
 ### 리팩토링 안전성 가이드
 
+아래 표의 위험도 구분은 임의로 매긴 것이 아니라, 각 리팩토링이 **프로그램의 관찰 가능한 동작(observable behavior)을 얼마나 건드리는가**를 기준으로 합니다. Rename이나 Extract Method는 호출 시그니처와 실행 결과를 그대로 보존한 채 이름과 위치만 바꾸므로 IDE가 기계적으로 검증할 수 있어 위험도가 낮습니다. 반면 Replace Inheritance나 Introduce Pattern은 타입 계층 자체를 바꾸기 때문에, 겉보기엔 같은 동작이라도 다형성 호출 경로나 예외 전파 방식이 달라질 수 있어 기계적 검증만으로는 안전을 보장할 수 없고 사람의 설계 검토가 필요합니다. 즉 "자동화 가능" 열은 도구의 정교함이 아니라, 그 리팩토링이 근본적으로 검증 가능한 성질의 변경인지를 나타냅니다.
+
 | 리팩토링 | 위험도 | 필요 조건 | 자동화 가능 |
 |---------|-------|----------|-----------|
 | Rename | 낮음 | IDE 지원 | O |
@@ -723,7 +881,10 @@ public class RefactoringMetrics {
 - **도서**: "Working Effectively with Legacy Code" by Michael Feathers (2004)
 - **도서**: "Clean Code" by Robert C. Martin (2008)
 - **온라인**: [Refactoring Guru - Code Smells](https://refactoring.guru/refactoring/smells)
+- **온라인**: [Martin Fowler - StranglerFigApplication](https://martinfowler.com/bliki/StranglerFigApplication.html)
 - **도구**: SonarQube, PMD, SpotBugs, Checkstyle
+
+[^strangler-fig]: Martin Fowler, "StranglerFigApplication", martinfowler.com bliki. <https://martinfowler.com/bliki/StranglerFigApplication.html>
 
 ---
 

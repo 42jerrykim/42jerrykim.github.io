@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 80
 title: "[Design Patterns] 08. 데코레이터와 컴포지트: 재귀적 아름다움"
 slug: "decorator-composite-recursive-beauty"

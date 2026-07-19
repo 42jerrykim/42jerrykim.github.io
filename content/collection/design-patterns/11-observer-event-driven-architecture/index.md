@@ -1,12 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 110
 title: "[Design Patterns] 11. 옵저버: 이벤트 드리븐 아키텍처의 핵심"
 slug: "observer-event-driven-architecture"
 description: "일대다 의존성을 관리하는 Observer 패턴의 구조와 원리를 깊이 있게 살펴보고, 느슨한 결합을 바탕으로 이벤트 드리븐 아키텍처, 리액티브 프로그래밍, Event Bus, MVC 패턴으로 확장되는 과정을 탐구합니다."
 image: "wordcloud.png"
 date: 2024-12-11T10:00:00+09:00
-lastmod: 2026-07-17T14:30:00+09:00
+lastmod: 2026-07-18T10:00:00+09:00
 categories:
 - Design Patterns
 - Behavioral Patterns
@@ -700,6 +700,130 @@ class AdaptiveTrader implements HybridObserver {
 ### 흔한 오해: Observer를 쓰면 결합도가 항상 낮아진다는 착각
 
 Observer 패턴을 도입하면 결합도가 자동으로 낮아진다고 오해하기 쉽지만 실제로는 조건부다. Subject와 Observer가 인터페이스로만 연결된다는 사실은 타입 의존성을 없앨 뿐, Subject가 어떤 순서로 어떤 데이터를 통지하는지에 대한 암묵적 계약(통지 순서, 타이밍, `notifyObservers()` 내부에서 예외가 전파되는지 여부 등)까지 없애주지는 않는다. 앞서 본 `PushObserver.update(symbol, price, previousPrice, change, volume, timestamp)`처럼 파라미터를 나열하는 Push 모델에서는 Subject의 내부 데이터 구조가 바뀌면 모든 Observer의 시그니처를 함께 고쳐야 하므로 오히려 결합도가 올라간다. Pull 모델도 예외는 아니다. 여러 Observer가 `getPrice()`를 서로 다른 시점에 호출하면 그 사이 값이 바뀔 수 있어, 통지 순서에 암묵적으로 의존하는 숨은 결합이 생긴다. 따라서 "Observer 패턴 = 낮은 결합도"라는 등식이 아니라, 인터페이스를 얼마나 안정적으로 설계하고 통지 계약을 얼마나 명확히 하느냐가 실제 결합도를 결정한다고 보는 것이 정확하다.
+
+## Observer 안티패턴: Polling과 순환 통지
+
+Observer 패턴을 안다고 해서 실무에서 항상 정석대로 적용되는 것은 아니다. Observer가 해결하려는 문제(상태 변화를 즉시, 느슨한 결합으로 전파하는 것)를 우회하거나 잘못 구현해 되레 결합도와 복잡도를 키우는 두 가지 대표적 안티패턴을 코드로 비교한다. 하나는 Observer 자체를 쓰지 않고 대신 상태를 반복 확인하는 "Polling", 다른 하나는 Observer를 쓰긴 했지만 통지 흐름을 잘못 설계해 스스로를 무한히 호출하는 "순환 통지"다.
+
+### Polling 안티패턴: "내가 계속 물어볼게"
+
+Observer 패턴이 정착하기 전에는 관심 있는 객체가 주기적으로 깨어나 대상의 상태를 직접 조회하고, 이전에 기억해 둔 값과 비교해 변화를 스스로 판별하는 방식이 흔했다. 이 방식은 Subject 쪽에 통지 로직을 두지 않아도 되어 겉보기엔 간단하지만, 변화가 없는 주기에도 CPU를 소비하고, 변화 시점과 감지 시점 사이에 폴링 주기만큼의 지연이 생기며, "값이 바뀌었는가"를 판단하는 로직을 Observer 수만큼 중복 구현해야 한다.
+
+```java
+import java.util.concurrent.atomic.AtomicBoolean;
+
+// 안티패턴: Polling으로 가격 변화를 감지
+class PollingTrader {
+    private final Stock stock;
+    private double lastKnownPrice;
+    private final AtomicBoolean running = new AtomicBoolean(true);
+
+    public PollingTrader(Stock stock) {
+        this.stock = stock;
+        this.lastKnownPrice = stock.getPrice();
+    }
+
+    public void startPolling() throws InterruptedException {
+        while (running.get()) {
+            double currentPrice = stock.getPrice();
+            if (Double.compare(currentPrice, lastKnownPrice) != 0) {
+                System.out.printf("Price changed: %.2f -> %.2f%n", lastKnownPrice, currentPrice);
+                lastKnownPrice = currentPrice;
+            }
+            Thread.sleep(100); // 100ms마다 폴링
+        }
+    }
+
+    public void stop() {
+        running.set(false);
+    }
+}
+```
+
+폴링 주기를 100ms로 두면 가격이 바뀐 순간부터 최대 100ms까지 통지가 지연되고, `PollingTrader`가 10개 붙으면 10개의 스레드가 각자 100ms마다 `getPrice()`를 호출하는 유휴 트래픽이 발생한다. 반면 Observer 패턴은 `setPrice()`가 실제로 값을 바꾼 순간에만 `notifyObservers()`가 실행되므로 지연이 없고, 변화가 없는 구간에는 아무 연산도 일어나지 않는다.
+
+| 항목 | Polling 안티패턴 | Observer 패턴 |
+|------|------------------|----------------|
+| 통지 시점 | 폴링 주기만큼 지연 (예: 최대 100ms) | 상태 변경 즉시 |
+| 유휴 자원 소비 | 변화 없어도 주기마다 조회 | 변화 시에만 동작 |
+| Observer 증가 시 부하 | Observer 수만큼 폴링 스레드/루프 증가 | `notifyObservers()` 한 번으로 전체 통지 |
+| 결합 방식 | Trader가 Stock의 getter를 직접 호출 | Subject/Observer 인터페이스로 분리 |
+
+### 순환 통지(Reentrant Notification) 안티패턴: "통지가 통지를 부른다"
+
+두 번째 안티패턴은 Observer 패턴을 도입했지만 통지 경로를 잘못 설계해 발생한다. Observer의 `update()` 내부에서 다른 Subject의 상태를 동기적으로 변경하고, 그 변경이 다시 원래 Subject를 갱신하는 통지로 이어지면, 종료 조건 없는 호출 체인이 만들어져 스택이 무한히 쌓인다. 아래 코드는 두 종목이 서로를 관찰하며 가격을 연동시키다가 이 문제에 빠지는 예시다.
+
+```java
+// 안티패턴: Observer 내부에서 동기적으로 다른 Subject를 갱신해 순환 통지가 발생
+class CorrelatedStock extends Stock {
+    private CorrelatedStock pairedStock;
+
+    public CorrelatedStock(String symbol, double initialPrice) {
+        super(symbol, initialPrice);
+    }
+
+    public void pairWith(CorrelatedStock other) {
+        this.pairedStock = other;
+        this.attach(new Observer() {
+            @Override
+            public void update(Subject subject) {
+                // 페어링된 종목 가격을 연동 갱신 -> 다시 notifyObservers() 호출을 유발
+                double correlatedPrice = ((Stock) subject).getPrice() * 0.98;
+                pairedStock.setPrice(correlatedPrice);
+            }
+        });
+    }
+}
+
+// stockA.pairWith(stockB); stockB.pairWith(stockA); 로 상호 등록한 뒤
+// stockA.setPrice(...)를 한 번만 호출해도 A -> B -> A -> B ... 로 재귀 호출이 이어져
+// 결국 StackOverflowError로 종료된다.
+```
+
+```mermaid
+sequenceDiagram
+    participant A as StockA
+    participant B as StockB
+    A->>A: setPrice 호출
+    A->>B: notifyObservers 실행
+    B->>B: setPrice 호출로 연동 갱신
+    B->>A: notifyObservers 실행
+    A->>A: setPrice 호출로 다시 연동
+    Note over A,B: 종료 조건 없이 반복되면 StackOverflowError 발생
+```
+
+가장 단순한 방어책은 통지가 진행 중인 동안 재진입을 막는 가드 플래그다.
+
+```java
+// 해결책 1: 통지 중 재진입을 막는 가드 플래그
+class GuardedStock extends Stock {
+    private boolean notifying = false;
+
+    public GuardedStock(String symbol, double initialPrice) {
+        super(symbol, initialPrice);
+    }
+
+    @Override
+    public void notifyObservers() {
+        if (notifying) {
+            return; // 이미 통지가 진행 중이면 재진입 통지를 무시
+        }
+        notifying = true;
+        try {
+            super.notifyObservers();
+        } finally {
+            notifying = false;
+        }
+    }
+}
+```
+
+가드 플래그는 스택 오버플로를 막아 주지만 재진입한 통지 자체를 조용히 버리므로, 그 통지가 전달하려던 갱신이 유실될 수 있다. 앞서 EventBus 절에서 본 것처럼 통지를 동기 호출이 아니라 큐에 적재한 뒤 현재 통지가 끝난 후 순차 처리하도록 비동기 디스패치로 바꾸면, 원인과 결과의 호출 스택이 분리되어 재귀 자체가 성립하지 않는다 — 재진입을 "막는" 것이 아니라 애초에 "동시에 스택에 쌓이지 않도록" 시간 축에서 분리하는 접근이다.
+
+| 안티패턴 | 증상 | Observer 정석 대안 |
+|----------|------|---------------------|
+| Polling | 통지 지연, 변화 없을 때도 자원 소비 | `notifyObservers()`로 상태 변경 시점에 즉시 push |
+| 순환 통지 (Reentrant Notification) | 무한 재귀, StackOverflowError | 가드 플래그로 재진입 차단, 또는 EventBus형 비동기 큐잉으로 시간 축 분리 |
 
 ## 메모리 관리와 생명주기: Observer의 숨겨진 함정
 

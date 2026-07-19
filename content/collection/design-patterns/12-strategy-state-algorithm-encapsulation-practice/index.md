@@ -1,12 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 121
 title: "[Design Patterns] 12. 전략과 상태: 알고리즘 캡슐화의 미학 — 실습"
 slug: "strategy-state-algorithm-encapsulation-practice"
 description: "Strategy 패턴으로 할인 정책을, State 패턴으로 자판기와 게임 캐릭터 상태 관리를 직접 구현합니다. 개방-폐쇄 원칙을 실현하고 함수형 프로그래밍 스타일의 Strategy 구현까지 실습하는 실전형 글입니다."
 image: "wordcloud.png"
 date: 2024-12-12T11:00:00+09:00
-lastmod: 2026-07-17T14:30:00+09:00
+lastmod: 2026-07-18T09:00:00+09:00
 categories:
 - Design Patterns
 - Behavioral Patterns
@@ -60,9 +60,16 @@ tags:
 
 할인 정책은 고객 유형·주문 금액·시즌 등 조건에 따라 계산 로직 자체가 다르고, 새 정책이 수시로 추가·변경됩니다. 이를 하나의 클래스에서 `if-else`로 처리하면 정책이 늘어날 때마다 기존 코드를 수정해야 해 개방-폐쇄 원칙(OCP)을 위반합니다. Strategy 패턴은 "할인 계산"이라는 동일한 인터페이스 뒤에 정책별 알고리즘을 캡슐화해, `PriceCalculator`는 어떤 정책이 적용되는지 몰라도 되고 새 정책은 클래스 추가만으로 확장됩니다. 반대로 "주문이 처리되는 단계(결제 전/후, 배송 전/후)에 따라 허용되는 행동 자체가 바뀌는" 문제라면 State 패턴이 더 적합합니다. Strategy는 "같은 문제를 푸는 여러 알고리즘 중 하나를 선택"하는 것이고, State는 "시간·이벤트에 따라 객체의 행동 규칙 자체가 바뀌는 것"이라는 차이가 두 패턴을 구분하는 핵심 기준입니다.
 
+GoF는 Strategy의 의도를 다음과 같이 정의합니다. 여기서 "알고리즘을 클라이언트와 독립적으로 변경할 수 있게 한다"는 대목이 바로 `PriceCalculator`가 어떤 `DiscountStrategy` 구현체가 꽂혀 있는지 몰라도 되는 이유입니다.
+
+> "Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it." — Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides, 『Design Patterns: Elements of Reusable Object-Oriented Software』(1994)
+
 ### 코드 템플릿
 
 ```java
+import java.util.function.Function;
+import java.util.function.Predicate;
+
 // TODO 1: Strategy 인터페이스 정의
 public interface DiscountStrategy {
     double calculateDiscount(Order order);
@@ -174,9 +181,15 @@ public class FunctionalDiscountCalculator {
 
 자판기는 동전 투입 → 상품 선택 → 배출로 이어지는 흐름에서, 똑같은 `insertCoin()` 호출이라도 "대기" 상태에서는 잔액을 늘리고 "판매 완료" 상태에서는 무시되어야 하는 것처럼 상태에 따라 같은 메서드의 동작이 완전히 달라집니다. 이를 `if (state == IDLE) ... else if (state == HAS_MONEY) ...` 식으로 처리하면 상태가 늘어날 때마다 모든 메서드에 분기를 추가해야 하고, 어떤 상태에서 어떤 전이가 가능한지 코드 전체에 흩어집니다. State 패턴은 상태마다 별도 클래스를 만들어 "이 상태에서 이 행동이 무엇을 의미하는지"를 그 클래스 안에 캡슐화하고, 상태 전이도 각 State가 다음 State 객체로 교체하는 방식으로 명시적으로 관리합니다. 할인 정책처럼 "여러 알고리즘 중 하나를 골라 쓰는" 문제라면 Strategy가 맞지만, 여기서는 "동일 요청에 대한 반응이 이전 이벤트에 따라 달라지는" 문제이므로 State가 적합합니다.
 
+GoF는 State의 의도를 다음과 같이 정의합니다. "객체가 다른 클래스로 바뀐 것처럼 보인다"는 표현은, `VendingMachine`이 `currentState`를 `IdleState`에서 `HasMoneyState`로 교체하는 순간 동일한 `insertCoin()` 호출의 동작이 통째로 바뀌는 이유를 정확히 짚습니다.
+
+> "Allow an object to alter its behavior when its internal state changes. The object will appear to change its class." — Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides, 『Design Patterns: Elements of Reusable Object-Oriented Software』(1994)
+
 ### 코드 템플릿
 
 ```java
+import java.util.Map;
+
 // TODO 1: State 인터페이스 정의
 public interface VendingMachineState {
     void insertCoin(VendingMachine machine, int amount);
@@ -311,12 +324,41 @@ stateDiagram-v2
 ### 코드 템플릿
 
 ```java
+import java.util.List;
+
+// 지원 클래스 (컴파일을 위한 최소 정의)
+class GameCharacter {
+    private final String name;
+    private int hp;
+    private final int baseDamage;
+    private final int baseSpeed;
+
+    public GameCharacter(String name, int hp, int baseDamage, int baseSpeed) {
+        this.name = name;
+        this.hp = hp;
+        this.baseDamage = baseDamage;
+        this.baseSpeed = baseSpeed;
+    }
+
+    public String getName() { return name; }
+    public int getHp() { return hp; }
+    public void setHp(int hp) { this.hp = hp; }
+    public int getBaseDamage() { return baseDamage; }
+    public int getBaseSpeed() { return baseSpeed; }
+}
+
 // TODO 1: 캐릭터 상태 구현 (정상, 독, 빙결, 버프 등)
 public abstract class CharacterState {
     protected final String stateName;
     protected final int duration;
     protected final GameCharacter character;
-    
+
+    protected CharacterState(String stateName, int duration, GameCharacter character) {
+        this.stateName = stateName;
+        this.duration = duration;
+        this.character = character;
+    }
+
     // TODO: 상태별 행동 수정 메서드들
     public abstract int modifyDamage(int baseDamage);
     public abstract int modifySpeed(int baseSpeed);
@@ -332,6 +374,10 @@ public class StateManager {
     // TODO: 여러 상태가 동시에 적용될 때의 효과 계산
 }
 ```
+
+### 흔한 오개념: 이름이 아니라 전이 주체로 구분하라
+
+Strategy와 State는 구조가 거의 같아서(인터페이스 하나에 구현체 여럿, Context 하나) "선택지가 여러 개면 Strategy, 상태가 여러 개면 State"라는 식으로 이름만 보고 구분하려는 오개념이 흔합니다. 하지만 실제 판별 기준은 이름이 아니라 "누가, 언제 다음 구현체로 바꾸는가"입니다. 예를 들어 게임 캐릭터가 근접/원거리 공격 모드를 플레이어 입력으로 명시적으로 선택해 전투 내내 유지한다면 이는 Strategy이고, 반대로 독 상태처럼 일정 시간이 지나면 저절로 해제되고 다른 상태(빙결)와 상호작용한다면 State입니다. 또 다른 오개념은 "State 패턴은 한 번에 하나의 상태만 가진다"는 가정인데, 실습 3의 `StateManager`처럼 여러 `CharacterState`를 동시에 활성화해 조합하는 것도 State 패턴의 정상적인 변형입니다. 정리하면, 전이 없이 외부에서 알고리즘을 주입받으면 Strategy, 객체 스스로 내부 이벤트에 따라 전이하며 행동 집합 자체가 바뀌면 State로 봐야 합니다.
 
 ## Strategy·State의 한계와 트레이드오프
 
@@ -351,21 +397,21 @@ public class StateManager {
 ## 체크리스트
 
 ### Strategy 패턴
-- [ ] 알고리즘 가족 캡슐화
-- [ ] 런타임 전략 변경 구현
-- [ ] 함수형 스타일 전략 구현
-- [ ] 조건부 전략 적용
+- [ ] 알고리즘 가족 캡슐화 — `DiscountStrategy` 인터페이스 뒤에 정책별 계산 로직을 분리했는지 확인한다.
+- [ ] 런타임 전략 변경 구현 — `PriceCalculator`가 전략을 필드로 보유하고 생성자·setter로 교체 가능한지 확인한다.
+- [ ] 함수형 스타일 전략 구현 — `Function<Order, Double>`로 상태 없는 전략을 표현했는지 확인한다.
+- [ ] 조건부 전략 적용 — `conditionalDiscount`가 `Predicate` 결과에 따라 할인 적용 여부를 분기하는지 확인한다.
 
 ### State 패턴
-- [ ] 상태별 행동 변화 구현
-- [ ] 상태 전이 로직 구현
-- [ ] Singleton 상태 객체 적용
-- [ ] 상태 히스토리 관리
+- [ ] 상태별 행동 변화 구현 — 동일한 `insertCoin()` 호출이 `IdleState`·`HasMoneyState`마다 다르게 동작하는지 확인한다.
+- [ ] 상태 전이 로직 구현 — `setState()` 호출로 다음 상태 객체가 명시적으로 교체되는지 확인한다.
+- [ ] Singleton 상태 객체 적용 — `IdleState`처럼 `getInstance()`로 상태 인스턴스를 공유해 불필요한 객체 생성을 막았는지 확인한다.
+- [ ] 상태 히스토리 관리 — 이전 상태를 스택 등에 기록해 되돌리기(undo)나 전이 로깅에 활용할 수 있는지 확인한다.
 
 ### 패턴 비교 분석
-- [ ] Strategy vs State 차이점 정리
-- [ ] 각 패턴의 적용 시나리오 분석
-- [ ] 성능 및 메모리 사용량 비교
+- [ ] Strategy vs State 차이점 정리 — 위 비교표의 캡슐화 대상·교체 주체 기준으로 두 패턴을 구분해 설명할 수 있는지 확인한다.
+- [ ] 각 패턴의 적용 시나리오 분석 — "실무 적용" 절의 예시처럼 실제 도메인에 어떤 패턴이 맞는지 스스로 판단할 수 있는지 확인한다.
+- [ ] 성능 및 메모리 사용량 비교 — 상태 객체를 Singleton으로 공유할 때와 요청마다 새로 생성할 때의 메모리·GC 부담 차이를 비교해봤는지 확인한다.
 
 ## 추가 도전
 
