@@ -115,6 +115,9 @@ public class User {
 가장 안쪽. **기업 전체의 핵심 비즈니스 규칙**을 캡슐화한다.
 
 ```java
+import java.util.List;
+import java.util.ArrayList;
+
 public class Money {
     public static final Money ZERO = new Money(java.math.BigDecimal.ZERO);
     private final java.math.BigDecimal amount;
@@ -177,17 +180,15 @@ public class Order {
 }
 ```
 
-특성:
-- 메서드를 가진 객체 또는 데이터 구조와 함수의 집합
-- **가장 변하지 않는** 부분
-- 외부 변화로부터 가장 **보호**받는 부분
-- 특정 애플리케이션과 무관
+엔터티는 메서드를 가진 객체이거나, 데이터 구조와 그 데이터에 작용하는 함수들의 집합일 수도 있다 — 형태는 자유롭지만 내용은 항상 기업 전체가 공유하는 핵심 규칙이어야 한다. 위 `Order`가 `@Entity`나 `@Table` 같은 프레임워크 어노테이션을 전혀 참조하지 않는다는 점에 주목한다. 비즈니스 규칙 자체가 좀처럼 바뀌지 않으므로 엔터티는 시스템에서 **가장 변하지 않는** 부분이 되고, 그만큼 외부 변화(UI 개편, DB 교체, 프레임워크 업그레이드)로부터 가장 **보호**받는다. 또한 엔터티는 특정 애플리케이션 하나만을 위해 존재하지 않는다 — 같은 `Order`가 온라인 쇼핑몰, 콜센터 주문 시스템, 배치 정산 시스템에서 동일하게 재사용될 수 있다.
 
 ### 2. Use Cases (유스케이스)
 
 **애플리케이션 특화 비즈니스 규칙**을 포함한다.
 
 ```java
+import java.util.List;
+
 public class PlaceOrderRequest {
     private final String customerId;
     private final List<OrderItemDTO> items;
@@ -256,17 +257,17 @@ public class PlaceOrderUseCase {
 }
 ```
 
-특성:
-- 시스템의 **유스케이스 구현**
-- 엔터티 간의 **데이터 흐름 조율**
-- 엔터티에 영향을 주지 **않음**
-- 바깥쪽(DB, UI)에 영향을 받지 **않음**
+`PlaceOrderUseCase`는 그 자체로 시스템의 유스케이스 하나를 구현하며, 엔터티(`Order`, `OrderLine`) 사이의 데이터 흐름을 조율하는 역할만 한다. 위 코드에서 `execute()`가 `Order`의 내부 필드를 직접 조작하지 않고 `addLine()`·`submit()` 같은 엔터티 자신의 메서드만 호출한다는 점에 주목한다 — 유스케이스는 엔터티가 어떻게 동작하는지에 영향을 주지 않으며, 반대로 DB나 UI가 바뀌어도(인터페이스 뒤에 숨겨져 있으므로) 유스케이스 코드 자체는 영향을 받지 않는다.
 
 ### 3. Interface Adapters (인터페이스 어댑터)
 
 유스케이스와 엔터티에 가장 편한 형식에서, 외부 에이전시에 가장 편한 형식으로 **데이터를 변환**한다.
 
 ```java
+import java.util.List;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+
 // 웹 계층 DTO - 유스케이스 DTO와는 별개의, HTTP에만 쓰이는 형식
 public class OrderRequest {
     private String customerId;
@@ -353,21 +354,18 @@ class OrderMapper {
 }
 ```
 
-포함 요소:
-- **Controllers**: 입력 데이터 변환
-- **Presenters**: 출력 데이터 변환
-- **Gateways**: 외부 시스템과의 연결
+위 코드의 세 클래스가 Interface Adapters 계층의 전형적인 구성이다. **Controller**는 HTTP 요청이라는 외부 형식을 유스케이스가 이해하는 입력으로 변환하고, **Presenter**는 유스케이스의 출력을 다시 웹 응답 형식으로 변환하며, **Gateway**(`JpaOrderRepository`)는 유스케이스가 정의한 출력 포트(`OrderRepository`)를 실제 DB 접근 기술(Spring Data JPA)로 구현해 외부 시스템과 연결한다. 세 클래스 모두 안쪽(유스케이스·엔터티)이 정의한 인터페이스나 타입에 맞춰 바깥쪽 세부사항을 감싸는 어댑터 역할을 한다는 공통점이 있다.
 
 ### 4. Frameworks and Drivers (프레임워크와 드라이버)
 
-가장 바깥쪽. **세부사항**으로 구성된다.
-
-- 웹 프레임워크: Spring, Express, Django
-- 데이터베이스: MySQL, MongoDB, Redis
-- UI 프레임워크: React, Vue, Angular
-- 외부 API 클라이언트
+가장 바깥쪽 원은 웹 프레임워크(Spring, Express, Django), 데이터베이스(MySQL, MongoDB, Redis), UI 프레임워크(React, Vue, Angular), 외부 API 클라이언트처럼 구체적인 기술 **세부사항**으로 구성된다. 이 원에 속한 코드는 안쪽 원이 정의한 인터페이스를 구현하는 것 외에 다른 역할을 하지 않는다.
 
 ```java
+import java.util.List;
+import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import jakarta.persistence.*;
+
 // Spring Data JPA - Framework
 @Repository
 public interface SpringDataOrderRepository extends JpaRepository<OrderEntity, Long> {
@@ -399,10 +397,7 @@ public class OrderLineEntity {
 }
 ```
 
-특성:
-- **최소한의 코드**만 작성
-- **글루 코드(glue code)** 위주
-- 안쪽 계층과 연결하는 역할
+`SpringDataOrderRepository`와 `OrderEntity`가 하는 일은 이것이 전부다 — 비즈니스 로직은 한 줄도 없고, `JpaOrderRepository`(Interface Adapters 계층)와 실제 Spring Data JPA 사이를 연결하는 **글루 코드(glue code)**일 뿐이다. 프레임워크 계층에는 이처럼 **최소한의 코드**만 두어, 안쪽 계층과 바깥쪽 기술을 연결하는 역할에 충실해야 한다.
 
 ## 경계 횡단
 
@@ -448,6 +443,8 @@ Presenter가 Use Case에 의존하도록 **의존성 역전**.
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.ArrayList;
 
 class InMemoryOrderRepository implements OrderRepository {
     List<Order> saved = new ArrayList<>();
@@ -554,6 +551,8 @@ src/
 ## 흔한 오해
 
 동심원이 정확히 4개여야 한다고 오해하기 쉽다. 마틴은 이 그림이 개략적(schematic)일 뿐이라고 밝힌다 — 4개는 최소한의 예시이며, 필요하면 더 많은 계층을 둘 수 있다. 중요한 것은 원의 개수가 아니라 **의존성 규칙**(안쪽으로만 향한다)이 지켜지는지다. 또 다른 오해는 "제어 흐름"과 "소스 코드 의존성"을 같은 것으로 여기는 것이다. `Controller → UseCase → Presenter` 순서로 실행되지만, `Presenter`가 `UseCase`가 정의한 `OrderPresenter` 인터페이스를 구현하므로 소스 코드 의존성은 `Presenter → UseCase` 방향이다("경계 횡단" 절 참고). 실행 순서와 컴파일 타임 의존 방향은 별개다.
+
+이 장이 요구하는 엄격한 경계 분리에는 비용이 따른다. 이 장의 예제에서만도 "주문 항목"이라는 같은 개념이 `OrderLine`(엔터티), `OrderItemDTO`(유스케이스 입력), `OrderItemWebDTO`(웹 요청)로 세 번 정의된다. 계층 하나가 바뀔 때마다(예: 웹 요청 필드 추가) 나머지 두 계층은 영향받지 않는다는 장점이 있지만, 그만큼 변환 코드(매핑 보일러플레이트)를 계속 유지해야 한다는 비용도 뒤따른다. 마틴 자신도 모든 경계에 이 수준의 완전한 분리가 항상 필요한 것은 아니라고 인정하며, 이 절충을 어디까지 완화할 수 있는지는 34장("부분적 경계")에서 다룬다.
 
 ## 학습 목표
 
