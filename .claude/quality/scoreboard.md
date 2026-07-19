@@ -38,9 +38,9 @@
 | content/collection/cleanarchitecture/24-architecture-introduction-system-design/index.md | 85.9 | 2026-07-19 | 3 | 에스컬레이션 | 항목2 학습목표 문항이 본문 흔한오해 절과 불일치, 항목7 태그 11개 본문 근거 약함. 90점에 4.1점 차 |
 | content/collection/cleanarchitecture/25-what-is-architecture-system-lifecycle/index.md | 87.7 | 2026-07-19 | 3 | 에스컬레이션 | 항목5 정책/세부사항 분리 예제 미정의 타입, 항목1 1960년대 서술 미검증, 항목3 일부 절 표/리스트 의존. 90점에 2.3점 차 |
 | content/collection/cleanarchitecture/26-independence-usecase-operation-development/index.md | 72.7 | 2026-07-19 | 3 | 에스컬레이션 | 항목7 무관 태그 6개(반복 재현), 항목3 계층/디커플링 소절 리스트·코드 의존 |
-| content/collection/cleanarchitecture/27-boundaries-drawing-lines-plugin-architecture/index.md | - | - | 0 | 미채점 | - |
+| content/collection/cleanarchitecture/27-boundaries-drawing-lines-plugin-architecture/index.md | 83.2 | 2026-07-19 | 3 | 에스컬레이션 | 항목5 WikiPagePersistence 구현체 컴파일 불가(throws 불일치, 미구현 메서드), 항목7 무관 태그 4개. 90점에 6.8점 차 |
 | content/collection/cleanarchitecture/28-boundary-anatomy-monolith-to-services/index.md | 67 | 2026-07-19 | 3 | 에스컬레이션 | 항목1 ServiceLoader 메커니즘 서술 오류(치명결함), 항목5 코드 컴파일 불가 |
-| content/collection/cleanarchitecture/29-policy-and-level-high-level-dependency/index.md | - | - | 0 | 미채점 | - |
+| content/collection/cleanarchitecture/29-policy-and-level-high-level-dependency/index.md | 84.7 | 2026-07-19 | 3 | 에스컬레이션 | 항목7 무관 태그 4개, 항목1 인용 페이지 미표기, 항목4 수준/변경빈도 절 중복. 90점에 5.3점 차 |
 | content/collection/cleanarchitecture/30-business-rules-entities-usecases/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/31-screaming-architecture-intent-driven-structure/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/32-clean-architecture-concentric-circles-dependency/index.md | - | - | 0 | 미채점 | - |
