@@ -50,7 +50,7 @@
 | content/collection/cleanarchitecture/36-main-component-lowest-level-policy/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 없음 |
 | content/collection/cleanarchitecture/37-services-architecture-boundaries-microservices/index.md | 91.3 | 2026-07-19 | 2 | 통과 | 없음(경미: 일부 절 리드 문단 보강 여지) |
 | content/collection/cleanarchitecture/38-test-boundary-testing-as-system-part/index.md | 92 | 2026-07-19 | 1 | 통과 | 없음(경미: 일부 절 리드 문단 보강 여지) |
-| content/collection/cleanarchitecture/39-clean-embedded-architecture-hardware-separation/index.md | - | - | 0 | 미채점 | - |
+| content/collection/cleanarchitecture/39-clean-embedded-architecture-hardware-separation/index.md | 98.2 | 2026-07-19 | 3 | 통과 | 없음(경미: Mermaid 노드 ID 표기 관례 미준수) |
 | content/collection/cleanarchitecture/40-details-introduction-interchangeable-parts/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/41-database-is-detail-persistence/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/42-web-is-detail-gui-history/index.md | - | - | 0 | 미채점 | - |
