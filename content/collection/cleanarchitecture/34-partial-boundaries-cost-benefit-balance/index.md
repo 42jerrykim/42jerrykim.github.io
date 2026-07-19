@@ -2,7 +2,7 @@
 draft: true
 collection_order: 340
 image: "wordcloud.png"
-description: "부분적 경계 전략을 다룹니다. 완전한 경계의 비용이 부담될 때 사용할 수 있는 세 가지 부분적 경계 패턴과 각각의 장단점을 설명합니다."
+description: "부분적 경계 전략을 다룹니다. 완전한 경계의 비용이 부담될 때 사용할 수 있는 마지막 단계 건너뛰기·단방향 경계·퍼사드 세 가지 패턴과 각각의 장단점을, 결제·알림 서비스 예제를 컴파일 가능한 Java 코드로 비교하며 설명합니다."
 title: "[Clean Architecture] 34. 부분적 경계"
 slug: partial-boundaries-cost-benefit-balance
 date: 2026-01-18
@@ -12,29 +12,27 @@ tags:
   - Interface(인터페이스)
   - Software-Architecture(소프트웨어아키텍처)
   - Deployment(배포)
-  - Edge-Cases(엣지케이스)
-  - Code-Quality(코드품질)
-  - Coupling(결합도)
-  - Cohesion(응집도)
-  - Modularity
-  - Best-Practices
-  - Maintainability
-  - Refactoring(리팩토링)
   - Design-Pattern(디자인패턴)
-  - Dependency-Injection(의존성주입)
-  - Abstraction(추상화)
-  - Testing(테스트)
-  - History(역사)
-  - Case-Study
-  - Deep-Dive
-  - Technology(기술)
-  - System-Design
+  - Maintainability
+  - Facade
+  - Strategy
+  - Java
   - Comparison(비교)
-  - Reliability
-  - Documentation(문서화)
-  - Readability
-  - TDD(Test-Driven Development)
-  - Scalability(확장성)
+  - Partial-Boundary
+  - Full-Boundary
+  - Skip-The-Last-Step
+  - One-Dimensional-Boundary
+  - YAGNI
+  - Payment-Strategy
+  - Notification-Gateway
+  - JPA
+  - Cost-Benefit-Analysis
+  - Component-Boundary
+  - Jar-Deployment
+  - Placeholder-Boundary
+  - Architectural-Boundary
+  - Stripe
+  - PayPal
 ---
 
 완전한 경계를 만드는 비용은 **상당하다**. 때로는 완전한 경계가 **과도할** 수 있다. 부분적 경계는 비용을 줄이면서 일부 이점을 얻는 방법이다.
@@ -62,7 +60,8 @@ flowchart TB
 | 의존성 관리 | 컴포넌트 간 버전 관리 |
 | 유지보수 비용 | 지속적인 관리 필요 |
 
-> "완전한 경계를 만드는 비용은 **상당하며**, 유지보수 비용도 높다."
+> "Full-fledged architectural boundaries are expensive. They require reciprocal polymorphic Boundary interfaces, Input and Output data structures, and all of the dependency management necessary to isolate the two sides into independently compilable and deployable components."
+> — Robert C. Martin, 『Clean Architecture』(2017), 24장
 
 ## 부분적 경계가 필요한 상황
 
@@ -107,6 +106,22 @@ flowchart TB
 // 같은 패키지에 있지만 인터페이스로 분리
 package com.example.order;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Entity;
+import java.util.Optional;
+
+class Order {
+    private final Long id;
+    Order(Long id) { this.id = id; }
+    Long getId() { return id; }
+}
+
+@Entity
+class OrderEntity {
+    static OrderEntity from(Order order) { return new OrderEntity(); }
+    Order toDomain() { return new Order(1L); }
+}
+
 // 인터페이스
 public interface OrderRepository {
     void save(Order order);
@@ -116,12 +131,14 @@ public interface OrderRepository {
 // 구현
 public class JpaOrderRepository implements OrderRepository {
     private final EntityManager em;
-    
+
+    public JpaOrderRepository(EntityManager em) { this.em = em; }
+
     @Override
     public void save(Order order) {
         em.persist(OrderEntity.from(order));
     }
-    
+
     @Override
     public Optional<Order> findById(Long id) {
         return Optional.ofNullable(em.find(OrderEntity.class, id))
@@ -167,10 +184,30 @@ flowchart LR
 **전략 패턴을 활용한 단방향 경계:**
 
 ```java
+import java.math.BigDecimal;
+
+class Order {
+    private final BigDecimal total;
+    Order(BigDecimal total) { this.total = total; }
+    BigDecimal getTotal() { return total; }
+}
+
+class PaymentResult {
+    private final boolean success;
+    private final String transactionId;
+    private PaymentResult(boolean success, String transactionId) {
+        this.success = success; this.transactionId = transactionId;
+    }
+    static PaymentResult success(String transactionId) { return new PaymentResult(true, transactionId); }
+    static PaymentResult failure() { return new PaymentResult(false, null); }
+}
+
 // 단방향 경계: 전략 패턴
 public class PaymentService {
     private final PaymentStrategy strategy;  // 인터페이스
-    
+
+    public PaymentService(PaymentStrategy strategy) { this.strategy = strategy; }
+
     public PaymentResult process(Order order) {
         return strategy.charge(order.getTotal());
     }
@@ -184,13 +221,15 @@ public interface PaymentStrategy {
 // 구체적인 전략들
 public class StripePaymentStrategy implements PaymentStrategy {
     public PaymentResult charge(BigDecimal amount) {
-        // Stripe API 호출
+        // Stripe API 호출(실제로는 Stripe SDK를 사용한다)
+        return PaymentResult.success("stripe-tx-" + System.nanoTime());
     }
 }
 
 public class PayPalPaymentStrategy implements PaymentStrategy {
     public PaymentResult charge(BigDecimal amount) {
-        // PayPal API 호출
+        // PayPal API 호출(실제로는 PayPal SDK를 사용한다)
+        return PaymentResult.success("paypal-tx-" + System.nanoTime());
     }
 }
 ```
@@ -224,12 +263,47 @@ flowchart TB
 ```
 
 ```java
+import java.util.List;
+import java.math.BigDecimal;
+
+class OrderItem { String productId; int quantity; }
+class OrderRequest {
+    private final List<OrderItem> items;
+    private final BigDecimal payment;
+    OrderRequest(List<OrderItem> items, BigDecimal payment) { this.items = items; this.payment = payment; }
+    List<OrderItem> getItems() { return items; }
+    BigDecimal getPayment() { return payment; }
+}
+class OrderResult {
+    private final Long orderId;
+    OrderResult(Long orderId) { this.orderId = orderId; }
+}
+
+interface OrderService {
+    OrderResult create(OrderRequest request);
+    void cancel(Long orderId);
+}
+interface PaymentService {
+    void charge(BigDecimal payment);
+    void refund(Long orderId);
+}
+interface InventoryService {
+    void reserve(List<OrderItem> items);
+    void release(Long orderId);
+}
+
 // 퍼사드: 내부 구현을 숨김
 public class OrderFacade {
     private final OrderService orderService;
     private final PaymentService paymentService;
     private final InventoryService inventoryService;
-    
+
+    public OrderFacade(OrderService orderService, PaymentService paymentService, InventoryService inventoryService) {
+        this.orderService = orderService;
+        this.paymentService = paymentService;
+        this.inventoryService = inventoryService;
+    }
+
     // 클라이언트는 퍼사드만 사용
     public OrderResult placeOrder(OrderRequest request) {
         // 내부 서비스들 조합
@@ -237,13 +311,13 @@ public class OrderFacade {
         paymentService.charge(request.getPayment());
         return orderService.create(request);
     }
-    
+
     public void cancelOrder(Long orderId) {
         orderService.cancel(orderId);
         paymentService.refund(orderId);
         inventoryService.release(orderId);
     }
-    
+
     // 내부 서비스들은 외부에 노출되지 않음
 }
 ```
@@ -303,6 +377,20 @@ flowchart TB
 
 ### 문제: 알림 서비스
 
+네 가지 해법 모두 아래와 같은 최소한의 `Notification`/`Order` 타입을 공유한다고 가정한다:
+
+```java
+class Notification { String message; }
+class Customer {
+    boolean hasMobile() { return true; }
+}
+class Order {
+    private final Customer customer;
+    Order(Customer customer) { this.customer = customer; }
+    Customer getCustomer() { return customer; }
+}
+```
+
 ```java
 // 완전한 경계: 별도 컴포넌트
 // notification-api.jar
@@ -313,7 +401,8 @@ public interface NotificationGateway {
 // notification-email.jar (별도 배포)
 public class EmailNotificationGateway implements NotificationGateway {
     public void send(Notification notification) {
-        // 이메일 발송
+        // 이메일 발송(실제로는 SMTP 클라이언트를 사용한다)
+        System.out.println("email: " + notification.message);
     }
 }
 ```
@@ -329,14 +418,23 @@ public interface NotificationGateway {
 
 public class EmailNotificationGateway implements NotificationGateway {
     // 같은 패키지, 나중에 분리 가능
+    public void send(Notification notification) {
+        System.out.println("email: " + notification.message);
+    }
 }
 ```
 
 ```java
 // 부분적 경계 2: 단방향 경계
+public interface NotificationSender {
+    void sendOrderConfirmation(Order order);
+}
+
 public class OrderService {
     private final NotificationSender sender;  // 단방향
-    
+
+    public OrderService(NotificationSender sender) { this.sender = sender; }
+
     public void placeOrder(Order order) {
         // 주문 처리
         sender.sendOrderConfirmation(order);
@@ -346,11 +444,21 @@ public class OrderService {
 
 ```java
 // 부분적 경계 3: 퍼사드
+interface EmailService { void sendOrderConfirmation(Order order); }
+interface SmsService { void sendOrderConfirmation(Order order); }
+interface PushService { void sendOrderConfirmation(Order order); }
+
 public class NotificationFacade {
     private final EmailService email;
     private final SmsService sms;
     private final PushService push;
-    
+
+    public NotificationFacade(EmailService email, SmsService sms, PushService push) {
+        this.email = email;
+        this.sms = sms;
+        this.push = push;
+    }
+
     public void notifyOrderPlaced(Order order) {
         email.sendOrderConfirmation(order);
         if (order.getCustomer().hasMobile()) {
@@ -359,6 +467,31 @@ public class NotificationFacade {
     }
 }
 ```
+
+## 흔한 오해
+
+부분적 경계를 "제대로 된 경계보다 열등한 임시방편"으로만 여기기 쉽다. 하지만 마틴의 요지는 완전한 경계의 비용(양방향 인터페이스, 입출력 데이터 구조, 독립 배포 단위, 지속적인 의존성 관리)이 모든 상황에 정당화되지는 않는다는 것이다. 아직 분리 여부가 불확실한 컴포넌트에 처음부터 완전한 경계를 적용하면, 나중에 그 경계가 필요 없었던 것으로 판명되어도 이미 들인 비용은 되돌릴 수 없다. 또 다른 오해는 세 가지 전략(마지막 단계 건너뛰기, 단방향 경계, 퍼사드) 중 하나가 항상 "정답"이라고 여기는 것이다. "세 가지 전략 비교" 표에서 보듯 셋은 비용·유연성·향후 확장 용이성이 서로 다른 트레이드오프를 가지며, 상황(불확실성의 정도, 양방향 제어 필요 여부, 구현 속도 요구)에 따라 선택이 달라진다.
+
+## 학습 목표
+
+이 장을 읽은 후 다음을 스스로 점검한다.
+
+- 완전한 경계의 비용(양방향 인터페이스, 입출력 데이터 구조, 독립 배포 단위, 의존성 관리)을 구체적으로 나열할 수 있는가?
+- "마지막 단계 건너뛰기"·"단방향 경계"·"퍼사드" 세 전략이 각각 무엇을 포기하고 무엇을 얻는지 설명할 수 있는가?
+- 알림 서비스 예제에서 같은 문제가 네 가지 경계 강도로 어떻게 다르게 구현되는지 설명할 수 있는가?
+- 부분적 경계가 "영원히 부분적으로 남는" 위험을 갖고 있다는 것을 설명할 수 있는가?
+
+## 판단 기준
+
+경계를 어느 강도로 만들지 판단할 때 다음을 확인한다.
+
+- 이 경계가 나중에 정말 필요해질 가능성이 높은가, 아니면 YAGNI에 해당하는가?
+- 양방향 의존성 역전이 지금 당장 필요한가, 아니면 한쪽 방향만으로 충분한가?
+- 지금 완전한 경계를 만드는 비용을, 나중에 부분적 경계를 완전한 경계로 승격시키는 비용과 비교했을 때 어느 쪽이 더 싼가?
+
+## 참고 자료
+
+- Robert C. Martin, 『Clean Architecture』(2017), 24장 — 부분적 경계 세 가지 전략(마지막 단계 건너뛰기, 단방향 경계, 퍼사드)의 원출처.
 
 ## 핵심 요약
 
@@ -369,5 +502,4 @@ public class NotificationFacade {
 | 단계적 접근 | 부분적 경계로 시작, 필요 시 확장 |
 | 트레이드오프 | 비용 vs 유연성 균형 |
 
-> **"부분적 경계는 나중을 위한 자리 표시자다. 필요하면 완전한 경계로 발전시킬 수 있다."**
-> — Robert C. Martin
+마틴은 완전한 경계를 만드는 비용이 상당하다는 점을 인정하면서도, 그 비용을 감당할 수 없을 때 세 가지 부분적 경계 전략으로 절충할 수 있다고 말한다(Martin, 『Clean Architecture』, 2017, 24장).
