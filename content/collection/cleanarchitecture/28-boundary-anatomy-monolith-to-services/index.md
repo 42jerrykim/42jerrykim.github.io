@@ -12,8 +12,6 @@ tags:
   - Edge-Cases(엣지케이스)
   - Microservices(마이크로서비스)
   - Software-Architecture(소프트웨어아키텍처)
-  - OS(운영체제)
-  - Thread
   - Networking(네트워킹)
   - REST(Representational State Transfer)
   - Memory(메모리)
@@ -33,8 +31,8 @@ tags:
   - Best-Practices
   - Maintainability
   - Deployment(배포)
-  - CI-CD(Continuous Integration/Continuous Deployment)
-  - DevOps
+  - Load-Balancing
+  - Reliability
 ---
 
 경계는 다양한 **물리적 형태**로 존재한다. 단순한 함수 호출부터 네트워크를 통한 서비스 호출까지, 각각의 비용과 장단점이 다르다.
@@ -57,7 +55,7 @@ flowchart TB
 
 ## 1. 모놀리스 (소스 수준)
 
-**단일 실행 파일**. 경계는 **함수 호출**로 횡단한다.
+**단일 실행 파일**. 경계는 **함수 호출**로 횡단한다. 논리적 경계(비즈니스 규칙과 세부사항 사이의 인터페이스)는 존재하지만, 물리적으로는 모두 같은 프로세스·같은 메모리 공간 안에서 컴파일되고 실행된다. 이것이 경계의 가장 저렴한 형태다 — 함수를 호출하는 데는 네트워크도, 별도 프로세스도, 직렬화도 필요 없다.
 
 ```java
 // 모놀리스: 함수 호출로 경계 횡단
@@ -123,7 +121,7 @@ public class MySqlOrderGateway implements OrderGateway {
 
 ## 2. 컴포넌트 (바이너리 수준)
 
-**독립 배포 가능한 단위**: jar, dll, gem, shared library 등
+**독립 배포 가능한 단위**: jar, dll, gem, shared library 등. 여전히 같은 프로세스 안에서 함수 호출로 통신하지만, 각 컴포넌트가 별도 파일로 빌드·배포된다는 점이 모놀리스와 다르다. 덕분에 실행 시점에 어떤 구현체를 로드할지 선택할 수 있는 동적 다형성이 가능해진다.
 
 ```mermaid
 flowchart LR
@@ -185,7 +183,7 @@ PaymentProcessor processor = ServiceLoader.load(PaymentProcessor.class)
 
 ## 3. 로컬 프로세스
 
-**같은 기기의 별도 프로세스**. IPC, 소켓, 메시지 큐로 통신.
+**같은 기기의 별도 프로세스**. IPC, 소켓, 메시지 큐로 통신. 함수 호출이 아니라 운영체제가 중재하는 통신 수단을 쓰므로, 이제부터는 직렬화·역직렬화 비용과 컨텍스트 스위칭 비용이 지연 시간에 더해진다. 대신 프로세스가 완전히 분리되므로, 한쪽이 다른 언어로 작성돼도 상관없다는 장점이 생긴다.
 
 ```mermaid
 flowchart LR
@@ -242,7 +240,7 @@ flowchart TB
 
 ## 4. 서비스 (서비스 수준)
 
-**네트워크를 통한 통신**. REST, gRPC, GraphQL, 메시지 큐 등.
+**네트워크를 통한 통신**. REST, gRPC, GraphQL, 메시지 큐 등. 프로세스가 다른 기기에 있을 수도 있다는 것이 로컬 프로세스와의 결정적 차이다. 네트워크는 로컬 IPC보다 훨씬 느리고, 언제든 끊어질 수 있다는 전제를 깔고 설계해야 한다 — 그래서 서비스 수준부터는 지연·부분 장애·재시도 같은 새로운 문제가 등장한다.
 
 ```mermaid
 flowchart LR
@@ -257,11 +255,20 @@ flowchart LR
 ```
 
 ```java
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+record PaymentResult(boolean success, String message) {}
+
 // REST 클라이언트
 @Service
 public class PaymentClient {
     private final RestTemplate restTemplate;
-    
+
+    PaymentClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
     public PaymentResult processPayment(Payment payment) {
         // 네트워크 호출 - 수십~수백 밀리초
         return restTemplate.postForObject(
@@ -297,21 +304,31 @@ flowchart TB
 ```
 
 ```java
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+import org.springframework.stereotype.Service;
+import java.util.concurrent.TimeoutException;
+
 // 서비스 호출 시 고려할 것들
 @Service
 public class ResilientPaymentClient {
-    
+    private final PaymentClient paymentClient;
+
+    ResilientPaymentClient(PaymentClient paymentClient) {
+        this.paymentClient = paymentClient;
+    }
+
     @CircuitBreaker(name = "payment")
     @Retry(name = "payment")
     public PaymentResult processPayment(Payment payment) {
         try {
-            return paymentService.process(payment);
+            return paymentClient.processPayment(payment);
         } catch (TimeoutException e) {
             // 타임아웃 처리
-            return PaymentResult.pending();
-        } catch (ServiceUnavailableException e) {
+            return new PaymentResult(false, "pending");
+        } catch (RuntimeException e) {
             // 서비스 불가 처리
-            return PaymentResult.retry();
+            return new PaymentResult(false, "retry");
         }
     }
 }
@@ -379,21 +396,4 @@ flowchart TB
 | 단순한 것부터 | 모놀리스 → 필요시 분리 |
 | 비용 고려 | 각 형태의 장단점 이해 |
 
-```java
-// 핵심: 경계의 물리적 형태가 무엇이든
-// 의존성 방향은 항상 고수준을 향해야 한다
-
-// 인터페이스 (고수준)
-public interface PaymentGateway {
-    PaymentResult process(Payment payment);
-}
-
-// 구현 (저수준) - 모놀리스든 서비스든
-public class PaymentGatewayImpl implements PaymentGateway {
-    public PaymentResult process(Payment payment) {
-        return PaymentResult.success();
-    }
-}
-```
-
-마틴은 아키텍트가 경계를 선으로 긋고 나중에 물리적 형태를 결정한다고 말한다. 처음부터 서비스일 필요는 없다(Martin, 『Clean Architecture』, 2017, 18장).
+핵심은 앞서 본 `OrderGateway`(모놀리스)·`PaymentGateway`(플러그인)·`Gateway Interface`(로컬 프로세스) 예제 모두에서 반복된 하나의 규칙이다 — 경계의 물리적 형태가 무엇이든, 의존성 방향은 항상 고수준(비즈니스 규칙)을 향해야 한다. 마틴은 아키텍트가 경계를 선으로 긋고 나중에 물리적 형태를 결정한다고 말한다. 처음부터 서비스일 필요는 없다(Martin, 『Clean Architecture』, 2017, 18장).

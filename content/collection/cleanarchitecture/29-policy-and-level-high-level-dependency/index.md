@@ -13,7 +13,7 @@ tags:
   - Dependency-Injection(의존성주입)
   - Software-Architecture(소프트웨어아키텍처)
   - IO(Input/Output)
-  - Shortest-Path(최단경로)
+  - Algorithm(알고리즘)
   - Interface(인터페이스)
   - Abstraction(추상화)
   - Code-Quality(코드품질)
@@ -21,7 +21,7 @@ tags:
   - Coupling(결합도)
   - Cohesion(응집도)
   - Modularity
-  - History(역사)
+  - Java
   - Best-Practices
   - Maintainability
   - Refactoring(리팩토링)
@@ -32,9 +32,8 @@ tags:
   - OOP(객체지향)
   - Polymorphism(다형성)
   - System-Design
-  - Documentation(문서화)
+  - Encapsulation(캡슐화)
   - Readability
-  - TDD(Test-Driven Development)
 ---
 
 소프트웨어 시스템은 여러 **정책(Policy)**의 집합이다. 정책들은 서로 다른 **수준(Level)**에 존재하며, 의존성은 수준의 방향으로 흘러야 한다.
@@ -80,7 +79,7 @@ interface OutputWriter {
 
 ## 수준(Level)이란?
 
-**입력과 출력으로부터의 거리**가 수준을 결정한다.
+**입력과 출력으로부터의 거리**가 수준을 결정한다. 데이터가 입력 장치에서 들어와 여러 단계를 거쳐 가공된 뒤 출력 장치로 나가는 과정을 상상해보면, 입출력에 가장 가까운 코드(장치를 직접 다루는 코드)가 저수준이고, 그 흐름 한가운데서 "이 데이터로 무엇을 할지"를 결정하는 핵심 규칙이 가장 멀리 떨어진 고수준이다.
 
 ```mermaid
 flowchart LR
@@ -107,6 +106,7 @@ flowchart LR
 ### 왜 거리가 중요한가?
 
 > "입력과 출력에 가까울수록 **변경 가능성이 높다**. 멀수록 **안정적**이다."
+> — Robert C. Martin, 『Clean Architecture』(2017), 19장
 
 ```mermaid
 flowchart TB
@@ -155,7 +155,7 @@ flowchart TB
 
 ## 예시: 암호화 프로그램
 
-마틴은 간단한 암호화 프로그램을 예로 들어 설명한다.
+마틴은 간단한 암호화 프로그램을 예로 들어 설명한다. 이 예제가 유용한 이유는 겉보기에 단순한 "읽기→암호화→쓰기" 흐름 안에도 수준이 다른 정책이 섞여 있다는 것을 보여주기 때문이다 — 어떤 문자를 어떻게 암호화할지는 고수준 규칙이고, 그 문자를 어디서 읽고 어디로 쓸지는 저수준 세부사항이다.
 
 ### 요구사항
 
@@ -201,8 +201,9 @@ public class CaesarCipher implements Encrypt {
 }
 
 // 저수준: 입출력 인터페이스
+// int를 쓰는 이유: char는 EOF(-1)를 표현할 수 없어 int 기반 시그니처가 필요하다
 public interface CharReader {
-    char readChar();
+    int readChar();  // 문자 코드 또는 EOF(-1) 반환
 }
 
 public interface CharWriter {
@@ -211,8 +212,12 @@ public interface CharWriter {
 
 // 저수준 구현: 고수준 인터페이스에 의존
 public class ConsoleReader implements CharReader {
-    public char readChar() {
-        return (char) System.in.read();
+    public int readChar() {
+        try {
+            return System.in.read();  // EOF 시 -1 반환
+        } catch (java.io.IOException e) {
+            return -1;
+        }
     }
 }
 
@@ -243,14 +248,21 @@ public class Main {
 
 // 고수준 서비스: 인터페이스만 의존
 public class EncryptionService {
+    private static final int EOF = -1;
     private final CharReader reader;
     private final CharWriter writer;
     private final Encrypt encrypt;
-    
+
+    public EncryptionService(CharReader reader, CharWriter writer, Encrypt encrypt) {
+        this.reader = reader;
+        this.writer = writer;
+        this.encrypt = encrypt;
+    }
+
     public void run() {
-        char c;
-        while ((c = reader.readChar()) != EOF) {
-            writer.writeChar(encrypt.encrypt(c));
+        int code;
+        while ((code = reader.readChar()) != EOF) {
+            writer.writeChar(encrypt.encrypt((char) code));
         }
     }
 }
@@ -282,9 +294,19 @@ flowchart TB
 // 저수준이 변경되어도 고수준은 영향 없음
 
 // 콘솔 → 파일로 변경
-public class FileReader implements CharReader {
-    public char readChar() {
-        return fileInputStream.read();
+public class FileCharReader implements CharReader {
+    private final java.io.InputStream fileInputStream;
+
+    FileCharReader(java.io.InputStream fileInputStream) {
+        this.fileInputStream = fileInputStream;
+    }
+
+    public int readChar() {
+        try {
+            return fileInputStream.read();  // EOF 시 -1 반환
+        } catch (java.io.IOException e) {
+            return -1;
+        }
     }
 }
 
@@ -314,6 +336,8 @@ flowchart TB
 ## 흔한 오해
 
 "고수준"을 "추상 클래스나 인터페이스"와 같은 말로, "저수준"을 "구체 클래스"와 같은 말로 오해하기 쉽다. 그러나 이 장이 정의하는 수준은 추상화 정도가 아니라 **입출력으로부터의 거리**다. 암호화 예제에서 `Encrypt` 인터페이스와 `CaesarCipher` 구현 모두 고수준에 속한다 — 암호화 알고리즘이 무엇이든 입출력 장치와 무관하게 성립하는 규칙이기 때문이다. 반면 `CharReader`·`CharWriter`는 인터페이스임에도 저수준이다. 입출력 장치에 직접 닿아 있어 자주 바뀔 수 있기 때문이다. 즉 추상화(인터페이스 vs 구현)와 수준(고수준 vs 저수준)은 서로 다른 축이며, 둘 다 같은 방향(안정적인 쪽)으로 의존성이 향해야 한다는 점에서만 만난다.
+
+수준 구분이 항상 깔끔하게 떨어지는 것은 아니다. 실무에서는 하나의 유스케이스가 "입력 검증"(저수준에 가까움)과 "핵심 계산"(고수준)을 함께 처리하는 경우가 흔해, 어디까지를 고수준으로 볼지 애매해진다. 또한 수준을 지나치게 잘게 나누면(입력 처리·검증·변환·계산을 모두 별도 계층으로 분리하는 식) 계층 사이를 오가는 호출이 늘어나 오히려 코드를 따라가기 어려워진다. 수준 구분은 "무조건 세분화"가 아니라, 실제로 변경 빈도가 다른 지점에서만 경계를 긋는 것이 목적이다.
 
 ## 학습 목표
 
