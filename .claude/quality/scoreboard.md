@@ -42,7 +42,7 @@
 | content/collection/cleanarchitecture/28-boundary-anatomy-monolith-to-services/index.md | 67 | 2026-07-19 | 3 | 에스컬레이션 | 항목1 ServiceLoader 메커니즘 서술 오류(치명결함), 항목5 코드 컴파일 불가 |
 | content/collection/cleanarchitecture/29-policy-and-level-high-level-dependency/index.md | 84.7 | 2026-07-19 | 3 | 에스컬레이션 | 항목7 무관 태그 4개, 항목1 인용 페이지 미표기, 항목4 수준/변경빈도 절 중복. 90점에 5.3점 차 |
 | content/collection/cleanarchitecture/30-business-rules-entities-usecases/index.md | 91.6 | 2026-07-19 | 3 | 에스컬레이션 | 항목1 L44-45 인용이 원저 두 문장을 하나로 합성한 비-verbatim 직접인용(치명결함), 태그 7개 data/tags.yaml 미등재. 90점 이상이나 치명결함 잔존으로 미통과 |
-| content/collection/cleanarchitecture/31-screaming-architecture-intent-driven-structure/index.md | - | - | 0 | 미채점 | - |
+| content/collection/cleanarchitecture/31-screaming-architecture-intent-driven-structure/index.md | 92.2 | 2026-07-19 | 2 | 통과 | 없음(경미: 표 2개 리드인 문단 보강 여지) |
 | content/collection/cleanarchitecture/32-clean-architecture-concentric-circles-dependency/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/33-presenter-humble-object-testability/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/34-partial-boundaries-cost-benefit-balance/index.md | - | - | 0 | 미채점 | - |
