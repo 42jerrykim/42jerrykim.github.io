@@ -365,7 +365,7 @@ flowchart TB
 ```mermaid
 flowchart LR
     VALUE[이런 가치들] 
-    MUST["반드시 서비스여야</br>얻는 건 아니다"]
+    MUST["반드시 서비스여야<br/>얻는 건 아니다"]
     
     VALUE --> MUST
 ```
