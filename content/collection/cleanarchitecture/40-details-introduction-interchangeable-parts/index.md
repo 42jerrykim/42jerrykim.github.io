@@ -2,7 +2,7 @@
 draft: true
 collection_order: 400
 image: "wordcloud.png"
-description: "세부사항의 정의와 아키텍처에서의 위치를 다룹니다. 데이터베이스, 웹, 프레임워크가 왜 세부사항이며, 비즈니스 규칙과 어떻게 분리해야 하는지 설명합니다."
+description: "세부사항의 정의와 아키텍처에서의 위치를 다룹니다. 데이터베이스, 웹, 프레임워크가 왜 세부사항이며, 비즈니스 규칙과 어떻게 분리해야 하는지 결정 지연·테스트 용이성 관점에서 컴파일 가능한 Java 코드로 설명합니다."
 title: "[Clean Architecture] 40. 세부사항 서론"
 slug: details-introduction-interchangeable-parts
 date: 2026-01-18
@@ -11,10 +11,6 @@ tags:
   - Clean-Architecture(클린아키텍처)
   - Database(데이터베이스)
   - Web(웹)
-  - Software-Architecture(소프트웨어아키텍처)
-  - Security(보안)
-  - Dependency-Injection(의존성주입)
-  - Abstraction(추상화)
   - Interface(인터페이스)
   - MySQL
   - PostgreSQL
@@ -24,25 +20,27 @@ tags:
   - Spring
   - Django
   - Implementation(구현)
-  - Adapter
-  - Coupling(결합도)
-  - Cohesion(응집도)
-  - Design-Pattern(디자인패턴)
-  - Modularity
-  - Best-Practices
-  - Maintainability
-  - History(역사)
-  - Case-Study
-  - Deep-Dive
   - Technology(기술)
+  - Case-Study
+  - Java
+  - Plugin-Architecture
+  - Deferred-Decisions
+  - Interchangeable-Parts
+  - Policy-vs-Detail
+  - Repository-Pattern
+  - GraphQL
+  - gRPC
+  - Dependency-Rule
+  - Framework-Independence
+  - Off-DB-Testing
 ---
 
 지금까지 아키텍처의 핵심 원칙들을 다루었다. 이제 **세부사항(Details)**을 살펴본다. 세부사항은 아키텍처에서 **교체 가능한** 부분들이다.
 
 ## 세부사항이란?
 
-> **"세부사항은 정책(비즈니스 규칙)이 전혀 신경 쓰지 않아도 되는 것들이다."**
-> — Robert C. Martin
+> "Details are the things that are necessary to implement the policy but are otherwise irrelevant to the policy itself: the database, the web server, the delivery mechanism, the framework."
+> — Robert C. Martin, 『Clean Architecture』(2017)
 
 ```mermaid
 flowchart TB
@@ -74,20 +72,39 @@ flowchart TB
 | 인프라 | AWS, GCP, Azure, Docker |
 
 ```java
+import java.util.List;
+import java.util.Optional;
+
+class OrderRequest { List<Item> items; }
+class Item { String name; int price; int quantity; }
+class Order {
+    private final List<Item> items;
+    private Order(List<Item> items) { this.items = items; }
+    static Order create(OrderRequest request) { return new Order(request.items); }
+    void validate() { /* 필수 필드 검증 등 순수 비즈니스 규칙 */ }
+}
+interface OrderRepository {
+    void save(Order order);
+    Optional<Order> findById(Long id);
+}
+
 // 세부사항의 예
 // 비즈니스 규칙은 이것들을 모름
 public class OrderService {
     // MySQL인지 MongoDB인지 모름
     private final OrderRepository repository;
-    
+
     // HTTP인지 gRPC인지 모름
     // React인지 Angular인지 모름
-    
+
+    public OrderService(OrderRepository repository) { this.repository = repository; }
+
     public Order processOrder(OrderRequest request) {
         // 순수한 비즈니스 로직만
         Order order = Order.create(request);
         order.validate();
-        return repository.save(order);
+        repository.save(order);
+        return order;
     }
 }
 ```
@@ -124,6 +141,24 @@ flowchart LR
 ### 비즈니스 규칙 예시
 
 ```java
+import java.math.BigDecimal;
+import java.util.List;
+
+class Order {
+    private final List<Item> items;
+    Order(List<Item> items) { this.items = items; }
+    int getItemCount() { return items.stream().mapToInt(i -> i.quantity).sum(); }
+    BigDecimal getSubtotal() {
+        return items.stream()
+            .map(i -> BigDecimal.valueOf(i.price).multiply(BigDecimal.valueOf(i.quantity)))
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+}
+class Item {
+    int price; int quantity;
+    Item(String name, int price, int quantity) { this.price = price; this.quantity = quantity; }
+}
+
 // 정책: 할인 규칙 (비즈니스 규칙)
 public class DiscountPolicy {
     public BigDecimal calculateDiscount(Order order) {
@@ -164,8 +199,14 @@ flowchart LR
 ```
 
 ```java
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Optional;
+
+class Order {}
+
 // 초기: DB 선택 없이 개발
-public interface OrderRepository {
+interface OrderRepository {
     void save(Order order);
     Optional<Order> findById(Long id);
 }
@@ -173,44 +214,95 @@ public interface OrderRepository {
 // 개발 중: 인메모리로 테스트
 public class InMemoryOrderRepository implements OrderRepository {
     private final Map<Long, Order> storage = new HashMap<>();
-    // ...
+    public void save(Order order) { storage.put(1L, order); }
+    public Optional<Order> findById(Long id) { return Optional.ofNullable(storage.get(id)); }
+}
+```
+
+```java
+import java.util.Optional;
+
+class Order {}
+interface OrderRepository {
+    void save(Order order);
+    Optional<Order> findById(Long id);
 }
 
 // 나중에: 실제 DB 선택
-public class MySqlOrderRepository implements OrderRepository {
+class MySqlOrderRepository implements OrderRepository {
     // MySQL 구현
+    public void save(Order order) { /* JDBC/JPA로 저장 */ }
+    public Optional<Order> findById(Long id) { return Optional.empty(); }
 }
 
 // 또는
-public class MongoOrderRepository implements OrderRepository {
+class MongoOrderRepository implements OrderRepository {
     // MongoDB 구현
+    public void save(Order order) { /* MongoDB 드라이버로 저장 */ }
+    public Optional<Order> findById(Long id) { return Optional.empty(); }
 }
 ```
 
 ### 2. 테스트 용이성
 
 ```java
-// 세부사항(DB) 없이 테스트
-@Test
-void shouldCalculateOrderTotal() {
-    // DB 없음!
-    Order order = new Order();
-    order.addItem(new Item("상품A", 100, 2));
-    order.addItem(new Item("상품B", 200, 1));
-    
-    assertThat(order.getTotal()).isEqualTo(400);
-    // DB 연결 없이 밀리초 만에 테스트 완료!
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+
+class Item {
+    int price; int quantity;
+    Item(String name, int price, int quantity) { this.price = price; this.quantity = quantity; }
+}
+class Order {
+    private final List<Item> items = new ArrayList<>();
+    void addItem(Item item) { items.add(item); }
+    int getItemCount() { return items.stream().mapToInt(i -> i.quantity).sum(); }
+    int getTotal() { return items.stream().mapToInt(i -> i.price * i.quantity).sum(); }
+    BigDecimal getSubtotal() { return BigDecimal.valueOf(getTotal()); }
+}
+class DiscountPolicy {
+    BigDecimal calculateDiscount(Order order) {
+        if (order.getItemCount() >= 10) {
+            return order.getSubtotal().multiply(new BigDecimal("0.10"));
+        }
+        return BigDecimal.ZERO;
+    }
 }
 
-@Test
-void shouldApplyDiscountForBulkOrders() {
-    // 웹 서버 없음! DB 없음!
-    DiscountPolicy policy = new DiscountPolicy();
-    Order order = createOrderWithItems(15);  // 15개 아이템
-    
-    BigDecimal discount = policy.calculateDiscount(order);
-    
-    assertThat(discount).isGreaterThan(BigDecimal.ZERO);
+class DetailFreeTests {
+    private Order createOrderWithItems(int count) {
+        Order order = new Order();
+        for (int i = 0; i < count; i++) {
+            order.addItem(new Item("상품" + i, 100, 1));
+        }
+        return order;
+    }
+
+    // 세부사항(DB) 없이 테스트
+    @Test
+    void shouldCalculateOrderTotal() {
+        // DB 없음!
+        Order order = new Order();
+        order.addItem(new Item("상품A", 100, 2));
+        order.addItem(new Item("상품B", 200, 1));
+
+        assertThat(order.getTotal()).isEqualTo(400);
+        // DB 연결 없이 밀리초 만에 테스트 완료!
+    }
+
+    @Test
+    void shouldApplyDiscountForBulkOrders() {
+        // 웹 서버 없음! DB 없음!
+        DiscountPolicy policy = new DiscountPolicy();
+        Order order = createOrderWithItems(15);  // 15개 아이템
+
+        BigDecimal discount = policy.calculateDiscount(order);
+
+        assertThat(discount).isGreaterThan(BigDecimal.ZERO);
+    }
 }
 ```
 
@@ -272,6 +364,33 @@ flowchart TB
 ```
 
 ```java
+class Order {}
+interface OrderRepository { void save(Order order); }
+interface PaymentGateway {}
+interface NotificationService {}
+class MySqlOrderRepository implements OrderRepository { public void save(Order order) {} }
+class PostgresOrderRepository implements OrderRepository { public void save(Order order) {} }
+class MongoOrderRepository implements OrderRepository { public void save(Order order) {} }
+class InMemoryOrderRepository implements OrderRepository { public void save(Order order) {} }
+class DefaultPaymentGateway implements PaymentGateway {}
+class DefaultNotificationService implements NotificationService {}
+
+class OrderService {
+    private final OrderRepository repository;
+    private final PaymentGateway payment;
+    private final NotificationService notification;
+    OrderService(OrderRepository repository, PaymentGateway payment, NotificationService notification) {
+        this.repository = repository;
+        this.payment = payment;
+        this.notification = notification;
+    }
+}
+class WebServer {
+    private final OrderService service;
+    WebServer(OrderService service) { this.service = service; }
+    void start() { /* HTTP 서버 기동 */ }
+}
+
 // 플러그인처럼 교체 가능한 세부사항
 public class Application {
     public static void main(String[] args) {
@@ -279,14 +398,14 @@ public class Application {
         OrderRepository repo = selectRepository(args);
         PaymentGateway payment = selectPaymentGateway(args);
         NotificationService notification = selectNotification(args);
-        
+
         // 코어에 플러그인 주입
         OrderService service = new OrderService(repo, payment, notification);
-        
+
         // 실행
         new WebServer(service).start();
     }
-    
+
     static OrderRepository selectRepository(String[] args) {
         String type = args[0];
         return switch (type) {
@@ -296,6 +415,9 @@ public class Application {
             default -> new InMemoryOrderRepository();
         };
     }
+
+    static PaymentGateway selectPaymentGateway(String[] args) { return new DefaultPaymentGateway(); }
+    static NotificationService selectNotification(String[] args) { return new DefaultNotificationService(); }
 }
 ```
 
@@ -303,20 +425,45 @@ public class Application {
 
 ```mermaid
 flowchart LR
-    P6[6부: 세부사항] --> C30[30장: 데이터베이스]
-    P6 --> C31[31장: 웹]
-    P6 --> C32[32장: 프레임워크]
-    P6 --> C33[33장: 사례 연구]
-    P6 --> C34[34장: 빠진 장]
+    P6[세부사항 파트] --> C41[41장: 데이터베이스]
+    P6 --> C42[42장: 웹]
+    P6 --> C43[43장: 프레임워크]
+    P6 --> C44[44장: 사례 연구]
+    P6 --> C45[45장: 빠진 장]
 ```
 
 | 장 | 제목 | 핵심 내용 |
 |----|------|----------|
-| 30장 | 데이터베이스는 세부사항이다 | 관계형 DB의 역사, 디스크와 RAM |
-| 31장 | 웹은 세부사항이다 | GUI의 진자 운동, 클라이언트-서버 |
-| 32장 | 프레임워크는 세부사항이다 | 프레임워크와 결혼의 위험 |
-| 33장 | 사례 연구 | 비디오 판매 시스템 실제 설계 |
-| 34장 | 빠져 있는 장 | 패키지 구조 접근법 |
+| 41장 | 데이터베이스는 세부사항이다 | 관계형 DB의 역사, 디스크와 RAM |
+| 42장 | 웹은 세부사항이다 | GUI의 진자 운동, 클라이언트-서버 |
+| 43장 | 프레임워크는 세부사항이다 | 프레임워크와 결혼의 위험 |
+| 44장 | 사례 연구 | 비디오 판매 시스템 실제 설계 |
+| 45장 | 빠져 있는 장 | 패키지 구조 접근법 |
+
+## 흔한 오해
+
+"세부사항"이라는 이름 때문에 "중요하지 않은 것"으로 오해하기 쉽다. 데이터베이스도, 웹 프레임워크도, UI도 실제 시스템에서는 결코 사소하지 않다 — 이들이 없으면 시스템은 아예 동작하지 않는다. 마틴이 말하는 "세부사항"은 중요도가 아니라 **정책과의 관계**를 가리키는 말이다: 비즈니스 규칙이 그 기술의 이름과 API를 알 필요가 없다는 뜻이지, 그 기술이 하찮다는 뜻이 아니다. 또 다른 오해는 세부사항을 분리하면 아예 신경 쓸 필요가 없다고 여기는 것이다. "정책 vs 세부사항" 표에서 보듯 세부사항은 여전히 정책에 **의존**한다 — 방향이 반대일 뿐, 두 계층 모두 시스템이 동작하려면 필요하다.
+
+## 학습 목표
+
+이 장을 읽은 후 다음을 스스로 점검한다.
+
+- "세부사항"이 정책과의 관계로 정의된다는 것을, "중요하지 않다"는 오해와 구분해 설명할 수 있는가?
+- 세부사항을 분리했을 때 얻는 세 가지 이점(결정 지연, 테스트 용이성, 기술 변경 유연성)을 각각 예시로 설명할 수 있는가?
+- `OrderRepository` 인터페이스가 어떻게 DB 선택을 프로젝트 후반으로 미룰 수 있게 하는지 설명할 수 있는가?
+- 세부사항 분리가 왜 "플러그인 아키텍처"라는 결과로 이어지는지 설명할 수 있는가?
+
+## 판단 기준
+
+새 코드가 정책인지 세부사항인지 판단할 때 다음을 확인한다.
+
+- 이 코드가 특정 기술(MySQL, Spring, React 등)의 이름이나 API를 직접 언급하는가? 그렇다면 세부사항이다.
+- 이 코드를 실제 DB·웹 서버 없이 밀리초 단위로 테스트할 수 있는가? 그렇다면 정책에 가깝다.
+- 이 결정을 지금 당장 내려야 하는가, 아니면 인터페이스 뒤로 미뤄도 되는가? 미룰 수 있다면 세부사항으로 분리할 후보다.
+
+## 참고 자료
+
+- Robert C. Martin, 『Clean Architecture』(2017) — 정책·세부사항 구분과 플러그인 아키텍처의 원출처.
 
 ## 핵심 요약
 
@@ -337,5 +484,5 @@ flowchart TB
 | 이점 | 결정 지연, 테스트 용이성, 기술 변경 유연성 |
 | 결과 | 플러그인 아키텍처 |
 
-> **"세부사항을 분리하면, 정책이 세부사항에 의존하지 않는다. 세부사항이 정책에 의존한다. 이것이 플러그인 아키텍처다."**
-> — Robert C. Martin
+> "A good architecture makes it unnecessary to decide on Rails, or Spring, or Hibernate, or Tomcat, or MySQL, until much later in the project. A good architecture makes it easy to change your mind about those decisions, too."
+> — Robert C. Martin, 『Clean Architecture』(2017)
