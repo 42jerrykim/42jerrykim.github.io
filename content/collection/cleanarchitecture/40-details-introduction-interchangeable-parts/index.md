@@ -39,8 +39,7 @@ tags:
 
 ## 세부사항이란?
 
-> "Details are the things that are necessary to implement the policy but are otherwise irrelevant to the policy itself: the database, the web server, the delivery mechanism, the framework."
-> — Robert C. Martin, 『Clean Architecture』(2017)
+마틴은 세부사항을 이렇게 정의한다: 정책을 실제로 동작시키려면 반드시 필요하지만, 정책 자체의 관점에서는 무엇으로 채워지든 상관없는 것들 — 데이터베이스, 웹 서버, 전달 메커니즘, 프레임워크가 그 예다(Martin, 『Clean Architecture』, 2017). "필요하지만 무엇인지는 상관없다"는 이 이중성이 세부사항 개념의 핵심이다.
 
 ```mermaid
 flowchart TB
@@ -62,6 +61,8 @@ flowchart TB
 
 ### 세부사항의 예
 
+아래 표의 각 칸은 서로 자유롭게 교체될 수 있는 후보군이다. 데이터베이스를 MySQL에서 PostgreSQL로 바꾸든, 웹 프레임워크를 Spring에서 Django로 바꾸든, 비즈니스 규칙(할인율 계산, 재고 검증 같은 정책)은 단 한 줄도 바뀔 필요가 없어야 한다. 만약 DB를 바꿨는데 할인 계산 로직까지 손대야 한다면, 그것은 이미 세부사항과 정책이 뒤섞여 있다는 신호다:
+
 | 카테고리 | 세부사항 예시 |
 |----------|-------------|
 | 데이터베이스 | MySQL, PostgreSQL, MongoDB, Redis |
@@ -70,6 +71,8 @@ flowchart TB
 | UI | React, Angular, Vue, Svelte |
 | 메시징 | Kafka, RabbitMQ, SQS |
 | 인프라 | AWS, GCP, Azure, Docker |
+
+아래 `OrderService`는 이 원칙을 코드로 보여준다. 클래스 안 어디에도 `mysql`이나 `spring` 같은 문자열이 등장하지 않는다 — `OrderRepository`라는 인터페이스 뒤에 실제 저장소가 무엇인지 완전히 숨겨져 있기 때문이다:
 
 ```java
 import java.util.List;
@@ -111,24 +114,7 @@ public class OrderService {
 
 ## 정책 vs 세부사항
 
-```mermaid
-flowchart LR
-    subgraph Policy [정책]
-        direction TB
-        P1[비즈니스 규칙]
-        P2[변경 적음]
-        P3[핵심 가치]
-        P4[테스트 필수]
-    end
-    
-    subgraph Details [세부사항]
-        direction TB
-        D1[기술적 구현]
-        D2[변경 많음]
-        D3[교체 가능]
-        D4[테스트 어려움]
-    end
-```
+정책과 세부사항을 가르는 기준은 다섯 가지로 요약된다. 정책은 "10개 이상 구매 시 10% 할인"처럼 비즈니스 규칙 그 자체이며, 사업이 유지되는 한 좀처럼 바뀌지 않는다. 반면 세부사항은 그 규칙을 실행하기 위한 기술적 수단일 뿐이라 훨씬 자주 바뀐다. 이 차이는 곧바로 의존성 방향으로 이어진다 — 정책은 아무것도 의존하지 않아야 하고, 세부사항이 정책에 의존해야 한다. 정책이 세부사항에 의존하는 순간, 그 세부사항이 바뀔 때마다 정책까지 흔들리게 된다:
 
 | 구분 | 정책 | 세부사항 |
 |------|------|----------|
@@ -139,6 +125,8 @@ flowchart LR
 | 의존성 | 아무것도 의존 안 함 | 정책에 의존 |
 
 ### 비즈니스 규칙 예시
+
+아래 `DiscountPolicy`는 "정책" 쪽의 전형적인 예다. `BigDecimal`이나 `List` 같은 언어 표준 라이브러리 외에는 아무 기술도 알지 못하며, DB 연결이나 HTTP 요청 없이도 완전히 검증할 수 있다:
 
 ```java
 import java.math.BigDecimal;
@@ -179,9 +167,11 @@ public class DiscountPolicy {
 
 ## 왜 세부사항을 분리하는가?
 
+세부사항 분리가 주는 이점은 크게 세 가지다: 기술 선택을 나중으로 미룰 수 있고, DB·웹 서버 없이도 비즈니스 규칙을 테스트할 수 있고, 나중에 기술을 바꿔도 비즈니스 규칙 코드는 그대로 둘 수 있다. 아래에서 각각을 실제 코드로 살펴본다.
+
 ### 1. 결정 지연 (Deferring Decisions)
 
-세부사항이 분리되면 **기술 선택을 나중에** 할 수 있다.
+세부사항이 분리되면 **기술 선택을 나중에** 할 수 있다. 프로젝트 초반에는 요구사항이 아직 불확실하고, 트래픽 규모나 데이터 접근 패턴에 대한 정보도 부족하다. 이 시점에 "MySQL이냐 MongoDB냐"를 성급하게 결정하면, 나중에 실제 사용 패턴을 알게 됐을 때 그 결정을 뒤집는 비용이 크다. 반대로 `OrderRepository` 같은 인터페이스만 먼저 정하고 구현은 미뤄두면, 정보가 쌓인 뒤 가장 적합한 기술을 고를 수 있다:
 
 ```mermaid
 flowchart LR
@@ -197,6 +187,8 @@ flowchart LR
     
     Early --> Late
 ```
+
+아래 코드는 이 지연을 구체적으로 보여준다. 개발 초기에는 `InMemoryOrderRepository`로 DB 없이 빠르게 개발·테스트하고, 실제 운영 요구사항이 명확해진 뒤에야 MySQL이나 MongoDB 구현을 추가한다:
 
 ```java
 import java.util.Map;
@@ -218,6 +210,8 @@ public class InMemoryOrderRepository implements OrderRepository {
     public Optional<Order> findById(Long id) { return Optional.ofNullable(storage.get(id)); }
 }
 ```
+
+`OrderRepository` 인터페이스를 소비하는 코드(예: `OrderService`)는 이 시점부터 단 한 줄도 바뀌지 않는다. 나중에 실제 데이터베이스를 고를 때는 아래처럼 구현체만 추가하면 된다:
 
 ```java
 import java.util.Optional;
@@ -244,6 +238,8 @@ class MongoOrderRepository implements OrderRepository {
 ```
 
 ### 2. 테스트 용이성
+
+세부사항이 분리되어 있으면, 비즈니스 규칙을 검증하기 위해 DB나 웹 서버를 띄울 필요가 없다. 아래 두 테스트는 각각 "총액 계산"과 "대량 구매 할인"이라는 정책만 검증하며, `Order`와 `DiscountPolicy` 객체를 메모리에서 직접 생성해 밀리초 단위로 끝난다:
 
 ```java
 import java.math.BigDecimal;
@@ -308,6 +304,8 @@ class DetailFreeTests {
 
 ### 3. 기술 변경 유연성
 
+세부사항이 정책에 의존하는 방향으로 설계되면, 기술 자체를 나중에 바꾸는 것도 훨씬 쉬워진다. 아래 다이어그램은 같은 유스케이스와 리포지토리 인터페이스를 두고, 그 뒤의 구현체만 MySQL에서 PostgreSQL로 교체하는 상황을 보여준다. `MySqlRepository`가 `PostgresRepository`로 바뀌어도 `Use Case`와 `Repository Interface`는 완전히 동일하게 남는다:
+
 ```mermaid
 flowchart TB
     subgraph Before [MySQL 사용]
@@ -340,7 +338,7 @@ flowchart TB
 
 ## 플러그인 아키텍처
 
-세부사항을 분리하면 **플러그인 아키텍처**가 된다.
+세부사항을 분리하면 **플러그인 아키텍처**가 된다. 코어(엔터티·유스케이스·인터페이스)는 시스템의 정체성을 이루는 부분으로 거의 바뀌지 않고, 그 주위를 둘러싼 DB·웹·UI·프레임워크는 마치 USB 포트에 꽂는 주변기기처럼 코어를 건드리지 않고 갈아 끼울 수 있다. 의존성 화살표가 항상 플러그인에서 코어를 향한다는 점이 이 구조의 핵심이다 — 코어는 어떤 플러그인이 꽂혀 있는지조차 모른다:
 
 ```mermaid
 flowchart TB
@@ -362,6 +360,8 @@ flowchart TB
     UI -->|플러그인| UC
     FW -->|플러그인| Core
 ```
+
+이 그림을 실제 코드로 옮기면 아래와 같다. `Application.main()`이 명령줄 인자에 따라 어떤 DB 구현체를 꽂을지 런타임에 결정한다는 점에 주목한다 — 이것이 바로 [36장: 메인 컴포넌트](/post/clean-architecture/main-component-lowest-level-policy/)에서 다룬 "Main은 구체 클래스를 알고 조립하는 유일한 곳"이라는 원칙이 세부사항 분리와 만나는 지점이다:
 
 ```java
 class Order {}
@@ -444,6 +444,8 @@ flowchart LR
 
 "세부사항"이라는 이름 때문에 "중요하지 않은 것"으로 오해하기 쉽다. 데이터베이스도, 웹 프레임워크도, UI도 실제 시스템에서는 결코 사소하지 않다 — 이들이 없으면 시스템은 아예 동작하지 않는다. 마틴이 말하는 "세부사항"은 중요도가 아니라 **정책과의 관계**를 가리키는 말이다: 비즈니스 규칙이 그 기술의 이름과 API를 알 필요가 없다는 뜻이지, 그 기술이 하찮다는 뜻이 아니다. 또 다른 오해는 세부사항을 분리하면 아예 신경 쓸 필요가 없다고 여기는 것이다. "정책 vs 세부사항" 표에서 보듯 세부사항은 여전히 정책에 **의존**한다 — 방향이 반대일 뿐, 두 계층 모두 시스템이 동작하려면 필요하다.
 
+이 장의 예제들이 보여주는 인터페이스·구현체 분리에는 비용이 따른다는 점도 짚어야 한다. `OrderRepository` 인터페이스 하나를 두기 위해 `InMemoryOrderRepository`·`MySqlOrderRepository`·`MongoOrderRepository` 세 벌의 코드를 유지해야 했듯이, 이 장에서 보여준 것처럼 여러 구현체를 처음부터 준비하는 것이 항상 이득은 아니다. 데이터베이스를 절대 바꿀 계획이 없는 소규모 내부 도구라면, 지금 당장 필요하지도 않은 두세 번째 구현체까지 미리 준비하는 것은 [34장: 부분적 경계](/post/clean-architecture/partial-boundaries-cost-benefit-balance/)에서 다룬 YAGNI 원칙에 어긋나는 과잉 설계가 될 수 있다. 이 장의 요지는 "항상 모든 것을 인터페이스로 감싸라"가 아니라, **바뀔 가능성이 있는 세부사항일수록 정책과의 결합을 늦게, 얕게 유지하라**는 것이다.
+
 ## 학습 목표
 
 이 장을 읽은 후 다음을 스스로 점검한다.
@@ -484,5 +486,5 @@ flowchart TB
 | 이점 | 결정 지연, 테스트 용이성, 기술 변경 유연성 |
 | 결과 | 플러그인 아키텍처 |
 
-> "A good architecture makes it unnecessary to decide on Rails, or Spring, or Hibernate, or Tomcat, or MySQL, until much later in the project. A good architecture makes it easy to change your mind about those decisions, too."
-> — Robert C. Martin, 『Clean Architecture』(2017)
+> "A good architecture makes it unnecessary to decide on Rails, or Spring, or Hibernate, or Tomcat or MySql, until much later in the project. A good architecture makes it easy to change your mind about those decisions too."
+> — Robert C. Martin, "Screaming Architecture", Clean Coder Blog (2011); 『Clean Architecture』(2017)
