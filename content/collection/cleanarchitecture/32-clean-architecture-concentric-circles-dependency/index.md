@@ -90,22 +90,28 @@ Clean Architecture의 **단 하나의 규칙**:
 - 데이터 형식도 마찬가지
 
 ```java
-// 위반: Entity가 Framework를 알고 있음
+// 파일: BadUser.java — 위반: Entity가 Framework를 알고 있음
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 @Entity  // JPA 어노테이션 - Framework!
-public class User {
+public class BadUser {
     @Id  // JPA 어노테이션 - Framework!
     private Long id;
 }
 
-// 준수: Entity는 순수한 비즈니스 객체
+// 파일: User.java — 준수: Entity는 순수한 비즈니스 객체
 public class User {
     private UserId id;
     private Email email;
-    
+
     public void changeEmail(Email newEmail) {
-        // 순수한 비즈니스 로직
+        this.email = newEmail;
     }
 }
+
+record UserId(Long value) {}
+record Email(String address) {}
 ```
 
 ## 4가지 계층
