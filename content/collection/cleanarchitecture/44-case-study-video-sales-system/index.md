@@ -91,7 +91,6 @@ flowchart TB
         UC1[카탈로그 조회]
         UC2[비디오 시청]
         UC3[비디오 구매]
-        UC4[라이선스 관리]
         UC5[비디오 추가]
         UC6[가격 설정]
     end
@@ -100,10 +99,11 @@ flowchart TB
     V --> UC2
     P --> UC1
     P --> UC3
-    P --> UC4
     A --> UC5
     A --> UC6
 ```
+
+이 장은 다섯 유스케이스만 구현까지 다룬다. 실제 제품이라면 "구매한 라이선스 목록 조회", "라이선스 환불" 같은 관리 기능도 필요하지만, 이들은 `PurchaseVideoUseCase`와 같은 패턴(Repository 조회 → 검증 → Presenter 전달)을 반복할 뿐이므로 이 장의 범위에서는 제외한다.
 
 ## 유스케이스 분석
 
@@ -193,6 +193,8 @@ public class PlayVideoUseCase {
 }
 ```
 
+`ViewCatalogUseCase`와 `PlayVideoUseCase`를 하나로 합치지 않고 분리한 이유가 이 코드에서 드러난다 — 전자는 `VideoRepository`·`CatalogPresenter`에, 후자는 `LicenseRepository`·`VideoStreamGateway`·`StreamPresenter`에 의존한다. 만약 두 유스케이스를 하나의 클래스로 합쳤다면, 카탈로그 조회 로직을 바꿀 때마다 스트리밍 게이트웨이와 무관한 코드까지 재컴파일·재테스트해야 했을 것이다.
+
 ### 구매자 유스케이스
 
 구매 유스케이스는 이 시스템에서 가장 많은 단계를 거친다 — 비디오 확인, 가격 계산, 결제, 라이선스 발급까지 네 단계가 순서대로 실행되며, 각 단계는 실패할 수 있는 지점이다. 이 절차 자체가 비즈니스 규칙이므로, 결제 게이트웨이나 저장 방식이 바뀌어도 이 순서와 실패 처리 로직은 그대로 유지되어야 한다.
@@ -274,6 +276,8 @@ public class PurchaseVideoUseCase {
     }
 }
 ```
+
+이 코드에서 눈여겨볼 점은 실패 처리가 예외가 아니라 **반환값**(`presenter.presentPaymentFailed(...)` 후 `return`)으로 이루어진다는 것이다. 결제 거절은 시스템 오류가 아니라 정상적인 비즈니스 흐름의 일부이므로, `PaymentDeclinedException` 같은 예외를 던지는 대신 실패도 하나의 결과로 다뤄 호출자가 흐름을 예측 가능하게 만든다.
 
 ### 관리자 유스케이스
 
@@ -371,6 +375,8 @@ public class SetPricingUseCase {
 }
 ```
 
+여기까지 다섯 유스케이스를 살펴봤다. 눈에 띄는 공통 패턴은 모든 유스케이스가 정확히 같은 형태(`Request` 객체를 받아 → Repository·Gateway로 필요한 데이터를 모으고 → 규칙을 적용한 뒤 → `Presenter`에 결과를 넘긴다)를 따른다는 것이다. 이 반복이 우연이 아니라 Clean Architecture가 유스케이스에 요구하는 구조 자체이며, 다음 절에서 이 유스케이스들이 실제로 어떤 컴포넌트로 묶이는지 살펴본다.
+
 ## 컴포넌트 아키텍처
 
 ### 전체 구조
@@ -400,7 +406,6 @@ flowchart TB
     subgraph Entities [Entities]
         VIDEO[Video]
         LICENSE[License]
-        USER[User]
     end
     
     subgraph Gateways [Gateways]
@@ -457,7 +462,6 @@ com.videosales/
 ├── entities/
 │   ├── Video.java
 │   ├── License.java
-│   ├── User.java
 │   └── Price.java
 └── gateways/
     ├── VideoRepository.java
@@ -627,9 +631,11 @@ public class License {
 }
 ```
 
+두 엔터티 모두 생성자를 `private`으로 감추고 정적 팩토리 메서드(`Video`는 public 생성자를 유지했지만 `License.create()`)로 생성을 통제하는 이유는 같다 — 만료 시점 계산처럼 "라이선스가 생성되는 순간 반드시 지켜야 하는 규칙"을 생성자 밖에서 실수로 건너뛸 수 없게 만들기 위함이다.
+
 ## 테스트 전략
 
-앞서 강조했듯, `PurchaseVideoUseCase`는 프레임워크·DB·결제 게이트웨이를 전혀 언급하지 않는 순수 클래스다. 이 덕분에 각 인터페이스(`VideoRepository`, `LicenseRepository`, `PaymentGateway`)를 인메모리·목(mock) 구현체로 갈아 끼우면, 실제 DB나 결제 서비스 없이도 "결제 성공 시 라이선스가 생성되는가", "결제 실패 시 생성되지 않는가"라는 비즈니스 규칙을 밀리초 단위로 검증할 수 있다.
+앞서 강조했듯, `PurchaseVideoUseCase`는 프레임워크·DB·결제 게이트웨이를 전혀 언급하지 않는 순수 클래스다. 이 덕분에 각 인터페이스(`VideoRepository`, `LicenseRepository`, `PaymentGateway`)를 인메모리·목(mock) 구현체로 갈아 끼우면, 실제 DB나 결제 서비스 없이도 "결제 성공 시 라이선스가 생성되는가", "결제 실패 시 생성되지 않는가"라는 비즈니스 규칙을 밀리초 단위로 검증할 수 있다. 아래 테스트는 이 장 전체를 하나의 예제로 압축하기 위해 `LicenseId`·`UserId` 같은 값 객체 대신 문자열을 직접 사용하는 단순화된 `License`·`Video` 스텁을 로컬로 재정의한다 — "엔터티 설계" 절의 실제 값 객체 기반 설계와는 별개로, 유스케이스 테스트 작성 패턴 자체를 보여주는 데 집중한다.
 
 ```java
 import java.util.HashMap;
@@ -779,6 +785,8 @@ public class PurchaseVideoUseCaseTest {
     }
 }
 ```
+
+이 테스트가 검증하는 것은 "결제 성공/실패에 따라 라이선스가 생성되는가"라는 비즈니스 규칙이지, "인메모리 저장소가 실제 DB처럼 동작하는가"가 아니다. `InMemoryVideoRepository`·`InMemoryLicenseRepository`는 실제 트랜잭션·동시성·영속성을 전혀 흉내 내지 않으므로, 이 테스트가 통과했다고 해서 실제 JPA 구현체나 결제 게이트웨이 연동까지 검증된 것은 아니다. 그 부분은 별도의 통합 테스트([38장: 테스트 경계](/post/clean-architecture/test-boundary-testing-as-system-part/) 참고)가 담당할 몫이다.
 
 ## 흔한 오해
 
