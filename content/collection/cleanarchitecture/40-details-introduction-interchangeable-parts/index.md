@@ -241,6 +241,8 @@ class MongoOrderRepository implements OrderRepository {
 
 세부사항이 분리되어 있으면, 비즈니스 규칙을 검증하기 위해 DB나 웹 서버를 띄울 필요가 없다. 아래 두 테스트는 각각 "총액 계산"과 "대량 구매 할인"이라는 정책만 검증하며, `Order`와 `DiscountPolicy` 객체를 메모리에서 직접 생성해 밀리초 단위로 끝난다:
 
+먼저 테스트 대상이 되는 정책 코드(`Order`, `DiscountPolicy`)는 앞서 본 것과 동일하다 — 여기서도 DB나 프레임워크에 대한 참조가 전혀 없다는 점을 다시 확인할 수 있다:
+
 ```java
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -267,7 +269,11 @@ class DiscountPolicy {
         return BigDecimal.ZERO;
     }
 }
+```
 
+이 정책 코드를 검증하는 테스트는 다음과 같다(위 블록의 import를 그대로 이어 사용한다). `@BeforeEach`도, 목(mock) 라이브러리도 필요 없다 — 순수 자바 객체를 만들고 메서드를 호출한 뒤 결과를 확인하는 것이 전부다:
+
+```java
 class DetailFreeTests {
     private Order createOrderWithItems(int count) {
         Order order = new Order();
@@ -301,6 +307,8 @@ class DetailFreeTests {
     }
 }
 ```
+
+두 테스트 모두 실행 시간이 데이터베이스 왕복 시간이 아니라 순수 연산 시간에만 좌우된다는 점이 핵심이다. 세부사항이 섞여 있었다면 이 테스트들은 DB 픽스처를 준비하고 정리하는 코드로 몇 배는 더 길어졌을 것이다.
 
 ### 3. 기술 변경 유연성
 
@@ -361,7 +369,7 @@ flowchart TB
     FW -->|플러그인| Core
 ```
 
-이 그림을 실제 코드로 옮기면 아래와 같다. `Application.main()`이 명령줄 인자에 따라 어떤 DB 구현체를 꽂을지 런타임에 결정한다는 점에 주목한다 — 이것이 바로 [36장: 메인 컴포넌트](/post/clean-architecture/main-component-lowest-level-policy/)에서 다룬 "Main은 구체 클래스를 알고 조립하는 유일한 곳"이라는 원칙이 세부사항 분리와 만나는 지점이다:
+이 그림을 실제 코드로 옮기면 아래와 같다. 먼저 코어(`OrderService`, `WebServer`)와 플러그인 후보들(각 DB 구현체, 기본 결제·알림 구현체)을 정의한다. `OrderService`는 세 인터페이스에만 의존할 뿐, 그 뒤에 어떤 구현체가 올지는 전혀 모른다:
 
 ```java
 class Order {}
@@ -390,7 +398,11 @@ class WebServer {
     WebServer(OrderService service) { this.service = service; }
     void start() { /* HTTP 서버 기동 */ }
 }
+```
 
+`Application.main()`이 명령줄 인자에 따라 어떤 DB 구현체를 꽂을지 런타임에 결정한다는 점에 주목한다 — 이것이 바로 [36장: 메인 컴포넌트](/post/clean-architecture/main-component-lowest-level-policy/)에서 다룬 "Main은 구체 클래스를 알고 조립하는 유일한 곳"이라는 원칙이 세부사항 분리와 만나는 지점이다:
+
+```java
 // 플러그인처럼 교체 가능한 세부사항
 public class Application {
     public static void main(String[] args) {
@@ -421,16 +433,9 @@ public class Application {
 }
 ```
 
-## 이 파트에서 다룰 내용
+`selectRepository()`가 하는 일은 딱 하나, "문자열을 보고 구체 클래스를 고르는 것"뿐이다. 이 스위치문 자체가 세부사항에 대한 지식을 한곳에 모아두는 역할을 하며, 새 DB를 추가하고 싶으면 이 메서드에 `case` 하나만 추가하면 된다 — `OrderService`나 `WebServer` 코드는 전혀 건드릴 필요가 없다.
 
-```mermaid
-flowchart LR
-    P6[세부사항 파트] --> C41[41장: 데이터베이스]
-    P6 --> C42[42장: 웹]
-    P6 --> C43[43장: 프레임워크]
-    P6 --> C44[44장: 사례 연구]
-    P6 --> C45[45장: 빠진 장]
-```
+## 이 파트에서 다룰 내용
 
 | 장 | 제목 | 핵심 내용 |
 |----|------|----------|
@@ -468,16 +473,6 @@ flowchart LR
 - Robert C. Martin, 『Clean Architecture』(2017) — 정책·세부사항 구분과 플러그인 아키텍처의 원출처.
 
 ## 핵심 요약
-
-```mermaid
-flowchart TB
-    subgraph Summary [요약]
-        S1[세부사항 = 교체 가능한 것]
-        S2[정책 = 핵심 비즈니스]
-        S3[세부사항이 정책에 의존]
-        S4[플러그인 아키텍처]
-    end
-```
 
 | 원칙 | 설명 |
 |------|------|
