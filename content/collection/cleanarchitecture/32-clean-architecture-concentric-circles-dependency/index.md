@@ -10,31 +10,29 @@ categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
   - Software-Architecture(소프트웨어아키텍처)
-  - Edge-Cases(엣지케이스)
   - Dependency-Injection(의존성주입)
   - Testing(테스트)
-  - Coupling(결합도)
-  - Cohesion(응집도)
   - Interface(인터페이스)
-  - Abstraction(추상화)
-  - Design-Pattern(디자인패턴)
-  - Modularity
-  - Best-Practices
-  - Maintainability
-  - History(역사)
-  - Case-Study
-  - Deep-Dive
-  - Technology(기술)
-  - System-Design
-  - OOP(객체지향)
-  - Domain-Driven-Design
-  - Refactoring(리팩토링)
-  - Backend(백엔드)
-  - Database(데이터베이스)
   - Web(웹)
-  - Documentation(문서화)
-  - TDD(Test-Driven Development)
-  - Readability
+  - API(Application Programming Interface)
+  - REST(Representational State Transfer)
+  - Database(데이터베이스)
+  - Spring
+  - Java
+  - Dependency-Rule
+  - Concentric-Circles
+  - Entity
+  - Use-Case
+  - Interface-Adapters
+  - Boundary-Crossing
+  - Control-Flow
+  - DTO
+  - Presenter-Pattern
+  - Gateway-Pattern
+  - Framework-Independence
+  - JPA
+  - Onion-Architecture
+  - Hexagonal-Architecture
 ---
 
 드디어 Clean Architecture의 핵심에 도달했다. 이 장에서는 육각형 아키텍처, 양파 아키텍처, BCE 등 기존 아키텍처들의 공통점을 추출하여 정제한 **Clean Architecture**의 구조를 상세히 다룬다.
@@ -80,9 +78,12 @@ flowchart TB
 
 Clean Architecture의 **단 하나의 규칙**:
 
-> **"소스 코드 의존성은 반드시 안쪽으로, 고수준의 정책 방향으로만 향해야 한다."**
+> "The overriding rule that makes this architecture work is _The Dependency Rule_. This rule says that _source code dependencies_ can only point _inwards_."
+> — Robert C. Martin, "The Clean Architecture", Clean Coder Blog (2012); 『Clean Architecture』(2017), 22장
 
 ### 무엇을 의미하는가?
+
+마틴은 이 규칙을 더 구체적으로 이렇게 설명한다: "Nothing in an inner circle can know anything at all about something in an outer circle." 안쪽 원(Entities)은 바깥 원(Frameworks)의 존재 자체를 몰라야 하며, 이는 다음 세 가지로 구체화된다.
 
 - 안쪽 원(Entities)은 바깥 원(Frameworks)을 **전혀 모른다**
 - 바깥쪽 코드의 **이름, 함수, 클래스**를 안쪽에서 언급하면 안 된다
@@ -114,24 +115,65 @@ public class User {
 가장 안쪽. **기업 전체의 핵심 비즈니스 규칙**을 캡슐화한다.
 
 ```java
+public class Money {
+    public static final Money ZERO = new Money(java.math.BigDecimal.ZERO);
+    private final java.math.BigDecimal amount;
+
+    public Money(java.math.BigDecimal amount) { this.amount = amount; }
+    public Money add(Money other) { return new Money(amount.add(other.amount)); }
+    public Money multiply(int n) { return new Money(amount.multiply(java.math.BigDecimal.valueOf(n))); }
+}
+
+public class OrderLine {
+    private final String productId;
+    private final int quantity;
+    private final Money unitPrice;
+
+    public OrderLine(String productId, int quantity, Money unitPrice) {
+        this.productId = productId;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+    }
+    public Money getSubtotal() { return unitPrice.multiply(quantity); }
+}
+
+public enum OrderStatus { CREATED, SUBMITTED }
+public class OrderId {
+    private final String value;
+    public OrderId(String value) { this.value = value; }
+    @Override public String toString() { return value; }
+}
+public class EmptyOrderException extends RuntimeException {}
+
 public class Order {
-    private OrderId id;
-    private List<OrderLine> lines;
-    private OrderStatus status;
-    
+    private final OrderId id;
+    private final String customerId;
+    private final List<OrderLine> lines = new ArrayList<>();
+    private OrderStatus status = OrderStatus.CREATED;
+
+    public Order(OrderId id, String customerId) {
+        this.id = id;
+        this.customerId = customerId;
+    }
+
+    public void addLine(OrderLine line) { lines.add(line); }
+
     // 기업 비즈니스 규칙
     public Money calculateTotal() {
         return lines.stream()
             .map(OrderLine::getSubtotal)
             .reduce(Money.ZERO, Money::add);
     }
-    
+
     public void submit() {
         if (lines.isEmpty()) {
             throw new EmptyOrderException();
         }
         this.status = OrderStatus.SUBMITTED;
     }
+
+    public OrderId getId() { return id; }
+    public Money getTotal() { return calculateTotal(); }
 }
 ```
 
@@ -146,27 +188,68 @@ public class Order {
 **애플리케이션 특화 비즈니스 규칙**을 포함한다.
 
 ```java
+public class PlaceOrderRequest {
+    private final String customerId;
+    private final List<OrderItemDTO> items;
+    public PlaceOrderRequest(String customerId, List<OrderItemDTO> items) {
+        this.customerId = customerId;
+        this.items = items;
+    }
+    public String getCustomerId() { return customerId; }
+    public List<OrderItemDTO> getItems() { return items; }
+}
+
+public class OrderItemDTO {
+    private final String productId;
+    private final int quantity;
+    private final Money unitPrice;
+    public OrderItemDTO(String productId, int quantity, Money unitPrice) {
+        this.productId = productId;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+    }
+    public String getProductId() { return productId; }
+    public int getQuantity() { return quantity; }
+    public Money getUnitPrice() { return unitPrice; }
+}
+
+public class PlaceOrderResponse {
+    private final OrderId orderId;
+    public PlaceOrderResponse(OrderId orderId) { this.orderId = orderId; }
+    public OrderId getOrderId() { return orderId; }
+}
+
+public interface OrderRepository { void save(Order order); }
+public interface PaymentGateway { void charge(Money amount); }
+public interface OrderPresenter { void present(PlaceOrderResponse response); }
+
 public class PlaceOrderUseCase {
     private final OrderRepository orderRepository;
     private final PaymentGateway paymentGateway;
     private final OrderPresenter presenter;
-    
+
+    public PlaceOrderUseCase(OrderRepository orderRepository, PaymentGateway paymentGateway, OrderPresenter presenter) {
+        this.orderRepository = orderRepository;
+        this.paymentGateway = paymentGateway;
+        this.presenter = presenter;
+    }
+
     public void execute(PlaceOrderRequest request) {
         // 1. 주문 생성
-        Order order = new Order(request.getCustomerId());
+        Order order = new Order(new OrderId(java.util.UUID.randomUUID().toString()), request.getCustomerId());
         for (var item : request.getItems()) {
-            order.addLine(item.getProductId(), item.getQuantity());
+            order.addLine(new OrderLine(item.getProductId(), item.getQuantity(), item.getUnitPrice()));
         }
-        
+
         // 2. 주문 제출
         order.submit();
-        
+
         // 3. 결제 처리
         paymentGateway.charge(order.getTotal());
-        
+
         // 4. 저장
         orderRepository.save(order);
-        
+
         // 5. 결과 출력
         presenter.present(new PlaceOrderResponse(order.getId()));
     }
@@ -184,19 +267,48 @@ public class PlaceOrderUseCase {
 유스케이스와 엔터티에 가장 편한 형식에서, 외부 에이전시에 가장 편한 형식으로 **데이터를 변환**한다.
 
 ```java
+// 웹 계층 DTO - 유스케이스 DTO와는 별개의, HTTP에만 쓰이는 형식
+public class OrderRequest {
+    private String customerId;
+    private List<OrderItemWebDTO> items;
+    public String getCustomerId() { return customerId; }
+    public List<OrderItemWebDTO> getItems() { return items; }
+}
+public class OrderItemWebDTO {
+    private String productId;
+    private int quantity;
+    private java.math.BigDecimal unitPrice;
+    public String getProductId() { return productId; }
+    public int getQuantity() { return quantity; }
+    public java.math.BigDecimal getUnitPrice() { return unitPrice; }
+}
+public class OrderResponse {
+    private final String orderId;
+    private final String status;
+    public OrderResponse(String orderId, String status) {
+        this.orderId = orderId;
+        this.status = status;
+    }
+    public String getStatus() { return status; }
+}
+
 // Controller - 웹 요청 → 유스케이스 입력
 @RestController
 public class OrderController {
     private final PlaceOrderUseCase placeOrderUseCase;
-    
+
+    public OrderController(PlaceOrderUseCase placeOrderUseCase) {
+        this.placeOrderUseCase = placeOrderUseCase;
+    }
+
     @PostMapping("/orders")
     public ResponseEntity<?> placeOrder(@RequestBody OrderRequest webRequest) {
         // 웹 형식 → 유스케이스 형식
-        PlaceOrderRequest request = new PlaceOrderRequest(
-            webRequest.getCustomerId(),
-            webRequest.getItems()
-        );
-        
+        List<OrderItemDTO> items = webRequest.getItems().stream()
+            .map(i -> new OrderItemDTO(i.getProductId(), i.getQuantity(), new Money(i.getUnitPrice())))
+            .toList();
+        PlaceOrderRequest request = new PlaceOrderRequest(webRequest.getCustomerId(), items);
+
         placeOrderUseCase.execute(request);
         return ResponseEntity.ok().build();
     }
@@ -205,7 +317,7 @@ public class OrderController {
 // Presenter - 유스케이스 출력 → 웹 응답
 public class WebOrderPresenter implements OrderPresenter {
     private OrderResponse response;
-    
+
     @Override
     public void present(PlaceOrderResponse output) {
         // 유스케이스 형식 → 웹 형식
@@ -214,17 +326,29 @@ public class WebOrderPresenter implements OrderPresenter {
             "SUCCESS"
         );
     }
+
+    public OrderResponse getResult() { return response; }
 }
 
 // Gateway - 유스케이스 출력 포트 → DB
 public class JpaOrderRepository implements OrderRepository {
     private final SpringDataOrderRepository springRepo;
-    
+
+    public JpaOrderRepository(SpringDataOrderRepository springRepo) {
+        this.springRepo = springRepo;
+    }
+
     @Override
     public void save(Order order) {
-        // 도메인 객체 → JPA 엔터티
+        // 도메인 객체 → JPA 엔터티(글루 코드이므로 필드 매핑은 생략)
         OrderEntity entity = OrderMapper.toEntity(order);
         springRepo.save(entity);
+    }
+}
+
+class OrderMapper {
+    static OrderEntity toEntity(Order order) {
+        return new OrderEntity();
     }
 }
 ```
@@ -256,9 +380,22 @@ public class OrderEntity {
     @Id
     @GeneratedValue
     private Long id;
-    
+
     @OneToMany(mappedBy = "order")
     private List<OrderLineEntity> lines;
+}
+
+@Entity
+@Table(name = "order_lines")
+public class OrderLineEntity {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @ManyToOne
+    private OrderEntity order;
+    private String productId;
+    private int quantity;
 }
 ```
 
@@ -291,20 +428,7 @@ Presenter가 Use Case에 의존하도록 **의존성 역전**.
 
 ### 데이터 경계 넘기
 
-경계를 넘는 데이터는 **단순한 구조**여야 한다:
-
-```java
-// 경계를 넘는 데이터 - 단순한 구조
-public class PlaceOrderRequest {
-    private String customerId;
-    private List<OrderItemDTO> items;
-}
-
-public class PlaceOrderResponse {
-    private String orderId;
-    private String status;
-}
-```
+경계를 넘는 데이터는 **단순한 구조**여야 한다. 앞서 "Use Cases" 절에서 정의한 `PlaceOrderRequest`/`PlaceOrderResponse`가 정확히 이 원칙을 따른 예다 — 둘 다 getter만 가진 순수 데이터 구조이며, `Order` 같은 엔터티나 JPA `@Entity`, HTTP `HttpServletRequest` 같은 프레임워크 타입을 필드로 포함하지 않는다.
 
 **안 되는 것**:
 - Entity를 그대로 전달 (Entity가 외부에 노출됨)
@@ -321,18 +445,40 @@ public class PlaceOrderResponse {
 비즈니스 규칙을 UI, DB, 웹 서버 없이 테스트할 수 있다.
 
 ```java
-@Test
-void shouldPlaceOrder() {
-    // 인메모리 구현으로 테스트
-    OrderRepository repo = new InMemoryOrderRepository();
-    PaymentGateway payment = new FakePaymentGateway();
-    OrderPresenter presenter = new TestPresenter();
-    
-    PlaceOrderUseCase useCase = new PlaceOrderUseCase(repo, payment, presenter);
-    
-    useCase.execute(new PlaceOrderRequest(...));
-    
-    assertThat(presenter.getResult().getStatus()).isEqualTo("SUCCESS");
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
+import java.math.BigDecimal;
+
+class InMemoryOrderRepository implements OrderRepository {
+    List<Order> saved = new ArrayList<>();
+    public void save(Order order) { saved.add(order); }
+}
+class FakePaymentGateway implements PaymentGateway {
+    public void charge(Money amount) { /* 테스트에서는 실제 결제를 생략한다 */ }
+}
+class TestPresenter implements OrderPresenter {
+    private OrderResponse result;
+    public void present(PlaceOrderResponse output) {
+        this.result = new OrderResponse(output.getOrderId().toString(), "SUCCESS");
+    }
+    OrderResponse getResult() { return result; }
+}
+
+class PlaceOrderUseCaseTest {
+    @Test
+    void shouldPlaceOrder() {
+        // 인메모리 구현으로 테스트
+        OrderRepository repo = new InMemoryOrderRepository();
+        PaymentGateway payment = new FakePaymentGateway();
+        TestPresenter presenter = new TestPresenter();
+
+        PlaceOrderUseCase useCase = new PlaceOrderUseCase(repo, payment, presenter);
+
+        List<OrderItemDTO> items = List.of(new OrderItemDTO("sku-1", 2, new Money(new BigDecimal("9900"))));
+        useCase.execute(new PlaceOrderRequest("customer-1", items));
+
+        assertThat(presenter.getResult().getStatus()).isEqualTo("SUCCESS");
+    }
 }
 ```
 
@@ -405,6 +551,32 @@ src/
         └── SpringConfig.java
 ```
 
+## 흔한 오해
+
+동심원이 정확히 4개여야 한다고 오해하기 쉽다. 마틴은 이 그림이 개략적(schematic)일 뿐이라고 밝힌다 — 4개는 최소한의 예시이며, 필요하면 더 많은 계층을 둘 수 있다. 중요한 것은 원의 개수가 아니라 **의존성 규칙**(안쪽으로만 향한다)이 지켜지는지다. 또 다른 오해는 "제어 흐름"과 "소스 코드 의존성"을 같은 것으로 여기는 것이다. `Controller → UseCase → Presenter` 순서로 실행되지만, `Presenter`가 `UseCase`가 정의한 `OrderPresenter` 인터페이스를 구현하므로 소스 코드 의존성은 `Presenter → UseCase` 방향이다("경계 횡단" 절 참고). 실행 순서와 컴파일 타임 의존 방향은 별개다.
+
+## 학습 목표
+
+이 장을 읽은 후 다음을 스스로 점검한다.
+
+- 의존성 규칙("소스 코드 의존성은 안쪽으로만 향한다")을 자신의 언어로 설명할 수 있는가?
+- 동심원이 정확히 4개여야 하는 것은 아니라는 점, 그리고 원의 개수보다 의존성 방향이 왜 더 중요한지 설명할 수 있는가?
+- 제어 흐름과 소스 코드 의존성이 Presenter 예시에서 어떻게 반대 방향이 되는지 설명할 수 있는가?
+- 경계를 넘는 데이터(`PlaceOrderRequest`)가 왜 Entity나 프레임워크 타입을 직접 담으면 안 되는지 설명할 수 있는가?
+
+## 판단 기준
+
+새 클래스를 어느 계층에 둘지 판단할 때 다음을 확인한다.
+
+- 이 클래스가 프레임워크의 이름·타입(`@Entity`, `HttpServletRequest` 등)을 알아야 하는가? 그렇다면 Interface Adapters 이상 바깥쪽이다.
+- 이 클래스가 특정 애플리케이션의 흐름 없이도, 기업의 다른 시스템에서도 재사용될 수 있는가? 그렇다면 Entities다.
+- 이 클래스를 바꿨을 때 더 바깥쪽 계층(Controller, DB)도 함께 바꿔야 하는가? 그렇다면 의존성 규칙이 깨진 것이다.
+
+## 참고 자료
+
+- Robert C. Martin, "The Clean Architecture", Clean Coder Blog (2012) — 동심원 다이어그램과 의존성 규칙의 원출처.
+- Robert C. Martin, 『Clean Architecture』(2017), 22장 — 위 블로그 원고를 확장한 책 본문.
+
 ## 핵심 요약
 
 | 계층 | 역할 | 의존 방향 |
@@ -414,5 +586,5 @@ src/
 | Interface Adapters | 데이터 형식 변환 | Use Cases |
 | Frameworks | 세부사항, 도구 | Interface Adapters |
 
-> **"Clean Architecture의 핵심은 단 하나의 규칙이다: 소스 코드 의존성은 반드시 안쪽으로만 향해야 한다."**
-> — Robert C. Martin
+> "By separating the software into layers, and conforming to _The Dependency Rule_, you will create a system that is intrinsically testable, with all the benefits that implies."
+> — Robert C. Martin, "The Clean Architecture", Clean Coder Blog (2012)
