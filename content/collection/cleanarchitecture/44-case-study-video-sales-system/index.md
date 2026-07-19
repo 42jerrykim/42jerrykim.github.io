@@ -426,6 +426,7 @@ flowchart TB
     PURCHASE --> VIDEO
     PURCHASE --> LICENSE
     ADD_VID --> VIDEO
+    SET_PRICE --> VIDEO
     
     VIEW_CAT --> VID_REPO
     PLAY --> LIC_REPO
@@ -433,7 +434,11 @@ flowchart TB
     PURCHASE --> VID_REPO
     PURCHASE --> LIC_REPO
     PURCHASE --> PAY_GW
+    ADD_VID --> VID_REPO
+    SET_PRICE --> VID_REPO
 ```
+
+이 다이어그램은 앞서 구현한 코드와 정확히 대응한다 — `AddVideoUseCase`가 `videoRepository.save(video)`를 호출하고 `SetPricingUseCase`가 `videoRepository.findById(...)`·`save(...)`와 `video.setPricing(...)`을 호출하는 것이 각각 `ADD_VID --> VID_REPO`, `SET_PRICE --> VID_REPO`, `SET_PRICE --> VIDEO` 화살표로 나타난다. 다이어그램의 화살표 하나하나가 실제 코드의 메서드 호출과 짝을 이루지 않으면, 다이어그램은 설계 문서가 아니라 그림이 되어버린다.
 
 ### 패키지 구조
 
@@ -470,6 +475,8 @@ com.videosales/
     └── StreamGateway.java
 ```
 
+이 패키지 구조는 앞서 액터별로 나눴던 유스케이스 그룹(시청자→`catalog`/`viewing`, 구매자→`purchase`, 관리자→`admin`)을 그대로 최상위 패키지로 옮긴 것이다 — [45장에서 다룰 "기능별 패키지(Package by Feature)"](/post/clean-architecture/missing-chapter-package-structure/)에 해당하며, `entities`·`gateways`만 별도로 분리해 액터를 가로지르는 공유 자산임을 드러낸다.
+
 ### 계층별 분리
 
 ```
@@ -485,6 +492,8 @@ com.videosales/
        ↓
 [Frameworks / Infrastructure]
 ```
+
+이 흐름은 41~43장에서 각각 데이터베이스·웹·프레임워크를 "세부사항"으로 분리했던 원칙을 하나의 그림으로 합친 것이다 — 화살표가 아래로 갈수록 정책에서 세부사항으로 이동하며, `Gateways`와 `Frameworks`는 언제든 교체 가능한 반면 `Entities`와 `Use Cases`는 어떤 기술 변화에도 흔들리지 않는다.
 
 ## 의존성 규칙 적용
 
@@ -631,7 +640,7 @@ public class License {
 }
 ```
 
-두 엔터티 모두 생성자를 `private`으로 감추고 정적 팩토리 메서드(`Video`는 public 생성자를 유지했지만 `License.create()`)로 생성을 통제하는 이유는 같다 — 만료 시점 계산처럼 "라이선스가 생성되는 순간 반드시 지켜야 하는 규칙"을 생성자 밖에서 실수로 건너뛸 수 없게 만들기 위함이다.
+`License`가 생성자를 `private`으로 감추고 정적 팩토리(`License.create()`)만 공개하는 이유는, 만료 시점 계산처럼 "라이선스가 생성되는 순간 반드시 지켜야 하는 규칙"을 생성자 밖에서 실수로 건너뛸 수 없게 만들기 위함이다. `Video`는 상태 전이 규칙(`publish()`)이 생성 시점이 아니라 생성 이후에 적용되므로 public 생성자로도 충분하다 — 두 엔터티가 서로 다른 방식을 택한 것은 "규칙을 언제 강제해야 하는가"가 다르기 때문이지, 설계 원칙이 일관되지 않아서가 아니다.
 
 ## 테스트 전략
 
