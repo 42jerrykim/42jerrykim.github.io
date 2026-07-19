@@ -9,7 +9,7 @@ date: 2026-01-18
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
-  - Edge-Cases(엣지케이스)
+  - GraphQL
   - Microservices(마이크로서비스)
   - Software-Architecture(소프트웨어아키텍처)
   - Networking(네트워킹)
@@ -18,21 +18,21 @@ tags:
   - Dependency-Injection(의존성주입)
   - Performance(성능)
   - Coupling(결합도)
-  - Cohesion(응집도)
+  - Java
   - System-Design
   - Scalability(확장성)
   - Backend(백엔드)
   - API(Application Programming Interface)
   - Latency
   - Throughput
-  - Case-Study
-  - Deep-Dive
-  - Technology(기술)
+  - HTTP(HyperText Transfer Protocol)
   - Best-Practices
   - Maintainability
   - Deployment(배포)
   - Load-Balancing
   - Reliability
+  - Interface(인터페이스)
+  - Abstraction(추상화)
 ---
 
 경계는 다양한 **물리적 형태**로 존재한다. 단순한 함수 호출부터 네트워크를 통한 서비스 호출까지, 각각의 비용과 장단점이 다르다.
@@ -131,7 +131,7 @@ flowchart LR
     PAYMENT --> PERSISTENCE
 ```
 
-```
+```text
 app.jar
 ├── uses → order.jar
 ├── uses → payment.jar
@@ -146,9 +146,14 @@ payment.jar
 
 ### 동적 다형성
 
-런타임에 컴포넌트를 교체할 수 있다:
+컴포넌트 수준에서는 런타임에 구현체를 교체할 수 있다는 이점이 추가된다. 자바의 `ServiceLoader`처럼 클래스패스에 있는 jar를 스캔해 인터페이스 구현체를 찾아주는 메커니즘을 쓰면, 어떤 플러그인 jar가 배포됐는지에 따라 실제로 어떤 구현이 쓰일지가 실행 시점에 결정된다.
 
 ```java
+import java.util.ServiceLoader;
+
+record Payment(String orderId, java.math.BigDecimal amount) {}
+record PaymentResult(boolean success) {}
+
 // 인터페이스는 코어에 정의
 public interface PaymentProcessor {
     PaymentResult process(Payment payment);
@@ -158,6 +163,7 @@ public interface PaymentProcessor {
 public class StripeProcessor implements PaymentProcessor {
     public PaymentResult process(Payment payment) {
         // Stripe API 호출
+        return new PaymentResult(true);
     }
 }
 
@@ -165,12 +171,16 @@ public class StripeProcessor implements PaymentProcessor {
 public class PayPalProcessor implements PaymentProcessor {
     public PaymentResult process(Payment payment) {
         // PayPal API 호출
+        return new PaymentResult(true);
     }
 }
 
-// 런타임에 선택
+// 런타임에 선택 - 클래스패스에 있는 플러그인 jar 중 첫 번째 구현체를 사용
 PaymentProcessor processor = ServiceLoader.load(PaymentProcessor.class)
-    .findFirst().orElseThrow();
+    .stream()
+    .findFirst()
+    .map(ServiceLoader.Provider::get)
+    .orElseThrow();
 ```
 
 | 항목 | 설명 |
@@ -291,6 +301,8 @@ public class PaymentClient {
 | 복잡성 | 높음 (분산 시스템 문제) |
 
 ### 서비스의 추가 고려사항
+
+함수 호출은 실패하지 않는다는 전제를 깔고 코드를 짤 수 있지만, 네트워크 호출은 언제든 응답이 늦어지거나 아예 오지 않을 수 있다는 전제를 깔아야 한다. 그래서 서비스 수준의 경계에는 모놀리스에는 없던 새로운 책임(재시도, 타임아웃, 장애 격리)이 추가된다.
 
 ```mermaid
 flowchart TB

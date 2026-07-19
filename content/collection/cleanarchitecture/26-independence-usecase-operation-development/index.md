@@ -23,16 +23,16 @@ tags:
   - System-Design
   - Reliability
   - Java
-  - Domain(도메인)
-  - Backend(백엔드)
-  - Interface(인터페이스)
   - Load-Balancing
   - Cloud(클라우드)
   - Latency
   - Throughput
-  - Design-Pattern(디자인패턴)
+  - Caching(캐싱)
   - Performance(성능)
-  - Refactoring(리팩토링)
+  - HTTP(HyperText Transfer Protocol)
+  - Networking(네트워킹)
+  - OOP(객체지향)
+  - Encapsulation(캡슐화)
 ---
 
 좋은 아키텍처는 다양한 **독립성**을 제공해야 한다. 유스케이스의 독립성, 운영의 독립성, 개발의 독립성, 배포의 독립성이 그것이다.
@@ -396,4 +396,4 @@ flowchart LR
 | 개발 | 팀 독립 | 병렬 작업 |
 | 배포 | 부분 배포 | 빠른 릴리스 |
 
-마틴은 좋은 아키텍처가 선택지를 열어둔다고 말한다. 모놀리스로 시작해서 필요할 때 서비스로 분리할 수 있어야 한다(Martin, 『Clean Architecture』, 2017, 16장).
+네 가지 독립성, 진짜/우발적 중복의 구분, 소스·바이너리·서비스라는 세 디커플링 모드는 결국 하나의 질문으로 수렴한다 — "지금 이 시스템에 어느 수준의 분리가 실제로 필요한가?"라는 질문이다. 다음 장(27장)에서는 이 질문에 답하는 구체적인 도구인 경계 긋기와 플러그인 아키텍처를 다룬다.

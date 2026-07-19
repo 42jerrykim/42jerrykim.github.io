@@ -19,28 +19,27 @@ tags:
   - Code-Quality(코드품질)
   - Design-Pattern(디자인패턴)
   - Coupling(결합도)
-  - Cohesion(응집도)
-  - Modularity
   - Java
   - Best-Practices
   - Maintainability
-  - Refactoring(리팩토링)
   - Case-Study
   - Deep-Dive
   - Technology(기술)
-  - Testing(테스트)
   - OOP(객체지향)
-  - Polymorphism(다형성)
   - System-Design
   - Encapsulation(캡슐화)
-  - Readability
+  - Reliability
+  - Domain(도메인)
+  - Backend(백엔드)
+  - File-System
+  - Database(데이터베이스)
 ---
 
 소프트웨어 시스템은 여러 **정책(Policy)**의 집합이다. 정책들은 서로 다른 **수준(Level)**에 존재하며, 의존성은 수준의 방향으로 흘러야 한다.
 
 ## 정책(Policy)이란?
 
-정책은 시스템의 **행동을 기술**하는 것이다.
+정책은 시스템의 **행동을 기술**하는 것이다. 프로그램이 하는 일을 잘게 쪼개보면, 결국 "무언가를 읽고, 그것을 바꾸고, 무언가를 쓰는" 규칙들의 집합으로 볼 수 있다. 문제는 이 규칙들이 하나의 덩어리가 아니라, 서로 성격이 다른 여러 층위로 이뤄져 있다는 점이다.
 
 ```mermaid
 flowchart LR
@@ -194,7 +193,11 @@ public interface Encrypt {
 
 public class CaesarCipher implements Encrypt {
     private final int shift;
-    
+
+    public CaesarCipher(int shift) {
+        this.shift = shift;
+    }
+
     public char encrypt(char c) {
         return (char)(c + shift);
     }
@@ -290,6 +293,8 @@ flowchart TB
 
 ### 왜 고수준으로 의존해야 하는가?
 
+`CaesarCipher`가 `CharReader` 인터페이스에만 의존하고 `ConsoleReader`라는 구체 클래스를 직접 참조하지 않았기 때문에, 입력 소스를 콘솔에서 파일로 바꾸는 일은 `FileCharReader`라는 새 클래스를 하나 추가하는 것으로 끝난다. 암호화 로직을 담은 `CaesarCipher`는 단 한 줄도 건드릴 필요가 없다.
+
 ```java
 // 저수준이 변경되어도 고수준은 영향 없음
 
@@ -312,6 +317,12 @@ public class FileCharReader implements CharReader {
 
 // 암호화 로직(고수준)은 그대로!
 public class CaesarCipher implements Encrypt {
+    private final int shift;
+
+    public CaesarCipher(int shift) {
+        this.shift = shift;
+    }
+
     public char encrypt(char c) {
         return (char)(c + shift);
     }
@@ -320,6 +331,8 @@ public class CaesarCipher implements Encrypt {
 
 ## 아키텍처에 적용
 
+이 장에서 다룬 "수준"은 Clean Architecture의 동심원과 정확히 같은 축이다. Entities는 가장 안정적인 업무 규칙이므로 가장 고수준이고, Gateways·DB는 입출력에 가장 가까운 세부사항이므로 가장 저수준이다. 의존성이 저수준에서 고수준으로 흐른다는 이 장의 규칙은, 곧 동심원에서 바깥쪽이 안쪽으로 의존해야 한다는 규칙과 동일하다.
+
 ```mermaid
 flowchart TB
     subgraph Architecture [클린 아키텍처의 수준]
@@ -327,7 +340,7 @@ flowchart TB
         UC[Use Cases<br/>고수준]
         CTRL[Controllers<br/>중간]
         GW[Gateways<br/>저수준]
-        DB[(DB)<br/>가장 저수준]
+        DB[("DB<br/>가장 저수준")]
     end
     
     DB --> GW --> CTRL --> UC --> ENT
@@ -377,5 +390,3 @@ flowchart LR
     LOW -->|의존| HIGH[고수준]
     HIGH -.->|영향 없음| CHANGE
 ```
-
-안정적인 고수준 정책이 불안정한 저수준 정책을 모르게 하면, **저수준의 변경이 고수준에 영향을 주지 않는다**.

@@ -23,16 +23,16 @@ tags:
   - Best-Practices
   - Maintainability
   - Refactoring(리팩토링)
-  - History(역사)
   - Case-Study
   - Technology(기술)
-  - Backend(백엔드)
   - API(Application Programming Interface)
   - OOP(객체지향)
   - Java
   - Domain(도메인)
   - Web(웹)
   - Encapsulation(캡슐화)
+  - System-Design
+  - Backend(백엔드)
 ---
 
 아키텍처에서 **경계(Boundary)**란 관심사를 분리하는 선이다. 경계의 한쪽에는 비즈니스 규칙이, 다른 쪽에는 세부사항이 있다. 경계를 제대로 그으면 **플러그인 아키텍처**가 된다.
@@ -125,6 +125,10 @@ flowchart LR
 ### 경계를 먼저 그음
 
 ```java
+import java.util.List;
+
+record WikiPage(String name, String content) {}
+
 // FitNesse의 데이터 접근 인터페이스
 public interface WikiPagePersistence {
     WikiPage load(String pageName);
@@ -151,19 +155,43 @@ public class WikiPageService {
 | 최종 | FitNesse 팀도, 그 고객사도 결국 MySQL 옵션을 다시 걷어냄 |
 
 ```java
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 // 파일 시스템 구현 - FitNesse 팀이 실제로 쓴 것은 이것뿐이었다
 public class FileSystemWikiPagePersistence implements WikiPagePersistence {
-    public WikiPage load(String pageName) {
-        // 파일에서 읽기
-        return readFromFile(pageName);
+    private final Path rootDir;
+
+    FileSystemWikiPagePersistence(Path rootDir) {
+        this.rootDir = rootDir;
+    }
+
+    public WikiPage load(String pageName) throws java.io.IOException {
+        String content = Files.readString(rootDir.resolve(pageName + ".txt"));
+        return new WikiPage(pageName, content);
     }
 }
+```
+
+```java
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 // MySQL 구현 - 한 고객사가 자신의 필요에 따라 하루 만에 작성
 public class MySqlWikiPagePersistence implements WikiPagePersistence {
-    public WikiPage load(String pageName) {
-        // MySQL에서 읽기
-        return readFromDatabase(pageName);
+    private final Connection connection;
+
+    MySqlWikiPagePersistence(Connection connection) {
+        this.connection = connection;
+    }
+
+    public WikiPage load(String pageName) throws java.sql.SQLException {
+        PreparedStatement stmt = connection.prepareStatement(
+            "SELECT content FROM wiki_pages WHERE name = ?");
+        stmt.setString(1, pageName);
+        ResultSet rs = stmt.executeQuery();
+        return rs.next() ? new WikiPage(pageName, rs.getString("content")) : null;
     }
 }
 ```
@@ -385,7 +413,7 @@ public class OrderController {
 
 ## 흔한 오해
 
-경계를 "처음부터 모든 곳에 완벽하게" 그어야 한다는 오해가 흔하다. FitNesse 사례가 보여주듯, 마틴은 오히려 결정을 미룬 채로 개발을 진행했다. 그 결과 FitNesse 팀 자신은 MySQL이 끝내 필요하지 않았고, 훗날 실제로 필요했던 한 고객사는 인터페이스 덕분에 하루 만에 구현체를 추가할 수 있었다. 경계를 긋는 목적은 "지금 당장 완벽한 구조를 만드는 것"이 아니라 "나중에 필요해지든 필요 없어지든 그 여지를 낮은 비용으로 남겨 두는 것"이다. 또 다른 오해는 입력과 출력(Web, CLI, DB, 파일)을 아키텍처의 중심으로 여기는 것이다. 이 장이 강조하듯 입력·출력은 세부사항이고, 진짜 중심은 그 사이에서 가치를 만드는 비즈니스 규칙이다 — 입출력 기술이 바뀌어도 비즈니스 규칙은 그대로여야 한다.
+경계를 "처음부터 모든 곳에 완벽하게" 그어야 한다는 오해가 흔하다. FitNesse 사례가 보여주듯, 마틴은 오히려 결정을 미룬 채로 개발을 진행했다. 그 결과 FitNesse 팀 자신은 MySQL이 끝내 필요하지 않았고, 훗날 실제로 필요했던 한 고객사는 인터페이스 덕분에 하루 만에 구현체를 추가할 수 있었다. 경계를 긋는 목적은 "지금 당장 완벽한 구조를 만드는 것"이 아니라 "나중에 필요해지든 필요 없어지든 그 여지를 낮은 비용으로 남겨 두는 것"이다. 또 다른 오해는 입력과 출력(Web, CLI, DB, 파일)을 아키텍처의 중심으로 여기는 것이다. 이 장이 강조하듯 입력·출력은 세부사항이고, 진짜 중심은 그 사이에서 가치를 만드는 비즈니스 규칙이다 — 입출력 기술이 바뀌어도 비즈니스 규칙은 그대로여야 한다. 다만 경계마다 완전한 인터페이스·구현체 분리를 갖추는 데는 비용이 따른다 — 이 비용과 효과의 균형을 어떻게 잡을지는 34장(부분적 경계)에서 더 자세히 다룬다.
 
 ## 학습 목표
 
@@ -404,6 +432,7 @@ public class OrderController {
 - 이 코드가 비즈니스 규칙과 세부사항(UI, DB, 프레임워크, 외부 서비스) 중 무엇에 속하는가?
 - 비즈니스 규칙 코드에 특정 기술(HTTP 요청 객체, JDBC 커넥션 등)의 이름이 등장하는가? 등장한다면 경계가 없는 것이다.
 - 이 세부사항을 나중에 다른 구현으로 교체해야 한다면, 지금 구조에서 얼마나 많은 코드를 수정해야 하는가?
+- 이 경계 분리를 생략해도 되는 경우인가? 프로토타입이나 수명이 짧은 스크립트처럼 "교체 가능성" 자체가 의미 없는 코드라면, 인터페이스 계층을 미리 만드는 비용이 얻는 이득보다 클 수 있다.
 
 ## 참고 자료
 
