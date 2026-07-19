@@ -42,11 +42,10 @@ tags:
 ```mermaid
 flowchart TB
     subgraph FullBoundary [완전한 경계 비용]
-        INTF[양쪽에 인터페이스 정의]
-        DS[양쪽에 데이터 구조]
-        DEP[독립적 컴포넌트로 분리]
-        MANAGE[의존성 관리]
-        MAINT[지속적 유지보수]
+        INTF[양쪽에 인터페이스 정의] --> DS[양쪽에 데이터 구조]
+        DS --> DEP[독립적 컴포넌트로 분리]
+        DEP --> MANAGE[의존성 관리]
+        MANAGE --> MAINT[지속적 유지보수]
     end
 ```
 
@@ -88,7 +87,7 @@ flowchart TB
 
 ### 1. 마지막 단계 건너뛰기 (Skip the Last Step)
 
-인터페이스는 만들지만, **별도 컴포넌트로 분리하지 않음**.
+완전한 경계를 만드는 작업의 대부분(인터페이스 설계, 클라이언트가 구현이 아닌 인터페이스에만 의존하도록 하는 것)은 그대로 하되, 딱 한 단계 — 별도의 jar/dll로 물리적으로 분리하고 독립 배포하는 단계 — 만 건너뛴다. 인터페이스와 구현체는 여전히 같은 소스 코드 컴포넌트 안에 있지만, 그 경계선을 코드 상에서는 이미 그어 놓은 상태다. 이렇게 하면 "정말 이 경계가 필요한가"를 나중에 실제 운영 경험으로 확인한 뒤, 필요하다고 판명될 때만 물리적 분리 비용을 지불할 수 있다.
 
 ```mermaid
 flowchart TB
@@ -123,13 +122,13 @@ class OrderEntity {
 }
 
 // 인터페이스
-public interface OrderRepository {
+interface OrderRepository {
     void save(Order order);
     Optional<Order> findById(Long id);
 }
 
 // 구현
-public class JpaOrderRepository implements OrderRepository {
+class JpaOrderRepository implements OrderRepository {
     private final EntityManager em;
 
     public JpaOrderRepository(EntityManager em) { this.em = em; }
@@ -157,7 +156,7 @@ public class JpaOrderRepository implements OrderRepository {
 
 ### 2. 단방향 경계 (One-Dimensional Boundary)
 
-양방향 인터페이스 대신 **한쪽만** 인터페이스를 사용한다.
+완전한 경계는 양쪽 모두 상대편을 인터페이스로만 알아야 하는 **양방향** 의존성 역전을 요구한다. 단방향 경계는 이 중 한쪽만 인터페이스를 두고 나머지 한쪽은 포기한다 — 전형적으로 전략 패턴(Strategy Pattern)이 이 형태를 취한다. 클라이언트(`PaymentService`)는 `PaymentStrategy` 인터페이스에만 의존하고, 구체적인 전략(`StripePaymentStrategy`)은 그 인터페이스를 구현하며 클라이언트를 향해서는 알지 못한다. 다만 이 방향의 의존성 역전만으로는 부족하다 — 구체 전략을 어디서 생성해 주입할지는 여전히 클라이언트 바깥의 조립 코드(main 컴포넌트)가 알아야 하므로, 완전한 경계만큼 양쪽이 독립적으로 배포되지는 않는다.
 
 ```mermaid
 flowchart LR
@@ -214,19 +213,19 @@ public class PaymentService {
 }
 
 // 전략 인터페이스
-public interface PaymentStrategy {
+interface PaymentStrategy {
     PaymentResult charge(BigDecimal amount);
 }
 
 // 구체적인 전략들
-public class StripePaymentStrategy implements PaymentStrategy {
+class StripePaymentStrategy implements PaymentStrategy {
     public PaymentResult charge(BigDecimal amount) {
         // Stripe API 호출(실제로는 Stripe SDK를 사용한다)
         return PaymentResult.success("stripe-tx-" + System.nanoTime());
     }
 }
 
-public class PayPalPaymentStrategy implements PaymentStrategy {
+class PayPalPaymentStrategy implements PaymentStrategy {
     public PaymentResult charge(BigDecimal amount) {
         // PayPal API 호출(실제로는 PayPal SDK를 사용한다)
         return PaymentResult.success("paypal-tx-" + System.nanoTime());
@@ -242,7 +241,7 @@ public class PayPalPaymentStrategy implements PaymentStrategy {
 
 ### 3. 퍼사드 패턴 (Facade Pattern)
 
-경계 없이 **퍼사드로 접근 제한**.
+앞의 두 전략과 달리, 퍼사드는 인터페이스를 통한 의존성 역전을 아예 포기한다. 대신 내부 서비스들(`OrderService`, `PaymentService`, `InventoryService`)에 대한 접근을 퍼사드 클래스(`OrderFacade`) 하나로만 제한해, 클라이언트가 내부 구조를 직접 알지 못하게 한다. 경계는 존재하지만 그 경계는 인터페이스가 아니라 "이 클래스를 거치지 않고는 내부에 접근할 수 없다"는 **접근 제한**으로만 만들어진다 — 그래서 세 전략 중 비용이 가장 낮지만, 퍼사드 자신이 내부 구현체들을 직접 `new`로 생성해 구체 클래스에 의존하므로 의존성 역전이 전혀 일어나지 않는다.
 
 ```mermaid
 flowchart TB
@@ -394,7 +393,7 @@ class Order {
 ```java
 // 완전한 경계: 별도 컴포넌트
 // notification-api.jar
-public interface NotificationGateway {
+interface NotificationGateway {
     void send(Notification notification);
 }
 
@@ -409,10 +408,8 @@ public class EmailNotificationGateway implements NotificationGateway {
 
 ```java
 // 부분적 경계 1: 마지막 단계 건너뛰기
-// 같은 jar에 있지만 인터페이스 분리
-package com.example.notification;
-
-public interface NotificationGateway {
+// 같은 jar에 있지만 인터페이스 분리(위 공유 타입과 같은 패키지에 둔다)
+interface NotificationGateway {
     void send(Notification notification);
 }
 
@@ -426,7 +423,7 @@ public class EmailNotificationGateway implements NotificationGateway {
 
 ```java
 // 부분적 경계 2: 단방향 경계
-public interface NotificationSender {
+interface NotificationSender {
     void sendOrderConfirmation(Order order);
 }
 
@@ -501,5 +498,3 @@ public class NotificationFacade {
 | 미래 예측 | 나중에 필요할 가능성 평가 |
 | 단계적 접근 | 부분적 경계로 시작, 필요 시 확장 |
 | 트레이드오프 | 비용 vs 유연성 균형 |
-
-마틴은 완전한 경계를 만드는 비용이 상당하다는 점을 인정하면서도, 그 비용을 감당할 수 없을 때 세 가지 부분적 경계 전략으로 절충할 수 있다고 말한다(Martin, 『Clean Architecture』, 2017, 24장).
