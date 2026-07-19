@@ -35,7 +35,7 @@ tags:
   - Encapsulation-Enforcement
 ---
 
-[44장: 사례 연구](/post/clean-architecture/case-study-video-sales-system/)에서 액터·유스케이스·엔터티·컴포넌트를 설계했지만, 그 설계를 실제 소스 코드의 **디렉터리 구조**로 어떻게 옮길지는 다루지 않았다. 마틴의 책에는 이 질문에 대한 답이 **빠져 있는데**, 2판(2023년 서문에서 마틴이 직접 언급)에 사이먼 브라운(Simon Brown, 『Software Architecture for Developers』 저자)이 "빠진 장(The Missing Chapter)"을 기고해 이 공백을 메웠다(Martin, 『Clean Architecture』, 2017, 34장).
+[44장: 사례 연구](/post/clean-architecture/case-study-video-sales-system/)에서 액터·유스케이스·엔터티·컴포넌트를 설계했지만, 그 설계를 실제 소스 코드의 **디렉터리 구조**로 어떻게 옮길지는 다루지 않았다. 마틴 자신도 책 전체에 이 질문에 대한 답이 **빠져 있다**고 인정했고, 그래서 34장 "빠진 장(The Missing Chapter)"은 사이먼 브라운(Simon Brown, 『Software Architecture for Developers』 저자)이 기고해 2017년 초판부터 수록했다(Martin, 『Clean Architecture』, 2017, 34장).
 
 패키지 구조가 왜 별도로 다룰 만한 문제인지부터 짚어야 한다. 아무리 유스케이스·엔터티·경계를 잘 설계해도, 그 설계가 실제 폴더와 클래스 가시성으로 반영되지 않으면 다른 개발자가 실수로(혹은 마감에 쫓겨) 경계를 넘나드는 `import`를 추가하는 것을 막을 방법이 없다. 설계 문서는 코드 리뷰에서나 참고될 뿐, 컴파일 시점에는 아무 힘이 없다.
 
@@ -107,6 +107,13 @@ com.myapp.orders/
 │   ├── OrderServiceImpl
 │   └── JpaOrderRepository
 └── OrderComponent (public facade)
+```
+
+```mermaid
+flowchart LR
+    OUTSIDE["다른 패키지"] -->|"허용: public 파사드 호출"| FACADE["OrderComponent (public)"]
+    OUTSIDE -.->|"컴파일 오류: 직접 참조 불가"| IMPL["OrderServiceImpl (package-private)"]
+    FACADE --> IMPL
 ```
 
 이 방식의 핵심은 단순히 "패키지를 이렇게 나누자"는 관례가 아니라, 자바의 **접근 제한자를 이용해 그 관례를 컴파일러 수준에서 강제한다**는 데 있다. `internal` 패키지의 클래스들을 package-private으로 선언하면, `com.myapp.orders` 패키지 바깥의 어떤 코드도 `OrderServiceImpl`이나 `JpaOrderRepository`를 직접 `import`할 수 없다 — 아예 컴파일이 되지 않는다. 앞의 세 방식이 "이렇게 구성하기를 권장한다"에 그쳤다면, 컴포넌트별 패키지는 "이렇게 구성하지 않으면 빌드가 깨진다"로 강제 수준을 한 단계 끌어올린다.
@@ -213,12 +220,12 @@ module com.myapp.orders {
 
 ## 핵심 요약
 
-| 방식 | 응집 기준 | 컴파일러 강제 |
-|------|----------|-------------|
-| 계층별 패키지 | 기술적 역할 | 없음 |
-| 기능별 패키지 | 도메인 개념 | 없음 |
-| 포트와 어댑터 | Clean Architecture 계층 | 없음 |
-| 컴포넌트별 패키지 | 비즈니스 역량 | 있음(접근 제한자) |
+| 프로젝트 상황 | 권장 방식 |
+|------|----------|
+| 소규모, 팀 1~2명, 빠른 반복이 최우선 | 기능별 패키지 — 계층 강제 없이도 응집도는 확보 |
+| Clean Architecture 계층을 엄격히 지킬 규율이 있는 팀 | 포트와 어댑터 — 관례로도 계층이 잘 지켜짐 |
+| 팀 규모가 크거나 신입 개발자가 자주 합류 | 컴포넌트별 패키지 — 컴파일러가 대신 지켜준다 |
+| 레거시 계층별 패키지에서 막 벗어나는 중 | 기능별 패키지로 먼저 옮긴 뒤, 필요할 때 컴포넌트별로 재구조화 |
 
 > "The best approach to enforce this architectural principle is via the compiler."
 > — Simon Brown, 『Clean Architecture』(2017), 34장 "The Missing Chapter"
