@@ -48,13 +48,12 @@ tags:
 ```mermaid
 timeline
     title 데이터베이스의 역사
-    1960 : 계층형 DB (IMS)
+    1966 : 계층형 DB (IBM IMS 개발 시작)
     1970 : 관계형 모델 제안 (Codd)
     1979 : Oracle 출시
     1983 : IBM DB2
     1995 : MySQL
-    2007 : MongoDB
-    2010 : Redis
+    2009 : MongoDB·Redis 출시
 ```
 
 ### 관계형 DB의 목적
@@ -95,6 +94,8 @@ flowchart TB
 | 정규화 | 중복 제거 | 저장 공간 절약 |
 | B-Tree | 균형 탐색 | 디스크 블록 최적화 |
 | 버퍼 풀 | 캐싱 | 디스크 I/O 감소 |
+
+B-Tree가 디스크 I/O를 줄이는 원리는 **노드당 자식 수를 디스크 블록 크기에 맞춰 크게 잡는 것**이다. 한 노드가 수백 개의 키를 담으면, 트리 높이가 2~4단계만 되어도 수백만 행을 탐색할 수 있다. 디스크 탐색(seek) 한 번의 지연 시간이 메모리 접근보다 수만 배 크므로, 트리 높이를 낮춰 "디스크에 접근하는 횟수" 자체를 줄이는 것이 B-Tree 인덱스의 핵심 목적이다. 버퍼 풀은 최근 읽거나 쓴 디스크 블록을 RAM에 캐싱해, 같은 블록을 다시 읽을 때 디스크 접근을 아예 건너뛴다 — 인덱스가 "찾아가는 경로"를 줄인다면, 버퍼 풀은 "찾아갈 필요 자체"를 없앤다.
 
 ## RAM 시대의 변화
 
@@ -175,6 +176,8 @@ flowchart TB
 마틴이 강조하는 것은 데이터베이스와 **데이터 모델**을 혼동하지 말라는 점이다. 데이터(고객이 무엇을 주문했는지, 얼마를 지불했는지)는 비즈니스에서 매우 중요하지만, 그 데이터를 테이블로 저장할지 문서로 저장할지 키-값으로 저장할지는 순전히 구현 수단의 문제다(Martin, 『Clean Architecture』, 2017, 30장). 데이터베이스는 데이터를 담는 소프트웨어일 뿐, 데이터 모델 그 자체가 아니다.
 
 ## 데이터 모델 vs 비즈니스 모델
+
+다음 예제는 같은 "주문"이라는 개념을 두 가지 서로 다른 관점으로 표현한 것을 보여준다. `OrderEntity`는 JPA 애노테이션이 붙은 **데이터 모델**로, 관계형 테이블의 컬럼 구조를 그대로 반영한다. 반면 `Order`는 **비즈니스 모델**로, `cancel()`이나 `calculateTotal()` 같은 도메인 규칙을 직접 담는다. 두 클래스는 이름은 비슷하지만 목적이 완전히 다르다 — 하나는 저장을 위한 것이고, 다른 하나는 정책을 위한 것이다.
 
 ```java
 import jakarta.persistence.*;
@@ -267,6 +270,8 @@ public class Order {
 
 ## 아키텍처에서의 위치
 
+앞서 구분한 데이터 모델과 비즈니스 모델은 아키텍처 안에서 각기 다른 위치를 차지한다. `Order`·`Use Case`·`Repository Interface`는 의존성 규칙에 따라 안쪽(코어)에 머무르며 다른 어떤 세부사항도 알지 못한다. 반면 실제 DB에 접근하는 `Repository Impl`, ORM, `Data Entity`는 바깥쪽(세부사항)에 위치해 코어가 정의한 인터페이스를 구현하는 방향으로만 의존한다.
+
 ```mermaid
 flowchart TB
     subgraph Core [비즈니스 규칙 - 코어]
@@ -292,6 +297,8 @@ flowchart TB
 ```
 
 ### Repository 패턴
+
+`OrderRepository` 인터페이스는 코어에 위치하며, "주문을 저장하고 조회할 수 있다"는 **능력**만 선언한다. 이 인터페이스 자체는 MySQL도, MongoDB도, 심지어 파일 시스템도 언급하지 않는다 — 비즈니스 규칙이 알아야 할 것은 오직 이 계약뿐이다.
 
 ```java
 import java.util.List;
@@ -363,6 +370,8 @@ public class JpaOrderRepository implements OrderRepository {
 
 ### 매퍼의 역할
 
+`JpaOrderRepository`가 `OrderEntity`(데이터 모델)와 `Order`(비즈니스 모델) 사이를 직접 변환하면, Repository 구현체 하나가 두 가지 책임(영속성 접근 + 모델 변환)을 동시에 지게 된다. `OrderMapper`는 이 변환 책임만 따로 떼어내, 두 모델이 서로의 존재를 몰라도 되게 만든다.
+
 ```java
 import java.math.BigDecimal;
 import java.util.List;
@@ -380,6 +389,7 @@ class Money {
     private final BigDecimal amount;
     Money(BigDecimal amount) { this.amount = amount; }
     Money add(Money other) { return new Money(amount.add(other.amount)); }
+    BigDecimal getAmount() { return amount; }
 }
 class OrderItem {
     private final Money subtotal;
@@ -446,7 +456,7 @@ public class OrderMapper {
     private List<OrderItemEntity> toItemEntities(List<OrderItem> items) {
         return items.stream().map(i -> {
             OrderItemEntity e = new OrderItemEntity();
-            e.amount = BigDecimal.ZERO; // 실제로는 i.getSubtotal()에서 금액을 꺼내 채운다
+            e.amount = i.getSubtotal().getAmount();
             return e;
         }).toList();
     }
@@ -454,6 +464,8 @@ public class OrderMapper {
 ```
 
 ## DB 교체 시나리오
+
+지금까지 설계한 구조가 실제로 "교체 가능"한지 확인하는 가장 확실한 방법은, 실제로 DB를 바꿔보는 것이다. 아래는 MySQL에서 MongoDB로 저장소를 옮기는 상황을 가정한다 — `OrderRepository` 인터페이스와 이를 사용하는 Use Case는 단 한 줄도 바뀌지 않고, 새 구현체(`MongoOrderRepository`)만 추가된다.
 
 ```mermaid
 flowchart LR
