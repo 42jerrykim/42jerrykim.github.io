@@ -35,8 +35,8 @@
 | content/collection/cleanarchitecture/21-components-deployment-units-history/index.md | 90.7 | 2026-07-19 | 2 | 통과 | 없음 |
 | content/collection/cleanarchitecture/22-component-cohesion-rep-ccp-crp/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 없음(경미: 문단비율 34.9%, 40% 기준 근소 미달이나 통과) |
 | content/collection/cleanarchitecture/23-component-coupling-adp-sdp-sap/index.md | 97 | 2026-07-19 | 3 | 통과 | 없음 |
-| content/collection/cleanarchitecture/24-architecture-introduction-system-design/index.md | - | - | 0 | 미채점 | - |
-| content/collection/cleanarchitecture/25-what-is-architecture-system-lifecycle/index.md | - | - | 0 | 미채점 | - |
+| content/collection/cleanarchitecture/24-architecture-introduction-system-design/index.md | 85.9 | 2026-07-19 | 3 | 에스컬레이션 | 항목2 학습목표 문항이 본문 흔한오해 절과 불일치, 항목7 태그 11개 본문 근거 약함. 90점에 4.1점 차 |
+| content/collection/cleanarchitecture/25-what-is-architecture-system-lifecycle/index.md | 87.7 | 2026-07-19 | 3 | 에스컬레이션 | 항목5 정책/세부사항 분리 예제 미정의 타입, 항목1 1960년대 서술 미검증, 항목3 일부 절 표/리스트 의존. 90점에 2.3점 차 |
 | content/collection/cleanarchitecture/26-independence-usecase-operation-development/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/27-boundaries-drawing-lines-plugin-architecture/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/28-boundary-anatomy-monolith-to-services/index.md | - | - | 0 | 미채점 | - |
