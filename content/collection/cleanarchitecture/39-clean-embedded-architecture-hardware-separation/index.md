@@ -38,9 +38,9 @@ tags:
 임베디드 소프트웨어는 **하드웨어와 밀접**하다. 그러나 Clean Architecture의 원칙은 임베디드에도 똑같이 적용된다. 핵심은 **하드웨어에서 소프트웨어를 분리**하는 것이다.
 
 > "Although software does not wear out, firmware and hardware become obsolete, thereby requiring software modifications."
-> — Robert C. Martin, 『Clean Architecture』(2017), 29장
+> — James Grenning, 『Clean Architecture』(로버트 C. 마틴 편, 2017), 29장
 
-소프트웨어 자체는 마모되지 않지만, 그 소프트웨어가 특정 하드웨어에 대한 지식과 뒤섞여 있으면 하드웨어가 세대교체될 때마다 소프트웨어까지 함께 폐기해야 한다. 마틴이 이 장에서 말하는 목표는, 하드웨어가 바뀌어도 살아남을 수 있도록 소프트웨어를 하드웨어 지식으로부터 미리 격리해 두는 것이다.
+이 장은 마틴이 아니라 임베디드 애자일의 개척자 James Grenning이 초청 필자로 쓴 챕터다. 소프트웨어 자체는 마모되지 않지만, 그 소프트웨어가 특정 하드웨어에 대한 지식과 뒤섞여 있으면 하드웨어가 세대교체될 때마다 소프트웨어까지 함께 폐기해야 한다. 그레닝이 이 장에서 말하는 목표는, 하드웨어가 바뀌어도 살아남을 수 있도록 소프트웨어를 하드웨어 지식으로부터 미리 격리해 두는 것이다.
 
 ## 임베디드의 특수성
 
@@ -106,6 +106,19 @@ void app_main(HardwareAPI* hw) {
 ```c
 #include <stdbool.h>
 #include <assert.h>
+
+// 위 "HAL 인터페이스" 절의 HardwareAPI/app_main과 같은 파일에 있다고 가정한다
+typedef struct {
+    void (*led_on)(void);
+    void (*led_off)(void);
+    bool (*button_pressed)(void);
+} HardwareAPI;
+
+void app_main(HardwareAPI* hw) {
+    if (hw->button_pressed()) {
+        hw->led_on();
+    }
+}
 
 // 테스트용 HAL 구현
 bool test_button_state = false;
@@ -177,7 +190,7 @@ void sensor_task(void* arg) {
 
 ## 참고 자료
 
-- Robert C. Martin, 『Clean Architecture』(2017), 29장 — 타겟-하드웨어 병목, HAL·OSAL을 통한 하드웨어·OS 분리의 원출처.
+- James Grenning, 『Clean Architecture』(로버트 C. 마틴 편, 2017), 29장 — 타겟-하드웨어 병목, HAL·OSAL을 통한 하드웨어·OS 분리의 원출처.
 
 ## 핵심 요약
 
@@ -188,4 +201,4 @@ void sensor_task(void* arg) {
 | OSAL | RTOS를 추상화하는 인터페이스 |
 | 이점 | 타겟-하드웨어 병목 없이 PC에서 테스트 가능 |
 
-마틴은 소프트웨어 자체는 마모되지 않지만 펌웨어와 하드웨어는 낡아가므로, 그로 인한 소프트웨어 수정을 피하려면 처음부터 하드웨어·OS 지식을 HAL·OSAL 뒤로 분리해야 한다고 말한다(Martin, 『Clean Architecture』, 2017, 29장).
+HAL·OSAL은 결국 [19장: 의존성 역전 원칙](/post/clean-architecture/dip-dependency-inversion-principle/)을 임베디드 환경에 그대로 적용한 것이다 — 애플리케이션은 `HardwareAPI`/`OSAL`이라는 추상 인터페이스에 의존하고, 실제 레지스터를 건드리는 저수준 구현이 그 인터페이스를 구현하는 방향으로 의존성이 역전된다. 오프 타겟 테스팅 역시 [38장: 테스트 경계](/post/clean-architecture/test-boundary-testing-as-system-part/)에서 다룬 "테스트는 시스템에 의존하지만 시스템은 테스트에 의존하지 않는다"는 원칙이 임베디드에서 구체화된 사례다 — `test_app()`은 `HardwareAPI`에 의존하지만, `app_main()`은 그 테스트의 존재를 전혀 모른다.
