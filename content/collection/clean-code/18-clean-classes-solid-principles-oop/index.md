@@ -1,542 +1,169 @@
 ---
-draft: true
+draft: false
+collection_order: 18
+slug: clean-classes-solid-principles-oop
+title: "[Clean Code] 18. 클래스는 작아야 한다"
+date: 2026-07-17
+last_modified_at: 2026-07-17
+description: "클래스 크기를 책임의 개수로 측정하는 이유를 설명하고, 단일 책임 원칙과 응집도를 중심으로 SOLID 5원칙 전체를 개괄한다. God Class를 작은 클래스들로 분해하는 실전 예제와 과잉 설계 판단 기준을 포함한다."
+categories: Clean Code
+tags:
+- Clean-Code(클린코드)
+- SOLID
+- OOP(객체지향)
+- Design-Pattern(디자인패턴)
+- Code-Quality(코드품질)
+- Best-Practices
+- Readability
+- Maintainability
+- Coupling(결합도)
+- Cohesion(응집도)
+- Encapsulation(캡슐화)
+- Dependency-Injection(의존성주입)
+- Java
+- Refactoring(리팩토링)
+- Implementation(구현)
+- Pitfalls(함정)
+- Interface(인터페이스)
+- Testing(테스트)
+- Tutorial(튜토리얼)
+- Guide(가이드)
+- Education(교육)
+- Career(커리어)
+- Software-Architecture(소프트웨어아키텍처)
+- Abstraction(추상화)
+- Polymorphism(다형성)
+image: "wordcloud.png"
 ---
-# 10장: 클래스
 
-## 강의 목표
-- 클래스 설계의 기본 원칙과 체계 이해
-- 단일 책임 원칙(SRP)과 응집도 개념 습득
-- 변경에 유연한 클래스 구조 설계 능력 개발
+## 이 장을 읽기 전에
 
-## 내용 구성 전략
+이 장은 [05장](/post/clean-code/clean-functions-single-responsibility-principle/)에서 함수 단위로 다룬 "한 가지 일만 하라"는 원칙을 클래스 단위로 확장한다. 클래스와 인터페이스를 선언해 본 경험이 필요하다. 이 장은 SOLID 중 SRP·OCP·DIP를 중심으로 다루며, 시스템 전체의 의존성 조립은 [20장](/post/clean-code/system-design-dependency-injection-architecture/)에서 확장한다.
 
-### 클래스 체계
-**접근 방법**:
-- 자바 관례에 따른 클래스 내부 구성 순서
-- 캡슐화와 정보 은닉의 중요성
+| 수준 | 읽을 부분 | 핵심 목표 |
+|:--:|:--|:--|
+| 입문자 | "클래스 크기의 척도"부터 "응집도"까지 | 클래스가 커지는 원인(여러 책임 혼재)을 식별한다 |
+| 실무자 | "판단 기준", "비판적 시각" | SOLID를 얼마나 엄격히 적용할지, 과잉 설계와의 경계를 판단한다 |
 
-**주요 내용**:
-- 클래스 정의는 변수 목록으로 시작한다
-- 정적 공개 상수가 있다면 맨 먼저 나온다
-- 다음으로 정적 비공개 변수가 나오며, 이어서 비공개 인스턴스 변수가 나온다
-- 공개 변수가 필요한 경우는 거의 없다
-- 변수 목록 다음에는 공개 함수가 나온다
-- 비공개 함수는 자신을 호출하는 공개 함수 직후에 넣는다
+## 클래스 크기의 척도: 줄 수가 아니라 책임의 개수
 
-**클래스 체계 예시**:
+함수의 크기는 물리적인 줄 수로 가늠할 수 있지만, 클래스의 크기는 다른 척도가 필요하다. 클래스가 맡은 **책임(responsibility)**의 개수, 즉 "이 클래스가 변경돼야 하는 이유가 몇 가지인가"로 크기를 측정한다. 70개가 넘는 공개 메서드를 가진 클래스라도 실제로는 서로 무관한 대여섯 가지 책임(버전 관리, 이벤트 알림, 속성 변경 알림)이 한 클래스에 뭉쳐 있을 뿐이며, 각 책임을 별도 클래스로 분리하면 원래 클래스는 자연스럽게 작아진다.
+
+## 단일 책임 원칙(SRP)
+
+**단일 책임 원칙(Single Responsibility Principle, SRP)**은 "클래스나 모듈을 변경할 이유는 하나, 단 하나뿐이어야 한다"는 원칙이다. 이 원칙에서 "책임"은 기능의 개수가 아니라 **변경의 이유**를 뜻한다는 점이 중요하다.
+
 ```java
-public class SuperDashboard extends JFrame implements MetaDataUser {
-    // 1. 정적 공개 상수
-    public static final String COMPONENT_SIZING_ERROR = "Cannot size component";
-    
-    // 2. 정적 비공개 변수
-    private static final String TAG = "SuperDashboard";
-    
-    // 3. 비공개 인스턴스 변수
-    private boolean useSSL;
-    private String userName;
-    private String password;
-    
-    // 4. 공개 함수
-    public SuperDashboard() {
-        initialize();
-    }
-    
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-    
-    public String getUserName() {
-        return userName;
-    }
-    
-    public void processLogin() {
-        if (isValidUser()) {
-            performLogin();
-        }
-    }
-    
-    // 5. 비공개 함수 (호출하는 공개 함수 직후)
-    private void initialize() {
-        // 초기화 로직
-    }
-    
-    private boolean isValidUser() {
-        // 유효성 검증 로직
-        return userName != null && password != null;
-    }
-    
-    private void performLogin() {
-        // 로그인 수행 로직
-    }
+// SRP 위반: 직원 정보, 급여 계산, DB 저장, 보고서 생성이라는
+// 서로 다른 네 가지 변경 이유가 한 클래스에 뭉쳐 있다
+public class Employee {
+    private String name;
+    public Money calculatePay() { /* 급여 정책이 바뀌면 여기를 고친다 */ }
+    public void save() { /* DB 스키마가 바뀌면 여기를 고친다 */ }
+    public String generateReport() { /* 보고서 형식이 바뀌면 여기를 고친다 */ }
 }
 ```
 
-#### 캡슐화
-**접근 방법**:
-- 변수와 유틸리티 함수의 공개 여부 결정
-- 테스트를 위한 접근성과 캡슐화의 균형
+급여 계산 정책이 바뀌든, 데이터베이스 스키마가 바뀌든, 보고서 형식이 바뀌든 — 이 세 가지 서로 무관한 변경이 모두 `Employee` 클래스를 건드리게 된다. 이는 급여 정책을 수정하는 담당자가 실수로 보고서 생성 로직에 영향을 줄 위험을 만든다. 책임을 변경 이유별로 분리하면 이 결합이 사라진다.
 
-**주요 내용**:
-- 변수와 유틸리티 함수는 가능한 한 공개하지 않는 편이 낫지만 반드시 숨겨야 한다는 법칙도 없다
-- 때로는 변수나 유틸리티 함수를 protected로 선언해 테스트 코드에 접근을 허용하기도 한다
-- 하지만 그 전에 비공개 상태를 유지할 온갖 방법을 강구한다
-- 캡슐화를 풀어주는 결정은 언제나 최후의 수단이다
-
-### 클래스는 작아야 한다!
-**접근 방법**:
-- 클래스 크기의 척도와 기준
-- 함수와 클래스에서의 "작음"의 의미 차이
-
-**주요 내용**:
-- 클래스를 만들 때 첫 번째 규칙은 크기다. 클래스는 작아야 한다
-- 두 번째 규칙도 크기다. 더 작아야 한다
-- 함수는 물리적인 행 수로 크기를 측정했다. 클래스는 다른 척도를 사용한다
-- 클래스가 맡은 **책임**을 센다
-
-**크기 측정 예시**:
 ```java
-// Bad: 너무 많은 책임을 가진 클래스 (70개 이상의 공개 메서드)
-public class SuperDashboard extends JFrame implements MetaDataUser {
-    public Component getLastFocusedComponent()
-    public void setLastFocused(Component lastFocused)
-    public int getMajorVersionNumber()
-    public int getMinorVersionNumber()
-    public int getBuildNumber()
-    public void addVersionListener(VersionListener listener)
-    public void removeVersionListener(VersionListener listener)
-    public void fireVersionListeners(MetaData metadata)
-    public void addPropertyChangeListener(PropertyChangeListener listener)
-    public void removePropertyChangeListener(PropertyChangeListener listener)
-    public void firePropertyChangeListeners(String propertyName, Object oldValue, Object newValue)
-    // ... 60개 이상의 메서드가 더 있음
-}
-
-// Good: 단일 책임으로 분리된 클래스들
-public class Version {
-    public int getMajorVersionNumber()
-    public int getMinorVersionNumber() 
-    public int getBuildNumber()
-}
-
-public class VersionNotifier {
-    public void addVersionListener(VersionListener listener)
-    public void removeVersionListener(VersionListener listener)
-    public void fireVersionListeners(MetaData metadata)
-}
-
-public class PropertyChangeNotifier {
-    public void addPropertyChangeListener(PropertyChangeListener listener)
-    public void removePropertyChangeListener(PropertyChangeListener listener)
-    public void firePropertyChangeListeners(String propertyName, Object oldValue, Object newValue)
-}
-```
-
-#### 단일 책임 원칙
-**접근 방법**:
-- SRP(Single Responsibility Principle)의 개념과 적용
-- 변경할 이유가 하나여야 한다는 원칙
-
-**주요 내용**:
-- 단일 책임 원칙(SRP)은 클래스나 모듈을 변경할 이유가 하나, 단 하나뿐이어야 한다는 원칙이다
-- 책임, 즉 변경할 이유를 파악하려 애쓰다 보면 코드를 추상화하기도 쉬워진다
-- 더 좋은 추상화가 더 쉽게 떠오른다
-
-**SRP 위반 예시**:
-```java
-// Bad: SRP 위반 - 여러 책임을 가짐
-public class Employee {
-    // 직원 정보 관리 책임
-    private String name;
-    private String address;
-    private String phoneNumber;
-    
-    // 급여 계산 책임
-    public Money calculatePay() {
-        // 급여 계산 로직
-        return new Money(salary);
-    }
-    
-    // 데이터베이스 저장 책임
-    public void save() {
-        // 데이터베이스에 저장
-    }
-    
-    // 보고서 생성 책임
-    public String generateReport() {
-        return "Employee Report: " + name;
-    }
-}
-
-// Good: SRP 준수 - 각각 하나의 책임만 가짐
+// SRP 준수: 각 클래스가 하나의 변경 이유만 갖는다
 public class Employee {
     private String name;
-    private String address;
-    private String phoneNumber;
-    
-    // 접근자 메서드들만
     public String getName() { return name; }
-    public String getAddress() { return address; }
-    public String getPhoneNumber() { return phoneNumber; }
 }
 
 public class PayCalculator {
-    public Money calculatePay(Employee employee) {
-        // 급여 계산 로직
-        return new Money(employee.getSalary());
-    }
+    public Money calculatePay(Employee employee) { /* 급여 정책 담당 */ }
 }
 
 public class EmployeeRepository {
-    public void save(Employee employee) {
-        // 데이터베이스에 저장
-    }
-}
-
-public class EmployeeReporter {
-    public String generateReport(Employee employee) {
-        return "Employee Report: " + employee.getName();
-    }
+    public void save(Employee employee) { /* 영속성 담당 */ }
 }
 ```
 
-**SRP를 지키지 않을 때의 문제점**:
-1. 급여 계산 로직이 변경되면 Employee 클래스가 변경됨
-2. 데이터베이스 스키마가 변경되면 Employee 클래스가 변경됨
-3. 보고서 형식이 변경되면 Employee 클래스가 변경됨
+## 응집도: 클래스가 하나의 개념으로 뭉쳐 있는가
 
-#### 응집도
-**접근 방법**:
-- 클래스 응집도의 개념과 측정 방법
-- 높은 응집도를 가진 클래스의 특징
+**응집도(Cohesion)**는 클래스의 메서드와 인스턴스 변수가 서로 얼마나 밀접하게 연관돼 있는지를 나타낸다. 메서드가 클래스의 인스턴스 변수를 더 많이 사용할수록 그 클래스의 응집도는 높다고 본다.
 
-**주요 내용**:
-- 클래스는 인스턴스 변수 수가 작아야 한다
-- 각 클래스 메서드는 클래스 인스턴스 변수를 하나 이상 사용해야 한다
-- 일반적으로 메서드가 변수를 더 많이 사용할수록 메서드와 클래스는 응집도가 더 높다
-- 응집도가 높다는 것은 클래스에 속한 메서드와 변수가 서로 의존하며 논리적인 단위로 뭉쳐진다는 의미다
-
-**응집도 예시**:
 ```java
-// Good: 높은 응집도
+// 높은 응집도: 모든 메서드가 topOfStack, elements 두 변수를 함께 사용한다
 public class Stack {
     private int topOfStack = 0;
-    private List<Integer> elements = new LinkedList<Integer>();
-    
-    public int size() { 
-        return topOfStack; // topOfStack 사용
-    }
-    
-    public void push(int element) { 
-        topOfStack++; // topOfStack 사용
-        elements.add(element); // elements 사용
-    }
-    
-    public int pop() throws PoppedWhenEmpty { 
-        if (topOfStack == 0) // topOfStack 사용
-            throw new PoppedWhenEmpty();
-        int element = elements.get(--topOfStack); // topOfStack, elements 사용
-        elements.remove(topOfStack); // topOfStack, elements 사용
-        return element;
-    }
-}
+    private List<Integer> elements = new LinkedList<>();
 
-// Bad: 낮은 응집도
-public class LowCohesion {
-    private String name;
-    private int age;
-    private List<String> hobbies;
-    private DatabaseConnection db;
-    private Logger logger;
-    
-    public void setName(String name) {
-        this.name = name; // name만 사용
-    }
-    
-    public void setAge(int age) {
-        this.age = age; // age만 사용
-    }
-    
-    public void logMessage(String message) {
-        logger.log(message); // logger만 사용
-    }
-    
-    public void saveToDatabase() {
-        db.save(this); // db만 사용
+    public int size() { return topOfStack; }
+    public void push(int element) {
+        topOfStack++;
+        elements.add(element);
     }
 }
 ```
 
-#### 응집도를 유지하면 작은 클래스 여럿이 나온다
-**접근 방법**:
-- 큰 함수를 작은 함수 여럿으로 쪼개는 과정
-- 변수 승격과 클래스 분리 과정
+반대로 낮은 응집도를 가진 클래스는 메서드마다 서로 다른 변수 부분집합만 사용한다(예: `setName`은 `name`만, `logMessage`는 `logger`만 사용). 이런 클래스는 사실상 서로 무관한 여러 책임이 하나의 클래스 이름 아래 묶여 있을 뿐이며, 응집도가 낮다는 것은 SRP를 위반할 가능성이 높다는 신호로 읽어야 한다. 실제로 큰 함수를 작은 함수 여럿으로 쪼개다 보면, 그 과정에서 자연스럽게 응집도 높은 작은 클래스 여럿으로 나뉠 기회가 드러나는 경우가 많다.
 
-**주요 내용**:
-- 큰 함수를 작은 함수 여럿으로 쪼개다 보면 종종 작은 클래스 여럿으로 쪼갤 기회가 생긴다
-- 그러면 프로그램에 점점 더 체계가 잡히고 구조가 투명해진다
+## OCP와 DIP: 변경에는 닫히고 확장에는 열리게
 
-**리팩토링 과정 예시**:
+**개방-폐쇄 원칙(Open-Closed Principle, OCP)**은 클래스가 확장에는 열려 있고 기존 코드 수정에는 닫혀 있어야 한다는 원칙이다. 새로운 SQL 문 유형이 추가될 때마다 하나의 `Sql` 클래스에 메서드를 계속 추가해야 한다면, 그 클래스는 변경에 닫혀 있지 않다. `Sql`을 추상 클래스로 두고 각 SQL 문 유형을 서브클래스로 분리하면, 새로운 유형을 추가할 때 기존 클래스는 전혀 건드리지 않아도 된다 — 이는 05장에서 다룬 "switch 문을 다형성으로 대체하기"와 같은 원리다.
+
+**의존성 역전 원칙(Dependency Inversion Principle, DIP)**은 상위 수준 모듈이 하위 수준의 구체적인 구현이 아니라 추상화에 의존해야 한다는 원칙이다.
+
 ```java
-// Before: 긴 함수와 많은 지역 변수
-public class LargeClass {
-    public void largeMethod() {
-        // 100줄 이상의 코드
-        String data1, data2, data3;
-        int count1, count2, count3;
-        
-        // data1, count1을 사용하는 로직
-        // ...
-        
-        // data2, count2를 사용하는 로직
-        // ...
-        
-        // data3, count3을 사용하는 로직
-        // ...
-    }
-}
-
-// After: 작은 클래스들로 분리
-public class DataProcessor1 {
-    private String data;
-    private int count;
-    
-    public DataProcessor1(String data) {
-        this.data = data;
-        this.count = 0;
-    }
-    
-    public void process() {
-        // data와 count를 사용하는 로직
-    }
-}
-
-public class DataProcessor2 {
-    private String data;
-    private int count;
-    
-    public DataProcessor2(String data) {
-        this.data = data;
-        this.count = 0;
-    }
-    
-    public void process() {
-        // data와 count를 사용하는 로직
-    }
-}
-
-public class DataProcessor3 {
-    private String data;
-    private int count;
-    
-    public DataProcessor3(String data) {
-        this.data = data;
-        this.count = 0;
-    }
-    
-    public void process() {
-        // data와 count를 사용하는 로직
-    }
-}
-```
-
-### 변경하기 쉬운 클래스
-**접근 방법**:
-- OCP(Open-Closed Principle) 적용
-- 새 기능 추가 시 기존 코드 변경 최소화
-
-**주요 내용**:
-- 깨끗한 시스템은 클래스를 체계적으로 정리해 변경에 수반하는 위험을 낮춘다
-- 새 기능을 수정하거나 기존 기능을 변경할 때 건드릴 코드가 최소인 시스템 구조가 바람직하다
-- 이상적인 시스템이라면 새 기능을 추가할 때 시스템을 확장할 뿐 기존 코드를 변경하지는 않는다
-
-**변경하기 어려운 클래스 예시**:
-```java
-// Bad: 새로운 SQL 문 유형이 추가될 때마다 클래스 수정 필요
-public class Sql {
-    public Sql(String table, Column[] columns)
-    public String create()
-    public String insert(Object[] fields)
-    public String selectAll()
-    public String findByKey(String keyColumn, String keyValue)
-    public String select(Column column, String pattern)
-    public String select(Criteria criteria)
-    public String preparedInsert()
-    private String columnList(Column[] columns)
-    private String valuesList(Object[] fields, final Column[] columns)
-    private String selectWithCriteria(String criteria)
-    private String placeholderList(Column[] columns)
-}
-```
-
-**변경하기 쉬운 클래스 예시**:
-```java
-// Good: OCP 준수 - 확장에는 열려있고 변경에는 닫혀있음
-abstract public class Sql {
-    public Sql(String table, Column[] columns) 
-    abstract public String generate();
-}
-
-public class CreateSql extends Sql {
-    public CreateSql(String table, Column[] columns) 
-    @Override public String generate()
-}
-
-public class SelectSql extends Sql {
-    public SelectSql(String table, Column[] columns) 
-    @Override public String generate()
-}
-
-public class InsertSql extends Sql {
-    public InsertSql(String table, Column[] columns, Object[] fields) 
-    @Override public String generate()
-    private String valuesList(Object[] fields, final Column[] columns)
-}
-
-public class SelectWithCriteriaSql extends Sql { 
-    public SelectWithCriteriaSql(String table, Column[] columns, Criteria criteria) 
-    @Override public String generate()
-}
-
-public class SelectWithMatchSql extends Sql { 
-    public SelectWithMatchSql(String table, Column[] columns, Column column, String pattern) 
-    @Override public String generate()
-}
-
-public class FindByKeySql extends Sql { 
-    public FindByKeySql(String table, Column[] columns, String keyColumn, String keyValue) 
-    @Override public String generate()
-}
-
-public class PreparedInsertSql extends Sql {
-    public PreparedInsertSql(String table, Column[] columns) 
-    @Override public String generate() {
-        return String.format("INSERT INTO %s (%s) VALUES (%s)", 
-            table, columnList(columns), placeholderList(columns));
-    }
-    private String placeholderList(Column[] columns)
-}
-```
-
-#### 변경으로부터 격리
-**접근 방법**:
-- 의존성 역전 원칙(DIP) 적용
-- 인터페이스와 추상 클래스를 통한 격리
-
-**주요 내용**:
-- 상세한 구현에 의존하는 클라이언트 클래스는 구현이 바뀌면 위험에 빠진다
-- 그래서 우리는 인터페이스와 추상 클래스를 사용해 구현이 미치는 영향을 격리한다
-- 상세한 구현에 의존하는 코드는 테스트가 어렵다
-
-**DIP 적용 예시**:
-```java
-// Bad: 구체적인 구현에 의존
+// DIP 위반: Portfolio가 구체적인 TokyoStockExchange 구현에 직접 의존한다
 public class Portfolio {
     private TokyoStockExchange exchange;
-    
-    public Portfolio(TokyoStockExchange exchange) {
-        this.exchange = exchange;
-    }
-    
-    public Money value() {
-        Money money = Money.zero();
-        for (String symbol : portfolio) {
-            money = money.add(exchange.currentPrice(symbol));
-        }
-        return money;
-    }
 }
 
-// Good: 추상화에 의존
-public interface StockExchange {
-    Money currentPrice(String symbol);
-}
-
+// DIP 준수: Portfolio는 인터페이스에만 의존하고, 실제 구현은 외부에서 주입된다
+public interface StockExchange { Money currentPrice(String symbol); }
 public class Portfolio {
-    private StockExchange exchange;
-    
-    public Portfolio(StockExchange exchange) {
-        this.exchange = exchange;
-    }
-    
-    public Money value() {
-        Money money = Money.zero();
-        for (String symbol : portfolio) {
-            money = money.add(exchange.currentPrice(symbol));
-        }
-        return money;
-    }
-}
-
-public class TokyoStockExchange implements StockExchange {
-    public Money currentPrice(String symbol) {
-        // 실제 도쿄 증권 거래소에서 가격을 가져오는 로직
-    }
-}
-
-// 테스트를 위한 목 객체
-public class MockStockExchange implements StockExchange {
-    private Map<String, Money> prices = new HashMap<>();
-    
-    public void setPrice(String symbol, Money price) {
-        prices.put(symbol, price);
-    }
-    
-    public Money currentPrice(String symbol) {
-        return prices.get(symbol);
-    }
-}
-
-// 테스트 코드
-@Test
-public void testPortfolioValue() {
-    MockStockExchange exchange = new MockStockExchange();
-    exchange.setPrice("AAPL", Money.dollars(100));
-    exchange.setPrice("GOOGL", Money.dollars(200));
-    
-    Portfolio portfolio = new Portfolio(exchange);
-    portfolio.add("AAPL");
-    portfolio.add("GOOGL");
-    
-    assertEquals(Money.dollars(300), portfolio.value());
+    private final StockExchange exchange;
+    public Portfolio(StockExchange exchange) { this.exchange = exchange; }
 }
 ```
 
-## 강의 진행 방식
-1. **도입 (10분)**: 복잡한 클래스 경험 사례 공유
-2. **이론 (25분)**: SRP, 응집도, OCP, DIP 원칙 설명
-3. **실습 (40분)**: 큰 클래스를 작은 클래스들로 리팩토링
-4. **코드 리뷰 (15분)**: 클래스 설계 품질 검토
+`StockExchange` 인터페이스에 의존하면, 테스트에서는 실제 증권거래소 대신 `MockStockExchange`를 주입해 네트워크 없이 빠르게 검증할 수 있다. 이는 16~17장에서 다룬 F.I.R.S.T 원칙(특히 Fast, Independent)을 만족하는 테스트를 가능하게 하는 구조적 전제 조건이기도 하다.
 
-## 실습 과제
-1. **클래스 분해**: God Class를 SRP를 준수하는 작은 클래스들로 분해
-2. **인터페이스 추출**: 변경하기 어려운 클래스에 인터페이스 적용
-3. **응집도 개선**: 낮은 응집도의 클래스를 높은 응집도로 리팩토링
+## SOLID 다섯 원칙 한눈에 보기
+
+Robert C. Martin이 정리한 SOLID는 SRP, OCP 외에 세 원칙을 더 포함한다. **리스코프 치환 원칙(Liskov Substitution Principle, LSP)**은 상위 타입 객체를 하위 타입 객체로 바꿔도 프로그램의 정확성이 유지돼야 한다는 원칙이고, **인터페이스 분리 원칙(Interface Segregation Principle, ISP)**은 클라이언트가 자신이 사용하지 않는 메서드에 의존하지 않아야 한다는 원칙이다.
+
+| 원칙 | 한 줄 요약 | 이 시리즈에서 |
+|:--:|:--|:--|
+| SRP | 변경 이유는 하나여야 한다 | 이 장에서 상세히 |
+| OCP | 확장에는 열리고 수정에는 닫힌다 | 이 장 + [05장](/post/clean-code/clean-functions-single-responsibility-principle/) |
+| LSP | 하위 타입은 상위 타입을 대체할 수 있어야 한다 | 이 장에서 개괄만 |
+| ISP | 쓰지 않는 메서드에 의존하지 않는다 | 이 장에서 개괄만 |
+| DIP | 구체가 아니라 추상에 의존한다 | 이 장 + [20장](/post/clean-code/system-design-dependency-injection-architecture/) |
+
+LSP와 ISP는 클래스 하나의 설계보다 클래스 간 계층 구조와 인터페이스 설계 전반에 걸친 원칙이라, 이 시리즈에서는 개괄만 다루고 심화 내용은 별도 아키텍처 시리즈([Clean Architecture 컬렉션](/post/clean-architecture/00-clean-architecture-overview-introduction/))에서 다룬다.
+
+## 흔한 오개념
+
+**"SRP는 클래스가 메서드 하나만 가져야 한다는 뜻이다"**는 오해가 매우 흔하다. SRP는 메서드 개수가 아니라 **변경 이유의 개수**를 제한한다. `Employee` 클래스가 `getName()`, `getAddress()`, `getPhoneNumber()` 세 메서드를 갖더라도, 이 셋이 모두 "직원 신상 정보"라는 하나의 책임에 속한다면 SRP를 위반하지 않는다.
+
+**"SOLID를 지키면 항상 더 좋은 설계다"**는 오해도 있다. 각 원칙을 기계적으로 적용하면 작은 클래스와 인터페이스가 과도하게 늘어나, 실제 로직을 이해하려면 여러 파일을 오가야 하는 부작용이 생긴다. 이는 아래 "비판적 시각"에서 더 다룬다.
+
+## 판단 기준: 클래스를 언제 분리할까
+
+클래스를 분리할지 판단할 때는 "이 클래스를 변경해야 하는 서로 다른 이해관계자(급여팀, DBA, 리포트 담당자)가 몇 명인가"를 묻는다. 서로 다른 이해관계자가 같은 클래스를 각자 다른 이유로 자주 수정한다면 분리 신호다. 반면 하나의 이해관계자가 항상 함께 변경하는 필드와 메서드라면, 억지로 분리하기보다 하나의 클래스에 두는 편이 오히려 응집도를 높인다.
+
+## 비판적 시각
+
+SOLID, 특히 SRP와 ISP를 극단까지 밀어붙이면 클래스와 인터페이스의 개수가 폭발적으로 늘어나는 부작용이 있다. 하나의 개념적 기능을 이해하기 위해 5~6개의 작은 클래스와 인터페이스를 오가며 코드를 추적해야 한다면, 이는 "책임 분리"가 아니라 "간접 계층의 과잉"이 된다. 이런 비판은 특히 자바 생태계의 과도한 "Factory Factory" 패턴 남용을 향한 오래된 농담으로도 잘 알려져 있다. 실무적으로는, 아직 실제로 두 가지 이상의 변경 이유가 관찰되지 않은 클래스를 "나중에 분리가 필요할 수도 있으니" 미리 잘게 쪼개는 것보다, 실제로 서로 다른 이유로 변경이 반복되기 시작할 때 리팩토링으로 분리하는 편이 YAGNI 원칙과 SRP를 동시에 만족시키는 절충안으로 널리 받아들여진다.
+
+## 다음 장에서는
+
+[19장: SOLID 원칙 리팩토링 실습](/post/clean-code/clean-classes-solid-principles-exercises/)에서는 여러 책임이 뒤섞인 God Class를 이 장의 원칙에 따라 분해해 본다.
 
 ## 평가 기준
-- SRP 적용 능력 (30%)
-- 응집도 이해 및 개선 능력 (35%)
-- 변경에 유연한 설계 능력 (35%)
 
-## 클래스 설계 체크리스트
-- [ ] 클래스가 하나의 책임만 가지는가? (SRP)
-- [ ] 클래스의 크기가 적절한가?
-- [ ] 인스턴스 변수 수가 작은가?
-- [ ] 메서드들이 인스턴스 변수를 적절히 사용하는가? (응집도)
-- [ ] 새로운 기능 추가 시 기존 코드 변경이 최소화되는가? (OCP)
-- [ ] 구체적인 구현이 아닌 추상화에 의존하는가? (DIP)
-- [ ] 클래스가 테스트하기 쉬운가?
-- [ ] 캡슐화가 적절히 유지되는가?
+- [ ] 클래스 크기를 "책임의 개수"로 측정하는 방법을 설명할 수 있다.
+- [ ] SRP를 "메서드 개수 제한"이 아니라 "변경 이유의 개수 제한"으로 정확히 설명할 수 있다.
+- [ ] OCP·DIP를 적용해 새로운 기능 추가 시 기존 코드 수정을 최소화하는 설계를 할 수 있다.
+- [ ] SOLID를 과도하게 적용했을 때 생기는 부작용(간접 계층 과잉)을 판단 기준으로 설명할 수 있다.
 
-## SOLID 원칙 요약
-1. **SRP (Single Responsibility Principle)**: 클래스를 변경할 이유는 하나뿐이어야 한다
-2. **OCP (Open-Closed Principle)**: 확장에는 열려 있고 변경에는 닫혀 있어야 한다
-3. **LSP (Liskov Substitution Principle)**: 상위 타입의 객체를 하위 타입으로 바꿔도 프로그램이 정상 작동해야 한다
-4. **ISP (Interface Segregation Principle)**: 클라이언트는 자신이 사용하지 않는 메서드에 의존하지 않아야 한다
-5. **DIP (Dependency Inversion Principle)**: 상위 모듈은 하위 모듈에 의존하면 안 된다
+## 참고 및 출처
 
-## 추가 자료
-- Robert C. Martin의 "Clean Architecture"
-- Gang of Four "Design Patterns"
-- Refactoring.Guru의 디자인 패턴 설명
-- SOLID 원칙에 대한 심화 학습 자료 
+- Martin, R. C. (2008). *Clean Code: A Handbook of Agile Software Craftsmanship*. Prentice Hall. 10장.
+- Martin, R. C. (2017). *Clean Architecture: A Craftsman's Guide to Software Structure and Design*. Prentice Hall.

@@ -1,561 +1,110 @@
 ---
-draft: true
+draft: false
+collection_order: 23
+slug: refactoring-techniques-legacy-code-improvement
+title: "[Clean Code] 23. 리팩토링과 레거시 코드 개선"
+date: 2026-07-17
+last_modified_at: 2026-07-17
+description: "테스트 없는 코드를 레거시로 정의하고, 특성화 테스트로 안전망을 세운 뒤 보이스카우트 규칙에 따라 점진적으로 개선하는 전략을 시리즈 전체를 통합하는 관점에서 다룬다. 전면 재작성의 위험과 스트랭글러 무화과 패턴도 함께 살펴본다."
+categories: Clean Code
+tags:
+- Clean-Code(클린코드)
+- Refactoring(리팩토링)
+- Legacy
+- Testing(테스트)
+- Code-Quality(코드품질)
+- Best-Practices
+- Maintainability
+- TDD(Test-Driven Development)
+- Java
+- Debugging(디버깅)
+- Implementation(구현)
+- Pitfalls(함정)
+- Software-Architecture(소프트웨어아키텍처)
+- Microservices(마이크로서비스)
+- Career(커리어)
+- Tutorial(튜토리얼)
+- Guide(가이드)
+- Education(교육)
+- Productivity(생산성)
+- Code-Review(코드리뷰)
+- Readability
+- Coupling(결합도)
+- Design-Pattern(디자인패턴)
+- System-Design
+- SOLID
+image: "wordcloud.png"
 ---
-# 14장: 리팩토링 실습
 
-## 강의 목표
-- 점진적 개선을 통한 리팩토링 기법 습득
-- 실제 코드 예제를 통한 리팩토링 과정 체험
-- 지속적인 코드 개선의 중요성과 방법론 이해
-- 대규모 리팩토링 프로젝트 관리 능력 개발
+## 이 장을 읽기 전에
 
-## 내용 구성 전략
+이 장은 이 시리즈 전체에서 다룬 원칙(네이밍, 함수, 클래스, 테스트, 시스템 설계)을 실제 레거시 코드에 종합적으로 적용하는 마지막 장이다. [16~17장](/post/clean-code/unit-testing-tdd-test-driven-development/)에서 다룬 테스트 작성 경험이 있으면 특성화 테스트 개념을 이해하기 쉽다.
 
-### 점진적 개선
-**접근 방법**:
-- 큰 변화를 작은 단계로 나누는 전략
-- 각 단계에서 테스트를 통한 검증
-- 기능 유지와 코드 개선의 균형
+| 수준 | 읽을 부분 | 핵심 목표 |
+|:--:|:--|:--|
+| 입문자 | "레거시 코드란 무엇인가"부터 "보이스카우트 규칙"까지 | 안전망 없이 리팩토링하면 왜 위험한지 이해한다 |
+| 실무자 | "판단 기준", "비판적 시각" | 전면 재작성과 점진적 개선 중 어느 쪽이 프로젝트에 맞는지 판단한다 |
 
-**주요 내용**:
-- 프로그램을 망치는 가장 좋은 방법 중 하나는 개선이라는 이름 아래 구조를 크게 뒤바꾸는 행위다
-- 그래서 TDD(Test Driven Development)라는 기법을 사용한다
-- TDD는 언제 어느 때라도 시스템이 돌아가야 한다는 원칙을 따른다
-- 변경을 가한 후에도 시스템이 변경 전과 똑같이 돌아가야 한다
+## 레거시 코드란 무엇인가
 
-**점진적 개선의 원칙**:
+Michael Feathers는 『Working Effectively with Legacy Code』(2004)에서 **레거시 코드**를 "테스트가 없는 코드"로 정의했다. 오래됐거나 기술이 낡았다는 것이 레거시의 본질이 아니라, **안전하게 변경할 수 있다는 확신을 주는 자동화된 검증이 없다는 것**이 본질이라는 뜻이다. 이 정의를 받아들이면, 어제 작성된 코드도 테스트가 없다면 이미 레거시이고, 10년 된 코드도 탄탄한 테스트 스위트가 있다면 안전하게 다룰 수 있는 자산이다.
+
+## 안전망 먼저: 특성화 테스트
+
+테스트가 없는 코드를 리팩토링하려면, 먼저 그 코드가 **현재 실제로 어떻게 동작하는지**를 기록하는 테스트부터 작성해야 한다. 이를 **특성화 테스트(Characterization Test)**라 부른다. 특성화 테스트는 "이 코드가 올바르게 동작하는가"를 검증하는 것이 아니라 "이 코드가 지금 무엇을 하는가"를 있는 그대로 기록하는 것이 목적이라는 점에서 일반적인 단위 테스트와 다르다.
+
 ```java
-// 리팩토링 전략: 한 번에 하나씩 변경
-// 1단계: 기존 코드 이해
-// 2단계: 테스트 코드 작성
-// 3단계: 작은 변경 수행
-// 4단계: 테스트 실행
-// 5단계: 다음 변경으로 진행
-```
-
-### Args 구현 사례
-**접근 방법**:
-- 명령행 인수 파싱 프로그램의 진화 과정
-- 기능 추가에 따른 코드 복잡도 증가 문제
-- 체계적인 리팩토링을 통한 해결
-
-**초기 구현 - 문제가 있는 코드**:
-```java
-// Bad: 기능이 추가될수록 복잡해지는 Args 클래스
-public class Args {
-    private Map<Character, ArgumentMarshaler> marshalers;
-    private Set<Character> argsFound;
-    private ListIterator<String> currentArgument;
-    
-    public Args(String schema, String[] args) throws ArgsException {
-        marshalers = new HashMap<Character, ArgumentMarshaler>();
-        argsFound = new HashSet<Character>();
-        
-        parseSchema(schema);
-        parseArgumentStrings(Arrays.asList(args));
-    }
-    
-    // 100여 줄의 복잡한 메서드들...
-    private void parseSchema(String schema) throws ArgsException {
-        for (String element : schema.split(","))
-            if (element.length() > 0)
-                parseSchemaElement(element.trim());
-    }
-    
-    private void parseSchemaElement(String element) throws ArgsException {
-        char elementId = element.charAt(0);
-        String elementTail = element.substring(1);
-        validateSchemaElementId(elementId);
-        
-        if (elementTail.length() == 0)
-            marshalers.put(elementId, new BooleanArgumentMarshaler());
-        else if (elementTail.equals("*"))
-            marshalers.put(elementId, new StringArgumentMarshaler());
-        else if (elementTail.equals("#"))
-            marshalers.put(elementId, new IntegerArgumentMarshaler());
-        else if (elementTail.equals("##"))
-            marshalers.put(elementId, new DoubleArgumentMarshaler());
-        else if (elementTail.equals("[*]"))
-            marshalers.put(elementId, new StringArrayArgumentMarshaler());
-        else
-            throw new ArgsException(INVALID_ARGUMENT_FORMAT, elementId, elementTail);
-    }
-    
-    // 더 많은 복잡한 메서드들...
-}
-```
-
-**리팩토링된 구현 - 개선된 코드**:
-```java
-// Good: 책임이 분리된 깔끔한 Args 클래스
-public class Args {
-    private Map<Character, ArgumentMarshaler> marshalers;
-    private Set<Character> argsFound;
-    private ListIterator<String> currentArgument;
-    
-    public Args(String schema, String[] args) throws ArgsException {
-        marshalers = new HashMap<Character, ArgumentMarshaler>();
-        argsFound = new HashSet<Character>();
-        
-        parseSchema(schema);
-        parseArgumentStrings(Arrays.asList(args));
-    }
-    
-    private void parseSchema(String schema) throws ArgsException {
-        for (String element : schema.split(","))
-            if (element.length() > 0)
-                parseSchemaElement(element.trim());
-    }
-    
-    private void parseSchemaElement(String element) throws ArgsException {
-        char elementId = element.charAt(0);
-        String elementTail = element.substring(1);
-        validateSchemaElementId(elementId);
-        
-        ArgumentMarshaler marshaler = marshalerForElement(elementTail);
-        marshalers.put(elementId, marshaler);
-    }
-    
-    private ArgumentMarshaler marshalerForElement(String elementTail) throws ArgsException {
-        if (elementTail.length() == 0)
-            return new BooleanArgumentMarshaler();
-        else if (elementTail.equals("*"))
-            return new StringArgumentMarshaler();
-        else if (elementTail.equals("#"))
-            return new IntegerArgumentMarshaler();
-        else if (elementTail.equals("##"))
-            return new DoubleArgumentMarshaler();
-        else if (elementTail.equals("[*]"))
-            return new StringArrayArgumentMarshaler();
-        else
-            throw new ArgsException(INVALID_ARGUMENT_FORMAT, 
-                                  elementTail.charAt(0), elementTail);
-    }
-    
-    // 각 타입별 Marshaler 클래스로 책임 분리
-}
-
-// ArgumentMarshaler 인터페이스
-public interface ArgumentMarshaler {
-    void set(Iterator<String> currentArgument) throws ArgsException;
-}
-
-// 구체적인 Marshaler 구현체들
-public class BooleanArgumentMarshaler implements ArgumentMarshaler {
-    private boolean booleanValue = false;
-    
-    public void set(Iterator<String> currentArgument) throws ArgsException {
-        booleanValue = true;
-    }
-    
-    public static boolean getValue(ArgumentMarshaler am) {
-        if (am != null && am instanceof BooleanArgumentMarshaler)
-            return ((BooleanArgumentMarshaler) am).booleanValue;
-        else
-            return false;
-    }
-}
-
-public class StringArgumentMarshaler implements ArgumentMarshaler {
-    private String stringValue = "";
-    
-    public void set(Iterator<String> currentArgument) throws ArgsException {
-        try {
-            stringValue = currentArgument.next();
-        } catch (NoSuchElementException e) {
-            throw new ArgsException(MISSING_STRING);
-        }
-    }
-    
-    public static String getValue(ArgumentMarshaler am) {
-        if (am != null && am instanceof StringArgumentMarshaler)
-            return ((StringArgumentMarshaler) am).stringValue;
-        else
-            return "";
-    }
-}
-```
-
-### 리팩토링 과정 단계별 분석
-**접근 방법**:
-- 각 리팩토링 단계의 목적과 결과
-- 변경 시 발생할 수 있는 위험 요소
-- 안전한 리팩토링을 위한 전략
-
-**1단계: 기존 시스템 이해**
-```java
-// 현재 상태 파악
-// - 어떤 기능을 수행하는가?
-// - 어떤 구조로 되어 있는가?
-// - 어떤 부분이 복잡한가?
-// - 테스트 커버리지는 어떤가?
-
-public class AnalysisExample {
-    // 복잡도 측정
-    private void calculateComplexity() {
-        // 사이클로매틱 복잡도
-        // 메서드 길이
-        // 클래스 응집도
-        // 결합도 분석
-    }
-}
-```
-
-**2단계: 안전망 구축 (테스트 코드)**
-```java
-// 기존 동작을 보장하는 테스트 작성
+// 특성화 테스트: 레거시 계산 로직의 현재 동작을 그대로 기록한다
+// (버그처럼 보이는 동작이라도, 리팩토링 전까지는 "현재 동작"으로 우선 고정한다)
 @Test
-public void testSimpleFlags() throws Exception {
-    Args args = new Args("x,y", new String[]{"-x", "-y"});
-    assertTrue(args.getBoolean('x'));
-    assertTrue(args.getBoolean('y'));
-}
-
-@Test
-public void testStringArgument() throws Exception {
-    Args args = new Args("x*", new String[]{"-x", "hello"});
-    assertEquals("hello", args.getString('x'));
-}
-
-@Test
-public void testIntegerArgument() throws Exception {
-    Args args = new Args("x#", new String[]{"-x", "42"});
-    assertEquals(42, args.getInt('x'));
+void legacyDiscountCalculation_currentBehavior() {
+    LegacyPricing pricing = new LegacyPricing();
+    // 음수 수량을 넣으면 할인이 두 배로 계산되는 버그성 동작이 있지만,
+    // 리팩토링 전에는 이 동작 자체를 먼저 고정해 회귀를 막는다
+    assertEquals(-20.0, pricing.calculateDiscount(-10, 0.1));
 }
 ```
 
-**3단계: 작은 변경들의 연속**
-```java
-// 변경 전: 하나의 큰 메서드
-public void parseArgumentStrings(List<String> argsList) throws ArgsException {
-    for (currentArgument = argsList.listIterator(); currentArgument.hasNext();) {
-        String argString = currentArgument.next();
-        if (argString.startsWith("-")) {
-            parseArgumentCharacters(argString.substring(1));
-        } else {
-            currentArgument.previous();
-            break;
-        }
-    }
-}
+이렇게 현재 동작을 특성화 테스트로 고정한 뒤에야, 안전하게 내부 구조를 리팩토링할 수 있는 최소한의 안전망이 생긴다. 버그로 보이는 동작을 고칠지 말지는 별도의 의사결정이며, 리팩토링(구조 변경)과 동작 변경(버그 수정, 기능 추가)은 항상 분리된 단계로 진행해야 한다 — 이는 [02장](/post/clean-code/clean-code-fundamentals-exercises/)에서 다룬 "리팩토링과 기능 추가를 한 커밋에 섞지 말라"는 원칙의 대규모 버전이다.
 
-// 변경 후: 여러 개의 작은 메서드들
-public void parseArgumentStrings(List<String> argsList) throws ArgsException {
-    for (currentArgument = argsList.listIterator(); currentArgument.hasNext();) {
-        String argString = currentArgument.next();
-        if (argString.startsWith("-")) {
-            parseArgumentCharacters(argString.substring(1));
-        } else {
-            handleNonFlagArgument();
-            break;
-        }
-    }
-}
+## 점진적 개선과 보이스카우트 규칙
 
-private void handleNonFlagArgument() {
-    currentArgument.previous();
-}
+안전망이 갖춰지면, 코드를 한 번에 완벽하게 뜯어고치려 하지 말고 작은 단계로 나눠 개선한다. 각 단계마다 테스트를 실행해 시스템이 여전히 이전과 같은 동작을 유지하는지 확인한 뒤 다음 단계로 넘어간다. Robert C. Martin이 자주 인용하는 **보이스카우트 규칙(Boy Scout Rule)**—"캠핑장은 처음 왔을 때보다 더 깨끗하게 정리하고 떠난다"는 미국 보이스카우트의 규율—을 코드에 적용하면, "체크아웃한 코드는 항상 처음보다 조금 더 깨끗하게 만들어 커밋한다"는 습관이 된다. 큰 개선을 한 번에 밀어붙이는 대신, 코드를 만질 때마다 변수 이름 하나, 함수 하나씩 조금씩 정리하는 이 접근은 대규모 "리팩토링 프로젝트"를 별도로 계획하지 않고도 코드베이스 품질을 꾸준히 끌어올린다.
 
-private void parseArgumentCharacters(String argChars) throws ArgsException {
-    for (int i = 0; i < argChars.length(); i++)
-        parseArgumentCharacter(argChars.charAt(i));
-}
+Martin Fowler의 『Refactoring』(2018)이 카탈로그화한 **코드 냄새(Code Smell)**—긴 함수, 큰 클래스, 기능의 시기심(Feature Envy), 산탄총 수술(Shotgun Surgery) 등—는 "지금 리팩토링이 필요한 지점"을 식별하는 실무적인 체크리스트 역할을 한다. 이 시리즈에서 다룬 대부분의 원칙 위반(긴 함수, God Class, 기차 충돌)은 사실 코드 냄새 카탈로그의 항목들과 정확히 대응된다.
 
-private void parseArgumentCharacter(char argChar) throws ArgsException {
-    ArgumentMarshaler m = marshalers.get(argChar);
-    argsFound.add(argChar);
-    if (m == null) {
-        throw new ArgsException(UNEXPECTED_ARGUMENT, argChar, null);
-    } else {
-        m.set(currentArgument);
-    }
-}
-```
+## 대규모 시스템의 점진적 교체: 스트랭글러 무화과 패턴
 
-### 리팩토링 원칙과 패턴
-**접근 방법**:
-- 검증된 리팩토링 기법들
-- 각 상황에 적합한 패턴 선택
-- 코드 냄새 제거 기법
+클래스 하나, 함수 하나 단위의 리팩토링을 넘어, 오래된 시스템 전체를 새 아키텍처로 옮겨야 할 때도 있다. 이때 전체를 멈추고 처음부터 다시 만드는 대신, Martin Fowler가 이름 붙인 **스트랭글러 무화과 패턴(Strangler Fig Pattern)**을 적용할 수 있다. 이 패턴은 무화과 나무를 감아 자라다가 결국 숙주 나무를 대체하는 스트랭글러 무화과의 생태에서 이름을 따왔다 — 새 시스템이 기존 시스템의 기능을 하나씩 감싸며 대체하고, 결국 기존 시스템이 완전히 사라질 때까지 두 시스템이 공존하며 트래픽을 점진적으로 이전한다.
 
-**주요 리팩토링 패턴**:
-```java
-// 1. Extract Method (메서드 추출)
-// Before
-public void printOwing() {
-    printBanner();
-    
-    // print details
-    System.out.println("name: " + name);
-    System.out.println("amount: " + getOutstanding());
-}
+## 흔한 오개념
 
-// After
-public void printOwing() {
-    printBanner();
-    printDetails(getOutstanding());
-}
+**"리팩토링은 새 기능 개발이 다 끝난 뒤 별도 일정으로 진행하는 것이다"**는 오해가 흔하다. 실제로 리팩토링을 "나중에 한꺼번에" 미루는 접근은 정확히 01장에서 다룬 르블랑의 법칙("나중은 결코 오지 않는다")의 함정에 빠진다. 보이스카우트 규칙이 강조하듯, 지속 가능한 방식은 기능 개발과 함께 조금씩, 지속적으로 정리하는 것이다.
 
-private void printDetails(double outstanding) {
-    System.out.println("name: " + name);
-    System.out.println("amount: " + outstanding);
-}
+**"오래된 코드는 전면 재작성하는 것이 항상 더 낫다"**는 오해도 위험하다. Joel Spolsky는 2000년 에세이 "Things You Should Never Do, Part I"에서, 겉보기에 지저분한 레거시 코드에는 수년간의 버그 수정과 예외 처리 경험이 암묵적으로 녹아 있으며, 전면 재작성은 이 축적된 지식을 모두 버리고 이미 해결됐던 엣지 케이스들을 처음부터 다시 발견해야 하는 위험한 선택이라고 지적했다. 그가 예로 든 Netscape의 전면 재작성 시도는 수년간 신규 기능 출시를 멈추게 만들었고, 그 사이 경쟁자가 시장을 잠식하는 결과로 이어졌다.
 
-// 2. Move Method (메서드 이동)
-// Before: 잘못된 클래스에 있는 메서드
-public class Account {
-    private AccountType type;
-    private int daysOverdrawn;
-    
-    double overdraftCharge() {
-        if (type.isPremium()) {
-            double result = 10;
-            if (daysOverdrawn > 7) result += (daysOverdrawn - 7) * 0.85;
-            return result;
-        } else {
-            return daysOverdrawn * 1.75;
-        }
-    }
-}
+## 판단 기준: 점진적 개선 vs 전면 재작성
 
-// After: 적절한 클래스로 이동
-public class Account {
-    private AccountType type;
-    private int daysOverdrawn;
-    
-    double overdraftCharge() {
-        return type.overdraftCharge(daysOverdrawn);
-    }
-}
+코드베이스의 핵심 로직이 여전히 유효한 비즈니스 규칙을 담고 있고, 문제가 "구조가 지저분하다"는 수준이라면 특성화 테스트와 점진적 리팩토링으로 충분하다. 반면 기반 기술 자체가 더 이상 유지보수되지 않거나(단종된 프레임워크, 지원 종료된 언어 버전), 핵심 아키텍처 가정 자체가 현재 요구사항과 근본적으로 맞지 않는다면(예: 단일 테넌트로 설계된 시스템을 멀티 테넌트로 바꿔야 하는 경우) 스트랭글러 패턴을 통한 계획적 교체를 고려할 시점이다. 두 경우 모두 "한 번에 전부 바꾼다"는 선택지는 이 시리즈 전체에서 반복해서 강조한 원칙—작게, 검증 가능하게, 단계적으로—과 정면으로 배치된다.
 
-public class AccountType {
-    double overdraftCharge(int daysOverdrawn) {
-        if (isPremium()) {
-            double result = 10;
-            if (daysOverdrawn > 7) result += (daysOverdrawn - 7) * 0.85;
-            return result;
-        } else {
-            return daysOverdrawn * 1.75;
-        }
-    }
-}
+## 비판적 시각
 
-// 3. Replace Conditional with Polymorphism (조건부를 다형성으로)
-// Before
-public class Bird {
-    public double getSpeed() {
-        switch (type) {
-            case EUROPEAN:
-                return getBaseSpeed();
-            case AFRICAN:
-                return getBaseSpeed() - getLoadFactor() * numberOfCoconuts;
-            case NORWEGIAN_BLUE:
-                return (nailed) ? 0 : getBaseSpeed(voltage);
-        }
-        throw new RuntimeException("Should be unreachable");
-    }
-}
+"리팩토링"이라는 이름은 때로 실질적인 효용 없이 코드 스타일을 재작성하는 작업을 정당화하는 데 남용되기도 한다. 비즈니스 관점에서 리팩토링은 사용자에게 보이는 새로운 가치를 만들어내지 않으므로, 리팩토링에 들이는 시간과 신규 기능 개발에 들이는 시간 사이의 균형은 항상 논쟁적이다. 이 시리즈가 강조한 "보이스카우트 규칙" 방식—작은 단위로 꾸준히 정리하는 방식—이 이 논쟁에 대한 실무적 절충안으로 널리 받아들여지는 이유가 여기에 있다. 별도의 "리팩토링 스프린트"를 요청해 별도 승인을 받아야 하는 큰 단위 대신, 매번 코드를 만질 때 아주 조금씩 개선하면 이 트레이드오프 자체가 거의 드러나지 않을 정도로 작아진다.
 
-// After
-public abstract class Bird {
-    public abstract double getSpeed();
-}
+## 시리즈를 마치며
 
-public class European extends Bird {
-    public double getSpeed() {
-        return getBaseSpeed();
-    }
-}
-
-public class African extends Bird {
-    public double getSpeed() {
-        return getBaseSpeed() - getLoadFactor() * numberOfCoconuts;
-    }
-}
-```
-
-### 대규모 리팩토링 전략
-**접근 방법**:
-- 레거시 시스템의 점진적 개선
-- 아키텍처 수준의 리팩토링
-- 팀 단위 리팩토링 관리
-
-**주요 내용**:
-- 큰 리팩토링은 여러 명이 달려들면 실패할 확률이 높다
-- 대신 팀 전체가 합의하에 조금씩 바꿔야 한다
-- 모든 변경을 리뷰하고 승인하는 과정이 필요하다
-
-**Strangler Fig 패턴 예시**:
-```java
-// 기존 레거시 시스템
-public class LegacyOrderService {
-    public void processOrder(Order order) {
-        // 복잡한 레거시 로직
-        validateOrderLegacy(order);
-        calculatePriceLegacy(order);
-        persistOrderLegacy(order);
-        sendNotificationLegacy(order);
-    }
-}
-
-// 새로운 시스템으로 점진적 이관
-public class OrderService {
-    private LegacyOrderService legacyService;
-    private NewOrderValidator validator;
-    private NewPriceCalculator calculator;
-    
-    public void processOrder(Order order) {
-        // 단계적으로 새 시스템으로 교체
-        if (useNewValidation(order)) {
-            validator.validate(order);
-        } else {
-            legacyService.validateOrderLegacy(order);
-        }
-        
-        if (useNewPricing(order)) {
-            calculator.calculatePrice(order);
-        } else {
-            legacyService.calculatePriceLegacy(order);
-        }
-        
-        // 아직 레거시 사용
-        legacyService.persistOrderLegacy(order);
-        legacyService.sendNotificationLegacy(order);
-    }
-    
-    private boolean useNewValidation(Order order) {
-        // 점진적 롤아웃 로직
-        return order.getCustomerType().equals("PREMIUM");
-    }
-}
-```
-
-### 리팩토링 후 결과 검증
-**접근 방법**:
-- 성능 측정과 비교
-- 코드 품질 지표 개선 확인
-- 유지보수성 향상 검증
-
-**측정 지표**:
-```java
-// 코드 품질 지표 측정
-public class CodeQualityMetrics {
-    // 1. 사이클로매틱 복잡도
-    public int calculateCyclomaticComplexity(Method method) {
-        // 분기점 개수 + 1
-        return countDecisionPoints(method) + 1;
-    }
-    
-    // 2. 응집도 (LCOM - Lack of Cohesion of Methods)
-    public double calculateCohesion(Class clazz) {
-        // 메서드 간 공유 인스턴스 변수 비율
-        return calculateSharedVariableRatio(clazz);
-    }
-    
-    // 3. 결합도
-    public int calculateCoupling(Class clazz) {
-        // 다른 클래스와의 의존성 개수
-        return countDependencies(clazz);
-    }
-    
-    // 4. 테스트 커버리지
-    public double calculateTestCoverage(Package pkg) {
-        return (double) coveredLines / totalLines * 100;
-    }
-}
-```
-
-### 지속적인 리팩토링
-**접근 방법**:
-- 일상적인 개발 과정에 리팩토링 통합
-- 코드 리뷰 과정에서의 리팩토링
-- 자동화된 리팩토링 도구 활용
-
-**주요 내용**:
-- 리팩토링은 한 번에 끝나는 작업이 아니다
-- 보이스카우트 규칙: "캠프장은 처음 왔을 때보다 더 깨끗하게 해놓고 떠나라"
-- 코드를 체크인하기 전에 코드가 처음보다 깨끗한지 확인하라
-
-**지속적 리팩토링 체크리스트**:
-```java
-// 매일 해야 할 리팩토링 활동
-public class DailyRefactoringChecklist {
-    // 1. 메서드명이 의도를 명확히 드러내는가?
-    public void checkMethodNames() {
-        // process() -> processPayment()
-        // handle() -> handleUserRegistration()
-    }
-    
-    // 2. 매직 넘버를 상수로 교체했는가?
-    public void replaceHardcodedValues() {
-        // Bad: if (age > 18)
-        // Good: if (age > LEGAL_AGE)
-        final int LEGAL_AGE = 18;
-    }
-    
-    // 3. 중복 코드를 제거했는가?
-    public void removeDuplication() {
-        // 동일한 로직이 3번 이상 반복되면 추출
-    }
-    
-    // 4. 긴 메서드를 분할했는가?
-    public void splitLongMethods() {
-        // 20줄 이상 메서드는 분할 고려
-    }
-}
-```
-
-## 강의 진행 방식
-1. **도입 (15분)**: Args 프로그램 초기 버전 소개 및 문제점 분석
-2. **이론 (20분)**: 점진적 개선 원칙과 리팩토링 전략 설명
-3. **실습 (45분)**: 실제 코드를 단계별로 리팩토링
-4. **토론 (10분)**: 리팩토링 경험 공유 및 베스트 프랙티스 논의
-
-## 실습 과제
-1. **레거시 코드 리팩토링**: 제공된 복잡한 코드를 단계별로 개선
-2. **리팩토링 계획 수립**: 기존 프로젝트의 리팩토링 로드맵 작성
-3. **코드 품질 측정**: 리팩토링 전후의 품질 지표 비교 분석
+이 시리즈는 01장의 "왜 나쁜 코드가 비싼가"라는 질문에서 시작해, 이름 하나(03장)부터 함수(05장), 클래스(18장), 시스템(20장), 그리고 이 장의 레거시 코드 개선까지 점점 더 큰 단위로 같은 질문—"이 코드가 다음 사람에게 얼마나 적은 인지 부하를 요구하는가"—을 반복해서 던졌다. 각 장에서 다룬 원칙은 서로 독립적인 규칙의 목록이 아니라, 하나의 관점을 여러 크기의 코드 단위에 반복 적용한 결과다. 완주한 지금, 다음 실전 코드 리뷰에서 "이 코드는 어떤 원칙을 어느 정도로 적용해야 하는가"라는 질문에 이 시리즈에서 다룬 판단 기준으로 답할 수 있다면, 이 시리즈의 목표는 달성된 것이다.
 
 ## 평가 기준
-- 점진적 개선 과정의 이해도 (25%)
-- 적절한 리팩토링 기법 적용 (35%)
-- 테스트를 통한 안전성 확보 (25%)
-- 코드 품질 개선 결과 (15%)
 
-## 리팩토링 체크리스트
-**계획 단계**:
-- [ ] 리팩토링 목표가 명확한가?
-- [ ] 충분한 테스트 커버리지를 확보했는가?
-- [ ] 변경 범위가 적절히 제한되어 있는가?
-- [ ] 팀원들과 리팩토링 계획을 공유했는가?
+- [ ] 레거시 코드를 "오래된 코드"가 아니라 "테스트 없는 코드"로 정의할 수 있다.
+- [ ] 특성화 테스트로 기존 동작을 고정한 뒤 리팩토링과 동작 변경을 분리하는 절차를 설명할 수 있다.
+- [ ] 보이스카우트 규칙에 따라 점진적 개선을 일상 습관으로 적용할 수 있다.
+- [ ] 전면 재작성이 위험한 이유를 실제 사례(Netscape)로 설명하고, 스트랭글러 패턴과의 차이를 논증할 수 있다.
 
-**실행 단계**:
-- [ ] 한 번에 하나의 변경만 수행하고 있는가?
-- [ ] 각 단계마다 테스트를 실행하고 있는가?
-- [ ] 기능 변경과 구조 변경을 분리하고 있는가?
-- [ ] 변경 사항을 버전 관리 시스템에 자주 커밋하고 있는가?
+## 참고 및 출처
 
-**검증 단계**:
-- [ ] 모든 테스트가 통과하는가?
-- [ ] 성능이 저하되지 않았는가?
-- [ ] 코드 품질 지표가 개선되었는가?
-- [ ] 다른 팀원이 변경 사항을 이해할 수 있는가?
-
-## 결론
-깨끗한 코드를 만들려면 먼저 더러운 코드를 만든 뒤에 정리해야 한다. 이것이 현실이다. 대다수 신참 프로그래머는 이 충고를 충실히 따르지만, 코드를 정리하는 능력은 부족하다. 그런데 코드를 정리하는 능력은 깨끗한 코드를 작성하는 데 필수적이다.
-
-**핵심 원칙**:
-1. **점진적 개선**: 큰 변화를 작은 단계로 나누어 진행
-2. **테스트 우선**: 모든 변경은 테스트로 검증
-3. **지속적 적용**: 일상적인 개발 과정에 리팩토링 통합
-4. **팀 차원 접근**: 개인이 아닌 팀 단위의 코드 품질 관리
-
-코드는 한 번 작성되지만 열 번 읽힌다. 그러므로 읽기 쉬운 코드를 만드는 일이 중요하다. 처음부터 완벽한 코드를 작성할 수는 없다. 하지만 지속적인 개선을 통해 깨끗하고 유지보수하기 쉬운 코드로 발전시킬 수 있다.
-
-## 추가 자료
-- Martin Fowler, "Refactoring: Improving the Design of Existing Code"
-- Robert C. Martin, "Clean Code" - Chapter 14: Successive Refinement
-- Joshua Kerievsky, "Refactoring to Patterns"
-- 정적 분석 도구: SonarQube, PMD, Checkstyle
-- IDE 리팩토링 도구 활용법
-- 자동화된 리팩토링과 안전한 변경 관리 
+- Martin, R. C. (2008). *Clean Code: A Handbook of Agile Software Craftsmanship*. Prentice Hall. 14, 17장.
+- Feathers, M. (2004). *Working Effectively with Legacy Code*. Prentice Hall.
+- Fowler, M. (2018). *Refactoring: Improving the Design of Existing Code* (2nd ed.). Addison-Wesley.
+- Spolsky, J. *Things You Should Never Do, Part I*. [https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/](https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/)

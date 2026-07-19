@@ -1,6 +1,8 @@
 ---
-draft: true
-title: "17. 동시성 프로그래밍"
+draft: false
+image: "wordcloud.png"
+title: "[Python Master] 17. 동시성 프로그래밍 - 스레드/프로세스/GIL"
+slug: "python-concurrency-threading-multiprocessing-gil-guide"
 description: "동시성과 병렬성의 차이, GIL 영향, 스레드/프로세스 선택 기준을 정리합니다. 동기화 문제와 안전한 공유 자원 접근 패턴을 이해해 실무 적용 기반을 만듭니다."
 tags:
   - Python
@@ -746,7 +748,7 @@ if __name__ == "__main__":
 
 ## 실습 프로젝트
 
-###️ 프로젝트 1: 웹 크롤러 (멀티스레딩)
+### 프로젝트 1: 웹 크롤러 (멀티스레딩)
 
 ```python
 import threading
@@ -904,7 +906,7 @@ if __name__ == "__main__":
     crawler_demo()
 ```
 
-###️ 프로젝트 2: 이미지 처리 도구 (멀티프로세싱)
+### 프로젝트 2: 이미지 처리 도구 (멀티프로세싱)
 
 ```python
 import multiprocessing
@@ -1158,7 +1160,7 @@ if __name__ == "__main__":
 
 🎉 **축하합니다!** 동시성 프로그래밍을 마스터했습니다.
 
-동시성 처리는 현대 애플리케이션의 성능을 극대화하는 핵심 기술입니다. 이제 [18. 비동기 프로그래밍](../18_async_programming/)으로 넘어가서 더욱 효율적인 비동기 처리 패러다임을 학습해봅시다.
+동시성 처리는 현대 애플리케이션의 성능을 극대화하는 핵심 기술입니다. 이제 [18. 비동기 프로그래밍](/post/python/python-async-programming-asyncio-async-await-event-loop-guide/)으로 넘어가서 더욱 효율적인 비동기 처리 패러다임을 학습해봅시다.
 
 ---
 

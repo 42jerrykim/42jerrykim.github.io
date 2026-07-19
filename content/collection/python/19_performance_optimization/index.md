@@ -1,6 +1,8 @@
 ---
-draft: true
-title: "19. 성능 최적화"
+draft: false
+image: "wordcloud.png"
+title: "[Python Master] 19. 성능 최적화 - 프로파일링/병목 분석"
+slug: "python-performance-optimization-profiling-bottleneck-guide"
 description: "프로파일링으로 병목을 찾고, 알고리즘·자료구조·I/O·캐시·병렬화 순서로 최적화하는 기준을 설명합니다. 측정 없는 최적화의 위험과 실무 체크포인트를 제공합니다."
 tags:
   - Python
@@ -592,7 +594,7 @@ if __name__ == "__main__":
 
 ## 실습 프로젝트
 
-###️ 프로젝트 1: 성능 분석 도구
+### 프로젝트 1: 성능 분석 도구
 
 ```python
 import time
@@ -849,7 +851,7 @@ if __name__ == "__main__":
 
 🎉 **축하합니다!** 성능 최적화를 마스터했습니다.
 
-성능 최적화는 지속적인 과정입니다. 이제 [20. 메모리 관리](../20_memory_management/)로 넘어가서 파이썬의 메모리 관리 메커니즘을 더 깊이 이해해봅시다.
+성능 최적화는 지속적인 과정입니다. 이제 [20. 메모리 관리](/post/python/python-memory-management-reference-counting-garbage-collection-guide/)로 넘어가서 파이썬의 메모리 관리 메커니즘을 더 깊이 이해해봅시다.
 
 ---
 

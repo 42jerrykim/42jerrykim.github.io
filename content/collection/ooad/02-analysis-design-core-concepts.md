@@ -1,5 +1,8 @@
 ---
 draft: true
+build:
+  list: false
+  render: false
 ---
 # 2장: 분석과 설계의 핵심 개념
 

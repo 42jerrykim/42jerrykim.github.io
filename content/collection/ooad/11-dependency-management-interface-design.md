@@ -1,5 +1,8 @@
 ---
 draft: true
+build:
+  list: false
+  render: false
 ---
 # 11장: 의존성 관리와 인터페이스 설계
 

@@ -70,6 +70,8 @@ def get_changed_files(base_ref: str):
         if len(parts) < 2:
             continue
         status, path = parts[0], parts[-1]
+        if status.startswith("D"):
+            continue  # deleted files no longer exist on disk; nothing to lint
         if not (path.startswith("content/") and path.endswith(".md")):
             continue
         (added if status.startswith("A") else modified).append(path)

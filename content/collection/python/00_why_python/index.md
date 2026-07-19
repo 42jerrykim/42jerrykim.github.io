@@ -1,6 +1,8 @@
 ---
-draft: true
-title: "00. 왜 파이썬인가?"
+draft: false
+image: "wordcloud.png"
+title: "[Python Master] 00. 왜 파이썬인가 - 학습 동기와 커리어 로드맵"
+slug: "why-learn-python-motivation-career-roadmap-guide"
 description: "파이썬을 배워야 하는 이유, 활용 분야, 커리어 관점까지 큰 그림을 잡습니다. 학습 목표를 세우고 앞으로의 커리큘럼을 어떤 순서로 따라갈지 방향성을 확립합니다."
 tags:
   - Python
@@ -316,7 +318,7 @@ NASA: 우주 탐사 데이터 분석
 - [ ] 파이썬 개발자로서의 미래를 그려봤다
 
 ## 다음 단계
-이제 파이썬의 매력과 가능성을 충분히 이해했다면, [01. 파이썬 환경 설정](../01_environment_setup/)으로 넘어가서 실제 개발 환경을 구축해봅시다. 여러분의 파이썬 마스터 여정이 지금 시작됩니다! 🚀
+이제 파이썬의 매력과 가능성을 충분히 이해했다면, [01. 파이썬 환경 설정](/post/python/python-installation-venv-ide-setup-guide/)으로 넘어가서 실제 개발 환경을 구축해봅시다. 여러분의 파이썬 마스터 여정이 지금 시작됩니다! 🚀
 
 ---
 

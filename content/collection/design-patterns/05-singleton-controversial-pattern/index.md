@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 50
-title: "[Design Patterns] 싱글톤: 논란이 많은 패턴"
+title: "[Design Patterns] 05. 싱글톤: 논란이 많은 패턴"
+slug: "singleton-controversial-pattern"
 description: "가장 논란이 많은 디자인 패턴인 Singleton의 장단점을 객관적으로 분석합니다. 전역 상태의 위험성, 테스트의 어려움, 멀티스레드 환경에서의 문제점을 깊이 있게 다루고, 언제 사용해야 하고 언제 피해야 하는지에 대한 명확한 가이드라인을 제시합니다. 대안 패턴과 현대적 접근법도 함께 탐구합니다."
 image: "wordcloud.png"
 date: 2024-12-05T10:00:00+09:00
-lastmod: 2026-07-02T00:00:00+09:00
+lastmod: 2026-07-18T00:00:00+09:00
 categories:
 - Design Patterns
 - Creational Patterns
@@ -20,6 +21,25 @@ tags:
 - Code-Quality(코드품질)
 - Best-Practices
 - Testing(테스트)
+- Singleton
+- Creational-Pattern
+- OOP(객체지향)
+- Coupling(결합도)
+- Cohesion(응집도)
+- Encapsulation(캡슐화)
+- Refactoring(리팩토링)
+- Clean-Code(클린코드)
+- Maintainability
+- Performance(성능)
+- Concurrency(동시성)
+- Thread
+- Java
+- JavaScript
+- Tutorial(튜토리얼)
+- Guide(가이드)
+- Deep-Dive
+- Advanced
+- Comparison(비교)
 ---
 
 가장 논란이 많은 디자인 패턴인 Singleton의 장단점을 객관적으로 분석합니다. 전역 상태의 위험성, 테스트의 어려움, 멀티스레드 환경에서의 문제점과 대안 패턴을 탐구합니다.
@@ -75,7 +95,8 @@ String dbUrl = ConfigurationManager.getInstance().getProperty("db.url");
 
 Gang of Four가 처음 Singleton 패턴을 제시했을 때의 목적은 명확했습니다:
 
-> *"클래스의 인스턴스가 단 하나만 존재하도록 보장하고, 이에 대한 전역 접근점을 제공한다."*
+> *"클래스의 인스턴스가 단 하나만 존재하도록 보장하고, 이에 대한 전역 접근점을 제공한다."* (원문: *"Ensure a class only has one instance, and provide a global point of access to it."*)
+> — Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides, 『Design Patterns: Elements of Reusable Object-Oriented Software』(1994), Singleton 패턴 Intent 절
 
 ```java
 // GoF가 제시한 전형적인 사례
@@ -103,6 +124,8 @@ public class PrinterSpooler {
 ```
 
 #### "단 하나"가 필요한 진짜 상황들
+
+Singleton이 비판받는 이유는 대부분 "굳이 하나일 필요가 없는 것"을 억지로 하나로 묶기 때문입니다. 반대로 아래 두 사례처럼 **물리적 제약이나 시스템 전역 규약** 때문에 정말로 인스턴스가 하나여야 하는 경우도 존재합니다. 이런 경우를 먼저 구분해두면, 뒤에서 다룰 "Singleton이 Anti-pattern으로 여겨지는 이유"를 읽을 때 "모든 Singleton이 나쁘다"는 과도한 일반화에 빠지지 않을 수 있습니다.
 
 **물리적 제약이 있는 리소스:**
 ```java
@@ -134,6 +157,9 @@ public class FileSystemManager {
 ```
 
 **시스템 전역 상태 관리:**
+
+파일 락 관리자가 "동시에 두 개가 있으면 충돌이 나는" 물리적 제약형 사례였다면, 애플리케이션 설정은 성격이 다릅니다. 설정 파일 자체는 여러 번 읽어도 무방하지만, 매 호출마다 디스크 I/O로 다시 읽는 것은 비효율적이고, 동일한 프로세스 내에서 서로 다른 설정값을 보는 컴포넌트가 생기면 일관성 문제가 발생합니다. 그래서 "한 번 읽고 캐싱해 전역에서 공유"하는 용도로 Singleton이 흔히 쓰입니다.
+
 ```java
 // 애플리케이션 설정 관리자
 public class ApplicationConfig {
@@ -171,9 +197,27 @@ public class ApplicationConfig {
 }
 ```
 
+### 흔한 오개념 바로잡기
+
+Singleton을 처음 접하거나 겉핥기로만 아는 개발자가 자주 빠지는 오해 세 가지를 구현 방식과 논쟁을 본격적으로 다루기 전에 짚어둔다. 이 오해들을 먼저 정리해두면, 뒤에서 볼 구현 방식별 장단점과 Anti-pattern 논쟁을 "모든 Singleton이 나쁘다"거나 "Singleton이면 다 안전하다"는 식의 과도한 일반화 없이 읽을 수 있다.
+
+**오해 1: "private 생성자와 static 인스턴스 필드만 있으면 Singleton이다"**
+
+많은 코드가 정적 필드 하나와 `getInstance()` 메서드만 추가해 놓고 "이건 Singleton이다"라고 부른다. 하지만 GoF의 정의는 단순히 인스턴스를 하나 캐싱해 두는 것이 아니라 "인스턴스가 정확히 하나만 존재함을 보장(ensure)"하는 것이다. 앞서 본 `ConfigurationManager`처럼 `if (instance == null)` 검사만 있고 동기화가 없으면, 멀티스레드 환경에서 두 스레드가 동시에 진입해 인스턴스가 실제로 두 개 생성될 수 있다. 즉 코드의 겉모양은 Singleton이지만 "유일성 보장"이라는 패턴의 핵심 계약은 깨져 있는 상태다. `getInstance()`라는 이름과 실제 유일성 보장 여부는 별개로 확인해야 한다.
+
+**오해 2: "Singleton은 정적 유틸리티 클래스(static utility class)와 같은 것이다"**
+
+`MathUtils.getInstance().calculateArea(radius)`처럼 상태가 전혀 없는 계산 로직에도 Singleton을 씌우는 코드를 흔히 볼 수 있다. 그러나 Singleton은 "생명주기를 가진 상태 있는 인스턴스"를 하나로 유지하려는 패턴이고, 상태가 없는 순수 함수 모음에는 애초에 인스턴스 자체가 필요 없다. 앞서 본 `MathUtils`/`BetterMathUtils` 비교처럼, 상태 없는 유틸리티는 `private` 생성자로 인스턴스화만 막은 `static` 메서드 모음으로 표현하는 것이 정확하며, 여기에 `getInstance()`를 덧씌우는 것은 불필요한 간접 호출과 "인스턴스가 하나뿐"이라는 잘못된 의미만 추가할 뿐이다.
+
+**오해 3: "GoF 원저가 처음부터 Singleton을 Anti-pattern으로 규정했다"**
+
+Singleton을 둘러싼 논쟁이 워낙 격렬하다 보니 "GoF 스스로도 이걸 나쁜 패턴이라 인정했다"고 오해하기 쉽다. 하지만 앞서 인용한 것처럼 Gamma 등의 1994년 원저는 Singleton을 다섯 가지 생성 패턴(Creational Pattern) 중 하나로 정식 소개했을 뿐, Anti-pattern으로 분류하지 않았다. "Anti-pattern" 평가는 이후 단위 테스트와 의존성 주입을 중시하는 흐름(2000년대 이후 TDD·DI 확산)에서 나온 비판이다. 이 글에서 다루는 "논란"은 원저 자체의 결함이 아니라, 원저가 크게 고려하지 않았던 사용 맥락(대규모 자동화 테스트, 분산 시스템)에서 패턴이 드러내는 한계에 관한 것이다.
+
 ### 다양한 Singleton 구현 방식 심화 분석
 
 #### Eager Initialization (이른 초기화)
+
+앞서 본 `ConfigurationManager`의 `getInstance()`는 `if (instance == null)` 검사와 생성이 원자적이지 않아, 두 스레드가 동시에 진입하면 인스턴스가 두 번 생성될 수 있습니다. Eager Initialization은 이 경쟁 조건 자체를 없애기 위해 인스턴스 생성 시점을 "최초 호출 시"가 아니라 "클래스 로딩 시"로 앞당깁니다. 클래스 로더가 초기화를 직렬화해 주므로 별도의 동기화 코드 없이 Thread Safety를 확보할 수 있습니다.
 
 ```java
 public class EagerSingleton {
@@ -208,6 +252,8 @@ public class EagerSingleton {
 
 #### Lazy Initialization (늦은 초기화)
 
+Eager Initialization은 Thread Safety를 얻는 대신 애플리케이션 시작 시점에 무조건 인스턴스를 만들어 메모리와 초기화 시간을 소비합니다. 인스턴스가 실제로 필요할지 알 수 없거나 초기화 비용이 큰 경우에는 낭비입니다. Lazy Initialization은 최초 호출 시점까지 생성을 미루되, `getInstance()` 전체를 `synchronized`로 감싸 앞선 경쟁 조건 문제를 다시 막습니다.
+
 ```java
 public class LazySingleton {
     private static LazySingleton instance;
@@ -236,6 +282,8 @@ public class LazySingleton {
 - **확장성 제한**: 멀티스레드 환경에서 병목
 
 #### Double-Checked Locking (DCL)
+
+Lazy Initialization의 `synchronized` 메서드는 인스턴스가 이미 생성된 이후의 모든 호출에서도 매번 락을 획득해, 뒤에서 볼 벤치마크처럼 수십 배의 성능 저하를 유발합니다. DCL은 `instance == null`을 동기화 블록 진입 전후로 두 번 검사해, 락이 필요한 최초 생성 구간에만 동기화 비용을 지불하고 이후 호출은 락 없이 즉시 반환하도록 합니다.
 
 ```java
 public class DCLSingleton {
@@ -278,6 +326,8 @@ public class DCLSingleton {
 
 #### Bill Pugh Solution (Initialization-on-demand holder)
 
+DCL은 성능 문제는 해결하지만 `volatile` 키워드 없이는 앞서 살펴본 재정렬(reordering) 버그가 남고, 팀원 전원이 메모리 모델을 이해해야 안전하게 유지보수할 수 있다는 부담이 있습니다. Bill Pugh Solution은 동기화 코드를 아예 작성하지 않고, 정적 중첩 클래스가 `getInstance()` 최초 호출 시에만 로드된다는 JVM 클래스 로딩 규약을 이용해 지연 초기화와 Thread Safety를 동시에 달성합니다.
+
 ```java
 public class BillPughSingleton {
     private BillPughSingleton() {
@@ -311,6 +361,8 @@ public class BillPughSingleton {
 - **우아함**: 복잡한 로직 없이 간단
 
 #### Enum Singleton - Joshua Bloch의 권장사항
+
+Bill Pugh Solution은 지연 초기화와 성능 문제를 모두 해결하지만, 여전히 일반 클래스이기 때문에 직렬화/역직렬화 과정에서 새 인스턴스가 생길 수 있고 리플렉션으로 private 생성자를 강제 호출하면 단일성이 깨집니다. Enum Singleton은 JVM이 언어 차원에서 열거형 인스턴스의 유일성과 직렬화 안전성을 보장하도록 만들어, 이 두 가지 공격 경로를 근본적으로 차단합니다.
 
 ```java
 public enum EnumSingleton {
@@ -372,6 +424,8 @@ try {
 
 #### 성능 벤치마크 분석
 
+앞서 다섯 가지 구현 방식(Eager, Lazy, DCL, Bill Pugh, Enum)을 살펴보았지만, "Thread-Safe하다"는 것과 "빠르다"는 것은 별개의 문제입니다. 특히 `synchronized` 키워드를 매 호출마다 거치는 방식은 락 경합으로 인한 오버헤드가 이론과 실제에서 크게 다르게 나타날 수 있습니다. 아래 JMH 벤치마크는 다섯 방식의 상대적 성능 차이를 실측해, "왜 Lazy Synchronized를 피해야 하는가"를 수치로 뒷받침합니다.
+
 ```java
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
@@ -427,6 +481,8 @@ Lazy Synchronized      |   45.2   |   ±2.1  |  낮음 (병목!)
 ### Singleton이 Anti-pattern으로 여겨지는 이유
 
 #### 전역 상태의 문제점 - 숨겨진 의존성
+
+지금까지는 "어떻게 하면 Singleton을 안전하고 빠르게 구현할 것인가"에 집중했습니다. 하지만 구현이 완벽해도 Singleton이라는 접근 방식 자체가 만드는 구조적 문제가 있습니다. 그중 가장 먼저 드러나는 것이 **숨겨진 의존성**입니다. 아래 `OrderService`는 메서드 시그니처만 봐서는 어떤 외부 컴포넌트에 의존하는지 전혀 알 수 없고, 이는 코드를 읽는 사람과 테스트를 작성하는 사람 모두에게 부담이 됩니다.
 
 ```java
 // 겉보기에는 깔끔해 보이는 코드
@@ -699,7 +755,11 @@ public class ApplicationLogger {
 
 ### 현대적 대안들
 
+지금까지의 구현들은 모두 "Thread-Safe하게 유일한 인스턴스를 어떻게 만들 것인가"라는 문제를 풀었지만, Singleton의 근본 문제인 숨겨진 의존성과 테스트 어려움은 그대로 남습니다. 아래 대안들은 유일성을 포기하지 않으면서도 의존성을 명시적으로 드러내는 방향으로 접근합니다.
+
 #### Dependency Injection
+
+Singleton은 `getInstance()`를 호출하는 모든 코드에 클래스가 하드코딩되어 Mock으로 교체할 수 없습니다. DI는 인스턴스를 하나만 유지하는 책임을 컨테이너(Spring 등)로 옮기고, 사용하는 쪽에는 생성자를 통해 명시적으로 주입해 의존성을 코드에 드러내고 테스트 시 대체 가능하게 만듭니다.
 
 ```java
 // Spring의 관리하는 Singleton
@@ -744,6 +804,8 @@ public class OrderService {
 
 #### Static Factory Methods
 
+DI는 상태를 가진 서비스에는 적합하지만, 애초에 상태가 없는 순수 유틸리티 함수 모음까지 컨테이너에 등록하는 것은 과합니다. Static Factory Methods는 인스턴스 개념 자체를 없애 "하나만 존재해야 하는가"라는 질문을 무의미하게 만들고, private 생성자로 인스턴스화만 막습니다.
+
 ```java
 // 인스턴스화를 방지하는 유틸리티 클래스
 public class DateUtils {
@@ -765,6 +827,8 @@ public class DateUtils {
 ```
 
 #### Functional Approach
+
+Java 계열 해법들은 클래스와 접근 제어자로 유일성을 강제하지만, JavaScript처럼 클래스가 선택 사항인 언어에서는 클로저만으로 같은 효과를 낼 수 있습니다. 모듈 스코프에 상태를 감추고 외부에는 함수 인터페이스만 노출하면, 별도의 클래스 설계 없이도 캡슐화된 단일 상태를 유지할 수 있습니다.
 
 ```javascript
 // JavaScript에서의 모듈 패턴
@@ -789,20 +853,19 @@ const dbUrl = configModule.getProperty('dbUrl');
 
 #### Singleton 사용 결정 트리
 
-```
-Singleton을 고려하는 상황인가?
-├─ 물리적으로 하나만 존재해야 하는가?
-│  ├─ YES → Singleton 고려 (하드웨어, 파일 시스템 등)
-│  └─ NO → 계속 확인
-├─ 상태가 없는 유틸리티인가?
-│  ├─ YES → Static Methods 고려
-│  └─ NO → 계속 확인
-├─ 시스템 전반에서 공유되는 상태인가?
-│  ├─ YES → DI Container 관리 Singleton 고려
-│  └─ NO → 일반 객체 사용
-└─ 테스트 가능성이 중요한가?
-   ├─ YES → DI 사용
-   └─ NO → Singleton 고려 (신중하게)
+아래 결정 트리는 앞서 다룬 네 가지 판단 축(물리적 제약, 상태 유무, 공유 범위, 테스트 중요도)을 하나의 흐름으로 연결한 것이다. 각 질문에 "아니오"로 답할 때마다 다음 질문으로 넘어가며, 마지막 질문까지 도달했다면 그때는 신중하게 Singleton을 선택지로 남겨 둔다.
+
+```mermaid
+flowchart TD
+    Start["Singleton을 고려하는 상황인가?"] --> Q1{"물리적으로 하나만</br>존재해야 하는가?"}
+    Q1 -->|"Yes"| A1["Singleton 고려</br>(하드웨어, 파일 시스템 등)"]
+    Q1 -->|"No"| Q2{"상태가 없는</br>유틸리티인가?"}
+    Q2 -->|"Yes"| A2["Static Methods 고려"]
+    Q2 -->|"No"| Q3{"시스템 전반에서</br>공유되는 상태인가?"}
+    Q3 -->|"Yes"| A3["DI Container 관리</br>Singleton 고려"]
+    Q3 -->|"No"| Q4{"테스트 가능성이</br>중요한가?"}
+    Q4 -->|"Yes"| A4["DI 사용"]
+    Q4 -->|"No"| A5["Singleton 고려</br>(신중하게)"]
 ```
 
 #### 구현 방식 선택 가이드
@@ -987,32 +1050,13 @@ Singleton 패턴은 **강력하지만 위험한 도구**입니다. 올바르게 
 4. **현대적 대안 고려**: DI Container, Static Methods 등 검토
 5. **확장성 고려**: 분산 환경에서도 작동할지 검토
 
-#### 실무자를 위한 권장사항:
-
-```
-Singleton을 사용해도 되는 경우:
-- 물리적으로 하나만 존재해야 하는 리소스
-- 무상태 유틸리티
-- 시스템 전반에서 공유되는 상태
-- 로깅, 캐싱
-
-Singleton을 피해야 하는 경우:
-- 비즈니스 로직이 포함된 서비스
-- 상태를 가지는 객체
-- 테스트가 중요한 컴포넌트
-- 분산 환경에서 동작하는 시스템
-```
+사용 여부 판단 기준은 앞의 "Singleton 사용 결정 가이드" 표와 "적용 체크리스트" 표를 참조한다.
 
 **미래의 관점에서 보면**, 클라우드 네이티브와 마이크로서비스 아키텍처가 주류가 되면서 전통적인 Singleton 패턴의 활용도는 줄어들 것입니다. 대신 **외부 상태 저장소**(Redis, Database)와 **DI Container**가 Singleton의 역할을 더 안전하고 확장 가능한 방식으로 대체하고 있습니다.
 
-그럼에도 불구하고 Singleton 패턴을 이해하는 것은 중요합니다. 왜냐하면 **기존 레거시 시스템을 이해**하고, **올바른 설계 판단**을 내리며, **더 나은 대안을 선택**하기 위해서는 Singleton의 장단점을 명확히 알고 있어야 하기 때문입니다.
+그럼에도 불구하고 Singleton 패턴을 이해하는 것은 중요합니다. 왜냐하면 **기존 레거시 시스템을 이해**하고, **올바른 설계 판단**을 내리며, **더 나은 대안을 선택**하기 위해서는 Singleton의 장단점을 명확히 알고 있어야 하기 때문입니다. 사용 전에 신중히 고려하고 사용 후에도 지속적으로 그 필요성을 검토해야 하며, 때로는 사용하지 않는 것이 더 나은 설계일 수 있다는 점이 이 글 전체를 관통하는 핵심입니다.
 
 다음 글에서는 **Builder와 Prototype 패턴**을 살펴보겠습니다. 복잡한 객체를 생성하는 두 가지 서로 다른 접근법과 그들의 현대적 활용을 깊이 있게 탐구해보겠습니다.
-
----
-
-**핵심 메시지:**
-"Singleton은 강력하지만 위험한 도구이다. 사용 전에 신중히 고려하고, 사용 후에는 지속적으로 그 필요성을 검토해야 한다. 때로는 사용하지 않는 것이 더 나은 설계일 수 있다."
 
 ### 평가 기준
 

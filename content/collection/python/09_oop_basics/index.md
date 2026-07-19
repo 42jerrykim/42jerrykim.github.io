@@ -1,6 +1,8 @@
 ---
-draft: true
-title: "09. 객체지향 프로그래밍 기초"
+draft: false
+image: "wordcloud.png"
+title: "[Python Master] 09. 객체지향 기초 - 클래스/캡슐화/매직 메서드"
+slug: "python-oop-basics-class-encapsulation-magic-methods-guide"
 description: "클래스/객체/메서드의 기본 개념과 캡슐화 원리를 학습합니다. 특수 메서드와 객체 모델 기초를 통해 파이썬 OOP 코드를 읽고 작성하는 기반을 만듭니다."
 tags:
   - Python
@@ -208,7 +210,7 @@ print(len(v1))      # 5
 
 ## 실습 프로젝트
 
-###️ 학생 관리 시스템
+### 학생 관리 시스템
 
 ```python
 class Student:
@@ -307,7 +309,7 @@ print(f"전체 학생 수: {stats['total_students']}")
 print(f"반 평균: {stats['class_average']:.1f}")
 ```
 
-###️ 도서관 관리 시스템
+### 도서관 관리 시스템
 
 ```python
 from datetime import datetime, timedelta
@@ -449,7 +451,7 @@ for book in library.books.values():
 
 🎉 **축하합니다!** 객체지향 프로그래밍 기초를 마스터했습니다.
 
-이제 [10. 객체지향 프로그래밍 고급](../10_oop_advanced/)으로 넘어가서 상속, 다형성, 추상화 등 고급 OOP 개념을 학습해봅시다.
+이제 [10. 객체지향 프로그래밍 고급](/post/python/python-oop-advanced-inheritance-polymorphism-abstraction-guide/)으로 넘어가서 상속, 다형성, 추상화 등 고급 OOP 개념을 학습해봅시다.
 
 ---
 

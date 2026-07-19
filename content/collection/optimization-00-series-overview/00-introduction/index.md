@@ -60,6 +60,7 @@ tags:
   - Reliability
   - Low-Latency
   - 로드맵
+image: "wordcloud.png"
 ---
 
 ## 왜 이 로드맵인가

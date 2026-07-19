@@ -1,5 +1,8 @@
 ---
 draft: true
+build:
+  list: false
+  render: false
 ---
 # 8장: 동적 모델링: 시퀀스와 상태 다이어그램
 

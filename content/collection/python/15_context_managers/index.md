@@ -1,6 +1,8 @@
 ---
-draft: true
-title: "15. 컨텍스트 매니저"
+draft: false
+image: "wordcloud.png"
+title: "[Python Master] 15. 컨텍스트 매니저 - with문/리소스 관리"
+slug: "python-context-managers-with-statement-resource-cleanup-guide"
 description: "with 문과 컨텍스트 프로토콜을 통해 리소스를 안전하게 관리하는 원리를 설명합니다. 파일/락/트랜잭션 같은 실무 예로 예외 상황에서도 정리(cleanup)가 보장되는 구조를 익힙니다."
 tags:
   - Python

@@ -2,7 +2,7 @@
 title: "[Vocabulary] 명사 'Scribble': 낙서와 급한 메모의 일상적 의미와 사용법"
 description: "'scribble'은 급하게 쓴 글씨나 낙서를 의미하는 영어 명사입니다. 정의, 예시 문장, 관련 표현, 그리고 창의성에서의 활용을 통해 이 단어의 매력을 탐구해보세요. 영어 학습에 유용한 팁 포함."
 date: 2025-09-30
-lastmod: 2025-09-30
+lastmod: 2026-07-18
 categories:
 - "영어"
 - "Vocabulary"
@@ -10,6 +10,7 @@ tags:
 - Vocabulary
 - English
 draft: true
+image: "wordcloud.png"
 ---
 많은 영어 단어는 일상에서 자주 쓰이지만, 그 뉘앙스를 정확히 알면 표현이 더 생생해집니다. 오늘은 명사 'scribble'(발음: /ˈskrɪb.əl/)을 살펴보겠습니다. 이 단어는 급하게 쓴 글씨나 무질서한 낙서를 가리키며, 종종 캐주얼한 메모나 아이디어 스케치로 사용됩니다. 완벽하지 않은 쓰기의 매력을 강조하는 단어입니다.
 

@@ -1,5 +1,8 @@
 ---
 draft: true
+build:
+  list: false
+  render: false
 ---
 # 3장: 객체지향의 4대 원칙 심층 분석
 

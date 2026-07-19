@@ -1,5 +1,8 @@
 ---
 draft: true
+build:
+  list: false
+  render: false
 ---
 # 9장: 설계 원칙과 패턴 적용 전략
 

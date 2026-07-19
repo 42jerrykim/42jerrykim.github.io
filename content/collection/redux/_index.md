@@ -1,9 +1,11 @@
 ---
 slug: redux
-draft: true
+draft: false
 title: "[Redux] Redux 완전 정복 - 초보부터 전문가까지"
 description: "Redux와 Redux Toolkit을 활용한 현대적인 상태 관리. JavaScript 기초부터 실전 프로젝트까지, Redux의 모든 것을 마스터하는 체계적인 학습 가이드. 30편 시리즈로 초보부터 전문가 수준까지 단계별 역량을 갖춥니다."
-featured_image: "/images/redux-mastery-banner.png"
+date: 2026-07-17
+lastmod: 2026-07-17
+image: "wordcloud.png"
 weight: 21
 tags:
   - JavaScript
@@ -60,4 +62,4 @@ tags:
   - Configuration(설정)
 ---
 
-이 컬렉션의 전체 소개와 커리큘럼은 [00. 커리큘럼](00-curriculum-overview/)에서 확인할 수 있습니다.
+이 컬렉션의 전체 소개와 커리큘럼은 [00. 커리큘럼](getting-started-redux/)에서 확인할 수 있습니다.

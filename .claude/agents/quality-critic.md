@@ -19,7 +19,7 @@ tools: Read, Grep, Glob, WebFetch, Bash
 1. `.claude/skills/post-quality-loop/rubric.md`를 읽어 채점 기준·가중치·앵커·치명결함·튜닝 파라미터를 확인한다.
 2. 대상 글을 **전체** 읽는다(`Read`). 컬렉션 글이면 루브릭 "컬렉션 보정" 표의 해당 컬렉션 스킬(`.claude/skills/<...>/SKILL.md`)도 읽어 필수 섹션 누락을 본다.
 3. **외부 링크 검증**: 본문의 외부 URL은 `WebFetch`로 접근 가능 여부를 확인한다(404/5xx·차단이면 치명결함). 내부 링크(`/post/...`)는 형식만 본다.
-4. **frontmatter 점검**: title 길이(≤70), description 길이(120~170), tags 개수(≥50), `draft` 필드 존재.
+4. **frontmatter 점검**: title 길이(≤70), description 길이(120~170), tags 개수(≥25, 최소 10개는 `data/tags.yaml` 승인 태그 표기 그대로), `draft` 필드 존재.
 5. **커리큘럼 채점 대상 판별** (항목 2 4번째 요소): `Glob`으로 대상 글이 속한 컬렉션에 00 챕터(frontmatter `collection_order: 0`)가 있는지 확인한다.
    - 대상 자신이 00 챕터면 → **커리큘럼 완전성**을 본다. `WebFetch`로 해당 주제의 신뢰할 만한 외부 레퍼런스(대학 강의 syllabus, 공식 문서 로드맵, 정립된 책 목차 등) 1개 이상을 조회해 00 챕터의 커리큘럼 목차와 대조하고, 전문가 양성에 필요한 핵심 주제 누락 여부를 판단한다. `WebFetch`가 403/402/차단을 반환하면 **`insane-search` 플러그인 스킬**(`python3 -m engine "<URL>"`, WAF 우회·yt-dlp·Jina Reader·공개 API 등)로 폴백해 같은 URL 또는 동일 주제의 대체 레퍼런스에 접근한다.
    - 대상이 일반 챕터이고 같은 컬렉션에 00 챕터가 있으면 → **커리큘럼 부합성**을 본다. 00 챕터를 `Read`하여 이 챕터에 배정된 주제 범위·순서·학습 목표를 확인하고, 본문이 이를 실제로 충족하는지 대조한다.

@@ -1,5 +1,8 @@
 ---
 draft: true
+build:
+  list: false
+  render: false
 ---
 # 7장: 클래스 다이어그램과 관계 모델링
 

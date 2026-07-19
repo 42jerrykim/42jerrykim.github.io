@@ -1,29 +1,63 @@
 ---
-draft: true
-title: "clean-code"
+draft: false
+collection_order: 2
+slug: clean-code-fundamentals-exercises
+title: "[Clean Code] 02. 나쁜 코드 진단과 개선 실습"
+date: 2026-07-17
+last_modified_at: 2026-07-17
+description: "학생 성적 처리 코드를 예제로 나쁜 코드의 다섯 가지 증상(매직 넘버, 모호한 이름, 다중 책임 함수 등)을 진단하고 단계적으로 리팩토링하는 실습을 진행한다. 01장에서 배운 Clean Code 판단 기준을 실제 코드에 적용해 보는 연습이다."
+categories: Clean Code
+tags:
+- Clean-Code(클린코드)
+- Refactoring(리팩토링)
+- Code-Quality(코드품질)
+- Best-Practices
+- Readability
+- Maintainability
+- Testing(테스트)
+- Debugging(디버깅)
+- Code-Review(코드리뷰)
+- Java
+- Python
+- Implementation(구현)
+- Modularity
+- Pitfalls(함정)
+- Coupling(결합도)
+- Cohesion(응집도)
+- Tutorial(튜토리얼)
+- Guide(가이드)
+- Education(교육)
+- Career(커리어)
+- Productivity(생산성)
+- Documentation(문서화)
+- Design-Pattern(디자인패턴)
+- OOP(객체지향)
+- Encapsulation(캡슐화)
+- Abstraction(추상화)
+image: "wordcloud.png"
 ---
-# Chapter 1: Clean Code 개념과 중요성 - 실습 과제
+
+## 이 장을 읽기 전에
+
+이 장은 [01장: Clean Code란 무엇인가](/post/clean-code/clean-code-fundamentals-what-is-clean-code/)에서 정의한 기준(가독성, 기술 부채, 저자로서의 책임)을 전제로 한다. 아직 01장을 읽지 않았다면 먼저 읽기를 권한다. 이 장의 깊이는 초급이며, 특정 언어의 고급 문법이 아니라 "무엇이 나쁜 코드의 증상인가"를 식별하는 안목을 기르는 데 집중한다. 함수 분해의 세부 기법은 [05~06장](/post/clean-code/clean-functions-single-responsibility-principle/)에서 본격적으로 다룬다.
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|:--:|:--|:--|
+| 입문자 | 실습 1, 실습 2 전체 | 나쁜 코드의 구체적 증상(매직 넘버, 모호한 이름, 긴 함수)을 눈으로 식별한다 |
+| 실무자 | 실습 3, "흔한 실수" | 리팩토링 우선순위를 정하는 판단 기준을 세운다 |
 
 ## 실습 개요
-이 실습은 Clean Code의 개념을 이해하고 실제 코드에서 품질을 평가하며 개선 방향을 설정하는 것을 목표로 합니다.
 
-## 실습 1: 코드 품질 분석 (40분)
+이 실습의 목표는 이론을 눈으로 확인하는 데 그치지 않고, 직접 코드를 진단하고 고치는 손 근육을 만드는 것이다. 아래 학생 성적 처리 코드는 문법적으로는 완전히 정상이며 컴파일도, 실행도 된다. 그런데도 이 코드는 Clean Code 관점에서 여러 증상을 동시에 보인다. 먼저 증상을 나열하지 않고 스스로 읽어 보면서 어디서 걸리는지 느껴보는 것이 이 실습의 첫 단계다.
 
-### 목표
-자신이 작성한 코드 중 가장 나쁜 코드와 가장 좋은 코드를 선정하여 Clean Code 관점에서 분석합니다.
-
-### 분석 대상 예시 코드
-
-#### 나쁜 코드 예시
 ```java
-// Bad Code Example - 학생 성적 처리 시스템
+// 실습 대상: 학생 성적 처리 시스템
 public class StudentGradeProcessor {
     public void processStudentGrades() {
         ArrayList<String> students = new ArrayList<>();
         students.add("John,85,90,78");
         students.add("Jane,92,88,95");
-        students.add("Bob,76,82,89");
-        
+
         for (int i = 0; i < students.size(); i++) {
             String[] parts = students.get(i).split(",");
             String n = parts[0];
@@ -32,278 +66,117 @@ public class StudentGradeProcessor {
             int s3 = Integer.parseInt(parts[3]);
             double avg = (s1 + s2 + s3) / 3.0;
             String grade;
-            if (avg >= 90) {
-                grade = "A";
-            } else if (avg >= 80) {
-                grade = "B";
-            } else if (avg >= 70) {
-                grade = "C";
-            } else if (avg >= 60) {
-                grade = "D";
-            } else {
-                grade = "F";
-            }
+            if (avg >= 90) grade = "A";
+            else if (avg >= 80) grade = "B";
+            else if (avg >= 70) grade = "C";
+            else if (avg >= 60) grade = "D";
+            else grade = "F";
             System.out.println(n + ": " + avg + " (" + grade + ")");
         }
     }
 }
 ```
 
-#### 좋은 코드 예시
-```java
-// Good Code Example - 리팩토링된 학생 성적 처리 시스템
-public class Student {
-    private final String name;
-    private final List<Integer> scores;
-    
-    public Student(String name, List<Integer> scores) {
-        this.name = name;
-        this.scores = new ArrayList<>(scores);
-    }
-    
-    public String getName() {
-        return name;
-    }
-    
-    public double calculateAverage() {
-        return scores.stream()
-                     .mapToInt(Integer::intValue)
-                     .average()
-                     .orElse(0.0);
-    }
-    
-    public Grade getLetterGrade() {
-        double average = calculateAverage();
-        return Grade.fromAverage(average);
-    }
-}
+## 실습 1: 증상 진단
 
+이 코드를 읽으면서 "왜 걸리는가"를 구체적으로 짚어보면 최소 다섯 가지 증상이 드러난다. 첫째, `n`, `s1`, `s2`, `s3`, `avg` 같은 변수 이름은 타입은 알려주지만 의도를 알려주지 않는다. 둘째, 학생 데이터가 문자열을 콤마로 파싱하는 방식으로 하드코딩돼 있어, 데이터 소스가 바뀌면(파일, DB, API) 전체 로직을 다시 써야 한다. 셋째, 등급 기준(90, 80, 70, 60)이 매직 넘버로 흩어져 있어 기준이 바뀔 때 코드 전체를 검색해야 한다. 넷째, 한 함수가 파싱·계산·등급 판정·출력을 모두 담당해 "한 가지 일"을 하지 않는다. 다섯째, 성적을 출력만 할 뿐 반환하지 않아 다른 코드에서 재사용하거나 테스트하기 어렵다.
+
+이 다섯 가지는 우연히 한 코드에 모인 것이 아니라, 실무 코드에서 반복적으로 나타나는 전형적인 패턴이다. 아래 표로 정리하면 각 증상이 어떤 원칙과 연결되는지 명확해진다.
+
+| 증상 | 관련 원칙 | 이 시리즈에서 다루는 장 |
+|:--|:--|:--:|
+| 의도가 드러나지 않는 이름 | 의미있는 네이밍 | [03장](/post/clean-code/meaningful-naming-conventions-variables-functions/) |
+| 매직 넘버 | 검색하기 쉬운 이름 | [03장](/post/clean-code/meaningful-naming-conventions-variables-functions/) |
+| 한 함수가 여러 일을 함 | 단일 책임 원칙 | [05장](/post/clean-code/clean-functions-single-responsibility-principle/) |
+| 데이터 파싱 로직 하드코딩 | 객체와 자료구조 분리 | [11장](/post/clean-code/objects-vs-data-structures-design-patterns/) |
+| 반환값 없이 출력만 함 | 명령과 조회 분리 | [05장](/post/clean-code/clean-functions-single-responsibility-principle/) |
+
+## 실습 2: 단계적 개선
+
+리팩토링은 한 번에 모든 것을 고치는 대신, 하나의 증상씩 순서대로 제거하는 편이 안전하다. 먼저 매직 넘버와 등급 판정 로직을 `enum`으로 옮겨 하드코딩된 기준을 한곳에 모은다.
+
+```java
 public enum Grade {
     A(90), B(80), C(70), D(60), F(0);
-    
+
     private final int threshold;
-    
-    Grade(int threshold) {
-        this.threshold = threshold;
-    }
-    
+    Grade(int threshold) { this.threshold = threshold; }
+
     public static Grade fromAverage(double average) {
         for (Grade grade : values()) {
-            if (average >= grade.threshold) {
-                return grade;
-            }
+            if (average >= grade.threshold) return grade;
         }
         return F;
     }
 }
+```
 
+`enum`으로 등급 기준을 옮기면 기준이 바뀔 때 이 한 곳만 수정하면 된다는 이점이 생긴다. 다음으로 학생 데이터를 원시 문자열이 아니라 전용 클래스로 표현해, 파싱과 계산 책임을 분리한다.
+
+```java
+public class Student {
+    private final String name;
+    private final List<Integer> scores;
+
+    public Student(String name, List<Integer> scores) {
+        this.name = name;
+        this.scores = new ArrayList<>(scores);
+    }
+
+    public String getName() { return name; }
+
+    public double calculateAverage() {
+        return scores.stream().mapToInt(Integer::intValue).average().orElse(0.0);
+    }
+
+    public Grade getLetterGrade() {
+        return Grade.fromAverage(calculateAverage());
+    }
+}
+```
+
+마지막으로 출력을 전담하는 `GradeReporter`를 분리하면, `Student`는 성적 계산만, `GradeReporter`는 표시 형식만 책임지게 되어 각 클래스가 한 가지 이유로만 변경된다.
+
+```java
 public class GradeReporter {
     public void printGradeReport(List<Student> students) {
         students.forEach(this::printStudentGrade);
     }
-    
+
     private void printStudentGrade(Student student) {
-        double average = student.calculateAverage();
-        Grade grade = student.getLetterGrade();
-        System.out.printf("%s: %.1f (%s)%n", 
-                         student.getName(), average, grade);
-    }
-}
-
-public class StudentGradeProcessor {
-    private final StudentDataParser parser;
-    private final GradeReporter reporter;
-    
-    public StudentGradeProcessor() {
-        this.parser = new StudentDataParser();
-        this.reporter = new GradeReporter();
-    }
-    
-    public void processStudentGrades(List<String> studentData) {
-        List<Student> students = parser.parseStudentData(studentData);
-        reporter.printGradeReport(students);
+        System.out.printf("%s: %.1f (%s)%n",
+            student.getName(), student.calculateAverage(), student.getLetterGrade());
     }
 }
 ```
 
-### 분석 과제
-다음 관점에서 두 코드를 비교 분석하세요:
+리팩토링 전후를 비교하면, 코드 줄 수는 오히려 늘었지만 각 조각의 책임은 훨씬 명확해졌다. 이것이 3장에서 다룰 "짧음과 깨끗함은 다르다"는 원칙이 실제 코드에서 드러나는 방식이다.
 
-1. **가독성**: 코드를 읽고 이해하기 얼마나 쉬운가?
-2. **유지보수성**: 요구사항 변경 시 수정하기 얼마나 쉬운가?
-3. **재사용성**: 다른 곳에서 사용하기 얼마나 쉬운가?
-4. **테스트 가능성**: 단위 테스트를 작성하기 얼마나 쉬운가?
+## 실습 3: 자가 점검
 
-### 분석 템플릿
-```markdown
-## 나쁜 코드 분석
-### 문제점:
-- [ ] 긴 메서드 (한 메서드에서 너무 많은 일을 함)
-- [ ] 의미 없는 변수명 (n, s1, s2, s3)
-- [ ] 매직 넘버 사용 (90, 80, 70, 60)
-- [ ] 단일 책임 원칙 위반
-- [ ] 하드코딩된 데이터
+리팩토링이 끝났다고 판단하기 전에, 다음 질문을 스스로에게 던져본다. 이 질문들은 임의의 체크리스트가 아니라 01장에서 다룬 정의(가독성, 기술 부채, 저자의 책임)를 코드 단위로 되짚는 것이다. `Student` 클래스만 보고 이 클래스가 학생의 평균 점수와 등급을 계산한다는 것을 짐작할 수 있는가? `Grade` enum의 기준값을 바꾸는 담당자가 `StudentGradeProcessor`, `Student`, `GradeReporter` 세 클래스를 모두 열어봐야 하는가, 아니면 `Grade` 한 곳만 보면 되는가? 만약 성적 데이터를 파일이 아니라 REST API에서 읽어와야 한다면, 지금 구조에서 몇 개의 클래스를 수정해야 하는가?
 
-### 개선이 필요한 이유:
-1. 
-2. 
-3. 
+세 번째 질문에 "하나만 고치면 된다(파싱 담당 클래스만)"고 답할 수 있다면, 이는 관심사가 잘 분리됐다는 신호다. 반대로 "거의 다 고쳐야 한다"고 답한다면, 아직 결합도가 높다는 뜻이며 이는 20장에서 다루는 의존성 주입으로 더 개선할 수 있는 여지다.
 
-## 좋은 코드 분석
-### 장점:
-- [ ] 명확한 클래스와 메서드 이름
-- [ ] 단일 책임 원칙 준수
-- [ ] enum을 통한 상수 관리
-- [ ] 스트림 API 활용
-- [ ] 의존성 주입 패턴
+## 흔한 실수
 
-### Clean Code 원칙 적용:
-1. 
-2. 
-3. 
-```
+리팩토링을 처음 연습할 때 가장 흔한 실수는 **한 번에 너무 많이 바꾸는 것**이다. 이름 변경, 클래스 분리, 자료구조 교체를 동시에 진행하면 어느 지점에서 버그가 생겼는지 추적하기 어렵고, 테스트 없이 진행했다면 되돌리기도 어렵다. 실무에서는 리팩토링을 작은 단계로 쪼개고, 각 단계마다 기존 테스트(또는 최소한 수동 실행 확인)를 통과하는지 확인한 뒤 다음 단계로 넘어간다. 이 습관은 16장에서 다루는 TDD, 23장에서 다루는 점진적 리팩토링 전략과 직접 연결된다.
 
-## 실습 2: Clean Code 정의 재작성 (20분)
+또 다른 흔한 실수는 **리팩토링과 기능 추가를 한 커밋에 섞는 것**이다. 리뷰어 입장에서는 "이름을 바꾼 것"과 "로직을 바꾼 것"이 뒤섞인 diff는 검토하기 매우 어렵다. 리팩토링 커밋과 기능 커밋을 분리하면, 문제가 생겼을 때 원인을 훨씬 빠르게 좁힐 수 있다.
 
-### 목표
-학습한 내용을 바탕으로 자신만의 언어로 Clean Code를 재정의합니다.
+## 다음 장에서는
 
-### 작업 과제
-1. **개인 정의 작성**
-   - Clean Code가 무엇인지 본인의 경험을 바탕으로 정의
-   - 왜 Clean Code가 중요한지 구체적인 이유 설명
-
-2. **핵심 원칙 도출**
-   - Clean Code의 핵심 원칙 3-5가지 선정
-   - 각 원칙에 대한 간단한 예시 제시
-
-### 정의 템플릿
-```markdown
-## 나만의 Clean Code 정의
-
-### Clean Code란?
-Clean Code는 _________________________________ 
-이다. 왜냐하면 _____________________________
-
-### 핵심 원칙
-1. **[원칙명]**: [설명]
-   - 예시: 
-   
-2. **[원칙명]**: [설명]
-   - 예시:
-   
-3. **[원칙명]**: [설명]
-   - 예시:
-
-### 개인 경험과 연결
-이전에 작성했던 코드 중에서 _________________ 
-경험이 있었는데, 이는 Clean Code 원칙 중 _______
-를 위반한 사례였다.
-```
-
-## 실습 3: 팀 프로젝트 코드 품질 개선 계획 (30분)
-
-### 목표
-현재 진행 중인 팀 프로젝트에서 코드 품질을 개선하기 위한 구체적인 계획을 수립합니다.
-
-### 현황 분석 체크리스트
-```markdown
-## 현재 프로젝트 코드 품질 체크리스트
-
-### 네이밍
-- [ ] 변수명이 의도를 명확히 표현하는가?
-- [ ] 함수명이 하는 일을 정확히 설명하는가?
-- [ ] 클래스명이 책임을 잘 나타내는가?
-
-### 함수
-- [ ] 함수가 한 가지 일만 하는가?
-- [ ] 함수의 크기가 적절한가? (20줄 이내)
-- [ ] 함수 인수의 개수가 적절한가? (3개 이하)
-
-### 주석
-- [ ] 코드 자체로 의도를 표현하고 있는가?
-- [ ] 불필요한 주석이 없는가?
-- [ ] 주석이 코드와 일치하는가?
-
-### 형식
-- [ ] 일관된 들여쓰기를 사용하는가?
-- [ ] 적절한 빈 줄로 코드 블록을 구분하는가?
-- [ ] 팀 내에서 합의된 스타일을 따르는가?
-
-### 객체와 자료구조
-- [ ] 객체와 자료구조를 적절히 구분해서 사용하는가?
-- [ ] 디미터 법칙을 준수하는가?
-- [ ] 불필요한 getter/setter가 없는가?
-```
-
-### 개선 계획 템플릿
-```markdown
-## 코드 품질 개선 계획
-
-### 현재 문제점 분석
-| 영역 | 문제점 | 심각도 (1-5) | 영향도 |
-|------|---------|---------------|---------|
-| 네이밍 | 변수명이 모호함 | 4 | 가독성 저하 |
-| 함수 | 긴 함수가 많음 | 5 | 유지보수 어려움 |
-| 주석 | 과도한 주석 사용 | 3 | 코드 복잡성 증가 |
-
-### 개선 우선순위
-1. **1순위**: [가장 시급한 문제]
-   - 이유: 
-   - 예상 소요 시간: 
-   - 담당자: 
-
-2. **2순위**: [두 번째 문제]
-   - 이유: 
-   - 예상 소요 시간: 
-   - 담당자: 
-
-### 실행 계획
-#### 단기 계획 (1주일)
-- [ ] 새로 작성하는 코드에 네이밍 규칙 적용
-- [ ] 함수 길이 20줄 이내로 제한
-- [ ] 코드 리뷰 시 Clean Code 체크리스트 활용
-
-#### 중기 계획 (1개월)
-- [ ] 기존 코드 중 핵심 모듈 리팩토링
-- [ ] 팀 코딩 컨벤션 문서 작성
-- [ ] 자동화 도구 도입 (Linter, Formatter)
-
-#### 장기 계획 (3개월)
-- [ ] 전체 코드베이스 리팩토링
-- [ ] 테스트 코드 작성
-- [ ] 지속적인 코드 품질 모니터링 체계 구축
-
-### 성공 지표
-- 코드 리뷰 시간 50% 단축
-- 버그 발생률 30% 감소
-- 새로운 기능 개발 속도 20% 향상
-```
+[03장: 의미있는 이름 짓기](/post/clean-code/meaningful-naming-conventions-variables-functions/)에서는 이 실습에서 다룬 "의도가 드러나지 않는 이름" 문제를 체계적인 네이밍 원칙으로 정리한다.
 
 ## 평가 기준
 
-### 실습 1: 코드 분석 (40점)
-- Clean Code 관점에서의 정확한 분석 (20점)
-- 구체적인 개선점 제시 (10점)
-- 분석의 논리적 일관성 (10점)
+- [ ] 코드를 읽고 매직 넘버, 모호한 이름, 다중 책임 함수 등 나쁜 코드의 구체적 증상을 최소 세 가지 이상 식별할 수 있다.
+- [ ] 하나의 증상씩 순서대로 제거하는 단계적 리팩토링 방법을 실제 코드에 적용할 수 있다.
+- [ ] 리팩토링 결과가 결합도를 실제로 낮췄는지 "데이터 소스가 바뀐다면 몇 곳을 고쳐야 하는가"와 같은 질문으로 검증할 수 있다.
+- [ ] 리팩토링과 기능 추가를 커밋 단위에서 분리해야 하는 이유를 설명할 수 있다.
 
-### 실습 2: 정의 재작성 (30점)
-- 개인적 이해도가 잘 반영된 정의 (15점)
-- 핵심 원칙의 적절성 (10점)
-- 경험과의 연결 (5점)
+## 참고 및 출처
 
-### 실습 3: 개선 계획 (30점)
-- 현황 분석의 정확성 (10점)
-- 실행 가능한 개선 계획 (15점)
-- 측정 가능한 성공 지표 (5점)
-
-## 제출 형식
-- 파일명: `01_clean-code-fundamentals_실습_[이름].md`
-- 제출 기한: 다음 강의 시작 전
-- 형식: Markdown 문서
-
-## 추가 자료
-- [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
-- [PEP 8 - Python Style Guide](https://www.python.org/dev/peps/pep-0008/)
-- [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
-- Martin Fowler의 "Refactoring" 관련 블로그 글 
+- Martin, R. C. (2008). *Clean Code: A Handbook of Agile Software Craftsmanship*. Prentice Hall. 1장.
+- Fowler, M. (2018). *Refactoring: Improving the Design of Existing Code* (2nd ed.). Addison-Wesley.
+- [Refactoring.Guru — 리팩토링 카탈로그](https://refactoring.guru/refactoring)

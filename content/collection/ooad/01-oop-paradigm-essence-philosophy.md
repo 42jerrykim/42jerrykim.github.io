@@ -1,5 +1,8 @@
 ---
 draft: true
+build:
+  list: false
+  render: false
 ---
 # [OOAD 1편] 객체지향 패러다임의 본질과 철학
 
