@@ -54,7 +54,7 @@
 | content/collection/cleanarchitecture/40-details-introduction-interchangeable-parts/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 없음(경미: 일부 절 문단 비율 보강 여지) |
 | content/collection/cleanarchitecture/41-database-is-detail-persistence/index.md | 89.2 | 2026-07-19 | 3 | 에스컬레이션 | 항목3 구조·문단중심(코드 대비 문단 비율 낮음, 3개 코드블록 연속 배치) |
 | content/collection/cleanarchitecture/42-web-is-detail-gui-history/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 없음(경미: 일부 절 문단 비율 보강 여지) |
-| content/collection/cleanarchitecture/43-framework-is-detail-coupling-risk/index.md | - | - | 0 | 미채점 | - |
+| content/collection/cleanarchitecture/43-framework-is-detail-coupling-risk/index.md | 96.1 | 2026-07-19 | 2 | 통과 | 없음(경미: 일부 절 문단 비율 보강 여지) |
 | content/collection/cleanarchitecture/44-case-study-video-sales-system/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/45-missing-chapter-package-structure/index.md | - | - | 0 | 미채점 | - |
 | content/collection/design-patterns/00-design-patterns-overview/index.md | 91 | 2026-07-19 | 4 | 통과 | 없음 |
