@@ -40,7 +40,7 @@ tags:
 ## 경계란?
 
 > "경계는 소프트웨어 요소를 분리하고, 한쪽이 다른 쪽을 모르게 한다."
-> — Robert C. Martin
+> — Robert C. Martin, 『Clean Architecture』(2017), 17장
 
 ```mermaid
 flowchart LR
@@ -59,7 +59,7 @@ flowchart LR
 
 ### 어디에 경계를 긋는가?
 
-**관련 없는 것들 사이에** 경계를 긋는다:
+경계를 아무 데나 그으면 의미가 없다. 기준은 **변경의 이유가 서로 다른 것들 사이**를 가르는 것이다. 비즈니스 규칙은 회사의 정책이 바뀔 때 바뀌고, GUI는 사용자 경험 요구가 바뀔 때 바뀌며, 데이터베이스는 저장 기술이 바뀔 때 바뀐다 — 이렇게 서로 다른 이유로 변경되는 것들이 한 클래스 안에 뒤섞여 있으면, 한쪽의 변경이 다른 쪽까지 건드리게 된다. 그래서 **관련 없는 것들 사이에** 경계를 긋는다:
 
 | 경계의 한쪽 | 경계의 다른 쪽 |
 |------------|---------------|
@@ -67,6 +67,8 @@ flowchart LR
 | 비즈니스 규칙 | 데이터베이스 |
 | 비즈니스 규칙 | 프레임워크 |
 | 비즈니스 규칙 | 외부 서비스 |
+
+아래 두 코드는 같은 "주문 생성" 기능을 각각 경계 없이, 경계를 그어서 구현한 것이다. 경계가 없는 버전은 HTTP 요청 파싱·비즈니스 검증·SQL 실행이 한 메서드에 뒤섞여, GUI 기술이나 DB가 바뀔 때마다 이 클래스를 함께 수정해야 한다.
 
 ```java
 // 경계를 긋기 전: 모든 것이 섞여있음
@@ -100,6 +102,8 @@ public class CreateOrderUseCase {
     }
 }
 ```
+
+경계를 그은 버전은 `CreateOrderUseCase`가 `OrderRepository`라는 인터페이스만 알고, 그 뒤에 무엇이 있는지(MySQL, 파일, 원격 API) 전혀 모른다. GUI 기술이 바뀌거나 DB가 교체돼도 이 클래스는 손댈 필요가 없다 — 변경이 경계 반대편에 머물기 때문이다.
 
 ## FitNesse 사례
 
@@ -142,12 +146,12 @@ public class WikiPageService {
 
 | 진행 단계 | 상태 |
 |----------|------|
-| 초기 개발 | 파일 시스템으로 구현 |
-| 나중에 | MySQL 옵션 추가 |
-| 최종 | 사용자가 선택 |
+| 초기 개발 | 파일 시스템으로 구현, 수년간 그대로 사용 |
+| 이후 | 한 고객사가 자신의 필요에 따라 MySQL 버전을 직접 작성 |
+| 최종 | FitNesse 팀도, 그 고객사도 결국 MySQL 옵션을 다시 걷어냄 |
 
 ```java
-// 파일 시스템 구현
+// 파일 시스템 구현 - FitNesse 팀이 실제로 쓴 것은 이것뿐이었다
 public class FileSystemWikiPagePersistence implements WikiPagePersistence {
     public WikiPage load(String pageName) {
         // 파일에서 읽기
@@ -155,7 +159,7 @@ public class FileSystemWikiPagePersistence implements WikiPagePersistence {
     }
 }
 
-// MySQL 구현 (나중에 추가)
+// MySQL 구현 - 한 고객사가 자신의 필요에 따라 하루 만에 작성
 public class MySqlWikiPagePersistence implements WikiPagePersistence {
     public WikiPage load(String pageName) {
         // MySQL에서 읽기
@@ -164,11 +168,11 @@ public class MySqlWikiPagePersistence implements WikiPagePersistence {
 }
 ```
 
-> "놀랍게도 MySQL이 필요 없었다. 파일 시스템만으로 충분했다. 우리는 **결정을 미루는 데 성공**했고, 그 덕분에 불필요한 복잡성을 피할 수 있었다."
+마틴은 FitNesse 팀 자신은 결국 MySQL이 전혀 필요 없었고 파일 시스템만으로 충분했다고 말한다. 그런데 훗날 한 고객사가 자신의 목적을 위해 MySQL에 위키를 넣고 싶어 했을 때, `WikiPagePersistence` 인터페이스 덕분에 `MySqlWikiPagePersistence` 하나만 하루 만에 작성하면 됐다 — 비즈니스 로직은 전혀 건드리지 않았다. 흥미롭게도 그 고객사조차 나중에는 MySQL 버전을 다시 걷어냈다(Martin, 『Clean Architecture』, 2017, 17장). 결정을 미루는 데 성공했기 때문에, 필요 없는 복잡성은 애초에 짊어지지 않았고, 정말 필요해졌을 때는 하루 만에 대응할 수 있었다.
 
 ## 플러그인 아키텍처
 
-경계를 제대로 그으면 **플러그인 아키텍처**가 된다.
+경계를 제대로 그으면 **플러그인 아키텍처**가 된다. 운영체제가 프린터 드라이버를 모르면서도 어떤 프린터든 꽂으면 동작하는 것처럼, 비즈니스 코어는 자신에게 꽂히는 DB·GUI·프레임워크가 구체적으로 무엇인지 몰라도 동작해야 한다. 이것이 가능한 이유는 의존성 방향이 항상 플러그인에서 코어로만 향하기 때문이다 — 코어는 인터페이스를 정의할 뿐, 그 인터페이스를 누가 구현하는지는 신경 쓰지 않는다.
 
 ```mermaid
 flowchart TB
@@ -245,7 +249,11 @@ public class PaymentService {
 
 ## 경계 긋기 규칙
 
+앞서 본 원칙을 실무에서 적용하려면 세 가지 구체적인 규칙으로 나눠 생각하면 편하다. 셋 다 "비즈니스 규칙이 무언가를 몰라야 한다"는 같은 형태를 띠지만, 그 "무언가"가 UI냐 DB냐 프레임워크 전체냐에 따라 규칙을 나눠 점검하는 것이 실수를 줄인다.
+
 ### 규칙 1: 비즈니스 규칙이 UI를 모르게
+
+`HttpServletRequest`처럼 특정 UI 기술의 타입이 비즈니스 규칙의 메서드 시그니처에 등장하는 순간, 그 규칙은 웹이 아닌 다른 UI(CLI, 모바일)에서 재사용할 수 없게 된다.
 
 ```mermaid
 flowchart LR
@@ -271,6 +279,8 @@ public class CreateOrderUseCase {
 ```
 
 ### 규칙 2: 비즈니스 규칙이 DB를 모르게
+
+같은 원리가 데이터베이스에도 적용된다. `Connection`이나 SQL 문자열이 비즈니스 규칙 안에 직접 등장하면, DB를 교체하거나 DB 없이 테스트하는 것이 불가능해진다.
 
 ```mermaid
 flowchart LR
@@ -321,11 +331,12 @@ flowchart TB
 마틴은 흥미로운 관점을 제시한다:
 
 > "입력과 출력은 중요치 않다. **비즈니스 규칙**이 중요하다."
+> — Robert C. Martin, 『Clean Architecture』(2017), 17장
 
 ```mermaid
 flowchart LR
-    INPUT[입력<br/>Web, CLI, API] --> CORE[비즈니스 규칙<br/>핵심]
-    CORE --> OUTPUT[출력<br/>DB, File, API]
+    INPUT["입력</br>Web, CLI, API"] --> CORE["비즈니스 규칙</br>핵심"]
+    CORE --> OUTPUT["출력</br>DB, File, API"]
 ```
 
 우리는 종종 시스템을 입력/출력 관점에서 생각하지만, 실제로 **가치를 창출하는 것은 비즈니스 규칙**이다.
@@ -374,7 +385,7 @@ public class OrderController {
 
 ## 흔한 오해
 
-경계를 "처음부터 모든 곳에 완벽하게" 그어야 한다는 오해가 흔하다. FitNesse 사례가 보여주듯, 마틴은 오히려 결정을 미룬 채로 개발을 진행했고 결과적으로 MySQL 자체가 필요 없다는 것을 발견했다. 경계를 긋는 목적은 "지금 당장 완벽한 구조를 만드는 것"이 아니라 "나중에 바꿀 수 있는 여지를 남기는 것"이다. 또 다른 오해는 입력과 출력(Web, CLI, DB, 파일)을 아키텍처의 중심으로 여기는 것이다. 이 장이 강조하듯 입력·출력은 세부사항이고, 진짜 중심은 그 사이에서 가치를 만드는 비즈니스 규칙이다 — 입출력 기술이 바뀌어도 비즈니스 규칙은 그대로여야 한다.
+경계를 "처음부터 모든 곳에 완벽하게" 그어야 한다는 오해가 흔하다. FitNesse 사례가 보여주듯, 마틴은 오히려 결정을 미룬 채로 개발을 진행했다. 그 결과 FitNesse 팀 자신은 MySQL이 끝내 필요하지 않았고, 훗날 실제로 필요했던 한 고객사는 인터페이스 덕분에 하루 만에 구현체를 추가할 수 있었다. 경계를 긋는 목적은 "지금 당장 완벽한 구조를 만드는 것"이 아니라 "나중에 필요해지든 필요 없어지든 그 여지를 낮은 비용으로 남겨 두는 것"이다. 또 다른 오해는 입력과 출력(Web, CLI, DB, 파일)을 아키텍처의 중심으로 여기는 것이다. 이 장이 강조하듯 입력·출력은 세부사항이고, 진짜 중심은 그 사이에서 가치를 만드는 비즈니스 규칙이다 — 입출력 기술이 바뀌어도 비즈니스 규칙은 그대로여야 한다.
 
 ## 학습 목표
 
