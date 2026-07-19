@@ -227,7 +227,7 @@ public class OrderPresenter {
     }
 
     private String formatOrderId(Long id) {
-        return "ORD-" + String.format("%08d", id);
+        return "ORD-" + String.format(Locale.US, "%08d", id);
     }
 
     private String formatMoney(BigDecimal amount) {
