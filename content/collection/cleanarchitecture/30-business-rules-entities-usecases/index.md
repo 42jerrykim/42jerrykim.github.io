@@ -3,7 +3,7 @@ draft: true
 collection_order: 300
 image: "wordcloud.png"
 description: "업무 규칙의 두 가지 유형인 엔터티와 유스케이스를 다룹니다. 핵심 업무 규칙과 애플리케이션 특화 규칙의 차이, 요청/응답 모델의 설계 방법을 대출 신청 예제와 컴파일 가능한 Java 코드로 자세히 설명하고, JPA 엔터티와의 혼동도 함께 정리합니다."
-title: "[Clean Architecture] 30. 업무 규칙: 엔티티와 유스케이스"
+title: "[Clean Architecture] 30. 업무 규칙: 엔터티와 유스케이스"
 slug: business-rules-entities-usecases
 date: 2026-01-18
 categories: CleanArchitecture
@@ -197,18 +197,13 @@ record ApplyForLoanResponse(String status, String loanId, String message) {
 | 의존성 | 없음 | 엔터티에 의존 |
 | 예시 | Loan.calculateInterest() | ApplyForLoan |
 
-의존성은 한 방향으로만 흐른다. 유스케이스는 자신이 사용할 엔터티를 알지만, 엔터티는 자신을 어떤 유스케이스가 호출하는지 전혀 모른다.
-
-> "Entities have no knowledge of the use cases that control them."
-> — Robert C. Martin, 『Clean Architecture』(2017), 20장
+의존성은 한 방향으로만 흐른다. 유스케이스는 자신이 사용할 엔터티를 알지만, 엔터티는 자신을 어떤 유스케이스가 호출하는지 전혀 모른다. 마틴은 이를 의존성 역전 원칙의 한 사례로 설명한다(Martin, 『Clean Architecture』, 2017, 20장) — 상위 정책일수록 하위 세부사항을 몰라야 여러 유스케이스에서 안정적으로 재사용될 수 있기 때문이다.
 
 ```mermaid
 graph TD
     UseCase["ApplyForLoanUseCase"] --> Entity["Loan (Entity)"]
-    UseCase -.->|"모름(참조 없음)"| Entity2["다른 UseCase"]
+    Entity -.->|"모름(호출자 참조 없음)"| UseCase
 ```
-
-이 단방향 의존은 의존성 역전 원칙(DIP)이 엔터티·유스케이스 관계에도 그대로 적용된 결과다. 상위 정책(엔터티)은 하위 세부사항(유스케이스)을 몰라야 안정적으로 재사용될 수 있다.
 
 ## 한계와 트레이드오프
 
