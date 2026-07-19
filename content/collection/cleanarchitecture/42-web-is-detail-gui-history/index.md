@@ -56,6 +56,8 @@ flowchart LR
 
 ### 1960-70년대: 중앙 집중
 
+메인프레임 시대에는 컴퓨팅 파워 자체가 비쌌기 때문에, 모든 처리를 한 대의 중앙 컴퓨터에 집중시키고 사용자는 문자만 주고받는 저렴한 단말기로 접속했다. 화면에 무엇을 어떻게 표시할지 결정하는 로직조차 클라이언트가 아니라 메인프레임에 있었다.
+
 ```mermaid
 flowchart LR
     T1[터미널]
@@ -86,6 +88,8 @@ ENTER CHOICE: _
 ```
 
 ### 1980-90년대: 클라이언트로 분산
+
+PC의 가격이 내려가고 성능이 오르자, 진자는 반대로 움직였다. 각 PC가 자체적으로 화면을 그리고 비즈니스 로직까지 실행하는 **팻 클라이언트(fat client)**가 등장했고, 서버는 데이터베이스 역할만 남았다. 문제는 비즈니스 로직이 각 PC의 실행 파일 안에 흩어져, 로직을 바꾸려면 모든 사용자의 PC에 새 버전을 재배포해야 했다는 점이다.
 
 ```mermaid
 flowchart TB
@@ -120,6 +124,8 @@ End Sub
 ```
 
 ### 2000년대: 다시 중앙 집중 (웹 1.0)
+
+배포 문제를 해결한 것은 웹 브라우저였다. 재배포 없이 URL 하나로 항상 최신 버전을 실행할 수 있다는 점이 결정적이었다. 그 대가로 처리는 다시 서버로 돌아갔다 — 브라우저는 서버가 만들어 보낸 HTML을 그대로 표시하는 **씬 클라이언트(thin client)**가 되었고, 페이지를 조작할 때마다 서버를 다시 왕복해야 했다.
 
 ```mermaid
 flowchart LR
@@ -156,6 +162,8 @@ $orders = $db->query("SELECT * FROM orders");
 ```
 
 ### 2010년대: 다시 클라이언트로 (SPA)
+
+AJAX가 페이지 전체를 다시 불러오지 않고도 서버와 데이터를 주고받을 수 있게 하면서, 진자는 다시 클라이언트로 향했다. React·Angular·Vue 같은 프레임워크는 브라우저 안에서 HTML을 직접 생성하는 **단일 페이지 애플리케이션(SPA)**을 가능하게 했고, 서버는 화면이 아니라 데이터(JSON)만 응답하는 API로 축소되었다.
 
 ```mermaid
 flowchart LR
@@ -204,10 +212,12 @@ function OrderList() {
 
 ### 2020년대: 또 서버로? (SSR/SSG)
 
+SPA는 초기 로딩이 느리고 검색 엔진이 빈 HTML만 보게 된다는 약점이 있었다. Next.js(2016년 출시)로 대표되는 **서버 사이드 렌더링(SSR)** 프레임워크는 최초 화면은 서버에서 미리 그려 보내고, 이후 상호작용은 클라이언트에서 처리하는 하이브리드 방식으로 두 세계를 절충했다. 진자가 순수 클라이언트 렌더링에서 다시 서버 쪽으로 조금 움직인 것이다.
+
 ```mermaid
 flowchart LR
     subgraph Hybrid [하이브리드]
-        NEXT[Next.js<br/>서버 렌더링 + 클라이언트]
+        NEXT["Next.js<br/>서버 렌더링 + 클라이언트"]
         NUXT[Nuxt.js]
         REMIX[Remix]
     end
@@ -225,22 +235,23 @@ flowchart LR
 
 ```mermaid
 timeline
-    title 웹 기술의 변천
+    title 웹 기술의 변천 (연도는 대표 기술의 최초 공개 시점 기준)
     1990 : CGI, Perl
     1995 : PHP, JSP
     2005 : AJAX, jQuery
     2010 : Angular 1
     2013 : React
-    2016 : Vue
-    2020 : Next.js, SSR 회귀
-    2025 : ???
+    2016 : Next.js, Vue
+    2020 : SSR 회귀 트렌드 본격화
 ```
 
-| 트렌드 | 예측 불가 |
+각 전환은 이전 기술의 약점에 대한 반작용이었다는 공통점이 있다.
+
+| 트렌드 | 반작용의 이유 |
 |--------|----------|
-| 서버 렌더링 → 클라이언트 렌더링 | 또 바뀔 것 |
-| REST → GraphQL | → ??? |
-| React → Next.js | → ??? |
+| 서버 렌더링 → 클라이언트 렌더링 | 서버 왕복 없이 즉각적인 상호작용을 원했다(SPA) |
+| 클라이언트 렌더링 → SSR 하이브리드 | SPA의 느린 초기 로딩과 SEO 약점을 보완하려 했다(Next.js) |
+| REST → GraphQL | 클라이언트마다 다른 응답 형태 요구를 하나의 유연한 쿼리로 해결하려 했다 |
 
 > "웹 기술은 계속 변한다. 비즈니스 규칙은 이 변화에 **영향받지 않아야** 한다."
 
@@ -324,6 +335,8 @@ public class WebOrderController implements OrderPresenter {
     }
 }
 ```
+
+동일한 `OrderPresenter`를 CLI 클래스가 구현하면, `getOrderUseCase`를 호출하는 흐름은 그대로 두고 결과를 콘솔에 출력하는 방식만 바뀐다.
 
 ```java
 class Order { Long getId() { return 1L; } java.math.BigDecimal getTotal() { return java.math.BigDecimal.ZERO; } }
