@@ -68,7 +68,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.text.SimpleDateFormat;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 enum OrderStatus { PENDING, PAID, SHIPPED, DELIVERED, CANCELLED }
@@ -96,7 +95,7 @@ class Order {
 }
 
 // GUI 테스트의 어려움
-public class OrderView extends JFrame {
+public class LegacyOrderView extends JFrame {
     private JLabel lblOrderId;
     private JLabel lblTotal;
     private JLabel lblDate;
@@ -211,6 +210,7 @@ import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 // Presenter: 모든 로직 담당
 public class OrderPresenter {
@@ -231,7 +231,8 @@ public class OrderPresenter {
     }
 
     private String formatMoney(BigDecimal amount) {
-        return NumberFormat.getCurrencyInstance()
+        // 로케일을 명시하지 않으면 실행 환경에 따라 통화 기호가 달라진다
+        return NumberFormat.getCurrencyInstance(Locale.US)
             .format(amount);
     }
 
@@ -356,7 +357,6 @@ flowchart TB
 | UI | View | Presenter |
 | 데이터베이스 | Database/ORM | Gateway/Repository |
 | 외부 서비스 | HTTP Client | Interactor |
-| 파일 시스템 | File I/O | Data Mapper |
 
 ### 데이터베이스 경계
 
@@ -538,6 +538,8 @@ public class BadOrderView {
 
 험블 객체 패턴을 "View 코드는 아예 테스트하지 않아도 된다"는 뜻으로 오해하기 쉽다. 정확히는, View에 남는 로직을 조건문 하나조차 없을 만큼 최소화해서 **테스트할 필요가 없는 수준**으로 낮추는 것이 목표다. 로직이 남아 있다면(`BadOrderView`처럼) 그 로직은 여전히 테스트 대상이고, 험블 객체 패턴은 그 로직을 Presenter·Interactor 같은 테스트 가능한 객체로 옮기라고 말할 뿐이다. 또 다른 오해는 이 패턴이 UI 계층에만 해당한다고 여기는 것이다. "경계에서의 험블 객체" 절에서 보듯, DB 접근(`JpaOrderRepository`)과 외부 HTTP 호출(`PaymentServiceClient`)도 똑같이 험블 객체로 다룰 수 있다 — 프레임워크·네트워크·파일시스템처럼 목(mock) 없이는 테스트하기 어려운 모든 경계가 대상이다.
 
+이 패턴에는 비용도 따른다. `OrderViewModel`처럼 View 전용 데이터 구조를 매 화면마다 새로 만들어야 하므로, 필드 몇 개짜리 단순한 화면에서는 Presenter·ViewModel을 나누는 것 자체가 원본 데이터를 그대로 표시하는 것보다 코드량이 늘어나는 과잉 설계가 될 수 있다. 이 패턴은 웹 프런트엔드의 MVP(Model-View-Presenter)·MVVM(Model-View-ViewModel) 아키텍처와 뿌리가 같다 — Presenter가 View를 알지 못하고 데이터만 준비해 건네준다는 점에서, `OrderPresenter`/`OrderViewModel`은 사실상 MVP를 서버 사이드 Java로 구현한 것이다.
+
 ## 학습 목표
 
 이 장을 읽은 후 다음을 스스로 점검한다.
@@ -576,5 +578,3 @@ flowchart TB
 | 험블 객체 | 최소한의 로직만 (표시, 저장 등) |
 | 테스트 가능 객체 | 모든 비즈니스 로직 |
 | 적용 위치 | 모든 아키텍처 경계 |
-
-마틴은 험블 객체를 하드-투-테스트 행위를 최소한으로 깎아낸 모듈로 정의하며, 그 나머지 모든 로직은 테스트 가능한 쪽으로 옮기라고 말한다(Martin, 『Clean Architecture』, 2017, 23장).
