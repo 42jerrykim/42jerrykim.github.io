@@ -154,6 +154,8 @@ flowchart TB
 
 ## 언어 경계
 
+게임 규칙(`GameRules`)은 "동굴에 들어갔다"는 사건은 알아도, 그 사건을 어떤 언어의 문장으로 표현할지는 몰라야 한다. 이 지식을 `Language` 인터페이스 뒤로 감추면, 게임 규칙 코드를 전혀 건드리지 않고도 지원 언어를 추가할 수 있다. 앞서 다이어그램에서 예로 든 English·Spanish·Korean 세 구현을 실제 코드로 보면 다음과 같다:
+
 ```java
 enum MessageKey { ENTER_CAVE, HEAR_WIND, GAME_OVER }
 
@@ -178,6 +180,22 @@ public class English implements Language {
 enum MessageKey { ENTER_CAVE, HEAR_WIND, GAME_OVER }
 interface Language { String getMessage(MessageKey key); }
 
+// 스페인어 구현
+public class Spanish implements Language {
+    public String getMessage(MessageKey key) {
+        return switch (key) {
+            case ENTER_CAVE -> "Entras en la cueva.";
+            case HEAR_WIND -> "Oyes viento desde la izquierda.";
+            case GAME_OVER -> "¡Fin del juego!";
+        };
+    }
+}
+```
+
+```java
+enum MessageKey { ENTER_CAVE, HEAR_WIND, GAME_OVER }
+interface Language { String getMessage(MessageKey key); }
+
 // 한국어 구현
 public class Korean implements Language {
     public String getMessage(MessageKey key) {
@@ -191,6 +209,8 @@ public class Korean implements Language {
 ```
 
 ## 전달 메커니즘 경계
+
+같은 게임 로직을 콘솔, SMS, 웹 중 어떤 방식으로 주고받을지도 게임 규칙과는 무관한 결정이다. `TextDelivery` 인터페이스가 "메시지를 보내고 받는다"는 동작만 약속하면, 그 뒤에 콘솔 입출력이든 SMS 게이트웨이든 웹소켓이든 원하는 구현을 끼워 넣을 수 있다:
 
 ```java
 import java.util.Scanner;
@@ -272,6 +292,8 @@ public class WebDelivery implements TextDelivery {
 ```
 
 ## 데이터 저장 경계
+
+게임 상태를 어디에 저장할지(메모리, 파일, 클라우드)도 게임 규칙 입장에서는 세부사항이다. `GameStorage` 인터페이스가 "상태를 저장하고 불러온다"는 계약만 제공하면, 개발 중에는 메모리 구현으로 빠르게 테스트하다가 운영 환경에서는 클라우드 구현으로 교체할 수 있다:
 
 ```java
 import java.util.Map;
@@ -446,6 +468,8 @@ flowchart TB
 | 저장 구현체 | 낮음 | 높음 | 지연 |
 
 ## 경계 설정 원칙
+
+결정 매트릭스에서 "구현"으로 판정된 경계부터 코드에 반영하고, 나머지는 필드를 아예 만들지 않은 채로 남겨 둔다. 이는 YAGNI("You Aren't Gonna Need It", 필요해지기 전에는 만들지 않는다) 원칙과 정확히 같은 방향이다 — 언어 경계와 저장 경계처럼 지금 필요성이 확실한 것만 먼저 인터페이스로 분리하고, 전달 메커니즘 안의 세부 경계(언어/전달 하위 구분)처럼 확신이 서지 않는 것은 필요해질 때 추가한다:
 
 ```java
 interface GameRules {
