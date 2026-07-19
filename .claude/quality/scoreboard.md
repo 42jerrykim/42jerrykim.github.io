@@ -45,7 +45,7 @@
 | content/collection/cleanarchitecture/31-screaming-architecture-intent-driven-structure/index.md | 92.2 | 2026-07-19 | 2 | 통과 | 없음(경미: 표 2개 리드인 문단 보강 여지) |
 | content/collection/cleanarchitecture/32-clean-architecture-concentric-circles-dependency/index.md | 93.1 | 2026-07-19 | 2 | 통과 | 없음(경미: 일부 절 리드/해설 문단 보강 여지) |
 | content/collection/cleanarchitecture/33-presenter-humble-object-testability/index.md | 90.7 | 2026-07-19 | 2 | 통과 | 없음(경미: DB/외부서비스 경계 코드 앞 리드 문단 보강 여지) |
-| content/collection/cleanarchitecture/34-partial-boundaries-cost-benefit-balance/index.md | - | - | 0 | 미채점 | - |
+| content/collection/cleanarchitecture/34-partial-boundaries-cost-benefit-balance/index.md | 92.2 | 2026-07-19 | 2 | 통과 | 없음(경미: 표/다이어그램 앞 리드 문단 보강 여지) |
 | content/collection/cleanarchitecture/35-layers-and-boundaries-practical-setup/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/36-main-component-lowest-level-policy/index.md | - | - | 0 | 미채점 | - |
 | content/collection/cleanarchitecture/37-services-architecture-boundaries-microservices/index.md | - | - | 0 | 미채점 | - |
