@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 140
 title: "[Design Patterns] 14. 템플릿 메서드와 이터레이터: 제어의 깊이"
 slug: "template-method-iterator-depth"
@@ -99,7 +99,15 @@ class BadDataProcessor {
 
 ### Template Method로 우아하게 해결
 
+앞의 실패 사례에서 CSV와 JSON 처리는 "읽기 → 변환 → 저장"이라는 동일한 뼈대를 공유하면서도 각 단계의 세부 구현만 달랐습니다. 이 뼈대를 `processData()`라는 하나의 `final` 메서드로 고정하고, 포맷마다 달라지는 지점만 추상 메서드나 Hook 메서드로 빼내면 알고리즘 구조의 중복은 사라지고 하위 클래스는 자신이 책임질 단계만 구현하면 됩니다. 아래 `DataProcessor`는 이 구조를 `final` 템플릿 메서드, 공통 구현을 담은 Concrete Method, 기본 동작이 있어 선택적으로 오버라이드하는 Hook Method, 반드시 구현해야 하는 Abstract Method 네 종류로 구분해 보여줍니다.
+
 ```java
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 // Template Method 패턴의 우아함
 abstract class DataProcessor {
     // Template Method - 알고리즘 골격 정의 (final로 오버라이드 방지)
@@ -197,7 +205,11 @@ abstract class DataProcessor {
         System.out.println("Data persisted: " + data.getRecordCount() + " records");
     }
 }
+```
 
+`DataProcessor`가 골격을 제공했으니, 이제 그 골격을 채우는 하위 클래스 차례입니다. `CsvDataProcessor`와 `JsonDataProcessor`는 `transformData()`(Abstract Method)를 반드시 구현하고, `validateData()`와 `enhanceData()`(Hook Method)는 필요한 만큼만 오버라이드합니다. 같은 상위 클래스의 서로 다른 하위 단계만 재정의하면서도 완전히 다른 포맷을 처리하는 모습에서, Hook Method와 Abstract Method의 역할 차이가 실제 코드로 어떻게 드러나는지 확인할 수 있습니다.
+
+```java
 // ConcreteClass - CSV 처리기
 class CsvDataProcessor extends DataProcessor {
     @Override
@@ -338,48 +350,37 @@ abstract class ConditionalDataProcessor extends DataProcessor {
         System.out.println("🔄 Performing post-processing...");
     }
 }
+```
 
-// 지원 클래스들
+지금까지 등장한 `RawData`, `ProcessedData`, `DataRecord`, `ProcessingResult`는 알고리즘 로직을 담지 않는 순수 데이터 보관 객체(DTO)입니다. 필드를 캡슐화하고 JavaBean 관례에 따른 접근자만 제공하므로 Template Method의 설계 의도와는 무관하며, 읽을 때도 각 필드가 무엇을 담는지와 `ProcessingResult`가 상태 전이(`markAsSuccess`/`markAsFailed`/`skipped`)를 어떻게 표현하는지만 확인하면 충분합니다. 아래 코드는 트레이드오프 논의와 무관한 단순 접근자를 한 줄로 묶어 표기했습니다 — 실제 프로젝트라면 Lombok의 `@Getter`나 Java record로 더 줄일 수 있는 부분입니다.
+
+```java
+// 지원 클래스들 (DTO) - 트레이드오프와 무관한 단순 접근자는 한 줄로 축약 표기
 class RawData {
     private final String source;
     private final String content;
-    
-    public RawData(String source, String content) {
-        this.source = source;
-        this.content = content;
-    }
-    
-    public String getSource() { return source; }
-    public String getContent() { return content; }
-    public boolean isEmpty() { return content == null || content.trim().isEmpty(); }
+
+    public RawData(String source, String content) { this.source = source; this.content = content; }
+
+    public String getSource() { return source; } public String getContent() { return content; } public boolean isEmpty() { return content == null || content.trim().isEmpty(); }
 }
 
 class ProcessedData {
     private final List<DataRecord> records;
     private final String format;
-    
-    public ProcessedData(List<DataRecord> records, String format) {
-        this.records = records;
-        this.format = format;
-    }
-    
-    public List<DataRecord> getRecords() { return records; }
-    public String getFormat() { return format; }
-    public int getRecordCount() { return records.size(); }
+
+    public ProcessedData(List<DataRecord> records, String format) { this.records = records; this.format = format; }
+
+    public List<DataRecord> getRecords() { return records; } public String getFormat() { return format; } public int getRecordCount() { return records.size(); }
 }
 
 class DataRecord {
     private final Map<String, String> data;
     private final Map<String, String> metadata;
-    
-    public DataRecord(Map<String, String> data) {
-        this.data = new HashMap<>(data);
-        this.metadata = new HashMap<>();
-    }
-    
-    public Map<String, String> getData() { return data; }
-    public Map<String, String> getMetadata() { return metadata; }
-    public void addMetadata(String key, String value) { metadata.put(key, value); }
+
+    public DataRecord(Map<String, String> data) { this.data = new HashMap<>(data); this.metadata = new HashMap<>(); }
+
+    public Map<String, String> getData() { return data; } public Map<String, String> getMetadata() { return metadata; } public void addMetadata(String key, String value) { metadata.put(key, value); }
 }
 
 class ProcessingResult {
@@ -387,55 +388,32 @@ class ProcessingResult {
     private boolean success;
     private String message;
     private ProcessedData processedData;
-    
-    public ProcessingResult() {
-        this.steps = new ArrayList<>();
-        this.success = false;
-    }
-    
+
+    public ProcessingResult() { this.steps = new ArrayList<>(); this.success = false; }
+
     public void addStep(String stepName, String status) {
         steps.add(new ProcessingStep(stepName, status, LocalDateTime.now()));
     }
-    
-    public ProcessingResult markAsSuccess() {
-        this.success = true;
-        this.message = "Processing completed successfully";
-        return this;
-    }
-    
-    public ProcessingResult markAsFailed(String message) {
-        this.success = false;
-        this.message = message;
-        return this;
-    }
-    
+
+    public ProcessingResult markAsSuccess() { this.success = true; this.message = "Processing completed successfully"; return this; }
+    public ProcessingResult markAsFailed(String message) { this.success = false; this.message = message; return this; }
     public static ProcessingResult skipped(String reason) {
         ProcessingResult result = new ProcessingResult();
         result.message = reason;
         return result;
     }
-    
-    // getters
-    public boolean isSuccess() { return success; }
-    public String getMessage() { return message; }
-    public ProcessedData getProcessedData() { return processedData; }
-    public void setProcessedData(ProcessedData processedData) { this.processedData = processedData; }
-    public List<ProcessingStep> getSteps() { return steps; }
-    
+
+    // 이하 단순 접근자
+    public boolean isSuccess() { return success; } public String getMessage() { return message; } public ProcessedData getProcessedData() { return processedData; } public void setProcessedData(ProcessedData processedData) { this.processedData = processedData; } public List<ProcessingStep> getSteps() { return steps; }
+
     static class ProcessingStep {
         private final String stepName;
         private final String status;
         private final LocalDateTime timestamp;
-        
-        public ProcessingStep(String stepName, String status, LocalDateTime timestamp) {
-            this.stepName = stepName;
-            this.status = status;
-            this.timestamp = timestamp;
-        }
-        
-        public String getStepName() { return stepName; }
-        public String getStatus() { return status; }
-        public LocalDateTime getTimestamp() { return timestamp; }
+
+        public ProcessingStep(String stepName, String status, LocalDateTime timestamp) { this.stepName = stepName; this.status = status; this.timestamp = timestamp; }
+
+        public String getStepName() { return stepName; } public String getStatus() { return status; } public LocalDateTime getTimestamp() { return timestamp; }
     }
 }
 ```
@@ -482,7 +460,19 @@ class BadTreeTraversal {
 
 ### Iterator 패턴으로 우아하게 해결
 
+이 구현은 표준 `java.util.Iterator`를 그대로 쓰는 대신 이름이 같은 커스텀 `Iterator`/`Iterable` 인터페이스를 직접 선언합니다(표준 인터페이스와의 이름 충돌은 import를 생략해 피합니다). GoF가 정의한 `hasNext()`/`next()` 구조를 라이브러리 뒤에 숨기지 않고 그대로 드러내기 위함이며, 이 위에서 `BinaryTree`가 Inorder·Preorder·Level Order 세 가지 순회를 서로 다른 내부 클래스로 캡슐화하는 과정을 통해 "동일 인터페이스, 다른 순회 알고리즘"이라는 Iterator 패턴의 핵심을 코드로 확인할 수 있습니다.
+
 ```java
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Queue;
+import java.util.Stack;
+import java.util.function.Function;
+import java.util.function.Predicate;
+// java.util.Iterator / java.util.Iterable는 아래에서 커스텀 인터페이스로 재정의하므로 import하지 않는다 (이름 충돌 방지)
+
 // Iterator 패턴의 우아함
 interface Iterator<T> {
     boolean hasNext();
@@ -648,7 +638,13 @@ class BinaryTree<T extends Comparable<T>> implements Iterable<T> {
         }
     }
 }
+```
 
+`InorderIterator`, `PreorderIterator`, `LevelOrderIterator`는 모두 위 `BinaryTree` 안에 `private class`로 선언되어 있습니다. 자바의 이너 클래스는 바깥 클래스의 `private` 필드(`root`)와 각 노드의 `left`/`right`에 자유롭게 접근할 수 있으므로, `Node`의 구조를 외부에 공개하지 않고도 순회 로직 세 가지를 캡슐화할 수 있습니다. 세 클래스 모두 재귀 대신 `Stack`이나 `Queue`를 직접 다루는 반복문으로 짜여 있는데, 이는 트리 깊이가 커져도 콜 스택이 아닌 힙에 순회 상태를 쌓아 `StackOverflowError` 위험 없이 순회하기 위한 선택입니다.
+
+`BinaryTree`가 제공하는 세 Iterator는 트리 구조 자체에 종속적입니다. 반면 아래 `FilteringIterator`와 `MappingIterator`는 어떤 `Iterator<T>`든 감싸서 새로운 `Iterator`로 재포장하는 데코레이터형 구현이므로, 트리든 리스트든 원본 자료구조와 무관하게 필터링·변환을 조합할 수 있습니다. Iterator 자체를 합성 가능한 객체로 다루면 `IteratorUtils.filter(...)`와 `IteratorUtils.map(...)`을 이어 붙인 파이프라인을 구성할 수 있어, 뒤이어 볼 Stream API가 표준화한 방식을 미리 보여주는 역할을 합니다.
+
+```java
 // 고급 Iterator - 필터링과 변환
 class FilteringIterator<T> implements Iterator<T> {
     private final Iterator<T> baseIterator;
@@ -754,7 +750,7 @@ class IteratorUtils {
 
 ### 이 코드의 트레이드오프
 
-`BinaryTree`가 `InorderIterator`, `PreorderIterator`, `LevelOrderIterator`를 각각 별도 클래스로 구현한 덕분에 순회 방식을 추가할 때 기존 클래스를 건드릴 필요가 없지만, 그만큼 트리 하나에 순회 방식 수만큼의 내부 클래스가 딸려 다니게 됩니다. `InorderIterator`가 `Stack`에 노드를 직접 쌓아 재귀 호출 없이 순회를 흉내 내는 방식은 스택 오버플로우를 피할 수 있어 실무적으로 유리하지만, 재귀로 짠 순회보다 코드를 읽고 이해하기는 더 어렵습니다. `FilteringIterator`와 `MappingIterator`는 내부에서 `hasNext()`를 호출하는 시점에 다음 원소를 미리 계산해 두는 lookahead 방식을 쓰는데, 이는 원본 Iterator를 미리 한 칸 더 소비한다는 뜻이라 원본 컬렉션이 순회 중 변경되면 필터링·매핑 결과가 예상과 달라질 수 있습니다.
+`BinaryTree`가 `InorderIterator`, `PreorderIterator`, `LevelOrderIterator`를 각각 별도 클래스로 구현한 덕분에 순회 방식을 추가할 때 기존 클래스를 건드릴 필요가 없지만, 그만큼 트리 하나에 순회 방식 수만큼의 내부 클래스가 딸려 다니게 됩니다. `InorderIterator`가 `Stack`에 노드를 직접 쌓아 재귀 호출 없이 순회를 흉내 내는 방식은 스택 오버플로우를 피할 수 있어 실무적으로 유리하지만, 재귀로 짠 순회보다 코드를 읽고 이해하기는 더 어렵습니다. `FilteringIterator`와 `MappingIterator`는 겉보기엔 비슷해 보이지만 내부 제어 흐름은 서로 다릅니다. `FilteringIterator`는 생성자와 `next()` 호출 직후마다 `advance()`를 실행해 조건을 만족하는 다음 원소를 미리 찾아 `nextElement`에 캐싱해 두는 **lookahead** 방식입니다(L649-688) — `hasNext()`가 단순 필드 조회로 끝나는 대신, 원본 `baseIterator`를 실제 반환할 원소보다 앞서 소비합니다. 반면 `MappingIterator`는 캐시할 값 자체가 없는 **즉시변환(pass-through)** 방식입니다(L691-709) — `hasNext()`는 `baseIterator.hasNext()`를 그대로 위임하고, `next()`는 `baseIterator.next()`의 결과에 `mapper.apply()`만 적용해 즉시 반환하므로 원본 Iterator를 미리 소비하지 않습니다. 이 차이 때문에 실질적인 영향을 받는 쪽은 `FilteringIterator`뿐입니다 — lookahead가 원본을 한 원소 앞서 읽어 두므로, 원본 컬렉션이 순회 중 변경되면(예: `ConcurrentModificationException`을 던지지 않는 컬렉션이라면) 필터링 결과가 호출 시점의 실제 상태와 어긋날 수 있습니다. `MappingIterator`는 매 호출을 그대로 위임하기만 하므로 이런 시점 불일치가 발생하지 않습니다.
 
 ### 이진 트리 순회 방식 비교
 
@@ -784,21 +780,45 @@ flowchart TD
 
 ### 현대적 Iterator - Stream과의 연계
 
+커스텀 `Iterator<T>`를 만들어 두면 순회 로직 자체는 재사용할 수 있지만, `filter`/`map`/병렬 처리 같은 Stream API의 풍부한 연산은 그대로 쓸 수 없습니다. `StreamSupport.stream()`은 표준 `java.util.Iterator`를 `Spliterator`로 감싸 이 간극을 메우지만, 이 글의 `Iterator<T>`는 GoF 원형을 그대로 드러내기 위해 직접 선언한 커스텀 인터페이스(L477-483)이지 `java.util.Iterator`가 아닙니다. 따라서 `Spliterators.spliteratorUnknownSize()`에 넘기기 전에 커스텀 `Iterator<T>`를 표준 `java.util.Iterator<T>`로 감싸는 어댑터가 반드시 필요하며, 이 어댑터 없이 커스텀 이터레이터를 그대로 넘기면 타입이 맞지 않아 컴파일되지 않습니다. `spliteratorUnknownSize(..., Spliterator.ORDERED)`처럼 크기를 미리 알 수 없는 순회에도 적용할 수 있으며, 이때 `ORDERED` 특성 플래그를 넘겨주는 이유는 `InorderIterator`가 만들어내는 정렬된 순서를 Stream 파이프라인이 그대로 보존하도록 보장하기 위함이고, 이 값을 빼면 특히 병렬 스트림에서 결과 순서가 흐트러질 수 있습니다.
+
 ```java
+import java.util.Spliterator;
+import java.util.Spliterators;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
 // Stream 지원 Iterator
 class StreamableBinaryTree<T extends Comparable<T>> extends BinaryTree<T> {
-    
+
+    // 커스텀 Iterator<T>를 표준 java.util.Iterator<T>로 감싸는 어댑터
+    // (Spliterators.spliteratorUnknownSize()는 java.util.Iterator만 받으므로 필수)
+    private static <E> java.util.Iterator<E> toJavaIterator(Iterator<E> source) {
+        return new java.util.Iterator<E>() {
+            @Override
+            public boolean hasNext() {
+                return source.hasNext();
+            }
+
+            @Override
+            public E next() {
+                return source.next();
+            }
+        };
+    }
+
     // Stream 지원
     public Stream<T> stream() {
         return StreamSupport.stream(
-            Spliterators.spliteratorUnknownSize(iterator(), Spliterator.ORDERED),
+            Spliterators.spliteratorUnknownSize(toJavaIterator(iterator()), Spliterator.ORDERED),
             false
         );
     }
     
     public Stream<T> parallelStream() {
         return StreamSupport.stream(
-            Spliterators.spliteratorUnknownSize(iterator(), Spliterator.ORDERED),
+            Spliterators.spliteratorUnknownSize(toJavaIterator(iterator()), Spliterator.ORDERED),
             true
         );
     }
@@ -806,14 +826,14 @@ class StreamableBinaryTree<T extends Comparable<T>> extends BinaryTree<T> {
     // 특정 순회 방식의 Stream
     public Stream<T> preorderStream() {
         return StreamSupport.stream(
-            Spliterators.spliteratorUnknownSize(preorderIterator(), Spliterator.ORDERED),
+            Spliterators.spliteratorUnknownSize(toJavaIterator(preorderIterator()), Spliterator.ORDERED),
             false
         );
     }
     
     public Stream<T> levelOrderStream() {
         return StreamSupport.stream(
-            Spliterators.spliteratorUnknownSize(levelOrderIterator(), Spliterator.ORDERED),
+            Spliterators.spliteratorUnknownSize(toJavaIterator(levelOrderIterator()), Spliterator.ORDERED),
             false
         );
     }
@@ -857,50 +877,31 @@ class StreamableBinaryTree<T extends Comparable<T>> extends BinaryTree<T> {
     }
 }
 
-// 사용 예시
+// 사용 예시 (4가지 순회·연산을 최소 코드로 시연)
 class IteratorPatternDemo {
     public static void main(String[] args) {
         StreamableBinaryTree<Integer> tree = new StreamableBinaryTree<>();
-        
-        // 트리에 데이터 삽입
-        int[] values = {50, 30, 70, 20, 40, 60, 80};
-        for (int value : values) {
+        for (int value : new int[]{50, 30, 70, 20, 40, 60, 80}) {
             tree.insert(value);
         }
-        
-        System.out.println("=== Iterator Pattern Demo ===\n");
-        
-        // 1. 기본 순회 (Inorder)
-        System.out.println("Inorder traversal:");
-        for (Integer value : tree) {
-            System.out.print(value + " ");
-        }
-        System.out.println("\n");
-        
-        // 2. Preorder 순회
-        System.out.println("Preorder traversal:");
-        Iterator<Integer> preorderIter = tree.preorderIterator();
-        while (preorderIter.hasNext()) {
-            System.out.print(preorderIter.next() + " ");
-        }
-        System.out.println("\n");
-        
-        // 3. Stream 연산
-        System.out.println("Even numbers (using Stream):");
-        tree.stream()
+
+        // 1~2. 기본 Iterator(Inorder)와 Preorder는 IteratorUtils.toList()로 바로 수집
+        System.out.println("Inorder:  " + IteratorUtils.toList(tree.iterator()));
+        System.out.println("Preorder: " + IteratorUtils.toList(tree.preorderIterator()));
+
+        // 3. Stream 연산 - 짝수만 필터링
+        String evens = tree.stream()
             .filter(n -> n % 2 == 0)
-            .forEach(n -> System.out.print(n + " "));
-        System.out.println("\n");
-        
-        // 4. 복합 Iterator 연산
-        System.out.println("Filtered and mapped values:");
-        Iterator<String> complexIter = IteratorUtils.map(
+            .map(String::valueOf)
+            .collect(Collectors.joining(", "));
+        System.out.println("Even numbers (Stream): " + evens);
+
+        // 4. 복합 Iterator 연산 - 필터 + 매핑 체이닝
+        Iterator<String> filteredMapped = IteratorUtils.map(
             IteratorUtils.filter(tree.iterator(), n -> n > 40),
             n -> "Value:" + n
         );
-        
-        List<String> results = IteratorUtils.toList(complexIter);
-        results.forEach(System.out::println);
+        System.out.println("Filtered+Mapped: " + IteratorUtils.toList(filteredMapped));
     }
 }
 ```
@@ -994,13 +995,16 @@ class NumberProcessor extends IterativeProcessor<Integer> {
 
 ### Template Method 훅(Hook) 유형
 
-| 훅 유형 | 설명 | 구현 |
-|--------|------|------|
-| Abstract Method | 반드시 구현 필요 | `protected abstract void step()` |
-| Hook Method | 선택적 오버라이드 | `protected void hook() {}` |
-| Primitive Operation | 기본 구현 제공 | `protected void primitive() {...}` |
+GoF는 템플릿 메서드가 호출하는, 하위 클래스가 채워야 하는 연산을 **Primitive Operation**이라 부릅니다(Gamma et al., 1994). 그중 기본 구현(흔히 빈 몸체)이 있어 오버라이드가 선택적인 것을 실무에서는 흔히 **Hook**이라 부르는데, 오버라이드가 필수인 나머지를 편의상 Abstract Method라 구분해 부르는 경우가 많습니다. 아래 표는 이 실무적 구분을 정리한 것으로, Abstract Method와 Hook Method 모두 넓은 의미의 Primitive Operation에 속한다고 이해하면 됩니다 — 원저의 정확한 용어 경계는 판본에 따라 다르게 서술될 수 있으니 절대적 분류로 받아들이기보다 오버라이드 필수 여부를 가르는 실용적 기준으로 참고하시기 바랍니다.
+
+| 상위 개념 | 하위 유형 | 설명 | 구현 |
+|----------|---------|------|------|
+| Primitive Operation (하위 클래스가 구현하는 모든 연산) | Abstract Method | 기본 구현 없음 — 반드시 오버라이드 | `protected abstract void step();` |
+| Primitive Operation (하위 클래스가 구현하는 모든 연산) | Hook Method | 기본 구현 있음(흔히 빈 몸체) — 오버라이드는 선택 | `protected void hook() {}` |
 
 ### Iterator 유형 비교
+
+Template Method의 Hook 구분이 "무엇을 오버라이드해야 하는가"를 가른다면, Iterator 쪽에서는 "누가 순회를 제어하는가"와 "동시 변경에 얼마나 안전한가"가 실무에서 구현체를 고르는 기준이 됩니다. 아래 네 유형은 이 글에서 다룬 `BinaryTree`·`FilteringIterator` 같은 구현체들이 실제로 어느 범주에 속하는지 되짚어보는 데 쓸 수 있습니다.
 
 | Iterator 유형 | 특징 | 예시 |
 |--------------|------|------|
@@ -1011,23 +1015,29 @@ class NumberProcessor extends IterativeProcessor<Integer> {
 
 ### 현대 Java에서의 구현
 
+두 패턴 모두 원래는 클래스 상속이나 명시적 인터페이스 구현으로만 표현되었지만, 람다와 `Stream` API가 도입되면서 같은 의도를 더 적은 보일러플레이트로 표현할 수 있게 되었습니다. 다만 이 글 앞부분에서 다룬 `StreamableBinaryTree`처럼 전통적 구현을 현대적 API에 연결하려면 타입 어댑터가 필요한 경우가 많다는 점은 유의해야 합니다.
+
 | 패턴 | 전통적 구현 | 현대적 구현 |
 |------|-----------|-----------|
 | Template Method | 추상 클래스 상속 | 람다 + 함수 인터페이스 |
 | Iterator | `Iterator<E>` 구현 | `Stream<E>`, `Spliterator` |
 
-### 적용 시나리오 비교
+### 패턴 선택 판단 기준
 
-| 시나리오 | Template Method | Iterator |
-|----------|----------------|----------|
-| 알고리즘 골격 정의 | O | X |
-| 컬렉션 순회 | X | O |
-| 프레임워크 확장점 | O | X |
-| 트리/그래프 순회 | X | O |
-| 데이터 처리 파이프라인 | O | O (Stream) |
-| 테스트 픽스처 (setUp/tearDown) | O | X |
+"핵심 비교"가 두 패턴의 구조적 차이(상속 vs 컴포지션)를 다뤘다면, 아래는 실제 설계 상황에서 어느 패턴을 적용할지 판단하는 기준입니다. Yes/No로 끝나는 판단 질문 옆에 실무에서 그렇게 판단하는 근거를 함께 적어, 단순 O/X 표로는 드러나지 않는 "왜 그 패턴인가"를 확인할 수 있게 했습니다.
+
+| 판단 질문 | 적합한 패턴 | 근거 |
+|-----------|-----------|------|
+| 알고리즘의 단계 순서가 고정되어 있고 일부 단계만 바뀌는가? | Template Method | 골격을 `final`로 고정하고 Hook만 오버라이드하면 됨 |
+| 컬렉션의 내부 구조(배열/트리/링크드리스트)를 감추고 순회해야 하는가? | Iterator | Iterator 구현체가 순회 상태를 캡슐화 |
+| 프레임워크가 사용자 코드의 확장점을 제공해야 하는가(JUnit `setUp`/`tearDown` 등)? | Template Method | 프레임워크가 흐름을 제어하고, 사용자는 Hook만 채움 |
+| 트리/그래프처럼 순회 방식이 여러 개 필요한가(Inorder/Preorder/Level Order 등)? | Iterator | 순회 알고리즘마다 별도 Iterator 구현체로 분리 가능 |
+| 같은 컬렉션을 여러 지점에서 동시에, 서로 간섭 없이 순회해야 하는가? | Iterator | 각 Iterator 인스턴스가 독립된 순회 상태(커서)를 보유 |
+| 데이터 처리 파이프라인에서 단계 골격과 원소별 순회가 모두 필요한가? | 둘 다 (조합) | Template Method가 파이프라인 골격을, Iterator/Stream이 원소 순회를 담당 |
 
 ### Java Collections에서의 활용
+
+이 글에서 만든 예제 클래스들을 벗어나, JDK 표준 라이브러리 자체가 두 패턴을 어떻게 채택하고 있는지 정리하면 다음과 같습니다. `AbstractList`/`AbstractMap`은 Template Method로 골격을 고정하고, `Stream`은 `Spliterator` 기반 Iterator 계열로 순회를 추상화합니다.
 
 | 클래스/인터페이스 | Template Method | Iterator |
 |-----------------|----------------|----------|
@@ -1035,31 +1045,6 @@ class NumberProcessor extends IterativeProcessor<Integer> {
 | AbstractMap | entrySet() 추상화 | keySet().iterator() |
 | AbstractCollection | - | iterator() 필수 구현 |
 | Stream | - | Spliterator 기반 |
-
-### 장단점 비교
-
-| 패턴 | 장점 | 단점 |
-|------|------|------|
-| Template Method | 코드 중복 제거, 확장점 제공, 제어 역전 | 상속 강제, 유연성 제한 |
-| Iterator | 내부 구조 은닉, 다양한 순회 지원, SRP | 단순 순회에 과도, 클래스 증가 |
-
-### Hollywood Principle vs 일반 호출
-
-| 측면 | Hollywood Principle | 일반 호출 |
-|------|-------------------|----------|
-| 제어 방향 | 프레임워크 → 사용자 코드 | 사용자 코드 → 라이브러리 |
-| 호출 주체 | 상위 클래스 | 클라이언트 |
-| 예시 | Template Method | 일반 메서드 호출 |
-| 원칙 | "Don't call us, we'll call you" | - |
-
-### 적용 체크리스트
-
-| Template Method 체크 항목 | Iterator 체크 항목 |
-|-------------------------|-------------------|
-| 알고리즘 골격이 고정되어 있는가? | 컬렉션 내부 구조를 숨겨야 하는가? |
-| 일부 단계만 변형이 필요한가? | 여러 순회 방식을 지원해야 하는가? |
-| 코드 중복이 발생하는가? | 동시 순회가 필요한가? |
-| 프레임워크 확장점을 제공하는가? | 복잡한 데이터 구조를 순회하는가? |
 
 ---
 
@@ -1073,7 +1058,9 @@ Template Method와 Iterator 패턴은 **"구조의 정의"**와 **"접근의 추
 
 두 패턴 모두 **"추상화"**를 통해 복잡성을 관리하고 코드의 품질을 향상시키는 강력한 도구입니다. 현대 프로그래밍의 핵심 개념인 **"분리"**와 **"재사용"**을 완벽하게 구현합니다.
 
-다음 글에서는 **패턴의 조합과 상호작용**을 탐구하겠습니다. 여러 패턴을 함께 사용할 때의 시너지 효과와 주의사항을 살펴보겠습니다.
+다음 글에서는 **인터프리터와 미디에이터**를 다룹니다. 파싱과 조정이라는, Template Method·Iterator와는 또 다른 방식으로 구조를 추상화하는 패턴들을 살펴보겠습니다.
+
+다음 글: [15. 인터프리터와 미디에이터: 파싱과 조정의 패턴](/post/design-patterns/interpreter-mediator-parsing-coordination/)
 
 ---
 

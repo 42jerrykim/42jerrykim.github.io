@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 10
 title: "[Design Patterns] 01. 디자인 패턴의 철학과 역사"
 slug: "design-patterns-philosophy-and-history"

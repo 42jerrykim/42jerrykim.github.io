@@ -1,12 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 130
 title: "[Design Patterns] 13. 커맨드와 체인 오브 리스폰시빌리티: 요청 처리의 예술"
 slug: "command-chain-responsibility"
 description: "요청을 객체로 캡슐화하는 Command 패턴과 처리자들을 체인으로 연결하는 Chain of Responsibility 패턴을 심도 있게 분석합니다. Undo/Redo, 매크로 명령, 요청 파이프라인, 미들웨어 아키텍처 설계 기법을 다룹니다."
 image: "wordcloud.png"
 date: 2024-12-13T10:00:00+09:00
-lastmod: 2026-07-17T14:30:00+09:00
+lastmod: 2026-07-18T14:30:00+09:00
 categories:
 - Design Patterns
 - Behavioral Patterns
@@ -85,6 +85,12 @@ class BadTextEditor {
 ### Command 패턴으로 혁신적 해결
 
 ```java
+import java.time.LocalDateTime;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
+
 // Command 패턴의 강력함
 interface Command {
     void execute();
@@ -307,7 +313,11 @@ class CommandManager {
 
 ### Chain of Responsibility의 핵심 철학
 
-Chain of Responsibility 패턴은 **"요청을 처리할 수 있는 객체들의 체인을 구성"**하여 요청을 적절한 처리자에게 전달합니다.
+Chain of Responsibility 패턴은 **"요청을 처리할 수 있는 객체들의 체인을 구성"**하여 요청을 적절한 처리자에게 전달합니다. GoF는 이 패턴의 의도를 다음과 같이 정의합니다.
+
+> "Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it." — Gamma et al., 1994
+
+핵심은 **송신자(Sender)가 수신자(Receiver)를 모른다**는 결합도 제거에 있습니다. 앞서 본 Command 패턴이 "요청 자체를 캡슐화"해 정확히 하나의 Receiver에게 전달하는 구조라면, Chain of Responsibility는 "요청이 누구에게 갈지"를 런타임까지 열어 두고 체인을 따라 전파합니다.
 
 ```java
 // 전통적인 방식의 한계
@@ -333,6 +343,10 @@ class BadSupportSystem {
 ### Chain of Responsibility로 우아하게 해결
 
 ```java
+import java.time.LocalDateTime;
+import java.util.Set;
+import java.util.UUID;
+
 // Chain of Responsibility 패턴의 우아함
 abstract class RequestHandler {
     protected RequestHandler nextHandler;
@@ -530,6 +544,11 @@ flowchart LR
 ### 미들웨어 패턴으로의 진화
 
 ```java
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 // 웹 미들웨어 스타일 구현
 interface Middleware {
     void handle(HttpRequest request, HttpResponse response, MiddlewareChain chain);
@@ -680,6 +699,17 @@ class HttpResponse {
 |------|------|------|
 | Command | Undo/Redo 지원, 요청 큐잉, 매크로, SRP 준수 | 클래스 수 증가, 구조 복잡 |
 | CoR | 느슨한 결합, 동적 체인 구성, 유연한 처리 | 처리 보장 없음, 디버깅 어려움 |
+
+### 안티패턴과의 비교
+
+두 패턴이 실제로 대체하는 안티패턴을 짚어보면 "왜 이 패턴을 쓰는가"가 더 분명해집니다. Command 절에서 먼저 본 `BadTextEditor`는 **Transaction Script 안티패턴**의 축소판입니다 — 실행 로직과 되돌리기 로직이 한 메서드 안에 뒤섞여 있어, 되돌리기를 지원하려면 매 호출마다 "직전 상태"를 별도로 기억해 두는 임시방편 코드를 계속 덧붙여야 합니다. Chain of Responsibility 절의 `BadSupportSystem`은 **화살촉 안티패턴(Arrow Anti-pattern)**, 즉 `if`/`else if` 사슬이 요청 타입이 늘어날 때마다 중첩 깊이와 순환 복잡도가 함께 커지는 구조입니다. 새로운 요청 타입 하나를 추가하려면 기존 조건문 블록 전체를 다시 읽고 올바른 위치에 새 분기를 끼워 넣어야 하므로, 변경이 국소화되지 않고 기존 코드를 건드리는 대가가 따릅니다.
+
+다만 두 패턴 역시 잘못 쓰면 스스로 새로운 안티패턴이 됩니다. Command를 모든 메서드 호출에 기계적으로 적용하면 실제 도메인 로직 하나당 Command 클래스가 하나씩 늘어나는 **클래스 폭발(Class Explosion)** 로 이어지고, 정작 되돌리기가 필요 없는 단순 조회 연산까지 `execute()`/`undo()` 쌍으로 감싸는 과잉설계가 됩니다. Chain of Responsibility도 체인이 지나치게 길어지거나 핸들러들이 서로의 존재를 암묵적으로 가정하면 **갓 체인(God Chain)** — 어디서 처리됐는지 추적하려면 체인 전체를 순서대로 디버깅해야 하는 구조 — 가 되며, `setNext()` 연결을 실수로 순환시키면 무한 루프로 요청이 영영 끝나지 않는 위험도 있습니다.
+
+| 안티패턴 | 증상 | 해결하는 패턴 | 패턴 남용 시 새 안티패턴 |
+|---------|------|--------------|------------------------|
+| Transaction Script (God Method) | 실행/검증/되돌리기 로직이 한 메서드에 응집 | Command | 클래스 폭발 (모든 호출을 Command化) |
+| 화살촉 안티패턴 (중첩 `if`/`else`) | 요청 타입 추가 시 조건문 전체 수정 필요 | Chain of Responsibility | 갓 체인 (지나치게 긴 체인, 순환 연결) |
 
 ### 조합 패턴
 

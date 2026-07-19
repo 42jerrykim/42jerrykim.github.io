@@ -1,12 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 200
 title: "[Design Patterns] 20. 도메인 주도 설계와 디자인 패턴"
 slug: "ddd-design-patterns"
 description: "도메인 주도 설계(DDD) 철학과 GoF 디자인 패턴의 융합을 탐구합니다. Entity, Aggregate, Repository 등 DDD 핵심 빌딩 블록과 패턴을 결합해 비즈니스 도메인을 표현하는 방법과 CQRS, Event Sourcing 같은 현대적 아키텍처 패턴을 학습합니다."
 image: "wordcloud.png"
 date: 2024-12-20T10:00:00+09:00
-lastmod: 2026-07-18T07:18:00+09:00
+lastmod: 2026-07-18T19:51:00+09:00
 categories:
 - Design Patterns
 - Domain Driven Design
@@ -64,12 +64,99 @@ Domain-Driven Design과 디자인 패턴의 융합을 탐구합니다. Aggregate
 import java.util.*;
 import java.math.BigDecimal;
 import java.util.Currency;
+import java.time.Instant;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 ```
 
-또한 예제는 DDD 개념을 보여주는 데 집중하기 위해 `OrderId`, `CustomerId`, `ProductId`, `Money`, `ShippingAddress`, `OrderLine`, `OrderStatus`, `BusinessRule`과 그 구현체(`OrderCanBeModifiedRule` 등), `DomainEvent`와 그 하위 이벤트, `DomainEventPublisher`, `OrderMapper`, `OrderEntity`, `Customer`, `CustomerRepository` 같은 도메인 타입의 전체 구현은 생략했다. 실제 프로젝트에서는 이 타입들을 각각 명시적으로 정의해야 하며, 여기서는 Entity·Value Object·Aggregate·Repository가 서로 어떻게 협력하는지의 구조에 집중한다.
+아래 Entity·Value Object·Aggregate Root 예제(`Order`)는 이 글에서 실제로 그대로 컴파일되는 완결 예제로 만들기 위해 `OrderId`·`CustomerId`·`ProductId`·`ShippingAddress`·`OrderLine`·`OrderStatus`·`BusinessRule`과 그 구현체·`DomainEvent`와 그 하위 이벤트까지 최소 스텁으로 직접 정의한다. 반대로 `DomainEventPublisher`·`OrderMapper`·`OrderEntity`·`Customer`·`CustomerRepository`처럼 JPA·Spring 같은 외부 인프라에 실제로 연결되어야 하는 타입은 이후 Repository·CQRS 절에서도 여전히 가상 타입으로 남겨둔다 — 이 타입들의 내부 구현은 DDD 개념 자체와 무관하고 프레임워크 선택에 좌우되기 때문이다.
+
+```java
+// 핵심 예제(Entity, Money, AggregateRoot, Order)를 컴파일 가능하게 만드는 최소 스텁
+public record OrderId(String value) {
+    public static OrderId generate() {
+        return new OrderId(UUID.randomUUID().toString());
+    }
+}
+
+public record CustomerId(String value) {}
+
+public record ProductId(String value) {}
+
+public record ShippingAddress(String recipient, String street, String city, String postalCode) {}
+
+public enum OrderStatus { DRAFT, CONFIRMED }
+
+public interface BusinessRule {
+    boolean isSatisfied();
+    String getMessage();
+}
+
+public class BusinessRuleViolationException extends RuntimeException {
+    public BusinessRuleViolationException(String message) {
+        super(message);
+    }
+}
+
+public interface DomainEvent {
+    Instant occurredOn();
+}
+
+public class OrderLine {
+    private final ProductId productId;
+    private final int quantity;
+    private final Money unitPrice;
+
+    public OrderLine(ProductId productId, int quantity, Money unitPrice) {
+        this.productId = productId;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+    }
+
+    public Money lineTotal() {
+        return unitPrice.multiply(quantity);
+    }
+}
+
+public record OrderCreatedEvent(OrderId orderId, CustomerId customerId, Instant occurredOn) implements DomainEvent {
+    public OrderCreatedEvent(OrderId orderId, CustomerId customerId) {
+        this(orderId, customerId, Instant.now());
+    }
+}
+
+public record OrderLineAddedEvent(OrderId orderId, ProductId productId, int quantity, Instant occurredOn) implements DomainEvent {
+    public OrderLineAddedEvent(OrderId orderId, ProductId productId, int quantity) {
+        this(orderId, productId, quantity, Instant.now());
+    }
+}
+
+public record OrderConfirmedEvent(OrderId orderId, Money totalAmount, Instant occurredOn) implements DomainEvent {
+    public OrderConfirmedEvent(OrderId orderId, Money totalAmount) {
+        this(orderId, totalAmount, Instant.now());
+    }
+}
+
+public record OrderCanBeModifiedRule(OrderStatus status) implements BusinessRule {
+    public boolean isSatisfied() { return status == OrderStatus.DRAFT; }
+    public String getMessage() { return "DRAFT 상태의 주문만 수정할 수 있습니다"; }
+}
+
+public record QuantityMustBePositiveRule(int quantity) implements BusinessRule {
+    public boolean isSatisfied() { return quantity > 0; }
+    public String getMessage() { return "수량은 0보다 커야 합니다"; }
+}
+
+public record OrderMustHaveItemsRule(List<OrderLine> orderLines) implements BusinessRule {
+    public boolean isSatisfied() { return !orderLines.isEmpty(); }
+    public String getMessage() { return "주문에는 최소 하나의 항목이 있어야 합니다"; }
+}
+
+public record OrderCanBeConfirmedRule(OrderStatus status) implements BusinessRule {
+    public boolean isSatisfied() { return status == OrderStatus.DRAFT; }
+    public String getMessage() { return "DRAFT 상태의 주문만 확정할 수 있습니다"; }
+}
+```
 
 ### Entity 패턴과 Identity 관리
 
@@ -124,6 +211,10 @@ public class Money {
     public Money add(Money other) {
         ensureSameCurrency(other);
         return new Money(this.amount.add(other.amount), this.currency);
+    }
+    
+    public Money multiply(long factor) {
+        return new Money(this.amount.multiply(BigDecimal.valueOf(factor)), this.currency);
     }
     
     private void ensureSameCurrency(Money other) {
@@ -184,6 +275,7 @@ public class Order extends AggregateRoot<OrderId> {
     
     // Factory Method 패턴
     public static Order create(CustomerId customerId, ShippingAddress address) {
+        // address는 개념 단순화를 위해 필드로 저장하지 않는다(실전에서는 배송지 필드를 보관해야 한다)
         OrderId orderId = OrderId.generate();
         Order order = new Order(orderId, customerId);
         
@@ -206,8 +298,16 @@ public class Order extends AggregateRoot<OrderId> {
         
         OrderLine orderLine = new OrderLine(productId, quantity, unitPrice);
         orderLines.add(orderLine);
+        recalculateTotal();
         
         addDomainEvent(new OrderLineAddedEvent(this.getId(), productId, quantity));
+    }
+    
+    private void recalculateTotal() {
+        this.totalAmount = orderLines.stream()
+            .map(OrderLine::lineTotal)
+            .reduce(Money::add)
+            .orElse(this.totalAmount);
     }
     
     public void confirm() {
@@ -276,7 +376,7 @@ public class JpaOrderRepository implements OrderRepository {
     
     @Override
     public Optional<Order> findById(OrderId id) {
-        return jpaRepository.findById(id.getValue())
+        return jpaRepository.findById(id.value())
                            .map(orderMapper::toDomain);
     }
     
@@ -435,23 +535,7 @@ sequenceDiagram
     Client->>Agg: markEventsAsCommitted()
 ```
 
-## 실습 과제
-
-### 과제 1: 도서관 도메인 모델링
-다음 요구사항을 만족하는 도서관 시스템을 DDD로 설계하세요:
-
-1. 회원은 도서를 대출하고 반납할 수 있다
-2. 도서마다 대출 가능한 복본 수가 있다
-3. 회원은 연체료가 있으면 새로운 대출을 할 수 없다
-4. 인기 도서는 예약이 가능하다
-
-### 과제 2: 전자상거래 주문 처리
-Event Sourcing을 적용한 주문 처리 시스템을 구현하세요:
-
-1. 주문 생성, 결제, 배송, 완료의 생명주기
-2. 주문 취소 및 환불 처리
-3. 재고 관리와의 연계
-4. 주문 이력 추적 및 감사
+도서관 대출 시스템과 이벤트 소싱 기반 전자상거래 주문 처리를 직접 구현해보는 실습은 이 챕터의 짝인 [20. 도메인 주도 설계와 디자인 패턴 — 실습](/post/design-patterns/ddd-design-patterns-practice/)에서 TODO 스텁과 완성도 체크리스트까지 포함해 다룹니다. 위에서 다룬 Entity·Aggregate·Repository·Event Sourcing·CQRS를 "회원은 연체료가 있으면 대출할 수 없다", "주문 생성부터 확정까지 이벤트로 복원한다" 같은 구체적인 도메인 규칙에 직접 적용해보고 싶다면 그쪽을 참고하세요.
 
 ## 토론 주제
 
@@ -487,6 +571,8 @@ Event Sourcing을 적용한 주문 처리 시스템을 구현하세요:
 | 저장 방식 | 독립 테이블 | 임베디드/별도 테이블 |
 | 예시 | User, Order, Product | Money, Address, DateRange |
 
+이 표의 구분은 추상적이지 않다 — 앞서 본 `Order`(Entity)와 `Money`(Value Object)가 정확히 이 기준을 따른다. `Order`는 `OrderId`가 같으면 필드 값이 달라도 같은 주문으로 취급되지만, `Money`는 `amount`와 `currency`가 같으면 인스턴스가 달라도 완전히 같은 값으로 취급된다. 이 "루트는 식별자로, 내부는 값으로 다룬다"는 원칙이 바로 다음 표의 Aggregate 설계 원칙으로 이어진다.
+
 ### Aggregate 설계 원칙
 
 | 원칙 | 설명 | 효과 |
@@ -506,6 +592,8 @@ Event Sourcing을 적용한 주문 처리 시스템을 구현하세요:
 | 복잡도 | 높음 | 낮음 |
 | 성능 | 쓰기 빠름, 읽기 재구성 | 읽기 빠름 |
 | 적합 상황 | 감사, 시간 여행 필요 | 일반적인 CRUD |
+
+Event Sourcing과 CQRS는 서로 다른 문제를 풀지만 자주 함께 채택된다. `EventSourcedAggregateRoot`가 보여주듯 Event Sourcing은 쓰기 모델이 상태 대신 이벤트를 저장 대상으로 삼겠다는 결정일 뿐, 그 자체로 조회 방식을 바꾸지는 않는다. 하지만 이벤트 스트림이 이미 쌓여 있다면 앞서 본 `OrderQueryService`처럼 조회 전용 뷰를 이벤트로부터 파생하는 비용이 낮아지므로, 아래 표에서 "이벤트 소싱과 함께" 항목이 CQRS 적합도 최상(★★★★★)으로 표시되는 이유가 여기에 있다.
 
 ### CQRS 적용 가이드
 
@@ -564,7 +652,7 @@ DDD 전술 패턴을 처음 적용할 때 자주 빠지는 오해 두 가지를 
 - Scott Millett, "Patterns, Principles, and Practices of Domain-Driven Design" (2015)
 
 ### 현대적 접근법
-- Greg Young, "CQRS and Event Sourcing"(강연, Code on the Beach, 2010)
+- Greg Young, ["CQRS and Event Sourcing"](https://www.youtube.com/watch?v=JHGkaShoyNs)(강연, Code on the Beach, 2014)
 - Udi Dahan, "Advanced Distributed Systems Design"(온라인 강좌·강연 시리즈, 2010년대)
 - Martin Fowler, martinfowler.com "CQRS"(2011), "Event Sourcing"(2005)
 

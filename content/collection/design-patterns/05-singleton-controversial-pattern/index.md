@@ -1,12 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 50
 title: "[Design Patterns] 05. 싱글톤: 논란이 많은 패턴"
 slug: "singleton-controversial-pattern"
 description: "가장 논란이 많은 디자인 패턴인 Singleton의 장단점을 객관적으로 분석합니다. 전역 상태의 위험성, 테스트의 어려움, 멀티스레드 환경에서의 문제점을 깊이 있게 다루고, 언제 사용해야 하고 언제 피해야 하는지에 대한 명확한 가이드라인을 제시합니다. 대안 패턴과 현대적 접근법도 함께 탐구합니다."
 image: "wordcloud.png"
 date: 2024-12-05T10:00:00+09:00
-lastmod: 2026-07-17T00:00:00+09:00
+lastmod: 2026-07-18T00:00:00+09:00
 categories:
 - Design Patterns
 - Creational Patterns
@@ -95,7 +95,8 @@ String dbUrl = ConfigurationManager.getInstance().getProperty("db.url");
 
 Gang of Four가 처음 Singleton 패턴을 제시했을 때의 목적은 명확했습니다:
 
-> *"클래스의 인스턴스가 단 하나만 존재하도록 보장하고, 이에 대한 전역 접근점을 제공한다."*
+> *"클래스의 인스턴스가 단 하나만 존재하도록 보장하고, 이에 대한 전역 접근점을 제공한다."* (원문: *"Ensure a class only has one instance, and provide a global point of access to it."*)
+> — Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides, 『Design Patterns: Elements of Reusable Object-Oriented Software』(1994), Singleton 패턴 Intent 절
 
 ```java
 // GoF가 제시한 전형적인 사례
@@ -195,6 +196,22 @@ public class ApplicationConfig {
     }
 }
 ```
+
+### 흔한 오개념 바로잡기
+
+Singleton을 처음 접하거나 겉핥기로만 아는 개발자가 자주 빠지는 오해 세 가지를 구현 방식과 논쟁을 본격적으로 다루기 전에 짚어둔다. 이 오해들을 먼저 정리해두면, 뒤에서 볼 구현 방식별 장단점과 Anti-pattern 논쟁을 "모든 Singleton이 나쁘다"거나 "Singleton이면 다 안전하다"는 식의 과도한 일반화 없이 읽을 수 있다.
+
+**오해 1: "private 생성자와 static 인스턴스 필드만 있으면 Singleton이다"**
+
+많은 코드가 정적 필드 하나와 `getInstance()` 메서드만 추가해 놓고 "이건 Singleton이다"라고 부른다. 하지만 GoF의 정의는 단순히 인스턴스를 하나 캐싱해 두는 것이 아니라 "인스턴스가 정확히 하나만 존재함을 보장(ensure)"하는 것이다. 앞서 본 `ConfigurationManager`처럼 `if (instance == null)` 검사만 있고 동기화가 없으면, 멀티스레드 환경에서 두 스레드가 동시에 진입해 인스턴스가 실제로 두 개 생성될 수 있다. 즉 코드의 겉모양은 Singleton이지만 "유일성 보장"이라는 패턴의 핵심 계약은 깨져 있는 상태다. `getInstance()`라는 이름과 실제 유일성 보장 여부는 별개로 확인해야 한다.
+
+**오해 2: "Singleton은 정적 유틸리티 클래스(static utility class)와 같은 것이다"**
+
+`MathUtils.getInstance().calculateArea(radius)`처럼 상태가 전혀 없는 계산 로직에도 Singleton을 씌우는 코드를 흔히 볼 수 있다. 그러나 Singleton은 "생명주기를 가진 상태 있는 인스턴스"를 하나로 유지하려는 패턴이고, 상태가 없는 순수 함수 모음에는 애초에 인스턴스 자체가 필요 없다. 앞서 본 `MathUtils`/`BetterMathUtils` 비교처럼, 상태 없는 유틸리티는 `private` 생성자로 인스턴스화만 막은 `static` 메서드 모음으로 표현하는 것이 정확하며, 여기에 `getInstance()`를 덧씌우는 것은 불필요한 간접 호출과 "인스턴스가 하나뿐"이라는 잘못된 의미만 추가할 뿐이다.
+
+**오해 3: "GoF 원저가 처음부터 Singleton을 Anti-pattern으로 규정했다"**
+
+Singleton을 둘러싼 논쟁이 워낙 격렬하다 보니 "GoF 스스로도 이걸 나쁜 패턴이라 인정했다"고 오해하기 쉽다. 하지만 앞서 인용한 것처럼 Gamma 등의 1994년 원저는 Singleton을 다섯 가지 생성 패턴(Creational Pattern) 중 하나로 정식 소개했을 뿐, Anti-pattern으로 분류하지 않았다. "Anti-pattern" 평가는 이후 단위 테스트와 의존성 주입을 중시하는 흐름(2000년대 이후 TDD·DI 확산)에서 나온 비판이다. 이 글에서 다루는 "논란"은 원저 자체의 결함이 아니라, 원저가 크게 고려하지 않았던 사용 맥락(대규모 자동화 테스트, 분산 시스템)에서 패턴이 드러내는 한계에 관한 것이다.
 
 ### 다양한 Singleton 구현 방식 심화 분석
 
@@ -836,20 +853,19 @@ const dbUrl = configModule.getProperty('dbUrl');
 
 #### Singleton 사용 결정 트리
 
-```text
-Singleton을 고려하는 상황인가?
-├─ 물리적으로 하나만 존재해야 하는가?
-│  ├─ YES → Singleton 고려 (하드웨어, 파일 시스템 등)
-│  └─ NO → 계속 확인
-├─ 상태가 없는 유틸리티인가?
-│  ├─ YES → Static Methods 고려
-│  └─ NO → 계속 확인
-├─ 시스템 전반에서 공유되는 상태인가?
-│  ├─ YES → DI Container 관리 Singleton 고려
-│  └─ NO → 일반 객체 사용
-└─ 테스트 가능성이 중요한가?
-   ├─ YES → DI 사용
-   └─ NO → Singleton 고려 (신중하게)
+아래 결정 트리는 앞서 다룬 네 가지 판단 축(물리적 제약, 상태 유무, 공유 범위, 테스트 중요도)을 하나의 흐름으로 연결한 것이다. 각 질문에 "아니오"로 답할 때마다 다음 질문으로 넘어가며, 마지막 질문까지 도달했다면 그때는 신중하게 Singleton을 선택지로 남겨 둔다.
+
+```mermaid
+flowchart TD
+    Start["Singleton을 고려하는 상황인가?"] --> Q1{"물리적으로 하나만</br>존재해야 하는가?"}
+    Q1 -->|"Yes"| A1["Singleton 고려</br>(하드웨어, 파일 시스템 등)"]
+    Q1 -->|"No"| Q2{"상태가 없는</br>유틸리티인가?"}
+    Q2 -->|"Yes"| A2["Static Methods 고려"]
+    Q2 -->|"No"| Q3{"시스템 전반에서</br>공유되는 상태인가?"}
+    Q3 -->|"Yes"| A3["DI Container 관리</br>Singleton 고려"]
+    Q3 -->|"No"| Q4{"테스트 가능성이</br>중요한가?"}
+    Q4 -->|"Yes"| A4["DI 사용"]
+    Q4 -->|"No"| A5["Singleton 고려</br>(신중하게)"]
 ```
 
 #### 구현 방식 선택 가이드
