@@ -63,7 +63,7 @@ flowchart LR
 
 ## 소프트웨어 아키텍처는?
 
-소프트웨어의 최상위 구조를 보면 **무엇을 하는 시스템인지** 알 수 있어야 한다.
+소프트웨어의 최상위 구조를 보면 **무엇을 하는 시스템인지** 알 수 있어야 한다. 마틴은 최상위 디렉토리 구조와 최상위 패키지의 소스 파일들이 "Health Care System"·"Accounting System"·"Inventory Management System"을 외쳐야지, "Rails"·"Spring/Hibernate"·"ASP"를 외쳐서는 안 된다고 말한다(Martin, "Screaming Architecture", 2011). 아래 두 구조는 정확히 같은 전자상거래 기능(주문·결제·배송)을 담고 있지만, 폴더 이름이 무엇을 소리치는지가 완전히 다르다.
 
 ### 프레임워크가 소리치면 안 된다
 
@@ -78,6 +78,8 @@ flowchart TB
         UTIL[utils/]
     end
 ```
+
+첫 번째 구조는 파일을 **기술적 역할**(컨트롤러, 모델, 뷰)별로 묶는다. Spring MVC를 써본 개발자라면 익숙한 배치지만, 정작 이 폴더들만 봐서는 이 시스템이 무엇을 하는 시스템인지 전혀 알 수 없다:
 
 **나쁜 구조 예시:**
 
@@ -99,10 +101,7 @@ src/
 └── utils/
 ```
 
-이 구조를 보고 무엇을 알 수 있는가?
-- "Spring 앱이구나"
-- "MVC 패턴이구나"
-- **"이 시스템이 뭘 하는지는 모르겠다"**
+이 구조를 보고 알 수 있는 것은 "Spring 앱이구나", "MVC 패턴이구나" 정도이지, 정작 이 시스템이 무엇을 하는지는 알 수 없다. 폴더 이름 어디에도 "주문", "결제", "배송"이라는 이 시스템의 존재 이유가 드러나지 않는다.
 
 ### 도메인이 소리쳐야 한다
 
@@ -115,6 +114,8 @@ flowchart TB
         INV[inventory/]
     end
 ```
+
+두 번째 구조는 같은 클래스들을 **업무 도메인**(주문, 결제, 배송, 재고)별로 묶는다. 각 폴더 안에는 그 도메인의 유스케이스·엔터티·리포지토리가 함께 들어 있어, 폴더 하나만 열어봐도 그 기능이 어떻게 동작하는지 파악할 수 있다:
 
 **좋은 구조 예시:**
 
@@ -139,9 +140,7 @@ src/
     └── InventoryItem.java
 ```
 
-이 구조를 보면 **바로 알 수 있다**:
-- "이건 **전자상거래 시스템**이다"
-- "주문, 결제, 배송, 재고 관리를 한다"
+이 구조를 보면 이건 전자상거래 시스템이며 주문·결제·배송·재고 관리를 한다는 것을 바로 알 수 있다. 사용된 프레임워크(Spring인지 Django인지)는 이 최상위 구조 어디에도 드러나지 않는다 — 그것은 각 도메인 폴더 안쪽, 어댑터 계층의 세부사항일 뿐이다.
 
 ## 비교: 프레임워크 중심 vs 도메인 중심
 
@@ -155,6 +154,8 @@ src/
 ## Ivar Jacobson의 교훈
 
 마틴은 이 개념의 뿌리를 객체지향 소프트웨어 공학의 선구자 **Ivar Jacobson**의 저서 『Object-Oriented Software Engineering: A Use Case Driven Approach』(1992)에서 찾는다. 이 책의 부제("유스케이스 주도 접근")가 이미 핵심을 말해준다 — 소프트웨어 아키텍처는 그 시스템의 유스케이스를 지원하는 구조여야 하며, 프레임워크가 그 자리를 대신해서는 안 된다는 것이다.
+
+`orders/` 폴더 안이 실제로 어떻게 구성되는지 `PlaceOrderUseCase` 하나로 구체화해보면 다음과 같다. 이 유스케이스는 주문·결제·재고라는 세 가지 관심사를 각각 인터페이스(`OrderRepository`, `PaymentGateway`, `InventoryService`) 뒤로 감춰, 유스케이스 자신은 Spring이든 Django든 어떤 프레임워크와도 무관하게 동작한다:
 
 ```java
 // 유스케이스가 명확히 드러나는 구조
@@ -301,7 +302,10 @@ flowchart TB
 | "Spring 앱이다" | "은행 시스템이다 (Spring 사용)" |
 | "Django 프로젝트" | "블로그 플랫폼 (Django 사용)" |
 
+이 차이는 컨트롤러 코드에서 더 분명히 드러난다. 아래 두 `OrderController`는 같은 REST 엔드포인트(`POST /orders`)를 처리하지만, 비즈니스 로직을 컨트롤러(프레임워크 계층)에 두느냐 유스케이스(도메인 계층)에 위임하느냐가 다르다. 앞서 정의한 `Order`, `OrderRepository`, `PlaceOrderUseCase` 등의 타입을 그대로 이어서 사용한다:
+
 ```java
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
@@ -390,11 +394,4 @@ flowchart LR
 
 ## 핵심 요약
 
-| 원칙 | 설명 |
-|------|------|
-| 소리치는 것 | 도메인과 유스케이스 |
-| 숨기는 것 | 프레임워크, DB, 웹 |
-| 최상위 구조 | 비즈니스 기능별 |
-| 테스트 | 프레임워크 없이 가능 |
-
-마틴은 최상위 디렉토리 구조와 최상위 패키지의 소스 파일들이 "Health Care System"·"Accounting System"·"Inventory Management System"을 외쳐야지, "Rails"·"Spring/Hibernate"·"ASP"를 외쳐서는 안 된다고 말한다(Martin, "Screaming Architecture", 2011).
+아키텍처의 최상위 구조는 프레임워크가 아니라 도메인과 유스케이스를 소리쳐야 한다. `BadOrderController`처럼 비즈니스 로직이 컨트롤러에 남아 있으면 폴더명만 바꿔서는 소용없고, `PlaceOrderUseCase`처럼 유스케이스가 인터페이스 뒤로 프레임워크·DB·웹을 감출 때 비로소 웹 서버 없이도 테스트할 수 있는 구조가 된다. 도서관의 청사진이 "도서관"을 외치듯, 좋은 소프트웨어 아키텍처는 그 시스템이 무엇을 하는지를 외쳐야 한다(Martin, 『Clean Architecture』, 2017, 21장).
