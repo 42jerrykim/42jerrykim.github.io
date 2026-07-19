@@ -259,6 +259,8 @@ public class DevMain {
 }
 ```
 
+개발 환경 다음으로, 테스트 환경 Main은 인메모리 대신 실제 SQL 문법을 검증할 수 있는 H2(내장 DB)를, 진짜 Stripe 대신 결제가 실제로 청구되지 않는 샌드박스 모드를 사용한다 — 운영 환경에 더 가까운 조건에서 검증하면서도 여전히 실제 비용은 치르지 않는다:
+
 ```java
 interface OrderRepository { void save(Order order); }
 interface PaymentGateway {}
@@ -483,16 +485,6 @@ Main이 DIP를 위반해도 된다는 것을 "Main은 아무렇게나 짜도 된
 - Robert C. Martin, 『Clean Architecture』(2017), 26장 — Main 컴포넌트의 역할과 위치의 원출처.
 
 ## 핵심 요약
-
-```mermaid
-flowchart TB
-    subgraph MainSummary [Main 컴포넌트 요약]
-        ROLE[역할: 조립과 시작]
-        LEVEL[위치: 가장 저수준]
-        DIRTY[특성: 가장 더러움]
-        PLUGIN[관점: 플러그인]
-    end
-```
 
 | 원칙 | 설명 |
 |------|------|
