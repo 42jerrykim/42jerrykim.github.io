@@ -9,14 +9,12 @@ date: 2026-01-18
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
-  - Software-Architecture(소프트웨어아키텍처)
   - Implementation(구현)
   - Deployment(배포)
   - Testing(테스트)
   - SOLID
   - Coupling(결합도)
   - Cohesion(응집도)
-  - Modularity
   - Interface(인터페이스)
   - Abstraction(추상화)
   - Best-Practices
@@ -24,15 +22,18 @@ tags:
   - Case-Study
   - Technology(기술)
   - System-Design
-  - Design-Pattern(디자인패턴)
-  - Documentation(문서화)
-  - Domain(도메인)
-  - Guide(가이드)
   - Database(데이터베이스)
-  - Backend(백엔드)
   - Microservices(마이크로서비스)
   - Hardware(하드웨어)
   - Embedded(임베디드)
+  - Concentric-Circles(동심원)
+  - Entity
+  - Use-Case
+  - Policy-vs-Detail
+  - Boundary(경계)
+  - System-Lifecycle(시스템생명주기)
+  - Framework-Independence
+  - Curriculum-Roadmap(커리큘럼로드맵)
 ---
 
 지금까지 프로그래밍 패러다임, SOLID 원칙, 컴포넌트 원칙을 살펴보았다. 이 세 가지는 모두 클래스나 컴포넌트처럼 비교적 작은 단위를 다뤘다. 이제 이 모든 것을 통합해 **시스템 전체의 구조**를 결정하는 **아키텍처**를 다룰 차례다.
@@ -110,7 +111,7 @@ flowchart TB
 
 - 동심원 4계층(Entities, Use Cases, Interface Adapters, Frameworks)의 이름과 각 계층의 책임을 나열할 수 있는가?
 - SOLID·컴포넌트 원칙이 왜 "시스템을 몇 개의 큰 영역으로 나눌 것인가"라는 질문에는 답하지 못하는지 설명할 수 있는가?
-- "아키텍처는 특정 기술 선택"이라는 오해와 "아키텍처를 먼저 완벽히 설계해야 한다"는 오해가 각각 왜 틀렸는지 말할 수 있는가?
+- "SOLID·컴포넌트 원칙을 지키면 아키텍처는 저절로 좋아진다"는 오해와 "아키텍처를 먼저 완벽히 설계해야 한다"는 오해가 각각 왜 틀렸는지 말할 수 있는가?
 - 이 파트(25~39장)의 세 흐름(기본 개념 → Clean Architecture 완성 → 실전 세부 주제)이 서로 어떻게 이어지는지 대략적으로 그릴 수 있는가?
 
 ## 참고 자료
