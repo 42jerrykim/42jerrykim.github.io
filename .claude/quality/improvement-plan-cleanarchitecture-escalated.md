@@ -30,15 +30,15 @@
 | **28장** (`28-boundary-anatomy-monolith-to-services`) | 67 → **91.6** | `ServiceLoader` 메커니즘 서술 오류(사실 왜곡) + 코드 컴파일 불가 | ServiceLoader가 클래스패스를 자동 스캔하는 게 아니라 META-INF/services 프로바이더 설정 파일에 등록된 구현체만 로드한다는 사실로 정정(Java 공식 문서 검증). package 선언 2개 공존·public 타입 3개 혼재 등 컴파일 불가 블록을 전부 분리·자기완결화 | **통과**(4회 반복, 치명결함 0). 경미한 후속 여지: package/import 서술과 코드 정합성(critic이 비치명으로 판단) |
 | **30장** (`30-business-rules-entities-usecases`) | 91.6 → **100** | L44-45 직접인용이 원저 두 문장을 하나로 합성한 비-verbatim 인용 | WebSearch로 재검증한 결과 이전 라운드에서 이미 원문과 정확히 일치하는 verbatim 인용으로 수정되어 있었음을 확인. 태그 13개 그라운딩, 코드 전방참조 문제 해결 | **통과**(4회 반복, 만점) |
 
-### Tier 1 — 근소 미달 (90점에 3점 이내, targeted fix로 통과 가능)
+### Tier 1 — 근소 미달 (90점에 3점 이내, targeted fix로 통과 가능) — ✅ 완료 (2026-07-20)
 
-| 챕터 | 점수 | 갭 | 핵심 결함 | 조치 |
-|---|---:|---:|---|---|
-| **03장** (`hexagonal-architecture-ports-adapters`) | 89.2 | 0.8 | 장점/한계 절 문단비율 20%, Order/Money 보조타입 미정의 | 유형 B(Order/Money 스텁 자기완결화) + 유형 C(장점/한계 절에 문단 추가) |
-| **41장** (`database-is-detail-persistence`) | 89.2 | 0.8 | 코드 대비 문단 비율 낮음, 코드블록 3개 연속 배치 | 유형 C — 반복 스텁 클래스 선언을 축약하고 절약된 지면에 설계 근거 문단 추가(3차 채점에서 이미 지적된 정확한 지점: 데이터모델/Repository/DB교체 시나리오 사이) |
-| **07장** (`design-vs-architecture-definition`) | 88.6 | 1.4 | OrderRepository 보조타입 미정의, 무관 태그 5개 | 유형 B + 유형 A |
-| **11장** (`structured-programming-goto-elimination`) | 87.7 | 2.3 | checkCustomerCredit 중복 정의, "로마에서" 서술 미검증 | 유형 B(중복 메서드 정의 제거) + 유형 D("로마에서" 류 역사적 일화 서술을 검증 가능한 문장으로 교정 또는 삭제) |
-| **25장** (`what-is-architecture-system-lifecycle`) | 87.7 | 2.3 | 정책/세부사항 예제 미정의 타입, 1960년대 서술 미검증, 일부 절 표/리스트 의존 | 유형 B + 유형 D + 유형 C |
+| 챕터 | 점수 | 갭 | 핵심 결함 | 조치 | 결과 |
+|---|---:|---:|---|---|---|
+| **03장** (`hexagonal-architecture-ports-adapters`) | 89.2 → **96.1** | 0.8 | 장점/한계 절 문단비율 20%, Order/Money 보조타입 미정의 | 6개 다중-public-type 블록 분리·자기완결화 | **통과**(4회 반복) |
+| **41장** (`database-is-detail-persistence`) | 89.2 → **90.4** | 0.8 | 코드 대비 문단 비율 낮음, 코드블록 3개 연속 배치 | 반복 스텁 압축(18.6%→21.5%), 연결 문단 3곳 추가 | **통과**(4회 반복, 근소) |
+| **07장** (`design-vs-architecture-definition`) | 88.6 → **96.1** | 1.4 | OrderRepository 보조타입 미정의, 무관 태그 18개(재검증) | 자기완결화 + 태그 전면 재구성(승인 10개) | **통과**(4회 반복) |
+| **11장** (`structured-programming-goto-elimination`) | 87.7 → **94.6** | 2.3 | 중복 함수 정의, "로마에서" 미검증, 태그 부족(20개), 메커니즘·다이어그램 불일치 | 3라운드에 걸쳐 goto→불린플래그 메커니즘 예제 추가, 인용 verbatim 검증, 안티패딩 정리 | **통과**(5회 반복) |
+| **25장** (`what-is-architecture-system-lifecycle`) | 87.7 → **93.1** | 2.3 | 정책/세부사항 예제 미정의 타입, 1960년대 서술, 비승인 태그 | 컴파일 불가 3곳 수정, 원저 15장 인용 추가, 태그 조정 | **통과**(5회 반복) |
 
 ### Tier 2 — 중간 갭 (3~6점, 1~2개 지점 집중 수정)
 
