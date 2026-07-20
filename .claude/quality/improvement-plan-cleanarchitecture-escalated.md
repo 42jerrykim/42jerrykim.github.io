@@ -55,7 +55,7 @@
 
 | 챕터 | 점수 | 갭 | 핵심 결함 | 조치 |
 |---|---:|---:|---|---|
-| **27장** (`boundaries-drawing-lines-plugin-architecture`) | 83.2 | 6.8 | WikiPagePersistence 구현체 컴파일 불가(throws 불일치, 미구현 메서드), 무관 태그 4개 | 유형 B(interface-구현 계약 재정합) + 유형 A |
+| **27장** (`boundaries-drawing-lines-plugin-architecture`) | 83.2 → **94.0** | 6.8 | WikiPagePersistence 구현체 컴파일 불가(throws 불일치, 미구현 메서드), 무관 태그 4개 | 유형 B(interface-구현 계약 재정합) + 유형 A. throws Exception 통일, save/findAll 구현 추가, 생성자 추가, 태그 4개 교체 | **통과**(4회 반복) |
 | **08장** (`two-values-behavior-structure`) | 80.2 | 9.8 | 판단기준 얕음, 우선순위 3중 반복, OrderController 미정의 타입 | 판단 기준 절 전면 재작성 + 유형 E + 유형 B |
 | **06장** (`introduction-software-design-architecture`) | 78.7 | 11.3 | 문단비율 34.8%(40% 미달), 인용 출처 미검증, 00장 커리큘럼 표 문구 불일치 | 유형 C(전면적 문단 보강) + 유형 D + 00장과 문구 동기화 |
 | **09장** (`programming-paradigms-introduction`) | 78.1 | 11.9 | 태그 6개 불일치, 흔한 오개념 절 없음 | 유형 A(대량 재검증) + 오개념 절 신설 |
