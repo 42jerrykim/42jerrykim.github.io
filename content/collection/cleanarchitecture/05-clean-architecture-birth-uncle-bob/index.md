@@ -10,29 +10,29 @@ categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
   - SOLID
-  - Software-Architecture(소프트웨어아키텍처)
   - Design-Pattern(디자인패턴)
   - Clean-Code(클린코드)
-  - Dependency-Injection(의존성주입)
   - Testing(테스트)
   - History(역사)
   - Coupling(결합도)
   - Cohesion(응집도)
   - Interface(인터페이스)
   - Abstraction(추상화)
-  - Best-Practices
-  - Maintainability
-  - Refactoring(리팩토링)
   - Case-Study
-  - Deep-Dive
-  - Career(커리어)
   - Agile(애자일)
-  - OOP(객체지향)
   - Domain-Driven-Design
-  - System-Design
-  - Book-Review(서평)
-  - Comparison(비교)
   - Guide(가이드)
+  - Hexagonal-Architecture
+  - Onion-Architecture
+  - BCE-Pattern
+  - DCI-Pattern
+  - Concentric-Circles(동심원)
+  - Object-Mentor
+  - Agile-Manifesto(애자일선언문)
+  - Robert-C-Martin
+  - Dependency-Rule(의존성규칙)
+  - Screaming-Architecture
+  - Deferred-Decisions(결정지연)
 ---
 
 2012년 8월 13일, 로버트 C. 마틴(Robert C. Martin)은 자신의 블로그 "The Clean Code Blog"에 "The Clean Architecture"라는 제목의 글을 게시했다. 이 글은 육각형 아키텍처, 양파 아키텍처, BCE(Boundary-Control-Entity) 등 기존 아키텍처 패턴들의 공통점을 추출하여 하나의 통합된 개념으로 정리했다. 이것이 Clean Architecture의 공식적인 탄생이었다.
@@ -147,6 +147,30 @@ flowchart TB
     style F fill:#69f,stroke:#333,stroke-width:2px
 ```
 
+이 규칙을 코드 한 조각으로 보면, "안쪽 원이 바깥 원의 존재를 모른다"는 말이 실제로 무엇을 뜻하는지 분명해진다.
+
+```java
+// Entities 계층 — 프레임워크·DB를 전혀 언급하지 않는다
+class Order {
+    private boolean paid;
+    void markPaid() { this.paid = true; }
+    boolean isPaid() { return paid; }
+}
+
+// Use Cases 계층 — Entities에만 의존하고, Interface Adapters는 인터페이스로만 안다
+interface OrderPresenter { void present(Order order); }
+class PayOrderUseCase {
+    private final OrderPresenter presenter;
+    PayOrderUseCase(OrderPresenter presenter) { this.presenter = presenter; }
+    void execute(Order order) {
+        order.markPaid();
+        presenter.present(order); // 화면이 웹인지 CLI인지 이 코드는 모른다
+    }
+}
+```
+
+`Order`는 `PayOrderUseCase`의 존재를 모르고, `PayOrderUseCase`는 `OrderPresenter`를 구현하는 것이 REST 컨트롤러인지 콘솔 출력인지 모른다 — 화살표(의존성)가 항상 안쪽으로만 향한다는 것은 이런 식으로 "바깥쪽 타입을 import하지 않는다"는 구체적인 코드 규율로 나타난다.
+
 ## 선행 아키텍처의 통합
 
 마틴은 기존 아키텍처들에서 각각 다른 요소를 가져와 통합했다. 이 절은 "무엇을 어디서 가져왔는지"를 정리한다 — 즉 Clean Architecture는 무(無)에서 나온 발명이 아니라, 여러 선행 아키텍처가 독립적으로 도달한 공통 결론을 정제한 결과라는 뜻이다.
@@ -221,6 +245,12 @@ timeline
 ### Uncle Bob의 메시지
 
 마틴은 Clean Architecture를 통해 한 가지 핵심 메시지를 전달한다(Martin, *Clean Architecture*, 2017). 소프트웨어의 부드러움(soft)을 지키려면 변경하기 쉬워야 하고, 변경하기 쉬우려면 중요한 것(비즈니스 로직)이 중요하지 않은 것(세부사항)에 의존하지 않아야 한다는 것이다.
+
+## 흔한 오해
+
+"Clean Code·Clean Coder·Clean Architecture는 같은 내용을 반복하는 시리즈"라는 오해가 흔하다. 실제로는 세 책이 서로 다른 층위를 다룬다 — Clean Code는 함수·변수 이름 같은 코드 한 줄 수준, Clean Coder는 마감을 지키는 법 같은 개발자의 태도, Clean Architecture는 시스템 전체의 구조다. 세 층위 모두 "변경하기 쉬운 소프트웨어"라는 같은 목표를 다른 각도에서 다룰 뿐, 내용이 겹치지 않는다.
+
+또 다른 오해는 "2012년 블로그 포스트는 2017년 책이 나온 뒤로는 낡은 자료"라는 생각이다. 책은 블로그 포스트의 아이디어를 확장한 것이지 대체한 것이 아니다 — 블로그 포스트는 여전히 Dependency Rule의 핵심을 몇 문단으로 압축해 보여주는 가장 빠른 입문 자료로 남아 있으며, 이 시리즈의 여러 장에서도 원 출처로 함께 인용한다.
 
 ## 핵심 요약
 
