@@ -202,6 +202,8 @@ public class OrderEntity {
 }
 ```
 
+`OrderEntity`에는 `cancel()`이나 `calculateTotal()` 같은 메서드가 없다는 점에 주목한다 — getter/setter 외에는 아무 로직도 없는 순수한 데이터 컨테이너다. 아래 `Order`는 정반대로, 필드는 비슷하지만 그 필드를 조작하는 규칙을 직접 캡슐화한다.
+
 ```java
 import java.math.BigDecimal;
 import java.util.List;
@@ -319,6 +321,8 @@ public interface OrderRepository {
 }
 ```
 
+이 인터페이스를 실제 JPA로 구현하면 다음과 같다 — 구현체는 `JpaOrderEntityRepository`(Spring Data JPA)와 앞서 정의한 `OrderMapper`를 조합해 인터페이스의 계약을 만족시킨다.
+
 ```java
 import java.util.Optional;
 import java.util.List;
@@ -385,54 +389,25 @@ import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
-class OrderId { private final Long value; OrderId(Long value) { this.value = value; } Long getValue() { return value; } }
-class CustomerId { private final Long value; CustomerId(Long value) { this.value = value; } Long getValue() { return value; } }
-class Customer {
-    private final CustomerId id;
-    Customer(CustomerId id) { this.id = id; }
-    CustomerId getId() { return id; }
-}
-class Money {
-    static final Money ZERO = new Money(BigDecimal.ZERO);
-    private final BigDecimal amount;
-    Money(BigDecimal amount) { this.amount = amount; }
-    Money add(Money other) { return new Money(amount.add(other.amount)); }
-    BigDecimal getAmount() { return amount; }
-}
-class OrderItem {
-    private final Money subtotal;
-    OrderItem(Money subtotal) { this.subtotal = subtotal; }
-    Money getSubtotal() { return subtotal; }
-}
+// 이전 절과 동일한 도메인 타입 — 지면상 필드 접근자만 한 줄로 압축해 재선언
+class OrderId { private final Long v; OrderId(Long v) { this.v = v; } Long getValue() { return v; } }
+class CustomerId { private final Long v; CustomerId(Long v) { this.v = v; } Long getValue() { return v; } }
+class Customer { private final CustomerId id; Customer(CustomerId id) { this.id = id; } CustomerId getId() { return id; } }
+class Money { static final Money ZERO = new Money(BigDecimal.ZERO); private final BigDecimal amount; Money(BigDecimal amount) { this.amount = amount; } Money add(Money o) { return new Money(amount.add(o.amount)); } BigDecimal getAmount() { return amount; } }
+class OrderItem { private final Money subtotal; OrderItem(Money subtotal) { this.subtotal = subtotal; } Money getSubtotal() { return subtotal; } }
 enum OrderStatus { CREATED, SHIPPED, CANCELLED }
 class Order {
-    private final OrderId id;
-    private final Customer customer;
-    private final List<OrderItem> items;
-    private OrderStatus status;
-    Order(OrderId id, Customer customer, List<OrderItem> items, OrderStatus status) {
-        this.id = id; this.customer = customer; this.items = items; this.status = status;
-    }
-    OrderId getId() { return id; }
-    Customer getCustomer() { return customer; }
-    List<OrderItem> getItems() { return items; }
-    OrderStatus getStatus() { return status; }
+    private final OrderId id; private final Customer customer; private final List<OrderItem> items; private OrderStatus status;
+    Order(OrderId id, Customer customer, List<OrderItem> items, OrderStatus status) { this.id = id; this.customer = customer; this.items = items; this.status = status; }
+    OrderId getId() { return id; } Customer getCustomer() { return customer; } List<OrderItem> getItems() { return items; } OrderStatus getStatus() { return status; }
 }
-
 class OrderItemEntity { BigDecimal amount; }
 class OrderEntity {
-    private Long id;
-    private Long customerId;
-    private List<OrderItemEntity> items;
-    private String status;
-    Long getId() { return id; }
-    void setId(Long id) { this.id = id; }
-    Long getCustomerId() { return customerId; }
-    void setCustomerId(Long customerId) { this.customerId = customerId; }
-    List<OrderItemEntity> getItems() { return items; }
-    void setItems(List<OrderItemEntity> items) { this.items = items; }
-    String getStatus() { return status; }
-    void setStatus(String status) { this.status = status; }
+    private Long id; private Long customerId; private List<OrderItemEntity> items; private String status;
+    Long getId() { return id; } void setId(Long id) { this.id = id; }
+    Long getCustomerId() { return customerId; } void setCustomerId(Long customerId) { this.customerId = customerId; }
+    List<OrderItemEntity> getItems() { return items; } void setItems(List<OrderItemEntity> items) { this.items = items; }
+    String getStatus() { return status; } void setStatus(String status) { this.status = status; }
 }
 
 // 데이터 모델 ↔ 비즈니스 모델 변환
@@ -506,20 +481,15 @@ import java.util.Optional;
 import java.util.List;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-class OrderId { private final Long value; OrderId(Long value) { this.value = value; } Long getValue() { return value; } }
-class CustomerId { private final Long value; CustomerId(Long value) { this.value = value; } Long getValue() { return value; } }
+// 이전 절과 동일한 도메인 타입, 한 줄로 압축 재선언
+class OrderId { private final Long v; OrderId(Long v) { this.v = v; } Long getValue() { return v; } }
+class CustomerId { private final Long v; CustomerId(Long v) { this.v = v; } Long getValue() { return v; } }
 class Customer { private final CustomerId id; Customer(CustomerId id) { this.id = id; } CustomerId getId() { return id; } }
 enum OrderStatus { CREATED, SHIPPED, CANCELLED }
 class Order {
-    private final OrderId id;
-    private final Customer customer;
-    private OrderStatus status;
-    Order(OrderId id, Customer customer, OrderStatus status) {
-        this.id = id; this.customer = customer; this.status = status;
-    }
-    OrderId getId() { return id; }
-    Customer getCustomer() { return customer; }
-    OrderStatus getStatus() { return status; }
+    private final OrderId id; private final Customer customer; private OrderStatus status;
+    Order(OrderId id, Customer customer, OrderStatus status) { this.id = id; this.customer = customer; this.status = status; }
+    OrderId getId() { return id; } Customer getCustomer() { return customer; } OrderStatus getStatus() { return status; }
 }
 interface OrderRepository {
     void save(Order order);
@@ -571,6 +541,8 @@ public class MongoOrderRepository implements OrderRepository {
     }
 }
 ```
+
+이 교체가 코드 한 줄도 건드리지 않는 계층이 하나 더 있다 — `PlaceOrderUseCase`다. Use Case는 `OrderRepository` 인터페이스만 주입받으므로, 그 뒤에 `JpaOrderRepository`가 있든 `MongoOrderRepository`가 있든 전혀 알지 못한다.
 
 ```java
 class OrderId {}
