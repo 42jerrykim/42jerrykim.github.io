@@ -1,0 +1,78 @@
+<svg viewBox="0 0 620 380" xmlns="http://www.w3.org/2000/svg" font-family="'Pretendard', -apple-system, 'Segoe UI', sans-serif">
+  <title>병렬 실행 시나리오 (a)/(b)/(c) 타임라인 비교</title>
+  <rect x="0" y="0" width="620" height="380" rx="10" fill="#21252b"/>
+
+  <text x="20" y="26" font-size="15" font-weight="700" fill="#e6e6e6">세 병렬 실행 시나리오 비교 (A1이 B1·A2에 의존하는 경우)</text>
+
+  <!-- legend -->
+  <rect x="20" y="38" width="12" height="12" rx="2" fill="#e0763c"/>
+  <text x="37" y="48" font-size="11" fill="#c7cad1">critical path 구간</text>
+  <rect x="160" y="38" width="12" height="12" rx="2" fill="#565c6b"/>
+  <text x="177" y="48" font-size="11" fill="#c7cad1">critical path 아님</text>
+  <rect x="300" y="38" width="12" height="12" rx="2" fill="none" stroke="#8a90a0" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <text x="317" y="48" font-size="11" fill="#c7cad1">길이가 원문에 명시되지 않음(개념적 표시)</text>
+
+  <!-- Panel A: 순차 실행 -->
+  <text x="20" y="78" font-size="13" font-weight="600" fill="#e6e6e6">(a) 순차 실행 — 총 35ms</text>
+  <g>
+    <rect x="70" y="84" width="70" height="32" rx="4" fill="#4f83cc"/>
+    <text x="105" y="104" font-size="11" fill="#fff" text-anchor="middle">A1 5ms</text>
+    <rect x="140" y="84" width="280" height="32" rx="4" fill="#e0763c"/>
+    <text x="280" y="104" font-size="11" fill="#fff" text-anchor="middle">B1 20ms</text>
+    <rect x="420" y="84" width="112" height="32" rx="4" fill="#4f83cc"/>
+    <text x="476" y="104" font-size="11" fill="#fff" text-anchor="middle">A1 8ms</text>
+    <rect x="532" y="84" width="28" height="32" rx="4" fill="#4f83cc"/>
+    <text x="566" y="104" font-size="10" fill="#c7cad1" text-anchor="start">A2 2ms</text>
+  </g>
+
+  <!-- Panel B: B1·A2 병렬 -->
+  <text x="20" y="152" font-size="13" font-weight="600" fill="#e6e6e6">(b) B1·A2 병렬 실행 — 총 33ms</text>
+  <text x="20" y="174" font-size="10" fill="#9aa0ac" text-anchor="start">메인</text>
+  <g>
+    <rect x="70" y="158" width="70" height="32" rx="4" fill="#4f83cc"/>
+    <text x="105" y="178" font-size="11" fill="#fff" text-anchor="middle">A1 5ms</text>
+    <rect x="140" y="158" width="280" height="32" rx="4" fill="#e0763c"/>
+    <text x="280" y="178" font-size="11" fill="#fff" text-anchor="middle">B1 20ms</text>
+    <rect x="420" y="158" width="112" height="32" rx="4" fill="#4f83cc"/>
+    <text x="476" y="178" font-size="11" fill="#fff" text-anchor="middle">A1 8ms</text>
+  </g>
+  <text x="20" y="210" font-size="10" fill="#9aa0ac" text-anchor="start">병렬</text>
+  <g>
+    <rect x="140" y="194" width="28" height="32" rx="4" fill="#565c6b"/>
+    <text x="172" y="214" font-size="10" fill="#9aa0ac" text-anchor="start">A2 2ms (critical 아님)</text>
+  </g>
+
+  <!-- Panel C: 부모·자식 중첩 -->
+  <text x="20" y="262" font-size="13" font-weight="600" fill="#e6e6e6">(c) 부모·자식 노드 중첩 실행 — 총 27ms</text>
+  <text x="20" y="284" font-size="10" fill="#9aa0ac" text-anchor="start">메인</text>
+  <g>
+    <rect x="70" y="268" width="42" height="32" rx="4" fill="#4f83cc"/>
+    <text x="91" y="288" font-size="9" fill="#fff" text-anchor="middle">3ms</text>
+    <rect x="112" y="268" width="196" height="32" rx="4" fill="#e0763c"/>
+    <text x="210" y="288" font-size="11" fill="#fff" text-anchor="middle">B1 14ms</text>
+    <rect x="308" y="268" width="140" height="32" rx="4" fill="#e0763c"/>
+    <text x="378" y="288" font-size="11" fill="#fff" text-anchor="middle">A1 마무리 10ms</text>
+  </g>
+  <text x="20" y="320" font-size="10" fill="#9aa0ac" text-anchor="start">병렬</text>
+  <g>
+    <rect x="112" y="304" width="112" height="32" rx="4" fill="none" stroke="#8a90a0" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="168" y="324" font-size="11" fill="#9aa0ac" text-anchor="middle">A1 병렬 연산</text>
+  </g>
+
+  <!-- axis -->
+  <line x1="70" y1="343" x2="560" y2="343" stroke="#565c6b" stroke-width="1"/>
+  <g stroke="#565c6b" stroke-width="1">
+    <line x1="70" y1="343" x2="70" y2="348"/>
+    <line x1="210" y1="343" x2="210" y2="348"/>
+    <line x1="350" y1="343" x2="350" y2="348"/>
+    <line x1="490" y1="343" x2="490" y2="348"/>
+    <line x1="560" y1="343" x2="560" y2="348"/>
+  </g>
+  <g font-size="10" fill="#9aa0ac" text-anchor="middle">
+    <text x="70" y="360">0ms</text>
+    <text x="210" y="360">10ms</text>
+    <text x="350" y="360">20ms</text>
+    <text x="490" y="360">30ms</text>
+    <text x="560" y="360">35ms</text>
+  </g>
+</svg>

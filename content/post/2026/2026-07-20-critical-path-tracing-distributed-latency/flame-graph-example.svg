@@ -1,0 +1,51 @@
+<svg viewBox="0 0 720 270" xmlns="http://www.w3.org/2000/svg" font-family="'Pretendard', -apple-system, 'Segoe UI', sans-serif">
+  <title>Critical Path 기반 Flame Graph 개념도</title>
+  <rect x="0" y="0" width="720" height="270" rx="10" fill="#21252b"/>
+
+  <text x="30" y="24" font-size="14" font-weight="700" fill="#e6e6e6">예시: Critical Path 기반 Flame Graph (시나리오 b, 총 33ms)</text>
+
+  <!-- row 0: root -->
+  <rect x="30" y="40" width="660" height="46" rx="4" fill="#3a3f4b"/>
+  <text x="360" y="68" font-size="13" fill="#e6e6e6" text-anchor="middle">요청 처리 · critical path 총 33ms</text>
+
+  <!-- row 1: A1 / B1 / A1 -->
+  <rect x="30" y="92" width="100" height="46" rx="4" fill="#4f83cc"/>
+  <text x="80" y="120" font-size="12" fill="#fff" text-anchor="middle">A1 5ms</text>
+  <rect x="130" y="92" width="400" height="46" rx="4" fill="#e0763c"/>
+  <text x="330" y="120" font-size="12" fill="#fff" text-anchor="middle">B1 20ms</text>
+  <rect x="530" y="92" width="160" height="46" rx="4" fill="#4f83cc"/>
+  <text x="610" y="120" font-size="12" fill="#fff" text-anchor="middle">A1 8ms</text>
+
+  <!-- row 2: B1's own breakdown, nested under B1 -->
+  <rect x="130" y="144" width="80" height="46" rx="4" fill="#565c6b"/>
+  <text x="170" y="172" font-size="11" fill="#e6e6e6" text-anchor="middle">B1 4ms</text>
+  <rect x="210" y="144" width="240" height="46" rx="4" fill="#d9534f"/>
+  <text x="330" y="172" font-size="12" fill="#fff" text-anchor="middle">B2 12ms</text>
+  <rect x="450" y="144" width="80" height="46" rx="4" fill="#565c6b"/>
+  <text x="490" y="172" font-size="11" fill="#e6e6e6" text-anchor="middle">B1 기타 4ms</text>
+
+  <!-- axis -->
+  <line x1="30" y1="204" x2="690" y2="204" stroke="#565c6b" stroke-width="1"/>
+  <g stroke="#565c6b" stroke-width="1">
+    <line x1="30" y1="204" x2="30" y2="209"/>
+    <line x1="230" y1="204" x2="230" y2="209"/>
+    <line x1="430" y1="204" x2="430" y2="209"/>
+    <line x1="630" y1="204" x2="630" y2="209"/>
+    <line x1="690" y1="204" x2="690" y2="209"/>
+  </g>
+  <g font-size="10" fill="#9aa0ac" text-anchor="middle">
+    <text x="30" y="222">0ms</text>
+    <text x="230" y="222">10ms</text>
+    <text x="430" y="222">20ms</text>
+    <text x="630" y="222">30ms</text>
+    <text x="690" y="222">33ms</text>
+  </g>
+
+  <!-- legend -->
+  <rect x="30" y="238" width="12" height="12" rx="2" fill="#e0763c"/>
+  <text x="47" y="248" font-size="10" fill="#c7cad1">1단계 critical 구간(B1)</text>
+  <rect x="220" y="238" width="12" height="12" rx="2" fill="#d9534f"/>
+  <text x="237" y="248" font-size="10" fill="#c7cad1">B1 내부 critical 구간(B2)</text>
+  <rect x="430" y="238" width="12" height="12" rx="2" fill="#565c6b"/>
+  <text x="447" y="248" font-size="10" fill="#c7cad1">B1 자체 처리(세부 미상)</text>
+</svg>
