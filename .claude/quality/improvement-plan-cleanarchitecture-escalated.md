@@ -48,7 +48,7 @@
 | **10장** (`paradigm-overview-three-types`) | 86.2 → **92.2** | 3.8 | 태그 3개 불일치, 리스트 의존·매핑 3중 반복 | 유형 A + 유형 C + 유형 E | **통과**(4회 반복) |
 | **24장** (`architecture-introduction-system-design`) | 85.9 → **97.0** | 4.1 | 학습목표 문항이 본문 "흔한 오해" 절과 불일치, 태그 11개 근거 약함 | 학습목표 문항을 본문과 정합화 + 유형 A(태그 대량 재검증) | **통과**(4회 반복) |
 | **05장** (`clean-architecture-birth-uncle-bob`) | 85 → **97.0** | 5.0 | 코드 예제 전무, 흔한 오해 절 부재 | Dependency Rule을 보여주는 Order/OrderPresenter/PayOrderUseCase 예제 신설, "흔한 오해" 절(Clean 시리즈 혼동·2012 블로그 obsolete 오해) 추가, 태그 11개 재구성 | **통과**(4회 반복) |
-| **29장** (`policy-and-level-high-level-dependency`) | 84.7 | 5.3 | 무관 태그 4개, 인용 페이지 미표기, 수준/변경빈도 절 중복 | 유형 A + 유형 D(검증 불가 인용→패러프레이즈 전환) + 유형 E. 1차 87.7(미달)까지 개선 후 2차 수정 진행 중 | 진행중(3회차 재채점 대기) |
+| **29장** (`policy-and-level-high-level-dependency`) | 84.7 → **93.1** | 5.3 | 무관 태그 4개, 인용 페이지 미표기, 수준/변경빈도 절 중복 | 유형 A + 유형 D(검증 불가 인용→패러프레이즈 전환) + 유형 E. 1차 87.7 미달 → 무관 태그 5개 재교체(태그 재검증 중 4개→5개로 확대) + 리스트/표-only 절 3곳 전환 문단 보강 | **통과**(5회 반복) |
 | **02장** (`layered-architecture-limitations-history`) | 84.1 → **90.7** | 5.9 | 일부 절 리스트-only, MVC 상세절이 00장 배정범위 이탈 | MVC 변형(MVP/MVVM/MVI) 상세 비교 제거, MVC를 3계층 Presentation Layer 구체화로 재구성 + 리스트-only 절에 연결 문단 추가 | **통과**(4회 반복) |
 
 ### Tier 3 — 큰 갭 (6점 이상, 사실상 재작성 수준)
