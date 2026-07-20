@@ -9,16 +9,16 @@ date: 2026-01-18
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
-  - Security(보안)
+  - Encryption(암호화)
   - Dependency-Injection(의존성주입)
   - Software-Architecture(소프트웨어아키텍처)
   - IO(Input/Output)
   - Algorithm(알고리즘)
   - Interface(인터페이스)
   - Abstraction(추상화)
-  - Code-Quality(코드품질)
-  - Design-Pattern(디자인패턴)
-  - Coupling(결합도)
+  - Caesar-Cipher(카이사르암호)
+  - Policy(정책)
+  - Level(수준)
   - Java
   - Best-Practices
   - Maintainability
@@ -166,6 +166,9 @@ flowchart TB
 
 ```java
 // 고수준이 저수준에 의존 - 나쁜 설계
+class ConsoleReader { char readChar() { return 'a'; } }
+class ConsoleWriter { void writeChar(char c) { System.out.print(c); } }
+
 public class Encrypter {
     private ConsoleReader reader;   // 저수준에 의존!
     private ConsoleWriter writer;   // 저수준에 의존!
@@ -273,17 +276,7 @@ public class EncryptionService {
 
 ## 수준과 변경
 
-```mermaid
-flowchart TB
-    subgraph Levels [수준별 변경 특성]
-        HIGH[고수준<br/>비즈니스 규칙<br/>변경 적음]
-        MID[중간 수준<br/>유스케이스<br/>가끔 변경]
-        LOW[저수준<br/>입출력<br/>자주 변경]
-    end
-    
-    LOW -->|의존| MID
-    MID -->|의존| HIGH
-```
+앞서 "왜 거리가 중요한가?" 절에서 거리와 안정성의 관계를 다이어그램으로 봤다면, 여기서는 각 수준이 구체적으로 **무엇 때문에** 바뀌는지를 짚는다. 변경 빈도가 다르다는 사실 자체보다, 그 변경을 일으키는 원인이 수준마다 다르다는 점이 의존성 방향을 결정하는 진짜 이유다.
 
 | 수준 | 변경 빈도 | 변경 이유 |
 |------|----------|----------|
@@ -297,6 +290,8 @@ flowchart TB
 
 ```java
 // 저수준이 변경되어도 고수준은 영향 없음
+interface CharReader { int readChar(); }
+interface Encrypt { char encrypt(char c); }
 
 // 콘솔 → 파일로 변경
 public class FileCharReader implements CharReader {
@@ -331,7 +326,7 @@ public class CaesarCipher implements Encrypt {
 
 ## 아키텍처에 적용
 
-이 장에서 다룬 "수준"은 Clean Architecture의 동심원과 정확히 같은 축이다. Entities는 가장 안정적인 업무 규칙이므로 가장 고수준이고, Gateways·DB는 입출력에 가장 가까운 세부사항이므로 가장 저수준이다. 의존성이 저수준에서 고수준으로 흐른다는 이 장의 규칙은, 곧 동심원에서 바깥쪽이 안쪽으로 의존해야 한다는 규칙과 동일하다.
+이 장에서 다룬 "수준"은 Clean Architecture의 동심원과 정확히 같은 축이다. Entities는 가장 안정적인 업무 규칙이므로 가장 고수준이고, Gateways·DB는 입출력에 가장 가까운 세부사항이므로 가장 저수준이다. 의존성이 저수준에서 고수준으로 흐른다는 이 장의 규칙은, 곧 동심원에서 바깥쪽이 안쪽으로 의존해야 한다는 규칙과 동일하다. 이 고수준 정책이 구체적으로 무엇으로 이루어지는지는 [30장: 업무 규칙](/post/clean-architecture/business-rules-entities-usecases/)에서 엔터티와 유스케이스로 나눠 다룬다.
 
 ```mermaid
 flowchart TB
@@ -381,12 +376,3 @@ flowchart TB
 | 의존성 방향 | 저수준 → 고수준 |
 | 고수준의 특징 | 안정적, 변경 적음 |
 | 저수준의 특징 | 불안정, 변경 많음 |
-
-마틴은 수준이 높을수록 변경이 적고, 수준이 낮을수록 변경이 많다고 말한다. 따라서 의존성은 고수준을 향해야 한다(Martin, 『Clean Architecture』, 2017, 19장).
-
-```mermaid
-flowchart LR
-    CHANGE[변경] --> LOW[저수준]
-    LOW -->|의존| HIGH[고수준]
-    HIGH -.->|영향 없음| CHANGE
-```
