@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 240
 image: "wordcloud.png"
 description: "아키텍처란 무엇이며, 좋은 아키텍처의 목표는 무엇인지 소개합니다. SOLID·컴포넌트 원칙만으로는 시스템 구조가 왜 부족한지 짚고, Clean Architecture의 동심원 구조와 이후 15개 장의 로드맵을 제시합니다."
 title: "[Clean Architecture] 24. 아키텍처 서론"
 slug: architecture-introduction-system-design
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 50
 image: "wordcloud.png"
 description: "Clean Architecture의 탄생 과정을 추적합니다. Robert C. Martin(Uncle Bob)의 배경, 2012년 블로그 포스트, 2017년 책 출간까지의 여정과 선행 패턴들이 어떻게 통합되었는지 설명합니다."
 title: "[Clean Architecture] 05. 클린 아키텍처의 탄생"
 slug: clean-architecture-birth-uncle-bob
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

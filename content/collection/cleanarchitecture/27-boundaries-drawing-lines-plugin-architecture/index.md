@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 270
 image: "wordcloud.png"
 description: "아키텍처에서 경계를 긋는 방법과 시점을 다룹니다. 비즈니스 규칙과 세부사항 사이에 경계를 설정해 플러그인 아키텍처를 구현하는 방법을, 마틴의 FitNesse 프로젝트 실제 사례와 결제 게이트웨이 예제로 자세히 설명합니다."
 title: "[Clean Architecture] 27. 경계: 선 긋기와 플러그인 아키텍처"
 slug: boundaries-drawing-lines-plugin-architecture
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

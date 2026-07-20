@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 260
 image: "wordcloud.png"
 description: "좋은 아키텍처가 제공해야 하는 네 가지 독립성을 다룹니다. 유스케이스, 운영, 개발, 배포의 독립성을 확보하는 방법과 진짜 중복·우발적 중복을 구분해 함정을 피하는 전략, 소스·바이너리·서비스 세 가지 디커플링 모드를 예제와 함께 설명합니다."
 title: "[Clean Architecture] 26. 독립성: 유스케이스, 운영, 개발, 배포"
 slug: independence-usecase-operation-development
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

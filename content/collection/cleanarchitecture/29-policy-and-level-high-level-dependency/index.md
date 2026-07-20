@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 290
 image: "wordcloud.png"
 description: "정책의 수준(Level)과 의존성 방향의 관계를 다룹니다. 고수준 정책과 저수준 정책을 입출력으로부터의 거리를 기준으로 구분하고, 암호화 프로그램 예제로 의존성이 고수준을 향해야 하는 이유를 아주 자세히 설명합니다."
 title: "[Clean Architecture] 29. 정책과 수준"
 slug: policy-and-level-high-level-dependency
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

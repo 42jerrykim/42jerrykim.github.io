@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 90
 image: "wordcloud.png"
 description: "소프트웨어 아키텍처와 프로그래밍 패러다임의 기초를 다룹니다. 최초의 코드 작성부터 어셈블러, 컴파일러, 다양한 언어의 탄생과 세 가지 프로그래밍 패러다임의 변천사, 그리고 이들이 소프트웨어 설계에 끼친 영향을 체계적으로 설명합니다."
 title: "[Clean Architecture] 09. 프로그래밍 패러다임 서론"
 slug: programming-paradigms-introduction
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

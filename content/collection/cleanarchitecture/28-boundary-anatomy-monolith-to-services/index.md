@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 280
 image: "wordcloud.png"
 description: "경계의 다양한 구현 방식을 다룹니다. 함수 호출, 컴포넌트(ServiceLoader), 로컬 프로세스, 서비스까지 경계 횡단의 물리적 형태와 각각의 지연 시간·비용·복잡성 트레이드오프를 컴파일 가능한 Java 예제와 비교표로 자세히 설명합니다."
 title: "[Clean Architecture] 28. 경계 해부학: 모놀리스에서 서비스까지"
 slug: boundary-anatomy-monolith-to-services
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

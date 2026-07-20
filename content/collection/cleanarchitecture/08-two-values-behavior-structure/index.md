@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 80
 image: "wordcloud.png"
 description: "소프트웨어가 제공하는 두 가지 핵심 가치인 행위(기능)와 구조(아키텍처)에 대해 설명합니다. 왜 두 가치가 모두 중요하며, 소프트웨어를 변경하기 쉽게 만드는 것이 장기적으로 얼마나 큰 가치를 가지는지 아이젠하워 매트릭스와 함께 다룹니다."
 title: "[Clean Architecture] 08. 두 가지 가치: 행위와 구조"
 slug: two-values-behavior-structure
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

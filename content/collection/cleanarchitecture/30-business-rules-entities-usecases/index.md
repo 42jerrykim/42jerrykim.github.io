@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 300
 image: "wordcloud.png"
 description: "업무 규칙의 두 가지 유형인 엔터티와 유스케이스를 다룹니다. 핵심 업무 규칙과 애플리케이션 특화 규칙의 차이, 요청/응답 모델의 설계 방법을 대출 신청 예제와 컴파일 가능한 Java 코드로 자세히 설명하고, JPA 엔터티와의 혼동도 함께 정리합니다."
 title: "[Clean Architecture] 30. 업무 규칙: 엔터티와 유스케이스"
 slug: business-rules-entities-usecases
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

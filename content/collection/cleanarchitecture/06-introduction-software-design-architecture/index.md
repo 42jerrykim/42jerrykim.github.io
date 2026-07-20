@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 60
 image: "wordcloud.png"
 description: "1부 소개에서는 소프트웨어를 단순히 '동작하게 만드는 것'과 올바르게 설계하여 '유지보수와 확장성까지 갖춘 제대로 된 시스템'을 만드는 것의 차이를 설명합니다. 경험이 부족한 개발자와 열정적인 전문가의 태도 차이, 그리고 훌륭한 아키텍처의 중요성을 다룹니다."
 title: "[Clean Architecture] 06. 서론: 설계와 아키텍처"
 slug: introduction-software-design-architecture
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

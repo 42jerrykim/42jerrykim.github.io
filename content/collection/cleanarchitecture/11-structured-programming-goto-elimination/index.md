@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 110
 image: "wordcloud.png"
 description: "1968년 데이크스트라가 발견한 구조적 프로그래밍의 핵심을 다룹니다. goto문 해로움 논쟁, 순차/선택/반복 구조, 기능적 분해와 증명 가능한 프로그램의 개념을 반증 가능성 이론, 그리고 goto에 대한 흔한 오해와 함께 상세히 설명합니다."
 title: "[Clean Architecture] 11. 구조적 프로그래밍"
 slug: structured-programming-goto-elimination
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

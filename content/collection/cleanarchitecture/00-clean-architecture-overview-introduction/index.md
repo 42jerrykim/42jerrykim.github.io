@@ -1,10 +1,10 @@
 ---
-draft: true
+draft: false
 collection_order: 0
 title: "[Clean Architecture] 00. 클린 아키텍처 개요"
 slug: getting-started-clean-architecture
 date: 2024-01-01
-last_modified_at: 2026-01-18
+last_modified_at: 2026-07-20
 description: "Clean Architecture는 Robert C. Martin이 제안한 소프트웨어 설계 원칙으로, 의존성 역전과 경계 분리를 통해 유지보수성, 테스트 용이성, 유연성을 극대화합니다. 동심원 구조와 의존성 규칙, 그리고 이 시리즈 45개 챕터의 전체 커리큘럼을 함께 소개합니다."
 image: "wordcloud.png"
 categories: Clean Architecture

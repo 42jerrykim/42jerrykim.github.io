@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 70
 image: "wordcloud.png"
 description: "설계(Design)와 아키텍처(Architecture)의 개념적 차이와 공통점을 다룹니다. 둘 사이에는 차이가 없으며, 좋은 아키텍처의 목표는 인력 최소화라는 실무적 관점을 실제와 유사한 사례 연구, 그리고 '나중에 정리하면 된다'는 거짓말에 대한 반박과 함께 설명합니다."
 title: "[Clean Architecture] 07. 설계와 아키텍처란?"
 slug: design-vs-architecture-definition
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

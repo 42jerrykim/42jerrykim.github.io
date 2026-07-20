@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 250
 image: "wordcloud.png"
 description: "아키텍처의 정의와 시스템 생명주기 전반에 걸친 목표를 다룹니다. 개발, 배포, 운영, 유지보수를 지원하는 좋은 아키텍처의 특성, 결정 지연의 가치, 정책과 세부사항의 분리를 실제 코드 예제와 함께 자세히 설명합니다."
 title: "[Clean Architecture] 25. 아키텍처란?"
 slug: what-is-architecture-system-lifecycle
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
