@@ -11,7 +11,7 @@
 |---------|---------:|--------|-------:|------|---------------|
 | content/collection/multithreading-design-patterns/12-coroutine-reinterpretation/index.md | 93.1 | 2026-07-09 | 2 | 통과 | 없음(경미: ActiveObject 104줄 코드 블록의 문단 비율) |
 | content/collection/multithreading-design-patterns/13-lockfree-reclamation/index.md | 96.1 | 2026-07-09 | 2 | 통과 | 없음 |
-| content/collection/cleanarchitecture/00-clean-architecture-overview-introduction/index.md | 86.2 | 2026-07-18 | 3 | 에스컬레이션 | 항목3 구조(리스트-only 절 다수), 항목4 안티패딩("핵심 개념" 절과 코드 도입부 문장 중복), 항목5 코드(Java 예제 import/보조타입 미정의), 항목7 Edge-Cases 태그가 본문과 불일치 |
+| content/collection/cleanarchitecture/00-clean-architecture-overview-introduction/index.md | 94.0 | 2026-07-20 | 6 | 통과 | 없음(경미: OrderController placeOrder() 반환타입 제네릭 불일치, 어댑터 블록 내 public 클래스 2개 공존, Concentric-Circles 태그 tags.yaml 미등재) |
 | content/collection/cleanarchitecture/01-architecture-history-evolution-introduction/index.md | 91 | 2026-07-18 | 2 | 통과 | 없음(경미: 흔한 오해 절 부재, 다음장 하이퍼링크 없음) |
 | content/collection/cleanarchitecture/02-layered-architecture-limitations-history/index.md | 90.7 | 2026-07-20 | 4 | 통과 | 없음(경미: Reenskaug 1979 인용 서지사항 검증 링크 부재, 프레임워크종속성/계층건너뛰기 절 코드 뒤 해설 여지) |
 | content/collection/cleanarchitecture/03-hexagonal-architecture-ports-adapters/index.md | 96.1 | 2026-07-20 | 4 | 통과 | 없음(경미: 장점/한계 절 일부 문단 확장 여지) |
