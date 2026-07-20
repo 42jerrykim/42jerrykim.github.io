@@ -983,7 +983,7 @@ graph TD
 | 클라우드 호스팅, `font-display` 미지원 또는 제어 필요 | **FOUT with Class** | CSS Font Loader API 또는 FontFaceObserver |
 | 자체 호스팅, 최대 성능 추구 | **Critical FOFT**(또는 Preload/Data URI 변형) | 서브셋·자체 호스팅 필요 |
 | 자체 호스팅, FOFT는 적용하되 서브셋 작업 회피 | **Standard FOFT** | FOUT with Class의 2단계 렌더 버전 |
-| 자체 호스팅, 폰트 1~2개만 사용 | `@font-face` + `font-display: swap` | JS 없이 충분 |
+| 자체 호스팅, 폰트 1–2개만 사용 | `@font-face` + `font-display: swap` | JS 없이 충분 |
 
 **적용 체크리스트**
 
