@@ -56,7 +56,7 @@
 | 챕터 | 점수 | 갭 | 핵심 결함 | 조치 |
 |---|---:|---:|---|---|
 | **27장** (`boundaries-drawing-lines-plugin-architecture`) | 83.2 → **94.0** | 6.8 | WikiPagePersistence 구현체 컴파일 불가(throws 불일치, 미구현 메서드), 무관 태그 4개 | 유형 B(interface-구현 계약 재정합) + 유형 A. throws Exception 통일, save/findAll 구현 추가, 생성자 추가, 태그 4개 교체 | **통과**(4회 반복) |
-| **08장** (`two-values-behavior-structure`) | 80.2 | 9.8 | 판단기준 얕음, 우선순위 3중 반복, OrderController 미정의 타입 | 판단 기준 절 전면 재작성 + 유형 E + 유형 B |
+| **08장** (`two-values-behavior-structure`) | 80.2 → **96.1** | 9.8 | 판단기준 얕음, 우선순위 3중 반복, OrderController 미정의 타입 | 판단 기준 절 전면 재작성 + 유형 E + 유형 B. 2차 라운드에서 우선순위 중복 제거 중 도입한 산술 오류(치명결함)를 순위 기반 정확한 서술로 재수정 | **통과**(5회 반복) |
 | **06장** (`introduction-software-design-architecture`) | 78.7 | 11.3 | 문단비율 34.8%(40% 미달), 인용 출처 미검증, 00장 커리큘럼 표 문구 불일치 | 유형 C(전면적 문단 보강) + 유형 D + 00장과 문구 동기화 |
 | **09장** (`programming-paradigms-introduction`) | 78.1 | 11.9 | 태그 6개 불일치, 흔한 오개념 절 없음 | 유형 A(대량 재검증) + 오개념 절 신설 |
 | **26장** (`independence-usecase-operation-development`) | 72.7 | 17.3 | 무관 태그 6개(반복 재현 — 과거 라운드에서도 지적됐던 문제), 계층/디커플링 소절 리스트·코드 의존 | 유형 A + 유형 C. **태그 문제가 이전 반복에서도 안 고쳐졌던 이력**이 있으므로, 이번엔 grep 스크립트로 기계적 검증 후 커밋 |
