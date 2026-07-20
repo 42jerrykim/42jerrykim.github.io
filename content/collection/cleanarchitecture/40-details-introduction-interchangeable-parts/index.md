@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 400
 image: "wordcloud.png"
 description: "세부사항의 정의와 아키텍처에서의 위치를 다룹니다. 데이터베이스, 웹, 프레임워크가 왜 세부사항이며, 비즈니스 규칙과 어떻게 분리해야 하는지 결정 지연·테스트 용이성 관점에서 컴파일 가능한 Java 코드로 설명합니다."
 title: "[Clean Architecture] 40. 세부사항 서론"
 slug: details-introduction-interchangeable-parts
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

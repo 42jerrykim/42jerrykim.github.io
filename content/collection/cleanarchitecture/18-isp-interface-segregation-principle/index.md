@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 180
 image: "wordcloud.png"
 description: "인터페이스 분리 원칙(ISP)이 불필요한 의존성을 제거하여 시스템을 어떻게 유연하게 만드는지 설명합니다. 뚱뚱한 인터페이스의 문제점, 역할 기반 분리 전략, ISP와 SRP의 관점 차이, 아키텍처 수준에서의 적용을 실제 예시와 함께 다룹니다."
 title: "[Clean Architecture] 18. ISP: 인터페이스 분리 원칙"
 slug: isp-interface-segregation-principle
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

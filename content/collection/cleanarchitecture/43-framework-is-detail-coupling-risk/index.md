@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 430
 image: "wordcloud.png"
 description: "프레임워크가 왜 아키텍처의 세부사항인지 다룹니다. 프레임워크와의 결혼 위험, 저자와 사용자의 비대칭적 관계, 그리고 도메인 모델과 데이터 모델을 분리해 프레임워크를 팔 길이 거리에 두는 컴파일 가능한 Java 예제를 설명합니다."
 title: "[Clean Architecture] 43. 프레임워크는 세부사항이다"
 slug: framework-is-detail-coupling-risk
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

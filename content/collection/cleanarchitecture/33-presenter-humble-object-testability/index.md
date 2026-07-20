@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 330
 image: "wordcloud.png"
 description: "프레젠터와 험블 객체 패턴을 다룹니다. 테스트하기 어려운 부분을 분리하여 테스트 용이성을 높이는 방법과 UI·DB·외부 서비스 등 아키텍처 경계에서의 실제 활용을, 컴파일 가능한 Java 코드와 실제 원저 인용을 근거로 자세히 설명합니다."
 title: "[Clean Architecture] 33. 프레젠터와 험블 객체"
 slug: presenter-humble-object-testability
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

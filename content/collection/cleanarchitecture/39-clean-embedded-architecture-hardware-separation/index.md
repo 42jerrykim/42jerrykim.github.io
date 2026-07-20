@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 390
 image: "wordcloud.png"
 description: "임베디드 소프트웨어에 Clean Architecture를 적용하는 방법을 다룹니다. 타겟-하드웨어 병목과 HAL·OSAL을 이용해 펌웨어를 최소화하고 PC에서 오프 타겟 테스트하는 전략을 컴파일 가능한 C 코드로 설명합니다."
 title: "[Clean Architecture] 39. 클린 임베디드 아키텍처"
 slug: clean-embedded-architecture-hardware-separation
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
 - Clean-Architecture(클린아키텍처)

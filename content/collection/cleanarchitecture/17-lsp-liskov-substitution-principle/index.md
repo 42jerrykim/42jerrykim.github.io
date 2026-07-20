@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 170
 image: "wordcloud.png"
 description: "리스코프 치환 원칙(LSP)이 상속을 넘어 인터페이스와 아키텍처 수준에서 어떤 의미를 가지는지 설명합니다. 정사각형/직사각형 문제, 계약에 의한 설계, 택시 배차 REST API 설계까지 실제 사례를 다루며 위반 징후를 식별하는 방법을 제시합니다."
 title: "[Clean Architecture] 17. LSP: 리스코프 치환 원칙"
 slug: lsp-liskov-substitution-principle
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

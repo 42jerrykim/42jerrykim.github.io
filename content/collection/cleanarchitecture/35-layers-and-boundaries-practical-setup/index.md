@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 350
 image: "wordcloud.png"
 description: "실제 시스템에서 계층과 경계를 설정하는 방법을 다룹니다. Hunt the Wumpus 게임을 예로 들어 언어·전달·저장 경계를 식별하고, 비용 대비 이익을 따져 무엇을 지금 구현할지 결정하는 과정을 컴파일 가능한 코드로 설명합니다."
 title: "[Clean Architecture] 35. 레이어와 경계"
 slug: layers-and-boundaries-practical-setup
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 420
 image: "wordcloud.png"
 description: "웹이 왜 아키텍처의 세부사항인지 다룹니다. GUI의 역사적 진자 운동, 클라이언트-서버의 변천, 그리고 Presenter 인터페이스로 웹·CLI·GraphQL을 비즈니스 규칙과 분리하는 컴파일 가능한 Java 예제를 설명합니다."
 title: "[Clean Architecture] 42. 웹은 세부사항이다"
 slug: web-is-detail-gui-history
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

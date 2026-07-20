@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 370
 image: "wordcloud.png"
 description: "서비스 아키텍처에 대한 오해와 진실을 다룹니다. 서비스가 진짜 아키텍처 경계가 아닐 수 있으며, 마이크로서비스가 만병통치약이 아닌 이유를 택시 배차·고양이 운송 예제와 컴파일 가능한 Java 코드로 자세히 설명합니다."
 title: "[Clean Architecture] 37. 서비스: 아키텍처 경계인가?"
 slug: services-architecture-boundaries-microservices
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

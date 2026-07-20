@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 450
 image: "wordcloud.png"
 description: "패키지 구조의 네 가지 접근법을 다룹니다. 계층별, 기능별, 포트와 어댑터, 컴포넌트별 패키지 구성과 각각의 장단점, 그리고 접근 제한자로 의존성 규칙을 컴파일러가 강제하게 만드는 컴파일 가능한 Java 예제를 설명합니다."
 title: "[Clean Architecture] 45. 빠진 장: 패키지 구조"
 slug: missing-chapter-package-structure
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

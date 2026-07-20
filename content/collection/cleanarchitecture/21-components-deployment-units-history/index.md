@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 210
 image: "wordcloud.png"
 description: "컴포넌트의 정의와 역사를 상세히 다룹니다. 초기 프로그래밍의 메모리 배치 문제부터 재배치 가능한 바이너리, 링커의 등장, 정적/동적 링킹의 트레이드오프, 현대의 패키지 관리자와 모듈 시스템까지 발전 과정을 다룹니다."
 title: "[Clean Architecture] 21. 컴포넌트: 배포 단위"
 slug: components-deployment-units-history
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

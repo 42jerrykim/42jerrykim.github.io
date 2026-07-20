@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 380
 image: "wordcloud.png"
 description: "테스트와 아키텍처의 관계를 다룹니다. 테스트가 시스템의 일부로서 아키텍처에 미치는 영향과 깨지기 쉬운 테스트 문제의 해결책인 테스트 API를, 단위·API·E2E 테스트 예제와 컴파일 가능한 코드로 자세히 설명합니다."
 title: "[Clean Architecture] 38. 테스트 경계"
 slug: test-boundary-testing-as-system-part
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

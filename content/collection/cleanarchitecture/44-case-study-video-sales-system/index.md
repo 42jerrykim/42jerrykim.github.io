@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 440
 image: "wordcloud.png"
 description: "비디오 판매 시스템을 예제로 Clean Architecture를 적용하는 과정을 다룹니다. 액터 식별, 유스케이스 분석, 엔터티 설계부터 컴포넌트 아키텍처·의존성 규칙까지, 컴파일 가능한 Java 예제로 실제 설계 과정을 설명합니다."
 title: "[Clean Architecture] 44. 사례 연구: 비디오 판매 시스템"
 slug: case-study-video-sales-system
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

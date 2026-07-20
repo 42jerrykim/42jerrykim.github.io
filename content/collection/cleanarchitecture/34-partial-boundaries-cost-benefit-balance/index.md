@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 340
 image: "wordcloud.png"
 description: "부분적 경계 전략을 다룹니다. 완전한 경계의 비용이 부담될 때 사용할 수 있는 마지막 단계 건너뛰기·단방향 경계·퍼사드 세 가지 패턴과 각각의 장단점을, 결제·알림 서비스 예제를 컴파일 가능한 Java 코드로 비교하며 설명합니다."
 title: "[Clean Architecture] 34. 부분적 경계"
 slug: partial-boundaries-cost-benefit-balance
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

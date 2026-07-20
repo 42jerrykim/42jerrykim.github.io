@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 190
 image: "wordcloud.png"
 description: "의존성 역전 원칙(DIP)이 Clean Architecture의 핵심인 이유를 설명합니다. 안정된 추상화에 의존하는 방법, 변동성 있는 구체 클래스 피하기, 팩토리 패턴과 의존성 주입, Main 컴포넌트의 예외적 역할까지 다룹니다."
 title: "[Clean Architecture] 19. DIP: 의존성 역전 원칙"
 slug: dip-dependency-inversion-principle
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)

@@ -1,11 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 310
 image: "wordcloud.png"
 description: "소리치는 아키텍처(Screaming Architecture)의 개념을 다룹니다. 아키텍처가 시스템의 유스케이스와 의도를 어떻게 드러내야 하는지, 프레임워크가 아닌 도메인 중심 설계를 주문 처리 예제와 컨트롤러 리팩터링 코드로 설명합니다."
 title: "[Clean Architecture] 31. 소리치는 아키텍처"
 slug: screaming-architecture-intent-driven-structure
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
