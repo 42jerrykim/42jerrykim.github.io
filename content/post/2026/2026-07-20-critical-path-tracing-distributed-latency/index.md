@@ -2,8 +2,8 @@
 title: "[Programming] 분산 시스템 지연시간 프로파일링: Critical Path Tracing 완전 정리"
 description: "RPC 텔레메트리·CPU 프로파일링·분산 트레이싱만으로는 지연시간 병목을 찾기 어렵다. Google Search가 도입한 Critical Path Tracing(CPT)의 원리, critical path 계산법, 프레임워크 계측·집계, 실측 운영 오버헤드를 CACM 원문 기반으로 정리한다."
 date: 2026-07-20
-lastmod: 2026-07-20
-draft: true
+lastmod: 2026-07-21
+draft: false
 categories:
   - Programming
   - Distributed-Systems
