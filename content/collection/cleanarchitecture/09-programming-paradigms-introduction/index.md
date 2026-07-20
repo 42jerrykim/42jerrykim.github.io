@@ -14,9 +14,9 @@ tags:
   - Software-Architecture(소프트웨어아키텍처)
   - Compiler(컴파일러)
   - Java
-  - Code-Quality(코드품질)
+  - Alan-Turing(앨런튜링)
   - Polymorphism(다형성)
-  - SOLID
+  - Grace-Hopper(그레이스호퍼)
   - History(역사)
   - Abstraction(추상화)
   - Encapsulation(캡슐화)
@@ -24,16 +24,16 @@ tags:
   - Interface(인터페이스)
   - Coupling(결합도)
   - Cohesion(응집도)
-  - Design-Pattern(디자인패턴)
-  - Refactoring(리팩토링)
-  - Testing(테스트)
+  - Structured-Programming(구조적프로그래밍)
+  - Actor-Model(액터모델)
+  - Prolog
   - Assembly
   - C
   - C++
   - Guide(가이드)
   - Comparison(비교)
-  - Database(데이터베이스)
-  - Recursion(재귀)
+  - Fortran
+  - COBOL
 ---
 
 소프트웨어 아키텍처는 **코드(code)**로부터 시작한다. 따라서 아키텍처에 대한 논의도 코드가 최초로 작성된 시점부터, 우리가 코드를 통해 배운 내용을 살펴보는 데서 출발하고자 한다.
@@ -161,7 +161,14 @@ public class OrderTotals {
 OOP는 함수 포인터의 위험한 사용을 다형성이라는 안전한 형태로 제한한다. 이 다형성 덕분에 고수준 코드가 저수준 구현을 몰라도 되는 경계(포트/어댑터 패턴의 기반)를 그을 수 있다.
 
 ```java
-// 다형성을 통한 경계 횡단 (Entity, JdbcTemplate, MongoTemplate은 각 프레임워크가 제공하는 타입)
+// 다형성을 통한 경계 횡단 (JdbcTemplate/MongoTemplate은 Spring이 제공하는 실제 타입)
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.data.mongodb.core.MongoTemplate;
+
+class Entity {
+    String getId() { return "id"; }
+}
+
 public interface Repository {
     void save(Entity entity);
 }
@@ -214,6 +221,12 @@ flowchart LR
 | 11장 | 구조적 프로그래밍 | goto 문 제거와 증명 가능한 프로그램 |
 | 12장 | 객체 지향 프로그래밍 | 다형성과 의존성 역전 |
 | 13장 | 함수형 프로그래밍 | 불변성과 동시성 |
+
+## 흔한 오해
+
+**오해 1: "세 패러다임은 서로 대체 관계이므로, 최신 패러다임을 쓰면 이전 패러다임은 필요 없다."** 구조적 프로그래밍(1968)→객체 지향(1967)→함수형(1936)이라는 연대만 보면 마치 뒤의 것이 앞의 것을 대체하는 진화처럼 보이지만, 실제로는 세 패러다임이 서로 다른 축을 제한하므로 함께 쓰인다. 위 "다형성을 통한 경계 횡단" 예제의 `MySqlRepository.save()` 메서드 내부는 여전히 순차·선택·반복이라는 구조적 프로그래밍의 제약을 따르고, 그 위에 OOP의 다형성이 경계를 그으며, 필요하면 그 안에서 다시 FP의 불변성을 적용할 수 있다. 세 패러다임은 대체가 아니라 **중첩**되는 규율이다.
+
+**오해 2: "언어가 특정 패러다임을 지원하면, 그 언어로 짠 코드는 자동으로 그 패러다임을 따른다."** Java가 다형성을 문법으로 지원한다고 해서 모든 Java 코드가 저절로 OOP 원칙을 지키는 것은 아니다. `if (type.equals("mysql")) { ... } else if (type.equals("mongo")) { ... }`처럼 조건문으로 분기하는 코드는 Java로 작성됐어도 다형성을 전혀 활용하지 않은, OOP의 규율을 어긴 코드다. 언어의 지원 여부와 실제 코드가 그 규율을 따르는지는 별개이며, 이 구분은 아래 판단 기준 절에서 다시 다룬다.
 
 ## 핵심 요약
 
