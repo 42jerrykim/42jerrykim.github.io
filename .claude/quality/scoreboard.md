@@ -20,7 +20,7 @@
 | content/collection/cleanarchitecture/06-introduction-software-design-architecture/index.md | 78.7 | 2026-07-18 | 3 | 에스컬레이션 | 항목3 구조(문단비율 34.8%), 항목1 인용 출처 미검증, 00장 커리큘럼 표 문구 불일치 |
 | content/collection/cleanarchitecture/07-design-vs-architecture-definition/index.md | 96.1 | 2026-07-20 | 4 | 통과 | 없음(경미: 일부 절 리드 문단 보강 여지) |
 | content/collection/cleanarchitecture/08-two-values-behavior-structure/index.md | 96.1 | 2026-07-20 | 5 | 통과 | 없음(경미: "소프트웨어의 어원"/"논리적 반박" 절 리드 문단 여지, 인용 4회 반복에 장 번호 미표기) |
-| content/collection/cleanarchitecture/09-programming-paradigms-introduction/index.md | 78.1 | 2026-07-18 | 3 | 에스컬레이션 | 항목7 태그 6개 본문 불일치, 항목2 흔한오개념 절 없음 |
+| content/collection/cleanarchitecture/09-programming-paradigms-introduction/index.md | 94.0 | 2026-07-20 | 4 | 통과 | 없음(경미: Repository/MySqlRepository/MongoRepository 다중 public 공존, FP 스니펫 미래핑, 신규 태그 7개 tags.yaml 미등재) |
 | content/collection/cleanarchitecture/10-paradigm-overview-three-types/index.md | 92.2 | 2026-07-20 | 4 | 통과 | 없음(경미: goto 절 연결문단, "왜 세 가지뿐" 중복 정리 여지) |
 | content/collection/cleanarchitecture/11-structured-programming-goto-elimination/index.md | 94.6 | 2026-07-20 | 5 | 통과 | 없음(경미: L46 Dijkstra 인용 blockquote 서식 보강 여지) |
 | content/collection/cleanarchitecture/12-object-oriented-programming-polymorphism/index.md | 93.1 | 2026-07-18 | 3 | 통과 | 없음(경미: 플러그인 절 리드문단 부재, drawAll 클래스 밖 선언) |
