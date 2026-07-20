@@ -11,31 +11,26 @@ tags:
   - Clean-Architecture(클린아키텍처)
   - Dijkstra
   - Math(수학)
-  - Implementation(구현)
   - Algorithm(알고리즘)
   - Testing(테스트)
-  - Software-Architecture(소프트웨어아키텍처)
-  - Code-Quality(코드품질)
-  - Clean-Code(클린코드)
   - History(역사)
   - Debugging(디버깅)
-  - Best-Practices
-  - Refactoring(리팩토링)
-  - Readability
-  - Maintainability
   - C
-  - Case-Study
-  - Deep-Dive
-  - Technology(기술)
-  - Error-Handling(에러처리)
   - Science(과학)
-  - Comparison(비교)
-  - Modularity
   - Guide(가이드)
-  - Recursion(재귀)
+  - Goto-Statement
+  - Control-Flow(제어흐름)
+  - Sequence-Selection-Iteration
+  - Program-Proof(프로그램증명)
+  - Falsifiability(반증가능성)
+  - Karl-Popper
+  - Functional-Decomposition
+  - Spaghetti-Code(스파게티코드)
+  - Loop-Invariant
+  - Donald-Knuth
 ---
 
-1968년, 에츠허르 비버 데이크스트라(Edsger Wybe Dijkstra)는 CACM(Communications of the ACM)에 보낸 편지에서 프로그래밍 역사상 가장 유명한 논쟁을 시작했다. "Go To Statement Considered Harmful"이라는 제목의 이 글은 구조적 프로그래밍의 시대를 열었다.
+[10장: 세 가지 프로그래밍 패러다임](/post/clean-architecture/paradigm-overview-three-types/)에서 구조적·객체지향·함수형이라는 세 패러다임을 개괄했다. 이 장은 그중 첫 번째, 구조적 프로그래밍이 실제로 무엇을 금지했는지부터 살펴본다. 1968년, 에츠허르 비버 데이크스트라(Edsger Wybe Dijkstra)는 CACM(Communications of the ACM)에 보낸 편지에서 프로그래밍 역사상 가장 유명한 논쟁을 시작했다. "Go To Statement Considered Harmful"이라는 제목의 이 글은 구조적 프로그래밍의 시대를 열었다.
 
 ## 데이크스트라의 발견
 
@@ -80,7 +75,7 @@ END:
 
 ## 세 가지 제어 구조
 
-데이크스트라의 통찰과 별개로, 코라도 뵘(Corrado Böhm)과 주세페 자코피니(Giuseppe Jacopini)는 로마에서 독립적으로 중요한 사실을 증명했다. **모든 프로그램은 단 세 가지 구조만으로 표현할 수 있다:**
+데이크스트라의 통찰과 별개로, 이탈리아의 코라도 뵘(Corrado Böhm)과 주세페 자코피니(Giuseppe Jacopini)는 독립적으로 중요한 사실을 증명했다. **모든 프로그램은 단 세 가지 구조만으로 표현할 수 있다:**
 
 ### 1. 순차 (Sequence)
 
@@ -214,10 +209,6 @@ function processPayment(order, total) {
 
 function sendConfirmation(order) {
     return order.notifier.send(order.customer, `주문 ${order.id} 완료`);
-}
-
-function checkCustomerCredit(customer) {
-    return customer.creditLimit >= 0;
 }
 ```
 
