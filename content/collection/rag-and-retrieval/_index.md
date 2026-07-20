@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 collection_order: 90
 draft: false
 title: "[RAG] RAG와 정보검색"

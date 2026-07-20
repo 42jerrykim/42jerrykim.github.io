@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 collection_order: 55
 draft: false
 title: "[Concurrency Patterns] 멀티스레딩 환경에서 활용하는 디자인 패턴"

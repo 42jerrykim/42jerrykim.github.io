@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 collection_order: 80
 draft: false
 title: "[On-Device AI] On-Device AI 경량화"

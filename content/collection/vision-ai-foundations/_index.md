@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 collection_order: 70
 draft: false
 title: "[Vision AI] Vision AI 파운데이션"

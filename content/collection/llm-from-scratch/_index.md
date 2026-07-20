@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 collection_order: 60
 draft: false
 title: "[LLM] LLM 밑바닥부터 이해하기"

@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 collection_order: 220
 slug: testing
 title: "[Testing] 소프트웨어 테스트 기법과 도구 정리"

@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 collection_order: 10
 draft: false
 title: "[Clean Code] 클린 코드로 배우는 좋은 코드 작성법"

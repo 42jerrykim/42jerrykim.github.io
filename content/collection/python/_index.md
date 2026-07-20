@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 slug: python
 draft: false
 title: "[Python Master] 파이썬 마스터 커리큘럼"

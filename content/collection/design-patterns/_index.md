@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 collection_order: 20
 draft: false
 title: "[Design Patterns] 디자인 패턴 마스터 시리즈"

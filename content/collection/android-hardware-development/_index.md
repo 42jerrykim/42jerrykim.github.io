@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 collection_order: 170
 draft: false
 title: "[Android Hardware] 안드로이드 하드웨어 개발 전문가 과정"

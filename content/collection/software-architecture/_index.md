@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 collection_order: 50
 draft: false
 title: "[Software Architecture] 소프트웨어 아키텍처 교육과정"

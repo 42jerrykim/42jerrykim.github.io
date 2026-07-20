@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 collection_order: 112
 draft: false
 title: "[Optimization(Prevention)] 12. Low-latency 성능 회귀 방지·유지보수 트랙"

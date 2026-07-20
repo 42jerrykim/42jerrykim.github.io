@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 collection_order: 102
 draft: false
 title: "[Optimization(C++)] 02. Low-latency C++ 언어 최적화 트랙"

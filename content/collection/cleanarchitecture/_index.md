@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 collection_order: 40
 draft: false
 title: "[Clean Architecture] 클린 아키텍처로 배우는 소프트웨어 설계 원칙"
