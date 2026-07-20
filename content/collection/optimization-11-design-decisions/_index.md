@@ -1,5 +1,5 @@
 ---
-collection_order: 21
+collection_order: 111
 draft: false
 title: "[Optimization(Decision)] 11. Low-latency 성능 설계·의사결정 트랙"
 slug: design-decisions

@@ -1,5 +1,5 @@
 ---
-collection_order: 14
+collection_order: 104
 draft: false
 title: "[Optimization(Memory)] 04. Low-latency 메모리·할당·데이터 레이아웃 트랙"
 slug: memory-optimization

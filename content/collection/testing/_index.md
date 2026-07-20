@@ -1,4 +1,5 @@
 ---
+collection_order: 220
 slug: testing
 title: "[Testing] 소프트웨어 테스트 기법과 도구 정리"
 description: "다양한 테스트(testing) 방법, 도구, 전략에 대한 정보를 정리한 컬렉션이다. 소프트웨어 테스트, 자동화 테스트, 단위 테스트(unit test), 통합 테스트(integration test) 등 여러 testing 관련 주제를 다룬다."
