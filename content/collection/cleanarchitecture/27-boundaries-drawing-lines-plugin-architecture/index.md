@@ -11,7 +11,7 @@ tags:
   - Clean-Architecture(클린아키텍처)
   - Software-Architecture(소프트웨어아키텍처)
   - Database(데이터베이스)
-  - Frontend(프론트엔드)
+  - Boundary(경계)
   - Interface(인터페이스)
   - Dependency-Injection(의존성주입)
   - IO(Input/Output)
@@ -28,11 +28,11 @@ tags:
   - API(Application Programming Interface)
   - OOP(객체지향)
   - Java
-  - Domain(도메인)
+  - Plugin-Architecture(플러그인아키텍처)
   - Web(웹)
-  - Encapsulation(캡슐화)
+  - FitNesse
   - System-Design
-  - Backend(백엔드)
+  - Decision-Deferral(결정지연)
 ---
 
 아키텍처에서 **경계(Boundary)**란 관심사를 분리하는 선이다. 경계의 한쪽에는 비즈니스 규칙이, 다른 쪽에는 세부사항이 있다. 경계를 제대로 그으면 **플러그인 아키텍처**가 된다.
@@ -131,16 +131,20 @@ record WikiPage(String name, String content) {}
 
 // FitNesse의 데이터 접근 인터페이스
 public interface WikiPagePersistence {
-    WikiPage load(String pageName);
-    void save(WikiPage page);
-    List<WikiPage> findAll();
+    WikiPage load(String pageName) throws Exception;
+    void save(WikiPage page) throws Exception;
+    List<WikiPage> findAll() throws Exception;
 }
 
 // 비즈니스 규칙은 이 인터페이스만 알면 됨
 public class WikiPageService {
     private final WikiPagePersistence persistence;
     
-    public WikiPage getPage(String name) {
+    public WikiPageService(WikiPagePersistence persistence) {
+        this.persistence = persistence;
+    }
+    
+    public WikiPage getPage(String name) throws Exception {
         return persistence.load(name);
     }
 }
@@ -157,6 +161,8 @@ public class WikiPageService {
 ```java
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.stream.Stream;
 
 // 파일 시스템 구현 - FitNesse 팀이 실제로 쓴 것은 이것뿐이었다
 public class FileSystemWikiPagePersistence implements WikiPagePersistence {
@@ -170,6 +176,20 @@ public class FileSystemWikiPagePersistence implements WikiPagePersistence {
         String content = Files.readString(rootDir.resolve(pageName + ".txt"));
         return new WikiPage(pageName, content);
     }
+
+    public void save(WikiPage page) throws java.io.IOException {
+        Files.writeString(rootDir.resolve(page.name() + ".txt"), page.content());
+    }
+
+    public List<WikiPage> findAll() throws java.io.IOException {
+        try (Stream<Path> files = Files.list(rootDir)) {
+            List<WikiPage> pages = new java.util.ArrayList<>();
+            for (Path file : (Iterable<Path>) files::iterator) {
+                pages.add(load(file.getFileName().toString().replace(".txt", "")));
+            }
+            return pages;
+        }
+    }
 }
 ```
 
@@ -177,6 +197,8 @@ public class FileSystemWikiPagePersistence implements WikiPagePersistence {
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
+import java.util.ArrayList;
 
 // MySQL 구현 - 한 고객사가 자신의 필요에 따라 하루 만에 작성
 public class MySqlWikiPagePersistence implements WikiPagePersistence {
@@ -192,6 +214,24 @@ public class MySqlWikiPagePersistence implements WikiPagePersistence {
         stmt.setString(1, pageName);
         ResultSet rs = stmt.executeQuery();
         return rs.next() ? new WikiPage(pageName, rs.getString("content")) : null;
+    }
+
+    public void save(WikiPage page) throws java.sql.SQLException {
+        PreparedStatement stmt = connection.prepareStatement(
+            "REPLACE INTO wiki_pages (name, content) VALUES (?, ?)");
+        stmt.setString(1, page.name());
+        stmt.setString(2, page.content());
+        stmt.execute();
+    }
+
+    public List<WikiPage> findAll() throws java.sql.SQLException {
+        PreparedStatement stmt = connection.prepareStatement("SELECT name, content FROM wiki_pages");
+        ResultSet rs = stmt.executeQuery();
+        List<WikiPage> pages = new ArrayList<>();
+        while (rs.next()) {
+            pages.add(new WikiPage(rs.getString("name"), rs.getString("content")));
+        }
+        return pages;
     }
 }
 ```
