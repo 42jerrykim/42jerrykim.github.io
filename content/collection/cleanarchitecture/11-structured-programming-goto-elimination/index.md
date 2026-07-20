@@ -28,6 +28,11 @@ tags:
   - Spaghetti-Code(스파게티코드)
   - Loop-Invariant
   - Donald-Knuth
+  - Bohm-Jacopini-Theorem
+  - Top-Down-Design(하향식설계)
+  - Structured-Programming(구조적프로그래밍)
+  - Boolean-Flag(불린플래그)
+  - Software-Correctness(소프트웨어정확성)
 ---
 
 [10장: 세 가지 프로그래밍 패러다임](/post/clean-architecture/paradigm-overview-three-types/)에서 구조적·객체지향·함수형이라는 세 패러다임을 개괄했다. 이 장은 그중 첫 번째, 구조적 프로그래밍이 실제로 무엇을 금지했는지부터 살펴본다. 1968년, 에츠허르 비버 데이크스트라(Edsger Wybe Dijkstra)는 CACM(Communications of the ACM)에 보낸 편지에서 프로그래밍 역사상 가장 유명한 논쟁을 시작했다. "Go To Statement Considered Harmful"이라는 제목의 이 글은 구조적 프로그래밍의 시대를 열었다.
@@ -44,7 +49,7 @@ tags:
 
 ### goto 문의 문제
 
-goto 문은 프로그램의 제어 흐름을 임의의 위치로 점프시킨다. 이로 인해:
+goto 문은 프로그램의 제어 흐름을 임의의 위치로 점프시킨다. 순차·선택·반복이라면 "지금 이 줄 앞에 있던 코드가 실행됐다"는 사실만으로 프로그램 상태를 추론할 수 있지만, goto는 프로그램의 어느 지점에서도 진입할 수 있어 그 전제 자체가 무너진다. 이는 세 가지 구체적인 문제로 이어진다:
 
 1. **제어 흐름 추적 불가**: 프로그램이 어떻게 실행되는지 따라가기 어려움
 2. **증명 불가능**: 수학적 귀납법을 적용하기 어려움
@@ -146,6 +151,44 @@ flowchart TB
 
 이것은 goto 문이 **불필요하다**는 것을 수학적으로 증명한 것이었다. goto 문 없이도 어떤 알고리즘이든 표현할 수 있다.
 
+정리가 실제로 어떻게 적용되는지, 앞서 본 goto 의사코드를 순차·선택·반복만으로 다시 써 보면 알 수 있다. 핵심 기법은 **불린 플래그(boolean flag)**로 goto가 표현하던 "다음에 무엇을 할지"라는 상태를 변수에 담는 것이다.
+
+```text
+// Before: goto로 표현된 상태 전이
+START:
+    read input
+    if input < 0 goto ERROR
+    if input > 100 goto OVERFLOW
+    process input
+    goto START
+ERROR:
+    print "음수 입력"
+    goto CLEANUP
+OVERFLOW:
+    print "오버플로우"
+    goto CLEANUP
+CLEANUP:
+    close resources
+
+// After: 반복문 + 상태 플래그로 동일한 로직 표현
+running = true
+while (running) {
+    input = read()
+    if (input < 0) {
+        print "음수 입력"
+        running = false
+    } else if (input > 100) {
+        print "오버플로우"
+        running = false
+    } else {
+        process(input)
+    }
+}
+close resources
+```
+
+`goto ERROR`·`goto OVERFLOW`가 가리키던 "종료 사유"는 `running` 플래그 하나로 표현되고, `goto START`가 하던 반복은 `while` 문이 대신한다. goto가 임의의 위치로 뛰어다니며 암묵적으로 표현하던 상태를, 변수라는 명시적인 형태로 끌어올린 것이 구조적 프로그래밍의 실제 메커니즘이다.
+
 ## "Go To Statement Considered Harmful"
 
 데이크스트라의 1968년 편지는 프로그래밍 커뮤니티에 큰 파장을 일으켰다.
@@ -200,7 +243,21 @@ function checkCustomerCredit(customer) {
 }
 
 function calculateTotal(order) {
+    const subtotal = calculateSubtotal(order);
+    const tax = calculateTax(subtotal);
+    return applyDiscount(subtotal + tax, order.customer);
+}
+
+function calculateSubtotal(order) {
     return order.items.reduce((sum, item) => sum + item.price * item.qty, 0);
+}
+
+function calculateTax(subtotal) {
+    return subtotal * 0.1;
+}
+
+function applyDiscount(amount, customer) {
+    return customer.isVip ? amount * 0.9 : amount;
 }
 
 function processPayment(order, total) {
