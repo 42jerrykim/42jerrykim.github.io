@@ -1,10 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 40
 image: "wordcloud.png"
-description: "2008년 제프리 팔레르모가 제안한 양파 아키텍처(Onion Architecture)를 상세히 분석합니다. 도메인 중심 설계, 동심원 구조의 의존성 방향, 그리고 인프라스트럭처 독립성의 원리를 설명합니다."
+description: "2008년 제프리 팔레르모가 제안한 양파 아키텍처(Onion Architecture)를 상세히 분석합니다. 도메인 중심 설계, 동심원 구조의 의존성 방향, 인프라스트럭처 독립성의 원리, 그리고 Clean Architecture와의 관계를 설명합니다."
 title: "[Clean Architecture] 04. 어니언 아키텍처: 도메인 중심 설계"
+slug: onion-architecture-domain-centric-design
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
@@ -17,6 +19,23 @@ tags:
   - Interface(인터페이스)
   - Abstraction(추상화)
   - Edge-Cases(엣지케이스)
+  - Cohesion(응집도)
+  - Domain-Driven-Design
+  - Modularity
+  - Maintainability
+  - Best-Practices
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - System-Design
+  - Backend(백엔드)
+  - Database(데이터베이스)
+  - Refactoring(리팩토링)
+  - OOP(객체지향)
+  - TDD(Test-Driven Development)
+  - Comparison(비교)
+  - Encapsulation(캡슐화)
 ---
 
 2008년, 제프리 팔레르모(Jeffrey Palermo)는 자신의 블로그에 "The Onion Architecture"라는 시리즈 글을 게시했다. 육각형 아키텍처의 아이디어를 계승하면서, 더 명확한 계층 구조와 의존성 규칙을 제시한 이 아키텍처는 Clean Architecture의 또 다른 중요한 선조가 되었다.
@@ -27,7 +46,7 @@ tags:
 
 팔레르모는 전통적인 계층형 아키텍처에서 반복되는 문제를 지적했다:
 
-> "전통적인 계층형 아키텍처에서, UI는 비즈니스 로직에 의존하고, 비즈니스 로직은 데이터 접근에 의존한다. 이는 비즈니스 로직을 데이터베이스와 강하게 결합시킨다."
+팔레르모는 이를 이렇게 요약한다: 전통적인 계층형 아키텍처에서 UI는 비즈니스 로직에 결합되고, 비즈니스 로직은 다시 데이터 접근에 결합된다. 결과적으로 UI 없이는 비즈니스 로직이 동작하지 않고, 데이터 접근 없이는 비즈니스 로직도 동작하지 않는다(Palermo, *The Onion Architecture*, 2008, [jeffreypalermo.com/2008/07/the-onion-architecture-part-1](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)).
 
 그가 제안한 해결책은 **의존성의 방향을 뒤집는 것**이었다.
 
@@ -65,7 +84,7 @@ flowchart TB
 
 ### 1. 도메인 모델 (Domain Model) - 가장 안쪽
 
-도메인 모델은 양파의 핵심이다. 이 계층에는 비즈니스의 핵심 개념을 표현하는 요소들이 있다:
+도메인 모델은 양파의 핵심이다. 이 계층은 프레임워크·DB·외부 서비스를 전혀 참조하지 않는 순수 자바(또는 순수 언어) 코드로만 구성되며, 그래야만 나머지 계층이 무엇으로 바뀌든 도메인 규칙이 살아남는다는 양파 아키텍처의 전제가 성립한다. 이 계층에는 비즈니스의 핵심 개념을 표현하는 요소들이 있다:
 
 - **엔터티 (Entities)**: 고유한 식별자를 가진 도메인 객체
 - **값 객체 (Value Objects)**: 식별자 없이 속성으로만 정의되는 객체
@@ -79,6 +98,14 @@ public class Order {
     private final List<OrderLine> lines;
     private OrderStatus status;
     private Money total;
+    
+    public Order(OrderId id, CustomerId customerId) {
+        this.id = id;
+        this.customerId = customerId;
+        this.lines = new ArrayList<>();
+        this.status = OrderStatus.DRAFT;
+        this.total = Money.ZERO;
+    }
     
     public void addItem(Product product, int quantity) {
         if (status != OrderStatus.DRAFT) {
@@ -97,6 +124,10 @@ public class Order {
         status = OrderStatus.SUBMITTED;
     }
     
+    public void applyDiscount(Money discount) {
+        total = total.add(discount.multiply(-1));
+    }
+    
     private void recalculateTotal() {
         total = lines.stream()
             .map(OrderLine::getSubtotal)
@@ -110,8 +141,24 @@ public final class Money {
     
     private final BigDecimal amount;
     
+    public Money(BigDecimal amount) {
+        this.amount = amount;
+    }
+    
+    public static Money of(double amount) {
+        return new Money(BigDecimal.valueOf(amount));
+    }
+    
     public Money add(Money other) {
         return new Money(this.amount.add(other.amount));
+    }
+    
+    public Money multiply(double factor) {
+        return new Money(this.amount.multiply(BigDecimal.valueOf(factor)));
+    }
+    
+    public boolean isGreaterThan(Money other) {
+        return this.amount.compareTo(other.amount) > 0;
     }
     
     @Override
@@ -126,7 +173,7 @@ public final class Money {
 
 ### 2. 도메인 서비스 (Domain Services)
 
-도메인 서비스는 특정 엔터티에 속하지 않는 도메인 로직을 담는다. 여러 엔터티를 조율하거나, 도메인 개념을 표현하는 연산을 포함한다.
+도메인 서비스는 특정 엔터티에 속하지 않는 도메인 로직을 담는다. 예를 들어 할인 계산은 `Order` 하나만의 책임도 `Customer` 하나만의 책임도 아니라 둘의 관계에서 나오는 규칙이므로, 어느 한쪽 엔터티에 억지로 넣기보다 별도의 도메인 서비스로 분리하는 편이 자연스럽다. 여러 엔터티를 조율하거나, 도메인 개념을 표현하는 연산을 포함한다.
 
 ```java
 // 도메인 서비스 - 엔터티에 속하지 않는 도메인 로직
@@ -149,7 +196,7 @@ public class PricingService {
 
 ### 3. 애플리케이션 서비스 (Application Services)
 
-애플리케이션 서비스는 유스케이스를 구현한다. 이 계층은:
+애플리케이션 서비스는 유스케이스를 구현한다. 도메인 모델·도메인 서비스가 "무엇이 옳은가"를 정의한다면, 애플리케이션 서비스는 "이번 요청에서 그것들을 어떤 순서로 호출할 것인가"를 조율하는 역할이다. 이 계층은:
 
 - 도메인 객체들을 조율한다
 - 트랜잭션 경계를 정의한다
@@ -163,6 +210,18 @@ public class OrderApplicationService {
     private final CustomerRepository customerRepository;
     private final PricingService pricingService;
     private final PaymentGateway paymentGateway;
+    
+    public OrderApplicationService(
+        OrderRepository orderRepository,
+        CustomerRepository customerRepository,
+        PricingService pricingService,
+        PaymentGateway paymentGateway
+    ) {
+        this.orderRepository = orderRepository;
+        this.customerRepository = customerRepository;
+        this.pricingService = pricingService;
+        this.paymentGateway = paymentGateway;
+    }
     
     @Transactional
     public OrderId placeOrder(PlaceOrderCommand command) {
@@ -197,7 +256,7 @@ public class OrderApplicationService {
 
 ### 4. 인프라스트럭처 (Infrastructure) - 가장 바깥쪽
 
-인프라스트럭처는 양파의 가장 바깥 껍질이다. 모든 외부 세계와의 연결이 이 계층에 위치한다:
+인프라스트럭처는 양파의 가장 바깥 껍질이다. 이 계층의 클래스들은 안쪽 계층이 정의한 인터페이스(`OrderRepository`, `PaymentGateway` 등)를 **구현**할 뿐, 안쪽 계층은 이 구현체의 존재를 전혀 모른다. 모든 외부 세계와의 연결이 이 계층에 위치한다:
 
 - **UI**: Web Controllers, CLI, Desktop UI
 - **데이터베이스**: JPA, JDBC, MongoDB
@@ -210,6 +269,10 @@ public class OrderApplicationService {
 public class JpaOrderRepository implements OrderRepository {
     
     private final OrderJpaRepository jpaRepository;
+    
+    public JpaOrderRepository(OrderJpaRepository jpaRepository) {
+        this.jpaRepository = jpaRepository;
+    }
     
     @Override
     public void save(Order order) {
@@ -229,6 +292,10 @@ public class JpaOrderRepository implements OrderRepository {
 public class StripePaymentGateway implements PaymentGateway {
     
     private final StripeClient stripeClient;
+    
+    public StripePaymentGateway(StripeClient stripeClient) {
+        this.stripeClient = stripeClient;
+    }
     
     @Override
     public void charge(OrderId orderId, Money amount) {
@@ -261,6 +328,8 @@ flowchart LR
 ```
 
 ### 규칙의 의미
+
+이 규칙은 각 계층이 "누구를 알아도 되는가"를 정확히 규정한다. 안쪽 계층으로 갈수록 아는 것이 줄어들고, 가장 안쪽인 도메인 모델은 아무것도 몰라야 한다.
 
 1. **인프라스트럭처**는 **애플리케이션**을 알고 의존한다
 2. **애플리케이션**은 **도메인 서비스**를 알고 의존한다
@@ -368,10 +437,11 @@ void shouldNotAddItemToSubmittedOrder() {
 void shouldPlaceOrder() {
     // Given - Mock 인프라스트럭처
     OrderRepository mockRepository = mock(OrderRepository.class);
+    CustomerRepository mockCustomerRepository = mock(CustomerRepository.class);
     PaymentGateway mockGateway = mock(PaymentGateway.class);
     
     OrderApplicationService service = new OrderApplicationService(
-        mockRepository, mockGateway, new PricingService());
+        mockRepository, mockCustomerRepository, new PricingService(), mockGateway);
     
     PlaceOrderCommand command = new PlaceOrderCommand(customerId, items);
     
@@ -410,7 +480,7 @@ class JpaOrderRepositoryTest {
 
 ## 실제 패키지 구조
 
-```
+```text
 src/
 ├── domain/                    # 도메인 계층
 │   ├── model/                 # 도메인 모델
@@ -447,35 +517,43 @@ src/
 
 ## 양파 아키텍처의 장점
 
+위에서 살펴본 4계층 구조와 의존성 규칙은 실무에서 다음 네 가지 이점으로 이어진다.
+
 ### 1. 도메인 중심 설계
 
-비즈니스 로직이 아키텍처의 중심에 위치하여, 기술적 결정에 영향받지 않는다.
+비즈니스 로직이 아키텍처의 중심에 위치하여, 기술적 결정에 영향받지 않는다. UI 프레임워크나 ORM을 바꾸는 논의가 도메인 모델 설계에 끼어들 여지가 구조적으로 차단된다.
 
 ### 2. 높은 테스트 용이성
 
-도메인 모델과 애플리케이션 서비스를 격리하여 테스트할 수 있다.
+도메인 모델과 애플리케이션 서비스를 격리하여 테스트할 수 있다. 위 "테스트 전략" 절에서 보았듯, 계층마다 다른 속도·범위의 테스트를 적용할 수 있다.
 
 ### 3. 기술 독립성
 
-데이터베이스, 프레임워크, UI를 쉽게 교체할 수 있다.
+데이터베이스, 프레임워크, UI를 쉽게 교체할 수 있다. 교체 대상은 항상 가장 바깥쪽 Infrastructure 계층으로 한정된다.
 
 ### 4. 명확한 의존성 규칙
 
-"의존성은 안쪽으로"라는 단순한 규칙으로 아키텍처를 유지할 수 있다.
+"의존성은 안쪽으로"라는 단순한 규칙 하나로 아키텍처 리뷰 시 "이 코드가 여기 있어도 되는가"를 즉시 판단할 수 있다.
 
 ## 양파 아키텍처의 한계
 
+이점이 공짜는 아니다. 다음 세 가지는 특히 소규모 팀·프로젝트에서 비용이 이점을 넘어설 수 있는 지점이다.
+
 ### 1. 복잡성
 
-작은 프로젝트에는 과도한 구조가 될 수 있다.
+작은 프로젝트에는 과도한 구조가 될 수 있다. 4개 계층 모두를 갖추려면 CRUD 몇 개짜리 서비스에도 상당한 보일러플레이트가 필요하다.
 
 ### 2. 학습 곡선
 
-팀원들이 의존성 규칙과 계층 구조를 이해하는 데 시간이 필요하다.
+팀원들이 의존성 규칙과 계층 구조를 이해하는 데 시간이 필요하다. 특히 "인터페이스는 안쪽에, 구현은 바깥쪽에"라는 역방향 배치는 처음 접하면 직관에 어긋난다.
 
 ### 3. 인터페이스 폭발
 
-의존성 역전을 위해 많은 인터페이스가 필요할 수 있다.
+의존성 역전을 위해 많은 인터페이스가 필요할 수 있다. 리포지토리마다, 외부 서비스마다 인터페이스를 만들다 보면 실제 구현체는 하나뿐인 인터페이스가 늘어난다.
+
+## 흔한 오해
+
+**"양파 아키텍처와 헥사고날 아키텍처는 완전히 같다"**는 오해가 흔하다. 두 아키텍처는 "의존성이 안쪽을 향해야 한다"는 원칙을 공유하지만, 양파 아키텍처는 도메인 모델·도메인 서비스·애플리케이션 서비스라는 **DDD 용어의 계층 구분**을 명시하는 반면, 헥사고날 아키텍처는 포트/어댑터라는 **경계의 형태**에 초점을 맞춘다. 또한 **"도메인 서비스와 애플리케이션 서비스는 같은 것"**이라는 혼동도 흔한데, 도메인 서비스는 순수 비즈니스 규칙(할인 계산 등)을, 애플리케이션 서비스는 트랜잭션·조율·외부 연동을 담당한다는 점에서 책임이 다르다.
 
 ## Clean Architecture와의 관계
 
@@ -502,13 +580,23 @@ flowchart TB
         
         I --> AS --> DS --> C
     end
-    
-    subgraph Key [핵심 원칙]
-        K1["1. 도메인 모델이 중심"]
-        K2["2. 의존성은 안쪽으로"]
-        K3["3. 인프라는 교체 가능"]
-    end
 ```
+
+## 학습 목표
+
+이 장을 읽은 후 다음을 할 수 있어야 한다.
+
+- 도메인 모델·도메인 서비스·애플리케이션 서비스·인프라스트럭처 4계층의 책임 차이를 설명할 수 있다.
+- 역방향 의존성(바깥 계층이 안쪽 인터페이스를 구현)이 왜 필요한지, 코드로 설명할 수 있다.
+- 양파 아키텍처와 헥사고날 아키텍처의 공통점·차이를 비교할 수 있다.
+
+## 판단 기준
+
+DDD 용어(엔터티, 값 객체, 도메인 서비스)에 익숙한 팀이거나 도메인 로직이 복잡한 시스템이라면 양파 아키텍처의 명시적 계층 구분이 유용하다. 반대로 도메인 규칙이 단순하고 팀이 DDD 개념에 익숙하지 않다면, 계층 수를 줄인 단순한 구조나 03장의 육각형 아키텍처(포트/어댑터 중심)가 학습 비용 대비 더 실용적일 수 있다.
+
+## 참고 자료
+
+- Palermo, J. (2008). *The Onion Architecture*. [jeffreypalermo.com/2008/07/the-onion-architecture-part-1](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
 
 ## 다음 장에서는
 

@@ -1,23 +1,45 @@
 ---
-draft: true
+draft: false
 collection_order: 70
 image: "wordcloud.png"
-description: "설계(Design)와 아키텍처(Architecture)의 개념적 차이와 공통점을 다룹니다. 둘 사이에는 차이가 없으며, 좋은 아키텍처의 목표는 인력 최소화라는 실무적 관점을 사례 연구와 함께 설명합니다."
+description: "설계(Design)와 아키텍처(Architecture)의 개념적 차이와 공통점을 다룹니다. 둘 사이에는 차이가 없으며, 좋은 아키텍처의 목표는 인력 최소화라는 실무적 관점을 실제와 유사한 사례 연구, 그리고 '나중에 정리하면 된다'는 거짓말에 대한 반박과 함께 설명합니다."
 title: "[Clean Architecture] 07. 설계와 아키텍처란?"
+slug: design-vs-architecture-definition
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
   - Software-Architecture(소프트웨어아키텍처)
-  - Design-Pattern(디자인패턴)
+  - System-Design
   - Productivity(생산성)
-  - Code-Quality(코드품질)
-  - SOLID
-  - Refactoring(리팩토링)
-  - Clean-Code(클린코드)
+  - Maintainability
+  - Technology(기술)
+  - Case-Study
+  - Guide(가이드)
+  - Deployment(배포)
+  - Best-Practices
+  - Cost(비용)
+  - Technical-Debt(기술부채)
+  - Overconfidence(과신)
+  - Labor-Cost(인건비)
+  - Software-Redesign(재설계)
+  - Time-to-Market(출시속도)
+  - Developer-Productivity
+  - Engineering-Management
+  - Lines-of-Code
+  - Reversible-Decisions
+  - Stakeholder(이해관계자)
+  - Market-Pressure(시장압박)
+  - Consulting-Case-Study
+  - Cost-per-LOC
+  - Workforce(인력)
+  - Design-Continuum(설계연속체)
+  - High-Level-Decision(고수준결정)
+  - Low-Level-Decision(저수준결정)
 ---
 
-**설계(Design)와 아키텍처(Architecture) 사이에는 오랫동안 많은 혼란이 있었다.** 결론부터 얘기하면 **둘 사이에는 차이가 없다.**
+[06장: 소프트웨어 설계와 아키텍처 서론](/post/clean-architecture/introduction-software-design-architecture/)에서 이 파트 전체의 큰 그림을 소개했다면, 이 장은 그 출발점이 되는 질문부터 다룬다. **설계(Design)와 아키텍처(Architecture) 사이에는 오랫동안 많은 혼란이 있었다.** 결론부터 얘기하면 **둘 사이에는 차이가 없다.**
 
 ## 설계 vs 아키텍처: 구분은 무의미하다
 
@@ -40,7 +62,7 @@ flowchart TB
 
 ### 마틴의 결론
 
-> "하지만 아키텍트가 실제로 하는 일을 살펴보면 이러한 구분은 무의미하다."
+마틴은 아키텍트가 실제로 하는 일을 살펴보면 이러한 구분이 무의미하다고 결론짓는다(Martin, *Clean Architecture*, 2017).
 
 ```mermaid
 flowchart TB
@@ -62,16 +84,34 @@ flowchart TB
 개별로는 존재할 수 없고, 실제로 이 둘을 구분 짓는 경계는 뚜렷하지 않다. **고수준에서 저수준으로 향하는 의사결정의 연속성**만이 있을 뿐이다.
 
 ```java
+import jakarta.persistence.EntityManager;
+
+class OrderId { Long getValue() { return 1L; } }
+class Order {}
+interface Cache<K, V> { V get(K key); void put(K key, V value); }
+
 // 고수준 결정: 계층 구조
 // - Presentation Layer
-// - Business Layer  
+// - Business Layer
 // - Data Access Layer
 
-// 저수준 결정: 구체적인 구현
+// 저수준 결정: 구체적인 구현 (ORM 선택, 캐시 전략)
 public class OrderRepository {
-    // 어떤 ORM을 사용할 것인가?
-    // 쿼리는 어떻게 최적화할 것인가?
-    // 캐시 전략은?
+    private final EntityManager em;
+    private final Cache<OrderId, Order> cache;
+
+    public OrderRepository(EntityManager em, Cache<OrderId, Order> cache) {
+        this.em = em;
+        this.cache = cache;
+    }
+
+    public Order findById(OrderId id) {
+        Order cached = cache.get(id);
+        if (cached != null) return cached;
+        Order order = em.find(Order.class, id.getValue());
+        cache.put(id, order);
+        return order;
+    }
 }
 
 // 둘 다 "설계"이자 "아키텍처"
@@ -81,8 +121,7 @@ public class OrderRepository {
 
 그렇다면 이러한 의사결정의 목표는? 좋은 소프트웨어의 목표는?
 
-> "소프트웨어 아키텍처의 목표는 필요한 시스템을 만들고 유지보수하는 데 투입되는 **인력을 최소화**하는 데 있다."
-> — Robert C. Martin
+마틴은 이렇게 말한다: 소프트웨어 아키텍처의 목표는 필요한 시스템을 만들고 유지보수하는 데 투입되는 **인력을 최소화**하는 데 있다(Martin, *Clean Architecture*, 2017).
 
 ### 설계 품질의 척도
 
@@ -108,7 +147,7 @@ flowchart LR
 
 ## 사례 연구: 실제 회사의 데이터
 
-마틴은 실제 회사의 데이터를 통해 나쁜 설계의 결과를 보여준다.
+마틴은 원저 1장에서 실제 컨설팅 경험을 근거로 이와 유사한 4개의 그래프(엔지니어 수·생산성·코드 라인당 비용·출시별 생산성)를 제시하며 나쁜 설계의 결과를 보여준다. 아래 수치는 그 패턴을 예시로 재구성한 것으로, 원저 도표의 정확한 값이 아니라 "무슨 일이 벌어지는가"라는 형태를 보여주기 위한 것이다.
 
 ### 1. 엔지니어링 직원 수의 증가
 
@@ -150,7 +189,7 @@ xychart-beta
 
 | 출시 | 비용 변화 |
 |------|----------|
-| 1차 → 8차 | **40배** 증가 |
+| 1차 → 8차 | 약 **19배** 증가 |
 
 이러한 방향으로는 지금 당장의 수익은 낼지 몰라도 결국 회사의 **성장을 멈추게** 하거나 **완전히 망하게** 만든다.
 
@@ -166,7 +205,7 @@ xychart-beta
     line [100, 80, 50, 30, 15, 8, 4, 2]
 ```
 
-시스템을 급하게 만들거나, 결과물의 총량을 순전히 프로그래머 수만으로 결정하거나, 코드와 설계의 구조를 깔끔하게 만들려는 생각을 전혀 하지 않으면 **생산성이 0으로 수렴**한다.
+앞선 세 그래프(직원 수 증가·생산성 정체·비용 증가)를 시간축으로 이어보면 이 곡선이 나온다. 시스템을 급하게 만들거나, 결과물의 총량을 순전히 프로그래머 수만으로 결정하거나, 코드와 설계의 구조를 깔끔하게 만들려는 생각을 전혀 하지 않으면 **생산성이 0으로 수렴**한다.
 
 ### 개발자의 절망
 
@@ -187,6 +226,8 @@ public class DeveloperDay {
     }
 }
 ```
+
+위 코드가 보여주듯, 8시간 중 1시간만 새 기능에 쓰인다는 사실 자체보다 더 절망적인 것은 그 비율이 개인의 게으름이 아니라 시스템 상태의 결과라는 점이다.
 
 - 모두가 전력을 기울여 **열심히 일하고 있음**
 - 하지만 **더 이상 발전이 없는 상황**
@@ -209,6 +250,8 @@ xychart-beta
 | 1차 | 수십만 달러 | 많은 기능 |
 | 8차 | 2천만 달러 | 거의 없음 |
 
+경영자에게는 이 표가 가장 뼈아프다 — 지출은 40배 늘었는데 산출은 거의 0에 수렴했으니, 개발팀·경영진·고객 세 이해관계자 모두가 같은 원인(설계 품질 저하)의 서로 다른 증상을 겪고 있는 셈이다.
+
 ## 무엇이 잘못되었나?
 
 ### 흔해 빠진 거짓말 #1
@@ -223,7 +266,7 @@ flowchart TB
     MESS --> ZERO[생산성 → 0]
 ```
 
-시장 출시가 먼저라는 생각을 하는 이유:
+시장 출시가 먼저라는 생각은 나름의 논리를 갖고 있어서 더 설득력 있게 느껴진다:
 - 뒤에 여러 무리의 **경쟁자**가 뒤쫓고 있음
 - 경쟁자보다 앞서 가려면 가능한 한 **빠르게 달려야** 함
 
@@ -231,24 +274,17 @@ flowchart TB
 
 > "지저분한 코드를 작성하면 단기간에는 빠르게 갈 수 있고, 장기적으로 볼 때만 생산성이 낮아진다."
 
-```java
-// 이 거짓말을 믿으면...
-public class Overconfidence {
-    
-    // "지금은 빨리 가고, 나중에 정리하면 되지"
-    void shortTermThinking() {
-        writeMessyCode();
-        // ... 시간이 지남 ...
-        // "다음 기능이 기다리고 있어!"
-        // ... 또 시간이 지남 ...
-        // "이제 정리할 시간이... 없어."
-    }
-}
+```text
+이 거짓말을 믿는 개발자의 사고 흐름(의사코드):
+
+1. "지금은 빨리 가고, 나중에 정리하면 되지" → 지저분한 코드 작성
+2. 시간이 지남 → "다음 기능이 기다리고 있어!"
+3. 또 시간이 지남 → "이제 정리할 시간이... 없어."
 ```
 
 ### 진실
 
-> "엉망으로 만들면 깔끔하게 유지할 때보다 **항상 더 느리다**. 시간 척도를 어떻게 보든지 관계없이 말이다."
+마틴의 반박은 이렇다: 엉망으로 만들면 깔끔하게 유지할 때보다 **항상 더 느리다**. 시간 척도를 어떻게 보든지 관계없이 말이다(Martin, *Clean Architecture*, 2017).
 
 ```mermaid
 flowchart LR
@@ -258,25 +294,21 @@ flowchart LR
     end
 ```
 
-> **"빨리 가는 유일한 방법은 제대로 가는 것이다."**
+이 논지를 마틴은 한 문장으로 요약한다: **빨리 가는 유일한 방법은 제대로 가는 것이다**(Martin, *Clean Architecture*, 2017).
 
 ## 재설계의 함정
 
 개발자는 처음부터 다시 시작하여 전체 시스템을 **재설계**하는 것이 해답이라고 생각할지도 모른다.
 
-```java
-// "이번에는 다르게 할 거야!"
-public class Redesign {
-    
-    // 하지만...
-    void sameOverconfidence() {
-        // 엉망으로 내몰았던 바로 그 과신이
-        // 다시 시작하면 더 나은 코드를 만들 수 있다고 말함
-    }
-}
+```text
+재설계를 결심하는 개발자의 사고 흐름(의사코드):
+
+1. "이번에는 다르게 할 거야!" → 처음부터 다시 시작
+2. 하지만... 엉망으로 내몰았던 바로 그 과신이
+3. "다시 시작하면 더 나은 코드를 만들 수 있다"고 다시 말한다
 ```
 
-> "자신을 과신한다면 재설계하더라도 원래의 프로젝트와 똑같이 엉망으로 내몰린다."
+마틴의 경고는 이렇다: 자신을 과신한다면 재설계하더라도 원래의 프로젝트와 똑같이 엉망으로 내몰린다(Martin, *Clean Architecture*, 2017).
 
 ## 결론
 
@@ -304,15 +336,28 @@ flowchart TB
 2. 소프트웨어 아키텍처의 **품질을 심각하게 고민**
 3. 좋은 소프트웨어 아키텍처가 **무엇인지 이해**
 
-### 핵심 요약
+마틴은 이렇게 결론짓는다: 비용은 최소화하고 생산성은 최대화할 수 있는 설계와 아키텍처를 가진 시스템을 만들려면, 이러한 결과로 이끌어줄 시스템 아키텍처가 지닌 속성을 알고 있어야 한다(Martin, *Clean Architecture*, 2017).
 
-| 항목 | 내용 |
-|------|------|
-| 설계 vs 아키텍처 | 차이 없음. 둘 다 동일 |
-| 아키텍처의 목표 | 인력 최소화 |
-| 설계 품질 척도 | 비용 |
-| 좋은 설계 | 비용이 낮고 일정하게 유지 |
-| 나쁜 설계 | 출시마다 비용 증가 |
-| 빨리 가는 방법 | 제대로 가는 것 |
+## 비판적 시각
 
-> "비용은 최소화하고 생산성은 최대화할 수 있는 설계와 아키텍처를 가진 시스템을 만들려면, 이러한 결과로 이끌어줄 시스템 아키텍처가 지닌 속성을 알고 있어야 한다."
+이 장의 사례 연구는 마틴이 컨설팅 경험에서 관찰한 패턴을 일반화한 것으로, 실명이 공개된 특정 기업의 감사된 재무 데이터가 아니라는 점에 유의해야 한다. "1차→8차 출시에서 생산성이 19배 비용 증가로 이어졌다"는 수치는 예시적 성격이 강하며, 모든 조직이 동일한 곡선을 그린다고 일반화할 수는 없다. 다만 "지저분한 코드가 단기적으로도 더 느리다"는 핵심 주장 자체는 여러 실증 연구(예: 기술 부채와 배포 빈도의 상관관계를 다룬 DORA 리포트류)에서도 폭넓게 뒷받침된다.
+
+## 학습 목표
+
+이 장을 읽은 후 다음을 할 수 있어야 한다.
+
+- 설계와 아키텍처가 왜 동일한 연속체 위에 있는 개념인지 설명할 수 있다.
+- 설계 품질을 "비용"으로 측정한다는 것이 실무에서 무엇을 의미하는지 설명할 수 있다.
+- "나중에 정리하면 된다"는 흔한 거짓말이 왜 항상 틀리는지, 논거를 들어 반박할 수 있다.
+
+## 판단 기준
+
+이 장의 교훈을 실무에 적용할 때는 "완벽한 설계"와 "지금 당장 출시"라는 이분법에 빠지지 않는 것이 중요하다. 마틴의 주장은 "정리를 미루면 결국 더 느려진다"는 것이지, "모든 세부사항을 처음부터 완벽하게 설계해야 한다"는 것이 아니다. 즉 판단 기준은 "지금 이 결정이 나중에 되돌리기 얼마나 비싼가"이며, 되돌리기 쉬운 결정은 빠르게 내리고 되돌리기 어려운 결정(아키텍처 경계 등)에만 신중을 기하는 것이 실용적이다.
+
+## 참고 자료
+
+- Martin, R. C. (2017). *Clean Architecture: A Craftsman's Guide to Software Structure and Design*. Prentice Hall.
+
+## 다음 장에서는
+
+다음 장에서는 소프트웨어가 제공하는 **두 가지 가치**, 행위(Behavior)와 구조(Structure)를 다룬다. 이 장에서 다룬 "설계 품질=비용"이라는 관점이 왜 장기적으로 기능 자체보다 더 중요할 수 있는지 살펴본다.

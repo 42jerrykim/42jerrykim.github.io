@@ -1,26 +1,42 @@
 ---
-draft: true
+draft: false
 collection_order: 280
 image: "wordcloud.png"
-description: "경계의 다양한 구현 방식을 다룹니다. 함수 호출, 로컬 프로세스, 서비스까지 경계 횡단의 물리적 형태와 각각의 비용과 장단점을 설명합니다."
+description: "경계의 다양한 구현 방식을 다룹니다. 함수 호출, 컴포넌트(ServiceLoader), 로컬 프로세스, 서비스까지 경계 횡단의 물리적 형태와 각각의 지연 시간·비용·복잡성 트레이드오프를 컴파일 가능한 Java 예제와 비교표로 자세히 설명합니다."
 title: "[Clean Architecture] 28. 경계 해부학: 모놀리스에서 서비스까지"
+slug: boundary-anatomy-monolith-to-services
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
-  - Edge-Cases(엣지케이스)
-  - Microservices(마이크로서비스)
-  - Software-Architecture(소프트웨어아키텍처)
-  - OS(운영체제)
-  - Thread
-  - Networking(네트워킹)
+  - GraphQL
   - REST(Representational State Transfer)
   - Memory(메모리)
-  - Dependency-Injection(의존성주입)
-  - Performance(성능)
+  - Coupling(결합도)
+  - Java
+  - Scalability(확장성)
+  - API(Application Programming Interface)
+  - Latency
+  - HTTP(HyperText Transfer Protocol)
+  - Deployment(배포)
+  - Interface(인터페이스)
+  - Monolith
+  - Process(프로세스)
+  - Socket(소켓)
+  - IPC
+  - Serialization(직렬화)
+  - Circuit-Breaker
+  - Retry(재시도)
+  - Plugin-Architecture
+  - ServiceLoader
+  - gRPC
+  - Timeout(타임아웃)
+  - Distributed-Tracing
+  - Partial-Failure
 ---
 
-경계는 다양한 **물리적 형태**로 존재한다. 단순한 함수 호출부터 네트워크를 통한 서비스 호출까지, 각각의 비용과 장단점이 다르다.
+[27장: 경계 — 선 긋기](/post/clean-architecture/boundaries-drawing-lines-plugin-architecture/)에서 경계를 어디에 그을지(논리적 설계)를 다뤘다면, 이 장은 그은 경계를 실제로 어떻게 **구현**할지(물리적 형태)를 다룬다. 경계는 다양한 **물리적 형태**로 존재한다. 단순한 함수 호출부터 네트워크를 통한 서비스 호출까지, 각각의 비용과 장단점이 다르다.
 
 ## 경계 횡단 방식
 
@@ -40,18 +56,30 @@ flowchart TB
 
 ## 1. 모놀리스 (소스 수준)
 
-**단일 실행 파일**. 경계는 **함수 호출**로 횡단한다.
+**단일 실행 파일**. 경계는 **함수 호출**로 횡단한다. 논리적 경계(비즈니스 규칙과 세부사항 사이의 인터페이스)는 존재하지만, 물리적으로는 모두 같은 프로세스·같은 메모리 공간 안에서 컴파일되고 실행된다. 이것이 경계의 가장 저렴한 형태다 — 함수를 호출하는 데는 네트워크도, 별도 프로세스도, 직렬화도 필요 없다.
 
 ```java
+class Payment {}
+class Order {
+    Payment getPayment() { return new Payment(); }
+}
+interface OrderRepository { void save(Order order); }
+interface PaymentService { void processPayment(Payment payment); }
+
 // 모놀리스: 함수 호출로 경계 횡단
 public class OrderService {
     private final OrderRepository repository;
     private final PaymentService paymentService;
-    
+
+    public OrderService(OrderRepository repository, PaymentService paymentService) {
+        this.repository = repository;
+        this.paymentService = paymentService;
+    }
+
     public void placeOrder(Order order) {
         // 경계 횡단 1: 결제 서비스 호출
         paymentService.processPayment(order.getPayment());
-        
+
         // 경계 횡단 2: 저장소 호출
         repository.save(order);  // 단순 함수 호출
     }
@@ -85,28 +113,42 @@ flowchart LR
 소스 수준에서도 **의존성 역전**은 적용해야 한다:
 
 ```java
-// 고수준 모듈
-package com.example.order.usecase;
+// 고수준 모듈 — package com.example.order.usecase;
+class OrderRequest {}
+interface OrderGateway { void save(OrderRequest request); }
 
 public class PlaceOrderUseCase {
     private final OrderGateway gateway; // 인터페이스
-    
+
+    public PlaceOrderUseCase(OrderGateway gateway) {
+        this.gateway = gateway;
+    }
+
     public void execute(OrderRequest request) {
         // 비즈니스 로직
+        gateway.save(request);
     }
 }
+```
 
-// 저수준 모듈이 고수준 인터페이스를 구현
-package com.example.order.gateway.mysql;
+`PlaceOrderUseCase`는 `com.example.order.usecase` 패키지에, 이를 구현하는 `MySqlOrderGateway`는 별도의 `com.example.order.gateway.mysql` 패키지에 둔다. 두 클래스는 서로 다른 컴파일 단위(서로 다른 `.java` 파일·패키지)로 존재하며, `MySqlOrderGateway`가 `OrderGateway` 인터페이스를 참조하기 위해 `import`할 뿐 그 반대는 성립하지 않는다.
+
+```java
+// 저수준 모듈이 고수준 인터페이스를 구현 — package com.example.order.gateway.mysql;
+class OrderRequest {}
+interface OrderGateway { void save(OrderRequest request); }
 
 public class MySqlOrderGateway implements OrderGateway {
     // MySQL 구현
+    public void save(OrderRequest request) {
+        // JDBC/JPA로 저장
+    }
 }
 ```
 
 ## 2. 컴포넌트 (바이너리 수준)
 
-**독립 배포 가능한 단위**: jar, dll, gem, shared library 등
+**독립 배포 가능한 단위**: jar, dll, gem, shared library 등. 여전히 같은 프로세스 안에서 함수 호출로 통신하지만, 각 컴포넌트가 별도 파일로 빌드·배포된다는 점이 모놀리스와 다르다. 덕분에 실행 시점에 어떤 구현체를 로드할지 선택할 수 있는 동적 다형성이 가능해진다.
 
 ```mermaid
 flowchart LR
@@ -116,7 +158,7 @@ flowchart LR
     PAYMENT --> PERSISTENCE
 ```
 
-```
+```text
 app.jar
 ├── uses → order.jar
 ├── uses → payment.jar
@@ -131,31 +173,56 @@ payment.jar
 
 ### 동적 다형성
 
-런타임에 컴포넌트를 교체할 수 있다:
+컴포넌트 수준에서는 런타임에 구현체를 교체할 수 있다는 이점이 추가된다. 자바의 `ServiceLoader`가 대표적인 메커니즘이다. 다만 `ServiceLoader`는 클래스패스의 jar를 자동으로 뒤져 "인터페이스를 구현한 클래스"를 알아서 찾아주는 것이 아니다 — 각 플러그인 jar는 `META-INF/services/<인터페이스의 정규화된 이름>` 경로에 구현 클래스의 정규화된 이름을 한 줄씩 적은 **프로바이더 설정 파일**을 반드시 포함해야 하며, `ServiceLoader`는 이 설정 파일에 등록된 클래스만 로드한다. 즉 "클래스패스 스캔"이 아니라 "명시적으로 등록된 구현체 조회"에 가깝다.
 
 ```java
+import java.util.ServiceLoader;
+
+record Payment(String orderId, java.math.BigDecimal amount) {}
+record PaymentResult(boolean success) {}
+
 // 인터페이스는 코어에 정의
 public interface PaymentProcessor {
     PaymentResult process(Payment payment);
 }
+```
+
+플러그인 jar(`stripe-payment.jar`)는 구현 클래스와 함께 `META-INF/services/com.example.PaymentProcessor` 파일에 `com.example.StripeProcessor` 한 줄을 반드시 포함해야 `ServiceLoader`가 이 클래스를 찾을 수 있다.
+
+```java
+record Payment(String orderId, java.math.BigDecimal amount) {}
+record PaymentResult(boolean success) {}
+interface PaymentProcessor { PaymentResult process(Payment payment); }
 
 // 플러그인 jar: stripe-payment.jar
+// META-INF/services/PaymentProcessor 파일에 이 클래스의 정규화된 이름이 등록되어야 로드된다
 public class StripeProcessor implements PaymentProcessor {
     public PaymentResult process(Payment payment) {
         // Stripe API 호출
+        return new PaymentResult(true);
     }
 }
+```
 
-// 플러그인 jar: paypal-payment.jar
-public class PayPalProcessor implements PaymentProcessor {
-    public PaymentResult process(Payment payment) {
-        // PayPal API 호출
+`ServiceLoader.load()`는 이렇게 등록된 구현체들을 지연 로딩(lazy loading)한다 — 실제로 순회하기 전까지는 클래스를 로드하지 않는다.
+
+```java
+import java.util.ServiceLoader;
+
+record Payment(String orderId, java.math.BigDecimal amount) {}
+record PaymentResult(boolean success) {}
+interface PaymentProcessor { PaymentResult process(Payment payment); }
+
+public class PaymentProcessorLoader {
+    public PaymentProcessor loadFirstAvailable() {
+        // META-INF/services에 등록된 구현체 중 첫 번째를 사용
+        return ServiceLoader.load(PaymentProcessor.class)
+            .stream()
+            .findFirst()
+            .map(ServiceLoader.Provider::get)
+            .orElseThrow(() -> new IllegalStateException("등록된 PaymentProcessor 구현체가 없습니다"));
     }
 }
-
-// 런타임에 선택
-PaymentProcessor processor = ServiceLoader.load(PaymentProcessor.class)
-    .findFirst().orElseThrow();
 ```
 
 | 항목 | 설명 |
@@ -168,7 +235,7 @@ PaymentProcessor processor = ServiceLoader.load(PaymentProcessor.class)
 
 ## 3. 로컬 프로세스
 
-**같은 기기의 별도 프로세스**. IPC, 소켓, 메시지 큐로 통신.
+**같은 기기의 별도 프로세스**. IPC, 소켓, 메시지 큐로 통신. 함수 호출이 아니라 운영체제가 중재하는 통신 수단을 쓰므로, 이제부터는 직렬화·역직렬화 비용과 컨텍스트 스위칭 비용이 지연 시간에 더해진다. 대신 프로세스가 완전히 분리되므로, 한쪽이 다른 언어로 작성돼도 상관없다는 장점이 생긴다.
 
 ```mermaid
 flowchart LR
@@ -225,7 +292,7 @@ flowchart TB
 
 ## 4. 서비스 (서비스 수준)
 
-**네트워크를 통한 통신**. REST, gRPC, GraphQL, 메시지 큐 등.
+**네트워크를 통한 통신**. REST, gRPC, GraphQL, 메시지 큐 등. 프로세스가 다른 기기에 있을 수도 있다는 것이 로컬 프로세스와의 결정적 차이다. 네트워크는 로컬 IPC보다 훨씬 느리고, 언제든 끊어질 수 있다는 전제를 깔고 설계해야 한다 — 그래서 서비스 수준부터는 지연·부분 장애·재시도 같은 새로운 문제가 등장한다.
 
 ```mermaid
 flowchart LR
@@ -240,11 +307,21 @@ flowchart LR
 ```
 
 ```java
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+record Payment(String orderId, java.math.BigDecimal amount) {}
+record PaymentResult(boolean success, String message) {}
+
 // REST 클라이언트
 @Service
 public class PaymentClient {
     private final RestTemplate restTemplate;
-    
+
+    PaymentClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
     public PaymentResult processPayment(Payment payment) {
         // 네트워크 호출 - 수십~수백 밀리초
         return restTemplate.postForObject(
@@ -268,6 +345,8 @@ public class PaymentClient {
 
 ### 서비스의 추가 고려사항
 
+함수 호출은 실패하지 않는다는 전제를 깔고 코드를 짤 수 있지만, 네트워크 호출은 언제든 응답이 늦어지거나 아예 오지 않을 수 있다는 전제를 깔아야 한다. 그래서 서비스 수준의 경계에는 모놀리스에는 없던 새로운 책임(재시도, 타임아웃, 장애 격리)이 추가된다.
+
 ```mermaid
 flowchart TB
     subgraph Challenges [서비스 수준의 도전과제]
@@ -280,21 +359,37 @@ flowchart TB
 ```
 
 ```java
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+import org.springframework.stereotype.Service;
+import java.util.concurrent.TimeoutException;
+
+record Payment(String orderId, java.math.BigDecimal amount) {}
+record PaymentResult(boolean success, String message) {}
+class PaymentClient {
+    PaymentResult processPayment(Payment payment) throws TimeoutException { return new PaymentResult(true, null); }
+}
+
 // 서비스 호출 시 고려할 것들
 @Service
 public class ResilientPaymentClient {
-    
+    private final PaymentClient paymentClient;
+
+    ResilientPaymentClient(PaymentClient paymentClient) {
+        this.paymentClient = paymentClient;
+    }
+
     @CircuitBreaker(name = "payment")
     @Retry(name = "payment")
     public PaymentResult processPayment(Payment payment) {
         try {
-            return paymentService.process(payment);
+            return paymentClient.processPayment(payment);
         } catch (TimeoutException e) {
             // 타임아웃 처리
-            return PaymentResult.pending();
-        } catch (ServiceUnavailableException e) {
+            return new PaymentResult(false, "pending");
+        } catch (RuntimeException e) {
             // 서비스 불가 처리
-            return PaymentResult.retry();
+            return new PaymentResult(false, "retry");
         }
     }
 }
@@ -327,10 +422,33 @@ flowchart TB
     Q3 -->|높음| SVC[서비스]
 ```
 
-## 핵심 요약
+## 흔한 오해
 
-> **"아키텍트는 경계를 선으로 긋고, 나중에 물리적 형태를 결정한다. 처음부터 서비스일 필요는 없다."**
-> — Robert C. Martin
+"경계를 그었으니 처음부터 서비스로 배포해야 한다"는 생각이 흔한 오해다. 이 장의 핵심은 오히려 반대다 — 경계는 **논리적**으로 먼저 긋고, 그 경계를 **물리적으로** 어떻게 구현할지(함수 호출, jar, IPC, 네트워크)는 별개의 나중 결정이다. 처음부터 서비스 수준으로 시작하면 네트워크 지연·부분 장애·분산 추적 같은 비용을 프로젝트 초기부터 떠안게 된다. 또 다른 오해는 의존성 역전이 서비스 경계에서만 중요하다는 생각이다. 이 장이 보여주듯 모놀리스의 단순 함수 호출에서도 고수준 모듈이 저수준 구현을 직접 참조하면 동일한 결합 문제가 생긴다 — 물리적 형태와 무관하게 의존성 방향은 항상 지켜야 한다.
+
+## 학습 목표
+
+이 장을 읽은 후 다음을 스스로 점검한다.
+
+- 모놀리스·컴포넌트·로컬 프로세스·서비스 네 가지 경계 형태를 지연 시간·복잡성 순으로 비교할 수 있는가?
+- 각 경계 형태에서도 의존성 역전이 왜 여전히 필요한지 코드 예로 설명할 수 있는가?
+- 서비스 수준에서만 추가로 고려해야 하는 문제(부분 장애, 재시도, 서킷 브레이커)를 설명할 수 있는가?
+- "논리적 경계를 먼저 긋고 물리적 형태는 나중에 정한다"는 원칙을 실제 설계 결정에 적용할 수 있는가?
+
+## 판단 기준
+
+경계의 물리적 형태를 선택할 때 다음을 확인한다.
+
+- 팀이 독립적으로 배포해야 하는가, 아니면 함께 배포해도 무방한가?
+- 요구되는 지연 시간과 처리량이 함수 호출 수준인가, 네트워크 호출을 감수할 수 있는 수준인가?
+- 지금 서비스로 분리할 만큼 이 경계가 안정적인가, 아니면 아직 요구사항이 바뀌고 있어 모놀리스 안에서 논리적으로만 분리해 두는 것이 나은가?
+- 서비스로 분리한다면 네트워크 장애·재시도·타임아웃을 처리할 준비가 되어 있는가?
+
+## 참고 자료
+
+- Robert C. Martin, 『Clean Architecture』, 2017, 18장 — 경계의 물리적 형태와 각 형태의 비용 비교의 원 출처.
+
+## 핵심 요약
 
 | 원칙 | 설명 |
 |------|------|
@@ -339,17 +457,4 @@ flowchart TB
 | 단순한 것부터 | 모놀리스 → 필요시 분리 |
 | 비용 고려 | 각 형태의 장단점 이해 |
 
-```java
-// 핵심: 경계의 물리적 형태가 무엇이든
-// 의존성 방향은 항상 고수준을 향해야 한다
-
-// 인터페이스 (고수준)
-public interface PaymentGateway {
-    PaymentResult process(Payment payment);
-}
-
-// 구현 (저수준) - 모놀리스든 서비스든
-public class PaymentGatewayImpl implements PaymentGateway {
-    // 구현 세부사항
-}
-```
+핵심은 앞서 본 `OrderGateway`(모놀리스)·`PaymentGateway`(플러그인)·`Gateway Interface`(로컬 프로세스) 예제 모두에서 반복된 하나의 규칙이다 — 경계의 물리적 형태가 무엇이든, 의존성 방향은 항상 고수준(비즈니스 규칙)을 향해야 한다. 마틴은 아키텍트가 경계를 선으로 긋고 나중에 물리적 형태를 결정한다고 말한다. 처음부터 서비스일 필요는 없다(Martin, 『Clean Architecture』, 2017, 18장).

@@ -1,10 +1,12 @@
 ---
-draft: true
+draft: false
 collection_order: 160
 image: "wordcloud.png"
-description: "개방-폐쇄 원칙(OCP)이 소프트웨어 아키텍처의 근본 원칙인 이유를 설명합니다. Bertrand Meyer의 원래 정의부터 현대적 해석, 그리고 컴포넌트 수준에서의 적용까지 다룹니다."
+description: "개방-폐쇄 원칙(OCP)이 소프트웨어 아키텍처의 근본 원칙인 이유를 설명합니다. Bertrand Meyer의 1988년 원래 정의부터 Martin의 현대적 인터페이스 기반 해석, 그리고 Strategy·Template Method·Plugin 패턴 적용까지 다룹니다."
 title: "[Clean Architecture] 16. OCP: 개방-폐쇄 원칙"
+slug: ocp-open-closed-principle
 date: 2026-01-18
+lastmod: 2026-07-20
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
@@ -15,14 +17,30 @@ tags:
   - Polymorphism(다형성)
   - Dependency-Injection(의존성주입)
   - Code-Quality(코드품질)
+  - Coupling(결합도)
+  - Cohesion(응집도)
+  - Design-Pattern(디자인패턴)
+  - OOP(객체지향)
+  - Best-Practices
+  - Maintainability
+  - Refactoring(리팩토링)
+  - History(역사)
+  - Case-Study
+  - Deep-Dive
+  - Technology(기술)
+  - Strategy
+  - Modularity
+  - Readability
+  - Encapsulation(캡슐화)
+  - Inheritance(상속)
+  - Clean-Code(클린코드)
 ---
 
 **OCP(Open-Closed Principle)**는 1988년 Bertrand Meyer가 "Object-Oriented Software Construction"에서 처음 제안했다. 마틴은 이 원칙이 **소프트웨어 아키텍처를 연구하는 근본적인 이유**라고 말한다.
 
 ## OCP의 정의
 
-> **"소프트웨어 개체(클래스, 모듈, 함수 등)는 확장에 대해 열려 있어야 하고, 수정에 대해 닫혀 있어야 한다."**
-> — Bertrand Meyer, 1988
+마이어는 이렇게 정의한다: 소프트웨어 개체(클래스, 모듈, 함수 등)는 확장에 대해 열려 있어야 하고, 수정에 대해 닫혀 있어야 한다(Meyer, *Object-Oriented Software Construction*, 1988). 다만 마이어의 1988년 원안은 **구현 상속**을 통한 확장을 전제로 했다 — 아래에서 다룰 인터페이스·다형성 기반의 해법은 이후 마틴이 1996년 논문 "The Open-Closed Principle"에서 재해석한 현대적 형태다.
 
 ### 두 가지 의미
 
@@ -41,23 +59,32 @@ tags:
 2. 변하는 부분(구현)은 **열려** 있음
 
 ```java
+record Report(String title, java.util.List<String> lines) {}
+
 // 닫힌 부분 - 수정하지 않음
 interface ReportGenerator {
-    void generate(Report report);
+    String generate(Report report);
 }
 
 // 열린 부분 - 확장 가능
 class PdfReportGenerator implements ReportGenerator {
-    public void generate(Report report) { /* PDF 생성 */ }
+    public String generate(Report report) {
+        return "%PDF-1.4\n" + report.title() + "\n" + String.join("\\n", report.lines());
+    }
 }
 
 class ExcelReportGenerator implements ReportGenerator {
-    public void generate(Report report) { /* Excel 생성 */ }
+    public String generate(Report report) {
+        return report.title() + "\n" + String.join(",", report.lines());
+    }
 }
 
 // 새 형식 추가 - 기존 코드 수정 없음!
 class HtmlReportGenerator implements ReportGenerator {
-    public void generate(Report report) { /* HTML 생성 */ }
+    public String generate(Report report) {
+        return "<h1>" + report.title() + "</h1><ul><li>"
+            + String.join("</li><li>", report.lines()) + "</li></ul>";
+    }
 }
 ```
 
@@ -92,17 +119,20 @@ flowchart TB
 ### 잘못된 설계
 
 ```java
+record FinancialData(String quarter, java.math.BigDecimal revenue) {}
+
 // OCP 위반 - 새 형식마다 코드 수정 필요
 class FinancialReporter {
-    void report(String format, FinancialData data) {
+    String report(String format, FinancialData data) {
         if (format.equals("WEB")) {
-            // 웹 페이지 생성
+            return "<p>" + data.quarter() + ": " + data.revenue() + "</p>";
         } else if (format.equals("PDF")) {
-            // PDF 생성
+            return "%PDF-1.4\n" + data.quarter() + " " + data.revenue();
         } else if (format.equals("PRINT_BW")) {
-            // 흑백 인쇄
+            return "[BW] " + data.quarter() + " " + data.revenue();
         }
-        // 새 형식 추가 시 이 코드 수정 필요!
+        // 새 형식 추가 시 이 메서드 자체를 수정해야 한다!
+        throw new IllegalArgumentException("지원하지 않는 형식: " + format);
     }
 }
 ```
@@ -142,21 +172,23 @@ interface ReportPresenter {
 }
 
 class FinancialReporter {
-    private ReportPresenter presenter;
+    private final ReportPresenter presenter;
     
     FinancialReporter(ReportPresenter presenter) {
         this.presenter = presenter;
     }
     
     void report(FinancialData data) {
-        // 비즈니스 로직...
+        // 비즈니스 로직(집계·검증 등)은 여기서 수행하고...
         presenter.present(data);  // 출력 방식은 주입된 presenter가 결정
     }
 }
 
 // 새 출력 형식 추가 - FinancialReporter 수정 없음!
 class GreenBarPresenter implements ReportPresenter {
-    public void present(FinancialData data) { /* 녹색 바 인쇄 */ }
+    public void present(FinancialData data) {
+        System.out.println("=== " + data.quarter() + " === " + data.revenue());
+    }
 }
 ```
 
@@ -193,7 +225,7 @@ flowchart TB
 
 ### 방향 제어 (Directional Control)
 
-의존성의 방향을 제어하여 보호한다:
+OCP를 아키텍처 수준으로 확장하려면, 어떤 모듈이 어떤 모듈에 의존하는지를 의도적으로 통제해야 한다. 의존성의 방향을 제어하여 보호한다:
 
 - A가 B에 의존하면, B의 변경이 A에 영향
 - 따라서 중요한 것이 덜 중요한 것에 의존하면 안 됨
@@ -201,7 +233,7 @@ flowchart TB
 
 ### 정보 은닉 (Information Hiding)
 
-불필요한 정보는 숨긴다:
+방향을 통제하는 것만으로는 부족하다. 한 모듈이 다른 모듈의 내부 구조까지 알게 되면, 그 내부가 바뀔 때 함께 깨진다. 그래서 불필요한 정보는 숨긴다:
 
 - `Controller`가 `Interactor`의 내부를 알 필요 없음
 - `Presenter`가 `Controller`를 알 필요 없음
@@ -209,9 +241,7 @@ flowchart TB
 
 ## OCP가 아키텍처의 근본인 이유
 
-마틴은 말한다:
-
-> "OCP는 시스템의 아키텍처를 떠받치는 원동력 중 하나다."
+마틴은 OCP가 시스템의 아키텍처를 떠받치는 원동력 중 하나라고 말한다(Martin, *Clean Architecture*, 2017).
 
 ### 좋은 아키텍처의 목표
 
@@ -250,15 +280,43 @@ flowchart TB
 런타임에 알고리즘을 교체:
 
 ```java
+import java.util.Arrays;
+
 interface SortStrategy {
     void sort(int[] array);
 }
 
-class QuickSort implements SortStrategy { /* ... */ }
-class MergeSort implements SortStrategy { /* ... */ }
+class QuickSort implements SortStrategy {
+    public void sort(int[] array) { Arrays.sort(array); }  // JDK 듀얼 피벗 퀵정렬
+}
+
+class MergeSort implements SortStrategy {
+    public void sort(int[] array) {
+        mergeSort(array, 0, array.length - 1);
+    }
+
+    private void mergeSort(int[] array, int left, int right) {
+        if (left >= right) return;
+        int mid = (left + right) / 2;
+        mergeSort(array, left, mid);
+        mergeSort(array, mid + 1, right);
+        merge(array, left, mid, right);
+    }
+
+    private void merge(int[] array, int left, int mid, int right) {
+        int[] tmp = new int[right - left + 1];
+        int i = left, j = mid + 1, k = 0;
+        while (i <= mid && j <= right) tmp[k++] = array[i] <= array[j] ? array[i++] : array[j++];
+        while (i <= mid) tmp[k++] = array[i++];
+        while (j <= right) tmp[k++] = array[j++];
+        System.arraycopy(tmp, 0, array, left, tmp.length);
+    }
+}
 
 class Sorter {
-    private SortStrategy strategy;
+    private final SortStrategy strategy;
+    
+    Sorter(SortStrategy strategy) { this.strategy = strategy; }
     
     void sort(int[] array) {
         strategy.sort(array);  // 전략에 위임
@@ -266,25 +324,38 @@ class Sorter {
 }
 ```
 
+Strategy 패턴은 알고리즘 전체를 객체로 캡슐화해 **런타임에** 교체한다. `Sorter`는 어떤 정렬 알고리즘이 주입될지 컴파일 시점에 몰라도 되므로, 새 정렬 알고리즘을 추가해도 `Sorter`는 손대지 않는다. 다만 알고리즘 사이에 공유할 코드가 많다면 매 구현마다 중복이 생기기 쉽다 — 그런 경우에는 아래 Template Method가 더 적합하다.
+
 ### 2. Template Method 패턴
 
 알고리즘의 골격은 고정, 세부 단계는 확장:
 
 ```java
 abstract class ReportGenerator {
+    protected String data;
+
     // 템플릿 메서드 - 고정
     final void generate() {
         prepareData();
-        formatReport();
-        output();
+        String formatted = formatReport();
+        output(formatted);
     }
     
-    abstract void formatReport();  // 확장 포인트
-    abstract void output();        // 확장 포인트
+    abstract String formatReport();     // 확장 포인트
+    abstract void output(String data);  // 확장 포인트
     
-    void prepareData() { /* 공통 로직 */ }
+    void prepareData() {
+        this.data = "분기 매출 데이터";  // 공통 로직: 모든 하위 클래스가 공유
+    }
+}
+
+class ConsoleReportGenerator extends ReportGenerator {
+    String formatReport() { return "[TEXT] " + data; }
+    void output(String formatted) { System.out.println(formatted); }
 }
 ```
+
+Template Method는 Strategy와 달리 알고리즘의 **골격(순서)**을 상위 클래스에 고정하고, 달라지는 단계만 하위 클래스가 채워 넣는다. `prepareData()`처럼 모든 하위 클래스가 공유하는 로직은 상위 클래스에 한 번만 구현하면 되므로 Strategy보다 중복이 적다. 대신 상속을 쓰므로 하위 클래스가 상위 클래스의 골격에 강하게 결합되고, 런타임에 알고리즘을 바꿔 끼울 수는 없다.
 
 ### 3. Plugin 아키텍처
 
@@ -303,6 +374,8 @@ flowchart TB
     P3 --> Core
 ```
 
+Plugin 아키텍처는 Strategy·Template Method를 배포 단위 수준으로 확장한 것이다. 각 플러그인은 핵심 시스템이 정의한 인터페이스에만 의존하고, 핵심 시스템은 어떤 플러그인이 붙는지 전혀 모른다. 그 결과 새 플러그인을 추가·제거해도 핵심 시스템은 재컴파일·재배포할 필요가 없다 — OCP를 클래스 수준이 아니라 컴포넌트·배포 수준으로 끌어올린 형태다.
+
 ## OCP의 한계
 
 ### 완벽한 OCP는 불가능
@@ -319,11 +392,25 @@ flowchart TB
 
 ### 첫 번째 탄환
 
-마틴은 말한다:
+마틴은 이를 "첫 번째 탄환을 맞는다. 그리고 그 후에 리팩토링한다"고 표현한다(Martin, *Clean Architecture*, 2017, 8장). 완벽한 예측은 불가능하다. 변경이 발생하면 그때 OCP를 적용하여 미래의 유사한 변경에 대비한다.
 
-> "우리는 '첫 번째 탄환'을 맞는다. 그리고 그 후에 리팩토링한다."
+## 흔한 오해
 
-완벽한 예측은 불가능하다. 변경이 발생하면 그때 OCP를 적용하여 미래의 유사한 변경에 대비한다.
+**"OCP는 코드를 절대 수정하지 말라는 뜻"**이라는 오해가 흔하다. 실제로는 반대에 가깝다 — 처음부터 모든 변경 가능성에 대비해 인터페이스를 만드는 것은 과잉 설계다. 마틴이 "첫 번째 탄환을 맞는다"고 말했듯, 실제 변경이 한 번 일어난 뒤에야 그 지점에 추상화를 도입해 두 번째부터는 닫히게 만드는 것이 실용적이다. **"Meyer의 OCP와 Martin의 OCP는 같은 것"**이라는 오해도 흔한데, 앞서 보았듯 Meyer의 1988년 원안은 상속 기반이고 이 장에서 다룬 인터페이스·다형성 기반 해법은 Martin의 1996년 재해석이다.
+
+## 학습 목표
+
+이 장을 읽은 후 다음을 할 수 있어야 한다.
+
+- OCP가 "확장에 열리고 수정에 닫힌다"는 것을 추상화·인터페이스로 어떻게 구현하는지 코드로 설명할 수 있다.
+- Meyer의 1988년 원안(상속 기반)과 Martin의 1996년 재해석(인터페이스 기반)의 차이를 설명할 수 있다.
+- "완벽한 OCP는 불가능하다"는 전제 아래, 어떤 변경에 우선적으로 닫아야 할지 판단할 수 있다.
+
+## 참고 문헌
+
+- Meyer, B. (1988). *Object-Oriented Software Construction*. Prentice Hall.
+- Martin, R. C. (1996). "The Open-Closed Principle". *C++ Report*.
+- Martin, R. C. (2017). *Clean Architecture: A Craftsman's Guide to Software Structure and Design*. Prentice Hall.
 
 ## 핵심 요약
 
@@ -335,9 +422,8 @@ flowchart TB
 | 목표 | 변경 영향 최소화 |
 | 패턴 | Strategy, Template Method, Plugin |
 
-> **"OCP의 목표는 시스템을 확장하기 쉬운 동시에 변경으로 인해 시스템이 너무 많은 영향을 받지 않도록 하는 데 있다."**
-> — Robert C. Martin
+마틴은 이렇게 요약한다: OCP의 목표는 시스템을 확장하기 쉬운 동시에 변경으로 인해 시스템이 너무 많은 영향을 받지 않도록 하는 데 있다(Martin, *Clean Architecture*, 2017, 8장).
 
 ## 다음 장에서는
 
-다음 장에서는 **LSP: 리스코프 치환 원칙**을 다룬다. 이 원칙은 Barbara Liskov가 1988년에 정의한 것으로, 하위 타입이 상위 타입을 올바르게 대체할 수 있어야 한다는 것을 말한다.
+다음 장에서는 **LSP: 리스코프 치환 원칙**을 다룬다. 이 원칙은 Barbara Liskov가 1987년 제시하고 1994년 정식화한 것으로, 하위 타입이 상위 타입을 올바르게 대체할 수 있어야 한다는 것을 말한다.
