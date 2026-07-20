@@ -46,7 +46,7 @@ tags:
   - Kernel-Offloading
 ---
 
-<strong>GPU Offloading(GPU 오프로딩)</strong>이란 CPU가 순차적으로 처리하던 연산의 일부를 GPU 같은 이종 가속기(heterogeneous accelerator)로 넘겨, 수천 개의 스레드가 동시에 동작하는 SIMT(Single Instruction, Multiple Threads) 실행 자원으로 처리하는 전략을 말합니다. 행렬 곱셈이나 이미지 변환처럼 동일한 연산을 대량의 독립적 데이터에 반복 적용하는 워크로드는 GPU에서 수십~수백 배의 처리량 이득을 볼 수 있지만, 그 이득은 "커널 실행 자체"가 아니라 "데이터를 옮기고 결과를 회수하는 비용"과의 상쇄 관계 위에서만 성립합니다. 이 장은 CUDA·OpenCL·SYCL이라는 세 프로그래밍 모델의 개념적 차이와, CPU-GPU 데이터 전송이 왜 별도로 예산을 잡아야 하는 비용인지를 다루어, 이 트랙의 다음 장인 AI 추론 최적화로 넘어가기 전에 오프로딩 여부 자체를 판단하는 능력을 세웁니다.
+<strong>GPU Offloading(GPU 오프로딩)</strong>이란 CPU가 순차적으로 처리하던 연산의 일부를 GPU 같은 이종 가속기(heterogeneous accelerator)로 넘겨, 수천 개의 스레드가 동시에 동작하는 SIMT(Single Instruction, Multiple Threads) 실행 자원으로 처리하는 전략을 말합니다. 행렬 곱셈이나 이미지 변환처럼 동일한 연산을 대량의 독립적 데이터에 반복 적용하는 워크로드는 GPU에서 수십–수백 배의 처리량 이득을 볼 수 있지만, 그 이득은 "커널 실행 자체"가 아니라 "데이터를 옮기고 결과를 회수하는 비용"과의 상쇄 관계 위에서만 성립합니다. 이 장은 CUDA·OpenCL·SYCL이라는 세 프로그래밍 모델의 개념적 차이와, CPU-GPU 데이터 전송이 왜 별도로 예산을 잡아야 하는 비용인지를 다루어, 이 트랙의 다음 장인 AI 추론 최적화로 넘어가기 전에 오프로딩 여부 자체를 판단하는 능력을 세웁니다.
 
 ## 이 장을 읽기 전에
 

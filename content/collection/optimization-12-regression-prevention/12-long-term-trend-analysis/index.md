@@ -6,7 +6,7 @@ draft: false
 image: wordcloud.png
 title: "[Regression 12] 장기 추세 분석"
 slug: long-term-performance-trend-analysis
-description: "성능 지표를 몇 주~몇 달의 시계열로 보고 STL 분해·CUSUM·변화점 탐지로 점진적 저하를 잡아내며, 계절성·용량 증가를 실제 회귀와 통계적으로 구분하는 방법을 다룹니다. anchor baseline 재대조의 한계도 함께 정리합니다."
+description: "성능 지표를 몇 주–몇 달의 시계열로 보고 STL 분해·CUSUM·변화점 탐지로 점진적 저하를 잡아내며, 계절성·용량 증가를 실제 회귀와 통계적으로 구분하는 방법을 다룹니다. anchor baseline 재대조의 한계도 함께 정리합니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
@@ -55,7 +55,7 @@ tags:
 
 ## 이 장을 읽기 전에
 
-**선행 지식**: 이 장은 [기준선 관리](/post/regression-prevention/performance-baseline-management-strategy/)(챕터 06)에서 다룬 anchor baseline과 성능 드리프트 개념, 그리고 [변동성 관리](/post/regression-prevention/performance-variance-noise-management/)(챕터 07)에서 다룬 통계적 유의성·변동계수(CV) 개념을 전제로 합니다. 07장이 "이번 PR과 직전 상태를 비교할 때 신호와 소음을 가르는 법"을 다뤘다면, 이 장은 같은 통계적 태도를 **하나의 짝비교가 아니라 수십~수백 개 관측치로 이뤄진 시계열 전체**로 확장합니다. [성능 장애 대응](/post/regression-prevention/performance-incident-response-process/)(챕터 11)이 이미 터진 급격한 저하에 대응하는 절차였다면, 이 장은 그 정도로 급격하지 않아 알림도 울리지 않는 저하를 사전에 찾아내는 데 목적이 있습니다.
+**선행 지식**: 이 장은 [기준선 관리](/post/regression-prevention/performance-baseline-management-strategy/)(챕터 06)에서 다룬 anchor baseline과 성능 드리프트 개념, 그리고 [변동성 관리](/post/regression-prevention/performance-variance-noise-management/)(챕터 07)에서 다룬 통계적 유의성·변동계수(CV) 개념을 전제로 합니다. 07장이 "이번 PR과 직전 상태를 비교할 때 신호와 소음을 가르는 법"을 다뤘다면, 이 장은 같은 통계적 태도를 **하나의 짝비교가 아니라 수십–수백 개 관측치로 이뤄진 시계열 전체**로 확장합니다. [성능 장애 대응](/post/regression-prevention/performance-incident-response-process/)(챕터 11)이 이미 터진 급격한 저하에 대응하는 절차였다면, 이 장은 그 정도로 급격하지 않아 알림도 울리지 않는 저하를 사전에 찾아내는 데 목적이 있습니다.
 
 **이 장의 깊이**: 시계열을 추세·계절성·잔차로 분해하는 원리, 점진적 저하의 시작 시점을 통계적으로 특정하는 변화점 탐지, 용량 증가를 회귀와 분리하는 정규화 절차를 다룹니다. **다루지 않는 것**: 이 데이터를 어떤 도구로 수집·저장할지(→ [관측 가능성 플랫폼](/post/regression-prevention/performance-observability-platform-design/), 챕터 08), Grafana·Prometheus 대시보드 구성(→ [모니터링 대시보드](/post/regression-prevention/performance-monitoring-dashboard-grafana-prometheus/), 챕터 15), 탐지된 이상을 누구에게 어떻게 알릴지(→ [알림 전략](/post/regression-prevention/performance-alerting-strategy-design/), 챕터 09), 단일 PR 비교의 통계적 방법론 자체(→ 챕터 07), 리전·샤드별 대표성 문제(→ [분산·클러스터 성능 회귀](/post/regression-prevention/distributed-cluster-performance-regression-expert/), 챕터 17)는 각 챕터로 위임합니다. 하드웨어 증설·용량 산정 같은 프로비저닝 의사결정 자체도 이 장의 범위 밖입니다.
 
@@ -175,7 +175,7 @@ flowchart TB
 | 저하 시작 시점을 특정해 원인 커밋을 좁혀야 함 | CUSUM 또는 변화점 탐지(PELT/Binseg) | 변화 시점을 자동으로 특정해 bisect 범위를 줄임 |
 | 트래픽에 뚜렷한 일·주 단위 패턴이 있음 | STL로 계절성을 분리한 뒤 잔차만 감시 | 계절 성분을 미리 제거해야 잔차가 신호로 남음 |
 | 데이터 볼륨·요청량이 함께 증가 중 | 용량 신호로 정규화한 뒤 잔차 재분석 | 원시 절대값 비교는 용량 증가를 회귀로 오판 |
-| 시계열 이력이 아직 짧음(수 주 미만) | 판단 보류, anchor baseline 대조만 유지 | 계절 성분 추정에는 최소 2~3 계절 주기가 필요 |
+| 시계열 이력이 아직 짧음(수 주 미만) | 판단 보류, anchor baseline 대조만 유지 | 계절 성분 추정에는 최소 2–3 계절 주기가 필요 |
 
 ## 비판적 시각: 한계와 트레이드오프
 

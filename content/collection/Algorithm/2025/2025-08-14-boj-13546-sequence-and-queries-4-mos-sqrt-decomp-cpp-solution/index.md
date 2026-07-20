@@ -89,7 +89,7 @@ flowchart LR
 ## 알고리즘 설계
 - 유지 구조
   - `occ[v]`: 값 `v`가 현재 구간에 등장하는 모든 인덱스를 오름차순으로 담는 `deque`.
-  - `dist(v)`: `occ[v].back() - occ[v].front()` (등장 0~1회면 0).
+  - `dist(v)`: `occ[v].back() - occ[v].front()` (등장 0–1회면 0).
   - `cntDist[d]`: 거리 `d`를 만드는 값의 개수.
   - `cntBlock[b]`: 거리 구간을 √-분할했을 때 블록 `b` 안에 존재하는 거리의 개수 합.
 - 갱신 규칙(add/remove)

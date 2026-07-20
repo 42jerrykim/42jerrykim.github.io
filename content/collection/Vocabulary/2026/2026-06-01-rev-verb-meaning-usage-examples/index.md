@@ -150,7 +150,7 @@ image: wordcloud.png
   - **rev (up) + 목적어**: rev (up) the engine
   - **rev up + 추상명사**: rev up sales / the crowd / enthusiasm
   - **자동사 the engine revs (up)**: 엔진이 빨라지다
-- **격식도**: 비격식~중립. 일상·스포츠·마케팅 글에서 흔하며, 학술 격식 문서에서는 accelerate/boost가 선호된다.
+- **격식도**: 비격식–중립. 일상·스포츠·마케팅 글에서 흔하며, 학술 격식 문서에서는 accelerate/boost가 선호된다.
 - **뉘앙스**: 역동적·에너지가 넘치는 어감. 비유적 rev up은 대체로 긍정적(활기·기대 상승).
 - **문화적 연상**: 모터스포츠, 오토바이, 자동차 튜닝, 스타트업 “성장 가속” 등과 자주 결부된다.
 

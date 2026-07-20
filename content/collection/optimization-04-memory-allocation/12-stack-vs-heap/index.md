@@ -126,7 +126,7 @@ BENCHMARK(BM_HeapAllocate);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 bench.cpp -lbenchmark -lpthread`(x86-64, GCC 13, `-O2` 기준 예시)로 빌드해 실행하면, `BM_HeapAllocate`가 `BM_StackAllocate`보다 한 자릿수~두 자릿수 배 느리게 나오는 경우가 흔합니다. 차이의 원인은 힙 경로가 매 반복 free list 탐색·메타데이터 기록·(멀티스레드라면) 락 획득을 실제로 수행하는 반면, 스택 경로는 컴파일 타임에 이미 확보된 프레임 공간의 주소만 재사용하기 때문입니다. 다만 이 배율은 할당기 구현(ptmalloc, jemalloc, tcmalloc, mimalloc)과 객체 크기·스레드 수에 따라 크게 흔들리므로 단정적인 숫자로 인용하지 말고 대상 환경에서 재현해야 합니다. 시스템 콜 수준의 차이를 직접 확인하려면 두 경로를 각각 별도 실행 파일로 만들어 `strace`로 세어 보는 방법이 있습니다.
+`g++ -O2 bench.cpp -lbenchmark -lpthread`(x86-64, GCC 13, `-O2` 기준 예시)로 빌드해 실행하면, `BM_HeapAllocate`가 `BM_StackAllocate`보다 한 자릿수–두 자릿수 배 느리게 나오는 경우가 흔합니다. 차이의 원인은 힙 경로가 매 반복 free list 탐색·메타데이터 기록·(멀티스레드라면) 락 획득을 실제로 수행하는 반면, 스택 경로는 컴파일 타임에 이미 확보된 프레임 공간의 주소만 재사용하기 때문입니다. 다만 이 배율은 할당기 구현(ptmalloc, jemalloc, tcmalloc, mimalloc)과 객체 크기·스레드 수에 따라 크게 흔들리므로 단정적인 숫자로 인용하지 말고 대상 환경에서 재현해야 합니다. 시스템 콜 수준의 차이를 직접 확인하려면 두 경로를 각각 별도 실행 파일로 만들어 `strace`로 세어 보는 방법이 있습니다.
 
 ```text
 # 힙 경로: mmap_threshold를 넘는 큰 할당을 반복하면 mmap 호출이 관찰됨

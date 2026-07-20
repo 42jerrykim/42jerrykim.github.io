@@ -132,7 +132,7 @@ class OrderRepository(ABC):
         raise NotImplementedError
 ```
 
-이 인터페이스에는 `runQuery()`나 SQL 관련 메서드가 없습니다. 도메인 코드는 "주문을 저장한다", "ID로 주문을 찾는다"는 개념만 알면 되고, 실제로 관계형 DB를 쓰는지, 문서 DB를 쓰는지는 구현 클래스(어댑터)의 책임입니다. 이는 10~11장에서 다룬 포트/어댑터 구조를 애그리거트 저장에 특화한 형태입니다. **리포지터리는 항상 애그리거트 루트 단위로만 존재**하며, `OrderLineRepository`처럼 애그리거트 내부 요소에 대한 리포지터리는 만들지 않습니다. `OrderLine`은 반드시 `Order`를 통해서만 저장·조회되기 때문입니다.
+이 인터페이스에는 `runQuery()`나 SQL 관련 메서드가 없습니다. 도메인 코드는 "주문을 저장한다", "ID로 주문을 찾는다"는 개념만 알면 되고, 실제로 관계형 DB를 쓰는지, 문서 DB를 쓰는지는 구현 클래스(어댑터)의 책임입니다. 이는 10–11장에서 다룬 포트/어댑터 구조를 애그리거트 저장에 특화한 형태입니다. **리포지터리는 항상 애그리거트 루트 단위로만 존재**하며, `OrderLineRepository`처럼 애그리거트 내부 요소에 대한 리포지터리는 만들지 않습니다. `OrderLine`은 반드시 `Order`를 통해서만 저장·조회되기 때문입니다.
 
 ## 동시 수정 문제: 낙관적 잠금
 
@@ -169,7 +169,7 @@ Spring Data JPA 같은 프레임워크가 제공하는 `Repository` 인터페이
 ## 참고 문헌 및 출처(추천)
 
 - Eric Evans, 『Domain-Driven Design』(2003) — Aggregate, Repository 정의
-- Vaughn Vernon, "Effective Aggregate Design" Part I~III(2011)
+- Vaughn Vernon, "Effective Aggregate Design" Part I–III(2011)
 - Martin Fowler 외, 『Patterns of Enterprise Application Architecture』(2002) — Repository 패턴
 
 ---

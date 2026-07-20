@@ -47,7 +47,7 @@ tags:
 
 ## 이 장을 읽기 전에
 
-**선행 장**: 이 트랙의 인트로([OS·런타임 Low-latency 운영환경](/post/os-optimization/getting-started-os-runtime-performance-tuning/))는 이 장을 01~03장보다 먼저 읽으라고 권장합니다. 프로세스/스레드의 기본 모델을 먼저 맞춰야 컨텍스트 스위치([01장](/post/os-optimization/context-switch-cost-avoidance/))·syscall 비용([02장](/post/os-optimization/syscall-cost-minimization/))·affinity([03장](/post/os-optimization/cpu-pinning-affinity-strategy/))·signal handling([15장](/post/os-optimization/signal-handling-overhead-avoidance/))에서 "왜 스레드 전환이 프로세스 전환보다 싼가", "왜 시그널 핸들러 공유가 문제가 되는가" 같은 설명이 자연스럽게 이어지기 때문입니다.
+**선행 장**: 이 트랙의 인트로([OS·런타임 Low-latency 운영환경](/post/os-optimization/getting-started-os-runtime-performance-tuning/))는 이 장을 01–03장보다 먼저 읽으라고 권장합니다. 프로세스/스레드의 기본 모델을 먼저 맞춰야 컨텍스트 스위치([01장](/post/os-optimization/context-switch-cost-avoidance/))·syscall 비용([02장](/post/os-optimization/syscall-cost-minimization/))·affinity([03장](/post/os-optimization/cpu-pinning-affinity-strategy/))·signal handling([15장](/post/os-optimization/signal-handling-overhead-avoidance/))에서 "왜 스레드 전환이 프로세스 전환보다 싼가", "왜 시그널 핸들러 공유가 문제가 되는가" 같은 설명이 자연스럽게 이어지기 때문입니다.
 
 **전제 지식**: CPU 코어와 논리 실행 흐름(프로세스·스레드)의 구분, 커널이 가상 주소 공간을 페이지 테이블로 관리한다는 사실 정도만 알면 충분합니다.
 

@@ -68,7 +68,7 @@ tags:
 
 > "This document specifies a set of TCP extensions to improve performance over paths with a large bandwidth * delay product and to provide reliable operation over very high-speed paths." — [RFC 7323: TCP Extensions for High Performance](https://www.rfc-editor.org/rfc/rfc7323) (IETF, 2014)
 
-한편 지연을 "체감 가능한 예산"으로 다루는 관점은 통신 표준에서도 자리 잡았습니다. [ITU-T의 음성 품질 권고안 G.114](https://www.itu.int/rec/T-REC-G.114/en)는 편도(one-way) 지연이 150ms 이하면 대부분의 사용자가 지연을 느끼지 못하고, 150~400ms는 체감은 되지만 사용 가능한 범위, 400ms를 넘으면 대화가 어려워진다는 기준을 제시합니다. 이 숫자 자체는 음성 통화를 염두에 둔 것이지만, "지연에는 사람이 느끼는 예산이 있고 그 예산 안에서 각 구성 요소가 얼마를 차지하는지 나눠 봐야 한다"는 사고방식은 RPC·게임·트레이딩 시스템에도 그대로 적용됩니다.
+한편 지연을 "체감 가능한 예산"으로 다루는 관점은 통신 표준에서도 자리 잡았습니다. [ITU-T의 음성 품질 권고안 G.114](https://www.itu.int/rec/T-REC-G.114/en)는 편도(one-way) 지연이 150ms 이하면 대부분의 사용자가 지연을 느끼지 못하고, 150–400ms는 체감은 되지만 사용 가능한 범위, 400ms를 넘으면 대화가 어려워진다는 기준을 제시합니다. 이 숫자 자체는 음성 통화를 염두에 둔 것이지만, "지연에는 사람이 느끼는 예산이 있고 그 예산 안에서 각 구성 요소가 얼마를 차지하는지 나눠 봐야 한다"는 사고방식은 RPC·게임·트레이딩 시스템에도 그대로 적용됩니다.
 
 ## RTT를 구성하는 네 가지 지연
 
@@ -173,7 +173,7 @@ BDP는 "대역폭(bit/s) × RTT(s)"로 계산되며, 파이프를 쉬지 않고 
 
 ## 흔한 오개념 바로잡기
 
-<strong>"대역폭을 늘리면 지연이 줄어든다"</strong>는 절반만 맞는 말입니다. 대역폭 증가는 직렬화 지연을 줄이고 BDP가 큰 대용량 전송의 처리량을 개선하지만, 전파 지연·큐잉 지연·처리 지연에는 영향을 주지 못합니다. 특히 페이로드가 수십~수백 바이트 수준인 RPC 호출에서는 직렬화 지연 자체가 RTT의 극히 일부에 불과하므로, 회선을 10배 빠른 것으로 바꿔도 체감 지연은 거의 변하지 않는 경우가 흔합니다.
+<strong>"대역폭을 늘리면 지연이 줄어든다"</strong>는 절반만 맞는 말입니다. 대역폭 증가는 직렬화 지연을 줄이고 BDP가 큰 대용량 전송의 처리량을 개선하지만, 전파 지연·큐잉 지연·처리 지연에는 영향을 주지 못합니다. 특히 페이로드가 수십–수백 바이트 수준인 RPC 호출에서는 직렬화 지연 자체가 RTT의 극히 일부에 불과하므로, 회선을 10배 빠른 것으로 바꿔도 체감 지연은 거의 변하지 않는 경우가 흔합니다.
 
 <strong>"직렬화 지연(serialization delay)과 (데이터) 직렬화 비용은 같은 개념이다"</strong>도 흔한 혼동입니다. 이 장에서 다룬 직렬화 지연은 이미 만들어진 비트열을 링크에 밀어내는 물리 계층의 전송 시간을 가리키는 반면, "직렬화"라는 단어가 더 자주 쓰이는 맥락은 구조체를 바이트열로 인코딩·디코딩하는 애플리케이션 레벨 비용입니다. 후자는 Protocol Buffers·FlatBuffers·Cap'n Proto의 CPU 비용을 비교하는 [06장: 직렬화 성능 비교](/post/network-optimization/serialization-performance-protobuf-flatbuffers-capnproto/)의 주제이며, 이 장의 "직렬화 지연"과는 완전히 다른 계층의 이야기입니다.
 

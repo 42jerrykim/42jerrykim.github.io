@@ -151,7 +151,7 @@ image: wordcloud.png
   - **ghostwrite + 목적어**: ghostwrite a book, ghostwrite a speech
   - **ghostwrite something for somebody**: ghostwrite a memoir for a celebrity
   - **ghostwritten by ~**: The book was ghostwritten by a journalist.
-- **격식도**: 중립~비격식; 출판·미디어·비즈니스에서 흔히 쓰인다.
+- **격식도**: 중립–비격식; 출판·미디어·비즈니스에서 흔히 쓰인다.
 - **뉘앙스**: 중립적; 업으로서의 대필을 말할 때 부정적이지 않다. (속어로 “대신 시험 보다”는 cheat와 구별됨.)
 - **문화적 연상**: 유명인 자서전, 정치인 연설문, CEO 회고록, 블로그/칼럼 대리 작성 등과 결부된다.
 

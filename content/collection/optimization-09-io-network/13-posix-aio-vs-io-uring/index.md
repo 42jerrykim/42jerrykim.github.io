@@ -66,7 +66,7 @@ tags:
 
 ## 역사와 배경
 
-**POSIX AIO**는 1993년 IEEE Std 1003.1b(POSIX.1b, 실시간 확장)로 표준화되었고, `aio_read`·`aio_write`·`aio_error`·`aio_return`·`aio_suspend`·`aio_cancel`·`lio_listio` 함수군으로 구성됩니다. 표준은 "비동기적으로 큐잉된다"는 동작만 규정할 뿐 구현 방식은 정하지 않았고, 그 결과 BSD·macOS는 커널 이벤트 큐(`kqueue`) 기반으로 진짜 커널 비동기를 구현한 반면 Linux의 glibc는 유저 공간 **스레드 풀**로 이를 흉내 내는 전혀 다른 경로를 택했습니다. 이와 별개로 Linux 커널은 2.5/2.6 시절(2002~2003년경) `io_submit`/`io_getevents` 계열의 **커널 네이티브 AIO**(흔히 `libaio`로 불림)를 도입했는데, 이는 POSIX AIO와 이름만 비슷할 뿐 완전히 다른 API이며 `O_DIRECT` 파일에서만 신뢰할 수 있는 비동기 동작을 보장합니다. io_uring은 이 두 갈래의 한계를 모두 해소하려는 목적으로 Jens Axboe가 2019년 커널 5.1에 도입했으며, 이후 이 트랙 [04장](/post/io-optimization/io-uring-advanced-deep-dive/)에서 다루는 확장을 거치며 사실상 Linux 비동기 I/O의 기본 선택지로 자리 잡았습니다.
+**POSIX AIO**는 1993년 IEEE Std 1003.1b(POSIX.1b, 실시간 확장)로 표준화되었고, `aio_read`·`aio_write`·`aio_error`·`aio_return`·`aio_suspend`·`aio_cancel`·`lio_listio` 함수군으로 구성됩니다. 표준은 "비동기적으로 큐잉된다"는 동작만 규정할 뿐 구현 방식은 정하지 않았고, 그 결과 BSD·macOS는 커널 이벤트 큐(`kqueue`) 기반으로 진짜 커널 비동기를 구현한 반면 Linux의 glibc는 유저 공간 **스레드 풀**로 이를 흉내 내는 전혀 다른 경로를 택했습니다. 이와 별개로 Linux 커널은 2.5/2.6 시절(2002–2003년경) `io_submit`/`io_getevents` 계열의 **커널 네이티브 AIO**(흔히 `libaio`로 불림)를 도입했는데, 이는 POSIX AIO와 이름만 비슷할 뿐 완전히 다른 API이며 `O_DIRECT` 파일에서만 신뢰할 수 있는 비동기 동작을 보장합니다. io_uring은 이 두 갈래의 한계를 모두 해소하려는 목적으로 Jens Axboe가 2019년 커널 5.1에 도입했으며, 이후 이 트랙 [04장](/post/io-optimization/io-uring-advanced-deep-dive/)에서 다루는 확장을 거치며 사실상 Linux 비동기 I/O의 기본 선택지로 자리 잡았습니다.
 
 ```mermaid
 flowchart TB

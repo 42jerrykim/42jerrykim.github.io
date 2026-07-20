@@ -67,7 +67,7 @@ tags:
 
 `std::simd`의 뿌리는 2009년 Matthias Kretz(GSI Helmholtz Centre)가 자신의 Diplom 논문에서 시작한 **Vc 라이브러리**입니다. Vc는 컴파일러가 자동 벡터화를 신뢰할 수 없던 시절, "타입으로 SIMD 레인을 표현하고 연산자 오버로딩으로 커널을 쓴다"는 아이디어를 실제 라이브러리로 구현한 것이었고, 이 설계는 Kretz와 Lindenstruth의 2012년 논문 "Vc: A C++ library for explicit vectorization"(Software: Practice and Experience)으로 정식 발표되었습니다. 이 설계는 2018년 **ISO/IEC TS 19570:2018**(Parallelism TS v2)로 표준화되어 `std::experimental::simd`라는 이름으로 GCC에 실험적으로 들어갔고, 이후 논문 [**P1928**: "simd — merge data-parallel types from the Parallelism TS 2"](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2024/p1928r15.pdf)이 이를 정식 표준(`std::simd`)으로 승격시키는 작업을 맡았습니다.
 
-P1928은 2019년부터 매년 개정판(R1~R15)을 내며 committee 리뷰를 거쳤고, 그 과정에서 이름 자체가 여러 번 바뀌었습니다. 네임스페이스를 `std::datapar`로 둘지 `std::simd`로 둘지를 다룬 **P3287**("Exploration of namespaces for std::simd"), 그리고 네임스페이스가 `std::simd`로 정해지면서 클래스 이름 `simd`가 네임스페이스와 충돌해 `basic_simd`/`simd`에서 `basic_vec`/`vec`로 다시 바뀌는 과정을 다룬 **P3691**("simd" 논문)이 대표적입니다. 즉 오늘 블로그·발표 자료에서 보는 "`std::simd<float>`"라는 표기는 최종 확정 API와 다를 수 있습니다 — 표준 문서를 직접 확인하지 않은 자료는 과거 리비전의 이름을 그대로 쓰고 있을 가능성이 있습니다.
+P1928은 2019년부터 매년 개정판(R1–R15)을 내며 committee 리뷰를 거쳤고, 그 과정에서 이름 자체가 여러 번 바뀌었습니다. 네임스페이스를 `std::datapar`로 둘지 `std::simd`로 둘지를 다룬 **P3287**("Exploration of namespaces for std::simd"), 그리고 네임스페이스가 `std::simd`로 정해지면서 클래스 이름 `simd`가 네임스페이스와 충돌해 `basic_simd`/`simd`에서 `basic_vec`/`vec`로 다시 바뀌는 과정을 다룬 **P3691**("simd" 논문)이 대표적입니다. 즉 오늘 블로그·발표 자료에서 보는 "`std::simd<float>`"라는 표기는 최종 확정 API와 다를 수 있습니다 — 표준 문서를 직접 확인하지 않은 자료는 과거 리비전의 이름을 그대로 쓰고 있을 가능성이 있습니다.
 
 이 논문은 2026년 3월 Croydon 회의에서 **plenary 승인**을 받아 C++26에 편입되었고, 곧이어 2026년 4월 30일 출시된 **GCC 16.1**이 `-std=c++26` 플래그로 `std::simd`를 실험적으로 지원하기 시작했습니다. [GCC 16.1 릴리스 소식](https://isocpp.org/blog/2026/04/gcc-16.1)은 이를 "libstdc++의 실험적 개선" 항목으로 분류하는데, 이는 C++26의 다른 핵심 언어 기능(reflection 등)과 달리 라이브러리 기능이 아직 완성 단계가 아니라는 신호이기도 합니다.
 
@@ -222,7 +222,7 @@ flowchart TD
 
 더 날카로운 비판은 Vc 계열 라이브러리를 오래 다뤄 온 실무자 쪽에서 나옵니다. [대표적인 실무 비평](https://lucisqr.substack.com/p/c26-shipped-a-simd-library-nobody)은 단순 커널에서 스칼라 for-루프의 자동 벡터화가 `std::simd` 명시적 코드보다 낫거나 비슷한 사례, 기본 ABI 폭이 종종 128비트로 고정되어 버리는 문제(이 장의 "핵심 메커니즘"에서 재현한 바로 그 함정), 그리고 템플릿 인스턴스화 계층이 컴파일러의 대수적 단순화·상수 폴딩 기회를 가린다는 점을 근거로 든다 — 다만 이는 특정 벤치마크·컴파일러 버전에서 관찰된 결과이며, 모든 워크로드·모든 컴파일러에 대한 일반 법칙은 아니라는 점을 함께 감안해야 합니다. 이 비평은 대안으로 "단순한 곳은 자동 벡터화, 어려운 곳은 intrinsics"라는 조합이나 Highway, 혹은 언어 차원에서 SIMD를 다루는 ISPC를 제시합니다.
 
-두 비판 모두 공통으로 짚는 것은 **표준화 속도와 하드웨어·실무 관행의 변화 속도가 어긋났다**는 점입니다. Vc가 2009~2012년에 처음 이 설계를 제시했을 때는 AVX조차 막 등장한 시기였지만, 표준에 편입된 2026년에는 이미 Highway·xsimd 같은 성숙한 대안이 프로덕션에 자리 잡았고 스케일러블 벡터 아키텍처도 주류가 되어 있습니다. 이 트랙의 다른 전문 챕터([7장: hand-written 어셈블리](/post/extreme-optimization/hand-written-assembly-risk-management/), [11장: 유지보수성 균형](/post/extreme-optimization/extreme-optimization-maintainability-balance/))에서 일관되게 강조하는 "되돌리기 비용" 원칙을 여기에도 그대로 적용해야 합니다 — 지금 `std::simd`에 코드베이스를 고정하면, API 표면이 후속 GCC 릴리스나 Clang·MSVC 최초 구현에서 달라질 때 되돌리는 비용을 떠안게 됩니다.
+두 비판 모두 공통으로 짚는 것은 **표준화 속도와 하드웨어·실무 관행의 변화 속도가 어긋났다**는 점입니다. Vc가 2009–2012년에 처음 이 설계를 제시했을 때는 AVX조차 막 등장한 시기였지만, 표준에 편입된 2026년에는 이미 Highway·xsimd 같은 성숙한 대안이 프로덕션에 자리 잡았고 스케일러블 벡터 아키텍처도 주류가 되어 있습니다. 이 트랙의 다른 전문 챕터([7장: hand-written 어셈블리](/post/extreme-optimization/hand-written-assembly-risk-management/), [11장: 유지보수성 균형](/post/extreme-optimization/extreme-optimization-maintainability-balance/))에서 일관되게 강조하는 "되돌리기 비용" 원칙을 여기에도 그대로 적용해야 합니다 — 지금 `std::simd`에 코드베이스를 고정하면, API 표면이 후속 GCC 릴리스나 Clang·MSVC 최초 구현에서 달라질 때 되돌리는 비용을 떠안게 됩니다.
 
 ## 마무리
 

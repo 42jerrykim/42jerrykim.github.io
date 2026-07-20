@@ -53,7 +53,7 @@ tags:
 
 **전제 지식**: 이 장은 [Tr.06: io_uring 개요](/post/os-optimization/io-uring-overview-fundamentals/)에서 다룬 SQ(Submission Queue)/CQ(Completion Queue) 링 구조, `io_uring_setup`/`io_uring_enter` 기본 흐름, 그리고 이 트랙 [03장: 비동기 I/O 기초](/post/io-optimization/async-io-select-poll-epoll-kqueue/)에서 다룬 `epoll`의 level-triggered/edge-triggered 동작을 전제로 합니다. 두 장을 읽지 않았다면 먼저 읽는 것을 권장합니다.
 
-**이 장의 깊이**: **심화** 단계로, io_uring 자체의 셋업 코드나 기본 opcode 목록은 다시 설명하지 않습니다. 대신 2024~2026년에 걸쳐 추가된 세 가지 확장(epoll 통합, NAPI busy-poll, `uring_cmd` NVMe passthrough)의 내부 동작과, 이를 실제로 적용한 PostgreSQL 18 사례의 수치를 어떻게 해석해야 하는지에 집중합니다.
+**이 장의 깊이**: **심화** 단계로, io_uring 자체의 셋업 코드나 기본 opcode 목록은 다시 설명하지 않습니다. 대신 2024–2026년에 걸쳐 추가된 세 가지 확장(epoll 통합, NAPI busy-poll, `uring_cmd` NVMe passthrough)의 내부 동작과, 이를 실제로 적용한 PostgreSQL 18 사례의 수치를 어떻게 해석해야 하는지에 집중합니다.
 
 **다루지 않는 것**: POSIX AIO와 io_uring의 성능 비교 방법론은 [13장](/post/io-optimization/posix-aio-vs-io-uring-performance-comparison/), WAL·fsync·저널링 전략의 세부는 [14장](/post/io-optimization/database-io-wal-fsync-journaling-strategy/), NVMe 큐 깊이·I/O 스케줄러 튜닝 자체는 [10장](/post/io-optimization/block-device-nvme-ssd-io-scheduler-optimization/)에서 다룹니다. 이 장은 그 경계 안에서 "io_uring이 무엇과 통합되는가"에만 집중합니다.
 
@@ -151,7 +151,7 @@ int enable_napi_busy_poll(io_uring* ring, unsigned busy_poll_us) {
 
 PostgreSQL 18은 `io_method` 설정으로 `sync`(기존 동기 방식), `worker`(백그라운드 I/O 워커), `io_uring`(io_uring 기반 비동기 I/O) 중 하나를 선택할 수 있게 되었습니다. PostgreSQL 프로젝트의 공식 발표에 따르면 이 비동기 I/O 도입으로 순차 스캔(sequential scan)·비트맵 힙 스캔·vacuum 같은 워크로드에서 최대 3배까지 성능이 개선될 수 있다고 밝혔습니다.
 
-여기서 자주 섞이는 숫자가 하나 더 있습니다. "High-Performance DBMSs with io_uring" 연구 논문은 스토리지 바운드 버퍼 관리자를 대상으로 등록 버퍼(registered buffers)·NVMe passthrough(`uring_cmd`)·IOPOLL·SQPOLL을 누적 적용해 초당 546,000 트랜잭션(전체 2.05배 향상)까지 끌어올렸다고 보고합니다. 이 수치는 논문이 자체 구축한 버퍼 관리자 벤치마크에서 나온 것이며, 같은 논문이 이 가이드라인을 PostgreSQL 18의 실제 io_uring 통합에 적용했을 때는 테이블 스캔류 워크로드에서 약 11~15%의 추가 속도 향상을 얻었다고 별도로 보고합니다. 즉 "2.05배"는 PostgreSQL 자체의 공식 벤치마크 수치가 아니라 연구용 버퍼 관리자에서 얻은 상한선이며, PostgreSQL 18에 그대로 적용했을 때의 실측 개선폭은 이보다 훨씬 작습니다.
+여기서 자주 섞이는 숫자가 하나 더 있습니다. "High-Performance DBMSs with io_uring" 연구 논문은 스토리지 바운드 버퍼 관리자를 대상으로 등록 버퍼(registered buffers)·NVMe passthrough(`uring_cmd`)·IOPOLL·SQPOLL을 누적 적용해 초당 546,000 트랜잭션(전체 2.05배 향상)까지 끌어올렸다고 보고합니다. 이 수치는 논문이 자체 구축한 버퍼 관리자 벤치마크에서 나온 것이며, 같은 논문이 이 가이드라인을 PostgreSQL 18의 실제 io_uring 통합에 적용했을 때는 테이블 스캔류 워크로드에서 약 11–15%의 추가 속도 향상을 얻었다고 별도로 보고합니다. 즉 "2.05배"는 PostgreSQL 자체의 공식 벤치마크 수치가 아니라 연구용 버퍼 관리자에서 얻은 상한선이며, PostgreSQL 18에 그대로 적용했을 때의 실측 개선폭은 이보다 훨씬 작습니다.
 
 ## 흔한 오개념 바로잡기
 

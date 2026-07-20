@@ -93,7 +93,7 @@ tags:
 
 **완전한 초보자?** 이 장은 [06장: 객체 수명 최적화](/post/cpp-optimization/object-lifetime/)의 복사·이동 비용을 전제로 합니다. 함수 인자를 값/참조/우측값 참조로 받을 수 있다는 정도만 알면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **중급~전문가**를 포괄합니다. by value·const reference·rvalue reference의 의미부터 시작해, 전문가 구간에서는 객체 크기·복사/이동 비용에 따른 전달 전략을 마이크로벤치마크로 정량 분석합니다. **다루지 않는 것**: non-owning 뷰 전달([14장](/post/cpp-optimization/span-and-views/))과 반환값 최적화([06장](/post/cpp-optimization/object-lifetime/))의 세부입니다.
+**이 장의 깊이**: 이 장은 **중급–전문가**를 포괄합니다. by value·const reference·rvalue reference의 의미부터 시작해, 전문가 구간에서는 객체 크기·복사/이동 비용에 따른 전달 전략을 마이크로벤치마크로 정량 분석합니다. **다루지 않는 것**: non-owning 뷰 전달([14장](/post/cpp-optimization/span-and-views/))과 반환값 최적화([06장](/post/cpp-optimization/object-lifetime/))의 세부입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -173,7 +173,7 @@ public:
 | 전달 방식 | 대상 | 복사/이동 | 간접 접근 | 예시 상대 비용 |
 |-----------|------|-----------|-----------|----------------|
 | by value | 8바이트 `Point` | 복사 1 (레지스터) | 없음 | ~1x |
-| const ref | 8바이트 `Point` | 없음 | 멤버마다 1 | ~1x~1.3x |
+| const ref | 8바이트 `Point` | 없음 | 멤버마다 1 | ~1x–1.3x |
 | const ref | 큰 `std::string` | 없음 | 1 | ~1x |
 | by value(sink)+move | `std::string` rvalue | 이동 1 | 없음 | ~1x |
 | by value | `std::string` lvalue | 복사 1 (힙 할당) | 없음 | ~10x+ |
@@ -212,7 +212,7 @@ BENCHMARK(BM_SinkRvalue);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면(x86-64, GCC 13, `-O2` 기준 예시 수치), `BM_SinkLvalue`가 `BM_SinkRvalue`보다 대략 5~15배 느리게 나오는 경우가 흔합니다 — 차이의 근원은 힙 할당을 동반하는 문자열 **복사** 1회입니다. 정확한 배율은 문자열 길이·할당자·플랫폼에 따라 달라지므로, 표의 "~10x+"는 방향성을 보여주는 예시로만 참고하고 대상 환경에서 재측정해야 합니다.
+`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면(x86-64, GCC 13, `-O2` 기준 예시 수치), `BM_SinkLvalue`가 `BM_SinkRvalue`보다 대략 5–15배 느리게 나오는 경우가 흔합니다 — 차이의 근원은 힙 할당을 동반하는 문자열 **복사** 1회입니다. 정확한 배율은 문자열 길이·할당자·플랫폼에 따라 달라지므로, 표의 "~10x+"는 방향성을 보여주는 예시로만 참고하고 대상 환경에서 재측정해야 합니다.
 
 ```mermaid
 flowchart TD

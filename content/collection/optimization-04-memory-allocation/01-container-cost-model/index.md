@@ -108,7 +108,7 @@ k = 1.5 (MSVC STL):        재할당 ≈ 34회, 요소당 평균 이동 ≈ 3회
 - **map/set**: 보통 레드-블랙 트리 노드로 구현되어 색상 비트(패딩 포함 8바이트)와 부모·좌·우 포인터 3개(24바이트)를 더 가집니다. `map<int, int>`처럼 payload가 작을수록 오버헤드 비율이 커집니다.
 - **unordered_map/unordered_set**: 체이닝 구현(libstdc++)에서는 노드마다 캐시된 해시값과 다음 노드 포인터가 붙고, 별도로 버킷 배열(포인터 배열)이 `max_load_factor`를 넘을 때 vector와 비슷하게 재할당(리해시)됩니다. 이 조건은 [cppreference: std::unordered_map](https://en.cppreference.com/w/cpp/container/unordered_map)의 `max_load_factor`·`rehash` 항목에 정리되어 있습니다. 즉 이 컨테이너는 "노드 오버헤드"와 "vector식 배열 재할당"을 동시에 갖습니다.
 
-핵심은 payload(`sizeof(T)`)가 작을수록 이 오버헤드가 상대적으로 커진다는 점입니다. 요소가 이미 큰 구조체(수십~수백 바이트)라면 노드 오버헤드의 비중은 무시할 만하지만, `int`나 작은 `enum`을 담는 컨테이너에서는 오버헤드가 데이터 자체보다 클 수 있습니다.
+핵심은 payload(`sizeof(T)`)가 작을수록 이 오버헤드가 상대적으로 커진다는 점입니다. 요소가 이미 큰 구조체(수십–수백 바이트)라면 노드 오버헤드의 비중은 무시할 만하지만, `int`나 작은 `enum`을 담는 컨테이너에서는 오버헤드가 데이터 자체보다 클 수 있습니다.
 
 ```mermaid
 flowchart LR

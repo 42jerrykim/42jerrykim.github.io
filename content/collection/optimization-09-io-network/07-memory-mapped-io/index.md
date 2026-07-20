@@ -74,7 +74,7 @@ tags:
 
 ## mmap의 등장과 역사적 배경
 
-메모리 매핑 파일이라는 아이디어 자체는 1960~70년대 TOPS-20 운영체제의 설계로 거슬러 올라갑니다. 이 API는 BSD 계열 유닉스에서 다시 등장했는데, 4.2BSD(1983) 시스템 매뉴얼이 이미 `mmap`의 인터페이스를 기술했지만 정작 4.2BSD나 4.3BSD에는 구현되지 않았습니다. 실제로 동작하는 `mmap()`이 처음 출하된 것은 Sun Microsystems의 SunOS 4.0(1988)이었고, 이후 BSD 진영은 Sun의 구현을 이어받는 대신 Mach 가상 메모리 시스템을 기반으로 한 자체 구현을 4.3BSD-Reno/Net-2에 넣었습니다. 이 흐름이 이후 POSIX.1-2001로 표준화되어 오늘날 Linux·BSD·macOS가 공유하는 `mmap(2)` 인터페이스의 뼈대가 되었습니다. Windows에는 동일한 개념이 `CreateFileMapping`/`MapViewOfFile` API로 존재하지만, 이름·플래그 체계가 다르고 이 트랙에서는 Windows I/O 모델을 [4장: IOCP와 Windows I/O](/post/io-optimization/windows-iocp-io-model-optimization/)에서 별도로 다루므로 여기서는 POSIX `mmap`을 기준으로 설명합니다.
+메모리 매핑 파일이라는 아이디어 자체는 1960–70년대 TOPS-20 운영체제의 설계로 거슬러 올라갑니다. 이 API는 BSD 계열 유닉스에서 다시 등장했는데, 4.2BSD(1983) 시스템 매뉴얼이 이미 `mmap`의 인터페이스를 기술했지만 정작 4.2BSD나 4.3BSD에는 구현되지 않았습니다. 실제로 동작하는 `mmap()`이 처음 출하된 것은 Sun Microsystems의 SunOS 4.0(1988)이었고, 이후 BSD 진영은 Sun의 구현을 이어받는 대신 Mach 가상 메모리 시스템을 기반으로 한 자체 구현을 4.3BSD-Reno/Net-2에 넣었습니다. 이 흐름이 이후 POSIX.1-2001로 표준화되어 오늘날 Linux·BSD·macOS가 공유하는 `mmap(2)` 인터페이스의 뼈대가 되었습니다. Windows에는 동일한 개념이 `CreateFileMapping`/`MapViewOfFile` API로 존재하지만, 이름·플래그 체계가 다르고 이 트랙에서는 Windows I/O 모델을 [4장: IOCP와 Windows I/O](/post/io-optimization/windows-iocp-io-model-optimization/)에서 별도로 다루므로 여기서는 POSIX `mmap`을 기준으로 설명합니다.
 
 ## mmap의 핵심 메커니즘: 가상 주소에서 페이지 폴트까지
 

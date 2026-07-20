@@ -46,7 +46,7 @@ tags:
 
 **완전한 초보자?** 이 장은 [02장: I/O 패턴과 비용](/post/io-optimization/io-patterns-blocking-nonblocking-cost-model/)에서 다룬 시스템콜·블로킹 비용 모델과 [09장: 파일시스템 특성](/post/io-optimization/filesystem-performance-characteristics-ext4-xfs-zfs/)에서 다룬 ext4/XFS/ZFS의 계층 구조를 전제로 합니다. "커널이 파일 요청을 블록 요청으로 바꿔 디바이스에 보낸다"는 그림만 있으면 충분합니다.
 
-**이 장의 깊이**: **심화**입니다. NAND 플래시와 FTL(Flash Translation Layer)의 동작 원리부터 시작해, `blk-mq` 스케줄러 4종의 내부 메커니즘, 그리고 2024~2025년에 커널에 들어온 NVMe FDP 지원까지 다룹니다. **다루지 않는 것**: `O_DIRECT`로 페이지 캐시를 우회하는 방법 자체([08장](/post/io-optimization/direct-io-o-direct-page-cache-bypass/)에서 다룸), ext4/XFS의 저널링·원자적 쓰기 상세([09장](/post/io-optimization/filesystem-performance-characteristics-ext4-xfs-zfs/)), io_uring의 SQ/CQ 폴링·NAPI busy-poll 상세([04장](/post/io-optimization/io-uring-advanced-deep-dive/)), WAL/fsync 저널링 전략([14장](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)), 커널 모듈·벤더 드라이버로 스토리지 스택을 직접 커스터마이징하는 운영 리스크(16장: 스토리지 스택 커스터마이징, 게시 예정)입니다.
+**이 장의 깊이**: **심화**입니다. NAND 플래시와 FTL(Flash Translation Layer)의 동작 원리부터 시작해, `blk-mq` 스케줄러 4종의 내부 메커니즘, 그리고 2024–2025년에 커널에 들어온 NVMe FDP 지원까지 다룹니다. **다루지 않는 것**: `O_DIRECT`로 페이지 캐시를 우회하는 방법 자체([08장](/post/io-optimization/direct-io-o-direct-page-cache-bypass/)에서 다룸), ext4/XFS의 저널링·원자적 쓰기 상세([09장](/post/io-optimization/filesystem-performance-characteristics-ext4-xfs-zfs/)), io_uring의 SQ/CQ 폴링·NAPI busy-poll 상세([04장](/post/io-optimization/io-uring-advanced-deep-dive/)), WAL/fsync 저널링 전략([14장](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)), 커널 모듈·벤더 드라이버로 스토리지 스택을 직접 커스터마이징하는 운영 리스크(16장: 스토리지 스택 커스터마이징, 게시 예정)입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -66,7 +66,7 @@ tags:
 
 ## SSD 내부 동작: NAND, FTL, 쓰기 증폭
 
-NAND 플래시는 **읽기·쓰기는 페이지(보통 4~16KB) 단위**로, **삭제는 블록(여러 페이지 묶음, 보통 수백 KB~수 MB) 단위**로만 할 수 있다는 비대칭 제약을 갖습니다. 이미 데이터가 있는 페이지를 덮어쓸 수 없고, 반드시 해당 블록 전체를 지운 뒤에야 다시 쓸 수 있습니다. 이 제약을 애플리케이션과 파일시스템에 숨기는 역할을 컨트롤러 펌웨어의 <strong>FTL(Flash Translation Layer)</strong>이 담당합니다. FTL은 논리 블록 주소(LBA)를 물리 페이지 주소로 매핑하고, 덮어쓰기 요청이 오면 새 페이지에 쓴 뒤 매핑을 갱신하고 이전 페이지를 "무효"로 표시합니다.
+NAND 플래시는 **읽기·쓰기는 페이지(보통 4–16KB) 단위**로, **삭제는 블록(여러 페이지 묶음, 보통 수백 KB–수 MB) 단위**로만 할 수 있다는 비대칭 제약을 갖습니다. 이미 데이터가 있는 페이지를 덮어쓸 수 없고, 반드시 해당 블록 전체를 지운 뒤에야 다시 쓸 수 있습니다. 이 제약을 애플리케이션과 파일시스템에 숨기는 역할을 컨트롤러 펌웨어의 <strong>FTL(Flash Translation Layer)</strong>이 담당합니다. FTL은 논리 블록 주소(LBA)를 물리 페이지 주소로 매핑하고, 덮어쓰기 요청이 오면 새 페이지에 쓴 뒤 매핑을 갱신하고 이전 페이지를 "무효"로 표시합니다.
 
 무효 페이지가 쌓인 블록은 <strong>가비지 컬렉션(GC)</strong>으로 회수됩니다. GC는 블록 안에 남은 유효 페이지를 다른 블록으로 옮겨 쓴 뒤 블록 전체를 지우는데, 이 "옮겨 쓰기"가 호스트가 요청하지 않은 추가 쓰기를 만듭니다. <strong>쓰기 증폭 계수(WAF, Write Amplification Factor)</strong>는 "미디어에 실제로 쓴 바이트 / 호스트가 쓴 바이트"로 정의되며, GC가 활발할수록, 그리고 호스트가 함께 지워질 데이터(수명이 비슷한 데이터)를 물리적으로 흩어 놓을수록 WAF가 커집니다. WAF가 커지면 셀 마모가 빨라져 수명이 줄고, GC로 인한 백그라운드 쓰기가 전경 쓰기·읽기 지연을 밀어내 **tail latency**를 악화시킵니다.
 

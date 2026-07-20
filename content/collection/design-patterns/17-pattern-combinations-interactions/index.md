@@ -498,7 +498,7 @@ public static class ServiceFactory {
 }
 ```
 
-이 조합에서 실제 트레이드오프가 드러나는 지점은 `getService()`다. 반환 타입을 `Class<T>` 기반으로 캐스팅하면서 컴파일 타임 타입 안전성을 일부 포기하는 대신(`@SuppressWarnings("unchecked")`가 그 대가를 표시한다), 서비스 종류가 늘어나도 `ServiceFactory`에 새 getter를 추가하지 않아도 되는 확장성을 얻는다. 서비스가 2~3개뿐이라면 `getUserService()`, `getOrderService()`처럼 타입 안전한 개별 getter가 오히려 더 간단할 수 있다 — Map 기반 레지스트리는 서비스 종류가 두 자릿수를 넘어갈 때부터 이점이 뚜렷해진다.
+이 조합에서 실제 트레이드오프가 드러나는 지점은 `getService()`다. 반환 타입을 `Class<T>` 기반으로 캐스팅하면서 컴파일 타임 타입 안전성을 일부 포기하는 대신(`@SuppressWarnings("unchecked")`가 그 대가를 표시한다), 서비스 종류가 늘어나도 `ServiceFactory`에 새 getter를 추가하지 않아도 되는 확장성을 얻는다. 서비스가 2–3개뿐이라면 `getUserService()`, `getOrderService()`처럼 타입 안전한 개별 getter가 오히려 더 간단할 수 있다 — Map 기반 레지스트리는 서비스 종류가 두 자릿수를 넘어갈 때부터 이점이 뚜렷해진다.
 
 위 `ServiceFactory`는 글 서두에서 밝힌 대로 `UserServiceBuilder`·`UserService` 등 주변 타입의 구현을 생략한 설계 스케치다. Factory+Singleton+Builder 조합이 실제로 어떻게 맞물려 컴파일되는지 확인할 수 있도록, 아래는 그 협력 타입들을 최소 형태로 채운 독립 실행 가능한 스텁이다. `UserRepository`·`UserValidator`·`NotificationService`·`AuditService`는 실제로는 각각 DB 접근, 검증 규칙, 알림 발송, 감사 로그라는 고유한 책임을 지지만, 여기서는 "Builder가 여러 협력 객체를 조립하고 그 결과를 Map 레지스트리에 담아 Singleton으로 접근한다"는 조합의 골격만 보이기 위해 필드 없는 빈 클래스로 둔다.
 

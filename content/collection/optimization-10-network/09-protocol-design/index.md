@@ -54,16 +54,16 @@ tags:
 
 **선행 챕터**: [06장: 직렬화 성능 비교](/post/network-optimization/serialization-performance-protobuf-flatbuffers-capnproto/)에서 Protocol Buffers·FlatBuffers·Cap'n Proto의 인코딩 방식과 비용을 비교했고, [07장: Zero-copy 직렬화](/post/network-optimization/zero-copy-serialization-flatbuffers-capnproto/)에서는 vtable·세그먼트 기반 필드 접근 원리를, [08장](/post/network-optimization/next-gen-zero-copy-serialization-formats-yaff/)에서는 신흥 zero-copy 포맷 동향을 다뤘습니다. 이 장은 "어떤 포맷을 쓸지"가 아니라 "그 포맷 위에 얹는 헤더·버전·확장 규약을 어떻게 설계할지"를 다룬다는 점에서 앞 장들과 층위가 다릅니다.
 
-**전제 지식**: C/C++ 구조체의 메모리 레이아웃과 패딩, 정수의 엔디안(byte order) 개념, 그리고 05~08장에서 다룬 "직렬화 비용은 파싱 단계에서 결정된다"는 감각이 있으면 충분합니다.
+**전제 지식**: C/C++ 구조체의 메모리 레이아웃과 패딩, 정수의 엔디안(byte order) 개념, 그리고 05–08장에서 다룬 "직렬화 비용은 파싱 단계에서 결정된다"는 감각이 있으면 충분합니다.
 
-**이 장의 깊이**: **중급** 수준입니다. 고정 크기 헤더의 이점, additive-only 버전 관리, 플래그·예약 필드·TLV 확장 블록이라는 세 가지 확장 메커니즘을 원리 수준에서 다룹니다. **다루지 않는 것**: 메시지 경계를 스트림에서 어떻게 나눌지(length-prefix vs delimiter vs fixed-size)는 [10장: 메시지 프레이밍](/post/network-optimization/message-framing-length-prefix-delimiter-fixed-size/)에서 다루고, 필드 인코딩 자체의 처리량·zero-copy 메커니즘은 05~08장에서 다뤘으므로 이 장에서는 반복하지 않습니다.
+**이 장의 깊이**: **중급** 수준입니다. 고정 크기 헤더의 이점, additive-only 버전 관리, 플래그·예약 필드·TLV 확장 블록이라는 세 가지 확장 메커니즘을 원리 수준에서 다룹니다. **다루지 않는 것**: 메시지 경계를 스트림에서 어떻게 나눌지(length-prefix vs delimiter vs fixed-size)는 [10장: 메시지 프레이밍](/post/network-optimization/message-framing-length-prefix-delimiter-fixed-size/)에서 다루고, 필드 인코딩 자체의 처리량·zero-copy 메커니즘은 05–08장에서 다뤘으므로 이 장에서는 반복하지 않습니다.
 
 ## 당신의 수준에 맞는 경로
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
 | **중급자** | "등장 배경" ~ "헤더 설계: 고정 크기가 주는 것" | 고정 헤더가 파싱 비용을 줄이는 이유 이해 |
-| **중급~심화** | "버전 관리" ~ "코드로 보는 검증" | additive-only 규칙과 TLV 확장 설계를 코드로 추적 |
+| **중급–심화** | "버전 관리" ~ "코드로 보는 검증" | additive-only 규칙과 TLV 확장 설계를 코드로 추적 |
 | **심화** | "흔한 오개념" ~ "비판적 시각" | 버전·확장 설계의 함정과 트레이드오프 판단 |
 
 ## 등장 배경

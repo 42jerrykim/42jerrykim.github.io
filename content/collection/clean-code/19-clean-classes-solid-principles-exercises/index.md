@@ -155,7 +155,7 @@ public class UserService {
 }
 ```
 
-`UserService`를 테스트할 때는 실제 DB나 이메일 서버 대신 각 협력자의 테스트 더블을 주입하면 된다. 이는 [16~17장](/post/clean-code/unit-testing-tdd-test-driven-development/)에서 다룬 F.I.R.S.T 원칙을 만족하는 테스트를 가능하게 하는 구조이며, 이 조립 방식을 시스템 전체로 확장하는 방법은 [20장](/post/clean-code/system-design-dependency-injection-architecture/)에서 다룬다.
+`UserService`를 테스트할 때는 실제 DB나 이메일 서버 대신 각 협력자의 테스트 더블을 주입하면 된다. 이는 [16–17장](/post/clean-code/unit-testing-tdd-test-driven-development/)에서 다룬 F.I.R.S.T 원칙을 만족하는 테스트를 가능하게 하는 구조이며, 이 조립 방식을 시스템 전체로 확장하는 방법은 [20장](/post/clean-code/system-design-dependency-injection-architecture/)에서 다룬다.
 
 ## 판단 기준: 분해가 과도한지 점검하기
 

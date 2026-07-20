@@ -152,7 +152,7 @@ image: "wordcloud.png"
 - **발음**: /ˌæbsənˈtiːɪzəm/ (미국식에서도 대체로 유사; 강세는 보통 *-tee-* 근처).
 - **관련어**: **absentee**(부재자), **absently**(멍하니), **non-attendance**(불참·결석의 공문형 표현).
 - **전형 패턴**: **high/low absenteeism**, **rates of absenteeism**, **tackle absenteeism**, **absenteeism among + 집단**
-- **격식도**: 중립~격식; 뉴스·HR 보고서·학술 개요에서 흔하다.
+- **격식도**: 중립–격식; 뉴스·HR 보고서·학술 개요에서 흔하다.
 - **뉘앙스**: 개인 탓만이 아니라 **제도·건강·돌봄** 요인을 함께 논의할 때도 자주 등장한다(문맥에 따라 중립적 분석어로 쓰인다).
 
 ---

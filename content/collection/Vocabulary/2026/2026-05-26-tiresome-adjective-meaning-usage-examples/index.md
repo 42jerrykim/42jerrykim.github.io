@@ -219,7 +219,7 @@ It's tiresome how he keeps asking the same questions repeatedly.
   - `be + tiresome`: "It is tiresome to..."
   - `find + noun + tiresome`: "I find his behavior tiresome."
   - `tiresome + noun`: "a tiresome task"
-- **격식도**: 중립~약간 형식적 (일상 대화와 글쓰기 모두에서 사용 가능)
+- **격식도**: 중립–약간 형식적 (일상 대화와 글쓰기 모두에서 사용 가능)
 - **뉘앙스**: 부정적, 불만족스러움을 드러냄. 온화한 비판에서 강한 불평까지 표현 가능
 - **문화적 사용**: 뉴스, 비평, 일상 대화, 학술 글에서 널리 사용되는 표현
 

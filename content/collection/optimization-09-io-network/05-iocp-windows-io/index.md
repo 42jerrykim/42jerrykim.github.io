@@ -199,7 +199,7 @@ void run_benchmark(HANDLE iocp, ULONG batch_size, int duration_ms) {
 
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
-| 연결 수백~수만, 세밀한 제어 필요 | 수동 `GetQueuedCompletionStatus(Ex)` 루프 + 직접 관리하는 워커 풀 | 연결마다 스레드 하나씩 |
+| 연결 수백–수만, 세밀한 제어 필요 | 수동 `GetQueuedCompletionStatus(Ex)` 루프 + 직접 관리하는 워커 풀 | 연결마다 스레드 하나씩 |
 | 스레드 풀 크기·확장을 직접 관리하고 싶지 않을 때 | `CreateThreadpoolIo`/`StartThreadpoolIo` | 매번 수동으로 스레드 생성·종료 관리 |
 | 초당 완료 건수가 매우 많은 서버 | `GetQueuedCompletionStatusEx`로 배치 디큐 | 완료마다 개별 `GetQueuedCompletionStatus` 호출 |
 | 요청-응답 순서가 프로토콜상 중요 | 컨텍스트에 시퀀스 번호를 두고 애플리케이션에서 재정렬 | 완료 순서가 곧 제출 순서라고 가정 |

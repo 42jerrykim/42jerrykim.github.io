@@ -98,7 +98,7 @@ image: wordcloud.png
 - 현재분사: hinging (The issue hinging on approval...)
 - 명사형: hinge (경첩, 핵심 요소) – This is the hinge of our strategy.
 - 어원: 중세 영어 henge (경첩), 독일어 Hang (매달림)에서 유래. 물리적 "경첩"에서 비유적 "의존"으로 의미 확장.
-- 격식도: 중립~격식적. 보고서, 프레젠테이션, 학술 논문에서 유용. 일상 회화에서는 depend on이 더 흔함.
+- 격식도: 중립–격식적. 보고서, 프레젠테이션, 학술 논문에서 유용. 일상 회화에서는 depend on이 더 흔함.
 
 ## 예문 모음 (EN/KR)
 

@@ -214,7 +214,7 @@ image: wordcloud.png
 - **발음**: /pʊt daʊn/
 - **활용**: put down → puts down → putting down → put down (과거·과거분사 동일).
 - **목적어 위치**: put down the book / put the book down 둘 다 가능. 대명사는 put it down만 자연스러움.
-- **격식도**: 중립~비격식. 일상·뉴스·비즈니스에서 흔함. “안락사” 의미는 완곡·감정적 맥락.
+- **격식도**: 중립–비격식. 일상·뉴스·비즈니스에서 흔함. “안락사” 의미는 완곡·감정적 맥락.
 - **수동태**: The rebellion was put down. / She felt put down. (가능)
 - **주의**: put down to는 반드시 “원인”을 나타내는 명사(구)가 온다.
 

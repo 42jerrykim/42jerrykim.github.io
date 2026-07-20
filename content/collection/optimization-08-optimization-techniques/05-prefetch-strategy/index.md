@@ -62,7 +62,7 @@ tags:
 
 ## 소프트웨어 프리페치 명령어: 힌트 레벨과 사용법
 
-`_mm_prefetch(addr, hint)`와 `__builtin_prefetch(addr, rw, locality)`는 같은 하드웨어 명령을 서로 다른 인터페이스로 감싼 것입니다. 전자는 x86 `_MM_HINT_*` 상수로 캐시 계층을 직접 지정하고, 후자는 0~3의 정수로 "시간적 지역성 정도"를 추상적으로 표현합니다.
+`_mm_prefetch(addr, hint)`와 `__builtin_prefetch(addr, rw, locality)`는 같은 하드웨어 명령을 서로 다른 인터페이스로 감싼 것입니다. 전자는 x86 `_MM_HINT_*` 상수로 캐시 계층을 직접 지정하고, 후자는 0–3의 정수로 "시간적 지역성 정도"를 추상적으로 표현합니다.
 
 | `_mm_prefetch` 힌트 | 의미 | `__builtin_prefetch` locality | 대응 의미 |
 |---|---|---|---|
@@ -245,7 +245,7 @@ flowchart TD
 
 ## 마무리
 
-- [ ] `_mm_prefetch`의 `_MM_HINT_T0/T1/T2/NTA`와 `__builtin_prefetch`의 locality 0~3 대응 관계를 설명할 수 있다.
+- [ ] `_mm_prefetch`의 `_MM_HINT_T0/T1/T2/NTA`와 `__builtin_prefetch`의 locality 0–3 대응 관계를 설명할 수 있다.
 - [ ] 하드웨어 프리페처가 규칙적 stride를 학습하는 원리와, 포인터 체이싱에서 왜 학습이 어려운지 설명할 수 있다.
 - [ ] 프리페치 거리를 메모리 지연시간과 반복당 cycle로 근사 계산하고, 실측으로 스윕해 검증할 수 있다.
 - [ ] "많을수록 좋다", "하드웨어가 다 한다", "다음 노드 프리페치는 항상 이득" 세 가지 오해를 근거를 들어 반박할 수 있다.

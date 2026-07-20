@@ -41,7 +41,7 @@ tags:
 slug: cpp-coroutine-reinterpretation-future-active-object
 ---
 
-07장의 Future/Promise와 08장의 Active Object는 모두 같은 보일러플레이트를 반복했다 — 완료 플래그, `mutex`, `condition_variable`, 결과 저장소를 손으로 조합해 "언젠가 끝나는 작업"을 표현했다. C++20 코루틴은 이 보일러플레이트의 상당 부분을 컴파일러가 대신 만들어 주는 문법이다. `co_await`로 멈추고 싶은 지점을 표시하면, 컴파일러가 함수를 "멈췄다가 나중에 이어서 실행할 수 있는 상태 머신"으로 변환해 준다. 이 장은 07~08장에서 손으로 만든 것과 정확히 같은 문제를, 코루틴이라는 다른 문법으로 다시 풀어 본다.
+07장의 Future/Promise와 08장의 Active Object는 모두 같은 보일러플레이트를 반복했다 — 완료 플래그, `mutex`, `condition_variable`, 결과 저장소를 손으로 조합해 "언젠가 끝나는 작업"을 표현했다. C++20 코루틴은 이 보일러플레이트의 상당 부분을 컴파일러가 대신 만들어 주는 문법이다. `co_await`로 멈추고 싶은 지점을 표시하면, 컴파일러가 함수를 "멈췄다가 나중에 이어서 실행할 수 있는 상태 머신"으로 변환해 준다. 이 장은 07–08장에서 손으로 만든 것과 정확히 같은 문제를, 코루틴이라는 다른 문법으로 다시 풀어 본다.
 
 ## 이 장을 읽기 전에
 
@@ -230,7 +230,7 @@ template <typename T>
 class [[nodiscard]] Task { /* 이하 동일 */ };
 ```
 
-`[[nodiscard]]`는 런타임 동작을 바꾸지 않지만, `computeAsync(7);`처럼 반환값을 버리면 컴파일 경고를 발생시켜 이 실수를 컴파일 타임에 잡아 준다 — 03~04장에서 반복해서 강조한 "런타임에 가끔 터지는 버그보다, 컴파일 타임에 항상 잡히는 제약이 낫다"는 원칙이 코루틴에도 그대로 적용된다.
+`[[nodiscard]]`는 런타임 동작을 바꾸지 않지만, `computeAsync(7);`처럼 반환값을 버리면 컴파일 경고를 발생시켜 이 실수를 컴파일 타임에 잡아 준다 — 03–04장에서 반복해서 강조한 "런타임에 가끔 터지는 버그보다, 컴파일 타임에 항상 잡히는 제약이 낫다"는 원칙이 코루틴에도 그대로 적용된다.
 
 ## Active Object 재해석: 콜백으로 채우는 awaiter
 
@@ -365,13 +365,13 @@ bool await_suspend(std::coroutine_handle<> h) {
 
 ## 코루틴과 멀티스레딩의 관계
 
-지금까지의 두 예제를 나란히 놓고 보면 코루틴이 정확히 어디에 기여하는지가 분명해진다. 코루틴은 "결과를 어떻게 표현하고 어떻게 이어받을지"의 **문법**을 컴파일러가 생성한 상태 머신으로 대체했을 뿐, 실제로 다른 스레드에서 작업을 실행하고 그 완료를 안전하게 통지하는 책임은 여전히 `mutex`·`condition_variable`·`atomic` 같은 이 시리즈의 앞선 어휘가 진다. `RunOnThread`와 `CoroFuture`는 결국 07~08장에서 만든 것과 같은 종류의 동기화 구조를 awaiter 인터페이스 뒤로 옮겨 감춘 것이다.
+지금까지의 두 예제를 나란히 놓고 보면 코루틴이 정확히 어디에 기여하는지가 분명해진다. 코루틴은 "결과를 어떻게 표현하고 어떻게 이어받을지"의 **문법**을 컴파일러가 생성한 상태 머신으로 대체했을 뿐, 실제로 다른 스레드에서 작업을 실행하고 그 완료를 안전하게 통지하는 책임은 여전히 `mutex`·`condition_variable`·`atomic` 같은 이 시리즈의 앞선 어휘가 진다. `RunOnThread`와 `CoroFuture`는 결국 07–08장에서 만든 것과 같은 종류의 동기화 구조를 awaiter 인터페이스 뒤로 옮겨 감춘 것이다.
 
 이 재구성이 실질적으로 남기는 이득은 **호출부의 표현력**이다. `std::future<int> f = calc.square(7); int r = f.get();`와 `int r = co_await calc.square(7);`은 둘 다 "비동기 결과를 기다린다"는 뜻이지만, 코루틴 버전은 여러 비동기 호출을 마치 동기 코드처럼 순서대로 이어 쓸 수 있게 해 준다 — 중간에 콜백 지옥이나 명시적 `.then()` 체이닝 없이, `co_await` 세 글자로 "여기서 기다렸다가 다음 줄로" 넘어간다. 대신 그 대가로 이 장에서 본 것처럼 `promise_type`·awaiter·코루틴 프레임 수명이라는 새로운 복잡도를 감수해야 한다. Ivan Kostruba는 Active Object를 코루틴으로 재구현하는 글에서, 콜백 기반 설계가 단계가 늘어날수록 왜 읽기 어려워지는지를 이렇게 짚는다.
 
 > "This approach will work, but the business logic will be scattered across two different functions, making it harder to read. And what if we have not two, but five or ten steps? Must we divide the logic into ten parts?" — Ivan Kostruba, "Modern C++ Features and Proven Concepts: Active Object, External Polymorphism and Coroutines", DEV Community(2023-01-09)
 
-이 트레이드오프 때문에 실무에서의 선택 기준은 명확하다. 호출 하나하나가 단순하고 콜백이 한두 단계로 끝난다면 07~08장의 스레드 기반 구현으로 충분하다 — `promise_type`을 직접 구현하는 비용이 그 이득보다 크다. 반면 여러 비동기 작업을 순차적으로 엮어야 하는 코드(예: "A를 기다린 뒤 그 결과로 B를 호출하고, 다시 그 결과로 C를 호출")가 반복된다면 코루틴이 가독성을 크게 개선한다. 다만 이 장의 `Task`/`CoroFuture`는 교육용 최소 구현이며, 프로덕션에서는 cppcoro나 각 프레임워크가 제공하는 검증된 코루틴 타입을 쓰는 것이 안전하다 — 이는 11장에서 "손으로 만든 lock-free 자료구조 대신 검증된 라이브러리를 쓰라"고 한 것과 같은 이유다.
+이 트레이드오프 때문에 실무에서의 선택 기준은 명확하다. 호출 하나하나가 단순하고 콜백이 한두 단계로 끝난다면 07–08장의 스레드 기반 구현으로 충분하다 — `promise_type`을 직접 구현하는 비용이 그 이득보다 크다. 반면 여러 비동기 작업을 순차적으로 엮어야 하는 코드(예: "A를 기다린 뒤 그 결과로 B를 호출하고, 다시 그 결과로 C를 호출")가 반복된다면 코루틴이 가독성을 크게 개선한다. 다만 이 장의 `Task`/`CoroFuture`는 교육용 최소 구현이며, 프로덕션에서는 cppcoro나 각 프레임워크가 제공하는 검증된 코루틴 타입을 쓰는 것이 안전하다 — 이는 11장에서 "손으로 만든 lock-free 자료구조 대신 검증된 라이브러리를 쓰라"고 한 것과 같은 이유다.
 
 같은 종류의 수명 문제는 언어 표준 차원에서도 여전히 논의 중이다. [00장](/post/multithreading-patterns/getting-started-multithreading-design-patterns/)에서 소개한 C++26 `std::execution`(P2300)은 `async_scope` 같은 구조로 "비동기 작업이 그 소유자보다 오래 살아남지 못하게" 강제하려 하는데, 이는 이 장에서 손으로 짚어 본 "Task를 discard하면 생기는 위험"을 언어·라이브러리 차원에서 막으려는 시도다.
 

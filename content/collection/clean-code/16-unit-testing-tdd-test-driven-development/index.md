@@ -49,7 +49,7 @@ image: "wordcloud.png"
 
 <strong>테스트 주도 개발(Test-Driven Development, TDD)</strong>은 Kent Beck이 『Test-Driven Development: By Example』(2002)에서 체계화한 개발 방법론으로, 세 가지 법칙으로 요약된다. 실패하는 단위 테스트를 작성하기 전에는 실제 코드를 작성하지 않는다. 컴파일은 성공하되 실행이 실패하는 정도로만 테스트를 작성한다. 현재 실패하는 테스트를 통과시킬 정도로만 실제 코드를 작성한다.
 
-이 세 법칙을 지키면 테스트 작성과 구현이 몇 초~몇 분 단위로 짧게 맞물려 반복되며, 이 반복을 **Red-Green-Refactor** 사이클이라 부른다.
+이 세 법칙을 지키면 테스트 작성과 구현이 몇 초–몇 분 단위로 짧게 맞물려 반복되며, 이 반복을 **Red-Green-Refactor** 사이클이라 부른다.
 
 ```java
 // Red: 아직 존재하지 않는 Rectangle 클래스를 사용하는 실패하는 테스트를 먼저 작성

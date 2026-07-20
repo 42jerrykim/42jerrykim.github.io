@@ -91,7 +91,7 @@ tags:
 
 **완전한 초보자?** 이 장은 [03장: 추상화 비용 분석](/post/cpp-optimization/abstraction-cost/)의 간접 호출 개념을 전제로 합니다. 람다가 `[](){}` 형태로 함수를 즉석에서 만든다는 것과 캡처(`[x]`, `[&x]`)의 의미만 알면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **중급~전문가**를 포괄합니다. 캡처 비용·클로저 객체 구조부터 시작해, 전문가 구간에서는 템플릿 전달(인라인 가능) vs `std::function` 전달(타입 소거·간접 호출)을 비교하고 콜백 설계 기준을 다룹니다. **다루지 않는 것**: `std::function`의 SBO 내부([16장](/post/cpp-optimization/small-buffer-optimization/))와 타입 소거 일반론([19장](/post/cpp-optimization/type-erasure-cost-patterns/))입니다.
+**이 장의 깊이**: 이 장은 **중급–전문가**를 포괄합니다. 캡처 비용·클로저 객체 구조부터 시작해, 전문가 구간에서는 템플릿 전달(인라인 가능) vs `std::function` 전달(타입 소거·간접 호출)을 비교하고 콜백 설계 기준을 다룹니다. **다루지 않는 것**: `std::function`의 SBO 내부([16장](/post/cpp-optimization/small-buffer-optimization/))와 타입 소거 일반론([19장](/post/cpp-optimization/type-erasure-cost-patterns/))입니다.
 
 ## 당신의 수준에 맞는 경로
 

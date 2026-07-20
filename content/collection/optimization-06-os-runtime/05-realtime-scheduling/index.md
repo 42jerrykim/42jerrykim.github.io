@@ -47,7 +47,7 @@ tags:
   - Scheduler
 ---
 
-**Realtime 스케줄링**이란 일반 프로세스와 다른 정책(policy)으로 태스크를 선점·배치해, "언젠가는 실행된다"가 아니라 "정해진 시간 안에 실행된다"는 보장을 얻으려는 커널 스케줄러의 기능군을 말합니다. µs 단위 지연을 다루는 시스템에서는 기본 스케줄러가 아무리 공정해도 "가끔 몇 ms씩 늦게 깨어나는" 태스크 하나가 꼬리 지연 전체를 망칠 수 있고, 반대로 실시간 정책을 잘못 쓰면 시스템 전체가 멈추는 사고로 이어질 수 있습니다. 이 장에서는 `SCHED_FIFO`/`SCHED_RR`의 동작 원리, 리눅스 6.12에 병합된 `sched_ext` BPF 스케줄러 프레임워크, 6.12~6.13에 걸쳐 완성된 EEVDF 전환, 그리고 멀티 LLC(Last Level Cache) 서버를 겨냥한 Cache-Aware Scheduling의 최신 진행 상황을 다룹니다.
+**Realtime 스케줄링**이란 일반 프로세스와 다른 정책(policy)으로 태스크를 선점·배치해, "언젠가는 실행된다"가 아니라 "정해진 시간 안에 실행된다"는 보장을 얻으려는 커널 스케줄러의 기능군을 말합니다. µs 단위 지연을 다루는 시스템에서는 기본 스케줄러가 아무리 공정해도 "가끔 몇 ms씩 늦게 깨어나는" 태스크 하나가 꼬리 지연 전체를 망칠 수 있고, 반대로 실시간 정책을 잘못 쓰면 시스템 전체가 멈추는 사고로 이어질 수 있습니다. 이 장에서는 `SCHED_FIFO`/`SCHED_RR`의 동작 원리, 리눅스 6.12에 병합된 `sched_ext` BPF 스케줄러 프레임워크, 6.12–6.13에 걸쳐 완성된 EEVDF 전환, 그리고 멀티 LLC(Last Level Cache) 서버를 겨냥한 Cache-Aware Scheduling의 최신 진행 상황을 다룹니다.
 
 ## 이 장을 읽기 전에
 
@@ -67,7 +67,7 @@ tags:
 
 ## 리눅스 스케줄러 클래스의 역사와 계층 구조
 
-리눅스 스케줄러는 하나의 알고리즘이 아니라 **우선순위가 매겨진 여러 스케줄러 클래스(sched_class)의 체인**입니다. `SCHED_FIFO`/`SCHED_RR` 같은 실시간 정책은 POSIX.1b(1993년 표준화된 POSIX 실시간 확장)에서 정의되었고, 리눅스는 이를 초기 커널부터 지원해 왔습니다. 일반 태스크를 다루는 스케줄러는 여러 세대를 거쳤습니다. Ingo Molnar가 만든 <strong>CFS(Completely Fair Scheduler)</strong>가 2007년 리눅스 2.6.23에 병합되어 약 16년간 기본 스케줄러 자리를 지켰고, Peter Zijlstra가 구현한 <strong>EEVDF(Earliest Eligible Virtual Deadline First)</strong>가 2023년 리눅스 6.6에서 CFS를 대체하기 시작해 6.12(2024년 11월)에서 전환이 완료되고 6.13(2025년 초)에서 막판 lag 계산 버그가 수정되었습니다. 같은 6.12에는 Meta 주도로 수년간 아웃오브트리로 개발되어 온 **sched_ext**(BPF 확장 스케줄러 클래스)가 병합되었고, Intel 엔지니어들이 주도한 <strong>Cache-Aware Scheduling(CAS)</strong>은 2025~2026년 패치를 거쳐 커널 tip 트리에서 논의·개정을 거듭하고 있으며, 집필 시점 기준으로는 정식 병합 버전·시점이 확정되지 않았으므로 구체적인 커널 버전 번호는 단정하지 않습니다(`CONFIG_SCHED_CACHE`로 노출되고 기본 비활성화될 것으로 알려져 있습니다).
+리눅스 스케줄러는 하나의 알고리즘이 아니라 **우선순위가 매겨진 여러 스케줄러 클래스(sched_class)의 체인**입니다. `SCHED_FIFO`/`SCHED_RR` 같은 실시간 정책은 POSIX.1b(1993년 표준화된 POSIX 실시간 확장)에서 정의되었고, 리눅스는 이를 초기 커널부터 지원해 왔습니다. 일반 태스크를 다루는 스케줄러는 여러 세대를 거쳤습니다. Ingo Molnar가 만든 <strong>CFS(Completely Fair Scheduler)</strong>가 2007년 리눅스 2.6.23에 병합되어 약 16년간 기본 스케줄러 자리를 지켰고, Peter Zijlstra가 구현한 <strong>EEVDF(Earliest Eligible Virtual Deadline First)</strong>가 2023년 리눅스 6.6에서 CFS를 대체하기 시작해 6.12(2024년 11월)에서 전환이 완료되고 6.13(2025년 초)에서 막판 lag 계산 버그가 수정되었습니다. 같은 6.12에는 Meta 주도로 수년간 아웃오브트리로 개발되어 온 **sched_ext**(BPF 확장 스케줄러 클래스)가 병합되었고, Intel 엔지니어들이 주도한 <strong>Cache-Aware Scheduling(CAS)</strong>은 2025–2026년 패치를 거쳐 커널 tip 트리에서 논의·개정을 거듭하고 있으며, 집필 시점 기준으로는 정식 병합 버전·시점이 확정되지 않았으므로 구체적인 커널 버전 번호는 단정하지 않습니다(`CONFIG_SCHED_CACHE`로 노출되고 기본 비활성화될 것으로 알려져 있습니다).
 
 이 클래스들은 우선순위 순서로 태스크 선택을 위임합니다. 커널은 가장 앞의 클래스부터 "실행할 태스크가 있는지" 물어보고, 있으면 그 클래스가 고른 태스크를 실행합니다.
 
@@ -84,7 +84,7 @@ flowchart TD
 
 ## SCHED_FIFO와 SCHED_RR: 실시간 정책의 동작 원리
 
-`SCHED_FIFO`와 `SCHED_RR`은 **1~99 범위의 정적 우선순위**를 가지며, 숫자가 높을수록 먼저 실행됩니다. 두 정책 모두 **일반 정책(SCHED_NORMAL/EEVDF) 태스크보다 항상 먼저 선택**되고, 더 높은 우선순위의 실시간 태스크가 러너블 상태가 되면 실행 중이던 낮은 우선순위 실시간 태스크를 즉시 선점합니다. 차이는 **같은 우선순위** 태스크가 여럿일 때 나타납니다. `SCHED_FIFO`는 시간 할당량이 없어 태스크가 스스로 양보하거나 블록될 때까지 계속 실행되는 반면, `SCHED_RR`은 같은 우선순위 태스크끼리 정해진 타임 퀀텀 단위로 라운드로빈 방식으로 교대합니다. 두 정책 모두 프로세스에 `CAP_SYS_NICE` 권한(또는 root)이 필요하며, 일반 사용자 권한으로는 `sched_setscheduler()`가 `EPERM`으로 실패합니다(정책·우선순위 필드의 정확한 정의는 [man7: sched(7)](https://man7.org/linux/man-pages/man7/sched.7.html) 참고).
+`SCHED_FIFO`와 `SCHED_RR`은 **1–99 범위의 정적 우선순위**를 가지며, 숫자가 높을수록 먼저 실행됩니다. 두 정책 모두 **일반 정책(SCHED_NORMAL/EEVDF) 태스크보다 항상 먼저 선택**되고, 더 높은 우선순위의 실시간 태스크가 러너블 상태가 되면 실행 중이던 낮은 우선순위 실시간 태스크를 즉시 선점합니다. 차이는 **같은 우선순위** 태스크가 여럿일 때 나타납니다. `SCHED_FIFO`는 시간 할당량이 없어 태스크가 스스로 양보하거나 블록될 때까지 계속 실행되는 반면, `SCHED_RR`은 같은 우선순위 태스크끼리 정해진 타임 퀀텀 단위로 라운드로빈 방식으로 교대합니다. 두 정책 모두 프로세스에 `CAP_SYS_NICE` 권한(또는 root)이 필요하며, 일반 사용자 권한으로는 `sched_setscheduler()`가 `EPERM`으로 실패합니다(정책·우선순위 필드의 정확한 정의는 [man7: sched(7)](https://man7.org/linux/man-pages/man7/sched.7.html) 참고).
 
 ```cpp
 #include <sched.h>
@@ -126,7 +126,7 @@ chrt -p "$(pgrep -f rt_demo)" | grep -i "rr"
 
 ## EEVDF: CFS를 대체한 가상 마감시간 스케줄링
 
-**EEVDF**는 Ion Stoica와 Hussein Abdel-Wahab이 1995년 제안한 비례 공유(proportional share) 자원 할당 알고리즘을 기반으로 하며, 리눅스 6.6~6.12에 걸쳐 CFS를 대체했습니다. 핵심 아이디어는 CFS의 "최소 vruntime을 가진 태스크를 고른다"는 단순 규칙을, "적격(eligible)하면서 가상 마감시간(virtual deadline)이 가장 이른 태스크를 고른다"는 규칙으로 바꾼 것입니다. 각 태스크는 **lag**(공정하게 받아야 할 CPU 시간과 실제로 받은 시간의 차이)를 가지며, lag가 0 이상이면 "적격"으로 간주되어 실행 후보가 됩니다. 적격한 태스크들 중에서는 가상 마감시간이 가장 이른 태스크가 선택됩니다. 이 방식은 CFS 대비 **지연 민감 태스크에 유리한 스케줄링**을 목표로 하며, `PLACE_LAG`·`RUN_TO_PARITY`·`NEXT_BUDDY` 같은 내부 휴리스틱 토글로 세부 동작을 조정합니다(자세한 정의는 [커널 문서: EEVDF 스케줄러](https://docs.kernel.org/scheduler/sched-eevdf.html) 참고).
+**EEVDF**는 Ion Stoica와 Hussein Abdel-Wahab이 1995년 제안한 비례 공유(proportional share) 자원 할당 알고리즘을 기반으로 하며, 리눅스 6.6–6.12에 걸쳐 CFS를 대체했습니다. 핵심 아이디어는 CFS의 "최소 vruntime을 가진 태스크를 고른다"는 단순 규칙을, "적격(eligible)하면서 가상 마감시간(virtual deadline)이 가장 이른 태스크를 고른다"는 규칙으로 바꾼 것입니다. 각 태스크는 **lag**(공정하게 받아야 할 CPU 시간과 실제로 받은 시간의 차이)를 가지며, lag가 0 이상이면 "적격"으로 간주되어 실행 후보가 됩니다. 적격한 태스크들 중에서는 가상 마감시간이 가장 이른 태스크가 선택됩니다. 이 방식은 CFS 대비 **지연 민감 태스크에 유리한 스케줄링**을 목표로 하며, `PLACE_LAG`·`RUN_TO_PARITY`·`NEXT_BUDDY` 같은 내부 휴리스틱 토글로 세부 동작을 조정합니다(자세한 정의는 [커널 문서: EEVDF 스케줄러](https://docs.kernel.org/scheduler/sched-eevdf.html) 참고).
 
 실무에서 중요한 점은, EEVDF가 CFS의 `sched_min_granularity_ns`·`sched_wakeup_granularity_ns` 같은 일부 튜닝 노브를 없애거나 의미를 바꿨다는 것입니다. CFS 시절 성능을 맞추기 위해 조정했던 `/proc/sys/kernel/sched_*` 값들을 그대로 EEVDF 커널에 적용하면 효과가 다르거나 존재하지 않는 파라미터를 건드리는 셈이 될 수 있으므로, 커널 버전을 올릴 때는 스케줄러 관련 튜닝 스크립트를 반드시 재검증해야 합니다.
 

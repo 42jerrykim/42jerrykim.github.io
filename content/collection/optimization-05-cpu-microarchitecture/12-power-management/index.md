@@ -67,7 +67,7 @@ tags:
 
 ## ACPI와 전력 상태의 표준화 (역사·배경)
 
-C-state와 P-state라는 이름은 특정 CPU 벤더가 만든 것이 아니라 **ACPI(Advanced Configuration and Power Interface)** 표준에서 정의됩니다. ACPI는 1996년 12월 Intel, Microsoft, Toshiba가 주도해 처음 발표했고, 이후 Compaq·Phoenix Technologies가 합류해 개정을 이어갔습니다. 이 표준이 만들어지기 전에는 APM(Advanced Power Management)과 Plug and Play BIOS가 각자 다른 방식으로 전력을 제어했고, 운영체제가 하드웨어의 전력 상태를 일관되게 파악할 방법이 없었습니다. ACPI는 이 문제를 "OS가 직접 전력 정책을 소유하고, 하드웨어는 상태 테이블만 제공한다"는 모델로 정리했으며, C0~C3을 표준 상태로 정의하고 그 이상(C4, C6 등)은 벤더 확장으로 남겨두었습니다. P-state는 이와 별개로 "코어가 동작 중일 때의 전압·주파수 조합"을 가리키며, P0가 항상 최고 성능 상태이고 P1부터는 순차적으로 낮은 성능·전력 상태를 뜻합니다. P-state의 전환 메커니즘과 거버넌스별 선택 기준은 11장에서 이미 다뤘으므로, 이 장에서는 C-state에 집중합니다.
+C-state와 P-state라는 이름은 특정 CPU 벤더가 만든 것이 아니라 **ACPI(Advanced Configuration and Power Interface)** 표준에서 정의됩니다. ACPI는 1996년 12월 Intel, Microsoft, Toshiba가 주도해 처음 발표했고, 이후 Compaq·Phoenix Technologies가 합류해 개정을 이어갔습니다. 이 표준이 만들어지기 전에는 APM(Advanced Power Management)과 Plug and Play BIOS가 각자 다른 방식으로 전력을 제어했고, 운영체제가 하드웨어의 전력 상태를 일관되게 파악할 방법이 없었습니다. ACPI는 이 문제를 "OS가 직접 전력 정책을 소유하고, 하드웨어는 상태 테이블만 제공한다"는 모델로 정리했으며, C0–C3을 표준 상태로 정의하고 그 이상(C4, C6 등)은 벤더 확장으로 남겨두었습니다. P-state는 이와 별개로 "코어가 동작 중일 때의 전압·주파수 조합"을 가리키며, P0가 항상 최고 성능 상태이고 P1부터는 순차적으로 낮은 성능·전력 상태를 뜻합니다. P-state의 전환 메커니즘과 거버넌스별 선택 기준은 11장에서 이미 다뤘으므로, 이 장에서는 C-state에 집중합니다.
 
 ## C-state: 유휴 상태의 계층
 

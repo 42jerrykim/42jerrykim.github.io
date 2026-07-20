@@ -147,7 +147,7 @@ image: "wordcloud.png"
 - **발음**: /kənˈsʌmpʃn/ (미·영 모두 대체로 유사; /ʃ/ 약화된 탈락형 발음이 흔함).
 - **관련어**: **consume**(동사), **consumer**(소비자), **consumable**(소모 가능한·소모품).
 - **전형 패턴**: **consumption of + 명사**, **reduce consumption**, **per capita consumption**, **fit for human consumption**
-- **격식도**: 중립~격식; 보고서·뉴스·학술 글에서 매우 흔하다.
+- **격식도**: 중립–격식; 보고서·뉴스·학술 글에서 매우 흔하다.
 - **주의**: 고전 문학의 **consumption**(병명)은 현대 의학 문맥에서는 피하는 것이 안전하다.
 
 ---

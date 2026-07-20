@@ -61,7 +61,7 @@ draft: false
 * **개봉일**: 2025.06.20 (미국)
 * **제작사**: Pixar Animation Studios
 * **배급사**: Walt Disney Pictures (미국)
-* **제작비(보도치)**: 약 1억 5천만~2억 달러
+* **제작비(보도치)**: 약 1억 5천만–2억 달러
 * **월드 박스오피스(보도치)**: 약 1억 5,400만 달러
 * **평점(참고)**: Rotten Tomatoes 83% / Metacritic 66 / CinemaScore A
 

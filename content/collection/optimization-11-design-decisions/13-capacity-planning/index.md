@@ -61,7 +61,7 @@ tags:
 
 ## 용량 계획의 역사와 성능 목표 (역사·배경)
 
-용량 계획은 원래 메인프레임 시대의 문제였습니다. 컴퓨팅 자원이 비싸고 조달에 몇 달이 걸리던 1960~1980년대에는 배치 작업 스케줄과 큐잉 이론([07장](/post/design-decisions/latency-vs-throughput-architecture-decisions/)에서 다룬 Erlang·Little의 결과)을 바탕으로 "다음 분기에 CPU가 몇 대 더 필요한가"를 계산하는 것이 전산실 운영의 핵심 업무였습니다. 이 시절의 용량 계획은 확장이 느리고 되돌리기 어려웠기 때문에, 예측을 보수적으로 잡고 여유를 넉넉히 두는 쪽으로 기울어 있었습니다.
+용량 계획은 원래 메인프레임 시대의 문제였습니다. 컴퓨팅 자원이 비싸고 조달에 몇 달이 걸리던 1960–1980년대에는 배치 작업 스케줄과 큐잉 이론([07장](/post/design-decisions/latency-vs-throughput-architecture-decisions/)에서 다룬 Erlang·Little의 결과)을 바탕으로 "다음 분기에 CPU가 몇 대 더 필요한가"를 계산하는 것이 전산실 운영의 핵심 업무였습니다. 이 시절의 용량 계획은 확장이 느리고 되돌리기 어려웠기 때문에, 예측을 보수적으로 잡고 여유를 넉넉히 두는 쪽으로 기울어 있었습니다.
 
 수평 확장의 한계를 수학적으로 정식화하려는 시도는 1967년 Gene Amdahl이 병렬화 가능한 비율만으로 속도 향상의 상한을 구한 Amdahl's law에서 출발합니다. 1993년 Neil Gunther는 여기에 "분산된 자원 간에 상태를 맞추는 데 드는 지연"이라는 코히런시(coherency) 항을 추가해 <strong>Universal Scalability Law(USL)</strong>를 정식화했고, 이는 노드를 늘릴수록 어느 시점부터 처리량이 정체를 넘어 오히려 줄어드는 현상까지 설명하는 모델이 되었습니다([Performance Dynamics: How to Quantify Scalability](https://www.perfdynamics.com/Manifesto/USLscalability.html)).
 

@@ -50,7 +50,7 @@ tags:
 
 ## 19편 복습: createAsyncThunk로 만든 수동 캐싱
 
-19~20편에서 `fetchTodos`를 `createAsyncThunk`로 만들고, `status` 필드로 로딩 상태를 직접 관리했습니다.
+19–20편에서 `fetchTodos`를 `createAsyncThunk`로 만들고, `status` 필드로 로딩 상태를 직접 관리했습니다.
 
 ```javascript
 // 19~20편: 직접 관리해야 하는 것들
@@ -92,7 +92,7 @@ export const { useGetTodosQuery, useAddTodoMutation } = todosApi; // Hook이 자
 
 `endpoints`에 정의한 `getTodos`, `addTodo`로부터 `useGetTodosQuery`, `useAddTodoMutation`이라는 React Hook이 **자동으로** 생성됩니다. 이 명명 규칙(`use` + 엔드포인트 이름 + `Query`/`Mutation`)은 RTK Query가 항상 동일하게 따릅니다.
 
-## 컴포넌트에서 사용하기: 19~20편과의 비교
+## 컴포넌트에서 사용하기: 19–20편과의 비교
 
 ```jsx
 // 24편: RTK Query 버전

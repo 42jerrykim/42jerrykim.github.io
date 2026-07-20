@@ -206,7 +206,7 @@ image: wordcloud.png
   - **look/feel cinematic**: "The scene looks cinematic"
   - **have cinematic + noun**: "The photo has cinematic lighting"
   
-- **격식도**: 중립~형식적 (일상 표현부터 학술/전문 용어까지 널리 사용)
+- **격식도**: 중립–형식적 (일상 표현부터 학술/전문 용어까지 널리 사용)
 - **뉘앙스**: 긍정적이며 찬성적 (무언가를 시각적으로 인상적이고 감동적으로 묘사할 때 사용)
 - **문화적 연상/사용 맥락**:
   - 영화, 영상 제작, 사진 관련 전문 용어

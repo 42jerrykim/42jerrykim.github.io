@@ -137,7 +137,7 @@ image: "wordcloud.png"
 | **capable** | 해낼 수 있는 잠재력 | capable은 가능성에 초점, competent는 검증된 수행 능력과 기준 충족에 초점 |
 | **skilled** | 숙련된 기술 보유 | skilled는 특정 기술 숙련 강조, competent는 더 넓은 실무 적합성 강조 |
 | **qualified** | 자격 요건을 갖춘 | qualified는 공식 요건/학력 중심, competent는 실제 업무 수행 능력까지 포함 |
-| **proficient** | 높은 수준의 능숙함 | proficient는 비교적 높은 수준, competent는 최소~충분 수준도 포함 |
+| **proficient** | 높은 수준의 능숙함 | proficient는 비교적 높은 수준, competent는 최소–충분 수준도 포함 |
 | **adequate** | 최소한 충분한 | adequate는 품질이 낮게 들릴 수 있으나, competent는 신뢰 가능한 수행 뉘앙스가 강함 |
 
 ---

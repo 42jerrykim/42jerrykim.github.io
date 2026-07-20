@@ -115,7 +115,7 @@ $ perf stat -e instructions,cycles ./ipc_demo
        1.203456789 seconds time elapsed
 ```
 
-IPC가 슈퍼스칼라 폭(보통 4~6)에 한참 못 미치는 약 1.0에 머무는 이유는, `acc`를 매 반복 갱신하는 단일 의존성 체인이 존재해 다음 덧셈이 이전 덧셈의 결과를 기다려야 하기 때문입니다. 즉 실행 포트가 여러 개 있어도 서로 독립적인 일감이 없으면 슈퍼스칼라 폭을 채울 수 없습니다. 이 의존성 체인을 끊어 IPC를 끌어올리는 구체적인 기법(다중 누산기, 체인 길이 계산)은 [18장: 의존성 체인·포트 압력 분석](/post/cpu-optimization/dependency-chain-port-pressure-analysis/)에서, IPC를 포함한 하드웨어 카운터 전반을 해석하는 절차는 [09장: CPU 하드웨어 카운터 활용](/post/cpu-optimization/cpu-hardware-performance-counters/)과 [Tr.01: 하드웨어 성능 카운터](/post/profiling-analysis/hardware-performance-counters/)에서 다룹니다.
+IPC가 슈퍼스칼라 폭(보통 4–6)에 한참 못 미치는 약 1.0에 머무는 이유는, `acc`를 매 반복 갱신하는 단일 의존성 체인이 존재해 다음 덧셈이 이전 덧셈의 결과를 기다려야 하기 때문입니다. 즉 실행 포트가 여러 개 있어도 서로 독립적인 일감이 없으면 슈퍼스칼라 폭을 채울 수 없습니다. 이 의존성 체인을 끊어 IPC를 끌어올리는 구체적인 기법(다중 누산기, 체인 길이 계산)은 [18장: 의존성 체인·포트 압력 분석](/post/cpu-optimization/dependency-chain-port-pressure-analysis/)에서, IPC를 포함한 하드웨어 카운터 전반을 해석하는 절차는 [09장: CPU 하드웨어 카운터 활용](/post/cpu-optimization/cpu-hardware-performance-counters/)과 [Tr.01: 하드웨어 성능 카운터](/post/profiling-analysis/hardware-performance-counters/)에서 다룹니다.
 
 ## 파이프라인 해저드: 구조적·데이터·제어
 
@@ -180,7 +180,7 @@ flowchart LR
 
 ## 마무리
 
-- [ ] fetch·decode·execute·writeback 4~5단계가 어떻게 겹쳐 처리량을 높이는지 설명할 수 있다.
+- [ ] fetch·decode·execute·writeback 4–5단계가 어떻게 겹쳐 처리량을 높이는지 설명할 수 있다.
 - [ ] 파이프라인 깊이와 클럭·버블 비용 사이의 트레이드오프를 말로 설명할 수 있다.
 - [ ] 슈퍼스칼라와 IPC의 관계를 이해하고, IPC가 낮게 측정된 코드에서 의존성 체인을 의심할 수 있다.
 - [ ] 구조적·데이터·제어 해저드를 구분하고 각각 어느 챕터가 해결 메커니즘을 다루는지 안다.

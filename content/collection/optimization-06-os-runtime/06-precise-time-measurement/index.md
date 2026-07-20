@@ -217,7 +217,7 @@ tsc hpet acpi_pm
 
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
-| 수십~수백 사이클 단위의 초미세 구간 측정 | RDTSCP + 보정 계수 + 코어 고정 | 보정 없는 RDTSC 값을 시간처럼 취급 |
+| 수십–수백 사이클 단위의 초미세 구간 측정 | RDTSCP + 보정 계수 + 코어 고정 | 보정 없는 RDTSC 값을 시간처럼 취급 |
 | 일반적인 함수/구간 실행 시간 측정 | `clock_gettime(CLOCK_MONOTONIC)` 또는 `std::chrono::steady_clock` | `high_resolution_clock`을 무조건 신뢰 |
 | 로그에 남길 실제 시각(벽시계) | `CLOCK_REALTIME` / `std::chrono::system_clock` | 시각 조정 영향을 받는 걸 모르고 구간 계산에 사용 |
 | NTP 주파수 보정 영향까지 배제하려는 정밀 비교 | `CLOCK_MONOTONIC_RAW` (커널 5.3+ 확인 후) | 구형 커널에서 그대로 사용해 매번 syscall 유발 |

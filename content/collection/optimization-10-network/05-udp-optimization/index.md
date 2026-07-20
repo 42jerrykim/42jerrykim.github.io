@@ -147,7 +147,7 @@ sequenceDiagram
 
 ## 커널 배치 API: recvmmsg/sendmmsg와 GSO/GRO
 
-시퀀스 번호·ACK·재전송 로직을 다 설계했더라도, 초당 수만~수백만 개의 작은 UDP 데이터그램을 다뤄야 하는 시세 피드나 게임 서버라면 시스템 콜 자체의 오버헤드가 병목이 될 수 있다. Linux는 `sendto()`/`recvfrom()`을 패킷마다 한 번씩 호출하는 대신, 여러 데이터그램을 한 번의 시스템 콜로 보내고 받는 **`sendmmsg(2)`/`recvmmsg(2)`**를 제공한다. [man7.org의 sendmmsg(2) 문서](https://man7.org/linux/man-pages/man2/sendmmsg.2.html)는 이를 "sendmsg(2)의 확장으로, 호출자가 단일 시스템 콜로 여러 메시지를 전송할 수 있게 한다"고 설명한다.
+시퀀스 번호·ACK·재전송 로직을 다 설계했더라도, 초당 수만–수백만 개의 작은 UDP 데이터그램을 다뤄야 하는 시세 피드나 게임 서버라면 시스템 콜 자체의 오버헤드가 병목이 될 수 있다. Linux는 `sendto()`/`recvfrom()`을 패킷마다 한 번씩 호출하는 대신, 여러 데이터그램을 한 번의 시스템 콜로 보내고 받는 **`sendmmsg(2)`/`recvmmsg(2)`**를 제공한다. [man7.org의 sendmmsg(2) 문서](https://man7.org/linux/man-pages/man2/sendmmsg.2.html)는 이를 "sendmsg(2)의 확장으로, 호출자가 단일 시스템 콜로 여러 메시지를 전송할 수 있게 한다"고 설명한다.
 
 ```c
 #include <sys/socket.h>

@@ -167,11 +167,11 @@ public class InventoryService {
 
 ### 안티패턴과의 경계: 왜 이것이 "패턴"이지 "안티패턴"이 아닌가
 
-새 패턴을 제안하기 전에 반드시 짚어야 할 질문이 있다. 방금 본 `UserService`의 동기 호출 방식도 누군가에게는 "여러 서비스에 알림을 보내는 재사용 가능한 구조"로 보일 수 있는데, 왜 이것은 패턴이 아니라 안티패턴의 사례인가? 이 구분을 명확히 하지 못하면 패턴 창조자는 결함 있는 구조에 그럴듯한 이름만 붙이는 결과를 낳는다. <strong>안티패턴(Anti-pattern)</strong>이라는 용어는 Andrew Koenig가 1995년 *Journal of Object-Oriented Programming* 8권 1호(46~48쪽)에 실은 글에서 처음 제안했다. 그는 안티패턴을 "패턴과 마찬가지의 형태를 갖추고 있지만, 해결책 대신 표면적으로는 해결책처럼 보여도 실제로는 해결책이 아닌 것을 제시하는 것"이라고 정의했다.
+새 패턴을 제안하기 전에 반드시 짚어야 할 질문이 있다. 방금 본 `UserService`의 동기 호출 방식도 누군가에게는 "여러 서비스에 알림을 보내는 재사용 가능한 구조"로 보일 수 있는데, 왜 이것은 패턴이 아니라 안티패턴의 사례인가? 이 구분을 명확히 하지 못하면 패턴 창조자는 결함 있는 구조에 그럴듯한 이름만 붙이는 결과를 낳는다. <strong>안티패턴(Anti-pattern)</strong>이라는 용어는 Andrew Koenig가 1995년 *Journal of Object-Oriented Programming* 8권 1호(46–48쪽)에 실은 글에서 처음 제안했다. 그는 안티패턴을 "패턴과 마찬가지의 형태를 갖추고 있지만, 해결책 대신 표면적으로는 해결책처럼 보여도 실제로는 해결책이 아닌 것을 제시하는 것"이라고 정의했다.
 
 > "An antipattern is just like a pattern, except that instead of a solution it gives something that looks superficially like a solution, but isn't one." — Andrew Koenig, *Journal of Object-Oriented Programming* 8(1), 46-48 (1995)
 
-이후 William J. Brown, Raphael C. Malveau, Hays W. "Skip" McCormick III, Thomas J. Mowbray가 1998년 출간한 『AntiPatterns: Refactoring Software, Architectures, and Projects in Crisis』(Wiley)는 이 개념을 소프트웨어 설계뿐 아니라 아키텍처와 프로젝트 관리 영역까지 확장하며 40여 개의 구체적 안티패턴을 정리했다. 두 정의가 공통으로 강조하는 핵심은 "처음에는 합리적으로 보인다"는 점이다. 패턴과 안티패턴을 코드 한 줄만 보고 구분할 수 없는 이유가 여기 있다 — 둘 다 실제로 동작하고, 둘 다 당장의 요구사항을 충족한다. 차이는 시스템이 성장할 때 드러난다. 동기 호출 방식은 서비스가 2~3개일 때는 문제없이 동작하지만, 서비스가 늘어나고 트래픽이 증가할수록 결합도·장애 전파·트랜잭션 경계 문제가 누적되어 결국 "고쳐야 할 구조"로 판명된다. 이런 성격 때문에 이 상황은 흔히 **Chatty Service(수다스러운 서비스 호출)** 또는 **Distributed Monolith(분산 모놀리스)** 안티패턴으로 불린다 — 물리적으로는 나뉘었지만 논리적으로는 여전히 강하게 결합된 모놀리스라는 뜻이다.
+이후 William J. Brown, Raphael C. Malveau, Hays W. "Skip" McCormick III, Thomas J. Mowbray가 1998년 출간한 『AntiPatterns: Refactoring Software, Architectures, and Projects in Crisis』(Wiley)는 이 개념을 소프트웨어 설계뿐 아니라 아키텍처와 프로젝트 관리 영역까지 확장하며 40여 개의 구체적 안티패턴을 정리했다. 두 정의가 공통으로 강조하는 핵심은 "처음에는 합리적으로 보인다"는 점이다. 패턴과 안티패턴을 코드 한 줄만 보고 구분할 수 없는 이유가 여기 있다 — 둘 다 실제로 동작하고, 둘 다 당장의 요구사항을 충족한다. 차이는 시스템이 성장할 때 드러난다. 동기 호출 방식은 서비스가 2–3개일 때는 문제없이 동작하지만, 서비스가 늘어나고 트래픽이 증가할수록 결합도·장애 전파·트랜잭션 경계 문제가 누적되어 결국 "고쳐야 할 구조"로 판명된다. 이런 성격 때문에 이 상황은 흔히 **Chatty Service(수다스러운 서비스 호출)** 또는 **Distributed Monolith(분산 모놀리스)** 안티패턴으로 불린다 — 물리적으로는 나뉘었지만 논리적으로는 여전히 강하게 결합된 모놀리스라는 뜻이다.
 
 패턴과 안티패턴을 가르는 기준은 다음 표로 정리된다. 앞서 본 문제 코드(Chatty Service)와 이 절 뒤에서 정의할 Distributed Event-Driven Consistency Pattern을 같은 축으로 비교했다.
 

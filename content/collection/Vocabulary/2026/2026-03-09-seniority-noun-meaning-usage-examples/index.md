@@ -154,7 +154,7 @@ image: wordcloud.png
   - **seniority + 명사**: seniority list, seniority rights, seniority system
   - **동사 + seniority**: have/gain/lose seniority, base on seniority
   - **전치사**: by seniority, in order of seniority, based on seniority
-- **격식도**: 중립~격식; 직장·노사·법률·정책 문서에서 흔하다.
+- **격식도**: 중립–격식; 직장·노사·법률·정책 문서에서 흔하다.
 - **뉘앙스**: **중립**; 제도·규칙을 설명할 때 쓰며, 긍정(보호·안정) 또는 부정(신입 불리) 맥락 모두에서 사용된다.
 - **문화적 연상**: 직장 연공서열, 노조, 해고 순서, 승진·휴가 우선권과 자주 결부된다.
 

@@ -44,7 +44,7 @@ slug: cpp-thread-pool-work-queue-work-stealing
 
 **완전한 초보자?** 이 장은 [04장: 데이터 흐름: Producer-Consumer](/post/multithreading-patterns/cpp-producer-consumer-bounded-buffer-backpressure/)에서 다룬 Bounded Queue와 backpressure 개념, 그리고 02장의 RAII 락 가드를 그대로 사용합니다. "작업 큐에 항목을 넣고(`enqueue`), 워커가 꺼내 실행한다"는 구조가 04장의 Producer-Consumer와 동일하다는 것을 인식하고 있으면 이 장이 훨씬 쉽게 읽힙니다.
 
-**이 장의 깊이**: 이 장은 **중급~전문가**까지를 포괄합니다. 공유 큐 기반의 기본 Thread Pool부터 시작해, 워커별 로컬 큐와 Work Stealing, 그리고 Bounded Queue 기반 Backpressure까지 다룹니다. 전문가 구간에서는 풀 크기를 어떻게 결정할지(`hardware_concurrency()`, I/O vs CPU 바운드)와 Work Stealing 큐의 실제 구현에서 무엇이 까다로운지를 다룹니다. **다루지 않는 것**: 작업의 반환값을 받는 방법은 07장(Future/Promise)에서 다룹니다 — 이 장의 `Task`는 `void` 반환만 가정합니다.
+**이 장의 깊이**: 이 장은 **중급–전문가**까지를 포괄합니다. 공유 큐 기반의 기본 Thread Pool부터 시작해, 워커별 로컬 큐와 Work Stealing, 그리고 Bounded Queue 기반 Backpressure까지 다룹니다. 전문가 구간에서는 풀 크기를 어떻게 결정할지(`hardware_concurrency()`, I/O vs CPU 바운드)와 Work Stealing 큐의 실제 구현에서 무엇이 까다로운지를 다룹니다. **다루지 않는 것**: 작업의 반환값을 받는 방법은 07장(Future/Promise)에서 다룹니다 — 이 장의 `Task`는 `void` 반환만 가정합니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -327,9 +327,9 @@ ThreadPool pool(n);
 워커 수 ≈ 코어 수 × (1 + 평균 대기 시간 / 평균 계산 시간)
 ```
 
-예를 들어 요청 하나당 계산은 1ms이고 DB 응답 대기는 9ms라면, 대기/계산 비율이 9이므로 코어 수의 10배 가까운 워커를 둬도 CPU는 과부하되지 않는다. 다만 워커 수가 늘어나면 스레드 자체의 메모리(스택 크기, 기본 1~8MB)와 컨텍스트 스위칭 비용이 누적되므로, 무작정 늘리기보다 측정 후 조정해야 한다.
+예를 들어 요청 하나당 계산은 1ms이고 DB 응답 대기는 9ms라면, 대기/계산 비율이 9이므로 코어 수의 10배 가까운 워커를 둬도 CPU는 과부하되지 않는다. 다만 워커 수가 늘어나면 스레드 자체의 메모리(스택 크기, 기본 1–8MB)와 컨텍스트 스위칭 비용이 누적되므로, 무작정 늘리기보다 측정 후 조정해야 한다.
 
-**혼합 워크로드**: CPU 바운드 작업과 I/O 바운드 작업을 같은 풀에 섞으면, I/O 대기 중인 작업이 워커를 점유해 CPU 작업이 굶을 수 있다. 이런 경우 **풀을 분리**하는 것이 일반적이다 — CPU 작업용 풀은 `hardware_concurrency()` 크기로, I/O 작업용 풀은 더 크게(또는 09~10장에서 다룰 이벤트 기반 모델로 대체).
+**혼합 워크로드**: CPU 바운드 작업과 I/O 바운드 작업을 같은 풀에 섞으면, I/O 대기 중인 작업이 워커를 점유해 CPU 작업이 굶을 수 있다. 이런 경우 **풀을 분리**하는 것이 일반적이다 — CPU 작업용 풀은 `hardware_concurrency()` 크기로, I/O 작업용 풀은 더 크게(또는 09–10장에서 다룰 이벤트 기반 모델로 대체).
 
 ## 스레드 풀 선택 기준
 

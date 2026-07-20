@@ -48,7 +48,7 @@ slug: cpp-producer-consumer-bounded-buffer-backpressure
 
 **완전한 초보자?** 이 장은 [03장: 대기와 조정](/post/multithreading-patterns/cpp-condition-variable-monitor-object-guarded-suspension/)에서 다룬 `std::condition_variable`과 Monitor Object 패턴을 전제로 합니다. `cv.wait(lock, predicate)`가 왜 spurious wakeup에 안전한지 이해하고 있어야 이 장의 큐 구현을 읽을 수 있습니다. 아직이라면 03장을 먼저 보세요.
 
-**이 장의 깊이**: 이 장은 **중급~전문가**까지를 포괄합니다. Unbounded/Bounded Queue의 기본 구현부터 시작해, Drop Policy·Timeout 같은 변형, 다중 프로듀서/컨슈머 환경에서의 동작, 그리고 메모리 순서 관점에서 Bounded Buffer가 왜 안전한지까지 다룹니다. **다루지 않는 것**: lock-free queue의 실제 구현(11장에서 개념만 미리보기), 분산 메시지 큐(Kafka, RabbitMQ 같은 시스템 레벨 큐)는 범위 밖입니다.
+**이 장의 깊이**: 이 장은 **중급–전문가**까지를 포괄합니다. Unbounded/Bounded Queue의 기본 구현부터 시작해, Drop Policy·Timeout 같은 변형, 다중 프로듀서/컨슈머 환경에서의 동작, 그리고 메모리 순서 관점에서 Bounded Buffer가 왜 안전한지까지 다룹니다. **다루지 않는 것**: lock-free queue의 실제 구현(11장에서 개념만 미리보기), 분산 메시지 큐(Kafka, RabbitMQ 같은 시스템 레벨 큐)는 범위 밖입니다.
 
 ## 당신의 수준에 맞는 경로
 

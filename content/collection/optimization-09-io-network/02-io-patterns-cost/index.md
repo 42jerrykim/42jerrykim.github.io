@@ -81,7 +81,7 @@ tags:
 
 ## 시스템 콜 진입 비용
 
-I/O를 시작하려면 대부분 사용자 모드에서 커널 모드로 전환하는 시스템 콜을 거칩니다. 이 전환은 단순한 함수 호출이 아니라 CPU 권한 레벨(ring)을 바꾸고 레지스터를 저장하는 트랩(trap) 경로를 타므로, 순수한 진입/반환만으로도 고정 비용이 붙습니다. Brendan Gregg의 측정에 따르면 아무 일도 하지 않는 시스템 콜은 현대 CPU에서 대략 수십~100 사이클 수준이었지만, Meltdown 취약점을 막기 위한 KPTI(Kernel Page Table Isolation) 패치가 적용된 이후에는 시스템 콜마다 페이지 테이블을 전환하는 비용이 추가됩니다. 초당 7만 5천 회 수준의 고빈도 시스템 콜 워크로드에서는 추정 4%·실측 5% 손실이 보고되었고, 클라우드 환경 전반에서는 0.1~6% 정도의 성능 저하를 예상할 수 있다고 밝혔습니다. 다만 TLB 페이지 워크에 유난히 민감한 한 스트레스 테스트에서는 25% 이상의 저하가 이상치(outlier)로 관측되었습니다([Gregg, "KPTI/KAISER Meltdown Initial Performance Regressions", 2018](https://www.brendangregg.com/blog/2018-02-09/kpti-kaiser-meltdown-performance.html)). PCID(Process-Context Identifiers) 지원과 huge page를 함께 쓰면 이 오버헤드를 상당 부분 되돌릴 수 있다고도 언급합니다. 정확한 사이클 수는 CPU 세대·커널 버전·완화 패치 조합마다 달라지므로, 절대 수치보다 "시스템 콜은 공짜가 아니고, 완화 패치 이후 특히 그렇다"는 방향성을 기억하는 것이 실무에 더 유용합니다.
+I/O를 시작하려면 대부분 사용자 모드에서 커널 모드로 전환하는 시스템 콜을 거칩니다. 이 전환은 단순한 함수 호출이 아니라 CPU 권한 레벨(ring)을 바꾸고 레지스터를 저장하는 트랩(trap) 경로를 타므로, 순수한 진입/반환만으로도 고정 비용이 붙습니다. Brendan Gregg의 측정에 따르면 아무 일도 하지 않는 시스템 콜은 현대 CPU에서 대략 수십–100 사이클 수준이었지만, Meltdown 취약점을 막기 위한 KPTI(Kernel Page Table Isolation) 패치가 적용된 이후에는 시스템 콜마다 페이지 테이블을 전환하는 비용이 추가됩니다. 초당 7만 5천 회 수준의 고빈도 시스템 콜 워크로드에서는 추정 4%·실측 5% 손실이 보고되었고, 클라우드 환경 전반에서는 0.1–6% 정도의 성능 저하를 예상할 수 있다고 밝혔습니다. 다만 TLB 페이지 워크에 유난히 민감한 한 스트레스 테스트에서는 25% 이상의 저하가 이상치(outlier)로 관측되었습니다([Gregg, "KPTI/KAISER Meltdown Initial Performance Regressions", 2018](https://www.brendangregg.com/blog/2018-02-09/kpti-kaiser-meltdown-performance.html)). PCID(Process-Context Identifiers) 지원과 huge page를 함께 쓰면 이 오버헤드를 상당 부분 되돌릴 수 있다고도 언급합니다. 정확한 사이클 수는 CPU 세대·커널 버전·완화 패치 조합마다 달라지므로, 절대 수치보다 "시스템 콜은 공짜가 아니고, 완화 패치 이후 특히 그렇다"는 방향성을 기억하는 것이 실무에 더 유용합니다.
 
 이 비용을 직접 확인하려면 순수 시스템 콜 하나를 반복 호출하며 걸린 시간을 나눠보는 것이 가장 간단합니다. 아래 코드는 인자 처리가 거의 없는 `getpid()`를 반복 호출해 평균 진입 비용을 근사합니다. `glibc` 2.25 이후로는 `getpid()`가 항상 실제 시스템 콜을 발생시키므로(과거 버전은 프로세스 시작 시 값을 캐시했습니다) 최신 배포판에서는 이 측정이 유효합니다.
 
@@ -113,7 +113,7 @@ int main() {
 
 시스템 콜 진입 비용이 "한 번 부르는 값"이라면, 대기 방식은 "데이터가 아직 없을 때 무엇을 하는가"를 결정하는 반복적 비용입니다. 크게 세 가지로 나눌 수 있습니다.
 
-- **busy-wait(spin-poll)**: 호출자가 CPU를 계속 점유한 채 조건을 반복 확인합니다. 컨텍스트 스위치가 전혀 없어 데이터가 준비되는 즉시 반응할 수 있지만, 대기하는 동안 코어 하나를 온전히 소모합니다. 대기 시간이 매우 짧고(수백 ns~수 µs) 전용 코어를 할당할 여유가 있는 트레이딩 시스템의 핫패스에서 주로 씁니다.
+- **busy-wait(spin-poll)**: 호출자가 CPU를 계속 점유한 채 조건을 반복 확인합니다. 컨텍스트 스위치가 전혀 없어 데이터가 준비되는 즉시 반응할 수 있지만, 대기하는 동안 코어 하나를 온전히 소모합니다. 대기 시간이 매우 짧고(수백 ns–수 µs) 전용 코어를 할당할 여유가 있는 트레이딩 시스템의 핫패스에서 주로 씁니다.
 - **blocking wait**: 호출자가 커널의 wait queue에 들어가고 스케줄러가 다른 작업에 코어를 넘깁니다. 데이터가 준비되면 깨우기(wake-up)와 컨텍스트 스위치가 발생하는데, 이 왕복 비용은 스케줄러 지연을 포함해 보통 수백 ns에서 수 µs대까지 걸립니다. 코어를 낭비하지 않는 대신 반응 지연이 스케줄러 상태에 좌우됩니다.
 - **event-driven(멀티플렉싱/완료 통지)**: 여러 fd를 한 번에 등록해 두고, 준비되거나 완료된 것만 통지받습니다. 스레드 수를 fd 수에 비례시키지 않아도 되지만, 통지를 등록·수거하는 자체도 시스템 콜이므로 fd 수·이벤트 빈도에 따라 별도의 비용 곡선을 가집니다. 구체적인 API(`select`/`poll`/`epoll`/`kqueue`)는 [2장](/post/io-optimization/async-io-select-poll-epoll-kqueue/)에서, Reactor/Proactor 패턴으로 묶는 방법은 [11장](/post/io-optimization/io-multiplexing-reactor-proactor-patterns/)에서 다룹니다.
 
@@ -170,7 +170,7 @@ int main() {
 
 | 워크로드 특성 | 권장 대기 전략 | 이유 |
 |------|------|------|
-| 초단시간 대기(수백 ns~수 µs), 전용 코어 여유 있음, 반응 지연 최소화가 최우선 | busy-wait/spin-poll | 컨텍스트 스위치를 회피하는 대신 코어 소모를 감수 |
+| 초단시간 대기(수백 ns–수 µs), 전용 코어 여유 있음, 반응 지연 최소화가 최우선 | busy-wait/spin-poll | 컨텍스트 스위치를 회피하는 대신 코어 소모를 감수 |
 | 대기시간이 길거나 예측 불가능, 코어를 다른 작업에 돌려줘야 함 | blocking 대기 | 스케줄러가 코어를 재분배해 CPU 낭비를 줄임 |
 | 다수의 fd를 동시에 감시해야 함 | 이벤트 기반 멀티플렉싱(→[2장](/post/io-optimization/async-io-select-poll-epoll-kqueue/)) 또는 io_uring(→[3장](/post/io-optimization/io-uring-advanced-deep-dive/)) | 스레드 수를 fd 수에 비례시키지 않음 |
 | 처리량이 지연보다 중요한 대량 배치 I/O | 완료 기반 비동기(io_uring/IOCP, →[3장](/post/io-optimization/io-uring-advanced-deep-dive/)·[4장](/post/io-optimization/windows-iocp-io-model-optimization/)) | 제출·수거를 분리해 시스템 콜 자체를 배치화 |

@@ -90,7 +90,7 @@ flowchart LR
   cpu1 -.->|"원격 접근</br>(인터커넥트 경유)"| mem0
 ```
 
-원격 접근의 추가 지연은 세대·인터커넥트·NUMA 파티셔닝 모드(예: AMD EPYC의 NPS1/NPS4)에 따라 크게 갈립니다. [chipsandcheese의 최근 측정](https://chipsandcheese.com/p/evaluating-uniform-memory-access)에서는 세대·구성에 따라 노드 간 접근이 노드 내 접근보다 대략 수십~90ns 남짓 더 걸리는 사례를 보고하지만, 이는 특정 칩·구성에서의 관찰치이며 플랫폼·BIOS 설정·펌웨어 버전에 따라 배율이 달라지므로 배포 대상 하드웨어에서 직접 재확인해야 합니다. 이 토폴로지는 `numactl -H`로 직접 확인할 수 있고, 마지막 줄의 "node distances" 행렬이 상대적인 접근 비용을 10 단위 상대값으로 보여줍니다(자기 자신은 10, 원격은 그보다 큰 값).
+원격 접근의 추가 지연은 세대·인터커넥트·NUMA 파티셔닝 모드(예: AMD EPYC의 NPS1/NPS4)에 따라 크게 갈립니다. [chipsandcheese의 최근 측정](https://chipsandcheese.com/p/evaluating-uniform-memory-access)에서는 세대·구성에 따라 노드 간 접근이 노드 내 접근보다 대략 수십–90ns 남짓 더 걸리는 사례를 보고하지만, 이는 특정 칩·구성에서의 관찰치이며 플랫폼·BIOS 설정·펌웨어 버전에 따라 배율이 달라지므로 배포 대상 하드웨어에서 직접 재확인해야 합니다. 이 토폴로지는 `numactl -H`로 직접 확인할 수 있고, 마지막 줄의 "node distances" 행렬이 상대적인 접근 비용을 10 단위 상대값으로 보여줍니다(자기 자신은 10, 원격은 그보다 큰 값).
 
 ```text
 $ numactl -H

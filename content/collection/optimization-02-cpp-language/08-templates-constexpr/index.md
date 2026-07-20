@@ -88,7 +88,7 @@ tags:
 
 **완전한 초보자?** 이 장은 [03장: 추상화 비용 분석](/post/cpp-optimization/abstraction-cost/)의 "런타임 비용" 관점을 전제로 합니다. 템플릿이 타입별로 코드를 찍어낸다는 점과 `constexpr`가 "컴파일 타임 계산"을 뜻한다는 정도만 알면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **중급~전문가**를 포괄합니다. `constexpr`·`consteval`로 런타임 계산을 컴파일 타임으로 옮기는 것부터 시작해, 전문가 구간에서는 템플릿으로 인라이닝·상수 분기 제거를 유도하면서 코드 블로트를 억제하는 전략을 다룹니다. **다루지 않는 것**: 컴파일러 인라이닝 진단([12장](/post/cpp-optimization/inlining-techniques/))과 빌드 시간·모듈([09장](/post/cpp-optimization/modern-cpp-features/), Tr.03)입니다.
+**이 장의 깊이**: 이 장은 **중급–전문가**를 포괄합니다. `constexpr`·`consteval`로 런타임 계산을 컴파일 타임으로 옮기는 것부터 시작해, 전문가 구간에서는 템플릿으로 인라이닝·상수 분기 제거를 유도하면서 코드 블로트를 억제하는 전략을 다룹니다. **다루지 않는 것**: 컴파일러 인라이닝 진단([12장](/post/cpp-optimization/inlining-techniques/))과 빌드 시간·모듈([09장](/post/cpp-optimization/modern-cpp-features/), Tr.03)입니다.
 
 ## 당신의 수준에 맞는 경로
 

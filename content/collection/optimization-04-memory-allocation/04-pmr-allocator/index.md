@@ -160,7 +160,7 @@ BENCHMARK(BM_PmrMonotonicVectorReused);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 -std=c++17 bench.cpp -lbenchmark -lpthread -o bench`로 빌드해 실행합니다. 힙 `malloc`/`free` 왕복은 구현체·요청 크기에 따라 수십~수백 ns의 오버헤드를 동반하는 경우가 흔한 반면, `monotonic_buffer_resource`의 `release()` 재사용 경로는 포인터를 버퍼 시작으로 되돌리는 정도의 비용만 지불하므로 반복 횟수가 늘수록 격차가 커지는 경향이 있습니다. 정확한 배율은 플랫폼·컴파일러·기본 할당자 구현(glibc malloc, mimalloc 등)에 따라 달라지므로, 위 코드를 대상 환경에서 그대로 실행해 확인해야 합니다.
+`g++ -O2 -std=c++17 bench.cpp -lbenchmark -lpthread -o bench`로 빌드해 실행합니다. 힙 `malloc`/`free` 왕복은 구현체·요청 크기에 따라 수십–수백 ns의 오버헤드를 동반하는 경우가 흔한 반면, `monotonic_buffer_resource`의 `release()` 재사용 경로는 포인터를 버퍼 시작으로 되돌리는 정도의 비용만 지불하므로 반복 횟수가 늘수록 격차가 커지는 경향이 있습니다. 정확한 배율은 플랫폼·컴파일러·기본 할당자 구현(glibc malloc, mimalloc 등)에 따라 달라지므로, 위 코드를 대상 환경에서 그대로 실행해 확인해야 합니다.
 
 ## pool_resource 계열: 재사용이 필요할 때
 

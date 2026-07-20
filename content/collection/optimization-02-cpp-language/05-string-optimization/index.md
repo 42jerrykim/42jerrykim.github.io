@@ -84,7 +84,7 @@ tags:
 
 **완전한 초보자?** 이 장은 [04장: STL 컨테이너 비용](/post/cpp-optimization/stl-container-cost/)에서 다룬 "힙 할당과 캐시 효율" 개념을 전제로 합니다. `std::string`이 동적 메모리를 쓴다는 점과 `std::string_view`가 "소유하지 않는 뷰"라는 것만 알면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **중급~전문가**를 포괄합니다. SSO(Small String Optimization)와 `string_view`의 원리부터 시작해, 전문가 구간에서는 연결·파싱·포맷팅 경로에서 할당을 제거하는 패턴과 `string_view`의 수명 함정을 다룹니다. **다루지 않는 것**: `std::span` 일반론(뷰의 안전성은 [14장](/post/cpp-optimization/span-and-views/))과 타입 소거 기반 버퍼([16장](/post/cpp-optimization/small-buffer-optimization/))입니다.
+**이 장의 깊이**: 이 장은 **중급–전문가**를 포괄합니다. SSO(Small String Optimization)와 `string_view`의 원리부터 시작해, 전문가 구간에서는 연결·파싱·포맷팅 경로에서 할당을 제거하는 패턴과 `string_view`의 수명 함정을 다룹니다. **다루지 않는 것**: `std::span` 일반론(뷰의 안전성은 [14장](/post/cpp-optimization/span-and-views/))과 타입 소거 기반 버퍼([16장](/post/cpp-optimization/small-buffer-optimization/))입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -98,13 +98,13 @@ tags:
 
 ## SSO와 string_view 도입 (역사·배경)
 
-<strong>SSO(Small String Optimization)</strong>는 표준이 요구하는 것이 아니라 구현체가 선택한 최적화로, 여러 표준 라이브러리(libstdc++, libc++, MSVC STL)에서 오래 전부터 사용되어 왔습니다. 짧은 문자열을 객체 내부에 넣어 힙 할당을 피하는 방식이며, 구현마다 임계값(보통 15~24바이트)이 다릅니다. **std::string_view**는 C++17에서 표준에 추가되었고, "문자열을 소유하지 않고 참조만 하는" 수요를 표준화한 타입입니다.
+<strong>SSO(Small String Optimization)</strong>는 표준이 요구하는 것이 아니라 구현체가 선택한 최적화로, 여러 표준 라이브러리(libstdc++, libc++, MSVC STL)에서 오래 전부터 사용되어 왔습니다. 짧은 문자열을 객체 내부에 넣어 힙 할당을 피하는 방식이며, 구현마다 임계값(보통 15–24바이트)이 다릅니다. **std::string_view**는 C++17에서 표준에 추가되었고, "문자열을 소유하지 않고 참조만 하는" 수요를 표준화한 타입입니다.
 
 > "The class template basic_string_view describes an object that can refer to a constant contiguous sequence of char-like objects with the first element of the sequence at position zero." — [cppreference: std::basic_string_view](https://en.cppreference.com/w/cpp/string/basic_string_view) 문서 (ISO C++ 표준 기반). 뷰는 "참조만" 하므로 수명 관리가 호출자·설계자의 책임입니다.
 
 ## SSO (Small String Optimization)
 
-많은 `std::string` 구현은 **짧은 문자열**을 힙에 올리지 않고 **객체 내부 버퍼**에 저장합니다. 문자열 길이가 임계값(보통 15~24바이트) 이하이면 할당이 없고, 그 이상일 때만 동적 할당을 사용합니다.
+많은 `std::string` 구현은 **짧은 문자열**을 힙에 올리지 않고 **객체 내부 버퍼**에 저장합니다. 문자열 길이가 임계값(보통 15–24바이트) 이하이면 할당이 없고, 그 이상일 때만 동적 할당을 사용합니다.
 
 - **구현체별 차이**: GCC libstdc++, Clang libc++, MSVC STL마다 SSO 임계값과 내부 레이아웃이 다릅니다. 크로스 플랫폼 코드에서는 "짧은 문자열"의 정의가 달라질 수 있으므로 보수적으로 가정합니다.
 - **한계를 넘을 때**: 길이가 임계를 넘는 순간 힙 할당이 한 번 발생하고, 이후 확장 시에는 vector와 비슷하게 재할당이 일어날 수 있습니다. 반복 연결로 길이가 늘어나면 처음부터 **`reserve(예상_길이)`**를 호출해 한 번만 할당하도록 하는 것이 좋습니다.
@@ -183,7 +183,7 @@ BENCHMARK(BM_ConcatReserveAppend);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면(x86-64, GCC 13, `-O2` 기준 예시 수치), `BM_ConcatOperatorPlus`가 `BM_ConcatReserveAppend`보다 대략 1.5~3배 느리게 나오는 경우가 흔합니다 — 차이는 `operator+` 체인이 만드는 중간 임시 `std::string`(과 그에 따른 추가 힙 할당)에서 옵니다. 문자열 개수·길이가 늘수록 배율은 커지는 경향이 있으므로, 반복 연결이 많은 핫패스에서는 직접 재현해 확인합니다.
+`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면(x86-64, GCC 13, `-O2` 기준 예시 수치), `BM_ConcatOperatorPlus`가 `BM_ConcatReserveAppend`보다 대략 1.5–3배 느리게 나오는 경우가 흔합니다 — 차이는 `operator+` 체인이 만드는 중간 임시 `std::string`(과 그에 따른 추가 힙 할당)에서 옵니다. 문자열 개수·길이가 늘수록 배율은 커지는 경향이 있으므로, 반복 연결이 많은 핫패스에서는 직접 재현해 확인합니다.
 
 **읽기 전용 인자**로는 `std::string_view`를 받으면 리터럴·버퍼·string을 모두 복사 없이 받을 수 있습니다.
 

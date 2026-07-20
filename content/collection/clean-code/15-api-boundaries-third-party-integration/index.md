@@ -38,7 +38,7 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-이 장은 [13~14장](/post/clean-code/error-handling-exceptions-best-practices/)에서 다룬 예외 어댑터 개념을 확장해, 외부 라이브러리 전체를 감싸는 경계 설계로 넓힌다. 최소 하나의 서드파티 라이브러리(로깅, HTTP 클라이언트 등)를 사용해 본 경험이 있으면 예제를 이해하기 쉽다.
+이 장은 [13–14장](/post/clean-code/error-handling-exceptions-best-practices/)에서 다룬 예외 어댑터 개념을 확장해, 외부 라이브러리 전체를 감싸는 경계 설계로 넓힌다. 최소 하나의 서드파티 라이브러리(로깅, HTTP 클라이언트 등)를 사용해 본 경험이 있으면 예제를 이해하기 쉽다.
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |:--:|:--|:--|

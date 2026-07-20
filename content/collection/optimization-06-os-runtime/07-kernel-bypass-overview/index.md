@@ -124,7 +124,7 @@ int setup_rdma_resources(struct ibv_pd* pd, struct ibv_cq* cq, void* buf, size_t
 }
 ```
 
-이 골격 코드가 보여주지 않는 부분(큐 페어의 상태 전이, 완료 큐 폴링, 원격 주소·rkey 교환)이 RDMA 프로그래밍의 실제 복잡도 대부분을 차지합니다. RDMA는 손실 없는 네트워크(PFC, ECN/DCQCN 같은 혼잡 제어)를 전제로 설계된 경우가 많아, 일반 이더넷 환경에 RoCEv2를 올리려면 스위치·NIC 설정까지 함께 손봐야 하며, 2025~2026년 GPU 클러스터에서 GPUDirect RDMA를 통한 NIC-HBM 직접 DMA가 확산되면서 이 설정 부담은 AI 인프라 쪽에서도 중요한 화두가 되었습니다.
+이 골격 코드가 보여주지 않는 부분(큐 페어의 상태 전이, 완료 큐 폴링, 원격 주소·rkey 교환)이 RDMA 프로그래밍의 실제 복잡도 대부분을 차지합니다. RDMA는 손실 없는 네트워크(PFC, ECN/DCQCN 같은 혼잡 제어)를 전제로 설계된 경우가 많아, 일반 이더넷 환경에 RoCEv2를 올리려면 스위치·NIC 설정까지 함께 손봐야 하며, 2025–2026년 GPU 클러스터에서 GPUDirect RDMA를 통한 NIC-HBM 직접 DMA가 확산되면서 이 설정 부담은 AI 인프라 쪽에서도 중요한 화두가 되었습니다.
 
 ## 부분 바이패스: io_uring과 AF_XDP (개요)
 

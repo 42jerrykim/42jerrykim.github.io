@@ -38,7 +38,7 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-이 장은 [05~06장](/post/clean-code/clean-functions-single-responsibility-principle/)에서 다룬 함수 분해와 네이밍을 전제로 한다 — 주석 없이도 코드가 의도를 전달하려면 먼저 이름과 함수 구조가 명확해야 하기 때문이다. 특정 언어의 문서화 도구(Javadoc, docstring, JSDoc) 사용 경험은 필요 없다. 이 장은 주석의 필요성과 함정을 다루며, 코드 자체의 형식(들여쓰기, 줄 길이)은 [09장](/post/clean-code/code-formatting-style-consistency/)에서 다룬다.
+이 장은 [05–06장](/post/clean-code/clean-functions-single-responsibility-principle/)에서 다룬 함수 분해와 네이밍을 전제로 한다 — 주석 없이도 코드가 의도를 전달하려면 먼저 이름과 함수 구조가 명확해야 하기 때문이다. 특정 언어의 문서화 도구(Javadoc, docstring, JSDoc) 사용 경험은 필요 없다. 이 장은 주석의 필요성과 함정을 다루며, 코드 자체의 형식(들여쓰기, 줄 길이)은 [09장](/post/clean-code/code-formatting-style-consistency/)에서 다룬다.
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |:--:|:--|:--|

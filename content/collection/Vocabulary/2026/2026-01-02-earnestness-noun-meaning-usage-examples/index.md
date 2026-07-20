@@ -148,7 +148,7 @@ Earnestness embodies the quality of being authentic and expressing firm convicti
   - 부사: earnestly
   - 형용사 반대: unearnest (매우 드물게 사용)
 - **전형적 전치사/패턴**: with earnestness, in earnestness, the earnestness of, show earnestness
-- **격식도**: 중립~격식 (비즈니스, 학술, 문학에서 자주 사용)
+- **격식도**: 중립–격식 (비즈니스, 학술, 문학에서 자주 사용)
 - **뉘앙스**: 긍정적 (신뢰성과 성실성을 암시), 진지하고 정중한 톤
 - **문화적 연상/사용 맥락**: 
   - 서방 문화에서 개인의 성실성과 신뢰성을 표현하는 가치 있는 특성

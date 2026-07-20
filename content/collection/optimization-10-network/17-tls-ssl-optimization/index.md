@@ -60,7 +60,7 @@ tags:
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
 | **중급자** | "TLS 핸드셰이크의 변천" ~ "TLS 1.3 핸드셰이크 메커니즘" | 2-RTT에서 1-RTT로 줄어든 구조와 이유 이해 |
-| **중급~심화** | "세션 재개와 0-RTT" | PSK 재개·0-RTT가 지연을 줄이는 원리와 재전송 위험 이해 |
+| **중급–심화** | "세션 재개와 0-RTT" | PSK 재개·0-RTT가 지연을 줄이는 원리와 재전송 위험 이해 |
 | **전문가** | "PQC 하이브리드 키교환" ~ "비판적 시각" | PQC 도입이 지연·패킷 크기에 미치는 영향을 판단하고 도입 시점 결정 |
 
 ---
@@ -130,7 +130,7 @@ openssl s_time -connect example.com:443 -tls1_3 -reuse -time 10
 
 2024년 8월 NIST가 [FIPS 203](https://csrc.nist.gov/pubs/fips/203/final)으로 표준화한 **ML-KEM(Module-Lattice-Based Key-Encapsulation Mechanism)** 은 양자 컴퓨터로도 깨기 어렵다고 여겨지는 격자 기반 키 캡슐화 알고리즘입니다. TLS는 이를 단독으로 쓰지 않고 기존 타원곡선 키 교환과 나란히 계산해 두 결과를 합치는 **하이브리드** 방식을 채택했는데, 이는 ML-KEM에서 예상치 못한 취약점이 발견되더라도 X25519 같은 검증된 고전 알고리즘이 여전히 보안을 지탱하도록 하기 위해서입니다. IETF의 [draft-ietf-tls-ecdhe-mlkem](https://datatracker.ietf.org/doc/draft-ietf-tls-ecdhe-mlkem/) 초안(RFC Editor 처리 중, IANA 코드 포인트 4588)이 정의하는 **X25519MLKEM768** 그룹이 사실상의 표준 하이브리드로 자리 잡았습니다.
 
-문제는 이 하이브리드가 핸드셰이크 메시지 크기를 눈에 띄게 키운다는 점입니다. 위 초안에 따르면 X25519MLKEM768의 클라이언트 key_share는 1216바이트(ML-KEM 부분 1184바이트 + X25519 32바이트), 서버 key_share는 1120바이트(ML-KEM 부분 1088바이트 + X25519 32바이트)에 달합니다. X25519 단독 key_share가 32바이트에 불과했던 것과 비교하면 `ClientHello` 하나의 크기가 대략 300바이트대에서 1000바이트대로 늘어나는 셈입니다. 이 정도 크기는 TCP 초기 혼잡 윈도우(대부분의 스택에서 IW10, 약 14600바이트) 안에는 들어오지만, 여러 TLS 확장이 함께 실리는 실제 `ClientHello`에서는 MTU를 넘어 패킷이 분할되거나, 미들박스가 예상보다 큰 `ClientHello`를 비정상으로 판단해 차단하는 사례도 보고되어 있습니다. Cloudflare·Chrome·Firefox·Safari 등 주요 사업자는 2024~2026년 사이 X25519MLKEM768을 기본 또는 옵트인으로 지원하기 시작했지만([Cloudflare PQC 지원 현황](https://developers.cloudflare.com/ssl/post-quantum-cryptography/pqc-support/)), 지원 버전과 기본 활성화 여부는 클라이언트·서버 조합마다 다르므로 도입 전 실측이 필요합니다.
+문제는 이 하이브리드가 핸드셰이크 메시지 크기를 눈에 띄게 키운다는 점입니다. 위 초안에 따르면 X25519MLKEM768의 클라이언트 key_share는 1216바이트(ML-KEM 부분 1184바이트 + X25519 32바이트), 서버 key_share는 1120바이트(ML-KEM 부분 1088바이트 + X25519 32바이트)에 달합니다. X25519 단독 key_share가 32바이트에 불과했던 것과 비교하면 `ClientHello` 하나의 크기가 대략 300바이트대에서 1000바이트대로 늘어나는 셈입니다. 이 정도 크기는 TCP 초기 혼잡 윈도우(대부분의 스택에서 IW10, 약 14600바이트) 안에는 들어오지만, 여러 TLS 확장이 함께 실리는 실제 `ClientHello`에서는 MTU를 넘어 패킷이 분할되거나, 미들박스가 예상보다 큰 `ClientHello`를 비정상으로 판단해 차단하는 사례도 보고되어 있습니다. Cloudflare·Chrome·Firefox·Safari 등 주요 사업자는 2024–2026년 사이 X25519MLKEM768을 기본 또는 옵트인으로 지원하기 시작했지만([Cloudflare PQC 지원 현황](https://developers.cloudflare.com/ssl/post-quantum-cryptography/pqc-support/)), 지원 버전과 기본 활성화 여부는 클라이언트·서버 조합마다 다르므로 도입 전 실측이 필요합니다.
 
 ```text
 # tcpdump로 관측한 ClientHello 크기 비교 예시(환경에 따라 실제 값은 다름)

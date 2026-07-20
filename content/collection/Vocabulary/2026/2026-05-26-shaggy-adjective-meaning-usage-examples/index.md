@@ -380,6 +380,6 @@ image: "wordcloud.png"
 - 맥락: 외모 묘사, 동물의 털, 식물·자연, 일상 회화, 문학, 유머
 - 관련어: unkempt(지저분한), disheveled(헝클어진), tousled(부스스한), bushy(무성한), scraggly(듬성한), scruffy(초라한)
 - 반의어: neat(단정한), tidy(깔끔한), well-groomed(잘 손질된), sleek(매끈한), smooth(부드러운)
-- 특징: 중립~약간 부정적 뉘앙스, 야생적·자연스러운 이미지, 히피·록 문화와 연관
+- 특징: 중립–약간 부정적 뉘앙스, 야생적·자연스러운 이미지, 히피·록 문화와 연관
 - 관용표현: "shaggy dog story" — 길고 황당하며 시시한 결말의 이야기
 - 파생어: shagginess(덥수룩함), shaggily(덥수룩하게), shag(두꺼운 카펫·거친 담배)

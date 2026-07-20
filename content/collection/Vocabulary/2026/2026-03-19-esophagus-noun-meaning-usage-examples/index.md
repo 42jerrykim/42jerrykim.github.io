@@ -162,7 +162,7 @@ image: "wordcloud.png"
   - 영국식: /ɪˈsɒfəɡəs/ (이소퍼거스)  
   - 영국식 철자 **oesophagus**: /iːˈsɒfəɡəs/
 - **형용사형**: **esophageal** (미국), **oesophageal** (영국) — *esophageal cancer*, *esophageal lining*
-- **격식도**: 중립~격식. 의학·해부학·보건 문서와 대화에서 주로 사용하며, 일상에서는 *gullet*, *food pipe*를 쓰는 경우가 많다.
+- **격식도**: 중립–격식. 의학·해부학·보건 문서와 대화에서 주로 사용하며, 일상에서는 *gullet*, *food pipe*를 쓰는 경우가 많다.
 - **뉘앙스**: 중립적 해부·의학 용어. 문맥에 따라 질환·수술과 함께 쓰이면 진단·치료 맥락이 된다.
 
 ---

@@ -69,7 +69,7 @@ $$W' = W + \Delta W = W + BA$$
 
 > Edward J. Hu, Yelong Shen, Phillip Wallis 외, "LoRA: Low-Rank Adaptation of Large Language Models", *arXiv:2106.09685* (2021)
 
-여기서 $W$가 $(d, d)$ 크기라면, $A$는 $(r, d)$, $B$는 $(d, r)$ 크기이고 $r$(rank)은 $d$보다 훨씬 작은 값(예: 4~64)입니다. 학습해야 할 파라미터 수가 $d^2$에서 $2rd$로 줄어들기 때문에, $r$이 작을수록 학습 비용은 급격히 줄어듭니다. 원 논문은 이 방식이 GPT-3 규모 모델에서도 Full Fine-tuning과 비슷한 성능을 내면서 학습 가능한 파라미터 수는 수천 분의 1로 줄일 수 있음을 보였습니다.
+여기서 $W$가 $(d, d)$ 크기라면, $A$는 $(r, d)$, $B$는 $(d, r)$ 크기이고 $r$(rank)은 $d$보다 훨씬 작은 값(예: 4–64)입니다. 학습해야 할 파라미터 수가 $d^2$에서 $2rd$로 줄어들기 때문에, $r$이 작을수록 학습 비용은 급격히 줄어듭니다. 원 논문은 이 방식이 GPT-3 규모 모델에서도 Full Fine-tuning과 비슷한 성능을 내면서 학습 가능한 파라미터 수는 수천 분의 1로 줄일 수 있음을 보였습니다.
 
 ```python
 import torch

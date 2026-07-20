@@ -74,7 +74,7 @@ tags:
 
 Prometheus의 데이터 모델에서 모든 시계열은 **메트릭 이름 + 레이블 집합**으로 식별됩니다. 지연처럼 분포 자체가 중요한 지표는 단일 숫자(평균)로 대표할 수 없기 때문에, Prometheus는 이를 **히스토그램(histogram)** 타입으로 노출합니다. 전통적인 방식(classic histogram)은 미리 정해둔 버킷 경계(`le`, less-than-or-equal)마다 "이 경계 이하로 관측된 누적 횟수"를 별도의 카운터 시계열로 저장합니다. 예를 들어 `hotpath_latency_seconds_bucket{le="0.1"}`과 `{le="0.5"}`가 각각 별개의 시계열이 되는 식입니다. 이 구조에서 `histogram_quantile()` 함수가 계산하는 p99 같은 값은 정확한 원본 관측값이 아니라, 관측치가 속한 버킷의 경계 사이를 <strong>선형 보간(linear interpolation)</strong>해 만든 추정치입니다.
 
-이 추정의 오차는 버킷 경계를 얼마나 촘촘하게 잡았는가에 정확히 비례합니다. Prometheus 공식 문서는 관측값이 200ms~300ms 사이의 넓은 버킷 하나에 몰릴 경우, 실제 p95가 220ms인데도 히스토그램이 295ms처럼 크게 벗어난 값을 추정할 수 있음을 보여주며, 다음과 같이 정리합니다.
+이 추정의 오차는 버킷 경계를 얼마나 촘촘하게 잡았는가에 정확히 비례합니다. Prometheus 공식 문서는 관측값이 200ms–300ms 사이의 넓은 버킷 하나에 몰릴 경우, 실제 p95가 220ms인데도 히스토그램이 295ms처럼 크게 벗어난 값을 추정할 수 있음을 보여주며, 다음과 같이 정리합니다.
 
 > "If you use a histogram, you control the error in the dimension of the observed value, via choosing the appropriate bucket layout in case of the classic histogram (tough) or via choosing a bucket resolution in case of a native histogram (easy)." — [Prometheus 공식 문서: Histograms and summaries](https://prometheus.io/docs/practices/histograms/)
 

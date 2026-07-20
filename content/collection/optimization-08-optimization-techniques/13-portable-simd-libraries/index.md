@@ -198,7 +198,7 @@ flowchart TD
 
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
-| 하나의 빌드로 여러 CPU 세대(SSE4~AVX-512)에 배포 | Highway (런타임 디스패치) | 아키텍처별 별도 빌드 관리 |
+| 하나의 빌드로 여러 CPU 세대(SSE4–AVX-512)에 배포 | Highway (런타임 디스패치) | 아키텍처별 별도 빌드 관리 |
 | 헤더온리·STL과 닮은 연산자 문법 선호, 타깃 고정 가능 | xsimd | 매 연산마다 raw intrinsics 호출 |
 | 코드의 중심이 행렬·벡터 선형대수 연산 | Eigen | 선형대수 연산을 raw 루프로 재구현 |
 | 극한의 명령어 단위 제어, 특정 하드웨어 하나만 타깃 | 수동 intrinsics([02장](/post/extreme-optimization/simd-intrinsics-practical-usage/), [컴파일러 intrinsics 카탈로그](/post/compiler-optimization/compiler-intrinsics-catalog/)) | 범용 라이브러리로 마이크로 최적화 시도 |

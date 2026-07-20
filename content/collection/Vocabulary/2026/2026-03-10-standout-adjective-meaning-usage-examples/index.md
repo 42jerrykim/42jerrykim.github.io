@@ -170,7 +170,7 @@ image: wordcloud.png
   - **standout + 명사**: standout performance, standout player, standout feature
   - **a/the standout**: 명사로 “그 눈에 띄는 사람/것”
   - **standout among / in**: ~ 중에서 눈에 띄는
-- **격식도**: 비격식~중립; 스포츠·비즈니스·미디어·일상에서 흔하다.
+- **격식도**: 비격식–중립; 스포츠·비즈니스·미디어·일상에서 흔하다.
 - **뉘앙스**: **긍정적**; 뛰어남·두드러짐·기억에 남음을 나타낸다.
 - **문화적 연상**: 스포츠 선수·경기, 비즈니스 성과·인재, 음악·영화·제품 리뷰와 자주 결부된다.
 

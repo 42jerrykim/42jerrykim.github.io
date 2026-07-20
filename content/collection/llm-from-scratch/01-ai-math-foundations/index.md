@@ -42,7 +42,7 @@ Attention 메커니즘의 핵심 연산은 결국 벡터의 내적이고, 신경
 
 ## 벡터의 내적과 코사인 유사도
 
-<strong>벡터(vector)</strong>는 숫자를 순서대로 나열한 것이고, LLM에서는 단어·토큰 하나하나가 수백~수천 차원의 벡터(임베딩)로 표현됩니다. 두 벡터가 "얼마나 비슷한 방향을 가리키는가"를 재는 가장 기본적인 연산이 <strong>내적(dot product)</strong>입니다.
+<strong>벡터(vector)</strong>는 숫자를 순서대로 나열한 것이고, LLM에서는 단어·토큰 하나하나가 수백–수천 차원의 벡터(임베딩)로 표현됩니다. 두 벡터가 "얼마나 비슷한 방향을 가리키는가"를 재는 가장 기본적인 연산이 <strong>내적(dot product)</strong>입니다.
 
 $$\vec{a} \cdot \vec{b} = \sum_i a_i b_i = |\vec{a}||\vec{b}|\cos\theta$$
 
@@ -88,14 +88,14 @@ $$z = w_1 x_1 + w_2 x_2 + \cdots + b$$
 
 $$\text{softmax}(z_i) = \frac{e^{z_i}}{\sum_j e^{z_j}}$$
 
-**Sigmoid**는 Softmax를 두 개의 클래스(참/거짓)로 단순화한 특수한 경우로, 값 하나를 0~1 사이의 확률로 변환합니다.
+**Sigmoid**는 Softmax를 두 개의 클래스(참/거짓)로 단순화한 특수한 경우로, 값 하나를 0–1 사이의 확률로 변환합니다.
 
 $$\sigma(z) = \frac{1}{1+e^{-z}}$$
 
 | 함수 | 출력 형태 | 용도 |
 |---|---|---|
 | Softmax | 합이 1인 확률 벡터 | 다음 토큰 예측처럼 여러 후보 중 하나를 고르는 다중 분류 |
-| Sigmoid | 0~1 사이 스칼라 | 참/거짓을 판단하는 이진 분류, 게이트(gate) 값 |
+| Sigmoid | 0–1 사이 스칼라 | 참/거짓을 판단하는 이진 분류, 게이트(gate) 값 |
 
 ## 두 확률분포의 거리 — KL Divergence와 Cross Entropy
 

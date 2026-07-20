@@ -154,7 +154,7 @@ class Email:
 
 - Eric Evans, 『Domain-Driven Design』(2003) — 3부 "모델을 표현하는 요소들"에서 Entity, Value Object 정의
 - Martin Fowler, "ValueObject"(martinfowler.com bliki)
-- Vaughn Vernon, 『Implementing Domain-Driven Design』(2013) — 5~6장
+- Vaughn Vernon, 『Implementing Domain-Driven Design』(2013) — 5–6장
 
 ---
 

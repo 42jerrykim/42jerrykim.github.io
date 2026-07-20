@@ -67,7 +67,7 @@ LLM 추론은 성격이 다른 두 단계로 나뉩니다. **Prefill 단계**는
 | 05 | LLM Quantization | Activation의 Outlier는 왜 다루기 어려운가 |
 | 06 | Efficient Transformer 추론 | Attention과 Decode 자체를 어떻게 빠르게 만드는가 |
 
-01~03장은 CNN을 예시로 세 기법의 원리를 다지고, 04~05장은 같은 기법이 LLM 규모에서 왜 더 정교해져야 하는지를 다룹니다. 06장은 관점을 바꿔, 압축이 아니라 연산·메모리 접근 패턴 자체를 최적화하는 기법(Speculative Decoding, FlashAttention)을 다룹니다. CNN 경량화 실무 경험이 있다면 01~02장을 건너뛰고 03장부터 시작해도 무리가 없습니다.
+01–03장은 CNN을 예시로 세 기법의 원리를 다지고, 04–05장은 같은 기법이 LLM 규모에서 왜 더 정교해져야 하는지를 다룹니다. 06장은 관점을 바꿔, 압축이 아니라 연산·메모리 접근 패턴 자체를 최적화하는 기법(Speculative Decoding, FlashAttention)을 다룹니다. CNN 경량화 실무 경험이 있다면 01–02장을 건너뛰고 03장부터 시작해도 무리가 없습니다.
 
 ## 학습 결과
 

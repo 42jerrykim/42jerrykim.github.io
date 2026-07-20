@@ -1422,7 +1422,7 @@ public class LazyBuilder<T> {
 }
 ```
 
-**전략 3: Flyweight + Prototype.** Flyweight(플라이웨이트)는 GoF가 정의한 구조 패턴으로, 다수의 유사한 객체가 공유할 수 있는 데이터(intrinsic state, 내재적 상태)를 하나의 공유 인스턴스로 모으고, 객체마다 달라지는 데이터(extrinsic state, 외재적 상태)만 개별적으로 보관해 메모리를 절약한다(Gamma et al., *Design Patterns*, 1994). 자바 표준 라이브러리의 `Integer.valueOf()`가 -128~127 범위의 값을 캐싱해 재사용하는 것이나, 문자열 리터럴이 상수 풀(constant pool)에서 공유되는 것도 Flyweight의 실제 적용 사례다. 아래 `FlyweightPrototype`은 이 아이디어를 Prototype과 결합한다 — `sharedData`(내재적 상태)는 `ConcurrentHashMap` 기반 레지스트리에서 타입별로 단 하나만 생성되어 모든 인스턴스가 참조를 공유하고, `clone()`이 호출되면 `properties`(외재적 상태)만 깊이 복사해 인스턴스마다 독립적으로 유지한다. 즉 "복제해도 공유되는 부분"과 "복제 시 반드시 분리해야 하는 부분"을 애초에 필드 설계 단계에서 나눠 둔 것이며, 이는 앞서 살펴본 Shallow/Deep Copy 선택("이 필드가 mutable이고 공유되면 안 되는가")을 클래스 설계 시점에 미리 답해 둔 형태라고 볼 수 있다.
+**전략 3: Flyweight + Prototype.** Flyweight(플라이웨이트)는 GoF가 정의한 구조 패턴으로, 다수의 유사한 객체가 공유할 수 있는 데이터(intrinsic state, 내재적 상태)를 하나의 공유 인스턴스로 모으고, 객체마다 달라지는 데이터(extrinsic state, 외재적 상태)만 개별적으로 보관해 메모리를 절약한다(Gamma et al., *Design Patterns*, 1994). 자바 표준 라이브러리의 `Integer.valueOf()`가 -128–127 범위의 값을 캐싱해 재사용하는 것이나, 문자열 리터럴이 상수 풀(constant pool)에서 공유되는 것도 Flyweight의 실제 적용 사례다. 아래 `FlyweightPrototype`은 이 아이디어를 Prototype과 결합한다 — `sharedData`(내재적 상태)는 `ConcurrentHashMap` 기반 레지스트리에서 타입별로 단 하나만 생성되어 모든 인스턴스가 참조를 공유하고, `clone()`이 호출되면 `properties`(외재적 상태)만 깊이 복사해 인스턴스마다 독립적으로 유지한다. 즉 "복제해도 공유되는 부분"과 "복제 시 반드시 분리해야 하는 부분"을 애초에 필드 설계 단계에서 나눠 둔 것이며, 이는 앞서 살펴본 Shallow/Deep Copy 선택("이 필드가 mutable이고 공유되면 안 되는가")을 클래스 설계 시점에 미리 답해 둔 형태라고 볼 수 있다.
 
 ```java
 import java.util.HashMap;

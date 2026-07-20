@@ -60,7 +60,7 @@ tags:
 
 ## 메모리 모델의 역사와 배경
 
-C++ 이전의 멀티스레드 C/C++ 코드는 사실상 컴파일러·하드웨어 벤더의 관행에 기대어 동작했습니다. 표준에는 스레드 개념 자체가 없었기 때문에, `volatile`을 동기화에 쓰거나 특정 컴파일러의 재배치 관행을 신뢰하는 코드가 흔했습니다. 이 공백을 형식화한 것이 **Hans-J. Boehm**과 **Sarita Adve**가 2007~2008년에 발표한 작업으로, 이들은 2007년 WG21 제안서 N2429("A Less Formal Explanation of the Proposed C++ Concurrency Memory Model")와 2008년 PLDI 논문 "Foundations of the C++ Concurrency Memory Model"을 통해 지금 표준에 있는 `memory_order` 체계의 기틀을 놓았습니다. 이 모델은 스레드 개념과 순서 보장을 이미 정의해 둔 <strong>Java Memory Model(JSR-133, 2004)</strong>의 설계 경험을 참고했지만, C++는 최적화 여지가 더 큰 언어이므로 relaxed부터 seq_cst까지 세분화된 순서 옵션을 별도로 두는 방향을 택했습니다. 이 체계는 2011년 C++11 표준(ISO/IEC 14882:2011)에 `<atomic>`으로 채택되었고, 이후 C++20에서 `std::atomic_ref`와 `wait`/`notify`가, C++26에서 `fetch_max`/`fetch_min`이 추가되는 식으로 확장되어 왔습니다. 순서 옵션 중 `memory_order_consume`만은 예외적인 길을 걸었는데, 표준이 정의한 "데이터 의존성 추적" 의미론을 어떤 컴파일러도 실용적 성능으로 구현하지 못해 WG21은 2016년 제안서 P0371로 이를 "당분간 비권장(discourage)"으로 명시했고, 현재 GCC·Clang 등 주요 컴파일러는 `consume`을 그대로 `acquire`로 승격해 처리합니다([WG21 P0371R1](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0371r1.html) 참고).
+C++ 이전의 멀티스레드 C/C++ 코드는 사실상 컴파일러·하드웨어 벤더의 관행에 기대어 동작했습니다. 표준에는 스레드 개념 자체가 없었기 때문에, `volatile`을 동기화에 쓰거나 특정 컴파일러의 재배치 관행을 신뢰하는 코드가 흔했습니다. 이 공백을 형식화한 것이 **Hans-J. Boehm**과 **Sarita Adve**가 2007–2008년에 발표한 작업으로, 이들은 2007년 WG21 제안서 N2429("A Less Formal Explanation of the Proposed C++ Concurrency Memory Model")와 2008년 PLDI 논문 "Foundations of the C++ Concurrency Memory Model"을 통해 지금 표준에 있는 `memory_order` 체계의 기틀을 놓았습니다. 이 모델은 스레드 개념과 순서 보장을 이미 정의해 둔 <strong>Java Memory Model(JSR-133, 2004)</strong>의 설계 경험을 참고했지만, C++는 최적화 여지가 더 큰 언어이므로 relaxed부터 seq_cst까지 세분화된 순서 옵션을 별도로 두는 방향을 택했습니다. 이 체계는 2011년 C++11 표준(ISO/IEC 14882:2011)에 `<atomic>`으로 채택되었고, 이후 C++20에서 `std::atomic_ref`와 `wait`/`notify`가, C++26에서 `fetch_max`/`fetch_min`이 추가되는 식으로 확장되어 왔습니다. 순서 옵션 중 `memory_order_consume`만은 예외적인 길을 걸었는데, 표준이 정의한 "데이터 의존성 추적" 의미론을 어떤 컴파일러도 실용적 성능으로 구현하지 못해 WG21은 2016년 제안서 P0371로 이를 "당분간 비권장(discourage)"으로 명시했고, 현재 GCC·Clang 등 주요 컴파일러는 `consume`을 그대로 `acquire`로 승격해 처리합니다([WG21 P0371R1](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0371r1.html) 참고).
 
 ## 네 가지 순서와 happens-before
 
@@ -157,7 +157,7 @@ g++ -std=c++20 -fsanitize=thread -g -O1 relaxed_bug.cpp -o relaxed_bug
 # ==================
 ```
 
-release-acquire로 고친 버전은 같은 명령으로 빌드해도 경고가 사라집니다. TSan은 실행 중 실제로 지나간 경로만 검사하는 동적 도구이므로, 이번처럼 두 스레드가 항상 같은 문장을 실행하는 단순한 흐름에서는 신뢰도가 높지만, 조건부로만 레이스 경로를 타는 코드에서는 그 경로가 실행되지 않으면 놓칠 수 있다는 한계는 기억해 둘 필요가 있습니다. TSan의 표준 오버헤드는 실행 속도 5~15배, 메모리 5~10배 수준이므로 프로덕션이 아니라 CI·개발 단계에서 상시 돌리는 용도로 씁니다.
+release-acquire로 고친 버전은 같은 명령으로 빌드해도 경고가 사라집니다. TSan은 실행 중 실제로 지나간 경로만 검사하는 동적 도구이므로, 이번처럼 두 스레드가 항상 같은 문장을 실행하는 단순한 흐름에서는 신뢰도가 높지만, 조건부로만 레이스 경로를 타는 코드에서는 그 경로가 실행되지 않으면 놓칠 수 있다는 한계는 기억해 둘 필요가 있습니다. TSan의 표준 오버헤드는 실행 속도 5–15배, 메모리 5–10배 수준이므로 프로덕션이 아니라 CI·개발 단계에서 상시 돌리는 용도로 씁니다.
 
 ## 흔한 오개념
 

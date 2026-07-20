@@ -143,7 +143,7 @@ image: "wordcloud.png"
 - **발음**: /ˌtɒksɪˈkɒlədʒɪst/ (영국식 느낌), /ˌtɑːksɪˈkɑːlədʒɪst/ (미국식 대략).
 - **관사**: **a toxicologist**(직업 일반), **the toxicologist**(특정 인물 지칭).
 - **전치사 패턴**: **a toxicologist at + 기관**, **toxicologist for + 회사/기관**, **consult with a toxicologist**(자문).
-- **격식도**: 중립~격식; 뉴스·학술·법조·의료에서 흔하다.
+- **격식도**: 중립–격식; 뉴스·학술·법조·의료에서 흔하다.
 - **파생·관련어**: toxicology(n.), toxic(adj.), toxicity(n.), intoxication(n.).
 
 ---

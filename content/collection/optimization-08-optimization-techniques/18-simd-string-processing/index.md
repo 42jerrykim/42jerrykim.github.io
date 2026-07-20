@@ -45,7 +45,7 @@ tags:
   - Vectorization
 ---
 
-**SIMD 문자열·JSON 처리**란 CPU의 벡터 명령어로 한 번에 16~64바이트씩 문자를 분류해, 한 바이트씩 순차로 훑는 전통적인 파서가 만드는 분기 예측 실패와 캐시 미스를 줄이는 기법을 말합니다. 로그 수집 파이프라인, 시세 피드, RPC 페이로드처럼 초당 수십만~수백만 건의 JSON을 파싱해야 하는 백엔드에서는 파서 자체가 CPU 시간의 상당 부분을 차지하는 경우가 드물지 않고, [simdjson](https://github.com/simdjson/simdjson)은 이 문제를 "구조 인덱싱(structural indexing)"이라는 2단계 접근으로 풀어 Node.js 런타임, ClickHouse, Milvus, Apache Doris, StarRocks 등 여러 프로덕션 시스템에 채택되었습니다. 이 장은 simdjson을 대표 사례로 삼아 구조 인덱싱이 실제로 무엇을 계산하는지, On-Demand API가 왜 DOM 전체를 만들지 않고도 빠른지, 그리고 이 접근을 도입할 가치가 있는 워크로드와 그렇지 않은 워크로드를 어떻게 구분하는지를 다룹니다.
+**SIMD 문자열·JSON 처리**란 CPU의 벡터 명령어로 한 번에 16–64바이트씩 문자를 분류해, 한 바이트씩 순차로 훑는 전통적인 파서가 만드는 분기 예측 실패와 캐시 미스를 줄이는 기법을 말합니다. 로그 수집 파이프라인, 시세 피드, RPC 페이로드처럼 초당 수십만–수백만 건의 JSON을 파싱해야 하는 백엔드에서는 파서 자체가 CPU 시간의 상당 부분을 차지하는 경우가 드물지 않고, [simdjson](https://github.com/simdjson/simdjson)은 이 문제를 "구조 인덱싱(structural indexing)"이라는 2단계 접근으로 풀어 Node.js 런타임, ClickHouse, Milvus, Apache Doris, StarRocks 등 여러 프로덕션 시스템에 채택되었습니다. 이 장은 simdjson을 대표 사례로 삼아 구조 인덱싱이 실제로 무엇을 계산하는지, On-Demand API가 왜 DOM 전체를 만들지 않고도 빠른지, 그리고 이 접근을 도입할 가치가 있는 워크로드와 그렇지 않은 워크로드를 어떻게 구분하는지를 다룹니다.
 
 ## 이 장을 읽기 전에
 

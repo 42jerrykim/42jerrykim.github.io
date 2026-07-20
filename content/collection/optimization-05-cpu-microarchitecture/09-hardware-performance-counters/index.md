@@ -162,11 +162,11 @@ BE/Mem/DRAM        Backend_Bound.Memory_Bound.DRAM_Bound       % Slots    9.8
 BE/Mem/HBM         Backend_Bound.Memory_Bound.HBM_Bound        % Slots   58.2  <==
 ```
 
-이 결과가 나온다면 원인은 "메모리가 느리다"가 아니라 "HBM 대역폭 자체가 병목"이라는 뜻이며, 대응은 접근 패턴을 더 넓혀 대역폭을 실제로 채우고 있는지, 아니면 작업 집합이 HBM 용량(Xeon Max 기준 소켓당 64GB)을 넘어 DDR로 스필되고 있는지를 가르는 방향으로 이어집니다. 캐시 미스로 인한 계층 이동 자체의 원리는 이 장에서 다시 설명하지 않고 [캐시 미스 분석과 대응](/post/cpu-optimization/cache-miss-analysis-hint-instructions/)에 위임하며, 이 절은 그 분석 대상이 DDR인지 HBM인지를 먼저 가르는 역할만 합니다. `HBM_Bound`는 TMA 트리 버전(4.6~4.7대) 사이에서도 정의·노드 위치가 조정되어 왔으므로, 사용하는 `toplev`·VTune 버전의 릴리스 노트를 확인하는 습관이 필요합니다.
+이 결과가 나온다면 원인은 "메모리가 느리다"가 아니라 "HBM 대역폭 자체가 병목"이라는 뜻이며, 대응은 접근 패턴을 더 넓혀 대역폭을 실제로 채우고 있는지, 아니면 작업 집합이 HBM 용량(Xeon Max 기준 소켓당 64GB)을 넘어 DDR로 스필되고 있는지를 가르는 방향으로 이어집니다. 캐시 미스로 인한 계층 이동 자체의 원리는 이 장에서 다시 설명하지 않고 [캐시 미스 분석과 대응](/post/cpu-optimization/cache-miss-analysis-hint-instructions/)에 위임하며, 이 절은 그 분석 대상이 DDR인지 HBM인지를 먼저 가르는 역할만 합니다. `HBM_Bound`는 TMA 트리 버전(4.6–4.7대) 사이에서도 정의·노드 위치가 조정되어 왔으므로, 사용하는 `toplev`·VTune 버전의 릴리스 노트를 확인하는 습관이 필요합니다.
 
 ## 흔한 오개념 교정
 
-**"신형 Xeon은 다 하이브리드니까 --cputype이 필요하다."** 틀렸습니다. Sierra Forest·Clearwater Forest 계열은 E-core만으로 이루어진 동형(homogeneous) 서버 칩이라 코어 타입 분리 문제 자체가 없습니다([현대 CPU 아키텍처 비교](/post/cpu-optimization/modern-cpu-architecture-comparison/) 참고). `--cputype`이 실질적으로 필요한 대상은 P-core/E-core를 한 다이에 섞은 클라이언트 라인(Alder Lake~Arrow Lake)입니다.
+**"신형 Xeon은 다 하이브리드니까 --cputype이 필요하다."** 틀렸습니다. Sierra Forest·Clearwater Forest 계열은 E-core만으로 이루어진 동형(homogeneous) 서버 칩이라 코어 타입 분리 문제 자체가 없습니다([현대 CPU 아키텍처 비교](/post/cpu-optimization/modern-cpu-architecture-comparison/) 참고). `--cputype`이 실질적으로 필요한 대상은 P-core/E-core를 한 다이에 섞은 클라이언트 라인(Alder Lake–Arrow Lake)입니다.
 
 **"HBM_Bound가 낮으면 메모리는 문제없다."** `HBM_Bound`는 HBM 접근으로 인한 스톨만 봅니다. Flat 모드에서 데이터가 DDR 노드에 있다면 `HBM_Bound`는 0에 가깝고 `DRAM_Bound`가 대신 높게 나오므로, 두 메트릭을 함께 보지 않으면 "메모리 계층 전체가 병목이 아니다"라는 잘못된 결론에 도달합니다.
 

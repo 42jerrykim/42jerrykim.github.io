@@ -62,7 +62,7 @@ draft: false
 * **개봉일**: 2025.12.19 (미국) / 2025.12.01 (월드 프리미어)
 * **제작사**: Lightstorm Entertainment
 * **배급사**: 20th Century Studios
-* **제작비(보도치)**: 약 3.5~4억 달러
+* **제작비(보도치)**: 약 3.5–4억 달러
 * **월드 박스오피스(보도치, 2026-01-01 기준)**: 약 8억 5,170만 달러
 * **평점(참고)**: Rotten Tomatoes 66% / Metacritic 61 / CinemaScore A
 

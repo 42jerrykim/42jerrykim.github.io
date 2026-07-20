@@ -87,7 +87,7 @@ tags:
 
 **완전한 초보자?** 이 장은 [03장: 추상화 비용 분석](/post/cpp-optimization/abstraction-cost/)의 측정 흐름을 전제로 합니다. 복사 생성자·이동 생성자가 무엇인지, 함수가 객체를 값으로 반환한다는 것이 무슨 뜻인지 정도만 알면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **중급~전문가**를 포괄합니다. Copy Elision·RVO/NRVO의 동작부터 시작해, 전문가 구간에서는 생성자 카운터로 복사·이동·생략을 실제로 계측하고 이동 의미론을 핫패스에 적용하는 기준을 다룹니다. **다루지 않는 것**: 임시 객체 제거 패턴(이어지는 [07장](/post/cpp-optimization/temporary-removal/))과 인자 전달 전략([17장](/post/cpp-optimization/parameter-passing/))입니다.
+**이 장의 깊이**: 이 장은 **중급–전문가**를 포괄합니다. Copy Elision·RVO/NRVO의 동작부터 시작해, 전문가 구간에서는 생성자 카운터로 복사·이동·생략을 실제로 계측하고 이동 의미론을 핫패스에 적용하는 기준을 다룹니다. **다루지 않는 것**: 임시 객체 제거 패턴(이어지는 [07장](/post/cpp-optimization/temporary-removal/))과 인자 전달 전략([17장](/post/cpp-optimization/parameter-passing/))입니다.
 
 ## 당신의 수준에 맞는 경로
 

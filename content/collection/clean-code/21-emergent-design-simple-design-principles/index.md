@@ -38,7 +38,7 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-이 장은 [16~17장](/post/clean-code/unit-testing-tdd-test-driven-development/)에서 다룬 TDD와 [18장](/post/clean-code/clean-classes-solid-principles-oop/)에서 다룬 SOLID를 하나의 우선순위 체계로 묶는다. 이 시리즈 전반의 원칙을 이미 접했다는 전제로 진행하는 통합적인 장이다.
+이 장은 [16–17장](/post/clean-code/unit-testing-tdd-test-driven-development/)에서 다룬 TDD와 [18장](/post/clean-code/clean-classes-solid-principles-oop/)에서 다룬 SOLID를 하나의 우선순위 체계로 묶는다. 이 시리즈 전반의 원칙을 이미 접했다는 전제로 진행하는 통합적인 장이다.
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |:--:|:--|:--|

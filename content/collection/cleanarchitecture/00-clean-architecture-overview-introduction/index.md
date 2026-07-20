@@ -121,7 +121,7 @@ graph TB
 
 ## 책의 구성
 
-원저는 Part I~VI 34개 챕터와 Appendix A "Architecture Archaeology"로 구성된다. 이 시리즈는 그 34개 챕터를 근간으로, 이해를 돕는 역사·비교 챕터(육각형·어니언 아키텍처, SOLID·컴포넌트 원칙 서론 등) 11개를 더해 **6개 파트, 45개 챕터**로 재구성했다.
+원저는 Part I–VI 34개 챕터와 Appendix A "Architecture Archaeology"로 구성된다. 이 시리즈는 그 34개 챕터를 근간으로, 이해를 돕는 역사·비교 챕터(육각형·어니언 아키텍처, SOLID·컴포넌트 원칙 서론 등) 11개를 더해 **6개 파트, 45개 챕터**로 재구성했다.
 
 ### Part 1: 서론 (Introduction)
 

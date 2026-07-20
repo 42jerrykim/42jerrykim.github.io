@@ -138,7 +138,7 @@ image: "wordcloud.png"
 - **발음(동사)**: /dɪˈlɪbəreɪt/ (미국식 대략); 영국식 역시 대체로 두 번째 음절 강세.
 - **활용**: deliberate — deliberated — deliberated — deliberating
 - **전형 패턴**: **deliberate on/over/about + 명사**, **deliberate wh-절**, **deliberate for + 시간**
-- **격식도**: 중립~격식; 뉴스·법정 보도·회의록에서 매우 흔하다.
+- **격식도**: 중립–격식; 뉴스·법정 보도·회의록에서 매우 흔하다.
 - **주의**: 형용사 **a deliberate choice**(고의의 선택)와 문장 속 역할을 헷갈리지 말 것.
 
 ---

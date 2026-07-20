@@ -294,7 +294,7 @@ BENCHMARK_MAIN();
 |------|------|--------|
 | 프로덕션에 lock-free 큐/스택이 필요 | 검증된 라이브러리(Boost.Lockfree, moodycamel::ConcurrentQueue 등) | 검증 없이 직접 구현한 코드를 바로 투입 |
 | 메모리 회수 전략 없이 구현을 시작 | 07장의 hazard pointer/RCU 또는 `atomic<shared_ptr>`과 함께 설계 | 즉시 `delete`/`free` |
-| 스레드 1~2개, 저경합 워크로드 | mutex 기반 큐(01·02장 기준으로 선택) | 복잡한 lock-free 구현 도입 |
+| 스레드 1–2개, 저경합 워크로드 | mutex 기반 큐(01·02장 기준으로 선택) | 복잡한 lock-free 구현 도입 |
 | 크기 상한이 있고 SPSC/MPMC로 충분 | 08장의 링버퍼 큐 | 범용 연결 리스트 기반 큐 |
 | 해시맵에 반드시 lock-free가 필요 | 검증된 라이브러리 또는 샤딩된 mutex 해시맵 | 직접 split-ordered list 구현 |
 

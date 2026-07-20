@@ -94,7 +94,7 @@ listen 소켓이 아니라 **개별 연결 소켓**에 설정해야 하며, `acc
 
 ## SO_SNDBUF/SO_RCVBUF와 자동 튜닝
 
-리눅스는 기본적으로 TCP 수신 버퍼를 **자동으로 조정**한다. [`tcp_moderate_rcvbuf`](https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt)(기본 활성화)가 켜져 있으면 커널은 경로가 요구하는 처리량에 맞춰 수신 버퍼를 `/proc/sys/net/ipv4/tcp_rmem`의 min~max 범위 안에서 스스로 늘린다. 문제는 애플리케이션이 `setsockopt(SO_RCVBUF, ...)`로 값을 명시적으로 지정하는 순간, 해당 소켓에 대해 자동 튜닝이 그 값으로 고정된다는 점이다(리눅스 커널 구현 기준; `SOCK_RCVBUF_LOCK` 플래그로 알려져 있다). 즉 "안전하게 크게 잡아두자"고 임의의 큰 값을 넣으면, 실제로는 커널이 상황에 맞춰 더 적절한 값을 찾을 기회를 없애는 셈이 된다. 수동 설정이 자동 튜닝보다 나은 경우는 트래픽 패턴을 이미 알고 있고(예: 고정 크기 메시지, 알려진 RTT) 커널의 점진적 확장이 워밍업 구간에서 손해를 줄 때로 좁혀야 한다.
+리눅스는 기본적으로 TCP 수신 버퍼를 **자동으로 조정**한다. [`tcp_moderate_rcvbuf`](https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt)(기본 활성화)가 켜져 있으면 커널은 경로가 요구하는 처리량에 맞춰 수신 버퍼를 `/proc/sys/net/ipv4/tcp_rmem`의 min–max 범위 안에서 스스로 늘린다. 문제는 애플리케이션이 `setsockopt(SO_RCVBUF, ...)`로 값을 명시적으로 지정하는 순간, 해당 소켓에 대해 자동 튜닝이 그 값으로 고정된다는 점이다(리눅스 커널 구현 기준; `SOCK_RCVBUF_LOCK` 플래그로 알려져 있다). 즉 "안전하게 크게 잡아두자"고 임의의 큰 값을 넣으면, 실제로는 커널이 상황에 맞춰 더 적절한 값을 찾을 기회를 없애는 셈이 된다. 수동 설정이 자동 튜닝보다 나은 경우는 트래픽 패턴을 이미 알고 있고(예: 고정 크기 메시지, 알려진 RTT) 커널의 점진적 확장이 워밍업 구간에서 손해를 줄 때로 좁혀야 한다.
 
 ```cpp
 #include <sys/socket.h>

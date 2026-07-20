@@ -49,7 +49,7 @@ tags:
 
 ### 이 장을 읽기 전에
 
-이 장은 [04장: 모던 아키텍처 패러다임](/post/software-architecture/modern-architecture-paradigms/)에서 다룬 마이크로서비스·헥사고날·CQRS 같은 패턴이 "왜 그런 형태를 갖는가"에 대한 답을 제공한다. 04장의 패턴들을 이미 구조로는 알고 있지만 "왜 굳이 서비스를 쪼개는가", "왜 CQRS로 읽기/쓰기를 분리하는가"라는 질문에 품질 속성 용어로 답하지 못한다면 이 장에서 그 연결고리를 채우게 된다. 이 장의 난이도는 초급~중급이며, 심화 구간에서는 ATAM 유틸리티 트리와 PACELC 같은 CAP 정리의 확장 이론을 다룬다. 다만 ATAM 평가를 실제로 수행하는 4일짜리 워크숍 절차나 이해관계자 인터뷰 기법 같은 실행 방법론은 [07장: 아키텍처 평가와 분석](/post/software-architecture/architecture-evaluation-and-analysis/)의 범위이므로 이 장에서는 다루지 않는다. 마찬가지로 품질 속성 결정을 문서로 남기는 구체적 표기법(C4 모델, ADR 양식)은 [06장: 아키텍처 문서화](/post/software-architecture/architecture-documentation/)에서 다룬다.
+이 장은 [04장: 모던 아키텍처 패러다임](/post/software-architecture/modern-architecture-paradigms/)에서 다룬 마이크로서비스·헥사고날·CQRS 같은 패턴이 "왜 그런 형태를 갖는가"에 대한 답을 제공한다. 04장의 패턴들을 이미 구조로는 알고 있지만 "왜 굳이 서비스를 쪼개는가", "왜 CQRS로 읽기/쓰기를 분리하는가"라는 질문에 품질 속성 용어로 답하지 못한다면 이 장에서 그 연결고리를 채우게 된다. 이 장의 난이도는 초급–중급이며, 심화 구간에서는 ATAM 유틸리티 트리와 PACELC 같은 CAP 정리의 확장 이론을 다룬다. 다만 ATAM 평가를 실제로 수행하는 4일짜리 워크숍 절차나 이해관계자 인터뷰 기법 같은 실행 방법론은 [07장: 아키텍처 평가와 분석](/post/software-architecture/architecture-evaluation-and-analysis/)의 범위이므로 이 장에서는 다루지 않는다. 마찬가지로 품질 속성 결정을 문서로 남기는 구체적 표기법(C4 모델, ADR 양식)은 [06장: 아키텍처 문서화](/post/software-architecture/architecture-documentation/)에서 다룬다.
 
 ### 당신의 수준에 맞는 경로
 

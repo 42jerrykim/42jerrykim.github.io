@@ -128,7 +128,7 @@ image: wordcloud.png
   - Engrave on/in: engrave on a ring, engrave in stone
   - Engrave with: engrave the ring with a name
   - Be engraved in/on: be engraved in memory, be engraved on one's heart
-- **격식도**: 중립~격식 (학술 문맥이나 예술 관련에서는 격식체)
+- **격식도**: 중립–격식 (학술 문맥이나 예술 관련에서는 격식체)
 - **뉘앙스**: 우아하고 문학적. 긍정적 함축 (기억에 남기다, 영구적 표시). 감정적 깊이 표현.
 - **문화적 연상/사용 맥락**: 예술/수공예, 낭만적 표현, 기념/추모, 문학/시, 뉴스 기사에서 심각한 주제 표현
 

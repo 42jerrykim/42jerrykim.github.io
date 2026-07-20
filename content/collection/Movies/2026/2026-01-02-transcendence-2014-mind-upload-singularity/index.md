@@ -62,7 +62,7 @@ draft: false
 * **개봉일**: 2014.04.18 (미국)
 * **제작사**: Alcon Entertainment, DMG Entertainment (외)
 * **배급사**: Warner Bros. Pictures (미국)
-* **제작비(보도치)**: 약 1억~1억 5천만 달러
+* **제작비(보도치)**: 약 1억–1억 5천만 달러
 * **월드 박스오피스(보도치)**: 약 1억 300만 달러
 * **평점(참고)**: Rotten Tomatoes 19% / Metacritic 42 / CinemaScore C+
 

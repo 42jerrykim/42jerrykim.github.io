@@ -6,7 +6,7 @@ draft: false
 image: wordcloud.png
 title: "[OS 06] XDP/eBPF 개요"
 slug: xdp-ebpf-overview-fundamentals
-description: "XDP와 eBPF가 네트워크 드라이버 계층에서 패킷을 조기 처리하는 원리, verifier의 안전성 보장 메커니즘, BPF Token 기반 권한 위임과 동적 스택 alloca 논의 등 2025~2026 최신 동향을 개관합니다."
+description: "XDP와 eBPF가 네트워크 드라이버 계층에서 패킷을 조기 처리하는 원리, verifier의 안전성 보장 메커니즘, BPF Token 기반 권한 위임과 동적 스택 alloca 논의 등 2025–2026 최신 동향을 개관합니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
@@ -47,7 +47,7 @@ tags:
   - NIC-Driver
 ---
 
-<strong>XDP(eXpress Data Path)</strong>와 <strong>eBPF(extended Berkeley Packet Filter)</strong>는 커널 소스를 고치지 않고도 네트워크 드라이버 계층에서 패킷을 조기에 검사·처리할 수 있게 해 주는 프로그래밍 인터페이스입니다. 소켓까지 패킷이 올라오기 전, 즉 `sk_buff`가 할당되기도 전에 커널이 검증한 소규모 프로그램이 실행되어 DROP·PASS·REDIRECT 같은 결정을 내리므로, DDoS 완화·로드밸런싱·패킷 필터링처럼 초당 수백만 패킷을 다뤄야 하는 워크로드에서 커널 스택 전체를 거치는 비용을 줄일 수 있습니다. 이 장은 커널 바이패스 계열 기법 중 "커널 안에 머무르면서" 패킷 경로를 단축하는 접근을 다루며, verifier가 어떻게 안전성을 보장하는지와 2025~2026년 사이 논의되는 verifier 확장(BPF Token, 동적 스택 alloca)까지 개관합니다.
+<strong>XDP(eXpress Data Path)</strong>와 <strong>eBPF(extended Berkeley Packet Filter)</strong>는 커널 소스를 고치지 않고도 네트워크 드라이버 계층에서 패킷을 조기에 검사·처리할 수 있게 해 주는 프로그래밍 인터페이스입니다. 소켓까지 패킷이 올라오기 전, 즉 `sk_buff`가 할당되기도 전에 커널이 검증한 소규모 프로그램이 실행되어 DROP·PASS·REDIRECT 같은 결정을 내리므로, DDoS 완화·로드밸런싱·패킷 필터링처럼 초당 수백만 패킷을 다뤄야 하는 워크로드에서 커널 스택 전체를 거치는 비용을 줄일 수 있습니다. 이 장은 커널 바이패스 계열 기법 중 "커널 안에 머무르면서" 패킷 경로를 단축하는 접근을 다루며, verifier가 어떻게 안전성을 보장하는지와 2025–2026년 사이 논의되는 verifier 확장(BPF Token, 동적 스택 alloca)까지 개관합니다.
 
 ## 이 장을 읽기 전에
 

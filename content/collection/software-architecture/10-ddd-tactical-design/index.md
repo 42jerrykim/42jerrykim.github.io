@@ -41,7 +41,7 @@ tags:
   - Ubiquitous-Language
 ---
 
-09장에서 바운디드 컨텍스트로 도메인을 여러 자율적인 모델 경계로 나누고, 그 안에서 팀과 코드가 공유할 유비쿼터스 언어를 구축하는 전략적 설계를 다뤘다면, 이 장은 그렇게 나눈 컨텍스트 하나 **안에서** 실제로 코드를 어떻게 짤 것인가를 다룬다. 전략적 설계가 "어디까지가 하나의 모델인가"라는 경계의 문제라면, 전술적 설계는 "그 경계 안의 모델을 코드로 어떻게 정확하게 표현할 것인가"라는 구현의 문제다. 에릭 에반스(Eric Evans)는 2003년 저서 『Domain-Driven Design: Tackling Complexity in the Heart of Software』(Addison-Wesley) 5~6장에서 이 구현 문제에 답하기 위해 Entity, Value Object, Aggregate, Factory, Repository, Domain Service라는 여섯 가지 빌딩 블록을 제시했고, 이후 커뮤니티가 여기에 Domain Event를 추가하며 오늘날 널리 쓰이는 전술적 설계 패턴 집합이 완성되었다.
+09장에서 바운디드 컨텍스트로 도메인을 여러 자율적인 모델 경계로 나누고, 그 안에서 팀과 코드가 공유할 유비쿼터스 언어를 구축하는 전략적 설계를 다뤘다면, 이 장은 그렇게 나눈 컨텍스트 하나 **안에서** 실제로 코드를 어떻게 짤 것인가를 다룬다. 전략적 설계가 "어디까지가 하나의 모델인가"라는 경계의 문제라면, 전술적 설계는 "그 경계 안의 모델을 코드로 어떻게 정확하게 표현할 것인가"라는 구현의 문제다. 에릭 에반스(Eric Evans)는 2003년 저서 『Domain-Driven Design: Tackling Complexity in the Heart of Software』(Addison-Wesley) 5–6장에서 이 구현 문제에 답하기 위해 Entity, Value Object, Aggregate, Factory, Repository, Domain Service라는 여섯 가지 빌딩 블록을 제시했고, 이후 커뮤니티가 여기에 Domain Event를 추가하며 오늘날 널리 쓰이는 전술적 설계 패턴 집합이 완성되었다.
 
 이 여섯(또는 일곱) 가지 패턴은 서로 무관한 도구 상자가 아니라, "도메인 로직을 어디에 둘 것인가"라는 하나의 질문에 대한 일관된 답이다. Entity와 Value Object는 로직을 담을 그릇의 형태를 정하고, Aggregate는 그 그릇들을 하나의 트랜잭션 경계로 묶으며, Factory는 그 경계를 지키며 객체를 만드는 방법을, Repository는 그 경계를 지키며 객체를 저장·복원하는 방법을 정의한다. Domain Service는 이 그릇 중 어디에도 자연스럽게 속하지 않는 로직을, Domain Event는 한 경계에서 일어난 사실을 다른 경계에 알리는 방법을 다룬다. 이 장을 읽고 나면, 왜 어떤 로직은 Entity의 메서드가 되어야 하고 어떤 로직은 Domain Service로 빠져야 하는지, 왜 Aggregate는 작을수록 좋다고 하는지, Repository가 왜 단순한 DAO(Data Access Object)와 다른지를 설계 판단으로 설명할 수 있어야 한다.
 
@@ -49,7 +49,7 @@ tags:
 
 **완전한 초보자?** 이 장은 [09장: DDD 기초: 전략적 설계](/post/software-architecture/ddd-strategic-design-fundamentals/)에서 다룬 바운디드 컨텍스트와 유비쿼터스 언어를 전제로 한다. 전술적 설계 패턴은 항상 특정 바운디드 컨텍스트 **안에서만** 유효하다 — 예를 들어 "주문" 바운디드 컨텍스트의 `Customer` Entity와 "고객 관리" 바운디드 컨텍스트의 `Customer` Entity는 이름은 같아도 서로 다른 모델이다. 이 전제를 모른 채 이 장을 읽으면 Aggregate 경계를 "왜 이렇게 좁게 잡는지" 이해하기 어렵다. Java 문법과 기본적인 객체지향(캡슐화, 상속) 개념은 안다고 가정한다.
 
-**이 장의 깊이**: 이 장은 **초급~전문가**까지 폭넓게 다룬다. Entity·Value Object의 정의와 구현은 초급자도 바로 적용할 수 있는 수준으로 설명하고, Aggregate 경계 설계와 Domain Event를 통한 애그리게이트 간 일관성 처리는 **중급~전문가** 수준의 트레이드오프 판단을 요구한다. **다루지 않는 것**: 이 장은 하나의 애그리게이트를 어떻게 설계하고 구현하는지에 집중하며, 애그리게이트 간 데이터를 어떻게 저장·조회 최적화할지(폴리글랏 퍼시스턴스, CQRS, 이벤트 소싱)는 다음 장인 [11장: 데이터 아키텍처 전략](/post/software-architecture/data-architecture-strategy/)에서 다룬다. 여러 바운디드 컨텍스트를 어떻게 식별하고 경계를 나눌지는 이미 09장에서 다뤘으므로 이 장에서 반복하지 않는다.
+**이 장의 깊이**: 이 장은 **초급–전문가**까지 폭넓게 다룬다. Entity·Value Object의 정의와 구현은 초급자도 바로 적용할 수 있는 수준으로 설명하고, Aggregate 경계 설계와 Domain Event를 통한 애그리게이트 간 일관성 처리는 **중급–전문가** 수준의 트레이드오프 판단을 요구한다. **다루지 않는 것**: 이 장은 하나의 애그리게이트를 어떻게 설계하고 구현하는지에 집중하며, 애그리게이트 간 데이터를 어떻게 저장·조회 최적화할지(폴리글랏 퍼시스턴스, CQRS, 이벤트 소싱)는 다음 장인 [11장: 데이터 아키텍처 전략](/post/software-architecture/data-architecture-strategy/)에서 다룬다. 여러 바운디드 컨텍스트를 어떻게 식별하고 경계를 나눌지는 이미 09장에서 다뤘으므로 이 장에서 반복하지 않는다.
 
 ## 당신의 수준에 맞는 경로
 

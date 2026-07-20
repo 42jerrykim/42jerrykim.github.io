@@ -39,7 +39,7 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-이 장은 [01장: Clean Code란 무엇인가](/post/clean-code/clean-code-fundamentals-what-is-clean-code/)에서 정의한 기준(가독성, 기술 부채, 저자로서의 책임)을 전제로 한다. 아직 01장을 읽지 않았다면 먼저 읽기를 권한다. 이 장의 깊이는 초급이며, 특정 언어의 고급 문법이 아니라 "무엇이 나쁜 코드의 증상인가"를 식별하는 안목을 기르는 데 집중한다. 함수 분해의 세부 기법은 [05~06장](/post/clean-code/clean-functions-single-responsibility-principle/)에서 본격적으로 다룬다.
+이 장은 [01장: Clean Code란 무엇인가](/post/clean-code/clean-code-fundamentals-what-is-clean-code/)에서 정의한 기준(가독성, 기술 부채, 저자로서의 책임)을 전제로 한다. 아직 01장을 읽지 않았다면 먼저 읽기를 권한다. 이 장의 깊이는 초급이며, 특정 언어의 고급 문법이 아니라 "무엇이 나쁜 코드의 증상인가"를 식별하는 안목을 기르는 데 집중한다. 함수 분해의 세부 기법은 [05–06장](/post/clean-code/clean-functions-single-responsibility-principle/)에서 본격적으로 다룬다.
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |:--:|:--|:--|

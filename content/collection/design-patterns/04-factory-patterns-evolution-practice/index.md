@@ -51,9 +51,9 @@ tags:
 - 현대적 Factory 패턴(DI Container, Functional Factory) 구현
 - Factory 패턴의 성능 특성과 최적화 방법 학습
 
-실습 코드를 작성하기 전에 반드시 짚어야 할 개념 혼동이 하나 있습니다. TODO 4~5에서 만들 `PaymentServiceFactory`(Factory Method 패턴)와, 이미 자주 접해봤을 `Optional.of()` 같은 정적 팩토리 메서드(Static Factory Method)를 같은 것으로 오해하기 쉽습니다. 전자는 GoF가 『Design Patterns』(1994)에서 정의한 대로 추상 Creator가 서브클래스에 생성 책임을 위임하는 구조적 패턴이고, 후자는 Joshua Bloch가 『Effective Java』(2001)에서 제안한 명명 관용구일 뿐 상속 구조를 전제하지 않습니다. 또한 실습 1의 TODO 3에서 다루는 Simple Factory는 GoF 23개 패턴에 포함되지 않는 관용구입니다. 두 원전을 근거로 한 상세한 구분은 이론 챕터의 [흔한 오개념 바로잡기](/post/design-patterns/factory-patterns-evolution/#흔한-오개념-바로잡기) 절에 정리되어 있으니, TODO를 채우기 전에 먼저 읽어두면 어느 TODO가 왜 그런 구조로 요구되는지 이해하기 쉽습니다.
+실습 코드를 작성하기 전에 반드시 짚어야 할 개념 혼동이 하나 있습니다. TODO 4–5에서 만들 `PaymentServiceFactory`(Factory Method 패턴)와, 이미 자주 접해봤을 `Optional.of()` 같은 정적 팩토리 메서드(Static Factory Method)를 같은 것으로 오해하기 쉽습니다. 전자는 GoF가 『Design Patterns』(1994)에서 정의한 대로 추상 Creator가 서브클래스에 생성 책임을 위임하는 구조적 패턴이고, 후자는 Joshua Bloch가 『Effective Java』(2001)에서 제안한 명명 관용구일 뿐 상속 구조를 전제하지 않습니다. 또한 실습 1의 TODO 3에서 다루는 Simple Factory는 GoF 23개 패턴에 포함되지 않는 관용구입니다. 두 원전을 근거로 한 상세한 구분은 이론 챕터의 [흔한 오개념 바로잡기](/post/design-patterns/factory-patterns-evolution/#흔한-오개념-바로잡기) 절에 정리되어 있으니, TODO를 채우기 전에 먼저 읽어두면 어느 TODO가 왜 그런 구조로 요구되는지 이해하기 쉽습니다.
 
-### 실습 1~3 비교
+### 실습 1–3 비교
 
 | 실습 | 다루는 패턴 | 핵심 학습 포인트 | 난이도 |
 |------|-------------|-------------------|--------|
@@ -63,7 +63,7 @@ tags:
 
 ### 패턴 선택 흐름
 
-위 표를 "언제 어떤 Factory를 선택하는가"라는 의사결정 흐름으로 정리하면 아래와 같습니다. 타입 개수의 변동성, 생성 알고리즘의 차이, 클래스 계층 자체의 부담이라는 세 가지 질문이 실습 1~3에서 각각 어떤 패턴으로 이어지는지 보여줍니다.
+위 표를 "언제 어떤 Factory를 선택하는가"라는 의사결정 흐름으로 정리하면 아래와 같습니다. 타입 개수의 변동성, 생성 알고리즘의 차이, 클래스 계층 자체의 부담이라는 세 가지 질문이 실습 1–3에서 각각 어떤 패턴으로 이어지는지 보여줍니다.
 
 ```mermaid
 flowchart TD
@@ -78,7 +78,7 @@ flowchart TD
     Q3 -->|"아니오, 프레임워크가 이미 있다"| DIContainer["DI Container에 생성 위임"]
 ```
 
-이 흐름에서 주목할 점은 화살표가 항상 "더 복잡한 패턴"으로만 향하지 않는다는 것입니다. 타입 개수가 적고 변동이 드물다면 Factory Method나 Abstract Factory로 미리 옮겨가는 것 자체가 불필요한 추상화 계층을 만드는 과잉 설계이며, 실습 1의 TODO 5~7(Abstract Factory)을 구현하기 전에 실제로 지역별 제품군 일관성이 필요한 상황인지 먼저 판단해야 합니다.
+이 흐름에서 주목할 점은 화살표가 항상 "더 복잡한 패턴"으로만 향하지 않는다는 것입니다. 타입 개수가 적고 변동이 드물다면 Factory Method나 Abstract Factory로 미리 옮겨가는 것 자체가 불필요한 추상화 계층을 만드는 과잉 설계이며, 실습 1의 TODO 5–7(Abstract Factory)을 구현하기 전에 실제로 지역별 제품군 일관성이 필요한 상황인지 먼저 판단해야 합니다.
 
 ## 실습 1: 결제 시스템 Factory 패턴 적용
 
@@ -327,7 +327,7 @@ public class AsiaPaymentFactory implements RegionalPaymentFactory {
 }
 ```
 
-TODO 6~7까지는 컴파일 타임에 확정된 `USPaymentFactory`, `EuropePaymentFactory`, `AsiaPaymentFactory` 세 구현체만으로 지역을 나눴습니다. 하지만 실무에서는 새 결제 수단이나 새 지역이 배포 이후에 플러그인 형태로 추가되는 경우가 많아, 코드를 다시 컴파일하지 않고도 구현체를 등록할 방법이 필요합니다. TODO 8~9는 어노테이션과 리플렉션으로 이 문제를 해결하는데, `@PaymentProcessorProduct`가 붙은 클래스를 클래스패스에서 스캔해 맵에 등록하는 방식이므로 아래 코드에는 `Map`·`HashMap`·`java.lang.annotation` 패키지에 대한 임포트가 추가로 필요합니다.
+TODO 6–7까지는 컴파일 타임에 확정된 `USPaymentFactory`, `EuropePaymentFactory`, `AsiaPaymentFactory` 세 구현체만으로 지역을 나눴습니다. 하지만 실무에서는 새 결제 수단이나 새 지역이 배포 이후에 플러그인 형태로 추가되는 경우가 많아, 코드를 다시 컴파일하지 않고도 구현체를 등록할 방법이 필요합니다. TODO 8–9는 어노테이션과 리플렉션으로 이 문제를 해결하는데, `@PaymentProcessorProduct`가 붙은 클래스를 클래스패스에서 스캔해 맵에 등록하는 방식이므로 아래 코드에는 `Map`·`HashMap`·`java.lang.annotation` 패키지에 대한 임포트가 추가로 필요합니다.
 
 ```java
 import java.lang.annotation.ElementType;
@@ -386,7 +386,7 @@ public class PaymentFactoryTest {
 }
 ```
 
-TODO 6~7까지 채우고 나면 `RegionalPaymentFactory`가 지역별로 결제 프로세서·검증기·통화 변환기·세금 계산기를 한 세트로 묶어 반환한다는 것을 알 수 있습니다. 이 일관성이 Abstract Factory의 핵심 가치이자 동시에 한계이기도 합니다. 새 결제 수단(예: `createBankTransferProcessor()`)을 제품군에 추가하려면 `RegionalPaymentFactory` 인터페이스와 US/Europe/Asia 세 구현체를 모두 고쳐야 하므로, 제품 종류가 자주 늘어나는 도메인에는 Abstract Factory가 오히려 OCP를 해칩니다. TODO 8~9의 어노테이션 기반 자동 등록은 이 문제를 리플렉션으로 우회하지만, 클래스패스 스캔 비용과 어노테이션 오탐(같은 `value()`를 가진 프로세서가 중복 등록되는 경우)을 별도로 검증해야 실무에 쓸 수 있습니다.
+TODO 6–7까지 채우고 나면 `RegionalPaymentFactory`가 지역별로 결제 프로세서·검증기·통화 변환기·세금 계산기를 한 세트로 묶어 반환한다는 것을 알 수 있습니다. 이 일관성이 Abstract Factory의 핵심 가치이자 동시에 한계이기도 합니다. 새 결제 수단(예: `createBankTransferProcessor()`)을 제품군에 추가하려면 `RegionalPaymentFactory` 인터페이스와 US/Europe/Asia 세 구현체를 모두 고쳐야 하므로, 제품 종류가 자주 늘어나는 도메인에는 Abstract Factory가 오히려 OCP를 해칩니다. TODO 8–9의 어노테이션 기반 자동 등록은 이 문제를 리플렉션으로 우회하지만, 클래스패스 스캔 비용과 어노테이션 오탐(같은 `value()`를 가진 프로세서가 중복 등록되는 경우)을 별도로 검증해야 실무에 쓸 수 있습니다.
 
 ## 실습 2: 게임 캐릭터 생성 시스템
 
@@ -581,7 +581,7 @@ public class FunctionalLoggerFactory {
 1. **마이크로서비스 환경**에서 서비스 인스턴스 Factory — 서비스 디스커버리 결과에 따라 같은 인터페이스의 다른 리전 인스턴스를 생성해야 하므로, Abstract Factory의 "제품군 일관성"이 지역별 서비스 클라이언트 묶음에 그대로 적용됩니다.
 2. **Spring Framework**와 연계된 Factory Bean 구현 — `FactoryBean<T>`을 구현하면 복잡한 초기화 로직을 컨테이너가 관리하는 Bean 생성 과정에 자연스럽게 편입시킬 수 있어, 실습 1의 수동 Factory 코드를 프레임워크 표준 확장 지점으로 옮기는 감각을 익히게 됩니다.
 3. **테스트 환경**에서 Mock 객체 Factory — 테스트마다 반복되는 Mock 생성 로직(스텁 응답 설정 포함)을 Factory로 중앙화하면, 프로덕션 코드의 Factory 패턴이 테스트 코드에서도 동일한 이점(변경 지점 최소화)을 제공한다는 것을 확인할 수 있습니다.
-4. **플러그인 아키텍처**에서 동적 Factory — TODO 8~9의 어노테이션 기반 자동 등록처럼, 플러그인 jar가 배포된 후에도 클래스패스 스캔만으로 새 구현체를 인식해야 하는 상황에서 리플렉션 기반 Factory가 정적 팩토리보다 유리합니다.
+4. **플러그인 아키텍처**에서 동적 Factory — TODO 8–9의 어노테이션 기반 자동 등록처럼, 플러그인 jar가 배포된 후에도 클래스패스 스캔만으로 새 구현체를 인식해야 하는 상황에서 리플렉션 기반 Factory가 정적 팩토리보다 유리합니다.
 
 ## 실무 적용
 

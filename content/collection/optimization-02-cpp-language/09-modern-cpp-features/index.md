@@ -85,7 +85,7 @@ tags:
 
 **완전한 초보자?** 이 장은 [08장: 템플릿/constexpr](/post/cpp-optimization/templates-constexpr/)의 컴파일 타임 개념을 전제로 합니다. C++17/20/23이라는 표준 버전 구분과 ranges·concepts가 "표현력을 위한 기능"이라는 정도만 알면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **중급~전문가**를 포괄합니다. ranges·concepts·modules의 성능 특성을 정리하는 것부터 시작해, 전문가 구간에서는 ranges 파이프라인이 인라인되는지, concepts가 런타임 비용 없이 제약만 거는지 등 "표현력 vs 런타임 비용"을 구분하는 기준을 다룹니다. **다루지 않는 것**: 모듈의 빌드 시스템 통합 세부(Tr.03 컴파일러 트랙)와 코루틴([10장](/post/cpp-optimization/coroutine-performance/))입니다.
+**이 장의 깊이**: 이 장은 **중급–전문가**를 포괄합니다. ranges·concepts·modules의 성능 특성을 정리하는 것부터 시작해, 전문가 구간에서는 ranges 파이프라인이 인라인되는지, concepts가 런타임 비용 없이 제약만 거는지 등 "표현력 vs 런타임 비용"을 구분하는 기준을 다룹니다. **다루지 않는 것**: 모듈의 빌드 시스템 통합 세부(Tr.03 컴파일러 트랙)와 코루틴([10장](/post/cpp-optimization/coroutine-performance/))입니다.
 
 ## 당신의 수준에 맞는 경로
 

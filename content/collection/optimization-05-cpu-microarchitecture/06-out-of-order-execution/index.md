@@ -190,6 +190,6 @@ OoO 엔진은 공짜가 아닙니다. ROB·물리 레지스터 파일·reservati
 
 **이전 장**: [명령 수준 병렬성(ILP) 기초](/post/cpu-optimization/instruction-level-parallelism-fundamentals/) (챕터 05)
 
-**다음 장에서는** 가상 주소를 물리 주소로 변환하는 TLB(Translation Lookaside Buffer)가 미스를 일으켰을 때의 비용과, 이를 줄이는 huge page·접근 패턴 정렬 같은 대응 기법을 다룹니다. OoO 엔진이 아무리 커도 TLB 미스로 인한 페이지 테이블 워크는 그 자체로 수십~수백 사이클의 지연을 더할 수 있어, 이 장에서 본 ROB의 한계와 함께 이해하면 지연시간 원인을 더 폭넓게 진단할 수 있습니다.
+**다음 장에서는** 가상 주소를 물리 주소로 변환하는 TLB(Translation Lookaside Buffer)가 미스를 일으켰을 때의 비용과, 이를 줄이는 huge page·접근 패턴 정렬 같은 대응 기법을 다룹니다. OoO 엔진이 아무리 커도 TLB 미스로 인한 페이지 테이블 워크는 그 자체로 수십–수백 사이클의 지연을 더할 수 있어, 이 장에서 본 ROB의 한계와 함께 이해하면 지연시간 원인을 더 폭넓게 진단할 수 있습니다.
 
 → [TLB 미스 최적화](/post/cpu-optimization/tlb-miss-optimization/) (챕터 07)

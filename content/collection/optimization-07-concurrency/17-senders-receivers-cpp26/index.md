@@ -71,7 +71,7 @@ tags:
 
 ## 표준화 현황과 구현 생태계
 
-P2300은 2024년 6월 St. Louis 회의에서 C++26 작업 초안에 채택되었고([16장](/post/concurrency-optimization/cpp-executors-fundamentals/) 참고), 2026년 3월 23~28일 영국 Croydon 회의에서 C++26의 나머지 국제 코멘트가 모두 해소되며 기술 내용 자체가 확정되었습니다. WG21 의장단의 회의 보고서는 이 시점을 다음과 같이 기록합니다.
+P2300은 2024년 6월 St. Louis 회의에서 C++26 작업 초안에 채택되었고([16장](/post/concurrency-optimization/cpp-executors-fundamentals/) 참고), 2026년 3월 23–28일 영국 Croydon 회의에서 C++26의 나머지 국제 코멘트가 모두 해소되며 기술 내용 자체가 확정되었습니다. WG21 의장단의 회의 보고서는 이 시점을 다음과 같이 기록합니다.
 
 > "We resolved the remaining international comments on the C++26 draft, and are now producing the final document to be sent out for its international approval ballot (Draft International Standard, or DIS) and final editorial work, to be published in the near future by ISO." — [Herb Sutter, "C++26 is done!" — Trip report: March 2026 ISO C++ standards meeting](https://herbsutter.com/2026/03/29/c26-is-done-trip-report-march-2026-iso-c-standards-meeting-london-croydon-uk/)
 

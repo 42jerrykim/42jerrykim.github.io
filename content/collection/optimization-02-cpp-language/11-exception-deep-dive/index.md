@@ -85,7 +85,7 @@ tags:
 
 **완전한 초보자?** 이 장은 [03장: 추상화 비용 분석](/post/cpp-optimization/abstraction-cost/)에서 짚은 "예외의 정량적 비용"을 더 깊이 다룹니다. `try`/`catch`/`throw`의 기본 의미와 `noexcept` 키워드가 "예외를 던지지 않음을 약속"한다는 정도만 알면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **심화~전문가**를 포괄합니다. zero-cost exception 모델의 실제 동작부터 시작해, 전문가 구간에서는 예외 경로 비용, `noexcept`가 이동·인라이닝에 미치는 영향, 예외 사양이 코드 생성에 미치는 영향을 마이크로벤치마크로 검증합니다. **다루지 않는 것**: 에러 표현 대안인 `std::expected`([13장](/post/cpp-optimization/variant-optional-expected/))의 세부와 Windows SEH 내부 구현입니다.
+**이 장의 깊이**: 이 장은 **심화–전문가**를 포괄합니다. zero-cost exception 모델의 실제 동작부터 시작해, 전문가 구간에서는 예외 경로 비용, `noexcept`가 이동·인라이닝에 미치는 영향, 예외 사양이 코드 생성에 미치는 영향을 마이크로벤치마크로 검증합니다. **다루지 않는 것**: 에러 표현 대안인 `std::expected`([13장](/post/cpp-optimization/variant-optional-expected/))의 세부와 Windows SEH 내부 구현입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -173,7 +173,7 @@ BENCHMARK(BM_ThrowCatchPath);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면(x86-64, GCC 13, `-O2` 기준 예시 수치), `BM_NormalPath`는 회당 약 0.3ns인 반면 `BM_ThrowCatchPath`는 회당 약 1~2µs로, **약 수천 배** 차이가 납니다. 절대값은 예외 타입·스택 깊이·플랫폼·언와인딩 구현에 따라 크게 달라지지만, "정상 경로 대비 throw 경로가 수천 배 비싸다"는 방향성 자체는 zero-cost 모델의 전형적 특징이며, 이 배율 때문에 예외를 제어 흐름(반복문 대체 등)으로 쓰면 안 되는 이유이기도 합니다.
+`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면(x86-64, GCC 13, `-O2` 기준 예시 수치), `BM_NormalPath`는 회당 약 0.3ns인 반면 `BM_ThrowCatchPath`는 회당 약 1–2µs로, **약 수천 배** 차이가 납니다. 절대값은 예외 타입·스택 깊이·플랫폼·언와인딩 구현에 따라 크게 달라지지만, "정상 경로 대비 throw 경로가 수천 배 비싸다"는 방향성 자체는 zero-cost 모델의 전형적 특징이며, 이 배율 때문에 예외를 제어 흐름(반복문 대체 등)으로 쓰면 안 되는 이유이기도 합니다.
 
 ## noexcept의 의미와 최적화
 

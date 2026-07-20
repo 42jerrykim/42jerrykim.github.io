@@ -1,6 +1,6 @@
 ---
 title: "[Redux] 15. 실습: Counter와 Todo 앱 만들기"
-description: "06~14편에서 배운 Action·Reducer·Store·useSelector·useDispatch·createSelector를 하나로 엮어 Counter와 Todo 앱을 처음부터 끝까지 만듭니다. Phase 3을 마치는 종합 실습입니다."
+description: "06–14편에서 배운 Action·Reducer·Store·useSelector·useDispatch·createSelector를 하나로 엮어 Counter와 Todo 앱을 처음부터 끝까지 만듭니다. Phase 3을 마치는 종합 실습입니다."
 date: 2026-07-17
 lastmod: 2026-07-17
 collection_order: 15
@@ -37,11 +37,11 @@ tags:
 
 # 15. 실습: Counter와 Todo 앱 만들기
 
-Phase 3의 마지막 편입니다. 06~14편에서 각각 배운 개념(Action·Reducer·Store, Provider, useSelector/useDispatch, 리렌더 최적화, Selector 패턴)을 한 번에 조립해 Counter 앱과 Todo 앱을 완성합니다. 이 두 앱은 작지만, 실무 Redux 프로젝트의 기본 골격을 그대로 담고 있습니다.
+Phase 3의 마지막 편입니다. 06–14편에서 각각 배운 개념(Action·Reducer·Store, Provider, useSelector/useDispatch, 리렌더 최적화, Selector 패턴)을 한 번에 조립해 Counter 앱과 Todo 앱을 완성합니다. 이 두 앱은 작지만, 실무 Redux 프로젝트의 기본 골격을 그대로 담고 있습니다.
 
 ## 학습 목표
 
-- 1~14편의 개념을 조합해 순수 Redux(Toolkit 없이)로 동작하는 앱을 완성할 수 있다.
+- 1–14편의 개념을 조합해 순수 Redux(Toolkit 없이)로 동작하는 앱을 완성할 수 있다.
 - 기능별로 리듀서와 selector를 나누는 프로젝트 폴더 구조를 적용할 수 있다.
 - 완성된 앱에서 각 코드 조각이 어느 편의 개념과 대응하는지 스스로 설명할 수 있다.
 
@@ -277,7 +277,7 @@ export default function App() {
 ## 요약
 
 - 순수 Redux만으로도 기능 단위 폴더 구조, 불변 리듀서, 최적화된 UI 연동을 갖춘 완결된 앱을 만들 수 있다.
-- 1~14편의 개념은 서로 독립된 지식이 아니라, 하나의 앱 안에서 유기적으로 맞물려 동작한다.
+- 1–14편의 개념은 서로 독립된 지식이 아니라, 하나의 앱 안에서 유기적으로 맞물려 동작한다.
 - 다음 Phase부터는 이 순수 Redux 코드를 Redux Toolkit으로 다시 작성해, 얼마나 짧아지는지 직접 비교하게 된다.
 
 ## 참고 문헌 및 출처(추천)

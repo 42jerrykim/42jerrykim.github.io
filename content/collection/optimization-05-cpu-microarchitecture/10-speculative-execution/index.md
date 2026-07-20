@@ -6,7 +6,7 @@ draft: false
 image: wordcloud.png
 title: "[CPU 05] 추측 실행과 보안 영향"
 slug: speculative-execution-security-impact
-description: "추측 실행이 Spectre·Meltdown 계열 사이드채널로 이어지는 메커니즘을 설명하고, retpoline·IBRS/eIBRS·KPTI 완화 기법의 실측 성능 비용과 VMScape·Branch Privilege Injection 등 2024~2025년 신규 변종의 교훈을 정리합니다."
+description: "추측 실행이 Spectre·Meltdown 계열 사이드채널로 이어지는 메커니즘을 설명하고, retpoline·IBRS/eIBRS·KPTI 완화 기법의 실측 성능 비용과 VMScape·Branch Privilege Injection 등 2024–2025년 신규 변종의 교훈을 정리합니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
@@ -51,7 +51,7 @@ tags:
 
 이 장은 [02장: 분기 예측 메커니즘과 비용](/post/cpu-optimization/branch-prediction-mechanisms-cost/)에서 다룬 BTB(Branch Target Buffer)·예측 실패 시 파이프라인 플러시 개념과, [06장: Out-of-Order 실행과 성능](/post/cpu-optimization/out-of-order-execution-performance/)에서 다룬 "실행은 추측적, 폐기(retire)는 순서대로"라는 원칙을 전제로 합니다. 두 장의 핵심만 요약하면, CPU는 아직 확정되지 않은 분기·주소를 추측해 명령을 앞당겨 실행하고, 추측이 틀리면 그 결과를 조용히 버립니다.
 
-**이 장의 깊이**: 이 장은 **심화**입니다. 추측 실행이 왜 사이드채널이 되는지의 원리, Spectre v1/v2·Meltdown의 메커니즘 차이, retpoline·IBRS/eIBRS·STIBP·IBPB·KPTI 같은 완화 기법과 그 성능 비용, 그리고 2024~2025년에 새로 드러난 변종(GhostRace, Indirector, VMScape, Branch Privilege Injection)까지 다룹니다. **다루지 않는 것**: BTB 내부 구조와 일반 분기 예측 비용은 [02장](/post/cpu-optimization/branch-prediction-mechanisms-cost/), ROB·reservation station의 내부 동작은 [06장](/post/cpu-optimization/out-of-order-execution-performance/), 캐시 계층의 지연시간 자체는 [03장](/post/cpu-optimization/cache-hierarchy-l1-l2-l3/), TopDown에서 Bad Speculation을 Frontend/Backend Bound와 구분하는 방법은 [17장](/post/cpu-optimization/frontend-backend-bound-topdown-basics/), Apple Silicon M시리즈의 전반적인 마이크로아키텍처는 [13장](/post/cpu-optimization/apple-silicon-m-series-architecture/)에서 각각 다루므로 이 장에서는 반복하지 않습니다.
+**이 장의 깊이**: 이 장은 **심화**입니다. 추측 실행이 왜 사이드채널이 되는지의 원리, Spectre v1/v2·Meltdown의 메커니즘 차이, retpoline·IBRS/eIBRS·STIBP·IBPB·KPTI 같은 완화 기법과 그 성능 비용, 그리고 2024–2025년에 새로 드러난 변종(GhostRace, Indirector, VMScape, Branch Privilege Injection)까지 다룹니다. **다루지 않는 것**: BTB 내부 구조와 일반 분기 예측 비용은 [02장](/post/cpu-optimization/branch-prediction-mechanisms-cost/), ROB·reservation station의 내부 동작은 [06장](/post/cpu-optimization/out-of-order-execution-performance/), 캐시 계층의 지연시간 자체는 [03장](/post/cpu-optimization/cache-hierarchy-l1-l2-l3/), TopDown에서 Bad Speculation을 Frontend/Backend Bound와 구분하는 방법은 [17장](/post/cpu-optimization/frontend-backend-bound-topdown-basics/), Apple Silicon M시리즈의 전반적인 마이크로아키텍처는 [13장](/post/cpu-optimization/apple-silicon-m-series-architecture/)에서 각각 다루므로 이 장에서는 반복하지 않습니다.
 
 ## 당신의 수준에 맞는 경로
 
