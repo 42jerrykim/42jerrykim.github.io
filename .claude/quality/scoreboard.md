@@ -14,7 +14,7 @@
 | content/collection/cleanarchitecture/00-clean-architecture-overview-introduction/index.md | 86.2 | 2026-07-18 | 3 | 에스컬레이션 | 항목3 구조(리스트-only 절 다수), 항목4 안티패딩("핵심 개념" 절과 코드 도입부 문장 중복), 항목5 코드(Java 예제 import/보조타입 미정의), 항목7 Edge-Cases 태그가 본문과 불일치 |
 | content/collection/cleanarchitecture/01-architecture-history-evolution-introduction/index.md | 91 | 2026-07-18 | 2 | 통과 | 없음(경미: 흔한 오해 절 부재, 다음장 하이퍼링크 없음) |
 | content/collection/cleanarchitecture/02-layered-architecture-limitations-history/index.md | 84.1 | 2026-07-18 | 3 | 에스컬레이션 | 항목3 구조(일부 절 리스트-only), 항목2 MVC 상세절이 00 배정범위를 벗어남 |
-| content/collection/cleanarchitecture/03-hexagonal-architecture-ports-adapters/index.md | 89.2 | 2026-07-18 | 3 | 에스컬레이션 | 항목3 구조(장점/한계 절 문단비율 20%), 항목5 코드(Order/Money 등 보조타입 미정의). 90점에 0.8점 차 |
+| content/collection/cleanarchitecture/03-hexagonal-architecture-ports-adapters/index.md | 96.1 | 2026-07-20 | 4 | 통과 | 없음(경미: 장점/한계 절 일부 문단 확장 여지) |
 | content/collection/cleanarchitecture/04-onion-architecture-domain-centric-design/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 없음(경미: 패키지구조 절 리드문단 부재, 코드 보조타입 미정의) |
 | content/collection/cleanarchitecture/05-clean-architecture-birth-uncle-bob/index.md | 85 | 2026-07-18 | 3 | 에스컬레이션 | 항목5 코드(코드예제 전무), 항목2 흔한오해 절 부재 |
 | content/collection/cleanarchitecture/06-introduction-software-design-architecture/index.md | 78.7 | 2026-07-18 | 3 | 에스컬레이션 | 항목3 구조(문단비율 34.8%), 항목1 인용 출처 미검증, 00장 커리큘럼 표 문구 불일치 |
