@@ -12,30 +12,30 @@ tags:
   - OOP(객체지향)
   - Functional-Programming(함수형프로그래밍)
   - Dijkstra
-  - Code-Quality(코드품질)
   - Polymorphism(다형성)
-  - Software-Architecture(소프트웨어아키텍처)
   - Heap(힙)
-  - Abstraction(추상화)
   - Interface(인터페이스)
-  - Design-Pattern(디자인패턴)
   - History(역사)
-  - Technology(기술)
-  - Case-Study
-  - Deep-Dive
-  - Best-Practices
   - Java
-  - C++
-  - Comparison(비교)
   - Math(수학)
-  - Recursion(재귀)
   - Guide(가이드)
-  - System-Design
-  - Domain-Driven-Design
-  - Modularity
+  - Lambda-Calculus(람다계산법)
+  - Immutability(불변성)
+  - Stack-Frame(스택프레임)
+  - Control-Flow(제어흐름)
+  - Function-Pointer(함수포인터)
+  - Alonzo-Church
+  - John-McCarthy
+  - LISP
+  - Simula-67
+  - Assignment-Statement(할당문)
+  - Prolog
+  - Actor-Model(액터모델)
+  - Logic-Programming(논리형프로그래밍)
+  - Ole-Johan-Dahl
 ---
 
-이번 장에서 살펴볼 3가지 패러다임은 **부정적인 의도**를 가지는 일종의 추가적인 규칙을 부과한다. 즉, 패러다임은 무엇을 해야 할지를 말하기보다는 **무엇을 해서는 안 되는지**를 말해준다.
+[09장: 프로그래밍 패러다임 서론](/post/clean-architecture/programming-paradigms-introduction/)에서 패러다임이라는 개념 자체를 소개했다. 이번 장에서는 그 개념을 세 가지 구체적인 패러다임으로 좁혀 살펴본다. 이번 장에서 살펴볼 3가지 패러다임은 **부정적인 의도**를 가지는 일종의 추가적인 규칙을 부과한다. 즉, 패러다임은 무엇을 해야 할지를 말하기보다는 **무엇을 해서는 안 되는지**를 말해준다.
 
 ## 패러다임의 본질: 빼앗는 것
 
@@ -311,11 +311,13 @@ flowchart LR
     FP --> DATA
 ```
 
-| 패러다임 | 빼앗는 것 | 아키텍처 활용 |
-|----------|----------|--------------|
-| 구조적 프로그래밍 | goto 문 | 모듈의 기반 알고리즘으로 사용 |
-| 객체 지향 프로그래밍 | 함수 포인터 | 아키텍처 경계를 넘나들기 위한 다형성 메커니즘 |
-| 함수형 프로그래밍 | 할당문 | 데이터의 위치와 접근 방법에 대한 규칙 부과 |
+각 패러다임이 무엇을 제한하는지는 앞서 세 개의 "패러다임 요약" 인용에서 이미 확인했으므로, 여기서는 그 제한이 아키텍처에서 실제로 어떻게 쓰이는지만 짚는다.
+
+| 패러다임 | 아키텍처 관심사 | 아키텍처 활용 |
+|----------|----------------|--------------|
+| 구조적 프로그래밍 | 함수/알고리즘 | 모듈의 기반 알고리즘으로 사용 |
+| 객체 지향 프로그래밍 | 컴포넌트 분리 | 아키텍처 경계를 넘나들기 위한 다형성 메커니즘 |
+| 함수형 프로그래밍 | 데이터 관리 | 데이터의 위치와 접근 방법에 대한 규칙 부과 |
 
 ## 결론
 
