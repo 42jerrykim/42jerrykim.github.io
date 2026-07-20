@@ -1,11 +1,12 @@
-"""Replace prose range tildes (e.g. 1만~10만, 0.2~0.4) with en dash (–).
+"""Replace prose range tildes (e.g. 1만~10만, 0.2~0.4, 초급~중급) with en dash (–).
 
 Skips fenced code blocks (``` / ~~~) and inline code spans (`...`), since
 tildes there (shell paths, code) must not be touched. Only touches a tilde
-that has a digit directly adjacent on at least one side (optionally with a
-Korean syllable on the other side), which is the pattern that triggers the
-strikethrough bug in lenient markdown readers (see rules-that-must-be-followed
-skill, section 9).
+that has a digit or a Korean syllable directly adjacent on BOTH sides
+(digit-digit, digit-Korean, Korean-digit, or Korean-Korean) -- this is the
+GFM tilde-strikethrough delimiter pattern that goldmark (this site's Hugo
+markdown renderer) actually parses as `<del>`, confirmed by inspecting the
+live rendered HTML (see rules-that-must-be-followed skill, section 9).
 
 Usage:
   python script/fix_range_tilde.py --dry-run <glob...>
@@ -19,6 +20,7 @@ RANGE_TILDE = re.compile(
     r'(?<=[0-9])~(?=[0-9])'
     r'|(?<=[0-9])~(?=[가-힣])'
     r'|(?<=[가-힣])~(?=[0-9])'
+    r'|(?<=[가-힣])~(?=[가-힣])'
 )
 
 FENCE_RE = re.compile(r'^\s*(```|~~~)')

@@ -44,7 +44,7 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-이 장은 [01장: 하드웨어 기초](/post/android-hardware-development/hardware-fundamentals/)에서 다룬 SoC, 메모리, 센서 등 물리 하드웨어 지식을 전제로, 그 위에서 동작하는 안드로이드 소프트웨어 스택으로 시선을 옮긴다. 난이도는 전반적으로 초급~중급이지만 ART의 AOT/JIT 컴파일 전략과 Binder의 성능 트레이드오프를 다루는 후반부는 중급~고급 수준으로 올라간다. 이 장은 커널 드라이버를 직접 작성하는 방법은 다루지 않는다 — 그 내용은 다음 장인 [03장: 커널 개발](/post/android-hardware-development/kernel-development/)의 몫이다. 마찬가지로 HAL 모듈을 실제로 설계·구현하는 세부 절차(HIDL/AIDL 인터페이스 작성, 벤더 파티션 배치, VINTF 매니페스트 구성)도 이후 HAL 전용 챕터에서 다루므로, 이 장에서는 HAL이 전체 아키텍처에서 차지하는 위치와 역할만 짚는다.
+이 장은 [01장: 하드웨어 기초](/post/android-hardware-development/hardware-fundamentals/)에서 다룬 SoC, 메모리, 센서 등 물리 하드웨어 지식을 전제로, 그 위에서 동작하는 안드로이드 소프트웨어 스택으로 시선을 옮긴다. 난이도는 전반적으로 초급–중급이지만 ART의 AOT/JIT 컴파일 전략과 Binder의 성능 트레이드오프를 다루는 후반부는 중급–고급 수준으로 올라간다. 이 장은 커널 드라이버를 직접 작성하는 방법은 다루지 않는다 — 그 내용은 다음 장인 [03장: 커널 개발](/post/android-hardware-development/kernel-development/)의 몫이다. 마찬가지로 HAL 모듈을 실제로 설계·구현하는 세부 절차(HIDL/AIDL 인터페이스 작성, 벤더 파티션 배치, VINTF 매니페스트 구성)도 이후 HAL 전용 챕터에서 다루므로, 이 장에서는 HAL이 전체 아키텍처에서 차지하는 위치와 역할만 짚는다.
 
 ## 당신의 수준에 맞는 경로
 

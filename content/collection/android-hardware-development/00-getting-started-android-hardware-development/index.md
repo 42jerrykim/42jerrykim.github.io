@@ -5,7 +5,7 @@ slug: getting-started-android-hardware-development
 title: "[Android Hardware] 00. 과정 개요와 커리큘럼"
 date: 2026-07-18
 last_modified_at: 2026-07-18
-description: "안드로이드 하드웨어 개발자가 필요한 이유와 앱 개발자와의 차이, AOSP 5계층 구조와 Treble 아키텍처, Phase 1~4 구성 근거, 00~18장 전체 목차, 선수 지식과 완주 후 갖추는 구체적 실무 역량을 정리한 과정 개요 챕터."
+description: "안드로이드 하드웨어 개발자가 필요한 이유와 앱 개발자와의 차이, AOSP 5계층 구조와 Treble 아키텍처, Phase 1–4 구성 근거, 00–18장 전체 목차, 선수 지식과 완주 후 갖추는 구체적 실무 역량을 정리한 과정 개요 챕터."
 categories: Android Hardware Development
 tags:
 - Android
@@ -95,7 +95,7 @@ flowchart TB
 |---|---|---|
 | 주요 언어 | Kotlin, Java | C, C++, Kotlin/Java(프레임워크 계층), 커널 모듈용 C |
 | 작업 대상 | Activity, Compose UI, 앱 비즈니스 로직 | HAL 구현, 커널 드라이버, 부트로더, 시스템 서비스 |
-| 빌드 단위 | Gradle 모듈, 수 분 내 빌드 | AOSP 전체 소스 트리, 보드 지원 패키지(BSP) 포함 수십 분~수 시간 빌드 |
+| 빌드 단위 | Gradle 모듈, 수 분 내 빌드 | AOSP 전체 소스 트리, 보드 지원 패키지(BSP) 포함 수십 분–수 시간 빌드 |
 | 디버깅 도구 | Logcat, Android Studio 디버거, Layout Inspector | dmesg, kernel panic 로그, JTAG/시리얼 콘솔, perfetto/systrace |
 | 실패 재현성 | 대체로 결정적, 기기 간 편차 작음 | 온도·전압·타이밍에 따라 비결정적일 수 있음, 보드 리비전 간 편차 큼 |
 | 검증 기준 | 기능 요구사항, UX | 기능 요구사항 + 전력 예산, 실시간성, CDD/CTS/VTS 준수 |
@@ -230,7 +230,7 @@ interface ISensors {
 - "NDK를 쓴다", "루팅한다", "커널을 고쳐봤다"가 왜 하드웨어 개발자의 충분조건이 아닌지 각각 근거를 들어 설명할 수 있다.
 - 자신의 배경(앱 개발/임베디드/전환)에 따라 이 시리즈의 어느 Phase부터 시작해야 할지 판단할 수 있다.
 - 이 커리큘럼이 공식 기업 제휴나 인증 과정이 아니라는 점과, 그로 인한 한계(비공개 벤더 SDK에 접근할 수 없다는 점)를 설명할 수 있다.
-- 00~18장 전체 목차에서 특정 주제(예: SELinux 정책, 온디바이스 AI 배포)가 몇 장에서 다뤄지는지 찾을 수 있다.
+- 00–18장 전체 목차에서 특정 주제(예: SELinux 정책, 온디바이스 AI 배포)가 몇 장에서 다뤄지는지 찾을 수 있다.
 
 ## 참고 및 출처
 

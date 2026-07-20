@@ -48,7 +48,7 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-이 장은 시리즈 순서상 [11장: 인증 및 컴플라이언스](/post/android-hardware-development/certification-compliance/) 뒤에 오지만, 기술적으로는 [04장: 하드웨어 추상화 계층(HAL) 개발](/post/android-hardware-development/hal-development/)과 [05장: 시스템 서비스 개발](/post/android-hardware-development/system-services/)에서 다룬 AIDL·Binder·SystemServer 구조를 직접 이어받는다. 그 두 장이 "벤더가 HAL을 어떻게 노출하고, 시스템 서비스가 이를 어떻게 중개하는가"를 다뤘다면, 이 장은 그 파이프라인의 반대쪽 끝, 즉 "그렇게 노출된 API를 실제 애플리케이션 코드가 어떤 경로로 소비하는가"를 다룬다. 난이도는 중급~전문가 범위다. Kotlin과 기본 안드로이드 컴포넌트(Activity, Service, Manifest, Gradle 빌드)를 다뤄본 경험이 있다면 중급 구간을 따라갈 수 있고, priv-app 권한 화이트리스트를 구성하거나 프레임워크 패치 없이 시스템 서비스에 직접 접근하는 절은 벤더 이미지 빌드 경험을 전제로 한다.
+이 장은 시리즈 순서상 [11장: 인증 및 컴플라이언스](/post/android-hardware-development/certification-compliance/) 뒤에 오지만, 기술적으로는 [04장: 하드웨어 추상화 계층(HAL) 개발](/post/android-hardware-development/hal-development/)과 [05장: 시스템 서비스 개발](/post/android-hardware-development/system-services/)에서 다룬 AIDL·Binder·SystemServer 구조를 직접 이어받는다. 그 두 장이 "벤더가 HAL을 어떻게 노출하고, 시스템 서비스가 이를 어떻게 중개하는가"를 다뤘다면, 이 장은 그 파이프라인의 반대쪽 끝, 즉 "그렇게 노출된 API를 실제 애플리케이션 코드가 어떤 경로로 소비하는가"를 다룬다. 난이도는 중급–전문가 범위다. Kotlin과 기본 안드로이드 컴포넌트(Activity, Service, Manifest, Gradle 빌드)를 다뤄본 경험이 있다면 중급 구간을 따라갈 수 있고, priv-app 권한 화이트리스트를 구성하거나 프레임워크 패치 없이 시스템 서비스에 직접 접근하는 절은 벤더 이미지 빌드 경험을 전제로 한다.
 
 이 장이 다루지 않는 것도 명확히 해 둔다. Jetpack/Compose 각 라이브러리의 API 레퍼런스 전체와 Activity/Fragment 생명주기 같은 일반 안드로이드 앱 개발 기초는 developer.android.com 공식 문서가 이미 충분히 다루므로 이 장에서 반복하지 않는다. C/C++ 라이브러리를 JNI로 앱에 연동하는 방법은 이 컬렉션의 네이티브 개발 챕터에서 별도로 다루고, 안드로이드 앱 빌드가 Soong/Make 빌드 그래프에 실제로 어떻게 편입되는지는 다음 장에서 이어진다. 이 장의 목표는 Jetpack 구성 요소를 나열하는 것이 아니라, "왜 벤더 설정/진단 앱은 플레이스토어 앱과 다른 권한·배포 규칙을 따르는가"와 "앱이 커스텀 HAL·시스템 서비스에 닿는 경로가 왜 하나가 아니라 여러 개이며 각각 무엇을 대가로 치르는가"를 이해하는 것이다.
 
