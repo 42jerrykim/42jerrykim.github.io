@@ -35,7 +35,7 @@
 | content/collection/cleanarchitecture/21-components-deployment-units-history/index.md | 90.7 | 2026-07-19 | 2 | 통과 | 없음 |
 | content/collection/cleanarchitecture/22-component-cohesion-rep-ccp-crp/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 없음(경미: 문단비율 34.9%, 40% 기준 근소 미달이나 통과) |
 | content/collection/cleanarchitecture/23-component-coupling-adp-sdp-sap/index.md | 97 | 2026-07-19 | 3 | 통과 | 없음 |
-| content/collection/cleanarchitecture/24-architecture-introduction-system-design/index.md | 85.9 | 2026-07-19 | 3 | 에스컬레이션 | 항목2 학습목표 문항이 본문 흔한오해 절과 불일치, 항목7 태그 11개 본문 근거 약함. 90점에 4.1점 차 |
+| content/collection/cleanarchitecture/24-architecture-introduction-system-design/index.md | 97.0 | 2026-07-20 | 4 | 통과 | 없음(경미: Technology/Framework-Independence 태그 근거 보강 여지) |
 | content/collection/cleanarchitecture/25-what-is-architecture-system-lifecycle/index.md | 93.1 | 2026-07-20 | 5 | 통과 | 없음(경미: 표-헤딩 전환 2곳, MySqlOrderRepository 스텁 로직 보강 여지) |
 | content/collection/cleanarchitecture/26-independence-usecase-operation-development/index.md | 72.7 | 2026-07-19 | 3 | 에스컬레이션 | 항목7 무관 태그 6개(반복 재현), 항목3 계층/디커플링 소절 리스트·코드 의존 |
 | content/collection/cleanarchitecture/27-boundaries-drawing-lines-plugin-architecture/index.md | 83.2 | 2026-07-19 | 3 | 에스컬레이션 | 항목5 WikiPagePersistence 구현체 컴파일 불가(throws 불일치, 미구현 메서드), 항목7 무관 태그 4개. 90점에 6.8점 차 |
