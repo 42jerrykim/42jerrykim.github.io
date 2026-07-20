@@ -52,7 +52,7 @@
 | content/collection/cleanarchitecture/38-test-boundary-testing-as-system-part/index.md | 92 | 2026-07-19 | 1 | 통과 | 없음(경미: 일부 절 리드 문단 보강 여지) |
 | content/collection/cleanarchitecture/39-clean-embedded-architecture-hardware-separation/index.md | 98.2 | 2026-07-19 | 3 | 통과 | 없음(경미: Mermaid 노드 ID 표기 관례 미준수) |
 | content/collection/cleanarchitecture/40-details-introduction-interchangeable-parts/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 없음(경미: 일부 절 문단 비율 보강 여지) |
-| content/collection/cleanarchitecture/41-database-is-detail-persistence/index.md | 89.2 | 2026-07-19 | 3 | 에스컬레이션 | 항목3 구조·문단중심(코드 대비 문단 비율 낮음, 3개 코드블록 연속 배치) |
+| content/collection/cleanarchitecture/41-database-is-detail-persistence/index.md | 90.4 | 2026-07-20 | 4 | 통과 | 없음(경미: 항목3 문단비율 21.5%로 40% 기준 미달이나 통과, DB교체 시나리오 절 잔여 연속 블록 1곳) |
 | content/collection/cleanarchitecture/42-web-is-detail-gui-history/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 없음(경미: 일부 절 문단 비율 보강 여지) |
 | content/collection/cleanarchitecture/43-framework-is-detail-coupling-risk/index.md | 96.1 | 2026-07-19 | 2 | 통과 | 없음(경미: 일부 절 문단 비율 보강 여지) |
 | content/collection/cleanarchitecture/44-case-study-video-sales-system/index.md | 93.1 | 2026-07-19 | 3 | 통과 | 없음(경미: 태그 1개 불일치, 문단 비율 보강 여지) |
