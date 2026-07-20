@@ -82,7 +82,7 @@ image: "wordcloud.png"
 | I Love Boosters | 부츠 라일리 | 밝은 색감의 반자본주의 코미디 모험극 | Cortlyn Kelly |
 | Is God Is | 알레샤 해리스 / 카라 영, 말로리 존슨, 스털링 K. 브라운 | 본인 희곡을 각색한 복수극. 신화적 웅장함과 자매애를 결합 | Zachary Lee |
 | Magellan | 라브 디아즈 / 가엘 가르시아 베르날 | 필리핀 거장 라브 디아즈가 만든 이례적인 상업적 전기 영화 | Scout Tafoya |
-| Nirvanna the Band the Show the Movie | 맷 존슨, 제이 매캐럴 | 2007~2009년 웹시리즈 푸티지를 현재와 엮은 게릴라 코미디 | Brian Tallerico |
+| Nirvanna the Band the Show the Movie | 맷 존슨, 제이 매캐럴 | 2007–2009년 웹시리즈 푸티지를 현재와 엮은 게릴라 코미디 | Brian Tallerico |
 | Pillion | 해리 라이턴 / 알렉산더 스카스가드, 해리 멜링 | BDSM 관계를 통해 사랑의 의미를 탐구 | Katie Rife |
 | Project Hail Mary | 라이언 고슬링 | "영화에 바라는 모든 것"을 갖춘 SF. 순수한 기쁨(genuine joy)을 극찬 | Nell Minow |
 | Send Help | 샘 레이미 / 레이철 맥아담스, 딜런 오브라이언 | 레이미의 2009년 이후 첫 비-IP 오리지널. 바다 위 생존 스릴러 | Brian Tallerico |

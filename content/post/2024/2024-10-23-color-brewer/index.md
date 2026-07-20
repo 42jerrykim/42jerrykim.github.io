@@ -307,7 +307,7 @@ graph TD
 
 ### ColorBrewer 사용법 예제
 
-[ColorBrewer 2.0](https://colorbrewer2.org)에 접속한 뒤, 데이터 클래스 수(3~12), 데이터 성격(sequential / diverging / qualitative), colorblind safe·print friendly·photocopy safe 옵션을 선택하면 팔레트와 HEX·RGB·CSS·JavaScript 등 내보내기 형식을 얻을 수 있다. Python에서는 `matplotlib`의 `cmap`(예: `YlGn`, `RdBu`) 또는 `brewer2mpl` 라이브러리로 동일 팔레트를 쓸 수 있다.
+[ColorBrewer 2.0](https://colorbrewer2.org)에 접속한 뒤, 데이터 클래스 수(3–12), 데이터 성격(sequential / diverging / qualitative), colorblind safe·print friendly·photocopy safe 옵션을 선택하면 팔레트와 HEX·RGB·CSS·JavaScript 등 내보내기 형식을 얻을 수 있다. Python에서는 `matplotlib`의 `cmap`(예: `YlGn`, `RdBu`) 또는 `brewer2mpl` 라이브러리로 동일 팔레트를 쓸 수 있다.
 
 ```python
 import matplotlib.pyplot as plt

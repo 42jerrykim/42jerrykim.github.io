@@ -140,7 +140,7 @@ Stop-Process -Name explorer -Force; Start-Sleep -Milliseconds 800; Start-Process
 powershell -NoProfile -WindowStyle Hidden -Command "Stop-Process -Name explorer -Force; Start-Sleep -Milliseconds 800; Start-Process explorer.exe"
 ```
 
-위 방법은 문제 1~3 모두에 효과적입니다.
+위 방법은 문제 1–3 모두에 효과적입니다.
 
 ---
 
