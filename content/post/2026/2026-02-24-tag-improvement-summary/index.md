@@ -75,9 +75,9 @@ image: wordcloud.png
 
 ## 배경 및 목표
 
-기존 워크스페이스 규칙에서는 tags를 10–20개로 작성하도록 권장했으나, Algorithm·Vocabulary·Movies 등 일부 컬렉션은 50개 이상을 요구했다. 이를 통일하여 **모든 게시물이 최소 50개 이상의 태그**를 갖도록 하는 것이 목표였다.
+기존 워크스페이스 규칙에서는 tags를 10~20개로 작성하도록 권장했으나, Algorithm·Vocabulary·Movies 등 일부 컬렉션은 50개 이상을 요구했다. 이를 통일하여 **모든 게시물이 최소 50개 이상의 태그**를 갖도록 하는 것이 목표였다.
 
-path-tag-map과 keyword-tag-map만으로는 많은 게시물이 50개에 미달했다. python-cheatsheet·designpattern·일반 post 등에서는 25–45개 수준에 머무르는 경우가 많았고, 컬렉션별로 권장 태그 분포가 달라 수동 보강만으로는 일관성을 유지하기 어려웠다. 따라서 **추론 4단계 이후 부족분만 자동으로 채우는 fallback 메커니즘**을 도입하기로 했다.
+path-tag-map과 keyword-tag-map만으로는 많은 게시물이 50개에 미달했다. python-cheatsheet·designpattern·일반 post 등에서는 25~45개 수준에 머무르는 경우가 많았고, 컬렉션별로 권장 태그 분포가 달라 수동 보강만으로는 일관성을 유지하기 어려웠다. 따라서 **추론 4단계 이후 부족분만 자동으로 채우는 fallback 메커니즘**을 도입하기로 했다.
 
 ## 구현 전략: Fallback 태그 풀
 
@@ -114,7 +114,7 @@ flowchart TD
 
 ### fallback-tag-pool.tsv 신규 생성
 
-경로 패턴별로 50개 미달 시 추가할 태그 풀을 정의한 TSV 파일을 새로 만들었다. 17개 풀(Algorithm, Movies, Vocabulary, python-cheatsheet, design-patterns, designpattern, software-architecture, bashshell, computerterms, testing, unittesting, TV-Show, redux, cleanarchitecture, cmd, post, default)을 두었으며, 각 풀은 30–50개 이상의 태그로 구성되어 부족분을 채울 수 있도록 했다.
+경로 패턴별로 50개 미달 시 추가할 태그 풀을 정의한 TSV 파일을 새로 만들었다. 17개 풀(Algorithm, Movies, Vocabulary, python-cheatsheet, design-patterns, designpattern, software-architecture, bashshell, computerterms, testing, unittesting, TV-Show, redux, cleanarchitecture, cmd, post, default)을 두었으며, 각 풀은 30~50개 이상의 태그로 구성되어 부족분을 채울 수 있도록 했다.
 
 경로에 매칭되는 풀이 없으면 `post\` 풀을, 그래도 부족하면 `default` 풀을 사용한다. 따라서 신규 컬렉션을 추가할 때는 해당 경로 패턴과 풀을 fallback-tag-pool.tsv에 등록해 두면 자동으로 적용된다.
 

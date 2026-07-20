@@ -230,7 +230,7 @@ UPDATE STATISTICS 테이블명 인덱스명;
 **조각화 모니터링**
 
 - SQL Server: `sys.dm_db_index_physical_stats` 등으로 `avg_fragmentation_in_percent`를 확인한다.
-- 보통 조각화가 **30% 이상**이면 재구성(REBUILD), **5–30%** 구간이면 재조직(REORGANIZE)을 고려한다.
+- 보통 조각화가 **30% 이상**이면 재구성(REBUILD), **5~30%** 구간이면 재조직(REORGANIZE)을 고려한다.
 
 ```sql
 SELECT

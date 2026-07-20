@@ -364,7 +364,7 @@ flowchart TB
 
 ## 참고 문헌
 
-1. [Comprehensive Rust — Google GitHub](https://google.github.io/comprehensive-rust/) — 공식 강의 사이트(Welcome·Day 1–4·Final Words).
+1. [Comprehensive Rust — Google GitHub](https://google.github.io/comprehensive-rust/) — 공식 강의 사이트(Welcome·Day 1~4·Final Words).
 2. [google/comprehensive-rust — GitHub](https://github.com/google/comprehensive-rust) — 소스·기여·이슈·번역 정보.
 3. [The Rust Programming Language — rust-lang.org](https://www.rust-lang.org/learn) — 공식 학습 경로·책·문서.
 4. [Rust by Example](https://doc.rust-lang.org/rust-by-example/) — 예제 중심 공식 문서.

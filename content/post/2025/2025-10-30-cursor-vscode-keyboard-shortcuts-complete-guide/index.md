@@ -101,7 +101,7 @@ macOS 사용자는 대부분의 Ctrl을 Cmd로 읽으면 된다.
 - **Ctrl+Shift+]**: 현재 영역 펼치기
 - **Ctrl+K Ctrl+0**: 모든 영역 접기
 - **Ctrl+K Ctrl+J**: 모든 영역 펼치기
-- **Ctrl+K Ctrl+1–9**: 레벨별 접기
+- **Ctrl+K Ctrl+1~9**: 레벨별 접기
 
 ### 코드 포매팅
 
