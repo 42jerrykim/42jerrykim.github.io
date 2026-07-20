@@ -94,22 +94,50 @@ flowchart TB
 - 어떤 외부 서비스가 연결되는지 모름 (Email? SMS? Push?)
 
 ```java
+import java.util.List;
+
+class OrderItem { OrderItem(String sku, int qty) {} }
+class Money { static final Money ZERO = new Money(); }
+enum OrderStatus { DRAFT, PLACED }
+class OrderId {}
+class Order {
+    private OrderStatus status = OrderStatus.DRAFT;
+    Order(List<OrderItem> items) {}
+    boolean isValid() { return true; }
+    Money getTotal() { return Money.ZERO; }
+    OrderId getId() { return new OrderId(); }
+    OrderStatus getStatus() { return status; }
+}
+class OrderRequest {
+    private final List<OrderItem> items;
+    OrderRequest(List<OrderItem> items) { this.items = items; }
+    List<OrderItem> getItems() { return items; }
+}
+class InvalidOrderException extends RuntimeException {}
+interface OrderRepository { void save(Order order); Order findById(OrderId id); }
+interface PaymentProcessor { void process(Money amount); }
+
 // 순수한 애플리케이션 코어 - 외부 의존성 없음
 public class OrderService {
     private final OrderRepository orderRepository;  // 인터페이스
     private final PaymentProcessor paymentProcessor;  // 인터페이스
-    
+
+    public OrderService(OrderRepository orderRepository, PaymentProcessor paymentProcessor) {
+        this.orderRepository = orderRepository;
+        this.paymentProcessor = paymentProcessor;
+    }
+
     public Order placeOrder(OrderRequest request) {
         // 순수한 비즈니스 로직만 존재
         Order order = new Order(request.getItems());
-        
+
         if (!order.isValid()) {
             throw new InvalidOrderException();
         }
-        
+
         paymentProcessor.process(order.getTotal());
         orderRepository.save(order);
-        
+
         return order;
     }
 }
@@ -124,6 +152,13 @@ public class OrderService {
 외부에서 애플리케이션으로 들어오는 진입점. 애플리케이션이 **제공하는** 기능을 정의한다.
 
 ```java
+import java.util.List;
+
+class OrderItem {}
+class OrderId {}
+class Order {}
+class OrderRequest { OrderRequest(List<OrderItem> items) {} }
+
 // 주 포트 - 애플리케이션이 제공하는 기능
 public interface OrderUseCase {
     Order placeOrder(OrderRequest request);
@@ -137,12 +172,25 @@ public interface OrderUseCase {
 애플리케이션이 외부 서비스를 사용하기 위한 인터페이스. 애플리케이션이 **필요로 하는** 기능을 정의한다.
 
 ```java
+import java.util.List;
+
+class Order {}
+class OrderId {}
+class CustomerId {}
+
 // 보조 포트 - 애플리케이션이 필요로 하는 기능
 public interface OrderRepository {
     void save(Order order);
     Order findById(OrderId id);
     List<Order> findByCustomer(CustomerId customerId);
 }
+```
+
+`PaymentProcessor`도 같은 원칙으로 정의한다 — 코어는 결제를 "요청"할 뿐, 실제로 Stripe를 쓰는지 PayPal을 쓰는지 알 필요가 없다.
+
+```java
+class Money {}
+class PaymentResult { static PaymentResult success() { return new PaymentResult(); } }
 
 public interface PaymentProcessor {
     PaymentResult process(Money amount);
@@ -158,26 +206,61 @@ public interface PaymentProcessor {
 외부 요청을 받아 주 포트를 호출한다.
 
 ```java
+import org.springframework.web.bind.annotation.*;
+
+class Order {}
+class OrderId {}
+class OrderRequest {}
+class OrderResponse { static OrderResponse from(Order order) { return new OrderResponse(); } }
+interface OrderUseCase {
+    Order placeOrder(OrderRequest request);
+    Order getOrder(OrderId id);
+    void cancelOrder(OrderId id);
+}
+
 // REST 어댑터 - HTTP 요청을 주 포트로 변환
 @RestController
 public class OrderRestAdapter {
     private final OrderUseCase orderUseCase;  // 주 포트에 의존
-    
+
+    public OrderRestAdapter(OrderUseCase orderUseCase) {
+        this.orderUseCase = orderUseCase;
+    }
+
     @PostMapping("/orders")
     public OrderResponse createOrder(@RequestBody OrderRequest request) {
         Order order = orderUseCase.placeOrder(request);
         return OrderResponse.from(order);
     }
 }
+```
+
+같은 `OrderUseCase`를 CLI 어댑터가 호출하면 HTTP 대신 커맨드라인 인자를 입력으로 받는다는 점만 다르다 — 유스케이스 로직은 단 한 줄도 바뀌지 않는다.
+
+```java
+class Order {}
+class OrderId {}
+class OrderRequest {}
+interface OrderUseCase {
+    Order placeOrder(OrderRequest request);
+    Order getOrder(OrderId id);
+    void cancelOrder(OrderId id);
+}
 
 // CLI 어댑터 - 커맨드라인 입력을 주 포트로 변환
 public class OrderCliAdapter {
     private final OrderUseCase orderUseCase;
-    
+
+    public OrderCliAdapter(OrderUseCase orderUseCase) {
+        this.orderUseCase = orderUseCase;
+    }
+
     public void execute(String[] args) {
         OrderRequest request = parseArgs(args);
         orderUseCase.placeOrder(request);
     }
+
+    private OrderRequest parseArgs(String[] args) { return new OrderRequest(); }
 }
 ```
 
@@ -186,29 +269,72 @@ public class OrderCliAdapter {
 보조 포트를 구현하여 실제 외부 서비스와 연결한다.
 
 ```java
+import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+
+class Order {}
+class OrderId { Long getValue() { return 1L; } }
+class CustomerId {}
+class OrderEntity {
+    static OrderEntity from(Order order) { return new OrderEntity(); }
+    Order toDomain() { return new Order(); }
+}
+class OrderNotFoundException extends RuntimeException {
+    OrderNotFoundException(OrderId id) {}
+}
+interface OrderRepository {
+    void save(Order order);
+    Order findById(OrderId id);
+    List<Order> findByCustomer(CustomerId customerId);
+}
+interface JpaOrderEntityRepository extends JpaRepository<OrderEntity, Long> {}
+
 // JPA 어댑터 - 보조 포트 구현
 @Repository
 public class JpaOrderRepository implements OrderRepository {
     private final JpaOrderEntityRepository jpaRepository;
-    
+
+    public JpaOrderRepository(JpaOrderEntityRepository jpaRepository) {
+        this.jpaRepository = jpaRepository;
+    }
+
     @Override
     public void save(Order order) {
         OrderEntity entity = OrderEntity.from(order);
         jpaRepository.save(entity);
     }
-    
+
     @Override
     public Order findById(OrderId id) {
         return jpaRepository.findById(id.getValue())
             .map(OrderEntity::toDomain)
             .orElseThrow(() -> new OrderNotFoundException(id));
     }
+
+    @Override
+    public List<Order> findByCustomer(CustomerId customerId) { return List.of(); }
 }
+```
+
+결제 어댑터도 같은 패턴을 따른다 — `PaymentProcessor` 포트를 구현하되, Stripe SDK와의 통신 세부사항은 이 어댑터 안에만 존재한다.
+
+```java
+class Money { double getValue() { return 0; } }
+class PaymentResult { PaymentResult(boolean success) {} }
+interface PaymentProcessor { PaymentResult process(Money amount); }
+class ChargeRequest { ChargeRequest(double amount) {} }
+class ChargeResponse { boolean isSuccess() { return true; } }
+class StripeClient { ChargeResponse charge(ChargeRequest request) { return new ChargeResponse(); } }
 
 // Stripe 결제 어댑터 - 보조 포트 구현
 public class StripePaymentAdapter implements PaymentProcessor {
     private final StripeClient stripeClient;
-    
+
+    public StripePaymentAdapter(StripeClient stripeClient) {
+        this.stripeClient = stripeClient;
+    }
+
     @Override
     public PaymentResult process(Money amount) {
         ChargeRequest request = new ChargeRequest(amount.getValue());
@@ -268,20 +394,70 @@ flowchart LR
 ### 애플리케이션 코어 테스트
 
 ```java
-// 순수한 비즈니스 로직 테스트 - 외부 의존성 없음
-@Test
-void shouldPlaceOrder() {
-    // 보조 포트의 Mock 구현
-    OrderRepository mockRepository = new InMemoryOrderRepository();
-    PaymentProcessor mockProcessor = new AlwaysSuccessPaymentProcessor();
-    
-    // 애플리케이션 코어 테스트
-    OrderService service = new OrderService(mockRepository, mockProcessor);
-    
-    OrderRequest request = new OrderRequest(List.of(new OrderItem("SKU-1", 2)));
-    Order order = service.placeOrder(request);
-    
-    assertThat(order.getStatus()).isEqualTo(OrderStatus.PLACED);
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
+class OrderItem { OrderItem(String sku, int qty) {} }
+class Money { static final Money ZERO = new Money(); }
+enum OrderStatus { DRAFT, PLACED }
+class OrderId {}
+class Order {
+    private OrderStatus status = OrderStatus.PLACED;
+    Order(List<OrderItem> items) {}
+    boolean isValid() { return true; }
+    Money getTotal() { return Money.ZERO; }
+    OrderId getId() { return new OrderId(); }
+    OrderStatus getStatus() { return status; }
+}
+class OrderRequest {
+    private final List<OrderItem> items;
+    OrderRequest(List<OrderItem> items) { this.items = items; }
+    List<OrderItem> getItems() { return items; }
+}
+interface OrderRepository { void save(Order order); Order findById(OrderId id); }
+interface PaymentProcessor { void process(Money amount); }
+class InMemoryOrderRepository implements OrderRepository {
+    private final Map<OrderId, Order> store = new HashMap<>();
+    public void save(Order order) { store.put(order.getId(), order); }
+    public Order findById(OrderId id) { return store.get(id); }
+}
+class AlwaysSuccessPaymentProcessor implements PaymentProcessor {
+    public void process(Money amount) {}
+}
+class OrderService {
+    private final OrderRepository orderRepository;
+    private final PaymentProcessor paymentProcessor;
+    OrderService(OrderRepository orderRepository, PaymentProcessor paymentProcessor) {
+        this.orderRepository = orderRepository;
+        this.paymentProcessor = paymentProcessor;
+    }
+    Order placeOrder(OrderRequest request) {
+        Order order = new Order(request.getItems());
+        paymentProcessor.process(order.getTotal());
+        orderRepository.save(order);
+        return order;
+    }
+}
+
+public class OrderServiceTest {
+    // 순수한 비즈니스 로직 테스트 - 외부 의존성 없음
+    @Test
+    void shouldPlaceOrder() {
+        // 보조 포트의 Mock 구현
+        OrderRepository mockRepository = new InMemoryOrderRepository();
+        PaymentProcessor mockProcessor = new AlwaysSuccessPaymentProcessor();
+
+        // 애플리케이션 코어 테스트
+        OrderService service = new OrderService(mockRepository, mockProcessor);
+
+        OrderRequest request = new OrderRequest(List.of(new OrderItem("SKU-1", 2)));
+        Order order = service.placeOrder(request);
+
+        assertThat(order.getStatus()).isEqualTo(OrderStatus.PLACED);
+    }
 }
 ```
 
@@ -290,20 +466,35 @@ void shouldPlaceOrder() {
 테스트를 위한 특별한 어댑터를 쉽게 만들 수 있다:
 
 ```java
+import java.util.HashMap;
+import java.util.Map;
+
+class OrderId {}
+class Order { OrderId getId() { return new OrderId(); } }
+interface OrderRepository { void save(Order order); Order findById(OrderId id); }
+
 // 테스트용 인메모리 리포지토리
 public class InMemoryOrderRepository implements OrderRepository {
     private final Map<OrderId, Order> store = new HashMap<>();
-    
+
     @Override
     public void save(Order order) {
         store.put(order.getId(), order);
     }
-    
+
     @Override
     public Order findById(OrderId id) {
         return store.get(id);
     }
 }
+```
+
+결제 프로세서도 마찬가지로 항상 성공만 반환하는 가짜 구현을 만들어, 테스트가 실제 결제 게이트웨이의 네트워크 상태에 좌우되지 않게 한다.
+
+```java
+class Money {}
+class PaymentResult { static PaymentResult success() { return new PaymentResult(); } }
+interface PaymentProcessor { PaymentResult process(Money amount); }
 
 // 테스트용 결제 프로세서
 public class AlwaysSuccessPaymentProcessor implements PaymentProcessor {
@@ -396,10 +587,25 @@ src/
 어댑터와 코어 사이를 오갈 때마다 엔티티↔도메인 모델 변환이 필요하다. 계층이 늘어날수록 이 매핑 코드도 함께 늘어난다.
 
 ```java
-// 어댑터와 코어 사이의 데이터 변환이 필요
-public Order findById(OrderId id) {
-    OrderEntity entity = jpaRepository.findById(id.getValue());
-    return entity.toDomain();  // 매핑 필요
+import org.springframework.data.jpa.repository.JpaRepository;
+
+class Order {}
+class OrderId { Long getValue() { return 1L; } }
+class OrderEntity { Order toDomain() { return new Order(); } }
+interface JpaOrderEntityRepository extends JpaRepository<OrderEntity, Long> {}
+
+public class OrderMappingExample {
+    private final JpaOrderEntityRepository jpaRepository;
+
+    public OrderMappingExample(JpaOrderEntityRepository jpaRepository) {
+        this.jpaRepository = jpaRepository;
+    }
+
+    // 어댑터와 코어 사이의 데이터 변환이 필요
+    public Order findById(OrderId id) {
+        OrderEntity entity = jpaRepository.findById(id.getValue()).orElseThrow();
+        return entity.toDomain();  // 매핑 필요
+    }
 }
 ```
 
