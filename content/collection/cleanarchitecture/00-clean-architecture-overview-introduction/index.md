@@ -46,7 +46,7 @@ tags:
 
 마틴은 책 전반에서 좋은 아키텍처의 역할을 이렇게 요약한다: 좋은 아키텍처는 프레임워크·데이터베이스·UI 같은 세부사항에 대한 결정을 **강제로 미리 내리게 하지 않고, 최대한 뒤로 미룰 수 있게** 해주는 것이다(Martin, 2017, Ch. 15 "What Is Architecture?").
 
-Clean Architecture는 단순히 하나의 새로운 패턴이 아니라, **Hexagonal Architecture(Ports & Adapters)**, **Onion Architecture**, **BCE(Boundary-Control-Entity)** 등 기존의 우수한 아키텍처 패턴들의 핵심 원칙을 통합하고 정제한 결과물이다.
+Clean Architecture는 단순히 하나의 새로운 패턴이 아니라, **Hexagonal Architecture(Ports & Adapters)**, **Onion Architecture**, **BCE(Boundary-Control-Entity)** 등 기존의 우수한 아키텍처 패턴들의 핵심 원칙을 통합하고 정제한 결과물이다. 세 원조 패턴은 공통적으로 "의존성이 프레임워크·DB 같은 바깥쪽 세부사항이 아니라 도메인 로직 쪽으로 향해야 한다"는 결론에 도달했지만, 그 경계를 긋는 방식은 저마다 달랐다. Hexagonal은 포트(인터페이스)와 어댑터(구현체)로 안과 밖을 나누는 데 집중했고, Onion은 도메인 모델을 중심에 두고 그 주위를 여러 겹의 레이어로 감싸는 방식을 택했으며, Clean Architecture는 이 둘의 경계 개념을 받아들이되 Entities·Use Cases·Interface Adapters·Frameworks라는 **4개의 이름 붙은 계층**으로 더 구체적으로 규정했다(3장·4장에서 각각 자세히 다룬다).
 
 ## 왜 Clean Architecture인가
 
@@ -386,6 +386,10 @@ class OrderMapper { OrderEntity toEntity(Order order) { return new OrderEntity()
 public class OrderController {
     private final PlaceOrderInputBoundary placeOrderUseCase;
     
+    public OrderController(PlaceOrderInputBoundary placeOrderUseCase) {
+        this.placeOrderUseCase = placeOrderUseCase;
+    }
+    
     @PostMapping
     public ResponseEntity<OrderResponseDto> placeOrder(
         @RequestBody PlaceOrderRequestDto requestDto
@@ -414,74 +418,9 @@ public class JpaOrderRepository implements OrderRepository {
 }
 ```
 
-### Python 통합 예제
+### 언어에 독립적인 원칙
 
-위 3개 계층(엔티티·유스케이스·인터페이스 어댑터)을 하나의 흐름으로 재구성한 Python 버전이다.
-
-```python
-import uuid
-from dataclasses import dataclass
-from decimal import Decimal
-from typing import List, Optional
-from enum import Enum
-
-class OrderStatus(Enum):
-    PENDING = "pending"
-    CONFIRMED = "confirmed"
-    CANCELLED = "cancelled"
-
-@dataclass
-class OrderItem:
-    product_id: str
-    quantity: int
-    unit_price: Decimal
-    
-    @property
-    def subtotal(self) -> Decimal:
-        return self.unit_price * self.quantity
-
-@dataclass
-class Order:
-    id: str
-    customer_id: str
-    items: List[OrderItem]
-    status: OrderStatus = OrderStatus.PENDING
-    
-    def calculate_total(self) -> Decimal:
-        return sum(item.subtotal for item in self.items)
-    
-    def can_be_cancelled(self) -> bool:
-        return self.status in (OrderStatus.PENDING, OrderStatus.CONFIRMED)
-
-from abc import ABC, abstractmethod
-
-class OrderRepository(ABC):
-    @abstractmethod
-    def save(self, order: Order) -> None:
-        pass
-
-class PaymentGateway(ABC):
-    @abstractmethod
-    def charge(self, amount: Decimal, payment_method: str) -> dict:
-        pass
-
-class PlaceOrderUseCase:
-    def __init__(self, order_repository: OrderRepository, payment_gateway: PaymentGateway):
-        self.order_repository = order_repository
-        self.payment_gateway = payment_gateway
-    
-    def execute(self, request: dict) -> dict:
-        items = [OrderItem(**item) for item in request["items"]]
-        order = Order(id=str(uuid.uuid4()), customer_id=request["customer_id"], items=items)
-        
-        payment_result = self.payment_gateway.charge(order.calculate_total(), request["payment_method"])
-        if not payment_result["success"]:
-            return {"error": payment_result["error"]}
-        
-        order.status = OrderStatus.CONFIRMED
-        self.order_repository.save(order)
-        return {"order_id": order.id, "status": "placed"}
-```
+위 3개 Java 블록이 보여준 구조 — 엔티티는 인터페이스만 알고 구체 구현을 모른다는 것 — 는 특정 언어의 문법이 아니라 의존성 방향에 관한 규칙이므로, Python처럼 클래스 기반 언어든 함수형 언어든 동일하게 적용된다. Python이라면 `OrderRepository`를 `abc.ABC` 기반 추상 클래스로, Go라면 암묵적 인터페이스로 표현 방식만 달라질 뿐 "유스케이스가 구현체를 몰라야 한다"는 규칙 자체는 그대로 유지된다. 이 예제의 세부 구현(엔티티 설계 원칙은 30장, 프레젠터를 통한 테스트 용이성은 33장)은 뒤에서 각각 더 깊이 다룬다.
 
 ## Clean Architecture의 장점과 단점
 
