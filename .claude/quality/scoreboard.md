@@ -17,7 +17,7 @@
 | content/collection/cleanarchitecture/03-hexagonal-architecture-ports-adapters/index.md | 96.1 | 2026-07-20 | 4 | 통과 | 없음(경미: 장점/한계 절 일부 문단 확장 여지) |
 | content/collection/cleanarchitecture/04-onion-architecture-domain-centric-design/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 없음(경미: 패키지구조 절 리드문단 부재, 코드 보조타입 미정의) |
 | content/collection/cleanarchitecture/05-clean-architecture-birth-uncle-bob/index.md | 97 | 2026-07-20 | 4 | 통과 | 없음(경미: 미승인 태그 11개 data/tags.yaml 미등재, Guide 태그 본문 근거 약함) |
-| content/collection/cleanarchitecture/06-introduction-software-design-architecture/index.md | 78.7 | 2026-07-18 | 3 | 에스컬레이션 | 항목3 구조(문단비율 34.8%), 항목1 인용 출처 미검증, 00장 커리큘럼 표 문구 불일치 |
+| content/collection/cleanarchitecture/06-introduction-software-design-architecture/index.md | 94.6 | 2026-07-20 | 6 | 통과 | 없음(경미: "천국: 좋은 아키텍처" 소절 리스트 후 연결문단 여지) |
 | content/collection/cleanarchitecture/07-design-vs-architecture-definition/index.md | 96.1 | 2026-07-20 | 4 | 통과 | 없음(경미: 일부 절 리드 문단 보강 여지) |
 | content/collection/cleanarchitecture/08-two-values-behavior-structure/index.md | 96.1 | 2026-07-20 | 5 | 통과 | 없음(경미: "소프트웨어의 어원"/"논리적 반박" 절 리드 문단 여지, 인용 4회 반복에 장 번호 미표기) |
 | content/collection/cleanarchitecture/09-programming-paradigms-introduction/index.md | 94.0 | 2026-07-20 | 4 | 통과 | 없음(경미: Repository/MySqlRepository/MongoRepository 다중 public 공존, FP 스니펫 미래핑, 신규 태그 7개 tags.yaml 미등재) |
