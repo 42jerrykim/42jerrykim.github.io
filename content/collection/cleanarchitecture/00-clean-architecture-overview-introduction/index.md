@@ -14,7 +14,7 @@ tags:
 - SOLID
 - Dependency-Injection(의존성주입)
 - Design-Pattern(디자인패턴)
-- Edge-Cases(엣지케이스)
+- Concentric-Circles(동심원)
 - Testing(테스트)
 - Code-Quality(코드품질)
 - Scalability(확장성)
@@ -107,11 +107,17 @@ graph TB
 
 ### 의존성 규칙(Dependency Rule)
 
+동심원 구조 자체는 그림일 뿐이고, 이 그림을 실제로 지탱하는 단 하나의 규칙이 있다.
+
 **"의존성은 항상 안쪽으로만 향해야 한다."**
+
+이 규칙은 세 가지 구체적인 금지사항으로 풀어볼 수 있다.
 
 - 안쪽 원은 바깥쪽 원에 대해 아무것도 알지 못한다
 - 바깥쪽 원의 어떤 것도 안쪽 원에 영향을 주어서는 안 된다
 - 데이터 형식, 함수 이름, 프레임워크 등 바깥쪽의 어떤 것도 안쪽에서 언급되어서는 안 된다
+
+세 항목은 결국 하나의 결론으로 수렴한다 — 소스 코드 의존성(누가 누구를 `import`하는가)의 방향이 항상 안쪽을 향해야 하며, 이는 런타임 제어 흐름의 방향과 반대일 수도 있다(예: 안쪽 유스케이스가 인터페이스를 통해 바깥쪽 구현을 호출하는 경우).
 
 ## 책의 구성
 
@@ -221,9 +227,24 @@ Clean Architecture를 처음 접하면 다음 두 가지를 오해하기 쉽다.
 
 ### 엔티티(Entities)
 
-엔티티는 가장 핵심적인 비즈니스 규칙을 캡슐화한다. 이는 특정 애플리케이션이 아닌 **기업 전체**에 적용되는 규칙이다.
+아래 세 코드 블록은 뒤에서 다시 정의하지 않고 이 절 안에서 세 계층에 걸쳐 재사용되는 하나의 주문(Order) 예제다.
 
 ```java
+import java.util.List;
+
+// 보조 타입
+class OrderId { OrderId(String id) {} }
+class CustomerId { CustomerId(String id) {} }
+enum OrderStatus { PENDING, CONFIRMED, CANCELLED }
+class Money {
+    static final Money ZERO = new Money();
+    Money add(Money other) { return this; }
+}
+class OrderItem { Money getSubtotal() { return Money.ZERO; } }
+class OrderCannotBeCancelledException extends RuntimeException {
+    OrderCannotBeCancelledException(OrderId id) { super("cannot cancel: " + id); }
+}
+
 public class Order {
     private OrderId id;
     private CustomerId customerId;
@@ -252,9 +273,49 @@ public class Order {
 
 ### 유스케이스(Use Cases)
 
-유스케이스는 애플리케이션 고유의 비즈니스 규칙을 정의한다.
+아래 `PlaceOrderUseCase`는 위 `Order` 엔티티를 그대로 조작하되, 결제·저장·응답 같은 바깥쪽 동작은 구체 구현이 아니라 인터페이스(Boundary)로만 알고 있다는 점에 주목한다. `OrderRepository`·`PaymentGateway`가 실제로 무엇으로 구현되는지는 이 클래스의 관심사가 아니다.
 
 ```java
+import java.util.List;
+import java.util.Optional;
+
+// 보조 타입(엔티티는 위 "엔티티" 절과 동일)
+class CustomerId { CustomerId(String id) {} }
+class PaymentMethod {}
+class Customer {
+    PaymentMethod getPaymentMethod() { return new PaymentMethod(); }
+}
+class Money { static final Money ZERO = new Money(); }
+class OrderItem {}
+class OrderId {}
+class Order {
+    static Order create(Customer customer, List<OrderItem> items) { return new Order(); }
+    Money calculateTotal() { return Money.ZERO; }
+    void confirm(String transactionId) {}
+    OrderId getId() { return new OrderId(); }
+}
+class PlaceOrderRequest {
+    CustomerId getCustomerId() { return new CustomerId("c1"); }
+    List<OrderItem> getItems() { return List.of(); }
+}
+class PlaceOrderResponse { PlaceOrderResponse(OrderId id) {} }
+class PaymentResult {
+    boolean isSuccessful() { return true; }
+    String getErrorMessage() { return ""; }
+    String getTransactionId() { return "tx1"; }
+}
+class CustomerNotFoundException extends RuntimeException {
+    CustomerNotFoundException(CustomerId id) { super("customer not found"); }
+}
+interface PlaceOrderInputBoundary { void execute(PlaceOrderRequest request); }
+interface PlaceOrderOutputBoundary {
+    void presentPaymentFailure(String message);
+    void presentSuccess(PlaceOrderResponse response);
+}
+interface OrderRepository { void save(Order order); }
+interface CustomerRepository { Optional<Customer> findById(CustomerId id); }
+interface PaymentGateway { PaymentResult charge(PaymentMethod method, Money amount); }
+
 public class PlaceOrderUseCase implements PlaceOrderInputBoundary {
     private final OrderRepository orderRepository;
     private final CustomerRepository customerRepository;
@@ -299,9 +360,27 @@ public class PlaceOrderUseCase implements PlaceOrderInputBoundary {
 
 ### 인터페이스 어댑터(Interface Adapters)
 
-인터페이스 어댑터는 유스케이스와 외부 세계를 잇는 변환 계층이다. `OrderController`는 HTTP 요청을 유스케이스가 이해하는 `PlaceOrderRequest`로 변환해 전달하고, `JpaOrderRepository`는 JPA 엔티티와 도메인 `Order` 객체 사이를 오간다. 두 클래스 모두 바깥쪽(웹 프레임워크·JPA)의 세부사항을 알지만, 안쪽(유스케이스)은 이 어댑터의 존재조차 모른다는 점이 의존성 규칙의 핵심이다.
+아래 두 클래스가 바로 앞서 정의한 `PlaceOrderInputBoundary`·`OrderRepository` 인터페이스의 실제 구현체다. `OrderController`는 HTTP 요청을 유스케이스가 이해하는 `PlaceOrderRequest`로 변환해 전달하고, `JpaOrderRepository`는 JPA 엔티티와 도메인 `Order` 객체 사이를 오간다. 두 클래스 모두 바깥쪽(웹 프레임워크·JPA)의 세부사항을 알지만, 유스케이스 쪽 코드는 이 어댑터의 존재조차 몰라도 된다는 점이 의존성 규칙이 실제로 지켜지는 지점이다.
 
 ```java
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
+
+// 보조 타입
+class OrderId {}
+class Order {}
+class OrderEntity {}
+class PlaceOrderRequest {}
+class OrderResponseDto {}
+class PlaceOrderRequestDto {
+    PlaceOrderRequest toUseCaseRequest() { return new PlaceOrderRequest(); }
+}
+interface PlaceOrderInputBoundary { void execute(PlaceOrderRequest request); }
+interface OrderRepository { void save(Order order); }
+interface OrderJpaRepository { void save(OrderEntity entity); }
+class OrderMapper { OrderEntity toEntity(Order order) { return new OrderEntity(); } }
+
 @RestController
 @RequestMapping("/api/orders")
 public class OrderController {
@@ -416,6 +495,8 @@ class PlaceOrderUseCase:
 4. **유지보수성**: 변경의 영향 범위가 명확하게 제한된다
 5. **비즈니스 로직 보호**: 핵심 로직이 외부 변경으로부터 보호된다
 
+다섯 항목은 모두 같은 원인(안쪽 계층이 바깥쪽 계층을 모른다는 것)에서 파생된 결과다. 위 "코드로 보는 4개 계층" 예제에서 `PlaceOrderUseCase`가 `OrderRepository` 인터페이스만 알고 `JpaOrderRepository` 구현을 모르는 것이 바로 1번(테스트 용이성)과 2번(유연성)이 동시에 성립하는 이유다 — 테스트에서는 가짜 `OrderRepository`를, 운영에서는 진짜 JPA 구현을 주입하기만 하면 된다.
+
 ### 단점
 
 반대로 계층·경계를 나누는 데는 비용이 따르며, 프로젝트 규모에 맞지 않게 적용하면 이점보다 비용이 커질 수 있다.
@@ -424,6 +505,8 @@ class PlaceOrderUseCase:
 2. **학습 곡선**: 팀원들이 원칙을 이해하는 데 시간이 필요하다
 3. **보일러플레이트 코드**: 레이어 간 데이터 변환 코드가 많아질 수 있다
 4. **과도한 추상화**: 잘못 적용하면 불필요한 복잡성이 증가한다
+
+이 네 가지는 장점과 정확히 대칭 관계에 있다 — 인터페이스와 계층을 나누는 바로 그 행위가 유연성을 낳는 동시에 코드량과 학습 부담을 늘린다. 따라서 "장점만 취하고 단점은 피하는" 절충은 존재하지 않으며, 다음 절처럼 프로젝트 상황에 맞춰 이 비용을 얼마나 감수할지 판단하는 문제로 귀결된다.
 
 ### 적용 시 고려사항
 
