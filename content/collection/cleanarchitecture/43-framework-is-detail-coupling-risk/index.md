@@ -175,7 +175,7 @@ flowchart TB
 
 ## 해결: 팔 길이 거리에 두기
 
-프레임워크를 **팔 길이 거리(arm's length)**에 두어라.
+프레임워크를 <strong>팔 길이 거리(arm's length)</strong>에 두어라.
 
 ```mermaid
 flowchart TB

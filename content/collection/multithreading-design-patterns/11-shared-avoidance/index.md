@@ -408,9 +408,9 @@ int main() {
 
 ## 흔한 오개념
 
-**"멤버가 전부 `const`거나 읽기 전용 메서드만 있으면 Immutable이다"**는 흔한 오해다. 클래스가 `const T* ptr`나 `std::shared_ptr<T>` 같은 **참조/포인터 멤버**를 들고 있다면, 그 클래스 자체는 값을 바꾸지 않아도 포인터가 가리키는 대상을 다른 코드가 바꿀 수 있다 — 진짜 Immutable은 "이 객체의 멤버가 `const`다"가 아니라 "이 객체가 도달할 수 있는 모든 상태가 생성 이후 절대 바뀌지 않는다"는 훨씬 강한 보장이다. 이 장의 `ImmutableString`이 안전한 이유는 `const std::string data`가 값 타입이라 애초에 외부에서 가리킬 대상이 없기 때문이지, 단순히 `const`가 붙어서가 아니다.
+<strong>"멤버가 전부 `const`거나 읽기 전용 메서드만 있으면 Immutable이다"</strong>는 흔한 오해다. 클래스가 `const T* ptr`나 `std::shared_ptr<T>` 같은 **참조/포인터 멤버**를 들고 있다면, 그 클래스 자체는 값을 바꾸지 않아도 포인터가 가리키는 대상을 다른 코드가 바꿀 수 있다 — 진짜 Immutable은 "이 객체의 멤버가 `const`다"가 아니라 "이 객체가 도달할 수 있는 모든 상태가 생성 이후 절대 바뀌지 않는다"는 훨씬 강한 보장이다. 이 장의 `ImmutableString`이 안전한 이유는 `const std::string data`가 값 타입이라 애초에 외부에서 가리킬 대상이 없기 때문이지, 단순히 `const`가 붙어서가 아니다.
 
-**"`thread_local`이면 그 안에 뭘 담든 항상 안전하다"**도 마찬가지로 위험한 일반화다. `thread_local`이 격리하는 것은 "그 변수 자체가 저장되는 위치"이지, 그 변수가 **가리키는** 대상까지 자동으로 격리해 주지는 않는다. 예를 들어 `thread_local std::shared_ptr<SharedCache> cache;`처럼 모든 스레드의 `thread_local` 포인터가 결국 같은 힙 객체를 가리킨다면, 포인터 자체는 스레드마다 따로 있어도 그 객체에 대한 접근은 여전히 동기화가 필요하다. 이 장의 `threadLocalRandomInt` 예제가 안전한 이유는 `std::mt19937 engine`이 **값으로** 스레드마다 통째로 복제되기 때문이지, `thread_local` 키워드 자체가 마법을 부려서가 아니다.
+<strong>"`thread_local`이면 그 안에 뭘 담든 항상 안전하다"</strong>도 마찬가지로 위험한 일반화다. `thread_local`이 격리하는 것은 "그 변수 자체가 저장되는 위치"이지, 그 변수가 **가리키는** 대상까지 자동으로 격리해 주지는 않는다. 예를 들어 `thread_local std::shared_ptr<SharedCache> cache;`처럼 모든 스레드의 `thread_local` 포인터가 결국 같은 힙 객체를 가리킨다면, 포인터 자체는 스레드마다 따로 있어도 그 객체에 대한 접근은 여전히 동기화가 필요하다. 이 장의 `threadLocalRandomInt` 예제가 안전한 이유는 `std::mt19937 engine`이 **값으로** 스레드마다 통째로 복제되기 때문이지, `thread_local` 키워드 자체가 마법을 부려서가 아니다.
 
 ## 학습 성과 평가 기준
 

@@ -66,11 +66,11 @@ image: "wordcloud.png"
 draft: false
 ---
 
-메모리 안전은 현대 소비자 운영체제 보안의 마지막 난제다. Apple은 A12에서의 PAC 도입, iOS 15의 kalloc_type, iOS 17의 xzone malloc을 거쳐, 2025년 iPhone 17·A19 세대에서 **Memory Integrity Enforcement(MIE)**를 공개했다. MIE는 Enhanced Memory Tagging Extension(EMTE)의 동기 태그 검사와 타입 기반 보안 할당자, 태그 기밀성 집행을 깊게 통합해 커널을 포함한 핵심 공격 면에 **상시(on by default)** 메모리 안전을 제공한다. 본 글은 MIE의 설계 배경과 원리, 성능·보안 트레이드오프, Android MTE 대비 차별점을 정리한다.
+메모리 안전은 현대 소비자 운영체제 보안의 마지막 난제다. Apple은 A12에서의 PAC 도입, iOS 15의 kalloc_type, iOS 17의 xzone malloc을 거쳐, 2025년 iPhone 17·A19 세대에서 <strong>Memory Integrity Enforcement(MIE)</strong>를 공개했다. MIE는 Enhanced Memory Tagging Extension(EMTE)의 동기 태그 검사와 타입 기반 보안 할당자, 태그 기밀성 집행을 깊게 통합해 커널을 포함한 핵심 공격 면에 **상시(on by default)** 메모리 안전을 제공한다. 본 글은 MIE의 설계 배경과 원리, 성능·보안 트레이드오프, Android MTE 대비 차별점을 정리한다.
 
 ## 한눈에 보기
 
-- **핵심**: MIE는 타입 기반 보안 할당자(kalloc_type, xzone malloc, WebKit libpas)와 **EMTE(Enhanced MTE)**의 **동기 태그 검사**, 그리고 **Tag Confidentiality Enforcement(태그 기밀성 집행)**을 결합한, iPhone 17 및 iPhone Air 세대의 **상시(on-by-default) 메모리 안전** 체계다.
+- **핵심**: MIE는 타입 기반 보안 할당자(kalloc_type, xzone malloc, WebKit libpas)와 <strong>EMTE(Enhanced MTE)</strong>의 **동기 태그 검사**, 그리고 <strong>Tag Confidentiality Enforcement(태그 기밀성 집행)</strong>을 결합한, iPhone 17 및 iPhone Air 세대의 **상시(on-by-default) 메모리 안전** 체계다.
 - **효과**: 버퍼 오버플로·사용후해제(UAF) 같은 대표적 메모리 오류가 태그 불일치로 즉시 차단되며, 커널을 포함한 주요 공격 면에서 **공격 난이도와 비용을 급격히 상승**시킨다.
 - **성능**: 페이지(16KB) 단의 타입 분리와 **동적 소용량 할당에만 정밀하게 EMTE를 적용**하는 아키텍처로 **체감 오버헤드를 최소화**한다.
 - **차별점**: 단순 "디버깅용 MTE"가 아니라, **동기식·상시·플랫폼 통합형**으로 설계되어 OS·실리콘·프레임워크에 깊게 녹아 있다.
@@ -101,7 +101,7 @@ flowchart LR
 
 ## 왜 필요한가: 메모리 안전과 공격 현실
 
-메모리 안전 결함은 플랫폼을 가리지 않고 고가의 공격 체인에서 반복 활용된다. Apple은 언어 차원의 안전성(Swift)과 함께 **배치(placement) 자체를 통제하는 타입 기반 할당자**로 소프트웨어 방어선을 끌어올렸고, 여기에 **하드웨어 태깅(EMTE)**을 결합해 **같은 타입 버킷 내부의 미세한 충돌까지 방지**한다. 목표는 디버깅의 편의가 아니라, **현실 공격자에게 실질적 제약을 강제**하는 것이다.
+메모리 안전 결함은 플랫폼을 가리지 않고 고가의 공격 체인에서 반복 활용된다. Apple은 언어 차원의 안전성(Swift)과 함께 **배치(placement) 자체를 통제하는 타입 기반 할당자**로 소프트웨어 방어선을 끌어올렸고, 여기에 <strong>하드웨어 태깅(EMTE)</strong>을 결합해 **같은 타입 버킷 내부의 미세한 충돌까지 방지**한다. 목표는 디버깅의 편의가 아니라, **현실 공격자에게 실질적 제약을 강제**하는 것이다.
 
 ## 설계 개요: 소프트웨어와 하드웨어의 결합
 
@@ -111,11 +111,11 @@ flowchart LR
 
 ### 2) EMTE(Enhanced Memory Tagging Extension)
 
-각 할당에 비밀 태그를 부여하고, **액세스 시 태그 일치**를 하드웨어가 동기식으로 검사한다. 인접 블록은 **서로 다른 태그**를 사용하므로, 범위를 벗어난 접근은 즉시 차단된다. 해제 후 재할당 시 **재태깅(retagging)**되어 UAF(Use-After-Free)를 차단한다.
+각 할당에 비밀 태그를 부여하고, **액세스 시 태그 일치**를 하드웨어가 동기식으로 검사한다. 인접 블록은 **서로 다른 태그**를 사용하므로, 범위를 벗어난 접근은 즉시 차단된다. 해제 후 재할당 시 <strong>재태깅(retagging)</strong>되어 UAF(Use-After-Free)를 차단한다.
 
 ### 3) Tag Confidentiality Enforcement
 
-태그 유출을 막기 위해 커널 백킹 스토어와 태그 저장소를 **Secure Page Table Monitor(SPTM)**로 보호하고, **PRNG 자주 재시드**로 태그 예측을 어렵게 하며, **추측실행(Spectre V1) 완화**를 타입 분리 아이디어(TDI 유사)로 저비용 구현한다.
+태그 유출을 막기 위해 커널 백킹 스토어와 태그 저장소를 <strong>Secure Page Table Monitor(SPTM)</strong>로 보호하고, **PRNG 자주 재시드**로 태그 예측을 어렵게 하며, **추측실행(Spectre V1) 완화**를 타입 분리 아이디어(TDI 유사)로 저비용 구현한다.
 
 ## EMTE는 무엇이 다른가: 동기 vs 비동기, 태그 비기밀성의 봉쇄
 

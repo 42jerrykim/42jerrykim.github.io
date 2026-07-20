@@ -47,13 +47,13 @@ tags:
   - NIC-Driver
 ---
 
-**XDP(eXpress Data Path)**와 **eBPF(extended Berkeley Packet Filter)**는 커널 소스를 고치지 않고도 네트워크 드라이버 계층에서 패킷을 조기에 검사·처리할 수 있게 해 주는 프로그래밍 인터페이스입니다. 소켓까지 패킷이 올라오기 전, 즉 `sk_buff`가 할당되기도 전에 커널이 검증한 소규모 프로그램이 실행되어 DROP·PASS·REDIRECT 같은 결정을 내리므로, DDoS 완화·로드밸런싱·패킷 필터링처럼 초당 수백만 패킷을 다뤄야 하는 워크로드에서 커널 스택 전체를 거치는 비용을 줄일 수 있습니다. 이 장은 커널 바이패스 계열 기법 중 "커널 안에 머무르면서" 패킷 경로를 단축하는 접근을 다루며, verifier가 어떻게 안전성을 보장하는지와 2025~2026년 사이 논의되는 verifier 확장(BPF Token, 동적 스택 alloca)까지 개관합니다.
+<strong>XDP(eXpress Data Path)</strong>와 <strong>eBPF(extended Berkeley Packet Filter)</strong>는 커널 소스를 고치지 않고도 네트워크 드라이버 계층에서 패킷을 조기에 검사·처리할 수 있게 해 주는 프로그래밍 인터페이스입니다. 소켓까지 패킷이 올라오기 전, 즉 `sk_buff`가 할당되기도 전에 커널이 검증한 소규모 프로그램이 실행되어 DROP·PASS·REDIRECT 같은 결정을 내리므로, DDoS 완화·로드밸런싱·패킷 필터링처럼 초당 수백만 패킷을 다뤄야 하는 워크로드에서 커널 스택 전체를 거치는 비용을 줄일 수 있습니다. 이 장은 커널 바이패스 계열 기법 중 "커널 안에 머무르면서" 패킷 경로를 단축하는 접근을 다루며, verifier가 어떻게 안전성을 보장하는지와 2025~2026년 사이 논의되는 verifier 확장(BPF Token, 동적 스택 alloca)까지 개관합니다.
 
 ## 이 장을 읽기 전에
 
 **완전한 초보자?** 이 장은 바로 앞 장인 [08장: io_uring 개요](/post/os-optimization/io-uring-overview-fundamentals/)와 함께 "커널 바이패스 개요" 3부작(07 커널 바이패스 총론, 08 스토리지/파일 I/O, 09 네트워킹)의 마지막 편이며, [02장: Syscall 비용과 최소화 기법](/post/os-optimization/syscall-cost-minimization/)에서 다룬 "커널 진입 비용"과 [07장: 커널 바이패스 개요](/post/os-optimization/kernel-bypass-overview/)에서 소개한 "사용자 공간 vs 커널 내부 단축" 구도를 전제로 합니다. eBPF가 "커널이 검증한 뒤 커널 안에서 실행하는 프로그램"이라는 점만 알면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **중급**을 대상으로 합니다. XDP가 패킷 경로의 어디에서 실행되는지, eBPF verifier가 안전성을 어떻게 보장하는지, 그리고 BPF Token·동적 스택 alloca 같은 최신 verifier 확장 논의를 다룹니다. **다루지 않는 것**: XDP/eBPF 프로그램의 실전 구현(맵 설계, tail call, CO-RE 빌드 파이프라인)과 패킷 처리 파이프라인 심화는 아직 집필되지 않은 **Tr.10(네트워크 최적화)**의 범위이므로 여기서는 개요만 제공하고 존재하지 않는 링크는 걸지 않습니다. eBPF/XDP 운영 시 보안·권한 경계와 프로덕션 트레이드오프의 심화 논의는 이미 게시된 [17장: eBPF·커널 경계와 성능 안전](/post/os-optimization/ebpf-xdp-kernel-boundary-performance-safety-expert/)에 위임합니다. IRQ·NAPI 인터럽트 처리 자체의 최적화는 [12장: IRQ 최적화](/post/os-optimization/irq-interrupt-optimization/)를 참고하세요.
+**이 장의 깊이**: 이 장은 **중급**을 대상으로 합니다. XDP가 패킷 경로의 어디에서 실행되는지, eBPF verifier가 안전성을 어떻게 보장하는지, 그리고 BPF Token·동적 스택 alloca 같은 최신 verifier 확장 논의를 다룹니다. **다루지 않는 것**: XDP/eBPF 프로그램의 실전 구현(맵 설계, tail call, CO-RE 빌드 파이프라인)과 패킷 처리 파이프라인 심화는 아직 집필되지 않은 <strong>Tr.10(네트워크 최적화)</strong>의 범위이므로 여기서는 개요만 제공하고 존재하지 않는 링크는 걸지 않습니다. eBPF/XDP 운영 시 보안·권한 경계와 프로덕션 트레이드오프의 심화 논의는 이미 게시된 [17장: eBPF·커널 경계와 성능 안전](/post/os-optimization/ebpf-xdp-kernel-boundary-performance-safety-expert/)에 위임합니다. IRQ·NAPI 인터럽트 처리 자체의 최적화는 [12장: IRQ 최적화](/post/os-optimization/irq-interrupt-optimization/)를 참고하세요.
 
 ## 당신의 수준에 맞는 경로
 
@@ -67,7 +67,7 @@ tags:
 
 ## 역사와 배경
 
-**BPF(Berkeley Packet Filter)**는 1992년 Steven McCanne와 Van Jacobson이 발표한 패킷 필터링 기법에서 출발했습니다. 커널 안에 작은 가상 머신을 두고 사용자 공간에서 내려준 필터 바이트코드를 실행해, 관심 없는 패킷을 커널이 조기에 버리게 하는 것이 원래 아이디어였습니다. 이 구조는 2014년 Alexei Starovoitov가 **eBPF(extended BPF)**로 확장하면서 Linux 3.18에 병합되었고, 레지스터 수·명령어 집합·맵(map)이라는 커널-사용자 공간 공유 자료구조가 추가되어 네트워킹을 넘어 트레이싱·보안·관측성 전반의 범용 실행 환경으로 발전했습니다. **XDP**는 2016년 Jesper Dangaard Brouer, Starovoitov, David Miller 등이 제안해 Linux 4.8(2016년 10월)에 병합되었으며, eBPF 프로그램을 네트워크 드라이버의 수신 경로 가장 이른 지점에 붙이는 훅을 제공합니다. 즉 eBPF는 "커널 안에서 안전하게 실행 가능한 프로그램 모델"이고, XDP는 그 모델을 네트워크 수신 경로의 특정 지점에 적용한 것입니다.
+<strong>BPF(Berkeley Packet Filter)</strong>는 1992년 Steven McCanne와 Van Jacobson이 발표한 패킷 필터링 기법에서 출발했습니다. 커널 안에 작은 가상 머신을 두고 사용자 공간에서 내려준 필터 바이트코드를 실행해, 관심 없는 패킷을 커널이 조기에 버리게 하는 것이 원래 아이디어였습니다. 이 구조는 2014년 Alexei Starovoitov가 <strong>eBPF(extended BPF)</strong>로 확장하면서 Linux 3.18에 병합되었고, 레지스터 수·명령어 집합·맵(map)이라는 커널-사용자 공간 공유 자료구조가 추가되어 네트워킹을 넘어 트레이싱·보안·관측성 전반의 범용 실행 환경으로 발전했습니다. **XDP**는 2016년 Jesper Dangaard Brouer, Starovoitov, David Miller 등이 제안해 Linux 4.8(2016년 10월)에 병합되었으며, eBPF 프로그램을 네트워크 드라이버의 수신 경로 가장 이른 지점에 붙이는 훅을 제공합니다. 즉 eBPF는 "커널 안에서 안전하게 실행 가능한 프로그램 모델"이고, XDP는 그 모델을 네트워크 수신 경로의 특정 지점에 적용한 것입니다.
 
 ## 핵심 개념과 동작 원리
 
@@ -83,7 +83,7 @@ flowchart LR
   redirectPath --> afxdpSocket["AF_XDP 소켓</br>zero-copy 사용자 공간"]
 ```
 
-**AF_XDP**는 `XDP_REDIRECT`의 특수한 대상으로, 커널 스택을 완전히 우회해 패킷을 사용자 공간 공유 메모리(UMEM)로 직접 전달하는 소켓 주소 체계입니다. RX/TX 링과 FILL/COMPLETION 링으로 버퍼 소유권을 주고받으며, 드라이버와 NIC이 zero-copy를 지원하면 데이터 복사 없이 패킷을 사용자 공간에서 바로 다룰 수 있고, 지원하지 않으면 커널이 자동으로 copy 모드로 폴백합니다([Linux Kernel Docs: AF_XDP](https://docs.kernel.org/networking/af_xdp.html)). 이 zero-copy 경로의 실전 활용(버퍼 관리, 멀티 큐 분배)은 패킷 처리 심화를 다루는 **Tr.10(네트워크 최적화)**의 범위이며, 이 장에서는 XDP 경로의 종착점 중 하나로만 소개합니다.
+**AF_XDP**는 `XDP_REDIRECT`의 특수한 대상으로, 커널 스택을 완전히 우회해 패킷을 사용자 공간 공유 메모리(UMEM)로 직접 전달하는 소켓 주소 체계입니다. RX/TX 링과 FILL/COMPLETION 링으로 버퍼 소유권을 주고받으며, 드라이버와 NIC이 zero-copy를 지원하면 데이터 복사 없이 패킷을 사용자 공간에서 바로 다룰 수 있고, 지원하지 않으면 커널이 자동으로 copy 모드로 폴백합니다([Linux Kernel Docs: AF_XDP](https://docs.kernel.org/networking/af_xdp.html)). 이 zero-copy 경로의 실전 활용(버퍼 관리, 멀티 큐 분배)은 패킷 처리 심화를 다루는 <strong>Tr.10(네트워크 최적화)</strong>의 범위이며, 이 장에서는 XDP 경로의 종착점 중 하나로만 소개합니다.
 
 ## verifier와 안전성 보장
 

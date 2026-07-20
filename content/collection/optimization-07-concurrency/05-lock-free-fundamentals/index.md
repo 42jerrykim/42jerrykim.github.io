@@ -64,7 +64,7 @@ tags:
 
 ## CAS와 lock-free의 계보 (역사·배경)
 
-**CAS(compare-and-swap)**는 "메모리 위치의 현재 값이 기대값과 같으면 새 값으로 교체하고, 다르면 아무것도 하지 않은 채 실패를 알린다"는 단일 원자적 명령입니다. 이 명령 자체는 오래된 개념으로, IBM System/370(1970년대)에 이미 `CS`(Compare and Swap) 명령이 있었고, x86에는 486부터 `CMPXCHG`가 존재합니다. lock-free 프로그래밍이 학술적으로 정립된 것은 Maurice Herlihy의 1991년 논문 "Wait-Free Synchronization"(ACM TOPLAS)부터로, 이 논문은 동기화 프리미티브를 "합의(consensus) 문제를 몇 개의 프로세스까지 풀 수 있는가"라는 척도로 분류했고, 이후 Herlihy와 Nir Shavit의 저서 *The Art of Multiprocessor Programming*이 lock-free/wait-free/obstruction-free라는 진행 보장(progress guarantee) 용어를 정리해 널리 퍼뜨렸습니다. **lock-free**는 "시스템 전체적으로 최소 하나의 스레드는 유한 시간 내에 진행한다"는 보장이고, **wait-free**는 "모든 개별 스레드가 유한 시간 내에 진행한다"는 더 강한 보장입니다. 이 장에서 다루는 CAS 루프는 lock-free 수준의 보장만 제공하며, wait-free는 [챕터 12](/post/concurrency-optimization/wait-free-programming-fundamentals/)의 주제입니다.
+<strong>CAS(compare-and-swap)</strong>는 "메모리 위치의 현재 값이 기대값과 같으면 새 값으로 교체하고, 다르면 아무것도 하지 않은 채 실패를 알린다"는 단일 원자적 명령입니다. 이 명령 자체는 오래된 개념으로, IBM System/370(1970년대)에 이미 `CS`(Compare and Swap) 명령이 있었고, x86에는 486부터 `CMPXCHG`가 존재합니다. lock-free 프로그래밍이 학술적으로 정립된 것은 Maurice Herlihy의 1991년 논문 "Wait-Free Synchronization"(ACM TOPLAS)부터로, 이 논문은 동기화 프리미티브를 "합의(consensus) 문제를 몇 개의 프로세스까지 풀 수 있는가"라는 척도로 분류했고, 이후 Herlihy와 Nir Shavit의 저서 *The Art of Multiprocessor Programming*이 lock-free/wait-free/obstruction-free라는 진행 보장(progress guarantee) 용어를 정리해 널리 퍼뜨렸습니다. **lock-free**는 "시스템 전체적으로 최소 하나의 스레드는 유한 시간 내에 진행한다"는 보장이고, **wait-free**는 "모든 개별 스레드가 유한 시간 내에 진행한다"는 더 강한 보장입니다. 이 장에서 다루는 CAS 루프는 lock-free 수준의 보장만 제공하며, wait-free는 [챕터 12](/post/concurrency-optimization/wait-free-programming-fundamentals/)의 주제입니다.
 
 ## CAS 루프: lock-free의 기본 동작
 
@@ -246,19 +246,19 @@ g++ -std=c++20 -fsanitize=thread -g -O1 stack.cpp -o stack_tsan
 
 ## HTM과 Intel TSX: 사실상 폐기된 대안
 
-**HTM(Hardware Transactional Memory)**은 CAS 루프를 직접 짜는 대신, "이 코드 블록을 트랜잭션으로 실행해 달라"고 하드웨어에 위임하는 접근입니다. 하드웨어가 트랜잭션 안의 메모리 접근을 캐시 일관성 프로토콜 수준에서 추적하다가, 다른 코어와 충돌이 감지되면 트랜잭션을 되돌리고(abort) 소프트웨어가 재시도하거나 폴백 경로(보통 락)로 넘어가게 합니다. 성공하면 개발자가 직접 CAS 재시도 루프나 ABA 방어 코드를 짜지 않고도 임계구역을 lock-free에 가깝게 실행할 수 있다는 것이 약속이었습니다. Intel은 2013년 Haswell 세대에서 **TSX(Transactional Synchronization Extensions)**를 도입했는데, 레거시 락 코드에 프리픽스만 붙이면 되는 **HLE(Hardware Lock Elision)**와, `XBEGIN`/`XEND`/`XABORT` 같은 새 명령어로 트랜잭션을 명시적으로 구성하는 **RTM(Restricted Transactional Memory)** 두 갈래로 구성되어 있었습니다.
+<strong>HTM(Hardware Transactional Memory)</strong>은 CAS 루프를 직접 짜는 대신, "이 코드 블록을 트랜잭션으로 실행해 달라"고 하드웨어에 위임하는 접근입니다. 하드웨어가 트랜잭션 안의 메모리 접근을 캐시 일관성 프로토콜 수준에서 추적하다가, 다른 코어와 충돌이 감지되면 트랜잭션을 되돌리고(abort) 소프트웨어가 재시도하거나 폴백 경로(보통 락)로 넘어가게 합니다. 성공하면 개발자가 직접 CAS 재시도 루프나 ABA 방어 코드를 짜지 않고도 임계구역을 lock-free에 가깝게 실행할 수 있다는 것이 약속이었습니다. Intel은 2013년 Haswell 세대에서 <strong>TSX(Transactional Synchronization Extensions)</strong>를 도입했는데, 레거시 락 코드에 프리픽스만 붙이면 되는 <strong>HLE(Hardware Lock Elision)</strong>와, `XBEGIN`/`XEND`/`XABORT` 같은 새 명령어로 트랜잭션을 명시적으로 구성하는 **RTM(Restricted Transactional Memory)** 두 갈래로 구성되어 있었습니다.
 
-이 약속은 실제로는 지켜지지 못했습니다. TSX는 이후 여러 사이드채널 취약점의 통로가 되었는데, 그중 **TAA(TSX Asynchronous Abort, CVE-2019-11135)**는 MDS(Microarchitectural Data Sampling) 계열 취약점으로, 트랜잭션이 비동기적으로 abort되는 과정에서 다른 실행 흐름의 데이터가 마이크로아키텍처 버퍼를 통해 유출될 수 있었습니다. Intel의 공식 지원 문서는 이에 대한 완화책으로 "Intel® TSX will be disabled by default"라고 명시하며, 2021년 6월 마이크로코드 업데이트(IPU 2021.1)부터 영향받는 프로세서에서 TSX를 기본 비활성화하고 `CPUID`의 `RTM_ALWAYS_ABORT` 비트를 설정해 소프트웨어가 이를 인식하도록 했다고 밝히고 있습니다. Linux 커널 문서 역시 "커널의 기본 동작은 취약한 프로세서에서 `tsx_async_abort=full tsx=off` 완화책을 적용하는 것"이라고 명시해, 애플리케이션이 명시적으로 다시 켜지 않는 한 TSX가 꺼진 채로 부팅되는 것이 사실상의 기본값임을 확인해 줍니다. 이 흐름과 별개로 하드웨어 자체에서도 후퇴가 있었는데, HLE는 2019년 이후 출시된 제품에서 이미 제거되기 시작했고 10세대 Comet Lake·Ice Lake(2020년) 클라이언트 프로세서부터는 TSX/TSX-NI 자체가 하드웨어에서 지원되지 않으며, 12세대 Alder Lake의 공식 데이터시트도 HLE를 "Deprecated Technologies" 항목으로 명시합니다.
+이 약속은 실제로는 지켜지지 못했습니다. TSX는 이후 여러 사이드채널 취약점의 통로가 되었는데, 그중 <strong>TAA(TSX Asynchronous Abort, CVE-2019-11135)</strong>는 MDS(Microarchitectural Data Sampling) 계열 취약점으로, 트랜잭션이 비동기적으로 abort되는 과정에서 다른 실행 흐름의 데이터가 마이크로아키텍처 버퍼를 통해 유출될 수 있었습니다. Intel의 공식 지원 문서는 이에 대한 완화책으로 "Intel® TSX will be disabled by default"라고 명시하며, 2021년 6월 마이크로코드 업데이트(IPU 2021.1)부터 영향받는 프로세서에서 TSX를 기본 비활성화하고 `CPUID`의 `RTM_ALWAYS_ABORT` 비트를 설정해 소프트웨어가 이를 인식하도록 했다고 밝히고 있습니다. Linux 커널 문서 역시 "커널의 기본 동작은 취약한 프로세서에서 `tsx_async_abort=full tsx=off` 완화책을 적용하는 것"이라고 명시해, 애플리케이션이 명시적으로 다시 켜지 않는 한 TSX가 꺼진 채로 부팅되는 것이 사실상의 기본값임을 확인해 줍니다. 이 흐름과 별개로 하드웨어 자체에서도 후퇴가 있었는데, HLE는 2019년 이후 출시된 제품에서 이미 제거되기 시작했고 10세대 Comet Lake·Ice Lake(2020년) 클라이언트 프로세서부터는 TSX/TSX-NI 자체가 하드웨어에서 지원되지 않으며, 12세대 Alder Lake의 공식 데이터시트도 HLE를 "Deprecated Technologies" 항목으로 명시합니다.
 
 정리하면, TSX는 마이크로코드 수준의 기본 비활성화(2021년)와 하드웨어 수준의 단계적 제거(2019~2020년 이후 세대)가 겹치면서 **사실상 폐기**된 상태입니다. 일부 서버용 Xeon 라인은 여전히 하드웨어를 갖고 있지만 커널의 기본 완화 정책이 꺼두는 쪽이므로, 신규 C++ 프로덕션 코드를 TSX 가용성에 의존해 설계하는 것은 2026년 기준으로 비현실적입니다. 이 장에서 다루는 CAS 기반 lock-free가, 하드웨어의 도움 없이 소프트웨어가 직접 정합성을 보장해야 하는 사실상 유일한 표준 경로인 이유가 여기에 있습니다.
 
 ## 흔한 오개념
 
-**"lock-free는 항상 mutex보다 빠르다"**는 틀린 생각입니다. 저경합 상황에서는 mutex의 빠른 경로(futex 시스템 콜 없이 사용자 공간 CAS 한 번으로 끝나는 경우)가 오히려 더 단순하고 빠를 수 있고, lock-free 쪽도 결국 같은 캐시 라인을 두고 경쟁하므로 cache line ping-pong 비용은 그대로 남습니다. 실제 차이는 스레드 수·경합 패턴에 따라 달라지므로 항상 벤치마크로 확인해야 합니다(챕터 01 참고).
+<strong>"lock-free는 항상 mutex보다 빠르다"</strong>는 틀린 생각입니다. 저경합 상황에서는 mutex의 빠른 경로(futex 시스템 콜 없이 사용자 공간 CAS 한 번으로 끝나는 경우)가 오히려 더 단순하고 빠를 수 있고, lock-free 쪽도 결국 같은 캐시 라인을 두고 경쟁하므로 cache line ping-pong 비용은 그대로 남습니다. 실제 차이는 스레드 수·경합 패턴에 따라 달라지므로 항상 벤치마크로 확인해야 합니다(챕터 01 참고).
 
-**"CAS가 실패하면 버그다"**도 오개념입니다. CAS 실패는 "그 사이 다른 스레드가 먼저 갱신했다"는 정상적인 신호이며, 재시도 루프는 이를 전제로 설계됩니다. `compare_exchange_weak`는 심지어 값이 같아도 허위로 실패할 수 있다고 표준이 명시적으로 허용하므로, 루프 안에서 실패는 예외가 아니라 기본 동작입니다.
+<strong>"CAS가 실패하면 버그다"</strong>도 오개념입니다. CAS 실패는 "그 사이 다른 스레드가 먼저 갱신했다"는 정상적인 신호이며, 재시도 루프는 이를 전제로 설계됩니다. `compare_exchange_weak`는 심지어 값이 같아도 허위로 실패할 수 있다고 표준이 명시적으로 허용하므로, 루프 안에서 실패는 예외가 아니라 기본 동작입니다.
 
-**"lock-free는 wait-free와 같다"**도 흔한 혼동입니다. lock-free는 시스템 전체의 진행만 보장할 뿐, 특정 스레드가 계속 CAS에서 밀려 무한정 재시도하는 상황(이론적 livelock)을 배제하지 않습니다. 모든 스레드의 유한 시간 내 진행까지 보장하려면 wait-free 알고리즘이 필요하며, 이는 설계·구현 비용이 훨씬 크고 [챕터 12](/post/concurrency-optimization/wait-free-programming-fundamentals/)에서 별도로 다룹니다.
+<strong>"lock-free는 wait-free와 같다"</strong>도 흔한 혼동입니다. lock-free는 시스템 전체의 진행만 보장할 뿐, 특정 스레드가 계속 CAS에서 밀려 무한정 재시도하는 상황(이론적 livelock)을 배제하지 않습니다. 모든 스레드의 유한 시간 내 진행까지 보장하려면 wait-free 알고리즘이 필요하며, 이는 설계·구현 비용이 훨씬 크고 [챕터 12](/post/concurrency-optimization/wait-free-programming-fundamentals/)에서 별도로 다룹니다.
 
 ## 판단 기준
 

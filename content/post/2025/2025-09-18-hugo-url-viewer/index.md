@@ -57,7 +57,7 @@ tags:
 image: "image.png"
 ---
 
-Hugo URL Viewer는 입력한 URL을 **지정한 사용자 에이전트(User Agent)**와 **리퍼러(Referrer)**로 열어 보는 간단한 웹 도구다. Googlebot(모바일/데스크톱), Bingbot, 일반 브라우저(Chrome/Firefox/Edge)를 선택해 크롤러 관점과 사용자 관점의 응답 차이를 빠르게 확인할 수 있다. SEO 점검, 배포 검증, 회귀 테스트에 활용하기 좋다.
+Hugo URL Viewer는 입력한 URL을 <strong>지정한 사용자 에이전트(User Agent)</strong>와 <strong>리퍼러(Referrer)</strong>로 열어 보는 간단한 웹 도구다. Googlebot(모바일/데스크톱), Bingbot, 일반 브라우저(Chrome/Firefox/Edge)를 선택해 크롤러 관점과 사용자 관점의 응답 차이를 빠르게 확인할 수 있다. SEO 점검, 배포 검증, 회귀 테스트에 활용하기 좋다.
 
 **공식 사이트**: [Hugo's URL Viewer](https://view.hugo-decoded.be)
 

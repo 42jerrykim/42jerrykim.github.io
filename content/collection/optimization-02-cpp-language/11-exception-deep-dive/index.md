@@ -99,7 +99,7 @@ tags:
 
 ## Zero-cost exception 모델 (역사·배경과 실제)
 
-"Zero-cost exception"은 **예외가 발생하지 않는 정상 경로**에서는 추가 비용을 거의 들이지 않겠다는 설계 목표입니다. 많은 Unix·Linux 플랫폼이 채택한 **Itanium C++ ABI**에서는 예외가 throw되지 않을 때 별도 분기나 테이블 조회를 하지 않고, 예외가 발생했을 때만 **unwinding** 정보와 **landing pad**를 사용해 스택을 되감고 catch 블록을 찾습니다. Windows에서는 **SEH(Structured Exception Handling)**와 연동된 방식으로 비슷한 "정상 경로 비용 없음" 모델을 따릅니다. 따라서 비용이 **예외 경로에만 집중**되며, 정상 경로에서는 예외 메커니즘이 거의 비용을 부과하지 않습니다.
+"Zero-cost exception"은 **예외가 발생하지 않는 정상 경로**에서는 추가 비용을 거의 들이지 않겠다는 설계 목표입니다. 많은 Unix·Linux 플랫폼이 채택한 **Itanium C++ ABI**에서는 예외가 throw되지 않을 때 별도 분기나 테이블 조회를 하지 않고, 예외가 발생했을 때만 **unwinding** 정보와 **landing pad**를 사용해 스택을 되감고 catch 블록을 찾습니다. Windows에서는 <strong>SEH(Structured Exception Handling)</strong>와 연동된 방식으로 비슷한 "정상 경로 비용 없음" 모델을 따릅니다. 따라서 비용이 **예외 경로에만 집중**되며, 정상 경로에서는 예외 메커니즘이 거의 비용을 부과하지 않습니다.
 
 > "In the zero-cost model, the runtime does not need to do anything when no exception is thrown. The cost is paid when an exception is thrown." — [Itanium C++ ABI: Exception Handling](https://itanium-cxx-abi.github.io/cxx-abi/abi-eh.html). noexcept는 "이 함수는 예외를 던지지 않는다"는 계약으로, 이동 선택·인라이닝에 영향을 줄 수 있습니다.
 

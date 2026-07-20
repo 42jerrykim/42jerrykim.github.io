@@ -37,7 +37,7 @@ tags:
   - Clean-Code(클린코드)
 ---
 
-**DIP(Dependency Inversion Principle)**는 SOLID 원칙 중 가장 중요하며, Clean Architecture의 **핵심 원칙**이다. 이 원칙은 소스 코드 의존성이 추상화를 향해야 하며, 구체적인 것을 향해서는 안 된다고 말한다.
+<strong>DIP(Dependency Inversion Principle)</strong>는 SOLID 원칙 중 가장 중요하며, Clean Architecture의 **핵심 원칙**이다. 이 원칙은 소스 코드 의존성이 추상화를 향해야 하며, 구체적인 것을 향해서는 안 된다고 말한다.
 
 ## DIP의 정의
 

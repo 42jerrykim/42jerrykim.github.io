@@ -39,7 +39,7 @@ tags:
   - Virtual-Memory
 ---
 
-**Large Pages(대형 페이지, Huge Pages)**란 가상 주소를 물리 주소로 변환할 때 TLB(Translation Lookaside Buffer) 엔트리 하나가 담당하는 메모리 범위를 표준 4KB 대신 x86-64 기준 2MB·1GB, 또는 아키텍처별로 정의된 더 큰 단위로 확장해 페이지 테이블 계층을 순회하는 비용과 TLB 미스 빈도를 줄이는 메모리 관리 기법을 말합니다. 핫패스가 수백 메가바이트에서 수 기가바이트 크기의 버퍼를 랜덤에 가깝게 순회할 때, 4KB 페이지 하나로는 TLB가 커버하는 주소 범위(TLB reach)가 금방 바닥나 페이지 워크(page walk)가 접근마다 반복되고, 이 비용은 µs 단위 예산을 조용히 갉아먹는 지연으로 쌓입니다. 이 장에서는 관리자가 정적으로 예약하는 HugeTLB, 커널이 자동으로 관리하는 THP(Transparent Huge Pages), 그리고 2025~2026년 사이 실무 표준으로 자리잡아 가는 mTHP(multi-size THP)를 각각 언제 선택하고 언제 피할지 다룹니다.
+<strong>Large Pages(대형 페이지, Huge Pages)</strong>란 가상 주소를 물리 주소로 변환할 때 TLB(Translation Lookaside Buffer) 엔트리 하나가 담당하는 메모리 범위를 표준 4KB 대신 x86-64 기준 2MB·1GB, 또는 아키텍처별로 정의된 더 큰 단위로 확장해 페이지 테이블 계층을 순회하는 비용과 TLB 미스 빈도를 줄이는 메모리 관리 기법을 말합니다. 핫패스가 수백 메가바이트에서 수 기가바이트 크기의 버퍼를 랜덤에 가깝게 순회할 때, 4KB 페이지 하나로는 TLB가 커버하는 주소 범위(TLB reach)가 금방 바닥나 페이지 워크(page walk)가 접근마다 반복되고, 이 비용은 µs 단위 예산을 조용히 갉아먹는 지연으로 쌓입니다. 이 장에서는 관리자가 정적으로 예약하는 HugeTLB, 커널이 자동으로 관리하는 THP(Transparent Huge Pages), 그리고 2025~2026년 사이 실무 표준으로 자리잡아 가는 mTHP(multi-size THP)를 각각 언제 선택하고 언제 피할지 다룹니다.
 
 ## 이 장을 읽기 전에
 
@@ -127,7 +127,7 @@ grep -E 'AnonHugePages|AnonHugePmdMapped' /proc/self/smaps_rollup
 
 ## mTHP: 여러 크기를 지원하는 THP
 
-**mTHP(multi-size THP)**는 앞서 언급한 "4KB와 2MB 사이의 틈"을 메우기 위해 16KB·32KB·64KB처럼 2의 거듭제곱 크기의 huge page를 개별적으로 켜고 끌 수 있게 확장한 기능입니다. 각 크기는 `/sys/kernel/mm/transparent_hugepage/hugepages-<size>kB/enabled` 경로에서 `always`·`madvise`·`never`·`inherit`(상위 전역 값을 따름) 중 하나로 독립 설정됩니다. 기본값은 PMD 크기만 `inherit`이고 나머지 크기는 `never`이므로, mTHP는 명시적으로 옵트인해야만 동작합니다.
+<strong>mTHP(multi-size THP)</strong>는 앞서 언급한 "4KB와 2MB 사이의 틈"을 메우기 위해 16KB·32KB·64KB처럼 2의 거듭제곱 크기의 huge page를 개별적으로 켜고 끌 수 있게 확장한 기능입니다. 각 크기는 `/sys/kernel/mm/transparent_hugepage/hugepages-<size>kB/enabled` 경로에서 `always`·`madvise`·`never`·`inherit`(상위 전역 값을 따름) 중 하나로 독립 설정됩니다. 기본값은 PMD 크기만 `inherit`이고 나머지 크기는 `never`이므로, mTHP는 명시적으로 옵트인해야만 동작합니다.
 
 ```bash
 for f in /sys/kernel/mm/transparent_hugepage/hugepages-*kB/enabled; do
@@ -202,11 +202,11 @@ perf stat -e dTLB-load-misses,page-faults ./thp_bench thp
 
 ## 흔한 오개념
 
-**"THP를 켜면 무조건 빨라진다"**는 흔한 오해입니다. `khugepaged`의 스캔·콜랩스 작업 자체가 CPU 사이클을 쓰고, `defrag=always` 조합에서는 THP 확보를 위해 직접 메모리 압축(compaction)이 할당 경로에 끼어들어 지연 스파이크를 유발할 수 있습니다. 이 때문에 저지연을 요구하는 인메모리 데이터베이스·캐시 서버 커뮤니티에서는 THP를 `never`로 끄고, 필요한 버퍼에만 HugeTLB나 `madvise` 기반 힌트를 선택적으로 적용하는 관행이 널리 퍼져 있습니다.
+<strong>"THP를 켜면 무조건 빨라진다"</strong>는 흔한 오해입니다. `khugepaged`의 스캔·콜랩스 작업 자체가 CPU 사이클을 쓰고, `defrag=always` 조합에서는 THP 확보를 위해 직접 메모리 압축(compaction)이 할당 경로에 끼어들어 지연 스파이크를 유발할 수 있습니다. 이 때문에 저지연을 요구하는 인메모리 데이터베이스·캐시 서버 커뮤니티에서는 THP를 `never`로 끄고, 필요한 버퍼에만 HugeTLB나 `madvise` 기반 힌트를 선택적으로 적용하는 관행이 널리 퍼져 있습니다.
 
-**"Huge Pages는 메모리를 아낀다"**도 정확하지 않습니다. 2MB 페이지 하나에 실제로는 몇 바이트만 쓰이더라도 나머지 공간은 그대로 점유되는 내부 단편화(internal fragmentation)가 발생합니다. 작은 크기의 산발적 할당이 많은 워크로드에 THP나 HugeTLB를 무분별하게 적용하면 오히려 상주 메모리(RSS)가 늘어날 수 있습니다.
+<strong>"Huge Pages는 메모리를 아낀다"</strong>도 정확하지 않습니다. 2MB 페이지 하나에 실제로는 몇 바이트만 쓰이더라도 나머지 공간은 그대로 점유되는 내부 단편화(internal fragmentation)가 발생합니다. 작은 크기의 산발적 할당이 많은 워크로드에 THP나 HugeTLB를 무분별하게 적용하면 오히려 상주 메모리(RSS)가 늘어날 수 있습니다.
 
-**"HugeTLB와 THP는 같은 메커니즘이다"**라는 혼동도 흔합니다. HugeTLB는 관리자가 정적으로 예약해 스왑되지 않는 pinned 풀이고, THP는 커널이 동적으로 콜랩스·디콜랩스하며 필요하면 스왑도 가능한 별개의 서브시스템입니다. 두 메커니즘은 sysfs 인터페이스도, 실패 모드도 다르므로 같은 도구로 취급하면 안 됩니다.
+<strong>"HugeTLB와 THP는 같은 메커니즘이다"</strong>라는 혼동도 흔합니다. HugeTLB는 관리자가 정적으로 예약해 스왑되지 않는 pinned 풀이고, THP는 커널이 동적으로 콜랩스·디콜랩스하며 필요하면 스왑도 가능한 별개의 서브시스템입니다. 두 메커니즘은 sysfs 인터페이스도, 실패 모드도 다르므로 같은 도구로 취급하면 안 됩니다.
 
 ## 판단 기준
 

@@ -111,7 +111,7 @@ int main() {
 
 3. **캐시 일관성 문제**: 한 CPU 코어의 캐시에 쓴 값이 다른 코어에 즉시 보이지 않을 수 있다.
 
-이 모든 것이 C++ 표준에서 **데이터 레이스(data race)**라고 부르는 **미정의 동작(undefined behavior)**을 만든다. 미정의 동작이라는 것은 "약간 틀릴 수도, 정말 틀릴 수도, 그냥 폭발할 수도" 있다는 뜻이다.
+이 모든 것이 C++ 표준에서 <strong>데이터 레이스(data race)</strong>라고 부르는 <strong>미정의 동작(undefined behavior)</strong>을 만든다. 미정의 동작이라는 것은 "약간 틀릴 수도, 정말 틀릴 수도, 그냥 폭발할 수도" 있다는 뜻이다.
 
 ## 데이터 레이스의 정의
 
@@ -184,7 +184,7 @@ int main() {
 
 ## std::atomic 기초
 
-`std::atomic<T>`는 **atomicity(원자성)**과 **synchronization(동기화)**을 제공하는 템플릿이다. 원자성은 "읽기-수정-쓰기 같은 복합 연산이 다른 스레드의 관찰로부터 나뉠 수 없다"는 뜻이고, 동기화는 happens-before을 만든다는 뜻이다.
+`std::atomic<T>`는 <strong>atomicity(원자성)</strong>과 <strong>synchronization(동기화)</strong>을 제공하는 템플릿이다. 원자성은 "읽기-수정-쓰기 같은 복합 연산이 다른 스레드의 관찰로부터 나뉠 수 없다"는 뜻이고, 동기화는 happens-before을 만든다는 뜻이다.
 
 ### 기본 사용법
 
@@ -204,7 +204,7 @@ void reader() {
 }
 ```
 
-`writer()`와 `reader()`가 어느 순서로 실행되는지는 이 코드만으로 정해지지 않는다. atomic이 보장하는 것은 **"둘 중 하나의 완전한 값만 보인다"**는 것이지, "항상 최신 값을 본다"는 것이 아니다 — reader()가 writer()보다 먼저 실행되면 `val`은 0이고, 그것도 완전히 정의된 동작이다. reader가 항상 42만 보게 하려면 03장에서 볼 `join()`이나 조건 변수 같은 방법으로 "writer가 끝난 뒤에 reader가 실행된다"는 happens-before 관계를 별도로 만들어야 한다.
+`writer()`와 `reader()`가 어느 순서로 실행되는지는 이 코드만으로 정해지지 않는다. atomic이 보장하는 것은 <strong>"둘 중 하나의 완전한 값만 보인다"</strong>는 것이지, "항상 최신 값을 본다"는 것이 아니다 — reader()가 writer()보다 먼저 실행되면 `val`은 0이고, 그것도 완전히 정의된 동작이다. reader가 항상 42만 보게 하려면 03장에서 볼 `join()`이나 조건 변수 같은 방법으로 "writer가 끝난 뒤에 reader가 실행된다"는 happens-before 관계를 별도로 만들어야 한다.
 
 기본값(파라미터 없음)으로 `store`와 `load`를 호출하면 `memory_order_seq_cst`(sequential consistency)가 사용되므로, 모든 스레드가 일관된 순서를 본다.
 
@@ -273,7 +273,7 @@ x = 1;
 
 ## 안전성 검증: ThreadSanitizer
 
-위험한 코드인지 확인하는 가장 실용적인 도구는 **ThreadSanitizer (TSAN)**다. GCC와 Clang 모두 지원한다.
+위험한 코드인지 확인하는 가장 실용적인 도구는 <strong>ThreadSanitizer (TSAN)</strong>다. GCC와 Clang 모두 지원한다.
 
 ```bash
 g++ -std=c++20 -pthread -fsanitize=thread -g example.cpp -o example
@@ -339,7 +339,7 @@ counter.fetch_add(1, std::memory_order_relaxed);
 
 ## 다음 장에서는
 
-02장 **「락 관용구(Locking Idioms)」**에서는 이 장의 메모리 모델 개념을 바탕으로, RAII 기반 Scoped Locking 패턴, 그리고 공유 상태를 보호하는 Thread-Safe Interface 패턴을 다룬다. 이 패턴들이 어떻게 happens-before을 만들고 데이터 레이스를 막는지 실제 구현으로 배우게 된다.
+02장 <strong>「락 관용구(Locking Idioms)」</strong>에서는 이 장의 메모리 모델 개념을 바탕으로, RAII 기반 Scoped Locking 패턴, 그리고 공유 상태를 보호하는 Thread-Safe Interface 패턴을 다룬다. 이 패턴들이 어떻게 happens-before을 만들고 데이터 레이스를 막는지 실제 구현으로 배우게 된다.
 
 ## 참고 및 출처
 

@@ -81,7 +81,7 @@ uint32_t popcount_swar(uint32_t x) {
 
 ## 비트 스캔: BSF/BSR과 TZCNT/LZCNT의 차이
 
-**후행 0 비트 개수(count trailing zeros)**와 **선행 0 비트 개수(count leading zeros)**는 최하위·최상위에서부터 처음 나오는 1비트의 위치를 찾는 연산으로, 정렬된 비트셋에서 다음 원소를 찾거나 정수의 최상위 유효 비트를 찾을 때 자주 쓰입니다. x86에는 이 연산을 위한 명령어가 두 세대에 걸쳐 존재합니다. 레거시 **`BSF`**(bit scan forward)·**`BSR`**(bit scan reverse)는 오래전부터 있었지만, [x86 BSF 참조 문서](https://www.felixcloutier.com/x86/bsf)는 "If the content of the source operand is 0, the content of the destination operand is undefined."라고 명시합니다. 즉 입력이 0이면 결과 레지스터 값이 정의되지 않고, ZF 플래그만으로 이 경우를 구분해야 합니다. BMI1의 **`TZCNT`**는 이 문제를 정면으로 해결합니다. [x86 TZCNT 참조 문서](https://www.felixcloutier.com/x86/tzcnt)에 따르면 "TZCNT provides operand size as output when source operand is zero while in the case of BSF instruction, if source operand is zero, the content of destination operand are undefined." — 소스가 0이면 TZCNT는 피연산자 크기(32비트 연산이면 32)를 그대로 반환하도록 정의되어 있고, CF 플래그가 1로 설정되어 "입력이 0이었다"는 사실도 함께 알 수 있습니다. `LZCNT`(선행 0 개수)도 같은 원칙을 따릅니다.
+<strong>후행 0 비트 개수(count trailing zeros)</strong>와 <strong>선행 0 비트 개수(count leading zeros)</strong>는 최하위·최상위에서부터 처음 나오는 1비트의 위치를 찾는 연산으로, 정렬된 비트셋에서 다음 원소를 찾거나 정수의 최상위 유효 비트를 찾을 때 자주 쓰입니다. x86에는 이 연산을 위한 명령어가 두 세대에 걸쳐 존재합니다. 레거시 **`BSF`**(bit scan forward)·**`BSR`**(bit scan reverse)는 오래전부터 있었지만, [x86 BSF 참조 문서](https://www.felixcloutier.com/x86/bsf)는 "If the content of the source operand is 0, the content of the destination operand is undefined."라고 명시합니다. 즉 입력이 0이면 결과 레지스터 값이 정의되지 않고, ZF 플래그만으로 이 경우를 구분해야 합니다. BMI1의 **`TZCNT`**는 이 문제를 정면으로 해결합니다. [x86 TZCNT 참조 문서](https://www.felixcloutier.com/x86/tzcnt)에 따르면 "TZCNT provides operand size as output when source operand is zero while in the case of BSF instruction, if source operand is zero, the content of destination operand are undefined." — 소스가 0이면 TZCNT는 피연산자 크기(32비트 연산이면 32)를 그대로 반환하도록 정의되어 있고, CF 플래그가 1로 설정되어 "입력이 0이었다"는 사실도 함께 알 수 있습니다. `LZCNT`(선행 0 개수)도 같은 원칙을 따릅니다.
 
 이 차이는 C++ 수준의 함수에도 그대로 이어집니다. GCC/Clang의 `__builtin_ctz(x)`는 `x == 0`일 때 정의되지 않은 동작(UB)이라고 문서화되어 있는 반면, C++20 `<bit>`의 **`std::countr_zero`**는 다릅니다. [cppreference: std::countr_zero](https://en.cppreference.com/w/cpp/numeric/countr_zero) 문서의 예제는 `std::countr_zero(std::uint8_t{0})`가 `8`을 반환한다는 것을 보여 주는데, 이는 8비트 타입의 폭을 그대로 반환하는 것으로 **모든 입력에 대해 정의된 동작**입니다. 정리하면, 레거시 `BSF`/`BSR`과 그 위에 얹힌 `__builtin_ctz`/`__builtin_clz`는 입력 0을 특수하게 다뤄야 하는 반면, `TZCNT`/`LZCNT`와 그 위의 `std::countr_zero`/`std::countl_zero`는 입력 0도 명확한 값을 돌려주므로 별도 분기 없이 안전하게 쓸 수 있습니다.
 
@@ -104,7 +104,7 @@ int first_set_bit_safe(uint32_t x) {
 
 ## 비트 필드 재배치: PDEP와 PEXT
 
-**PDEP**(parallel bit deposit)와 **PEXT**(parallel bit extract)는 BMI2에 속한 명령어로, 비트를 마스크가 지정한 위치로 흩뿌리거나(deposit) 마스크가 지정한 위치에서 모아 오는(extract) 연산을 각각 한 명령어로 수행합니다. 대표적인 활용 사례는 두 개의 16비트 좌표를 한 비트씩 번갈아 끼워 넣어 32비트 **Morton 코드(Z-order 코드)**를 만드는 비트 인터리빙입니다. 나이브하게 구현하면 32번의 반복과 그만큼의 분기·시프트가 필요하지만, PDEP를 쓰면 미리 정해 둔 마스크에 따라 하드웨어가 한 번에 비트를 흩뿌려 줍니다.
+**PDEP**(parallel bit deposit)와 **PEXT**(parallel bit extract)는 BMI2에 속한 명령어로, 비트를 마스크가 지정한 위치로 흩뿌리거나(deposit) 마스크가 지정한 위치에서 모아 오는(extract) 연산을 각각 한 명령어로 수행합니다. 대표적인 활용 사례는 두 개의 16비트 좌표를 한 비트씩 번갈아 끼워 넣어 32비트 <strong>Morton 코드(Z-order 코드)</strong>를 만드는 비트 인터리빙입니다. 나이브하게 구현하면 32번의 반복과 그만큼의 분기·시프트가 필요하지만, PDEP를 쓰면 미리 정해 둔 마스크에 따라 하드웨어가 한 번에 비트를 흩뿌려 줍니다.
 
 ```cpp
 #include <cstdint>
@@ -150,11 +150,11 @@ inline uint32_t deposit_bits(uint32_t src, uint32_t mask) {
 
 ## 흔한 오개념
 
-**"`__builtin_ctz(0)`과 `std::countr_zero(0)`은 결과만 다를 뿐 둘 다 안전하다"**는 틀린 생각입니다. 앞서 보았듯 전자는 정의되지 않은 동작이고 후자만 표준이 보장하는 값(비트 폭)을 반환합니다. 코드 리뷰에서 이 둘을 같은 것으로 취급하고 넘어가면, 입력이 0이 될 수 있는 경로에서 조용히 UB가 남을 수 있습니다.
+<strong>"`__builtin_ctz(0)`과 `std::countr_zero(0)`은 결과만 다를 뿐 둘 다 안전하다"</strong>는 틀린 생각입니다. 앞서 보았듯 전자는 정의되지 않은 동작이고 후자만 표준이 보장하는 값(비트 폭)을 반환합니다. 코드 리뷰에서 이 둘을 같은 것으로 취급하고 넘어가면, 입력이 0이 될 수 있는 경로에서 조용히 UB가 남을 수 있습니다.
 
-**"PDEP/PEXT는 전용 명령어이므로 항상 빠르다"**도 사실이 아닙니다. 명령어 집합에 존재한다는 것과 특정 세대의 실리콘에서 빠르게 실행된다는 것은 별개입니다. AMD Zen1~Zen3처럼 마이크로코드로 에뮬레이션되는 세대에서는 오히려 나이브한 루프나 룩업 테이블이 더 빠를 수 있으므로, 대상 CPU 세대에서 실측 없이 채택해서는 안 됩니다.
+<strong>"PDEP/PEXT는 전용 명령어이므로 항상 빠르다"</strong>도 사실이 아닙니다. 명령어 집합에 존재한다는 것과 특정 세대의 실리콘에서 빠르게 실행된다는 것은 별개입니다. AMD Zen1~Zen3처럼 마이크로코드로 에뮬레이션되는 세대에서는 오히려 나이브한 루프나 룩업 테이블이 더 빠를 수 있으므로, 대상 CPU 세대에서 실측 없이 채택해서는 안 됩니다.
 
-**"비트 카운팅 루프를 짜 두면 컴파일러가 알아서 POPCNT로 바꿔 준다"**는 것도 조건부로만 맞습니다. 최신 GCC/Clang은 특정 형태의 popcount 루프(idiom)를 인식해 POPCNT로 치환하는 최적화 패스를 갖추고 있지만, 이는 어디까지나 대상 아키텍처가 POPCNT를 지원한다고 컴파일 타깃에 명시되어 있을 때의 이야기입니다. `-mpopcnt`나 이를 포함하는 `-march` 플래그 없이 baseline x86-64로 빌드하면, 아무리 루프 형태가 이상적이어도 소프트웨어 경로가 나옵니다.
+<strong>"비트 카운팅 루프를 짜 두면 컴파일러가 알아서 POPCNT로 바꿔 준다"</strong>는 것도 조건부로만 맞습니다. 최신 GCC/Clang은 특정 형태의 popcount 루프(idiom)를 인식해 POPCNT로 치환하는 최적화 패스를 갖추고 있지만, 이는 어디까지나 대상 아키텍처가 POPCNT를 지원한다고 컴파일 타깃에 명시되어 있을 때의 이야기입니다. `-mpopcnt`나 이를 포함하는 `-march` 플래그 없이 baseline x86-64로 빌드하면, 아무리 루프 형태가 이상적이어도 소프트웨어 경로가 나옵니다.
 
 ## 판단 기준
 

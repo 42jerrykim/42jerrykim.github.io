@@ -158,7 +158,7 @@ flowchart LR
 
 ### 2단계: 레이아웃 로드 (VIA 웹 사용 시)
 
-- VIA 웹에서 **"Load Draft Definition"**을 선택한 뒤, 사용할 키보드의 JSON 파일(예: `lgk_easylink.json`)을 선택한다.
+- VIA 웹에서 <strong>"Load Draft Definition"</strong>을 선택한 뒤, 사용할 키보드의 JSON 파일(예: `lgk_easylink.json`)을 선택한다.
 - 여러 키보드가 정의되어 있으면 목록에서 해당 키보드(예: LGK_Easylink)를 선택한다.
 
 ### 3단계: 키 매핑 및 저장

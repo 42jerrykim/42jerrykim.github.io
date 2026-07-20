@@ -204,7 +204,7 @@ TSAN_OPTIONS="second_deadlock_stack=1" ./counter
 
 ## Thread-Safe Interface 패턴
 
-**문제**: Scoped Locking만으로는 부족하다. 공개 메서드가 여러 개면, 메서드끼리 호출할 때 같은 mutex를 두 번 잡으려고 시도할 수 있다 — 이것이 **자기 데드락(self-deadlock)**이다. 가장 작은 재현은 다음과 같다.
+**문제**: Scoped Locking만으로는 부족하다. 공개 메서드가 여러 개면, 메서드끼리 호출할 때 같은 mutex를 두 번 잡으려고 시도할 수 있다 — 이것이 <strong>자기 데드락(self-deadlock)</strong>이다. 가장 작은 재현은 다음과 같다.
 
 ```cpp
 class SelfDeadlock {
@@ -572,7 +572,7 @@ void doHighLevelStuff() {
 
 **플랫폼별 진단 도구**:
 
-- **TSAN (`-fsanitize=thread`)**: 데이터 레이스뿐 아니라 **lock-order-inversion(잠재적 데드락)**도 보고한다. 두 스레드가 `(A, B)`와 `(B, A)` 순서로 락을 잡는 패턴을 관찰하면, 실제로 데드락이 발생하지 않아도 경고를 띄운다.
+- **TSAN (`-fsanitize=thread`)**: 데이터 레이스뿐 아니라 <strong>lock-order-inversion(잠재적 데드락)</strong>도 보고한다. 두 스레드가 `(A, B)`와 `(B, A)` 순서로 락을 잡는 패턴을 관찰하면, 실제로 데드락이 발생하지 않아도 경고를 띄운다.
 - **Valgrind의 `--tool=helgrind`**: TSAN과 유사하게 락 순서 추적과 POSIX 동기화 오류를 검사한다. 컴파일러 계측 없이 동작하지만 실행 속도가 훨씬 느리다.
 - **GDB**: 데드락이 실제로 걸린 후에는 `gdb -p <pid>`로 attach해 `thread apply all bt`로 모든 스레드의 백트레이스를 확인하면, 어떤 스레드가 어떤 락을 기다리는지(circular wait)가 드러난다.
 - **Windows(MSVC)**: Visual Studio의 **Concurrency Visualizer**가 스레드별 대기 시간과 락 경합(contention)을 시각화한다. WinDbg의 `!locks` 확장 명령은 critical section의 소유자를 보여준다.
@@ -589,7 +589,7 @@ void doHighLevelStuff() {
 
 ## 다음 장에서는
 
-03장 **「대기와 조정(Waiting and Coordination)」**에서는 조건 변수(`std::condition_variable`)와 `spurious wakeup` 처리, Monitor Object, Guarded Suspension 패턴을 다룬다. 이 패턴들은 "값이 언제 준비될 때까지 효율적으로 기다리는가"를 구현한다.
+03장 <strong>「대기와 조정(Waiting and Coordination)」</strong>에서는 조건 변수(`std::condition_variable`)와 `spurious wakeup` 처리, Monitor Object, Guarded Suspension 패턴을 다룬다. 이 패턴들은 "값이 언제 준비될 때까지 효율적으로 기다리는가"를 구현한다.
 
 ## 참고 및 출처
 

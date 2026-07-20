@@ -55,7 +55,7 @@ tags:
   - Assembly
 ---
 
-**AutoFDO(Automatic Feedback-Directed Optimization)**는 별도의 **instrumented(계측) 빌드** 없이, 일반 릴리즈 바이너리를 프로덕션에서 실행하면서 **샘플링 프로파일러**(`perf`, VTune 등)로 수집한 데이터를 그대로 컴파일러에 반영하는 방식입니다. 챕터 03에서 다룬 PGO가 "계측 바이너리 → 수집 → 재컴파일"의 3단계를 요구하는 반면, AutoFDO는 **기존 릴리즈 바이너리의 실행 데이터**를 변환해 재사용합니다. Google이 대규모 서버 플릿에서 instrumented 빌드의 비용 없이 PGO에 가까운 이득을 얻기 위해 개발했습니다.
+<strong>AutoFDO(Automatic Feedback-Directed Optimization)</strong>는 별도의 **instrumented(계측) 빌드** 없이, 일반 릴리즈 바이너리를 프로덕션에서 실행하면서 **샘플링 프로파일러**(`perf`, VTune 등)로 수집한 데이터를 그대로 컴파일러에 반영하는 방식입니다. 챕터 03에서 다룬 PGO가 "계측 바이너리 → 수집 → 재컴파일"의 3단계를 요구하는 반면, AutoFDO는 **기존 릴리즈 바이너리의 실행 데이터**를 변환해 재사용합니다. Google이 대규모 서버 플릿에서 instrumented 빌드의 비용 없이 PGO에 가까운 이득을 얻기 위해 개발했습니다.
 
 ## 왜 AutoFDO인가 (동기)
 
@@ -258,7 +258,7 @@ g++ -O3 -fauto-profile=old_profile.gcov -Wno-error main.cc 2>&1 | grep "profile"
 
 - **AutoFDO**의 동작 원리(샘플링 기반, instrumented 빌드 불필요)를 설명할 수 있다.
 - GCC(`-fauto-profile`) 또는 Clang(`-fprofile-sample-use`) 워크플로우를 단계별로 적용할 수 있다.
-- **PGO(instrumented)**와의 트레이드오프(프로파일 품질 vs 운영 비용)를 설명하고, 상황에 맞는 선택 근거를 제시할 수 있다.
+- <strong>PGO(instrumented)</strong>와의 트레이드오프(프로파일 품질 vs 운영 비용)를 설명하고, 상황에 맞는 선택 근거를 제시할 수 있다.
 - 프로파일과 소스의 불일치 위험을 설명하고, 자동화 파이프라인에서 이를 관리할 수 있다.
 
 ## 비판적 시각: 한계와 트레이드오프

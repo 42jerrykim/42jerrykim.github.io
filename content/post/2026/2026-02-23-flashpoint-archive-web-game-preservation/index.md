@@ -206,7 +206,7 @@ ActionScript 2(AS2) 지원은 상당히 성숙했으며, ActionScript 3(AS3) 역
 
 ## Flashpoint 14 "Kingfisher"
 
-2025년 2월 15일, Flashpoint의 최신 버전인 **14.0 "Kingfisher"**가 출시되었다. 프로젝트는 2017년 첫 버전 이후 지속적으로 발전해왔다.
+2025년 2월 15일, Flashpoint의 최신 버전인 <strong>14.0 "Kingfisher"</strong>가 출시되었다. 프로젝트는 2017년 첫 버전 이후 지속적으로 발전해왔다.
 
 | 버전 | 코드명 | 출시일 |
 |------|--------|--------|

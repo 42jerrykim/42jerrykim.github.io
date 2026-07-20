@@ -97,7 +97,7 @@ flowchart TB
 
 ### DAG (방향성 비순환 그래프)
 
-올바른 의존성 구조는 **DAG(Directed Acyclic Graph)**여야 한다:
+올바른 의존성 구조는 <strong>DAG(Directed Acyclic Graph)</strong>여야 한다:
 
 ```mermaid
 flowchart TB

@@ -77,7 +77,7 @@ tags:
 
 ## SQ/CQ 링 버퍼와 비동기 I/O 원리 (핵심 메커니즘)
 
-io_uring이라는 이름 자체가 사용자 공간과 커널 공간이 공유하는 **링 버퍼(ring buffer)**에서 왔습니다. 애플리케이션은 요청하려는 I/O 작업을 **SQ(Submission Queue)**에 올려두고, 커널은 그 작업들의 처리 결과를 **CQ(Completion Queue)**에 올려둡니다. 두 큐 모두 `io_uring_setup()` syscall이 만든 파일 디스크립터를 `mmap(2)`으로 사용자 프로세스 주소 공간에 매핑해 공유하므로, 큐를 오갈 때 커널·사용자 공간 사이에 별도의 데이터 복사가 필요 없습니다. 각 SQ 슬롯에 채워 넣는 구조체가 **SQE(Submission Queue Entry)**이고, 여기에는 어떤 파일 디스크립터에 어떤 연산(opcode)을 어떤 버퍼로 수행할지가 담깁니다. 커널은 처리를 마치면 그 결과를 **CQE(Completion Queue Entry)**로 CQ에 채워 넣습니다. 애플리케이션은 하나 이상의 SQE를 SQ에 채운 뒤 `io_uring_enter()` syscall로 커널에 "제출됐다"는 사실만 알리면 되므로, N개의 요청을 준비했다면 이론적으로 syscall 한 번으로 N개를 모두 커널에 넘길 수 있습니다.
+io_uring이라는 이름 자체가 사용자 공간과 커널 공간이 공유하는 <strong>링 버퍼(ring buffer)</strong>에서 왔습니다. 애플리케이션은 요청하려는 I/O 작업을 <strong>SQ(Submission Queue)</strong>에 올려두고, 커널은 그 작업들의 처리 결과를 <strong>CQ(Completion Queue)</strong>에 올려둡니다. 두 큐 모두 `io_uring_setup()` syscall이 만든 파일 디스크립터를 `mmap(2)`으로 사용자 프로세스 주소 공간에 매핑해 공유하므로, 큐를 오갈 때 커널·사용자 공간 사이에 별도의 데이터 복사가 필요 없습니다. 각 SQ 슬롯에 채워 넣는 구조체가 <strong>SQE(Submission Queue Entry)</strong>이고, 여기에는 어떤 파일 디스크립터에 어떤 연산(opcode)을 어떤 버퍼로 수행할지가 담깁니다. 커널은 처리를 마치면 그 결과를 <strong>CQE(Completion Queue Entry)</strong>로 CQ에 채워 넣습니다. 애플리케이션은 하나 이상의 SQE를 SQ에 채운 뒤 `io_uring_enter()` syscall로 커널에 "제출됐다"는 사실만 알리면 되므로, N개의 요청을 준비했다면 이론적으로 syscall 한 번으로 N개를 모두 커널에 넘길 수 있습니다.
 
 ```mermaid
 flowchart LR

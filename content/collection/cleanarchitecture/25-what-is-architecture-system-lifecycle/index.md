@@ -200,7 +200,7 @@ pie title 소프트웨어 비용 분포(근사치)
 | 버그 수정 | 문제 위치 파악 용이 |
 | 요구사항 변경 | 변경 비용 일정 |
 
-> "유지보수의 가장 큰 비용은 **탐사(spelunking)**와 **위험 감수**에서 발생한다."
+> "유지보수의 가장 큰 비용은 <strong>탐사(spelunking)</strong>와 **위험 감수**에서 발생한다."
 > — Robert C. Martin, 『Clean Architecture』(2017), 15장
 
 ```java
@@ -289,7 +289,7 @@ flowchart LR
 
 ## 정책과 세부사항
 
-마틴은 시스템을 **정책(Policy)**과 **세부사항(Details)**으로 구분한다.
+마틴은 시스템을 <strong>정책(Policy)</strong>과 <strong>세부사항(Details)</strong>으로 구분한다.
 
 ```mermaid
 flowchart TB

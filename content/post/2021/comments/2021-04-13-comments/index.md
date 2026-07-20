@@ -165,7 +165,7 @@ flowchart LR
 
 1. [Utterances 공식 웹사이트](https://utteranc.es/)에 접속합니다.
 2. **"Install Utterances"** 또는 GitHub 앱 설치 링크를 눌러 **utterances** 앱을 GitHub 계정(또는 조직)에 설치합니다.
-3. 설치 시 **"Only select repositories"**를 선택한 뒤, 방금 만든 댓글용 저장소만 선택해 권한을 제한할 수 있습니다.
+3. 설치 시 <strong>"Only select repositories"</strong>를 선택한 뒤, 방금 만든 댓글용 저장소만 선택해 권한을 제한할 수 있습니다.
 
 ### 3단계: 스크립트 설정값 정하기
 

@@ -171,11 +171,11 @@ BENCHMARK_MAIN();
 
 ## 흔한 오개념
 
-**"포터블 SIMD 라이브러리는 항상 손으로 짠 intrinsics만큼 빠르다"**는 사실이 아닙니다. 추상화 계층이 얇더라도 컴파일러가 그 계층을 완전히 투명하게 최적화하지 못하는 경우가 있고, 특정 ISA에는 없는 연산(예: gather/scatter를 지원하지 않는 구형 NEON)을 라이브러리가 에뮬레이션으로 흉내 내면 수동 구현보다 느려질 수 있습니다. 성능이 핵심 요구사항이면 반드시 벤치마크로 확인해야 합니다.
+<strong>"포터블 SIMD 라이브러리는 항상 손으로 짠 intrinsics만큼 빠르다"</strong>는 사실이 아닙니다. 추상화 계층이 얇더라도 컴파일러가 그 계층을 완전히 투명하게 최적화하지 못하는 경우가 있고, 특정 ISA에는 없는 연산(예: gather/scatter를 지원하지 않는 구형 NEON)을 라이브러리가 에뮬레이션으로 흉내 내면 수동 구현보다 느려질 수 있습니다. 성능이 핵심 요구사항이면 반드시 벤치마크로 확인해야 합니다.
 
-**"Highway나 xsimd를 링크하기만 하면 자동으로 최적 아키텍처가 선택된다"**도 오해입니다. Highway의 런타임 디스패치는 `foreach_target.h` 재포함 구조와 `HWY_EXPORT`/`HWY_DYNAMIC_DISPATCH` 매크로를 프로젝트에 실제로 구성해야 동작하며, 아무 설정 없이 헤더만 포함하면 빌드 시점에 정해진 단일 타깃으로만 컴파일됩니다. xsimd도 마찬가지로 `xsimd::dispatch`를 명시적으로 써야 런타임 분기가 생깁니다.
+<strong>"Highway나 xsimd를 링크하기만 하면 자동으로 최적 아키텍처가 선택된다"</strong>도 오해입니다. Highway의 런타임 디스패치는 `foreach_target.h` 재포함 구조와 `HWY_EXPORT`/`HWY_DYNAMIC_DISPATCH` 매크로를 프로젝트에 실제로 구성해야 동작하며, 아무 설정 없이 헤더만 포함하면 빌드 시점에 정해진 단일 타깃으로만 컴파일됩니다. xsimd도 마찬가지로 `xsimd::dispatch`를 명시적으로 써야 런타임 분기가 생깁니다.
 
-**"Eigen은 범용 SIMD 라이브러리다"**도 흔한 오해입니다. Eigen의 벡터화는 선형대수 연산에 국한된 내부 최적화이며, 임의의 사용자 루프를 벡터화하는 범용 API를 제공하지 않습니다. 선형대수가 아닌 커스텀 알고리즘을 벡터화하려면 Highway나 xsimd, 또는 수동 intrinsics가 필요합니다.
+<strong>"Eigen은 범용 SIMD 라이브러리다"</strong>도 흔한 오해입니다. Eigen의 벡터화는 선형대수 연산에 국한된 내부 최적화이며, 임의의 사용자 루프를 벡터화하는 범용 API를 제공하지 않습니다. 선형대수가 아닌 커스텀 알고리즘을 벡터화하려면 Highway나 xsimd, 또는 수동 intrinsics가 필요합니다.
 
 ## 선택 흐름
 
@@ -218,7 +218,7 @@ flowchart TD
 
 **이전 장**: [ARM NEON 최적화](/post/extreme-optimization/arm-neon-simd-optimization/)
 
-**다음 장에서는** 2026년 3월 확정된 **C++26 표준 `std::simd`(P1928)**를 다룹니다. Highway나 xsimd 같은 서드파티 라이브러리와 달리 표준 라이브러리에 포함된 SIMD 추상화가 어떤 문법을 제공하고, 이 장에서 비교한 서드파티 라이브러리 대비 이식성·성숙도(GCC의 부분 구현 현황 포함)가 어떻게 다른지 이어서 살펴봅니다.
+**다음 장에서는** 2026년 3월 확정된 <strong>C++26 표준 `std::simd`(P1928)</strong>를 다룹니다. Highway나 xsimd 같은 서드파티 라이브러리와 달리 표준 라이브러리에 포함된 SIMD 추상화가 어떤 문법을 제공하고, 이 장에서 비교한 서드파티 라이브러리 대비 이식성·성숙도(GCC의 부분 구현 현황 포함)가 어떻게 다른지 이어서 살펴봅니다.
 
 → [C++26 std::simd(P1928): 표준 SIMD 추상화](/post/extreme-optimization/cpp26-std-simd-p1928-standard-abstraction/)
 

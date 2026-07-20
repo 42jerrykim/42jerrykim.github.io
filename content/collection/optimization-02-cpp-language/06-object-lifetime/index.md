@@ -107,11 +107,11 @@ tags:
 
 ## Copy Elision
 
-C++17부터 **prvalue(순수 우측값)**는 "임시를 물리적으로 만들지 않고 곧바로 최종 목적지에 초기화한다"는 의미론을 갖습니다. 함수가 prvalue를 반환할 때, 컴파일러는 **반드시** 그 반환값을 호출 측의 객체에 직접 구성하며, 이때 "복사/이동"은 개념적으로만 존재하고 실제로는 한 번의 구성만 일어납니다. 이를 **강제 copy elision**이라고 합니다.
+C++17부터 <strong>prvalue(순수 우측값)</strong>는 "임시를 물리적으로 만들지 않고 곧바로 최종 목적지에 초기화한다"는 의미론을 갖습니다. 함수가 prvalue를 반환할 때, 컴파일러는 **반드시** 그 반환값을 호출 측의 객체에 직접 구성하며, 이때 "복사/이동"은 개념적으로만 존재하고 실제로는 한 번의 구성만 일어납니다. 이를 **강제 copy elision**이라고 합니다.
 
 ## RVO / NRVO
 
-**RVO(Return Value Optimization)**는 함수가 임시 객체를 반환할 때(예: `return T(a, b);`) 그 임시를 호출자의 메모리 위치에 직접 만드는 최적화입니다. **NRVO(Named Return Value Optimization)**는 함수 내부에 **이름 있는** 로컬 객체를 두고 그걸 반환할 때(예: `T result; ... return result;`) 그 로컬 객체를 호출자의 반환값 위치에 직접 구성하는 최적화입니다.
+<strong>RVO(Return Value Optimization)</strong>는 함수가 임시 객체를 반환할 때(예: `return T(a, b);`) 그 임시를 호출자의 메모리 위치에 직접 만드는 최적화입니다. <strong>NRVO(Named Return Value Optimization)</strong>는 함수 내부에 **이름 있는** 로컬 객체를 두고 그걸 반환할 때(예: `T result; ... return result;`) 그 로컬 객체를 호출자의 반환값 위치에 직접 구성하는 최적화입니다.
 
 NRVO는 **분기**가 있거나 **여러 return 문**이 서로 다른 로컬 객체를 가리키면 적용되지 않을 수 있습니다. 반환 경로를 단순하게 유지하고, 가능하면 단일 `return result;` 형태로 두는 것이 NRVO 확률을 높입니다.
 

@@ -119,7 +119,7 @@ console.log("4: 동기 코드 끝");
 
 ## 에러 처리: try/catch를 놓치지 않는다
 
-`async`/`await`에서 에러 처리를 빠뜨리는 것은 흔한 실수입니다. `try`/`catch`가 없으면 실패한 Promise는 **처리되지 않은 거부(unhandled rejection)**가 되어, 실무에서는 이 에러가 조용히 사라지거나 콘솔에만 남고 사용자에게 아무 피드백도 가지 않는 경우가 많습니다.
+`async`/`await`에서 에러 처리를 빠뜨리는 것은 흔한 실수입니다. `try`/`catch`가 없으면 실패한 Promise는 <strong>처리되지 않은 거부(unhandled rejection)</strong>가 되어, 실무에서는 이 에러가 조용히 사라지거나 콘솔에만 남고 사용자에게 아무 피드백도 가지 않는 경우가 많습니다.
 
 ```javascript
 // 나쁜 예: try/catch 없이 await만 사용

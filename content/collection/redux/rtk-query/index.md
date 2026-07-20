@@ -150,7 +150,7 @@ sequenceDiagram
     RTK-->>UI: useGetTodosQuery()가 새 데이터로 자동 리렌더
 ```
 
-20편에서는 Todo를 추가한 뒤 화면을 갱신하려면, `todoAdded` 리듀서가 로컬 상태를 직접 업데이트하거나 `fetchTodos()`를 수동으로 재dispatch해야 했습니다. RTK Query는 **"이 데이터를 바꾸는 작업이 끝나면, 그 데이터에 의존하는 화면은 자동으로 최신 상태가 된다"**는 규칙을 태그 시스템으로 선언적으로 표현합니다.
+20편에서는 Todo를 추가한 뒤 화면을 갱신하려면, `todoAdded` 리듀서가 로컬 상태를 직접 업데이트하거나 `fetchTodos()`를 수동으로 재dispatch해야 했습니다. RTK Query는 <strong>"이 데이터를 바꾸는 작업이 끝나면, 그 데이터에 의존하는 화면은 자동으로 최신 상태가 된다"</strong>는 규칙을 태그 시스템으로 선언적으로 표현합니다.
 
 ## 폴링과 자동 재요청
 
@@ -204,7 +204,7 @@ function SearchButton() {
 
 ## RTK Query와 React Query/SWR의 관계
 
-RTK Query는 아이디어를 처음부터 새로 고안한 것이 아니라, 이미 널리 쓰이던 **React Query(TanStack Query)**와 **SWR** 같은 서버 상태 전용 라이브러리의 설계(캐싱, 자동 재요청, `stale-while-revalidate` 전략)에서 직접 영향을 받아 만들어졌습니다. "이미 React Query가 있는데 왜 RTK Query를 쓰는가"라는 질문에 대한 답은 **생태계 통합**에 있습니다.
+RTK Query는 아이디어를 처음부터 새로 고안한 것이 아니라, 이미 널리 쓰이던 <strong>React Query(TanStack Query)</strong>와 **SWR** 같은 서버 상태 전용 라이브러리의 설계(캐싱, 자동 재요청, `stale-while-revalidate` 전략)에서 직접 영향을 받아 만들어졌습니다. "이미 React Query가 있는데 왜 RTK Query를 쓰는가"라는 질문에 대한 답은 **생태계 통합**에 있습니다.
 
 | 구분 | RTK Query | React Query / SWR |
 |---|---|---|

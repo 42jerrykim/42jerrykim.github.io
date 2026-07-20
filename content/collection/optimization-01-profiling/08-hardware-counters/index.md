@@ -46,7 +46,7 @@ tags:
   - Multiplexing
 ---
 
-**하드웨어 성능 카운터(hardware performance counter)**는 CPU 안에 내장된 PMU(Performance Monitoring Unit)가 사이클·명령어·캐시 미스·분기 예측 실패 같은 마이크로아키텍처 이벤트를 실리콘 수준에서 세어 주는 레지스터입니다. 샘플링 프로파일러가 "코드의 어디가 느린가"를 알려준다면, 카운터는 **"왜 느린가"** — 파이프라인이 명령어를 못 받아서인지, 메모리를 기다려서인지, 예측이 틀려서인지 — 를 알려줍니다. µs 단위 지연을 다루는 엔지니어에게 카운터는 사실상 유일한 인과 진단 도구지만, 카운터 슬롯보다 많은 이벤트를 동시에 요청하면 커널이 시분할(멀티플렉싱)로 추정치를 만들어내기 때문에, 숫자를 읽는 법을 모르면 정밀해 보이는 오답을 얻게 됩니다. 이 장은 PMU의 물리적 구조, 핵심 지표의 해석 규칙, Top-down Microarchitecture Analysis(TMA) 방법론, 그리고 멀티플렉싱 함정의 회피법을 다룹니다.
+<strong>하드웨어 성능 카운터(hardware performance counter)</strong>는 CPU 안에 내장된 PMU(Performance Monitoring Unit)가 사이클·명령어·캐시 미스·분기 예측 실패 같은 마이크로아키텍처 이벤트를 실리콘 수준에서 세어 주는 레지스터입니다. 샘플링 프로파일러가 "코드의 어디가 느린가"를 알려준다면, 카운터는 **"왜 느린가"** — 파이프라인이 명령어를 못 받아서인지, 메모리를 기다려서인지, 예측이 틀려서인지 — 를 알려줍니다. µs 단위 지연을 다루는 엔지니어에게 카운터는 사실상 유일한 인과 진단 도구지만, 카운터 슬롯보다 많은 이벤트를 동시에 요청하면 커널이 시분할(멀티플렉싱)로 추정치를 만들어내기 때문에, 숫자를 읽는 법을 모르면 정밀해 보이는 오답을 얻게 됩니다. 이 장은 PMU의 물리적 구조, 핵심 지표의 해석 규칙, Top-down Microarchitecture Analysis(TMA) 방법론, 그리고 멀티플렉싱 함정의 회피법을 다룹니다.
 
 ## 이 장을 읽기 전에
 
@@ -74,7 +74,7 @@ tags:
 
 ## PMU의 구조: 고정 카운터와 범용 카운터
 
-PMU는 코어(하이퍼스레드) 단위로 두 종류의 카운터를 가집니다. **고정 카운터(fixed counter)**는 세는 대상이 하드와이어된 카운터로, 통상 "리타이어된 명령어 수", "코어 사이클", "레퍼런스 사이클" 3종이 기본이고 최신 Intel 코어(Ice Lake 이후)에는 TMA 최상위 분해를 위한 슬롯 카운터가 추가되었습니다. **범용 카운터(general-purpose/programmable counter)**는 이벤트 셀렉트 레지스터에 이벤트 코드와 umask를 써 넣어 무엇을 셀지 프로그래밍하는 카운터로, 세대에 따라 스레드당 4~8개 수준이며 SMT(하이퍼스레딩)를 켜면 물리 코어의 카운터를 두 스레드가 나눠 쓰는 구현도 있습니다. 정확한 개수·구성은 CPU 세대마다 다르므로 구현 정의로 취급해야 합니다.
+PMU는 코어(하이퍼스레드) 단위로 두 종류의 카운터를 가집니다. <strong>고정 카운터(fixed counter)</strong>는 세는 대상이 하드와이어된 카운터로, 통상 "리타이어된 명령어 수", "코어 사이클", "레퍼런스 사이클" 3종이 기본이고 최신 Intel 코어(Ice Lake 이후)에는 TMA 최상위 분해를 위한 슬롯 카운터가 추가되었습니다. <strong>범용 카운터(general-purpose/programmable counter)</strong>는 이벤트 셀렉트 레지스터에 이벤트 코드와 umask를 써 넣어 무엇을 셀지 프로그래밍하는 카운터로, 세대에 따라 스레드당 4~8개 수준이며 SMT(하이퍼스레딩)를 켜면 물리 코어의 카운터를 두 스레드가 나눠 쓰는 구현도 있습니다. 정확한 개수·구성은 CPU 세대마다 다르므로 구현 정의로 취급해야 합니다.
 
 perf 같은 도구가 `cache-misses` 같은 일반 이름을 보여주지만, 그 밑에는 항상 벤더 문서의 이벤트 코드가 있습니다. 예컨대 Intel Skylake 계열에서 `MEM_LOAD_RETIRED.L1_MISS`는 이벤트 0xD1, umask 0x08이며, perf에서는 다음처럼 심볼 이름 또는 raw 인코딩으로 지정할 수 있습니다.
 
@@ -134,7 +134,7 @@ int main(int argc, char** argv) {
 
 ## IPC·캐시 미스·분기 예측 실패 읽는 법
 
-**IPC(Instructions Per Cycle)**는 사이클당 리타이어된 명령어 수로, `instructions / cycles`로 계산됩니다. 최신 x86 코어의 이론적 상한은 디코드·리타이어 폭에 따라 4~8 수준이지만(세대별 상이), 실무 해석은 절대값보다 방향입니다. 의존 체인이 짧고 캐시에 잘 맞는 코드는 2~4, 메모리 지연에 갇힌 코드는 0.5 미만으로 떨어지는 경향이 있습니다. 위 벤치마크를 `perf stat` 기본 이벤트로 돌려 보면 대비가 극명합니다.
+<strong>IPC(Instructions Per Cycle)</strong>는 사이클당 리타이어된 명령어 수로, `instructions / cycles`로 계산됩니다. 최신 x86 코어의 이론적 상한은 디코드·리타이어 폭에 따라 4~8 수준이지만(세대별 상이), 실무 해석은 절대값보다 방향입니다. 의존 체인이 짧고 캐시에 잘 맞는 코드는 2~4, 메모리 지연에 갇힌 코드는 0.5 미만으로 떨어지는 경향이 있습니다. 위 벤치마크를 `perf stat` 기본 이벤트로 돌려 보면 대비가 극명합니다.
 
 ```bash
 perf stat -e cycles,instructions,branches,branch-misses,LLC-loads,LLC-load-misses ./pmu_bench      # 선형
@@ -202,7 +202,7 @@ BAD            Bad_Speculation                      % Slots    2.2
 
 ## 멀티플렉싱: 카운터보다 이벤트가 많을 때
 
-TMA 레벨 2~3까지 내려가면 필요한 이벤트가 수십 개인데 범용 카운터는 스레드당 4~8개뿐입니다. perf_events는 이 간극을 **멀티플렉싱(multiplexing)**으로 메웁니다. 커널이 이벤트 집합을 타이머 틱 주기로 돌아가며 카운터에 태우고, 각 이벤트에 대해 "활성화되어 있던 시간(time_enabled)"과 "실제로 카운터에 올라 있던 시간(time_running)"을 기록한 뒤, 최종값을 `측정값 × time_enabled / time_running`으로 외삽합니다([perf_event_open(2)](https://man7.org/linux/man-pages/man2/perf_event_open.2.html)의 PERF_FORMAT_TOTAL_TIME_ENABLED/RUNNING). `perf stat` 출력의 각 행 끝에 붙는 백분율이 바로 `time_running / time_enabled`, 즉 그 이벤트가 실제로 측정된 시간 비율입니다.
+TMA 레벨 2~3까지 내려가면 필요한 이벤트가 수십 개인데 범용 카운터는 스레드당 4~8개뿐입니다. perf_events는 이 간극을 <strong>멀티플렉싱(multiplexing)</strong>으로 메웁니다. 커널이 이벤트 집합을 타이머 틱 주기로 돌아가며 카운터에 태우고, 각 이벤트에 대해 "활성화되어 있던 시간(time_enabled)"과 "실제로 카운터에 올라 있던 시간(time_running)"을 기록한 뒤, 최종값을 `측정값 × time_enabled / time_running`으로 외삽합니다([perf_event_open(2)](https://man7.org/linux/man-pages/man2/perf_event_open.2.html)의 PERF_FORMAT_TOTAL_TIME_ENABLED/RUNNING). `perf stat` 출력의 각 행 끝에 붙는 백분율이 바로 `time_running / time_enabled`, 즉 그 이벤트가 실제로 측정된 시간 비율입니다.
 
 ```bash
 # 카운터 슬롯을 초과하는 10개 이벤트 요청 → 멀티플렉싱 발생

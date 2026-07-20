@@ -69,15 +69,15 @@ LLM의 추론은 크게 두 단계로 나뉩니다. **Prefill**은 사용자가 
 
 ## GQA — Key/Value 헤드 수를 줄이기
 
-05장에서 다룬 Multi-head Attention은 Query, Key, Value 모두 헤드 수만큼 독립적으로 존재합니다. 헤드 수가 많을수록 KV Cache에 저장해야 할 Key·Value의 양도 그만큼 늘어납니다. **GQA(Grouped Query Attention)**는 Query는 기존처럼 헤드마다 독립적으로 유지하되, 여러 Query 헤드가 하나의 Key·Value 헤드를 공유하도록 그룹을 묶습니다.
+05장에서 다룬 Multi-head Attention은 Query, Key, Value 모두 헤드 수만큼 독립적으로 존재합니다. 헤드 수가 많을수록 KV Cache에 저장해야 할 Key·Value의 양도 그만큼 늘어납니다. <strong>GQA(Grouped Query Attention)</strong>는 Query는 기존처럼 헤드마다 독립적으로 유지하되, 여러 Query 헤드가 하나의 Key·Value 헤드를 공유하도록 그룹을 묶습니다.
 
 > Joshua Ainslie, James Lee-Thorp, Michiel de Jong 외, "GQA: Training Generalized Multi-Head Transformer Models from Multi-Head Checkpoints", *arXiv:2305.13245* (2023)
 
-예를 들어 Query 헤드가 32개이고 이를 4개씩 묶어 8개의 그룹으로 만들면, Key·Value 헤드는 32개가 아니라 8개만 있으면 됩니다. 극단적으로 모든 Query 헤드가 Key·Value 헤드 하나를 공유하면 **Multi-Query Attention(MQA)**이 되는데, GQA는 이 MQA(캐시는 가장 작지만 품질 손실이 큼)와 기존 Multi-head Attention(품질은 좋지만 캐시가 큼) 사이의 절충안입니다.
+예를 들어 Query 헤드가 32개이고 이를 4개씩 묶어 8개의 그룹으로 만들면, Key·Value 헤드는 32개가 아니라 8개만 있으면 됩니다. 극단적으로 모든 Query 헤드가 Key·Value 헤드 하나를 공유하면 <strong>Multi-Query Attention(MQA)</strong>이 되는데, GQA는 이 MQA(캐시는 가장 작지만 품질 손실이 큼)와 기존 Multi-head Attention(품질은 좋지만 캐시가 큼) 사이의 절충안입니다.
 
 ## MLA — Key/Value를 저차원으로 압축하기
 
-**MLA(Multi-head Latent Attention)**는 헤드 수를 줄이는 GQA와 다른 접근을 씁니다. 각 토큰의 Key·Value를 그대로 캐싱하는 대신, 07장에서 다룬 잠재 공간(Latent Space) 개념처럼 훨씬 작은 차원의 잠재 벡터로 압축해 저장하고, 실제 Attention을 계산할 때만 원래 차원으로 복원합니다.
+<strong>MLA(Multi-head Latent Attention)</strong>는 헤드 수를 줄이는 GQA와 다른 접근을 씁니다. 각 토큰의 Key·Value를 그대로 캐싱하는 대신, 07장에서 다룬 잠재 공간(Latent Space) 개념처럼 훨씬 작은 차원의 잠재 벡터로 압축해 저장하고, 실제 Attention을 계산할 때만 원래 차원으로 복원합니다.
 
 > DeepSeek-AI, "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model", *arXiv:2405.04434* (2024)
 

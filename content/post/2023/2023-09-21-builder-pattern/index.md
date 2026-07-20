@@ -249,7 +249,7 @@ Lombok의 `@Builder`는 Effective Java 스타일의 보일러플레이트를 줄
 선택적 속성이 많은 객체를 가독성 있게 만들고, 불변 객체를 쉽게 구성하며, 구성 로직을 한 곳(Builder)에 모아 유지보수를 쉽게 하기 위해서입니다.
 
 **Q: GoF 빌더와 Effective Java 스타일 빌더의 차이는?**  
-GoF는 Director가 Builder를 사용해 **동일 구성 과정으로 서로 다른 표현(다른 ConcreteBuilder)**을 만드는 것에 초점을 둡니다. Effective Java 스타일은 **매개변수가 많은 생성자 대신** 빌더로 깔끔하고 안전한 객체 생성에 초점을 둡니다.
+GoF는 Director가 Builder를 사용해 <strong>동일 구성 과정으로 서로 다른 표현(다른 ConcreteBuilder)</strong>을 만드는 것에 초점을 둡니다. Effective Java 스타일은 **매개변수가 많은 생성자 대신** 빌더로 깔끔하고 안전한 객체 생성에 초점을 둡니다.
 
 **Q: Retrofit·OkHttp 말고 다른 예는?**  
 `StringBuilder`, `UriComponentsBuilder`(Spring), `Stream.Builder` 등 많은 선택 설정이 필요한 클래스에서 빌더 형태의 API를 사용합니다.

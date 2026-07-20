@@ -70,7 +70,7 @@ function App() {
 
 ## connect(): 컴포넌트를 Store에 연결하는 고차 함수
 
-`connect()`는 일반 React 컴포넌트를 받아, Store의 상태와 dispatch에 연결된 **새 컴포넌트**를 반환하는 **고차 컴포넌트(Higher-Order Component)**입니다.
+`connect()`는 일반 React 컴포넌트를 받아, Store의 상태와 dispatch에 연결된 **새 컴포넌트**를 반환하는 <strong>고차 컴포넌트(Higher-Order Component)</strong>입니다.
 
 ```jsx
 import { connect } from "react-redux";

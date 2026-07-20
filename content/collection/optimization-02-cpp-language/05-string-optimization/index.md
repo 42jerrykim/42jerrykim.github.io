@@ -98,7 +98,7 @@ tags:
 
 ## SSO와 string_view 도입 (역사·배경)
 
-**SSO(Small String Optimization)**는 표준이 요구하는 것이 아니라 구현체가 선택한 최적화로, 여러 표준 라이브러리(libstdc++, libc++, MSVC STL)에서 오래 전부터 사용되어 왔습니다. 짧은 문자열을 객체 내부에 넣어 힙 할당을 피하는 방식이며, 구현마다 임계값(보통 15~24바이트)이 다릅니다. **std::string_view**는 C++17에서 표준에 추가되었고, "문자열을 소유하지 않고 참조만 하는" 수요를 표준화한 타입입니다.
+<strong>SSO(Small String Optimization)</strong>는 표준이 요구하는 것이 아니라 구현체가 선택한 최적화로, 여러 표준 라이브러리(libstdc++, libc++, MSVC STL)에서 오래 전부터 사용되어 왔습니다. 짧은 문자열을 객체 내부에 넣어 힙 할당을 피하는 방식이며, 구현마다 임계값(보통 15~24바이트)이 다릅니다. **std::string_view**는 C++17에서 표준에 추가되었고, "문자열을 소유하지 않고 참조만 하는" 수요를 표준화한 타입입니다.
 
 > "The class template basic_string_view describes an object that can refer to a constant contiguous sequence of char-like objects with the first element of the sequence at position zero." — [cppreference: std::basic_string_view](https://en.cppreference.com/w/cpp/string/basic_string_view) 문서 (ISO C++ 표준 기반). 뷰는 "참조만" 하므로 수명 관리가 호출자·설계자의 책임입니다.
 

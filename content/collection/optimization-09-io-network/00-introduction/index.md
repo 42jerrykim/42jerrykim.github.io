@@ -119,7 +119,7 @@ tags:
 
 **Phase A — 직관·패턴 (챕터 01~03)** I/O 지연의 기본 그림과 동기/비동기·멀티플렉싱 기초 없이 고급 API만 쓰면 디버깅이 어렵습니다.
 
-**Phase B — 고급 I/O (챕터 04~08, 11~13)** io_uring **심화(본 트랙)**는 Tr.06 개요를 전제로 합니다. zero-copy·mmap·O_DIRECT는 캐시 일관성·이식성 이슈가 큽니다.
+**Phase B — 고급 I/O (챕터 04~08, 11~13)** io_uring <strong>심화(본 트랙)</strong>는 Tr.06 개요를 전제로 합니다. zero-copy·mmap·O_DIRECT는 캐시 일관성·이식성 이슈가 큽니다.
 
 **Phase C — 스토리지·DB (챕터 09~10, 14~15, 17)** 파일시스템·NVMe·WAL/fsync·핫패스 로깅 비용은 **심화**입니다. Tr.04 메모리·Tr.11 용량 계획과 연결됩니다.
 
@@ -157,7 +157,7 @@ Direct I/O·저널링·스케줄러는 환경별로 튜닝 여지가 큽니다. 
 
 ## 시리즈 전체 로드맵
 
-12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**를 참고하세요.
+12개 트랙의 권장 순서·심화 진입 조건은 <strong>[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)</strong>를 참고하세요.
 
 ## 지금 바로 이어 읽을 곳
 

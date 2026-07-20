@@ -111,7 +111,7 @@ void load_store_demo(const float* unaligned_src, float* unaligned_dst) {
 
 ## 셔플·퍼뮤트: 레인 재배치
 
-**셔플(shuffle)**과 **퍼뮤트(permute)**는 레지스터 안의 원소(레인) 순서를 바꾸는 연산입니다. 두 이름의 경계는 명령어 집합마다 다소 다르지만, 실전에서 중요한 구분은 "제어값이 컴파일 타임 상수(immediate)인가, 런타임 값(변수)인가"입니다. `_mm_shuffle_ps(a, b, imm8)`과 `_mm256_permute4x64_epi64(v, imm8)`은 `imm8` 인자가 **컴파일 타임 상수**여야 하며, 이 값이 명령어 자체에 인코딩되어 CPU가 실행 시점에 매 호출마다 재해석할 필요가 없습니다. 반대로 `_mm256_permutevar8x32_ps`처럼 `var`가 붙은 계열은 제어값을 레지스터로 받아 런타임에 달라지는 순서를 표현할 수 있습니다.
+<strong>셔플(shuffle)</strong>과 <strong>퍼뮤트(permute)</strong>는 레지스터 안의 원소(레인) 순서를 바꾸는 연산입니다. 두 이름의 경계는 명령어 집합마다 다소 다르지만, 실전에서 중요한 구분은 "제어값이 컴파일 타임 상수(immediate)인가, 런타임 값(변수)인가"입니다. `_mm_shuffle_ps(a, b, imm8)`과 `_mm256_permute4x64_epi64(v, imm8)`은 `imm8` 인자가 **컴파일 타임 상수**여야 하며, 이 값이 명령어 자체에 인코딩되어 CPU가 실행 시점에 매 호출마다 재해석할 필요가 없습니다. 반대로 `_mm256_permutevar8x32_ps`처럼 `var`가 붙은 계열은 제어값을 레지스터로 받아 런타임에 달라지는 순서를 표현할 수 있습니다.
 
 ```cpp
 #include <immintrin.h>

@@ -42,7 +42,7 @@ tags:
 slug: cpp-condition-variable-monitor-object-guarded-suspension
 ---
 
-03장은 **능동적으로 상태를 확인(spinning)하는 대신, 다른 스레드가 신호를 보낼 때까지 안전하게 대기**하는 패턴들을 다룬다. 이전 장의 락은 "공유 상태를 보호하는 것"에 집중했다면, 이 장의 condition variable은 **"조건이 만족될 때까지 대기"**의 효율성을 높인다.
+03장은 **능동적으로 상태를 확인(spinning)하는 대신, 다른 스레드가 신호를 보낼 때까지 안전하게 대기**하는 패턴들을 다룬다. 이전 장의 락은 "공유 상태를 보호하는 것"에 집중했다면, 이 장의 condition variable은 <strong>"조건이 만족될 때까지 대기"</strong>의 효율성을 높인다.
 
 ## 이 장을 읽기 전에
 
@@ -491,7 +491,7 @@ timeout 5 ./bq && echo OK || echo "hang or race detected"
 
 ## 다음 장에서는
 
-04장 **「데이터 흐름(Data Flow)」**에서는 Producer-Consumer의 심화 패턴, Bounded Buffer와 backpressure, 그리고 다중 프로듀서/컨슈머 구조를 다룬다.
+04장 <strong>「데이터 흐름(Data Flow)」</strong>에서는 Producer-Consumer의 심화 패턴, Bounded Buffer와 backpressure, 그리고 다중 프로듀서/컨슈머 구조를 다룬다.
 
 ## 참고 및 출처
 

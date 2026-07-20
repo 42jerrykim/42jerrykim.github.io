@@ -204,7 +204,7 @@ graph TB
 
 동심원의 4개 계층은 각각 명확히 구분된 책임을 가지며, 아래로 갈수록(바깥쪽일수록) 변경 빈도가 높고 위로 갈수록(안쪽일수록) 안정적이다.
 
-**엔티티(Entities)**는 가장 핵심적인 비즈니스 규칙을 캡슐화한다. 특정 애플리케이션이 아닌 **기업 전체**에 적용되는 규칙이며, 외부 변경에 가장 영향을 적게 받는다. **유스케이스(Use Cases)**는 애플리케이션 고유의 비즈니스 규칙으로, 시스템의 **행위**를 정의하고 엔티티를 조작해 목표를 달성한다. **인터페이스 어댑터(Interface Adapters)**는 Controller·Presenter·Gateway로 외부와 내부 사이의 데이터 변환을 담당하며, 프레임워크와 비즈니스 로직을 연결한다. 가장 바깥쪽인 **프레임워크와 드라이버(Frameworks & Drivers)**는 Web·Database·UI Framework 등 **교체 가능한 세부사항**이다.
+<strong>엔티티(Entities)</strong>는 가장 핵심적인 비즈니스 규칙을 캡슐화한다. 특정 애플리케이션이 아닌 **기업 전체**에 적용되는 규칙이며, 외부 변경에 가장 영향을 적게 받는다. <strong>유스케이스(Use Cases)</strong>는 애플리케이션 고유의 비즈니스 규칙으로, 시스템의 **행위**를 정의하고 엔티티를 조작해 목표를 달성한다. <strong>인터페이스 어댑터(Interface Adapters)</strong>는 Controller·Presenter·Gateway로 외부와 내부 사이의 데이터 변환을 담당하며, 프레임워크와 비즈니스 로직을 연결한다. 가장 바깥쪽인 <strong>프레임워크와 드라이버(Frameworks & Drivers)</strong>는 Web·Database·UI Framework 등 **교체 가능한 세부사항**이다.
 
 ## 흔한 오해
 

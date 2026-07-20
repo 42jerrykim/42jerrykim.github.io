@@ -37,7 +37,7 @@ tags:
   - Error-Handling(에러처리)
 ---
 
-**LSP(Liskov Substitution Principle)**는 Barbara Liskov가 1987년 OOPSLA 키노트에서 처음 제시하고, 1994년 지넷 윙(Jeannette Wing)과의 공저 논문("A Behavioral Notion of Subtyping")에서 형식적으로 정식화한 원칙이다. 처음에는 상속에 관한 원칙으로 보이지만, 실제로는 인터페이스와 구현에 관한 더 넓은 설계 원칙이다.
+<strong>LSP(Liskov Substitution Principle)</strong>는 Barbara Liskov가 1987년 OOPSLA 키노트에서 처음 제시하고, 1994년 지넷 윙(Jeannette Wing)과의 공저 논문("A Behavioral Notion of Subtyping")에서 형식적으로 정식화한 원칙이다. 처음에는 상속에 관한 원칙으로 보이지만, 실제로는 인터페이스와 구현에 관한 더 넓은 설계 원칙이다.
 
 ## LSP의 정의
 

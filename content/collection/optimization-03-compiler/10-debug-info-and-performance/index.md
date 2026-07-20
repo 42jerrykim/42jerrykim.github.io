@@ -59,7 +59,7 @@ tags:
 
 ## 디버그 심볼이 코드 생성에 미치는 영향
 
-일반적으로 **디버그 정보만 추가**하는 옵션(`-g`, `-g3` 등)은 **생성되는 기계어(코드 생성)**를 바꾸지 않습니다. 컴파일러는 소스 라인·변수·타입 정보를 별도 섹션(.debug_*, DWARF 등)에 넣을 뿐, 최적화된 코드는 -g 없이 빌드한 것과 동일하게 나옵니다. 따라서 **릴리즈 최적화(-O2/-O3)와 -g를 함께** 써도 실행 성능은 동일하다고 보면 됩니다.
+일반적으로 **디버그 정보만 추가**하는 옵션(`-g`, `-g3` 등)은 <strong>생성되는 기계어(코드 생성)</strong>를 바꾸지 않습니다. 컴파일러는 소스 라인·변수·타입 정보를 별도 섹션(.debug_*, DWARF 등)에 넣을 뿐, 최적화된 코드는 -g 없이 빌드한 것과 동일하게 나옵니다. 따라서 **릴리즈 최적화(-O2/-O3)와 -g를 함께** 써도 실행 성능은 동일하다고 보면 됩니다.
 
 > "DWARF is a debugging information file format used by many compilers and debuggers to support source level debugging." — [DWARF Debugging Standard](https://dwarfstd.org/)
 

@@ -111,11 +111,11 @@ flowchart LR
 
 ## 흔한 오개념
 
-**"AI 리뷰어가 사람 리뷰를 대체한다"**는 흔한 오해입니다. Claude Code Review의 체크는 설계상 항상 neutral로 끝나 머지를 막지 않으며, 기존 리뷰 워크플로가 그대로 유지되는 것을 전제로 설계되었습니다. AI 리뷰어의 코멘트는 사람 리뷰어가 무엇을 더 깊이 볼지 우선순위를 정하는 데 쓰는 입력이지, 승인 권한을 넘겨받는 존재가 아닙니다.
+<strong>"AI 리뷰어가 사람 리뷰를 대체한다"</strong>는 흔한 오해입니다. Claude Code Review의 체크는 설계상 항상 neutral로 끝나 머지를 막지 않으며, 기존 리뷰 워크플로가 그대로 유지되는 것을 전제로 설계되었습니다. AI 리뷰어의 코멘트는 사람 리뷰어가 무엇을 더 깊이 볼지 우선순위를 정하는 데 쓰는 입력이지, 승인 권한을 넘겨받는 존재가 아닙니다.
 
-**"정적분석을 통과했으니 성능 문제는 없다"**도 흔한 오해입니다. 정적분석은 규칙으로 표현 가능한 패턴만 잡으며, 앞서 본 `build_key` 예시처럼 문법적으로 멀쩡한 코드가 핫패스 맥락에서만 문제가 되는 경우는 규칙 하나로 걸러지지 않습니다. 실행 시점의 실제 비용은 결국 [Tr.01 프로파일링](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)과 [통계적 벤치마킹](/post/profiling-analysis/statistical-benchmarking/)으로 측정해야 확인됩니다.
+<strong>"정적분석을 통과했으니 성능 문제는 없다"</strong>도 흔한 오해입니다. 정적분석은 규칙으로 표현 가능한 패턴만 잡으며, 앞서 본 `build_key` 예시처럼 문법적으로 멀쩡한 코드가 핫패스 맥락에서만 문제가 되는 경우는 규칙 하나로 걸러지지 않습니다. 실행 시점의 실제 비용은 결국 [Tr.01 프로파일링](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)과 [통계적 벤치마킹](/post/profiling-analysis/statistical-benchmarking/)으로 측정해야 확인됩니다.
 
-**"성능 관련 PR은 전부 벤치마크 수치를 첨부해야 한다"**는 규칙도 그대로 적용하면 리뷰 피로를 만듭니다. 모든 변경이 같은 리스크를 지지 않으므로, [03장에서 다룬 최적화 중단 기준](/post/design-decisions/when-to-stop-optimizing-cost-effect-risk/)과 마찬가지로 핫패스 여부·호출 빈도로 리스크 등급을 나누고, 낮은 등급에는 실측 요구를 면제하는 편이 지속 가능합니다.
+<strong>"성능 관련 PR은 전부 벤치마크 수치를 첨부해야 한다"</strong>는 규칙도 그대로 적용하면 리뷰 피로를 만듭니다. 모든 변경이 같은 리스크를 지지 않으므로, [03장에서 다룬 최적화 중단 기준](/post/design-decisions/when-to-stop-optimizing-cost-effect-risk/)과 마찬가지로 핫패스 여부·호출 빈도로 리스크 등급을 나누고, 낮은 등급에는 실측 요구를 면제하는 편이 지속 가능합니다.
 
 ## 판단 기준: 리뷰 참여자별 역할 분담
 

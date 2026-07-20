@@ -220,11 +220,11 @@ iodepth=32
 
 ## 흔한 오개념
 
-**"O_DIRECT는 항상 더 빠르다"**는 가장 널리 퍼진 오해입니다. O_DIRECT는 캐시를 "우회"할 뿐 데이터 접근을 빠르게 만드는 마법이 아니며, readahead와 캐시 재사용이라는 두 가지 강력한 가속 수단을 함께 포기합니다. 자체 캐시가 없는 애플리케이션이 반복 접근이 많은 워크로드에 O_DIRECT를 켜면 오히려 느려지는 경우가 흔합니다.
+<strong>"O_DIRECT는 항상 더 빠르다"</strong>는 가장 널리 퍼진 오해입니다. O_DIRECT는 캐시를 "우회"할 뿐 데이터 접근을 빠르게 만드는 마법이 아니며, readahead와 캐시 재사용이라는 두 가지 강력한 가속 수단을 함께 포기합니다. 자체 캐시가 없는 애플리케이션이 반복 접근이 많은 워크로드에 O_DIRECT를 켜면 오히려 느려지는 경우가 흔합니다.
 
-**"O_DIRECT만 켜면 내구성(durability)이 보장된다"**도 흔한 착각입니다. O_DIRECT는 페이지 캐시를 우회할 뿐이며, 디바이스 컨트롤러의 휘발성 쓰기 캐시까지 우회한다는 보장은 없습니다. `write()`가 반환됐다고 해서 데이터가 물리 매체에 안전하게 기록됐다는 뜻은 아니므로, 내구성이 필요하면 `O_DSYNC`나 명시적 `fsync`/`fdatasync`, 혹은 FUA(Force Unit Access) 계열의 메커니즘을 함께 써야 합니다. 이 조합은 트랜잭션 로그의 fsync 전략을 다루는 [Database I/O 패턴](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)에서 더 깊이 다룹니다.
+<strong>"O_DIRECT만 켜면 내구성(durability)이 보장된다"</strong>도 흔한 착각입니다. O_DIRECT는 페이지 캐시를 우회할 뿐이며, 디바이스 컨트롤러의 휘발성 쓰기 캐시까지 우회한다는 보장은 없습니다. `write()`가 반환됐다고 해서 데이터가 물리 매체에 안전하게 기록됐다는 뜻은 아니므로, 내구성이 필요하면 `O_DSYNC`나 명시적 `fsync`/`fdatasync`, 혹은 FUA(Force Unit Access) 계열의 메커니즘을 함께 써야 합니다. 이 조합은 트랜잭션 로그의 fsync 전략을 다루는 [Database I/O 패턴](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)에서 더 깊이 다룹니다.
 
-**"정렬 단위는 512바이트로 고정"**이라는 가정도 위험합니다. Advanced Format 4Kn 디바이스, 저널링·압축·암호화가 켜진 파일시스템, 커널 버전(6.0 전후의 완화)에 따라 요구되는 정렬 단위가 달라집니다. 상수를 하드코딩하지 말고 `STATX_DIOALIGN`(Linux) 또는 `IOCTL_STORAGE_QUERY_PROPERTY`(Windows)로 실행 시점에 조회하는 편이 안전합니다.
+<strong>"정렬 단위는 512바이트로 고정"</strong>이라는 가정도 위험합니다. Advanced Format 4Kn 디바이스, 저널링·압축·암호화가 켜진 파일시스템, 커널 버전(6.0 전후의 완화)에 따라 요구되는 정렬 단위가 달라집니다. 상수를 하드코딩하지 말고 `STATX_DIOALIGN`(Linux) 또는 `IOCTL_STORAGE_QUERY_PROPERTY`(Windows)로 실행 시점에 조회하는 편이 안전합니다.
 
 ## 판단 기준
 

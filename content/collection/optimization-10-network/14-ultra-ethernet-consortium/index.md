@@ -45,7 +45,7 @@ tags:
   - LLR
 ---
 
-**Ultra Ethernet Consortium(UEC)**은 2023년 7월 리눅스 파운데이션 산하에 결성된 산업 컨소시엄이며, 그 산출물인 **UEC Specification 1.0**(2025년 6월 공개)은 표준 이더넷 물리 계층 위에 InfiniBand급 저지연·무손실 전송을 얹는 것을 목표로 하는 프로토콜 스택입니다. AI 학습 클러스터가 수만 개 GPU 규모로 커지면서, 기존 RoCEv2가 의존하는 PFC(Priority Flow Control)의 congestion spreading·head-of-line blocking 문제와 InfiniBand의 벤더 종속성이 동시에 병목으로 떠올랐고, 이 장은 UEC가 이 두 문제를 어떤 메커니즘으로 풀려고 하는지, 그리고 지금 시점에 이 스펙을 어떻게 판단해야 하는지를 다룹니다.
+<strong>Ultra Ethernet Consortium(UEC)</strong>은 2023년 7월 리눅스 파운데이션 산하에 결성된 산업 컨소시엄이며, 그 산출물인 **UEC Specification 1.0**(2025년 6월 공개)은 표준 이더넷 물리 계층 위에 InfiniBand급 저지연·무손실 전송을 얹는 것을 목표로 하는 프로토콜 스택입니다. AI 학습 클러스터가 수만 개 GPU 규모로 커지면서, 기존 RoCEv2가 의존하는 PFC(Priority Flow Control)의 congestion spreading·head-of-line blocking 문제와 InfiniBand의 벤더 종속성이 동시에 병목으로 떠올랐고, 이 장은 UEC가 이 두 문제를 어떤 메커니즘으로 풀려고 하는지, 그리고 지금 시점에 이 스펙을 어떻게 판단해야 하는지를 다룹니다.
 
 ## 이 장을 읽기 전에
 
@@ -71,7 +71,7 @@ UEC는 2023년 7월 19일 AMD, Arista, Broadcom, Cisco, Eviden(Atos), HPE, Intel
 
 ## UEC 스펙 1.0의 4계층 구조
 
-UEC Specification 1.0은 창립 당시의 워킹 그룹 구조를 그대로 반영해 네 계층으로 나뉩니다. 물리 계층은 QSFP-DD·OSFP 등 기존 이더넷 광학 표준을 그대로 채택해 하드웨어 생태계와의 호환성을 유지합니다. 링크 계층은 이 장의 핵심인 **LLR(Link Level Retry)**과 **CBFC(Credit-Based Flow Control)**를 도입해 PFC 없이도 무손실 전송을 가능하게 합니다. 전송 계층은 새로운 프로토콜인 **UET(Ultra Ethernet Transport)**로, 커넥션리스 구조와 패킷 단위 멀티패스(packet spraying), 그리고 혼잡 제어·손실 감지 서브시스템을 포함합니다. 소프트웨어 계층은 libfabric 계열의 개방형 API를 통해 상위 애플리케이션(NCCL, MPI 등)이 벤더에 종속되지 않고 UET를 사용할 수 있게 합니다.
+UEC Specification 1.0은 창립 당시의 워킹 그룹 구조를 그대로 반영해 네 계층으로 나뉩니다. 물리 계층은 QSFP-DD·OSFP 등 기존 이더넷 광학 표준을 그대로 채택해 하드웨어 생태계와의 호환성을 유지합니다. 링크 계층은 이 장의 핵심인 <strong>LLR(Link Level Retry)</strong>과 <strong>CBFC(Credit-Based Flow Control)</strong>를 도입해 PFC 없이도 무손실 전송을 가능하게 합니다. 전송 계층은 새로운 프로토콜인 <strong>UET(Ultra Ethernet Transport)</strong>로, 커넥션리스 구조와 패킷 단위 멀티패스(packet spraying), 그리고 혼잡 제어·손실 감지 서브시스템을 포함합니다. 소프트웨어 계층은 libfabric 계열의 개방형 API를 통해 상위 애플리케이션(NCCL, MPI 등)이 벤더에 종속되지 않고 UET를 사용할 수 있게 합니다.
 
 ```mermaid
 flowchart TD
@@ -88,9 +88,9 @@ flowchart TD
 
 전통적인 PFC는 수신 버퍼가 임계치에 도달하면 상류 스위치에 pause 프레임을 보내 트래픽 전체를 멈추는 방식입니다. 이 방식은 RTT와 MTU를 감안한 헤드룸 버퍼를 요구하고, 하나의 흐름이 만든 정체가 pause 프레임을 통해 관련 없는 다른 흐름까지 막아버리는 head-of-line blocking으로 이어지기 쉽습니다. UEC는 이 문제를 링크 계층에서 두 가지 메커니즘으로 대체합니다.
 
-**LLR(Link Level Retry)**은 링크 단위에서 지역적으로 오류를 복구하는 재전송 프로토콜입니다. 송신 측은 프레임을 시퀀스 번호와 함께 리플레이 버퍼(replay buffer)에 저장해 두고, 수신 측은 마이크로초 단위의 왕복 시간 안에 ACK 또는 NACK으로 응답합니다. NACK을 받으면 go-back-N 방식으로 해당 시퀀스 이후를 재전송해 tail loss를 방지합니다. 이 과정은 링크 하나 안에서 끝나므로 상위 계층이나 다른 링크로 정체가 전파되지 않습니다.
+<strong>LLR(Link Level Retry)</strong>은 링크 단위에서 지역적으로 오류를 복구하는 재전송 프로토콜입니다. 송신 측은 프레임을 시퀀스 번호와 함께 리플레이 버퍼(replay buffer)에 저장해 두고, 수신 측은 마이크로초 단위의 왕복 시간 안에 ACK 또는 NACK으로 응답합니다. NACK을 받으면 go-back-N 방식으로 해당 시퀀스 이후를 재전송해 tail loss를 방지합니다. 이 과정은 링크 하나 안에서 끝나므로 상위 계층이나 다른 링크로 정체가 전파되지 않습니다.
 
-**CBFC(Credit-Based Flow Control)**는 수신 측이 사용 가능한 버퍼 공간만큼 신용(credit)을 미리 발급하고, 송신 측은 그 신용 범위 안에서만 전송하는 능동적 흐름 제어입니다. 송신·수신 양측은 각각 사용된 신용과 반환된 신용을 두 개의 순환 카운터(cyclic counter)로 추적하며, 이는 가상 채널(virtual channel) 단위로 관리됩니다(정확한 카운터 비트 폭은 공개 자료에 구체적으로 명시되어 있지 않아 구현 정의로 남겨둡니다). PFC보다 필요한 헤드룸 버퍼가 작고, 설정이 단순하며, 무엇보다 링크가 막히기 전에 미리 전송을 조절하므로 pause 프레임 자체가 필요 없습니다. 스펙은 CBFC가 PFC를 완전히 밀어내는 것이 아니라 "PFC와 병행하거나 대체할 수 있다"고 규정하는데, 이는 뒤에서 다룰 오개념과 직결됩니다. LLR·CBFC는 둘 다 **선택적(optional)** 기능으로 정의되어 있고, 이더넷 호환성을 유지하기 위해 LLDP(Link Layer Discovery Protocol)로 링크 양단이 사전에 활성화 여부를 협상합니다.
+<strong>CBFC(Credit-Based Flow Control)</strong>는 수신 측이 사용 가능한 버퍼 공간만큼 신용(credit)을 미리 발급하고, 송신 측은 그 신용 범위 안에서만 전송하는 능동적 흐름 제어입니다. 송신·수신 양측은 각각 사용된 신용과 반환된 신용을 두 개의 순환 카운터(cyclic counter)로 추적하며, 이는 가상 채널(virtual channel) 단위로 관리됩니다(정확한 카운터 비트 폭은 공개 자료에 구체적으로 명시되어 있지 않아 구현 정의로 남겨둡니다). PFC보다 필요한 헤드룸 버퍼가 작고, 설정이 단순하며, 무엇보다 링크가 막히기 전에 미리 전송을 조절하므로 pause 프레임 자체가 필요 없습니다. 스펙은 CBFC가 PFC를 완전히 밀어내는 것이 아니라 "PFC와 병행하거나 대체할 수 있다"고 규정하는데, 이는 뒤에서 다룰 오개념과 직결됩니다. LLR·CBFC는 둘 다 **선택적(optional)** 기능으로 정의되어 있고, 이더넷 호환성을 유지하기 위해 LLDP(Link Layer Discovery Protocol)로 링크 양단이 사전에 활성화 여부를 협상합니다.
 
 ```text
 # UET 링크 계층 프레임의 개념적 필드 구성 (스펙 요약, 실제 비트 배치는 구현 정의)
@@ -122,7 +122,7 @@ $ ethtool -S eth0 | grep -i pause
 
 ## Ultra Ethernet Transport(UET)와 혼잡 제어
 
-UET는 RoCEv2·InfiniBand의 커넥션 지향·순서 보장 전제를 버리고 **커넥션리스**와 **패킷 단위 멀티패스**를 기본으로 설계되었습니다. 각 패킷은 엔트로피 값(Entropy Value, EV)을 달리 부여받아 ECMP 상에서 서로 다른 경로로 흩뿌려지는데, 이를 **패킷 스프레이(packet spraying)**라 부릅니다. 단일 경로만 쓰는 기존 방식과 달리 다중 경로를 동시에 활용해 네트워크 전체의 대역폭을 고르게 소비하고 특정 경로로 트래픽이 몰리는 polarization을 피합니다.
+UET는 RoCEv2·InfiniBand의 커넥션 지향·순서 보장 전제를 버리고 **커넥션리스**와 **패킷 단위 멀티패스**를 기본으로 설계되었습니다. 각 패킷은 엔트로피 값(Entropy Value, EV)을 달리 부여받아 ECMP 상에서 서로 다른 경로로 흩뿌려지는데, 이를 <strong>패킷 스프레이(packet spraying)</strong>라 부릅니다. 단일 경로만 쓰는 기존 방식과 달리 다중 경로를 동시에 활용해 네트워크 전체의 대역폭을 고르게 소비하고 특정 경로로 트래픽이 몰리는 polarization을 피합니다.
 
 ```mermaid
 flowchart LR
@@ -149,7 +149,7 @@ flowchart LR
 | UUD | 없음 | 없음 | 상위 계층이 자체 신뢰성을 구현하는 소프트웨어 프로토콜 |
 | RUDI | 있음(멱등적) | 없음 | 재시도해도 부작용이 없는 멱등 연산 |
 
-혼잡 제어는 두 알고리즘을 병행하도록 권장합니다. **NSCC(Network Signal-based Congestion Control)**는 ECN 마킹(빠른 1비트 신호)과 RTT 변화(느린 신호)를 함께 보고, ECN이 있고 RTT도 높으면 윈도우를 적극적으로 줄이고 ECN도 없고 RTT도 낮으면 빠르게 윈도우를 키우는 식으로 네 가지 조합에 서로 다른 반응 강도를 적용합니다. **RCCC(Receiver Credit-based Congestion Control)**는 수신 측이 신용을 전적으로 관리하는 방식으로, 여러 송신자가 한 수신자에 몰리는 incast 상황에는 강하지만 반대로 한 송신자가 여러 수신자에 트래픽을 뿌리는 outcast나 네트워크 내부 스위치 정체에는 상대적으로 약합니다. 손실 감지는 타임아웃에만 의존하지 않고, 드롭될 패킷의 헤더만 우선순위를 높여 전달하는 packet trimming, 마지막 수신 시퀀스와 누락 시퀀스 간 거리로 손실을 추정하는 out-of-order count, EV와 시퀀스 번호 쌍으로 손실을 정밀 추적하는 방식을 함께 사용해 타임아웃보다 훨씬 빠르게(수 마이크로초 단위로) 손실을 감지합니다.
+혼잡 제어는 두 알고리즘을 병행하도록 권장합니다. <strong>NSCC(Network Signal-based Congestion Control)</strong>는 ECN 마킹(빠른 1비트 신호)과 RTT 변화(느린 신호)를 함께 보고, ECN이 있고 RTT도 높으면 윈도우를 적극적으로 줄이고 ECN도 없고 RTT도 낮으면 빠르게 윈도우를 키우는 식으로 네 가지 조합에 서로 다른 반응 강도를 적용합니다. <strong>RCCC(Receiver Credit-based Congestion Control)</strong>는 수신 측이 신용을 전적으로 관리하는 방식으로, 여러 송신자가 한 수신자에 몰리는 incast 상황에는 강하지만 반대로 한 송신자가 여러 수신자에 트래픽을 뿌리는 outcast나 네트워크 내부 스위치 정체에는 상대적으로 약합니다. 손실 감지는 타임아웃에만 의존하지 않고, 드롭될 패킷의 헤더만 우선순위를 높여 전달하는 packet trimming, 마지막 수신 시퀀스와 누락 시퀀스 간 거리로 손실을 추정하는 out-of-order count, EV와 시퀀스 번호 쌍으로 손실을 정밀 추적하는 방식을 함께 사용해 타임아웃보다 훨씬 빠르게(수 마이크로초 단위로) 손실을 감지합니다.
 
 ## RoCEv2·InfiniBand 대비 위치
 
@@ -166,11 +166,11 @@ flowchart LR
 
 ## 흔한 오개념
 
-**"UEC는 PFC를 완전히 없앤다"**는 오해가 흔하지만, 스펙은 CBFC를 "PFC와 병행하거나 대체할 수 있다"고 규정합니다. 실제 배치에서는 전환기 하드웨어와 섞여 PFC가 여전히 남아 있는 구성도 가능하며, "PFC 제거"는 목표이지 스펙이 강제하는 절대 조건이 아닙니다.
+<strong>"UEC는 PFC를 완전히 없앤다"</strong>는 오해가 흔하지만, 스펙은 CBFC를 "PFC와 병행하거나 대체할 수 있다"고 규정합니다. 실제 배치에서는 전환기 하드웨어와 섞여 PFC가 여전히 남아 있는 구성도 가능하며, "PFC 제거"는 목표이지 스펙이 강제하는 절대 조건이 아닙니다.
 
-**"스펙 1.0이 나왔으니 이미 상용 배포 가능한 프로토콜이다"**라는 오해도 주의해야 합니다. 스펙 문서 공개와 상호운용 가능한 실리콘의 대량 가용성은 별개 사안이며, 발표 시점 기준으로는 준수 프로그램(compliance program)과 초기 구현이 "진행 중"이라고만 언급되었을 뿐 구체적인 하드웨어 일반 출시 시점은 스펙 문서에 명시되어 있지 않습니다. 도입을 검토한다면 벤더의 실제 실리콘·드라이버 로드맵을 별도로 확인해야 합니다.
+<strong>"스펙 1.0이 나왔으니 이미 상용 배포 가능한 프로토콜이다"</strong>라는 오해도 주의해야 합니다. 스펙 문서 공개와 상호운용 가능한 실리콘의 대량 가용성은 별개 사안이며, 발표 시점 기준으로는 준수 프로그램(compliance program)과 초기 구현이 "진행 중"이라고만 언급되었을 뿐 구체적인 하드웨어 일반 출시 시점은 스펙 문서에 명시되어 있지 않습니다. 도입을 검토한다면 벤더의 실제 실리콘·드라이버 로드맵을 별도로 확인해야 합니다.
 
-**"UEC가 일반 데이터센터 이더넷(TCP/IP) 트래픽까지 대체한다"**는 것도 범위를 넘는 오해입니다. UET는 AI/HPC의 RDMA 트래픽에 최적화된 전송 계층이며, 웹 트래픽·마이크로서비스 간 통신 같은 범용 TCP/IP 워크로드를 대체하는 것을 목표로 하지 않습니다.
+<strong>"UEC가 일반 데이터센터 이더넷(TCP/IP) 트래픽까지 대체한다"</strong>는 것도 범위를 넘는 오해입니다. UET는 AI/HPC의 RDMA 트래픽에 최적화된 전송 계층이며, 웹 트래픽·마이크로서비스 간 통신 같은 범용 TCP/IP 워크로드를 대체하는 것을 목표로 하지 않습니다.
 
 ## 판단 기준
 

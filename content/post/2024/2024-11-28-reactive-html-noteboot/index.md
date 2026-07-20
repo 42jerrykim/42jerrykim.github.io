@@ -261,7 +261,7 @@ Observable은 데이터 시각화 및 분석을 위한 강력한 플랫폼으로
 
 ### Hypertext Literal (HTL) 소개
 
-**Hypertext Literal (HTL)**은 Observable에서 HTML과 JavaScript를 결합하여 동적인 콘텐츠를 생성할 수 있는 기능이다. HTL을 사용하면 데이터와 시각화를 쉽게 통합할 수 있으며, 코드의 가독성을 높일 수 있다. HTL은 다음과 같은 형식으로 사용된다.
+<strong>Hypertext Literal (HTL)</strong>은 Observable에서 HTML과 JavaScript를 결합하여 동적인 콘텐츠를 생성할 수 있는 기능이다. HTL을 사용하면 데이터와 시각화를 쉽게 통합할 수 있으며, 코드의 가독성을 높일 수 있다. HTL은 다음과 같은 형식으로 사용된다.
 
 ```javascript
 html`<h1>${title}</h1><p>${description}</p>`

@@ -44,7 +44,7 @@ image: wordcloud.png
 draft: true
 ---
 
-WebFetch로 페이지를 가져오려다 `403 Forbidden`이나 CAPTCHA 화면만 받아본 적이 있다면 익숙한 상황일 것이다. X(트위터), 레딧, 쿠팡처럼 WAF(웹 방화벽)가 걸린 사이트는 기본 fetch 도구로는 거의 뚫리지 않는다. **[insane-search](https://github.com/fivetaku/insane-search)**는 Claude Code용 플러그인으로, API 키나 로그인 없이 "공개된 페이지라면 결국 접근 경로를 찾아낸다"는 목표로 접근 경로를 자동으로 에스컬레이션한다. 이 글에서는 insane-search의 동작 구조와 하네스 규칙, 실제 이점과 한계를 정리하고 관련 도구와 비교한다.
+WebFetch로 페이지를 가져오려다 `403 Forbidden`이나 CAPTCHA 화면만 받아본 적이 있다면 익숙한 상황일 것이다. X(트위터), 레딧, 쿠팡처럼 WAF(웹 방화벽)가 걸린 사이트는 기본 fetch 도구로는 거의 뚫리지 않는다. <strong>[insane-search](https://github.com/fivetaku/insane-search)</strong>는 Claude Code용 플러그인으로, API 키나 로그인 없이 "공개된 페이지라면 결국 접근 경로를 찾아낸다"는 목표로 접근 경로를 자동으로 에스컬레이션한다. 이 글에서는 insane-search의 동작 구조와 하네스 규칙, 실제 이점과 한계를 정리하고 관련 도구와 비교한다.
 
 ## 개요: 도구 정보와 추천 대상
 

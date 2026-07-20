@@ -88,7 +88,7 @@ test("장바구니가 비어있으면 checkoutRejected를 dispatch한다", async
 
 ## RTK Query 테스트: MSW로 네트워크 계층 모킹
 
-24편의 RTK Query 엔드포인트는 실제 fetch를 수행하므로, **MSW(Mock Service Worker)**로 네트워크 계층에서 가짜 응답을 준비하는 것이 표준적인 방법입니다.
+24편의 RTK Query 엔드포인트는 실제 fetch를 수행하므로, <strong>MSW(Mock Service Worker)</strong>로 네트워크 계층에서 가짜 응답을 준비하는 것이 표준적인 방법입니다.
 
 ```javascript
 // productsApi.test.js

@@ -72,13 +72,13 @@ tags:
 
 ## RTT를 구성하는 네 가지 지연
 
-패킷 하나가 클라이언트에서 서버로 갔다가 돌아오는 데 걸리는 시간, 즉 **RTT(Round-Trip Time)**는 하나의 원인이 아니라 서로 성격이 다른 네 가지 지연이 누적된 결과입니다. 이 네 가지를 구분하지 못하면 "네트워크가 느리다"는 진단은 항상 막연할 수밖에 없습니다.
+패킷 하나가 클라이언트에서 서버로 갔다가 돌아오는 데 걸리는 시간, 즉 <strong>RTT(Round-Trip Time)</strong>는 하나의 원인이 아니라 서로 성격이 다른 네 가지 지연이 누적된 결과입니다. 이 네 가지를 구분하지 못하면 "네트워크가 느리다"는 진단은 항상 막연할 수밖에 없습니다.
 
 ### 전파 지연과 직렬화(전송) 지연
 
-**전파 지연(propagation delay)**은 신호가 물리적 매체를 실제로 이동하는 데 걸리는 시간으로, 거리를 매체 내 신호 속도로 나눈 값입니다. 광섬유 안에서 빛은 진공 중 속도(약 299,792km/s)보다 느리게 이동하는데, 표준 단일모드 광섬유(SMF-28 계열)의 굴절률이 약 1.47이기 때문에 실제 속도는 약 200,000km/s 수준이고, 흔히 "1km당 약 5µs" 정도로 근사합니다. 다만 실제 대륙간 경로는 직선 거리를 그대로 따라가지 않고 실제 광케이블 도관(conduit) 경로를 따라 우회하므로, Duke University·ETH Zürich 등 공동 연구진의 2018년 논문 [Dissecting Latency in the Internet's Fiber Infrastructure](https://arxiv.org/abs/1811.10737)는 현재 경로가 직선거리 대비 중앙값 약 2.1배의 지연을 보이며, 기존 도관을 그대로 활용해 경로만 최적화해도 이를 약 1.3배까지 줄일 수 있다고 보고합니다. 즉 지도 위 직선거리만으로 RTT를 예측하면 항상 낙관적인 하한선만 얻게 됩니다.
+<strong>전파 지연(propagation delay)</strong>은 신호가 물리적 매체를 실제로 이동하는 데 걸리는 시간으로, 거리를 매체 내 신호 속도로 나눈 값입니다. 광섬유 안에서 빛은 진공 중 속도(약 299,792km/s)보다 느리게 이동하는데, 표준 단일모드 광섬유(SMF-28 계열)의 굴절률이 약 1.47이기 때문에 실제 속도는 약 200,000km/s 수준이고, 흔히 "1km당 약 5µs" 정도로 근사합니다. 다만 실제 대륙간 경로는 직선 거리를 그대로 따라가지 않고 실제 광케이블 도관(conduit) 경로를 따라 우회하므로, Duke University·ETH Zürich 등 공동 연구진의 2018년 논문 [Dissecting Latency in the Internet's Fiber Infrastructure](https://arxiv.org/abs/1811.10737)는 현재 경로가 직선거리 대비 중앙값 약 2.1배의 지연을 보이며, 기존 도관을 그대로 활용해 경로만 최적화해도 이를 약 1.3배까지 줄일 수 있다고 보고합니다. 즉 지도 위 직선거리만으로 RTT를 예측하면 항상 낙관적인 하한선만 얻게 됩니다.
 
-**직렬화 지연(serialization delay, 또는 전송 지연)**은 패킷 전체를 링크에 비트 단위로 실어 보내는 데 걸리는 시간으로, "패킷 크기(bit) ÷ 링크 대역폭(bit/s)"으로 계산합니다. 아래 함수는 이 계산을 그대로 코드로 옮긴 것입니다.
+<strong>직렬화 지연(serialization delay, 또는 전송 지연)</strong>은 패킷 전체를 링크에 비트 단위로 실어 보내는 데 걸리는 시간으로, "패킷 크기(bit) ÷ 링크 대역폭(bit/s)"으로 계산합니다. 아래 함수는 이 계산을 그대로 코드로 옮긴 것입니다.
 
 ```cpp
 #include <cstdint>
@@ -94,7 +94,7 @@ double serialization_delay_sec(uint64_t packet_bits, uint64_t bandwidth_bps) {
 
 ### 큐잉 지연과 처리 지연
 
-**큐잉 지연(queuing delay)**은 패킷이 스위치·라우터·NIC 링 버퍼에서 다른 트래픽에 밀려 대기하는 시간이고, **처리 지연(processing delay)**은 커널 네트워크 스택과 애플리케이션이 패킷 헤더를 해석하고 데이터를 전달하는 데 걸리는 시간입니다. 이 둘은 전파·직렬화 지연과 달리 물리 법칙이 아니라 시스템 상태(부하, 큐 깊이, 인터럽트 처리 방식, 스케줄러 정책 등 커널·드라이버 구현에 따라 달라지는 값)에 좌우되며, 트래픽이 몰릴 때 크게 늘어나고 지터(jitter)의 주된 원인이 됩니다.
+<strong>큐잉 지연(queuing delay)</strong>은 패킷이 스위치·라우터·NIC 링 버퍼에서 다른 트래픽에 밀려 대기하는 시간이고, <strong>처리 지연(processing delay)</strong>은 커널 네트워크 스택과 애플리케이션이 패킷 헤더를 해석하고 데이터를 전달하는 데 걸리는 시간입니다. 이 둘은 전파·직렬화 지연과 달리 물리 법칙이 아니라 시스템 상태(부하, 큐 깊이, 인터럽트 처리 방식, 스케줄러 정책 등 커널·드라이버 구현에 따라 달라지는 값)에 좌우되며, 트래픽이 몰릴 때 크게 늘어나고 지터(jitter)의 주된 원인이 됩니다.
 
 네 지연을 하나의 흐름으로 보면 다음과 같습니다.
 
@@ -167,17 +167,17 @@ $ ping -c 4 example.com
 
 ## 대역폭과 Bandwidth-Delay Product
 
-**대역폭(bandwidth)**은 링크가 초당 실어 나를 수 있는 최대 비트 수이고, **처리량(throughput)**은 실제로 그 링크에서 관측되는 전송 속도입니다. 두 값은 자주 혼용되지만, 대역폭이 처리량의 상한선일 뿐 그 값을 보장하지는 않는다는 점이 다릅니다. 처리량이 대역폭에 못 미치는 가장 흔한 원인 중 하나가 바로 **Bandwidth-Delay Product(BDP)**입니다.
+<strong>대역폭(bandwidth)</strong>은 링크가 초당 실어 나를 수 있는 최대 비트 수이고, <strong>처리량(throughput)</strong>은 실제로 그 링크에서 관측되는 전송 속도입니다. 두 값은 자주 혼용되지만, 대역폭이 처리량의 상한선일 뿐 그 값을 보장하지는 않는다는 점이 다릅니다. 처리량이 대역폭에 못 미치는 가장 흔한 원인 중 하나가 바로 <strong>Bandwidth-Delay Product(BDP)</strong>입니다.
 
 BDP는 "대역폭(bit/s) × RTT(s)"로 계산되며, 파이프를 쉬지 않고 채우기 위해 확인응답(ACK) 없이 동시에 전송 중이어야 하는 데이터량을 의미합니다. 예를 들어 10Gbps 링크에 대륙간 RTT 80ms를 대입하면 BDP는 10×10⁹ × 0.08 = 8×10⁸비트, 바이트로 환산하면 약 1억 바이트(약 95.4MiB)에 이릅니다. 문제는 TCP의 원래 윈도우 필드가 16비트라서 최대 64KiB밖에 표현하지 못한다는 점인데, 이 값은 방금 계산한 BDP의 1/1000도 되지 않습니다. 윈도우가 BDP보다 작으면 송신자는 ACK를 기다리느라 링크를 계속 놀리게 되고, 대역폭을 아무리 늘려도 처리량은 그대로입니다. 이 문제를 해결하는 윈도우 스케일링과 혼잡 제어의 구체적인 동작은 [04장: TCP 성능 최적화](/post/network-optimization/tcp-performance-nagle-congestion-control-bbr/)에서 다룹니다.
 
 ## 흔한 오개념 바로잡기
 
-**"대역폭을 늘리면 지연이 줄어든다"**는 절반만 맞는 말입니다. 대역폭 증가는 직렬화 지연을 줄이고 BDP가 큰 대용량 전송의 처리량을 개선하지만, 전파 지연·큐잉 지연·처리 지연에는 영향을 주지 못합니다. 특히 페이로드가 수십~수백 바이트 수준인 RPC 호출에서는 직렬화 지연 자체가 RTT의 극히 일부에 불과하므로, 회선을 10배 빠른 것으로 바꿔도 체감 지연은 거의 변하지 않는 경우가 흔합니다.
+<strong>"대역폭을 늘리면 지연이 줄어든다"</strong>는 절반만 맞는 말입니다. 대역폭 증가는 직렬화 지연을 줄이고 BDP가 큰 대용량 전송의 처리량을 개선하지만, 전파 지연·큐잉 지연·처리 지연에는 영향을 주지 못합니다. 특히 페이로드가 수십~수백 바이트 수준인 RPC 호출에서는 직렬화 지연 자체가 RTT의 극히 일부에 불과하므로, 회선을 10배 빠른 것으로 바꿔도 체감 지연은 거의 변하지 않는 경우가 흔합니다.
 
-**"직렬화 지연(serialization delay)과 (데이터) 직렬화 비용은 같은 개념이다"**도 흔한 혼동입니다. 이 장에서 다룬 직렬화 지연은 이미 만들어진 비트열을 링크에 밀어내는 물리 계층의 전송 시간을 가리키는 반면, "직렬화"라는 단어가 더 자주 쓰이는 맥락은 구조체를 바이트열로 인코딩·디코딩하는 애플리케이션 레벨 비용입니다. 후자는 Protocol Buffers·FlatBuffers·Cap'n Proto의 CPU 비용을 비교하는 [06장: 직렬화 성능 비교](/post/network-optimization/serialization-performance-protobuf-flatbuffers-capnproto/)의 주제이며, 이 장의 "직렬화 지연"과는 완전히 다른 계층의 이야기입니다.
+<strong>"직렬화 지연(serialization delay)과 (데이터) 직렬화 비용은 같은 개념이다"</strong>도 흔한 혼동입니다. 이 장에서 다룬 직렬화 지연은 이미 만들어진 비트열을 링크에 밀어내는 물리 계층의 전송 시간을 가리키는 반면, "직렬화"라는 단어가 더 자주 쓰이는 맥락은 구조체를 바이트열로 인코딩·디코딩하는 애플리케이션 레벨 비용입니다. 후자는 Protocol Buffers·FlatBuffers·Cap'n Proto의 CPU 비용을 비교하는 [06장: 직렬화 성능 비교](/post/network-optimization/serialization-performance-protobuf-flatbuffers-capnproto/)의 주제이며, 이 장의 "직렬화 지연"과는 완전히 다른 계층의 이야기입니다.
 
-**"ping의 RTT가 곧 애플리케이션이 체감하는 지연이다"**라는 가정도 위험합니다. ICMP echo는 커널이 최소한의 처리만으로 즉시 응답하지만, 실제 애플리케이션 요청은 TLS 핸드셰이크([17장](/post/network-optimization/tls-ssl-handshake-optimization-pqc/)), 연결 수립·재사용 정책([18장](/post/network-optimization/connection-pooling-keep-alive-reuse-strategy/)), gRPC 등 RPC 프레임워크의 직렬화·역직렬화([15장](/post/network-optimization/grpc-performance-tuning-optimization/))처럼 여러 단계를 추가로 거칩니다. `ping`이 보여 주는 것은 어디까지나 네트워크 경로의 하한선이지, 애플리케이션이 실제로 체감하는 지연의 전부가 아닙니다.
+<strong>"ping의 RTT가 곧 애플리케이션이 체감하는 지연이다"</strong>라는 가정도 위험합니다. ICMP echo는 커널이 최소한의 처리만으로 즉시 응답하지만, 실제 애플리케이션 요청은 TLS 핸드셰이크([17장](/post/network-optimization/tls-ssl-handshake-optimization-pqc/)), 연결 수립·재사용 정책([18장](/post/network-optimization/connection-pooling-keep-alive-reuse-strategy/)), gRPC 등 RPC 프레임워크의 직렬화·역직렬화([15장](/post/network-optimization/grpc-performance-tuning-optimization/))처럼 여러 단계를 추가로 거칩니다. `ping`이 보여 주는 것은 어디까지나 네트워크 경로의 하한선이지, 애플리케이션이 실제로 체감하는 지연의 전부가 아닙니다.
 
 ## 병목을 진단하는 판단 기준
 

@@ -83,7 +83,7 @@ add_executable(my_bench bench.cpp)
 target_link_libraries(my_bench PRIVATE benchmark::benchmark)
 ```
 
-여기서 흔한 함정 하나: 벤치마크 실행 파일은 반드시 **Release 구성(`-DCMAKE_BUILD_TYPE=Release`, 즉 `-O2` 이상)**으로 빌드해야 합니다. Debug 빌드의 수치는 최적화된 바이너리와 병목 위치 자체가 달라서 어떤 결론도 지지하지 못하며, 라이브러리를 Debug로 빌드하면 Google Benchmark가 실행 시 경고를 출력합니다.
+여기서 흔한 함정 하나: 벤치마크 실행 파일은 반드시 <strong>Release 구성(`-DCMAKE_BUILD_TYPE=Release`, 즉 `-O2` 이상)</strong>으로 빌드해야 합니다. Debug 빌드의 수치는 최적화된 바이너리와 병목 위치 자체가 달라서 어떤 결론도 지지하지 못하며, 라이브러리를 Debug로 빌드하면 Google Benchmark가 실행 시 경고를 출력합니다.
 
 첫 벤치마크의 구조는 다음과 같습니다. `benchmark::State`를 받는 함수를 정의하고 `for (auto _ : state)` 루프 안에 측정 대상을 넣으면, 프레임워크가 이 루프를 몇 번 돌릴지(iterations)를 자동으로 결정합니다.
 
@@ -213,7 +213,7 @@ BM_VectorPush/4096_stddev         84.2 ns         83.9 ns          10
 BM_VectorPush/4096_cv             2.79 %          2.78 %           10
 ```
 
-실무 해석 기준: **cv(변동계수 = 표준편차/평균)**가 이 환경 수치의 신뢰도를 요약합니다. 경험적으로 cv가 1~2% 이하면 잘 통제된 환경, 5%를 넘으면 환경 노이즈가 커서 그보다 작은 개선 폭은 논할 수 없는 상태입니다. 이때는 수치를 더 모을 게 아니라 실행 환경(주파수 고정, CPU 피닝, 백그라운드 프로세스)을 먼저 고쳐야 합니다. mean과 median이 크게 벌어지면 일부 실행에 이상치(outlier)가 끼었다는 뜻이므로 median을 대표값으로 쓰는 편이 안전합니다 — 신뢰 구간과 유의성 검정까지 포함한 엄밀한 처리는 [10장: 통계적 벤치마킹](/post/profiling-analysis/statistical-benchmarking/)에서 다룹니다.
+실무 해석 기준: <strong>cv(변동계수 = 표준편차/평균)</strong>가 이 환경 수치의 신뢰도를 요약합니다. 경험적으로 cv가 1~2% 이하면 잘 통제된 환경, 5%를 넘으면 환경 노이즈가 커서 그보다 작은 개선 폭은 논할 수 없는 상태입니다. 이때는 수치를 더 모을 게 아니라 실행 환경(주파수 고정, CPU 피닝, 백그라운드 프로세스)을 먼저 고쳐야 합니다. mean과 median이 크게 벌어지면 일부 실행에 이상치(outlier)가 끼었다는 뜻이므로 median을 대표값으로 쓰는 편이 안전합니다 — 신뢰 구간과 유의성 검정까지 포함한 엄밀한 처리는 [10장: 통계적 벤치마킹](/post/profiling-analysis/statistical-benchmarking/)에서 다룹니다.
 
 한 가지 주의: `state.PauseTiming()`/`ResumeTiming()`으로 준비 코드를 측정에서 빼는 API가 있지만, 이 호출 자체의 오버헤드가 ns 단위 측정 대상을 오염시킬 만큼 큽니다. iteration당 본문이 수십 ns 수준인 벤치마크에서는 쓰지 말고, 준비 비용이 문제라면 준비를 루프 밖으로 빼거나 준비 포함/미포함 두 벤치마크의 차를 보는 설계가 낫습니다.
 
@@ -276,7 +276,7 @@ flowchart LR
 
 **오개념 1: "DoNotOptimize를 씌우면 그 코드는 최적화되지 않는다."** 반대로 이해해야 합니다. `DoNotOptimize`는 표현식의 최적화를 막는 것이 아니라 **결과가 관찰된다는 사실만 보장**합니다. 계산 자체는 여전히 상수 접기·강도 감소·벡터화의 대상이며, 결과가 컴파일 타임에 알려지면 계산이 통째로 사라질 수도 있습니다. "실제 워크로드에서 컴파일러가 할 최적화는 허용하되, 결과가 버려져서 코드가 삭제되는 것만 막는다"가 정확한 정신 모델입니다.
 
-**오개념 2: "iteration 수를 내가 정해야 공정한 비교다."** iteration은 프레임워크가 최소 실행 시간을 채우도록 자동 결정하는 내부 메커니즘이고, 벤치마크마다 다른 것이 정상입니다. 비교의 공정성은 iteration 수가 아니라 **iteration당 시간(Time/CPU 열)**과 repetition 통계로 확보됩니다. `Iterations(n)`으로 고정하는 API는 셋업 비용 상각 같은 특수 목적용이지, 공정성 장치가 아닙니다.
+**오개념 2: "iteration 수를 내가 정해야 공정한 비교다."** iteration은 프레임워크가 최소 실행 시간을 채우도록 자동 결정하는 내부 메커니즘이고, 벤치마크마다 다른 것이 정상입니다. 비교의 공정성은 iteration 수가 아니라 <strong>iteration당 시간(Time/CPU 열)</strong>과 repetition 통계로 확보됩니다. `Iterations(n)`으로 고정하는 API는 셋업 비용 상각 같은 특수 목적용이지, 공정성 장치가 아닙니다.
 
 **오개념 3: "mean이 낮아졌으면 개선이다."** 단일 실행(또는 repetition 없는 mean)의 차이는 CPU 주파수 상태·캐시 온도·스케줄링 우연으로 쉽게 수 % 흔들립니다. cv가 3%인 환경에서 2% 개선은 판정 불능이며, 이를 근거로 코드를 바꾸면 노이즈에 코드를 맞추는 셈입니다. 최소한 repetition ≥ 10에서 median과 cv를 함께 보고, 경계 사례는 [10장](/post/profiling-analysis/statistical-benchmarking/)의 검정 절차로 넘기세요.
 

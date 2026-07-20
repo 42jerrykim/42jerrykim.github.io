@@ -67,7 +67,7 @@ tags:
 
 ## 리눅스 스케줄러 클래스의 역사와 계층 구조
 
-리눅스 스케줄러는 하나의 알고리즘이 아니라 **우선순위가 매겨진 여러 스케줄러 클래스(sched_class)의 체인**입니다. `SCHED_FIFO`/`SCHED_RR` 같은 실시간 정책은 POSIX.1b(1993년 표준화된 POSIX 실시간 확장)에서 정의되었고, 리눅스는 이를 초기 커널부터 지원해 왔습니다. 일반 태스크를 다루는 스케줄러는 여러 세대를 거쳤습니다. Ingo Molnar가 만든 **CFS(Completely Fair Scheduler)**가 2007년 리눅스 2.6.23에 병합되어 약 16년간 기본 스케줄러 자리를 지켰고, Peter Zijlstra가 구현한 **EEVDF(Earliest Eligible Virtual Deadline First)**가 2023년 리눅스 6.6에서 CFS를 대체하기 시작해 6.12(2024년 11월)에서 전환이 완료되고 6.13(2025년 초)에서 막판 lag 계산 버그가 수정되었습니다. 같은 6.12에는 Meta 주도로 수년간 아웃오브트리로 개발되어 온 **sched_ext**(BPF 확장 스케줄러 클래스)가 병합되었고, Intel 엔지니어들이 주도한 **Cache-Aware Scheduling(CAS)**은 2025~2026년 패치를 거쳐 커널 tip 트리에서 논의·개정을 거듭하고 있으며, 집필 시점 기준으로는 정식 병합 버전·시점이 확정되지 않았으므로 구체적인 커널 버전 번호는 단정하지 않습니다(`CONFIG_SCHED_CACHE`로 노출되고 기본 비활성화될 것으로 알려져 있습니다).
+리눅스 스케줄러는 하나의 알고리즘이 아니라 **우선순위가 매겨진 여러 스케줄러 클래스(sched_class)의 체인**입니다. `SCHED_FIFO`/`SCHED_RR` 같은 실시간 정책은 POSIX.1b(1993년 표준화된 POSIX 실시간 확장)에서 정의되었고, 리눅스는 이를 초기 커널부터 지원해 왔습니다. 일반 태스크를 다루는 스케줄러는 여러 세대를 거쳤습니다. Ingo Molnar가 만든 <strong>CFS(Completely Fair Scheduler)</strong>가 2007년 리눅스 2.6.23에 병합되어 약 16년간 기본 스케줄러 자리를 지켰고, Peter Zijlstra가 구현한 <strong>EEVDF(Earliest Eligible Virtual Deadline First)</strong>가 2023년 리눅스 6.6에서 CFS를 대체하기 시작해 6.12(2024년 11월)에서 전환이 완료되고 6.13(2025년 초)에서 막판 lag 계산 버그가 수정되었습니다. 같은 6.12에는 Meta 주도로 수년간 아웃오브트리로 개발되어 온 **sched_ext**(BPF 확장 스케줄러 클래스)가 병합되었고, Intel 엔지니어들이 주도한 <strong>Cache-Aware Scheduling(CAS)</strong>은 2025~2026년 패치를 거쳐 커널 tip 트리에서 논의·개정을 거듭하고 있으며, 집필 시점 기준으로는 정식 병합 버전·시점이 확정되지 않았으므로 구체적인 커널 버전 번호는 단정하지 않습니다(`CONFIG_SCHED_CACHE`로 노출되고 기본 비활성화될 것으로 알려져 있습니다).
 
 이 클래스들은 우선순위 순서로 태스크 선택을 위임합니다. 커널은 가장 앞의 클래스부터 "실행할 태스크가 있는지" 물어보고, 있으면 그 클래스가 고른 태스크를 실행합니다.
 
@@ -152,7 +152,7 @@ struct sched_ext_ops simple_ops = {
 
 ## Cache-Aware Scheduling: LLC 지역성을 스케줄러가 챙기다
 
-**Cache-Aware Scheduling(CAS)**은 멀티 LLC(Last Level Cache) 도메인을 가진 최신 서버 CPU에서, 데이터를 공유할 가능성이 높은 태스크(같은 프로세스의 스레드들)를 같은 LLC 도메인에 묶어 배치하려는 스케줄러 확장입니다([LWN: Cache aware scheduling](https://lwn.net/Articles/1049261/) 참고). Intel 엔지니어들이 약 1년 넘게 개발해 왔고, 커널 tip 트리의 `sched/core` 브랜치에서 패치가 개정되고 있습니다. 정식 병합 버전·시점은 집필 시점 기준 확정되지 않았으므로 구체적인 커널 버전 번호는 단정하지 않으며, 병합되면 `CONFIG_SCHED_CACHE`로 노출되고 **기본적으로 비활성화**될 것으로 알려져 있고, 커널 부팅 후 debugfs 인터페이스로 켜고 끌 수 있어 같은 환경에서 CAS 유무를 직접 비교할 수 있습니다. 초기 벤치마크에서는 워크로드에 따라 편차가 컸는데, hackbench류 지연 민감 벤치마크에서 두 자릿수 퍼센트 개선이, ChaCha20 같은 암호화 처리량 벤치마크에서는 더 큰 폭의 개선이 보고되었습니다(정확한 수치는 CPU 세대·커널 버전·워크로드에 따라 달라지므로, 이 트랙의 다른 장과 마찬가지로 자신의 환경에서 재현하는 것을 전제로 참고 수치로만 받아들여야 합니다).
+<strong>Cache-Aware Scheduling(CAS)</strong>은 멀티 LLC(Last Level Cache) 도메인을 가진 최신 서버 CPU에서, 데이터를 공유할 가능성이 높은 태스크(같은 프로세스의 스레드들)를 같은 LLC 도메인에 묶어 배치하려는 스케줄러 확장입니다([LWN: Cache aware scheduling](https://lwn.net/Articles/1049261/) 참고). Intel 엔지니어들이 약 1년 넘게 개발해 왔고, 커널 tip 트리의 `sched/core` 브랜치에서 패치가 개정되고 있습니다. 정식 병합 버전·시점은 집필 시점 기준 확정되지 않았으므로 구체적인 커널 버전 번호는 단정하지 않으며, 병합되면 `CONFIG_SCHED_CACHE`로 노출되고 **기본적으로 비활성화**될 것으로 알려져 있고, 커널 부팅 후 debugfs 인터페이스로 켜고 끌 수 있어 같은 환경에서 CAS 유무를 직접 비교할 수 있습니다. 초기 벤치마크에서는 워크로드에 따라 편차가 컸는데, hackbench류 지연 민감 벤치마크에서 두 자릿수 퍼센트 개선이, ChaCha20 같은 암호화 처리량 벤치마크에서는 더 큰 폭의 개선이 보고되었습니다(정확한 수치는 CPU 세대·커널 버전·워크로드에 따라 달라지므로, 이 트랙의 다른 장과 마찬가지로 자신의 환경에서 재현하는 것을 전제로 참고 수치로만 받아들여야 합니다).
 
 CAS는 NUMA affinity와 다른 문제를 겨냥합니다. NUMA 배치([04장](/post/os-optimization/numa-cpu-affinity-thread-placement/))가 "메모리 컨트롤러에 가까운 코어"를 고르는 문제라면, CAS는 같은 NUMA 노드 안에서도 여러 LLC 도메인으로 쪼개진 최신 서버 CPU(칩렛 설계 등)에서 "같은 캐시를 공유하는 코어"를 고르는 문제입니다. 두 메커니즘은 상호 배타적이지 않고, NUMA 배치를 먼저 맞춘 뒤 그 안에서 CAS가 LLC 수준의 미세 조정을 담당하는 관계로 이해하는 것이 정확합니다.
 

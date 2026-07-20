@@ -44,7 +44,7 @@ tags:
   - Performance-Report
 ---
 
-**프로파일링 워크플로우(profiling workflow)**란 측정→가설→변경→검증의 루프를 개인의 감이 아니라 팀이 공유하는 반복 가능한 프로세스로 만드는 것을 말합니다. µs 단위 최적화에서 가장 흔한 실패는 도구를 몰라서가 아니라, "그때 그 머신에서 빨라졌던" 변경이 어떤 조건에서 측정됐는지 아무도 재현할 수 없어서 발생합니다. 이 장에서는 루프의 각 단계를 실전 절차로 구체화하고, 프로파일 아티팩트(perf.data, 벤치마크 JSON, 환경 메타데이터)를 관리하는 방법, 측정 환경을 표준화하는 방법, 그리고 개인의 측정을 팀 표준과 회귀 게이트로 승격시키는 방법을 다룹니다.
+<strong>프로파일링 워크플로우(profiling workflow)</strong>란 측정→가설→변경→검증의 루프를 개인의 감이 아니라 팀이 공유하는 반복 가능한 프로세스로 만드는 것을 말합니다. µs 단위 최적화에서 가장 흔한 실패는 도구를 몰라서가 아니라, "그때 그 머신에서 빨라졌던" 변경이 어떤 조건에서 측정됐는지 아무도 재현할 수 없어서 발생합니다. 이 장에서는 루프의 각 단계를 실전 절차로 구체화하고, 프로파일 아티팩트(perf.data, 벤치마크 JSON, 환경 메타데이터)를 관리하는 방법, 측정 환경을 표준화하는 방법, 그리고 개인의 측정을 팀 표준과 회귀 게이트로 승격시키는 방법을 다룹니다.
 
 ## 이 장을 읽기 전에
 
@@ -64,9 +64,9 @@ tags:
 
 ## 방법론의 계보: 왜 "루프"인가 (역사·배경)
 
-성능 분석을 프로세스로 정형화하려는 시도는 오래됐습니다. Donald Knuth는 1974년 논문 "Structured Programming with go to Statements"에서 프로그램의 극히 일부가 실행 시간 대부분을 차지하므로 측정으로 그 지점을 찾은 뒤에만 최적화해야 한다고 주장했고, 이것이 "측정 먼저"라는 원칙의 고전적 출발점입니다. 그러나 실무 현장은 오랫동안 방법론 없이 움직였습니다. Brendan Gregg는 2012년 ACM Queue에 발표한 "Thinking Methodically about Performance"에서 당시 실무를 지배하던 접근을 **안티 방법론(anti-methodology)**으로 명명했습니다. 익숙한 도구부터 켜고 보는 "가로등 안티 방법(streetlight anti-method)", 아무 설정이나 바꿔보는 "무작위 변경 안티 방법" 같은 것들입니다. 그가 대안으로 제시한 [USE Method](https://www.brendangregg.com/usemethod.html)는 모든 자원에 대해 사용률(Utilization)·포화(Saturation)·오류(Errors)를 체크리스트처럼 점검하는 방법론으로, "무엇을 볼지"를 도구가 아니라 절차가 결정하게 만들었다는 점에서 이 장의 문제의식과 정확히 겹칩니다.
+성능 분석을 프로세스로 정형화하려는 시도는 오래됐습니다. Donald Knuth는 1974년 논문 "Structured Programming with go to Statements"에서 프로그램의 극히 일부가 실행 시간 대부분을 차지하므로 측정으로 그 지점을 찾은 뒤에만 최적화해야 한다고 주장했고, 이것이 "측정 먼저"라는 원칙의 고전적 출발점입니다. 그러나 실무 현장은 오랫동안 방법론 없이 움직였습니다. Brendan Gregg는 2012년 ACM Queue에 발표한 "Thinking Methodically about Performance"에서 당시 실무를 지배하던 접근을 <strong>안티 방법론(anti-methodology)</strong>으로 명명했습니다. 익숙한 도구부터 켜고 보는 "가로등 안티 방법(streetlight anti-method)", 아무 설정이나 바꿔보는 "무작위 변경 안티 방법" 같은 것들입니다. 그가 대안으로 제시한 [USE Method](https://www.brendangregg.com/usemethod.html)는 모든 자원에 대해 사용률(Utilization)·포화(Saturation)·오류(Errors)를 체크리스트처럼 점검하는 방법론으로, "무엇을 볼지"를 도구가 아니라 절차가 결정하게 만들었다는 점에서 이 장의 문제의식과 정확히 겹칩니다.
 
-이 장이 다루는 측정→가설→변경→검증 루프는 과학적 방법(scientific method)을 성능 작업에 적용한 것입니다. 핵심은 가설이 **반증 가능(falsifiable)**해야 한다는 것과, 검증이 **재현 가능(reproducible)**해야 한다는 것입니다. 프로파일링 도구는 2010년대 이후 비약적으로 좋아졌지만(Flame Graph 2011, 상시 프로파일링 2020년대), 도구가 좋아질수록 역설적으로 "그럴듯한 그래프를 보고 확신하는" 오류도 쉬워졌습니다. 워크플로우는 도구의 출력과 의사결정 사이에 검증 단계를 강제로 끼워 넣는 장치입니다.
+이 장이 다루는 측정→가설→변경→검증 루프는 과학적 방법(scientific method)을 성능 작업에 적용한 것입니다. 핵심은 가설이 <strong>반증 가능(falsifiable)</strong>해야 한다는 것과, 검증이 <strong>재현 가능(reproducible)</strong>해야 한다는 것입니다. 프로파일링 도구는 2010년대 이후 비약적으로 좋아졌지만(Flame Graph 2011, 상시 프로파일링 2020년대), 도구가 좋아질수록 역설적으로 "그럴듯한 그래프를 보고 확신하는" 오류도 쉬워졌습니다. 워크플로우는 도구의 출력과 의사결정 사이에 검증 단계를 강제로 끼워 넣는 장치입니다.
 
 ## 측정→가설→변경→검증 루프
 
@@ -89,7 +89,7 @@ flowchart TD
 
 ### 1단계 — 측정: 기준선 없이는 아무것도 시작하지 않는다
 
-측정 단계의 산출물은 **기준선(baseline)**입니다. 기준선은 숫자 하나가 아니라 "이 커밋의, 이 시나리오를, 이 환경에서, 이 도구로 잰 결과 + 그 조건의 기록" 전체입니다. 변경을 시작하기 전에 현재 상태를 프로파일하고 아티팩트로 저장합니다. 도구 선택은 상황에 따라 다릅니다 — 함수 단위 핫패스 식별이면 샘플링([03장](/post/profiling-analysis/sampling-profiling-perf-vtune/)), 이벤트 순서·대기 분석이면 트레이싱([04장](/post/profiling-analysis/tracing-profiling-perfetto-tracy/)), 격리된 코드 조각의 비용이면 마이크로벤치마크([02장](/post/profiling-analysis/google-benchmark-practical/))입니다.
+측정 단계의 산출물은 <strong>기준선(baseline)</strong>입니다. 기준선은 숫자 하나가 아니라 "이 커밋의, 이 시나리오를, 이 환경에서, 이 도구로 잰 결과 + 그 조건의 기록" 전체입니다. 변경을 시작하기 전에 현재 상태를 프로파일하고 아티팩트로 저장합니다. 도구 선택은 상황에 따라 다릅니다 — 함수 단위 핫패스 식별이면 샘플링([03장](/post/profiling-analysis/sampling-profiling-perf-vtune/)), 이벤트 순서·대기 분석이면 트레이싱([04장](/post/profiling-analysis/tracing-profiling-perfetto-tracy/)), 격리된 코드 조각의 비용이면 마이크로벤치마크([02장](/post/profiling-analysis/google-benchmark-practical/))입니다.
 
 기준선 측정에서 가장 자주 빠지는 함정은 **한 번만 재는 것**입니다. 반복 측정으로 변동성(분산)까지 기록해야 나중에 "개선"이 노이즈 범위 안인지 판별할 수 있습니다. 아래는 이 장 전체에서 예시로 쓸 벤치마크 스켈레톤입니다(x86-64 Linux, GCC 13, `-O2` 기준; 수치는 플랫폼·플래그에 따라 다릅니다).
 

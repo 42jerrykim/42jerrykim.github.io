@@ -163,7 +163,7 @@ int main() {
 
 극한 최적화 코드에는 이 기본 요구 위에 세 가지를 더 남기는 것이 좋습니다. 첫째, **왜**(어떤 프로파일링 결과가 이 코드를 정당화했는지, 날짜와 도구 포함). 둘째, **불변조건**(정렬 가정, 입력 크기 제약, 특정 레지스터·플래그 의존성). 셋째, **되돌리는 방법**(폴백이 이미 있다면 어디 있는지, 없다면 왜 없는지).
 
-영향 범위가 크거나 되돌리기 어려운 결정(예: 특정 컴파일러 확장에 의존하기로 한 것, 특정 아키텍처만 지원하기로 한 것)은 코드 주석보다 상위 문서인 **ADR(Architecture Decision Record)**로 남기는 편이 낫습니다.
+영향 범위가 크거나 되돌리기 어려운 결정(예: 특정 컴파일러 확장에 의존하기로 한 것, 특정 아키텍처만 지원하기로 한 것)은 코드 주석보다 상위 문서인 <strong>ADR(Architecture Decision Record)</strong>로 남기는 편이 낫습니다.
 
 > "We will keep a collection of records for 'architecturally significant' decisions: those that affect the structure, non-functional characteristics, dependencies, interfaces, or construction techniques." — Michael Nygard, [Documenting Architecture Decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions) (2011)
 

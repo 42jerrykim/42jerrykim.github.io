@@ -156,7 +156,7 @@ flowchart LR
 
 ## 시리즈 전체 로드맵
 
-12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**를 참고하세요.
+12개 트랙의 권장 순서·심화 진입 조건은 <strong>[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)</strong>를 참고하세요.
 
 ## 지금 바로 이어 읽을 곳
 

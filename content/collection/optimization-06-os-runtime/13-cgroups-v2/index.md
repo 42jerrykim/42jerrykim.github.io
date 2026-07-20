@@ -71,7 +71,7 @@ cgroups는 2006~2007년 Google 엔지니어 Paul Menage와 Rohit Seth가 "proces
 
 ## 통합 계층 구조와 컨트롤러 활성화
 
-v2에서는 `/sys/fs/cgroup`이 유일한 마운트 지점이고, 그 아래 디렉터리 트리가 곧 cgroup 계층이다. 각 디렉터리는 `cgroup.procs`(그 cgroup에 속한 프로세스 목록), `cgroup.subtree_control`(자식에게 넘겨줄 컨트롤러 목록), 그리고 `cpu.max`·`memory.high`처럼 활성화된 컨트롤러가 노출하는 파일들을 갖는다. 컨트롤러는 기본적으로 꺼져 있으며, 부모 cgroup의 `cgroup.subtree_control`에 `+cpu`처럼 써 넣어야 그 컨트롤러가 **자식들에게** 적용된다 — 이 한 단계가 v2의 핵심 규칙인 **"no internal process constraint"**로 이어진다. 즉 어떤 cgroup이 자식에게 리소스를 분배하려면 그 cgroup 자신은 프로세스를 직접 가지고 있으면 안 된다(리프 노드만 프로세스를 담당). 이 제약 때문에 실무에서는 프로세스를 항상 트리의 말단(leaf) cgroup에 배정하고, 중간 노드는 순수하게 분배 정책만 담당하도록 설계한다. 이 규칙과 컨트롤러 파일 각각의 정확한 의미는 커널 공식 문서인 [Control Group v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)에 정리돼 있다.
+v2에서는 `/sys/fs/cgroup`이 유일한 마운트 지점이고, 그 아래 디렉터리 트리가 곧 cgroup 계층이다. 각 디렉터리는 `cgroup.procs`(그 cgroup에 속한 프로세스 목록), `cgroup.subtree_control`(자식에게 넘겨줄 컨트롤러 목록), 그리고 `cpu.max`·`memory.high`처럼 활성화된 컨트롤러가 노출하는 파일들을 갖는다. 컨트롤러는 기본적으로 꺼져 있으며, 부모 cgroup의 `cgroup.subtree_control`에 `+cpu`처럼 써 넣어야 그 컨트롤러가 **자식들에게** 적용된다 — 이 한 단계가 v2의 핵심 규칙인 <strong>"no internal process constraint"</strong>로 이어진다. 즉 어떤 cgroup이 자식에게 리소스를 분배하려면 그 cgroup 자신은 프로세스를 직접 가지고 있으면 안 된다(리프 노드만 프로세스를 담당). 이 제약 때문에 실무에서는 프로세스를 항상 트리의 말단(leaf) cgroup에 배정하고, 중간 노드는 순수하게 분배 정책만 담당하도록 설계한다. 이 규칙과 컨트롤러 파일 각각의 정확한 의미는 커널 공식 문서인 [Control Group v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)에 정리돼 있다.
 
 ```mermaid
 flowchart TD

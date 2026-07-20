@@ -235,7 +235,7 @@ archetypes/
 
 ## 본문까지 채우는 Archetype (Include content)
 
-Front Matter뿐 아니라 **본문(body)**도 미리 넣을 수 있다. 문서 사이트에서 함수 설명 페이지를 항상 같은 형식으로 만들 때 유용하다.
+Front Matter뿐 아니라 <strong>본문(body)</strong>도 미리 넣을 수 있다. 문서 사이트에서 함수 설명 페이지를 항상 같은 형식으로 만들 때 유용하다.
 
 예: `archetypes/functions.md`
 

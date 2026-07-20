@@ -77,7 +77,7 @@ image: image01.png
 
 Servury의 글 제목은 자극적이지만, 아키텍트에게 중요한 질문을 던집니다. **프라이버시는 선언(약관·정책·홍보문)으로 말할 수 있지만, 익명성은 시스템이 데이터를 “애초에 만들지 않도록” 설계해야만 성립한다**는 주장입니다. 원문처럼 “이메일로 비밀번호를 재설정할 수 있다면 나는 당신이 누구인지 안다… IP를 기록하면 어디 있는지도 안다”는 순간부터 익명성은 구조적으로 깨집니다. ([Servury 원문](https://servury.com/blog/privacy-is-marketing-anonymity-is-architecture/))
 
-이 글은 **“운영자가 협조하고 싶어도 협조할 수 없게 만드는 설계”**를 어디까지 구현할 수 있는지, 그리고 어떤 비용을 치르는지(관측가능성·결제·지원·남용 대응)까지 개발자·아키텍트 관점에서 정리합니다. 논의의 출발점은 GeekNews(Hada) 토론 요약입니다. ([Hada 토픽](https://news.hada.io/topic?id=25220))
+이 글은 <strong>“운영자가 협조하고 싶어도 협조할 수 없게 만드는 설계”</strong>를 어디까지 구현할 수 있는지, 그리고 어떤 비용을 치르는지(관측가능성·결제·지원·남용 대응)까지 개발자·아키텍트 관점에서 정리합니다. 논의의 출발점은 GeekNews(Hada) 토론 요약입니다. ([Hada 토픽](https://news.hada.io/topic?id=25220))
 
 **추천 대상**: 보안·프라이버시 정책을 설계하는 엔지니어, 데이터 최소화와 운영 요구사항 사이 트레이드오프를 고민하는 아키텍트, VPN·익명 서비스 설계에 관심 있는 개발자.
 
@@ -134,7 +134,7 @@ Servury는 이 답을 매우 공격적으로 잡았습니다: **32자 랜덤 자
 
 Servury 글에서 자주 인용되는 일화는 Mullvad VPN 사례입니다.
 
-- **2023년 4월**: 스웨덴 경찰이 영장을 들고 Gothenburg의 Mullvad 사무실을 방문, 고객 데이터를 담은 컴퓨터 압수를 시도했으나 **“아무것도 가져가지 못했고 고객 정보도 얻지 못했다”**고 Mullvad가 공식 블로그에서 밝힘. ([Mullvad 2023-04-20](https://mullvad.net/ko/blog/2023/4/20/mullvad-vpn-was-subject-to-a-search-warrant-customer-data-not-compromised))
+- **2023년 4월**: 스웨덴 경찰이 영장을 들고 Gothenburg의 Mullvad 사무실을 방문, 고객 데이터를 담은 컴퓨터 압수를 시도했으나 <strong>“아무것도 가져가지 못했고 고객 정보도 얻지 못했다”</strong>고 Mullvad가 공식 블로그에서 밝힘. ([Mullvad 2023-04-20](https://mullvad.net/ko/blog/2023/4/20/mullvad-vpn-was-subject-to-a-search-warrant-customer-data-not-compromised))
 - **이후**: Mullvad는 관련 문서/프로토콜을 요청했고, 스웨덴 당국의 답변 및 배경(독일과의 국제 사법 공조 등)을 추가로 공유함. ([Mullvad 2023-05-02](https://mullvad.net/en/blog/update-the-swedish-authorities-answered-our-protocol-request))
 
 아키텍트 관점에서 중요한 포인트는 도덕성이나 “거부”가 아니라, **컴플라이언스가 “가능/불가능”으로 갈리는 경계가 설계에서 결정**된다는 점입니다. Mullvad는 무작위 16자리 계정 번호만으로 인증하며, 이메일·이름·연결 로그를 저장하지 않기 때문에, 압수해도 줄 데이터가 없었습니다.
@@ -143,7 +143,7 @@ Servury 글에서 자주 인용되는 일화는 Mullvad VPN 사례입니다.
 
 ## 다이어그램: “보유하는 서비스” vs “비보유하는 서비스”의 강제집행 차이
 
-아래 다이어그램은 **“연결 가능한 데이터(PII/로그)를 만들 것인가, 말 것인가”**라는 설계 결정을 한눈에 보여줍니다.
+아래 다이어그램은 <strong>“연결 가능한 데이터(PII/로그)를 만들 것인가, 말 것인가”</strong>라는 설계 결정을 한눈에 보여줍니다.
 
 ```mermaid
 flowchart TB

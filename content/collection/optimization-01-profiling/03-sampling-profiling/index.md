@@ -47,7 +47,7 @@ tags:
   - PMU
 ---
 
-**샘플링 프로파일링(sampling profiling)**이란 실행 중인 프로그램을 주기적으로 중단시켜 "지금 어디를 실행하고 있는가"의 스냅샷(instruction pointer와 콜스택)을 수집하고, 그 표본의 분포로 전체 실행 시간의 분포를 통계적으로 추정하는 기법입니다. [Microbenchmark 설계 원칙](/post/profiling-analysis/microbenchmark-design-principles/)과 [Google Benchmark 실전](/post/profiling-analysis/google-benchmark-practical/)이 "격리한 코드 조각의 비용"을 재는 도구였다면, 샘플링 프로파일러는 반대 방향의 질문 — **실제 프로그램 전체에서 시간이 어디로 사라지는가** — 에 답합니다. µs 단위 최적화에서 이 질문을 건너뛰면, 전체 지연의 2%를 차지하는 함수를 열심히 갈아서 0.5%를 얻는 헛수고를 하게 됩니다. 이 장에서는 Linux `perf`와 Intel VTune Profiler를 소재로 인터럽트 기반 샘플의 생성 경로, 콜스택 언와인딩(call stack unwinding)의 세 가지 방식, 기본 수집·해석 워크플로우, 그리고 샘플링이라는 방법 자체에 내재한 편향과 한계를 다룹니다.
+<strong>샘플링 프로파일링(sampling profiling)</strong>이란 실행 중인 프로그램을 주기적으로 중단시켜 "지금 어디를 실행하고 있는가"의 스냅샷(instruction pointer와 콜스택)을 수집하고, 그 표본의 분포로 전체 실행 시간의 분포를 통계적으로 추정하는 기법입니다. [Microbenchmark 설계 원칙](/post/profiling-analysis/microbenchmark-design-principles/)과 [Google Benchmark 실전](/post/profiling-analysis/google-benchmark-practical/)이 "격리한 코드 조각의 비용"을 재는 도구였다면, 샘플링 프로파일러는 반대 방향의 질문 — **실제 프로그램 전체에서 시간이 어디로 사라지는가** — 에 답합니다. µs 단위 최적화에서 이 질문을 건너뛰면, 전체 지연의 2%를 차지하는 함수를 열심히 갈아서 0.5%를 얻는 헛수고를 하게 됩니다. 이 장에서는 Linux `perf`와 Intel VTune Profiler를 소재로 인터럽트 기반 샘플의 생성 경로, 콜스택 언와인딩(call stack unwinding)의 세 가지 방식, 기본 수집·해석 워크플로우, 그리고 샘플링이라는 방법 자체에 내재한 편향과 한계를 다룹니다.
 
 ## 이 장을 읽기 전에
 

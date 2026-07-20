@@ -100,7 +100,7 @@ void* latency_sensitive_work(void* arg) {
 
 ### 하나의 메모리 풀, 그러나 무한하지 않은 대역폭
 
-전통적인 이산형(discrete) 구성에서는 CPU가 시스템 DRAM을, GPU가 별도의 VRAM을 쓰고 두 메모리 사이의 데이터 이동은 PCIe를 통한 명시적 복사로 처리됩니다. Apple Silicon의 **Unified Memory Architecture(UMA)**는 CPU, GPU, Neural Engine이 패키지 내부의 LPDDR5X 메모리 풀을 물리적으로 공유하게 해 이 복사 단계 자체를 없앱니다. Hübner 등(KTH, 2025)의 측정 연구는 이 구조를 다음과 같이 요약합니다.
+전통적인 이산형(discrete) 구성에서는 CPU가 시스템 DRAM을, GPU가 별도의 VRAM을 쓰고 두 메모리 사이의 데이터 이동은 PCIe를 통한 명시적 복사로 처리됩니다. Apple Silicon의 <strong>Unified Memory Architecture(UMA)</strong>는 CPU, GPU, Neural Engine이 패키지 내부의 LPDDR5X 메모리 풀을 물리적으로 공유하게 해 이 복사 단계 자체를 없앱니다. Hübner 등(KTH, 2025)의 측정 연구는 이 구조를 다음과 같이 요약합니다.
 
 > "This memory is not just a traditional RAM but is tightly coupled with the CPU, GPU, Neural Engine, and other components within the chip, forming a shared, high-bandwidth memory pool." — Hübner, Hu, Peng, Markidis, [Apple vs. Oranges: Evaluating the Apple Silicon M-Series SoCs for HPC Performance and Efficiency](https://arxiv.org/html/2502.05317v1), arXiv:2502.05317 (2025)
 
@@ -155,11 +155,11 @@ int main() {
 
 ## 흔한 오개념
 
-**"E코어는 성능이 낮으니 항상 손해다"**는 정확하지 않습니다. E코어의 목적은 절대 성능이 아니라 백그라운드 작업을 P코어에서 격리해 사용자 워크로드가 요청하는 순간 P코어를 비워두는 것입니다. 유휴 Mac에서 수백 개 프로세스가 E코어에 머무르는 구조 자체가 P코어의 체감 반응성을 끌어올리는 장치이므로, E코어 존재를 "저성능 코어의 타협"이 아니라 "지연시간 격리 장치"로 이해해야 판단 기준이 맞습니다.
+<strong>"E코어는 성능이 낮으니 항상 손해다"</strong>는 정확하지 않습니다. E코어의 목적은 절대 성능이 아니라 백그라운드 작업을 P코어에서 격리해 사용자 워크로드가 요청하는 순간 P코어를 비워두는 것입니다. 유휴 Mac에서 수백 개 프로세스가 E코어에 머무르는 구조 자체가 P코어의 체감 반응성을 끌어올리는 장치이므로, E코어 존재를 "저성능 코어의 타협"이 아니라 "지연시간 격리 장치"로 이해해야 판단 기준이 맞습니다.
 
-**"Unified Memory는 대역폭이 사실상 무한하고 지연도 0에 가깝다"**는 마케팅 문구에서 비롯된 과장입니다. UMA는 CPU-GPU 간 명시적 복사를 없애 **왕복 비용(round-trip)**을 줄이는 것이지, 대역폭 자체를 늘리거나 경합을 없애는 것이 아닙니다. CPU와 GPU가 동시에 대역폭을 많이 쓰면 각자가 받는 실효 대역폭은 줄어들고, 이는 STREAM 실측치가 이론 최대치의 약 85%에 그친 이유 중 하나이기도 합니다.
+<strong>"Unified Memory는 대역폭이 사실상 무한하고 지연도 0에 가깝다"</strong>는 마케팅 문구에서 비롯된 과장입니다. UMA는 CPU-GPU 간 명시적 복사를 없애 <strong>왕복 비용(round-trip)</strong>을 줄이는 것이지, 대역폭 자체를 늘리거나 경합을 없애는 것이 아닙니다. CPU와 GPU가 동시에 대역폭을 많이 쓰면 각자가 받는 실효 대역폭은 줄어들고, 이는 STREAM 실측치가 이론 최대치의 약 85%에 그친 이유 중 하나이기도 합니다.
 
-**"Apple Silicon은 표준 ARM big.LITTLE을 그대로 쓴다"**도 오해입니다. big.LITTLE이라는 이름 자체는 ARM이 제공하는 표준 IP 코어(Cortex-A 시리즈)를 전제로 하지만, Apple의 P/E 코어는 Apple이 자체 설계한 마이크로아키텍처이고 macOS의 QoS 기반 스케줄링 정책도 Linux의 EAS(Energy Aware Scheduling)나 sched_ext 기반 정책과 스케줄링 결정 기준이 다릅니다. "ARM = big.LITTLE = Apple 방식"이라는 등식은 세 가지를 뭉뚱그린 것입니다.
+<strong>"Apple Silicon은 표준 ARM big.LITTLE을 그대로 쓴다"</strong>도 오해입니다. big.LITTLE이라는 이름 자체는 ARM이 제공하는 표준 IP 코어(Cortex-A 시리즈)를 전제로 하지만, Apple의 P/E 코어는 Apple이 자체 설계한 마이크로아키텍처이고 macOS의 QoS 기반 스케줄링 정책도 Linux의 EAS(Energy Aware Scheduling)나 sched_ext 기반 정책과 스케줄링 결정 기준이 다릅니다. "ARM = big.LITTLE = Apple 방식"이라는 등식은 세 가지를 뭉뚱그린 것입니다.
 
 ## 판단 기준
 

@@ -42,13 +42,13 @@ image: "wordcloud.png"
 
 ## 왜 고차원 검색은 어려운가 — 차원의 저주
 
-파인튜닝된 BERT의 임베딩은 보통 512, 1024, 2048차원 등 매우 고차원입니다. 검색은 본질적으로 탐색(search)과 같습니다. 문서 $n$개 중 정확한 매칭이라면 정렬된 데이터에서 이진 탐색으로 $O(\log n)$ 시간에 찾을 수 있지만, 고차원 공간에서는 이런 효율적인 탐색이 어려워지고 결국 선형 탐색에 가까운 비용이 듭니다. 이 현상을 **차원의 저주(Curse of Dimensionality)**라 부릅니다.
+파인튜닝된 BERT의 임베딩은 보통 512, 1024, 2048차원 등 매우 고차원입니다. 검색은 본질적으로 탐색(search)과 같습니다. 문서 $n$개 중 정확한 매칭이라면 정렬된 데이터에서 이진 탐색으로 $O(\log n)$ 시간에 찾을 수 있지만, 고차원 공간에서는 이런 효율적인 탐색이 어려워지고 결국 선형 탐색에 가까운 비용이 듭니다. 이 현상을 <strong>차원의 저주(Curse of Dimensionality)</strong>라 부릅니다.
 
 직관적인 이유는 이렇습니다 — 차원이 높아질수록 공간을 균등하게 나누기 위한 "변의 길이" 자체가 커져야 합니다. 예를 들어 1차원에서는 데이터의 절반을 담는 구간의 길이가 전체의 절반이면 충분하지만, 차원이 늘어날수록 같은 비율의 데이터를 담기 위한 초입방체(hypercube)의 한 변 길이는 1에 가까워집니다. 이 때문에 저차원에서 잘 동작하는 KD-tree 같은 트리 기반 탐색은, 고차원에서는 사실상 모든 데이터를 훑는 것과 큰 차이가 없어집니다.
 
 ## LSH — 비슷한 벡터를 같은 버킷에 담기
 
-**LSH(Locality Sensitive Hashing)**는 KD-tree 같은 전통적인 트리 기반 탐색의 대안으로, 비슷한 벡터일수록 같은 해시 버킷(bucket)에 담기도록 설계된 해시 함수를 사용해 **근사 최근접 이웃(Approximate Nearest Neighbor, ANN)**을 빠르게 찾는 기법입니다.
+<strong>LSH(Locality Sensitive Hashing)</strong>는 KD-tree 같은 전통적인 트리 기반 탐색의 대안으로, 비슷한 벡터일수록 같은 해시 버킷(bucket)에 담기도록 설계된 해시 함수를 사용해 <strong>근사 최근접 이웃(Approximate Nearest Neighbor, ANN)</strong>을 빠르게 찾는 기법입니다.
 
 ```python
 import numpy as np
@@ -67,7 +67,7 @@ class SimpleLSH:
 
 ## 그래프 기반 인덱스 — 최근의 추세
 
-최근에는 **그래프 인덱스(Graph Index)**를 사용하는 추세가 늘고 있습니다. 대표적인 방식이 **HNSW(Hierarchical Navigable Small World)**입니다.
+최근에는 <strong>그래프 인덱스(Graph Index)</strong>를 사용하는 추세가 늘고 있습니다. 대표적인 방식이 <strong>HNSW(Hierarchical Navigable Small World)</strong>입니다.
 
 > Yu. A. Malkov, D. A. Yashunin, "Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs", *arXiv:1603.09320* (2016)
 
@@ -81,7 +81,7 @@ class SimpleLSH:
 
 ## 실전 활용 — 멀티모달 검색
 
-Vision AI 시리즈 04장에서 다룬 CLIP을 사용해 이미지를 벡터화하면, 텍스트로 이미지를 검색하는 등 **멀티모달 검색(multimodal search)**도 같은 Dense Retrieval의 틀 안에서 구현할 수 있습니다. CLIP의 이미지 인코더와 텍스트 인코더는 같은 벡터 공간에 임베딩을 만들도록 학습되어 있으므로, "노을이 지는 해변" 같은 텍스트 쿼리를 임베딩한 뒤 이 장에서 다룬 LSH나 그래프 인덱스로 가장 가까운 이미지 벡터를 찾으면 텍스트-이미지 검색이 됩니다. 검색 대상의 모달리티(텍스트, 이미지, 오디오)가 달라져도 "벡터 공간에서 가까운 것을 빠르게 찾는다"는 이 장의 원리는 그대로 재사용됩니다.
+Vision AI 시리즈 04장에서 다룬 CLIP을 사용해 이미지를 벡터화하면, 텍스트로 이미지를 검색하는 등 <strong>멀티모달 검색(multimodal search)</strong>도 같은 Dense Retrieval의 틀 안에서 구현할 수 있습니다. CLIP의 이미지 인코더와 텍스트 인코더는 같은 벡터 공간에 임베딩을 만들도록 학습되어 있으므로, "노을이 지는 해변" 같은 텍스트 쿼리를 임베딩한 뒤 이 장에서 다룬 LSH나 그래프 인덱스로 가장 가까운 이미지 벡터를 찾으면 텍스트-이미지 검색이 됩니다. 검색 대상의 모달리티(텍스트, 이미지, 오디오)가 달라져도 "벡터 공간에서 가까운 것을 빠르게 찾는다"는 이 장의 원리는 그대로 재사용됩니다.
 
 ## 흔한 오개념 — "근사 검색은 항상 정확도를 희생하는 타협이다"
 

@@ -64,13 +64,13 @@ flowchart TB
 - **인터페이스 어댑터(Interface Adapters)**: 유스케이스의 입출력을 바깥 세계의 형식(HTTP 요청/응답, DB 레코드)으로 변환하는 컨트롤러, 프레젠터, 게이트웨이
 - **프레임워크와 드라이버(Frameworks & Drivers)**: 가장 바깥. 웹 프레임워크, DB 드라이버, UI 라이브러리 등 구체적인 기술
 
-**의존성 규칙(Dependency Rule)**은 이 그림에서 화살표가 항상 안쪽을 향해야 한다는 것입니다. 바깥 원은 안쪽 원을 참조할 수 있지만, 안쪽 원은 바깥 원에 있는 어떤 것도(클래스 이름조차) 알아서는 안 됩니다.
+<strong>의존성 규칙(Dependency Rule)</strong>은 이 그림에서 화살표가 항상 안쪽을 향해야 한다는 것입니다. 바깥 원은 안쪽 원을 참조할 수 있지만, 안쪽 원은 바깥 원에 있는 어떤 것도(클래스 이름조차) 알아서는 안 됩니다.
 
 ## 경계를 넘는 데이터: 도메인 객체를 그대로 넘기지 않는다
 
 10장 예제에서는 `Port` 인터페이스로 의존 방향을 뒤집는 것까지만 다뤘습니다. 실무에서 자주 놓치는 부분은 **계층 경계를 넘어갈 때 무엇을 주고받는가**입니다. 유스케이스 계층의 출력을 인터페이스 어댑터 계층(예: HTTP 컨트롤러)에 도메인 엔티티 객체를 그대로 반환하면, 도메인 엔티티에 웹 프레임워크가 요구하는 직렬화 애너테이션이나 필드가 섞여 들어가기 쉽습니다. 이는 다시 안쪽 계층이 바깥쪽 기술을 알게 되는 결과를 낳습니다.
 
-이를 막기 위해 클린 아키텍처는 계층 경계를 넘을 때 **단순한 데이터 구조(DTO, Data Transfer Object)**만 주고받도록 권장합니다.
+이를 막기 위해 클린 아키텍처는 계층 경계를 넘을 때 <strong>단순한 데이터 구조(DTO, Data Transfer Object)</strong>만 주고받도록 권장합니다.
 
 ```python
 from dataclasses import dataclass
@@ -106,7 +106,7 @@ class PlaceOrderUseCase:
         return str(uuid.uuid4())
 ```
 
-`PlaceOrderInput`/`PlaceOrderOutput`은 HTTP도, DB도 모릅니다. 컨트롤러(인터페이스 어댑터)가 HTTP 요청 본문을 `PlaceOrderInput`으로 변환해 유스케이스를 호출하고, 유스케이스가 반환한 `PlaceOrderOutput`을 다시 JSON 응답으로 변환합니다. 이 변환을 전담하는 두 역할이 **컨트롤러(입력 변환)**와 **프레젠터(출력 변환)**입니다.
+`PlaceOrderInput`/`PlaceOrderOutput`은 HTTP도, DB도 모릅니다. 컨트롤러(인터페이스 어댑터)가 HTTP 요청 본문을 `PlaceOrderInput`으로 변환해 유스케이스를 호출하고, 유스케이스가 반환한 `PlaceOrderOutput`을 다시 JSON 응답으로 변환합니다. 이 변환을 전담하는 두 역할이 <strong>컨트롤러(입력 변환)</strong>와 <strong>프레젠터(출력 변환)</strong>입니다.
 
 ## 헥사고날, 어니언, 클린: 같은 규칙, 다른 어휘
 

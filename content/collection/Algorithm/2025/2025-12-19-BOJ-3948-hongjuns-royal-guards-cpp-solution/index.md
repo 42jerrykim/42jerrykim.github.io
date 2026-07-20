@@ -44,7 +44,7 @@ image: "wordcloud.png"
 문제: [BOJ 3948 - 홍준이의 친위대](https://www.acmicpc.net/problem/3948)
 
 병사 키가 모두 다를 때, 양 끝을 제외한 모든 병사가 **양 옆 두 병사가 모두 자신보다 크거나(골)** 또는 **모두 자신보다 작게(봉우리)** 서는 배치의 개수를 구한다.  
-핵심은 이 배치가 잘 알려진 **교대(up-down) 순열**과 동치라는 점이며, 답은 **오일러 지그재그 수(Euler zigzag number)**로 계산된다.
+핵심은 이 배치가 잘 알려진 **교대(up-down) 순열**과 동치라는 점이며, 답은 <strong>오일러 지그재그 수(Euler zigzag number)</strong>로 계산된다.
 
 ## 문제 정보
 

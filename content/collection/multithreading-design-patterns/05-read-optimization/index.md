@@ -368,7 +368,7 @@ public:
 
 ## 다음 장에서는
 
-06장 **「실행 관리 I: Thread Pool」**에서는 스레드 풀, 작업 큐, 그리고 work stealing 알고리즘을 다룬다.
+06장 <strong>「실행 관리 I: Thread Pool」</strong>에서는 스레드 풀, 작업 큐, 그리고 work stealing 알고리즘을 다룬다.
 
 ## 참고 및 출처
 

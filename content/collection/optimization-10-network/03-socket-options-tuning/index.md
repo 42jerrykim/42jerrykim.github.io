@@ -131,7 +131,7 @@ ESTAB  0       0       10.0.0.2:53214      10.0.0.5:443
 
 ## 버퍼 크기와 BDP
 
-버퍼 크기를 얼마로 잡아야 하는지에는 **대역폭-지연 곱(BDP, Bandwidth-Delay Product)**이라는 기준선이 있다. BDP는 "링크가 가득 찼을 때 비행 중(in-flight)인 데이터 양"으로, `BDP = 대역폭 × RTT`로 계산한다. 예를 들어 대역폭 1Gbps, RTT 20ms인 경로라면 BDP는 대략 1e9 bit/s × 0.02s / 8 ≈ 2.5MB다. 송수신 버퍼가 BDP보다 작으면 확인 응답을 기다리는 동안 전송이 멈춰 처리량이 대역폭에 못 미치고, BDP보다 훨씬 크면 버퍼에 쌓인 데이터가 지연을 늘리는 방향으로만 작용한다(뒤에서 다룰 버퍼블로트). 고지연·고대역폭(long fat network) 경로일수록 이 계산이 중요해지고, 데이터센터 내부처럼 RTT가 수십 µs인 경로에서는 BDP 자체가 작아 기본값으로도 충분한 경우가 많다.
+버퍼 크기를 얼마로 잡아야 하는지에는 <strong>대역폭-지연 곱(BDP, Bandwidth-Delay Product)</strong>이라는 기준선이 있다. BDP는 "링크가 가득 찼을 때 비행 중(in-flight)인 데이터 양"으로, `BDP = 대역폭 × RTT`로 계산한다. 예를 들어 대역폭 1Gbps, RTT 20ms인 경로라면 BDP는 대략 1e9 bit/s × 0.02s / 8 ≈ 2.5MB다. 송수신 버퍼가 BDP보다 작으면 확인 응답을 기다리는 동안 전송이 멈춰 처리량이 대역폭에 못 미치고, BDP보다 훨씬 크면 버퍼에 쌓인 데이터가 지연을 늘리는 방향으로만 작용한다(뒤에서 다룰 버퍼블로트). 고지연·고대역폭(long fat network) 경로일수록 이 계산이 중요해지고, 데이터센터 내부처럼 RTT가 수십 µs인 경로에서는 BDP 자체가 작아 기본값으로도 충분한 경우가 많다.
 
 ```cpp
 #include <cstdint>
@@ -160,11 +160,11 @@ sudo tc qdisc del dev eth0 root netem
 
 ## 흔한 오개념
 
-**"버퍼는 무조건 크게 잡을수록 좋다"**는 틀렸다. 버퍼가 BDP를 넘어서면 추가로 커지는 만큼 처리량이 늘지 않고, 오히려 큐에 쌓인 데이터가 왕복 지연을 늘리는 **버퍼블로트(bufferbloat)** 현상으로 이어질 수 있다. 버퍼 크기는 BDP를 기준선으로 안전 마진을 더하는 정도로 정하는 것이 합리적이다.
+<strong>"버퍼는 무조건 크게 잡을수록 좋다"</strong>는 틀렸다. 버퍼가 BDP를 넘어서면 추가로 커지는 만큼 처리량이 늘지 않고, 오히려 큐에 쌓인 데이터가 왕복 지연을 늘리는 **버퍼블로트(bufferbloat)** 현상으로 이어질 수 있다. 버퍼 크기는 BDP를 기준선으로 안전 마진을 더하는 정도로 정하는 것이 합리적이다.
 
-**"TCP_NODELAY만 켜면 지연 문제가 끝난다"**도 오개념이다. TCP_NODELAY는 송신 측의 Nagle 지연만 없앨 뿐, 수신 측의 Delayed ACK나 혼잡 제어 창 크기 조절에서 오는 지연에는 영향을 주지 않는다. 두 메커니즘이 겹치면 TCP_NODELAY를 켜도 여전히 지연이 남을 수 있으며, 그 상호작용은 [04장](/post/network-optimization/tcp-performance-nagle-congestion-control-bbr/)에서 다룬다.
+<strong>"TCP_NODELAY만 켜면 지연 문제가 끝난다"</strong>도 오개념이다. TCP_NODELAY는 송신 측의 Nagle 지연만 없앨 뿐, 수신 측의 Delayed ACK나 혼잡 제어 창 크기 조절에서 오는 지연에는 영향을 주지 않는다. 두 메커니즘이 겹치면 TCP_NODELAY를 켜도 여전히 지연이 남을 수 있으며, 그 상호작용은 [04장](/post/network-optimization/tcp-performance-nagle-congestion-control-bbr/)에서 다룬다.
 
-**"setsockopt로 설정한 SO_SNDBUF/SO_RCVBUF 값이 실제 커널 버퍼 크기다"**도 틀렸다. 앞서 본 것처럼 커널은 부기 오버헤드를 위해 요청값의 대략 2배를 실제로 할당하고, `getsockopt()`로 읽히는 값이 요청값과 다를 수 있다. 수동 설정은 자동 튜닝을 그 값으로 고정시키는 부작용도 함께 가져온다는 점을 기억해야 한다.
+<strong>"setsockopt로 설정한 SO_SNDBUF/SO_RCVBUF 값이 실제 커널 버퍼 크기다"</strong>도 틀렸다. 앞서 본 것처럼 커널은 부기 오버헤드를 위해 요청값의 대략 2배를 실제로 할당하고, `getsockopt()`로 읽히는 값이 요청값과 다를 수 있다. 수동 설정은 자동 튜닝을 그 값으로 고정시키는 부작용도 함께 가져온다는 점을 기억해야 한다.
 
 ## 판단 기준
 

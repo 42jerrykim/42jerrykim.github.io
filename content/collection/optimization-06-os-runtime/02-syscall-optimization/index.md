@@ -69,7 +69,7 @@ tags:
 
 ## Syscall과 Meltdown/KPTI (역사·배경)
 
-x86 초기에는 `int 0x80` 소프트웨어 인터럽트로 syscall을 구현했고, 2000년대 들어 인텔·AMD가 각각 `SYSENTER`/`SYSCALL` 전용 명령을 추가해 진입 비용을 낮췄습니다. 이 명령들은 여전히 링(ring) 전환과 레지스터 저장·복원을 수반하지만, 소프트웨어 인터럽트보다 훨씬 적은 사이클로 커널에 진입합니다. 2018년 1월 공개된 **Meltdown**(CVE-2017-5754)은 사용자 프로세스가 특정 조건에서 커널 메모리를 추측 실행(speculative execution)을 통해 읽어낼 수 있음을 보였고, 이에 대한 완화책으로 **KPTI(Kernel Page Table Isolation, 이전 명칭 KAISER)**가 리눅스 4.15(2018-01)에 긴급 병합되었습니다. KPTI는 사용자 모드와 커널 모드의 페이지 테이블을 분리해, 사용자 프로세스가 커널 주소 공간을 매핑조차 하지 못하게 만듭니다. 이 분리가 이 장에서 다루는 "syscall 비용"의 핵심 변수 하나입니다 — syscall 진입·탈출마다 페이지 테이블을 교체하는 비용이 추가되었기 때문입니다.
+x86 초기에는 `int 0x80` 소프트웨어 인터럽트로 syscall을 구현했고, 2000년대 들어 인텔·AMD가 각각 `SYSENTER`/`SYSCALL` 전용 명령을 추가해 진입 비용을 낮췄습니다. 이 명령들은 여전히 링(ring) 전환과 레지스터 저장·복원을 수반하지만, 소프트웨어 인터럽트보다 훨씬 적은 사이클로 커널에 진입합니다. 2018년 1월 공개된 **Meltdown**(CVE-2017-5754)은 사용자 프로세스가 특정 조건에서 커널 메모리를 추측 실행(speculative execution)을 통해 읽어낼 수 있음을 보였고, 이에 대한 완화책으로 <strong>KPTI(Kernel Page Table Isolation, 이전 명칭 KAISER)</strong>가 리눅스 4.15(2018-01)에 긴급 병합되었습니다. KPTI는 사용자 모드와 커널 모드의 페이지 테이블을 분리해, 사용자 프로세스가 커널 주소 공간을 매핑조차 하지 못하게 만듭니다. 이 분리가 이 장에서 다루는 "syscall 비용"의 핵심 변수 하나입니다 — syscall 진입·탈출마다 페이지 테이블을 교체하는 비용이 추가되었기 때문입니다.
 
 ## Syscall 진입·탈출 비용 (모드 전환)
 
@@ -94,7 +94,7 @@ grep -o 'pcid' /proc/cpuinfo | head -1
 
 ## vDSO로 커널 진입 우회하기
 
-**vDSO(virtual dynamic shared object)**는 커널이 모든 사용자 프로세스의 주소 공간에 자동으로 매핑해 주는 작은 공유 라이브러리로, 몇몇 syscall을 실제 진입 없이 사용자 공간 함수 호출로 바꿔줍니다. x86-64 리눅스에서 대표적으로 가속되는 대상은 `clock_gettime`, `gettimeofday`, `time`, `getcpu`입니다 — 이들은 커널이 주기적으로 갱신해 vDSO 페이지에 써두는 시간·CPU 정보를 사용자 공간에서 그대로 읽기만 하면 되므로, 링 전환 없이 응답할 수 있습니다.
+<strong>vDSO(virtual dynamic shared object)</strong>는 커널이 모든 사용자 프로세스의 주소 공간에 자동으로 매핑해 주는 작은 공유 라이브러리로, 몇몇 syscall을 실제 진입 없이 사용자 공간 함수 호출로 바꿔줍니다. x86-64 리눅스에서 대표적으로 가속되는 대상은 `clock_gettime`, `gettimeofday`, `time`, `getcpu`입니다 — 이들은 커널이 주기적으로 갱신해 vDSO 페이지에 써두는 시간·CPU 정보를 사용자 공간에서 그대로 읽기만 하면 되므로, 링 전환 없이 응답할 수 있습니다.
 
 > "Now a call to gettimeofday(2) changes from a system call to a normal function call and a few memory accesses." — [man7.org: vdso(7)](https://man7.org/linux/man-pages/man7/vdso.7.html) 문서.
 

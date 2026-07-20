@@ -170,4 +170,4 @@ tags:
 
 파이썬을 이미 어느 정도 아는 개발자가 필요할 때 빠르게 꺼내 쓸 수 있도록 핵심 패턴과 함정을 정리한 치트시트 컬렉션입니다.
 
-사용법, 전체 커리큘럼, 로드맵은 **[00. Overview]({{< relref "collection/pythoncheatsheet/00_overview/index.md" >}})**에서 확인하세요.
+사용법, 전체 커리큘럼, 로드맵은 <strong>[00. Overview]({{< relref "collection/pythoncheatsheet/00_overview/index.md" >}})</strong>에서 확인하세요.

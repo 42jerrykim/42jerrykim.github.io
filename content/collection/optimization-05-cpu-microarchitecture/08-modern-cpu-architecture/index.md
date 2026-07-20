@@ -107,7 +107,7 @@ ARM은 Intel·AMD와 달리 코어 설계 자체를 라이선스로 판매하기
 
 ## ISA 확장 경쟁: AVX10.2/APX 대 SVE2 대 AVX-512
 
-명령어 집합 확장은 코어 마이크로아키텍처만큼이나 세대 간 성능 차이를 만듭니다. Intel은 Nova Lake부터 **AVX10.2**와 **APX(Advanced Performance Extensions)**를 데스크톱·모바일에 처음 들여오는데, AVX10.2는 P-core(Coyote Cove)와 E-core(Arctic Wolf) 양쪽에서 동일한 512비트 벡터 폭을 지원하도록 통일해 이전 세대처럼 "E-core에서는 AVX-512가 꺼진다" 는 비일관성을 없애는 방향입니다. APX는 범용 레지스터 수를 늘리고 3-operand 형태의 새 인코딩을 추가해 레지스터 압박(register pressure)을 줄이고 명령어당 처리량을 높이는 것을 목표로 하며, Intel은 Nova Lake를 이 두 확장을 지원하는 첫 소비자 플랫폼으로 공식화했습니다([Wikipedia: Nova Lake](https://en.wikipedia.org/wiki/Nova_Lake_%28microprocessor%29)). AMD는 Zen 4/5부터 이미 512비트 AVX-512를 지원해 왔고 Zen 6에서도 이어갈 것으로 예상되지만, 공식 세부 스펙은 아직 확정 공개되지 않았습니다. ARM 진영은 SVE2(Scalable Vector Extension 2)로 응답하는데, x86의 AVX 계열이 고정 폭(128/256/512비트) 명령어를 따로 인코딩하는 것과 달리 SVE는 벡터 길이를 하드웨어 구현에 위임하는 "길이 비종속(length-agnostic)" 설계라 같은 바이너리가 다른 벡터 폭의 코어에서도 재컴파일 없이 동작하도록 의도되었습니다. 실무 관점에서 중요한 것은 ISA 확장 자체가 아니라, 컴파일러가 그 확장을 활용하도록 코드를 생성하는지입니다 — 벡터화 여부와 `-march`/`-mavx512f`류 컴파일러 플래그의 관계는 [Tr.03: 컴파일러·빌드 최적화](/post/compiler-optimization/getting-started-compiler-build-performance-tuning/)에서 더 깊이 다룹니다.
+명령어 집합 확장은 코어 마이크로아키텍처만큼이나 세대 간 성능 차이를 만듭니다. Intel은 Nova Lake부터 **AVX10.2**와 <strong>APX(Advanced Performance Extensions)</strong>를 데스크톱·모바일에 처음 들여오는데, AVX10.2는 P-core(Coyote Cove)와 E-core(Arctic Wolf) 양쪽에서 동일한 512비트 벡터 폭을 지원하도록 통일해 이전 세대처럼 "E-core에서는 AVX-512가 꺼진다" 는 비일관성을 없애는 방향입니다. APX는 범용 레지스터 수를 늘리고 3-operand 형태의 새 인코딩을 추가해 레지스터 압박(register pressure)을 줄이고 명령어당 처리량을 높이는 것을 목표로 하며, Intel은 Nova Lake를 이 두 확장을 지원하는 첫 소비자 플랫폼으로 공식화했습니다([Wikipedia: Nova Lake](https://en.wikipedia.org/wiki/Nova_Lake_%28microprocessor%29)). AMD는 Zen 4/5부터 이미 512비트 AVX-512를 지원해 왔고 Zen 6에서도 이어갈 것으로 예상되지만, 공식 세부 스펙은 아직 확정 공개되지 않았습니다. ARM 진영은 SVE2(Scalable Vector Extension 2)로 응답하는데, x86의 AVX 계열이 고정 폭(128/256/512비트) 명령어를 따로 인코딩하는 것과 달리 SVE는 벡터 길이를 하드웨어 구현에 위임하는 "길이 비종속(length-agnostic)" 설계라 같은 바이너리가 다른 벡터 폭의 코어에서도 재컴파일 없이 동작하도록 의도되었습니다. 실무 관점에서 중요한 것은 ISA 확장 자체가 아니라, 컴파일러가 그 확장을 활용하도록 코드를 생성하는지입니다 — 벡터화 여부와 `-march`/`-mavx512f`류 컴파일러 플래그의 관계는 [Tr.03: 컴파일러·빌드 최적화](/post/compiler-optimization/getting-started-compiler-build-performance-tuning/)에서 더 깊이 다룹니다.
 
 실제 배포 환경에서 어떤 ISA 확장이 켜져 있는지 확인하는 것은 벤더 발표 자료를 읽는 것보다 신뢰도가 높습니다. 아래는 Linux에서 현재 코어가 지원하는 플래그를 직접 확인하는 방법입니다.
 
@@ -123,11 +123,11 @@ lscpu | grep -iE 'Model name|Flags'
 
 ## 흔한 오개념
 
-**"코어 수가 많을수록 무조건 빠르다"**는 처리량(throughput) 워크로드에서나 성립하는 이야기입니다. Clearwater Forest의 288 E-core는 스레드당 성능이 아니라 코어당 전력·면적 효율을 최적화한 설계이므로, 단일 요청의 꼬리 지연(p99 latency)이 중요한 워크로드에서는 오히려 P-core 중심 제품(Panther Cove-X, Zen 6의 고클록 SKU)이 유리할 수 있습니다. 코어 수와 지연시간의 관계는 [11장: CPU 주파수 스케일링과 성능](/post/cpu-optimization/cpu-frequency-scaling-performance/)에서 다루는 클록·전력 곡선과 함께 봐야 의미가 생깁니다.
+<strong>"코어 수가 많을수록 무조건 빠르다"</strong>는 처리량(throughput) 워크로드에서나 성립하는 이야기입니다. Clearwater Forest의 288 E-core는 스레드당 성능이 아니라 코어당 전력·면적 효율을 최적화한 설계이므로, 단일 요청의 꼬리 지연(p99 latency)이 중요한 워크로드에서는 오히려 P-core 중심 제품(Panther Cove-X, Zen 6의 고클록 SKU)이 유리할 수 있습니다. 코어 수와 지연시간의 관계는 [11장: CPU 주파수 스케일링과 성능](/post/cpu-optimization/cpu-frequency-scaling-performance/)에서 다루는 클록·전력 곡선과 함께 봐야 의미가 생깁니다.
 
-**"ARM은 항상 저전력, x86은 항상 고성능"**이라는 이분법도 더 이상 정확하지 않습니다. Neoverse V3는 고성능 컴퓨팅을 정면으로 겨냥한 설계이고, 반대로 Intel의 E-core 라인(Darkmont)은 전력·밀도를 최우선 목표로 설계되었습니다. 두 축(성능 대 효율)은 이제 벤더가 아니라 제품 계열(N 대 V, P 대 E) 단위로 갈립니다.
+<strong>"ARM은 항상 저전력, x86은 항상 고성능"</strong>이라는 이분법도 더 이상 정확하지 않습니다. Neoverse V3는 고성능 컴퓨팅을 정면으로 겨냥한 설계이고, 반대로 Intel의 E-core 라인(Darkmont)은 전력·밀도를 최우선 목표로 설계되었습니다. 두 축(성능 대 효율)은 이제 벤더가 아니라 제품 계열(N 대 V, P 대 E) 단위로 갈립니다.
 
-**"신규 ISA 확장을 지원하면 자동으로 빨라진다"**도 틀린 가정입니다. AVX10.2·SVE2 같은 확장은 컴파일러가 해당 명령을 생성하고, 코드가 실제로 벡터화 가능한 형태여야 이득을 봅니다. 게다가 넓은 벡터 명령을 쓰면 일부 코어에서 클록이 일시적으로 낮아지는 현상(AVX-512 다운클로킹과 유사한 패턴)이 세대에 따라 여전히 남아 있을 수 있으므로, 벡터 폭을 넓히는 선택이 항상 순이득인지는 해당 세대에서 직접 측정해야 합니다.
+<strong>"신규 ISA 확장을 지원하면 자동으로 빨라진다"</strong>도 틀린 가정입니다. AVX10.2·SVE2 같은 확장은 컴파일러가 해당 명령을 생성하고, 코드가 실제로 벡터화 가능한 형태여야 이득을 봅니다. 게다가 넓은 벡터 명령을 쓰면 일부 코어에서 클록이 일시적으로 낮아지는 현상(AVX-512 다운클로킹과 유사한 패턴)이 세대에 따라 여전히 남아 있을 수 있으므로, 벡터 폭을 넓히는 선택이 항상 순이득인지는 해당 세대에서 직접 측정해야 합니다.
 
 ## 판단 기준
 

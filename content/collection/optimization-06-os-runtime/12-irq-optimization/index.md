@@ -69,7 +69,7 @@ tags:
 
 ## 인터럽트 처리 구조의 역사와 배경
 
-인터럽트를 즉시 처리할 부분과 나중으로 미룰 부분으로 나누는 아이디어 자체는 유닉스 계열 커널의 오래된 설계 원칙이다. 하드웨어가 인터럽트를 걸면 CPU는 인터럽트가 비활성화된 상태로 최소한의 확인 작업만 수행하고, 나머지 무거운 처리는 인터럽트가 다시 켜진 뒤로 미루는 구조가 다양한 이름(top half/bottom half, hardirq/softirq)으로 반복해서 채택되어 왔다. 리눅스에서 이 분리를 구체화한 두 축은 각기 다른 시기에 다른 문제를 풀기 위해 등장했다. **softirq**(그리고 그 위에 얹힌 tasklet)는 초기 리눅스 SMP 지원 시절부터 존재해 왔고, 하드웨어 인터럽트 컨텍스트를 최소화하면서도 여러 CPU가 동시에 후속 처리를 나눠 맡을 수 있게 했다. **NAPI(New API)**는 2001년 Jamal Hadi Salim, Robert Olsson, Alexey Kuznetsov가 발표한 ["Beyond Softnet"](https://www.usenix.org/legacy/publications/library/proceedings/als01/full_papers/jamal/jamal.pdf) 논문에서 제안된 네트워크 수신 경로 개선안으로, 트래픽이 몰릴 때 패킷마다 인터럽트를 걸어 CPU를 마비시키는 대신 인터럽트를 잠시 끄고 폴링으로 전환해 처리량을 지키는 절충안을 표준화했다. **threaded IRQ**는 이보다 늦게, Thomas Gleixner가 PREEMPT_RT 패치 세트에서 오래 유지해 오던 기법을 2009년 **Linux 2.6.30**에 `request_threaded_irq()` API로 메인라인에 병합하면서 일반 커널의 정식 기능이 되었다([LWN: Moving interrupts to threads](https://lwn.net/Articles/302043/)). 이 세 가지는 "인터럽트 컨텍스트에서 얼마나 오래 머물 것인가"라는 같은 질문에 대한 서로 다른 시대의 답이며, 오늘날 커널은 세 메커니즘을 상황에 따라 함께 쓴다.
+인터럽트를 즉시 처리할 부분과 나중으로 미룰 부분으로 나누는 아이디어 자체는 유닉스 계열 커널의 오래된 설계 원칙이다. 하드웨어가 인터럽트를 걸면 CPU는 인터럽트가 비활성화된 상태로 최소한의 확인 작업만 수행하고, 나머지 무거운 처리는 인터럽트가 다시 켜진 뒤로 미루는 구조가 다양한 이름(top half/bottom half, hardirq/softirq)으로 반복해서 채택되어 왔다. 리눅스에서 이 분리를 구체화한 두 축은 각기 다른 시기에 다른 문제를 풀기 위해 등장했다. **softirq**(그리고 그 위에 얹힌 tasklet)는 초기 리눅스 SMP 지원 시절부터 존재해 왔고, 하드웨어 인터럽트 컨텍스트를 최소화하면서도 여러 CPU가 동시에 후속 처리를 나눠 맡을 수 있게 했다. <strong>NAPI(New API)</strong>는 2001년 Jamal Hadi Salim, Robert Olsson, Alexey Kuznetsov가 발표한 ["Beyond Softnet"](https://www.usenix.org/legacy/publications/library/proceedings/als01/full_papers/jamal/jamal.pdf) 논문에서 제안된 네트워크 수신 경로 개선안으로, 트래픽이 몰릴 때 패킷마다 인터럽트를 걸어 CPU를 마비시키는 대신 인터럽트를 잠시 끄고 폴링으로 전환해 처리량을 지키는 절충안을 표준화했다. **threaded IRQ**는 이보다 늦게, Thomas Gleixner가 PREEMPT_RT 패치 세트에서 오래 유지해 오던 기법을 2009년 **Linux 2.6.30**에 `request_threaded_irq()` API로 메인라인에 병합하면서 일반 커널의 정식 기능이 되었다([LWN: Moving interrupts to threads](https://lwn.net/Articles/302043/)). 이 세 가지는 "인터럽트 컨텍스트에서 얼마나 오래 머물 것인가"라는 같은 질문에 대한 서로 다른 시대의 답이며, 오늘날 커널은 세 메커니즘을 상황에 따라 함께 쓴다.
 
 ## Top Half와 Bottom Half: 인터럽트 처리의 두 층
 
@@ -173,11 +173,11 @@ IRQBALANCE_BANNED_CPULIST=2-3
 
 ## 흔한 오개념
 
-**"isolcpus로 코어를 격리하면 그 코어에는 인터럽트도 자동으로 안 온다"**는 정확하지 않다. `isolcpus`(domain 플래그)는 일반 스케줄러의 부하 분산 대상에서 코어를 빼는 것이지, 인터럽트 라우팅을 바꾸는 기능이 아니다. 인터럽트가 격리 코어를 피하게 하려면 `smp_affinity`를 별도로 설정하거나 `managed_irq` 서브 플래그를 함께 지정해야 하며, 이 둘을 빠뜨리면 스케줄러 격리는 성공했는데 인터럽트만 여전히 격리 코어를 때리는 상황이 벌어진다.
+<strong>"isolcpus로 코어를 격리하면 그 코어에는 인터럽트도 자동으로 안 온다"</strong>는 정확하지 않다. `isolcpus`(domain 플래그)는 일반 스케줄러의 부하 분산 대상에서 코어를 빼는 것이지, 인터럽트 라우팅을 바꾸는 기능이 아니다. 인터럽트가 격리 코어를 피하게 하려면 `smp_affinity`를 별도로 설정하거나 `managed_irq` 서브 플래그를 함께 지정해야 하며, 이 둘을 빠뜨리면 스케줄러 격리는 성공했는데 인터럽트만 여전히 격리 코어를 때리는 상황이 벌어진다.
 
-**"managed_irq를 켜면 관리형 인터럽트가 격리 코어에서 완전히 빠진다"**도 과장이다. 커널 문서가 명시하듯 이는 best-effort 기능이라 자동 할당 마스크에 격리 코어 바깥의 온라인 CPU가 남아 있을 때만 작동하며, housekeeping 코어가 너무 적거나 없으면 이 회피 자체가 무력화된다. "설정했으니 안전하다"고 가정하지 말고 실측으로 검증해야 한다.
+<strong>"managed_irq를 켜면 관리형 인터럽트가 격리 코어에서 완전히 빠진다"</strong>도 과장이다. 커널 문서가 명시하듯 이는 best-effort 기능이라 자동 할당 마스크에 격리 코어 바깥의 온라인 CPU가 남아 있을 때만 작동하며, housekeeping 코어가 너무 적거나 없으면 이 회피 자체가 무력화된다. "설정했으니 안전하다"고 가정하지 말고 실측으로 검증해야 한다.
 
-**"irqbalance를 끄기만 하면 인터럽트 배치가 고정된다"**도 절반만 맞다. irqbalance를 멈춰도 새로 핫플러그되는 디바이스나 새 인터럽트는 `default_smp_affinity`를 물려받으므로, 이 기본값이 격리 코어를 포함하고 있다면 irqbalance 없이도 새 인터럽트가 격리 코어로 들어올 수 있다. `default_smp_affinity` 자체를 housekeeping 코어로 좁혀야 이 구멍이 막힌다.
+<strong>"irqbalance를 끄기만 하면 인터럽트 배치가 고정된다"</strong>도 절반만 맞다. irqbalance를 멈춰도 새로 핫플러그되는 디바이스나 새 인터럽트는 `default_smp_affinity`를 물려받으므로, 이 기본값이 격리 코어를 포함하고 있다면 irqbalance 없이도 새 인터럽트가 격리 코어로 들어올 수 있다. `default_smp_affinity` 자체를 housekeeping 코어로 좁혀야 이 구멍이 막힌다.
 
 ## 판단 기준
 

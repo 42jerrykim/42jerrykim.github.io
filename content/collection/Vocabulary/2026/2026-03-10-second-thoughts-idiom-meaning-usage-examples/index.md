@@ -75,7 +75,7 @@ tags:
 image: wordcloud.png
 ---
 
-오늘은 영어 구 **'second thoughts'**의 정확한 의미와 실제 쓰임을 정리한다.  
+오늘은 영어 구 <strong>'second thoughts'</strong>의 정확한 의미와 실제 쓰임을 정리한다.  
 이 표현은 **처음 결정에 대한 재고·망설임·후회**를 나타낼 때 쓰이며, **have second thoughts**, **on second thought**, **without a second thought** 등 다양한 형태로 일상 대화·비즈니스·결정 상황에서 반복 등장하는 중요한 숙어다.  
 단순 사전 정의를 넘어서, 콜로케이션과 EN/KR 예문을 통해 자연스러운 사용을 익힌다.
 
@@ -118,7 +118,7 @@ image: wordcloud.png
 ## 어원
 
 **Second thought**는 17세기 초(1625–1635년경)에 처음 기록된 표현이다.  
-말 그대로 **“첫 번째 생각(first thought) 다음에 오는 두 번째 생각”**을 가리키며, 한 번 결정한 뒤 다시 생각해 보는 **재고·후속 고려**라는 이미지에서 **의심·망설임·말 바꾸기**의 의미로 굳어졌다.  
+말 그대로 <strong>“첫 번째 생각(first thought) 다음에 오는 두 번째 생각”</strong>을 가리키며, 한 번 결정한 뒤 다시 생각해 보는 **재고·후속 고려**라는 이미지에서 **의심·망설임·말 바꾸기**의 의미로 굳어졌다.  
 복수형 **second thoughts**는 주로 **have second thoughts**처럼 “재고하다, 망설이다” 문맥에서 쓰이고, 단수 **on second thought**는 “재고해 보니”라는 말 바꿀 때 쓰인다.  
 **Without a second thought**는 “두 번째 생각(재고) 없이” → “망설임 없이”로 확장된 숙어다.
 

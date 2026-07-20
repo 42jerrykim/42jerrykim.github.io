@@ -63,7 +63,7 @@ flowchart TB
 
 ## 액터 식별
 
-시스템과 상호작용하는 **액터(Actor)**를 식별한다.
+시스템과 상호작용하는 <strong>액터(Actor)</strong>를 식별한다.
 
 ```mermaid
 flowchart LR

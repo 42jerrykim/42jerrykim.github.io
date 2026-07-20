@@ -62,13 +62,13 @@ tags:
 
 ## 코루틴 동시성의 역사와 생태계
 
-C++20 표준화 과정에서 코루틴 TS의 초기 설계는 한 코루틴이 다른 코루틴을 호출하고 완료 시 되돌아가는 구조를 **상호 재귀 호출**로 구현했습니다. 이 방식은 루프 안에서 동기적으로 즉시 완료되는 태스크를 반복해서 `co_await`하면 호출 스택이 반복 횟수에 비례해 계속 쌓이는 문제가 있었고, 실전에서는 스택 오버플로로 이어질 수 있었습니다. Gor Nishanov가 제안한 P0913(symmetric transfer)이 C++20에 채택되면서, `await_suspend`가 `void`나 `bool` 대신 `std::coroutine_handle<>`를 반환하면 컴파일러가 이를 **테일 콜(tail-call)**로 처리해 추가 스택 프레임 없이 다음 코루틴으로 점프하도록 정의됩니다. Lewis Baker는 이 메커니즘을 두고 "allows you to suspend one coroutine and resume another coroutine without consuming any additional stack-space"라고 설명합니다 — [Lewis Baker, "Understanding symmetric transfer", 2020](https://lewissbaker.github.io/2020/05/11/understanding_symmetric_transfer). 이 장의 `Task<T>` 구현은 이 성질에 의존합니다.
+C++20 표준화 과정에서 코루틴 TS의 초기 설계는 한 코루틴이 다른 코루틴을 호출하고 완료 시 되돌아가는 구조를 **상호 재귀 호출**로 구현했습니다. 이 방식은 루프 안에서 동기적으로 즉시 완료되는 태스크를 반복해서 `co_await`하면 호출 스택이 반복 횟수에 비례해 계속 쌓이는 문제가 있었고, 실전에서는 스택 오버플로로 이어질 수 있었습니다. Gor Nishanov가 제안한 P0913(symmetric transfer)이 C++20에 채택되면서, `await_suspend`가 `void`나 `bool` 대신 `std::coroutine_handle<>`를 반환하면 컴파일러가 이를 <strong>테일 콜(tail-call)</strong>로 처리해 추가 스택 프레임 없이 다음 코루틴으로 점프하도록 정의됩니다. Lewis Baker는 이 메커니즘을 두고 "allows you to suspend one coroutine and resume another coroutine without consuming any additional stack-space"라고 설명합니다 — [Lewis Baker, "Understanding symmetric transfer", 2020](https://lewissbaker.github.io/2020/05/11/understanding_symmetric_transfer). 이 장의 `Task<T>` 구현은 이 성질에 의존합니다.
 
 표준 라이브러리는 C++20~C++23에서 `co_await`/`co_yield`/`co_return`과 promise_type·awaitable 인터페이스를 언어 차원에 두었을 뿐([cppreference: Coroutines](https://en.cppreference.com/cpp/language/coroutines)), 스케줄러와 결합해 스레드 풀에서 재개되는 범용 `Task<T>`나 sender/receiver 모델은 표준화하지 않고 라이브러리 영역으로 남겨 두었습니다. Lewis Baker 본인이 만든 **cppcoro**는 실험적 라이브러리로 오래 활발히 유지보수되지 않았고, 그는 이후 작업을 **libunifex**([facebookexperimental/libunifex](https://github.com/facebookexperimental/libunifex))와 **folly::coro**로 옮겼다고 밝혔습니다(cppcoro GitHub 이슈 트래커의 저자 코멘트 기준). libunifex가 도입한 sender/receiver 개념은 C++26에 `std::execution`(P2300)으로 표준화되었으며, 이 장에서 직접 구현하는 `Task`/스케줄러 패턴은 그 표준화된 일반 모델의 축소판이라고 볼 수 있습니다. 두 세계의 관계와 P2300 자체의 세부는 [16~17장](/post/concurrency-optimization/cpp-executors-fundamentals/)에서 다룹니다.
 
 ## 태스크 타입: symmetric transfer로 체이닝하기
 
-**태스크(Task)**는 `co_await`할 수 있는 코루틴 반환 타입으로, 완료되면 자신을 기다리던 호출자 코루틴을 재개하는 역할을 합니다. 핵심은 `final_suspend`에서 호출자의 `coroutine_handle`을 직접 반환해 symmetric transfer로 넘기는 것입니다. 이렇게 하면 `task_a()`가 `task_b()`를, `task_b()`가 다시 `task_c()`를 호출하는 체인이 아무리 길어져도 반환 시점마다 스택 프레임이 쌓이지 않고 곧바로 다음 코루틴으로 점프합니다. 아래는 값을 반환하는 최소 `Task<T>`의 골격이며, `promise_type::continuation`이 "누가 이 태스크의 완료를 기다리는가"를 담습니다.
+<strong>태스크(Task)</strong>는 `co_await`할 수 있는 코루틴 반환 타입으로, 완료되면 자신을 기다리던 호출자 코루틴을 재개하는 역할을 합니다. 핵심은 `final_suspend`에서 호출자의 `coroutine_handle`을 직접 반환해 symmetric transfer로 넘기는 것입니다. 이렇게 하면 `task_a()`가 `task_b()`를, `task_b()`가 다시 `task_c()`를 호출하는 체인이 아무리 길어져도 반환 시점마다 스택 프레임이 쌓이지 않고 곧바로 다음 코루틴으로 점프합니다. 아래는 값을 반환하는 최소 `Task<T>`의 골격이며, `promise_type::continuation`이 "누가 이 태스크의 완료를 기다리는가"를 담습니다.
 
 ```cpp
 #include <coroutine>
@@ -148,7 +148,7 @@ inline ScheduleOn schedule_on(ThreadPool& pool) { return ScheduleOn{pool}; }
 
 ## 비동기 파이프라인 구성
 
-**비동기 파이프라인**은 각 단계를 코루틴으로 표현하고, 단계 사이를 유계(bounded) 큐로 연결해 앞 단계의 출력을 뒤 단계가 소비하도록 만든 구조입니다. 각 단계는 자신의 속도로 `co_yield`/`co_await`할 뿐이고, 큐가 가득 차면 생산자 쪽 코루틴이 자연스럽게 suspend되어 **역압(backpressure)**이 생깁니다 — 별도의 유량 제어 로직 없이 큐 용량만으로 상류 속도를 제한할 수 있다는 뜻입니다. 큐 자체의 구현(단일 생산자/단일 소비자 SPSC, 다중 생산자/다중 소비자 MPMC)은 [08장](/post/concurrency-optimization/spsc-mpmc-ring-buffer-queues/)에서 다루므로, 이 장에서는 파이프라인 단계들이 그 큐를 어떻게 조립하는지에 집중합니다. 각 단계가 `schedule_on`으로 서로 다른 풀에 배치될 수 있다는 점이 코루틴 파이프라인의 강점입니다 — IO 대기가 긴 단계는 별도의 작은 풀에, CPU 바운드 단계는 워크 스틸링 풀에 배치하는 식으로 스레드 배치를 단계별로 분리할 수 있습니다.
+**비동기 파이프라인**은 각 단계를 코루틴으로 표현하고, 단계 사이를 유계(bounded) 큐로 연결해 앞 단계의 출력을 뒤 단계가 소비하도록 만든 구조입니다. 각 단계는 자신의 속도로 `co_yield`/`co_await`할 뿐이고, 큐가 가득 차면 생산자 쪽 코루틴이 자연스럽게 suspend되어 <strong>역압(backpressure)</strong>이 생깁니다 — 별도의 유량 제어 로직 없이 큐 용량만으로 상류 속도를 제한할 수 있다는 뜻입니다. 큐 자체의 구현(단일 생산자/단일 소비자 SPSC, 다중 생산자/다중 소비자 MPMC)은 [08장](/post/concurrency-optimization/spsc-mpmc-ring-buffer-queues/)에서 다루므로, 이 장에서는 파이프라인 단계들이 그 큐를 어떻게 조립하는지에 집중합니다. 각 단계가 `schedule_on`으로 서로 다른 풀에 배치될 수 있다는 점이 코루틴 파이프라인의 강점입니다 — IO 대기가 긴 단계는 별도의 작은 풀에, CPU 바운드 단계는 워크 스틸링 풀에 배치하는 식으로 스레드 배치를 단계별로 분리할 수 있습니다.
 
 ```mermaid
 flowchart LR
@@ -164,11 +164,11 @@ flowchart LR
 
 ## 흔한 오개념 세 가지
 
-**"코루틴을 쓰면 자동으로 병렬 처리된다"**는 가장 흔한 오해입니다. 코루틴은 하나의 실행 흐름을 여러 조각으로 나눠 중단·재개할 수 있게 할 뿐이고, 그 조각들이 서로 다른 스레드에서 동시에 실행되려면 앞서 본 `schedule_on` 같은 명시적 스케줄러 연동이 있어야 합니다. 스케줄러 없이 체이닝만 하면 전체가 한 스레드에서 순차적으로 실행되는 것과 다르지 않습니다.
+<strong>"코루틴을 쓰면 자동으로 병렬 처리된다"</strong>는 가장 흔한 오해입니다. 코루틴은 하나의 실행 흐름을 여러 조각으로 나눠 중단·재개할 수 있게 할 뿐이고, 그 조각들이 서로 다른 스레드에서 동시에 실행되려면 앞서 본 `schedule_on` 같은 명시적 스케줄러 연동이 있어야 합니다. 스케줄러 없이 체이닝만 하면 전체가 한 스레드에서 순차적으로 실행되는 것과 다르지 않습니다.
 
-**"symmetric transfer 덕분에 스택 걱정은 끝났다"**도 절반만 맞습니다. `final_suspend`에서 `continuation`으로 테일 콜을 하는 `Task<T>`를 올바르게 구현했을 때만 스택이 늘지 않습니다. 만약 태스크 구현이 `final_suspend`에서 그냥 `std::suspend_always{}`만 반환하고 별도로 `continuation.resume()`을 **일반 함수 호출**로 부른다면, 그 호출은 테일 콜이 아니므로 체인이 길어질수록 여전히 스택이 쌓입니다. symmetric transfer는 언어가 제공하는 메커니즘이지, 그 메커니즘을 실제로 쓰는지는 태스크 타입 구현자의 책임입니다.
+<strong>"symmetric transfer 덕분에 스택 걱정은 끝났다"</strong>도 절반만 맞습니다. `final_suspend`에서 `continuation`으로 테일 콜을 하는 `Task<T>`를 올바르게 구현했을 때만 스택이 늘지 않습니다. 만약 태스크 구현이 `final_suspend`에서 그냥 `std::suspend_always{}`만 반환하고 별도로 `continuation.resume()`을 **일반 함수 호출**로 부른다면, 그 호출은 테일 콜이 아니므로 체인이 길어질수록 여전히 스택이 쌓입니다. symmetric transfer는 언어가 제공하는 메커니즘이지, 그 메커니즘을 실제로 쓰는지는 태스크 타입 구현자의 책임입니다.
 
-**"코루틴 파라미터는 함수처럼 안전하게 참조로 받으면 된다"**는 세 번째 오해이며, 다음 절에서 실제 코드로 다룹니다. 일반 함수라면 인자가 함수 실행 동안만 살아 있으면 되지만, 코루틴은 `co_await`로 suspend된 채 원래 호출식이 끝난 뒤에도 실행을 이어가므로 참조·포인터 인자의 수명 가정이 깨지기 쉽습니다.
+<strong>"코루틴 파라미터는 함수처럼 안전하게 참조로 받으면 된다"</strong>는 세 번째 오해이며, 다음 절에서 실제 코드로 다룹니다. 일반 함수라면 인자가 함수 실행 동안만 살아 있으면 되지만, 코루틴은 `co_await`로 suspend된 채 원래 호출식이 끝난 뒤에도 실행을 이어가므로 참조·포인터 인자의 수명 가정이 깨지기 쉽습니다.
 
 ## 코루틴 파라미터 수명 함정: 깨진 코드와 올바른 구현
 

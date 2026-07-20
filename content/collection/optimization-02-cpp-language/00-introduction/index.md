@@ -106,7 +106,7 @@ tags:
 
 **난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치).
 
-**트랙 약어 `Tr.NN`**: 본문에서 `Tr.01`처럼 표기하는 것은 이 **Low-latency 최적화 시리즈**의 다른 트랙을 가리키는 약어입니다(`NN` = 트랙 번호). 예컨대 **Tr.01는 [프로파일링·성능 분석 트랙](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)**이고, **Tr.03는 [컴파일러·빌드 최적화 트랙](/post/compiler-optimization/getting-started-compiler-build-performance-tuning/)**입니다. 이 글(C++ 언어 최적화)이 **Tr.02**이며, 범위 밖 주제를 가리킬 때 "→ Tr.NN"으로 어느 트랙에서 이어지는지 표시합니다. 트랙 이름을 누르면 각 트랙의 도입 장으로 이동합니다.
+**트랙 약어 `Tr.NN`**: 본문에서 `Tr.01`처럼 표기하는 것은 이 **Low-latency 최적화 시리즈**의 다른 트랙을 가리키는 약어입니다(`NN` = 트랙 번호). 예컨대 <strong>Tr.01는 [프로파일링·성능 분석 트랙](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)</strong>이고, <strong>Tr.03는 [컴파일러·빌드 최적화 트랙](/post/compiler-optimization/getting-started-compiler-build-performance-tuning/)</strong>입니다. 이 글(C++ 언어 최적화)이 **Tr.02**이며, 범위 밖 주제를 가리킬 때 "→ Tr.NN"으로 어느 트랙에서 이어지는지 표시합니다. 트랙 이름을 누르면 각 트랙의 도입 장으로 이동합니다.
 
 | 약어 | 트랙 | 다루는 것 |
 |------|------|-----------|
@@ -123,7 +123,7 @@ tags:
 | **Tr.09** | [I/O 최적화](/post/io-optimization/getting-started-io-performance-tuning/) | 파일·디스크·비동기 I/O |
 | **Tr.10** | [네트워크 최적화](/post/network-optimization/getting-started-network-performance-tuning/) | 소켓·프로토콜·전송 지연 |
 
-각 트랙의 전체 목록·권장 순서·심화 진입 조건은 맨 아래 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**에서 확인할 수 있습니다.
+각 트랙의 전체 목록·권장 순서·심화 진입 조건은 맨 아래 <strong>[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)</strong>에서 확인할 수 있습니다.
 
 이 트랙은 **번호 순서대로(01 → 19) 읽으면 됩니다.** 먼저 01~02장에서 실행 모델·소유권 비용의 공통 어휘를 맞추고, 03~17장에서 추상화·STL·문자열·수명·임시·템플릿·코루틴·예외·뷰·람다·SBO·전달 방식의 비용을 실전 패턴으로 확장한 뒤, 18장(ABI·링크, 전문)과 19장(type erasure, 심화)에서 경계·소거까지 정리하고 트랙을 닫습니다. 01·02장은 본편 곳곳에서 쓰는 용어(실행 모델·핫패스·소유권 비용)를 한곳에 모아 둔 **기초 정리 장**이라 맨 앞에 두었고, 각 본편 챕터는 필요한 용어를 본문에서 그때그때 짚으므로 어느 장부터 펼쳐도 막히지 않습니다. 챕터끼리 연결되는 부분은 **이미 읽은 앞 장을 되짚는 형태**로 두고, 뒤 장을 가리킬 때는 "먼저 읽으라"가 아니라 "뒤에서 더 다룬다"는 안내로만 적었습니다.
 
@@ -279,5 +279,5 @@ flowchart LR
 
 ## 시리즈 전체 로드맵
 
-12개 트랙의 권장 순서·심화 진입 조건은 **[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**에서 정리합니다.
+12개 트랙의 권장 순서·심화 진입 조건은 <strong>[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)</strong>에서 정리합니다.
 

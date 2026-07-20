@@ -170,7 +170,7 @@ std::string_view trim_prefix(std::string_view sv, std::string_view prefix) {
 
 ## 수명과 안전성
 
-뷰를 쓸 때 가장 중요한 것은 **뷰가 참조하는 메모리의 수명**을 호출자·설계자가 보장하는 것입니다. 반환값으로 뷰를 줄 경우, **임시**나 **함수 내 로컬 버퍼**를 가리키지 않도록 해야 합니다. 컴파일러나 정적 분석 도구가 일부 dangling을 경고할 수 있지만, 완전히 자동으로 잡기 어렵기 때문에 코딩 규칙(예: "뷰를 반환하지 않거나, 반환 시에는 인자로 받은 뷰만 반환")으로 보완하는 것이 좋습니다. 검증 빌드에서는 도구별 역할을 구분해야 합니다. **AddressSanitizer(`-fsanitize=address`)**는 댕글링 뷰가 가리키는 **해제된 메모리 접근(use-after-free)**을 잡는 데 유용하지만, span의 **인덱스 경계 자체를 검사하지는 않습니다**. 경계 검사는 **UBSan의 `-fsanitize=bounds`**(고정 크기 배열)나 표준 라이브러리 하드닝 모드(libstdc++ `-D_GLIBCXX_ASSERTIONS`/`-D_GLIBCXX_DEBUG`, libc++ `-D_LIBCPP_HARDENING_MODE`)로 켜야 `span::operator[]`·`at` 범위 위반을 디버그/테스트 빌드에서 잡을 수 있습니다.
+뷰를 쓸 때 가장 중요한 것은 **뷰가 참조하는 메모리의 수명**을 호출자·설계자가 보장하는 것입니다. 반환값으로 뷰를 줄 경우, **임시**나 **함수 내 로컬 버퍼**를 가리키지 않도록 해야 합니다. 컴파일러나 정적 분석 도구가 일부 dangling을 경고할 수 있지만, 완전히 자동으로 잡기 어렵기 때문에 코딩 규칙(예: "뷰를 반환하지 않거나, 반환 시에는 인자로 받은 뷰만 반환")으로 보완하는 것이 좋습니다. 검증 빌드에서는 도구별 역할을 구분해야 합니다. <strong>AddressSanitizer(`-fsanitize=address`)</strong>는 댕글링 뷰가 가리키는 <strong>해제된 메모리 접근(use-after-free)</strong>을 잡는 데 유용하지만, span의 **인덱스 경계 자체를 검사하지는 않습니다**. 경계 검사는 **UBSan의 `-fsanitize=bounds`**(고정 크기 배열)나 표준 라이브러리 하드닝 모드(libstdc++ `-D_GLIBCXX_ASSERTIONS`/`-D_GLIBCXX_DEBUG`, libc++ `-D_LIBCPP_HARDENING_MODE`)로 켜야 `span::operator[]`·`at` 범위 위반을 디버그/테스트 빌드에서 잡을 수 있습니다.
 
 ```mermaid
 flowchart TD

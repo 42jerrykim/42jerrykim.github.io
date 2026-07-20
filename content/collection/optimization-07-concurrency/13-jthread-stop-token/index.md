@@ -178,11 +178,11 @@ g++ -std=c++20 -fsanitize=thread -g -O1 fixed.cpp -o fixed -lpthread
 
 ## 흔한 오개념 세 가지
 
-**"jthread로 이름만 바꾸면 무조건 더 안전해진다"**는 절반만 맞습니다. `std::thread`를 `std::jthread`로 바꾸기만 하고 워커 함수가 `stop_token`을 전혀 확인하지 않으면, 이전에는 조인 누락 시 `std::terminate`로 즉시 크래시하던 것이 이제는 소멸자의 `join()`에서 **영원히 블록**하는 것으로 바뀝니다. 테스트 환경에서는 크래시가 오히려 눈에 잘 띄어 빨리 고쳐졌을 버그가, `jthread`로 바꾼 뒤에는 "가끔 종료가 안 되는" 조용한 행(hang)으로 나타날 수 있습니다. 마이그레이션 시에는 반드시 워커 함수에 `stop_token` 확인 로직을 실제로 추가해야 합니다.
+<strong>"jthread로 이름만 바꾸면 무조건 더 안전해진다"</strong>는 절반만 맞습니다. `std::thread`를 `std::jthread`로 바꾸기만 하고 워커 함수가 `stop_token`을 전혀 확인하지 않으면, 이전에는 조인 누락 시 `std::terminate`로 즉시 크래시하던 것이 이제는 소멸자의 `join()`에서 **영원히 블록**하는 것으로 바뀝니다. 테스트 환경에서는 크래시가 오히려 눈에 잘 띄어 빨리 고쳐졌을 버그가, `jthread`로 바꾼 뒤에는 "가끔 종료가 안 되는" 조용한 행(hang)으로 나타날 수 있습니다. 마이그레이션 시에는 반드시 워커 함수에 `stop_token` 확인 로직을 실제로 추가해야 합니다.
 
-**"stop_callback은 항상 다른 스레드에서 비동기로 실행된다"**도 틀렸습니다. 앞서 설명했듯 콜백은 `request_stop()`을 호출한 바로 그 스레드에서 동기적으로 실행되며, 이미 정지 요청이 된 뒤 콜백을 등록하면 등록하는 스레드에서 즉시 실행됩니다. `request_stop()`을 호출하는 코드가 락을 쥔 상태라면, 그 락을 콜백 내부에서 다시 잡으려다 데드락이 날 수 있으므로 콜백 안에서는 어떤 락을 다시 요구하는지 항상 점검해야 합니다.
+<strong>"stop_callback은 항상 다른 스레드에서 비동기로 실행된다"</strong>도 틀렸습니다. 앞서 설명했듯 콜백은 `request_stop()`을 호출한 바로 그 스레드에서 동기적으로 실행되며, 이미 정지 요청이 된 뒤 콜백을 등록하면 등록하는 스레드에서 즉시 실행됩니다. `request_stop()`을 호출하는 코드가 락을 쥔 상태라면, 그 락을 콜백 내부에서 다시 잡으려다 데드락이 날 수 있으므로 콜백 안에서는 어떤 락을 다시 요구하는지 항상 점검해야 합니다.
 
-**"stop_token은 워커 스레드 내부에서만 쓸 수 있다"**도 사실이 아닙니다. `stop_token`은 값이므로 자유롭게 복사해 다른 스레드나 컴포넌트에 넘길 수 있고, 여러 곳에서 동시에 `stop_requested()`를 확인하거나 `stop_callback`을 등록해도 안전합니다. 다만 표준 오버로드는 `std::condition_variable_any::wait`에만 `stop_token`을 받는 버전이 추가되었고, 평범한 `std::condition_variable`에는 이 오버로드가 없습니다. 조건 변수로 블로킹 대기하며 취소 가능하게 만들고 싶다면 `condition_variable_any` 쪽을 선택해야 합니다([19장](/post/concurrency-optimization/condition-variable-performance-patterns/)에서 조건 변수 자체의 비용을 더 다룹니다).
+<strong>"stop_token은 워커 스레드 내부에서만 쓸 수 있다"</strong>도 사실이 아닙니다. `stop_token`은 값이므로 자유롭게 복사해 다른 스레드나 컴포넌트에 넘길 수 있고, 여러 곳에서 동시에 `stop_requested()`를 확인하거나 `stop_callback`을 등록해도 안전합니다. 다만 표준 오버로드는 `std::condition_variable_any::wait`에만 `stop_token`을 받는 버전이 추가되었고, 평범한 `std::condition_variable`에는 이 오버로드가 없습니다. 조건 변수로 블로킹 대기하며 취소 가능하게 만들고 싶다면 `condition_variable_any` 쪽을 선택해야 합니다([19장](/post/concurrency-optimization/condition-variable-performance-patterns/)에서 조건 변수 자체의 비용을 더 다룹니다).
 
 ## 판단 기준
 
@@ -223,7 +223,7 @@ BENCHMARK_MAIN();
 
 ## 비판적 시각: 한계와 트레이드오프
 
-`jthread`/`stop_token`이 주는 안전성은 **협력적(cooperative)**이라는 전제 위에서만 성립합니다. 워커 함수가 블로킹 시스템 콜(예: 소켓 `read`, 파일 I/O) 안에 들어가 있으면 `stop_token`을 아무리 자주 확인해도 그 호출에서 즉시 빠져나올 방법이 없고, 별도로 소켓을 닫거나 타임아웃을 두는 등의 인터럽션 지점을 직접 설계해야 합니다. 표준이 제공하는 인터럽션 지점은 `condition_variable_any`뿐이며, 뮤텍스 잠금 대기나 일반 블로킹 I/O에는 통합되어 있지 않습니다.
+`jthread`/`stop_token`이 주는 안전성은 <strong>협력적(cooperative)</strong>이라는 전제 위에서만 성립합니다. 워커 함수가 블로킹 시스템 콜(예: 소켓 `read`, 파일 I/O) 안에 들어가 있으면 `stop_token`을 아무리 자주 확인해도 그 호출에서 즉시 빠져나올 방법이 없고, 별도로 소켓을 닫거나 타임아웃을 두는 등의 인터럽션 지점을 직접 설계해야 합니다. 표준이 제공하는 인터럽션 지점은 `condition_variable_any`뿐이며, 뮤텍스 잠금 대기나 일반 블로킹 I/O에는 통합되어 있지 않습니다.
 
 libc++의 늦은 지원은 실무 도입에 실질적 제약이었습니다. 2023년 무렵까지도 libc++는 `jthread`를 구현하지 않았고, LLVM 18~19에서는 `-fexperimental-library` 플래그가 필요했으며, 완전한 기본 지원은 LLVM 20에서야 확보되었습니다. 오래된 Clang+libc++ 조합을 지원해야 하는 코드베이스라면 여전히 `std::thread` + 수동 `atomic<bool>` 조합이나 자체 구현으로 되돌아가야 할 수 있습니다.
 

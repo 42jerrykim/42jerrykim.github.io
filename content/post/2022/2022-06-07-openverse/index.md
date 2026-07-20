@@ -119,7 +119,7 @@ flowchart LR
 | 이미지 | Europeana, Flickr, Google Images, Open Clip Art Library, Wikimedia Commons, Smithsonian 등 |
 | 오디오 | ccMixter, Jamendo, SoundCloud, SpinXpress, Wikimedia Commons, YouTube 등 |
 
-각 소스는 자체 API·인덱스를 통해 CC 또는 퍼블릭 도메인으로 공개된 항목만 제공하며, OpenVerse는 이들을 **통합 검색·필터(라이선스, 유형, 소스)**로 한 화면에서 다룰 수 있게 한다.
+각 소스는 자체 API·인덱스를 통해 CC 또는 퍼블릭 도메인으로 공개된 항목만 제공하며, OpenVerse는 이들을 <strong>통합 검색·필터(라이선스, 유형, 소스)</strong>로 한 화면에서 다룰 수 있게 한다.
 
 ## 주요 기능
 

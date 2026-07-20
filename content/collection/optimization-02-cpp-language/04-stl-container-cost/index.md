@@ -111,7 +111,7 @@ tags:
 
 ## STL과 표준 컨테이너 (역사·배경)
 
-**STL(Standard Template Library)**은 Alexander Stepanov 등이 설계하고, 1994년경 HP에서 발표된 후 C++ 표준화에 반영되었습니다. 1998년 ISO C++ 표준(C++98)에 **sequence container**(vector, deque, list)와 **associative container**(map, set 등)가 포함되었고, C++11에서 **unordered_map**, **unordered_set** 등 해시 기반 연관 컨테이너가 추가되었습니다. 표준은 각 컨테이너의 **복잡도 요구사항**과 **반복자 요구사항**만 정의하고, 메모리 레이아웃·성장 정책은 구현체에 맡기므로, "vector는 연속", "map은 보통 레드-블랙 트리"처럼 구현체별로 통용되는 사실을 알아야 비용을 예측할 수 있습니다.
+<strong>STL(Standard Template Library)</strong>은 Alexander Stepanov 등이 설계하고, 1994년경 HP에서 발표된 후 C++ 표준화에 반영되었습니다. 1998년 ISO C++ 표준(C++98)에 **sequence container**(vector, deque, list)와 **associative container**(map, set 등)가 포함되었고, C++11에서 **unordered_map**, **unordered_set** 등 해시 기반 연관 컨테이너가 추가되었습니다. 표준은 각 컨테이너의 **복잡도 요구사항**과 **반복자 요구사항**만 정의하고, 메모리 레이아웃·성장 정책은 구현체에 맡기므로, "vector는 연속", "map은 보통 레드-블랙 트리"처럼 구현체별로 통용되는 사실을 알아야 비용을 예측할 수 있습니다.
 
 ## vector
 
@@ -158,7 +158,7 @@ for (int i = 0; i < 100000; ++i) v2.push_back(i);
 
 ## 기타 컨테이너
 
-- **deque**: 여러 **청크(블록)**로 나누어 저장합니다. 앞·뒤 삽입은 분할상환 O(1)이고, 중간 삽입은 여전히 비쌉니다. 연속 순회는 vector만큼 캐시 친화적이지는 않습니다.
+- **deque**: 여러 <strong>청크(블록)</strong>로 나누어 저장합니다. 앞·뒤 삽입은 분할상환 O(1)이고, 중간 삽입은 여전히 비쌉니다. 연속 순회는 vector만큼 캐시 친화적이지는 않습니다.
 - **list**: **이중 연결 리스트**로, 노드마다 포인터가 있어 캐시 효율이 낮습니다. 앞뒤 삽입/삭제는 O(1)이지만, 실제로는 포인터 연산과 노드 할당 비용이 있습니다.
 
 | 컨테이너 | 메모리 | 접근 | 앞/뒤 삽입 | 중간 삽입 | 순회 캐시 |

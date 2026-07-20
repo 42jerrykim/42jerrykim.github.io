@@ -82,7 +82,7 @@ IEEE 1471-2000은 2011년 국제표준화기구로 이관되며 ISO/IEC/IEEE 420
 
 > "The software architecture of a program or computing system is the structure or structures of the system, which comprise software components, the externally visible properties of those components, and the relationships among them." — Len Bass, Paul Clements, Rick Kazman, 『Software Architecture in Practice』
 
-SEI 정의가 강조하는 것은 "외부에서 관찰 가능한 속성(externally visible properties)"이다. 한 컴포넌트가 내부적으로 어떻게 구현되었는지는 아키텍처의 관심사가 아니고, 다른 컴포넌트가 그것에 대해 가정할 수 있는 것 — 제공하는 서비스, 성능 특성, 장애 처리 방식, 공유 자원 사용 여부 — 만이 아키텍처 수준의 결정이라는 뜻이다. 정리하면 ISO/IEEE 계열 정의는 "환경과의 관계 및 진화 원칙"에, SEI 정의는 "컴포넌트 간 계약(contract)"에 각각 무게를 둔다. 두 정의를 합쳐 읽으면, 아키텍처란 **시스템의 각 부분이 서로에게 무엇을 보장하는지(계약)**와 **그 보장이 시간이 지나도 유지되게 하는 원칙(진화)**의 조합이라고 이해할 수 있다.
+SEI 정의가 강조하는 것은 "외부에서 관찰 가능한 속성(externally visible properties)"이다. 한 컴포넌트가 내부적으로 어떻게 구현되었는지는 아키텍처의 관심사가 아니고, 다른 컴포넌트가 그것에 대해 가정할 수 있는 것 — 제공하는 서비스, 성능 특성, 장애 처리 방식, 공유 자원 사용 여부 — 만이 아키텍처 수준의 결정이라는 뜻이다. 정리하면 ISO/IEEE 계열 정의는 "환경과의 관계 및 진화 원칙"에, SEI 정의는 "컴포넌트 간 계약(contract)"에 각각 무게를 둔다. 두 정의를 합쳐 읽으면, 아키텍처란 <strong>시스템의 각 부분이 서로에게 무엇을 보장하는지(계약)</strong>와 <strong>그 보장이 시간이 지나도 유지되게 하는 원칙(진화)</strong>의 조합이라고 이해할 수 있다.
 
 ## 아키텍처와 설계는 어떻게 다른가
 
@@ -228,7 +228,7 @@ public class OrderService {
 
 ## 다음 장에서는
 
-02장 **「아키텍처 설계 원칙」**에서는 이 장에서 다룬 "관심사의 분리"와 "느슨한 결합"이라는 원칙이 SOLID라는 구체적인 다섯 가지 규칙으로 어떻게 체계화되는지, 그리고 그 규칙이 클래스 레벨을 넘어 아키텍처 레벨로 확장될 때 어떤 형태를 띠는지 다룬다.
+02장 <strong>「아키텍처 설계 원칙」</strong>에서는 이 장에서 다룬 "관심사의 분리"와 "느슨한 결합"이라는 원칙이 SOLID라는 구체적인 다섯 가지 규칙으로 어떻게 체계화되는지, 그리고 그 규칙이 클래스 레벨을 넘어 아키텍처 레벨로 확장될 때 어떤 형태를 띠는지 다룬다.
 
 ## 참고 및 출처
 

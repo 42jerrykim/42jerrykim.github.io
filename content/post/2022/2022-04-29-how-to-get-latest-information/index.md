@@ -209,7 +209,7 @@ flowchart LR
 4. **RSS 피드 찾기**  
    블로그·뉴스 페이지에서 “RSS”, “Atom”, “피드”, 오렌지 아이콘 링크를 찾거나, URL에 `/feed`, `/rss`, `/atom.xml` 등을 붙여 보면 된다.  
 5. **EOS 대비**  
-   Blogtrottr 등 서비스가 바뀌어도 **구독 목록(OPML)**을 내보내 두면, 다른 RSS→이메일 도구로 이전할 수 있다.
+   Blogtrottr 등 서비스가 바뀌어도 <strong>구독 목록(OPML)</strong>을 내보내 두면, 다른 RSS→이메일 도구로 이전할 수 있다.
 
 ---
 

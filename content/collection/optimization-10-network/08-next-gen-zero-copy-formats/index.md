@@ -44,7 +44,7 @@ tags:
   - mmap
 ---
 
-**차세대 zero-copy 직렬화 포맷 동향**이란, FlatBuffers·Cap'n Proto 이후 등장한 새로운 zero-copy 바이너리 포맷들이 무엇을 다르게 풀려고 하는지, 그리고 아직 검증되지 않은 신흥 포맷을 프로덕션 핫패스에 들여도 되는지 판단하는 문제를 말합니다. 2026년 6월 Yandex가 공개한 **YaFF(Yet another Flat Format)**는 "zero-copy 읽기"라는 목표 자체는 FlatBuffers와 같지만, 접근 방식은 "Protobuf 스키마를 그대로 두고 물리적 메모리 레이아웃만 바꾼다"는 점에서 다릅니다. 이 장은 YaFF를 사례로 삼아, 새 포맷이 나올 때마다 반복되는 벤치마크 숫자에 휘둘리지 않고 실제 채택 여부를 판단하는 기준을 정리합니다.
+**차세대 zero-copy 직렬화 포맷 동향**이란, FlatBuffers·Cap'n Proto 이후 등장한 새로운 zero-copy 바이너리 포맷들이 무엇을 다르게 풀려고 하는지, 그리고 아직 검증되지 않은 신흥 포맷을 프로덕션 핫패스에 들여도 되는지 판단하는 문제를 말합니다. 2026년 6월 Yandex가 공개한 <strong>YaFF(Yet another Flat Format)</strong>는 "zero-copy 읽기"라는 목표 자체는 FlatBuffers와 같지만, 접근 방식은 "Protobuf 스키마를 그대로 두고 물리적 메모리 레이아웃만 바꾼다"는 점에서 다릅니다. 이 장은 YaFF를 사례로 삼아, 새 포맷이 나올 때마다 반복되는 벤치마크 숫자에 휘둘리지 않고 실제 채택 여부를 판단하는 기준을 정리합니다.
 
 ## 이 장을 읽기 전에
 

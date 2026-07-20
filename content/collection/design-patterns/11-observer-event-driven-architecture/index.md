@@ -91,7 +91,7 @@ public class BadStockSystem {
 
 ### 패턴의 핵심 아이디어
 
-Observer 패턴의 핵심은 **"느슨한 결합(Loose Coupling)"**을 통한 **"일대다 의존성 관리"**입니다.
+Observer 패턴의 핵심은 <strong>"느슨한 결합(Loose Coupling)"</strong>을 통한 <strong>"일대다 의존성 관리"</strong>입니다.
 
 ```java
 import java.util.List;
@@ -1249,7 +1249,7 @@ Observer 패턴 적용 시점:
 - 성능 고려 (대량 Observer 등록 시)
 ```
 
-Observer 패턴은 **"변화에 반응하는 시스템"**을 만드는 가장 기본적이면서도 강력한 도구입니다. 현대의 React, Vue.js의 반응성, Spring의 이벤트 시스템, 분산 시스템의 메시지 큐까지 모든 곳에서 이 패턴의 DNA를 발견할 수 있습니다.
+Observer 패턴은 <strong>"변화에 반응하는 시스템"</strong>을 만드는 가장 기본적이면서도 강력한 도구입니다. 현대의 React, Vue.js의 반응성, Spring의 이벤트 시스템, 분산 시스템의 메시지 큐까지 모든 곳에서 이 패턴의 DNA를 발견할 수 있습니다.
 
 다음 글에서는 **Strategy와 State 패턴**을 탐구하겠습니다. 알고리즘의 캡슐화와 상태 기반 행동 변화를 통해 복잡한 비즈니스 로직을 우아하게 관리하는 방법을 살펴보겠습니다.
 

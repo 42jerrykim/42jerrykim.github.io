@@ -65,7 +65,7 @@ image: "wordcloud.png"
 
 ## SystemServer 부팅 흐름
 
-**SystemServer(시스템서버)**는 안드로이드 프레임워크가 제공하는 대부분의 시스템 서비스를 하나의 프로세스 안에서 순차적으로 생성·초기화하는 진입점 클래스다(`frameworks/base/services/java/com/android/server/SystemServer.java`). 부팅 과정에서 `init`이 `zygote`를 기동하면, `zygote`는 `--start-system-server` 플래그로 자기 자신을 포크(fork)해 `system_server` 프로세스를 만들고, 그 자식 프로세스가 `SystemServer.main()`을 실행한다. 이 포크 기반 기동 방식은 다른 안드로이드 프로세스(일반 앱 프로세스 포함)와 동일한 원리를 공유한다 — Zygote가 이미 로드해 둔 프레임워크 클래스와 공유 메모리 페이지를 물려받아, 매번 처음부터 클래스를 로딩하는 것보다 기동 시간을 줄인다.
+<strong>SystemServer(시스템서버)</strong>는 안드로이드 프레임워크가 제공하는 대부분의 시스템 서비스를 하나의 프로세스 안에서 순차적으로 생성·초기화하는 진입점 클래스다(`frameworks/base/services/java/com/android/server/SystemServer.java`). 부팅 과정에서 `init`이 `zygote`를 기동하면, `zygote`는 `--start-system-server` 플래그로 자기 자신을 포크(fork)해 `system_server` 프로세스를 만들고, 그 자식 프로세스가 `SystemServer.main()`을 실행한다. 이 포크 기반 기동 방식은 다른 안드로이드 프로세스(일반 앱 프로세스 포함)와 동일한 원리를 공유한다 — Zygote가 이미 로드해 둔 프레임워크 클래스와 공유 메모리 페이지를 물려받아, 매번 처음부터 클래스를 로딩하는 것보다 기동 시간을 줄인다.
 
 `SystemServer.main()`이 실행된 뒤 서비스들은 아무렇게나 초기화되지 않는다. 서비스 간에는 암묵적인 의존 관계가 있다 — 예를 들어 대부분의 서비스는 초기화 과정에서 `PackageManagerService`가 이미 패키지 목록을 스캔해 두었다고 가정하고, `PackageManagerService`는 다시 `installd` 같은 네이티브 데몬이 이미 떠 있다고 가정한다. 이 의존성을 다루기 위해 SystemServer는 서비스를 **부트스트랩(bootstrap)**, **코어(core)**, **기타(other)** 세 단계로 나눠 순차적으로 시작하며, 각 단계 함수(`startBootstrapServices()`, `startCoreServices()`, `startOtherServices()`) 안에서도 서비스 생성 순서가 의존 관계를 반영한다. 커스텀 시스템 서비스는 대부분 이 중 `startOtherServices()` 단계에서 등록되는데, 이 단계에 이르면 `ActivityManagerService`나 `PackageManagerService` 같은 핵심 서비스가 이미 사용 가능한 상태이기 때문이다.
 
@@ -87,7 +87,7 @@ flowchart TD
 
 ## ServiceManager: 이름과 Binder를 잇는 레지스트리
 
-**ServiceManager(서비스매니저)**는 "이 이름의 서비스를 찾고 싶다"는 요청을 받아 해당 서비스의 Binder 참조를 돌려주는 이름 서버(name server)다. 네이티브 레벨에서는 `/system/bin/servicemanager`라는 별도 프로세스가 이 역할을 수행하며, Binder 드라이버 안에서 특별한 위치(컨텍스트 매니저)를 차지한다 — 모든 Binder 클라이언트는 어떤 서비스를 찾기 위해 가장 먼저 이 프로세스에게 물어봐야 하므로, ServiceManager 자신은 다른 서비스처럼 "찾아서" 접근하는 대상이 아니라 Binder 통신의 출발점 역할을 한다.
+<strong>ServiceManager(서비스매니저)</strong>는 "이 이름의 서비스를 찾고 싶다"는 요청을 받아 해당 서비스의 Binder 참조를 돌려주는 이름 서버(name server)다. 네이티브 레벨에서는 `/system/bin/servicemanager`라는 별도 프로세스가 이 역할을 수행하며, Binder 드라이버 안에서 특별한 위치(컨텍스트 매니저)를 차지한다 — 모든 Binder 클라이언트는 어떤 서비스를 찾기 위해 가장 먼저 이 프로세스에게 물어봐야 하므로, ServiceManager 자신은 다른 서비스처럼 "찾아서" 접근하는 대상이 아니라 Binder 통신의 출발점 역할을 한다.
 
 서비스를 제공하는 쪽(서버)은 `addService(name, binder)`로 자신의 Binder 객체를 등록하고, 서비스를 사용하는 쪽(클라이언트)은 `getService(name)`으로 그 이름에 해당하는 Binder 참조를 얻는다. 이 등록·조회 흐름은 Java 프레임워크의 `android.os.ServiceManager`와 네이티브의 `IServiceManager`가 각각 감싸고 있지만, 근본적으로는 같은 Binder 드라이버 메커니즘 위에서 동작한다. 아래는 네이티브 프로세스가 자신의 Binder 서비스를 ServiceManager에 등록하는 전형적인 형태다.
 
@@ -114,7 +114,7 @@ void registerNativeService(const sp<IBinder>& service) {
 
 ## AIDL: 인터페이스 정의에서 코드 생성까지
 
-**AIDL(Android Interface Definition Language, 안드로이드 인터페이스 정의 언어)**은 프로세스 경계를 넘는 메서드 호출의 시그니처를 선언하기 위한 언어다. 개발자가 `.aidl` 파일에 인터페이스를 선언하면, 빌드 시스템이 그 파일로부터 클라이언트 쪽 프록시(stub proxy)와 서버 쪽 스텁(stub) 코드를 자동 생성한다. 이 생성된 코드가 메서드 인자를 `Parcel`에 담아 Binder 드라이버로 전송하고(마샬링), 반대편에서 그 `Parcel`을 원래 타입으로 복원하는(언마샬링) 반복 작업을 대신 처리해 준다. AIDL이 해결하는 문제는 "프로세스 간 호출을 프로세스 내 호출처럼 보이게 만드는 것"이지, "이 인터페이스가 시스템 서비스인지 아닌지"를 결정하는 것이 아니다 — 이 구분은 뒤에서 다룰 오개념 중 하나다.
+<strong>AIDL(Android Interface Definition Language, 안드로이드 인터페이스 정의 언어)</strong>은 프로세스 경계를 넘는 메서드 호출의 시그니처를 선언하기 위한 언어다. 개발자가 `.aidl` 파일에 인터페이스를 선언하면, 빌드 시스템이 그 파일로부터 클라이언트 쪽 프록시(stub proxy)와 서버 쪽 스텁(stub) 코드를 자동 생성한다. 이 생성된 코드가 메서드 인자를 `Parcel`에 담아 Binder 드라이버로 전송하고(마샬링), 반대편에서 그 `Parcel`을 원래 타입으로 복원하는(언마샬링) 반복 작업을 대신 처리해 준다. AIDL이 해결하는 문제는 "프로세스 간 호출을 프로세스 내 호출처럼 보이게 만드는 것"이지, "이 인터페이스가 시스템 서비스인지 아닌지"를 결정하는 것이 아니다 — 이 구분은 뒤에서 다룰 오개념 중 하나다.
 
 AIDL 인터페이스는 두 갈래로 쓰인다. 하나는 요청-응답 형태의 일반 인터페이스이고, 다른 하나는 서버가 클라이언트에게 비동기로 이벤트를 통지하기 위한 콜백 인터페이스다. 콜백 인터페이스는 보통 `oneway`로 선언해 호출자가 응답을 기다리지 않고 즉시 반환하도록 만든다 — 그렇지 않으면 서버가 콜백을 호출하는 순간 그 콜백을 처리하는 클라이언트 스레드가 끝날 때까지 서버 스레드가 블록될 수 있다.
 
@@ -143,9 +143,9 @@ AOSP는 시스템 서비스처럼 여러 팀·여러 파티션(system/vendor)에
 
 ## ActivityManagerService와 PackageManagerService의 구조
 
-**ActivityManagerService(AMS)**는 이름과 달리 액티비티 생명주기만 관리하는 서비스가 아니다. AMS의 핵심 책임은 프로세스 관리에 가깝다 — 어떤 프로세스가 살아 있어야 하는지, 메모리 압박 상황에서 어떤 프로세스를 먼저 종료해야 하는지를 `oom_adj`라는 우선순위 점수로 계산해 커널의 저메모리 킬러(low memory killer)에게 힌트를 제공하고, 입력 이벤트나 서비스 콜백이 제때 처리되지 않을 때 ANR(Application Not Responding)을 감지하며, 브로드캐스트를 등록된 수신자들에게 순서대로 전달하는 디스패처 역할도 수행한다. Android 10 전후로는 액티비티·태스크·윈도우와 직접 관련된 책임의 상당 부분이 `ActivityTaskManagerService`로 분리되어, AMS는 프로세스 생명주기·oom_adj 계산·ANR 감지·브로드캐스트 디스패치에 더 집중하는 구조로 재편되는 방향의 리팩터링이 이루어졌다(정확한 분리 시점과 범위는 AOSP 버전별 소스로 확인하는 것이 안전하다).
+<strong>ActivityManagerService(AMS)</strong>는 이름과 달리 액티비티 생명주기만 관리하는 서비스가 아니다. AMS의 핵심 책임은 프로세스 관리에 가깝다 — 어떤 프로세스가 살아 있어야 하는지, 메모리 압박 상황에서 어떤 프로세스를 먼저 종료해야 하는지를 `oom_adj`라는 우선순위 점수로 계산해 커널의 저메모리 킬러(low memory killer)에게 힌트를 제공하고, 입력 이벤트나 서비스 콜백이 제때 처리되지 않을 때 ANR(Application Not Responding)을 감지하며, 브로드캐스트를 등록된 수신자들에게 순서대로 전달하는 디스패처 역할도 수행한다. Android 10 전후로는 액티비티·태스크·윈도우와 직접 관련된 책임의 상당 부분이 `ActivityTaskManagerService`로 분리되어, AMS는 프로세스 생명주기·oom_adj 계산·ANR 감지·브로드캐스트 디스패치에 더 집중하는 구조로 재편되는 방향의 리팩터링이 이루어졌다(정확한 분리 시점과 범위는 AOSP 버전별 소스로 확인하는 것이 안전하다).
 
-**PackageManagerService(PMS)**는 기기에 설치된 모든 패키지의 메타데이터(권한, 컴포넌트, 서명, 버전)를 관리하는 서비스로, 흔히 "APK 목록을 담은 데이터베이스" 정도로 오해되지만 실제로는 매 부팅마다(또는 패키지 변경 시) `/system/app`, `/vendor/app`, `/data/app` 등 여러 파티션의 APK를 스캔하고, 서명을 검증하며, 선언된 권한을 실제 권한 그래프에 반영하는 능동적인 스캐너에 가깝다. 이 스캔·검증 비용 때문에 PMS 초기화는 SystemServer 부트스트랩 단계에서 가장 시간이 오래 걸리는 구간 중 하나이며, 다른 많은 서비스가 PMS의 스캔 완료를 전제로 자신의 초기화를 진행한다. PMS는 앱의 `queryIntentActivities()`, `getPackageInfo()` 같은 조회가 매우 빈번하게 호출되는 서비스이기도 해서, 최근 AOSP 계열 구현에서는 전역 락 경합을 줄이기 위해 읽기 전용 스냅샷을 통해 조회를 처리하는 방향의 구조 개선이 이루어지는 추세다 — 구체적인 클래스 이름과 도입 버전은 AOSP 소스 버전에 따라 달라지므로 "읽기와 쓰기 경로를 분리해 락 경합을 줄인다"는 설계 방향만 원칙으로 기억해 두는 것이 안전하다.
+<strong>PackageManagerService(PMS)</strong>는 기기에 설치된 모든 패키지의 메타데이터(권한, 컴포넌트, 서명, 버전)를 관리하는 서비스로, 흔히 "APK 목록을 담은 데이터베이스" 정도로 오해되지만 실제로는 매 부팅마다(또는 패키지 변경 시) `/system/app`, `/vendor/app`, `/data/app` 등 여러 파티션의 APK를 스캔하고, 서명을 검증하며, 선언된 권한을 실제 권한 그래프에 반영하는 능동적인 스캐너에 가깝다. 이 스캔·검증 비용 때문에 PMS 초기화는 SystemServer 부트스트랩 단계에서 가장 시간이 오래 걸리는 구간 중 하나이며, 다른 많은 서비스가 PMS의 스캔 완료를 전제로 자신의 초기화를 진행한다. PMS는 앱의 `queryIntentActivities()`, `getPackageInfo()` 같은 조회가 매우 빈번하게 호출되는 서비스이기도 해서, 최근 AOSP 계열 구현에서는 전역 락 경합을 줄이기 위해 읽기 전용 스냅샷을 통해 조회를 처리하는 방향의 구조 개선이 이루어지는 추세다 — 구체적인 클래스 이름과 도입 버전은 AOSP 소스 버전에 따라 달라지므로 "읽기와 쓰기 경로를 분리해 락 경합을 줄인다"는 설계 방향만 원칙으로 기억해 두는 것이 안전하다.
 
 AMS와 PMS는 둘 다 SystemServer의 `startBootstrapServices()` 단계에서 가장 먼저 생성되는 서비스군에 속한다. 이는 우연이 아니라 위에서 설명한 의존성 순서의 직접적인 결과다 — 다른 거의 모든 시스템 서비스가 "이 컴포넌트를 실행할 권한이 있는가"(PMS)와 "이 프로세스를 지금 시작해도 되는가"(AMS)를 전제로 동작하기 때문에, 이 둘이 준비되지 않으면 그 뒤의 어떤 서비스도 온전히 기능할 수 없다.
 
@@ -326,11 +326,11 @@ registerService(Context.DEVICE_MONITOR_SERVICE, DeviceMonitorManager.class,
 
 ## 흔한 오개념
 
-**"AIDL로 인터페이스를 정의하면 그 자체로 시스템 서비스가 된다"**는 오해가 가장 흔하다. AIDL은 프로세스 경계를 넘는 호출의 마샬링·언마샬링을 자동화하는 인터페이스 정의 도구일 뿐이며, 같은 AIDL 메커니즘이 시스템 서비스에도, 일반 앱의 bound Service에도, `Messenger` 기반 통신에도 똑같이 쓰인다. 어떤 컴포넌트가 "시스템 서비스"로 불리는 이유는 AIDL을 썼기 때문이 아니라 `system_server` 프로세스 안에서 `SystemService`로 등록되어 부팅 순서에 편입되고 `ServiceManager`에 잘 알려진 이름으로 게시되기 때문이다.
+<strong>"AIDL로 인터페이스를 정의하면 그 자체로 시스템 서비스가 된다"</strong>는 오해가 가장 흔하다. AIDL은 프로세스 경계를 넘는 호출의 마샬링·언마샬링을 자동화하는 인터페이스 정의 도구일 뿐이며, 같은 AIDL 메커니즘이 시스템 서비스에도, 일반 앱의 bound Service에도, `Messenger` 기반 통신에도 똑같이 쓰인다. 어떤 컴포넌트가 "시스템 서비스"로 불리는 이유는 AIDL을 썼기 때문이 아니라 `system_server` 프로세스 안에서 `SystemService`로 등록되어 부팅 순서에 편입되고 `ServiceManager`에 잘 알려진 이름으로 게시되기 때문이다.
 
-**"ServiceManager에 `addService()`로 등록하면 어떤 앱이든 바로 접근할 수 있다"**는 오해도 실무에서 자주 발목을 잡는다. 등록은 그 서비스가 "존재한다"는 사실을 알리는 것일 뿐, 실제 호출 가능 여부는 (1) SELinux 정책이 호출자 도메인과 `system_server` 도메인 사이의 Binder 호출을 허용하는지, (2) 프레임워크 권한 검사(`enforceCallingPermission()` 등)를 통과하는지에 따라 별도로 결정된다. 위 실전 예제에서 SELinux 정책과 권한 선언을 마지막 단계로 분리해 다룬 이유가 여기에 있다 — 이 두 계층은 AIDL 인터페이스 설계와는 독립적으로 항상 함께 챙겨야 한다.
+<strong>"ServiceManager에 `addService()`로 등록하면 어떤 앱이든 바로 접근할 수 있다"</strong>는 오해도 실무에서 자주 발목을 잡는다. 등록은 그 서비스가 "존재한다"는 사실을 알리는 것일 뿐, 실제 호출 가능 여부는 (1) SELinux 정책이 호출자 도메인과 `system_server` 도메인 사이의 Binder 호출을 허용하는지, (2) 프레임워크 권한 검사(`enforceCallingPermission()` 등)를 통과하는지에 따라 별도로 결정된다. 위 실전 예제에서 SELinux 정책과 권한 선언을 마지막 단계로 분리해 다룬 이유가 여기에 있다 — 이 두 계층은 AIDL 인터페이스 설계와는 독립적으로 항상 함께 챙겨야 한다.
 
-**"PackageManagerService는 설치된 패키지 정보를 담아 두는 정적 캐시일 뿐이다"**라는 생각도 실제 구현과는 거리가 있다. PMS는 부팅마다(그리고 패키지 설치·삭제 이벤트마다) 여러 파티션의 APK를 다시 스캔하고 서명을 검증하는 능동적인 프로세스이며, 이 스캔 비용이 부팅 시간에서 상당한 비중을 차지하기 때문에 실무에서 부팅 시간을 최적화할 때 PMS의 패키지 스캔 범위와 순서가 흔히 조사 대상이 된다.
+<strong>"PackageManagerService는 설치된 패키지 정보를 담아 두는 정적 캐시일 뿐이다"</strong>라는 생각도 실제 구현과는 거리가 있다. PMS는 부팅마다(그리고 패키지 설치·삭제 이벤트마다) 여러 파티션의 APK를 다시 스캔하고 서명을 검증하는 능동적인 프로세스이며, 이 스캔 비용이 부팅 시간에서 상당한 비중을 차지하기 때문에 실무에서 부팅 시간을 최적화할 때 PMS의 패키지 스캔 범위와 순서가 흔히 조사 대상이 된다.
 
 ## 비판적 시각
 

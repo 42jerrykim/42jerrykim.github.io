@@ -38,7 +38,7 @@ tags:
 image: "wordcloud.png"
 ---
 
-05장에서 다룬 Object Detection은 프레임 하나에서 "무엇이 어디에 있는가"를 답합니다. **Tracking(추적)**은 여기서 한 걸음 더 나아가, 여러 프레임에 걸쳐 등장하는 물체가 "같은 개체인가"를 판단하는 문제입니다. 이 문제는 **MOT(Multi-Object Tracking)**라고 불리며, 이 장은 두 가지 접근 방식과 그중 최근 대세가 된 방식의 대표 기법 두 가지를 다룹니다.
+05장에서 다룬 Object Detection은 프레임 하나에서 "무엇이 어디에 있는가"를 답합니다. <strong>Tracking(추적)</strong>은 여기서 한 걸음 더 나아가, 여러 프레임에 걸쳐 등장하는 물체가 "같은 개체인가"를 판단하는 문제입니다. 이 문제는 <strong>MOT(Multi-Object Tracking)</strong>라고 불리며, 이 장은 두 가지 접근 방식과 그중 최근 대세가 된 방식의 대표 기법 두 가지를 다룹니다.
 
 ## Tracking-by-Detection과 Tracking-by-Regression
 

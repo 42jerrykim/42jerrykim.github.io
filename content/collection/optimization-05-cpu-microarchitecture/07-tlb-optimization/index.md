@@ -97,7 +97,7 @@ flowchart LR
 
 TLB 엔트리 하나가 4KB 페이지 하나만 가리킬 수 있다면, TLB가 실제로 "커버"하는 메모리 범위는 **엔트리 수 × 페이지 크기**로 정해집니다. 앞서 본 Zen4의 12MB급 L2 TLB 커버리지도 대용량 인메모리 데이터베이스나 캐시 서버의 작업집합(수십~수백 GB)에 비하면 미미한 수준이고, 작업집합이 이 범위를 넘어서는 순간부터 접근마다 TLB 미스가 날 확률이 급격히 올라갑니다. **huge page**(x86에서는 보통 2MB, 서버급에서는 1GB)를 쓰면 엔트리 하나가 512배(2MB/4KB) 또는 262144배(1GB/4KB) 넓은 범위를 가리키므로, 같은 엔트리 수로 덮을 수 있는 메모리 양이 그만큼 늘어나 TLB 미스율 자체가 구조적으로 줄어듭니다. 페이지 워크 단계도 최하위 PT 레벨을 아예 건너뛰므로(2MB 페이지는 PD 엔트리가 곧 최종 매핑), 미스가 나더라도 워크 자체가 한 단계 짧아진다는 부수 효과도 있습니다.
 
-Linux에서 huge page를 확보하는 방법은 두 가지로 나뉩니다. **hugetlbfs**는 부팅 시 커널 커맨드라인의 `hugepages=N` 옵션이나 런타임에 `/proc/sys/vm/nr_hugepages`에 값을 써서 huge page 풀을 정적으로 예약하는 방식으로, hugetlbfs를 마운트해 파일로 다루거나 `mmap`에 `MAP_HUGETLB` 플래그를 줘서 접근합니다. 이 방식은 예약된 페이지가 항상 huge page임을 보장하지만, 애플리케이션이 명시적으로 요청해야 하고 미리 예약한 만큼 다른 용도로 쓸 메모리가 줄어듭니다. **THP(Transparent Huge Pages)**는 반대로 커널이 백그라운드에서(khugepaged 데몬을 통해) 인접한 4KB 페이지들을 자동으로 huge page로 병합해 애플리케이션 코드 수정 없이 혜택을 주려는 접근입니다. `/sys/kernel/mm/transparent_hugepage/enabled`를 `madvise`로 설정하면 애플리케이션이 `madvise(addr, len, MADV_HUGEPAGE)`를 호출한 영역에서만 THP가 시도되고, `always`로 설정하면 시스템 전역에서 THP 할당을 우선 시도합니다.
+Linux에서 huge page를 확보하는 방법은 두 가지로 나뉩니다. **hugetlbfs**는 부팅 시 커널 커맨드라인의 `hugepages=N` 옵션이나 런타임에 `/proc/sys/vm/nr_hugepages`에 값을 써서 huge page 풀을 정적으로 예약하는 방식으로, hugetlbfs를 마운트해 파일로 다루거나 `mmap`에 `MAP_HUGETLB` 플래그를 줘서 접근합니다. 이 방식은 예약된 페이지가 항상 huge page임을 보장하지만, 애플리케이션이 명시적으로 요청해야 하고 미리 예약한 만큼 다른 용도로 쓸 메모리가 줄어듭니다. <strong>THP(Transparent Huge Pages)</strong>는 반대로 커널이 백그라운드에서(khugepaged 데몬을 통해) 인접한 4KB 페이지들을 자동으로 huge page로 병합해 애플리케이션 코드 수정 없이 혜택을 주려는 접근입니다. `/sys/kernel/mm/transparent_hugepage/enabled`를 `madvise`로 설정하면 애플리케이션이 `madvise(addr, len, MADV_HUGEPAGE)`를 호출한 영역에서만 THP가 시도되고, `always`로 설정하면 시스템 전역에서 THP 할당을 우선 시도합니다.
 
 아래는 hugetlbfs와 일반 4KB 페이지를 각각 매핑해 무작위 포인터 체이싱으로 접근 지연을 비교하는 최소 벤치마크입니다. 포인터 체이싱을 쓰는 이유는 순차 접근이면 하드웨어 프리페처가 TLB 미스 비용 상당 부분을 미리 가려 버리기 때문입니다.
 
@@ -147,11 +147,11 @@ int main(int argc, char** argv) {
 
 ## 흔한 오개념 바로잡기
 
-**"huge page는 켜 두면 항상 이득이다"**는 위험한 단순화입니다. THP를 `always` 모드로 설정하면 커널 공식 문서가 명시하듯 huge page 할당에 실패했을 때 애플리케이션이 직접 회수(reclaim)와 메모리 압축(compaction)을 거쳐서라도 huge page를 즉시 확보하려고 멈춰 서게 되며, 이 압축 과정 자체가 수 ms 단위의 지연 스파이크를 만들 수 있습니다. 실제로 Redis·MongoDB 등 지연시간에 민감한 소프트웨어들이 배포 가이드에서 THP를 `madvise` 또는 `never`로 낮추도록 권고해 온 이력은, "자동으로 켜지는 최적화"가 p99 관점에서는 오히려 위험 요소가 될 수 있음을 보여 줍니다.
+<strong>"huge page는 켜 두면 항상 이득이다"</strong>는 위험한 단순화입니다. THP를 `always` 모드로 설정하면 커널 공식 문서가 명시하듯 huge page 할당에 실패했을 때 애플리케이션이 직접 회수(reclaim)와 메모리 압축(compaction)을 거쳐서라도 huge page를 즉시 확보하려고 멈춰 서게 되며, 이 압축 과정 자체가 수 ms 단위의 지연 스파이크를 만들 수 있습니다. 실제로 Redis·MongoDB 등 지연시간에 민감한 소프트웨어들이 배포 가이드에서 THP를 `madvise` 또는 `never`로 낮추도록 권고해 온 이력은, "자동으로 켜지는 최적화"가 p99 관점에서는 오히려 위험 요소가 될 수 있음을 보여 줍니다.
 
-**"TLB 미스는 캐시 미스 하나와 비슷한 비용이다"**도 틀린 직관입니다. TLB 미스는 그 자체로 페이지 테이블을 걸어 내려가는 여러 번의 순차적 메모리 접근을 유발하며, 이 각각의 접근이 다시 캐시 미스일 수 있습니다. 즉 TLB 미스 하나의 실제 비용은 페이징 구조 캐시(PWC) 히트 여부에 따라 크게 달라지는 **조건부 비용**이며, 최악의 경우 데이터 캐시 미스 하나보다 몇 배 더 비쌀 수 있습니다.
+<strong>"TLB 미스는 캐시 미스 하나와 비슷한 비용이다"</strong>도 틀린 직관입니다. TLB 미스는 그 자체로 페이지 테이블을 걸어 내려가는 여러 번의 순차적 메모리 접근을 유발하며, 이 각각의 접근이 다시 캐시 미스일 수 있습니다. 즉 TLB 미스 하나의 실제 비용은 페이징 구조 캐시(PWC) 히트 여부에 따라 크게 달라지는 **조건부 비용**이며, 최악의 경우 데이터 캐시 미스 하나보다 몇 배 더 비쌀 수 있습니다.
 
-**"THP를 켜면 huge page가 실제로 쓰이는지 신경 쓸 필요가 없다"**도 오개념입니다. THP는 어디까지나 휴리스틱이라, 메모리 단편화가 심하면 khugepaged가 huge page 병합에 계속 실패하면서도 애플리케이션에는 아무 오류도 보이지 않습니다. `/proc/vmstat`의 `thp_fault_fallback`·`thp_collapse_alloc_failed` 값이 계속 늘어나는데도 huge page가 쓰이는 줄 알고 방치하면, 기대한 TLB 압력 완화 효과가 조용히 사라진 상태로 운영하게 됩니다.
+<strong>"THP를 켜면 huge page가 실제로 쓰이는지 신경 쓸 필요가 없다"</strong>도 오개념입니다. THP는 어디까지나 휴리스틱이라, 메모리 단편화가 심하면 khugepaged가 huge page 병합에 계속 실패하면서도 애플리케이션에는 아무 오류도 보이지 않습니다. `/proc/vmstat`의 `thp_fault_fallback`·`thp_collapse_alloc_failed` 값이 계속 늘어나는데도 huge page가 쓰이는 줄 알고 방치하면, 기대한 TLB 압력 완화 효과가 조용히 사라진 상태로 운영하게 됩니다.
 
 ## TLB 미스 진단: 프로파일링으로 확인하기
 

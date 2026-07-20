@@ -75,11 +75,11 @@ public void ProcessOrder(HttpRequest request) {
 
 ### 관심사의 분리
 
-계층형 아키텍처의 핵심 아이디어는 **관심사의 분리(Separation of Concerns)**다. 서로 다른 관심사를 별도의 계층으로 분리하여, 각 계층이 자신의 역할에만 집중하도록 한다.
+계층형 아키텍처의 핵심 아이디어는 <strong>관심사의 분리(Separation of Concerns)</strong>다. 서로 다른 관심사를 별도의 계층으로 분리하여, 각 계층이 자신의 역할에만 집중하도록 한다.
 
 ## 전통적인 3계층 아키텍처
 
-가장 널리 알려진 계층형 아키텍처는 **3계층 아키텍처(3-Tier Architecture)**다.
+가장 널리 알려진 계층형 아키텍처는 <strong>3계층 아키텍처(3-Tier Architecture)</strong>다.
 
 ```mermaid
 flowchart TB

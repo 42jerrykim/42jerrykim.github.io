@@ -62,11 +62,11 @@ test_transform = transforms.Compose([
 ])
 ```
 
-학습용 파이프라인에만 `RandomCrop`·`RandomHorizontalFlip` 같은 **데이터 증강(augmentation)**을 넣는 이유는, 모델이 같은 물체를 위치·방향이 조금씩 다른 형태로도 인식하도록 강제해 과적합을 줄이기 위해서입니다. 평가(test) 시에는 이런 무작위성이 결과를 흔들면 안 되므로 `ToTensor`와 `Normalize`만 적용합니다.
+학습용 파이프라인에만 `RandomCrop`·`RandomHorizontalFlip` 같은 <strong>데이터 증강(augmentation)</strong>을 넣는 이유는, 모델이 같은 물체를 위치·방향이 조금씩 다른 형태로도 인식하도록 강제해 과적합을 줄이기 위해서입니다. 평가(test) 시에는 이런 무작위성이 결과를 흔들면 안 되므로 `ToTensor`와 `Normalize`만 적용합니다.
 
 ## 행렬-벡터 곱은 결국 가중합이다
 
-벡터의 스칼라 곱은 방향은 그대로 두고 크기만 바꿉니다. 두 벡터 $A$, $B$에 대해 $\alpha A + (1-\alpha)B$($0 \le \alpha \le 1$)를 계산하면, $\alpha$ 값에 따라 $A$와 $B$를 잇는 직선 위의 한 점을 표현할 수 있습니다 — 이를 **가중합(weighted sum)**이라 부릅니다.
+벡터의 스칼라 곱은 방향은 그대로 두고 크기만 바꿉니다. 두 벡터 $A$, $B$에 대해 $\alpha A + (1-\alpha)B$($0 \le \alpha \le 1$)를 계산하면, $\alpha$ 값에 따라 $A$와 $B$를 잇는 직선 위의 한 점을 표현할 수 있습니다 — 이를 <strong>가중합(weighted sum)</strong>이라 부릅니다.
 
 이 가중합 개념은 행렬-벡터 곱셈을 이해하는 열쇠입니다. 행렬 $C$와 벡터 $\vec{a}$의 곱 $C\vec{a}$는 "행과 열을 하나씩 내적한다"는 기계적 계산으로도 볼 수 있지만, **$C$의 각 열(column)을 $\vec{a}$의 각 원소로 가중합한 것**이라는 관점으로 보면 더 직관적입니다.
 
@@ -103,13 +103,13 @@ $\nabla$(나블라)가 붙은 표기는 함수를 각 변수에 대해 편미분
 
 ## Likelihood와 Bayes' Rule — 학습이란 무엇을 찾는 과정인가
 
-**Likelihood(가능도)는 확률이 아닙니다.** "관측된 데이터가 분포 A에서 나왔을 가능성이 높은가, 분포 B에서 나왔을 가능성이 높은가"를 비교하는 지표이지, 그 자체로 확률값은 아닙니다. 이 개념은 **베이즈 정리(Bayes' Rule)**로 학습 문제를 표현할 때 등장합니다.
+**Likelihood(가능도)는 확률이 아닙니다.** "관측된 데이터가 분포 A에서 나왔을 가능성이 높은가, 분포 B에서 나왔을 가능성이 높은가"를 비교하는 지표이지, 그 자체로 확률값은 아닙니다. 이 개념은 <strong>베이즈 정리(Bayes' Rule)</strong>로 학습 문제를 표현할 때 등장합니다.
 
 $$\underbrace{P(\theta|D)}_{\text{Posterior}} = \frac{\overbrace{P(D|\theta)}^{\text{Likelihood}} \cdot \overbrace{P(\theta)}^{\text{Prior}}}{\underbrace{P(D)}_{\text{Evidence}}}$$
 
 여기서 $D$는 학습 데이터(이미지와 정답 레이블의 쌍들), $\theta$는 모델 파라미터입니다. "학습 데이터 $D$가 주어졌을 때 파라미터 $\theta$가 어떤 값을 가질 확률분포인가"를 구하는 것이 Posterior를 구하는 일이지만, 딥러닝 모델의 파라미터는 보통 수백만~수십억 개에 달해 이 분포를 직접 계산하는 것은 현실적으로 불가능합니다.
 
-**MLE(Maximum Likelihood Estimation)**는 이 문제를 우회해, Posterior 전체 대신 **Likelihood를 가장 크게 만드는 파라미터 $\theta$ 하나**만 찾습니다. 여러 후보 $\theta$ 값 각각에 대해 "이 $\theta$였다면 관측된 데이터 $D$가 나올 가능성"을 비교해서, 그 가능성이 가장 큰 $\theta$를 선택하는 것 — 이것이 바로 우리가 실제로 하는 "모델 학습"의 정체입니다. **MAP(Maximum A Posteriori)**는 여기에 Prior(사전 확률)를 곱해, "파라미터 값은 너무 크지 않은 게 낫다"처럼 데이터를 보기 전부터 가진 선험적 믿음까지 반영합니다.
+<strong>MLE(Maximum Likelihood Estimation)</strong>는 이 문제를 우회해, Posterior 전체 대신 **Likelihood를 가장 크게 만드는 파라미터 $\theta$ 하나**만 찾습니다. 여러 후보 $\theta$ 값 각각에 대해 "이 $\theta$였다면 관측된 데이터 $D$가 나올 가능성"을 비교해서, 그 가능성이 가장 큰 $\theta$를 선택하는 것 — 이것이 바로 우리가 실제로 하는 "모델 학습"의 정체입니다. <strong>MAP(Maximum A Posteriori)</strong>는 여기에 Prior(사전 확률)를 곱해, "파라미터 값은 너무 크지 않은 게 낫다"처럼 데이터를 보기 전부터 가진 선험적 믿음까지 반영합니다.
 
 ## Entropy — 얼마나 예측 불가능한가
 

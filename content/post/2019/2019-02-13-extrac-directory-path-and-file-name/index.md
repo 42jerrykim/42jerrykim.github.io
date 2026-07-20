@@ -228,7 +228,7 @@ basename /home/jsmith/base.wiki base.wiki
 
 ## 방법 비교와 사용 기준
 
-아래 표는 디렉터리 경로·파일명 추출 시 **sed**와 **표준 명령(dirname/basename)**을 비교한 것이다.
+아래 표는 디렉터리 경로·파일명 추출 시 **sed**와 <strong>표준 명령(dirname/basename)</strong>을 비교한 것이다.
 
 | 구분 | sed | dirname / basename |
 |------|-----|---------------------|

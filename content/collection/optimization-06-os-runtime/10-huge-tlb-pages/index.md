@@ -187,11 +187,11 @@ grep -B1 -A2 'KernelPageSize:    2048 kB' /proc/<pid>/smaps
 
 ## 흔한 오개념
 
-**"`nr_hugepages`에 값을 쓰면 항상 그 개수만큼 확보된다"**는 흔한 오해입니다. 커널은 요청을 최선을 다해 시도할 뿐이며, 특히 시스템이 오래 켜져 있어 단편화된 상태라면 `HugePages_Total`이 요청보다 적게 늘어나거나 아예 변하지 않을 수 있습니다. 확실한 확보가 필요하면 부팅 파라미터를 쓰거나, gigantic page라면 `hugetlb_cma`를 함께 검토해야 합니다.
+<strong>"`nr_hugepages`에 값을 쓰면 항상 그 개수만큼 확보된다"</strong>는 흔한 오해입니다. 커널은 요청을 최선을 다해 시도할 뿐이며, 특히 시스템이 오래 켜져 있어 단편화된 상태라면 `HugePages_Total`이 요청보다 적게 늘어나거나 아예 변하지 않을 수 있습니다. 확실한 확보가 필요하면 부팅 파라미터를 쓰거나, gigantic page라면 `hugetlb_cma`를 함께 검토해야 합니다.
 
-**"HugeTLB 예약은 THP처럼 필요할 때만 물리 메모리를 쓴다"**도 정확하지 않습니다. `nr_hugepages`로 확보된 페이지는 실제로 어떤 프로세스도 쓰지 않아도 pool에 편입된 순간 물리 메모리를 점유하며, 이 메모리는 다른 용도로 회수되지 않습니다(pinned). 반대로 gigantic page용 CMA 영역은 미사용 시 다른 용도로 재활용될 수 있다는 점에서 이 둘의 낭비 양상이 다릅니다.
+<strong>"HugeTLB 예약은 THP처럼 필요할 때만 물리 메모리를 쓴다"</strong>도 정확하지 않습니다. `nr_hugepages`로 확보된 페이지는 실제로 어떤 프로세스도 쓰지 않아도 pool에 편입된 순간 물리 메모리를 점유하며, 이 메모리는 다른 용도로 회수되지 않습니다(pinned). 반대로 gigantic page용 CMA 영역은 미사용 시 다른 용도로 재활용될 수 있다는 점에서 이 둘의 낭비 양상이 다릅니다.
 
-**"HugeTLB 풀 개수만 노드 합계로 맞추면 충분하다"**는 배치를 소홀히 하는 실수로 이어집니다. 전체 시스템 기준으로 512개를 예약했더라도 그 절반이 워커가 실행되는 노드가 아닌 다른 노드에 쏠려 있으면, [NUMA CPU Affinity·스레드 배치](/post/os-optimization/numa-cpu-affinity-thread-placement/)에서 다룬 first-touch 문제와 똑같은 방식으로 원격 접근이 굳어집니다. 노드별 sysfs 경로로 직접 배치를 확인해야 합니다.
+<strong>"HugeTLB 풀 개수만 노드 합계로 맞추면 충분하다"</strong>는 배치를 소홀히 하는 실수로 이어집니다. 전체 시스템 기준으로 512개를 예약했더라도 그 절반이 워커가 실행되는 노드가 아닌 다른 노드에 쏠려 있으면, [NUMA CPU Affinity·스레드 배치](/post/os-optimization/numa-cpu-affinity-thread-placement/)에서 다룬 first-touch 문제와 똑같은 방식으로 원격 접근이 굳어집니다. 노드별 sysfs 경로로 직접 배치를 확인해야 합니다.
 
 ## 판단 기준
 

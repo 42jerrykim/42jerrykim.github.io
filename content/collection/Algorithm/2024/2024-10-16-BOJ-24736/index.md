@@ -49,8 +49,8 @@ lastmod: 2024-10-16
 2. **필드골(Field Goal)** - 3점
 3. **세이프티(Safety)** - 2점
 4. **터치다운 후 추가 점수**
-   - 1점 (필드골 또는 세이프티) - 일반적으로 **"포인트 애프터(Point after)"**라고 부른다.
-   - 2점 (터치다운) - 일반적으로 **"투 포인트 컨버전(Two-point conversion)"**이라고 부른다.
+   - 1점 (필드골 또는 세이프티) - 일반적으로 <strong>"포인트 애프터(Point after)"</strong>라고 부른다.
+   - 2점 (터치다운) - 일반적으로 <strong>"투 포인트 컨버전(Two-point conversion)"</strong>이라고 부른다.
 
 [참고 링크](https://operations.nfl.com/the-rules/nfl-video-rulebook/scoring-plays/)
 

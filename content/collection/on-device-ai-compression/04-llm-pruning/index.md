@@ -46,7 +46,7 @@ image: "wordcloud.png"
 
 ## 테일러 급수로 제거 오차 근사하기 — OBD와 OBS
 
-이 문제를 개선하기 위해 **테일러 급수(Taylor Expansion)**로 "가중치를 제거했을 때 손실이 얼마나 늘어나는가"를 더 정밀하게 근사하는 방법들이 1990년대부터 제안되었습니다. **OBD(Optimal Brain Damage)**는 테일러 급수의 2차(second-order) 항까지 고려해 가중치 제거로 인한 오차를 근사하되, 계산을 단순화하기 위해 서로 다른 가중치 $i \ne j$ 사이의 상호작용 항은 무시합니다(가중치들이 서로 독립적이라는 가정). **OBS(Optimal Brain Surgeon)**는 OBD가 무시했던 이 $i \ne j$ 항(서로 다른 가중치 간의 상호작용)까지 고려해 OBD를 개선한 버전입니다. OBS는 계산이 더 정교한 만큼 연산 비용도 커서, 파라미터 수가 방대한 LLM에 그대로 적용하기에는 현실적인 제약이 있었습니다.
+이 문제를 개선하기 위해 <strong>테일러 급수(Taylor Expansion)</strong>로 "가중치를 제거했을 때 손실이 얼마나 늘어나는가"를 더 정밀하게 근사하는 방법들이 1990년대부터 제안되었습니다. <strong>OBD(Optimal Brain Damage)</strong>는 테일러 급수의 2차(second-order) 항까지 고려해 가중치 제거로 인한 오차를 근사하되, 계산을 단순화하기 위해 서로 다른 가중치 $i \ne j$ 사이의 상호작용 항은 무시합니다(가중치들이 서로 독립적이라는 가정). <strong>OBS(Optimal Brain Surgeon)</strong>는 OBD가 무시했던 이 $i \ne j$ 항(서로 다른 가중치 간의 상호작용)까지 고려해 OBD를 개선한 버전입니다. OBS는 계산이 더 정교한 만큼 연산 비용도 커서, 파라미터 수가 방대한 LLM에 그대로 적용하기에는 현실적인 제약이 있었습니다.
 
 ## SparseGPT — OBS를 LLM 규모로 확장하기
 

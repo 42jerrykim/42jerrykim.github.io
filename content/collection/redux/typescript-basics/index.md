@@ -70,7 +70,7 @@ add(1, "2"); // 컴파일 에러: "2"는 number가 아님
 
 ## 인터페이스와 타입 별칭: 객체의 형태를 정의한다
 
-**인터페이스(interface)**와 **타입 별칭(type alias)**은 객체가 어떤 속성을 가져야 하는지 정의합니다. Redux의 State와 Action 형태를 정의할 때 가장 많이 쓰입니다.
+<strong>인터페이스(interface)</strong>와 <strong>타입 별칭(type alias)</strong>은 객체가 어떤 속성을 가져야 하는지 정의합니다. Redux의 State와 Action 형태를 정의할 때 가장 많이 쓰입니다.
 
 ```typescript
 interface Todo {
@@ -98,7 +98,7 @@ interface RequestState {
 
 ## 제네릭: 타입을 매개변수로 받는다
 
-**제네릭(Generic)**은 함수나 타입이 다룰 데이터 타입을 나중에 지정할 수 있게 해줍니다. 배열이나 API 응답처럼 "형태는 같지만 내용물 타입이 다른" 경우에 유용합니다.
+<strong>제네릭(Generic)</strong>은 함수나 타입이 다룰 데이터 타입을 나중에 지정할 수 있게 해줍니다. 배열이나 API 응답처럼 "형태는 같지만 내용물 타입이 다른" 경우에 유용합니다.
 
 ```typescript
 function firstElement<T>(arr: T[]): T | undefined {
@@ -125,7 +125,7 @@ const userResponse: ApiResponse<{ id: number; name: string }> = {
 
 ## 판별 유니온: Redux Action 타입의 핵심 도구
 
-여러 종류의 Action을 하나의 타입으로 안전하게 표현하려면 **판별 유니온(Discriminated Union)**을 씁니다. 공통 속성(보통 `type`)의 값으로 어떤 종류인지 구분합니다.
+여러 종류의 Action을 하나의 타입으로 안전하게 표현하려면 <strong>판별 유니온(Discriminated Union)</strong>을 씁니다. 공통 속성(보통 `type`)의 값으로 어떤 종류인지 구분합니다.
 
 ```typescript
 interface AddTodoAction {
@@ -156,7 +156,7 @@ function todoReducer(state: Todo[], action: TodoAction): Todo[] {
 }
 ```
 
-`switch (action.type)`의 각 `case` 안에서 TypeScript가 `action`의 구체적인 타입을 자동으로 좁혀주는 것을 **타입 좁히기(Type Narrowing)**라고 합니다. 이 덕분에 `action.payload`에 존재하지 않는 속성을 잘못 참조하면 컴파일 시점에 에러가 납니다. 이 패턴은 07편(Action, Reducer, Store)과 28편(Redux와 TypeScript)에서 그대로 확장됩니다.
+`switch (action.type)`의 각 `case` 안에서 TypeScript가 `action`의 구체적인 타입을 자동으로 좁혀주는 것을 <strong>타입 좁히기(Type Narrowing)</strong>라고 합니다. 이 덕분에 `action.payload`에 존재하지 않는 속성을 잘못 참조하면 컴파일 시점에 에러가 납니다. 이 패턴은 07편(Action, Reducer, Store)과 28편(Redux와 TypeScript)에서 그대로 확장됩니다.
 
 ## any를 피해야 하는 이유
 

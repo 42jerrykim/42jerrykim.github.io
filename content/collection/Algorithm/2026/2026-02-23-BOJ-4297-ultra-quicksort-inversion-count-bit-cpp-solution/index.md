@@ -43,7 +43,7 @@ image: "wordcloud.png"
 ---
 
 인접한 원소끼리만 교환해서 정렬하는 데 필요한 **최소 교환 횟수**는 수열의 **역전 쌍(Inversion) 수**와 정확히 일치한다.  
-값이 최대 999,999,999에 달하므로 **좌표 압축** 후 **BIT(Binary Indexed Tree)**로 O(N log N)에 역전 쌍을 셀 수 있다.
+값이 최대 999,999,999에 달하므로 **좌표 압축** 후 <strong>BIT(Binary Indexed Tree)</strong>로 O(N log N)에 역전 쌍을 셀 수 있다.
 
 ## 문제 정보
 

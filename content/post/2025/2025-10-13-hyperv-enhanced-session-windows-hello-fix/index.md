@@ -65,7 +65,7 @@ image: "image01.png"
 
 ### 이 글에서 다루는 내용
 
-원격 데스크톱(RDP)으로 Windows 11 호스트에 접속한 뒤, Hyper-V 가상 머신을 **고급 세션 모드(Enhanced Session Mode)**로 연결할 때 **Windows Hello 로그인 화면이 뜨지 않거나 잠금 화면에서 멈추는 현상**의 원인과 해결 방법을 정리했다. 이중 RDP 구조와 RDP–Windows Hello 비호환성 설명, 네 가지 해결책(고급 세션 일시 비활성화, VM 내 Windows Hello 비활성화, 로컬 계정 전환, 스마트 카드·비즈니스용 Windows Hello 옵션)을 단계별로 다루며, PowerShell로 설정을 확인하는 방법과 공식 참고 자료를 제시한다.
+원격 데스크톱(RDP)으로 Windows 11 호스트에 접속한 뒤, Hyper-V 가상 머신을 <strong>고급 세션 모드(Enhanced Session Mode)</strong>로 연결할 때 **Windows Hello 로그인 화면이 뜨지 않거나 잠금 화면에서 멈추는 현상**의 원인과 해결 방법을 정리했다. 이중 RDP 구조와 RDP–Windows Hello 비호환성 설명, 네 가지 해결책(고급 세션 일시 비활성화, VM 내 Windows Hello 비활성화, 로컬 계정 전환, 스마트 카드·비즈니스용 Windows Hello 옵션)을 단계별로 다루며, PowerShell로 설정을 확인하는 방법과 공식 참고 자료를 제시한다.
 
 ### 추천 대상
 

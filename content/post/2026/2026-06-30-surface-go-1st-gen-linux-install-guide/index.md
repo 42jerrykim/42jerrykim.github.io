@@ -65,7 +65,7 @@ tags:
 image: "wordcloud.png"
 ---
 
-오래된 **Surface Go 1세대**(2018년 출시)는 Windows 11 공식 지원이 끝나가는 저전력 2-in-1 기기지만, Pentium Gold 4415Y/Core m3-8100Y와 4–8GB RAM이라는 한정된 자원으로도 가벼운 Linux 데스크톱을 돌리기에는 충분하다. 문제는 Surface 시리즈가 표준 PC와 다른 임베디드 컨트롤러(SAM)·터치스크린·카메라 구조를 쓰기 때문에, 메인라인 커널만으로는 키보드 커버·터치·Wi-Fi가 제대로 동작하지 않는다는 점이다. 이를 해결하는 것이 커뮤니티 프로젝트 **[linux-surface](https://github.com/linux-surface/linux-surface)**다.
+오래된 **Surface Go 1세대**(2018년 출시)는 Windows 11 공식 지원이 끝나가는 저전력 2-in-1 기기지만, Pentium Gold 4415Y/Core m3-8100Y와 4–8GB RAM이라는 한정된 자원으로도 가벼운 Linux 데스크톱을 돌리기에는 충분하다. 문제는 Surface 시리즈가 표준 PC와 다른 임베디드 컨트롤러(SAM)·터치스크린·카메라 구조를 쓰기 때문에, 메인라인 커널만으로는 키보드 커버·터치·Wi-Fi가 제대로 동작하지 않는다는 점이다. 이를 해결하는 것이 커뮤니티 프로젝트 <strong>[linux-surface](https://github.com/linux-surface/linux-surface)</strong>다.
 
 이 글에서는 Surface Go 1세대에 Linux를 설치하는 전체 과정을 사전 준비물 → UEFI/Secure Boot 설정 → 부팅 USB 제작 → 설치 → linux-surface 커널 패치 적용 → 하드웨어 호환성 점검 → 설치 후 마무리 설정 순서로 정리한다. 모델·배포판·커널 버전에 따라 세부 동작이 달라질 수 있으므로, 명령어를 실행하기 전 [linux-surface 공식 위키](https://github.com/linux-surface/linux-surface/wiki/Installation-and-Setup)의 최신 안내를 함께 확인하는 것을 권장한다.
 
@@ -143,7 +143,7 @@ Windows에서는 [Rufus](https://rufus.ie/)를 사용한다.
 
 1. Rufus를 실행하고 **Device**에서 준비한 USB를 선택한다.
 2. **Boot selection**에서 다운로드한 ISO 파일을 지정한다.
-3. **Partition scheme**을 **GPT**, **Target system**을 **UEFI (non CSM)**로 설정한다.
+3. **Partition scheme**을 **GPT**, **Target system**을 <strong>UEFI (non CSM)</strong>로 설정한다.
 4. Surface Go에서 USB 인식 문제가 발생한다면, **File system**을 **FAT32**로 지정해 다시 시도한다. ISO가 4GB를 넘는 경우 Rufus가 자동으로 FAT32 호환 분할 모드를 제안하므로 그대로 따른다.
 5. **START**를 눌러 굽기를 진행한다.
 
