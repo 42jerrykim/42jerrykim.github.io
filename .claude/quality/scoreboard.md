@@ -13,7 +13,7 @@
 | content/collection/multithreading-design-patterns/13-lockfree-reclamation/index.md | 96.1 | 2026-07-09 | 2 | 통과 | 없음 |
 | content/collection/cleanarchitecture/00-clean-architecture-overview-introduction/index.md | 86.2 | 2026-07-18 | 3 | 에스컬레이션 | 항목3 구조(리스트-only 절 다수), 항목4 안티패딩("핵심 개념" 절과 코드 도입부 문장 중복), 항목5 코드(Java 예제 import/보조타입 미정의), 항목7 Edge-Cases 태그가 본문과 불일치 |
 | content/collection/cleanarchitecture/01-architecture-history-evolution-introduction/index.md | 91 | 2026-07-18 | 2 | 통과 | 없음(경미: 흔한 오해 절 부재, 다음장 하이퍼링크 없음) |
-| content/collection/cleanarchitecture/02-layered-architecture-limitations-history/index.md | 84.1 | 2026-07-18 | 3 | 에스컬레이션 | 항목3 구조(일부 절 리스트-only), 항목2 MVC 상세절이 00 배정범위를 벗어남 |
+| content/collection/cleanarchitecture/02-layered-architecture-limitations-history/index.md | 90.7 | 2026-07-20 | 4 | 통과 | 없음(경미: Reenskaug 1979 인용 서지사항 검증 링크 부재, 프레임워크종속성/계층건너뛰기 절 코드 뒤 해설 여지) |
 | content/collection/cleanarchitecture/03-hexagonal-architecture-ports-adapters/index.md | 96.1 | 2026-07-20 | 4 | 통과 | 없음(경미: 장점/한계 절 일부 문단 확장 여지) |
 | content/collection/cleanarchitecture/04-onion-architecture-domain-centric-design/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 없음(경미: 패키지구조 절 리드문단 부재, 코드 보조타입 미정의) |
 | content/collection/cleanarchitecture/05-clean-architecture-birth-uncle-bob/index.md | 97 | 2026-07-20 | 4 | 통과 | 없음(경미: 미승인 태그 11개 data/tags.yaml 미등재, Guide 태그 본문 근거 약함) |
