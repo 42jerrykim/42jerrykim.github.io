@@ -8,34 +8,34 @@ slug: business-rules-entities-usecases
 date: 2026-01-18
 categories: CleanArchitecture
 tags:
-- Clean-Architecture(클린아키텍처)
-- Software-Architecture(소프트웨어아키텍처)
-- Domain(도메인)
-- Domain-Driven-Design
-- Encapsulation(캡슐화)
-- Interface(인터페이스)
-- Abstraction(추상화)
-- Coupling(결합도)
-- Database(데이터베이스)
-- Dependency-Injection(의존성주입)
-- OOP(객체지향)
-- System-Design
-- Best-Practices
-- Maintainability
-- Modularity
-- Java
-- API(Application Programming Interface)
-- Case-Study
-- Entity
-- Use-Case
-- Business-Rules
-- Repository-Pattern
-- Request-Response-Model
-- Value-Object
-- Immutability
+  - Clean-Architecture(클린아키텍처)
+  - Domain(도메인)
+  - Interface(인터페이스)
+  - Database(데이터베이스)
+  - Java
+  - API(Application Programming Interface)
+  - Case-Study
+  - Entity
+  - Use-Case
+  - Business-Rules
+  - Repository-Pattern
+  - Request-Response-Model
+  - Loan
+  - Credit-Score
+  - Interest-Calculation
+  - Anemic-Domain-Model
+  - Dependency-Inversion-Principle
+  - Java-Record
+  - JPA
+  - Factory-Method
+  - Money(값객체)
+  - Encapsulation(캡슐화)
+  - Abstraction(추상화)
+  - Coupling(결합도)
+  - Reusability(재사용성)
 ---
 
-업무 규칙은 시스템에서 가장 **핵심적인 부분**이다. 마틴은 업무 규칙을 두 가지로 구분한다: **엔터티**(핵심 업무 규칙)와 **유스케이스**(애플리케이션 업무 규칙).
+[29장: 정책과 수준](/post/clean-architecture/policy-and-level-high-level-dependency/)에서 상위 정책일수록 변경 빈도가 낮고 하위 세부사항에 의존하지 않아야 한다는 원칙을 다뤘다. 이 장은 그 원칙을 실제 코드 단위로 구체화한다 — 업무 규칙은 시스템에서 가장 **핵심적인 부분**이다. 마틴은 업무 규칙을 두 가지로 구분한다: **엔터티**(핵심 업무 규칙)와 **유스케이스**(애플리케이션 업무 규칙).
 
 ## 핵심 업무 규칙 (Critical Business Rules)
 
@@ -115,7 +115,19 @@ public class Loan {
 
 ```java
 import java.util.UUID;
+import java.math.BigDecimal;
 
+record Money(BigDecimal amount) {
+    Money multiply(double factor) { return new Money(amount.multiply(BigDecimal.valueOf(factor))); }
+}
+class Loan {
+    Loan(Money principal, double interestRate, int termInMonths) {}
+}
+record ApplyForLoanRequest(String customerId, Money principal, int term) {}
+record ApplyForLoanResponse(String status, String loanId, String message) {
+    static ApplyForLoanResponse approved(String loanId) { return new ApplyForLoanResponse("APPROVED", loanId, null); }
+    static ApplyForLoanResponse rejected(String message) { return new ApplyForLoanResponse("REJECTED", null, message); }
+}
 record Customer(String id, String name) {}
 record CreditScore(int value) {
     boolean isBelowMinimum() { return value < 600; }
@@ -172,6 +184,10 @@ public class ApplyForLoanUseCase {
 유스케이스의 **입력과 출력**은 단순한 데이터 구조다. 엔터티(`Loan`)와 달리 이 구조체들은 특정 유스케이스 하나만을 위해 존재하며, 다른 유스케이스와 공유하지 않는다:
 
 ```java
+import java.math.BigDecimal;
+
+record Money(BigDecimal amount) {}
+
 // 요청 모델
 record ApplyForLoanRequest(String customerId, Money principal, int term) {}
 
