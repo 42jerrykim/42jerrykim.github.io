@@ -41,7 +41,7 @@
 | content/collection/cleanarchitecture/27-boundaries-drawing-lines-plugin-architecture/index.md | 83.2 | 2026-07-19 | 3 | 에스컬레이션 | 항목5 WikiPagePersistence 구현체 컴파일 불가(throws 불일치, 미구현 메서드), 항목7 무관 태그 4개. 90점에 6.8점 차 |
 | content/collection/cleanarchitecture/28-boundary-anatomy-monolith-to-services/index.md | 67 | 2026-07-19 | 3 | 에스컬레이션 | 항목1 ServiceLoader 메커니즘 서술 오류(치명결함), 항목5 코드 컴파일 불가 |
 | content/collection/cleanarchitecture/29-policy-and-level-high-level-dependency/index.md | 84.7 | 2026-07-19 | 3 | 에스컬레이션 | 항목7 무관 태그 4개, 항목1 인용 페이지 미표기, 항목4 수준/변경빈도 절 중복. 90점에 5.3점 차 |
-| content/collection/cleanarchitecture/30-business-rules-entities-usecases/index.md | 91.6 | 2026-07-19 | 3 | 에스컬레이션 | 항목1 L44-45 인용이 원저 두 문장을 하나로 합성한 비-verbatim 직접인용(치명결함), 태그 7개 data/tags.yaml 미등재. 90점 이상이나 치명결함 잔존으로 미통과 |
+| content/collection/cleanarchitecture/30-business-rules-entities-usecases/index.md | 100 | 2026-07-20 | 4 | 통과 | 없음(Tier 0 개선: 인용 재검증 완료, 코드 자기완결화, 태그 재구성) |
 | content/collection/cleanarchitecture/31-screaming-architecture-intent-driven-structure/index.md | 92.2 | 2026-07-19 | 2 | 통과 | 없음(경미: 표 2개 리드인 문단 보강 여지) |
 | content/collection/cleanarchitecture/32-clean-architecture-concentric-circles-dependency/index.md | 93.1 | 2026-07-19 | 2 | 통과 | 없음(경미: 일부 절 리드/해설 문단 보강 여지) |
 | content/collection/cleanarchitecture/33-presenter-humble-object-testability/index.md | 90.7 | 2026-07-19 | 2 | 통과 | 없음(경미: DB/외부서비스 경계 코드 앞 리드 문단 보강 여지) |
