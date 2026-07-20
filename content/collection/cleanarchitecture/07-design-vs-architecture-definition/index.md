@@ -10,32 +10,35 @@ categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
   - Software-Architecture(소프트웨어아키텍처)
-  - Design-Pattern(디자인패턴)
+  - System-Design
   - Productivity(생산성)
-  - Code-Quality(코드품질)
-  - SOLID
-  - Refactoring(리팩토링)
-  - Clean-Code(클린코드)
   - Maintainability
-  - Readability
-  - Best-Practices
   - Technology(기술)
   - Case-Study
-  - Deep-Dive
-  - Documentation(문서화)
-  - Coupling(결합도)
-  - Cohesion(응집도)
-  - Modularity
-  - Testing(테스트)
   - Guide(가이드)
-  - System-Design
-  - Database(데이터베이스)
-  - Web(웹)
   - Deployment(배포)
-  - Reliability
+  - Best-Practices
+  - Cost(비용)
+  - Technical-Debt(기술부채)
+  - Overconfidence(과신)
+  - Labor-Cost(인건비)
+  - Software-Redesign(재설계)
+  - Time-to-Market(출시속도)
+  - Developer-Productivity
+  - Engineering-Management
+  - Lines-of-Code
+  - Reversible-Decisions
+  - Stakeholder(이해관계자)
+  - Market-Pressure(시장압박)
+  - Consulting-Case-Study
+  - Cost-per-LOC
+  - Workforce(인력)
+  - Design-Continuum(설계연속체)
+  - High-Level-Decision(고수준결정)
+  - Low-Level-Decision(저수준결정)
 ---
 
-**설계(Design)와 아키텍처(Architecture) 사이에는 오랫동안 많은 혼란이 있었다.** 결론부터 얘기하면 **둘 사이에는 차이가 없다.**
+[06장: 소프트웨어 설계와 아키텍처 서론](/post/clean-architecture/introduction-software-design-architecture/)에서 이 파트 전체의 큰 그림을 소개했다면, 이 장은 그 출발점이 되는 질문부터 다룬다. **설계(Design)와 아키텍처(Architecture) 사이에는 오랫동안 많은 혼란이 있었다.** 결론부터 얘기하면 **둘 사이에는 차이가 없다.**
 
 ## 설계 vs 아키텍처: 구분은 무의미하다
 
@@ -80,16 +83,26 @@ flowchart TB
 개별로는 존재할 수 없고, 실제로 이 둘을 구분 짓는 경계는 뚜렷하지 않다. **고수준에서 저수준으로 향하는 의사결정의 연속성**만이 있을 뿐이다.
 
 ```java
+import jakarta.persistence.EntityManager;
+
+class OrderId { Long getValue() { return 1L; } }
+class Order {}
+interface Cache<K, V> { V get(K key); void put(K key, V value); }
+
 // 고수준 결정: 계층 구조
 // - Presentation Layer
-// - Business Layer  
+// - Business Layer
 // - Data Access Layer
 
 // 저수준 결정: 구체적인 구현 (ORM 선택, 캐시 전략)
-// EntityManager(JPA)·Cache(캐시 추상화)·OrderId·Order는 각 프레임워크/도메인이 제공하는 타입
 public class OrderRepository {
     private final EntityManager em;
     private final Cache<OrderId, Order> cache;
+
+    public OrderRepository(EntityManager em, Cache<OrderId, Order> cache) {
+        this.em = em;
+        this.cache = cache;
+    }
 
     public Order findById(OrderId id) {
         Order cached = cache.get(id);
