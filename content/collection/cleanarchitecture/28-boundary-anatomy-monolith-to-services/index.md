@@ -2,7 +2,7 @@
 draft: true
 collection_order: 280
 image: "wordcloud.png"
-description: "경계의 다양한 구현 방식을 다룹니다. 함수 호출, 컴포넌트, 로컬 프로세스, 서비스까지 경계 횡단의 물리적 형태와 각각의 지연 시간·비용·복잡성 트레이드오프를 실제 자바 코드 예제와 비교표로 아주 자세히 설명합니다."
+description: "경계의 다양한 구현 방식을 다룹니다. 함수 호출, 컴포넌트(ServiceLoader), 로컬 프로세스, 서비스까지 경계 횡단의 물리적 형태와 각각의 지연 시간·비용·복잡성 트레이드오프를 컴파일 가능한 Java 예제와 비교표로 자세히 설명합니다."
 title: "[Clean Architecture] 28. 경계 해부학: 모놀리스에서 서비스까지"
 slug: boundary-anatomy-monolith-to-services
 date: 2026-01-18
@@ -10,32 +10,32 @@ categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
   - GraphQL
-  - Microservices(마이크로서비스)
-  - Software-Architecture(소프트웨어아키텍처)
-  - Networking(네트워킹)
   - REST(Representational State Transfer)
   - Memory(메모리)
-  - Dependency-Injection(의존성주입)
-  - Performance(성능)
   - Coupling(결합도)
   - Java
-  - System-Design
   - Scalability(확장성)
-  - Backend(백엔드)
   - API(Application Programming Interface)
   - Latency
-  - Throughput
   - HTTP(HyperText Transfer Protocol)
-  - Best-Practices
-  - Maintainability
   - Deployment(배포)
-  - Load-Balancing
-  - Reliability
   - Interface(인터페이스)
-  - Abstraction(추상화)
+  - Monolith
+  - Process(프로세스)
+  - Socket(소켓)
+  - IPC
+  - Serialization(직렬화)
+  - Circuit-Breaker
+  - Retry(재시도)
+  - Plugin-Architecture
+  - ServiceLoader
+  - gRPC
+  - Timeout(타임아웃)
+  - Distributed-Tracing
+  - Partial-Failure
 ---
 
-경계는 다양한 **물리적 형태**로 존재한다. 단순한 함수 호출부터 네트워크를 통한 서비스 호출까지, 각각의 비용과 장단점이 다르다.
+[27장: 경계 — 선 긋기](/post/clean-architecture/boundaries-drawing-lines-plugin-architecture/)에서 경계를 어디에 그을지(논리적 설계)를 다뤘다면, 이 장은 그은 경계를 실제로 어떻게 **구현**할지(물리적 형태)를 다룬다. 경계는 다양한 **물리적 형태**로 존재한다. 단순한 함수 호출부터 네트워크를 통한 서비스 호출까지, 각각의 비용과 장단점이 다르다.
 
 ## 경계 횡단 방식
 
@@ -58,15 +58,27 @@ flowchart TB
 **단일 실행 파일**. 경계는 **함수 호출**로 횡단한다. 논리적 경계(비즈니스 규칙과 세부사항 사이의 인터페이스)는 존재하지만, 물리적으로는 모두 같은 프로세스·같은 메모리 공간 안에서 컴파일되고 실행된다. 이것이 경계의 가장 저렴한 형태다 — 함수를 호출하는 데는 네트워크도, 별도 프로세스도, 직렬화도 필요 없다.
 
 ```java
+class Payment {}
+class Order {
+    Payment getPayment() { return new Payment(); }
+}
+interface OrderRepository { void save(Order order); }
+interface PaymentService { void processPayment(Payment payment); }
+
 // 모놀리스: 함수 호출로 경계 횡단
 public class OrderService {
     private final OrderRepository repository;
     private final PaymentService paymentService;
-    
+
+    public OrderService(OrderRepository repository, PaymentService paymentService) {
+        this.repository = repository;
+        this.paymentService = paymentService;
+    }
+
     public void placeOrder(Order order) {
         // 경계 횡단 1: 결제 서비스 호출
         paymentService.processPayment(order.getPayment());
-        
+
         // 경계 횡단 2: 저장소 호출
         repository.save(order);  // 단순 함수 호출
     }
@@ -100,22 +112,36 @@ flowchart LR
 소스 수준에서도 **의존성 역전**은 적용해야 한다:
 
 ```java
-// 고수준 모듈
-package com.example.order.usecase;
+// 고수준 모듈 — package com.example.order.usecase;
+class OrderRequest {}
+interface OrderGateway { void save(OrderRequest request); }
 
 public class PlaceOrderUseCase {
     private final OrderGateway gateway; // 인터페이스
-    
+
+    public PlaceOrderUseCase(OrderGateway gateway) {
+        this.gateway = gateway;
+    }
+
     public void execute(OrderRequest request) {
         // 비즈니스 로직
+        gateway.save(request);
     }
 }
+```
 
-// 저수준 모듈이 고수준 인터페이스를 구현
-package com.example.order.gateway.mysql;
+`PlaceOrderUseCase`는 `com.example.order.usecase` 패키지에, 이를 구현하는 `MySqlOrderGateway`는 별도의 `com.example.order.gateway.mysql` 패키지에 둔다. 두 클래스는 서로 다른 컴파일 단위(서로 다른 `.java` 파일·패키지)로 존재하며, `MySqlOrderGateway`가 `OrderGateway` 인터페이스를 참조하기 위해 `import`할 뿐 그 반대는 성립하지 않는다.
+
+```java
+// 저수준 모듈이 고수준 인터페이스를 구현 — package com.example.order.gateway.mysql;
+class OrderRequest {}
+interface OrderGateway { void save(OrderRequest request); }
 
 public class MySqlOrderGateway implements OrderGateway {
     // MySQL 구현
+    public void save(OrderRequest request) {
+        // JDBC/JPA로 저장
+    }
 }
 ```
 
@@ -146,7 +172,7 @@ payment.jar
 
 ### 동적 다형성
 
-컴포넌트 수준에서는 런타임에 구현체를 교체할 수 있다는 이점이 추가된다. 자바의 `ServiceLoader`처럼 클래스패스에 있는 jar를 스캔해 인터페이스 구현체를 찾아주는 메커니즘을 쓰면, 어떤 플러그인 jar가 배포됐는지에 따라 실제로 어떤 구현이 쓰일지가 실행 시점에 결정된다.
+컴포넌트 수준에서는 런타임에 구현체를 교체할 수 있다는 이점이 추가된다. 자바의 `ServiceLoader`가 대표적인 메커니즘이다. 다만 `ServiceLoader`는 클래스패스의 jar를 자동으로 뒤져 "인터페이스를 구현한 클래스"를 알아서 찾아주는 것이 아니다 — 각 플러그인 jar는 `META-INF/services/<인터페이스의 정규화된 이름>` 경로에 구현 클래스의 정규화된 이름을 한 줄씩 적은 **프로바이더 설정 파일**을 반드시 포함해야 하며, `ServiceLoader`는 이 설정 파일에 등록된 클래스만 로드한다. 즉 "클래스패스 스캔"이 아니라 "명시적으로 등록된 구현체 조회"에 가깝다.
 
 ```java
 import java.util.ServiceLoader;
@@ -158,29 +184,44 @@ record PaymentResult(boolean success) {}
 public interface PaymentProcessor {
     PaymentResult process(Payment payment);
 }
+```
+
+플러그인 jar(`stripe-payment.jar`)는 구현 클래스와 함께 `META-INF/services/com.example.PaymentProcessor` 파일에 `com.example.StripeProcessor` 한 줄을 반드시 포함해야 `ServiceLoader`가 이 클래스를 찾을 수 있다.
+
+```java
+record Payment(String orderId, java.math.BigDecimal amount) {}
+record PaymentResult(boolean success) {}
+interface PaymentProcessor { PaymentResult process(Payment payment); }
 
 // 플러그인 jar: stripe-payment.jar
+// META-INF/services/PaymentProcessor 파일에 이 클래스의 정규화된 이름이 등록되어야 로드된다
 public class StripeProcessor implements PaymentProcessor {
     public PaymentResult process(Payment payment) {
         // Stripe API 호출
         return new PaymentResult(true);
     }
 }
+```
 
-// 플러그인 jar: paypal-payment.jar
-public class PayPalProcessor implements PaymentProcessor {
-    public PaymentResult process(Payment payment) {
-        // PayPal API 호출
-        return new PaymentResult(true);
+`ServiceLoader.load()`는 이렇게 등록된 구현체들을 지연 로딩(lazy loading)한다 — 실제로 순회하기 전까지는 클래스를 로드하지 않는다.
+
+```java
+import java.util.ServiceLoader;
+
+record Payment(String orderId, java.math.BigDecimal amount) {}
+record PaymentResult(boolean success) {}
+interface PaymentProcessor { PaymentResult process(Payment payment); }
+
+public class PaymentProcessorLoader {
+    public PaymentProcessor loadFirstAvailable() {
+        // META-INF/services에 등록된 구현체 중 첫 번째를 사용
+        return ServiceLoader.load(PaymentProcessor.class)
+            .stream()
+            .findFirst()
+            .map(ServiceLoader.Provider::get)
+            .orElseThrow(() -> new IllegalStateException("등록된 PaymentProcessor 구현체가 없습니다"));
     }
 }
-
-// 런타임에 선택 - 클래스패스에 있는 플러그인 jar 중 첫 번째 구현체를 사용
-PaymentProcessor processor = ServiceLoader.load(PaymentProcessor.class)
-    .stream()
-    .findFirst()
-    .map(ServiceLoader.Provider::get)
-    .orElseThrow();
 ```
 
 | 항목 | 설명 |
@@ -268,6 +309,7 @@ flowchart LR
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+record Payment(String orderId, java.math.BigDecimal amount) {}
 record PaymentResult(boolean success, String message) {}
 
 // REST 클라이언트
@@ -320,6 +362,12 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.stereotype.Service;
 import java.util.concurrent.TimeoutException;
+
+record Payment(String orderId, java.math.BigDecimal amount) {}
+record PaymentResult(boolean success, String message) {}
+class PaymentClient {
+    PaymentResult processPayment(Payment payment) throws TimeoutException { return new PaymentResult(true, null); }
+}
 
 // 서비스 호출 시 고려할 것들
 @Service
