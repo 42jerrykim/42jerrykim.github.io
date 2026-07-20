@@ -9,34 +9,33 @@ date: 2026-01-18
 categories: CleanArchitecture
 tags:
   - Clean-Architecture(클린아키텍처)
-  - Software-Architecture(소프트웨어아키텍처)
   - Implementation(구현)
   - Deployment(배포)
-  - Code-Quality(코드품질)
   - Security(보안)
   - Database(데이터베이스)
   - CI-CD(Continuous Integration/Continuous Deployment)
   - Scalability(확장성)
   - Performance(성능)
   - Coupling(결합도)
-  - Modularity
-  - System-Design
   - Best-Practices
   - Maintainability
-  - History(역사)
   - Case-Study
   - Technology(기술)
   - Interface(인터페이스)
   - Abstraction(추상화)
-  - Hardware(하드웨어)
   - Microservices(마이크로서비스)
   - Web(웹)
   - Testing(테스트)
-  - Reliability
   - DevOps
+  - Policy-vs-Detail
+  - Decision-Deferral(결정지연)
+  - System-Lifecycle(시스템생명주기)
+  - Spelunking(탐사)
+  - Team-Structure(팀구조)
+  - Device-Independence(장치독립성)
 ---
 
-소프트웨어 아키텍처란 무엇인가? 마틴은 아키텍처를 시스템의 **형태를 결정**하고, 시스템의 **생명주기를 지원**하는 것으로 정의한다.
+[24장: 아키텍처 서론](/post/clean-architecture/architecture-introduction-system-design/)에서 이 파트 전체가 다룰 주제를 개괄했다. 이 장은 그 첫 질문 — 소프트웨어 아키텍처란 무엇인가? — 부터 정면으로 다룬다. 마틴은 아키텍처를 시스템의 **형태를 결정**하고, 시스템의 **생명주기를 지원**하는 것으로 정의한다.
 
 ## 아키텍처의 정의
 
@@ -116,18 +115,11 @@ flowchart TB
 
 ```java
 // 좋은 아키텍처: 팀이 독립적으로 작업 가능
-// 주문 팀
-package com.example.order;
+// 주문 팀 — package com.example.order;
 public class OrderService { }
-
-// 결제 팀
-package com.example.payment;
-public class PaymentService { }
-
-// 배송 팀
-package com.example.shipping;
-public class ShippingService { }
 ```
+
+결제 팀·배송 팀도 각자 `com.example.payment`·`com.example.shipping` 패키지에서 독립적으로 작업한다(`public class PaymentService {}`, `public class ShippingService {}`) — 세 팀이 같은 파일을 두고 충돌할 일이 없다.
 
 | 팀 규모 | 적합한 구조 | 이유 |
 |--------|------------|------|
@@ -235,9 +227,17 @@ class GodClass {
 }
 ```
 
+같은 로직을 책임별로 세 클래스에 나누면, "탐사" 범위가 클래스 하나 크기로 줄어든다.
+
 ```java
-// 좋은 아키텍처 - 책임별로 클래스가 분리되어 있음
-// (OrderRequest, PaymentRequest, ShippingRequest는 위 블록과 동일)
+import java.math.BigDecimal;
+import java.util.List;
+
+record OrderRequest(List<String> items, String customerId) {}
+record PaymentRequest(BigDecimal amount) {}
+record ShippingRequest(String orderId) {}
+
+// 좋은 아키텍처 - 책임별로 클래스가 분리되어 있음 (위 블록과 동일한 도메인 타입 재사용)
 class OrderProcessor {
     boolean createOrder(OrderRequest request) {
         return request.items().size() > 0 && request.customerId() != null;
@@ -317,30 +317,40 @@ flowchart TB
 좋은 아키텍처는 **정책이 세부사항에 의존하지 않게** 만든다.
 
 ```java
+class Order {}
+interface OrderRepository { void save(Order order); }
+
 // 좋은 설계: 정책이 세부사항을 모름
-public class OrderProcessor {
+public class OrderPolicy {
     private final OrderRepository repository; // 인터페이스
-    
+
+    public OrderPolicy(OrderRepository repository) {
+        this.repository = repository;
+    }
+
     public void processOrder(Order order) {
         // 비즈니스 규칙만 알고 있음
         // DB가 MySQL인지 MongoDB인지 모름
         repository.save(order);
     }
 }
+```
+
+세부사항 쪽은 이 인터페이스를 구현하기만 하면 되므로, 몇 개가 있든 정책 코드는 단 한 줄도 바뀌지 않는다.
+
+```java
+class Order {}
+interface OrderRepository { void save(Order order); }
 
 // 세부사항: 정책에 의존
 public class MySqlOrderRepository implements OrderRepository {
     public void save(Order order) { /* MySQL 구현 */ }
 }
-
-public class MongoOrderRepository implements OrderRepository {
-    public void save(Order order) { /* MongoDB 구현 */ }
-}
 ```
 
 ## 장치 독립성
 
-마틴은 1960년대의 경험을 공유한다. 당시 코드를 특정 장치(카드 리더, 테이프)에 직접 의존하도록 작성했다.
+마틴은 1960년대에 프로그래머들이 카드 리더에서 자기 테이프로 입출력 장치를 옮기며 겪은 경험을 공유한다(Martin, 『Clean Architecture』, 2017, 15장). 당시 코드를 특정 장치(카드 리더, 테이프)에 직접 의존하도록 작성했다.
 
 ```mermaid
 flowchart LR
