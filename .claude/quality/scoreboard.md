@@ -16,7 +16,7 @@
 | content/collection/cleanarchitecture/02-layered-architecture-limitations-history/index.md | 84.1 | 2026-07-18 | 3 | 에스컬레이션 | 항목3 구조(일부 절 리스트-only), 항목2 MVC 상세절이 00 배정범위를 벗어남 |
 | content/collection/cleanarchitecture/03-hexagonal-architecture-ports-adapters/index.md | 96.1 | 2026-07-20 | 4 | 통과 | 없음(경미: 장점/한계 절 일부 문단 확장 여지) |
 | content/collection/cleanarchitecture/04-onion-architecture-domain-centric-design/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 없음(경미: 패키지구조 절 리드문단 부재, 코드 보조타입 미정의) |
-| content/collection/cleanarchitecture/05-clean-architecture-birth-uncle-bob/index.md | 85 | 2026-07-18 | 3 | 에스컬레이션 | 항목5 코드(코드예제 전무), 항목2 흔한오해 절 부재 |
+| content/collection/cleanarchitecture/05-clean-architecture-birth-uncle-bob/index.md | 97 | 2026-07-20 | 4 | 통과 | 없음(경미: 미승인 태그 11개 data/tags.yaml 미등재, Guide 태그 본문 근거 약함) |
 | content/collection/cleanarchitecture/06-introduction-software-design-architecture/index.md | 78.7 | 2026-07-18 | 3 | 에스컬레이션 | 항목3 구조(문단비율 34.8%), 항목1 인용 출처 미검증, 00장 커리큘럼 표 문구 불일치 |
 | content/collection/cleanarchitecture/07-design-vs-architecture-definition/index.md | 96.1 | 2026-07-20 | 4 | 통과 | 없음(경미: 일부 절 리드 문단 보강 여지) |
 | content/collection/cleanarchitecture/08-two-values-behavior-structure/index.md | 80.2 | 2026-07-18 | 3 | 에스컬레이션 | 항목2 판단기준 얕음, 항목4 우선순위 3중 반복, 항목5 OrderController 미정의 타입 |
