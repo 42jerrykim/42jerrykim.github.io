@@ -1,5 +1,6 @@
 ---
-collection_order: 19
+image: "wordcloud.png"
+collection_order: 109
 draft: false
 title: "[Optimization(I/O)] 09. Low-latency I/O 최적화 트랙"
 slug: io-optimization

@@ -1,5 +1,6 @@
 ---
-collection_order: 20
+image: "wordcloud.png"
+collection_order: 110
 draft: false
 title: "[Optimization(Network)] 10. Low-latency 네트워크 최적화 트랙"
 slug: network-optimization

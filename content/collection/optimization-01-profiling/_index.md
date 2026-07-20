@@ -1,5 +1,6 @@
 ---
-collection_order: 11
+image: "wordcloud.png"
+collection_order: 101
 draft: false
 title: "[Optimization(Profiling)] 01. Low-latency 프로파일링·성능 분석 트랙"
 slug: profiling-analysis

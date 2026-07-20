@@ -1,5 +1,6 @@
 ---
-collection_order: 18
+image: "wordcloud.png"
+collection_order: 108
 draft: false
 title: "[Optimization(Techniques)] 08. 극한 Low-latency 최적화 특수기술 트랙"
 slug: extreme-optimization

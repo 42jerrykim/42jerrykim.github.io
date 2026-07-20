@@ -1,4 +1,5 @@
 ---
+image: "wordcloud.png"
 slug: python
 draft: false
 title: "[Python Master] 파이썬 마스터 커리큘럼"
@@ -51,7 +52,7 @@ tags:
   - 개발도구
   - Code-Quality(코드품질)
 lastmod: 2026-01-17
-collection_order: 2
+collection_order: 140
 ---
 # [Python Master] 파이썬 마스터 커리큘럼
 

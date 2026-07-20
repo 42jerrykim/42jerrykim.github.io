@@ -1,5 +1,6 @@
 ---
-collection_order: 13
+image: "wordcloud.png"
+collection_order: 103
 draft: false
 title: "[Optimization(Compiler)] 03. Low-latency 컴파일러·빌드 최적화 트랙"
 slug: compiler-optimization
