@@ -1,5 +1,7 @@
 ---
 image: "wordcloud.png"
+slug: algorithm
+collection_order: 1
 description: "알고리즘은 문제를 해결하는 논리적 절차로, 입력값을 바탕으로 명확한 규칙에 따라 일련의 작업을 수행하여 원하는 출력을 만들어냅니다. 본 문서는 알고리즘의 정의와 특징, 역사, 그리고 표현 방식까지 체계적으로 설명합니다."
 title: "[Computer Terms] 알고리즘 (Algorithm) 이란?"
 date: 2022-03-13
@@ -87,7 +89,7 @@ tags:
 
 ## 알고리즘의 분석 : 효율성/성능 분석
 
-> [알고리즘 효율성](../algorithm_efficiency) 참조
+> [알고리즘 효율성](/post/computerterms/algorithm-efficiency/) 참조
 
 컴퓨팅 자원의 한계성 대처
 * 계산 시간 및 메모리 비용 모두가 한정된 자원이므로,
@@ -117,7 +119,7 @@ tags:
 
 ## 알고리즘의 분류
 
-> [알고리즘 분류](../algotithm_classify) 참조
+> [알고리즘 분류](/post/computerterms/algorithm-classification/) 참조
 
 알고리즘의 주제별 분류
 * 탐색 알고리즘 (선형검색, 이진검색 등)
