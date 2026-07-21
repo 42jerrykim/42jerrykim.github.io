@@ -64,7 +64,7 @@ k-skill은 2026-03-24에 만들어져 2026-07-21 기준 GitHub 스타 6,395개, 
 
 k-skill을 단순한 "웹 스크래퍼 모음"과 구분 짓는 지점은 인증 정보를 다루는 방식이다. `docs/security-and-secrets.md`는 인증이 필요한 모든 스킬이 따르는 4단계 우선순위, 이른바 **Credential Resolution Order**를 정의한다.
 
-<pre class="mermaid">
+```mermaid
 flowchart TD
     checkEnv{"환경변수에 이미 값이 있는가?"} -->|"예"| useEnv["그대로 사용"]
     checkEnv -->|"아니오"| checkVault{"에이전트가 secret vault를 쓰는가?</br>(1Password CLI, Bitwarden CLI, Keychain 등)"}
@@ -72,18 +72,18 @@ flowchart TD
     checkVault -->|"아니오"| checkFile{"~/.config/k-skill/secrets.env 존재?"}
     checkFile -->|"예"| useFile["dotenv 파일 사용(권한 0600)"]
     checkFile -->|"아니오"| askUser["사용자에게 물어 vault 또는 파일에 저장"]
-</pre>
+```
 
 이 순서는 SRT/KTX 예매처럼 사용자 본인 계정 로그인이 필요한 스킬에 적용된다. 하지만 서울 지하철 도착정보·미세먼지·한강 수위·한국 날씨처럼 API 키만 있으면 되는 공개 데이터 스킬은 전혀 다른 경로를 탄다. 운영자가 관리하는 `k-skill-proxy.nomadamas.org`가 기본값으로 요청을 대신 처리해, 사용자는 아무 키도 발급받지 않고 바로 쓸 수 있다. 이 두 경로가 나뉘는 기준을 저장소 `CLAUDE.md`는 이렇게 못박는다 — "upstream이 API 키를 필요로 해야" 프록시 라우트에 편입하고, 키가 아예 필요 없는 완전 공개 엔드포인트는 스킬 코드가 프록시를 거치지 않고 직접 호출한다.
 
-<pre class="mermaid">
+```mermaid
 flowchart TD
     needCall["스킬이 외부 데이터를 조회해야 함"] --> needsKey{"upstream이 API 키를 요구하는가?"}
     needsKey -->|"아니오(완전 공개 엔드포인트)"| direct["스킬 코드가 직접 호출</br>(예: 조선왕조실록 검색)"]
     needsKey -->|"예"| delegable{"운영자가 대신 관리 가능한 키인가?"}
     delegable -->|"예"| proxy["k-skill-proxy 경유</br>(hosted fallback, 사용자 키 불필요)"]
     delegable -->|"아니오(본인 계정 로그인 필수)"| byok["사용자 본인 credential 필요</br>(BYOK, 예: SRT/KTX 예매)"]
-</pre>
+```
 
 쿠팡 상품 검색처럼 "선택사항"으로 분류된 스킬도 있다. 사용자가 운영 키를 직접 들고 있으면 로컬 HMAC 경로가 열려 더 풍부한 결과를 받고, 없으면 hosted fallback으로 그대로 동작한다. README의 기능 표는 "사용자 로그인" 컬럼으로 이 구분을 명시해, 설치 전에 어떤 스킬이 즉시 쓸 수 있는지 한눈에 판단할 수 있게 해 둔다.
 
