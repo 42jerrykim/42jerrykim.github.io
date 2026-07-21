@@ -3,7 +3,7 @@ title: "[AI] k-skill: 한국인을 위한 Claude Code 스킬 114개 모음집"
 description: "NomaDamas가 만든 k-skill은 SRT/KTX 예매부터 등기부등본, 공공데이터 조회까지 한국인 일상 업무 114개를 Claude Code SKILL.md 스킬로 묶은 오픈소스 저장소다. credential 정책, 설치법, 적용 판단 기준을 정리했다."
 date: 2026-07-21T10:00:00+09:00
 lastmod: 2026-07-21
-draft: true
+draft: false
 categories:
   - AI
 tags:
