@@ -88,7 +88,7 @@ int main(void) {
 
 ## 다른 개념과의 연결
 
-inode의 이름-데이터 분리는 [해시테이블](/post/computerterms/hash-tables/)에서 다룬 "키로 값을 찾는" 문제와 본질적으로 같은 구조다. 저널링의 원자성 보장은 [ACID Transactions](/post/computerterms/acid-transactions/) 챕터의 원자성·영구성과 직접 대응한다. 자료구조 갈래, 네트워크 갈래에 이어 운영체제 갈래도 이 챕터로 마무리되며, 다음은 데이터베이스 갈래에서 이 저널링·트랜잭션 개념을 인덱스·정규화로 확장한다.
+inode의 이름-데이터 분리는 [해시테이블](/post/computerterms/hash-tables/)에서 다룬 "키로 값을 찾는" 문제와 본질적으로 같은 구조다. 저널링의 원자성 보장은 [ACID Transactions](/post/computerterms/acid-transactions/) 챕터의 원자성·영구성과 직접 대응한다. 운영체제 갈래는 이후 인터럽트·시그널·IPC 같은 프로세스 간 상호작용 주제로 이어지며, 데이터베이스 갈래에서는 이 저널링·트랜잭션 개념을 인덱스·정규화로 확장한다.
 
 ## 평가 기준
 
