@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] steaming의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] steaming 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'steaming'의 핵심 뜻(수증기가 나는, 매우 화난, 매우 빠른)을 정리한다. 요리, 날씨, 감정 표현, 스포츠 등에서 자주 쓰이는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 일상 회화와 비즈니스 영어에서 반복 등장하는 중요한 형용사."
 date: 2026-01-24
 lastmod: 2026-01-24

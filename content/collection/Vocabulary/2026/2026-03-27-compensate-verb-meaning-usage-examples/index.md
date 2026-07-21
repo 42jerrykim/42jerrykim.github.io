@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] compensate의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] compensate 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'compensate'의 핵심 뜻(보상하다, 상쇄하다, 부족함을 메우다)을 정리한다. compensate for 패턴과 EN/KR 예문 50개로 비즈니스·법률·일상 맥락에서 자연스러운 용법을 익힌다."
 date: 2026-03-27
 lastmod: 2026-03-27

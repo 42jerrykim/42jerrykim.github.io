@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] tiresome의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] tiresome 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'tiresome'의 핵심 뜻(지루한, 피곤하게 하는, 귀찮은)을 정리한다. 일상, 뉴스, 학술 글에서 자주 등장하는 감정 표현을 콜로케이션과 EN/KR 예문 50개로 익힌다. 감정과 상황을 표현하는 중요한 형용사."
 date: 2026-05-26
 lastmod: 2026-05-26

@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] ghostwrite의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] ghostwrite 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'ghostwrite'의 핵심 뜻(대신 글을 쓰다, 대필하다)을 정리한다. 책·연설·자서전·기사 등에서 쓰이는 ghostwrite a book, ghostwrite for somebody 같은 콜로케이션과 EN/KR 예문 50개로 출판·미디어·정치 맥락의 실제 용법을 익힌다."
 date: 2026-03-09
 lastmod: 2026-03-09

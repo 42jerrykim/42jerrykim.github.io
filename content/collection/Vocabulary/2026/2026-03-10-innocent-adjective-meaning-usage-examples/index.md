@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] innocent의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] innocent 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'innocent'의 핵심 뜻(죄 없는, 해가 없는, 순수한·경험이 없는)을 정리한다. 법률·일상·도덕 맥락에서 innocent bystander, innocent question, innocent child 같은 콜로케이션과 EN/KR 예문 50개로 실제 용법을 익힌다."
 date: 2026-03-10
 lastmod: 2026-03-10

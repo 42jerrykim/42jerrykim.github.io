@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] zone out의 의미와 쓰임 - 구동사 핵심 정리"
+title: "[Vocabulary] zone out 뜻과 의미 - 구동사 핵심 정리"
 description: "영어 구동사 'zone out'의 핵심 뜻(멍하니 있다, 정신이 elsewhere 가다, 집중을 잃다)을 정리한다. 수업·회의·일상 대화에서 자주 쓰이는 콜로케이션과 EN/KR 예문 50개로 심리·교육·업무 맥락의 실제 용법을 익힌다."
 date: 2026-03-09
 lastmod: 2026-03-09

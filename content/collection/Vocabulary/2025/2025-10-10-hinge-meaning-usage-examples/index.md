@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] hinge의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] hinge 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'hinge'의 핵심 뜻(~에 달려있다, 의존하다)을 정리한다. hinge on/upon과의 차이, 자주 쓰는 콜로케이션, EN/KR 예문으로 맥락별 뉘앙스를 정확히 익힌다. 일상·비즈니스·철학에서 유용한 표현을 다룬다."
 date: 2025-10-10
 lastmod: 2025-10-10

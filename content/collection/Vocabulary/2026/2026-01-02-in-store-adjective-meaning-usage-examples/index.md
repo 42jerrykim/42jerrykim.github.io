@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] in store의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] in store 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 구(형용사적 표현) 'in store'의 핵심 뜻(앞에 닥친/예정된, 준비된/비축된)을 정리한다. 'be in store for', 'have in store for' 같은 대표 패턴을 콜로케이션과 EN/KR 예문 50개로 익힌다. 일상, 뉴스, 비즈니스 맥락에서 자주 쓰이는 중요한 표현."
 date: 2026-01-02
 lastmod: 2026-01-02

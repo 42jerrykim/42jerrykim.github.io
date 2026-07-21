@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] consumption의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] consumption 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'consumption'의 핵심 뜻(재화·용역 소비, 자원·에너지 소모, 과다 소비 논의)을 정리한다. 경제·환경·식품 안전 맥락의 콜로케이션과 문학 속 구어(결핵)까지 EN/KR 예문 50개로 익힌다. 가산성과 유의어 구별을 함께 다룬다."
 date: 2026-04-13
 lastmod: 2026-04-13

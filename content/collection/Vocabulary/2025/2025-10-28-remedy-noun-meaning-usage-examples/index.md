@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] remedy의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] remedy 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'remedy'의 핵심 뜻(치료법, 해결책, 구제 수단)을 정리한다. 질병 치료부터 문제 해결까지, 의학적·법적·일상적 맥락에서의 정확한 용법을 자주 쓰는 콜로케이션과 EN/KR 예문으로 익힌다."
 date: 2025-10-28
 lastmod: 2025-10-28

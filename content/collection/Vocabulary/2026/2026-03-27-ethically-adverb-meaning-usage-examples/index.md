@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] ethically의 의미와 쓰임 - 부사 핵심 정리"
+title: "[Vocabulary] ethically 뜻과 의미 - 부사 핵심 정리"
 description: "영어 부사 'ethically'의 핵심 뜻(윤리적으로, 도덕 기준에 맞게)을 정리한다. 비즈니스, 기술, 의료, 연구, 정책 맥락에서 자주 쓰는 패턴을 설명하고 EN/KR 예문 50개로 실제 용법을 익힌다. 법적 기준과 윤리 판단의 차이, 공정성·책임·피해 최소화 같은 핵심 관점도 함께 다룬다."
 date: 2026-03-27
 lastmod: 2026-03-27

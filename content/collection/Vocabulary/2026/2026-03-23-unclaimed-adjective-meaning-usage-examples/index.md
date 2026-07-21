@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] unclaimed의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] unclaimed 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'unclaimed'의 핵심은 아직 아무도 주장하거나 찾아가지 않은 상태를 가리킨다는 점이다. 공항 수하물·은행 예금·유산·상금·경품처럼 공공·금융·법률 뉴스에서 반복되며, 미주장 영토 표현까지 함께 정리하고 콜로케이션과 EN/KR 예문 50개로 격식 표현을 익힌다."
 date: 2026-03-23
 lastmod: 2026-03-23

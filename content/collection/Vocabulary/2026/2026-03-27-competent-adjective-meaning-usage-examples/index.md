@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] competent의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] competent 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'competent'의 핵심 뜻(유능한, 기준을 충족하는, 적절한 권한이 있는)을 정리한다. 업무, 학업, 법률 맥락에서 자주 쓰는 콜로케이션과 EN/KR 예문 50개로 실제 용법과 뉘앙스를 익힌다."
 date: 2026-03-27
 lastmod: 2026-03-27

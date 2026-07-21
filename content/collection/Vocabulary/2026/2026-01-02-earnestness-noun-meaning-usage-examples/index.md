@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] earnestness의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] earnestness 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'earnestness'의 핵심 뜻(진심, 진지함, 열정)을 정리한다. 비즈니스, 문학, 일상 대화에서 자주 쓰이는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 감정/태도/의도 표현에서 반복 등장하는 중요한 추상명사."
 date: 2026-01-02
 lastmod: 2026-01-02

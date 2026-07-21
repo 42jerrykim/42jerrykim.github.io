@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] prosperous의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] prosperous 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'prosperous'의 핵심 뜻(번영하는, 성공한, 부유한)을 정리한다. 비즈니스, 경제, 개인 성공, 사회 발전 등 다양한 맥락에서 자주 쓰이는 용법을 콜로케이션과 50개 예문으로 익힌다. 부의 상태와 성공을 표현하는 중요한 형용사."
 date: 2026-02-11
 lastmod: 2026-02-11

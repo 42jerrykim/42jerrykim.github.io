@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] intuitively의 의미와 쓰임 - 부사 핵심 정리"
+title: "[Vocabulary] intuitively 뜻과 의미 - 부사 핵심 정리"
 description: "영어 부사 'intuitively'의 핵심 뜻(직관적으로, 본능적으로, 직감적으로)을 정리한다. 논리나 증거 없이 감각으로 아는 표현부터 특별한 지식 없이 쉽게 사용할 수 있는 용법까지, 자주 쓰는 콜로케이션과 EN/KR 예문으로 다양한 맥락의 정확한 용법을 익힌다."
 date: 2025-10-24
 lastmod: 2025-10-24

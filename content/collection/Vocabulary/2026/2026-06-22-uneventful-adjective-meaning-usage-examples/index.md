@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] uneventful의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] uneventful 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'uneventful'의 핵심 뜻(특별한 일이 없는, 평온한, 무사한)을 정리한다. 일상, 여행, 업무, 의료 등 다양한 맥락에서 쓰이는 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 사건이 없었음을 안도하는 어조로 자주 쓰이는 중요한 형용사."
 date: 2026-06-22
 lastmod: 2026-06-22

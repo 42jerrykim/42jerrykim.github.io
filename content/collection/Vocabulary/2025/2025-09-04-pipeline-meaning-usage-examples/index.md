@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] Pipeline의 의미와 쓰임 - 명사 중심 정리"
+title: "[Vocabulary] Pipeline 뜻과 의미 - 명사 중심 정리"
 description: "영어 명사 ‘pipeline’의 핵심 뜻(배관·유통 경로·영업/개발·데이터·CI/CD·CPU/GPU)과 관용구 in the pipeline, 빈출 콜로케이션, 문법 팁, 비즈니스·기술 문맥 예문까지 한 번에 정리한다."
 date: 2025-09-04
 lastmod: 2025-09-04

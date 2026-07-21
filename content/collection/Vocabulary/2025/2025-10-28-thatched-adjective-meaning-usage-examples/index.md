@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] thatched의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] thatched 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'thatched'의 핵심 뜻(짚으로 덮인, 초가지붕의)을 정리한다. 전통 건축에서 현대 디자인까지 다양한 맥락에서의 정확한 용법을 자주 쓰는 콜로케이션과 EN/KR 예문으로 익힌다. 영국 시골의 상징적 건축 양식을 나타내는 핵심 어휘."
 date: 2025-10-28
 lastmod: 2025-10-28

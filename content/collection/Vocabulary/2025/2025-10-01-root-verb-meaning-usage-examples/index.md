@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] root의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] root 뜻과 의미 - 동사 핵심 정리"
 date: 2025-10-01
 lastmod: 2025-10-01
 description: "다의적 동사 'root'의 핵심 뜻(뿌리내리다, 고정하다, 파헤치다, 뒤지다, 응원하다)을 정리한다. root for, root out, root around 등 필수 구동사와 콜로케이션, EN/KR 예문으로 식물·탐색·응원 맥락의 정확한 용법을 익힌다."

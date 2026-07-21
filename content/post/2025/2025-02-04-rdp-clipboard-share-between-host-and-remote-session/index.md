@@ -1,5 +1,5 @@
 ---
-title: "[Windows] RDP 호스트와 원격 세션 간 클립보드 공유 문제 해결"
+title: "[Windows] rdpclip.exe 클립보드 공유 안 될 때 해결 방법 (RDP 호스트-원격 세션)"
 categories:
   - Windows
   - RemoteDesktop

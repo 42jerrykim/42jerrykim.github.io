@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] Provide의 의미와 활용 - 쓰임과 예문"
+title: "[Vocabulary] Provide 뜻과 의미 - 쓰임과 예문"
 description: "영어 동사 ‘provide’의 핵심 뜻과 문형(provide A with B / provide B to A, provide for, provide that), 격식·뉘앙스 차이, offer·supply와의 구분, 빈출 콜로케이션과 비즈니스·시험 예문까지 한 번에 정리한다."
 date: 2025-09-02
 lastmod: 2025-09-02

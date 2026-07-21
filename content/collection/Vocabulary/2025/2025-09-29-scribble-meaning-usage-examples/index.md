@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] scribble의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] scribble 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 ‘scribble’의 핵심 뜻(허술한 글씨나 낙서)을 정리한다. doctor's scribble/random scribbles와의 차이, 자주 쓰는 콜로케이션, EN/KR 예문으로 맥락별 뉘앙스를 정확히 익힌다. 일상·의학·예술에서 유용한 표현."
 date: 2025-09-29
 lastmod: 2025-09-29

@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] termination의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] termination 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'termination'의 핵심 뜻(종료, 해지, 종결)을 정리한다. 고용 해고, 계약 해지, 임신중절 등 법률·비즈니스·의학 분야에서 자주 쓰이는 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다."
 date: 2026-06-22
 lastmod: 2026-06-22

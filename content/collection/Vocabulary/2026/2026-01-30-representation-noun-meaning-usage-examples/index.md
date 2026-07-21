@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] representation의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] representation 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'representation'의 핵심 뜻(표현/묘사, 대표·대리, 진술·주장)을 정리한다. visual representation, legal representation 같은 콜로케이션과 EN/KR 예문 50개로 실제 용법을 익힌다. 정치, 법률, 데이터·디자인 맥락에서 자주 쓰이는 중요한 명사."
 date: 2026-01-30
 lastmod: 2026-01-30
