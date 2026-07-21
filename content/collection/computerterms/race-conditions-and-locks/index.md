@@ -32,6 +32,8 @@ tags:
 - Debugging(디버깅)
 - Performance(성능)
 - Operating-System(운영체제)
+- Advanced
+- How-To
 ---
 
 ## 이 장을 읽기 전에

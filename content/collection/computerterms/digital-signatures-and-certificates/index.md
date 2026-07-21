@@ -33,6 +33,7 @@ tags:
 - Public-Key(공개키)
 - Data-Integrity(데이터무결성)
 - Non-Repudiation(부인방지)
+- Debugging(디버깅)
 ---
 
 ## 이 장을 읽기 전에

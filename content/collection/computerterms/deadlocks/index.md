@@ -32,6 +32,8 @@ tags:
 - Debugging(디버깅)
 - Graph(그래프)
 - Operating-System(운영체제)
+- Performance(성능)
+- Advanced
 ---
 
 ## 이 장을 읽기 전에

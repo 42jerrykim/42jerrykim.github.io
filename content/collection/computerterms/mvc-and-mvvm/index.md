@@ -3,7 +3,7 @@ image: "wordcloud.png"
 slug: mvc-and-mvvm
 collection_order: 95
 draft: false
-title: "[Computer Terms] MVC와 MVVM (Model-View-Controller, Model-View-ViewModel)"
+title: "[Computer Terms] MVC와 MVVM (Model-View-Controller/ViewModel)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms

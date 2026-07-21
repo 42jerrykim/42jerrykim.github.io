@@ -29,6 +29,11 @@ tags:
 - Case-Study
 - Data-Structure(자료구조)
 - Collaboration(협업)
+- Debugging(디버깅)
+- Performance(성능)
+- Advanced
+- How-To
+- Tips
 ---
 
 ## 이 장을 읽기 전에

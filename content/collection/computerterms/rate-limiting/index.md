@@ -32,6 +32,8 @@ tags:
 - Algorithm(알고리즘)
 - Load-Balancing(로드밸런싱)
 - Caching(캐싱)
+- Debugging(디버깅)
+- Performance(성능)
 ---
 
 ## 이 장을 읽기 전에

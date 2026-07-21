@@ -31,6 +31,9 @@ tags:
 - Performance(성능)
 - Caching(캐싱)
 - Database(데이터베이스)
+- Debugging(디버깅)
+- Advanced
+- How-To
 ---
 
 ## 이 장을 읽기 전에

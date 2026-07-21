@@ -32,6 +32,8 @@ tags:
 - Microsegmentation(마이크로세그멘테이션)
 - Least-Privilege(최소권한)
 - Perimeter-Security(경계보안)
+- Debugging(디버깅)
+- Performance(성능)
 ---
 
 ## 이 장을 읽기 전에

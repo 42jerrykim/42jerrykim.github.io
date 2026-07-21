@@ -33,6 +33,7 @@ tags:
 - Performance(성능)
 - Caching(캐싱)
 - Security(보안)
+- Advanced
 ---
 
 ## 이 장을 읽기 전에

@@ -33,6 +33,7 @@ tags:
 - XML(eXtensible Markup Language)
 - Localization
 - Content-Negotiation
+- Debugging(디버깅)
 ---
 
 ## 이 장을 읽기 전에

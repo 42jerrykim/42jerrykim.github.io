@@ -33,6 +33,7 @@ tags:
 - Performance(성능)
 - Data-Structure(자료구조)
 - Reliability(신뢰성)
+- Advanced
 ---
 
 ## 이 장을 읽기 전에

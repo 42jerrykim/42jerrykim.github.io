@@ -31,6 +31,9 @@ tags:
 - Software-Engineering(소프트웨어공학)
 - Data-Integrity(데이터무결성)
 - Hash-Table(해시테이블)
+- Debugging(디버깅)
+- Performance(성능)
+- Advanced
 ---
 
 ## 이 장을 읽기 전에

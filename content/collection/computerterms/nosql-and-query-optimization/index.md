@@ -32,6 +32,8 @@ tags:
 - Performance(성능)
 - Distributed-Systems(분산시스템)
 - Scalability(확장성)
+- Debugging(디버깅)
+- Advanced
 ---
 
 ## 이 장을 읽기 전에

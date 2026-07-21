@@ -33,6 +33,7 @@ tags:
 - Kernel
 - Concurrency(동시성)
 - Error-Handling(에러처리)
+- Performance(성능)
 ---
 
 ## 이 장을 읽기 전에

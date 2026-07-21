@@ -32,6 +32,8 @@ tags:
 - Performance(성능)
 - Time-Complexity(시간복잡도)
 - Data-Integrity(데이터무결성)
+- Debugging(디버깅)
+- Advanced
 ---
 
 ## 이 장을 읽기 전에

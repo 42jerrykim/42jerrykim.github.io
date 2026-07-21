@@ -3,7 +3,7 @@ image: "wordcloud.png"
 slug: hexagonal-architecture
 collection_order: 94
 draft: false
-title: "[Computer Terms] 헥사고날 아키텍처 (Hexagonal Architecture, Ports and Adapters)"
+title: "[Computer Terms] 헥사고날 아키텍처 (Hexagonal Architecture)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms

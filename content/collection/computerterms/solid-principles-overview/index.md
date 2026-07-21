@@ -32,6 +32,8 @@ tags:
 - Software-Engineering(소프트웨어공학)
 - Maintainability(유지보수성)
 - Code-Quality(코드품질)
+- Debugging(디버깅)
+- Performance(성능)
 ---
 
 ## 이 장을 읽기 전에

@@ -33,6 +33,7 @@ tags:
 - Performance(성능)
 - Linux(리눅스)
 - Implementation(구현)
+- Advanced
 ---
 
 ## 이 장을 읽기 전에

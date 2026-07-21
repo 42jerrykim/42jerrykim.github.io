@@ -29,6 +29,11 @@ tags:
 - Case-Study
 - Automation(자동화)
 - Reliability(신뢰성)
+- Debugging(디버깅)
+- Performance(성능)
+- Advanced
+- How-To
+- Tips
 ---
 
 ## 이 장을 읽기 전에

@@ -32,6 +32,8 @@ tags:
 - Performance(성능)
 - Queue(큐)
 - Real-Time(실시간)
+- Debugging(디버깅)
+- Advanced
 ---
 
 ## 이 장을 읽기 전에

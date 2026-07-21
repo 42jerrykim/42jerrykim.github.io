@@ -31,6 +31,9 @@ tags:
 - Software-Engineering(소프트웨어공학)
 - Debugging(디버깅)
 - Code-Quality(코드품질)
+- Performance(성능)
+- Advanced
+- How-To
 ---
 
 ## 이 장을 읽기 전에
