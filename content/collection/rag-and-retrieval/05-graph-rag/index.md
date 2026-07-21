@@ -38,15 +38,15 @@ tags:
 image: "wordcloud.png"
 ---
 
-01~04장까지 다룬 검색은 모두 **텍스트 문서**를 검색 단위로 삼는 TextRAG였습니다. **GraphRAG**는 검색 대상을 문서가 아니라 **그래프**로 바꿉니다. 이 장은 지식을 그래프로 표현하는 방법부터, 실제 벤치마크에서 이 접근이 어떤 한계에 부딪혔고 어떻게 개선되었는지까지 다룹니다.
+01–04장까지 다룬 검색은 모두 **텍스트 문서**를 검색 단위로 삼는 TextRAG였습니다. **GraphRAG**는 검색 대상을 문서가 아니라 **그래프**로 바꿉니다. 이 장은 지식을 그래프로 표현하는 방법부터, 실제 벤치마크에서 이 접근이 어떤 한계에 부딪혔고 어떻게 개선되었는지까지 다룹니다.
 
 ## 지식을 그래프로 표현하기
 
-지식(knowledge)은 사실(fact)의 집합과 규칙(rule)의 집합으로 나눌 수 있습니다. 하나의 사실은 **(주어, 서술어, 목적어)** 형태의 **트리플(triple)**로 표현되며, 이 트리플이 그래프에서는 **간선(edge)**에 대응됩니다.
+지식(knowledge)은 사실(fact)의 집합과 규칙(rule)의 집합으로 나눌 수 있습니다. 하나의 사실은 **(주어, 서술어, 목적어)** 형태의 <strong>트리플(triple)</strong>로 표현되며, 이 트리플이 그래프에서는 <strong>간선(edge)</strong>에 대응됩니다.
 
 $$G = (V, E)$$
 
-**TAG(Text-Attributed Graph, 텍스트 속성 그래프)**는 노드(Entity, 예: Person·City·Company)와 엣지(Relation, 예: LivesIn·WorksAt)로 구성되며, 각 노드·엣지에는 텍스트 속성이 함께 달립니다(예: Person 노드의 속성은 "Alice", LivesIn 엣지의 속성은 "since 2020"). "주어"와 "목적어"라는 역할은 고정되어 있지 않고 **상대적**입니다 — 어떤 트리플에서는 주어였던 개체가 다른 트리플에서는 목적어가 될 수 있습니다.
+<strong>TAG(Text-Attributed Graph, 텍스트 속성 그래프)</strong>는 노드(Entity, 예: Person·City·Company)와 엣지(Relation, 예: LivesIn·WorksAt)로 구성되며, 각 노드·엣지에는 텍스트 속성이 함께 달립니다(예: Person 노드의 속성은 "Alice", LivesIn 엣지의 속성은 "since 2020"). "주어"와 "목적어"라는 역할은 고정되어 있지 않고 **상대적**입니다 — 어떤 트리플에서는 주어였던 개체가 다른 트리플에서는 목적어가 될 수 있습니다.
 
 ## GraphRAG의 3단계 파이프라인
 
@@ -59,13 +59,13 @@ flowchart LR
     Retrieve --> Generate["3. Graph-Enhanced Generation</br>LLM이 답변 생성"]
 ```
 
-**Graph-Based Indexing(그래프 색인)**은 문서들로부터 지식그래프를 구축하는 단계로, 기존 오픈 지식그래프를 활용하거나 직접 문서로부터 그래프를 구축(Self-Constructed Graph)합니다.
+<strong>Graph-Based Indexing(그래프 색인)</strong>은 문서들로부터 지식그래프를 구축하는 단계로, 기존 오픈 지식그래프를 활용하거나 직접 문서로부터 그래프를 구축(Self-Constructed Graph)합니다.
 
 > Darren Edge 외, "From Local to Global: A Graph RAG Approach to Query-Focused Summarization", *arXiv:2404.16130* (2024)
 
-**Graph-Guided Retrieval(G-Retrieval)**은 질문에 관련된 서브그래프(subgraph)나 경로(path)를 찾아내는 단계이고, **Graph-Enhanced Generation(G-Generation)**은 검색된 그래프 정보를 바탕으로 LLM이 답변을 생성하는 단계입니다. 이 구조는 02장에서 다룬 Retriever-Reader 구조와 본질적으로 같은 틀이지만, 검색 단위가 텍스트 청크에서 그래프의 노드·경로·서브그래프로 바뀐 것이 차이입니다.
+<strong>Graph-Guided Retrieval(G-Retrieval)</strong>은 질문에 관련된 서브그래프(subgraph)나 경로(path)를 찾아내는 단계이고, <strong>Graph-Enhanced Generation(G-Generation)</strong>은 검색된 그래프 정보를 바탕으로 LLM이 답변을 생성하는 단계입니다. 이 구조는 02장에서 다룬 Retriever-Reader 구조와 본질적으로 같은 틀이지만, 검색 단위가 텍스트 청크에서 그래프의 노드·경로·서브그래프로 바뀐 것이 차이입니다.
 
-일부 구현체는 **GNN(Graph Neural Network)**을 검색에 활용합니다. GNN은 각 노드가 이웃 노드로부터 정보를 전달받아(Message Passing) 자신의 표현(representation)을 업데이트하는 방식으로 그래프를 처리하는 신경망입니다.
+일부 구현체는 <strong>GNN(Graph Neural Network)</strong>을 검색에 활용합니다. GNN은 각 노드가 이웃 노드로부터 정보를 전달받아(Message Passing) 자신의 표현(representation)을 업데이트하는 방식으로 그래프를 처리하는 신경망입니다.
 
 ## Retriever의 종류와 검색 방식
 
@@ -94,7 +94,7 @@ $$\text{CRAG score} = n_{\text{perfect}} + 0.5 \times n_{\text{acceptable}} - n_
 
 자연어 질문을 구조화된 질의(JSON 형태)로 변환한 뒤, 미리 정해둔 결정 트리(decision tree)에 따라 그래프에서 조회하는 방식의 Query Engine을 실제로 구현해보면 치명적인 한계가 드러납니다.
 
-자연어 질문을 구조화된 질의로 바꾸는 과정 자체를 LLM에 맡기면, 똑같은 질문을 여러 번 넣어도 매번 다른 구조화 질의가 생성되는 **비결정성(non-determinism)**이 나타납니다(예: 시간 조건이 특정 "쿼리 시점"으로 잡히기도 하고 "올해"로 잡히기도 함). 이 무작위성 때문에 그래프에서 불필요하게 넓은 범위의 정보가 함께 딸려 나오게 됩니다. 03장에서 다룬 것처럼 불필요한 정보가 컨텍스트에 대량으로 섞여 들어가면, LLM의 컨텍스트 길이 한계를 초과할 위험뿐 아니라 오히려 명확한 답을 낼 수 있는 상황에서도 관련 없는 정보에 묻혀 "모른다"고 답하거나 틀린 답을 내는 경우가 늘어납니다.
+자연어 질문을 구조화된 질의로 바꾸는 과정 자체를 LLM에 맡기면, 똑같은 질문을 여러 번 넣어도 매번 다른 구조화 질의가 생성되는 <strong>비결정성(non-determinism)</strong>이 나타납니다(예: 시간 조건이 특정 "쿼리 시점"으로 잡히기도 하고 "올해"로 잡히기도 함). 이 무작위성 때문에 그래프에서 불필요하게 넓은 범위의 정보가 함께 딸려 나오게 됩니다. 03장에서 다룬 것처럼 불필요한 정보가 컨텍스트에 대량으로 섞여 들어가면, LLM의 컨텍스트 길이 한계를 초과할 위험뿐 아니라 오히려 명확한 답을 낼 수 있는 상황에서도 관련 없는 정보에 묻혀 "모른다"고 답하거나 틀린 답을 내는 경우가 늘어납니다.
 
 이 문제의 해결 방향은 고정된 결정 트리를 버리는 것입니다. 06장에서 다룰 **MCP**를 이용해 그래프 조회 기능을 여러 개의 개별 Tool로 노출하고, LLM이 스스로 "지금 어떤 Tool이 필요한지" 판단해 호출하며, 결과가 불충분하면 추가 Tool 호출을 반복하는 **에이전틱 워크플로우**로 전환하면, 한 번에 필요 이상의 정보를 가져오는 대신 질문에 실제로 필요한 만큼만 단계적으로 조회할 수 있습니다.
 

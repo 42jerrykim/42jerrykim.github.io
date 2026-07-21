@@ -78,7 +78,7 @@ title: "[Automation] Nut.js - Node.js 데스크톱 자동화 프레임워크"
 
 ### 도구 정보
 
-Nut.js는 **데스크톱 오토메이션(Desktop Automation)**을 Node.js 스크립트로 수행할 수 있게 해 주는 라이브러리다. 공식 사이트와 문서는 [nutjs.dev](https://nutjs.dev/), 소스 코드와 이슈는 [GitHub nut-tree/nut.js](https://github.com/nut-tree/nut.js)에서 관리된다. Prebuilt 바이너리를 쓰는 유료 라이선스와 오픈소스 버전이 있으며, Windows 10 이상, macOS 14 이상, X11 기반 Linux를 지원한다.
+Nut.js는 <strong>데스크톱 오토메이션(Desktop Automation)</strong>을 Node.js 스크립트로 수행할 수 있게 해 주는 라이브러리다. 공식 사이트와 문서는 [nutjs.dev](https://nutjs.dev/), 소스 코드와 이슈는 [GitHub nut-tree/nut.js](https://github.com/nut-tree/nut.js)에서 관리된다. Prebuilt 바이너리를 쓰는 유료 라이선스와 오픈소스 버전이 있으며, Windows 10 이상, macOS 14 이상, X11 기반 Linux를 지원한다.
 
 ### 추천 대상
 

@@ -155,7 +155,7 @@ image: wordcloud.png
   - **prosperous + noun**: prosperous economy, prosperous business, prosperous nation
   - **be + prosperous**: The region became prosperous. (지역이 번영하게 되었다.)
   - **remain/stay prosperous**: remain prosperous (번영을 유지하다.)
-- **격식도**: 중립~격식 (신문, 학술, 공식 문서에서 자주 사용)
+- **격식도**: 중립–격식 (신문, 학술, 공식 문서에서 자주 사용)
 - **뉘앙스**: 긍정적, 중립적 (부정적 의미 거의 없음)
 - **문화적 연상**: 자본주의, 성공, 부, 행운, 안정성 등 긍정적 개념과 연결
 

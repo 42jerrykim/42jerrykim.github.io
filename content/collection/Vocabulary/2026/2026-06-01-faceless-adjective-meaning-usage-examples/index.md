@@ -202,7 +202,7 @@ image: "wordcloud.png"
   - faceless + 명사: faceless bureaucracy, faceless corporation, faceless figure
   - remain/stay + faceless: 익명 상태를 유지하다
   - become + faceless: 몰개성해지다
-- **격식도**: 중립~격식 (뉴스, 학술, 문학, 사회 비평에서 자주 사용)
+- **격식도**: 중립–격식 (뉴스, 학술, 문학, 사회 비평에서 자주 사용)
 - **뉘앙스**: 주로 부정적 함의를 띤다. 개성·인간성·정체성의 결여를 비판하거나, 신원 불명의 위협을 강조할 때 사용한다.
 - **문화적 연상**: 관료주의 비판, 도시화·산업화의 부작용, 온라인 익명 문화, 공포·서스펜스 장르의 시각적 장치 등과 연결된다.
 

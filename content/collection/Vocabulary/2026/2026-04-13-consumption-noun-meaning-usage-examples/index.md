@@ -50,9 +50,9 @@ tags:
 image: "wordcloud.png"
 ---
 
-오늘은 영어 명사 **'consumption'**의 정확한 의미와 실제 쓰임을 정리한다.  
+오늘은 영어 명사 <strong>'consumption'</strong>의 정확한 의미와 실제 쓰임을 정리한다.  
 이 단어는 **무언가를 써서 줄어들게 하는 과정**(소비·소모), **경제에서 가계·국가의 지출**, **에너지·연료·용수의 사용량**을 말할 때 매우 흔하다.  
-고전 소설이나 역사 텍스트에서는 **결핵(tuberculosis)**을 가리키는 낡은 표기로 등장하기도 하므로, 현대 일상 영어와 문학·의학사 맥락을 함께 짚는다.
+고전 소설이나 역사 텍스트에서는 <strong>결핵(tuberculosis)</strong>을 가리키는 낡은 표기로 등장하기도 하므로, 현대 일상 영어와 문학·의학사 맥락을 함께 짚는다.
 
 ---
 
@@ -137,7 +137,7 @@ image: "wordcloud.png"
 
 ### 구별 포인트
 - **consumption vs. usage**: *usage*는 “사용 패턴”에, *consumption*은 “줄어드는 소비·소모”나 **경제 지표**에 더 가깝다.
-- **consumption vs. consumerism**: *consumerism*은 사회·비판 담론의 **‘소비주의’**이고, *consumption*은 더 중립적인 **‘소비(행위·량)’**다.
+- **consumption vs. consumerism**: *consumerism*은 사회·비판 담론의 <strong>‘소비주의’</strong>이고, *consumption*은 더 중립적인 <strong>‘소비(행위·량)’</strong>다.
 
 ---
 
@@ -147,7 +147,7 @@ image: "wordcloud.png"
 - **발음**: /kənˈsʌmpʃn/ (미·영 모두 대체로 유사; /ʃ/ 약화된 탈락형 발음이 흔함).
 - **관련어**: **consume**(동사), **consumer**(소비자), **consumable**(소모 가능한·소모품).
 - **전형 패턴**: **consumption of + 명사**, **reduce consumption**, **per capita consumption**, **fit for human consumption**
-- **격식도**: 중립~격식; 보고서·뉴스·학술 글에서 매우 흔하다.
+- **격식도**: 중립–격식; 보고서·뉴스·학술 글에서 매우 흔하다.
 - **주의**: 고전 문학의 **consumption**(병명)은 현대 의학 문맥에서는 피하는 것이 안전하다.
 
 ---

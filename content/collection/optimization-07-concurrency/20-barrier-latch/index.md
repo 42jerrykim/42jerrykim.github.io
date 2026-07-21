@@ -160,9 +160,9 @@ void run_simulation_steps(int worker_count, int step_count) {
 
 ## 흔한 오개념
 
-**"barrier/latch는 mutex+condition_variable보다 항상 빠르다"**는 사실이 아닙니다. 두 프리미티브 모두 결국 내부적으로 대기(wait)가 필요하며, libstdc++는 Linux에서 futex 기반 `atomic::wait`/`notify`([2020년 11월 GCC 패치](https://gcc.gnu.org/pipermail/gcc-patches/2020-November/560499.html)로 barrier 지원이 추가되었고 GCC 11부터 배포)를 사용해 스핀 없이 커널 대기로 전환하는 구조이지만, 이는 "잘 튜닝된 condition_variable 구현"과 근본적으로 다른 비용 구조가 아니라 **코드 작성 실수를 줄여 주는 표준화된 인터페이스**라는 데 더 큰 가치가 있습니다. 실제 이득은 참여 스레드 수·경합 패턴·플랫폼에 따라 달라지므로 아래 벤치마크 절의 방법으로 직접 재현해 확인해야 합니다.
+<strong>"barrier/latch는 mutex+condition_variable보다 항상 빠르다"</strong>는 사실이 아닙니다. 두 프리미티브 모두 결국 내부적으로 대기(wait)가 필요하며, libstdc++는 Linux에서 futex 기반 `atomic::wait`/`notify`([2020년 11월 GCC 패치](https://gcc.gnu.org/pipermail/gcc-patches/2020-November/560499.html)로 barrier 지원이 추가되었고 GCC 11부터 배포)를 사용해 스핀 없이 커널 대기로 전환하는 구조이지만, 이는 "잘 튜닝된 condition_variable 구현"과 근본적으로 다른 비용 구조가 아니라 **코드 작성 실수를 줄여 주는 표준화된 인터페이스**라는 데 더 큰 가치가 있습니다. 실제 이득은 참여 스레드 수·경합 패턴·플랫폼에 따라 달라지므로 아래 벤치마크 절의 방법으로 직접 재현해 확인해야 합니다.
 
-**"barrier의 completion function은 각 스레드에서 한 번씩, 즉 N번 실행된다"**도 흔한 오해입니다. completion function은 phase당 **정확히 한 번**, 참여한 스레드 중 하나에서 실행됩니다. 나머지 스레드들은 그 실행이 끝나기를 블로킹 대기할 뿐 completion function 코드를 직접 실행하지 않습니다. 이를 "각 스레드가 자기 몫의 후처리를 completion function 안에서 수행한다"고 잘못 설계하면 그 로직은 한 스레드분만 실행되고 나머지 스레드의 몫은 누락됩니다.
+<strong>"barrier의 completion function은 각 스레드에서 한 번씩, 즉 N번 실행된다"</strong>도 흔한 오해입니다. completion function은 phase당 **정확히 한 번**, 참여한 스레드 중 하나에서 실행됩니다. 나머지 스레드들은 그 실행이 끝나기를 블로킹 대기할 뿐 completion function 코드를 직접 실행하지 않습니다. 이를 "각 스레드가 자기 몫의 후처리를 completion function 안에서 수행한다"고 잘못 설계하면 그 로직은 한 스레드분만 실행되고 나머지 스레드의 몫은 누락됩니다.
 
 **"latch는 barrier처럼 재사용할 수 있다"** 역시 오개념입니다. `latch`의 카운터는 0에 도달한 뒤 다시 올리거나 리셋할 방법이 표준에 없으므로, 같은 `latch` 객체로 두 번째 라운드의 동기화를 시도하면 `wait()`이 즉시 반환하거나(이미 0이므로) `count_down()`이 UB를 일으킵니다. 반복되는 라운드 동기화가 필요하면 처음부터 `barrier`를 선택하거나, 라운드마다 새 `latch`를 생성해야 합니다.
 

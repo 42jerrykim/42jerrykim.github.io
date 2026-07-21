@@ -38,13 +38,13 @@ tags:
 image: "wordcloud.png"
 ---
 
-**LLM(Large Language Model, 대규모 언어모델)**을 API 너머의 구조로 이해하려는 사람과, "프롬프트를 넣으면 답이 나오는 블랙박스"로만 대하는 사람의 차이는 딱 한 지점에서 갈립니다. 모델이 왜 특정 답을 내놓는지, 왜 어떤 질문에는 그럴듯하지만 틀린 답(환각)을 내놓는지, 왜 파인튜닝 방식에 따라 결과가 달라지는지를 **구조 수준에서 설명할 수 있는가**입니다. 이 시리즈는 그 지점을 메우기 위해, Transformer의 수식과 실습 코드를 직접 손으로 따라가면서 GPT류 모델의 내부를 처음부터 끝까지 조립합니다.
+<strong>LLM(Large Language Model, 대규모 언어모델)</strong>을 API 너머의 구조로 이해하려는 사람과, "프롬프트를 넣으면 답이 나오는 블랙박스"로만 대하는 사람의 차이는 딱 한 지점에서 갈립니다. 모델이 왜 특정 답을 내놓는지, 왜 어떤 질문에는 그럴듯하지만 틀린 답(환각)을 내놓는지, 왜 파인튜닝 방식에 따라 결과가 달라지는지를 **구조 수준에서 설명할 수 있는가**입니다. 이 시리즈는 그 지점을 메우기 위해, Transformer의 수식과 실습 코드를 직접 손으로 따라가면서 GPT류 모델의 내부를 처음부터 끝까지 조립합니다.
 
 ## 왜 지금 Transformer부터 다시 짚어야 하는가
 
 2012년 AlexNet이 ImageNet 대회에서 GPU 기반 딥러닝으로 압도적인 성능을 보이면서 "레이어를 깊게 쌓을수록 성능이 좋아진다"는 발견이 이후 10년의 연구 방향을 결정했습니다. 문제는 레이어를 깊게 쌓을수록 학습이 불안정해진다는 것이었고, ResNet의 skip connection(잔차 연결)이 이 한계를 단순한 아이디어로 돌파했습니다. 언어모델 쪽에서는 RNN(Recurrent Neural Network)이 문장을 순서대로 읽어 문맥 벡터 하나로 압축하는 방식을 썼지만, 문장이 길어질수록 앞쪽 정보가 희석되는 장기 의존성 문제와 순차 계산이라 병렬화할 수 없다는 속도 문제를 동시에 안고 있었습니다.
 
-2017년 Google의 연구진이 발표한 **"Attention Is All You Need"**는 이 순차 구조 자체를 끊어버리는 제안이었습니다.
+2017년 Google의 연구진이 발표한 <strong>"Attention Is All You Need"</strong>는 이 순차 구조 자체를 끊어버리는 제안이었습니다.
 
 > Ashish Vaswani, Noam Shazeer, Niki Parmar 외 5인, "Attention Is All You Need", *arXiv:1706.03762* (2017)
 
@@ -54,7 +54,7 @@ image: "wordcloud.png"
 
 이 시리즈는 **Transformer/GPT의 언어 모델링 구조**에만 집중합니다. 구체적으로는 토큰 임베딩과 위치 인코딩 같은 입력 표현, Self-Attention과 Multi-head Attention의 계산 과정, GPT 블록을 구성하는 정규화·FFN·Residual Connection, 사전학습(Pretraining)과 지도 파인튜닝(Fine-tuning), LoRA/QLoRA 같은 효율적 파인튜닝 기법, RLHF와 DPO를 통한 선호 학습, Chain-of-Thought 기반 추론 모델, 그리고 KV Cache·GQA 같은 서빙 효율화 기법까지를 다룹니다.
 
-같은 Transformer 구조를 이미지에 적용하는 **Vision Transformer**, 모델을 가볍게 만드는 **Pruning·Quantization·Knowledge Distillation**, 외부 지식을 검색해 답변에 활용하는 **RAG(Retrieval-Augmented Generation)**는 이 시리즈의 범위 밖입니다. 이 세 주제는 각각 별도 시리즈(Vision AI 파운데이션, On-Device AI 경량화, RAG와 정보검색)에서 다루며, 그 시리즈들은 이 시리즈에서 정리하는 Transformer/GPT 구조를 전제로 합니다. 즉 이 시리즈는 나머지 세 시리즈의 공통 기반입니다.
+같은 Transformer 구조를 이미지에 적용하는 **Vision Transformer**, 모델을 가볍게 만드는 **Pruning·Quantization·Knowledge Distillation**, 외부 지식을 검색해 답변에 활용하는 <strong>RAG(Retrieval-Augmented Generation)</strong>는 이 시리즈의 범위 밖입니다. 이 세 주제는 각각 별도 시리즈(Vision AI 파운데이션, On-Device AI 경량화, RAG와 정보검색)에서 다루며, 그 시리즈들은 이 시리즈에서 정리하는 Transformer/GPT 구조를 전제로 합니다. 즉 이 시리즈는 나머지 세 시리즈의 공통 기반입니다.
 
 ## 흔한 오개념 — "Transformer는 RNN의 발전형이다"
 
@@ -79,7 +79,7 @@ Transformer를 처음 접하면 "RNN을 개선한 모델"이라고 오해하기 
 | 2. 학습·정렬 | 11 | 추론 모델의 시대 | Chain-of-Thought는 왜 성능을 높이는가 |
 | 3. 서빙 | 12 | LLM 서빙 효율화 | KV Cache는 무엇을 캐싱하는가 |
 
-각 챕터를 건너뛰고 응용 주제로 바로 넘어가면, 예를 들어 08장의 LoRA를 이해하지 못한 채 QLoRA 설정값만 복사하거나, 05장의 Q/K/V 분리 이유를 모른 채 Attention 시각화 결과를 오독하는 식의 한계에 부딪힙니다. 이미 Transformer 내부 구조에 익숙하다면 01~03을 건너뛰고 04(토크나이징·임베딩)부터 시작해도 무리가 없습니다.
+각 챕터를 건너뛰고 응용 주제로 바로 넘어가면, 예를 들어 08장의 LoRA를 이해하지 못한 채 QLoRA 설정값만 복사하거나, 05장의 Q/K/V 분리 이유를 모른 채 Attention 시각화 결과를 오독하는 식의 한계에 부딪힙니다. 이미 Transformer 내부 구조에 익숙하다면 01–03을 건너뛰고 04(토크나이징·임베딩)부터 시작해도 무리가 없습니다.
 
 ## 학습 결과
 
@@ -100,6 +100,6 @@ flowchart LR
 
 > Sebastian Raschka, *Build a Large Language Model (From Scratch)*, Manning Publications (2024). 공식 코드 저장소: https://github.com/rasbt/LLMs-from-scratch
 
-이 책은 GPT-2 규모(124M 파라미터)의 모델을 PyTorch로 처음부터 구현하면서 토크나이저·데이터로더 작성(2장)부터 Attention 구현(3장), GPT 아키텍처 조립(4장), 사전학습(5장), 분류 파인튜닝(6장), 지시 미세튜닝(7장)까지를 다룹니다. 이 시리즈의 04~09장은 이 책의 장 구성과 대략 대응하므로, 코드를 직접 실행하며 따라가고 싶다면 함께 참고할 수 있습니다.
+이 책은 GPT-2 규모(124M 파라미터)의 모델을 PyTorch로 처음부터 구현하면서 토크나이저·데이터로더 작성(2장)부터 Attention 구현(3장), GPT 아키텍처 조립(4장), 사전학습(5장), 분류 파인튜닝(6장), 지시 미세튜닝(7장)까지를 다룹니다. 이 시리즈의 04–09장은 이 책의 장 구성과 대략 대응하므로, 코드를 직접 실행하며 따라가고 싶다면 함께 참고할 수 있습니다.
 
 다음 장에서는 Attention 계산의 기반이 되는 벡터 내적과 Softmax, 그리고 신경망 학습의 언어인 KL Divergence를 최소한의 수학으로 정리합니다.

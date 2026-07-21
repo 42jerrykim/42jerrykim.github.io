@@ -65,7 +65,7 @@ image: poster.png
 * **개봉일**: 2025.10.06 (LA 프리미어), 2025.10.10 (미국)
 * **제작사**: Walt Disney Pictures
 * **배급사**: Walt Disney Studios Motion Pictures
-* **제작비(보도치)**: 약 1억 8천만~2억 2천만 달러
+* **제작비(보도치)**: 약 1억 8천만–2억 2천만 달러
 * **월드 박스오피스(보도치)**: 약 1억 4,220만 달러
 * **평점(참고)**: Rotten Tomatoes 53% / Metacritic 48 / CinemaScore B+
 

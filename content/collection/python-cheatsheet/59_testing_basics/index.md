@@ -45,7 +45,7 @@ tags:
 
 ## 핵심 패턴
 
-- 테스트는 **AAA(Arrange-Act-Assert)**로 읽기 쉽게
+- 테스트는 <strong>AAA(Arrange-Act-Assert)</strong>로 읽기 쉽게
 - 가능하면 “순수 함수/의존성 분리”로 테스트하기 쉬운 구조 만들기
 - mock은 마지막 수단(행동 검증이 필요할 때만 최소로)
 

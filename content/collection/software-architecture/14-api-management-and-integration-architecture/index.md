@@ -224,7 +224,7 @@ stateDiagram-v2
 
 ### Semantic Versioning과 호환성 전략
 
-API는 한 번 공개되면 클라이언트 코드가 그 계약에 의존하기 시작하므로, 필드 하나를 지우거나 이름을 바꾸는 사소해 보이는 변경도 하위 호환성을 깨뜨릴 수 있다. **Semantic Versioning(SemVer)**은 Tom Preston-Werner(GitHub 공동 창업자)가 제안한 버전 표기 규칙으로, 다음과 같이 요약된다.
+API는 한 번 공개되면 클라이언트 코드가 그 계약에 의존하기 시작하므로, 필드 하나를 지우거나 이름을 바꾸는 사소해 보이는 변경도 하위 호환성을 깨뜨릴 수 있다. <strong>Semantic Versioning(SemVer)</strong>은 Tom Preston-Werner(GitHub 공동 창업자)가 제안한 버전 표기 규칙으로, 다음과 같이 요약된다.
 
 > "Increment the: MAJOR version when you make incompatible API changes; MINOR version when you add functionality in a backward compatible manner; PATCH version when you make backward compatible bug fixes."
 > — Tom Preston-Werner, 『Semantic Versioning 2.0.0』, [semver.org](https://semver.org/)
@@ -233,7 +233,7 @@ API는 한 번 공개되면 클라이언트 코드가 그 계약에 의존하기
 
 ### OpenAPI를 통한 문서화와 거버넌스
 
-**OpenAPI Specification(OAS)**은 REST API의 엔드포인트·요청·응답 스키마를 기계가 읽을 수 있는 형식으로 기술하는 표준이다. 이 표준의 뿌리는 2010년 Tony Tam이 Wordnik에서 시작한 Swagger 사양이며, 2015년 3월 SmartBear가 이를 인수한 뒤 같은 해 11월 5일 Google·IBM·Microsoft·PayPal 등과 함께 리눅스 재단 산하 OpenAPI Initiative를 결성하면서 사양이 리눅스 재단에 기증되고 2016년 1월 "OpenAPI Specification"으로 이름이 바뀌었다(OpenAPI Initiative, [openapis.org](https://www.openapis.org/)). 공식 사이트는 이 표준을 "the world's most widely used API description standard"라고 설명한다.
+<strong>OpenAPI Specification(OAS)</strong>은 REST API의 엔드포인트·요청·응답 스키마를 기계가 읽을 수 있는 형식으로 기술하는 표준이다. 이 표준의 뿌리는 2010년 Tony Tam이 Wordnik에서 시작한 Swagger 사양이며, 2015년 3월 SmartBear가 이를 인수한 뒤 같은 해 11월 5일 Google·IBM·Microsoft·PayPal 등과 함께 리눅스 재단 산하 OpenAPI Initiative를 결성하면서 사양이 리눅스 재단에 기증되고 2016년 1월 "OpenAPI Specification"으로 이름이 바뀌었다(OpenAPI Initiative, [openapis.org](https://www.openapis.org/)). 공식 사이트는 이 표준을 "the world's most widely used API description standard"라고 설명한다.
 
 ```yaml
 openapi: 3.0.3
@@ -278,18 +278,18 @@ components:
 
 ### 발행-구독과 브로커의 내부 동작
 
-동기 API 호출은 호출자가 응답을 받을 때까지 기다려야 하므로 호출자와 피호출자가 시간적으로 결합된다. **메시징(messaging)**은 이 결합을 끊는다. Gregor Hohpe와 Bobby Woolf는 2003년 저서 『Enterprise Integration Patterns』에서 65개의 통합 패턴을 정리하며 이 접근을 다음과 같이 설명한다.
+동기 API 호출은 호출자가 응답을 받을 때까지 기다려야 하므로 호출자와 피호출자가 시간적으로 결합된다. <strong>메시징(messaging)</strong>은 이 결합을 끊는다. Gregor Hohpe와 Bobby Woolf는 2003년 저서 『Enterprise Integration Patterns』에서 65개의 통합 패턴을 정리하며 이 접근을 다음과 같이 설명한다.
 
 > "A pattern language consisting of 65 integration patterns helps developers design and build distributed applications or integrate existing ones."
 > — Gregor Hohpe, Bobby Woolf, 『Enterprise Integration Patterns』(Addison-Wesley, 2003), [enterpriseintegrationpatterns.com](https://www.enterpriseintegrationpatterns.com/)
 
 이 책에서 정리한 **발행-구독(Publish-Subscribe)** 패턴은 발행자가 특정 수신자를 지정하지 않고 이벤트를 채널에 발행하면, 그 채널을 구독하는 여러 소비자가 각자 독립적으로 이벤트를 받아 처리하는 구조다. Apache Kafka는 이 패턴을 대규모로 구현한 대표적인 메시지 브로커로, 공식 문서는 스스로를 "an event streaming platform"으로 정의한다(Apache Kafka 공식 문서, [kafka.apache.org/intro](https://kafka.apache.org/intro)). Kafka는 LinkedIn에서 Jay Kreps, Neha Narkhede, Jun Rao가 2010년 무렵부터 개발해 2011년 초 오픈소스로 공개했고, 2012년 10월 Apache 인큐베이터를 졸업했다. Jay Kreps는 "쓰기에 최적화된 시스템"이라는 의미로 프란츠 카프카(Franz Kafka)의 이름을 땄다고 알려져 있다.
 
-Kafka의 메커니즘을 이해하려면 토픽·파티션·컨슈머 그룹의 관계를 알아야 한다. 하나의 **토픽(topic)**은 여러 **파티션(partition)**으로 나뉘고, 각 파티션은 메시지가 도착한 순서대로만 추가되는 로그(append-only log)다. 파티션 안에서는 순서가 보장되지만 토픽 전체의 순서는 보장되지 않는데, 이는 파티션 단위로 병렬 처리를 하기 위한 의도적인 설계다. 여러 컨슈머가 하나의 **컨슈머 그룹(consumer group)**을 이루면 Kafka는 그룹 안의 컨슈머들에게 파티션을 하나씩 배타적으로 할당해, 같은 파티션의 메시지를 그룹 안에서 딱 하나의 컨슈머만 소비하도록 보장한다. 컨슈머가 죽거나 새로 추가되면 파티션 재할당(rebalance)이 일어난다.
+Kafka의 메커니즘을 이해하려면 토픽·파티션·컨슈머 그룹의 관계를 알아야 한다. 하나의 <strong>토픽(topic)</strong>은 여러 <strong>파티션(partition)</strong>으로 나뉘고, 각 파티션은 메시지가 도착한 순서대로만 추가되는 로그(append-only log)다. 파티션 안에서는 순서가 보장되지만 토픽 전체의 순서는 보장되지 않는데, 이는 파티션 단위로 병렬 처리를 하기 위한 의도적인 설계다. 여러 컨슈머가 하나의 <strong>컨슈머 그룹(consumer group)</strong>을 이루면 Kafka는 그룹 안의 컨슈머들에게 파티션을 하나씩 배타적으로 할당해, 같은 파티션의 메시지를 그룹 안에서 딱 하나의 컨슈머만 소비하도록 보장한다. 컨슈머가 죽거나 새로 추가되면 파티션 재할당(rebalance)이 일어난다.
 
 ### 신뢰성 있는 메시지 처리: 멱등성과 Dead Letter Queue
 
-**흔한 오개념: "메시지 큐를 쓰면 메시지가 정확히 한 번(exactly-once)만 처리된다"**. 대부분의 메시지 브로커는 기본적으로 최소 한 번(at-least-once) 전달을 보장한다 — 컨슈머가 메시지를 처리했지만 브로커에 확인 응답(ack)을 보내기 전에 죽으면, 브로커는 그 메시지를 다시 전달한다. 즉 같은 메시지가 두 번 처리될 가능성이 항상 존재하며, 이를 막으려면 컨슈머 스스로 **멱등성(idempotency)**을 구현해야 한다.
+**흔한 오개념: "메시지 큐를 쓰면 메시지가 정확히 한 번(exactly-once)만 처리된다"**. 대부분의 메시지 브로커는 기본적으로 최소 한 번(at-least-once) 전달을 보장한다 — 컨슈머가 메시지를 처리했지만 브로커에 확인 응답(ack)을 보내기 전에 죽으면, 브로커는 그 메시지를 다시 전달한다. 즉 같은 메시지가 두 번 처리될 가능성이 항상 존재하며, 이를 막으려면 컨슈머 스스로 <strong>멱등성(idempotency)</strong>을 구현해야 한다.
 
 ```java
 // 메시지 ID를 저장소에 기록해 같은 메시지가 재전달돼도 한 번만 부작용을 낸다
@@ -312,7 +312,7 @@ public class IdempotentOrderEventHandler {
 }
 ```
 
-`setIfAbsent`가 원자적으로 "키가 없을 때만 쓰기"를 수행하므로, 같은 메시지가 동시에 두 스레드에 재전달돼도 재고 예약은 한 번만 일어난다. 그럼에도 컨슈머가 재시도 끝에 계속 실패하는 메시지는 **Dead Letter Queue(DLQ)**로 옮겨 별도로 관찰·재처리한다. DLQ가 없으면 처리 불가능한 메시지 하나가 큐 앞단에 남아 뒤따르는 정상 메시지까지 막는(head-of-line blocking) 문제가 생길 수 있다.
+`setIfAbsent`가 원자적으로 "키가 없을 때만 쓰기"를 수행하므로, 같은 메시지가 동시에 두 스레드에 재전달돼도 재고 예약은 한 번만 일어난다. 그럼에도 컨슈머가 재시도 끝에 계속 실패하는 메시지는 <strong>Dead Letter Queue(DLQ)</strong>로 옮겨 별도로 관찰·재처리한다. DLQ가 없으면 처리 불가능한 메시지 하나가 큐 앞단에 남아 뒤따르는 정상 메시지까지 막는(head-of-line blocking) 문제가 생길 수 있다.
 
 ```mermaid
 flowchart LR
@@ -325,13 +325,13 @@ flowchart LR
 
 ### 이벤트 소싱과 CQRS의 연결
 
-이벤트 기반 통합은 단순히 서비스 간 알림을 넘어, 상태 변경 자체를 이벤트로 기록하는 이벤트 소싱과 자연스럽게 맞물린다. 도메인 이벤트가 발생하면 이벤트 스토어에 append하고, 조회 전용 Read Model을 그 이벤트로 갱신한 뒤, 같은 이벤트를 메시지 브로커로도 발행해 다른 바운디드 컨텍스트에 전파하는 구조가 일반적이다. 이때 명령을 처리하는 모델과 조회를 처리하는 모델을 분리하는 **CQRS(Command Query Responsibility Segregation)**를 함께 적용하면, 조회 성능 최적화와 이벤트 전파가 같은 파이프라인 위에서 자연스럽게 이뤄진다. 이 주제의 도메인 모델링 측면은 [10장 DDD 전술적 설계](/post/software-architecture/ddd-tactical-design/)에서 더 깊이 다룬다.
+이벤트 기반 통합은 단순히 서비스 간 알림을 넘어, 상태 변경 자체를 이벤트로 기록하는 이벤트 소싱과 자연스럽게 맞물린다. 도메인 이벤트가 발생하면 이벤트 스토어에 append하고, 조회 전용 Read Model을 그 이벤트로 갱신한 뒤, 같은 이벤트를 메시지 브로커로도 발행해 다른 바운디드 컨텍스트에 전파하는 구조가 일반적이다. 이때 명령을 처리하는 모델과 조회를 처리하는 모델을 분리하는 <strong>CQRS(Command Query Responsibility Segregation)</strong>를 함께 적용하면, 조회 성능 최적화와 이벤트 전파가 같은 파이프라인 위에서 자연스럽게 이뤄진다. 이 주제의 도메인 모델링 측면은 [10장 DDD 전술적 설계](/post/software-architecture/ddd-tactical-design/)에서 더 깊이 다룬다.
 
 ## 엔터프라이즈 서비스 버스(ESB)와 그 이후
 
 ### 역사와 메커니즘
 
-**엔터프라이즈 서비스 버스(ESB)**라는 용어는 2002년 무렵 Gartner의 애널리스트 Roy Schulte가 시장에 등장한 미들웨어 제품군을 묘사하며 정착시켰다고 알려져 있으며, Schulte 자신은 이 개념에 가장 가까운 조상으로 Candle의 Roma 제품(1998)을 꼽고, "ESB"라는 표현 자체를 처음 쓴 제품은 Sonic Software가 2002년 출시했다고 밝힌 바 있다. ESB는 서로 다른 프로토콜(SOAP, JMS, 파일, 레거시 메인프레임 인터페이스 등)과 데이터 형식을 쓰는 시스템들을 하나의 중앙 버스에 연결해, 메시지 라우팅과 형식 변환을 그 버스 안에서 처리하는 아키텍처다. 메커니즘은 메시지 라우터가 도착한 메시지의 유형을 보고 적절한 변환기(transformer)를 거쳐 목적지로 전달하는 방식으로 동작한다.
+<strong>엔터프라이즈 서비스 버스(ESB)</strong>라는 용어는 2002년 무렵 Gartner의 애널리스트 Roy Schulte가 시장에 등장한 미들웨어 제품군을 묘사하며 정착시켰다고 알려져 있으며, Schulte 자신은 이 개념에 가장 가까운 조상으로 Candle의 Roma 제품(1998)을 꼽고, "ESB"라는 표현 자체를 처음 쓴 제품은 Sonic Software가 2002년 출시했다고 밝힌 바 있다. ESB는 서로 다른 프로토콜(SOAP, JMS, 파일, 레거시 메인프레임 인터페이스 등)과 데이터 형식을 쓰는 시스템들을 하나의 중앙 버스에 연결해, 메시지 라우팅과 형식 변환을 그 버스 안에서 처리하는 아키텍처다. 메커니즘은 메시지 라우터가 도착한 메시지의 유형을 보고 적절한 변환기(transformer)를 거쳐 목적지로 전달하는 방식으로 동작한다.
 
 ```java
 // 메시지 라우터: 도착한 메시지 유형에 따라 변환기를 거쳐 적절한 핸들러로 전달
@@ -391,7 +391,7 @@ public class MessageTransformer {
 
 ### Change Data Capture와 배치 동기화
 
-시스템 간 데이터를 맞추는 방법에는 애플리케이션이 명시적으로 이벤트를 발행하는 방식 외에, 데이터베이스의 변경 이력 자체를 이벤트로 변환하는 **Change Data Capture(CDC)**가 있다. 이 방식은 애플리케이션 코드가 이벤트 발행을 잊어버려도(예: 관리자가 DB를 직접 수정한 경우) 변경이 누락 없이 전파된다는 장점이 있고, 트랜잭션 커밋 이후 시점에 이벤트를 발행하므로 "DB에는 반영됐는데 이벤트는 유실됐다"는 이중 쓰기 문제를 피할 수 있다.
+시스템 간 데이터를 맞추는 방법에는 애플리케이션이 명시적으로 이벤트를 발행하는 방식 외에, 데이터베이스의 변경 이력 자체를 이벤트로 변환하는 <strong>Change Data Capture(CDC)</strong>가 있다. 이 방식은 애플리케이션 코드가 이벤트 발행을 잊어버려도(예: 관리자가 DB를 직접 수정한 경우) 변경이 누락 없이 전파된다는 장점이 있고, 트랜잭션 커밋 이후 시점에 이벤트를 발행하므로 "DB에는 반영됐는데 이벤트는 유실됐다"는 이중 쓰기 문제를 피할 수 있다.
 
 ```java
 // 트랜잭션 커밋 이후에만 이벤트를 발행해, DB 반영과 이벤트 발행이

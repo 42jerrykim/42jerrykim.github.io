@@ -83,7 +83,7 @@ const removeTodo = (state, idToRemove) => state.filter((todo) => todo.id !== idT
 
 ## reduce: 배열을 하나의 값으로 접는다
 
-`reduce()`는 배열의 모든 요소를 순회하며 **누적값(accumulator)**을 만들어 갑니다. 이름 그대로 Redux의 "Reducer"라는 개념과 정확히 같은 발상입니다.
+`reduce()`는 배열의 모든 요소를 순회하며 <strong>누적값(accumulator)</strong>을 만들어 갑니다. 이름 그대로 Redux의 "Reducer"라는 개념과 정확히 같은 발상입니다.
 
 ```javascript
 const prices = [1000, 2000, 1500];
@@ -161,7 +161,7 @@ const updated2 = { ...todo, done: true };
 
 ## 원본을 바꾸는 메서드는 리듀서에서 쓰지 않는다
 
-JavaScript 배열 메서드 중 일부는 **원본을 직접 변경(mutate)**합니다. Redux 리듀서 안에서는 이런 메서드를 쓰면 안 됩니다.
+JavaScript 배열 메서드 중 일부는 <strong>원본을 직접 변경(mutate)</strong>합니다. Redux 리듀서 안에서는 이런 메서드를 쓰면 안 됩니다.
 
 | 원본을 바꾸는 메서드(리듀서에서 금지) | 새 배열/값을 반환하는 메서드(리듀서에서 사용) |
 |---|---|

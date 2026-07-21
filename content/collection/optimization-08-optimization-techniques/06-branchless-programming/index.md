@@ -113,11 +113,11 @@ g++ -std=c++20 -O1 -fsanitize=undefined -fno-sanitize-recover=undefined test_bra
 
 ## 흔한 오개념
 
-**"if를 삼항 연산자나 비트마스크로 바꾸면 무조건 branchless 코드가 된다"**는 틀린 생각입니다. 앞서 보았듯 삼항 연산자의 코드 생성 결과는 컴파일러 백엔드의 판단에 달려 있고, 실제로 CMOV가 나왔는지는 어셈블리(objdump, 컴파일러 탐색기)로 확인해야 합니다. 소스 수준의 형태와 생성된 명령어는 다른 것입니다.
+<strong>"if를 삼항 연산자나 비트마스크로 바꾸면 무조건 branchless 코드가 된다"</strong>는 틀린 생각입니다. 앞서 보았듯 삼항 연산자의 코드 생성 결과는 컴파일러 백엔드의 판단에 달려 있고, 실제로 CMOV가 나왔는지는 어셈블리(objdump, 컴파일러 탐색기)로 확인해야 합니다. 소스 수준의 형태와 생성된 명령어는 다른 것입니다.
 
-**"branchless가 항상 더 빠르다"**도 사실이 아닙니다. CMOV는 조건과 무관하게 두 값을 모두 준비해야 하므로 데이터 의존 사슬(dependency chain)이 길어지는 대가를 치릅니다. 분기가 실제로 예측하기 쉬운 데이터(정렬된 배열, 편향된 분포)를 다룬다면, 예측이 거의 항상 맞는 조건 분기가 매 순간 두 값을 다 계산하는 CMOV보다 오히려 빠를 수 있습니다. 실무 경험칙으로는 분기 예측 성공률이 충분히 높으면 조건 분기가, 예측이 자주 틀리면 CMOV/비트마스크 쪽이 유리한 경향이 있다고 보고되지만, 정확한 임계값은 마이크로아키텍처와 코드 문맥에 따라 달라지므로 실측이 필요합니다.
+<strong>"branchless가 항상 더 빠르다"</strong>도 사실이 아닙니다. CMOV는 조건과 무관하게 두 값을 모두 준비해야 하므로 데이터 의존 사슬(dependency chain)이 길어지는 대가를 치릅니다. 분기가 실제로 예측하기 쉬운 데이터(정렬된 배열, 편향된 분포)를 다룬다면, 예측이 거의 항상 맞는 조건 분기가 매 순간 두 값을 다 계산하는 CMOV보다 오히려 빠를 수 있습니다. 실무 경험칙으로는 분기 예측 성공률이 충분히 높으면 조건 분기가, 예측이 자주 틀리면 CMOV/비트마스크 쪽이 유리한 경향이 있다고 보고되지만, 정확한 임계값은 마이크로아키텍처와 코드 문맥에 따라 달라지므로 실측이 필요합니다.
 
-**"`__builtin_expect`나 `[[likely]]`를 쓰면 branchless가 된다"**는 것도 흔한 혼동입니다. GCC 문서는 `__builtin_expect`를 다음과 같이 설명합니다.
+<strong>"`__builtin_expect`나 `[[likely]]`를 쓰면 branchless가 된다"</strong>는 것도 흔한 혼동입니다. GCC 문서는 `__builtin_expect`를 다음과 같이 설명합니다.
 
 > "The semantics of the built-in are that it is expected that exp == c." 그리고 "the probability that a `__builtin_expect` expression is `true` is controlled by GCC's `builtin-expect-probability` parameter, which defaults to 90%." — [GCC Other Builtins 문서](https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html)
 

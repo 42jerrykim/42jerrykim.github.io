@@ -52,7 +52,7 @@ tags:
 image: "wordcloud.png"
 ---
 
-`chmod`는 **권한(퍼미션)**을, `chown`은 **소유자·그룹**을 바꾼다. 보안·배포 시 자주 쓴다.
+`chmod`는 <strong>권한(퍼미션)</strong>을, `chown`은 **소유자·그룹**을 바꾼다. 보안·배포 시 자주 쓴다.
 
 ---
 

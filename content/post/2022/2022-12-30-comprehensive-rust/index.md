@@ -247,7 +247,7 @@ flowchart TB
 - **Day 1**: Rust가 무엇인지, 왜 쓰는지(Why Rust), 기본 문법과 변수·메모리·소유권을 다룬다. Rust의 차별점인 **Ownership**을 처음 접하는 구간이다.
 - **Day 2**: Structs, Enums, Methods, Pattern Matching으로 데이터 모델링과 제어 흐름을, Afternoon에서는 제어문·표준 라이브러리·모듈로 코드 구조화를 배운다.
 - **Day 3**: Traits·Generics로 추상화와 재사용을, Afternoon에서는 **에러 처리·테스트·Unsafe Rust**로 실무에서 자주 마주치는 주제를 다룬다.
-- **Day 4**: **동시성(Concurrency)**과 **Android**에서의 Rust 활용을 소개하고, Final Words에서 감사·추가 자료·Credits로 마친다.
+- **Day 4**: <strong>동시성(Concurrency)</strong>과 **Android**에서의 Rust 활용을 소개하고, Final Words에서 감사·추가 자료·Credits로 마친다.
 
 ---
 
@@ -364,7 +364,7 @@ flowchart TB
 
 ## 참고 문헌
 
-1. [Comprehensive Rust — Google GitHub](https://google.github.io/comprehensive-rust/) — 공식 강의 사이트(Welcome·Day 1~4·Final Words).
+1. [Comprehensive Rust — Google GitHub](https://google.github.io/comprehensive-rust/) — 공식 강의 사이트(Welcome·Day 1–4·Final Words).
 2. [google/comprehensive-rust — GitHub](https://github.com/google/comprehensive-rust) — 소스·기여·이슈·번역 정보.
 3. [The Rust Programming Language — rust-lang.org](https://www.rust-lang.org/learn) — 공식 학습 경로·책·문서.
 4. [Rust by Example](https://doc.rust-lang.org/rust-by-example/) — 예제 중심 공식 문서.

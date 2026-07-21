@@ -37,7 +37,7 @@ tags:
   - Refactoring(리팩토링)
 ---
 
-SOLID의 첫 번째 원칙인 **SRP(Single Responsibility Principle)**는 가장 이해하기 쉬워 보이지만, 가장 많이 오해받는 원칙이기도 하다. "클래스는 하나의 일만 해야 한다"라는 설명은 SRP의 의미를 왜곡한다.
+SOLID의 첫 번째 원칙인 <strong>SRP(Single Responsibility Principle)</strong>는 가장 이해하기 쉬워 보이지만, 가장 많이 오해받는 원칙이기도 하다. "클래스는 하나의 일만 해야 한다"라는 설명은 SRP의 의미를 왜곡한다.
 
 ## 흔한 오해
 
@@ -55,7 +55,7 @@ SOLID의 첫 번째 원칙인 **SRP(Single Responsibility Principle)**는 가장
 
 > **"모듈은 하나의, 오직 하나의 액터에 대해서만 책임져야 한다."**
 
-여기서 **액터(Actor)**란 그 모듈의 변경을 요청하는 **사람들의 집단**이다.
+여기서 <strong>액터(Actor)</strong>란 그 모듈의 변경을 요청하는 **사람들의 집단**이다.
 
 ## 액터(Actor)란?
 
@@ -248,7 +248,7 @@ flowchart TB
 
 ### 퍼사드 패턴
 
-클래스가 너무 많아지면 **퍼사드(Facade)**를 사용한다:
+클래스가 너무 많아지면 <strong>퍼사드(Facade)</strong>를 사용한다:
 
 ```java
 // 퍼사드 - 여러 클래스를 하나의 인터페이스로
@@ -292,7 +292,7 @@ public class EmployeeFacade {
 
 ### SRP와의 관계
 
-SRP는 Conway's Law의 **역(inverse)**이라고 볼 수 있다:
+SRP는 Conway's Law의 <strong>역(inverse)</strong>이라고 볼 수 있다:
 
 - **Conway's Law**: 조직 구조 → 소프트웨어 구조
 - **SRP**: 소프트웨어 구조 → 조직 구조에 맞춰야 함
@@ -367,7 +367,7 @@ SRP는 클래스뿐 아니라 **컴포넌트** 수준에서도 적용된다 — 
 | 클래스/모듈 | SRP | 하나의 액터에게만 책임 |
 | 컴포넌트 | CCP | 같은 이유로 변경되는 것들을 묶음 |
 
-다음 파트에서 다룰 **공통 폐쇄 원칙(CCP)**은 컴포넌트 수준의 SRP라고 볼 수 있다.
+다음 파트에서 다룰 <strong>공통 폐쇄 원칙(CCP)</strong>은 컴포넌트 수준의 SRP라고 볼 수 있다.
 
 ## 핵심 요약
 

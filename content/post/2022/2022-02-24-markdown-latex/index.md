@@ -69,7 +69,7 @@ title: "[Tutorial] Markdown·Jekyll에서 LaTeX(MathJax)로 수식 작성하기"
 
 ## 도입: 왜 웹에서 수식인가
 
-수학자 전용이 아니더라도, 분수·제곱근·행렬처럼 **수식으로 표현해야 읽기 좋은 내용**은 블로그·기술 문서·교육 자료에 자주 등장한다. 본문만으로는 한계가 있으므로 **표기법(마크업)**과 **렌더링 엔진**을 조합해 웹 페이지에 수식을 넣는 방법을 익혀 두는 것이 유용하다. 이 글에서는 **Markdown·Jekyll** 환경에서 **LaTeX** 문법과 **MathJax**를 사용해 수식을 작성·표시하는 절차와 문법 요약, 사용 시 판단 기준을 다룬다.
+수학자 전용이 아니더라도, 분수·제곱근·행렬처럼 **수식으로 표현해야 읽기 좋은 내용**은 블로그·기술 문서·교육 자료에 자주 등장한다. 본문만으로는 한계가 있으므로 <strong>표기법(마크업)</strong>과 **렌더링 엔진**을 조합해 웹 페이지에 수식을 넣는 방법을 익혀 두는 것이 유용하다. 이 글에서는 **Markdown·Jekyll** 환경에서 **LaTeX** 문법과 **MathJax**를 사용해 수식을 작성·표시하는 절차와 문법 요약, 사용 시 판단 기준을 다룬다.
 
 ---
 
@@ -77,7 +77,7 @@ title: "[Tutorial] Markdown·Jekyll에서 LaTeX(MathJax)로 수식 작성하기"
 
 문서를 조판할 때 문자·도형·수식을 조합해 표현하는 체계 중 하나가 **LaTeX**(레이텍·라텍)이다. LaTeX을 쓰면 수식이 포함된 문서를 정돈되게 만들 수 있어, 수리·과학 분야 논문 작성에 널리 쓰인다. **MathJax**는 LaTeX, MathML, AsciiMath 같은 **표기법**을 받아 웹에서 **수식으로 렌더링**해 주는 오픈소스 **JavaScript 엔진**이다. Markdown으로 글을 쓰고 Jekyll 등으로 HTML을 만드는 것처럼, 수식은 LaTeX 표기로 작성한 뒤 MathJax가 해당 문자열을 찾아 수식으로 바꿔 준다.
 
-요약하면, **표기법(무엇을 쓸지)**과 **렌더링 엔진(누가 그걸 그려 줄지)**을 구분해서 이해하면 된다. 게시글은 Markdown·Kramdown 등으로 쓰고 Jekyll·Hugo 등으로 HTML을 만들며, 수식은 LaTeX·MathML 등으로 쓰고 MathJax 등으로 브라우저에 그리게 된다.
+요약하면, <strong>표기법(무엇을 쓸지)</strong>과 <strong>렌더링 엔진(누가 그걸 그려 줄지)</strong>을 구분해서 이해하면 된다. 게시글은 Markdown·Kramdown 등으로 쓰고 Jekyll·Hugo 등으로 HTML을 만들며, 수식은 LaTeX·MathML 등으로 쓰고 MathJax 등으로 브라우저에 그리게 된다.
 
 아래 다이어그램은 **표기법과 렌더링 엔진의 대응 관계**를 한눈에 보여 준다.
 
@@ -178,7 +178,7 @@ $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
 
 ## Cheat Sheet와 추가 참고
 
-LaTeX 수식 명령어를 자주 잊는다면 **요약 문서(Cheat Sheet)**를 옆에 두는 것이 좋다. 공식 문서의 [Writing mathematics for MathJax](https://docs.mathjax.org/en/latest/basic/mathematics.html)와 [TeX and LaTeX Support](https://docs.mathjax.org/en/latest/input/tex/index.html)에 입력 문법이 정리되어 있으며, 기호를 그리면 LaTeX 명령을 추천해 주는 [Detexify](https://detexify.kirelabs.org/classify.html)도 유용하다. (과거에 쓰이던 Google Drive 치트시트 링크는 접근 불가 시 공식 문서로 대체하는 것을 권장한다.)
+LaTeX 수식 명령어를 자주 잊는다면 <strong>요약 문서(Cheat Sheet)</strong>를 옆에 두는 것이 좋다. 공식 문서의 [Writing mathematics for MathJax](https://docs.mathjax.org/en/latest/basic/mathematics.html)와 [TeX and LaTeX Support](https://docs.mathjax.org/en/latest/input/tex/index.html)에 입력 문법이 정리되어 있으며, 기호를 그리면 LaTeX 명령을 추천해 주는 [Detexify](https://detexify.kirelabs.org/classify.html)도 유용하다. (과거에 쓰이던 Google Drive 치트시트 링크는 접근 불가 시 공식 문서로 대체하는 것을 권장한다.)
 
 ---
 

@@ -56,7 +56,7 @@ tags:
 
 ## 고전파: 테스트 대상 객체만 격리하면 된다
 
-**고전파(classicist)**는 Kent Beck이 정리한 전통적인 TDD 스타일에 뿌리를 둡니다. 고전파의 관점에서 "격리"란 **테스트 케이스끼리 서로 영향을 주지 않는 것**을 의미합니다. 테스트 대상 코드가 협력 객체(collaborator)를 실제로 호출하는 것은 문제가 아닙니다. 협력 객체가 데이터베이스나 외부 API 같은 **프로세스 외부 의존성**이 아니라면, 실제 객체를 그대로 사용해도 괜찮다고 봅니다.
+<strong>고전파(classicist)</strong>는 Kent Beck이 정리한 전통적인 TDD 스타일에 뿌리를 둡니다. 고전파의 관점에서 "격리"란 **테스트 케이스끼리 서로 영향을 주지 않는 것**을 의미합니다. 테스트 대상 코드가 협력 객체(collaborator)를 실제로 호출하는 것은 문제가 아닙니다. 협력 객체가 데이터베이스나 외부 API 같은 **프로세스 외부 의존성**이 아니라면, 실제 객체를 그대로 사용해도 괜찮다고 봅니다.
 
 ```python
 class DiscountCalculator:
@@ -78,11 +78,11 @@ def test_total_price_applies_discount():
     assert pricer.total_price(10000, 0.1) == 9000
 ```
 
-고전파는 `DiscountCalculator`가 순수 계산 로직(프로세스 외부 의존성 없음)이므로 목으로 대체할 이유가 없다고 봅니다. **여러 클래스가 협력하는 결과를 함께 검증**하는 셈이며, 이렇게 하면 "단위"는 실질적으로 하나의 클래스가 아니라 **하나의 동작(behavior)**에 더 가까워집니다.
+고전파는 `DiscountCalculator`가 순수 계산 로직(프로세스 외부 의존성 없음)이므로 목으로 대체할 이유가 없다고 봅니다. **여러 클래스가 협력하는 결과를 함께 검증**하는 셈이며, 이렇게 하면 "단위"는 실질적으로 하나의 클래스가 아니라 <strong>하나의 동작(behavior)</strong>에 더 가까워집니다.
 
 ## 런던파: 테스트 대상과 협력하는 모든 것을 격리한다
 
-**런던파(mockist)**는 Steve Freeman과 Nat Pryce가 저서에서 정리한 스타일입니다. 런던파의 관점에서 "격리"란 **테스트 대상 클래스를 협력 객체로부터도 완전히 분리**하는 것을 의미합니다. 협력 객체는 프로세스 외부 의존성 여부와 관계없이 전부 목으로 대체합니다.
+<strong>런던파(mockist)</strong>는 Steve Freeman과 Nat Pryce가 저서에서 정리한 스타일입니다. 런던파의 관점에서 "격리"란 **테스트 대상 클래스를 협력 객체로부터도 완전히 분리**하는 것을 의미합니다. 협력 객체는 프로세스 외부 의존성 여부와 관계없이 전부 목으로 대체합니다.
 
 ```python
 from unittest.mock import Mock
@@ -100,7 +100,7 @@ def test_total_price_calls_discount_calculator():
     mock_calculator.calculate.assert_called_once_with(10000, 0.1)
 ```
 
-이 방식은 두 가지를 얻습니다. 첫째, `OrderPricer`가 실패하면 원인이 `OrderPricer` 안에만 있다고 확신할 수 있습니다(고전파 방식에서는 `DiscountCalculator`의 버그도 `OrderPricer` 테스트를 깨뜨릴 수 있습니다). 둘째, 협력 객체 간의 **상호작용(어떤 메서드를 어떤 인자로 호출했는지)**을 직접 검증할 수 있습니다.
+이 방식은 두 가지를 얻습니다. 첫째, `OrderPricer`가 실패하면 원인이 `OrderPricer` 안에만 있다고 확신할 수 있습니다(고전파 방식에서는 `DiscountCalculator`의 버그도 `OrderPricer` 테스트를 깨뜨릴 수 있습니다). 둘째, 협력 객체 간의 <strong>상호작용(어떤 메서드를 어떤 인자로 호출했는지)</strong>을 직접 검증할 수 있습니다.
 
 ## 두 학파의 실질적 차이
 

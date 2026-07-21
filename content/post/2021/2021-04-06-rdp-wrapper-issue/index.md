@@ -70,11 +70,11 @@ tags:
 
 ## 문제 상황
 
-Windows 10 Pro 20H2에 RDP Wrapper를 설치한 뒤 **RDPConf**를 실행하면, 상태가 **\[not supported\]**로 표시되는 경우가 있습니다.
+Windows 10 Pro 20H2에 RDP Wrapper를 설치한 뒤 **RDPConf**를 실행하면, 상태가 <strong>\[not supported\]</strong>로 표시되는 경우가 있습니다.
 
 ![RDP Wrapper not supported 상태](https://user-images.githubusercontent.com/11385249/112481810-73097380-8d88-11eb-90ae-27adaa456182.png)
 
-이때는 원격 데스크톱 다중 세션 기능을 사용할 수 없습니다. 아래와 같이 **Listener state**가 붉은색으로 **\[not supported\]**인지 먼저 확인합니다.
+이때는 원격 데스크톱 다중 세션 기능을 사용할 수 없습니다. 아래와 같이 **Listener state**가 붉은색으로 <strong>\[not supported\]</strong>인지 먼저 확인합니다.
 
 ![RDPConf Listener state not supported](https://user-images.githubusercontent.com/81416060/112618075-3482c000-8e3f-11eb-874a-9b38e9849e10.png)
 
@@ -146,7 +146,7 @@ flowchart LR
 "%ProgramFiles%\RDP Wrapper\autoupdate.bat"
 ```
 
-실행이 끝나면 **RDPConf**를 다시 열어 **\[not supported\]**가 **\[supported\]**로 바뀌었는지 확인합니다. 필요하면 **재부팅** 후 한 번 더 확인하면 더 안정적입니다.
+실행이 끝나면 **RDPConf**를 다시 열어 <strong>\[not supported\]</strong>가 <strong>\[supported\]</strong>로 바뀌었는지 확인합니다. 필요하면 **재부팅** 후 한 번 더 확인하면 더 안정적입니다.
 
 ---
 
@@ -156,7 +156,7 @@ flowchart LR
 |------|------|
 | **경로** | RDPWrap·autoupdate 파일은 반드시 `%ProgramFiles%\RDP Wrapper`에만 두고, 다른 경로에 중복 설치하지 않습니다. |
 | **권한** | `autoupdate.bat` 및 부팅 시 자동 실행 등록 스크립트는 **관리자 권한**으로 실행해야 합니다. |
-| **Windows 업데이트** | 큰 기능 업데이트(예: 20H2 → 21H1 등) 후에는 **\[not supported\]**가 다시 나올 수 있으므로, 이 경우 위 절차를 다시 수행하거나 autoupdate 커뮤니티 INI를 확인합니다. |
+| **Windows 업데이트** | 큰 기능 업데이트(예: 20H2 → 21H1 등) 후에는 <strong>\[not supported\]</strong>가 다시 나올 수 있으므로, 이 경우 위 절차를 다시 수행하거나 autoupdate 커뮤니티 INI를 확인합니다. |
 
 ---
 

@@ -37,7 +37,7 @@ tags:
 
 # 11. React-Redux 시작하기 - Provider와 connect
 
-07~09편에서 Store를 직접 만들고 흐름을 추적해봤지만, 아직 React 화면과는 연결하지 않았습니다. Store만 있고 화면과 연결하지 않으면, Redux 상태가 바뀌어도 사용자는 아무것도 볼 수 없습니다. 이 편에서는 **React-Redux** 라이브러리로 Store를 실제 컴포넌트와 잇는 첫 단계를 다룹니다.
+07–09편에서 Store를 직접 만들고 흐름을 추적해봤지만, 아직 React 화면과는 연결하지 않았습니다. Store만 있고 화면과 연결하지 않으면, Redux 상태가 바뀌어도 사용자는 아무것도 볼 수 없습니다. 이 편에서는 **React-Redux** 라이브러리로 Store를 실제 컴포넌트와 잇는 첫 단계를 다룹니다.
 
 ## 학습 목표
 
@@ -70,7 +70,7 @@ function App() {
 
 ## connect(): 컴포넌트를 Store에 연결하는 고차 함수
 
-`connect()`는 일반 React 컴포넌트를 받아, Store의 상태와 dispatch에 연결된 **새 컴포넌트**를 반환하는 **고차 컴포넌트(Higher-Order Component)**입니다.
+`connect()`는 일반 React 컴포넌트를 받아, Store의 상태와 dispatch에 연결된 **새 컴포넌트**를 반환하는 <strong>고차 컴포넌트(Higher-Order Component)</strong>입니다.
 
 ```jsx
 import { connect } from "react-redux";

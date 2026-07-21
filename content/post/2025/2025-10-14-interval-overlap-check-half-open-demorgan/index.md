@@ -59,7 +59,7 @@ tags:
 image: "wordcloud.png"
 ---
 
-반복적으로 등장하지만 자주 실수하는 문제 중 하나가 **"두 구간이 겹치는가?"**이다. 스케줄링, 시간 범위, 인덱스 구간, AABB 충돌 등 다양한 맥락에서 쓰인다. 이 글에서는 **반열림 구간 규약**과 **부정(negation)을 통한 단순화**에 집중해, 1차원·2차원 겹침 판별을 안정적으로 유도하고 실무 함정까지 정리한다.
+반복적으로 등장하지만 자주 실수하는 문제 중 하나가 <strong>"두 구간이 겹치는가?"</strong>이다. 스케줄링, 시간 범위, 인덱스 구간, AABB 충돌 등 다양한 맥락에서 쓰인다. 이 글에서는 **반열림 구간 규약**과 **부정(negation)을 통한 단순화**에 집중해, 1차원·2차원 겹침 판별을 안정적으로 유도하고 실무 함정까지 정리한다.
 
 **참고**: 구조적 아이디어와 예시는 [How to check for overlapping intervals (zayenz.se)](https://zayenz.se/blog/post/how-to-check-for-overlapping-intervals/)의 부정 기반 접근을 바탕으로 재구성했다.
 
@@ -244,7 +244,7 @@ def box_overlaps(a, b) -> bool:
 ## 요약
 
 - **반열림** \([start, end)\)을 쓰면 경계 오류가 줄어든다.
-- **"겹치지 않는다"**의 두 경우를 부정한 식이 가장 단순하다: `bStart < aEnd && aStart < bEnd`.
+- <strong>"겹치지 않는다"</strong>의 두 경우를 부정한 식이 가장 단순하다: `bStart < aEnd && aStart < bEnd`.
 - **2D AABB**는 축별 겹침의 AND다.
 - 실무에서는 타임존·부동소수점·빈 구간·입력 검증까지 고려해 방어적으로 구현하는 것이 좋다.
 

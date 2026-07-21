@@ -71,13 +71,13 @@ tags:
 
 ## 표준화 현황과 구현 생태계
 
-P2300은 2024년 6월 St. Louis 회의에서 C++26 작업 초안에 채택되었고([16장](/post/concurrency-optimization/cpp-executors-fundamentals/) 참고), 2026년 3월 23~28일 영국 Croydon 회의에서 C++26의 나머지 국제 코멘트가 모두 해소되며 기술 내용 자체가 확정되었습니다. WG21 의장단의 회의 보고서는 이 시점을 다음과 같이 기록합니다.
+P2300은 2024년 6월 St. Louis 회의에서 C++26 작업 초안에 채택되었고([16장](/post/concurrency-optimization/cpp-executors-fundamentals/) 참고), 2026년 3월 23–28일 영국 Croydon 회의에서 C++26의 나머지 국제 코멘트가 모두 해소되며 기술 내용 자체가 확정되었습니다. WG21 의장단의 회의 보고서는 이 시점을 다음과 같이 기록합니다.
 
 > "We resolved the remaining international comments on the C++26 draft, and are now producing the final document to be sent out for its international approval ballot (Draft International Standard, or DIS) and final editorial work, to be published in the near future by ISO." — [Herb Sutter, "C++26 is done!" — Trip report: March 2026 ISO C++ standards meeting](https://herbsutter.com/2026/03/29/c26-is-done-trip-report-march-2026-iso-c-standards-meeting-london-croydon-uk/)
 
 즉 기술 내용은 고정됐지만 ISO의 정식 국제표준 발간(DIS 투표·편집)은 아직 진행 중입니다. 같은 글에서 저자는 `std::execution`을 "C++의 비동기 모델"이라 부르며 자신의 회사가 이미 프로덕션에서 쓰고 있다고 언급하는 동시에, 문서화 부족과 주변 라이브러리("fingers-and-toes" 생태계, 즉 세세한 실전 도구 모음)의 미비로 다른 C++26 기능보다 도입 난이도가 높다고 지적합니다. 이 평가는 뒤에 나오는 "비판적 시각" 절의 출발점이기도 합니다.
 
-표준 문서([P2300R10: std::execution](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2024/p2300r10.html))가 정의하는 것은 **어휘와 개념적 골격**(스케줄러·센더·리시버 개념, 완료 신호 규약, `then`/`when_all` 같은 알고리즘의 요구 조건)이지, 그 자체로 실행 가능한 단일 구현체가 아닙니다. 실제로 코드를 돌리려면 구현체가 필요하며, 2026년 시점에는 크게 세 갈래가 있습니다. NVIDIA의 **[stdexec](https://github.com/NVIDIA/stdexec)**는 GCC 12+·Clang 16+·MSVC 14.43+·Xcode 16+에서 C++20 이상으로 바로 쓸 수 있는 헤더 전용 레퍼런스 구현이고, `nvexec` 네임스페이스로 `nvc++` 컴파일러 기반 GPU 스케줄러도 제공합니다. Meta의 **libunifex**는 P2300 이전부터 존재해 온 실전 검증된 구현으로 P2300 설계에 큰 영향을 줬습니다. **Beman Project의 execution 라이브러리**는 표준 문서 자체를 그대로 구현하는 것을 목표로 하지만 저장소 스스로 "프로덕션 준비 안 됨"이라고 명시합니다. 반면 GCC·Clang·MSVC의 **표준 라이브러리 자체**(`libstdc++`, `libc++`, MSVC STL)에 `<execution>` 헤더로 `std::execution`이 네이티브로 들어간 상태는 2026년 중반 기준으로 아직 완료되지 않았습니다 — LLVM 프로젝트에는 이를 추적하는 이슈가 여전히 열려 있고, 정확한 지원 시점은 각 컴파일러의 릴리스 노트로 직접 확인해야 하는 **구현 정의** 영역입니다. 이 장의 예제는 실제로 지금 컴파일할 수 있는 stdexec 기준으로 작성합니다.
+표준 문서([P2300R10: std::execution](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2024/p2300r10.html))가 정의하는 것은 **어휘와 개념적 골격**(스케줄러·센더·리시버 개념, 완료 신호 규약, `then`/`when_all` 같은 알고리즘의 요구 조건)이지, 그 자체로 실행 가능한 단일 구현체가 아닙니다. 실제로 코드를 돌리려면 구현체가 필요하며, 2026년 시점에는 크게 세 갈래가 있습니다. NVIDIA의 <strong>[stdexec](https://github.com/NVIDIA/stdexec)</strong>는 GCC 12+·Clang 16+·MSVC 14.43+·Xcode 16+에서 C++20 이상으로 바로 쓸 수 있는 헤더 전용 레퍼런스 구현이고, `nvexec` 네임스페이스로 `nvc++` 컴파일러 기반 GPU 스케줄러도 제공합니다. Meta의 **libunifex**는 P2300 이전부터 존재해 온 실전 검증된 구현으로 P2300 설계에 큰 영향을 줬습니다. **Beman Project의 execution 라이브러리**는 표준 문서 자체를 그대로 구현하는 것을 목표로 하지만 저장소 스스로 "프로덕션 준비 안 됨"이라고 명시합니다. 반면 GCC·Clang·MSVC의 **표준 라이브러리 자체**(`libstdc++`, `libc++`, MSVC STL)에 `<execution>` 헤더로 `std::execution`이 네이티브로 들어간 상태는 2026년 중반 기준으로 아직 완료되지 않았습니다 — LLVM 프로젝트에는 이를 추적하는 이슈가 여전히 열려 있고, 정확한 지원 시점은 각 컴파일러의 릴리스 노트로 직접 확인해야 하는 **구현 정의** 영역입니다. 이 장의 예제는 실제로 지금 컴파일할 수 있는 stdexec 기준으로 작성합니다.
 
 ## 센더/리시버 계약: 완료 신호 3채널과 합성
 
@@ -134,9 +134,9 @@ flowchart LR
 
 ## 흔한 오개념
 
-**"센더 파이프라인을 만들면 그 줄에서 바로 실행이 시작된다"**는 틀렸습니다. `ex::when_all(...) | ex::then(...)`는 그 자체로는 **아직 실행되지 않은 작업의 서술**일 뿐입니다. `sync_wait`나 `async_scope::spawn` 같은 시작 지점으로 넘기지 않고 이 값을 그냥 버리면, 파괴자가 호출될 뿐 어떤 부수효과도 일어나지 않습니다. 콜백을 즉시 실행하던 `execute(f)` 스타일(16장)에 익숙하면 이 지연(lazy) 특성을 놓치기 쉬우므로, "센더를 만들었는데 결과가 왜 안 나오지?"라는 증상을 보면 먼저 시작 지점으로 연결됐는지부터 확인해야 합니다.
+<strong>"센더 파이프라인을 만들면 그 줄에서 바로 실행이 시작된다"</strong>는 틀렸습니다. `ex::when_all(...) | ex::then(...)`는 그 자체로는 **아직 실행되지 않은 작업의 서술**일 뿐입니다. `sync_wait`나 `async_scope::spawn` 같은 시작 지점으로 넘기지 않고 이 값을 그냥 버리면, 파괴자가 호출될 뿐 어떤 부수효과도 일어나지 않습니다. 콜백을 즉시 실행하던 `execute(f)` 스타일(16장)에 익숙하면 이 지연(lazy) 특성을 놓치기 쉬우므로, "센더를 만들었는데 결과가 왜 안 나오지?"라는 증상을 보면 먼저 시작 지점으로 연결됐는지부터 확인해야 합니다.
 
-**"sender/receiver를 쓰면 동기화가 필요 없어진다"**도 과장입니다. 구조적 동시성이 없애는 것은 **작업의 생명주기 관리와 취소 전파에 관한 수작업 동기화**이지, 콜백 본문 안에서 여러 센더가 같은 가변 상태를 직접 공유하며 쓰는 것까지 막아 주지는 않습니다. 세 개의 `then()` 콜백이 각자 지역적으로 계산한 값을 반환해 `when_all`이 묶어 주는 방식은 안전하지만, 그 콜백들이 캡처한 공유 변수를 각자 잠금 없이 갱신하면 여전히 데이터 레이스입니다. 아래는 이 차이를 그대로 재현한 예제입니다.
+<strong>"sender/receiver를 쓰면 동기화가 필요 없어진다"</strong>도 과장입니다. 구조적 동시성이 없애는 것은 **작업의 생명주기 관리와 취소 전파에 관한 수작업 동기화**이지, 콜백 본문 안에서 여러 센더가 같은 가변 상태를 직접 공유하며 쓰는 것까지 막아 주지는 않습니다. 세 개의 `then()` 콜백이 각자 지역적으로 계산한 값을 반환해 `when_all`이 묶어 주는 방식은 안전하지만, 그 콜백들이 캡처한 공유 변수를 각자 잠금 없이 갱신하면 여전히 데이터 레이스입니다. 아래는 이 차이를 그대로 재현한 예제입니다.
 
 ```cpp
 #include <stdexec/execution.hpp>
@@ -174,7 +174,7 @@ int ComposedTotal() {
 
 `RacyTotal`을 `-fsanitize=thread`로 빌드해 실행하면 세 `total += ...` 지점에서 데이터 레이스가 보고됩니다. `ComposedTotal`은 공유 가변 상태 자체가 없어 같은 조건에서 아무것도 보고되지 않습니다. 빌드는 `g++ -std=c++20 -Iinclude/stdexec -fsanitize=thread -g race.cpp -o race && ./race`(GCC 13 기준, `include` 경로는 stdexec 저장소의 헤더 위치)처럼 진행하며, ThreadSanitizer 진단은 컴파일러·플랫폼에 따라 세부 출력 형식이 다를 수 있으므로 직접 재현해 확인해야 합니다. 요지는 **센더 조합이 취소·에러 전파는 대신해 주지만, 공유 가변 상태를 값 전달로 바꾸는 설계 책임은 여전히 개발자에게 있다**는 것입니다.
 
-**"stdexec가 곧 컴파일러에 내장된 std::execution이다"**도 흔한 착각입니다. stdexec는 헤더 전용 **레퍼런스 구현**이며 저장소 스스로 "APIs may change without notice"라고 밝히는 실험적 라이브러리입니다. 표준 문서(P2300)가 정의하는 것은 어휘와 요구 조건이고, 실제 실행 가능한 코드는 stdexec·libunifex·Beman 같은 별도 구현을 받아와야 얻을 수 있습니다. 컴파일러 벤더가 자체 표준 라이브러리에 `<execution>`을 언제 어떤 완성도로 넣을지는 각 벤더의 릴리스 노트로 개별 확인해야 하는 영역입니다.
+<strong>"stdexec가 곧 컴파일러에 내장된 std::execution이다"</strong>도 흔한 착각입니다. stdexec는 헤더 전용 **레퍼런스 구현**이며 저장소 스스로 "APIs may change without notice"라고 밝히는 실험적 라이브러리입니다. 표준 문서(P2300)가 정의하는 것은 어휘와 요구 조건이고, 실제 실행 가능한 코드는 stdexec·libunifex·Beman 같은 별도 구현을 받아와야 얻을 수 있습니다. 컴파일러 벤더가 자체 표준 라이브러리에 `<execution>`을 언제 어떤 완성도로 넣을지는 각 벤더의 릴리스 노트로 개별 확인해야 하는 영역입니다.
 
 ## 판단 기준: 언제 쓰고 언제 피할지
 

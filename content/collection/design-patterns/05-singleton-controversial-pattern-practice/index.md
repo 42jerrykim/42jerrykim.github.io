@@ -53,7 +53,7 @@ tags:
 
 ## 실습 1: 다양한 Singleton 구현
 
-이 실습에서는 이론 편에서 다룬 5가지 구현 방식(Eager, Lazy, Thread-safe, DCL, Enum)에 더해 Bill Pugh 방식(Inner Class Holder)을 직접 작성합니다. TODO 1~5는 이론 편의 설명을 참고해 직접 채워야 하는 연습 문제이고, TODO 6(HolderSingleton)은 아래에 완전한 구현을 제공하니 이를 기준 답안 삼아 나머지를 완성하세요.
+이 실습에서는 이론 편에서 다룬 5가지 구현 방식(Eager, Lazy, Thread-safe, DCL, Enum)에 더해 Bill Pugh 방식(Inner Class Holder)을 직접 작성합니다. TODO 1–5는 이론 편의 설명을 참고해 직접 채워야 하는 연습 문제이고, TODO 6(HolderSingleton)은 아래에 완전한 구현을 제공하니 이를 기준 답안 삼아 나머지를 완성하세요.
 
 ### 코드 템플릿
 
@@ -132,7 +132,7 @@ public class HolderSingleton {
 
 ### 6가지 구현 방식 비교
 
-TODO 1~5와 기준 답안(Holder)까지 총 6가지를 완성하고 나면 아래 표로 각 방식의 특성을 정리해 비교해보세요.
+TODO 1–5와 기준 답안(Holder)까지 총 6가지를 완성하고 나면 아래 표로 각 방식의 특성을 정리해 비교해보세요.
 
 | 구현 방식 | Thread-Safe | Lazy Loading | 동기화 오버헤드 | 리플렉션/직렬화 방어 |
 |----------|------------|--------------|-----------------|---------------------|
@@ -216,7 +216,7 @@ public class SingletonPerformanceTest {
 
 ## 실습 3: 현대적 대안 구현
 
-실습 1~2에서 만든 Singleton들은 `getInstance()`를 호출하는 모든 클래스에 구현이 하드코딩되어 Mock으로 교체할 수 없다는 한계가 있습니다. 이 실습에서는 동일한 `DatabaseManager`를 Spring Bean으로 등록해 컨테이너가 생명주기를 관리하게 하고, `UserService`가 이를 생성자 주입으로 받도록 바꿔 테스트 가능성을 확보합니다.
+실습 1–2에서 만든 Singleton들은 `getInstance()`를 호출하는 모든 클래스에 구현이 하드코딩되어 Mock으로 교체할 수 없다는 한계가 있습니다. 이 실습에서는 동일한 `DatabaseManager`를 Spring Bean으로 등록해 컨테이너가 생명주기를 관리하게 하고, `UserService`가 이를 생성자 주입으로 받도록 바꿔 테스트 가능성을 확보합니다.
 
 ### 코드 템플릿
 
@@ -246,7 +246,7 @@ public class UserService {
 ## 체크리스트
 
 ### 기본 구현
-- [ ] 6가지 Singleton 구현 방식 완성 — TODO 1~5와 Holder 기준 답안을 모두 컴파일하고, 각 클래스의 `getInstance()`를 반복 호출해 항상 동일한 해시코드를 반환하는지 확인한다.
+- [ ] 6가지 Singleton 구현 방식 완성 — TODO 1–5와 Holder 기준 답안을 모두 컴파일하고, 각 클래스의 `getInstance()`를 반복 호출해 항상 동일한 해시코드를 반환하는지 확인한다.
 - [ ] 각 방식의 장단점 분석 — "6가지 구현 방식 비교" 표의 네 열(Thread-Safe, Lazy Loading, 동기화 오버헤드, 리플렉션/직렬화 방어)을 근거로 각 구현을 한 문장씩 설명할 수 있어야 한다.
 - [ ] 멀티스레드 테스트 통과 — 아래 "멀티스레드 시나리오" 다이어그램처럼 두 개 이상의 스레드로 `getInstance()`를 동시 호출해, 미보호 Lazy에서는 서로 다른 해시코드가, Holder/DCL/Enum에서는 동일한 해시코드가 관찰되는지 직접 실행해 확인한다.
 - [ ] 메모리 누수 검증 — Eager/Enum은 클래스 로딩 시점에 인스턴스가 즉시 생성되어 애플리케이션 종료 전까지 GC 대상이 되지 않는다는 점을 확인하고, DB 커넥션 풀처럼 큰 리소스를 담을 때 이 특성이 어떤 트레이드오프를 만드는지 설명할 수 있어야 한다.

@@ -63,7 +63,7 @@ lastmod: 2024-10-21
 
 ## 접근 방식
 
-이 문제는 2-SAT 문제로, 선형 시간 내에 해결할 수 있다. 주요 아이디어는 **임플리케이션 그래프(Implication Graph)**를 구성하고, **강한 연결 요소(Strongly Connected Components, SCC)**를 찾는 것이다.
+이 문제는 2-SAT 문제로, 선형 시간 내에 해결할 수 있다. 주요 아이디어는 <strong>임플리케이션 그래프(Implication Graph)</strong>를 구성하고, <strong>강한 연결 요소(Strongly Connected Components, SCC)</strong>를 찾는 것이다.
 
 1. **임플리케이션 그래프 구성**:
 

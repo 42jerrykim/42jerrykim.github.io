@@ -157,7 +157,7 @@ cat /etc/passwd
 
 ## 그룹 관리
 
-각 사용자는 **기본 그룹(primary group)** 하나에 반드시 속하고, **보조 그룹(secondary group)**은 여러 개 가질 수 있다(일반적으로 15개까지).
+각 사용자는 **기본 그룹(primary group)** 하나에 반드시 속하고, <strong>보조 그룹(secondary group)</strong>은 여러 개 가질 수 있다(일반적으로 15개까지).
 
 ```bash
 # 그룹 생성·삭제·수정
@@ -191,7 +191,7 @@ chown -R user:group /dir
 chgrp groupname file
 ```
 
-**setgid(2000)**를 디렉터리에 걸면, 그 안에 새로 만들어진 파일·디렉터리가 부모의 그룹을 상속해 협업 디렉터리에 유용하다. **ACL**로 사용자·그룹별 세밀한 권한을 주려면 `setfacl`·`getfacl`을 사용한다.
+<strong>setgid(2000)</strong>를 디렉터리에 걸면, 그 안에 새로 만들어진 파일·디렉터리가 부모의 그룹을 상속해 협업 디렉터리에 유용하다. **ACL**로 사용자·그룹별 세밀한 권한을 주려면 `setfacl`·`getfacl`을 사용한다.
 
 ---
 

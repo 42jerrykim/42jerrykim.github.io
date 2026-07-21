@@ -54,7 +54,7 @@ collection_order: 28
 
 ### 2) 왜 이 개념이 필요한가(실무 동기)
 실무에서는 예외 상황, 성능, 협업, 테스트가 항상 문제를 만듭니다.
-따라서 이 주제는 기능이 아니라 **품질(신뢰성/유지보수성/보안)**을 위한 기반으로 이해해야 합니다.
+따라서 이 주제는 기능이 아니라 <strong>품질(신뢰성/유지보수성/보안)</strong>을 위한 기반으로 이해해야 합니다.
 
 ### 3) 트레이드오프: 간단함 vs 확장성
 대부분의 선택은 “더 단순하게”와 “더 확장 가능하게” 사이에서 균형을 잡는 일입니다.
@@ -266,7 +266,7 @@ BrokenRepository()
 이 결합도 감소는 테스트에도 직접적인 이득을 줍니다. `PlaceOrderUseCase`가 `OrderRepository`라는 인터페이스만 알면, 테스트에서는 SQLite 대신 인메모리 가짜 구현을 넣어 DB 없이도 유스케이스 로직을 검증할 수 있습니다. 다음 절의 의존성 주입이 바로 이 구조를 만드는 방법입니다.
 
 ### 의존성 주입: 생성자 주입으로 테스트하기 쉬운 유스케이스 만들기
-**의존성 주입(Dependency Injection, DI)**은 객체가 필요로 하는 협력 객체를 자기 내부에서 만들지 않고, 외부에서 생성자(또는 세터)를 통해 전달받는 방식입니다. 가장 흔한 형태는 **생성자 주입**으로, `__init__`이 인터페이스 타입의 매개변수를 받아 인스턴스 속성에 저장하는 것입니다. 반대로 아래처럼 클래스가 내부에서 구체 클래스를 직접 생성하면, 그 클래스를 쓰는 모든 코드(테스트 포함)가 그 구체 구현에 발이 묶입니다.
+<strong>의존성 주입(Dependency Injection, DI)</strong>은 객체가 필요로 하는 협력 객체를 자기 내부에서 만들지 않고, 외부에서 생성자(또는 세터)를 통해 전달받는 방식입니다. 가장 흔한 형태는 **생성자 주입**으로, `__init__`이 인터페이스 타입의 매개변수를 받아 인스턴스 속성에 저장하는 것입니다. 반대로 아래처럼 클래스가 내부에서 구체 클래스를 직접 생성하면, 그 클래스를 쓰는 모든 코드(테스트 포함)가 그 구체 구현에 발이 묶입니다.
 
 ```python
 # 나쁜 예: 유스케이스가 구체 클래스를 직접 생성한다
@@ -362,7 +362,7 @@ def test_place_order_rejects_empty_order() -> None:
 이처럼 생성자 주입은 "테스트를 쉽게 만들기 위한 도구"에 가깝습니다. 프로젝트 규모가 커지면 `dependency-injector` 같은 DI 컨테이너 라이브러리로 조립을 자동화하기도 하지만, 원리는 동일한 생성자 주입입니다. 팩토리 패턴과 DI 컨테이너의 관계는 [26장: 디자인 패턴](/post/python/python-design-patterns-gof-singleton-factory-observer-guide/)에서 더 다룹니다.
 
 ### 인프라 구현체와 조립(Composition Root)
-infrastructure 계층은 application이 정의한 포트를 실제로 구현합니다. 이 구현체들은 domain/application을 import할 수 있지만, 그 반대는 금지됩니다. 그리고 이 구현체를 어디서 골라 조립할지는 애플리케이션 전체에서 **단 한 곳**, 흔히 **조립 루트(composition root)**라고 부르는 지점에서만 결정합니다. 아래 `main.py`가 그 역할을 합니다.
+infrastructure 계층은 application이 정의한 포트를 실제로 구현합니다. 이 구현체들은 domain/application을 import할 수 있지만, 그 반대는 금지됩니다. 그리고 이 구현체를 어디서 골라 조립할지는 애플리케이션 전체에서 **단 한 곳**, 흔히 <strong>조립 루트(composition root)</strong>라고 부르는 지점에서만 결정합니다. 아래 `main.py`가 그 역할을 합니다.
 
 ```python
 # infrastructure/db/sqlite_order_repository.py
@@ -495,7 +495,7 @@ def load_config() -> AppConfig:
 `production` 분기는 `os.environ["DB_HOST"]`처럼 대괄호 접근을 사용해, 값이 없으면 즉시 예외가 나도록 의도했습니다. `development`/`test` 분기는 로컬 개발 편의를 위해 기본값을 허용합니다. 실무에서는 `.env` 파일과 `python-dotenv` 같은 라이브러리로 로컬 환경변수를 관리하는 경우가 많지만, `load_config` 자체는 표준 라이브러리 `os.environ`만으로 충분히 구현할 수 있습니다.
 
 ### 대규모 프로젝트의 디렉토리 구조
-지금까지의 예제는 "주문"이라는 하나의 도메인만 다뤘습니다. 여러 도메인이 함께 있는 큰 서비스에서는, 도메인마다 계층 구조(presentation/application/domain/infrastructure)를 반복하고, 여러 도메인이 공통으로 쓰는 값 객체나 예외는 별도의 **shared kernel(공유 커널)**로 뽑아냅니다. DDD에서 이렇게 독립적으로 발전할 수 있는 하나의 도메인 단위를 **바운디드 컨텍스트(bounded context)**라고 부르는데, 아래 `ordering`, `billing`은 각각 하나의 바운디드 컨텍스트입니다.
+지금까지의 예제는 "주문"이라는 하나의 도메인만 다뤘습니다. 여러 도메인이 함께 있는 큰 서비스에서는, 도메인마다 계층 구조(presentation/application/domain/infrastructure)를 반복하고, 여러 도메인이 공통으로 쓰는 값 객체나 예외는 별도의 <strong>shared kernel(공유 커널)</strong>로 뽑아냅니다. DDD에서 이렇게 독립적으로 발전할 수 있는 하나의 도메인 단위를 <strong>바운디드 컨텍스트(bounded context)</strong>라고 부르는데, 아래 `ordering`, `billing`은 각각 하나의 바운디드 컨텍스트입니다.
 
 ```text
 big_service/

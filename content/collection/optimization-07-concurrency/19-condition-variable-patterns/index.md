@@ -130,7 +130,7 @@ g++ -O1 -g -fsanitize=thread -std=c++20 cv_race.cpp -lpthread -o cv_race_tsan
 ./cv_race_tsan
 ```
 
-TSan은 `ready`에 대한 잠금 없는 읽기/쓰기를 `WARNING: ThreadSanitizer: data race` 리포트로 즉시 잡아내지만, lost wakeup 자체(신호가 유실되어 영원히 깨어나지 못하는 행)는 데이터 경쟁이 아니라 타이밍 문제이므로 TSan 리포트만으로는 드러나지 않을 수 있습니다. 행 여부는 `timeout 2 ./cv_race_tsan; echo $?`처럼 짧은 타임아웃을 걸고 수십~수백 회 반복 실행해 종료 코드 124(타임아웃)가 나오는지로 확인하는 것이 더 직접적입니다.
+TSan은 `ready`에 대한 잠금 없는 읽기/쓰기를 `WARNING: ThreadSanitizer: data race` 리포트로 즉시 잡아내지만, lost wakeup 자체(신호가 유실되어 영원히 깨어나지 못하는 행)는 데이터 경쟁이 아니라 타이밍 문제이므로 TSan 리포트만으로는 드러나지 않을 수 있습니다. 행 여부는 `timeout 2 ./cv_race_tsan; echo $?`처럼 짧은 타임아웃을 걸고 수십–수백 회 반복 실행해 종료 코드 124(타임아웃)가 나오는지로 확인하는 것이 더 직접적입니다.
 
 ### Thundering Herd와 wait morphing
 

@@ -121,7 +121,7 @@ flowchart TB
 
 ### Lock-Free 자료구조의 개념
 
-**Lock-free 자료구조**는 mutex·semaphore 같은 전통적인 잠금 없이, **원자 연산(atomic)**과 **CAS(Compare-And-Swap)**로 여러 스레드가 안전하게 접근하도록 설계된 자료구조다.
+**Lock-free 자료구조**는 mutex·semaphore 같은 전통적인 잠금 없이, <strong>원자 연산(atomic)</strong>과 <strong>CAS(Compare-And-Swap)</strong>로 여러 스레드가 안전하게 접근하도록 설계된 자료구조다.
 
 Lock-free 구현 시 **ABA 문제**에 유의해야 한다. 어떤 스레드가 값을 A→B→다시 A로 바꾼 뒤, 다른 스레드는 여전히 A라고 보고 CAS를 진행해 오류가 날 수 있다. free list를 쓰는 lock-free 구현은 ABA로 인한 오류 가능성이 있다는 지적이 있다[^1].
 
@@ -186,7 +186,7 @@ PriorityQueue<string, int> priorityQueue = new PriorityQueue<string, int>();
 
 ### CAS 연산을 활용한 Lock-Free 구현
 
-Lock-free 구조는 보통 **CAS(Compare-And-Swap)**로 구현한다. CAS는 메모리 위치의 값을 예상값과 비교하고, 같을 때만 새 값으로 바꾸는 **원자 연산**이다. C#에서는 `Interlocked.CompareExchange`로 CAS를 수행할 수 있다.
+Lock-free 구조는 보통 <strong>CAS(Compare-And-Swap)</strong>로 구현한다. CAS는 메모리 위치의 값을 예상값과 비교하고, 같을 때만 새 값으로 바꾸는 **원자 연산**이다. C#에서는 `Interlocked.CompareExchange`로 CAS를 수행할 수 있다.
 
 ```mermaid
 flowchart LR
@@ -683,7 +683,7 @@ public class AwaitablePriorityQueue<T> where T : class
 | 정렬 리스트 기반 | O(n) | O(1) | O(1) |
 | 제한된 k개 레벨 멀티큐 | O(1) | O(k) | O(k) |
 
-Lock-free 구현에서는 **경합(contention)**이 크면 CAS 재시도로 성능이 떨어질 수 있다.
+Lock-free 구현에서는 <strong>경합(contention)</strong>이 크면 CAS 재시도로 성능이 떨어질 수 있다.
 
 ### 공간·시간 최적화 요약
 

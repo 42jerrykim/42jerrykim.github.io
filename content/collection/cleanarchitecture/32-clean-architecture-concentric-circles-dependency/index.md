@@ -404,7 +404,7 @@ public class OrderLineEntity {
 }
 ```
 
-`SpringDataOrderRepository`와 `OrderEntity`가 하는 일은 이것이 전부다 — 비즈니스 로직은 한 줄도 없고, `JpaOrderRepository`(Interface Adapters 계층)와 실제 Spring Data JPA 사이를 연결하는 **글루 코드(glue code)**일 뿐이다. 프레임워크 계층에는 이처럼 **최소한의 코드**만 두어, 안쪽 계층과 바깥쪽 기술을 연결하는 역할에 충실해야 한다.
+`SpringDataOrderRepository`와 `OrderEntity`가 하는 일은 이것이 전부다 — 비즈니스 로직은 한 줄도 없고, `JpaOrderRepository`(Interface Adapters 계층)와 실제 Spring Data JPA 사이를 연결하는 <strong>글루 코드(glue code)</strong>일 뿐이다. 프레임워크 계층에는 이처럼 **최소한의 코드**만 두어, 안쪽 계층과 바깥쪽 기술을 연결하는 역할에 충실해야 한다.
 
 ## 경계 횡단
 

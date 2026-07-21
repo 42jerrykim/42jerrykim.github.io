@@ -64,8 +64,8 @@ tags:
 image: wordcloud.png
 ---
 
-오늘은 영어 동사 **'ghostwrite'**의 정확한 의미와 실제 쓰임을 정리한다.  
-이 단어는 **다른 사람 이름으로 대신 글을 쓰다(대필하다)**는 뜻으로, 책·연설·자서전·기사 등에서 “실제 저자 없이” 작품이 나올 때 자주 쓰이며, 출판·미디어·정치·엔터테인먼트 맥락에서 반복 등장하는 중요한 동사다.  
+오늘은 영어 동사 <strong>'ghostwrite'</strong>의 정확한 의미와 실제 쓰임을 정리한다.  
+이 단어는 <strong>다른 사람 이름으로 대신 글을 쓰다(대필하다)</strong>는 뜻으로, 책·연설·자서전·기사 등에서 “실제 저자 없이” 작품이 나올 때 자주 쓰이며, 출판·미디어·정치·엔터테인먼트 맥락에서 반복 등장하는 중요한 동사다.  
 단순 사전 정의를 넘어서, 콜로케이션과 EN/KR 예문을 통해 자연스러운 사용을 익힌다.
 
 ---
@@ -151,7 +151,7 @@ image: wordcloud.png
   - **ghostwrite + 목적어**: ghostwrite a book, ghostwrite a speech
   - **ghostwrite something for somebody**: ghostwrite a memoir for a celebrity
   - **ghostwritten by ~**: The book was ghostwritten by a journalist.
-- **격식도**: 중립~비격식; 출판·미디어·비즈니스에서 흔히 쓰인다.
+- **격식도**: 중립–비격식; 출판·미디어·비즈니스에서 흔히 쓰인다.
 - **뉘앙스**: 중립적; 업으로서의 대필을 말할 때 부정적이지 않다. (속어로 “대신 시험 보다”는 cheat와 구별됨.)
 - **문화적 연상**: 유명인 자서전, 정치인 연설문, CEO 회고록, 블로그/칼럼 대리 작성 등과 결부된다.
 

@@ -59,7 +59,7 @@ tags:
 
 ## TopDown 방법론의 등장 배경
 
-**TopDown Microarchitecture Analysis(TMA)**는 Intel 연구원 Ahmad Yasin이 2014년 ISPASS(International Symposium on Performance Analysis of Systems and Software)에서 발표한 "A Top-Down Method for Performance Analysis and Counters Architecture" 논문에서 제안한 방법론입니다. 기존에는 캐시 미스율·분기 예측 실패율·IPC 같은 카운터를 경험적으로 조합해 병목을 추측했지만, TMA는 파이프라인의 issue 단계(슈퍼스칼라 폭만큼 매 사이클 생기는 "자리")를 기준으로 네 범주가 서로 겹치지 않고 합이 100%가 되도록 분류 규칙을 세웠다는 점이 다릅니다. 이 방법론은 이후 Linux `perf`에 `--topdown` 옵션과 `-M TopdownL1` 메트릭 그룹으로, Intel VTune Profiler에 "Microarchitecture Exploration" 분석으로 흡수되었습니다. Intel Ice Lake 세대부터는 전용 고정 카운터(Fixed Counter 3, `TOPDOWN.SLOTS`)와 `PERF_METRICS` MSR이 하드웨어에 추가되어, 이전 세대처럼 여러 범용 카운터를 번갈아 멀티플렉싱하며 발생하던 측정 노이즈 없이 Level 1 네 범주를 한 번의 실행으로 얻을 수 있습니다. TMA는 Intel이 설계했지만 Intel 전용 개념은 아닙니다 — Arm도 Neoverse 코어에서 동일한 4범주 1단계 분류를 채택하고 있으며, 이는 뒤에서 다시 다룹니다.
+<strong>TopDown Microarchitecture Analysis(TMA)</strong>는 Intel 연구원 Ahmad Yasin이 2014년 ISPASS(International Symposium on Performance Analysis of Systems and Software)에서 발표한 "A Top-Down Method for Performance Analysis and Counters Architecture" 논문에서 제안한 방법론입니다. 기존에는 캐시 미스율·분기 예측 실패율·IPC 같은 카운터를 경험적으로 조합해 병목을 추측했지만, TMA는 파이프라인의 issue 단계(슈퍼스칼라 폭만큼 매 사이클 생기는 "자리")를 기준으로 네 범주가 서로 겹치지 않고 합이 100%가 되도록 분류 규칙을 세웠다는 점이 다릅니다. 이 방법론은 이후 Linux `perf`에 `--topdown` 옵션과 `-M TopdownL1` 메트릭 그룹으로, Intel VTune Profiler에 "Microarchitecture Exploration" 분석으로 흡수되었습니다. Intel Ice Lake 세대부터는 전용 고정 카운터(Fixed Counter 3, `TOPDOWN.SLOTS`)와 `PERF_METRICS` MSR이 하드웨어에 추가되어, 이전 세대처럼 여러 범용 카운터를 번갈아 멀티플렉싱하며 발생하던 측정 노이즈 없이 Level 1 네 범주를 한 번의 실행으로 얻을 수 있습니다. TMA는 Intel이 설계했지만 Intel 전용 개념은 아닙니다 — Arm도 Neoverse 코어에서 동일한 4범주 1단계 분류를 채택하고 있으며, 이는 뒤에서 다시 다룹니다.
 
 ## Pipeline Slot이라는 공통 단위
 
@@ -129,11 +129,11 @@ $ perf stat -M TopdownL1 ./topdown_demo
 
 ## 흔한 오개념
 
-**"Backend Bound는 곧 캐시 미스다"**는 자주 보이는 단순화입니다. Backend Bound는 Memory Bound와 Core Bound를 모두 포함하며, 캐시·메모리와 무관하게 실행 포트가 부족하거나 명령어 의존성 체인이 길어서 생기는 Core Bound도 상당한 비중을 차지할 수 있습니다. Level 1에서 Backend Bound가 높게 나왔다고 곧바로 캐시 최적화로 달려가기보다, Level 2 드릴다운으로 Memory Bound인지 Core Bound인지부터 구분해야 합니다.
+<strong>"Backend Bound는 곧 캐시 미스다"</strong>는 자주 보이는 단순화입니다. Backend Bound는 Memory Bound와 Core Bound를 모두 포함하며, 캐시·메모리와 무관하게 실행 포트가 부족하거나 명령어 의존성 체인이 길어서 생기는 Core Bound도 상당한 비중을 차지할 수 있습니다. Level 1에서 Backend Bound가 높게 나왔다고 곧바로 캐시 최적화로 달려가기보다, Level 2 드릴다운으로 Memory Bound인지 Core Bound인지부터 구분해야 합니다.
 
-**"Level 1 백분율만 보면 원인을 알 수 있다"**도 흔한 오해입니다. Level 1은 "어느 범주가 문제인지"를 알려줄 뿐, "왜 그런지"는 알려주지 않습니다. Frontend Bound 30%라는 숫자만으로는 명령어 캐시 미스 때문인지 디코더 폭 한계 때문인지 구분이 안 되며, 실제 원인은 Level 2·3의 하위 메트릭(`tma_fetch_latency`, `tma_fetch_bandwidth` 등)까지 내려가야 드러납니다. 이 장은 그 드릴다운의 출발점을 제공할 뿐, 드릴다운 자체는 뒤 챕터들의 몫입니다.
+<strong>"Level 1 백분율만 보면 원인을 알 수 있다"</strong>도 흔한 오해입니다. Level 1은 "어느 범주가 문제인지"를 알려줄 뿐, "왜 그런지"는 알려주지 않습니다. Frontend Bound 30%라는 숫자만으로는 명령어 캐시 미스 때문인지 디코더 폭 한계 때문인지 구분이 안 되며, 실제 원인은 Level 2·3의 하위 메트릭(`tma_fetch_latency`, `tma_fetch_bandwidth` 등)까지 내려가야 드러납니다. 이 장은 그 드릴다운의 출발점을 제공할 뿐, 드릴다운 자체는 뒤 챕터들의 몫입니다.
 
-**"IPC가 낮으면 무조건 Backend Bound다"**라는 인식도 정확하지 않습니다. IPC가 낮은 이유는 네 범주 중 어느 것이든 될 수 있습니다 — Bad Speculation이 지배적이어도 폐기되는 μop이 많아 정상 완료되는 μop 수(그리고 IPC)는 낮게 나오며, 위 실측 예시가 바로 그 사례입니다. IPC 하나만으로는 Bad Speculation과 Backend Bound를 구분할 수 없다는 점이 TopDown이 IPC 단일 지표보다 유용한 이유입니다.
+<strong>"IPC가 낮으면 무조건 Backend Bound다"</strong>라는 인식도 정확하지 않습니다. IPC가 낮은 이유는 네 범주 중 어느 것이든 될 수 있습니다 — Bad Speculation이 지배적이어도 폐기되는 μop이 많아 정상 완료되는 μop 수(그리고 IPC)는 낮게 나오며, 위 실측 예시가 바로 그 사례입니다. IPC 하나만으로는 Bad Speculation과 Backend Bound를 구분할 수 없다는 점이 TopDown이 IPC 단일 지표보다 유용한 이유입니다.
 
 ## 판단 기준: Level 1 결과에서 다음에 볼 곳
 

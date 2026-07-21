@@ -53,7 +53,7 @@ tags:
 
 **선행 챕터**: 이 장은 [UDP 최적화](/post/network-optimization/udp-optimization-reliability-layer-design/)(챕터 05)에서 다룬 전송 계층의 신뢰성 설계를 전제로, 그 위에 얹히는 애플리케이션 계층 데이터 표현 비용을 다룹니다. C++ 기본 문법과 메모리 정렬(alignment)·엔디안 개념을 알고 있으면 충분합니다.
 
-**이 장의 깊이**: **중급**입니다. 세 포맷의 와이어 포맷 구조와 인코딩/디코딩 경로의 차이를 원리 수준에서 설명하고, 언제 어떤 포맷을 선택할지 판단 기준을 제공합니다. **다루지 않는 것**: FlatBuffers·Cap'n Proto의 zero-copy 접근 패턴 심화와 뮤테이션 전략은 [Zero-copy 직렬화](/post/network-optimization/zero-copy-serialization-flatbuffers-capnproto/)(챕터 07)에서, 2025~2026년에 등장한 신흥 zero-copy 포맷은 [차세대 Zero-copy 직렬화 포맷 동향](/post/network-optimization/next-gen-zero-copy-serialization-formats-yaff/)(챕터 08)에서, 프레임 경계 설계는 [메시지 프레이밍](/post/network-optimization/message-framing-length-prefix-delimiter-fixed-size/)(챕터 10)에서, 바이너리 프로토콜 설계 원칙 전반은 [프로토콜 설계](/post/network-optimization/low-latency-binary-protocol-design-principles/)(챕터 09)에서 각각 다룹니다.
+**이 장의 깊이**: **중급**입니다. 세 포맷의 와이어 포맷 구조와 인코딩/디코딩 경로의 차이를 원리 수준에서 설명하고, 언제 어떤 포맷을 선택할지 판단 기준을 제공합니다. **다루지 않는 것**: FlatBuffers·Cap'n Proto의 zero-copy 접근 패턴 심화와 뮤테이션 전략은 [Zero-copy 직렬화](/post/network-optimization/zero-copy-serialization-flatbuffers-capnproto/)(챕터 07)에서, 2025–2026년에 등장한 신흥 zero-copy 포맷은 [차세대 Zero-copy 직렬화 포맷 동향](/post/network-optimization/next-gen-zero-copy-serialization-formats-yaff/)(챕터 08)에서, 프레임 경계 설계는 [메시지 프레이밍](/post/network-optimization/message-framing-length-prefix-delimiter-fixed-size/)(챕터 10)에서, 바이너리 프로토콜 설계 원칙 전반은 [프로토콜 설계](/post/network-optimization/low-latency-binary-protocol-design-principles/)(챕터 09)에서 각각 다룹니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -79,7 +79,7 @@ tags:
 
 ## 인코딩 메커니즘 비교
 
-**Protocol Buffers**의 와이어 포맷은 tag-length-value(TLV) 구조입니다. 각 필드는 `(field_number << 3) | wire_type`으로 계산된 태그를 varint로 인코딩한 뒤 값을 뒤따라 붙이며, varint는 1~10바이트 가변 길이로 정수를 표현해 작은 값일수록 적은 바이트를 씁니다. 이 구조 덕분에 알 수 없는 필드는 건너뛸 수 있어 하위·상위 호환성이 좋지만, 값을 읽으려면 태그를 하나씩 해석하며 언어 객체(문자열은 별도 힙 할당 포함)를 새로 만드는 파싱 단계가 반드시 필요합니다. 즉 인코딩과 디코딩 각각에 필드 개수·크기에 비례하는 CPU 비용이 듭니다.
+**Protocol Buffers**의 와이어 포맷은 tag-length-value(TLV) 구조입니다. 각 필드는 `(field_number << 3) | wire_type`으로 계산된 태그를 varint로 인코딩한 뒤 값을 뒤따라 붙이며, varint는 1–10바이트 가변 길이로 정수를 표현해 작은 값일수록 적은 바이트를 씁니다. 이 구조 덕분에 알 수 없는 필드는 건너뛸 수 있어 하위·상위 호환성이 좋지만, 값을 읽으려면 태그를 하나씩 해석하며 언어 객체(문자열은 별도 힙 할당 포함)를 새로 만드는 파싱 단계가 반드시 필요합니다. 즉 인코딩과 디코딩 각각에 필드 개수·크기에 비례하는 CPU 비용이 듭니다.
 
 **FlatBuffers**는 빌더가 값을 쓰는 시점에 이미 최종 바이트 레이아웃을 만들어 버립니다. 각 테이블은 필드 오프셋을 담은 vtable을 가리키고, 접근자 함수는 이 오프셋을 따라가 값을 읽을 뿐 별도의 파싱이나 객체 생성을 하지 않습니다. 값을 다 쓰고 나면 `FlatBufferBuilder`가 반환하는 버퍼 자체가 곧 네트워크로 보낼 바이트이므로, "인코딩"이라는 단계가 사실상 값을 순서대로 채워 넣는 작업으로 흡수됩니다.
 
@@ -269,11 +269,11 @@ BENCHMARK_MAIN();
 
 ## 흔한 오개념
 
-**"FlatBuffers·Cap'n Proto는 항상 Protobuf보다 빠르다"**는 정확하지 않습니다. 두 포맷이 유리한 지점은 "읽기(파싱 없는 접근)"이고, "쓰기" 비용은 세 포맷 모두 필드 개수에 비례해 크게 다르지 않은 경우가 많습니다. 메시지를 한 번 쓰고 한 번만 읽는 워크로드라면 차이가 미미할 수 있고, 반대로 같은 버퍼를 여러 번 반복해서 읽는 워크로드(캐시·로그 재생 등)일수록 zero-copy 포맷의 이득이 커집니다.
+<strong>"FlatBuffers·Cap'n Proto는 항상 Protobuf보다 빠르다"</strong>는 정확하지 않습니다. 두 포맷이 유리한 지점은 "읽기(파싱 없는 접근)"이고, "쓰기" 비용은 세 포맷 모두 필드 개수에 비례해 크게 다르지 않은 경우가 많습니다. 메시지를 한 번 쓰고 한 번만 읽는 워크로드라면 차이가 미미할 수 있고, 반대로 같은 버퍼를 여러 번 반복해서 읽는 워크로드(캐시·로그 재생 등)일수록 zero-copy 포맷의 이득이 커집니다.
 
-**"Cap'n Proto의 packed 모드는 zstd 같은 범용 압축과 동급이다"**도 오해입니다. `packed` 모드는 세그먼트에 흔한 0 바이트를 제거하는 가벼운 인코딩일 뿐, 엔트로피 기반 범용 압축이 아닙니다. 대역폭이 병목이라면 [네트워크 압축 전략](/post/network-optimization/network-compression-lz4-zstd-snappy-tradeoffs/)(챕터 21)에서 다루는 LZ4/zstd 같은 별도 압축 레이어를 검토해야 합니다.
+<strong>"Cap'n Proto의 packed 모드는 zstd 같은 범용 압축과 동급이다"</strong>도 오해입니다. `packed` 모드는 세그먼트에 흔한 0 바이트를 제거하는 가벼운 인코딩일 뿐, 엔트로피 기반 범용 압축이 아닙니다. 대역폭이 병목이라면 [네트워크 압축 전략](/post/network-optimization/network-compression-lz4-zstd-snappy-tradeoffs/)(챕터 21)에서 다루는 LZ4/zstd 같은 별도 압축 레이어를 검토해야 합니다.
 
-**"zero-copy 포맷은 검증(validation) 비용이 없다"**도 위험한 가정입니다. FlatBuffers와 Cap'n Proto 모두 신뢰할 수 없는 입력(네트워크로 받은 버퍼)에 대해서는 오프셋·경계가 버퍼 범위를 벗어나지 않는지 확인하는 검증 단계를 거치거나 거쳐야 안전하며, 이를 생략하면 잘못된 포인터 역참조로 이어질 수 있습니다. 이 검증 비용과 신뢰 경계 설계는 챕터 07에서 더 깊이 다룹니다.
+<strong>"zero-copy 포맷은 검증(validation) 비용이 없다"</strong>도 위험한 가정입니다. FlatBuffers와 Cap'n Proto 모두 신뢰할 수 없는 입력(네트워크로 받은 버퍼)에 대해서는 오프셋·경계가 버퍼 범위를 벗어나지 않는지 확인하는 검증 단계를 거치거나 거쳐야 안전하며, 이를 생략하면 잘못된 포인터 역참조로 이어질 수 있습니다. 이 검증 비용과 신뢰 경계 설계는 챕터 07에서 더 깊이 다룹니다.
 
 ## 판단 기준
 

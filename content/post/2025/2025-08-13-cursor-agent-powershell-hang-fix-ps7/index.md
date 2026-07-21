@@ -116,7 +116,7 @@ flowchart LR
   F -->|"해결 안 되면"| G
 ```
 
-- **노드**: `problem`, `step1`, `step2`는 subgraph ID이며, 내부 노드 A~I는 camelCase·일반 단어로 예약어를 쓰지 않음.
+- **노드**: `problem`, `step1`, `step2`는 subgraph ID이며, 내부 노드 A–I는 camelCase·일반 단어로 예약어를 쓰지 않음.
 - **라벨**: 특수문자·등호가 없는 문구는 따옴표 없이, 있으면 `"..."` 로 감쌈.
 
 ---

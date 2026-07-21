@@ -69,7 +69,7 @@ title: "[Windows] 설정만 잘 한다면 Windows Defender로도 충분하다"
 
 ## 도입: 왜 Windows Defender 강화인가
 
-비싼 상용 안티바이러스를 반드시 써야 할 필요는 없다. 일반 사용자가 웹 서핑·업무·개인 문서 보관 정도라면, **Windows에 기본 포함된 Microsoft Defender(구 Windows Defender)**만으로도 충분한 수준의 보호가 가능하다. 다만 기본 설정 그대로 두기보다는, **로컬 그룹 정책·MAPS·랜섬웨어 보호·PowerShell**을 이용해 몇 가지를 켜 두는 것이 좋다. 이 글은 추가 프로그램 없이 Defender만으로 PC를 안전하게 쓰고 싶은 독자를 위한 실전 설정 가이드다.
+비싼 상용 안티바이러스를 반드시 써야 할 필요는 없다. 일반 사용자가 웹 서핑·업무·개인 문서 보관 정도라면, <strong>Windows에 기본 포함된 Microsoft Defender(구 Windows Defender)</strong>만으로도 충분한 수준의 보호가 가능하다. 다만 기본 설정 그대로 두기보다는, **로컬 그룹 정책·MAPS·랜섬웨어 보호·PowerShell**을 이용해 몇 가지를 켜 두는 것이 좋다. 이 글은 추가 프로그램 없이 Defender만으로 PC를 안전하게 쓰고 싶은 독자를 위한 실전 설정 가이드다.
 
 어떤 안티바이러스도 “완벽”하지는 않다. 사용자가 링크를 함부로 열거나, 출처 불명 파일을 실행하면 유료 솔루션도 뚫릴 수 있다. 그럼에도 백그라운드에서 **실시간 검사·정의 업데이트·클라우드 연동**이 돌아가야, 실수 한 번에 전체가 위험해지는 상황을 줄일 수 있다. Microsoft Defender는 Windows 계정·앱 및 브라우저 제어·방화벽·네트워크 보호까지 한 묶음으로 제공하며, [AV-Comparatives](https://www.av-comparatives.org/vendors/microsoft/), [AV-Test](https://www.av-test.org/en/antivirus/home-windows/) 같은 독립 테스트에서도 최근에는 상위권을 유지한다. 정리하면, **설정만 잘 한다면 추가 안티바이러스 없이 Defender만으로도 충분하다**는 전제 아래, “어떻게 설정할지”에 초점을 맞춘다.
 
@@ -218,7 +218,7 @@ Set-MpPreference -PUAProtection 1
 - **Defender만으로 충분한 경우**: 일반 가정·개인 업무·웹·이메일·문서 중심 사용, Windows 기본 사용 폴더만 중요하게 다루는 경우. 위 체크리스트대로 강화해 두면 추가 안티바이러스 없이도 무난하다.
 - **추가 솔루션을 고려할 수 있는 경우**: 고위험 업무(금융·법률·의료 등), 오래된 레거시 앱·내부 도구가 많아 예외 설정이 복잡한 경우, 또는 조직에서 EDR·SIEM(예: Microsoft Defender for Endpoint, Sentinel)을 쓰는 환경. 이때는 “Defender 끄고 다른 걸 쓴다”보다는 **Defender를 기본으로 두고** 조직 정책에 따라 상위 제품을 함께 쓰는 구성을 많이 쓴다.
 
-정리하면, **“설정만 잘 한다면 Windows Defender로도 충분하다”**는 것은 “아무 설정 없이 기본값만으로”가 아니라, **MAPS·클라우드·랜섬웨어·정의 업데이트**를 위와 같이 한 번씩 설정해 두었을 때를 전제로 한 말이다.
+정리하면, <strong>“설정만 잘 한다면 Windows Defender로도 충분하다”</strong>는 것은 “아무 설정 없이 기본값만으로”가 아니라, **MAPS·클라우드·랜섬웨어·정의 업데이트**를 위와 같이 한 번씩 설정해 두었을 때를 전제로 한 말이다.
 
 ---
 

@@ -62,7 +62,7 @@ GoF는 두 패턴을 각각 다음과 같이 정의합니다.
 
 > "Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently." — Gamma et al., 1994
 
-이 두 패턴은 **"복잡성의 구조화"**라는 공통 목표를 가집니다:
+이 두 패턴은 <strong>"복잡성의 구조화"</strong>라는 공통 목표를 가집니다:
 - Interpreter: **문법적 복잡성**의 구조화
 - Mediator: **관계적 복잡성**의 구조화
 
@@ -606,7 +606,7 @@ class MathDemo {
 
 ### Mediator 패턴의 핵심 철학
 
-Mediator 패턴은 **"많은 객체 간의 복잡한 상호작용을 중재자가 관리"**하여 객체들이 서로를 직접 참조하지 않도록 합니다.
+Mediator 패턴은 <strong>"많은 객체 간의 복잡한 상호작용을 중재자가 관리"</strong>하여 객체들이 서로를 직접 참조하지 않도록 합니다.
 
 ```java
 // Mediator 패턴 없이 구현한다면?
@@ -1194,7 +1194,7 @@ Interpreter와 Mediator 패턴은 서로 다른 종류의 복잡성을 해결합
 - **중앙집중식 제어**
 - **재사용 가능한 상호작용**
 
-두 패턴 모두 **"복잡성을 구조화"**하여 이해하기 쉽고 확장 가능한 시스템을 만드는 핵심 도구입니다. 현대 소프트웨어 아키텍처에서 필수불가결한 패턴들입니다.
+두 패턴 모두 <strong>"복잡성을 구조화"</strong>하여 이해하기 쉽고 확장 가능한 시스템을 만드는 핵심 도구입니다. 현대 소프트웨어 아키텍처에서 필수불가결한 패턴들입니다.
 
 다음 글에서는 **Memento와 Visitor 패턴**을 탐구하겠습니다. 상태 보존과 연산 분리를 통한 유연한 객체 조작 방법을 살펴보겠습니다.
 

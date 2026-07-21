@@ -42,13 +42,13 @@ tags:
 slug: cpp-condition-variable-monitor-object-guarded-suspension
 ---
 
-03장은 **능동적으로 상태를 확인(spinning)하는 대신, 다른 스레드가 신호를 보낼 때까지 안전하게 대기**하는 패턴들을 다룬다. 이전 장의 락은 "공유 상태를 보호하는 것"에 집중했다면, 이 장의 condition variable은 **"조건이 만족될 때까지 대기"**의 효율성을 높인다.
+03장은 **능동적으로 상태를 확인(spinning)하는 대신, 다른 스레드가 신호를 보낼 때까지 안전하게 대기**하는 패턴들을 다룬다. 이전 장의 락은 "공유 상태를 보호하는 것"에 집중했다면, 이 장의 condition variable은 <strong>"조건이 만족될 때까지 대기"</strong>의 효율성을 높인다.
 
 ## 이 장을 읽기 전에
 
 **완전한 초보자?** 이 장은 [02장: 락 관용구](/post/multithreading-patterns/cpp-locking-idioms-scoped-locking-thread-safe-interface/)에서 다룬 `std::mutex`, `std::lock_guard`, `std::unique_lock`을 전제로 합니다. 특히 `std::unique_lock`이 `std::lock_guard`와 달리 "락을 중간에 풀고 다시 잡을 수 있다"는 점을 모른다면 02장을 먼저 보고 오세요. `std::condition_variable`을 한 번도 본 적이 없어도 괜찮습니다 — 이 장이 처음부터 설명합니다.
 
-**이 장의 깊이**: 이 장은 **중급~전문가** 수준입니다. `std::condition_variable`로 Monitor Object, Guarded Suspension, Balking 패턴을 구현하고, **spurious wakeup**과 **lost wakeup**이라는 두 가지 흔한 버그를 코드로 재현한 뒤 고칩니다. 전문가 구간에서는 OS별 spurious wakeup의 실제 발생 메커니즘, `notify`를 락 안/밖에서 호출할 때의 트레이드오프, 그리고 다중 condition_variable을 이용한 Bounded Queue의 실전 구현까지 다룹니다. **다루지 않는 것**: `std::future`/`std::promise` 기반의 비동기 결과 전달(07장), `std::semaphore`(C++20)와 `std::barrier`/`std::latch` 같은 더 새로운 동기화 프리미티브의 일반론(이 장에서는 비교 차원에서만 짧게 언급), 그리고 Producer-Consumer의 본격적인 큐 설계와 backpressure(04장)는 다음 장으로 넘긴다.
+**이 장의 깊이**: 이 장은 **중급–전문가** 수준입니다. `std::condition_variable`로 Monitor Object, Guarded Suspension, Balking 패턴을 구현하고, **spurious wakeup**과 **lost wakeup**이라는 두 가지 흔한 버그를 코드로 재현한 뒤 고칩니다. 전문가 구간에서는 OS별 spurious wakeup의 실제 발생 메커니즘, `notify`를 락 안/밖에서 호출할 때의 트레이드오프, 그리고 다중 condition_variable을 이용한 Bounded Queue의 실전 구현까지 다룹니다. **다루지 않는 것**: `std::future`/`std::promise` 기반의 비동기 결과 전달(07장), `std::semaphore`(C++20)와 `std::barrier`/`std::latch` 같은 더 새로운 동기화 프리미티브의 일반론(이 장에서는 비교 차원에서만 짧게 언급), 그리고 Producer-Consumer의 본격적인 큐 설계와 backpressure(04장)는 다음 장으로 넘긴다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -491,7 +491,7 @@ timeout 5 ./bq && echo OK || echo "hang or race detected"
 
 ## 다음 장에서는
 
-04장 **「데이터 흐름(Data Flow)」**에서는 Producer-Consumer의 심화 패턴, Bounded Buffer와 backpressure, 그리고 다중 프로듀서/컨슈머 구조를 다룬다.
+04장 <strong>「데이터 흐름(Data Flow)」</strong>에서는 Producer-Consumer의 심화 패턴, Bounded Buffer와 backpressure, 그리고 다중 프로듀서/컨슈머 구조를 다룬다.
 
 ## 참고 및 출처
 

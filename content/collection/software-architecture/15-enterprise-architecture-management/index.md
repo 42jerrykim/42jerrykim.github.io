@@ -77,9 +77,9 @@ tags:
 
 ### TOGAF ADM과 Zachman 프레임워크: 절차와 분류는 다른 문제다
 
-엔터프라이즈 아키텍처 분야에서 가장 널리 인용되는 두 산출물은 TOGAF와 Zachman 프레임워크인데, 둘을 같은 대상으로 오해하는 경우가 많다. **TOGAF**(The Open Group Architecture Framework)는 1995년 The Open Group이 미국 국방부의 TAFIM(Technical Architecture Framework for Information Management)을 기반으로 개발을 시작한 절차형 프레임워크로, 핵심은 **ADM(Architecture Development Method)**이라는 반복 주기다. ADM은 비즈니스 아키텍처, 데이터 아키텍처, 애플리케이션 아키텍처, 기술 아키텍처라는 네 영역을 순환하며 정의하고, 그 결과를 이행 계획과 거버넌스 단계로 이어가는 절차로 알려져 있다 — 즉 TOGAF는 "어떤 순서로 아키텍처를 만들 것인가"에 답한다.
+엔터프라이즈 아키텍처 분야에서 가장 널리 인용되는 두 산출물은 TOGAF와 Zachman 프레임워크인데, 둘을 같은 대상으로 오해하는 경우가 많다. **TOGAF**(The Open Group Architecture Framework)는 1995년 The Open Group이 미국 국방부의 TAFIM(Technical Architecture Framework for Information Management)을 기반으로 개발을 시작한 절차형 프레임워크로, 핵심은 <strong>ADM(Architecture Development Method)</strong>이라는 반복 주기다. ADM은 비즈니스 아키텍처, 데이터 아키텍처, 애플리케이션 아키텍처, 기술 아키텍처라는 네 영역을 순환하며 정의하고, 그 결과를 이행 계획과 거버넌스 단계로 이어가는 절차로 알려져 있다 — 즉 TOGAF는 "어떤 순서로 아키텍처를 만들 것인가"에 답한다.
 
-이와 달리 **Zachman 프레임워크**는 John Zachman이 1987년 IBM Systems Journal에 발표한 논문 "A Framework for Information Systems Architecture"에서 제안한 산출물로, 절차가 아니라 **분류 체계(taxonomy)**다. 무엇을(What)·어떻게(How)·어디서(Where)·누가(Who)·언제(When)·왜(Why)라는 여섯 질문을, 전체 개요부터 실제 운영 중인 시스템까지 여섯 관점으로 교차시킨 6×6 매트릭스로, 각 칸은 "이 관점에서 이 질문에 답하는 산출물이 무엇인가"를 가리킨다. 이런 구조 때문에 이 프레임워크는 아키텍처를 어떻게 만들지 지시하는 절차가 아니라, 이미 존재하거나 존재해야 할 산출물을 분류해 빠진 부분을 찾아내는 분류 도구로 흔히 설명된다.
+이와 달리 **Zachman 프레임워크**는 John Zachman이 1987년 IBM Systems Journal에 발표한 논문 "A Framework for Information Systems Architecture"에서 제안한 산출물로, 절차가 아니라 <strong>분류 체계(taxonomy)</strong>다. 무엇을(What)·어떻게(How)·어디서(Where)·누가(Who)·언제(When)·왜(Why)라는 여섯 질문을, 전체 개요부터 실제 운영 중인 시스템까지 여섯 관점으로 교차시킨 6×6 매트릭스로, 각 칸은 "이 관점에서 이 질문에 답하는 산출물이 무엇인가"를 가리킨다. 이런 구조 때문에 이 프레임워크는 아키텍처를 어떻게 만들지 지시하는 절차가 아니라, 이미 존재하거나 존재해야 할 산출물을 분류해 빠진 부분을 찾아내는 분류 도구로 흔히 설명된다.
 
 **흔한 오개념: "TOGAF와 Zachman은 경쟁하는 대안 EA 프레임워크다"**. 실제로 둘은 답하는 질문 자체가 다르다. TOGAF는 절차, Zachman은 분류이므로 원리적으로 상호 배타적이지 않다 — TOGAF ADM을 따라 아키텍처를 만들면서, 그 산출물이 Zachman 매트릭스의 어느 칸에 해당하는지 점검해 빠진 관점이 없는지 확인하는 조합이 가능하다. 다만 실무에서는 두 프레임워크를 모두 전면 도입하는 대신, TOGAF의 ADM 사고방식(반복적으로 도메인을 순회하며 이행 계획까지 연결한다)만 가져오고 Zachman 매트릭스는 산출물 점검 체크리스트 정도로 가볍게 참고하는 절충이 흔하다.
 
@@ -206,9 +206,9 @@ public class ArchitectureFitnessFunctionTest {
 
 ### 역 Conway 전략과 Team Topologies
 
-이 관찰을 뒤집으면 실천적인 도구가 된다. Jonny LeRoy와 Matt Simons는 2010년 12월 Cutter IT Journal 기고문에서, 원하는 시스템 구조가 먼저 있다면 조직 구조를 그 구조에 맞춰 먼저 재편하라는 **역 Conway 전략(Inverse Conway Maneuver)**을 제안했고, 이 기법은 2014년 ThoughtWorks Technology Radar에 오르며 널리 알려졌다. ThoughtWorks는 이 기법을 목표로 삼은 아키텍처를 이끌어 내기 위해 조직과 팀의 위계 구조 자체를 재편하는 접근으로 설명한다. 예컨대 여러 서비스를 마이크로서비스로 분리하고 싶다면, 코드를 나누기 전에 팀부터 서비스 경계에 맞춰 나누는 편이 — 반대로 하나의 큰 팀이 그대로인 채 코드만 나누는 것보다 — 훨씬 잘 작동한다. 코드만 나눠 놓아도 팀이 하나로 뭉쳐 있으면 소통 구조가 여전히 하나이므로, Conway의 법칙에 따라 시스템은 시간이 지나며 다시 하나로 뭉치는 경향을 보인다.
+이 관찰을 뒤집으면 실천적인 도구가 된다. Jonny LeRoy와 Matt Simons는 2010년 12월 Cutter IT Journal 기고문에서, 원하는 시스템 구조가 먼저 있다면 조직 구조를 그 구조에 맞춰 먼저 재편하라는 <strong>역 Conway 전략(Inverse Conway Maneuver)</strong>을 제안했고, 이 기법은 2014년 ThoughtWorks Technology Radar에 오르며 널리 알려졌다. ThoughtWorks는 이 기법을 목표로 삼은 아키텍처를 이끌어 내기 위해 조직과 팀의 위계 구조 자체를 재편하는 접근으로 설명한다. 예컨대 여러 서비스를 마이크로서비스로 분리하고 싶다면, 코드를 나누기 전에 팀부터 서비스 경계에 맞춰 나누는 편이 — 반대로 하나의 큰 팀이 그대로인 채 코드만 나누는 것보다 — 훨씬 잘 작동한다. 코드만 나눠 놓아도 팀이 하나로 뭉쳐 있으면 소통 구조가 여전히 하나이므로, Conway의 법칙에 따라 시스템은 시간이 지나며 다시 하나로 뭉치는 경향을 보인다.
 
-이 전략을 실행하려면 "팀을 어떤 모양으로 나눌 것인가"라는 질문에 답해야 하는데, Matthew Skelton과 Manuel Pais는 2019년 저서 『Team Topologies』에서 이 질문에 네 가지 팀 유형으로 답한다. **스트림 정렬팀(stream-aligned team)**은 하나의 비즈니스 영역(주문, 결제 등)에 맞춰 기능을 처음부터 끝까지 책임지는 팀이고, **플랫폼팀(platform team)**은 스트림 정렬팀이 쓸 셀프서비스 내부 도구를 제공해 인지 부하를 낮추는 팀이며 — 이 팀이 바로 앞서 다룬 Paved Road를 실제로 만드는 팀이다 — **인에이블링팀(enabling team)**은 특정 기술 영역의 전문 지식을 스트림 정렬팀에 전파하는 팀이고, **복잡한 하위 시스템팀(complicated-subsystem team)**은 깊은 전문 지식이 필요한 일부 하위 시스템(예: 실시간 가격 결정 엔진)을 전담해 다른 팀의 부담을 덜어준다.
+이 전략을 실행하려면 "팀을 어떤 모양으로 나눌 것인가"라는 질문에 답해야 하는데, Matthew Skelton과 Manuel Pais는 2019년 저서 『Team Topologies』에서 이 질문에 네 가지 팀 유형으로 답한다. <strong>스트림 정렬팀(stream-aligned team)</strong>은 하나의 비즈니스 영역(주문, 결제 등)에 맞춰 기능을 처음부터 끝까지 책임지는 팀이고, <strong>플랫폼팀(platform team)</strong>은 스트림 정렬팀이 쓸 셀프서비스 내부 도구를 제공해 인지 부하를 낮추는 팀이며 — 이 팀이 바로 앞서 다룬 Paved Road를 실제로 만드는 팀이다 — <strong>인에이블링팀(enabling team)</strong>은 특정 기술 영역의 전문 지식을 스트림 정렬팀에 전파하는 팀이고, <strong>복잡한 하위 시스템팀(complicated-subsystem team)</strong>은 깊은 전문 지식이 필요한 일부 하위 시스템(예: 실시간 가격 결정 엔진)을 전담해 다른 팀의 부담을 덜어준다.
 
 ```mermaid
 flowchart TB
@@ -237,7 +237,7 @@ flowchart TB
 
 ## 언제 도입하고 언제 피할 것인가
 
-이 장에서 다룬 네 체계는 조직 규모와 성숙도에 따라 필요한 강도가 크게 달라진다. 중앙집중형 ARB와 TOGAF ADM 같은 격식 있는 절차는 팀 수십 개 이상, 규제 요건이 있는 대규모 조직에서는 일관성과 감사 대응력을 위해 필요하지만, 팀 5개 이하의 조직에 그대로 도입하면 절차 자체가 개발 속도보다 큰 비용이 된다 — 이런 조직에는 소수의 원칙과 가벼운 ADR 관행, 그리고 [7장](/post/software-architecture/architecture-evaluation-and-analysis/)에서 다룬 경량 리뷰 정도로 충분한 경우가 많다. Technology Radar 같은 포트폴리오 관리 도구는 여러 팀이 각자 다른 기술을 도입해 정보가 흩어지기 시작하는 시점(대략 팀 3~4개를 넘어서는 시점)부터 가치가 커지며, 팀이 하나뿐인 조직에는 과한 절차다.
+이 장에서 다룬 네 체계는 조직 규모와 성숙도에 따라 필요한 강도가 크게 달라진다. 중앙집중형 ARB와 TOGAF ADM 같은 격식 있는 절차는 팀 수십 개 이상, 규제 요건이 있는 대규모 조직에서는 일관성과 감사 대응력을 위해 필요하지만, 팀 5개 이하의 조직에 그대로 도입하면 절차 자체가 개발 속도보다 큰 비용이 된다 — 이런 조직에는 소수의 원칙과 가벼운 ADR 관행, 그리고 [7장](/post/software-architecture/architecture-evaluation-and-analysis/)에서 다룬 경량 리뷰 정도로 충분한 경우가 많다. Technology Radar 같은 포트폴리오 관리 도구는 여러 팀이 각자 다른 기술을 도입해 정보가 흩어지기 시작하는 시점(대략 팀 3–4개를 넘어서는 시점)부터 가치가 커지며, 팀이 하나뿐인 조직에는 과한 절차다.
 
 적합도 함수와 Paved Road는 반대로 조직 규모와 무관하게 이른 시점부터 도입할수록 이득이 크다 — 규칙이 코드로 존재하면 팀이 늘어나도 검증 비용이 거의 늘지 않기 때문에, 나중에 팀이 늘어난 뒤 뒤늦게 도입하려면 이미 흩어진 관행을 되돌리는 비용이 훨씬 크다. 역 Conway 전략과 Team Topologies의 팀 재편은 가장 신중하게 접근해야 하는 영역이다 — 조직 구조를 바꾸는 결정은 사람의 역할·경력·소속에 직접 영향을 미치므로, 시스템 구조를 개선하겠다고 조직을 자주 재편하면 오히려 팀 간 신뢰와 도메인 지식의 축적이 끊겨 역효과를 낼 수 있다. 이런 재편은 목표 아키텍처가 명확히 합의된 뒤, 빈도를 낮춰 신중하게 실행하는 것이 원칙이다.
 

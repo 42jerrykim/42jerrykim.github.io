@@ -163,7 +163,7 @@ xychart-beta
 
 ### 2. 같은 기간의 생산성
 
-하지만 같은 기간의 **생산성(코드 라인 수)**을 보면:
+하지만 같은 기간의 <strong>생산성(코드 라인 수)</strong>을 보면:
 
 ```mermaid
 xychart-beta

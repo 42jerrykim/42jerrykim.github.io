@@ -44,7 +44,7 @@ image: "wordcloud.png"
 
 01장의 방법들은 **Sparse Retrieval**이라 부릅니다(TF-IDF 벡터 자체가 대부분 0인 희소 벡터이기 때문입니다). **Dense Retrieval**은 질문과 문서를 각각 `dense_encoder(q)`, `dense_encoder(d)`로 인코딩해, 대부분의 값이 0이 아닌 조밀한(dense) 벡터를 만듭니다. 이 인코더는 파인튜닝된 BERT 같은 신경망입니다. 유사도는 LLM 시리즈 01장에서 다룬 내적 또는 코사인 유사도로 계산합니다 — 코사인 유사도는 벡터를 단위벡터로 정규화한 뒤 내적한 것과 같습니다.
 
-BERT는 LLM 시리즈 03장에서 다룬 것처럼 인코더만 쓰는 구조로, **사전학습(Pre-training)**과 **파인튜닝(Fine-tuning)** 두 단계로 구성됩니다. 사전학습 단계는 NSP(Next Sentence Prediction)와 Masked LM(마스크 언어모델)의 손실을 최소화하는 것이 목표이며, 이 사전학습된 BERT를 검색 과제에 맞게 다시 파인튜닝한 것이 Dense Retrieval의 인코더입니다.
+BERT는 LLM 시리즈 03장에서 다룬 것처럼 인코더만 쓰는 구조로, <strong>사전학습(Pre-training)</strong>과 **파인튜닝(Fine-tuning)** 두 단계로 구성됩니다. 사전학습 단계는 NSP(Next Sentence Prediction)와 Masked LM(마스크 언어모델)의 손실을 최소화하는 것이 목표이며, 이 사전학습된 BERT를 검색 과제에 맞게 다시 파인튜닝한 것이 Dense Retrieval의 인코더입니다.
 
 ## 두 가지 학습 구조 — Cross-encoder와 Bi-encoder
 
@@ -83,7 +83,7 @@ def two_stage_retrieval(query: str, documents: list[str], bi_encoder, cross_enco
 
 ## DPR — 문서 인코딩을 오프라인으로 미리 끝내기
 
-**DPR(Dense Passage Retrieval)**은 Bi-encoder 구조를 실제로 대규모 오픈 도메인 질의응답에 적용한 대표적인 연구입니다.
+<strong>DPR(Dense Passage Retrieval)</strong>은 Bi-encoder 구조를 실제로 대규모 오픈 도메인 질의응답에 적용한 대표적인 연구입니다.
 
 > Vladimir Karpukhin, Barlas Oğuz, Sewon Min 외, "Dense Passage Retrieval for Open-Domain Question Answering", *arXiv:2004.04906* (2020)
 

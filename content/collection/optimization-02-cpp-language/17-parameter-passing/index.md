@@ -93,7 +93,7 @@ tags:
 
 **완전한 초보자?** 이 장은 [06장: 객체 수명 최적화](/post/cpp-optimization/object-lifetime/)의 복사·이동 비용을 전제로 합니다. 함수 인자를 값/참조/우측값 참조로 받을 수 있다는 정도만 알면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **중급~전문가**를 포괄합니다. by value·const reference·rvalue reference의 의미부터 시작해, 전문가 구간에서는 객체 크기·복사/이동 비용에 따른 전달 전략을 마이크로벤치마크로 정량 분석합니다. **다루지 않는 것**: non-owning 뷰 전달([14장](/post/cpp-optimization/span-and-views/))과 반환값 최적화([06장](/post/cpp-optimization/object-lifetime/))의 세부입니다.
+**이 장의 깊이**: 이 장은 **중급–전문가**를 포괄합니다. by value·const reference·rvalue reference의 의미부터 시작해, 전문가 구간에서는 객체 크기·복사/이동 비용에 따른 전달 전략을 마이크로벤치마크로 정량 분석합니다. **다루지 않는 것**: non-owning 뷰 전달([14장](/post/cpp-optimization/span-and-views/))과 반환값 최적화([06장](/post/cpp-optimization/object-lifetime/))의 세부입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -117,11 +117,11 @@ C++03에서는 "큰 타입은 const 참조로"가 일반적이었습니다. C++1
 
 ## const reference
 
-**큰 타입**이거나 **복사 비용이 큰** 타입을 **읽기만** 할 때는 **const T&**로 받으면 복사를 피할 수 있습니다. 참조는 보통 포인터 크기만 전달되므로 전달 비용이 작지만, 함수 내부에서 멤버에 접근할 때 **한 번의 간접 접근**이 따릅니다. **수명 연장** 규칙에 따라, **임시 객체**를 const 참조에 바인딩하면 그 임시의 수명이 참조의 수명까지 연장되므로 `f(std::string("hello"))`처럼 임시를 넘겨도 안전합니다.
+**큰 타입**이거나 **복사 비용이 큰** 타입을 **읽기만** 할 때는 <strong>const T&</strong>로 받으면 복사를 피할 수 있습니다. 참조는 보통 포인터 크기만 전달되므로 전달 비용이 작지만, 함수 내부에서 멤버에 접근할 때 **한 번의 간접 접근**이 따릅니다. **수명 연장** 규칙에 따라, **임시 객체**를 const 참조에 바인딩하면 그 임시의 수명이 참조의 수명까지 연장되므로 `f(std::string("hello"))`처럼 임시를 넘겨도 안전합니다.
 
 ## rvalue reference
 
-**rvalue reference(T&&)**는 **이동 시맨틱**을 표현합니다. "소유권을 넘기거나 리소스를 재사용해도 된다"는 의미이므로, 함수 내부에서 **std::move**로 다른 함수에 넘기거나 멤버로 저장할 때 이동이 선택됩니다. **Perfect forwarding**은 **T&&**(forwarding reference)와 **std::forward**를 사용해, 인자를 "값 카테고리만 유지한 채" 다음 함수에 그대로 넘기는 패턴입니다.
+<strong>rvalue reference(T&&)</strong>는 **이동 시맨틱**을 표현합니다. "소유권을 넘기거나 리소스를 재사용해도 된다"는 의미이므로, 함수 내부에서 **std::move**로 다른 함수에 넘기거나 멤버로 저장할 때 이동이 선택됩니다. **Perfect forwarding**은 **T&&**(forwarding reference)와 **std::forward**를 사용해, 인자를 "값 카테고리만 유지한 채" 다음 함수에 그대로 넘기는 패턴입니다.
 
 아래 예시에서 함수 이름을 `fwd`로 둔 이유는 표준의 `std::forward`와 이름이 겹쳐 가려지는 것을 피하기 위해서입니다. `fwd`는 lvalue를 받으면 복사 후 이동, rvalue를 받으면 이동으로 `sink`에 전달합니다.
 
@@ -146,7 +146,7 @@ int main() {
 
 ## 정량 분석과 선택 기준
 
-선택은 **객체 크기**와 **복사/이동 비용**에 따라 달라집니다. 아래 `Point`는 8바이트(`int` 2개) 트리비얼 타입이라 값 전달이 레지스터로 처리되어 const ref보다 간접 접근이 없습니다. 반면 `std::string`처럼 힙 버퍼를 가진 타입은 복사가 비싸므로, **멤버로 저장(sink)**할 때는 "값으로 받아 `std::move`"하는 패턴이 lvalue·rvalue 모두에 한 번의 복사 또는 이동만 들도록 해 줍니다.
+선택은 **객체 크기**와 **복사/이동 비용**에 따라 달라집니다. 아래 `Point`는 8바이트(`int` 2개) 트리비얼 타입이라 값 전달이 레지스터로 처리되어 const ref보다 간접 접근이 없습니다. 반면 `std::string`처럼 힙 버퍼를 가진 타입은 복사가 비싸므로, <strong>멤버로 저장(sink)</strong>할 때는 "값으로 받아 `std::move`"하는 패턴이 lvalue·rvalue 모두에 한 번의 복사 또는 이동만 들도록 해 줍니다.
 
 ```cpp
 #include <string>
@@ -173,7 +173,7 @@ public:
 | 전달 방식 | 대상 | 복사/이동 | 간접 접근 | 예시 상대 비용 |
 |-----------|------|-----------|-----------|----------------|
 | by value | 8바이트 `Point` | 복사 1 (레지스터) | 없음 | ~1x |
-| const ref | 8바이트 `Point` | 없음 | 멤버마다 1 | ~1x~1.3x |
+| const ref | 8바이트 `Point` | 없음 | 멤버마다 1 | ~1x–1.3x |
 | const ref | 큰 `std::string` | 없음 | 1 | ~1x |
 | by value(sink)+move | `std::string` rvalue | 이동 1 | 없음 | ~1x |
 | by value | `std::string` lvalue | 복사 1 (힙 할당) | 없음 | ~10x+ |
@@ -212,7 +212,7 @@ BENCHMARK(BM_SinkRvalue);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면(x86-64, GCC 13, `-O2` 기준 예시 수치), `BM_SinkLvalue`가 `BM_SinkRvalue`보다 대략 5~15배 느리게 나오는 경우가 흔합니다 — 차이의 근원은 힙 할당을 동반하는 문자열 **복사** 1회입니다. 정확한 배율은 문자열 길이·할당자·플랫폼에 따라 달라지므로, 표의 "~10x+"는 방향성을 보여주는 예시로만 참고하고 대상 환경에서 재측정해야 합니다.
+`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면(x86-64, GCC 13, `-O2` 기준 예시 수치), `BM_SinkLvalue`가 `BM_SinkRvalue`보다 대략 5–15배 느리게 나오는 경우가 흔합니다 — 차이의 근원은 힙 할당을 동반하는 문자열 **복사** 1회입니다. 정확한 배율은 문자열 길이·할당자·플랫폼에 따라 달라지므로, 표의 "~10x+"는 방향성을 보여주는 예시로만 참고하고 대상 환경에서 재측정해야 합니다.
 
 ```mermaid
 flowchart TD
@@ -225,9 +225,9 @@ flowchart TD
 
 ## 흔한 오해
 
-**"참조 전달(const T&)이 항상 값 전달보다 빠르다"**는 흔한 오해입니다. 위 표에서 보듯 8바이트 `Point`는 by value가 레지스터로 그대로 전달되어 간접 접근이 없는 반면, const ref는 포인터를 넘기고 멤버에 접근할 때마다 한 번의 간접 참조가 추가로 듭니다. "작은 타입은 참조가 항상 유리하다"고 습관적으로 적용하면 오히려 손해를 볼 수 있습니다.
+<strong>"참조 전달(const T&)이 항상 값 전달보다 빠르다"</strong>는 흔한 오해입니다. 위 표에서 보듯 8바이트 `Point`는 by value가 레지스터로 그대로 전달되어 간접 접근이 없는 반면, const ref는 포인터를 넘기고 멤버에 접근할 때마다 한 번의 간접 참조가 추가로 듭니다. "작은 타입은 참조가 항상 유리하다"고 습관적으로 적용하면 오히려 손해를 볼 수 있습니다.
 
-**"T&&는 항상 rvalue reference다"**도 자주 틀리는 지점입니다. `template<typename T> void fwd(T&& x)`처럼 **템플릿 타입 파라미터**에 붙은 `T&&`는 **forwarding reference**(universal reference)로, T가 추론되는 문맥에서만 적용되는 특수 규칙에 따라 lvalue·rvalue를 모두 받을 수 있습니다. 반면 `void f(std::string&& x)`처럼 **구체 타입**에 붙은 `T&&`는 진짜 rvalue reference이며 lvalue를 받을 수 없습니다. 이 둘을 혼동하면 "왜 lvalue를 넘겼는데 컴파일이 되지?"라는 의문으로 이어집니다.
+<strong>"T&&는 항상 rvalue reference다"</strong>도 자주 틀리는 지점입니다. `template<typename T> void fwd(T&& x)`처럼 **템플릿 타입 파라미터**에 붙은 `T&&`는 **forwarding reference**(universal reference)로, T가 추론되는 문맥에서만 적용되는 특수 규칙에 따라 lvalue·rvalue를 모두 받을 수 있습니다. 반면 `void f(std::string&& x)`처럼 **구체 타입**에 붙은 `T&&`는 진짜 rvalue reference이며 lvalue를 받을 수 없습니다. 이 둘을 혼동하면 "왜 lvalue를 넘겼는데 컴파일이 되지?"라는 의문으로 이어집니다.
 
 ## 비판적 시각: 한계와 트레이드오프
 

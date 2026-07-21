@@ -64,7 +64,7 @@ title: "[WebDevelopment] 웹 폰트 로딩 전략과 최적화"
 image: "wordcloud.png"
 ---
 
-웹 폰트 로딩 전략은 웹 개발에서 **성능**과 **사용자 경험(UX)**에 직결되는 요소다. 잘못된 로딩 방식은 FOIT(텍스트가 잠시 보이지 않는 현상)나 과도한 FOUT(시스템 폰트에서 웹 폰트로 바뀌는 깜빡임)를 유발해 이탈률을 높인다. **Zach Leatherman**이 정리한 폰트 로딩 전략 가이드는 수년간 업계에서 널리 인용되며, 그중 **FOUT with Class**와 **Critical FOFT**가 대표적인 권장안이다. 전자는 클라우드·자체 호스팅 모두에 적용 가능하고, 후자는 자체 호스팅 시 성능을 극대화할 때 유리하다. 이 글에서는 두 전략의 원리, FOIT·FOUT·FOFT 용어 정리, `font-display`, 호스팅 방식 비교, 구현 예제, 그리고 **언제 어떤 전략을 선택할지**에 대한 판단 기준까지 다룬다.
+웹 폰트 로딩 전략은 웹 개발에서 **성능**과 <strong>사용자 경험(UX)</strong>에 직결되는 요소다. 잘못된 로딩 방식은 FOIT(텍스트가 잠시 보이지 않는 현상)나 과도한 FOUT(시스템 폰트에서 웹 폰트로 바뀌는 깜빡임)를 유발해 이탈률을 높인다. **Zach Leatherman**이 정리한 폰트 로딩 전략 가이드는 수년간 업계에서 널리 인용되며, 그중 **FOUT with Class**와 **Critical FOFT**가 대표적인 권장안이다. 전자는 클라우드·자체 호스팅 모두에 적용 가능하고, 후자는 자체 호스팅 시 성능을 극대화할 때 유리하다. 이 글에서는 두 전략의 원리, FOIT·FOUT·FOFT 용어 정리, `font-display`, 호스팅 방식 비교, 구현 예제, 그리고 **언제 어떤 전략을 선택할지**에 대한 판단 기준까지 다룬다.
 
 
 |![/assets/images/2024/2024-09-10-web-font.png](/assets/images/2024/2024-09-10-web-font.png)|
@@ -983,7 +983,7 @@ graph TD
 | 클라우드 호스팅, `font-display` 미지원 또는 제어 필요 | **FOUT with Class** | CSS Font Loader API 또는 FontFaceObserver |
 | 자체 호스팅, 최대 성능 추구 | **Critical FOFT**(또는 Preload/Data URI 변형) | 서브셋·자체 호스팅 필요 |
 | 자체 호스팅, FOFT는 적용하되 서브셋 작업 회피 | **Standard FOFT** | FOUT with Class의 2단계 렌더 버전 |
-| 자체 호스팅, 폰트 1~2개만 사용 | `@font-face` + `font-display: swap` | JS 없이 충분 |
+| 자체 호스팅, 폰트 1–2개만 사용 | `@font-face` + `font-display: swap` | JS 없이 충분 |
 
 **적용 체크리스트**
 

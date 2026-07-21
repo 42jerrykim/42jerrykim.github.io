@@ -61,7 +61,7 @@ tags:
 
 Apple은 2020년 11월 M1을 시작으로 Mac 제품군의 CPU를 Intel x86-64에서 자체 설계 ARM 기반 SoC로 전환했습니다. 이 전환의 핵심은 단순히 명령어 집합을 ARMv8/ARMv9로 바꾼 것이 아니라, ARM이 제공하는 표준 Cortex 코어 대신 Apple이 A 시리즈 모바일 칩(iPhone/iPad)에서 축적한 자체 마이크로아키텍처 설계(코드네임 Firestorm/Icestorm 계열로 알려진 M1의 성능·효율 코어)를 데스크톱·노트북급으로 확장한 데 있습니다. 이 자체 설계 덕분에 Apple은 코어별 파이프라인 깊이, 캐시 크기, 프론트엔드 폭을 세대마다 독자적으로 조정할 수 있었고, 이는 ARM 진영의 다른 벤더가 채택한 표준 big.LITTLE 구성과는 다른 궤적을 만들었습니다.
 
-M1부터 M4까지는 4개의 고성능(P, Performance) 코어와 가변 개수의 저전력(E, Efficiency) 코어로 구성된 4P+nE 구조를 유지했습니다(M1~M3는 4E, M4는 6E). [2025년 10월 발표된 base M5](https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/)는 같은 4P+6E 구성을 유지하되 GPU 코어마다 Neural Accelerator를 내장해 AI 워크로드의 메모리 왕복을 줄였고, [2026년 3월 발표된 M5 Pro/M5 Max](https://www.apple.com/newsroom/2026/03/apple-debuts-m5-pro-and-m5-max-to-supercharge-the-most-demanding-pro-workflows/)는 E 코어라는 이름 자체를 버리고 "6개의 Super Core + 12개의 새로운 Performance Core"로 구성을 재편했습니다. Apple은 이 재편을 두고 두 개의 3nm(3세대) 다이를 저지연 패키징으로 연결하는 **Fusion Architecture**를 함께 발표했는데, 이는 코어 비대칭성의 축이 "고성능 vs 저전력"에서 "제어 흐름 복잡도가 높은 워크로드 vs 멀티스레드 처리량 워크로드"로 옮겨가고 있음을 보여줍니다. 이 계보를 아는 것이 중요한 이유는, 이 트랙의 다른 챕터가 다루는 "코어" 개념이 x86 SMP처럼 동질적이라는 가정을 Apple Silicon에서는 그대로 쓸 수 없기 때문입니다.
+M1부터 M4까지는 4개의 고성능(P, Performance) 코어와 가변 개수의 저전력(E, Efficiency) 코어로 구성된 4P+nE 구조를 유지했습니다(M1–M3는 4E, M4는 6E). [2025년 10월 발표된 base M5](https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/)는 같은 4P+6E 구성을 유지하되 GPU 코어마다 Neural Accelerator를 내장해 AI 워크로드의 메모리 왕복을 줄였고, [2026년 3월 발표된 M5 Pro/M5 Max](https://www.apple.com/newsroom/2026/03/apple-debuts-m5-pro-and-m5-max-to-supercharge-the-most-demanding-pro-workflows/)는 E 코어라는 이름 자체를 버리고 "6개의 Super Core + 12개의 새로운 Performance Core"로 구성을 재편했습니다. Apple은 이 재편을 두고 두 개의 3nm(3세대) 다이를 저지연 패키징으로 연결하는 **Fusion Architecture**를 함께 발표했는데, 이는 코어 비대칭성의 축이 "고성능 vs 저전력"에서 "제어 흐름 복잡도가 높은 워크로드 vs 멀티스레드 처리량 워크로드"로 옮겨가고 있음을 보여줍니다. 이 계보를 아는 것이 중요한 이유는, 이 트랙의 다른 챕터가 다루는 "코어" 개념이 x86 SMP처럼 동질적이라는 가정을 Apple Silicon에서는 그대로 쓸 수 없기 때문입니다.
 
 ## P코어/E코어 비대칭 멀티프로세싱
 
@@ -100,7 +100,7 @@ void* latency_sensitive_work(void* arg) {
 
 ### 하나의 메모리 풀, 그러나 무한하지 않은 대역폭
 
-전통적인 이산형(discrete) 구성에서는 CPU가 시스템 DRAM을, GPU가 별도의 VRAM을 쓰고 두 메모리 사이의 데이터 이동은 PCIe를 통한 명시적 복사로 처리됩니다. Apple Silicon의 **Unified Memory Architecture(UMA)**는 CPU, GPU, Neural Engine이 패키지 내부의 LPDDR5X 메모리 풀을 물리적으로 공유하게 해 이 복사 단계 자체를 없앱니다. Hübner 등(KTH, 2025)의 측정 연구는 이 구조를 다음과 같이 요약합니다.
+전통적인 이산형(discrete) 구성에서는 CPU가 시스템 DRAM을, GPU가 별도의 VRAM을 쓰고 두 메모리 사이의 데이터 이동은 PCIe를 통한 명시적 복사로 처리됩니다. Apple Silicon의 <strong>Unified Memory Architecture(UMA)</strong>는 CPU, GPU, Neural Engine이 패키지 내부의 LPDDR5X 메모리 풀을 물리적으로 공유하게 해 이 복사 단계 자체를 없앱니다. Hübner 등(KTH, 2025)의 측정 연구는 이 구조를 다음과 같이 요약합니다.
 
 > "This memory is not just a traditional RAM but is tightly coupled with the CPU, GPU, Neural Engine, and other components within the chip, forming a shared, high-bandwidth memory pool." — Hübner, Hu, Peng, Markidis, [Apple vs. Oranges: Evaluating the Apple Silicon M-Series SoCs for HPC Performance and Efficiency](https://arxiv.org/html/2502.05317v1), arXiv:2502.05317 (2025)
 
@@ -155,11 +155,11 @@ int main() {
 
 ## 흔한 오개념
 
-**"E코어는 성능이 낮으니 항상 손해다"**는 정확하지 않습니다. E코어의 목적은 절대 성능이 아니라 백그라운드 작업을 P코어에서 격리해 사용자 워크로드가 요청하는 순간 P코어를 비워두는 것입니다. 유휴 Mac에서 수백 개 프로세스가 E코어에 머무르는 구조 자체가 P코어의 체감 반응성을 끌어올리는 장치이므로, E코어 존재를 "저성능 코어의 타협"이 아니라 "지연시간 격리 장치"로 이해해야 판단 기준이 맞습니다.
+<strong>"E코어는 성능이 낮으니 항상 손해다"</strong>는 정확하지 않습니다. E코어의 목적은 절대 성능이 아니라 백그라운드 작업을 P코어에서 격리해 사용자 워크로드가 요청하는 순간 P코어를 비워두는 것입니다. 유휴 Mac에서 수백 개 프로세스가 E코어에 머무르는 구조 자체가 P코어의 체감 반응성을 끌어올리는 장치이므로, E코어 존재를 "저성능 코어의 타협"이 아니라 "지연시간 격리 장치"로 이해해야 판단 기준이 맞습니다.
 
-**"Unified Memory는 대역폭이 사실상 무한하고 지연도 0에 가깝다"**는 마케팅 문구에서 비롯된 과장입니다. UMA는 CPU-GPU 간 명시적 복사를 없애 **왕복 비용(round-trip)**을 줄이는 것이지, 대역폭 자체를 늘리거나 경합을 없애는 것이 아닙니다. CPU와 GPU가 동시에 대역폭을 많이 쓰면 각자가 받는 실효 대역폭은 줄어들고, 이는 STREAM 실측치가 이론 최대치의 약 85%에 그친 이유 중 하나이기도 합니다.
+<strong>"Unified Memory는 대역폭이 사실상 무한하고 지연도 0에 가깝다"</strong>는 마케팅 문구에서 비롯된 과장입니다. UMA는 CPU-GPU 간 명시적 복사를 없애 <strong>왕복 비용(round-trip)</strong>을 줄이는 것이지, 대역폭 자체를 늘리거나 경합을 없애는 것이 아닙니다. CPU와 GPU가 동시에 대역폭을 많이 쓰면 각자가 받는 실효 대역폭은 줄어들고, 이는 STREAM 실측치가 이론 최대치의 약 85%에 그친 이유 중 하나이기도 합니다.
 
-**"Apple Silicon은 표준 ARM big.LITTLE을 그대로 쓴다"**도 오해입니다. big.LITTLE이라는 이름 자체는 ARM이 제공하는 표준 IP 코어(Cortex-A 시리즈)를 전제로 하지만, Apple의 P/E 코어는 Apple이 자체 설계한 마이크로아키텍처이고 macOS의 QoS 기반 스케줄링 정책도 Linux의 EAS(Energy Aware Scheduling)나 sched_ext 기반 정책과 스케줄링 결정 기준이 다릅니다. "ARM = big.LITTLE = Apple 방식"이라는 등식은 세 가지를 뭉뚱그린 것입니다.
+<strong>"Apple Silicon은 표준 ARM big.LITTLE을 그대로 쓴다"</strong>도 오해입니다. big.LITTLE이라는 이름 자체는 ARM이 제공하는 표준 IP 코어(Cortex-A 시리즈)를 전제로 하지만, Apple의 P/E 코어는 Apple이 자체 설계한 마이크로아키텍처이고 macOS의 QoS 기반 스케줄링 정책도 Linux의 EAS(Energy Aware Scheduling)나 sched_ext 기반 정책과 스케줄링 결정 기준이 다릅니다. "ARM = big.LITTLE = Apple 방식"이라는 등식은 세 가지를 뭉뚱그린 것입니다.
 
 ## 판단 기준
 

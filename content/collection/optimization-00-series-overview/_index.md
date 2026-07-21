@@ -62,4 +62,4 @@ tags:
   - 마이크로벤치마크
 ---
 
-시리즈 전체 로드맵·트랙 간 선행 관계·심화(Tr.09·Tr.10) 진입은 **[00. Introduction: Low-latency 최적화 시리즈](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)**에서 다룹니다.
+시리즈 전체 로드맵·트랙 간 선행 관계·심화(Tr.09·Tr.10) 진입은 <strong>[00. Introduction: Low-latency 최적화 시리즈](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)</strong>에서 다룹니다.

@@ -57,7 +57,7 @@ image: "wordcloud.png"
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|----------|----------|
-| 초급 | 도입, 핵심 개념(repo, lunch), 실전 적용의 1~2단계 | `repo sync`로 소스를 받고 `lunch`로 타겟을 골라 `m`으로 빌드를 실행할 수 있다 |
+| 초급 | 도입, 핵심 개념(repo, lunch), 실전 적용의 1–2단계 | `repo sync`로 소스를 받고 `lunch`로 타겟을 골라 `m`으로 빌드를 실행할 수 있다 |
 | 중급 | 핵심 개념 전체, 비교/트레이드오프, 실전 적용 전체 | Soong/Kati가 왜 공존하는지, `Android.bp`를 어떻게 작성하는지, 증분 빌드가 느려지는 이유를 진단할 수 있다 |
 | 전문가 | 흔한 오개념, 비판적 시각, ninja 그래프 분석, ccache 튜닝 | ninja 빌드 그래프를 직접 열어 병목을 찾고, ccache 캐시 미스 원인을 추적하며 CI 빌드 시간을 정량적으로 개선할 수 있다 |
 
@@ -71,7 +71,7 @@ AOSP(Android Open Source Project)는 수백 개의 Git 저장소, 수만 개의 
 
 ### repo: 다중 저장소를 하나의 트리로 묶는 도구
 
-**repo(레포)**는 구글이 만든 Git 저장소 오케스트레이션 도구로, `.git` 저장소 하나가 아니라 수백 개의 Git 저장소를 하나의 논리적 소스 트리로 묶어 관리한다. AOSP는 프레임워크, 커널, 각종 라이브러리, 벤더 코드가 모두 별도 Git 저장소로 나뉘어 있는데, 이를 개별적으로 `git clone`하면 버전 조합을 맞추는 일 자체가 악몽이 된다. repo는 **manifest(매니페스트)**라는 XML 파일에 "어떤 저장소를, 어떤 브랜치·리비전으로, 어느 경로에 배치할지"를 선언해 두고, 이 매니페스트 하나를 기준으로 전체 트리의 일관된 스냅샷을 만든다.
+<strong>repo(레포)</strong>는 구글이 만든 Git 저장소 오케스트레이션 도구로, `.git` 저장소 하나가 아니라 수백 개의 Git 저장소를 하나의 논리적 소스 트리로 묶어 관리한다. AOSP는 프레임워크, 커널, 각종 라이브러리, 벤더 코드가 모두 별도 Git 저장소로 나뉘어 있는데, 이를 개별적으로 `git clone`하면 버전 조합을 맞추는 일 자체가 악몽이 된다. repo는 <strong>manifest(매니페스트)</strong>라는 XML 파일에 "어떤 저장소를, 어떤 브랜치·리비전으로, 어느 경로에 배치할지"를 선언해 두고, 이 매니페스트 하나를 기준으로 전체 트리의 일관된 스냅샷을 만든다.
 
 repo의 동작 원리를 이해하는 핵심은 두 명령어의 역할 분리에 있다. `repo init`은 매니페스트 저장소 자체를 `.repo/` 디렉터리에 내려받아 "무엇을 받을지"의 설계도를 준비하는 단계이고, `repo sync`는 그 설계도에 나열된 모든 저장소를 실제로 내려받거나 갱신하는 단계다. source.android.com의 Repo 명령어 레퍼런스는 `repo sync`의 동작을 "최초 동기화는 `git clone`과 동등하고, 이후 동기화는 `git fetch`와 rebase를 실행한다"고 설명한다. 즉 두 번째 이후의 `repo sync`는 매번 전체를 새로 받는 것이 아니라 각 저장소에서 변경분만 가져와 로컬 브랜치 위에 재정렬하는 증분 작업이다.
 
@@ -90,9 +90,9 @@ repo start my-feature-branch --all
 
 ### Soong과 Kati: 두 세대 빌드 시스템의 공존
 
-안드로이드 빌드 시스템은 오랫동안 GNU Make 기반의 `Android.mk` 파일로 모듈을 정의했다. 이 방식은 저장소 규모가 커질수록 두 가지 한계에 부딪혔다. Make의 텍스트 기반 매크로 언어는 대규모 빌드 로직을 표현할수록 가독성이 떨어졌고, Make 자체가 의존성 그래프를 전역적으로 재평가하는 방식이라 증분 빌드 성능이 저하됐다. 이를 해결하기 위해 구글은 **Soong(소옹)**이라는 새 빌드 시스템을 도입했다. Soong은 Go 언어로 작성된 빌드 로직 생성기로, `Android.mk` 대신 **Blueprint(블루프린트)** 문법의 `Android.bp` 파일을 입력으로 받는다. `Android.bp`는 Make의 절차적 매크로 대신 선언적 JSON 유사 문법으로 모듈을 기술하므로, 파일을 읽는 것만으로 "이 모듈이 무엇을 빌드하고 무엇에 의존하는지"가 명확히 드러난다.
+안드로이드 빌드 시스템은 오랫동안 GNU Make 기반의 `Android.mk` 파일로 모듈을 정의했다. 이 방식은 저장소 규모가 커질수록 두 가지 한계에 부딪혔다. Make의 텍스트 기반 매크로 언어는 대규모 빌드 로직을 표현할수록 가독성이 떨어졌고, Make 자체가 의존성 그래프를 전역적으로 재평가하는 방식이라 증분 빌드 성능이 저하됐다. 이를 해결하기 위해 구글은 <strong>Soong(소옹)</strong>이라는 새 빌드 시스템을 도입했다. Soong은 Go 언어로 작성된 빌드 로직 생성기로, `Android.mk` 대신 **Blueprint(블루프린트)** 문법의 `Android.bp` 파일을 입력으로 받는다. `Android.bp`는 Make의 절차적 매크로 대신 선언적 JSON 유사 문법으로 모듈을 기술하므로, 파일을 읽는 것만으로 "이 모듈이 무엇을 빌드하고 무엇에 의존하는지"가 명확히 드러난다.
 
-여기서 흔히 오해하는 지점이 있는데, Soong은 컴파일러가 직접 소스를 컴파일하는 도구가 아니라 **빌드 그래프를 생성하는 도구**라는 점이다. Soong과 그 전신인 **Kati(카티)**는 최종적으로 ninja 빌드 파일을 만들어내는 역할을 한다. Kati는 여전히 남아 있는 `Android.mk` 기반 모듈들을 파싱해 Make 문법을 ninja 규칙으로 변환하는 역할을 맡고, Soong은 `Android.bp` 기반 모듈을 직접 ninja 규칙으로 컴파일한다. 두 시스템의 출력은 최종적으로 `combined.ninja`라는 단일 빌드 그래프로 합쳐진다. source.android.com의 빌드 개요 문서는 "Make to Soong 변환" 가이드를 별도로 제공할 만큼, AOSP 자체가 아직 이 이행기에 있다는 점을 보여준다 — 즉 최신 AOSP 트리에서도 `Android.mk`와 `Android.bp`가 한동안 함께 존재하는 것이 정상이며, 이는 설계 결함이 아니라 대규모 마이그레이션의 과도기적 상태다.
+여기서 흔히 오해하는 지점이 있는데, Soong은 컴파일러가 직접 소스를 컴파일하는 도구가 아니라 **빌드 그래프를 생성하는 도구**라는 점이다. Soong과 그 전신인 <strong>Kati(카티)</strong>는 최종적으로 ninja 빌드 파일을 만들어내는 역할을 한다. Kati는 여전히 남아 있는 `Android.mk` 기반 모듈들을 파싱해 Make 문법을 ninja 규칙으로 변환하는 역할을 맡고, Soong은 `Android.bp` 기반 모듈을 직접 ninja 규칙으로 컴파일한다. 두 시스템의 출력은 최종적으로 `combined.ninja`라는 단일 빌드 그래프로 합쳐진다. source.android.com의 빌드 개요 문서는 "Make to Soong 변환" 가이드를 별도로 제공할 만큼, AOSP 자체가 아직 이 이행기에 있다는 점을 보여준다 — 즉 최신 AOSP 트리에서도 `Android.mk`와 `Android.bp`가 한동안 함께 존재하는 것이 정상이며, 이는 설계 결함이 아니라 대규모 마이그레이션의 과도기적 상태다.
 
 다음 표는 두 빌드 정의 파일이 같은 정적 라이브러리 모듈을 어떻게 기술하는지 비교한다. 문법 차이보다 중요한 것은 Blueprint가 의존성과 속성을 구조화된 필드로 강제한다는 점이다 — Make의 변수 할당은 오타나 순서 실수를 컴파일 시점까지 숨길 수 있지만, Blueprint의 JSON 유사 구조는 파서가 필드명을 검증한다.
 
@@ -128,17 +128,17 @@ cc_library_shared {
 
 ### lunch: 빌드 타겟과 환경 변수를 선택하는 진입점
 
-**lunch(런치)**는 빌드를 시작하기 전에 "어떤 제품을, 어떤 릴리스 구성으로, 어떤 빌드 변형으로 만들 것인가"를 선택하는 명령어다. source.android.com의 빌드 문서는 `lunch` 명령을 사용하려면 셸마다 한 번 `source build/envsetup.sh`를 실행해야 하며, `lunch` 인자의 형식이 `product_name-release_config-build_variant`라고 명시한다. 예를 들어 `aosp_arm64-trunk_staging-userdebug`라는 타겟명은 ARM64 아키텍처용 표준 AOSP 제품 구성을, trunk_staging 릴리스 채널로, 디버그 권한이 살아있는 userdebug 변형으로 빌드하겠다는 뜻이다.
+<strong>lunch(런치)</strong>는 빌드를 시작하기 전에 "어떤 제품을, 어떤 릴리스 구성으로, 어떤 빌드 변형으로 만들 것인가"를 선택하는 명령어다. source.android.com의 빌드 문서는 `lunch` 명령을 사용하려면 셸마다 한 번 `source build/envsetup.sh`를 실행해야 하며, `lunch` 인자의 형식이 `product_name-release_config-build_variant`라고 명시한다. 예를 들어 `aosp_arm64-trunk_staging-userdebug`라는 타겟명은 ARM64 아키텍처용 표준 AOSP 제품 구성을, trunk_staging 릴리스 채널로, 디버그 권한이 살아있는 userdebug 변형으로 빌드하겠다는 뜻이다.
 
 세 요소는 각기 다른 축을 담당한다. 제품명(product)은 어떤 하드웨어/제품 구성을 타겟하는지를 정의하며, 실제 디바이스를 이식할 때는 벤더가 자체 제품 정의(`device/<vendor>/<board>/`)를 트리에 추가한다. 빌드 변형(variant)은 `eng`(개발자 편의 기능과 디버깅 도구 포함, 최적화 최소), `userdebug`(운영 빌드에 가깝지만 root 접근과 디버깅 훅 유지), `user`(출하용, 최적화 최대, 디버깅 인터페이스 최소화)의 세 단계로 나뉘며 이 선택은 이후 살펴볼 컴파일 최적화 수준과 SELinux 정책 강도에 직접 영향을 준다. `lunch`가 완료되면 이후의 `m`, `mm`, `mmm` 명령이 모두 이 선택된 타겟을 기준으로 동작하므로, 잘못된 타겟으로 빌드를 시작하면 전체 빌드를 다시 해야 하는 경우가 많다 — 특히 아키텍처가 바뀌면 툴체인 자체가 달라지기 때문이다.
 
 ### ninja: Soong/Kati가 만든 명세를 실행하는 빌드 그래프 엔진
 
-**ninja(닌자)**는 사람이 직접 작성하는 빌드 시스템이 아니라, 다른 빌드 시스템(여기서는 Soong/Kati)이 생성한 저수준 빌드 명세를 매우 빠르게 실행하기 위해 설계된 실행 엔진이다. ninja 공식 매뉴얼은 스스로를 이렇게 설명한다.
+<strong>ninja(닌자)</strong>는 사람이 직접 작성하는 빌드 시스템이 아니라, 다른 빌드 시스템(여기서는 Soong/Kati)이 생성한 저수준 빌드 명세를 매우 빠르게 실행하기 위해 설계된 실행 엔진이다. ninja 공식 매뉴얼은 스스로를 이렇게 설명한다.
 
 > "Ninja is yet another build system. It takes as input the interdependencies of files (typically source code and output executables) and orchestrates building them, quickly." — Ninja 공식 매뉴얼(ninja-build.org)
 
-이 인용에서 핵심은 "quickly"다. Make는 빌드를 실행할 때마다 Makefile의 매크로와 규칙을 다시 파싱하고 재귀적으로 평가하는데, 이 과정 자체가 대규모 빌드에서는 무시할 수 없는 오버헤드가 된다. ninja는 반대로 사람이 직접 편집하지 않는 저수준의 `.ninja` 파일을 입력받아, 파일 간 의존 관계를 **방향성 비순환 그래프(DAG, Directed Acyclic Graph)**로 미리 구성해 두고, 그래프 순회와 타임스탬프 비교만으로 무엇을 다시 빌드해야 하는지 빠르게 판단한다. 공식 매뉴얼의 표현을 빌리면 "Ninja evaluates a graph of dependencies between files, and runs whichever commands are necessary to make your build target up to date" — 즉 그래프 평가와 명령 실행이라는 두 단계만 남기고 나머지 복잡도(모듈 정의, 조건부 로직, 의존성 해석)는 모두 Soong/Kati가 그래프 생성 시점에 미리 처리해 버리는 구조다.
+이 인용에서 핵심은 "quickly"다. Make는 빌드를 실행할 때마다 Makefile의 매크로와 규칙을 다시 파싱하고 재귀적으로 평가하는데, 이 과정 자체가 대규모 빌드에서는 무시할 수 없는 오버헤드가 된다. ninja는 반대로 사람이 직접 편집하지 않는 저수준의 `.ninja` 파일을 입력받아, 파일 간 의존 관계를 <strong>방향성 비순환 그래프(DAG, Directed Acyclic Graph)</strong>로 미리 구성해 두고, 그래프 순회와 타임스탬프 비교만으로 무엇을 다시 빌드해야 하는지 빠르게 판단한다. 공식 매뉴얼의 표현을 빌리면 "Ninja evaluates a graph of dependencies between files, and runs whichever commands are necessary to make your build target up to date" — 즉 그래프 평가와 명령 실행이라는 두 단계만 남기고 나머지 복잡도(모듈 정의, 조건부 로직, 의존성 해석)는 모두 Soong/Kati가 그래프 생성 시점에 미리 처리해 버리는 구조다.
 
 이 이중 구조는 "느린 그래프 생성 + 빠른 그래프 실행"으로 요약할 수 있다. `m` 명령을 처음 실행하면 Soong이 모든 `Android.bp`/`Android.mk`를 스캔해 `combined.ninja`를 생성하는 단계(흔히 "Soong 분석" 또는 "kati 단계"로 불린다)를 거치고, 그 다음에야 ninja가 실제 컴파일 명령을 실행한다. 소스 코드 몇 줄만 바꾼 증분 빌드에서 이 그래프 생성 단계가 매번 반복되면 실제 컴파일보다 그래프 재평가에 더 많은 시간이 걸릴 수 있는데, 이것이 바로 뒤에서 다룰 "흔한 오개념"의 소재가 된다.
 
@@ -206,7 +206,7 @@ mmm hardware/vendor/sensorhub
 m libsensorhub_hal
 ```
 
-네 번째 단계는 반복 수정 주기를 단축하는 캐시 설정이다. **ccache(씨캐시)**는 컴파일러 호출을 가로채 소스 파일과 컴파일 플래그의 해시를 계산하고, 동일한 해시로 이미 컴파일된 결과가 캐시에 있으면 실제 컴파일을 건너뛰고 캐시된 오브젝트 파일을 재사용하는 컴파일러 캐시 도구다. ccache 공식 사이트는 이를 "이전 컴파일을 캐싱하고 동일한 컴파일을 감지하여 재컴파일 속도를 높인다"고 설명한다. AOSP 빌드에서 ccache가 특히 효과적인 이유는, 브랜치를 전환하거나 `repo sync`로 다른 리비전으로 옮겨갔다가 원래 코드로 돌아오는 일이 잦은데 이런 상황에서는 소스 내용이 과거와 동일한 오브젝트를 다시 만들어내는 경우가 많기 때문이다.
+네 번째 단계는 반복 수정 주기를 단축하는 캐시 설정이다. <strong>ccache(씨캐시)</strong>는 컴파일러 호출을 가로채 소스 파일과 컴파일 플래그의 해시를 계산하고, 동일한 해시로 이미 컴파일된 결과가 캐시에 있으면 실제 컴파일을 건너뛰고 캐시된 오브젝트 파일을 재사용하는 컴파일러 캐시 도구다. ccache 공식 사이트는 이를 "이전 컴파일을 캐싱하고 동일한 컴파일을 감지하여 재컴파일 속도를 높인다"고 설명한다. AOSP 빌드에서 ccache가 특히 효과적인 이유는, 브랜치를 전환하거나 `repo sync`로 다른 리비전으로 옮겨갔다가 원래 코드로 돌아오는 일이 잦은데 이런 상황에서는 소스 내용이 과거와 동일한 오브젝트를 다시 만들어내는 경우가 많기 때문이다.
 
 ```bash
 # ccache 사용을 활성화하고 캐시 디렉터리·최대 크기를 지정한다

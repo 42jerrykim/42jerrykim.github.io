@@ -54,7 +54,7 @@ tags:
   - 페이지폴트
 ---
 
-**Memory-mapped I/O(mmap)**란 파일을 프로세스의 가상 주소 공간에 직접 매핑해, `read`/`write` 시스템 콜 없이 포인터 역참조만으로 파일 내용에 접근하게 만드는 기법을 말합니다. 매핑 자체는 즉시 끝나지만 실제 데이터는 그 주소에 처음 접근하는 순간 커널이 **페이지 폴트**를 통해 채워 넣는데, 이 "지연 로딩(demand paging)"이 큰 파일을 빠르게 열어 주는 동시에 예측하기 어려운 지연시간과 SIGBUS라는 낯선 실패 모드를 함께 가져온다는 점이 이 장의 핵심 주제입니다.
+<strong>Memory-mapped I/O(mmap)</strong>란 파일을 프로세스의 가상 주소 공간에 직접 매핑해, `read`/`write` 시스템 콜 없이 포인터 역참조만으로 파일 내용에 접근하게 만드는 기법을 말합니다. 매핑 자체는 즉시 끝나지만 실제 데이터는 그 주소에 처음 접근하는 순간 커널이 **페이지 폴트**를 통해 채워 넣는데, 이 "지연 로딩(demand paging)"이 큰 파일을 빠르게 열어 주는 동시에 예측하기 어려운 지연시간과 SIGBUS라는 낯선 실패 모드를 함께 가져온다는 점이 이 장의 핵심 주제입니다.
 
 ## 이 장을 읽기 전에
 
@@ -74,7 +74,7 @@ tags:
 
 ## mmap의 등장과 역사적 배경
 
-메모리 매핑 파일이라는 아이디어 자체는 1960~70년대 TOPS-20 운영체제의 설계로 거슬러 올라갑니다. 이 API는 BSD 계열 유닉스에서 다시 등장했는데, 4.2BSD(1983) 시스템 매뉴얼이 이미 `mmap`의 인터페이스를 기술했지만 정작 4.2BSD나 4.3BSD에는 구현되지 않았습니다. 실제로 동작하는 `mmap()`이 처음 출하된 것은 Sun Microsystems의 SunOS 4.0(1988)이었고, 이후 BSD 진영은 Sun의 구현을 이어받는 대신 Mach 가상 메모리 시스템을 기반으로 한 자체 구현을 4.3BSD-Reno/Net-2에 넣었습니다. 이 흐름이 이후 POSIX.1-2001로 표준화되어 오늘날 Linux·BSD·macOS가 공유하는 `mmap(2)` 인터페이스의 뼈대가 되었습니다. Windows에는 동일한 개념이 `CreateFileMapping`/`MapViewOfFile` API로 존재하지만, 이름·플래그 체계가 다르고 이 트랙에서는 Windows I/O 모델을 [4장: IOCP와 Windows I/O](/post/io-optimization/windows-iocp-io-model-optimization/)에서 별도로 다루므로 여기서는 POSIX `mmap`을 기준으로 설명합니다.
+메모리 매핑 파일이라는 아이디어 자체는 1960–70년대 TOPS-20 운영체제의 설계로 거슬러 올라갑니다. 이 API는 BSD 계열 유닉스에서 다시 등장했는데, 4.2BSD(1983) 시스템 매뉴얼이 이미 `mmap`의 인터페이스를 기술했지만 정작 4.2BSD나 4.3BSD에는 구현되지 않았습니다. 실제로 동작하는 `mmap()`이 처음 출하된 것은 Sun Microsystems의 SunOS 4.0(1988)이었고, 이후 BSD 진영은 Sun의 구현을 이어받는 대신 Mach 가상 메모리 시스템을 기반으로 한 자체 구현을 4.3BSD-Reno/Net-2에 넣었습니다. 이 흐름이 이후 POSIX.1-2001로 표준화되어 오늘날 Linux·BSD·macOS가 공유하는 `mmap(2)` 인터페이스의 뼈대가 되었습니다. Windows에는 동일한 개념이 `CreateFileMapping`/`MapViewOfFile` API로 존재하지만, 이름·플래그 체계가 다르고 이 트랙에서는 Windows I/O 모델을 [4장: IOCP와 Windows I/O](/post/io-optimization/windows-iocp-io-model-optimization/)에서 별도로 다루므로 여기서는 POSIX `mmap`을 기준으로 설명합니다.
 
 ## mmap의 핵심 메커니즘: 가상 주소에서 페이지 폴트까지
 

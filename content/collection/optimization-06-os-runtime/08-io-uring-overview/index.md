@@ -49,7 +49,7 @@ tags:
   - Uring-Cmd
 ---
 
-**io_uring**은 사용자 공간과 커널이 공유 메모리 링 버퍼를 통해 I/O 요청과 완료 결과를 주고받는 리눅스의 비동기 I/O 인터페이스로, 요청을 커널에 밀어 넣고 결과를 받아 오는 과정에서 syscall 진입 횟수를 최소화하도록 설계되었습니다. 앞 장에서 다룬 것처럼 `write`/`read` 같은 전통적 syscall은 호출마다 모드 전환 비용을 수반하고 배치(batching)로 이를 줄이는 데는 한계가 있는데, io_uring은 여기서 한 걸음 더 나아가 "요청을 큐에 쌓아두고 커널이 스스로 처리한 뒤 완료를 큐에 쌓아둔다"는 모델로 syscall 자체를 구조적으로 줄입니다. 이 장에서는 io_uring이 등장한 배경과 SQ(Submission Queue)/CQ(Completion Queue) 링 버퍼의 동작 원리를 다지고, 2025~2026년에 걸쳐 안정화된 epoll 통합(Linux 6.15)·NAPI busy-poll·`IORING_OP_URING_CMD` 기반 NVMe passthrough를 개관합니다.
+**io_uring**은 사용자 공간과 커널이 공유 메모리 링 버퍼를 통해 I/O 요청과 완료 결과를 주고받는 리눅스의 비동기 I/O 인터페이스로, 요청을 커널에 밀어 넣고 결과를 받아 오는 과정에서 syscall 진입 횟수를 최소화하도록 설계되었습니다. 앞 장에서 다룬 것처럼 `write`/`read` 같은 전통적 syscall은 호출마다 모드 전환 비용을 수반하고 배치(batching)로 이를 줄이는 데는 한계가 있는데, io_uring은 여기서 한 걸음 더 나아가 "요청을 큐에 쌓아두고 커널이 스스로 처리한 뒤 완료를 큐에 쌓아둔다"는 모델로 syscall 자체를 구조적으로 줄입니다. 이 장에서는 io_uring이 등장한 배경과 SQ(Submission Queue)/CQ(Completion Queue) 링 버퍼의 동작 원리를 다지고, 2025–2026년에 걸쳐 안정화된 epoll 통합(Linux 6.15)·NAPI busy-poll·`IORING_OP_URING_CMD` 기반 NVMe passthrough를 개관합니다.
 
 ## 이 장을 읽기 전에
 
@@ -77,7 +77,7 @@ tags:
 
 ## SQ/CQ 링 버퍼와 비동기 I/O 원리 (핵심 메커니즘)
 
-io_uring이라는 이름 자체가 사용자 공간과 커널 공간이 공유하는 **링 버퍼(ring buffer)**에서 왔습니다. 애플리케이션은 요청하려는 I/O 작업을 **SQ(Submission Queue)**에 올려두고, 커널은 그 작업들의 처리 결과를 **CQ(Completion Queue)**에 올려둡니다. 두 큐 모두 `io_uring_setup()` syscall이 만든 파일 디스크립터를 `mmap(2)`으로 사용자 프로세스 주소 공간에 매핑해 공유하므로, 큐를 오갈 때 커널·사용자 공간 사이에 별도의 데이터 복사가 필요 없습니다. 각 SQ 슬롯에 채워 넣는 구조체가 **SQE(Submission Queue Entry)**이고, 여기에는 어떤 파일 디스크립터에 어떤 연산(opcode)을 어떤 버퍼로 수행할지가 담깁니다. 커널은 처리를 마치면 그 결과를 **CQE(Completion Queue Entry)**로 CQ에 채워 넣습니다. 애플리케이션은 하나 이상의 SQE를 SQ에 채운 뒤 `io_uring_enter()` syscall로 커널에 "제출됐다"는 사실만 알리면 되므로, N개의 요청을 준비했다면 이론적으로 syscall 한 번으로 N개를 모두 커널에 넘길 수 있습니다.
+io_uring이라는 이름 자체가 사용자 공간과 커널 공간이 공유하는 <strong>링 버퍼(ring buffer)</strong>에서 왔습니다. 애플리케이션은 요청하려는 I/O 작업을 <strong>SQ(Submission Queue)</strong>에 올려두고, 커널은 그 작업들의 처리 결과를 <strong>CQ(Completion Queue)</strong>에 올려둡니다. 두 큐 모두 `io_uring_setup()` syscall이 만든 파일 디스크립터를 `mmap(2)`으로 사용자 프로세스 주소 공간에 매핑해 공유하므로, 큐를 오갈 때 커널·사용자 공간 사이에 별도의 데이터 복사가 필요 없습니다. 각 SQ 슬롯에 채워 넣는 구조체가 <strong>SQE(Submission Queue Entry)</strong>이고, 여기에는 어떤 파일 디스크립터에 어떤 연산(opcode)을 어떤 버퍼로 수행할지가 담깁니다. 커널은 처리를 마치면 그 결과를 <strong>CQE(Completion Queue Entry)</strong>로 CQ에 채워 넣습니다. 애플리케이션은 하나 이상의 SQE를 SQ에 채운 뒤 `io_uring_enter()` syscall로 커널에 "제출됐다"는 사실만 알리면 되므로, N개의 요청을 준비했다면 이론적으로 syscall 한 번으로 N개를 모두 커널에 넘길 수 있습니다.
 
 ```mermaid
 flowchart LR
@@ -130,7 +130,7 @@ int main(void) {
 
 기본 모드에서는 애플리케이션이 SQE를 채운 뒤 명시적으로 `io_uring_enter()`를 호출해야 커널이 SQ를 확인합니다. 반대로 **`IORING_SETUP_SQPOLL`** 플래그로 링을 만들면 커널이 전용 커널 스레드를 띄워 SQ를 스스로 계속 폴링하므로, 애플리케이션은 SQE만 채워 넣고 별도의 `io_uring_enter()` 호출 없이도(대부분의 경우) 처리가 진행됩니다. [man7.org의 io_uring_enter(2) 문서](https://man7.org/linux/man-pages/man2/io_uring_enter.2.html)는 "If the ring has been created with IORING_SETUP_SQPOLL, then this flag asks the kernel to wakeup the SQ kernel thread"라고 밝혀, SQPOLL 모드에서도 커널 스레드가 유휴 상태로 잠들어 있을 때는 `IORING_ENTER_SQ_WAKEUP` 플래그로 깨워야 함을 명시합니다. SQPOLL은 syscall 자체를 거의 없애는 대신 전용 코어 하나를 그 폴링 스레드가 계속 점유하게 되므로, 코어 예산이 넉넉한 지연-critical 서비스에서만 고려 대상이 됩니다. 완료를 기다리는 쪽도 마찬가지로 두 방식이 있는데, `IORING_ENTER_GETEVENTS` 플래그를 준 `io_uring_enter()` 호출은 지정한 개수의 완료가 쌓일 때까지 블로킹하고, 애플리케이션이 직접 CQ 링을 폴링하면 블로킹 없이 완료 여부만 확인할 수 있습니다.
 
-## 최신 기능 개관 (2025~2026)
+## 최신 기능 개관 (2025–2026)
 
 io_uring은 처음에는 파일·블록 I/O 위주로 설계됐지만, 이후 네트워크 이벤트 루프와 하드웨어 직접 제어 영역까지 옵코드를 확장해 왔습니다. 아래 세 기능은 이 장을 쓰는 시점 기준으로 최근 커널에 안정화된 확장이며, 각각이 "개요" 수준에서 무엇을 해결하는지만 짚고 세부 튜닝은 앞서 밝힌 대로 별도 트랙에 남겨 둡니다.
 

@@ -36,7 +36,7 @@ tags:
   - Currency-Formatting
 ---
 
-**험블 객체 패턴(Humble Object Pattern)**은 테스트하기 어려운 행위와 쉬운 행위를 분리하는 패턴이다. 이 패턴은 아키텍처 경계에서 자주 사용된다.
+<strong>험블 객체 패턴(Humble Object Pattern)</strong>은 테스트하기 어려운 행위와 쉬운 행위를 분리하는 패턴이다. 이 패턴은 아키텍처 경계에서 자주 사용된다.
 
 ## 험블 객체 패턴이란?
 

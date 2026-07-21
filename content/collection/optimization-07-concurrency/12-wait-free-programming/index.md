@@ -58,7 +58,7 @@ tags:
 
 ## 진행 보장의 기원: Herlihy와 consensus 계층 (역사·배경)
 
-진행 보장이라는 개념은 1991년 Maurice Herlihy가 *ACM Transactions on Programming Languages and Systems*에 발표한 "Wait-Free Synchronization" 논문([Herlihy, 1991](https://cs.brown.edu/~mph/Herlihy91/p124-herlihy.pdf))에서 정식화되었습니다. 이 논문은 단순히 "락 없이 구현하는 법"을 다룬 것이 아니라, 공유 메모리 객체 타입들 사이에 **동기화 능력의 서열**이 존재한다는 것을 증명했습니다. 이를 **consensus number**라 부르는데, 어떤 타입이 원자 레지스터와 함께 몇 개의 프로세스까지 wait-free하게 합의(consensus)를 풀어낼 수 있는지를 나타내는 값입니다. 읽기/쓰기 레지스터의 consensus number는 1, test-and-set·swap·fetch-and-add·큐·스택은 2, 그리고 **compare-and-swap(CAS)**은 무한대입니다. CAS가 무한대라는 것은 CAS와 레지스터만으로 임의 개수의 스레드에 대해 어떤 객체든 wait-free하게 구현하는 **universal construction**이 이론적으로 가능하다는 뜻이며, 오늘날 대부분의 CPU가 CAS(또는 LL/SC)를 하드웨어로 제공하는 이유이기도 합니다. 반대로 fetch-and-add나 큐 같은 consensus number 2 타입만으로는 3개 이상 프로세스의 wait-free 합의를 풀 수 없다는 것도 같은 이론에서 나온 결과입니다.
+진행 보장이라는 개념은 1991년 Maurice Herlihy가 *ACM Transactions on Programming Languages and Systems*에 발표한 "Wait-Free Synchronization" 논문([Herlihy, 1991](https://cs.brown.edu/~mph/Herlihy91/p124-herlihy.pdf))에서 정식화되었습니다. 이 논문은 단순히 "락 없이 구현하는 법"을 다룬 것이 아니라, 공유 메모리 객체 타입들 사이에 **동기화 능력의 서열**이 존재한다는 것을 증명했습니다. 이를 **consensus number**라 부르는데, 어떤 타입이 원자 레지스터와 함께 몇 개의 프로세스까지 wait-free하게 합의(consensus)를 풀어낼 수 있는지를 나타내는 값입니다. 읽기/쓰기 레지스터의 consensus number는 1, test-and-set·swap·fetch-and-add·큐·스택은 2, 그리고 <strong>compare-and-swap(CAS)</strong>은 무한대입니다. CAS가 무한대라는 것은 CAS와 레지스터만으로 임의 개수의 스레드에 대해 어떤 객체든 wait-free하게 구현하는 **universal construction**이 이론적으로 가능하다는 뜻이며, 오늘날 대부분의 CPU가 CAS(또는 LL/SC)를 하드웨어로 제공하는 이유이기도 합니다. 반대로 fetch-and-add나 큐 같은 consensus number 2 타입만으로는 3개 이상 프로세스의 wait-free 합의를 풀 수 없다는 것도 같은 이론에서 나온 결과입니다.
 
 이 계층 이론이 중요한 이유는, "이 자료구조를 wait-free하게 만들 수 있는가"라는 질문이 순전히 구현 실력의 문제가 아니라 **어떤 원자적 연산을 하드웨어가 제공하는가**에 달린 이론적 한계의 문제이기도 하다는 점을 알려주기 때문입니다. CAS 없이 순수 load/store만 가진 하드웨어에서는 애초에 임의 스레드 수의 wait-free 합의가 불가능합니다.
 
@@ -149,11 +149,11 @@ BENCHMARK_MAIN();
 
 ## 흔한 오개념
 
-**"lock-free면 자동으로 wait-free다"**는 틀렸습니다. lock-free는 시스템 전체 진행만 보장하고 개별 스레드의 종료는 보장하지 않습니다. 06장에서 다룬 lock-free 큐·스택 구현 대부분은 wait-free가 아니라 lock-free입니다 — CAS 경쟁에서 계속 밀리는 스레드가 이론상 존재할 수 있기 때문입니다.
+<strong>"lock-free면 자동으로 wait-free다"</strong>는 틀렸습니다. lock-free는 시스템 전체 진행만 보장하고 개별 스레드의 종료는 보장하지 않습니다. 06장에서 다룬 lock-free 큐·스택 구현 대부분은 wait-free가 아니라 lock-free입니다 — CAS 경쟁에서 계속 밀리는 스레드가 이론상 존재할 수 있기 때문입니다.
 
-**"재시도 루프에 무한 루프 방지 코드가 없으니 사실상 wait-free다"**도 틀렸습니다. 코드에 `while(true)` 같은 명시적 무한 루프가 없어도, 재시도 **횟수에 상한이 없다**면 진행 보장 관점에서는 여전히 lock-free일 뿐입니다. 실제로 재시도가 수백만 번씩 이어지는 경우는 드물지만, "드물다"는 확률적 관찰이지 wait-free가 요구하는 결정론적 상한이 아닙니다.
+<strong>"재시도 루프에 무한 루프 방지 코드가 없으니 사실상 wait-free다"</strong>도 틀렸습니다. 코드에 `while(true)` 같은 명시적 무한 루프가 없어도, 재시도 **횟수에 상한이 없다**면 진행 보장 관점에서는 여전히 lock-free일 뿐입니다. 실제로 재시도가 수백만 번씩 이어지는 경우는 드물지만, "드물다"는 확률적 관찰이지 wait-free가 요구하는 결정론적 상한이 아닙니다.
 
-**"wait-free 알고리즘이 항상 더 빠르다"**도 흔한 착각입니다. wait-free는 최악의 경우(worst case)에 대한 상한을 보장하는 것이지, 평균적인 경우(average case)의 성능을 개선하는 것이 아닙니다. helping 메커니즘의 오버헤드 때문에 무경합 상황에서는 오히려 순수 lock-free보다 느릴 수 있습니다. Dan Alistarh 등의 연구([Alistarh et al., *Are Lock-Free Concurrent Algorithms Practically Wait-Free?*](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/paper-18.pdf))는 저·중 정도의 경합과 충분한 코어 수를 가진 현실적인 조건에서는, 이론적으로 lock-free일 뿐인 알고리즘도 실질적인 응답 시간 분포가 wait-free 알고리즘과 크게 다르지 않을 수 있음을 보였습니다. 즉 "이론적 분류"와 "실무에서 체감하는 지연 분포"는 항상 일치하지 않습니다.
+<strong>"wait-free 알고리즘이 항상 더 빠르다"</strong>도 흔한 착각입니다. wait-free는 최악의 경우(worst case)에 대한 상한을 보장하는 것이지, 평균적인 경우(average case)의 성능을 개선하는 것이 아닙니다. helping 메커니즘의 오버헤드 때문에 무경합 상황에서는 오히려 순수 lock-free보다 느릴 수 있습니다. Dan Alistarh 등의 연구([Alistarh et al., *Are Lock-Free Concurrent Algorithms Practically Wait-Free?*](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/paper-18.pdf))는 저·중 정도의 경합과 충분한 코어 수를 가진 현실적인 조건에서는, 이론적으로 lock-free일 뿐인 알고리즘도 실질적인 응답 시간 분포가 wait-free 알고리즘과 크게 다르지 않을 수 있음을 보였습니다. 즉 "이론적 분류"와 "실무에서 체감하는 지연 분포"는 항상 일치하지 않습니다.
 
 ## 판단 기준: 언제 wait-free를 추구하는가
 

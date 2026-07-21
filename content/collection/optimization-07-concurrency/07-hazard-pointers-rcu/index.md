@@ -47,7 +47,7 @@ tags:
   - P2545
 ---
 
-**Hazard Pointers**와 **RCU(Read-Copy-Update)**는 lock-free 자료구조에서 "unlink한 노드를 언제 안전하게 `delete`해도 되는가"라는 **안전한 메모리 회수(safe memory reclamation)** 문제를 푸는 두 가지 대표 기법이다. CAS로 노드를 리스트·큐에서 떼어내는 것 자체는 어렵지 않지만, 그 순간 다른 리더 스레드가 이미 그 노드를 역참조하고 있을 수 있다는 사실이 문제를 만든다. 가비지 컬렉터가 없는 C++에서 이 문제를 해결하지 못하면 lock-free 자료구조는 use-after-free로 귀결되고, 이는 디버깅이 극도로 어려운 간헐적 크래시로 나타난다. 이 장은 이 회수 문제의 두 해법을 원리 수준에서 다루고, C++26에 `hazard_pointer`(P2530)와 `rcu`(P2545)가 표준 헤더로 확정된 사실과 2026년 7월 현재 실제 컴파일러 구현 현황을 함께 짚는다.
+**Hazard Pointers**와 <strong>RCU(Read-Copy-Update)</strong>는 lock-free 자료구조에서 "unlink한 노드를 언제 안전하게 `delete`해도 되는가"라는 **안전한 메모리 회수(safe memory reclamation)** 문제를 푸는 두 가지 대표 기법이다. CAS로 노드를 리스트·큐에서 떼어내는 것 자체는 어렵지 않지만, 그 순간 다른 리더 스레드가 이미 그 노드를 역참조하고 있을 수 있다는 사실이 문제를 만든다. 가비지 컬렉터가 없는 C++에서 이 문제를 해결하지 못하면 lock-free 자료구조는 use-after-free로 귀결되고, 이는 디버깅이 극도로 어려운 간헐적 크래시로 나타난다. 이 장은 이 회수 문제의 두 해법을 원리 수준에서 다루고, C++26에 `hazard_pointer`(P2530)와 `rcu`(P2545)가 표준 헤더로 확정된 사실과 2026년 7월 현재 실제 컴파일러 구현 현황을 함께 짚는다.
 
 ## 이 장을 읽기 전에
 
@@ -210,7 +210,7 @@ flowchart LR
 
 ## 자주 하는 오해
 
-**"C++26에 들어갔으니 지금 바로 프로덕션에 쓸 수 있다"**는 표준 확정과 라이브러리 구현을 혼동한 것이다. 2026년 7월 현재 GCC·Clang·MSVC 어느 표준 라이브러리도 `<hazard_pointer>`·`<rcu>`를 완성해 배포하지 않았으므로, 지금 필요하다면 Folly의 `hazptr`이나 liburcu 같은 검증된 서드파티 구현을 쓰는 것이 현실적인 선택이다. **"hazard pointer/RCU는 항상 mutex보다 빠르다"**도 과도한 일반화다. hazard pointer는 매 protect마다 재확인 로드가 필요하고 retire 스캔 비용은 스레드 수·retire 목록 크기에 비례해 커지며, RCU는 read-side가 저렴한 대신 grace period 동안 회수가 지연되어 메모리 사용량이 순간적으로 늘 수 있다 — 실제로 어느 쪽이 더 유리한지는 읽기/쓰기 비율과 지연 허용치에 달려 있고 직접 측정해야 한다. **"RCU는 Linux 커널 전용 기법"**이라는 오해도 흔하지만, liburcu 같은 유저스페이스 포팅이 이미 널리 쓰이고 있고 C++26이 이를 언어 표준 수준으로 끌어올렸을 뿐 개념 자체는 커널에 국한되지 않는다.
+<strong>"C++26에 들어갔으니 지금 바로 프로덕션에 쓸 수 있다"</strong>는 표준 확정과 라이브러리 구현을 혼동한 것이다. 2026년 7월 현재 GCC·Clang·MSVC 어느 표준 라이브러리도 `<hazard_pointer>`·`<rcu>`를 완성해 배포하지 않았으므로, 지금 필요하다면 Folly의 `hazptr`이나 liburcu 같은 검증된 서드파티 구현을 쓰는 것이 현실적인 선택이다. <strong>"hazard pointer/RCU는 항상 mutex보다 빠르다"</strong>도 과도한 일반화다. hazard pointer는 매 protect마다 재확인 로드가 필요하고 retire 스캔 비용은 스레드 수·retire 목록 크기에 비례해 커지며, RCU는 read-side가 저렴한 대신 grace period 동안 회수가 지연되어 메모리 사용량이 순간적으로 늘 수 있다 — 실제로 어느 쪽이 더 유리한지는 읽기/쓰기 비율과 지연 허용치에 달려 있고 직접 측정해야 한다. <strong>"RCU는 Linux 커널 전용 기법"</strong>이라는 오해도 흔하지만, liburcu 같은 유저스페이스 포팅이 이미 널리 쓰이고 있고 C++26이 이를 언어 표준 수준으로 끌어올렸을 뿐 개념 자체는 커널에 국한되지 않는다.
 
 ## 판단 기준
 

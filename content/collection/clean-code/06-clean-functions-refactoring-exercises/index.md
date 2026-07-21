@@ -38,7 +38,7 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-이 장은 [05장: 함수는 작게, 한 가지만](/post/clean-code/clean-functions-single-responsibility-principle/)에서 다룬 원칙(작은 함수, 추상화 수준 통일, 인수 최소화)을 실제 코드에 적용하는 실습이다. 05장을 먼저 읽었다는 전제로 진행하며, 클래스 수준의 책임 분리는 [18~19장](/post/clean-code/clean-classes-solid-principles-oop/)에서 다룬다.
+이 장은 [05장: 함수는 작게, 한 가지만](/post/clean-code/clean-functions-single-responsibility-principle/)에서 다룬 원칙(작은 함수, 추상화 수준 통일, 인수 최소화)을 실제 코드에 적용하는 실습이다. 05장을 먼저 읽었다는 전제로 진행하며, 클래스 수준의 책임 분리는 [18–19장](/post/clean-code/clean-classes-solid-principles-oop/)에서 다룬다.
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |:--:|:--|:--|

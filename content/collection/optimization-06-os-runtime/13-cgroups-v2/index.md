@@ -67,11 +67,11 @@ tags:
 
 ## cgroups v2의 등장 배경 (역사·배경)
 
-cgroups는 2006~2007년 Google 엔지니어 Paul Menage와 Rohit Seth가 "process containers"라는 이름으로 시작해 리눅스 커널 2.6.24(2008년)에 병합됐다. 초기 구조(현재의 cgroups v1)는 `cpu`, `memory`, `blkio` 같은 컨트롤러마다 별도의 계층(hierarchy)을 마운트할 수 있게 했는데, 이 유연성이 실제로는 복잡성으로 돌아왔다 — 프로세스가 컨트롤러별로 서로 다른 트리에 속할 수 있어 "이 프로세스가 지금 어떤 제약 아래 있는가"를 추적하기 어려웠고, 상태 변화를 알리는 `release_agent` 메커니즘은 알림마다 새 프로세스를 fork해야 해서 이벤트가 잦은 환경에서 비용이 누적됐다. cgroups v2는 이 문제를 정면으로 겨냥해 **모든 컨트롤러가 하나의 통합 계층(single unified hierarchy)에 참여**하도록 재설계됐고, 리눅스 커널 4.5(2016년)에서 공식 안정 인터페이스로 릴리스됐다. 이후 systemd·containerd·Docker 같은 상위 도구들이 v2를 기본값으로 채택하면서, 최신 배포판에서는 v2가 사실상 표준 인터페이스가 됐다.
+cgroups는 2006–2007년 Google 엔지니어 Paul Menage와 Rohit Seth가 "process containers"라는 이름으로 시작해 리눅스 커널 2.6.24(2008년)에 병합됐다. 초기 구조(현재의 cgroups v1)는 `cpu`, `memory`, `blkio` 같은 컨트롤러마다 별도의 계층(hierarchy)을 마운트할 수 있게 했는데, 이 유연성이 실제로는 복잡성으로 돌아왔다 — 프로세스가 컨트롤러별로 서로 다른 트리에 속할 수 있어 "이 프로세스가 지금 어떤 제약 아래 있는가"를 추적하기 어려웠고, 상태 변화를 알리는 `release_agent` 메커니즘은 알림마다 새 프로세스를 fork해야 해서 이벤트가 잦은 환경에서 비용이 누적됐다. cgroups v2는 이 문제를 정면으로 겨냥해 **모든 컨트롤러가 하나의 통합 계층(single unified hierarchy)에 참여**하도록 재설계됐고, 리눅스 커널 4.5(2016년)에서 공식 안정 인터페이스로 릴리스됐다. 이후 systemd·containerd·Docker 같은 상위 도구들이 v2를 기본값으로 채택하면서, 최신 배포판에서는 v2가 사실상 표준 인터페이스가 됐다.
 
 ## 통합 계층 구조와 컨트롤러 활성화
 
-v2에서는 `/sys/fs/cgroup`이 유일한 마운트 지점이고, 그 아래 디렉터리 트리가 곧 cgroup 계층이다. 각 디렉터리는 `cgroup.procs`(그 cgroup에 속한 프로세스 목록), `cgroup.subtree_control`(자식에게 넘겨줄 컨트롤러 목록), 그리고 `cpu.max`·`memory.high`처럼 활성화된 컨트롤러가 노출하는 파일들을 갖는다. 컨트롤러는 기본적으로 꺼져 있으며, 부모 cgroup의 `cgroup.subtree_control`에 `+cpu`처럼 써 넣어야 그 컨트롤러가 **자식들에게** 적용된다 — 이 한 단계가 v2의 핵심 규칙인 **"no internal process constraint"**로 이어진다. 즉 어떤 cgroup이 자식에게 리소스를 분배하려면 그 cgroup 자신은 프로세스를 직접 가지고 있으면 안 된다(리프 노드만 프로세스를 담당). 이 제약 때문에 실무에서는 프로세스를 항상 트리의 말단(leaf) cgroup에 배정하고, 중간 노드는 순수하게 분배 정책만 담당하도록 설계한다. 이 규칙과 컨트롤러 파일 각각의 정확한 의미는 커널 공식 문서인 [Control Group v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)에 정리돼 있다.
+v2에서는 `/sys/fs/cgroup`이 유일한 마운트 지점이고, 그 아래 디렉터리 트리가 곧 cgroup 계층이다. 각 디렉터리는 `cgroup.procs`(그 cgroup에 속한 프로세스 목록), `cgroup.subtree_control`(자식에게 넘겨줄 컨트롤러 목록), 그리고 `cpu.max`·`memory.high`처럼 활성화된 컨트롤러가 노출하는 파일들을 갖는다. 컨트롤러는 기본적으로 꺼져 있으며, 부모 cgroup의 `cgroup.subtree_control`에 `+cpu`처럼 써 넣어야 그 컨트롤러가 **자식들에게** 적용된다 — 이 한 단계가 v2의 핵심 규칙인 <strong>"no internal process constraint"</strong>로 이어진다. 즉 어떤 cgroup이 자식에게 리소스를 분배하려면 그 cgroup 자신은 프로세스를 직접 가지고 있으면 안 된다(리프 노드만 프로세스를 담당). 이 제약 때문에 실무에서는 프로세스를 항상 트리의 말단(leaf) cgroup에 배정하고, 중간 노드는 순수하게 분배 정책만 담당하도록 설계한다. 이 규칙과 컨트롤러 파일 각각의 정확한 의미는 커널 공식 문서인 [Control Group v2](https://docs.kernel.org/admin-guide/cgroup-v2.html)에 정리돼 있다.
 
 ```mermaid
 flowchart TD

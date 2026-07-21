@@ -166,7 +166,7 @@ $ sudo umount -f /path/to/mountpoint
 
 ## 해결 방법 2: fuser로 점유 프로세스 확인·종료 후 umount
 
-`device is busy` 메시지에서도 안내하듯, 해당 장치·파일을 사용 중인 프로세스를 찾으려면 **lsof(8)** 또는 **fuser(1)**를 쓸 수 있다. 여기서는 **fuser**를 이용해 “마운트 포인트를 쓰는 프로세스를 종료한 뒤 umount”하는 방법을 정리한다.
+`device is busy` 메시지에서도 안내하듯, 해당 장치·파일을 사용 중인 프로세스를 찾으려면 **lsof(8)** 또는 <strong>fuser(1)</strong>를 쓸 수 있다. 여기서는 **fuser**를 이용해 “마운트 포인트를 쓰는 프로세스를 종료한 뒤 umount”하는 방법을 정리한다.
 
 ### 기본 사용 패턴
 

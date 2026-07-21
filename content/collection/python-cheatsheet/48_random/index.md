@@ -300,8 +300,8 @@ print(items)  # [3, 1, 2]
 
 | 함수 | 용도 | 예시 |
 |------|------|------|
-| `randint(a, b)` | 정수 (a~b 포함) | `randint(1, 6)` |
-| `random()` | 0~1 미만 실수 | `random()` |
+| `randint(a, b)` | 정수 (a–b 포함) | `randint(1, 6)` |
+| `random()` | 0–1 미만 실수 | `random()` |
 | `choice(seq)` | 하나 선택 | `choice(['a', 'b'])` |
 | `choices(seq, k=n)` | n개 복원 선택 | `choices([1,2,3], k=5)` |
 | `sample(seq, k=n)` | n개 비복원 선택 | `sample([1,2,3], k=2)` |

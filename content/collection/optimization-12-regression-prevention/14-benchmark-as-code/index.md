@@ -63,7 +63,7 @@ tags:
 
 ## Benchmark as Code의 배경
 
-**Infrastructure as Code(IaC)**가 서버 구성을 코드로 선언해 리뷰·재현·롤백이 가능하게 만든 것처럼, Benchmark as Code는 "무엇을 어떻게 측정하고 무엇을 통과 기준으로 볼지"를 코드와 설정 파일로 선언합니다. GitHub Actions는 2019년 정식 출시되며 저장소 안에 워크플로를 YAML로 선언하는 방식을 대중화했고, 이 흐름을 타고 `benchmark-action/github-action-benchmark` 같은 오픈소스 액션이 등장해 Cargo(Rust), Go, Google Benchmark(C++), JMH(Java), BenchmarkDotNet(.NET) 등 여러 언어의 벤치마크 출력을 CI 결과로 흡수하는 방법을 표준화했습니다. GitLab CI는 조금 다른 경로를 택해, 벤치마크 자체보다 넓은 개념인 **메트릭 리포트**(`artifacts:reports:metrics`)로 커스텀 수치를 MR(Merge Request)에 표시하는 기능을 제공합니다. 두 플랫폼 모두 핵심은 같습니다 — 벤치마크 실행과 결과 비교를 사람이 손으로 하지 않고 파이프라인 정의 파일 안에 고정한다는 것입니다.
+<strong>Infrastructure as Code(IaC)</strong>가 서버 구성을 코드로 선언해 리뷰·재현·롤백이 가능하게 만든 것처럼, Benchmark as Code는 "무엇을 어떻게 측정하고 무엇을 통과 기준으로 볼지"를 코드와 설정 파일로 선언합니다. GitHub Actions는 2019년 정식 출시되며 저장소 안에 워크플로를 YAML로 선언하는 방식을 대중화했고, 이 흐름을 타고 `benchmark-action/github-action-benchmark` 같은 오픈소스 액션이 등장해 Cargo(Rust), Go, Google Benchmark(C++), JMH(Java), BenchmarkDotNet(.NET) 등 여러 언어의 벤치마크 출력을 CI 결과로 흡수하는 방법을 표준화했습니다. GitLab CI는 조금 다른 경로를 택해, 벤치마크 자체보다 넓은 개념인 **메트릭 리포트**(`artifacts:reports:metrics`)로 커스텀 수치를 MR(Merge Request)에 표시하는 기능을 제공합니다. 두 플랫폼 모두 핵심은 같습니다 — 벤치마크 실행과 결과 비교를 사람이 손으로 하지 않고 파이프라인 정의 파일 안에 고정한다는 것입니다.
 
 ## 벤치마크를 코드로 관리한다는 것
 
@@ -183,11 +183,11 @@ flowchart LR
 
 ## 흔한 오개념 바로잡기
 
-**"벤치마크를 CI에 붙이면 그 자체로 회귀를 막는다"**는 오해가 흔합니다. 파이프라인은 결과를 비교할 뿐이며, 무엇을 임계값으로 삼을지·노이즈를 어떻게 걸러낼지는 별도의 정책 설계가 필요합니다. 임계값을 대충 기본값으로 두면 경고가 너무 늦게 뜨거나(둔감) 반대로 매 PR마다 오탐이 쏟아져(민감) 팀이 알림을 무시하게 되는데, 이 부분은 [07장](/post/regression-prevention/performance-variance-noise-management/)과 [09장](/post/regression-prevention/performance-alerting-strategy-design/)이 다룹니다.
+<strong>"벤치마크를 CI에 붙이면 그 자체로 회귀를 막는다"</strong>는 오해가 흔합니다. 파이프라인은 결과를 비교할 뿐이며, 무엇을 임계값으로 삼을지·노이즈를 어떻게 걸러낼지는 별도의 정책 설계가 필요합니다. 임계값을 대충 기본값으로 두면 경고가 너무 늦게 뜨거나(둔감) 반대로 매 PR마다 오탐이 쏟아져(민감) 팀이 알림을 무시하게 되는데, 이 부분은 [07장](/post/regression-prevention/performance-variance-noise-management/)과 [09장](/post/regression-prevention/performance-alerting-strategy-design/)이 다룹니다.
 
-**"공유 러너에서 실행하면 결과를 그대로 믿을 수 있다"**도 자주 나오는 오해입니다. GitHub Actions의 공용 `ubuntu-22.04` 러너나 GitLab의 공유 러너는 다른 워크플로와 물리 자원을 공유하는 가상 환경이라, 절대 시간값 자체는 실행마다 수 퍼센트에서 수십 퍼센트까지 흔들릴 수 있습니다. 이 문제의 근본 대응(전용 러너, 베어메탈 격리, 상대 비교 위주 설계)은 [03장의 Bencher 베어메탈 동일성 벤치마킹](/post/regression-prevention/benchmark-ci-integration-codspeed-bencher/)에서 다룹니다. 이 장의 파이프라인은 "무엇을 비교할지"의 골격이지, 그 비교의 통계적 신뢰도까지 보장하지 않습니다.
+<strong>"공유 러너에서 실행하면 결과를 그대로 믿을 수 있다"</strong>도 자주 나오는 오해입니다. GitHub Actions의 공용 `ubuntu-22.04` 러너나 GitLab의 공유 러너는 다른 워크플로와 물리 자원을 공유하는 가상 환경이라, 절대 시간값 자체는 실행마다 수 퍼센트에서 수십 퍼센트까지 흔들릴 수 있습니다. 이 문제의 근본 대응(전용 러너, 베어메탈 격리, 상대 비교 위주 설계)은 [03장의 Bencher 베어메탈 동일성 벤치마킹](/post/regression-prevention/benchmark-ci-integration-codspeed-bencher/)에서 다룹니다. 이 장의 파이프라인은 "무엇을 비교할지"의 골격이지, 그 비교의 통계적 신뢰도까지 보장하지 않습니다.
 
-**"YAML 워크플로만 저장소에 있으면 Benchmark as Code가 완성된다"**도 흔한 축소 해석입니다. 파이프라인 정의만 코드화되고 벤치마크 하네스나 변환 스크립트가 별도 도구·수작업으로 남아 있으면, 여전히 "이 수치가 왜 이렇게 계산됐는지" 저장소만 보고는 재구성할 수 없습니다. 세 산출물(하네스·비교 설정·파이프라인 정의) 모두가 버전관리 대상이어야 이 장에서 말하는 패턴이 성립합니다.
+<strong>"YAML 워크플로만 저장소에 있으면 Benchmark as Code가 완성된다"</strong>도 흔한 축소 해석입니다. 파이프라인 정의만 코드화되고 벤치마크 하네스나 변환 스크립트가 별도 도구·수작업으로 남아 있으면, 여전히 "이 수치가 왜 이렇게 계산됐는지" 저장소만 보고는 재구성할 수 없습니다. 세 산출물(하네스·비교 설정·파이프라인 정의) 모두가 버전관리 대상이어야 이 장에서 말하는 패턴이 성립합니다.
 
 ## 판단 기준
 

@@ -102,7 +102,7 @@ def resolve_calculator(feature_flags: dict) -> PricingCalculator:
 
 ## 리팩토링 전에 행동을 고정한다: 특성화 테스트
 
-레거시 코드는 대부분 테스트가 없거나 부족합니다. 04장에서 언급한 "점진적 리팩토링 절차"의 첫 단계, **행동 고정**은 레거시 현대화에서 특히 중요해집니다. 이때 쓰는 테스트를 Michael Feathers는 『Working Effectively with Legacy Code』(2004)에서 **특성화 테스트(Characterization Test)**라 불렀습니다. 이 테스트는 "코드가 무엇을 해야 하는가"가 아니라 **"코드가 지금 실제로 무엇을 하는가"**를 기록합니다.
+레거시 코드는 대부분 테스트가 없거나 부족합니다. 04장에서 언급한 "점진적 리팩토링 절차"의 첫 단계, **행동 고정**은 레거시 현대화에서 특히 중요해집니다. 이때 쓰는 테스트를 Michael Feathers는 『Working Effectively with Legacy Code』(2004)에서 <strong>특성화 테스트(Characterization Test)</strong>라 불렀습니다. 이 테스트는 "코드가 무엇을 해야 하는가"가 아니라 <strong>"코드가 지금 실제로 무엇을 하는가"</strong>를 기록합니다.
 
 ```python
 def test_characterize_legacy_pricing():

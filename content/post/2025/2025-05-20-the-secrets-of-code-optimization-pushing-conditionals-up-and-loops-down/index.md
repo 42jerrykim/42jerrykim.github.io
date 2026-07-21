@@ -76,7 +76,7 @@ image: index.png
 
 ## 개요
 
-본 글은 **Push Ifs Up and Fors Down**이라는 코드 최적화 휴리스틱을 다룬다. 조건문(if)은 가능한 한 **호출부(caller)**로 올리고, 반복문(for/foreach)은 **하위 레벨**로 내리거나 **배치(batch)** 단위로 처리하는 접근이다. 이 원칙은 [matklad의 2023년 노트](https://matklad.github.io/2023/11/15/push-ifs-up-and-fors-down.html)에서 정리된 바 있으며, C#·Rust·일반적인 명령형 코드에 모두 적용할 수 있다.
+본 글은 **Push Ifs Up and Fors Down**이라는 코드 최적화 휴리스틱을 다룬다. 조건문(if)은 가능한 한 <strong>호출부(caller)</strong>로 올리고, 반복문(for/foreach)은 **하위 레벨**로 내리거나 **배치(batch)** 단위로 처리하는 접근이다. 이 원칙은 [matklad의 2023년 노트](https://matklad.github.io/2023/11/15/push-ifs-up-and-fors-down.html)에서 정리된 바 있으며, C#·Rust·일반적인 명령형 코드에 모두 적용할 수 있다.
 
 **이 포스트가 도움이 되는 대상**
 

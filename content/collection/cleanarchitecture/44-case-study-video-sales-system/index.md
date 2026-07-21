@@ -63,7 +63,7 @@ flowchart TB
 
 ## 액터 식별
 
-시스템과 상호작용하는 **액터(Actor)**를 식별한다.
+시스템과 상호작용하는 <strong>액터(Actor)</strong>를 식별한다.
 
 ```mermaid
 flowchart LR
@@ -494,7 +494,7 @@ com.videosales/
 [Frameworks / Infrastructure]
 ```
 
-이 흐름은 41~43장에서 각각 데이터베이스·웹·프레임워크를 "세부사항"으로 분리했던 원칙을 하나의 그림으로 합친 것이다 — 화살표가 아래로 갈수록 정책에서 세부사항으로 이동하며, `Gateways`와 `Frameworks`는 언제든 교체 가능한 반면 `Entities`와 `Use Cases`는 어떤 기술 변화에도 흔들리지 않는다.
+이 흐름은 41–43장에서 각각 데이터베이스·웹·프레임워크를 "세부사항"으로 분리했던 원칙을 하나의 그림으로 합친 것이다 — 화살표가 아래로 갈수록 정책에서 세부사항으로 이동하며, `Gateways`와 `Frameworks`는 언제든 교체 가능한 반면 `Entities`와 `Use Cases`는 어떤 기술 변화에도 흔들리지 않는다.
 
 ## 의존성 규칙 적용
 

@@ -73,7 +73,7 @@ console.log(gen.next()); // { value: undefined, done: true }
 
 ## Saga의 핵심 아이디어: 이펙트 객체
 
-Saga 함수 안에서 `yield`하는 것은 실제 함수 호출이 아니라, **"이런 일을 해달라"는 순수한 설명(이펙트 객체)**입니다.
+Saga 함수 안에서 `yield`하는 것은 실제 함수 호출이 아니라, <strong>"이런 일을 해달라"는 순수한 설명(이펙트 객체)</strong>입니다.
 
 ```javascript
 import { call, put, takeEvery } from "redux-saga/effects";

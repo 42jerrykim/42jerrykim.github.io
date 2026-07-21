@@ -149,7 +149,7 @@ Inconsequential can also mean having no significant effect or outcome.
   - 명사: inconsequentiality
   - 반대: consequential, consequentiality
 - **전형적 전치사/패턴**: seem inconsequential, prove inconsequential, consider inconsequential, is inconsequential to
-- **격식도**: 중립~격식 (비즈니스, 학술, 뉴스에서 자주 사용)
+- **격식도**: 중립–격식 (비즈니스, 학술, 뉴스에서 자주 사용)
 - **뉘앙스**: 중립적 (판단적 평가, 때로는 약간의 해석적 톤)
 - **문화적 연상/사용 맥락**: 
   - 비즈니스에서 우선순위 결정 시
@@ -209,7 +209,7 @@ Inconsequential can also mean having no significant effect or outcome.
    (이사회는 그 문제가 중요하지 않다고 결정했고 계획을 진행했다.)
 
 7. Market fluctuations of 1-2% are considered inconsequential for long-term investors.  
-   (1~2%의 시장 변동은 장기 투자자들에게 중요하지 않은 것으로 간주된다.)
+   (1–2%의 시장 변동은 장기 투자자들에게 중요하지 않은 것으로 간주된다.)
 
 8. The cost overrun was inconsequential compared to the project's total budget.  
    (비용 초과는 프로젝트의 총 예산에 비해 중요하지 않았다.)

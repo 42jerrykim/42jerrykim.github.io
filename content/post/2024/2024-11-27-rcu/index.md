@@ -156,7 +156,7 @@ RCU(Read-Copy-Update)는 동시성 프로그래밍에서 중요한 역할을 하
 
 ### rcu_read_lock()
 
-**rcu_read_lock()**은 RCU 읽기 세션을 시작하는 함수이다. 이 함수를 호출하면 현재 스레드는 RCU 읽기 세션에 들어가며, 이 세션 동안에는 데이터 구조에 대한 읽기 작업이 안전하게 수행될 수 있다. 이 함수는 RCU의 동시성 모델을 지원하기 위해 사용된다.
+<strong>rcu_read_lock()</strong>은 RCU 읽기 세션을 시작하는 함수이다. 이 함수를 호출하면 현재 스레드는 RCU 읽기 세션에 들어가며, 이 세션 동안에는 데이터 구조에 대한 읽기 작업이 안전하게 수행될 수 있다. 이 함수는 RCU의 동시성 모델을 지원하기 위해 사용된다.
 
 ```c
 rcu_read_lock();
@@ -166,7 +166,7 @@ rcu_read_unlock();
 
 ### rcu_read_unlock()
 
-**rcu_read_unlock()**은 RCU 읽기 세션을 종료하는 함수이다. 이 함수를 호출하면 현재 스레드는 RCU 읽기 세션에서 나가게 되며, 이후에는 RCU 보호를 받지 않는 데이터 구조에 대한 작업을 수행할 수 있다.
+<strong>rcu_read_unlock()</strong>은 RCU 읽기 세션을 종료하는 함수이다. 이 함수를 호출하면 현재 스레드는 RCU 읽기 세션에서 나가게 되며, 이후에는 RCU 보호를 받지 않는 데이터 구조에 대한 작업을 수행할 수 있다.
 
 ```c
 rcu_read_lock();
@@ -176,7 +176,7 @@ rcu_read_unlock();
 
 ### synchronize_rcu()
 
-**synchronize_rcu()**는 모든 이전 RCU 읽기 세션이 완료될 때까지 대기하는 함수이다. 이 함수는 RCU 업데이트가 안전하게 완료되었음을 보장하기 위해 사용된다. 이 함수는 RCU 업데이트가 완료된 후에 안전하게 메모리를 해제할 수 있도록 도와준다.
+<strong>synchronize_rcu()</strong>는 모든 이전 RCU 읽기 세션이 완료될 때까지 대기하는 함수이다. 이 함수는 RCU 업데이트가 안전하게 완료되었음을 보장하기 위해 사용된다. 이 함수는 RCU 업데이트가 완료된 후에 안전하게 메모리를 해제할 수 있도록 도와준다.
 
 ```c
 synchronize_rcu();
@@ -185,7 +185,7 @@ synchronize_rcu();
 
 ### call_rcu()
 
-**call_rcu()**는 비동기적으로 콜백 함수를 호출하는 API이다. 이 함수는 RCU 업데이트가 완료된 후에 특정 작업을 수행해야 할 때 유용하다. 이 API는 RCU의 비동기 콜백 메커니즘을 활용하여, 업데이트 스레드가 블록되지 않도록 한다.
+<strong>call_rcu()</strong>는 비동기적으로 콜백 함수를 호출하는 API이다. 이 함수는 RCU 업데이트가 완료된 후에 특정 작업을 수행해야 할 때 유용하다. 이 API는 RCU의 비동기 콜백 메커니즘을 활용하여, 업데이트 스레드가 블록되지 않도록 한다.
 
 ```c
 void my_callback(struct rcu_head *head) {
@@ -197,7 +197,7 @@ call_rcu(&my_rcu_head, my_callback);
 
 ### rcu_assign_pointer()
 
-**rcu_assign_pointer()**는 RCU 포인터를 안전하게 할당하는 함수이다. 이 함수는 RCU의 동시성 모델을 준수하면서 포인터를 할당할 수 있도록 도와준다. 이 API를 사용하면 RCU 보호를 받는 데이터 구조에 대한 안전한 포인터 할당이 가능하다.
+<strong>rcu_assign_pointer()</strong>는 RCU 포인터를 안전하게 할당하는 함수이다. 이 함수는 RCU의 동시성 모델을 준수하면서 포인터를 할당할 수 있도록 도와준다. 이 API를 사용하면 RCU 보호를 받는 데이터 구조에 대한 안전한 포인터 할당이 가능하다.
 
 ```c
 struct my_struct *ptr;
@@ -206,7 +206,7 @@ rcu_assign_pointer(ptr, new_value);
 
 ### rcu_dereference()
 
-**rcu_dereference()**는 RCU 포인터를 안전하게 역참조하는 함수이다. 이 함수를 사용하면 RCU 보호를 받는 데이터 구조에 대한 안전한 접근이 가능하다. 이 API는 RCU의 동시성 모델을 준수하면서 데이터에 접근할 수 있도록 도와준다.
+<strong>rcu_dereference()</strong>는 RCU 포인터를 안전하게 역참조하는 함수이다. 이 함수를 사용하면 RCU 보호를 받는 데이터 구조에 대한 안전한 접근이 가능하다. 이 API는 RCU의 동시성 모델을 준수하면서 데이터에 접근할 수 있도록 도와준다.
 
 ```c
 struct my_struct *ptr = rcu_dereference(my_rcu_pointer);

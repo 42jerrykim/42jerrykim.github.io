@@ -168,8 +168,8 @@ image: wordcloud.png
   - **burned out/burned-out**: "The burned-out developer quit tech" (소진된 개발자)
   - **burned by**: "burned by a bad deal" (사기로 인해 속다)
   - **feel burned**: "feel burned after the experience" (경험 후 배신감을 느끼다)
-- **격식도**: 중립~비공식 (일상 대화, 비즈니스, 심리학)
-- **뉘앙스**: 부정적~중립적 (물리적으로는 중립, 감정적으로는 부정적)
+- **격식도**: 중립–비공식 (일상 대화, 비즈니스, 심리학)
+- **뉘앙스**: 부정적–중립적 (물리적으로는 중립, 감정적으로는 부정적)
 - **문화적 연상**: 소진, 배신, 실패, 피로, 현대 직장 문화, 감정적 상처
 
 ## 주요 표현과 숙어

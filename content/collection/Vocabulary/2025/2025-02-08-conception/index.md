@@ -100,7 +100,7 @@ lastmod: 2026-07-02
 ## Conception의 유의어와 차이점
 
 1. **Idea**: 가장 일반적인 표현으로, 다양한 상황에서 사용 가능
-2. **Concept**: 보다 추상적이고 이론적인 개념을 의미. concept가 완성되어 공유되는 "단위"라면, **conception은 누군가가 그것을 품고 이해하는 "방식"**에 초점이 있다 — 그래서 "his conception of justice"(그가 정의를 이해하는 방식)처럼 소유격과 자주 결합한다.
+2. **Concept**: 보다 추상적이고 이론적인 개념을 의미. concept가 완성되어 공유되는 "단위"라면, <strong>conception은 누군가가 그것을 품고 이해하는 "방식"</strong>에 초점이 있다 — 그래서 "his conception of justice"(그가 정의를 이해하는 방식)처럼 소유격과 자주 결합한다.
 3. **Notion**: 개인의 주관적인 생각이나 믿음을 의미
 
 **반의 계열**: 잘못 품은 이해는 **misconception**(오해, 오개념)이라 한다. "a common misconception"(흔한 오해)은 학술·교육 글의 최빈출 콜로케이션 중 하나다.

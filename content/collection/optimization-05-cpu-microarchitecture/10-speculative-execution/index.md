@@ -6,7 +6,7 @@ draft: false
 image: wordcloud.png
 title: "[CPU 05] 추측 실행과 보안 영향"
 slug: speculative-execution-security-impact
-description: "추측 실행이 Spectre·Meltdown 계열 사이드채널로 이어지는 메커니즘을 설명하고, retpoline·IBRS/eIBRS·KPTI 완화 기법의 실측 성능 비용과 VMScape·Branch Privilege Injection 등 2024~2025년 신규 변종의 교훈을 정리합니다."
+description: "추측 실행이 Spectre·Meltdown 계열 사이드채널로 이어지는 메커니즘을 설명하고, retpoline·IBRS/eIBRS·KPTI 완화 기법의 실측 성능 비용과 VMScape·Branch Privilege Injection 등 2024–2025년 신규 변종의 교훈을 정리합니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
@@ -45,13 +45,13 @@ tags:
   - VMScape
 ---
 
-**추측 실행(speculative execution)**이란 CPU가 분기·메모리 접근 결과가 아직 확정되지 않은 시점에, 그 결과를 미리 예측해 뒤따르는 명령어를 미리 실행해 두는 하드웨어 기법입니다. [01장](/post/cpu-optimization/cpu-pipeline-fundamentals/)에서 다룬 파이프라이닝과 [06장](/post/cpu-optimization/out-of-order-execution-performance/)에서 다룬 Out-of-Order 실행 모두 이 추측에 의존해야 파이프라인을 계속 채울 수 있습니다. 문제는 예측이 틀렸을 때 CPU가 레지스터와 메모리 같은 **아키텍처 상태(architectural state)**는 깨끗이 되돌리지만, 캐시 점유·분기 예측기 히스토리 같은 **마이크로아키텍처 상태(microarchitectural state)**는 되돌리지 않는다는 데 있습니다. 2018년 초 공개된 Spectre와 Meltdown은 바로 이 틈을 이용해, 소프트웨어 관점에서는 "실행된 적 없는" 명령어가 남긴 캐시 흔적만으로 임의의 메모리를 읽어낼 수 있음을 보였습니다. 이 장에서는 추측 실행이 어떻게 사이드채널로 이어지는지, Spectre/Meltdown 계열 취약점이 어떤 계보로 진화해 왔는지, 그리고 retpoline·IBRS·KPTI 같은 완화 기법이 지연시간 예산에 실제로 얼마를 청구하는지를 다룹니다.
+<strong>추측 실행(speculative execution)</strong>이란 CPU가 분기·메모리 접근 결과가 아직 확정되지 않은 시점에, 그 결과를 미리 예측해 뒤따르는 명령어를 미리 실행해 두는 하드웨어 기법입니다. [01장](/post/cpu-optimization/cpu-pipeline-fundamentals/)에서 다룬 파이프라이닝과 [06장](/post/cpu-optimization/out-of-order-execution-performance/)에서 다룬 Out-of-Order 실행 모두 이 추측에 의존해야 파이프라인을 계속 채울 수 있습니다. 문제는 예측이 틀렸을 때 CPU가 레지스터와 메모리 같은 <strong>아키텍처 상태(architectural state)</strong>는 깨끗이 되돌리지만, 캐시 점유·분기 예측기 히스토리 같은 <strong>마이크로아키텍처 상태(microarchitectural state)</strong>는 되돌리지 않는다는 데 있습니다. 2018년 초 공개된 Spectre와 Meltdown은 바로 이 틈을 이용해, 소프트웨어 관점에서는 "실행된 적 없는" 명령어가 남긴 캐시 흔적만으로 임의의 메모리를 읽어낼 수 있음을 보였습니다. 이 장에서는 추측 실행이 어떻게 사이드채널로 이어지는지, Spectre/Meltdown 계열 취약점이 어떤 계보로 진화해 왔는지, 그리고 retpoline·IBRS·KPTI 같은 완화 기법이 지연시간 예산에 실제로 얼마를 청구하는지를 다룹니다.
 
 ## 이 장을 읽기 전에
 
 이 장은 [02장: 분기 예측 메커니즘과 비용](/post/cpu-optimization/branch-prediction-mechanisms-cost/)에서 다룬 BTB(Branch Target Buffer)·예측 실패 시 파이프라인 플러시 개념과, [06장: Out-of-Order 실행과 성능](/post/cpu-optimization/out-of-order-execution-performance/)에서 다룬 "실행은 추측적, 폐기(retire)는 순서대로"라는 원칙을 전제로 합니다. 두 장의 핵심만 요약하면, CPU는 아직 확정되지 않은 분기·주소를 추측해 명령을 앞당겨 실행하고, 추측이 틀리면 그 결과를 조용히 버립니다.
 
-**이 장의 깊이**: 이 장은 **심화**입니다. 추측 실행이 왜 사이드채널이 되는지의 원리, Spectre v1/v2·Meltdown의 메커니즘 차이, retpoline·IBRS/eIBRS·STIBP·IBPB·KPTI 같은 완화 기법과 그 성능 비용, 그리고 2024~2025년에 새로 드러난 변종(GhostRace, Indirector, VMScape, Branch Privilege Injection)까지 다룹니다. **다루지 않는 것**: BTB 내부 구조와 일반 분기 예측 비용은 [02장](/post/cpu-optimization/branch-prediction-mechanisms-cost/), ROB·reservation station의 내부 동작은 [06장](/post/cpu-optimization/out-of-order-execution-performance/), 캐시 계층의 지연시간 자체는 [03장](/post/cpu-optimization/cache-hierarchy-l1-l2-l3/), TopDown에서 Bad Speculation을 Frontend/Backend Bound와 구분하는 방법은 [17장](/post/cpu-optimization/frontend-backend-bound-topdown-basics/), Apple Silicon M시리즈의 전반적인 마이크로아키텍처는 [13장](/post/cpu-optimization/apple-silicon-m-series-architecture/)에서 각각 다루므로 이 장에서는 반복하지 않습니다.
+**이 장의 깊이**: 이 장은 **심화**입니다. 추측 실행이 왜 사이드채널이 되는지의 원리, Spectre v1/v2·Meltdown의 메커니즘 차이, retpoline·IBRS/eIBRS·STIBP·IBPB·KPTI 같은 완화 기법과 그 성능 비용, 그리고 2024–2025년에 새로 드러난 변종(GhostRace, Indirector, VMScape, Branch Privilege Injection)까지 다룹니다. **다루지 않는 것**: BTB 내부 구조와 일반 분기 예측 비용은 [02장](/post/cpu-optimization/branch-prediction-mechanisms-cost/), ROB·reservation station의 내부 동작은 [06장](/post/cpu-optimization/out-of-order-execution-performance/), 캐시 계층의 지연시간 자체는 [03장](/post/cpu-optimization/cache-hierarchy-l1-l2-l3/), TopDown에서 Bad Speculation을 Frontend/Backend Bound와 구분하는 방법은 [17장](/post/cpu-optimization/frontend-backend-bound-topdown-basics/), Apple Silicon M시리즈의 전반적인 마이크로아키텍처는 [13장](/post/cpu-optimization/apple-silicon-m-series-architecture/)에서 각각 다루므로 이 장에서는 반복하지 않습니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -132,11 +132,11 @@ flowchart LR
 
 ## 흔한 오개념
 
-**"패치를 다 적용하면 완전히 안전해진다"**는 틀린 생각입니다. Spectre/Meltdown류 취약점의 근본 원인은 추측 실행이라는 하드웨어 최적화 자체에 있고, 패치는 알려진 특정 gadget 패턴을 막을 뿐입니다. GhostRace(2024)가 잠금 경합 코드라는 전혀 새로운 위치에서 Spectre v1 gadget을 찾아냈고, Branch Privilege Injection(2025)이 유저→커널 전환의 나노초 단위 틈에서 새 경로를 찾아낸 것처럼, 예측기와 특권 전환이 존재하는 한 새로운 변종이 계속 나올 수 있습니다.
+<strong>"패치를 다 적용하면 완전히 안전해진다"</strong>는 틀린 생각입니다. Spectre/Meltdown류 취약점의 근본 원인은 추측 실행이라는 하드웨어 최적화 자체에 있고, 패치는 알려진 특정 gadget 패턴을 막을 뿐입니다. GhostRace(2024)가 잠금 경합 코드라는 전혀 새로운 위치에서 Spectre v1 gadget을 찾아냈고, Branch Privilege Injection(2025)이 유저→커널 전환의 나노초 단위 틈에서 새 경로를 찾아낸 것처럼, 예측기와 특권 전환이 존재하는 한 새로운 변종이 계속 나올 수 있습니다.
 
-**"이건 소프트웨어 버그라 컴파일러·커널만 고치면 근본적으로 해결된다"**도 오해입니다. retpoline·LFENCE 삽입 같은 소프트웨어 완화는 하드웨어의 근본 동작(추측 실행)은 그대로 둔 채 특정 gadget이 악용되는 경로만 차단하는 우회책에 가깝습니다. eIBRS·CET 같은 하드웨어 강화도 특정 클래스의 공격만 저비용으로 막을 뿐, Retbleed가 retpoline을, Inception이 AMD의 하드웨어 완화를 각각 우회했듯 소프트웨어와 하드웨어 어느 쪽도 단독으로 "완전한 해결"을 제공하지 않습니다.
+<strong>"이건 소프트웨어 버그라 컴파일러·커널만 고치면 근본적으로 해결된다"</strong>도 오해입니다. retpoline·LFENCE 삽입 같은 소프트웨어 완화는 하드웨어의 근본 동작(추측 실행)은 그대로 둔 채 특정 gadget이 악용되는 경로만 차단하는 우회책에 가깝습니다. eIBRS·CET 같은 하드웨어 강화도 특정 클래스의 공격만 저비용으로 막을 뿐, Retbleed가 retpoline을, Inception이 AMD의 하드웨어 완화를 각각 우회했듯 소프트웨어와 하드웨어 어느 쪽도 단독으로 "완전한 해결"을 제공하지 않습니다.
 
-**"Spectre v1은 2018년 취약점이라 이제 레거시고 신경 쓸 필요 없다"**는 생각도 위험합니다. v1(bounds check bypass)은 하드웨어 수정이 사실상 불가능해 지금도 컴파일러 수준의 정적 분석과 수동 코드 검토에 의존하는데, GhostRace가 2024년에 리눅스 커널의 락 프리미티브에서 새 v1 gadget을 발견했다는 사실 자체가 "오래된 취약점 계열"이라는 인식과 "실제로 남아 있는 위험" 사이의 간극을 보여줍니다.
+<strong>"Spectre v1은 2018년 취약점이라 이제 레거시고 신경 쓸 필요 없다"</strong>는 생각도 위험합니다. v1(bounds check bypass)은 하드웨어 수정이 사실상 불가능해 지금도 컴파일러 수준의 정적 분석과 수동 코드 검토에 의존하는데, GhostRace가 2024년에 리눅스 커널의 락 프리미티브에서 새 v1 gadget을 발견했다는 사실 자체가 "오래된 취약점 계열"이라는 인식과 "실제로 남아 있는 위험" 사이의 간극을 보여줍니다.
 
 ## 완화 기법과 성능 비용
 
@@ -157,7 +157,7 @@ setup_target:
   ret                        ; 실제 실행: target_address로 점프
 ```
 
-**IBRS(Indirect Branch Restricted Speculation)**는 이후 예측을 제한하는 하드웨어 기능이고, 이를 매 커널 진입마다 다시 켜야 했던 초기 버전 대신 부팅 시 한 번만 설정하면 되는 **eIBRS**가 뒤이어 나왔습니다. **STIBP**는 SMT 형제 스레드 사이에 예측기 상태를 격리하고, **IBPB**는 컨텍스트 전환·VMEXIT 시점에 예측기 히스토리를 통째로 비웁니다. 커널이 이 상태를 어떻게 판단했는지는 `/sys/devices/system/cpu/vulnerabilities/` 아래 파일로 직접 확인할 수 있습니다.
+<strong>IBRS(Indirect Branch Restricted Speculation)</strong>는 이후 예측을 제한하는 하드웨어 기능이고, 이를 매 커널 진입마다 다시 켜야 했던 초기 버전 대신 부팅 시 한 번만 설정하면 되는 **eIBRS**가 뒤이어 나왔습니다. **STIBP**는 SMT 형제 스레드 사이에 예측기 상태를 격리하고, **IBPB**는 컨텍스트 전환·VMEXIT 시점에 예측기 히스토리를 통째로 비웁니다. 커널이 이 상태를 어떻게 판단했는지는 `/sys/devices/system/cpu/vulnerabilities/` 아래 파일로 직접 확인할 수 있습니다.
 
 ```text
 $ cat /sys/devices/system/cpu/vulnerabilities/spectre_v2
@@ -168,7 +168,7 @@ Mitigation: PTI
 
 (정확한 문자열은 커널 버전·마이크로코드·CPU 세대에 따라 달라지므로 대상 시스템에서 직접 확인해야 합니다.)
 
-이 완화 기법들은 공짜가 아닙니다. Meltdown 대응으로 도입된 **KPTI(Kernel Page Table Isolation)**는 유저/커널 페이지 테이블을 분리해 커널 진입·복귀마다 추가 TLB 처리를 요구하며, 2018년 초 syscall이 잦은 워크로드(PostgreSQL, Redis 등)에서는 최대 30%에 가까운 성능 저하가 보고된 바 있습니다 — 이후 PCID(Process-Context Identifier) 지원으로 전체 TLB 플러시를 피할 수 있게 되면서 전형적인 비용은 크게 줄었지만, syscall 빈도가 극단적으로 높은 코드에서는 여전히 체감할 수 있는 수준입니다. Linux 커널 공식 문서는 L1TF 대응으로 VM 진입마다 L1D 캐시를 플러시하는 완화의 비용을 다음과 같이 명시합니다.
+이 완화 기법들은 공짜가 아닙니다. Meltdown 대응으로 도입된 <strong>KPTI(Kernel Page Table Isolation)</strong>는 유저/커널 페이지 테이블을 분리해 커널 진입·복귀마다 추가 TLB 처리를 요구하며, 2018년 초 syscall이 잦은 워크로드(PostgreSQL, Redis 등)에서는 최대 30%에 가까운 성능 저하가 보고된 바 있습니다 — 이후 PCID(Process-Context Identifier) 지원으로 전체 TLB 플러시를 피할 수 있게 되면서 전형적인 비용은 크게 줄었지만, syscall 빈도가 극단적으로 높은 코드에서는 여전히 체감할 수 있는 수준입니다. Linux 커널 공식 문서는 L1TF 대응으로 VM 진입마다 L1D 캐시를 플러시하는 완화의 비용을 다음과 같이 명시합니다.
 
 > "관련 성능 저하는 VM exit 빈도에 따라 1%에서 50% 사이로 나타난다." — [kernel.org, L1TF 문서](https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/l1tf.html) 요지 (조건부 플러시 기준, virtio 등 최적화된 구성에서는 영향이 최소화됨)
 
@@ -207,7 +207,7 @@ BENCHMARK_MAIN();
 
 ## 비판적 시각: 한계와 트레이드오프
 
-추측 실행 취약점 대응은 "패치 한 번으로 끝나는 버그 수정"이 아니라 **끝나지 않는 두더지 잡기(whack-a-mole)**에 가깝습니다. Retpoline은 Retbleed에, AMD의 하드웨어 완화는 Inception에 각각 우회당했고, Indirector처럼 벤더가 "기존 완화로 충분하다"며 심각도를 낮춰 발표한 사례도 있어 완화가 실제로 얼마나 포괄적인지 외부에서 검증하기 어렵습니다. 근본 원인이 수십 년간 성능 향상의 핵심 동력이었던 추측 실행 자체에 있다 보니, 하드웨어 벤더 입장에서는 "완전히 끄면 안전하지만 성능이 크게 떨어지는" 기능을 쉽게 포기할 수 없다는 구조적 긴장이 계속됩니다.
+추측 실행 취약점 대응은 "패치 한 번으로 끝나는 버그 수정"이 아니라 <strong>끝나지 않는 두더지 잡기(whack-a-mole)</strong>에 가깝습니다. Retpoline은 Retbleed에, AMD의 하드웨어 완화는 Inception에 각각 우회당했고, Indirector처럼 벤더가 "기존 완화로 충분하다"며 심각도를 낮춰 발표한 사례도 있어 완화가 실제로 얼마나 포괄적인지 외부에서 검증하기 어렵습니다. 근본 원인이 수십 년간 성능 향상의 핵심 동력이었던 추측 실행 자체에 있다 보니, 하드웨어 벤더 입장에서는 "완전히 끄면 안전하지만 성능이 크게 떨어지는" 기능을 쉽게 포기할 수 없다는 구조적 긴장이 계속됩니다.
 
 이 긴장은 저지연 시스템 엔지니어에게 실제 선택의 문제로 다가옵니다. 앞서 본 것처럼 KPTI·IBPB·L1D 플러시 같은 완화는 워크로드에 따라 수십 퍼센트에 달하는 지연시간 비용을 청구할 수 있는데, 신뢰 안 되는 코드가 절대 실행되지 않는 단일 테넌트 전용 서버(예: 폐쇄망의 HFT 매칭 엔진)라면 일부 완화를 의도적으로 비활성화하는 것이 합리적인 선택일 수 있습니다. 다만 이 판단은 개인이 임의로 내릴 일이 아니라, 위협 모델·컴플라이언스 요건·향후 신뢰 경계 변화 가능성을 팀·보안 담당자와 함께 문서화한 뒤 내려야 합니다 — "성능 때문에 껐다"는 결정이 감사·사고 대응 시점에 근거 없는 선택으로 남으면 안 되기 때문입니다.
 

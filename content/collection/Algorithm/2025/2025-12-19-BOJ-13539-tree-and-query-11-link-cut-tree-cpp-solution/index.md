@@ -46,8 +46,8 @@ image: "wordcloud.png"
 
 문제: [BOJ 13539 - 트리와 쿼리 11](https://www.acmicpc.net/problem/13539)
 
-루트가 있는 트리 \(N\)개(초기에는 모두 단일 정점)에서 **연결/분리**가 일어나고, 그때그때 **LCA(최소 공통 조상)**를 물어본다.  
-핵심은 **동적 트리(Dynamic Tree)** 자료구조인 **Link-Cut Tree(LCT)**로 `link`, `cut`, `lca`를 모두 \(O(\log N)\) 분할상환으로 처리하는 것이다.
+루트가 있는 트리 \(N\)개(초기에는 모두 단일 정점)에서 **연결/분리**가 일어나고, 그때그때 <strong>LCA(최소 공통 조상)</strong>를 물어본다.  
+핵심은 **동적 트리(Dynamic Tree)** 자료구조인 <strong>Link-Cut Tree(LCT)</strong>로 `link`, `cut`, `lca`를 모두 \(O(\log N)\) 분할상환으로 처리하는 것이다.
 
 ## 문제 정보
 

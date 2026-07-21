@@ -42,7 +42,7 @@ image: "wordcloud.png"
 
 ## 정규화 — 학습을 안정시키는 전처리
 
-레이어를 거칠 때마다 값의 분포가 크게 흔들리면 학습이 불안정해집니다. **정규화(Normalization)**는 평균을 0, 분산을 1로 맞춰 이 흔들림을 줄이는 연산으로, Attention과 Feed Forward를 통과하기 전에 각각 적용합니다.
+레이어를 거칠 때마다 값의 분포가 크게 흔들리면 학습이 불안정해집니다. <strong>정규화(Normalization)</strong>는 평균을 0, 분산을 1로 맞춰 이 흔들림을 줄이는 연산으로, Attention과 Feed Forward를 통과하기 전에 각각 적용합니다.
 
 $$\hat{x} = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}}, \quad y = \gamma \hat{x} + \beta$$
 

@@ -42,7 +42,7 @@ slug: cpp-proactor-async-io-half-sync-half-async
 
 ## 이 장을 읽기 전에
 
-**완전한 초보자?** 이 장은 [09장 「이벤트 아키텍처 I: Reactor」](/post/multithreading-patterns/cpp-reactor-event-driven-single-thread/)에서 다룬 이벤트 디멀티플렉싱(`poll`)과 이벤트 루프 개념을 전제로 합니다. 09장을 먼저 읽고 오세요. 또한 03~04장의 `std::condition_variable` 기반 Bounded Queue를 다시 떠올릴 수 있으면 좋습니다 — 이 장의 핵심 구조 중 하나가 그 큐의 재사용이기 때문입니다.
+**완전한 초보자?** 이 장은 [09장 「이벤트 아키텍처 I: Reactor」](/post/multithreading-patterns/cpp-reactor-event-driven-single-thread/)에서 다룬 이벤트 디멀티플렉싱(`poll`)과 이벤트 루프 개념을 전제로 합니다. 09장을 먼저 읽고 오세요. 또한 03–04장의 `std::condition_variable` 기반 Bounded Queue를 다시 떠올릴 수 있으면 좋습니다 — 이 장의 핵심 구조 중 하나가 그 큐의 재사용이기 때문입니다.
 
 **이 장의 깊이**: 이 장은 **심화(advanced)** 수준입니다. Proactor의 "완료 통지" 개념을 `std::async`와 콜백으로 모사한 예제, 그리고 `std::thread`/`std::queue`/`std::condition_variable`만으로 실제 컴파일되는 Half-Sync/Half-Async 서버 스켈레톤을 직접 구현하는 것이 목표입니다.
 
@@ -165,7 +165,7 @@ POSIX AIO는 복잡하고 느려서, 많은 라이브러리(Asio, libuv)는 Linu
 
 **문제**: 단일 스레드 Reactor는 CPU 바운드 작업을 할 수 없다. 하나의 요청이 오래 걸리면 다른 이벤트를 처리할 수 없다.
 
-**해결**: **비동기 계층 (이벤트 루프)** + **동기 계층 (워커 스레드)**를 분리한다. 이벤트 루프는 "데이터가 도착했다"는 사실만 빠르게 확인하고, 실제 처리(파싱, 비즈니스 로직, CPU 연산)는 03~04장에서 만든 **조건변수 기반 Bounded Queue**를 통해 워커 스레드에 넘긴다.
+**해결**: **비동기 계층 (이벤트 루프)** + <strong>동기 계층 (워커 스레드)</strong>를 분리한다. 이벤트 루프는 "데이터가 도착했다"는 사실만 빠르게 확인하고, 실제 처리(파싱, 비즈니스 로직, CPU 연산)는 03–04장에서 만든 **조건변수 기반 Bounded Queue**를 통해 워커 스레드에 넘긴다.
 
 ## Half-Sync/Half-Async의 구조도
 
@@ -183,11 +183,11 @@ POSIX AIO는 복잡하고 느려서, 많은 라이브러리(Asio, libuv)는 Linu
 └─────────────────────────────────────────┘
 ```
 
-POSA2 원전은 이 패턴을 세 계층 — 동기 계층, **큐잉 계층(Queueing Layer)**, 비동기 계층 — 으로 구분한다. 위 그림은 큐잉 계층을 별도 상자로 그리는 대신 두 계층 사이의 화살표(`condition_variable` 기반 Bounded Queue)로 단순화했다. 개념적으로는 03~04장의 `BoundedQueue`가 바로 그 큐잉 계층이다 — 두 계층이 서로 직접 호출하지 않고 반드시 이 큐를 통해서만 통신하게 강제하는 것이 이 패턴의 핵심이다.
+POSA2 원전은 이 패턴을 세 계층 — 동기 계층, **큐잉 계층(Queueing Layer)**, 비동기 계층 — 으로 구분한다. 위 그림은 큐잉 계층을 별도 상자로 그리는 대신 두 계층 사이의 화살표(`condition_variable` 기반 Bounded Queue)로 단순화했다. 개념적으로는 03–04장의 `BoundedQueue`가 바로 그 큐잉 계층이다 — 두 계층이 서로 직접 호출하지 않고 반드시 이 큐를 통해서만 통신하게 강제하는 것이 이 패턴의 핵심이다.
 
 ## 실전: Half-Sync/Half-Async 서버 스켈레톤
 
-다음 예제는 **실제로 컴파일되는** Half-Sync/Half-Async 골격이다. 비동기 계층은 09장의 `PollReactor`(파이프 fd로 데모)를, 동기 계층은 03~04장의 `condition_variable` 기반 Bounded Queue를 재사용한다.
+다음 예제는 **실제로 컴파일되는** Half-Sync/Half-Async 골격이다. 비동기 계층은 09장의 `PollReactor`(파이프 fd로 데모)를, 동기 계층은 03–04장의 `condition_variable` 기반 Bounded Queue를 재사용한다.
 
 ```cpp
 // half_sync_half_async.cpp
@@ -369,7 +369,7 @@ int main() {
 
 ## 다음 장에서는
 
-11장 **「공유 회피 (Avoiding Shared State)」**에서는 공유 자체를 없애는 전략 (불변성, Copy-on-Write, thread_local)을 다룬다.
+11장 <strong>「공유 회피 (Avoiding Shared State)」</strong>에서는 공유 자체를 없애는 전략 (불변성, Copy-on-Write, thread_local)을 다룬다.
 
 ## 참고 및 출처
 

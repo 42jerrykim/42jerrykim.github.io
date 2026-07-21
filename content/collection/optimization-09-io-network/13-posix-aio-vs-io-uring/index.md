@@ -66,7 +66,7 @@ tags:
 
 ## 역사와 배경
 
-**POSIX AIO**는 1993년 IEEE Std 1003.1b(POSIX.1b, 실시간 확장)로 표준화되었고, `aio_read`·`aio_write`·`aio_error`·`aio_return`·`aio_suspend`·`aio_cancel`·`lio_listio` 함수군으로 구성됩니다. 표준은 "비동기적으로 큐잉된다"는 동작만 규정할 뿐 구현 방식은 정하지 않았고, 그 결과 BSD·macOS는 커널 이벤트 큐(`kqueue`) 기반으로 진짜 커널 비동기를 구현한 반면 Linux의 glibc는 유저 공간 **스레드 풀**로 이를 흉내 내는 전혀 다른 경로를 택했습니다. 이와 별개로 Linux 커널은 2.5/2.6 시절(2002~2003년경) `io_submit`/`io_getevents` 계열의 **커널 네이티브 AIO**(흔히 `libaio`로 불림)를 도입했는데, 이는 POSIX AIO와 이름만 비슷할 뿐 완전히 다른 API이며 `O_DIRECT` 파일에서만 신뢰할 수 있는 비동기 동작을 보장합니다. io_uring은 이 두 갈래의 한계를 모두 해소하려는 목적으로 Jens Axboe가 2019년 커널 5.1에 도입했으며, 이후 이 트랙 [04장](/post/io-optimization/io-uring-advanced-deep-dive/)에서 다루는 확장을 거치며 사실상 Linux 비동기 I/O의 기본 선택지로 자리 잡았습니다.
+**POSIX AIO**는 1993년 IEEE Std 1003.1b(POSIX.1b, 실시간 확장)로 표준화되었고, `aio_read`·`aio_write`·`aio_error`·`aio_return`·`aio_suspend`·`aio_cancel`·`lio_listio` 함수군으로 구성됩니다. 표준은 "비동기적으로 큐잉된다"는 동작만 규정할 뿐 구현 방식은 정하지 않았고, 그 결과 BSD·macOS는 커널 이벤트 큐(`kqueue`) 기반으로 진짜 커널 비동기를 구현한 반면 Linux의 glibc는 유저 공간 **스레드 풀**로 이를 흉내 내는 전혀 다른 경로를 택했습니다. 이와 별개로 Linux 커널은 2.5/2.6 시절(2002–2003년경) `io_submit`/`io_getevents` 계열의 **커널 네이티브 AIO**(흔히 `libaio`로 불림)를 도입했는데, 이는 POSIX AIO와 이름만 비슷할 뿐 완전히 다른 API이며 `O_DIRECT` 파일에서만 신뢰할 수 있는 비동기 동작을 보장합니다. io_uring은 이 두 갈래의 한계를 모두 해소하려는 목적으로 Jens Axboe가 2019년 커널 5.1에 도입했으며, 이후 이 트랙 [04장](/post/io-optimization/io-uring-advanced-deep-dive/)에서 다루는 확장을 거치며 사실상 Linux 비동기 I/O의 기본 선택지로 자리 잡았습니다.
 
 ```mermaid
 flowchart TB
@@ -158,11 +158,11 @@ fio --name=uring_sqpoll --ioengine=io_uring --iodepth=16 --rw=randread \
 
 ## 흔한 오개념 바로잡기
 
-**"POSIX AIO와 Linux 커널 네이티브 AIO(io_submit/libaio)는 같은 것이다"**는 가장 흔한 오개념입니다. 이름의 유사성 때문에 벤치마크나 블로그 글에서 "aio"라고만 쓴 수치가 어느 쪽을 가리키는지 혼동하기 쉽지만, 앞서 보았듯 하나는 glibc 스레드 풀이고 다른 하나는 `O_DIRECT`에서만 신뢰할 수 있는 커널 네이티브 인터페이스입니다. 두 API는 헤더(`<aio.h>` vs `<libaio.h>`)와 함수 이름(`aio_read` vs `io_submit`)부터 다릅니다.
+<strong>"POSIX AIO와 Linux 커널 네이티브 AIO(io_submit/libaio)는 같은 것이다"</strong>는 가장 흔한 오개념입니다. 이름의 유사성 때문에 벤치마크나 블로그 글에서 "aio"라고만 쓴 수치가 어느 쪽을 가리키는지 혼동하기 쉽지만, 앞서 보았듯 하나는 glibc 스레드 풀이고 다른 하나는 `O_DIRECT`에서만 신뢰할 수 있는 커널 네이티브 인터페이스입니다. 두 API는 헤더(`<aio.h>` vs `<libaio.h>`)와 함수 이름(`aio_read` vs `io_submit`)부터 다릅니다.
 
-**"aio_read를 호출하면 그 순간 커널이 비동기로 처리를 시작한다"**도 정확하지 않습니다. 실제로는 유휴 워커 스레드가 배정될 때까지 요청이 내부 큐에서 대기할 수 있고, 스레드 풀이 이미 `aio_threads`만큼 가득 차 있으면 새 요청은 스레드가 반환될 때까지 큐잉된 채 남아 있습니다. "즉시 비동기로 넘어간다"고 가정하고 지연시간 예산을 짜면 부하가 몰리는 시점에 예상보다 훨씬 긴 꼬리 지연을 만나게 됩니다.
+<strong>"aio_read를 호출하면 그 순간 커널이 비동기로 처리를 시작한다"</strong>도 정확하지 않습니다. 실제로는 유휴 워커 스레드가 배정될 때까지 요청이 내부 큐에서 대기할 수 있고, 스레드 풀이 이미 `aio_threads`만큼 가득 차 있으면 새 요청은 스레드가 반환될 때까지 큐잉된 채 남아 있습니다. "즉시 비동기로 넘어간다"고 가정하고 지연시간 예산을 짜면 부하가 몰리는 시점에 예상보다 훨씬 긴 꼬리 지연을 만나게 됩니다.
 
-**"io_uring이 나왔으니 POSIX AIO는 이제 완전히 무의미하다"**는 절반만 맞습니다. Linux 단일 플랫폼, 성능이 최우선인 코드에서는 맞는 말이지만, BSD/macOS를 포함해 여러 유닉스 계열을 함께 지원해야 하는 이식성 우선 코드베이스에서는 여전히 POSIX AIO가 유일한 표준 옵션인 경우가 있습니다. 다만 이 경우에도 Linux에서만큼은 스레드 풀 오버헤드를 감수하는 선택이라는 점을 분명히 인지해야 합니다.
+<strong>"io_uring이 나왔으니 POSIX AIO는 이제 완전히 무의미하다"</strong>는 절반만 맞습니다. Linux 단일 플랫폼, 성능이 최우선인 코드에서는 맞는 말이지만, BSD/macOS를 포함해 여러 유닉스 계열을 함께 지원해야 하는 이식성 우선 코드베이스에서는 여전히 POSIX AIO가 유일한 표준 옵션인 경우가 있습니다. 다만 이 경우에도 Linux에서만큼은 스레드 풀 오버헤드를 감수하는 선택이라는 점을 분명히 인지해야 합니다.
 
 ## 판단 기준
 

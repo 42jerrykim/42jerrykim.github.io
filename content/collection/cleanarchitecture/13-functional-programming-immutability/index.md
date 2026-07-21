@@ -36,13 +36,13 @@ tags:
   - Guide(가이드)
 ---
 
-함수형 프로그래밍(FP)은 세 가지 패러다임 중 가장 오래되었지만, 가장 최근에 주목받기 시작했다. 1936년 알론조 처치(Alonzo Church)의 람다 계산법에서 시작된 이 패러다임은, **불변성(Immutability)**이라는 개념을 통해 현대 소프트웨어 아키텍처에 중요한 통찰을 제공한다.
+함수형 프로그래밍(FP)은 세 가지 패러다임 중 가장 오래되었지만, 가장 최근에 주목받기 시작했다. 1936년 알론조 처치(Alonzo Church)의 람다 계산법에서 시작된 이 패러다임은, <strong>불변성(Immutability)</strong>이라는 개념을 통해 현대 소프트웨어 아키텍처에 중요한 통찰을 제공한다.
 
 ## 람다 계산법과 함수형 프로그래밍의 기원
 
 ### 튜링 이전의 계산 이론
 
-1936년, 앨런 튜링(Alan Turing)이 튜링 기계를 발표하기 전, 알론조 처치는 **람다 계산법(Lambda Calculus)**을 발명했다. 람다 계산법은 계산 가능성을 연구하기 위한 수학적 시스템이었다.
+1936년, 앨런 튜링(Alan Turing)이 튜링 기계를 발표하기 전, 알론조 처치는 <strong>람다 계산법(Lambda Calculus)</strong>을 발명했다. 람다 계산법은 계산 가능성을 연구하기 위한 수학적 시스템이었다.
 
 ```text
 // 람다 계산법의 기본 형태
@@ -120,7 +120,7 @@ int result4 = 1;            // result3과 동일하지 않음! (다음 호출은
 
 ### 가변 상태의 저주
 
-현대 소프트웨어의 가장 큰 문제 중 하나는 **동시성(Concurrency)**이다. 여러 스레드가 동시에 가변 상태에 접근하면:
+현대 소프트웨어의 가장 큰 문제 중 하나는 <strong>동시성(Concurrency)</strong>이다. 여러 스레드가 동시에 가변 상태에 접근하면:
 
 ```java
 // 동시성 문제 예시
@@ -154,7 +154,7 @@ sequenceDiagram
     Note over M: count = 1 (기대값: 2)
 ```
 
-이것이 **경쟁 조건(Race Condition)**이다.
+이것이 <strong>경쟁 조건(Race Condition)</strong>이다.
 
 ### 전통적인 해결책: 락(Lock)
 
@@ -461,7 +461,7 @@ flowchart TB
 
 ## 흔한 오해
 
-**"함수형 프로그래밍은 상태를 아예 다룰 수 없다"**는 흔한 오해다. 실제로는 상태를 아예 없애는 것이 아니라, 상태 변경을 새 값 생성으로 대체하고 그 범위를 격리하는 것이다. 위 `Counter` 예제처럼 "상태가 바뀐 것처럼 보이는" 코드도, 실제로는 매번 새 불변 객체를 만들어 반환할 뿐이다. 또한 **"함수형 언어를 써야만 이 원칙을 적용할 수 있다"**는 것도 오해다 — Java, Python 등 명령형 언어에서도 `final`/불변 클래스 설계로 이 장의 원칙 대부분을 적용할 수 있다.
+<strong>"함수형 프로그래밍은 상태를 아예 다룰 수 없다"</strong>는 흔한 오해다. 실제로는 상태를 아예 없애는 것이 아니라, 상태 변경을 새 값 생성으로 대체하고 그 범위를 격리하는 것이다. 위 `Counter` 예제처럼 "상태가 바뀐 것처럼 보이는" 코드도, 실제로는 매번 새 불변 객체를 만들어 반환할 뿐이다. 또한 <strong>"함수형 언어를 써야만 이 원칙을 적용할 수 있다"</strong>는 것도 오해다 — Java, Python 등 명령형 언어에서도 `final`/불변 클래스 설계로 이 장의 원칙 대부분을 적용할 수 있다.
 
 ## 학습 목표
 
@@ -476,4 +476,4 @@ flowchart TB
 - Martin, R. C. (2017). *Clean Architecture: A Craftsman's Guide to Software Structure and Design*. Prentice Hall.
 - McCarthy, J. (1960). "Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I". *Communications of the ACM*, 3(4).
 
-다음 파트에서는 이러한 패러다임 위에 구축되는 **설계 원칙(SOLID)**을 다룬다.
+다음 파트에서는 이러한 패러다임 위에 구축되는 <strong>설계 원칙(SOLID)</strong>을 다룬다.

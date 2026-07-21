@@ -55,7 +55,7 @@ tags:
 image: "wordcloud.png"
 ---
 
-오늘은 영어 동사 **'deliberate'**의 정확한 의미와 실제 쓰임을 정리한다.  
+오늘은 영어 동사 <strong>'deliberate'</strong>의 정확한 의미와 실제 쓰임을 정리한다.  
 이 단어는 **시간을 두고 신중히 생각하거나 논의하다**, 특히 **배심원·위원회·이사회처럼 공식적인 집단이 합의를 위해 심의하다**를 나타낼 때 자주 쓰인다.  
 형용사 **deliberate**(고의의, 신중한)와 철자는 같지만 발음·문장 역할이 다르므로, 동사만을 중심으로 패턴과 예문을 익히면 실전에서 헷갈림을 줄일 수 있다.
 
@@ -138,7 +138,7 @@ image: "wordcloud.png"
 - **발음(동사)**: /dɪˈlɪbəreɪt/ (미국식 대략); 영국식 역시 대체로 두 번째 음절 강세.
 - **활용**: deliberate — deliberated — deliberated — deliberating
 - **전형 패턴**: **deliberate on/over/about + 명사**, **deliberate wh-절**, **deliberate for + 시간**
-- **격식도**: 중립~격식; 뉴스·법정 보도·회의록에서 매우 흔하다.
+- **격식도**: 중립–격식; 뉴스·법정 보도·회의록에서 매우 흔하다.
 - **주의**: 형용사 **a deliberate choice**(고의의 선택)와 문장 속 역할을 헷갈리지 말 것.
 
 ---

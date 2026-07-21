@@ -82,15 +82,15 @@ flowchart LR
   simState --> outFile["cachegrind.out.pid</br>callgrind.out.pid"]
 ```
 
-이 방식의 결정적 성질이 두 가지 있습니다. 첫째, **모든 명령어·모든 메모리 접근을 빠짐없이 관찰**하므로 결과가 샘플링처럼 통계적 추정이 아니라 전수 조사입니다. 같은 입력이면(주소 공간 배치 무작위화 등 비결정 요소를 제외하면) 실행할 때마다 거의 같은 수치가 나옵니다. 둘째, 그 대가로 **오버헤드가 큽니다**. 모든 명령어가 번역·계측을 거치므로 [Valgrind 공식 도구 소개](https://valgrind.org/info/tools.html) 기준 memcheck는 원본 대비 약 10~30배, cachegrind는 약 20~100배, massif는 약 20배 느려집니다. callgrind는 cachegrind를 확장한 도구라 비슷한 자릿수의 오버헤드를 가지며, 커뮤니티에 보고된 실측 사례는 대략 20~50배 범위에 걸쳐 있습니다(워크로드·플랫폼에 따라 편차가 큽니다). [공식 매뉴얼](https://valgrind.org/docs/manual/cl-manual.html)이 못 박아 두는 지점은 두 곳뿐입니다 — 계측을 끈 상태(`--instr-atstart=no`)는 Valgrind 최소 오버헤드인 약 4배가 상한이고, 여기에 캐시·분기 시뮬레이션을 추가하면 다시 약 2배가 더해집니다. 이 오버헤드 때문에 Valgrind 계열은 프로덕션이 아니라 **개발 머신에서의 오프라인 분석 도구**입니다. 프로덕션에서 낮은 오버헤드로 상시 관찰하는 방법은 [11장 지속적 프로파일링](/post/profiling-analysis/continuous-profiling-production/)과 [16장 BPF 기반 동적 프로파일링](/post/profiling-analysis/bpf-based-profiling-bpftrace-bcc/)의 몫입니다.
+이 방식의 결정적 성질이 두 가지 있습니다. 첫째, **모든 명령어·모든 메모리 접근을 빠짐없이 관찰**하므로 결과가 샘플링처럼 통계적 추정이 아니라 전수 조사입니다. 같은 입력이면(주소 공간 배치 무작위화 등 비결정 요소를 제외하면) 실행할 때마다 거의 같은 수치가 나옵니다. 둘째, 그 대가로 **오버헤드가 큽니다**. 모든 명령어가 번역·계측을 거치므로 [Valgrind 공식 도구 소개](https://valgrind.org/info/tools.html) 기준 memcheck는 원본 대비 약 10–30배, cachegrind는 약 20–100배, massif는 약 20배 느려집니다. callgrind는 cachegrind를 확장한 도구라 비슷한 자릿수의 오버헤드를 가지며, 커뮤니티에 보고된 실측 사례는 대략 20–50배 범위에 걸쳐 있습니다(워크로드·플랫폼에 따라 편차가 큽니다). [공식 매뉴얼](https://valgrind.org/docs/manual/cl-manual.html)이 못 박아 두는 지점은 두 곳뿐입니다 — 계측을 끈 상태(`--instr-atstart=no`)는 Valgrind 최소 오버헤드인 약 4배가 상한이고, 여기에 캐시·분기 시뮬레이션을 추가하면 다시 약 2배가 더해집니다. 이 오버헤드 때문에 Valgrind 계열은 프로덕션이 아니라 **개발 머신에서의 오프라인 분석 도구**입니다. 프로덕션에서 낮은 오버헤드로 상시 관찰하는 방법은 [11장 지속적 프로파일링](/post/profiling-analysis/continuous-profiling-production/)과 [16장 BPF 기반 동적 프로파일링](/post/profiling-analysis/bpf-based-profiling-bpftrace-bcc/)의 몫입니다.
 
 성능 분석 관점에서 도구 가족을 정리하면 다음과 같습니다.
 
 | 도구 | 측정 대상 | 대략적 오버헤드 | 성능 작업에서의 역할 |
 |------|----------|----------------|--------------------|
-| memcheck | 메모리 오류·누수 | 10~30배 | 최적화 전 정합성 확보, 누수로 인한 할당 압력 진단 |
-| cachegrind | 명령어 수(Ir), 캐시·분기 시뮬레이션 | 20~100배 | 코드 변경 전후의 결정론적 비용 비교 |
-| callgrind | 호출 그래프 + 명령어 수(+선택적 캐시 시뮬레이션) | 대략 20~50배(+시뮬레이션 시 추가 증가) | 어떤 호출 경로가 비용을 만드는지 구조적 분석 |
+| memcheck | 메모리 오류·누수 | 10–30배 | 최적화 전 정합성 확보, 누수로 인한 할당 압력 진단 |
+| cachegrind | 명령어 수(Ir), 캐시·분기 시뮬레이션 | 20–100배 | 코드 변경 전후의 결정론적 비용 비교 |
+| callgrind | 호출 그래프 + 명령어 수(+선택적 캐시 시뮬레이션) | 대략 20–50배(+시뮬레이션 시 추가 증가) | 어떤 호출 경로가 비용을 만드는지 구조적 분석 |
 | massif | 힙 사용량 스냅샷 | 약 20배 | 힙 성장 곡선 파악([20장](/post/profiling-analysis/memory-profiling-heap-analysis/)에서 심화) |
 | DHAT | 할당 블록의 수명·접근 밀도 | — | 짧게 살고 자주 할당되는 블록 탐지 |
 

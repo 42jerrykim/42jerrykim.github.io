@@ -47,7 +47,7 @@ tags:
   - PMU
 ---
 
-**샘플링 프로파일링(sampling profiling)**이란 실행 중인 프로그램을 주기적으로 중단시켜 "지금 어디를 실행하고 있는가"의 스냅샷(instruction pointer와 콜스택)을 수집하고, 그 표본의 분포로 전체 실행 시간의 분포를 통계적으로 추정하는 기법입니다. [Microbenchmark 설계 원칙](/post/profiling-analysis/microbenchmark-design-principles/)과 [Google Benchmark 실전](/post/profiling-analysis/google-benchmark-practical/)이 "격리한 코드 조각의 비용"을 재는 도구였다면, 샘플링 프로파일러는 반대 방향의 질문 — **실제 프로그램 전체에서 시간이 어디로 사라지는가** — 에 답합니다. µs 단위 최적화에서 이 질문을 건너뛰면, 전체 지연의 2%를 차지하는 함수를 열심히 갈아서 0.5%를 얻는 헛수고를 하게 됩니다. 이 장에서는 Linux `perf`와 Intel VTune Profiler를 소재로 인터럽트 기반 샘플의 생성 경로, 콜스택 언와인딩(call stack unwinding)의 세 가지 방식, 기본 수집·해석 워크플로우, 그리고 샘플링이라는 방법 자체에 내재한 편향과 한계를 다룹니다.
+<strong>샘플링 프로파일링(sampling profiling)</strong>이란 실행 중인 프로그램을 주기적으로 중단시켜 "지금 어디를 실행하고 있는가"의 스냅샷(instruction pointer와 콜스택)을 수집하고, 그 표본의 분포로 전체 실행 시간의 분포를 통계적으로 추정하는 기법입니다. [Microbenchmark 설계 원칙](/post/profiling-analysis/microbenchmark-design-principles/)과 [Google Benchmark 실전](/post/profiling-analysis/google-benchmark-practical/)이 "격리한 코드 조각의 비용"을 재는 도구였다면, 샘플링 프로파일러는 반대 방향의 질문 — **실제 프로그램 전체에서 시간이 어디로 사라지는가** — 에 답합니다. µs 단위 최적화에서 이 질문을 건너뛰면, 전체 지연의 2%를 차지하는 함수를 열심히 갈아서 0.5%를 얻는 헛수고를 하게 됩니다. 이 장에서는 Linux `perf`와 Intel VTune Profiler를 소재로 인터럽트 기반 샘플의 생성 경로, 콜스택 언와인딩(call stack unwinding)의 세 가지 방식, 기본 수집·해석 워크플로우, 그리고 샘플링이라는 방법 자체에 내재한 편향과 한계를 다룹니다.
 
 ## 이 장을 읽기 전에
 
@@ -75,9 +75,9 @@ tags:
 
 ## 샘플링 프로파일러의 핵심 원리
 
-샘플링의 본질은 **통계적 추정**입니다. 초당 수십~수천 번, 실행 중인 프로그램을 아주 짧게 중단시키고 그 순간의 instruction pointer(IP)를 기록합니다. 함수 `f`가 전체 CPU 시간의 40%를 쓴다면, 충분히 많은 샘플을 모았을 때 약 40%의 샘플에서 IP가 `f`의 코드 범위 안에 있을 것입니다. 개별 샘플은 아무것도 증명하지 못하지만, 수천 개의 샘플이 모이면 시간 분포의 꽤 정확한 근사가 됩니다 — 여론조사가 유권자 전수를 조사하지 않고도 판세를 추정하는 것과 같은 원리입니다.
+샘플링의 본질은 **통계적 추정**입니다. 초당 수십–수천 번, 실행 중인 프로그램을 아주 짧게 중단시키고 그 순간의 instruction pointer(IP)를 기록합니다. 함수 `f`가 전체 CPU 시간의 40%를 쓴다면, 충분히 많은 샘플을 모았을 때 약 40%의 샘플에서 IP가 `f`의 코드 범위 안에 있을 것입니다. 개별 샘플은 아무것도 증명하지 못하지만, 수천 개의 샘플이 모이면 시간 분포의 꽤 정확한 근사가 됩니다 — 여론조사가 유권자 전수를 조사하지 않고도 판세를 추정하는 것과 같은 원리입니다.
 
-이 접근의 반대편에 **계측(instrumentation)** 방식이 있습니다. 함수 진입·탈출마다 후킹 코드를 실행해 정확한 호출 횟수와 경계 시각을 기록하는 방식으로, 정보는 완전하지만 후킹 비용이 짧은 함수의 실행 시간을 수 배로 부풀리는 관찰자 효과(observer effect)를 피할 수 없습니다. 모든 명령을 가상 CPU에서 재생하는 시뮬레이션 방식([Valgrind·Callgrind](/post/profiling-analysis/valgrind-callgrind-cache-simulation/))은 정보가 가장 풍부한 대신 10~100배 느립니다. 샘플링은 이 스펙트럼에서 "오버헤드를 주파수로 직접 제어할 수 있는" 유일한 지점에 있고, 그래서 프로덕션에 가까운 환경에서 핫패스를 찾는 표준 도구가 됐습니다. 이벤트의 인과 순서까지 필요할 때는 [트레이싱 프로파일링](/post/profiling-analysis/tracing-profiling-perfetto-tracy/)으로 넘어갑니다.
+이 접근의 반대편에 **계측(instrumentation)** 방식이 있습니다. 함수 진입·탈출마다 후킹 코드를 실행해 정확한 호출 횟수와 경계 시각을 기록하는 방식으로, 정보는 완전하지만 후킹 비용이 짧은 함수의 실행 시간을 수 배로 부풀리는 관찰자 효과(observer effect)를 피할 수 없습니다. 모든 명령을 가상 CPU에서 재생하는 시뮬레이션 방식([Valgrind·Callgrind](/post/profiling-analysis/valgrind-callgrind-cache-simulation/))은 정보가 가장 풍부한 대신 10–100배 느립니다. 샘플링은 이 스펙트럼에서 "오버헤드를 주파수로 직접 제어할 수 있는" 유일한 지점에 있고, 그래서 프로덕션에 가까운 환경에서 핫패스를 찾는 표준 도구가 됐습니다. 이벤트의 인과 순서까지 필요할 때는 [트레이싱 프로파일링](/post/profiling-analysis/tracing-profiling-perfetto-tracy/)으로 넘어갑니다.
 
 ### 인터럽트 기반 샘플의 생성 경로
 
@@ -101,7 +101,7 @@ IP만 기록하면 "지금 `memcpy` 안에 있다"까지는 알아도 **누가 `
 
 **프레임 포인터(fp)** 방식은 각 함수가 프롤로그에서 RBP 레지스터에 이전 프레임 주소를 저장해 두는 관례에 의존해, 인터럽트 핸들러가 RBP 체인을 따라가며 반환 주소를 수집합니다. 빠르고 커널 안에서 즉시 완결되지만, 컴파일러가 `-fomit-frame-pointer`(GCC·Clang의 `-O1` 이상 기본값)로 RBP를 범용 레지스터로 전용하면 체인이 끊깁니다. [perf-record man 페이지](https://man7.org/linux/man-pages/man1/perf-record.1.html)도 프레임 포인터 없이 빌드된 바이너리에서 fp 방식을 쓰면 엉터리 콜그래프가 나온다고 경고합니다. 그래서 프로파일링을 진지하게 하는 조직은 `-fno-omit-frame-pointer`를 빌드 표준으로 삼으며, Fedora 38(2023)과 Ubuntu 24.04 LTS는 배포판 패키지 전체를 프레임 포인터 포함으로 빌드하는 쪽으로 전환했습니다.
 
-**DWARF** 방식은 샘플 시점의 스택 메모리 일부(기본 8KB)와 레지스터를 그대로 복사해 두고, 나중에 유저스페이스에서 DWARF CFI(Call Frame Information) 디버그 정보로 스택을 재구성합니다. 프레임 포인터 없이 빌드된 바이너리에서도 정확한 스택을 얻지만, 샘플마다 8KB를 쓰므로 `perf.data`가 급격히 커지고 후처리 시간도 깁니다. **LBR(Last Branch Record)** 방식은 Intel CPU(Haswell 이후)의 분기 기록 하드웨어를 콜스택 캡처에 전용하는 것으로 오버헤드가 가장 낮지만, 하드웨어 엔트리 수(세대에 따라 16~32개)만큼의 깊이 제한이 있고 유저스페이스 체인만 잡힙니다.
+**DWARF** 방식은 샘플 시점의 스택 메모리 일부(기본 8KB)와 레지스터를 그대로 복사해 두고, 나중에 유저스페이스에서 DWARF CFI(Call Frame Information) 디버그 정보로 스택을 재구성합니다. 프레임 포인터 없이 빌드된 바이너리에서도 정확한 스택을 얻지만, 샘플마다 8KB를 쓰므로 `perf.data`가 급격히 커지고 후처리 시간도 깁니다. **LBR(Last Branch Record)** 방식은 Intel CPU(Haswell 이후)의 분기 기록 하드웨어를 콜스택 캡처에 전용하는 것으로 오버헤드가 가장 낮지만, 하드웨어 엔트리 수(세대에 따라 16–32개)만큼의 깊이 제한이 있고 유저스페이스 체인만 잡힙니다.
 
 | 방식 | 원리 | 장점 | 한계 |
 |------|------|------|------|
@@ -212,9 +212,9 @@ GUI에서는 같은 데이터를 Bottom-up(피호출자 기준 집계)·Caller/C
 
 ## 샘플링 편향과 한계
 
-샘플링 결과를 올바르게 읽으려면 이 방법이 **무엇을 못 보는지**를 알아야 합니다. 첫째, **락스텝 편향**: 샘플링 주기가 프로그램이나 시스템의 주기적 활동과 정수비로 맞물리면 특정 코드만 과대·과소 표집됩니다. 99Hz·997Hz 같은 소수(prime)에 가까운 주파수를 쓰는 이유입니다. 둘째, **스키드(skid)**: PMU 오버플로부터 인터럽트 처리까지 수 사이클~수십 사이클의 지연이 있어, 기록된 IP가 실제 이벤트 발생 지점보다 뒤로 밀릴 수 있습니다. 함수 단위 집계에서는 무시할 만하지만 명령 단위로 내려가면 "엉뚱한 명령이 뜨거워 보이는" 현상이 생기며, 이를 보정하는 정밀 샘플링(Intel PEBS, AMD IBS)은 [하드웨어 성능 카운터](/post/profiling-analysis/hardware-performance-counters/)에서 다룹니다.
+샘플링 결과를 올바르게 읽으려면 이 방법이 **무엇을 못 보는지**를 알아야 합니다. 첫째, **락스텝 편향**: 샘플링 주기가 프로그램이나 시스템의 주기적 활동과 정수비로 맞물리면 특정 코드만 과대·과소 표집됩니다. 99Hz·997Hz 같은 소수(prime)에 가까운 주파수를 쓰는 이유입니다. 둘째, **스키드(skid)**: PMU 오버플로부터 인터럽트 처리까지 수 사이클–수십 사이클의 지연이 있어, 기록된 IP가 실제 이벤트 발생 지점보다 뒤로 밀릴 수 있습니다. 함수 단위 집계에서는 무시할 만하지만 명령 단위로 내려가면 "엉뚱한 명령이 뜨거워 보이는" 현상이 생기며, 이를 보정하는 정밀 샘플링(Intel PEBS, AMD IBS)은 [하드웨어 성능 카운터](/post/profiling-analysis/hardware-performance-counters/)에서 다룹니다.
 
-셋째이자 가장 중요한 것은 **off-CPU 맹점**입니다. cycles 이벤트는 CPU 위에서 도는 동안에만 증가하므로, 락 대기·디스크 I/O·페이지 폴트·스케줄러 대기로 **잠들어 있는 시간은 샘플에 전혀 나타나지 않습니다**. "프로파일은 깨끗한데 지연은 큰" 프로그램의 전형적 원인이며, 이 영역은 [트레이싱 프로파일링](/post/profiling-analysis/tracing-profiling-perfetto-tracy/)과 [Tail Latency 분석](/post/profiling-analysis/tail-latency-analysis/)의 몫입니다. 넷째, **귀속(attribution) 왜곡**: `-O2`에서 인라인된 함수의 샘플은 호출자에게 귀속되고(인라인 판단 기준은 [Tr.02 인라이닝 유도 기법](/post/cpp-optimization/inlining-techniques/) 참조), 디버그 정보가 없는 서드파티 라이브러리는 16진수 주소로만 표시됩니다. 마지막으로 **표본 수 부족**: 수십 ms짜리 실행에서 99Hz로는 샘플이 몇 개 안 나오므로, 실행을 반복시키거나 주파수를 올려 최소 수백~수천 샘플을 확보해야 하며, 몇 % 차이를 논하려면 [통계적 벤치마킹](/post/profiling-analysis/statistical-benchmarking/)의 기준이 필요합니다.
+셋째이자 가장 중요한 것은 **off-CPU 맹점**입니다. cycles 이벤트는 CPU 위에서 도는 동안에만 증가하므로, 락 대기·디스크 I/O·페이지 폴트·스케줄러 대기로 **잠들어 있는 시간은 샘플에 전혀 나타나지 않습니다**. "프로파일은 깨끗한데 지연은 큰" 프로그램의 전형적 원인이며, 이 영역은 [트레이싱 프로파일링](/post/profiling-analysis/tracing-profiling-perfetto-tracy/)과 [Tail Latency 분석](/post/profiling-analysis/tail-latency-analysis/)의 몫입니다. 넷째, **귀속(attribution) 왜곡**: `-O2`에서 인라인된 함수의 샘플은 호출자에게 귀속되고(인라인 판단 기준은 [Tr.02 인라이닝 유도 기법](/post/cpp-optimization/inlining-techniques/) 참조), 디버그 정보가 없는 서드파티 라이브러리는 16진수 주소로만 표시됩니다. 마지막으로 **표본 수 부족**: 수십 ms짜리 실행에서 99Hz로는 샘플이 몇 개 안 나오므로, 실행을 반복시키거나 주파수를 올려 최소 수백–수천 샘플을 확보해야 하며, 몇 % 차이를 논하려면 [통계적 벤치마킹](/post/profiling-analysis/statistical-benchmarking/)의 기준이 필요합니다.
 
 ## 흔한 오개념 교정
 

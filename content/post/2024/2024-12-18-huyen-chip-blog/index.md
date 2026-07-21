@@ -63,7 +63,7 @@ description: "스탠포드 강사이자 ML 시스템 전문가 Chip Huyen의 블
 
 ## 개요: Chip Huyen과 블로그 정보
 
-**Chip Huyen**(칩 휴엔, [huyenchip.com](https://huyenchip.com))은 베트남 농촌 출신의 작가이자 컴퓨터 과학자로, **머신러닝·AI 시스템을 프로덕션에 적용하는 일**에 집중하고 있다. 스탠포드에서 ML Systems 강의를 맡았고, 그 강의는 **《Designing Machine Learning Systems》**(O'Reilly, 아마존 AI 분야 베스트셀러 1위, 10개국어 이상 번역)로 출간되었다. NVIDIA, Snorkel AI, Netflix에서 ML 도구 개발에 참여했고, AI 인프라 스타트업 Claypot AI를 설립해 성공적으로 매각한 경험이 있다. 2025년에는 **《AI Engineering》**이 O'Reilly 플랫폼에서 가장 많이 읽힌 책 중 하나로 자리 잡았다.
+**Chip Huyen**(칩 휴엔, [huyenchip.com](https://huyenchip.com))은 베트남 농촌 출신의 작가이자 컴퓨터 과학자로, **머신러닝·AI 시스템을 프로덕션에 적용하는 일**에 집중하고 있다. 스탠포드에서 ML Systems 강의를 맡았고, 그 강의는 **《Designing Machine Learning Systems》**(O'Reilly, 아마존 AI 분야 베스트셀러 1위, 10개국어 이상 번역)로 출간되었다. NVIDIA, Snorkel AI, Netflix에서 ML 도구 개발에 참여했고, AI 인프라 스타트업 Claypot AI를 설립해 성공적으로 매각한 경험이 있다. 2025년에는 <strong>《AI Engineering》</strong>이 O'Reilly 플랫폼에서 가장 많이 읽힌 책 중 하나로 자리 잡았다.
 
 **추천 대상**: ML·AI 엔지니어, 데이터 사이언티스트, 프로덕션 ML 시스템을 설계·구현하는 개발자, 스타트업 창업·커리어 성장에 관심 있는 독자, 기술 서적·블로그로 학습하는 이들에게 유용하다.
 

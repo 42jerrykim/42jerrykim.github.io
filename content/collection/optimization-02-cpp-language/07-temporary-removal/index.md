@@ -87,7 +87,7 @@ tags:
 
 **완전한 초보자?** 이 장은 [06장: 객체 수명 최적화](/post/cpp-optimization/object-lifetime/)에서 다룬 복사·이동·RVO를 전제로 합니다. 식 `a + b + d`가 중간 결과(임시 객체)를 만든다는 점만 떠올릴 수 있으면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **중급~전문가**를 포괄합니다. 임시 객체가 생기는 패턴과 진단법부터 시작해, 전문가 구간에서는 `c = a + b + d`와 in-place `+=`를 생성자 카운터로 비교하고 expression template·in-place 연산으로 임시를 제거하는 기준을 다룹니다. **다루지 않는 것**: 컨테이너 자체의 할당 비용([04장](/post/cpp-optimization/stl-container-cost/))과 문자열 임시([05장](/post/cpp-optimization/string-optimization/))의 세부입니다.
+**이 장의 깊이**: 이 장은 **중급–전문가**를 포괄합니다. 임시 객체가 생기는 패턴과 진단법부터 시작해, 전문가 구간에서는 `c = a + b + d`와 in-place `+=`를 생성자 카운터로 비교하고 expression template·in-place 연산으로 임시를 제거하는 기준을 다룹니다. **다루지 않는 것**: 컨테이너 자체의 할당 비용([04장](/post/cpp-optimization/stl-container-cost/))과 문자열 임시([05장](/post/cpp-optimization/string-optimization/))의 세부입니다.
 
 ## 당신의 수준에 맞는 경로
 

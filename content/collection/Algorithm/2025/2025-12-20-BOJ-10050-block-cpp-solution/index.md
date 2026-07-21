@@ -1,6 +1,6 @@
 ---
 title: "[Algorithm] C++ 백준 10050번: 블록"
-description: "초기 BABABA…(길이 2N)을 인접한 2블록 이동으로 A^N B^N 형태로 만든다. 최소 N회가 하한이고, n=3~7 기저 + n-4 해를 평행이동하는 재귀로 정확히 N회를 구성한다."
+description: "초기 BABABA…(길이 2N)을 인접한 2블록 이동으로 A^N B^N 형태로 만든다. 최소 N회가 하한이고, n=3–7 기저 + n-4 해를 평행이동하는 재귀로 정확히 N회를 구성한다."
 date: 2025-12-20
 lastmod: 2025-12-20
 categories:

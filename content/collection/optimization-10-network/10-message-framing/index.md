@@ -40,13 +40,13 @@ tags:
   - Wire-Protocol
 ---
 
-**메시지 프레이밍(message framing)**이란 TCP처럼 경계 없는 바이트 스트림 위에서 "여기까지가 하나의 메시지"라는 경계를 애플리케이션이 스스로 표시하고 복원하는 규약을 말합니다. 소켓 API의 `recv()`는 보낸 쪽이 몇 번의 `send()`로 나누어 썼는지, 하나의 논리적 메시지가 몇 바이트인지 전혀 알려주지 않으므로, 프레이밍 규약이 없으면 수신 측은 "지금 도착한 바이트 뭉치가 메시지 하나인지, 반쪽인지, 두 개가 붙은 것인지"를 구분할 방법이 없습니다. 이 장은 length-prefix, delimiter, fixed-size라는 세 가지 프레이밍 전략이 이 문제를 어떻게 해결하는지, 그리고 부분 수신(partial read) 상황에서 파서를 어떻게 설계해야 하는지를 다룹니다.
+<strong>메시지 프레이밍(message framing)</strong>이란 TCP처럼 경계 없는 바이트 스트림 위에서 "여기까지가 하나의 메시지"라는 경계를 애플리케이션이 스스로 표시하고 복원하는 규약을 말합니다. 소켓 API의 `recv()`는 보낸 쪽이 몇 번의 `send()`로 나누어 썼는지, 하나의 논리적 메시지가 몇 바이트인지 전혀 알려주지 않으므로, 프레이밍 규약이 없으면 수신 측은 "지금 도착한 바이트 뭉치가 메시지 하나인지, 반쪽인지, 두 개가 붙은 것인지"를 구분할 방법이 없습니다. 이 장은 length-prefix, delimiter, fixed-size라는 세 가지 프레이밍 전략이 이 문제를 어떻게 해결하는지, 그리고 부분 수신(partial read) 상황에서 파서를 어떻게 설계해야 하는지를 다룹니다.
 
 ## 이 장을 읽기 전에
 
 **전제 지식**: 이 장은 [09장: 프로토콜 설계](/post/network-optimization/low-latency-binary-protocol-design-principles/)에서 다룬 바이너리 프로토콜의 헤더·페이로드 구분을 전제로 하며, [03장: 소켓 옵션 튜닝](/post/network-optimization/socket-options-tcp-nodelay-buffer-tuning/)과 [04장: TCP 성능 최적화](/post/network-optimization/tcp-performance-nagle-congestion-control-bbr/)에서 다룬 Nagle 알고리즘·버퍼링이 "왜 한 번의 `send()`가 한 번의 `recv()`로 그대로 오지 않는지"의 배경이 됩니다. 이 장의 범위는 **TCP·Unix 도메인 소켓처럼 스트림 지향(byte-stream) 전송에서만 발생하는 경계 문제**입니다. [05장: UDP 최적화](/post/network-optimization/udp-optimization-reliability-layer-design/)에서 다루는 UDP 데이터그램은 `recvfrom()` 한 번이 상대의 `sendto()` 한 번에 대응하도록 커널이 경계를 보존하므로, 이 장이 다루는 문제 자체가 발생하지 않습니다.
 
-**이 장의 깊이**: 프레이밍 전략의 원리와 부분 수신 파서 구현까지가 중심이며, **중급~전문가**를 포괄합니다. **다루지 않는 것**: 직렬화 포맷 자체의 self-describing 여부와 스키마 진화는 [06장](/post/network-optimization/serialization-performance-protobuf-flatbuffers-capnproto/)~[08장](/post/network-optimization/next-gen-zero-copy-serialization-formats-yaff/), HTTP/2·HTTP/3의 프레임 포맷은 [20장](/post/network-optimization/http2-http3-multiplexing-quic-comparison/), WebSocket 프레임 구조는 [19장](/post/network-optimization/websocket-performance-tuning-compression-batching/)에서 각각 다룹니다. 이 장은 그 위에 있는 공통 원리, 즉 "스트림에서 경계를 어떻게 표시하고 복원하는가"에 집중합니다.
+**이 장의 깊이**: 프레이밍 전략의 원리와 부분 수신 파서 구현까지가 중심이며, **중급–전문가**를 포괄합니다. **다루지 않는 것**: 직렬화 포맷 자체의 self-describing 여부와 스키마 진화는 [06장](/post/network-optimization/serialization-performance-protobuf-flatbuffers-capnproto/)~[08장](/post/network-optimization/next-gen-zero-copy-serialization-formats-yaff/), HTTP/2·HTTP/3의 프레임 포맷은 [20장](/post/network-optimization/http2-http3-multiplexing-quic-comparison/), WebSocket 프레임 구조는 [19장](/post/network-optimization/websocket-performance-tuning-compression-batching/)에서 각각 다룹니다. 이 장은 그 위에 있는 공통 원리, 즉 "스트림에서 경계를 어떻게 표시하고 복원하는가"에 집중합니다.
 
 ## 당신의 수준에 맞는 경로
 

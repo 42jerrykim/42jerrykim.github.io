@@ -201,7 +201,7 @@ image: wordcloud.png
   - **born from/rooted in + cynicism**: "cynicism rooted in experience"
   - **struggle against + cynicism**: "struggle against cynicism"
 
-- **격식도**: 중립~약간 격식적 (학술, 뉴스, 평론에서 자주 사용)
+- **격식도**: 중립–약간 격식적 (학술, 뉴스, 평론에서 자주 사용)
 - **뉘앙스**: 부정적 (일반적으로 부정적이고 비판적인 태도를 함축하지만, 철학적 맥락에서는 중립적일 수 있음)
 - **문화적 연상/사용 맥락**:
   - 철학 및 고대 그리스 철학사 논의

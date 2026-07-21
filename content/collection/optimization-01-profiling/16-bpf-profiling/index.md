@@ -60,7 +60,7 @@ tags:
 
 ## 역사·배경
 
-**BPF(Berkeley Packet Filter)**는 1992년 Steven McCanne와 Van Jacobson이 네트워크 패킷을 커널 안에서 빠르게 필터링하기 위해 고안한 작은 가상 머신입니다. 이 아이디어는 2014년경 Alexei Starovoitov가 리눅스 커널에 **eBPF(extended BPF)**로 확장하면서 범용 인-커널 가상 머신으로 재탄생했고, 이후 네트워킹뿐 아니라 추적(tracing)·보안·관측성 전반의 기반 기술이 되었습니다. 동적 계측의 계보는 더 오래되었는데, Sun Microsystems가 Solaris용으로 만든 **DTrace**(2004년경, Bryan Cantrill 등)가 "프로덕션에서 상시 켜둘 수 있는 안전한 동적 추적"이라는 목표를 처음 제시했고, 리눅스 진영은 **SystemTap**과 커널의 **kprobes**(리눅스 2.6 계열에 도입)·**uprobes**(리눅스 3.5, 2012년)로 유사한 기능을 따라갔습니다. **USDT(User Statically-Defined Tracing)** 규약은 DTrace/SystemTap 생태계에서 정착된 "애플리케이션이 스스로 의미 있는 계측점을 선언하는" 방식이며, 바이너리의 `.note.stapsdt` ELF 섹션으로 표준화되었습니다. eBPF 기반 도구 중 **BCC(BPF Compiler Collection)**는 Brendan Gregg 등이 주도한 iovisor 프로젝트로 2015년경 등장해 Python으로 스크립트를 작성하고 C 코드를 그때그때 LLVM으로 컴파일하는 방식을 제공했고, **bpftrace**는 2018년 Alastair Robertson이 DTrace·awk 스타일의 고수준 언어로 더 짧은 스크립트를 즉석에서 실행할 수 있도록 만든 후속 도구입니다. 2026년 기준 bpftrace는 활발히 유지보수되고 있으며, libbpf·BTF·CO-RE(Compile Once – Run Everywhere) 기반으로 커널 버전 간 이식성을 개선해 왔습니다.
+<strong>BPF(Berkeley Packet Filter)</strong>는 1992년 Steven McCanne와 Van Jacobson이 네트워크 패킷을 커널 안에서 빠르게 필터링하기 위해 고안한 작은 가상 머신입니다. 이 아이디어는 2014년경 Alexei Starovoitov가 리눅스 커널에 <strong>eBPF(extended BPF)</strong>로 확장하면서 범용 인-커널 가상 머신으로 재탄생했고, 이후 네트워킹뿐 아니라 추적(tracing)·보안·관측성 전반의 기반 기술이 되었습니다. 동적 계측의 계보는 더 오래되었는데, Sun Microsystems가 Solaris용으로 만든 **DTrace**(2004년경, Bryan Cantrill 등)가 "프로덕션에서 상시 켜둘 수 있는 안전한 동적 추적"이라는 목표를 처음 제시했고, 리눅스 진영은 **SystemTap**과 커널의 **kprobes**(리눅스 2.6 계열에 도입)·**uprobes**(리눅스 3.5, 2012년)로 유사한 기능을 따라갔습니다. **USDT(User Statically-Defined Tracing)** 규약은 DTrace/SystemTap 생태계에서 정착된 "애플리케이션이 스스로 의미 있는 계측점을 선언하는" 방식이며, 바이너리의 `.note.stapsdt` ELF 섹션으로 표준화되었습니다. eBPF 기반 도구 중 <strong>BCC(BPF Compiler Collection)</strong>는 Brendan Gregg 등이 주도한 iovisor 프로젝트로 2015년경 등장해 Python으로 스크립트를 작성하고 C 코드를 그때그때 LLVM으로 컴파일하는 방식을 제공했고, **bpftrace**는 2018년 Alastair Robertson이 DTrace·awk 스타일의 고수준 언어로 더 짧은 스크립트를 즉석에서 실행할 수 있도록 만든 후속 도구입니다. 2026년 기준 bpftrace는 활발히 유지보수되고 있으며, libbpf·BTF·CO-RE(Compile Once – Run Everywhere) 기반으로 커널 버전 간 이식성을 개선해 왔습니다.
 
 ## 핵심 개념: kprobe·uprobe·USDT
 
@@ -115,7 +115,7 @@ b.attach_kprobe(event="vfs_read", fn_name="trace_read_entry")
 b.trace_print()
 ```
 
-두 도구는 경쟁 관계가 아니라 **탐색적 원라이너(bpftrace) vs 재사용 가능한 도구(BCC 또는 libbpf 기반 CO-RE 프로그램)**라는 용도 분리로 이해하는 편이 실무에 맞습니다.
+두 도구는 경쟁 관계가 아니라 <strong>탐색적 원라이너(bpftrace) vs 재사용 가능한 도구(BCC 또는 libbpf 기반 CO-RE 프로그램)</strong>라는 용도 분리로 이해하는 편이 실무에 맞습니다.
 
 ## USDT로 애플리케이션에 계측점 선언하기
 
@@ -151,17 +151,17 @@ usdt:./order_app:orderapp:order_processed
 
 ## eBPF 기반 GPU(CUDA) 상시 프로파일링: Polar Signals 사례
 
-USDT와 eBPF의 조합이 가장 두드러지는 최근 사례는 GPU 커널 실행을 애플리케이션 코드 수정 없이 상시 관찰하는 문제입니다. NVIDIA CUDA는 커널 실행 타이밍을 얻는 표준 API로 **CUPTI(CUDA Profiling Tools Interface)**를 제공하지만, CUPTI 콜백을 커널 이벤트마다 파일에 기록하면 컨테이너 환경에서 상시 켜두기엔 I/O·직렬화 비용이 부담스럽습니다. Polar Signals는 `parcagpu`라는 얇은 shim 라이브러리를 `CUDA_INJECTION64_PATH` 메커니즘으로 대상 프로세스에 무수정 주입해 CUPTI 콜백을 구독하고, 커널 실행이 발생할 때마다 두 개의 USDT 프로브(`cuda_correlation`으로 실행 상관관계 ID를 노출하고, `kernel_executed`로 디바이스·스트림·커널명과 타이밍을 노출)를 발화시키는 구조를 만들었습니다. parca-agent는 이 두 프로브에 uprobe를 attach해 eBPF 프로그램으로 타이밍 데이터를 perf 링버퍼에 쌓고, 상관관계 ID로 비동기 실행 순서를 재조립합니다. 파일시스템 I/O나 직렬화 없이 공유 메모리 경로만 쓰기 때문에, 이 구조는 CUDA 그래프처럼 커널 실행이 얽힌 복잡한 워크로드에서도 상시(always-on) 프로덕션 프로파일링이 가능하다고 보고됩니다.
+USDT와 eBPF의 조합이 가장 두드러지는 최근 사례는 GPU 커널 실행을 애플리케이션 코드 수정 없이 상시 관찰하는 문제입니다. NVIDIA CUDA는 커널 실행 타이밍을 얻는 표준 API로 <strong>CUPTI(CUDA Profiling Tools Interface)</strong>를 제공하지만, CUPTI 콜백을 커널 이벤트마다 파일에 기록하면 컨테이너 환경에서 상시 켜두기엔 I/O·직렬화 비용이 부담스럽습니다. Polar Signals는 `parcagpu`라는 얇은 shim 라이브러리를 `CUDA_INJECTION64_PATH` 메커니즘으로 대상 프로세스에 무수정 주입해 CUPTI 콜백을 구독하고, 커널 실행이 발생할 때마다 두 개의 USDT 프로브(`cuda_correlation`으로 실행 상관관계 ID를 노출하고, `kernel_executed`로 디바이스·스트림·커널명과 타이밍을 노출)를 발화시키는 구조를 만들었습니다. parca-agent는 이 두 프로브에 uprobe를 attach해 eBPF 프로그램으로 타이밍 데이터를 perf 링버퍼에 쌓고, 상관관계 ID로 비동기 실행 순서를 재조립합니다. 파일시스템 I/O나 직렬화 없이 공유 메모리 경로만 쓰기 때문에, 이 구조는 CUDA 그래프처럼 커널 실행이 얽힌 복잡한 워크로드에서도 상시(always-on) 프로덕션 프로파일링이 가능하다고 보고됩니다.
 
 이 사례가 보여주는 일반화 가능한 패턴은 "관찰하고 싶은 계층(여기서는 GPU 드라이버 콜백)이 커널 프로브만으로는 닿지 않을 때, USDT를 유저 공간 브리지로 세워 eBPF 파이프라인에 연결한다"는 것입니다. 다만 이 사례는 부속 라이브러리(`parcagpu`)와 상관관계 ID 재조립 로직이라는 별도 엔지니어링을 요구하므로, 단순한 함수 지연시간 측정보다 구축 비용이 훨씬 큽니다. 상시 GPU 프로파일링 인프라 자체를 운영하는 문제(수집 주기, 저장소, 대시보드)는 [11장: 지속적 프로파일링](/post/profiling-analysis/continuous-profiling-production/)의 범위입니다.
 
 ## 흔한 오개념 교정
 
-**"eBPF는 항상 완전히 공짜(zero-cost)다"**는 절반만 맞습니다. attach되지 않은 kprobe·uprobe·USDT는 원본 명령(또는 NOP) 그대로 실행되어 비용이 없지만, 일단 attach되면 매 호출마다 트랩·컨텍스트 스위치·eBPF 프로그램 실행·맵 갱신이라는 실제 비용이 발생합니다. 이 비용은 이벤트 발생 빈도에 비례해 누적되므로, 초당 수백만 번 호출되는 함수에 무분별하게 붙이면 프로덕션 지연시간 예산을 눈에 띄게 잠식할 수 있습니다.
+<strong>"eBPF는 항상 완전히 공짜(zero-cost)다"</strong>는 절반만 맞습니다. attach되지 않은 kprobe·uprobe·USDT는 원본 명령(또는 NOP) 그대로 실행되어 비용이 없지만, 일단 attach되면 매 호출마다 트랩·컨텍스트 스위치·eBPF 프로그램 실행·맵 갱신이라는 실제 비용이 발생합니다. 이 비용은 이벤트 발생 빈도에 비례해 누적되므로, 초당 수백만 번 호출되는 함수에 무분별하게 붙이면 프로덕션 지연시간 예산을 눈에 띄게 잠식할 수 있습니다.
 
-**"BCC와 bpftrace는 같은 도구의 다른 이름"**도 흔한 오해입니다. 둘 다 eBPF·libbpf를 기반으로 하지만, BCC는 스크립트 실행 시점에 C 코드를 LLVM으로 컴파일하는 Python 프레임워크이고 bpftrace는 자체 DSL을 갖춘 독립 실행 파일입니다. 짧은 탐색적 질의에는 bpftrace가, 복잡한 로직이나 팀 표준 도구화에는 BCC(또는 libbpf 기반 CO-RE 프로그램)가 더 적합한 경우가 많습니다.
+<strong>"BCC와 bpftrace는 같은 도구의 다른 이름"</strong>도 흔한 오해입니다. 둘 다 eBPF·libbpf를 기반으로 하지만, BCC는 스크립트 실행 시점에 C 코드를 LLVM으로 컴파일하는 Python 프레임워크이고 bpftrace는 자체 DSL을 갖춘 독립 실행 파일입니다. 짧은 탐색적 질의에는 bpftrace가, 복잡한 로직이나 팀 표준 도구화에는 BCC(또는 libbpf 기반 CO-RE 프로그램)가 더 적합한 경우가 많습니다.
 
-**"kprobe로 커널 함수를 추적해도 시스템은 항상 안전하다"**는 절반의 진실입니다. eBPF 검증기(verifier)가 무한 루프나 잘못된 메모리 접근 같은 크래시 유발 코드를 커널 로드 시점에 거부하는 것은 맞지만, 검증기는 "오버헤드가 감당할 만한가"까지는 판단하지 않습니다. 고빈도 함수에 무거운 핸들러를 붙이면 시스템이 죽지는 않아도 지연시간이 눈에 띄게 늘어날 수 있으므로, 배포 전 실측이 필요합니다.
+<strong>"kprobe로 커널 함수를 추적해도 시스템은 항상 안전하다"</strong>는 절반의 진실입니다. eBPF 검증기(verifier)가 무한 루프나 잘못된 메모리 접근 같은 크래시 유발 코드를 커널 로드 시점에 거부하는 것은 맞지만, 검증기는 "오버헤드가 감당할 만한가"까지는 판단하지 않습니다. 고빈도 함수에 무거운 핸들러를 붙이면 시스템이 죽지는 않아도 지연시간이 눈에 띄게 늘어날 수 있으므로, 배포 전 실측이 필요합니다.
 
 ## 오버헤드를 직접 측정하는 방법
 

@@ -76,7 +76,7 @@ draft: false
 
 ## 개요
 
-**Cursor**에서 웹 자동화가 필요할 때마다 브라우저를 직접 조작하거나 복잡한 스크립트를 작성해야 했다면, 이제 **Playwright MCP**로 그 워크플로우가 달라진다. Microsoft가 공식 배포하는 `@playwright/mcp`는 **Model Context Protocol(MCP)**을 통해 AI 어시스턴트가 브라우저를 직접 제어할 수 있게 해주는 도구다.
+**Cursor**에서 웹 자동화가 필요할 때마다 브라우저를 직접 조작하거나 복잡한 스크립트를 작성해야 했다면, 이제 **Playwright MCP**로 그 워크플로우가 달라진다. Microsoft가 공식 배포하는 `@playwright/mcp`는 <strong>Model Context Protocol(MCP)</strong>을 통해 AI 어시스턴트가 브라우저를 직접 제어할 수 있게 해주는 도구다.
 
 기존 웹 스크래핑이나 UI 테스팅 도구와 달리, Playwright MCP는 **접근성 트리 기반의 구조화된 DOM 스냅샷**을 사용해 스크린샷이나 비전 모델 없이도 빠르고 정확한 웹 상호작용을 제공한다. Cursor의 MCP 통합을 통해 **승인 흐름과 안전한 격리 환경**까지 활용할 수 있다.
 
@@ -86,7 +86,7 @@ draft: false
 |------|------|
 | **추천 대상** | Cursor로 웹 자동화·테스트·스크래핑을 하고 싶은 개발자, Windows·macOS·Linux 사용자 |
 | **필요 사항** | Node.js 18+, Cursor, (선택) 브라우저 채널·헤드리스·격리 옵션 이해 |
-| **소요 시간** | 최소 구성 약 5분, 옵션 확장 시 10~15분 |
+| **소요 시간** | 최소 구성 약 5분, 옵션 확장 시 10–15분 |
 
 ---
 

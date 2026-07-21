@@ -48,7 +48,7 @@ tags:
 
 ## Action: 무슨 일이 일어났는지 설명하는 객체
 
-**Action**은 상태를 어떻게 바꿀지가 아니라, **"무슨 일이 일어났는지"**를 설명하는 평범한 JavaScript 객체입니다. 반드시 `type` 필드를 가져야 하며, 관례상 `payload`에 추가 데이터를 담습니다.
+**Action**은 상태를 어떻게 바꿀지가 아니라, <strong>"무슨 일이 일어났는지"</strong>를 설명하는 평범한 JavaScript 객체입니다. 반드시 `type` 필드를 가져야 하며, 관례상 `payload`에 추가 데이터를 담습니다.
 
 ```javascript
 // 최소 형태
@@ -60,7 +60,7 @@ tags:
 
 `type`은 문자열이면 무엇이든 되지만, 실무에서는 `도메인/이벤트` 형식(예: `"cart/itemAdded"`)을 관례로 씁니다. 이 명명 규칙은 Redux Toolkit의 `createSlice`(17편)가 자동으로 생성해주는 형식이기도 합니다.
 
-**액션 생성자(Action Creator)**는 Action 객체를 만드는 함수입니다. 매번 객체 리터럴을 손으로 쓰는 대신, 오타를 줄이고 재사용성을 높입니다.
+<strong>액션 생성자(Action Creator)</strong>는 Action 객체를 만드는 함수입니다. 매번 객체 리터럴을 손으로 쓰는 대신, 오타를 줄이고 재사용성을 높입니다.
 
 ```javascript
 function todoAdded(text) {
@@ -97,7 +97,7 @@ function counterReducer(state = initialState, action) {
 2. **부수 효과를 일으키지 않는다**: API 호출, `Date.now()`, `Math.random()` 등을 리듀서 안에서 쓰지 않는다.
 3. **알 수 없는 액션에는 기존 상태를 그대로 반환한다**: `default` 케이스가 없으면 `undefined`를 반환해 상태가 사라져 버린다.
 
-**초기값(`= initialState`)**은 Store가 처음 만들어질 때 Redux가 내부적으로 보내는 초기화 액션에 대응하기 위해 필요합니다. `state`가 `undefined`로 호출되면(스토어 최초 생성 시), 매개변수 기본값 문법 덕분에 `initialState`가 사용됩니다.
+<strong>초기값(`= initialState`)</strong>은 Store가 처음 만들어질 때 Redux가 내부적으로 보내는 초기화 액션에 대응하기 위해 필요합니다. `state`가 `undefined`로 호출되면(스토어 최초 생성 시), 매개변수 기본값 문법 덕분에 `initialState`가 사용됩니다.
 
 ## Store: 상태를 보관하고 변경을 조율한다
 

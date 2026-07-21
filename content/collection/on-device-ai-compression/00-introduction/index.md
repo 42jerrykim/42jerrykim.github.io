@@ -54,7 +54,7 @@ LLM 추론은 성격이 다른 두 단계로 나뉩니다. **Prefill 단계**는
 
 ## 경량화의 3대 기법과 이 시리즈의 범위
 
-모델을 가볍게 만드는 방법은 크게 세 갈래입니다. **Pruning(가지치기)**은 중요도가 낮은 연결을 끊어 파라미터 자체를 줄이고, **Quantization(양자화)**은 각 값을 표현하는 비트 수를 줄이며, **Knowledge Distillation(지식 증류)**은 큰 모델(Teacher)의 지식을 작은 모델(Student)에 옮겨 담습니다. 이 시리즈는 이 세 기법을 CNN 수준의 기초부터 시작해 LLM에 특화된 형태(SparseGPT, AWQ 등)로 확장하고, 마지막으로 Attention 연산 자체를 빠르게 만드는 추론 가속 기법까지 다룹니다. 모델 아키텍처 자체(Transformer/GPT의 구조)는 LLM 밑바닥부터 이해하기 시리즈를, CNN·ViT 아키텍처는 Vision AI 파운데이션 시리즈를 전제로 합니다.
+모델을 가볍게 만드는 방법은 크게 세 갈래입니다. <strong>Pruning(가지치기)</strong>은 중요도가 낮은 연결을 끊어 파라미터 자체를 줄이고, <strong>Quantization(양자화)</strong>은 각 값을 표현하는 비트 수를 줄이며, <strong>Knowledge Distillation(지식 증류)</strong>은 큰 모델(Teacher)의 지식을 작은 모델(Student)에 옮겨 담습니다. 이 시리즈는 이 세 기법을 CNN 수준의 기초부터 시작해 LLM에 특화된 형태(SparseGPT, AWQ 등)로 확장하고, 마지막으로 Attention 연산 자체를 빠르게 만드는 추론 가속 기법까지 다룹니다. 모델 아키텍처 자체(Transformer/GPT의 구조)는 LLM 밑바닥부터 이해하기 시리즈를, CNN·ViT 아키텍처는 Vision AI 파운데이션 시리즈를 전제로 합니다.
 
 ## 커리큘럼
 
@@ -67,7 +67,7 @@ LLM 추론은 성격이 다른 두 단계로 나뉩니다. **Prefill 단계**는
 | 05 | LLM Quantization | Activation의 Outlier는 왜 다루기 어려운가 |
 | 06 | Efficient Transformer 추론 | Attention과 Decode 자체를 어떻게 빠르게 만드는가 |
 
-01~03장은 CNN을 예시로 세 기법의 원리를 다지고, 04~05장은 같은 기법이 LLM 규모에서 왜 더 정교해져야 하는지를 다룹니다. 06장은 관점을 바꿔, 압축이 아니라 연산·메모리 접근 패턴 자체를 최적화하는 기법(Speculative Decoding, FlashAttention)을 다룹니다. CNN 경량화 실무 경험이 있다면 01~02장을 건너뛰고 03장부터 시작해도 무리가 없습니다.
+01–03장은 CNN을 예시로 세 기법의 원리를 다지고, 04–05장은 같은 기법이 LLM 규모에서 왜 더 정교해져야 하는지를 다룹니다. 06장은 관점을 바꿔, 압축이 아니라 연산·메모리 접근 패턴 자체를 최적화하는 기법(Speculative Decoding, FlashAttention)을 다룹니다. CNN 경량화 실무 경험이 있다면 01–02장을 건너뛰고 03장부터 시작해도 무리가 없습니다.
 
 ## 학습 결과
 

@@ -181,7 +181,7 @@ Professional environment에서 "basics"를 언급할 때:
 
 **Basics**는 단순한 단어처럼 보이지만, 모든 성공의 foundation이 되는 중요한 개념이다. 어떤 분야든 basics를 탄탄히 다져야 advanced level로 나아갈 수 있다는 것을 기억하자.
 
-진정한 전문가는 항상 basics의 중요성을 잊지 않는다. 복잡해 보이는 문제도 결국 기본 원리의 조합으로 해결될 수 있으며, 이것이 바로 **"Back to basics"**의 지혜이다.
+진정한 전문가는 항상 basics의 중요성을 잊지 않는다. 복잡해 보이는 문제도 결국 기본 원리의 조합으로 해결될 수 있으며, 이것이 바로 <strong>"Back to basics"</strong>의 지혜이다.
 
 > "Excellence is the result of mastering the basics."
 > (탁월함은 기본을 완전히 익힌 결과이다.)

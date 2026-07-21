@@ -41,7 +41,7 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-이 장은 [03장: 의미있는 이름 짓기](/post/clean-code/meaningful-naming-conventions-variables-functions/)에서 다룬 원칙(그릇된 정보 피하기, 발음·검색 가능성, 인코딩 지양)을 실제 코드에 적용하는 실습이다. 03장을 먼저 읽었다는 전제로 진행하며, 함수 분해나 클래스 책임 분리 같은 구조적 리팩토링은 다루지 않는다 — 이는 [05~06장](/post/clean-code/clean-functions-single-responsibility-principle/)의 범위다.
+이 장은 [03장: 의미있는 이름 짓기](/post/clean-code/meaningful-naming-conventions-variables-functions/)에서 다룬 원칙(그릇된 정보 피하기, 발음·검색 가능성, 인코딩 지양)을 실제 코드에 적용하는 실습이다. 03장을 먼저 읽었다는 전제로 진행하며, 함수 분해나 클래스 책임 분리 같은 구조적 리팩토링은 다루지 않는다 — 이는 [05–06장](/post/clean-code/clean-functions-single-responsibility-principle/)의 범위다.
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |:--:|:--|:--|

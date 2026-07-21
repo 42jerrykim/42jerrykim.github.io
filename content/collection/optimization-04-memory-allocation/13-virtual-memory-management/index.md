@@ -48,13 +48,13 @@ tags:
   - RSS
 ---
 
-**Virtual Memory 관리 힌트**란 애플리케이션이 커널에게 "이 영역을 앞으로 어떻게 쓸 것인지" 또는 "이 영역이 언제까지 저장소와 일치해야 하는지"를 알려주어, 커널이 페이지 회수·프리페치·write-back 시점을 애플리케이션의 실제 접근 패턴에 맞추도록 하는 시스템 콜 계열을 말합니다. 커널은 기본적으로 보수적인 범용 정책으로 페이지를 관리하므로, 핫패스에서 반복적으로 재사용될 버퍼를 무심코 즉시 반환하거나, 반대로 다시는 쓰지 않을 거대한 스크래치 버퍼를 계속 상주시켜 두면 그 차이가 지연과 상주 메모리(RSS) 양쪽에 누적됩니다. 이 장에서는 `madvise`로 페이지 회수 우선순위를 조정하고 `msync`로 페이지 캐시와 저장소의 동기화 시점을 통제하는 방법을 다룬 뒤, 같은 "메모리를 하드웨어 수준에서 어떻게 다루는가"라는 축에서 최근 실용화가 빠르게 진행되고 있는 **ARM MTE(Memory Tagging Extension)**의 동작 원리와 오버헤드 추이를 살펴봅니다.
+**Virtual Memory 관리 힌트**란 애플리케이션이 커널에게 "이 영역을 앞으로 어떻게 쓸 것인지" 또는 "이 영역이 언제까지 저장소와 일치해야 하는지"를 알려주어, 커널이 페이지 회수·프리페치·write-back 시점을 애플리케이션의 실제 접근 패턴에 맞추도록 하는 시스템 콜 계열을 말합니다. 커널은 기본적으로 보수적인 범용 정책으로 페이지를 관리하므로, 핫패스에서 반복적으로 재사용될 버퍼를 무심코 즉시 반환하거나, 반대로 다시는 쓰지 않을 거대한 스크래치 버퍼를 계속 상주시켜 두면 그 차이가 지연과 상주 메모리(RSS) 양쪽에 누적됩니다. 이 장에서는 `madvise`로 페이지 회수 우선순위를 조정하고 `msync`로 페이지 캐시와 저장소의 동기화 시점을 통제하는 방법을 다룬 뒤, 같은 "메모리를 하드웨어 수준에서 어떻게 다루는가"라는 축에서 최근 실용화가 빠르게 진행되고 있는 <strong>ARM MTE(Memory Tagging Extension)</strong>의 동작 원리와 오버헤드 추이를 살펴봅니다.
 
 ## 이 장을 읽기 전에
 
 **완전한 초보자?** 이 장은 [12장: Stack vs Heap 할당 비용](/post/memory-optimization/stack-vs-heap-allocation-cost/)에서 다룬 할당 비용 감각과, [15장: 메모리·수명·캐시 라인 직관](/post/memory-optimization/memory-lifetime-cache-line-intuition-fundamentals/)에서 다룬 가상 주소·페이지 폴트의 기본 그림을 전제로 합니다. "페이지"가 커널이 메모리를 다루는 최소 단위이고, 접근하지 않은 페이지는 물리 메모리를 실제로 점유하지 않을 수 있다는 것만 알면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **심화** 난이도로, `madvise`의 회수 관련 힌트(`MADV_DONTNEED`, `MADV_FREE`, `MADV_COLD`, `MADV_PAGEOUT`, `MADV_WILLNEED`)와 `msync`의 동기화 힌트를 실전 코드로 다룬 뒤, ARM MTE의 태깅 메커니즘과 2025~2026년 사이 좁혀진 오버헤드 수치를 정리합니다. **다루지 않는 것**: `MADV_HUGEPAGE`·`MADV_COLLAPSE`와 THP/mTHP는 [08장: Large Pages·Huge Pages](/post/memory-optimization/huge-pages-large-pages-mthp/)에서, NUMA 노드별 배치 힌트는 [09장: NUMA 메모리 할당·지역성](/post/memory-optimization/numa-memory-allocation-locality/)에서, Valgrind·AddressSanitizer 같은 소프트웨어 기반 메모리 오류 탐지 도구는 [14장: 메모리 누수 탐지](/post/memory-optimization/memory-leak-detection-valgrind-asan/)에서 다룹니다.
+**이 장의 깊이**: 이 장은 **심화** 난이도로, `madvise`의 회수 관련 힌트(`MADV_DONTNEED`, `MADV_FREE`, `MADV_COLD`, `MADV_PAGEOUT`, `MADV_WILLNEED`)와 `msync`의 동기화 힌트를 실전 코드로 다룬 뒤, ARM MTE의 태깅 메커니즘과 2025–2026년 사이 좁혀진 오버헤드 수치를 정리합니다. **다루지 않는 것**: `MADV_HUGEPAGE`·`MADV_COLLAPSE`와 THP/mTHP는 [08장: Large Pages·Huge Pages](/post/memory-optimization/huge-pages-large-pages-mthp/)에서, NUMA 노드별 배치 힌트는 [09장: NUMA 메모리 할당·지역성](/post/memory-optimization/numa-memory-allocation-locality/)에서, Valgrind·AddressSanitizer 같은 소프트웨어 기반 메모리 오류 탐지 도구는 [14장: 메모리 누수 탐지](/post/memory-optimization/memory-leak-detection-valgrind-asan/)에서 다룹니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -70,7 +70,7 @@ tags:
 
 `madvise`는 BSD 계열 유닉스에서 오래전부터 존재해 온 시스템 콜로, POSIX는 이를 `posix_madvise(3)`로 표준화하면서 `POSIX_MADV_NORMAL`·`POSIX_MADV_SEQUENTIAL`·`POSIX_MADV_RANDOM`·`POSIX_MADV_WILLNEED`·`POSIX_MADV_DONTNEED` 다섯 가지 힌트를 정의했습니다. Linux는 이 표준 힌트 위에 자체 확장을 계속 추가해 왔는데, 회수 성향을 지연시키는 `MADV_FREE`는 Linux 4.5(2016)에서 병합되었고, 압박이 없을 때는 페이지를 회수 후보로만 표시하는 `MADV_COLD`와 즉시 강제로 스왑·write-back을 유발하는 `MADV_PAGEOUT`은 Linux 5.4(2019)에서 추가되었습니다. `msync`는 mmap된 파일과 페이지 캐시 간의 동기화를 다루는 훨씬 오래된 POSIX 표준 API로, `MS_SYNC`·`MS_ASYNC`·`MS_INVALIDATE` 세 플래그의 의미는 수십 년간 크게 바뀌지 않았습니다.
 
-ARM MTE는 이 흐름과는 결이 다른, 하드웨어 자체가 메모리 접근을 검사하는 기능입니다. ARM은 2019년 Armv8.5-A 아키텍처 확장으로 MTE를 처음 명세했고, 포인터의 상위 비트에 4비트 태그를 심고 16바이트 단위 메모리 조각(granule)마다 같은 태그를 붙여, 포인터가 가리키는 태그와 메모리에 저장된 태그가 어긋나면 하드웨어가 폴트를 일으키는 방식으로 use-after-free와 buffer-overflow 계열 버그를 잡아냅니다. 실제 소비자 하드웨어에는 2023년 10월 출시된 Google Pixel 8 계열에서 처음 탑재되었고, Android NDK는 `-fsanitize=memtag` 컴파일러 플래그와 `AndroidManifest.xml`의 `android:memtagMode` 속성으로 이를 노출합니다. 초기 소프트웨어 스택과 구형 코어에서는 SPEC 계열 벤치마크 기준 동기 모드(SYNC)가 6배 이상 느려지는 사례가 보고되며 "MTE는 오버헤드 때문에 실무에 못 쓴다"는 인식이 굳어졌지만, 2025~2026년 사이 발표된 서버급 하드웨어 최적화 연구는 이 그림을 상당히 바꿔 놓았습니다. 자세한 수치는 뒤의 "ARM MTE" 절에서 다룹니다.
+ARM MTE는 이 흐름과는 결이 다른, 하드웨어 자체가 메모리 접근을 검사하는 기능입니다. ARM은 2019년 Armv8.5-A 아키텍처 확장으로 MTE를 처음 명세했고, 포인터의 상위 비트에 4비트 태그를 심고 16바이트 단위 메모리 조각(granule)마다 같은 태그를 붙여, 포인터가 가리키는 태그와 메모리에 저장된 태그가 어긋나면 하드웨어가 폴트를 일으키는 방식으로 use-after-free와 buffer-overflow 계열 버그를 잡아냅니다. 실제 소비자 하드웨어에는 2023년 10월 출시된 Google Pixel 8 계열에서 처음 탑재되었고, Android NDK는 `-fsanitize=memtag` 컴파일러 플래그와 `AndroidManifest.xml`의 `android:memtagMode` 속성으로 이를 노출합니다. 초기 소프트웨어 스택과 구형 코어에서는 SPEC 계열 벤치마크 기준 동기 모드(SYNC)가 6배 이상 느려지는 사례가 보고되며 "MTE는 오버헤드 때문에 실무에 못 쓴다"는 인식이 굳어졌지만, 2025–2026년 사이 발표된 서버급 하드웨어 최적화 연구는 이 그림을 상당히 바꿔 놓았습니다. 자세한 수치는 뒤의 "ARM MTE" 절에서 다룹니다.
 
 ## madvise: 커널에 회수 우선순위를 알려주는 힌트
 
@@ -216,7 +216,7 @@ flowchart TD
 
 ## ARM MTE: 하드웨어 태그로 메모리 안전성을 검사하다
 
-**MTE(Memory Tagging Extension)**는 소프트웨어 힌트가 아니라 CPU가 직접 메모리 접근을 검사하는 하드웨어 기능입니다. 64비트 포인터의 최상위 바이트 일부에 4비트 태그를 저장하고, 그 포인터가 가리키는 16바이트 단위 메모리 조각(granule)마다 같은 태그를 별도로 기록해 둡니다. `IRG` 명령이 무작위 태그를 생성해 포인터에 심고, `STG`류 명령이 그 태그를 실제 메모리 조각에 씁니다. 이후 그 포인터로 메모리에 접근할 때마다 CPU가 포인터의 태그와 메모리 조각에 기록된 태그를 비교해, 둘이 어긋나면 태그 불일치 폴트를 일으킵니다. 이 메커니즘은 free된 메모리를 재할당할 때 새 태그를 부여하는 것만으로 use-after-free를, 배열 경계를 벗어난 접근이 다음 조각의 다른 태그와 부딪히는 것으로 buffer-overflow를 감지합니다.
+<strong>MTE(Memory Tagging Extension)</strong>는 소프트웨어 힌트가 아니라 CPU가 직접 메모리 접근을 검사하는 하드웨어 기능입니다. 64비트 포인터의 최상위 바이트 일부에 4비트 태그를 저장하고, 그 포인터가 가리키는 16바이트 단위 메모리 조각(granule)마다 같은 태그를 별도로 기록해 둡니다. `IRG` 명령이 무작위 태그를 생성해 포인터에 심고, `STG`류 명령이 그 태그를 실제 메모리 조각에 씁니다. 이후 그 포인터로 메모리에 접근할 때마다 CPU가 포인터의 태그와 메모리 조각에 기록된 태그를 비교해, 둘이 어긋나면 태그 불일치 폴트를 일으킵니다. 이 메커니즘은 free된 메모리를 재할당할 때 새 태그를 부여하는 것만으로 use-after-free를, 배열 경계를 벗어난 접근이 다음 조각의 다른 태그와 부딪히는 것으로 buffer-overflow를 감지합니다.
 
 MTE는 검사 시점에 따라 세 모드로 동작합니다. **동기(SYNC)** 모드는 태그 불일치가 발생한 바로 그 로드/스토어 명령에서 즉시 `SIGSEGV`(코드 `SEGV_MTESERR`)를 일으켜 정확한 폴트 주소와 접근 정보를 남기므로 디버깅에 유리하지만 그만큼 매 접근마다 검사 비용이 붙습니다. **비동기(ASYNC)** 모드는 불일치를 즉시 알리지 않고 다음 커널 진입(시스템 콜이나 타이머 인터럽트) 시점까지 미뤄 두어, 정확한 폴트 위치 정보는 잃는 대신 성능 오버헤드를 크게 줄입니다. 이 둘을 절충한 **비대칭(ASYMM)** 모드는 읽기는 비동기로, 쓰기는 동기로 검사해 두 목표 사이의 균형을 잡습니다. Android는 `AndroidManifest.xml`의 `android:memtagMode` 속성이나 NDK의 `-fsanitize=memtag -fsanitize-memtag-mode=sync|async` 컴파일러 플래그로 이를 노출하며, Pixel 8 계열(2023년 10월 출시)부터 지원 기기가 늘어나고 있습니다.
 
@@ -230,11 +230,11 @@ APP_LDFLAGS := -fsanitize=memtag -fsanitize-memtag-mode=sync -march=armv8-a+memt
 
 ## 자주 하는 오해 정정
 
-**"madvise를 호출하면 그 순간 메모리가 반환된다"**는 정확하지 않습니다. `MADV_DONTNEED`는 즉시 매핑을 해제하지만, `MADV_FREE`는 회수 후보로만 표시해 둘 뿐 실제 회수는 시스템 압박이 올 때까지 미뤄지고, 그동안 RSS 통계에는 여전히 잡힙니다. "반납했는데 RSS가 안 줄어든다"는 관찰은 버그가 아니라 `MADV_FREE`의 설계된 동작입니다.
+<strong>"madvise를 호출하면 그 순간 메모리가 반환된다"</strong>는 정확하지 않습니다. `MADV_DONTNEED`는 즉시 매핑을 해제하지만, `MADV_FREE`는 회수 후보로만 표시해 둘 뿐 실제 회수는 시스템 압박이 올 때까지 미뤄지고, 그동안 RSS 통계에는 여전히 잡힙니다. "반납했는데 RSS가 안 줄어든다"는 관찰은 버그가 아니라 `MADV_FREE`의 설계된 동작입니다.
 
-**"mmap 파일에 쓴 뒤 msync를 안 하면 데이터가 위험하다"**도 과장된 통념입니다. 커널은 dirty 페이지를 스스로 추적해 `munmap`이나 프로세스 종료 시점에 알아서 write-back하므로, 정상 종료 경로에서는 `msync`가 필수가 아닙니다. `msync(MS_SYNC)`가 정말 필요한 순간은 프로세스가 비정상 종료되거나 시스템이 정전될 가능성까지 고려해 "이 시점까지의 쓰기는 반드시 디스크에 있어야 한다"고 보장해야 하는 체크포인트뿐입니다. 또한 Linux에서 `MS_ASYNC`는 2.6.19 이후로 사실상 no-op이므로 "MS_ASYNC가 즉시 flush를 예약해 준다"고 기대해서도 안 됩니다.
+<strong>"mmap 파일에 쓴 뒤 msync를 안 하면 데이터가 위험하다"</strong>도 과장된 통념입니다. 커널은 dirty 페이지를 스스로 추적해 `munmap`이나 프로세스 종료 시점에 알아서 write-back하므로, 정상 종료 경로에서는 `msync`가 필수가 아닙니다. `msync(MS_SYNC)`가 정말 필요한 순간은 프로세스가 비정상 종료되거나 시스템이 정전될 가능성까지 고려해 "이 시점까지의 쓰기는 반드시 디스크에 있어야 한다"고 보장해야 하는 체크포인트뿐입니다. 또한 Linux에서 `MS_ASYNC`는 2.6.19 이후로 사실상 no-op이므로 "MS_ASYNC가 즉시 flush를 예약해 준다"고 기대해서도 안 됩니다.
 
-**"ARM MTE는 오버헤드 때문에 프로덕션에 쓸 수 없다"**는 통념도 최신 하드웨어 기준으로는 재검토가 필요합니다. 초기 소프트웨어 에뮬레이션이나 구형 코어 기준의 6배 이상 수치와, 태그 저장 오버헤드를 없앤 최신 서버급 하드웨어에서 SPEC CPU 2017 기준 geomean 한 자릿수%대(memcached는 커널 패치 후 1.05배)로 보고되는 수치는 전혀 다른 이야기입니다. 다만 이 개선은 특정 세대 하드웨어와 커널 버전에 국한되므로, 대상 배포 환경의 CPU 세대와 커널 버전을 먼저 확인하지 않은 채 "MTE는 이제 싸다"고 일반화하는 것도 같은 종류의 오해입니다.
+<strong>"ARM MTE는 오버헤드 때문에 프로덕션에 쓸 수 없다"</strong>는 통념도 최신 하드웨어 기준으로는 재검토가 필요합니다. 초기 소프트웨어 에뮬레이션이나 구형 코어 기준의 6배 이상 수치와, 태그 저장 오버헤드를 없앤 최신 서버급 하드웨어에서 SPEC CPU 2017 기준 geomean 한 자릿수%대(memcached는 커널 패치 후 1.05배)로 보고되는 수치는 전혀 다른 이야기입니다. 다만 이 개선은 특정 세대 하드웨어와 커널 버전에 국한되므로, 대상 배포 환경의 CPU 세대와 커널 버전을 먼저 확인하지 않은 채 "MTE는 이제 싸다"고 일반화하는 것도 같은 종류의 오해입니다.
 
 ## 판단 기준
 

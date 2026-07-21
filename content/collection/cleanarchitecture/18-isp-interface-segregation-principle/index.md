@@ -36,7 +36,7 @@ tags:
   - Documentation(문서화)
 ---
 
-**ISP(Interface Segregation Principle)**는 1996년 Robert C. Martin이 Xerox 컨설팅 중에 발견한 원칙이다(Martin, 『Clean Architecture』, 2017, 10장). 이 원칙은 불필요한 의존성으로 인한 문제를 해결하기 위해 **인터페이스를 분리**해야 한다고 말한다.
+<strong>ISP(Interface Segregation Principle)</strong>는 1996년 Robert C. Martin이 Xerox 컨설팅 중에 발견한 원칙이다(Martin, 『Clean Architecture』, 2017, 10장). 이 원칙은 불필요한 의존성으로 인한 문제를 해결하기 위해 **인터페이스를 분리**해야 한다고 말한다.
 
 ## ISP의 정의
 

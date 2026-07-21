@@ -70,7 +70,7 @@ image: "wordcloud.png"
 
 ## 개요
 
-**.NET·C#** 환경에서 **조건부 컴파일(Conditional Compilation)**은 빌드 시점에 특정 기호(symbol)가 정의되어 있는지에 따라 코드 블록을 포함하거나 제외하는 기능이다. 디버그 전용 로그, 플랫폼별 API 분기, 기능 플래그, 다중 대상 프레임워크(TFM) 대응 등에 쓰인다. 이 글에서는 전처리기 지시문(`#if`, `#elif`, `#define` 등), 미리 정의된 기호(DEBUG, TRACE, TFM 기호), **.csproj**와 **MSBuild**에서 기호를 정의·전달하는 방법, 플랫폼별 조건부 컴파일 예시를 다루고, 흐름을 Mermaid로 정리한 뒤 참고 문헌을 제시한다. C#·.NET Core/5+ 프로젝트를 다루는 개발자와 CI/CD·크로스 플랫폼 빌드를 설정하는 이들에게 유용하다.
+**.NET·C#** 환경에서 <strong>조건부 컴파일(Conditional Compilation)</strong>은 빌드 시점에 특정 기호(symbol)가 정의되어 있는지에 따라 코드 블록을 포함하거나 제외하는 기능이다. 디버그 전용 로그, 플랫폼별 API 분기, 기능 플래그, 다중 대상 프레임워크(TFM) 대응 등에 쓰인다. 이 글에서는 전처리기 지시문(`#if`, `#elif`, `#define` 등), 미리 정의된 기호(DEBUG, TRACE, TFM 기호), **.csproj**와 **MSBuild**에서 기호를 정의·전달하는 방법, 플랫폼별 조건부 컴파일 예시를 다루고, 흐름을 Mermaid로 정리한 뒤 참고 문헌을 제시한다. C#·.NET Core/5+ 프로젝트를 다루는 개발자와 CI/CD·크로스 플랫폼 빌드를 설정하는 이들에게 유용하다.
 
 ---
 
@@ -129,7 +129,7 @@ TFM·플랫폼 기호 목록은 [Microsoft Learn – C# 전처리기 지시문](
 
 ## .csproj에서 기호 정의 (DefineConstants)
 
-**SDK 스타일** `.csproj`에서는 `<PropertyGroup>` 안에 `DefineConstants`로 기호를 정의한다. 여러 기호는 **세미콜론(;)**으로 구분한다. 기존 값에 **추가**하려면 `$(DefineConstants);MY_SYMBOL`처럼 기존 속성을 참조하면 된다.
+**SDK 스타일** `.csproj`에서는 `<PropertyGroup>` 안에 `DefineConstants`로 기호를 정의한다. 여러 기호는 <strong>세미콜론(;)</strong>으로 구분한다. 기존 값에 **추가**하려면 `$(DefineConstants);MY_SYMBOL`처럼 기존 속성을 참조하면 된다.
 
 ```xml
 <PropertyGroup>

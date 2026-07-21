@@ -114,7 +114,7 @@ git clone https://github.com/199-biotechnologies/claude-deep-research-skill.git 
 
 ## 참고 문헌
 
-1. [insane-research — GitHub](https://github.com/fivetaku/insane-research): 파이프라인·A~E 출처 등급·claim ledger 검증 게이트 원출처.
+1. [insane-research — GitHub](https://github.com/fivetaku/insane-research): 파이프라인·A–E 출처 등급·claim ledger 검증 게이트 원출처.
 2. [gptaku_plugins — GitHub](https://github.com/fivetaku/gptaku_plugins): insane-research가 속한 마켓플레이스.
 3. [insane-search — GitHub](https://github.com/fivetaku/insane-search): API 키 없는 우회 접근 자매 플러그인.
 4. [claude-deep-research-skill — GitHub](https://github.com/199-biotechnologies/claude-deep-research-skill): 8단계 엔터프라이즈급 파이프라인.

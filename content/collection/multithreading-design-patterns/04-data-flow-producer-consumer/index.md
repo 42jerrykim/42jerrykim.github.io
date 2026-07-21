@@ -48,7 +48,7 @@ slug: cpp-producer-consumer-bounded-buffer-backpressure
 
 **완전한 초보자?** 이 장은 [03장: 대기와 조정](/post/multithreading-patterns/cpp-condition-variable-monitor-object-guarded-suspension/)에서 다룬 `std::condition_variable`과 Monitor Object 패턴을 전제로 합니다. `cv.wait(lock, predicate)`가 왜 spurious wakeup에 안전한지 이해하고 있어야 이 장의 큐 구현을 읽을 수 있습니다. 아직이라면 03장을 먼저 보세요.
 
-**이 장의 깊이**: 이 장은 **중급~전문가**까지를 포괄합니다. Unbounded/Bounded Queue의 기본 구현부터 시작해, Drop Policy·Timeout 같은 변형, 다중 프로듀서/컨슈머 환경에서의 동작, 그리고 메모리 순서 관점에서 Bounded Buffer가 왜 안전한지까지 다룹니다. **다루지 않는 것**: lock-free queue의 실제 구현(11장에서 개념만 미리보기), 분산 메시지 큐(Kafka, RabbitMQ 같은 시스템 레벨 큐)는 범위 밖입니다.
+**이 장의 깊이**: 이 장은 **중급–전문가**까지를 포괄합니다. Unbounded/Bounded Queue의 기본 구현부터 시작해, Drop Policy·Timeout 같은 변형, 다중 프로듀서/컨슈머 환경에서의 동작, 그리고 메모리 순서 관점에서 Bounded Buffer가 왜 안전한지까지 다룹니다. **다루지 않는 것**: lock-free queue의 실제 구현(11장에서 개념만 미리보기), 분산 메시지 큐(Kafka, RabbitMQ 같은 시스템 레벨 큐)는 범위 밖입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -136,7 +136,7 @@ public:
 };
 ```
 
-**Backpressure의 효과**: 프로듀서가 빠르고 컨슈머가 느리면, 프로듀서는 `notFull.wait()`에서 대기한다. 이는 **시스템 전체의 처리량(throughput)**을 컨슈머의 속도로 자동으로 조절한다.
+**Backpressure의 효과**: 프로듀서가 빠르고 컨슈머가 느리면, 프로듀서는 `notFull.wait()`에서 대기한다. 이는 <strong>시스템 전체의 처리량(throughput)</strong>을 컨슈머의 속도로 자동으로 조절한다.
 
 ```cpp
 int main() {
@@ -274,7 +274,7 @@ int main() {
 }
 ```
 
-위 코드의 종료 조건(`consumedCount.fetch_add(...) < totalItems`)은 "전체 아이템 수를 미리 알고 있다"는 단순화다. 실전에서는 보통 **종료 신호(poison pill)**를 큐에 넣거나, 모든 프로듀서가 끝났음을 알리는 별도의 플래그/카운터를 두어 컨슈머가 "더 이상 올 데이터가 없음"을 판단하게 한다. 큐의 원소 타입을 `std::optional<T>`로 두면, "값이 있으면 처리할 데이터, `nullopt`면 종료 신호"라는 뜻으로 poison pill을 표현할 수 있다.
+위 코드의 종료 조건(`consumedCount.fetch_add(...) < totalItems`)은 "전체 아이템 수를 미리 알고 있다"는 단순화다. 실전에서는 보통 <strong>종료 신호(poison pill)</strong>를 큐에 넣거나, 모든 프로듀서가 끝났음을 알리는 별도의 플래그/카운터를 두어 컨슈머가 "더 이상 올 데이터가 없음"을 판단하게 한다. 큐의 원소 타입을 `std::optional<T>`로 두면, "값이 있으면 처리할 데이터, `nullopt`면 종료 신호"라는 뜻으로 poison pill을 표현할 수 있다.
 
 ```cpp
 // 프로듀서: 데이터를 다 보낸 뒤 nullopt를 넣어 "더 이상 없음"을 알린다.
@@ -347,7 +347,7 @@ public:
 
 ## 다음 장에서는
 
-05장 **「읽기 최적화와 지연 초기화」**에서는 공유 데이터에서 읽기가 대부분인 경우의 최적화 (Shared Mutex, DCLP)를 다룬다.
+05장 <strong>「읽기 최적화와 지연 초기화」</strong>에서는 공유 데이터에서 읽기가 대부분인 경우의 최적화 (Shared Mutex, DCLP)를 다룬다.
 
 ## 참고 및 출처
 

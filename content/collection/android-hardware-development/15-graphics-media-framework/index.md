@@ -70,11 +70,11 @@ image: "wordcloud.png"
 
 ### SurfaceFlinger의 역할: 렌더링이 아니라 합성
 
-**SurfaceFlinger(서피스플링거)**는 안드로이드에서 화면에 표시될 모든 콘텐츠를 최종적으로 조합해 디스플레이로 내보내는 시스템 서비스다. 여기서 정확히 짚어야 할 개념이 **컴포지션(Composition, 합성)**과 **렌더링(Rendering)**의 구분이다. 앱은 OpenGL ES, Vulkan, Skia 같은 그래픽 API로 자신의 윈도우 내용을 직접 그린다(렌더링). SurfaceFlinger는 그 결과물—이미 픽셀이 채워진 버퍼—을 여러 앱과 시스템 UI로부터 받아 하나의 화면으로 겹쳐 쌓는(합성) 역할만 한다. AOSP 공식 문서는 이를 "SurfaceFlinger accepts, composes, and sends buffers to the display"로 요약한다.
+<strong>SurfaceFlinger(서피스플링거)</strong>는 안드로이드에서 화면에 표시될 모든 콘텐츠를 최종적으로 조합해 디스플레이로 내보내는 시스템 서비스다. 여기서 정확히 짚어야 할 개념이 <strong>컴포지션(Composition, 합성)</strong>과 <strong>렌더링(Rendering)</strong>의 구분이다. 앱은 OpenGL ES, Vulkan, Skia 같은 그래픽 API로 자신의 윈도우 내용을 직접 그린다(렌더링). SurfaceFlinger는 그 결과물—이미 픽셀이 채워진 버퍼—을 여러 앱과 시스템 UI로부터 받아 하나의 화면으로 겹쳐 쌓는(합성) 역할만 한다. AOSP 공식 문서는 이를 "SurfaceFlinger accepts, composes, and sends buffers to the display"로 요약한다.
 
-이 합성 과정에서 핵심이 되는 두 요소가 **Gralloc(그랄록)**과 **BufferQueue(버퍼큐)**다. Gralloc은 그래픽 버퍼 메모리 할당을 담당하는 HAL로, GPU·카메라·인코더·디스플레이 컨트롤러가 모두 동일한 물리 메모리 영역을 (가능하면 복사 없이) 공유하도록 버퍼를 할당한다. BufferQueue는 생산자(producer, 예: 앱의 GPU 렌더링 스레드나 카메라 HAL)와 소비자(consumer, 예: SurfaceFlinger)가 버퍼를 순환시키는 큐 구조다. 생산자가 버퍼를 채워 `queueBuffer`로 넘기면, 소비자는 `acquireBuffer`로 받아 사용한 뒤 `releaseBuffer`로 돌려준다. 이 큐가 있기 때문에 앱은 디스플레이의 정확한 타이밍을 몰라도 되고, SurfaceFlinger는 여러 앱의 버퍼 도착 시점이 제각각이어도 합성 시점을 제어할 수 있다.
+이 합성 과정에서 핵심이 되는 두 요소가 <strong>Gralloc(그랄록)</strong>과 <strong>BufferQueue(버퍼큐)</strong>다. Gralloc은 그래픽 버퍼 메모리 할당을 담당하는 HAL로, GPU·카메라·인코더·디스플레이 컨트롤러가 모두 동일한 물리 메모리 영역을 (가능하면 복사 없이) 공유하도록 버퍼를 할당한다. BufferQueue는 생산자(producer, 예: 앱의 GPU 렌더링 스레드나 카메라 HAL)와 소비자(consumer, 예: SurfaceFlinger)가 버퍼를 순환시키는 큐 구조다. 생산자가 버퍼를 채워 `queueBuffer`로 넘기면, 소비자는 `acquireBuffer`로 받아 사용한 뒤 `releaseBuffer`로 돌려준다. 이 큐가 있기 때문에 앱은 디스플레이의 정확한 타이밍을 몰라도 되고, SurfaceFlinger는 여러 앱의 버퍼 도착 시점이 제각각이어도 합성 시점을 제어할 수 있다.
 
-SurfaceFlinger는 이 합성 작업을 **VSync(수직 동기화)** 신호에 맞춰 수행한다. 디스플레이 패널이 다음 프레임을 그릴 준비가 됐다는 하드웨어 신호가 오면, 그 시점까지 도착한 각 레이어의 최신 버퍼들을 모아 한 번에 합성한다. 이 합성은 두 가지 방식 중 하나로 이뤄지는데, GPU 합성(SurfaceFlinger 자신이 OpenGL/Vulkan으로 레이어를 겹쳐 그리는 방식)과 **하드웨어 컴포저(HWComposer, HWC)**를 통한 오버레이 합성(디스플레이 컨트롤러가 여러 레이어를 하드웨어적으로 겹쳐 GPU 개입 없이 출력하는 방식)이다. HWC 오버레이가 가능한 레이어가 많을수록 GPU 부하와 전력 소모가 줄어들기 때문에, SoC 벤더의 HWC HAL 구현 품질이 실제 발열·배터리 체감에 직결된다.
+SurfaceFlinger는 이 합성 작업을 **VSync(수직 동기화)** 신호에 맞춰 수행한다. 디스플레이 패널이 다음 프레임을 그릴 준비가 됐다는 하드웨어 신호가 오면, 그 시점까지 도착한 각 레이어의 최신 버퍼들을 모아 한 번에 합성한다. 이 합성은 두 가지 방식 중 하나로 이뤄지는데, GPU 합성(SurfaceFlinger 자신이 OpenGL/Vulkan으로 레이어를 겹쳐 그리는 방식)과 <strong>하드웨어 컴포저(HWComposer, HWC)</strong>를 통한 오버레이 합성(디스플레이 컨트롤러가 여러 레이어를 하드웨어적으로 겹쳐 GPU 개입 없이 출력하는 방식)이다. HWC 오버레이가 가능한 레이어가 많을수록 GPU 부하와 전력 소모가 줄어들기 때문에, SoC 벤더의 HWC HAL 구현 품질이 실제 발열·배터리 체감에 직결된다.
 
 ```mermaid
 flowchart LR
@@ -90,23 +90,23 @@ flowchart LR
 
 ### Codec2와 MediaCodec: 프레임워크 API와 HAL 구현의 분리
 
-**MediaCodec(미디어코덱)**은 앱과 프레임워크 서비스가 하드웨어 또는 소프트웨어 코덱에 접근하는 공개 API다. 비디오/오디오를 압축(인코딩)하거나 압축을 풀어(디코딩) 원시 프레임을 얻는 역할을 하며, 입력과 출력 모두 버퍼 큐 기반으로 동작한다. 이 API 자체는 벤더가 어떤 코덱 구현체를 쓰는지 감춘다—`MediaCodec.createEncoderByType("video/avc")`를 호출한 앱 코드는 그 인코더가 소프트웨어 구현인지, 특정 SoC의 전용 하드웨어 블록인지 알 필요가 없다.
+<strong>MediaCodec(미디어코덱)</strong>은 앱과 프레임워크 서비스가 하드웨어 또는 소프트웨어 코덱에 접근하는 공개 API다. 비디오/오디오를 압축(인코딩)하거나 압축을 풀어(디코딩) 원시 프레임을 얻는 역할을 하며, 입력과 출력 모두 버퍼 큐 기반으로 동작한다. 이 API 자체는 벤더가 어떤 코덱 구현체를 쓰는지 감춘다—`MediaCodec.createEncoderByType("video/avc")`를 호출한 앱 코드는 그 인코더가 소프트웨어 구현인지, 특정 SoC의 전용 하드웨어 블록인지 알 필요가 없다.
 
-**Codec2(코덱투)**는 MediaCodec API 뒤에서 실제로 코덱 HAL 구현체와 프레임워크 사이를 잇는 인터페이스 계층이다. 안드로이드는 오랫동안 **OMX(OpenMAX IL)**를 이 계층으로 사용해왔지만, OMX는 컴포넌트 그래프 모델이 복잡하고 프로세스 경계를 넘는 IPC 오버헤드가 컸다. Codec2는 이를 대체하기 위해 설계된 더 단순한 컴포넌트 모델로, 버퍼 소유권 이전 규칙이 명확하고 Treble 아키텍처의 HAL 경계(HIDL/AIDL)와 잘 맞물린다. 실무 관점에서 중요한 점은, MediaCodec을 호출하는 앱 코드는 그 뒤에 OMX가 있든 Codec2가 있든 동일하게 동작해야 한다는 것—즉 Codec2로의 전환은 원칙적으로 앱 개발자에게는 투명하고, HAL·벤더 레이어의 문제라는 점이다.
+<strong>Codec2(코덱투)</strong>는 MediaCodec API 뒤에서 실제로 코덱 HAL 구현체와 프레임워크 사이를 잇는 인터페이스 계층이다. 안드로이드는 오랫동안 <strong>OMX(OpenMAX IL)</strong>를 이 계층으로 사용해왔지만, OMX는 컴포넌트 그래프 모델이 복잡하고 프로세스 경계를 넘는 IPC 오버헤드가 컸다. Codec2는 이를 대체하기 위해 설계된 더 단순한 컴포넌트 모델로, 버퍼 소유권 이전 규칙이 명확하고 Treble 아키텍처의 HAL 경계(HIDL/AIDL)와 잘 맞물린다. 실무 관점에서 중요한 점은, MediaCodec을 호출하는 앱 코드는 그 뒤에 OMX가 있든 Codec2가 있든 동일하게 동작해야 한다는 것—즉 Codec2로의 전환은 원칙적으로 앱 개발자에게는 투명하고, HAL·벤더 레이어의 문제라는 점이다.
 
 MediaCodec은 **동기(synchronous) 모드**와 **비동기(asynchronous) 모드** 두 가지 사용 패턴을 제공한다. 동기 모드는 `dequeueInputBuffer`/`dequeueOutputBuffer`를 폴링하며 앱이 직접 버퍼 흐름을 제어하는 방식이고, 비동기 모드는 `MediaCodec.Callback`을 등록해 버퍼가 준비될 때마다 콜백으로 통지받는 방식이다. Android 11부터는 **저지연 디코딩(low-latency decoding)** 힌트를 코덱에 전달할 수 있는데, 이는 SoC 제조사가 디코더 드라이버 단에서 이를 지원해야 실제로 효과가 나는 기능이며 Codec2 또는 OMX 설정 파라미터로 노출된다.
 
 ### Camera2와 CameraX: 저수준 제어와 기기 호환성의 트레이드오프
 
-**Camera2(카메라투)**는 안드로이드의 저수준 카메라 API로, `CameraManager`로 물리 카메라 장치를 열고 `CaptureRequest`로 노출·초점·화이트밸런스 같은 센서 파라미터를 프레임 단위로 세밀하게 제어할 수 있다. 이 세밀함의 대가는 기기별 파편화다. 모든 안드로이드 기기가 Camera2의 모든 기능을 동일한 수준으로 지원하지는 않으며, `CameraCharacteristics`의 `INFO_SUPPORTED_HARDWARE_LEVEL` 값(LEGACY/LIMITED/FULL/LEVEL_3)에 따라 지원 기능 범위가 갈린다. 즉 Camera2로 작성한 코드는 기기마다 분기 처리가 필요해질 수 있다.
+<strong>Camera2(카메라투)</strong>는 안드로이드의 저수준 카메라 API로, `CameraManager`로 물리 카메라 장치를 열고 `CaptureRequest`로 노출·초점·화이트밸런스 같은 센서 파라미터를 프레임 단위로 세밀하게 제어할 수 있다. 이 세밀함의 대가는 기기별 파편화다. 모든 안드로이드 기기가 Camera2의 모든 기능을 동일한 수준으로 지원하지는 않으며, `CameraCharacteristics`의 `INFO_SUPPORTED_HARDWARE_LEVEL` 값(LEGACY/LIMITED/FULL/LEVEL_3)에 따라 지원 기능 범위가 갈린다. 즉 Camera2로 작성한 코드는 기기마다 분기 처리가 필요해질 수 있다.
 
-**CameraX(카메라엑스)**는 Camera2 위에 얹힌 Jetpack 라이브러리로, Preview·ImageAnalysis·ImageCapture·VideoCapture라는 유스케이스(use case) 단위로 카메라 기능을 추상화한다. Android Developers 공식 문서는 CameraX가 "API 레벨 21 이상, 즉 기존 안드로이드 기기의 98% 이상"에서 일관된 동작을 목표로 자동화된 호환성 테스트를 거친다고 설명한다. 내부적으로는 여전히 Camera2를 호출하지만, 기기별 예외 처리와 쿼크(quirk) 보정을 라이브러리가 흡수해준다. 다만 Camera2가 제공하는 모든 저수준 파라미터를 CameraX가 1:1로 노출하지는 않으므로, RAW 캡처나 수동 노출 브라케팅처럼 세밀한 제어가 필요하면 `Camera2Interop` API로 Camera2 파라미터를 부분적으로 주입해야 한다.
+<strong>CameraX(카메라엑스)</strong>는 Camera2 위에 얹힌 Jetpack 라이브러리로, Preview·ImageAnalysis·ImageCapture·VideoCapture라는 유스케이스(use case) 단위로 카메라 기능을 추상화한다. Android Developers 공식 문서는 CameraX가 "API 레벨 21 이상, 즉 기존 안드로이드 기기의 98% 이상"에서 일관된 동작을 목표로 자동화된 호환성 테스트를 거친다고 설명한다. 내부적으로는 여전히 Camera2를 호출하지만, 기기별 예외 처리와 쿼크(quirk) 보정을 라이브러리가 흡수해준다. 다만 Camera2가 제공하는 모든 저수준 파라미터를 CameraX가 1:1로 노출하지는 않으므로, RAW 캡처나 수동 노출 브라케팅처럼 세밀한 제어가 필요하면 `Camera2Interop` API로 Camera2 파라미터를 부분적으로 주입해야 한다.
 
 ### 오디오 HAL 경로: AudioFlinger에서 DSP까지
 
 오디오 신호의 경로는 그래픽 파이프라인과 구조적으로 유사하지만 시간 축의 정밀도 요구가 훨씬 엄격하다. 앱이 `AudioTrack`이나 `AAudio`로 오디오 데이터를 재생 요청하면, 시스템 서비스인 **AudioFlinger**가 여러 앱의 오디오 스트림을 믹싱하고, 그 결과를 **Audio HAL**로 넘긴다. Audio HAL은 프레임워크의 오디오 API와 실제 오디오 드라이버(코덱 칩, DSP) 사이를 잇는 HAL로, 모든 안드로이드 기기가 반드시 구현해야 하는 계층이다. AOSP 문서에 따르면 Audio HAL은 Core HAL, Effects HAL, Common HAL 세 부분으로 구성되며, Android 14부터는 이전까지 쓰이던 **HIDL** 대신 **AIDL**을 인터페이스 정의 언어로 사용한다.
 
-이 계층에서 실무적으로 중요한 개념이 **DSP 오프로드(offload)**다. 저전력 오디오 재생(예: 화면이 꺼진 상태의 음악 재생)에서는 AP(애플리케이션 프로세서)가 매번 깨어나 오디오 버퍼를 채우는 대신, 압축된 오디오 데이터를 통째로 DSP에 넘겨 DSP가 디코딩과 출력을 전담하게 할 수 있다. 이는 Audio HAL이 오프로드 가능 여부를 프레임워크에 알리고, 프레임워크가 해당 스트림을 오프로드 트랙으로 열 때만 활성화된다. 반대로 화상통화나 음성인식처럼 낮은 왕복 지연이 중요한 경로에서는 오프로드 대신 **AAudio의 MMAP 저지연 경로**를 사용해, 오디오 버퍼를 커널 드라이버와 유저스페이스가 메모리 맵으로 직접 공유하며 버퍼 복사와 스케줄링 지연을 최소화한다.
+이 계층에서 실무적으로 중요한 개념이 <strong>DSP 오프로드(offload)</strong>다. 저전력 오디오 재생(예: 화면이 꺼진 상태의 음악 재생)에서는 AP(애플리케이션 프로세서)가 매번 깨어나 오디오 버퍼를 채우는 대신, 압축된 오디오 데이터를 통째로 DSP에 넘겨 DSP가 디코딩과 출력을 전담하게 할 수 있다. 이는 Audio HAL이 오프로드 가능 여부를 프레임워크에 알리고, 프레임워크가 해당 스트림을 오프로드 트랙으로 열 때만 활성화된다. 반대로 화상통화나 음성인식처럼 낮은 왕복 지연이 중요한 경로에서는 오프로드 대신 **AAudio의 MMAP 저지연 경로**를 사용해, 오디오 버퍼를 커널 드라이버와 유저스페이스가 메모리 맵으로 직접 공유하며 버퍼 복사와 스케줄링 지연을 최소화한다.
 
 ## 비교/트레이드오프
 
@@ -295,7 +295,7 @@ interface IModule {
 
 Codec2로의 전환은 설계상으로는 OMX보다 단순하고 IPC 오버헤드가 적지만, 실제 채택 속도는 벤더의 드라이버 이식 일정에 달려 있다. 프레임워크가 Codec2를 표준으로 삼아도, 특정 SoC의 코덱 드라이버가 여전히 OMX 래퍼를 통해서만 노출된다면 그 기기에서는 Codec2의 장점을 온전히 누릴 수 없다. 이 계층의 개선은 프레임워크 릴리스만으로 완성되지 않고, 벤더 HAL 구현이 실제로 최신 인터페이스를 따라가야 완성된다는 점에서 안드로이드 생태계 파편화 문제의 축소판이라 할 수 있다.
 
-SurfaceFlinger의 제로카피(zero-copy) 목표—버퍼를 복사 없이 생산자에서 디스플레이까지 전달하는 것—도 이론과 실제 사이에 간극이 있다. HWC 오버레이로 처리할 수 있는 레이어 수는 디스플레이 컨트롤러의 하드웨어 한계(대개 4~8개 수준이지만 정확한 값은 SoC마다 다르므로 구현 정의로 봐야 한다)를 넘으면 GPU 합성으로 폴백하고, 이 폴백은 벤더 HWC HAL 구현의 품질과 드라이버 성숙도에 따라 편차가 크다. 즉 "SurfaceFlinger를 쓰면 항상 하드웨어 오버레이로 효율적으로 합성된다"는 가정은 특정 기기·특정 앱 구성에서만 성립하는 조건부 사실이다.
+SurfaceFlinger의 제로카피(zero-copy) 목표—버퍼를 복사 없이 생산자에서 디스플레이까지 전달하는 것—도 이론과 실제 사이에 간극이 있다. HWC 오버레이로 처리할 수 있는 레이어 수는 디스플레이 컨트롤러의 하드웨어 한계(대개 4–8개 수준이지만 정확한 값은 SoC마다 다르므로 구현 정의로 봐야 한다)를 넘으면 GPU 합성으로 폴백하고, 이 폴백은 벤더 HWC HAL 구현의 품질과 드라이버 성숙도에 따라 편차가 크다. 즉 "SurfaceFlinger를 쓰면 항상 하드웨어 오버레이로 효율적으로 합성된다"는 가정은 특정 기기·특정 앱 구성에서만 성립하는 조건부 사실이다.
 
 Audio HAL의 HIDL에서 AIDL로의 강제 전환 역시 신규 기기에는 유리하지만, 레거시 벤더 드라이버를 유지해야 하는 제조사 입장에서는 HAL 어댑터 계층을 추가로 유지보수해야 하는 부담으로 작용한다. 이런 플랫폼 차원의 인터페이스 교체는 최종 사용자 경험(지연, 안정성)을 개선하려는 의도지만, 그 비용은 항상 벤더 엔지니어링 조직이 흡수해야 한다는 점에서 순수하게 기술적인 결정만은 아니다.
 

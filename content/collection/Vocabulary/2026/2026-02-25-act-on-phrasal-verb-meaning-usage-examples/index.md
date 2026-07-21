@@ -107,7 +107,7 @@ image: wordcloud.png
 ## 어원
 
 "Act"는 라틴어 "agere"(하다, 행동하다)에서 유래했으며, "on"은 방향·대상을 나타내는 전치사다.
-"Act on"은 16~17세기경 "~에 따라 행동하다"의 의미로 정착했고, 18세기 이후 의학·과학 맥락에서 "~에 작용하다"라는 뜻으로 널리 쓰이게 되었다.
+"Act on"은 16–17세기경 "~에 따라 행동하다"의 의미로 정착했고, 18세기 이후 의학·과학 맥락에서 "~에 작용하다"라는 뜻으로 널리 쓰이게 되었다.
 "Act" 단독은 이미 중세 영어 시기부터 사용되었으며, "act on"은 그 확장형으로 정보·충고·대상에 대한 반응이나 작용을 명확히 나타낸다.
 
 ## 자주 쓰는 패턴과 콜로케이션
@@ -178,7 +178,7 @@ image: wordcloud.png
 - 품사: 구동사 (phrasal verb), 타동적 용법 (act on + 명사/명사구)
 - 발음: /ækt ɒn/ (영국), /ækt ɑːn/ (미국)
 - 활용: act on → acts on → acting on → acted on
-- 격식도: 중립~격식. 일상 대화와 비즈니스·학술 문맥 모두에서 사용.
+- 격식도: 중립–격식. 일상 대화와 비즈니스·학술 문맥 모두에서 사용.
 - 수동태: "The advice was acted on by the team." (가능하나, "The team acted on the advice."가 더 자연스러움)
 - 주의: 'act on'과 'act out'(연기하다, 감정을 행동으로 나타내다)는 다름. 'act up'(말썽 부리다)도 별개.
 
@@ -372,8 +372,8 @@ image: wordcloud.png
 - 'act on' (구동사) = (1) ~에 따라 행동하다, 실행하다 (2) ~에 작용하다, 영향을 미치다
 - 핵심 패턴: act on advice/information/orders/instinct, act on the body/nervous system
 - 발음: /ækt ɒn/ (영국), /ækt ɑːn/ (미국)
-- 어원: act(라틴어 agere) + on. 16~17세기 "따라 행동", 18세기 이후 "작용하다" 의미 확장
-- 맥락: 비즈니스, 의료, 일상, 학술. 중립~격식
+- 어원: act(라틴어 agere) + on. 16–17세기 "따라 행동", 18세기 이후 "작용하다" 의미 확장
+- 맥락: 비즈니스, 의료, 일상, 학술. 중립–격식
 - 유사어: follow, implement, respond to, take action on; (의미2) effect
 - 'act on' vs 'act out'(연기하다)·'act up'(말썽 부리다) 구별
 - 수동태 가능하나 능동 표현이 더 자연스러움

@@ -3,7 +3,7 @@
 image: "wordcloud.png"
 title: "[Python Cheatsheet] 02. Built-in Functions"
 slug: "essential-built-in-functions-reference-fast-lookup-guide"
-description: "파이썬 내장 함수/타입을 알파벳 및 용도별로 빠르게 찾는 치트시트입니다. 공식 문서 기준(A~Z, _) 전체 목록과 핵심 시그니처, 자주 하는 실수, 선택 기준을 짧게 정리합니다."
+description: "파이썬 내장 함수/타입을 알파벳 및 용도별로 빠르게 찾는 치트시트입니다. 공식 문서 기준(A–Z, _) 전체 목록과 핵심 시그니처, 자주 하는 실수, 선택 기준을 짧게 정리합니다."
 lastmod: 2026-01-17
 collection_order: 2
 tags:
@@ -46,7 +46,7 @@ categories: Python
 header:
   teaser: /assets/images/2023/Screenshot_2023-01-17_at_20-55-19_WelcometoPython.org.png
 ---
-파이썬 인터프리터에는 항상 사용할 수 있는 많은 함수와 타입이 내장되어 있습니다. 이 치트시트는 공식 문서 기준 A~Z 전체 목록과 핵심 시그니처, 자주 하는 실수, 선택 기준을 빠르게 찾아볼 수 있게 정리합니다. 이 페이지는 [공식 문서 Built-in Functions](https://docs.python.org/3/library/functions.html) 기준으로 **A~Z, _ 전체 목록**을 빠르게 찾아볼 수 있게 정리한 치트시트입니다.
+파이썬 인터프리터에는 항상 사용할 수 있는 많은 함수와 타입이 내장되어 있습니다. 이 치트시트는 공식 문서 기준 A–Z 전체 목록과 핵심 시그니처, 자주 하는 실수, 선택 기준을 빠르게 찾아볼 수 있게 정리합니다. 이 페이지는 [공식 문서 Built-in Functions](https://docs.python.org/3/library/functions.html) 기준으로 **A–Z, _ 전체 목록**을 빠르게 찾아볼 수 있게 정리한 치트시트입니다.
 
 ## 빠른 네비게이션
 

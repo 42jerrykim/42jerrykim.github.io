@@ -79,7 +79,7 @@ C/C++에서 상수나 매크로를 **namespace** 안에 두어 다른 코드와 
 
 ## 전처리기와 컴파일 단계
 
-**전처리기(preprocessor)**는 컴파일러가 C/C++ 문법을 해석하기 **이전**에 동작하는 별도 단계다. [C preprocessor](https://en.wikipedia.org/wiki/C_preprocessor)는 `#include`, `#define`, `#ifdef` 같은 지시자를 처리하고, 매크로를 **순수 텍스트 치환**으로 확장한다. 이때 **namespace, 클래스, 함수** 같은 C++ 구문은 아직 파싱되지 않은 “그냥 문자열”이므로, 전처리기는 “이 치환이 어떤 스코프에 속한다”는 개념 자체를 갖지 않는다.
+<strong>전처리기(preprocessor)</strong>는 컴파일러가 C/C++ 문법을 해석하기 **이전**에 동작하는 별도 단계다. [C preprocessor](https://en.wikipedia.org/wiki/C_preprocessor)는 `#include`, `#define`, `#ifdef` 같은 지시자를 처리하고, 매크로를 **순수 텍스트 치환**으로 확장한다. 이때 **namespace, 클래스, 함수** 같은 C++ 구문은 아직 파싱되지 않은 “그냥 문자열”이므로, 전처리기는 “이 치환이 어떤 스코프에 속한다”는 개념 자체를 갖지 않는다.
 
 아래 다이어그램은 소스 코드가 실행 파일이 되기까지의 단계를 단순화한 것이다. 전처리 단계에서 `#define`이 모두 확장된 뒤에야 컴파일러가 namespace를 인식한다.
 

@@ -101,7 +101,7 @@ tags:
 
 ### 객체 어댑터 (Object Adapter)
 
-객체 어댑터는 **합성(Composition)**을 사용하여 Adaptee 객체를 내부에 포함하고, Target 인터페이스를 구현한다. 이 방식은 더 유연하며, 런타임에 Adaptee를 교체할 수 있다.
+객체 어댑터는 <strong>합성(Composition)</strong>을 사용하여 Adaptee 객체를 내부에 포함하고, Target 인터페이스를 구현한다. 이 방식은 더 유연하며, 런타임에 Adaptee를 교체할 수 있다.
 
 ```
 ┌─────────────────────────────────────┐

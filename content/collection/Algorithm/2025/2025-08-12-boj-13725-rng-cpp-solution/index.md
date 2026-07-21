@@ -197,7 +197,7 @@ int main() {
 
 ### 복잡도
 - 시간: \(O(k \log k \log N)\) — 단계마다 NTT \(O(k \log k)\), 전체 \(\log N\) 단계.
-- 공간: \(O(k)\) 다항식 벡터 3~4개.
+- 공간: \(O(k)\) 다항식 벡터 3–4개.
 
 ### 빌드/실행
 - 빌드: `g++ -O2 -pipe -static -s -std=gnu++17 main.cpp -o main`

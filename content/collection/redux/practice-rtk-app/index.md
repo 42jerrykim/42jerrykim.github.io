@@ -37,7 +37,7 @@ tags:
 
 # 20. 실습: RTK로 앱 리팩터링
 
-Phase 4의 마지막 편입니다. 15편에서 순수 Redux로 만든 Counter/Todo 앱을 16~19편에서 배운 `createSlice`·`configureStore`·`createAsyncThunk`로 완전히 다시 작성하고, 코드량이 실제로 얼마나 줄었는지 비교합니다.
+Phase 4의 마지막 편입니다. 15편에서 순수 Redux로 만든 Counter/Todo 앱을 16–19편에서 배운 `createSlice`·`configureStore`·`createAsyncThunk`로 완전히 다시 작성하고, 코드량이 실제로 얼마나 줄었는지 비교합니다.
 
 ## 학습 목표
 

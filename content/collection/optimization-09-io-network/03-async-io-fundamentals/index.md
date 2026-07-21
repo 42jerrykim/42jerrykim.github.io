@@ -43,7 +43,7 @@ tags:
   - BSD
 ---
 
-**비동기 I/O 기초**란 커널이 다수의 파일 디스크립터 가운데 어떤 것이 읽기·쓰기 가능한 상태인지 앱에게 알려주는 이벤트 통지(event notification) 메커니즘을 뜻하며, 이 장에서는 그 대표 API인 select·poll·epoll(Linux)·kqueue(BSD/macOS)의 내부 동작과 진화 과정을 다룹니다. 연결이 수백~수만 개인 서버에서 연결마다 스레드를 하나씩 배정해 블로킹 read를 걸면 컨텍스트 스위칭과 메모리 비용이 감당하기 어려워지므로, 하나(또는 소수)의 스레드가 다수의 fd를 동시에 감시하다가 준비된 것만 처리하는 방식이 필요합니다. 이 장의 핵심은 "커널에게 무엇을 감시할지 매번 다시 알려줘야 하는가, 아니면 커널이 관심 목록을 기억하고 있는가"라는 한 가지 설계 차이가 어떻게 O(n) 스캔과 O(1)에 가까운 이벤트 큐라는 서로 다른 확장성으로 이어지는지 이해하는 것입니다.
+**비동기 I/O 기초**란 커널이 다수의 파일 디스크립터 가운데 어떤 것이 읽기·쓰기 가능한 상태인지 앱에게 알려주는 이벤트 통지(event notification) 메커니즘을 뜻하며, 이 장에서는 그 대표 API인 select·poll·epoll(Linux)·kqueue(BSD/macOS)의 내부 동작과 진화 과정을 다룹니다. 연결이 수백–수만 개인 서버에서 연결마다 스레드를 하나씩 배정해 블로킹 read를 걸면 컨텍스트 스위칭과 메모리 비용이 감당하기 어려워지므로, 하나(또는 소수)의 스레드가 다수의 fd를 동시에 감시하다가 준비된 것만 처리하는 방식이 필요합니다. 이 장의 핵심은 "커널에게 무엇을 감시할지 매번 다시 알려줘야 하는가, 아니면 커널이 관심 목록을 기억하고 있는가"라는 한 가지 설계 차이가 어떻게 O(n) 스캔과 O(1)에 가까운 이벤트 큐라는 서로 다른 확장성으로 이어지는지 이해하는 것입니다.
 
 ## 이 장을 읽기 전에
 
@@ -63,7 +63,7 @@ tags:
 
 ## C10K 문제와 이벤트 통지의 역사
 
-**select()**는 1983년 4.2BSD에서 처음 등장한 이후 오랫동안 유닉스 계열의 표준 이벤트 통지 API였습니다. **poll()**은 1986년 System V에서 fd 개수 상한 문제를 완화하려는 목적으로 추가되었습니다. 두 API 모두 "감시할 fd 목록 전체를 커널에 매번 넘기고, 커널이 그 목록을 처음부터 끝까지 훑어 준비된 것을 표시해 돌려준다"는 동일한 구조를 공유합니다. 이 구조는 fd 수가 수십~수백 개일 때는 문제가 없었지만, 1999년 Dan Kegel이 정리한 이른바 **C10K 문제**(서버 한 대가 동시에 1만 개 연결을 처리해야 하는 상황)에서 한계가 드러났습니다. fd가 수천 개를 넘으면 매 호출마다 전체 목록을 스캔하는 비용이 무시할 수 없는 수준이 되고, 대부분의 fd가 유휴 상태인 전형적인 서버 워크로드에서는 이 스캔 대부분이 낭비였습니다.
+<strong>select()</strong>는 1983년 4.2BSD에서 처음 등장한 이후 오랫동안 유닉스 계열의 표준 이벤트 통지 API였습니다. <strong>poll()</strong>은 1986년 System V에서 fd 개수 상한 문제를 완화하려는 목적으로 추가되었습니다. 두 API 모두 "감시할 fd 목록 전체를 커널에 매번 넘기고, 커널이 그 목록을 처음부터 끝까지 훑어 준비된 것을 표시해 돌려준다"는 동일한 구조를 공유합니다. 이 구조는 fd 수가 수십–수백 개일 때는 문제가 없었지만, 1999년 Dan Kegel이 정리한 이른바 **C10K 문제**(서버 한 대가 동시에 1만 개 연결을 처리해야 하는 상황)에서 한계가 드러났습니다. fd가 수천 개를 넘으면 매 호출마다 전체 목록을 스캔하는 비용이 무시할 수 없는 수준이 되고, 대부분의 fd가 유휴 상태인 전형적인 서버 워크로드에서는 이 스캔 대부분이 낭비였습니다.
 
 이 문제에 대한 답으로 두 계열의 API가 각각 다른 진영에서 등장했습니다. Linux는 2002년 커널 2.5.44에 **epoll**을 추가했고, FreeBSD는 그보다 앞선 2000년 Jonathan Lemon이 설계한 **kqueue**를 4.1 릴리스에 포함시켰습니다. 두 API의 공통된 아이디어는 "감시 대상 등록"과 "이벤트 대기"를 분리해, 커널이 관심 목록을 계속 기억하고 있다가 상태 변화가 생긴 fd만 별도의 준비 목록(ready list)에 쌓아 두는 것입니다. kqueue는 이후 NetBSD·OpenBSD로 퍼졌고 macOS(Darwin)의 커널에도 이식되어, BSD 계열과 macOS 네이티브 서버의 표준 이벤트 API로 자리 잡았습니다.
 
@@ -73,7 +73,7 @@ select()는 감시할 fd들을 **fd_set**이라는 비트마스크에 담아 커
 
 > "select() can monitor only file descriptors numbers that are less than FD_SETSIZE (1024)" — [man7.org: select(2)](https://man7.org/linux/man-pages/man2/select.2.html)
 
-첫째, glibc 구현에서 fd_set은 고정 크기 비트마스크이므로 **FD_SETSIZE(보통 1024)**를 넘는 번호의 fd는 애초에 감시할 수 없습니다. 둘째, 호출마다 fd_set을 재구성하고 커널이 그 전체를 스캔하는 구조이므로 감시 대상이 늘어날수록 호출 비용이 선형(O(n))으로 증가합니다. 아래 예시는 이 재구성 패턴을 최소 형태로 보여줍니다. 매 반복마다 `FD_ZERO`로 비우고 감시할 fd 전체를 다시 `FD_SET`해야 하며, 반환 후에도 앱이 fd 목록을 다시 순회하며 `FD_ISSET`으로 어떤 것이 준비됐는지 확인해야 합니다.
+첫째, glibc 구현에서 fd_set은 고정 크기 비트마스크이므로 <strong>FD_SETSIZE(보통 1024)</strong>를 넘는 번호의 fd는 애초에 감시할 수 없습니다. 둘째, 호출마다 fd_set을 재구성하고 커널이 그 전체를 스캔하는 구조이므로 감시 대상이 늘어날수록 호출 비용이 선형(O(n))으로 증가합니다. 아래 예시는 이 재구성 패턴을 최소 형태로 보여줍니다. 매 반복마다 `FD_ZERO`로 비우고 감시할 fd 전체를 다시 `FD_SET`해야 하며, 반환 후에도 앱이 fd 목록을 다시 순회하며 `FD_ISSET`으로 어떤 것이 준비됐는지 확인해야 합니다.
 
 ```cpp
 #include <sys/select.h>
@@ -111,7 +111,7 @@ poll()은 비트마스크 대신 `struct pollfd` 배열을 사용해 select()의
 
 ## epoll: 커널이 준비 목록을 기억하다 (Linux)
 
-epoll은 "감시 대상 등록"(`epoll_ctl`)과 "이벤트 대기"(`epoll_wait`)를 분리된 시스템 콜로 나눕니다. 연결이 맺어질 때 `epoll_ctl(EPOLL_CTL_ADD)`로 fd를 한 번만 등록해 두면, 커널은 그 fd를 내부 자료구조(레드-블랙 트리 기반의 관심 목록)에 유지하면서 인터럽트나 상태 변화가 생길 때마다 별도의 **준비 목록(ready list)**에 추가합니다. `epoll_wait`는 이 준비 목록에 있는 것만 돌려주므로, 반환된 배열의 길이는 감시 중인 전체 fd 수가 아니라 **실제로 준비된 fd 수**에 비례합니다.
+epoll은 "감시 대상 등록"(`epoll_ctl`)과 "이벤트 대기"(`epoll_wait`)를 분리된 시스템 콜로 나눕니다. 연결이 맺어질 때 `epoll_ctl(EPOLL_CTL_ADD)`로 fd를 한 번만 등록해 두면, 커널은 그 fd를 내부 자료구조(레드-블랙 트리 기반의 관심 목록)에 유지하면서 인터럽트나 상태 변화가 생길 때마다 별도의 <strong>준비 목록(ready list)</strong>에 추가합니다. `epoll_wait`는 이 준비 목록에 있는 것만 돌려주므로, 반환된 배열의 길이는 감시 중인 전체 fd 수가 아니라 **실제로 준비된 fd 수**에 비례합니다.
 
 ```cpp
 #include <sys/epoll.h>
@@ -140,11 +140,11 @@ int run_epoll_loop(int listen_fd) {
 
 이 구조 덕분에 감시 대상이 수만 개로 늘어나도 `epoll_wait` 자체의 비용은 "준비된 fd 수"에만 의존하고, 유휴 상태인 나머지 fd들은 대기 비용에 거의 기여하지 않습니다. 다만 이 이득은 등록 비용(`epoll_ctl`)이 매번 새 시스템 콜을 필요로 한다는 대가와 맞바꾼 것이므로, 연결이 매우 짧게 맺어졌다 끊기는 워크로드에서는 등록·해제 비용도 함께 고려해야 합니다.
 
-epoll은 두 가지 통지 모드를 제공합니다. **level-triggered(LT)**는 기본값이며, 버퍼에 아직 읽지 않은 데이터가 남아 있으면 다음 `epoll_wait` 호출에서도 계속 이벤트를 돌려줍니다.
+epoll은 두 가지 통지 모드를 제공합니다. <strong>level-triggered(LT)</strong>는 기본값이며, 버퍼에 아직 읽지 않은 데이터가 남아 있으면 다음 `epoll_wait` 호출에서도 계속 이벤트를 돌려줍니다.
 
 > "when used as a level-triggered interface (the default, when EPOLLET is not specified), epoll is simply a faster poll(2)" — [man7.org: epoll(7)](https://man7.org/linux/man-pages/man7/epoll.7.html)
 
-**edge-triggered(ET)**는 `EPOLLET` 플래그로 켜며, fd의 상태가 "변화한 순간"에만 이벤트를 한 번 전달합니다. 데이터가 남아 있어도 새로운 변화가 없으면 다시 통지되지 않으므로, ET를 쓰려면 이벤트를 받을 때마다 `read`/`recv`가 `EAGAIN`을 반환할 때까지 반복해서 버퍼를 비우는 것이 필수입니다(자주 하는 실수 절에서 다시 다룹니다).
+<strong>edge-triggered(ET)</strong>는 `EPOLLET` 플래그로 켜며, fd의 상태가 "변화한 순간"에만 이벤트를 한 번 전달합니다. 데이터가 남아 있어도 새로운 변화가 없으면 다시 통지되지 않으므로, ET를 쓰려면 이벤트를 받을 때마다 `read`/`recv`가 `EAGAIN`을 반환할 때까지 반복해서 버퍼를 비우는 것이 필수입니다(자주 하는 실수 절에서 다시 다룹니다).
 
 여러 프로세스나 스레드가 같은 listen fd 하나를 각자의 epoll 인스턴스로 감시하면, 새 연결이 들어올 때 대기 중인 모든 인스턴스가 함께 깨어났다가 하나만 `accept`에 성공하고 나머지는 다시 잠드는 **thundering herd** 현상이 발생합니다. Linux 4.5부터 추가된 `EPOLLEXCLUSIVE` 플래그는 이를 완화합니다.
 
@@ -154,7 +154,7 @@ epoll은 두 가지 통지 모드를 제공합니다. **level-triggered(LT)**는
 
 ## kqueue: BSD 계열의 범용 이벤트 필터 (macOS 포함)
 
-kqueue는 epoll보다 더 넓은 범위의 이벤트를 하나의 통일된 모델로 다룹니다. fd의 읽기/쓰기 가능 여부(`EVFILT_READ`, `EVFILT_WRITE`)뿐 아니라 파일 속성 변화(`EVFILT_VNODE`), 자식 프로세스 종료·fork·exec(`EVFILT_PROC`), 타이머(`EVFILT_TIMER`), 시그널(`EVFILT_SIGNAL`) 등을 **필터(filter)**라는 동일한 인터페이스로 등록하고 대기할 수 있습니다. API 형태도 epoll과 다릅니다. `kevent()` 시스템 콜 하나가 "변경 목록(change list)"과 "이벤트 목록(event list)"을 동시에 인자로 받기 때문에, 등록과 대기를 한 호출로 합쳐 시스템 콜 횟수를 줄일 수 있습니다.
+kqueue는 epoll보다 더 넓은 범위의 이벤트를 하나의 통일된 모델로 다룹니다. fd의 읽기/쓰기 가능 여부(`EVFILT_READ`, `EVFILT_WRITE`)뿐 아니라 파일 속성 변화(`EVFILT_VNODE`), 자식 프로세스 종료·fork·exec(`EVFILT_PROC`), 타이머(`EVFILT_TIMER`), 시그널(`EVFILT_SIGNAL`) 등을 <strong>필터(filter)</strong>라는 동일한 인터페이스로 등록하고 대기할 수 있습니다. API 형태도 epoll과 다릅니다. `kevent()` 시스템 콜 하나가 "변경 목록(change list)"과 "이벤트 목록(event list)"을 동시에 인자로 받기 때문에, 등록과 대기를 한 호출로 합쳐 시스템 콜 횟수를 줄일 수 있습니다.
 
 ```cpp
 #include <sys/event.h>
@@ -263,9 +263,9 @@ int main(int argc, char** argv) {
 
 ## 흔한 오개념
 
-**"epoll은 항상 poll보다 빠르다"**는 오해입니다. fd 수가 수십 개 이하로 적을 때는 `epoll_ctl` 등록에 드는 추가 시스템 콜과 커널 자료구조 유지 비용이 poll()의 단순한 O(n) 스캔보다 오히려 불리할 수 있습니다. epoll의 이득은 fd 수가 수백~수만 개로 늘어나고 그중 유휴 비율이 높을 때 뚜렷해지므로, 워크로드의 실제 규모를 먼저 확인하고 선택해야 합니다.
+<strong>"epoll은 항상 poll보다 빠르다"</strong>는 오해입니다. fd 수가 수십 개 이하로 적을 때는 `epoll_ctl` 등록에 드는 추가 시스템 콜과 커널 자료구조 유지 비용이 poll()의 단순한 O(n) 스캔보다 오히려 불리할 수 있습니다. epoll의 이득은 fd 수가 수백–수만 개로 늘어나고 그중 유휴 비율이 높을 때 뚜렷해지므로, 워크로드의 실제 규모를 먼저 확인하고 선택해야 합니다.
 
-**"edge-triggered가 항상 더 우월하다"**도 흔한 오해입니다. ET는 통지 횟수를 줄여 시스템 콜을 아낄 수 있지만, 구현을 잘못하면 소켓 버퍼에 남은 데이터를 놓치는 버그로 이어집니다. 아래는 그 실패 패턴과 올바른 수정입니다.
+<strong>"edge-triggered가 항상 더 우월하다"</strong>도 흔한 오해입니다. ET는 통지 횟수를 줄여 시스템 콜을 아낄 수 있지만, 구현을 잘못하면 소켓 버퍼에 남은 데이터를 놓치는 버그로 이어집니다. 아래는 그 실패 패턴과 올바른 수정입니다.
 
 ```cpp
 // 깨진 코드: edge-triggered인데 이벤트당 한 번만 read() — 남은 데이터를 놓친다.
@@ -294,14 +294,14 @@ for (;;) {
 
 `strace -e trace=read,epoll_wait ./server`로 실행하면 수정된 버전에서 `read`가 `EAGAIN`을 반환할 때까지 반복 호출되는 패턴을 직접 확인할 수 있습니다.
 
-**"select/poll은 폐기된 API이니 절대 쓰면 안 된다"**도 지나친 일반화입니다. 두 API는 여전히 POSIX 표준이고 이식성이 가장 넓어서, fd 수가 애초에 적은 소규모 도구나 플랫폼 종속 API를 피해야 하는 크로스 플랫폼 라이브러리 내부에서는 지금도 널리 쓰입니다.
+<strong>"select/poll은 폐기된 API이니 절대 쓰면 안 된다"</strong>도 지나친 일반화입니다. 두 API는 여전히 POSIX 표준이고 이식성이 가장 넓어서, fd 수가 애초에 적은 소규모 도구나 플랫폼 종속 API를 피해야 하는 크로스 플랫폼 라이브러리 내부에서는 지금도 널리 쓰입니다.
 
 ## 판단 기준
 
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
 | fd 수십 개 이하, 최대 이식성 필요 | select 또는 poll | epoll 전용 코드(비Linux 이식 안 됨) |
-| fd 수백~수만, Linux 서버 | epoll(LT 우선, 필요 시 ET) | select(FD_SETSIZE 초과 위험) |
+| fd 수백–수만, Linux 서버 | epoll(LT 우선, 필요 시 ET) | select(FD_SETSIZE 초과 위험) |
 | BSD·macOS 네이티브 서버 | kqueue | Linux epoll API를 그대로 이식 시도 |
 | 여러 프로세스가 같은 listen fd 공유 | `EPOLLEXCLUSIVE`(Linux 4.5+) 또는 `SO_REUSEPORT` | 기본 다중 epoll 인스턴스(thundering herd) |
 | ET 모드 채택 | `O_NONBLOCK` + EAGAIN까지 drain 루프 | 이벤트당 1회 read/recv만 수행 |

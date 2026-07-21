@@ -67,7 +67,7 @@ tags:
 image: "wordcloud.png"
 ---
 
-오늘은 영어 명사 **'toxicologist'**의 정확한 의미와 실제 쓰임을 정리한다.  
+오늘은 영어 명사 <strong>'toxicologist'</strong>의 정확한 의미와 실제 쓰임을 정리한다.  
 이 단어는 **독성(독의 작용)을 연구하는 전문가**, 즉 **독물학자·독성학 전문가**를 가리키며, **법의학 검사, 약물·화학물질 사고 조사, 직업·환경 노출 평가** 같은 맥락에서 자주 등장한다.  
 직함·직업 명사로 쓰이므로 **관사(a/the)**, **복수형**, **형용사 수식(forensic, certified 등)** 패턴을 함께 익히면 뉴스·논문·드라마 자막에서도 빠르게 잡아낼 수 있다.
 
@@ -143,7 +143,7 @@ image: "wordcloud.png"
 - **발음**: /ˌtɒksɪˈkɒlədʒɪst/ (영국식 느낌), /ˌtɑːksɪˈkɑːlədʒɪst/ (미국식 대략).
 - **관사**: **a toxicologist**(직업 일반), **the toxicologist**(특정 인물 지칭).
 - **전치사 패턴**: **a toxicologist at + 기관**, **toxicologist for + 회사/기관**, **consult with a toxicologist**(자문).
-- **격식도**: 중립~격식; 뉴스·학술·법조·의료에서 흔하다.
+- **격식도**: 중립–격식; 뉴스·학술·법조·의료에서 흔하다.
 - **파생·관련어**: toxicology(n.), toxic(adj.), toxicity(n.), intoxication(n.).
 
 ---

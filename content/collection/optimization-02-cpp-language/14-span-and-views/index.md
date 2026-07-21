@@ -90,7 +90,7 @@ tags:
 
 **완전한 초보자?** 이 장은 앞서 [05장: 문자열 최적화](/post/cpp-optimization/string-optimization/)에서 소개한 `string_view`를 전제로 합니다. 값/참조/뷰 전달 비용의 일반 비교는 뒤의 [17장: Parameter Passing 전략](/post/cpp-optimization/parameter-passing/)에서 더 깊이 다루지만, 이 장은 뷰 전달에 필요한 만큼만 짚으므로 **순서대로 읽어도 됩니다**. "포인터 + 크기"로 배열을 가리킨다는 개념만 알면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **중급~전문가**를 포괄합니다. `span`·`string_view`로 복사 없이 전달하는 법부터 시작해, 전문가 구간에서는 API 경계에서 뷰를 받을지/소유 타입을 받을지, 그리고 댕글링 등 수명·안전성 함정을 다룹니다. **다루지 않는 것**: 컨테이너 자체의 비용([04장](/post/cpp-optimization/stl-container-cost/))과 ranges 뷰의 지연 평가([09장](/post/cpp-optimization/modern-cpp-features/))입니다.
+**이 장의 깊이**: 이 장은 **중급–전문가**를 포괄합니다. `span`·`string_view`로 복사 없이 전달하는 법부터 시작해, 전문가 구간에서는 API 경계에서 뷰를 받을지/소유 타입을 받을지, 그리고 댕글링 등 수명·안전성 함정을 다룹니다. **다루지 않는 것**: 컨테이너 자체의 비용([04장](/post/cpp-optimization/stl-container-cost/))과 ranges 뷰의 지연 평가([09장](/post/cpp-optimization/modern-cpp-features/))입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -170,7 +170,7 @@ std::string_view trim_prefix(std::string_view sv, std::string_view prefix) {
 
 ## 수명과 안전성
 
-뷰를 쓸 때 가장 중요한 것은 **뷰가 참조하는 메모리의 수명**을 호출자·설계자가 보장하는 것입니다. 반환값으로 뷰를 줄 경우, **임시**나 **함수 내 로컬 버퍼**를 가리키지 않도록 해야 합니다. 컴파일러나 정적 분석 도구가 일부 dangling을 경고할 수 있지만, 완전히 자동으로 잡기 어렵기 때문에 코딩 규칙(예: "뷰를 반환하지 않거나, 반환 시에는 인자로 받은 뷰만 반환")으로 보완하는 것이 좋습니다. 검증 빌드에서는 도구별 역할을 구분해야 합니다. **AddressSanitizer(`-fsanitize=address`)**는 댕글링 뷰가 가리키는 **해제된 메모리 접근(use-after-free)**을 잡는 데 유용하지만, span의 **인덱스 경계 자체를 검사하지는 않습니다**. 경계 검사는 **UBSan의 `-fsanitize=bounds`**(고정 크기 배열)나 표준 라이브러리 하드닝 모드(libstdc++ `-D_GLIBCXX_ASSERTIONS`/`-D_GLIBCXX_DEBUG`, libc++ `-D_LIBCPP_HARDENING_MODE`)로 켜야 `span::operator[]`·`at` 범위 위반을 디버그/테스트 빌드에서 잡을 수 있습니다.
+뷰를 쓸 때 가장 중요한 것은 **뷰가 참조하는 메모리의 수명**을 호출자·설계자가 보장하는 것입니다. 반환값으로 뷰를 줄 경우, **임시**나 **함수 내 로컬 버퍼**를 가리키지 않도록 해야 합니다. 컴파일러나 정적 분석 도구가 일부 dangling을 경고할 수 있지만, 완전히 자동으로 잡기 어렵기 때문에 코딩 규칙(예: "뷰를 반환하지 않거나, 반환 시에는 인자로 받은 뷰만 반환")으로 보완하는 것이 좋습니다. 검증 빌드에서는 도구별 역할을 구분해야 합니다. <strong>AddressSanitizer(`-fsanitize=address`)</strong>는 댕글링 뷰가 가리키는 <strong>해제된 메모리 접근(use-after-free)</strong>을 잡는 데 유용하지만, span의 **인덱스 경계 자체를 검사하지는 않습니다**. 경계 검사는 **UBSan의 `-fsanitize=bounds`**(고정 크기 배열)나 표준 라이브러리 하드닝 모드(libstdc++ `-D_GLIBCXX_ASSERTIONS`/`-D_GLIBCXX_DEBUG`, libc++ `-D_LIBCPP_HARDENING_MODE`)로 켜야 `span::operator[]`·`at` 범위 위반을 디버그/테스트 빌드에서 잡을 수 있습니다.
 
 ```mermaid
 flowchart TD

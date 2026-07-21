@@ -38,11 +38,11 @@ tags:
 image: "wordcloud.png"
 ---
 
-07장까지 만든 GPT는 "다음 토큰을 예측"할 뿐, 스팸 메일을 분류하거나 특정 형식으로 답하는 등 구체적인 과제를 수행하도록 만들어지지는 않았습니다. **파인튜닝(Fine-tuning)**은 이렇게 사전학습된 베이스 모델을 특정 목적에 맞게 추가로 학습시키는 과정입니다. 이 장은 가장 단순한 형태인 Classification Fine-tuning에서 시작해, 전체 가중치를 건드리지 않고도 모델을 조정할 수 있는 LoRA로 넘어갑니다.
+07장까지 만든 GPT는 "다음 토큰을 예측"할 뿐, 스팸 메일을 분류하거나 특정 형식으로 답하는 등 구체적인 과제를 수행하도록 만들어지지는 않았습니다. <strong>파인튜닝(Fine-tuning)</strong>은 이렇게 사전학습된 베이스 모델을 특정 목적에 맞게 추가로 학습시키는 과정입니다. 이 장은 가장 단순한 형태인 Classification Fine-tuning에서 시작해, 전체 가중치를 건드리지 않고도 모델을 조정할 수 있는 LoRA로 넘어갑니다.
 
 ## Classification Fine-tuning — 출력층만 새로 붙이기
 
-**분류 미세튜닝(Classification Fine-tuning)**의 핵심은 GPT의 마지막 출력층을 바꿔치기하는 것입니다. 원래 GPT의 출력층은 `Linear(emb_dim → vocab_size)`로 다음 토큰의 확률 분포를 만들지만, 분류 과제에서는 이 층을 `Linear(emb_dim → num_classes)`로 교체해 "스팸/정상"처럼 정해진 클래스 중 하나를 고르도록 만듭니다.
+<strong>분류 미세튜닝(Classification Fine-tuning)</strong>의 핵심은 GPT의 마지막 출력층을 바꿔치기하는 것입니다. 원래 GPT의 출력층은 `Linear(emb_dim → vocab_size)`로 다음 토큰의 확률 분포를 만들지만, 분류 과제에서는 이 층을 `Linear(emb_dim → num_classes)`로 교체해 "스팸/정상"처럼 정해진 클래스 중 하나를 고르도록 만듭니다.
 
 ```python
 import torch.nn as nn
@@ -63,13 +63,13 @@ class GPTForClassification(nn.Module):
 
 ## LoRA — 전체 가중치 대신 저차원 행렬만 학습하기
 
-모델이 커질수록 모든 가중치를 파인튜닝(Full Fine-tuning)하는 데 드는 메모리와 시간이 감당하기 어려워집니다. **LoRA(Low-Rank Adaptation)**는 기존 가중치 행렬 $W$를 얼려둔(freeze) 채, 그 옆에 훨씬 작은 두 행렬 $A$, $B$의 곱만 학습시켜 가중치 변화량을 근사하는 방법입니다.
+모델이 커질수록 모든 가중치를 파인튜닝(Full Fine-tuning)하는 데 드는 메모리와 시간이 감당하기 어려워집니다. <strong>LoRA(Low-Rank Adaptation)</strong>는 기존 가중치 행렬 $W$를 얼려둔(freeze) 채, 그 옆에 훨씬 작은 두 행렬 $A$, $B$의 곱만 학습시켜 가중치 변화량을 근사하는 방법입니다.
 
 $$W' = W + \Delta W = W + BA$$
 
 > Edward J. Hu, Yelong Shen, Phillip Wallis 외, "LoRA: Low-Rank Adaptation of Large Language Models", *arXiv:2106.09685* (2021)
 
-여기서 $W$가 $(d, d)$ 크기라면, $A$는 $(r, d)$, $B$는 $(d, r)$ 크기이고 $r$(rank)은 $d$보다 훨씬 작은 값(예: 4~64)입니다. 학습해야 할 파라미터 수가 $d^2$에서 $2rd$로 줄어들기 때문에, $r$이 작을수록 학습 비용은 급격히 줄어듭니다. 원 논문은 이 방식이 GPT-3 규모 모델에서도 Full Fine-tuning과 비슷한 성능을 내면서 학습 가능한 파라미터 수는 수천 분의 1로 줄일 수 있음을 보였습니다.
+여기서 $W$가 $(d, d)$ 크기라면, $A$는 $(r, d)$, $B$는 $(d, r)$ 크기이고 $r$(rank)은 $d$보다 훨씬 작은 값(예: 4–64)입니다. 학습해야 할 파라미터 수가 $d^2$에서 $2rd$로 줄어들기 때문에, $r$이 작을수록 학습 비용은 급격히 줄어듭니다. 원 논문은 이 방식이 GPT-3 규모 모델에서도 Full Fine-tuning과 비슷한 성능을 내면서 학습 가능한 파라미터 수는 수천 분의 1로 줄일 수 있음을 보였습니다.
 
 ```python
 import torch
@@ -97,7 +97,7 @@ class LoRALinear(nn.Module):
 
 ## QLoRA와 BF16 — 메모리를 더 아끼기
 
-**QLoRA**는 LoRA의 아이디어에 양자화(Quantization)를 결합해, 얼려둔 원본 가중치 $W$를 4비트 같은 저정밀도로 저장하고 학습 가능한 $A$, $B$ 행렬만 16비트로 유지하는 방식입니다. 이렇게 하면 원본 모델을 GPU 메모리에 올리는 비용 자체가 크게 줄어들어, 소비자용 GPU 한 장으로도 수십억 파라미터 모델을 파인튜닝할 수 있게 됩니다. 이 시리즈의 양자화 원리 자체는 별도의 On-Device AI 경량화 시리즈에서 더 깊이 다루므로, 여기서는 LoRA와 결합되는 지점만 짚습니다. **BF16(bfloat16)**은 일반적인 16비트 부동소수점(FP16)과 달리 지수(exponent) 비트를 32비트 부동소수점과 동일하게 유지해, 정밀도는 다소 낮아지더라도 값의 범위(overflow에 강한 정도)는 유지하는 절충안으로, 최근 LLM 학습에서 기본값처럼 쓰입니다.
+**QLoRA**는 LoRA의 아이디어에 양자화(Quantization)를 결합해, 얼려둔 원본 가중치 $W$를 4비트 같은 저정밀도로 저장하고 학습 가능한 $A$, $B$ 행렬만 16비트로 유지하는 방식입니다. 이렇게 하면 원본 모델을 GPU 메모리에 올리는 비용 자체가 크게 줄어들어, 소비자용 GPU 한 장으로도 수십억 파라미터 모델을 파인튜닝할 수 있게 됩니다. 이 시리즈의 양자화 원리 자체는 별도의 On-Device AI 경량화 시리즈에서 더 깊이 다루므로, 여기서는 LoRA와 결합되는 지점만 짚습니다. <strong>BF16(bfloat16)</strong>은 일반적인 16비트 부동소수점(FP16)과 달리 지수(exponent) 비트를 32비트 부동소수점과 동일하게 유지해, 정밀도는 다소 낮아지더라도 값의 범위(overflow에 강한 정도)는 유지하는 절충안으로, 최근 LLM 학습에서 기본값처럼 쓰입니다.
 
 ## 언제 Full Fine-tuning, 언제 LoRA를 쓰는가
 

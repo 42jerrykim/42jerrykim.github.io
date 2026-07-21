@@ -76,7 +76,7 @@ image: "image.png"
 * **개봉일**: 2023.11.22 (미국), 2024.01.03 (대한민국)
 * **제작사**: Walt Disney Animation Studios
 * **배급사**: Walt Disney Studios Motion Pictures
-* **제작비**: 약 1억 7500만~2억 달러
+* **제작비**: 약 1억 7500만–2억 달러
 * **평점**: 로튼 토마토 48%, IMDb 약 5.9/10, CGV·네이버 등 국내 평점 참고 가능
 
 ### 추천 대상

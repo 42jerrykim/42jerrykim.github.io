@@ -46,7 +46,7 @@ tags:
 
 **완전한 초보자?** 이 장은 [02장: I/O 패턴과 비용](/post/io-optimization/io-patterns-blocking-nonblocking-cost-model/)에서 다룬 시스템콜·블로킹 비용 모델과 [09장: 파일시스템 특성](/post/io-optimization/filesystem-performance-characteristics-ext4-xfs-zfs/)에서 다룬 ext4/XFS/ZFS의 계층 구조를 전제로 합니다. "커널이 파일 요청을 블록 요청으로 바꿔 디바이스에 보낸다"는 그림만 있으면 충분합니다.
 
-**이 장의 깊이**: **심화**입니다. NAND 플래시와 FTL(Flash Translation Layer)의 동작 원리부터 시작해, `blk-mq` 스케줄러 4종의 내부 메커니즘, 그리고 2024~2025년에 커널에 들어온 NVMe FDP 지원까지 다룹니다. **다루지 않는 것**: `O_DIRECT`로 페이지 캐시를 우회하는 방법 자체([08장](/post/io-optimization/direct-io-o-direct-page-cache-bypass/)에서 다룸), ext4/XFS의 저널링·원자적 쓰기 상세([09장](/post/io-optimization/filesystem-performance-characteristics-ext4-xfs-zfs/)), io_uring의 SQ/CQ 폴링·NAPI busy-poll 상세([04장](/post/io-optimization/io-uring-advanced-deep-dive/)), WAL/fsync 저널링 전략([14장](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)), 커널 모듈·벤더 드라이버로 스토리지 스택을 직접 커스터마이징하는 운영 리스크(16장: 스토리지 스택 커스터마이징, 게시 예정)입니다.
+**이 장의 깊이**: **심화**입니다. NAND 플래시와 FTL(Flash Translation Layer)의 동작 원리부터 시작해, `blk-mq` 스케줄러 4종의 내부 메커니즘, 그리고 2024–2025년에 커널에 들어온 NVMe FDP 지원까지 다룹니다. **다루지 않는 것**: `O_DIRECT`로 페이지 캐시를 우회하는 방법 자체([08장](/post/io-optimization/direct-io-o-direct-page-cache-bypass/)에서 다룸), ext4/XFS의 저널링·원자적 쓰기 상세([09장](/post/io-optimization/filesystem-performance-characteristics-ext4-xfs-zfs/)), io_uring의 SQ/CQ 폴링·NAPI busy-poll 상세([04장](/post/io-optimization/io-uring-advanced-deep-dive/)), WAL/fsync 저널링 전략([14장](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)), 커널 모듈·벤더 드라이버로 스토리지 스택을 직접 커스터마이징하는 운영 리스크(16장: 스토리지 스택 커스터마이징, 게시 예정)입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -60,17 +60,17 @@ tags:
 
 ## NAND 플래시와 스케줄러의 역사 (역사·배경)
 
-회전식 HDD 시대의 Linux 블록 계층은 단일 요청 큐에 **elevator** 알고리즘(noop, deadline, CFQ)을 얹어 탐색 거리(seek distance)를 줄이는 방향으로 설계되었습니다. 헤드가 물리적으로 이동해야 하는 HDD에서는 요청을 정렬해 헤드 이동 경로를 짧게 만드는 것 자체가 성능이었습니다. 그런데 SSD와 NVMe가 보급되면서 문제의 성격이 바뀌었습니다. NVMe 디바이스는 최대 64K개의 큐를 큐당 최대 64K개의 명령으로 지원하도록 설계되어, 단일 큐+락 기반의 레거시 블록 계층 자체가 병목이 되었습니다. 이를 해결하기 위해 Jens Axboe 등이 설계한 **blk-mq(Multi-Queue Block Layer)**가 2013년 Linux 3.13에 병합되었고, 이후 점진적으로 SCSI·NVMe 드라이버가 이를 채택했습니다. 전환은 2019년 Linux 5.0에서 완료되어, 레거시 단일 큐 스케줄러(noop, deadline, CFQ)는 커널에서 완전히 제거되고 `blk-mq` 기반의 **none, mq-deadline, kyber, bfq** 네 가지만 남았습니다.
+회전식 HDD 시대의 Linux 블록 계층은 단일 요청 큐에 **elevator** 알고리즘(noop, deadline, CFQ)을 얹어 탐색 거리(seek distance)를 줄이는 방향으로 설계되었습니다. 헤드가 물리적으로 이동해야 하는 HDD에서는 요청을 정렬해 헤드 이동 경로를 짧게 만드는 것 자체가 성능이었습니다. 그런데 SSD와 NVMe가 보급되면서 문제의 성격이 바뀌었습니다. NVMe 디바이스는 최대 64K개의 큐를 큐당 최대 64K개의 명령으로 지원하도록 설계되어, 단일 큐+락 기반의 레거시 블록 계층 자체가 병목이 되었습니다. 이를 해결하기 위해 Jens Axboe 등이 설계한 <strong>blk-mq(Multi-Queue Block Layer)</strong>가 2013년 Linux 3.13에 병합되었고, 이후 점진적으로 SCSI·NVMe 드라이버가 이를 채택했습니다. 전환은 2019년 Linux 5.0에서 완료되어, 레거시 단일 큐 스케줄러(noop, deadline, CFQ)는 커널에서 완전히 제거되고 `blk-mq` 기반의 **none, mq-deadline, kyber, bfq** 네 가지만 남았습니다.
 
-같은 시기 NAND 플래시 자체도 SLC에서 MLC, TLC, QLC로 셀당 저장 비트 수를 늘리며 용량 대비 가격을 낮췄지만, 그 대가로 셀 내구성(P/E 사이클)과 쓰기 속도가 떨어졌습니다. 이 트레이드오프 때문에 컨트롤러의 **쓰기 증폭 관리**가 SSD 수명과 지연시간 모두에 직결되는 문제로 부상했고, 그 연장선에서 2022년 NVMe TP4146으로 **FDP(Flexible Data Placement)**가 제안되어 NVMe 2.1(2024년 8월 5일 ratified)에 반영되었습니다.
+같은 시기 NAND 플래시 자체도 SLC에서 MLC, TLC, QLC로 셀당 저장 비트 수를 늘리며 용량 대비 가격을 낮췄지만, 그 대가로 셀 내구성(P/E 사이클)과 쓰기 속도가 떨어졌습니다. 이 트레이드오프 때문에 컨트롤러의 **쓰기 증폭 관리**가 SSD 수명과 지연시간 모두에 직결되는 문제로 부상했고, 그 연장선에서 2022년 NVMe TP4146으로 <strong>FDP(Flexible Data Placement)</strong>가 제안되어 NVMe 2.1(2024년 8월 5일 ratified)에 반영되었습니다.
 
 ## SSD 내부 동작: NAND, FTL, 쓰기 증폭
 
-NAND 플래시는 **읽기·쓰기는 페이지(보통 4~16KB) 단위**로, **삭제는 블록(여러 페이지 묶음, 보통 수백 KB~수 MB) 단위**로만 할 수 있다는 비대칭 제약을 갖습니다. 이미 데이터가 있는 페이지를 덮어쓸 수 없고, 반드시 해당 블록 전체를 지운 뒤에야 다시 쓸 수 있습니다. 이 제약을 애플리케이션과 파일시스템에 숨기는 역할을 컨트롤러 펌웨어의 **FTL(Flash Translation Layer)**이 담당합니다. FTL은 논리 블록 주소(LBA)를 물리 페이지 주소로 매핑하고, 덮어쓰기 요청이 오면 새 페이지에 쓴 뒤 매핑을 갱신하고 이전 페이지를 "무효"로 표시합니다.
+NAND 플래시는 **읽기·쓰기는 페이지(보통 4–16KB) 단위**로, **삭제는 블록(여러 페이지 묶음, 보통 수백 KB–수 MB) 단위**로만 할 수 있다는 비대칭 제약을 갖습니다. 이미 데이터가 있는 페이지를 덮어쓸 수 없고, 반드시 해당 블록 전체를 지운 뒤에야 다시 쓸 수 있습니다. 이 제약을 애플리케이션과 파일시스템에 숨기는 역할을 컨트롤러 펌웨어의 <strong>FTL(Flash Translation Layer)</strong>이 담당합니다. FTL은 논리 블록 주소(LBA)를 물리 페이지 주소로 매핑하고, 덮어쓰기 요청이 오면 새 페이지에 쓴 뒤 매핑을 갱신하고 이전 페이지를 "무효"로 표시합니다.
 
-무효 페이지가 쌓인 블록은 **가비지 컬렉션(GC)**으로 회수됩니다. GC는 블록 안에 남은 유효 페이지를 다른 블록으로 옮겨 쓴 뒤 블록 전체를 지우는데, 이 "옮겨 쓰기"가 호스트가 요청하지 않은 추가 쓰기를 만듭니다. **쓰기 증폭 계수(WAF, Write Amplification Factor)**는 "미디어에 실제로 쓴 바이트 / 호스트가 쓴 바이트"로 정의되며, GC가 활발할수록, 그리고 호스트가 함께 지워질 데이터(수명이 비슷한 데이터)를 물리적으로 흩어 놓을수록 WAF가 커집니다. WAF가 커지면 셀 마모가 빨라져 수명이 줄고, GC로 인한 백그라운드 쓰기가 전경 쓰기·읽기 지연을 밀어내 **tail latency**를 악화시킵니다.
+무효 페이지가 쌓인 블록은 <strong>가비지 컬렉션(GC)</strong>으로 회수됩니다. GC는 블록 안에 남은 유효 페이지를 다른 블록으로 옮겨 쓴 뒤 블록 전체를 지우는데, 이 "옮겨 쓰기"가 호스트가 요청하지 않은 추가 쓰기를 만듭니다. <strong>쓰기 증폭 계수(WAF, Write Amplification Factor)</strong>는 "미디어에 실제로 쓴 바이트 / 호스트가 쓴 바이트"로 정의되며, GC가 활발할수록, 그리고 호스트가 함께 지워질 데이터(수명이 비슷한 데이터)를 물리적으로 흩어 놓을수록 WAF가 커집니다. WAF가 커지면 셀 마모가 빨라져 수명이 줄고, GC로 인한 백그라운드 쓰기가 전경 쓰기·읽기 지연을 밀어내 **tail latency**를 악화시킵니다.
 
-**TRIM/discard**는 파일시스템이 삭제한 논리 블록을 컨트롤러에 알려 FTL이 해당 페이지를 조기에 무효 처리하게 하는 명령입니다. discard가 없으면 컨트롤러는 실제로는 비어 있는 페이지를 "유효한 데이터"로 오인해 GC 때 불필요하게 옮겨 쓰므로 WAF가 커집니다. 다만 discard 자체도 비용이 있어, ext4/XFS의 `discard` 마운트 옵션(연속 discard)과 주기적 `fstrim`(배치 discard) 중 무엇을 쓸지는 워크로드에 따라 달라지며, 파일시스템별 구체적인 옵션은 [09장](/post/io-optimization/filesystem-performance-characteristics-ext4-xfs-zfs/)에서 다룹니다. **오버프로비저닝(OP)**은 컨트롤러가 사용자에게 노출하지 않고 예비로 남겨 두는 여유 공간으로, GC가 움직일 여유 블록을 늘려 WAF를 낮추는 대신 가용 용량을 줄이는 트레이드오프입니다.
+**TRIM/discard**는 파일시스템이 삭제한 논리 블록을 컨트롤러에 알려 FTL이 해당 페이지를 조기에 무효 처리하게 하는 명령입니다. discard가 없으면 컨트롤러는 실제로는 비어 있는 페이지를 "유효한 데이터"로 오인해 GC 때 불필요하게 옮겨 쓰므로 WAF가 커집니다. 다만 discard 자체도 비용이 있어, ext4/XFS의 `discard` 마운트 옵션(연속 discard)과 주기적 `fstrim`(배치 discard) 중 무엇을 쓸지는 워크로드에 따라 달라지며, 파일시스템별 구체적인 옵션은 [09장](/post/io-optimization/filesystem-performance-characteristics-ext4-xfs-zfs/)에서 다룹니다. <strong>오버프로비저닝(OP)</strong>은 컨트롤러가 사용자에게 노출하지 않고 예비로 남겨 두는 여유 공간으로, GC가 움직일 여유 블록을 늘려 WAF를 낮추는 대신 가용 용량을 줄이는 트레이드오프입니다.
 
 ```text
 WAF = (미디어에 실제로 쓴 바이트) / (호스트가 쓴 바이트)
@@ -138,7 +138,7 @@ stonewall
 
 ## NVMe 2.1 FDP: 쓰기 증폭을 호스트가 줄이는 법
 
-FTL은 호스트가 쓰는 데이터의 "의미"를 알지 못합니다. 로그 파일의 쓰기와 캐시 메타데이터의 쓰기가 물리적으로 같은 블록에 섞여 들어가면, 둘 중 하나만 무효화되어도 GC는 나머지 유효 페이지를 옮기기 위해 블록 전체를 재기록해야 합니다. **NVMe FDP(Flexible Data Placement, TP4146b)**는 이 문제를 "호스트가 컨트롤러에게 배치 힌트를 알려준다"는 방식으로 접근합니다. 컨트롤러는 NAND 블록 묶음을 **RU(Reclaim Unit)**로, 여러 RU를 다이 단위로 묶은 것을 **RG(Reclaim Group)**로 노출하고, 호스트는 쓰기 요청에 **배치 식별자(Placement Identifier)**를 붙여 어떤 **RUH(Reclaim Unit Handle, 동시에 쓸 수 있는 append 지점)**로 보낼지 지정합니다. 수명이 비슷한 데이터(예: 같은 세대의 로그 세그먼트)를 같은 RUH로 묶어 보내면, 나중에 함께 무효화될 가능성이 높아져 GC가 유효 페이지를 옮길 필요 자체가 줄어듭니다.
+FTL은 호스트가 쓰는 데이터의 "의미"를 알지 못합니다. 로그 파일의 쓰기와 캐시 메타데이터의 쓰기가 물리적으로 같은 블록에 섞여 들어가면, 둘 중 하나만 무효화되어도 GC는 나머지 유효 페이지를 옮기기 위해 블록 전체를 재기록해야 합니다. <strong>NVMe FDP(Flexible Data Placement, TP4146b)</strong>는 이 문제를 "호스트가 컨트롤러에게 배치 힌트를 알려준다"는 방식으로 접근합니다. 컨트롤러는 NAND 블록 묶음을 <strong>RU(Reclaim Unit)</strong>로, 여러 RU를 다이 단위로 묶은 것을 <strong>RG(Reclaim Group)</strong>로 노출하고, 호스트는 쓰기 요청에 <strong>배치 식별자(Placement Identifier)</strong>를 붙여 어떤 <strong>RUH(Reclaim Unit Handle, 동시에 쓸 수 있는 append 지점)</strong>로 보낼지 지정합니다. 수명이 비슷한 데이터(예: 같은 세대의 로그 세그먼트)를 같은 RUH로 묶어 보내면, 나중에 함께 무효화될 가능성이 높아져 GC가 유효 페이지를 옮길 필요 자체가 줄어듭니다.
 
 ```mermaid
 flowchart TB
@@ -195,11 +195,11 @@ nvme fdp usage /dev/nvme0n1
 
 ## 흔한 오개념
 
-**"NVMe SSD는 스케줄러가 필요 없다"**는 절반만 맞습니다. 정확히는 "탐색 거리를 줄이려는 재정렬형 스케줄러(mq-deadline류)의 이득이 작다"는 것이지, kyber처럼 in-flight 요청 수를 제한해 tail latency를 관리하는 방식은 NVMe에서도 유효합니다. `none`이 기본값이라는 것과 "스케줄링 정책이 항상 불필요하다"는 것은 다른 이야기입니다.
+<strong>"NVMe SSD는 스케줄러가 필요 없다"</strong>는 절반만 맞습니다. 정확히는 "탐색 거리를 줄이려는 재정렬형 스케줄러(mq-deadline류)의 이득이 작다"는 것이지, kyber처럼 in-flight 요청 수를 제한해 tail latency를 관리하는 방식은 NVMe에서도 유효합니다. `none`이 기본값이라는 것과 "스케줄링 정책이 항상 불필요하다"는 것은 다른 이야기입니다.
 
-**"TRIM/discard만 활성화하면 SSD 성능이 항상 회복된다"**도 과도한 단순화입니다. discard는 FTL이 무효 페이지를 조기에 알게 해 GC 부담을 줄이지만, discard 명령 자체도 큐에 들어가 다른 I/O와 경합하는 비용이 있습니다. 연속(continuous) discard와 주기적 `fstrim`(배치) 중 어느 쪽이 나은지는 쓰기 패턴에 따라 달라지며, 무조건 켜 두는 것이 항상 최선은 아닙니다.
+<strong>"TRIM/discard만 활성화하면 SSD 성능이 항상 회복된다"</strong>도 과도한 단순화입니다. discard는 FTL이 무효 페이지를 조기에 알게 해 GC 부담을 줄이지만, discard 명령 자체도 큐에 들어가 다른 I/O와 경합하는 비용이 있습니다. 연속(continuous) discard와 주기적 `fstrim`(배치) 중 어느 쪽이 나은지는 쓰기 패턴에 따라 달라지며, 무조건 켜 두는 것이 항상 최선은 아닙니다.
 
-**"큐 깊이(iodepth)를 높일수록 처리량이 계속 는다"**도 흔한 오해입니다. 큐 깊이를 늘리면 컨트롤러가 더 많은 요청을 병렬 처리할 여지가 생겨 처리량이 오르지만, 어느 지점을 넘으면 컨트롤러 내부 경합·GC 개입 빈도가 늘어 p99/p999 지연시간이 오히려 나빠집니다. 처리량 곡선이 평평해지기 시작하는 지점을 벤치마크로 찾아 그 근처에서 운용하는 것이 tail latency 관점에서 더 안전합니다.
+<strong>"큐 깊이(iodepth)를 높일수록 처리량이 계속 는다"</strong>도 흔한 오해입니다. 큐 깊이를 늘리면 컨트롤러가 더 많은 요청을 병렬 처리할 여지가 생겨 처리량이 오르지만, 어느 지점을 넘으면 컨트롤러 내부 경합·GC 개입 빈도가 늘어 p99/p999 지연시간이 오히려 나빠집니다. 처리량 곡선이 평평해지기 시작하는 지점을 벤치마크로 찾아 그 근처에서 운용하는 것이 tail latency 관점에서 더 안전합니다.
 
 ## 판단 기준
 

@@ -67,7 +67,7 @@ image: wordcloud.png
 draft: false
 ---
 
-GitHub에는 수많은 개발 도구와 설정이 공유되지만, **Claude Code**를 단순 채팅 인터페이스가 아니라 **역할 기반 에이전트·자동화 워크플로**로 쓰고 싶다면 검토할 만한 저장소가 있다. **[everything-claude-code](https://github.com/affaan-m/everything-claude-code)**는 Anthropic 해커톤 우승자 Affaan Mustafa가 10개월간 실사용하며 다듬은 `.claude` 설정 모음으로, Context Rot 방지, TDD·보안·리팩토링 워크플로 자동화, 슬래시 명령어 기반 빠른 실행을 한 번에 구성할 수 있게 해 준다. 이 글에서는 이 설정 모음의 개요, 아키텍처, 적용 기준, 장단점을 정리하고 참고 문헌을 제시한다.
+GitHub에는 수많은 개발 도구와 설정이 공유되지만, **Claude Code**를 단순 채팅 인터페이스가 아니라 **역할 기반 에이전트·자동화 워크플로**로 쓰고 싶다면 검토할 만한 저장소가 있다. <strong>[everything-claude-code](https://github.com/affaan-m/everything-claude-code)</strong>는 Anthropic 해커톤 우승자 Affaan Mustafa가 10개월간 실사용하며 다듬은 `.claude` 설정 모음으로, Context Rot 방지, TDD·보안·리팩토링 워크플로 자동화, 슬래시 명령어 기반 빠른 실행을 한 번에 구성할 수 있게 해 준다. 이 글에서는 이 설정 모음의 개요, 아키텍처, 적용 기준, 장단점을 정리하고 참고 문헌을 제시한다.
 
 ## 개요: 도구 정보와 추천 대상
 

@@ -60,8 +60,8 @@ tags:
 image: wordcloud.png
 ---
 
-오늘은 영어 명사 **'seniority'**의 정확한 의미와 실제 쓰임을 정리한다.  
-이 단어는 **“연공서열”, “선임”, “근속·경력에 따른 우선권”**을 나타낼 때 자주 쓰이며, 직장·조직·법률·노사 관계 맥락에서 반복 등장하는 중요한 명사다.  
+오늘은 영어 명사 <strong>'seniority'</strong>의 정확한 의미와 실제 쓰임을 정리한다.  
+이 단어는 <strong>“연공서열”, “선임”, “근속·경력에 따른 우선권”</strong>을 나타낼 때 자주 쓰이며, 직장·조직·법률·노사 관계 맥락에서 반복 등장하는 중요한 명사다.  
 단순 사전 정의를 넘어서, 콜로케이션과 EN/KR 예문을 통해 자연스러운 사용을 익힌다.
 
 ---
@@ -154,7 +154,7 @@ image: wordcloud.png
   - **seniority + 명사**: seniority list, seniority rights, seniority system
   - **동사 + seniority**: have/gain/lose seniority, base on seniority
   - **전치사**: by seniority, in order of seniority, based on seniority
-- **격식도**: 중립~격식; 직장·노사·법률·정책 문서에서 흔하다.
+- **격식도**: 중립–격식; 직장·노사·법률·정책 문서에서 흔하다.
 - **뉘앙스**: **중립**; 제도·규칙을 설명할 때 쓰며, 긍정(보호·안정) 또는 부정(신입 불리) 맥락 모두에서 사용된다.
 - **문화적 연상**: 직장 연공서열, 노조, 해고 순서, 승진·휴가 우선권과 자주 결부된다.
 
