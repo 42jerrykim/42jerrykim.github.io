@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] soft spot의 의미와 쓰임 - 명사구 핵심 정리"
+title: "[Vocabulary] soft spot 뜻과 의미 - 명사구 핵심 정리"
 description: "영어 구어 명사구 'soft spot'의 핵심 뜻(애착, 약점, 취약 부위)을 정리한다. 일상 대화·감정 표현·스포츠·신체 묘사 등 다양한 맥락에서 쓰이는 콜로케이션과 EN/KR 예문 50개로 자연스러운 사용을 익힌다. have a soft spot for 표현이 핵심."
 date: 2026-05-08
 lastmod: 2026-05-08

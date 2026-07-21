@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] second thoughts의 의미와 쓰임 - 구(숙어) 핵심 정리"
+title: "[Vocabulary] second thoughts 뜻과 의미 - 구(숙어) 핵심 정리"
 description: "영어 구 'second thoughts'의 핵심 뜻(재고, 망설임, 후회)을 정리한다. have second thoughts, on second thought, without a second thought 등 일상·비즈니스·결정 맥락에서 쓰이는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다."
 date: 2026-03-10
 lastmod: 2026-03-10

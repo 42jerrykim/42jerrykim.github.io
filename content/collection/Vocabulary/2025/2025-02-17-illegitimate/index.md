@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] illegitimate의 의미와 용례"
+title: "[Vocabulary] illegitimate 뜻과 의미, 용례"
 date: 2025-02-17
 categories:
   - Vocabulary

@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] Guarantee - 보장과 보증의 정확한 의미"
+title: "[Vocabulary] Guarantee 뜻 - 보장과 보증의 정확한 의미"
 categories:
 - English
 - Vocabulary

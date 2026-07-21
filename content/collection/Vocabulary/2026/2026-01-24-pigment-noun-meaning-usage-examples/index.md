@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] pigment의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] pigment 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'pigment'의 핵심 뜻(색소, 염료, 안료)을 정리한다. 미술, 의학, 과학, 산업 등 다양한 분야에서 자주 쓰이는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 색상 표현과 생물학 용어로 반복 등장하는 중요한 명사."
 date: 2026-01-24
 lastmod: 2026-01-24

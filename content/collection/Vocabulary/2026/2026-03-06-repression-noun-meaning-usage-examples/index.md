@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] repression의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] repression 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'repression'의 핵심 뜻(정치·사회적 억압, 심리적 억압, 감정·충동 억제)을 정리한다. political repression, repression of feelings 같은 콜로케이션과 EN/KR 예문 50개로 정치, 심리, 일상 맥락에서의 실제 용법을 익힌다."
 date: 2026-03-06
 lastmod: 2026-03-06

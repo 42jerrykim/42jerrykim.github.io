@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] lacquerware의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] lacquerware 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'lacquerware'는 옻칠 등 칠로 마감한 공예품·식기·장식품을 통칭하며, 박물관 도록·수출 품목·큐레이션 안내에서 자주 쓰인다. 전통·현대 맥락의 콜로케이션과 lacquer·ware 어원, 가산 표현을 EN/KR 예문 50개로 익힌다."
 date: 2026-04-21
 lastmod: 2026-04-21

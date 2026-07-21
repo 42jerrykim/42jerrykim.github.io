@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] recognition의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] recognition 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'recognition'의 핵심 뜻(인식·알아봄, 인정·승인, 칭찬·평가)을 정리한다. diplomatic recognition, facial recognition, recognition of achievement 같은 콜로케이션과 EN/KR 예문 50개로 외교·기술·일상·비즈니스 맥락에서의 실제 용법을 익힌다."
 date: 2026-03-10
 lastmod: 2026-03-10

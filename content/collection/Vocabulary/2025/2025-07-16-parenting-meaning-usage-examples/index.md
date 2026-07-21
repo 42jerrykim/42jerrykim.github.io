@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] Parenting의 의미와 활용"
+title: "[Vocabulary] Parenting 뜻과 의미, 활용"
 categories:
 - English
 - Vocabulary

@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] run-down의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] run-down 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'run-down'의 핵심 뜻(낡은, 쇠퇴한, 피곤한)을 정리한다. 건물, 상태, 사람의 컨디션을 표현하는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 뉴스, 일상 표현, 부동산 분야에서 반복 등장하는 중요한 형용사."
 date: 2025-12-19
 lastmod: 2025-12-19

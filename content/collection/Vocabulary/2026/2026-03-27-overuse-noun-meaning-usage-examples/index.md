@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] overuse의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] overuse 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'overuse'의 핵심 뜻(남용, 과도한 사용, 지나친 의존)을 정리한다. 의료·기술·환경·비즈니스 맥락에서 자주 쓰이는 표현을 콜로케이션과 EN/KR 예문 50개로 익히고, 명사·동사 쓰임 차이까지 함께 이해한다."
 date: 2026-03-27
 lastmod: 2026-03-27

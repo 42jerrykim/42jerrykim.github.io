@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] ridicule의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] ridicule 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'ridicule'의 핵심 뜻(조롱하다, 비웃다, 놀리다)을 정리한다. 누군가를 무자비하게 조롱하거나 모욕하는 표현부터 공적 비난까지, 자주 쓰는 콜로케이션과 EN/KR 예문으로 사회·문화·개인 맥락의 정확한 용법을 익힌다."
 date: 2025-10-14
 lastmod: 2025-10-14

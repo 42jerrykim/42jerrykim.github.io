@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] retract의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] retract 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 ‘retract’의 핵심 뜻(발언·주장·약속을 철회하다, 신고·고소를 취하하다, (기계·신체가) 접히다·수축하다)을 정리한다. withdraw/recant/rescind와의 차이, 자주 쓰는 콜로케이션, EN/KR 예문으로 맥락별 뉘앙스를 정확히 익힌다."
 date: 2025-09-19
 lastmod: 2025-09-19

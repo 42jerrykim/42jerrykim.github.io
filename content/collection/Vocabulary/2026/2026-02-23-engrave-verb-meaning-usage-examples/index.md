@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] engrave의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] engrave 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'engrave'의 핵심 뜻(새기다, 조각하다, 인상을 남기다)을 정리한다. 예술, 기억, 깊은 감정 표현 등 다양한 맥락에서 사용되는 우아한 동사다. EN/KR 예문 50개로 실제 쓰임을 익힌다."
 date: 2026-02-23
 lastmod: 2026-02-23

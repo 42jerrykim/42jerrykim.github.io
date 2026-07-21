@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] put down의 의미와 쓰임 - 구동사 핵심 정리"
+title: "[Vocabulary] put down 뜻과 의미 - 구동사 핵심 정리"
 description: "영어 구동사 'put down'의 핵심 뜻(내려놓다, 적다·기록하다, 비난·깔보다, 진압하다, 안락사시키다)을 정리한다. 일상, 비즈니스, 의료·동물, 뉴스 맥락에서 자주 쓰이는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다."
 date: 2026-03-09
 lastmod: 2026-03-09

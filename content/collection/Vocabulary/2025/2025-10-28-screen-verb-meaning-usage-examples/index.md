@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] screen의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] screen 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'screen'의 핵심 뜻(선별하다, 심사하다, 검사하다, 가리다, 상영하다)을 정리한다. 의료 검진부터 보안 심사, 영화 상영까지 다양한 맥락에서의 정확한 용법을 자주 쓰는 콜로케이션과 EN/KR 예문으로 익힌다."
 date: 2025-10-28
 lastmod: 2025-10-28

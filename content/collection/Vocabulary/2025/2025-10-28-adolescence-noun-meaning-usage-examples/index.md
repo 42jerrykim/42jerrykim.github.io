@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] adolescence의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] adolescence 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'adolescence'의 핵심 뜻(청소년기, 사춘기)을 정리한다. 아동기와 성인기 사이의 발달 단계를 나타내는 표현부터 신체적·정서적 변화를 겪는 시기를 설명하는 용법까지, 자주 쓰는 콜로케이션과 EN/KR 예문으로 다양한 맥락의 정확한 용법을 익힌다."
 date: 2025-10-28
 lastmod: 2025-10-28

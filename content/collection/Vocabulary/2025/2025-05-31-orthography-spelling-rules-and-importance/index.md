@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] Orthography: 철자법과 맞춤법의 의미와 중요성"
+title: "[Vocabulary] Orthography 뜻: 철자법과 맞춤법의 의미와 중요성"
 date: 2025-05-31
 description: "Orthography(철자법)의 개념과 어원, 현대에서의 활용, 그리고 학습 방법에 대해 설명하는 글이다. 언어의 정확한 표기 규칙과 그 중요성을 다루며, 철자법 학습을 위한 실용적인 방법을 제시한다."
 tags:

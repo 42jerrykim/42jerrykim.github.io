@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] stimulation의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] stimulation 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'stimulation'의 핵심 뜻(자극, 촉진, 증진)을 정리한다. 신경학, 심리학, 경제, 교육, 기술 분야에서 자주 쓰이는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 학술, 뉴스, 비즈니스에서 반복 등장하는 중요한 명사."
 date: 2026-02-23
 lastmod: 2026-02-23

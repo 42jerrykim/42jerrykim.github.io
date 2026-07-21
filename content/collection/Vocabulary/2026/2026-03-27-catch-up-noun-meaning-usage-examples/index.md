@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] catch-up의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] catch-up 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'catch-up'의 핵심 뜻(밀린 일 처리, 격차 만회, 근황 나누기)을 정리한다. work catch-up, a catch-up call 같은 콜로케이션과 EN/KR 예문 50개로 업무·학습·일상 맥락에서 실제 용법을 익힌다."
 date: 2026-03-27
 lastmod: 2026-03-27

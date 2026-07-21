@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] cinematic의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] cinematic 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'cinematic'의 핵심 뜻(영화 같은, 극적인, 시각적으로 아름다운)을 정리한다. 영화, 영상, 문학, 일상 표현에서 자주 쓰이는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 미디어, 예술, 창작 분야에서 반복 등장하는 중요한 형용사."
 date: 2025-12-15
 lastmod: 2025-12-15
