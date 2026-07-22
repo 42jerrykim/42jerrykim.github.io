@@ -108,10 +108,10 @@
 | content/collection/computerterms/authentication-and-authorization/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/cache-hierarchy/index.md | 91 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/caching-and-invalidation/index.md | - | - | 0 | 미채점 | - |
-| content/collection/computerterms/cap-theorem-and-consensus/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/cap-theorem-and-consensus/index.md | 97 | 2026-07-22 | 2 | 통과 | 없음(경미: Reliability 태그 본문 근거 약함) |
 | content/collection/computerterms/cdn-caching/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/ci-cd-and-testing-types/index.md | - | - | 0 | 미채점 | - |
-| content/collection/computerterms/circuit-breaker/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/circuit-breaker/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 없음(경미: Release It! 장 번호 표기를 "Stability Patterns" 부로 완화) |
 | content/collection/computerterms/closures-and-scope/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/code-review/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/compilers-and-interpreters/index.md | - | - | 0 | 미채점 | - |
@@ -131,7 +131,7 @@
 | content/collection/computerterms/dynamic-programming/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/encryption-and-hashing/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/event-driven-architecture/index.md | - | - | 0 | 미채점 | - |
-| content/collection/computerterms/event-sourcing/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/event-sourcing/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/factory-pattern/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/feature-flags/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/file-systems/index.md | 97 | 2026-07-22 | 2 | 통과 | 없음 |
@@ -150,13 +150,13 @@
 | content/collection/computerterms/hexagonal-architecture/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/http-and-https/index.md | 97 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/http3-and-quic/index.md | 97 | 2026-07-22 | 2 | 통과 | 없음 |
-| content/collection/computerterms/idempotency/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/idempotency/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/inter-process-communication/index.md | 97 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/interrupts-and-system-calls/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/load-balancing/index.md | 91.6 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/memory-management/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/memory-safety-and-ownership/index.md | - | - | 0 | 미채점 | - |
-| content/collection/computerterms/message-queues/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/message-queues/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/multilevel-caching/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/mvc-and-mvvm/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/mvcc/index.md | 96.1 | 2026-07-22 | 2 | 통과 | 없음 |
@@ -193,7 +193,7 @@
 | content/collection/computerterms/tries/index.md | 93.4 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/type-systems/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/union-find/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 없음 |
-| content/collection/computerterms/vector-clocks/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/vector-clocks/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/version-control-internals/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/von-neumann-architecture/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/web-application-firewalls/index.md | - | - | 0 | 미채점 | - |

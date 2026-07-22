@@ -7,7 +7,7 @@ title: "[Computer Terms] CAP 정리와 합의 알고리즘 (CAP Theorem, Consens
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "CAP 정리는 분산 시스템이 네트워크 분단 상황에서 일관성과 가용성 중 하나만 선택할 수 있다는 이론입니다. 이 트레이드오프와, 여러 노드가 하나의 값에 합의하는 문제를 다룹니다."
+description: "CAP 정리는 분산 시스템이 네트워크 분단 상황에서 일관성과 가용성 중 하나만 선택할 수 있다는 이론입니다. 이 트레이드오프와, Raft·Paxos 같은 합의 알고리즘이 여러 노드를 하나의 값에 동의시켜 스플릿 브레인을 막는 원리를 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -31,8 +31,8 @@ tags:
 - Software-Engineering(소프트웨어공학)
 - Reliability(신뢰성)
 - Networking(네트워킹)
-- Debugging(디버깅)
-- Performance(성능)
+- System-Design(시스템설계)
+- Scalability(확장성)
 - Advanced
 ---
 
@@ -59,7 +59,7 @@ graph TD
 
 ## CP와 AP: 실제 시스템의 선택
 
-전통적인 관계형 데이터베이스는 대개 **CP**에 가깝게 설계된다 — 분단 시 일관성이 깨질 바에야 요청을 거부하는 쪽을 택한다. [NoSQL과 쿼리 최적화](/post/computerterms/nosql-and-query-optimization/)에서 다룬 일부 NoSQL(예: 초기 설계의 Cassandra, DynamoDB)은 **AP**에 가깝게 설계돼, 분단 상황에서도 응답을 계속하고 나중에 값을 맞춰 나가는 **최종 일관성(Eventual Consistency)** 모델을 쓴다. 어느 쪽이 "옳다"가 아니라, 서비스 특성에 따른 선택이다 — 은행 잔고 조회는 CP가, 소셜 미디어의 "좋아요" 수 표시는 AP가 더 적합한 대표적인 예다.
+전통적인 관계형 데이터베이스는 대개 **CP**에 가깝게 설계된다 — 분단 시 일관성이 깨질 바에야 요청을 거부하는 쪽을 택한다. [NoSQL과 쿼리 최적화](/post/computerterms/nosql-and-query-optimization/)에서 다룬 일부 NoSQL(예: 초기 설계의 Cassandra, DynamoDB)은 **AP**에 가깝게 설계돼, 분단 상황에서도 응답을 계속하고 나중에 값을 맞춰 나가는 **최종 일관성(Eventual Consistency)** 모델을 쓴다. 어느 쪽이 "옳다"가 아니라, 서비스 특성에 따른 선택이다 — 은행 잔고 조회는 CP가, 소셜 미디어의 "좋아요" 수 표시는 AP가 더 적합한 대표적인 예다. 이 선택은 **시스템 설계(System Design)** 초기 단계에서 결정해야 하는 근본적인 트레이드오프이기도 하다 — 사용자 수가 늘어나 노드를 여러 지역에 분산시키는 **확장성(Scalability)**을 확보할수록 네트워크 분단이 발생할 표면적도 함께 넓어지므로, CAP 선택은 "지금 필요한가"가 아니라 "시스템이 커졌을 때도 유지 가능한가"를 기준으로 내려야 한다.
 
 ## 합의 알고리즘: 여러 노드가 하나의 값에 동의하기
 
