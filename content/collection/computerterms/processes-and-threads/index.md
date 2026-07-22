@@ -7,7 +7,7 @@ title: "[Computer Terms] 프로세스와 스레드 (Process, Thread)"
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "프로세스는 독립된 메모리 공간을 가진 실행 단위이고, 스레드는 그 메모리를 공유하는 더 가벼운 실행 단위입니다. 두 단위의 자원 격리 차이를 fork와 스레드 생성 코드로 비교합니다."
+description: "프로세스는 독립된 메모리 공간을 가진 실행 단위이고, 스레드는 그 메모리를 공유하는 더 가벼운 실행 단위입니다. 두 단위의 자원 격리 차이를 fork와 스레드 생성 코드로 비교하고, 격리가 중요한 상황과 가벼운 동시성이 중요한 상황을 구분하는 판단 기준까지 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)

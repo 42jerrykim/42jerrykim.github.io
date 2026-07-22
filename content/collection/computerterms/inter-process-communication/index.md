@@ -7,7 +7,7 @@ title: "[Computer Terms] 프로세스 간 통신 (IPC: Pipe, Shared Memory)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "독립된 메모리 공간을 가진 프로세스가 데이터를 주고받는 IPC 방식을 파이프·공유 메모리·소켓 비교와 pipe() 코드 예제로 다룹니다."
+description: "독립된 메모리 공간을 가진 프로세스가 데이터를 주고받는 IPC 방식을 파이프·공유 메모리·소켓 비교로 다룹니다. pipe()와 shm_open()·세마포어 기반 동기화까지 컴파일 가능한 C 코드 예제로 자세히 설명합니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -92,13 +92,62 @@ int main(void) {
 
 그러나 이 속도는 대가를 치른다. 파이프는 커널이 버퍼 접근을 중개하며 자연스럽게 흐름을 제어해 주지만, 공유 메모리는 두 프로세스가 같은 메모리를 **아무 때나 동시에** 읽고 쓸 수 있어 조정 장치가 전혀 없다. 한 프로세스가 절반만 쓴 데이터를 다른 프로세스가 동시에 읽으면 일관성이 깨진 값을 보게 된다. 이는 [레이스 컨디션과 락](/post/computerterms/race-conditions-and-locks/)에서 다룬 문제와 정확히 같은 종류이며, 실무에서는 세마포어나 뮤텍스를 공유 메모리 영역 자체에 함께 두어 접근을 동기화한다. "가장 빠르다"와 "가장 쓰기 쉽다"는 별개라는 점이 공유 메모리를 실무에서 파이프보다 더 조심스럽게 다루는 이유다.
 
+다음은 POSIX 공유 메모리(`shm_open`)와 세마포어(`sem_open`)로 부모·자식이 값을 안전하게 주고받는 최소 예제다.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/mman.h>
+#include <sys/wait.h>
+#include <semaphore.h>
+
+#define SHM_NAME "/ipc_demo_shm"
+#define SEM_NAME "/ipc_demo_sem"
+
+int main(void) {
+    /* 1. 공유 메모리 객체 생성 및 크기 지정 */
+    int fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0666);
+    ftruncate(fd, sizeof(int));
+    int *shared_value = mmap(NULL, sizeof(int), PROT_READ | PROT_WRITE,
+                              MAP_SHARED, fd, 0);
+
+    /* 2. 두 프로세스가 함께 쓸 세마포어 생성(초기값 0: 아직 쓰기 전) */
+    sem_t *ready = sem_open(SEM_NAME, O_CREAT, 0666, 0);
+
+    pid_t pid = fork();
+    if (pid == 0) {
+        /* 자식: 부모가 값을 다 쓸 때까지 세마포어로 대기 */
+        sem_wait(ready);
+        printf("child read: %d\n", *shared_value);
+        exit(0);
+    }
+
+    /* 부모: 공유 메모리에 값을 쓴 뒤 세마포어로 자식에게 신호 */
+    *shared_value = 42;
+    sem_post(ready);
+
+    waitpid(pid, NULL, 0);
+
+    /* 3. 정리 */
+    munmap(shared_value, sizeof(int));
+    sem_close(ready);
+    sem_unlink(SEM_NAME);
+    shm_unlink(SHM_NAME);
+    return 0;
+}
+```
+
+`gcc ipc_shm_demo.c -o ipc_shm_demo -lrt -lpthread && ./ipc_shm_demo`로 컴파일·실행하면 `child read: 42`가 출력된다. `sem_wait(ready)`가 없다면 자식이 부모의 쓰기가 끝나기 전에 `shared_value`를 읽어버릴 수 있는데, 이것이 바로 위에서 설명한 "조정 장치가 없는" 문제의 실제 모습이다 — 세마포어가 그 조정 장치 역할을 한다.
+
 ## 비교: 파이프 vs 공유 메모리 vs 소켓
 
 | 특성 | 파이프 | 공유 메모리 | 소켓 |
 |---|---|---|---|
 | 데이터 전달 방식 | 커널 버퍼를 통한 스트림 복사 | 동일 물리 메모리를 직접 공유 | 커널 버퍼를 통한 스트림/데이터그램 |
 | 속도 | 중간(매 호출 시스템 콜) | 가장 빠름(매핑 후 복사 없음) | 상대적으로 느림(프로토콜 스택 경유) |
-| 동기화 필요성 | 커널이 자동으로 흐름 제어 | 직접 세마포어/뮤텍스로 동기화 필요 | 커널이 자동으로 흐름 제어 |
+| 동기화 필요성 | 커널이 자동으로 흐름 제어 | 직접 세마포어/뮤텍스로 동기화 필요 | 커널이 자동으로 흐름 제어(TCP 등 스트림 소켓 기준. UDP는 흐름 제어 없음) |
 | 통신 범위 | 대개 관련 프로세스(부모-자식) 간 | 같은 머신 내 프로세스 간 | 같은 머신 또는 네트워크 너머 |
 | 대표 사용처 | 셸 파이프라인, 단순 데이터 전달 | 대용량 데이터를 빠르게 공유해야 하는 경우 | 서버-클라이언트, 원격 통신 |
 
@@ -120,7 +169,7 @@ int main(void) {
 
 ## 참고 자료
 
-> Silberschatz, A., Galvin, P. B., & Gagne, G. (2018). *Operating System Concepts* (10th ed.), Chapter 3.3–3.4: Interprocess Communication & IPC in Shared-Memory/Message-Passing Systems. Wiley.
+> Silberschatz, A., Galvin, P. B., & Gagne, G. (2018). *Operating System Concepts* (10th ed.), Chapter 3: Processes (Interprocess Communication). Wiley.
 
 - [Linux man-pages: pipe(2)](https://man7.org/linux/man-pages/man2/pipe.2.html) — pipe() 시스템 콜의 동작과 디스크립터 관리
 - [Linux man-pages: shm_overview(7)](https://man7.org/linux/man-pages/man7/shm_overview.7.html) — POSIX 공유 메모리 API 개요와 동기화 필요성

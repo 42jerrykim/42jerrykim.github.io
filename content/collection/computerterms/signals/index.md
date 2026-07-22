@@ -7,7 +7,7 @@ title: "[Computer Terms] 시그널 (Signal)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "운영체제가 프로세스에 비동기 이벤트를 전달하는 시그널 메커니즘을 SIGINT·SIGTERM·SIGKILL 차이와 핸들러 등록 코드로 다룹니다."
+description: "운영체제가 프로세스에 비동기 이벤트를 전달하는 시그널 메커니즘을 SIGINT·SIGTERM·SIGKILL 차이와 컴파일 가능한 핸들러 등록 코드로 다루고, async-signal-safe 제약과 실무에서 흔한 오해까지 함께 설명합니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -42,7 +42,7 @@ tags:
 
 ## 프로세스에게 비동기적으로 이벤트를 알리는 방법
 
-프로그램을 실행하는 도중 터미널에서 `Ctrl+C`를 누르면 대부분의 프로그램은 즉시 종료된다. 이 종료는 프로그램이 매 순간 "사용자가 취소를 눌렀는가"를 직접 검사해서 일어나는 것이 아니다. 커널이 **시그널(Signal)**이라는 짧은 알림을 해당 프로세스에 전달하고, 프로세스는 실행 중이던 코드와 **비동기적으로** 이 알림을 받아 처리한다. 시그널은 번호와 이름으로 구분되며, 각 번호는 특정 상황을 의미하도록 표준화되어 있다. 대표적으로 `SIGINT`(2번, 인터럽트 요청 — 보통 `Ctrl+C`)와 `SIGTERM`(15번, 정상적인 종료 요청)이 있다.
+프로그램을 실행하는 도중 터미널에서 `Ctrl+C`를 누르면 대부분의 프로그램은 즉시 종료된다. 이 종료는 프로그램이 매 순간 "사용자가 취소를 눌렀는가"를 직접 검사해서 일어나는 것이 아니다. 커널이 **시그널(Signal)**이라는 짧은 알림을 해당 프로세스에 전달하고, 프로세스는 실행 중이던 코드와 **비동기적으로** 이 알림을 받아 처리한다. 시그널은 번호와 이름으로 구분되며, 각 번호는 특정 상황을 의미하도록 표준화되어 있다. 대표적으로 `SIGINT`(2번, 인터럽트 요청 — 보통 `Ctrl+C`)와 `SIGTERM`(15번, 정상적인 종료 요청)이 있다. 이 챕터에서 다루는 시그널 번호는 Linux/x86_64 기준이며, 다른 아키텍처나 유닉스 계열 운영체제에서는 일부 번호가 다를 수 있다.
 
 시그널을 받은 프로세스가 취할 수 있는 기본 동작은 세 가지로 나뉜다. 아무 처리도 등록하지 않았다면 커널이 정한 **기본 동작(default action)**을 따르는데, 대부분의 시그널은 기본 동작이 프로세스 종료다. 프로그램이 직접 **핸들러 함수를 등록**했다면 그 함수가 대신 실행된다. 또는 특정 시그널을 **무시(ignore)**하도록 설정할 수도 있다.
 
@@ -95,6 +95,22 @@ int main(void) {
 }
 ```
 
+이 핸들러가 호출되는 흐름은 다음과 같다. 프로그램이 `sleep(1)`을 실행하는 임의의 시점에 커널이 시그널을 전달하고, 실행 흐름을 끊어 핸들러로 진입시킨 뒤, 핸들러가 반환하면 원래 끊겼던 지점(메인 루프)으로 되돌아간다.
+
+```mermaid
+sequenceDiagram
+    participant K as "커널"
+    participant M as "메인 루프(while)"
+    participant H as "handle_sigint"
+
+    M->>M: "sleep(1) 실행 중"
+    K-->>M: "SIGINT 전달(비동기, 임의 지점)"
+    M->>H: "실행 흐름 강제 진입"
+    H->>H: "stop_requested = 1"
+    H-->>M: "핸들러 반환, 원래 지점 근처로 복귀"
+    M->>M: "while 조건 재확인 후 루프 탈출"
+```
+
 `gcc sigint_demo.c -o sigint_demo && ./sigint_demo`로 실행한 뒤 `Ctrl+C`를 누르면, 프로그램이 즉시 죽는 대신 "정리 작업 수행 중..." 메시지를 출력하고서 종료된다. 반면 같은 프로그램을 실행한 상태에서 다른 터미널로 `kill -9 <pid>`(`SIGKILL`)를 보내면 이 핸들러는 전혀 호출되지 않고 프로세스가 즉시 사라진다 — `handle_sigint`가 실행될 기회 자체가 없다. 핸들러 안에서 `sig_atomic_t` 플래그만 세우고 실제 작업은 메인 루프로 미룬 것도 임의로 고른 방식이 아니다. 시그널 핸들러는 실행 중이던 코드를 임의의 지점에서 끊고 끼어들기 때문에, `printf`처럼 내부적으로 락을 쓰는 함수를 핸들러 안에서 직접 호출하면 데드락 위험이 있다 — 그래서 POSIX는 핸들러 안에서 호출해도 안전한 **async-signal-safe** 함수 목록을 별도로 규정한다.
 
 ## 비교: 주요 시그널
@@ -123,7 +139,7 @@ int main(void) {
 
 ## 참고 자료
 
-> Silberschatz, A., Galvin, P. B., & Gagne, G. (2018). *Operating System Concepts* (10th ed.), Chapter 3.3: Interprocess Communication (Signals). Wiley.
+> Silberschatz, A., Galvin, P. B., & Gagne, G. (2018). *Operating System Concepts* (10th ed.), Chapter 3: Processes (Interprocess Communication). Wiley.
 
 - [Linux man-pages: signal(7)](https://man7.org/linux/man-pages/man7/signal.7.html) — 표준 시그널 전체 목록과 기본 동작, async-signal-safe 함수 목록
 - [Linux man-pages: sigaction(2)](https://man7.org/linux/man-pages/man2/sigaction.2.html) — 시그널 핸들러 등록 API 명세

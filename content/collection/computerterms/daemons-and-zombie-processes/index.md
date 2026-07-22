@@ -7,7 +7,7 @@ title: "[Computer Terms] 데몬과 좀비 프로세스 (Daemon, Zombie Process)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "백그라운드에서 지속 실행되는 데몬 프로세스의 특징과, 자식 종료 후 부모가 wait하지 않아 남는 좀비 프로세스, 고아 프로세스가 init에 입양되는 과정을 다룹니다."
+description: "백그라운드에서 지속 실행되는 데몬 프로세스의 특징과, 자식 종료 후 부모가 wait하지 않아 남는 좀비 프로세스, 고아 프로세스가 init에 입양되는 과정을 다룹니다. 서버 프로그램에서 좀비 누적을 막기 위해 언제 SIGCHLD 핸들러가 필요한지도 함께 설명합니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -49,6 +49,8 @@ tags:
 ## fork 이후 부모가 할 일을 안 하면: 좀비 프로세스
 
 프로세스가 종료되면 운영체제는 그 프로세스가 쓰던 메모리·파일 디스크립터 같은 자원을 대부분 즉시 회수한다. 하지만 **종료 상태 코드(exit status)** 자체는 부모 프로세스가 `wait()` 또는 `waitpid()`를 호출해 확인할 때까지 커널이 남겨둔다. 부모가 아직 이 값을 읽지 않은, 이미 실행은 끝났지만 프로세스 테이블에 항목만 남아 있는 상태를 **좀비 프로세스(Zombie Process)**라 부른다. 좀비는 CPU도 메모리도 거의 쓰지 않지만, 프로세스 테이블의 슬롯(PID)을 계속 점유한다. 부모가 계속 `wait()`를 호출하지 않고 자식을 계속 생성하는 서버 프로그램이라면, 시간이 지나며 좀비가 쌓여 결국 PID 고갈이라는 실무 장애로 이어질 수 있다.
+
+이 문제를 실무에서 다루는 판단 기준은 명확하다. 요청마다 자식 프로세스를 `fork`하는 서버 프로그램을 짠다면, 반드시 둘 중 하나를 구현해야 한다 — 매 자식 종료마다 커널이 보내는 `SIGCHLD` 시그널을 잡아 핸들러 안에서 `waitpid(-1, NULL, WNOHANG)`을 논블로킹으로 반복 호출해 죽은 자식을 즉시 거두거나, 애초에 `fork`를 직접 쓰지 않고 스레드 풀이나 이벤트 루프처럼 자식 프로세스 생성 자체가 없는 동시성 모델을 쓰는 것이다. `fork`를 쓰면서 이 처리를 생략하면, 부하가 낮을 때는 문제가 드러나지 않다가 트래픽이 몰려 짧은 시간에 많은 자식이 생성·종료될 때 좀비가 급격히 쌓이는 잠복 버그가 된다.
 
 부모가 자식보다 먼저 죽어버리는 경우는 또 다르다. 이렇게 부모를 잃은 자식 프로세스를 **고아 프로세스(Orphan Process)**라 부르는데, 커널은 고아가 생기는 즉시 그 프로세스의 부모를 PID 1(전통적으로 `init`, 현대에는 대개 systemd)로 재지정한다. 이 과정을 **입양(reparenting)**이라 하며, init/systemd는 주기적으로 자신의 자식들에 대해 `wait()`를 호출하도록 설계되어 있어 고아가 좀비로 영구히 남는 것을 막는다. 반대로 데몬 프로세스가 자식을 만들고 바로 종료해 그 자식을 init에게 넘기는 것은 실제로 데몬화의 한 단계로 활용되기도 한다.
 
@@ -108,5 +110,4 @@ int main(void) {
 
 > Silberschatz, A., Galvin, P. B., & Gagne, G. (2018). *Operating System Concepts* (10th ed.), Chapter 3: Processes. Wiley.
 
-- [Linux man-pages: wait(2)](https://man7.org/linux/man-pages/man2/wait.2.html) — wait/waitpid의 좀비 회수 동작 명세
-- [Linux man-pages: init(1)](https://man7.org/linux/man-pages/man1/init.1.html) — PID 1이 고아 프로세스를 입양하는 역할 설명
+- [Linux man-pages: wait(2)](https://man7.org/linux/man-pages/man2/wait.2.html) — wait/waitpid의 좀비 회수 동작과, 고아가 PID 1(init/systemd)에 재부모 지정되어 자동으로 거두어지는 과정(NOTES 섹션)을 함께 명세
