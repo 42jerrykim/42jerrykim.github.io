@@ -7,7 +7,7 @@ title: "[Computer Terms] 로드 밸런싱 (Load Balancing)"
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "로드 밸런싱은 하나의 서버로는 감당 못 할 트래픽을 여러 서버에 나눠 처리하는 기법입니다. 라운드 로빈·최소 연결·헬스 체크 알고리즘을 비교하고 세션 고정 문제를 다룹니다."
+description: "로드 밸런싱은 하나의 서버로는 감당 못 할 트래픽을 여러 서버에 나눠 처리하는 기법입니다. 라운드 로빈·최소 연결·헬스 체크 알고리즘을 비교하고, L4/L7 계층 구분과 세션 고정 문제의 근본 해법까지 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -86,7 +86,7 @@ IP 해시:      hash(클라이언트IP) % 서버수 → 항상 같은 서버로 
 
 ## 참고 자료
 
-> Kurose, J. F., & Ross, K. W. (2021). *Computer Networking: A Top-Down Approach* (8th ed.), Chapter 2.2: Content Distribution. Pearson.
+> Kurose, J. F., & Ross, K. W. (2021). *Computer Networking: A Top-Down Approach* (8th ed.), Chapter 2: Application Layer. Pearson.
 
 - [NGINX Documentation: Load Balancing](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/) — 실제 로드 밸런서 소프트웨어의 알고리즘·헬스 체크 설정
 - [AWS: What Is Load Balancing?](https://aws.amazon.com/what-is/load-balancing/) — L4/L7 로드 밸런싱 구분과 실무 아키텍처 예시

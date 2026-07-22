@@ -7,7 +7,7 @@ title: "[Computer Terms] HTTP/3와 QUIC"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "HTTP/1.1·HTTP/2는 TCP 위에서 Head-of-Line Blocking을 겪습니다. QUIC은 UDP 위에서 이 문제를 해결하고 TLS를 기본 통합한 HTTP/3의 전송 계층입니다."
+description: "HTTP/1.1·HTTP/2는 TCP 위에서 Head-of-Line Blocking을 겪습니다. QUIC은 UDP 위에서 스트림별 독립 순서 보장으로 이 문제를 해결하고 TLS 1.3을 기본 통합한 HTTP/3의 전송 계층이며, curl 실행 예시와 HTTP/3·HTTP/2 선택 기준까지 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -76,6 +76,19 @@ sequenceDiagram
 
 **HTTP/3**는 이 QUIC 위에서 동작하는 HTTP 버전이다. HTTP 자체의 의미론(메서드, 헤더, 상태 코드)은 HTTP/2와 크게 다르지 않지만, 전송 계층을 TCP에서 QUIC(UDP 기반)으로 바꾼 것이 핵심 변화다.
 
+실제로 어떤 프로토콜이 협상됐는지는 클라이언트 도구로 직접 확인할 수 있다. `curl`이 HTTP/3를 지원하는 빌드라면 다음처럼 확인한다.
+
+```text
+$ curl --http3 -v https://example.com 2>&1 | grep -E "ALPN|HTTP/"
+* ALPN: curl offers h3,h2,http/1.1
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+* ALPN: server accepted h3
+* using HTTP/3
+> GET / HTTP/3
+```
+
+`ALPN(Application-Layer Protocol Negotiation)`은 TLS 핸드셰이크 도중 클라이언트와 서버가 어떤 애플리케이션 프로토콜을 쓸지 합의하는 확장이다. 클라이언트가 `h3, h2, http/1.1` 순으로 선호도를 제시하고(`curl offers`), 서버가 `h3`를 받아들이면(`server accepted h3`) 그 이후 요청·응답이 실제로 QUIC 위의 HTTP/3로 오간다. 서버가 QUIC/UDP를 지원하지 않거나 중간 네트워크가 UDP를 차단하면, 이 협상은 `h2`나 `http/1.1`로 폴백된다.
+
 ## TLS가 QUIC에 기본 통합된 이유
 
 [HTTP와 HTTPS](/post/computerterms/http-and-https/)에서 다룬 전통적인 HTTPS는 TCP 핸드셰이크를 먼저 마친 뒤, 그 위에서 별도로 TLS 핸드셰이크를 수행한다 — 두 단계의 왕복이 필요하다. QUIC은 처음부터 TLS 1.3을 프로토콜 설계에 통합해, 연결 수립과 암호화 키 교환을 **한 번의 왕복**으로 동시에 처리한다. 이렇게 설계한 이유는 두 가지다. 첫째, 연결 수립 지연을 줄이는 것이 QUIC의 핵심 목표 중 하나이므로, 별도의 TLS 협상 단계를 두는 것 자체가 그 목표에 어긋난다. 둘째, TCP 헤더는 암호화되지 않은 평문으로 네트워크 중간 장비(방화벽, NAT 등)에 노출되는 반면, QUIC은 헤더 대부분을 암호화해 프로토콜 자체의 진화(중간 장비가 특정 필드에 의존하지 못하게 함)와 보안을 함께 확보하려 했다. 결과적으로 QUIC 위에서는 암호화되지 않은 통신이라는 선택지 자체가 없다 — HTTP/3는 항상 암호화된 통신이다.
@@ -89,6 +102,10 @@ sequenceDiagram
 | HOL 블로킹 | 있음(연결 단위) | 있음(TCP 계층에서) | 스트림 단위로 해소 |
 | 암호화 | 선택(HTTPS 별도 계층) | 선택(HTTPS 별도 계층) | 기본 통합(TLS 1.3) |
 | 연결 수립 왕복 | TCP 1-RTT (+TLS 1-RTT) | TCP 1-RTT (+TLS 1-RTT) | QUIC+TLS 통합 1-RTT |
+
+## 언제 HTTP/3를, 언제 HTTP/2를 쓰는가
+
+이 표에서 실무 판단의 기준은 **클라이언트의 네트워크 환경이 UDP를 신뢰할 수 있는가**다. 모바일 환경처럼 와이파이·셀룰러 사이를 자주 오가며 IP 주소가 바뀌는 상황에서는, TCP라면 연결을 처음부터 다시 맺어야 하지만 QUIC은 연결 ID로 클라이언트를 식별해 IP가 바뀌어도 같은 연결을 유지할 수 있어 유리하다. 반대로 사내망·구형 방화벽·일부 통신사 네트워크처럼 UDP 트래픽을 제한하거나 차단하는 중간 장비가 있는 환경에서는, QUIC 연결 자체가 수립되지 않거나 반복적인 폴백으로 오히려 지연이 늘어날 수 있다. 이런 이유로 실무에서는 HTTP/3를 지원하되 항상 HTTP/2·HTTP/1.1로 자동 폴백되도록 서버를 구성하는 것이 표준적인 접근이다 — HTTP/3 하나만 지원하고 폴백을 두지 않는 구성은 권장되지 않는다.
 
 ## 흔한 오개념
 

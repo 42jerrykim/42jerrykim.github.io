@@ -7,7 +7,7 @@ title: "[Computer Terms] 웹훅 (Webhook)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "웹훅은 클라이언트가 반복 요청하는 폴링 대신, 서버가 이벤트 발생 시 등록된 URL로 콜백하는 방식입니다. REST API와의 방향 차이와 페이로드 서명 검증을 다룹니다."
+description: "웹훅은 클라이언트가 반복 요청하는 폴링 대신, 서버가 이벤트 발생 시 등록된 URL로 콜백하는 방식입니다. REST API와의 방향 차이와, HMAC-SHA256 기반 페이로드 서명 검증을 실행 가능한 Python 코드와 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -29,7 +29,7 @@ tags:
 - Deep-Dive
 - Case-Study
 - Software-Engineering(소프트웨어공학)
-- Encryption(암호화)
+- Python
 - Web(웹)
 - Automation(자동화)
 - Integration(통합)
@@ -52,11 +52,11 @@ tags:
 sequenceDiagram
     participant App as 클라이언트 앱
     participant PG as 결제 서비스
-    App->>PG: 웹훅 URL 등록 (https://app.example.com/webhook/payment)
+    App->>PG: "웹훅 URL 등록 (https://app.example.com/webhook/payment)"
     Note over App,PG: --- 이후 결제가 실제로 발생할 때 ---
     Note over PG: 결제 완료 이벤트 발생
-    PG->>App: POST /webhook/payment {"event":"payment.completed","amount":10000}
-    App->>PG: 200 OK
+    PG->>App: "POST /webhook/payment {event: payment.completed, amount: 10000}"
+    App->>PG: "200 OK"
 ```
 
 여기서 방향이 바뀐 것에 주목할 필요가 있다. 폴링에서는 클라이언트가 "요청자"이고 서버가 "응답자"였지만, 웹훅에서 실제 이벤트가 발생했을 때는 **결제 서비스가 요청자, 클라이언트 앱이 응답자**가 된다. 즉 웹훅을 받는 쪽은 외부에서 들어오는 HTTP 요청을 받을 수 있는 엔드포인트(공인 IP로 접근 가능한 서버)를 미리 준비해 두어야 한다.
@@ -75,6 +75,34 @@ sequenceDiagram
 2. 수신 서버: 받은 페이로드 원문으로 signature' = HMAC-SHA256(비밀키, 페이로드 원문) 재계산
              signature == signature' 이면 신뢰, 다르면 요청 거부
 ```
+
+이 절차를 그대로 옮긴 실행 가능한 Python 코드는 다음과 같다. 발신 측 `sign_payload`와 수신 측 `verify_signature`가 같은 비밀 키를 공유한다고 가정한다.
+
+```python
+import hmac
+import hashlib
+
+def sign_payload(secret_key: bytes, payload: bytes) -> str:
+    return hmac.new(secret_key, payload, hashlib.sha256).hexdigest()
+
+def verify_signature(secret_key: bytes, payload: bytes, received_signature: str) -> bool:
+    expected_signature = sign_payload(secret_key, payload)
+    # 타이밍 공격을 막기 위해 문자열을 == 대신 compare_digest로 비교한다.
+    return hmac.compare_digest(expected_signature, received_signature)
+
+if __name__ == "__main__":
+    secret = b"shared-secret-key"
+    payload = b'{"event":"payment.completed","amount":10000}'
+
+    signature = sign_payload(secret, payload)
+    print("발신 측 서명:", signature)
+
+    print("정상 페이로드 검증:", verify_signature(secret, payload, signature))
+    tampered = b'{"event":"payment.completed","amount":99999999}'
+    print("변조된 페이로드 검증:", verify_signature(secret, tampered, signature))  # False
+```
+
+`hmac.compare_digest`를 쓰는 이유가 중요하다. 일반적인 문자열 비교(`==`)는 앞쪽 문자부터 하나씩 비교하다 다른 문자를 만나면 즉시 멈추므로, 비교에 걸리는 시간을 정밀하게 측정하면 공격자가 서명 값을 한 글자씩 추측해나갈 수 있다(**타이밍 공격**). `compare_digest`는 항상 전체 길이를 비교해 이 시간 차이를 없앤다.
 
 이 서명 검증은 [웹 취약점](/post/computerterms/web-vulnerabilities/)에서 다룬 위조 요청 방어의 웹훅 버전이다. 서명 값이 일치하지 않는 요청은 아무리 정상적인 형식을 갖춰도 처리하지 않고 거부해야 한다.
 

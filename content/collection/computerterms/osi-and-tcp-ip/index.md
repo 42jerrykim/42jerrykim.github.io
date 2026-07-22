@@ -7,7 +7,7 @@ title: "[Computer Terms] OSI 7계층과 TCP/IP"
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "OSI 7계층 모델과 실제 인터넷을 움직이는 TCP/IP 4계층을 비교하고, TCP의 3-way handshake와 UDP의 차이를 실제 소켓 통신 흐름으로 다룹니다."
+description: "OSI 7계층 모델과 실제 인터넷을 움직이는 TCP/IP 4계층을 비교하고, TCP의 3-way handshake와 UDP의 차이를 실제 소켓 통신 흐름으로 다룹니다. 계층이 나뉘는 이유와 각 계층의 역할을 컴파일 가능한 C 코드와 함께 설명합니다."
 tags:
 - Technology(기술)
 - Education(교육)

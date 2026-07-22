@@ -7,7 +7,7 @@ title: "[Computer Terms] HTTP와 HTTPS"
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "HTTP는 상태를 갖지 않는 요청-응답 프로토콜이고, HTTPS는 그 위에 TLS로 암호화를 얹은 것입니다. 요청/응답 구조와 TLS 핸드셰이크를 실제 통신 흐름으로 다룹니다."
+description: "HTTP는 상태를 갖지 않는 요청-응답 프로토콜이고, HTTPS는 그 위에 TLS로 암호화를 얹은 것입니다. 요청/응답 구조와 TLS 1.3 핸드셰이크의 순방향 비밀성을 실제 통신 흐름으로 다루고, 언제 HTTP로 충분하고 언제 HTTPS가 필수인지 판단 기준까지 설명합니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -30,10 +30,10 @@ tags:
 - Deep-Dive
 - Case-Study
 - Software-Engineering(소프트웨어공학)
-- Debugging(디버깅)
 - Performance(성능)
 - Encryption(암호화)
 - API
+- Certificate(인증서)
 ---
 
 ## 이 장을 읽기 전에
@@ -86,6 +86,8 @@ sequenceDiagram
 | 기본 포트 | 80 | 443 |
 | 초기 연결 비용 | TCP handshake만 | TCP handshake + TLS handshake |
 | 중간자 공격 방어 | 불가 | 가능 |
+
+이 표에서 실무 판단의 기준은 **통신 구간이 신뢰할 수 있는 네트워크 안에 있는가**다. 로컬 개발 환경이나 격리된 내부망에서 테스트용으로만 오가는 트래픽이라면 TLS 핸드셰이크 비용 없이 HTTP로 충분하다. 반면 공인 도메인으로 서비스하거나 로그인·결제처럼 민감한 정보가 오가는 경우 HTTPS는 선택이 아니라 사실상 필수다 — 최신 브라우저는 HTTPS 페이지에서 HTTP 리소스를 불러오는 것을 막는 Mixed Content 정책을 적용하고, HTTP/2 이상 스펙은 대부분의 브라우저 구현에서 TLS 위에서만 동작하도록 강제한다. 즉 오늘날 공개 웹 서비스에서 평문 HTTP만으로 운영하는 선택지는 사실상 남아 있지 않다.
 
 ## 흔한 오개념
 

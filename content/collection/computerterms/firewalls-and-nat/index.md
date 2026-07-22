@@ -7,7 +7,7 @@ title: "[Computer Terms] 방화벽과 NAT (Firewall, NAT)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "방화벽은 IP·포트 규칙으로 트래픽을 허용·차단하고, NAT는 사설 IP를 공인 IP로 변환해 여러 기기가 하나의 공인 IP를 공유하게 합니다. 포트 포워딩까지 함께 다룹니다."
+description: "방화벽은 IP·포트 규칙으로 트래픽을 허용·차단하고, NAT는 사설 IP를 공인 IP로 변환해 여러 기기가 하나의 공인 IP를 공유하게 합니다. 상태 기반 방화벽의 연결 추적 방식과, 외부에서 내부 서버로 접속하려면 필요한 포트 포워딩 설정까지 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -60,8 +60,8 @@ tags:
 
 ```mermaid
 sequenceDiagram
-    participant PC as 내부 PC(192.168.0.5:5000)
-    participant R as 라우터(공인 IP 203.0.113.10)
+    participant PC as "내부 PC(192.168.0.5:5000)"
+    participant R as "라우터(공인 IP 203.0.113.10)"
     participant S as 외부 서버
     PC->>R: 출발지 192.168.0.5:5000 → example.com:443
     R->>R: 매핑 테이블 기록 (203.0.113.10:40001 ↔ 192.168.0.5:5000)
