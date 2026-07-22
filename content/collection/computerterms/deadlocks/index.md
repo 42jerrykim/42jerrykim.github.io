@@ -7,7 +7,7 @@ title: "[Computer Terms] 데드락 (Deadlock)"
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "데드락은 두 개 이상의 실행 흐름이 서로가 쥔 락을 기다리며 영원히 멈추는 상황입니다. 발생 필요조건 네 가지와, 락 순서 고정으로 이를 예방하는 방법을 C 코드로 재현합니다."
+description: "데드락은 두 개 이상의 실행 흐름이 서로가 쥔 락을 기다리며 영원히 멈추는 상황입니다. 상호배제·점유대기·비선점·순환대기라는 발생 필요조건 네 가지와, 락 순서 고정으로 순환대기를 끊어 이를 예방하는 방법을 C 코드로 재현합니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -123,9 +123,21 @@ void *transfer_b_to_a_fixed(void *arg) {
 
 **"데드락은 락을 안 쓰면 안 생긴다"** — 락이 원인의 전형적인 예시일 뿐, 데드락의 네 조건은 락 이외의 자원(파일 핸들, 데이터베이스 트랜잭션 락, 세마포어)에도 똑같이 적용된다. [ACID Transactions](/post/computerterms/acid-transactions/) 챕터에서 다룬 데이터베이스 트랜잭션 간에도 동일한 원리로 데드락이 발생하며, 대부분의 RDBMS는 이를 자동으로 탐지해 한쪽 트랜잭션을 강제로 롤백시킨다.
 
+## 언제 어떤 예방 전략을 쓸 것인가
+
+세 가지 대응 전략은 상황에 따라 선택이 갈린다. **락 순서 고정**은 설계 시점에 프로그램이 다룰 자원의 종류를 미리 알 수 있을 때(예: 두 계좌 사이의 이체처럼 자원이 코드에 명시적으로 드러날 때) 가장 확실한 예방책이다. 반면 어떤 자원을 언제 잠글지 실행 중에야 결정되는 동적인 상황(예: 사용자 요청에 따라 임의의 자원 집합을 잠그는 범용 락 매니저)에서는 락 순서를 미리 정하기 어려우므로 **타임아웃 + 재시도**로 방향을 바꾸는 편이 현실적이다. **RDBMS의 자동 탐지·롤백**은 애플리케이션 코드가 개입할 수 없는 데이터베이스 내부 락에 한정되며, 개발자가 직접 구현하는 뮤텍스에는 적용되지 않는다 — 결국 예방 가능 여부(설계 시점에 자원을 알 수 있는가)가 첫 번째 판단 기준이고, 예방이 어렵다면 실패를 감내할 수 있는 형태(타임아웃 후 재시도)로 바꾸는 것이 그다음 선택이다.
+
 ## 다른 개념과의 연결
 
-데드락 탐지는 실행 흐름 간의 대기 관계를 [그래프](/post/computerterms/graphs/)로 그려("대기-그래프", Wait-For Graph) 사이클이 있는지 확인하는 문제로 환원된다 — 그래프 챕터에서 다룬 사이클 개념이 여기서 실무 도구로 다시 쓰인다. 다음 챕터에서는 락 없이 하드웨어 수준에서 동시성을 제어하는 [세마포어와 모니터](/post/computerterms/semaphores-and-monitors/)를 다룬다.
+데드락 탐지는 실행 흐름 간의 대기 관계를 [그래프](/post/computerterms/graphs/)로 그려("대기-그래프", Wait-For Graph) 사이클이 있는지 확인하는 문제로 환원된다 — 그래프 챕터에서 다룬 사이클 개념이 여기서 실무 도구로 다시 쓰인다.
+
+```mermaid
+graph LR
+    T1["스레드 1<br/>A 락 보유"] -->|"B 락 대기"| T2["스레드 2<br/>B 락 보유"]
+    T2 -->|"A 락 대기"| T1
+```
+
+위 그래프처럼 대기 관계가 순환을 이루면 데드락이 확정된다. 다음 챕터에서는 락처럼 상호 배제만 제공하는 도구를 넘어, 자원의 개수 자체를 세며 접근을 조절하는 [세마포어와 모니터](/post/computerterms/semaphores-and-monitors/)를 다룬다.
 
 ## 평가 기준
 
@@ -135,5 +147,5 @@ void *transfer_b_to_a_fixed(void *arg) {
 
 > Silberschatz, A., Galvin, P. B., & Gagne, G. (2018). *Operating System Concepts* (10th ed.), Chapter 8: Deadlocks. Wiley.
 
-- [Coffman, E. G., Elphick, M., & Shoshani, A. (1971). "System Deadlocks"](https://dl.acm.org/doi/10.1145/356586.356588). *ACM Computing Surveys*, 3(2) — 데드락 4대 필요조건을 최초로 정식화한 원 논문
+- Coffman, E. G., Elphick, M., & Shoshani, A. (1971). "System Deadlocks". *ACM Computing Surveys*, 3(2), 67-78 — 데드락 4대 필요조건을 최초로 정식화한 원 논문 (ACM 원문은 접근 제한으로 링크를 생략함)
 - [MySQL Documentation: Deadlocks](https://dev.mysql.com/doc/refman/8.0/en/innodb-deadlocks.html) — 실제 RDBMS가 데드락을 탐지하고 롤백하는 방식

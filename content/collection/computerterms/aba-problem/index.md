@@ -105,7 +105,7 @@ Node *pop(void) {
 
 ## 다른 개념과의 연결
 
-[원자적 연산과 CAS](/post/computerterms/atomic-operations-and-cas/)에서 다룬 "예상값과 같으면 교체"라는 CAS의 핵심 동작이, 값의 동일성만으로는 상태 변화 이력을 구분할 수 없다는 이 챕터의 한계로 이어진다. [스레드풀](/post/computerterms/thread-pools/)에서 다룬 작업 큐를 뮤텍스 대신 lock-free 큐로 구현한다면, 그 큐의 포인터 조작 역시 이 챕터의 ABA 문제를 그대로 마주하게 된다. 동시성 갈래는 이 챕터로 마무리되며, 이후 챕터들은 캐싱과 분산 시스템으로 이어진다.
+[원자적 연산과 CAS](/post/computerterms/atomic-operations-and-cas/)에서 다룬 "예상값과 같으면 교체"라는 CAS의 핵심 동작이, 값의 동일성만으로는 상태 변화 이력을 구분할 수 없다는 이 챕터의 한계로 이어진다. [스레드풀](/post/computerterms/thread-pools/)에서 다룬 작업 큐를 뮤텍스 대신 lock-free 큐로 구현한다면, 그 큐의 포인터 조작 역시 이 챕터의 ABA 문제를 그대로 마주하게 된다. 동시성 갈래는 이 챕터로 마무리되며, 이후 챕터들은 캐싱으로 이어진다.
 
 ## 평가 기준
 

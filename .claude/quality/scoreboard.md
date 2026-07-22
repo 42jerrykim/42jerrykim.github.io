@@ -98,13 +98,13 @@
 | content/collection/design-patterns/24-discovering-defining-new-patterns/index.md | 93 | 2026-07-19 | 5 | 통과 | 없음 |
 | content/collection/design-patterns/24-discovering-defining-new-patterns-practice/index.md | 97 | 2026-07-19 | 5 | 통과 | 없음 |
 | content/collection/computerterms/00-getting-started-computer-terms/index.md | 95.2 | 2026-07-22 | 3 | 통과 | 없음(경미: 표 의존도가 높아 항목3에서 표를 빼면 갈래 목록 자체는 문단만으로 전달 안 됨) |
-| content/collection/computerterms/aba-problem/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/aba-problem/index.md | 92.8 | 2026-07-22 | 1 | 통과 | 없음(경미: IEEE 링크 WAF 챌린지로 자동검증 불가) |
 | content/collection/computerterms/aicd/index.md | 96.1 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/algorithm/index.md | 94.6 | 2026-07-22 | 3 | 통과 | 없음 |
 | content/collection/computerterms/algorithm_efficiency/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/algotithm_classify/index.md | 98.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/arrays-and-linked-lists/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
-| content/collection/computerterms/atomic-operations-and-cas/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/atomic-operations-and-cas/index.md | 100 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/authentication-and-authorization/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/cache-hierarchy/index.md | 91 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/caching-and-invalidation/index.md | - | - | 0 | 미채점 | - |
@@ -119,12 +119,12 @@
 | content/collection/computerterms/content-delivery-networks/index.md | 91.6 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/content-negotiation/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/cookies-and-local-storage/index.md | - | - | 0 | 미채점 | - |
-| content/collection/computerterms/coroutines-and-async-await/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/coroutines-and-async-await/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/coupling-and-cohesion/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/cpu-and-pipelining/index.md | 94.6 | 2026-07-22 | 3 | 통과 | 없음 |
 | content/collection/computerterms/cpu-scheduling/index.md | 97 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/daemons-and-zombie-processes/index.md | 98.2 | 2026-07-22 | 2 | 통과 | 없음 |
-| content/collection/computerterms/deadlocks/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/deadlocks/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/design-patterns-overview/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/digital-signatures-and-certificates/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/dns-and-sockets/index.md | 97 | 2026-07-22 | 3 | 통과 | 없음 |
@@ -167,7 +167,7 @@
 | content/collection/computerterms/osi-and-tcp-ip/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/processes-and-threads/index.md | 97 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/query-planner-internals/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음 |
-| content/collection/computerterms/race-conditions-and-locks/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/race-conditions-and-locks/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/rate-limiting/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/refactoring-and-code-smells/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/registers-and-isa/index.md | 98.2 | 2026-07-22 | 2 | 통과 | 없음 |
@@ -175,7 +175,7 @@
 | content/collection/computerterms/searching-algorithms/index.md | 91.6 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/segment-trees/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/semantic-versioning/index.md | - | - | 0 | 미채점 | - |
-| content/collection/computerterms/semaphores-and-monitors/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/semaphores-and-monitors/index.md | 91.6 | 2026-07-22 | 1 | 통과 | 없음(경미: 브린치 한센 연도 정정 반영) |
 | content/collection/computerterms/server-sent-events/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/sharding-and-replication/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/shortest-path-algorithms/index.md | 100 | 2026-07-22 | 3 | 통과 | 없음 |
@@ -185,7 +185,7 @@
 | content/collection/computerterms/solid-principles-overview/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/sorting-algorithms/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/stacks-and-queues/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
-| content/collection/computerterms/thread-pools/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/thread-pools/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음(경미: Debugging 태그를 Throughput으로 교체) |
 | content/collection/computerterms/time-series-databases/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/time_complexity/index.md | 92.8 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/transaction-isolation-levels/index.md | 94 | 2026-07-22 | 1 | 통과 | 없음 |

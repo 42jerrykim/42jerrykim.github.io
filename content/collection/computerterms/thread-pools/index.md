@@ -29,7 +29,7 @@ tags:
 - Deep-Dive
 - Case-Study
 - Software-Engineering(소프트웨어공학)
-- Debugging(디버깅)
+- Throughput
 - Performance(성능)
 - Scheduling(스케줄링)
 - CPU(중앙처리장치)

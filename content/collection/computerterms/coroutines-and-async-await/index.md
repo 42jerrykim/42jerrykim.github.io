@@ -109,7 +109,7 @@ if __name__ == "__main__":
 
 ## 참고 자료
 
-> van Rossum, G., et al. (2015). "PEP 492 – Coroutines with async and await syntax". Python Enhancement Proposals.
+> Selivanov, Y. (2015). "PEP 492 – Coroutines with async and await syntax". Python Enhancement Proposals. (BDFL Guido van Rossum이 승인.)
 
 - [Python docs: Coroutines and Tasks (asyncio)](https://docs.python.org/3/library/asyncio-task.html) — `async`/`await`, `gather`, 이벤트 루프 공식 문서
 - [PEP 492 – Coroutines with async and await syntax](https://peps.python.org/pep-0492/) — Python에 async/await 문법이 도입된 원 제안서
