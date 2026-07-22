@@ -7,7 +7,7 @@ title: "[Computer Terms] 시계열 데이터베이스 (Time-Series Database)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "시계열 데이터베이스는 시간 순서로 계속 추가되기만 하는 데이터에 최적화된 저장소입니다. 시간 기준 파티셔닝과 델타 인코딩이 압축률·쓰기 처리량을 높이는 원리를 다룹니다."
+description: "시계열 데이터베이스는 시간 순서로 계속 추가되기만 하는 데이터에 최적화된 저장소입니다. 시간 기준 파티셔닝과 델타 인코딩이 압축률·쓰기 처리량을 높이는 원리를 다루고, 오래된 파티션을 통째로 폐기해 삭제 비용을 줄이는 실무 이점까지 설명합니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -79,7 +79,7 @@ TSDB는 데이터를 시간 구간(예: 1일, 1시간) 단위의 **파티션(청
 
 ## 다른 개념과의 연결
 
-시간 기준 파티셔닝은 [샤딩과 복제](/post/computerterms/sharding-and-replication/) 챕터에서 다룬 데이터 분산 전략의 한 형태이고, TSDB가 감당해야 하는 초당 대량 쓰기는 [캐싱과 무효화](/post/computerterms/caching-and-invalidation/) 챕터에서 다룬 쓰기 우선 워크로드의 극단적인 사례다. 데이터베이스 심화 갈래는 이 챕터로 마무리되며, 다음은 이렇게 쌓인 데이터를 안전하게 주고받는 네트워크·분산 시스템 갈래로 이어진다.
+시간 기준 파티셔닝은 [샤딩과 복제](/post/computerterms/sharding-and-replication/) 챕터에서 다룬 데이터 분산 전략의 한 형태이고, TSDB가 감당해야 하는 초당 대량 쓰기는 [캐싱과 무효화](/post/computerterms/caching-and-invalidation/) 챕터에서 다룬 쓰기 우선 워크로드의 극단적인 사례다. 데이터베이스 심화 갈래는 이 챕터로 마무리되며, 다음은 이렇게 여러 서버에 나눠 담긴 데이터가 서로 사건 발생 순서를 어떻게 판단하는지 다루는 [벡터 시계](/post/computerterms/vector-clocks/)를 시작으로 분산 시스템 갈래로 이어진다.
 
 ## 평가 기준
 

@@ -7,7 +7,7 @@ title: "[Computer Terms] 트랜잭션 격리 수준 (Isolation Levels)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "트랜잭션 격리 수준은 동시에 실행되는 트랜잭션이 서로의 결과를 얼마나 볼 수 있는지 정하는 규칙입니다. 4단계 표준 수준과 각 수준에서 발생하는 이상 현상을 SQL과 함께 다룹니다."
+description: "트랜잭션 격리 수준은 동시에 실행되는 트랜잭션이 서로의 결과를 얼마나 볼 수 있는지 정하는 규칙입니다. 4단계 표준 수준과 각 수준에서 발생하는 이상 현상을 SQL과 함께 다루고, PostgreSQL·MySQL의 기본 격리 수준 차이까지 설명합니다."
 tags:
 - Technology(기술)
 - Education(교육)

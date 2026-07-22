@@ -7,7 +7,7 @@ title: "[Computer Terms] 전문검색 인덱스 (Full-Text Search, Inverted Inde
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "B-Tree 인덱스는 정확 일치·범위 검색에 강하지만 본문 검색에는 약합니다. 역색인이 단어를 문서 목록에 매핑해 이 문제를 푸는 원리와 SQL 예시를 다룹니다."
+description: "B-Tree 인덱스는 정확 일치·범위 검색에 강하지만 본문 검색에는 약합니다. 역색인이 단어를 문서 목록에 매핑해 이 문제를 푸는 원리와 SQL 예시를 다루고, 토큰화·불용어 제거·형태소 분석 과정까지 함께 설명합니다."
 tags:
 - Technology(기술)
 - Education(교육)

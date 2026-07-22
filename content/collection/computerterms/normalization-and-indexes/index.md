@@ -7,7 +7,7 @@ title: "[Computer Terms] 정규화와 인덱스 (Normalization, Index)"
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "정규화는 데이터 중복과 이상 현상을 줄이기 위해 테이블을 쪼개는 설계 원칙이고, 인덱스는 그렇게 나뉜 테이블에서도 빠른 조회를 보장하는 자료구조입니다. B-Tree 인덱스 원리를 SQL과 함께 다룹니다."
+description: "정규화는 데이터 중복과 이상 현상을 줄이기 위해 테이블을 쪼개는 설계 원칙이고, 인덱스는 그렇게 나뉜 테이블에서도 빠른 조회를 보장하는 자료구조입니다. B-Tree 인덱스가 디스크 I/O를 줄이는 원리를 SQL과 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)

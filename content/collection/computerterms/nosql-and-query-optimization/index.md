@@ -7,13 +7,13 @@ title: "[Computer Terms] NoSQL과 쿼리 최적화 (NoSQL, Query Optimization)"
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "NoSQL은 정규화된 관계형 모델 대신 다른 자료구조로 확장성과 유연성을 얻는 데이터베이스 계열입니다. 문서·키-값·컬럼·그래프 모델을 비교하고 실행 계획으로 쿼리를 최적화하는 방법을 다룹니다."
+description: "NoSQL은 정규화된 관계형 모델 대신 다른 자료구조로 확장성과 유연성을 얻는 데이터베이스 계열입니다. 문서·키-값·컬럼·그래프 모델을 비교하고, EXPLAIN ANALYZE 실행 계획을 읽어 쿼리를 최적화하는 방법을 실제 SQL 예제와 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
 - Database(데이터베이스)
 - NoSQL
-- SQL
+- SQL(Structured Query Language)
 - Query-Optimization(쿼리최적화)
 - MongoDB
 - Redis
@@ -82,7 +82,7 @@ WHERE c.customer_id = 42;
 
 ## 다른 개념과의 연결
 
-키-값 DB는 [해시테이블](/post/computerterms/hash-tables/)을, 그래프 DB는 [그래프](/post/computerterms/graphs/)를 데이터베이스 수준으로 확장한 것으로, 자료구조 갈래에서 다룬 트레이드오프(정렬 유지 여부, 임의 접근 비용)가 그대로 데이터베이스 선택 기준이 된다. 다음 챕터에서는 [ACID Transactions](/post/computerterms/acid-transactions/)의 고립성(Isolation)을 구체화한 [트랜잭션 격리 수준](/post/computerterms/transaction-isolation-levels/)을 다룬다.
+키-값 DB는 [해시테이블](/post/computerterms/hash-tables/)을, 그래프 DB는 [그래프](/post/computerterms/graphs/)를 데이터베이스 수준으로 확장한 것으로, 자료구조 갈래에서 다룬 트레이드오프(정렬 유지 여부, 임의 접근 비용)가 그대로 데이터베이스 선택 기준이 된다. 다음 챕터에서는 데이터를 여러 서버로 나누는 [샤딩과 복제](/post/computerterms/sharding-and-replication/)를 다룬다.
 
 ## 평가 기준
 
