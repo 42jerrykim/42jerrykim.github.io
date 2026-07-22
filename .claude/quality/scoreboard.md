@@ -97,4 +97,9 @@
 | content/collection/design-patterns/23-pattern-code-review-design-review-practice/index.md | 100 | 2026-07-19 | 5 | 통과 | 없음 |
 | content/collection/design-patterns/24-discovering-defining-new-patterns/index.md | 93 | 2026-07-19 | 5 | 통과 | 없음 |
 | content/collection/design-patterns/24-discovering-defining-new-patterns-practice/index.md | 97 | 2026-07-19 | 5 | 통과 | 없음 |
-| content/collection/TV-Show/2026/2026-07-22-young-sheldon-medford-texas-setting-filming-location/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음(신규 인용 링크 2건은 WebFetch 402/403이나 실제 브라우저 접근 확인됨 — the-big-bang-theory.com·IMDb·Fandom·SoapCentral 4건 모두 봇 차단으로 판단, 검증 완료) |
+| content/post/2026/2026-07-22-p95-p99-latency-percentile-guide/index.md | 91 | 2026-07-22 | 1 | 통과 | 없음(경미: "이 글을 읽은 후" 학습 성과 목표 절 부재, Bigtable SRE Book 챕터 인용 정밀도, cacm.acm.org 대체 접근 경로 미병기) |
+| content/post/2026/2026-07-22-iterm2-vs-securecrt-logging-comparison/index.md | 95 | 2026-07-22 | 2 | 통과 | 없음(선택: "이 글에서 다루는 내용" 미리보기 불릿을 문단으로 축약하면 구조 항목 여지 있으나 통과에 영향 없음) |
+| content/post/2026/2026-07-22-qbittorrent-vs-utorrent-comparison/index.md | 94.6 | 2026-07-22 | 3 | 통과 | 없음(3차 채점 후 L99 Cloudwards 인용 정밀도를 추가로 정정, 재채점 생략) |
+| content/collection/cmd/command-categories/index.md | 96.1 | 2026-07-22 | 3 | 통과 | 없음(경미: 네트워크·기타 유틸리티 절 판단 기준 문단 여지, 코드블록 언어 태그 미통일) |
+| content/post/2026/2026-07-22-pikvm-v4-mini-review/index.md | 93.1 | 2026-07-22 | 3 | 통과 | 없음(경미: RDP(Remote Desktop Protocol) 태그 본문 근거 약함, 종합 평가 문단이 장단점 절과 일부 재진술) |
+| content/collection/TV-Show/2026/2026-07-22-young-sheldon-medford-texas-setting-filming-location/index.md | 85.0 | 2026-07-22 | 11 | 에스컬레이션 | 자동 루프(3회) 에스컬레이션 후 사람이 직접 이어받아 8회 추가 반복. 원래 치명결함(러프킨→러스크 오류, 25번 스테이지 계승 환각, 깨진 fandom.com 링크)은 전부 해소되고 치명결함 0건 상태. 캐릭터 분석·숨겨진 내용 분석·종합 평가 절을 신규 추가해 컬렉션 형식에 맞췄으나, 이 글이 의도적으로 좁힌 범위("촬영지·설정 특집")와 정식 시즌 리뷰를 기대하는 컬렉션 루브릭 사이의 구조적 긴장으로 85점대에서 정체(11회 반복 동안 65.7~89 사이 진동). 추가 반복의 한계효용이 낮다고 판단해 사람 승인 대기. 이후 대표 이미지를 워드클라우드→직접 그린 지리 개략도(medford-map.png)로 교체(2026-07-22, 별도 세션) — 재채점 미실시, 위 점수·상태는 그대로 유효 |

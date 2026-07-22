@@ -22,26 +22,17 @@ tags:
   - Tutorial(튜토리얼)
   - Guide(가이드)
   - Configuration(설정)
-  - How-To
-  - Tips
   - Reference(참고)
-  - Best-Practices
-  - Documentation(문서화)
   - Troubleshooting(트러블슈팅)
-  - Migration(마이그레이션)
   - Mobile(모바일)
   - Performance(성능)
-  - Beginner
-  - Case-Study
-  - Deep-Dive
   - Productivity(생산성)
   - Automation(자동화)
-  - Education(교육)
-  - Hardware(하드웨어)
-  - Cloud(클라우드)
   - Web(웹)
-  - Blog(블로그)
-  - Quick-Reference
+  - History(역사)
+  - Advanced
+  - Case-Study
+  - CPU(Central Processing Unit)
 image: "wordcloud.png"
 ---
 
@@ -79,6 +70,8 @@ qBittorrent는 소스가 전부 공개돼 있어 제3자가 악성 코드나 텔
 
 이 폐쇄형 구조가 실제로 문제가 된 사례가 있다. 2015년 3월, μTorrent 3.4.2 업데이트에 **EpicScale**이라는 프로그램이 별도 고지 없이 함께 설치된다는 사실이 알려지며 대규모 반발이 일어났다. EpicScale은 "자선 목적의 분산 컴퓨팅 플랫폼"이라는 명목이었지만 실제로는 사용자 PC의 CPU 자원을 빌려 암호화폐를 채굴하는 프로그램이었다. 이용자들은 컴퓨터가 갑자기 전력으로 돌아가는 이유를 찾다가 뒤늦게 이 프로그램의 존재를 발견했고, 일부는 노트북이 과열될 지경이었다고 토로했다. BitTorrent Inc.는 "수백만 건의 설치 중 항의는 극소수"라며 무단 설치를 부인했지만, 거센 반발 이후 결국 EpicScale 설치 여부를 사용자가 선택할 수 있도록 정책을 바꿨다. 오픈소스 클라이언트에서는 구조적으로 재현되기 어려운 유형의 사고였다.
 
+다만 "오픈소스면 무조건 안전하다"는 식으로 단순화하는 것은 오개념이다. 소스 코드가 공개돼 있다는 것은 "검증이 가능하다"는 뜻이지 "실제로 누군가 매번 검증했다"는 뜻이 아니다. 실제로 하트블리드(Heartbleed, CVE-2014-0160)처럼 널리 쓰이는 오픈소스 라이브러리(OpenSSL)에서도 2년 넘게 아무도 발견하지 못한 심각한 취약점이 나온 사례가 있다. qBittorrent가 EpicScale류 사고를 구조적으로 피하기 쉬운 이유는 "오픈소스라서"가 아니라 "코드 변경 이력이 GitHub에 공개돼 커뮤니티가 실제로 diff를 보고 이상 행위를 신고할 수 있는 검증 경로가 열려 있어서"이며, 그 경로가 실제로 작동하려면 검토하는 사람이 있어야 한다는 전제가 따른다.
+
 ---
 
 ## 기능 비교: RSS 자동화와 시퀀셜 다운로드
@@ -103,7 +96,7 @@ qBittorrent는 이 기능을 무료판에서 기본 제공하는 반면, μTorre
 
 ## 성능과 리소스 사용
 
-qBittorrent는 Qt 네이티브 UI를 사용해 별도 런타임 오버헤드가 적고, 내장 검색 엔진도 외부 브라우저를 띄우지 않고 가벼운 HTTP 요청만으로 동작한다. 반면 μTorrent 무료판은 광고 렌더링과 번들 프로그램 설치 제안이 포함돼 있어, 같은 작업을 하더라도 체감 리소스 사용량이 더 큰 편이다. 실제 비교 테스트에서도 qBittorrent가 파일 크기와 관계없이 더 빠른 클라이언트로 나타난 결과가 보고된 바 있다.
+qBittorrent는 Qt 네이티브 UI를 사용해 별도 런타임 오버헤드가 적고, 내장 검색 엔진도 외부 브라우저를 띄우지 않고 가벼운 HTTP 요청만으로 동작한다. 반면 μTorrent 무료판은 광고 렌더링과 번들 프로그램 설치 제안이 포함돼 있어, 같은 작업을 하더라도 체감 리소스 사용량이 더 큰 편이다. 실제 비교 테스트에서도 qBittorrent가 더 빠른 클라이언트로 나타난 결과가 보고된 바 있는데, 특히 작은 파일에서 격차가 크고 대용량 파일로 갈수록 그 격차는 좁혀지는 경향을 보인다.
 
 정확한 수치는 OS·버전·동시 다운로드 수에 따라 달라지므로 절대적인 %로 단정하기는 어렵지만, "광고와 번들 소프트웨어가 없는 순수 다운로드 엔진"과 "광고·부가 프로그램이 포함된 프리미엄 소프트웨어"라는 구조 차이 자체가 리소스 사용량 차이의 근본 원인이다.
 
@@ -111,9 +104,9 @@ qBittorrent는 Qt 네이티브 UI를 사용해 별도 런타임 오버헤드가 
 
 ## 보안과 개인정보
 
-qBittorrent는 특정 네트워크 인터페이스(예: VPN 어댑터)에 바인딩해, VPN이 끊겼을 때 트래픽이 일반 회선으로 새어나가는 것을 막을 수 있다. 또한 BitTorrent 프로토콜 v2를 지원해 조각 해시에 더 강한 암호화 해시 함수를 쓴다. 코드가 공개돼 있으므로 이런 보안 기능이 실제로 광고된 대로 동작하는지도 커뮤니티가 검증할 수 있다.
+qBittorrent는 특정 네트워크 인터페이스(예: VPN 어댑터)에 바인딩해, VPN이 끊겼을 때 트래픽이 일반 회선으로 새어나가는 것을 막을 수 있다. 또한 [BitTorrent 프로토콜 v2(BEP 52)](https://www.bittorrent.org/beps/bep_0052.html)를 지원하는데, v2는 조각 해시를 SHA-1 대신 SHA-256으로 바꿔 충돌 저항성을 높인 것이 핵심 변경점이다. 코드가 공개돼 있으므로 이런 보안 기능이 실제로 명세대로 동작하는지도 커뮤니티가 검증할 수 있다.
 
-μTorrent는 기본 설정에서 오류 보고(에러 리포팅)가 활성화돼 있어, 별도로 끄지 않으면 진단 데이터가 외부로 전송된다. 클로즈드 소스이기 때문에 이 데이터가 정확히 어떻게 쓰이는지는 사용자가 직접 확인할 방법이 없다.
+μTorrent는 설치 시 기본값으로 오류 보고(에러 리포팅) 항목이 체크돼 있어, 사용자가 설정에서 직접 끄지 않는 한 진단 데이터가 외부로 전송되는 것으로 알려져 있다(버전별로 옵션 위치·기본값이 달라질 수 있어 실제 설치 시 설정 메뉴에서 확인이 필요하다). 클로즈드 소스이기 때문에 이 데이터가 정확히 어떻게 쓰이는지는 사용자가 직접 확인할 방법이 없다.
 
 ---
 
@@ -128,6 +121,15 @@ qBittorrent는 특정 네트워크 인터페이스(예: VPN 어댑터)에 바인
 | 가격 | 완전 무료, 광고 없음 | 무료(광고)/유료 Pro/Ad-Free |
 
 모바일에서 원격으로 다운로드 상태를 확인하거나 제어해야 한다면, 공식 Android 앱을 제공하는 μTorrent 쪽이 실질적으로 유리하다. 반대로 Linux 서버나 시드박스에서 돌린다면 qBittorrent가 사실상 표준에 가깝다.
+
+---
+
+## 이 글을 읽은 후 할 수 있어야 하는 것
+
+- 오픈소스와 폐쇄형 소프트웨어가 왜 "신뢰를 검증하는 방식" 자체가 다른지, EpicScale 사례를 근거로 설명할 수 있다.
+- RSS 자동 다운로드·시퀀셜 다운로드 같은 기능이 무료판에서 제공되는지 여부를 기준으로 두 클라이언트를 판단할 수 있다.
+- VPN 인터페이스 바인딩·프로토콜 v2 지원 여부로 두 클라이언트의 보안 설계 차이를 비교할 수 있다.
+- 자신의 사용 환경(서버·데스크톱·모바일 원격 제어 필요 여부)에 맞춰 qBittorrent와 μTorrent 중 어느 쪽이 적합한지 근거를 들어 선택할 수 있다.
 
 ---
 
@@ -160,3 +162,4 @@ qBittorrent는 특정 네트워크 인터페이스(예: VPN 어댑터)에 바인
 4. [uTorrent Quietly Installs Riskware Bitcoin Miner, Users Report — TorrentFreak](https://torrentfreak.com/utorrent-quietly-installs-riskware-bitcoin-miner-users-report-150306/) — 2015년 EpicScale 채굴 논란 상세.
 5. [qBitTorrent vs uTorrent in 2026 — Cloudwards](https://www.cloudwards.net/qbittorrent-vs-utorrent/) — 속도·보안·가격 비교 테스트 결과.
 6. [Ludvig Strigeus — Wikipedia](https://en.wikipedia.org/wiki/Ludvig_Strigeus) — μTorrent 개발자의 이력.
+7. [BEP 52: The BitTorrent Protocol Specification v2](https://www.bittorrent.org/beps/bep_0052.html) — 프로토콜 v2의 SHA-256 조각 해시 변경 명세.
