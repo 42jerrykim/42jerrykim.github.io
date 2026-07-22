@@ -4,8 +4,8 @@ description: >-
   42jerrykim.github.io Hugo 블로그의 모든 글쓰기·편집 작업에 적용되는 전역 필수 규칙. frontmatter(draft,
   tags, description, title), 날짜 확인, 본문 링크 검증, 독자용 본문 원칙, Mermaid 다이어그램 문법, 알고리즘 코드
   주석 규칙, 직접 인용 검증, 외부 자료 다이어그램/이미지 재현 규칙, 그림·다이어그램 추가 여부 판단 기준, 범위
-  표기(물결표 대신 en dash), 문장부호 인접 강조(**) 깨짐 방지(<strong> 사용) 규칙을 포함한다. 글 작성·수정,
-  새 포스트 생성, 컬렉션 글 작업 시 항상 적용한다.
+  표기(물결표 대신 en dash), 문장부호 인접 강조(**) 깨짐 방지(<strong> 사용) 규칙, 유튜브 영상 임베드
+  shortcode 규칙을 포함한다. 글 작성·수정, 새 포스트 생성, 컬렉션 글 작업 시 항상 적용한다.
 ---
 
 # 전역 필수 규칙
@@ -98,3 +98,16 @@ description: >-
 - **나열·비교**(축이 2개 이상이거나 비교 대상이 3개 이상): 그림보다 **표**를 우선한다.
 - 한 H2 섹션에 그림은 1개 이하를 기본으로 한다. 여러 개가 필요할 만큼 구조가 복잡하다면 그림을 늘리기보다 섹션을 쪼갤지 먼저 검토한다.
 - 외부 저작물의 다이어그램을 **재현**하는 상황은 이 절이 아니라 [§8](#8-외부-자료의-다이어그램-그림-재현-스크린샷-금지)의 저작권 규칙을 따른다 — §8은 "어떻게 그릴지"에 대한 규칙이고, 이 절은 "애초에 그림을 넣을지 말지"에 대한 판단 기준이다.
+
+## 12. 유튜브 영상은 embed 대신 shortcode로 삽입
+
+본문이 다루는 내용의 출처가 유튜브 영상이거나, 영상을 본문 안에서 직접 보여줄 필요가 있을 때는 iframe을 손으로 작성하거나 스크린샷을 넣지 않고 Hugo 내장 shortcode를 쓴다.
+
+```
+{{< youtube VIDEO_ID >}}
+```
+
+- `VIDEO_ID`는 `https://youtu.be/VIDEO_ID` 또는 `https://www.youtube.com/watch?v=VIDEO_ID`의 그 ID 값이다.
+- 보통 본문 도입부(예: "들어가며" 섹션)에서 영상을 언급하는 문단 바로 다음 줄에 배치해, 독자가 본문을 읽다가 바로 원본 영상을 시청할 수 있게 한다.
+- 이미 사이트에서 쓰이는 예: `content/post/2026/2026-02-20-cannondale-smartsense-gen2-cycling-safety/index.md`, `content/post/2026/2026-02-23-flashpoint-archive-web-game-preservation/index.md`, `content/post/2026/2026-06-30-four-pillars-of-success-park-yonghoo/index.md`.
+- 영상 링크 자체(`https://www.youtube.com/watch?v=...`, `https://youtu.be/...`)도 [§3 링크 검증](#3-본문-링크-검증)에 따라 접근 가능한지 확인한다.
