@@ -7,7 +7,7 @@ title: "[Computer Terms] 유니온-파인드 (Union-Find, Disjoint Set)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "유니온-파인드는 서로소 집합을 트리로 관리하는 자료구조입니다. Union by Rank와 Path Compression이 왜 필요한지, 크루스칼 MST에서의 활용을 C 코드와 함께 다룹니다."
+description: "유니온-파인드는 서로소 집합을 트리로 관리하는 자료구조입니다. Union by Rank와 Path Compression이 왜 필요한지, 최적화 없이는 트리가 사슬로 퇴화해 O(n)까지 느려지는 이유와 크루스칼 MST에서의 활용을 컴파일 가능한 C 코드와 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -102,7 +102,25 @@ int main(void) {
 }
 ```
 
-`find`가 재귀 호출 중 `parent[x] = find(parent[x])`로 자기 자신의 부모를 루트로 즉시 덮어쓰는 부분이 **경로 압축(Path Compression)**이다. 이 한 줄이 없다면 `find`는 매번 원래 트리의 깊이만큼 부모를 따라 올라가야 하지만, 한 번 압축된 이후에는 같은 노드에 대한 다음 `find` 호출이 O(1)에 가까워진다.
+`find`가 재귀 호출 중 `parent[x] = find(parent[x])`로 자기 자신의 부모를 루트로 즉시 덮어쓰는 부분이 **경로 압축(Path Compression)**이다. 이 한 줄이 없다면 `find`는 매번 원래 트리의 깊이만큼 부모를 따라 올라가야 하지만, 한 번 압축된 이후에는 같은 노드에 대한 다음 `find` 호출이 O(1)에 가까워진다. `0 → 1 → 2 → 3`처럼 한 줄로 늘어진 트리에서 `find(3)`을 호출하면 다음과 같이 바뀐다.
+
+```mermaid
+graph TD
+    subgraph "압축 전: find(3) 호출 직전"
+        A0["0 (루트)"]
+        A1["1"] --> A0
+        A2["2"] --> A1
+        A3["3"] --> A2
+    end
+    subgraph "압축 후: find(3) 호출 직후"
+        B0["0 (루트)"]
+        B1["1"] --> B0
+        B2["2"] --> B0
+        B3["3"] --> B0
+    end
+```
+
+압축 전에는 `find(3)`이 3→2→1→0 순으로 3단계를 거슬러 올라가야 하지만, 압축 후에는 경로에 있던 1·2·3이 모두 루트 0에 직접 연결돼 이후의 `find` 호출이 단 한 단계로 끝난다.
 
 ## 왜 최적화 없이는 O(n)까지 느려지는가
 
@@ -139,5 +157,5 @@ int main(void) {
 
 > Tarjan, R. E. (1975). Efficiency of a Good But Not Linear Set Union Algorithm. *Journal of the ACM*, 22(2), 215–225.
 
-- [cppreference: std::disjoint_set (boost 문서 참고)](https://www.boost.org/doc/libs/release/libs/disjoint_sets/disjoint_sets.html) — Union by Rank·경로 압축을 적용한 실제 라이브러리 구현
+- [Sedgewick & Wayne, *Algorithms* (4th ed.), Section 1.5: Union-Find](https://algs4.cs.princeton.edu/15uf/) — Union by Rank/Size·경로 압축을 적용한 표준 구현과 복잡도 분석
 - [Visualgo: Union-Find Disjoint Sets](https://visualgo.net/en/ufds) — union·find 연산과 경로 압축 과정을 단계별로 시각화한 자료

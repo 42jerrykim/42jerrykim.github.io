@@ -7,7 +7,7 @@ title: "[Computer Terms] 배열과 연결리스트 (Array, Linked List)"
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "배열과 연결리스트는 데이터를 순서대로 저장하는 가장 기초적인 두 자료구조입니다. 메모리 레이아웃 차이가 접근·삽입·삭제 성능과 캐시 지역성에 미치는 영향을 C 코드와 함께 비교합니다."
+description: "배열과 연결리스트는 데이터를 순서대로 저장하는 가장 기초적인 두 자료구조입니다. 메모리 레이아웃 차이가 접근·삽입·삭제 성능과 캐시 지역성에 미치는 영향을 컴파일 가능한 C 코드로 비교하고, 동적 배열의 상환 O(1) 삽입 원리까지 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -36,6 +36,10 @@ tags:
 - Performance(성능)
 - Implementation(구현)
 ---
+
+## 이 장을 읽기 전에
+
+이 챕터는 자료구조 갈래의 첫 챕터로, 별도의 선행 챕터를 전제하지 않는다. 시간·공간 복잡도 표기법(O(1), O(n) 등)에 익숙하지 않다면 [시간 복잡도](/post/computerterms/time-complexity/)를 먼저 읽으면 이해가 수월하다.
 
 ## 왜 배열과 연결리스트부터인가
 
