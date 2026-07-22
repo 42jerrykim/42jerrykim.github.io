@@ -45,6 +45,8 @@ image: "wordcloud.png"
 
 유튜브 [코딩애플](https://www.youtube.com/watch?v=RrYPBkmnUwc) 채널의 <a href="https://www.youtube.com/watch?v=RrYPBkmnUwc">"진정한 남자는 포토샵 대신 html 쓴다고 함"</a> 영상은 포토샵이나 일러스트레이터 없이 HTML과 SVG만으로 지글거리는 왜곡 효과, 말랑한 gooey UI, 리퀴드 글래스 디자인까지 만들 수 있다는 걸 보여준다. 핵심은 SVG 필터(filter)라는 기능인데, 이름은 낯설지만 원리는 단순하다. 화면에 그려진 픽셀들을 정해진 규칙에 따라 조작하는 것뿐이다. 이 글은 영상에서 다룬 SVG 필터 기법들을 하나씩 정리하고, 영상 마지막에 언급된 SVG 필터 기반 클릭재킹(clickjacking) 취약점 사례도 함께 살펴본다.
 
+{{< youtube RrYPBkmnUwc >}}
+
 ## SVG와 필터의 기본 원리
 
 SVG(Scalable Vector Graphics)는 픽셀이 아니라 좌표와 선으로 그림을 표현하는 벡터 그래픽 포맷이다. `<svg>` 태그 안에 `<path>` 같은 태그로 좌표를 나열하면 선이 그려지고, 이 선들이 모여 도형과 그림이 된다. HTML 문서 안에 `<svg>` 태그를 직접 써도 되고, `<img>`나 CSS `background`로 불러와도 된다.
