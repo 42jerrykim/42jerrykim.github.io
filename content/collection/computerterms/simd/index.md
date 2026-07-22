@@ -7,7 +7,7 @@ title: "[Computer Terms] SIMD (Single Instruction, Multiple Data)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "하나의 명령어로 여러 데이터를 동시에 처리하는 SIMD 벡터 연산과 스칼라 연산의 차이를 설명하고, 이미지·수치 연산에서 SIMD가 성능을 크게 높이는 이유와 컴파일러 자동 벡터화의 원리·한계를 다룹니다."
+description: "하나의 명령어로 여러 데이터를 동시에 처리하는 SIMD 벡터 연산과 스칼라 연산의 차이를 설명하고, 이미지·수치 연산에서 SIMD가 성능을 크게 높이는 이유와 컴파일러 자동 벡터화의 원리·한계를 다룹니다. SSE2가 사실상 모든 현대 x86-64 CPU에 기본 내장되어 있다는 사실도 함께 짚습니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -116,7 +116,7 @@ SIMD가 처리하는 데이터는 결국 [캐시 계층](/post/computerterms/cac
 
 ## 참고 자료
 
-> Hennessy, J. L., & Patterson, D. A. (2019). *Computer Architecture: A Quantitative Approach* (6th ed.), Chapter 4: Data-Level Parallelism in Vector, SIMD, and GPU Architectures. Morgan Kaufmann.
+> Hennessy, J. L., & Patterson, D. A. (2017). *Computer Architecture: A Quantitative Approach* (6th ed.), Chapter 4: Data-Level Parallelism in Vector, SIMD, and GPU Architectures. Morgan Kaufmann.
 
 - [Wikipedia: Single instruction, multiple data](https://en.wikipedia.org/wiki/Single_instruction,_multiple_data) — SIMD의 정의와 대표 명령어 집합(SSE, AVX 등) 개요
 - [GCC: Auto-vectorization in GCC](https://gcc.gnu.org/projects/tree-ssa/vectorization.html) — GCC의 자동 벡터화 지원 범위와 조건에 대한 공식 문서

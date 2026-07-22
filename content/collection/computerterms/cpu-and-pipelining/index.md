@@ -7,7 +7,7 @@ title: "[Computer Terms] CPU 구조와 파이프라이닝 (CPU Architecture, Pip
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "CPU는 명령어를 인출-해독-실행-저장 단계로 처리합니다. 파이프라이닝이 이 단계를 겹쳐 처리량을 높이는 원리와, 분기 예측 실패가 파이프라인을 비우는 문제를 다룹니다."
+description: "CPU는 명령어를 인출-해독-실행-저장 단계로 처리합니다. 파이프라이닝이 이 단계를 겹쳐 처리량을 높이는 원리와, 분기 예측 실패가 파이프라인을 비우는 문제를 정렬·무작위 배열 벤치마크 코드로 직접 확인하고, branchless 최적화를 언제 적용해야 하는지도 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -16,7 +16,7 @@ tags:
 - Pipelining(파이프라이닝)
 - Cache(캐시)
 - Performance(성능)
-- Assembly(어셈블리)
+- Optimization(최적화)
 - Reference(참고)
 - Documentation(문서화)
 - Tutorial(튜토리얼)
@@ -31,7 +31,7 @@ tags:
 - Software-Engineering(소프트웨어공학)
 - Memory(메모리)
 - Operating-System(운영체제)
-- Debugging(디버깅)
+- Benchmark(벤치마크)
 - Advanced
 - How-To
 ---
@@ -76,18 +76,51 @@ gantt
 파이프라이닝은 "다음에 어떤 명령어가 올지 미리 안다"는 전제 위에서 이득을 본다. 그런데 `if` 문 같은 **분기(Branch)** 명령어는 조건을 실제로 계산해봐야(실행 단계) 다음에 실행할 명령어를 확정할 수 있다. CPU는 이 지연을 피하려고, 조건이 어느 쪽으로 갈지 통계적으로 추측하는 **분기 예측(Branch Prediction)**을 하고, 그 추측대로 다음 명령어들을 미리 인출·해독해 파이프라인에 채워 넣는다(**투기적 실행, Speculative Execution**).
 
 ```c
-/* 정렬된 배열 순회: 분기 예측이 쉬움 (패턴이 규칙적) */
-for (int i = 0; i < n; i++) {
-    if (sorted_data[i] > threshold) {   /* threshold 이전엔 항상 거짓, 이후 항상 참 */
-        count++;
-    }
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define N 10000000
+#define THRESHOLD 128
+
+int compare_int(const void *a, const void *b) {
+    return (*(const int *)a) - (*(const int *)b);
 }
 
-/* 무작위 배열 순회: 분기 예측이 어려움 (패턴이 불규칙) */
-for (int i = 0; i < n; i++) {
-    if (random_data[i] > threshold) {   /* 매번 참/거짓이 무작위로 바뀜 */
-        count++;
+int main(void) {
+    int *sorted_data = malloc(N * sizeof(int));
+    int *random_data = malloc(N * sizeof(int));
+
+    for (int i = 0; i < N; i++) {
+        random_data[i] = rand() % 256;
+        sorted_data[i] = random_data[i];
     }
+    /* sorted_data만 정렬해, 같은 데이터를 정렬 여부만 다르게 비교한다 */
+    qsort(sorted_data, N, sizeof(int), compare_int);
+
+    long count = 0;
+    clock_t start, end;
+
+    /* 정렬된 배열 순회: 분기 예측이 쉬움 (threshold 이전엔 항상 거짓, 이후 항상 참) */
+    start = clock();
+    for (int i = 0; i < N; i++) {
+        if (sorted_data[i] > THRESHOLD) count++;
+    }
+    end = clock();
+    printf("sorted:  count=%ld time=%.4fs\n", count, (double)(end - start) / CLOCKS_PER_SEC);
+
+    /* 무작위 배열 순회: 분기 예측이 어려움 (매번 참/거짓이 불규칙하게 바뀜) */
+    count = 0;
+    start = clock();
+    for (int i = 0; i < N; i++) {
+        if (random_data[i] > THRESHOLD) count++;
+    }
+    end = clock();
+    printf("random:  count=%ld time=%.4fs\n", count, (double)(end - start) / CLOCKS_PER_SEC);
+
+    free(sorted_data);
+    free(random_data);
+    return 0;
 }
 ```
 
@@ -103,7 +136,7 @@ for (int i = 0; i < n; i++) {
 
 ## 흔한 오개념
 
-**"분기 예측 실패는 드물게만 일어나므로 신경 쓸 필요 없다"** — 정렬 여부에 따라 같은 로직의 실행 시간이 눈에 띄게 달라질 수 있다는 것은, 데이터 정렬만으로도 실질적인 성능 개선이 가능하다는 뜻이다. 성능이 중요한 반복문에서 데이터를 미리 정렬하거나, 분기를 산술 연산으로 대체하는 것(branchless programming)이 실무 최적화 기법으로 쓰이는 이유다.
+**"분기 예측 실패는 드물게만 일어나므로 신경 쓸 필요 없다"** — 정렬 여부에 따라 같은 로직의 실행 시간이 눈에 띄게 달라질 수 있다는 것은, 데이터 정렬만으로도 실질적인 성능 개선이 가능하다는 뜻이다. 성능이 중요한 반복문에서 데이터를 미리 정렬하거나, 분기를 산술 연산으로 대체하는 것(branchless programming)이 실무 최적화 기법으로 쓰이는 이유다. 다만 이 최적화는 항상 이득이 아니다 — 분기가 이미 예측하기 쉬운 패턴(예: 거의 항상 같은 방향으로 가는 조건)이라면 분기 예측기가 이미 거의 100% 맞히고 있어 branchless로 바꿔도 실측 이득이 거의 없고, 오히려 코드 가독성만 떨어뜨린다. 실무에서는 감으로 판단하지 말고, 먼저 프로파일러나 `perf stat -e branch-misses`로 실제 분기 예측 실패율을 측정해 병목이 확인된 곳에만 이런 최적화를 적용하는 것이 순서다.
 
 **"파이프라인 단계를 더 잘게 쪼갤수록 항상 빠르다"** — 단계를 잘게 쪼개면 사이클 하나가 짧아져 클럭 속도를 높일 여지가 생기지만, 분기 예측이 틀렸을 때 버려야 할 파이프라인 단계 수도 늘어나 예측 실패의 대가가 커진다. 실제 CPU 설계는 이 트레이드오프 안에서 파이프라인 깊이를 결정한다.
 
@@ -117,7 +150,7 @@ for (int i = 0; i < n; i++) {
 
 ## 참고 자료
 
-> Hennessy, J. L., & Patterson, D. A. (2019). *Computer Architecture: A Quantitative Approach* (6th ed.), Chapter 3: Instruction-Level Parallelism and Its Exploitation. Morgan Kaufmann.
+> Hennessy, J. L., & Patterson, D. A. (2017). *Computer Architecture: A Quantitative Approach* (6th ed.), Chapter 3: Instruction-Level Parallelism and Its Exploitation. Morgan Kaufmann.
 
 - [Stack Overflow: Why is processing a sorted array faster than an unsorted array?](https://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-processing-an-unsorted-array) — 분기 예측 실패가 실행 시간에 미치는 영향을 실제로 재현한 대표 사례
 - [Agner Fog: The microarchitecture of Intel, AMD and VIA CPUs](https://www.agner.org/optimize/microarchitecture.pdf) — 파이프라인·분기 예측을 포함한 실제 CPU 마이크로아키텍처 상세 문서

@@ -106,7 +106,7 @@
 | content/collection/computerterms/arrays-and-linked-lists/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/atomic-operations-and-cas/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/authentication-and-authorization/index.md | - | - | 0 | 미채점 | - |
-| content/collection/computerterms/cache-hierarchy/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/cache-hierarchy/index.md | 91 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/caching-and-invalidation/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/cap-theorem-and-consensus/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/cdn-caching/index.md | - | - | 0 | 미채점 | - |
@@ -121,7 +121,7 @@
 | content/collection/computerterms/cookies-and-local-storage/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/coroutines-and-async-await/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/coupling-and-cohesion/index.md | - | - | 0 | 미채점 | - |
-| content/collection/computerterms/cpu-and-pipelining/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/cpu-and-pipelining/index.md | 94.6 | 2026-07-22 | 3 | 통과 | 없음 |
 | content/collection/computerterms/cpu-scheduling/index.md | 97 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/daemons-and-zombie-processes/index.md | 98.2 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/deadlocks/index.md | - | - | 0 | 미채점 | - |
@@ -136,7 +136,7 @@
 | content/collection/computerterms/feature-flags/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/file-systems/index.md | 97 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/firewalls-and-nat/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 없음 |
-| content/collection/computerterms/floating-point-representation/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/floating-point-representation/index.md | 91 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/forward-and-reverse-proxies/index.md | 97 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/full-text-search-indexes/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/functional-programming-paradigm/index.md | - | - | 0 | 미채점 | - |
@@ -170,7 +170,7 @@
 | content/collection/computerterms/race-conditions-and-locks/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/rate-limiting/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/refactoring-and-code-smells/index.md | - | - | 0 | 미채점 | - |
-| content/collection/computerterms/registers-and-isa/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/registers-and-isa/index.md | 98.2 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/rest-and-graphql/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/searching-algorithms/index.md | 91.6 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/segment-trees/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 없음 |
@@ -180,7 +180,7 @@
 | content/collection/computerterms/sharding-and-replication/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/shortest-path-algorithms/index.md | 100 | 2026-07-22 | 3 | 통과 | 없음 |
 | content/collection/computerterms/signals/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
-| content/collection/computerterms/simd/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/simd/index.md | 97 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/skip-lists/index.md | 97 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/solid-principles-overview/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/sorting-algorithms/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음 |
@@ -195,7 +195,7 @@
 | content/collection/computerterms/union-find/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/vector-clocks/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/version-control-internals/index.md | - | - | 0 | 미채점 | - |
-| content/collection/computerterms/von-neumann-architecture/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/von-neumann-architecture/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/web-application-firewalls/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/web-vulnerabilities/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/webhooks/index.md | 100 | 2026-07-22 | 3 | 통과 | 없음 |

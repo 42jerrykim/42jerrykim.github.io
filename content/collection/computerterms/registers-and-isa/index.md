@@ -101,6 +101,8 @@ ISA는 설계 철학에 따라 크게 두 갈래로 나뉜다. **CISC(Complex In
 | 파이프라이닝 | 예측이 쉬워 효율적 | 디코딩이 복잡해 상대적으로 어려움 |
 | 대표 사례 | ARM, RISC-V | x86-64 |
 
+이 표에서 실무 판단의 기준은 **레거시 호환성과 전력 효율 중 무엇이 더 중요한가**다. 새로 설계하는 시스템이고 예측 가능한 파이프라인·낮은 전력 소비가 중요하다면(모바일 기기, 임베디드, 최근의 서버·데스크톱 CPU까지) RISC 철학(ARM, RISC-V)이 유리하다. 실제로 스마트폰·태블릿은 거의 전량 ARM을 쓰고, Apple Silicon처럼 데스크톱·서버로도 RISC 철학이 확장되는 추세다. 반면 수십 년간 x86 바이너리로 축적된 소프트웨어 생태계(윈도우 애플리케이션, 특정 산업용 소프트웨어)를 그대로 돌려야 한다면, CISC 명령어 집합인 x86-64를 벗어나기 어렵다 — ISA를 바꾸면 그 위에서 동작하던 모든 실행 파일을 다시 컴파일하거나 에뮬레이션해야 하므로, 순수 설계상의 우열과 별개로 기존 생태계의 전환 비용이 실무 선택을 좌우하는 경우가 많다.
+
 ## 흔한 오개념
 
 **"레지스터가 빠른 건 캐시보다 용량이 작기 때문이다"** — 용량 차이는 결과일 뿐 원인이 아니다. 레지스터가 빠른 근본 이유는 CPU 실행 유닛과 직결된 물리적 위치와 주소 디코딩이 없는 접근 방식이다. 용량이 작은 이유도 사실은 거꾸로다: 접근 회로를 실행 유닛에 최대한 가깝게 두려다 보니 물리적으로 많이 둘 수 없는 것이다.
@@ -117,7 +119,7 @@ ISA는 설계 철학에 따라 크게 두 갈래로 나뉜다. **CISC(Complex In
 
 ## 참고 자료
 
-> Hennessy, J. L., & Patterson, D. A. (2019). *Computer Architecture: A Quantitative Approach* (6th ed.), Chapter 1: Fundamentals of Quantitative Design and Analysis (Instruction Set Principles). Morgan Kaufmann.
+> Hennessy, J. L., & Patterson, D. A. (2017). *Computer Architecture: A Quantitative Approach* (6th ed.), Chapter 1: Fundamentals of Quantitative Design and Analysis (Instruction Set Principles). Morgan Kaufmann.
 
 - [Wikipedia: Instruction Set Architecture](https://en.wikipedia.org/wiki/Instruction_set_architecture) — ISA의 정의와 구성 요소 개요
-- [Intel 64 and IA-32 Architectures Software Developer Manuals](https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-manual-325462.html) — x86-64 ISA의 1차 출처 공식 문서
+- [Wikipedia: X86-64](https://en.wikipedia.org/wiki/X86-64) — x86-64 ISA의 레지스터 구성과 CISC 설계 특징 개요

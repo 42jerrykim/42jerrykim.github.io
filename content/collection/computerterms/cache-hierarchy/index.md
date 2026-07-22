@@ -100,6 +100,8 @@ int main(void) {
 
 C의 2차원 배열은 행 우선으로 메모리에 저장되므로, `sum_row_major`는 각 캐시 라인을 채운 만큼 연속해서 재사용하지만 `sum_col_major`는 매번 다음 행으로 건너뛰어 N개 원소 간격으로 떨어진 메모리에 접근한다. 실제로 컴파일해 실행하면 열 우선 순회가 행 우선 순회보다 유의미하게 느린 것을 확인할 수 있다(정확한 배율은 CPU·캐시 크기·컴파일러 최적화 수준에 따라 다르다).
 
+**언제 이런 지역성 최적화를 신경 써야 하는가**는 그 코드가 얼마나 자주, 얼마나 큰 데이터에 대해 실행되는가로 판단한다. 행렬 연산·이미지 처리·대규모 배열 순회처럼 반복 접근이 프로그램의 핫패스(hot path)를 이루는 코드라면 순회 순서나 타일링(tiling, 데이터를 캐시 크기에 맞는 작은 블록으로 나눠 처리) 같은 지역성 최적화가 실측 가능한 성능 차이를 만든다. 반대로 한 번만 실행되는 초기화 코드나, 네트워크·디스크 I/O 대기 시간이 계산 시간을 압도하는 코드라면 캐시 지역성을 신경 쓴 최적화의 이득이 거의 없으므로, 그 시간에 가독성이나 유지보수성을 우선하는 것이 합리적이다. 최적화 여부를 감으로 판단하기보다, 먼저 프로파일러로 실제 핫패스를 확인한 뒤에 이런 미시적 최적화를 적용하는 순서가 실무에서 더 안전하다.
+
 ## 캐시 미스의 세 종류
 
 캐시에 원하는 데이터가 없어 더 느린 다음 단계까지 내려가야 하는 상황을 **캐시 미스(Cache Miss)**라 부르며, 원인에 따라 세 가지로 나눈다. **Compulsory Miss**(강제 미스)는 데이터를 처음 접근할 때 캐시에 아직 없어서 발생하는, 어떤 캐시 정책으로도 피할 수 없는 미스다. **Capacity Miss**(용량 미스)는 작업 세트(working set)가 캐시 용량보다 커서, 앞서 올려둔 데이터가 밀려나 다시 접근할 때 발생한다. **Conflict Miss**(충돌 미스)는 캐시가 메모리 주소를 특정 위치에만 매핑하는 정책(set-associative 등) 때문에, 용량이 남아 있어도 서로 같은 캐시 위치를 두고 다투는 데이터끼리 밀어내며 발생한다.
@@ -129,7 +131,7 @@ C의 2차원 배열은 행 우선으로 메모리에 저장되므로, `sum_row_m
 
 ## 참고 자료
 
-> Hennessy, J. L., & Patterson, D. A. (2019). *Computer Architecture: A Quantitative Approach* (6th ed.), Chapter 2: Memory Hierarchy Design. Morgan Kaufmann.
+> Hennessy, J. L., & Patterson, D. A. (2017). *Computer Architecture: A Quantitative Approach* (6th ed.), Chapter 2: Memory Hierarchy Design. Morgan Kaufmann.
 
 - [Wikipedia: CPU cache](https://en.wikipedia.org/wiki/CPU_cache) — 캐시 계층·캐시 라인·미스 종류에 대한 개요
 - [Agner Fog: The microarchitecture of Intel, AMD and VIA CPUs](https://www.agner.org/optimize/microarchitecture.pdf) — 실제 CPU별 캐시 크기·지연시간 실측 자료
