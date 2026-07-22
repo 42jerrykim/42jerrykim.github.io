@@ -7,7 +7,7 @@ title: "[Computer Terms] CDN 캐싱 전략 (CDN Caching)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "CDN 캐싱은 캐시 무효화를 전 세계 엣지 서버 규모로 확장한 문제입니다. Cache-Control 헤더로 정책을 지시하는 법과, 캐시 버스팅으로 즉시 무효화하는 실무 기법을 다룹니다."
+description: "CDN 캐싱은 캐시 무효화를 전 세계 엣지 서버 규모로 확장한 문제입니다. Cache-Control 헤더로 정책을 지시하는 법과, 캐시 버스팅으로 즉시 무효화하는 실무 기법을, 정적 자원과 API 응답 각각에 어떤 지시자를 쓸지 판단하는 기준과 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -31,7 +31,6 @@ tags:
 - Case-Study
 - Software-Engineering(소프트웨어공학)
 - Distributed-Systems(분산시스템)
-- Web-Vulnerabilities
 - Edge-Computing(엣지컴퓨팅)
 - Frontend(프론트엔드)
 - DevOps
@@ -39,17 +38,17 @@ tags:
 
 ## 이 장을 읽기 전에
 
-[캐싱과 캐시 무효화](/post/computerterms/caching-and-invalidation/)에서 다룬 TTL 기반 만료와 명시적 무효화, 그리고 그 챕터가 남긴 "무효화 누락 시 Stale Data가 무기한 유지될 수 있다"는 문제를 안다고 가정한다. 이 챕터는 같은 문제를 단일 서버가 아니라 전 세계에 흩어진 수백 개의 엣지 서버 규모로 확장했을 때 무엇이 달라지는지를 다룬다.
+[캐싱과 캐시 무효화](/post/computerterms/caching-and-invalidation/)에서 다룬 TTL 기반 만료와 명시적 무효화, 그리고 그 챕터가 남긴 "무효화 누락 시 Stale Data가 무기한 유지될 수 있다"는 문제를 안다고 가정한다. 또한 [CDN(Content Delivery Network)](/post/computerterms/content-delivery-networks/)에서 다룬 오리진·엣지 서버 구조와 캐시 히트/미스 흐름도 이미 안다고 전제한다. 이 챕터는 그 구조를 전제로, 원본 서버가 전 세계 엣지 서버의 캐시 동작을 헤더 하나로 어떻게 제어하는지를 다룬다.
 
-## 왜 CDN이 필요한가
+## Cache-Control이 필요한 이유
 
-서울에 있는 서버가 뉴욕의 사용자에게 응답을 보내면 광속의 물리적 한계 때문에 왕복 지연(RTT)만 최소 수십 밀리초가 걸린다. **CDN(Content Delivery Network)**은 원본 서버(Origin) 앞에 지리적으로 분산된 캐시 서버(엣지 서버)를 두어, 사용자가 가장 가까운 엣지 서버에서 캐시된 사본을 받게 한다. 캐시된 데이터가 있으면(캐시 히트) 원본까지 가지 않고 즉시 응답하고, 없으면(캐시 미스) 엣지 서버가 원본에 요청해 받아온 뒤 캐시에 저장하고 사용자에게 전달한다. 이 구조 자체는 [캐싱과 캐시 무효화](/post/computerterms/caching-and-invalidation/)에서 다룬 "느린 원본 대신 빠른 사본을 먼저 본다"는 원리 그대로다 — 다른 점은 캐시가 하나의 프로세스 메모리가 아니라 지리적으로 흩어진 수백 대의 독립된 서버라는 것이다.
+[CDN(Content Delivery Network)](/post/computerterms/content-delivery-networks/)에서 본 것처럼 엣지 서버는 캐시 히트 시 원본까지 가지 않고 즉시 응답해 지연을 줄인다. 하지만 이 구조가 동작하려면 원본 서버가 각 엣지 서버에 "이 데이터를 언제까지, 어떤 조건으로 캐싱하라"고 개별적으로 지시할 방법이 필요하다 — 그 지시를 전달하는 표준 메커니즘이 이번 챕터의 주제다.
 
 ## Cache-Control 헤더로 정책을 지시한다
 
 원본 서버가 각 엣지 서버에 개별적으로 "이 데이터를 언제까지 캐싱하라"고 지시할 방법이 필요하다. HTTP는 이를 위해 응답 헤더 `Cache-Control`을 정의한다. 대표적인 지시자는 세 가지다. `max-age=N`은 응답을 N초 동안 신선(fresh)하다고 간주해 캐시가 원본에 재확인 없이 그대로 재사용하게 한다. `no-cache`는 이름과 달리 캐싱 자체를 금지하지 않는다 — 캐시에 저장은 하되, 매번 원본에 "이 사본이 아직 유효한지" 재검증(revalidation)한 뒤에만 반환하라는 뜻이다. `no-store`는 진짜로 캐싱을 금지한다 — 응답을 어디에도 저장하지 말고 매번 원본까지 다시 요청하라는 지시로, 로그인 세션이나 결제 정보처럼 민감한 응답에 쓰인다.
 
-```
+```http
 HTTP/1.1 200 OK
 Cache-Control: public, max-age=31536000, immutable
 Content-Type: application/javascript
@@ -66,6 +65,12 @@ Content-Type: application/javascript
 <link rel="stylesheet" href="/static/style.a1b2c3.css">
 <!-- 배포 2: 내용이 바뀌면 해시도 바뀌어 새 URL이 된다 -->
 <link rel="stylesheet" href="/static/style.d4e5f6.css">
+```
+
+```mermaid
+flowchart LR
+    D1["배포 1: style.a1b2c3.css<br/>max-age=1년으로 캐싱"] -->|"내용 수정 후 재배포"| D2["배포 2: style.d4e5f6.css<br/>새 URL이므로 무효화 불필요"]
+    D2 -->|"HTML은 no-cache"| H["HTML이 새 CSS URL을 즉시 참조"]
 ```
 
 이 방식의 핵심은 **불변 URL(Immutable URL)** 전략이다 — 해시가 붙은 정적 자원은 `max-age`를 최대한 길게(1년 이상) 잡아 영구 캐싱하고, 그 자원을 가리키는 HTML 파일 자체는 `no-cache`로 항상 재검증하게 한다. 이렇게 하면 HTML은 매번 최신 상태로 받아오면서도, 실제 용량이 큰 CSS·JS·이미지는 거의 무한정 캐싱되어 반복 방문자의 로딩 속도가 크게 개선된다. 웹팩(Webpack)의 `contenthash`, Vite의 빌드 해시 출력이 이 전략을 자동화한 도구다.
@@ -97,4 +102,4 @@ Content-Type: application/javascript
 > "The no-cache response directive indicates that the response can be stored in caches, but the response must be validated with the origin server before each reuse." — MDN Web Docs, *Cache-Control* (2024)
 
 - [MDN Web Docs: Cache-Control](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control) — 각 지시자의 정확한 의미와 조합 규칙
-- [Cloudflare Learning Center: What is a CDN?](https://www.cloudflare.com/learning/cdn/what-is-a-cdn/) — CDN의 엣지 서버 구조와 캐싱 동작에 대한 실무 설명
+- [AWS: What is a CDN?](https://aws.amazon.com/what-is/cdn/) — CDN의 엣지 서버 구조와 캐싱 동작에 대한 실무 설명

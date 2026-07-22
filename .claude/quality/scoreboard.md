@@ -107,9 +107,9 @@
 | content/collection/computerterms/atomic-operations-and-cas/index.md | 100 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/authentication-and-authorization/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/cache-hierarchy/index.md | 91 | 2026-07-22 | 1 | 통과 | 없음 |
-| content/collection/computerterms/caching-and-invalidation/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/caching-and-invalidation/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/cap-theorem-and-consensus/index.md | 97 | 2026-07-22 | 2 | 통과 | 없음(경미: Reliability 태그 본문 근거 약함) |
-| content/collection/computerterms/cdn-caching/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/cdn-caching/index.md | 100 | 2026-07-22 | 3 | 통과 | 없음 |
 | content/collection/computerterms/ci-cd-and-testing-types/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/circuit-breaker/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 없음(경미: Release It! 장 번호 표기를 "Stability Patterns" 부로 완화) |
 | content/collection/computerterms/closures-and-scope/index.md | - | - | 0 | 미채점 | - |
@@ -157,7 +157,7 @@
 | content/collection/computerterms/memory-management/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/memory-safety-and-ownership/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/message-queues/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
-| content/collection/computerterms/multilevel-caching/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/multilevel-caching/index.md | 100 | 2026-07-22 | 3 | 통과 | 없음 |
 | content/collection/computerterms/mvc-and-mvvm/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/mvcc/index.md | 96.1 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/normalization-and-indexes/index.md | 97 | 2026-07-22 | 1 | 통과 | 없음 |
@@ -200,5 +200,5 @@
 | content/collection/computerterms/web-vulnerabilities/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/webhooks/index.md | 100 | 2026-07-22 | 3 | 통과 | 없음 |
 | content/collection/computerterms/websockets-and-cors/index.md | - | - | 0 | 미채점 | - |
-| content/collection/computerterms/write-through-and-write-back/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/write-through-and-write-back/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/zero-trust-security/index.md | - | - | 0 | 미채점 | - |
