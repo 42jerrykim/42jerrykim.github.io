@@ -66,9 +66,9 @@ tags:
 * **점근적 분석 방법**을 씀
      
 시간 복잡도의 분석 종류  :  (아래 2.항 참조)
-* (최악의 경우) => big-O (빅 오 표기법) : O() => **최악, 이정도는 보장** (점근적 상한선)
-* (최선의 경우) => big-Omega (빅 오메가 표기법) : Ω() => **최고 수준** (점근적 하한선)
-* (평균의 경우) => big-Theta (빅 세타 표기법) : Θ() => **대략**
+* big-O (빅 오 표기법) : O() => 점근적 **상한선**(관례상 최악의 경우 분석에 가장 흔히 쓰임)
+* big-Omega (빅 오메가 표기법) : Ω() => 점근적 **하한선**(관례상 최선의 경우 분석에 흔히 쓰임)
+* big-Theta (빅 세타 표기법) : Θ() => 상한·하한이 같은 차수로 만나는 **엄격한 점근 한계**(관례상 평균 경우 분석에 흔히 쓰임)
 
 시간 복잡도의 계산 방식
 * 주로, 빅 오 표기법(점근적 상한선)에 준하여,
@@ -119,6 +119,19 @@ tags:
 > [참고] 시간복잡도 연산 크기 순서
 - O(1) < O(log n) < O(n) < O(nlogn) < O(n<sup>2</sup>) < O(n<sup>3</sup>) < O(2<sup>n</sup>) < O(n!) < O(∞)
 
-## 원문
+## 흔한 오개념
 
-* [Time Complexity 시간 복잡도](http://www.ktword.co.kr/test/view/view.php?nav=2&no=6212&sh=%EC%8B%9C%EA%B0%84+%EB%B3%B5%EC%9E%A1%EB%8F%84)
+**"Big-O는 최악의 경우만을 뜻한다"** — O는 점근적 **상한**을 뜻하는 표기법일 뿐, 어떤 경우(최악·평균·최선) 분석에도 붙일 수 있다. "최악의 경우 분석에 O를 쓰는 것이 관례"인 것이지, "O = 최악의 경우"라는 등식이 성립하는 것은 아니다.
+
+**"O(n²)은 O(n)보다 항상 느리다"** — 점근적 표기법은 입력 크기 n이 충분히 커질 때의 증가율만 비교한다. 상수 계수와 캐시 지역성 같은 실측 요인 때문에 입력이 작을 때는 이론상 더 느린 O(n²) 코드가 실제로는 더 빠른 경우가 흔하다 — [배열과 연결리스트](/post/computerterms/arrays-and-linked-lists/)의 캐시 지역성 논의를 참고.
+
+## 다른 개념과의 연결
+
+이 챕터에서 다룬 O/Ω/Θ 표기법의 상위 개념(왜 효율성을 분석해야 하는가)은 [알고리즘 효율성](/post/computerterms/algorithm-efficiency/)에서, 이 표기법이 실제 알고리즘 비교에 쓰이는 예시는 [정렬 알고리즘](/post/computerterms/sorting-algorithms/), [탐색 알고리즘](/post/computerterms/searching-algorithms/)에서 확인할 수 있다.
+
+## 참고 자료
+
+> Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). *Introduction to Algorithms* (3rd ed.), Chapter 3: Growth of Functions. MIT Press.
+
+- [Time Complexity 시간 복잡도 (원문)](http://www.ktword.co.kr/test/view/view.php?nav=2&no=6212&sh=%EC%8B%9C%EA%B0%84+%EB%B3%B5%EC%9E%A1%EB%8F%84)
+- [MIT OCW 6.006: Introduction to Algorithms — Asymptotic Notation](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/) — 점근적 표기법을 다루는 대학 강의 자료

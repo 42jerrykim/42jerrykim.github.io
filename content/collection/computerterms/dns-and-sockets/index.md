@@ -114,7 +114,7 @@ int main(void) {
 
 ## 다른 개념과의 연결
 
-DNS의 캐시·TTL 개념은 뒤에서 다룰 캐싱 갈래의 캐시 무효화 챕터와 원리가 같다. 소켓의 `accept`가 반환하는 연결들을 어느 서버로 분산할지는 로드밸런싱의 핵심 문제이며, 이는 운영체제 갈래의 프로세스/스레드 챕터(서버가 각 연결을 어떻게 동시에 처리하는가)와 이어진다.
+DNS의 캐시·TTL 개념은 [캐싱과 캐시 무효화](/post/computerterms/caching-and-invalidation/)와 원리가 같다. 소켓의 `accept`가 반환하는 연결들을 어느 서버로 분산할지는 [로드 밸런싱](/post/computerterms/load-balancing/)의 핵심 문제이며, 이는 [프로세스와 스레드](/post/computerterms/processes-and-threads/)(서버가 각 연결을 어떻게 동시에 처리하는가)와 이어진다.
 
 ## 평가 기준
 

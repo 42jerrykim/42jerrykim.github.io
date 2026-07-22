@@ -98,7 +98,7 @@ class ReceiptPrinter:
 
 ## 다른 개념과의 연결
 
-DIP의 "추상화에 의존"은 [결합도와 응집도](/post/computerterms/coupling-and-cohesion/)에서 다룬 낮은 결합도의 구체적인 실천 방법이고, SRP는 높은 응집도의 실천 방법이다. Computer Terms 컬렉션의 이 챕터로 소프트웨어 설계 갈래가 마무리되며, [00. 컬렉션 개요](/post/computerterms/getting-started-computer-terms/)에서 제시한 여덟 갈래(알고리즘·자료구조·네트워크·운영체제·데이터베이스·동시성·캐싱·보안·소프트웨어 설계)가 모두 완결된다.
+DIP의 "추상화에 의존"은 [결합도와 응집도](/post/computerterms/coupling-and-cohesion/)에서 다룬 낮은 결합도의 구체적인 실천 방법이고, SRP는 높은 응집도의 실천 방법이다. 다음 챕터에서는 이 원칙들을 검증된 해법으로 구체화한 [디자인 패턴 개요](/post/computerterms/design-patterns-overview/)를 다룬다.
 
 ## 평가 기준
 

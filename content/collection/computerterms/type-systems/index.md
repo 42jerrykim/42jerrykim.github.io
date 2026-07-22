@@ -104,7 +104,7 @@ print("2" + 1)   # TypeError: can only concatenate str (not "int") to str
 
 ## 다른 개념과의 연결
 
-정적 타입 검사가 [컴파일러와 인터프리터](/post/computerterms/compilers-and-interpreters/)에서 다룬 컴파일 단계의 일부로 이뤄진다는 점에서 두 챕터는 직접 이어진다. 프로그래밍 언어론 갈래는 이 챕터로 마무리되며, 다음은 코드가 어떻게 관리되고 배포되는지를 다루는 개발 프로세스 갈래로 이어간다.
+정적 타입 검사가 [컴파일러와 인터프리터](/post/computerterms/compilers-and-interpreters/)에서 다룬 컴파일 단계의 일부로 이뤄진다는 점에서 두 챕터는 직접 이어진다. 다음 챕터에서는 프로그래밍 언어론 갈래를 이어, 메모리 관리를 언어 런타임이 자동화하는 [가비지 컬렉션](/post/computerterms/garbage-collection/)을 다룬다.
 
 ## 평가 기준
 

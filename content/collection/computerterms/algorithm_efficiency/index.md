@@ -78,6 +78,23 @@ tags:
 * 알고리즘 실행 시간을 정확히 측정하기 보다는, 입력 크기가 증가함에 따라, 소요 시간이 어떻게 변하는 지에 관심이 있음
 
 표기법  :  점근적 표기법
-* (최악의 경우) => big-O (빅 오 표기법) : O() => **최악, 이정도는 보장** (점근적 상한선)
-* (최선의 경우) => big-Omega (빅 오메가 표기법) : Ω() => **최고 수준** (점근적 하한선)
-* (평균의 경우) => big-Theta (빅 세타 표기법) : Θ() => **대략**
+* big-O (빅 오 표기법) : O() => 점근적 **상한선**(관례상 최악의 경우 분석에 가장 흔히 쓰이지만, 정의 자체는 최선·평균 경우에도 쓸 수 있다)
+* big-Omega (빅 오메가 표기법) : Ω() => 점근적 **하한선**(관례상 최선의 경우 분석에 흔히 쓰임)
+* big-Theta (빅 세타 표기법) : Θ() => 상한과 하한이 같은 차수로 만나는 **엄격한 점근 한계**(관례상 평균 경우 분석에 흔히 쓰임)
+
+## 흔한 오개념
+
+**"Big-O는 최악의 경우만을 뜻하는 표기법이다"** — Big-O(O)는 "이 함수보다 느리게 증가하지 않는다"는 점근적 **상한**을 뜻할 뿐, 최악/평균/최선 중 어느 경우를 분석하든 쓸 수 있는 수학적 표기법이다. 다만 실무에서 "이 알고리즘이 아무리 나빠도 이 정도 성능은 보장한다"는 안전 마진이 중요하므로 최악의 경우 분석에 O를 붙여 쓰는 관례가 굳어졌을 뿐이다. Ω(빅 오메가)를 최악의 경우에, O를 최선의 경우에 적용하는 것도 수학적으로는 유효하다.
+
+**"시간 복잡도가 낮으면 항상 더 빠르다"** — [배열과 연결리스트](/post/computerterms/arrays-and-linked-lists/)에서 다루듯, 점근적 표기법은 입력 크기가 충분히 클 때의 증가율만 비교한다. 상수 계수와 캐시 지역성 같은 실측 요인 때문에, 입력이 작을 때는 이론상 더 느린 O(n²) 알고리즘이 실제로는 O(n log n) 알고리즘보다 빠른 경우가 흔하다.
+
+## 다른 개념과의 연결
+
+이 챕터에서 다룬 점근적 표기법(O, Ω, Θ)의 구체적 계산 규칙과 예시는 [시간 복잡도](/post/computerterms/time-complexity/)에서, 효율성 분석의 상위 개념인 알고리즘 자체의 정의는 [알고리즘](/post/computerterms/algorithm/)에서 다룬다. 실측 성능이 점근적 복잡도와 어긋나는 실제 사례(캐시 지역성)는 [배열과 연결리스트](/post/computerterms/arrays-and-linked-lists/)를 참고.
+
+## 참고 자료
+
+> Knuth, D. E. (1976). "Big Omicron and Big Omega and Big Theta". *ACM SIGACT News*, 8(2), 18–24.
+
+- [Cormen, Leiserson, Rivest, Stein, *Introduction to Algorithms* (MIT Press), Chapter 3: Growth of Functions](https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/) — O/Ω/Θ 표기법의 표준 정의
+- [MIT OCW 6.006: Introduction to Algorithms](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/) — 점근적 분석을 다루는 대학 강의 자료

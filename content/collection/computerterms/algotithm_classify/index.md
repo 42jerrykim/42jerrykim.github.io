@@ -116,3 +116,20 @@ tags:
   * 규모가 큰 문제를 만만한 작은 조각으로 나눠 각개격파 
 * 동적계획법(Dynamic Programming) 전략
 * 탐욕 알고리즘(Greedy Algorithm) 전략 등
+
+## 흔한 오개념
+
+**"분할정복과 동적계획법은 같은 것이다"** — 둘 다 문제를 작은 부분 문제로 나눈다는 공통점이 있지만, 분할정복은 부분 문제들이 서로 겹치지 않는 것을 전제로 하는 반면(병합 정렬처럼 나뉜 절반이 서로 독립적), [동적 계획법](/post/computerterms/dynamic-programming/)은 부분 문제가 반복해서 겹칠 때(중복 부분 문제) 그 결과를 저장해 재사용한다는 점이 다르다. 이 차이를 모르면 동적계획법이 필요한 문제에 분할정복만 적용해 지수 시간으로 폭발하는 코드를 짜게 된다.
+
+**"그리디 알고리즘은 항상 동적계획법보다 나쁜 근사해만 준다"** — [그리디 알고리즘](/post/computerterms/greedy-algorithms/)에서 다루듯, 그리디 선택 속성이 성립하는 문제(활동 선택, 최소 신장 트리 등)에서는 그리디가 동적계획법 없이도 정확한 최적해를 더 빠르게 낸다. 그리디가 부정확해지는 것은 그 속성이 성립하지 않는 문제(0/1 배낭 문제 등)에 잘못 적용했을 때뿐이다.
+
+## 다른 개념과의 연결
+
+주제별 분류에서 언급한 탐색·정렬 알고리즘의 구체적 구현은 [탐색 알고리즘](/post/computerterms/searching-algorithms/), [정렬 알고리즘](/post/computerterms/sorting-algorithms/)에서, 설계 기법 분류의 동적계획법·그리디는 각각 [동적 계획법](/post/computerterms/dynamic-programming/), [그리디 알고리즘](/post/computerterms/greedy-algorithms/)에서 코드와 함께 자세히 다룬다.
+
+## 참고 자료
+
+> Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). *Introduction to Algorithms* (3rd ed.), Part II–III: Sorting and Order Statistics, Data Structures. MIT Press.
+
+- [Sedgewick & Wayne, *Algorithms* (4th ed.) 공식 강의 자료](https://algs4.cs.princeton.edu/home/) — 알고리즘 분류 체계를 다루는 프린스턴대 표준 교재
+- [Skiena, *The Algorithm Design Manual*](https://www.algorist.com/) — 설계 기법(분할정복·DP·그리디)별 분류와 실무 적용 가이드

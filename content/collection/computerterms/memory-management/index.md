@@ -101,7 +101,7 @@ int main(void) {
 
 ## 다른 개념과의 연결
 
-페이지 테이블 조회를 매번 하지 않도록 최근 변환 결과를 저장하는 **TLB(Translation Lookaside Buffer)**는 캐싱 갈래에서 다룰 캐시 지역성 원리와 같은 개념이다. 스와핑·페이지 폴트로 인한 디스크 접근 지연은 데이터베이스 갈래의 인덱스가 "왜 메모리에 다 못 올리는 대용량 데이터에서도 빨라야 하는가"와 이어진다.
+페이지 테이블 조회를 매번 하지 않도록 최근 변환 결과를 저장하는 **TLB(Translation Lookaside Buffer)**는 [캐싱과 캐시 무효화](/post/computerterms/caching-and-invalidation/)에서 다룰 캐시 지역성 원리와 같은 개념이다. 스와핑·페이지 폴트로 인한 디스크 접근 지연은 [정규화와 인덱스](/post/computerterms/normalization-and-indexes/)가 "왜 메모리에 다 못 올리는 대용량 데이터에서도 빨라야 하는가"와 이어진다.
 
 ## 평가 기준
 

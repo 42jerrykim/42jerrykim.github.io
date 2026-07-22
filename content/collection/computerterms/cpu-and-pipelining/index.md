@@ -109,7 +109,7 @@ for (int i = 0; i < n; i++) {
 
 ## 다른 개념과의 연결
 
-파이프라이닝이 명령어 인출에 의존하는 것은 [캐싱과 캐시 무효화](/post/computerterms/caching-and-invalidation/)에서 다룬 CPU 캐시가 그 명령어를 빠르게 공급해줘야 이득이 유지된다는 점에서 직접 연결된다. 컴퓨터 구조 갈래는 이 챕터로 마무리되며, 다음은 웹 통신에서 자주 쓰이는 프로토콜(REST, GraphQL, 웹소켓)을 다루는 웹/프로토콜 갈래로 이어간다.
+파이프라이닝이 명령어 인출에 의존하는 것은 [캐싱과 캐시 무효화](/post/computerterms/caching-and-invalidation/)에서 다룬 CPU 캐시가 그 명령어를 빠르게 공급해줘야 이득이 유지된다는 점에서 직접 연결된다. 다음 챕터에서는 컴퓨터 구조 갈래를 이어, CPU가 값을 저장하는 가장 빠른 공간인 [레지스터와 명령어 집합 구조](/post/computerterms/registers-and-isa/)를 다룬다.
 
 ## 평가 기준
 

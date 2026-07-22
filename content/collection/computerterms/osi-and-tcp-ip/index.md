@@ -108,7 +108,7 @@ int main(void) {
 
 ## 다른 개념과의 연결
 
-다음 챕터에서 다룰 HTTP/HTTPS는 이 챕터의 응용 계층에 해당하며, TCP 위에서 동작한다(HTTPS는 TCP 위의 TLS 위에서 동작). DNS는 응용 계층 프로토콜이면서도 IP 주소 해석이라는 네트워크 계층의 문제를 푼다는 점에서 계층 경계가 실무에서는 엄격히 나뉘지 않음을 보여주는 예다.
+다음 챕터에서 다룰 [HTTP와 HTTPS](/post/computerterms/http-and-https/)는 이 챕터의 응용 계층에 해당하며, TCP 위에서 동작한다(HTTPS는 TCP 위의 TLS 위에서 동작). [DNS](/post/computerterms/dns-and-sockets/)는 응용 계층 프로토콜이면서도 IP 주소 해석이라는 네트워크 계층의 문제를 푼다는 점에서 계층 경계가 실무에서는 엄격히 나뉘지 않음을 보여주는 예다.
 
 ## 평가 기준
 

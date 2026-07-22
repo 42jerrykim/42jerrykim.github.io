@@ -102,7 +102,7 @@ tags:
 
 ## 다른 개념과의 연결
 
-세션 저장소는 [캐싱과 캐시 무효화](/post/computerterms/caching-and-invalidation/)에서 다룬 키-값 저장소의 실제 활용 사례이며, JWT 서명은 [암호화와 해싱](/post/computerterms/encryption-and-hashing/)에서 다룬 비대칭키 서명 원리를 그대로 쓴다. 보안 갈래는 이 챕터로 마무리되며, 다음은 코드 구조 자체를 판단하는 소프트웨어 설계 갈래로 이어진다.
+세션 저장소는 [캐싱과 캐시 무효화](/post/computerterms/caching-and-invalidation/)에서 다룬 키-값 저장소의 실제 활용 사례이며, JWT 서명은 [암호화와 해싱](/post/computerterms/encryption-and-hashing/)에서 다룬 비대칭키 서명 원리를 그대로 쓴다. 다음 챕터에서는 보안 갈래를 이어, 사용자를 대신해 제3자 앱에 제한된 권한을 위임하는 [OAuth와 OpenID Connect](/post/computerterms/oauth-and-oidc/)를 다룬다.
 
 ## 평가 기준
 

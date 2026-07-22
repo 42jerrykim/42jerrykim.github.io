@@ -125,7 +125,7 @@ void *transfer_b_to_a_fixed(void *arg) {
 
 ## 다른 개념과의 연결
 
-데드락 탐지는 실행 흐름 간의 대기 관계를 [그래프](/post/computerterms/graphs/)로 그려("대기-그래프", Wait-For Graph) 사이클이 있는지 확인하는 문제로 환원된다 — 그래프 챕터에서 다룬 사이클 개념이 여기서 실무 도구로 다시 쓰인다. 동시성 갈래는 이 챕터로 마무리되며, 다음은 반복되는 조회를 빠르게 만드는 캐싱 갈래로 이어진다.
+데드락 탐지는 실행 흐름 간의 대기 관계를 [그래프](/post/computerterms/graphs/)로 그려("대기-그래프", Wait-For Graph) 사이클이 있는지 확인하는 문제로 환원된다 — 그래프 챕터에서 다룬 사이클 개념이 여기서 실무 도구로 다시 쓰인다. 다음 챕터에서는 락 없이 하드웨어 수준에서 동시성을 제어하는 [세마포어와 모니터](/post/computerterms/semaphores-and-monitors/)를 다룬다.
 
 ## 평가 기준
 

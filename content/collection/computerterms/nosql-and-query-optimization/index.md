@@ -82,7 +82,7 @@ WHERE c.customer_id = 42;
 
 ## 다른 개념과의 연결
 
-키-값 DB는 [해시테이블](/post/computerterms/hash-tables/)을, 그래프 DB는 [그래프](/post/computerterms/graphs/)를 데이터베이스 수준으로 확장한 것으로, 자료구조 갈래에서 다룬 트레이드오프(정렬 유지 여부, 임의 접근 비용)가 그대로 데이터베이스 선택 기준이 된다. 데이터베이스 갈래는 이 챕터로 마무리되며, 다음은 여러 프로세스·스레드가 공유 자원(데이터베이스 포함)에 동시에 접근할 때 생기는 문제를 다루는 동시성 갈래로 이어진다.
+키-값 DB는 [해시테이블](/post/computerterms/hash-tables/)을, 그래프 DB는 [그래프](/post/computerterms/graphs/)를 데이터베이스 수준으로 확장한 것으로, 자료구조 갈래에서 다룬 트레이드오프(정렬 유지 여부, 임의 접근 비용)가 그대로 데이터베이스 선택 기준이 된다. 다음 챕터에서는 [ACID Transactions](/post/computerterms/acid-transactions/)의 고립성(Isolation)을 구체화한 [트랜잭션 격리 수준](/post/computerterms/transaction-isolation-levels/)을 다룬다.
 
 ## 평가 기준
 

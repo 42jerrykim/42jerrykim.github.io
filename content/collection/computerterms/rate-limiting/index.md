@@ -138,7 +138,7 @@ limiter = SlidingWindowLimiter(max_requests=100, window_seconds=60)
 
 ## 참고 자료
 
-> Fielding, R., & Reschke, J. (Eds.). (2014). *RFC 7231: Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content*, Section 6.5.4 (429 Too Many Requests는 RFC 6585에서 정의). IETF.
+> Nottingham, M., & Fielding, R. (2012). *RFC 6585: Additional HTTP Status Codes*, Section 4 (429 Too Many Requests). IETF.
 
 - [Stripe Engineering: Scaling your API with rate limiters](https://stripe.com/blog/rate-limiters) — 토큰 버킷·슬라이딩 윈도우 실무 구현 비교
 - [OWASP: API Security Top 10 – Unrestricted Resource Consumption](https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/) — 레이트 리미팅 부재가 유발하는 취약점 분류

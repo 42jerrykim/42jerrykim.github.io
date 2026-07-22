@@ -71,6 +71,7 @@ graph TB
 컨테이너 런타임(Docker, containerd)이 내부적으로 하는 일의 핵심은 결국 `clone()` 시스템 콜에 네임스페이스 플래그를 조합해 넘기는 것이다. 이를 직접 눈으로 확인하려면 리눅스의 `unshare` 시스템 콜을 쓰는 최소 예제로 충분하다.
 
 ```c
+#define _GNU_SOURCE   /* unshare()·CLONE_NEWPID는 GNU 확장이라 이 정의가 있어야 sched.h에 노출됨 */
 #include <stdio.h>
 #include <sched.h>
 #include <unistd.h>

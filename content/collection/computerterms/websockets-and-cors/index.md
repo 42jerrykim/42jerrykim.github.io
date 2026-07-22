@@ -91,7 +91,7 @@ api.b.com → 브라우저: HTTP/1.1 200 OK
 
 ## 다른 개념과의 연결
 
-웹소켓의 업그레이드 핸드셰이크는 [HTTP와 HTTPS](/post/computerterms/http-and-https/)의 HTTP 요청-응답 구조 위에서 시작된다는 점에서, HTTP와 완전히 다른 프로토콜이 아니라 그 확장이다. CORS의 preflight는 [웹 취약점](/post/computerterms/web-vulnerabilities/)에서 다룬 CSRF와 공격 표면이 겹치는 영역이다. 웹/프로토콜 갈래는 이 챕터로 마무리되며, 다음은 프로그래밍 언어 자체가 코드를 어떻게 처리하는지를 다루는 프로그래밍 언어론 갈래로 이어간다.
+웹소켓의 업그레이드 핸드셰이크는 [HTTP와 HTTPS](/post/computerterms/http-and-https/)의 HTTP 요청-응답 구조 위에서 시작된다는 점에서, HTTP와 완전히 다른 프로토콜이 아니라 그 확장이다. CORS의 preflight는 [웹 취약점](/post/computerterms/web-vulnerabilities/)에서 다룬 CSRF와 공격 표면이 겹치는 영역이다. 다음 챕터에서는 웹/프로토콜 갈래를 이어, HTTP/2 위에서 이진 직렬화로 통신하는 [gRPC](/post/computerterms/grpc/)를 다룬다.
 
 ## 평가 기준
 

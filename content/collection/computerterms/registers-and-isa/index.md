@@ -70,7 +70,9 @@ tags:
 
 int add_two(int a, int b) {
     int result;
-    /* x86-64 System V ABI: 첫째 인자는 edi, 둘째는 esi 레지스터로 전달됨(구현 정의) */
+    /* 함수 인자 a, b 자체는 System V AMD64 ABI(표준 호출 규약)에 따라 컴파일러가 배치하지만,
+       아래 인라인 asm은 그와 별개로 GCC 확장 제약조건 "a"/"b"로 a를 eax에, b를 ebx에
+       직접 배치하도록 강제한다 — 이 예제가 보여주는 것은 호출 규약이 아니라 ISA 명령어 자체다 */
     __asm__ ("addl %%ebx, %%eax"
              : "=a" (result)
              : "a" (a), "b" (b));

@@ -62,9 +62,9 @@ tags:
 애플리케이션은 트랜잭션을 시작하기 전에 필요한 격리 수준을 명시적으로 지정할 수 있다. 지정하지 않으면 데이터베이스마다 다른 기본값이 적용된다(PostgreSQL·Oracle은 Read Committed, MySQL의 InnoDB는 Repeatable Read가 기본값이다).
 
 ```sql
--- 이번 트랜잭션만 Serializable로 실행
-SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+-- 이번 트랜잭션만 Serializable로 실행 (BEGIN 이후에 설정해야 적용됨)
 BEGIN;
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 
 SELECT balance FROM accounts WHERE account_id = 42;
 -- 다른 트랜잭션이 동시에 이 행을 수정하려 하면 충돌이 감지되어

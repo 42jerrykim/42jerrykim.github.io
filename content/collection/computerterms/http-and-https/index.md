@@ -53,7 +53,7 @@ Accept: application/json
 
 HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 27
+Content-Length: 24
 
 {"id":42,"name":"jerry"}
 ```
@@ -69,13 +69,13 @@ sequenceDiagram
     C->>S: ClientHello (지원 암호화 방식 목록)
     S->>C: ServerHello + 인증서
     C->>C: 인증서 검증 (신뢰할 수 있는 CA가 서명했는가)
-    C->>S: 대칭키 교환 (비대칭키로 암호화)
+    C->>S: 키 합의(ECDHE)로 세션키 생성
     S->>C: Finished (핸드셰이크 완료)
     C->>S: 암호화된 HTTP 요청
     S->>C: 암호화된 HTTP 응답
 ```
 
-핸드셰이크에서 비대칭키(공개키/개인키)로 대칭키를 안전하게 교환한 뒤, 실제 데이터는 계산 비용이 훨씬 낮은 대칭키로 암호화한다. 매 요청마다 무거운 비대칭키 연산을 쓰지 않기 위한 설계다.
+핸드셰이크에서는 (EC)DHE 같은 키 합의 알고리즘으로 양쪽이 같은 세션키를 안전하게 만들어내고, 실제 데이터는 계산 비용이 훨씬 낮은 그 대칭키로 암호화한다. TLS 1.3(RFC 8446)부터는 옛 RSA 키 전송 방식이 제거되고 이 키 합의 방식만 허용된다 — 서버의 개인키가 유출되더라도 과거에 주고받은 세션키까지 함께 복원되지 않는 순방향 비밀성(Forward Secrecy)을 얻기 위해서다.
 
 ## 비교: HTTP vs HTTPS
 
@@ -95,7 +95,7 @@ sequenceDiagram
 
 ## 다른 개념과의 연결
 
-TLS의 인증서 검증과 키 교환은 뒤에서 다룰 보안 갈래의 **암호화·해싱** 챕터에서 다시 다룬다. HTTP의 무상태성 때문에 발생하는 "여러 서버 중 어디로 요청을 보낼지"라는 질문은 로드밸런싱과 직결되며, 다음 챕터인 DNS·소켓에서 "애초에 어떤 서버 주소로 연결하는가"를 다룬다.
+TLS의 인증서 검증과 키 교환은 [암호화와 해싱](/post/computerterms/encryption-and-hashing/)에서 다시 다룬다. HTTP의 무상태성 때문에 발생하는 "여러 서버 중 어디로 요청을 보낼지"라는 질문은 [로드 밸런싱](/post/computerterms/load-balancing/)과 직결되며, 다음 챕터인 [DNS와 소켓](/post/computerterms/dns-and-sockets/)에서 "애초에 어떤 서버 주소로 연결하는가"를 다룬다.
 
 ## 평가 기준
 

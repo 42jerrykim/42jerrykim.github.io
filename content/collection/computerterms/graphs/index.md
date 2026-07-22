@@ -140,7 +140,7 @@ int main(void) {
 
 ## 다른 개념과의 연결
 
-인접 리스트는 [해시테이블](/post/computerterms/hash-tables/)의 체이닝, [연결리스트](/post/computerterms/arrays-and-linked-lists/)의 노드 구조를 그대로 재사용한 결과다. 트리의 전위·중위·후위 순회, 스택·큐 기반 순회는 모두 그래프의 DFS·BFS로 일반화된다. 자료구조 갈래는 여기서 마무리되며, 이후 챕터는 이 자료구조들이 실제 시스템(데이터베이스 인덱스, 캐시, 라우팅 테이블)에서 어떻게 쓰이는지를 다룬다.
+인접 리스트는 [해시테이블](/post/computerterms/hash-tables/)의 체이닝, [연결리스트](/post/computerterms/arrays-and-linked-lists/)의 노드 구조를 그대로 재사용한 결과다. 트리의 전위·중위·후위 순회, 스택·큐 기반 순회는 모두 그래프의 DFS·BFS로 일반화된다. 다음 챕터에서는 자료구조 갈래를 이어, 우선순위에 따라 최솟값·최댓값을 O(log n)에 꺼내는 [힙과 우선순위 큐](/post/computerterms/heaps-and-priority-queues/)를 다룬다.
 
 ## 평가 기준
 

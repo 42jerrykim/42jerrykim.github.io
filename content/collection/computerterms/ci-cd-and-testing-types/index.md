@@ -86,7 +86,7 @@ graph TB
 
 ## 다른 개념과의 연결
 
-CI/CD 파이프라인은 [버전 관리의 내부 구조](/post/computerterms/version-control-internals/)의 커밋·브랜치 이벤트를 트리거로 삼아 동작하고, 테스트 피라미드의 단위 테스트는 [리팩토링과 코드 스멜](/post/computerterms/refactoring-and-code-smells/)에서 다룬 "리팩토링 전후 동작이 같은지 확인하는 안전망" 역할을 한다. 이 챕터로 개발 프로세스 갈래가 마무리되며, Computer Terms 컬렉션 전체가 12개 갈래로 완결된다.
+CI/CD 파이프라인은 [버전 관리의 내부 구조](/post/computerterms/version-control-internals/)의 커밋·브랜치 이벤트를 트리거로 삼아 동작하고, 테스트 피라미드의 단위 테스트는 [리팩토링과 코드 스멜](/post/computerterms/refactoring-and-code-smells/)에서 다룬 "리팩토링 전후 동작이 같은지 확인하는 안전망" 역할을 한다. 다음 챕터에서는 개발 프로세스 갈래를 이어, 풀 리퀘스트로 병합 전 결함을 잡아내는 [코드 리뷰](/post/computerterms/code-review/)를 다룬다.
 
 ## 평가 기준
 

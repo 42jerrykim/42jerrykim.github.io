@@ -56,7 +56,7 @@ tags:
 
 알고리즘의 어원
 
-* 9세기경 아라비아의 천문학자,수학자인 알고리즈미(al-Khowarizmi)의 이름에서 유래
+* 9세기경 바그다드에서 활동한 페르시아계 천문학자·수학자 알콰리즈미(al-Khwarizmi)의 이름에서 유래
 * 십진법에 의해 덧셈,뺄셈,곱셈.나눗셈,제곱근,원주율을 구하는 방법을 아랍어로 기록
 
 
@@ -128,3 +128,20 @@ tags:
 
 알고리즘의 설계 기법(전략,패러다임)에 의한 분류
 * (축소 정복, 분할 정복, 탐욕 알고리즘, 동적 프로그래밍, 백트래킹 등)
+
+## 흔한 오개념
+
+**"알고리즘은 곧 코드다"** — 알고리즘은 특정 프로그래밍 언어와 무관한 문제 해결 절차이고, 코드는 그 절차를 특정 언어로 구현한 결과물이다. 같은 알고리즘(예: 이진 탐색)도 C, Python, 의사코드로 서로 다른 코드가 되지만 알고리즘 자체(비교 후 절반씩 줄여나가는 절차)는 동일하다. "코드를 외운다"와 "알고리즘을 이해한다"를 혼동하면, 언어가 바뀌거나 변형된 문제가 나왔을 때 응용하지 못한다.
+
+**"효율적인 알고리즘은 항상 짧고 간단한 코드다"** — [알고리즘 효율성](/post/computerterms/algorithm-efficiency/)에서 다루듯, 효율성은 코드 줄 수가 아니라 입력 크기 증가에 따른 자원 사용량 증가율(시간·공간 복잡도)로 측정한다. 병합 정렬(O(n log n))은 버블 정렬(O(n²))보다 코드가 더 길고 복잡하지만 훨씬 효율적이다.
+
+## 다른 개념과의 연결
+
+이 챕터에서 다룬 효율성 분석은 [알고리즘 효율성](/post/computerterms/algorithm-efficiency/)과 [시간 복잡도](/post/computerterms/time-complexity/)에서, 주제별·설계 기법별 분류는 [알고리즘 분류](/post/computerterms/algorithm-classification/)에서 각각 더 깊이 다룬다. 실제 정렬·탐색 알고리즘의 구체적 구현과 비교는 [정렬 알고리즘](/post/computerterms/sorting-algorithms/), [탐색 알고리즘](/post/computerterms/searching-algorithms/) 챕터를 참고.
+
+## 참고 자료
+
+> Knuth, D. E. (1968). *The Art of Computer Programming, Volume 1: Fundamental Algorithms*. Addison-Wesley.
+
+- [Cormen, Leiserson, Rivest, Stein, *Introduction to Algorithms* (MIT Press)](https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/) — 알고리즘 정의·분석의 표준 교과서
+- [Stanford CS161: Design and Analysis of Algorithms](https://web.stanford.edu/class/cs161/) — 알고리즘 설계·분석 대학 강의 커리큘럼

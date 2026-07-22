@@ -112,7 +112,7 @@ def email_order_summary(order):
 
 ## 다른 개념과의 연결
 
-이 챕터로 소프트웨어 설계 갈래(결합도·응집도, SOLID, 디자인 패턴, 리팩토링)가 하나의 흐름으로 완결된다 — 원칙(결합도·응집도, SOLID)으로 무엇이 좋은 설계인지 판단하고, 패턴으로 그 설계를 구현하며, 리팩토링으로 기존 코드를 그 상태로 옮겨간다. Computer Terms 컬렉션 전체는 이 챕터를 포함해 12개 갈래로 마무리된다.
+여기까지가 소프트웨어 설계 갈래의 기초 원칙([결합도와 응집도](/post/computerterms/coupling-and-cohesion/), [SOLID 원칙 개요](/post/computerterms/solid-principles-overview/), [디자인 패턴 개요](/post/computerterms/design-patterns-overview/), 리팩토링)이다 — 원칙으로 무엇이 좋은 설계인지 판단하고, 패턴으로 그 설계를 구현하며, 리팩토링으로 기존 코드를 그 상태로 옮겨간다. 다음 챕터부터는 이 원칙들이 구체적인 디자인 패턴([옵저버 패턴](/post/computerterms/observer-pattern/), [팩토리 패턴](/post/computerterms/factory-pattern/) 등)으로 어떻게 나타나는지를 다룬다.
 
 ## 평가 기준
 
