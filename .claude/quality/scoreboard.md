@@ -97,3 +97,4 @@
 | content/collection/design-patterns/23-pattern-code-review-design-review-practice/index.md | 100 | 2026-07-19 | 5 | 통과 | 없음 |
 | content/collection/design-patterns/24-discovering-defining-new-patterns/index.md | 93 | 2026-07-19 | 5 | 통과 | 없음 |
 | content/collection/design-patterns/24-discovering-defining-new-patterns-practice/index.md | 97 | 2026-07-19 | 5 | 통과 | 없음 |
+| content/collection/TV-Show/2026/2026-07-22-young-sheldon-medford-texas-setting-filming-location/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음(신규 인용 링크 2건은 WebFetch 402/403이나 실제 브라우저 접근 확인됨 — the-big-bang-theory.com·IMDb·Fandom·SoapCentral 4건 모두 봇 차단으로 판단, 검증 완료) |
