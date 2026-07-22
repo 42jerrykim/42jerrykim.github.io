@@ -3,7 +3,7 @@ title: "[Terminal] iTerm2 vs SecureCRT 세션 로그 저장 기능 완전 비교
 description: "iTerm2와 SecureCRT의 세션 로그 저장 기능을 비교한다. 로그 활성화 메뉴 경로, Raw·Plain Text·HTML·asciinema 포맷 차이, 자동 로그 vs 수동 로그, 로그 파일명 변수 치환, 무료·유료 여부와 플랫폼 지원 차이까지 실제 설정값으로 정리한다."
 date: "2026-07-22T00:00:00Z"
 lastmod: "2026-07-22T00:00:00Z"
-draft: true
+draft: false
 categories:
   - Terminal
 tags:

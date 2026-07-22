@@ -45,7 +45,7 @@ tags:
   - Privacy(프라이버시)
   - Cloud(클라우드)
 image: "wordcloud.png"
-draft: true
+draft: false
 ---
 
 "pikvm v4 mini 리뷰"를 검색해서 들어왔다면 아마도 홈랩 서버나 미니 PC를 원격으로 켜고 끄고, 부팅 화면부터 제어하고 싶은데 상용 IPMI·iLO 카드는 너무 비싸다고 느꼈을 가능성이 크다. 이 글은 **PiKVM V4 Mini**를 실제로 서버실이 아닌 집 랙에 물려 몇 달간 써 본 경험을 바탕으로, 스펙표만으로는 알기 어려운 캡처 성능·전원 제어·가상 스토리지 동작과 TinyPilot·JetKVM 대비 장단점을 정리한다.

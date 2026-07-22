@@ -3,7 +3,7 @@ title: "[Monitoring] p95·p99 레이턴시란: 평균 대신 백분위수를 써
 description: "평균 지연시간은 롱테일을 감춘다. p50·p95·p99·p99.9의 의미, 정렬 기반·히스토그램·t-digest 계산법, Prometheus histogram_quantile과 Grafana 활용법, SLO 설계 방식을 실제 수치 예시로 설명한다."
 date: 2026-07-22
 lastmod: 2026-07-22
-draft: true
+draft: false
 categories:
   - Monitoring
   - Performance

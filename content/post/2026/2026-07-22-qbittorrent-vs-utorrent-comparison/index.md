@@ -5,7 +5,7 @@ categories:
   - Torrent
 date: "2026-07-22T00:00:00Z"
 lastmod: "2026-07-22T00:00:00Z"
-draft: true
+draft: false
 tags:
   - Windows(윈도우)
   - Linux(리눅스)
