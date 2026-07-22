@@ -7,7 +7,7 @@ title: "[Computer Terms] 최단 경로 알고리즘 (Shortest Path Algorithms)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "가중치 없는 그래프의 BFS 최단경로와 가중치 있는 그래프의 다익스트라 알고리즘을 비교하고, 음수 가중치에서 다익스트라가 실패하는 이유와 벨만-포드를 다룹니다."
+description: "가중치 없는 그래프의 BFS 최단경로와 가중치 있는 그래프의 다익스트라 알고리즘을 비교하고, 음수 가중치에서 다익스트라가 실패하는 구체적 반례와, 이를 해결하는 벨만-포드 알고리즘의 동작 원리·시간 복잡도·음수 사이클 검출 기능까지 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -22,6 +22,7 @@ tags:
 - Greedy(그리디)
 - Time-Complexity(시간복잡도)
 - C
+- C++
 - Computer-Science(컴퓨터과학)
 - Data-Structure(자료구조)
 - Reference(참고)
@@ -47,7 +48,7 @@ tags:
 
 ## 다익스트라 알고리즘: 그리디로 가중치 최단 경로 구하기
 
-**다익스트라(Dijkstra) 알고리즘**은 시작 정점에서 각 정점까지의 최단 거리를 담는 배열을 무한대로 초기화하고(시작 정점만 0), 아직 확정되지 않은 정점 중 현재까지 알려진 거리가 가장 짧은 정점을 매번 골라 그 정점을 거쳐 갈 수 있는 이웃들의 거리를 갱신(Relaxation)하는 과정을 모든 정점이 확정될 때까지 반복한다. "가장 짧은 정점을 매번 그리디하게 고른다"는 점에서 다음 챕터에서 다룰 그리디 알고리즘의 대표 사례이기도 하다. 매번 최솟값을 찾는 과정을 **우선순위 큐(Priority Queue)**로 구현하면, 간선 수를 E, 정점 수를 V라 할 때 전체 시간 복잡도는 O((V + E) log V)가 된다.
+**다익스트라(Dijkstra) 알고리즘**은 시작 정점에서 각 정점까지의 최단 거리를 담는 배열을 무한대로 초기화하고(시작 정점만 0), 아직 확정되지 않은 정점 중 현재까지 알려진 거리가 가장 짧은 정점을 매번 골라 그 정점을 거쳐 갈 수 있는 이웃들의 거리를 갱신(Relaxation)하는 과정을 모든 정점이 확정될 때까지 반복한다. "가장 짧은 정점을 매번 그리디하게 고른다"는 점에서, 이후 [동적 계획법](/post/computerterms/dynamic-programming/)을 거쳐 다룰 그리디 알고리즘의 대표 사례이기도 하다. 매번 최솟값을 찾는 과정을 **우선순위 큐(Priority Queue)**로 구현하면, 간선 수를 E, 정점 수를 V라 할 때 전체 시간 복잡도는 O((V + E) log V)가 된다.
 
 다음은 다익스트라의 핵심 로직을 담은 의사코드다. 실제 언어별 구현은 그래프 표현(인접 리스트/행렬)과 우선순위 큐 라이브러리에 따라 세부가 달라지므로, 여기서는 알고리즘의 골격만 보인다.
 
@@ -55,26 +56,86 @@ tags:
 dijkstra(graph, start):
     dist[v] = INF for all v in graph
     dist[start] = 0
+    visited[v] = false for all v in graph   // 한 번 확정된 정점을 기억
     pq = priority_queue()   // (거리, 정점) 쌍을 거리 기준 최소 힙으로 관리
     pq.push((0, start))
 
     while pq is not empty:
         (d, u) = pq.pop_min()
-        if d > dist[u]:
-            continue          // 이미 더 짧은 경로로 확정된 정점, 스킵
+        if visited[u]:
+            continue          // 이미 확정된 정점은 다시 검토하지 않음
+        visited[u] = true     // u를 최종 확정
         for (v, weight) in graph.neighbors(u):
-            if dist[u] + weight < dist[v]:
+            if not visited[v] and dist[u] + weight < dist[v]:
                 dist[v] = dist[u] + weight   // relaxation
                 pq.push((dist[v], v))
 
     return dist
 ```
 
-`if d > dist[u]: continue` 부분이 중요하다. 같은 정점이 더 짧은 거리로 갱신된 뒤에도 큐에는 이전의 더 긴 거리 항목이 남아 있을 수 있는데, 이를 걸러내지 않으면 이미 확정된 정점을 불필요하게 재처리하게 된다. 이 골격을 C++로 옮기면 `std::priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>>`로 최소 힙을 구성하고, Python으로 옮기면 `heapq` 모듈을 그대로 쓸 수 있다.
+`visited[u] = true`가 핵심이다. 이 줄이 정점 u를 "최종 확정"으로 표시하고, 이후 u가 다시 큐에서 나와도(더 짧은 거리 후보로 재등장하더라도) `if visited[u]: continue`에 걸려 무시된다 — 즉 한 번 확정된 정점의 `dist` 값은 그 뒤 어떤 간선을 거쳐도 다시 갱신되지 않는다.
+
+다음은 이 골격을 그대로 옮긴 실행 가능한 C++ 구현이다. `std::priority_queue`는 기본적으로 최대 힙이므로, `greater<>`를 비교자로 지정해 최소 힙으로 뒤집었다.
+
+```cpp
+#include <cstdio>
+#include <vector>
+#include <queue>
+#include <climits>
+using namespace std;
+
+vector<int> dijkstra(int n, vector<vector<pair<int,int>>>& adj, int start) {
+    vector<int> dist(n, INT_MAX);
+    vector<bool> visited(n, false);
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>> pq;
+
+    dist[start] = 0;
+    pq.push({0, start});
+
+    while (!pq.empty()) {
+        auto [d, u] = pq.top(); pq.pop();
+        if (visited[u]) continue;
+        visited[u] = true;
+        for (auto [v, weight] : adj[u]) {
+            if (!visited[v] && dist[u] + weight < dist[v]) {
+                dist[v] = dist[u] + weight;
+                pq.push({dist[v], v});
+            }
+        }
+    }
+    return dist;
+}
+
+int main() {
+    int n = 4;   /* 0=A, 1=B, 2=C, 3=D */
+    vector<vector<pair<int,int>>> adj(n);
+    adj[0] = {{1, 4}, {2, 1}};
+    adj[2] = {{1, 1}};
+    adj[1] = {{3, 1}};
+    adj[2].push_back({3, 5});
+
+    vector<int> dist = dijkstra(n, adj, 0);
+    for (int i = 0; i < n; i++) printf("dist[%d] = %d\n", i, dist[i]);
+    return 0;
+}
+```
+
+`g++ -std=c++17 -Wall dijkstra.cc -o dijkstra`로 컴파일·실행하면 A(0)에서 D(3)까지 A→C→B→D 경로(가중치 1+1+1=3)가 A→D 직접 경로 없이도 최단 경로로 선택되는 것을 `dist` 배열로 확인할 수 있다. 이 예제는 모든 가중치가 음수가 아니므로 정상 동작하며, 다음 절에서는 음수 가중치가 섞였을 때 같은 확정 로직이 왜 무너지는지를 다룬다.
 
 ## 음수 가중치와 벨만-포드
 
-다익스트라는 **한 번 정점을 확정하면 그 거리가 최종값**이라는 가정 위에서 동작한다. 이 가정은 모든 간선의 가중치가 0 이상일 때만 성립한다. 만약 그래프에 **음수 가중치** 간선이 있다면, 이미 "확정"한 정점을 나중에 음수 가중치 간선을 거쳐 더 짧게 도달할 수 있는 경우가 생기는데, 다익스트라는 확정된 정점을 다시 검토하지 않으므로 이 경우를 놓치고 틀린 최단 거리를 반환한다. 예를 들어 A→B가 가중치 5, A→C가 가중치 2, C→B가 가중치 -4인 그래프에서, 다익스트라는 거리가 더 짧은 C를 먼저 확정하고 이어서 A→B(5)와 A→C→B(2-4=-2) 중 이미 B를 5로 확정해버렸다면 -2라는 더 짧은 경로를 놓친다.
+다익스트라는 **한 번 정점을 확정하면(`visited[u] = true`) 그 거리가 최종값**이라는 가정 위에서 동작한다. 이 가정은 모든 간선의 가중치가 0 이상일 때만 성립한다. 만약 그래프에 **음수 가중치** 간선이 있다면, 이미 확정한 정점을 나중에 음수 가중치 간선을 거쳐 더 짧게 도달할 수 있는 경우가 생기는데, 위 의사코드는 `visited[u]`가 true인 정점을 `if visited[u]: continue`로 걸러내 다시는 relax하지 않으므로 이 경우를 놓치고 틀린 최단 거리를 반환한다. 예를 들어 A→B가 가중치 1, A→C가 가중치 2, C→B가 가중치 -2인 그래프를 생각해보자. 다익스트라는 거리가 더 짧은 B(1)를 C(2)보다 먼저 pop해 `visited[B] = true`로 **먼저 확정**한다. 이후 C(2)를 pop해 `visited[C] = true`로 확정하고 C→B 간선을 검토하면 `dist[C] + (-2) = 0`으로 B까지의 진짜 최단 거리가 1이 아니라 0임을 알 수 있지만, 이웃 갱신 조건 `if not visited[v] and ...`에서 `visited[B]`가 이미 true이므로 이 조건 자체가 거짓이 되어 갱신 시도조차 일어나지 않는다. 따라서 알고리즘은 이 정보를 전혀 반영하지 못하고 틀린 값 1을 그대로 반환한다.
+
+다음 그래프와 확정 순서로 이 실패 과정을 정리할 수 있다.
+
+```mermaid
+graph LR
+    A -->|1| B
+    A -->|2| C
+    C -->|-2| B
+```
+
+pop 순서는 A(0) → B(1, **여기서 확정**) → C(2, 확정). C가 확정되는 시점에 C→B 간선(가중치 -2)을 검토하지만 B는 이미 확정되어 있어 `not visited[B]` 조건이 거짓이 되므로 갱신이 시도조차 되지 않는다. 실제 최단 거리 A→C→B = 2 + (-2) = 0이 반영되지 못하고, `dist[B]`는 처음 확정된 값 1로 남는다.
 
 음수 가중치가 있는 그래프의 최단 경로는 **벨만-포드(Bellman-Ford) 알고리즘**으로 구한다. 벨만-포드는 그리디하게 확정하는 대신, 모든 간선에 대해 완화(Relaxation) 연산을 정점 수-1번 반복해 점진적으로 거리를 줄여나간다. 시간 복잡도는 O(VE)로 다익스트라보다 느리지만, 음수 가중치를 허용하고 추가로 **음수 사이클(Negative Cycle)**의 존재 여부까지 검출할 수 있다는 장점이 있다 — 정점 수-1번 반복 이후에도 거리가 더 줄어드는 간선이 남아 있으면 음수 사이클이 존재한다는 뜻이다.
 
@@ -96,7 +157,7 @@ dijkstra(graph, start):
 
 ## 다른 개념과의 연결
 
-다익스트라는 시작 정점의 거리를 0으로, 나머지를 무한대로 두고 시작하는 방식이 BFS의 `visited` 초기화와 유사하지만, 큐 대신 [해시테이블](/post/computerterms/hash-tables/) 또는 트리 기반의 우선순위 큐(힙)를 쓴다는 점이 다르다. "매 단계 지역적으로 최선인 선택을 한다"는 다익스트라의 그리디 방식은 다음 챕터에서 다룰 **그리디 알고리즘**이 언제 전역 최적을 보장하고 언제 실패하는지를 이해하는 데 직접 이어진다.
+다익스트라는 시작 정점의 거리를 0으로, 나머지를 무한대로 두고 시작하는 방식이 BFS의 `visited` 초기화와 유사하지만, 큐 대신 [해시테이블](/post/computerterms/hash-tables/) 또는 트리 기반의 우선순위 큐(힙)를 쓴다는 점이 다르다. "매 단계 지역적으로 최선인 선택을 한다"는 다익스트라의 그리디 방식은, [동적 계획법](/post/computerterms/dynamic-programming/)을 거쳐 다룰 **그리디 알고리즘**이 언제 전역 최적을 보장하고 언제 실패하는지를 이해하는 데 직접 이어진다.
 
 ## 평가 기준
 

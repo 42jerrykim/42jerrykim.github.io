@@ -7,7 +7,7 @@ title: "[Computer Terms] 탐색 알고리즘 (Searching Algorithms)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "선형 탐색과 이진 탐색을 비교하고, 이진 탐색이 정렬된 데이터를 전제로 하는 이유와 실무에서 흔한 오프바이원 버그를 C 코드로 다룹니다."
+description: "선형 탐색과 이진 탐색의 시간 복잡도를 비교하고, 이진 탐색이 정렬된 데이터를 전제로 하는 이유를 구간 배제 논리로 설명하며, 실무에서 흔한 오프바이원·오버플로 버그를 컴파일 가능한 C 코드와 종료 조건·중간값 계산·경계 갱신별 비교표로 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -89,7 +89,7 @@ int main(void) {
 
 ## 실무에서 흔한 오프바이원 버그
 
-이진 탐색은 알고리즘 자체는 단순하지만, 구현 시 **오프바이원(Off-by-One) 버그**가 잦기로 악명 높다. 대표적인 실수는 세 가지다. 첫째, 종료 조건을 `low < high`로 쓰면 `low == high`인 마지막 원소 하나가 남은 구간을 검사하지 못하고 종료된다 — 올바른 조건은 `low <= high`다. 둘째, `mid = (low + high) / 2`는 `low`, `high`가 매우 큰 정수일 때 덧셈에서 정수 오버플로가 날 수 있다 — `low + (high - low) / 2`로 쓰면 이를 피할 수 있다. 셋째, 값을 찾은 뒤 `low = mid`로 갱신하면(마이너스 1을 빼먹으면) 같은 `mid`가 무한히 재검사되어 무한 루프에 빠질 수 있다. Bentley(1986)는 이진 탐색이 "개념은 간단하지만 정확히 구현하기는 놀라울 정도로 어렵다"고 지적했으며, 실제로 발표된 이진 탐색 구현의 상당수가 이 오버플로 버그를 포함하고 있었다는 사례가 널리 알려져 있다.
+이진 탐색은 알고리즘 자체는 단순하지만, 구현 시 **오프바이원(Off-by-One) 버그**가 잦기로 악명 높다. 대표적인 실수는 세 가지다. 첫째, 종료 조건을 `low < high`로 쓰면 `low == high`인 마지막 원소 하나가 남은 구간을 검사하지 못하고 종료된다 — 올바른 조건은 `low <= high`다. 둘째, `mid = (low + high) / 2`는 `low`, `high`가 매우 큰 정수일 때 덧셈에서 정수 오버플로가 날 수 있다 — `low + (high - low) / 2`로 쓰면 이를 피할 수 있다. 셋째, 값을 찾은 뒤 `low = mid`로 갱신하면(마이너스 1을 빼먹으면) 같은 `mid`가 무한히 재검사되어 무한 루프에 빠질 수 있다. Bentley(1986)는 이진 탐색이 "개념은 간단하지만 정확히 구현하기는 놀라울 정도로 어렵다"고 지적했다. 이 지적을 뒷받침하는 유명한 사례로, Bloch(2006)는 자바 표준 라이브러리와 여러 교과서에 실린 이진 탐색 구현 다수가 `(low + high) / 2`의 정수 오버플로 버그를 20년 넘게 포함하고 있었다고 밝혔다.
 
 ## 비교: 무엇이 다르고, 언제 무엇을 쓰는가
 
@@ -121,5 +121,6 @@ int main(void) {
 
 > Bentley, J. (1986). *Programming Pearls*, Column 4: Writing Correct Programs. Addison-Wesley. — 이진 탐색 구현의 오프바이원·오버플로 버그 사례를 다룬 고전.
 
-- [Visualgo: Binary Search](https://visualgo.net/en/dfsbfs) — 정렬 및 탐색 알고리즘 시각화 모음 (Sorting/Searching 메뉴)
+- [Bloch, J. (2006). "Extra, Extra – Read All About It: Nearly All Binary Searches and Mergesorts are Broken." Google Research Blog](https://research.google/blog/extra-extra-read-all-about-it-nearly-all-binary-searches-and-mergesorts-are-broken/) — `(low+high)/2` 오버플로 버그가 실제 라이브러리 구현에 20년 넘게 존재했던 사례
+- [Visualgo: Sorting](https://visualgo.net/en/sorting) — 정렬 알고리즘 시각화 도구(이진 탐색이 전제하는 정렬된 배열 상태를 시각적으로 확인 가능)
 - [cppreference: std::binary_search](https://en.cppreference.com/w/cpp/algorithm/binary_search) — 표준 라이브러리 이진 탐색의 전제 조건과 반환값 규약
