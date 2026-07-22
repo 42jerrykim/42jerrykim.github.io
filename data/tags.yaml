@@ -528,3 +528,293 @@ python_specific:
   - unittest
   - venv
   - pip
+
+# --- Computer Terms 컬렉션 확장 (2026-07-22) ---
+
+algorithms_extended:
+  - Activity-Selection(활동선택문제)
+  - BFS(너비우선탐색)
+  - Bellman-Ford(벨만포드)
+  - Binary-Search(이진탐색)
+  - Binary-Search-Tree(이진탐색트리)
+  - Bubble-Sort(버블정렬)
+  - Coin-Change(동전거스름돈)
+  - Counterexample(반례)
+  - DFS(깊이우선탐색)
+  - Dijkstra(다익스트라)
+  - Dynamic-Programming(동적계획법)
+  - Full-Text-Search(전문검색)
+  - Greedy-Choice-Property(그리디선택속성)
+  - Insertion-Sort(삽입정렬)
+  - Knapsack-Problem(배낭문제)
+  - Linear-Search(선형탐색)
+  - Memoization(메모이제이션)
+  - Merge-Sort(병합정렬)
+  - Negative-Weight(음수가중치)
+  - Off-by-One(오프바이원)
+  - Optimal-Substructure(최적부분구조)
+  - Overlapping-Subproblems(부분문제중복)
+  - Pivot(피벗)
+  - Precondition(전제조건)
+  - Quicksort(퀵정렬)
+  - Searching(탐색)
+  - Selection-Sort(선택정렬)
+  - Sorted-Array(정렬된배열)
+  - Stable-Sort(안정정렬)
+  - Tabulation(타뷸레이션)
+  - Worst-Case(최악의경우)
+
+data_structures_extended:
+  - B-Tree
+  - Hash-Table(해시테이블)
+  - Linked-List(연결리스트)
+  - Pointer(포인터)
+  - Skip-List(스킵리스트)
+  - Union-Find(유니온파인드)
+
+os_and_architecture:
+  - Assembly(어셈블리)
+  - Bottleneck(병목)
+  - CISC
+  - CPU
+  - CPU(중앙처리장치)
+  - Cache(캐시)
+  - Cache-Invalidation(캐시무효화)
+  - Cache-Locality(캐시지역성)
+  - Cache-Miss(캐시미스)
+  - Computer-Architecture(컴퓨터구조)
+  - Connection-Pool(커넥션풀)
+  - Daemon(데몬)
+  - Deadlock(데드락)
+  - Disk(디스크)
+  - Event-Loop(이벤트루프)
+  - File-System(파일시스템)
+  - Floating-Point(부동소수점)
+  - Fork(포크)
+  - Harvard-Architecture(하버드구조)
+  - I/O(입출력)
+  - IEEE-754(부동소수점표준)
+  - IPC
+  - ISA(명령어집합구조)
+  - Init(초기화)
+  - Inode
+  - Interrupt(인터럽트)
+  - LRU
+  - Locality(지역성)
+  - Lock(락)
+  - Logical-Clock(논리적시계)
+  - Low-Level(로우레벨)
+  - Monitor(모니터)
+  - Mutex(뮤텍스)
+  - Numerical-Computing(수치계산)
+  - Paging(페이징)
+  - Parallel-Computing(병렬컴퓨팅)
+  - Pipe(파이프)
+  - Pipelining(파이프라이닝)
+  - Precision(정밀도)
+  - Process(프로세스)
+  - RISC
+  - Race-Condition(레이스컨디션)
+  - Register(레지스터)
+  - SIMD(단일명령다중데이터)
+  - Scheduling(스케줄링)
+  - Semaphore(세마포어)
+  - Shared-Memory(공유메모리)
+  - Signal(시그널)
+  - System-Administration(시스템관리)
+  - System-Call(시스템콜)
+  - Systemd
+  - Thread(스레드)
+  - Thread-Pool(스레드풀)
+  - Vector-Clock(벡터시계)
+  - Vectorization(벡터화)
+  - Virtual-Memory(가상메모리)
+  - Von-Neumann(폰노이만)
+  - Worker(워커)
+  - Zombie-Process(좀비프로세스)
+
+networking_protocols:
+  - API
+  - API-Design(API설계)
+  - Benchmark(벤치마크)
+  - Browser
+  - CDN
+  - CORS
+  - Content-Negotiation
+  - Cookie
+  - Cookie(쿠키)
+  - DNS
+  - Digital-Signature(디지털서명)
+  - Duplicate-Request(중복요청)
+  - HTTP
+  - HTTPS
+  - Idempotency(멱등성)
+  - Idempotency-Key(멱등키)
+  - Latency(지연시간)
+  - Load-Balancing(로드밸런싱)
+  - Local-Storage
+  - NAT
+  - Network-Timeout(네트워크타임아웃)
+  - OSI(OSI모델)
+  - Protocol(프로토콜)
+  - Protocol-Buffers
+  - Proxy(프록시)
+  - QUIC
+  - REST
+  - Rate-Limiting(레이트리미팅)
+  - Retry(재시도)
+  - Retry-Storm
+  - Reverse-Proxy(리버스프록시)
+  - Reverse-Proxy(역방향프록시)
+  - SSE
+  - Safe-Method(안전한메서드)
+  - Session(세션)
+  - Signature-Based-Detection(시그니처기반탐지)
+  - Socket(소켓)
+  - Streaming
+  - TCP-IP
+  - TCP/IP
+  - TLS
+  - Token-Bucket(토큰버킷)
+  - UDP
+  - WebSocket(웹소켓)
+  - Webhook(웹훅)
+  - gRPC
+
+distributed_systems:
+  - ACID(Atomicity Consistency Isolation Durability)
+  - At-Least-Once(최소한번전달)
+  - At-Most-Once(최대한번전달)
+  - Audit-Log(감사로그)
+  - Availability(가용성)
+  - Backpressure(배압)
+  - Buffering(버퍼링)
+  - CAP-Theorem(CAP정리)
+  - Cascading-Failure(연쇄장애)
+  - Causality(인과성)
+  - Circuit-Breaker(서킷브레이커)
+  - Clock-Synchronization(시계동기화)
+  - Command-Query-Separation
+  - Conflict-Resolution(충돌해결)
+  - Consensus(합의알고리즘)
+  - Consistency(일관성)
+  - Distributed-Systems(분산시스템)
+  - Edge-Computing(엣지컴퓨팅)
+  - Event-Log(이벤트로그)
+  - Event-Ordering(이벤트순서)
+  - Event-Sourcing(이벤트소싱)
+  - FIFO(선입선출)
+  - Fallback(폴백)
+  - Fault-Tolerance(장애허용)
+  - Happens-Before
+  - Health-Check(헬스체크)
+  - Infrastructure(인프라)
+  - Lamport-Timestamp
+  - Loose-Coupling(느슨한결합)
+  - Producer-Consumer(생산자소비자)
+  - Pub-Sub(발행구독)
+  - Replay(재생)
+  - Replication(복제)
+  - Resilience(회복탄력성)
+  - Schema-Evolution(스키마진화)
+  - Service-Mesh(서비스메시)
+  - Sharding(샤딩)
+  - Snapshot(스냅샷)
+  - State-Machine(상태기계)
+  - State-Reconstruction(상태재구성)
+  - System-Design(시스템설계)
+  - Timeout(타임아웃)
+  - Version-Vector
+
+database_and_storage:
+  - Data-Integrity(데이터무결성)
+  - Dirty-Read
+  - Durability(지속성)
+  - Index(인덱스)
+  - Inverted-Index(역색인)
+  - Isolation-Level(격리수준)
+  - MVCC
+  - NoSQL
+  - Normalization(정규화)
+  - Phantom-Read
+  - Query-Optimization(쿼리최적화)
+  - Storage(저장소)
+  - Time-Series-Database(시계열데이터베이스)
+
+security_extended:
+  - Access-Token(액세스토큰)
+  - Authorization(인가)
+  - Brute-Force-Attack(무차별대입공격)
+  - CSRF
+  - Certificate(인증서)
+  - Certificate-Authority(인증기관)
+  - Cryptography(암호학)
+  - Delegation(위임)
+  - Encryption(암호화)
+  - Firewall(방화벽)
+  - Identity-Provider(신원공급자)
+  - JWT
+  - Least-Privilege(최소권한)
+  - Microsegmentation(마이크로세그멘테이션)
+  - Network-Security(네트워크보안)
+  - Non-Repudiation(부인방지)
+  - OAuth
+  - OIDC
+  - OWASP
+  - PKI
+  - Password(비밀번호)
+  - Perimeter-Security(경계보안)
+  - Public-Key(공개키)
+  - Refresh-Token(리프레시토큰)
+  - SQL-Injection(SQL인젝션)
+  - Single-Sign-On(SSO)
+  - WAF
+  - Web-Vulnerabilities
+  - XSS
+  - Zero-Trust(제로트러스트)
+
+language_theory:
+  - Closure(클로저)
+  - Dynamic-Typing(동적타입)
+  - Garbage-Collection(가비지컬렉션)
+  - Immutability(불변성)
+  - Interpreter(인터프리터)
+  - JIT(JIT컴파일)
+  - Memory-Management(메모리관리)
+  - Programming-Language(프로그래밍언어)
+  - Scope(스코프)
+  - Static-Typing(정적타입)
+  - Type-System(타입시스템)
+
+software_engineering_extended:
+  - Code-Smell(코드스멜)
+  - Collaboration(협업)
+  - Design-Patterns(디자인패턴)
+  - Maintainability(유지보수성)
+  - Software-Engineering(소프트웨어공학)
+  - Strategy-Pattern(전략패턴)
+  - Version-Control(버전관리)
+
+devops_extended:
+  - CI-CD
+  - Compression(압축)
+  - Container(컨테이너)
+  - DevOps(데브옵스)
+  - Docker(도커)
+  - Localization
+  - Virtualization(가상화)
+
+general_cs:
+  - Computer-Science(컴퓨터과학)
+  - Data-Structure(자료구조)
+  - Event-Driven(이벤트기반)
+  - Fibonacci(피보나치)
+  - Fundamentals(기초)
+  - IP(Internet-Protocol)
+  - Integration(통합)
+  - Operating-System(운영체제)
+  - Payment-System(결제시스템)
+  - Real-Time(실시간)
+  - Reliability(신뢰성)
+  - SQL
+  - Standard(표준)
