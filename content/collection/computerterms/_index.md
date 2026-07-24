@@ -6,3 +6,5 @@ description: "컴퓨터 과학과 IT 분야의 핵심 용어들을 정리한 종
 featured_image: "/images/home-banner.jpg"
 slug: computerterms
 ---
+
+전체 소개와 커리큘럼은 [00. 컴퓨터 용어 사전 개요와 읽는 법](/post/computerterms/getting-started-computer-terms/) 참고.
