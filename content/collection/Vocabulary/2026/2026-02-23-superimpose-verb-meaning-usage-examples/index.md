@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] superimpose의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] superimpose 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'superimpose'의 핵심 뜻(겹치다, 중복되다, 얹히다)을 정리한다. 시각/그래픽 작업, 심리학, 과학 분야에서 자주 쓰이는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 디자인, 영상 편집, 학술 글에서 반복 등장하는 중요한 동사."
 date: 2026-02-23
 lastmod: 2026-02-23

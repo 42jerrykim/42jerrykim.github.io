@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] lobbyist의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] lobbyist 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'lobbyist'의 핵심 뜻(로비활동가, 정책 영향력을 행사하는 사람)을 정리한다. 정치, 비즈니스, 법률, 미디어 분야에서 자주 쓰이는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 현대 정치와 비즈니스에서 반복 등장하는 중요한 명사."
 date: 2026-01-24
 lastmod: 2026-01-24

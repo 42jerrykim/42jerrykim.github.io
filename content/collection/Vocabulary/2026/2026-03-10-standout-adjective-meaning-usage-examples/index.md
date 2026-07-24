@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] standout의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] standout 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'standout'의 핵심 뜻(눈에 띄는, 뛰어난, 일류의)을 정리한다. standout performance, standout player, standout feature 같은 콜로케이션과 EN/KR 예문 50개로 스포츠·비즈니스·일상 맥락에서의 실제 용법을 익힌다."
 date: 2026-03-10
 lastmod: 2026-03-10

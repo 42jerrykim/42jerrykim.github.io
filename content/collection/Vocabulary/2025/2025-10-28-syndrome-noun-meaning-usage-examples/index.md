@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] syndrome의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] syndrome 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'syndrome'의 핵심 뜻(증후군, 징후군)을 정리한다. 의학적 증상의 집합을 나타내는 표현부터 사회적·문화적 현상을 설명하는 비유적 용법까지, 자주 쓰는 콜로케이션과 EN/KR 예문으로 다양한 맥락의 정확한 용법을 익힌다."
 date: 2025-10-28
 lastmod: 2025-10-28

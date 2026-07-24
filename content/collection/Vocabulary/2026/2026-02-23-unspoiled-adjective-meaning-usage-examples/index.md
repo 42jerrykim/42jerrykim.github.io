@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] unspoiled의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] unspoiled 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'unspoiled'의 핵심 뜻(훼손되지 않은, 순수한, 변하지 않은)을 정리한다. 자연, 성격, 문화 분야에서 자주 쓰이는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 여행, 문학, 일상 표현에서 중요한 긍정적 형용사."
 date: 2026-02-23
 lastmod: 2026-02-23

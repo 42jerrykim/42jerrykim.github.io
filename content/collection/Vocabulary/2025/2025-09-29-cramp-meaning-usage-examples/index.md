@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] cramp의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] cramp 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 ‘cramp’의 핵심 뜻(경련이 일으키다, (공간·자유 등이) 제한·방해하다)을 정리한다. muscle cramp/hinder/restrict와의 차이, 자주 쓰는 콜로케이션, EN/KR 예문으로 맥락별 뉘앙스를 정확히 익힌다. 일상·운동·비즈니스에서 유용한 표현."
 date: 2025-09-29
 lastmod: 2025-09-29

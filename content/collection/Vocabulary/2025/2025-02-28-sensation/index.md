@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] Sensation: 감각과 감동을 아우르는 단어 탐구"
+title: "[Vocabulary] Sensation 뜻: 감각과 감동을 아우르는 단어 탐구"
 categories:
 - Vocabulary
 date: 2025-02-28

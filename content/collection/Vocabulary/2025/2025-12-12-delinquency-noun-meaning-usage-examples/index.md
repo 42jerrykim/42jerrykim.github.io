@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] delinquency의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] delinquency 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'delinquency'의 핵심 뜻(법률 위반, 의무 불이행, 청소년 비행)을 정리한다. 금융, 법률, 사회 문제 등 다양한 맥락에서 사용되는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 뉴스, 학술 글, 비즈니스에서 자주 등장하는 중요한 명사."
 date: 2025-12-12
 lastmod: 2025-12-12

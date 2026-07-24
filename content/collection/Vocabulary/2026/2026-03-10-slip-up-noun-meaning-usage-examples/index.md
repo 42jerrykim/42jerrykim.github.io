@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] slip-up의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] slip-up 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'slip-up'의 핵심 뜻(부주의한 실수, 작은 잘못, 허술한 착오)을 정리한다. 비즈니스·일상·미디어에서 자주 쓰이는 콜로케이션과 EN/KR 예문 50개로 실수·오류 표현을 익힌다."
 date: 2026-03-10
 lastmod: 2026-03-10

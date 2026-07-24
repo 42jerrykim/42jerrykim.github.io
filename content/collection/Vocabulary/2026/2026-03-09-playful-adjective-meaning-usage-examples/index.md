@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] playful의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] playful 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'playful'의 핵심 뜻(장난스러운, 유쾌한, 경쾌한)을 정리한다. playful mood, playful tone, playful puppy 같은 콜로케이션과 EN/KR 예문 50개로 일상·문학·디자인·동물 맥락에서의 실제 용법을 익힌다."
 date: 2026-03-09
 lastmod: 2026-03-09

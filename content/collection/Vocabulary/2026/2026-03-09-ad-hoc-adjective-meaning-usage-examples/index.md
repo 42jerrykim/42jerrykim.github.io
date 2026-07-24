@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] ad hoc의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] ad hoc 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'ad hoc'의 핵심 뜻(특별한 목적을 위한, 임시의, 즉석의)을 정리한다. ad hoc committee, ad hoc solution 같은 콜로케이션과 EN/KR 예문 50개로 비즈니스·법률·학술·기술 맥락에서의 실제 용법을 익힌다."
 date: 2026-03-09
 lastmod: 2026-03-09

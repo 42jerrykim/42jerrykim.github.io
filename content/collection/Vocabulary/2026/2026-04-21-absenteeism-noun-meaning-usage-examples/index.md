@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] absenteeism의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] absenteeism 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'absenteeism'의 핵심 뜻(직장·학교의 상습 부재, 결근·결석률 지표, HR·정책 논의)을 정리한다. 콜로케이션·관리 표현을 EN/KR 예문 50개로 익힌다. attendance·truancy·chronic absence와의 차이도 짚는다."
 date: 2026-04-21
 lastmod: 2026-04-21

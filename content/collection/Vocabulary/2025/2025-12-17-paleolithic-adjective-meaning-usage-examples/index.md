@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] paleolithic의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] paleolithic 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'paleolithic'의 핵심 뜻(구석기의, 구석기 시대와 관련된, 구식의)을 정리한다. 고고학, 역사, 인류학, 일상 표현에서 자주 쓰이는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 교육, 과학, 뉴스 분야에서 반복 등장하는 중요한 형용사."
 date: 2025-12-17
 lastmod: 2025-12-17

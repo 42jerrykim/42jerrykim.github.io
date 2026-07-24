@@ -16,9 +16,10 @@ description: >-
 ## 제목/메타 규칙 (필수)
 
 - **카테고리 접두어**: `[Vocabulary]` 사용
-- **메인 제목 템플릿**: `[Vocabulary] {단어}의 의미와 쓰임 - {품사} 핵심 정리`
-  - 예: `[Vocabulary] bulk의 의미와 쓰임 - 동사 핵심 정리`
-  - 예: `[Vocabulary] rowdy의 의미와 쓰임 - 형용사 핵심 정리`
+- **메인 제목 템플릿**: `[Vocabulary] {단어} 뜻과 의미 - {품사} 핵심 정리`
+  - 예: `[Vocabulary] bulk 뜻과 의미 - 동사 핵심 정리`
+  - 예: `[Vocabulary] rowdy 뜻과 의미 - 형용사 핵심 정리`
+- **"뜻" 문자열 필수 포함**: 검색 콘솔 데이터 확인 결과, 이 컬렉션 유입은 대부분 `"{단어} 뜻"` 형태 쿼리다. 제목에 "의미"만 쓰고 "뜻"을 빼면 검색어와 SERP 타이틀의 문자열이 일치하지 않아(구글이 검색어 일치 부분을 굵게 강조하는 로직) 노출 대비 클릭률이 크게 떨어진다(예: 실측 사례 다수가 노출 10~90회에 클릭 0). 제목에 반드시 "뜻"을 넣는다.
 - **품사 표기**: 한국어 품사명(명사/동사/형용사/부사 등)을 사용
 - **총 길이**: 70자 이내 유지
 
@@ -78,7 +79,7 @@ YYYY-MM-DD-단어-품사-meaning-usage-examples
 
 ```yaml
 ---
-title: "[Vocabulary] bulk의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] bulk 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'bulk'의 핵심 뜻(늘리다, 부풀리다, 튀어나오다)을 정리한다. {주요 맥락/도메인 요약}. {콜로케이션/예문/학습 포인트 요약}. EN/KR 예문 50개로 실제 사용을 익힌다."
 date: {{ .Date }}
 lastmod: {{ .Date }}
@@ -303,7 +304,7 @@ python script/wordcloud_generator.py "content/collection/Vocabulary/2025/YYYY-MM
 ## 작성 체크리스트
 
 - [ ] 폴더명이 `YYYY-MM-DD-단어-품사-meaning-usage-examples` 형식인가?
-- [ ] Front Matter의 `title`이 `[Vocabulary] {단어}의 의미와 쓰임 - {품사} 핵심 정리` 패턴이며 70자 이하인가?
+- [ ] Front Matter의 `title`이 `[Vocabulary] {단어} 뜻과 의미 - {품사} 핵심 정리` 패턴("뜻" 포함, 70자 이하)인가?
 - [ ] `description`이 한국어로 150자 내외이며, 핵심 의미·용법·예문 구조를 잘 요약했는가?
 - [ ] `tags`가 `data/tags.yaml` 승인 태그 25개 이상인가? (단어/품사/도메인/메타 태그 조합)
 - [ ] `categories`가 `English`, `Vocabulary`로 설정되었는가?

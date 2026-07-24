@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] toxicologist의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] toxicologist 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'toxicologist'의 핵심 뜻(독물학자·독성 전문가)을 정리한다. 법의학·공중보건·산업안전 맥락의 콜로케이션과 EN/KR 예문 50개로 익힌다. 뉴스·드라마·학술 영어에 자주 나오는 직업·전문가 명사다."
 date: 2026-04-13
 lastmod: 2026-04-13

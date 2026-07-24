@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] recurrent의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] recurrent 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'recurrent'의 핵심 뜻(반복되는, 재발하는, 주기적인)을 정리한다. 시간에 따라 여러 번 나타나는 현상이나 증상을 표현하는 정확한 용법을 자주 쓰는 콜로케이션과 EN/KR 예문으로 익힌다. 의학, 과학, 일상에서 자주 등장하는 중요한 형용사."
 date: 2025-11-25
 lastmod: 2025-11-25

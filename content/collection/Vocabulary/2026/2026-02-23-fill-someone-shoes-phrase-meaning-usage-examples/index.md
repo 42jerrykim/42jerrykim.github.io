@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] fill (someone's) shoes의 의미와 쓰임 - 숙어 핵심 정리"
+title: "[Vocabulary] fill (someone's) shoes 뜻과 의미 - 숙어 핵심 정리"
 description: "영어 숙어 'fill (someone's) shoes'의 핵심 뜻(누군가를 대신하다, 역할을 이어받다, 누군가만큼 좋다)을 정리한다. 직장, 스포츠, 리더십, 일상 대화 등 다양한 맥락에서 쓰이는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 역할 전환과 기대감을 나타내는 중요한 숙어 표현."
 date: 2026-02-23
 lastmod: 2026-02-23

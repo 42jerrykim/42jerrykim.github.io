@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] overbearing의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] overbearing 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'overbearing'의 핵심 뜻(압도적인, 자제심 없는, 오만한)을 정리한다. 성격, 리더십, 대인관계 등 다양한 맥락에서 자주 쓰이는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 일상 대화, 직장, 가족 관계 등에서 반복 등장하는 중요한 형용사."
 date: 2026-01-28
 lastmod: 2026-01-28

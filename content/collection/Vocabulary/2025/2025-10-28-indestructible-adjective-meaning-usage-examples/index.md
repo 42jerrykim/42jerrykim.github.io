@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] indestructible의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] indestructible 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'indestructible'의 핵심 뜻(파괴할 수 없는, 부술 수 없는, 불멸의, 영구적인)을 정리한다. 물리적 내구성부터 추상적 불변성까지 다양한 맥락에서의 정확한 용법을 자주 쓰는 콜로케이션과 EN/KR 예문으로 익힌다."
 date: 2025-10-28
 lastmod: 2025-10-28

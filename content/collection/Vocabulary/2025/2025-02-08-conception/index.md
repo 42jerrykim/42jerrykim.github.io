@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] Conception의 다양한 의미와 활용"
+title: "[Vocabulary] Conception 뜻과 다양한 의미, 활용"
 categories:
 - English
 - Vocabulary

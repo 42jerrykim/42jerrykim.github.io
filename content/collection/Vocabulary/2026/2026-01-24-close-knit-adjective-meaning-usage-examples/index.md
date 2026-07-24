@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] close-knit의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] close-knit 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'close-knit'의 핵심 뜻(밀접하게 연결된, 단합된, 친밀한 관계)을 정리한다. 가족, 친구, 팀, 커뮤니티 등 사람들 간의 강한 유대와 상호 신뢰를 나타내는 중요한 표현이다. EN/KR 예문 50개로 자연스러운 사용을 익힌다."
 date: 2026-01-24
 lastmod: 2026-01-24

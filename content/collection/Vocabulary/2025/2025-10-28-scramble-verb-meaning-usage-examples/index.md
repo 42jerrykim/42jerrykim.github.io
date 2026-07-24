@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] scramble의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] scramble 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'scramble'의 핵심 뜻(서둘러 움직이다, 기어오르다, 뒤섞다, 다투다, 암호화하다)을 정리한다. 물리적 이동부터 경쟁, 요리, 통신까지 다양한 맥락에서의 정확한 용법을 자주 쓰는 콜로케이션과 EN/KR 예문으로 익힌다."
 date: 2025-10-28
 lastmod: 2025-10-28

@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] inadequacy의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] inadequacy 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'inadequacy'의 핵심 뜻(불충분함, 미흡함, 열등감)을 정리한다. inadequacy of/in, a sense of inadequacy 등 콜로케이션과 EN/KR 예문 50개로 실제 용법을 익힌다. 심리·업무·정책 문맥에서 자주 쓰는 표현."
 date: 2026-02-06
 lastmod: 2026-02-06

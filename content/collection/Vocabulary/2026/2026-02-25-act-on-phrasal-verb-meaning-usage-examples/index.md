@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] act on의 의미와 쓰임 - 구동사 핵심 정리"
+title: "[Vocabulary] act on 뜻과 의미 - 구동사 핵심 정리"
 description: "영어 구동사 'act on'의 핵심 뜻(충고·정보에 따라 행동하다, ~에 작용하다·영향을 미치다)을 정리한다. 비즈니스, 의료, 일상 대화 등에서 자주 쓰이는 정확한 용법을 콜로케이션과 EN/KR 예문 50개로 익힌다. 구동사 act on의 의미와 쓰임."
 date: 2026-02-25
 lastmod: 2026-02-25

@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] craft의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] craft 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'craft'의 핵심 뜻(기술·솜씨, 수공예품, 배/비행기 같은 운송 수단, 교묘한 술수)을 정리한다. art and craft, craft beer 같은 콜로케이션과 EN/KR 예문 50개로 실제 용법을 익힌다. 창작, 제조, 비즈니스 맥락에서 자주 쓰이는 중요한 명사."
 date: 2026-01-02
 lastmod: 2026-01-02

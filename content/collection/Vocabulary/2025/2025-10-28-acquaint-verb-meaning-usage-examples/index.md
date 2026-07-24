@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] acquaint의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] acquaint 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'acquaint'의 핵심 뜻(알리다, 익숙하게 하다, 소개하다)을 정리한다. 정보 전달부터 대면 소개까지 다양한 맥락에서의 정확한 용법을 자주 쓰는 콜로케이션과 EN/KR 예문으로 익힌다."
 date: 2025-10-28
 lastmod: 2025-10-28

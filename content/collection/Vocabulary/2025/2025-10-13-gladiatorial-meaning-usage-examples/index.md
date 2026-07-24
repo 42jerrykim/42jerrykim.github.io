@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] gladiatorial의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] gladiatorial 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'gladiatorial'의 핵심 뜻(검투사의, 전투적인, 치열한)을 정리한다. 고대 로마 검투사 경기에서 비유적 경쟁 표현까지, 자주 쓰는 콜로케이션과 EN/KR 예문으로 역사·스포츠·비즈니스 맥락의 정확한 용법을 익힌다."
 date: 2025-10-13
 lastmod: 2025-10-13

@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] inhibited의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] inhibited 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'inhibited'의 핵심 뜻(수줍은/자기표현이 어려운, 감정·행동이 억제된, 반응·성장이 억제된)을 정리한다. 'feel inhibited', 'be inhibited by' 같은 패턴을 콜로케이션과 EN/KR 예문 50개로 익힌다. 심리, 대인관계, 과학 맥락에서 자주 쓰이는 중요한 형용사."
 date: 2026-01-02
 lastmod: 2026-01-02

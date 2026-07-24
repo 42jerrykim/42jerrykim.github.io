@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] whoosh의 의미와 쓰임 - 명사 핵심 정리"
+title: "[Vocabulary] whoosh 뜻과 의미 - 명사 핵심 정리"
 description: "영어 명사 'whoosh'의 핵심 뜻(휙 지나가는 소리, 갑작스러운 움직임)을 정리한다. 일상·문학·방송·스포츠 맥락에서 자주 쓰는 콜로케이션과 EN/KR 예문 50개로 실제 용법을 익힌다."
 date: 2026-03-27
 lastmod: 2026-03-27

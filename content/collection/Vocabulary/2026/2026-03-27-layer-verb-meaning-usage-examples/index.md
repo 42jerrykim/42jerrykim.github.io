@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] layer의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] layer 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'layer'의 핵심 뜻(층을 만들다, 겹쳐 놓다, 레이어를 추가하다, 맛과 의미를 덧입히다)을 정리한다. 요리·디자인·패션·글쓰기 맥락에서 자주 쓰는 패턴과 EN/KR 예문 50개로 실제 용법을 익힌다."
 date: 2026-03-27
 lastmod: 2026-03-27

@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] equal의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] equal 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'equal'의 핵심 뜻(…와 같다, …에 필적하다, …에 도달하다)을 정리한다. 수학·비즈니스·스포츠·일상에서 쓰이는 equal A, equal something in something 등 콜로케이션과 EN/KR 예문 50개로 익힌다."
 date: 2026-03-09
 lastmod: 2026-03-09

@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] deliberate의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] deliberate 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'deliberate'의 핵심 뜻(신중히 숙고하다, 공식적으로 심의하다)을 정리한다. 배심·위원회 등 의사결정 맥락에서 흔한 deliberate on/over 패턴과 EN/KR 예문 50개로 익힌다. 뉴스·법률·회의 영어에 자주 나온다."
 date: 2026-03-30
 lastmod: 2026-03-30

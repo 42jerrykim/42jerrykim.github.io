@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] ripple의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] ripple 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'ripple'의 핵심 뜻(잔물결이 일다/만들다, 여파가 퍼지다, 감정·소리가 번지다)을 정리한다. ripple through/across, ripple with laughter 같은 콜로케이션과 EN/KR 예문 50개로 자연스러운 용법을 익힌다. 자연, 뉴스, 비즈니스, 일상 대화에서 자주 쓰이는 중요한 동사."
 date: 2026-02-05
 lastmod: 2026-02-05

@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] rev의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] rev 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'rev'의 핵심 뜻(엔진 회전수를 높이다, 공회전시키다, 활기를 끌어올리다)을 정리한다. 자동차·스포츠·비즈니스 맥락에서 쓰이는 rev up, rev the engine 등 콜로케이션과 EN/KR 예문 50개로 익힌다."
 date: 2026-06-01
 lastmod: 2026-06-01

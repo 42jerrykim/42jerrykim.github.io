@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] instigate의 의미와 쓰임 - 동사 핵심 정리"
+title: "[Vocabulary] instigate 뜻과 의미 - 동사 핵심 정리"
 description: "영어 동사 'instigate'의 핵심 뜻(선동하다, 부추기다, 유발하다, 개시하다)을 정리한다. 폭력 선동부터 변화 촉발까지, 부정적·중립적 맥락에서의 정확한 용법을 자주 쓰는 콜로케이션과 EN/KR 예문으로 익힌다."
 date: 2025-10-28
 lastmod: 2025-10-28

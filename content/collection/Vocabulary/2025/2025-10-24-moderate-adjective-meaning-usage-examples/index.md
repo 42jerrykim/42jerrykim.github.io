@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] moderate의 의미와 쓰임 - 형용사 핵심 정리"
+title: "[Vocabulary] moderate 뜻과 의미 - 형용사 핵심 정리"
 description: "영어 형용사 'moderate'의 핵심 뜻(중간 정도의, 적당한, 온건한)을 정리한다. 크기나 양이 중간 정도인 표현부터 극단적이지 않은 의견을 나타내는 용법까지, 자주 쓰는 콜로케이션과 EN/KR 예문으로 다양한 맥락의 정확한 용법을 익힌다."
 date: 2025-10-24
 lastmod: 2025-10-24

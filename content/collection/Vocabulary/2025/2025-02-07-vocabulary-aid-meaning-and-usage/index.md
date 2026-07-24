@@ -1,5 +1,5 @@
 ---
-title: "[Vocabulary] Aid의 다양한 의미와 활용"
+title: "[Vocabulary] Aid 뜻과 다양한 의미, 활용"
 categories:
 - English
 - Vocabulary
