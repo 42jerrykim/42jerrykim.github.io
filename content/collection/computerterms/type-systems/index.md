@@ -7,7 +7,7 @@ title: "[Computer Terms] 타입 시스템: 정적/동적, 강/약 타입"
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "타입 시스템은 정적/동적(검사 시점)과 강/약(암묵적 변환 허용 여부)이라는 서로 독립된 두 축으로 분류됩니다. 네 조합을 실제 언어 예시와 코드로 비교합니다."
+description: "타입 시스템은 정적/동적(검사 시점)과 강/약(암묵적 변환 허용 여부)이라는 서로 독립된 두 축으로 분류됩니다. TypeScript·Python·JavaScript·C 네 언어의 실제 코드로 네 조합의 차이와 언제 어떤 타입 시스템을 택할지 판단 기준까지 비교합니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -96,6 +96,10 @@ print("2" + 1)   # TypeError: can only concatenate str (not "int") to str
 
 이 네 칸 중 한 언어가 정확히 한 칸에만 속한다고 단정하기는 어렵다 — 예를 들어 C는 정적 타입이지만 `int`와 `char` 사이의 암묵적 변환을 폭넓게 허용해 약 타입에 가깝게 분류되며, TypeScript는 컴파일 단계에서는 강한 정적 검사를 하지만 결국 약 타입인 JavaScript로 변환돼 실행된다는 점에서 완전히 깔끔한 분류는 아니다.
 
+## 언제 정적 타입을, 언제 동적 타입을 선택할 것인가
+
+판단 기준은 프로젝트 규모와 협업 방식에 있다. 팀 규모가 크고 여러 사람이 같은 코드베이스를 오래 유지보수한다면, 정적 타입이 함수 시그니처만 보고도 어떤 값이 들어와야 하는지 알 수 있게 해줘 협업 비용을 줄여준다 — 리팩토링 시에도 타입이 맞지 않는 호출부를 컴파일러가 즉시 찾아준다. 반대로 빠른 프로토타이핑이나 스크립트처럼 코드 수명이 짧고 한두 명이 다루는 경우, 동적 타입의 유연성(타입 선언 없이 바로 값을 다룰 수 있음)이 개발 속도에서 유리하다. 강/약 타입 축도 마찬가지다 — JavaScript처럼 약 타입 언어는 암묵적 변환이 편의를 주지만 `"2" + 1` 같은 예상치 못한 동작의 원인이 되므로, 실무에서는 TypeScript처럼 강 타입에 가까운 정적 검사를 얹어 이 위험을 줄이는 방향으로 수렴하는 경우가 많다.
+
 ## 흔한 오개념
 
 **"정적 타입이 항상 더 안전하다"** — 정적 타입은 타입 불일치라는 **한 종류**의 오류를 실행 전에 잡아줄 뿐이다. 로직 오류(잘못된 계산식, 잘못된 조건문)는 타입이 아무리 정적이어도 컴파일러가 잡아주지 못한다. 동적 타입 언어도 [소프트웨어 설계 갈래](/post/computerterms/refactoring-and-code-smells/)에서 다룬 테스트로 충분히 안전하게 개발할 수 있다 — 정적 타입은 안전성을 얻는 **한 가지 방법**이지 유일한 방법이 아니다.
@@ -115,4 +119,4 @@ print("2" + 1)   # TypeError: can only concatenate str (not "int") to str
 > Pierce, B. C. (2002). *Types and Programming Languages*, Chapter 1: Introduction. MIT Press.
 
 - [TypeScript Handbook: Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html) — 정적 타입 검사가 실제로 오류를 잡아내는 예시
-- [MDN: Equality comparisons and sameness](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Equality_comparisons_and_sameness) — JavaScript의 암묵적 타입 변환 규칙 상세
+- [MDN: Equality comparisons and sameness](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Equality_comparisons_and_sameness) — 동등 비교 시 발생하는 JavaScript의 암묵적 타입 변환 규칙

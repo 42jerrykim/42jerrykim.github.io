@@ -7,7 +7,7 @@ title: "[Computer Terms] 가비지 컬렉션 (Garbage Collection)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "가비지 컬렉션은 더 이상 참조되지 않는 메모리를 언어 런타임이 자동으로 회수하는 기법입니다. 참조 카운팅과 추적 방식의 원리, 순환 참조 문제를 Python 예시로 다룹니다."
+description: "가비지 컬렉션은 더 이상 참조되지 않는 메모리를 언어 런타임이 자동으로 회수하는 기법입니다. 참조 카운팅과 추적 방식의 원리, 순환 참조 문제를 Python 예시로 다루고, 언제 GC 튜닝을 고려해야 하는지도 함께 정리합니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -30,10 +30,10 @@ tags:
 - Software-Engineering(소프트웨어공학)
 - Performance(성능)
 - Debugging(디버깅)
-- Data-Structures(자료구조)
 - Optimization(최적화)
-- Clean-Code(클린코드)
-- Concurrency(동시성)
+- Heap(힙)
+- Advanced
+- Profiling(프로파일링)
 ---
 
 ## 이 장을 읽기 전에
@@ -114,6 +114,10 @@ graph TD
 
 **"GC가 있으면 성능을 신경 쓸 필요가 없다"** — mark-and-sweep 계열 GC는 회수 시점에 프로그램 실행을 잠시 멈추는 Stop-the-world가 발생할 수 있다. 짧은 지연에도 민감한 실시간 시스템이나 대규모 힙을 다루는 서비스는 GC 튜닝(세대 크기, GC 알고리즘 선택)이 실제 성능에 큰 영향을 준다 — GC가 "메모리 관리를 안 해도 된다"가 아니라 "해제 시점의 책임을 옮긴다"는 것으로 이해해야 한다.
 
+## 언제 GC 튜닝을 고려해야 하는가
+
+대부분의 서비스는 기본 GC 설정으로 충분하며, 튜닝은 구체적인 증상이 나타났을 때 시작하는 것이 순서다. 판단 기준은 크게 세 가지다. 첫째, **지연 민감도**다. 실시간 오디오 처리나 고빈도 거래 시스템처럼 수 밀리초의 지연도 허용되지 않는다면, Stop-the-world 시간이 짧은 GC 알고리즘(Java의 ZGC·Shenandoah 등)으로 바꾸거나 애초에 GC가 없는 언어(Rust)를 고려해야 한다. 둘째, **힙 크기**다. 힙이 크면 클수록 한 번의 mark-and-sweep 사이클이 훑어야 할 객체가 많아져 정지 시간이 늘어나므로, 대규모 힙을 다루는 서비스는 세대별 GC의 세대 크기 비율(신생 세대 vs 노년 세대)을 조정해 빈번한 소규모 GC와 드문 대규모 GC 사이의 균형을 맞춘다. 셋째, **증상이 실제로 관측됐는가**다 — 힙 프로파일러(Java의 `jstat`, Python의 `gc` 모듈 통계)로 GC가 전체 실행 시간의 유의미한 비율을 차지하거나 정지 시간이 SLA를 위협한다는 것이 확인된 뒤에 튜닝을 시작해야 한다. 추측만으로 GC 파라미터를 조정하면 오히려 역효과가 날 수 있다.
+
 ## 다른 개념과의 연결
 
 가비지 컬렉션은 [메모리 관리와 가상 메모리](/post/computerterms/memory-management/)에서 다룬 힙 할당·해제를 자동화한 것이며, GC 없이 이 문제를 해결하는 제3의 접근은 이후 챕터에서 다룰 Rust의 소유권 모델이다. 다음 챕터에서는 함수가 자신이 정의된 환경의 변수를 참조 형태로 계속 붙들고 있는 클로저를 다루는데, 이때 클로저가 캡처한 변수 역시 GC가 관리하는 참조 대상이 된다.
@@ -126,5 +130,5 @@ graph TD
 
 > Jones, R., Hosking, A., & Moss, E. (2011). *The Garbage Collection Handbook: The Art of Automatic Memory Management*, Chapter 1: Introduction. Chapman and Hall/CRC.
 
-- [Python Developer's Guide: Garbage Collector Design](https://devguide.python.org/internals/garbage-collector/) — CPython의 참조 카운팅과 순환 감지기가 함께 동작하는 방식
-- [Oracle: Java Garbage Collection Basics](https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html) — HotSpot JVM의 세대별 추적 GC 구조
+- [Python Documentation: gc — Garbage Collector interface](https://docs.python.org/3/library/gc.html) — CPython의 참조 카운팅과 순환 감지기가 함께 동작하는 방식
+- [Oracle: Java Garbage Collection Tuning Guide](https://docs.oracle.com/en/java/javase/17/gctuning/introduction-garbage-collection-tuning.html) — HotSpot JVM의 세대별 추적 GC 구조와 튜닝
