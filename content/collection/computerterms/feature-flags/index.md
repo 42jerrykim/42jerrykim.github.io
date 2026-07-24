@@ -7,7 +7,7 @@ title: "[Computer Terms] 피처 플래그 (Feature Flags)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "피처 플래그는 배포와 기능 노출 시점을 분리하는 기법으로, 코드는 배포됐지만 꺼둔 채 카나리·A/B 테스트로 점진적으로 켤 수 있습니다. 플래그가 쌓일 때 생기는 복잡도 문제를 다룹니다."
+description: "피처 플래그는 배포와 기능 노출 시점을 분리하는 기법으로, 코드는 배포됐지만 꺼둔 채 카나리·A/B 테스트로 점진적으로 켤 수 있습니다. 플래그가 쌓일 때 생기는 복잡도 문제와 언제 플래그를 정리해야 하는지도 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)

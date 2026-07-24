@@ -110,10 +110,10 @@
 | content/collection/computerterms/caching-and-invalidation/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/cap-theorem-and-consensus/index.md | 97 | 2026-07-22 | 2 | 통과 | 없음(경미: Reliability 태그 본문 근거 약함) |
 | content/collection/computerterms/cdn-caching/index.md | 100 | 2026-07-22 | 3 | 통과 | 없음 |
-| content/collection/computerterms/ci-cd-and-testing-types/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/ci-cd-and-testing-types/index.md | 100 | 2026-07-24 | 2 | 통과 | 없음 |
 | content/collection/computerterms/circuit-breaker/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 없음(경미: Release It! 장 번호 표기를 "Stability Patterns" 부로 완화) |
 | content/collection/computerterms/closures-and-scope/index.md | 100 | 2026-07-24 | 2 | 통과 | 없음 |
-| content/collection/computerterms/code-review/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/code-review/index.md | 91.6 | 2026-07-24 | 2 | 통과 | 없음 |
 | content/collection/computerterms/compilers-and-interpreters/index.md | 100 | 2026-07-24 | 2 | 통과 | 없음 |
 | content/collection/computerterms/containers-and-virtualization/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/content-delivery-networks/index.md | 91.6 | 2026-07-22 | 1 | 통과 | 없음 |
@@ -133,7 +133,7 @@
 | content/collection/computerterms/event-driven-architecture/index.md | 94 | 2026-07-24 | 1 | 통과 | 없음 |
 | content/collection/computerterms/event-sourcing/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/factory-pattern/index.md | 95.2 | 2026-07-24 | 1 | 통과 | 없음 |
-| content/collection/computerterms/feature-flags/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/feature-flags/index.md | 94 | 2026-07-24 | 1 | 통과 | 없음 |
 | content/collection/computerterms/file-systems/index.md | 97 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/firewalls-and-nat/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/floating-point-representation/index.md | 91 | 2026-07-22 | 2 | 통과 | 없음 |
@@ -174,7 +174,7 @@
 | content/collection/computerterms/rest-and-graphql/index.md | 97 | 2026-07-24 | 1 | 통과 | 없음 |
 | content/collection/computerterms/searching-algorithms/index.md | 91.6 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/segment-trees/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 없음 |
-| content/collection/computerterms/semantic-versioning/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/semantic-versioning/index.md | 100 | 2026-07-24 | 2 | 통과 | 없음 |
 | content/collection/computerterms/semaphores-and-monitors/index.md | 91.6 | 2026-07-22 | 1 | 통과 | 없음(경미: 브린치 한센 연도 정정 반영) |
 | content/collection/computerterms/server-sent-events/index.md | 97 | 2026-07-24 | 1 | 통과 | 없음 |
 | content/collection/computerterms/sharding-and-replication/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 없음 |
@@ -194,7 +194,7 @@
 | content/collection/computerterms/type-systems/index.md | 100 | 2026-07-24 | 2 | 통과 | 없음 |
 | content/collection/computerterms/union-find/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/vector-clocks/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 없음 |
-| content/collection/computerterms/version-control-internals/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/version-control-internals/index.md | 94.6 | 2026-07-24 | 2 | 통과 | 없음 |
 | content/collection/computerterms/von-neumann-architecture/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/web-application-firewalls/index.md | 100 | 2026-07-24 | 3 | 통과 | 없음 |
 | content/collection/computerterms/web-vulnerabilities/index.md | 94.6 | 2026-07-24 | 2 | 통과 | 없음 |

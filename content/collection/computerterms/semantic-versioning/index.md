@@ -7,7 +7,7 @@ title: "[Computer Terms] 시맨틱 버저닝 (Semantic Versioning, SemVer)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "MAJOR.MINOR.PATCH 형식은 하위 호환 깨짐·기능 추가·버그 수정을 숫자로 약속하는 신뢰의 계약입니다. 이 규칙을 어긴 배포가 실무에서 어떤 문제를 일으키는지 다룹니다."
+description: "MAJOR.MINOR.PATCH 형식은 하위 호환 깨짐·기능 추가·버그 수정을 숫자로 약속하는 신뢰의 계약입니다. 이 규칙을 어긴 배포가 실무에서 어떤 문제를 일으키는지, npm의 caret·tilde 범위 규칙과 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -28,10 +28,10 @@ tags:
 - Collaboration(협업)
 - Reliability(신뢰성)
 - CI-CD(Continuous Integration/Continuous Deployment)
-- Node.js
-- Debugging(디버깅)
-- Performance(성능)
 - Advanced
+- JSON(JavaScript Object Notation)
+- API-Design(API설계)
+- Standard(표준)
 - How-To
 - Tips
 ---
@@ -42,7 +42,7 @@ tags:
 
 ## 버전 번호는 왜 임의로 매기면 안 되는가
 
-프로젝트가 라이브러리 하나에 의존하면, 그 라이브러리의 새 버전이 나올 때마다 "업데이트해도 내 코드가 안 깨질까"를 매번 고민해야 한다. 라이브러리 저자가 버전 번호를 "그냥 배포할 때마다 1씩 올리는 숫자"로 쓴다면, 이 질문에 답할 방법이 없다 — 버전만 봐서는 이번 업데이트가 사소한 버그 수정인지, 기존 코드를 깨뜨리는 큰 변경인지 알 수 없기 때문이다. **시맨틱 버저닝(Semantic Versioning, SemVer)**은 이 문제를 버전 번호 자체에 의미를 부여해 해결한다 — `MAJOR.MINOR.PATCH` 세 자리 숫자 각각에 정해진 규칙을 부여해, 버전 번호만 보고도 이번 변경이 안전한지 예측할 수 있게 만든다.
+프로젝트가 라이브러리 하나에 의존하면, 그 라이브러리의 새 버전이 나올 때마다 "업데이트해도 내 코드가 안 깨질까"를 매번 고민해야 한다. 라이브러리 저자가 버전 번호를 "그냥 배포할 때마다 1씩 올리는 숫자"로 쓴다면, 이 질문에 답할 방법이 없다 — 버전만 봐서는 이번 업데이트가 사소한 버그 수정인지, 기존 코드를 깨뜨리는 큰 변경인지 알 수 없기 때문이다. **시맨틱 버저닝(Semantic Versioning, SemVer)**은 이 문제를 semver.org가 공개한 표준(Standard) 명세로 해결한다 — 버전 번호 자체에 의미를 부여해 — `MAJOR.MINOR.PATCH` 세 자리 숫자 각각에 정해진 규칙을 부여해, 버전 번호만 보고도 이번 변경이 안전한지 예측할 수 있게 만든다.
 
 ```text
 1.4.2
