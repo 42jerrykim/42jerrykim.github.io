@@ -7,7 +7,7 @@ title: "[Computer Terms] 팩토리 패턴 (Factory Pattern)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "팩토리 패턴은 객체 생성 로직을 별도 함수나 클래스로 캡슐화해 호출부가 구체 클래스를 몰라도 되게 만드는 생성 패턴입니다. 팩토리 메서드와 추상 팩토리의 차이를 Python 코드로 다룹니다."
+description: "팩토리 패턴은 객체 생성 로직을 별도 함수나 클래스로 캡슐화해 호출부가 구체 클래스를 몰라도 되게 만드는 생성 패턴입니다. 단순 팩토리·팩토리 메서드·추상 팩토리의 차이와 흔한 오개념, 과잉 설계 판단 기준을 Python 코드로 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)

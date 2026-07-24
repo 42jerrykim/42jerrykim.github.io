@@ -7,7 +7,7 @@ title: "[Computer Terms] 결합도와 응집도 (Coupling, Cohesion)"
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "결합도는 모듈 사이의 의존 정도, 응집도는 한 모듈 내부 요소들의 연관 정도를 가리키는 설계 척도입니다. 낮은 결합도·높은 응집도가 왜 좋은 설계의 기준인지 코드 리팩토링으로 다룹니다."
+description: "결합도는 모듈 사이의 의존 정도, 응집도는 한 모듈 내부 요소들의 연관 정도를 가리키는 설계 척도입니다. 낮은 결합도·높은 응집도가 왜 좋은 설계의 기준인지, Yourdon과 Constantine의 고전적인 분류 체계와 함께 코드 리팩토링으로 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -49,6 +49,8 @@ tags:
 다음 코드는 주문 처리 함수가 이메일 발송의 구체적인 방법(SMTP 서버 주소, 인증 정보)까지 알아야 하는 **높은 결합도**를 보여준다.
 
 ```python
+# SMTPClient는 예시용 가상 클래스(실제로는 smtplib 등을 감싼 래퍼를 가정)
+
 # 높은 결합도: OrderProcessor가 SMTP의 세부사항까지 알아야 함
 class OrderProcessor:
     def complete_order(self, order):
@@ -74,13 +76,32 @@ class OrderProcessor:
 
 class EmailNotifier:
     def notify(self, customer_id, message):
+        email = lookup_email(customer_id)   # customer_id로 이메일 주소를 조회하는 헬퍼 함수 가정
         smtp = SMTPClient("smtp.example.com", port=587, user="noreply", password="secret")
         smtp.connect()
-        smtp.send(lookup_email(customer_id), message)
+        smtp.send(email, message)
         smtp.disconnect()
 ```
 
 `notifier`를 `EmailNotifier`에서 `SMSNotifier`로 바꿔도 `OrderProcessor` 코드는 한 줄도 바뀌지 않는다. 이것이 [OSI 7계층과 TCP/IP](/post/computerterms/osi-and-tcp-ip/)에서 응용 계층이 물리 계층의 세부사항을 몰라도 됐던 것과 같은 원리다 — 계층/모듈 사이의 경계를 인터페이스로 명확히 하면, 한쪽을 바꿔도 반대쪽에 영향이 번지지 않는다.
+
+```mermaid
+graph LR
+    subgraph "높은 결합도"
+        OP1["OrderProcessor"] -->|"SMTPClient를 직접 생성·호출"| SMTP["SMTPClient"]
+    end
+    subgraph "낮은 결합도"
+        OP2["OrderProcessor"] -->|"notify() 인터페이스만 호출"| N["Notifier 인터페이스"]
+        N -.구현.-> EN["EmailNotifier"]
+        N -.구현.-> SN["SMSNotifier"]
+    end
+```
+
+## 결합도와 응집도의 세부 종류
+
+Yourdon과 Constantine은 결합도를 강한 것부터 약한 것 순으로 여러 단계로 분류했다. 가장 강한 축에 속하는 것이 **내용 결합(Content Coupling)**으로, 한 모듈이 다른 모듈의 내부 데이터를 직접 들여다보거나 수정하는 경우다(예: 클래스 밖에서 `_private` 속성을 직접 조작). 그보다 약하지만 여전히 흔한 것이 **공통 결합(Common Coupling)**으로, 여러 모듈이 전역 변수를 공유해 한쪽의 변경이 다른 쪽에 예기치 않게 영향을 주는 경우다. 가장 흔히 마주치는 것은 **스탬프 결합(Stamp Coupling)**으로, 필요한 필드 몇 개만 넘기면 되는데도 객체 전체(예: 전체 `Order` 객체)를 인자로 넘기는 경우다 — `OrderProcessor`가 이메일만 필요한데도 `notify(order)`처럼 객체 전체를 넘기면, `Order`의 구조가 바뀔 때마다 `Notifier` 쪽도 영향을 받을 수 있다. 위 예시에서 `notify(customer_id, message)`처럼 꼭 필요한 값만 넘기는 것은 스탬프 결합을 피하고 **자료 결합(Data Coupling)**으로 낮춘 것이다 — 가장 약한(바람직한) 결합 형태다.
+
+응집도도 마찬가지로 여러 단계로 나뉜다. 가장 약한 축은 **우연적 응집(Coincidental Cohesion)**으로, 특별한 관련 없이 그냥 한 파일이나 클래스에 몰아넣은 경우다(위 `OrderManager` 예시가 여기에 해당). 그보다는 낫지만 여전히 약한 것이 **시간적 응집(Temporal Cohesion)**으로, "초기화 시점에 실행되어야 한다"는 이유만으로 무관한 로직들을 한데 묶는 경우다(예: 앱 시작 시 로그 설정과 DB 연결을 한 함수에 몰아넣기). 가장 강하고 바람직한 것은 **기능적 응집(Functional Cohesion)**으로, 모듈 안의 모든 요소가 정확히 하나의 잘 정의된 작업을 위해 함께 동작하는 경우다 — 분리 후의 `EmailNotifier`처럼 "이메일 발송"이라는 단일 목적에만 집중하는 클래스가 여기에 해당한다.
 
 ## 응집도: 한 모듈이 하나의 목적에 집중하는가
 

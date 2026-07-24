@@ -7,7 +7,7 @@ title: "[Computer Terms] 디자인 패턴 개요 (Design Patterns)"
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "디자인 패턴은 반복되는 설계 문제에 대한 검증된 해법에 이름을 붙인 것입니다. GoF의 생성·구조·행동 패턴 분류와, 전략 패턴을 SOLID 원칙과 연결해 다룹니다."
+description: "디자인 패턴은 반복되는 설계 문제에 대한 검증된 해법에 이름을 붙인 것입니다. GoF의 생성·구조·행동 패턴 분류와, 전략 패턴 코드를 SOLID 원칙과 연결해 다루며 패턴 남용(과잉 설계)을 피하는 판단 기준도 함께 정리합니다."
 tags:
 - Technology(기술)
 - Education(교육)

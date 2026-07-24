@@ -114,6 +114,31 @@ view_model.add_item("우유 사기")  # 갱신됨: ['우유 사기']
 
 MVC의 Controller가 `self.view.render(...)`처럼 View 갱신을 **명령형으로 직접 호출**했던 것과 달리, MVVM에서는 ViewModel이 상태 변화를 통지하기만 하고 View가 그 통지를 구독해 스스로 갱신한다. 실제 프레임워크(WPF, Vue, Android Jetpack)에서는 이 구독·통지 과정을 프레임워크가 자동으로 처리해주므로, 개발자가 "View의 특정 텍스트 필드를 갱신하라"는 코드를 명시적으로 쓸 필요가 없다 — 이것이 데이터 바인딩이 Controller의 명시적 갱신 코드를 줄여주는 방식이다.
 
+```mermaid
+sequenceDiagram
+    participant U as "사용자"
+    participant C as "Controller"
+    participant M as "Model"
+    participant V as "View"
+
+    U->>C: "입력 (버튼 클릭)"
+    C->>M: "add_item()"
+    C->>V: "render() 명시적 호출"
+```
+
+```mermaid
+sequenceDiagram
+    participant U as "사용자"
+    participant VM as "ViewModel"
+    participant M as "Model"
+    participant V as "View (구독자)"
+
+    U->>VM: "입력 (버튼 클릭)"
+    VM->>M: "add_item()"
+    VM->>V: "상태 변화 통지 (구독 기반)"
+    Note over V: "View가 스스로 갱신, ViewModel은 View를 모름"
+```
+
 ## 비교: MVC vs MVVM
 
 | 특성 | MVC | MVVM |
@@ -126,7 +151,11 @@ MVC의 Controller가 `self.view.render(...)`처럼 View 갱신을 **명령형으
 
 ## 흔한 오개념
 
-**"MVVM이 MVC보다 항상 더 나은 상위 호환이다"** — MVVM의 데이터 바인딩은 프레임워크의 바인딩 엔진이 필요하고, 바인딩 관계가 복잡해지면 "어떤 상태 변화가 어떤 화면 갱신을 유발하는지" 추적하기 어려워질 수 있다. 반면 MVC의 명시적 호출은 코드를 그대로 따라가면 흐름을 파악할 수 있다는 장점이 있다. 어떤 패턴이 더 적합한지는 프레임워크의 바인딩 지원 여부와 팀의 익숙함에 따라 달라진다.
+**"MVVM이 MVC보다 항상 더 나은 상위 호환이다"** — MVVM의 데이터 바인딩은 프레임워크의 바인딩 엔진이 필요하고, 바인딩 관계가 복잡해지면 "어떤 상태 변화가 어떤 화면 갱신을 유발하는지" 추적하기 어려워질 수 있다. 반면 MVC의 명시적 호출은 코드를 그대로 따라가면 흐름을 파악할 수 있다는 장점이 있다.
+
+## 언제 MVC를, 언제 MVVM을 선택할 것인가
+
+선택 기준은 크게 세 가지다. 첫째, **프레임워크가 네이티브 바인딩을 지원하는가**다. Vue·WPF·Android Jetpack처럼 데이터 바인딩이 프레임워크에 내장돼 있다면 MVVM이 자연스럽고, 서버 사이드 렌더링 프레임워크(Ruby on Rails, Django)처럼 매 요청마다 화면을 새로 그리는 구조라면 바인딩을 유지할 상태 자체가 없어 MVC가 적합하다. 둘째, **View의 상태가 얼마나 자주, 세밀하게 바뀌는가**다. 입력값에 따라 여러 UI 요소가 실시간으로 갱신되는 화면(폼 유효성 검사, 실시간 계산기)은 MVVM의 자동 갱신이 유리하고, 페이지 전체를 한 번에 다시 그리는 것으로 충분한 화면은 MVC의 단순함으로도 충분하다. 셋째, **팀이 바인딩 디버깅에 익숙한가**다. 바인딩 관계가 프레임워크 내부에 숨어 있어 추적이 어려운 만큼, 팀이 해당 프레임워크의 바인딩 디버깅 도구에 익숙하지 않다면 처음에는 MVC의 명시적 흐름으로 시작하는 편이 안전하다.
 
 **"Model이 View나 Controller/ViewModel을 알아도 된다"** — 두 패턴 모두 Model이 View나 중재자를 참조하는 것을 금지한다. 위 예시에서 `TodoModel`은 `TodoView`나 `TodoViewModel`을 전혀 import하지 않는다. Model이 View를 알게 되면, 화면 없이 데이터 로직만 테스트하거나 다른 화면에서 재사용하는 것이 불가능해져 두 패턴이 추구하는 분리 목표 자체가 무너진다.
 

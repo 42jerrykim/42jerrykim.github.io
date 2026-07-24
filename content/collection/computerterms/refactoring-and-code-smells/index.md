@@ -7,7 +7,7 @@ title: "[Computer Terms] 리팩토링과 코드 스멜 (Refactoring, Code Smell)
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "리팩토링은 동작을 바꾸지 않으면서 코드 구조를 개선하는 작업입니다. 코드 스멜을 신호로 언제 리팩토링할지 판단하고, 테스트로 안전망을 갖춘 상태에서 Extract Method를 적용하는 과정을 다룹니다."
+description: "리팩토링은 동작을 바꾸지 않으면서 코드 구조를 개선하는 작업입니다. 코드 스멜을 신호로 언제 리팩토링할지 판단하고, 테스트로 안전망을 갖춘 상태에서 Extract Method를 적용하는 과정과 리팩토링 대 재작성 선택 기준을 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)

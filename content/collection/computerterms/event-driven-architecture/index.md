@@ -7,7 +7,7 @@ title: "[Computer Terms] 이벤트 드리븐 아키텍처 (Event-Driven Architec
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "이벤트 드리븐 아키텍처는 옵저버 패턴을 시스템 수준으로 확장해, 서비스들이 직접 호출하는 대신 이벤트를 발행·구독해 느슨하게 결합하는 구조입니다. 메시지 큐가 이를 구현하는 실제 수단임을 다룹니다."
+description: "이벤트 드리븐 아키텍처는 옵저버 패턴을 시스템 수준으로 확장해, 서비스들이 직접 호출하는 대신 이벤트를 발행·구독해 느슨하게 결합하는 구조입니다. 메시지 큐가 이를 구현하는 실제 수단임과 데이터 일관성 문제, CQRS와의 관계를 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -115,7 +115,7 @@ broker.publish("payment_completed", {"order_id": "ORD-001"})
 
 ## 다른 개념과의 연결
 
-이벤트 드리븐 아키텍처는 [옵저버 패턴](/post/computerterms/observer-pattern/)의 발행-구독 구조를 서비스(시스템) 수준으로 확장한 것이며, 실제 구현은 [메시지 큐](/post/computerterms/message-queues/)가 담당한다. 이 챕터로 소프트웨어 설계 갈래는 클래스 수준의 패턴(옵저버, 팩토리)에서 아키텍처 수준(헥사고날, MVC/MVVM, 이벤트 드리븐)까지 확장되며 마무리된다.
+이벤트 드리븐 아키텍처는 [옵저버 패턴](/post/computerterms/observer-pattern/)의 발행-구독 구조를 서비스(시스템) 수준으로 확장한 것이며, 실제 구현은 [메시지 큐](/post/computerterms/message-queues/)가 담당한다. Fowler의 분류에서 **CQRS(Command Query Responsibility Segregation)**는 이벤트 드리븐 아키텍처의 한 갈래로 다뤄진다 — 쓰기(Command)가 이벤트를 발행하고, 읽기(Query)는 그 이벤트로 갱신되는 별도의 조회 전용 모델을 참조하도록 쓰기·읽기 경로 자체를 분리하는 방식이다. 이 챕터로 소프트웨어 설계 갈래는 클래스 수준의 패턴(옵저버, 팩토리)에서 아키텍처 수준(헥사고날, MVC/MVVM, 이벤트 드리븐)까지 확장되며 마무리된다.
 
 ## 평가 기준
 

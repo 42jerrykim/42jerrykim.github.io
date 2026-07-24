@@ -7,7 +7,7 @@ title: "[Computer Terms] 헥사고날 아키텍처 (Hexagonal Architecture)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "헥사고날 아키텍처는 핵심 비즈니스 로직을 데이터베이스·웹 프레임워크 같은 외부 기술로부터 포트와 어댑터로 격리하는 아키텍처 패턴입니다. 낮은 결합도가 아키텍처 수준으로 확장된 사례를 다룹니다."
+description: "헥사고날 아키텍처는 핵심 비즈니스 로직을 데이터베이스·웹 프레임워크 같은 외부 기술로부터 포트와 어댑터로 격리하는 아키텍처 패턴입니다. 인바운드·아웃바운드 포트 구분과 낮은 결합도가 아키텍처 수준으로 확장된 사례를 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
