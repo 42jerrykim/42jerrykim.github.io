@@ -7,7 +7,7 @@ title: "[Computer Terms] OAuth와 OpenID Connect (OAuth 2.0, OIDC)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "OAuth 2.0은 비밀번호를 넘기지 않고 제3자 앱에 제한된 권한만 위임하는 인가 프로토콜입니다. OIDC가 그 위에 신원 확인을 더하는 방식과 Authorization Code Flow를 다룹니다."
+description: "OAuth 2.0은 비밀번호를 넘기지 않고 제3자 앱에 제한된 권한만 위임하는 인가 프로토콜입니다. OIDC가 그 위에 신원 확인을 더하는 방식과 Authorization Code Flow, 그리고 공개 클라이언트에서 이 흐름을 안전하게 쓰기 위한 PKCE 확장까지 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -70,6 +70,10 @@ sequenceDiagram
 ```
 
 이 흐름에서 `code`가 사용자 브라우저를 거쳐 클라이언트로 전달되지만, 그 `code`를 실제 `access_token`으로 바꾸는 마지막 단계는 클라이언트 서버와 인가 서버 사이의 **서버 간 통신**으로 이뤄지고, 이때 클라이언트만 아는 `client_secret`을 함께 제시해야 한다. 즉 브라우저를 가로챈 공격자가 `code`를 훔치더라도 `client_secret` 없이는 실제 토큰으로 교환할 수 없다. 이렇게 얻은 `access_token`은 [인증과 인가](/post/computerterms/authentication-and-authorization/)에서 다룬 JWT와 마찬가지로 짧은 만료 시간을 가지며, 사용자가 다시 로그인하지 않고도 갱신할 수 있도록 별도의 `refresh_token`을 함께 발급하는 경우가 많다.
+
+## 이 흐름의 한계: client_secret을 안전히 보관할 수 없다면
+
+위 흐름은 `client_secret`을 안전하게 보관할 수 있는 서버가 있다는 것을 전제한다. 하지만 브라우저에서 직접 실행되는 SPA나 모바일 앱 같은 **공개 클라이언트(Public Client)**는 앱 코드 자체가 사용자 손에 들어가므로 `client_secret`을 숨길 방법이 없다 — 앱을 디컴파일하면 누구나 그 값을 알아낼 수 있다. 이런 클라이언트가 `client_secret` 없이 그대로 Authorization Code Flow를 쓰면, `code`를 가로챈 공격자가 `client_secret` 검증 없이 바로 토큰을 발급받을 수 있어 이 흐름이 전제하는 안전성이 깨진다. 이 문제는 **PKCE(Proof Key for Code Exchange, RFC 7636)** 확장으로 보완한다 — 클라이언트가 매 인가 요청마다 무작위 값(`code_verifier`)과 그 해시(`code_challenge`)를 생성해, 인가 서버에는 해시만 먼저 보내고 토큰 교환 시점에 원래 값을 제시해 "이 code를 요청한 클라이언트와 지금 토큰을 요청하는 클라이언트가 동일하다"는 것을 증명한다. 오늘날 대부분의 OAuth 가이드라인은 공개 클라이언트뿐 아니라 서버가 있는 앱에도 PKCE를 함께 쓸 것을 권장한다.
 
 ## OIDC: OAuth 위에 "누구인가"를 얹다
 

@@ -7,7 +7,7 @@ title: "[Computer Terms] 레이트 리미팅 (Rate Limiting)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "레이트 리미팅은 짧은 시간에 과도한 요청을 보내는 클라이언트를 제한해 서비스 남용과 무차별 대입 공격을 막습니다. 토큰 버킷과 슬라이딩 윈도우 알고리즘을 코드로 비교합니다."
+description: "레이트 리미팅은 짧은 시간에 과도한 요청을 보내는 클라이언트를 제한해 서비스 남용과 무차별 대입 공격을 막습니다. 토큰 버킷과 슬라이딩 윈도우 알고리즘을 코드로 비교하고, API 게이트웨이·로그인 방어에 적용하는 실무 사례와 429 응답 처리까지 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)

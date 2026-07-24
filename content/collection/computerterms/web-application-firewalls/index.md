@@ -7,7 +7,7 @@ title: "[Computer Terms] 웹 방화벽 (WAF, Web Application Firewall)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "WAF는 SQL 인젝션·XSS 같은 공격 패턴을 코드 수정 없이 네트워크 계층에서 탐지·차단합니다. 시그니처 기반 탐지의 장단점과 코드 수준 방어를 대체하지 못하는 이유를 다룹니다."
+description: "WAF는 SQL 인젝션·XSS 같은 공격 패턴을 코드 수정 없이 네트워크 계층에서 탐지·차단합니다. 시그니처 기반 탐지의 장단점, 코드 수준 방어를 대체하지 못하는 이유, 그리고 언제 도입해야 하는지 판단 기준을 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -34,6 +34,7 @@ tags:
 - Network-Security(네트워크보안)
 - Signature-Based-Detection(시그니처기반탐지)
 - Reverse-Proxy(리버스프록시)
+- Python
 ---
 
 ## 이 장을 읽기 전에
@@ -44,17 +45,11 @@ tags:
 
 [웹 취약점](/post/computerterms/web-vulnerabilities/)에서 SQL 인젝션·XSS를 막는 정석 해법은 파라미터화 쿼리와 입력 이스케이핑이라고 다뤘다. 하지만 이 해법은 애플리케이션 코드 자체를 수정해야 적용된다 — 만약 이미 운영 중인 레거시 서비스에 취약한 코드가 있는데 당장 배포할 수 없거나, 프레임워크·서드파티 라이브러리의 결함이라 서비스 쪽에서 직접 고칠 수 없다면 어떻게 할까? **웹 방화벽(WAF, Web Application Firewall)**은 이런 상황을 위한 계층이다. WAF는 클라이언트와 웹 서버 사이에 [정방향·역방향 프록시](/post/computerterms/forward-and-reverse-proxies/)처럼 위치해, 서버에 요청이 도달하기 **전에** HTTP 요청의 내용(URL, 헤더, 바디)을 검사하고 공격 패턴으로 판단되면 서버에 전달하지 않고 차단한다.
 
-```text
-클라이언트 요청: GET /search?q=' OR '1'='1
-                       │
-                       ▼
-                 [WAF] 요청 본문·쿼리스트링 검사
-                       │
-          ┌────────────┴────────────┐
-     패턴 일치(SQL 인젝션 시그니처)   패턴 불일치
-          │                          │
-          ▼                          ▼
-    403 차단, 서버 전달 안 함     정상적으로 서버로 전달
+```mermaid
+flowchart TD
+    Req["클라이언트 요청<br/>GET /search?q=' OR '1'='1"] --> WAF["WAF: 요청 본문·쿼리스트링 검사"]
+    WAF -->|"패턴 일치 (SQL 인젝션 시그니처)"| Block["403 차단, 서버 전달 안 함"]
+    WAF -->|"패턴 불일치"| Pass["정상적으로 서버로 전달"]
 ```
 
 이 위치 덕분에 WAF는 애플리케이션 코드를 한 줄도 바꾸지 않고도 알려진 공격 패턴을 즉시 막을 수 있다. 클라우드 서비스(AWS WAF, Cloudflare 등)나 리버스 프록시(Nginx의 ModSecurity 모듈 등)로 배포하는 경우가 많아, 새 배포 사이클 없이 규칙(rule)만 추가해 대응 속도를 높일 수 있다는 것이 실무에서 WAF를 쓰는 핵심 이유다.
@@ -63,15 +58,22 @@ tags:
 
 WAF가 요청이 악성인지 판단하는 가장 기본적인 방법은 **시그니처 기반 탐지(Signature-Based Detection)**다. `' OR '1'='1`, `<script>`, `UNION SELECT` 같은 알려진 공격 패턴을 정규식이나 규칙 집합으로 미리 정의해두고, 들어오는 요청이 이 패턴과 일치하는지 대조한다.
 
-```text
-WAF 규칙 예시(단순화):
-  RULE: 쿼리스트링 또는 바디에 "(?i)(union\s+select|or\s+1=1|<script)" 패턴이 있으면 차단
+```python
+import re
 
-요청 A: GET /product?id=5                     → 패턴 불일치 → 통과
-요청 B: GET /product?id=5 UNION SELECT * FROM users  → 패턴 일치 → 차단
+PATTERN = re.compile(r"(?i)(union\s+select|or\s+'?\d+'?\s*=\s*'?\d+'?|<script)")
+
+def is_malicious(query_string: str) -> bool:
+    return bool(PATTERN.search(query_string))
+
+is_malicious("id=5")                                   # False → 통과
+is_malicious("q=' OR '1'='1")                           # True  → 403 차단
+is_malicious("id=5 UNION SELECT * FROM users")          # True  → 403 차단
 ```
 
 시그니처 기반 탐지는 이미 알려진 공격 유형에는 빠르고 정확하게 대응하지만, 근본적인 한계가 있다. 시그니처에 없는 새로운 공격 기법(제로데이)이나, 문자를 인코딩·공백을 변형하는 등 시그니처를 우회하도록 살짝 바꾼 변종 공격은 탐지하지 못한다. 예를 들어 `UNION SELECT`를 `UNI/**/ON SEL/**/ECT`처럼 주석으로 쪼개거나 대소문자·인코딩을 바꾸는 우회 기법이 계속 등장하며, WAF 공급자는 이런 우회를 막기 위해 시그니처를 지속적으로 갱신해야 한다. 최근 WAF들은 시그니처만이 아니라 요청 빈도·이상 패턴을 함께 보는 이상 탐지(anomaly detection)나 머신러닝 기반 탐지를 병행하지만, 이 역시 오탐(정상 요청을 차단)과 미탐(공격을 통과시킴) 사이의 트레이드오프에서 자유롭지 않다.
+
+**언제 WAF를 도입하고, 언제 근본 수정을 우선해야 하는가**는 취약점을 코드 수준에서 즉시 고칠 수 있는지에 달려 있다. 레거시 코드에 취약점이 있지만 당장 배포 파이프라인을 돌릴 수 없거나, 서드파티 라이브러리·프레임워크 자체의 결함이라 서비스 쪽 코드로는 손댈 수 없는 경우 WAF는 배포 없이 규칙만 추가해 즉시 위험을 줄이는 현실적인 임시 방어선이 된다. 반대로 자체 코드에서 파라미터화 쿼리를 안 쓰는 것처럼 원인이 명확하고 수정 비용이 낮다면, WAF 규칙에 의존하지 않고 근본 원인을 먼저 고쳐야 한다 — WAF는 수정을 늦춰도 되는 이유가 아니라, 수정이 끝날 때까지의 임시 방어선으로 취급해야 한다.
 
 ## WAF는 코드 수준 방어를 대체하지 않는다
 

@@ -7,7 +7,7 @@ title: "[Computer Terms] 디지털 서명과 인증서 (Digital Signature, Certi
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "비대칭키로 데이터를 해시 후 개인키로 암호화해 작성자를 증명하는 디지털 서명 원리와, 이 서명 체계로 TLS 인증서가 서버 신원을 보증하는 방식(CA의 역할)을 다룹니다."
+description: "비대칭키로 데이터를 해시 후 개인키로 암호화해 작성자를 증명하는 디지털 서명 원리와, 이 서명 체계로 TLS 인증서가 서버 신원을 보증하는 방식(CA의 역할)을 다룹니다. 자체서명과 CA서명 인증서를 언제 쓸지 판단 기준도 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -33,7 +33,7 @@ tags:
 - Public-Key(공개키)
 - Data-Integrity(데이터무결성)
 - Non-Repudiation(부인방지)
-- Debugging(디버깅)
+- HTTPS
 ---
 
 ## 이 장을 읽기 전에
@@ -78,6 +78,8 @@ flowchart LR
 
 이 신뢰 구조를 **PKI(공개키 기반구조, Public Key Infrastructure)**라 부른다. 브라우저는 수십 개의 신뢰할 수 있는 최상위 CA(루트 CA) 공개키를 미리 내장하고 있고, 실무에서는 루트 CA가 직접 모든 서버에 서명하는 대신 중간 CA에게 서명 권한을 위임하는 **인증서 체인(Chain of Trust)**을 구성해, 서버 인증서 → 중간 CA 인증서 → 루트 CA 순으로 검증이 이어진다.
 
+**언제 CA 서명 인증서가 필요하고, 언제 자체 서명(Self-Signed)으로 충분한가**는 그 서버에 접속하는 클라이언트가 누구인지로 갈린다. 사내 개발·테스트 환경처럼 접속자가 팀 내부로 한정되고 그 팀이 직접 인증서를 신뢰 목록에 등록할 수 있다면, CA 비용 없이 자체 서명 인증서로 충분하다. 반면 불특정 다수의 사용자가 접속하는 공개 서비스는 사용자가 매번 수동으로 인증서를 신뢰하도록 요구할 수 없으므로 브라우저가 이미 신뢰하는 CA의 서명이 필수다. CA가 발급하는 인증서도 검증 수준에 따라 갈린다 — 도메인 소유만 확인하는 **DV(Domain Validation)**는 자동화돼 빠르고 저렴하지만 운영 주체의 신원까지는 보증하지 않고, **OV(Organization Validation)**·**EV(Extended Validation)**는 기업 등록 정보까지 수동으로 검증해 신원을 더 강하게 보증하는 대신 발급 비용과 시간이 늘어난다. 일반적인 웹 서비스는 DV로 충분하고, 금융·결제처럼 운영 주체 신원 자체가 신뢰의 근거가 되어야 하는 서비스에서 OV·EV를 고려한다.
+
 ## 비교: 암호화, 해싱, 디지털 서명
 
 | 특성 | 암호화 | 해싱 | 디지털 서명 |
@@ -106,4 +108,4 @@ flowchart LR
 > Rescorla, E. (2018). *RFC 8446: The Transport Layer Security (TLS) Protocol Version 1.3*. IETF.
 
 - [MDN: Public-key cryptography](https://developer.mozilla.org/en-US/docs/Glossary/Public-key_cryptography) — 디지털 서명과 PKI 개념 입문
-- [DigiCert: What is a Certificate Authority (CA)?](https://www.digicert.com/faq/trust-and-pki/what-is-a-certificate-authority) — CA와 인증서 체인 실무 설명
+- [Wikipedia: Certificate authority](https://en.wikipedia.org/wiki/Certificate_authority) — CA와 인증서 체인, 신뢰 모델에 대한 개괄 설명

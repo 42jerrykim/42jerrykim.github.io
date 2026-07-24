@@ -105,7 +105,7 @@
 | content/collection/computerterms/algotithm_classify/index.md | 98.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/arrays-and-linked-lists/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/atomic-operations-and-cas/index.md | 100 | 2026-07-22 | 1 | 통과 | 없음 |
-| content/collection/computerterms/authentication-and-authorization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/authentication-and-authorization/index.md | 97 | 2026-07-24 | 2 | 통과 | 없음 |
 | content/collection/computerterms/cache-hierarchy/index.md | 91 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/caching-and-invalidation/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/cap-theorem-and-consensus/index.md | 97 | 2026-07-22 | 2 | 통과 | 없음(경미: Reliability 태그 본문 근거 약함) |
@@ -126,10 +126,10 @@
 | content/collection/computerterms/daemons-and-zombie-processes/index.md | 98.2 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/deadlocks/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/design-patterns-overview/index.md | - | - | 0 | 미채점 | - |
-| content/collection/computerterms/digital-signatures-and-certificates/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/digital-signatures-and-certificates/index.md | 97 | 2026-07-24 | 2 | 통과 | 없음 |
 | content/collection/computerterms/dns-and-sockets/index.md | 97 | 2026-07-22 | 3 | 통과 | 없음 |
 | content/collection/computerterms/dynamic-programming/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음 |
-| content/collection/computerterms/encryption-and-hashing/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/encryption-and-hashing/index.md | 93.4 | 2026-07-24 | 1 | 통과 | 없음 |
 | content/collection/computerterms/event-driven-architecture/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/event-sourcing/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/factory-pattern/index.md | - | - | 0 | 미채점 | - |
@@ -162,13 +162,13 @@
 | content/collection/computerterms/mvcc/index.md | 96.1 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/normalization-and-indexes/index.md | 97 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/nosql-and-query-optimization/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
-| content/collection/computerterms/oauth-and-oidc/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/oauth-and-oidc/index.md | 100 | 2026-07-24 | 2 | 통과 | 없음 |
 | content/collection/computerterms/observer-pattern/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/osi-and-tcp-ip/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/processes-and-threads/index.md | 97 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/query-planner-internals/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/race-conditions-and-locks/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 없음 |
-| content/collection/computerterms/rate-limiting/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/rate-limiting/index.md | 97 | 2026-07-24 | 1 | 통과 | 없음 |
 | content/collection/computerterms/refactoring-and-code-smells/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/registers-and-isa/index.md | 98.2 | 2026-07-22 | 2 | 통과 | 없음 |
 | content/collection/computerterms/rest-and-graphql/index.md | - | - | 0 | 미채점 | - |
@@ -196,9 +196,9 @@
 | content/collection/computerterms/vector-clocks/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 없음 |
 | content/collection/computerterms/version-control-internals/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/von-neumann-architecture/index.md | 100 | 2026-07-22 | 2 | 통과 | 없음 |
-| content/collection/computerterms/web-application-firewalls/index.md | - | - | 0 | 미채점 | - |
-| content/collection/computerterms/web-vulnerabilities/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/web-application-firewalls/index.md | 100 | 2026-07-24 | 3 | 통과 | 없음 |
+| content/collection/computerterms/web-vulnerabilities/index.md | 94.6 | 2026-07-24 | 2 | 통과 | 없음 |
 | content/collection/computerterms/webhooks/index.md | 100 | 2026-07-22 | 3 | 통과 | 없음 |
 | content/collection/computerterms/websockets-and-cors/index.md | - | - | 0 | 미채점 | - |
 | content/collection/computerterms/write-through-and-write-back/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 없음 |
-| content/collection/computerterms/zero-trust-security/index.md | - | - | 0 | 미채점 | - |
+| content/collection/computerterms/zero-trust-security/index.md | 94 | 2026-07-24 | 1 | 통과 | 없음 |

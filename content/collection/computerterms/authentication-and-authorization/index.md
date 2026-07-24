@@ -7,7 +7,7 @@ title: "[Computer Terms] 인증과 인가 (Authentication, Authorization)"
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "인증은 사용자가 누구인지 확인하는 것이고, 인가는 그 사용자가 무엇을 할 수 있는지 결정하는 것입니다. 세션 기반과 토큰(JWT) 기반 인증을 비교하고 권한 상승 취약점을 다룹니다."
+description: "인증은 사용자가 누구인지 확인하는 것이고, 인가는 그 사용자가 무엇을 할 수 있는지 결정하는 것입니다. 세션 기반과 토큰(JWT) 기반 인증을 비교하고, 로그인 여부만 확인해 역할 검사를 빠뜨리는 권한 상승 취약점을 실제 코드로 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -31,7 +31,7 @@ tags:
 - Software-Engineering(소프트웨어공학)
 - Web(웹)
 - API
-- Debugging(디버깅)
+- JavaScript
 - Performance(성능)
 - Advanced
 ---
@@ -72,6 +72,21 @@ tags:
                  (저장소 조회 없이 payload.role로 바로 인가 판단)
 ```
 
+```mermaid
+sequenceDiagram
+    participant C as "클라이언트"
+    participant S as "서버"
+
+    C->>S: "로그인 요청 (id/password)"
+    S->>S: "payload = {user_id: 42, role: user}"
+    S->>S: "token = sign(payload, secret_key)"
+    S->>C: "token 발급"
+    Note over C: "이후 요청마다 token을 함께 전송"
+    C->>S: "Authorization: Bearer token"
+    S->>S: "verify(token, secret_key)"
+    S->>C: "서명 유효 → payload.role로 인가 판단"
+```
+
 토큰 기반은 서버가 상태를 저장하지 않으므로([HTTP와 HTTPS](/post/computerterms/http-and-https/)에서 다룬 HTTP 자체의 무상태성과 잘 어울린다) 서버를 여러 대로 확장하기 쉽다. 대신 세션 기반과 달리, 발급된 토큰은 만료 시각이 될 때까지 서버가 개별적으로 무효화하기 어렵다 — 토큰 자체에 서명이 담겨 있어 유효 기간 내내 유효하기 때문이다. 이 문제는 보통 짧은 만료 시간 + 별도의 토큰 폐기 목록(블랙리스트)을 조합해 완화한다.
 
 ## 비교: 세션 기반 vs 토큰 기반
@@ -87,9 +102,25 @@ tags:
 
 인증에는 성공했지만 인가 검사를 제대로 하지 않으면, 일반 사용자가 관리자 API를 그대로 호출해 권한을 얻는 **권한 상승(Privilege Escalation)** 취약점이 생긴다. 흔한 원인은 "로그인 여부만 확인하고 역할(role)은 확인하지 않는" 코드다.
 
-```text
-잘못된 예: if (is_logged_in(request)) { delete_all_users(); }
-올바른 예: if (is_logged_in(request) && request.user.role == "admin") { delete_all_users(); }
+```javascript
+const express = require("express");
+const app = express();
+app.use(session({ secret: "server_secret_key" })); // express-session 미들웨어 가정
+
+// 잘못된 예: 로그인 여부만 확인하고 역할은 확인하지 않는다
+app.post("/admin/users/delete-all", (req, res) => {
+  if (!req.session.userId) return res.status(401).end();
+  deleteAllUsers();
+  res.status(204).end();
+});
+
+// 올바른 예: 매 요청마다 서버가 역할을 다시 확인한다
+app.post("/admin/users/delete-all", (req, res) => {
+  if (!req.session.userId) return res.status(401).end();
+  if (req.session.role !== "admin") return res.status(403).end();
+  deleteAllUsers();
+  res.status(204).end();
+});
 ```
 
 프런트엔드에서 관리자 메뉴를 숨기는 것만으로는 인가가 완성되지 않는다 — 클라이언트 쪽 UI 숨김은 사용성을 위한 것일 뿐, 실제 권한 검사는 반드시 서버가 매 요청마다 다시 확인해야 한다.
@@ -113,4 +144,4 @@ tags:
 > Jones, M., Bradley, J., & Sakimura, N. (2015). *RFC 7519: JSON Web Token (JWT)*. IETF.
 
 - [OWASP Top 10: Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/) — 인가 실패가 실무에서 가장 흔한 취약점 범주로 꼽히는 이유
-- [Auth0: JWT vs Session](https://auth0.com/docs/secure/tokens/json-web-tokens) — 세션 기반과 토큰 기반 인증의 실무 선택 기준
+- [Auth0: JSON Web Tokens](https://auth0.com/docs/secure/tokens/json-web-tokens) — JWT의 구조와 서명 검증 방식에 대한 공식 설명

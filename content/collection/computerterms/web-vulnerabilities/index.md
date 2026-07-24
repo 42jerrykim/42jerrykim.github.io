@@ -7,7 +7,7 @@ title: "[Computer Terms] 웹 취약점: SQL 인젝션, XSS, CSRF"
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "SQL 인젝션, XSS, CSRF는 웹 애플리케이션에서 가장 흔한 세 가지 취약점입니다. 각 공격이 성립하는 조건과, 파라미터化 쿼리·이스케이핑·CSRF 토큰으로 막는 원리를 코드로 다룹니다."
+description: "SQL 인젝션, XSS, CSRF는 웹 애플리케이션에서 가장 흔한 세 가지 취약점입니다. 각 공격이 성립하는 조건과, 파라미터화 쿼리·이스케이핑·CSRF 토큰으로 막는 원리를 코드로 다루며, 프런트엔드 검증만으로는 왜 부족한지도 설명합니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -45,6 +45,8 @@ tags:
 [정규화와 인덱스](/post/computerterms/normalization-and-indexes/)에서 SQL을 문자열로 조합해 실행하는 예를 다뤘다. 만약 이 문자열에 사용자 입력을 그대로 이어 붙이면, 사용자가 SQL 문법 자체를 주입해 원래 의도하지 않은 쿼리를 실행시킬 수 있다.
 
 ```python
+# db는 psycopg2 등 pyformat(%s) paramstyle을 쓰는 드라이버로 이미 연결된 커넥션 객체를 가정한다
+
 # 취약한 코드: 사용자 입력을 문자열로 그대로 이어 붙임
 def find_user(username):
     query = f"SELECT * FROM users WHERE username = '{username}'"
@@ -81,6 +83,8 @@ def find_user(username):
 
 방어책은 사용자 입력을 HTML로 렌더링하기 전에 **이스케이핑(Escaping)**하는 것이다 — `<`를 `&lt;`로, `>`를 `&gt;`로 바꾸면 브라우저가 이를 태그가 아니라 텍스트 그대로 표시한다. React·Vue 같은 최신 프레임워크는 기본적으로 텍스트 삽입 시 자동 이스케이핑을 적용하지만, `dangerouslySetInnerHTML`(React)처럼 이 보호를 의도적으로 우회하는 API를 쓸 때는 개발자가 직접 이스케이핑 여부를 책임져야 한다.
 
+**언제 자동 이스케이핑을 우회해도 되는가**는 그 입력이 사용자가 직접 작성한 텍스트인지, 서비스가 스스로 생성·통제하는 마크업인지로 갈린다. 사용자가 입력한 댓글·프로필 소개처럼 외부에서 온 문자열은 항상 이스케이핑을 거쳐야 한다. 반면 서버가 신뢰할 수 있는 소스(예: 관리자가 CMS에서 작성한 공지사항 HTML, 마크다운을 서버에서 안전하게 변환한 결과)를 렌더링하는 경우에 한해 `dangerouslySetInnerHTML` 같은 API로 이스케이핑을 우회하는 것이 허용된다 — 판단 기준은 "이 문자열의 출처를 서비스가 통제하는가"이지, 편의성이 아니다.
+
 ## CSRF: 로그인된 브라우저의 신뢰를 악용할 때
 
 **CSRF(Cross-Site Request Forgery)**는 SQL 인젝션·XSS와 전혀 다른 원리로 작동한다. 공격자는 취약점을 이용해 코드를 주입하는 것이 아니라, [인증과 인가](/post/computerterms/authentication-and-authorization/)에서 다룬 "쿠키는 요청마다 자동으로 함께 전송된다"는 브라우저의 정상 동작 자체를 악용한다. 사용자가 은행 사이트에 로그인한 상태로 공격자의 악성 페이지를 열면, 그 페이지가 은행 사이트로 몰래 요청을 보낸다 — 브라우저는 이 요청에도 은행 사이트의 쿠키를 자동으로 실어 보내므로, 은행 서버는 이 요청을 실제 로그인한 사용자의 정상 요청으로 착각한다.
@@ -95,6 +99,20 @@ def find_user(username):
 
 사용자가 은행에 로그인된 상태로 이 페이지를 열면,
 브라우저가 자동으로 은행 사이트의 세션 쿠키를 실어 요청을 보낸다
+```
+
+```mermaid
+sequenceDiagram
+    participant U as "사용자 브라우저"
+    participant Evil as "공격자 페이지"
+    participant Bank as "은행 서버"
+
+    U->>Bank: "정상 로그인 (세션 쿠키 발급)"
+    U->>Evil: "공격자 페이지 열람"
+    Evil->>U: "숨겨진 송금 폼 자동 제출 스크립트"
+    U->>Bank: "POST /transfer (은행 쿠키 자동 첨부)"
+    Bank->>Bank: "쿠키 유효 → 정상 요청으로 오인"
+    Bank->>U: "송금 처리 완료"
 ```
 
 방어책은 **CSRF 토큰**이다. 서버가 폼을 렌더링할 때 예측 불가능한 무작위 토큰을 함께 내려주고, 실제 요청 제출 시 이 토큰이 함께 오는지 검증한다. 공격자의 페이지는 이 토큰 값을 알 수 없으므로(같은 출처 정책 때문에 은행 사이트의 폼을 직접 읽을 수 없다), 위조된 요청에는 올바른 토큰이 없어 서버가 거부한다.
