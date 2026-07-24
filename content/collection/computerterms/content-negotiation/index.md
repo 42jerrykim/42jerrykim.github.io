@@ -7,7 +7,7 @@ title: "[Computer Terms] 콘텐츠 협상 (Content Negotiation)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "콘텐츠 협상은 같은 URL이 Accept·Accept-Language 헤더에 따라 형식·언어가 다른 응답을 주는 HTTP 메커니즘입니다. Vary 헤더가 캐싱과 상호작용하는 방식을 함께 다룹니다."
+description: "콘텐츠 협상은 같은 URL이 Accept·Accept-Language 헤더에 따라 형식·언어가 다른 응답을 주는 HTTP 메커니즘입니다. Vary 헤더가 캐싱과 상호작용하는 방식과, 협상 실패 시 406 응답·캐시 파편화 문제까지 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)

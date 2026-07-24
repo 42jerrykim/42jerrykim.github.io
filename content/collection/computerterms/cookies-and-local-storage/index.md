@@ -7,7 +7,7 @@ title: "[Computer Terms] 쿠키와 로컬 스토리지 (Cookie, Local Storage)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "쿠키는 매 요청에 자동으로 전송되는 브라우저 저장소이고, 로컬 스토리지는 JS로만 접근하는 저장소입니다. CSRF·XSS 위험과 HttpOnly·Secure 속성을 함께 다룹니다."
+description: "쿠키는 매 요청에 자동으로 전송되는 브라우저 저장소이고, 로컬 스토리지는 JS로만 접근하는 저장소입니다. CSRF·XSS 위험과 HttpOnly·Secure 속성, 그리고 어떤 데이터를 어느 저장소에 둘지 판단하는 기준을 함께 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)

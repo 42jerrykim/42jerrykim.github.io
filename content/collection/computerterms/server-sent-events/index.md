@@ -7,7 +7,7 @@ title: "[Computer Terms] 서버센트이벤트 (Server-Sent Events, SSE)"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "SSE는 서버가 하나의 HTTP 연결로 클라이언트에게 단방향 실시간 스트림을 보내는 표준 기술입니다. 웹소켓의 양방향 통신과 비교해 언제 SSE가 더 가벼운 선택인지 다룹니다."
+description: "SSE는 서버가 하나의 HTTP 연결로 클라이언트에게 단방향 실시간 스트림을 보내는 표준 기술입니다. text/event-stream 형식과 EventSource의 자동 재연결, 웹소켓의 양방향 통신과 비교해 언제 SSE가 더 가벼운 선택인지 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)
@@ -85,6 +85,20 @@ source.onerror = () => {
   // 연결이 끊기면 브라우저가 자동으로 재연결을 시도한다
   console.log("연결 끊김, 재연결 시도 중");
 };
+```
+
+```mermaid
+sequenceDiagram
+    participant C as "EventSource"
+    participant S as "서버"
+
+    C->>S: "GET /notifications, Accept: text/event-stream"
+    S->>C: "200 OK, Content-Type: text/event-stream"
+    S->>C: "data: order_shipped"
+    S->>C: "data: new_message"
+    Note over C,S: "네트워크 오류로 연결 끊김"
+    C->>S: "자동 재연결 (마지막 id 이후부터)"
+    S->>C: "200 OK, 스트림 재개"
 ```
 
 이 자동 재연결이 SSE의 실무적 강점이다 — 네트워크가 끊기거나 서버가 재시작돼 연결이 끊어져도, 클라이언트가 별도 코드를 작성하지 않아도 `EventSource`가 알아서 재연결을 시도한다. 웹소켓은 이런 재연결 로직을 애플리케이션 코드에서 직접 구현해야 한다.

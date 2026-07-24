@@ -7,7 +7,7 @@ title: "[Computer Terms] gRPC"
 date: 2026-07-22
 last_modified_at: 2026-07-22
 categories: ComputerTerms
-description: "gRPC는 HTTP/2 위에서 Protocol Buffers로 이진 직렬화하고 .proto 스키마로 클라이언트·서버 코드를 자동 생성하는 RPC 프레임워크입니다. REST와 비교해 원리와 적합한 상황을 다룹니다."
+description: "gRPC는 HTTP/2 위에서 Protocol Buffers로 이진 직렬화하고 .proto 스키마로 클라이언트·서버 코드를 자동 생성하는 RPC 프레임워크입니다. REST와 비교해 원리와 적합한 상황을, 브라우저 호환성 제약과 스트리밍 지원 방식까지 다룹니다."
 tags:
 - Technology(기술)
 - Education(교육)

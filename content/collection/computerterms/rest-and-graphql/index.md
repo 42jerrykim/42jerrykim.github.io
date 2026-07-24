@@ -7,7 +7,7 @@ title: "[Computer Terms] REST와 GraphQL"
 date: 2026-07-21
 last_modified_at: 2026-07-21
 categories: ComputerTerms
-description: "REST는 자원을 URL과 HTTP 메서드로 표현하는 API 설계 스타일이고, GraphQL은 클라이언트가 필요한 데이터의 모양을 직접 지정하는 쿼리 언어입니다. 오버페칭·언더페칭 문제로 두 방식을 비교합니다."
+description: "REST는 자원을 URL과 HTTP 메서드로 표현하는 API 설계 스타일이고, GraphQL은 클라이언트가 필요한 데이터의 모양을 직접 지정하는 쿼리 언어입니다. 오버페칭·언더페칭 문제와 REST의 캐싱 이점 대 GraphQL의 유연성 트레이드오프로 두 방식을 비교합니다."
 tags:
 - Technology(기술)
 - Education(교육)
