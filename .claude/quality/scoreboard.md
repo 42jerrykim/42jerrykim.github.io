@@ -13,6 +13,7 @@
 | content/collection/multithreading-design-patterns/13-lockfree-reclamation/index.md | 96.1 | 2026-07-09 | 2 | 통과 | 없음 |
 | content/collection/cleanarchitecture/00-clean-architecture-overview-introduction/index.md | 94.0 | 2026-07-20 | 6 | 통과 | 없음(경미: OrderController placeOrder() 반환타입 제네릭 불일치, 어댑터 블록 내 public 클래스 2개 공존, Concentric-Circles 태그 tags.yaml 미등재) |
 | content/collection/cleanarchitecture/01-architecture-history-evolution-introduction/index.md | 91 | 2026-07-18 | 2 | 통과 | 없음(경미: 흔한 오해 절 부재, 다음장 하이퍼링크 없음) |
+| content/post/2026/2026-07-25-omniroute-ai-gateway/index.md | 100 | 2026-07-25 | 2 | 통과 | 없음 |
 | content/collection/cleanarchitecture/02-layered-architecture-limitations-history/index.md | 90.7 | 2026-07-20 | 4 | 통과 | 없음(경미: Reenskaug 1979 인용 서지사항 검증 링크 부재, 프레임워크종속성/계층건너뛰기 절 코드 뒤 해설 여지) |
 | content/collection/cleanarchitecture/03-hexagonal-architecture-ports-adapters/index.md | 96.1 | 2026-07-20 | 4 | 통과 | 없음(경미: 장점/한계 절 일부 문단 확장 여지) |
 | content/collection/cleanarchitecture/04-onion-architecture-domain-centric-design/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 없음(경미: 패키지구조 절 리드문단 부재, 코드 보조타입 미정의) |
@@ -207,7 +208,7 @@
 | content/post/2026/2026-07-22-qbittorrent-vs-utorrent-comparison/index.md | 94.6 | 2026-07-22 | 3 | 통과 | 없음(3차 채점 후 L99 Cloudwards 인용 정밀도를 추가로 정정, 재채점 생략) |
 | content/collection/cmd/command-categories/index.md | 96.1 | 2026-07-22 | 3 | 통과 | 없음(경미: 네트워크·기타 유틸리티 절 판단 기준 문단 여지, 코드블록 언어 태그 미통일) |
 | content/post/2026/2026-07-22-pikvm-v4-mini-review/index.md | 93.1 | 2026-07-22 | 3 | 통과 | 없음(경미: RDP(Remote Desktop Protocol) 태그 본문 근거 약함, 종합 평가 문단이 장단점 절과 일부 재진술) |
-| content/collection/TV-Show/2026/2026-07-22-young-sheldon-medford-texas-setting-filming-location/index.md | 85.0 | 2026-07-22 | 11 | 에스컬레이션 | 자동 루프(3회) 에스컬레이션 후 사람이 직접 이어받아 8회 추가 반복. 원래 치명결함(러프킨→러스크 오류, 25번 스테이지 계승 환각, 깨진 fandom.com 링크)은 전부 해소되고 치명결함 0건 상태. 캐릭터 분석·숨겨진 내용 분석·종합 평가 절을 신규 추가해 컬렉션 형식에 맞췄으나, 이 글이 의도적으로 좁힌 범위("촬영지·설정 특집")와 정식 시즌 리뷰를 기대하는 컬렉션 루브릭 사이의 구조적 긴장으로 85점대에서 정체(11회 반복 동안 65.7~89 사이 진동). 추가 반복의 한계효용이 낮다고 판단해 사람 승인 대기. 이후 대표 이미지를 워드클라우드→직접 그린 지리 개략도(medford-map.png)로 교체(2026-07-22, 별도 세션) — 재채점 미실시, 위 점수·상태는 그대로 유효 |
+| content/collection/TV-Show/2026/2026-07-22-young-sheldon-medford-texas-setting-filming-location/index.md | 94.6 | 2026-07-25 | 12 | 통과 | 없음(경미: L96 체로키 카운티 소속 서술의 팬 위키 원문 링크 미첨부, L108 쿠퍼가 외경 거리 매체별 상이(2/3/6마일) 각주 미표기). 12회차에서 안티패딩·구조 결함 해소: "정리" 절(종합평가와 중복)을 삭제하고, "확인 전 체크리스트"·"이 글을 읽은 후 확인할 것" 중복 닫는 절을 "확인 체크리스트" 하나로 통합(읽기 전/읽은 후 하위 소절), "다른 시트콤 비교" 절의 1문장 판단기준을 질문유형·층위·절·오류 4열 표로 확장. 11회차까지의 구조적 긴장(좁은 범위 특집 vs 정식 리뷰 기대)은 critic이 "정식 Act5 리뷰가 같은 컬렉션에 상호링크로 존재하므로 이 특집에 강제하지 않음"으로 판단해 해소 |
 | content/collection/optimization-00-series-overview/00-introduction/index.md | 96 | 2026-07-25 | 2 | 통과 | 없음(경미: "권장 큰 줄기"·"왜 이 로드맵인가" 절 그룹핑 서술 일부 중복, 일부 범용 태그 본문 결속 약함) |
 | content/collection/optimization-01-profiling/00-introduction/index.md | 83.5 | 2026-07-25 | 3 | 에스컬레이션 | 치명결함 0건이나 3회 반복 후 90점 미달. 잔여: L81 Intel VTune "XPU Offload Analysis(NPU 통합)" 명칭 미검증, L91 "Polar Signals 사례" 출처 미표기, 04번 챕터 핵심내용에 Ftrace 미병기. 사람 검토 후 추가 반복 여부 판단 필요 |
 | content/collection/optimization-01-profiling/01-microbenchmark-design/index.md | 100 | 2026-07-25 | 1 | 통과 | 없음 |
