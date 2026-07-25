@@ -6,7 +6,7 @@ draft: false
 image: wordcloud.png
 title: "[Performance 01] Introduction: Low-latency 프로파일링·성능 분석"
 slug: getting-started-profiling-performance-analysis-fundamentals
-description: "Low-latency 프로파일링·성능 분석 트랙의 도입 챕터입니다. microbenchmark/프로파일링으로 hot path를 찾고, 지표를 해석해 회귀를 자동화하는 공통 기반을 한 번에 정리합니다."
+description: "Low-latency 프로파일링·성능 분석 트랙의 도입 챕터입니다. microbenchmark/프로파일링으로 hot path를 찾고, 지표를 해석해 회귀를 자동화하는 공통 기반을 한 번에 정리합니다. 20개 챕터의 난이도·학습 순서·참고 출처를 함께 안내합니다."
 tags:
   - Performance(성능)
   - Profiling(프로파일링)
@@ -40,7 +40,18 @@ tags:
 
 다른 트랙이 "무엇을 바꿀지"를 가르친다면, 이 트랙은 **바꿨다고 주장할 근거를 만드는 법**을 가르칩니다. 마이크로벤치마크는 추상화 한 덩어리의 비용을 분리하고, 샘플링·트레이싱은 프로덕션에 가까운 맥락에서 핫패스를 찾으며, 통계·꼬리 지연 분석은 "평균은 좋은데 느린 요청이 있다"는 현상을 다룹니다. 이 세 가지가 맞물려야 Tr.01–08의 권장사항이 **우연한 이득**이 아니라 **검증된 변경**이 됩니다.
 
+## 참고 자료
+
+- 측정 방법론: [The USE Method](https://www.brendangregg.com/usemethod.html) — 리소스별 Utilization/Saturation/Errors를 점검하는 시스템 성능 진단 프레임워크.
+- 프로파일링 개론: [Brendan Gregg, *Systems Performance*](https://www.brendangregg.com/systems-performance-2nd-edition-book.html) — 관찰가능성 도구·벤치마킹·perf 전반의 표준 레퍼런스.
+- 샘플링·시각화: [Flame Graphs](https://www.brendangregg.com/flamegraphs.html) — 스택 샘플을 화염 그래프로 해석하는 원저자 문서.
+- Linux 프로파일러: [perf wiki](https://perf.wiki.kernel.org/index.php/Main_Page) — `perf record`/`perf report` 등 표준 사용법.
+- 마이크로벤치마크: [google/benchmark](https://github.com/google/benchmark) — 통계적으로 안정된 벤치마크를 작성하는 표준 프레임워크.
+- 트랙 내부: [시리즈 전체 로드맵](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/), [프로파일링 워크플로우 가이드](/post/profiling-analysis/profiling-workflow-team-guide/) (챕터 18).
+
 ## 이 트랙이 책임지는 범위
+
+"측정→가설→변경→검증" 루프를 실제로 굴리려면 최소한 네 단계가 필요합니다. 가설을 세울 재료(마이크로벤치마크)를 만들고, 그 가설이 실제 실행 경로 어디에서 비롯되는지 찾고(프로파일링), 관찰한 숫자가 우연이 아님을 통계로 확인하고, 마지막으로 그 확인 절차 자체를 CI에 고정해야 재발을 막을 수 있습니다. 이 트랙의 범위는 이 네 단계에 정확히 대응합니다.
 
 - microbenchmark 설계/작성(노이즈 통제, 반복 가능성)
 - 프로파일링으로 hot path 식별(샘플링/트레이싱)
@@ -48,6 +59,8 @@ tags:
 - 회귀 감지 자동화(벤치마크/성능 테스트를 CI에 연결)
 
 ## 이 트랙이 다루지 않는 것 (경계)
+
+반대로 "무엇을, 어떻게 바꿀지"는 이 트랙의 책임이 아닙니다. 측정 도구와 측정 대상을 같은 트랙에 두면 "어떤 방식이 더 우아한가" 같은 취향 논쟁과 "실제로 더 빠른가"라는 사실 확인이 뒤섞이기 쉽기 때문에, 이 트랙은 후자만 다루고 전자는 명시적으로 다른 트랙에 넘깁니다.
 
 - "어떤 추상화가 좋은가" 같은 코드 스타일/철학 논쟁 (→ 성능 설계·의사결정 트랙)
 - 구체적인 언어/컴파일러/CPU/OS 최적화 기법의 상세 (→ 각 전문 트랙)
@@ -70,12 +83,12 @@ tags:
 | 08 | 하드웨어 카운터 | 심화 | 하드웨어 성능 카운터 활용 |
 | 09 | Tail Latency 분석 | 심화 | 꼬리 지연시간(p95/p99/p999) 분석 |
 | 10 | 통계적 벤치마킹 | 심화 | 벤치마크 통계 분석 (신뢰 구간, 유의성) |
-| 11 | 지속적 프로파일링 | 심화 | 지속적 프로파일링 (production profiling), Grafana Pyroscope 2.0(2026-05, diskless·stateless 아키텍처)의 대규모 운영 사례 |
+| 11 | 지속적 프로파일링 | 심화 | 지속적 프로파일링 (production profiling), Grafana Pyroscope의 v2 스토리지 아키텍처 도입 이후 대규모 운영 사례 |
 | 12 | 성능 A/B 테스트 | 중급 | 성능 A/B 테스트 방법론 |
-| 13 | AMD μProf 활용 | 심화 | AMD μProf 프로파일러 활용과 AMD CPU 분석, uProf 5.3(2026-05, DuckDB 백엔드) 최신 기능 |
+| 13 | AMD μProf 활용 | 심화 | AMD μProf 프로파일러 활용과 AMD CPU 분석, 백엔드 변경 이력 반영 |
 | 14 | Windows ETW | 심화 | Event Tracing for Windows 기반 성능 분석 |
-| 15 | Valgrind/Callgrind | 기초 | 메모리 프로파일링, 캐시 시뮬레이션, 호출 그래프 분석 |
-| 16 | BPF 기반 프로파일링 | 전문 | bpftrace, BCC를 활용한 동적 프로파일링, eBPF 기반 GPU(CUDA) 상시 프로파일링과 USDT 프로브 연계(Polar Signals 사례) |
+| 15 | Valgrind/Callgrind | 기초 | 메모리 프로파일링, 캐시 시뮬레이션, 호출 그래프 분석, off-CPU(락 대기·I/O 대기) 구간 식별 |
+| 16 | BPF 기반 프로파일링 | 전문 | bpftrace, BCC를 활용한 동적 프로파일링, off-CPU 분석과 GPU(CUDA) 상시 프로파일링·USDT 프로브 연계(Polar Signals 사례) |
 | 17 | 분산 트레이싱 오버헤드 | 심화 | OpenTelemetry 기반 µs 단위 분산 트레이싱과 꼬리 지연 탐지 |
 | 18 | 프로파일링 워크플로우 가이드 | 중급 | 측정→가설→변경→검증 루프 실전 적용과 팀 표준화 |
 | 19 | 프로파일러 출력 해석 실전 | 중급 | 샘플링·트레이싱 리포트를 병목 후보로 연결하는 해석 패턴 |

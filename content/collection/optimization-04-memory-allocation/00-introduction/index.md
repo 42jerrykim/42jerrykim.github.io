@@ -15,7 +15,7 @@ tags:
   - Memory(메모리)
   - Compiler(컴파일러)
   - CPU(Central Processing Unit)
-  - Cache
+  - Cache(캐시)
   - Concurrency(동시성)
   - Linux(리눅스)
   - Windows(윈도우)
@@ -49,7 +49,6 @@ tags:
   - System-Design
   - Data-Structures(자료구조)
   - Clean-Code(클린코드)
-  - 네트워크
 ---
 
 이 트랙은 "메모리 접근 패턴과 할당 정책을 설계해서 지연시간을 줄이는 영역"을 책임집니다. 핫패스에서 allocation 1회, 캐시 라인 1개가 µs 예산을 소모하는 상황을 전제로, 데이터 구조를 비용 관점으로 재구성합니다.
@@ -70,6 +69,8 @@ tags:
 - 분기 예측/파이프라인 같은 CPU 하드 분석 (→ CPU 트랙)
 - 락 경합/false sharing 중심의 동시성 구조 (→ 동시성 트랙)
 
+메모리·캐시 비용의 물리적 근거는 [Ulrich Drepper, "What Every Programmer Should Know About Memory"](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)에서 자세히 다룹니다. 이 문서에서 자주 반복하는 통념 하나를 미리 교정하면: "커스텀 할당자나 `std::pmr`을 쓰면 항상 `malloc`보다 빠르다"는 보장은 없습니다. 실제로는 할당 패턴(크기 분포, 재사용 빈도, 수명)이 해당 할당자의 설계 가정과 맞아떨어질 때만 이득이 나며, 가정이 어긋나면 오히려 단편화나 메모리 낭비로 손해를 볼 수 있습니다. 그래서 이 트랙의 모든 챕터는 "왜 이 전략이 이 워크로드에 맞는지"를 먼저 따지고, 적용 후에는 반드시 벤치마크로 확인하는 순서를 권장합니다.
+
 ## 커리큘럼
 
 **난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치). **Tr.NN**은 `optimization-NN-*` 트랙을 가리킵니다. 챕터 **15**는 컨테이너 비용(01) **이전에** 읽어도 되는 선행 개념 장입니다.
@@ -89,12 +90,12 @@ tags:
 | 05 | AoS vs SoA | 중급 | 데이터 레이아웃 설계와 성능 영향 |
 | 06 | 캐시 친화적 패턴 | 중급 | 순차 접근, stride, batching 전략 |
 | 07 | 패딩과 정렬 | 중급 | 구조체 패딩과 정렬 최적화 |
-| 08 | Large Pages | 심화 | Huge Pages / Large Pages 활용, madvise 모드 + mTHP(multi-size THP)가 2025-2026 실무 표준으로 정착 |
+| 08 | Large Pages | 심화 | Huge Pages / Large Pages 활용, madvise 모드 + mTHP(multi-size THP) 채택 현황(배포판·커널 버전에 따라 다름) |
 | 09 | NUMA 메모리 할당 | 심화 | NUMA에서 메모리 할당·지역성 (CPU affinity는 Tr.06과 연계) |
 | 10 | 메모리 단편화 | 심화 | 단편화 분석과 대응 전략 |
-| 11 | 메모리 대역폭 | 심화 | 메모리 대역폭 최적화 기법, CXL 4.0 스펙 발표(2025-11) vs 실제 배포는 CXL 2.0 세대라는 괴리 |
+| 11 | 메모리 대역폭 | 심화 | 메모리 대역폭 최적화 기법, CXL 스펙 세대와 실제 배포 하드웨어 세대 사이의 시차(스펙 발표와 상용화 사이에는 통상 수년의 간격이 있음) |
 | 12 | Stack vs Heap 전략 | 중급 | Stack/Heap 할당 비용 정량 분석과 선택 기준 |
-| 13 | Virtual Memory 관리 | 심화 | madvise, msync 등 가상 메모리 힌트 활용, ARM MTE 오버헤드가 1.18–1.40배로 낮아져 실용 구간 진입 |
+| 13 | Virtual Memory 관리 | 심화 | madvise, msync 등 가상 메모리 힌트 활용, ARM MTE(Memory Tagging Extension) 하드웨어 지원 확대에 따른 오버헤드 개선 동향 |
 | 14 | 메모리 누수 탐지 | 중급 | Valgrind, ASan을 활용한 누수 탐지와 성능 영향 |
 | 15 | 메모리·수명·캐시 라인 직관 | 기초 | 스택/힙·수명·캐시 라인·할당이 지연에 미치는 그림 잡기 (Tr.02·Tr.05 선행 개념) |
 | 16 | 전역 할당자·jemalloc·tcmalloc | 전문 | 전역 할당자 교체·튜닝과 프로파일 기반 검증 (Tr.02 문자열·컨테이너와 경계 명시) |
@@ -159,7 +160,7 @@ flowchart LR
 
 ## 지금 바로 이어 읽을 장
 
-**15 → 01 → 02 → 12 → 04 → 05** 순서로 읽으면 직관·컨테이너·할당 정책의 실무 기반을 먼저 다진 뒤 레이아웃 최적화로 자연스럽게 넘어갑니다.
+위 추천 순서(15 → 01 → 02 → 12 → 04 → 05)의 첫 세 챕터부터 이어서 읽습니다.
 
 - [메모리·수명·캐시 라인 직관](/post/memory-optimization/memory-lifetime-cache-line-intuition-fundamentals/) (챕터 15)
 - [컨테이너 비용 모델](/post/memory-optimization/container-cost-model-selection/) (챕터 01)
