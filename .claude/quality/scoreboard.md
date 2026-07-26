@@ -864,7 +864,7 @@
 | content/collection/designpattern/mediator/index.md | - | - | 0 | 미채점 | - | - |
 | content/collection/designpattern/memento/index.md | - | - | 0 | 미채점 | - | - |
 | content/collection/designpattern/observer/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/overview/index.md | - | - | 0 | 미채점 | - | - |
+| content/collection/designpattern/overview/index.md | 95.2 | 2026-07-27 | 3 | 통과 | 1.0 | 없음(경미: 생성/행위 패턴 절 도입 문단 추가 여지, Abstraction 태그 본문 명시 약함) |
 | content/collection/designpattern/prototype/index.md | - | - | 0 | 미채점 | - | - |
 | content/collection/designpattern/proxy/index.md | - | - | 0 | 미채점 | - | - |
 | content/collection/designpattern/singleton/index.md | - | - | 0 | 미채점 | - | - |
