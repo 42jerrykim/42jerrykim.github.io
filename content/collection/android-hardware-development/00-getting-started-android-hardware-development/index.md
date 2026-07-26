@@ -81,10 +81,11 @@ flowchart TB
     app["앱 코드<br/>(Kotlin/Java, Android API)"]
     framework["프레임워크 및 시스템 서비스<br/>(system_server, Binder IPC)"]
     hal["HAL<br/>(AIDL/HIDL 인터페이스, 벤더 구현)"]
+    native["네이티브 라이브러리·데몬<br/>(libbinder, libselinux 등)"]
     kernel["커널 드라이버<br/>(디바이스 트리, ioctl/sysfs)"]
     hw["물리 하드웨어<br/>(SoC, 센서, 모뎀)"]
 
-    app --> framework --> hal --> kernel --> hw
+    app --> framework --> hal --> native --> kernel --> hw
 ```
 
 ## 비교/트레이드오프
@@ -183,12 +184,12 @@ interface ISensors {
 | 1: 기초 이론 | 01 | 하드웨어 기초 | SoC, 버스, 인터럽트, 메모리 계층 등 안드로이드 하드웨어 개발에 필요한 전자·구조 기초 |
 | 1: 기초 이론 | 02 | 안드로이드 아키텍처 | 앱-프레임워크-HAL-네이티브-커널 5계층 구조와 Binder IPC 전체 그림 |
 | 1: 기초 이론 | 03 | 커널 개발 | 안드로이드 공통 커널, GKI, 디바이스 트리, 커널 커스터마이징 |
-| 1: 기초 이론 | 04 | 하드웨어 추상화 계층(HAL) 개발 | AIDL/HIDL 기반 HAL 아키텍처와 커스텀 HAL 모듈 구현 |
+| 1: 기초 이론 | 04 | 하드웨어 추상화 계층(HAL) 개발 | AIDL/HIDL 기반 HAL 아키텍처, Camera HAL·Audio HAL을 포함한 커스텀 HAL 모듈 구현 |
 | 2: 시스템 개발 | 05 | 시스템 서비스 개발 | system_server 내 시스템 서비스 구조와 커스텀 서비스 추가 |
 | 2: 시스템 개발 | 06 | 프레임워크 커스터마이징 | 안드로이드 프레임워크 계층 수정과 벤더 오버레이 |
-| 2: 시스템 개발 | 07 | 디바이스 드라이버 개발 | 안드로이드 특화 커널 드라이버 작성과 sysfs/ioctl 인터페이스 설계 |
+| 2: 시스템 개발 | 07 | 디바이스 드라이버 개발 | 안드로이드 특화 커널 드라이버 작성, Wi-Fi/BT/RIL(모뎀) 연결성 드라이버와 sysfs/ioctl 인터페이스 설계 |
 | 2: 시스템 개발 | 08 | 부트로더 개발 | 부트 체인, 서명 검증, TrustZone 기반 신뢰 앵커 |
-| 3: 최적화 및 상용화 | 09 | 성능 최적화 | perfetto/systrace 기반 프로파일링과 전력·지연 최적화 |
+| 3: 최적화 및 상용화 | 09 | 성능 최적화 | perfetto/systrace 기반 프로파일링, DVFS·열 관리·wakelock을 포함한 전력·지연 최적화 |
 | 3: 최적화 및 상용화 | 10 | 보안 구현 | SELinux 정책, 권한 모델, 하드웨어 기반 신뢰 실행 환경 |
 | 3: 최적화 및 상용화 | 11 | 인증 및 컴플라이언스 | CDD/CTS/VTS 기반 호환성 검증과 규정 준수 절차 |
 | 3: 최적화 및 상용화 | 12 | 안드로이드 애플리케이션 개발 | 하드웨어 제품에 특화된 시스템 앱·프리로드 앱 개발 |
