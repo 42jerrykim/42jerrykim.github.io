@@ -222,7 +222,7 @@
 | content/collection/optimization-01-profiling/09-tail-latency/index.md | 100 | 2026-07-25 | 1 | 통과 | 없음 |
 | content/collection/optimization-01-profiling/10-statistical-benchmarking/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 없음(경미: L72 Kalibera&Jones venue 오표기 OOPSLA/ISMM→ISMM) |
 | content/collection/optimization-01-profiling/11-continuous-profiling/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 없음(경미: Pyroscope/Parca 연혁 인용 링크 여지) |
-| content/collection/optimization-01-profiling/12-performance-ab-testing/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-01-profiling/12-performance-ab-testing/index.md | 97.0 | 2026-07-26 | 1 | 통과 | 없음(경미: L34-42 비승인 태그 9개 data/tags.yaml 미등재, L73 Spinnaker 카나리 문서 "첫머리" 배치 서술 검증 여지) |
 | content/collection/optimization-01-profiling/13-amd-uprof/index.md | - | - | 0 | 미채점 | - |
 | content/collection/optimization-01-profiling/14-windows-etw/index.md | - | - | 0 | 미채점 | - |
 | content/collection/optimization-01-profiling/15-valgrind-callgrind/index.md | - | - | 0 | 미채점 | - |
