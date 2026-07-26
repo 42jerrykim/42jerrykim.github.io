@@ -6,7 +6,7 @@ draft: false
 image: wordcloud.png
 title: "[Performance 11] Introduction: Low-latency 성능 설계·의사결정"
 slug: getting-started-performance-design-decision-making
-description: "Low-latency 성능 설계·의사결정 트랙의 도입 챕터입니다. 최적화의 시작/중단 기준과 팀 합의, trade-off 판단을 정리하고, 다른 트랙과의 경계(책임 분리)를 명확히 하는 프레임을 제공합니다."
+description: "Low-latency 성능 설계·의사결정 트랙의 도입 챕터입니다. 최적화의 시작/중단 기준과 팀 합의, trade-off 판단을 정리하고, 다른 트랙과의 경계(책임 분리)를 명확히 하는 프레임을 제공합니다. 리드·아키텍트가 기술 선택을 조직 차원에서 합의하는 데 필요한 18개 챕터를 안내합니다."
 tags:
   - Performance(성능)
   - Profiling(프로파일링)
@@ -54,10 +54,16 @@ tags:
 - 가독성과 성능의 trade-off 판단 기준
 - 팀 단위 성능 합의 기준(예: latency budget, SLO, PR 규칙)
 
+위 네 가지는 모두 "무엇을 최적화할지" 이전에 "이 상황에서 최적화를 논의해도 되는가"를 결정하는 질문입니다. 그래서 이 트랙은 구체적인 기법(어떻게 빠르게 만드는가)이 아니라, 그 기법을 쓸지 말지를 조직 차원에서 합의하는 절차를 다룹니다.
+
 ## 이 트랙이 다루지 않는 것 (경계)
+
+앞서 정한 "언제·왜 최적화할지"가 결정된 뒤에는, 실제로 "어떻게 빠르게 만들지"는 각 전문 트랙의 몫입니다.
 
 - C++/컴파일러/메모리/동시성/CPU/OS의 구체 기법 상세 (→ 각 트랙)
 - "벤치마크를 어떻게 짜는가" 같은 도구 상세 (→ 프로파일링 트랙)
+
+흔한 오해 하나를 짚으면: "SLO를 정하면 그것이 곧 SLA(고객과의 계약)가 된다"는 생각입니다. SLO는 팀 내부의 목표치이고 SLA는 그 목표를 못 지켰을 때의 계약상 책임을 규정한 것이라, SLO를 SLA보다 느슨하게 잡아 여유(에러버짓)를 두는 것이 일반적입니다. 이 구분을 [Google SRE Book, "Service Level Objectives"](https://sre.google/sre-book/service-level-objectives/)가 자세히 다룹니다.
 
 ## 커리큘럼
 

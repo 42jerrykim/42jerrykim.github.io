@@ -47,7 +47,6 @@ tags:
   - System-Design
   - Data-Structures(자료구조)
   - Clean-Code(클린코드)
-  - 네트워크
 ---
 
 이 트랙은 "스레드가 늘어날수록 느려지는 이유"를 비용 관점으로 설명하고 통제합니다. µs 시스템에서는 lock 경합, cache line ping-pong, 잘못된 atomic 사용이 지연시간의 지배항이 되기 쉽습니다.
@@ -67,12 +66,13 @@ tags:
 - OS 스케줄러 "구현"과 커널 내부 튜닝 (→ OS/런타임 트랙)
 - CPU 파이프라인/분기/캐시 계층의 하드 분석 (→ CPU 트랙)
 - 알고리즘 자체의 시간 복잡도 선택 (→ 설계/의사결정 트랙 또는 별도)
+- `std::future`/`std::promise`/`std::async`(태스크 기반 비동기 모델) — 힙 할당과 타입 소거 오버헤드가 커서 저지연 경로에는 잘 쓰이지 않으므로 이 커리큘럼에서 별도 챕터로 다루지 않습니다. 대신 저지연 환경에서 실제로 쓰이는 콜백·센더/리시버 모델(챕터 16–17)로 대체해서 다룹니다.
 
 ## 커리큘럼
 
 **난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치). **Tr.NN**은 `optimization-NN-*` 트랙을 가리킵니다.
 
-동시성 배경이 약하다면 **01 → 02 → 03 → 19 → 20 → 04** 순서로 진입하는 것을 권장합니다. 01–03은 비용·경합·false sharing의 직관을 만들고, 19–20은 표준 프리미티브의 실제 사용 비용을 체감하게 해 주며, 그다음 04–08의 메모리 모델·lock-free로 들어가면 경사가 훨씬 완만해집니다.
+동시성 배경이 약하다면 **01 → 02 → 03 → 19 → 20 → 04** 순서로 진입하는 것을 권장합니다(각 단계의 이유는 아래 "Phase별 학습 궤적" 참고).
 
 여기서도 **표 순서는 커리큘럼 참조용으로 유지**합니다. 표는 “이 트랙이 어떤 주제를 어디까지 다루는지”를 보여 주는 지도이고, 위 추천 순서는 초심자가 **개념 의존성**에 맞춰 들어오는 경로입니다.
 
@@ -82,10 +82,10 @@ tags:
 | 02 | Lock 선택 기준 | 기초 | 동기화 프리미티브 선택 가이드 |
 | 03 | False Sharing 회피 | 중급 | False sharing 탐지와 해결 |
 | 04 | 메모리 모델 실무 | 심화 | C++ 메모리 모델 실무 해석 (acquire/release/seq_cst) |
-| 05 | Lock-free 기초 | 심화 | Lock-free 설계 기초와 적용 판단 (HTM/Intel TSX는 2021년부터 기본 비활성화로 사실상 폐기) |
+| 05 | Lock-free 기초 | 심화 | Lock-free 설계 기초와 적용 판단 ([HTM/Intel TSX는 마이크로코드 업데이트로 다수 세대에서 기본 비활성화](https://www.intel.com/content/www/us/en/support/articles/000059422/processors.html)됨) |
 | 06 | Lock-free 자료구조 | 전문 | Lock-free 큐, 스택, 해시맵 구현 |
-| 07 | Hazard Pointers/RCU | 전문 | C++26 표준 hazard_pointer/rcu(P2530/P2545)와 컴파일러 구현 현황(GCC trunk·Bloomberg Clang 실험, MSVC 미구현) |
-| 08 | SPSC/MPMC 큐 | 심화 | SPSC/MPMC 큐와 링버퍼 구현 |
+| 07 | Hazard Pointers/RCU | 전문 | [C++26 표준 hazard_pointer(P2530)/rcu(P2545)](https://wg21.link/p2530)와 컴파일러 구현 현황(표준 채택 초기라 구현체별 지원 범위가 다르므로 각 컴파일러 문서로 확인 필요) |
+| 08 | SPSC/MPMC 큐 | 심화 | SPSC/MPMC 큐와 링버퍼 구현, `std::counting_semaphore`/`binary_semaphore`(C++20) 기반 bounded queue 백프레셔 패턴 |
 | 09 | C++20 Atomics | 중급 | C++20 atomic wait/notify 활용, C++26 fetch_max/fetch_min 확장 |
 | 10 | 스레드 풀 최적화 | 중급 | 스레드 풀 최적화와 워크 스틸링 |
 | 11 | 코루틴 동시성 | 심화 | 코루틴 기반 동시성 패턴 (Tr.02 코루틴 성능과 연계) |
@@ -94,11 +94,11 @@ tags:
 | 14 | Seqlock 패턴 | 심화 | Reader-writer 시나리오 최적화를 위한 Seqlock |
 | 15 | Thread-local Storage | 중급 | TLS 비용 분석과 활용 패턴 |
 | 16 | Executors 기초 | 심화 | C++23/26 Executors 개념과 비동기 실행 모델 |
-| 17 | C++26 std::execution: Senders/Receivers 실전 | 전문 | P2300 확정, 스케줄러·센더·리시버 조합 모델, NVIDIA stdexec 레퍼런스 구현과 Citadel Securities 프로덕션 사례 |
+| 17 | C++26 std::execution: Senders/Receivers 실전 | 전문 | [P2300 확정](https://wg21.link/p2300), 스케줄러·센더·리시버 조합 모델, NVIDIA stdexec 레퍼런스 구현 실전 적용 |
 | 18 | 실행 정책 병렬 알고리즘 | 중급 | C++17/20 병렬 정책(par, par_unseq)과 실전 성능 특성 |
 | 19 | Condition Variable 성능 패턴 | 중급 | condition_variable 비용, spurious wakeup 대응, 대안 비교 |
 | 20 | C++20 Barrier/Latch 활용 | 중급 | std::barrier/std::latch 비용과 동기 지점 설계 패턴 |
-| 21 | Thread-per-core 아키텍처와 io_uring 연계 | 심화 | IORING_SETUP_SINGLE_ISSUER 락 생략 최적화와 thread-per-core 설계 (Apache Iggy 사례) |
+| 21 | Thread-per-core 아키텍처와 io_uring 연계 | 심화 | `IORING_SETUP_SINGLE_ISSUER` 락 생략 최적화와 thread-per-core 설계 ([Apache Iggy](https://iggy.apache.org/)와 같은 thread-per-core 메시지 브로커 아키텍처 참고) |
 
 ## 측정과 검증 (이 트랙 기준)
 

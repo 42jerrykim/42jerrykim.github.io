@@ -209,3 +209,234 @@
 | content/collection/cmd/command-categories/index.md | 96.1 | 2026-07-22 | 3 | 통과 | 없음(경미: 네트워크·기타 유틸리티 절 판단 기준 문단 여지, 코드블록 언어 태그 미통일) |
 | content/post/2026/2026-07-22-pikvm-v4-mini-review/index.md | 93.1 | 2026-07-22 | 3 | 통과 | 없음(경미: RDP(Remote Desktop Protocol) 태그 본문 근거 약함, 종합 평가 문단이 장단점 절과 일부 재진술) |
 | content/collection/TV-Show/2026/2026-07-22-young-sheldon-medford-texas-setting-filming-location/index.md | 94.6 | 2026-07-25 | 12 | 통과 | 없음(경미: L96 체로키 카운티 소속 서술의 팬 위키 원문 링크 미첨부, L108 쿠퍼가 외경 거리 매체별 상이(2/3/6마일) 각주 미표기). 12회차에서 안티패딩·구조 결함 해소: "정리" 절(종합평가와 중복)을 삭제하고, "확인 전 체크리스트"·"이 글을 읽은 후 확인할 것" 중복 닫는 절을 "확인 체크리스트" 하나로 통합(읽기 전/읽은 후 하위 소절), "다른 시트콤 비교" 절의 1문장 판단기준을 질문유형·층위·절·오류 4열 표로 확장. 11회차까지의 구조적 긴장(좁은 범위 특집 vs 정식 리뷰 기대)은 critic이 "정식 Act5 리뷰가 같은 컬렉션에 상호링크로 존재하므로 이 특집에 강제하지 않음"으로 판단해 해소 |
+| content/collection/optimization-00-series-overview/00-introduction/index.md | 96 | 2026-07-25 | 2 | 통과 | 없음(경미: "권장 큰 줄기"·"왜 이 로드맵인가" 절 그룹핑 서술 일부 중복, 일부 범용 태그 본문 결속 약함) |
+| content/collection/optimization-01-profiling/00-introduction/index.md | 83.5 | 2026-07-25 | 3 | 에스컬레이션 | 치명결함 0건이나 3회 반복 후 90점 미달. 잔여: L81 Intel VTune "XPU Offload Analysis(NPU 통합)" 명칭 미검증, L91 "Polar Signals 사례" 출처 미표기, 04번 챕터 핵심내용에 Ftrace 미병기. 사람 검토 후 추가 반복 여부 판단 필요 |
+| content/collection/optimization-01-profiling/01-microbenchmark-design/index.md | 100 | 2026-07-25 | 1 | 통과 | 없음 |
+| content/collection/optimization-01-profiling/02-google-benchmark/index.md | 100 | 2026-07-25 | 1 | 통과 | 없음(1차 채점에서 릴리스일 오탐 있었으나 GitHub API 재검증 결과 본문이 정확함을 확인, 수정 없이 통과) |
+| content/collection/optimization-01-profiling/03-sampling-profiling/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 없음(경미: L74 VTune 릴리스 일자 검증 여지) |
+| content/collection/optimization-01-profiling/04-tracing-profiling/index.md | 91.6 | 2026-07-25 | 1 | 통과 | 없음(경미: L70 Tracy 릴리스 시기 오표기(2026 상반기→실제 2025-12), perfetto_demo.cc 트레이스 세션 시작/저장 로직 생략) |
+| content/collection/optimization-01-profiling/05-flame-graph/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 없음(경미: ACM Queue 권/호 검증 여지, off-CPU 오버헤드 정량 근거 보강 여지) |
+| content/collection/optimization-01-profiling/06-intel-vtune/index.md | 100 | 2026-07-25 | 1 | 통과 | 없음 |
+| content/collection/optimization-01-profiling/07-linux-perf-advanced/index.md | 100 | 2026-07-25 | 1 | 통과 | 없음 |
+| content/collection/optimization-01-profiling/08-hardware-counters/index.md | 96.1 | 2026-07-25 | 1 | 통과 | 없음(경미: 코드/출력 블록 연속 구간 문단 보강 여지, Yasin 논문 직접 링크 여지) |
+| content/collection/optimization-01-profiling/09-tail-latency/index.md | 100 | 2026-07-25 | 1 | 통과 | 없음 |
+| content/collection/optimization-01-profiling/10-statistical-benchmarking/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 없음(경미: L72 Kalibera&Jones venue 오표기 OOPSLA/ISMM→ISMM) |
+| content/collection/optimization-01-profiling/11-continuous-profiling/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 없음(경미: Pyroscope/Parca 연혁 인용 링크 여지) |
+| content/collection/optimization-01-profiling/12-performance-ab-testing/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-01-profiling/13-amd-uprof/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-01-profiling/14-windows-etw/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-01-profiling/15-valgrind-callgrind/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-01-profiling/16-bpf-profiling/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-01-profiling/17-distributed-tracing-overhead/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-01-profiling/18-profiling-workflow-guide/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-01-profiling/19-profiler-output-interpretation/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-01-profiling/20-memory-profiling-heap/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/00-introduction/index.md | 96.1 | 2026-07-25 | 1 | 통과 | 없음(경미: L238 트랙 읽기 순서 요약이 L128과 일부 중복, 태그 표기 결합형 통일 여지) |
+| content/collection/optimization-02-cpp-language/01-cpp-execution-model-fundamentals/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/02-smart-pointer-cost-fundamentals/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/03-abstraction-cost/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/04-stl-container-cost/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/05-string-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/06-object-lifetime/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/07-temporary-removal/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/08-templates-constexpr/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/09-modern-cpp-features/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/10-coroutine-performance/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/11-exception-deep-dive/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/12-inlining-techniques/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/13-variant-optional-expected/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/14-span-and-views/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/15-lambda-performance/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/16-small-buffer-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/17-parameter-passing/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/18-abi-link-performance-boundaries/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-02-cpp-language/19-type-erasure-cost-patterns/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/00-introduction/index.md | 96.1 | 2026-07-25 | 3 | 통과 | 없음(경미: L99/L139 추천 읽기 순서 표현 불일치) |
+| content/collection/optimization-03-compiler/01-optimization-flags/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/02-lto-thinlto/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/03-pgo-workflow/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/04-compiler-comparison/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/05-inlining-diagnostics/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/06-code-generation-analysis/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/07-function-multiversioning/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/08-compiler-intrinsics/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/09-sanitizer-overhead/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/10-debug-info-and-performance/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/11-cpp20-modules/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/12-build-parallelization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/13-static-analyzer/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/14-bolt-post-link-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-03-compiler/15-autofdo/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 없음(경미: Networking·IO·Testing 등 본문 결속 약한 범용 태그 다수, 16번 챕터 mimalloc 미병기) |
+| content/collection/optimization-04-memory-allocation/01-container-cost-model/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/02-allocation-strategy/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/03-custom-allocator/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/04-pmr-allocator/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/05-aos-vs-soa/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/06-cache-friendly-patterns/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/07-padding-alignment/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/08-large-pages/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/09-numa-allocation/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/10-memory-fragmentation/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/11-memory-bandwidth/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/12-stack-vs-heap/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/13-virtual-memory-management/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/14-memory-leak-detection/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/15-memory-lifetime-cacheline-intuition/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-04-memory-allocation/16-global-allocator-tuning/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/00-introduction/index.md | 88.9 | 2026-07-25 | 3 | 에스컬레이션 | 치명결함 0건이나 3회 반복 후 90점 근소 미달. 잔여: "다루지 않는 것" 절에 캐시 일관성/메모리 모델·SIMD 범위 밖 명시 부재, 1차 출처 1개 추가 여지 |
+| content/collection/optimization-05-cpu-microarchitecture/01-cpu-pipeline-fundamentals/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/02-branch-prediction/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/03-cache-hierarchy/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/04-cache-miss-analysis/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/05-ilp-fundamentals/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/06-out-of-order-execution/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/07-tlb-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/08-modern-cpu-architecture/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/09-hardware-performance-counters/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/10-speculative-execution/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/11-frequency-scaling/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/12-power-management/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/13-apple-silicon-architecture/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/14-smt-hyperthreading/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/15-uop-cache-dsb/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/16-risc-v-architecture/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/17-frontend-vs-backend-bound/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-05-cpu-microarchitecture/18-dependency-chains-port-pressure/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/00-introduction/index.md | 96.1 | 2026-07-25 | 3 | 통과 | 없음(경미: "달성할 목표"·"평가 기준" 절 일부 중복, 네비게이션 절 2개 중복 여지) |
+| content/collection/optimization-06-os-runtime/01-context-switch-cost/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/02-syscall-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/03-cpu-pinning-affinity/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/04-numa-cpu-affinity/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/05-realtime-scheduling/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/06-precise-time-measurement/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/07-kernel-bypass-overview/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/08-io-uring-overview/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/09-xdp-ebpf-overview/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/10-huge-tlb-pages/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/11-container-performance/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/12-irq-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/13-cgroups-v2/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/14-memory-locking/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/15-signal-handling/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/16-process-vs-thread/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/17-ebpf-kernel-performance-safety/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-06-os-runtime/18-cloud-tail-latency/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/00-introduction/index.md | 95.2 | 2026-07-25 | 2 | 통과 | 없음(경미: "책임지는 범위"·"다루지 않는 것" 리스트 앞 연결 문단 여지, Intel 링크 WebFetch 403이나 실제 접근 가능) |
+| content/collection/optimization-07-concurrency/01-synchronization-cost-analysis/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/02-lock-selection-criteria/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/03-false-sharing-avoidance/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/04-memory-model-practical/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/05-lock-free-fundamentals/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/06-lock-free-data-structures/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/07-hazard-pointers-rcu/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/08-spsc-mpmc-queues/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/09-cpp20-atomics/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/10-thread-pool-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/11-coroutine-concurrency/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/12-wait-free-programming/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/13-jthread-stop-token/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/14-seqlock-pattern/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/15-thread-local-storage/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/16-executors-fundamentals/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/17-senders-receivers-cpp26/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/18-parallel-execution-policies/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/19-condition-variable-patterns/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/20-barrier-latch/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-07-concurrency/21-thread-per-core-io-uring/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/00-introduction/index.md | 95.2 | 2026-07-25 | 3 | 통과 | 없음(경미: 측정 항목 리스트 근거 문단 여지) |
+| content/collection/optimization-08-optimization-techniques/01-simd-fundamentals/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/02-simd-intrinsics-practical/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/03-avx512-avx10-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/04-auto-vectorization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/05-prefetch-strategy/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/06-branchless-programming/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/07-hand-written-assembly/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/08-lookup-table-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/09-bit-manipulation-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/10-hotpath-extreme-tuning/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/11-maintainability-tradeoff/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/12-arm-neon-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/13-portable-simd-libraries/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/14-cpp26-std-simd/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/15-cache-oblivious-algorithms/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/16-gpu-offloading-fundamentals/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/17-ai-inference-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-08-optimization-techniques/18-simd-string-processing/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/00-introduction/index.md | 100 | 2026-07-25 | 2 | 통과 | 없음 |
+| content/collection/optimization-09-io-network/01-io-cost-intuition/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/02-io-patterns-cost/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/03-async-io-fundamentals/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/04-io-uring-advanced/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/05-iocp-windows-io/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/06-zero-copy-techniques/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/07-memory-mapped-io/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/08-direct-io/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/09-filesystem-characteristics/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/10-block-device-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/11-io-multiplexing-patterns/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/12-vectored-io/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/13-posix-aio-vs-io-uring/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/14-database-io-patterns/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/15-file-locking-performance/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/16-storage-stack-customization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-09-io-network/17-logging-performance-strategy/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/00-introduction/index.md | 92.2 | 2026-07-25 | 1 | 통과 | 없음(경미: description 118자로 하한 근접, 범위/경계 리스트 문단 비중 29%, WebTransport Baseline 기준 명시 여지) |
+| content/collection/optimization-10-network/01-network-latency-intuition/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/02-network-latency-structure/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/03-socket-options-tuning/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/04-tcp-performance-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/05-udp-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/06-serialization-performance-comparison/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/07-zero-copy-serialization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/08-next-gen-zero-copy-formats/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/09-protocol-design/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/10-message-framing/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/11-dpdk-advanced/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/12-xdp-ebpf-network-advanced/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/13-rdma-fundamentals/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/14-ultra-ethernet-consortium/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/15-grpc-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/16-quic-protocol/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/17-tls-ssl-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/18-connection-pooling/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/19-websocket-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/20-http2-http3/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-10-network/21-network-compression-strategy/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/00-introduction/index.md | 91.3 | 2026-07-25 | 2 | 통과 | 없음(경미: "범위와 경계" Mermaid 단독 의존, Phase별 궤적과 커리큘럼 표 일부 중복) |
+| content/collection/optimization-11-design-decisions/01-performance-terminology-fundamentals/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/02-when-to-optimize/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/03-when-to-stop-optimizing/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/04-readability-vs-performance/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/05-performance-budgeting/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/06-slo-sla-definition/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/07-latency-vs-throughput/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/08-low-latency-architecture-patterns/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/09-caching-strategy/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/10-database-access-optimization/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/11-team-performance-culture/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/12-performance-code-review/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/13-capacity-planning/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/14-load-testing-design/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/15-cost-performance-analysis/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/16-regulated-secure-performance-tradeoffs/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/17-memory-safety-tradeoffs/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-11-design-decisions/18-event-driven-architecture-performance/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 없음(경미: Code-Review·Debugging·Logging·Git·GitHub·Cloud 태그 본문 결속 약함) |
+| content/collection/optimization-12-regression-prevention/01-performance-regression-fundamentals/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/02-performance-test-automation/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/03-benchmark-ci-integration/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/04-pr-performance-gate/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/05-performance-budgeting/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/06-baseline-management/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/07-variance-management/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/08-observability-platform/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/09-alerting-strategy/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/10-canary-deployment/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/11-performance-incident-response/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/12-long-term-trend-analysis/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/13-performance-debt-management/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/14-benchmark-as-code/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/15-monitoring-dashboard/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/16-postmortem-analysis/index.md | - | - | 0 | 미채점 | - |
+| content/collection/optimization-12-regression-prevention/17-distributed-cluster-performance-regression/index.md | - | - | 0 | 미채점 | - |
