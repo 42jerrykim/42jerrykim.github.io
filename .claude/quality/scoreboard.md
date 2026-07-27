@@ -444,7 +444,7 @@
 | content/collection/optimization-12-regression-prevention/15-monitoring-dashboard/index.md | - | - | 0 | 미채점 | - | - |
 | content/collection/optimization-12-regression-prevention/16-postmortem-analysis/index.md | - | - | 0 | 미채점 | - | - |
 | content/collection/optimization-12-regression-prevention/17-distributed-cluster-performance-regression/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2022/2022-01-01-BOJ-1008/index.md | - | - | 0 | 미채점 | - | - |
+| content/collection/Algorithm/2022/2022-01-01-BOJ-1008/index.md | 100 | 2026-07-28 | 3 | 통과 | 1.0 | 없음 |
 | content/collection/Algorithm/2022/2022-07-07-BOJ-8983/index.md | - | - | 0 | 미채점 | - | - |
 | content/collection/Algorithm/2024/2024-05-15-BOJ-1067/index.md | - | - | 0 | 미채점 | - | - |
 | content/collection/Algorithm/2024/2024-05-18-BOJ-1005/index.md | - | - | 0 | 미채점 | - | - |
@@ -1572,3 +1572,4 @@
 | content/post/2026/2026-07-08-rogerebert-2026-best-films-so-far/index.md | - | - | 0 | 미채점 | - | - |
 | content/post/2026/2026-07-20-critical-path-tracing-distributed-latency/index.md | - | - | 0 | 미채점 | - | - |
 | content/post/2026/2026-07-21-k-skill-korean-agent-skills/index.md | - | - | 0 | 미채점 | - | - |
+| content/post/2022/2022-03-16-there's-no-such-things-as-clean-code/index.md | - | - | 0 | 미채점 | - | - |
