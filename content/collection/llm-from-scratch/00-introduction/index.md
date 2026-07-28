@@ -5,7 +5,7 @@ lastmod: 2026-07-17
 draft: false
 title: "[LLM] 00. Introduction: LLM 밑바닥부터 이해하기"
 slug: getting-started-llm-from-scratch
-description: "Transformer/GPT 아키텍처를 밑바닥부터 이해하는 시리즈의 도입 챕터입니다. RNN에서 Attention으로 이어지는 언어모델의 진화, 13개 챕터로 구성된 커리큘럼, 학습 목표와 실습 환경 연계 방법을 자세히 정리합니다."
+description: "Transformer/GPT 아키텍처를 밑바닥부터 이해하는 시리즈의 도입 챕터입니다. RNN에서 Attention으로 이어지는 언어모델의 진화, 12개 챕터로 구성된 커리큘럼, 학습 목표와 실습 환경 연계 방법을 자세히 정리합니다."
 tags:
   - LLM(Large Language Model)
   - Transformer
@@ -44,7 +44,7 @@ image: "wordcloud.png"
 
 2012년 AlexNet이 ImageNet 대회에서 GPU 기반 딥러닝으로 압도적인 성능을 보이면서 "레이어를 깊게 쌓을수록 성능이 좋아진다"는 발견이 이후 10년의 연구 방향을 결정했습니다. 문제는 레이어를 깊게 쌓을수록 학습이 불안정해진다는 것이었고, ResNet의 skip connection(잔차 연결)이 이 한계를 단순한 아이디어로 돌파했습니다. 언어모델 쪽에서는 RNN(Recurrent Neural Network)이 문장을 순서대로 읽어 문맥 벡터 하나로 압축하는 방식을 썼지만, 문장이 길어질수록 앞쪽 정보가 희석되는 장기 의존성 문제와 순차 계산이라 병렬화할 수 없다는 속도 문제를 동시에 안고 있었습니다.
 
-2017년 Google의 연구진이 발표한 <strong>"Attention Is All You Need"</strong>는 이 순차 구조 자체를 끊어버리는 제안이었습니다.
+2017년 Google의 연구진이 발표한 <strong>"Attention Is All You Need"</strong>는 이 순차 구조 자체를 끊어버리는 제안이었습니다. 이 논문이 대체한 것은 인코더 전용 구조인 BERT가 아니라 RNN 계열의 순차 처리 방식이며, GPT는 이 논문의 디코더 블록만 쌓아 다음 토큰을 예측하는 방향으로 발전한 계열입니다.
 
 > Ashish Vaswani, Noam Shazeer, Niki Parmar 외 5인, "Attention Is All You Need", *arXiv:1706.03762* (2017)
 
@@ -54,7 +54,7 @@ image: "wordcloud.png"
 
 이 시리즈는 **Transformer/GPT의 언어 모델링 구조**에만 집중합니다. 구체적으로는 토큰 임베딩과 위치 인코딩 같은 입력 표현, Self-Attention과 Multi-head Attention의 계산 과정, GPT 블록을 구성하는 정규화·FFN·Residual Connection, 사전학습(Pretraining)과 지도 파인튜닝(Fine-tuning), LoRA/QLoRA 같은 효율적 파인튜닝 기법, RLHF와 DPO를 통한 선호 학습, Chain-of-Thought 기반 추론 모델, 그리고 KV Cache·GQA 같은 서빙 효율화 기법까지를 다룹니다.
 
-같은 Transformer 구조를 이미지에 적용하는 **Vision Transformer**, 모델을 가볍게 만드는 **Pruning·Quantization·Knowledge Distillation**, 외부 지식을 검색해 답변에 활용하는 <strong>RAG(Retrieval-Augmented Generation)</strong>는 이 시리즈의 범위 밖입니다. 이 세 주제는 각각 별도 시리즈(Vision AI 파운데이션, On-Device AI 경량화, RAG와 정보검색)에서 다루며, 그 시리즈들은 이 시리즈에서 정리하는 Transformer/GPT 구조를 전제로 합니다. 즉 이 시리즈는 나머지 세 시리즈의 공통 기반입니다.
+같은 Transformer 구조를 이미지에 적용하는 **Vision Transformer**, 모델을 가볍게 만드는 **Pruning·Quantization·Knowledge Distillation**, 외부 지식을 검색해 답변에 활용하는 <strong>RAG(Retrieval-Augmented Generation)</strong>는 이 시리즈의 범위 밖입니다. 이 세 주제는 각각 별도 시리즈(Vision AI 파운데이션, On-Device AI 경량화, RAG와 정보검색)에서 다루며, 그 시리즈들은 이 시리즈에서 정리하는 Transformer/GPT 구조를 전제로 합니다. 즉 이 시리즈는 나머지 세 시리즈의 공통 기반입니다. 사전학습용 데이터셋을 어떻게 수집·필터링할지, 학습된 모델을 어떤 벤치마크로 평가할지 같은 데이터·평가 방법론도 이 시리즈의 범위 밖입니다 — 이는 모델 구조가 아니라 데이터 엔지니어링·MLOps 영역의 문제이므로, 여기서는 이미 정제된 데이터와 표준 벤치마크가 주어졌다고 가정하고 모델 내부 구조에만 집중합니다.
 
 ## 흔한 오개념 — "Transformer는 RNN의 발전형이다"
 
@@ -62,7 +62,7 @@ Transformer를 처음 접하면 "RNN을 개선한 모델"이라고 오해하기 
 
 ## 커리큘럼
 
-아래 표는 13개 챕터를 세 Phase로 묶은 것입니다. Phase 1은 "모델 한 대를 조립하는 데 필요한 부품"을, Phase 2는 "조립된 모델을 원하는 방향으로 조정하는 방법"을, Phase 3은 "조정된 모델을 실제로 쓸 수 있게 만드는 방법"을 다룹니다. 이 순서를 따르는 이유는 각 Phase가 앞 Phase의 산출물을 입력으로 삼기 때문입니다 — 파인튜닝(Phase 2)은 사전학습된 모델 구조(Phase 1)를 전제하고, 서빙 효율화(Phase 3)는 학습이 끝난 모델의 추론 과정을 전제합니다.
+아래 표는 12개 챕터를 세 Phase로 묶은 것입니다. Phase 1은 "모델 한 대를 조립하는 데 필요한 부품"을, Phase 2는 "조립된 모델을 원하는 방향으로 조정하는 방법"을, Phase 3은 "조정된 모델을 실제로 쓸 수 있게 만드는 방법"을 다룹니다. 이 순서를 따르는 이유는 각 Phase가 앞 Phase의 산출물을 입력으로 삼기 때문입니다 — 파인튜닝(Phase 2)은 사전학습된 모델 구조(Phase 1)를 전제하고, 서빙 효율화(Phase 3)는 학습이 끝난 모델의 추론 과정을 전제합니다.
 
 | Phase | 챕터 | 제목 | 핵심 질문 |
 |---|---|---|---|

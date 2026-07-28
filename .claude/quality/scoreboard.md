@@ -872,7 +872,7 @@
 | content/collection/designpattern/strategy/index.md | - | - | 0 | 미채점 | - | - |
 | content/collection/designpattern/templete_method/index.md | - | - | 0 | 미채점 | - | - |
 | content/collection/designpattern/vistor/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/llm-from-scratch/00-introduction/index.md | - | - | 0 | 미채점 | - | - |
+| content/collection/llm-from-scratch/00-introduction/index.md | 100 | 2026-07-29 | 3 | 통과 | 1.0 | 없음(1차 치명결함이었던 "13개 챕터 vs 실제 12개 챕터 표" 불일치를 12개로 정정, 2차 지적된 데이터 큐레이션·평가 방법론 범위 제외를 본문에 명시해 해소) |
 | content/collection/llm-from-scratch/01-ai-math-foundations/index.md | - | - | 0 | 미채점 | - | - |
 | content/collection/llm-from-scratch/02-neural-network-training/index.md | - | - | 0 | 미채점 | - | - |
 | content/collection/llm-from-scratch/03-rnn-to-transformer/index.md | - | - | 0 | 미채점 | - | - |
