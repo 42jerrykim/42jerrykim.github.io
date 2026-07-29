@@ -939,7 +939,7 @@
 | content/collection/Movies/2026/2026-01-28-the-bad-guys-2-2025-reformed-criminals-heist/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Movies/2026/2026-02-04-zootopia-2-2025-reptiles-framed-partners/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Movies/2026/2026-02-22-inception-2010-dream-within-dream/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/multithreading-design-patterns/00-introduction/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/multithreading-design-patterns/00-introduction/index.md | 97.3 | 2026-07-29 | 2 | 통과 | 1.2 | 8d969d7 | 없음 |
 | content/collection/multithreading-design-patterns/01-concurrency-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/multithreading-design-patterns/02-locking-idioms/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/multithreading-design-patterns/03-waiting-coordination/index.md | - | - | 0 | 미채점 | - | - | - |

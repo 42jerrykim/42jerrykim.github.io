@@ -6,7 +6,7 @@ lastmod: 2026-07-09
 draft: false
 title: "[Concurrency Patterns] 00. 멀티스레딩 디자인 패턴 시리즈 소개와 커리큘럼"
 slug: getting-started-multithreading-design-patterns
-description: "C++ 표준 라이브러리로 구현하는 멀티스레딩 디자인 패턴 시리즈의 도입 챕터입니다. 왜 락 사용법이 아니라 동시성 구조 설계를 배워야 하는지, POSA2 계보와 14챕터 커리큘럼, 학습 후 달성할 역량을 안내합니다."
+description: "C++ 표준 라이브러리로 구현하는 멀티스레딩 디자인 패턴 시리즈의 도입 챕터입니다. 왜 락 사용법이 아니라 동시성 구조 설계를 배워야 하는지, POSA2 계보와 13챕터 커리큘럼, 학습 후 달성할 역량을 안내합니다."
 categories:
   - Design Patterns
   - Concurrency Patterns
@@ -21,43 +21,24 @@ tags:
   - IO(Input/Output)
   - Concurrency(동시성)
   - Async(비동기)
-  - Scalability(확장성)
-  - Latency
-  - Throughput
-  - Message-Queue
-  - Event-Driven
-  - Performance(성능)
-  - Optimization(최적화)
   - Design-Pattern(디자인패턴)
   - GoF(Gang of Four)
-  - SOLID
   - Software-Architecture(소프트웨어아키텍처)
-  - OOP(객체지향)
   - Behavioral-Pattern
   - Singleton
   - Observer
   - Command
-  - Strategy
   - Proxy
   - Interface(인터페이스)
-  - Encapsulation(캡슐화)
-  - Abstraction(추상화)
-  - Data-Structures(자료구조)
-  - Algorithm(알고리즘)
   - Implementation(구현)
   - Testing(테스트)
   - Debugging(디버깅)
-  - Clean-Code(클린코드)
-  - Best-Practices
-  - Code-Quality(코드품질)
-  - Refactoring(리팩토링)
-  - Backend(백엔드)
-  - Benchmark
+  - Standard-Library(표준라이브러리)
+  - Coroutine(코루틴)
+  - Lock-Free(락프리)
   - Tutorial(튜토리얼)
   - Guide(가이드)
-  - Reference(참고)
   - Deep-Dive
-  - Technology(기술)
 ---
 
 멀티스레드 코드가 무너지는 순간은 대부분 `mutex`를 몰라서가 아니라, **어디에 어떤 구조로 동기화를 배치할지**를 설계하지 않아서 온다. 락을 잡는 문법은 한 줄이면 배우지만, "이 클래스의 공개 메서드끼리 서로를 호출하면 자기 데드락이 난다", "큐에 빠르게 넣는 쪽과 느리게 빼는 쪽의 속도 차이를 누가 흡수하는가" 같은 질문은 문법이 아니라 **구조의 문제**다. 그리고 이런 구조 문제에는 이미 수십 년에 걸쳐 검증된 표준 해법, 즉 <strong>동시성 디자인 패턴(Concurrency Design Pattern)</strong>이 존재한다.
@@ -132,7 +113,7 @@ int main() {
 이 컬렉션은 패턴의 **구조와 정확성**에 집중하고, 다음 주제는 의도적으로 경계 밖에 둔다.
 
 - **성능 정량 분석**: mutex vs spinlock 비용 측정, false sharing, lock-free 자료구조의 벤치마크는 [Low-latency 동시성·멀티스레드 트랙](/post/concurrency-optimization/getting-started-concurrency-multithreading-performance-tuning/)이 담당한다. 이 시리즈에서 구조를 익히고, 그 트랙에서 비용을 측정하면 두 관점이 맞물린다.
-- **GoF 패턴 전반**: Singleton·Observer·Command 등 GoF 23패턴의 일반론은 [디자인 패턴 마스터 시리즈의 동시성·분산 챕터](/post/design-patterns/19-concurrency-distributed-patterns/)를 포함한 해당 컬렉션이 다룬다. 여기서는 GoF 패턴이 멀티스레드 환경에서 어떻게 변형되는지(예: Singleton의 DCLP 문제)만 교차점으로 다룬다.
+- **GoF 패턴 전반**: Singleton·Observer·Command 등 GoF 23패턴의 일반론은 [디자인 패턴 마스터 시리즈의 동시성·분산 챕터](/post/design-patterns/concurrency-distributed-patterns/)를 포함한 해당 컬렉션이 다룬다. 여기서는 GoF 패턴이 멀티스레드 환경에서 어떻게 변형되는지(예: Singleton의 DCLP 문제)만 교차점으로 다룬다.
 - **OS 커널·스케줄러 내부**: 운영체제 영역이라 이 시리즈의 범위 밖이다.
 - **std::execution(senders/receivers, C++26)**: 2026년 3월 Croydon 총회에서 C++26 표준 채택이 확정됐지만 이 글을 쓰는 시점까지 GCC·Clang·MSVC 표준 라이브러리 어디에도 구현되지 않아 "컴파일 가능한 구현 + ThreadSanitizer 검증"이라는 이 시리즈의 원칙과 아직 맞지 않는다. 컴파일러 지원이 성숙하면 별도 챕터나 후속 시리즈의 후보다. (C++20 코루틴 자체는 범위 밖이 아니다 — 12장에서 07–08장 패턴의 코루틴 재해석을 다루되, 제너레이터·코루틴 기반 파서 같은 범용 활용은 계속 경계 밖에 둔다.)
 
@@ -140,7 +121,7 @@ int main() {
 
 동시성 패턴은 한 권의 책에서 나온 것이 아니라 세 갈래 계보가 합쳐진 결과다. 출발점은 Douglas Schmidt 등이 정리한 **POSA2**로, Active Object·Monitor Object·Reactor·Half-Sync/Half-Async 같은 이 시리즈의 골격 패턴 대부분이 여기서 명명되었다. 한편 Java 진영에서는 Brian Goetz의 **JCiP**가 Producer-Consumer·불변 객체·안전한 공개(safe publication) 같은 실무 관용구를 체계화했고, C++ 진영에서는 C++11 표준 메모리 모델 도입 이후 Anthony Williams의 **C++ Concurrency in Action**이 표준 라이브러리 기반 구현 기법을 정립했다. 이 시리즈는 POSA2의 패턴 어휘를 뼈대로 삼고, JCiP의 실무 감각과 Williams의 C++ 구현 기법을 살로 붙인다.
 
-> "Patterns help capture and reuse the static and dynamic structure and collaboration of key participants in software designs." — Douglas C. Schmidt et al., 『Pattern-Oriented Software Architecture, Volume 2: Patterns for Concurrent and Networked Objects』(2000)
+Schmidt는 여러 강의 자료·논문에서 패턴을 "성공적인 소프트웨어 설계에서 핵심 참여자들의 정적·동적 구조와 협력 관계를 포착해 재사용 가능하게 만드는 것"이라고 반복해서 설명한다("Introduction to Patterns and Frameworks", Vanderbilt DRE) — POSA2가 담아낸 동시성 패턴들도 이 정의를 그대로 따른다.
 
 ```mermaid
 flowchart TD
@@ -166,7 +147,7 @@ flowchart TD
 |------|------|----------|--------|-------------|
 | 01 | 동시성 기초와 C++ 메모리 모델 | data race, happens-before, `std::atomic` 기초 | 기초 | Williams 1–5장 |
 | 02 | 락 관용구 | Scoped Locking(RAII), Strategized Locking, Thread-Safe Interface | 기초 | POSA2 |
-| 03 | 대기와 조정 | Monitor Object, Guarded Suspension, Balking | 중급 | POSA2, JCiP |
+| 03 | 대기와 조정 | Monitor Object, Guarded Suspension, Balking | 중급 | POSA2, Lea(CPJ) |
 | 04 | 데이터 흐름 | Producer-Consumer, Bounded Buffer, backpressure | 중급 | JCiP |
 | 05 | 읽기 최적화와 지연 초기화 | Read-Write Lock(`shared_mutex`), DCLP의 함정, `call_once` | 중급 | Meyers & Alexandrescu 2004 |
 | 06 | 실행 관리 I | Thread Pool, Work Stealing | 중급 | Williams 9장 |
@@ -185,7 +166,7 @@ flowchart TD
 C++ 문법과 RAII 개념은 전제한다. 패턴의 **구조**를 익힌 뒤 같은 주제를 **비용** 관점으로 다시 보면 이해가 입체화되므로, 다음 두 컬렉션과의 병행을 권장한다.
 
 - **병행**: [Low-latency 동시성·멀티스레드 비용 통제 트랙](/post/concurrency-optimization/getting-started-concurrency-multithreading-performance-tuning/) — 이 시리즈가 "어떤 구조로 만들까"를 답하면, 그 트랙은 "그 구조의 비용은 얼마인가"를 답한다.
-- **선행 또는 병행**: [디자인 패턴 마스터 시리즈](/post/design-patterns/19-concurrency-distributed-patterns/) — GoF 패턴의 일반 어휘(특히 Command, Proxy, Observer)가 있으면 Active Object·Reactor를 "아는 패턴의 동시성 변형"으로 읽을 수 있다.
+- **선행 또는 병행**: [디자인 패턴 마스터 시리즈](/post/design-patterns/concurrency-distributed-patterns/) — GoF 패턴의 일반 어휘(특히 Command, Proxy, Observer)가 있으면 Active Object·Reactor를 "아는 패턴의 동시성 변형"으로 읽을 수 있다.
 
 ## 학습 방법과 코드 실행 환경
 
@@ -199,7 +180,7 @@ g++ -std=c++20 -pthread -Wall -Wextra -O2 example.cpp -o example
 
 ## 이 컬렉션을 마친 후 달성할 목표
 
-완주하면 멀티스레드 코드를 "락을 어디에 넣지?"가 아니라 "이 문제는 어떤 패턴의 변형이지?"라는 어휘로 사고할 수 있게 된다. 신규 설계에서는 공유 상태 보호·대기·데이터 흐름·실행 관리 중 어느 층의 문제인지 분류한 뒤 해당 패턴을 꺼내 쓸 수 있고, 레거시 코드 리뷰에서는 자기 데드락 가능성이 있는 Thread-Safe Interface 위반이나 깨진 DCLP 같은 패턴 위반을 짚어낼 수 있다. 또한 Boost.Asio의 Proactor, Java Executor의 Thread Pool처럼 주요 프레임워크의 내부 구조를 패턴 이름으로 역추적할 수 있게 된다.
+완주하면 멀티스레드 코드를 "락을 어디에 넣지?"가 아니라 "이 문제는 어떤 패턴의 변형이지?"라는 어휘로 사고할 수 있게 된다. 레거시 코드 리뷰에서는 자기 데드락 가능성이 있는 Thread-Safe Interface 위반이나 깨진 DCLP 같은 패턴 위반을 짚어낼 수 있다. 이 능력을 아래 네 갈래로 구체화한다.
 
 - **분류**: 동시성 문제를 보호(02, 05)·대기(03)·흐름(04)·실행(06–08)·아키텍처(09–10)·회피(11)·최신 확장(12–13) 층위로 구분할 수 있다.
 - **구현**: 각 패턴을 C++ 표준 라이브러리만으로 컴파일 가능하게 구현하고 TSAN으로 검증할 수 있다.
