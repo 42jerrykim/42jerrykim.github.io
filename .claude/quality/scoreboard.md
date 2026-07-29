@@ -5,1571 +5,1579 @@
 - **상태 값**: `미채점` / `진행중` / `통과` / `에스컬레이션`
 - **점수**: 0~100 (루브릭 총점). 미채점이면 `-`.
 - **채점일**: 터미널 오늘 날짜(`yyyy-MM-dd`).
-- **루브릭버전**: 채점 당시 [`rubric.md`](rubric.md)의 "루브릭 버전"(예: `1.0`). 미채점이면 `-`.
-- **만료 규칙**: 아래 두 조건 중 하나라도 해당하면 그 행의 `통과`/`에스컬레이션` 판정은 **즉시 무효**이며, 선정 로직(`SKILL.md` Stage 0)은 해당 글을 `미채점`과 동일하게 취급해 재채점 대상에 포함한다. 무효 판정 자체는 표의 `상태` 값을 바꾸지 않는다(재채점이 실제로 일어난 시점에만 갱신) — 판별은 선정 시점에 계산한다.
-  1. **버전 불일치**: 행의 `루브릭버전`이 `rubric.md`의 현재 버전과 다르면 채점일과 무관하게 즉시 무효.
-  2. **기간 만료**: 버전이 같아도 `채점일`로부터 **365일**이 지나면 무효.
-- **시딩**: 본문(아래 표)이 비어 있으면 `SKILL.md`의 "점수판 운영 — 시딩" 절차로 게시글을 1회 등록한다.
+- **루브릭버전**: 채점 당시 [`rubric.md`](../skills/post-quality-loop/rubric.md)의 "루브릭 버전"(예: `1.1`). 미채점이면 `-`.
+- **콘텐츠해시**: 채점한 본문의 git blob 해시 앞 7자리. `git hash-object <글경로> | cut -c1-7`로 언제든 대조할 수 있다. 미채점이면 `-`.
 
-| 글 경로 | 최신점수 | 채점일 | 반복수 | 상태 | 루브릭버전 | 주요 미달항목 |
-|---------|---------:|--------|-------:|------|:----------:|---------------|
-| content/collection/multithreading-design-patterns/12-coroutine-reinterpretation/index.md | 93.1 | 2026-07-09 | 2 | 통과 | 1.0 | 없음(경미: ActiveObject 104줄 코드 블록의 문단 비율) |
-| content/collection/multithreading-design-patterns/13-lockfree-reclamation/index.md | 96.1 | 2026-07-09 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/cleanarchitecture/00-clean-architecture-overview-introduction/index.md | 94.0 | 2026-07-20 | 6 | 통과 | 1.0 | 없음(경미: OrderController placeOrder() 반환타입 제네릭 불일치, 어댑터 블록 내 public 클래스 2개 공존, Concentric-Circles 태그 tags.yaml 미등재) |
-| content/collection/cleanarchitecture/01-architecture-history-evolution-introduction/index.md | 91 | 2026-07-18 | 2 | 통과 | 1.0 | 없음(경미: 흔한 오해 절 부재, 다음장 하이퍼링크 없음) |
-| content/post/2026/2026-07-25-omniroute-ai-gateway/index.md | 100 | 2026-07-25 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/cleanarchitecture/02-layered-architecture-limitations-history/index.md | 90.7 | 2026-07-20 | 4 | 통과 | 1.0 | 없음(경미: Reenskaug 1979 인용 서지사항 검증 링크 부재, 프레임워크종속성/계층건너뛰기 절 코드 뒤 해설 여지) |
-| content/collection/cleanarchitecture/03-hexagonal-architecture-ports-adapters/index.md | 96.1 | 2026-07-20 | 4 | 통과 | 1.0 | 없음(경미: 장점/한계 절 일부 문단 확장 여지) |
-| content/collection/cleanarchitecture/04-onion-architecture-domain-centric-design/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 1.0 | 없음(경미: 패키지구조 절 리드문단 부재, 코드 보조타입 미정의) |
-| content/collection/cleanarchitecture/05-clean-architecture-birth-uncle-bob/index.md | 97 | 2026-07-20 | 4 | 통과 | 1.0 | 없음(경미: 미승인 태그 11개 data/tags.yaml 미등재, Guide 태그 본문 근거 약함) |
-| content/collection/cleanarchitecture/06-introduction-software-design-architecture/index.md | 94.6 | 2026-07-20 | 6 | 통과 | 1.0 | 없음(경미: "천국: 좋은 아키텍처" 소절 리스트 후 연결문단 여지) |
-| content/collection/cleanarchitecture/07-design-vs-architecture-definition/index.md | 96.1 | 2026-07-20 | 4 | 통과 | 1.0 | 없음(경미: 일부 절 리드 문단 보강 여지) |
-| content/collection/cleanarchitecture/08-two-values-behavior-structure/index.md | 96.1 | 2026-07-20 | 5 | 통과 | 1.0 | 없음(경미: "소프트웨어의 어원"/"논리적 반박" 절 리드 문단 여지, 인용 4회 반복에 장 번호 미표기) |
-| content/collection/cleanarchitecture/09-programming-paradigms-introduction/index.md | 94.0 | 2026-07-20 | 4 | 통과 | 1.0 | 없음(경미: Repository/MySqlRepository/MongoRepository 다중 public 공존, FP 스니펫 미래핑, 신규 태그 7개 tags.yaml 미등재) |
-| content/collection/cleanarchitecture/10-paradigm-overview-three-types/index.md | 92.2 | 2026-07-20 | 4 | 통과 | 1.0 | 없음(경미: goto 절 연결문단, "왜 세 가지뿐" 중복 정리 여지) |
-| content/collection/cleanarchitecture/11-structured-programming-goto-elimination/index.md | 94.6 | 2026-07-20 | 5 | 통과 | 1.0 | 없음(경미: L46 Dijkstra 인용 blockquote 서식 보강 여지) |
-| content/collection/cleanarchitecture/12-object-oriented-programming-polymorphism/index.md | 93.1 | 2026-07-18 | 3 | 통과 | 1.0 | 없음(경미: 플러그인 절 리드문단 부재, drawAll 클래스 밖 선언) |
-| content/collection/cleanarchitecture/13-functional-programming-immutability/index.md | 94.6 | 2026-07-18 | 2 | 통과 | 1.0 | 없음(경미: 람다계산법 연도 서술 단순화, Order 생성자 방어적 복사 부재) |
-| content/collection/cleanarchitecture/14-solid-principles-introduction/index.md | 94 | 2026-07-18 | 2 | 통과 | 1.0 | 없음(경미: SRP 정의 blockquote 옆 인라인 출처 미표기) |
-| content/collection/cleanarchitecture/15-srp-single-responsibility-principle/index.md | 91.6 | 2026-07-18 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/cleanarchitecture/16-ocp-open-closed-principle/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 1.0 | 없음(경미: "두 가지 의미"·"요구사항" 절 리스트-only) |
-| content/collection/cleanarchitecture/17-lsp-liskov-substitution-principle/index.md | 97 | 2026-07-18 | 2 | 통과 | 1.0 | 없음(경미: Algorithm 태그 본문 불일치) |
-| content/collection/cleanarchitecture/18-isp-interface-segregation-principle/index.md | 90.1 | 2026-07-18 | 2 | 통과 | 1.0 | 없음(임계값 근접, 이후 보강 완료) |
-| content/collection/cleanarchitecture/19-dip-dependency-inversion-principle/index.md | 97 | 2026-07-18 | 3 | 통과 | 1.0 | 없음(경미: 소스코드의존성 vs 제어흐름 절 문단 얇음) |
-| content/collection/cleanarchitecture/20-component-principles-introduction/index.md | 92.2 | 2026-07-19 | 3 | 통과 | 1.0 | 없음 |
-| content/collection/cleanarchitecture/21-components-deployment-units-history/index.md | 90.7 | 2026-07-19 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/cleanarchitecture/22-component-cohesion-rep-ccp-crp/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 1.0 | 없음(경미: 문단비율 34.9%, 40% 기준 근소 미달이나 통과) |
-| content/collection/cleanarchitecture/23-component-coupling-adp-sdp-sap/index.md | 97 | 2026-07-19 | 3 | 통과 | 1.0 | 없음 |
-| content/collection/cleanarchitecture/24-architecture-introduction-system-design/index.md | 97.0 | 2026-07-20 | 4 | 통과 | 1.0 | 없음(경미: Technology/Framework-Independence 태그 근거 보강 여지) |
-| content/collection/cleanarchitecture/25-what-is-architecture-system-lifecycle/index.md | 93.1 | 2026-07-20 | 5 | 통과 | 1.0 | 없음(경미: 표-헤딩 전환 2곳, MySqlOrderRepository 스텁 로직 보강 여지) |
-| content/collection/cleanarchitecture/26-independence-usecase-operation-development/index.md | 90.1 | 2026-07-20 | 4 | 통과 | 1.0 | 없음(경미: "네 가지 독립성"/"디커플링 모드" 헤딩 리드문단 여지, 신규태그 9개 tags.yaml 미등재이나 승인태그 16개로 하한 충족. 통과 후 Throughput 표기·Encapsulation 근거 보강 완료) |
-| content/collection/cleanarchitecture/27-boundaries-drawing-lines-plugin-architecture/index.md | 94.0 | 2026-07-20 | 4 | 통과 | 1.0 | 없음(경미: PaymentGateway 예제 Payment/PaymentResult 미정의, MySqlWikiPagePersistence try-with-resources 미사용, 신규 태그 4개 tags.yaml 미등재) |
-| content/collection/cleanarchitecture/28-boundary-anatomy-monolith-to-services/index.md | 91.6 | 2026-07-20 | 4 | 통과 | 1.0 | 없음(경미: package/import 서술과 코드 정합성 보강 여지) |
-| content/collection/cleanarchitecture/29-policy-and-level-high-level-dependency/index.md | 93.1 | 2026-07-20 | 5 | 통과 | 1.0 | 없음(경미: "수준의 정의" 표·"암호화 프로그램" 하위 절 전환 문단 보강 여지) |
-| content/collection/cleanarchitecture/30-business-rules-entities-usecases/index.md | 100 | 2026-07-20 | 4 | 통과 | 1.0 | 없음(Tier 0 개선: 인용 재검증 완료, 코드 자기완결화, 태그 재구성) |
-| content/collection/cleanarchitecture/31-screaming-architecture-intent-driven-structure/index.md | 92.2 | 2026-07-19 | 2 | 통과 | 1.0 | 없음(경미: 표 2개 리드인 문단 보강 여지) |
-| content/collection/cleanarchitecture/32-clean-architecture-concentric-circles-dependency/index.md | 93.1 | 2026-07-19 | 2 | 통과 | 1.0 | 없음(경미: 일부 절 리드/해설 문단 보강 여지) |
-| content/collection/cleanarchitecture/33-presenter-humble-object-testability/index.md | 90.7 | 2026-07-19 | 2 | 통과 | 1.0 | 없음(경미: DB/외부서비스 경계 코드 앞 리드 문단 보강 여지) |
-| content/collection/cleanarchitecture/34-partial-boundaries-cost-benefit-balance/index.md | 92.2 | 2026-07-19 | 2 | 통과 | 1.0 | 없음(경미: 표/다이어그램 앞 리드 문단 보강 여지) |
-| content/collection/cleanarchitecture/35-layers-and-boundaries-practical-setup/index.md | 90.7 | 2026-07-19 | 3 | 통과 | 1.0 | 없음(경미: 일부 절 리드 문단 보강 여지, 종결 인용문 재검증 권고) |
-| content/collection/cleanarchitecture/36-main-component-lowest-level-policy/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 1.0 | 없음 |
-| content/collection/cleanarchitecture/37-services-architecture-boundaries-microservices/index.md | 91.3 | 2026-07-19 | 2 | 통과 | 1.0 | 없음(경미: 일부 절 리드 문단 보강 여지) |
-| content/collection/cleanarchitecture/38-test-boundary-testing-as-system-part/index.md | 92 | 2026-07-19 | 1 | 통과 | 1.0 | 없음(경미: 일부 절 리드 문단 보강 여지) |
-| content/collection/cleanarchitecture/39-clean-embedded-architecture-hardware-separation/index.md | 98.2 | 2026-07-19 | 3 | 통과 | 1.0 | 없음(경미: Mermaid 노드 ID 표기 관례 미준수) |
-| content/collection/cleanarchitecture/40-details-introduction-interchangeable-parts/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 1.0 | 없음(경미: 일부 절 문단 비율 보강 여지) |
-| content/collection/cleanarchitecture/41-database-is-detail-persistence/index.md | 90.4 | 2026-07-20 | 4 | 통과 | 1.0 | 없음(경미: 항목3 문단비율 21.5%로 40% 기준 미달이나 통과, DB교체 시나리오 절 잔여 연속 블록 1곳) |
-| content/collection/cleanarchitecture/42-web-is-detail-gui-history/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 1.0 | 없음(경미: 일부 절 문단 비율 보강 여지) |
-| content/collection/cleanarchitecture/43-framework-is-detail-coupling-risk/index.md | 96.1 | 2026-07-19 | 2 | 통과 | 1.0 | 없음(경미: 일부 절 문단 비율 보강 여지) |
-| content/collection/cleanarchitecture/44-case-study-video-sales-system/index.md | 93.1 | 2026-07-19 | 3 | 통과 | 1.0 | 없음(경미: 태그 1개 불일치, 문단 비율 보강 여지) |
-| content/collection/cleanarchitecture/45-missing-chapter-package-structure/index.md | 94.6 | 2026-07-19 | 2 | 통과 | 1.0 | 없음(경미: L38 서술 완화 여지) |
-| content/collection/design-patterns/00-design-patterns-overview/index.md | 91 | 2026-07-19 | 4 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/01-design-patterns-philosophy-and-history/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 1.0 | 없음(경미: 핵심메시지/결론 중복) |
-| content/collection/design-patterns/02-pattern-analysis-framework/index.md | 91.3 | 2026-07-19 | 4 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/03-oop-design-deep-understanding/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 1.0 | 없음(경미: 핵심메시지/결론 중복) |
-| content/collection/design-patterns/04-factory-patterns-evolution/index.md | 91.6 | 2026-07-19 | 8 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/04-factory-patterns-evolution-practice/index.md | 92 | 2026-07-19 | 6 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/05-singleton-controversial-pattern/index.md | 93.1 | 2026-07-19 | 4 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/05-singleton-controversial-pattern-practice/index.md | 96.1 | 2026-07-19 | 4 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/06-builder-prototype-deep-understanding/index.md | 93 | 2026-07-19 | 5 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/06-builder-prototype-deep-understanding-practice/index.md | 93 | 2026-07-19 | 8 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/07-adapter-facade-interface-philosophy/index.md | 90.7 | 2026-07-19 | 6 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/07-adapter-facade-interface-philosophy-practice/index.md | 93.1 | 2026-07-19 | 4 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/08-decorator-composite-recursive-beauty/index.md | 91.3 | 2026-07-18 | 3 | 통과 | 1.0 | 없음(경미: GUIExample의 Window/Label 미정의, 트리구조 Mermaid 권장) |
-| content/collection/design-patterns/08-decorator-composite-recursive-beauty-practice/index.md | 97 | 2026-07-19 | 6 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/09-proxy-pattern-multifaceted/index.md | 93.1 | 2026-07-19 | 5 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/09-proxy-pattern-multifaceted-practice/index.md | 93.1 | 2026-07-19 | 6 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/10-bridge-flyweight-separation-efficiency/index.md | 91.3 | 2026-07-19 | 4 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/10-bridge-flyweight-separation-efficiency-practice/index.md | 93.1 | 2026-07-19 | 4 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/11-observer-event-driven-architecture/index.md | 93.1 | 2026-07-19 | 4 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/11-observer-event-driven-architecture-practice/index.md | 92.2 | 2026-07-19 | 6 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/12-strategy-state-algorithm-encapsulation/index.md | 97 | 2026-07-19 | 6 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/12-strategy-state-algorithm-encapsulation-practice/index.md | 93.1 | 2026-07-19 | 5 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/13-command-chain-responsibility/index.md | 96.1 | 2026-07-19 | 4 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/13-command-chain-responsibility-practice/index.md | 97 | 2026-07-19 | 6 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/14-template-method-iterator-depth/index.md | 93.1 | 2026-07-19 | 9 | 통과 | 1.0 | 없음(경미: L985-986 표 앞 리드 문단 1곳 부재, 본문과 결속 약한 태그 일부) |
-| content/collection/design-patterns/15-interpreter-mediator-parsing-coordination/index.md | 96.1 | 2026-07-19 | 4 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/16-memento-visitor-state-operation-separation/index.md | 92.2 | 2026-07-18 | 3 | 통과 | 1.0 | 없음(경미: 데모 main() 축약, 결론/주의사항 중복) |
-| content/collection/design-patterns/17-pattern-combinations-interactions/index.md | 97 | 2026-07-19 | 6 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/18-functional-programming-design-patterns/index.md | 93.1 | 2026-07-19 | 4 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/19-concurrency-distributed-patterns/index.md | 93.1 | 2026-07-19 | 5 | 통과 | 1.0 | 없음(채점 시 안전분류기 일시 unavailable — 결과 재확인 권장) |
-| content/collection/design-patterns/20-ddd-design-patterns/index.md | 100 | 2026-07-19 | 5 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/20-ddd-design-patterns-practice/index.md | 97 | 2026-07-19 | 7 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/21-pattern-performance-optimization/index.md | 93 | 2026-07-19 | 6 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/21-pattern-performance-optimization-practice/index.md | 97 | 2026-07-19 | 7 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/22-antipatterns-refactoring/index.md | 97 | 2026-07-19 | 6 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/22-antipatterns-refactoring-practice/index.md | 94.6 | 2026-07-19 | 6 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/23-pattern-code-review-design-review/index.md | 96.1 | 2026-07-19 | 6 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/23-pattern-code-review-design-review-practice/index.md | 100 | 2026-07-19 | 5 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/24-discovering-defining-new-patterns/index.md | 93 | 2026-07-19 | 5 | 통과 | 1.0 | 없음 |
-| content/collection/design-patterns/24-discovering-defining-new-patterns-practice/index.md | 97 | 2026-07-19 | 5 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/00-getting-started-computer-terms/index.md | 95.2 | 2026-07-22 | 3 | 통과 | 1.0 | 없음(경미: 표 의존도가 높아 항목3에서 표를 빼면 갈래 목록 자체는 문단만으로 전달 안 됨) |
-| content/collection/computerterms/aba-problem/index.md | 92.8 | 2026-07-22 | 1 | 통과 | 1.0 | 없음(경미: IEEE 링크 WAF 챌린지로 자동검증 불가) |
-| content/collection/computerterms/aicd/index.md | 96.1 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/algorithm/index.md | 94.6 | 2026-07-22 | 3 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/algorithm_efficiency/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/algotithm_classify/index.md | 98.2 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/arrays-and-linked-lists/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/atomic-operations-and-cas/index.md | 100 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/authentication-and-authorization/index.md | 97 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/cache-hierarchy/index.md | 91 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/caching-and-invalidation/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/cap-theorem-and-consensus/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 없음(경미: Reliability 태그 본문 근거 약함) |
-| content/collection/computerterms/cdn-caching/index.md | 100 | 2026-07-22 | 3 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/ci-cd-and-testing-types/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/circuit-breaker/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 1.0 | 없음(경미: Release It! 장 번호 표기를 "Stability Patterns" 부로 완화) |
-| content/collection/computerterms/closures-and-scope/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/code-review/index.md | 91.6 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/compilers-and-interpreters/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/containers-and-virtualization/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/content-delivery-networks/index.md | 91.6 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/content-negotiation/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/cookies-and-local-storage/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/coroutines-and-async-await/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/coupling-and-cohesion/index.md | 97 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/cpu-and-pipelining/index.md | 94.6 | 2026-07-22 | 3 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/cpu-scheduling/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/daemons-and-zombie-processes/index.md | 98.2 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/deadlocks/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/design-patterns-overview/index.md | 95.2 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/digital-signatures-and-certificates/index.md | 97 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/dns-and-sockets/index.md | 97 | 2026-07-22 | 3 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/dynamic-programming/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/encryption-and-hashing/index.md | 93.4 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/event-driven-architecture/index.md | 94 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/event-sourcing/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/factory-pattern/index.md | 95.2 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/feature-flags/index.md | 94 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/file-systems/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/firewalls-and-nat/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/floating-point-representation/index.md | 91 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/forward-and-reverse-proxies/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/full-text-search-indexes/index.md | 97 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/functional-programming-paradigm/index.md | 100 | 2026-07-24 | 3 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/garbage-collection/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/generics-and-polymorphism/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/graphs/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/greedy-algorithms/index.md | 97 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/grpc/index.md | 95.2 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/hash-tables/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/heaps-and-priority-queues/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/hexagonal-architecture/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/http-and-https/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/http3-and-quic/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/idempotency/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/inter-process-communication/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/interrupts-and-system-calls/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/load-balancing/index.md | 91.6 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/memory-management/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/memory-safety-and-ownership/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/message-queues/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/multilevel-caching/index.md | 100 | 2026-07-22 | 3 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/mvc-and-mvvm/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/mvcc/index.md | 96.1 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/normalization-and-indexes/index.md | 97 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/nosql-and-query-optimization/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/oauth-and-oidc/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/observer-pattern/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/osi-and-tcp-ip/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/processes-and-threads/index.md | 97 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/query-planner-internals/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/race-conditions-and-locks/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/rate-limiting/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/refactoring-and-code-smells/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/registers-and-isa/index.md | 98.2 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/rest-and-graphql/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/searching-algorithms/index.md | 91.6 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/segment-trees/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/semantic-versioning/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/semaphores-and-monitors/index.md | 91.6 | 2026-07-22 | 1 | 통과 | 1.0 | 없음(경미: 브린치 한센 연도 정정 반영) |
-| content/collection/computerterms/server-sent-events/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/sharding-and-replication/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/shortest-path-algorithms/index.md | 100 | 2026-07-22 | 3 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/signals/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/simd/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/skip-lists/index.md | 97 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/solid-principles-overview/index.md | 100 | 2026-07-24 | 3 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/sorting-algorithms/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/stacks-and-queues/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/thread-pools/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | 없음(경미: Debugging 태그를 Throughput으로 교체) |
-| content/collection/computerterms/time-series-databases/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/time_complexity/index.md | 92.8 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/transaction-isolation-levels/index.md | 94 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/trees/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/tries/index.md | 93.4 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/type-systems/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/union-find/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/vector-clocks/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/version-control-internals/index.md | 94.6 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/von-neumann-architecture/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/web-application-firewalls/index.md | 100 | 2026-07-24 | 3 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/web-vulnerabilities/index.md | 94.6 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/webhooks/index.md | 100 | 2026-07-22 | 3 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/websockets-and-cors/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/write-through-and-write-back/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/computerterms/zero-trust-security/index.md | 94 | 2026-07-24 | 1 | 통과 | 1.0 | 없음 |
-| content/post/2026/2026-07-22-p95-p99-latency-percentile-guide/index.md | 91 | 2026-07-22 | 1 | 통과 | 1.0 | 없음(경미: "이 글을 읽은 후" 학습 성과 목표 절 부재, Bigtable SRE Book 챕터 인용 정밀도, cacm.acm.org 대체 접근 경로 미병기) |
-| content/post/2026/2026-07-22-iterm2-vs-securecrt-logging-comparison/index.md | 95 | 2026-07-22 | 2 | 통과 | 1.0 | 없음(선택: "이 글에서 다루는 내용" 미리보기 불릿을 문단으로 축약하면 구조 항목 여지 있으나 통과에 영향 없음) |
-| content/post/2026/2026-07-22-qbittorrent-vs-utorrent-comparison/index.md | 94.6 | 2026-07-22 | 3 | 통과 | 1.0 | 없음(3차 채점 후 L99 Cloudwards 인용 정밀도를 추가로 정정, 재채점 생략) |
-| content/collection/cmd/command-categories/index.md | 96.1 | 2026-07-22 | 3 | 통과 | 1.0 | 없음(경미: 네트워크·기타 유틸리티 절 판단 기준 문단 여지, 코드블록 언어 태그 미통일) |
-| content/post/2026/2026-07-22-pikvm-v4-mini-review/index.md | 93.1 | 2026-07-22 | 3 | 통과 | 1.0 | 없음(경미: RDP(Remote Desktop Protocol) 태그 본문 근거 약함, 종합 평가 문단이 장단점 절과 일부 재진술) |
-| content/collection/TV-Show/2026/2026-07-22-young-sheldon-medford-texas-setting-filming-location/index.md | 94.6 | 2026-07-25 | 12 | 통과 | 1.0 | 없음(경미: L96 체로키 카운티 소속 서술의 팬 위키 원문 링크 미첨부, L108 쿠퍼가 외경 거리 매체별 상이(2/3/6마일) 각주 미표기). 12회차에서 안티패딩·구조 결함 해소: "정리" 절(종합평가와 중복)을 삭제하고, "확인 전 체크리스트"·"이 글을 읽은 후 확인할 것" 중복 닫는 절을 "확인 체크리스트" 하나로 통합(읽기 전/읽은 후 하위 소절), "다른 시트콤 비교" 절의 1문장 판단기준을 질문유형·층위·절·오류 4열 표로 확장. 11회차까지의 구조적 긴장(좁은 범위 특집 vs 정식 리뷰 기대)은 critic이 "정식 Act5 리뷰가 같은 컬렉션에 상호링크로 존재하므로 이 특집에 강제하지 않음"으로 판단해 해소 |
-| content/collection/optimization-00-series-overview/00-introduction/index.md | 96 | 2026-07-25 | 2 | 통과 | 1.0 | 없음(경미: "권장 큰 줄기"·"왜 이 로드맵인가" 절 그룹핑 서술 일부 중복, 일부 범용 태그 본문 결속 약함) |
-| content/collection/optimization-01-profiling/00-introduction/index.md | 83.5 | 2026-07-25 | 3 | 에스컬레이션 | 1.0 | 치명결함 0건이나 3회 반복 후 90점 미달. 잔여: L81 Intel VTune "XPU Offload Analysis(NPU 통합)" 명칭 미검증, L91 "Polar Signals 사례" 출처 미표기, 04번 챕터 핵심내용에 Ftrace 미병기. 사람 검토 후 추가 반복 여부 판단 필요 |
-| content/collection/optimization-01-profiling/01-microbenchmark-design/index.md | 100 | 2026-07-25 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/optimization-01-profiling/02-google-benchmark/index.md | 100 | 2026-07-25 | 1 | 통과 | 1.0 | 없음(1차 채점에서 릴리스일 오탐 있었으나 GitHub API 재검증 결과 본문이 정확함을 확인, 수정 없이 통과) |
-| content/collection/optimization-01-profiling/03-sampling-profiling/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 1.0 | 없음(경미: L74 VTune 릴리스 일자 검증 여지) |
-| content/collection/optimization-01-profiling/04-tracing-profiling/index.md | 91.6 | 2026-07-25 | 1 | 통과 | 1.0 | 없음(경미: L70 Tracy 릴리스 시기 오표기(2026 상반기→실제 2025-12), perfetto_demo.cc 트레이스 세션 시작/저장 로직 생략) |
-| content/collection/optimization-01-profiling/05-flame-graph/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 1.0 | 없음(경미: ACM Queue 권/호 검증 여지, off-CPU 오버헤드 정량 근거 보강 여지) |
-| content/collection/optimization-01-profiling/06-intel-vtune/index.md | 100 | 2026-07-25 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/optimization-01-profiling/07-linux-perf-advanced/index.md | 100 | 2026-07-25 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/optimization-01-profiling/08-hardware-counters/index.md | 96.1 | 2026-07-25 | 1 | 통과 | 1.0 | 없음(경미: 코드/출력 블록 연속 구간 문단 보강 여지, Yasin 논문 직접 링크 여지) |
-| content/collection/optimization-01-profiling/09-tail-latency/index.md | 100 | 2026-07-25 | 1 | 통과 | 1.0 | 없음 |
-| content/collection/optimization-01-profiling/10-statistical-benchmarking/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 1.0 | 없음(경미: L72 Kalibera&Jones venue 오표기 OOPSLA/ISMM→ISMM) |
-| content/collection/optimization-01-profiling/11-continuous-profiling/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 1.0 | 없음(경미: Pyroscope/Parca 연혁 인용 링크 여지) |
-| content/collection/optimization-01-profiling/12-performance-ab-testing/index.md | 97.0 | 2026-07-26 | 1 | 통과 | 1.0 | 없음(경미: L34-42 비승인 태그 9개 data/tags.yaml 미등재, L73 Spinnaker 카나리 문서 "첫머리" 배치 서술 검증 여지) |
-| content/collection/optimization-01-profiling/13-amd-uprof/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-01-profiling/14-windows-etw/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-01-profiling/15-valgrind-callgrind/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-01-profiling/16-bpf-profiling/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-01-profiling/17-distributed-tracing-overhead/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-01-profiling/18-profiling-workflow-guide/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-01-profiling/19-profiler-output-interpretation/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-01-profiling/20-memory-profiling-heap/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/00-introduction/index.md | 96.1 | 2026-07-25 | 1 | 통과 | 1.0 | 없음(경미: L238 트랙 읽기 순서 요약이 L128과 일부 중복, 태그 표기 결합형 통일 여지) |
-| content/collection/optimization-02-cpp-language/01-cpp-execution-model-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/02-smart-pointer-cost-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/03-abstraction-cost/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/04-stl-container-cost/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/05-string-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/06-object-lifetime/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/07-temporary-removal/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/08-templates-constexpr/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/09-modern-cpp-features/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/10-coroutine-performance/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/11-exception-deep-dive/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/12-inlining-techniques/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/13-variant-optional-expected/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/14-span-and-views/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/15-lambda-performance/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/16-small-buffer-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/17-parameter-passing/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/18-abi-link-performance-boundaries/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-02-cpp-language/19-type-erasure-cost-patterns/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/00-introduction/index.md | 96.1 | 2026-07-25 | 3 | 통과 | 1.0 | 없음(경미: L99/L139 추천 읽기 순서 표현 불일치) |
-| content/collection/optimization-03-compiler/01-optimization-flags/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/02-lto-thinlto/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/03-pgo-workflow/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/04-compiler-comparison/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/05-inlining-diagnostics/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/06-code-generation-analysis/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/07-function-multiversioning/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/08-compiler-intrinsics/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/09-sanitizer-overhead/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/10-debug-info-and-performance/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/11-cpp20-modules/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/12-build-parallelization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/13-static-analyzer/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/14-bolt-post-link-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-03-compiler/15-autofdo/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 1.0 | 없음(경미: Networking·IO·Testing 등 본문 결속 약한 범용 태그 다수, 16번 챕터 mimalloc 미병기) |
-| content/collection/optimization-04-memory-allocation/01-container-cost-model/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/02-allocation-strategy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/03-custom-allocator/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/04-pmr-allocator/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/05-aos-vs-soa/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/06-cache-friendly-patterns/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/07-padding-alignment/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/08-large-pages/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/09-numa-allocation/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/10-memory-fragmentation/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/11-memory-bandwidth/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/12-stack-vs-heap/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/13-virtual-memory-management/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/14-memory-leak-detection/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/15-memory-lifetime-cacheline-intuition/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-04-memory-allocation/16-global-allocator-tuning/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/00-introduction/index.md | 88.9 | 2026-07-25 | 3 | 에스컬레이션 | 1.0 | 치명결함 0건이나 3회 반복 후 90점 근소 미달. 잔여: "다루지 않는 것" 절에 캐시 일관성/메모리 모델·SIMD 범위 밖 명시 부재, 1차 출처 1개 추가 여지 |
-| content/collection/optimization-05-cpu-microarchitecture/01-cpu-pipeline-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/02-branch-prediction/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/03-cache-hierarchy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/04-cache-miss-analysis/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/05-ilp-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/06-out-of-order-execution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/07-tlb-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/08-modern-cpu-architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/09-hardware-performance-counters/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/10-speculative-execution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/11-frequency-scaling/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/12-power-management/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/13-apple-silicon-architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/14-smt-hyperthreading/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/15-uop-cache-dsb/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/16-risc-v-architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/17-frontend-vs-backend-bound/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/18-dependency-chains-port-pressure/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/00-introduction/index.md | 96.1 | 2026-07-25 | 3 | 통과 | 1.0 | 없음(경미: "달성할 목표"·"평가 기준" 절 일부 중복, 네비게이션 절 2개 중복 여지) |
-| content/collection/optimization-06-os-runtime/01-context-switch-cost/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/02-syscall-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/03-cpu-pinning-affinity/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/04-numa-cpu-affinity/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/05-realtime-scheduling/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/06-precise-time-measurement/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/07-kernel-bypass-overview/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/08-io-uring-overview/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/09-xdp-ebpf-overview/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/10-huge-tlb-pages/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/11-container-performance/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/12-irq-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/13-cgroups-v2/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/14-memory-locking/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/15-signal-handling/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/16-process-vs-thread/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/17-ebpf-kernel-performance-safety/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-06-os-runtime/18-cloud-tail-latency/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/00-introduction/index.md | 95.2 | 2026-07-25 | 2 | 통과 | 1.0 | 없음(경미: "책임지는 범위"·"다루지 않는 것" 리스트 앞 연결 문단 여지, Intel 링크 WebFetch 403이나 실제 접근 가능) |
-| content/collection/optimization-07-concurrency/01-synchronization-cost-analysis/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/02-lock-selection-criteria/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/03-false-sharing-avoidance/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/04-memory-model-practical/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/05-lock-free-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/06-lock-free-data-structures/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/07-hazard-pointers-rcu/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/08-spsc-mpmc-queues/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/09-cpp20-atomics/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/10-thread-pool-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/11-coroutine-concurrency/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/12-wait-free-programming/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/13-jthread-stop-token/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/14-seqlock-pattern/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/15-thread-local-storage/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/16-executors-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/17-senders-receivers-cpp26/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/18-parallel-execution-policies/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/19-condition-variable-patterns/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/20-barrier-latch/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-07-concurrency/21-thread-per-core-io-uring/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/00-introduction/index.md | 95.2 | 2026-07-25 | 3 | 통과 | 1.0 | 없음(경미: 측정 항목 리스트 근거 문단 여지) |
-| content/collection/optimization-08-optimization-techniques/01-simd-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/02-simd-intrinsics-practical/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/03-avx512-avx10-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/04-auto-vectorization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/05-prefetch-strategy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/06-branchless-programming/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/07-hand-written-assembly/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/08-lookup-table-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/09-bit-manipulation-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/10-hotpath-extreme-tuning/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/11-maintainability-tradeoff/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/12-arm-neon-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/13-portable-simd-libraries/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/14-cpp26-std-simd/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/15-cache-oblivious-algorithms/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/16-gpu-offloading-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/17-ai-inference-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-08-optimization-techniques/18-simd-string-processing/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/00-introduction/index.md | 100 | 2026-07-25 | 2 | 통과 | 1.0 | 없음 |
-| content/collection/optimization-09-io-network/01-io-cost-intuition/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/02-io-patterns-cost/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/03-async-io-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/04-io-uring-advanced/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/05-iocp-windows-io/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/06-zero-copy-techniques/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/07-memory-mapped-io/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/08-direct-io/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/09-filesystem-characteristics/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/10-block-device-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/11-io-multiplexing-patterns/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/12-vectored-io/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/13-posix-aio-vs-io-uring/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/14-database-io-patterns/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/15-file-locking-performance/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/16-storage-stack-customization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-09-io-network/17-logging-performance-strategy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/00-introduction/index.md | 92.2 | 2026-07-25 | 1 | 통과 | 1.0 | 없음(경미: description 118자로 하한 근접, 범위/경계 리스트 문단 비중 29%, WebTransport Baseline 기준 명시 여지) |
-| content/collection/optimization-10-network/01-network-latency-intuition/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/02-network-latency-structure/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/03-socket-options-tuning/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/04-tcp-performance-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/05-udp-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/06-serialization-performance-comparison/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/07-zero-copy-serialization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/08-next-gen-zero-copy-formats/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/09-protocol-design/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/10-message-framing/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/11-dpdk-advanced/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/12-xdp-ebpf-network-advanced/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/13-rdma-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/14-ultra-ethernet-consortium/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/15-grpc-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/16-quic-protocol/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/17-tls-ssl-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/18-connection-pooling/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/19-websocket-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/20-http2-http3/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-10-network/21-network-compression-strategy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/00-introduction/index.md | 91.3 | 2026-07-25 | 2 | 통과 | 1.0 | 없음(경미: "범위와 경계" Mermaid 단독 의존, Phase별 궤적과 커리큘럼 표 일부 중복) |
-| content/collection/optimization-11-design-decisions/01-performance-terminology-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/02-when-to-optimize/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/03-when-to-stop-optimizing/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/04-readability-vs-performance/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/05-performance-budgeting/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/06-slo-sla-definition/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/07-latency-vs-throughput/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/08-low-latency-architecture-patterns/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/09-caching-strategy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/10-database-access-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/11-team-performance-culture/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/12-performance-code-review/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/13-capacity-planning/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/14-load-testing-design/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/15-cost-performance-analysis/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/16-regulated-secure-performance-tradeoffs/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/17-memory-safety-tradeoffs/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-11-design-decisions/18-event-driven-architecture-performance/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 1.0 | 없음(경미: Code-Review·Debugging·Logging·Git·GitHub·Cloud 태그 본문 결속 약함) |
-| content/collection/optimization-12-regression-prevention/01-performance-regression-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/02-performance-test-automation/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/03-benchmark-ci-integration/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/04-pr-performance-gate/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/05-performance-budgeting/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/06-baseline-management/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/07-variance-management/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/08-observability-platform/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/09-alerting-strategy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/10-canary-deployment/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/11-performance-incident-response/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/12-long-term-trend-analysis/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/13-performance-debt-management/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/14-benchmark-as-code/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/15-monitoring-dashboard/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/16-postmortem-analysis/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/optimization-12-regression-prevention/17-distributed-cluster-performance-regression/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2022/2022-01-01-BOJ-1008/index.md | 100 | 2026-07-28 | 3 | 통과 | 1.0 | 없음 |
-| content/collection/Algorithm/2022/2022-07-07-BOJ-8983/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-05-15-BOJ-1067/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-05-18-BOJ-1005/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-05-18-BOJ-2206/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-05-18-BOJ-2252/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-09-14-BOJ-6549/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-09-19-BOJ-13141/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-09-19-BOJ-13977/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-09-19-BOJ-14517/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-09-19-BOJ-14942/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-09-19-BOJ-15678/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-09-20-BOJ-16287/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-09-20-BOJ-17401/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-09-23-BOJ-1014/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-09-23-BOJ-2618/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-09-23-BOJ-3176/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-09-25-BOJ-3653/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-09-25-BOJ-3679/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-09-25-BOJ-5670/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-10-BOJ-11505/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-10-BOJ-13334/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-10-BOJ-14725/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-10-BOJ-15824/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-10-BOJ-16565/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-10-BOJ-2357/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-1214/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-13416/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-1384/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-14752/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-15025/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-16349/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-18406/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-20492/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-23808/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-24736/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-28444/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-28702/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-17-BOJ-15995/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-17-BOJ-24051/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-17-BOJ-2711/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-17-BOJ-27161/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-17-BOJ-4655/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-17-BOJ-5342/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-21-BOJ-11281/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-21-BOJ-19585/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-23-BOJ-11689/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-23-BOJ-3648/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-23-BOJ-3830/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-23-BOJ-4225/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-24-BOJ-11266/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-24-BOJ-1533/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-25-BOJ-10828/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-25-BOJ-1225/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-25-BOJ-14924/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-25-BOJ-16189/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-25-BOJ-25501/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-25-BOJ-2975/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-25-BOJ-5544/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-10-25-BOJ-7523/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-11-26-BOJ-31654/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-12-12-BOJ-10167/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-12-12-BOJ-12928/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-12-12-BOJ-4792/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-12-26-BOJ-11280/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-12-26-BOJ-11400/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-12-26-BOJ-14939/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-12-26-BOJ-1671/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-12-26-BOJ-5542/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-12-30-BOJ-16163/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-12-30-BOJ-20149/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-12-31-BOJ-10266/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-12-31-BOJ-10999/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2024/2024-12-31-BOJ-2673/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-01-10-BOJ-2166/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-01-28-BOJ-11375/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-01-28-BOJ-3408/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-02-03-BOJ-2336/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-02-03-BOJ-8217/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-02-07-BOJ-13907/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-02-07-BOJ-16975/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-02-08-BOJ-16978/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-02-08-BOJ-18251/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-02-10-BOJ-1126/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-02-10-BOJ-13361/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-02-10-BOJ-15504/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-02-10-BOJ-24505/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-08-BOJ-1150/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-08-BOJ-12823/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-08-BOJ-1605/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-08-BOJ-3654/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-10746-fencing-the-herd-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-12670-the-year-of-code-jam-large-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-12736-fireworks-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-12898-selling-rna-strands-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-13725-rng-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-13727-5d-chocolate-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-14510-blazing-new-trails-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-14737-dev-please-add-this-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-14960-strongly-matchable-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-15292-journey-from-petersburg-to-moscow-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-15521-revenge-of-the-broken-door-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-15737-general-graph-matching-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-15768-duathlon-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-15939-easy-shortest-path-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-16041-double-clique-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-16191-utilitarianism-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-1659-numbers-hard-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-17439-flower-shop-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-17442-three-minute-graph-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-17474-sequence-and-queries-26-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-17517-parklife-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-17625-high-voltage-line-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-17642-dynamic-diameter-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-17955-max-or-min-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-17973-quadrilaterals-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-18438-lcs-5-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-18473-fast-spanning-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-18586-salty-fish-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-18855-treatment-project-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-31403-a-plus-b-minus-c-python-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-3419-racing-car-trail-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-3444-robotic-sort-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-3527-jungle-outpost-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-7907-bytean-road-race-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-8235-prefixuffix-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-9063-bounding-rectangle-area-python-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-12-boj-9208-ringworld-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-13-boj-13263-tree-cutting-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-13-boj-1648-grid-tiling-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-13-boj-3878-point-separation-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-10076-holiday-ioi-2014-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-10254-highway-farthest-pair-rotating-calipers-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-10538-big-picture-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-11012-egg-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-11385-thinksmall-ntt-crt-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-11405-book-purchasing-min-cost-max-flow-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-11407-book-purchasing-3-mincost-maxflow-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-11408-yeolhyeolgangho-5-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-1144-cheap-cost-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-BOJ-11479-distinct-substrings-suffix-array-sam/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-11717-wall-making-game-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-11808-mario-and-evil-toad-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-11932-tree-kth-number-pst-lca-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-11933-factories-virtual-tree-lca-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-1210-mafia-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-12735-boat-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-12766-branch-assignment-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-BOJ-12771-oil-maximum-extraction-slope-sweep/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-12858-range-gcd-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-12876-half-plane-land-2-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-12918-cleaning-up-mirror-symmetry-hungarian-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-BOJ-12963-running-mincut-dsu-powers-of-three/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13034-polygon-game-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13161-division-of-sadness-st-mincut-dinic-cpp-python/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13261-prison-break-dp-dnc-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13309-tree-hld-fenwick-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13323-boj-sequence-1-slope-trick-pq-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13329-meteor-shower-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13510-tree-and-queries-1-hld-segment-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13537-sequence-and-queries-1-offline-bit-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13538-xor-query-persistent-trie-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13544-merge-sort-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13545-sequence-and-queries-0-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13546-sequence-and-queries-4-mos-sqrt-decomp-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13547-distinct-in-range-mos-algorithm-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13569-rounding-feasible-rounding-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13576-prefix-and-suffix-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13896-sky-tax-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13925-sequence-and-queries-13-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-13974-file-merge-2-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-14001-mole-tunnels/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-14166-robotic-cow-herd-fracturing-search-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-14177-awkwardness-minimization-dp-dnc-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-1420-dont-go-to-school-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-14560-communism-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-14636-money-for-nothing-monge-dnc-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-14869-cooking-lecture-dp-sliding-window-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-14870-shell-picking-dp-fenwick-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-14897-distinct-in-range-queries-1-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-14898-distinct-queries-2-persistent-segtree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-14959-slot-machines-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-15337-starting-a-scenic-railroad-service/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-15338-string-puzzle-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-15773-touch-the-sky-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-15974-dinosaur-footprint-dp-sliding-window-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-15977-harmonious-matrix-cdq-3d-lis-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-16074-mountaineers-minimax-mst-union-find-lca-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-16124-happiness-lazy-digit-replace-segment-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-16181-coloring-roads-hld-segtree-lazy-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-16367-tv-show-game-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-16404-seungbeom-company-subtree-range-add-point-query-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-16583-boomerangs-dfs-edge-pairing-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-16670-king-kog-reception-segment-tree/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-16877-pimber-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-16901-xor-mst-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-16903-sequence-and-queries-20-xor-trie-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-16977-histogram-queries-pbs-segtree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-16998-its-a-mod-mod-mod-mod-world-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-17104-goldbach-partition-2-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-BOJ-17134-lemoine-conjecture-fft-convolution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-17169-eat-economically-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-17353-falling-stars-r-l-plus-1-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-17399-tree-circumcenter-lca-binary-lifting-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-17429-international-messi-organization-hld-lazy-segtree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-17526-star-trek-li-chao-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-17613-jump-range-maximum-jumpnumber-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-1763-tree-coloring-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-BOJ-18123-tree-isomorphism-ahu/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-18227-water-tank-tree-bit-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-18485-nine-judges-plausible-set/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-BOJ-2261-closest-pair-of-points-divide-and-conquer/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-2316-city-round-trip-2-node-splitting-max-flow-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-2419-sasuatang-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-24272-more-root-nodes-better-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-2912-snow-white-and-dwarfs-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-2927-antarctic-expedition-link-cut-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-31397-half-cut-hard-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-31603-tree-quiz-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-3295-unidirectional-link-network-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-BOJ-3311-traffic-scc-interval-dp/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-3319-messengers-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-33651-vandalism-uapc-subsequence-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-3611-team-difficulty-densest-subgraph-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-3640-admiral-min-cost-max-flow-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-3683-cats-and-dogs-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-4001-minotaur-labyrinth-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-4012-convention-center-lexicographical-greedy-sparse-table-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-5250-shortest-paths-replacement-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-5466-merchant-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-5820-race-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-6171-land-grabbing-convex-hull-trick-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-8131-ploughing-sliding-window-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-8177-ice-skates-segment-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-8202-conspiracy-split-graph-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-8227-cloakroom-bitset-offline-knapsack-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-8872-billabong-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-8885-pirate-chest-water-displacement-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-8987-aquarium-3-cartesian-tree-segtree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-9244-pinball-line-sweep-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-9248-suffix-array-lcp-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-08-14-boj-9250-string-set-membership-aho-corasick-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-09-04-boj-17476-sequence-and-queries-28-segtree-beats-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-09-04-boj-18186-ramen-buying-large-greedy-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-09-04-boj-19955-invasion-war-bfs-dsu-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-09-04-boj-28460-card-game-mighty-simulator-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-09-16-boj-10854-divisions-number-of-divisors-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-09-16-boj-12728-n-power-calculation-last-three-digits-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-09-16-boj-15576-big-integer-multiplication-2-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-09-16-boj-16993-maximum-subarray-queries-segment-tree-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-09-16-boj-7626-rectangles-union-area-line-sweep-segment-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-10-14-boj-1031-star-battle-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-10-14-boj-13926-gcd-n-k-equals-1-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-10-14-boj-22289-big-integer-multiplication-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-10-14-boj-5051-pythagorean-mod-n-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-10-14-boj-8464-non-squarefree-numbers-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-02-boj-11869-nimble-game-theory-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-02-boj-13310-distant-star-convex-hull-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-02-boj-13925-sequence-query-13-segtree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-02-boj-14504-sequence-query-18-segtree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-02-boj-15782-calculate-2-tree-segtree-lazy-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-02-boj-16496-largest-number-greedy-sorting-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-02-boj-1725-histogram-maxarea-stack-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-02-boj-2626-helicopter-landing-site-minenc-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-02-boj-4354-string-power-period-kmp-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-02-boj-7577-exploration-difference-constraints-spfa-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-02-boj-8096-monochromatic-triangles-graph-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-03-boj-16481-excircle-incircle-geometry-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-03-boj-27533-walk-separately-lindstrom-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-03-boj-6567-let-it-bead-polya-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-04-BOJ-12844-xor/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-04-boj-12850-campus-walk-matrix-exponentiation-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-04-boj-13182-lottery-draw-expectation-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-04-boj-16313-janitor-troubles-geometry-brahmagupta-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-04-boj-16746-four-coloring-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-04-boj-16783-bulldozer-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-04-boj-16983-coin-collecting-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-04-boj-17682-tents-combinatorics-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-04-boj-17693-port-facility-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-04-boj-18526-bomas-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-04-boj-23336-sorting-problem-inversion-count-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-04-boj-23575-squid-game-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-04-boj-28489-2048-game-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-04-boj-29200-reducing-number-of-problems-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-08-boj-11868-nim-game-2-game-theory-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-08-boj-16741-emergency-evacuation-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-08-boj-17367-public-education-gambling-expectation-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-08-boj-19693-safety-stacks-smooth-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-08-BOJ-2709-smallest-k-last-digits-1-2-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-11-boj-11409-yeolhyeol-gangho-6-min-cost-max-flow-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-11-BOJ-20131-tree-making-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-11-BOJ-5920-cow-photography-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-12-BOJ-13618-rsa-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-12-boj-30853-black-box-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-12-BOJ-31222-sequence-and-not-so-hard-queries-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-12-BOJ-9817-necklace-of-beads-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-15-BOJ-14449-balanced-photo-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-15-BOJ-27046-beauty-contest-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-1185-europe-travel-mst-kruskal-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-13324-boj-sequence-2-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-13539-tree-and-query-11-link-cut-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-14853-coin-tossing-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-14899-sequence-and-queries-19-segtree-beats-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-15249-building-bridges-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-16745-what-goes-up-must-come-down-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-16895-nim-game-3-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-17441-fly-swatter-making-green-theorem-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-1777-permutation-recovery-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-17965-absolute-game-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-20176-needle-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-20506-kaisar-survival-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-22878-simple-problem-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-25201-board-flipping-game-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-2586-firetruck-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-2988-avogadro-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-3006-turbosort-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-32115-stone-placing-game-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-32190-ian-sequences-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-33543-two-in-a-team-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-3948-hongjuns-royal-guards-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-5498-batch-scheduling-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-5813-ideal-city-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-6223-cow-sorting-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-7727-byephone-hirschberg-lcs-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-19-BOJ-8155-postering-monotonic-stack-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-20-BOJ-10050-block-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-20-BOJ-13543-sequence-and-queries-2-implicit-treap-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-20-BOJ-17372-fibonacci-gcd-sum-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-20-BOJ-32231-jaewoos-third-retake-hyperbolic-geometry-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-20-BOJ-3752-gcd-matrix-determinant-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-22-BOJ-13028-minhos-wish-fenwick-offline-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-22-BOJ-13232-domain-clusters-scc-tarjan-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-23-BOJ-12012-closing-the-farm-dsu-offline-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2025/2025-12-23-BOJ-1258-problem-assignment-hungarian-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-01-02-BOJ-14289-bondae-walk-3-matrix-exponentiation-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-01-05-BOJ-18874-haircut-fenwick-tree-inversion-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-01-05-BOJ-9120-oulipo-multilingual-kmp-string-matching-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-01-24-BOJ-14288-company-culture-4-tree-queries-fenwick-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-01-24-BOJ-24271-xor-squared-xor-permutation-segment-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-01-24-BOJ-25172-graduation-trip-dynamic-connectivity-dsu-offline-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-01-30-BOJ-12925-numbers-matrix-exponentiation-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-01-30-BOJ-13055-k-inversions-fft-convolution-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-01-30-BOJ-15517-array-manipulation-at-moloco-hard-fenwick-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-02-05-BOJ-13013-suffix-array-2-min-distinct-characters-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-02-05-BOJ-19646-random-generator-fenwick-tree-order-statistics-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-02-05-BOJ-6194-building-the-moat-convex-hull-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-02-06-BOJ-17481-favorite-member-bipartite-matching-hopcroft-karp-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-02-06-BOJ-21814-united-cows-of-farmer-john-fenwick-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-02-23-BOJ-16879-palace-game-grundy-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-02-23-BOJ-17408-sequence-and-query-24-segment-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-02-23-BOJ-4297-ultra-quicksort-inversion-count-bit-cpp-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-02-24-BOJ-12932-karaoke/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-03-10-BOJ-11238-fibo-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-03-10-BOJ-24491-searching-for-soulmates-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Algorithm/2026/2026-03-10-BOJ-8927-squares-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/00-getting-started-android-hardware-development/index.md | 91 | 2026-07-26 | 1 | 통과 | 1.0 | 없음(경미: ART/Updates(OTA)/Storage(암호화) 3개 주제가 00–18장 커리큘럼에 명시 배정되지 않음) |
-| content/collection/android-hardware-development/01-hardware-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/02-android-architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/03-kernel-development/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/04-hal-development/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/05-system-services/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/06-framework-customization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/07-device-drivers/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/08-bootloader-development/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/09-performance-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/10-security-implementation/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/11-certification-compliance/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/12-android-application-development/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/13-aosp-build-system/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/14-native-development/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/15-graphics-media-framework/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/16-on-device-ai-ml-integration/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/17-android-graphics-engine/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/android-hardware-development/18-system-integration-testing/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/bashshell/ls/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/bashshell/ps/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/bashshell/redirection/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/01-clean-code-fundamentals-what-is-clean-code/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/02-clean-code-fundamentals-exercises/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/03-meaningful-naming-conventions-variables-functions/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/04-meaningful-naming-conventions-exercises/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/05-clean-functions-single-responsibility-principle/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/06-clean-functions-refactoring-exercises/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/07-code-comments-documentation-best-practices/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/08-code-comments-documentation-exercises/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/09-code-formatting-style-consistency/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/10-code-formatting-style-exercises/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/11-objects-vs-data-structures-design-patterns/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/12-objects-vs-data-structures-exercises/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/13-error-handling-exceptions-best-practices/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/14-error-handling-exceptions-exercises/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/15-api-boundaries-third-party-integration/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/16-unit-testing-tdd-test-driven-development/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/17-unit-testing-tdd-exercises/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/18-clean-classes-solid-principles-oop/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/19-clean-classes-solid-principles-exercises/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/20-system-design-dependency-injection-architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/21-emergent-design-simple-design-principles/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/22-concurrency-multithreading-parallel-programming/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/clean-code/23-refactoring-techniques-legacy-code-improvement/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/cmd/0_cmd/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/cmd/del/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/cmd/rmdir/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/abstract_factory/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/adapter/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/bridge/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/builder/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/chain_of_responsibility/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/command/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/composite/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/decorator/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/facade/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/factory_method/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/final/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/flyweight/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/interpreter/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/iterator/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/mediator/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/memento/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/observer/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/overview/index.md | 95.2 | 2026-07-27 | 3 | 통과 | 1.0 | 없음(경미: 생성/행위 패턴 절 도입 문단 추가 여지, Abstraction 태그 본문 명시 약함) |
-| content/collection/designpattern/prototype/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/proxy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/singleton/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/state/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/strategy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/templete_method/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/designpattern/vistor/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/llm-from-scratch/00-introduction/index.md | 100 | 2026-07-29 | 3 | 통과 | 1.0 | 없음(1차 치명결함이었던 "13개 챕터 vs 실제 12개 챕터 표" 불일치를 12개로 정정, 2차 지적된 데이터 큐레이션·평가 방법론 범위 제외를 본문에 명시해 해소) |
-| content/collection/llm-from-scratch/01-ai-math-foundations/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/llm-from-scratch/02-neural-network-training/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/llm-from-scratch/03-rnn-to-transformer/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/llm-from-scratch/04-tokenization-and-embedding/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/llm-from-scratch/05-self-attention/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/llm-from-scratch/06-gpt-architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/llm-from-scratch/07-knowledge-storage/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/llm-from-scratch/08-fine-tuning-and-lora/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/llm-from-scratch/09-instruction-tuning/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/llm-from-scratch/10-rlhf-and-dpo/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/llm-from-scratch/11-reasoning-models/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/llm-from-scratch/12-serving-efficiency/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/1997/1997-07-11-contact-1997-science-faith-cosmic-journey/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/1998/1998-07-15-theres-something-about-mary-1998/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2003/2003-01-30-good-morning-vietnam-1987-review/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2008/2008-06-27-wall-e-2008-love-saves-humanity/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2016/2016-10-20-doctor-strang-2016/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2017/2017-02-10-John-Wick-Chapter-2-2017/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2017/2017-10-27-coco-2017-family-memory-mexican-tradition/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2023/2023-06-06-bicentennial-man-1999-robots-quest-humanity/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2023/2023-06-29-TheGood-TheBad-TheWeird-2008/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2023/2023-11-27-The-Burial-2023/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2023/2023-12-27-Ghosted-2023/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2024/2024-01-28-wish-2024/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2024/2024-01-31-wonka-2023-chocolate-magician-origin/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2024/2024-02-27-dune-2021-desert-prophecy-begins/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2024/2024-03-05-lift-2024/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2024/2024-08-05-ghost-in-the-shell-2017-cyberpunk-identity/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2024/2024-09-20-A-Man-Called-Otto-2022/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-02-10-hugo-movie-2011-review/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-04-15-minecraft-movie-2025-review/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-07-16-thunderbolts-2025-wounded-heroes-redemption/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-08-05-paddington-2014-multicultural-acceptance-family-film/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-08-05-paddington-2-2017-kindness-justice-family-values/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-08-05-tangled-2010-disney-rapunzel-fairy-tale/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-08-10-how-to-train-your-dragon-2025-live-action-remake/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-08-21-ad-astra-2019-father-son-relationship-space-odyssey/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-08-25-mission-impossible-the-final-reckoning-2025-final-reckoning-research-dossier-plot-deep-dive/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-08-30-f1-the-movie-2025-review/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-08-31-escape-plan-2-hades-2018-review/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-09-08-k-pop-demon-hunters-2025-review/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-09-11-master-and-commander-the-far-side-of-the-world-2003-review/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-09-24-gullivers-travels-2010-family-fantasy-comedy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-10-17-the-fantastic-four-first-steps-2025/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-11-03-jurassic-world-rebirth-2025-survival-island/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-11-08-nobody-2-2025-deadly-vacation-revenge/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-11-22-superman-2025-dark-gods-metahuman-revelation/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-12-15-mr-and-mrs-smith-2005-married-assassins-action-comedy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-12-15-zootopia-2016-bias-prejudice-coexistence/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2025/2025-12-21-the-aviator-2004-howard-hughes-aviation-obsession/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2026/2026-01-01-avatar-fire-and-ash-2025-grief-hatred-cycle/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2026/2026-01-01-tron-ares-2025-permanence-code-ai/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2026/2026-01-02-transcendence-2014-mind-upload-singularity/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2026/2026-01-05-elio-2025-loneliness-communiverse-first-contact/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2026/2026-01-28-the-bad-guys-2-2025-reformed-criminals-heist/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2026/2026-02-04-zootopia-2-2025-reptiles-framed-partners/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Movies/2026/2026-02-22-inception-2010-dream-within-dream/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/multithreading-design-patterns/00-introduction/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/multithreading-design-patterns/01-concurrency-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/multithreading-design-patterns/02-locking-idioms/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/multithreading-design-patterns/03-waiting-coordination/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/multithreading-design-patterns/04-data-flow-producer-consumer/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/multithreading-design-patterns/05-read-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/multithreading-design-patterns/06-thread-pool/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/multithreading-design-patterns/07-future-promise/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/multithreading-design-patterns/08-active-object/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/multithreading-design-patterns/09-reactor/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/multithreading-design-patterns/10-proactor-half-sync/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/multithreading-design-patterns/11-shared-avoidance/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/on-device-ai-compression/00-introduction/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/on-device-ai-compression/01-pruning/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/on-device-ai-compression/02-quantization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/on-device-ai-compression/03-knowledge-distillation/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/on-device-ai-compression/04-llm-pruning/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/on-device-ai-compression/05-llm-quantization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/on-device-ai-compression/06-efficient-inference/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/aggregate-repository-pattern/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/analysis-design-core-concepts/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/architecture-design-layer-separation/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/class-diagram-relationship-modeling/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/clean-hexagonal-architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/dependency-management-interface-design/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/design-principles-pattern-strategy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/domain-driven-design-core-concepts/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/dynamic-modeling-sequence-state/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/event-driven-architecture-cqrs/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/extensibility-flexibility-design-techniques/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/legacy-system-modernization-strategy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/microservices-architecture-ooad/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/oop-four-principles-deep-analysis/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/oop-paradigm-essence-philosophy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/requirement-analysis-domain-modeling/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/solid-principles-practical-application/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/strategic-design-bounded-context/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/tactical-design-entity-value-object/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/ooad/usecase-based-analysis-techniques/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/00_why_python/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/01_environment_setup/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/02_basic_syntax/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/03_control_flow/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/04_functions/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/05_data_structures/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/06_file_io/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/07_error_handling/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/08_modules_packages/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/09_oop_basics/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/10_oop_advanced/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/11_standard_library/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/12_regex/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/13_decorators/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/14_generators_iterators/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/15_context_managers/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/16_metaclasses/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/17_concurrency/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/18_async_programming/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/19_performance_optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/20_memory_management/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/21_networking/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/22_database/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/23_web_development/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/24_testing_debugging/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/25_packaging_deployment/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/26_design_patterns/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/27_algorithms_data_structures/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/28_project_architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/29_code_quality/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python/30_advanced_topics/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/00_overview/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/01_basic/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/02_built_in_function/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/03_strings/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/04_collections_list_tuple_set/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/05_dict_patterns/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/06_control_flow/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/07_functions_params/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/08_oop_classes/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/09_decorators/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/10_comprehensions_generators/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/11_errors_exceptions/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/12_context_managers/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/13_files_pathlib_encoding/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/14_modules_imports/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/15_venv_pip_tools/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/16_env_variables/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/17_argparse_cli/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/18_subprocess/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/19_typing_practical/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/20_dataclasses_attrs/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/21_enum_flag/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/22_copy_deepcopy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/23_match_case/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/24_abc_abstract/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/25_metaclass/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/26_descriptor/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/27_inspect/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/28_itertools_functools/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/29_operator/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/30_collections_advanced/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/31_heapq_bisect/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/32_contextlib_advanced/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/33_textwrap/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/34_pprint_reprlib/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/35_json_csv/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/36_xml/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/37_datetime_timezone/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/38_zoneinfo/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/39_regex_safely/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/40_urllib_parse/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/41_configparser_toml/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/42_pickle/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/43_struct_bytes/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/44_database/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/45_weakref/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/46_math_statistics/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/47_decimal_fractions/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/48_random/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/49_uuid/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/50_hashlib_secrets/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/51_os_advanced/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/52_sys_advanced/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/53_shutil_tempfile/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/54_zipfile_tarfile/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/55_signal/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/56_atexit/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/57_logging_debugging/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/58_pdb_advanced/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/59_testing_basics/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/60_unittest_mock/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/61_profiling/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/62_packaging_advanced/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/63_asyncio_patterns/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/64_concurrency/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/65_http_requests/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/66_http_server/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/67_socket_basics/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/python-cheatsheet/68_email_smtplib/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/rag-and-retrieval/00-introduction/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/rag-and-retrieval/01-classical-ir/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/rag-and-retrieval/02-dense-retrieval/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/rag-and-retrieval/03-rag-pipeline/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/rag-and-retrieval/04-approximate-nearest-neighbor/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/rag-and-retrieval/05-graph-rag/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/rag-and-retrieval/06-mcp-text2sql/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/rag-and-retrieval/07-cross-encoder-training/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/array-object-manipulation/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/asynchronous-javascript/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/component-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/configure-store/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/create-async-thunk/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/create-slice/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/es6-essential-syntax/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/getting-started-redux/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/immutability-in-redux/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/javascript-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/normalization/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/practice-blog-app/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/practice-counter-todo/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/practice-rtk-app/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/react-redux-basics/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/react-redux-hooks/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/redux-core-concepts/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/redux-data-flow/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/redux-middleware/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/redux-performance-debugging/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/redux-project-structure/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/redux-saga/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/redux-thunk/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/redux-toolkit-introduction/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/redux-typescript/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/rtk-query/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/selector-patterns/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/testing-ecommerce-app/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/typescript-basics/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/what-is-redux/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/redux/when-to-use-redux/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/00-introduction/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/01-software-architecture-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/02-architecture-design-principles/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/03-architecture-patterns-and-styles/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/04-modern-architecture-paradigms/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/05-quality-attributes-and-architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/06-architecture-documentation/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/07-architecture-evaluation-and-analysis/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/08-practical-case-studies/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/09-ddd-strategic-design-fundamentals/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/10-ddd-tactical-design/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/11-data-architecture-strategy/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/12-distributed-systems-architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/13-cloud-native-architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/14-api-management-and-integration-architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/15-enterprise-architecture-management/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/software-architecture/16-advanced-architecture-practice/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/testing/3A-arrange-act-assert/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/testing/test-smell/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2021/2021-09-17-squid-game-season-1-survival-capitalism/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2024/2024-01-02-Car-Masters--Rust-to-Riches-Season-05/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2025/2025-01-27-squid-game-season-2-revenge/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2025/2025-07-06-squid-game-season-3-review/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2025/2025-08-13-around-the-world-since-i-was-born-season-4-review/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2025/2025-08-13-car-masters-rust-to-riches-season-6-review/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2025/2025-09-08-3-body-problem-season-1-first-contact/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2025/2025-11-02-loki-s01-2021-time-variance-authority/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2025/2025-11-02-young-sheldon-complete-series-2017-child-prodigy-journey/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2025/2025-12-13-three-idiot-in-kenya-2025-netflix-spin-off-variety/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2025/2025-12-16-mr-sunshine-2018-korean-independence-romance/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2026/2026-03-11-snowpiercer-s01-2020-class-revolution-train/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2026/2026-03-12-snowpiercer-s02-2021-wilford-power-struggle/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2026/2026-03-13-snowpiercer-s03-2022-new-eden-split/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/TV-Show/2026/2026-03-14-snowpiercer-s04-2024-final-ride-new-eden/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/unittesting/anatomy-of-a-unit-test/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/unittesting/four-pillars-of-good-unit-tests/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/unittesting/goal-of-unit-testing/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/unittesting/mocking-best-practices/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/unittesting/mocks-and-test-fragility/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/unittesting/refactoring-toward-valuable-tests/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/unittesting/styles-of-unit-testing/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/unittesting/testing-the-database/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/unittesting/unit-testing-anti-patterns/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/unittesting/unit-testing-overview/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/unittesting/what-is-a-unit-test/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/unittesting/why-integration-testing/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/vision-ai-foundations/00-introduction/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/vision-ai-foundations/01-vision-background/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/vision-ai-foundations/02-dnn-to-cnn/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/vision-ai-foundations/03-vision-transformer/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/vision-ai-foundations/04-vit-variants/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/vision-ai-foundations/05-object-detection/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/vision-ai-foundations/06-object-tracking/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/vision-ai-foundations/07-segmentation/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-02-07-vocabulary-aid-meaning-and-usage/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-02-08-conception/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-02-14-giveaway/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-02-14-rash/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-02-17-illegitimate/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-02-28-sensation/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-05-22-vocabulary-sauce-dressing-spread-condiment-differences/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-05-31-orthography-spelling-rules-and-importance/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-07-16-parenting-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-07-29-alienate-etymology-meaning-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-08-04-basics-vocabulary-guide/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-08-06-consent-permission-agreement-to-something/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-08-07-mature-development-growth-completion/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-08-21-guarantee-assurance-warranty/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-09-02-provide-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-09-04-pipeline-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-09-09-treat-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-09-19-retract-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-09-29-cramp-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-09-29-scribble-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-01-root-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-10-hinge-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-13-gladiatorial-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-14-ridicule-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-24-beat-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-24-intuitively-adverb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-24-moderate-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-28-acquaint-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-28-adolescence-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-28-indestructible-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-28-inn-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-28-instigate-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-28-remedy-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-28-scramble-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-28-screen-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-28-syndrome-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-10-28-thatched-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-11-25-recurrent-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-12-08-bulk-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-12-08-piece-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-12-08-rowdy-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-12-08-slouch-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-12-12-delinquency-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-12-12-gray-area-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-12-15-cinematic-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-12-17-paleolithic-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-12-17-ripcord-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-12-19-cynicism-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2025-12-19-run-down-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2025/2026-05-22-track-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-02-craft-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-02-earnestness-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-02-inconsequential-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-02-inhibited-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-02-in-store-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-24-analog-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-24-booth-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-24-close-knit-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-24-cue-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-24-dormant-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-24-lobbyist-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-24-pigment-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-24-steaming-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-28-overbearing-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-01-30-representation-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-02-05-ripple-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-02-06-inadequacy-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-02-11-myth-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-02-11-prosperous-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-02-23-burned-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-02-23-defect-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-02-23-engrave-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-02-23-fill-someone-shoes-phrase-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-02-23-grated-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-02-23-stimulation-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-02-23-superimpose-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-02-23-unspoiled-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-02-25-act-on-phrasal-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-06-duel-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-06-repression-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-09-ad-hoc-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-09-equal-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-09-ghostwrite-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-09-playful-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-09-put-down-phrasal-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-09-seniority-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-09-zone-out-phrasal-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-10-innocent-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-10-recognition-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-10-second-thoughts-idiom-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-10-slip-up-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-10-standout-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-18-disposition-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-19-audio-guide-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-19-esophagus-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-19-gluten-free-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-19-narrow-down-phrasal-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-19-save-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-19-spend-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-27-compensate-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-27-competent-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-27-ethically-adverb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-27-layer-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-27-overuse-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-27-whoosh-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-03-30-deliberate-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-04-13-consumption-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-04-13-toxicologist-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-04-21-absenteeism-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-04-21-lacquerware-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-05-08-soft-spot-phrase-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-05-26-shaggy-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-05-26-tiresome-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-06-01-faceless-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-06-01-rev-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-06-05-marker-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-06-22-need-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-06-22-termination-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-06-22-uneventful-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/collection/Vocabulary/2026/2026-06-22-whisk-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2018/2018-07-10-remove-all-docker-container/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2018/2018-12-06-install-ubuntu-16.04-on-lattepanda/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2019/2019-01-31-tmux/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2019/2019-02-13-exit-and-exit-status/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2019/2019-02-13-extrac-directory-path-and-file-name/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2019/2019-02-14-exit-code-with-special-meanings/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2019/2019-02-26-set-static-ip-on-ubuntu-14-04/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2019/2019-03-29-launchy/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2019/2019-04-02-pip-install-with-proxy/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2019/2019-05-31-utorrent-queueing/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2020/2020-05-12-listing-files-in-order/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-04-06-rdp-wrapper-issue/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-04-07-github-desktop-update/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-04-07-git-reset/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-04-07-window10-multiuser-kakaotalk/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-04-13-reser-corsair-keyboard/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-04-14-linux-unzip/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-04-27-distructor-called-by-runtime/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-04-28-dotnet-conditional-compileation-option/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-04-28-MSB1008/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-04-29-get-process-environment-value/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-05-06-why-reflection-is-slow/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-05-17-shell-script-number-example/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-07-08-define-in-namespace/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-07-09-get-file-name-in-shell/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-07-12-unmout-vbsbuild/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-08-05-shell-wait/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-08-18-regex-match/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-10-27-custom-loader/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-11-11-custom-signal-launcher/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-11-24-rpm-spec-comments/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/2021-12-05-sw-developers-principal-mind/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/comments/2021-04-13-comments/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/jekyll/2021-04-06-make-collections/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2021/jekyll/2021-10-13-plantuml-in-jekyll/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-01-26-class-struct/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-01-28-cpp-string-find/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-02-07-add-image-caption/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-02-07-minimal-mistake-wide-page/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-02-08-add-line-number-in-karmdown/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-02-14-convert-long-to-int/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-02-24-markdown-latex/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-02-28-add-Copy-code-to-clipboard/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-03-07-javascript-comment/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-03-15-lessons-learned-from-the-smartest-soft-engineer/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-03-15-pair-programming-anti-pattern/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-03-16-css-history/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-03-16-there's-no-such-things-as-clean-code/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-03-16-windows-defender-is-enough/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-03-18-announcing-dotnet-7-preview-2/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-03-18-mistake-when-using-string/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-03-29-cpp-cout-precision/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-04-04-how-to-use-deleter-for-uniuqe-ptr/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-04-05-source-gernerator/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-04-15-btop/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-04-29-how-to-get-latest-information/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-05-19-law-of-demeter/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-06-02-garmin-workout-list/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-06-07-openverse/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-06-09-linux-filesystem/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-06-27-linux-command-loop-execute/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-06-27-markwhen/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-06-28-qbittorrent/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-07-05-hyperv-bank-remote/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-07-07-github-dev/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-07-26-git-story/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-12-11-how-to-use-candellation-token-source/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-12-30-comprehensive-rust/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-12-30-learn-prompting/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-01-11-online-python-lecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-01-11-rust/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-01-13-restart-plex-media-server/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-01-13-size-check-with-symlink/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-01-25-nut.js/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-02-13-dlopen/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-05-31-lyft/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-06-01-gpt4-nerfing/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-06-02-dynamic-loading-in-cpp/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-06-02-future-of-ai/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-06-06-cpu-vs-gpu/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-06-07-serverless-monoliths/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-06-23-api-gateway-vs-load-balancer/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-07-02-solid/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-07-17-reinforcement-learning/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-07-22-design-pattern/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-09-21-builder-pattern/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-09-21-crontab/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-09-22-abstract-factory-pattern/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2023/2023-10-31-btrfs/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-07-csharp-array/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-07-csharp-async-await/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-07-csharp-data-types/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-07-csharp-variable-constant/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-08-DDD/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-08-reverse-mapped-types/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-13-Broadcast-Channel-API/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-13-Disagree-and-Commit/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-14-CSharp-fundamental/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-14-CSharp-interface-and-abstact-class/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-14-csharp-intro/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-14-CSharp-OOP/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-19-Collision-Detection/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-19-PyTorch-vs-JAX/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-19-Quad-Tree/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-19-test-coverage/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-20-singleton/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-21-factory-method/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-22-abstract-factory/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-22-builder/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-22-JAX-vs-PyTorch/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-22-prototype/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-22-Relational-vs-Non-Relational-Datebase/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-26-bubble-sort/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-26-CSharp-regex/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-26-Function-programming/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-26-python-logging/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-26-python-regex/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-26-typescript-inference/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-27-algorithm/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-27-c4-model/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-27-coding-test/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-27-cpp-safty/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-27-Database/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-27-gen-ai-architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-27-kubernetes-gateway-api/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-27-two-sum/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-28-Docker/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-28-sql-index/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-29-crdt/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-08-29-microservices-communication/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-09-01-aicd/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-09-09-entity-framework/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-09-09-file-system/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-09-09-latency-metrics/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-09-09-Refactoring/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-09-09-rest-vs-graphql/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-09-09-zkp/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-09-10-api-strategy/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-09-10-LangGraph/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-09-10-Shell-Redirection/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-09-10-web-font/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-09-13-architectual-metapattern/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-09-23-advenced-python/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-09-23-distrubute-system/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-02-agi/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-10-optimizing-regex/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-14-iot-optimization/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-14-python-systemv/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-14-spacex-starship/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-15-crlf/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-15-csharp_record/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-15-csharp-class/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-15-csharp-generic/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-15-csharp-interface/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-15-csharp-program-structure/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-15-csharp-type-system/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-15-pythin-shutil/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-15-python-itertools/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-15-safe-cpp/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-16-csharp-anonymous-types/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-16-csharp-discards/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-16-csharp-object-oriented/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-16-csharp-pattern-matching/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-16-csharp-tuple/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-16-two-pointers/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-17-data-protection/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-17-exception/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-17-internet-io-domain/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-17-networking-latency/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-17-on-the-nature-of-time/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-17-python-decorator/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-18-event-driven-architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-10-23-color-brewer/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-11-08-Alonzo-Church/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-11-08-FFmpeg/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-11-08-python-clean-code/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-11-08-python-oop/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-11-27-rcu/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-11-28-reactive-html-noteboot/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-12-18-huyen-chip-blog/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-12-25-urwerk/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-12-26-red-queen-effect/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2024/2024-12-27-vscode-find-regular-expression/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-01-01-potplayer-auto-generated-subtitle/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-01-10-disable-webex-taskbar-sharing/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-01-10-rdp-explorer-hiding-issue/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-01-13-automatically-add-yourself-as-cc-in-outlook/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-01-13-vscode-1password-korean-input-issue/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-04-rdp-clipboard-share-between-host-and-remote-session/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-07-self-trust-and-confidence/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-09-how-not-to-do-crypto/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-09-kanata-keyboard-remapper/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-10-mathematical-handwriting/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-10-yoonsound-brick-speaker/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-11-fake-scientific-papers/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-11-nvidia-project-digits/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-17-chuwi-hi10-max-tablet/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-17-linux-user-management/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-17-ocr4all-introduction/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-17-pocket-4-handheld-pc/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-20-kvm-over-ip-based-on-raspberry-pi-pikvm/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-20-win32-api-messagebox-topmost/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-24-network-windows-share-folder-synology-nas-cifs-nfs-guide/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-28-csharp-lock-free-priority-queue/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-28-deepsearcher-empowering-local-deep-research-with-open-source-innovation/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-02-28-the-historical-evolution-of-beatboxing-a-journey-through-vocal-art-past-and-present/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-03-04-wheel-balance-necessary-for-cars-optional-for-bikes/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-03-05-html-as-a-programming-language-exploration-centered-on-html-lang-org/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-03-05-the-300-year-history-of-coding-from-mechanical-punch-cards-to-modern-programming/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-04-02-remote-desktop-windows-remote-desktop-app-ssh-tunnel-connection-error-0x516-cause-and-solution/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-04-04-hdmi-cec-integration-pc-tv-power-management-automation/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-04-19-synology-photos-duplicate-photos-finding-and-removing/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-05-20-the-secrets-of-code-optimization-pushing-conditionals-up-and-loops-down/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-05-21-how-to-display-multiple-notification-banners-in-windows/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-05-22-automatic-file-organization-script-after-torrent-download-completion/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-05-22-one-ui-7-bug-report-galaxy-z-fold-6/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-05-23-nara-spell-checker-renewal-barun-hangul-new-features-and-characteristics/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-05-24-hyper-v-virtual-machine-resolution-setting-set-vmvideo-utilization-guide/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-07-17-windows-batch-admin-privilege-uac-elevation-guide/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-07-29-windowing-techniques-stream-processing-data-analysis-guide/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-07-30-chatgpt-study-mode-introduction/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-08-01-faststone-image-viewer-8-1-review/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-08-04-pyinstaller-python-executable-deployment-guide/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-08-06-hugo-archetypes-complete-guide/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-08-06-thrustmaster-sol-r-2-hosas-space-sim-duo-review/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-08-08-gpt-5-introduction/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-08-10-cursor-playwright-mcp-setup/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-08-13-cursor-agent-powershell-hang-fix-ps7/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-08-21-hugo-alias-noindex-canonical-seo-best-practices/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-08-21-protocol-buffers-proto3-guide/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-08-26-grpc-proto-compatibility-and-versioning-safely-evolving-apis/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-08-27-windows-11-mstsc-taskbar-fix-automation/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-08-29-github-pages-redirect-301-hugo-alias-seo/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-01-bermuda-triangle-facts-myths-science/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-01-big-o-notation-visual-guide-samwho/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-01-cognitive-load-in-code-practical-guide/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-01-gitignore-cache-clear-fix/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-01-opengraph-examples-introduction-og-guide/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-01-the-web-does-not-need-gatekeepers-open-web-agents-authz/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-09-rss-vs-ice-how-rss-beat-microsoft/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-10-kakao-openai-strategic-collaboration/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-15-cursor-cli/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-16-apple-memory-integrity-enforcement-mie/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-16-npp-vs-n-plus-equals-1/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-16-term-everything-run-gui-in-terminal/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-17-jina-ai-reader-url-to-llm-friendly-input/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-18-hugo-url-viewer/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-18-windows-11-dual-monitor-1920x1080-120hz-dpi-100/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-21-chatgpt-students-100-prompts/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-09-29-gcc-finstrument-functions-usage/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-10-01-chatgpt-engineers-use-cases/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-10-01-chatgpt-for-it-teams/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-10-02-simucube-professional-sim-racing-equipment-manufacturer/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-10-13-hyperv-enhanced-session-windows-hello-fix/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-10-14-interval-overlap-check-half-open-demorgan/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-10-14-rsa-private-exponent-lambda-n-vs-phi-n/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-10-16-markdown-preview-enhanced/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-10-24-deepseek-ocr/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-10-28-jetkvm-next-generation-open-source-kvm-over-ip/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-10-29-markdown-heading-regex-guide/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-10-30-cursor-composer-fast-frontier-model/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-10-30-why-cpp-still-used/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-11-18-biosphere-2-terraforming-closed-ecosystem-experiment/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-11-22-treewa-custom-keyboard-palmrest/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-11-25-generative-ai-most-popular-prompts-statistics/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-12-10-easylink-u2u-mechanical-keyboard-qmk-vial-review/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-12-20-find-frontmatter-missing-description-powershell/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-12-23-hero-infographic-generator-usage/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2025/2025-12-23-privacy-marketing-anonymity-architecture/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-01-05-beancount-double-entry-accounting/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-01-28-everything-claude-code/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-02-03-robust-photo-management-system-immich/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-02-04-s-expression-syntax/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-02-20-cannondale-smartsense-gen2-cycling-safety/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-02-22-history-of-calendars-fascinating-story/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-02-23-flashpoint-archive-web-game-preservation/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-02-23-modern-css-stop-writing-like-2015/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-02-24-hugo-build-optimization-github-pages/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-02-24-tag-improvement-summary/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-02-25-github-actions-hugo-webp-cache-build-time/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-03-12-speaker-diarization-stt-open-source/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-05-03-quantum-computing-bitcoin-threat/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-06-30-four-pillars-of-success-park-yonghoo/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-06-30-surface-go-1st-gen-linux-install-guide/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-07-01-insane-research-claude-code-deep-research-plugin/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-07-05-kanata-windows-capslock-rdp-race/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-07-08-claude-code-deep-research-plugins-comparison/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-07-08-rogerebert-2026-best-films-so-far/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-07-20-critical-path-tracing-distributed-latency/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2026/2026-07-21-k-skill-korean-agent-skills/index.md | - | - | 0 | 미채점 | - | - |
-| content/post/2022/2022-03-16-there's-no-such-things-as-clean-code/index.md | - | - | 0 | 미채점 | - | - |
+**만료 규칙**(이 절이 정본이다 — `SKILL.md`는 이 규칙을 참조만 한다). 아래 셋 중 하나라도 해당하면 그 행의 `통과`/`에스컬레이션` 판정은 **무효**이며, 선정 로직(`SKILL.md` Stage 0)은 해당 글을 재채점 대상에 포함한다. 무효 판정 자체는 표의 `상태` 값을 바꾸지 않는다(재채점이 실제로 일어난 시점에만 갱신) — 판별은 선정 시점에 계산한다.
+
+1. **콘텐츠 변경**: 행의 `콘텐츠해시`가 현재 파일의 해시와 다르면 무효. 통과 후 본문을 고쳤는데 `통과`가 남아 있는 상태를 막는다. **우선순위: 미채점과 동일**.
+2. **기간 만료**: `채점일`로부터 **365일**이 지나면 무효. **우선순위: 미채점과 동일**.
+3. **버전 불일치**: 행의 `루브릭버전`이 `rubric.md`의 현재 버전과 다르면 무효. 단 **부분 만료**로 취급해 **재채점 큐의 최하위**에 둔다 — 미채점 글을 모두 소진한 뒤에 처리한다.
+
+> **부분 만료를 두는 이유**: 버전을 올릴 때마다 기존 통과 행이 한꺼번에 무효화되면(1.1 전환 시점 기준 226행) 미채점 1,332건과 겹쳐 큐가 사실상 소진되지 않는다. 버전 불일치는 "글이 나빠졌다"는 신호가 아니라 "잣대가 바뀌었다"는 신호이므로, 아직 한 번도 채점하지 않은 글보다 뒤에 두는 것이 옳다.
+>
+> **1.0 → 1.1 전환 주의**: 1.1은 앵커 척도 자체를 바꿨으므로 1.0 점수와 1.1 점수는 **서로 비교할 수 없다**. 아래 표에서 `루브릭버전`이 `1.0`인 행의 점수는 구 척도 값이다. 또한 1.1 마이그레이션 시점에 채워 넣은 `콘텐츠해시`는 "채점 당시"가 아니라 **마이그레이션 당시** 파일의 해시다(채점 시점의 내용은 기록에 남아 있지 않다). 어차피 버전 불일치로 재채점 대상이므로 실사용에 문제는 없다.
+
+- **시딩**: 본문(아래 표)이 비어 있으면 `SKILL.md`의 "점수판 운영 — 시딩" 절차로 게시글을 1회 등록한다. 등록·스캔은 `python script/post_lint.py --scan`이 수행한다.
+
+| 글 경로 | 최신점수 | 채점일 | 반복수 | 상태 | 루브릭버전 | 콘텐츠해시 | 주요 미달항목 |
+|---------|---------:|--------|-------:|------|:----------:|:----------:|---------------|
+| content/collection/multithreading-design-patterns/12-coroutine-reinterpretation/index.md | 93.1 | 2026-07-09 | 2 | 통과 | 1.0 | 8e3d8d7 | 없음(경미: ActiveObject 104줄 코드 블록의 문단 비율) |
+| content/collection/multithreading-design-patterns/13-lockfree-reclamation/index.md | 96.1 | 2026-07-09 | 2 | 통과 | 1.0 | d518b3f | 없음 |
+| content/collection/cleanarchitecture/00-clean-architecture-overview-introduction/index.md | 94.0 | 2026-07-20 | 6 | 통과 | 1.0 | fbd3584 | 없음(경미: OrderController placeOrder() 반환타입 제네릭 불일치, 어댑터 블록 내 public 클래스 2개 공존, Concentric-Circles 태그 tags.yaml 미등재) |
+| content/collection/cleanarchitecture/01-architecture-history-evolution-introduction/index.md | 91 | 2026-07-18 | 2 | 통과 | 1.0 | 083e4d2 | 없음(경미: 흔한 오해 절 부재, 다음장 하이퍼링크 없음) |
+| content/post/2026/2026-07-25-omniroute-ai-gateway/index.md | 100 | 2026-07-25 | 2 | 통과 | 1.0 | 55fe8f7 | 없음 |
+| content/collection/cleanarchitecture/02-layered-architecture-limitations-history/index.md | 90.7 | 2026-07-20 | 4 | 통과 | 1.0 | 3dbebd1 | 없음(경미: Reenskaug 1979 인용 서지사항 검증 링크 부재, 프레임워크종속성/계층건너뛰기 절 코드 뒤 해설 여지) |
+| content/collection/cleanarchitecture/03-hexagonal-architecture-ports-adapters/index.md | 96.1 | 2026-07-20 | 4 | 통과 | 1.0 | 432ede5 | 없음(경미: 장점/한계 절 일부 문단 확장 여지) |
+| content/collection/cleanarchitecture/04-onion-architecture-domain-centric-design/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 1.0 | 046e3cc | 없음(경미: 패키지구조 절 리드문단 부재, 코드 보조타입 미정의) |
+| content/collection/cleanarchitecture/05-clean-architecture-birth-uncle-bob/index.md | 97 | 2026-07-20 | 4 | 통과 | 1.0 | 0afe484 | 없음(경미: 미승인 태그 11개 data/tags.yaml 미등재, Guide 태그 본문 근거 약함) |
+| content/collection/cleanarchitecture/06-introduction-software-design-architecture/index.md | 94.6 | 2026-07-20 | 6 | 통과 | 1.0 | 69e8cff | 없음(경미: "천국: 좋은 아키텍처" 소절 리스트 후 연결문단 여지) |
+| content/collection/cleanarchitecture/07-design-vs-architecture-definition/index.md | 96.1 | 2026-07-20 | 4 | 통과 | 1.0 | da53a3e | 없음(경미: 일부 절 리드 문단 보강 여지) |
+| content/collection/cleanarchitecture/08-two-values-behavior-structure/index.md | 96.1 | 2026-07-20 | 5 | 통과 | 1.0 | 04a0e81 | 없음(경미: "소프트웨어의 어원"/"논리적 반박" 절 리드 문단 여지, 인용 4회 반복에 장 번호 미표기) |
+| content/collection/cleanarchitecture/09-programming-paradigms-introduction/index.md | 94.0 | 2026-07-20 | 4 | 통과 | 1.0 | 518cfae | 없음(경미: Repository/MySqlRepository/MongoRepository 다중 public 공존, FP 스니펫 미래핑, 신규 태그 7개 tags.yaml 미등재) |
+| content/collection/cleanarchitecture/10-paradigm-overview-three-types/index.md | 92.2 | 2026-07-20 | 4 | 통과 | 1.0 | 97e6137 | 없음(경미: goto 절 연결문단, "왜 세 가지뿐" 중복 정리 여지) |
+| content/collection/cleanarchitecture/11-structured-programming-goto-elimination/index.md | 94.6 | 2026-07-20 | 5 | 통과 | 1.0 | df9e4ca | 없음(경미: L46 Dijkstra 인용 blockquote 서식 보강 여지) |
+| content/collection/cleanarchitecture/12-object-oriented-programming-polymorphism/index.md | 93.1 | 2026-07-18 | 3 | 통과 | 1.0 | 520a3a0 | 없음(경미: 플러그인 절 리드문단 부재, drawAll 클래스 밖 선언) |
+| content/collection/cleanarchitecture/13-functional-programming-immutability/index.md | 94.6 | 2026-07-18 | 2 | 통과 | 1.0 | 583109d | 없음(경미: 람다계산법 연도 서술 단순화, Order 생성자 방어적 복사 부재) |
+| content/collection/cleanarchitecture/14-solid-principles-introduction/index.md | 94 | 2026-07-18 | 2 | 통과 | 1.0 | 7d38ec2 | 없음(경미: SRP 정의 blockquote 옆 인라인 출처 미표기) |
+| content/collection/cleanarchitecture/15-srp-single-responsibility-principle/index.md | 91.6 | 2026-07-18 | 2 | 통과 | 1.0 | 6588639 | 없음 |
+| content/collection/cleanarchitecture/16-ocp-open-closed-principle/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 1.0 | 076b9dd | 없음(경미: "두 가지 의미"·"요구사항" 절 리스트-only) |
+| content/collection/cleanarchitecture/17-lsp-liskov-substitution-principle/index.md | 97 | 2026-07-18 | 2 | 통과 | 1.0 | 879080a | 없음(경미: Algorithm 태그 본문 불일치) |
+| content/collection/cleanarchitecture/18-isp-interface-segregation-principle/index.md | 90.1 | 2026-07-18 | 2 | 통과 | 1.0 | 8436353 | 없음(임계값 근접, 이후 보강 완료) |
+| content/collection/cleanarchitecture/19-dip-dependency-inversion-principle/index.md | 97 | 2026-07-18 | 3 | 통과 | 1.0 | a799a0b | 없음(경미: 소스코드의존성 vs 제어흐름 절 문단 얇음) |
+| content/collection/cleanarchitecture/20-component-principles-introduction/index.md | 92.2 | 2026-07-19 | 3 | 통과 | 1.0 | 1cb2803 | 없음 |
+| content/collection/cleanarchitecture/21-components-deployment-units-history/index.md | 90.7 | 2026-07-19 | 2 | 통과 | 1.0 | 265801e | 없음 |
+| content/collection/cleanarchitecture/22-component-cohesion-rep-ccp-crp/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 1.0 | f9606a4 | 없음(경미: 문단비율 34.9%, 40% 기준 근소 미달이나 통과) |
+| content/collection/cleanarchitecture/23-component-coupling-adp-sdp-sap/index.md | 97 | 2026-07-19 | 3 | 통과 | 1.0 | c4d9493 | 없음 |
+| content/collection/cleanarchitecture/24-architecture-introduction-system-design/index.md | 97.0 | 2026-07-20 | 4 | 통과 | 1.0 | 31b1261 | 없음(경미: Technology/Framework-Independence 태그 근거 보강 여지) |
+| content/collection/cleanarchitecture/25-what-is-architecture-system-lifecycle/index.md | 93.1 | 2026-07-20 | 5 | 통과 | 1.0 | 5d8a69e | 없음(경미: 표-헤딩 전환 2곳, MySqlOrderRepository 스텁 로직 보강 여지) |
+| content/collection/cleanarchitecture/26-independence-usecase-operation-development/index.md | 90.1 | 2026-07-20 | 4 | 통과 | 1.0 | e770aae | 없음(경미: "네 가지 독립성"/"디커플링 모드" 헤딩 리드문단 여지, 신규태그 9개 tags.yaml 미등재이나 승인태그 16개로 하한 충족. 통과 후 Throughput 표기·Encapsulation 근거 보강 완료) |
+| content/collection/cleanarchitecture/27-boundaries-drawing-lines-plugin-architecture/index.md | 94.0 | 2026-07-20 | 4 | 통과 | 1.0 | 1172690 | 없음(경미: PaymentGateway 예제 Payment/PaymentResult 미정의, MySqlWikiPagePersistence try-with-resources 미사용, 신규 태그 4개 tags.yaml 미등재) |
+| content/collection/cleanarchitecture/28-boundary-anatomy-monolith-to-services/index.md | 91.6 | 2026-07-20 | 4 | 통과 | 1.0 | 9e77c2d | 없음(경미: package/import 서술과 코드 정합성 보강 여지) |
+| content/collection/cleanarchitecture/29-policy-and-level-high-level-dependency/index.md | 93.1 | 2026-07-20 | 5 | 통과 | 1.0 | a14c08b | 없음(경미: "수준의 정의" 표·"암호화 프로그램" 하위 절 전환 문단 보강 여지) |
+| content/collection/cleanarchitecture/30-business-rules-entities-usecases/index.md | 100 | 2026-07-20 | 4 | 통과 | 1.0 | 880b92e | 없음(Tier 0 개선: 인용 재검증 완료, 코드 자기완결화, 태그 재구성) |
+| content/collection/cleanarchitecture/31-screaming-architecture-intent-driven-structure/index.md | 92.2 | 2026-07-19 | 2 | 통과 | 1.0 | 8000786 | 없음(경미: 표 2개 리드인 문단 보강 여지) |
+| content/collection/cleanarchitecture/32-clean-architecture-concentric-circles-dependency/index.md | 93.1 | 2026-07-19 | 2 | 통과 | 1.0 | 7378c18 | 없음(경미: 일부 절 리드/해설 문단 보강 여지) |
+| content/collection/cleanarchitecture/33-presenter-humble-object-testability/index.md | 90.7 | 2026-07-19 | 2 | 통과 | 1.0 | 43f3447 | 없음(경미: DB/외부서비스 경계 코드 앞 리드 문단 보강 여지) |
+| content/collection/cleanarchitecture/34-partial-boundaries-cost-benefit-balance/index.md | 92.2 | 2026-07-19 | 2 | 통과 | 1.0 | a9e85e8 | 없음(경미: 표/다이어그램 앞 리드 문단 보강 여지) |
+| content/collection/cleanarchitecture/35-layers-and-boundaries-practical-setup/index.md | 90.7 | 2026-07-19 | 3 | 통과 | 1.0 | b4f158d | 없음(경미: 일부 절 리드 문단 보강 여지, 종결 인용문 재검증 권고) |
+| content/collection/cleanarchitecture/36-main-component-lowest-level-policy/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 1.0 | da3768b | 없음 |
+| content/collection/cleanarchitecture/37-services-architecture-boundaries-microservices/index.md | 91.3 | 2026-07-19 | 2 | 통과 | 1.0 | 2cb8ba1 | 없음(경미: 일부 절 리드 문단 보강 여지) |
+| content/collection/cleanarchitecture/38-test-boundary-testing-as-system-part/index.md | 92 | 2026-07-19 | 1 | 통과 | 1.0 | 8d1f78e | 없음(경미: 일부 절 리드 문단 보강 여지) |
+| content/collection/cleanarchitecture/39-clean-embedded-architecture-hardware-separation/index.md | 98.2 | 2026-07-19 | 3 | 통과 | 1.0 | 4a7b8d9 | 없음(경미: Mermaid 노드 ID 표기 관례 미준수) |
+| content/collection/cleanarchitecture/40-details-introduction-interchangeable-parts/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 1.0 | 064e378 | 없음(경미: 일부 절 문단 비율 보강 여지) |
+| content/collection/cleanarchitecture/41-database-is-detail-persistence/index.md | 90.4 | 2026-07-20 | 4 | 통과 | 1.0 | cfd2d85 | 없음(경미: 항목3 문단비율 21.5%로 40% 기준 미달이나 통과, DB교체 시나리오 절 잔여 연속 블록 1곳) |
+| content/collection/cleanarchitecture/42-web-is-detail-gui-history/index.md | 96.1 | 2026-07-19 | 3 | 통과 | 1.0 | bab58c2 | 없음(경미: 일부 절 문단 비율 보강 여지) |
+| content/collection/cleanarchitecture/43-framework-is-detail-coupling-risk/index.md | 96.1 | 2026-07-19 | 2 | 통과 | 1.0 | 826f370 | 없음(경미: 일부 절 문단 비율 보강 여지) |
+| content/collection/cleanarchitecture/44-case-study-video-sales-system/index.md | 93.1 | 2026-07-19 | 3 | 통과 | 1.0 | a31410a | 없음(경미: 태그 1개 불일치, 문단 비율 보강 여지) |
+| content/collection/cleanarchitecture/45-missing-chapter-package-structure/index.md | 94.6 | 2026-07-19 | 2 | 통과 | 1.0 | 46af8cc | 없음(경미: L38 서술 완화 여지) |
+| content/collection/design-patterns/00-design-patterns-overview/index.md | 91 | 2026-07-19 | 4 | 통과 | 1.0 | 2bf589e | 없음 |
+| content/collection/design-patterns/01-design-patterns-philosophy-and-history/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 1.0 | ed9695b | 없음(경미: 핵심메시지/결론 중복) |
+| content/collection/design-patterns/02-pattern-analysis-framework/index.md | 91.3 | 2026-07-19 | 4 | 통과 | 1.0 | 5f5ef4a | 없음 |
+| content/collection/design-patterns/03-oop-design-deep-understanding/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 1.0 | 9db909a | 없음(경미: 핵심메시지/결론 중복) |
+| content/collection/design-patterns/04-factory-patterns-evolution/index.md | 91.6 | 2026-07-19 | 8 | 통과 | 1.0 | 7cd5027 | 없음 |
+| content/collection/design-patterns/04-factory-patterns-evolution-practice/index.md | 92 | 2026-07-19 | 6 | 통과 | 1.0 | e57dadb | 없음 |
+| content/collection/design-patterns/05-singleton-controversial-pattern/index.md | 93.1 | 2026-07-19 | 4 | 통과 | 1.0 | b291981 | 없음 |
+| content/collection/design-patterns/05-singleton-controversial-pattern-practice/index.md | 96.1 | 2026-07-19 | 4 | 통과 | 1.0 | 7590915 | 없음 |
+| content/collection/design-patterns/06-builder-prototype-deep-understanding/index.md | 93 | 2026-07-19 | 5 | 통과 | 1.0 | c720229 | 없음 |
+| content/collection/design-patterns/06-builder-prototype-deep-understanding-practice/index.md | 93 | 2026-07-19 | 8 | 통과 | 1.0 | 24cac2f | 없음 |
+| content/collection/design-patterns/07-adapter-facade-interface-philosophy/index.md | 90.7 | 2026-07-19 | 6 | 통과 | 1.0 | 7ef3b05 | 없음 |
+| content/collection/design-patterns/07-adapter-facade-interface-philosophy-practice/index.md | 93.1 | 2026-07-19 | 4 | 통과 | 1.0 | 5ac1105 | 없음 |
+| content/collection/design-patterns/08-decorator-composite-recursive-beauty/index.md | 91.3 | 2026-07-18 | 3 | 통과 | 1.0 | 692f55d | 없음(경미: GUIExample의 Window/Label 미정의, 트리구조 Mermaid 권장) |
+| content/collection/design-patterns/08-decorator-composite-recursive-beauty-practice/index.md | 97 | 2026-07-19 | 6 | 통과 | 1.0 | 1de5e39 | 없음 |
+| content/collection/design-patterns/09-proxy-pattern-multifaceted/index.md | 93.1 | 2026-07-19 | 5 | 통과 | 1.0 | 25e832d | 없음 |
+| content/collection/design-patterns/09-proxy-pattern-multifaceted-practice/index.md | 93.1 | 2026-07-19 | 6 | 통과 | 1.0 | 2b9ac4e | 없음 |
+| content/collection/design-patterns/10-bridge-flyweight-separation-efficiency/index.md | 91.3 | 2026-07-19 | 4 | 통과 | 1.0 | d38f476 | 없음 |
+| content/collection/design-patterns/10-bridge-flyweight-separation-efficiency-practice/index.md | 93.1 | 2026-07-19 | 4 | 통과 | 1.0 | c27f70b | 없음 |
+| content/collection/design-patterns/11-observer-event-driven-architecture/index.md | 93.1 | 2026-07-19 | 4 | 통과 | 1.0 | a0706e6 | 없음 |
+| content/collection/design-patterns/11-observer-event-driven-architecture-practice/index.md | 92.2 | 2026-07-19 | 6 | 통과 | 1.0 | 0d86f91 | 없음 |
+| content/collection/design-patterns/12-strategy-state-algorithm-encapsulation/index.md | 97 | 2026-07-19 | 6 | 통과 | 1.0 | 0ee37d1 | 없음 |
+| content/collection/design-patterns/12-strategy-state-algorithm-encapsulation-practice/index.md | 93.1 | 2026-07-19 | 5 | 통과 | 1.0 | 876442e | 없음 |
+| content/collection/design-patterns/13-command-chain-responsibility/index.md | 96.1 | 2026-07-19 | 4 | 통과 | 1.0 | 4e887f8 | 없음 |
+| content/collection/design-patterns/13-command-chain-responsibility-practice/index.md | 97 | 2026-07-19 | 6 | 통과 | 1.0 | 6d343f7 | 없음 |
+| content/collection/design-patterns/14-template-method-iterator-depth/index.md | 93.1 | 2026-07-19 | 9 | 통과 | 1.0 | aec71c5 | 없음(경미: L985-986 표 앞 리드 문단 1곳 부재, 본문과 결속 약한 태그 일부) |
+| content/collection/design-patterns/15-interpreter-mediator-parsing-coordination/index.md | 96.1 | 2026-07-19 | 4 | 통과 | 1.0 | 52c39b6 | 없음 |
+| content/collection/design-patterns/16-memento-visitor-state-operation-separation/index.md | 92.2 | 2026-07-18 | 3 | 통과 | 1.0 | cd234e0 | 없음(경미: 데모 main() 축약, 결론/주의사항 중복) |
+| content/collection/design-patterns/17-pattern-combinations-interactions/index.md | 97 | 2026-07-19 | 6 | 통과 | 1.0 | 374fe0d | 없음 |
+| content/collection/design-patterns/18-functional-programming-design-patterns/index.md | 93.1 | 2026-07-19 | 4 | 통과 | 1.0 | e622fe3 | 없음 |
+| content/collection/design-patterns/19-concurrency-distributed-patterns/index.md | 93.1 | 2026-07-19 | 5 | 통과 | 1.0 | 3dee9ed | 없음(채점 시 안전분류기 일시 unavailable — 결과 재확인 권장) |
+| content/collection/design-patterns/20-ddd-design-patterns/index.md | 100 | 2026-07-19 | 5 | 통과 | 1.0 | a520cf3 | 없음 |
+| content/collection/design-patterns/20-ddd-design-patterns-practice/index.md | 97 | 2026-07-19 | 7 | 통과 | 1.0 | 2f17775 | 없음 |
+| content/collection/design-patterns/21-pattern-performance-optimization/index.md | 93 | 2026-07-19 | 6 | 통과 | 1.0 | 37db6fb | 없음 |
+| content/collection/design-patterns/21-pattern-performance-optimization-practice/index.md | 97 | 2026-07-19 | 7 | 통과 | 1.0 | 0e5f894 | 없음 |
+| content/collection/design-patterns/22-antipatterns-refactoring/index.md | 97 | 2026-07-19 | 6 | 통과 | 1.0 | 09f7e01 | 없음 |
+| content/collection/design-patterns/22-antipatterns-refactoring-practice/index.md | 94.6 | 2026-07-19 | 6 | 통과 | 1.0 | d88c7a2 | 없음 |
+| content/collection/design-patterns/23-pattern-code-review-design-review/index.md | 96.1 | 2026-07-19 | 6 | 통과 | 1.0 | a405b23 | 없음 |
+| content/collection/design-patterns/23-pattern-code-review-design-review-practice/index.md | 100 | 2026-07-19 | 5 | 통과 | 1.0 | 835f0f5 | 없음 |
+| content/collection/design-patterns/24-discovering-defining-new-patterns/index.md | 93 | 2026-07-19 | 5 | 통과 | 1.0 | e99ea78 | 없음 |
+| content/collection/design-patterns/24-discovering-defining-new-patterns-practice/index.md | 97 | 2026-07-19 | 5 | 통과 | 1.0 | d80cdab | 없음 |
+| content/collection/computerterms/00-getting-started-computer-terms/index.md | 95.2 | 2026-07-22 | 3 | 통과 | 1.0 | 57e913a | 없음(경미: 표 의존도가 높아 항목3에서 표를 빼면 갈래 목록 자체는 문단만으로 전달 안 됨) |
+| content/collection/computerterms/aba-problem/index.md | 92.8 | 2026-07-22 | 1 | 통과 | 1.0 | 2129b5e | 없음(경미: IEEE 링크 WAF 챌린지로 자동검증 불가) |
+| content/collection/computerterms/aicd/index.md | 96.1 | 2026-07-22 | 2 | 통과 | 1.0 | 31c355f | 없음 |
+| content/collection/computerterms/algorithm/index.md | 94.6 | 2026-07-22 | 3 | 통과 | 1.0 | 4decbcc | 없음 |
+| content/collection/computerterms/algorithm_efficiency/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 1.0 | 1fc72d2 | 없음 |
+| content/collection/computerterms/algotithm_classify/index.md | 98.2 | 2026-07-22 | 1 | 통과 | 1.0 | c8bb287 | 없음 |
+| content/collection/computerterms/arrays-and-linked-lists/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 22035d2 | 없음 |
+| content/collection/computerterms/atomic-operations-and-cas/index.md | 100 | 2026-07-22 | 1 | 통과 | 1.0 | 96d55f5 | 없음 |
+| content/collection/computerterms/authentication-and-authorization/index.md | 97 | 2026-07-24 | 2 | 통과 | 1.0 | 0c98ee5 | 없음 |
+| content/collection/computerterms/cache-hierarchy/index.md | 91 | 2026-07-22 | 1 | 통과 | 1.0 | 3df470a | 없음 |
+| content/collection/computerterms/caching-and-invalidation/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | f700204 | 없음 |
+| content/collection/computerterms/cap-theorem-and-consensus/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 70735eb | 없음(경미: Reliability 태그 본문 근거 약함) |
+| content/collection/computerterms/cdn-caching/index.md | 100 | 2026-07-22 | 3 | 통과 | 1.0 | c6d4e92 | 없음 |
+| content/collection/computerterms/ci-cd-and-testing-types/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | e6697c0 | 없음 |
+| content/collection/computerterms/circuit-breaker/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 1.0 | e6b16e9 | 없음(경미: Release It! 장 번호 표기를 "Stability Patterns" 부로 완화) |
+| content/collection/computerterms/closures-and-scope/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | cb15d88 | 없음 |
+| content/collection/computerterms/code-review/index.md | 91.6 | 2026-07-24 | 2 | 통과 | 1.0 | 30402ae | 없음 |
+| content/collection/computerterms/compilers-and-interpreters/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 1c680af | 없음 |
+| content/collection/computerterms/containers-and-virtualization/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 1.0 | 2276ee4 | 없음 |
+| content/collection/computerterms/content-delivery-networks/index.md | 91.6 | 2026-07-22 | 1 | 통과 | 1.0 | c5d5896 | 없음 |
+| content/collection/computerterms/content-negotiation/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 8b6ca35 | 없음 |
+| content/collection/computerterms/cookies-and-local-storage/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 0625039 | 없음 |
+| content/collection/computerterms/coroutines-and-async-await/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 350c6ad | 없음 |
+| content/collection/computerterms/coupling-and-cohesion/index.md | 97 | 2026-07-24 | 2 | 통과 | 1.0 | 23113e0 | 없음 |
+| content/collection/computerterms/cpu-and-pipelining/index.md | 94.6 | 2026-07-22 | 3 | 통과 | 1.0 | 1159572 | 없음 |
+| content/collection/computerterms/cpu-scheduling/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | cf8203e | 없음 |
+| content/collection/computerterms/daemons-and-zombie-processes/index.md | 98.2 | 2026-07-22 | 2 | 통과 | 1.0 | 81d17e6 | 없음 |
+| content/collection/computerterms/deadlocks/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 8f0db19 | 없음 |
+| content/collection/computerterms/design-patterns-overview/index.md | 95.2 | 2026-07-24 | 1 | 통과 | 1.0 | a26751b | 없음 |
+| content/collection/computerterms/digital-signatures-and-certificates/index.md | 97 | 2026-07-24 | 2 | 통과 | 1.0 | d0ca58a | 없음 |
+| content/collection/computerterms/dns-and-sockets/index.md | 97 | 2026-07-22 | 3 | 통과 | 1.0 | 1b5c24d | 없음 |
+| content/collection/computerterms/dynamic-programming/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | b9d9f1d | 없음 |
+| content/collection/computerterms/encryption-and-hashing/index.md | 93.4 | 2026-07-24 | 1 | 통과 | 1.0 | ca27927 | 없음 |
+| content/collection/computerterms/event-driven-architecture/index.md | 94 | 2026-07-24 | 1 | 통과 | 1.0 | 8f9b011 | 없음 |
+| content/collection/computerterms/event-sourcing/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | e9b4219 | 없음 |
+| content/collection/computerterms/factory-pattern/index.md | 95.2 | 2026-07-24 | 1 | 통과 | 1.0 | 876b12e | 없음 |
+| content/collection/computerterms/feature-flags/index.md | 94 | 2026-07-24 | 1 | 통과 | 1.0 | fb4ccb1 | 없음 |
+| content/collection/computerterms/file-systems/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | a5c3a63 | 없음 |
+| content/collection/computerterms/firewalls-and-nat/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 1.0 | cca396c | 없음 |
+| content/collection/computerterms/floating-point-representation/index.md | 91 | 2026-07-22 | 2 | 통과 | 1.0 | df26565 | 없음 |
+| content/collection/computerterms/forward-and-reverse-proxies/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 4f5c2a0 | 없음 |
+| content/collection/computerterms/full-text-search-indexes/index.md | 97 | 2026-07-22 | 1 | 통과 | 1.0 | 78115fd | 없음 |
+| content/collection/computerterms/functional-programming-paradigm/index.md | 100 | 2026-07-24 | 3 | 통과 | 1.0 | 76b685c | 없음 |
+| content/collection/computerterms/garbage-collection/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 80c3471 | 없음 |
+| content/collection/computerterms/generics-and-polymorphism/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 22a01a3 | 없음 |
+| content/collection/computerterms/graphs/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | d851ae8 | 없음 |
+| content/collection/computerterms/greedy-algorithms/index.md | 97 | 2026-07-22 | 1 | 통과 | 1.0 | 657271a | 없음 |
+| content/collection/computerterms/grpc/index.md | 95.2 | 2026-07-24 | 1 | 통과 | 1.0 | 1b51d1b | 없음 |
+| content/collection/computerterms/hash-tables/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 1.0 | 07581bd | 없음 |
+| content/collection/computerterms/heaps-and-priority-queues/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 2433dd5 | 없음 |
+| content/collection/computerterms/hexagonal-architecture/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 19ffcf2 | 없음 |
+| content/collection/computerterms/http-and-https/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 0454822 | 없음 |
+| content/collection/computerterms/http3-and-quic/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 07825ac | 없음 |
+| content/collection/computerterms/idempotency/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 3e2f25b | 없음 |
+| content/collection/computerterms/inter-process-communication/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 10855c4 | 없음 |
+| content/collection/computerterms/interrupts-and-system-calls/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | aaedf25 | 없음 |
+| content/collection/computerterms/load-balancing/index.md | 91.6 | 2026-07-22 | 1 | 통과 | 1.0 | 02ce128 | 없음 |
+| content/collection/computerterms/memory-management/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 1.0 | f8d6ddb | 없음 |
+| content/collection/computerterms/memory-safety-and-ownership/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 3362ae4 | 없음 |
+| content/collection/computerterms/message-queues/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | dfc944b | 없음 |
+| content/collection/computerterms/multilevel-caching/index.md | 100 | 2026-07-22 | 3 | 통과 | 1.0 | 454195d | 없음 |
+| content/collection/computerterms/mvc-and-mvvm/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 1916723 | 없음 |
+| content/collection/computerterms/mvcc/index.md | 96.1 | 2026-07-22 | 2 | 통과 | 1.0 | f4b2306 | 없음 |
+| content/collection/computerterms/normalization-and-indexes/index.md | 97 | 2026-07-22 | 1 | 통과 | 1.0 | 86f98c9 | 없음 |
+| content/collection/computerterms/nosql-and-query-optimization/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 9bf67c4 | 없음 |
+| content/collection/computerterms/oauth-and-oidc/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 8a9160a | 없음 |
+| content/collection/computerterms/observer-pattern/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | f41fc24 | 없음 |
+| content/collection/computerterms/osi-and-tcp-ip/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 1.0 | 559d950 | 없음 |
+| content/collection/computerterms/processes-and-threads/index.md | 97 | 2026-07-22 | 1 | 통과 | 1.0 | d00cf6d | 없음 |
+| content/collection/computerterms/query-planner-internals/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | 3558747 | 없음 |
+| content/collection/computerterms/race-conditions-and-locks/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 1.0 | c62cd5a | 없음 |
+| content/collection/computerterms/rate-limiting/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 315e0ad | 없음 |
+| content/collection/computerterms/refactoring-and-code-smells/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | f5d779b | 없음 |
+| content/collection/computerterms/registers-and-isa/index.md | 98.2 | 2026-07-22 | 2 | 통과 | 1.0 | 82a1cec | 없음 |
+| content/collection/computerterms/rest-and-graphql/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 8cf40a7 | 없음 |
+| content/collection/computerterms/searching-algorithms/index.md | 91.6 | 2026-07-22 | 2 | 통과 | 1.0 | ef8d2fa | 없음 |
+| content/collection/computerterms/segment-trees/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 1.0 | 0fbd80e | 없음 |
+| content/collection/computerterms/semantic-versioning/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 9805edc | 없음 |
+| content/collection/computerterms/semaphores-and-monitors/index.md | 91.6 | 2026-07-22 | 1 | 통과 | 1.0 | 030b3bb | 없음(경미: 브린치 한센 연도 정정 반영) |
+| content/collection/computerterms/server-sent-events/index.md | 97 | 2026-07-24 | 1 | 통과 | 1.0 | 1a69813 | 없음 |
+| content/collection/computerterms/sharding-and-replication/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 1.0 | 5a738d8 | 없음 |
+| content/collection/computerterms/shortest-path-algorithms/index.md | 100 | 2026-07-22 | 3 | 통과 | 1.0 | ea5b8a4 | 없음 |
+| content/collection/computerterms/signals/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | 2d2d608 | 없음 |
+| content/collection/computerterms/simd/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 46f8ce7 | 없음 |
+| content/collection/computerterms/skip-lists/index.md | 97 | 2026-07-22 | 1 | 통과 | 1.0 | 13764c5 | 없음 |
+| content/collection/computerterms/solid-principles-overview/index.md | 100 | 2026-07-24 | 3 | 통과 | 1.0 | 5a75768 | 없음 |
+| content/collection/computerterms/sorting-algorithms/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | 09c8a0d | 없음 |
+| content/collection/computerterms/stacks-and-queues/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | b14ea21 | 없음 |
+| content/collection/computerterms/thread-pools/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | 525752b | 없음(경미: Debugging 태그를 Throughput으로 교체) |
+| content/collection/computerterms/time-series-databases/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | cc98342 | 없음 |
+| content/collection/computerterms/time_complexity/index.md | 92.8 | 2026-07-22 | 1 | 통과 | 1.0 | fd2e24b | 없음 |
+| content/collection/computerterms/transaction-isolation-levels/index.md | 94 | 2026-07-22 | 1 | 통과 | 1.0 | 2cdb452 | 없음 |
+| content/collection/computerterms/trees/index.md | 97 | 2026-07-22 | 2 | 통과 | 1.0 | 7d46066 | 없음 |
+| content/collection/computerterms/tries/index.md | 93.4 | 2026-07-22 | 1 | 통과 | 1.0 | 2a4f67b | 없음 |
+| content/collection/computerterms/type-systems/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 5aa2029 | 없음 |
+| content/collection/computerterms/union-find/index.md | 94.6 | 2026-07-22 | 2 | 통과 | 1.0 | 31afabe | 없음 |
+| content/collection/computerterms/vector-clocks/index.md | 92.2 | 2026-07-22 | 1 | 통과 | 1.0 | 5018ed2 | 없음 |
+| content/collection/computerterms/version-control-internals/index.md | 94.6 | 2026-07-24 | 2 | 통과 | 1.0 | 570965c | 없음 |
+| content/collection/computerterms/von-neumann-architecture/index.md | 100 | 2026-07-22 | 2 | 통과 | 1.0 | a5d6ecc | 없음 |
+| content/collection/computerterms/web-application-firewalls/index.md | 100 | 2026-07-24 | 3 | 통과 | 1.0 | ee8db98 | 없음 |
+| content/collection/computerterms/web-vulnerabilities/index.md | 94.6 | 2026-07-24 | 2 | 통과 | 1.0 | d3bdb45 | 없음 |
+| content/collection/computerterms/webhooks/index.md | 100 | 2026-07-22 | 3 | 통과 | 1.0 | 2131df0 | 없음 |
+| content/collection/computerterms/websockets-and-cors/index.md | 100 | 2026-07-24 | 2 | 통과 | 1.0 | 1b0f9f3 | 없음 |
+| content/collection/computerterms/write-through-and-write-back/index.md | 95.2 | 2026-07-22 | 1 | 통과 | 1.0 | daa300f | 없음 |
+| content/collection/computerterms/zero-trust-security/index.md | 94 | 2026-07-24 | 1 | 통과 | 1.0 | 9bc8dce | 없음 |
+| content/post/2026/2026-07-22-p95-p99-latency-percentile-guide/index.md | 91 | 2026-07-22 | 1 | 통과 | 1.0 | cc858df | 없음(경미: "이 글을 읽은 후" 학습 성과 목표 절 부재, Bigtable SRE Book 챕터 인용 정밀도, cacm.acm.org 대체 접근 경로 미병기) |
+| content/post/2026/2026-07-22-iterm2-vs-securecrt-logging-comparison/index.md | 95 | 2026-07-22 | 2 | 통과 | 1.0 | 81105ae | 없음(선택: "이 글에서 다루는 내용" 미리보기 불릿을 문단으로 축약하면 구조 항목 여지 있으나 통과에 영향 없음) |
+| content/post/2026/2026-07-22-qbittorrent-vs-utorrent-comparison/index.md | 94.6 | 2026-07-22 | 3 | 통과 | 1.0 | aca82b9 | 없음(3차 채점 후 L99 Cloudwards 인용 정밀도를 추가로 정정, 재채점 생략) |
+| content/collection/cmd/command-categories/index.md | 96.1 | 2026-07-22 | 3 | 통과 | 1.0 | 8da5ae3 | 없음(경미: 네트워크·기타 유틸리티 절 판단 기준 문단 여지, 코드블록 언어 태그 미통일) |
+| content/post/2026/2026-07-22-pikvm-v4-mini-review/index.md | 93.1 | 2026-07-22 | 3 | 통과 | 1.0 | 76c3c5e | 없음(경미: RDP(Remote Desktop Protocol) 태그 본문 근거 약함, 종합 평가 문단이 장단점 절과 일부 재진술) |
+| content/collection/TV-Show/2026/2026-07-22-young-sheldon-medford-texas-setting-filming-location/index.md | 94.6 | 2026-07-25 | 12 | 통과 | 1.0 | 0ab4af0 | 없음(경미: L96 체로키 카운티 소속 서술의 팬 위키 원문 링크 미첨부, L108 쿠퍼가 외경 거리 매체별 상이(2/3/6마일) 각주 미표기). 12회차에서 안티패딩·구조 결함 해소: "정리" 절(종합평가와 중복)을 삭제하고, "확인 전 체크리스트"·"이 글을 읽은 후 확인할 것" 중복 닫는 절을 "확인 체크리스트" 하나로 통합(읽기 전/읽은 후 하위 소절), "다른 시트콤 비교" 절의 1문장 판단기준을 질문유형·층위·절·오류 4열 표로 확장. 11회차까지의 구조적 긴장(좁은 범위 특집 vs 정식 리뷰 기대)은 critic이 "정식 Act5 리뷰가 같은 컬렉션에 상호링크로 존재하므로 이 특집에 강제하지 않음"으로 판단해 해소 |
+| content/collection/optimization-00-series-overview/00-introduction/index.md | 96 | 2026-07-25 | 2 | 통과 | 1.0 | 4ffd34f | 없음(경미: "권장 큰 줄기"·"왜 이 로드맵인가" 절 그룹핑 서술 일부 중복, 일부 범용 태그 본문 결속 약함) |
+| content/collection/optimization-01-profiling/00-introduction/index.md | 83.5 | 2026-07-25 | 3 | 에스컬레이션 | 1.0 | e8cf3f0 | 치명결함 0건이나 3회 반복 후 90점 미달. 잔여: L81 Intel VTune "XPU Offload Analysis(NPU 통합)" 명칭 미검증, L91 "Polar Signals 사례" 출처 미표기, 04번 챕터 핵심내용에 Ftrace 미병기. 사람 검토 후 추가 반복 여부 판단 필요 |
+| content/collection/optimization-01-profiling/01-microbenchmark-design/index.md | 100 | 2026-07-25 | 1 | 통과 | 1.0 | 4f06c40 | 없음 |
+| content/collection/optimization-01-profiling/02-google-benchmark/index.md | 100 | 2026-07-25 | 1 | 통과 | 1.0 | 8527560 | 없음(1차 채점에서 릴리스일 오탐 있었으나 GitHub API 재검증 결과 본문이 정확함을 확인, 수정 없이 통과) |
+| content/collection/optimization-01-profiling/03-sampling-profiling/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 1.0 | ec93bf5 | 없음(경미: L74 VTune 릴리스 일자 검증 여지) |
+| content/collection/optimization-01-profiling/04-tracing-profiling/index.md | 91.6 | 2026-07-25 | 1 | 통과 | 1.0 | 73d7ed2 | 없음(경미: L70 Tracy 릴리스 시기 오표기(2026 상반기→실제 2025-12), perfetto_demo.cc 트레이스 세션 시작/저장 로직 생략) |
+| content/collection/optimization-01-profiling/05-flame-graph/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 1.0 | be1fcdb | 없음(경미: ACM Queue 권/호 검증 여지, off-CPU 오버헤드 정량 근거 보강 여지) |
+| content/collection/optimization-01-profiling/06-intel-vtune/index.md | 100 | 2026-07-25 | 1 | 통과 | 1.0 | dca17ff | 없음 |
+| content/collection/optimization-01-profiling/07-linux-perf-advanced/index.md | 100 | 2026-07-25 | 1 | 통과 | 1.0 | 62a56a7 | 없음 |
+| content/collection/optimization-01-profiling/08-hardware-counters/index.md | 96.1 | 2026-07-25 | 1 | 통과 | 1.0 | c585328 | 없음(경미: 코드/출력 블록 연속 구간 문단 보강 여지, Yasin 논문 직접 링크 여지) |
+| content/collection/optimization-01-profiling/09-tail-latency/index.md | 100 | 2026-07-25 | 1 | 통과 | 1.0 | 82b5360 | 없음 |
+| content/collection/optimization-01-profiling/10-statistical-benchmarking/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 1.0 | 474d64a | 없음(경미: L72 Kalibera&Jones venue 오표기 OOPSLA/ISMM→ISMM) |
+| content/collection/optimization-01-profiling/11-continuous-profiling/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 1.0 | 98eab7f | 없음(경미: Pyroscope/Parca 연혁 인용 링크 여지) |
+| content/collection/optimization-01-profiling/12-performance-ab-testing/index.md | 97.0 | 2026-07-26 | 1 | 통과 | 1.0 | c76ada8 | 없음(경미: L34-42 비승인 태그 9개 data/tags.yaml 미등재, L73 Spinnaker 카나리 문서 "첫머리" 배치 서술 검증 여지) |
+| content/collection/optimization-01-profiling/13-amd-uprof/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-01-profiling/14-windows-etw/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-01-profiling/15-valgrind-callgrind/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-01-profiling/16-bpf-profiling/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-01-profiling/17-distributed-tracing-overhead/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-01-profiling/18-profiling-workflow-guide/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-01-profiling/19-profiler-output-interpretation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-01-profiling/20-memory-profiling-heap/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/00-introduction/index.md | 96.1 | 2026-07-25 | 1 | 통과 | 1.0 | b6dbc92 | 없음(경미: L238 트랙 읽기 순서 요약이 L128과 일부 중복, 태그 표기 결합형 통일 여지) |
+| content/collection/optimization-02-cpp-language/01-cpp-execution-model-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/02-smart-pointer-cost-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/03-abstraction-cost/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/04-stl-container-cost/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/05-string-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/06-object-lifetime/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/07-temporary-removal/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/08-templates-constexpr/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/09-modern-cpp-features/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/10-coroutine-performance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/11-exception-deep-dive/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/12-inlining-techniques/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/13-variant-optional-expected/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/14-span-and-views/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/15-lambda-performance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/16-small-buffer-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/17-parameter-passing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/18-abi-link-performance-boundaries/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/19-type-erasure-cost-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/00-introduction/index.md | 96.1 | 2026-07-25 | 3 | 통과 | 1.0 | c1c7577 | 없음(경미: L99/L139 추천 읽기 순서 표현 불일치) |
+| content/collection/optimization-03-compiler/01-optimization-flags/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/02-lto-thinlto/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/03-pgo-workflow/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/04-compiler-comparison/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/05-inlining-diagnostics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/06-code-generation-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/07-function-multiversioning/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/08-compiler-intrinsics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/09-sanitizer-overhead/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/10-debug-info-and-performance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/11-cpp20-modules/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/12-build-parallelization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/13-static-analyzer/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/14-bolt-post-link-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/15-autofdo/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 1.0 | c8f0024 | 없음(경미: Networking·IO·Testing 등 본문 결속 약한 범용 태그 다수, 16번 챕터 mimalloc 미병기) |
+| content/collection/optimization-04-memory-allocation/01-container-cost-model/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/02-allocation-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/03-custom-allocator/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/04-pmr-allocator/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/05-aos-vs-soa/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/06-cache-friendly-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/07-padding-alignment/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/08-large-pages/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/09-numa-allocation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/10-memory-fragmentation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/11-memory-bandwidth/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/12-stack-vs-heap/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/13-virtual-memory-management/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/14-memory-leak-detection/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/15-memory-lifetime-cacheline-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/16-global-allocator-tuning/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/00-introduction/index.md | 88.9 | 2026-07-25 | 3 | 에스컬레이션 | 1.0 | b9a7dc2 | 치명결함 0건이나 3회 반복 후 90점 근소 미달. 잔여: "다루지 않는 것" 절에 캐시 일관성/메모리 모델·SIMD 범위 밖 명시 부재, 1차 출처 1개 추가 여지 |
+| content/collection/optimization-05-cpu-microarchitecture/01-cpu-pipeline-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/02-branch-prediction/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/03-cache-hierarchy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/04-cache-miss-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/05-ilp-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/06-out-of-order-execution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/07-tlb-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/08-modern-cpu-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/09-hardware-performance-counters/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/10-speculative-execution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/11-frequency-scaling/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/12-power-management/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/13-apple-silicon-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/14-smt-hyperthreading/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/15-uop-cache-dsb/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/16-risc-v-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/17-frontend-vs-backend-bound/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/18-dependency-chains-port-pressure/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/00-introduction/index.md | 96.1 | 2026-07-25 | 3 | 통과 | 1.0 | fad6466 | 없음(경미: "달성할 목표"·"평가 기준" 절 일부 중복, 네비게이션 절 2개 중복 여지) |
+| content/collection/optimization-06-os-runtime/01-context-switch-cost/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/02-syscall-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/03-cpu-pinning-affinity/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/04-numa-cpu-affinity/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/05-realtime-scheduling/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/06-precise-time-measurement/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/07-kernel-bypass-overview/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/08-io-uring-overview/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/09-xdp-ebpf-overview/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/10-huge-tlb-pages/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/11-container-performance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/12-irq-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/13-cgroups-v2/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/14-memory-locking/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/15-signal-handling/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/16-process-vs-thread/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/17-ebpf-kernel-performance-safety/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/18-cloud-tail-latency/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/00-introduction/index.md | 95.2 | 2026-07-25 | 2 | 통과 | 1.0 | 58f8873 | 없음(경미: "책임지는 범위"·"다루지 않는 것" 리스트 앞 연결 문단 여지, Intel 링크 WebFetch 403이나 실제 접근 가능) |
+| content/collection/optimization-07-concurrency/01-synchronization-cost-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/02-lock-selection-criteria/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/03-false-sharing-avoidance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/04-memory-model-practical/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/05-lock-free-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/06-lock-free-data-structures/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/07-hazard-pointers-rcu/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/08-spsc-mpmc-queues/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/09-cpp20-atomics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/10-thread-pool-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/11-coroutine-concurrency/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/12-wait-free-programming/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/13-jthread-stop-token/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/14-seqlock-pattern/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/15-thread-local-storage/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/16-executors-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/17-senders-receivers-cpp26/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/18-parallel-execution-policies/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/19-condition-variable-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/20-barrier-latch/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/21-thread-per-core-io-uring/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/00-introduction/index.md | 95.2 | 2026-07-25 | 3 | 통과 | 1.0 | ebfac67 | 없음(경미: 측정 항목 리스트 근거 문단 여지) |
+| content/collection/optimization-08-optimization-techniques/01-simd-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/02-simd-intrinsics-practical/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/03-avx512-avx10-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/04-auto-vectorization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/05-prefetch-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/06-branchless-programming/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/07-hand-written-assembly/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/08-lookup-table-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/09-bit-manipulation-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/10-hotpath-extreme-tuning/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/11-maintainability-tradeoff/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/12-arm-neon-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/13-portable-simd-libraries/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/14-cpp26-std-simd/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/15-cache-oblivious-algorithms/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/16-gpu-offloading-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/17-ai-inference-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/18-simd-string-processing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/00-introduction/index.md | 100 | 2026-07-25 | 2 | 통과 | 1.0 | 6161d63 | 없음 |
+| content/collection/optimization-09-io-network/01-io-cost-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/02-io-patterns-cost/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/03-async-io-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/04-io-uring-advanced/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/05-iocp-windows-io/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/06-zero-copy-techniques/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/07-memory-mapped-io/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/08-direct-io/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/09-filesystem-characteristics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/10-block-device-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/11-io-multiplexing-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/12-vectored-io/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/13-posix-aio-vs-io-uring/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/14-database-io-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/15-file-locking-performance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/16-storage-stack-customization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/17-logging-performance-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/00-introduction/index.md | 92.2 | 2026-07-25 | 1 | 통과 | 1.0 | 08ba5df | 없음(경미: description 118자로 하한 근접, 범위/경계 리스트 문단 비중 29%, WebTransport Baseline 기준 명시 여지) |
+| content/collection/optimization-10-network/01-network-latency-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/02-network-latency-structure/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/03-socket-options-tuning/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/04-tcp-performance-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/05-udp-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/06-serialization-performance-comparison/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/07-zero-copy-serialization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/08-next-gen-zero-copy-formats/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/09-protocol-design/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/10-message-framing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/11-dpdk-advanced/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/12-xdp-ebpf-network-advanced/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/13-rdma-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/14-ultra-ethernet-consortium/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/15-grpc-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/16-quic-protocol/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/17-tls-ssl-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/18-connection-pooling/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/19-websocket-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/20-http2-http3/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/21-network-compression-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/00-introduction/index.md | 91.3 | 2026-07-25 | 2 | 통과 | 1.0 | d7d5a55 | 없음(경미: "범위와 경계" Mermaid 단독 의존, Phase별 궤적과 커리큘럼 표 일부 중복) |
+| content/collection/optimization-11-design-decisions/01-performance-terminology-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/02-when-to-optimize/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/03-when-to-stop-optimizing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/04-readability-vs-performance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/05-performance-budgeting/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/06-slo-sla-definition/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/07-latency-vs-throughput/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/08-low-latency-architecture-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/09-caching-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/10-database-access-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/11-team-performance-culture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/12-performance-code-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/13-capacity-planning/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/14-load-testing-design/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/15-cost-performance-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/16-regulated-secure-performance-tradeoffs/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/17-memory-safety-tradeoffs/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/18-event-driven-architecture-performance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 1.0 | 14e23c8 | 없음(경미: Code-Review·Debugging·Logging·Git·GitHub·Cloud 태그 본문 결속 약함) |
+| content/collection/optimization-12-regression-prevention/01-performance-regression-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/02-performance-test-automation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/03-benchmark-ci-integration/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/04-pr-performance-gate/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/05-performance-budgeting/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/06-baseline-management/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/07-variance-management/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/08-observability-platform/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/09-alerting-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/10-canary-deployment/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/11-performance-incident-response/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/12-long-term-trend-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/13-performance-debt-management/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/14-benchmark-as-code/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/15-monitoring-dashboard/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/16-postmortem-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/17-distributed-cluster-performance-regression/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2022/2022-01-01-BOJ-1008/index.md | 100 | 2026-07-28 | 3 | 통과 | 1.0 | 76ebd4f | 없음 |
+| content/collection/Algorithm/2022/2022-07-07-BOJ-8983/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-05-15-BOJ-1067/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-05-18-BOJ-1005/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-05-18-BOJ-2206/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-05-18-BOJ-2252/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-14-BOJ-6549/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-19-BOJ-13141/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-19-BOJ-13977/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-19-BOJ-14517/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-19-BOJ-14942/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-19-BOJ-15678/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-20-BOJ-16287/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-20-BOJ-17401/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-23-BOJ-1014/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-23-BOJ-2618/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-23-BOJ-3176/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-25-BOJ-3653/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-25-BOJ-3679/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-25-BOJ-5670/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-10-BOJ-11505/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-10-BOJ-13334/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-10-BOJ-14725/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-10-BOJ-15824/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-10-BOJ-16565/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-10-BOJ-2357/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-1214/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-13416/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-1384/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-14752/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-15025/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-16349/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-18406/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-20492/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-23808/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-24736/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-28444/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-28702/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-17-BOJ-15995/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-17-BOJ-24051/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-17-BOJ-2711/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-17-BOJ-27161/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-17-BOJ-4655/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-17-BOJ-5342/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-21-BOJ-11281/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-21-BOJ-19585/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-23-BOJ-11689/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-23-BOJ-3648/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-23-BOJ-3830/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-23-BOJ-4225/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-24-BOJ-11266/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-24-BOJ-1533/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-25-BOJ-10828/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-25-BOJ-1225/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-25-BOJ-14924/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-25-BOJ-16189/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-25-BOJ-25501/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-25-BOJ-2975/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-25-BOJ-5544/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-25-BOJ-7523/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-11-26-BOJ-31654/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-12-12-BOJ-10167/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-12-12-BOJ-12928/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-12-12-BOJ-4792/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-12-26-BOJ-11280/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-12-26-BOJ-11400/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-12-26-BOJ-14939/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-12-26-BOJ-1671/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-12-26-BOJ-5542/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-12-30-BOJ-16163/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-12-30-BOJ-20149/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-12-31-BOJ-10266/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-12-31-BOJ-10999/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-12-31-BOJ-2673/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-01-10-BOJ-2166/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-01-28-BOJ-11375/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-01-28-BOJ-3408/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-02-03-BOJ-2336/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-02-03-BOJ-8217/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-02-07-BOJ-13907/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-02-07-BOJ-16975/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-02-08-BOJ-16978/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-02-08-BOJ-18251/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-02-10-BOJ-1126/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-02-10-BOJ-13361/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-02-10-BOJ-15504/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-02-10-BOJ-24505/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-08-BOJ-1150/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-08-BOJ-12823/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-08-BOJ-1605/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-08-BOJ-3654/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-10746-fencing-the-herd-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-12670-the-year-of-code-jam-large-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-12736-fireworks-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-12898-selling-rna-strands-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-13725-rng-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-13727-5d-chocolate-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-14510-blazing-new-trails-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-14737-dev-please-add-this-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-14960-strongly-matchable-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-15292-journey-from-petersburg-to-moscow-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-15521-revenge-of-the-broken-door-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-15737-general-graph-matching-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-15768-duathlon-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-15939-easy-shortest-path-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-16041-double-clique-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-16191-utilitarianism-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-1659-numbers-hard-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-17439-flower-shop-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-17442-three-minute-graph-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-17474-sequence-and-queries-26-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-17517-parklife-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-17625-high-voltage-line-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-17642-dynamic-diameter-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-17955-max-or-min-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-17973-quadrilaterals-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-18438-lcs-5-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-18473-fast-spanning-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-18586-salty-fish-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-18855-treatment-project-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-31403-a-plus-b-minus-c-python-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-3419-racing-car-trail-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-3444-robotic-sort-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-3527-jungle-outpost-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-7907-bytean-road-race-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-8235-prefixuffix-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-9063-bounding-rectangle-area-python-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-12-boj-9208-ringworld-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-13-boj-13263-tree-cutting-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-13-boj-1648-grid-tiling-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-13-boj-3878-point-separation-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-10076-holiday-ioi-2014-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-10254-highway-farthest-pair-rotating-calipers-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-10538-big-picture-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-11012-egg-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-11385-thinksmall-ntt-crt-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-11405-book-purchasing-min-cost-max-flow-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-11407-book-purchasing-3-mincost-maxflow-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-11408-yeolhyeolgangho-5-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-1144-cheap-cost-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-BOJ-11479-distinct-substrings-suffix-array-sam/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-11717-wall-making-game-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-11808-mario-and-evil-toad-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-11932-tree-kth-number-pst-lca-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-11933-factories-virtual-tree-lca-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-1210-mafia-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-12735-boat-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-12766-branch-assignment-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-BOJ-12771-oil-maximum-extraction-slope-sweep/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-12858-range-gcd-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-12876-half-plane-land-2-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-12918-cleaning-up-mirror-symmetry-hungarian-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-BOJ-12963-running-mincut-dsu-powers-of-three/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13034-polygon-game-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13161-division-of-sadness-st-mincut-dinic-cpp-python/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13261-prison-break-dp-dnc-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13309-tree-hld-fenwick-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13323-boj-sequence-1-slope-trick-pq-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13329-meteor-shower-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13510-tree-and-queries-1-hld-segment-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13537-sequence-and-queries-1-offline-bit-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13538-xor-query-persistent-trie-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13544-merge-sort-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13545-sequence-and-queries-0-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13546-sequence-and-queries-4-mos-sqrt-decomp-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13547-distinct-in-range-mos-algorithm-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13569-rounding-feasible-rounding-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13576-prefix-and-suffix-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13896-sky-tax-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13925-sequence-and-queries-13-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-13974-file-merge-2-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-14001-mole-tunnels/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-14166-robotic-cow-herd-fracturing-search-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-14177-awkwardness-minimization-dp-dnc-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-1420-dont-go-to-school-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-14560-communism-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-14636-money-for-nothing-monge-dnc-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-14869-cooking-lecture-dp-sliding-window-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-14870-shell-picking-dp-fenwick-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-14897-distinct-in-range-queries-1-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-14898-distinct-queries-2-persistent-segtree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-14959-slot-machines-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-15337-starting-a-scenic-railroad-service/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-15338-string-puzzle-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-15773-touch-the-sky-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-15974-dinosaur-footprint-dp-sliding-window-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-15977-harmonious-matrix-cdq-3d-lis-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-16074-mountaineers-minimax-mst-union-find-lca-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-16124-happiness-lazy-digit-replace-segment-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-16181-coloring-roads-hld-segtree-lazy-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-16367-tv-show-game-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-16404-seungbeom-company-subtree-range-add-point-query-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-16583-boomerangs-dfs-edge-pairing-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-16670-king-kog-reception-segment-tree/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-16877-pimber-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-16901-xor-mst-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-16903-sequence-and-queries-20-xor-trie-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-16977-histogram-queries-pbs-segtree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-16998-its-a-mod-mod-mod-mod-world-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-17104-goldbach-partition-2-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-BOJ-17134-lemoine-conjecture-fft-convolution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-17169-eat-economically-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-17353-falling-stars-r-l-plus-1-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-17399-tree-circumcenter-lca-binary-lifting-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-17429-international-messi-organization-hld-lazy-segtree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-17526-star-trek-li-chao-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-17613-jump-range-maximum-jumpnumber-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-1763-tree-coloring-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-BOJ-18123-tree-isomorphism-ahu/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-18227-water-tank-tree-bit-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-18485-nine-judges-plausible-set/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-BOJ-2261-closest-pair-of-points-divide-and-conquer/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-2316-city-round-trip-2-node-splitting-max-flow-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-2419-sasuatang-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-24272-more-root-nodes-better-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-2912-snow-white-and-dwarfs-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-2927-antarctic-expedition-link-cut-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-31397-half-cut-hard-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-31603-tree-quiz-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-3295-unidirectional-link-network-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-BOJ-3311-traffic-scc-interval-dp/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-3319-messengers-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-33651-vandalism-uapc-subsequence-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-3611-team-difficulty-densest-subgraph-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-3640-admiral-min-cost-max-flow-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-3683-cats-and-dogs-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-4001-minotaur-labyrinth-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-4012-convention-center-lexicographical-greedy-sparse-table-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-5250-shortest-paths-replacement-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-5466-merchant-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-5820-race-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-6171-land-grabbing-convex-hull-trick-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-8131-ploughing-sliding-window-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-8177-ice-skates-segment-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-8202-conspiracy-split-graph-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-8227-cloakroom-bitset-offline-knapsack-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-8872-billabong-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-8885-pirate-chest-water-displacement-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-8987-aquarium-3-cartesian-tree-segtree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-9244-pinball-line-sweep-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-9248-suffix-array-lcp-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-08-14-boj-9250-string-set-membership-aho-corasick-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-09-04-boj-17476-sequence-and-queries-28-segtree-beats-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-09-04-boj-18186-ramen-buying-large-greedy-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-09-04-boj-19955-invasion-war-bfs-dsu-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-09-04-boj-28460-card-game-mighty-simulator-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-09-16-boj-10854-divisions-number-of-divisors-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-09-16-boj-12728-n-power-calculation-last-three-digits-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-09-16-boj-15576-big-integer-multiplication-2-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-09-16-boj-16993-maximum-subarray-queries-segment-tree-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-09-16-boj-7626-rectangles-union-area-line-sweep-segment-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-10-14-boj-1031-star-battle-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-10-14-boj-13926-gcd-n-k-equals-1-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-10-14-boj-22289-big-integer-multiplication-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-10-14-boj-5051-pythagorean-mod-n-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-10-14-boj-8464-non-squarefree-numbers-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-02-boj-11869-nimble-game-theory-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-02-boj-13310-distant-star-convex-hull-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-02-boj-13925-sequence-query-13-segtree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-02-boj-14504-sequence-query-18-segtree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-02-boj-15782-calculate-2-tree-segtree-lazy-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-02-boj-16496-largest-number-greedy-sorting-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-02-boj-1725-histogram-maxarea-stack-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-02-boj-2626-helicopter-landing-site-minenc-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-02-boj-4354-string-power-period-kmp-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-02-boj-7577-exploration-difference-constraints-spfa-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-02-boj-8096-monochromatic-triangles-graph-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-03-boj-16481-excircle-incircle-geometry-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-03-boj-27533-walk-separately-lindstrom-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-03-boj-6567-let-it-bead-polya-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-04-BOJ-12844-xor/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-04-boj-12850-campus-walk-matrix-exponentiation-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-04-boj-13182-lottery-draw-expectation-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-04-boj-16313-janitor-troubles-geometry-brahmagupta-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-04-boj-16746-four-coloring-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-04-boj-16783-bulldozer-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-04-boj-16983-coin-collecting-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-04-boj-17682-tents-combinatorics-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-04-boj-17693-port-facility-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-04-boj-18526-bomas-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-04-boj-23336-sorting-problem-inversion-count-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-04-boj-23575-squid-game-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-04-boj-28489-2048-game-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-04-boj-29200-reducing-number-of-problems-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-08-boj-11868-nim-game-2-game-theory-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-08-boj-16741-emergency-evacuation-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-08-boj-17367-public-education-gambling-expectation-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-08-boj-19693-safety-stacks-smooth-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-08-BOJ-2709-smallest-k-last-digits-1-2-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-11-boj-11409-yeolhyeol-gangho-6-min-cost-max-flow-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-11-BOJ-20131-tree-making-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-11-BOJ-5920-cow-photography-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-12-BOJ-13618-rsa-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-12-boj-30853-black-box-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-12-BOJ-31222-sequence-and-not-so-hard-queries-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-12-BOJ-9817-necklace-of-beads-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-15-BOJ-14449-balanced-photo-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-15-BOJ-27046-beauty-contest-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-1185-europe-travel-mst-kruskal-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-13324-boj-sequence-2-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-13539-tree-and-query-11-link-cut-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-14853-coin-tossing-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-14899-sequence-and-queries-19-segtree-beats-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-15249-building-bridges-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-16745-what-goes-up-must-come-down-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-16895-nim-game-3-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-17441-fly-swatter-making-green-theorem-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-1777-permutation-recovery-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-17965-absolute-game-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-20176-needle-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-20506-kaisar-survival-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-22878-simple-problem-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-25201-board-flipping-game-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-2586-firetruck-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-2988-avogadro-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-3006-turbosort-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-32115-stone-placing-game-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-32190-ian-sequences-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-33543-two-in-a-team-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-3948-hongjuns-royal-guards-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-5498-batch-scheduling-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-5813-ideal-city-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-6223-cow-sorting-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-7727-byephone-hirschberg-lcs-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-19-BOJ-8155-postering-monotonic-stack-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-20-BOJ-10050-block-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-20-BOJ-13543-sequence-and-queries-2-implicit-treap-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-20-BOJ-17372-fibonacci-gcd-sum-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-20-BOJ-32231-jaewoos-third-retake-hyperbolic-geometry-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-20-BOJ-3752-gcd-matrix-determinant-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-22-BOJ-13028-minhos-wish-fenwick-offline-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-22-BOJ-13232-domain-clusters-scc-tarjan-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-23-BOJ-12012-closing-the-farm-dsu-offline-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2025/2025-12-23-BOJ-1258-problem-assignment-hungarian-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-01-02-BOJ-14289-bondae-walk-3-matrix-exponentiation-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-01-05-BOJ-18874-haircut-fenwick-tree-inversion-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-01-05-BOJ-9120-oulipo-multilingual-kmp-string-matching-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-01-24-BOJ-14288-company-culture-4-tree-queries-fenwick-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-01-24-BOJ-24271-xor-squared-xor-permutation-segment-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-01-24-BOJ-25172-graduation-trip-dynamic-connectivity-dsu-offline-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-01-30-BOJ-12925-numbers-matrix-exponentiation-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-01-30-BOJ-13055-k-inversions-fft-convolution-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-01-30-BOJ-15517-array-manipulation-at-moloco-hard-fenwick-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-02-05-BOJ-13013-suffix-array-2-min-distinct-characters-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-02-05-BOJ-19646-random-generator-fenwick-tree-order-statistics-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-02-05-BOJ-6194-building-the-moat-convex-hull-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-02-06-BOJ-17481-favorite-member-bipartite-matching-hopcroft-karp-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-02-06-BOJ-21814-united-cows-of-farmer-john-fenwick-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-02-23-BOJ-16879-palace-game-grundy-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-02-23-BOJ-17408-sequence-and-query-24-segment-tree-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-02-23-BOJ-4297-ultra-quicksort-inversion-count-bit-cpp-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-02-24-BOJ-12932-karaoke/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-03-10-BOJ-11238-fibo-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-03-10-BOJ-24491-searching-for-soulmates-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2026/2026-03-10-BOJ-8927-squares-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/00-getting-started-android-hardware-development/index.md | 91 | 2026-07-26 | 1 | 통과 | 1.0 | 02e3b39 | 없음(경미: ART/Updates(OTA)/Storage(암호화) 3개 주제가 00–18장 커리큘럼에 명시 배정되지 않음) |
+| content/collection/android-hardware-development/01-hardware-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/02-android-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/03-kernel-development/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/04-hal-development/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/05-system-services/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/06-framework-customization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/07-device-drivers/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/08-bootloader-development/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/09-performance-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/10-security-implementation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/11-certification-compliance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/12-android-application-development/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/13-aosp-build-system/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/14-native-development/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/15-graphics-media-framework/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/16-on-device-ai-ml-integration/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/17-android-graphics-engine/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/android-hardware-development/18-system-integration-testing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/bashshell/ls/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/bashshell/ps/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/bashshell/redirection/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/01-clean-code-fundamentals-what-is-clean-code/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/02-clean-code-fundamentals-exercises/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/03-meaningful-naming-conventions-variables-functions/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/04-meaningful-naming-conventions-exercises/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/05-clean-functions-single-responsibility-principle/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/06-clean-functions-refactoring-exercises/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/07-code-comments-documentation-best-practices/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/08-code-comments-documentation-exercises/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/09-code-formatting-style-consistency/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/10-code-formatting-style-exercises/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/11-objects-vs-data-structures-design-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/12-objects-vs-data-structures-exercises/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/13-error-handling-exceptions-best-practices/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/14-error-handling-exceptions-exercises/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/15-api-boundaries-third-party-integration/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/16-unit-testing-tdd-test-driven-development/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/17-unit-testing-tdd-exercises/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/18-clean-classes-solid-principles-oop/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/19-clean-classes-solid-principles-exercises/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/20-system-design-dependency-injection-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/21-emergent-design-simple-design-principles/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/22-concurrency-multithreading-parallel-programming/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/clean-code/23-refactoring-techniques-legacy-code-improvement/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/cmd/0_cmd/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/cmd/del/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/cmd/rmdir/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/abstract_factory/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/adapter/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/bridge/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/builder/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/chain_of_responsibility/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/command/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/composite/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/decorator/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/facade/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/factory_method/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/final/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/flyweight/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/interpreter/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/iterator/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/mediator/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/memento/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/observer/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/overview/index.md | 95.2 | 2026-07-27 | 3 | 통과 | 1.0 | c1fb2d1 | 없음(경미: 생성/행위 패턴 절 도입 문단 추가 여지, Abstraction 태그 본문 명시 약함) |
+| content/collection/designpattern/prototype/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/proxy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/singleton/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/state/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/templete_method/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/designpattern/vistor/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/llm-from-scratch/00-introduction/index.md | 100 | 2026-07-29 | 3 | 통과 | 1.0 | f82b2ba | 없음(1차 치명결함이었던 "13개 챕터 vs 실제 12개 챕터 표" 불일치를 12개로 정정, 2차 지적된 데이터 큐레이션·평가 방법론 범위 제외를 본문에 명시해 해소) |
+| content/collection/llm-from-scratch/01-ai-math-foundations/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/llm-from-scratch/02-neural-network-training/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/llm-from-scratch/03-rnn-to-transformer/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/llm-from-scratch/04-tokenization-and-embedding/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/llm-from-scratch/05-self-attention/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/llm-from-scratch/06-gpt-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/llm-from-scratch/07-knowledge-storage/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/llm-from-scratch/08-fine-tuning-and-lora/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/llm-from-scratch/09-instruction-tuning/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/llm-from-scratch/10-rlhf-and-dpo/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/llm-from-scratch/11-reasoning-models/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/llm-from-scratch/12-serving-efficiency/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/1997/1997-07-11-contact-1997-science-faith-cosmic-journey/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/1998/1998-07-15-theres-something-about-mary-1998/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2003/2003-01-30-good-morning-vietnam-1987-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2008/2008-06-27-wall-e-2008-love-saves-humanity/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2016/2016-10-20-doctor-strang-2016/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2017/2017-02-10-John-Wick-Chapter-2-2017/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2017/2017-10-27-coco-2017-family-memory-mexican-tradition/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2023/2023-06-06-bicentennial-man-1999-robots-quest-humanity/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2023/2023-06-29-TheGood-TheBad-TheWeird-2008/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2023/2023-11-27-The-Burial-2023/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2023/2023-12-27-Ghosted-2023/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2024/2024-01-28-wish-2024/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2024/2024-01-31-wonka-2023-chocolate-magician-origin/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2024/2024-02-27-dune-2021-desert-prophecy-begins/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2024/2024-03-05-lift-2024/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2024/2024-08-05-ghost-in-the-shell-2017-cyberpunk-identity/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2024/2024-09-20-A-Man-Called-Otto-2022/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-02-10-hugo-movie-2011-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-04-15-minecraft-movie-2025-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-07-16-thunderbolts-2025-wounded-heroes-redemption/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-08-05-paddington-2014-multicultural-acceptance-family-film/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-08-05-paddington-2-2017-kindness-justice-family-values/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-08-05-tangled-2010-disney-rapunzel-fairy-tale/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-08-10-how-to-train-your-dragon-2025-live-action-remake/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-08-21-ad-astra-2019-father-son-relationship-space-odyssey/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-08-25-mission-impossible-the-final-reckoning-2025-final-reckoning-research-dossier-plot-deep-dive/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-08-30-f1-the-movie-2025-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-08-31-escape-plan-2-hades-2018-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-09-08-k-pop-demon-hunters-2025-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-09-11-master-and-commander-the-far-side-of-the-world-2003-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-09-24-gullivers-travels-2010-family-fantasy-comedy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-10-17-the-fantastic-four-first-steps-2025/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-11-03-jurassic-world-rebirth-2025-survival-island/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-11-08-nobody-2-2025-deadly-vacation-revenge/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-11-22-superman-2025-dark-gods-metahuman-revelation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-12-15-mr-and-mrs-smith-2005-married-assassins-action-comedy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-12-15-zootopia-2016-bias-prejudice-coexistence/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2025/2025-12-21-the-aviator-2004-howard-hughes-aviation-obsession/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2026/2026-01-01-avatar-fire-and-ash-2025-grief-hatred-cycle/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2026/2026-01-01-tron-ares-2025-permanence-code-ai/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2026/2026-01-02-transcendence-2014-mind-upload-singularity/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2026/2026-01-05-elio-2025-loneliness-communiverse-first-contact/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2026/2026-01-28-the-bad-guys-2-2025-reformed-criminals-heist/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2026/2026-02-04-zootopia-2-2025-reptiles-framed-partners/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Movies/2026/2026-02-22-inception-2010-dream-within-dream/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/multithreading-design-patterns/00-introduction/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/multithreading-design-patterns/01-concurrency-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/multithreading-design-patterns/02-locking-idioms/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/multithreading-design-patterns/03-waiting-coordination/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/multithreading-design-patterns/04-data-flow-producer-consumer/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/multithreading-design-patterns/05-read-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/multithreading-design-patterns/06-thread-pool/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/multithreading-design-patterns/07-future-promise/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/multithreading-design-patterns/08-active-object/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/multithreading-design-patterns/09-reactor/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/multithreading-design-patterns/10-proactor-half-sync/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/multithreading-design-patterns/11-shared-avoidance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/on-device-ai-compression/00-introduction/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/on-device-ai-compression/01-pruning/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/on-device-ai-compression/02-quantization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/on-device-ai-compression/03-knowledge-distillation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/on-device-ai-compression/04-llm-pruning/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/on-device-ai-compression/05-llm-quantization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/on-device-ai-compression/06-efficient-inference/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/aggregate-repository-pattern/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/analysis-design-core-concepts/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/architecture-design-layer-separation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/class-diagram-relationship-modeling/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/clean-hexagonal-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/dependency-management-interface-design/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/design-principles-pattern-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/domain-driven-design-core-concepts/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/dynamic-modeling-sequence-state/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/event-driven-architecture-cqrs/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/extensibility-flexibility-design-techniques/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/legacy-system-modernization-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/microservices-architecture-ooad/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/oop-four-principles-deep-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/oop-paradigm-essence-philosophy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/requirement-analysis-domain-modeling/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/solid-principles-practical-application/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/strategic-design-bounded-context/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/tactical-design-entity-value-object/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/ooad/usecase-based-analysis-techniques/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/00_why_python/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/01_environment_setup/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/02_basic_syntax/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/03_control_flow/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/04_functions/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/05_data_structures/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/06_file_io/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/07_error_handling/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/08_modules_packages/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/09_oop_basics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/10_oop_advanced/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/11_standard_library/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/12_regex/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/13_decorators/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/14_generators_iterators/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/15_context_managers/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/16_metaclasses/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/17_concurrency/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/18_async_programming/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/19_performance_optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/20_memory_management/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/21_networking/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/22_database/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/23_web_development/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/24_testing_debugging/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/25_packaging_deployment/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/26_design_patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/27_algorithms_data_structures/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/28_project_architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/29_code_quality/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/30_advanced_topics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/00_overview/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/01_basic/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/02_built_in_function/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/03_strings/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/04_collections_list_tuple_set/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/05_dict_patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/06_control_flow/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/07_functions_params/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/08_oop_classes/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/09_decorators/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/10_comprehensions_generators/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/11_errors_exceptions/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/12_context_managers/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/13_files_pathlib_encoding/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/14_modules_imports/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/15_venv_pip_tools/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/16_env_variables/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/17_argparse_cli/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/18_subprocess/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/19_typing_practical/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/20_dataclasses_attrs/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/21_enum_flag/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/22_copy_deepcopy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/23_match_case/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/24_abc_abstract/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/25_metaclass/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/26_descriptor/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/27_inspect/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/28_itertools_functools/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/29_operator/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/30_collections_advanced/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/31_heapq_bisect/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/32_contextlib_advanced/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/33_textwrap/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/34_pprint_reprlib/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/35_json_csv/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/36_xml/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/37_datetime_timezone/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/38_zoneinfo/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/39_regex_safely/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/40_urllib_parse/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/41_configparser_toml/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/42_pickle/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/43_struct_bytes/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/44_database/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/45_weakref/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/46_math_statistics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/47_decimal_fractions/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/48_random/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/49_uuid/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/50_hashlib_secrets/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/51_os_advanced/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/52_sys_advanced/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/53_shutil_tempfile/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/54_zipfile_tarfile/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/55_signal/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/56_atexit/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/57_logging_debugging/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/58_pdb_advanced/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/59_testing_basics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/60_unittest_mock/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/61_profiling/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/62_packaging_advanced/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/63_asyncio_patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/64_concurrency/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/65_http_requests/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/66_http_server/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/67_socket_basics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/68_email_smtplib/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/rag-and-retrieval/00-introduction/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/rag-and-retrieval/01-classical-ir/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/rag-and-retrieval/02-dense-retrieval/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/rag-and-retrieval/03-rag-pipeline/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/rag-and-retrieval/04-approximate-nearest-neighbor/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/rag-and-retrieval/05-graph-rag/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/rag-and-retrieval/06-mcp-text2sql/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/rag-and-retrieval/07-cross-encoder-training/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/array-object-manipulation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/asynchronous-javascript/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/component-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/configure-store/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/create-async-thunk/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/create-slice/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/es6-essential-syntax/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/getting-started-redux/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/immutability-in-redux/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/javascript-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/normalization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/practice-blog-app/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/practice-counter-todo/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/practice-rtk-app/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/react-redux-basics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/react-redux-hooks/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/redux-core-concepts/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/redux-data-flow/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/redux-middleware/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/redux-performance-debugging/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/redux-project-structure/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/redux-saga/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/redux-thunk/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/redux-toolkit-introduction/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/redux-typescript/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/rtk-query/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/selector-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/testing-ecommerce-app/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/typescript-basics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/what-is-redux/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/when-to-use-redux/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/00-introduction/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/01-software-architecture-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/02-architecture-design-principles/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/03-architecture-patterns-and-styles/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/04-modern-architecture-paradigms/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/05-quality-attributes-and-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/06-architecture-documentation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/07-architecture-evaluation-and-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/08-practical-case-studies/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/09-ddd-strategic-design-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/10-ddd-tactical-design/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/11-data-architecture-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/12-distributed-systems-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/13-cloud-native-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/14-api-management-and-integration-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/15-enterprise-architecture-management/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/16-advanced-architecture-practice/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/testing/3A-arrange-act-assert/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/testing/test-smell/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2021/2021-09-17-squid-game-season-1-survival-capitalism/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2024/2024-01-02-Car-Masters--Rust-to-Riches-Season-05/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2025/2025-01-27-squid-game-season-2-revenge/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2025/2025-07-06-squid-game-season-3-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2025/2025-08-13-around-the-world-since-i-was-born-season-4-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2025/2025-08-13-car-masters-rust-to-riches-season-6-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2025/2025-09-08-3-body-problem-season-1-first-contact/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2025/2025-11-02-loki-s01-2021-time-variance-authority/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2025/2025-11-02-young-sheldon-complete-series-2017-child-prodigy-journey/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2025/2025-12-13-three-idiot-in-kenya-2025-netflix-spin-off-variety/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2025/2025-12-16-mr-sunshine-2018-korean-independence-romance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2026/2026-03-11-snowpiercer-s01-2020-class-revolution-train/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2026/2026-03-12-snowpiercer-s02-2021-wilford-power-struggle/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2026/2026-03-13-snowpiercer-s03-2022-new-eden-split/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/TV-Show/2026/2026-03-14-snowpiercer-s04-2024-final-ride-new-eden/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/unittesting/anatomy-of-a-unit-test/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/unittesting/four-pillars-of-good-unit-tests/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/unittesting/goal-of-unit-testing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/unittesting/mocking-best-practices/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/unittesting/mocks-and-test-fragility/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/unittesting/refactoring-toward-valuable-tests/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/unittesting/styles-of-unit-testing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/unittesting/testing-the-database/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/unittesting/unit-testing-anti-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/unittesting/unit-testing-overview/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/unittesting/what-is-a-unit-test/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/unittesting/why-integration-testing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/vision-ai-foundations/00-introduction/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/vision-ai-foundations/01-vision-background/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/vision-ai-foundations/02-dnn-to-cnn/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/vision-ai-foundations/03-vision-transformer/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/vision-ai-foundations/04-vit-variants/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/vision-ai-foundations/05-object-detection/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/vision-ai-foundations/06-object-tracking/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/vision-ai-foundations/07-segmentation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-02-07-vocabulary-aid-meaning-and-usage/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-02-08-conception/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-02-14-giveaway/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-02-14-rash/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-02-17-illegitimate/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-02-28-sensation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-05-22-vocabulary-sauce-dressing-spread-condiment-differences/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-05-31-orthography-spelling-rules-and-importance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-07-16-parenting-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-07-29-alienate-etymology-meaning-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-08-04-basics-vocabulary-guide/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-08-06-consent-permission-agreement-to-something/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-08-07-mature-development-growth-completion/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-08-21-guarantee-assurance-warranty/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-09-02-provide-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-09-04-pipeline-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-09-09-treat-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-09-19-retract-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-09-29-cramp-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-09-29-scribble-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-01-root-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-10-hinge-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-13-gladiatorial-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-14-ridicule-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-24-beat-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-24-intuitively-adverb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-24-moderate-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-28-acquaint-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-28-adolescence-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-28-indestructible-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-28-inn-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-28-instigate-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-28-remedy-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-28-scramble-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-28-screen-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-28-syndrome-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-10-28-thatched-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-11-25-recurrent-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-12-08-bulk-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-12-08-piece-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-12-08-rowdy-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-12-08-slouch-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-12-12-delinquency-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-12-12-gray-area-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-12-15-cinematic-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-12-17-paleolithic-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-12-17-ripcord-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-12-19-cynicism-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2025-12-19-run-down-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2025/2026-05-22-track-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-02-craft-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-02-earnestness-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-02-inconsequential-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-02-inhibited-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-02-in-store-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-24-analog-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-24-booth-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-24-close-knit-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-24-cue-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-24-dormant-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-24-lobbyist-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-24-pigment-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-24-steaming-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-28-overbearing-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-01-30-representation-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-02-05-ripple-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-02-06-inadequacy-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-02-11-myth-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-02-11-prosperous-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-02-23-burned-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-02-23-defect-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-02-23-engrave-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-02-23-fill-someone-shoes-phrase-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-02-23-grated-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-02-23-stimulation-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-02-23-superimpose-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-02-23-unspoiled-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-02-25-act-on-phrasal-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-06-duel-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-06-repression-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-09-ad-hoc-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-09-equal-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-09-ghostwrite-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-09-playful-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-09-put-down-phrasal-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-09-seniority-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-09-zone-out-phrasal-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-10-innocent-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-10-recognition-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-10-second-thoughts-idiom-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-10-slip-up-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-10-standout-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-18-disposition-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-19-audio-guide-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-19-esophagus-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-19-gluten-free-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-19-narrow-down-phrasal-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-19-save-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-19-spend-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-27-compensate-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-27-competent-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-27-ethically-adverb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-27-layer-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-27-overuse-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-27-whoosh-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-03-30-deliberate-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-04-13-consumption-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-04-13-toxicologist-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-04-21-absenteeism-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-04-21-lacquerware-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-05-08-soft-spot-phrase-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-05-26-shaggy-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-05-26-tiresome-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-06-01-faceless-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-06-01-rev-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-06-05-marker-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-06-22-need-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-06-22-termination-noun-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-06-22-uneventful-adjective-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-06-22-whisk-verb-meaning-usage-examples/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2018/2018-07-10-remove-all-docker-container/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2018/2018-12-06-install-ubuntu-16.04-on-lattepanda/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2019/2019-01-31-tmux/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2019/2019-02-13-exit-and-exit-status/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2019/2019-02-13-extrac-directory-path-and-file-name/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2019/2019-02-14-exit-code-with-special-meanings/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2019/2019-02-26-set-static-ip-on-ubuntu-14-04/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2019/2019-03-29-launchy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2019/2019-04-02-pip-install-with-proxy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2019/2019-05-31-utorrent-queueing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2020/2020-05-12-listing-files-in-order/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-04-06-rdp-wrapper-issue/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-04-07-github-desktop-update/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-04-07-git-reset/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-04-07-window10-multiuser-kakaotalk/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-04-13-reser-corsair-keyboard/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-04-14-linux-unzip/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-04-27-distructor-called-by-runtime/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-04-28-dotnet-conditional-compileation-option/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-04-28-MSB1008/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-04-29-get-process-environment-value/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-05-06-why-reflection-is-slow/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-05-17-shell-script-number-example/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-07-08-define-in-namespace/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-07-09-get-file-name-in-shell/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-07-12-unmout-vbsbuild/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-08-05-shell-wait/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-08-18-regex-match/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-10-27-custom-loader/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-11-11-custom-signal-launcher/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-11-24-rpm-spec-comments/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/2021-12-05-sw-developers-principal-mind/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/comments/2021-04-13-comments/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/jekyll/2021-04-06-make-collections/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2021/jekyll/2021-10-13-plantuml-in-jekyll/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-01-26-class-struct/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-01-28-cpp-string-find/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-02-07-add-image-caption/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-02-07-minimal-mistake-wide-page/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-02-08-add-line-number-in-karmdown/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-02-14-convert-long-to-int/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-02-24-markdown-latex/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-02-28-add-Copy-code-to-clipboard/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-03-07-javascript-comment/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-03-15-lessons-learned-from-the-smartest-soft-engineer/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-03-15-pair-programming-anti-pattern/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-03-16-css-history/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-03-16-there's-no-such-things-as-clean-code/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-03-16-windows-defender-is-enough/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-03-18-announcing-dotnet-7-preview-2/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-03-18-mistake-when-using-string/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-03-29-cpp-cout-precision/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-04-04-how-to-use-deleter-for-uniuqe-ptr/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-04-05-source-gernerator/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-04-15-btop/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-04-29-how-to-get-latest-information/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-05-19-law-of-demeter/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-06-02-garmin-workout-list/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-06-07-openverse/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-06-09-linux-filesystem/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-06-27-linux-command-loop-execute/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-06-27-markwhen/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-06-28-qbittorrent/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-07-05-hyperv-bank-remote/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-07-07-github-dev/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-07-26-git-story/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-12-11-how-to-use-candellation-token-source/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-12-30-comprehensive-rust/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2022/2022-12-30-learn-prompting/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-01-11-online-python-lecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-01-11-rust/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-01-13-restart-plex-media-server/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-01-13-size-check-with-symlink/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-01-25-nut.js/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-02-13-dlopen/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-05-31-lyft/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-06-01-gpt4-nerfing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-06-02-dynamic-loading-in-cpp/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-06-02-future-of-ai/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-06-06-cpu-vs-gpu/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-06-07-serverless-monoliths/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-06-23-api-gateway-vs-load-balancer/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-07-02-solid/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-07-17-reinforcement-learning/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-07-22-design-pattern/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-09-21-builder-pattern/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-09-21-crontab/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-09-22-abstract-factory-pattern/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2023/2023-10-31-btrfs/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-07-csharp-array/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-07-csharp-async-await/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-07-csharp-data-types/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-07-csharp-variable-constant/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-08-DDD/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-08-reverse-mapped-types/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-13-Broadcast-Channel-API/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-13-Disagree-and-Commit/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-14-CSharp-fundamental/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-14-CSharp-interface-and-abstact-class/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-14-csharp-intro/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-14-CSharp-OOP/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-19-Collision-Detection/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-19-PyTorch-vs-JAX/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-19-Quad-Tree/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-19-test-coverage/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-20-singleton/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-21-factory-method/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-22-abstract-factory/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-22-builder/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-22-JAX-vs-PyTorch/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-22-prototype/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-22-Relational-vs-Non-Relational-Datebase/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-26-bubble-sort/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-26-CSharp-regex/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-26-Function-programming/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-26-python-logging/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-26-python-regex/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-26-typescript-inference/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-27-algorithm/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-27-c4-model/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-27-coding-test/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-27-cpp-safty/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-27-Database/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-27-gen-ai-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-27-kubernetes-gateway-api/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-27-two-sum/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-28-Docker/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-28-sql-index/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-29-crdt/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-08-29-microservices-communication/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-09-01-aicd/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-09-09-entity-framework/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-09-09-file-system/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-09-09-latency-metrics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-09-09-Refactoring/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-09-09-rest-vs-graphql/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-09-09-zkp/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-09-10-api-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-09-10-LangGraph/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-09-10-Shell-Redirection/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-09-10-web-font/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-09-13-architectual-metapattern/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-09-23-advenced-python/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-09-23-distrubute-system/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-02-agi/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-10-optimizing-regex/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-14-iot-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-14-python-systemv/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-14-spacex-starship/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-15-crlf/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-15-csharp_record/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-15-csharp-class/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-15-csharp-generic/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-15-csharp-interface/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-15-csharp-program-structure/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-15-csharp-type-system/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-15-pythin-shutil/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-15-python-itertools/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-15-safe-cpp/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-16-csharp-anonymous-types/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-16-csharp-discards/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-16-csharp-object-oriented/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-16-csharp-pattern-matching/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-16-csharp-tuple/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-16-two-pointers/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-17-data-protection/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-17-exception/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-17-internet-io-domain/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-17-networking-latency/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-17-on-the-nature-of-time/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-17-python-decorator/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-18-event-driven-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-10-23-color-brewer/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-11-08-Alonzo-Church/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-11-08-FFmpeg/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-11-08-python-clean-code/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-11-08-python-oop/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-11-27-rcu/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-11-28-reactive-html-noteboot/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-12-18-huyen-chip-blog/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-12-25-urwerk/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-12-26-red-queen-effect/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2024/2024-12-27-vscode-find-regular-expression/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-01-01-potplayer-auto-generated-subtitle/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-01-10-disable-webex-taskbar-sharing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-01-10-rdp-explorer-hiding-issue/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-01-13-automatically-add-yourself-as-cc-in-outlook/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-01-13-vscode-1password-korean-input-issue/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-04-rdp-clipboard-share-between-host-and-remote-session/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-07-self-trust-and-confidence/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-09-how-not-to-do-crypto/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-09-kanata-keyboard-remapper/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-10-mathematical-handwriting/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-10-yoonsound-brick-speaker/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-11-fake-scientific-papers/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-11-nvidia-project-digits/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-17-chuwi-hi10-max-tablet/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-17-linux-user-management/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-17-ocr4all-introduction/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-17-pocket-4-handheld-pc/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-20-kvm-over-ip-based-on-raspberry-pi-pikvm/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-20-win32-api-messagebox-topmost/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-24-network-windows-share-folder-synology-nas-cifs-nfs-guide/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-28-csharp-lock-free-priority-queue/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-28-deepsearcher-empowering-local-deep-research-with-open-source-innovation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-02-28-the-historical-evolution-of-beatboxing-a-journey-through-vocal-art-past-and-present/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-03-04-wheel-balance-necessary-for-cars-optional-for-bikes/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-03-05-html-as-a-programming-language-exploration-centered-on-html-lang-org/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-03-05-the-300-year-history-of-coding-from-mechanical-punch-cards-to-modern-programming/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-04-02-remote-desktop-windows-remote-desktop-app-ssh-tunnel-connection-error-0x516-cause-and-solution/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-04-04-hdmi-cec-integration-pc-tv-power-management-automation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-04-19-synology-photos-duplicate-photos-finding-and-removing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-05-20-the-secrets-of-code-optimization-pushing-conditionals-up-and-loops-down/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-05-21-how-to-display-multiple-notification-banners-in-windows/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-05-22-automatic-file-organization-script-after-torrent-download-completion/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-05-22-one-ui-7-bug-report-galaxy-z-fold-6/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-05-23-nara-spell-checker-renewal-barun-hangul-new-features-and-characteristics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-05-24-hyper-v-virtual-machine-resolution-setting-set-vmvideo-utilization-guide/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-07-17-windows-batch-admin-privilege-uac-elevation-guide/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-07-29-windowing-techniques-stream-processing-data-analysis-guide/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-07-30-chatgpt-study-mode-introduction/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-08-01-faststone-image-viewer-8-1-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-08-04-pyinstaller-python-executable-deployment-guide/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-08-06-hugo-archetypes-complete-guide/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-08-06-thrustmaster-sol-r-2-hosas-space-sim-duo-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-08-08-gpt-5-introduction/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-08-10-cursor-playwright-mcp-setup/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-08-13-cursor-agent-powershell-hang-fix-ps7/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-08-21-hugo-alias-noindex-canonical-seo-best-practices/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-08-21-protocol-buffers-proto3-guide/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-08-26-grpc-proto-compatibility-and-versioning-safely-evolving-apis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-08-27-windows-11-mstsc-taskbar-fix-automation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-08-29-github-pages-redirect-301-hugo-alias-seo/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-01-bermuda-triangle-facts-myths-science/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-01-big-o-notation-visual-guide-samwho/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-01-cognitive-load-in-code-practical-guide/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-01-gitignore-cache-clear-fix/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-01-opengraph-examples-introduction-og-guide/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-01-the-web-does-not-need-gatekeepers-open-web-agents-authz/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-09-rss-vs-ice-how-rss-beat-microsoft/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-10-kakao-openai-strategic-collaboration/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-15-cursor-cli/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-16-apple-memory-integrity-enforcement-mie/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-16-npp-vs-n-plus-equals-1/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-16-term-everything-run-gui-in-terminal/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-17-jina-ai-reader-url-to-llm-friendly-input/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-18-hugo-url-viewer/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-18-windows-11-dual-monitor-1920x1080-120hz-dpi-100/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-21-chatgpt-students-100-prompts/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-09-29-gcc-finstrument-functions-usage/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-10-01-chatgpt-engineers-use-cases/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-10-01-chatgpt-for-it-teams/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-10-02-simucube-professional-sim-racing-equipment-manufacturer/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-10-13-hyperv-enhanced-session-windows-hello-fix/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-10-14-interval-overlap-check-half-open-demorgan/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-10-14-rsa-private-exponent-lambda-n-vs-phi-n/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-10-16-markdown-preview-enhanced/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-10-24-deepseek-ocr/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-10-28-jetkvm-next-generation-open-source-kvm-over-ip/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-10-29-markdown-heading-regex-guide/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-10-30-cursor-composer-fast-frontier-model/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-10-30-why-cpp-still-used/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-11-18-biosphere-2-terraforming-closed-ecosystem-experiment/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-11-22-treewa-custom-keyboard-palmrest/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-11-25-generative-ai-most-popular-prompts-statistics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-12-10-easylink-u2u-mechanical-keyboard-qmk-vial-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-12-20-find-frontmatter-missing-description-powershell/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-12-23-hero-infographic-generator-usage/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2025/2025-12-23-privacy-marketing-anonymity-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-01-05-beancount-double-entry-accounting/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-01-28-everything-claude-code/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-02-03-robust-photo-management-system-immich/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-02-04-s-expression-syntax/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-02-20-cannondale-smartsense-gen2-cycling-safety/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-02-22-history-of-calendars-fascinating-story/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-02-23-flashpoint-archive-web-game-preservation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-02-23-modern-css-stop-writing-like-2015/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-02-24-hugo-build-optimization-github-pages/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-02-24-tag-improvement-summary/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-02-25-github-actions-hugo-webp-cache-build-time/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-03-12-speaker-diarization-stt-open-source/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-05-03-quantum-computing-bitcoin-threat/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-06-30-four-pillars-of-success-park-yonghoo/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-06-30-surface-go-1st-gen-linux-install-guide/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-07-01-insane-research-claude-code-deep-research-plugin/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-07-05-kanata-windows-capslock-rdp-race/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-07-08-claude-code-deep-research-plugins-comparison/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-07-08-rogerebert-2026-best-films-so-far/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-07-20-critical-path-tracing-distributed-latency/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-07-21-k-skill-korean-agent-skills/index.md | - | - | 0 | 미채점 | - | - | - |
