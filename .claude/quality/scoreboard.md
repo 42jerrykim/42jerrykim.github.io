@@ -43,7 +43,7 @@
 | content/collection/cleanarchitecture/15-srp-single-responsibility-principle/index.md | 91.6 | 2026-07-18 | 2 | 통과 | 1.0 | 6588639 | 없음 |
 | content/collection/cleanarchitecture/16-ocp-open-closed-principle/index.md | 93.1 | 2026-07-18 | 2 | 통과 | 1.0 | 076b9dd | 없음(경미: "두 가지 의미"·"요구사항" 절 리스트-only) |
 | content/collection/cleanarchitecture/17-lsp-liskov-substitution-principle/index.md | 97 | 2026-07-18 | 2 | 통과 | 1.0 | 879080a | 없음(경미: Algorithm 태그 본문 불일치) |
-| content/collection/cleanarchitecture/18-isp-interface-segregation-principle/index.md | 90.1 | 2026-07-18 | 2 | 통과 | 1.0 | 8436353 | 없음(임계값 근접, 이후 보강 완료) |
+| content/collection/cleanarchitecture/18-isp-interface-segregation-principle/index.md | 91.5 | 2026-07-29 | 4 | 통과 | 1.2 | ebaf9f7 | 없음(항목4 70: 전략 절 리드인과 후행 문단 재진술 3곳). 채점 후 L45 인용문을 정본("클라이언트는 자신이 사용하지 않는 인터페이스에…")으로 교정해 해시가 어긋남 — 콘텐츠 변경 만료로 다음 실행에서 재채점 대상 |
 | content/collection/cleanarchitecture/19-dip-dependency-inversion-principle/index.md | 97 | 2026-07-18 | 3 | 통과 | 1.0 | a799a0b | 없음(경미: 소스코드의존성 vs 제어흐름 절 문단 얇음) |
 | content/collection/cleanarchitecture/20-component-principles-introduction/index.md | 92.2 | 2026-07-19 | 3 | 통과 | 1.0 | 1cb2803 | 없음 |
 | content/collection/cleanarchitecture/21-components-deployment-units-history/index.md | 90.7 | 2026-07-19 | 2 | 통과 | 1.0 | 265801e | 없음 |
