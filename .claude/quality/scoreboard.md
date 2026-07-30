@@ -951,7 +951,7 @@
 | content/collection/multithreading-design-patterns/09-reactor/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/multithreading-design-patterns/10-proactor-half-sync/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/multithreading-design-patterns/11-shared-avoidance/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/on-device-ai-compression/00-introduction/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/on-device-ai-compression/00-introduction/index.md | 94.5 | 2026-07-31 | 1 | 통과 | 1.2 | e2d6f29 | 없음(경미: 오개념 교정 문단이 Quantization 1건뿐, Pruning·Distillation 오개념 미포함으로 항목2=85) |
 | content/collection/on-device-ai-compression/01-pruning/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/on-device-ai-compression/02-quantization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/on-device-ai-compression/03-knowledge-distillation/index.md | - | - | 0 | 미채점 | - | - | - |
