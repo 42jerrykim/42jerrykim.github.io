@@ -1078,7 +1078,7 @@
 | content/collection/python-cheatsheet/66_http_server/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/python-cheatsheet/67_socket_basics/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/python-cheatsheet/68_email_smtplib/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/rag-and-retrieval/00-introduction/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/rag-and-retrieval/00-introduction/index.md | 94.5 | 2026-08-01 | 1 | 통과 | 1.2 | 268b335 | 없음 |
 | content/collection/rag-and-retrieval/01-classical-ir/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/rag-and-retrieval/02-dense-retrieval/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/rag-and-retrieval/03-rag-pipeline/index.md | - | - | 0 | 미채점 | - | - | - |
