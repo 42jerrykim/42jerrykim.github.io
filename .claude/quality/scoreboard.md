@@ -1009,7 +1009,7 @@
 | content/collection/python/28_project_architecture/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/python/29_code_quality/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/python/30_advanced_topics/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/python-cheatsheet/00_overview/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python-cheatsheet/00_overview/index.md | 91.8 | 2026-08-03 | 2 | 통과 | 1.2 | d1ded80 | 없음(경미: Section 4→5/7→2 연결 문단이 다소 일반화된 서술, 오개념 교정 사례 1건뿐, Tree/Factory 태그의 본문 연결이 간접적) |
 | content/collection/python-cheatsheet/01_basic/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/python-cheatsheet/02_built_in_function/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/python-cheatsheet/03_strings/index.md | - | - | 0 | 미채점 | - | - | - |
