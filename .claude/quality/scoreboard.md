@@ -978,7 +978,7 @@
 | content/collection/ooad/strategic-design-bounded-context/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/ooad/tactical-design-entity-value-object/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/ooad/usecase-based-analysis-techniques/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/python/00_why_python/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/python/00_why_python/index.md | 96.55 | 2026-08-04 | 2 | 통과 | 1.2 | ff374b0 | 없음(경미: L78-87 `import this` 블록 앞 개념 설명 문단 부재, L72-76·L128-132 리스트가 문단 없이 헤딩 직후 시작) |
 | content/collection/python/01_environment_setup/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/python/02_basic_syntax/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/python/03_control_flow/index.md | - | - | 0 | 미채점 | - | - | - |
