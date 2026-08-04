@@ -34,3 +34,8 @@ disableLatLong = true
 [services.rss]
 limit = 50
 
+# GA4 웹 스트림 (속성 ID 378371944, 스트림 ID 5262841886)
+# layouts/partials/head/head.html 이 _internal/google_analytics.html 을 호출한다
+[services.googleAnalytics]
+ID = "G-E99XGK8V2Y"
+
