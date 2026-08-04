@@ -1,2 +1,6 @@
 # PR preview 환경: draft 포스트도 빌드에 포함
 buildDrafts = true
+
+# PR preview 트래픽이 GA4 통계를 오염시키지 않도록 비활성화
+[privacy.googleAnalytics]
+disable = true
