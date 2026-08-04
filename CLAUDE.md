@@ -26,6 +26,7 @@
 - `blog-post-writing` — 포스트 작성 가이드 (경로, 제목, 태그, SEO)
 - `blog-agent-pipeline` — 글 작성 전체 파이프라인 (Research → Draft → QA → PublishPrep)
 - `post-quality-loop` — 게시물 품질 채점·반복 개선 루프 (루브릭 기반, draft 해제는 사람만)
+- `engagement-report` — 독자 반응(GSC·GA4·utterances) 주간 수집·성과판 기록·주제 백로그 도출·분기 루브릭 회고
 - `educational-content-writing` — 교육 콘텐츠 품질 (안티패딩, 코드, 수치 근거)
 - `collection-writing-standards` — 컬렉션 글 이론 중심 작성 표준
 
