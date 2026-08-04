@@ -1117,7 +1117,7 @@
 | content/collection/redux/typescript-basics/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/redux/what-is-redux/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/redux/when-to-use-redux/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/software-architecture/00-introduction/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/software-architecture/00-introduction/index.md | 100 | 2026-08-05 | 1 | 통과 | 1.2 | c6d33ba | 없음(경미: Mermaid 의존관계 다이어그램 보조 추가 여지, 마이크로서비스 프리미엄 판단기준을 DDD/CQRS로 확장 여지, CAP/Saga 1차 출처 병기 여지) |
 | content/collection/software-architecture/01-software-architecture-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/software-architecture/02-architecture-design-principles/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/software-architecture/03-architecture-patterns-and-styles/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1582,3 +1582,4 @@
 | content/post/2026/2026-07-20-critical-path-tracing-distributed-latency/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-07-21-k-skill-korean-agent-skills/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-04-napkin-math-performance-estimation/index.md | 97.3 | 2026-08-04 | 2 | 통과 | 1.2 | 6d76c7e | 없음(경미: 표 caption에 same-region/cross-zone 조건 미병기, 인접 성능 글로의 교차 링크 여지) |
+| content/post/2026/2026-08-04-architecture-decision-record/index.md | - | - | 0 | 미채점 | - | - | - |
