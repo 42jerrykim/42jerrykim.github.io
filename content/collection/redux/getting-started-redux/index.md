@@ -94,11 +94,9 @@ React만으로도 작은 앱은 만들 수 있습니다. 그러나 컴포넌트�
 
 실무에서는 **레거시 Redux** 코드베이스 유지보수, **신규 프로젝트**에서 상태 구조 설계, **Redux를 쓸지 말지**(Context API, Zustand 등 대안과의 트레이드오프) 판단이 자주 필요합니다. 이 시리즈를 마치면 Redux/Redux Toolkit/RTK Query를 활용해 상태를 설계하고, 디버깅·테스트·최적화까지 할 수 있는 수준에 도달합니다. 프론트엔드 채용에서도 "상태 관리 경험"을 요구하는 경우가 많으므로, Redux를 이해하고 실습한 경험은 이력과 면접에서 차별화 요소가 됩니다.
 
-| 구분 | 내용 |
-|------|------|
-| **동기** | Props Drilling·예측 어려운 업데이트·디버깅 난이도 → Redux의 단일 Store, 단방향 흐름, DevTools로 완화 |
-| **해결하는 문제** | 대규모 폼/멀티 스텝, 서버·클라이언트 상태 일관성, 팀 협업 시 상태 규칙 통일 |
-| **학습 결과** | 레거시 Redux 유지보수, 신규 프로젝트 상태 설계, Redux vs 대안 판단, 실무·취업 차별화 |
+### 흔한 오해 바로잡기
+
+Redux를 처음 접할 때 자주 하는 오해 세 가지를 시리즈 시작 전에 짚어 둡니다. 첫째, "**Redux 없이는 React에서 상태 관리를 할 수 없다**"는 오해입니다. React는 `useState`·`useReducer`·Context API만으로도 상태를 관리할 수 있고, 10편에서 다루듯 Redux는 여러 화면이 같은 상태를 공유하거나 상태 변경 이력 추적이 중요할 때 선택하는 도구이지 필수 전제조건이 아닙니다. 둘째, "**모든 상태를 Redux 스토어에 넣어야 한다**"는 오해입니다. 폼 입력값처럼 한 컴포넌트에서만 쓰이는 로컬 UI 상태까지 전역 스토어로 옮기면 오히려 보일러플레이트만 늘고, 실무에서는 로컬 상태와 전역 상태를 구분해서 관리합니다. 셋째, "**Redux Toolkit(RTK)은 순수 Redux와 완전히 다른 라이브러리**"라는 오해입니다. RTK는 16–20편에서 보듯 내부적으로 여전히 Action·Reducer·Store라는 같은 3원칙 위에서 동작하며, `createSlice`·`configureStore`는 보일러플레이트를 줄이는 래퍼일 뿐 개념 자체를 바꾸지 않습니다.
 
 ### Redux를 쓰기 좋은 경우 / 피하는 경우 (한눈에 보기)
 
@@ -138,11 +136,11 @@ React만으로도 작은 앱은 만들 수 있습니다. 그러나 컴포넌트�
 
 | 편 | 제목 | 링크 | 이 편이 필요한 이유 / 이 편을 마치면 |
 |----|------|------|--------------------------------------|
-| 01 | JavaScript 핵심 개념 - 변수, 함수, 객체 | [01. JavaScript 핵심 개념](javascript-fundamentals/) | Reducer/state가 모두 JS 객체·함수이므로 이 기초 없이는 07·09편 이해가 어렵다. 배우면 Redux 코드를 읽고 수정할 기초가 된다. |
-| 02 | ES6+ 필수 문법 - 구조 분해, 스프레드, 템플릿 리터럴 | [02. ES6+ 필수 문법](es6-essential-syntax/) | Redux에서 스프레드로 불변 업데이트를 자주 쓴다. 이 편을 마치면 08편(불변성)과 리듀서 작성이 수월해진다. |
-| 03 | 배열과 객체 다루기 - map, filter, reduce | [03. 배열과 객체 다루기](array-object-manipulation/) | 리듀서와 selector에서 map/filter/reduce 패턴이 핵심이다. 배우면 상태 파생·변환 로직을 작성할 수 있다. |
-| 04 | 비동기 JavaScript - Promise와 async/await | [04. 비동기 JavaScript](asynchronous-javascript/) | Thunk·RTK Query 등 비동기 액션의 기반이다. 이 편 없이는 21–24편(미들웨어·API) 이해가 어렵다. |
-| 05 | TypeScript 기초 - 타입 시스템 이해하기 | [05. TypeScript 기초](typescript-basics/) | 실무 Redux는 타입 안전하게 쓰는 경우가 많다. 28편(Redux와 TypeScript)과 실전 프로젝트의 기초가 된다. |
+| 01 | JavaScript 핵심 개념 - 변수, 함수, 객체 | [01. JavaScript 핵심 개념](../javascript-fundamentals/) | Reducer/state가 모두 JS 객체·함수이므로 이 기초 없이는 07·09편 이해가 어렵다. 배우면 Redux 코드를 읽고 수정할 기초가 된다. |
+| 02 | ES6+ 필수 문법 - 구조 분해, 스프레드, 템플릿 리터럴 | [02. ES6+ 필수 문법](../es6-essential-syntax/) | Redux에서 스프레드로 불변 업데이트를 자주 쓴다. 이 편을 마치면 08편(불변성)과 리듀서 작성이 수월해진다. |
+| 03 | 배열과 객체 다루기 - map, filter, reduce | [03. 배열과 객체 다루기](../array-object-manipulation/) | 리듀서와 selector에서 map/filter/reduce 패턴이 핵심이다. 배우면 상태 파생·변환 로직을 작성할 수 있다. |
+| 04 | 비동기 JavaScript - Promise와 async/await | [04. 비동기 JavaScript](../asynchronous-javascript/) | Thunk·RTK Query 등 비동기 액션의 기반이다. 이 편 없이는 21–24편(미들웨어·API) 이해가 어렵다. |
+| 05 | TypeScript 기초 - 타입 시스템 이해하기 | [05. TypeScript 기초](../typescript-basics/) | 실무 Redux는 타입 안전하게 쓰는 경우가 많다. 28편(Redux와 TypeScript)과 실전 프로젝트의 기초가 된다. |
 
 ### Phase 2: Redux 핵심 개념 (6-10편)
 
@@ -152,11 +150,11 @@ React만으로도 작은 앱은 만들 수 있습니다. 그러나 컴포넌트�
 
 | 편 | 제목 | 링크 | 이 편이 필요한 이유 / 이 편을 마치면 |
 |----|------|------|--------------------------------------|
-| 06 | Redux란 무엇인가 - Flux 아키텍처와 상태 관리 | [06. Redux란 무엇인가](what-is-redux/) | 상태 관리가 왜 필요한지, Redux가 어떤 문제를 푸는지 알지 못하면 이후 편이 "암기"가 된다. 배우면 학습 동기와 설계 판단의 기준이 생긴다. |
-| 07 | Redux의 핵심 - Action, Reducer, Store | [07. Redux 핵심 개념](redux-core-concepts/) | Redux 코드의 90%는 이 세 요소 조합이다. 이 편 없이는 11편(React-Redux) 이후 모든 실습이 불가능하다. |
-| 08 | 불변성의 중요성 - Immutability in Redux | [08. 불변성](immutability-in-redux/) | 불변성을 지키지 않으면 리듀서에서 예측 불가한 버그와 리렌더 이슈가 난다. 배우면 올바른 state 업데이트 패턴을 쓸 수 있다. |
-| 09 | Redux 데이터 흐름 이해하기 | [09. Redux 데이터 흐름](redux-data-flow/) | dispatch→reducer→구독자 흐름을 모르면 11·12편(Provider, 훅)이 왜 필요한지 이해하기 어렵다. 디버깅과 DevTools 활용의 기초가 된다. |
-| 10 | Redux를 사용하는 이유와 적절한 사용 시기 | [10. 언제 Redux를 쓸까](when-to-use-redux/) | 실무에서 "Redux 쓸까 말까" 판단이 필요하다. 배우면 프로젝트 규모·요구사항에 맞는 선택을 할 수 있다. |
+| 06 | Redux란 무엇인가 - Flux 아키텍처와 상태 관리 | [06. Redux란 무엇인가](../what-is-redux/) | 상태 관리가 왜 필요한지, Redux가 어떤 문제를 푸는지 알지 못하면 이후 편이 "암기"가 된다. 배우면 학습 동기와 설계 판단의 기준이 생긴다. |
+| 07 | Redux의 핵심 - Action, Reducer, Store | [07. Redux 핵심 개념](../redux-core-concepts/) | Redux 코드의 90%는 이 세 요소 조합이다. 이 편 없이는 11편(React-Redux) 이후 모든 실습이 불가능하다. |
+| 08 | 불변성의 중요성 - Immutability in Redux | [08. 불변성](../immutability-in-redux/) | 불변성을 지키지 않으면 리듀서에서 예측 불가한 버그와 리렌더 이슈가 난다. 배우면 올바른 state 업데이트 패턴을 쓸 수 있다. |
+| 09 | Redux 데이터 흐름 이해하기 | [09. Redux 데이터 흐름](../redux-data-flow/) | dispatch→reducer→구독자 흐름을 모르면 11·12편(Provider, 훅)이 왜 필요한지 이해하기 어렵다. 디버깅과 DevTools 활용의 기초가 된다. |
+| 10 | Redux를 사용하는 이유와 적절한 사용 시기 | [10. 언제 Redux를 쓸까](../when-to-use-redux/) | 실무에서 "Redux 쓸까 말까" 판단이 필요하다. 배우면 프로젝트 규모·요구사항에 맞는 선택을 할 수 있다. |
 
 ### Phase 3: React-Redux 연동 (11-15편)
 
@@ -166,11 +164,11 @@ Redux 개념을 익힌 뒤, 실제 화면(React 컴포넌트)과 Store를 어떻
 
 | 편 | 제목 | 링크 | 이 편이 필요한 이유 / 이 편을 마치면 |
 |----|------|------|--------------------------------------|
-| 11 | React-Redux 시작하기 - Provider와 connect | [11. React-Redux 시작하기](react-redux-basics/) | Store를 컴포넌트에 주입하는 방법을 모르면 Redux state가 화면에 반영되지 않는다. 배우면 앱 전체에서 Store를 사용할 수 있다. |
-| 12 | React-Redux Hooks - useSelector와 useDispatch | [12. React-Redux Hooks](react-redux-hooks/) | 실무에서는 Hooks 방식이 주로 쓰인다. 이 편을 마치면 함수 컴포넌트에서 state 구독·dispatch를 간결하게 쓸 수 있다. |
-| 13 | 컴포넌트 최적화 - 리렌더링 제어 | [13. 컴포넌트 최적화](component-optimization/) | 구독 범위를 잘못 잡으면 불필요한 리렌더로 성능이 떨어진다. 배우면 실무 수준의 렌더 제어가 가능해진다. |
-| 14 | 데이터 선택자 - Selector 패턴 | [14. Selector 패턴](selector-patterns/) | state에서 파생 데이터를 안전·재사용 가능하게 꺼내는 방법이다. 13편 최적화와 26편(구조)의 기초가 된다. |
-| 15 | 실습: Counter와 Todo 앱 만들기 | [15. 실습: Counter와 Todo](practice-counter-todo/) | 1–14편을 한 번에 적용하는 종합 실습이다. 마치면 Redux+React 기초를 스스로 구현할 수 있다는 확신이 생긴다. |
+| 11 | React-Redux 시작하기 - Provider와 connect | [11. React-Redux 시작하기](../react-redux-basics/) | Store를 컴포넌트에 주입하는 방법을 모르면 Redux state가 화면에 반영되지 않는다. 배우면 앱 전체에서 Store를 사용할 수 있다. |
+| 12 | React-Redux Hooks - useSelector와 useDispatch | [12. React-Redux Hooks](../react-redux-hooks/) | 실무에서는 Hooks 방식이 주로 쓰인다. 이 편을 마치면 함수 컴포넌트에서 state 구독·dispatch를 간결하게 쓸 수 있다. |
+| 13 | 컴포넌트 최적화 - 리렌더링 제어 | [13. 컴포넌트 최적화](../component-optimization/) | 구독 범위를 잘못 잡으면 불필요한 리렌더로 성능이 떨어진다. 배우면 실무 수준의 렌더 제어가 가능해진다. |
+| 14 | 데이터 선택자 - Selector 패턴 | [14. Selector 패턴](../selector-patterns/) | state에서 파생 데이터를 안전·재사용 가능하게 꺼내는 방법이다. 13편 최적화와 26편(구조)의 기초가 된다. |
+| 15 | 실습: Counter와 Todo 앱 만들기 | [15. 실습: Counter와 Todo](../practice-counter-todo/) | 1–14편을 한 번에 적용하는 종합 실습이다. 마치면 Redux+React 기초를 스스로 구현할 수 있다는 확신이 생긴다. |
 
 ### Phase 4: Redux Toolkit - 현대적인 Redux (16-20편)
 
@@ -178,11 +176,11 @@ Redux 개념을 익힌 뒤, 실제 화면(React 컴포넌트)과 Store를 어떻
 
 | 편 | 제목 | 링크 |
 |----|------|------|
-| 16 | Redux Toolkit 소개 - 왜 RTK인가? | [16. Redux Toolkit 소개](redux-toolkit-introduction/) |
-| 17 | createSlice - 간결한 리듀서 작성 | [17. createSlice](create-slice/) |
-| 18 | configureStore - Store 설정 자동화 | [18. configureStore](configure-store/) |
-| 19 | createAsyncThunk - 비동기 액션 간편화 | [19. createAsyncThunk](create-async-thunk/) |
-| 20 | 실습: Redux Toolkit으로 실전 앱 만들기 | [20. 실습: RTK 앱](practice-rtk-app/) |
+| 16 | Redux Toolkit 소개 - 왜 RTK인가? | [16. Redux Toolkit 소개](../redux-toolkit-introduction/) |
+| 17 | createSlice - 간결한 리듀서 작성 | [17. createSlice](../create-slice/) |
+| 18 | configureStore - Store 설정 자동화 | [18. configureStore](../configure-store/) |
+| 19 | createAsyncThunk - 비동기 액션 간편화 | [19. createAsyncThunk](../create-async-thunk/) |
+| 20 | 실습: Redux Toolkit으로 실전 앱 만들기 | [20. 실습: RTK 앱](../practice-rtk-app/) |
 
 ### Phase 5: 미들웨어와 사이드 이펙트 (21-25편)
 
@@ -190,11 +188,11 @@ Redux 개념을 익힌 뒤, 실제 화면(React 컴포넌트)과 Store를 어떻
 
 | 편 | 제목 | 링크 | 이 편이 필요한 이유 / 이 편을 마치면 |
 |----|------|------|--------------------------------------|
-| 21 | Redux 미들웨어의 이해 | [21. Redux 미들웨어](redux-middleware/) | API 호출·로깅 등 액션 외부 부수 효과의 문을 연다. 배우면 22–24편(Thunk·Saga·RTK Query)이 왜 필요한지 이해한다. |
-| 22 | Redux Thunk - 가장 간단한 비동기 처리 | [22. Redux Thunk](redux-thunk/) | 비동기 액션을 가장 단순한 형태로 다룬다. 마치면 dispatch 안에서 API 호출·지연 dispatch를 쓸 수 있다. |
-| 23 | Redux Saga - 강력한 사이드 이펙트 관리 | [23. Redux Saga](redux-saga/) | 복잡한 비동기·순서 제어가 필요할 때 선택한다. 마치면 제너레이터 기반 사이드 이펙트 흐름을 설계할 수 있다. |
-| 24 | RTK Query - 데이터 페칭의 혁명 | [24. RTK Query](rtk-query/) | 서버 상태·캐싱을 Redux와 통합하는 공식 방식이다. 마치면 API 페칭·캐시·뮤테이션을 선언적으로 다룰 수 있다. |
-| 25 | 실습: RTK Query로 블로그 앱 만들기 | [25. 실습: 블로그 앱](practice-blog-app/) | 21–24편을 종합 적용하는 실습이다. 마치면 Thunk·Saga·RTK Query 중 상황에 맞는 방식을 선택할 수 있다. |
+| 21 | Redux 미들웨어의 이해 | [21. Redux 미들웨어](../redux-middleware/) | API 호출·로깅 등 액션 외부 부수 효과의 문을 연다. 배우면 22–24편(Thunk·Saga·RTK Query)이 왜 필요한지 이해한다. |
+| 22 | Redux Thunk - 가장 간단한 비동기 처리 | [22. Redux Thunk](../redux-thunk/) | 비동기 액션을 가장 단순한 형태로 다룬다. 마치면 dispatch 안에서 API 호출·지연 dispatch를 쓸 수 있다. |
+| 23 | Redux Saga - 강력한 사이드 이펙트 관리 | [23. Redux Saga](../redux-saga/) | 복잡한 비동기·순서 제어가 필요할 때 선택한다. 마치면 제너레이터 기반 사이드 이펙트 흐름을 설계할 수 있다. |
+| 24 | RTK Query - 데이터 페칭의 혁명 | [24. RTK Query](../rtk-query/) | 서버 상태·캐싱을 Redux와 통합하는 공식 방식이다. 마치면 API 페칭·캐시·뮤테이션을 선언적으로 다룰 수 있다. |
+| 25 | 실습: RTK Query로 블로그 앱 만들기 | [25. 실습: 블로그 앱](../practice-blog-app/) | 21–24편을 종합 적용하는 실습이다. 마치면 Thunk·Saga·RTK Query 중 상황에 맞는 방식을 선택할 수 있다. |
 
 ### Phase 6: 고급 패턴과 아키텍처 (26-28편)
 
@@ -202,9 +200,9 @@ Redux 개념을 익힌 뒤, 실제 화면(React 컴포넌트)과 Store를 어떻
 
 | 편 | 제목 | 링크 | 이 편이 필요한 이유 / 이 편을 마치면 |
 |----|------|------|--------------------------------------|
-| 26 | Redux 프로젝트 구조 - 확장 가능한 설계 | [26. 프로젝트 구조](redux-project-structure/) | 폴더·모듈 구분 없이 진행하면 대규모 앱에서 유지보수가 어렵다. 마치면 확장 가능한 Redux 폴더 구조를 설계할 수 있다. |
-| 27 | 정규화 (Normalization) - 복잡한 데이터 관리 | [27. 정규화](normalization/) | 중첩·중복 데이터는 업데이트와 일관성 이슈를 낳는다. 마치면 정규화된 state 형태로 복잡한 데이터를 다룰 수 있다. |
-| 28 | Redux와 TypeScript - 타입 안전한 상태 관리 | [28. Redux와 TypeScript](redux-typescript/) | 실무에서는 타입 안전한 액션·state가 자주 요구된다. 마치면 Redux와 TypeScript를 연동한 타입 안전한 구조를 설계할 수 있다. |
+| 26 | Redux 프로젝트 구조 - 확장 가능한 설계 | [26. 프로젝트 구조](../redux-project-structure/) | 폴더·모듈 구분 없이 진행하면 대규모 앱에서 유지보수가 어렵다. 마치면 확장 가능한 Redux 폴더 구조를 설계할 수 있다. |
+| 27 | 정규화 (Normalization) - 복잡한 데이터 관리 | [27. 정규화](../normalization/) | 중첩·중복 데이터는 업데이트와 일관성 이슈를 낳는다. 마치면 정규화된 state 형태로 복잡한 데이터를 다룰 수 있다. |
+| 28 | Redux와 TypeScript - 타입 안전한 상태 관리 | [28. Redux와 TypeScript](../redux-typescript/) | 실무에서는 타입 안전한 액션·state가 자주 요구된다. 마치면 Redux와 TypeScript를 연동한 타입 안전한 구조를 설계할 수 있다. |
 
 ### Phase 7: 실무 마스터 레벨 (29-30편)
 
@@ -212,56 +210,56 @@ Redux 개념을 익힌 뒤, 실제 화면(React 컴포넌트)과 Store를 어떻
 
 | 편 | 제목 | 링크 | 이 편이 필요한 이유 / 이 편을 마치면 |
 |----|------|------|--------------------------------------|
-| 29 | Redux 성능 최적화와 디버깅 | [29. 성능 최적화와 디버깅](redux-performance-debugging/) | 성능·디버깅을 다루지 않으면 배포 후 이슈 대응이 어렵다. 마치면 Redux DevTools 활용·리렌더 최적화·디버깅 기법을 적용할 수 있다. |
-| 30 | 테스팅과 실전 프로젝트 - E-Commerce 앱 | [30. 테스팅과 E-Commerce 앱](testing-ecommerce-app/) | 테스트와 실전 앱을 한 번에 체험하는 종합 단계다. 마치면 Redux 앱의 테스트 작성과 E-Commerce 수준 실전 프로젝트를 완수할 수 있다. |
+| 29 | Redux 성능 최적화와 디버깅 | [29. 성능 최적화와 디버깅](../redux-performance-debugging/) | 성능·디버깅을 다루지 않으면 배포 후 이슈 대응이 어렵다. 마치면 Redux DevTools 활용·리렌더 최적화·디버깅 기법을 적용할 수 있다. |
+| 30 | 테스팅과 실전 프로젝트 - E-Commerce 앱 | [30. 테스팅과 E-Commerce 앱](../testing-ecommerce-app/) | 테스트와 실전 앱을 한 번에 체험하는 종합 단계다. 마치면 Redux 앱의 테스트 작성과 E-Commerce 수준 실전 프로젝트를 완수할 수 있다. |
 
 아래는 Phase별 상세 목차입니다.
 
 ### Phase별 상세 목차
 
 **Phase 1 (1-5편)**  
-1. [JavaScript 핵심 개념 - 변수, 함수, 객체](javascript-fundamentals/) — 변수 선언 (var, let, const), 함수 정의와 화살표 함수, 객체와 배열 기본 조작  
-2. [ES6+ 필수 문법 - 구조 분해, 스프레드, 템플릿 리터럴](es6-essential-syntax/) — 구조 분해 할당, 스프레드 연산자와 Rest 파라미터, 템플릿 리터럴  
-3. [배열과 객체 다루기 - map, filter, reduce](array-object-manipulation/) — 고차 함수, map/filter/reduce, 불변성 유지 패턴  
-4. [비동기 JavaScript - Promise와 async/await](asynchronous-javascript/) — 비동기 필요성, Promise, async/await  
-5. [TypeScript 기초 - 타입 시스템 이해하기](typescript-basics/) — 기본 타입과 인터페이스, 제네릭 기초  
+1. [JavaScript 핵심 개념 - 변수, 함수, 객체](../javascript-fundamentals/) — 변수 선언 (var, let, const), 함수 정의와 화살표 함수, 객체와 배열 기본 조작  
+2. [ES6+ 필수 문법 - 구조 분해, 스프레드, 템플릿 리터럴](../es6-essential-syntax/) — 구조 분해 할당, 스프레드 연산자와 Rest 파라미터, 템플릿 리터럴  
+3. [배열과 객체 다루기 - map, filter, reduce](../array-object-manipulation/) — 고차 함수, map/filter/reduce, 불변성 유지 패턴  
+4. [비동기 JavaScript - Promise와 async/await](../asynchronous-javascript/) — 비동기 필요성, Promise, async/await  
+5. [TypeScript 기초 - 타입 시스템 이해하기](../typescript-basics/) — 기본 타입과 인터페이스, 제네릭 기초  
 
 **Phase 2 (6-10편)**  
-6. [Redux란 무엇인가 - Flux 아키텍처와 상태 관리](what-is-redux/)  
-7. [Redux의 핵심 - Action, Reducer, Store](redux-core-concepts/)  
-8. [불변성의 중요성 - Immutability in Redux](immutability-in-redux/)  
-9. [Redux 데이터 흐름 이해하기](redux-data-flow/)  
-10. [Redux를 사용하는 이유와 적절한 사용 시기](when-to-use-redux/)  
+6. [Redux란 무엇인가 - Flux 아키텍처와 상태 관리](../what-is-redux/)  
+7. [Redux의 핵심 - Action, Reducer, Store](../redux-core-concepts/)  
+8. [불변성의 중요성 - Immutability in Redux](../immutability-in-redux/)  
+9. [Redux 데이터 흐름 이해하기](../redux-data-flow/)  
+10. [Redux를 사용하는 이유와 적절한 사용 시기](../when-to-use-redux/)  
 
 **Phase 3 (11-15편)**  
-11. [React-Redux 시작하기 - Provider와 connect](react-redux-basics/)  
-12. [React-Redux Hooks - useSelector와 useDispatch](react-redux-hooks/)  
-13. [컴포넌트 최적화 - 리렌더링 제어](component-optimization/)  
-14. [데이터 선택자 - Selector 패턴](selector-patterns/)  
-15. [실습: Counter와 Todo 앱 만들기](practice-counter-todo/)  
+11. [React-Redux 시작하기 - Provider와 connect](../react-redux-basics/)  
+12. [React-Redux Hooks - useSelector와 useDispatch](../react-redux-hooks/)  
+13. [컴포넌트 최적화 - 리렌더링 제어](../component-optimization/)  
+14. [데이터 선택자 - Selector 패턴](../selector-patterns/)  
+15. [실습: Counter와 Todo 앱 만들기](../practice-counter-todo/)  
 
 **Phase 4 (16-20편)**  
-16. [Redux Toolkit 소개 - 왜 RTK인가?](redux-toolkit-introduction/)  
-17. [createSlice - 간결한 리듀서 작성](create-slice/)  
-18. [configureStore - Store 설정 자동화](configure-store/)  
-19. [createAsyncThunk - 비동기 액션 간편화](create-async-thunk/)  
-20. [실습: Redux Toolkit으로 실전 앱 만들기](practice-rtk-app/)  
+16. [Redux Toolkit 소개 - 왜 RTK인가?](../redux-toolkit-introduction/)  
+17. [createSlice - 간결한 리듀서 작성](../create-slice/)  
+18. [configureStore - Store 설정 자동화](../configure-store/)  
+19. [createAsyncThunk - 비동기 액션 간편화](../create-async-thunk/)  
+20. [실습: Redux Toolkit으로 실전 앱 만들기](../practice-rtk-app/)  
 
 **Phase 5 (21-25편)**  
-21. [Redux 미들웨어의 이해](redux-middleware/)  
-22. [Redux Thunk - 가장 간단한 비동기 처리](redux-thunk/)  
-23. [Redux Saga - 강력한 사이드 이펙트 관리](redux-saga/)  
-24. [RTK Query - 데이터 페칭의 혁명](rtk-query/)  
-25. [실습: RTK Query로 블로그 앱 만들기](practice-blog-app/)  
+21. [Redux 미들웨어의 이해](../redux-middleware/)  
+22. [Redux Thunk - 가장 간단한 비동기 처리](../redux-thunk/)  
+23. [Redux Saga - 강력한 사이드 이펙트 관리](../redux-saga/)  
+24. [RTK Query - 데이터 페칭의 혁명](../rtk-query/)  
+25. [실습: RTK Query로 블로그 앱 만들기](../practice-blog-app/)  
 
 **Phase 6 (26-28편)**  
-26. [Redux 프로젝트 구조 - 확장 가능한 설계](redux-project-structure/)  
-27. [정규화(Normalization) - 복잡한 데이터 관리](normalization/)  
-28. [Redux와 TypeScript - 타입 안전한 상태 관리](redux-typescript/)  
+26. [Redux 프로젝트 구조 - 확장 가능한 설계](../redux-project-structure/)  
+27. [정규화(Normalization) - 복잡한 데이터 관리](../normalization/)  
+28. [Redux와 TypeScript - 타입 안전한 상태 관리](../redux-typescript/)  
 
 **Phase 7 (29-30편)**  
-29. [Redux 성능 최적화와 디버깅](redux-performance-debugging/)  
-30. [테스팅과 실전 프로젝트 - E-Commerce 앱](testing-ecommerce-app/)
+29. [Redux 성능 최적화와 디버깅](../redux-performance-debugging/)  
+30. [테스팅과 실전 프로젝트 - E-Commerce 앱](../testing-ecommerce-app/)
 
 ## 각 글의 구성
 
@@ -336,10 +334,8 @@ Redux 개념을 익힌 뒤, 실제 화면(React 컴포넌트)과 Store를 어떻
 이 시리즈를 완주하면 다음과 같은 역량을 갖추게 됩니다:
 
 ### **기술적 역량**
-- Modern JavaScript/TypeScript 능숙한 사용
-- Redux/Redux Toolkit을 활용한 상태 관리 마스터
-- React-Redux를 통한 효율적인 컴포넌트 설계
-- 비동기 처리와 사이드 이펙트 관리 능력
+
+앞의 "학습 목표"가 시리즈를 시작하며 세우는 약속이라면, 여기서는 완주 후 실제로 손에 남는 결과물 기준으로 같은 역량을 재확인합니다. 15편에서 만든 Counter·Todo 앱을 20편에서 Redux Toolkit으로 리팩터링할 수 있고, 25편에서 RTK Query 기반 CRUD 앱을 처음부터 구축할 수 있으며, 04편의 Promise/async-await와 22–24편의 Thunk·Saga·RTK Query 세 가지 비동기 전략을 실제 코드로 비교해 설명할 수 있는 수준에 도달합니다.
 
 ### **실무 능력**
 - 실전 프로젝트 구조 설계 및 구현
@@ -394,7 +390,7 @@ Phase 1 (빠르게 복습) → Phase 2 (6-10편) → Phase 3 (11-15편) → Phas
 **예상 소요 시간**: 2-3개월
 
 **3. 기존 Redux 사용자 (RTK 학습 목적)**  
-Phase 4 (16-20편) → Phase 5 (21-25편) → Phase 6-7 (26-30편). 단, 16·17·20편은 15편(Phase 3 실습)의 `counterSlice`/`todosSlice` 코드를 그대로 리팩터링하므로, Phase 4를 시작하기 전 최소 [15편](practice-counter-todo/)만이라도 먼저 훑어보길 권장합니다.  
+Phase 4 (16-20편) → Phase 5 (21-25편) → Phase 6-7 (26-30편). 단, 16·17·20편은 15편(Phase 3 실습)의 `counterSlice`/`todosSlice` 코드를 그대로 리팩터링하므로, Phase 4를 시작하기 전 최소 [15편](../practice-counter-todo/)만이라도 먼저 훑어보길 권장합니다.  
 **예상 소요 시간**: 1-2개월
 
 ### **참고 학습 방법**
@@ -494,4 +490,4 @@ JavaScript를 잘 모르는 당신도, 이 시리즈를 마치면 Redux 전문�
 
 ## 다음 단계
 
-다음 챕터부터 시작하세요: [01. JavaScript 핵심 개념 - 변수, 함수, 객체](javascript-fundamentals/).
+다음 챕터부터 시작하세요: [01. JavaScript 핵심 개념 - 변수, 함수, 객체](../javascript-fundamentals/).

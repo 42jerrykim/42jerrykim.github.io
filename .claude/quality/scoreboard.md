@@ -1093,7 +1093,7 @@
 | content/collection/redux/create-async-thunk/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/redux/create-slice/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/redux/es6-essential-syntax/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/redux/getting-started-redux/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/redux/getting-started-redux/index.md | 94.1 | 2026-08-10 | 2 | 통과 | 1.2 | 7a32636 | 없음(경미: "실무 능력"/"전문가 수준" H3가 리드 문단 없이 리스트로 시작, "실무 능력" 절이 학습목표 5·6번 항목을 새 정보 없이 반복, stackoverflow.com 태그 링크 WAF 검증 불가) |
 | content/collection/redux/immutability-in-redux/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/redux/javascript-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/redux/normalization/index.md | - | - | 0 | 미채점 | - | - | - |
