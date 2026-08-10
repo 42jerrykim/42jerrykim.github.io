@@ -12,15 +12,15 @@ article.article-draft {
     color: #d32f2f; /* red */
 }
 
-/* 홈 화면 Tags 위젯: 한 줄에 1개만 보이는 현상 방지, 2열 고정 */
+/* 홈 화면 Tags 위젯: 태그 폭은 가변(내용 기준)이되, 패딩/폰트를 줄여
+   한 줄에 태그 1개만 배치되는 현상을 완화한다. */
 .tagCloud .tagCloud-tags--grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
-.tagCloud-tags--grid a {
-    width: auto;
-    box-sizing: border-box;
-    text-align: center;
+.tagCloud .tagCloud-tags--grid a {
+    padding: 4px 10px;
+    font-size: 12px;
 }
