@@ -12,15 +12,22 @@ article.article-draft {
     color: #d32f2f; /* red */
 }
 
-/* 홈 화면 Tags 위젯: 태그 폭은 가변(내용 기준)이되, 패딩/폰트를 줄여
-   한 줄에 태그 1개만 배치되는 현상을 완화한다. */
-.tagCloud .tagCloud-tags--grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+/* 오른쪽 사이드바(Tags 등 위젯) 폭 확장: 기본 25~30%보다 넓혀
+   위젯 카드 안에서 태그가 한 줄에 1개만 배치되는 현상을 완화한다. */
+@media (min-width: 768px) {
+    .container.extended {
+        --right-sidebar-max-width: 34%;
+    }
 }
 
-.tagCloud .tagCloud-tags--grid a {
-    padding: 4px 10px;
-    font-size: 12px;
+@media (min-width: 1024px) {
+    .container.extended {
+        --right-sidebar-max-width: 34%;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container.extended {
+        --right-sidebar-max-width: 32%;
+    }
 }
