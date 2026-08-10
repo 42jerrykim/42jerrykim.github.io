@@ -11,3 +11,16 @@ article.article-draft {
 .article-title--draft {
     color: #d32f2f; /* red */
 }
+
+/* 홈 화면 Tags 위젯: 한 줄에 1개만 보이는 현상 방지, 2열 고정 */
+.tagCloud .tagCloud-tags--grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.tagCloud-tags--grid a {
+    width: auto;
+    box-sizing: border-box;
+    text-align: center;
+}
