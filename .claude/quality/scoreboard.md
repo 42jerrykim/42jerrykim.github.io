@@ -1583,3 +1583,5 @@
 | content/post/2026/2026-07-21-k-skill-korean-agent-skills/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-04-napkin-math-performance-estimation/index.md | 97.3 | 2026-08-04 | 2 | 통과 | 1.2 | 6d76c7e | 없음(경미: 표 caption에 same-region/cross-zone 조건 미병기, 인접 성능 글로의 교차 링크 여지) |
 | content/post/2026/2026-08-04-architecture-decision-record/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-08-05-connascence-coupling-taxonomy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-08-10-ai-coding-agent-harness-engineering/index.md | - | - | 0 | 미채점 | - | - | - |
