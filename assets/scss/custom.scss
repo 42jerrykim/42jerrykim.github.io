@@ -12,22 +12,35 @@ article.article-draft {
     color: #d32f2f; /* red */
 }
 
-/* 오른쪽 사이드바(Tags 등 위젯) 폭 확장: 기본 25~30%보다 넓혀
-   위젯 카드 안에서 태그가 한 줄에 1개만 배치되는 현상을 완화한다. */
+/* 오른쪽 사이드바(Tags 등 위젯) 폭 확장: 뷰포트가 넓어질수록 사이드바도 함께
+   넓어지도록 breakpoint별 상한/하한을 clamp로 지정한다. 본문이 가장 좁아지는
+   1024px 구간은 살짝만 상향해 본문 가독폭을 보호하고, 여유가 있는 1280px 이상
+   구간은 더 넓힌다. 태그 위젯 자체의 마크업/스타일은 건드리지 않는다. */
 @media (min-width: 768px) {
     .container.extended {
-        --right-sidebar-max-width: 34%;
+        --right-sidebar-max-width: clamp(26%, 30%, 32%);
     }
 }
 
 @media (min-width: 1024px) {
     .container.extended {
-        --right-sidebar-max-width: 34%;
+        --right-sidebar-max-width: clamp(28%, 32%, 34%);
     }
 }
 
 @media (min-width: 1280px) {
     .container.extended {
-        --right-sidebar-max-width: 32%;
+        --right-sidebar-max-width: clamp(30%, 34%, 36%);
+    }
+}
+
+/* 테마 원본은 컨테이너 max-width를 1536px에서 멈춰, 그보다 넓은 화면(대형
+   모니터)에서는 사이드바가 더 이상 커지지 않는다. 새 breakpoint를 추가해
+   컨테이너와 사이드바가 계속 확장되도록 한다. */
+@media (min-width: 1536px) {
+    .container.extended {
+        max-width: 1800px;
+        --left-sidebar-max-width: 15%;
+        --right-sidebar-max-width: clamp(32%, 36%, 40%);
     }
 }
