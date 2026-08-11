@@ -41,12 +41,12 @@ article.article-draft {
     }
 }
 
-/* 테마 원본은 컨테이너 max-width를 1536px에서 멈춰, 그보다 넓은 화면(대형
-   모니터)에서는 본문·사이드바가 더 이상 커지지 않는다. 새 breakpoint를
-   추가해 컨테이너가 계속 확장되도록 한다. */
+/* 1536px 이상(대형 모니터)에서도 사이드바만 살짝 더 키운다. 컨테이너
+   max-width는 테마 기본값(1536px)을 그대로 둔다 — 본문 카드(이미지 포함)가
+   화면 폭에 비례해 한없이 넓어지면 이미지가 늘어지고 읽기도 불편해지므로,
+   그 이상의 여유 공간은 본문을 더 키우는 대신 좌우 바깥 여백으로 남긴다. */
 @media (min-width: 1536px) {
     .container.extended {
-        max-width: 1800px;
         --left-sidebar-max-width: 155px;
         --right-sidebar-max-width: 318px;
     }
