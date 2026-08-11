@@ -18,9 +18,9 @@ article.article-draft {
    비중이 커지면서 본문이 40% 아래로 줄어드는 문제가 있었다. px 기준은
    컨테이너가 넓어질수록 사이드바가 차지하는 비율이 자동으로 줄어들어
    본문 비율을 지켜준다. 각 breakpoint 값은 해당 구간에서 가장 좁은
-   컨테이너 폭 기준으로 본문이 61% 이상이 되도록 역산했다(여유 마진 포함).
-   왼쪽 사이드바(프로필/내비)는 내용이 짧아 필요 폭이 작으므로 더 좁게,
-   오른쪽 사이드바(검색/카테고리/태그/아카이브)는 상대적으로 넓게 배분한다. */
+   컨테이너 폭 기준으로 본문이 정확히 60% 이상이 되는 한도까지 오른쪽
+   사이드바(검색/카테고리/태그/아카이브)를 최대한 넓혔다. 왼쪽 사이드바
+   (프로필/내비)는 내용이 짧아 필요 폭만큼만 좁게 유지한다. */
 @media (min-width: 768px) {
     .container.extended {
         --left-sidebar-max-width: 110px;
@@ -30,14 +30,14 @@ article.article-draft {
 @media (min-width: 1024px) {
     .container.extended {
         --left-sidebar-max-width: 115px;
-        --right-sidebar-max-width: 158px;
+        --right-sidebar-max-width: 168px;
     }
 }
 
 @media (min-width: 1280px) {
     .container.extended {
         --left-sidebar-max-width: 135px;
-        --right-sidebar-max-width: 238px;
+        --right-sidebar-max-width: 251px;
     }
 }
 
@@ -48,6 +48,6 @@ article.article-draft {
 @media (min-width: 1536px) {
     .container.extended {
         --left-sidebar-max-width: 155px;
-        --right-sidebar-max-width: 318px;
+        --right-sidebar-max-width: 333px;
     }
 }
