@@ -11,3 +11,18 @@ article.article-draft {
 .article-title--draft {
     color: #d32f2f; /* red */
 }
+
+/* 오른쪽 사이드바가 나타나는 1024px 이상 구간: 왼쪽 15% / 오른쪽 25%
+   비율로 고정한다(의도적으로 선택한 값). 실측 본문 비율은 좌우 gap·
+   컨테이너 패딩(고정 120px)이 퍼센트 계산과 별도로 빠지기 때문에 60%가
+   아니라 약 50~53%가 된다. 768px 구간(왼쪽 사이드바만 표시)은 건드리지
+   않는다. 컨테이너 max-width는 테마 기본값(1536px)을 그대로 둔다 — 본문
+   카드(이미지 포함)가 화면 폭에 비례해 한없이 넓어지면 이미지가 늘어지고
+   읽기도 불편해지므로, 1536px 이상의 여유 공간은 본문을 더 키우는 대신
+   좌우 바깥 여백으로 남긴다. */
+@media (min-width: 1024px) {
+    .container.extended {
+        --left-sidebar-max-width: 15%;
+        --right-sidebar-max-width: 25%;
+    }
+}
