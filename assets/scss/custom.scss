@@ -12,35 +12,42 @@ article.article-draft {
     color: #d32f2f; /* red */
 }
 
-/* 오른쪽 사이드바(Tags 등 위젯) 폭 확장: 뷰포트가 넓어질수록 사이드바도 함께
-   넓어지도록 breakpoint별 상한/하한을 clamp로 지정한다. 본문이 가장 좁아지는
-   1024px 구간은 살짝만 상향해 본문 가독폭을 보호하고, 여유가 있는 1280px 이상
-   구간은 더 넓힌다. 태그 위젯 자체의 마크업/스타일은 건드리지 않는다. */
+/* 좌우 사이드바 폭: 본문(main)이 컨테이너 전체 폭(사이드바 포함) 중 항상
+   60% 이상을 차지하도록, 사이드바 폭을 퍼센트가 아닌 고정 px로 지정한다.
+   테마 기본값(퍼센트 기반)은 좁은 컨테이너에서 패딩/gap 같은 고정 여백
+   비중이 커지면서 본문이 40% 아래로 줄어드는 문제가 있었다. px 기준은
+   컨테이너가 넓어질수록 사이드바가 차지하는 비율이 자동으로 줄어들어
+   본문 비율을 지켜준다. 각 breakpoint 값은 해당 구간에서 가장 좁은
+   컨테이너 폭 기준으로 본문이 61% 이상이 되도록 역산했다(여유 마진 포함).
+   왼쪽 사이드바(프로필/내비)는 내용이 짧아 필요 폭이 작으므로 더 좁게,
+   오른쪽 사이드바(검색/카테고리/태그/아카이브)는 상대적으로 넓게 배분한다. */
 @media (min-width: 768px) {
     .container.extended {
-        --right-sidebar-max-width: clamp(26%, 30%, 32%);
+        --left-sidebar-max-width: 110px;
     }
 }
 
 @media (min-width: 1024px) {
     .container.extended {
-        --right-sidebar-max-width: clamp(28%, 32%, 34%);
+        --left-sidebar-max-width: 115px;
+        --right-sidebar-max-width: 158px;
     }
 }
 
 @media (min-width: 1280px) {
     .container.extended {
-        --right-sidebar-max-width: clamp(30%, 34%, 36%);
+        --left-sidebar-max-width: 135px;
+        --right-sidebar-max-width: 238px;
     }
 }
 
 /* 테마 원본은 컨테이너 max-width를 1536px에서 멈춰, 그보다 넓은 화면(대형
-   모니터)에서는 사이드바가 더 이상 커지지 않는다. 새 breakpoint를 추가해
-   컨테이너와 사이드바가 계속 확장되도록 한다. */
+   모니터)에서는 본문·사이드바가 더 이상 커지지 않는다. 새 breakpoint를
+   추가해 컨테이너가 계속 확장되도록 한다. */
 @media (min-width: 1536px) {
     .container.extended {
         max-width: 1800px;
-        --left-sidebar-max-width: 15%;
-        --right-sidebar-max-width: clamp(32%, 36%, 40%);
+        --left-sidebar-max-width: 155px;
+        --right-sidebar-max-width: 318px;
     }
 }
