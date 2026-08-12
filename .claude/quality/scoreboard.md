@@ -1586,3 +1586,4 @@
 | content/post/2026/2026-08-05-connascence-coupling-taxonomy/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-10-ai-coding-agent-harness-engineering/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-11-fused-linear-cross-entropy/index.md | 94.6 | 2026-08-11 | 3 | 통과 | 1.2 | 3dac01d | 없음(3회차 채점 통과 후 L54 TDS 두 벤치마크 조건 혼동을 사실확인 기반으로 추가 수정, 재채점은 생략) |
+| content/post/2026/2026-08-12-tla-plus-formal-methods/index.md | 100 | 2026-08-12 | 3 | 통과 | 1.2 | 22b50b0 | 없음 |
