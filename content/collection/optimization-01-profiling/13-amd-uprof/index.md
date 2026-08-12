@@ -162,9 +162,9 @@ AMDuProfCLI timechart --event frequency,thermal --interval 100 --duration 10 -o 
 
 해석의 핵심은 지연 스파이크 시각과 주파수 하락 시각의 상관입니다. p99 지연이 튀는 순간마다 해당 코어의 유효 주파수가 함께 떨어진다면, 코드가 아니라 전력·열 예산이 원인이므로 최적화 방향이 완전히 달라집니다(코어 고정·전력 프로파일 조정·냉각 개선). 다만 에너지 MSR 기반 측정은 모델 추정치가 섞여 있어 절대값의 정확도에는 한계가 있고, 코어 간 비교나 시간 축 상관 분석 같은 상대적 용도에 적합하다는 점을 기억해야 합니다. 꼬리 지연 자체의 통계적 분석은 [09장: Tail Latency 분석](/post/profiling-analysis/tail-latency-analysis/)에서 다룹니다.
 
-## uProf 5.3의 변화 (2026-05)
+## uProf 5.3의 변화 (2026-06)
 
-2026년 5월 공개된 uProf 5.3은 대규모 세션 처리 성능에 초점을 맞춘 릴리스입니다([AMD uProf Release Notes 5.3](https://docs.amd.com/r/en-US/63856-uProf-release-notes/uProf-Release-Notes)). 실무 관점에서 의미 있는 변화는 다음과 같습니다.
+2026년 6월 공개된 uProf 5.3은 대규모 세션 처리 성능에 초점을 맞춘 릴리스입니다([AMD uProf Release Notes 5.3](https://docs.amd.com/r/en-US/63856-uProf-release-notes/uProf-Release-Notes)). 실무 관점에서 의미 있는 변화는 다음과 같습니다.
 
 - **DuckDB 기본 백엔드**: 프로파일 데이터 저장·분석 백엔드가 SQLite에서 DuckDB로 교체되었습니다(호환용으로 SQLite도 유지). 분석형(OLAP) 컬럼 저장 엔진 특성상 대규모 세션의 리포트 생성·집계 질의가 빨라졌으며, 장시간 프로덕션 수집 세션을 다루는 팀일수록 체감이 큽니다.
 - **vIBS(KVM 가상화 IBS) 지원**: Zen 5 세대부터 게스트 VM 안에서도 IBS 샘플링이 가능해지는 가상화 IBS를 uProf가 지원합니다. 클라우드·VM 환경에서 "IBS는 베어메탈 전용"이라는 오랜 제약이 하드웨어·하이퍼바이저(KVM) 지원을 전제로 풀리기 시작했다는 의미입니다.
