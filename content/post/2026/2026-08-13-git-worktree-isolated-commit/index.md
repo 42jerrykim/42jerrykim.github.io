@@ -3,7 +3,7 @@ title: "[Git] worktree로 지저분한 브랜치에서 파일 하나만 격리 �
 description: "작업 브랜치가 무관한 WIP로 지저분할 때 git worktree로 별도 작업 디렉터리를 만들어 파일 하나만 깨끗하게 커밋·PR로 올리는 방법을 실제 PR 사례로 정리한다. stash보다 안전한 이유와 브랜치 충돌 복구 응용까지 다룬다."
 date: 2026-08-13
 lastmod: 2026-08-13
-draft: true
+draft: false
 categories:
   - Git
   - Workflow
