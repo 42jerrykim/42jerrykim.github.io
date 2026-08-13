@@ -33,6 +33,7 @@ tags:
   - Session-Isolation
   - Multi-Agent
   - WIP
+image: "wordcloud.png"
 ---
 
 ## 개요
