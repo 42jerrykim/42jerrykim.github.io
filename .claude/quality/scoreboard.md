@@ -454,7 +454,7 @@
 | content/collection/optimization-12-regression-prevention/16-postmortem-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-12-regression-prevention/17-distributed-cluster-performance-regression/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2022/2022-01-01-BOJ-1008/index.md | 100 | 2026-07-28 | 3 | 통과 | 1.0 | 76ebd4f | 없음 |
-| content/collection/Algorithm/2022/2022-07-07-BOJ-8983/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2022/2022-07-07-BOJ-8983/index.md | 98.5 | 2026-08-13 | 2 | 통과 | 1.2 | 0eeb29d | 없음(경미: acmicpc.net/problem/8983 링크 봇차단으로 검증 불가, Refactoring/Clean-Code/Debugging 등 일부 태그 본문 결속 느슨) |
 | content/collection/Algorithm/2024/2024-05-15-BOJ-1067/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-05-18-BOJ-1005/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-05-18-BOJ-2206/index.md | - | - | 0 | 미채점 | - | - | - |
