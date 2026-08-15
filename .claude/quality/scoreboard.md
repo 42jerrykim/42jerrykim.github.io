@@ -1160,7 +1160,7 @@
 | content/collection/unittesting/styles-of-unit-testing/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/unittesting/testing-the-database/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/unittesting/unit-testing-anti-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/unittesting/unit-testing-overview/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/unittesting/unit-testing-overview/index.md | 95.2 | 2026-08-15 | 1 | 통과 | 1.2 | cf6dbee | 없음(경미: 항목3=70 — 산문 비율 26.36%<40%, 커리큘럼 표·학습결과 리스트 의존. 개선여지: 참고문헌 URL 병기, 커리큘럼 표에 챕터별 링크 추가) |
 | content/collection/unittesting/what-is-a-unit-test/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/unittesting/why-integration-testing/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/vision-ai-foundations/00-introduction/index.md | 98.5 | 2026-08-11 | 1 | 통과 | 1.2 | ed63916 | 없음(경미: 항목7 85 — lastmod 미갱신. 스케줄 작업 규칙상 게시글 lastmod는 사람 승인 시에만 갱신하므로 그대로 둠) |
