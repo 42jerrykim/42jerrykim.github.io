@@ -73,7 +73,7 @@ flowchart TD
 
 ### 로그 파싱: Drain에서 DeepParse까지
 
-딥러닝 모델에 로그를 넣기 전, IP·숫자·경로 같은 가변 부분을 변수로 마스킹한 "템플릿"으로 정규화하는 파싱 단계가 필요하다. Drain은 고정 깊이 파스 트리로 로그의 고정부와 가변부를 분리하는 온라인 템플릿 추출의 표준 기법이며, IBM Cloud 등에서 널리 쓰이는 구현체 Drain3는 포맷에 종속되지 않아 이종 시스템에 두루 적용된다. 2025년 발표된 LLM 기반 로그 파싱 방법 29개 리뷰는 LLM 파서가 사전학습 지식 덕분에 일반화 능력은 높지만 추론 비용·지연이 크고 결과가 불안정하다고 지적한다(Le & Zhang, "System Log Parsing with Large Language Models: A Review", 2025). 2026년 발표된 DeepParse는 이 트레이드오프를 한 번에 해결한다 — LLM의 확률적 추론은 오프라인에서 정규식 마스크를 합성하는 데만 한 번 쓰고, 런타임에는 그 정규식을 Drain의 파스 트리 위에 결정론적으로 적용한다. LogHub 벤치마크 16개 시스템에서 평균 파싱 정확도 97.6%, 그룹핑 정확도 94.1%를 기록했고, 줄당 LLaMA-7B 추론(28.93초) 대비 약 100배 빠른 0.30초로 처리했다. 파싱 품질이 좋아지면 하류 단계도 함께 좋아진다는 근거로, DeepParse가 정제한 로그를 LogBERT 이상탐지에 넣었더니 인증 로그의 하루 오탐 건수가 147건에서 96건(35% 감소)으로, 설정 로그는 42% 감소했다(Shetaia & Kauffman, "DeepParse: Hybrid Log Parsing with LLM-Synthesized Regex Masks", 2026).
+딥러닝 모델에 로그를 넣기 전, IP·숫자·경로 같은 가변 부분을 변수로 마스킹한 "템플릿"으로 정규화하는 파싱 단계가 필요하다. Drain은 고정 깊이 파스 트리로 로그의 고정부와 가변부를 분리하는 온라인 템플릿 추출의 표준 기법이며, IBM Cloud 등에서 널리 쓰이는 구현체 Drain3는 포맷에 종속되지 않아 이종 시스템에 두루 적용된다. 2025년 발표된 LLM 기반 로그 파싱 방법 29개 리뷰는 LLM 파서가 사전학습 지식 덕분에 일반화 능력은 높지만 추론 비용·지연이 크고 결과가 불안정하다고 지적한다(Beck 외, "System Log Parsing with Large Language Models: A Review", 2025). 2026년 발표된 DeepParse는 이 트레이드오프를 한 번에 해결한다 — LLM의 확률적 추론은 오프라인에서 정규식 마스크를 합성하는 데만 한 번 쓰고, 런타임에는 그 정규식을 Drain의 파스 트리 위에 결정론적으로 적용한다. LogHub 벤치마크 16개 시스템에서 평균 파싱 정확도 97.6%, 그룹핑 정확도 94.1%를 기록했고, 줄당 LLaMA-7B 추론(28.93초) 대비 약 100배 빠른 0.30초로 처리했다. 파싱 품질이 좋아지면 하류 단계도 함께 좋아진다는 근거로, DeepParse가 정제한 로그를 LogBERT 이상탐지에 넣었더니 인증 로그의 하루 오탐 건수가 147건에서 96건(35% 감소)으로, 설정 로그는 42% 감소했다(Shetaia & Kauffman, "DeepParse: Hybrid Log Parsing with LLM-Synthesized Regex Masks", 2026).
 
 ### 이상탐지 3세대 계보: DeepLog → LogAnomaly → LogBERT
 
