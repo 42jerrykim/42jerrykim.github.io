@@ -455,7 +455,7 @@
 | content/collection/optimization-12-regression-prevention/17-distributed-cluster-performance-regression/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2022/2022-01-01-BOJ-1008/index.md | 100 | 2026-07-28 | 3 | 통과 | 1.0 | 76ebd4f | 없음 |
 | content/collection/Algorithm/2022/2022-07-07-BOJ-8983/index.md | 98.5 | 2026-08-13 | 2 | 통과 | 1.2 | 0eeb29d | 없음(경미: acmicpc.net/problem/8983 링크 봇차단으로 검증 불가, Refactoring/Clean-Code/Debugging 등 일부 태그 본문 결속 느슨) |
-| content/collection/Algorithm/2024/2024-05-15-BOJ-1067/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-05-15-BOJ-1067/index.md | 90 | 2026-08-16 | 3 | 에스컬레이션 | 1.2 | 9ef0498 | 항목7(메타·링크·frontmatter) — 문제 링크 https://www.acmicpc.net/problem/1067 이 HTTP 404 반환(curl/WebFetch/insane-search 3중 확인). 도메인 루트(`/`)만 200이고 `/problem/1000` 등 다른 문제도 전부 동일 404("BOJ 채점 서비스 준비 중" 안내)라 acmicpc.net 도메인 전역의 일시 서비스 상태로 판단되나, rubric 1.2가 치명결함 면제를 403(WAF)에만 좁게 scoped해 404인 이상 문언상 치명결함 유지. 완화책으로 Wayback Machine 아카이브 대체 링크(2026-04-17 스냅샷, 접근·내용 일치 검증됨)를 이미 병기함. 나머지 6개 항목은 전부 100(경미결함 0). 사람 판단 필요: (i) BOJ 서비스 정상화 후 재확인, 또는 (ii) rubric 치명결함 예외 범위를 도메인 전역 확인 가능한 일시 장애까지 넓힐지 정책 결정 |
 | content/collection/Algorithm/2024/2024-05-18-BOJ-1005/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-05-18-BOJ-2206/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-05-18-BOJ-2252/index.md | - | - | 0 | 미채점 | - | - | - |
