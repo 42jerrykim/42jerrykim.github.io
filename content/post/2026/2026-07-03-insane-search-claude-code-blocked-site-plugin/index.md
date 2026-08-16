@@ -41,7 +41,7 @@ tags:
   - Python
   - Privacy(프라이버시)
 image: wordcloud.png
-draft: true
+draft: false
 ---
 
 WebFetch로 페이지를 가져오려다 `403 Forbidden`이나 CAPTCHA 화면만 받아본 적이 있다면 익숙한 상황일 것이다. X(트위터), 레딧, 쿠팡처럼 WAF(웹 방화벽)가 걸린 사이트는 기본 fetch 도구로는 거의 뚫리지 않는다. <strong>[insane-search](https://github.com/fivetaku/insane-search)</strong>는 Claude Code용 플러그인으로, API 키나 로그인 없이 "공개된 페이지라면 결국 접근 경로를 찾아낸다"는 목표로 접근 경로를 자동으로 에스컬레이션한다. 이 글에서는 insane-search의 동작 구조와 하네스 규칙, 실제 이점과 한계를 정리하고 관련 도구와 비교한다.
@@ -142,7 +142,7 @@ Claude가 몇 번 시도해 보고 섣불리 "차단됨"이라 결론짓는 문�
 | **Playwright MCP 단독** | 브라우저 자동화만 | 매 요청마다 브라우저를 띄우는 비용이 있고, TLS 지문 위장이나 공식 API 우선 시도 같은 단계적 로직은 없다 |
 | **Claude Code 기본 WebFetch** | 단순 HTTP 요청 | WAF·anti-bot 챌린지 앞에서 대부분 즉시 실패 |
 
-같은 저자의 [insane-research](/post/2026/2026-07-01-insane-research-claude-code-deep-research-plugin/)와는 역할이 다르다. insane-research가 "여러 소스를 모아 신뢰도를 매기고 보고서로 종합"하는 상위 계층이라면, insane-search는 그 소스 각각에 "일단 접근이 되게 만드는" 하위 계층이다. 두 플러그인을 함께 쓰면 insane-search가 확보한 페이지를 insane-research가 삼각측량·종합하는 조합도 가능하다.
+같은 저자의 [insane-research](/post/2026-07-01-insane-research-claude-code-deep-research-plugin/)와는 역할이 다르다. insane-research가 "여러 소스를 모아 신뢰도를 매기고 보고서로 종합"하는 상위 계층이라면, insane-search는 그 소스 각각에 "일단 접근이 되게 만드는" 하위 계층이다. 두 플러그인을 함께 쓰면 insane-search가 확보한 페이지를 insane-research가 삼각측량·종합하는 조합도 가능하다.
 
 ## 시작하기
 
@@ -172,4 +172,4 @@ insane-search는 "일단 헤드리스 브라우저부터 켜자"는 무차별 �
 2. [insane-search PLATFORMS.md](https://github.com/fivetaku/insane-search/blob/main/PLATFORMS.md): 지원 플랫폼별 접근 방법 전체 목록.
 3. [insane-search CHANGELOG.md](https://github.com/fivetaku/insane-search/blob/main/CHANGELOG.md): 버전별 변경 이력(Phase 0 라우터, 실패 게이트, 프롬프트 인젝션 방어, 자가 학습 캐시 등).
 4. [fivetaku/gptaku_plugins — GitHub](https://github.com/fivetaku/gptaku_plugins): insane-search를 배포하는 플러그인 마켓플레이스.
-5. [insane-research: Claude Code 멀티 에이전트 딥 리서치 플러그인](/post/2026/2026-07-01-insane-research-claude-code-deep-research-plugin/): 같은 저자가 만든 리서치 종합 플러그인과의 역할 비교.
+5. [insane-research: Claude Code 멀티 에이전트 딥 리서치 플러그인](/post/2026-07-01-insane-research-claude-code-deep-research-plugin/): 같은 저자가 만든 리서치 종합 플러그인과의 역할 비교.
