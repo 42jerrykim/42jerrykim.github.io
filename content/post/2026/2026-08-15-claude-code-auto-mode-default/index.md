@@ -3,7 +3,7 @@ title: "[Claude Code] Auto Mode 기본값 전환: 사람의 승인은 왜 못 �
 description: "2026-08-14부터 Claude Code 기본값이 된 Auto Mode의 근거 실험(수동 승인 13.6%·분류기 89% 차단율)과 Apollo Research·Trajectory Labs 레드팀 결과, Simon Willison의 prompt injection 우려를 정리했다."
 date: 2026-08-15T09:00:00+09:00
 lastmod: 2026-08-15
-draft: true
+draft: false
 categories:
   - AI
 tags:

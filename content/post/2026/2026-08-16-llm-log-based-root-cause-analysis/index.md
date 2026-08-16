@@ -3,7 +3,7 @@ title: "[AI] LLM 로그 근본원인분석(RCA): 왜 원본 로그를 그대로 
 description: "장애 원인을 찾을 때 로그 전체를 LLM에 그대로 넣으면 컨텍스트 초과와 환각이 뒤따른다. Drain 파싱, LogBERT 이상탐지, RAG 검색으로 후보를 좁힌 뒤 LLM이 최종 판단만 내리는 3단계 파이프라인과 Microsoft·Meta의 프로덕션 실측 수치를 정리한다."
 date: 2026-08-16T09:00:00+09:00
 lastmod: 2026-08-16
-draft: true
+draft: false
 categories:
   - AI
   - Machine-Learning
