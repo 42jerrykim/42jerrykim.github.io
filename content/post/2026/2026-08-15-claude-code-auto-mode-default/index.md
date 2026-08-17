@@ -3,7 +3,7 @@ title: "[Claude Code] Auto Mode 기본값 전환: 사람의 승인은 왜 못 �
 description: "2026-08-14부터 Claude Code 기본값이 된 Auto Mode의 근거 실험(수동 승인 13.6%·분류기 89% 차단율)과 Apollo Research·Trajectory Labs 레드팀 결과, Simon Willison의 prompt injection 우려를 정리했다."
 date: 2026-08-15T09:00:00+09:00
 lastmod: 2026-08-15
-draft: true
+draft: false
 categories:
   - AI
 tags:
@@ -39,6 +39,7 @@ tags:
   - Red-Teaming
   - AI-Safety
   - Coding-Agent
+image: "wordcloud.png"
 ---
 
 2026년 8월 14일부터 Claude Code Pro·Max·Team 플랜의 신규 세션은 매 도구 호출마다 사람에게 승인을 묻던 방식 대신 <strong>Auto Mode</strong>가 기본값으로 켜진다. Anthropic은 이 전환을 발표하면서 근거가 된 실험 수치를 이례적으로 상세히 공개했는데, 핵심은 "사람이 매번 승인 버튼을 누르는 방식이 실제로는 안전하지 않다"는 데이터였다. 이 글은 그 수치와 레드팀 검증 결과, 그리고 Simon Willison이 제기한 prompt injection 우려까지 정리해서 이 전환을 어떻게 받아들여야 할지 판단 기준을 세운다.
