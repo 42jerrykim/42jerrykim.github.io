@@ -237,7 +237,7 @@
 | content/collection/optimization-01-profiling/11-continuous-profiling/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 1.0 | 98eab7f | 없음(경미: Pyroscope/Parca 연혁 인용 링크 여지) |
 | content/collection/optimization-01-profiling/12-performance-ab-testing/index.md | 97.0 | 2026-07-26 | 1 | 통과 | 1.0 | c76ada8 | 없음(경미: L34-42 비승인 태그 9개 data/tags.yaml 미등재, L73 Spinnaker 카나리 문서 "첫머리" 배치 서술 검증 여지) |
 | content/collection/optimization-01-profiling/13-amd-uprof/index.md | 97.3 | 2026-08-12 | 1 | 통과 | 1.2 | 602f20c | 없음(경미: L165/L167 uProf 5.3 발표월 오표기(5월→6월, AMD 공식 릴리스노트 대조) 수정 완료) |
-| content/collection/optimization-01-profiling/14-windows-etw/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-01-profiling/14-windows-etw/index.md | 90.9 | 2026-08-18 | 1 | 통과 | 1.2 | 5f166bb | 없음(경미: L72 NPU 프로파일링·2026-01 갱신 주장 출처 미병기, L292 "마무리" 절 도입문장이 지시문뿐 요약 부재, L270 "판단 기준" 표 앞 리드 문단 부재) |
 | content/collection/optimization-01-profiling/15-valgrind-callgrind/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-01-profiling/16-bpf-profiling/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-01-profiling/17-distributed-tracing-overhead/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1591,3 +1591,5 @@
 | content/post/2026/2026-07-22-svg-filter-image-effects-clickjacking/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-15-claude-code-auto-mode-default/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-16-llm-log-based-root-cause-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-08-17-dcg-destructive-command-guard/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-08-18-hot-path-vs-critical-path-embedded-tracing/index.md | - | - | 0 | 미채점 | - | - | - |
