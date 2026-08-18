@@ -1593,3 +1593,4 @@
 | content/post/2026/2026-08-16-llm-log-based-root-cause-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-17-dcg-destructive-command-guard/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-18-hot-path-vs-critical-path-embedded-tracing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-08-19-tool-schema-overfitting-claude-code/index.md | 100 | 2026-08-19 | 2 | 통과 | 1.2 | 4249007 | 없음 |
