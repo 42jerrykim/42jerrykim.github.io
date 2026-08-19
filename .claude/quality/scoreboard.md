@@ -1589,6 +1589,7 @@
 | content/post/2026/2026-08-12-tla-plus-formal-methods/index.md | 100 | 2026-08-12 | 3 | 통과 | 1.2 | 22b50b0 | 없음 |
 | content/post/2026/2026-07-03-insane-search-claude-code-blocked-site-plugin/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-07-22-svg-filter-image-effects-clickjacking/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-08-13-git-worktree-isolated-commit/index.md | 98 | 2026-08-13 | 2 | 통과 | 1.2 | 55b0d4f | 없음(경미: "실전 팁" 절이 리스트 항목에만 설명을 담아 리스트 제거 시 요지 일부 소실) |
 | content/post/2026/2026-08-15-claude-code-auto-mode-default/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-16-llm-log-based-root-cause-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-17-dcg-destructive-command-guard/index.md | - | - | 0 | 미채점 | - | - | - |
