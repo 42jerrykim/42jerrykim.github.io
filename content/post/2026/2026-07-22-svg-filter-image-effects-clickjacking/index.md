@@ -37,7 +37,7 @@ tags:
   - Clickjacking
   - Liquid-Glass
   - YouTube
-draft: true
+draft: false
 image: "wordcloud.png"
 ---
 

@@ -237,7 +237,7 @@
 | content/collection/optimization-01-profiling/11-continuous-profiling/index.md | 94.6 | 2026-07-25 | 1 | 통과 | 1.0 | 98eab7f | 없음(경미: Pyroscope/Parca 연혁 인용 링크 여지) |
 | content/collection/optimization-01-profiling/12-performance-ab-testing/index.md | 97.0 | 2026-07-26 | 1 | 통과 | 1.0 | c76ada8 | 없음(경미: L34-42 비승인 태그 9개 data/tags.yaml 미등재, L73 Spinnaker 카나리 문서 "첫머리" 배치 서술 검증 여지) |
 | content/collection/optimization-01-profiling/13-amd-uprof/index.md | 97.3 | 2026-08-12 | 1 | 통과 | 1.2 | 602f20c | 없음(경미: L165/L167 uProf 5.3 발표월 오표기(5월→6월, AMD 공식 릴리스노트 대조) 수정 완료) |
-| content/collection/optimization-01-profiling/14-windows-etw/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-01-profiling/14-windows-etw/index.md | 90.9 | 2026-08-18 | 1 | 통과 | 1.2 | 5f166bb | 없음(경미: L72 NPU 프로파일링·2026-01 갱신 주장 출처 미병기, L292 "마무리" 절 도입문장이 지시문뿐 요약 부재, L270 "판단 기준" 표 앞 리드 문단 부재) |
 | content/collection/optimization-01-profiling/15-valgrind-callgrind/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-01-profiling/16-bpf-profiling/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-01-profiling/17-distributed-tracing-overhead/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -454,10 +454,10 @@
 | content/collection/optimization-12-regression-prevention/16-postmortem-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-12-regression-prevention/17-distributed-cluster-performance-regression/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2022/2022-01-01-BOJ-1008/index.md | 100 | 2026-07-28 | 3 | 통과 | 1.0 | 76ebd4f | 없음 |
-| content/collection/Algorithm/2022/2022-07-07-BOJ-8983/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/Algorithm/2024/2024-05-15-BOJ-1067/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/Algorithm/2024/2024-05-18-BOJ-1005/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/Algorithm/2024/2024-05-18-BOJ-2206/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2022/2022-07-07-BOJ-8983/index.md | 98.5 | 2026-08-13 | 2 | 통과 | 1.2 | 0eeb29d | 없음(경미: acmicpc.net/problem/8983 링크 봇차단으로 검증 불가, Refactoring/Clean-Code/Debugging 등 일부 태그 본문 결속 느슨) |
+| content/collection/Algorithm/2024/2024-05-15-BOJ-1067/index.md | 90 | 2026-08-16 | 3 | 에스컬레이션 | 1.2 | 9ef0498 | 항목7(메타·링크·frontmatter) — 문제 링크 https://www.acmicpc.net/problem/1067 이 HTTP 404 반환(curl/WebFetch/insane-search 3중 확인). 도메인 루트(`/`)만 200이고 `/problem/1000` 등 다른 문제도 전부 동일 404("BOJ 채점 서비스 준비 중" 안내)라 acmicpc.net 도메인 전역의 일시 서비스 상태로 판단되나, rubric 1.2가 치명결함 면제를 403(WAF)에만 좁게 scoped해 404인 이상 문언상 치명결함 유지. 완화책으로 Wayback Machine 아카이브 대체 링크(2026-04-17 스냅샷, 접근·내용 일치 검증됨)를 이미 병기함. 나머지 6개 항목은 전부 100(경미결함 0). 사람 판단 필요: (i) BOJ 서비스 정상화 후 재확인, 또는 (ii) rubric 치명결함 예외 범위를 도메인 전역 확인 가능한 일시 장애까지 넓힐지 정책 결정 |
+| content/collection/Algorithm/2024/2024-05-18-BOJ-1005/index.md | 100 | 2026-08-17 | 3 | 통과 | 1.2 | 082f7e7 | 없음(1차 채점 62.35점 미달 후 3회 Revise: 입출력 예제2 간선 오류 수정(공식 BOJ 예제와 대조, dp[7]=39 손계산 검증), C++ 코드·title 추가, Mermaid 플로우차트 추가, Kahn(1962) 1차 출처 추가, 죽은 acmicpc.net 원본 링크를 코드서식 텍스트로 전환하고 검증된 Wayback 아카이브 링크로 대체) |
+| content/collection/Algorithm/2024/2024-05-18-BOJ-2206/index.md | 96.1 | 2026-08-19 | 1 | 통과 | 1.2 | 4d28d12 | 없음(1차 채점 67.0점 미달 후 1회 Revise: 태그를 본문과 무관한 것 제거하고 BFS/그래프 관련으로 교체, algorithm-post-writing 필수 섹션(문제 정보·입출력 예제·복잡도 분석·코너 케이스) 신설, 3차원 상태확장 BFS 메커니즘·오개념 교정·1차 출처(Cormen) 추가, Mermaid 상태전이 다이어그램 추가, C++ 코드 신설(로컬 cl.exe 컴파일 검증), Python·C++ 모두 예제 1/2·코너케이스 실행 검증, 죽은 원본 링크를 검증된 Wayback 아카이브 링크로 대체) |
 | content/collection/Algorithm/2024/2024-05-18-BOJ-2252/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-14-BOJ-6549/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-13141/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1160,7 +1160,7 @@
 | content/collection/unittesting/styles-of-unit-testing/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/unittesting/testing-the-database/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/unittesting/unit-testing-anti-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/unittesting/unit-testing-overview/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/unittesting/unit-testing-overview/index.md | 95.2 | 2026-08-15 | 1 | 통과 | 1.2 | cf6dbee | 없음(경미: 항목3=70 — 산문 비율 26.36%<40%, 커리큘럼 표·학습결과 리스트 의존. 개선여지: 참고문헌 URL 병기, 커리큘럼 표에 챕터별 링크 추가) |
 | content/collection/unittesting/what-is-a-unit-test/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/unittesting/why-integration-testing/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/vision-ai-foundations/00-introduction/index.md | 98.5 | 2026-08-11 | 1 | 통과 | 1.2 | ed63916 | 없음(경미: 항목7 85 — lastmod 미갱신. 스케줄 작업 규칙상 게시글 lastmod는 사람 승인 시에만 갱신하므로 그대로 둠) |
@@ -1587,4 +1587,11 @@
 | content/post/2026/2026-08-10-ai-coding-agent-harness-engineering/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-11-fused-linear-cross-entropy/index.md | 94.6 | 2026-08-11 | 3 | 통과 | 1.2 | 3dac01d | 없음(3회차 채점 통과 후 L54 TDS 두 벤치마크 조건 혼동을 사실확인 기반으로 추가 수정, 재채점은 생략) |
 | content/post/2026/2026-08-12-tla-plus-formal-methods/index.md | 100 | 2026-08-12 | 3 | 통과 | 1.2 | 22b50b0 | 없음 |
+| content/post/2026/2026-07-03-insane-search-claude-code-blocked-site-plugin/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-07-22-svg-filter-image-effects-clickjacking/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-13-git-worktree-isolated-commit/index.md | 98 | 2026-08-13 | 2 | 통과 | 1.2 | 55b0d4f | 없음(경미: "실전 팁" 절이 리스트 항목에만 설명을 담아 리스트 제거 시 요지 일부 소실) |
+| content/post/2026/2026-08-15-claude-code-auto-mode-default/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-08-16-llm-log-based-root-cause-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-08-17-dcg-destructive-command-guard/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-08-18-hot-path-vs-critical-path-embedded-tracing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-08-19-tool-schema-overfitting-claude-code/index.md | 100 | 2026-08-19 | 2 | 통과 | 1.2 | 4249007 | 없음 |
