@@ -1,7 +1,7 @@
 ---
 title: "[AI] 추론 트레이스 탈취: 프론티어 LLM 3사 암호화 사고 사슬의 구조적 결함"
 description: "arXiv 논문이 실증한 Anthropic·OpenAI·Google API의 암호화된 추론 블록 상호호환 결함을 정리했다. 약한 모델을 복호화 오라클로 써 31만 건 중 크리덴셜 182건·PII 367건을 복구한 경위와 제안된 방어책을 다룬다."
-date: 2026-08-21T09:00:00+09:00
+date: 2026-08-21T02:00:00+09:00
 lastmod: 2026-08-21
 draft: false
 categories:
