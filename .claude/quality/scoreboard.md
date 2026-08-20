@@ -238,7 +238,7 @@
 | content/collection/optimization-01-profiling/12-performance-ab-testing/index.md | 97.0 | 2026-07-26 | 1 | 통과 | 1.0 | c76ada8 | 없음(경미: L34-42 비승인 태그 9개 data/tags.yaml 미등재, L73 Spinnaker 카나리 문서 "첫머리" 배치 서술 검증 여지) |
 | content/collection/optimization-01-profiling/13-amd-uprof/index.md | 97.3 | 2026-08-12 | 1 | 통과 | 1.2 | 602f20c | 없음(경미: L165/L167 uProf 5.3 발표월 오표기(5월→6월, AMD 공식 릴리스노트 대조) 수정 완료) |
 | content/collection/optimization-01-profiling/14-windows-etw/index.md | 90.9 | 2026-08-18 | 1 | 통과 | 1.2 | 5f166bb | 없음(경미: L72 NPU 프로파일링·2026-01 갱신 주장 출처 미병기, L292 "마무리" 절 도입문장이 지시문뿐 요약 부재, L270 "판단 기준" 표 앞 리드 문단 부재) |
-| content/collection/optimization-01-profiling/15-valgrind-callgrind/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-01-profiling/15-valgrind-callgrind/index.md | 91 | 2026-08-21 | 1 | 통과 | 1.2 | 86e00f3 | 없음(경미: 항목2 70앵커 — 00 챕터가 15장 핵심 내용으로 명시한 off-CPU/락 대기/I-O 대기 구간 식별을 본문이 다루지 않고 배제 고지도 없음, L56 "다루지 않는 것" 절에 위임 문장 추가 권고) |
 | content/collection/optimization-01-profiling/16-bpf-profiling/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-01-profiling/17-distributed-tracing-overhead/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-01-profiling/18-profiling-workflow-guide/index.md | - | - | 0 | 미채점 | - | - | - |
