@@ -36,6 +36,7 @@ tags:
   - Third-Party-Tools
   - Simon-Willison
   - Armin-Ronacher
+image: "wordcloud.png"
 ---
 
 더 좋은 모델을 붙였는데 결과가 더 나빠졌다면, 보통은 프롬프트나 설정을 의심한다. 그런데 2026년 7월, 오픈소스 CLI 코딩 에이전트 Pi를 만든 Armin Ronacher는 정반대의 원인을 발견했다. 모델 자체가 최신으로 갈수록 자신이 정의한 도구 호출 스키마를 더 못 지켰던 것이다. 그는 이 현상을 블로그 글 [Better Models: Worse Tools](https://lucumr.pocoo.org/2026/7/4/better-models-worse-tools/)에 정리했고, 같은 날 Simon Willison이 자신의 위클로그에서 이를 인용하며 더 넓은 논의로 번졌다. 이 글은 그 관찰이 왜 일어나는지, 그리고 지금(2026년 8월) 시점에 Anthropic이 내놓은 공식 해법이 무엇인지를 정리한다.
