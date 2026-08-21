@@ -450,6 +450,13 @@ def check_links(report: Report, fm: dict, offset: int, post_path: Path, rows) ->
     if image and not str(image).startswith(("http", "/")):
         if not (post_path.parent / str(image)).exists():
             report.add("critical", 7, "image-missing", f"frontmatter image 파일 없음: {image} (치명결함 1)", 1, 0)
+    elif image is None:
+        rel_parts = post_path.relative_to(REPO_ROOT).parts
+        if len(rel_parts) >= 2 and rel_parts[0] == "content" and rel_parts[1] in ("post", "collection") and post_path.name != "_index.md":
+            report.add(
+                "critical", 7, "image-missing",
+                "frontmatter에 image 필드 자체가 없음 — 대표 이미지 미설정 (치명결함 1)", 1, 0,
+            )
 
     report.external_urls = sorted(set(external))
     report.metrics.update(

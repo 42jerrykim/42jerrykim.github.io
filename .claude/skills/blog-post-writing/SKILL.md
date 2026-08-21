@@ -66,9 +66,11 @@ YYYY-MM-DD-my-post-slug/
 ```
 
 3. **이미지 규칙**:
+   - **모든 글은 frontmatter에 `image` 필드가 있어야 한다.** 필드 없이 파일만 두면 테마가 대표 이미지를 인식하지 못한다.
    - 대표 이미지는 번들 내에 배치하고, frontmatter에서 파일명만 참조: `image: "image.png"`
-   - Algorithm 컬렉션은 `wordcloud.png` 사용 (wordcloud_generator.py로 생성)
+   - 포스터·스크린샷 등 자연스러운 대표 이미지가 없는 글(기술/보안/뉴스 분석 등 일반 `content/post/` 글 포함)은 `python script/wordcloud_generator.py "<번들 경로>"`로 `wordcloud.png`를 생성하고 `image: "wordcloud.png"`로 참조한다 — Algorithm·Vocabulary 컬렉션만의 규칙이 아니다.
    - 외부 이미지 URL 대신 번들 내 파일을 권장
+   - PublishPrep 단계에서 `image` 필드 존재 + 참조 파일 실재 여부를 반드시 재확인한다(`python script/post_lint.py <경로>`의 `image-missing` 결함으로 기계 검증됨).
 
 ### Phase 3: Frontmatter 작성
 
@@ -195,9 +197,9 @@ image: "image.png"
 
 | 상황 | 방법 |
 |------|------|
-| 대표 이미지 | 번들 내 `image.png` 또는 컬렉션별 규칙 파일 참조 |
+| 대표 이미지 (필수) | 번들 내 `image.png` 또는 컬렉션별 규칙 파일 참조. frontmatter `image` 필드로 반드시 명시 |
 | 본문 삽입 이미지 | `![alt text](파일명.png)` — 번들 내 상대 경로 |
-| 워드클라우드 (Algorithm) | `python script/wordcloud_generator.py "<번들 경로>"` |
+| 자연 이미지가 없을 때 (워드클라우드) | `python script/wordcloud_generator.py "<번들 경로>"`로 생성 후 `image: "wordcloud.png"` — Algorithm·Vocabulary뿐 아니라 대표 이미지가 마땅치 않은 모든 글에 적용 |
 | 외부 이미지 | 가능한 한 다운로드 후 번들에 포함. 불가능 시 접근 확인 후 URL 사용 |
 
 ---
