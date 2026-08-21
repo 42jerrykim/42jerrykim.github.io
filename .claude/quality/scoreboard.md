@@ -1597,4 +1597,4 @@
 | content/post/2026/2026-08-19-tool-schema-overfitting-claude-code/index.md | 100 | 2026-08-19 | 2 | 통과 | 1.2 | 4249007 | 없음 |
 | content/post/2026/2026-08-20-llm-reasoning-vs-factual-knowledge-tradeoff/index.md | 100 | 2026-08-20 | 2 | 통과 | 1.2 | e2c25da | 없음 |
 | content/post/2026/2026-08-21-stealing-reasoning-traces-llm-api/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/post/2026/2026-08-22-cursor-cve-2026-22708-allowlist-bypass/index.md | 98.5 | 2026-08-22 | 2 | 통과 | 1.2 | 5589d05 | 없음 |
+| content/post/2026/2026-08-22-cursor-cve-2026-22708-allowlist-bypass/index.md | 98.5 | 2026-08-22 | 2 | 통과 | 1.2 | 7197e90 | 없음 |
