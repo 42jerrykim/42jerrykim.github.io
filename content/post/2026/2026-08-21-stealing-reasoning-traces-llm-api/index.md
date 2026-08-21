@@ -37,6 +37,7 @@ tags:
   - Simon-Willison
   - arXiv
   - PII
+image: "wordcloud.png"
 ---
 
 Claude Opus나 GPT-5.6 Sol 같은 프론티어 모델은 답을 내놓기 전 내부적으로 긴 사고 사슬을 만든다. 이 사고 사슬은 사용자에게 요약본만 보이고, API 응답에는 다음 턴에서 맥락을 이어가는 데 쓰라고 "암호화된 블록"으로 돌려준다 — 평문 추론 자체는 절대 클라이언트에 노출되지 않는다는 전제로 설계된 구조다. 2026년 8월 10일 arXiv에 제출된 논문 "Stealing Reasoning Traces from Proprietary LLM APIs"(Alexander Panfilov, David Schmotz, Ilia Shumailov 외, [arXiv:2608.09867](https://arxiv.org/abs/2608.09867))는 이 전제가 Anthropic·OpenAI·Google 세 곳 모두에서 동시에 깨진다는 것을 실증했다. 원인은 알고리즘적 취약점이 아니라 훨씬 단순한 구현 디테일이었다 — 같은 모델 계열 안에서 암호화 키가 재사용됐다.
