@@ -808,7 +808,7 @@
 | content/collection/Algorithm/2026/2026-03-10-BOJ-11238-fibo-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2026/2026-03-10-BOJ-24491-searching-for-soulmates-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2026/2026-03-10-BOJ-8927-squares-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/android-hardware-development/00-getting-started-android-hardware-development/index.md | 91 | 2026-07-26 | 1 | 통과 | 1.0 | 02e3b39 | 없음(경미: ART/Updates(OTA)/Storage(암호화) 3개 주제가 00–18장 커리큘럼에 명시 배정되지 않음) |
+| content/collection/android-hardware-development/00-getting-started-android-hardware-development/index.md | 100 | 2026-08-22 | 2 | 통과 | 1.2 | f6cf18d | 없음 |
 | content/collection/android-hardware-development/01-hardware-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/android-hardware-development/02-android-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/android-hardware-development/03-kernel-development/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1596,3 +1596,4 @@
 | content/post/2026/2026-08-18-hot-path-vs-critical-path-embedded-tracing/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-19-tool-schema-overfitting-claude-code/index.md | 100 | 2026-08-19 | 2 | 통과 | 1.2 | 4249007 | 없음 |
 | content/post/2026/2026-08-20-llm-reasoning-vs-factual-knowledge-tradeoff/index.md | 100 | 2026-08-20 | 2 | 통과 | 1.2 | e2c25da | 없음 |
+| content/post/2026/2026-08-21-stealing-reasoning-traces-llm-api/index.md | - | - | 0 | 미채점 | - | - | - |
