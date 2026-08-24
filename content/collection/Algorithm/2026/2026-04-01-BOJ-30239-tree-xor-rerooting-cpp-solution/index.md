@@ -2,8 +2,8 @@
 title: "[Algorithm] C++ 백준 30239번: 트리와 XOR 리루팅 DP 풀이"
 description: "백준 30239 트리와 XOR 풀이입니다. 서브트리 XOR 연산 비용을 최소화하는 문제를 엣지 가중치 × 서브트리 크기 공식으로 변환하고, 리루팅(Re-rooting) DP로 모든 루트에 대한 답을 O(N)에 구하는 C++ 구현을 다룹니다."
 date: 2026-04-01
-lastmod: 2026-04-01
-draft: true
+lastmod: 2026-08-22
+draft: false
 slug: boj-30239-tree-xor-rerooting
 categories:
 - Algorithm
