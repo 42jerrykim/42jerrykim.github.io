@@ -37,7 +37,7 @@ jobs:
 
       # fetch-depth: 1 — 전체 git 히스토리 불필요, 약 40초 절약
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           submodules: recursive
           fetch-depth: 1
@@ -74,7 +74,7 @@ jobs:
       # NETLIFY_AUTH_TOKEN, NETLIFY_SITE_ID 는 GitHub Secrets에서 설정 필요:
       #   Settings > Secrets and variables > Actions
       - name: Deploy preview to Netlify
-        uses: nwtgck/actions-netlify@v3
+        uses: nwtgck/actions-netlify@v4
         with:
           publish-dir: ./public
           production-deploy: false
