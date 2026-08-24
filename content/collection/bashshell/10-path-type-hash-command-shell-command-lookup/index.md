@@ -1,6 +1,6 @@
 ---
 draft: false
-slug: path-type-hash-command
+slug: path-type-hash-command-shell-command-lookup
 title: "[Bash Shell] 10. PATH, type, hash, command - 셸의 명령어 탐색 원리"
 description: "PATH 환경변수가 콜론으로 구분된 디렉터리를 왼쪽부터 탐색하는 순서, type이 별칭·함수·빌트인·외부파일을 정확히 구분하는 원리, hash가 경로를 캐싱해 재탐색을 건너뛰다 오래되면 문제가 되는 이유, command로 별칭·함수를 우회하는 법을 정리합니다."
 date: 2026-08-23
@@ -46,9 +46,9 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-직전 챕터인 [09장: which, whereis, locate](/post/bashshell/which-whereis-locate/)에서 다룬 `which`·`whereis`·`locate`는 모두 셸 바깥에서 명령어의 위치를 알려주는 **외부 유틸리티**였다 — `which`조차도 `PATH`를 참고해 경로를 알려줄 뿐, 실제로 셸이 명령을 실행할 때 거치는 판단 과정과는 별개의 프로그램이다. 이 장은 관점을 뒤집는다. 셸 자신이 명령어 한 줄을 받았을 때 내부적으로 무엇을 먼저 확인하고, 어디를 탐색하고, 그 결과를 어떻게 기억해 두는지 — 즉 `which`가 흉내만 내던 그 판단 과정을 셸이 실제로 수행하는 메커니즘 자체를 다룬다.
+직전 챕터인 [09장: which, whereis, locate](/post/bashshell/which-whereis-locate-commands-find-command-location/)에서 다룬 `which`·`whereis`·`locate`는 모두 셸 바깥에서 명령어의 위치를 알려주는 **외부 유틸리티**였다 — `which`조차도 `PATH`를 참고해 경로를 알려줄 뿐, 실제로 셸이 명령을 실행할 때 거치는 판단 과정과는 별개의 프로그램이다. 이 장은 관점을 뒤집는다. 셸 자신이 명령어 한 줄을 받았을 때 내부적으로 무엇을 먼저 확인하고, 어디를 탐색하고, 그 결과를 어떻게 기억해 두는지 — 즉 `which`가 흉내만 내던 그 판단 과정을 셸이 실제로 수행하는 메커니즘 자체를 다룬다.
 
-난이도는 입문–중급이다. [01장: cd, pwd](/post/bashshell/cd-pwd/) 수준의 셸 기본 조작과, 환경변수가 문자열 값을 담고 있다는 정도만 알면 충분하다. **다루지 않는 것**: 별칭(alias)을 정의·삭제하는 문법 자체는 [35장: alias](/post/bashshell/alias/)에서, 로그인·비로그인 셸에 따라 `PATH`가 애초에 어떻게 채워지는지는 다음 [11장: .bashrc와 로그인/비로그인 셸](/post/bashshell/bashrc-login-shell/)에서 다룬다. 이 장은 이미 설정된 `PATH` 값을 셸이 어떻게 소비하는지에 집중한다.
+난이도는 입문–중급이다. [01장: cd, pwd](/post/bashshell/cd-pwd-change-directory-linux-commands/) 수준의 셸 기본 조작과, 환경변수가 문자열 값을 담고 있다는 정도만 알면 충분하다. **다루지 않는 것**: 별칭(alias)을 정의·삭제하는 문법 자체는 [35장: alias](/post/bashshell/alias-command-shell-command-shortcuts/)에서, 로그인·비로그인 셸에 따라 `PATH`가 애초에 어떻게 채워지는지는 다음 [11장: .bashrc와 로그인/비로그인 셸](/post/bashshell/bashrc-bash-profile-login-shell-startup-files/)에서 다룬다. 이 장은 이미 설정된 `PATH` 값을 셸이 어떻게 소비하는지에 집중한다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -253,7 +253,7 @@ command rm test.txt  # 별칭을 건너뛰고 확인 없이 바로 삭제한다 
 
 ## 다음 장에서는
 
-[11장: .bashrc와 로그인/비로그인 셸](/post/bashshell/bashrc-login-shell/)에서는 지금까지 이미 만들어져 있다고 가정했던 `PATH` 값이 애초에 어떻게 채워지는지 — 로그인 셸과 비로그인 셸이 각각 어떤 설정 파일을 읽고, `.bashrc`와 `.bash_profile`이 왜 나뉘어 있는지를 다룬다. 이 장이 "이미 있는 PATH를 셸이 어떻게 소비하는가"였다면, 다음 장은 "그 PATH가 애초에 어떻게 만들어지는가"다.
+[11장: .bashrc와 로그인/비로그인 셸](/post/bashshell/bashrc-bash-profile-login-shell-startup-files/)에서는 지금까지 이미 만들어져 있다고 가정했던 `PATH` 값이 애초에 어떻게 채워지는지 — 로그인 셸과 비로그인 셸이 각각 어떤 설정 파일을 읽고, `.bashrc`와 `.bash_profile`이 왜 나뉘어 있는지를 다룬다. 이 장이 "이미 있는 PATH를 셸이 어떻게 소비하는가"였다면, 다음 장은 "그 PATH가 애초에 어떻게 만들어지는가"다.
 
 ## 평가 기준
 

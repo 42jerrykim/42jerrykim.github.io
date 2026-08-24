@@ -1,6 +1,6 @@
 ---
 draft: false
-slug: exit-status-set-trap
+slug: exit-status-set-trap-bash-error-handling
 title: "[Bash Shell] 33. 종료 코드와 set -e/-x, trap - 스크립트 안정성"
 description: "Bash 스크립트는 기본적으로 명령이 실패해도 다음 줄로 넘어가는 관대한 실행기라는 점과, $?·set -e·set -x·set -u·set -o pipefail·trap(EXIT/ERR/INT/TERM)으로 이 동작을 통제하는 방법을 깨진 스크립트와 고친 스크립트의 실행 비교로 정리합니다."
 date: 2026-08-22
@@ -44,11 +44,11 @@ Bash 스크립트가 중간에 실패했을 때 셸이 실제로 무엇을 하�
 
 ## 이 장을 읽기 전에
 
-직전 챕터인 [32장: functions](/post/bashshell/functions/)에서 함수를 정의하고 호출하는 법을 다뤘다. `trap`에 등록하는 핸들러는 형태상 명령 문자열이지만, 실행 시점이 되면 셸이 특정 이벤트(신호 수신, 스크립트 종료 등)를 만났을 때 호출하는 콜백이라는 점에서 사실상 함수와 같은 역할을 한다 — 함수 개념 없이 곧바로 `trap`을 배우면 "왜 이 문자열이 지금이 아니라 나중에 실행되는가"를 이해하기 어렵다. 이 장은 Part 5(셸 스크립팅)의 마지막 안정성 단계로, 종료 코드부터 `set` 옵션, `trap`까지 셸 스크립트가 실패를 다루는 방식 전체를 묶어서 다룬다.
+직전 챕터인 [32장: functions](/post/bashshell/bash-shell-functions-code-reuse/)에서 함수를 정의하고 호출하는 법을 다뤘다. `trap`에 등록하는 핸들러는 형태상 명령 문자열이지만, 실행 시점이 되면 셸이 특정 이벤트(신호 수신, 스크립트 종료 등)를 만났을 때 호출하는 콜백이라는 점에서 사실상 함수와 같은 역할을 한다 — 함수 개념 없이 곧바로 `trap`을 배우면 "왜 이 문자열이 지금이 아니라 나중에 실행되는가"를 이해하기 어렵다. 이 장은 Part 5(셸 스크립팅)의 마지막 안정성 단계로, 종료 코드부터 `set` 옵션, `trap`까지 셸 스크립트가 실패를 다루는 방식 전체를 묶어서 다룬다.
 
-난이도는 중급이다. `if`/`for`([27–28장](/post/bashshell/if-test/))로 조건·반복을 다룰 수 있고 함수(32장)를 정의할 수 있다고 가정한다. 파이프라인([19장: pipe](/post/bashshell/pipe/))의 기본 개념도 `set -o pipefail`을 이해하는 데 필요하다.
+난이도는 중급이다. `if`/`for`([27–28장](/post/bashshell/if-test-command-bash-conditional-statements/))로 조건·반복을 다룰 수 있고 함수(32장)를 정의할 수 있다고 가정한다. 파이프라인([19장: pipe](/post/bashshell/pipe-operator-linux-command-chaining/))의 기본 개념도 `set -o pipefail`을 이해하는 데 필요하다.
 
-**다루지 않는 것**: 실행 중인 프로세스에 터미널에서 직접 시그널을 보내는 것(`kill -9`, `kill -TERM` 등)은 [25장: kill, jobs](/post/bashshell/kill-jobs/)에서 이미 다뤘다. 이 장은 그 반대편 — 스크립트 "안쪽"에서 신호나 종료 이벤트를 받아 반응하는 코드(`trap`)만 다룬다.
+**다루지 않는 것**: 실행 중인 프로세스에 터미널에서 직접 시그널을 보내는 것(`kill -9`, `kill -TERM` 등)은 [25장: kill, jobs](/post/bashshell/kill-jobs-commands-process-signal-job-control/)에서 이미 다뤘다. 이 장은 그 반대편 — 스크립트 "안쪽"에서 신호나 종료 이벤트를 받아 반응하는 코드(`trap`)만 다룬다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -265,7 +265,7 @@ trap 'code=$?; echo "정리 작업 실행"; echo "원래 종료 코드: $code"; 
 
 ## 다음 장에서는
 
-[34장: echo, export, env](/post/bashshell/echo-export-env/)에서는 표준 출력으로 값을 내보내는 `echo`, 자식 프로세스에 변수를 물려주는 `export`, 현재 환경을 확인·조작하는 `env`를 다룬다. 이 장이 종료 코드와 `trap`으로 스크립트의 "실행 흐름"을 통제하는 법이었다면, 다음 장은 그 스크립트가 다른 프로세스와 값을 주고받는 "환경"을 다룬다.
+[34장: echo, export, env](/post/bashshell/echo-export-env-commands-shell-variables/)에서는 표준 출력으로 값을 내보내는 `echo`, 자식 프로세스에 변수를 물려주는 `export`, 현재 환경을 확인·조작하는 `env`를 다룬다. 이 장이 종료 코드와 `trap`으로 스크립트의 "실행 흐름"을 통제하는 법이었다면, 다음 장은 그 스크립트가 다른 프로세스와 값을 주고받는 "환경"을 다룬다.
 
 ## 평가 기준
 

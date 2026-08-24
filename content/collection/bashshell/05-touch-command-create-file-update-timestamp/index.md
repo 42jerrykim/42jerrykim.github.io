@@ -1,6 +1,6 @@
 ---
 draft: false
-slug: touch
+slug: touch-command-create-file-update-timestamp
 title: "[Bash Shell] 05. touch - 파일 생성과 타임스탬프 갱신"
 description: "touch의 본질은 파일 생성이 아니라 접근·수정 시각(atime/mtime) 갱신이며 빈 파일 생성은 부수 효과일 뿐이라는 점을 정신 모델부터 짚고, -a/-m 선택 갱신, -r/-d/-t 시각 지정, GNU·BSD/macOS의 -d/-t 날짜 형식 차이와 -h 심볼릭 링크 옵션까지 예제로 다룹니다."
 date: 2026-03-15
@@ -46,9 +46,9 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-**선행 챕터**: 이 장은 [04장: less, more](/post/bashshell/less-more/)에서 페이저로 파일 내용을 화면 단위로 넘겨 보는 법을 다룬 뒤 이어진다. 1–4장은 셸을 오가고(`cd`, `pwd`) 디렉터리 내용을 나열하고(`ls`) 파일을 화면에 출력하거나(`cat`) 페이지 단위로 읽는(`less`, `more`) 등, 이미 존재하는 파일을 "보는" 작업이었다. 이 장부터는 파일을 직접 만들고 그 메타데이터를 조작하는 "쓰기" 방향으로 처음 전환하는 지점이다.
+**선행 챕터**: 이 장은 [04장: less, more](/post/bashshell/less-more-commands-view-large-files-linux/)에서 페이저로 파일 내용을 화면 단위로 넘겨 보는 법을 다룬 뒤 이어진다. 1–4장은 셸을 오가고(`cd`, `pwd`) 디렉터리 내용을 나열하고(`ls`) 파일을 화면에 출력하거나(`cat`) 페이지 단위로 읽는(`less`, `more`) 등, 이미 존재하는 파일을 "보는" 작업이었다. 이 장부터는 파일을 직접 만들고 그 메타데이터를 조작하는 "쓰기" 방향으로 처음 전환하는 지점이다.
 
-난이도는 **입문**이다. 셸에서 파일 경로를 지정할 수 있다는 것 정도만 전제한다. **다루지 않는 것**: 파일을 실제로 복사·이동·삭제하는 작업은 [7장: cp, mv, rm](/post/bashshell/cp-mv-rm/)에서, 디렉터리를 만들고 지우는 작업은 [06장: mkdir, rmdir](/post/bashshell/mkdir-rmdir/)에서 다룬다. touch가 다루는 시각 메타데이터가 `ls -l`에 어떻게 표시되는지는 이미 [2장: ls](/post/bashshell/ls/)에서 다뤘으므로 여기서는 반복하지 않는다.
+난이도는 **입문**이다. 셸에서 파일 경로를 지정할 수 있다는 것 정도만 전제한다. **다루지 않는 것**: 파일을 실제로 복사·이동·삭제하는 작업은 [7장: cp, mv, rm](/post/bashshell/cp-mv-rm-commands-copy-move-delete-files/)에서, 디렉터리를 만들고 지우는 작업은 [06장: mkdir, rmdir](/post/bashshell/mkdir-rmdir-commands-create-delete-directories/)에서 다룬다. touch가 다루는 시각 메타데이터가 `ls -l`에 어떻게 표시되는지는 이미 [2장: ls](/post/bashshell/ls-command-list-files-directories-linux/)에서 다뤘으므로 여기서는 반복하지 않는다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -195,7 +195,7 @@ FreeBSD/macOS의 `-d`는 `T`로 날짜와 시각을 구분하는 ISO 8601 스타
 
 ## 다음 장에서는
 
-다음은 [06장: mkdir, rmdir](/post/bashshell/mkdir-rmdir/) — 파일이 아니라 디렉터리를 만들고 지우는 명령으로 넘어간다. 이 장이 "이미 존재하거나 방금 만든 파일의 시각을 다루는 법"이었다면, 다음 장은 "파일들을 담을 디렉터리 자체를 만들고 없애는 법"이다.
+다음은 [06장: mkdir, rmdir](/post/bashshell/mkdir-rmdir-commands-create-delete-directories/) — 파일이 아니라 디렉터리를 만들고 지우는 명령으로 넘어간다. 이 장이 "이미 존재하거나 방금 만든 파일의 시각을 다루는 법"이었다면, 다음 장은 "파일들을 담을 디렉터리 자체를 만들고 없애는 법"이다.
 
 ## 평가 기준
 

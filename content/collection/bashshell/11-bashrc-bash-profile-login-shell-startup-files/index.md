@@ -1,6 +1,6 @@
 ---
 draft: false
-slug: bashrc-login-shell
+slug: bashrc-bash-profile-login-shell-startup-files
 title: "[Bash Shell] 11. .bashrc와 로그인/비로그인 셸 - 셸 환경설정"
 description: "Bash가 로그인/비로그인·대화형/비대화형 조합에 따라 /etc/profile·~/.bash_profile·~/.bashrc 중 어떤 파일을 읽는지 GNU Bash Reference Manual로 대조하고, SSH 비대화형 실행에서 .bashrc가 안 읽히는 이유를 정리한다."
 date: 2026-08-23
@@ -48,11 +48,11 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-직전 챕터인 [10장: PATH, type, hash, command](/post/bashshell/path-type-hash-command/)에서는 셸이 명령어의 실행 파일 위치를 어떻게 찾는지를 다뤘다. 이 장은 그 명령어 탐색 능력 자체가 아니라, 셸이 시작되는 "시점"에 어떤 환경(별칭·함수·`PATH` 값 등)을 미리 구성해 두는지를 다룬다는 점에서 이어지는 주제다 — `PATH`를 아무리 잘 이해해도 그 값을 설정한 파일이 애초에 읽히지 않으면 소용이 없다. [3장: cat](/post/bashshell/cat/)과 [4장: less, more](/post/bashshell/less-more/)에서 다룬 파일 내용 확인법은 이 장에서 `~/.bashrc`·`~/.bash_profile` 같은 설정 파일을 직접 열어볼 때 그대로 쓰인다.
+직전 챕터인 [10장: PATH, type, hash, command](/post/bashshell/path-type-hash-command-shell-command-lookup/)에서는 셸이 명령어의 실행 파일 위치를 어떻게 찾는지를 다뤘다. 이 장은 그 명령어 탐색 능력 자체가 아니라, 셸이 시작되는 "시점"에 어떤 환경(별칭·함수·`PATH` 값 등)을 미리 구성해 두는지를 다룬다는 점에서 이어지는 주제다 — `PATH`를 아무리 잘 이해해도 그 값을 설정한 파일이 애초에 읽히지 않으면 소용이 없다. [3장: cat](/post/bashshell/cat-head-tail-commands-view-file-contents/)과 [4장: less, more](/post/bashshell/less-more-commands-view-large-files-linux/)에서 다룬 파일 내용 확인법은 이 장에서 `~/.bashrc`·`~/.bash_profile` 같은 설정 파일을 직접 열어볼 때 그대로 쓰인다.
 
 난이도는 입문–중급이다. 셸을 열고 명령을 입력해 본 경험만 있으면 충분하며, 별도의 스크립팅 지식은 필요하지 않다.
 
-**다루지 않는 것**: 환경 변수를 내보내고 확인하는 `export`/`env` 자체의 문법은 [34장: echo, export, env](/post/bashshell/echo-export-env/)에서 다룬다. `PATH` 변수의 구조와 명령어 탐색 순서는 [10장](/post/bashshell/path-type-hash-command/)에서 이미 다뤘다. 로그인 인증 절차(PAM, `/etc/passwd`)나 zsh·fish 등 Bash 이외 셸의 시작 파일 규칙도 이 장의 범위 밖이다.
+**다루지 않는 것**: 환경 변수를 내보내고 확인하는 `export`/`env` 자체의 문법은 [34장: echo, export, env](/post/bashshell/echo-export-env-commands-shell-variables/)에서 다룬다. `PATH` 변수의 구조와 명령어 탐색 순서는 [10장](/post/bashshell/path-type-hash-command-shell-command-lookup/)에서 이미 다뤘다. 로그인 인증 절차(PAM, `/etc/passwd`)나 zsh·fish 등 Bash 이외 셸의 시작 파일 규칙도 이 장의 범위 밖이다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -172,7 +172,7 @@ Bash는 분명 `~/.bashrc`를 여는 데까지는 성공하지만, 파일 안의
 
 ## 다음 장에서는
 
-[12장: man, history](/post/bashshell/man-history/)에서는 명령어 매뉴얼을 찾아보는 `man`과 셸에 입력한 명령을 다시 불러오는 `history`를 다룬다. 12장은 Part 1(셸 기초와 탐색)의 마지막 장으로, 이 장까지 다룬 탐색·명령어 찾기·환경설정 지식을 바탕으로 Part 2(텍스트 처리)로 넘어가기 전 마지막 정리에 해당한다.
+[12장: man, history](/post/bashshell/man-history-commands-manual-pages-shell-history/)에서는 명령어 매뉴얼을 찾아보는 `man`과 셸에 입력한 명령을 다시 불러오는 `history`를 다룬다. 12장은 Part 1(셸 기초와 탐색)의 마지막 장으로, 이 장까지 다룬 탐색·명령어 찾기·환경설정 지식을 바탕으로 Part 2(텍스트 처리)로 넘어가기 전 마지막 정리에 해당한다.
 
 ## 평가 기준
 

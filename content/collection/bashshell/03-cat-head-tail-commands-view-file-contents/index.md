@@ -1,6 +1,6 @@
 ---
 draft: false
-slug: cat
+slug: cat-head-tail-commands-view-file-contents
 title: "[Bash Shell] 03. cat, head, tail - 파일 내용 출력과 일부 보기"
 description: "cat으로 파일 전체를 표준 출력에 흘려보내는 법부터, head·tail로 앞뒤 N줄·N바이트만 가볍게 스트리밍해 보는 법, tail -f/-F로 로그를 실시간 추적하는 법까지 옵션 표와 실전 예시 18개, GNU·BSD 이식성 차이로 정리합니다."
 date: 2026-03-15
@@ -58,9 +58,9 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-**선행 챕터**: 이 장은 [2장: ls](/post/bashshell/ls/)에서 이어진다. 앞 장에서 `ls`로 어떤 파일이 있는지 목록을 살펴봤다면, 이 장에서는 그 목록 안의 파일을 실제로 열어 내용을 확인한다 — "무엇이 있는지 본다"에서 "그 안에 무엇이 들어 있는지 본다"로 넘어가는 자연스러운 흐름이며, 아직 <strong>Part 1(셸 기초와 탐색)</strong> 진행 중이다.
+**선행 챕터**: 이 장은 [2장: ls](/post/bashshell/ls-command-list-files-directories-linux/)에서 이어진다. 앞 장에서 `ls`로 어떤 파일이 있는지 목록을 살펴봤다면, 이 장에서는 그 목록 안의 파일을 실제로 열어 내용을 확인한다 — "무엇이 있는지 본다"에서 "그 안에 무엇이 들어 있는지 본다"로 넘어가는 자연스러운 흐름이며, 아직 <strong>Part 1(셸 기초와 탐색)</strong> 진행 중이다.
 
-**이 장의 깊이**: **입문** 난이도다. 기본 출력, 여러 파일 연결, 줄 번호·비인쇄 문자 표시 옵션에 더해 `head`·`tail`로 파일의 일부만 보는 법과 `tail -f`의 실시간 추적까지 다룬다. **다루지 않는 것**: `cat`으로 파일을 만들거나 이어붙일 때 쓰는 리다이렉션(`>`, `>>`) 연산자 자체의 문법은 [20장: 리다이렉션](/post/bashshell/redirection/)에서 다루므로, 여기서는 `cat`의 관점에서 필요한 만큼만 언급한다. 대용량 파일을 화면 단위로 나눠 보거나 검색하는 방법은 이 장에서 다루지 않고 바로 다음 장인 [4장: less, more](/post/bashshell/less-more/)로 넘긴다.
+**이 장의 깊이**: **입문** 난이도다. 기본 출력, 여러 파일 연결, 줄 번호·비인쇄 문자 표시 옵션에 더해 `head`·`tail`로 파일의 일부만 보는 법과 `tail -f`의 실시간 추적까지 다룬다. **다루지 않는 것**: `cat`으로 파일을 만들거나 이어붙일 때 쓰는 리다이렉션(`>`, `>>`) 연산자 자체의 문법은 [20장: 리다이렉션](/post/bashshell/io-redirection-linux-bash-tutorial/)에서 다루므로, 여기서는 `cat`의 관점에서 필요한 만큼만 언급한다. 대용량 파일을 화면 단위로 나눠 보거나 검색하는 방법은 이 장에서 다루지 않고 바로 다음 장인 [4장: less, more](/post/bashshell/less-more-commands-view-large-files-linux/)로 넘긴다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -234,7 +234,7 @@ tail -F /var/log/app.log
 
 `grep`을 비롯해 대부분의 필터 명령은 파일 이름을 인자로 직접 받을 수 있으므로, `cat file | grep pattern`은 `grep pattern file`로 쓰는 편이 프로세스 하나를 덜 띄우고 더 짧다. 대상 파일이 둘 이상이라 실제로 "이어 붙여야" 하는 상황(`cat a.txt b.txt | grep pattern`)이라면 이는 UUOC가 아니라 `cat`의 정상적인 용례다.
 
-**대용량 파일에 `cat`을 쓰면 터미널이 먹통이 된다**: `cat`은 파일 크기와 무관하게 전체를 한 번에 쏟아내므로, 수 GB짜리 로그 파일에 `cat`을 실행하면 수만 줄이 순식간에 스크롤되어 지나가며 터미널이 한동안 응답하지 않는 것처럼 느껴진다. 필요한 부분만 골라 보거나 검색해야 한다면 화면 단위로 멈춰 가며 읽을 수 있는 [4장: less](/post/bashshell/less-more/)를 쓰는 편이 안전하다.
+**대용량 파일에 `cat`을 쓰면 터미널이 먹통이 된다**: `cat`은 파일 크기와 무관하게 전체를 한 번에 쏟아내므로, 수 GB짜리 로그 파일에 `cat`을 실행하면 수만 줄이 순식간에 스크롤되어 지나가며 터미널이 한동안 응답하지 않는 것처럼 느껴진다. 필요한 부분만 골라 보거나 검색해야 한다면 화면 단위로 멈춰 가며 읽을 수 있는 [4장: less](/post/bashshell/less-more-commands-view-large-files-linux/)를 쓰는 편이 안전하다.
 
 **자기 자신에게 리다이렉트하면 내용이 사라진다**: `cat file1 file2 > file1`처럼 입력 파일과 출력 대상이 같으면, 셸은 `cat`을 실행하기 **전에** `>`를 먼저 처리해 `file1`을 빈 파일로 만들어(truncate) 버린다. `cat`이 실제로 `file1`을 읽으려는 시점에는 이미 내용이 사라진 뒤라 원본 데이터를 복구할 수 없다. 여러 파일을 합쳐 그중 하나에 덮어써야 한다면 임시 파일에 먼저 쓴 뒤 `mv`로 옮기는 방식이 안전하다.
 
@@ -252,7 +252,7 @@ tail -F /var/log/app.log
 
 ## 다음 장에서는
 
-다음은 [4장: less, more](/post/bashshell/less-more/) — 대용량 파일은 `cat`으로 한 번에 쏟아내는 대신, 화면 단위로 멈춰 가며 검색까지 할 수 있는 페이저로 보는 법을 다룬다.
+다음은 [4장: less, more](/post/bashshell/less-more-commands-view-large-files-linux/) — 대용량 파일은 `cat`으로 한 번에 쏟아내는 대신, 화면 단위로 멈춰 가며 검색까지 할 수 있는 페이저로 보는 법을 다룬다.
 
 ## 평가 기준
 

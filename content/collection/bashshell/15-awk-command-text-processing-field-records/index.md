@@ -1,96 +1,210 @@
 ---
-draft: true
-title: "[Bash Shell] awk - 텍스트·필드 처리"
-description: "리눅스·유닉스에서 필드 단위로 텍스트를 처리하는 awk의 사용법, 패턴·액션, 내장 변수(NR, NF, FS), 실무 예제를 다룹니다."
+draft: false
+slug: awk-command-text-processing-field-records
+title: "[Bash Shell] 15. awk - 레코드·필드 처리"
+description: "awk는 입력을 레코드와 필드로 나눠 패턴에 맞는 레코드마다 액션을 실행하는 텍스트 처리 언어다. FS·NR·NF 내장 변수, BEGIN/END 블록, 배열, printf 서식을 예제로 정리하고, GNU gawk 전용 확장 함수가 POSIX·BSD awk에서 동작하지 않는 이식성 문제를 다룬다."
 date: 2026-03-15
-lastmod: 2026-03-15
+lastmod: 2026-08-23
+collection_order: 150
 categories:
 - Bash Shell
 tags:
 - Bash
 - Shell(셸)
 - Linux(리눅스)
-- Terminal(터미널)
+- Terminal
 - Command
+- File-System
+- Automation(자동화)
+- Process
+- String(문자열)
 - Guide(가이드)
 - Tutorial(튜토리얼)
 - Reference(참고)
 - Quick-Reference
-- File-System
-- String(문자열)
-- Process
-- Automation(자동화)
-- Deployment(배포)
-- Error-Handling(에러처리)
 - Troubleshooting(트러블슈팅)
-- Workflow(워크플로우)
-- Best-Practices
-- Documentation(문서화)
-- Configuration(설정)
-- Education(교육)
-- Technology(기술)
-- Productivity(생산성)
 - How-To
 - Tips
 - Beginner
-- Advanced
-- Comparison(비교)
-- Case-Study
-- Deep-Dive
-- 실습
-- Review(리뷰)
-- Markdown(마크다운)
-- Open-Source(오픈소스)
-- History(역사)
 - awk
+- gawk
+- mawk
+- 레코드
 - 필드
-- 텍스트처리
 - NR
 - NF
 - FS
+- OFS
+- 배열
+- printf
+- 패턴액션
+- 텍스트처리
+- 정규식
 - 스크립트
+- POSIX
 image: "wordcloud.png"
 ---
 
-`awk`는 **필드(열) 단위**로 텍스트를 처리하는 도구다. 패턴에 맞는 줄을 골라 특정 필드를 출력·계산할 때 쓴다.
+`awk`는 입력을 **레코드**(기본: 줄)와 **필드**(기본: 공백 구분)로 나누고, 패턴에 맞는 레코드마다 액션을 실행하는 작은 프로그래밍 언어다. 옵션 몇 개를 외워 쓰는 필터가 아니라 변수·조건·반복·함수 정의를 갖춘 언어이기 때문에, grep의 "찾기"·sed의 "찾아서 바꾸기"보다 한 단계 더 나아간 표현력을 갖는다.
 
-## 사용법
+## 이 장을 읽기 전에
+
+**선행 챕터**: 이 장은 [14장: sed](/post/bashshell/sed-command-stream-editor-linux/)에서 줄 단위로 텍스트를 치환·삭제하는 법을 다룬 뒤 이어진다. sed가 **줄 단위 치환**이었다면, awk는 입력을 **레코드**(기본: 줄)와 **필드**(기본: 공백 구분)로 나눠 패턴-액션 프로그램을 실행하는 한 단계 더 나아간 도구다 — "줄을 통째로 바꾼다"에서 "줄 안의 특정 열(column)만 골라 계산·재구성한다"로 넘어가는 전환이다. 정규식 기초(BRE/ERE 메타문자)는 13장·14장에서 다룬 감각을 그대로 재사용할 수 있다.
+
+**이 장의 깊이**: **입문–중급** 난이도다. 필드 출력·구분자 지정부터 내장 변수, BEGIN/END 블록, 배열, printf 서식까지 실무에서 자주 쓰는 범위를 다룬다. **다루지 않는 것**: 사용자 정의 함수(`function` 키워드), 다차원 배열 흉내(SUBSEP), gawk의 네트워크 I/O(`/inet/` 특수 파일) 같은 고급 스크립팅은 이 장의 범위 밖이며 GNU awk 매뉴얼의 심화 절을 참고해야 한다. 단순히 특정 열만 잘라내면 충분한 상황은 [16장: cut](/post/bashshell/cut-command-extract-columns-linux/)이 더 가볍다.
+
+## 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|------|---------|---------|
+| 로그·CSV에서 특정 열만 빠르게 뽑고 싶은 사람 | "개요 + 정신 모델", "사용법 · 옵션", "예시"의 "필드 출력"·"구분자 지정" | `$1`, `-F`, `NF` 조합으로 원하는 열을 즉시 뽑아낼 수 있다 |
+| 집계·리포트를 awk 하나로 짜려는 사람 | "예시"의 "BEGIN/END와 계산"·"배열로 집계", "주의사항·함정" 전체 | 배열과 BEGIN/END 블록으로 합계·빈도수 같은 집계 스크립트를 안전하게 짤 수 있다 |
+
+---
+
+## 개요 + 정신 모델
+
+awk를 이해하는 가장 빠른 방법은 `awk 'pattern { action }'`이라는 형태 자체를 문자 그대로 읽는 것이다. awk는 입력을 한 줄(레코드)씩 읽어 그 줄이 `pattern`에 맞으면 `{ action }`을 실행하고, 다음 레코드로 넘어가는 과정을 파일 끝까지 반복하는 **레코드 순회 프로그램**이다. 패턴을 생략하면 모든 레코드에 액션이 적용되고, 액션을 생략하면 패턴에 맞는 레코드가 `{ print $0 }`를 실행한 것처럼 그대로 출력된다.
+
+이 모델에서 sed와의 결정적 차이가 드러난다. sed의 패턴 공간은 "줄 전체"라는 단일 단위였지만, awk는 레코드를 읽자마자 **필드 구분자**(기본값 `FS`, 공백·탭 연속)를 기준으로 필드를 잘라 `$1`, `$2`, …, `$NF`에 자동으로 담아 둔다. `$0`은 레코드 전체를, `$1`부터는 각 필드를 가리키며, 이 필드 변수들은 조건식·산술식·문자열 연산에 그대로 쓸 수 있는 **값**이다. 즉 sed가 "줄이라는 문자열 전체를 정규식으로 다뤘다"면, awk는 "줄을 이미 열로 쪼개 놓은 표처럼 다룬다" — 그래서 합계·평균·빈도수 같은 열 단위 집계가 awk에서는 몇 줄로 끝난다. 또 awk는 `NR`(지금까지 읽은 레코드 번호), `NF`(현재 레코드의 필드 수) 같은 내장 변수와 사용자 정의 변수를 프로그램 실행 내내 유지하므로, 단순 필터가 아니라 **상태를 가진 미니 프로그래밍 언어**로 봐야 옵션을 외우지 않고 동작을 유추할 수 있다.
+
+## 사용법 · 옵션
 
 ```bash
 awk '패턴 { 액션 }' [파일...]
+awk -F구분자 '패턴 { 액션 }' [파일...]
 awk -f 스크립트.awk [파일...]
+awk -v 변수=값 '패턴 { 액션 }' [파일...]
 ```
 
-- 필드 구분자는 공백(기본) 또는 `-F`로 지정. `$1`, `$2`, …는 첫 번째, 두 번째 필드. `$0`는 줄 전체.
+- **프로그램**: 작은따옴표로 감싼 `패턴 { 액션 }` 쌍. 여러 쌍을 세미콜론이나 줄바꿈으로 나열할 수 있다. 파일을 생략하면 표준 입력에서 읽는다.
+- 특수 패턴 `BEGIN`과 `END`는 각각 **입력을 읽기 전**, **입력을 모두 읽은 후** 딱 한 번만 실행된다.
 
-## 내장 변수
+### 옵션
+
+| 옵션 | 설명 |
+|------|------|
+| `-F 구분자` | 입력 필드 구분자(`FS`) 지정. 정규식으로 해석된다 |
+| `-f 파일` | 프로그램을 스크립트 파일에서 읽음(여러 개 지정 가능) |
+| `-v 변수=값` | 프로그램 시작(BEGIN 포함) 전에 변수 초기화 |
+| `--posix` (gawk) | POSIX 호환 모드 — gawk 전용 확장을 비활성화 |
+
+### 내장 변수
 
 | 변수 | 설명 |
 |------|------|
-| NR | 현재 줄 번호 |
-| NF | 현재 줄의 필드 수 |
-| FS | 필드 구분자 (입력) |
-| OFS | 필드 구분자 (출력) |
+| `$0` | 현재 레코드(줄) 전체 |
+| `$1`, `$2`, … | 현재 레코드의 1번째, 2번째, … 필드 |
+| `NR` | 지금까지 읽은 전체 레코드 번호(파일이 여러 개면 누적) |
+| `NF` | 현재 레코드의 필드 개수 |
+| `FNR` | 현재 **파일 안에서**의 레코드 번호(여러 파일 처리 시 NR과 구분) |
+| `FS` | 입력 필드 구분자(기본: 공백·탭 연속, `-F`로 변경) |
+| `OFS` | `print`가 필드를 다시 조합할 때 쓰는 출력 필드 구분자(기본: 공백) |
+| `RS` | 입력 레코드 구분자(기본: 줄바꿈) |
+| `ORS` | 출력 레코드 구분자(기본: 줄바꿈) |
+| `FILENAME` | 현재 처리 중인 입력 파일 이름 |
 
 ## 예시
+
+### 필드 출력
 
 ```bash
 # 첫 번째 필드만 출력
 awk '{ print $1 }' file.txt
 
-# 구분자 지정 (예: 콜론)
-awk -F: '{ print $1, $3 }' /etc/passwd
+# 마지막 필드(NF)와 전체 필드 수를 함께 출력
+awk '{ print $NF, NF }' file.txt
 
-# 10번째 줄만
+# 필드 순서를 바꿔 출력 (쉼표는 print의 인자 구분자, OFS가 사이에 들어간다)
+awk '{ print $2, $1 }' file.txt
+```
+
+### 구분자 지정
+
+```bash
+# 콜론(:)이 구분자인 /etc/passwd에서 사용자명과 홈 디렉터리만
+awk -F: '{ print $1, $6 }' /etc/passwd
+
+# CSV(콤마 구분)에서 두 번째 열만
+awk -F',' '{ print $2 }' data.csv
+
+# 출력 구분자(OFS)를 콤마로 바꿔 CSV 형태로 재구성
+awk 'BEGIN { FS=":"; OFS="," } { print $1, $3 }' /etc/passwd
+```
+
+### 패턴 매칭
+
+```bash
+# 특정 문자열을 포함한 레코드만 (정규식 패턴, 액션 생략 시 $0 출력)
+awk '/error/' app.log
+
+# NR로 특정 줄 번호만
 awk 'NR==10' file.txt
 
-# NF가 3 이상인 줄만
+# NF가 3 이상인 줄만 (필드 개수 조건)
 awk 'NF>=3' file.txt
 
-# 합계 등 계산
-awk '{ sum += $1 } END { print sum }' numbers.txt
+# 3번째 필드가 숫자로서 100보다 큰 줄만
+awk '$3 > 100' data.txt
 ```
+
+### BEGIN/END와 계산
+
+```bash
+# 합계와 평균을 END 블록에서 한 번만 출력
+awk '{ sum += $1; count++ } END { print "합계:", sum, "평균:", sum/count }' numbers.txt
+
+# BEGIN에서 헤더를 출력하고 본문 처리
+awk 'BEGIN { print "이름\t점수" } { print $1"\t"$2 }' scores.txt
+```
+
+### printf 서식
+
+```bash
+# 필드 폭을 맞춰 표 형태로 출력 (%-10s: 왼쪽정렬 10칸, %5d: 오른쪽정렬 5칸)
+awk '{ printf "%-10s %5d\n", $1, $2 }' scores.txt
+```
+
+### 배열로 집계
+
+```bash
+# 첫 번째 필드(단어) 등장 횟수를 연관배열로 집계
+awk '{ count[$1]++ } END { for (word in count) print word, count[word] }' words.txt
+
+# 로그 파일에서 상태 코드별 건수 집계
+awk '{ status[$9]++ } END { for (s in status) print s, status[s] }' access.log
+```
+
+## 주의사항 · 함정
+
+**GNU gawk 전용 확장 함수는 POSIX awk·BSD awk·mawk에서 그대로 실패한다.** 실무에서 macOS나 임베디드 환경, 컨테이너 베이스 이미지(Alpine 등)로 스크립트를 옮길 때 이 함정이 가장 흔하다. GNU awk 매뉴얼(man7 gawk(1))은 gawk가 "POSIX 1003.1 표준의 언어 정의를 따른다"고 밝히면서도 `--posix` 옵션으로 "공통 확장 기능 다수를 비활성화"할 수 있다고 명시한다 — 뒤집어 말하면 `--posix` 없이 기본 실행되는 gawk에는 POSIX에 없는 확장이 다수 포함돼 있다는 뜻이다. 실제로 POSIX.1-2017 awk 사양(Open Group Base Specifications)의 내장 함수 목록에는 `atan2`, `cos`, `sin`, `exp`, `log`, `sqrt`, `int`, `rand`, `srand` 같은 산술 함수와 `gsub`, `index`, `length`, `match`, `split`, `sprintf`, `sub`, `substr`, `tolower`, `toupper` 같은 문자열 함수만 정의돼 있고, `gensub()`(치환 결과를 반환하는 gawk 전용 치환 함수), `asort()`/`asorti()`(배열 정렬), `systime()`/`mktime()`/`strftime()`(시각 관련 함수)은 **전혀 포함되지 않는다**. 이 함수들은 GNU awk 매뉴얼이 "Additional functions only in gawk"(gawk에만 있는 추가 함수)로 명시적으로 분류한 확장이다. FreeBSD의 기본 `awk`(One True Awk, Brian Kernighan이 유지보수하는 구현 — macOS도 오랫동안 이 계열을 기본으로 썼다)와 `mawk`는 POSIX.1 호환을 목표로 만들어진 별개의 구현이라 이 gawk 확장을 지원하지 않으므로, `gensub`나 `asort`를 쓴 스크립트를 이런 환경에서 실행하면 "calling undefined function" 류의 오류로 즉시 중단된다. 이식성이 중요한 스크립트는 gawk 확장 대신 POSIX 함수(`sub`/`gsub` + 반복 처리, 수동 정렬 로직)로 대체하거나, 처음부터 `gawk --posix`로 검증하는 편이 안전하다.
+
+**`-F`로 지정하는 구분자는 리터럴 문자가 아니라 정규식으로 해석된다.** `-F.`처럼 정규식 메타문자를 그대로 구분자로 쓰면 `.`이 "임의의 한 문자"로 해석되어 의도와 다르게 거의 모든 위치에서 필드가 쪼개진다. 마침표 자체를 구분자로 쓰려면 `-F'\.'`처럼 이스케이프해야 한다. 탭을 구분자로 쓰고 싶을 때도 `-F'\t'`처럼 명시해야 하며, 셸이 백슬래시를 먼저 처리하지 않도록 작은따옴표로 감싸야 한다.
+
+**필드 구분자의 기본 동작(공백 연속 처리)과 단일 문자 지정은 결과가 다르다.** `FS`가 기본값(공백 한 칸)일 때 awk는 공백·탭이 연속되면 하나의 구분자로 취급하고 줄 앞뒤 공백도 무시한다. 하지만 `FS=","`처럼 특정 문자를 명시적으로 지정하면 이 특별 취급이 사라져, `a,,b`처럼 구분자가 연속되면 그 사이의 빈 문자열도 하나의 필드로 인정된다. CSV처럼 빈 칸이 의미를 갖는 데이터를 다룰 때는 이 차이를 반드시 염두에 둬야 한다.
+
+**awk 프로그램은 셸의 작은따옴표로 감싸야 한다.** 프로그램 안의 `$1`, `$NF` 같은 표현을 큰따옴표로 감싸거나 무인용 상태로 두면, awk가 그 값을 보기도 전에 셸이 `$1`을 셸 변수(대개 빈 문자열)나 위치 매개변수로 먼저 치환해버려 awk에는 껍데기만 남은 프로그램이 전달된다. grep·sed와 마찬가지로 프로그램 전체를 작은따옴표로 감싸는 것이 기본 습관이어야 한다.
+
+## 흔한 오개념
+
+**"awk도 결국 sed처럼 치환 도구"라는 오해가 가장 흔하다.** sed의 `s///`가 "패턴에 맞는 부분 문자열을 다른 문자열로 바꾼다"는 단일 동작에 특화된 반면, awk는 변수·산술 연산·조건문(`if`)·반복문(`for`, `while`)·배열·사용자 정의 함수를 갖춘 프로그래밍 언어다. `s///`와 형태가 비슷한 `gsub()`/`sub()` 함수도 있지만, awk의 본질은 "레코드마다 임의의 계산을 실행할 수 있다"는 점이지 치환 자체가 아니다. 집계·리포트 생성처럼 sed로는 사실상 불가능한 작업이 awk에서는 자연스러운 것도 이 때문이다.
+
+**필드를 수정하면 `$0`이, `$0`을 수정하면 필드가 자동으로 재구성된다는 사실을 놓치기 쉽다.** `$2 = "new"`처럼 특정 필드에 값을 대입하면 awk는 그 즉시 모든 필드를 `OFS`로 다시 이어붙여 `$0`을 갱신한다 — 그래서 필드 하나만 바꿨는데도 `print $0`의 구분자가 원래 `FS`가 아니라 `OFS`(기본값은 공백)로 바뀌어 있는 것을 보고 당황하는 경우가 많다. 반대로 `$0 = "a b c"`처럼 `$0`에 새 문자열을 직접 대입하면 awk는 그 문자열을 `FS` 기준으로 다시 쪼개 `$1`부터 `NF`까지 전부 재계산한다. 즉 `$0`과 개별 필드는 항상 서로 동기화되는 하나의 상태이지, 독립된 두 값이 아니다.
+
+## 다음 장에서는
+
+다음은 [16장: cut](/post/bashshell/cut-command-extract-columns-linux/) — awk가 강력하지만 무겁다면, 다음 장은 단순 컬럼 추출만 필요할 때 쓰는 가벼운 대안을 다룬다.
+
+## 평가 기준
+
+- awk가 레코드를 필드로 나눠 `pattern { action }` 쌍을 순회 실행하는 미니 프로그래밍 언어라는 정신 모델을, sed의 "치환"과 구분해 설명할 수 있다.
+- `-F`로 필드 구분자를 바꾸고, `$0`/`$1`/`NF`/`NR` 같은 내장 변수로 원하는 필드·줄을 골라낼 수 있다.
+- `BEGIN`/`END` 블록과 배열을 조합해 합계·빈도수 같은 집계 스크립트를 짤 수 있다.
+- gawk 전용 확장 함수(`gensub`, `asort`/`asorti`, `systime`/`mktime`/`strftime`)가 POSIX awk·BSD awk·mawk에서 동작하지 않는 이유를 설명하고, 이식성이 필요한 스크립트에서 이를 피할 수 있다.
+- 필드 수정과 `$0` 재구성이 `OFS`/`FS`를 매개로 서로 연동된다는 점을 설명할 수 있다.
 
 ## 참고
 
-- [GNU awk manual](https://www.gnu.org/software/gawk/manual/gawk.html)
+- [gawk(1) - Linux manual page (GNU awk)](https://man7.org/linux/man-pages/man1/gawk.1.html)
+- [awk - POSIX.1-2017 (The Open Group Base Specifications)](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/awk.html)
+- [awk(1) - FreeBSD Manual Pages (One True Awk)](https://man.freebsd.org/cgi/man.cgi?query=awk&sektion=1)

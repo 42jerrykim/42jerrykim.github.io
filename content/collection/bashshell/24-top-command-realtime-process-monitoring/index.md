@@ -2,7 +2,7 @@
 image: "wordcloud.png"
 description: "top은 ps처럼 한 순간을 찍는 스냅샷이 아니라 /proc을 주기적으로 다시 읽어 화면을 갱신하는 실시간 모니터링 도구다. GNU top과 BSD·macOS top의 옵션·출력 포맷 차이, 인터랙티브 키 조작, load average를 코어 수 대비로 해석하는 법을 다룬다."
 title: "[Bash Shell] 24. top - 실시간 시스템 모니터링"
-slug: top
+slug: top-command-realtime-process-monitoring
 collection_order: 240
 draft: false
 date: 2026-03-15
@@ -44,11 +44,11 @@ tags:
 
 ## 이 장을 읽기 전에
 
-직전 챕터인 [23장: ps](/post/bashshell/ps/)에서 `ps`는 실행 중인 프로세스 테이블을 한 번 읽어 찍는 **스냅샷**이라는 것, 그리고 GNU 계열(`-ef`, `-l`)과 BSD 계열(`aux`) 옵션 문법이 갈라진 이유를 다뤘다. 이 장은 그 스냅샷을 주기적으로 다시 찍어 화면에 계속 갱신해 보여주는 `top`을 다룬다.
+직전 챕터인 [23장: ps](/post/bashshell/ps-command-process-status-linux/)에서 `ps`는 실행 중인 프로세스 테이블을 한 번 읽어 찍는 **스냅샷**이라는 것, 그리고 GNU 계열(`-ef`, `-l`)과 BSD 계열(`aux`) 옵션 문법이 갈라진 이유를 다뤘다. 이 장은 그 스냅샷을 주기적으로 다시 찍어 화면에 계속 갱신해 보여주는 `top`을 다룬다.
 
 이 장이 전제하는 지식은 23장에서 다룬 `ps`의 출력 필드(PID, %CPU, %MEM, TTY, STAT 등)와 GNU/BSD 옵션 문법이 갈라진 배경 정도다. 별도의 셸 스크립팅 지식은 필요 없다. 난이도는 입문–중급이며, GNU·BSD·macOS 세 계열의 옵션 의미가 서로 다르다는 점을 이해하는 데 약간의 주의가 필요하다.
 
-**다루지 않는 것**: `top`의 `k` 키로도 프로세스에 시그널을 보낼 수 있지만, 셸에서 직접 시그널을 보내고 백그라운드/포그라운드 작업을 제어하는 법(`kill`, `jobs`, `fg`, `bg`)은 [25장: kill, jobs](/post/bashshell/kill-jobs/)에서 다룬다. `top`보다 가독성 높은 화면과 마우스 조작을 제공하는 `htop` 같은 확장 도구는 이 장에서 옵션 비교를 위해 잠깐 언급만 하고 본격적으로 다루지는 않는다.
+**다루지 않는 것**: `top`의 `k` 키로도 프로세스에 시그널을 보낼 수 있지만, 셸에서 직접 시그널을 보내고 백그라운드/포그라운드 작업을 제어하는 법(`kill`, `jobs`, `fg`, `bg`)은 [25장: kill, jobs](/post/bashshell/kill-jobs-commands-process-signal-job-control/)에서 다룬다. `top`보다 가독성 높은 화면과 마우스 조작을 제공하는 `htop` 같은 확장 도구는 이 장에서 옵션 비교를 위해 잠깐 언급만 하고 본격적으로 다루지는 않는다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -172,7 +172,7 @@ top -s 2 -d 3
 
 ## 다음 장에서는
 
-[25장: kill, jobs](/post/bashshell/kill-jobs/)에서는 `top`의 `k` 키로 잠깐 다뤘던 시그널 전송을 셸에서 직접 `kill` 명령으로 다루고, 백그라운드로 돌린 작업을 `jobs`·`fg`·`bg`로 제어하는 법을 배운다.
+[25장: kill, jobs](/post/bashshell/kill-jobs-commands-process-signal-job-control/)에서는 `top`의 `k` 키로 잠깐 다뤘던 시그널 전송을 셸에서 직접 `kill` 명령으로 다루고, 백그라운드로 돌린 작업을 `jobs`·`fg`·`bg`로 제어하는 법을 배운다.
 
 ## 평가 기준
 

@@ -1,6 +1,6 @@
 ---
 draft: false
-slug: cd-pwd
+slug: cd-pwd-change-directory-linux-commands
 title: "[Bash Shell] 01. cd, pwd - 디렉터리 이동과 현재 위치"
 description: "셸이 항상 유지하는 숨은 상태인 현재 작업 디렉터리(cwd) 개념을 중심으로 cd와 pwd의 옵션·상대경로 해석 방식을 정리하고, cd -와 OLDPWD, CDPATH의 부작용, 심볼릭 링크에서 -L/-P 경로 해석 차이를 GNU Bash 매뉴얼 기준으로 다룹니다."
 date: 2026-03-15
@@ -48,7 +48,7 @@ image: "wordcloud.png"
 
 **선행 챕터**: 이 장은 [00장: 과정 개요와 커리큘럼](/post/bashshell/getting-started-bash-shell/) 바로 다음에 오는 <strong>Part 1(셸 기초와 탐색)</strong>의 첫 기술 챕터다. 셸을 처음 열어 명령을 입력할 수 있다는 것 외에 별도로 전제하는 지식은 없다.
 
-**이 장의 깊이**: **입문** 난이도다. 경로 지정 방식(절대·상대·홈·이전 디렉터리)과 `cd`/`pwd`의 옵션을 실무에서 쓰는 범위까지 다룬다. **다루지 않는 것**: 디렉터리 안의 파일 목록을 실제로 나열하는 법은 [02장: ls](/post/bashshell/ls/)에서 다루고, 명령어 자체를 셸이 어떻게 찾아 실행하는지(`PATH`·`type`·`hash`·`command`)는 이 커리큘럼의 뒤쪽 챕터에서 별도로 다룬다.
+**이 장의 깊이**: **입문** 난이도다. 경로 지정 방식(절대·상대·홈·이전 디렉터리)과 `cd`/`pwd`의 옵션을 실무에서 쓰는 범위까지 다룬다. **다루지 않는 것**: 디렉터리 안의 파일 목록을 실제로 나열하는 법은 [02장: ls](/post/bashshell/ls-command-list-files-directories-linux/)에서 다루고, 명령어 자체를 셸이 어떻게 찾아 실행하는지(`PATH`·`type`·`hash`·`command`)는 이 커리큘럼의 뒤쪽 챕터에서 별도로 다룬다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -188,7 +188,7 @@ pwd -P
 
 ## 다음 장에서는
 
-[02장: ls](/post/bashshell/ls/)에서는 지금 위치한 디렉터리 안에 실제로 무엇이 있는지 목록으로 확인하는 법을 다룬다.
+[02장: ls](/post/bashshell/ls-command-list-files-directories-linux/)에서는 지금 위치한 디렉터리 안에 실제로 무엇이 있는지 목록으로 확인하는 법을 다룬다.
 
 ## 평가 기준
 

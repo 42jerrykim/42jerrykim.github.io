@@ -1,6 +1,6 @@
 ---
 draft: false
-slug: which-whereis-locate
+slug: which-whereis-locate-commands-find-command-location
 title: "[Bash Shell] 09. which, whereis, locate - 명령어와 파일 찾기"
 description: "PATH에서 실행 파일 경로만 찾는 which, 실행파일·소스코드·매뉴얼 위치를 함께 찾는 whereis, 미리 만들어둔 파일명 데이터베이스로 시스템 전체를 빠르게 검색하는 locate의 사용법과 역할 차이, updatedb로 갱신되는 DB의 최신성 문제까지 다룬다."
 date: 2026-03-15
@@ -46,9 +46,9 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-**선행 챕터**: 이 장은 [8장: ln](/post/bashshell/ln/)에서 하드링크·심볼릭 링크로 같은 파일을 여러 경로에서 가리키는 법을 다룬 뒤 이어진다. 지금까지 파일을 만들고(`touch`), 옮기고 지우고(`cp`/`mv`/`rm`), 링크를 걸어(`ln`) 파일 하나가 여러 경로를 가질 수 있다는 것까지 배웠다면, 이 장에서는 반대로 "이름만 알고 있는 파일이나 명령어가 실제로 어느 경로에 있는지"를 찾아내는 도구로 넘어간다.
+**선행 챕터**: 이 장은 [8장: ln](/post/bashshell/ln-command-hard-symbolic-links-linux/)에서 하드링크·심볼릭 링크로 같은 파일을 여러 경로에서 가리키는 법을 다룬 뒤 이어진다. 지금까지 파일을 만들고(`touch`), 옮기고 지우고(`cp`/`mv`/`rm`), 링크를 걸어(`ln`) 파일 하나가 여러 경로를 가질 수 있다는 것까지 배웠다면, 이 장에서는 반대로 "이름만 알고 있는 파일이나 명령어가 실제로 어느 경로에 있는지"를 찾아내는 도구로 넘어간다.
 
-**이 장의 깊이**: **입문** 난이도다. 세 명령어 모두 옵션 수가 적고 사용법이 단순해, 각 명령이 정확히 무엇을 검색 대상으로 삼는지 구분하는 데 초점을 맞춘다. **다루지 않는 것**: 셸이 명령어를 찾을 때 실제로 거치는 내부 순서(해시 테이블, 빌트인, PATH 탐색 순서)와 `type`/`hash`/`command`로 그 과정을 정확히 들여다보는 법은 [10장: PATH, type, hash, command](/post/bashshell/path-type-hash-command/)에서 다룬다. `locate`가 참조하는 데이터베이스를 직접 설계하거나 튜닝하는 고급 관리자 작업(`updatedb.conf` 세부 설정 등)도 이 장의 범위 밖이다.
+**이 장의 깊이**: **입문** 난이도다. 세 명령어 모두 옵션 수가 적고 사용법이 단순해, 각 명령이 정확히 무엇을 검색 대상으로 삼는지 구분하는 데 초점을 맞춘다. **다루지 않는 것**: 셸이 명령어를 찾을 때 실제로 거치는 내부 순서(해시 테이블, 빌트인, PATH 탐색 순서)와 `type`/`hash`/`command`로 그 과정을 정확히 들여다보는 법은 [10장: PATH, type, hash, command](/post/bashshell/path-type-hash-command-shell-command-lookup/)에서 다룬다. `locate`가 참조하는 데이터베이스를 직접 설계하거나 튜닝하는 고급 관리자 작업(`updatedb.conf` 세부 설정 등)도 이 장의 범위 밖이다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -189,7 +189,7 @@ locate -e old_report.pdf
 
 ## 다음 장에서는
 
-이 장에서는 `which`/`whereis`/`locate`로 명령어와 파일의 위치를 찾는 도구를 다뤘다면, 다음 장에서는 셸이 애초에 명령어를 어떤 순서로 찾는지 그 근거(PATH)를 다룬다 — [10장: PATH, type, hash, command](/post/bashshell/path-type-hash-command/)에서 `type`으로 빌트인·alias·함수·실행 파일을 정확히 구분하고, `hash`로 셸이 이미 찾아둔 경로를 캐싱하는 원리를 살펴본다.
+이 장에서는 `which`/`whereis`/`locate`로 명령어와 파일의 위치를 찾는 도구를 다뤘다면, 다음 장에서는 셸이 애초에 명령어를 어떤 순서로 찾는지 그 근거(PATH)를 다룬다 — [10장: PATH, type, hash, command](/post/bashshell/path-type-hash-command-shell-command-lookup/)에서 `type`으로 빌트인·alias·함수·실행 파일을 정확히 구분하고, `hash`로 셸이 이미 찾아둔 경로를 캐싱하는 원리를 살펴본다.
 
 ## 평가 기준
 

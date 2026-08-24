@@ -1,6 +1,6 @@
 ---
 draft: false
-slug: less-more
+slug: less-more-commands-view-large-files-linux
 title: "[Bash Shell] 04. less, more - 페이저로 파일 보기"
 description: "대용량 파일을 화면 단위로 나눠 보여주는 페이저 less·more의 사용법을 조작키 표와 실전 예시 6가지로 정리하고, 단방향 스크롤뿐인 POSIX more와 양방향 스크롤·검색이 되는 GNU less의 실질적 차이, less 미설치 환경 대응법을 다룹니다."
 date: 2026-03-15
@@ -46,9 +46,9 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-**선행 챕터**: 이 장은 [3장: cat](/post/bashshell/cat/)에서 이어진다. `cat`은 파일 전체를 표준 출력으로 그대로 쏟아내는 명령이라, 수천 줄짜리 로그 파일을 `cat`으로 열면 화면이 순식간에 스크롤되어 지나가 버려 원하는 부분을 찾기 어렵다. 이 문제의식에서 자연스럽게 "화면 단위로 멈춰 가며 보는 도구"인 페이저로 넘어온다.
+**선행 챕터**: 이 장은 [3장: cat](/post/bashshell/cat-head-tail-commands-view-file-contents/)에서 이어진다. `cat`은 파일 전체를 표준 출력으로 그대로 쏟아내는 명령이라, 수천 줄짜리 로그 파일을 `cat`으로 열면 화면이 순식간에 스크롤되어 지나가 버려 원하는 부분을 찾기 어렵다. 이 문제의식에서 자연스럽게 "화면 단위로 멈춰 가며 보는 도구"인 페이저로 넘어온다.
 
-**이 장의 깊이**: **입문** 난이도다. `less`·`more`의 기본 조작키와 검색, 두 명령의 실질적 차이를 다룬다. **다루지 않는 것**: 페이저로 본 텍스트를 실제로 편집하는 것은 다루지 않는다(그건 `vi`/`vim` 같은 편집기의 영역이다). `less`의 명령줄 옵션 중 색상·마크·다중 파일 탐색처럼 고급 기능도 이 장의 범위 밖이며, 필요하면 `man less`로 확인한다. 파이프(`|`)의 작동 원리 자체는 [19장: pipe](/post/bashshell/pipe/)에서 다룬다.
+**이 장의 깊이**: **입문** 난이도다. `less`·`more`의 기본 조작키와 검색, 두 명령의 실질적 차이를 다룬다. **다루지 않는 것**: 페이저로 본 텍스트를 실제로 편집하는 것은 다루지 않는다(그건 `vi`/`vim` 같은 편집기의 영역이다). `less`의 명령줄 옵션 중 색상·마크·다중 파일 탐색처럼 고급 기능도 이 장의 범위 밖이며, 필요하면 `man less`로 확인한다. 파이프(`|`)의 작동 원리 자체는 [19장: pipe](/post/bashshell/pipe-operator-linux-command-chaining/)에서 다룬다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -141,7 +141,7 @@ less +F /var/log/nginx/access.log
 
 ## 다음 장에서는
 
-다음은 [5장: touch](/post/bashshell/touch/) — 페이저로 파일 *내용*을 보는 법을 익혔으니, 이번에는 파일 자체의 타임스탬프를 만들고 바꾸는 법을 다룬다.
+다음은 [5장: touch](/post/bashshell/touch-command-create-file-update-timestamp/) — 페이저로 파일 *내용*을 보는 법을 익혔으니, 이번에는 파일 자체의 타임스탬프를 만들고 바꾸는 법을 다룬다.
 
 ## 평가 기준
 

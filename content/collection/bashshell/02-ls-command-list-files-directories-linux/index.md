@@ -2,7 +2,7 @@
 image: "wordcloud.png"
 description: "ls는 파일 이름을 나열하는 명령이 아니라 파일시스템 메타데이터를 조회하는 창구다. 정렬·표시·필터링 옵션을 그룹별 표로 정리하고, ls -la, ls -lh --sort=size 같은 실전 예시와 GNU/BSD 이식성 함정, ls 출력 파싱 안티패턴을 다룬다."
 title: "[Bash Shell] 02. ls - 파일 목록 출력"
-slug: ls
+slug: ls-command-list-files-directories-linux
 collection_order: 20
 draft: false
 date: 2022-01-01
@@ -41,9 +41,9 @@ tags:
 
 ## 이 장을 읽기 전에
 
-직전 챕터인 [01장: cd, pwd](/post/bashshell/cd-pwd/)에서 디렉터리를 이동하고 현재 위치를 확인하는 법을 다뤘다. Part 1(셸 기초와 탐색)은 "지금 어디에 있는가"를 아는 것에서 시작해 "여기에 무엇이 있는가"를 아는 것으로 이어지는데, 이 장이 바로 그 두 번째 단계다. 이 장이 전제하는 지식은 `cd`로 디렉터리를 이동하고 `pwd`로 현재 경로를 확인하는 법 정도이며, 별도의 파일 편집·셸 스크립팅 지식은 필요 없다. 난이도는 입문이지만, 옵션 조합과 GNU/BSD 이식성 부분은 중급 수준의 실무 감각을 요구한다.
+직전 챕터인 [01장: cd, pwd](/post/bashshell/cd-pwd-change-directory-linux-commands/)에서 디렉터리를 이동하고 현재 위치를 확인하는 법을 다뤘다. Part 1(셸 기초와 탐색)은 "지금 어디에 있는가"를 아는 것에서 시작해 "여기에 무엇이 있는가"를 아는 것으로 이어지는데, 이 장이 바로 그 두 번째 단계다. 이 장이 전제하는 지식은 `cd`로 디렉터리를 이동하고 `pwd`로 현재 경로를 확인하는 법 정도이며, 별도의 파일 편집·셸 스크립팅 지식은 필요 없다. 난이도는 입문이지만, 옵션 조합과 GNU/BSD 이식성 부분은 중급 수준의 실무 감각을 요구한다.
 
-**다루지 않는 것**: `ls`는 파일 목록과 메타데이터만 보여줄 뿐 파일 내용은 전혀 열어보지 않는다. 파일 내용을 화면에 출력하는 법은 [03장: cat](/post/bashshell/cat/)에서 다룬다.
+**다루지 않는 것**: `ls`는 파일 목록과 메타데이터만 보여줄 뿐 파일 내용은 전혀 열어보지 않는다. 파일 내용을 화면에 출력하는 법은 [03장: cat](/post/bashshell/cat-head-tail-commands-view-file-contents/)에서 다룬다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -214,7 +214,7 @@ find . -maxdepth 1 -type f -print0 | xargs -0 -I{} echo {}
 
 ## 다음 장에서는
 
-[03장: cat](/post/bashshell/cat/)에서는 `ls`로 확인한 파일의 이름과 메타데이터를 넘어, 그 파일의 실제 내용을 화면에 출력하는 법을 다룬다.
+[03장: cat](/post/bashshell/cat-head-tail-commands-view-file-contents/)에서는 `ls`로 확인한 파일의 이름과 메타데이터를 넘어, 그 파일의 실제 내용을 화면에 출력하는 법을 다룬다.
 
 ## 평가 기준
 

@@ -5,7 +5,7 @@ slug: getting-started-bash-shell
 title: "[Bash Shell] 00. 과정 개요와 커리큘럼"
 date: 2026-08-22
 lastmod: 2026-08-22
-description: "Bash Shell 컬렉션이 평면 명령어 레퍼런스에서 44챕터 커리큘럼으로 재구조화된 이유, 셸이 개발자에게 근본 역량인 이유, 7개 Part 학습 순서와 00-43장 전체 목차, 선수 지식과 완주 후 갖추는 역량을 정리한 과정 개요 챕터."
+description: "Bash Shell 44챕터 커리큘럼의 과정 개요. 셸이 개발자에게 근본 역량인 이유, 7개 Part 학습 순서의 설계 근거, 00-43장 전체 목차, 선수 지식과 완주 후 갖추는 실무 역량을 정리한 과정 개요 챕터다."
 categories:
 - Bash Shell
 tags:
@@ -48,7 +48,7 @@ image: "wordcloud.png"
 
 난이도는 입문(터미널을 처음 열어보는 수준)에서 중급(커리큘럼 전체 구조와 각 Part의 순서 논리를 판단할 수 있는 수준) 사이를 오간다. 특정 명령어의 옵션이나 실행 예시는 다루지 않는다. 이 장은 지도(map)이지 명령어 레퍼런스가 아니다.
 
-이 장이 다루지 않는 것은 다음과 같다. `cd`·`ls`처럼 개별 명령어의 옵션과 예시는 [01장: cd, pwd](/post/bashshell/cd-pwd/) 이후 각 번호 챕터에서 다룬다. 파이프라인·리다이렉션 같은 개념의 상세 동작 원리는 3부(19–22장)에서, 스크립트 작성 문법은 5부(27–35장)에서 각각 독립된 챕터로 다룬다. 이 장에서는 "왜 이런 순서로 배워야 하는가"와 "각 Part가 최종 역량에 어떻게 기여하는가"만 설명한다.
+이 장이 다루지 않는 것은 다음과 같다. `cd`·`ls`처럼 개별 명령어의 옵션과 예시는 [01장: cd, pwd](/post/bashshell/cd-pwd-change-directory-linux-commands/) 이후 각 번호 챕터에서 다룬다. 파이프라인·리다이렉션 같은 개념의 상세 동작 원리는 3부(19–22장)에서, 스크립트 작성 문법은 5부(27–35장)에서 각각 독립된 챕터로 다룬다. 이 장에서는 "왜 이런 순서로 배워야 하는가"와 "각 Part가 최종 역량에 어떻게 기여하는가"만 설명한다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -61,7 +61,7 @@ image: "wordcloud.png"
 
 ## 도입
 
-이 컬렉션은 원래 35편의 명령어 글이 순서 없이 나열된 사전식 레퍼런스였다. `alias`와 `awk`가 알파벳 순서로 나란히 놓여 있을 뿐, `awk`를 이해하려면 먼저 알아야 할 파이프·정규식 개념이 무엇인지, `trap`을 배우기 전에 함수와 종료 코드를 먼저 알아야 하는지는 글 어디에도 쓰여 있지 않았다. 독자는 "다음에 무엇을 읽어야 하는가"를 스스로 추측해야 했고, 그 결과 절반 가까운 글이 다른 글과 무관하게 옵션표만 나열한 채 끝났다. 이 재구조화는 그 문제를 없애기 위해, 같은 35개 명령어에 9개의 빠진 핵심 개념(하드링크, `PATH` 탐색, 셸 설정 파일, `case`와 산술 연산, `read`, 배열, `trap`, 디스크 사용량 확인)을 채워 44개 챕터로 만들고, 각 챕터가 이전 챕터를 전제하고 다음 챕터로 이어지는 하나의 학습 경로로 다시 짰다.
+명령어를 무작위 순서로 익히면 지식에 구멍이 생기기 쉽다. `awk`를 이해하려면 먼저 파이프와 정규식 개념을 알아야 하고, `trap`이 왜 유용한지 온전히 이해하려면 함수와 종료 코드를 먼저 알아야 한다. 이 컬렉션은 44개 챕터를 명령어 사전순으로 나열하지 않고, 각 챕터가 이전 챕터의 지식을 전제하고 다음 챕터로 자연스럽게 이어지도록 하나의 학습 경로로 설계했다. 하드링크, `PATH` 탐색, 셸 설정 파일, `case`와 산술 연산, `read`, 배열, `trap`, 디스크 사용량 확인처럼 개별 명령어만 훑어서는 놓치기 쉬운 핵심 개념도 별도 챕터로 포함했다.
 
 셸을 배우는 일은 특정 운영체제의 특기가 아니라 소프트웨어 개발 전반에 걸쳐 반복적으로 요구되는 기초 역량이다. 첫째, 자동화의 최소 단위가 셸이다. CI/CD 파이프라인의 빌드 스크립트, 배포 스크립트, cron으로 도는 정기 작업 대부분은 결국 셸 스크립트 위에서 돌아가며, 이를 이해하지 못하면 파이프라인이 실패했을 때 로그 한 줄도 스스로 해석할 수 없다. 둘째, 서버·컨테이너·클라우드 인스턴스 같은 원격 시스템을 운영하는 유일한 공통 인터페이스가 셸이다. GUI가 없는 리눅스 서버에 SSH로 접속했을 때 파일을 옮기고 프로세스를 죽이고 로그를 뒤지는 능력은 대체할 도구가 없다. 셋째, 텍스트 처리는 프로그래밍 언어를 가리지 않는 보편 기술이다. 로그 파일에서 에러 줄만 뽑아내고, CSV의 특정 열만 추출하고, 수백 개 파일에서 문자열을 한 번에 바꾸는 작업은 `grep`·`awk`·`sed`·`tr` 몇 줄이면 끝나지만, 셸을 모르면 매번 별도 스크립트 언어로 파서를 새로 짜야 한다. 이 세 가지가 이 컬렉션이 7개 Part로 나뉘는 이유이기도 하다 — 각 Part는 이 역량들을 순서대로 습득하도록 설계되어 있다.
 
@@ -73,17 +73,15 @@ image: "wordcloud.png"
 
 ## 비교/트레이드오프
 
-아래 표는 기존 평면 레퍼런스와 이번 커리큘럼 재구조화의 차이를 정리한 것이다. 이 차이가 이 컬렉션을 처음부터 순서대로 읽어야 하는 이유다.
+이 컬렉션을 활용하는 방식은 두 가지다. 아래 표는 그 두 방식의 장단점과 적합한 상황을 정리한 것이다.
 
-| 구분 | 기존 평면 레퍼런스(35편) | 커리큘럼 재구조화(44장) |
+| 구분 | 필요할 때 검색해서 익히기 | 커리큘럼을 순서대로 읽기 |
 |---|---|---|
-| 순서 | 알파벳/등록 순, 선후 관계 없음 | 탐색→텍스트 처리→조합→프로세스 제어→스크립팅→시스템 관리→원격 접속 순 |
-| 빠진 개념 | 하드링크, `PATH` 탐색, 셸 설정 파일, `case`/산술 연산, `read`, 배열, `trap`, `du`/`df` 없음 | 9개 챕터로 보강, 스크립팅 견고성(종료 코드·`trap`)까지 포함 |
-| 챕터 간 연결 | 없음("다음에 뭘 읽어야 하나" 독자가 추측) | 매 챕터에 "이 장을 읽기 전에"·"다음 장에서는" 명시 |
-| 주의사항 | 32편에 GNU/BSD 이식성, 파괴적 동작 경고 섹션 없음 | 모든 참조형 챕터에 "주의사항·함정" 섹션 필수 |
-| 용도 | 필요할 때 하나씩 찾아보는 사전 | 처음부터 끝까지 읽어 체계를 세우는 과정, 필요 시 사전으로도 사용 가능 |
+| 장점 | 당장 급한 문제를 가장 빠르게 해결한다 | 빠진 개념 없이 체계적으로 습득하고, 다음에 부딪힐 문제를 미리 대비한다 |
+| 위험 | 이미 아는 명령어에만 의존해 더 나은 대안(예: 반복문 대신 `find -exec`)을 놓치기 쉽다 | 초반 진입 비용이 검색보다 크다 |
+| 적합한 상황 | 이미 기초가 있고 특정 옵션만 확인하려는 경우 | 처음 셸을 배우거나, 체계적으로 빈 지식을 점검하려는 경우 |
 
-레퍼런스로서의 용도(특정 옵션이 궁금할 때 해당 장만 찾아 읽는 것)는 이번 재구조화 이후에도 그대로 유지된다. 각 장의 URL과 슬러그를 기존 그대로 보존했기 때문에, 이미 검색엔진에 색인된 `/post/bashshell/grep/` 같은 링크는 깨지지 않는다. 달라지는 것은 "처음 배우는 사람이 순서대로 따라갈 경로가 생겼다"는 점이다.
+이 컬렉션은 두 방식 모두를 지원하도록 설계됐다. 처음부터 순서대로 읽어 전체 흐름을 익힐 수도 있고, 특정 명령어의 옵션만 궁금하면 해당 장의 URL로 바로 이동해 사전처럼 찾아볼 수도 있다.
 
 아래 다이어그램은 7개 Part가 어떤 순서로 서로를 전제하는지 요약한 것이다.
 
@@ -110,56 +108,54 @@ flowchart LR
 
 ## 커리큘럼 전체 구성
 
-이 과정은 7개 Part, 총 44개 챕터(00장 포함)로 구성된다. Part 구분은 임의의 분류가 아니라 "탐색 가능 → 내용을 읽고 검색 가능 → 조합 가능 → 실행을 제어 가능 → 스크립트로 자동화 가능 → 시스템을 관리 가능 → 원격까지 확장 가능"이라는 의존성 순서를 따른다. 예를 들어 파이프라인(3부)은 텍스트 처리 명령(2부)을 알아야 조합할 재료가 생기고, 셸 스크립팅(5부)은 `if`/`for` 이전에 텍스트 처리와 파이프를 알아야 실전 예제(로그에서 에러만 걸러 반복 처리하기 등)를 이해할 수 있다. 5부 내부 순서도 의존성을 지킨다 — 기본 제어(`if-test`/`for-while`) 다음에 조건 확장(`case`·산술 연산), 입력 처리(`read`), 자료구조(배열), 추상화(함수) 순으로 쌓은 뒤, 함수까지 알아야 이해하기 쉬운 `trap` 핸들러를 마지막에 배치했다. `which-whereis-locate`는 원래 6부(시스템 활용)에 있었지만, "명령어를 셸이 어떻게 찾는가"라는 주제로 신규 `PATH`/`type`/`hash`/`command` 챕터와 붙어 있어 1부로 옮겼다.
+이 과정은 7개 Part, 총 44개 챕터(00장 포함)로 구성된다. Part 구분은 임의의 분류가 아니라 "탐색 가능 → 내용을 읽고 검색 가능 → 조합 가능 → 실행을 제어 가능 → 스크립트로 자동화 가능 → 시스템을 관리 가능 → 원격까지 확장 가능"이라는 의존성 순서를 따른다. 예를 들어 파이프라인(3부)은 텍스트 처리 명령(2부)을 알아야 조합할 재료가 생기고, 셸 스크립팅(5부)은 `if`/`for` 이전에 텍스트 처리와 파이프를 알아야 실전 예제(로그에서 에러만 걸러 반복 처리하기 등)를 이해할 수 있다. 5부 내부 순서도 의존성을 지킨다 — 기본 제어(`if-test`/`for-while`) 다음에 조건 확장(`case`·산술 연산), 입력 처리(`read`), 자료구조(배열), 추상화(함수) 순으로 쌓은 뒤, 함수까지 알아야 이해하기 쉬운 `trap` 핸들러를 마지막에 배치했다. `which`/`whereis`/`locate`는 "명령어를 셸이 어떻게 찾는가"라는 같은 주제로 `PATH`/`type`/`hash`/`command` 챕터와 묶여 1부에 배치돼 있다.
 
 | Part | 챕터 | 제목 | 슬러그 |
 |---|---|---|---|
 | 0. 개요 | 00 | 과정 개요와 커리큘럼 | 이 챕터 |
-| 1. 셸 기초와 탐색 | 01 | [cd, pwd - 디렉터리 이동과 현재 위치](/post/bashshell/cd-pwd/) | cd-pwd |
-| 1. 셸 기초와 탐색 | 02 | [ls - 파일 목록 조회](/post/bashshell/ls/) | ls |
-| 1. 셸 기초와 탐색 | 03 | [cat - 파일 내용 출력](/post/bashshell/cat/) | cat |
-| 1. 셸 기초와 탐색 | 04 | [less, more - 페이저로 긴 파일 보기](/post/bashshell/less-more/) | less-more |
-| 1. 셸 기초와 탐색 | 05 | [touch - 파일 생성과 타임스탬프 갱신](/post/bashshell/touch/) | touch |
-| 1. 셸 기초와 탐색 | 06 | [mkdir, rmdir - 디렉터리 생성과 삭제](/post/bashshell/mkdir-rmdir/) | mkdir-rmdir |
-| 1. 셸 기초와 탐색 | 07 | [cp, mv, rm - 파일 복사·이동·삭제](/post/bashshell/cp-mv-rm/) | cp-mv-rm |
-| 1. 셸 기초와 탐색 | 08 | [ln - 하드링크와 심볼릭 링크](/post/bashshell/ln/) | ln |
-| 1. 셸 기초와 탐색 | 09 | [which, whereis, locate - 명령어와 파일 위치 찾기](/post/bashshell/which-whereis-locate/) | which-whereis-locate |
-| 1. 셸 기초와 탐색 | 10 | [PATH, type, hash, command - 명령어 탐색 메커니즘](/post/bashshell/path-type-hash-command/) | path-type-hash-command |
-| 1. 셸 기초와 탐색 | 11 | [.bashrc와 로그인·비로그인 셸](/post/bashshell/bashrc-login-shell/) | bashrc-login-shell |
-| 1. 셸 기초와 탐색 | 12 | [man, history - 매뉴얼 조회와 명령 히스토리](/post/bashshell/man-history/) | man-history |
-| 2. 텍스트 처리 | 13 | [grep - 패턴 검색](/post/bashshell/grep/) | grep |
-| 2. 텍스트 처리 | 14 | [sed - 스트림 편집](/post/bashshell/sed/) | sed |
-| 2. 텍스트 처리 | 15 | [awk - 필드 기반 텍스트 처리](/post/bashshell/awk/) | awk |
-| 2. 텍스트 처리 | 16 | [cut - 열 추출](/post/bashshell/cut/) | cut |
-| 2. 텍스트 처리 | 17 | [tr - 문자 치환·삭제](/post/bashshell/tr/) | tr |
-| 2. 텍스트 처리 | 18 | [sort, uniq, wc - 정렬·중복 제거·개수 세기](/post/bashshell/sort-uniq-wc/) | sort-uniq-wc |
-| 3. 파이프라인과 입출력 | 19 | [pipe - 파이프라인 개념](/post/bashshell/pipe/) | pipe |
-| 3. 파이프라인과 입출력 | 20 | [redirection - 입출력 리다이렉션](/post/bashshell/redirection/) | redirection |
-| 3. 파이프라인과 입출력 | 21 | [xargs - 인자 변환과 명령 조합](/post/bashshell/xargs/) | xargs |
-| 3. 파이프라인과 입출력 | 22 | [quoting - 인용과 이스케이프](/post/bashshell/quoting/) | quoting |
-| 4. 프로세스와 작업 제어 | 23 | [ps - 프로세스 상태 조회](/post/bashshell/ps/) | ps |
-| 4. 프로세스와 작업 제어 | 24 | [top - 실시간 시스템 모니터링](/post/bashshell/top/) | top |
-| 4. 프로세스와 작업 제어 | 25 | [kill, jobs - 시그널 전송과 작업 제어](/post/bashshell/kill-jobs/) | kill-jobs |
-| 4. 프로세스와 작업 제어 | 26 | [nohup - 세션 독립 실행](/post/bashshell/nohup/) | nohup |
-| 5. 셸 스크립팅 | 27 | [if, test - 조건 분기](/post/bashshell/if-test/) | if-test |
-| 5. 셸 스크립팅 | 28 | [for, while - 반복문](/post/bashshell/for-while/) | for-while |
-| 5. 셸 스크립팅 | 29 | [case, 산술 연산 - 조건 확장](/post/bashshell/case-arithmetic/) | case-arithmetic |
-| 5. 셸 스크립팅 | 30 | [read - 표준입력 읽기](/post/bashshell/read-stdin/) | read-stdin |
-| 5. 셸 스크립팅 | 31 | [배열, 셸 확장 - 자료구조](/post/bashshell/arrays-shell-expansion/) | arrays-shell-expansion |
-| 5. 셸 스크립팅 | 32 | [functions - 함수 정의와 재사용](/post/bashshell/functions/) | functions |
-| 5. 셸 스크립팅 | 33 | [종료 코드, set -e/-x, trap - 스크립트 안정성](/post/bashshell/exit-status-set-trap/) | exit-status-set-trap |
-| 5. 셸 스크립팅 | 34 | [echo, export, env - 출력과 환경변수](/post/bashshell/echo-export-env/) | echo-export-env |
-| 5. 셸 스크립팅 | 35 | [alias - 명령어 별칭](/post/bashshell/alias/) | alias |
-| 6. 파일 시스템과 권한 | 36 | [chmod, chown - 권한과 소유자 관리](/post/bashshell/chmod-chown/) | chmod-chown |
-| 6. 파일 시스템과 권한 | 37 | [find - 파일 탐색과 조건 검색](/post/bashshell/find/) | find |
-| 6. 파일 시스템과 권한 | 38 | [gzip - 압축과 해제](/post/bashshell/gzip/) | gzip |
-| 6. 파일 시스템과 권한 | 39 | [tar - 아카이브 묶기](/post/bashshell/tar/) | tar |
-| 6. 파일 시스템과 권한 | 40 | [du, df - 디스크 사용량 확인](/post/bashshell/du-df/) | du-df |
-| 7. 네트워크와 원격 접속 | 41 | [curl, wget - HTTP 요청과 파일 다운로드](/post/bashshell/curl-wget/) | curl-wget |
-| 7. 네트워크와 원격 접속 | 42 | [scp - 원격 파일 복사](/post/bashshell/scp/) | scp |
-| 7. 네트워크와 원격 접속 | 43 | [ssh - 원격 접속](/post/bashshell/ssh/) | ssh |
-
-각 챕터의 제목과 범위는 실제 집필 과정에서 현재 품질 기준(정신 모델 우선 서술, 이식성 주의, 1차 출처 인용)에 맞춰 조정될 수 있다. 이 표는 고정된 계약이 아니라 학습 순서를 설계하기 위한 로드맵이다. 이 글을 쓰는 시점 기준으로 44개 챕터 중 이 00장을 포함한 일부만 새 기준으로 작성이 끝났고, 나머지는 순차적으로 채워진다 — 아직 채워지지 않은 챕터의 링크는 해당 배치가 완료되기 전까지 열리지 않을 수 있다.
+| 1. 셸 기초와 탐색 | 01 | [cd, pwd - 디렉터리 이동과 현재 위치](/post/bashshell/cd-pwd-change-directory-linux-commands/) | cd-pwd-change-directory-linux-commands |
+| 1. 셸 기초와 탐색 | 02 | [ls - 파일 목록 조회](/post/bashshell/ls-command-list-files-directories-linux/) | ls-command-list-files-directories-linux |
+| 1. 셸 기초와 탐색 | 03 | [cat - 파일 내용 출력](/post/bashshell/cat-head-tail-commands-view-file-contents/) | cat-head-tail-commands-view-file-contents |
+| 1. 셸 기초와 탐색 | 04 | [less, more - 페이저로 긴 파일 보기](/post/bashshell/less-more-commands-view-large-files-linux/) | less-more-commands-view-large-files-linux |
+| 1. 셸 기초와 탐색 | 05 | [touch - 파일 생성과 타임스탬프 갱신](/post/bashshell/touch-command-create-file-update-timestamp/) | touch-command-create-file-update-timestamp |
+| 1. 셸 기초와 탐색 | 06 | [mkdir, rmdir - 디렉터리 생성과 삭제](/post/bashshell/mkdir-rmdir-commands-create-delete-directories/) | mkdir-rmdir-commands-create-delete-directories |
+| 1. 셸 기초와 탐색 | 07 | [cp, mv, rm - 파일 복사·이동·삭제](/post/bashshell/cp-mv-rm-commands-copy-move-delete-files/) | cp-mv-rm-commands-copy-move-delete-files |
+| 1. 셸 기초와 탐색 | 08 | [ln - 하드링크와 심볼릭 링크](/post/bashshell/ln-command-hard-symbolic-links-linux/) | ln-command-hard-symbolic-links-linux |
+| 1. 셸 기초와 탐색 | 09 | [which, whereis, locate - 명령어와 파일 위치 찾기](/post/bashshell/which-whereis-locate-commands-find-command-location/) | which-whereis-locate-commands-find-command-location |
+| 1. 셸 기초와 탐색 | 10 | [PATH, type, hash, command - 명령어 탐색 메커니즘](/post/bashshell/path-type-hash-command-shell-command-lookup/) | path-type-hash-command-shell-command-lookup |
+| 1. 셸 기초와 탐색 | 11 | [.bashrc와 로그인·비로그인 셸](/post/bashshell/bashrc-bash-profile-login-shell-startup-files/) | bashrc-bash-profile-login-shell-startup-files |
+| 1. 셸 기초와 탐색 | 12 | [man, history - 매뉴얼 조회와 명령 히스토리](/post/bashshell/man-history-commands-manual-pages-shell-history/) | man-history-commands-manual-pages-shell-history |
+| 2. 텍스트 처리 | 13 | [grep - 패턴 검색](/post/bashshell/grep-command-search-text-pattern-linux/) | grep-command-search-text-pattern-linux |
+| 2. 텍스트 처리 | 14 | [sed - 스트림 편집](/post/bashshell/sed-command-stream-editor-linux/) | sed-command-stream-editor-linux |
+| 2. 텍스트 처리 | 15 | [awk - 필드 기반 텍스트 처리](/post/bashshell/awk-command-text-processing-field-records/) | awk-command-text-processing-field-records |
+| 2. 텍스트 처리 | 16 | [cut - 열 추출](/post/bashshell/cut-command-extract-columns-linux/) | cut-command-extract-columns-linux |
+| 2. 텍스트 처리 | 17 | [tr - 문자 치환·삭제](/post/bashshell/tr-command-translate-delete-characters/) | tr-command-translate-delete-characters |
+| 2. 텍스트 처리 | 18 | [sort, uniq, wc - 정렬·중복 제거·개수 세기](/post/bashshell/sort-uniq-wc-commands-sort-count-lines/) | sort-uniq-wc-commands-sort-count-lines |
+| 3. 파이프라인과 입출력 | 19 | [pipe - 파이프라인 개념](/post/bashshell/pipe-operator-linux-command-chaining/) | pipe-operator-linux-command-chaining |
+| 3. 파이프라인과 입출력 | 20 | [redirection - 입출력 리다이렉션](/post/bashshell/io-redirection-linux-bash-tutorial/) | io-redirection-linux-bash-tutorial |
+| 3. 파이프라인과 입출력 | 21 | [xargs - 인자 변환과 명령 조합](/post/bashshell/xargs-command-build-execute-command-lines/) | xargs-command-build-execute-command-lines |
+| 3. 파이프라인과 입출력 | 22 | [quoting - 인용과 이스케이프](/post/bashshell/bash-quoting-escaping-special-characters/) | bash-quoting-escaping-special-characters |
+| 4. 프로세스와 작업 제어 | 23 | [ps - 프로세스 상태 조회](/post/bashshell/ps-command-process-status-linux/) | ps-command-process-status-linux |
+| 4. 프로세스와 작업 제어 | 24 | [top - 실시간 시스템 모니터링](/post/bashshell/top-command-realtime-process-monitoring/) | top-command-realtime-process-monitoring |
+| 4. 프로세스와 작업 제어 | 25 | [kill, jobs - 시그널 전송과 작업 제어](/post/bashshell/kill-jobs-commands-process-signal-job-control/) | kill-jobs-commands-process-signal-job-control |
+| 4. 프로세스와 작업 제어 | 26 | [nohup - 세션 독립 실행](/post/bashshell/nohup-command-run-process-background-linux/) | nohup-command-run-process-background-linux |
+| 5. 셸 스크립팅 | 27 | [if, test - 조건 분기](/post/bashshell/if-test-command-bash-conditional-statements/) | if-test-command-bash-conditional-statements |
+| 5. 셸 스크립팅 | 28 | [for, while - 반복문](/post/bashshell/for-while-loop-bash-shell-scripting/) | for-while-loop-bash-shell-scripting |
+| 5. 셸 스크립팅 | 29 | [case, 산술 연산 - 조건 확장](/post/bashshell/case-statement-arithmetic-expansion-bash/) | case-statement-arithmetic-expansion-bash |
+| 5. 셸 스크립팅 | 30 | [read - 표준입력 읽기](/post/bashshell/read-command-standard-input-bash-scripting/) | read-command-standard-input-bash-scripting |
+| 5. 셸 스크립팅 | 31 | [배열, 셸 확장 - 자료구조](/post/bashshell/bash-arrays-brace-parameter-expansion/) | bash-arrays-brace-parameter-expansion |
+| 5. 셸 스크립팅 | 32 | [functions - 함수 정의와 재사용](/post/bashshell/bash-shell-functions-code-reuse/) | bash-shell-functions-code-reuse |
+| 5. 셸 스크립팅 | 33 | [종료 코드, set -e/-x, trap - 스크립트 안정성](/post/bashshell/exit-status-set-trap-bash-error-handling/) | exit-status-set-trap-bash-error-handling |
+| 5. 셸 스크립팅 | 34 | [echo, export, env - 출력과 환경변수](/post/bashshell/echo-export-env-commands-shell-variables/) | echo-export-env-commands-shell-variables |
+| 5. 셸 스크립팅 | 35 | [alias - 명령어 별칭](/post/bashshell/alias-command-shell-command-shortcuts/) | alias-command-shell-command-shortcuts |
+| 6. 파일 시스템과 권한 | 36 | [chmod, chown - 권한과 소유자 관리](/post/bashshell/chmod-chown-commands-file-permissions-ownership/) | chmod-chown-commands-file-permissions-ownership |
+| 6. 파일 시스템과 권한 | 37 | [find - 파일 탐색과 조건 검색](/post/bashshell/find-command-search-files-conditions-linux/) | find-command-search-files-conditions-linux |
+| 6. 파일 시스템과 권한 | 38 | [gzip - 압축과 해제](/post/bashshell/gzip-command-compress-decompress-files/) | gzip-command-compress-decompress-files |
+| 6. 파일 시스템과 권한 | 39 | [tar - 아카이브 묶기](/post/bashshell/tar-command-archive-files-linux/) | tar-command-archive-files-linux |
+| 6. 파일 시스템과 권한 | 40 | [du, df - 디스크 사용량 확인](/post/bashshell/du-df-commands-disk-usage-linux/) | du-df-commands-disk-usage-linux |
+| 7. 네트워크와 원격 접속 | 41 | [curl, wget - HTTP 요청과 파일 다운로드](/post/bashshell/curl-wget-commands-download-http-files/) | curl-wget-commands-download-http-files |
+| 7. 네트워크와 원격 접속 | 42 | [scp - 원격 파일 복사](/post/bashshell/scp-command-secure-copy-remote-files/) | scp-command-secure-copy-remote-files |
+| 7. 네트워크와 원격 접속 | 43 | [ssh - 원격 접속](/post/bashshell/ssh-command-remote-login-secure-shell/) | ssh-command-remote-login-secure-shell |
 
 6부(파일 시스템과 권한)와 7부(네트워크와 원격 접속)를 5부(셸 스크립팅) 뒤에 배치한 이유도 같은 의존성 논리를 따른다. `chmod`로 권한을 바꾸고 `find`로 조건에 맞는 파일을 찾는 작업은 대부분 스크립트 안에서 반복 실행되므로, 반복문과 조건문을 먼저 알아야 이 명령들을 "한 번 실행하고 끝"이 아니라 "자동화 파이프라인의 부품"으로 쓸 수 있다. 네트워크와 원격 접속(7부)을 맨 마지막에 둔 이유는 더 직접적이다. `scp`로 파일을 원격 서버에 올리거나 `ssh`로 접속해 작업을 수행하는 일은, 그 서버에 접속한 뒤 지금까지 배운 모든 것(탐색, 텍스트 처리, 프로세스 제어, 스크립팅, 파일 권한)을 그대로 다시 쓰는 행위이기 때문이다. 로컬에서 이 역량들을 갖추지 못한 채 원격 서버부터 만지기 시작하면, 원격 세션이 끊기거나 응답이 느릴 때 어디서부터 문제를 좁혀야 할지 판단할 기준이 없다.
 
@@ -182,13 +178,13 @@ flowchart LR
 
 ## 다음 장에서는
 
-[01장: cd, pwd - 디렉터리 이동과 현재 위치](/post/bashshell/cd-pwd/)에서는 셸에서 가장 먼저 익히는 두 명령어로 디렉터리 구조를 탐색하는 방법을 다룬다.
+[01장: cd, pwd - 디렉터리 이동과 현재 위치](/post/bashshell/cd-pwd-change-directory-linux-commands/)에서는 셸에서 가장 먼저 익히는 두 명령어로 디렉터리 구조를 탐색하는 방법을 다룬다.
 
 ## 평가 기준
 
 이 장을 읽은 후 다음을 할 수 있어야 한다.
 
-- 이 컬렉션이 왜 평면 레퍼런스에서 커리큘럼으로 재구조화됐는지, 그 전후 차이를 표 없이도 설명할 수 있다.
+- 체계적으로 순서대로 학습하는 방식과 필요할 때 검색하는 방식의 장단점을 설명하고, 자신의 상황에 맞게 선택할 수 있다.
 - 셸을 배우는 것이 자동화·원격 시스템 운영·텍스트 처리라는 세 가지 이유에서 왜 근본적인 개발 역량인지 말할 수 있다.
 - 7개 Part(탐색-텍스트 처리-파이프라인-프로세스 제어-스크립팅-파일 시스템-네트워크)가 왜 이 순서인지, 하나를 건너뛰면 어떤 한계가 생기는지 설명할 수 있다.
 - 자신의 배경(완전 초보/다른 커맨드라인 경험/레퍼런스 탐색)에 따라 이 컬렉션의 어느 부분부터 읽어야 할지 판단할 수 있다.

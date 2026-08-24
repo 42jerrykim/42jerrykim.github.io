@@ -1,6 +1,6 @@
 ---
 draft: false
-slug: grep
+slug: grep-command-search-text-pattern-linux
 title: "[Bash Shell] 13. grep - 패턴 검색"
 description: "리눅스·유닉스에서 텍스트와 정규식 패턴을 검색하는 grep 명령어의 사용법과 매칭·출력·검색범위별 옵션(-i, -r, -n, -E 등)을 그룹별 표로 정리하고, 파이프·리다이렉션 조합 예제 7가지와 GNU/BSD 이식성 차이, 종료 코드 등 실무 함정까지 다룹니다."
 date: 2026-03-15
@@ -47,9 +47,9 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-**선행 챕터**: 이 장은 [12장: man, history](/post/bashshell/man-history/)에서 매뉴얼로 명령어 사용법을 찾고 히스토리로 과거 명령을 검색하는 법을 다룬 뒤 이어진다. 여기서부터 <strong>Part 2(텍스트 처리)</strong>가 시작된다 — [3장: cat](/post/bashshell/cat/)으로 파일을 읽고 [12장: man](/post/bashshell/man-history/)으로 궁금한 점을 찾아본 다음, 이제 그 파일 안에서 원하는 줄을 실제로 찾아내는 단계로 넘어가는 자연스러운 흐름이다. `grep`은 파이프라인의 첫 필터로 가장 자주 등장하므로, 파이프(`|`)가 무엇인지 대략 감이 있으면(자세한 내용은 19장에서 다룬다) 예시를 읽기 더 수월하다.
+**선행 챕터**: 이 장은 [12장: man, history](/post/bashshell/man-history-commands-manual-pages-shell-history/)에서 매뉴얼로 명령어 사용법을 찾고 히스토리로 과거 명령을 검색하는 법을 다룬 뒤 이어진다. 여기서부터 <strong>Part 2(텍스트 처리)</strong>가 시작된다 — [3장: cat](/post/bashshell/cat-head-tail-commands-view-file-contents/)으로 파일을 읽고 [12장: man](/post/bashshell/man-history-commands-manual-pages-shell-history/)으로 궁금한 점을 찾아본 다음, 이제 그 파일 안에서 원하는 줄을 실제로 찾아내는 단계로 넘어가는 자연스러운 흐름이다. `grep`은 파이프라인의 첫 필터로 가장 자주 등장하므로, 파이프(`|`)가 무엇인지 대략 감이 있으면(자세한 내용은 19장에서 다룬다) 예시를 읽기 더 수월하다.
 
-**이 장의 깊이**: **입문–중급** 난이도다. 기본 매칭부터 재귀 검색, ERE 정규식, 컨텍스트 출력까지 실무에서 매일 쓰는 범위를 다룬다. **다루지 않는 것**: 정규식 문법 자체의 심화(POSIX ERE 전체 메타문자, 캡처 그룹, 룩어라운드 등)는 각주 수준으로만 언급하고, grep으로 찾은 줄을 실제로 바꿔치는 스트림 편집(치환)은 [14장: sed](/post/bashshell/sed/)에서 다룬다.
+**이 장의 깊이**: **입문–중급** 난이도다. 기본 매칭부터 재귀 검색, ERE 정규식, 컨텍스트 출력까지 실무에서 매일 쓰는 범위를 다룬다. **다루지 않는 것**: 정규식 문법 자체의 심화(POSIX ERE 전체 메타문자, 캡처 그룹, 룩어라운드 등)는 각주 수준으로만 언급하고, grep으로 찾은 줄을 실제로 바꿔치는 스트림 편집(치환)은 [14장: sed](/post/bashshell/sed-command-stream-editor-linux/)에서 다룬다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -207,7 +207,7 @@ grep -A 5 "stack trace" error.log
 
 ## 다음 장에서는
 
-다음은 [14장: sed](/post/bashshell/sed/) — `grep`으로 찾은 줄을 이번에는 그대로 바꿔치는 스트림 편집을 다룬다.
+다음은 [14장: sed](/post/bashshell/sed-command-stream-editor-linux/) — `grep`으로 찾은 줄을 이번에는 그대로 바꿔치는 스트림 편집을 다룬다.
 
 ## 평가 기준
 

@@ -1,6 +1,6 @@
 ---
 draft: false
-slug: cp-mv-rm
+slug: cp-mv-rm-commands-copy-move-delete-files
 title: "[Bash Shell] 07. cp, mv, rm - 파일 복사·이동·삭제"
 description: "리눅스·유닉스에서 파일을 복제하는 cp, 디렉터리 엔트리만 갱신해 이동·이름변경하는 mv, 링크 카운트를 낮춰 삭제하는 rm의 정신 모델과 -r·-a·-i·-f 옵션을 예제로 정리하고, rm -rf의 비가역성과 마운트 경계를 넘는 mv의 성능 함정을 다룹니다."
 date: 2026-03-15
@@ -47,9 +47,9 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-**선행 챕터**: 이 장은 [06장: mkdir, rmdir](/post/bashshell/mkdir-rmdir/)에서 디렉터리를 만들고 지우는 법을 다룬 뒤 이어진다. 디렉터리를 만들 수 있어야 그 안팎으로 파일을 복사·이동할 대상 경로를 준비할 수 있으므로, 이 장은 06장에서 만든 디렉터리 구조를 전제로 예시를 구성한다. [03장: cat](/post/bashshell/cat/)에서 파일 내용을 확인하는 법을 알면 복사·이동 결과를 검증하기 더 수월하다.
+**선행 챕터**: 이 장은 [06장: mkdir, rmdir](/post/bashshell/mkdir-rmdir-commands-create-delete-directories/)에서 디렉터리를 만들고 지우는 법을 다룬 뒤 이어진다. 디렉터리를 만들 수 있어야 그 안팎으로 파일을 복사·이동할 대상 경로를 준비할 수 있으므로, 이 장은 06장에서 만든 디렉터리 구조를 전제로 예시를 구성한다. [03장: cat](/post/bashshell/cat-head-tail-commands-view-file-contents/)에서 파일 내용을 확인하는 법을 알면 복사·이동 결과를 검증하기 더 수월하다.
 
-**이 장의 깊이**: **입문–중급** 난이도다. 기본 복사·이동·삭제 옵션부터 재귀 처리, 속성 보존, 파괴적 동작에 대한 방어까지 실무에서 매일 쓰는 범위를 다룬다. **다루지 않는 것**: 데이터를 물리적으로 복제하지 않고 참조만 추가하는 하드링크·심볼릭 링크는 [08장: ln](/post/bashshell/ln/)에서 다루고, 파일 자체의 소유자·권한 비트를 바꾸는 방법은 [36장: chmod, chown](/post/bashshell/chmod-chown/)에서 다룬다. 삭제된 파일을 복구하는 포렌식 기법도 이 장의 범위 밖이다.
+**이 장의 깊이**: **입문–중급** 난이도다. 기본 복사·이동·삭제 옵션부터 재귀 처리, 속성 보존, 파괴적 동작에 대한 방어까지 실무에서 매일 쓰는 범위를 다룬다. **다루지 않는 것**: 데이터를 물리적으로 복제하지 않고 참조만 추가하는 하드링크·심볼릭 링크는 [08장: ln](/post/bashshell/ln-command-hard-symbolic-links-linux/)에서 다루고, 파일 자체의 소유자·권한 비트를 바꾸는 방법은 [36장: chmod, chown](/post/bashshell/chmod-chown-commands-file-permissions-ownership/)에서 다룬다. 삭제된 파일을 복구하는 포렌식 기법도 이 장의 범위 밖이다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -187,7 +187,7 @@ find old_logs/ -name "*.log" -print0 | xargs -0 rm -v
 
 ## 다음 장에서는
 
-지금까지는 파일을 복제하거나 옮겼다면, 다음은 [08장: ln](/post/bashshell/ln/)이다 — 파일을 물리적으로 복제하지 않고 여러 이름으로 참조하게 만드는 링크(하드링크·심볼릭 링크)를 다룬다.
+지금까지는 파일을 복제하거나 옮겼다면, 다음은 [08장: ln](/post/bashshell/ln-command-hard-symbolic-links-linux/)이다 — 파일을 물리적으로 복제하지 않고 여러 이름으로 참조하게 만드는 링크(하드링크·심볼릭 링크)를 다룬다.
 
 ## 평가 기준
 

@@ -34,7 +34,7 @@ description: >-
 - **draft**: 신규 글은 `draft: true`. 배포 전 검토 후 사람이 `draft: false`로 변경.
 - **categories**: 리스트 형식(문자열 금지).
 - **image**: 워드클라우드 사용 시 `wordcloud.png`, 없으면 `tmp_wordcloud.png` 등 고정 이미지 명시.
-- **폴더명(slug)**: 소문자·하이픈, 명령어명 또는 개념명 (예: `grep`, `xcopy`, `io-redirection`, `setlocal-endlocal`).
+- **슬러그(URL, frontmatter `slug` 필드)**: 명령어명 하나만 쓰지 않는다 — `grep`, `cd`처럼 한 단어짜리 슬러그는 검색엔진에서 명령어 자체보다 더 흔히 쓰이는 다른 의미(브랜드명, 동음이의어 등)와 경쟁하게 되어 SEO에 불리하다. **`<명령어(들)>-<핵심 동작/주제 키워드 2~4개>` 형식으로 3~6단어**를 채운다(소문자·하이픈, 영문만). 예: `grep` → `grep-command-search-text-pattern-linux`, `pipe` → `pipe-operator-linux-command-chaining`, `cd-pwd` → `cd-pwd-change-directory-linux-commands`. 폴더명은 컬렉션 성격에 맞게 자유롭게 정하되(예: 챕터 시리즈면 `NN-슬러그`), **frontmatter `slug` 필드에는 위 형식의 SEO 슬러그를 명시적으로 지정**해 실제 게시 URL을 결정한다.
 
 ## 3. 본문 구조
 
@@ -70,6 +70,7 @@ description: >-
 - [ ] title 70자 이내, description 150자 내외인가?
 - [ ] tags 25개 이상이고, 본문과 무관한 보일러플레이트 태그가 없는가?
 - [ ] 신규 글에 `draft: true`가 있는가? date/lastmod가 정확한가?
+- [ ] `slug`가 명령어명 한 단어가 아니라 SEO 키워드를 포함한 3~6단어인가?
 - [ ] 옵션 나열 전에 **정신 모델** 단락이 있는가?
 - [ ] 본문이 참조형(§3.1) 또는 개념형(§3.2) 구조를 따랐는가?
 - [ ] **이식성 주의**(GNU/BSD 또는 CMD/PowerShell 차이)를 다뤘는가?

@@ -1,6 +1,6 @@
 ---
 draft: false
-slug: mkdir-rmdir
+slug: mkdir-rmdir-commands-create-delete-directories
 title: "[Bash Shell] 06. mkdir, rmdir - 디렉터리 생성과 삭제"
 description: "리눅스·유닉스에서 디렉터리를 만드는 mkdir과 빈 디렉터리만 지우는 rmdir을 다룹니다. -p 옵션의 중첩 생성·멱등성, -m 권한 지정, umask 영향, rmdir이 비어있지 않으면 반드시 실패하는 안전장치까지 예제로 정리합니다."
 date: 2026-03-15
@@ -44,9 +44,9 @@ image: "wordcloud.png"
 
 ## 이 장을 읽기 전에
 
-**선행 챕터**: 이 장은 [05장: touch](/post/bashshell/touch/)에서 빈 파일을 만드는 법을 다룬 뒤 이어진다. 파일을 만드는 법을 알았으니, 이제 그 파일들을 담을 디렉터리를 만들고 지우는 법으로 넘어가는 자연스러운 흐름이다. `mkdir`·`rmdir` 자체는 [01장: cd, pwd](/post/bashshell/cd-pwd/)에서 다룬 경로 이동 개념 정도만 있으면 충분하다.
+**선행 챕터**: 이 장은 [05장: touch](/post/bashshell/touch-command-create-file-update-timestamp/)에서 빈 파일을 만드는 법을 다룬 뒤 이어진다. 파일을 만드는 법을 알았으니, 이제 그 파일들을 담을 디렉터리를 만들고 지우는 법으로 넘어가는 자연스러운 흐름이다. `mkdir`·`rmdir` 자체는 [01장: cd, pwd](/post/bashshell/cd-pwd-change-directory-linux-commands/)에서 다룬 경로 이동 개념 정도만 있으면 충분하다.
 
-**이 장의 깊이**: **입문** 난이도다. 디렉터리를 만들고 지우는 기본 옵션과 실무에서 자주 쓰는 조합을 다룬다. **다루지 않는 것**: 비어 있지 않은 디렉터리를 통째로 삭제하는 재귀 삭제(`rm -r`)는 이 장의 범위가 아니다 — 그 이유와 방법은 [07장: cp, mv, rm](/post/bashshell/cp-mv-rm/)에서 다룬다. 권한 표기(`755`, `700` 같은 8진수 모드)의 상세한 의미와 `chmod`로 기존 파일의 권한을 바꾸는 법은 [36장: chmod, chown](/post/bashshell/chmod-chown/)에서 다룬다.
+**이 장의 깊이**: **입문** 난이도다. 디렉터리를 만들고 지우는 기본 옵션과 실무에서 자주 쓰는 조합을 다룬다. **다루지 않는 것**: 비어 있지 않은 디렉터리를 통째로 삭제하는 재귀 삭제(`rm -r`)는 이 장의 범위가 아니다 — 그 이유와 방법은 [07장: cp, mv, rm](/post/bashshell/cp-mv-rm-commands-copy-move-delete-files/)에서 다룬다. 권한 표기(`755`, `700` 같은 8진수 모드)의 상세한 의미와 `chmod`로 기존 파일의 권한을 바꾸는 법은 [36장: chmod, chown](/post/bashshell/chmod-chown-commands-file-permissions-ownership/)에서 다룬다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -135,7 +135,7 @@ mkdir -p /var/log/myapp
 
 ## 주의사항·함정
 
-**`rmdir`은 비어 있지 않으면 반드시 실패한다 — 이것은 버그가 아니라 안전장치다.** `rmdir`은 대상 디렉터리 안에 파일이든 하위 디렉터리든(숨김 파일 포함) 하나라도 남아 있으면 `rmdir: failed to remove 'dir': Directory not empty`라는 메시지와 함께 아무것도 지우지 않고 그대로 실패한다. 이 "전부 아니면 전무" 동작 덕분에 `rmdir`을 스크립트에 넣어도 실수로 내용물이 들어 있는 디렉터리가 통째로 사라지는 사고는 일어나지 않는다. 이 점에서 `rmdir`은 [07장](/post/bashshell/cp-mv-rm/)에서 다룰 `rm -r`과 정반대다 — `rm -r`은 내용물이 있어도 (확인 없이) 재귀적으로 지워 버리므로, "정말 비어 있는지 확인하고 지우고 싶다"는 의도가 있다면 `rm -r` 대신 `rmdir`을 쓰는 것 자체가 하나의 안전장치가 된다.
+**`rmdir`은 비어 있지 않으면 반드시 실패한다 — 이것은 버그가 아니라 안전장치다.** `rmdir`은 대상 디렉터리 안에 파일이든 하위 디렉터리든(숨김 파일 포함) 하나라도 남아 있으면 `rmdir: failed to remove 'dir': Directory not empty`라는 메시지와 함께 아무것도 지우지 않고 그대로 실패한다. 이 "전부 아니면 전무" 동작 덕분에 `rmdir`을 스크립트에 넣어도 실수로 내용물이 들어 있는 디렉터리가 통째로 사라지는 사고는 일어나지 않는다. 이 점에서 `rmdir`은 [07장](/post/bashshell/cp-mv-rm-commands-copy-move-delete-files/)에서 다룰 `rm -r`과 정반대다 — `rm -r`은 내용물이 있어도 (확인 없이) 재귀적으로 지워 버리므로, "정말 비어 있는지 확인하고 지우고 싶다"는 의도가 있다면 `rm -r` 대신 `rmdir`을 쓰는 것 자체가 하나의 안전장치가 된다.
 
 **`mkdir -p`는 이미 있는 디렉터리에도 에러 없이 조용히 성공한다 — 스크립트 멱등성의 관용구다.** `-p` 없이 `mkdir dir`을 실행했는데 `dir`이 이미 존재하면 `mkdir: cannot create directory 'dir': File exists`로 실패한다. 반면 `mkdir -p dir`은 대상이 이미 디렉터리로 존재하면 아무 일도 하지 않고 종료 코드 0을 반환한다(단, 같은 이름의 **파일**이 이미 있으면 이때는 `-p`를 써도 실패한다). 이 성질 때문에 배포·설치 스크립트에서 "이 디렉터리가 없으면 만들고, 있으면 그대로 둔다"는 로직을 조건문 없이 `mkdir -p target_dir` 한 줄로 표현하는 것이 표준 관용구로 자리 잡았다. 스크립트를 몇 번을 다시 실행해도 같은 상태로 수렴한다는 의미에서 이를 **멱등성**(idempotency)이라 부른다.
 
@@ -147,7 +147,7 @@ mkdir -p /var/log/myapp
 
 ## 다음 장에서는
 
-디렉터리는 만들고 지울 수 있게 됐으니, 이제 그 안의 내용물을 옮기고 지우는 법으로 넘어간다. [07장: cp, mv, rm](/post/bashshell/cp-mv-rm/)에서는 파일과 디렉터리를 복사·이동하고, `rmdir`이 거부하는 "비어 있지 않은 디렉터리 삭제"를 `rm -r`로 어떻게 다루는지 다룬다.
+디렉터리는 만들고 지울 수 있게 됐으니, 이제 그 안의 내용물을 옮기고 지우는 법으로 넘어간다. [07장: cp, mv, rm](/post/bashshell/cp-mv-rm-commands-copy-move-delete-files/)에서는 파일과 디렉터리를 복사·이동하고, `rmdir`이 거부하는 "비어 있지 않은 디렉터리 삭제"를 `rm -r`로 어떻게 다루는지 다룬다.
 
 ## 평가 기준
 

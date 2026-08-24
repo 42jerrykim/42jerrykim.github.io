@@ -2,7 +2,7 @@
 image: "wordcloud.png"
 description: "ps는 실행 중인 프로세스를 스냅샷으로 찍어 보여주는 명령어다. GNU 계열의 -ef/-l 문법과 BSD 계열의 aux 문법이 왜 갈라졌는지, 필드 선택·정렬·트리 출력을 실전 예제로 다루고 ps aux | grep의 흔한 함정도 정리한다."
 title: "[Bash Shell] 23. ps - 프로세스 상태 확인"
-slug: ps
+slug: ps-command-process-status-linux
 collection_order: 230
 draft: false
 date: 2022-01-02
@@ -40,11 +40,11 @@ tags:
 
 ## 이 장을 읽기 전에
 
-직전 챕터인 [22장: 인용(Quoting)](/post/bashshell/quoting/)까지가 Part 3(파이프라인과 입출력)이었다. 파일을 읽고(`cat`), 텍스트를 검색·가공하고([13장: grep](/post/bashshell/grep/) 등), 명령을 파이프로 연결하는([19장: 파이프](/post/bashshell/pipe/)) 법을 다뤘다면, 이 장부터는 Part 4(프로세스와 작업 제어)가 시작된다. 지금까지는 "파일과 텍스트"가 대상이었다면, 이제부터는 지금 이 순간 메모리에 올라와 실행 중인 프로그램 자체를 들여다본다.
+직전 챕터인 [22장: 인용(Quoting)](/post/bashshell/bash-quoting-escaping-special-characters/)까지가 Part 3(파이프라인과 입출력)이었다. 파일을 읽고(`cat`), 텍스트를 검색·가공하고([13장: grep](/post/bashshell/grep-command-search-text-pattern-linux/) 등), 명령을 파이프로 연결하는([19장: 파이프](/post/bashshell/pipe-operator-linux-command-chaining/)) 법을 다뤘다면, 이 장부터는 Part 4(프로세스와 작업 제어)가 시작된다. 지금까지는 "파일과 텍스트"가 대상이었다면, 이제부터는 지금 이 순간 메모리에 올라와 실행 중인 프로그램 자체를 들여다본다.
 
 이 장이 전제하는 지식은 파이프(`|`)로 명령 출력을 다른 명령에 연결하는 법과, grep으로 텍스트를 검색하는 법 정도다. 별도의 셸 스크립팅 지식은 필요 없다. 난이도는 입문–중급이며, 출력 필드 커스터마이징과 정렬 옵션에서 약간의 실무 감각이 필요하다.
 
-**다루지 않는 것**: `ps`는 명령을 실행한 그 순간의 스냅샷만 보여준다. 화면이 갱신되며 지속적으로 리소스를 관찰하는 실시간 모니터링은 [24장: top](/post/bashshell/top/)에서 다룬다. 확인한 프로세스에 시그널을 보내 종료하거나 백그라운드/포그라운드로 전환하는 제어는 [25장: kill, jobs](/post/bashshell/kill-jobs/)에서 다룬다.
+**다루지 않는 것**: `ps`는 명령을 실행한 그 순간의 스냅샷만 보여준다. 화면이 갱신되며 지속적으로 리소스를 관찰하는 실시간 모니터링은 [24장: top](/post/bashshell/top-command-realtime-process-monitoring/)에서 다룬다. 확인한 프로세스에 시그널을 보내 종료하거나 백그라운드/포그라운드로 전환하는 제어는 [25장: kill, jobs](/post/bashshell/kill-jobs-commands-process-signal-job-control/)에서 다룬다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -147,7 +147,7 @@ ps -ef --forest
 
 **GNU/BSD 문법을 섞으면 경고가 뜬다.** 리눅스의 GNU `ps`는 `-ef`(대시 있음, UNIX 표준)와 `aux`(대시 없음, BSD)를 둘 다 지원하지만, `-aux`처럼 **대시를 붙인 채 BSD 옵션 문자열을 쓰면** `ps`가 이를 표준 UNIX 옵션 `-a -u -x`(사용자 이름 `x`를 지정하려는 것)로 해석하려다 충돌해 문법 경고를 출력한다. 즉 `ps aux`와 `ps -aux`는 겉보기엔 비슷해 보여도 내부적으로 완전히 다른 파싱 경로를 타므로, BSD 스타일을 쓸 때는 반드시 대시 없이 `aux`로 써야 한다.
 
-**스냅샷이라 `%CPU`·`%MEM`은 순간값이다.** `ps`는 호출된 그 시점의 값만 보여주므로, 짧은 간격으로 급증하는 프로세스를 `ps`로 여러 번 반복 실행해 관찰하는 것은 비효율적이고 부정확하다. 지속적인 리소스 추이를 보려면 [24장: top](/post/bashshell/top/)처럼 주기적으로 자동 갱신되는 도구를 써야 한다.
+**스냅샷이라 `%CPU`·`%MEM`은 순간값이다.** `ps`는 호출된 그 시점의 값만 보여주므로, 짧은 간격으로 급증하는 프로세스를 `ps`로 여러 번 반복 실행해 관찰하는 것은 비효율적이고 부정확하다. 지속적인 리소스 추이를 보려면 [24장: top](/post/bashshell/top-command-realtime-process-monitoring/)처럼 주기적으로 자동 갱신되는 도구를 써야 한다.
 
 **`ps aux | grep`은 grep 자기 자신도 매칭한다.** `ps aux | grep nginx`를 실행하면 결과에 `grep nginx`라는 명령 자체도 하나의 프로세스로 잡혀 나온다. 흔한 회피법은 정규식 대괄호로 검색어 첫 글자를 감싸는 것(`grep '[n]ginx'`, 이렇게 하면 grep 프로세스의 명령행 자체는 `[n]ginx` 패턴과 글자 그대로 일치하지 않는다)과 `grep -v grep`으로 결과에서 grep 프로세스를 제외하는 것이다. 더 근본적인 대안은 애초에 이런 문제가 없는 `pgrep`을 쓰는 것이다.
 
@@ -167,7 +167,7 @@ pgrep -af nginx
 
 ## 다음 장에서는
 
-[24장: top](/post/bashshell/top/)에서는 `ps`가 찍은 한 장의 스냅샷을 넘어, 화면이 주기적으로 갱신되며 CPU·메모리 사용량 상위 프로세스를 실시간으로 보여주는 도구를 다룬다.
+[24장: top](/post/bashshell/top-command-realtime-process-monitoring/)에서는 `ps`가 찍은 한 장의 스냅샷을 넘어, 화면이 주기적으로 갱신되며 CPU·메모리 사용량 상위 프로세스를 실시간으로 보여주는 도구를 다룬다.
 
 ## 평가 기준
 
