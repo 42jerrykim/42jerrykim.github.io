@@ -1,0 +1,191 @@
+---
+image: "wordcloud.png"
+description: "top은 ps처럼 한 순간을 찍는 스냅샷이 아니라 /proc을 주기적으로 다시 읽어 화면을 갱신하는 실시간 모니터링 도구다. GNU top과 BSD·macOS top의 옵션·출력 포맷 차이, 인터랙티브 키 조작, load average를 코어 수 대비로 해석하는 법을 다룬다."
+title: "[Bash Shell] 24. top - 실시간 시스템 모니터링"
+slug: top-command-realtime-process-monitoring
+collection_order: 240
+draft: false
+date: 2026-03-15
+lastmod: 2026-08-23
+categories:
+- Bash Shell
+tags:
+- Bash
+- Shell(셸)
+- Linux(리눅스)
+- Terminal
+- Process(프로세스)
+- Command
+- Monitoring(모니터링)
+- System-Administration(시스템관리)
+- CPU(Central Processing Unit)
+- Memory(메모리)
+- Kernel
+- Signal(시그널)
+- OS(운영체제)
+- Real-Time(실시간)
+- Scheduling(스케줄링)
+- Bottleneck(병목)
+- Thread(스레드)
+- Performance(성능)
+- Troubleshooting(트러블슈팅)
+- File-System(파일시스템)
+- top
+- htop
+- Load-Average
+- procps-ng
+- nproc
+- WCPU
+- PID
+- BSD-Unix
+- macOS
+- Command-Line-Tool
+---
+
+## 이 장을 읽기 전에
+
+직전 챕터인 [23장: ps](/post/bashshell/ps-command-process-status-linux/)에서 `ps`는 실행 중인 프로세스 테이블을 한 번 읽어 찍는 **스냅샷**이라는 것, 그리고 GNU 계열(`-ef`, `-l`)과 BSD 계열(`aux`) 옵션 문법이 갈라진 이유를 다뤘다. 이 장은 그 스냅샷을 주기적으로 다시 찍어 화면에 계속 갱신해 보여주는 `top`을 다룬다.
+
+이 장이 전제하는 지식은 23장에서 다룬 `ps`의 출력 필드(PID, %CPU, %MEM, TTY, STAT 등)와 GNU/BSD 옵션 문법이 갈라진 배경 정도다. 별도의 셸 스크립팅 지식은 필요 없다. 난이도는 입문–중급이며, GNU·BSD·macOS 세 계열의 옵션 의미가 서로 다르다는 점을 이해하는 데 약간의 주의가 필요하다.
+
+**다루지 않는 것**: `top`의 `k` 키로도 프로세스에 시그널을 보낼 수 있지만, 셸에서 직접 시그널을 보내고 백그라운드/포그라운드 작업을 제어하는 법(`kill`, `jobs`, `fg`, `bg`)은 [25장: kill, jobs](/post/bashshell/kill-jobs-commands-process-signal-job-control/)에서 다룬다. `top`보다 가독성 높은 화면과 마우스 조작을 제공하는 `htop` 같은 확장 도구는 이 장에서 옵션 비교를 위해 잠깐 언급만 하고 본격적으로 다루지는 않는다.
+
+## 당신의 수준에 맞는 경로
+
+| 수준 | 읽을 부분 | 핵심 목표 |
+|---|---|---|
+| 입문 | 개요+정신 모델, 사용법·옵션 표의 기본 예시(1–3번) | `top`을 실행해 CPU·메모리 사용량 상위 프로세스를 확인하고 `q`로 안전하게 빠져나올 수 있다 |
+| 중급 | 인터랙티브 키 조작, 배치 모드 예시 | 정렬 키(`P`/`M`/`T`)로 원하는 기준을 찾고, `-b -n`으로 스크립트에서 활용 가능한 출력을 뽑을 수 있다 |
+| 심화 | 주의사항·함정, 흔한 오개념 | GNU/BSD/macOS `top`의 옵션 문자가 정반대 의미로 쓰이는 지점을 구분하고, load average를 코어 수 대비로 정확히 해석할 수 있다 |
+
+## 개요 + 정신 모델
+
+`ps`가 프로세스 테이블을 찍은 사진 한 장이라면, `top`은 같은 카메라로 일정 간격마다 사진을 다시 찍어 필름을 넘기듯 화면을 계속 새로 그리는 도구다. 리눅스에서 `top`은 매 갱신 주기마다 `/proc`을 다시 읽어 각 프로세스의 CPU 시간·메모리 사용량을 다시 계산하고, 이전 주기와의 차이(delta)를 %CPU 같은 값으로 환산해 화면에 뿌린다. 따라서 `top`의 %CPU는 "지금 이 순간"의 값이 아니라 **직전 갱신 주기 동안의 평균 사용률**이며, 이 갱신 주기(delay)를 얼마나 짧게 잡느냐가 화면이 얼마나 실시간에 가까워 보이는지를 결정한다.
+
+`top`의 역사는 두 갈래로 나뉜다. 전통적인 유닉스 `top`은 William LeFebvre가 1984년에 작성해 저작권을 등록했고, 리눅스에서 오늘날 쓰이는 `top`(procps-ng 패키지 소속)은 Roger Binns가 1992년 초에 작성해 이후 다른 관리자들에게 넘어갔다. 이렇게 계보가 다른 만큼, GNU/Linux `top`과 BSD 계열(FreeBSD·macOS) `top`은 겉모습은 비슷해도 옵션 문자와 기본값이 실제로는 상당히 다르다 — 뒤에서 다룰 함정의 근본 원인이다.
+
+`top`을 실행하면 화면은 크게 두 영역으로 나뉜다. 위쪽 요약 영역은 가동 시간·사용자 수·load average와 CPU·메모리 전체 현황을, 아래쪽 프로세스 영역은 현재 정렬 기준(기본은 %CPU)으로 나열된 개별 프로세스 목록을 보여준다. `q`로 종료하기 전까지는 이 화면이 계속 갱신되며, 사용자는 키를 눌러 정렬 기준을 바꾸거나 특정 프로세스에 직접 개입할 수 있다 — 이 인터랙티브함이 `ps`와 결정적으로 다른 점이다.
+
+## 사용법 · 옵션
+
+기본 문법은 `top [옵션]`이다. `ps`와 마찬가지로 GNU(procps-ng) 계열과 BSD 계열(FreeBSD, macOS)의 옵션 문자가 따로 존재하는데, `ps`보다 더 주의할 점은 **같은 옵션 문자가 계열마다 전혀 다른 의미**로 쓰인다는 것이다(자세한 대조는 주의사항·함정 참고).
+
+### 시작 옵션 — GNU/Linux(procps-ng)
+
+| 옵션 | 설명 |
+|---|---|
+| `-d SECS` | 화면 갱신 간격(초)을 지정한다 |
+| `-n NUMBER` | 지정한 횟수만큼 갱신한 뒤 종료한다(배치 모드에서 주로 사용) |
+| `-p PID[,PID...]` | 지정한 PID만 감시한다(최대 개수는 빌드에 따라 제한) |
+| `-u`, `-U 사용자` | 유효/실제 사용자 기준으로 프로세스를 필터링한다 |
+| `-H` | 프로세스 대신 스레드 단위로 표시한다 |
+| `-b` | 배치 모드로 실행한다(터미널 제어 없이 파일·파이프로 출력) |
+| `-o`, `--sort-override FIELDNAME` | 지정한 필드 기준으로 정렬한다(스크립트용) |
+| `-w [COLUMNS]` | 출력 폭을 지정한다 |
+
+### 시작 옵션 — BSD 계열(FreeBSD)과 macOS
+
+| 옵션 | FreeBSD | macOS | 설명 |
+|---|---|---|---|
+| `-s` | 갱신 간격(초) | 갱신 간격(초, 기본값 1초) | GNU의 `-d`에 해당 |
+| `-d` | 갱신 횟수 | (없음) | GNU의 `-n`과 유사하지만 의미가 다름 |
+| `-l` | (없음, 로그모드는 별도) | 로깅 모드 샘플 수(`0`은 무한) | GNU의 `-n`과 유사한 역할이지만 별도 문자 |
+| `-n` | 표시할 프로세스 개수 | 표시할 프로세스 개수 | **GNU의 `-n`(갱신 횟수)과 전혀 다른 의미** |
+| `-o key` | 정렬 필드 지정 | 정렬 필드 지정 | GNU의 `-o`와 목적은 같지만 필드 이름 체계가 다름 |
+| `-p pid` | 특정 PID만 | 특정 프로세스(`-pid`) | |
+| `-U 사용자` | 특정 사용자만 | 특정 사용자(`-user`) | |
+
+macOS `top`의 정렬 키는 `cpu`, `pid`, `command`, `time`, `vsize`, `mem` 등 자체 이름 체계를 쓰고, `-u`는 GNU처럼 사용자 필터가 아니라 "`-o cpu -O time`의 별칭"(CPU 기준 정렬 후 TIME으로 보조 정렬)이라는 점도 GNU와 또 다르다.
+
+### 인터랙티브 키 조작
+
+`top`을 실행한 뒤 화면에서 바로 누를 수 있는 키다. GNU와 BSD 계열 모두 `q`(종료)·`k`(kill)·`r`(renice)는 공통으로 지원하지만, 정렬 기준 변경 방식이 다르다.
+
+| 키 | 동작 | 계열 |
+|---|---|---|
+| `q` | 종료 | 공통 |
+| `k` | 프로세스에 시그널 전송(PID·시그널 번호를 프롬프트로 입력) | 공통 |
+| `r` | 프로세스 renice(우선순위 변경) | 공통 |
+| `P` | %CPU 기준 정렬 | GNU 전용 단축키 |
+| `M` | %MEM 기준 정렬 | GNU 전용 단축키 |
+| `T` | TIME+ 기준 정렬 | GNU 전용 단축키 |
+| `o` | 정렬 필드를 대화형으로 선택 | BSD/macOS(GNU에는 `f` 필드 관리 화면이 별도 존재) |
+| `1` | 코어별 CPU 표시/단일 합산 표시 토글 | GNU |
+| `H` | 스레드 표시 토글 | 공통(문법·기본 동작은 계열마다 다름) |
+| `l` | load average/가동시간 줄 표시 토글 | GNU |
+
+## 예시
+
+```bash
+# GNU: 2초 간격으로 화면 갱신
+top -d 2
+```
+
+```bash
+# GNU: 특정 사용자(예: nginx 운영 계정)의 프로세스만 감시
+top -u www-data
+```
+
+```bash
+# GNU: 여러 PID를 콤마로 묶어 감시 대상 지정
+top -p 1234,5678
+```
+
+```bash
+# GNU: 배치 모드로 1회 찍은 뒤 종료 — 스크립트·크론 작업에서 사용
+top -b -n 1 | head -20
+```
+
+```bash
+# GNU: pgrep으로 얻은 PID를 top -p에 그대로 넘겨 특정 서비스만 감시
+top -p $(pgrep -d, nginx)
+```
+
+```bash
+# GNU: %MEM 기준으로 정렬해 배치 모드 5회 출력을 로그 파일에 남김
+top -b -n 5 -d 2 -o %MEM >> mem_usage.log
+```
+
+```bash
+# macOS: 5초 간격, CPU 기준 정렬로 무한 반복(로그 모드)
+top -o cpu -s 5 -l 0
+```
+
+```bash
+# FreeBSD: 2초 간격으로 딱 3번만 화면을 찍고 종료
+top -s 2 -d 3
+```
+
+## 주의사항 · 함정
+
+**GNU·BSD·macOS의 옵션 문자가 정반대 의미로 겹친다.** `ps`의 `-aux` vs `aux` 문제보다 더 헷갈리는 지점이다. GNU top의 `-d`는 "갱신 간격(초)"이지만, FreeBSD top의 `-d`는 "갱신 횟수"이고 간격은 `-s`로 지정한다. 반대로 GNU의 `-n`은 "갱신 횟수"인데 FreeBSD·macOS의 `-n`은 "화면에 보여줄 프로세스 개수"다. 즉 `top -d 5 -n 3`을 GNU 서버에서 실행하면 "5초 간격으로 3번 갱신"이라는 뜻이지만, 같은 명령을 FreeBSD에서 실행하면 "3번만 찍되 간격은 기본값, 상위 5개 프로세스만"이라는 전혀 다른 뜻이 된다. 여러 플랫폼을 오가며 스크립트를 짤 때는 반드시 해당 시스템의 `man top`으로 옵션 의미를 재확인해야 한다.
+
+**인터랙티브 키 조작은 되돌릴 수 없다.** `k`로 시그널을 보내는 순간 실제로 해당 PID에 시그널이 전달되며, 확인 절차 없이 바로 실행된다. PID를 잘못 입력하거나 다른 사용자·시스템 프로세스를 잘못 골라 종료하면 되돌릴 방법이 없다. `r`(renice)도 마찬가지로, 우선순위를 낮추는(nice 값을 높이는) 것은 일반 사용자도 가능하지만 우선순위를 올리려면(nice 값을 낮추려면) 대개 root 권한이 필요하며 다른 사용자의 프로세스에는 애초에 적용되지 않는다.
+
+**load average는 코어 수 대비로 해석해야 한다.** `top` 요약 영역의 load average(1분·5분·15분 평균)는 절대값 자체로는 의미가 없다. CPU 코어가 4개인 시스템에서 load average가 4.0이면 코어를 딱 채운 상태고, 8.0이면 실행 대기 중인 작업이 코어 수의 두 배라는 뜻이다. 실행 중인 시스템의 논리 코어 수는 `nproc`(OpenMP 환경변수·CPU 쿼터를 반영, `--all`을 붙이면 이를 무시하고 설치된 전체 프로세서 수)으로 바로 확인할 수 있다. 또한 리눅스의 load average는 CPU를 기다리는(runnable) 프로세스뿐 아니라 디스크 I/O 등으로 인터럽트 불가능한 대기(uninterruptible sleep, D 상태) 중인 프로세스까지 포함한다는 점도 다른 유닉스 계열과 구분되는 리눅스 커널의 구현 특성이다.
+
+## 흔한 오개념
+
+**"load average는 CPU 사용률(%)이다"는 오해다.** load average는 백분율이 아니라 특정 시점에 "실행 중이거나 실행을 기다리는(그리고 리눅스에서는 D 상태까지 포함한) 프로세스 개수"를 지수 이동평균으로 낸 값이다. 100%에 상한이 있는 사용률과 달리 load average는 이론상 상한이 없으며, 코어 수보다 훨씬 큰 값도 정상적으로 나올 수 있다 — 그래서 반드시 `nproc`으로 확인한 코어 수와 나눠서 해석해야 한다.
+
+**"`top`은 매 순간을 그대로 보여준다"는 오해다.** `top`의 화면은 `-d`/`-s`로 지정한 간격(또는 플랫폼 기본값, 예: macOS는 1초)마다 다시 그려지고, 그 사이의 CPU 사용률은 직전 갱신 시점부터의 평균으로 계산된다. 갱신 간격을 아주 짧게 잡으면 더 촘촘해 보이지만, `top` 자신도 `/proc`을 다시 읽고 화면을 그리는 작업 자체가 CPU를 쓰므로 무조건 간격을 0에 가깝게 줄이는 것이 능사는 아니다.
+
+## 다음 장에서는
+
+[25장: kill, jobs](/post/bashshell/kill-jobs-commands-process-signal-job-control/)에서는 `top`의 `k` 키로 잠깐 다뤘던 시그널 전송을 셸에서 직접 `kill` 명령으로 다루고, 백그라운드로 돌린 작업을 `jobs`·`fg`·`bg`로 제어하는 법을 배운다.
+
+## 평가 기준
+
+- `top`이 `ps`의 한 번짜리 스냅샷을 주기적으로 반복해 화면을 갱신하는 도구라는 정신 모델을 설명할 수 있다.
+- GNU top과 BSD·macOS top에서 `-d`, `-n` 옵션 문자가 서로 다른 의미로 쓰인다는 점을 구분할 수 있다.
+- 인터랙티브 키(`q`, `k`, `r`, `P`/`M`/`T`)로 화면을 조작하고, 위험을 인지한 채 프로세스에 시그널을 보낼 수 있다.
+- load average 값을 `nproc`으로 확인한 코어 수 대비로 올바르게 해석할 수 있다.
+- 배치 모드(`-b -n`)로 `top` 출력을 스크립트·로그 파일에서 활용할 수 있다.
+
+## 참고
+
+- [top(1) - Linux manual page (procps-ng)](https://man7.org/linux/man-pages/man1/top.1.html)
+- [top(1) - FreeBSD Manual Pages](https://man.freebsd.org/cgi/man.cgi?top(1))
+- [top(1) - macOS manual page](https://www.unix.com/man-page/osx/1/top/)
+- [nproc(1) - Linux manual page](https://man7.org/linux/man-pages/man1/nproc.1.html)
+- [Top (software) - Wikipedia](https://en.wikipedia.org/wiki/Top_(software))

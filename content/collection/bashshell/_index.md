@@ -6,3 +6,5 @@ description: "Bash Shell 명령어와 기능에 대한 실용적인 가이드입
 featured_image: "/images/home-banner.jpg"
 slug: bashshell
 ---
+
+전체 소개는 [00장: 과정 개요와 커리큘럼](/post/bashshell/getting-started-bash-shell/) 참고.

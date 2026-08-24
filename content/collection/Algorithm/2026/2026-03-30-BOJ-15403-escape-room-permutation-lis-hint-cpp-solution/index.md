@@ -2,8 +2,8 @@
 title: "[Algorithm] C++ 백준 15403번: Escape Room"
 description: "백준 15403: 각 i에서 시작하는 LIS 길이가 Ai인 순열 중 사전순 최소를 구한다. 남은 접미부의 Ai 최댓값이 1 작은 위치만 더 작은 값을 가질 수 있으므로, Ai 내림차순·같은 Ai는 인덱스 내림차순으로 1부터 번호를 매기면 O(N)에 해결한다."
 date: 2026-03-30
-lastmod: 2026-03-30
-draft: true
+lastmod: 2026-08-22
+draft: false
 slug: boj-15403-escape-room-permutation
 categories:
 - Algorithm
