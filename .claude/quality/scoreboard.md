@@ -1649,3 +1649,5 @@
 | content/collection/bashshell/41-curl-wget-commands-download-http-files/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/bashshell/42-scp-command-secure-copy-remote-files/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/bashshell/43-ssh-command-remote-login-secure-shell/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-08-24-llm-knowledge-superposition-hallucination/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-08-26-claude-cybersecurity-eval-incidents/index.md | - | - | 0 | 미채점 | - | - | - |
