@@ -3,7 +3,7 @@ title: "[AI] CoT는 거짓말은 안 해도 다 말하지도 않는다 — 필�
 description: "13개 프론티어 모델에 의미 없는 필러 토큰을 섞자 정답률이 최대 13%p 올랐다. Claude Opus 4.5는 필러 토큰으로 숨겨진 모듈식 산술 제약까지 만족시켰다 — CoT 모니터링이 놓치는 계산이 실재한다는 최신 논문을 정리한다."
 date: 2026-08-27T07:00:00+09:00
 lastmod: 2026-08-27
-draft: true
+draft: false
 image: "wordcloud.png"
 categories:
   - AI
