@@ -64,7 +64,7 @@ tags:
 
 ## 핵심 개념: kprobe·uprobe·USDT
 
-**kprobe**는 커널 함수의 진입(entry)·복귀(return, kretprobe) 지점에 동적으로 계측점을 삽입하는 메커니즘입니다. 커널 함수의 첫 명령을 브레이크포인트(또는 아키텍처에 따라 ftrace 기반 트램폴린)로 바꿔두고, 실행이 그 지점에 도달하면 등록된 핸들러로 제어를 넘긴 뒤 원래 명령을 실행하고 복귀시킵니다. **uprobe**는 같은 메커니즘을 유저 공간 바이너리의 임의 주소(함수 심볼, 라이브러리 오프셋)에 적용한 것으로, 대상 프로세스를 재시작하거나 재컴파일할 필요가 없다는 점이 정적 계측과 다릅니다.
+**kprobe**는 커널 함수의 진입(entry)·복귀(return, kretprobe) 지점에 동적으로 계측점을 삽입하는 메커니즘입니다. 커널 함수의 첫 명령을 브레이크포인트(또는 아키텍처에 따라 ftrace 기반 트램폴린)로 바꿔두고, 실행이 그 지점에 도달하면 등록된 핸들러로 제어를 넘긴 뒤 원래 명령을 실행하고 복귀시킵니다. **uprobe**는 같은 메커니즘을 유저 공간 바이너리의 임의 주소(함수 심볼, 라이브러리 오프셋)에 적용한 것으로, 대상 프로세스를 재시작하거나 재컴파일할 필요가 없다는 점이 정적 계측과 다릅니다. kprobe의 진입점 치환·복귀 방식은 리눅스 커널 공식 문서 [Kernel Probes (Kprobes)](https://docs.kernel.org/trace/kprobes.html)에 상세히 규정되어 있습니다.
 
 **USDT**는 uprobe의 특수한 형태로 볼 수 있는데, 애플리케이션 개발자가 `sys/sdt.h`의 `DTRACE_PROBE` 계열 매크로로 소스 코드에 "여기서 이런 인자를 관찰할 수 있다"는 지점을 미리 선언해 둔 것입니다. 비활성 상태에서 USDT 프로브는 **NOP(No Operation) 명령 한 줄**로 컴파일되어 실행 비용이 사실상 없고, 프로파일러가 uprobe로 그 지점을 attach하면 커널이 NOP을 인터럽트(트랩)로 치환해 eBPF 서브시스템으로 점프하도록 만듭니다. 이 치환·트랩·복귀 왕복은 시스템 콜과 비슷한 규모의 컨텍스트 스위치 비용을 수반하므로, "USDT는 항상 공짜"라는 말은 프로브가 꺼져 있을 때만 성립합니다. bpftrace·BCC 모두 uprobe에 refcount 기반 세마포어 지원이 있는 환경에서는 프로브가 실제로 attach된 프로세스에서만 활성화되도록 최적화합니다.
 
@@ -149,9 +149,25 @@ usdt:./order_app:orderapp:order_processed
 
 **주의점**: USDT 프로브는 바이너리에 심는 순간부터 존재하지만, attach되지 않은 상태에서는 NOP이라 런타임 비용이 거의 없습니다. 다만 매크로가 인자를 준비하는 과정(여기서는 `order_id`, `amount` 레지스터 적재) 자체는 프로브 활성 여부와 무관하게 실행되므로, 인자 계산이 무거운 표현식이라면 아주 미세한 상수 비용이 항상 남습니다.
 
+## off-CPU 분석: 블로킹 시간 스택 수집
+
+`perf`나 VTune 같은 CPU 샘플링 프로파일러는 스레드가 실제로 CPU에서 실행 중일 때만 스택을 샘플링하므로, 락 대기·블로킹 I/O·스케줄링 지연처럼 스레드가 **CPU를 내려놓고 잠들어 있는(off-CPU) 시간**은 통계에서 완전히 빠집니다. "CPU 프로파일은 깨끗한데 응답 지연은 나쁜" 상황은 대체로 이 off-CPU 시간이 원인이며, [15장에서 다룬 Valgrind/Callgrind](/post/profiling-analysis/valgrind-callgrind-cache-simulation/)나 [11장의 지속적 프로파일링](/post/profiling-analysis/continuous-profiling-production/) 대시보드도 기본적으로는 on-CPU 시간만 보여주므로 이 공백을 메우지 못합니다.
+
+BCC에 포함된 **`offcputime`** 도구는 커널의 `sched_switch` 트레이스포인트에 eBPF 프로그램을 attach해 이 공백을 직접 관찰합니다. 스레드가 스케줄러에 의해 CPU에서 내려갈 때 현재 스택과 타임스탬프를 기록해두고, 같은 스레드가 다시 스케줄링되어 CPU를 돌려받는 순간까지의 시간차를 "off-CPU 시간"으로 집계하는 방식입니다. 커널 함수 하나에 붙는 kprobe·uprobe와 달리 `sched_switch`는 시스템 전체 컨텍스트 스위치마다 발화하므로 오버헤드가 상대적으로 크며, 짧은 시간(수 초~수십 초) 동안만 프로덕션에서 실행하는 것이 일반적입니다.
+
+```bash
+# 5초간 시스템 전체 off-CPU 스택을 수집하고 화염 그래프 입력용으로 폴딩
+sudo /usr/share/bcc/tools/offcputime -f 5 > offcpu.stacks
+
+# 특정 PID만 대상으로, 최소 1ms 이상 블로킹된 구간만 필터링
+sudo /usr/share/bcc/tools/offcputime -p $(pgrep -n order_app) --min-block-time 1000 -f 5 > offcpu.stacks
+```
+
+수집된 스택은 [05장에서 다룬 화염 그래프](/post/profiling-analysis/flame-graph-analysis/) 도구 체인(`stackcollapse` → `flamegraph.pl`)에 그대로 넣을 수 있으며, on-CPU 화염 그래프와 나란히 놓고 비교하면 "실행 중이던 시간"과 "대기하던 시간"이 코드 경로별로 어떻게 나뉘는지 한눈에 드러납니다. bpftrace로 같은 원리를 손으로 구현할 수도 있지만, 스택 언와인딩과 스레드별 타임스탬프 관리 로직이 이미 검증된 `offcputime`을 우선 쓰는 편이 안전합니다.
+
 ## eBPF 기반 GPU(CUDA) 상시 프로파일링: Polar Signals 사례
 
-USDT와 eBPF의 조합이 가장 두드러지는 최근 사례는 GPU 커널 실행을 애플리케이션 코드 수정 없이 상시 관찰하는 문제입니다. NVIDIA CUDA는 커널 실행 타이밍을 얻는 표준 API로 <strong>CUPTI(CUDA Profiling Tools Interface)</strong>를 제공하지만, CUPTI 콜백을 커널 이벤트마다 파일에 기록하면 컨테이너 환경에서 상시 켜두기엔 I/O·직렬화 비용이 부담스럽습니다. Polar Signals는 `parcagpu`라는 얇은 shim 라이브러리를 `CUDA_INJECTION64_PATH` 메커니즘으로 대상 프로세스에 무수정 주입해 CUPTI 콜백을 구독하고, 커널 실행이 발생할 때마다 두 개의 USDT 프로브(`cuda_correlation`으로 실행 상관관계 ID를 노출하고, `kernel_executed`로 디바이스·스트림·커널명과 타이밍을 노출)를 발화시키는 구조를 만들었습니다. parca-agent는 이 두 프로브에 uprobe를 attach해 eBPF 프로그램으로 타이밍 데이터를 perf 링버퍼에 쌓고, 상관관계 ID로 비동기 실행 순서를 재조립합니다. 파일시스템 I/O나 직렬화 없이 공유 메모리 경로만 쓰기 때문에, 이 구조는 CUDA 그래프처럼 커널 실행이 얽힌 복잡한 워크로드에서도 상시(always-on) 프로덕션 프로파일링이 가능하다고 보고됩니다.
+USDT와 eBPF의 조합이 가장 두드러지는 최근 사례는 GPU 커널 실행을 애플리케이션 코드 수정 없이 상시 관찰하는 문제입니다. NVIDIA CUDA는 커널 실행 타이밍을 얻는 표준 API로 <strong>CUPTI(CUDA Profiling Tools Interface)</strong>를 제공하지만, CUPTI 콜백을 커널 이벤트마다 파일에 기록하면 컨테이너 환경에서 상시 켜두기엔 I/O·직렬화 비용이 부담스럽습니다. Polar Signals는 `parcagpu`라는 얇은 shim 라이브러리를 `CUDA_INJECTION64_PATH` 메커니즘으로 대상 프로세스에 무수정 주입해 CUPTI 콜백을 구독하고, 커널 실행이 발생할 때마다 두 개의 USDT 프로브(`cuda_correlation`으로 실행 상관관계 ID를 노출하고, `kernel_executed`로 디바이스·스트림·커널명과 타이밍을 노출)를 발화시키는 구조를 만들었습니다([Polar Signals, "Continuous NVIDIA CUDA Profiling In Production"](https://www.polarsignals.com/blog/posts/2025/10/22/gpu-profiling)). parca-agent는 이 두 프로브에 uprobe를 attach해 eBPF 프로그램으로 타이밍 데이터를 perf 링버퍼에 쌓고, 상관관계 ID로 비동기 실행 순서를 재조립합니다. 파일시스템 I/O나 직렬화 없이 공유 메모리 경로만 쓰기 때문에, 이 구조는 CUDA 그래프처럼 커널 실행이 얽힌 복잡한 워크로드에서도 상시(always-on) 프로덕션 프로파일링이 가능하다고 보고됩니다.
 
 이 사례가 보여주는 일반화 가능한 패턴은 "관찰하고 싶은 계층(여기서는 GPU 드라이버 콜백)이 커널 프로브만으로는 닿지 않을 때, USDT를 유저 공간 브리지로 세워 eBPF 파이프라인에 연결한다"는 것입니다. 다만 이 사례는 부속 라이브러리(`parcagpu`)와 상관관계 ID 재조립 로직이라는 별도 엔지니어링을 요구하므로, 단순한 함수 지연시간 측정보다 구축 비용이 훨씬 큽니다. 상시 GPU 프로파일링 인프라 자체를 운영하는 문제(수집 주기, 저장소, 대시보드)는 [11장: 지속적 프로파일링](/post/profiling-analysis/continuous-profiling-production/)의 범위입니다.
 
