@@ -119,93 +119,93 @@ flowchart LR
 
 이 컬렉션은 이 표를 목차이자 진행 상황판으로 함께 썼다. 9개 Part, 85개 챕터(00장 포함) 전체가 사람의 검수를 거쳐 `draft: false`로 전환되어 실제로 공개됐다.
 
-| Part | 챕터 | 제목 | 상태 |
-|---|---|---|---|
-| 0. 개요 | 00 | 과정 개요와 커리큘럼 | 이 챕터 |
-| 1. CMD 기초와 탐색 | 01 | [cmd - 새 인스턴스 시작과 내부·외부 명령어](/post/cmd/cmd-command-interpreter-new-instance-windows/) | 게시 완료 |
-| 1. CMD 기초와 탐색 | 02 | [help - 명령어 도움말 조회](/post/cmd/help-command-list-command-help-windows-cmd/) | 게시 완료 |
-| 1. CMD 기초와 탐색 | 03 | [cls - 화면 지우기](/post/cmd/cls-command-clear-screen-windows-cmd/) | 게시 완료 |
-| 1. CMD 기초와 탐색 | 04 | [prompt - 프롬프트 표시 형식 변경](/post/cmd/prompt-command-customize-command-line-windows/) | 게시 완료 |
-| 1. CMD 기초와 탐색 | 05 | [title - 콘솔 창 제목 설정](/post/cmd/title-command-set-console-window-title-windows/) | 게시 완료 |
-| 1. CMD 기초와 탐색 | 06 | [doskey - 명령줄 편집과 매크로](/post/cmd/doskey-command-line-editing-macros-history-windows/) | 게시 완료 |
-| 1. CMD 기초와 탐색 | 07 | [path - 실행 파일 검색 경로](/post/cmd/path-command-executable-search-path-windows/) | 게시 완료 |
-| 1. CMD 기초와 탐색 | 08 | [cd, chdir - 디렉터리 이동과 현재 위치](/post/cmd/cd-chdir-command-change-directory-windows-cmd/) | 게시 완료 |
-| 1. CMD 기초와 탐색 | 09 | [dir - 파일·디렉터리 목록 조회](/post/cmd/dir-command-list-files-directories-windows-cmd/) | 게시 완료 |
-| 1. CMD 기초와 탐색 | 10 | [tree - 디렉터리 구조 트리 표시](/post/cmd/tree-command-directory-structure-windows-cmd/) | 게시 완료 |
-| 1. CMD 기초와 탐색 | 11 | [pushd, popd - 디렉터리 스택](/post/cmd/pushd-popd-command-directory-stack-windows-cmd/) | 게시 완료 |
-| 2. 파일과 디렉터리 조작 | 12 | [md, mkdir - 디렉터리 생성](/post/cmd/md-mkdir-command-create-directory-windows-cmd/) | 게시 완료 |
-| 2. 파일과 디렉터리 조작 | 13 | [rmdir, rd - 디렉터리 삭제](/post/cmd/rmdir-rd-command-remove-directory-windows-cmd/) | 게시 완료 |
-| 2. 파일과 디렉터리 조작 | 14 | [copy - 파일 복사](/post/cmd/copy-command-copy-files-windows-cmd/) | 게시 완료 |
-| 2. 파일과 디렉터리 조작 | 15 | [xcopy - 디렉터리 트리 복사](/post/cmd/xcopy-command-copy-directory-tree-windows-cmd/) | 게시 완료 |
-| 2. 파일과 디렉터리 조작 | 16 | [robocopy - 재시도·미러링 지원 고급 복사](/post/cmd/robocopy-command-mirror-copy-files-windows/) | 게시 완료 |
-| 2. 파일과 디렉터리 조작 | 17 | [move - 파일·디렉터리 이동](/post/cmd/move-command-move-files-directories-windows-cmd/) | 게시 완료 |
-| 2. 파일과 디렉터리 조작 | 18 | [del, erase - 파일 삭제](/post/cmd/del-erase-command-delete-files-windows-cmd/) | 게시 완료 |
-| 2. 파일과 디렉터리 조작 | 19 | [ren, rename - 이름 변경](/post/cmd/ren-rename-command-rename-files-windows-cmd/) | 게시 완료 |
-| 2. 파일과 디렉터리 조작 | 20 | [type - 텍스트 파일 내용 출력](/post/cmd/type-command-display-file-contents-windows-cmd/) | 게시 완료 |
-| 2. 파일과 디렉터리 조작 | 21 | [attrib - 파일 속성 표시·변경](/post/cmd/attrib-command-file-attributes-windows-cmd/) | 게시 완료 |
-| 2. 파일과 디렉터리 조작 | 22 | [comp - 파일 바이트 단위 비교](/post/cmd/comp-command-compare-files-byte-windows-cmd/) | 게시 완료 |
-| 2. 파일과 디렉터리 조작 | 23 | [fc - 파일 줄 단위 차이 비교](/post/cmd/fc-command-compare-files-differences-windows-cmd/) | 게시 완료 |
-| 2. 파일과 디렉터리 조작 | 24 | [mklink - 심볼릭 링크·하드 링크 생성](/post/cmd/mklink-command-symbolic-hard-links-windows-cmd/) | 게시 완료 |
-| 2. 파일과 디렉터리 조작 | 25 | [replace - 대상 파일을 원본으로 교체](/post/cmd/replace-command-replace-files-windows-cmd/) | 게시 완료 |
-| 3. 텍스트 검색과 출력 제어 | 26 | [find - 파일·출력 문자열 검색](/post/cmd/find-command-search-text-string-windows-cmd/) | 게시 완료 |
-| 3. 텍스트 검색과 출력 제어 | 27 | [findstr - 정규식 지원 문자열 검색](/post/cmd/findstr-command-regex-search-windows-cmd/) | 게시 완료 |
-| 3. 텍스트 검색과 출력 제어 | 28 | [sort - 텍스트 입력 정렬](/post/cmd/sort-command-sort-text-lines-windows-cmd/) | 게시 완료 |
-| 3. 텍스트 검색과 출력 제어 | 29 | [more - 출력을 화면 단위로 표시](/post/cmd/more-command-page-output-windows-cmd/) | 게시 완료 |
-| 4. 배치 스크립팅 | 30 | [echo - 메시지 출력과 에코 설정](/post/cmd/echo-command-display-message-windows-cmd/) | 게시 완료 |
-| 4. 배치 스크립팅 | 31 | [set - 환경 변수 표시·설정·제거](/post/cmd/set-command-environment-variables-windows-cmd/) | 게시 완료 |
-| 4. 배치 스크립팅 | 32 | [if - 조건 분기](/post/cmd/if-command-conditional-batch-windows-cmd/) | 게시 완료 |
-| 4. 배치 스크립팅 | 33 | [for - 파일 집합·범위 반복](/post/cmd/for-command-loop-batch-windows-cmd/) | 게시 완료 |
-| 4. 배치 스크립팅 | 34 | [call - 배치 파일·레이블 호출](/post/cmd/call-command-batch-subroutine-windows-cmd/) | 게시 완료 |
-| 4. 배치 스크립팅 | 35 | [goto - 레이블로 실행 흐름 이동](/post/cmd/goto-command-batch-label-jump-windows-cmd/) | 게시 완료 |
-| 4. 배치 스크립팅 | 36 | [shift - 배치 매개변수 위치 이동](/post/cmd/shift-command-batch-parameters-windows-cmd/) | 게시 완료 |
-| 4. 배치 스크립팅 | 37 | [pause - 처리 일시 중단](/post/cmd/pause-command-suspend-batch-windows-cmd/) | 게시 완료 |
-| 4. 배치 스크립팅 | 38 | [exit - 세션·배치 스크립트 종료](/post/cmd/exit-command-terminate-cmd-windows/) | 게시 완료 |
-| 4. 배치 스크립팅 | 39 | [rem - 배치 파일 주석](/post/cmd/rem-command-batch-comments-windows-cmd/) | 게시 완료 |
-| 4. 배치 스크립팅 | 40 | [setlocal, endlocal - 환경 변수 유효 범위](/post/cmd/setlocal-endlocal-command-variable-scope-windows-cmd/) | 게시 완료 |
-| 4. 배치 스크립팅 | 41 | [break - 확장된 Ctrl+C 검사 설정](/post/cmd/break-command-extended-ctrl-c-windows-cmd/) | 게시 완료 |
-| 5. 디스크와 파일 시스템 관리 | 42 | [chkdsk - 디스크 오류 검사](/post/cmd/chkdsk-command-check-disk-errors-windows-cmd/) | 게시 완료 |
-| 5. 디스크와 파일 시스템 관리 | 43 | [chkntfs - 부팅 시 디스크 검사 설정](/post/cmd/chkntfs-command-disk-check-boot-windows-cmd/) | 게시 완료 |
-| 5. 디스크와 파일 시스템 관리 | 44 | [diskpart - 대화형 파티션 관리](/post/cmd/diskpart-command-manage-partitions-windows-cmd/) | 게시 완료 |
-| 5. 디스크와 파일 시스템 관리 | 45 | [format - 드라이브 포맷](/post/cmd/format-command-format-disk-windows-cmd/) | 게시 완료 |
-| 5. 디스크와 파일 시스템 관리 | 46 | [convert - FAT 볼륨을 NTFS로 변환](/post/cmd/convert-command-fat-to-ntfs-windows-cmd/) | 게시 완료 |
-| 5. 디스크와 파일 시스템 관리 | 47 | [compact - NTFS 압축 상태 표시·변경](/post/cmd/compact-command-ntfs-compression-windows-cmd/) | 게시 완료 |
-| 5. 디스크와 파일 시스템 관리 | 48 | [fsutil - 파일 시스템 저수준 조회·구성](/post/cmd/fsutil-command-file-system-utility-windows-cmd/) | 게시 완료 |
-| 5. 디스크와 파일 시스템 관리 | 49 | [label - 볼륨 레이블 관리](/post/cmd/label-command-volume-label-windows-cmd/) | 게시 완료 |
-| 5. 디스크와 파일 시스템 관리 | 50 | [vol - 볼륨 레이블·일련번호 표시](/post/cmd/vol-command-display-volume-label-windows-cmd/) | 게시 완료 |
-| 5. 디스크와 파일 시스템 관리 | 51 | [subst - 경로를 가상 드라이브 문자에 연결](/post/cmd/subst-command-virtual-drive-letter-windows-cmd/) | 게시 완료 |
-| 5. 디스크와 파일 시스템 관리 | 52 | [recover - 손상 디스크에서 데이터 복구](/post/cmd/recover-command-recover-damaged-disk-windows-cmd/) | 게시 완료 |
-| 5. 디스크와 파일 시스템 관리 | 53 | [verify - 디스크 기록 검증 설정](/post/cmd/verify-command-verify-file-writes-windows-cmd/) | 게시 완료 |
-| 6. 프로세스·서비스와 권한 관리 | 54 | [tasklist - 실행 중인 프로세스 목록](/post/cmd/tasklist-command-list-running-processes-windows-cmd/) | 게시 완료 |
-| 6. 프로세스·서비스와 권한 관리 | 55 | [taskkill - 프로세스 종료](/post/cmd/taskkill-command-terminate-process-windows-cmd/) | 게시 완료 |
-| 6. 프로세스·서비스와 권한 관리 | 56 | [sc - Windows 서비스 조회·구성](/post/cmd/sc-command-manage-windows-services-cmd/) | 게시 완료 |
-| 6. 프로세스·서비스와 권한 관리 | 57 | [schtasks - 예약 작업 관리](/post/cmd/schtasks-command-scheduled-tasks-windows-cmd/) | 게시 완료 |
-| 6. 프로세스·서비스와 권한 관리 | 58 | [start - 별도 창에서 프로그램 실행](/post/cmd/start-command-run-program-new-window-windows-cmd/) | 게시 완료 |
-| 6. 프로세스·서비스와 권한 관리 | 59 | [shutdown - 로컬·원격 시스템 종료](/post/cmd/shutdown-command-restart-shutdown-windows-cmd/) | 게시 완료 |
-| 6. 프로세스·서비스와 권한 관리 | 60 | [icacls - 파일·디렉터리 ACL 관리](/post/cmd/icacls-command-file-directory-acl-windows-cmd/) | 게시 완료 |
-| 6. 프로세스·서비스와 권한 관리 | 61 | [cacls - ACL 관리(레거시, icacls 권장)](/post/cmd/cacls-command-legacy-acl-windows-cmd/) | 게시 완료 |
-| 6. 프로세스·서비스와 권한 관리 | 62 | [openfiles - 원격 사용자가 연 파일 조회](/post/cmd/openfiles-command-remote-open-files-windows-cmd/) | 게시 완료 |
-| 7. 시스템 정보와 구성 | 63 | [systeminfo - 하드웨어·OS 구성 정보](/post/cmd/systeminfo-command-hardware-os-info-windows-cmd/) | 게시 완료 |
-| 7. 시스템 정보와 구성 | 64 | [ver - Windows 버전 표시](/post/cmd/ver-command-windows-version-cmd/) | 게시 완료 |
-| 7. 시스템 정보와 구성 | 65 | [driverquery - 장치 드라이버 상태](/post/cmd/driverquery-command-device-driver-status-windows-cmd/) | 게시 완료 |
-| 7. 시스템 정보와 구성 | 66 | [gpresult - 그룹 정책 정보 표시](/post/cmd/gpresult-command-group-policy-info-windows-cmd/) | 게시 완료 |
-| 7. 시스템 정보와 구성 | 67 | [mode - 콘솔·장치 구성](/post/cmd/mode-command-configure-system-devices-windows-cmd/) | 게시 완료 |
-| 7. 시스템 정보와 구성 | 68 | [wmic - WMI 조회(레거시, PowerShell 권장)](/post/cmd/wmic-command-wmi-query-legacy-windows-cmd/) | 게시 완료 |
-| 7. 시스템 정보와 구성 | 69 | [date, time - 시스템 날짜·시간](/post/cmd/date-time-command-system-clock-windows-cmd/) | 게시 완료 |
-| 7. 시스템 정보와 구성 | 70 | [chcp - 활성 코드 페이지 설정](/post/cmd/chcp-command-active-code-page-windows-cmd/) | 게시 완료 |
-| 7. 시스템 정보와 구성 | 71 | [color - 콘솔 전경·배경색 설정](/post/cmd/color-command-console-colors-windows-cmd/) | 게시 완료 |
-| 8. 네트워크와 원격 진단 | 72 | [ipconfig - TCP/IP 네트워크 구성 확인](/post/cmd/ipconfig-command-network-configuration-windows/) | 게시 완료 |
-| 8. 네트워크와 원격 진단 | 73 | [ping - 대상 호스트 연결 확인](/post/cmd/ping-command-test-network-connectivity-windows-cmd/) | 게시 완료 |
-| 8. 네트워크와 원격 진단 | 74 | [tracert - 패킷 경로 추적](/post/cmd/tracert-command-trace-route-windows-cmd/) | 게시 완료 |
-| 8. 네트워크와 원격 진단 | 75 | [netstat - 연결·라우팅 통계 표시](/post/cmd/netstat-command-network-connections-windows-cmd/) | 게시 완료 |
-| 8. 네트워크와 원격 진단 | 76 | [nslookup - DNS 질의](/post/cmd/nslookup-command-dns-query-windows-cmd/) | 게시 완료 |
-| 8. 네트워크와 원격 진단 | 77 | [getmac - 네트워크 어댑터 MAC 주소 표시](/post/cmd/getmac-command-mac-address-windows-cmd/) | 게시 완료 |
-| 8. 네트워크와 원격 진단 | 78 | [net user - 로컬·도메인 사용자 계정 관리](/post/cmd/net-user-command-manage-user-accounts-windows-cmd/) | 게시 완료 |
-| 9. 부팅 구성과 기타 유틸리티 | 79 | [bcdboot - 시동 구성 데이터 복사](/post/cmd/bcdboot-command-boot-configuration-data-windows-cmd/) | 게시 완료 |
-| 9. 부팅 구성과 기타 유틸리티 | 80 | [bcdedit - 부팅 구성 데이터 편집](/post/cmd/bcdedit-command-boot-configuration-editor-windows-cmd/) | 게시 완료 |
-| 9. 부팅 구성과 기타 유틸리티 | 81 | [assoc - 파일 확장명 연결 표시·수정](/post/cmd/assoc-command-file-extension-association-windows-cmd/) | 게시 완료 |
-| 9. 부팅 구성과 기타 유틸리티 | 82 | [ftype - 파일 형식 실행 명령 표시·수정](/post/cmd/ftype-command-file-type-open-command-windows-cmd/) | 게시 완료 |
-| 9. 부팅 구성과 기타 유틸리티 | 83 | [graftabl - 그래픽 모드 확장 문자 세트](/post/cmd/graftabl-command-extended-character-set-windows-cmd/) | 게시 완료 |
-| 9. 부팅 구성과 기타 유틸리티 | 84 | [print - 텍스트 파일 인쇄](/post/cmd/print-command-send-file-printer-windows-cmd/) | 게시 완료 |
+| Part | 챕터 | 제목 |
+|---|---|---|
+| 0. 개요 | 00 | 과정 개요와 커리큘럼 |
+| 1. CMD 기초와 탐색 | 01 | [cmd - 새 인스턴스 시작과 내부·외부 명령어](/post/cmd/cmd-command-interpreter-new-instance-windows/) |
+| 1. CMD 기초와 탐색 | 02 | [help - 명령어 도움말 조회](/post/cmd/help-command-list-command-help-windows-cmd/) |
+| 1. CMD 기초와 탐색 | 03 | [cls - 화면 지우기](/post/cmd/cls-command-clear-screen-windows-cmd/) |
+| 1. CMD 기초와 탐색 | 04 | [prompt - 프롬프트 표시 형식 변경](/post/cmd/prompt-command-customize-command-line-windows/) |
+| 1. CMD 기초와 탐색 | 05 | [title - 콘솔 창 제목 설정](/post/cmd/title-command-set-console-window-title-windows/) |
+| 1. CMD 기초와 탐색 | 06 | [doskey - 명령줄 편집과 매크로](/post/cmd/doskey-command-line-editing-macros-history-windows/) |
+| 1. CMD 기초와 탐색 | 07 | [path - 실행 파일 검색 경로](/post/cmd/path-command-executable-search-path-windows/) |
+| 1. CMD 기초와 탐색 | 08 | [cd, chdir - 디렉터리 이동과 현재 위치](/post/cmd/cd-chdir-command-change-directory-windows-cmd/) |
+| 1. CMD 기초와 탐색 | 09 | [dir - 파일·디렉터리 목록 조회](/post/cmd/dir-command-list-files-directories-windows-cmd/) |
+| 1. CMD 기초와 탐색 | 10 | [tree - 디렉터리 구조 트리 표시](/post/cmd/tree-command-directory-structure-windows-cmd/) |
+| 1. CMD 기초와 탐색 | 11 | [pushd, popd - 디렉터리 스택](/post/cmd/pushd-popd-command-directory-stack-windows-cmd/) |
+| 2. 파일과 디렉터리 조작 | 12 | [md, mkdir - 디렉터리 생성](/post/cmd/md-mkdir-command-create-directory-windows-cmd/) |
+| 2. 파일과 디렉터리 조작 | 13 | [rmdir, rd - 디렉터리 삭제](/post/cmd/rmdir-rd-command-remove-directory-windows-cmd/) |
+| 2. 파일과 디렉터리 조작 | 14 | [copy - 파일 복사](/post/cmd/copy-command-copy-files-windows-cmd/) |
+| 2. 파일과 디렉터리 조작 | 15 | [xcopy - 디렉터리 트리 복사](/post/cmd/xcopy-command-copy-directory-tree-windows-cmd/) |
+| 2. 파일과 디렉터리 조작 | 16 | [robocopy - 재시도·미러링 지원 고급 복사](/post/cmd/robocopy-command-mirror-copy-files-windows/) |
+| 2. 파일과 디렉터리 조작 | 17 | [move - 파일·디렉터리 이동](/post/cmd/move-command-move-files-directories-windows-cmd/) |
+| 2. 파일과 디렉터리 조작 | 18 | [del, erase - 파일 삭제](/post/cmd/del-erase-command-delete-files-windows-cmd/) |
+| 2. 파일과 디렉터리 조작 | 19 | [ren, rename - 이름 변경](/post/cmd/ren-rename-command-rename-files-windows-cmd/) |
+| 2. 파일과 디렉터리 조작 | 20 | [type - 텍스트 파일 내용 출력](/post/cmd/type-command-display-file-contents-windows-cmd/) |
+| 2. 파일과 디렉터리 조작 | 21 | [attrib - 파일 속성 표시·변경](/post/cmd/attrib-command-file-attributes-windows-cmd/) |
+| 2. 파일과 디렉터리 조작 | 22 | [comp - 파일 바이트 단위 비교](/post/cmd/comp-command-compare-files-byte-windows-cmd/) |
+| 2. 파일과 디렉터리 조작 | 23 | [fc - 파일 줄 단위 차이 비교](/post/cmd/fc-command-compare-files-differences-windows-cmd/) |
+| 2. 파일과 디렉터리 조작 | 24 | [mklink - 심볼릭 링크·하드 링크 생성](/post/cmd/mklink-command-symbolic-hard-links-windows-cmd/) |
+| 2. 파일과 디렉터리 조작 | 25 | [replace - 대상 파일을 원본으로 교체](/post/cmd/replace-command-replace-files-windows-cmd/) |
+| 3. 텍스트 검색과 출력 제어 | 26 | [find - 파일·출력 문자열 검색](/post/cmd/find-command-search-text-string-windows-cmd/) |
+| 3. 텍스트 검색과 출력 제어 | 27 | [findstr - 정규식 지원 문자열 검색](/post/cmd/findstr-command-regex-search-windows-cmd/) |
+| 3. 텍스트 검색과 출력 제어 | 28 | [sort - 텍스트 입력 정렬](/post/cmd/sort-command-sort-text-lines-windows-cmd/) |
+| 3. 텍스트 검색과 출력 제어 | 29 | [more - 출력을 화면 단위로 표시](/post/cmd/more-command-page-output-windows-cmd/) |
+| 4. 배치 스크립팅 | 30 | [echo - 메시지 출력과 에코 설정](/post/cmd/echo-command-display-message-windows-cmd/) |
+| 4. 배치 스크립팅 | 31 | [set - 환경 변수 표시·설정·제거](/post/cmd/set-command-environment-variables-windows-cmd/) |
+| 4. 배치 스크립팅 | 32 | [if - 조건 분기](/post/cmd/if-command-conditional-batch-windows-cmd/) |
+| 4. 배치 스크립팅 | 33 | [for - 파일 집합·범위 반복](/post/cmd/for-command-loop-batch-windows-cmd/) |
+| 4. 배치 스크립팅 | 34 | [call - 배치 파일·레이블 호출](/post/cmd/call-command-batch-subroutine-windows-cmd/) |
+| 4. 배치 스크립팅 | 35 | [goto - 레이블로 실행 흐름 이동](/post/cmd/goto-command-batch-label-jump-windows-cmd/) |
+| 4. 배치 스크립팅 | 36 | [shift - 배치 매개변수 위치 이동](/post/cmd/shift-command-batch-parameters-windows-cmd/) |
+| 4. 배치 스크립팅 | 37 | [pause - 처리 일시 중단](/post/cmd/pause-command-suspend-batch-windows-cmd/) |
+| 4. 배치 스크립팅 | 38 | [exit - 세션·배치 스크립트 종료](/post/cmd/exit-command-terminate-cmd-windows/) |
+| 4. 배치 스크립팅 | 39 | [rem - 배치 파일 주석](/post/cmd/rem-command-batch-comments-windows-cmd/) |
+| 4. 배치 스크립팅 | 40 | [setlocal, endlocal - 환경 변수 유효 범위](/post/cmd/setlocal-endlocal-command-variable-scope-windows-cmd/) |
+| 4. 배치 스크립팅 | 41 | [break - 확장된 Ctrl+C 검사 설정](/post/cmd/break-command-extended-ctrl-c-windows-cmd/) |
+| 5. 디스크와 파일 시스템 관리 | 42 | [chkdsk - 디스크 오류 검사](/post/cmd/chkdsk-command-check-disk-errors-windows-cmd/) |
+| 5. 디스크와 파일 시스템 관리 | 43 | [chkntfs - 부팅 시 디스크 검사 설정](/post/cmd/chkntfs-command-disk-check-boot-windows-cmd/) |
+| 5. 디스크와 파일 시스템 관리 | 44 | [diskpart - 대화형 파티션 관리](/post/cmd/diskpart-command-manage-partitions-windows-cmd/) |
+| 5. 디스크와 파일 시스템 관리 | 45 | [format - 드라이브 포맷](/post/cmd/format-command-format-disk-windows-cmd/) |
+| 5. 디스크와 파일 시스템 관리 | 46 | [convert - FAT 볼륨을 NTFS로 변환](/post/cmd/convert-command-fat-to-ntfs-windows-cmd/) |
+| 5. 디스크와 파일 시스템 관리 | 47 | [compact - NTFS 압축 상태 표시·변경](/post/cmd/compact-command-ntfs-compression-windows-cmd/) |
+| 5. 디스크와 파일 시스템 관리 | 48 | [fsutil - 파일 시스템 저수준 조회·구성](/post/cmd/fsutil-command-file-system-utility-windows-cmd/) |
+| 5. 디스크와 파일 시스템 관리 | 49 | [label - 볼륨 레이블 관리](/post/cmd/label-command-volume-label-windows-cmd/) |
+| 5. 디스크와 파일 시스템 관리 | 50 | [vol - 볼륨 레이블·일련번호 표시](/post/cmd/vol-command-display-volume-label-windows-cmd/) |
+| 5. 디스크와 파일 시스템 관리 | 51 | [subst - 경로를 가상 드라이브 문자에 연결](/post/cmd/subst-command-virtual-drive-letter-windows-cmd/) |
+| 5. 디스크와 파일 시스템 관리 | 52 | [recover - 손상 디스크에서 데이터 복구](/post/cmd/recover-command-recover-damaged-disk-windows-cmd/) |
+| 5. 디스크와 파일 시스템 관리 | 53 | [verify - 디스크 기록 검증 설정](/post/cmd/verify-command-verify-file-writes-windows-cmd/) |
+| 6. 프로세스·서비스와 권한 관리 | 54 | [tasklist - 실행 중인 프로세스 목록](/post/cmd/tasklist-command-list-running-processes-windows-cmd/) |
+| 6. 프로세스·서비스와 권한 관리 | 55 | [taskkill - 프로세스 종료](/post/cmd/taskkill-command-terminate-process-windows-cmd/) |
+| 6. 프로세스·서비스와 권한 관리 | 56 | [sc - Windows 서비스 조회·구성](/post/cmd/sc-command-manage-windows-services-cmd/) |
+| 6. 프로세스·서비스와 권한 관리 | 57 | [schtasks - 예약 작업 관리](/post/cmd/schtasks-command-scheduled-tasks-windows-cmd/) |
+| 6. 프로세스·서비스와 권한 관리 | 58 | [start - 별도 창에서 프로그램 실행](/post/cmd/start-command-run-program-new-window-windows-cmd/) |
+| 6. 프로세스·서비스와 권한 관리 | 59 | [shutdown - 로컬·원격 시스템 종료](/post/cmd/shutdown-command-restart-shutdown-windows-cmd/) |
+| 6. 프로세스·서비스와 권한 관리 | 60 | [icacls - 파일·디렉터리 ACL 관리](/post/cmd/icacls-command-file-directory-acl-windows-cmd/) |
+| 6. 프로세스·서비스와 권한 관리 | 61 | [cacls - ACL 관리(레거시, icacls 권장)](/post/cmd/cacls-command-legacy-acl-windows-cmd/) |
+| 6. 프로세스·서비스와 권한 관리 | 62 | [openfiles - 원격 사용자가 연 파일 조회](/post/cmd/openfiles-command-remote-open-files-windows-cmd/) |
+| 7. 시스템 정보와 구성 | 63 | [systeminfo - 하드웨어·OS 구성 정보](/post/cmd/systeminfo-command-hardware-os-info-windows-cmd/) |
+| 7. 시스템 정보와 구성 | 64 | [ver - Windows 버전 표시](/post/cmd/ver-command-windows-version-cmd/) |
+| 7. 시스템 정보와 구성 | 65 | [driverquery - 장치 드라이버 상태](/post/cmd/driverquery-command-device-driver-status-windows-cmd/) |
+| 7. 시스템 정보와 구성 | 66 | [gpresult - 그룹 정책 정보 표시](/post/cmd/gpresult-command-group-policy-info-windows-cmd/) |
+| 7. 시스템 정보와 구성 | 67 | [mode - 콘솔·장치 구성](/post/cmd/mode-command-configure-system-devices-windows-cmd/) |
+| 7. 시스템 정보와 구성 | 68 | [wmic - WMI 조회(레거시, PowerShell 권장)](/post/cmd/wmic-command-wmi-query-legacy-windows-cmd/) |
+| 7. 시스템 정보와 구성 | 69 | [date, time - 시스템 날짜·시간](/post/cmd/date-time-command-system-clock-windows-cmd/) |
+| 7. 시스템 정보와 구성 | 70 | [chcp - 활성 코드 페이지 설정](/post/cmd/chcp-command-active-code-page-windows-cmd/) |
+| 7. 시스템 정보와 구성 | 71 | [color - 콘솔 전경·배경색 설정](/post/cmd/color-command-console-colors-windows-cmd/) |
+| 8. 네트워크와 원격 진단 | 72 | [ipconfig - TCP/IP 네트워크 구성 확인](/post/cmd/ipconfig-command-network-configuration-windows/) |
+| 8. 네트워크와 원격 진단 | 73 | [ping - 대상 호스트 연결 확인](/post/cmd/ping-command-test-network-connectivity-windows-cmd/) |
+| 8. 네트워크와 원격 진단 | 74 | [tracert - 패킷 경로 추적](/post/cmd/tracert-command-trace-route-windows-cmd/) |
+| 8. 네트워크와 원격 진단 | 75 | [netstat - 연결·라우팅 통계 표시](/post/cmd/netstat-command-network-connections-windows-cmd/) |
+| 8. 네트워크와 원격 진단 | 76 | [nslookup - DNS 질의](/post/cmd/nslookup-command-dns-query-windows-cmd/) |
+| 8. 네트워크와 원격 진단 | 77 | [getmac - 네트워크 어댑터 MAC 주소 표시](/post/cmd/getmac-command-mac-address-windows-cmd/) |
+| 8. 네트워크와 원격 진단 | 78 | [net user - 로컬·도메인 사용자 계정 관리](/post/cmd/net-user-command-manage-user-accounts-windows-cmd/) |
+| 9. 부팅 구성과 기타 유틸리티 | 79 | [bcdboot - 시동 구성 데이터 복사](/post/cmd/bcdboot-command-boot-configuration-data-windows-cmd/) |
+| 9. 부팅 구성과 기타 유틸리티 | 80 | [bcdedit - 부팅 구성 데이터 편집](/post/cmd/bcdedit-command-boot-configuration-editor-windows-cmd/) |
+| 9. 부팅 구성과 기타 유틸리티 | 81 | [assoc - 파일 확장명 연결 표시·수정](/post/cmd/assoc-command-file-extension-association-windows-cmd/) |
+| 9. 부팅 구성과 기타 유틸리티 | 82 | [ftype - 파일 형식 실행 명령 표시·수정](/post/cmd/ftype-command-file-type-open-command-windows-cmd/) |
+| 9. 부팅 구성과 기타 유틸리티 | 83 | [graftabl - 그래픽 모드 확장 문자 세트](/post/cmd/graftabl-command-extended-character-set-windows-cmd/) |
+| 9. 부팅 구성과 기타 유틸리티 | 84 | [print - 텍스트 파일 인쇄](/post/cmd/print-command-send-file-printer-windows-cmd/) |
 
 번호 시퀀스 밖에서 카테고리별로 명령어를 빠르게 찾고 싶다면 [명령어 종류 총정리](/post/cmd/command-categories/)를 부록처럼 활용할 수 있다.
 
