@@ -6,3 +6,5 @@ description: "Windows 명령 프롬프트(CMD)의 핵심 명령어들을 정리�
 featured_image: "/images/home-banner.jpg"
 slug: cmd
 ---
+
+전체 소개는 [00장: 과정 개요와 커리큘럼](/post/cmd/getting-started-cmd/) 참고.
