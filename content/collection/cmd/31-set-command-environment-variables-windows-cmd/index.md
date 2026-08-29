@@ -19,7 +19,7 @@ tags:
 - How-To
 - Tips
 - Beginner
-- set
+- Set
 - 환경변수
 - Environment
 - Batch

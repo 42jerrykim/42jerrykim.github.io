@@ -19,8 +19,8 @@ tags:
 - How-To
 - Tips
 - Beginner
-- path
 - PATH
+- Operating-System(운영체제)
 - 환경변수
 - Environment
 - Automation(자동화)
