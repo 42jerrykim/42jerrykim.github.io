@@ -11,6 +11,6 @@
 |------|------|------|--------|------|
 | /post/2024-10-15-crlf/ 제목·description 재작성 (검색 의도 "crlf lf 차이"에 직접 답하는 형태로) | 기존 글 개선 | 후보 | 2026-08-04 | 노출 1,616(사이트 1위)에 클릭 14, CTR 0.9% — 순위는 있는데 클릭이 안 됨. 쿼리 "crlf lf 차이" 208노출·"lf crlf 차이" 61노출 |
 | 충돌 감지 심화: sweep and prune, 공간 분할(BVH·grid) 각론 | 신규 글 | 후보 | 2026-08-04 | collision-detection 글이 사이트 클릭 1위(83). 쿼리 "sweep and prune"(13노출)·"collision detection"(42노출)이 개론 글 하나로 유입 — 각론 수요 흡수 여지 |
-| JAX 실전 시리즈 또는 후속 글 (JAX 입문·JIT/vmap·PyTorch 마이그레이션) | 신규 글 | 후보 | 2026-08-04 | jax 관련 쿼리 3종(jax vs pytorch 164노출, jax pytorch 33, pytorch jax 13) 합산 클릭 45 — 사이트 최상위 유입 주제인데 관련 글이 비교 글 1편뿐 |
+| JAX 실전 시리즈 또는 후속 글 (JAX 입문·JIT/vmap·PyTorch 마이그레이션) | 신규 글 | 게시 | 2026-08-04 | jax 관련 쿼리 3종(jax vs pytorch 164노출, jax pytorch 33, pytorch jax 13) 합산 클릭 45 — 사이트 최상위 유입 주제인데 관련 글이 비교 글 1편뿐. 2026-08-31: JAX 실전 가이드 8챕터 시리즈로 게시됨(PR #116) |
 | 트랜잭션 격리 수준(isolation level) 정리 글 | 신규 글 | 후보 | 2026-08-04 | 쿼리 "고립성의"(16노출)가 database 글로 유입 — ACID 격리성 검색 의도를 전용 글로 받을 여지 |
 | dlopen/동적 로딩 글 현대화 (2023 글 보강: 예제 최신화, description 개선) | 기존 글 개선 | 후보 | 2026-08-04 | 쿼리 "dlopen" 107노출에 클릭 2(CTR 1.9%), dynamic-loading-in-cpp 글 노출 629에 CTR 2.7% — 유입은 꾸준한데 클릭 전환 약함. utterances 댓글도 이 글에 2건(사이트 최다) |

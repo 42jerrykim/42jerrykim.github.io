@@ -15,6 +15,7 @@
 | 2026-08-10 | utterances(gh api) | — | 야간 자율 실행(스케줄 태스크), 대화형 세션 아님. GSC·GA4는 API 자격 미설정 + Chrome 확장 미연결(`list_connected_browsers` 결과 빈 배열) — **미수집**. utterances는 `gh api`로 조회, 이슈 4건 모두 지난 스냅샷(2026-08-04)과 댓글·반응 수 동일 — 신규 변동 없음. 아래 GSC·GA4 표는 갱신할 데이터가 없어 유지, 백로그도 근거 변동 없어 갱신 없음 |
 | 2026-08-17 | utterances(gh api) | — | 야간 자율 실행(스케줄 태스크), 대화형 세션 아님. GSC·GA4는 API 자격 여전히 미설정(`~/.config/gcp/` 없음) + Chrome 확장 미연결(`list_connected_browsers` 결과 빈 배열) — **미수집**. utterances는 `gh api`로 조회, 이슈 4건 모두 지난 스냅샷(2026-08-10)과 댓글·반응 수 동일 — 신규 변동 없음. 아래 GSC·GA4 표는 갱신할 데이터가 없어 유지, 백로그도 근거 변동 없어 갱신 없음 |
 | 2026-08-24 | utterances(gh api) | — | 야간 자율 실행(스케줄 태스크), 대화형 세션 아님. GSC·GA4는 API 자격 여전히 미설정(`~/.config/gcp/` 없음) + Chrome 확장 미연결(`list_connected_browsers` 결과 빈 배열) — **미수집**. utterances는 `gh api`로 조회, 이슈 4건 모두 지난 스냅샷(2026-08-17)과 댓글·반응 수 동일 — 신규 변동 없음. 아래 GSC·GA4 표는 갱신할 데이터가 없어 유지, 백로그도 근거 변동 없어 갱신 없음 |
+| 2026-08-31 | utterances(gh api) | — | 야간 자율 실행(스케줄 태스크), 대화형 세션 아님. GSC·GA4는 API 자격 여전히 미설정(`~/.config/gcp/` 없음) + Chrome 확장 미연결(`list_connected_browsers` 결과 빈 배열) — **미수집**. utterances는 `gh api`로 조회, 이슈 4건 모두 지난 스냅샷(2026-08-24)과 댓글·반응 수 동일 — 신규 변동 없음. 아래 GSC·GA4 표는 갱신할 데이터가 없어 유지. 백로그는 JAX 시리즈(PR #116, 8챕터)가 이번 주 게시되어 해당 후보 항목 상태를 `게시`로 갱신 |
 
 ## 검색 성과 — 상위 페이지 (GSC, 최근 3개월)
 
