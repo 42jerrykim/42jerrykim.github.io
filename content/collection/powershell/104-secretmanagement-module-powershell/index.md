@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 104
 slug: secretmanagement-module-powershell
 title: "[PowerShell] 104. Microsoft.PowerShell.SecretManagement"

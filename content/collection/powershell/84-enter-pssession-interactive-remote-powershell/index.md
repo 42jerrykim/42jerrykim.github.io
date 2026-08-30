@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 84
 slug: enter-pssession-interactive-remote-powershell
 title: "[PowerShell] 84. Enter-PSSession — 대화형 원격 세션"

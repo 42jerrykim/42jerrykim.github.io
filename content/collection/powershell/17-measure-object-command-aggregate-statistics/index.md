@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 17
 slug: measure-object-command-aggregate-statistics-powershell
 title: "[PowerShell] 17. Measure-Object — 집계·통계"

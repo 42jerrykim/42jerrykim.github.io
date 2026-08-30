@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 110
 slug: test-netconnection-port-diagnostic-powershell
 title: "[PowerShell] 110. Test-NetConnection — 포트·경로 진단"

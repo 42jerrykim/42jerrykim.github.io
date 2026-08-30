@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 99
 slug: get-hotfix-installed-update-powershell
 title: "[PowerShell] 99. Get-HotFix — 설치된 업데이트 조회"

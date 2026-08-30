@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 55
 slug: switch-wildcard-regex-file-powershell
 title: "[PowerShell] 55. switch 고급 모드 — 와일드카드/정규식/파일 처리"

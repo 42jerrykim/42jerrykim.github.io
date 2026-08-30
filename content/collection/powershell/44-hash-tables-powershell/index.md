@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 44
 slug: hash-tables-powershell
 title: "[PowerShell] 44. 해시테이블(Hashtable) 다루기"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 10
 slug: powershell-pipeline-object-model-not-text
 title: "[PowerShell] 10. 파이프라인 정신 모델 — 텍스트가 아닌 객체"

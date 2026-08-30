@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 65
 slug: try-catch-finally-exception-powershell
 title: "[PowerShell] 65. try/catch/finally — 예외 처리"

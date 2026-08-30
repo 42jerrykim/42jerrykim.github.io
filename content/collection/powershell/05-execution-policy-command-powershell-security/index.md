@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 5
 slug: execution-policy-command-powershell-security
 title: "[PowerShell] 05. 실행 정책 — Get/Set-ExecutionPolicy"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 78
 slug: start-job-get-job-receive-job-powershell
 title: "[PowerShell] 78. Start-Job/Get-Job/Receive-Job — 백그라운드 작업"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 15
 slug: foreach-object-command-pipeline-loop-powershell
 title: "[PowerShell] 15. ForEach-Object — 파이프라인 반복 처리"

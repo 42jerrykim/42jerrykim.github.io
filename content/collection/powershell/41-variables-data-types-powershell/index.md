@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 41
 slug: variables-data-types-powershell
 title: "[PowerShell] 41. 변수와 데이터 타입"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 19
 slug: compare-object-command-diff-powershell
 title: "[PowerShell] 19. Compare-Object — 객체 비교(diff)"

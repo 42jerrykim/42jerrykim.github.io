@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 93
 slug: get-winevent-get-eventlog-powershell
 title: "[PowerShell] 93. Get-WinEvent/Get-EventLog — 이벤트 로그 조회"

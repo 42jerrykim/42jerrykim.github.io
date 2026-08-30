@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 54
 slug: if-elseif-switch-condition-powershell
 title: "[PowerShell] 54. if/elseif/else — 조건 분기"

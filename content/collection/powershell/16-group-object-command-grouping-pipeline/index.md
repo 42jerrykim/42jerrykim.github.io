@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 16
 slug: group-object-command-grouping-powershell
 title: "[PowerShell] 16. Group-Object — 그룹화"

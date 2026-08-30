@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 28
 slug: add-member-command-custom-object-properties-powershell
 title: "[PowerShell] 28. Add-Member — 커스텀 객체에 속성·메서드 추가"

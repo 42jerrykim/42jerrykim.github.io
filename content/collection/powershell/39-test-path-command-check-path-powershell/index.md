@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 39
 slug: test-path-command-check-path-powershell
 title: "[PowerShell] 39. Test-Path — 경로 존재 확인"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 116
 slug: new-aduser-set-aduser-powershell
 title: "[PowerShell] 116. New-ADUser/Set-ADUser — 계정 생성·수정"

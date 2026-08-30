@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 34
 slug: copy-item-command-copy-file-powershell
 title: "[PowerShell] 34. Copy-Item — 복사"

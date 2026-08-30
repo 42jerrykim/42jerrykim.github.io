@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 96
 slug: storage-module-disk-partition-volume-powershell
 title: "[PowerShell] 96. Storage 모듈 — Get-Disk/Get-Partition/Get-Volume"

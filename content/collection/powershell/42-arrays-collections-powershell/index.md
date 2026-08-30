@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 42
 slug: arrays-collections-powershell
 title: "[PowerShell] 42. 배열과 컬렉션 기초"

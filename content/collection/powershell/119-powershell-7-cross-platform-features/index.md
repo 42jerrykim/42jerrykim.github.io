@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 119
 slug: powershell-7-cross-platform-features
 title: "[PowerShell] 119. PowerShell 7의 크로스플랫폼 특징과 새 기능"

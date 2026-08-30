@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 2
 slug: get-help-command-powershell-help-system
 title: "[PowerShell] 02. Get-Help — 도움말 조회와 Update-Help"

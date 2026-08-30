@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 57
 slug: function-parameter-definition-powershell
 title: "[PowerShell] 57. 함수 정의와 매개변수"

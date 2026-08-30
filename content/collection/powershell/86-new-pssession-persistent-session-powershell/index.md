@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 86
 slug: new-pssession-persistent-session-powershell
 title: "[PowerShell] 86. New-PSSession — 지속 세션 관리"

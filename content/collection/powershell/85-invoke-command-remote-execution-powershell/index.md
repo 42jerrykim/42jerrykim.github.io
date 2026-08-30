@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 85
 slug: invoke-command-remote-execution-powershell
 title: "[PowerShell] 85. Invoke-Command — 원격 명령 실행"

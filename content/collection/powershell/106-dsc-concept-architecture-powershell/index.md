@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 106
 slug: dsc-concept-architecture-powershell
 title: "[PowerShell] 106. DSC 개념과 아키텍처"

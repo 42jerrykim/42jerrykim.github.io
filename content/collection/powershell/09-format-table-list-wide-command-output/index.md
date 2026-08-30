@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 9
 slug: format-table-list-wide-command-output
 title: "[PowerShell] 09. Format-Table/List/Wide — 출력 형식 제어"

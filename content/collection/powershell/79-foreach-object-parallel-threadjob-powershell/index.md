@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 79
 slug: foreach-object-parallel-threadjob-powershell
 title: "[PowerShell] 79. ForEach-Object -Parallel(PowerShell 7+)"

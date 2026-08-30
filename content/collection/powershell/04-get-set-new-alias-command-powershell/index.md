@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 4
 slug: get-set-new-alias-command-powershell
 title: "[PowerShell] 04. Get-Alias/Set-Alias/New-Alias — 별칭 시스템"

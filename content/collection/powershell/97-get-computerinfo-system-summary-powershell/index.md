@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 97
 slug: get-computerinfo-system-summary-powershell
 title: "[PowerShell] 97. Get-ComputerInfo — 시스템 정보 종합 조회"

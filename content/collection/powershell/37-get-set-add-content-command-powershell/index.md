@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 37
 slug: get-set-add-content-command-powershell
 title: "[PowerShell] 37. Get-Content/Set-Content/Add-Content"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 111
 slug: resolve-dnsname-dns-query-powershell
 title: "[PowerShell] 111. Resolve-DnsName — DNS 질의"

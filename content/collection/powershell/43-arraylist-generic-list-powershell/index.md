@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 43
 slug: arraylist-generic-list-powershell
 title: "[PowerShell] 43. ArrayList와 Generic List(List&lt;T&gt;)"

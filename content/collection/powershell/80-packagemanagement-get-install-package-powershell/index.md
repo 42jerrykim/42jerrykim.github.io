@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 80
 slug: packagemanagement-get-install-package-powershell
 title: "[PowerShell] 80. PackageManagement — Get-Package/Install-Package"

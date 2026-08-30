@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 61
 slug: pipeline-input-parameter-powershell
 title: "[PowerShell] 61. 파이프라인 입력 매개변수(ValueFromPipeline 등)"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 120
 slug: powershell-ise-to-vscode-transition
 title: "[PowerShell] 120. PowerShell ISE에서 VS Code로 — 개발 환경 전환"

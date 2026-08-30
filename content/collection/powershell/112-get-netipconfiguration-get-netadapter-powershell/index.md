@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 112
 slug: get-netipconfiguration-get-netadapter-powershell
 title: "[PowerShell] 112. Get-NetIPConfiguration/Get-NetAdapter"

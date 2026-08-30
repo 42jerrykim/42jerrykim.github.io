@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 103
 slug: constrained-language-mode-execution-policy-powershell
 title: "[PowerShell] 103. Constrained Language Mode와 실행 정책 심화"

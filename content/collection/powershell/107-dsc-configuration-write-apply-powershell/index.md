@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 107
 slug: dsc-configuration-write-apply-powershell
 title: "[PowerShell] 107. DSC 구성(Configuration) 작성과 적용"

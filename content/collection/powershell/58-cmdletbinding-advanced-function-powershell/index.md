@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 58
 slug: cmdletbinding-advanced-function-powershell
 title: "[PowerShell] 58. [CmdletBinding()]과 고급 함수"

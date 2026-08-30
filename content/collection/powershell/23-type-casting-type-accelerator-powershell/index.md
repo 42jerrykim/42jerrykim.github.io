@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 23
 slug: type-casting-type-accelerator-powershell
 title: "[PowerShell] 23. 타입 캐스팅과 [type] 접근자"

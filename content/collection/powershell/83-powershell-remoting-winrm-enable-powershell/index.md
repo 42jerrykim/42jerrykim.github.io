@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 83
 slug: powershell-remoting-winrm-enable-powershell
 title: "[PowerShell] 83. PowerShell Remoting 개념과 WinRM 활성화"

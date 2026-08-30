@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 0
 slug: getting-started-powershell
 title: "[PowerShell] 00. 과정 개요와 커리큘럼"

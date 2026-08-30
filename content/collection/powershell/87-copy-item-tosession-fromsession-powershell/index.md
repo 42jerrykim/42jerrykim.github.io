@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 87
 slug: copy-item-tosession-fromsession-powershell
 title: "[PowerShell] 87. Copy-Item -ToSession/-FromSession — 원격 파일 전송"

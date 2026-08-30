@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 12
 slug: where-object-command-filter-pipeline-powershell
 title: "[PowerShell] 12. Where-Object — 필터링"

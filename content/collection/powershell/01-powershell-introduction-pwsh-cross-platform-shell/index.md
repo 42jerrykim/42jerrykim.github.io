@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 1
 slug: powershell-pwsh-introduction-cross-platform-shell
 title: "[PowerShell] 01. PowerShell 소개 — pwsh와 Windows PowerShell"

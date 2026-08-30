@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 94
 slug: get-ciminstance-get-wmiobject-powershell
 title: "[PowerShell] 94. Get-CimInstance/Get-WmiObject — CIM/WMI 조회"

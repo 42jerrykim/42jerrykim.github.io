@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 108
 slug: dsc-resource-lcm-powershell
 title: "[PowerShell] 108. DSC 리소스와 로컬 구성 관리자(LCM)"

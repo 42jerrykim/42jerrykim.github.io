@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 60
 slug: splatting-parameter-powershell
 title: "[PowerShell] 60. 매개변수 스플래팅(Splatting)"

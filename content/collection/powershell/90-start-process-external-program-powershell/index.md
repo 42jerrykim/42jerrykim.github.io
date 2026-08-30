@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 90
 slug: start-process-external-program-powershell
 title: "[PowerShell] 90. Start-Process — 외부 프로그램 실행"

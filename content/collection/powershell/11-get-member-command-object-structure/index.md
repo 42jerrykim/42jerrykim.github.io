@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 11
 slug: get-member-command-object-structure-powershell
 title: "[PowerShell] 11. Get-Member — 객체 구조 탐색"

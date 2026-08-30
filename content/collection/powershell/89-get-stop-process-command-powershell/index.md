@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 89
 slug: get-stop-process-command-powershell
 title: "[PowerShell] 89. Get-Process/Stop-Process — 프로세스 관리"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 31
 slug: get-childitem-command-file-directory-list-powershell
 title: "[PowerShell] 31. Get-ChildItem — 파일·디렉터리 목록"

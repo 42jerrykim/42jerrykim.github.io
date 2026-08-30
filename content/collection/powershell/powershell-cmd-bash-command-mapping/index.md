@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 121
 slug: powershell-cmd-bash-command-mapping
 title: "[PowerShell] 부록. PowerShell ↔ CMD/Bash 명령어 대응표"

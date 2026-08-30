@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 64
 slug: requires-directive-metadata-powershell
 title: "[PowerShell] 64. #Requires 지시문과 스크립트 메타데이터"

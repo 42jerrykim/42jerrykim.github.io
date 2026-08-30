@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 98
 slug: env-drive-environment-variable-powershell
 title: "[PowerShell] 98. Env: 드라이브와 환경 변수 관리"

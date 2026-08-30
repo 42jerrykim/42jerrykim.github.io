@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 73
 slug: measure-command-benchmark-powershell
 title: "[PowerShell] 73. Measure-Command — 성능 측정과 벤치마킹"

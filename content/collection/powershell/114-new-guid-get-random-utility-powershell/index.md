@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 114
 slug: new-guid-get-random-utility-powershell
 title: "[PowerShell] 114. New-Guid/Get-Random — 유틸리티 모음"

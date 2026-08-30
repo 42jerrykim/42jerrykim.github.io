@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 118
 slug: get-gpo-grouppolicy-module-powershell
 title: "[PowerShell] 118. Get-GPO — 그룹 정책 조회(GroupPolicy 모듈)"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 29
 slug: write-host-vs-write-output-streams-powershell
 title: "[PowerShell] 29. Write-Host vs Write-Output — 출력 스트림 오개념 정리"

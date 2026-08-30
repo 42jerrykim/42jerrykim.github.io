@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 14
 slug: sort-object-command-sort-pipeline-powershell
 title: "[PowerShell] 14. Sort-Object — 정렬"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 6
 slug: profile-variable-powershell-startup-script
 title: "[PowerShell] 06. $PROFILE — 프로파일 스크립트"

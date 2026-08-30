@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 49
 slug: import-export-csv-command-powershell
 title: "[PowerShell] 49. Import-Csv/Export-Csv/ConvertTo-Csv"

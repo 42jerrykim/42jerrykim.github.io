@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 59
 slug: parameter-validation-attributes-powershell
 title: "[PowerShell] 59. 매개변수 검증(Validate 속성군)"

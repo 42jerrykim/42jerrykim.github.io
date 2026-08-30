@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 26
 slug: whatif-confirm-shouldprocess-powershell
 title: "[PowerShell] 26. -WhatIf/-Confirm과 ShouldProcess"

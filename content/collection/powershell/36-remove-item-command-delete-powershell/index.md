@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 36
 slug: remove-item-command-delete-powershell
 title: "[PowerShell] 36. Remove-Item — 삭제"

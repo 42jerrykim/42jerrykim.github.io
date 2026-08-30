@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 25
 slug: common-parameters-verbose-debug-erroraction-powershell
 title: "[PowerShell] 25. 공통 매개변수 — -Verbose/-Debug/-ErrorAction/-OutVariable"

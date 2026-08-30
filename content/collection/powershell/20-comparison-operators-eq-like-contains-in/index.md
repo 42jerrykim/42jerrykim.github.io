@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 20
 slug: comparison-operators-eq-like-contains-in-powershell
 title: "[PowerShell] 20. 비교 연산자 — -eq/-like/-contains/-in"

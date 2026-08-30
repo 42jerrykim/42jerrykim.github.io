@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 100
 slug: get-credential-pscredential-object-powershell
 title: "[PowerShell] 100. Get-Credential과 PSCredential 객체"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 38
 slug: get-set-itemproperty-command-powershell
 title: "[PowerShell] 38. Get-ItemProperty/Set-ItemProperty"

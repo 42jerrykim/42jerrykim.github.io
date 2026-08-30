@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 63
 slug: script-block-closure-powershell
 title: "[PowerShell] 63. 스크립트 블록과 클로저"

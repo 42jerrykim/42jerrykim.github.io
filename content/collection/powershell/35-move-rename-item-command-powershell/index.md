@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 35
 slug: move-rename-item-command-powershell
 title: "[PowerShell] 35. Move-Item/Rename-Item — 이동과 이름 변경"

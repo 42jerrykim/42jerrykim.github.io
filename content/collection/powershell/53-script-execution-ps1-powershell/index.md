@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 53
 slug: script-execution-ps1-powershell
 title: "[PowerShell] 53. 스크립트 작성과 실행(.ps1)"

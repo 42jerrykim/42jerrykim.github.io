@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 56
 slug: foreach-for-while-loop-powershell
 title: "[PowerShell] 56. foreach/for/while/do-while — 반복문"

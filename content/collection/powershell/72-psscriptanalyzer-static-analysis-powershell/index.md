@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 72
 slug: psscriptanalyzer-static-analysis-powershell
 title: "[PowerShell] 72. PSScriptAnalyzer — 정적 분석과 코딩 규칙"

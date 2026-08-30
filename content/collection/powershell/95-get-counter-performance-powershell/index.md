@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 95
 slug: get-counter-performance-powershell
 title: "[PowerShell] 95. Get-Counter — 성능 카운터 조회"

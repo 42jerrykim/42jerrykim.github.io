@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 69
 slug: start-transcript-session-record-powershell
 title: "[PowerShell] 69. Start-Transcript — 세션 기록"

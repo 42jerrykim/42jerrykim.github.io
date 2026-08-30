@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 76
 slug: powershell-gallery-install-find-module-powershell
 title: "[PowerShell] 76. PowerShell Gallery — Install-Module/Find-Module"

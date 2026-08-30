@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 70
 slug: set-psbreakpoint-debugging-powershell
 title: "[PowerShell] 70. Set-PSBreakpoint — 스크립트 디버깅"

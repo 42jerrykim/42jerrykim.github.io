@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 30
 slug: psdrive-provider-concept-powershell
 title: "[PowerShell] 30. PSDrive와 프로바이더 개념"

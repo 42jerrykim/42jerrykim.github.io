@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 92
 slug: scheduledtasks-module-register-task-powershell
 title: "[PowerShell] 92. ScheduledTasks 모듈 — 예약 작업 등록"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 67
 slug: trap-legacy-exception-powershell
 title: "[PowerShell] 67. trap — 레거시 예외 처리"

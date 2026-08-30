@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 117
 slug: get-adgroup-add-adgroupmember-powershell
 title: "[PowerShell] 117. Get-ADGroup/Add-ADGroupMember — 그룹 관리"

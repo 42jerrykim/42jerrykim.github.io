@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 18
 slug: tee-object-command-pipeline-branch-powershell
 title: "[PowerShell] 18. Tee-Object — 파이프라인 분기"

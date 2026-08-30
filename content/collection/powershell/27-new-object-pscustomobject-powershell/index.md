@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 27
 slug: new-object-pscustomobject-powershell
 title: "[PowerShell] 27. New-Object와 [PSCustomObject]"

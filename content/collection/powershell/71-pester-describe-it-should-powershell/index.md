@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 71
 slug: pester-describe-it-should-powershell
 title: "[PowerShell] 71. Pester 소개 — Describe/It/Should"

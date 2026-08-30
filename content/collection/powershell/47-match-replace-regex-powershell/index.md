@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 47
 slug: match-replace-regex-powershell
 title: "[PowerShell] 47. -match/-replace 연산자와 정규식"

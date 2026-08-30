@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 74
 slug: module-structure-psm1-psd1-powershell
 title: "[PowerShell] 74. 모듈 개념과 구조(.psm1/.psd1)"

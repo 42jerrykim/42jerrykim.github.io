@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 8
 slug: clear-host-command-console-title-color
 title: "[PowerShell] 08. Clear-Host — 화면 지우기와 콘솔 설정"

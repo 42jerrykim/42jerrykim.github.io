@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 22
 slug: split-join-operators-powershell-strings
 title: "[PowerShell] 22. -split/-join 연산자"

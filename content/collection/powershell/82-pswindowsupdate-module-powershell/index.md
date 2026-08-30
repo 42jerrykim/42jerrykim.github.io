@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 82
 slug: pswindowsupdate-module-powershell
 title: "[PowerShell] 82. PSWindowsUpdate — Windows 업데이트 관리 모듈"

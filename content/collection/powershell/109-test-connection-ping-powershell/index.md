@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 109
 slug: test-connection-ping-powershell
 title: "[PowerShell] 109. Test-Connection — ping 대응"

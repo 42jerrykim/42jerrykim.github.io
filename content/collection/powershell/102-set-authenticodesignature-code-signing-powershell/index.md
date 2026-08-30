@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 102
 slug: set-authenticodesignature-code-signing-powershell
 title: "[PowerShell] 102. Set-AuthenticodeSignature — 스크립트 코드 서명"

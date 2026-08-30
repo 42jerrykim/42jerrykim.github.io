@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 32
 slug: set-location-push-pop-location-powershell
 title: "[PowerShell] 32. Set-Location/Push-Location/Pop-Location"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 40
 slug: registry-provider-hklm-hkcu-powershell
 title: "[PowerShell] 40. 레지스트리 프로바이더(Registry:) 다루기"

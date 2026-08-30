@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 3
 slug: get-command-cmdlet-search-powershell
 title: "[PowerShell] 03. Get-Command — cmdlet 검색"

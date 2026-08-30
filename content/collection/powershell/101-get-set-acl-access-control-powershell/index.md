@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 101
 slug: get-set-acl-access-control-powershell
 title: "[PowerShell] 101. Get-Acl/Set-Acl — 접근 제어 목록"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 51
 slug: out-string-out-null-command-powershell
 title: "[PowerShell] 51. Out-String과 Out-Null"

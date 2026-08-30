@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 33
 slug: new-item-command-create-file-directory-powershell
 title: "[PowerShell] 33. New-Item — 파일·디렉터리 생성"

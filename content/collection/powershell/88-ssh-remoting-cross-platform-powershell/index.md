@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 88
 slug: ssh-remoting-cross-platform-powershell
 title: "[PowerShell] 88. SSH 기반 PowerShell Remoting(크로스플랫폼)"

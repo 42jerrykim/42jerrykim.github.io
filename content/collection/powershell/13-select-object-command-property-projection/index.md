@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 13
 slug: select-object-command-property-projection-powershell
 title: "[PowerShell] 13. Select-Object — 속성 선택과 투영"

@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 68
 slug: write-verbose-debug-warning-powershell
 title: "[PowerShell] 68. Write-Verbose/Debug/Warning/Information"

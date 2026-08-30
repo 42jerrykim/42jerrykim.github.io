@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 62
 slug: scope-global-local-script-powershell
 title: "[PowerShell] 62. 스코프(Scope) — 전역/지역/스크립트"

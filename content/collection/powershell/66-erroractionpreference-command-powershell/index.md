@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 66
 slug: erroractionpreference-command-powershell
 title: "[PowerShell] 66. $ErrorActionPreference와 -ErrorAction/-ErrorVariable"

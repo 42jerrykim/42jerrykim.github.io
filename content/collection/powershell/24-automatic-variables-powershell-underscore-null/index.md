@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 24
 slug: automatic-variables-powershell-underscore-null
 title: "[PowerShell] 24. 자동 변수 총정리 — $_, $null, $Error, $LASTEXITCODE"

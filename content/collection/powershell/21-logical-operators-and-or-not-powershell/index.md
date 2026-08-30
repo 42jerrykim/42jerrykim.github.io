@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 21
 slug: logical-operators-and-or-not-powershell
 title: "[PowerShell] 21. 논리 연산자와 조건식 조합 — -and/-or/-not"

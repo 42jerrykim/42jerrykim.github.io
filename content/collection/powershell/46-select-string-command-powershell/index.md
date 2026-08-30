@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 46
 slug: select-string-command-powershell
 title: "[PowerShell] 46. Select-String — 텍스트에서 패턴 찾기"

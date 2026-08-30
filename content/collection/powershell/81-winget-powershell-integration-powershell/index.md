@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 81
 slug: winget-powershell-integration-powershell
 title: "[PowerShell] 81. winget과 PowerShell 통합"

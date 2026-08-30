@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 105
 slug: just-enough-administration-jea-overview-powershell
 title: "[PowerShell] 105. Just Enough Administration(JEA) 개요"

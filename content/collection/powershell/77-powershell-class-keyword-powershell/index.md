@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 77
 slug: powershell-class-keyword-powershell
 title: "[PowerShell] 77. PowerShell 클래스(class 키워드)"

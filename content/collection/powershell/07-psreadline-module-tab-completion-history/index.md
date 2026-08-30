@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 7
 slug: psreadline-module-tab-completion-history
 title: "[PowerShell] 07. PSReadLine — 탭 완성과 명령 히스토리"

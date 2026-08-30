@@ -1,5 +1,5 @@
 ---
-draft: true
+draft: false
 collection_order: 52
 slug: get-date-timespan-powershell
 title: "[PowerShell] 52. Get-Date와 TimeSpan"
