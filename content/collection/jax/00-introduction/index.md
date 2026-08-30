@@ -38,7 +38,7 @@ tags:
 image: "wordcloud.png"
 ---
 
-NumPy로 짠 함수 앞뒤에 딱 두 줄만 추가하면 — `jax.jit`으로 감싸고 `jax.grad`를 호출하면 — 같은 코드가 GPU·TPU에서 컴파일되어 실행되고, 별도의 역전파 코드 없이 기울기가 계산됩니다. Google DeepMind는 이 특성 위에서 <strong>AlphaFold 2</strong>의 추론 코드를 JAX와 Haiku로 공개했고, Google은 2025년 <strong>Gemini 3</strong>를 JAX와 Pathways 스택으로 TPU에서 학습시켰습니다. 이 시리즈는 "왜 PyTorch가 있는데 JAX가 필요한가"라는 질문에서 출발해, NumPy 호환 배열이 어떻게 자동미분·컴파일·병렬화까지 확장되는지를 실전 코드로 따라갑니다.
+NumPy로 짠 함수 앞뒤에 딱 두 줄만 추가하면 — `jax.jit`으로 감싸고 `jax.grad`를 호출하면 — 같은 코드가 GPU·TPU에서 컴파일되어 실행되고, 별도의 역전파 코드 없이 기울기가 계산됩니다. Google DeepMind는 이 특성 위에서 <strong>AlphaFold 2</strong>의 추론 코드를 JAX와 Haiku로 공개했고, Google은 <strong>PaLM</strong>을 JAX와 Pathways 스택으로 TPU 포드에서 학습시켰다고 공식 논문에서 밝혔습니다(Chowdhery et al., "PaLM: Scaling Language Modeling with Pathways", 2022). 이후의 Gemini 계열 모델도 같은 JAX 기반 인프라 위에서 이어졌습니다. 이 시리즈는 "왜 PyTorch가 있는데 JAX가 필요한가"라는 질문에서 출발해, NumPy 호환 배열이 어떻게 자동미분·컴파일·병렬화까지 확장되는지를 실전 코드로 따라갑니다.
 
 ## JAX가 존재하는 세 가지 이유
 
@@ -54,7 +54,9 @@ JAX가 처음 등장한 논문은 스스로를 "고수준 트레이싱을 통해
 
 ## 이 시리즈가 다루는 범위
 
-이 시리즈는 JAX의 핵심 변환 함수(`jit`, `grad`, `vmap`, `pmap`)를 순서대로 익히고, 이를 실제 신경망 학습 코드로 연결한 뒤, 기존 PyTorch 코드베이스를 옮기는 실전 가이드로 마무리합니다. XLA 컴파일러 내부의 HLO(High-Level Operations) 최적화 패스나, Gemini급 모델 학습에 쓰이는 Pathways 분산 인프라처럼 JAX 바깥의 시스템은 범위 밖입니다 — 이는 최적화(Optimization) 시리즈의 컴파일러·동시성 챕터, 그리고 LLM 밑바닥부터 이해하기 시리즈와 맞닿아 있는 별개의 주제입니다. NumPy 배열 연산 자체에 익숙하지 않다면 Python 컬렉션을 먼저 참고하는 것을 권장합니다.
+이 시리즈는 JAX의 핵심 변환 함수(`jit`, `grad`, `vmap`, `pmap`)를 순서대로 익히고, 이를 실제 신경망 학습 코드로 연결한 뒤, 기존 PyTorch 코드베이스를 옮기는 실전 가이드로 마무리합니다. XLA 컴파일러 내부의 HLO(High-Level Operations) 최적화 패스나, PaLM급 모델 학습에 쓰이는 Pathways 분산 인프라처럼 JAX 바깥의 시스템은 범위 밖입니다 — 이는 최적화(Optimization) 시리즈의 컴파일러·동시성 챕터, 그리고 LLM 밑바닥부터 이해하기 시리즈와 맞닿아 있는 별개의 주제입니다. NumPy 배열 연산 자체에 익숙하지 않다면 Python 컬렉션을 먼저 참고하는 것을 권장합니다.
+
+시작하기 전에 두 가지 흔한 오해를 짚고 넘어갈 필요가 있습니다. 하나는 "JAX는 GPU·TPU에서 더 빠르게 도는 NumPy일 뿐"이라는 생각인데, 실제로는 `jit`이 함수를 XLA 그래프로 컴파일해 연산 융합·메모리 재사용까지 최적화하므로 속도 차이는 하드웨어가 아니라 컴파일러가 만듭니다 — 02장에서 이 컴파일 과정 자체를 다룹니다. 다른 하나는 "PyTorch 코드를 거의 그대로 옮기면 JAX에서도 동작할 것"이라는 기대인데, PyTorch의 `nn.Module`은 파라미터를 객체 내부 상태로 들고 있는 반면 JAX가 변환할 함수는 부작용 없는 순수 함수여야 하므로 이 가정은 마이그레이션 초기 단계에서 대부분 깨집니다 — 07장이 이 간극을 메우는 구체적인 절차를 다룹니다.
 
 ## 커리큘럼
 
