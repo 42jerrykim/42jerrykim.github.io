@@ -305,6 +305,12 @@ ai_and_data:
   - Text-to-SQL
   - MCP(Model Context Protocol)
   - Knowledge-Graph(지식그래프)
+  - JAX
+  - NumPy
+  - Autodiff(자동미분)
+  - XLA
+  - GPU(Graphics Processing Unit)
+  - TPU(Tensor Processing Unit)
 
 system_and_low_level:
   - Memory(메모리)
@@ -438,6 +444,8 @@ general_topics:
   - Innovation(혁신)
   - Troubleshooting(트러블슈팅)
   - Migration(마이그레이션)
+  - Curriculum(커리큘럼)
+  - Roadmap(로드맵)
   - Workflow(워크플로우)
   - Configuration(설정)
   - Hardware(하드웨어)
