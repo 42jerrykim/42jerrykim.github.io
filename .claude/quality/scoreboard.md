@@ -1871,3 +1871,4 @@
 | content/collection/powershell/powershell-cmd-bash-command-mapping/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-30-clean-code-performance-muratori/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-31-stockholm-syndrome-fbi-statistics-pop-culture-myth/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-09-01-ai-coding-agent-velocity-quality-tradeoff/index.md | 90.10 | 2026-09-01 | 2 | 통과 | 1.3 | 9953fe8 | 없음 |
