@@ -1747,7 +1747,7 @@
 | content/collection/jax/05-prng-and-state-management/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/jax/06-neural-networks-with-flax-optax/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/jax/07-migrating-from-pytorch/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/powershell/00-getting-started-powershell/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/powershell/00-getting-started-powershell/index.md | 100 | 2026-09-01 | 1 | 통과 | 1.3 | 805da0f | 없음(선택: Export/Import-Clixml 언급 여지, "Part별 설계 근거" 절 소제목 분절 여지, 일부 범용 태그 구체화 여지) |
 | content/collection/powershell/01-powershell-introduction-pwsh-cross-platform-shell/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/powershell/02-get-help-command-powershell-help-system/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/powershell/03-get-command-cmdlet-search-powershell/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1870,3 +1870,4 @@
 | content/collection/powershell/99-get-hotfix-installed-update-powershell/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/powershell/powershell-cmd-bash-command-mapping/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-30-clean-code-performance-muratori/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-08-31-stockholm-syndrome-fbi-statistics-pop-culture-myth/index.md | - | - | 0 | 미채점 | - | - | - |
