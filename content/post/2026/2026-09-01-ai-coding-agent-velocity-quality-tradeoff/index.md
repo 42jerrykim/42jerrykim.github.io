@@ -3,7 +3,7 @@ title: "[AI] 코드는 5배 늘고 리뷰는 4배 느려졌다 — AI 에이전�
 description: "AI 코딩 에이전트로 PR 생산량은 급증했지만, Faros AI가 22,000명 텔레메트리로 측정한 코드 리뷰 시간은 4배, 사고율은 3배 넘게 늘었다. Pragmatic Engineer·Anthropic·Replit의 대응 사례와 위험 기반 차등 리뷰 전략을 정리한다."
 date: 2026-09-01T07:00:00+09:00
 lastmod: 2026-09-01
-draft: true
+draft: false
 image: "wordcloud.png"
 categories:
   - AI
