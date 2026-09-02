@@ -242,7 +242,7 @@
 | content/collection/optimization-01-profiling/16-bpf-profiling/index.md | 93.85 | 2026-08-27 | 1 | 통과 | 1.3 | e5f3d52 | 없음(경미: L156 offcputime이 sched_switch 트레이스포인트가 아닌 finish_task_switch kprobe를 사용한다는 사실 정정 여지, "당신의 수준에 맞는 경로" 표에 신규 추가 절 2개(USDT·off-CPU 분석) 미배정, L156 물결표(~)를 en dash로 교체 필요) |
 | content/collection/optimization-01-profiling/17-distributed-tracing-overhead/index.md | 100 | 2026-08-28 | 1 | 통과 | 1.3 | 1592c1c | 없음 |
 | content/post/2026/2026-08-27-cot-filler-tokens-hidden-reasoning/index.md | 97.3 | 2026-08-29 | 1 | 통과 | 1.3 | ad3def7 | 없음(경미: L49/L53/L61/L63/L80 직접 인용 7곳이 인라인 따옴표로만 처리되고 blockquote 미사용 — educational-content-writing §4.3) |
-| content/collection/optimization-01-profiling/18-profiling-workflow-guide/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-01-profiling/18-profiling-workflow-guide/index.md | 98.5 | 2026-09-03 | 1 | 통과 | 1.3 | 167083e | 없음(경미: Windows(윈도우) 태그가 Linux 전용 도구만 다루는 본문과 불일치 — 태그 제거 또는 ETW/WPR 등 Windows 대응 도구 언급 문단 추가 권장) |
 | content/collection/optimization-01-profiling/19-profiler-output-interpretation/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-01-profiling/20-memory-profiling-heap/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-02-cpp-language/00-introduction/index.md | 96.1 | 2026-07-25 | 1 | 통과 | 1.0 | b6dbc92 | 없음(경미: L238 트랙 읽기 순서 요약이 L128과 일부 중복, 태그 표기 결합형 통일 여지) |
@@ -1872,3 +1872,4 @@
 | content/post/2026/2026-08-30-clean-code-performance-muratori/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-08-31-stockholm-syndrome-fbi-statistics-pop-culture-myth/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-01-ai-coding-agent-velocity-quality-tradeoff/index.md | 90.10 | 2026-09-01 | 2 | 통과 | 1.3 | 9953fe8 | 없음 |
+| content/post/2026/2026-09-02-claude-code-subagent-judgement-delegation/index.md | - | - | 0 | 미채점 | - | - | - |
