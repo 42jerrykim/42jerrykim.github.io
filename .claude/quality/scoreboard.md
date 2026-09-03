@@ -1874,3 +1874,4 @@
 | content/post/2026/2026-09-01-ai-coding-agent-velocity-quality-tradeoff/index.md | 90.10 | 2026-09-01 | 2 | 통과 | 1.3 | 9953fe8 | 없음 |
 | content/post/2026/2026-09-02-claude-code-subagent-judgement-delegation/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-03-openai-huggingface-agent-civilizations/index.md | 100 | 2026-09-03 | 2 | 통과 | 1.3 | 7cd22f5 | 없음 |
+| content/post/2026/2026-09-04-quantization-triggered-backdoor-llm-security/index.md | 94.45 | 2026-09-04 | 2 | 통과 | 1.3 | 589af6b | 없음(경미: "흔한 오해 바로잡기" 절이 오개념 1건만 다룸) |
