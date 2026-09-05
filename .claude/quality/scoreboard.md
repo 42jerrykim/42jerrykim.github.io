@@ -1875,3 +1875,25 @@
 | content/post/2026/2026-09-02-claude-code-subagent-judgement-delegation/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-03-openai-huggingface-agent-civilizations/index.md | 100 | 2026-09-03 | 2 | 통과 | 1.3 | 7cd22f5 | 없음 |
 | content/post/2026/2026-09-04-quantization-triggered-backdoor-llm-security/index.md | 94.45 | 2026-09-04 | 2 | 통과 | 1.3 | 589af6b | 없음(경미: "흔한 오해 바로잡기" 절이 오개념 1건만 다룸) |
+| content/collection/tmux/00-getting-started-tmux/index.md | 100 | 2026-09-04 | 3 | 통과 | 1.3 | d969e5e | 없음(개선여지: Control Mode/tmate 등 니치 주제 미배정, Career/Cloud/Best-Practices 태그 본문 근거 약함) |
+| content/collection/tmux/01-what-is-tmux-terminal-multiplexer-architecture/index.md | 100 | 2026-09-04 | 3 | 통과 | 1.3 | 3e1e7e2 | 없음(개선여지: 12장/20장 언급을 실제 링크로 연결, Networking 태그가 IP 네트워킹과 혼동 소지) |
+| content/collection/tmux/02-install-tmux-first-session-basic-commands/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | 00a5a0b | 없음 |
+| content/collection/tmux/03-tmux-session-new-attach-detach-kill/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | 67d4a67 | 없음 |
+| content/collection/tmux/04-tmux-window-pane-basics-split-zoom/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | 0ed4def | 없음 |
+| content/collection/tmux/05-tmux-prefix-key-command-mode/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | a301983 | 없음 |
+| content/collection/tmux/06-tmux-conf-basics-set-options-reload/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | 3ba835a | 없음 |
+| content/collection/tmux/07-tmux-keybinding-customization-vim-style/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | ce06e80 | 없음 |
+| content/collection/tmux/08-tmux-status-bar-customization-status-line/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | fecb3af | 없음 |
+| content/collection/tmux/09-tmux-layout-synchronize-panes/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | 4abcf28 | 없음 |
+| content/collection/tmux/10-tmux-copy-mode-buffers-clipboard/index.md | 100 | 2026-09-04 | 5 | 통과 | 1.3 | afbbab4 | 없음 |
+| content/collection/tmux/11-tmux-swap-move-break-join-pane-window/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | ecbf2df | 없음 |
+| content/collection/tmux/12-tmux-session-groups-multiple-clients-pairing/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | 3f3f43f | 없음 |
+| content/collection/tmux/13-tmux-command-line-scripting-send-keys/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | af2874b | 없음 |
+| content/collection/tmux/14-tmuxinator-tmuxifier-project-layout-management/index.md | 98.5 | 2026-09-04 | 4 | 통과 | 1.3 | fdf9bb4 | 없음(경미: tmuxifier .window.sh 예시가 단독 실행 불가한 DSL임을 명시 안 함) |
+| content/collection/tmux/15-tmux-plugin-manager-tpm-ecosystem/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | 5b669db | 없음 |
+| content/collection/tmux/16-tmux-resurrect-continuum-yank-essential-plugins/index.md | 98.05 | 2026-09-04 | 4 | 통과 | 1.3 | 21a3aa3 | 없음(경미: 비교/트레이드오프 절에 병렬 코드블록 부재) |
+| content/collection/tmux/17-tmux-ssh-remote-session-persistence/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | b917f19 | 없음 |
+| content/collection/tmux/18-tmux-vim-neovim-integration-navigator/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | 57452bc | 없음 |
+| content/collection/tmux/19-tmux-vs-screen-zellij-wezterm-comparison/index.md | 94.45 | 2026-09-04 | 4 | 통과 | 1.3 | 053a8d6 | 없음(경미: 오개념 3개가 WezTerm/tmux 관계에 편중, screen·Zellij 독자 오개념 부재) |
+| content/collection/tmux/20-tmux-troubleshooting-clipboard-colors-nested-sessions/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | bf507e6 | 없음 |
+| content/collection/tmux/21-tmux-workflow-design-roadmap/index.md | 100 | 2026-09-04 | 3 | 통과 | 1.3 | 6363f09 | 없음 |
