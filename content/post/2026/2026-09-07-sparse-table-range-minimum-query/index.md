@@ -1,8 +1,8 @@
 ---
 title: "[Algorithm] Sparse Table — 정적 배열 구간 질의를 O(1)로 답하는 법"
 description: "Sparse Table은 값이 바뀌지 않는 배열에서 구간 최솟값 같은 멱등 연산을 O(1)에 답하는 정적 자료구조다. 2의 거듭제곱 구간 전처리 원리, C++ 구현, 세그먼트 트리·누적합과의 비교, LCA 응용과 흔한 구현 실수까지 정리한다."
-date: 2026-09-07
-lastmod: 2026-09-07
+date: 2026-09-07T00:00:00+09:00
+lastmod: 2026-09-07T00:00:00+09:00
 draft: false
 categories:
   - Algorithm
