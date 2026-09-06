@@ -1944,3 +1944,4 @@
 | content/collection/git/42-large-repo-management/index.md | - | - | - | 미채점 | - | - | - |
 | content/collection/git/43-commit-signing-security/index.md | - | - | - | 미채점 | - | - | - |
 | content/collection/git/44-common-git-errors/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-09-07-sparse-table-range-minimum-query/index.md | 98.05 | 2026-09-07 | 2 | 통과 | 1.3 | c032f0b | 없음(경미: "실전 팁" 절이 리스트 위주 구성 — 항목3=85) |
