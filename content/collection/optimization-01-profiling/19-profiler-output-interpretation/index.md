@@ -6,7 +6,7 @@ draft: false
 image: wordcloud.png
 title: "[Profiling 01] 프로파일러 출력 해석 실전"
 slug: profiler-output-interpretation-practice
-description: "샘플링·트레이싱 리포트를 병목 후보로 연결하는 해석 패턴을 다룹니다. self·inclusive 구분, 인라이닝으로 흩어진 심볼 복원, 커널·유저 시간 분리, 워크로드·심볼 해석 함정까지 실전 판단 기준으로 정리합니다."
+description: "perf·VTune 샘플링 리포트를 병목 후보로 연결하는 해석 패턴을 다룹니다. self·inclusive 구분, 인라이닝으로 흩어진 심볼 복원, 커널·유저 시간 분리, 워크로드·심볼 해석 함정까지 실전 판단 기준으로 정리합니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
@@ -118,7 +118,9 @@ int main() {
 
 ```cpp
 // inlined_helper.cpp — 여러 호출자에 흩어지는 인라인 헬퍼 예제 (GCC/Clang, x86-64)
+#include <cstddef>
 #include <string_view>
+#include <vector>
 
 // 짧고 뜨거워서 -O2에서 거의 항상 인라인되는 헬퍼
 inline char to_lower_ascii(char c) {
