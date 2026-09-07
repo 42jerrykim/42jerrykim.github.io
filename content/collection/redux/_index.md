@@ -1,5 +1,5 @@
 ---
-collection_order: 160
+collection_order: 280
 slug: redux
 draft: false
 title: "[Redux] Redux 완전 정복 - 초보부터 전문가까지"
