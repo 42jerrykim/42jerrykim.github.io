@@ -1,6 +1,6 @@
 ---
 image: "wordcloud.png"
-collection_order: 106
+collection_order: 180
 draft: false
 title: "[Optimization(OS)] 06. OS·런타임 Low-latency 운영환경 트랙"
 slug: os-optimization

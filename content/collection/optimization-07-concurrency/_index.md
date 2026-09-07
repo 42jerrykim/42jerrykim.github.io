@@ -1,6 +1,6 @@
 ---
 image: "wordcloud.png"
-collection_order: 107
+collection_order: 190
 draft: false
 title: "[Optimization(Concurrency)] 07. Low-latency 동시성·멀티스레드 비용 통제 트랙"
 slug: concurrency-optimization
