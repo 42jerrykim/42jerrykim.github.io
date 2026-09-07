@@ -246,7 +246,7 @@
 | content/collection/optimization-01-profiling/19-profiler-output-interpretation/index.md | 100 | 2026-09-05 | 1 | 통과 | 1.3 | 039ccfd | 없음(개선여지: DW_TAG_ 접두사 DWARF2 이후 관례 각주 여지, recursive_demo.cpp에 -std=c++17 명시 권장, perf annotate 출력 샘플 추가 여지) |
 | content/collection/optimization-01-profiling/20-memory-profiling-heap/index.md | 95.8 | 2026-09-06 | 1 | 통과 | 1.3 | db6c6e8 | 없음(경미: L91 massif blockquote 인용문이 valgrind.org 원문과 문구 불일치, L200-236 벤치마크 코드 블록이 L164-198 타입 정의에 의존해 단독 컴파일 불가) |
 | content/collection/optimization-02-cpp-language/00-introduction/index.md | 96.1 | 2026-07-25 | 1 | 통과 | 1.0 | b6dbc92 | 없음(경미: L238 트랙 읽기 순서 요약이 L128과 일부 중복, 태그 표기 결합형 통일 여지) |
-| content/collection/optimization-02-cpp-language/01-cpp-execution-model-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/01-cpp-execution-model-fundamentals/index.md | 95.8 | 2026-09-08 | 1 | 통과 | 1.3 | bbb2b84 | 없음(경미: 파일 선두 UTF-8 BOM으로 CI lint_frontmatter.py가 파일을 건너뜀, L35-41 본문 무관 태그 7개(Data-Structures/Time-Complexity/Testing/Debugging/Documentation/Git/CI-CD), L267 cppreference storage_duration을 "표준 라이브러리" 문서로 오귀속(언어 코어 개념)) |
 | content/collection/optimization-02-cpp-language/02-smart-pointer-cost-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-02-cpp-language/03-abstraction-cost/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-02-cpp-language/04-stl-container-cost/index.md | - | - | 0 | 미채점 | - | - | - |
