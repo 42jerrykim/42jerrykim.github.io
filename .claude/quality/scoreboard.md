@@ -1946,3 +1946,4 @@
 | content/collection/git/44-common-git-errors/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-09-07-sparse-table-range-minimum-query/index.md | 98.05 | 2026-09-07 | 2 | 통과 | 1.3 | c032f0b | 없음(경미: "실전 팁" 절이 리스트 위주 구성 — 항목3=85) |
 | content/post/2026/2026-09-08-zsh-history-truncation-sigint-race/index.md | 94.5 | 2026-09-08 | 3 | 통과 | 1.3 | 6ae5fab | 없음(경미: "이 사례에서 가져갈 것" 절 앞에 명시적 학습목표 문장 부재 — 항목2=85) |
+| content/post/2026/2026-09-09-claude-code-session-context-hygiene/index.md | 97.6 | 2026-09-09 | 2 | 통과 | 1.3 | 17ec917 | 없음(경미: "이 글을 읽은 후 확인할 것" 절 리스트 앞 요약 문단 부재 — 항목3=85) |
