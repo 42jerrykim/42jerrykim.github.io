@@ -1875,7 +1875,7 @@
 | content/post/2026/2026-09-02-claude-code-subagent-judgement-delegation/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-03-openai-huggingface-agent-civilizations/index.md | 100 | 2026-09-03 | 2 | 통과 | 1.3 | 7cd22f5 | 없음 |
 | content/post/2026/2026-09-04-quantization-triggered-backdoor-llm-security/index.md | 94.45 | 2026-09-04 | 2 | 통과 | 1.3 | 589af6b | 없음(경미: "흔한 오해 바로잡기" 절이 오개념 1건만 다룸) |
-| content/collection/tmux/00-getting-started-tmux/index.md | 100 | 2026-09-04 | 3 | 통과 | 1.3 | d969e5e | 없음(개선여지: Control Mode/tmate 등 니치 주제 미배정, Career/Cloud/Best-Practices 태그 본문 근거 약함) |
+| content/collection/tmux/00-getting-started-tmux/index.md | 98.5 | 2026-09-15 | 3 | 통과 | 1.3 | 3e8bae4 | 없음(경미: 항목7=85, Career(커리어)·Documentation(문서화) 태그가 본문에 대응 서술 없음 — educational-content-writing §7.3. 개선여지: 터미널 기초(terminfo) 독립 챕터 부재는 컬렉션 범위 밖으로 판단) |
 | content/collection/tmux/01-what-is-tmux-terminal-multiplexer-architecture/index.md | 100 | 2026-09-04 | 3 | 통과 | 1.3 | 3e1e7e2 | 없음(개선여지: 12장/20장 언급을 실제 링크로 연결, Networking 태그가 IP 네트워킹과 혼동 소지) |
 | content/collection/tmux/02-install-tmux-first-session-basic-commands/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | 00a5a0b | 없음 |
 | content/collection/tmux/03-tmux-session-new-attach-detach-kill/index.md | 100 | 2026-09-04 | 4 | 통과 | 1.3 | 67d4a67 | 없음 |
@@ -1948,3 +1948,4 @@
 | content/post/2026/2026-09-08-zsh-history-truncation-sigint-race/index.md | 94.5 | 2026-09-08 | 3 | 통과 | 1.3 | 6ae5fab | 없음(경미: "이 사례에서 가져갈 것" 절 앞에 명시적 학습목표 문장 부재 — 항목2=85) |
 | content/post/2026/2026-09-09-claude-code-session-context-hygiene/index.md | 97.6 | 2026-09-09 | 2 | 통과 | 1.3 | 17ec917 | 없음(경미: "이 글을 읽은 후 확인할 것" 절 리스트 앞 요약 문단 부재 — 항목3=85) |
 | content/collection/Movies/2026/2026-09-13-predator-badlands-2025-found-family-alpha/index.md | 97.3 | 2026-09-13 | 2 | 통과 | 1.3 | 3c9ea2f | 없음(경미: VFX 크레딧 문장의 인용부호 오용 — 재채점 후 수정 완료, 항목1=85 잔존 가능성) |
+| content/post/2026/2026-09-14-ai-incident-automation-irony/index.md | - | - | 0 | 미채점 | - | - | - |
