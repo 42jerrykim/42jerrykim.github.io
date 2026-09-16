@@ -1,4 +1,4 @@
-﻿---
+---
 collection_order: 3
 date: 2026-03-10
 lastmod: 2026-07-10
@@ -67,22 +67,8 @@ tags:
   - 함정
   - Documentation
   - 문서화
-  - Git
-  - CI-CD
-  - Linux
-  - Windows
-  - OS
-  - 운영체제
-  - Concurrency
-  - 동시성
   - Latency
   - Throughput
-  - Async
-  - 비동기
-  - Backend
-  - 백엔드
-  - Embedded
-  - 임베디드
   - Advanced
   - Deep-Dive
   - 실습
@@ -247,7 +233,7 @@ int get_tag(const Var& v) {
 
 C++ 예외는 정상 경로에서의 오버헤드를 최소화하는 **zero-cost exception** 모델을 목표로 합니다.
 
-> "With zero-cost exception handling, the cost of adding exception handling to a program is negligible when no exception is thrown; the cost is paid when an exception is thrown." — Itanium C++ ABI: Exception Handling, 문서 개정 이력상 최초 초안 1999년(990909)·최신 개정 2005년(050504)으로 확인됨 (https://itanium-cxx-abi.github.io/cxx-abi/abi-eh.html)
+이 zero-cost 모델은 예외가 발생하지 않는 정상 경로에는 추가 분기·비용을 전혀 부과하지 않고, 예외가 실제로 발생했을 때만 별도의 언와인딩 테이블을 조회해 스택을 정리하는 테이블 기반(table-driven) 방식으로 구현됩니다. 이 방식은 [Itanium C++ ABI: Exception Handling](https://itanium-cxx-abi.github.io/cxx-abi/abi-eh.html) 명세(문서 개정 이력상 최초 초안 1999년(990909)·최신 개정 2005년(050504))에 정의되어 있으며, GCC·Clang 등 주요 컴파일러가 이 명세를 따릅니다.
 
 즉, 예외를 던지지 않는 경로에서는 추가 분기나 테이블 조회 비용을 최소화합니다. 반면 **예외가 발생한 경로**에서는 스택 언와인딩, landing pad 탐색, catch 블록 타입 매칭 등으로 상당한 비용이 듭니다.
 
