@@ -24,7 +24,7 @@
 |---------|---------:|--------|-------:|------|:----------:|:----------:|---------------|
 | content/collection/multithreading-design-patterns/12-coroutine-reinterpretation/index.md | 93.1 | 2026-07-09 | 2 | 통과 | 1.0 | 8e3d8d7 | 없음(경미: ActiveObject 104줄 코드 블록의 문단 비율) |
 | content/collection/multithreading-design-patterns/13-lockfree-reclamation/index.md | 96.1 | 2026-07-09 | 2 | 통과 | 1.0 | d518b3f | 없음 |
-| content/collection/cleanarchitecture/00-clean-architecture-overview-introduction/index.md | 94.0 | 2026-07-20 | 6 | 통과 | 1.0 | fbd3584 | 없음(경미: OrderController placeOrder() 반환타입 제네릭 불일치, 어댑터 블록 내 public 클래스 2개 공존, Concentric-Circles 태그 tags.yaml 미등재) |
+| content/collection/cleanarchitecture/00-clean-architecture-overview-introduction/index.md | 94.6 | 2026-09-17 | 7 | 통과 | 1.3 | fbd3584 | 없음(경미: 항목3=70 산문비율 27.9%<40%, 항목7=85 Domain-Driven-Design 태그가 45챕터 커리큘럼에 미배정) |
 | content/collection/cleanarchitecture/01-architecture-history-evolution-introduction/index.md | 91 | 2026-07-18 | 2 | 통과 | 1.0 | 083e4d2 | 없음(경미: 흔한 오해 절 부재, 다음장 하이퍼링크 없음) |
 | content/post/2026/2026-07-25-omniroute-ai-gateway/index.md | 100 | 2026-07-25 | 2 | 통과 | 1.0 | 55fe8f7 | 없음 |
 | content/collection/cleanarchitecture/02-layered-architecture-limitations-history/index.md | 90.7 | 2026-07-20 | 4 | 통과 | 1.0 | 3dbebd1 | 없음(경미: Reenskaug 1979 인용 서지사항 검증 링크 부재, 프레임워크종속성/계층건너뛰기 절 코드 뒤 해설 여지) |
@@ -338,6 +338,7 @@
 | content/collection/optimization-06-os-runtime/18-cloud-tail-latency/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/00-introduction/index.md | 95.2 | 2026-07-25 | 2 | 통과 | 1.0 | 58f8873 | 없음(경미: "책임지는 범위"·"다루지 않는 것" 리스트 앞 연결 문단 여지, Intel 링크 WebFetch 403이나 실제 접근 가능) |
 | content/collection/optimization-07-concurrency/01-synchronization-cost-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-09-16-ai-counterfeit-utility-verification-cost/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-15-openai-agent-dsewiki-containment-breakout/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/02-lock-selection-criteria/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/03-false-sharing-avoidance/index.md | - | - | 0 | 미채점 | - | - | - |
