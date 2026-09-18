@@ -249,7 +249,7 @@
 | content/collection/optimization-02-cpp-language/01-cpp-execution-model-fundamentals/index.md | 95.8 | 2026-09-08 | 1 | 통과 | 1.3 | bbb2b84 | 없음(경미: 파일 선두 UTF-8 BOM으로 CI lint_frontmatter.py가 파일을 건너뜀, L35-41 본문 무관 태그 7개(Data-Structures/Time-Complexity/Testing/Debugging/Documentation/Git/CI-CD), L267 cppreference storage_duration을 "표준 라이브러리" 문서로 오귀속(언어 코어 개념)) |
 | content/collection/optimization-02-cpp-language/02-smart-pointer-cost-fundamentals/index.md | 96.6 | 2026-09-14 | 1 | 통과 | 1.3 | 572b7fb | 없음(경미: L1 UTF-8 BOM, L10-82 주제 무관 보일러플레이트 태그 다수, L198-203 "실무 권장과 리팩토링" 절 리드 문단 부재) |
 | content/collection/optimization-02-cpp-language/03-abstraction-cost/index.md | 96.1 | 2026-09-16 | 2 | 통과 | 1.3 | 4ec5fb9 | 없음(경미: L348-355 "핵심 요약" 표가 L289-303 "한눈에 보기" 표와 내용 중복, L112-114·L268-272 핵심 개념 설명이 리스트로 대체) |
-| content/collection/optimization-02-cpp-language/04-stl-container-cost/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/04-stl-container-cost/index.md | 93.1 | 2026-09-18 | 1 | 통과 | 1.3 | 2f5800b | 없음(경미: 항목3=70 prose_ratio 39.33%<40%, 항목5=85 L126-137·L176-183 함수 밖 코드 스니펫, 항목7=85 UTF-8 BOM 및 Concurrency/동시성 태그가 본문 명시 제외 범위와 불일치) |
 | content/collection/optimization-02-cpp-language/05-string-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-02-cpp-language/06-object-lifetime/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-02-cpp-language/07-temporary-removal/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1951,3 +1951,4 @@
 | content/post/2026/2026-09-09-claude-code-session-context-hygiene/index.md | 97.6 | 2026-09-09 | 2 | 통과 | 1.3 | 17ec917 | 없음(경미: "이 글을 읽은 후 확인할 것" 절 리스트 앞 요약 문단 부재 — 항목3=85) |
 | content/collection/Movies/2026/2026-09-13-predator-badlands-2025-found-family-alpha/index.md | 97.3 | 2026-09-13 | 2 | 통과 | 1.3 | 3c9ea2f | 없음(경미: VFX 크레딧 문장의 인용부호 오용 — 재채점 후 수정 완료, 항목1=85 잔존 가능성) |
 | content/post/2026/2026-09-14-ai-incident-automation-irony/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-09-17-fuzzy-title-matching-pitfalls/index.md | - | - | 0 | 미채점 | - | - | - |
