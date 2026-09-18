@@ -1952,3 +1952,4 @@
 | content/collection/Movies/2026/2026-09-13-predator-badlands-2025-found-family-alpha/index.md | 97.3 | 2026-09-13 | 2 | 통과 | 1.3 | 3c9ea2f | 없음(경미: VFX 크레딧 문장의 인용부호 오용 — 재채점 후 수정 완료, 항목1=85 잔존 가능성) |
 | content/post/2026/2026-09-14-ai-incident-automation-irony/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-17-fuzzy-title-matching-pitfalls/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-09-18-subnormal-float-performance-intel/index.md | - | - | 0 | 미채점 | - | - | - |
