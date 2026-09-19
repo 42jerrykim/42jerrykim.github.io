@@ -1,4 +1,4 @@
-﻿---
+---
 collection_order: 6
 date: 2026-03-10
 lastmod: 2026-07-10
@@ -41,14 +41,6 @@ tags:
   - Modularity
   - Refactoring
   - 리팩토링
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Git
-  - CI-CD
-  - Linux
-  - Windows
   - Latency
   - Throughput
   - Backend
@@ -62,11 +54,6 @@ tags:
   - 가이드
   - Reference
   - 참고
-  - Case-Study
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
   - Edge-Cases
   - 엣지케이스
   - Pitfalls
@@ -77,8 +64,6 @@ tags:
   - 디자인패턴
   - Composition
   - 합성
-  - Documentation
-  - 문서화
 ---
 
 **객체 수명 최적화**란 반환·전달 시 불필요한 복사와 임시 생성을 줄여 생성/이동 비용을 제어하는 것을 말합니다. 본 챕터에서는 **Copy Elision**, **RVO/NRVO**, **이동 의미론**을 심화하여 반환값 최적화와 move semantics가 성능에 미치는 영향을 마이크로벤치마크로 검증하는 방법을 다룹니다.
@@ -103,7 +88,7 @@ tags:
 
 **RVO/NRVO**는 C++98 시대부터 컴파일러가 적용해 오던 최적화였고, C++11에서 **이동 의미론**(rvalue reference, `std::move`)이 도입되면서 "복사 대신 이동"이 표준화되었습니다. C++17에서는 **mandatory copy elision**으로 prvalue 반환 시 복사/이동을 생략하는 것이 언어 규칙이 되었고, 이로써 반환값으로 큰 객체를 넘길 때의 비용을 이론적으로 제거할 수 있게 되었습니다.
 
-> "When a prvalue of class type X is used to initialize an object of the same type X, the copy/move construction may be omitted to construct the result object directly." — [cppreference: Copy elision](https://en.cppreference.com/w/cpp/language/copy_elision) 문서 (ISO C++ 표준 기반). C++17부터 일부 경우 elision이 "선택"이 아니라 "필수"입니다.
+표준은 이를 ISO C++ 규격 [class.copy.elision] 조항으로 정의합니다 — 특정 조건을 만족하면 원본과 같은 타입의 클래스 객체를 만드는 과정(생성자·소멸자에 부작용이 있더라도)을 생략할 수 있다는 것이 핵심입니다([cppreference: Copy elision](https://en.cppreference.com/w/cpp/language/copy_elision) 참조). C++17부터 일부 경우 elision이 "선택"이 아니라 "필수"입니다.
 
 ## Copy Elision
 
@@ -188,12 +173,16 @@ int main() {
 
 ## 판단 기준 (언제 쓰고 언제 피할지)
 
+RVO/NRVO와 이동 의미론은 컴파일러가 알아서 선택하는 최적화이지만, 반환 형태와 호출 방식을 어떻게 쓰느냐에 따라 그 선택 여지 자체가 사라질 수 있습니다. 아래 표는 "무엇을 하면 컴파일러가 최적 경로를 고를 수 있는가"를 기준으로 권장/비권장을 정리한 것입니다.
+
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
 | 함수가 값 반환 | 값 반환 `T f()` + 단일 return | `return std::move(local)` |
 | 호출자가 반환값 받기 | `T result = f();` (RVO 활용) | 불필요한 참조·포인터 반환 |
 | 이동 가능한 타입 | 이동 생성자/대입 `noexcept` | 이동 후 사용 전제로 남기기 |
 | 복잡한 반환 경로 | 단일 return으로 단순화 | 여러 return·분기 유지 |
+
+표의 원칙을 어겼을 때 실제로 벌어지는 일은 다음 네 가지로 압축됩니다.
 
 ### 자주 하는 실수
 
@@ -208,9 +197,13 @@ int main() {
 
 ## 비판적 시각: 한계와 트레이드오프
 
+RVO/NRVO·이동 의미론은 "항상 적용되는 보장"이 아니라 "조건이 맞으면 컴파일러가 선택하는 최적화"에 가깝습니다. mandatory copy elision을 제외하면 나머지는 모두 코드 구조·타입 설계에 따라 실패할 수 있으므로, 아래 세 가지 한계를 전제로 설계해야 합니다.
+
 - **NRVO**: 분기·여러 return 대상이 있으면 적용되지 않을 수 있다. 복잡한 경로는 이동에 의존하게 되며, 이동이 저렴한 타입이면 여전히 수용 가능하다.
 - **이동 후 객체**: "valid but unspecified"이므로, 이동 후 재사용 계약을 문서화하고 소멸·대입만 허용하는 것이 안전하다.
 - **이동 불가 타입**: 복사만 가능한 타입은 값 반환 시 복사가 선택될 수 있어, 반환 횟수가 많은 경로에서는 out 인자를 고려할 수 있다. 다만 RVO가 적용되면 복사가 생략되므로 먼저 반환 경로를 단순화한다.
+
+세 항목 모두 "최적화가 안 되면 최악의 경우 복사가 남는다"는 동일한 실패 모드로 수렴하므로, 반환 경로를 단순하게 유지하는 것이 가장 저렴한 예방책입니다.
 
 ## 핵심 요약
 
@@ -232,8 +225,8 @@ int main() {
 
 ### 자주 묻는 질문 (FAQ)
 
-**Q: `return std::move(local)`이 왜 나쁜가요?**  
-A: NRVO는 "반환할 로컬 객체를 호출자 측에 직접 구성"하는데, std::move를 쓰면 "이동할 대상"이 되어 NRVO 후보에서 빠질 수 있습니다. `return local`만 쓰세요.
+**Q: 컴파일러마다 NRVO 적용 범위가 다른가요?**  
+A: 예. NRVO는 표준이 강제하지 않는 "허용된 최적화"(as-if 규칙의 예외)라서, 같은 코드도 컴파일러·최적화 레벨에 따라 적용 여부가 갈릴 수 있습니다. `-fno-elide-constructors`(GCC/Clang)로 강제로 끄고 생성자 카운터로 실측하면 실제 적용 여부를 직접 확인할 수 있습니다. mandatory copy elision(C++17 prvalue 반환)만 표준이 보장하고, NRVO는 여전히 "구현이 허용받은" 최적화입니다.
 
 **Q: 값 반환은 항상 비용이 없나요?**  
 A: RVO/NRVO가 적용되면 반환 위치에 직접 구성되어 추가 복사/이동이 없습니다. 적용이 안 되면 이동(또는 복사)이 선택됩니다. 이동이 저렴한 타입이면 값 반환이 권장됩니다.
