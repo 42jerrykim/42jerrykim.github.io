@@ -252,7 +252,7 @@
 | content/collection/optimization-02-cpp-language/04-stl-container-cost/index.md | 93.1 | 2026-09-18 | 1 | 통과 | 1.3 | 2f5800b | 없음(경미: 항목3=70 prose_ratio 39.33%<40%, 항목5=85 L126-137·L176-183 함수 밖 코드 스니펫, 항목7=85 UTF-8 BOM 및 Concurrency/동시성 태그가 본문 명시 제외 범위와 불일치) |
 | content/collection/optimization-02-cpp-language/05-string-optimization/index.md | 94.6 | 2026-09-19 | 0 | 통과 | 1.3 | fdc367d | 없음(경미: 항목3=70 산문비율 32.6%<40%, 항목7=85 UTF-8 BOM 및 Git/CI-CD/Linux/Windows/Backend/Embedded 태그가 본문 무관) |
 | content/collection/optimization-02-cpp-language/06-object-lifetime/index.md | 97.0 | 2026-09-20 | 1 | 통과 | 1.3 | 773f9f9 | 없음(경미: 항목7=70 — tags 21개가 data/tags.yaml 승인 결합형(예: Performance(성능))을 영/한 두 줄로 분리 표기, 잔존 필러 태그 다수) |
-| content/collection/optimization-02-cpp-language/07-temporary-removal/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/07-temporary-removal/index.md | 94.6 | 2026-09-21 | 1 | 통과 | 1.3 | 1538b56 | 없음(경미: 항목4=70 "operator+ 제거"·"const T& 수명 연장" 논지가 2~3곳에서 반복, 항목7=85 Linux/Windows 태그가 승인 결합형 Linux(리눅스)/Windows(윈도우) 미표기) |
 | content/collection/optimization-02-cpp-language/08-templates-constexpr/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-02-cpp-language/09-modern-cpp-features/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-02-cpp-language/10-coroutine-performance/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1954,3 +1954,4 @@
 | content/post/2026/2026-09-17-fuzzy-title-matching-pitfalls/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-18-subnormal-float-performance-intel/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-19-pagination-boundary-density-estimation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-09-20-zg-zvec-grep-local-hybrid-search/index.md | - | - | 0 | 미채점 | - | - | - |

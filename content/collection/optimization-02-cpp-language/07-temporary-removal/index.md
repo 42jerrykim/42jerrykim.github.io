@@ -1,4 +1,4 @@
-﻿---
+---
 collection_order: 7
 date: 2026-03-10
 lastmod: 2026-07-10
@@ -9,36 +9,22 @@ slug: temporary-removal
 description: "임시 객체 생성이 발생하는 패턴을 진단하고, 연산자 오버로딩·암시적 변환·연속 연산 등에서 임시를 제거하는 패턴을 다룹니다. 컴파일러 출력과 프로파일링으로 임시 비용을 확인하는 방법을 정리하며, 실무 적용 시 주의점과 대안을 제시합니다."
 tags:
   - C++
-  - Performance
-  - Optimization
-  - 성능
-  - 최적화
-  - Memory
-  - 메모리
-  - Compiler
-  - 컴파일러
-  - Profiling
-  - 프로파일링
+  - Performance(성능)
+  - Optimization(최적화)
+  - Memory(메모리)
+  - Compiler(컴파일러)
+  - Profiling(프로파일링)
   - Benchmark
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - OOP
-  - 객체지향
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
+  - Clean-Code(클린코드)
+  - OOP(객체지향)
+  - Time-Complexity(시간복잡도)
+  - Space-Complexity(공간복잡도)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
   - Type-Safety
   - Readability
   - Maintainability
@@ -49,36 +35,23 @@ tags:
   - Windows
   - Latency
   - Throughput
-  - Backend
-  - 백엔드
-  - Embedded
-  - 임베디드
+  - Backend(백엔드)
+  - Embedded(임베디드)
   - Advanced
   - Deep-Dive
   - 실습
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
+  - Guide(가이드)
+  - Reference(참고)
   - Case-Study
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
-  - Data-Structures
-  - 자료구조
-  - Documentation
-  - 문서화
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Encapsulation
-  - 캡슐화
-  - Comparison
-  - 비교
+  - Technology(기술)
+  - Tutorial(튜토리얼)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
+  - Data-Structures(자료구조)
+  - Documentation(문서화)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Encapsulation(캡슐화)
+  - Comparison(비교)
 ---
 
 **임시 객체 제거**란 연산·전달 과정에서 불필요한 임시 생성과 복사/이동을 없애는 것을 말합니다. 본 챕터에서는 연산자 오버로딩·암시적 변환·연속 연산에서 임시가 생기는 패턴을 진단하고, 참조 전달·explicit·in-place 연산(+=) 등으로 제거하는 기법과 컴파일러·프로파일링으로 비용을 확인하는 방법을 정리합니다.
@@ -87,7 +60,7 @@ tags:
 
 **완전한 초보자?** 이 장은 [06장: 객체 수명 최적화](/post/cpp-optimization/object-lifetime/)에서 다룬 복사·이동·RVO를 전제로 합니다. 식 `a + b + d`가 중간 결과(임시 객체)를 만든다는 점만 떠올릴 수 있으면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **중급–전문가**를 포괄합니다. 임시 객체가 생기는 패턴과 진단법부터 시작해, 전문가 구간에서는 `c = a + b + d`와 in-place `+=`를 생성자 카운터로 비교하고 expression template·in-place 연산으로 임시를 제거하는 기준을 다룹니다. **다루지 않는 것**: 컨테이너 자체의 할당 비용([04장](/post/cpp-optimization/stl-container-cost/))과 문자열 임시([05장](/post/cpp-optimization/string-optimization/))의 세부입니다.
+**이 장의 깊이**: 이 장은 **중급–전문가**를 포괄합니다. 임시 객체가 생기는 패턴과 진단법부터 시작해, 전문가 구간에서는 `c = a + b + d`와 in-place `+=`를 생성자 카운터로 비교하고 in-place 연산으로 임시를 제거하는 기준을 다룹니다. **다루지 않는 것**: 컨테이너 자체의 할당 비용([04장](/post/cpp-optimization/stl-container-cost/))과 문자열 임시([05장](/post/cpp-optimization/string-optimization/))의 세부, 그리고 컴파일 타임에 연산 트리를 하나의 루프로 합성하는 expression template(템플릿 메타프로그래밍 영역)입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -103,7 +76,7 @@ tags:
 
 C++ 표준은 **temporary materialization** 등으로 "임시가 언제 생성되는지"를 정의합니다. 연산자 오버로딩으로 반환값을 받을 때, 암시적 변환으로 인자를 맞출 때, 값 반환 시(RVO가 없을 때) 임시가 생길 수 있습니다. 컴파일러는 **copy elision**으로 일부 임시를 제거하지만, 사용자 코드가 `operator+` 체이닝·암시적 변환을 유발하면 임시가 남을 수 있어, Low-latency 경로에서는 패턴을 인지하고 제거하는 것이 중요합니다.
 
-> "Temporary objects are created when a prvalue is materialized so that it can be used as a glvalue." — [cppreference: Implicit conversions - Temporary materialization](https://en.cppreference.com/w/cpp/language/implicit_conversion#Temporary_materialization) 문서 (ISO C++ 표준 기반). 연산 결과·변환 결과가 "사용되기 위해 구체화"될 때 임시가 생성됩니다.
+[cppreference: Implicit conversions - Temporary materialization](https://en.cppreference.com/w/cpp/language/implicit_conversion#Temporary_materialization) 문서에 따르면, 임의의 완전한 타입 `T`의 prvalue는 필요한 시점에 xvalue로 변환되며, 이 변환이 새 임시 객체를 만들어내는 과정을 **temporary materialization**이라 부릅니다. 즉 연산 결과·변환 결과가 값으로 "쓰이기 위해" 구체적인 객체로 만들어지는 순간에 임시가 생성됩니다.
 
 ## 임시 객체 생성 패턴
 
@@ -134,16 +107,11 @@ struct ExplicitBig { explicit ExplicitBig(int); };
 
 ## 진단 방법
 
-- **컴파일러 출력**: GCC/Clang에서 `-fdump-tree-*`로 중간 표현을 덤프하거나, `-S`로 어셈블리를 생성한 뒤 생성자/소멸자 심볼 호출 횟수를 확인합니다.
-- **프로파일링**: 메모리 할당 프로파일러로 특정 타입의 할당 횟수를 보거나, CPU 프로파일러에서 해당 생성자/소멸자 비중을 봅니다.
-- **로깅·카운터**: 생성자·복사 생성자·이동 생성자에 카운터를 넣어, 단위 테스트나 벤치마크 실행 시 호출 횟수를 확인합니다. 임시 제거 전후로 횟수가 줄어드는지 검증할 수 있습니다.
+임시 생성 여부는 추측이 아니라 확인의 대상입니다. 가장 근본적인 방법은 **컴파일러 출력**을 직접 보는 것으로, GCC/Clang에서 `-fdump-tree-*`로 중간 표현을 덤프하거나 `-S`로 어셈블리를 생성한 뒤 생성자·소멸자 심볼이 몇 번 호출되는지 세면 임시 생성 횟수를 정확히 파악할 수 있습니다. 코드 규모가 커서 어셈블리를 눈으로 추적하기 어려울 때는 **프로파일링**으로 전환합니다. 메모리 할당 프로파일러로 특정 타입의 할당 횟수를 관찰하거나, CPU 프로파일러에서 해당 타입의 생성자·소멸자가 전체 실행 시간에서 차지하는 비중을 확인하면 됩니다. 마지막으로 가장 실용적인 방법은 **로깅·카운터**입니다. 생성자·복사 생성자·이동 생성자 각각에 정적 카운터를 넣어 단위 테스트나 벤치마크를 실행할 때 호출 횟수를 기록하면, 아래 계측 예제처럼 임시 제거 전후로 횟수가 실제로 줄어드는지 눈으로 검증할 수 있습니다. 세 방법은 상호 배타적이지 않으며, 어셈블리로 존재를 확인하고 카운터로 회귀를 방지하는 식으로 함께 쓰는 것이 일반적입니다.
 
 ## 제거 패턴
 
-- **참조로 전달**: 읽기만 하면 `const T&`, 소유권을 넘기거나 수정할 때는 `T&&`를 사용합니다. `void f(const T&)`는 호출자가 임시를 넘겨도 그 임시의 수명이 함수 종료까지 연장되므로, "읽기 전용" API에 적합합니다.
-- **연산 결합**: 중간 결과를 한 번 변수에 담아 재사용하면 같은 연산을 반복할 때 임시가 반복 생성되지 않습니다. 루프 안에서는 루프 밖에서 한 번만 만들고 재사용합니다.
-- **explicit**: 단일 인자 생성자·변환 연산자에 `explicit`를 두면 암시적 변환으로 인한 임시가 생기지 않습니다.
-- **연산자 설계**: 반복 덧셈에는 `operator+=`를 제공하고, `a + b`는 `T tmp = a; tmp += b; return tmp;`처럼 구현해 한 번의 명시적 복사만 두는 식으로 설계합니다.
+임시를 제거하는 기법은 "임시가 왜 생겼는가"에 따라 대응이 달라집니다. 함수가 인자를 값으로 받아 호출마다 복사를 유발한다면, 읽기만 할 때는 **참조로 전달**해 `const T&`를, 소유권을 넘기거나 수정할 때는 `T&&`를 씁니다. `void f(const T&)`는 호출자가 임시를 넘겨도 그 임시의 수명이 함수 종료까지 연장되므로 "읽기 전용" API에 특히 적합합니다. 같은 연산을 반복 수행한다면 **연산 결합**으로 대응합니다 — 중간 결과를 한 번 변수에 담아 재사용하면 같은 연산을 반복할 때마다 임시가 다시 생성되는 낭비를 막을 수 있으므로, 루프 안이 아니라 루프 밖에서 한 번만 만들고 재사용합니다. 의도하지 않은 타입 변환이 임시를 유발한다면 **explicit**를 둡니다. 단일 인자 생성자나 변환 연산자에 `explicit`를 붙이면 암시적 변환으로 인한 임시 생성 자체가 컴파일 시점에 차단됩니다. 마지막으로 연산자를 직접 설계하는 입장이라면 **연산자 설계** 원칙을 따릅니다. 반복 덧셈처럼 누적되는 연산에는 `operator+=`를 제공하고, 사용자 편의를 위한 `a + b`는 `T tmp = a; tmp += b; return tmp;`처럼 구현해 한 번의 명시적 복사만 발생하도록 설계합니다.
 
 ## 계측 예제: `c = a + b + d` vs in-place `+=`
 
