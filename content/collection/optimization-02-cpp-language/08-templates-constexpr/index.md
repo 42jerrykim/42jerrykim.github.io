@@ -1,4 +1,4 @@
-﻿---
+---
 collection_order: 8
 date: 2026-03-10
 lastmod: 2026-07-10
@@ -9,77 +9,32 @@ slug: templates-constexpr
 description: "constexpr, consteval을 활용한 컴파일 타임 계산과 템플릿 기반 비용 제어 전략을 다룹니다. 런타임 오버헤드를 컴파일 타임으로 옮기고 인라이닝을 유도하는 패턴을 정리하며, 컴파일 시간·ABI 트레이드오프와 적용 기준을 제시합니다."
 tags:
   - C++
-  - Performance
-  - Optimization
-  - 성능
-  - 최적화
-  - Compiler
-  - 컴파일러
-  - Memory
-  - 메모리
-  - CPU
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Performance(성능)
+  - Optimization(최적화)
+  - Compiler(컴파일러)
+  - Implementation(구현)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Type-Safety
-  - Profiling
-  - 프로파일링
+  - Refactoring(리팩토링)
+  - Pitfalls(함정)
   - Benchmark
-  - Time-Complexity
-  - 시간복잡도
-  - Space-Complexity
-  - 공간복잡도
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Readability
-  - Maintainability
-  - Modularity
-  - Git
-  - CI-CD
-  - Linux
-  - Windows
-  - Latency
-  - Throughput
-  - Backend
-  - 백엔드
-  - Embedded
-  - 임베디드
   - Advanced
   - Deep-Dive
   - 실습
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Case-Study
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Abstraction
-  - 추상화
-  - Composition
-  - 합성
-  - Documentation
-  - 문서화
-  - Math
-  - 수학
+  - Low-Level(로우레벨)
+  - Programming-Language(프로그래밍언어)
+  - Standard(표준)
+  - Numerical-Computing(수치계산)
+  - Testing(테스트)
+  - Constexpr
+  - Consteval
+  - Templates
+  - Compile-Time-Computation
+  - Lookup-Table
+  - If-Constexpr
+  - Template-Instantiation
+  - Code-Bloat
+  - Static-Assert
+  - Type-Dispatch
 ---
 
 **템플릿/constexpr**는 런타임 비용을 컴파일 타임으로 옮기고, 템플릿으로 인라이닝·타입별 최적화를 유도하는 수단입니다. 본 챕터에서는 **constexpr**·**consteval**을 활용한 컴파일 타임 계산과 템플릿 기반 비용 제어 전략을 다루고, lookup table·상수 분기 제거·코드 블로트 억제 방법을 정리합니다.
@@ -104,7 +59,7 @@ tags:
 
 **constexpr**는 C++11에서 도입되어 "상수 표현식에서 사용 가능한 함수·변수"를 표준화했습니다. C++14에서 제약이 완화되어 여러 문장·루프가 constexpr 함수 안에 올 수 있게 되었고, C++20에서는 **consteval**이 추가되어 "반드시 컴파일 타임에만 평가되는 함수"를 표현할 수 있게 되었습니다. 이로써 lookup table·설정값·분기 제거 등을 컴파일 타임에 처리해 런타임 비용을 줄이는 패턴이 언어로 지원됩니다.
 
-> "A constexpr function is a function that can be used in a constant expression." — [cppreference: constexpr specifier](https://en.cppreference.com/w/cpp/language/constexpr). 상수 맥락에서 호출되면 컴파일 타임에 평가되고, 그렇지 않으면 일반 함수처럼 런타임에 실행됩니다.
+constexpr로 선언된 함수·변수는 [cppreference: constexpr specifier](https://en.cppreference.com/w/cpp/language/constexpr)가 정의하는 "상수 표현식에서 값이 평가될 수 있는" 대상이 됩니다. 상수 맥락에서 호출되면 컴파일 타임에 평가되고, 그렇지 않으면 일반 함수처럼 런타임에 실행됩니다.
 
 ## constexpr 함수·변수
 
@@ -184,6 +139,8 @@ static_assert(kSquares[15] == 225);
 
 ## 평가 기준 (학습 성과 목표)
 
+이 장을 읽고 나면 constexpr·consteval의 평가 시점 차이를 설명하고, 템플릿 인스턴스화가 코드 크기·컴파일 시간에 미치는 영향을 근거로 `if constexpr`·특수화 적용 여부를 판단하며, lookup table·상수 파라미터 계산을 constexpr로 옮기고 `static_assert`로 검증할 수 있어야 합니다. 구체적으로는 다음을 할 수 있어야 합니다.
+
 - **constexpr**와 **consteval**의 차이(상수 맥락에서만 vs 항상 컴파일 타임)를 설명하고, 런타임 분기·테이블 조회 제거에 활용할 수 있다.
 - 템플릿 **인스턴스화**와 코드 크기·컴파일 시간 트레이드오프를 설명하고, `if constexpr`·특수화로 불필요한 인스턴스를 줄일 수 있다.
 - lookup table·상수 파라미터 계산을 constexpr로 옮기고, `static_assert`/consteval로 상수 요구사항을 검증할 수 있다.
@@ -223,8 +180,6 @@ static_assert(kSquares[15] == 225);
 
 | 용어 | 설명 |
 |------|------|
-| **constexpr** | 상수 표현식에서 사용 가능; 상수 맥락이면 컴파일 타임, 아니면 런타임 |
-| **consteval** | C++20; 반드시 컴파일 타임에만 평가되는 함수 |
 | **상수 맥락** | constexpr 변수 초기화, 템플릿 인자, `static_assert` 등 컴파일 타임에 평가되는 맥락 |
 
 ### 자주 묻는 질문 (FAQ)
