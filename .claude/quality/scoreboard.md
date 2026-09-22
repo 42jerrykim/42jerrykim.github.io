@@ -1957,3 +1957,4 @@
 | content/post/2026/2026-09-20-zg-zvec-grep-local-hybrid-search/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-21-cloudflare-pingora-hashring-memory-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-22-coding-agent-harness-cost-tax/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-09-23-ibm-agent-pass-k-consistency-gap/index.md | - | - | 0 | 미채점 | - | - | - |
