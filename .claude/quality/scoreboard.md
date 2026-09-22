@@ -254,7 +254,7 @@
 | content/collection/optimization-02-cpp-language/06-object-lifetime/index.md | 97.0 | 2026-09-20 | 1 | 통과 | 1.3 | 773f9f9 | 없음(경미: 항목7=70 — tags 21개가 data/tags.yaml 승인 결합형(예: Performance(성능))을 영/한 두 줄로 분리 표기, 잔존 필러 태그 다수) |
 | content/collection/optimization-02-cpp-language/07-temporary-removal/index.md | 94.6 | 2026-09-21 | 1 | 통과 | 1.3 | 1538b56 | 없음(경미: 항목4=70 "operator+ 제거"·"const T& 수명 연장" 논지가 2~3곳에서 반복, 항목7=85 Linux/Windows 태그가 승인 결합형 Linux(리눅스)/Windows(윈도우) 미표기) |
 | content/collection/optimization-02-cpp-language/08-templates-constexpr/index.md | 95.5 | 2026-09-22 | 1 | 통과 | 1.3 | 06bb1e5 | 없음(경미: 항목2=85 "자주 하는 실수" 절에 "흔한 오해" 전용 소제목 없이 오개념 교정이 형식적으로만 존재) |
-| content/collection/optimization-02-cpp-language/09-modern-cpp-features/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/09-modern-cpp-features/index.md | 91.2 | 2026-09-23 | 1 | 통과 | 1.3 | d8afa40 | 없음(경미: L104 cppreference 인용문이 원문과 불일치, L272 C++26 확정일 하루 오차, 파일 선두 BOM, "기타 C++17/20/23 기능" 절 리스트 앞 요약 문단 부재) |
 | content/collection/optimization-02-cpp-language/10-coroutine-performance/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-02-cpp-language/11-exception-deep-dive/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-02-cpp-language/12-inlining-techniques/index.md | - | - | 0 | 미채점 | - | - | - |
