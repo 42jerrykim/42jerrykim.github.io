@@ -463,7 +463,7 @@
 | content/collection/Algorithm/2024/2024-05-18-BOJ-2206/index.md | 96.1 | 2026-08-19 | 1 | 통과 | 1.2 | 4d28d12 | 없음(1차 채점 67.0점 미달 후 1회 Revise: 태그를 본문과 무관한 것 제거하고 BFS/그래프 관련으로 교체, algorithm-post-writing 필수 섹션(문제 정보·입출력 예제·복잡도 분석·코너 케이스) 신설, 3차원 상태확장 BFS 메커니즘·오개념 교정·1차 출처(Cormen) 추가, Mermaid 상태전이 다이어그램 추가, C++ 코드 신설(로컬 cl.exe 컴파일 검증), Python·C++ 모두 예제 1/2·코너케이스 실행 검증, 죽은 원본 링크를 검증된 Wayback 아카이브 링크로 대체) |
 | content/collection/Algorithm/2024/2024-05-18-BOJ-2252/index.md | 96.55 | 2026-09-02 | 3 | 통과 | 1.3 | 024bf02 | 없음(경미: 시간·메모리 제한 정보 부재(acmicpc.net 사이트 전역 점검 중으로 확인 불가), acmicpc.net 문제 링크 검증 불가(사이트 전역 점검 페이지 반환, 개별 링크 결함 아님)) |
 | content/collection/Algorithm/2024/2024-09-14-BOJ-6549/index.md | 98.5 | 2026-09-04 | 2 | 통과 | 1.3 | bec2b10 | 없음(leetcode.com 링크는 WAF 차단으로 검증 불가 — 치명결함 아님, 항목7 85 상한 사유) |
-| content/collection/Algorithm/2024/2024-09-19-BOJ-13141/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-19-BOJ-13141/index.md | 100 | 2026-09-24 | 3 | 통과 | 1.3 | 2e3eb22 | 없음 |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-13977/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-14517/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-14942/index.md | - | - | 0 | 미채점 | - | - | - |
