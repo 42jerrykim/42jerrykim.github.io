@@ -1959,3 +1959,5 @@
 | content/post/2026/2026-09-22-coding-agent-harness-cost-tax/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-23-ibm-agent-pass-k-consistency-gap/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-24-coding-agent-tool-choice-divergence/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-09-29-simd-quad-search-binary-search/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-09-30-px0-ai-code-review-ide/index.md | 95.8 | 2026-09-30 | 2 | 통과 | 1.3 | c10faaa | 없음(경미: L49 "Asli Engineering" 채널명 표현이 schema title과 다름 — 항목1=85, Prompt-Engineering 태그-본문 정합성 약함 — 항목7=85) |
