@@ -464,7 +464,7 @@
 | content/collection/Algorithm/2024/2024-05-18-BOJ-2252/index.md | 96.55 | 2026-09-02 | 3 | 통과 | 1.3 | 024bf02 | 없음(경미: 시간·메모리 제한 정보 부재(acmicpc.net 사이트 전역 점검 중으로 확인 불가), acmicpc.net 문제 링크 검증 불가(사이트 전역 점검 페이지 반환, 개별 링크 결함 아님)) |
 | content/collection/Algorithm/2024/2024-09-14-BOJ-6549/index.md | 98.5 | 2026-09-04 | 2 | 통과 | 1.3 | bec2b10 | 없음(leetcode.com 링크는 WAF 차단으로 검증 불가 — 치명결함 아님, 항목7 85 상한 사유) |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-13141/index.md | 100 | 2026-09-24 | 3 | 통과 | 1.3 | 2e3eb22 | 없음 |
-| content/collection/Algorithm/2024/2024-09-19-BOJ-13977/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-19-BOJ-13977/index.md | 98.5 | 2026-09-30 | 2 | 통과 | 1.3 | ab0a77d | 없음(경미: 항목7=85, L43·L359 acmicpc.net 링크를 Wayback URL로 교체 — rules-that-must-be-followed §3의 acmicpc.net 무수정 예외조항과 형식적으로 충돌하나 실제 링크는 200/내용 정확, 치명 아님. §3 조항과의 정합성은 사람 검토 필요) |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-14517/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-14942/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-15678/index.md | - | - | 0 | 미채점 | - | - | - |
