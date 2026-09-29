@@ -1,7 +1,7 @@
 ---
 title: "[AI] px0: 리눅스 커널도 370ms에 훑는 AI 코드 리뷰 전용 IDE"
 description: "Arpit Bhayani가 만든 px0는 AI 에이전트가 짠 코드를 검토하는 데 최적화한 원격 우선 IDE다. 리눅스 커널 95,710개 파일을 370ms에 인덱싱하고 VS Code 대비 메모리를 약 90% 줄인 벤치마크와 8개 CLI 에이전트 연동 구조를 살펴본다."
-date: 2026-09-30T07:30:00+09:00
+date: 2026-09-30T02:30:00+09:00
 lastmod: 2026-09-30
 draft: false
 categories:
