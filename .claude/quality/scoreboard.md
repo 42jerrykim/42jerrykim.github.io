@@ -465,7 +465,7 @@
 | content/collection/Algorithm/2024/2024-09-14-BOJ-6549/index.md | 98.5 | 2026-09-04 | 2 | 통과 | 1.3 | bec2b10 | 없음(leetcode.com 링크는 WAF 차단으로 검증 불가 — 치명결함 아님, 항목7 85 상한 사유) |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-13141/index.md | 100 | 2026-09-24 | 3 | 통과 | 1.3 | 2e3eb22 | 없음 |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-13977/index.md | 98.5 | 2026-09-30 | 2 | 통과 | 1.3 | ab0a77d | 없음(경미: 항목7=85, L43·L359 acmicpc.net 링크를 Wayback URL로 교체 — rules-that-must-be-followed §3의 acmicpc.net 무수정 예외조항과 형식적으로 충돌하나 실제 링크는 200/내용 정확, 치명 아님. §3 조항과의 정합성은 사람 검토 필요) |
-| content/collection/Algorithm/2024/2024-09-19-BOJ-14517/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-19-BOJ-14517/index.md | 95.8 | 2026-10-01 | 3 | 통과 | 1.3 | 974358e | 없음(경미: 항목1=85 — 코너 케이스 표의 "오버플로우 $2^{31}$ 초과 가능" 서술이 모든 dp값이 mod 10007로 묶여 사실과 불일치했던 것을 채점 직후 정정 완료(오버플로우 없음·음수 나머지 보정으로 교체, 재채점 생략). 항목7=85 acmicpc.net 링크가 BOJ 사이트 전체 점검(2026년 4월 28일까지)으로 검증 불가 — 치명결함 아님) |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-14942/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-15678/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-20-BOJ-16287/index.md | - | - | 0 | 미채점 | - | - | - |
