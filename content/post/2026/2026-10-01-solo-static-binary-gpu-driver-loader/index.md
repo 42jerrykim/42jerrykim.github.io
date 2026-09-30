@@ -1,7 +1,7 @@
 ---
 title: "[Linux] 정적 바이너리가 glibc GPU 드라이버를 쓰는 법 — SoLo의 ELF 로더"
 description: "musl로 완전 정적 링크한 실행 파일은 호스트에 이미 설치된 glibc 기반 GPU 드라이버를 dlopen할 수 없다. SoLo는 커스텀 ELF 로더와 glibc ABI 브릿지로 이 문제를 풀었고, HN·lobste.rs 토론에서 나온 호환성 리스크까지 정리한다."
-date: 2026-10-01
+date: 2026-10-01T00:30:00+09:00
 lastmod: 2026-10-01
 draft: false
 categories:
