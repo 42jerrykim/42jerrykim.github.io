@@ -1962,3 +1962,4 @@
 | content/post/2026/2026-09-29-simd-quad-search-binary-search/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-30-px0-ai-code-review-ide/index.md | 95.8 | 2026-09-30 | 2 | 통과 | 1.3 | c10faaa | 없음(경미: L49 "Asli Engineering" 채널명 표현이 schema title과 다름 — 항목1=85, Prompt-Engineering 태그-본문 정합성 약함 — 항목7=85) |
 | content/post/2026/2026-10-01-solo-static-binary-gpu-driver-loader/index.md | 95.8 | 2026-10-01 | 1 | 통과 | 1.3 | bfa3e18 | 없음(1차 채점 결함 2건은 Revise로 해소: L146 출처 오귀속 HN→GitHub README 정정, System-Call/Signal/Benchmark 태그-본문 불일치로 3개 제거) |
+| content/post/2026/2026-10-02-zero-token-confidence-hidden-state-readout/index.md | 96.1 | 2026-10-02 | 2 | 통과 | 1.3 | 4f1bb1b | 없음(1차 채점 치명결함 image-missing·3개 이상 비교 나열 비표화는 Revise로 해소; 2차 채점 경미: "실무 판단 기준" 절 리스트 의존 — 항목3=85, GPU 태그는 본문 불일치로 제거함) |
