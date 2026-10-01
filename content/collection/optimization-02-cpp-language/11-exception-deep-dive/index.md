@@ -1,4 +1,4 @@
-﻿---
+---
 collection_order: 11
 date: 2026-03-10
 lastmod: 2026-07-10
@@ -9,74 +9,44 @@ slug: exception-deep-dive
 description: "zero-cost exception의 실제 동작과 noexcept 전략을 다룹니다. 예외 발생 경로와 정상 경로의 비용 차이, 예외 사양이 인라이닝·코드 생성에 미치는 영향을 마이크로벤치마크로 검증하고, 핫패스에서의 사용·회피 기준을 정리합니다."
 tags:
   - C++
-  - Performance
-  - Optimization
-  - 성능
-  - 최적화
-  - Error-Handling
-  - 에러처리
-  - Compiler
-  - 컴파일러
-  - Memory
-  - 메모리
-  - Implementation
-  - 구현
-  - Code-Quality
-  - 코드품질
+  - Performance(성능)
+  - Optimization(최적화)
+  - Error-Handling(에러처리)
+  - Compiler(컴파일러)
+  - Memory(메모리)
+  - Implementation(구현)
+  - Code-Quality(코드품질)
   - Best-Practices
-  - Clean-Code
-  - 클린코드
-  - Profiling
-  - 프로파일링
+  - Clean-Code(클린코드)
+  - Profiling(프로파일링)
   - Benchmark
-  - Time-Complexity
-  - 시간복잡도
-  - Testing
-  - 테스트
-  - Debugging
-  - 디버깅
-  - Refactoring
-  - 리팩토링
-  - Type-Safety
-  - Readability
-  - Maintainability
-  - Modularity
-  - Edge-Cases
-  - 엣지케이스
-  - Pitfalls
-  - 함정
-  - Git
-  - CI-CD
+  - Time-Complexity(시간복잡도)
+  - Testing(테스트)
+  - Debugging(디버깅)
+  - Refactoring(리팩토링)
+  - Edge-Cases(엣지케이스)
+  - Pitfalls(함정)
   - Linux
   - Windows
   - Latency
   - Throughput
-  - Backend
-  - 백엔드
-  - Embedded
-  - 임베디드
+  - Backend(백엔드)
+  - Embedded(임베디드)
   - Advanced
   - Deep-Dive
   - 실습
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Case-Study
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Documentation
-  - 문서화
-  - Software-Architecture
-  - 소프트웨어아키텍처
-  - Design-Pattern
-  - 디자인패턴
-  - Abstraction
-  - 추상화
-  - Interface
-  - 인터페이스
+  - Guide(가이드)
+  - Reference(참고)
+  - Technology(기술)
+  - Software-Architecture(소프트웨어아키텍처)
+  - Noexcept
+  - Zero-Cost-Exception
+  - Unwinding
+  - Landing-Pad
+  - 언와인딩
+  - RAII(Resource Acquisition Is Initialization)
+  - Concurrency(동시성)
+  - Reliability
 ---
 
 **예외 처리 심화**에서는 정상 경로와 예외 경로의 비용 차이를 구분하고, noexcept로 이동·인라이닝을 유도하는 방법을 다룹니다. 본 챕터에서는 zero-cost exception의 실제 동작과 noexcept 전략, 예외 사양이 인라이닝·코드 생성에 미치는 영향을 마이크로벤치마크로 검증합니다.
@@ -101,7 +71,7 @@ tags:
 
 "Zero-cost exception"은 **예외가 발생하지 않는 정상 경로**에서는 추가 비용을 거의 들이지 않겠다는 설계 목표입니다. 많은 Unix·Linux 플랫폼이 채택한 **Itanium C++ ABI**에서는 예외가 throw되지 않을 때 별도 분기나 테이블 조회를 하지 않고, 예외가 발생했을 때만 **unwinding** 정보와 **landing pad**를 사용해 스택을 되감고 catch 블록을 찾습니다. Windows에서는 <strong>SEH(Structured Exception Handling)</strong>와 연동된 방식으로 비슷한 "정상 경로 비용 없음" 모델을 따릅니다. 따라서 비용이 **예외 경로에만 집중**되며, 정상 경로에서는 예외 메커니즘이 거의 비용을 부과하지 않습니다.
 
-> "In the zero-cost model, the runtime does not need to do anything when no exception is thrown. The cost is paid when an exception is thrown." — [Itanium C++ ABI: Exception Handling](https://itanium-cxx-abi.github.io/cxx-abi/abi-eh.html). noexcept는 "이 함수는 예외를 던지지 않는다"는 계약으로, 이동 선택·인라이닝에 영향을 줄 수 있습니다.
+흔히 "zero-cost exception"으로 불리는 이 모델은 [Itanium C++ ABI: Exception Handling](https://itanium-cxx-abi.github.io/cxx-abi/abi-eh.html) 스펙이 규정하는 **unwind descriptor table**과 **personality routine** 기반 구조로 구현됩니다. 예외가 발생하지 않는 정상 경로에는 분기·테이블 조회가 끼어들지 않고, 예외가 실제로 발생했을 때만 언와인딩 테이블을 조회해 personality routine이 search phase·cleanup phase를 거쳐 landing pad를 찾습니다. noexcept는 "이 함수는 예외를 던지지 않는다"는 계약으로, 이동 선택·인라이닝에 영향을 줄 수 있습니다.
 
 ## 예외 발생 경로 비용
 
@@ -209,6 +179,8 @@ noexcept 함수는 "예외를 전파하지 않는다"는 정보를 컴파일러�
 
 ## 판단 기준 (언제 쓰고 언제 피할지)
 
+정상 경로만 있는 핫패스에서는 noexcept를 붙이는 편이 안전하고, 이동 연산이나 컨테이너 재할당이 잦은 타입은 이동 생성자·이동 대입에 noexcept를 보장해야 이동이 선택됩니다. 반대로 실패가 드물지 않은 경로는 예외보다 expected·에러 코드로 처리해야 실패 시 비용을 예측할 수 있습니다. 아래 표는 이 기준을 상황별로 정리합니다.
+
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
 | 정상만 있는 핫패스 | noexcept | 예외 전파 가능 경로에 noexcept |
@@ -233,7 +205,20 @@ Thomas Neumann(TUM)은 WG21 논문에서 128코어 AMD EPYC 7713 머신을 이�
 
 > "Threads: 1, 2, 4, 8, 16, 32, 64, 128 / 0.1% failure: 29ms, 29ms, 29ms, 29ms, 30ms, 30ms, 31ms, 105ms / 1.0% failure: 29ms, 30ms, 31ms, 34ms, 58ms, 123ms, 280ms, 1030ms / 10% failure: 36ms, 49ms, 129ms, 306ms, 731ms, 1320ms, 2703ms, 6425ms" — Thomas Neumann (TUM), [P2544R0: "C++ exceptions are becoming more and more problematic"](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/p2544r0.html) (2022-02-07)
 
-실패율 10%를 고정하고 스레드 수만 1→128로 늘리면 36ms → 6,425ms로 **약 178배** 느려집니다. 코어가 늘어날수록 스레드가 더 많은 일을 병렬로 처리해 시간이 줄어들기를 기대하지만, 실패율이 조금이라도 있으면 오히려 초선형(super-linear)으로 나빠집니다. 실패율 0.1%처럼 아주 낮아도 128코어에서는 105ms로 3배 이상 벌어집니다. Low-latency 서비스가 멀티스레드로 동작하고 예외가 완전히 0은 아닌 실패 경로(파싱 실패, 검증 실패 등)에 쓰인다면, 이 경합이 단일 스레드 벤치마크에서는 보이지 않던 꼬리 지연의 원인이 될 수 있습니다. 멀티스레드 핫패스에서 실패가 드물지 않게 나온다면, 이 챕터에서 다룬 "정상 경로 vs throw 경로"뿐 아니라 "동시 throw 경로"까지 별도로 측정하거나, 애초에 expected·에러 코드로 설계하는 편이 안전합니다.
+같은 수치를 표로 정리하면 스레드 수가 늘수록, 그리고 실패율이 높을수록 실행 시간이 초선형으로 벌어지는 추세가 더 뚜렷하게 보입니다.
+
+| 스레드 수 | 0.1% 실패 | 1.0% 실패 | 10% 실패 |
+|---:|---:|---:|---:|
+| 1 | 29ms | 29ms | 36ms |
+| 2 | 29ms | 30ms | 49ms |
+| 4 | 29ms | 31ms | 129ms |
+| 8 | 29ms | 34ms | 306ms |
+| 16 | 30ms | 58ms | 731ms |
+| 32 | 30ms | 123ms | 1320ms |
+| 64 | 31ms | 280ms | 2703ms |
+| 128 | 105ms | 1030ms | 6425ms |
+
+실패율 10%를 고정하고 스레드 수만 1→128로 늘리면 36ms → 6,425ms로 **약 178배** 느려집니다. 코어가 늘어날수록 스레드가 더 많은 일을 병렬로 처리해 시간이 줄어들기를 기대하지만, 실패율이 조금이라도 있으면 오히려 초선형(super-linear)으로 나빠집니다. 실패율 0.1%처럼 아주 낮아도 128코어에서는 105ms로 3배 이상 벌어집니다. Low-latency 서비스가 멀티스레드로 동작하고 예외가 완전히 0은 아닌 실패 경로(파싱 실패, 검증 실패 등)에 쓰인다면, 이 경합이 단일 스레드 벤치마크에서는 보이지 않던 꼬리 지연의 원인이 될 수 있습니다. 멀티스레드 핫패스에서 실패가 드물지 않게 나온다면, 이 챕터에서 다룬 "정상 경로 vs throw 경로"뿐 아니라 "동시 throw 경로"까지 별도로 측정하거나, 애초에 expected·에러 코드로 설계하는 편이 안전합니다. 이 절은 예외 메커니즘 자체가 멀티스레드에서 추가로 지불하는 비용만 다루며, 락 경합 설계·메모리 모델·false sharing 같은 일반적인 동시성 구조는 이 트랙의 범위 밖입니다(→ 동시성 트랙).
 
 ## 비판적 시각: 한계와 트레이드오프
 

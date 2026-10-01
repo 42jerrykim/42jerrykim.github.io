@@ -256,7 +256,7 @@
 | content/collection/optimization-02-cpp-language/08-templates-constexpr/index.md | 95.5 | 2026-09-22 | 1 | 통과 | 1.3 | 06bb1e5 | 없음(경미: 항목2=85 "자주 하는 실수" 절에 "흔한 오해" 전용 소제목 없이 오개념 교정이 형식적으로만 존재) |
 | content/collection/optimization-02-cpp-language/09-modern-cpp-features/index.md | 91.2 | 2026-09-23 | 1 | 통과 | 1.3 | d8afa40 | 없음(경미: L104 cppreference 인용문이 원문과 불일치, L272 C++26 확정일 하루 오차, 파일 선두 BOM, "기타 C++17/20/23 기능" 절 리스트 앞 요약 문단 부재) |
 | content/collection/optimization-02-cpp-language/10-coroutine-performance/index.md | 91.3 | 2026-09-29 | 1 | 통과 | 1.3 | 751cb61 | 없음(경미: 파일 선두 UTF-8 BOM, L102 blockquote 인용문이 cppreference 원문과 불일치·출처 미병기, L156-160 "코루틴 프레임 할당" 절이 L86에서 예고한 HALO(힙 할당 제거 최적화)를 사용자 제공 allocator와 구분해 다루지 않음) |
-| content/collection/optimization-02-cpp-language/11-exception-deep-dive/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/11-exception-deep-dive/index.md | 96.55 | 2026-10-02 | 3 | 통과 | 1.3 | 44cff30 | 없음(경미: 항목3=85 "예외 vs expected" 전용 비교 표 누락(collection-writing-standards §2.2), 항목7=85 tags Linux/Windows가 승인 결합형 Linux(리눅스)/Windows(윈도우) 미표기). 1차 채점(77.65점) 치명결함이던 L104 Itanium ABI 환각 인용 삭제·패러프레이즈 교체, 2차 지적 태그 영/한 분리 20쌍 승인 결합형 병합·00 챕터 Tr.07 경계 중첩 해소로 3회차에 통과 |
 | content/collection/optimization-02-cpp-language/12-inlining-techniques/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-02-cpp-language/13-variant-optional-expected/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-02-cpp-language/14-span-and-views/index.md | - | - | 0 | 미채점 | - | - | - |
