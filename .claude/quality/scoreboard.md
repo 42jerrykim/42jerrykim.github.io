@@ -466,7 +466,7 @@
 | content/collection/Algorithm/2024/2024-09-19-BOJ-13141/index.md | 100 | 2026-09-24 | 3 | 통과 | 1.3 | 2e3eb22 | 없음 |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-13977/index.md | 98.5 | 2026-09-30 | 2 | 통과 | 1.3 | ab0a77d | 없음(경미: 항목7=85, L43·L359 acmicpc.net 링크를 Wayback URL로 교체 — rules-that-must-be-followed §3의 acmicpc.net 무수정 예외조항과 형식적으로 충돌하나 실제 링크는 200/내용 정확, 치명 아님. §3 조항과의 정합성은 사람 검토 필요) |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-14517/index.md | 95.8 | 2026-10-01 | 3 | 통과 | 1.3 | 974358e | 없음(경미: 항목1=85 — 코너 케이스 표의 "오버플로우 $2^{31}$ 초과 가능" 서술이 모든 dp값이 mod 10007로 묶여 사실과 불일치했던 것을 채점 직후 정정 완료(오버플로우 없음·음수 나머지 보정으로 교체, 재채점 생략). 항목7=85 acmicpc.net 링크가 BOJ 사이트 전체 점검(2026년 4월 28일까지)으로 검증 불가 — 치명결함 아님) |
-| content/collection/Algorithm/2024/2024-09-19-BOJ-14942/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-19-BOJ-14942/index.md | 98.5 | 2026-10-03 | 3 | 통과 | 1.3 | f463fc0 | 없음(경미: BOJ 링크 WAF로 검증 불가, 문제 상한 수치 미확인이라 가정 문구 사용, 3차 채점 후 L47 물결표를 en dash로 교체)
 | content/collection/Algorithm/2024/2024-09-19-BOJ-15678/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-20-BOJ-16287/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-20-BOJ-17401/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1963,3 +1963,5 @@
 | content/post/2026/2026-09-30-px0-ai-code-review-ide/index.md | 95.8 | 2026-09-30 | 2 | 통과 | 1.3 | c10faaa | 없음(경미: L49 "Asli Engineering" 채널명 표현이 schema title과 다름 — 항목1=85, Prompt-Engineering 태그-본문 정합성 약함 — 항목7=85) |
 | content/post/2026/2026-10-01-solo-static-binary-gpu-driver-loader/index.md | 95.8 | 2026-10-01 | 1 | 통과 | 1.3 | bfa3e18 | 없음(1차 채점 결함 2건은 Revise로 해소: L146 출처 오귀속 HN→GitHub README 정정, System-Call/Signal/Benchmark 태그-본문 불일치로 3개 제거) |
 | content/post/2026/2026-10-02-zero-token-confidence-hidden-state-readout/index.md | 96.1 | 2026-10-02 | 2 | 통과 | 1.3 | 4f1bb1b | 없음(1차 채점 치명결함 image-missing·3개 이상 비교 나열 비표화는 Revise로 해소; 2차 채점 경미: "실무 판단 기준" 절 리스트 의존 — 항목3=85, GPU 태그는 본문 불일치로 제거함) |
+| content/post/2026/2026-10-02-simdjson-compressed-json-frame-parallel/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-10-03-nvidia-openshell-sentry-agent-safety/index.md | - | - | 0 | 미채점 | - | - | - |
