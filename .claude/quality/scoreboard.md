@@ -811,7 +811,7 @@
 | content/collection/Algorithm/2026/2026-03-10-BOJ-11238-fibo-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2026/2026-03-10-BOJ-24491-searching-for-soulmates-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2026/2026-03-10-BOJ-8927-squares-cpp-python-solution/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/android-hardware-development/00-getting-started-android-hardware-development/index.md | 100 | 2026-08-22 | 2 | 통과 | 1.2 | f6cf18d | 없음 |
+| content/collection/android-hardware-development/00-getting-started-android-hardware-development/index.md | 97.3 | 2026-10-04 | 4 | 통과 | 1.3 | 9d57d47 | 없음(개선여지: 참고 출처 4건 URL 병기·Treble 인라인 인용). 1.2→1.3 재채점: Phase 서술↔표 모순 정리, OTA/A-B·Dynamic partitions·Mainline 배정, 15·17장 범위 구분, 5계층 정의·다이어그램 통일, ART/AVF 장 배정, Governance 태그 제거 |
 | content/collection/android-hardware-development/01-hardware-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/android-hardware-development/02-android-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/android-hardware-development/03-kernel-development/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1965,3 +1965,4 @@
 | content/post/2026/2026-10-02-zero-token-confidence-hidden-state-readout/index.md | 96.1 | 2026-10-02 | 2 | 통과 | 1.3 | 4f1bb1b | 없음(1차 채점 치명결함 image-missing·3개 이상 비교 나열 비표화는 Revise로 해소; 2차 채점 경미: "실무 판단 기준" 절 리스트 의존 — 항목3=85, GPU 태그는 본문 불일치로 제거함) |
 | content/post/2026/2026-10-02-simdjson-compressed-json-frame-parallel/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-10-03-nvidia-openshell-sentry-agent-safety/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-10-04-walgit-object-storage-git-server/index.md | - | - | 0 | 미채점 | - | - | - |
