@@ -468,7 +468,7 @@
 | content/collection/Algorithm/2024/2024-09-19-BOJ-14517/index.md | 95.8 | 2026-10-01 | 3 | 통과 | 1.3 | 974358e | 없음(경미: 항목1=85 — 코너 케이스 표의 "오버플로우 $2^{31}$ 초과 가능" 서술이 모든 dp값이 mod 10007로 묶여 사실과 불일치했던 것을 채점 직후 정정 완료(오버플로우 없음·음수 나머지 보정으로 교체, 재채점 생략). 항목7=85 acmicpc.net 링크가 BOJ 사이트 전체 점검(2026년 4월 28일까지)으로 검증 불가 — 치명결함 아님) |
 | content/collection/Algorithm/2024/2024-09-19-BOJ-14942/index.md | 98.5 | 2026-10-03 | 3 | 통과 | 1.3 | f463fc0 | 없음(경미: BOJ 링크 WAF로 검증 불가, 문제 상한 수치 미확인이라 가정 문구 사용, 3차 채점 후 L47 물결표를 en dash로 교체)
 | content/collection/Algorithm/2024/2024-09-19-BOJ-15678/index.md | 92.5 | 2026-10-05 | 2 | 통과 | 1.3 | 1a6f73c | 없음(경미: 항목2=85 흔한 오개념 절 형식적; 태그 1개 추가는 재채점 없이 반영) |
-| content/collection/Algorithm/2024/2024-09-20-BOJ-16287/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-20-BOJ-16287/index.md | 95.8 | 2026-10-06 | 3 | 통과 | 1.3 | 3a02bd1 | 없음(경미: BOJ 문제 링크 서비스 종료로 검증 불가 — 본문에 종료 명시, 항목1·7=85 상한). 64.0→76.7(BOJ 404 치명 판정)→86.8→95.8 |
 | content/collection/Algorithm/2024/2024-09-20-BOJ-17401/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-23-BOJ-1014/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-23-BOJ-2618/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1967,3 +1967,4 @@
 | content/post/2026/2026-10-03-nvidia-openshell-sentry-agent-safety/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-10-04-walgit-object-storage-git-server/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-10-05-frequency-hard-dpo-masking-frequent-tokens/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-10-06-crossfit-co-cheating-self-evolving-search-agents/index.md | - | - | - | 미채점 | - | - | - |
