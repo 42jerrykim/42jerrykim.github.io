@@ -1,6 +1,6 @@
 ---
 image: "wordcloud.png"
-description: "백준 2618번 경찰차 문제는 동적 계획법(DP)을 활용해 두 대의 경찰차가 격자 도시 내 다수의 사건을 최적으로 분담하도록 이동 경로를 결정한다. 경찰차 각각의 마지막 위치 및 사건 담당 순서에 따른 최소 이동 거리 조합을 탐색하며, 메모이제이션과 상태 전이 설계, 그리고 최적 경로 추적에 대한 세부 구현 원리와 코드를 상세 설명한다."
+description: "백준 2618번 경찰차를 메모이제이션 DP로 푼다. 다음 사건이 max(i,j)+1로 정해지므로 상태를 두 차의 마지막 사건 번호 (i,j)로 줄여 O(W²)에 풀고, 남은 비용 재귀식, 경로 복원, 흔한 상태 설계 실수를 설명한다."
 categories: Algorithm
 date: "2024-09-23T00:00:00Z"
 header:
@@ -10,7 +10,6 @@ tags:
 - Optimization(최적화)
 - Memoization
 - Time-Complexity(시간복잡도)
-- BFS(Breadth-First Search)
 - Algorithm(알고리즘)
 - BOJ(백준)
 - Competitive-Programming(경쟁프로그래밍)
@@ -21,31 +20,24 @@ tags:
 - Data-Structures(자료구조)
 - Code-Quality(코드품질)
 - Python
-- Go
-- .NET
-- String(문자열)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)
-- Testing(테스트)
-- Documentation(문서화)
+- Array(배열)
+- State-Reconstruction(상태재구성)
 - Best-Practices
 - Complexity-Analysis(복잡도분석)
 - Debugging(디버깅)
-- Refactoring(리팩토링)
-- Clean-Code(클린코드)
+- Recursion(재귀)
+- Brute-Force(완전탐색)
 - Performance(성능)
 - Pitfalls(함정)
-- Error-Handling(에러처리)
+- Optimal-Substructure(최적부분구조)
 title: '[Algorithm] C++/Python 백준 2618번 : 경찰차'
 ---
 
 경찰차들은 도시의 여러 사건을 처리하기 위해 최적의 경로를 찾아야 한다. 이때 두 대의 경찰차가 이동한 거리의 합을 최소화하는 것이 목표이다. 도시의 구조와 사건의 발생 위치가 주어졌을 때, 어떻게 하면 두 경찰차의 총 이동 거리를 최소화할 수 있을까?
 
 문제 : [https://www.acmicpc.net/problem/2618](https://www.acmicpc.net/problem/2618)
-
-|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
-|:---:|
-||
 
 ## 문제 설명
 
@@ -55,45 +47,73 @@ title: '[Algorithm] C++/Python 백준 2618번 : 경찰차'
 
 목표는 두 경찰차가 이동한 거리의 합을 최소화하면서 모든 사건을 처리하는 것이다. 사건을 어떤 경찰차가 처리할지 결정하고, 최소 이동 거리를 구하는 프로그램을 작성해야 한다.
 
+**제한 조건:** `N`과 `W`는 각각 최대 1,000이며, 사건의 좌표는 `1..N` 범위이다. 시간 제한과 메모리 제한은 문제 페이지에서 확인한다.
+
+**입출력 예제:**
+
+```text
+입력
+6
+3
+3 5
+5 5
+2 3
+
+출력
+9
+2
+2
+1
+```
+
+첫 줄의 9가 최소 이동 거리이고, 이어지는 줄은 사건 1, 2, 3을 각각 처리한 경찰차 번호이다. 경찰차 2가 사건 1(거리 4)과 사건 2(거리 2)를 맡고, 경찰차 1이 사건 3(거리 3)을 맡아 4 + 2 + 3 = 9가 된다.
+
+## 학습 목표
+
+이 글을 읽고 나면 다음을 설명할 수 있다.
+
+- 두 대의 경찰차가 번갈아 사건을 받는 문제에서 왜 상태가 `(i, j)` 두 값으로 충분한지 논증한다.
+- 남은 사건을 처리하는 최소 비용을 정의하는 top-down 메모이제이션 점화식을 세우고, 그 상태 수로 시간·공간 복잡도를 계산한다.
+- `path` 테이블로 최적해의 사건별 배정을 복원한다.
+
 ## 접근 방식
 
-이 문제는 Dynamic Programming(DP)을 활용하여 해결할 수 있다. 각 상태를 정의하고, 그 상태에서의 최소 거리를 구하는 방식으로 접근한다.
+사건은 입력 순서대로 처리해야 하므로, 사건 `1..k`까지 처리가 끝난 시점에 두 경찰차 중 한 대는 반드시 사건 `k`에 서 있다. 나머지 한 대가 어디에 있는지만 알면 이후의 최소 비용은 과거에 누가 어떤 사건을 맡았는지와 무관하게 결정된다. 따라서 상태는 두 차가 각각 마지막으로 처리한 사건 번호 `(i, j)`이며, 사건이 하나도 없는 경우는 번호 `0`으로 표시하고 이때의 위치는 각각 `(1, 1)`과 `(N, N)`이다. 다음에 처리할 사건은 언제나 `max(i, j) + 1`이므로, 이 값은 상태에서 자동으로 결정되어 별도 차원이 필요 없다. 완전 탐색은 사건마다 두 선택지가 있어 O(2^W)이지만, 서로 다른 상태가 O(W^2)개뿐이라는 점이 메모이제이션이 먹히는 근거다.
 
-1. **상태 정의**:
-   - DP 배열 `dp[i][j]`를 정의한다. 여기서 `i`는 경찰차 1이 마지막으로 처리한 사건의 번호, `j`는 경찰차 2가 마지막으로 처리한 사건의 번호를 의미한다.
-   - `dp[i][j]`는 경찰차 1이 사건 `i`까지, 경찰차 2가 사건 `j`까지 처리했을 때의 최소 이동 거리의 합이다.
+점화식은 이 글의 코드가 쓰는 대로 "남은 비용" 방식으로 정의한다. `solve(i, j)`는 경찰차 1이 사건 `i`, 경찰차 2가 사건 `j`에 있을 때 **남은 사건 `max(i, j)+1 .. W`를 모두 처리하는 데 드는 최소 이동 거리**다. `next = max(i, j) + 1`이라 할 때 `next > W`이면 0이고, 아니면 두 선택지 중 작은 쪽이다. 경찰차 1이 맡으면 `solve(next, j)`에 `i`(0이면 `(1, 1)`)에서 `next`까지의 거리를 더하고, 경찰차 2가 맡으면 `solve(i, next)`에 `j`(0이면 `(N, N)`)에서 `next`까지의 거리를 더한다. 정답은 `solve(0, 0)`이며, 별도로 최소값을 고르는 단계가 필요 없다. 각 상태에서 어느 쪽이 더 작았는지를 `path[i][j]`에 1 또는 2로 저장해 두면, `(0, 0)`에서 출발해 사건 번호 순서대로 선택을 따라가며 배정을 복원할 수 있다.
 
-2. **초기화**:
-   - `dp[0][0] = 0`으로 초기화한다. 아직 아무 사건도 처리하지 않은 상태이다.
+```mermaid
+flowchart TD
+    S0["solve(0, 0)"] -->|"차 1이 사건 1 담당"| S1["solve(1, 0)"]
+    S0 -->|"차 2가 사건 1 담당"| S2["solve(0, 1)"]
+    S1 -->|"차 1이 사건 2 담당"| S3["solve(2, 0)"]
+    S1 -->|"차 2가 사건 2 담당"| S4["solve(1, 2)"]
+    S2 -->|"차 1이 사건 2 담당"| S5["solve(2, 1)"]
+    S2 -->|"차 2가 사건 2 담당"| S6["solve(0, 2)"]
+```
 
-3. **상태 전이**:
-   - 다음 처리해야 할 사건의 번호는 `next = max(i, j) + 1`이다.
-   - 경찰차 1이 다음 사건 `next`를 처리하는 경우:
-     - 이전 위치에서 다음 사건 위치까지의 거리를 계산하고, `dp[next][j]`를 갱신한다.
-   - 경찰차 2가 다음 사건 `next`를 처리하는 경우:
-     - 마찬가지로 `dp[i][next]`를 갱신한다.
+위 그림은 사건이 3개 이상일 때 처음 두 단계의 전이다. 각 노드가 `(i, j)` 상태이고 간선이 "다음 사건을 누가 맡는가"의 선택이며, 서로 다른 경로가 같은 `(i, j)`에 합류하면 그 계산을 재사용한다.
 
-4. **최소값 선택**:
-   - 모든 가능한 `i`, `j`에 대해 DP를 수행하고, 마지막에 `dp[W][j]` 또는 `dp[i][W]` 중 최소값을 선택한다.
-
-5. **경로 추적**:
-   - 부모 상태를 저장하여 어떤 경찰차가 어떤 사건을 처리했는지 추적한다.
-
-이러한 방식으로 DP를 수행하면 시간 복잡도는 O(W^2)로, W가 최대 1,000이므로 제한 시간 내에 해결할 수 있다.
+| 항목 | 값 | 근거 |
+|---|---|---|
+| 상태 수 | O(W^2) | `0 ≤ i, j ≤ W` |
+| 전이 비용 | O(1) | 맨해튼 거리 두 번 계산 |
+| 시간 복잡도 | O(W^2) | W ≤ 1,000이면 약 10^6 상태 |
+| 공간 복잡도 | O(W^2) | `dp`, `path` 두 테이블 |
 
 ## C++ 코드와 설명
 
 ```cpp
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <cstring>
-#include <climits>
+#include <cstdlib>
 
 using namespace std;
 
 const int MAX_W = 1001;
-const int INF = INT_MAX;
 
 int N, W;
 pair<int, int> events[MAX_W]; // 사건들의 위치를 저장
@@ -101,7 +121,7 @@ int dp[MAX_W][MAX_W]; // DP 테이블
 int path[MAX_W][MAX_W]; // 경로 추적을 위한 테이블
 
 // 두 지점 사이의 거리를 계산하는 함수
-int distance(const pair<int, int>& a, const pair<int, int>& b) {
+int dist(const pair<int, int>& a, const pair<int, int>& b) {
     return abs(a.first - b.first) + abs(a.second - b.second);
 }
 
@@ -144,18 +164,18 @@ int solve(int car1, int car2) {
     // 경찰차 1이 사건 처리하는 경우
     int dist1;
     if (car1 == 0) {
-        dist1 = distance({1, 1}, events[next]);
+        dist1 = dist({1, 1}, events[next]);
     } else {
-        dist1 = distance(events[car1], events[next]);
+        dist1 = dist(events[car1], events[next]);
     }
     int cost1 = solve(next, car2) + dist1;
 
     // 경찰차 2가 사건 처리하는 경우
     int dist2;
     if (car2 == 0) {
-        dist2 = distance({N, N}, events[next]);
+        dist2 = dist({N, N}, events[next]);
     } else {
-        dist2 = distance(events[car2], events[next]);
+        dist2 = dist(events[car2], events[next]);
     }
     int cost2 = solve(car1, next) + dist2;
 
@@ -172,41 +192,15 @@ int solve(int car1, int car2) {
 }
 ```
 
-**코드 설명**
-
-- **입력 부분**:
-  - 도시 크기 `N`과 사건의 수 `W`를 입력받는다.
-  - 각 사건의 위치를 `events` 배열에 저장한다.
-
-- **DP 초기화**:
-  - `dp` 배열을 -1로 초기화하여 메모이제이션에 활용한다.
-
-- **`solve` 함수**:
-  - 재귀적으로 DP를 수행한다.
-  - `car1`, `car2`는 각각 경찰차 1과 2가 마지막으로 처리한 사건 번호이다.
-  - `next`는 다음에 처리해야 할 사건 번호이다.
-  - 종료 조건은 `next > W`인 경우로, 모든 사건을 처리한 상태이다.
-
-- **거리 계산**:
-  - 경찰차의 현재 위치에서 다음 사건 위치까지의 거리를 계산한다.
-  - 초기 위치는 각각 (1, 1)과 (N, N)이다.
-
-- **경로 추적**:
-  - `path` 배열에 어떤 경찰차가 해당 상태에서 선택되었는지 저장한다.
-  - 이를 통해 나중에 어떤 경찰차가 어떤 사건을 처리했는지 알 수 있다.
-
-- **메인 함수**:
-  - `solve(0, 0)`을 호출하여 DP를 시작한다.
-  - 이후 `path` 배열을 이용하여 각 사건마다 어느 경찰차가 처리했는지 출력한다.
+이 풀이는 도시 크기 `N`과 사건 수 `W`를 읽고 각 사건 좌표를 `events[1..W]`에 저장한다. `dp`는 -1로 채워 "아직 계산하지 않음"을 표시하며, 거리가 0 이상이므로 -1은 유효한 값과 겹치지 않는다. `solve(car1, car2)`는 두 차의 마지막 사건 번호를 받아 `next = max(car1, car2) + 1`을 구하고, `next > W`이면 0을 반환하는 것이 종료 조건이다. 번호가 0인 차는 사건을 한 번도 맡지 않았으므로 출발점 `(1, 1)` 또는 `(N, N)`에서 거리를 잰다. 두 선택지의 비용을 비교한 뒤 작은 쪽을 `dp`에, 선택한 차량 번호를 `path`에 기록한다. `main`은 `solve(0, 0)`의 값을 출력한 다음 `path[car1][car2]`를 따라가며 사건 `i`를 맡은 차량 번호를 한 줄씩 출력한다. 사건 `i`를 처리한 뒤의 상태가 `(i, car2)` 또는 `(car1, i)`가 되므로 갱신 코드는 `car1 = i` 또는 `car2 = i`이다.
 
 ## C++ without library 코드와 설명
 
 ```cpp
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <stdio.h>
-#include <stdlib.h>
 
 #define MAX_W 1001
-#define INF 1000000000
 
 int N, W;
 int events[MAX_W][2]; // 사건들의 위치를 저장
@@ -214,13 +208,13 @@ int dp[MAX_W][MAX_W]; // DP 테이블
 int path[MAX_W][MAX_W]; // 경로 추적을 위한 테이블
 
 // 절댓값 함수 구현
-int abs(int x) {
+int iabs(int x) {
     return x < 0 ? -x : x;
 }
 
 // 두 지점 사이의 거리를 계산하는 함수
-int distance(int a_x, int a_y, int b_x, int b_y) {
-    return abs(a_x - b_x) + abs(a_y - b_y);
+int dist(int a_x, int a_y, int b_x, int b_y) {
+    return iabs(a_x - b_x) + iabs(a_y - b_y);
 }
 
 // DP 함수 선언
@@ -261,18 +255,18 @@ int solve(int car1, int car2) {
     // 경찰차 1이 사건 처리하는 경우
     int dist1;
     if (car1 == 0) {
-        dist1 = distance(1, 1, events[next][0], events[next][1]);
+        dist1 = dist(1, 1, events[next][0], events[next][1]);
     } else {
-        dist1 = distance(events[car1][0], events[car1][1], events[next][0], events[next][1]);
+        dist1 = dist(events[car1][0], events[car1][1], events[next][0], events[next][1]);
     }
     int cost1 = solve(next, car2) + dist1;
 
     // 경찰차 2가 사건 처리하는 경우
     int dist2;
     if (car2 == 0) {
-        dist2 = distance(N, N, events[next][0], events[next][1]);
+        dist2 = dist(N, N, events[next][0], events[next][1]);
     } else {
-        dist2 = distance(events[car2][0], events[car2][1], events[next][0], events[next][1]);
+        dist2 = dist(events[car2][0], events[car2][1], events[next][0], events[next][1]);
     }
     int cost2 = solve(car1, next) + dist2;
 
@@ -289,16 +283,12 @@ int solve(int car1, int car2) {
 }
 ```
 
-**코드 설명**
-
-- `stdio.h`와 `stdlib.h`만을 사용하여 구현하였다.
-- C 스타일의 배열과 함수만을 사용하여 이전 코드와 동일한 로직을 구현하였다.
-- `abs` 함수를 직접 구현하여 사용하였다.
-- 나머지 로직은 이전 C++ 코드와 동일하다.
+이 버전은 `stdio.h`만 사용하며 로직은 위 C++ 코드와 같다. 달라진 점은 `pair` 대신 `int events[][2]` 배열을 쓰고, `memset` 대신 이중 반복문으로 `dp`를 -1로 채우며, 절댓값 함수를 `iabs`로 직접 구현했다는 것이다. 표준 `abs`와 이름을 겹치지 않게 하려고 `iabs`로 이름을 지었다. 제목의 "C++"는 컴파일러가 C++이어도 C 문법만으로 쓴 풀이라는 뜻이다.
 
 ## Python 코드와 설명
 
 ```python
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 import sys
 sys.setrecursionlimit(1000000)
 
@@ -312,7 +302,7 @@ for i in range(1, W + 1):
 dp = [[-1] * (W + 1) for _ in range(W + 1)]
 path = [[0] * (W + 1) for _ in range(W + 1)]
 
-def distance(a, b):
+def dist(a, b):
     return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
 def solve(car1, car2):
@@ -324,16 +314,16 @@ def solve(car1, car2):
 
     # 경찰차 1이 사건 처리하는 경우
     if car1 == 0:
-        dist1 = distance((1, 1), events[next_event])
+        dist1 = dist((1, 1), events[next_event])
     else:
-        dist1 = distance(events[car1], events[next_event])
+        dist1 = dist(events[car1], events[next_event])
     cost1 = solve(next_event, car2) + dist1
 
     # 경찰차 2가 사건 처리하는 경우
     if car2 == 0:
-        dist2 = distance((N, N), events[next_event])
+        dist2 = dist((N, N), events[next_event])
     else:
-        dist2 = distance(events[car2], events[next_event])
+        dist2 = dist(events[car2], events[next_event])
     cost2 = solve(car1, next_event) + dist2
 
     if cost1 < cost2:
@@ -357,39 +347,31 @@ for _ in range(W):
         car2 = max(car1, car2) + 1
 ```
 
-**코드 설명**
+Python 풀이도 구조는 같다. `sys.setrecursionlimit`을 올리는 이유는 재귀 깊이가 최대 `W`(1,000)까지 가기 때문이다. 경로 복원에서는 사건 번호를 `max(car1, car2) + 1`로 다시 구해 `path`가 1이면 `car1`, 2이면 `car2`를 그 번호로 바꾼다. 이 값은 C++ 풀이의 반복변수 `i`와 항상 같다.
 
-- **입력 부분**:
-  - 도시 크기 `N`과 사건의 수 `W`를 입력받는다.
-  - 각 사건의 위치를 `events` 리스트에 저장한다.
+## 흔한 오개념과 실수
 
-- **DP 테이블 초기화**:
-  - `dp`와 `path`를 2차원 리스트로 초기화한다.
+가장 흔한 실수는 상태를 "경찰차 1의 위치, 경찰차 2의 위치, 현재 사건 번호" 세 값으로 잡는 것이다. 사건이 입력 순서대로만 처리되므로 현재 사건 번호는 `max(i, j)`에서 이미 결정되어 있다. 세 값으로 잡으면 상태 수가 O(W^3)으로 불어나 메모리와 시간이 모두 초과된다. 또 하나의 오해는 "`i`와 `j`가 대칭이니 `i < j`만 저장해도 된다"는 생각이다. 두 차는 출발점이 `(1, 1)`과 `(N, N)`으로 서로 달라 `(i, j)`와 `(j, i)`의 남은 비용이 같지 않으므로 대칭성을 쓸 수 없다. 마지막으로 `solve(0, 0)`의 값만 구하고 `path`를 갱신하지 않으면 두 번째 줄부터의 배정 출력을 만들 수 없으니, 비교 시점에 선택을 함께 기록해야 한다.
 
-- **`distance` 함수**:
-  - 두 지점 사이의 거리를 계산한다.
+이 풀이의 정당성은 최적 부분구조에 있다. 남은 사건의 최소 비용은 지금까지 누가 무엇을 맡았는지와 무관하게 `(i, j)`만으로 정해지므로 부분 문제의 최적해를 합쳐 전체 최적해를 만들 수 있다. 이 성질과 같은 부분 문제의 반복 계산을 저장해 두는 기법은 각각 [Optimal substructure](https://en.wikipedia.org/wiki/Optimal_substructure)와 [Memoization](https://en.wikipedia.org/wiki/Memoization) 문서에 정리되어 있다.
 
-- **`solve` 함수**:
-  - 재귀적으로 DP를 수행한다.
-  - 메모이제이션을 위해 `dp` 테이블을 활용한다.
-
-- **결과 출력**:
-  - `solve(0, 0)`의 결과를 출력한다.
-  - `path` 테이블을 이용하여 각 사건마다 어느 경찰차가 처리했는지 출력한다.
+top-down과 bottom-up은 다음 기준으로 고른다. 재귀 깊이가 `W`(최대 1,000)로 얕고 도달 가능한 상태만 계산하면 되는 이 문제에서는 top-down이 점화식을 그대로 옮길 수 있어 간단하다. 반대로 깊이 제한이 빡빡한 언어이거나 `dp` 테이블 한 행만 유지해 메모리를 줄이려는 경우에는 bottom-up이 낫지만, `path` 복원을 위해 전체 테이블이 필요해지는 점을 감안해야 한다.
 
 ## 결론
 
-이 문제는 Dynamic Programming의 대표적인 예제로, 상태 정의와 메모이제이션을 통한 최적화가 중요하다. 각 상태에서의 최적해를 구하고, 이를 기반으로 전체 문제의 최적해를 도출하는 과정이 핵심이다.
+top-down 풀이는 구현이 간단하지만 경로 복원을 위해 `dp`와 `path` 전체를 유지해야 한다. bottom-up으로 바꿀 때는 뒤에서부터 채우는 순서와 `path` 역추적 방향을 함께 설계해야 하므로, 메모리를 줄이려다 복원 코드가 복잡해지는 비용을 감안해야 한다.
 
-문제를 풀면서 DP의 상태 설계와 재귀 함수의 작성 방법에 대해 다시 한 번 생각해볼 수 있었다. 또한, 메모이제이션을 통해 중복 계산을 방지함으로써 시간 복잡도를 효과적으로 줄일 수 있었다.
+## 참고 문헌 및 출처
 
-추가적인 최적화로는 DP 테이블의 크기를 줄이거나, 반복문을 활용하여 Bottom-Up 방식으로 구현하는 방법이 있다. 그러나 이 문제에서는 재귀와 메모이제이션을 통한 Top-Down 방식이 이해하기 쉽고 구현도 간단하다.
-
-이번 문제를 통해 DP의 중요성과 활용 방법에 대해 다시 한 번 깨달을 수 있었다. 앞으로도 다양한 문제에 DP를 적용하여 최적해를 구하는 연습을 지속해야겠다.
+- 문제: [백준 2618번 경찰차](https://www.acmicpc.net/problem/2618)
+- [Optimal substructure](https://en.wikipedia.org/wiki/Optimal_substructure)
+- [Memoization](https://en.wikipedia.org/wiki/Memoization)
 
 ## 코너 케이스 및 실수 포인트
 
 | 케이스 | 설명 | 처리 방법 |
 |---|---|---|
-| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
-| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |
+| **W=1** | 사건이 하나뿐 | `solve(0, 0)`이 두 출발점 중 가까운 쪽 거리를 반환하며 `path[0][0]`로 배정 복원 |
+| **모든 사건이 한 점** | 거리 0이 반복 | 한 차가 전부 맡아도 총합이 같아 `path`가 1 또는 2로 갈릴 수 있음 |
+| **출발점과 사건이 같은 위치** | 거리 0 | 번호 0 분기에서 `(1, 1)`, `(N, N)` 좌표를 쓰는지 확인 |
+| **오버플로우** | 총 거리 최대 약 2×10^6 | 사건 1,000개 × 거리 최대 2(N-1)이므로 `int`로 충분 |

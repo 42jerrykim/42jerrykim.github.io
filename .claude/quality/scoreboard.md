@@ -471,7 +471,7 @@
 | content/collection/Algorithm/2024/2024-09-20-BOJ-16287/index.md | 95.8 | 2026-10-06 | 3 | 통과 | 1.3 | 3a02bd1 | 없음(경미: BOJ 문제 링크 서비스 종료로 검증 불가 — 본문에 종료 명시, 항목1·7=85 상한). 64.0→76.7(BOJ 404 치명 판정)→86.8→95.8 |
 | content/collection/Algorithm/2024/2024-09-20-BOJ-17401/index.md | 87.4 | 2026-10-07 | 3 | 에스컬레이션 | 1.3 | 835e551 | 3회 반복 후 90점 근소 미달(치명결함 0). 잔여: (1) 문제 정보(시간·메모리 제한)·입출력 예제 섹션 누락 — BOJ 봇 차단으로 원문 검증 불가해 의도적 생략, 사람이 제약·예제를 확인해 추가 필요, (2) "해결 전략" 번호 리스트(L60-64)를 문단화해 산문 비율(40.4%) 상향, (3) 결론의 재진술·모호한 마지막 문장("메모리 사용을 줄이는 최적화") 삭제 또는 구체화 |
 | content/collection/Algorithm/2024/2024-09-23-BOJ-1014/index.md | 98.5 | 2026-10-08 | 3 | 통과 | 1.3 | 1eff6aa | 없음(경미: 항목7=85 Memoization/Testing/Debugging 태그가 본문과 불일치). BOJ 서비스 종료로 문제 원문 링크를 텍스트 표기로 대체 |
-| content/collection/Algorithm/2024/2024-09-23-BOJ-2618/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-23-BOJ-2618/index.md | 89.4 | 2026-10-09 | 3 | 에스컬레이션 | 1.3 | 5781a6f | 총점 89.4로 90 근소 미달(치명결함 0, 전 항목 앵커≥85). 잔여: 항목1=85 BOJ 페이지가 서비스 종료로 검증 불가(N 하한 미확인이라 채점 후 L50을 "최대 1,000"으로 완화, 시간·메모리 제한 수치 미기재), 항목4=85 결론 문단이 top-down/bottom-up 판단 문단을 재진술(삭제 또는 새 정보로 교체), 항목7=85 BOJ 링크에 Wayback 등 대체 링크 병기 여지. 채점 후 L50 수정으로 해시가 어긋남 — 콘텐츠 변경 만료로 다음 실행에서 재채점 대상 |
 | content/collection/Algorithm/2024/2024-09-23-BOJ-3176/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-25-BOJ-3653/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-25-BOJ-3679/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1969,3 +1969,5 @@
 | content/post/2026/2026-10-05-frequency-hard-dpo-masking-frequent-tokens/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-06-crossfit-co-cheating-self-evolving-search-agents/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-07-ride-representation-residual-on-policy-distillation/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-10-08-mold-linker-nodejs-24x/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-10-09-jev-system-one-model-jgrep-test-selection/index.md | - | - | 0 | 미채점 | - | - | - |
