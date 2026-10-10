@@ -826,3 +826,14 @@ general_cs:
   - Reliability(신뢰성)
   - SQL
   - Standard(표준)
+
+software_engineering_culture:
+  - Sensible-Default
+  - Martin-Fowler
+  - Thoughtworks
+  - Technology-Radar
+  - Evan-Bottcher
+  - Architecture-Decision-Record
+  - Pair-Programming
+  - Engineering-Culture
+  - Decision-Making
