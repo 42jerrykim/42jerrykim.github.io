@@ -473,7 +473,7 @@
 | content/collection/Algorithm/2024/2024-09-23-BOJ-1014/index.md | 98.5 | 2026-10-08 | 3 | 통과 | 1.3 | 1eff6aa | 없음(경미: 항목7=85 Memoization/Testing/Debugging 태그가 본문과 불일치). BOJ 서비스 종료로 문제 원문 링크를 텍스트 표기로 대체 |
 | content/collection/Algorithm/2024/2024-09-23-BOJ-2618/index.md | 89.4 | 2026-10-09 | 3 | 에스컬레이션 | 1.3 | 5781a6f | 총점 89.4로 90 근소 미달(치명결함 0, 전 항목 앵커≥85). 잔여: 항목1=85 BOJ 페이지가 서비스 종료로 검증 불가(N 하한 미확인이라 채점 후 L50을 "최대 1,000"으로 완화, 시간·메모리 제한 수치 미기재), 항목4=85 결론 문단이 top-down/bottom-up 판단 문단을 재진술(삭제 또는 새 정보로 교체), 항목7=85 BOJ 링크에 Wayback 등 대체 링크 병기 여지. 채점 후 L50 수정으로 해시가 어긋남 — 콘텐츠 변경 만료로 다음 실행에서 재채점 대상 |
 | content/collection/Algorithm/2024/2024-09-23-BOJ-3176/index.md | 82.8 | 2026-10-10 | 3 | 에스컬레이션 | 1.3 | 9110c59 | 치명결함 1: 항목7 — BOJ 문제 링크(acmicpc.net/problem/3176)가 "BOJ 서비스 종료"로 404 — 링크 처리 정책(텍스트 표기·보관 링크 대체)은 컬렉션 전체에 영향하므로 사람이 결정. 그 외 항목 1~6은 85~100(해소 시 약 92). 경미: 입출력 예제 절 부재(원문 접근 불가), 제약 1차 출처 미확인 |
-| content/collection/Algorithm/2024/2024-09-25-BOJ-3653/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-25-BOJ-3653/index.md | 82.8 | 2026-10-11 | 2 | 에스컬레이션 | 1.3 | 7a12927 | 치명결함 1: 항목7 — BOJ 문제 링크(acmicpc.net/problem/3653)가 "BOJ 서비스 종료"로 404 — 링크 처리 정책(텍스트 표기·보관 링크 대체)은 컬렉션 전체에 영향하므로 사람이 결정. 그 외 항목 1~6은 85~100(해소 시 약 91~92). 1차 62.5점에서 학습 목표·불변식·추적 표·복잡도 표·코너 케이스 정정·태그/description 정리로 상승. 재채점 후 CP-Algorithms/Fenwick 1994 출처를 추가(재채점 생략, 반복 2회에서 해소 불가 결함만 남아 중단) |
 | content/collection/Algorithm/2024/2024-09-25-BOJ-3679/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-09-25-BOJ-5670/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-10-BOJ-11505/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1972,3 +1972,4 @@
 | content/post/2026/2026-10-08-mold-linker-nodejs-24x/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-10-09-jev-system-one-model-jgrep-test-selection/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-10-10-mid-harness-terminal-agent-action-scaling/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-10-11-fowler-sensible-default-vs-best-practice/index.md | - | - | 0 | 미채점 | - | - | - |
