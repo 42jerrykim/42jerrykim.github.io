@@ -474,7 +474,7 @@
 | content/collection/Algorithm/2024/2024-09-23-BOJ-2618/index.md | 96.6 | 2026-10-12 | 3 | 통과 | 1.3 | bf6a314 | 없음(경미: 항목4=85 결론(L360-362)이 L358 판단 문단 재진술, 항목7=85 BOJ 링크 봇 차단으로 검증 불가) |
 | content/collection/Algorithm/2024/2024-09-23-BOJ-3176/index.md | 82.8 | 2026-10-10 | 3 | 에스컬레이션 | 1.3 | 9110c59 | 치명결함 1: 항목7 — BOJ 문제 링크(acmicpc.net/problem/3176)가 "BOJ 서비스 종료"로 404 — 링크 처리 정책(텍스트 표기·보관 링크 대체)은 컬렉션 전체에 영향하므로 사람이 결정. 그 외 항목 1~6은 85~100(해소 시 약 92). 경미: 입출력 예제 절 부재(원문 접근 불가), 제약 1차 출처 미확인 |
 | content/collection/Algorithm/2024/2024-09-25-BOJ-3653/index.md | 82.8 | 2026-10-11 | 2 | 에스컬레이션 | 1.3 | 7a12927 | 치명결함 1: 항목7 — BOJ 문제 링크(acmicpc.net/problem/3653)가 "BOJ 서비스 종료"로 404 — 링크 처리 정책(텍스트 표기·보관 링크 대체)은 컬렉션 전체에 영향하므로 사람이 결정. 그 외 항목 1~6은 85~100(해소 시 약 91~92). 1차 62.5점에서 학습 목표·불변식·추적 표·복잡도 표·코너 케이스 정정·태그/description 정리로 상승. 재채점 후 CP-Algorithms/Fenwick 1994 출처를 추가(재채점 생략, 반복 2회에서 해소 불가 결함만 남아 중단) |
-| content/collection/Algorithm/2024/2024-09-25-BOJ-3679/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-09-25-BOJ-3679/index.md | 95.4 | 2026-10-13 | 2 | 통과 | 1.3 | 60f3fe5 | 없음(경미: 문제 제약값 c≤200·n≤2000의 출처가 BOJ 서비스 종료로 대조 불가, 샘플 2 문단과 상태 표 일부 중복). 1차 52.6점(무게중심 정렬 오류·BOJ 링크 404 치명결함) → 최하단-좌측 기준점+외적 정렬+마지막 공선 구간 뒤집기로 풀이 교체, 2회차에 통과 |
 | content/collection/Algorithm/2024/2024-09-25-BOJ-5670/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-10-BOJ-11505/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-10-BOJ-13334/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1974,3 +1974,4 @@
 | content/post/2026/2026-10-10-mid-harness-terminal-agent-action-scaling/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-11-fowler-sensible-default-vs-best-practice/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-10-12-breakaway-agent-unlimited-tokens-persistence/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-10-13-shopify-drops-react-native-ai-agents-native/index.md | - | - | - | 미채점 | - | - | - |
