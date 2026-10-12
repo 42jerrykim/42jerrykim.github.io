@@ -1,7 +1,7 @@
 ---
 title: "[AI] Shopify의 React Native 이탈: 에이전트가 바꾼 네이티브의 경제학"
 description: "Shopify가 React Native에서 Swift·Kotlin 네이티브로 돌아선 이유를 InfoQ와 Pragmatic Engineer 보도로 정리한다. AI 에이전트가 낮춘 이중 구현 비용과 공개 수치의 한계, 따라 하기 전 판단 기준을 다룬다."
-date: 2026-10-13T02:10:00+09:00
+date: 2026-10-13T02:00:00+09:00
 lastmod: 2026-10-13
 draft: false
 categories:
