@@ -748,6 +748,24 @@ database_and_storage:
   - Query-Optimization(쿼리최적화)
   - Storage(저장소)
   - Time-Series-Database(시계열데이터베이스)
+  - Lost-Update
+  - Non-Repeatable-Read
+  - Oracle
+  - Serializable
+  - Snapshot-Isolation
+  - SQL-Server
+  - Transaction(트랜잭션)
+  - Write-Skew
+  - Two-Phase-Commit
+  - Saga-Pattern
+  - Fault-Tolerance(내결함성)
+  - Architecture(아키텍처)
+  - SQLite
+  - Test-Automation(테스트자동화)
+  - InnoDB
+  - Undo-Log
+  - Vacuum
+  - Table-Bloat
 
 security_extended:
   - Access-Token(액세스토큰)
