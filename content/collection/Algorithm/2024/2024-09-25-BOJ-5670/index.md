@@ -1,6 +1,6 @@
 ---
 image: "wordcloud.png"
-description: "백준 5670번 휴대폰 자판 문제는 Trie(트라이) 자료구조 및 재귀적 분할정복 방식으로, 자동완성 기능이 적용된 자판에서 각 단어별 버튼 입력 횟수의 평균을 효율적으로 계산하는 알고리즘을 다룹니다. 다양한 예제와 최적화 기법을 소개합니다."
+description: "백준 5670번 휴대폰 자판 문제는 Trie(트라이) 자료구조 및 재귀적 분할정복 방식으로, 자동완성 기능이 적용된 자판에서 각 단어별 버튼 입력 횟수의 평균을 효율적으로 계산하는 알고리즘을 다룹니다. Trie 풀이와 재귀 풀이의 메모리·시간 트레이드오프를 비교합니다."
 categories: Algorithm
 date: "2024-09-25T00:00:00Z"
 
@@ -21,34 +21,33 @@ tags:
 - Data-Structures(자료구조)
 - Code-Quality(코드품질)
 - Python
-- Go
-- .NET
 - String(문자열)
 - Memory(메모리)
-- Vocabulary
-- English
-- 영단어
-- Collocation(콜로케이션)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)
-- Testing(테스트)
-- Documentation(문서화)
+- Divide-and-Conquer(분할정복)
+- Tree(트리)
+- Hash-Table(해시테이블)
+- Pointer(포인터)
+- Floating-Point(부동소수점)
+- Memory-Management(메모리관리)
 - Best-Practices
 - Complexity-Analysis(복잡도분석)
-- Debugging(디버깅)
-- Refactoring(리팩토링)
-- Clean-Code(클린코드)
 - Performance(성능)
-title: '[Algorithm] C++/Python 백준 5670번 : 휴대폰 자판'
+title: '[Algorithm] C++/Python 백준 5670번: 휴대폰 자판'
 ---
 
 휴대폰에서 영단어를 입력할 때 버튼을 누르는 횟수를 최소화하기 위해 자동완성 기능을 활용하는 문제이다. 이 문제는 Trie(트라이) 자료 구조 또는 재귀적인 접근 방식을 사용하여 효율적으로 해결할 수 있다.
 
-문제 : [https://www.acmicpc.net/problem/5670](https://www.acmicpc.net/problem/5670)
+백준 5670번 문제이다. 원문 페이지는 BOJ 서비스 종료로 더 이상 열리지 않아 아래에 문제 규칙을 직접 요약했다.
 
-|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
-|:---:|
-||
+## 학습 목표
+
+이 글을 읽고 나면 다음을 설명할 수 있어야 한다.
+
+- Trie의 각 노드에서 "버튼을 눌러야 하는 지점"이 정확히 어디인지(자식이 둘 이상이거나 단어가 끝나는 노드)와 그 이유.
+- Trie를 만드는 풀이와 Trie 없이 단어 집합을 재귀적으로 쪼개는 풀이가 같은 값을 계산하는 이유, 그리고 메모리 사용 방식의 차이.
+- 평균 출력에서 부동소수점 반올림이 어긋나는 상황과 처리 방법.
 
 ## 문제 설명
 
@@ -59,43 +58,50 @@ title: '[Algorithm] C++/Python 백준 5670번 : 휴대폰 자판'
 
 예를 들어, 사전에 "hello", "hell", "heaven", "goodbye"가 있을 때, 사용자가 'h'를 입력하면 모듈은 자동으로 'e'를 입력해준다. 이는 'h'로 시작하는 모든 단어의 다음 글자가 'e'이기 때문이다. 그러나 'he' 다음에는 'l'과 'a'가 올 수 있으므로, 모듈은 다음 입력을 기다린다.
 
-사용자가 'l'을 입력하면, 모듈은 다시 'l'을 자동으로 입력해준다. 여기서 "hell"이 단어의 끝이지만, "hello"는 아직 끝나지 않았으므로, 모듈은 다시 입력을 기다린다. 이처럼 자동완성 기능을 사용하여 각 단어를 입력할 때 버튼을 눌러야 하는 횟수를 계산하고, 그 평균을 구하는 문제이다.
+사용자가 'l'을 입력하면, 모듈은 다시 'l'을 자동으로 입력해준다. 여기서 "hell"이 단어의 끝이지만, "hello"는 아직 끝나지 않았으므로, 모듈은 다시 입력을 기다린다. 따라서 "hello"는 h, l, o 세 번(3회), "hell"은 h, l 두 번(2회), "heaven"은 h, a 두 번(2회), "goodbye"는 g 한 번(1회)이므로 평균은 $(3+2+2+1)/4 = 2.00$이다.
 
-문제에서 입력은 여러 개의 테스트 케이스로 이루어져 있다. 각 테스트 케이스는 사전에 속한 단어의 개수 $N$이 주어지며, 이어서 $N$개의 단어가 주어진다. 각 단어를 입력하기 위해 버튼을 눌러야 하는 횟수의 평균을 소수점 둘째 자리까지 반올림하여 출력해야 한다.
+문제에서 입력은 여러 개의 테스트 케이스로 이루어져 있다. 각 테스트 케이스는 사전에 속한 단어의 개수 $N$이 주어지며, 이어서 $N$개의 단어가 주어진다. 각 단어를 입력하기 위해 버튼을 눌러야 하는 횟수의 평균을 소수점 둘째 자리까지 반올림하여 출력해야 한다. 원문 페이지가 닫혀 입력 크기와 메모리·시간 제한의 정확한 수치는 이 글에서 확인하지 않았다.
 
 ## 접근 방식
 
-이 문제는 Trie 자료 구조를 사용하여 효율적으로 해결할 수 있다. 그러나 파이썬에서는 메모리 제한으로 인해 Trie를 명시적으로 구축하는 것이 비효율적일 수 있다. 따라서 **재귀적인 분할 정복 방법**을 사용하여 메모리 사용량을 줄이면서도 효율적으로 문제를 해결할 수 있다.
+### 왜 분기 노드와 단어 끝 노드에서만 입력하는가
 
-**알고리즘 전략:**
+사전의 모든 단어를 Trie에 넣으면, 어떤 접두사에 해당하는 노드의 자식 수는 "사전에서 그 접두사 다음에 올 수 있는 글자의 종류 수"와 같다. 자식이 하나뿐이면 다음 글자가 유일하게 정해지므로 모듈이 자동으로 채운다. 자식이 둘 이상이면 어느 쪽인지 사용자가 정해 주어야 하므로 버튼을 눌러야 한다. 또 현재 노드가 어떤 단어의 끝이라면, 자식이 하나뿐이어도 그 단어에서 멈출 수 있는 선택지가 있어 모듈은 자동입력을 하지 않는다. 그래서 "hell" 다음의 'o'는 자식이 하나지만 `is_end`가 참이어서 직접 눌러야 한다. 첫 글자는 루트의 자식 수와 무관하게 항상 직접 입력하므로, 횟수를 1로 시작하고 두 번째 글자부터 노드 조건을 검사한다.
 
-1. **단어 그룹화:**
-   - 단어들을 현재 위치의 문자에 따라 그룹화한다.
-   - 동일한 위치에서 동일한 문자를 가진 단어들을 함께 묶는다.
+```mermaid
+flowchart LR
+    R["root"] --> H["h"]
+    R --> G["g"]
+    H --> E
+    E["e (분기점)"] --> L1["l"]
+    E --> A["a"]
+    L1 --> L2["l (끝)"]
+    L2 --> O["o (끝)"]
+    A --> V["ven (끝)"]
+    G --> GB["oodbye (끝)"]
+```
 
-2. **재귀 처리:**
-   - 각 그룹에 대해 공통된 접두사를 최대한 확장한다.
-   - 단어들이 갈라지는 지점에서 버튼을 눌러야 하므로 깊이를 증가시킨다.
-   - 단어의 끝에 도달하면 현재까지의 버튼 입력 횟수를 저장한다.
-   - 남은 단어들에 대해 재귀적으로 동일한 과정을 반복한다.
+위 그림에서 "e" 노드는 자식이 'l'과 'a' 두 개이므로 여기서 한 번 더 눌러야 하고, "l (끝)" 노드는 단어 "hell"이 끝나는 곳이어서 "hello"를 쓸 때 'o'를 눌러야 한다. 각 단어의 답은 루트에서 그 단어까지 내려가는 경로에서 이런 노드를 지난 횟수에 첫 글자 1회를 더한 값이다.
 
-3. **버튼 입력 횟수 계산:**
-   - 각 단어별로 필요한 버튼 입력 횟수를 계산하여 배열에 저장한다.
+### Trie 없이 재귀로 푸는 방법
 
-4. **평균 계산:**
-   - 모든 단어의 버튼 입력 횟수의 합을 단어의 수로 나누어 평균을 구한다.
-   - 소수점 둘째 자리까지 반올림하여 출력한다.
+같은 값을 Trie 없이도 구할 수 있다. 현재 위치의 글자로 단어들을 그룹화하고, 한 그룹 안에서 모든 단어가 같은 글자를 공유하는 동안은 자동입력이므로 위치만 앞으로 건너뛴다. 그룹 안의 단어가 갈라지거나 어느 단어가 끝나는 지점에서 한 번 눌렀다고 보고 `depth`를 1 늘린 뒤, 남은 단어들에 대해 같은 과정을 재귀적으로 반복한다. 이 방식은 Trie 노드를 26개 포인터 배열로 잡지 않고 인덱스 리스트만 넘기므로, 노드 수가 많은 입력에서 메모리 사용 패턴이 다르다. 다만 어느 쪽이 얼마나 적게 쓰는지는 문제의 실제 제한과 측정이 필요하며, 이 글은 측정값을 제시하지 않는다. Python에서 26칸 자식 배열을 가진 노드 객체를 대량으로 만들면 객체 오버헤드가 커지기 쉬워, 이 글의 Python 풀이는 Trie 대신 재귀 분할을 택했다(측정값은 없다).
 
-이 방법은 Trie를 명시적으로 구축하지 않고도 동일한 효과를 낼 수 있으며, 메모리 사용량을 크게 줄일 수 있다.
+### 복잡도
+
+| 풀이 | 시간 | 공간 | 비고 |
+|---|---|---|---|
+| C++ Trie | $O(S)$ | $O(S \cdot 26)$ 포인터 (최악) | $S$는 모든 단어 길이의 합. 삽입과 질의가 각각 단어 길이에 비례 |
+| Python 재귀 분할 | 최악 $O(S)$에 가까움, 공통 접두사 비교 비용 포함 | 단어 저장 + 인덱스 리스트 | 그룹마다 dict를 만들어 상수 비용이 큼 |
 
 ## C++ 코드와 설명
 
 ```cpp
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <iostream>
 #include <vector>
 #include <string>
 #include <cstring>
-#include <iomanip>
 #include <cstdio>
 
 using namespace std;
@@ -186,134 +192,12 @@ int main() {
 }
 ```
 
-**코드 설명:**
-
-- **TrieNode 구조체:**
-  - `is_end`: 해당 노드가 단어의 끝인지 표시한다.
-  - `child_count`: 현재 노드의 자식 노드 개수를 저장한다.
-  - `children[26]`: 알파벳 소문자에 해당하는 자식 노드 포인터 배열이다.
-
-- **insert 함수:**
-  - 단어를 Trie에 삽입하면서, 새로운 노드를 생성할 때마다 `child_count`를 증가시킨다.
-  - 이는 각 노드에서 자식 노드의 수를 파악하여 버튼 입력 필요 여부를 결정하기 위함이다.
-
-- **count_key_presses 함수:**
-  - 각 단어에 대해 버튼 입력 횟수를 계산한다.
-  - 첫 번째 문자는 항상 입력해야 하므로 `key_presses`를 1로 시작한다.
-  - 이후 각 문자에서 현재 노드가 단어의 끝(`is_end == true`)이거나 자식 노드가 둘 이상(`child_count > 1`)이면 버튼 입력이 필요하므로 `key_presses`를 증가시킨다.
-
-- **delete_trie 함수:**
-  - 동적으로 할당된 Trie 노드를 재귀적으로 삭제하여 메모리 누수를 방지한다.
-
-- **메인 함수:**
-  - 테스트 케이스마다 단어를 입력받고 Trie를 구축한다.
-  - 각 단어에 대한 버튼 입력 횟수를 계산하여 총합을 구하고, 평균을 계산한다.
-  - `printf`를 사용하여 소수점 둘째 자리까지 출력한다.
-
-## C++ without library 코드와 설명
-
-```cpp
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-// Trie의 노드를 나타내는 구조체
-typedef struct TrieNode {
-    int is_end;                // 이 노드가 단어의 끝인지 표시
-    int child_count;           // 자식 노드의 수
-    struct TrieNode* children[26];  // 알파벳 소문자에 대한 자식 노드 포인터 배열
-} TrieNode;
-
-// Trie 노드 생성 함수
-TrieNode* create_node() {
-    TrieNode* node = (TrieNode*)malloc(sizeof(TrieNode));
-    node->is_end = 0;
-    node->child_count = 0;
-    memset(node->children, 0, sizeof(node->children));
-    return node;
-}
-
-// 단어를 Trie에 삽입하는 함수
-void insert(TrieNode* root, char* word) {
-    TrieNode* node = root;
-    for (int i = 0; word[i]; ++i) {
-        int idx = word[i] - 'a';
-        if (!node->children[idx]) {
-            node->children[idx] = create_node();  // 자식 노드가 없으면 생성
-            node->child_count++;                  // 자식 수 증가
-        }
-        node = node->children[idx];  // 다음 노드로 이동
-    }
-    node->is_end = 1;  // 단어의 끝 표시
-}
-
-// 단어를 입력하는 데 필요한 버튼 횟수를 계산하는 함수
-int count_key_presses(TrieNode* root, char* word) {
-    int key_presses = 1;  // 첫 번째 문자는 항상 입력해야 함
-    TrieNode* node = root->children[word[0] - 'a'];  // 첫 번째 문자로 이동
-    for (int i = 1; word[i]; ++i) {
-        int idx = word[i] - 'a';
-        // 현재 노드가 단어의 끝이거나 자식이 둘 이상이면 버튼 입력 필요
-        if (node->is_end || node->child_count > 1) {
-            key_presses++;
-        }
-        node = node->children[idx];  // 다음 노드로 이동
-    }
-    return key_presses;
-}
-
-// Trie를 동적 할당 해제하는 함수
-void delete_trie(TrieNode* node) {
-    if (!node) return;
-    for (int i = 0; i < 26; ++i) {
-        if (node->children[i]) {
-            delete_trie(node->children[i]);  // 자식 노드들을 재귀적으로 삭제
-        }
-    }
-    free(node);  // 현재 노드 삭제
-}
-
-int main() {
-    int N;
-    while (scanf("%d", &N) != EOF) {
-        char words[N][81];
-        for (int i = 0; i < N; ++i) {
-            scanf("%s", words[i]);  // 단어 입력
-        }
-
-        TrieNode* root = create_node();  // Trie의 루트 노드 생성
-
-        for (int i = 0; i < N; ++i) {
-            insert(root, words[i]);  // 단어들을 Trie에 삽입
-        }
-
-        int total_presses = 0;
-        for (int i = 0; i < N; ++i) {
-            total_presses += count_key_presses(root, words[i]);  // 각 단어의 버튼 입력 횟수 계산
-        }
-
-        double average_presses = (double)total_presses / N + 1e-8;  // 평균 계산 및 부동소수점 보정
-        printf("%.2f\n", average_presses);  // 소수점 둘째 자리까지 출력
-
-        delete_trie(root);  // Trie 메모리 해제
-    }
-
-    return 0;
-}
-```
-
-**코드 설명:**
-
-- C 표준 라이브러리만을 사용하여 Trie를 구현하였다.
-- `TrieNode` 구조체와 관련된 함수들은 위의 C++ 코드와 동일한 로직을 따른다.
-- `malloc`과 `free`를 사용하여 동적 메모리를 관리한다.
-- 입력과 출력은 `scanf`와 `printf`를 사용하여 처리한다.
-- 문자열 배열 `words`는 최대 길이 80으로 선언하였다.
-
+Trie 노드는 `is_end`(단어의 끝 여부), `child_count`(자식 수), 26칸 자식 포인터 배열로 구성된다. `insert`는 새 노드를 만들 때마다 부모의 `child_count`를 올려서, 질의 단계에서 "이 지점이 분기점인가"를 O(1)로 판단하게 한다. `count_key_presses`는 첫 글자 1회에서 시작해 두 번째 글자부터 현재 노드가 단어 끝이거나 자식이 둘 이상일 때만 횟수를 올린다. 총합을 $N$으로 나눈 평균에 `1e-8`을 더하는 것은 정확히 `.xx5`로 끝나는 값이 부동소수점 오차로 내림되는 것을 막기 위한 보정이다. 테스트 케이스마다 `delete_trie`로 노드를 해제한다.
 
 ## Python 코드와 설명
 
 ```python
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 import sys
 input = sys.stdin
 print = sys.stdout.write
@@ -368,7 +252,7 @@ def solve(N, words):
     init(range(N), 0, 0)
 
     # 평균 버튼 입력 횟수 계산
-    return round(decimal.Decimal(sum(depths) / N), 2)
+    return (decimal.Decimal(sum(depths)) / N).quantize(decimal.Decimal('0.01'))
 
 while True:
     try:
@@ -376,52 +260,26 @@ while True:
         words = [input.readline().strip() for _ in range(N)]
         ans = solve(N, words)
         print(f"{ans}\n")
-    except:
+    except (EOFError, ValueError):  # 입력 끝에서 빈 줄 -> int() 실패
         break
 ```
 
-**코드 설명:**
-
-- **입력 처리:**
-  - `input.readline()`을 사용하여 한 줄씩 입력을 받는다.
-  - 입력이 없으면 예외가 발생하여 `break`를 통해 반복문을 종료한다.
-
-- **`solve` 함수:**
-  - 각 단어의 버튼 입력 횟수를 계산하여 `depths` 리스트에 저장한다.
-
-- **`init` 함수:**
-  - `indices`: 현재 처리할 단어들의 인덱스 리스트.
-  - `i`: 현재 검사할 문자 위치.
-  - `depth`: 현재까지 버튼을 누른 횟수.
-  - 동일한 위치 `i`에서 동일한 문자를 가진 단어들을 그룹화하여 `wordbook` 딕셔너리에 저장한다.
-  - 각 그룹에 대해 최대한 공통된 접두사를 찾아내어 한 번에 건너뛴다.
-  - 단어의 끝에 도달하면 `depths`에 버튼 입력 횟수를 저장한다.
-  - 남은 단어들에 대해 재귀적으로 `init` 함수를 호출한다.
-
-- **버튼 입력 횟수 계산 로직:**
-  - 단어들이 갈라지는 지점에서 버튼을 눌러야 하므로, 깊이(`depth`)를 증가시킨다.
-  - 공통된 문자가 이어지는 동안은 자동완성이 이루어지므로 버튼을 누를 필요가 없다.
-
-- **평균 계산 및 출력:**
-  - `depths` 리스트의 합을 단어의 수 `N`으로 나누어 평균을 계산한다.
-  - `decimal` 모듈을 사용하여 소수점 둘째 자리까지 반올림한다.
-
-**왜 이 코드가 효율적인가?**
-
-- **메모리 효율성:** Trie를 명시적으로 구축하지 않고, 재귀적으로 단어를 처리하므로 메모리 사용량을 줄일 수 있다.
-- **시간 효율성:** 각 단어를 최대 한 번씩만 처리하므로 시간 복잡도는 $O(NL)$이며, 여기서 $N$은 단어의 수, $L$은 단어의 평균 길이이다.
+`solve`는 단어 길이 합을 한 번씩만 훑도록 `init(indices, i, depth)`를 재귀 호출한다. `indices`는 아직 처리 중인 단어들이고 `i`는 검사할 글자 위치, `depth`는 지금까지 누른 횟수다. 같은 위치의 글자로 `wordbook` 딕셔너리에 그룹화한 뒤, 각 그룹에서 모든 단어가 다음 글자를 공유하는 동안 `j`를 늘려 공통 접두사를 한 번에 건너뛴다. 어느 단어가 끝나거나 글자가 갈라지는 위치에서 멈추고, 그 그룹에는 `depth + 1`을 부여한다. 끝에 도달한 단어는 `depths`에 횟수를 저장하고 나머지는 같은 함수를 다시 호출한다. 마지막으로 `decimal`의 `ROUND_HALF_UP`으로 평균을 소수점 둘째 자리까지 반올림한다. 정수 합 `Decimal(sum(depths))`를 바로 `N`으로 나눈 뒤 `quantize`로 맞추므로 float 오차가 끼지 않는다. (`round()`는 컨텍스트와 무관하게 짝수 반올림을 쓰기 때문에 `quantize`를 쓴다.) 입력이 끝나면 `readline()`이 빈 문자열을 돌려주어 `int()`가 `ValueError`를 내므로 이 예외로 반복을 종료한다.
 
 ## 결론
 
-이 문제는 Trie 자료 구조를 활용하여 해결할 수 있지만, 파이썬에서는 메모리 제한으로 인해 재귀적인 분할 정복 방법을 사용하여 메모리 초과 문제를 해결할 수 있었다. 재귀적인 접근 방식은 Trie를 명시적으로 생성하지 않고도 동일한 효과를 낼 수 있으며, 메모리 사용량을 크게 줄일 수 있다.
-
-문제를 해결하면서 자료 구조와 알고리즘의 선택이 메모리와 시간 복잡도에 큰 영향을 미친다는 것을 다시 한 번 깨달았다. 상황에 따라 적절한 방법을 선택하는 것이 중요하며, 특히 제한 사항을 고려한 최적화가 필요하다.
-
-앞으로도 다양한 접근 방식을 고려하여 문제를 해결하는 능력을 키워야겠다.
+시간은 두 풀이 모두 입력 문자 총수에 비례하므로 선택 기준은 메모리와 구현 길이다. 노드 객체를 싸게 만들 수 있는 C++에서는 `child_count`와 `is_end`를 저장하는 Trie가 단순하고, 노드 객체 비용이 큰 Python에서는 Trie 없이 그룹이 갈라지는 지점에서 즉석으로 판단하는 재귀 분할이 대안이 된다.
 
 ## 코너 케이스 및 실수 포인트
 
 | 케이스 | 설명 | 처리 방법 |
 |---|---|---|
-| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
-| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |
+| **단어 1개** | $N=1$이면 첫 글자만 누르고 나머지는 자동완성 | 횟수 1, 출력 `1.00` |
+| **다른 단어의 접두사인 단어** | "hell"과 "hello"처럼 자식이 하나여도 `is_end`이면 멈춤 | `is_end` 조건을 반드시 포함 |
+| **평균 반올림** | `.xx5` 경계에서 부동소수점 오차로 내림 | `+1e-8` 보정 또는 `decimal` ROUND_HALF_UP |
+| **다중 테스트 케이스** | EOF까지 반복 입력 | `while (cin >> N)` / `EOFError` 처리 |
+| **합계 크기** | 합계는 입력 문자 총수 이하라 `int`로 충분 | 코드의 `int total_presses` 유지 |
+
+## 참고 자료
+
+- [Trie — Wikipedia](https://en.wikipedia.org/wiki/Trie): 접두사 트리의 정의와 연산 복잡도.
