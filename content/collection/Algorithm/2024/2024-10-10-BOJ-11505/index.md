@@ -1,10 +1,8 @@
 ---
-description: "백준 11505번 구간 곱 구하기 문제는 수의 변경과 구간 곱 계산이 빈번한 대규모 수열에서 효율적으로 쿼리를 처리하는 알고리즘을 다룹니다. 세그먼트 트리를 활용해 구간 곱 쿼리와 갱신 연산을 모두 O(log N)에 해결하며, 잘못된 곱셈 및 오버플로우를 피하기 위해 모듈러 연산(1,000,000,007)을 적재적소에 적용합니다. 대규모 입력 데이터에도 빠르게 대응하는 실전 알고리즘 문제로, 자료구조 설계와 연산 최적화, 수학적 예외 처리를 모두 경험할 수 있습니다."
+description: "백준 11505번 구간 곱 구하기를 세그먼트 트리로 푼다. 0의 개수와 비영 원소의 곱을 노드에 따로 저장해 갱신과 구간 곱 쿼리를 O(log N)에 처리하고, 모듈러 연산으로 오버플로를 막고 0이 섞인 입력까지 정확히 다루는 방법을 설명한다."
 image: "wordcloud.png"
 categories: Algorithm
 date: "2024-10-10T00:00:00Z"
-header:
-  teaser: /assets/images/undefined/algorithm.png
 tags:
 - Data-Structures(자료구조)
 - Time-Complexity(시간복잡도)
@@ -18,23 +16,23 @@ tags:
 - Coding-Test(코딩테스트)
 - Optimization(최적화)
 - Code-Quality(코드품질)
-- Go
-- .NET
+- Range-Query
+- Modular-Arithmetic(모듈러)
 - Tree(트리)
 - Segment-Tree(세그먼트트리)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)
 - Testing(테스트)
-- Documentation(문서화)
+- Math(수학)
 - Best-Practices
 - Complexity-Analysis(복잡도분석)
 - Debugging(디버깅)
-- Refactoring(리팩토링)
-- Clean-Code(클린코드)
+- Number-Theory(정수론)
+- BIT(Binary Indexed Tree)
 - Performance(성능)
 - Pitfalls(함정)
-- Error-Handling(에러처리)
-- Logging(로깅)
+- Recursion(재귀)
+- Memory(메모리)
 title: '[Algorithm] C++/Python 백준 11505번 : 구간 곱 구하기'
 ---
 
@@ -44,9 +42,14 @@ title: '[Algorithm] C++/Python 백준 11505번 : 구간 곱 구하기'
 
 문제 : [https://www.acmicpc.net/problem/11505](https://www.acmicpc.net/problem/11505)
 
-|![/assets/images/undefined/algorithm.png](/assets/images/undefined/algorithm.png)|
-|:---:|
-||
+## 문제 정보
+
+| 항목 | 내용 |
+|---|---|
+| 플랫폼 | 백준 온라인 저지 11505번 |
+| 입력 | 수의 개수 N(1 ≤ N ≤ 1,000,000), 변경 횟수 M, 구간 곱 질의 횟수 K |
+| 값 범위 | 각 수는 0 이상 1,000,000 이하 정수 |
+| 출력 | 구간 곱을 1,000,000,007로 나눈 나머지 |
 
 ## 문제 설명
 
@@ -82,11 +85,37 @@ title: '[Algorithm] C++/Python 백준 11505번 : 구간 곱 구하기'
 
 이를 통해, 쿼리 시에 해당 구간에 0이 하나라도 존재하면 결과는 0이 되며, 그렇지 않다면 곱셈 연산을 수행하면 된다.
 
+이 설계가 맞는 이유는 불변식 하나로 정리된다. 모든 노드에서 `product`는 그 구간의 비영 원소만 곱한 값이고 `zero_count`는 0의 개수다. 부모 노드는 두 자식의 `zero_count`를 더하고 `product`를 곱해 만들 수 있으므로, 리프 하나가 바뀌면 루트까지 경로상의 노드 약 log N개만 다시 계산하면 불변식이 유지된다. 쿼리 구간은 트리에서 O(log N)개의 노드로 분해되고, 그 노드들의 `zero_count` 합이 0보다 크면 구간 곱은 0, 아니면 각 노드의 `product`를 모두 곱한 값이다. 값의 범위가 1,000,000 이하이므로 0이 아닌 수는 소수 1,000,000,007의 배수가 될 수 없고, 비영 원소의 곱이 모듈러 연산 후 우연히 0이 되는 일도 없다.
+
+쿼리가 노드로 분해되는 과정을 조금 더 구체적으로 보자. 구간 [l, r]이 현재 노드의 구간을 완전히 덮으면 그 노드의 값을 바로 쓰고, 전혀 겹치지 않으면 곱셈의 항등원 1을 돌려주며, 일부만 겹치면 양쪽 자식으로 내려간다. 각 깊이에서 "일부만 겹치는" 노드는 최대 두 개뿐이므로 방문하는 노드 수가 O(log N)으로 묶인다. 중간 곱은 최대 (10^9+6)^2 정도라 64비트 정수에 안전하게 들어가며, 그래서 C++ 코드에서 곱셈 직전의 값에 `int64_t`를 쓴다. 32비트 `int`로 곱하면 즉시 넘친다.
+
+### 왜 역원으로 나누는 방법은 안 되는가
+
+전체 곱을 미리 구해 두고 값을 바꿀 때마다 "기존 값의 모듈러 역원"으로 나누는 방법이 떠오를 수 있다. 하지만 0에는 모듈러 역원이 없으므로 기존 값이 0인 위치를 바꾸는 순간 이 방법은 깨진다. 이 문제가 값 0과 변경 쿼리를 함께 주는 이유가 여기에 있고, `zero_count`를 따로 세는 이유이기도 하다. 합 쿼리에 쓰는 펜윅 트리(BIT)도 뺄셈으로 구간을 구하는 구조라 같은 이유로 곱에는 그대로 쓰기 어렵다. 세그먼트 트리는 구간을 나눠 합치기만 하므로 역연산이 필요 없다.
+
+```mermaid
+flowchart TD
+    A["쿼리 l, r"] --> B["구간을 O(log N)개 노드로 분해"]
+    B --> C{"노드들의 zero_count 합 > 0 ?"}
+    C -->|"예"| D["답은 0"]
+    C -->|"아니오"| E["노드 product를 모두 곱해 MOD"]
+    F["갱신 idx, val"] --> G["리프 값 교체"]
+    G --> H["루트까지 올라가며 zero_count 합, product 곱 재계산"]
+```
+
+| 연산 | 시간복잡도 | 공간복잡도 |
+|---|---|---|
+| 구축 | O(N) | O(N) (트리 배열 약 4N) |
+| 갱신 | O(log N) | O(log N) 재귀 스택 |
+| 구간 곱 쿼리 | O(log N) | O(log N) 재귀 스택 |
+
 ## C++ 코드와 설명
 
 먼저, 필요한 헤더를 포함한다.
 
 ```cpp
+// 출처: https://www.acmicpc.net/problem/11505
+#include <cstdint>
 #include <iostream>
 #include <vector>
 #define MOD 1000000007
@@ -237,135 +266,16 @@ int main() {
 }
 ```
 
-## C++ without library 코드와 설명
+## C 스타일 구현에 대하여
 
-이번에는 표준 라이브러리 없이 C 스타일로 코드를 작성하겠다.
-
-```cpp
-#include <stdio.h>
-#include <stdlib.h>
-#define MOD 1000000007
-#define MAX_N 1000000
-
-typedef struct {
-    int zero_count;
-    long long product;
-} Node;
-
-int N, M, K;
-long long arr[MAX_N + 1];
-Node tree[4 * MAX_N];
-
-void build(int node, int start, int end) {
-    if (start == end) {
-        if (arr[start] == 0) {
-            tree[node].zero_count = 1;
-            tree[node].product = 1;
-        } else {
-            tree[node].zero_count = 0;
-            tree[node].product = arr[start] % MOD;
-        }
-    } else {
-        int mid = (start + end) / 2;
-        build(node * 2, start, mid);
-        build(node * 2 + 1, mid + 1, end);
-
-        tree[node].zero_count = tree[node * 2].zero_count + tree[node * 2 + 1].zero_count;
-
-        if (tree[node].zero_count > 0) {
-            tree[node].product = 1;
-        } else {
-            tree[node].product = (tree[node * 2].product * tree[node * 2 + 1].product) % MOD;
-        }
-    }
-}
-
-void update(int node, int start, int end, int idx, long long val) {
-    if (start == end) {
-        arr[idx] = val;
-        if (val == 0) {
-            tree[node].zero_count = 1;
-            tree[node].product = 1;
-        } else {
-            tree[node].zero_count = 0;
-            tree[node].product = val % MOD;
-        }
-    } else {
-        int mid = (start + end) / 2;
-        if (idx <= mid) {
-            update(node * 2, start, mid, idx, val);
-        } else {
-            update(node * 2 + 1, mid + 1, end, idx, val);
-        }
-
-        tree[node].zero_count = tree[node * 2].zero_count + tree[node * 2 + 1].zero_count;
-
-        if (tree[node].zero_count > 0) {
-            tree[node].product = 1;
-        } else {
-            tree[node].product = (tree[node * 2].product * tree[node * 2 + 1].product) % MOD;
-        }
-    }
-}
-
-long long query(int node, int start, int end, int l, int r) {
-    if (r < start || end < l) {
-        return 1;
-    }
-    if (l <= start && end <= r) {
-        if (tree[node].zero_count > 0) {
-            return 0;
-        } else {
-            return tree[node].product % MOD;
-        }
-    }
-
-    int mid = (start + end) / 2;
-    long long left_product = query(node * 2, start, mid, l, r);
-    long long right_product = query(node * 2 + 1, mid + 1, end, l, r);
-
-    return (left_product * right_product) % MOD;
-}
-
-int main() {
-    scanf("%d %d %d", &N, &M, &K);
-
-    for (int i = 1; i <= N; ++i) {
-        scanf("%lld", &arr[i]);
-    }
-
-    build(1, 1, N);
-
-    int total_ops = M + K;
-
-    for (int i = 0; i < total_ops; ++i) {
-        int a;
-        long long b, c;
-        scanf("%d %lld %lld", &a, &b, &c);
-
-        if (a == 1) {
-            update(1, 1, N, b, c);
-        } else if (a == 2) {
-            long long result = query(1, 1, N, b, c);
-            printf("%lld\n", result % MOD);
-        }
-    }
-
-    return 0;
-}
-```
-
-**코드 설명**
-
-- `stdio.h`와 `stdlib.h`만 사용하여 입출력과 동적 메모리 할당을 처리한다.
-- 배열과 구조체를 사용하여 세그먼트 트리를 구현한다.
-- 업데이트와 쿼리 함수는 앞서 설명한 C++ 코드와 동일한 로직을 따른다.
+표준 라이브러리 컨테이너를 쓰지 않고 `stdio.h`만으로 구현해도 로직은 위 C++ 코드와 같다. 달라지는 점은 두 가지다. 첫째, `vector` 대신 `long long arr[1000001]`과 `Node tree[4 * 1000000]` 같은 정적 전역 배열을 쓴다. 이 배열은 프로그램 시작 시 한 번 잡히므로 동적 메모리 할당은 일어나지 않는다. 둘째, 입출력을 `cin`/`cout` 대신 `scanf("%lld")`/`printf("%lld\n")`으로 처리하므로 `sync_with_stdio` 설정이 필요 없다. 같은 코드를 한 번 더 싣는 것은 학습 가치가 낮아 생략한다.
 
 ## Python 코드와 설명
 
 이제 메모리 초과를 방지하기 위해 `threading` 모듈을 사용하지 않고, 메모리 사용을 최적화한 Python 코드를 작성하겠다.
 
 ```python
+# 출처: https://www.acmicpc.net/problem/11505
 import sys
 
 MOD = 1000000007
@@ -457,32 +367,25 @@ for _ in range(M + K):
         print(res)
 ```
 
-**코드 설명**
+입력은 `sys.stdin.readline`으로 받아 대량 입력의 읽기 비용을 줄인다. 일부 테스트 데이터에는 줄 사이에 빈 줄이 섞여 있을 수 있어, 명령 줄을 읽을 때는 공백 줄을 건너뛰도록 `while` 반복으로 감쌌다. 트리는 `tree_zero`와 `tree_prod` 두 개의 평탄한 리스트로 나누어 객체 생성 비용과 메모리를 아낀다.
 
-- **입력 최적화**: `sys.stdin.readline()`을 사용하여 입력을 빠르게 받는다.
-- **세그먼트 트리 구현**:
-  - 배열 크기를 가장 가까운 `2의 제곱 수`로 설정하여 완전 이진 트리를 만든다.
-  - 리프 노드와 내부 노드를 초기화하는 `build()` 함수를 사용한다.
-  - 업데이트 연산은 `update()` 함수를 통해 O(log N) 시간에 처리한다.
-  - 쿼리 연산은 `query()` 함수를 통해 O(log N) 시간에 처리한다.
-- **메모리 사용 최적화**:
-  - `threading` 모듈을 사용하지 않아 추가적인 메모리 사용을 방지한다.
-  - 배열 인덱싱을 효율적으로 처리하여 메모리 낭비를 최소화한다.
-- **입력 처리 주의사항**:
-  - 입력 줄이 비어 있을 경우를 대비하여 `while` 문을 사용하여 입력을 받는다.
-  - 이는 온라인 저지에서 입력의 끝에 공백이 있을 수 있기 때문이다.
+Python 구현은 재귀 대신 배열 크기를 2의 거듭제곱으로 맞춘 바텀업 방식이다. 리프가 `size + i` 위치에 놓이므로 부모는 인덱스를 1비트 오른쪽으로 밀면 얻고, 쿼리는 `l`이 오른쪽 자식이면 그 노드를 취한 뒤 한 칸 옮기고 `r`이 왼쪽 자식이면 같은 처리를 하는 식으로 양 끝에서 안쪽으로 모인다. 재귀 호출 스택이 없어 깊이 제한과 함수 호출 비용을 모두 피할 수 있다는 점이 N이 최대 100만인 이 문제에서 중요하다.
 
 ## 결론
 
-이번 문제는 세그먼트 트리를 이용하여 수의 변경과 구간 곱 계산을 효율적으로 처리하는 방법을 학습할 수 있었다. 특히, 곱셈 연산에서 0이 존재할 경우를 처리하기 위해 추가적인 정보를 저장하는 아이디어가 중요했다. 이를 통해 O(log N)의 시간 복잡도로 모든 연산을 수행할 수 있었다.
+이 문제는 곱셈에 0이라는 역연산 불가능한 값이 있어 합 쿼리용 기법이 통하지 않는다는 점을 짚는다. 0의 개수와 비영 원소의 곱을 노드에 분리해 두면 갱신과 구간 곱이 모두 O(log N)이다.
 
-이번 문제는 세그먼트 트리를 이용하여 수의 변경과 구간 곱 계산을 효율적으로 처리하는 방법을 학습할 수 있었다. 특히, Python에서 메모리 초과를 방지하기 위해 `threading` 모듈을 사용하지 않고도 효율적인 코드를 작성하는 것이 중요했다. 이를 통해 O(log N)의 시간 복잡도로 모든 연산을 수행할 수 있었다.
+## 학습 목표 점검
 
-앞으로도 이러한 자료 구조와 알고리즘을 활용하여 다양한 문제를 효율적으로 해결할 수 있도록 노력해야겠다.
+- 구간 곱 쿼리에 누적 곱이나 역원 나눗셈이 통하지 않는 이유를 0의 성질로 설명할 수 있다.
+- 노드에 저장할 값과 그 값이 유지되는 불변식을 직접 정의할 수 있다.
+- 구간 질의를 O(log N)개 노드로 분해하는 과정과 갱신의 루트까지 재계산 과정을 추적할 수 있다.
 
 ## 코너 케이스 및 실수 포인트
 
+실수가 가장 많이 나는 곳은 0을 다루는 두 지점이다. 리프가 0일 때 `product`를 0이 아니라 1로 저장하는 이유는 `zero_count`가 양수인 노드에서는 `product`를 읽지 않으므로 값이 무엇이든 정답에는 영향이 없기 때문이다. 다만 부모 노드가 "비영 원소만의 곱"이라는 불변식을 지키려면 0인 리프가 곱셈의 항등원으로 기여해야 하므로, 일관되게 1을 두는 쪽이 단순하다. 그 위치를 나중에 0이 아닌 값으로 바꾸면 갱신 경로에서 `zero_count`가 줄고 `product`가 새 곱으로 다시 계산된다. 또 하나는 N=1일 때의 트리 크기로, `4 * N` 배열과 `size` 계산 모두 N=1에서 정상 동작하는지 직접 확인해야 한다.
+
 | 케이스 | 설명 | 처리 방법 |
 |---|---|---|
-| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
-| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |
+| **최소 입력** | N=1 | `4 * N` 배열 크기와 `size` 계산이 정상인지 확인 |
+| **오버플로우** | 중간 곱이 최대 (10^9+6)^2로 32비트 초과 | `long long`/`int64_t` 사용 |

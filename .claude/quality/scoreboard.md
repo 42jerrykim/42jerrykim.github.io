@@ -476,7 +476,7 @@
 | content/collection/Algorithm/2024/2024-09-25-BOJ-3653/index.md | 82.8 | 2026-10-11 | 2 | 에스컬레이션 | 1.3 | 7a12927 | 치명결함 1: 항목7 — BOJ 문제 링크(acmicpc.net/problem/3653)가 "BOJ 서비스 종료"로 404 — 링크 처리 정책(텍스트 표기·보관 링크 대체)은 컬렉션 전체에 영향하므로 사람이 결정. 그 외 항목 1~6은 85~100(해소 시 약 91~92). 1차 62.5점에서 학습 목표·불변식·추적 표·복잡도 표·코너 케이스 정정·태그/description 정리로 상승. 재채점 후 CP-Algorithms/Fenwick 1994 출처를 추가(재채점 생략, 반복 2회에서 해소 불가 결함만 남아 중단) |
 | content/collection/Algorithm/2024/2024-09-25-BOJ-3679/index.md | 95.4 | 2026-10-13 | 2 | 통과 | 1.3 | 60f3fe5 | 없음(경미: 문제 제약값 c≤200·n≤2000의 출처가 BOJ 서비스 종료로 대조 불가, 샘플 2 문단과 상태 표 일부 중복). 1차 52.6점(무게중심 정렬 오류·BOJ 링크 404 치명결함) → 최하단-좌측 기준점+외적 정렬+마지막 공선 구간 뒤집기로 풀이 교체, 2회차에 통과 |
 | content/collection/Algorithm/2024/2024-09-25-BOJ-5670/index.md | 95.5 | 2026-10-14 | 3 | 통과 | 1.3 | 882c9cc | 없음(경미: 항목2=85 1차 출처가 Wikipedia 하나뿐, lastmod 미추가는 운영 규칙상 의도) |
-| content/collection/Algorithm/2024/2024-10-10-BOJ-11505/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-10-BOJ-11505/index.md | 91.3 | 2026-10-15 | 2 | 통과 | 1.3 | 4cca375 | 없음(경미: 참고 문헌 절 부재, acmicpc 링크 봇 차단으로 검증 불가·시간/메모리 제한 미기재, 일반 태그 Testing/Debugging/Code-Quality 연결 약함) |
 | content/collection/Algorithm/2024/2024-10-10-BOJ-13334/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-10-BOJ-14725/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-10-BOJ-15824/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1974,5 +1974,13 @@
 | content/post/2026/2026-10-10-mid-harness-terminal-agent-action-scaling/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-11-fowler-sensible-default-vs-best-practice/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-10-12-breakaway-agent-unlimited-tokens-persistence/index.md | - | - | - | 미채점 | - | - | - |
-| content/post/2026/2026-10-14-glm-5-3-post-training-scaling-and-flash/index.md | - | - | - | 미채점 | - | - | - |
+| content/collection/database-transactions/00-introduction/index.md | 92.5 | 2026-10-12 | 1 | 통과 | 1.3 | 8d54db8 | 없음(경미: 항목2=85 오개념 전용 절·범위 밖 주제 명시 부재, 항목4=85 학습 목표 문단과 말미 '할 수 있어야 하는 것' 절 중복) |
+| content/collection/database-transactions/01-isolation-levels-and-anomalies/index.md | 98.5 | 2026-10-12 | 1 | 통과 | 1.3 | d0d2319 | 없음(경미: 항목7=85 dspace 링크 봇 차단으로 검증 불가(WebFetch로는 열림), 학습 목표의 dirty write·read skew SQL 순서표 부재) |
+| content/collection/database-transactions/02-snapshot-isolation-and-mvcc/index.md | 95.4 | 2026-10-12 | 1 | 통과 | 1.3 | b26c5a0 | 없음(경미: 항목1=85 MySQL 용어집 인용 출처 부재·pageinspect 열 출처 서술 부정확·롤백 비교 근거 부재, 항목4=85 오개념의 InnoDB 정기 커밋 권고 재진술) |
+| content/collection/database-transactions/03-lock-based-isolation/index.md | 100 | 2026-10-12 | 1 | 통과 | 1.3 | d62930b | 없음 |
+| content/collection/database-transactions/04-serializable-ssi/index.md | 95.8 | 2026-10-12 | 2 | 통과 | 1.3 | a5bb94f | 없음(경미: 항목1=85 '상용 데이터베이스'는 논문의 production database release(실서비스 릴리스)의 오역, 항목7=85 dspace 링크 봇 차단으로 검증 불가) |
+| content/collection/database-transactions/05-application-design/index.md | 97.3 | 2026-10-12 | 2 | 통과 | 1.3 | a2c7371 | 없음(경미: 항목1=85 FOR UPDATE의 '대기 후 최신 행 반환'이 Read Committed 한정임을 명시하지 않음) |
+| content/collection/database-transactions/06-distributed-transactions/index.md | 96.6 | 2026-10-12 | 1 | 통과 | 1.3 | 0ac6903 | 없음(경미: 항목4=85 아웃박스 중복 문장, 항목5=85 릴레이 SQL의 자리표시자) |
+| content/collection/database-transactions/07-verifying-isolation/index.md | 100 | 2026-10-12 | 1 | 통과 | 1.3 | 256dfc1 | 없음 |
 | content/post/2026/2026-10-13-shopify-drops-react-native-ai-agents-native/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-10-14-glm-5-3-post-training-scaling-and-flash/index.md | - | - | - | 미채점 | - | - | - |
