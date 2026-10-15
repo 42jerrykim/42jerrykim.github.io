@@ -477,7 +477,7 @@
 | content/collection/Algorithm/2024/2024-09-25-BOJ-3679/index.md | 95.4 | 2026-10-13 | 2 | 통과 | 1.3 | 60f3fe5 | 없음(경미: 문제 제약값 c≤200·n≤2000의 출처가 BOJ 서비스 종료로 대조 불가, 샘플 2 문단과 상태 표 일부 중복). 1차 52.6점(무게중심 정렬 오류·BOJ 링크 404 치명결함) → 최하단-좌측 기준점+외적 정렬+마지막 공선 구간 뒤집기로 풀이 교체, 2회차에 통과 |
 | content/collection/Algorithm/2024/2024-09-25-BOJ-5670/index.md | 95.5 | 2026-10-14 | 3 | 통과 | 1.3 | 882c9cc | 없음(경미: 항목2=85 1차 출처가 Wikipedia 하나뿐, lastmod 미추가는 운영 규칙상 의도) |
 | content/collection/Algorithm/2024/2024-10-10-BOJ-11505/index.md | 91.3 | 2026-10-15 | 2 | 통과 | 1.3 | 4cca375 | 없음(경미: 참고 문헌 절 부재, acmicpc 링크 봇 차단으로 검증 불가·시간/메모리 제한 미기재, 일반 태그 Testing/Debugging/Code-Quality 연결 약함) |
-| content/collection/Algorithm/2024/2024-10-10-BOJ-13334/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-10-BOJ-13334/index.md | 89.4 | 2026-10-16 | 3 | 에스컬레이션 | 1.3 | 8e8331f | 항목1·4 — L56이 제약 미확인을 밝히면서 "n은 최대 10만 수준"을 단정, 미확인 고지 문장 중복 — 단정 문장과 중복 문장 삭제; 항목7 — 본문 L42·header.teaser가 존재하지 않는 /assets/images/undefined/algorithm.png 참조(레거시 공통 패턴) — 실재 경로로 교체 또는 표 제거; 경미: 코너 케이스 표 2행뿐(d=0 등), lastmod 부재(정책상 사람만)|
 | content/collection/Algorithm/2024/2024-10-10-BOJ-14725/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-10-BOJ-15824/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-10-BOJ-16565/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1984,3 +1984,5 @@
 | content/collection/database-transactions/07-verifying-isolation/index.md | 100 | 2026-10-12 | 1 | 통과 | 1.3 | 256dfc1 | 없음 |
 | content/post/2026/2026-10-13-shopify-drops-react-native-ai-agents-native/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-14-glm-5-3-post-training-scaling-and-flash/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-10-15-cloudflare-cf-agentic-cli-forge-openapi/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-10-16-sft-rlvr-opd-post-training-order/index.md | - | - | - | 미채점 | - | - | - |
