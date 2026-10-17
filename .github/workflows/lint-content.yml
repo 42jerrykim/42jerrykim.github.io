@@ -31,3 +31,9 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: python3 script/lint_frontmatter.py "$BASE_SHA"
+
+      # 신규 글은 대표 이미지(image 필드 + 번들 내 파일)를 강제(fail).
+      - name: Check post representative images
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python3 script/check_post_images.py "$BASE_SHA"

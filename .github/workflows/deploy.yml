@@ -50,6 +50,12 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      # 신규 글에 대표 이미지(image 필드 + 파일)가 없으면 배포 전에 실패시킨다.
+      - name: Check post representative images
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+        run: python3 script/check_post_images.py "$BEFORE_SHA"
+
       - name: Restore Hugo resources cache
         uses: actions/cache@v5
         with:

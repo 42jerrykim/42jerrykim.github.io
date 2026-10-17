@@ -37,6 +37,7 @@ tags:
   - iterate_many
   - Data-Pipeline
   - Trade-off
+image: "wordcloud.png"
 ---
 
 로그·이벤트 데이터는 대개 줄마다 JSON 하나인 NDJSON(JSON Lines)으로 쌓이고, 디스크 절약을 위해 gzip으로 압축된다. 이런 파일을 읽는 병목은 보통 JSON 파싱이라고 생각하지만, simdjson으로 파싱을 충분히 빠르게 만들고 나면 병목은 압축 해제로 옮겨 간다. Daniel Lemire는 2026년 10월 1일 블로그 글에서 압축된 NDJSON을 압축 해제와 파싱을 합쳐 멀티스레드로 처리해, zstd 파일 기준 64스레드에서 40 GB/s를 얻었다고 보고했다(출처: [Parsing compressed JSON at 40 GB/s](https://lemire.me/blog/2026/10/01/parsing-compressed-json-at-40-gb-s/)). 같은 데이터를 gzip으로 두면 64스레드로도 2.5 GB/s였다. 이 글은 이 16배 차이가 어디서 나오는지, 그리고 그 대가가 무엇인지를 정리한다.

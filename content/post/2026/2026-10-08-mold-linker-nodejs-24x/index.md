@@ -37,6 +37,7 @@ tags:
   - Daniel-Lemire
   - Developer-Experience
   - Incremental-Build
+image: "wordcloud.png"
 ---
 
 C++ 프로젝트에서 소스 한 줄을 고치고 다시 빌드하면, 컴파일은 바뀐 파일만 다시 하지만 링크는 매번 처음부터 다시 한다. 파일이 많고 실행 파일이 클수록 이 마지막 단계가 개발 루프의 대기 시간을 좌우한다. Daniel Lemire는 2026년 10월 6일 블로그 글에서 Node.js를 여러 링커로 링크해 비교했고, mold 3.0.0이 GNU ld 대비 멀티스레드에서 약 24배 빨랐다고 보고했다(출처: [Faster software linking with mold](https://lemire.me/blog/2026/10/06/linking-node-js-with-mold/)). 이 글은 그 숫자가 의미하는 바와, 내 프로젝트에 적용할 때 무엇을 확인해야 하는지를 정리한다.

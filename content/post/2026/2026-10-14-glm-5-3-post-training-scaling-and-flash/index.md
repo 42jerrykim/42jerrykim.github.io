@@ -43,6 +43,7 @@ tags:
   - Artificial-Analysis
   - Pricing
   - Model-Comparison
+image: "wordcloud.png"
 ---
 
 같은 "GLM-5.3"이라는 이름을 단 모델이 2주 간격으로 두 번 나왔다. 하나는 기존 베이스 모델에 사후학습(post-training)만 더 얹은 모델이고, 다른 하나는 30T 토큰 멀티모달 코퍼스로 처음부터 새로 학습한 별개의 모델이다. 이름이 같아서 둘을 같은 계열의 점진적 개선으로 읽기 쉽지만, 이 둘은 프론티어 랩이 쓰는 서로 다른 두 전략의 사례다. 이 글은 두 모델이 무엇이 다른지, 공개된 수치 중 어디까지 믿을 수 있는지, 그리고 Anthropic Frontier Red Team의 평가가 왜 별도로 주목받았는지를 정리한다.

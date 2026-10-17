@@ -87,6 +87,7 @@ description: >-
 4. 알고리즘 코드 블록이 있으면 전역 규칙대로 상단 주석 포함.
 5. Mermaid 사용 시 `rules-that-must-be-followed` 문법 준수.
 6. 본문에 넣는 모든 외부 링크는 **추가 시점에** 다시 접근 가능 여부 확인.
+7. **대표 이미지(필수)**: 자연 이미지가 없으면 `python script/wordcloud_generator.py "<번들 경로>"`로 `wordcloud.png`를 생성하고 frontmatter에 `image: "wordcloud.png"`를 넣는다. 생성이 실패하면(konlpy/Java/nltk 등) 조용히 넘기지 말고 원인을 해결하거나 작업을 중단·보고한다. `image` 없는 글은 CI(`script/check_post_images.py`)가 배포를 막는다.
 
 **교육 시리즈·특수 컬렉션**: `educational-content-writing`, 컬렉션별 작성 스킬(위 표) 등 적용 대상 스킬을 이 단계에서 함께 호출한다.
 
@@ -95,6 +96,7 @@ description: >-
 - [ ] `draft: true`
 - [ ] title / description / tags 개수·형식
 - [ ] 날짜 = 터미널 확인값
+- [ ] 대표 이미지: 번들에 이미지 파일 존재 + frontmatter `image` 필드 지정
 - [ ] 본문 링크 검증 완료
 - [ ] 내부 링크는 `reference.md`의 Hugo 컬렉션 내부 링크 규칙 준수
 
@@ -139,6 +141,7 @@ description: >-
 **체크리스트**
 
 - [ ] Stage 3 QA 완료 확인
+- [ ] `python script/post_lint.py <번들 경로>` 실행, `image-missing` 결함 없음 (대표 이미지 없이 `draft: false` 금지)
 - [ ] 사용자 승인 후에만 `draft: false`
 
 **단계 종료 보고**: 최종 상태(`draft` 값), 권장 후속 작업(로컬 `hugo` 빌드 등).

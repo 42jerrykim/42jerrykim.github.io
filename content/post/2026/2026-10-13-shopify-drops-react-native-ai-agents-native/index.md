@@ -37,6 +37,7 @@ tags:
   - Agentic-AI
   - Build-Economics
   - Mustafa-Ali
+image: "wordcloud.png"
 ---
 
 2020년에 React Native를 모바일의 미래로 선언했고 2025년에도 입장을 재확인했던 Shopify가, 2026년 9월 전체 앱을 Swift와 Kotlin 네이티브로 다시 만들겠다고 발표했다. 흥미로운 점은 이유가 "React Native가 실패했다"가 아니라는 것이다. 공개된 설명의 핵심은 AI 코딩 에이전트 덕분에 "같은 기능을 두 번 만드는 비용"이 예전만큼 크지 않다는 판단이다. 이 글은 InfoQ와 The Pragmatic Engineer의 보도를 바탕으로 무엇이 확인된 사실이고 무엇이 아직 검증되지 않은 주장인지를 구분해 정리한다.
