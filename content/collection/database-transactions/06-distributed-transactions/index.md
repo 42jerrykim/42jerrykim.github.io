@@ -1,8 +1,8 @@
 ---
 collection_order: 6
 date: 2026-10-02T01:10:00+09:00
-lastmod: 2026-10-12T00:10:00+09:00
-draft: true
+lastmod: 2026-10-17T14:05:00+09:00
+draft: false
 title: "[Database] 06. 분산 트랜잭션: 2PC, 사가, 아웃박스, 스패너"
 slug: distributed-transactions
 description: "트랜잭션이 여러 데이터베이스와 서비스에 걸칠 때의 비용을 다룹니다. 2단계 커밋이 코디네이터 장애에서 막히는 과정, 사가와 아웃박스 패턴, 퍼컬레이터와 스패너가 분산 스냅샷을 만드는 방식을 실행 가능한 모델로 정리합니다."

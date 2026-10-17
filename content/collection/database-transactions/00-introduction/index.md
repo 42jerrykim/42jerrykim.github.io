@@ -1,8 +1,8 @@
 ---
 collection_order: 0
 date: 2026-10-02T00:10:00+09:00
-lastmod: 2026-10-12T00:10:00+09:00
-draft: true
+lastmod: 2026-10-17T14:05:00+09:00
+draft: false
 title: "[Database] 00. Introduction: 데이터베이스 트랜잭션과 격리 수준 심화"
 slug: getting-started-database-transactions
 description: "격리 수준 이름만 외워서는 실제 DB에서 생기는 버그를 막을 수 없는 이유와, write skew·lost update를 다루며 PostgreSQL·MySQL·Oracle·SQL Server를 비교하는 7개 챕터 커리큘럼, 학습 목표를 정리한 시리즈 도입 챕터입니다."

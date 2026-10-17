@@ -1,8 +1,8 @@
 ---
 collection_order: 7
 date: 2026-10-02T01:20:00+09:00
-lastmod: 2026-10-12T00:10:00+09:00
-draft: true
+lastmod: 2026-10-17T14:05:00+09:00
+draft: false
 title: "[Database] 07. 격리 수준 검증: 재현 테스트, Hermitage, Elle"
 slug: verifying-isolation-levels
 description: "문서와 블로그의 격리 수준 주장을 직접 확인하는 방법을 다룹니다. 두 세션의 인터리빙을 결정론적으로 재현하는 테스트 하네스를 SQLite로 실행해 보고, Hermitage와 Elle 같은 도구와 DBMS 이전 점검표를 정리합니다."

@@ -1,8 +1,8 @@
 ---
 collection_order: 5
 date: 2026-10-02T01:00:00+09:00
-lastmod: 2026-10-12T00:10:00+09:00
-draft: true
+lastmod: 2026-10-17T14:05:00+09:00
+draft: false
 title: "[Database] 05. 설계 패턴: 원자적 UPDATE, 낙관적 락, SKIP LOCKED"
 slug: application-design-patterns
 description: "격리 수준을 올리기 전에 쓸 수 있는 도구들을 정리합니다. 원자적 UPDATE, SELECT FOR UPDATE와 SKIP LOCKED, 버전 컬럼 낙관적 락, 제약조건, 어드바이저리 락, 멱등성 키와 재시도를 문제 유형별로 고르는 법을 다룹니다."

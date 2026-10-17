@@ -1,8 +1,8 @@
 ---
 collection_order: 4
 date: 2026-10-02T00:50:00+09:00
-lastmod: 2026-10-12T00:10:00+09:00
-draft: true
+lastmod: 2026-10-17T14:05:00+09:00
+draft: false
 title: "[Database] 04. Serializable의 구현: SSI와 위험한 구조"
 slug: serializable-snapshot-isolation
 description: "락 없이 직렬 가능성을 보장하는 SSI가 연속한 두 읽기-쓰기 반의존성을 위험한 구조로 감지하는 원리, PostgreSQL의 SIREAD 락과 false positive, 읽기 전용 최적화와 재시도 설계를 실행 가능한 모델로 정리합니다."

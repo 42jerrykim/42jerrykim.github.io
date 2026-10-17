@@ -1,8 +1,8 @@
 ---
 collection_order: 3
 date: 2026-10-02T00:40:00+09:00
-lastmod: 2026-10-12T00:10:00+09:00
-draft: true
+lastmod: 2026-10-17T14:05:00+09:00
+draft: false
 title: "[Database] 03. 락 기반 격리: 2PL, next-key lock, 데드락"
 slug: lock-based-isolation
 description: "2단계 락킹이 직렬 가능성을 보장하는 원리, 팬텀을 막는 범위 락과 InnoDB의 gap·next-key lock, 락이 write skew를 데드락으로 바꾸는 과정, 데드락 탐지와 재시도 설계를 실행 가능한 모델로 정리합니다."

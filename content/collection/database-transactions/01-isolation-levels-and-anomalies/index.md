@@ -1,8 +1,8 @@
 ---
 collection_order: 1
 date: 2026-10-02T00:20:00+09:00
-lastmod: 2026-10-12T00:10:00+09:00
-draft: true
+lastmod: 2026-10-17T14:05:00+09:00
+draft: false
 title: "[Database] 01. 격리 수준과 이상 현상: ANSI의 허점과 Write Skew"
 slug: isolation-levels-and-anomalies
 description: "SQL 표준의 세 가지 이상 현상만으로는 lost update와 write skew를 설명할 수 없는 이유를 Berenson·Adya의 연구와 PostgreSQL·MySQL·Oracle·SQL Server 동작 비교, 당직 의사 예제로 정리합니다."

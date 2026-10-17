@@ -1974,14 +1974,14 @@
 | content/post/2026/2026-10-10-mid-harness-terminal-agent-action-scaling/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-11-fowler-sensible-default-vs-best-practice/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-10-12-breakaway-agent-unlimited-tokens-persistence/index.md | - | - | - | 미채점 | - | - | - |
-| content/collection/database-transactions/00-introduction/index.md | 98 | 2026-10-17 | 2 | 통과 | 1.3 | 6c086f7 | 없음(경미: 항목4=85 흔한 오해 절이 세 가지 원칙 절과 일부 중복) |
-| content/collection/database-transactions/01-isolation-levels-and-anomalies/index.md | 100 | 2026-10-17 | 2 | 통과 | 1.3 | bf6a7d1 | 없음 |
-| content/collection/database-transactions/02-snapshot-isolation-and-mvcc/index.md | 100 | 2026-10-17 | 3 | 통과 | 1.3 | 9734f84 | 없음 |
-| content/collection/database-transactions/03-lock-based-isolation/index.md | 100 | 2026-10-17 | 2 | 통과 | 1.3 | 4120c31 | 없음 |
-| content/collection/database-transactions/04-serializable-ssi/index.md | 100 | 2026-10-17 | 3 | 통과 | 1.3 | 7be9780 | 없음 |
-| content/collection/database-transactions/05-application-design/index.md | 100 | 2026-10-17 | 4 | 통과 | 1.3 | ceae876 | 없음 |
-| content/collection/database-transactions/06-distributed-transactions/index.md | 100 | 2026-10-17 | 2 | 통과 | 1.3 | adad883 | 없음 |
-| content/collection/database-transactions/07-verifying-isolation/index.md | 100 | 2026-10-17 | 2 | 통과 | 1.3 | 9b2f3a4 | 없음 |
+| content/collection/database-transactions/00-introduction/index.md | 98 | 2026-10-17 | 2 | 통과 | 1.3 | 14ddb74 | 없음(경미: 항목4=85 흔한 오해 절이 세 가지 원칙 절과 일부 중복) |
+| content/collection/database-transactions/01-isolation-levels-and-anomalies/index.md | 100 | 2026-10-17 | 2 | 통과 | 1.3 | a069d8d | 없음 |
+| content/collection/database-transactions/02-snapshot-isolation-and-mvcc/index.md | 100 | 2026-10-17 | 3 | 통과 | 1.3 | 5bcb9ee | 없음 |
+| content/collection/database-transactions/03-lock-based-isolation/index.md | 100 | 2026-10-17 | 2 | 통과 | 1.3 | 0e83dc3 | 없음 |
+| content/collection/database-transactions/04-serializable-ssi/index.md | 100 | 2026-10-17 | 3 | 통과 | 1.3 | 2d2ec4e | 없음 |
+| content/collection/database-transactions/05-application-design/index.md | 100 | 2026-10-17 | 4 | 통과 | 1.3 | 97879e3 | 없음 |
+| content/collection/database-transactions/06-distributed-transactions/index.md | 100 | 2026-10-17 | 2 | 통과 | 1.3 | bfe6dd1 | 없음 |
+| content/collection/database-transactions/07-verifying-isolation/index.md | 100 | 2026-10-17 | 2 | 통과 | 1.3 | cec7464 | 없음 |
 | content/post/2026/2026-10-13-shopify-drops-react-native-ai-agents-native/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-14-glm-5-3-post-training-scaling-and-flash/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-15-cloudflare-cf-agentic-cli-forge-openapi/index.md | - | - | - | 미채점 | - | - | - |

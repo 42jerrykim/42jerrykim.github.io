@@ -1,8 +1,8 @@
 ---
 collection_order: 2
 date: 2026-10-02T00:30:00+09:00
-lastmod: 2026-10-12T00:10:00+09:00
-draft: true
+lastmod: 2026-10-17T14:05:00+09:00
+draft: false
 title: "[Database] 02. 스냅샷 격리와 MVCC 구현: PostgreSQL vs InnoDB"
 slug: snapshot-isolation-and-mvcc
 description: "스냅샷은 데이터 복사본이 아니라 가시성 규칙입니다. PostgreSQL의 xmin·xmax 튜플 버전과 InnoDB의 undo 체인이 같은 약속을 지키는 방식, write skew가 허용되는 구조적 이유, 장기 트랜잭션의 비용을 비교합니다."
