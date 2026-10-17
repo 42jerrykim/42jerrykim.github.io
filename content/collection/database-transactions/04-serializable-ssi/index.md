@@ -38,7 +38,7 @@ tags:
 image: "wordcloud.png"
 ---
 
-03장의 락 기반 Serializable은 읽기에도 락을 걸어 write skew를 데드락으로 바꾸었다. 그 대가로 읽기와 쓰기가 서로를 막아 동시성이 떨어진다. 스냅샷 격리의 장점인 "읽기가 쓰기를 막지 않는다"를 유지하면서도 직렬 가능성을 보장할 수는 없을까. 이 질문에 대한 연구 결과가 <strong>SSI(Serializable Snapshot Isolation)</strong>이고, PostgreSQL이 이를 상용 데이터베이스로는 처음 구현했다. 이 장은 SSI가 무엇을 감시하는지, 왜 거짓 경보가 생기는지, 그리고 이 방식이 애플리케이션에 요구하는 것이 무엇인지를 다룬다.
+03장의 락 기반 Serializable은 읽기에도 락을 걸어 write skew를 데드락으로 바꾸었다. 그 대가로 읽기와 쓰기가 서로를 막아 동시성이 떨어진다. 스냅샷 격리의 장점인 "읽기가 쓰기를 막지 않는다"를 유지하면서도 직렬 가능성을 보장할 수는 없을까. 이 질문에 대한 연구 결과가 <strong>SSI(Serializable Snapshot Isolation)</strong>이고, PostgreSQL이 이를 실서비스용 데이터베이스 릴리스로는 처음 구현했다. 이 장은 SSI가 무엇을 감시하는지, 왜 거짓 경보가 생기는지, 그리고 이 방식이 애플리케이션에 요구하는 것이 무엇인지를 다룬다.
 
 ## 이 장을 읽기 전에
 
@@ -76,7 +76,7 @@ flowchart LR
 
 ## PostgreSQL의 SSI
 
-PostgreSQL은 9.1 버전에서 SSI를 도입했다. Dan Ports와 Kevin Grittner의 논문 「Serializable Snapshot Isolation in PostgreSQL」(VLDB 2012)은 이 구현이 상용 데이터베이스 릴리스에서의 첫 SSI 구현이자, 그 이전에 락 기반 Serializable이 없던 데이터베이스에서의 첫 구현이라고 밝힌다. 논문은 성능이 스냅샷 격리보다 약간 낮은 수준이며 읽기가 많은 워크로드에서는 전통적인 2PL보다 훨씬 낫다고 평가한다.
+PostgreSQL은 9.1 버전에서 SSI를 도입했다. Dan Ports와 Kevin Grittner의 논문 「Serializable Snapshot Isolation in PostgreSQL」(VLDB 2012)은 이 구현이 실서비스(프로덕션) 데이터베이스 릴리스에서의 첫 SSI 구현이자, 그 이전에 락 기반 Serializable이 없던 데이터베이스에서의 첫 구현이라고 밝힌다. 논문은 성능이 스냅샷 격리보다 약간 낮은 수준이며 읽기가 많은 워크로드에서는 전통적인 2PL보다 훨씬 낫다고 평가한다.
 
 사용자 관점에서 Serializable은 Repeatable Read와 똑같이 동작하면서 추가로 모니터링을 한다. 공식 문서는 Serializable이 동시 실행된 트랜잭션 집합이 어떤 직렬 실행과도 모순되는 결과를 낼 수 있는 조건을 감시한다고 설명한다. 이를 위해 <strong>예측 락(predicate lock)</strong>을 쓴다. 문서에 따르면 PostgreSQL은 "쓰기가 이전 읽기의 결과에 영향을 주었을지"를 판단할 수 있도록 락을 유지한다. 이 락은 `pg_locks`에서 `SIReadLock` 모드로 나타나고, 03장의 락과 달리 아무도 차단하지 않으므로 데드락에 관여할 수 없다. 실제로 접근한 데이터에 기반해 만들어진다. 즉 SIREAD 락은 락이라는 이름의 "읽기 기록"이다. 읽은 위치를 기록해 두었다가, 다른 트랜잭션이 거기에 쓰면 rw 반의존성 간선을 긋는 데 쓴다.
 

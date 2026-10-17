@@ -1978,8 +1978,8 @@
 | content/collection/database-transactions/01-isolation-levels-and-anomalies/index.md | 98.5 | 2026-10-12 | 1 | 통과 | 1.3 | d0d2319 | 없음(경미: 항목7=85 dspace 링크 봇 차단으로 검증 불가(WebFetch로는 열림), 학습 목표의 dirty write·read skew SQL 순서표 부재) |
 | content/collection/database-transactions/02-snapshot-isolation-and-mvcc/index.md | 95.4 | 2026-10-12 | 1 | 통과 | 1.3 | b26c5a0 | 없음(경미: 항목1=85 MySQL 용어집 인용 출처 부재·pageinspect 열 출처 서술 부정확·롤백 비교 근거 부재, 항목4=85 오개념의 InnoDB 정기 커밋 권고 재진술) |
 | content/collection/database-transactions/03-lock-based-isolation/index.md | 100 | 2026-10-12 | 1 | 통과 | 1.3 | d62930b | 없음 |
-| content/collection/database-transactions/04-serializable-ssi/index.md | 95.8 | 2026-10-12 | 2 | 통과 | 1.3 | a5bb94f | 없음(경미: 항목1=85 '상용 데이터베이스'는 논문의 production database release(실서비스 릴리스)의 오역, 항목7=85 dspace 링크 봇 차단으로 검증 불가) |
-| content/collection/database-transactions/05-application-design/index.md | 97.3 | 2026-10-12 | 2 | 통과 | 1.3 | a2c7371 | 없음(경미: 항목1=85 FOR UPDATE의 '대기 후 최신 행 반환'이 Read Committed 한정임을 명시하지 않음) |
+| content/collection/database-transactions/04-serializable-ssi/index.md | 100 | 2026-10-17 | 3 | 통과 | 1.3 | 7be9780 | 없음 |
+| content/collection/database-transactions/05-application-design/index.md | 100 | 2026-10-17 | 3 | 통과 | 1.3 | 3a579bd | 없음 |
 | content/collection/database-transactions/06-distributed-transactions/index.md | 96.6 | 2026-10-12 | 1 | 통과 | 1.3 | 0ac6903 | 없음(경미: 항목4=85 아웃박스 중복 문장, 항목5=85 릴레이 SQL의 자리표시자) |
 | content/collection/database-transactions/07-verifying-isolation/index.md | 100 | 2026-10-12 | 1 | 통과 | 1.3 | 256dfc1 | 없음 |
 | content/post/2026/2026-10-13-shopify-drops-react-native-ai-agents-native/index.md | - | - | - | 미채점 | - | - | - |
