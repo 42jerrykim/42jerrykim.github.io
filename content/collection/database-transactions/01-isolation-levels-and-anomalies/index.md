@@ -1,8 +1,8 @@
 ---
 collection_order: 1
 date: 2026-10-02T00:20:00+09:00
-lastmod: 2026-10-02T00:20:00+09:00
-draft: true
+lastmod: 2026-10-17T14:05:00+09:00
+draft: false
 title: "[Database] 01. 격리 수준과 이상 현상: ANSI의 허점과 Write Skew"
 slug: isolation-levels-and-anomalies
 description: "SQL 표준의 세 가지 이상 현상만으로는 lost update와 write skew를 설명할 수 없는 이유를 Berenson·Adya의 연구와 PostgreSQL·MySQL·Oracle·SQL Server 동작 비교, 당직 의사 예제로 정리합니다."
@@ -81,6 +81,24 @@ Atul Adya는 1999년 MIT 박사학위 논문 「Weak Consistency: A Generalized 
 | Lost Update | 읽고 계산해 쓰는 사이 다른 트랜잭션의 갱신이 덮어써진다 | 두 요청이 같은 잔액 100을 읽고 각자 더해 쓰면 하나가 사라진다 |
 | Write Skew | 서로 다른 행을 쓰지만, 둘이 읽은 공통 조건이 깨져 불변식이 위반된다 | 두 의사가 동시에 당직을 해제해 당직자가 0명이 된다 |
 
+표의 현상 가운데 dirty write와 read skew는 두 세션의 순서로 보면 더 분명하다. dirty write는 아직 끝나지 않은 다른 트랜잭션이 쓴 값 위에 덮어쓰는 것이다. 계좌 1의 잔액이 100일 때 다음 순서가 허용된다면, A가 롤백할 때 되돌릴 값이 무엇인지 정할 수 없게 된다. Hermitage의 결과표(G0 열)에서 시험한 모든 수준이 이 현상을 막는다.
+
+| 순서 | 세션 A | 세션 B |
+|---|---|---|
+| 1 | `UPDATE accounts SET balance = 50 WHERE id = 1;` | |
+| 2 | | `UPDATE accounts SET balance = 70 WHERE id = 1;` (A가 끝나기 전에 덮어쓰려 한다) |
+| 3 | `ROLLBACK;` | |
+
+read skew는 서로 관련된 두 값을 읽는 사이에 다른 트랜잭션이 커밋해 어긋난 조합을 보는 것이다. 계좌 1과 2의 잔액이 각각 50이고 합계가 항상 100이어야 한다면, 다음 순서에서 A는 합계가 120인 상태를 본다.
+
+| 순서 | 세션 A | 세션 B |
+|---|---|---|
+| 1 | `BEGIN;` `SELECT balance FROM accounts WHERE id = 1;` (50) | |
+| 2 | | `UPDATE accounts SET balance = balance - 20 WHERE id = 1;` `UPDATE accounts SET balance = balance + 20 WHERE id = 2;` `COMMIT;` |
+| 3 | `SELECT balance FROM accounts WHERE id = 2;` (70, 합계 120) | |
+
+Read Committed는 문장마다 새 스냅샷을 읽으므로 3단계에서 B의 커밋 결과를 보아 위처럼 어긋난 합계가 나올 수 있다. 스냅샷을 트랜잭션 동안 유지하는 Repeatable Read에서는 A가 3단계에서도 B 이전의 값(50)을 읽어 합계가 100으로 유지된다.
+
 각 현상이 어느 격리 수준에서 가능한지는 DBMS마다 다르다. 아래 표는 PostgreSQL 공식 문서의 서술을 기준으로 한다. 문서의 표는 더티 리드, 반복 불가능한 읽기, 팬텀, 직렬화 이상(serialization anomaly)의 네 열을 제공하며, 나머지 열은 그 서술에서 도출했다.
 
 | 현상 | Read Committed | Repeatable Read | Serializable |
@@ -132,7 +150,17 @@ sequenceDiagram
     Note over DB: 당직자 0명으로 불변식 위반
 ```
 
-두 트랜잭션이 수정한 행은 각각 `alice`와 `bob`으로 서로 다르다. 같은 행에 대한 쓰기 충돌이 없으니 SI는 둘 다 통과시킨다. 각 트랜잭션은 자신의 스냅샷에서 "당직자가 2명"이라는 사실을 보고 판단했으므로 로컬하게는 올바른 결정이었다. 그러나 두 결정이 합쳐진 결과는 어떤 직렬 실행으로도 만들어질 수 없다. PostgreSQL의 Repeatable Read에서 위 순서대로 실행하면 두 `COMMIT`이 모두 성공하고 `SELECT count(*) FROM doctors WHERE on_call`이 0을 돌려줄 것이다. `psql` 창 두 개를 열어 직접 재현해 보기를 권한다.
+두 트랜잭션이 수정한 행은 각각 `alice`와 `bob`으로 서로 다르다. 같은 행에 대한 쓰기 충돌이 없으니 SI는 둘 다 통과시킨다. 각 트랜잭션은 자신의 스냅샷에서 "당직자가 2명"이라는 사실을 보고 판단했으므로 로컬하게는 올바른 결정이었다. 그러나 두 결정이 합쳐진 결과는 어떤 직렬 실행으로도 만들어질 수 없다. PostgreSQL의 Repeatable Read에서 위 순서대로 실행하면 두 `COMMIT`이 모두 성공하고 `SELECT count(*) FROM doctors WHERE on_call`이 0을 돌려줄 것이다. 이 결과는 공식 문서가 서술하는 스냅샷 격리의 규칙에서 도출한 예측이므로, `psql` 창 두 개로 다음 절차를 따라 직접 확인해 보기를 권한다.
+
+| 순서 | 세션 A | 세션 B |
+|---|---|---|
+| 1 | `BEGIN ISOLATION LEVEL REPEATABLE READ;` | `BEGIN ISOLATION LEVEL REPEATABLE READ;` |
+| 2 | `SELECT count(*) FROM doctors WHERE on_call;` (2) | `SELECT count(*) FROM doctors WHERE on_call;` (2) |
+| 3 | `UPDATE doctors SET on_call = false WHERE name = 'alice';` | `UPDATE doctors SET on_call = false WHERE name = 'bob';` |
+| 4 | `COMMIT;` | `COMMIT;` |
+| 5 | 새 세션에서 `SELECT count(*) FROM doctors WHERE on_call;` | |
+
+Repeatable Read로 실행하면 4단계에서 두 `COMMIT`이 모두 성공하고 5단계가 0을 돌려주어야 한다. 1단계의 격리 수준만 `SERIALIZABLE`로 바꾸어 같은 절차를 반복하면, 둘 중 한 `COMMIT`(또는 그 앞의 문장)이 `40001`로 실패하고 5단계는 1을 돌려주어야 한다. 이 비교가 깨진 코드, 원인, 고친 설정, 검증의 순서다. 단, 고친 설정에서 한 번 오류 없이 지나갔다는 사실이 안전의 증명은 아니다. 오류가 나지 않는 인터리빙도 있으므로 07장처럼 순서를 고정한 시나리오로 확인해야 한다.
 
 ### 해결책 세 가지
 
@@ -154,16 +182,17 @@ COMMIT;
 
 lost update는 write skew보다 흔하다. 애플리케이션이 잔액을 읽어 코드에서 새 값을 계산한 뒤 그 값을 `UPDATE`로 써넣는 흔한 패턴이 원인이다.
 
-```sql
--- 세션 A와 세션 B가 각자 실행. 초기 잔액은 100이다.
-BEGIN;
-SELECT balance FROM accounts WHERE id = 1;          -- 둘 다 100을 읽는다
--- 세션 A: 애플리케이션이 100 + 10 = 110을 계산한다
--- 세션 B: 애플리케이션이 100 + 20 = 120을 계산한다
-UPDATE accounts SET balance = 110 WHERE id = 1;     -- 세션 A
-UPDATE accounts SET balance = 120 WHERE id = 1;     -- 세션 B, A의 커밋 이후 진행
-COMMIT;
-```
+초기 잔액이 100일 때 두 세션이 다음 순서로 실행된다고 하자.
+
+| 순서 | 세션 A | 세션 B |
+|---|---|---|
+| 1 | `BEGIN;` | `BEGIN;` |
+| 2 | `SELECT balance FROM accounts WHERE id = 1;` (100) | `SELECT balance FROM accounts WHERE id = 1;` (100) |
+| 3 | 애플리케이션이 100 + 10 = 110을 계산한다 | 애플리케이션이 100 + 20 = 120을 계산한다 |
+| 4 | `UPDATE accounts SET balance = 110 WHERE id = 1;` | |
+| 5 | `COMMIT;` | |
+| 6 | | `UPDATE accounts SET balance = 120 WHERE id = 1;` (A의 커밋 이후 진행) |
+| 7 | | `COMMIT;` |
 
 Read Committed에서는 B의 `UPDATE`가 A의 커밋을 기다렸다가 그대로 덮어써서 최종 잔액이 120이 되고 A의 +10이 사라진다. PostgreSQL의 Repeatable Read에서는 B의 `UPDATE`가 스냅샷 이후에 바뀐 행을 만나 직렬화 오류로 중단되므로 사라지는 갱신이 생기지 않는다. 같은 코드가 DBMS에 따라 안전하기도 하고 위험하기도 한 셈이다. MySQL InnoDB의 Repeatable Read에서는 사정이 다르다. 공식 문서에 따르면 스냅샷은 `SELECT`에 적용될 뿐 DML에는 반드시 적용되지 않으며, 다른 트랜잭션이 방금 커밋한 행을 `UPDATE`나 `DELETE`가 건드릴 수 있다. 이 서술로부터 위 시나리오의 B가 중단되지 않고 A의 값을 덮어쓸 수 있다고 추론할 수 있고, 이는 직접 재현해서 확인할 수 있다.
 
@@ -177,14 +206,14 @@ Read Committed에서는 B의 `UPDATE`가 A의 커밋을 기다렸다가 그대�
 |---|---|---|---|
 | PostgreSQL | Read Committed | Read Uncommitted는 Read Committed로 동작. Repeatable Read는 스냅샷 격리. Serializable은 SSI(예측 잠금 기반 충돌 감지) | Repeatable Read는 팬텀을 막지만 write skew는 허용. Serializable은 `40001`로 중단될 수 있음 |
 | MySQL InnoDB | Repeatable Read | 일반 `SELECT`는 첫 읽기에서 만든 스냅샷을 사용. 잠금 읽기와 DML은 갭 락·next-key 락을 사용. Serializable은 autocommit이 꺼진 경우 일반 `SELECT`를 `SELECT ... FOR SHARE`로 변환 | DML은 스냅샷이 아닌 최신 커밋을 본다. Read Committed에서는 갭 락이 대부분 비활성화되어 팬텀 가능 |
-| Oracle | Read Committed | Read Committed, Serializable, Read-Only 세 가지만 제공. Serializable은 트랜잭션 시작 이후 커밋된 변경이 있는 행을 갱신하면 `ORA-08177` | 문서는 Serializable에서 더티 리드·퍼지 리드·팬텀이 없다고 서술 |
+| Oracle | Read Committed | Read Committed, Serializable, Read-Only 세 가지만 제공. Serializable은 트랜잭션 시작 이후 커밋된 변경이 있는 행을 갱신하면 `ORA-08177` | 문서는 Serializable에서 더티 리드·퍼지 리드·팬텀이 없다고 서술. 실제 동작은 아래 문단 참고 |
 | SQL Server | Read Committed | 기본은 락 기반 Read Committed. `READ_COMMITTED_SNAPSHOT` 옵션을 켜면 문장 단위 행 버전 사용. SNAPSHOT 수준은 별도 옵션 필요. Serializable은 키 범위 락 | Azure SQL Database는 `READ_COMMITTED_SNAPSHOT`이 기본값이라 같은 이름의 수준도 설정에 따라 구현이 다르다 |
 
-표에서 보듯 "Read Committed"만 해도 PostgreSQL에서는 문장마다 새 스냅샷을 읽는 방식이고, SQL Server 기본값에서는 읽는 동안 공유 락을 잡는 방식이다. 이 차이는 동시성 특성에 직접 영향을 준다. 락 기반에서는 읽기가 쓰기를 기다리고, 버전 기반에서는 기다리지 않는다. 격리 수준 이름은 DBMS 사이에서 이식되지 않으므로, 마이그레이션이나 멀티 DBMS 지원 시에는 수준 이름이 아니라 위 표의 구현 설명을 기준으로 재검증해야 한다. 이런 비교를 직접 해 보고 싶다면 Kleppmann이 DDIA의 배경 연구로 만든 [Hermitage](https://github.com/ept/hermitage)가 여러 DBMS에서 이상 현상별 결과를 표로 제공한다. Jepsen의 [일관성 모델 지도](https://jepsen.io/consistency)는 이 격리 수준들이 일관성 모델 전체에서 어디에 놓이는지 보여 준다.
+표에서 보듯 "Read Committed"만 해도 PostgreSQL에서는 문장마다 새 스냅샷을 읽는 방식이고, SQL Server 기본값에서는 읽는 동안 공유 락을 잡는 방식이다. 이 차이는 동시성 특성에 직접 영향을 준다. 락 기반에서는 읽기가 쓰기를 기다리고, 버전 기반에서는 기다리지 않는다. 격리 수준 이름은 DBMS 사이에서 이식되지 않으므로, 마이그레이션이나 멀티 DBMS 지원 시에는 수준 이름이 아니라 위 표의 구현 설명을 기준으로 재검증해야 한다. Oracle이 이 차이의 대표적인 사례다. 문서의 서술에는 write skew가 언급되지 않는데, 아래에서 소개하는 Hermitage의 시험 결과에서 Oracle의 "serializable"은 실제로 스냅샷 격리로 분류되며 write skew(G2-item)를 막지 못하고 술어 기반 write skew(G2)도 일부 허용한다. 같은 Serializable이라는 이름이 PostgreSQL에서는 write skew를 막고 Oracle에서는 막지 못하는 셈이므로, 이름이 아니라 시험 결과로 보장을 확인해야 한다. 이런 비교를 직접 해 보고 싶다면 Kleppmann이 DDIA의 배경 연구로 만든 [Hermitage](https://github.com/ept/hermitage)가 여러 DBMS에서 이상 현상별 결과를 표로 제공한다. Jepsen의 [일관성 모델 지도](https://jepsen.io/consistency)는 이 격리 수준들이 일관성 모델 전체에서 어디에 놓이는지 보여 준다.
 
 ## 재시도 없이는 안전하지 않다
 
-Repeatable Read의 직렬화 실패나 Serializable의 `40001`은 DBMS가 이상 현상을 막는 방식이 "차단"이 아니라 "한 쪽을 중단"이기 때문에 생긴다. 이 오류를 사용자에게 그대로 노출하면 올바르게 동작하는 시스템이 사용자 경험에서는 간헐적 실패처럼 보인다. 따라서 높은 격리 수준을 쓴다면 애플리케이션이 재시도 루프를 갖추어야 한다. 아래 예제는 psycopg 3으로 이를 구현한 것이다.
+Repeatable Read의 직렬화 실패나 Serializable의 `40001`은 DBMS가 이상 현상을 막는 방식이 "차단"이 아니라 "한 쪽을 중단"이기 때문에 생긴다. 이 오류를 사용자에게 그대로 노출하면 올바르게 동작하는 시스템이 사용자 경험에서는 간헐적 실패처럼 보인다. 따라서 높은 격리 수준을 쓴다면 애플리케이션이 재시도 루프를 갖추어야 한다. 아래 예제는 서드파티 라이브러리인 psycopg 3(`pip install "psycopg[binary]"`)으로 이를 구현한 것이며, 표준 라이브러리만으로 실행되는 이 시리즈의 다른 Python 모델과 달리 PostgreSQL 서버가 있어야 실행된다.
 
 ```python
 import psycopg
@@ -202,6 +231,18 @@ def run_serializable(conninfo, work, max_retries=5):
         except errors.SerializationFailure:
             continue
     raise RuntimeError("직렬화 실패가 반복되어 포기했다")
+
+
+def go_off_call(conn, name):
+    """work 의 예: 당직자가 2명 이상일 때만 해제를 허용한다."""
+    (count,) = conn.execute("SELECT count(*) FROM doctors WHERE on_call").fetchone()
+    if count < 2:
+        return False
+    conn.execute("UPDATE doctors SET on_call = false WHERE name = %s", (name,))
+    return True
+
+
+# 사용 예: run_serializable("dbname=hospital", lambda conn: go_off_call(conn, "alice"))
 ```
 
 이 코드에서 `with` 블록은 정상 종료 시 커밋하고 예외가 나면 롤백한다. `40001`은 `work` 안의 문장뿐 아니라 커밋 시점에도 발생할 수 있어서, 재시도 단위는 개별 문장이 아니라 `work` 전체여야 한다. 또 `work`가 이메일 발송처럼 되돌릴 수 없는 부작용을 일으키면 재시도 때 중복 실행되므로, 부작용은 커밋 이후로 미루거나 멱등하게 설계해야 한다. 재시도 횟수 상한과 대기 시간 정책은 충돌률에 따라 정한다. 이 예제는 PostgreSQL이 문서화한 `40001` 동작에 근거한 골격이며, 실제 환경에서는 연결 풀과 지수 백오프를 결합하는 편이 일반적이다.

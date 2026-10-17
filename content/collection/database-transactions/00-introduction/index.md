@@ -1,8 +1,8 @@
 ---
 collection_order: 0
 date: 2026-10-02T00:10:00+09:00
-lastmod: 2026-10-02T00:10:00+09:00
-draft: true
+lastmod: 2026-10-17T14:05:00+09:00
+draft: false
 title: "[Database] 00. Introduction: 데이터베이스 트랜잭션과 격리 수준 심화"
 slug: getting-started-database-transactions
 description: "격리 수준 이름만 외워서는 실제 DB에서 생기는 버그를 막을 수 없는 이유와, write skew·lost update를 다루며 PostgreSQL·MySQL·Oracle·SQL Server를 비교하는 7개 챕터 커리큘럼, 학습 목표를 정리한 시리즈 도입 챕터입니다."
@@ -53,7 +53,7 @@ image: "wordcloud.png"
 
 ## 학습 목표와 결과
 
-이 시리즈를 끝까지 읽으면 다음 세 가지를 할 수 있게 되는 것을 목표로 한다. 첫째, 서비스에서 일어난 동시성 버그를 이상 현상의 이름(lost update, write skew, phantom 등)으로 분류하고, 그것이 현재 격리 수준에서 발생 가능한지 판단한다. 둘째, PostgreSQL·MySQL InnoDB·Oracle·SQL Server가 같은 격리 수준 이름 아래에서 서로 다르게 동작하는 지점을 구분하고, DBMS를 옮길 때 깨질 가정을 미리 짚는다. 셋째, 문제에 맞춰 격리 수준 상향, 행 잠금, 제약조건, 재시도 중 하나를 골라 설계하고 그 선택의 비용을 설명한다. 실무 관점에서는 결제·재고·예약·정산처럼 "한 번 틀리면 돈이 틀어지는" 도메인의 코드 리뷰에서 근거를 들어 의견을 낼 수 있게 된다는 의미다.
+이 시리즈를 끝까지 읽으면 다음 네 가지를 할 수 있게 되는 것을 목표로 한다. 첫째, 서비스에서 일어난 동시성 버그를 이상 현상의 이름(lost update, write skew, phantom 등)으로 분류하고, 그것이 현재 격리 수준에서 발생 가능한지 판단한다(01장). 둘째, 스냅샷이 데이터 복사본이 아니라 가시성 규칙임을 이해하고, PostgreSQL·MySQL InnoDB·Oracle·SQL Server가 같은 격리 수준 이름 아래에서 서로 다르게 동작하는 지점을 구분하며, 락 기반 격리와 SSI가 같은 불변식을 각각 데드락과 중단으로 지키는 방식을 비교한다(02–04장). 셋째, 문제에 맞춰 격리 수준 상향, 행 잠금, 제약조건, 재시도 중 하나를 골라 설계하고, 서비스 경계를 넘는 일관성 전략을 2PC·사가·아웃박스 중에서 선택하며 그 비용을 설명한다(05·06장). 넷째, 문서의 주장을 순서가 고정된 시나리오로 직접 검증하고 DBMS를 옮길 때 깨질 가정을 미리 짚는다(07장). 실무 관점에서는 결제·재고·예약·정산처럼 "한 번 틀리면 돈이 틀어지는" 도메인의 코드 리뷰에서 근거를 들어 의견을 낼 수 있게 된다는 의미다.
 
 ## 커리큘럼과 챕터별 필요성
 
@@ -69,7 +69,7 @@ image: "wordcloud.png"
 | 06 | [분산 트랜잭션: 2PC, 사가, 아웃박스, 스패너](/post/database-transactions/distributed-transactions/) | 단일 노드 가정이 깨질 때의 비용을 이해한다 | 마이크로서비스에서 트랜잭션 경계를 잘못 긋는다 |
 | 07 | [격리 수준 검증: 재현 테스트, Hermitage, Elle](/post/database-transactions/verifying-isolation-levels/) | 문서의 주장을 스스로 확인하는 방법을 익힌다 | 벤더 문서와 블로그 글을 검증 없이 믿게 된다 |
 
-본문의 Python 예제는 표준 라이브러리만으로 실행되며, 장마다 실제 실행 출력을 함께 실었다. 데이터베이스 서버가 있어야 하는 SQL 시나리오는 공식 문서의 동작 설명에서 도출한 것이므로, 사용하는 버전에서 직접 재현해 확인하기를 권한다. 07장은 그 재현을 위한 테스트 하네스를 다룬다.
+02장부터 07장까지의 Python 모델은 표준 라이브러리만으로 실행되며, 각 장에 실제 실행 출력을 함께 실었다. 01장의 재시도 예제(psycopg 사용)와 데이터베이스 서버가 있어야 하는 SQL 시나리오는 공식 문서의 동작 설명에서 도출한 것이므로, 사용하는 버전에서 직접 재현해 확인하기를 권한다. 07장은 그 재현을 위한 테스트 하네스를 다룬다.
 
 ## 읽기 전에 알아 둘 것
 
@@ -81,8 +81,15 @@ image: "wordcloud.png"
 
 첫째, 이름보다 보장을 본다. "Repeatable Read"라는 이름은 표준이 정한 것이지만, 그 이름 아래에서 실제로 무엇이 막히는지는 DBMS 문서가 정한다. 둘째, 이상 현상은 "발생 가능성"으로 판단한다. 테스트에서 한 번도 재현되지 않았다는 사실은 안전의 증거가 아니다. 셋째, 격리 수준은 만능이 아니다. 낮은 격리 수준에서도 제약조건이나 행 잠금으로 해결되는 문제가 있고, 가장 높은 수준에서도 재시도 로직 없이는 서비스가 깨진다.
 
+## 이 시리즈가 다루지 않는 것과 흔한 오해
+
+시리즈의 범위는 격리(Isolation)다. 장애 복구와 로그(WAL), 지속성 보장, 타임스탬프 순서 기반 동시성 제어, Paxos·Raft 같은 합의 알고리즘의 내부는 다루지 않는다. 이 주제들은 ACID의 나머지 속성이나 분산 시스템 쪽에서 별도로 다뤄야 한다.
+
+시리즈 전체가 교정하려는 오해는 세 가지다. "Repeatable Read면 동시성 버그가 없다"는 믿음은 PostgreSQL의 write skew와 InnoDB의 lost update로 반박된다(01장). "Serializable이면 재시도 코드가 필요 없다"는 믿음은 락 기반이든 SSI든 충돌이 대기나 중단으로 나타난다는 사실로 반박된다(03·04장). "테스트에서 한 번도 재현되지 않았으니 안전하다"는 믿음은 순서를 고정한 시나리오가 아니면 아무것도 증명하지 못한다는 점으로 반박된다(07장).
+
 ## 참고 자료
 
+- [Berenson et al., A Critique of ANSI SQL Isolation Levels (SIGMOD 1995)](https://arxiv.org/abs/cs/0701157) — ANSI 격리 수준 정의의 허점을 지적한 원전. 01장의 출발점
 - [PostgreSQL Documentation: Transaction Isolation](https://www.postgresql.org/docs/current/transaction-iso.html) — 시리즈 전체에서 기준으로 삼는 PostgreSQL 공식 문서
 - [MySQL 8.4 Reference Manual: InnoDB Transaction Isolation Levels](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html) — InnoDB의 격리 수준별 동작
 - [Oracle Database Concepts: Data Concurrency and Consistency](https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/data-concurrency-and-consistency.html) — Oracle의 격리 수준과 직렬화 실패

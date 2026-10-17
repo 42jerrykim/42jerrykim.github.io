@@ -1,8 +1,8 @@
 ---
 collection_order: 6
 date: 2026-10-02T01:10:00+09:00
-lastmod: 2026-10-02T01:10:00+09:00
-draft: true
+lastmod: 2026-10-17T14:05:00+09:00
+draft: false
 title: "[Database] 06. 분산 트랜잭션: 2PC, 사가, 아웃박스, 스패너"
 slug: distributed-transactions
 description: "트랜잭션이 여러 데이터베이스와 서비스에 걸칠 때의 비용을 다룹니다. 2단계 커밋이 코디네이터 장애에서 막히는 과정, 사가와 아웃박스 패턴, 퍼컬레이터와 스패너가 분산 스냅샷을 만드는 방식을 실행 가능한 모델로 정리합니다."
@@ -14,7 +14,6 @@ tags:
   - Saga-Pattern
   - Microservices(마이크로서비스)
   - PostgreSQL
-  - MySQL
   - Snapshot-Isolation
   - Serializable
   - Isolation-Level(격리수준)
@@ -35,8 +34,6 @@ tags:
   - Computer-Science(컴퓨터과학)
   - Deep-Dive
   - Advanced
-  - Case-Study
-  - Best-Practices
 image: "wordcloud.png"
 ---
 
@@ -168,9 +165,9 @@ for title, flags, crash in [
 
 ## 퍼컬레이터와 스패너
 
-구글의 퍼컬레이터는 Daniel Peng 등의 논문 「Large-scale Incremental Processing Using Distributed Transactions and Notifications」(OSDI 2010)에서 소개되었다. 웹 문서 색인을 점진적으로 갱신하기 위한 시스템으로, 여러 행에 걸친 트랜잭션에서 스냅샷 격리를 제공한다. 이 구현은 Bigtable이 보장하는 단일 행 원자성을 바탕으로, 여러 행을 한 트랜잭션으로 묶기 위해 그중 한 행을 기본(primary)으로 지정해 커밋 락을 두는 2단계 커밋 변형을 쓴다. 스냅샷 격리를 위해 단조 증가하는 타임스탬프를 발급하는 타임스탬프 오라클을 둔다. 읽기 트랜잭션은 시작 시 받은 타임스탬프 이전에 커밋된 버전만 읽으므로 02장의 스냅샷 규칙이 분산된 행들에 그대로 적용되는 셈이다. 중앙 오라클은 단순하지만, 모든 트랜잭션이 오라클을 거치므로 오라클이 처리량과 가용성의 병목이 될 수 있다는 점은 감수해야 한다.
+구글의 퍼컬레이터는 Daniel Peng 등의 논문 「Large-scale Incremental Processing Using Distributed Transactions and Notifications」(OSDI 2010)에서 소개되었다. 웹 문서 색인을 점진적으로 갱신하기 위한 시스템으로, 여러 행에 걸친 트랜잭션에서 스냅샷 격리를 제공한다. 이 구현은 Bigtable이 보장하는 단일 행 원자성을 바탕으로, 여러 행을 한 트랜잭션으로 묶기 위해 그중 한 행을 기본(primary)으로 지정해 커밋 락을 두는 2단계 커밋 변형을 쓴다. 스냅샷 격리를 위해 단조 증가하는 타임스탬프를 발급하는 타임스탬프 오라클을 둔다. 읽기 트랜잭션은 시작 시 받은 타임스탬프 이전에 커밋된 버전만 읽으므로 02장의 스냅샷 규칙이 분산된 행들에 그대로 적용되는 셈이다. 크래시로 락이 남은 경우의 정리도 이 구조에서 나온다. 논문에 따르면 다른 트랜잭션이 남은 락의 기본(primary) 락을 확인해, 기본 락이 이미 쓰기 레코드로 바뀌었으면 롤포워드하고 그렇지 않으면 롤백한다. 기본을 항상 먼저 커밋하므로 이 판단이 안전하다. 또 논문은 스냅샷 격리가 직렬 가능성을 보장하지 않아 write skew에 노출된다고 스스로 밝힌다. 중앙 오라클은 단순하지만, 모든 트랜잭션이 오라클을 거치므로 오라클이 처리량과 가용성의 병목이 될 수 있다는 점은 감수해야 한다.
 
-구글 스패너는 James Corbett 등의 논문 「Spanner: Google's Globally-Distributed Database」(OSDI 2012)에서 소개되었다. 논문 초록은 스패너를 확장 가능한 다중 버전 전역 분산 동기 복제 데이터베이스로 소개하고, 전역 규모에서 데이터를 분산하면서 외부적으로 일관된(externally consistent) 분산 트랜잭션을 지원하는 첫 시스템이라고 주장한다. 이를 가능하게 하는 핵심은 시계의 불확실성을 노출하는 새로운 시간 API다. 서로 다른 데이터센터의 시계는 완벽히 일치할 수 없으므로, 스패너는 오차를 숨기지 않고 시각이 속하는 구간으로 표현해 그 구간을 기준으로 트랜잭션 순서를 정한다. 외부 일관성이란 트랜잭션 T1이 커밋을 끝낸 뒤 T2가 시작되면 T2는 반드시 T1의 효과를 본다는 실시간 순서의 보장이다. 논문은 이 구조로 과거 시점의 읽기를 락 없이 하는 읽기 전용 트랜잭션과 비차단 과거 읽기를 제공한다고 설명한다. 02장의 "읽기가 쓰기를 막지 않는다"는 성질을 전역 규모로 확장한 것이다.
+구글 스패너는 James Corbett 등의 논문 「Spanner: Google's Globally-Distributed Database」(OSDI 2012)에서 소개되었다. 논문 초록은 스패너를 확장 가능한 다중 버전 전역 분산 동기 복제 데이터베이스로 소개하고, 전역 규모에서 데이터를 분산하면서 외부적으로 일관된(externally consistent) 분산 트랜잭션을 지원하는 첫 시스템이라고 주장한다. 이를 가능하게 하는 핵심은 시계의 불확실성을 노출하는 새로운 시간 API다. 서로 다른 데이터센터의 시계는 완벽히 일치할 수 없으므로, 스패너는 오차를 숨기지 않고 시각이 속하는 구간으로 표현해 그 구간을 기준으로 트랜잭션 순서를 정한다. 논문에 따르면 `TT.now()`는 호출한 시점의 실제 시각이 반드시 포함되도록 보장된 구간 `[earliest, latest]`를 돌려주고, `TT.after(t)`는 t가 확실히 지났을 때만 참이다. 스패너는 커밋 타임스탬프 s를 고른 뒤 `TT.after(s)`가 참이 될 때까지, 즉 s가 확실히 과거가 될 때까지 기다린 다음에야 커밋된 데이터를 보이게 한다. 논문이 커밋 대기(commit wait)라 부르는 이 절차 덕분에, T1의 커밋이 끝난 뒤 시작한 T2는 T1보다 큰 타임스탬프를 받아 T1의 효과를 본다. 불확실성이 크면 스패너가 그만큼 기다려야 하므로 느려진다는 점이 이 방식의 대가다. 외부 일관성이란 트랜잭션 T1이 커밋을 끝낸 뒤 T2가 시작되면 T2는 반드시 T1의 효과를 본다는 실시간 순서의 보장이다. 논문은 이 구조로 과거 시점의 읽기를 락 없이 하는 읽기 전용 트랜잭션과 비차단 과거 읽기를 제공한다고 설명한다. 02장의 "읽기가 쓰기를 막지 않는다"는 성질을 전역 규모로 확장한 것이다.
 
 두 시스템의 공통점이 중요하다. 둘 다 분산 환경에서 직렬 가능성이나 스냅샷 격리를 얻기 위해 전역 순서의 원천을 따로 만들었고, 원자성은 2PC 계열의 프로토콜로 해결했다. 단일 노드의 락과 스냅샷 개념이 사라지는 것이 아니라 네트워크 위로 옮겨가며 비용이 커진다. 이런 시스템을 쓴다고 해서 애플리케이션의 재시도가 필요 없어지는 것은 아니다. 충돌과 장애는 여전히 중단으로 나타난다.
 
@@ -262,22 +259,46 @@ for fail in (False, True):
 <strong>트랜잭셔널 아웃박스(transactional outbox)</strong>는 이를 2PC 없이 푼다. 이벤트를 곧바로 브로커에 보내는 대신, 비즈니스 데이터를 갱신하는 같은 로컬 트랜잭션 안에서 이벤트를 `outbox` 테이블에 삽입한다. 그러면 하나의 로컬 트랜잭션이 원자성을 보장하므로, 커밋되면 이벤트도 함께 저장되고 롤백되면 둘 다 사라진다. 이후 별도의 메시지 릴레이가 `outbox` 테이블을 읽어 브로커에 발행한다.
 
 ```sql
+CREATE TABLE orders (
+    id          bigint PRIMARY KEY,
+    customer_id bigint  NOT NULL,
+    total       numeric NOT NULL
+);
+CREATE TABLE outbox (
+    id           uuid PRIMARY KEY,
+    topic        text  NOT NULL,
+    payload      jsonb NOT NULL,
+    created_at   timestamptz NOT NULL DEFAULT now(),
+    published_at timestamptz
+);
+
+-- 비즈니스 트랜잭션: 주문과 이벤트가 같은 트랜잭션에서 저장된다
 BEGIN;
 INSERT INTO orders (id, customer_id, total) VALUES (1001, 7, 5900);
 INSERT INTO outbox (id, topic, payload)
 VALUES (gen_random_uuid(), 'order.created', '{"order_id": 1001}');
 COMMIT;
 
--- 릴레이: 여러 인스턴스가 동시에 돌아도 서로 다른 행을 가져가도록 05장의 SKIP LOCKED를 쓴다
-SELECT id, topic, payload
-FROM outbox
-WHERE published_at IS NULL
-ORDER BY created_at
-LIMIT 100
-FOR UPDATE SKIP LOCKED;
+-- 릴레이: 한 문장으로 미발행 행을 가져오면서 발행 시각을 기록한다. 여러 인스턴스가 동시에 돌아도 서로 다른 행을 가져가도록 05장의 SKIP LOCKED를 쓴다
+BEGIN;
+WITH batch AS (
+    SELECT id
+    FROM outbox
+    WHERE published_at IS NULL
+    ORDER BY created_at
+    LIMIT 100
+    FOR UPDATE SKIP LOCKED
+)
+UPDATE outbox
+SET published_at = now()
+FROM batch
+WHERE outbox.id = batch.id
+RETURNING outbox.id, outbox.topic, outbox.payload;
+-- (애플리케이션) RETURNING으로 받은 행을 브로커에 발행한다. 발행이 실패하면 ROLLBACK, 성공하면 아래 COMMIT을 실행한다
+COMMIT;
 ```
 
-이 패턴의 보장은 메시지가 데이터베이스 트랜잭션이 커밋될 때만, 그리고 반드시 전송된다는 것이다. 대가는 중복이다. 릴레이가 발행한 뒤 완료 표시를 하기 전에 크래시하면 같은 메시지가 다시 발행된다. 그러므로 소비자는 멱등해야 하며, 처리한 메시지 ID를 기록하는 05장의 멱등성 키 패턴이 여기서 다시 쓰인다. 즉 아웃박스는 "정확히 한 번"이 아니라 "최소 한 번 전달 + 멱등한 소비"로 효과적으로 한 번의 처리를 얻는 패턴이다. 위 `gen_random_uuid()`는 PostgreSQL 13 이상에서 기본 제공되는 함수이고 `outbox` 테이블 정의와 완료 표시 로직은 생략했다.
+이 패턴의 보장은 메시지가 데이터베이스 트랜잭션이 커밋될 때만, 그리고 반드시 전송된다는 것이다. 대가는 중복이다. 릴레이가 브로커에 발행한 뒤 COMMIT하기 전에 크래시하면 완료 표시가 롤백되어 같은 메시지가 다시 발행된다. 그러므로 소비자는 멱등해야 하며, 처리한 메시지 ID를 기록하는 05장의 멱등성 키 패턴이 여기서 다시 쓰인다. 즉 아웃박스는 "정확히 한 번"이 아니라 "최소 한 번 전달 + 멱등한 소비"로 효과적으로 한 번의 처리를 얻는 패턴이다. 위 `gen_random_uuid()`는 PostgreSQL 13 이상에서 기본 제공되는 함수다.
 
 ## 선택 지도
 

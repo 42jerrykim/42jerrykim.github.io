@@ -1,8 +1,8 @@
 ---
 collection_order: 2
 date: 2026-10-02T00:30:00+09:00
-lastmod: 2026-10-02T00:30:00+09:00
-draft: true
+lastmod: 2026-10-17T14:05:00+09:00
+draft: false
 title: "[Database] 02. 스냅샷 격리와 MVCC 구현: PostgreSQL vs InnoDB"
 slug: snapshot-isolation-and-mvcc
 description: "스냅샷은 데이터 복사본이 아니라 가시성 규칙입니다. PostgreSQL의 xmin·xmax 튜플 버전과 InnoDB의 undo 체인이 같은 약속을 지키는 방식, write skew가 허용되는 구조적 이유, 장기 트랜잭션의 비용을 비교합니다."
@@ -79,7 +79,7 @@ flowchart TD
     q2 -->|"아니오"| skip2["건너뜀: 이미 지워진 버전"]
 ```
 
-실제 튜플 버전은 `pageinspect` 확장으로 직접 볼 수 있다. 다음은 한 행을 삽입한 뒤 갱신하고, 힙 페이지에 남은 두 튜플의 헤더를 조회하는 예다. 확장 설치에는 슈퍼유저 권한이 필요하고, 결과는 다른 활성 트랜잭션이 없는 개발용 DB를 기준으로 한다.
+실제 튜플 버전은 `pageinspect` 확장으로 직접 볼 수 있다. 이 확장의 `heap_page_items` 함수는 힙 페이지의 튜플 헤더를 돌려준다. 헤더의 `t_xmin`·`t_xmax`·`t_ctid`는 앞에서 본 시스템 열 `xmin`·`xmax`·`ctid`에 해당하며, 정의는 System Columns 문서를 따른다. 다음은 한 행을 삽입한 뒤 갱신하고, 힙 페이지에 남은 두 튜플의 헤더를 조회하는 예다. 확장 설치에는 슈퍼유저 권한이 필요하고, 결과는 다른 활성 트랜잭션이 없는 개발용 DB를 기준으로 한다.
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS pageinspect;
@@ -87,7 +87,7 @@ CREATE TABLE acct (id int PRIMARY KEY, balance int);
 INSERT INTO acct VALUES (1, 100);
 UPDATE acct SET balance = 90 WHERE id = 1;
 
-SELECT lp, t_xmin, t_xmax, t_ctid
+SELECT t_xmin, t_xmax, t_ctid
 FROM heap_page_items(get_raw_page('acct', 0));
 ```
 
@@ -97,7 +97,7 @@ FROM heap_page_items(get_raw_page('acct', 0));
 
 InnoDB는 반대로 행을 **제자리에서 갱신**한다. 클러스터드 인덱스의 행에는 숨은 필드가 붙는다. 공식 문서에 따르면 `DB_TRX_ID`(6바이트)는 그 행을 마지막으로 삽입하거나 갱신한 트랜잭션의 ID이고, 삭제는 행에 삭제 표시 비트를 세우는 갱신으로 취급된다. `DB_ROLL_PTR`(7바이트)는 롤백 세그먼트에 기록된 undo 로그 레코드를 가리키며, 행이 갱신되었다면 그 레코드에 갱신 전 내용을 복원하는 데 필요한 정보가 담겨 있다. 옛 값은 테이블이 아니라 undo 로그에 있다.
 
-일관 읽기(consistent read)는 이 체인을 거슬러 올라가며 이루어진다. 읽는 트랜잭션은 자신의 스냅샷(read view)에서 현재 행의 `DB_TRX_ID`가 보이는지 확인하고, 보이지 않으면 `DB_ROLL_PTR`을 따라 undo 레코드에서 이전 버전을 복원해 다시 확인한다. 이 과정은 가시성이 확인될 때까지 반복된다. 공식 용어집은 일관 읽기를 "다른 트랜잭션의 변경과 무관하게 특정 시점을 기준으로 결과를 보여 주며, 데이터가 바뀌었다면 undo 로그의 내용으로 원래 데이터를 복원한다"는 취지로 정의한다. read view가 내부적으로 어떤 필드로 구성되는지는 버전에 따라 다르므로 여기서는 개념만 사용한다. 개념적으로는 PostgreSQL의 `xmin:xmax:xip_list`와 같이, "스냅샷을 만든 시점에 활성이던 트랜잭션 집합"으로 어떤 `DB_TRX_ID`가 보이는지를 판정하는 구조다.
+일관 읽기(consistent read)는 이 체인을 거슬러 올라가며 이루어진다. 읽는 트랜잭션은 자신의 스냅샷(read view)에서 현재 행의 `DB_TRX_ID`가 보이는지 확인하고, 보이지 않으면 `DB_ROLL_PTR`을 따라 undo 레코드에서 이전 버전을 복원해 다시 확인한다. 이 과정은 가시성이 확인될 때까지 반복된다. [MySQL 용어집의 consistent read 항목](https://dev.mysql.com/doc/refman/8.4/en/glossary.html#glos_consistent_read)은 일관 읽기를 다른 트랜잭션의 변경과 무관하게 특정 시점을 기준으로 결과를 보여 주는 읽기로 정의하고, 데이터가 바뀌었다면 undo 로그의 내용으로 원래 데이터를 복원한다고 설명한다. read view가 내부적으로 어떤 필드로 구성되는지는 버전에 따라 다르므로 여기서는 개념만 사용한다. 개념적으로는 PostgreSQL의 `xmin:xmax:xip_list`와 같이, "스냅샷을 만든 시점에 활성이던 트랜잭션 집합"으로 어떤 `DB_TRX_ID`가 보이는지를 판정하는 구조다.
 
 undo 로그는 두 종류다. 삽입 undo는 롤백에만 필요하므로 커밋 직후 버릴 수 있고, 갱신 undo는 일관 읽기에도 쓰이므로 이 버전을 필요로 하는 스냅샷이 하나도 남지 않을 때까지 버릴 수 없다. 삭제도 즉시 물리적으로 일어나지 않는다. 문서에 따르면 InnoDB는 삭제를 기록한 갱신 undo 레코드를 폐기할 때 비로소 행과 인덱스 레코드를 물리적으로 제거하며, 이 작업을 **purge**라고 부른다. 아래 그림은 한 행이 두 번 갱신된 뒤의 구조다. 최신 값은 테이블에 있고 옛 값들은 undo로 연결된다.
 
@@ -118,7 +118,7 @@ flowchart LR
 | 옛 버전 접근 | 같은 페이지·테이블에서 버전을 스캔해 가시성 판정 | 현재 행에서 `DB_ROLL_PTR`을 따라 거슬러 올라가며 복원 |
 | 청소 주체 | `VACUUM`(autovacuum) | purge 스레드 |
 | 장기 트랜잭션의 비용 | 죽은 튜플이 테이블에 쌓여 **테이블 팽창** | undo 로그가 커져 undo 테이블스페이스 증가 |
-| 롤백 | 커밋 상태만 "중단됨"으로 기록해 즉시 끝나지만 죽은 튜플은 남음 | 변경한 만큼 undo를 거꾸로 적용하므로 변경량에 비례한 시간 소요 |
+| 롤백(구현 설명에서 도출) | 롤백해도 튜플은 물리적으로 남고, 중단된 트랜잭션이 만든 튜플은 가시성 규칙에서 제외된다. 남은 죽은 튜플은 이후 VACUUM이 정리한다 | 롤백은 undo 로그의 내용으로 변경을 되돌린다. 문서는 삽입 undo가 롤백에만 필요하다고 설명한다 |
 | 트랜잭션 ID | 32비트이며 순환 방지를 위한 vacuum 필요 | `DB_TRX_ID`는 6바이트 |
 
 운영에서 가장 크게 체감되는 차이는 장기 트랜잭션이다. PostgreSQL에서는 오래 열린 스냅샷이 vacuum의 청소를 막아 테이블과 인덱스가 부풀고, 부푼 테이블을 읽는 모든 쿼리가 느려진다. InnoDB에서는 undo 로그가 커져 옛 버전을 거슬러 올라가는 읽기가 길어지고 undo 테이블스페이스가 늘어난다. 공식 문서는 일관 읽기만 하는 트랜잭션까지 포함해 트랜잭션을 정기적으로 커밋하라고 권고하는데, 그렇지 않으면 InnoDB가 갱신 undo에서 데이터를 버릴 수 없어 롤백 세그먼트가 너무 커져 undo 테이블스페이스를 채울 수 있다고 설명한다. 읽기 전용이라고 해서 열어 둔 트랜잭션이 공짜가 아닌 이유다.
@@ -256,13 +256,13 @@ LIMIT 5;
 
 ## 흔한 오개념
 
-<strong>"스냅샷은 시작 시점에 데이터를 복사해 두는 것이다."</strong> 어느 DBMS도 데이터를 복사하지 않는다. 스냅샷은 가시성 규칙이고, 옛 값은 PostgreSQL에서는 같은 테이블의 옛 튜플 버전에, InnoDB에서는 undo 로그에 남아 있다. 그래서 스냅샷 생성은 싸지만 오래 유지하면 옛 버전 보관 비용이 든다.
+<strong>"스냅샷은 시작 시점에 데이터를 복사해 두는 것이다."</strong> 앞 절에서 본 대로 스냅샷은 데이터가 아니라 가시성 규칙이므로, 문제가 되는 것은 만드는 비용이 아니라 오래 유지할 때 옛 버전을 보관하는 비용이다.
 
 <strong>"트랜잭션을 시작하는 순간 스냅샷이 만들어진다."</strong> PostgreSQL은 첫 비(非)트랜잭션 제어 문장 시점, InnoDB는 첫 일관 읽기 시점이다. `BEGIN`만 하고 오래 기다린 뒤 첫 쿼리를 실행하면 스냅샷은 그 쿼리 시점에 만들어진다.
 
 **"InnoDB도 PostgreSQL처럼 옛 버전이 테이블에 쌓인다."** InnoDB의 옛 버전은 테이블이 아니라 undo 로그에 있고, 테이블에는 최신 버전만 있다. 장기 트랜잭션의 비용이 나타나는 곳이 테이블 팽창과 undo 증가로 서로 다르다.
 
-**"읽기 전용 트랜잭션은 열어 두어도 부담이 없다."** 읽기 전용 트랜잭션도 자신의 스냅샷이 필요로 하는 옛 버전의 청소를 막는다. InnoDB 문서가 일관 읽기만 하는 트랜잭션도 정기적으로 커밋하라고 권고하는 이유다. PostgreSQL에서는 읽기 전용 Repeatable Read 트랜잭션이 직렬화 충돌을 겪지 않는다는 장점이 있지만, 그것이 스냅샷 유지 비용이 없다는 뜻은 아니다.
+**"읽기 전용 트랜잭션은 열어 두어도 부담이 없다."** 읽기 전용 트랜잭션도 자신의 스냅샷이 필요로 하는 옛 버전의 청소를 막는다. PostgreSQL에서는 읽기 전용 Repeatable Read 트랜잭션이 직렬화 충돌을 겪지 않는다는 장점이 있지만, 그것이 스냅샷 유지 비용이 없다는 뜻은 아니다.
 
 ## 판단 기준
 
@@ -293,5 +293,6 @@ LIMIT 5;
 - [PostgreSQL Documentation: pageinspect](https://www.postgresql.org/docs/current/pageinspect.html) — `heap_page_items`로 튜플 헤더 조회
 - [PostgreSQL Documentation: Explicit Locking](https://www.postgresql.org/docs/current/explicit-locking.html) — 행 수준 잠금과 `SELECT FOR UPDATE`
 - [MySQL 8.4 Reference Manual: InnoDB Multi-Versioning](https://dev.mysql.com/doc/refman/8.4/en/innodb-multi-versioning.html) — `DB_TRX_ID`, `DB_ROLL_PTR`, undo 로그, purge
+- [MySQL 8.4 Reference Manual: Glossary](https://dev.mysql.com/doc/refman/8.4/en/glossary.html) — consistent read 용어 정의
 - [MySQL 8.4 Reference Manual: Consistent Nonlocking Reads](https://dev.mysql.com/doc/refman/8.4/en/innodb-consistent-read.html) — 스냅샷이 DML에는 그대로 적용되지 않는다는 서술
 - [MySQL 8.4 Reference Manual: InnoDB Transaction Isolation Levels](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html) — 격리 수준별 일관 읽기 동작
