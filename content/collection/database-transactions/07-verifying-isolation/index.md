@@ -1,7 +1,7 @@
 ---
 collection_order: 7
 date: 2026-10-02T01:20:00+09:00
-lastmod: 2026-10-02T01:20:00+09:00
+lastmod: 2026-10-12T00:10:00+09:00
 draft: true
 title: "[Database] 07. 격리 수준 검증: 재현 테스트, Hermitage, Elle"
 slug: verifying-isolation-levels
@@ -149,7 +149,7 @@ WAL 모드에서는 모양이 달라진다. 쓰기가 겹치는 시나리오에�
 
 ```python
 import psycopg
-from psycopg import errors
+from psycopg import errors, pq
 
 
 def run_pg(conninfo, steps):
@@ -167,6 +167,10 @@ def run_pg(conninfo, steps):
             log.append((who, sql, "오류 40001"))
         except errors.LockNotAvailable:
             log.append((who, sql, "오류 55P03"))
+    for conn in conns.values():          # 실패해서 열려 있는 트랜잭션은 정리하고 연결을 닫는다
+        if conn.info.transaction_status != pq.TransactionStatus.IDLE:
+            conn.execute("ROLLBACK")
+        conn.close()
     return log
 ```
 
@@ -186,7 +190,7 @@ def run_pg(conninfo, steps):
 
 ## DBMS 이전과 업그레이드 점검표
 
-시리즈 전체의 내용은 DBMS를 바꾸거나 설정을 바꿀 때 점검할 항목으로 요약된다. 이 목록의 각 항목은 앞선 장에서 이유를 다뤘고, 값은 반드시 사용 중인 버전의 문서와 테스트로 확인해야 한다.
+DBMS를 바꾸거나 설정을 바꿀 때는 다음 항목을 점검한다. 각 항목의 이유는 표의 근거 장에서 다뤘고, 값은 반드시 사용 중인 버전의 문서와 테스트로 확인해야 한다.
 
 | 점검 항목 | 확인할 것 | 근거 장 |
 |---|---|---|
@@ -208,8 +212,6 @@ def run_pg(conninfo, steps):
 | Lost Update(읽고-계산하고-쓰기) | 방지: `40001`로 중단 | 가능: DML이 최신 커밋을 덮어씀 | 읽은 행에 공유 락이 남아 상대 갱신과 충돌, 데드락으로 한쪽 중단 |
 | Write Skew | 가능 | 가능 | 읽은 행이 락으로 보호되어 방지 |
 | Phantom | 방지(스냅샷) | 읽기는 방지, DML은 최신 커밋을 봄 | 가능 |
-
-세 DBMS의 Repeatable Read가 이름이 같아도 보장이 전혀 다른 것을 한 표에서 확인할 수 있다. 같은 수준 이름 아래서 가능한 이상 현상 집합이 서로 어긋난다는 것이 이 시리즈 전체가 반복해서 확인한 사실이다.
 
 ## 흔한 오개념
 

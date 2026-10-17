@@ -1,7 +1,7 @@
 ---
 collection_order: 3
 date: 2026-10-02T00:40:00+09:00
-lastmod: 2026-10-02T00:40:00+09:00
+lastmod: 2026-10-12T00:10:00+09:00
 draft: true
 title: "[Database] 03. 락 기반 격리: 2PL, next-key lock, 데드락"
 slug: lock-based-isolation
@@ -105,7 +105,7 @@ INSERT INTO t VALUES (10), (11), (13), (20);
 BEGIN;
 SELECT * FROM t WHERE c1 BETWEEN 11 AND 15 FOR UPDATE;
 
--- 세션 B
+-- 세션 B (아래 세 문장은 각각 별도의 세션에서 실행한다. 한 세션에서 12가 대기하면 다음 문장이 실행되지 않는다)
 INSERT INTO t VALUES (12);   -- A가 커밋하거나 롤백할 때까지 대기한다
 INSERT INTO t VALUES (14);   -- 마찬가지로 대기한다
 INSERT INTO t VALUES (25);   -- 스캔 범위 밖이므로 즉시 성공한다 (예상)
@@ -223,7 +223,7 @@ T2 X(bob): 데드락 -> T2 가 bob 를 기다리면 대기 그래프에 사이�
 
 데이터베이스는 데드락을 두 가지 방식으로 처리한다. 하나는 대기 그래프를 만들어 사이클을 탐지하고 희생자를 골라 롤백하는 것이고, 다른 하나는 일정 시간 이상 기다린 요청을 시간 초과로 실패시키는 것이다. InnoDB는 기본적으로 탐지를 켜 두며, 문서에 따르면 데드락을 감지하면 트랜잭션 하나를 희생자로 롤백한다. 탐지를 끄면(`innodb_deadlock_detect`) 대신 `innodb_lock_wait_timeout`에 의존해 롤백한다. PostgreSQL은 락을 기다리기 시작한 뒤 `deadlock_timeout`(기본 1초)이 지나서야 데드락 검사를 수행한다. 문서는 이 검사가 비싸기 때문에 락 대기마다 돌리지 않으며, 이 값을 대표적인 트랜잭션 시간보다 크게 두면 대기 중에 락이 풀릴 가능성이 커진다고 설명한다. 이 값을 늘리면 불필요한 검사는 줄지만 진짜 데드락 보고가 늦어진다.
 
-애플리케이션이 알아야 할 것은 에러 코드다. MySQL의 데드락은 에러 1213(`ER_LOCK_DEADLOCK`, SQLSTATE `40001`, "Deadlock found when trying to get lock; try restarting transaction")이고 락 대기 시간 초과는 에러 1205(SQLSTATE `HY000`)다. PostgreSQL의 데드락은 SQLSTATE `40P01`(`deadlock_detected`)이고, 직렬화 실패는 `40001`(`serialization_failure`)이다. 모두 트랜잭션 롤백 계열에 속하며 공통 대응은 트랜잭션 전체를 처음부터 재시도하는 것이다. 문서도 InnoDB에서 애플리케이션 로직이 올바르더라도 트랜잭션 재시도를 처리해야 한다고 명시한다. 데드락은 버그가 아니라 락 기반 동시성 제어의 정상적인 부산물이다.
+애플리케이션이 알아야 할 것은 에러 코드다. MySQL의 데드락은 에러 1213(`ER_LOCK_DEADLOCK`, SQLSTATE `40001`, "Deadlock found when trying to get lock; try restarting transaction")이고 락 대기 시간 초과는 에러 1205(SQLSTATE `HY000`)다. PostgreSQL의 데드락은 SQLSTATE `40P01`(`deadlock_detected`)이고, 직렬화 실패는 `40001`(`serialization_failure`)이다. 데드락(1213)과 직렬화 실패(`40001`)는 트랜잭션 롤백 계열이어서 트랜잭션 전체를 처음부터 재시도하는 것이 공통 대응이다. 반면 락 대기 시간 초과(1205)는 MySQL 에러 레퍼런스에 따르면 기본적으로 시간을 넘긴 문장만 롤백되고 트랜잭션 전체가 롤백되지 않으므로, 애플리케이션이 트랜잭션을 직접 롤백하고 재시도할지 판단해야 한다. 문서도 InnoDB에서 애플리케이션 로직이 올바르더라도 트랜잭션 재시도를 처리해야 한다고 명시한다. 데드락은 버그가 아니라 락 기반 동시성 제어의 정상적인 부산물이다.
 
 관측 도구도 알아 두자. InnoDB는 `SHOW ENGINE INNODB STATUS`로 마지막 데드락의 정보를 볼 수 있고, `innodb_print_all_deadlocks`를 켜면 모든 데드락을 서버 에러 로그에 남긴다. 데드락이 잦다면 로그에서 어떤 쿼리 쌍이 충돌하는지부터 찾는다.
 
@@ -242,7 +242,7 @@ T2 X(bob): 데드락 -> T2 가 bob 를 기다리면 대기 그래프에 사이�
 | 대기와 데드락 | 빈번할 수 있음 | 같은 행의 쓰기 충돌에서만 |
 | 장기 트랜잭션의 비용 | 락을 오래 쥐어 다른 트랜잭션이 대기 | 옛 버전을 붙잡아 공간 증가 |
 
-InnoDB의 Serializable은 두 방식의 혼합을 잘 보여 준다. 문서에 따르면 autocommit이 꺼져 있을 때 InnoDB는 일반 `SELECT`를 `SELECT ... FOR SHARE`로 변환한다. 평소 스냅샷으로 읽던 쿼리가 S 락을 잡는 쿼리로 바뀌는 것이다. 앞의 모델이 보여 준 S 락 기반 write skew 방지가 바로 이 변환 덕분에 작동한다.
+InnoDB의 Serializable은 두 방식의 혼합을 잘 보여 준다. MySQL 8.4의 격리 수준 문서에 따르면 autocommit이 꺼져 있을 때 InnoDB는 일반 `SELECT`를 `SELECT ... FOR SHARE`로 변환한다. 평소 스냅샷으로 읽던 쿼리가 S 락을 잡는 쿼리로 바뀌는 것이다. 앞의 모델이 보여 준 S 락 기반 write skew 방지가 바로 이 변환 덕분에 작동한다.
 
 ## 흔한 오개념
 
@@ -278,6 +278,7 @@ InnoDB의 Serializable은 두 방식의 혼합을 잘 보여 준다. 문서에 �
 
 - Eswaran, Gray, Lorie, Traiger, 「The notions of consistency and predicate locks in a database system」, Communications of the ACM 19(11), 1976 — 2단계 락킹과 술어 락의 원전
 - [MySQL 8.4 Reference Manual: InnoDB Locking](https://dev.mysql.com/doc/refman/8.4/en/innodb-locking.html) — 공유·배타·의도 락, 레코드·갭·next-key·삽입 의도 락
+- [MySQL 8.4 Reference Manual: InnoDB Transaction Isolation Levels](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html) — Serializable에서 일반 `SELECT`가 `FOR SHARE`로 변환되는 동작
 - [MySQL 8.4 Reference Manual: Deadlocks in InnoDB](https://dev.mysql.com/doc/refman/8.4/en/innodb-deadlocks.html) — 데드락 탐지, 모니터링, 최소화 방법
 - [MySQL 8.4 Reference Manual: The data_locks Table](https://dev.mysql.com/doc/refman/8.4/en/performance-schema-data-locks-table.html) — 현재 걸린 락과 대기 중인 락 조회
 - [MySQL 8.4 Server Error Reference](https://dev.mysql.com/doc/mysql-errors/8.4/en/server-error-reference.html) — 에러 1213(`ER_LOCK_DEADLOCK`)과 1205

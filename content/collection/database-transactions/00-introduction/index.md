@@ -1,7 +1,7 @@
 ---
 collection_order: 0
 date: 2026-10-02T00:10:00+09:00
-lastmod: 2026-10-02T00:10:00+09:00
+lastmod: 2026-10-12T00:10:00+09:00
 draft: true
 title: "[Database] 00. Introduction: 데이터베이스 트랜잭션과 격리 수준 심화"
 slug: getting-started-database-transactions
@@ -69,7 +69,7 @@ image: "wordcloud.png"
 | 06 | [분산 트랜잭션: 2PC, 사가, 아웃박스, 스패너](/post/database-transactions/distributed-transactions/) | 단일 노드 가정이 깨질 때의 비용을 이해한다 | 마이크로서비스에서 트랜잭션 경계를 잘못 긋는다 |
 | 07 | [격리 수준 검증: 재현 테스트, Hermitage, Elle](/post/database-transactions/verifying-isolation-levels/) | 문서의 주장을 스스로 확인하는 방법을 익힌다 | 벤더 문서와 블로그 글을 검증 없이 믿게 된다 |
 
-본문의 Python 예제는 표준 라이브러리만으로 실행되며, 장마다 실제 실행 출력을 함께 실었다. 데이터베이스 서버가 있어야 하는 SQL 시나리오는 공식 문서의 동작 설명에서 도출한 것이므로, 사용하는 버전에서 직접 재현해 확인하기를 권한다. 07장은 그 재현을 위한 테스트 하네스를 다룬다.
+02장부터 07장까지의 Python 모델은 표준 라이브러리만으로 실행되며, 각 장에 실제 실행 출력을 함께 실었다. 01장의 재시도 예제(psycopg 사용)와 데이터베이스 서버가 있어야 하는 SQL 시나리오는 공식 문서의 동작 설명에서 도출한 것이므로, 사용하는 버전에서 직접 재현해 확인하기를 권한다. 07장은 그 재현을 위한 테스트 하네스를 다룬다.
 
 ## 읽기 전에 알아 둘 것
 
@@ -81,8 +81,13 @@ image: "wordcloud.png"
 
 첫째, 이름보다 보장을 본다. "Repeatable Read"라는 이름은 표준이 정한 것이지만, 그 이름 아래에서 실제로 무엇이 막히는지는 DBMS 문서가 정한다. 둘째, 이상 현상은 "발생 가능성"으로 판단한다. 테스트에서 한 번도 재현되지 않았다는 사실은 안전의 증거가 아니다. 셋째, 격리 수준은 만능이 아니다. 낮은 격리 수준에서도 제약조건이나 행 잠금으로 해결되는 문제가 있고, 가장 높은 수준에서도 재시도 로직 없이는 서비스가 깨진다.
 
+## 이 시리즈를 마친 뒤 할 수 있어야 하는 것
+
+시리즈를 끝까지 읽은 독자는 다음을 할 수 있어야 한다. 서비스의 동시성 버그를 lost update, write skew, 팬텀 같은 이상 현상의 이름으로 분류하고 현재 격리 수준에서의 발생 가능성을 설명한다(01장). 스냅샷이 가시성 규칙임을 설명하고 PostgreSQL과 InnoDB의 저장 전략 차이를 비교한다(02장). 락 기반 격리와 SSI가 같은 불변식을 각각 데드락과 중단으로 지키는 방식을 비교한다(03·04장). 문제 유형에 맞는 설계 패턴을 비용과 함께 고르고 재시도를 안전하게 설계한다(05장). 서비스 경계를 넘는 일관성 전략을 2PC·사가·아웃박스 중에서 선택한다(06장). 문서의 주장을 순서가 고정된 시나리오로 직접 검증한다(07장).
+
 ## 참고 자료
 
+- [Berenson et al., A Critique of ANSI SQL Isolation Levels (SIGMOD 1995)](https://arxiv.org/abs/cs/0701157) — ANSI 격리 수준 정의의 허점을 지적한 원전. 01장의 출발점
 - [PostgreSQL Documentation: Transaction Isolation](https://www.postgresql.org/docs/current/transaction-iso.html) — 시리즈 전체에서 기준으로 삼는 PostgreSQL 공식 문서
 - [MySQL 8.4 Reference Manual: InnoDB Transaction Isolation Levels](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html) — InnoDB의 격리 수준별 동작
 - [Oracle Database Concepts: Data Concurrency and Consistency](https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/data-concurrency-and-consistency.html) — Oracle의 격리 수준과 직렬화 실패
