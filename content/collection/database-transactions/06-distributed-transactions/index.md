@@ -279,20 +279,26 @@ INSERT INTO outbox (id, topic, payload)
 VALUES (gen_random_uuid(), 'order.created', '{"order_id": 1001}');
 COMMIT;
 
--- 릴레이: 여러 인스턴스가 동시에 돌아도 서로 다른 행을 가져가도록 05장의 SKIP LOCKED를 쓴다
+-- 릴레이: 한 문장으로 미발행 행을 가져오면서 발행 시각을 기록한다. 여러 인스턴스가 동시에 돌아도 서로 다른 행을 가져가도록 05장의 SKIP LOCKED를 쓴다
 BEGIN;
-SELECT id, topic, payload
-FROM outbox
-WHERE published_at IS NULL
-ORDER BY created_at
-LIMIT 100
-FOR UPDATE SKIP LOCKED;
--- ... 가져온 행을 브로커에 발행한 뒤, 발행에 성공한 id에 대해 완료 표시를 한다 ...
-UPDATE outbox SET published_at = now() WHERE id = ANY(ARRAY['<발행에 성공한 id>']::uuid[]);
+WITH batch AS (
+    SELECT id
+    FROM outbox
+    WHERE published_at IS NULL
+    ORDER BY created_at
+    LIMIT 100
+    FOR UPDATE SKIP LOCKED
+)
+UPDATE outbox
+SET published_at = now()
+FROM batch
+WHERE outbox.id = batch.id
+RETURNING outbox.id, outbox.topic, outbox.payload;
+-- (애플리케이션) RETURNING으로 받은 행을 브로커에 발행한다. 발행이 실패하면 ROLLBACK, 성공하면 아래 COMMIT을 실행한다
 COMMIT;
 ```
 
-이 패턴의 보장은 메시지가 데이터베이스 트랜잭션이 커밋될 때만, 그리고 반드시 전송된다는 것이다. 대가는 중복이다. 릴레이가 발행한 뒤 완료 표시를 하기 전에 크래시하면 같은 메시지가 다시 발행된다. 그러므로 소비자는 멱등해야 하며, 처리한 메시지 ID를 기록하는 05장의 멱등성 키 패턴이 여기서 다시 쓰인다. 즉 아웃박스는 "정확히 한 번"이 아니라 "최소 한 번 전달 + 멱등한 소비"로 효과적으로 한 번의 처리를 얻는 패턴이다. 위 `gen_random_uuid()`는 PostgreSQL 13 이상에서 기본 제공되는 함수이며, 릴레이의 발행과 완료 표시 사이에서 크래시하면 같은 행이 다시 발행되는 것이 바로 이 중복의 원인이다.
+이 패턴의 보장은 메시지가 데이터베이스 트랜잭션이 커밋될 때만, 그리고 반드시 전송된다는 것이다. 대가는 중복이다. 릴레이가 브로커에 발행한 뒤 COMMIT하기 전에 크래시하면 완료 표시가 롤백되어 같은 메시지가 다시 발행된다. 그러므로 소비자는 멱등해야 하며, 처리한 메시지 ID를 기록하는 05장의 멱등성 키 패턴이 여기서 다시 쓰인다. 즉 아웃박스는 "정확히 한 번"이 아니라 "최소 한 번 전달 + 멱등한 소비"로 효과적으로 한 번의 처리를 얻는 패턴이다. 위 `gen_random_uuid()`는 PostgreSQL 13 이상에서 기본 제공되는 함수다.
 
 ## 선택 지도
 

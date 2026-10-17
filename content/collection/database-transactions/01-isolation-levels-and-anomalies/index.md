@@ -81,6 +81,24 @@ Atul Adya는 1999년 MIT 박사학위 논문 「Weak Consistency: A Generalized 
 | Lost Update | 읽고 계산해 쓰는 사이 다른 트랜잭션의 갱신이 덮어써진다 | 두 요청이 같은 잔액 100을 읽고 각자 더해 쓰면 하나가 사라진다 |
 | Write Skew | 서로 다른 행을 쓰지만, 둘이 읽은 공통 조건이 깨져 불변식이 위반된다 | 두 의사가 동시에 당직을 해제해 당직자가 0명이 된다 |
 
+표의 현상 가운데 dirty write와 read skew는 두 세션의 순서로 보면 더 분명하다. dirty write는 아직 끝나지 않은 다른 트랜잭션이 쓴 값 위에 덮어쓰는 것이다. 계좌 1의 잔액이 100일 때 다음 순서가 허용된다면, A가 롤백할 때 되돌릴 값이 무엇인지 정할 수 없게 된다. Hermitage의 결과표(G0 열)에서 시험한 모든 수준이 이 현상을 막는다.
+
+| 순서 | 세션 A | 세션 B |
+|---|---|---|
+| 1 | `UPDATE accounts SET balance = 50 WHERE id = 1;` | |
+| 2 | | `UPDATE accounts SET balance = 70 WHERE id = 1;` (A가 끝나기 전에 덮어쓰려 한다) |
+| 3 | `ROLLBACK;` | |
+
+read skew는 서로 관련된 두 값을 읽는 사이에 다른 트랜잭션이 커밋해 어긋난 조합을 보는 것이다. 계좌 1과 2의 잔액이 각각 50이고 합계가 항상 100이어야 한다면, 다음 순서에서 A는 합계가 120인 상태를 본다.
+
+| 순서 | 세션 A | 세션 B |
+|---|---|---|
+| 1 | `BEGIN;` `SELECT balance FROM accounts WHERE id = 1;` (50) | |
+| 2 | | `UPDATE accounts SET balance = balance - 20 WHERE id = 1;` `UPDATE accounts SET balance = balance + 20 WHERE id = 2;` `COMMIT;` |
+| 3 | `SELECT balance FROM accounts WHERE id = 2;` (70, 합계 120) | |
+
+Read Committed는 문장마다 새 스냅샷을 읽으므로 3단계에서 B의 커밋 결과를 보아 위처럼 어긋난 합계가 나올 수 있다. 스냅샷을 트랜잭션 동안 유지하는 Repeatable Read에서는 A가 3단계에서도 B 이전의 값(50)을 읽어 합계가 100으로 유지된다.
+
 각 현상이 어느 격리 수준에서 가능한지는 DBMS마다 다르다. 아래 표는 PostgreSQL 공식 문서의 서술을 기준으로 한다. 문서의 표는 더티 리드, 반복 불가능한 읽기, 팬텀, 직렬화 이상(serialization anomaly)의 네 열을 제공하며, 나머지 열은 그 서술에서 도출했다.
 
 | 현상 | Read Committed | Repeatable Read | Serializable |
@@ -188,10 +206,10 @@ Read Committed에서는 B의 `UPDATE`가 A의 커밋을 기다렸다가 그대�
 |---|---|---|---|
 | PostgreSQL | Read Committed | Read Uncommitted는 Read Committed로 동작. Repeatable Read는 스냅샷 격리. Serializable은 SSI(예측 잠금 기반 충돌 감지) | Repeatable Read는 팬텀을 막지만 write skew는 허용. Serializable은 `40001`로 중단될 수 있음 |
 | MySQL InnoDB | Repeatable Read | 일반 `SELECT`는 첫 읽기에서 만든 스냅샷을 사용. 잠금 읽기와 DML은 갭 락·next-key 락을 사용. Serializable은 autocommit이 꺼진 경우 일반 `SELECT`를 `SELECT ... FOR SHARE`로 변환 | DML은 스냅샷이 아닌 최신 커밋을 본다. Read Committed에서는 갭 락이 대부분 비활성화되어 팬텀 가능 |
-| Oracle | Read Committed | Read Committed, Serializable, Read-Only 세 가지만 제공. Serializable은 트랜잭션 시작 이후 커밋된 변경이 있는 행을 갱신하면 `ORA-08177` | 문서는 Serializable에서 더티 리드·퍼지 리드·팬텀이 없다고 서술 |
+| Oracle | Read Committed | Read Committed, Serializable, Read-Only 세 가지만 제공. Serializable은 트랜잭션 시작 이후 커밋된 변경이 있는 행을 갱신하면 `ORA-08177` | 문서는 Serializable에서 더티 리드·퍼지 리드·팬텀이 없다고 서술. 실제 동작은 아래 문단 참고 |
 | SQL Server | Read Committed | 기본은 락 기반 Read Committed. `READ_COMMITTED_SNAPSHOT` 옵션을 켜면 문장 단위 행 버전 사용. SNAPSHOT 수준은 별도 옵션 필요. Serializable은 키 범위 락 | Azure SQL Database는 `READ_COMMITTED_SNAPSHOT`이 기본값이라 같은 이름의 수준도 설정에 따라 구현이 다르다 |
 
-표에서 보듯 "Read Committed"만 해도 PostgreSQL에서는 문장마다 새 스냅샷을 읽는 방식이고, SQL Server 기본값에서는 읽는 동안 공유 락을 잡는 방식이다. 이 차이는 동시성 특성에 직접 영향을 준다. 락 기반에서는 읽기가 쓰기를 기다리고, 버전 기반에서는 기다리지 않는다. 격리 수준 이름은 DBMS 사이에서 이식되지 않으므로, 마이그레이션이나 멀티 DBMS 지원 시에는 수준 이름이 아니라 위 표의 구현 설명을 기준으로 재검증해야 한다. Oracle의 경우 문서는 Serializable에서 더티 리드·퍼지 리드·팬텀이 없다고 서술할 뿐 write skew 방지 여부는 명시하지 않으므로, 이 점은 문서를 믿기보다 아래의 Hermitage 같은 도구나 07장의 방법으로 확인해야 한다. 이런 비교를 직접 해 보고 싶다면 Kleppmann이 DDIA의 배경 연구로 만든 [Hermitage](https://github.com/ept/hermitage)가 여러 DBMS에서 이상 현상별 결과를 표로 제공한다. Jepsen의 [일관성 모델 지도](https://jepsen.io/consistency)는 이 격리 수준들이 일관성 모델 전체에서 어디에 놓이는지 보여 준다.
+표에서 보듯 "Read Committed"만 해도 PostgreSQL에서는 문장마다 새 스냅샷을 읽는 방식이고, SQL Server 기본값에서는 읽는 동안 공유 락을 잡는 방식이다. 이 차이는 동시성 특성에 직접 영향을 준다. 락 기반에서는 읽기가 쓰기를 기다리고, 버전 기반에서는 기다리지 않는다. 격리 수준 이름은 DBMS 사이에서 이식되지 않으므로, 마이그레이션이나 멀티 DBMS 지원 시에는 수준 이름이 아니라 위 표의 구현 설명을 기준으로 재검증해야 한다. Oracle이 이 차이의 대표적인 사례다. 문서의 서술에는 write skew가 언급되지 않는데, 아래에서 소개하는 Hermitage의 시험 결과에서 Oracle의 "serializable"은 실제로 스냅샷 격리로 분류되며 write skew(G2-item)를 막지 못하고 술어 기반 write skew(G2)도 일부 허용한다. 같은 Serializable이라는 이름이 PostgreSQL에서는 write skew를 막고 Oracle에서는 막지 못하는 셈이므로, 이름이 아니라 시험 결과로 보장을 확인해야 한다. 이런 비교를 직접 해 보고 싶다면 Kleppmann이 DDIA의 배경 연구로 만든 [Hermitage](https://github.com/ept/hermitage)가 여러 DBMS에서 이상 현상별 결과를 표로 제공한다. Jepsen의 [일관성 모델 지도](https://jepsen.io/consistency)는 이 격리 수준들이 일관성 모델 전체에서 어디에 놓이는지 보여 준다.
 
 ## 재시도 없이는 안전하지 않다
 

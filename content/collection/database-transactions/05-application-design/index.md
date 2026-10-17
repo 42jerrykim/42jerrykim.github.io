@@ -102,7 +102,7 @@ WHERE jobs.id = next.id
 RETURNING jobs.id;
 ```
 
-이 쿼리는 PostgreSQL 문법이며 MySQL 8.0 이상에서도 `SKIP LOCKED`를 지원하지만 `UPDATE ... FROM` 문법은 다르므로 두 단계로 나누어 써야 한다. 주의할 점이 두 가지 있다. 문서는 `LIMIT`이 있으면 요구한 행 수를 채운 시점에 잠금을 멈추지만 `OFFSET`으로 건너뛴 행도 잠긴다고 설명한다. 또 Read Committed에서 `ORDER BY`와 잠금 절을 함께 쓰면 정렬이 먼저 적용된 뒤 잠금을 기다리다 행이 정렬 순서와 어긋나게 반환될 수 있다고 문서가 경고한다. 엄격한 순서 보장이 필요한 큐라면 이 쿼리의 가정이 깨지지 않는지 따져야 한다.
+이 쿼리는 PostgreSQL 문법이다. MySQL 8.4 문서도 `SELECT ... FOR UPDATE`와 `FOR SHARE`에서 `NOWAIT`와 `SKIP LOCKED`를 지원하며, 잠긴 행을 건너뛰면 일관되지 않은 뷰가 돌아오므로 큐처럼 여러 세션이 접근하는 테이블에 한정해 쓰라고 설명한다. 다만 `UPDATE ... FROM` 문법은 다르므로 MySQL에서는 두 단계로 나누어 써야 한다. 주의할 점이 두 가지 있다. 문서는 `LIMIT`이 있으면 요구한 행 수를 채운 시점에 잠금을 멈추지만 `OFFSET`으로 건너뛴 행도 잠긴다고 설명한다. 또 Read Committed에서 `ORDER BY`와 잠금 절을 함께 쓰면 정렬이 먼저 적용된 뒤 잠금을 기다리다 행이 정렬 순서와 어긋나게 반환될 수 있다고 문서가 경고한다. 엄격한 순서 보장이 필요한 큐라면 이 쿼리의 가정이 깨지지 않는지 따져야 한다.
 
 비관적 락의 비용은 03장에서 다뤘다. 락을 쥔 시간만큼 다른 트랜잭션이 대기하고, 락을 거는 순서가 코드마다 다르면 데드락이 생긴다. 트랜잭션을 짧게 유지하고 락 순서를 통일하는 것이 기본 방어책이다.
 
@@ -223,7 +223,7 @@ SELECT pg_advisory_xact_lock(hashtext('settlement:user:123'));
 COMMIT;   -- 락이 자동으로 풀린다
 ```
 
-이 락은 어디까지나 규약이다. 데이터베이스는 키의 의미를 모르므로, 같은 자원을 건드리는 모든 코드 경로가 같은 키로 락을 잡을 때만 효과가 있다. 문서는 어드바이저리 락이 일반 락과 같은 공유 메모리 풀에 저장되며 `max_locks_per_transaction`과 `max_connections` 설정이 그 크기를 정해 서버가 허용하는 락 수에 상한이 있다고 설명한다. 또 `SELECT pg_advisory_lock(id) FROM foo WHERE id > 12345 LIMIT 100`처럼 쓰면 `LIMIT`이 락 함수 실행보다 먼저 적용된다는 보장이 없어 의도보다 많은 락이 잡힐 수 있다고 경고한다. MySQL에는 비슷한 용도로 `GET_LOCK()` 함수가 있다.
+이 락은 어디까지나 규약이다. 데이터베이스는 키의 의미를 모르므로, 같은 자원을 건드리는 모든 코드 경로가 같은 키로 락을 잡을 때만 효과가 있다. 문서는 어드바이저리 락이 일반 락과 같은 공유 메모리 풀에 저장되며 `max_locks_per_transaction`과 `max_connections` 설정이 그 크기를 정해 서버가 허용하는 락 수에 상한이 있다고 설명한다. 또 `SELECT pg_advisory_lock(id) FROM foo WHERE id > 12345 LIMIT 100`처럼 쓰면 `LIMIT`이 락 함수 실행보다 먼저 적용된다는 보장이 없어 의도보다 많은 락이 잡힐 수 있다고 경고한다. MySQL에는 비슷한 용도로 `GET_LOCK()` 함수가 있다. 문서에 따르면 이 락은 이름으로 거는 서버 전체의 협력적 락이며, 트랜잭션이 커밋하거나 롤백해도 해제되지 않고 `RELEASE_LOCK()`을 호출하거나 세션이 끝나야 풀린다. 그러므로 PostgreSQL의 트랜잭션 수준 락과 달리 해제를 코드가 직접 책임져야 한다.
 
 ## 재시도와 멱등성: 충돌을 안전하게 되풀이한다
 
@@ -293,6 +293,8 @@ SELECT response FROM payments WHERE idempotency_key = 'req-7f3a';
 ## 참고 자료
 
 - [PostgreSQL Documentation: SELECT, The Locking Clause](https://www.postgresql.org/docs/current/sql-select.html) — `FOR UPDATE`, `NOWAIT`, `SKIP LOCKED`와 `LIMIT`·`ORDER BY` 주의사항
+- [MySQL 8.4 Reference Manual: Locking Reads](https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html) — `NOWAIT`와 `SKIP LOCKED`
+- [MySQL 8.4 Reference Manual: Locking Functions](https://dev.mysql.com/doc/refman/8.4/en/locking-functions.html) — `GET_LOCK()`과 `RELEASE_LOCK()`
 - [PostgreSQL Documentation: Explicit Locking](https://www.postgresql.org/docs/current/explicit-locking.html) — 행 수준 락, 데드락, 어드바이저리 락
 - [PostgreSQL Documentation: Constraints](https://www.postgresql.org/docs/current/ddl-constraints.html) — `UNIQUE`, `CHECK`, 배타 제약조건
 - [PostgreSQL Documentation: Serialization Failure Handling](https://www.postgresql.org/docs/current/mvcc-serialization-failure-handling.html) — 직렬화 실패 시 재시도

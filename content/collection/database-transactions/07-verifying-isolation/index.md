@@ -205,13 +205,13 @@ DBMS를 바꾸거나 설정을 바꿀 때는 다음 항목을 점검한다. 각 
 
 ## 한눈에 보기: 세 가지 대표 이상 현상
 
-세 가지 대표 이상 현상이 대표적인 구현에서 어떻게 나타나는지를 정리한다. 이 표는 공식 문서의 서술에서 도출한 것으로, 사용 중인 버전과 설정에서 이 장의 하네스나 Hermitage로 직접 확인하는 것을 전제로 한다. SQL Server는 Repeatable Read의 락 기반 동작을 기준으로 했다.
+세 가지 대표 이상 현상이 대표적인 구현에서 어떻게 나타나는지를 정리한다. PostgreSQL·InnoDB·SQL Server 열은 공식 문서의 서술에서 도출한 뒤 Hermitage의 결과표와 대조해 같은 결론임을 확인했고, Oracle 열은 Hermitage의 결과에서 가져왔다. 그래도 사용 중인 버전과 설정에서 이 장의 하네스나 Hermitage로 직접 확인하는 것을 전제로 한다. SQL Server는 Repeatable Read의 락 기반 동작을 기준으로 했다.
 
-| 이상 현상 | PostgreSQL Repeatable Read | InnoDB Repeatable Read | SQL Server Repeatable Read(락 기반) |
-|---|---|---|---|
-| Lost Update(읽고-계산하고-쓰기) | 방지: `40001`로 중단 | 가능: DML이 최신 커밋을 덮어씀 | 읽은 행에 공유 락이 남아 상대 갱신과 충돌, 데드락으로 한쪽 중단 |
-| Write Skew | 가능 | 가능 | 읽은 행이 락으로 보호되어 방지 |
-| Phantom | 방지(스냅샷) | 읽기는 방지, DML은 최신 커밋을 봄 | 가능 |
+| 이상 현상 | PostgreSQL Repeatable Read | InnoDB Repeatable Read | SQL Server Repeatable Read(락 기반) | Oracle Serializable |
+|---|---|---|---|---|
+| Lost Update(읽고-계산하고-쓰기) | 방지: `40001`로 중단 | 가능: DML이 최신 커밋을 덮어씀 | 읽은 행에 공유 락이 남아 상대 갱신과 충돌, 데드락으로 한쪽 중단 | 방지 |
+| Write Skew | 가능 | 가능 | 읽은 행이 락으로 보호되어 방지 | 가능(실제로는 스냅샷 격리) |
+| Phantom | 방지(스냅샷) | 읽기는 방지, DML은 최신 커밋을 봄 | 가능 | 방지 |
 
 ## 흔한 오개념
 
