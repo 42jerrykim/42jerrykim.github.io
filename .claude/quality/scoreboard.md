@@ -480,7 +480,7 @@
 | content/collection/Algorithm/2024/2024-10-10-BOJ-13334/index.md | 89.4 | 2026-10-16 | 3 | 에스컬레이션 | 1.3 | 8e8331f | 항목1·4 — L56이 제약 미확인을 밝히면서 "n은 최대 10만 수준"을 단정, 미확인 고지 문장 중복 — 단정 문장과 중복 문장 삭제; 항목7 — 본문 L42·header.teaser가 존재하지 않는 /assets/images/undefined/algorithm.png 참조(레거시 공통 패턴) — 실재 경로로 교체 또는 표 제거; 경미: 코너 케이스 표 2행뿐(d=0 등), lastmod 부재(정책상 사람만)|
 | content/collection/Algorithm/2024/2024-10-10-BOJ-14725/index.md | 91.9 | 2026-10-17 | 1 | 통과 | 1.3 | 19cf2b3 | 없음(경미: 도입문 "표준 라이브러리 없는 C++"을 C로 정정 필요, 결론 재진술 1곳, BOJ 링크 봇 차단으로 검증 불가) |
 | content/collection/Algorithm/2024/2024-10-10-BOJ-15824/index.md | 98.5 | 2026-10-18 | 1 | 통과 | 1.3 | 5c7eb26 | 없음(경미: 승인 태그 중 Go·.NET·Logging·Error-Handling·Documentation·Testing이 본문에 근거 없음, 문제 URL은 봇 차단으로 검증 불가)
-| content/collection/Algorithm/2024/2024-10-10-BOJ-16565/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-10-BOJ-16565/index.md | 100 | 2026-10-19 | 2 | 통과 | 1.3 | c0e9b46 | 없음(BOJ 서비스 종료로 문제 링크는 텍스트 표기). 57→87.1→100 |
 | content/collection/Algorithm/2024/2024-10-10-BOJ-2357/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-1214/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-13416/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1988,3 +1988,4 @@
 | content/post/2026/2026-10-16-sft-rlvr-opd-post-training-order/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-17-lemire-summer-of-ai-optimization/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-18-windows-batch-inline-powershell-watcher-pitfalls/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-10-19-hf-open-tts-leaderboard-objective-metrics/index.md | - | - | - | 미채점 | - | - | - |
