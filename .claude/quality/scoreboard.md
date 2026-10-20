@@ -403,7 +403,7 @@
 | content/collection/optimization-10-network/03-socket-options-tuning/index.md | 100 | 2026-10-20 | 1 | 통과 | 1.3 | e010e70 | 없음 |
 | content/collection/optimization-10-network/04-tcp-performance-optimization/index.md | 95.8 | 2026-10-20 | 1 | 통과 | 1.3 | 5890506 | 없음(경미: set_congestion.c에 netinet/in.h include 누락으로 IPPROTO_TCP 미선언 가능, L293 BBRv3 신기능 귀속(ECN·손실 대응은 v2 도입)을 v2 계보로 정정 필요) |
 | content/collection/optimization-10-network/05-udp-optimization/index.md | 100 | 2026-10-20 | 1 | 통과 | 1.3 | 2a7a37e | 없음 |
-| content/collection/optimization-10-network/06-serialization-performance-comparison/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/06-serialization-performance-comparison/index.md | 96.6 | 2026-10-20 | 1 | 통과 | 1.3 | 104d427 | 없음(경미: 마무리 체크리스트 앞 요약 문단 부재(L324), 스키마·코드 블록 도입 문단 1문장(L143·L157·L178·L194) → 2문장 이상으로 보강) |
 | content/collection/optimization-10-network/07-zero-copy-serialization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/08-next-gen-zero-copy-formats/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/09-protocol-design/index.md | - | - | 0 | 미채점 | - | - | - |

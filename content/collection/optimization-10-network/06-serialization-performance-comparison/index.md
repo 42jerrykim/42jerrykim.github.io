@@ -16,7 +16,6 @@ tags:
   - Benchmark
   - Latency
   - Throughput
-  - Profiling(프로파일링)
   - Testing(테스트)
   - Implementation(구현)
   - Best-Practices
@@ -30,12 +29,10 @@ tags:
   - Reference(참고)
   - Deep-Dive
   - Advanced
-  - Case-Study
   - 실습
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Documentation(문서화)
   - Compression
   - Protobuf
   - FlatBuffers
@@ -44,7 +41,9 @@ tags:
   - Wire-Format
   - Varint
   - IDL
-  - Schema-Evolution
+  - Schema-Evolution(스키마진화)
+  - gRPC
+  - Zero-Copy
 ---
 
 **직렬화 성능 비교**란 언어 객체를 네트워크로 보낼 바이트 시퀀스로 바꾸고 다시 객체로 복원하는 과정에서, 서로 다른 포맷이 CPU 사이클과 메모리 할당을 얼마나 소비하는지를 정량적으로 견주는 작업을 말합니다. 메시지 크기가 커지고 초당 처리 건수가 늘어날수록 인코딩·디코딩 비용은 네트워크 전송 지연 못지않게 전체 응답 시간을 좌우하게 되므로, Protocol Buffers·FlatBuffers·Cap'n Proto 세 포맷이 "왜" 다른 비용 구조를 갖는지 이해하고 워크로드에 맞는 포맷을 고르는 것이 이 장의 목표입니다.
@@ -59,9 +58,9 @@ tags:
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
-| **초보자** | "세 포맷의 탄생 배경" ~ "인코딩 메커니즘 비교" | 세 포맷이 왜 다른 비용 구조를 갖는지 직관 확보 |
-| **중급자** | "직접 비교해 보기" ~ "흔한 오개념" | 스키마·코드 예시로 실제 사용법과 함정 이해 |
-| **전문가** | "판단 기준" ~ "비판적 시각" | 워크로드별 포맷 선택과 벤치마크 해석 능력 |
+| **초보자** | "세 포맷의 탄생 배경" – "인코딩 메커니즘 비교" | 세 포맷이 왜 다른 비용 구조를 갖는지 직관 확보 |
+| **중급자** | "직접 비교해 보기" – "흔한 오개념" | 스키마·코드 예시로 실제 사용법과 함정 이해 |
+| **전문가** | "판단 기준" – "비판적 시각" | 워크로드별 포맷 선택과 벤치마크 해석 능력 |
 
 ---
 
@@ -83,7 +82,7 @@ tags:
 
 **FlatBuffers**는 빌더가 값을 쓰는 시점에 이미 최종 바이트 레이아웃을 만들어 버립니다. 각 테이블은 필드 오프셋을 담은 vtable을 가리키고, 접근자 함수는 이 오프셋을 따라가 값을 읽을 뿐 별도의 파싱이나 객체 생성을 하지 않습니다. 값을 다 쓰고 나면 `FlatBufferBuilder`가 반환하는 버퍼 자체가 곧 네트워크로 보낼 바이트이므로, "인코딩"이라는 단계가 사실상 값을 순서대로 채워 넣는 작업으로 흡수됩니다.
 
-**Cap'n Proto**는 한 걸음 더 나아가, 메시지를 세그먼트(고정 크기 메모리 블록)에 직접 구성합니다. 값을 설정하는 즉시 그 값은 세그먼트 안의 최종 위치에 기록되고, 읽을 때는 포인터를 역참조하기만 하면 됩니다. 인코딩·디코딩이라는 별도 개념이 없고, 네트워크로 보낼 때는 세그먼트를 그대로(또는 `packed` 모드로 반복되는 0 바이트를 압축해) 내보냅니다.
+**Cap'n Proto**는 한 걸음 더 나아가, 메시지를 세그먼트(메시지 빌더가 할당하는 연속 메모리 블록으로, 부족하면 더 큰 세그먼트를 추가로 할당)에 직접 구성합니다. 값을 설정하는 즉시 그 값은 세그먼트 안의 최종 위치에 기록되고, 읽을 때는 포인터를 역참조하기만 하면 됩니다. 인코딩·디코딩이라는 별도 개념이 없고, 네트워크로 보낼 때는 세그먼트를 그대로(또는 `packed` 모드로 반복되는 0 바이트를 압축해) 내보냅니다.
 
 ```mermaid
 flowchart LR
@@ -106,6 +105,7 @@ Protobuf만 "언어 객체 → 바이트 → 언어 객체"라는 왕복 변환�
 
 ```protobuf
 syntax = "proto3";
+package pb;
 
 message Quote {
   uint64 symbol_id = 1;
@@ -123,7 +123,7 @@ message Quote {
 #include <cstdint>
 
 std::string encode_quote(uint64_t id, double price, uint32_t size, int64_t ts) {
-  Quote q;
+  pb::Quote q;
   q.set_symbol_id(id);
   q.set_price(price);
   q.set_size(size);
@@ -133,8 +133,8 @@ std::string encode_quote(uint64_t id, double price, uint32_t size, int64_t ts) {
   return out;
 }
 
-Quote decode_quote(const std::string& bytes) {
-  Quote q;
+pb::Quote decode_quote(const std::string& bytes) {
+  pb::Quote q;
   q.ParseFromString(bytes);   // 태그를 하나씩 해석해 객체를 재구성
   return q;
 }
@@ -143,6 +143,8 @@ Quote decode_quote(const std::string& bytes) {
 FlatBuffers는 `.fbs` 스키마를 `flatc`로 컴파일하며, 빌더가 곧 최종 버퍼를 만든다는 점에서 코드 형태부터 다릅니다.
 
 ```text
+namespace fb;
+
 table Quote {
   symbol_id: uint64;
   price: double;
@@ -162,13 +164,13 @@ root_type Quote;
 flatbuffers::FlatBufferBuilder build_quote(uint64_t id, double price,
                                            uint32_t size, int64_t ts) {
   flatbuffers::FlatBufferBuilder builder;
-  auto q = CreateQuote(builder, id, price, size, ts);
+  auto q = fb::CreateQuote(builder, id, price, size, ts);
   builder.Finish(q);
   return builder;  // builder.GetBufferPointer()가 곧 와이어 바이트
 }
 
 double read_price(const uint8_t* buf) {
-  auto q = GetQuote(buf);
+  auto q = fb::GetQuote(buf);
   return q->price();  // vtable 오프셋을 따라가 값만 읽음, 객체 생성 없음
 }
 ```
@@ -177,6 +179,9 @@ Cap'n Proto는 `.capnp` 스키마에서 필드마다 `@N` 순번을 명시적으
 
 ```text
 @0x9d642f1a2b3c4d5e;
+
+using Cxx = import "/capnp/c++.capnp";
+$Cxx.namespace("cp");
 
 struct Quote {
   symbolId @0 :UInt64;
@@ -191,18 +196,17 @@ struct Quote {
 ```cpp
 #include "quote.capnp.h"
 #include <capnp/message.h>
-#include <capnp/serialize-packed.h>
 #include <cstdint>
 
-capnp::MallocMessageBuilder build_quote(uint64_t id, double price,
-                                         uint32_t size, int64_t ts) {
-  capnp::MallocMessageBuilder message;
-  auto q = message.initRoot<Quote>();
+// MessageBuilder는 복사·이동이 금지된 타입이므로 호출자가 만든 빌더를 참조로 받는다.
+void build_quote(capnp::MallocMessageBuilder& message, uint64_t id, double price,
+                 uint32_t size, int64_t ts) {
+  auto q = message.initRoot<cp::Quote>();
   q.setSymbolId(id);
   q.setPrice(price);
   q.setSize(size);
   q.setTimestampNs(ts);
-  return message;  // 세그먼트 메모리가 곧 최종 표현; 별도 encode 호출 없음
+  // 여기서 끝: 세그먼트 메모리가 곧 최종 표현이며 별도 encode 호출이 없다
 }
 ```
 
@@ -212,14 +216,21 @@ capnp::MallocMessageBuilder build_quote(uint64_t id, double price,
 
 ```cpp
 #include <benchmark/benchmark.h>
-#include "quote.pb.h"
-#include "quote_generated.h"
-#include "quote.capnp.h"
+#include <string>
+#include "quote.pb.h"          // package pb
+#include "quote_generated.h"   // namespace fb
+#include "quote.capnp.h"       // $Cxx.namespace("cp")
 #include <capnp/message.h>
+#include <capnp/serialize.h>
+
+static pb::Quote make_pb() {
+  pb::Quote q;
+  q.set_symbol_id(1234); q.set_price(101.25); q.set_size(500); q.set_timestamp_ns(1'700'000'000'000);
+  return q;
+}
 
 static void BM_ProtobufEncode(benchmark::State& state) {
-  Quote q;
-  q.set_symbol_id(1234); q.set_price(101.25); q.set_size(500); q.set_timestamp_ns(1'700'000'000'000);
+  pb::Quote q = make_pb();
   for (auto _ : state) {
     std::string out;
     q.SerializeToString(&out);
@@ -229,43 +240,61 @@ static void BM_ProtobufEncode(benchmark::State& state) {
 BENCHMARK(BM_ProtobufEncode);
 
 static void BM_ProtobufDecode(benchmark::State& state) {
-  Quote q;
-  q.set_symbol_id(1234); q.set_price(101.25); q.set_size(500); q.set_timestamp_ns(1'700'000'000'000);
   std::string bytes;
-  q.SerializeToString(&bytes);
+  make_pb().SerializeToString(&bytes);   // 와이어 바이트는 루프 밖에서 한 번만 만든다
   for (auto _ : state) {
-    Quote out;
+    pb::Quote out;
     out.ParseFromString(bytes);
-    benchmark::DoNotOptimize(out);
+    benchmark::DoNotOptimize(out.price());
   }
 }
 BENCHMARK(BM_ProtobufDecode);
 
-static void BM_FlatBuffersBuildAndRead(benchmark::State& state) {
+static void BM_FlatBuffersBuild(benchmark::State& state) {
   for (auto _ : state) {
     flatbuffers::FlatBufferBuilder builder;
-    auto q = CreateQuote(builder, 1234, 101.25, 500, 1'700'000'000'000LL);
-    builder.Finish(q);
-    auto* read_back = GetQuote(builder.GetBufferPointer());
-    benchmark::DoNotOptimize(read_back->price());
+    builder.Finish(fb::CreateQuote(builder, 1234, 101.25, 500, 1'700'000'000'000LL));
+    benchmark::DoNotOptimize(builder.GetBufferPointer());
   }
 }
-BENCHMARK(BM_FlatBuffersBuildAndRead);
+BENCHMARK(BM_FlatBuffersBuild);
 
-static void BM_CapnProtoBuildAndRead(benchmark::State& state) {
+static void BM_FlatBuffersRead(benchmark::State& state) {
+  flatbuffers::FlatBufferBuilder builder;
+  builder.Finish(fb::CreateQuote(builder, 1234, 101.25, 500, 1'700'000'000'000LL));
+  const uint8_t* wire = builder.GetBufferPointer();  // 수신한 바이트라고 가정
+  for (auto _ : state) {
+    benchmark::DoNotOptimize(fb::GetQuote(wire)->price());
+  }
+}
+BENCHMARK(BM_FlatBuffersRead);
+
+static void BM_CapnProtoBuild(benchmark::State& state) {
   for (auto _ : state) {
     capnp::MallocMessageBuilder message;
-    auto q = message.initRoot<Quote>();
+    auto q = message.initRoot<cp::Quote>();
     q.setSymbolId(1234); q.setPrice(101.25); q.setSize(500); q.setTimestampNs(1'700'000'000'000);
-    benchmark::DoNotOptimize(q.asReader().getPrice());
+    benchmark::DoNotOptimize(message.getSegmentsForOutput().size());
   }
 }
-BENCHMARK(BM_CapnProtoBuildAndRead);
+BENCHMARK(BM_CapnProtoBuild);
+
+static void BM_CapnProtoRead(benchmark::State& state) {
+  capnp::MallocMessageBuilder message;
+  auto q = message.initRoot<cp::Quote>();
+  q.setSymbolId(1234); q.setPrice(101.25); q.setSize(500); q.setTimestampNs(1'700'000'000'000);
+  kj::Array<capnp::word> wire = capnp::messageToFlatArray(message);  // 와이어 표현으로 평탄화
+  for (auto _ : state) {
+    capnp::FlatArrayMessageReader reader(wire);   // 바이트 위에 리더만 세운다(복사 없음)
+    benchmark::DoNotOptimize(reader.getRoot<cp::Quote>().getPrice());
+  }
+}
+BENCHMARK(BM_CapnProtoRead);
 
 BENCHMARK_MAIN();
 ```
 
-빌드는 `g++ -O2 bench.cpp -lbenchmark -lpthread -lprotobuf -lflatbuffers -lcapnp -lkj` 형태(x86-64, GCC 13 기준 예시)로 각 라이브러리를 링크해야 합니다. 이 벤치마크가 보여 주려는 것은 절대적인 배율이 아니라 **상대적인 형태**입니다: `BM_ProtobufDecode`는 필드마다 파싱·객체 생성 비용이 누적되는 반면, `BM_FlatBuffersBuildAndRead`와 `BM_CapnProtoBuildAndRead`는 "읽기" 쪽 비용이 필드 개수와 거의 무관하게 낮게 유지되는 경향을 보입니다. 다만 정확한 배율은 컴파일러·최적화 플래그·메시지 크기·문자열 필드 유무에 따라 크게 달라지므로, 이 스켈레톤을 자신의 메시지 스키마로 바꿔 직접 재현해 확인하는 것이 중요합니다.
+빌드 전에 `protoc --cpp_out=. quote.proto`, `flatc --cpp quote.fbs`, `capnp compile -oc++ quote.capnp`로 생성 코드를 만들고, `g++ -O2 bench.cpp quote.pb.cc quote.capnp.c++ -lbenchmark -lpthread -lprotobuf -lcapnp -lkj` 형태로 링크합니다(FlatBuffers는 헤더만으로 동작). 세 스키마에 각각 `pb`·`fb`·`cp` 네임스페이스를 준 것은 같은 이름 `Quote`가 한 번역 단위에서 충돌하지 않게 하기 위해서입니다. 이 벤치마크가 보여 주려는 것은 절대적인 배율이 아니라 **비용이 어느 단계에 있는지**입니다: 읽기 쪽만 보면 `BM_ProtobufDecode`는 매번 태그를 해석해 객체를 채우지만, `BM_FlatBuffersRead`와 `BM_CapnProtoRead`는 이미 받은 바이트 위에서 오프셋만 따라가므로 훨씬 가볍게 나오는 경향이 있고, 쓰기 쪽 차이는 그보다 작습니다. 필드 개수에 따른 변화를 보려면 스키마에 반복 필드를 두고 `state.range(0)`으로 원소 수를 바꿔 같은 비교를 반복하면 됩니다. 정확한 배율은 컴파일러·최적화 플래그·메시지 크기·문자열 필드 유무에 따라 크게 달라지므로, 이 스켈레톤을 자신의 메시지 스키마로 바꿔 직접 재현해 확인하는 것이 중요합니다.
 
 ## 흔한 오개념
 
@@ -288,7 +317,7 @@ BENCHMARK_MAIN();
 
 ## 비판적 시각: 한계와 트레이드오프
 
-세 포맷을 비교할 때 가장 흔한 함정은 배율 하나로 결론을 내리는 것입니다. Cap'n Proto 공식 문서조차 "무한대로 빠르다"는 표현이 공정한 비교가 아님을 인정하듯, 벤치마크 결과는 메시지 모양(문자열 필드 비중, 중첩 깊이, 반복 필드 개수)에 따라 뒤집힐 수 있습니다. Protobuf의 파싱 비용은 성숙한 생태계·디버깅 도구·gRPC와의 통합이라는 대가로 정당화되는 경우가 많고, FlatBuffers·Cap'n Proto의 낮은 읽기 비용은 신뢰 경계를 넘는 입력에 대한 검증 부담과 상대적으로 얕은 툴링·디버깅 생태계라는 대가를 수반합니다. 또한 zero-copy 포맷은 버퍼 정렬·엔디안 가정에 더 민감해, 이기종 아키텍처 간 통신에서는 추가 검증이 필요할 수 있습니다. 결국 "가장 빠른 포맷"은 존재하지 않고, 워크로드의 읽기/쓰기 비율과 신뢰 경계 위치에 따라 다른 답이 나옵니다.
+Protobuf의 파싱 비용은 성숙한 생태계·디버깅 도구·gRPC와의 통합이라는 대가로 정당화되는 경우가 많고, FlatBuffers·Cap'n Proto의 낮은 읽기 비용은 신뢰 경계를 넘는 입력에 대한 검증 부담과 상대적으로 얕은 툴링·디버깅 생태계라는 대가를 수반합니다. 또한 zero-copy 포맷은 버퍼 정렬·엔디안 가정에 더 민감해, 이기종 아키텍처 간 통신에서는 추가 검증이 필요할 수 있습니다. 결국 "가장 빠른 포맷"은 존재하지 않고, 워크로드의 읽기/쓰기 비율과 신뢰 경계 위치에 따라 다른 답이 나옵니다.
 
 ## 마무리
 
