@@ -387,7 +387,7 @@
 | content/collection/optimization-09-io-network/05-iocp-windows-io/index.md | 90.7 | 2026-10-21 | 0 | 통과 | 1.3 | 4f63221 | 경미: 1(L206·212 IoRing을 Server 2022부터로 서술 — 실제 Build 22000+; L142 CreateThreadpoolIo/StartThreadpoolIo Remarks 귀속 혼동; L80 OVERLAPPED 첫 멤버 주석 오류; L162 본문↔벤치 코드 불일치; L62 연도 출처 없음) / 5(L164 벤치에 <vector>·main 없음, I/O 미생성) / 6(Mermaid GQCS 라벨 간선 위치) |
 | content/collection/optimization-09-io-network/06-zero-copy-techniques/index.md | 94.3 | 2026-10-21 | 1 | 통과 | 1.3 | 8097536 | 경미: 1(L177·297 copy_file_range EINTR은 man ERRORS에 없음; L67 HP-UX 선행 서술 출처 없음) / 5(sendfile_all·copy_file_range_all이 n==0 조기 종료에도 0 반환 — 주석과 불일치) / 7(C++ 태그, 본문은 C 전용) |
 | content/collection/optimization-09-io-network/07-memory-mapped-io/index.md | 93.9 | 2026-10-21 | 1 | 통과 | 1.3 | 6292c2c | 경미: 1(L139 SIGBUS 조건은 오프셋이 아니라 EOF 너머 페이지; L190 msync만이 → fsync/fdatasync도 해당; L74 역사 문단 출처·TOPS-20 연도; L95 직접 인용 blockquote 아님) / 4(시그널 통지 요지 5회 반복) / 5(L252 MAP_POPULATE 변형이 벤치 코드에 없음, 벤치 open/mmap 실패 미검사) |
-| content/collection/optimization-09-io-network/08-direct-io/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/08-direct-io/index.md | 96.6 | 2026-10-21 | 1 | 통과 | 1.3 | 8ffa47b | 경미: 4(L241 '정렬 512 고정' 오개념이 앞 절 재진술) / 5(L149 posix_memalign 실패에 perror 사용 — errno 미설정; Broken 버전 검증 절차·재현 환경 미기재, /tmp가 tmpfs일 수 있음) |
 | content/collection/optimization-09-io-network/09-filesystem-characteristics/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/10-block-device-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/11-io-multiplexing-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
