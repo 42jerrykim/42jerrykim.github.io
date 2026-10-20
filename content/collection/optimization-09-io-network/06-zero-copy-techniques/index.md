@@ -1,7 +1,7 @@
 ---
 collection_order: 6
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-21
 draft: false
 image: wordcloud.png
 title: "[IO 09] Zero-copy 기법"
@@ -23,11 +23,8 @@ tags:
   - Benchmark
   - Latency
   - Throughput
-  - Profiling(프로파일링)
-  - Testing(테스트)
   - Implementation(구현)
   - Best-Practices
-  - Code-Quality(코드품질)
   - Debugging(디버깅)
   - Backend(백엔드)
   - Production
@@ -37,7 +34,6 @@ tags:
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Documentation(문서화)
   - Zero-Copy
   - sendfile
   - splice
@@ -68,9 +64,9 @@ tags:
 
 ## 복사가 사라지는 자리 (역사·배경)
 
-`sendfile`류 시스템 콜의 동기는 오래되었습니다. 웹 서버가 정적 파일을 디스크에서 읽어 소켓으로 그대로 내보내는 동안, 데이터는 애플리케이션 코드 어디에서도 변형되지 않는데도 `read` 한 번, `write` 한 번을 거치며 커널→유저→커널로 두 번 왕복합니다. HP-UX가 1997년에, FreeBSD 3.0과 Linux 2.2가 1998–1999년에 `sendfile()`을 도입한 것은 이 왕복을 없애기 위해서였습니다. 다만 초기 Linux 구현은 출력 디스크립터를 소켓으로 제한했고, 임의의 파일 간 전송(예: 파일 복사)에는 쓸 수 없었습니다.
+`sendfile`류 시스템 콜의 동기는 오래되었습니다. 웹 서버가 정적 파일을 디스크에서 읽어 소켓으로 그대로 내보내는 동안, 데이터는 애플리케이션 코드 어디에서도 변형되지 않는데도 `read` 한 번, `write` 한 번을 거치며 커널→유저→커널로 두 번 왕복합니다. HP-UX 같은 상용 Unix에 이어 FreeBSD 3.0([FreeBSD sendfile(2) HISTORY](https://man.freebsd.org/cgi/man.cgi?query=sendfile&sektion=2))과 Linux 2.2([sendfile(2) HISTORY](https://man7.org/linux/man-pages/man2/sendfile.2.html))가 `sendfile()`을 도입한 것은 이 왕복을 없애기 위해서였습니다. Linux 쪽 출력 디스크립터 제약은 곧게 발전하지 않았습니다. 2.4까지는 `out_fd`로 일반 파일도 쓸 수 있었지만 2.6.x 계열에서 이 가능성이 사라져 소켓 전용이 되었고, 2.6.33에서야 다시 일반 파일이 허용되었습니다.
 
-이 제약을 일반화한 것이 `splice()`입니다. Larry McVoy가 1998년에 개념을 처음 제안했지만 커널에 실제로 들어간 것은 한참 후로, Jens Axboe가 구현해 **Linux 2.6.17**(2006년)에 병합되었습니다. `splice`는 "파이프를 매개로 커널 페이지 참조만 옮긴다"는 아이디어로 소켓-소켓, 파일-파이프 등 sendfile보다 넓은 조합을 지원합니다. 이후 파일과 파일 사이의 커널 내 복사를 표준화하는 요구가 남아 있었는데, Zach Brown이 제안하고 Anna Schumaker가 다듬은 패치가 **Linux 4.5**(2016년)에 `copy_file_range()`로 들어오면서, 파일시스템이 `reflink`나 서버 사이드 복사 같은 가속 경로를 노출할 수 있는 표준 인터페이스가 생겼습니다.
+이 제약을 일반화한 것이 `splice()`입니다. Larry McVoy가 1998년에 개념을 처음 제안했지만([LWN: Two new system calls: splice() and sync_file_range()](https://lwn.net/Articles/178199/)) 커널에 실제로 들어간 것은 한참 후로, Jens Axboe가 구현해 **Linux 2.6.17**(2006년)에 병합되었습니다. `splice`는 "파이프를 매개로 커널 페이지 참조만 옮긴다"는 아이디어로 소켓-소켓, 파일-파이프 등 sendfile보다 넓은 조합을 지원합니다. 이후 파일과 파일 사이의 커널 내 복사를 표준화하는 요구가 남아 있었는데, Zach Brown의 초기 작업 위에 Anna Schumaker가 올린 패치셋이([LWN: copy_file_range()](https://lwn.net/Articles/659523/)) **Linux 4.5**(2016년)에 `copy_file_range()`로 들어오면서, 파일시스템이 `reflink`나 서버 사이드 복사 같은 가속 경로를 노출할 수 있는 표준 인터페이스가 생겼습니다.
 
 세 API 모두 "사용자 공간 복사 제거"라는 목표는 같지만 적용 대상이 다릅니다. `sendfile`은 파일→소켓(또는 파일→파일) 한 방향 전송에, `splice`는 파이프를 낀 임의의 fd 쌍에, `copy_file_range`는 파일→파일 복사에 특화되어 있습니다. 아래 다이어그램은 전통적인 `read`+`write` 경로와 zero-copy 경로가 소켓 버퍼까지 데이터를 옮기는 과정에서 무엇이 사라지는지를 보여줍니다.
 
@@ -91,7 +87,7 @@ flowchart LR
 
 ## sendfile: 파일에서 소켓으로
 
-`sendfile(int out_fd, int in_fd, off_t *offset, size_t count)`는 `in_fd`에서 읽은 데이터를 유저 버퍼를 거치지 않고 `out_fd`로 옮깁니다. **Linux 2.6.33** 이전에는 `out_fd`가 소켓이어야 했지만, 그 이후로는 일반 파일로도 확장되었고, **Linux 5.12**부터는 `out_fd`가 파이프일 경우 커널이 내부적으로 `splice` 경로로 처리를 넘깁니다. NIC가 scatter-gather DMA를 지원하면 페이지 캐시에서 네트워크 카드까지 데이터가 실제로 한 번도 CPU를 거치지 않을 수 있는데, 이는 드라이버·하드웨어에 따라 달라지는 **구현 정의** 동작이라 항상 보장되는 것은 아닙니다.
+`sendfile(int out_fd, int in_fd, off_t *offset, size_t count)`는 `in_fd`에서 읽은 데이터를 유저 버퍼를 거치지 않고 `out_fd`로 옮깁니다. 2.6.x 계열의 **Linux 2.6.33** 이전에는 `out_fd`가 소켓이어야 했지만, 그 이후로는 다시 일반 파일도 허용되었고, **Linux 5.12**부터는 `out_fd`가 파이프일 경우 커널이 내부적으로 `splice` 경로로 처리를 넘깁니다. NIC가 scatter-gather DMA를 지원하면 페이지 캐시에서 네트워크 카드까지 데이터가 실제로 한 번도 CPU를 거치지 않을 수 있는데, 이는 드라이버·하드웨어에 따라 달라지는 **구현 정의** 동작이라 항상 보장되는 것은 아닙니다.
 
 전송할 파일이 커서 한 번의 호출로 끝나지 않거나 소켓이 논블로킹이면 부분 전송이 흔하므로, 반환값을 확인하고 오프셋을 갱신하며 반복 호출해야 합니다. 아래 코드는 파일 전체를 소켓으로 zero-copy 전송하는 최소 구현입니다(Linux, `-std=c11`, `<sys/sendfile.h>` 필요).
 
@@ -103,27 +99,27 @@ flowchart LR
 #include <errno.h>
 
 // file_fd: 읽기 전용으로 연 파일, sock_fd: 연결된 소켓
-// 반환값: 성공 시 0, 실패 시 -1(errno 설정)
-int sendfile_all(int file_fd, int sock_fd) {
+// *offset: 호출자가 보관하는 전송 위치(처음엔 0). EAGAIN 뒤 재호출하면 이어서 보낸다.
+// 반환값: 끝까지 보냈으면 0, 실패 시 -1(errno 설정)
+int sendfile_all(int file_fd, int sock_fd, off_t *offset) {
   struct stat st;
   if (fstat(file_fd, &st) < 0) return -1;
 
-  off_t offset = 0;
-  size_t remaining = (size_t)st.st_size;
-  while (remaining > 0) {
-    ssize_t n = sendfile(sock_fd, file_fd, &offset, remaining);
+  while (*offset < st.st_size) {
+    size_t remaining = (size_t)(st.st_size - *offset);
+    ssize_t n = sendfile(sock_fd, file_fd, offset, remaining);
     if (n < 0) {
       if (errno == EINTR) continue;   // 시그널 인터럽트는 재시도
       return -1;                      // EAGAIN 등은 호출자가 이벤트 루프에서 재시도
     }
-    if (n == 0) break;                // 상대가 연결을 닫음
-    remaining -= (size_t)n;           // offset은 sendfile이 자동으로 갱신함
+    if (n == 0) break;                // in_fd EOF: 전송 중 파일이 잘린 경우 등
+    // *offset은 sendfile이 보낸 바이트만큼 자동으로 갱신한다
   }
   return 0;
 }
 ```
 
-이 함수는 `sock_fd`가 논블로킹이면 `EAGAIN`에서 그대로 반환하므로, 실제 서버에서는 epoll 등 이벤트 루프와 결합해 쓰기 가능해질 때 재호출하는 구조가 필요합니다. 또한 `in_fd`가 가리키는 파일 내용이 전송 도중 바뀌면(다른 프로세스가 truncate·overwrite) 정의되지 않은 결과가 나올 수 있으므로, 전송 중 수정되지 않는다는 보장이 있는 파일에만 적용합니다.
+이 함수는 `sock_fd`가 논블로킹이면 `EAGAIN`에서 그대로 반환하므로, 실제 서버에서는 연결별로 `offset`을 보관해 두고 epoll 등 이벤트 루프에서 쓰기 가능해질 때 같은 `offset`으로 재호출하는 구조가 필요합니다. 상대가 연결을 닫은 경우는 반환값 0이 아니라 `EPIPE`/`ECONNRESET` 오류로 드러납니다. 또한 `in_fd`가 가리키는 파일 내용이 전송 도중 바뀌면(다른 프로세스가 truncate·overwrite) 정의되지 않은 결과가 나올 수 있으므로, 전송 중 수정되지 않는다는 보장이 있는 파일에만 적용합니다.
 
 ## splice와 파이프: 임의의 fd 쌍 사이
 
@@ -165,7 +161,7 @@ ssize_t relay_once(int in_fd, int out_fd, int pipe_fd[2], size_t chunk) {
 
 `copy_file_range(int fd_in, off_t *off_in, int fd_out, off_t *off_out, size_t size, unsigned flags)`는 파일 간 복사를 위한 전용 인터페이스입니다. 두 파일이 **같은 파일시스템**에 있고 그 파일시스템이 `reflink`(여러 아이노드가 같은 CoW 블록을 공유하는 메타데이터 복사, Btrfs·XFS `reflink=1`에서 지원)나 서버 사이드 복사를 구현하고 있다면, 커널은 실제 바이트를 전혀 옮기지 않고 블록 포인터만 공유하는 방식으로 "즉시 복사"를 끝낼 수 있습니다. 이 가속 경로를 제공하지 않는 파일시스템에서는 커널이 내부적으로 일반 `read`+`write`와 동등한 복사를 수행하되, 여전히 유저 공간 왕복은 없앱니다.
 
-교차 파일시스템 복사 지원은 버전에 따라 달라졌습니다. **Linux 5.3–5.18**에서는 커널이 일부 교차 파일시스템 복사를 시도했지만 특정 가상 파일시스템 조합에서 오류가 났고, **Linux 5.19**부터는 "동일 종류의 파일시스템이고 해당 기능을 지원할 때만" 교차 복사를 허용하도록 정리되었습니다. 아래는 흔히 저지르는 실수부터 시작합니다.
+교차 파일시스템 복사 지원은 버전에 따라 달라졌습니다. **Linux 5.3–5.18**에서는 파일시스템이 지원하지 않는 교차 복사를 커널이 대신 수행했지만, 일부 가상 파일시스템에서는 실제로 복사하지 않고도 성공을 반환하는 버그가 있었고([copy_file_range(2) BUGS](https://man7.org/linux/man-pages/man2/copy_file_range.2.html)), **Linux 5.19**부터는 "동일 종류의 파일시스템이고 해당 기능을 지원할 때만" 교차 복사를 허용하도록 정리되었습니다. 아래는 흔히 저지르는 실수부터 시작합니다.
 
 ```c
 #define _GNU_SOURCE        // copy_file_range 선언 노출에 필요(glibc 2.27+)
@@ -205,12 +201,13 @@ int copy_file_range_all(int src_fd, int dst_fd, size_t size) {
 `EXDEV`가 발생하면 zero-copy 경로 자체를 쓸 수 없다는 뜻이므로, 애플리케이션은 이를 오류가 아니라 "일반 복사로 폴백하라"는 신호로 다뤄야 합니다. 검증은 `strace -T -e trace=copy_file_range,sendfile,splice ./프로그램`로 실제 시스템 콜 호출 횟수와 반환값을 확인하는 것이 가장 직접적입니다.
 
 ```text
+# 출력 형식 예시(측정값 아님): 위 copy_file_range_all을 main에서 호출하도록 빌드한 ./copy_tool 기준
 $ strace -T -e trace=copy_file_range ./copy_tool src.img dst.img
-copy_file_range(3, NULL, 4, NULL, 1073741824, 0) = 1073741824 <0.004123>
+copy_file_range(3, NULL, 4, NULL, <요청 바이트>, 0) = <복사된 바이트> <소요 시간(초)>
 +++ exited with 0 +++
 ```
 
-위 출력처럼 한 번의 호출로 1GiB가 복사되고 소요 시간이 수 ms 수준이라면 `reflink` 가속이 적용됐을 가능성이 높습니다. 같은 크기의 일반 복사가 수백 ms 이상 걸린다면 두 결과를 나란히 두고 파일시스템 문서(예: [챕터 09: 파일시스템 특성](/post/io-optimization/filesystem-performance-characteristics-ext4-xfs-zfs/))에서 `reflink` 지원 여부를 확인합니다.
+한 번의 호출이 파일 전체 크기를 반환하고 `-T`가 보여 주는 소요 시간이 같은 파일의 `read`+`write` 복사보다 자릿수 단위로 짧다면 `reflink` 가속이 적용됐을 가능성이 높습니다. 소요 시간이 일반 복사와 비슷하다면 두 결과를 나란히 두고 파일시스템 문서(예: [챕터 09: 파일시스템 특성](/post/io-optimization/filesystem-performance-characteristics-ext4-xfs-zfs/))에서 `reflink` 지원 여부를 확인합니다.
 
 ## 측정: read+write 대비 zero-copy 배율
 
@@ -237,18 +234,23 @@ int main(void) {
 
   // 1) read+write 루프
   int in1 = open(src, O_RDONLY), out1 = open("bench_rw.out", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+  if (in1 < 0 || out1 < 0) { perror("open"); return 1; }
   double t0 = now_sec();
   ssize_t n;
   while ((n = read(in1, buf, buf_sz)) > 0) write(out1, buf, (size_t)n);
   double t1 = now_sec();
   close(in1); close(out1);
 
-  // 2) sendfile
+  // 2) sendfile — 한 번에 최대 0x7ffff000바이트만 보내므로 끝까지 반복 호출한다
   int in2 = open(src, O_RDONLY), out2 = open("bench_sf.out", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+  if (in2 < 0 || out2 < 0) { perror("open"); return 1; }
   struct stat st; fstat(in2, &st);
   off_t off = 0;
   double t2 = now_sec();
-  sendfile(out2, in2, &off, (size_t)st.st_size);
+  while (off < st.st_size) {
+    ssize_t r = sendfile(out2, in2, &off, (size_t)(st.st_size - off));
+    if (r <= 0) { perror("sendfile"); break; }
+  }
   double t3 = now_sec();
   close(in2); close(out2);
 
@@ -265,7 +267,7 @@ int main(void) {
 
 **"splice는 아무 fd 쌍에나 쓸 수 있다"는 오해**: 앞서 본 것처럼 `fd_in` 또는 `fd_out` 중 하나는 반드시 파이프여야 합니다(2.6.31 이전에는 정확히 하나만). 소켓-소켓을 직접 잇고 싶다면 중간에 파이프를 만들어 두 번의 `splice`로 중계해야 하며, 이는 sendfile로는 불가능한 조합입니다.
 
-**"copy_file_range는 항상 즉시 끝나는 reflink 복사"라는 오해**: reflink 가속은 파일시스템과 커널 버전이 지원할 때만 적용되는 최적화이지 API 계약이 아닙니다. ext4처럼 reflink를 지원하지 않는 파일시스템에서는 커널 내부에서 일반 복사가 일어나고, 서로 다른 파일시스템 간에는 `EXDEV`로 실패할 수 있습니다(Linux 5.19 이전에는 더 제한적).
+**"copy_file_range는 항상 즉시 끝나는 reflink 복사"라는 오해**: reflink 가속은 파일시스템과 커널 버전이 지원할 때만 적용되는 최적화이지 API 계약이 아닙니다. ext4처럼 reflink를 지원하지 않는 파일시스템에서는 커널 내부에서 일반 복사가 일어나고, 서로 다른 파일시스템 간에는 `EXDEV`로 실패할 수 있습니다(Linux 5.3 이전에는 같은 파일시스템이 아니면 항상 `EXDEV`, 5.19부터는 같은 종류의 파일시스템이 지원할 때만 허용).
 
 ## 판단 기준: 언제 어떤 API를 쓰는가
 
@@ -282,9 +284,9 @@ int main(void) {
 
 zero-copy의 가장 큰 제약은 "전송 중 데이터를 들여다보거나 바꿀 수 없다"는 것입니다. 압축, 암호화, 콘텐츠 변환, 로깅을 위한 페이로드 검사처럼 유저 공간 로직이 데이터를 만져야 하는 순간 이 경로는 원천적으로 쓸 수 없고, 결국 `read`+`write`나 `mmap` 기반 경로로 되돌아가야 합니다. TLS가 대표적인 예로, 일반적인 OpenSSL 기반 TLS 소켓에는 `sendfile`을 직접 쓸 수 없으며, 커널 TLS(kTLS)처럼 암호화 자체를 커널로 옮기는 별도 메커니즘이 있어야 zero-copy 이득을 일부 되살릴 수 있습니다. 이는 인프라 전반에 kTLS를 도입해야 하는 별도의 운영 비용을 수반합니다.
 
-`splice`의 `SPLICE_F_MOVE`가 사실상 no-op라는 점은 API 이름과 실제 동작이 어긋나는 대표적 사례이며, 문서를 꼼꼼히 읽지 않으면 존재하지 않는 최적화를 기대하기 쉽습니다. 파이프의 기본 버퍼 크기 제한도 대용량 스트림에서 예상보다 많은 시스템 콜을 유발할 수 있어, 처리량이 중요한 경로에서는 `F_SETPIPE_SZ`로 파이프 용량을 조정하는 별도 튜닝이 필요합니다. `copy_file_range`의 reflink 가속은 파일시스템 선택에 종속적이므로, ext4처럼 reflink를 지원하지 않는 환경으로 이관하면 같은 코드가 조용히 일반 복사로 격하되어 벤치마크 수치가 재현되지 않을 수 있습니다.
+앞서 본 `SPLICE_F_MOVE`처럼 플래그 이름이 약속하는 최적화와 실제 동작이 다를 수 있으므로, zero-copy API는 이름이 아니라 매뉴얼의 현재 동작 기준으로 채택해야 합니다. `copy_file_range`의 reflink 가속은 파일시스템 선택에 종속적이므로, ext4처럼 reflink를 지원하지 않는 환경으로 이관하면 같은 코드가 조용히 일반 복사로 격하되어 벤치마크 수치가 재현되지 않을 수 있습니다.
 
-마지막으로 세 API 모두 "전송 대상 파일이 전송 도중 바뀌지 않는다"는 암묵적 전제에 의존합니다. 다른 프로세스가 같은 파일을 동시에 잘라내거나 덮어쓰면 정의되지 않은 바이트가 상대방에게 전달될 위험이 있으므로, 동시 쓰기가 가능한 파일에는 락이나 스냅샷 같은 별도 보호 장치가 필요합니다.
+마지막으로 세 API 모두 "전송 대상 파일이 전송 도중 바뀌지 않는다"는 암묵적 전제에 의존합니다. 동시 쓰기가 가능한 파일이라면 새 버전을 임시 파일에 쓴 뒤 `rename`으로 원자적으로 교체하거나, 파일시스템 스냅샷이나 advisory lock으로 전송 중 변경을 막는 운영 규칙이 필요합니다.
 
 ## 마무리
 
@@ -307,3 +309,6 @@ zero-copy의 가장 큰 제약은 "전송 중 데이터를 들여다보거나 �
 - [sendfile(2) — Linux man-pages](https://man7.org/linux/man-pages/man2/sendfile.2.html) — 커널 버전별 제약과 zero-copy 조건을 정의하는 공식 매뉴얼
 - [splice(2) — Linux man-pages](https://man7.org/linux/man-pages/man2/splice.2.html) — 파이프 요구사항과 플래그별 동작을 정의하는 공식 매뉴얼
 - [copy_file_range(2) — Linux man-pages](https://man7.org/linux/man-pages/man2/copy_file_range.2.html) — 교차 파일시스템 지원 이력과 reflink 가속 조건을 정의하는 공식 매뉴얼
+- [FreeBSD sendfile(2)](https://man.freebsd.org/cgi/man.cgi?query=sendfile&sektion=2) — FreeBSD 3.0 도입 이력
+- [LWN: Two new system calls: splice() and sync_file_range()](https://lwn.net/Articles/178199/) — splice의 1998년 제안과 2.6.17 병합 배경
+- [LWN: copy_file_range()](https://lwn.net/Articles/659523/) — Zach Brown·Anna Schumaker 패치셋 배경
