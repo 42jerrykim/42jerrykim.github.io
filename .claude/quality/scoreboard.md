@@ -269,7 +269,7 @@
 | content/collection/optimization-03-compiler/01-optimization-flags/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/02-lto-thinlto/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/03-pgo-workflow/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/04-compiler-comparison/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/04-compiler-comparison/index.md | 97.3 | 2026-10-20 | 1 | 통과 | 1.3 | ed2acbe | 없음(경미: L182 1M=4MiB를 DRAM 대역폭 구간으로 단정 — 플랫폼 의존 명시 필요) |
 | content/collection/optimization-03-compiler/05-inlining-diagnostics/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/06-code-generation-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/07-function-multiversioning/index.md | - | - | 0 | 미채점 | - | - | - |
