@@ -1,7 +1,7 @@
 ---
 collection_order: 10
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-21
 draft: false
 image: wordcloud.png
 title: "[IO 09] 블록 디바이스 최적화"
@@ -19,7 +19,7 @@ tags:
   - Benchmark
   - Latency
   - Throughput
-  - Profiling(프로파일링)
+  - C
   - Implementation(구현)
   - Best-Practices
   - System-Design
@@ -32,11 +32,11 @@ tags:
   - SSD
   - FDP
   - Write-Amplification
-  - Wear-Leveling
+  - Storage(저장소)
   - TRIM-Discard
   - Garbage-Collection
   - IO-Scheduler
-  - Zoned-Storage
+  - Comparison(비교)
   - Queue-Depth
 ---
 
@@ -46,7 +46,7 @@ tags:
 
 **완전한 초보자?** 이 장은 [02장: I/O 패턴과 비용](/post/io-optimization/io-patterns-blocking-nonblocking-cost-model/)에서 다룬 시스템콜·블로킹 비용 모델과 [09장: 파일시스템 특성](/post/io-optimization/filesystem-performance-characteristics-ext4-xfs-zfs/)에서 다룬 ext4/XFS/ZFS의 계층 구조를 전제로 합니다. "커널이 파일 요청을 블록 요청으로 바꿔 디바이스에 보낸다"는 그림만 있으면 충분합니다.
 
-**이 장의 깊이**: **심화**입니다. NAND 플래시와 FTL(Flash Translation Layer)의 동작 원리부터 시작해, `blk-mq` 스케줄러 4종의 내부 메커니즘, 그리고 2024–2025년에 커널에 들어온 NVMe FDP 지원까지 다룹니다. **다루지 않는 것**: `O_DIRECT`로 페이지 캐시를 우회하는 방법 자체([08장](/post/io-optimization/direct-io-o-direct-page-cache-bypass/)에서 다룸), ext4/XFS의 저널링·원자적 쓰기 상세([09장](/post/io-optimization/filesystem-performance-characteristics-ext4-xfs-zfs/)), io_uring의 SQ/CQ 폴링·NAPI busy-poll 상세([04장](/post/io-optimization/io-uring-advanced-deep-dive/)), WAL/fsync 저널링 전략([14장](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)), 커널 모듈·벤더 드라이버로 스토리지 스택을 직접 커스터마이징하는 운영 리스크(16장: 스토리지 스택 커스터마이징, 게시 예정)입니다.
+**이 장의 깊이**: **심화**입니다. NAND 플래시와 FTL(Flash Translation Layer)의 동작 원리부터 시작해, `blk-mq` 스케줄러 4종의 내부 메커니즘, 그리고 2024–2025년에 커널에 들어온 NVMe FDP 지원까지 다룹니다. **다루지 않는 것**: `O_DIRECT`로 페이지 캐시를 우회하는 방법 자체([08장](/post/io-optimization/direct-io-o-direct-page-cache-bypass/)에서 다룸), ext4/XFS의 저널링·원자적 쓰기 상세([09장](/post/io-optimization/filesystem-performance-characteristics-ext4-xfs-zfs/)), io_uring의 SQ/CQ 폴링·NAPI busy-poll 상세([04장](/post/io-optimization/io-uring-advanced-deep-dive/)), WAL/fsync 저널링 전략([14장](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)), 커널 모듈·벤더 드라이버로 스토리지 스택을 직접 커스터마이징하는 운영 리스크([16장: 스토리지 스택 커스터마이징](/post/io-optimization/storage-stack-customization-kernel-fs-drivers-expert/))입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -70,12 +70,12 @@ NAND 플래시는 **읽기·쓰기는 페이지(보통 4–16KB) 단위**로, **
 
 무효 페이지가 쌓인 블록은 <strong>가비지 컬렉션(GC)</strong>으로 회수됩니다. GC는 블록 안에 남은 유효 페이지를 다른 블록으로 옮겨 쓴 뒤 블록 전체를 지우는데, 이 "옮겨 쓰기"가 호스트가 요청하지 않은 추가 쓰기를 만듭니다. <strong>쓰기 증폭 계수(WAF, Write Amplification Factor)</strong>는 "미디어에 실제로 쓴 바이트 / 호스트가 쓴 바이트"로 정의되며, GC가 활발할수록, 그리고 호스트가 함께 지워질 데이터(수명이 비슷한 데이터)를 물리적으로 흩어 놓을수록 WAF가 커집니다. WAF가 커지면 셀 마모가 빨라져 수명이 줄고, GC로 인한 백그라운드 쓰기가 전경 쓰기·읽기 지연을 밀어내 **tail latency**를 악화시킵니다.
 
-**TRIM/discard**는 파일시스템이 삭제한 논리 블록을 컨트롤러에 알려 FTL이 해당 페이지를 조기에 무효 처리하게 하는 명령입니다. discard가 없으면 컨트롤러는 실제로는 비어 있는 페이지를 "유효한 데이터"로 오인해 GC 때 불필요하게 옮겨 쓰므로 WAF가 커집니다. 다만 discard 자체도 비용이 있어, ext4/XFS의 `discard` 마운트 옵션(연속 discard)과 주기적 `fstrim`(배치 discard) 중 무엇을 쓸지는 워크로드에 따라 달라지며, 파일시스템별 구체적인 옵션은 [09장](/post/io-optimization/filesystem-performance-characteristics-ext4-xfs-zfs/)에서 다룹니다. <strong>오버프로비저닝(OP)</strong>은 컨트롤러가 사용자에게 노출하지 않고 예비로 남겨 두는 여유 공간으로, GC가 움직일 여유 블록을 늘려 WAF를 낮추는 대신 가용 용량을 줄이는 트레이드오프입니다.
+**TRIM/discard**는 파일시스템이 삭제한 논리 블록을 컨트롤러에 알려 FTL이 해당 페이지를 조기에 무효 처리하게 하는 명령입니다. discard가 없으면 컨트롤러는 실제로는 비어 있는 페이지를 "유효한 데이터"로 오인해 GC 때 불필요하게 옮겨 쓰므로 WAF가 커집니다. 다만 discard 자체도 비용이 있어, ext4/XFS의 `discard` 마운트 옵션(연속 discard)과 주기적 `fstrim`(배치 discard) 중 무엇을 쓸지는 워크로드에 따라 달라집니다. 연속 discard는 블록이 해제될 때마다 discard를 보내 GC에 빠르게 정보를 주지만 삭제가 몰릴 때 그 비용이 쓰기 경로에 섞이고, 배치 방식은 `fstrim`(많은 배포판에서 `fstrim.timer`로 주기 실행)을 한가한 시간대에 돌려 비용을 한곳에 모으는 대신 그 사이에는 컨트롤러가 무효 페이지를 모릅니다. <strong>오버프로비저닝(OP)</strong>은 컨트롤러가 사용자에게 노출하지 않고 예비로 남겨 두는 여유 공간으로, GC가 움직일 여유 블록을 늘려 WAF를 낮추는 대신 가용 용량을 줄이는 트레이드오프입니다.
 
 ```text
 WAF = (미디어에 실제로 쓴 바이트) / (호스트가 쓴 바이트)
 # WAF ~= 1.0        : 이상적, 추가 쓰기 거의 없음
-# WAF 2~4 (전형적)   : GC로 인한 재기록이 호스트 쓰기의 1~3배
+# WAF 2 이상         : GC 재기록이 호스트 쓰기 이상(실제 값은 워크로드·OP·사용률에 따라 다름)
 # WAF 상승 요인       : 낮은 여유 공간, discard 미사용, 랜덤 쓰기 비중 증가,
 #                      hot/cold 데이터 혼재로 GC 대상 블록에 유효 페이지가 많이 남음
 ```
@@ -107,7 +107,7 @@ cat /sys/block/nvme0n1/queue/scheduler
 echo none > /sys/block/nvme0n1/queue/scheduler
 echo mq-deadline > /sys/block/sda/queue/scheduler
 
-# 큐 깊이(디바이스가 동시에 받아들이는 미완료 요청 수) 확인
+# 블록 계층이 할당할 수 있는 요청 수 확인(태그 인스턴스당 값, 디바이스 큐 깊이와 다름)
 cat /sys/block/nvme0n1/queue/nr_requests
 ```
 
@@ -115,6 +115,8 @@ cat /sys/block/nvme0n1/queue/nr_requests
 
 ```text
 # bench_scheduler.fio  (fio --version fio-3.x, Linux, NVMe 디바이스 예시)
+# 경고: rw=randrw는 filename 장치에 직접 쓰므로 그 장치의 파일시스템·데이터가 파괴된다.
+#       빈 테스트 장치에서만 실행하거나, filename=/data/fio.test + size=10G 같은 테스트 파일로 바꾼다.
 # 사용법: echo none > /sys/block/nvme0n1/queue/scheduler 후 실행 → 결과 기록 →
 #         echo kyber > ... 후 재실행 → p99/p999 지연시간 비교
 [global]
@@ -151,11 +153,12 @@ flowchart TB
   ru1 --> rg
 ```
 
-Samsung 반도체 기술 블로그가 소개한 Meta CacheLib(PM9D3 SSD 기준) 통합 사례는 FDP 없이는 전체 용량 사용 시 WAF가 약 3.5까지 올라가 이를 1.3 이하로 유지하려면 호스트 단에서 약 50%의 오버프로비저닝이 필요했던 반면, FDP를 적용하면 디바이스 사용률 100%에서도 WAF를 약 1.0 수준으로 유지할 수 있었다고 보고합니다. WAF가 낮아지면 GC로 인한 백그라운드 쓰기가 줄어 tail latency도 함께 개선되고, 오버프로비저닝을 위해 비워 두던 용량을 실사용에 돌릴 수 있습니다. 이 수치는 특정 워크로드·드라이브 조합의 사례이며, 실제 이득은 데이터 수명 분포와 힌트 설계 품질에 좌우된다는 점을 감안해야 합니다.
+Meta·Samsung 연구진의 논문 [Allison et al., "Towards Efficient Flash Caches with Emerging NVMe Flexible Data Placement SSDs"](https://arxiv.org/abs/2503.11665)(EuroSys 2025)가 보고한 Meta CacheLib(Samsung PM9D3 SSD 기준) 통합 사례는 FDP 없이는 전체 용량 사용 시 WAF가 약 3.5까지 올라가 이를 1.3 이하로 유지하려면 호스트 단에서 약 50%의 오버프로비저닝이 필요했던 반면, FDP를 적용하면 디바이스 사용률 100%에서도 WAF를 약 1.0 수준으로 유지할 수 있었다고 보고합니다. WAF가 낮아지면 GC로 인한 백그라운드 쓰기가 줄어 tail latency도 함께 개선되고, 오버프로비저닝을 위해 비워 두던 용량을 실사용에 돌릴 수 있습니다. 이 수치는 특정 워크로드·드라이브 조합의 사례이며, 실제 이득은 데이터 수명 분포와 힌트 설계 품질에 좌우된다는 점을 감안해야 합니다.
 
-커널 지원은 아직 진행 중인 영역입니다. LWN.net이 정리한 바에 따르면 초기 FDP 지원은 NVMe 캐릭터 디바이스(`/dev/ng0n1`)를 통한 패스스루와 `io_uring`의 write-stream 커맨드로 제한적으로 노출되었고, 파일시스템 I/O 경로(iomap)에 FDP를 온전히 연결하는 작업은 이 글 작성 시점에도 미해결 과제로 남아 있습니다. 이후 2025년 상반기 패치 시리즈로 블록 계층에 `bi_write_stream`/`max_write_streams` 같은 큐 한계와 `io_uring`의 per-IO 쓰기 스트림 인터페이스가 추가되었고, Phoronix는 이를 Linux 6.16에 반영되는 변경으로 보도했습니다. 애플리케이션 레벨에서 수명 힌트를 넘기는 오래된 경로는 `fcntl`의 `F_SET_RW_HINT`(Linux 4.13+)이며, 아래는 파일 디스크립터에 "짧은 수명" 힌트를 거는 최소 예시입니다. 힌트가 실제로 FDP RUH 선택까지 반영되는지는 커널 버전과 드라이버 구현에 따라 다르므로(**구현 정의**), 적용 전 대상 환경에서 직접 확인해야 합니다.
+커널 지원은 아직 진행 중인 영역입니다. [LWN.net의 정리](https://lwn.net/Articles/1018642/)에 따르면 초기 FDP 활용은 NVMe 캐릭터 디바이스(`/dev/ng0n1`)를 통한 `uring_cmd` 패스스루로 제한되었고, 파일시스템 I/O 경로(iomap)에 FDP를 온전히 연결하는 작업은 이 글 작성 시점에도 미해결 과제로 남아 있습니다. 이후 2025년 상반기 패치 시리즈로 블록 계층에 `bi_write_stream`/`max_write_streams` 같은 큐 한계와 `io_uring`의 per-IO 쓰기 스트림 인터페이스가 추가되었고, 이 변경은 Linux 6.16에 반영되었습니다. 애플리케이션 레벨에서 수명 힌트를 넘기는 오래된 경로는 `fcntl`의 `F_SET_RW_HINT`(Linux 4.13+)이며, 아래는 파일 디스크립터에 "짧은 수명" 힌트를 거는 최소 예시입니다. 힌트가 실제로 FDP RUH 선택까지 반영되는지는 커널 버전과 드라이버 구현에 따라 다르므로(**구현 정의**), 적용 전 대상 환경에서 직접 확인해야 합니다.
 
 ```c
+#define _GNU_SOURCE  // glibc가 F_SET_RW_HINT·RWH_* 를 노출하려면 필요
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -166,7 +169,7 @@ Samsung 반도체 기술 블로그가 소개한 Meta CacheLib(PM9D3 SSD 기준) 
 #define RWH_WRITE_LIFE_SHORT   2
 #endif
 #ifndef F_SET_RW_HINT
-#define F_SET_RW_HINT 1038
+#define F_SET_RW_HINT 1036  // F_LINUX_SPECIFIC_BASE(1024) + 12
 #endif
 
 int main(void) {
@@ -220,8 +223,8 @@ nvme fdp usage /dev/nvme0n1
 
 ## 비판적 시각: 한계와 트레이드오프
 
-- **스케줄러 선택에 보편적 정답은 없다**: `none`이 NVMe 기본값이라는 통념은 대체로 맞지만, 워크로드(순수 처리량 vs tail latency vs 공정성)에 따라 `kyber`나 `mq-deadline`이 더 나은 경우가 실제로 있습니다. 벤치마크 없이 "NVMe는 무조건 none"으로 단정하면 latency-critical 워크로드에서 손해를 볼 수 있습니다.
-- **FDP는 아직 생태계 전반에 성숙하지 않았다**: 하드웨어(드라이브가 FDP를 지원해야 함), 커널(파일시스템 경유 경로는 여전히 미해결 과제), 애플리케이션(의미 있는 배치 힌트를 설계해야 함) 세 축이 모두 갖춰져야 이득을 봅니다. 벤더가 보고한 WAF 개선 수치는 해당 워크로드·드라이브 조합에 한정된 사례이며, 일반화하기 전에 자체 환경에서 재현해야 합니다.
+- **스케줄러 선택에 보편적 정답은 없다**: 앞에서 본 것처럼 기본값은 출발점일 뿐이며, 스케줄러를 바꿔 얻은 결과도 그 시점의 워크로드 혼합에 묶여 있습니다. 읽기·쓰기 비율이나 동시 테넌트 구성이 바뀌면 같은 설정이 오히려 손해가 될 수 있으므로, 벤치마크는 배포 전 1회가 아니라 워크로드가 바뀔 때마다 다시 돌려야 합니다.
+- **FDP는 아직 생태계 전반에 성숙하지 않았다**: 하드웨어(드라이브가 FDP를 지원해야 함), 커널(파일시스템 경유 경로는 여전히 미해결 과제), 애플리케이션(의미 있는 배치 힌트를 설계해야 함) 세 축이 모두 갖춰져야 이득을 봅니다. 힌트 설계가 데이터 수명과 맞지 않으면 수명이 다른 데이터가 같은 RU에 섞여 FDP 없이 쓸 때와 비슷한 GC 부담으로 돌아갑니다.
 - **큐 깊이·오버프로비저닝은 제로섬에 가깝다**: 큐 깊이를 늘리면 처리량은 오르지만 tail latency 예산을 깎고, 오버프로비저닝을 늘리면 WAF는 낮아지지만 가용 용량이 줄어듭니다. "더 빠르게"와 "더 오래·더 예측 가능하게" 사이에서 워크로드의 우선순위를 먼저 정해야 합니다.
 
 ## 마무리
