@@ -279,7 +279,7 @@
 | content/collection/optimization-03-compiler/11-cpp20-modules/index.md | 98.5 | 2026-10-21 | 1 | 통과 | 1.3 | e672a2c | 없음(경미: L114 GCC 14는 .cppm을 C++ 소스로 인식하지 않을 수 있음 — -x c++ 추가 권장, 최신 GCC 매뉴얼은 .cppm 지원 명시) |
 | content/collection/optimization-03-compiler/12-build-parallelization/index.md | 95.8 | 2026-10-21 | 1 | 통과 | 1.3 | 5cd69c0 | 없음(경미: L68 -s 출력 형식은 ccache 4.7 이후 기준 / L125 캐시 키 gcc14와 실제 빌드 컴파일러 불일치 — CXX=g++-14 지정 필요) |
 | content/collection/optimization-03-compiler/13-static-analyzer/index.md | 91.3 | 2026-10-21 | 1 | 통과 | 1.3 | 8579e11 | 깊이 — L137 기준선(새 경고만 실패) 정책과 YAML(--warnings-as-errors 전체) 불일치 — clang-tidy-diff.py 등 diff 한정 job 추가 / 코드 — L105 scan-build는 -enable-checker(단일 대시), L97-99·L128-129 출력 줄 번호가 파일명 주석 1줄만큼 밀림 / 정확성 — L49 심볼릭 실행 설명 출처는 clang.llvm.org/docs/ClangStaticAnalyzer.html |
-| content/collection/optimization-03-compiler/14-bolt-post-link-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/14-bolt-post-link-optimization/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | a0707a0 | 없음 |
 | content/collection/optimization-03-compiler/15-autofdo/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 1.0 | c8f0024 | 없음(경미: Networking·IO·Testing 등 본문 결속 약한 범용 태그 다수, 16번 챕터 mimalloc 미병기) |
 | content/collection/optimization-04-memory-allocation/01-container-cost-model/index.md | - | - | 0 | 미채점 | - | - | - |
