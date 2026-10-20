@@ -382,7 +382,7 @@
 | content/collection/optimization-09-io-network/00-introduction/index.md | 100 | 2026-07-25 | 2 | 통과 | 1.0 | 6161d63 | 없음 |
 | content/collection/optimization-09-io-network/01-io-cost-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/02-io-patterns-cost/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/03-async-io-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/03-async-io-fundamentals/index.md | 91.6 | 2026-10-20 | 0 | 통과 | 1.3 | 2183481 | 경미: 1(L312 epoll 정규 파일 서술 — epoll_ctl은 EPERM 거부로 정정 권장; L66·68 연도 출처 없음) / 5(벤치마크가 FD_SETSIZE 초과 입력에서 UB — poll 대체·반환값 확인 권장) |
 | content/collection/optimization-09-io-network/04-io-uring-advanced/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/05-iocp-windows-io/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/06-zero-copy-techniques/index.md | - | - | 0 | 미채점 | - | - | - |
