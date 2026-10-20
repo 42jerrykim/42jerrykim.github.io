@@ -1,188 +1,186 @@
 ---
 collection_order: 13
 date: 2026-03-11
-lastmod: 2026-07-12
+lastmod: 2026-10-21
 draft: false
 image: wordcloud.png
 title: "[Compiler 03] 성능 관련 정적 분석"
 slug: static-analyzer-performance
-description: "성능 관련 컴파일러·정적 분석 경고(미사용 결과·불필요한 복사·비효율 루프), Clang Static Analyzer·GCC -fanalyzer, CI에 경고 통합하고 벤치마크와 분리해 성능 회귀와 연계하는 방법을 다룹니다."
+description: "Clang Static Analyzer·GCC -fanalyzer·clang-tidy의 분석 원리와 비용, 패딩·불필요한 복사·죽은 저장 같은 성능 관련 경고의 실제 출력과 대처, CI에서 정적 분석과 벤치마크를 분리 운영하는 방법을 다룹니다."
 tags:
   - C++
+  - C
   - Performance(성능)
   - Optimization(최적화)
   - Compiler(컴파일러)
-  - CPU(Central Processing Unit)
-  - Cache
   - Memory(메모리)
-  - Benchmark
-  - Profiling(프로파일링)
-  - CI-CD(Continuous Integration/Continuous Deployment)
-  - Testing(테스트)
-  - Implementation(구현)
+  - Cache
   - Code-Quality(코드품질)
-  - Linux(리눅스)
-  - Windows(윈도우)
-  - OS(운영체제)
-  - Concurrency(동시성)
-  - Latency
-  - Throughput
-  - Backend(백엔드)
-  - Embedded(임베디드)
   - Debugging(디버깅)
-  - Documentation(문서화)
-  - Refactoring(리팩토링)
-  - Clean-Code(클린코드)
-  - Best-Practices
-  - Git
+  - Testing(테스트)
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Automation(자동화)
-  - Software-Architecture(소프트웨어아키텍처)
-  - Design-Pattern(디자인패턴)
-  - Data-Structures(자료구조)
-  - Time-Complexity(시간복잡도)
-  - Complexity-Analysis(복잡도분석)
-  - Edge-Cases(엣지케이스)
+  - Reliability
+  - Linux(리눅스)
   - Pitfalls(함정)
-  - Error-Handling(에러처리)
+  - Best-Practices
   - Guide(가이드)
   - Reference(참고)
-  - Technology(기술)
   - Tutorial(튜토리얼)
   - Advanced
   - Deep-Dive
   - 실습
-  - Case-Study
-  - Assembly
+  - Comparison(비교)
+  - Open-Source(오픈소스)
+  - Clang
+  - GCC
+  - LLVM
+  - Static-Analysis
+  - clang-tidy
+  - GitHub-Actions
 ---
 
-컴파일러와 정적 분석기는 미사용 결과, 비효율 루프 등 성능 관련 경고를 낼 수 있습니다. 이 챕터에서는 도구와 CI 연계를 다룹니다.
+정적 분석기는 프로그램을 실행하지 않고 소스만 보고 결함을 찾는 도구입니다. 대부분은 메모리 안전성과 정확성을 위한 도구지만, 그중 일부 체크는 불필요한 복사, 낭비되는 구조체 패딩, 읽히지 않는 계산처럼 성능과 직결된 패턴을 짚어 줍니다. 이 챕터에서는 Clang Static Analyzer, GCC `-fanalyzer`, clang-tidy가 어떤 원리로 동작하고 성능 관점에서 무엇을 잡아 주는지, 실제 경고가 어떻게 생겼는지, 그리고 CI에서 경고 관리와 벤치마크를 어떻게 나눠 운영하는지를 다룹니다. 본문의 경고 메시지는 2026년 10월 [Compiler Explorer](https://godbolt.org)의 x86-64 clang 19.1.0과 clang-tidy(trunk)에서 얻은 실제 출력입니다.
 
-## 성능 관련 컴파일러·정적 분석 경고
+## 세 도구의 동작 원리와 비용
 
-컴파일러와 정적 분석 도구는 **성능과 직간접적으로 연관된** 경고를 내놓을 수 있습니다. 대표적인 것만 정리하면 다음과 같습니다.
+세 도구는 이름이 비슷하게 묶이지만 분석 방식이 달라서, 잡는 문제와 드는 비용이 다릅니다.
 
-- **미사용 결과 / 불필요한 복사**: 함수 반환값을 쓰지 않거나, 값으로 받을 때 복사가 불필요하게 일어나는 경우. `-Wunused-result`, `-Wunused-value` 또는 분석기별 "무시된 반환값", "복사 대신 이동 가능" 같은 메시지가 나올 수 있습니다. 불필요한 복사는 Tr.02(객체 수명, 파라미터 전달)과도 연결됩니다.
-- **비효율적인 루프/알고리즘**: 루프 안에서 매 반복마다 불변 식을 계산하거나, 더 적합한 자료 구조가 있는데 비효율적인 연산을 쓰는 패턴. 일부 분석기는 "이 루프는 O(n²)이고, 정렬된 구조를 쓰면 개선될 수 있다" 수준의 힌트를 주기도 합니다.
-- **분기·비교**: 항상 참/거짓인 조건, 죽은 분기 등은 최적화 단계에서 제거되지만, 정적 분석기는 "이 조건은 불필요하다"는 식의 경고를 낼 수 있어, 코드 단순화·성능에 도움이 됩니다.
+[Clang Static Analyzer](https://clang-analyzer.llvm.org/)(CSA)는 공식 사이트의 설명대로 심볼릭 실행에 기반한 경로 민감·프로시저 간 분석을 합니다. 함수 안의 분기를 따라가며 "이 경로에서 이 변수는 null일 수 있다" 같은 상태를 추적하므로, 특정 경로에서만 일어나는 null 역참조나 해제 후 사용을 찾을 수 있습니다. 같은 사이트는 이런 깊은 분석 때문에 정적 분석이 컴파일보다 훨씬 느릴 수 있고, 거짓 양성(false positive)이 체커마다 크게 다르다고 밝힙니다.
 
-이런 경고는 **버그**가 아니라 **개선 여지**를 알려 주는 것이므로, 가능하면 켜 두고 중요한 항목부터 수정하는 것이 좋습니다.
+GCC의 `-fanalyzer`도 비슷한 방식입니다. [GCC Static Analyzer Options 문서](https://gcc.gnu.org/onlinedocs/gcc/Static-Analyzer-Options.html)는 이를 커버리지 유도 심볼릭 실행으로 설명하고, 건전하지도 완전하지도 않아 거짓 양성과 거짓 음성이 모두 있을 수 있는 버그 찾기 도구라고 명시합니다. 중요한 제약도 같은 문서에 있습니다. 최신 매뉴얼과 GCC 14.2 매뉴얼 모두 "The analyzer is only suitable for use on C code in this release."라고 적고 있으므로, C++ 프로젝트에 `-fanalyzer`를 그대로 켜는 것은 현재 공식적으로 권장되는 사용법이 아닙니다. C++ 코드에는 CSA와 clang-tidy를 쓰는 편이 맞습니다.
 
-## Clang Static Analyzer / GCC -fanalyzer
+[clang-tidy](https://clang.llvm.org/extra/clang-tidy/)는 경로를 추적하지 않고 AST(추상 구문 트리)의 패턴을 매칭하는 린터입니다. 분석이 가볍고 결정론적이라 거짓 양성이 상대적으로 적은 대신, "이 경로에서만 생기는 문제"는 찾지 못합니다. 성능 관점에서 가장 직접적으로 쓸모 있는 도구는 이쪽으로, `performance-` 접두사가 붙은 체크 묶음이 불필요한 복사와 비효율적인 표준 라이브러리 사용을 짚어 줍니다.
 
-두 도구 모두 **성능 전용**이 아니라 정확성·안전성 위주이지만, 출력되는 경고 중에는 "이렇게 바꾸면 더 빠르거나 더 단순해진다"에 해당하는 것이 섞여 있으므로, 성능 트랙에서는 그런 항목을 골라 개선 포인트로 활용할 수 있습니다.
+## 실제 경고로 보는 성능 관련 체크
 
-> "The Clang Static Analyzer is a source code analysis tool that finds bugs in C, C++, and Objective-C programs." — [Clang Static Analyzer](https://clang-analyzer.llvm.org/)
+### CSA: 죽은 저장과 구조체 패딩
 
-### Clang Static Analyzer (scan-build) 사용법
+아래 파일에는 성능과 정확성 문제가 섞여 있습니다. `Packet`은 필드 순서 때문에 패딩이 많이 생기는 구조체이고, `compute`는 계산해 놓고 쓰지 않는 값을, `deref`는 특정 분기에서만 null을 역참조하는 경로를 갖고 있습니다.
 
-```bash
-# CMake 프로젝트에서 scan-build 사용
-scan-build cmake -DCMAKE_BUILD_TYPE=Debug ..
-scan-build make -j$(nproc)
+```cpp
+// sa.cc
+#include <cstdlib>
 
-# 결과를 HTML 보고서로 저장 (기본: /tmp/scan-build-*)
-scan-build -o ./analysis_report make -j$(nproc)
+struct Packet {          // 필드 순서 때문에 패딩이 생기는 구조체
+    char  flag;
+    double value;
+    char  kind;
+    double weight;
+    char  tag;
+};
 
-# 특정 체커만 활성화 (성능 관련 체커 예시)
-scan-build --enable-checker alpha.performance.Padding make
+int compute(int x) {
+    int result = x * 2;  // 저장했지만 읽지 않는 값
+    result = x + 1;
+    return result;
+}
+
+int deref(int* p, bool cond) {
+    if (cond) p = nullptr;
+    return *p;           // cond가 참이면 null 역참조
+}
+
+double use(const Packet& pk) { return pk.value + pk.weight; }
 ```
 
-출력 예시:
+`clang++ --analyze sa.cc`로 기본 체커를 돌리면 두 개의 경고가 나옵니다. 성능 체커인 `optin.performance.Padding`은 이름의 `optin` 패키지가 뜻하듯 기본으로 꺼져 있어 명시적으로 켜야 합니다. [CSA 체커 문서](https://clang.llvm.org/docs/analyzer/checkers.html)에 따르면 이 체커는 기본 허용 패딩이 24바이트라서, 아래 예에서는 임계값(`AllowedPad`)을 낮춰 실행했습니다.
+
+```bash
+clang++ --analyze \
+  -Xclang -analyzer-checker=optin.performance.Padding \
+  -Xclang -analyzer-config -Xclang optin.performance.Padding:AllowedPad=2 \
+  sa.cc
+```
+
 ```text
-scan-build: 3 bugs found.
-scan-build: Run 'scan-view /tmp/scan-build-2026-06-01-123456-1234-1' to examine bug reports.
-
-foo.cc:15:5: warning: Value stored to 'result' is never read [deadcode.DeadStores]
-bar.cc:42:12: warning: Potential null pointer dereference [core.NullDereference]
-baz.cc:78:8: warning: Function call argument is an uninitialized value [core.CallAndMessage]
+<source>:3:8: warning: Excessive padding in 'struct Packet' (21 padding bytes, where 5 is optimal). Optimal fields order: value, weight, flag, kind, tag, consider reordering the fields or adding explicit padding members [optin.performance.Padding]
+<source>:12:9: warning: Value stored to 'result' during its initialization is never read [deadcode.DeadStores]
+<source>:19:12: warning: Dereference of null pointer (loaded from variable 'p') [core.NullDereference]
+3 warnings generated.
 ```
 
-위 `deadcode.DeadStores`처럼 "저장했지만 읽지 않는 값"은 죽은 계산을 알려 주므로, 핫 경로에 있다면 불필요한 연산을 줄이는 단서가 됩니다.
+패딩 경고는 성능에 직접 연결됩니다. 체커 문서는 과도한 패딩이 메모리를 낭비하고 프로세서 캐시의 효율을 떨어뜨린다고 설명하는데, 이 구조체를 배열로 대량 처리한다면 크기가 줄어든 만큼 캐시 라인 하나에 더 많은 원소가 들어갑니다. 경고가 제시한 순서(`value, weight, flag, kind, tag`)로 바꾸면 패딩이 21바이트에서 5바이트로 줄어듭니다. `deadcode.DeadStores`는 그 자체로 성능 문제라기보다 의도와 다른 코드의 신호입니다. 최적화 컴파일러는 이런 죽은 저장을 어차피 제거하므로 실행 속도에는 보통 영향이 없지만, 핫 경로에서 이 경고가 나왔다면 개발자가 의도한 계산이 실제로는 쓰이지 않고 있다는 뜻일 수 있습니다. `core.NullDereference`는 경로 민감 분석의 전형적인 결과로, `cond`가 참인 경로에서만 일어나는 문제를 찾아냈습니다.
 
-### GCC -fanalyzer 사용법
+프로젝트 전체에 적용할 때는 빌드 명령을 감싸는 `scan-build`를 씁니다. `scan-build cmake ..`로 구성한 뒤 `scan-build -o ./analysis_report make`처럼 빌드하면, 컴파일러 호출마다 분석을 끼워 넣고 결과를 HTML 보고서로 모아 줍니다. 체커는 `--enable-checker optin.performance.Padding`처럼 켭니다.
+
+### clang-tidy: 불필요한 복사
+
+clang-tidy의 성능 체크는 C++ 코드에서 가장 흔한 성능 실수인 불필요한 복사를 정확히 짚습니다.
+
+```cpp
+// tidy.cc
+#include <string>
+#include <vector>
+
+std::size_t total_length(std::vector<std::string> names) {   // 값으로 받아 매번 복사
+    std::size_t n = 0;
+    for (auto s : names) n += s.size();                      // 원소마다 string 복사
+    return n;
+}
+```
 
 ```bash
-# 단일 파일 분석
-g++ -O2 -fanalyzer foo.cc -c 2>&1 | grep "warning:"
-
-# CMake 프로젝트: 분석 빌드용 플래그 추가
-cmake -DCMAKE_CXX_FLAGS="-fanalyzer" -DCMAKE_BUILD_TYPE=Debug ..
-make -j$(nproc) 2>&1 | grep -E "warning:|note:"
+clang-tidy tidy.cc -checks='-*,performance-*' -- -std=c++20
 ```
 
-`-fanalyzer`는 컴파일 시간이 늘어나므로 CI의 별도 "static analysis" 단계에서만 켜는 것이 좋습니다. GCC 12 이상에서 지원 수준이 더 좋습니다.
-
-**Clang Static Analyzer**는 Clang 기반의 정적 분석기로, 메모리 누수·null 역참조·데이터 플로우 이상 등과 함께, 일부 성능 관련 이슈(불필요한 연산, 개선 가능한 패턴)를 보고할 수 있습니다. **GCC -fanalyzer**는 GCC 10부터 포함된 정적 분석 패스입니다.
-
-### clang-tidy의 성능 체크
-
-**clang-tidy**는 `performance-*` 계열 체크를 따로 제공해, 불필요한 복사·값 전달·범위 기반 루프의 복사 등을 직접 짚어 줍니다. `compile_commands.json`(CMake가 `CMAKE_EXPORT_COMPILE_COMMANDS=ON`으로 생성)을 읽어 프로젝트 전체에 적용할 수 있습니다.
-
-```bash
-# compile_commands.json 생성 후 performance 체크만 실행
-cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-clang-tidy -p build --checks='-*,performance-*' src/*.cpp
+```text
+<source>:4:51: warning: the parameter 'names' of type 'std::vector<std::string>' (aka 'std::vector<basic_string<char>>') is copied for each invocation but only used as a const reference; consider making it a const reference [performance-unnecessary-value-param]
+<source>:6:15: warning: loop variable is copied but only used as const reference; consider making it a const reference [performance-for-range-copy]
+2 warnings generated.
 ```
 
-예를 들어 `performance-unnecessary-value-param`은 "복사 대신 const 참조로 받으라"는 식으로, 핫 경로의 불필요한 복사를 줄이는 데 직접 쓰입니다.
+두 경고는 각각 함수 호출마다 벡터 전체를 복사하는 비용과, 루프 반복마다 문자열을 복사하는 비용을 가리킵니다. [performance-unnecessary-value-param 문서](https://clang.llvm.org/extra/clang-tidy/checks/performance/unnecessary-value-param.html)의 설명대로 이 체크는 복사 비용이 큰 타입의 값 매개변수가 const 참조로 충분할 때만 경고하므로, 기계적으로 고쳐도 의미가 바뀌지 않는 경우가 대부분입니다. 같은 `performance-*` 묶음에는 `performance-inefficient-string-concatenation`(루프 안의 문자열 `+` 누적), `performance-move-const-arg`(효과 없는 `std::move`), `performance-inefficient-vector-operation`(`reserve` 없이 반복 `push_back`) 등이 있으며, 전체 목록은 [clang-tidy 체크 목록](https://clang.llvm.org/extra/clang-tidy/checks/list.html)에서 확인할 수 있습니다. 프로젝트 전체에 적용하려면 CMake에 `-DCMAKE_EXPORT_COMPILE_COMMANDS=ON`을 주어 `compile_commands.json`을 만들고 `clang-tidy -p build`로 그 파일을 읽게 합니다.
 
-## CI에 경고 통합하고 성능 회귀와 연계
+## CI에서 경고 관리와 성능 측정을 나누기
 
-정적 분석을 실효성 있게 쓰려면 경고를 사람이 가끔 보는 것이 아니라 **CI에서 자동으로 관리**해야 합니다. 다만 정적 분석은 성능을 직접 측정하지 않으므로, "경고 관리"와 "벤치마크 기반 회귀 측정"을 별개의 단계로 두고 함께 운영하는 것이 핵심입니다.
-
-- **경고를 CI에 넣기**: 컴파일 시 `-Wall -Wextra` 및 분석기 플래그를 켜고, **새로 발생하는 경고**를 실패로 두거나, 기존 경고 목록을 baseline으로 두고 **증가분만** 실패로 두는 방식을 씁니다. 성능 관련 경고만 필터링해 실패로 두는 것도 가능합니다.
-- **성능 회귀와 연계**: 정적 분석 경고 자체는 "성능 회귀"를 직접 측정하지는 않습니다. 다만 "미사용 결과", "불필요한 복사" 등을 줄이면 실제 벤치마크에서 회귀가 나올 가능성을 낮출 수 있습니다. CI 파이프라인에서는 (1) 정적 분석으로 경고를 관리하고, (2) 별도 단계에서 **벤치마크**를 돌려 수치적 회귀를 잡는 두 단계를 함께 두는 구성을 권장합니다. 경고 제거가 곧 성능 개선은 아니지만, 코드 품질과 잠재적 성능 이슈를 한 번에 다루는 데 도움이 됩니다.
-
-GitHub Actions에서는 빌드와 분리된 "static-analysis" job을 두어 분석만 돌립니다. 분석은 컴파일 시간이 늘어나므로 일반 빌드·테스트와 병렬 job으로 분리하는 것이 좋습니다.
+정적 분석 경고는 사람이 가끔 들여다보면 쌓이기만 하므로 CI에서 자동으로 관리해야 합니다. 이미 경고가 많은 코드베이스에서 처음부터 "경고 0"을 강제하면 도입 자체가 막히므로, 현재 경고 목록을 기준선으로 저장해 두고 **새로 생긴 경고만** 실패로 처리하는 방식이 현실적입니다. 정적 분석은 컴파일보다 느리므로 일반 빌드·테스트와 다른 job으로 분리해 병렬로 돌립니다.
 
 ```yaml
-static-analysis:
-  runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v4
-    - name: Configure (export compile_commands.json)
-      run: cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-    - name: clang-tidy (performance checks)
-      run: clang-tidy -p build --checks='-*,performance-*' src/*.cpp
+name: static-analysis
+on: [pull_request]
+
+jobs:
+  clang-tidy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure (export compile_commands.json)
+        run: cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+      - name: clang-tidy (performance checks as errors)
+        run: |
+          clang-tidy -p build --checks='-*,performance-*' \
+                     --warnings-as-errors='performance-*' src/*.cpp
 ```
 
-## 용어 정리
+여기서 구분해야 할 것은 정적 분석이 성능을 **측정하지 않는다**는 점입니다. 위 job은 "값으로 받은 벡터" 같은 패턴을 막아 줄 뿐, 어떤 변경이 핫 경로를 10% 느리게 만들었는지는 알려 주지 않습니다. 그래서 성능 회귀는 별도의 벤치마크 job이 고정된 러너에서 기준 결과와 비교해 잡아야 하고, 정적 분석 job은 그 회귀가 생길 가능성을 줄이는 예방 장치로 둡니다. 두 job을 같은 PR 검사에 나란히 두면, 패턴 수준의 실수는 리뷰 전에 걸러지고 실제 수치 변화는 벤치마크가 보고합니다.
 
-| 용어 | 설명 |
-|------|------|
-| **scan-build** | Clang Static Analyzer를 빌드와 함께 실행하게 하는 래퍼 스크립트 |
-| **-fanalyzer** | GCC 10부터 제공되는 정적 분석 패스; 컴파일 시 함께 수행, 메모리·리소스 이슈 등 보고 |
+## 판단 기준: 어떤 도구를 어디에 쓸지
 
-## 판단 기준: 언제 정적 분석을 쓸지
-
-| 상황 | 권장 | 비권장 |
+| 목적 | 권장 | 비권장 |
 |------|------|--------|
-| CI | Clang Static Analyzer·GCC -fanalyzer 별도 단계 | 분석 없이 릴리즈만 |
-| 성능 경고 | 미사용 결과·불필요한 복사 등 개선 포인트로 활용 | 경고 무시·비활성화 |
-| 회귀 | 정적 분석 + 벤치마크 단계 분리 | 경고만으로 성능 보장 가정 |
+| C++ 코드의 불필요한 복사·비효율 패턴 | clang-tidy `performance-*`를 PR마다 실행 | 리뷰어의 눈에만 의존 |
+| 경로 의존 버그(null, 해제 후 사용) | CSA(`scan-build`)를 야간 또는 별도 job으로 | 컴파일 경고만으로 대체 |
+| 구조체 레이아웃 낭비 | `optin.performance.Padding`을 명시적으로 켜고 `AllowedPad` 조정 | 기본 체커만 켜고 패딩이 잡힐 것으로 기대 |
+| C 코드 분석 | GCC `-fanalyzer` | C++ 프로젝트에 `-fanalyzer`를 그대로 적용 |
 
 ## 자주 하는 실수
 
-- **경고 제거 = 성능 개선으로 오해**: 정적 분석 경고(미사용 결과, 불필요한 복사 등)를 고치면 코드 품질이 나아지고 잠재적 이슈가 줄어들지만, **경고를 없앴다고 해서 실제 벤치마크 수치가 개선된다는 보장은 없다**. 성능 회귀는 별도 벤치마크 단계로 측정해야 한다.
-- **분석 없이 릴리즈만**: 정적 분석을 CI에 넣지 않고 빌드·릴리즈만 하면, 개선 가능한 패턴과 잠재적 버그를 놓친다. Clang Static Analyzer·GCC -fanalyzer를 별도 단계로 돌리고, 중요한 경고를 실패로 두는 정책을 두는 것이 좋다.
+- **CSA가 성능 체커를 기본으로 켠다고 생각하기**: 성능 체커는 `optin.performance` 패키지에 있어 명시적으로 켜야 하고, 패딩 체커는 기본 임계값이 24바이트라 작은 구조체에서는 경고가 나오지 않는다.
+- **`-fanalyzer`를 C++ 분석기로 쓰기**: GCC 공식 문서는 현재 릴리스의 분석기가 C 코드에만 적합하다고 명시한다. C++에는 CSA와 clang-tidy를 쓴다.
+- **경고 0이면 성능도 괜찮다고 생각하기**: 정적 분석은 알려진 패턴만 찾고 실행 시간을 재지 않는다. 성능 회귀는 벤치마크로만 확인할 수 있다.
 
 ## 학습 성과 목표
 
-- **성능 관련** 컴파일러·정적 분석 경고(미사용 결과·복사·루프 등)를 설명할 수 있다.
-- **Clang Static Analyzer·GCC -fanalyzer**를 CI에 통합하고, 성능 경고를 골라 활용할 수 있다.
-- 정적 분석과 **벤치마크 기반 회귀 측정**을 구분해 둘 다 적용할 수 있다.
+이 챕터를 마치면 정적 분석을 "경고를 없애는 일"이 아니라 성능 실수를 조기에 거르는 예방 장치로 배치할 수 있어야 합니다.
+
+- CSA·GCC `-fanalyzer`(심볼릭 실행)와 clang-tidy(AST 패턴 매칭)의 원리 차이와 그에 따른 비용·거짓 양성 특성을 설명할 수 있다.
+- `optin.performance.Padding`, `performance-unnecessary-value-param`, `performance-for-range-copy` 경고를 읽고 의미가 바뀌지 않는 수정으로 연결할 수 있다.
+- CI에서 정적 분석 job과 벤치마크 job을 분리하고, 기준선 이후의 새 경고만 실패로 처리하는 정책을 설계할 수 있다.
 
 ## 비판적 시각: 한계와 트레이드오프
 
-정적 분석기는 **성능 전용 도구가 아니다**. 주된 목적은 정확성·안전성(메모리, 리소스, 데이터 플로우)이고, 성능 관련 경고는 그중 일부일 뿐이다. "경고를 다 없애면 성능이 보장된다"는 잘못된 생각을 피하고, 경고는 코드 품질·개선 포인트로 활용하고, 실제 성능은 **벤치마크**로 따로 측정하는 것이 전문가다운 구분이다.
-
-## 핵심 요약
-
-| 항목 | 요약 |
-|------|------|
-| 경고 | 미사용 결과·불필요한 복사·비효율 루프 등 |
-| 도구 | scan-build(Clang), -fanalyzer(GCC) |
-| CI | 경고 관리 + 별도 벤치마크로 회귀 측정 |
+정적 분석의 가장 큰 비용은 시간과 신뢰입니다. 경로 민감 분석은 컴파일보다 훨씬 느려서 모든 PR에 돌리기 어렵고, 거짓 양성이 쌓이면 개발자가 경고를 무시하는 습관이 생겨 진짜 문제까지 묻힙니다. 그래서 체커를 많이 켜는 것보다, 팀이 반드시 고칠 소수의 체커를 고르고 나머지는 정기 점검으로 돌리는 편이 실효성이 큽니다. 성능 관점에서도 한계는 분명합니다. 패딩 체커는 구조체가 실제로 핫 경로에서 대량으로 쓰이는지 모르고, 복사 체크는 그 함수가 1초에 한 번 불리는지 백만 번 불리는지 모릅니다. 정적 분석이 가리킨 후보는 프로파일러로 핫스팟인지 확인한 뒤 우선순위를 정해야, 효과 없는 수정에 리뷰 시간을 쓰지 않게 됩니다.
 
 ## 다음 장에서는
 
