@@ -1,7 +1,7 @@
 ---
 collection_order: 1
 date: 2026-03-11
-lastmod: 2026-07-12
+lastmod: 2026-10-20
 draft: false
 image: wordcloud.png
 title: "[Compiler 03] 최적화 플래그: -O2/-O3/-Ofast"
@@ -24,26 +24,14 @@ tags:
   - Linux(리눅스)
   - Windows(윈도우)
   - OS(운영체제)
-  - Concurrency(동시성)
   - Latency
   - Throughput
-  - Backend(백엔드)
   - Embedded(임베디드)
   - Debugging(디버깅)
-  - Documentation(문서화)
-  - Refactoring(리팩토링)
-  - Clean-Code(클린코드)
   - Best-Practices
-  - Git
   - Automation(자동화)
-  - Software-Architecture(소프트웨어아키텍처)
-  - Design-Pattern(디자인패턴)
-  - Data-Structures(자료구조)
-  - Time-Complexity(시간복잡도)
-  - Complexity-Analysis(복잡도분석)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Error-Handling(에러처리)
   - Guide(가이드)
   - Reference(참고)
   - Technology(기술)
@@ -53,6 +41,9 @@ tags:
   - 실습
   - Case-Study
   - Assembly
+  - Floating-Point(부동소수점)
+  - SIMD(단일명령다중데이터)
+  - Vectorization(벡터화)
 ---
 
 **최적화 플래그**는 코드를 바꾸지 않고도 생성되는 기계어와 성능을 바꾸는 첫 단계입니다. 같은 소스에 **-O2**와 **-O3**만 바꿔도 벤치마크 결과가 수 퍼센트에서 수십 퍼센트까지 달라질 수 있으며, 잘못 선택하면 코드 크기 증가로 오히려 느려지는 **회귀**도 발생합니다. 이 챕터에서는 GCC/Clang의 **-O0**~**-Ofast**와 MSVC의 **/O1**·**/O2**·**/Ox** 의미, trade-off, **언제 어떤 레벨을 쓸지/피할지** 판단 기준, 그리고 릴리즈/디버그/프로파일 빌드 전략을 정리합니다.
@@ -63,11 +54,11 @@ tags:
 
 ## 역사·배경 (최적화 레벨의 등장)
 
-GCC에서는 1990년대부터 **-O**, **-O2** 등 최적화 레벨이 도입되었고, **-O3**는 더 공격적인 최적화를 묶은 것으로 확장되었습니다. GCC 공식 문서는 -O3가 -O2의 모든 최적화에 더해 추가 패스를 켠다고 설명합니다.
+GCC는 초기부터 **-O**, **-O2** 같은 숫자 레벨로 최적화 강도를 지정해 왔고, **-O3**는 더 공격적인 최적화를 묶은 레벨로 자리 잡았습니다. 현행 GCC 공식 문서는 -O3를 다음과 같이 설명합니다.
 
-> "Optimize even more. -O3 turns on all optimizations specified by -O2 and also turns on the -finline-functions, -funswitch-loops, -fpredictive-commoning, -fgcse-after-reload, -ftree-vectorize and other options." — GCC Manual, [Optimize Options](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html)
+> "Optimize yet more. -O3 turns on all optimizations specified by -O2 and also turns on the following optimization flags: -fgcse-after-reload -fipa-cp-clone -floop-interchange -floop-unroll-and-jam -fpeel-loops -fpredictive-commoning -fsplit-loops -ftree-loop-distribution -ftree-partial-pre -funswitch-loops -fvect-cost-model=dynamic -fversion-loops-for-strides" — GCC Manual(최신판, 2026-10 확인), [Optimize Options](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html)
 
-레벨이 올라갈수록 추가로 켜지는 옵션이 문서에 나열되므로, 정확한 목록은 사용 중인 GCC 버전의 문서를 참고하는 것이 좋습니다. **-Os**(크기 최소화)는 임베디드·제한된 환경을 위해 추가되었고, **-Ofast**는 GCC 4.x 대에서 부동소수점 완화 옵션을 묶은 레벨로 등장했습니다. Clang은 GCC와 호환되는 레벨 이름을 유지하면서 내부적으로 다른 최적화 순서·휴리스틱을 쓰며, MSVC는 **/O1**, **/O2**, **/Ox** 등 자체 명칭을 사용합니다. 오늘날 대부분의 C/C++ 프로젝트는 **-O2** 또는 **/O2**를 릴리즈 기본값으로 두고, 필요 시 **-O3**를 벤치마크와 함께 검증하는 패턴이 널리 쓰입니다.
+이 목록은 버전마다 바뀝니다. 예를 들어 예전 문서에서 -O3 항목에 있던 **-finline-functions**는 현행 문서에서 -O2부터 켜지고, 루프·SLP 벡터화(**-ftree-loop-vectorize**, **-ftree-slp-vectorize**)도 -O2에서 가장 보수적인 비용 모델(`-fvect-cost-model=very-cheap`)로 켜집니다. -O3는 같은 벡터화를 `dynamic` 비용 모델로 더 적극적으로 적용하는 차이가 있습니다. 따라서 정확한 목록은 사용 중인 GCC 버전의 문서나 `-Q --help=optimizers` 출력으로 확인해야 합니다. **-Os**(크기 최소화)는 임베디드·제한된 환경을 위해 추가되었고, **-Ofast**는 GCC 4.x 대에서 부동소수점 완화 옵션을 묶은 레벨로 등장했습니다. Clang은 GCC와 호환되는 레벨 이름을 유지하면서 내부적으로 다른 최적화 순서·휴리스틱을 쓰며, MSVC는 **/O1**, **/O2**, **/Ox** 등 자체 명칭을 사용합니다. 오늘날 대부분의 C/C++ 프로젝트는 **-O2** 또는 **/O2**를 릴리즈 기본값으로 두고, 필요 시 **-O3**를 벤치마크와 함께 검증하는 패턴이 널리 쓰입니다.
 
 ## 최적화 레벨 정의 (GCC / Clang)
 
@@ -76,13 +67,14 @@ GCC에서는 1990년대부터 **-O**, **-O2** 등 최적화 레벨이 도입되�
 - **-O0**: **최적화 없음**. 디버깅 시 변수·소스 라인 대응이 정확하고 컴파일이 빠르지만, 생성 코드는 느립니다. 디버그 빌드 기본값으로 적합합니다.
 - **-O1**: **기본적인 최적화**만 적용. 컴파일 시간을 크게 늘리지 않으면서 일부 성능 이득을 얻을 때 사용합니다. 인라인은 제한적, 루프·레지스터 최적화가 일부 켜집니다.
 - **-O2**: **대부분의 릴리즈 빌드 권장 레벨**입니다. 인라이닝, 루프 최적화, 레지스터 할당 등 대다수 최적화가 켜지고, -O3에 비해 공격적인 변환은 적어 코드 크기·컴파일 시간·회귀 위험이 상대적으로 낮습니다.
-- **-O3**: -O2에 더해 **더 공격적인 인라이닝**, **루프 언롤링**, 예측 실행 관련 최적화가 추가됩니다. 수치 연산·벡터화에 유리한 코드에서는 -O2 대비 눈에 띄게 빨라질 수 있지만, 코드 크기가 커지고 컴파일 시간·메모리 사용량이 늘며, 드물게 **성능 회귀**가 나옵니다.
-- **-Os**: 코드 **크기**를 줄이는 방향으로 최적화합니다. 인라이닝·언롤링을 억제해 바이너리 크기를 줄이므로, 임베디드·캐시가 극히 제한된 환경에서 고려합니다.
+- **-O3**: -O2에 더해 **더 공격적인 인라이닝**, **루프 언롤링**, 이전 반복의 계산을 재사용하는 predictive commoning, 루프 분배·언스위칭·필링 같은 루프 변환이 추가됩니다. 수치 연산·벡터화에 유리한 코드에서는 -O2 대비 눈에 띄게 빨라질 수 있지만, 코드 크기가 커지고 컴파일 시간·메모리 사용량이 늘며, 드물게 **성능 회귀**가 나옵니다.
+- **-Os**: 코드 **크기**를 줄이는 방향으로 최적화합니다. 인라이닝·언롤링을 억제해 바이너리 크기를 줄이므로, 임베디드·캐시가 극히 제한된 환경에서 고려합니다. Clang과 GCC 12 이상에는 크기를 더 공격적으로 줄이는 **-Oz**도 있습니다(인코딩이 짧다면 실행 명령어 수가 늘어나는 것도 감수합니다).
+- **-Og**: GCC 문서가 "Optimize while keeping in mind debugging experience"라고 설명하는 디버깅 친화 레벨입니다. 디버깅을 방해하지 않는 최적화만 켜므로, -O0보다 빠르면서도 단계 실행·변수 조사가 비교적 정확합니다.
 - **-Ofast**: -O3에 더해 **부동소수점 연산의 표준 준수**를 완화합니다(-ffast-math 계열). 수치적으로 더 빠른 코드가 나올 수 있지만, 반올림·연산 순서에 따라 결과가 달라질 수 있어 일반 코드에서는 사용을 피하는 것이 안전합니다.
 
 ### MSVC 대응
 
-MSVC는 **/O1**(크기 최소화), **/O2**(속도 최대화, 기본 릴리즈), **/Ox**(최대 최적화) 등으로 비슷한 역할을 합니다. /O2가 GCC/Clang의 -O2에 대응하는 기본 릴리즈 설정으로 널리 쓰이며, Visual Studio 프로젝트 속성에서 "Optimization"을 "Maximize Speed (/O2)"로 두면 됩니다.
+MSVC는 **/O1**(크기 최소화), **/O2**(속도 최대화, 기본 릴리즈), **/Od**(최적화 끔, GCC의 -O0에 해당) 등으로 비슷한 역할을 합니다. 이름 때문에 **/Ox**를 "/O2보다 강한 최대 최적화"로 오해하기 쉽지만, Microsoft 문서는 "/Ox is a strict subset of the /O2 optimizations"라고 명시합니다. 즉 /Ox는 /O2에서 일부(예: 함수 수준 링크 /Gy, 문자열 풀링 /GF)를 뺀 조합이므로, 속도가 목적이면 /O2를 쓰면 됩니다. /O2가 GCC/Clang의 -O2에 대응하는 기본 릴리즈 설정으로 널리 쓰이며, Visual Studio 프로젝트 속성에서 "Optimization"을 "Maximize Speed (/O2)"로 두면 됩니다.
 
 ## 최적화 레벨별로 켜지는 최적화 (개념)
 
@@ -111,10 +103,14 @@ flowchart LR
 
 대부분의 선택은 -O2와 -O3 사이에서 일어나며, 둘의 차이는 단순한 "속도 차이"가 아니라 **속도·코드 크기·컴파일 시간·회귀 위험의 묶음**입니다. 핵심은 -O3가 항상 빠른 것은 아니라는 점으로, 코드 크기가 커지면 명령어 캐시(I-cache) 압박으로 오히려 느려질 수 있습니다.
 
-- **속도**: 벡터화·인라이닝에 민감한 핫 루프가 있으면 -O3가 유리한 경우가 많습니다. 차이는 워크로드에 따라 0%에 가깝게 나올 수도, 두 자릿수 %까지 나올 수도 있습니다.
-- **코드 크기**: -O3는 인라이닝·언롤링으로 텍스트 세그먼트가 커져 **I-cache** 압박이 생길 수 있어, 작은 핫 루프가 많은 경우 오히려 느려질 수 있습니다.
-- **컴파일 시간**: -O3가 더 오래 걸리고, 대형 프로젝트에서는 빌드 시간이 눈에 띄게 늘어납니다.
-- **회귀**: -O3에서만 발생하는 회귀는 드물지만 보고되는 편이므로, 릴리즈 전에 **동일 벤치마크로 -O2 vs -O3**를 비교해 두는 것이 좋습니다.
+| 축 | -O2 | -O3 |
+|----|-----|-----|
+| 속도 | 대부분의 코드에서 충분히 빠름 | 벡터화·루프 변환에 민감한 핫 루프에서 0%~두 자릿수 % 개선 가능 |
+| 코드 크기 | 기준 | 루프 복제(unswitch·peel·versioning)로 텍스트 세그먼트 증가 |
+| 컴파일 시간 | 기준 | 추가 루프 패스로 증가, 대형 TU에서 체감 |
+| 회귀 위험 | 낮음 | 드물지만 I-cache 압박·과한 버전 분기로 느려지는 사례 존재 |
+
+이 네 축은 서로 독립적이지 않습니다. -O3가 켜는 루프 언스위칭·필링·버전 분기는 같은 루프를 여러 벌 복제해 각 경로를 빠르게 만드는 대신 코드를 키우고, 커진 코드는 핫 경로가 여러 곳에 흩어진 서버 코드에서 I-cache 미스로 이득을 상쇄합니다. 반대로 핫스팟이 소수의 수치 루프에 몰려 있으면 크기 증가는 무시할 만하고 벡터화 이득만 남습니다. 그래서 -O3로 갈지는 "프로파일에서 시간이 몇 개의 루프에 집중되는가"로 먼저 가늠하고, 집중도가 높을 때 **동일 벤치마크로 -O2 vs -O3**를 비교해 결정하는 것이 합리적입니다. 시간이 넓게 퍼진 코드라면 -O2를 유지하고 PGO(챕터 03)로 핫 경로만 공격적으로 최적화하는 편이 대개 낫습니다.
 
 ## -Ofast와 부동소수점
 
@@ -164,8 +160,13 @@ cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..  # -O2 -g
 
 ```cpp
 // sum.cc: 단순 합산 루프 (벤치마크용 최소 예시)
-#include <vector>
+// 빌드: g++ -O0 sum.cc -o sum_o0 && ./sum_o0
+//       g++ -O2 sum.cc -o sum_o2 && ./sum_o2
+#include <chrono>
 #include <cstdint>
+#include <cstdio>
+#include <numeric>
+#include <vector>
 
 uint64_t sum(const std::vector<int>& v) {
   uint64_t s = 0;
@@ -173,15 +174,33 @@ uint64_t sum(const std::vector<int>& v) {
     s += v[i];
   return s;
 }
+
+int main() {
+  std::vector<int> v(10'000'000);
+  std::iota(v.begin(), v.end(), 0);  // 0, 1, 2, ... 로 채움
+
+  auto t0 = std::chrono::steady_clock::now();
+  uint64_t total = 0;
+  for (int rep = 0; rep < 20; ++rep)  // 반복해 측정 잡음을 줄임
+    total += sum(v);
+  auto t1 = std::chrono::steady_clock::now();
+
+  // 결과를 출력해야 컴파일러가 계산 자체를 제거하지 못함
+  std::printf("total=%llu, %.1f ms\n",
+              static_cast<unsigned long long>(total),
+              std::chrono::duration<double, std::milli>(t1 - t0).count());
+}
 ```
 
--O0에서는 루프가 최소 최적화만 받아 상대적으로 느리고, -O2에서는 루프 최적화·인라이닝으로 훨씬 빠른 기계어가 생성됩니다. 실제 측정 시에는 Google Benchmark, nanobench 등으로 반복 실행 후 평균·분포를 보고, 대형 TU에서는 `time g++ -O0 -c big.cc` vs `-O2`로 컴파일 시간 차이도 확인할 수 있습니다.
+어셈블리 수준에서 차이를 보려면 `g++ -O0 -S sum.cc -o sum_o0.s`와 `g++ -O2 -S sum.cc -o sum_o2.s`를 비교하거나 Compiler Explorer에 붙여 넣으면 됩니다.
+
+-O0에서는 `v.size()`·`v[i]` 호출이 매 반복 실제 함수 호출로 남고 `s`가 매번 메모리에 저장되므로 느립니다. -O2에서는 인라이닝으로 호출이 사라지고 `s`가 레지스터에 머물며, 현행 GCC는 저비용 벡터화까지 적용해 훨씬 빠른 기계어를 생성합니다. 실제 측정 시에는 Google Benchmark, nanobench 등으로 반복 실행 후 평균·분포를 보고, 대형 TU에서는 `time g++ -O0 -c big.cc` vs `-O2`로 컴파일 시간 차이도 확인할 수 있습니다.
 
 ## 릴리즈/디버그/프로파일 빌드 전략
 
 빌드 목적에 따라 레벨을 나누는 것이 기본 원칙입니다. 디버그는 정확한 단계 실행을, 릴리즈는 성능을, 프로파일 수집은 계측 비용과 대표성의 균형을 우선합니다.
 
-- **디버그**: -O0(또는 -O1)에 `-g`를 함께 써서 단계 실행·변수 조사에 적합하게 유지합니다.
+- **디버그**: -O0에 `-g`를 함께 써서 단계 실행·변수 조사에 적합하게 유지합니다. -O0 빌드가 너무 느려 테스트가 오래 걸리면 GCC 문서가 편집·컴파일·디버그 주기에 권장하는 **-Og**를 대안으로 씁니다.
 - **릴리즈**: -O2를 기본으로 하고, 핫 경로가 수치·벡터화에 민감하면 -O3를 시도한 뒤 **벤치마크로 검증**합니다. 회귀가 없을 때만 -O3를 채택합니다.
 - **프로파일 수집**: PGO 1단계처럼 instrumented 빌드에서는 -O2 수준으로 두고, 프로파일 기반 최적화 단계에서 -O3를 쓰는 조합이 흔합니다.
 
@@ -189,17 +208,17 @@ uint64_t sum(const std::vector<int>& v) {
 
 빌드 시스템별로는 빌드 타입을 다음과 같이 매핑하고, CI에서는 릴리즈 빌드로 회귀를 측정합니다.
 
-| 빌드 시스템 | 릴리즈(-O2) | 디버그(-O0) | RelWithDebInfo |
-|-------------|-------------|-------------|----------------|
-| CMake | CMAKE_BUILD_TYPE=Release | CMAKE_BUILD_TYPE=Debug | CMAKE_BUILD_TYPE=RelWithDebInfo |
-| Meson | buildtype: 'release' | buildtype: 'debug' | buildtype: 'debugoptimized' |
-| Make | CXXFLAGS=-O2 | CXXFLAGS=-O0 -g | CXXFLAGS=-O2 -g |
+| 빌드 시스템 | 릴리즈 | 디버그 | 릴리즈 + 디버그 정보 |
+|-------------|--------|--------|----------------------|
+| CMake | CMAKE_BUILD_TYPE=Release (GCC/Clang 기본 `-O3 -DNDEBUG`) | CMAKE_BUILD_TYPE=Debug (`-g`) | CMAKE_BUILD_TYPE=RelWithDebInfo (`-O2 -g -DNDEBUG`) |
+| Meson | buildtype: 'release' (`-O3`) | buildtype: 'debug' (`-O0 -g`) | buildtype: 'debugoptimized' (`-O2 -g`) |
+| Make | CXXFLAGS=-O2 (직접 지정) | CXXFLAGS=-O0 -g | CXXFLAGS=-O2 -g |
 
-CMake의 Release 기본이 -O3인 경우도 있으므로, 프로젝트에서 `add_compile_options(-O2)` 등으로 명시적으로 고정해 두면 환경에 덜 흔들립니다.
+표에서 보듯 CMake와 Meson의 Release는 GCC/Clang에서 -O3가 기본이므로, "릴리즈 = -O2"를 원한다면 `set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG")`처럼 프로젝트에서 명시적으로 고정해야 환경에 덜 흔들립니다.
 
 ## 개별 최적화 플래그와 확인 방법
 
-최적화 레벨은 수십 개의 개별 `-f*` 플래그를 묶은 것입니다. -O2는 대략 -finline·-foptimize-sibling-calls 등을 켜고, -O3는 여기에 **-finline-functions**(더 공격적 인라이닝)·**-funswitch-loops**·**-ftree-vectorize** 등이 더해진 묶음으로 이해할 수 있습니다. 실무에서는 보통 -O2 또는 -O3만 지정하고 개별 플래그를 건드리지 않는 편이 유지보수에 유리하지만, 특정 최적화에서만 버그가 재현된다면 해당 최적화만 끄는 **-fno-*** 플래그로 회귀를 피할 수 있습니다.
+최적화 레벨은 수십 개의 개별 `-f*` 플래그를 묶은 것입니다. 현행 GCC 기준으로 -O2는 -finline-functions·-foptimize-sibling-calls와 저비용 벡터화 등을 켜고, -O3는 여기에 **-funswitch-loops**·**-fpeel-loops**·**-floop-interchange** 같은 루프 변환과 `dynamic` 비용 모델 벡터화가 더해진 묶음으로 이해할 수 있습니다(GCC 버전에 따라 경계가 이동합니다). 실무에서는 보통 -O2 또는 -O3만 지정하고 개별 플래그를 건드리지 않는 편이 유지보수에 유리하지만, 특정 최적화에서만 버그가 재현된다면 해당 최적화만 끄는 **-fno-*** 플래그로 회귀를 피할 수 있습니다.
 
 어떤 최적화가 실제로 켜지는지 확인하려면 컴파일러 도움말을 사용합니다.
 
@@ -226,12 +245,10 @@ CMake의 Release 기본이 -O3인 경우도 있으므로, 프로젝트에서 `ad
 |------|------|--------|
 | 일반 릴리즈 빌드 | -O2 | -O0, -Ofast(일반 코드) |
 | 수치·벡터화가 중요한 핫 루프 | -O3 (벤치로 검증 후) | -O3 무검증 채택 |
-| 디버깅·단계 실행 | -O0 또는 -O1 | -O2 이상 |
+| 디버깅·단계 실행 | -O0, 느리면 -Og | -O2 이상 |
 | 임베디드·바이너리 크기 제한 | -Os 또는 -O2 | -O3 |
 | 금융·규제·재현성 중요 | -O2 또는 -O3 (fast-math 없음) | -Ofast |
 | PGO 1단계(instrumented) | -O2 수준 | -O0(너무 느림), -O3(과도) |
-
-**적용 체크리스트**: (1) 릴리즈 기본은 -O2로 두고, -O3는 벤치마크로 이득과 회귀를 확인한 뒤 도입한다. (2) -Ofast는 부동소수점 재현성이 필요 없는 도메인에서만 사용한다. (3) CI에서 릴리즈 빌드로 성능 회귀를 주기적으로 측정한다.
 
 ## 실전 시나리오: -O2에서 -O3 전환 검토
 
@@ -256,10 +273,8 @@ CMake의 Release 기본이 -O3인 경우도 있으므로, 프로젝트에서 `ad
 
 ## 자주 묻는 질문
 
-- **Q: 릴리즈는 무조건 -O3가 맞나요?** A: 아닙니다. -O2를 기본으로 하고, 벤치마크로 -O3 이득이 있고 회귀가 없을 때만 -O3를 씁니다.
 - **Q: -Os와 -O2 중 무엇을 써야 하나요?** A: 바이너리 크기나 I-cache가 극히 제한된 환경(일부 임베디드)이면 -Os를, 그렇지 않으면 보통 -O2가 유리합니다.
-- **Q: -Ofast를 썼을 때 테스트가 실패합니다.** A: 부동소수점 비교가 비트 단위로 맞지 않을 수 있습니다. 허용 오차를 두거나, 해당 모듈만 -O3로 두고 -Ofast를 제거합니다.
-- **Q: CMake Release가 -O3인데 -O2로 고정하려면?** A: `set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG")`처럼 Release 플래그를 덮어씁니다.
+- **Q: Clang에서 -Ofast를 쓰니 경고가 나옵니다.** A: Clang 문서에 따르면 -Ofast는 Clang 19부터 deprecated이며(제거 일정은 미정), `-O3 -ffast-math`로 의도를 명시하도록 권합니다. 필요한 완화 옵션만 개별로 켜는 편이 안전합니다.
 - **Q: 컴파일 시간을 줄이려면?** A: -O3 대신 -O2를 쓰면 줄어듭니다. 캐시·증분 빌드는 챕터 12에서 다룹니다.
 
 ## Tr.02(인라이닝)과의 연계
@@ -292,17 +307,8 @@ Low-latency C++ Language Optimization 트랙(Tr.02)에서는 **인라이닝 유�
 ## 참고 자료
 
 - GCC: [Optimize Options](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html) — -O0~-O3, -Os, -Ofast 설명.
-- Clang: [Optimization Levels](https://llvm.org/docs/CommandGuide/clang.html#optimization-levels) — 동일 레벨 이름의 동작.
+- Clang: [clang command guide](https://clang.llvm.org/docs/CommandGuide/clang.html) — -O0~-O3, -Os, -Oz, -Og, -Ofast의 동작.
 - MSVC: [/O Options](https://learn.microsoft.com/en-us/cpp/build/reference/o-options-optimize-code) — /O1, /O2, /Ox.
-
-## 핵심 요약
-
-| 항목 | 요약 |
-|------|------|
-| 기본 권장 | 일반 릴리즈는 -O2; 수치·벡터화 핫패스는 -O3를 벤치 검증 후 고려 |
-| -Ofast | 부동소수점 표준 완화; 금융·규제·재현성 중요 시 사용 금지 |
-| 검증 | 동일 벤치마크로 -O2 vs -O3 비교, 회귀 없을 때만 -O3 채택 |
-| 디버그 | -O0 또는 -O1 + -g |
 
 ## 다음 장에서는
 
