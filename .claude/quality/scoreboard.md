@@ -274,7 +274,7 @@
 | content/collection/optimization-03-compiler/06-code-generation-analysis/index.md | 97.3 | 2026-10-20 | 1 | 통과 | 1.3 | 0d57396 | 없음(경미: L51 objdump를 LTO 결과 확인의 "유일한 방법"으로 과장 — -flto -save-temps 대안 존재) |
 | content/collection/optimization-03-compiler/07-function-multiversioning/index.md | 97.3 | 2026-10-20 | 1 | 통과 | 1.3 | c19d801 | 없음(경미: L117 ACLE 언급을 Clang Attribute Reference에 귀속 — 원문에 없음, ACLE 출처 분리 필요) |
 | content/collection/optimization-03-compiler/08-compiler-intrinsics/index.md | 100 | 2026-10-20 | 1 | 통과 | 1.3 | 6211182 | 없음 |
-| content/collection/optimization-03-compiler/09-sanitizer-overhead/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/09-sanitizer-overhead/index.md | 95.35 | 2026-10-21 | 1 | 통과 | 1.3 | 854c5d3 | 없음(경미: L202 UBSan 보안 경고를 최소 런타임에 귀속 / L152 MSan 메모리 2×(origin 3×) 누락 / L119·L182 코드 블록 연속 배치) |
 | content/collection/optimization-03-compiler/10-debug-info-and-performance/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/11-cpp20-modules/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/12-build-parallelization/index.md | - | - | 0 | 미채점 | - | - | - |
