@@ -46,15 +46,15 @@ tags:
 
 **전제 지식**: 이 장은 [09장: 프로토콜 설계](/post/network-optimization/low-latency-binary-protocol-design-principles/)에서 다룬 바이너리 프로토콜의 헤더·페이로드 구분을 전제로 하며, [03장: 소켓 옵션 튜닝](/post/network-optimization/socket-options-tcp-nodelay-buffer-tuning/)과 [04장: TCP 성능 최적화](/post/network-optimization/tcp-performance-nagle-congestion-control-bbr/)에서 다룬 Nagle 알고리즘·버퍼링이 "왜 한 번의 `send()`가 한 번의 `recv()`로 그대로 오지 않는지"의 배경이 됩니다. 이 장의 범위는 **TCP·Unix 도메인 소켓처럼 스트림 지향(byte-stream) 전송에서만 발생하는 경계 문제**입니다. [05장: UDP 최적화](/post/network-optimization/udp-optimization-reliability-layer-design/)에서 다루는 UDP 데이터그램은 `recvfrom()` 한 번이 상대의 `sendto()` 한 번에 대응하도록 커널이 경계를 보존하므로, 이 장이 다루는 문제 자체가 발생하지 않습니다.
 
-**이 장의 깊이**: 프레이밍 전략의 원리와 부분 수신 파서 구현까지가 중심이며, **중급–전문가**를 포괄합니다. **다루지 않는 것**: 직렬화 포맷 자체의 self-describing 여부와 스키마 진화는 [06장](/post/network-optimization/serialization-performance-protobuf-flatbuffers-capnproto/)~[08장](/post/network-optimization/next-gen-zero-copy-serialization-formats-yaff/), HTTP/2·HTTP/3의 프레임 포맷은 [20장](/post/network-optimization/http2-http3-multiplexing-quic-comparison/), WebSocket 프레임 구조는 [19장](/post/network-optimization/websocket-performance-tuning-compression-batching/)에서 각각 다룹니다. 이 장은 그 위에 있는 공통 원리, 즉 "스트림에서 경계를 어떻게 표시하고 복원하는가"에 집중합니다.
+**이 장의 깊이**: 프레이밍 전략의 원리와 부분 수신 파서 구현까지가 중심이며, **중급–전문가**를 포괄합니다. **다루지 않는 것**: 직렬화 포맷 자체의 self-describing 여부와 스키마 진화는 [06장](/post/network-optimization/serialization-performance-protobuf-flatbuffers-capnproto/)–[08장](/post/network-optimization/next-gen-zero-copy-serialization-formats-yaff/), HTTP/2·HTTP/3의 프레임 포맷은 [20장](/post/network-optimization/http2-http3-multiplexing-quic-comparison/), WebSocket 프레임 구조는 [19장](/post/network-optimization/websocket-performance-tuning-compression-batching/)에서 각각 다룹니다. 이 장은 그 위에 있는 공통 원리, 즉 "스트림에서 경계를 어떻게 표시하고 복원하는가"에 집중합니다.
 
 ## 당신의 수준에 맞는 경로
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
-| **초보자** | "TCP는 왜 메시지 경계를 보장하지 않는가" ~ "세 가지 프레이밍 전략" | 스트림 경계 문제와 세 전략의 기본 동작 이해 |
-| **중급자** | "부분 수신을 처리하는 파싱 상태 머신" ~ "흔한 오개념 바로잡기" | 실전 파서 구현과 흔한 실수 회피 |
-| **전문가** | "판단 기준" ~ "비판적 시각" | 상황별 전략 선택과 보안·한계 판단 |
+| **초보자** | "TCP는 왜 메시지 경계를 보장하지 않는가" – "세 가지 프레이밍 전략" | 스트림 경계 문제와 세 전략의 기본 동작 이해 |
+| **중급자** | "부분 수신을 처리하는 파싱 상태 머신" – "흔한 오개념 바로잡기" | 실전 파서 구현과 흔한 실수 회피 |
+| **전문가** | "판단 기준" – "비판적 시각" | 상황별 전략 선택과 보안·한계 판단 |
 
 ## TCP는 왜 메시지 경계를 보장하지 않는가 (역사·배경)
 
@@ -62,7 +62,7 @@ TCP는 1981년 RFC 793에서부터 스스로를 "순서 있는 바이트 스트�
 
 > "TCP does not preserve record boundaries." — [man7.org: tcp(7)](https://man7.org/linux/man-pages/man7/tcp.7.html)
 
-이 설계 결정 때문에 응용 계층은 처음부터 "내가 보낸 논리적 단위가 상대에게 그대로 전달된다"는 보장을 받지 못했습니다. 초기 텍스트 기반 프로토콜(Telnet, SMTP)은 CRLF 같은 구분자로 이 문제를 우회했고, HTTP/1.0은 아예 "연결을 끊는 것"을 메시지 끝의 신호로 사용했습니다. 이 방식은 연결마다 요청 하나만 처리할 수 있어 TCP 핸드셰이크 비용을 반복하는 비효율이 있었고, HTTP/1.1(1997년 RFC 2068, 현재는 2022년 RFC 9112로 개정)은 지속 연결 위에서 여러 메시지를 구분하기 위해 `Content-Length` 헤더(길이 프리픽스의 응용 계층 버전)와 `Transfer-Encoding: chunked`(청크마다 크기를 앞세우는 방식)를 도입했습니다.
+이 설계 결정 때문에 응용 계층은 처음부터 "내가 보낸 논리적 단위가 상대에게 그대로 전달된다"는 보장을 받지 못했습니다. 초기 텍스트 기반 프로토콜(Telnet, SMTP)은 CRLF 같은 구분자로 이 문제를 우회했고, HTTP/1.0은 `Content-Length` 헤더(길이 프리픽스의 응용 계층 버전, RFC 1945)를 이미 정의했지만, 응답 본문 길이를 미리 모를 때는 "연결을 끊는 것"을 메시지 끝의 신호로 사용했습니다. 이 방식은 연결마다 요청 하나만 처리할 수 있어 TCP 핸드셰이크 비용을 반복하는 비효율이 있었고, HTTP/1.1(1997년 RFC 2068, 현재는 2022년 RFC 9112로 개정)은 지속 연결을 기본으로 삼으면서 길이를 미리 모르는 본문도 같은 연결 위에서 구분할 수 있도록 `Transfer-Encoding: chunked`(청크마다 크기를 앞세우는 방식)를 도입했습니다.
 
 ```text
 4\r\n
@@ -93,7 +93,7 @@ RFC 9112는 청크 구조를 다음과 같이 정의합니다.
 
 ### Delimiter 기반 프레이밍
 
-**구분자 프레이밍**은 메시지 끝에 특정 바이트 시퀀스(개행 `\n`, `\r\n`, NUL 등)를 붙이고 수신 측이 그 시퀀스를 스캔해 경계를 찾는 방식입니다. 헤더가 없어 사람이 로그를 눈으로 읽거나 `telnet`으로 손으로 찔러 볼 수 있다는 점이 텍스트 기반 프로토콜(Redis의 RESP, SMTP, HTTP 헤더 자체)에서 여전히 널리 쓰이는 이유입니다. 다만 페이로드 안에 구분자와 같은 바이트가 나타날 수 있는 이진 데이터에는 그대로 쓸 수 없고, 이스케이프(예: SLIP·PPP의 바이트 스터핑)나 별도 인코딩(base64 등으로 구분자 바이트 자체를 배제)이 필요합니다.
+**구분자 프레이밍**은 메시지 끝에 특정 바이트 시퀀스(개행 `\n`, `\r\n`, NUL 등)를 붙이고 수신 측이 그 시퀀스를 스캔해 경계를 찾는 방식입니다. 헤더가 없어 사람이 로그를 눈으로 읽거나 `telnet`으로 손으로 찔러 볼 수 있다는 점이 텍스트 기반 프로토콜(SMTP, HTTP 헤더 자체)에서 여전히 널리 쓰이는 이유입니다. Redis의 RESP처럼 명령·응답 줄은 CRLF 구분자로 끊되 bulk string에는 `$<길이>` 프리픽스를 붙이는 혼합형도 흔한데, 사람이 읽을 수 있는 구분자의 장점과 이진 안전한 길이 프리픽스의 장점을 함께 취하려는 설계입니다. 다만 페이로드 안에 구분자와 같은 바이트가 나타날 수 있는 이진 데이터에는 그대로 쓸 수 없고, 이스케이프(예: SLIP·PPP의 바이트 스터핑)나 별도 인코딩(base64 등으로 구분자 바이트 자체를 배제)이 필요합니다.
 
 ### Fixed-size 프레이밍
 
@@ -129,12 +129,18 @@ length-prefix 파서는 위 상태 머신을 그대로 구현하면 됩니다. �
 #include <vector>
 
 // 부분 수신을 흡수하는 길이-프리픽스 프레이머.
-// feed()는 recv()가 몇 바이트를 돌려주든 상관없이 호출할 수 있고,
-// 메시지가 완성될 때마다 true를 반환하며 out을 채운다.
+// append()는 recv()가 몇 바이트를 돌려주든 그대로 쌓고,
+// next()는 완성된 메시지를 하나씩 꺼낸다. 한 번의 recv()에 여러 메시지가 붙어 와도
+//   framer.append(data, n);
+//   while (framer.next(msg)) handle(msg);
+// 처럼 반복 호출하면 쌓인 메시지를 모두 처리한다.
 class LengthPrefixFramer {
  public:
-  bool feed(const uint8_t* data, size_t n, std::vector<uint8_t>& out) {
+  void append(const uint8_t* data, size_t n) {
     buf_.insert(buf_.end(), data, data + n);
+  }
+
+  bool next(std::vector<uint8_t>& out) {
     if (buf_.size() < kHeaderSize) return false;  // 헤더도 아직 다 안 옴
     uint32_t len;
     std::memcpy(&len, buf_.data(), kHeaderSize);
@@ -155,9 +161,11 @@ class LengthPrefixFramer {
 };
 ```
 
-`buf_.erase`는 남은 데이터를 앞으로 당기는 `O(버퍼 크기)` 복사를 수행하므로, 한 번의 `recv()`에 메시지가 여러 개 쌓이는 고처리량 환경에서는 링 버퍼나 읽기 커서(offset) 방식으로 바꿔 이 복사를 없애는 것이 좋습니다. delimiter 기반 파서는 상태 머신은 같지만 "충분한 바이트가 쌓였는가"를 길이 계산 대신 `memchr`로 구분자를 찾는 것으로 대체합니다.
+`buf_.erase`는 남은 데이터를 앞으로 당기는 `O(버퍼 크기)` 복사를 수행하므로, 한 번의 `recv()`에 메시지가 여러 개 쌓이는 고처리량 환경에서는 링 버퍼나 읽기 커서(offset) 방식으로 바꿔 이 복사를 없애는 것이 좋습니다. delimiter 기반 파서는 상태 머신은 같지만 "충분한 바이트가 쌓였는가"를 길이 계산 대신 `memchr`로 구분자를 찾는 것으로 대체합니다. 아래 함수는 버퍼 앞에서 첫 구분자까지를 메시지 하나로 잘라 내고 처리한 바이트 수를 돌려주므로, 호출자는 그만큼 버퍼를 비운 뒤 0이 나올 때까지 반복 호출하면 됩니다.
 
 ```cpp
+#include <cstddef>
+#include <cstdint>
 #include <cstring>
 #include <vector>
 
@@ -177,7 +185,7 @@ size_t consume_delimited(const std::vector<uint8_t>& buf, std::vector<uint8_t>& 
 
 - **"`send()`를 한 번 호출하면 상대는 `recv()`를 한 번 호출해 정확히 그 바이트만 받는다"**: TCP는 바이트 스트림이므로 이런 1:1 대응을 보장하지 않습니다. Nagle 알고리즘(04장)에 의한 코얼레싱, MTU에 따른 세그먼트 분할, 애플리케이션의 수신 타이밍에 따라 하나의 논리 메시지가 여러 번의 `recv()`에 걸쳐 오거나, 여러 메시지가 한 번의 `recv()`에 합쳐져 올 수 있습니다. 프레이밍 파서 없이 "이번에 받은 바이트가 메시지 하나"라고 가정하는 코드는 부하가 커지는 순간 깨집니다.
 - **"구분자 프레이밍은 길이를 미리 계산하지 않으니 length-prefix보다 항상 느리다"**: 짧은 메시지에서는 `memchr` 기반 스캔과 4바이트 헤더 파싱의 실행 시간 차이가 거의 없는 경우가 많습니다. 다만 length-prefix는 경계를 찾는 데 필요한 연산이 메시지 길이와 무관한 `O(1)`인 반면 delimiter는 구분자를 만날 때까지 최악의 경우 메시지 전체를 스캔하는 `O(n)`이므로, 메시지가 커질수록 그 격차가 벌어지는 경향이 있습니다. 실제 차이는 플랫폼·컴파일러·`memchr` 구현(SIMD 가속 여부)에 따라 달라지므로 단정하기보다 직접 측정해 확인해야 합니다.
-- **"고정 크기 프레이밍은 낡은 방식이라 실무에서 안 쓴다"**: NASDAQ ITCH나 SBE 기반 마켓 데이터 피드처럼 스키마가 고정되고 분기 없는 파싱이 지연 예산에 직결되는 시스템에서는 지금도 고정 크기 레코드가 표준적인 선택입니다. 가변성을 포기하는 대신 파싱 비용을 상수 시간으로 만드는 트레이드오프가 여전히 유효한 영역이 있습니다.
+- **"고정 크기 레이아웃은 낡은 방식이라 실무에서 안 쓴다"**: NASDAQ ITCH는 메시지 타입마다 길이가 고정된 레이아웃을 쓰고, SBE도 고정 길이 블록을 기본으로 삼아 필요할 때만 반복 그룹·가변 길이 데이터를 덧붙이므로, 분기 없는 오프셋 파싱이 지연 예산에 직결되는 마켓 데이터 영역에서는 지금도 고정 크기 레이아웃이 핵심입니다. 다만 이것은 필드 배치의 이야기이고, 스트림 위의 메시지 경계는 ITCH의 경우 SoupBinTCP·MoldUDP64 같은 세션 계층이 길이 필드로 따로 알려 준다는 점에서, 앞서 SBE 문서가 말한 외부 프레이밍의 필요와 같은 구조입니다.
 
 ## 판단 기준
 
@@ -185,7 +193,7 @@ size_t consume_delimited(const std::vector<uint8_t>& buf, std::vector<uint8_t>& 
 |------|------|--------|
 | 가변 길이 이진 페이로드, 스키마가 자주 바뀜 | length-prefix(4바이트 헤더 또는 varint) | fixed-size(재설계 비용 큼) |
 | 사람이 읽거나 손으로 디버깅할 텍스트 프로토콜 | delimiter(이스케이프 규칙 명시) | length-prefix(가독성 저하) |
-| 초저지연·고정 스키마 마켓 데이터 틱 | fixed-size(분기 없는 오프셋 파싱) | delimiter(스캔 비용) |
+| 초저지연·고정 스키마 마켓 데이터 틱 | 타입별 fixed-size 레이아웃 + 세션 계층의 길이 필드(분기 없는 오프셋 파싱) | delimiter(스캔 비용) |
 | 신뢰할 수 없는 외부 클라이언트 입력 | length 필드에 상한 검증 필수 | 상한 없는 length 필드 신뢰 |
 | 페이로드에 구분자 바이트가 섞일 수 있음 | length-prefix 또는 이스케이프된 delimiter | 이스케이프 없는 delimiter |
 
@@ -206,7 +214,7 @@ static size_t next_boundary_length_prefixed(const uint8_t* buf, size_t avail) {
   uint32_t len;
   std::memcpy(&len, buf, 4);
   len = __builtin_bswap32(len);
-  if (avail < 4 + len) return 0;
+  if (avail - 4 < len) return 0;  // 4 + len 덧셈은 uint32 범위에서 감싸질 수 있어 뺄셈으로 비교
   return 4 + len;
 }
 
@@ -237,6 +245,8 @@ BENCHMARK_MAIN();
 `g++ -O2 bench.cpp -lbenchmark -lpthread`(x86-64, GCC 13, `-O2` 기준)로 빌드해 실행하면, 128바이트 정도의 짧은 메시지에서는 두 방식의 실행 시간이 노이즈 범위 안에서 비슷하게 나오는 경우가 흔합니다. 메시지 길이를 늘려가며 같은 벤치마크를 반복하면 length-prefix 쪽은 거의 변화가 없는 반면 delimiter 쪽은 스캔 대상이 늘어난 만큼 시간이 증가하는 경향을 직접 확인할 수 있으므로, 실제 채택 전에는 자신의 메시지 크기 분포로 재현해 보는 것이 좋습니다.
 
 ## 마무리
+
+이 장을 마치면 TCP 스트림에서 메시지 경계가 사라지는 원인을 설명하고, 페이로드 특성에 맞춰 세 프레이밍 전략 중 하나를 고르며, 부분 수신과 악의적인 length 값을 견디는 파서를 직접 짤 수 있어야 합니다. 아래 항목으로 스스로 점검해 보세요.
 
 - [ ] TCP가 메시지 경계를 보장하지 않는 이유와 UDP와의 차이를 설명할 수 있다.
 - [ ] length-prefix·delimiter·fixed-size 세 전략의 동작 원리와 각각의 파싱 비용 특성을 설명할 수 있다.
