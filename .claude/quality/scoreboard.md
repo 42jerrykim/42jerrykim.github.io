@@ -384,7 +384,7 @@
 | content/collection/optimization-09-io-network/02-io-patterns-cost/index.md | 91.2 | 2026-10-20 | 1 | 통과 | 1.3 | 42606a5 | 경미: 1(L117 컨테이너·하이퍼바이저 syscall 서술 오류, L91 TLB 민감도는 Gregg의 추측, L180 수백 ns–수 µs 근거 없음, '네 가지 조합' 제목) / 4(L174 오개념 재진술) / 7(Advanced·Edge-Cases 태그, description '정량 분석' 과장) |
 | content/collection/optimization-09-io-network/03-async-io-fundamentals/index.md | 91.6 | 2026-10-20 | 0 | 통과 | 1.3 | 2183481 | 경미: 1(L312 epoll 정규 파일 서술 — epoll_ctl은 EPERM 거부로 정정 권장; L66·68 연도 출처 없음) / 5(벤치마크가 FD_SETSIZE 초과 입력에서 UB — poll 대체·반환값 확인 권장) |
 | content/collection/optimization-09-io-network/04-io-uring-advanced/index.md | 94.6 | 2026-10-20 | 2 | 통과 | 1.3 | ee9750c | 경미: 1(L180 2.05배를 YCSB 처리량으로 귀속 — 원문은 버퍼 관리자 end-to-end 개선; L174 '상한선' 표현; L134 SO_PREFER_BUSY_POLL 대응은 prefer_busy_poll 필드만; L195 IOPOLL은 완료 폴링; L67 2025년 2월 패치셋 출처 없음) |
-| content/collection/optimization-09-io-network/05-iocp-windows-io/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/05-iocp-windows-io/index.md | 90.7 | 2026-10-21 | 0 | 통과 | 1.3 | 4f63221 | 경미: 1(L206·212 IoRing을 Server 2022부터로 서술 — 실제 Build 22000+; L142 CreateThreadpoolIo/StartThreadpoolIo Remarks 귀속 혼동; L80 OVERLAPPED 첫 멤버 주석 오류; L162 본문↔벤치 코드 불일치; L62 연도 출처 없음) / 5(L164 벤치에 <vector>·main 없음, I/O 미생성) / 6(Mermaid GQCS 라벨 간선 위치) |
 | content/collection/optimization-09-io-network/06-zero-copy-techniques/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/07-memory-mapped-io/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/08-direct-io/index.md | - | - | 0 | 미채점 | - | - | - |
