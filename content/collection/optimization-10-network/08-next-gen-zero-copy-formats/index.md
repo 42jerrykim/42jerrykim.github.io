@@ -13,10 +13,8 @@ tags:
   - Networking(네트워킹)
   - C++
   - Memory(메모리)
-  - IO(Input/Output)
   - Benchmark
   - Latency
-  - Throughput
   - Implementation(구현)
   - Best-Practices
   - System-Design
@@ -26,9 +24,7 @@ tags:
   - Deep-Dive
   - Advanced
   - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Documentation(문서화)
   - Case-Study
   - Reference(참고)
   - YaFF
@@ -40,8 +36,7 @@ tags:
   - Wire-Format
   - Serialization
   - Vtable
-  - Schema-Evolution
-  - mmap
+  - Schema-Evolution(스키마진화)
 ---
 
 **차세대 zero-copy 직렬화 포맷 동향**이란, FlatBuffers·Cap'n Proto 이후 등장한 새로운 zero-copy 바이너리 포맷들이 무엇을 다르게 풀려고 하는지, 그리고 아직 검증되지 않은 신흥 포맷을 프로덕션 핫패스에 들여도 되는지 판단하는 문제를 말합니다. 2026년 6월 Yandex가 공개한 <strong>YaFF(Yet another Flat Format)</strong>는 "zero-copy 읽기"라는 목표 자체는 FlatBuffers와 같지만, 접근 방식은 "Protobuf 스키마를 그대로 두고 물리적 메모리 레이아웃만 바꾼다"는 점에서 다릅니다. 이 장은 YaFF를 사례로 삼아, 새 포맷이 나올 때마다 반복되는 벤치마크 숫자에 휘둘리지 않고 실제 채택 여부를 판단하는 기준을 정리합니다.
@@ -56,9 +51,9 @@ tags:
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
-| **중급자** | "신흥 포맷은 왜 계속 나오는가" ~ "YaFF의 레이아웃 전략" | zero-copy 포맷이 여전히 진화하는 이유와 YaFF의 핵심 아이디어 이해 |
-| **심화 학습자** | "벤치마크로 보는 위치" ~ "판단 기준" | 벤치마크 수치를 해석하고 도입 여부를 판단하는 기준 확보 |
-| **전문가** | "흔한 오개념" ~ "비판적 시각" | v0.1.0 신흥 포맷의 프로덕션 리스크를 평가하는 안목 |
+| **중급자** | "신흥 포맷은 왜 계속 나오는가" – "YaFF의 레이아웃 전략" | zero-copy 포맷이 여전히 진화하는 이유와 YaFF의 핵심 아이디어 이해 |
+| **심화 학습자** | "벤치마크로 보는 위치" – "판단 기준" | 벤치마크 수치를 해석하고 도입 여부를 판단하는 기준 확보 |
+| **전문가** | "흔한 오개념" – "비판적 시각" | v0.1.0 신흥 포맷의 프로덕션 리스크를 평가하는 안목 |
 
 ---
 
@@ -66,18 +61,18 @@ tags:
 
 Zero-copy 직렬화의 큰 흐름은 2013년 Cap'n Proto(Kenton Varda, 전 Protocol Buffers 저자)와 2014년 Google이 공개한 FlatBuffers로 확립되었습니다. 두 포맷 모두 "메모리 상의 표현이 곧 와이어 포맷"이라는 아이디어를 공유하지만, 채택 과정에서 공통된 마찰이 남았습니다. 기존에 Protobuf(`.proto`)로 스키마를 관리하던 조직이 FlatBuffers나 Cap'n Proto로 옮기려면 스키마를 다시 정의해야 하고, 스키마 진화 규칙(필드 추가·삭제·기본값 처리)이 서로 달라서 두 포맷을 병행하는 동안 변환 코드를 손으로 관리해야 했습니다. 이 마찰은 "zero-copy의 이론적 이점은 알지만 대규모 Protobuf 코드베이스를 다 바꿀 여력은 없다"는 조직에서 특히 컸고, 그 틈을 겨냥한 신흥 포맷들이 계속 등장하는 배경이 됩니다.
 
-2026년 6월 16일 Yandex가 Apache 2.0 라이선스로 공개한 YaFF(v0.1.0)는 이 마찰을 정면으로 겨냥합니다. GitHub 저장소 설명은 YaFF를 "a zero-copy wire format for the Protobuf ecosystem"(Yandex, YaFF README, 2026)이라고 규정합니다. 핵심은 새로운 스키마 언어를 만드는 대신 기존 `.proto` 파일을 "유일한 진실 공급원"으로 유지하고, 같은 스키마에서 Protobuf API와 YaFF API를 동시에 생성한다는 점입니다. 즉 FlatBuffers·Cap'n Proto가 "새 스키마 + 새 물리 레이아웃"을 요구했다면, YaFF는 "기존 스키마 + 새 물리 레이아웃"만 요구합니다.
+2026년 6월 Yandex가 Apache 2.0 라이선스로 공개한 YaFF(v0.1.0)는 이 마찰을 정면으로 겨냥합니다. GitHub 저장소 설명은 YaFF를 "a zero-copy wire format for the Protobuf ecosystem"(Yandex, YaFF README, 2026)이라고 규정합니다. 핵심은 새로운 스키마 언어를 만드는 대신 기존 `.proto` 파일을 "유일한 진실 공급원"으로 유지하고, 같은 스키마에서 Protobuf API와 YaFF API를 동시에 생성한다는 점입니다. 즉 FlatBuffers·Cap'n Proto가 "새 스키마 + 새 물리 레이아웃"을 요구했다면, YaFF는 "기존 스키마 + 새 물리 레이아웃"만 요구합니다.
 
 ## YaFF의 레이아웃 전략 (핵심 개념·메커니즘)
 
 YaFF는 하나의 고정된 물리 레이아웃 대신 **네 가지 레이아웃**을 제공하고, 스키마의 진화 요구 수준에 따라 어떤 레이아웃을 쓸지 선택합니다.
 
 - **Fixed**: 필드 순서와 개수가 완전히 고정된, 오버헤드 없는 packed struct 레이아웃입니다. 스키마가 다시는 바뀌지 않는다는 확신이 있을 때만 적합합니다.
-- **Flat**: 2바이트 헤더를 두어 제한적인 스키마 진화(필드 추가 등)를 허용합니다. FlatBuffers의 오프셋 기반 접근과 유사하지만 헤더가 더 얇습니다.
+- **Flat**: packed struct에 2바이트 헤더만 더한 레이아웃으로, 각 필드 위치를 앞선 필드들의 크기로 계산하므로 Fixed 대비 읽기 1회와 분기 1회만 더해집니다. 필드 추가·삭제는 가능하지만 삭제한 필드도 정렬 유지를 위해 스키마에 타입을 남겨 두어야 하는 제한된 진화만 허용합니다.
 - **Sparse**: 메타 테이블로 필드 주소를 관리해 자유로운 스키마 진화를 허용합니다. FlatBuffers의 vtable과 목적은 같지만 구현이 다릅니다.
 - **Dynamic(기본값)**: 스키마의 진화 패턴을 보고 런타임에 Flat 또는 Sparse 중 하나를 자동으로 선택합니다.
 
-이 구조에서 핵심은 "성능과 스키마 유연성이 트레이드오프 관계"라는 사실을 레이아웃 선택으로 노출한다는 점입니다. Fixed에 가까울수록 원시 struct에 근접한 읽기 속도를 얻지만 스키마 변경에 취약해지고, Sparse에 가까울수록 자유로운 진화가 가능해지지만 메타 테이블 조회 비용이 붙습니다. 07장에서 다룬 FlatBuffers의 vtable이나 Cap'n Proto의 포인터 인코딩도 결국 이 스펙트럼 어딘가에 고정된 선택이며, YaFF는 그 선택을 스키마 필드별로 다르게 가져갈 수 있게 만든 것이 차별점입니다.
+이 구조에서 핵심은 "성능과 스키마 유연성이 트레이드오프 관계"라는 사실을 레이아웃 선택으로 노출한다는 점입니다. Fixed에 가까울수록 원시 struct에 근접한 읽기 속도를 얻지만 스키마 변경에 취약해지고, Sparse에 가까울수록 자유로운 진화가 가능해지지만 메타 테이블 조회 비용이 붙습니다. 07장에서 다룬 FlatBuffers의 vtable이나 Cap'n Proto의 포인터 인코딩도 결국 이 스펙트럼 어딘가에 고정된 선택이며, YaFF는 그 선택을 메시지 단위로 고르게 하고, 기본값인 Dynamic에서는 런타임에 Flat과 Sparse 사이를 자동으로 오가게 만들었다는 점이 다릅니다. 다만 아래 오개념 절에서 보듯, YaFF를 기존 포맷과 가르는 가장 큰 차이는 이 레이아웃 선택보다 기존 `.proto` 스키마를 그대로 쓴다는 상호운용성에 있습니다.
 
 ```mermaid
 flowchart TD
@@ -92,9 +87,9 @@ flowchart TD
 
 ## 벤치마크로 보는 위치
 
-Yandex가 공개한 자체 벤치마크(AMD EPYC 7713, Clang 20.1.8, Release 빌드 기준)는 필드 하나를 읽는 데 걸리는 시간을 아래와 같이 보고합니다. 이 수치는 Yandex의 하드웨어·컴파일러·워크로드에서 측정된 것이므로, 다른 CPU 세대나 컴파일러 버전에서는 배율이 달라질 수 있다는 점을 전제로 읽어야 합니다.
+Yandex가 공개한 자체 벤치마크([yaff `docs/benchmarks/access.md`](https://github.com/yandex/yaff/blob/main/docs/benchmarks/access.md), AMD EPYC 7713, Clang 20.1.8, Release 빌드 기준) 가운데, 3단계 중첩 메시지(Root→Intermediate→Leaf)의 필드를 접근 체인 캐싱 없이 읽는 Hierarchical/Hot 케이스의 읽기 1회 중앙값은 아래와 같습니다. 같은 문서의 다른 케이스(평평한 메시지, 캐시가 차가운 경우 등)에서는 배율이 크게 달라지므로, 이 표는 여러 측정 조건 중 하나라는 점을 염두에 둡니다. 이 수치는 Yandex의 하드웨어·컴파일러·워크로드에서 측정된 것이므로, 다른 CPU 세대나 컴파일러 버전에서는 배율이 달라질 수 있다는 점을 전제로 읽어야 합니다.
 
-| 포맷 | 필드 읽기 시간 (ns) | Raw struct 대비 |
+| 포맷 | 읽기 시간 (ns, Hierarchical/Hot) | Raw struct 대비 |
 |------|------|------|
 | C++ struct (기준) | 8.14 | 1.0× |
 | YaFF Flat | 9.79 | 1.2× |
@@ -102,15 +97,16 @@ Yandex가 공개한 자체 벤치마크(AMD EPYC 7713, Clang 20.1.8, Release 빌
 | FlatBuffers | 37.30 | 4.6× |
 | Protobuf | 219.35 | 26.9× |
 
-이 표에서 실무적으로 중요한 것은 "YaFF가 FlatBuffers보다 빠르다"는 결론 자체가 아니라, **같은 스키마 진화 유연성 수준끼리 비교해야 한다**는 점입니다. YaFF Flat은 FlatBuffers처럼 제한적 진화만 허용하는 레이아웃이고, YaFF Sparse는 FlatBuffers의 완전한 vtable 유연성에 대응합니다. Yandex는 실제 광고 추천 시스템 한 곳의 핫패스에 YaFF를 도입해 10–20%의 CPU 절감을 보고했으며, 이 수치는 MarkTechPost·PR Newswire 등 제3자 매체 보도로도 교차 확인됩니다. 다만 이는 전사 벤치마크가 아니라 하나의 프로덕션 워크로드에서 나온 수치이므로 다른 워크로드에 그대로 일반화하기는 어렵습니다.
+이 표에서 실무적으로 중요한 것은 "YaFF가 FlatBuffers보다 빠르다"는 결론 자체가 아니라, **같은 스키마 진화 유연성 수준끼리 비교해야 한다**는 점입니다. FlatBuffers는 vtable로 테이블 필드의 추가·폐기를 자유롭게 허용하는 포맷이므로, 진화 유연성이 같은 쌍은 YaFF Sparse(21.23ns)와 FlatBuffers(37.30ns)이고, YaFF Flat의 9.79ns는 진화 범위를 좁힌 대가로 얻은 수치입니다. Yandex는 실제 광고 추천 시스템 한 곳에 YaFF를 도입해 10–20%의 CPU 절감을 보고했습니다. 이 수치의 출처는 Yandex 자신의 발표(PR Newswire 보도자료)와 이를 인용한 MarkTechPost 기사로, 독립적인 재현 결과가 아니며 하나의 프로덕션 워크로드에서 나온 값이라 다른 워크로드에 그대로 일반화하기 어렵습니다.
 
-**신흥 포맷을 검토할 때는 공개된 벤치마크를 그대로 신뢰하지 말고, 자신의 메시지 스키마와 하드웨어로 직접 재현**하는 것이 원칙입니다. 아래는 여러 포맷의 "필드 하나 읽기" 경로를 동일 조건으로 비교하기 위한 최소 뼈대입니다. `BM_FormatFieldRead`의 본문은 실제로 평가하려는 포맷의 read API로 채워야 의미가 있습니다.
+**신흥 포맷을 검토할 때는 공개된 벤치마크를 그대로 신뢰하지 말고, 자신의 메시지 스키마와 하드웨어로 직접 재현**하는 것이 원칙입니다. 위 표의 배율이 어디서 생기는지 감을 잡으려면, 먼저 "구조체 필드를 바로 읽는 경로"와 "헤더의 오프셋 표를 거쳐 읽는 경로"의 차이를 외부 라이브러리 없이 재 보는 것이 출발점이 됩니다. 아래 벤치마크의 `read_field`는 YaFF의 실제 포맷이 아니라, 필드 수와 오프셋 표를 앞에 둔 버퍼에서 값을 찾아 읽는 간접 접근(YaFF Sparse·FlatBuffers vtable류 레이아웃의 골격)을 흉내 낸 것입니다.
 
 ```cpp
 #include <benchmark/benchmark.h>
 #include <cstdint>
+#include <cstring>
+#include <vector>
 
-// 실제 검증 시에는 이 struct 대신 비교 대상 메시지의 필드 하나를 그대로 읽는 경로로 채운다.
 struct PlainStruct {
   int64_t id;
   float score;
@@ -118,34 +114,64 @@ struct PlainStruct {
 
 static void BM_RawStructRead(benchmark::State& state) {
   PlainStruct s{42, 3.14f};
+  const PlainStruct* p = &s;
   for (auto _ : state) {
-    benchmark::DoNotOptimize(s.id);
-    benchmark::DoNotOptimize(s.score);
+    benchmark::DoNotOptimize(p);           // 포인터를 매번 "모르는 값"으로 만들어 읽기를 루프 밖으로 못 빼게 한다
+    benchmark::DoNotOptimize(p->id);
+    benchmark::DoNotOptimize(p->score);
   }
 }
 BENCHMARK(BM_RawStructRead);
 
-// TODO: Protobuf 파싱 후 필드 접근, FlatBuffers/Cap'n Proto 오프셋 접근,
-// YaFF Flat/Sparse 접근 등 비교하려는 포맷의 실제 read 호출로 교체한다.
-static void BM_FormatFieldRead(benchmark::State& state) {
+// 버퍼 구조: [u16 필드 수][u16 오프셋 × 필드 수][데이터 ...]
+static std::vector<uint8_t> make_buffer() {
+  std::vector<uint8_t> buf(32, 0);
+  const uint16_t count = 2, off_id = 8, off_score = 16;
+  const int64_t id = 42;
+  const float score = 3.14f;
+  std::memcpy(&buf[0], &count, 2);
+  std::memcpy(&buf[2], &off_id, 2);
+  std::memcpy(&buf[4], &off_score, 2);
+  std::memcpy(&buf[off_id], &id, sizeof(id));
+  std::memcpy(&buf[off_score], &score, sizeof(score));
+  return buf;
+}
+
+template <typename T>
+static T read_field(const uint8_t* buf, uint16_t index, T default_value) {
+  uint16_t count;
+  std::memcpy(&count, buf, 2);
+  if (index >= count) return default_value;  // 구버전 메시지에 없는 필드면 기본값(스키마 진화 대응)
+  uint16_t off;
+  std::memcpy(&off, buf + 2 + 2 * index, 2);
+  T value;
+  std::memcpy(&value, buf + off, sizeof(T));   // 정렬 가정 없이 읽기
+  return value;
+}
+
+static void BM_OffsetTableRead(benchmark::State& state) {
+  std::vector<uint8_t> buf = make_buffer();
+  const uint8_t* p = buf.data();
   for (auto _ : state) {
-    benchmark::DoNotOptimize(state.iterations());
+    benchmark::DoNotOptimize(p);
+    benchmark::DoNotOptimize(read_field<int64_t>(p, 0, 0));
+    benchmark::DoNotOptimize(read_field<float>(p, 1, 0.0f));
   }
 }
-BENCHMARK(BM_FormatFieldRead);
+BENCHMARK(BM_OffsetTableRead);
 
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하되, 같은 메시지·같은 필드·같은 반복 횟수 조건을 맞춰야 포맷 간 비교가 의미를 가집니다. 컴파일러·플랫폼·최적화 플래그가 다르면 배율이 크게 흔들릴 수 있으므로 Yandex의 수치를 그대로 인용하기보다 자신의 환경에서 재현한 결과를 기준으로 삼습니다.
+`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 두 결과를 비교하면, 간접 접근 쪽에 필드 수 확인 분기와 오프셋 조회가 더해지는 만큼의 비용이 보입니다. 실제 포맷끼리 비교하려면 `BM_OffsetTableRead` 자리에 [06장](/post/network-optimization/serialization-performance-protobuf-flatbuffers-capnproto/)의 벤치처럼 Protobuf 파싱 후 필드 접근, FlatBuffers `GetRoot`, YaFF 생성 API 호출을 같은 메시지·같은 필드 조건으로 넣어 같은 방식으로 재면 됩니다.
 
 ## 흔한 오개념
 
 **"zero-copy 포맷은 다 거기서 거기다"**: 틀렸습니다. FlatBuffers·Cap'n Proto·YaFF는 모두 "메모리 레이아웃이 곧 와이어 포맷"이라는 목표를 공유하지만, 스키마 진화 규칙·기존 Protobuf와의 상호운용성·언어 지원 범위가 서로 다릅니다. YaFF의 차별점은 속도가 아니라 "기존 `.proto` 스키마를 그대로 쓸 수 있다"는 상호운용성에 있습니다.
 
-**"벤치마크 수치가 곧 프로덕션 이득이다"**: Yandex가 보고한 10–20% CPU 절감은 광고 추천 시스템이라는 특정 핫패스 하나에서 나온 결과입니다. 필드 접근 패턴, 메시지 크기, 스키마 진화 빈도가 다른 워크로드에서는 이 절감폭이 재현되지 않을 수 있습니다.
+**"벤치마크 수치가 곧 프로덕션 이득이다"**: 마이크로벤치의 읽기 시간이 4배 빨라도 전체 CPU 절감은 그 경로가 전체 시간에서 차지하는 비중만큼만 나타납니다. 필드 접근 패턴, 메시지 크기, 스키마 진화 빈도가 다르면 같은 포맷이라도 절감폭이 크게 달라집니다.
 
-**"신흥 포맷은 기존 포맷을 즉시 대체한다"**: YaFF는 2026년 7월 기준 v0.1.0이며 C++ 구현만 제공합니다. 다국어 지원과 자동 적응형 기능은 아직 개발 중이라고 공개되어 있으므로, 다국어 스택이나 장기 안정성이 필요한 경로에는 아직 이르다고 보는 편이 안전합니다.
+**"신흥 포맷은 기존 포맷을 즉시 대체한다"**: 다국어 지원과 자동 적응형 기능은 아직 개발 중이라고 공개되어 있어, 성숙도 문제(아래 비판적 시각)를 해소하기 전까지는 기존 포맷과 병행하는 단계로 보는 편이 안전합니다.
 
 ## 판단 기준
 
@@ -159,7 +185,7 @@ BENCHMARK_MAIN();
 
 ## 비판적 시각: 한계와 트레이드오프
 
-YaFF 같은 신흥 포맷의 가장 큰 리스크는 성능이 아니라 **성숙도**입니다. v0.1.0 태그, 단일 벤더(Yandex) 주도 개발, C++ 단일 언어 구현은 프로덕션 코어 경로에 넣기에는 이르다는 신호입니다. 오픈소스로 공개되었다고 해서 커뮤니티 생태계·장기 유지보수·다국어 지원이 FlatBuffers·Cap'n Proto 수준으로 자리 잡았다는 뜻은 아닙니다. 또한 "기존 `.proto` 스키마를 그대로 쓴다"는 장점은 동시에 제약이기도 합니다. Protobuf 스키마 문법 자체의 한계(예: 복잡한 유니온 표현, 스키마 레벨 검증 부재)를 물려받기 때문입니다. Yandex가 공개한 10–20% CPU 절감 수치도 자사 광고 추천 시스템이라는 단일 사례이며, 독립적인 제3자 벤치마크나 다른 조직의 재현 사례는 2026년 7월 기준 아직 충분히 쌓이지 않았습니다. 새 포맷이 나올 때마다 매번 전면 교체를 검토하기보다, 스키마 상호운용성·언어 지원·커뮤니티 활동성을 조합한 채택 기준을 팀 차원에서 미리 정해 두는 편이 신흥 포맷의 유행 주기에 휘둘리지 않는 방법입니다.
+YaFF 같은 신흥 포맷의 가장 큰 리스크는 성능이 아니라 **성숙도**입니다. 2026년 7월 기준 v0.1.0 태그, 단일 벤더(Yandex) 주도 개발, C++ 단일 언어 구현은 프로덕션 코어 경로에 넣기에는 이르다는 신호입니다. 오픈소스로 공개되었다고 해서 커뮤니티 생태계·장기 유지보수·다국어 지원이 FlatBuffers·Cap'n Proto 수준으로 자리 잡았다는 뜻은 아닙니다. 또한 "기존 `.proto` 스키마를 그대로 쓴다"는 장점은 동시에 제약이기도 합니다. Protobuf 스키마 문법 자체의 한계(예: 복잡한 유니온 표현, 스키마 레벨 검증 부재)를 물려받기 때문입니다. 독립적인 제3자 벤치마크나 다른 조직의 재현 사례도 2026년 7월 기준 아직 충분히 쌓이지 않았습니다. 새 포맷이 나올 때마다 매번 전면 교체를 검토하기보다, 스키마 상호운용성·언어 지원·커뮤니티 활동성을 조합한 채택 기준을 팀 차원에서 미리 정해 두는 편이 신흥 포맷의 유행 주기에 휘둘리지 않는 방법입니다.
 
 ## 마무리
 
@@ -178,7 +204,7 @@ YaFF 같은 신흥 포맷의 가장 큰 리스크는 성능이 아니라 **성�
 ### 참고 자료
 
 - [yandex/yaff — GitHub](https://github.com/yandex/yaff) — YaFF 공식 저장소, 레이아웃 종류와 Protobuf 상호운용 방식을 설명하는 1차 출처
-- [Yandex Open-Sources YaFF — MarkTechPost](https://www.marktechpost.com/2026/06/20/yandex-open-sources-yaff-a-zero-copy-wire-format-for-protobuf-with-near-struct-read-speed/) — 독립 매체의 YaFF 소개 및 성능 특성 리뷰
-- [Yandex open-sources YaFF, a technology that reduce server CPU usage by up to 20% — PR Newswire](https://www.prnewswire.com/news-releases/yandex-open-sources-yaff-a-technology-that-reduce-server-cpu-usage-by-up-to-20-302809686.html) — 광고 추천 시스템 CPU 절감 수치를 보도한 제3자 출처
+- [Yandex Open-Sources YaFF — MarkTechPost](https://www.marktechpost.com/2026/06/20/yandex-open-sources-yaff-a-zero-copy-wire-format-for-protobuf-with-near-struct-read-speed/) — Yandex 발표를 인용한 YaFF 소개 기사(레이아웃별 성능 특성 정리)
+- [Yandex open-sources YaFF, a technology that reduce server CPU usage by up to 20% — PR Newswire](https://www.prnewswire.com/news-releases/yandex-open-sources-yaff-a-technology-that-reduce-server-cpu-usage-by-up-to-20-302809686.html) — 광고 추천 시스템 CPU 절감 수치를 담은 Yandex 보도자료
 - [Cap'n Proto Encoding](https://capnproto.org/encoding.html) — 구조체·리스트·포인터 인코딩을 다루는 Cap'n Proto 공식 명세
 - [FlatBuffers Internals](https://flatbuffers.dev/internals/) — 오프셋·vtable 기반 메모리 레이아웃을 다루는 FlatBuffers 공식 문서

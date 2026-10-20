@@ -405,7 +405,7 @@
 | content/collection/optimization-10-network/05-udp-optimization/index.md | 100 | 2026-10-20 | 1 | 통과 | 1.3 | 2a7a37e | 없음 |
 | content/collection/optimization-10-network/06-serialization-performance-comparison/index.md | 96.6 | 2026-10-20 | 1 | 통과 | 1.3 | 104d427 | 없음(경미: 마무리 체크리스트 앞 요약 문단 부재(L324), 스키마·코드 블록 도입 문단 1문장(L143·L157·L178·L194) → 2문장 이상으로 보강) |
 | content/collection/optimization-10-network/07-zero-copy-serialization/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | d2091f6 | 없음(경미: L166 '이 트랙의 커널 바이패스·io_uring 챕터'가 실재하지 않음 → 11장 DPDK·12장 XDP 링크로 교체 필요) |
-| content/collection/optimization-10-network/08-next-gen-zero-copy-formats/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/08-next-gen-zero-copy-formats/index.md | 97.3 | 2026-10-21 | 2 | 통과 | 1.3 | 5bc430f | 없음(경미: L71 Flat 추가 비용 원인을 '앞선 필드 크기로 위치 계산'이 아니라 '2바이트 헤더 확인'으로 정정, 위치 계산은 삭제 필드 타입 보존 이유로 분리) |
 | content/collection/optimization-10-network/09-protocol-design/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/10-message-framing/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/11-dpdk-advanced/index.md | - | - | 0 | 미채점 | - | - | - |
