@@ -16,16 +16,12 @@ tags:
   - C++
   - C
   - Memory(메모리)
-  - Benchmark
   - Latency
   - Throughput
   - Implementation(구현)
   - Best-Practices
   - Code-Quality(코드품질)
   - System-Design
-  - Backend(백엔드)
-  - Reliability
-  - Scalability(확장성)
   - Deep-Dive
   - Advanced
   - Case-Study
@@ -35,13 +31,12 @@ tags:
   - Documentation(문서화)
   - Reference(참고)
   - Guide(가이드)
-  - Debugging(디버깅)
   - Binary-Protocol
   - Wire-Format
   - Protocol-Design
   - Header-Design
   - Versioning
-  - Schema-Evolution
+  - Schema-Evolution(스키마진화)
   - TLV
   - SBE
   - Endianness
@@ -54,17 +49,17 @@ tags:
 
 **선행 챕터**: [06장: 직렬화 성능 비교](/post/network-optimization/serialization-performance-protobuf-flatbuffers-capnproto/)에서 Protocol Buffers·FlatBuffers·Cap'n Proto의 인코딩 방식과 비용을 비교했고, [07장: Zero-copy 직렬화](/post/network-optimization/zero-copy-serialization-flatbuffers-capnproto/)에서는 vtable·세그먼트 기반 필드 접근 원리를, [08장](/post/network-optimization/next-gen-zero-copy-serialization-formats-yaff/)에서는 신흥 zero-copy 포맷 동향을 다뤘습니다. 이 장은 "어떤 포맷을 쓸지"가 아니라 "그 포맷 위에 얹는 헤더·버전·확장 규약을 어떻게 설계할지"를 다룬다는 점에서 앞 장들과 층위가 다릅니다.
 
-**전제 지식**: C/C++ 구조체의 메모리 레이아웃과 패딩, 정수의 엔디안(byte order) 개념, 그리고 05–08장에서 다룬 "직렬화 비용은 파싱 단계에서 결정된다"는 감각이 있으면 충분합니다.
+**전제 지식**: C/C++ 구조체의 메모리 레이아웃과 패딩, 정수의 엔디안(byte order) 개념, 그리고 06–08장에서 다룬 "직렬화 비용은 파싱 단계에서 결정된다"는 감각이 있으면 충분합니다.
 
-**이 장의 깊이**: **중급** 수준입니다. 고정 크기 헤더의 이점, additive-only 버전 관리, 플래그·예약 필드·TLV 확장 블록이라는 세 가지 확장 메커니즘을 원리 수준에서 다룹니다. **다루지 않는 것**: 메시지 경계를 스트림에서 어떻게 나눌지(length-prefix vs delimiter vs fixed-size)는 [10장: 메시지 프레이밍](/post/network-optimization/message-framing-length-prefix-delimiter-fixed-size/)에서 다루고, 필드 인코딩 자체의 처리량·zero-copy 메커니즘은 05–08장에서 다뤘으므로 이 장에서는 반복하지 않습니다.
+**이 장의 깊이**: **중급** 수준입니다. 고정 크기 헤더의 이점, additive-only 버전 관리, 플래그·예약 필드·TLV 확장 블록이라는 세 가지 확장 메커니즘을 원리 수준에서 다룹니다. **다루지 않는 것**: 메시지 경계를 스트림에서 어떻게 나눌지(length-prefix vs delimiter vs fixed-size)는 [10장: 메시지 프레이밍](/post/network-optimization/message-framing-length-prefix-delimiter-fixed-size/)에서 다루고, 필드 인코딩 자체의 처리량·zero-copy 메커니즘은 06–08장에서 다뤘으므로 이 장에서는 반복하지 않습니다.
 
 ## 당신의 수준에 맞는 경로
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
-| **중급자** | "등장 배경" ~ "헤더 설계: 고정 크기가 주는 것" | 고정 헤더가 파싱 비용을 줄이는 이유 이해 |
-| **중급–심화** | "버전 관리" ~ "코드로 보는 검증" | additive-only 규칙과 TLV 확장 설계를 코드로 추적 |
-| **심화** | "흔한 오개념" ~ "비판적 시각" | 버전·확장 설계의 함정과 트레이드오프 판단 |
+| **중급자** | "등장 배경" – "헤더 설계: 고정 크기가 주는 것" | 고정 헤더가 파싱 비용을 줄이는 이유 이해 |
+| **중급–심화** | "버전 관리" – "코드로 보는 검증" | additive-only 규칙과 TLV 확장 설계를 코드로 추적 |
+| **심화** | "흔한 오개념" – "비판적 시각" | 버전·확장 설계의 함정과 트레이드오프 판단 |
 
 ## 등장 배경
 
@@ -74,36 +69,37 @@ tags:
 
 **고정 크기 헤더**는 메시지의 맨 앞 N바이트가 항상 같은 필드를 같은 오프셋에 담고 있음을 보장하는 설계입니다. 이 보장이 있으면 수신 측은 가변 길이 파싱 로직 없이 `buf[0..N)`을 구조체로 재해석(또는 `memcpy`)해 매직 넘버·버전·타입·길이를 O(1)에 읽을 수 있고, 그 다음에야 타입별 가변 바디를 처리할지 결정합니다. 이는 07장에서 다룬 zero-copy 직렬화가 "필드 접근"에서 얻는 이점을, 이 장에서는 "메시지 식별과 분기"라는 더 앞단에 적용하는 것입니다.
 
-헤더에 담을 필드는 보통 다음과 같은 역할로 나뉩니다. <strong>매직 넘버(magic)</strong>는 이 바이트열이 해당 프로토콜의 메시지가 맞는지 빠르게 검증하는 상수이고, <strong>버전(version)</strong>은 이후 등장할 additive-only 규칙의 기준점이며, <strong>타입(type)</strong>은 바디를 어떤 핸들러로 넘길지 결정하는 코드이고, <strong>길이(length)</strong>는 헤더를 포함한 전체 메시지 크기로 이후 10장에서 다룰 프레이밍과 맞물리는 필드입니다. <strong>시퀀스 번호(sequence)</strong>는 순서 보장이나 손실 감지가 필요할 때 단조 증가 값으로 넣습니다.
+헤더에 담을 필드는 보통 다음과 같은 역할로 나뉩니다. <strong>매직 넘버(magic)</strong>는 이 바이트열이 해당 프로토콜의 메시지가 맞는지 빠르게 검증하는 상수이고, <strong>버전(version)</strong>은 이후 등장할 additive-only 규칙의 기준점이며, <strong>타입(type)</strong>은 바디를 어떤 핸들러로 넘길지 결정하는 코드이고, <strong>길이(length)</strong>는 헤더를 포함한 전체 메시지 크기로 이후 10장에서 다룰 프레이밍과 맞물리는 필드이고, <strong>블록 길이(blockLength)</strong>는 헤더 뒤 고정 블록(바디의 고정 크기 부분)의 크기로 버전이 달라도 고정부의 끝, 즉 TLV 꼬리의 시작점을 알려 주는 필드입니다. <strong>시퀀스 번호(sequence)</strong>는 순서 보장이나 손실 감지가 필요할 때 단조 증가 값으로 넣습니다.
 
 ```cpp
 #include <cstdint>
 
-// 모든 메시지가 공유하는 고정 헤더. 필드는 큰 타입부터 배치해
-// 패딩 없이도 8바이트 경계에 자연스럽게 정렬되도록 순서를 잡았다.
+// 모든 메시지가 공유하는 고정 헤더. 각 필드가 자기 크기의 배수 오프셋에 오도록(자연 정렬)
+// 순서를 잡아, 패킹을 풀어도 패딩이 생기지 않고 sequence는 8바이트 경계(오프셋 16)에 놓인다.
 #pragma pack(push, 1)
 struct WireHeader {
-  uint32_t magic;     // 예: 0x4C4C4832 ("LLH2"), 잘못된 스트림을 빠르게 걸러냄
-  uint16_t version;   // 스키마 버전; additive-only 증가
-  uint16_t type;      // 메시지 타입 코드; 바디 파서 분기 기준
-  uint32_t length;    // 헤더 포함 전체 메시지 바이트 길이
-  uint32_t flags;     // 기능 비트 플래그; 미사용 비트는 0으로 예약
-  uint64_t sequence;  // 단조 증가 시퀀스 번호(순서·손실 감지)
+  uint32_t magic;        // 예: 0x4C4C4832 ("LLH2"), 잘못된 스트림을 빠르게 걸러냄
+  uint16_t version;      // 스키마 버전; additive-only 증가
+  uint16_t type;         // 메시지 타입 코드; 바디 파서 분기 기준
+  uint32_t length;       // 헤더 포함 전체 메시지 바이트 길이
+  uint16_t blockLength;  // 헤더 뒤 고정 블록 크기; 이 지점부터 TLV 꼬리가 시작된다
+  uint16_t flags;        // 기능 비트 플래그; 미사용 비트는 0으로 예약
+  uint64_t sequence;     // 단조 증가 시퀀스 번호(순서·손실 감지)
 };
 #pragma pack(pop)
 ```
 
-이 구조체는 `#pragma pack(push, 1)`로 컴파일러의 자동 정렬 패딩을 끄고, 필드 순서도 큰 타입부터 배치해 와이어 상의 바이트 배치와 메모리 상의 바이트 배치가 일치하도록 만든 것입니다. 다음 절에서 이 가정이 실제로 지켜지는지 검증하는 과정을 다룹니다.
+이 구조체는 `#pragma pack(push, 1)`로 컴파일러의 자동 정렬 패딩을 끄고, 필드 순서도 자연 정렬에 맞게 배치해 와이어 상의 바이트 배치와 메모리 상의 바이트 배치가 일치하도록 만든 것입니다. 이 가정이 실제로 지켜지는지는 아래 "코드로 보는 검증" 절에서 `static_assert`로 확인합니다.
 
 ## 버전 관리: additive-only 규칙
 
-**버전 필드**를 헤더에 두는 것만으로는 부족합니다. 실제로 하위·상위 호환성을 얻으려면 "필드를 어떻게 추가·제거할 수 있는가"에 대한 규칙이 필요합니다. SBE가 채택한 규칙은 단순합니다. 새 필드는 반드시 **메시지(또는 그룹)의 끝에만** 추가하고, 새 스키마 버전 번호를 매기며, 새 필드는 `optional`로 표시합니다. 기존 필드를 수정하거나 삭제하면 그 순간 하위 호환성이 깨지므로, 더 이상 쓰지 않는 필드는 삭제 대신 "예약(reserved)"으로 표시하고 값을 무시하는 쪽을 선택합니다. 신형 디코더가 구버전 메시지를 만나면 헤더의 `version`과 `blockLength`(길이)를 보고 그 버전에 맞게 동작하며, 확장된 필드는 없는 것으로 취급합니다. 반대로 구형 디코더가 신형 메시지를 만나면, 자신이 아는 블록 길이만큼만 읽고 그 뒤에 붙은 새 필드는 그대로 건너뜁니다 — 이것이 additive-only 규칙이 "몰라도 안전하게 무시할 수 있다"는 성질을 보장하는 이유입니다.
+**버전 필드**를 헤더에 두는 것만으로는 부족합니다. 실제로 하위·상위 호환성을 얻으려면 "필드를 어떻게 추가·제거할 수 있는가"에 대한 규칙이 필요합니다. SBE가 채택한 규칙은 단순합니다. 새 필드는 반드시 **메시지(또는 그룹)의 끝에만** 추가하고, 새 스키마 버전 번호를 매기며, 새 필드는 `optional`로 표시합니다. 기존 필드를 수정하거나 삭제하면 그 순간 하위 호환성이 깨지므로, 더 이상 쓰지 않는 필드는 삭제 대신 "예약(reserved)"으로 표시하고 값을 무시하는 쪽을 선택합니다. 신형 디코더가 구버전 메시지를 만나면 헤더의 `version`과 `blockLength`(전체 길이 `length`와 별개인 고정 블록 크기)를 보고 그 버전에 맞게 동작하며, 확장된 필드는 없는 것으로 취급합니다. 반대로 구형 디코더가 신형 메시지를 만나면, 자신이 아는 필드만 읽은 뒤 헤더의 `blockLength`로 고정 블록의 끝을 찾아 그 지점부터 TLV 꼬리를 읽으므로, 고정 블록 끝에 덧붙은 새 필드는 그대로 건너뜁니다 — 이것이 additive-only 규칙이 "몰라도 안전하게 무시할 수 있다"는 성질을 보장하는 이유입니다.
 
 이 규칙에서 자주 놓치는 것은 "복합 타입(composite)" 자체의 필드 구성은 이 additive 규칙의 예외라는 점입니다. 헤더처럼 다른 모든 메시지가 공유하는 복합 타입에 필드를 끼워 넣으려면, 그룹 필드에 옵셔널을 추가하는 것과 달리 새 스키마 버전 전체를 사실상 다시 정의해야 합니다. 그래서 실무에서는 공용 헤더는 최대한 작고 안정적으로 유지하고, 확장이 잦을 필드는 헤더가 아니라 다음 절에서 다룰 TLV 꼬리 블록에 담습니다.
 
 ## 확장성: 플래그 · 예약 필드 · TLV 꼬리 블록
 
-버전 번호 하나만으로는 "이번 메시지에 어떤 선택적 기능이 켜져 있는지"를 표현하기 번거롭습니다. 그래서 실무에서는 세 가지 메커니즘을 함께 씁니다. 첫째, **플래그 비트필드**(`flags`)는 32비트나 64비트 정수의 각 비트를 독립적인 기능 스위치로 써서, 새 기능을 켜고 끄는 데 새 필드나 새 버전이 필요 없게 합니다. 둘째, **예약 바이트/필드**는 처음 설계할 때부터 몇 바이트를 비워 두어, 나중에 그 자리에 새 필드를 채워도 메시지 전체 크기가 바뀌지 않게 합니다. 셋째, **TLV(Type-Length-Value) 꼬리 블록**은 고정 헤더 뒤에 `(타입, 길이, 값)` 삼중항을 반복해서 붙이는 방식으로, 모르는 타입을 만나면 길이만큼 건너뛰면 되므로 신형 필드를 무한히 추가할 수 있는 여지를 남깁니다.
+버전 번호 하나만으로는 "이번 메시지에 어떤 선택적 기능이 켜져 있는지"를 표현하기 번거롭습니다. 그래서 실무에서는 세 가지 메커니즘을 함께 씁니다. 첫째, **플래그 비트필드**(`flags`)는 16·32·64비트 정수의 각 비트를 독립적인 기능 스위치로 써서, 새 기능을 켜고 끄는 데 새 필드나 새 버전이 필요 없게 합니다. 둘째, **예약 바이트/필드**는 처음 설계할 때부터 몇 바이트를 비워 두어, 나중에 그 자리에 새 필드를 채워도 메시지 전체 크기가 바뀌지 않게 합니다. 셋째, **TLV(Type-Length-Value) 꼬리 블록**은 고정 헤더 뒤에 `(타입, 길이, 값)` 삼중항을 반복해서 붙이는 방식으로, 모르는 타입을 만나면 길이만큼 건너뛰면 되므로 신형 필드를 무한히 추가할 수 있는 여지를 남깁니다.
 
 ```cpp
 #include <cstdint>
@@ -120,11 +116,11 @@ struct TlvEntry {
 // 모르는 type은 length만큼 건너뛰고 계속 진행한다.
 void parse_tlv_tail(const uint8_t* buf, const uint8_t* end,
                      void (*on_known)(uint16_t type, const uint8_t* value, uint16_t len)) {
-  while (buf + sizeof(TlvEntry) <= end) {
+  while (static_cast<size_t>(end - buf) >= sizeof(TlvEntry)) {  // 포인터 덧셈 없이 남은 크기로 비교
     TlvEntry entry;
     std::memcpy(&entry, buf, sizeof(TlvEntry));
     const uint8_t* value = buf + sizeof(TlvEntry);
-    if (value + entry.length > end) break;  // 손상된 길이 필드 방어
+    if (entry.length > static_cast<size_t>(end - value)) break;  // 손상된 길이 필드 방어(범위 밖 포인터를 만들지 않음)
     if (entry.type == 1 || entry.type == 2) {  // 아는 타입만 처리
       on_known(entry.type, value, entry.length);
     }
@@ -155,7 +151,7 @@ struct HeaderBroken {
 // 24바이트 근처가 되기 쉽고, 그 값은 컴파일러·플랫폼(ABI)에 따라 달라진다(구현 정의).
 ```
 
-패딩이 몇 바이트 끼는지는 컴파일러와 대상 ABI에 따라 달라지는 구현 정의 동작이라, 같은 소스를 다른 컴파일러로 빌드한 두 장비가 서로 다른 `sizeof`를 낼 수 있습니다. 이를 바로잡으려면 필드를 큰 타입부터 배치하고 패킹을 명시한 뒤, 컴파일 타임에 크기와 오프셋을 `static_assert`로 고정해야 합니다.
+패딩이 몇 바이트 끼는지는 컴파일러와 대상 ABI에 따라 달라지는 구현 정의 동작이라, 같은 소스를 다른 컴파일러로 빌드한 두 장비가 서로 다른 `sizeof`를 낼 수 있습니다. 이를 바로잡으려면 필드를 자연 정렬 순서로 배치하고 패킹을 명시한 뒤, 컴파일 타임에 크기와 오프셋을 `static_assert`로 고정해야 합니다.
 
 ```cpp
 #include <cstdint>
@@ -167,29 +163,31 @@ struct HeaderFixed {
   uint16_t version;
   uint16_t type;
   uint32_t length;
-  uint32_t flags;
+  uint16_t blockLength;
+  uint16_t flags;
   uint64_t sequence;
 };
 #pragma pack(pop)
 
 static_assert(sizeof(HeaderFixed) == 24, "HeaderFixed 크기가 와이어 스펙과 어긋남");
-static_assert(offsetof(HeaderFixed, version)  == 4,  "version 오프셋 불일치");
-static_assert(offsetof(HeaderFixed, type)     == 6,  "type 오프셋 불일치");
-static_assert(offsetof(HeaderFixed, length)   == 8,  "length 오프셋 불일치");
-static_assert(offsetof(HeaderFixed, flags)    == 12, "flags 오프셋 불일치");
-static_assert(offsetof(HeaderFixed, sequence) == 16, "sequence 오프셋 불일치");
+static_assert(offsetof(HeaderFixed, version)     == 4,  "version 오프셋 불일치");
+static_assert(offsetof(HeaderFixed, type)        == 6,  "type 오프셋 불일치");
+static_assert(offsetof(HeaderFixed, length)      == 8,  "length 오프셋 불일치");
+static_assert(offsetof(HeaderFixed, blockLength) == 12, "blockLength 오프셋 불일치");
+static_assert(offsetof(HeaderFixed, flags)       == 14, "flags 오프셋 불일치");
+static_assert(offsetof(HeaderFixed, sequence)    == 16, "sequence 오프셋 불일치");
 ```
 
-`g++ -std=c++20 -Wall -Wextra`(또는 동등한 clang++)로 이 파일을 컴파일하면 `static_assert`가 빌드 타임에 크기·오프셋 불일치를 즉시 잡아냅니다. Linux에서는 `pahole`(dwarves 패키지) 도구로 실제 컴파일된 구조체의 필드 오프셋과 패딩을 DWARF 디버그 정보에서 직접 덤프해 확인할 수도 있습니다. 다만 `#pragma pack(1)`은 필드를 자연스러운 정렬 경계 밖에 둘 수 있어, 그 위치를 포인터로 직접 캐스팅해 읽으면 일부 아키텍처에서 정렬 위반 접근이 됩니다. 위 예제가 `reinterpret_cast` 대신 항상 `memcpy`로 헤더를 복사해 오는 이유가 여기에 있으며, 포인터 캐스팅으로 직접 접근하는 zero-copy 기법의 안전 조건은 07장에서 다룬 내용을 참고합니다.
+`g++ -std=c++20 -Wall -Wextra`(또는 동등한 clang++)로 이 파일을 컴파일하면 `static_assert`가 빌드 타임에 크기·오프셋 불일치를 즉시 잡아냅니다. Linux에서는 `pahole`(dwarves 패키지) 도구로 실제 컴파일된 구조체의 필드 오프셋과 패딩을 DWARF 디버그 정보에서 직접 덤프해 확인할 수도 있습니다. 다만 `#pragma pack(1)`은 필드를 자연스러운 정렬 경계 밖에 둘 수 있어, 그 위치를 포인터로 직접 캐스팅해 읽으면 일부 아키텍처에서 정렬 위반 접근이 됩니다. 앞의 TLV 파서가 `reinterpret_cast` 대신 `memcpy`로 항목을 지역 변수에 복사해 읽은 것처럼, 헤더도 수신 버퍼에서 `memcpy`로 복사해 읽어야 하는 이유가 여기에 있으며, 포인터 캐스팅으로 직접 접근하는 zero-copy 기법의 안전 조건은 07장에서 다룬 내용을 참고합니다.
 
-지금까지 다룬 매직·버전·타입 검사와 TLV 꼬리 파싱을 하나의 흐름으로 합치면 다음과 같습니다. 신형 메시지가 구형 디코더를 만나도, 아는 블록 길이만큼만 읽고 TLV 꼬리는 타입별로 필요한 것만 골라 처리하는 경로가 그대로 유지됩니다.
+지금까지 다룬 매직·버전·타입 검사와 TLV 꼬리 파싱을 하나의 흐름으로 합치면 다음과 같습니다. 신형 메시지가 구형 디코더를 만나도, 아는 필드만 읽고 헤더의 `blockLength`로 고정 블록 끝을 건너뛴 뒤 TLV 꼬리는 타입별로 필요한 것만 골라 처리하는 경로가 그대로 유지됩니다.
 
 ```mermaid
 flowchart LR
   recvBuf["수신 버퍼"] --> checkMagic{"magic 일치?"}
   checkMagic -- "아니오" --> dropMsg["연결 종료·폐기"]
   checkMagic -- "예" --> checkVersion{"version이 아는 범위인가?"}
-  checkVersion -- "상위 버전(additive만)" --> readKnownBlock["blockLength만큼만 읽고 나머지 무시"]
+  checkVersion -- "상위 버전(additive만)" --> readKnownBlock["아는 필드만 읽고</br>헤더 blockLength로 고정 블록 끝까지 건너뜀"]
   checkVersion -- "아는 버전" --> dispatchType{"type 필드로 분기"}
   readKnownBlock --> dispatchType
   dispatchType --> handlerA["핸들러 A"]
