@@ -276,7 +276,7 @@
 | content/collection/optimization-03-compiler/08-compiler-intrinsics/index.md | 100 | 2026-10-20 | 1 | 통과 | 1.3 | 6211182 | 없음 |
 | content/collection/optimization-03-compiler/09-sanitizer-overhead/index.md | 95.35 | 2026-10-21 | 1 | 통과 | 1.3 | 854c5d3 | 없음(경미: L202 UBSan 보안 경고를 최소 런타임에 귀속 / L152 MSan 메모리 2×(origin 3×) 누락 / L119·L182 코드 블록 연속 배치) |
 | content/collection/optimization-03-compiler/10-debug-info-and-performance/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | edd6b8f | 없음 |
-| content/collection/optimization-03-compiler/11-cpp20-modules/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/11-cpp20-modules/index.md | 98.5 | 2026-10-21 | 1 | 통과 | 1.3 | e672a2c | 없음(경미: L114 GCC 14는 .cppm을 C++ 소스로 인식하지 않을 수 있음 — -x c++ 추가 권장, 최신 GCC 매뉴얼은 .cppm 지원 명시) |
 | content/collection/optimization-03-compiler/12-build-parallelization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/13-static-analyzer/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/14-bolt-post-link-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
