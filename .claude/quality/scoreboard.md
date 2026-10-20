@@ -273,7 +273,7 @@
 | content/collection/optimization-03-compiler/05-inlining-diagnostics/index.md | 97.3 | 2026-10-20 | 1 | 통과 | 1.3 | d6173da | 없음(경미: L118 -fopt-info-inline-missed 발췌 범위 서술 — 21:22 big_func 2줄 생략을 명시 필요) |
 | content/collection/optimization-03-compiler/06-code-generation-analysis/index.md | 97.3 | 2026-10-20 | 1 | 통과 | 1.3 | 0d57396 | 없음(경미: L51 objdump를 LTO 결과 확인의 "유일한 방법"으로 과장 — -flto -save-temps 대안 존재) |
 | content/collection/optimization-03-compiler/07-function-multiversioning/index.md | 97.3 | 2026-10-20 | 1 | 통과 | 1.3 | c19d801 | 없음(경미: L117 ACLE 언급을 Clang Attribute Reference에 귀속 — 원문에 없음, ACLE 출처 분리 필요) |
-| content/collection/optimization-03-compiler/08-compiler-intrinsics/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/08-compiler-intrinsics/index.md | 100 | 2026-10-20 | 1 | 통과 | 1.3 | 6211182 | 없음 |
 | content/collection/optimization-03-compiler/09-sanitizer-overhead/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/10-debug-info-and-performance/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/11-cpp20-modules/index.md | - | - | 0 | 미채점 | - | - | - |
