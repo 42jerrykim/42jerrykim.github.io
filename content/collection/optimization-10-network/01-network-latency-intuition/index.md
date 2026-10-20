@@ -14,13 +14,11 @@ tags:
   - OS(운영체제)
   - Linux(리눅스)
   - C++
-  - C
   - IO(Input/Output)
   - Benchmark
   - Latency
   - Throughput
   - Profiling(프로파일링)
-  - Testing(테스트)
   - Implementation(구현)
   - Best-Practices
   - Debugging(디버깅)
@@ -40,6 +38,8 @@ tags:
   - 왕복시간
   - 대역폭
   - 네트워크지연
+  - TCP-IP
+  - Socket(소켓)
 ---
 
 **네트워크 지연 직관**이란 RTT(왕복시간), 대역폭(bandwidth), 직렬화 지연(serialization delay)이 각각 무엇을 의미하고 어떻게 조합되어 최종 지연시간을 만드는지 정성적·정량적으로 파악하는 능력을 말합니다. 이 트랙의 나머지 챕터들은 소켓 옵션, TCP 혼잡 제어, 직렬화 포맷, 프로토콜 설계처럼 각 영역을 깊이 파고들지만, 그 전에 "지연이 어디서 오는가"에 대한 감이 없으면 어떤 최적화가 실제로 유효한지 판단하기 어렵습니다. 예를 들어 응답이 느릴 때 대역폭을 늘려야 할지, 요청 왕복 횟수를 줄여야 할지, 페이로드 크기를 줄여야 할지는 지연의 구성 요소 중 무엇이 지배적인지에 따라 답이 완전히 달라집니다. 이 장은 그 판단을 위한 최소한의 정신 모델을 세우는 것을 목표로 합니다.
@@ -64,11 +64,11 @@ tags:
 
 ## RTT와 대역폭-지연 곱, 감각의 뿌리
 
-지연을 정량적으로 다루려는 시도는 TCP 자체의 역사와 함께 시작되었습니다. 1988년 Van Jacobson과 Michael Karels는 SIGCOMM에 발표한 "Congestion Avoidance and Control" 논문에서 RTT를 지속적으로 샘플링해 재전송 타임아웃(RTO)을 추정하는 알고리즘을 제시했고, 이는 이후 모든 TCP 구현의 기반이 되었습니다. 같은 해 Jacobson과 Braden은 RFC 1072에서 대역폭과 지연의 곱이 큰 경로("long fat network", LFN)에서 16비트 윈도우 필드가 처리량의 병목이 된다는 문제를 처음 정식화했습니다. 이 아이디어는 1992년 RFC 1323을 거쳐 현재는 RFC 7323으로 이어졌고, 이 문서는 지금도 원인을 다음과 같이 명시합니다.
+지연을 정량적으로 다루려는 시도는 TCP 자체의 역사와 함께 시작되었습니다. 1988년 Van Jacobson은 SIGCOMM에 발표한 "Congestion Avoidance and Control" 논문(같은 해 11월 Michael Karels와 공저한 개정판이 나옴)에서 RTT를 지속적으로 샘플링해 재전송 타임아웃(RTO)을 추정하는 알고리즘을 제시했고, 이는 이후 모든 TCP 구현의 기반이 되었습니다. 같은 해 Jacobson과 Braden은 RFC 1072에서 대역폭과 지연의 곱이 큰 경로("long fat network", LFN)에서 16비트 윈도우 필드가 처리량의 병목이 된다는 문제를 처음 정식화했습니다. 이 아이디어는 1992년 RFC 1323을 거쳐 현재는 RFC 7323으로 이어졌고, 이 문서는 지금도 원인을 다음과 같이 명시합니다.
 
 > "This document specifies a set of TCP extensions to improve performance over paths with a large bandwidth * delay product and to provide reliable operation over very high-speed paths." — [RFC 7323: TCP Extensions for High Performance](https://www.rfc-editor.org/rfc/rfc7323) (IETF, 2014)
 
-한편 지연을 "체감 가능한 예산"으로 다루는 관점은 통신 표준에서도 자리 잡았습니다. [ITU-T의 음성 품질 권고안 G.114](https://www.itu.int/rec/T-REC-G.114/en)는 편도(one-way) 지연이 150ms 이하면 대부분의 사용자가 지연을 느끼지 못하고, 150–400ms는 체감은 되지만 사용 가능한 범위, 400ms를 넘으면 대화가 어려워진다는 기준을 제시합니다. 이 숫자 자체는 음성 통화를 염두에 둔 것이지만, "지연에는 사람이 느끼는 예산이 있고 그 예산 안에서 각 구성 요소가 얼마를 차지하는지 나눠 봐야 한다"는 사고방식은 RPC·게임·트레이딩 시스템에도 그대로 적용됩니다.
+한편 지연을 "체감 가능한 예산"으로 다루는 관점은 통신 표준에서도 자리 잡았습니다. [ITU-T 권고안 G.114(현행 05/2003판)](https://www.itu.int/rec/T-REC-G.114/en)는 편도(one-way) 전송 지연에 대한 계획 지침으로, 일반적인 네트워크 계획에서는 편도 400ms를 넘기지 말 것을 권고하고 약 150ms 이하에서는 대부분의 응용이 크게 영향받지 않는다고 봅니다(150/400ms를 세 구간으로 나눈 표는 폐지된 이전 판의 표현입니다). 이 숫자 자체는 음성 통화를 염두에 둔 것이지만, "지연에는 사람이 느끼는 예산이 있고 그 예산 안에서 각 구성 요소가 얼마를 차지하는지 나눠 봐야 한다"는 사고방식은 RPC·게임·트레이딩 시스템에도 그대로 적용됩니다.
 
 ## RTT를 구성하는 네 가지 지연
 
@@ -76,7 +76,7 @@ tags:
 
 ### 전파 지연과 직렬화(전송) 지연
 
-<strong>전파 지연(propagation delay)</strong>은 신호가 물리적 매체를 실제로 이동하는 데 걸리는 시간으로, 거리를 매체 내 신호 속도로 나눈 값입니다. 광섬유 안에서 빛은 진공 중 속도(약 299,792km/s)보다 느리게 이동하는데, 표준 단일모드 광섬유(SMF-28 계열)의 굴절률이 약 1.47이기 때문에 실제 속도는 약 200,000km/s 수준이고, 흔히 "1km당 약 5µs" 정도로 근사합니다. 다만 실제 대륙간 경로는 직선 거리를 그대로 따라가지 않고 실제 광케이블 도관(conduit) 경로를 따라 우회하므로, Duke University·ETH Zürich 등 공동 연구진의 2018년 논문 [Dissecting Latency in the Internet's Fiber Infrastructure](https://arxiv.org/abs/1811.10737)는 현재 경로가 직선거리 대비 중앙값 약 2.1배의 지연을 보이며, 기존 도관을 그대로 활용해 경로만 최적화해도 이를 약 1.3배까지 줄일 수 있다고 보고합니다. 즉 지도 위 직선거리만으로 RTT를 예측하면 항상 낙관적인 하한선만 얻게 됩니다.
+<strong>전파 지연(propagation delay)</strong>은 신호가 물리적 매체를 실제로 이동하는 데 걸리는 시간으로, 거리를 매체 내 신호 속도로 나눈 값입니다. 광섬유 안에서 빛은 진공 중 속도(약 299,792km/s)보다 느리게 이동하는데, 표준 단일모드 광섬유(SMF-28 계열)의 굴절률이 약 1.47이기 때문에 실제 속도는 약 200,000km/s 수준이고, 흔히 "1km당 약 5µs" 정도로 근사합니다. 다만 실제 대륙간 경로는 직선 거리를 그대로 따라가지 않고 실제 광케이블 도관(conduit) 경로를 따라 우회하므로, 2018년 논문 [Dissecting Latency in the Internet's Fiber Infrastructure](https://arxiv.org/abs/1811.10737)에 따르면 기존 측정 연구들은 "직선거리 × 2.1 ÷ 광섬유 내 광속"이라는 경험칙으로 지연을 추정해 왔고, 이 논문은 미국 120대 인구 중심지 쌍을 대상으로 기존 도관 위의 최단 경로를 택하면 그 계수를 중앙값 1.3까지 낮출 수 있다고 계산했습니다. 즉 지도 위 직선거리만으로 RTT를 예측하면 항상 낙관적인 하한선만 얻게 됩니다.
 
 <strong>직렬화 지연(serialization delay, 또는 전송 지연)</strong>은 패킷 전체를 링크에 비트 단위로 실어 보내는 데 걸리는 시간으로, "패킷 크기(bit) ÷ 링크 대역폭(bit/s)"으로 계산합니다. 아래 함수는 이 계산을 그대로 코드로 옮긴 것입니다.
 
@@ -104,14 +104,14 @@ flowchart LR
   clientNic --> wireOut["전송 매체:</br>전파 지연"]
   wireOut --> hop["스위치/라우터:</br>큐잉 + 처리 지연"]
   hop --> wireIn["전송 매체:</br>전파 지연"]
-  wireIn --> serverNic["수신 NIC:</br>역직렬화"]
+  wireIn --> serverNic["수신 NIC/커널 스택:</br>처리 지연"]
   serverNic --> serverApp["서버 애플리케이션 처리"]
   serverApp -->|"응답 경로(대칭 가정)"| clientApp
 ```
 
 ### 직접 측정하기: 루프백 RTT 벤치마크
 
-수식으로 이해하는 것과 실제로 측정해 보는 것은 다릅니다. 아래는 루프백 TCP 에코 서버를 대상으로 왕복시간을 1000회 측정하고 p50/p95/p99을 출력하는 최소 클라이언트입니다. 서버는 `socat -u TCP-LISTEN:9000,reuseaddr,fork EXEC:/bin/cat` 같은 명령으로 대체할 수 있습니다.
+수식으로 이해하는 것과 실제로 측정해 보는 것은 다릅니다. 아래는 루프백 TCP 에코 서버를 대상으로 왕복시간을 1000회 측정하고 p50/p95/p99을 출력하는 최소 클라이언트입니다. 서버는 `socat TCP-LISTEN:9000,reuseaddr,fork EXEC:/bin/cat` 같은 명령으로 대체할 수 있습니다.
 
 ```cpp
 #include <arpa/inet.h>
@@ -155,15 +155,9 @@ int main() {
 }
 ```
 
-`g++ -O2 -std=c++17 rtt_client.cpp -o rtt_client` (Linux 기준)로 빌드합니다. 루프백에서는 전파 지연이 사실상 0이므로 측정값은 커널 스택 처리 지연과 컨텍스트 스위칭 비용을 반영할 뿐, 실제 WAN 구간의 RTT를 대표하지 않습니다. 실제 두 호스트 간 RTT나 프로덕션 환경의 분포 분석은 [Tr.01 프로파일링·성능 분석](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)의 도구와 방법론을 따르는 것이 안전합니다. 참고로 일반적인 `ping` 출력은 다음과 같은 형태입니다(예시 값이며 실제 수치는 경로마다 다릅니다).
+`g++ -O2 -std=c++17 rtt_client.cpp -o rtt_client` (Linux 기준)로 빌드합니다. 루프백에서는 전파 지연이 사실상 0이므로 측정값은 커널 스택 처리 지연과 컨텍스트 스위칭 비용을 반영할 뿐, 실제 WAN 구간의 RTT를 대표하지 않습니다. 실제 두 호스트 간 RTT나 프로덕션 환경의 분포 분석은 [Tr.01 프로파일링·성능 분석](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)의 도구와 방법론을 따르는 것이 안전합니다.
 
-```text
-$ ping -c 4 example.com
-64 bytes from 93.184.216.34: icmp_seq=1 ttl=56 time=12.3 ms
-64 bytes from 93.184.216.34: icmp_seq=2 ttl=56 time=11.9 ms
-64 bytes from 93.184.216.34: icmp_seq=3 ttl=56 time=12.7 ms
-64 bytes from 93.184.216.34: icmp_seq=4 ttl=56 time=12.1 ms
-```
+같은 측정을 실제 원격 호스트에 대고 하면 결과의 성격이 달라집니다. 루프백에서는 p50과 p99의 차이가 대부분 스케줄링·인터럽트 처리에서 오지만, 원격 경로에서는 p50이 전파 지연이라는 하한에 묶이고 p99와의 간격은 주로 경로상 큐잉이 만듭니다. 그래서 분포를 볼 때는 최솟값(또는 p1)을 "이 경로에서 가능한 최선"으로, p50과 최솟값의 차이를 "평상시 큐잉·처리 비용"으로, p99와 p50의 차이를 "부하에 따른 지터"로 나눠 읽으면 아래 판단 기준 표의 어느 행에 해당하는지 좁히기 쉽습니다.
 
 ## 대역폭과 Bandwidth-Delay Product
 
@@ -206,8 +200,6 @@ BDP는 "대역폭(bit/s) × RTT(s)"로 계산되며, 파이프를 쉬지 않고 
 - [ ] Bandwidth-Delay Product를 계산하고, 이 값이 TCP 윈도우 크기·처리량과 어떤 관계에 있는지 설명할 수 있다.
 - [ ] "직렬화 지연"과 "데이터 직렬화 비용"이 서로 다른 계층의 개념임을 구분할 수 있다.
 - [ ] 증상만 보고 병목 후보(거리·직렬화·윈도우·큐잉·핸드셰이크)를 좁히는 진단 표를 실제 상황에 적용할 수 있다.
-
-이 장은 이 트랙의 진입점입니다. 별도의 "이전 장"은 없으며, 여기서 잡은 RTT·대역폭·직렬화 지연의 기본 그림이 이후 모든 장에서 전제로 쓰입니다.
 
 다음 장에서는 이 직관을 전파·전송·처리·큐잉 네 요소로 쪼개, 각 요소의 물리적 근거와 계산식을 정리합니다. WAN·데이터센터·혼잡 액세스 링크처럼 환경마다 어떤 성분이 지배적인지 판단하는 기준과 이론치·실측의 간극도 함께 다룹니다.
 
