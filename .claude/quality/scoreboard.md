@@ -267,7 +267,7 @@
 | content/collection/optimization-02-cpp-language/19-type-erasure-cost-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/00-introduction/index.md | 96.1 | 2026-07-25 | 3 | 통과 | 1.0 | c1c7577 | 없음(경미: L99/L139 추천 읽기 순서 표현 불일치) |
 | content/collection/optimization-03-compiler/01-optimization-flags/index.md | 100 | 2026-10-20 | 2 | 통과 | 1.3 | 0ac7e23 | 없음(초회 71.25: Clang 404 링크·GCC -O3 인용/버전·/Ox 오기술·CMake Release 표·sum.cc main 부재 수정) |
-| content/collection/optimization-03-compiler/02-lto-thinlto/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/02-lto-thinlto/index.md | 100 | 2026-10-20 | 2 | 통과 | 1.3 | 78ad97e | 없음(초회 59.2: GCC 매뉴얼 귀속 환각 인용·GCC 4.5 연도·-flto=auto 오기술·ThinLTO 메커니즘 부재·실행 예제 부재 수정) |
 | content/collection/optimization-03-compiler/03-pgo-workflow/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/04-compiler-comparison/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/05-inlining-diagnostics/index.md | - | - | 0 | 미채점 | - | - | - |
