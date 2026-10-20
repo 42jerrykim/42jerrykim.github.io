@@ -14,16 +14,13 @@ tags:
   - OS(운영체제)
   - Linux(리눅스)
   - Kernel
-  - Memory(메모리)
   - IO(Input/Output)
-  - Benchmark
   - Latency
   - Throughput
   - Implementation(구현)
   - System-Design
   - Backend(백엔드)
   - Production
-  - Reliability
   - Scalability(확장성)
   - Deep-Dive
   - Advanced
@@ -59,9 +56,9 @@ tags:
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
-| **초보자** | "왜 파이프라인인가" ~ "코어 분배: CPUMAP" | XDP 단일 프로그램만으로 부족한 지점과 코어 분배 개념 이해 |
-| **중급자** | "DEVMAP" ~ "멀티버퍼" | 리다이렉트·프로그램 합성·하드웨어 메타데이터·점보 프레임 메커니즘 이해 |
-| **전문가** | "세 갈래 경로의 트레이드오프" ~ "비판적 시각" | AF_XDP·io_uring ZC RX·DPDK 중 무엇을 선택할지 판단 |
+| **초보자** | "왜 파이프라인인가" – "코어 분배: CPUMAP" | XDP 단일 프로그램만으로 부족한 지점과 코어 분배 개념 이해 |
+| **중급자** | "DEVMAP" – "멀티버퍼" | 리다이렉트·프로그램 합성·하드웨어 메타데이터·점보 프레임 메커니즘 이해 |
+| **전문가** | "세 갈래 경로의 트레이드오프" – "비판적 시각" | AF_XDP·io_uring ZC RX·DPDK 중 무엇을 선택할지 판단 |
 
 ---
 
@@ -71,13 +68,13 @@ Tr.06 09장이 다룬 단일 XDP 프로그램은 "DMA로 받은 패킷 하나를
 
 ## 파이프라인 확장 도구의 역사와 배경
 
-이 장에서 다루는 확장들은 XDP 자체보다 훨씬 늦게 얹힌 것이 아니라, 상당 부분 XDP와 거의 같은 시기에 같은 사람들 손에서 나왔습니다. **`BPF_MAP_TYPE_DEVMAP`**은 Linux 4.14(2017년 11월)에, **`BPF_MAP_TYPE_CPUMAP`**은 Linux 4.15(2018년 1월)에 병합되었고, 두 맵 모두 XDP 초기 설계를 이끈 Red Hat의 Jesper Dangaard Brouer가 주도했습니다. 즉 "패킷을 다른 코어·다른 인터페이스로 옮긴다"는 소프트웨어 확장은 XDP 훅 자체(2016년 Linux 4.8)가 자리 잡은 지 불과 1–2년 만에 이미 코어 커널에 들어간 개념입니다. 반면 **libxdp**는 훨씬 늦게, XDP·AF_XDP 채택이 늘면서 "하나의 인터페이스에 여러 프로그램을 붙이고 싶다"는 요구와 AF_XDP 소켓 설정 API의 복잡도가 함께 커진 뒤에야 별도 라이브러리로 분리되었습니다. xdp-project 커뮤니티(Toke Høiland-Jørgensen이 주 관리자)가 이 기능을 libbpf에서 떼어내 xdp-tools 하위의 libxdp로 옮겼고, 이 이관은 libbpf 1.0이 AF_XDP 소켓 지원 자체를 공식적으로 폐기하면서 마무리되었습니다. 정리하면 CPUMAP·DEVMAP은 "커널이 처음부터 준비해 둔 확장 지점"이고, libxdp는 "생태계가 커지면서 뒤늦게 필요해진 조립 규약"이라는 점에서 두 세대의 도구가 이 장에 함께 등장합니다.
+이 장에서 다루는 확장들은 XDP 자체보다 훨씬 늦게 얹힌 것이 아니라, 상당 부분 XDP와 거의 같은 시기에 같은 사람들 손에서 나왔습니다. **`BPF_MAP_TYPE_DEVMAP`**은 Linux 4.14(2017년 11월)에, **`BPF_MAP_TYPE_CPUMAP`**은 Linux 4.15(2018년 1월)에 병합되었고, DEVMAP은 John Fastabend가, CPUMAP은 XDP 초기 설계를 이끈 Red Hat의 Jesper Dangaard Brouer가 작성했습니다. 즉 "패킷을 다른 코어·다른 인터페이스로 옮긴다"는 소프트웨어 확장은 XDP 훅 자체(2016년 Linux 4.8)가 자리 잡은 지 불과 1–2년 만에 이미 코어 커널에 들어간 개념입니다. 반면 **libxdp**는 훨씬 늦게, XDP·AF_XDP 채택이 늘면서 "하나의 인터페이스에 여러 프로그램을 붙이고 싶다"는 요구와 AF_XDP 소켓 설정 API의 복잡도가 함께 커진 뒤에야 별도 라이브러리로 분리되었습니다. xdp-project 커뮤니티(Toke Høiland-Jørgensen이 주 관리자)는 다중 프로그램 디스패처를 처음부터 xdp-tools 하위의 libxdp 기능으로 만들었고, AF_XDP 소켓 API는 libbpf에서 떼어내 libxdp로 옮겼으며, 이 이관은 libbpf 1.0이 AF_XDP 소켓 지원 자체를 공식적으로 폐기하면서 마무리되었습니다. 정리하면 CPUMAP·DEVMAP은 "커널이 처음부터 준비해 둔 확장 지점"이고, libxdp는 "생태계가 커지면서 뒤늦게 필요해진 조립 규약"이라는 점에서 두 세대의 도구가 이 장에 함께 등장합니다.
 
 ## 코어 분배: CPUMAP과 소프트웨어 RSS
 
 NIC의 <strong>RSS(Receive Side Scaling)</strong>는 하드웨어가 5-tuple 해시로 패킷을 여러 RX 큐에 나누고, 각 큐에 인터럽트 친화도로 코어를 고정해 병렬 수신을 만드는 하드웨어 기능입니다. 그런데 NIC이 지원하는 큐 수가 코어 수보다 적거나, 큐별 부하가 균등하지 않은 워크로드에서는 이 하드웨어 분배만으로 코어를 고르게 쓰기 어렵습니다. **`BPF_MAP_TYPE_CPUMAP`**은 이 문제를 소프트웨어 계층에서 보완합니다. RX 큐를 받은 1차 XDP 프로그램이 최소한의 판정만 내린 뒤 `bpf_redirect_map()`으로 패킷을 지정한 CPU에 리다이렉트하면, 그 원격 CPU가 `sk_buff` 할당과 이후 처리를 넘겨받습니다. 즉 "어느 큐가 패킷을 받았는가"와 "어느 코어가 패킷을 처리하는가"를 분리해, 하드웨어 큐 배분의 불균형을 소프트웨어가 다시 고르게 펼치는 역할을 합니다.
 
-CPUMAP 리다이렉트는 커널 5.9부터 두 번째 XDP 프로그램(cpumap 프로그램)을 원격 CPU에서 다시 실행할 수 있게 해 주므로, "1차 프로그램은 가볍게, 리다이렉트된 프로그램은 무겁게"라는 역할 분담이 가능해집니다. 다만 이 리다이렉트는 여전히 커널 내부의 CPU 간 이동이며, `sk_buff` 할당 자체를 없애지는 않습니다. CPUMAP은 "패킷 처리를 어느 코어에서 할지"를 조정하는 도구이지, 할당·복사 비용을 없애는 zero-copy 메커니즘이 아니라는 점을 구분해야 합니다.
+CPUMAP 리다이렉트는 커널 5.9부터 두 번째 XDP 프로그램(cpumap 프로그램)을 원격 CPU에서 다시 실행할 수 있게 해 주므로, "1차 프로그램은 가볍게, 리다이렉트된 프로그램은 무겁게"라는 역할 분담이 가능해집니다. 다만 이 리다이렉트는 여전히 커널 내부의 CPU 간 이동이며, `sk_buff` 할당 자체를 없애지는 않습니다.
 
 ## DEVMAP: 인터페이스 간 리다이렉트
 
@@ -104,18 +101,26 @@ flowchart LR
 
 ```c
 // xdp_rx_meta.c — RX 해시를 읽어 파이프라인 분기에 쓰는 최소 골격
+// 빌드: bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
+//       clang -O2 -g -target bpf -c xdp_rx_meta.c -o xdp_rx_meta.o
 // (실제 배포 전 대상 드라이버가 이 kfunc를 구현하는지 netlink로 반드시 확인)
-#include <linux/bpf.h>
+#include "vmlinux.h"          // struct xdp_md, enum xdp_rss_hash_type 등 커널 타입
 #include <bpf/bpf_helpers.h>
-#include <bpf/bpf_endian.h>
+
+#define EOPNOTSUPP 95
+#define ENODATA 61
+
+// RX 메타데이터 kfunc는 헬퍼가 아니라 커널 함수이므로 __ksym으로 선언한다.
+extern int bpf_xdp_metadata_rx_hash(const struct xdp_md *ctx, __u32 *hash,
+                                    enum xdp_rss_hash_type *rss_type) __ksym;
 
 SEC("xdp")
 int xdp_use_rx_hash(struct xdp_md *ctx) {
-  u32 hash = 0;
+  __u32 hash = 0;
   enum xdp_rss_hash_type type = 0;
   int err = bpf_xdp_metadata_rx_hash(ctx, &hash, &type);
-  if (err == -EOPNOTSUPP) {
-    // 드라이버가 힌트를 지원하지 않음: 소프트웨어 폴백 경로로 분기
+  if (err == -EOPNOTSUPP || err == -ENODATA) {
+    // 드라이버 미구현이거나 이 프레임에 해시가 없음: 소프트웨어 해시 경로로 분기
     return XDP_PASS;
   }
   // hash를 CPUMAP 키 선택 등 파이프라인 분기 조건으로 재사용 가능
@@ -125,7 +130,7 @@ int xdp_use_rx_hash(struct xdp_md *ctx) {
 char _license[] SEC("license") = "GPL";
 ```
 
-이 하드웨어 힌트를 쓰면 파이프라인 앞 단계에서 이미 계산된 해시를 재사용해 CPUMAP 분배 키나 로드밸런싱 결정에 바로 쓸 수 있어, 헤더를 다시 파싱하는 비용을 줄일 수 있습니다. 다만 드라이버 지원 범위가 벤더·펌웨어마다 달라 `-EOPNOTSUPP` 폴백 경로를 항상 준비해야 합니다.
+이 kfunc는 드라이버별 구현에 묶이므로, 프로그램을 특정 인터페이스에 바인딩된(device-bound) 형태로 로드해야 합니다. 커널 selftests의 [`xdp_hw_metadata.c`](https://github.com/torvalds/linux/blob/master/tools/testing/selftests/bpf/xdp_hw_metadata.c)처럼 libbpf로 로드할 때 `bpf_program__set_ifindex(prog, ifindex)`와 `bpf_program__set_flags(prog, BPF_F_XDP_DEV_BOUND_ONLY)`를 `bpf_object__load()` 전에 호출하는 방식입니다. 이 하드웨어 힌트를 쓰면 파이프라인 앞 단계에서 이미 계산된 해시를 재사용해 CPUMAP 분배 키나 로드밸런싱 결정에 바로 쓸 수 있어, 헤더를 다시 파싱하는 비용을 줄일 수 있습니다. 다만 드라이버 지원 범위가 벤더·펌웨어마다 달라 `-EOPNOTSUPP` 폴백 경로를 항상 준비해야 합니다.
 
 ## 멀티버퍼: 점보 프레임과 zero-copy
 
@@ -137,7 +142,7 @@ AF_XDP는 오랫동안 하나의 UMEM 프레임(보통 4KB 미만의 실사용 �
 
 **"CPUMAP으로 리다이렉트하면 zero-copy가 된다"는 것은 정확하지 않습니다.** CPUMAP은 어느 CPU가 패킷을 처리할지를 조정하는 소프트웨어 RSS 도구이며, 원격 CPU는 여전히 `sk_buff`를 할당하고 일반 스택 경로를 탑니다. 유저 공간으로 복사 없이 전달하는 zero-copy는 AF_XDP가 별도로 제공하는 것이지, CPUMAP 자체의 성질이 아닙니다.
 
-**"AF_XDP zero-copy는 native 모드 XDP를 지원하는 NIC이라면 어디서든 된다"는 것도 오해입니다.** zero-copy 모드는 드라이버의 native XDP 지원뿐 아니라 NIC의 **플로우 스티어링(flow steering)** 하드웨어 지원까지 요구하는데, 이는 특정 트래픽을 지정된 RX 큐로 유도하는 보안·격리 장치이기도 합니다. 많은 클라우드 가상 NIC(virtio-net 등)은 이 플로우 스티어링을 지원하지 않아, zero-copy를 요청해도 커널이 조용히 copy 모드로 폴백합니다. "요청했다"와 "zero-copy 이점을 실제로 얻었다"는 다른 이야기이므로 배포 환경에서 실제 모드를 확인해야 합니다.
+**"AF_XDP 소켓을 만들면 당연히 zero-copy로 동작한다"는 것도 오해입니다.** zero-copy는 native XDP와 별개로 드라이버가 AF_XDP zero-copy(XSK 버퍼 풀)를 구현해야 쓸 수 있습니다. [AF_XDP 커널 문서](https://docs.kernel.org/networking/af_xdp.html)에 따르면 bind 시 플래그를 주지 않으면 커널이 먼저 zero-copy를 시도하고, 지원하지 않으면 조용히 copy 모드로 폴백합니다. 반대로 `XDP_ZEROCOPY` 플래그를 주면 zero-copy를 강제하므로 미지원 드라이버에서는 bind가 실패합니다. 따라서 플래그 없이 bind했다면 `XDP_OPTIONS` getsockopt의 `XDP_OPTIONS_ZEROCOPY` 비트로 실제 모드를 확인해야 "요청했다"와 "zero-copy 이점을 실제로 얻었다"를 구분할 수 있습니다.
 
 **"여러 XDP 프로그램을 붙이면 커널이 순서와 충돌을 관리해 준다"는 것도 틀렸습니다.** 앞서 본 것처럼 다중 프로그램은 libxdp가 지키는 사용자 공간 프로토콜일 뿐, 커널 자체는 인터페이스당 프로그램 하나만 인식합니다. libxdp 프로토콜을 따르지 않는 도구(예: 다른 방식으로 직접 XDP를 붙이는 스크립트)가 같은 인터페이스를 건드리면 기존 디스패처 체인을 인지하지 못한 채 덮어쓸 수 있어, 운영 중 조용히 파이프라인의 일부가 사라지는 사고로 이어질 수 있습니다.
 
@@ -145,7 +150,7 @@ AF_XDP는 오랫동안 하나의 UMEM 프레임(보통 4KB 미만의 실사용 �
 
 패킷을 유저 공간에서 직접 다뤄야 할 때 선택할 수 있는 경로는 크게 세 가지이고, 이들은 "커널을 얼마나 우회하는가"라는 축 위에서 서로 다른 지점에 있습니다. **DPDK**([11장](/post/network-optimization/dpdk-advanced-deep-dive-smartnic-dpu/))는 NIC 드라이버 자체를 유저 공간으로 옮기는 완전 바이패스로, 커널 스택·인터럽트·소켓 추상화를 전부 걷어내고 폴링 기반으로 최대 처리량을 노립니다. **AF_XDP**는 XDP 훅에서 `XDP_REDIRECT`로 커널 스택을 우회해 UMEM 공유 메모리로 원시 프레임을 직접 전달하는 방식으로, 프로토콜 처리(TCP 상태, 재전송)를 애플리케이션이 직접 구현해야 하지만 표준 드라이버와 공존할 수 있다는 점에서 DPDK보다 운영 마찰이 적습니다. **io_uring zero-copy RX**는 이보다 더 커널에 통합된 지점에 있는데, 패킷 헤더는 커널의 TCP 스택이 그대로 처리하고 페이로드만 유저 메모리로 복사 없이 전달되므로, 소켓 추상화와 커널의 연결 관리 로직을 그대로 유지한 채 페이로드 복사 비용만 없애는 "하이브리드 바이패스"에 가깝습니다([Linux Kernel Docs: io_uring zero-copy Rx](https://docs.kernel.org/next/networking/iou-zcrx.html)). io_uring 자체의 링 구조·멀티샷 수신·SQ/CQ 모델은 Tr.09 [io_uring 심화](/post/io-optimization/io-uring-advanced-deep-dive/)에서 다룬 범위이므로 여기서는 네트워크 수신 경로로서의 위치만 짚습니다.
 
-세 경로 모두 zero-copy를 표방하는 최상위 모드에서는 NIC의 플로우 스티어링·헤더-데이터 분할 하드웨어 지원을 공통으로 요구하며, 이는 현재 대체로 `ethtool` 등으로 수동 설정해야 하는 운영 부담입니다. 차이는 "무엇을 커널에 남기는가"에 있습니다. DPDK는 아무것도 남기지 않고, AF_XDP는 커널 훅과 verifier만 남기며, io_uring ZC RX는 TCP 연결 관리 전체를 커널에 남깁니다. 커널에 남기는 것이 많을수록 표준 도구(관측성, 방화벽, 소켓 API)와의 호환은 좋아지고, 남기는 것이 적을수록 처리량 상한과 커스터마이징 자유도는 커집니다.
+하드웨어 전제 조건도 경로마다 다릅니다. DPDK는 해당 NIC용 PMD가, AF_XDP zero-copy는 드라이버의 XSK zero-copy 구현이 필요하고, io_uring ZC RX는 여기에 더해 헤더·데이터 분할(header/data split), 플로우 스티어링, RSS를 NIC에서 지원하고 `ethtool`로 직접 설정해야 합니다(커널 API가 아직 NIC를 설정해 주지 않음). 차이는 "무엇을 커널에 남기는가"에 있습니다. DPDK는 아무것도 남기지 않고, AF_XDP는 커널 훅과 verifier만 남기며, io_uring ZC RX는 TCP 연결 관리 전체를 커널에 남깁니다. 커널에 남기는 것이 많을수록 표준 도구(관측성, 방화벽, 소켓 API)와의 호환은 좋아지고, 남기는 것이 적을수록 처리량 상한과 커스터마이징 자유도는 커집니다.
 
 ## 판단 기준
 
@@ -157,23 +162,23 @@ AF_XDP는 오랫동안 하나의 UMEM 프레임(보통 4KB 미만의 실사용 �
 | 여러 팀의 XDP 정책을 한 인터페이스에 결합 | libxdp 디스패처(freplace) 채택, 팀 간 프로토콜 합의 | 서로 다른 도구로 직접 XDP 부착 |
 | 기존 소켓·TCP 스택을 유지하며 페이로드 복사만 제거 | io_uring zero-copy RX | AF_XDP로 TCP 재구현 |
 | 표준 드라이버 공존이 필요한 원시 프레임 처리 | AF_XDP(zero-copy 지원 확인 후) | DPDK 전면 도입 |
-| 클라우드 VM(virtio-net 등, 플로우 스티어링 미지원) | copy 모드 가정하고 재측정, 또는 io_uring ZC RX 검토 | zero-copy 모드를 전제로 설계 |
+| 클라우드 VM(가상 NIC의 zero-copy·헤더 분할 지원이 불확실) | 드라이버의 AF_XDP zero-copy 지원을 `XDP_OPTIONS`로 확인하고 copy 모드 기준으로도 재측정 | zero-copy 모드를 전제로 설계 |
 | 절대 최대 처리량, NIC 전용 점유 가능 | DPDK([11장](/post/network-optimization/dpdk-advanced-deep-dive-smartnic-dpu/)) | AF_XDP/io_uring로 DPDK 수준 기대 |
 
 ## 비판적 시각: 한계와 트레이드오프
 
-CPUMAP·DEVMAP 기반 파이프라인은 코어 배치와 NUMA 지역성을 스스로 관리해 주지 않습니다. 리다이렉트 대상 CPU가 원래 패킷을 받은 NIC과 다른 NUMA 노드에 있으면, 코어 분배는 개선되어도 캐시·메모리 지역성이 나빠져 전체 지연이 오히려 늘 수 있습니다. libxdp의 다중 프로그램 모델은 커널이 강제하는 것이 아니라 순전히 사용자 공간의 합의이므로, 조직 내 모든 팀이 같은 도구 체인을 쓰지 않으면 운영 중 프로그램이 조용히 교체되는 위험이 있고, 이를 막으려면 배포 파이프라인 단에서 libxdp 프로토콜 준수를 강제하는 절차가 필요합니다. RX 하드웨어 메타데이터는 드라이버·펌웨어 지원이 벤더마다 달라 이식성이 낮고, 지원 여부를 코드가 아니라 배포 대상 환경에서 실측해야 합니다. 멀티버퍼는 점보 프레임 zero-copy라는 실질적 이득을 주지만, 프로그램의 분기·검증 복잡도를 늘려 verifier 통과 자체가 더 까다로워지는 방향입니다. 그리고 AF_XDP·io_uring ZC RX 모두 "zero-copy"라는 이름과 달리 하드웨어 플로우 스티어링이라는 전제 조건이 있어, 이 전제가 깨지는 클라우드 환경에서는 성능 이득이 조용히 사라질 수 있습니다.
+CPUMAP·DEVMAP 기반 파이프라인은 코어 배치와 NUMA 지역성을 스스로 관리해 주지 않습니다. 리다이렉트 대상 CPU가 원래 패킷을 받은 NIC과 다른 NUMA 노드에 있으면, 코어 분배는 개선되어도 캐시·메모리 지역성이 나빠져 전체 지연이 오히려 늘 수 있습니다. libxdp의 다중 프로그램 모델은 커널이 강제하는 것이 아니라 순전히 사용자 공간의 합의이므로, 조직 내 모든 팀이 같은 도구 체인을 쓰지 않으면 운영 중 프로그램이 조용히 교체되는 위험이 있고, 이를 막으려면 배포 파이프라인 단에서 libxdp 프로토콜 준수를 강제하는 절차가 필요합니다. RX 하드웨어 메타데이터는 드라이버·펌웨어 지원이 벤더마다 달라 이식성이 낮고, 지원 여부를 코드가 아니라 배포 대상 환경에서 실측해야 합니다. 멀티버퍼는 점보 프레임 zero-copy라는 실질적 이득을 주지만, 프로그램의 분기·검증 복잡도를 늘려 verifier 통과 자체가 더 까다로워지는 방향입니다. 그리고 "zero-copy"라는 이름에는 드라이버·하드웨어 전제가 숨어 있습니다. AF_XDP는 플래그 없이 bind하면 미지원 드라이버에서 copy 모드로 조용히 폴백하고, io_uring ZC RX는 헤더 분할·플로우 스티어링을 지원하지 않는 NIC에서는 아예 설정할 수 없으므로, 가상 NIC가 많은 클라우드 환경에서는 기대한 이득이 사라질 수 있습니다.
 
 ## 마무리
 
-이 장을 읽은 뒤 다음을 스스로 확인할 수 있어야 합니다.
+이 장의 요지는 XDP를 단일 필터에서 파이프라인으로 키울 때 CPUMAP(코어 분배)·DEVMAP(인터페이스 리다이렉트)·libxdp(다중 프로그램 합성)·RX 메타데이터 kfunc·멀티버퍼가 각각 다른 빈틈을 메운다는 것, 그리고 유저 공간으로 패킷을 올리는 세 경로(AF_XDP·io_uring ZC RX·DPDK)는 커널에 남기는 부분과 하드웨어 전제 조건이 서로 다르다는 것입니다. 이 장을 읽은 뒤 다음을 스스로 확인할 수 있어야 합니다.
 
 - [ ] CPUMAP이 해결하는 문제(소프트웨어 RSS)와 DEVMAP이 해결하는 문제(인터페이스 간 리다이렉트)를 구분해 설명할 수 있는가?
 - [ ] libxdp 디스패처가 커널의 "인터페이스당 프로그램 하나" 제약을 어떻게 우회하는지, 그리고 이것이 커널이 아닌 사용자 공간 합의라는 점을 설명할 수 있는가?
 - [ ] XDP RX 메타데이터 kfunc가 제공하는 정보와 드라이버 미지원 시 폴백이 필요한 이유를 말할 수 있는가?
 - [ ] 멀티버퍼가 점보 프레임 zero-copy를 가능하게 하는 원리와 그 대가(분기 복잡도)를 설명할 수 있는가?
 - [ ] AF_XDP·io_uring zero-copy RX·DPDK를 "커널에 무엇을 남기는가" 축으로 비교하고, 상황별로 선택할 수 있는가?
-- [ ] 클라우드 VM 환경에서 zero-copy 전제가 왜 깨질 수 있는지 설명할 수 있는가?
+- [ ] AF_XDP zero-copy의 폴백 조건(bind 플래그, 드라이버 지원)과 io_uring ZC RX의 하드웨어 전제(헤더 분할·플로우 스티어링·RSS)를 구분해 설명할 수 있는가?
 
 다음 장에서는 **RDMA/InfiniBand 기초**를 다룹니다. 지금까지는 이더넷·소켓·XDP 경로에서 커널 참여를 얼마나 줄이느냐가 핵심이었다면, RDMA는 애초에 CPU와 커널을 거치지 않고 NIC이 원격 메모리에 직접 쓰고 읽는 완전히 다른 모델을 제시합니다. 이 장에서 본 "커널에 무엇을 남기는가"라는 축을 그대로 가져가면 RDMA가 스펙트럼의 어느 극단에 있는지 이해하기 쉽습니다.
 
