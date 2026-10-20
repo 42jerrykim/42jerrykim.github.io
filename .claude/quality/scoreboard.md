@@ -399,7 +399,7 @@
 | content/collection/optimization-09-io-network/17-logging-performance-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/00-introduction/index.md | 92.2 | 2026-07-25 | 1 | 통과 | 1.0 | 08ba5df | 없음(경미: description 118자로 하한 근접, 범위/경계 리스트 문단 비중 29%, WebTransport Baseline 기준 명시 여지) |
 | content/collection/optimization-10-network/01-network-latency-intuition/index.md | 98.5 | 2026-10-20 | 1 | 통과 | 1.3 | 2c7f279 | 없음(경미: 수준별 경로 표 L59–61 범위 물결표 → en dash 필요) |
-| content/collection/optimization-10-network/02-network-latency-structure/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/02-network-latency-structure/index.md | 97.3 | 2026-10-20 | 2 | 통과 | 1.3 | 124f51f | 없음(경미: L81 10–400Gbps 전송 지연 범위가 '수백 ns–수 µs'로 표기됨 → 1500B 기준 약 30ns–1.2µs로 정정 필요) |
 | content/collection/optimization-10-network/03-socket-options-tuning/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/04-tcp-performance-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/05-udp-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
