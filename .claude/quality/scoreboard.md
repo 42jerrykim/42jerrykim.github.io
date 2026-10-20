@@ -266,9 +266,9 @@
 | content/collection/optimization-02-cpp-language/18-abi-link-performance-boundaries/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-02-cpp-language/19-type-erasure-cost-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/00-introduction/index.md | 96.1 | 2026-07-25 | 3 | 통과 | 1.0 | c1c7577 | 없음(경미: L99/L139 추천 읽기 순서 표현 불일치) |
-| content/collection/optimization-03-compiler/01-optimization-flags/index.md | 100 | 2026-10-20 | 2 | 통과 | 1.3 | 0ac7e23 | 없음(초회 71.25: Clang 404 링크·GCC -O3 인용/버전·/Ox 오기술·CMake Release 표·sum.cc main 부재 수정) |
+| content/collection/optimization-03-compiler/01-optimization-flags/index.md | 100 | 2026-10-20 | 3 | 통과 | 1.3 | 05477cd | 없음(PGO 계측/사용 -O 레벨 서술을 GCC 매뉴얼 기준으로 정정 후 재채점) |
 | content/collection/optimization-03-compiler/02-lto-thinlto/index.md | 100 | 2026-10-20 | 2 | 통과 | 1.3 | 78ad97e | 없음(초회 59.2: GCC 매뉴얼 귀속 환각 인용·GCC 4.5 연도·-flto=auto 오기술·ThinLTO 메커니즘 부재·실행 예제 부재 수정) |
-| content/collection/optimization-03-compiler/03-pgo-workflow/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/03-pgo-workflow/index.md | 95.4 | 2026-10-20 | 3 | 통과 | 1.3 | 7868ea5 | 없음(경미: L99 Clang 예제가 -O2 계측/-O3 사용으로 L63 "1단계와 같은 -O" 서술과 불일치 — -O2로 통일 필요; L167 실수 항목이 L114 재진술. 초회 59.3: Clang 매뉴얼 귀속 환각 인용·연도 오류·GCC .gcda 이름 불일치로 PGO 미적용 예제 수정) |
 | content/collection/optimization-03-compiler/04-compiler-comparison/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/05-inlining-diagnostics/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-03-compiler/06-code-generation-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
