@@ -402,7 +402,7 @@
 | content/collection/optimization-10-network/02-network-latency-structure/index.md | 97.3 | 2026-10-20 | 2 | 통과 | 1.3 | 124f51f | 없음(경미: L81 10–400Gbps 전송 지연 범위가 '수백 ns–수 µs'로 표기됨 → 1500B 기준 약 30ns–1.2µs로 정정 필요) |
 | content/collection/optimization-10-network/03-socket-options-tuning/index.md | 100 | 2026-10-20 | 1 | 통과 | 1.3 | e010e70 | 없음 |
 | content/collection/optimization-10-network/04-tcp-performance-optimization/index.md | 95.8 | 2026-10-20 | 1 | 통과 | 1.3 | 5890506 | 없음(경미: set_congestion.c에 netinet/in.h include 누락으로 IPPROTO_TCP 미선언 가능, L293 BBRv3 신기능 귀속(ECN·손실 대응은 v2 도입)을 v2 계보로 정정 필요) |
-| content/collection/optimization-10-network/05-udp-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/05-udp-optimization/index.md | 100 | 2026-10-20 | 1 | 통과 | 1.3 | 2a7a37e | 없음 |
 | content/collection/optimization-10-network/06-serialization-performance-comparison/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/07-zero-copy-serialization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/08-next-gen-zero-copy-formats/index.md | - | - | 0 | 미채점 | - | - | - |
