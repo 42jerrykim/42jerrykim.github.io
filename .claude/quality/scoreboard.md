@@ -381,7 +381,7 @@
 | content/collection/optimization-08-optimization-techniques/18-simd-string-processing/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/00-introduction/index.md | 100 | 2026-07-25 | 2 | 통과 | 1.0 | 6161d63 | 없음 |
 | content/collection/optimization-09-io-network/01-io-cost-intuition/index.md | 97.3 | 2026-10-20 | 2 | 통과 | 1.3 | 9501dec | 경미: 1(L213 'CPU 카피 두 번' 문장 — SG-DMA/checksum offload가 read/write 경로 카피를 줄이는 것처럼 읽힘, sendfile 결합 시에만 해당함을 분리 서술 권장) |
-| content/collection/optimization-09-io-network/02-io-patterns-cost/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/02-io-patterns-cost/index.md | 91.2 | 2026-10-20 | 1 | 통과 | 1.3 | 42606a5 | 경미: 1(L117 컨테이너·하이퍼바이저 syscall 서술 오류, L91 TLB 민감도는 Gregg의 추측, L180 수백 ns–수 µs 근거 없음, '네 가지 조합' 제목) / 4(L174 오개념 재진술) / 7(Advanced·Edge-Cases 태그, description '정량 분석' 과장) |
 | content/collection/optimization-09-io-network/03-async-io-fundamentals/index.md | 91.6 | 2026-10-20 | 0 | 통과 | 1.3 | 2183481 | 경미: 1(L312 epoll 정규 파일 서술 — epoll_ctl은 EPERM 거부로 정정 권장; L66·68 연도 출처 없음) / 5(벤치마크가 FD_SETSIZE 초과 입력에서 UB — poll 대체·반환값 확인 권장) |
 | content/collection/optimization-09-io-network/04-io-uring-advanced/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/05-iocp-windows-io/index.md | - | - | 0 | 미채점 | - | - | - |
