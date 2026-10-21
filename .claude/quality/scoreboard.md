@@ -410,7 +410,7 @@
 | content/collection/optimization-10-network/10-message-framing/index.md | 95.8 | 2026-10-21 | 1 | 통과 | 1.3 | b395eb4 | 없음(경미: L104 SBE 원문 'may be desirable'을 '필요'로 과장·이유 왜곡 → 시작점 오류·손상 대비 권장으로 정정하고 타입별 고정 레이아웃과 균일 fixed-size 구분, consume_delimited 빈 버퍼 memchr(nullptr) UB → buf.empty() 가드, L245 미측정 '노이즈 범위 비슷' 단정 완화) |
 | content/collection/optimization-10-network/11-dpdk-advanced/index.md | 95.8 | 2026-10-21 | 2 | 통과 | 1.3 | 8ed981c | 없음(경미: L182 SmartNIC 정의가 DPU와 섞임(ConnectX는 Arm 코어·OS 없음) → ASIC/FPGA SmartNIC과 DPU 분리, L71·poll_worker가 mempool-RX 큐 연결(rte_eth_rx_queue_setup에 socket_id·pool 전달)을 보여주지 않음) |
 | content/collection/optimization-10-network/12-xdp-ebpf-network-advanced/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | 7e458a5 | 없음(경미: L153 'io_uring ZC RX는 여기에 더해'가 XSK zero-copy 구현을 전제로 읽힘 → XSK와 별개로 큐 관리·page pool memory provider 지원 필요로 정정) |
-| content/collection/optimization-10-network/13-rdma-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/13-rdma-fundamentals/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | c0c391f | 없음(경미: L246 ib_write_bw 출력 예시 #iterations 1000이 기본값 5000(DEF_ITERS_WB)과 불일치 → 5000으로 고치거나 명령에 -n 1000 추가) |
 | content/collection/optimization-10-network/14-ultra-ethernet-consortium/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/15-grpc-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/16-quic-protocol/index.md | - | - | 0 | 미채점 | - | - | - |

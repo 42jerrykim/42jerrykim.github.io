@@ -31,11 +31,9 @@ tags:
   - Hardware(하드웨어)
   - Advanced
   - Deep-Dive
-  - Case-Study
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Documentation(문서화)
   - RDMA
   - InfiniBand
   - RoCEv2
@@ -59,21 +57,33 @@ tags:
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
-| **초보자** | "RDMA와 InfiniBand의 등장" ~ "RDMA의 핵심 동작 원리" | RDMA가 복사·커널 진입을 어떻게 줄이는지 큰 그림을 이해 |
-| **중급자** | "Queue Pair·메모리 등록·Completion Queue" ~ "InfiniBand, RoCEv2, iWARP 비교" | verbs API 리소스 모델과 전송 방식별 구조 차이 이해 |
-| **전문가** | "판단 기준" ~ "비판적 시각" | 프로덕션 도입 여부와 배포 복잡성·트레이드오프 판단 |
+| **초보자** | "RDMA와 InfiniBand의 등장" – "RDMA의 핵심 동작 원리" | RDMA가 복사·커널 진입을 어떻게 줄이는지 큰 그림을 이해 |
+| **중급자** | "Queue Pair·메모리 등록·Completion Queue" – "흔한 오개념 교정" | verbs API 리소스 모델과 전송 방식별 구조 차이 이해 |
+| **전문가** | "판단 기준" – "비판적 시각" | 프로덕션 도입 여부와 배포 복잡성·트레이드오프 판단 |
 
 ---
 
 ## RDMA와 InfiniBand의 등장 (역사와 배경)
 
-InfiniBand는 1999년 8월 결성된 <strong>IBTA(InfiniBand Trade Association)</strong>가 표준화한 상호연결 아키텍처로, 당시 경쟁하던 Intel 주도의 NGIO(Next Generation I/O)와 Compaq·IBM·HP 진영의 Future I/O가 합쳐지며 만들어졌습니다. IBTA는 "Established in August 1999 by industry leaders, the IBTA created a clear and accessible interconnect architecture standard"라고 자신들의 설립 배경을 설명합니다 — IBTA, "Celebrating 25 Years of the InfiniBand Trade Association" ([infinibandta.org](https://www.infinibandta.org/celebrating-25-years-of-the-infiniband-trade-association/)). 초기 InfiniBand는 슈퍼컴퓨팅 상호연결 시장에서 자리를 잡았고, 2003년 11월에는 버지니아 공대의 SDR 10Gb/s 시스템이 세계 3위 슈퍼컴퓨터로 기록되며 성능을 입증했습니다. 이후 이더넷 진영도 RDMA의 이점을 흡수하려 했고, IBTA는 2010년 **RoCE(RDMA over Converged Ethernet)** 규격을 발표해 InfiniBand의 전송 계층 대신 이더넷 프레임 위에 RDMA 의미론을 얹었습니다. 초기 RoCE(현재는 RoCEv1으로 구분)는 MAC 주소 기반이라 라우팅이 불가능했고, 2014년경 IP/UDP 캡슐화를 도입한 **RoCEv2**가 자리 잡으면서 대규모 데이터센터 배포가 본격화되었습니다. 비슷한 시기 iWARP은 기존 TCP/IP 스택 위에 RDMA 의미론을 구현해 별도의 무손실 패브릭 없이도 동작하도록 설계되었지만, 시장 점유율은 InfiniBand·RoCEv2에 비해 낮은 채로 남아 있습니다.
+InfiniBand는 1999년 8월 결성된 <strong>IBTA(InfiniBand Trade Association)</strong>가 표준화한 상호연결 아키텍처로, 당시 경쟁하던 Intel 주도의 NGIO(Next Generation I/O)와 Compaq·IBM·HP 진영의 Future I/O가 합쳐지며 만들어졌습니다. IBTA는 자신들의 설립 배경을 다음과 같이 설명합니다.
 
-2020년대 들어 InfiniBand의 세대는 HDR(200Gb/s급)를 지나 <strong>NDR(400Gb/s급, 포트당 4레인 100G PAM4)</strong>로 넘어갔고, 2026년 현재 NDR은 이미 성숙해 대다수 신규 AI 클러스터의 기본 사양으로 쓰이며, 다음 세대인 **XDR(800Gb/s급)** 전환이 진행 중입니다(수치는 벤더·세대·배포 시점에 따라 달라지는 로드맵 값으로 이해해야 합니다). 이 흐름을 이끈 것은 GPU 학습 클러스터입니다. NVIDIA의 **GPUDirect RDMA**는 "a direct path for data exchange between the GPU and a third-party peer device using standard features of PCI Express"를 제공한다고 설명합니다 — NVIDIA, "GPUDirect RDMA" 문서 ([docs.nvidia.com](https://docs.nvidia.com/cuda/gpudirect-rdma/)). 즉 NIC가 호스트 DRAM을 거치지 않고 GPU의 PCIe BAR(Base Address Register) 주소에 직접 DMA로 접근하도록 해, 수천 GPU 규모의 all-reduce에서 텐서가 호스트 메모리를 한 번도 거치지 않게 만듭니다.
+> "Established in August 1999 by industry leaders, the IBTA created a clear and accessible interconnect architecture standard" — IBTA, [Celebrating 25 Years of the InfiniBand Trade Association](https://www.infinibandta.org/celebrating-25-years-of-the-infiniband-trade-association/)
+
+초기 InfiniBand는 슈퍼컴퓨팅 상호연결 시장에서 자리를 잡았고, 2003년 11월에는 버지니아 공대의 SDR 10Gb/s 시스템이 세계 3위 슈퍼컴퓨터로 기록되며 성능을 입증했습니다. 이후 이더넷 진영도 RDMA의 이점을 흡수하려 했고, 같은 IBTA 25주년 글에 따르면 IBTA는 2011년 **RoCE(RDMA over Converged Ethernet)** 규격을 도입해 InfiniBand의 전송 계층 대신 이더넷 프레임 위에 RDMA 의미론을 얹었으며, 2014년에는 다중 벤더 생태계가 형성되어 RoCE가 대규모로 배포되었습니다. 초기 RoCE(현재는 RoCEv1으로 구분)는 이더넷 L2 위에서만 동작해 IP 라우팅이 불가능했고, 이후 IP/UDP 캡슐화를 도입한 **RoCEv2**가 대규모 데이터센터 배포의 기반이 되었습니다. 한편 그보다 앞선 2007년 IETF RFC 5040–5044로 표준화된 iWARP은 기존 TCP/IP 스택 위에 RDMA 의미론을 구현해 별도의 무손실 패브릭 없이도 동작하도록 설계되었지만, 시장 점유율은 InfiniBand·RoCEv2에 비해 낮은 채로 남아 있습니다.
+
+2020년대 들어 InfiniBand의 세대는 HDR(200Gb/s급)를 지나 <strong>NDR(400Gb/s급, 포트당 4레인 100G PAM4)</strong>로 넘어갔고, 2026년 현재 NDR은 이미 성숙해 대다수 신규 AI 클러스터의 기본 사양으로 쓰이며, 다음 세대인 **XDR(800Gb/s급)** 전환이 진행 중입니다(수치는 벤더·세대·배포 시점에 따라 달라지는 로드맵 값으로 이해해야 합니다). 이 흐름을 이끈 것은 GPU 학습 클러스터입니다. NVIDIA는 **GPUDirect RDMA**를 다음과 같이 설명합니다.
+
+> "a direct path for data exchange between the GPU and a third-party peer device using standard features of PCI Express" — NVIDIA, [GPUDirect RDMA](https://docs.nvidia.com/cuda/gpudirect-rdma/)
+
+즉 NIC가 호스트 DRAM을 거치지 않고 GPU의 PCIe BAR(Base Address Register) 주소에 직접 DMA로 접근하도록 해, 수천 GPU 규모의 all-reduce에서 텐서가 호스트 메모리를 한 번도 거치지 않게 만듭니다.
 
 ## RDMA의 핵심 동작 원리
 
-전통적인 소켓 경로에서는 송신 측에서 애플리케이션 버퍼의 데이터를 커널 소켓 버퍼로 복사하고(`send()` 시스템 콜), 커널이 프로토콜 스택(TCP/IP)을 처리해 NIC로 넘기며, 수신 측에서는 역순으로 NIC → 커널 버퍼 → 애플리케이션 버퍼 복사가 한 번 더 일어납니다. RDMA는 이 경로에서 세 가지를 바꿉니다. 첫째, <strong>메모리 등록(memory registration)</strong>을 통해 애플리케이션 버퍼를 물리 메모리에 고정(pin)하고 NIC가 알 수 있는 키(lkey/rkey)를 부여해, NIC가 커널을 거치지 않고 해당 버퍼를 직접 DMA로 읽고 쓸 수 있게 합니다. 둘째, 패킷 분할·재조립·순서 보장·재전송 같은 전송 프로토콜 처리를 NIC 하드웨어(HCA, Host Channel Adapter 또는 rNIC)에 위임해 CPU가 프로토콜 스택을 처리할 필요를 없앱니다. 셋째, 제어 경로(리소스 생성·삭제)는 커널을 거치되, 데이터 경로(전송 요청 게시·완료 확인)는 사용자공간에서 mmap된 하드웨어 레지스터에 직접 접근해 처리합니다. 리눅스 커널 문서는 이 구조를 "fast path operations are typically performed by writing directly to hardware registers mmap()ed into userspace, with no system call or context switch into the kernel"이라고 설명합니다 — Linux Kernel Documentation, "Userspace verbs access" ([docs.kernel.org](https://docs.kernel.org/infiniband/user_verbs.html)). 이 세 가지가 합쳐져 "커널 우회(kernel bypass) + zero-copy"라는 RDMA의 성능 특성이 만들어집니다.
+전통적인 소켓 경로에서는 송신 측에서 애플리케이션 버퍼의 데이터를 커널 소켓 버퍼로 복사하고(`send()` 시스템 콜), 커널이 프로토콜 스택(TCP/IP)을 처리해 NIC로 넘기며, 수신 측에서는 역순으로 NIC → 커널 버퍼 → 애플리케이션 버퍼 복사가 한 번 더 일어납니다. RDMA는 이 경로에서 세 가지를 바꿉니다. 첫째, <strong>메모리 등록(memory registration)</strong>을 통해 애플리케이션 버퍼를 물리 메모리에 고정(pin)하고 NIC가 알 수 있는 키(lkey/rkey)를 부여해, NIC가 커널을 거치지 않고 해당 버퍼를 직접 DMA로 읽고 쓸 수 있게 합니다. 둘째, 패킷 분할·재조립·순서 보장·재전송 같은 전송 프로토콜 처리를 NIC 하드웨어(HCA, Host Channel Adapter 또는 rNIC)에 위임해 CPU가 프로토콜 스택을 처리할 필요를 없앱니다. 셋째, 제어 경로(리소스 생성·삭제)는 커널을 거치되, 데이터 경로(전송 요청 게시·완료 확인)는 사용자공간에서 mmap된 하드웨어 레지스터에 직접 접근해 처리합니다. 리눅스 커널 문서는 이 구조를 다음과 같이 설명합니다.
+
+> "fast path operations are typically performed by writing directly to hardware registers mmap()ed into userspace, with no system call or context switch into the kernel" — Linux Kernel Documentation, [Userspace verbs access](https://docs.kernel.org/infiniband/user_verbs.html)
+
+이 세 가지가 합쳐져 "커널 우회(kernel bypass) + zero-copy"라는 RDMA의 성능 특성이 만들어집니다.
 
 ```mermaid
 flowchart LR
@@ -94,25 +104,81 @@ flowchart LR
 
 ### Queue Pair·메모리 등록·Completion Queue
 
-RDMA 애플리케이션이 `libibverbs`(rdma-core 프로젝트가 배포하는 verbs API 사용자공간 라이브러리)를 통해 다루는 핵심 리소스는 네 가지입니다. <strong>Protection Domain(PD)</strong>은 메모리 영역과 Queue Pair를 묶어 어떤 리소스끼리 서로 접근 가능한지 경계를 정하는 논리적 컨테이너입니다. <strong>메모리 영역(Memory Region, MR)</strong>은 `ibv_reg_mr()`로 등록한 버퍼로, 이때 물리 페이지가 고정(pin)되고 로컬/원격 접근 권한을 나타내는 lkey·rkey가 발급됩니다. <strong>Queue Pair(QP)</strong>는 송신 큐(Send Queue)와 수신 큐(Receive Queue)의 쌍으로, 연결을 표현하는 기본 단위이며 RC(Reliable Connection)·UC(Unreliable Connection)·UD(Unreliable Datagram) 같은 전송 모드를 가집니다. <strong>Completion Queue(CQ)</strong>는 게시한 작업 요청(Work Request)의 완료를 알려주는 큐로, 애플리케이션은 폴링(polling) 또는 이벤트 기반으로 완료를 확인합니다. github의 rdma-core 문서는 libibverbs의 역할을 "libibverbs is a library that allows programs to use RDMA 'verbs' for direct access to RDMA (currently InfiniBand and iWARP) hardware from userspace"라고 요약합니다 — linux-rdma, "libibverbs.md" ([github.com/linux-rdma/rdma-core](https://github.com/linux-rdma/rdma-core/blob/master/Documentation/libibverbs.md)). QP는 생성 직후 곧바로 쓸 수 없고, INIT → RTR(Ready To Receive) → RTS(Ready To Send) 상태 전이를 거쳐야 하며 이 과정에서 상대 QP 번호·rkey 같은 정보를 별도 채널(보통 TCP 소켓)로 교환해야 합니다 — 이 상태 전이 자체는 CPU가 처리하는 제어 경로입니다.
+RDMA 애플리케이션이 `libibverbs`(rdma-core 프로젝트가 배포하는 verbs API 사용자공간 라이브러리)를 통해 다루는 핵심 리소스는 네 가지입니다. <strong>Protection Domain(PD)</strong>은 메모리 영역과 Queue Pair를 묶어 어떤 리소스끼리 서로 접근 가능한지 경계를 정하는 논리적 컨테이너입니다. <strong>메모리 영역(Memory Region, MR)</strong>은 `ibv_reg_mr()`로 등록한 버퍼로, 이때 물리 페이지가 고정(pin)되고 로컬/원격 접근 권한을 나타내는 lkey·rkey가 발급됩니다. <strong>Queue Pair(QP)</strong>는 송신 큐(Send Queue)와 수신 큐(Receive Queue)의 쌍으로, 연결을 표현하는 기본 단위이며 RC(Reliable Connection)·UC(Unreliable Connection)·UD(Unreliable Datagram) 같은 전송 모드를 가집니다. <strong>Completion Queue(CQ)</strong>는 게시한 작업 요청(Work Request)의 완료를 알려주는 큐로, 애플리케이션은 폴링(polling) 또는 이벤트 기반으로 완료를 확인합니다. rdma-core 문서는 libibverbs의 역할을 다음과 같이 요약합니다.
+
+> "libibverbs is a library that allows programs to use RDMA 'verbs' for direct access to RDMA (currently InfiniBand and iWARP) hardware from userspace" — linux-rdma, [libibverbs.md](https://github.com/linux-rdma/rdma-core/blob/master/Documentation/libibverbs.md)
+
+QP는 생성 직후 곧바로 쓸 수 없고, INIT → RTR(Ready To Receive) → RTS(Ready To Send) 상태 전이를 거쳐야 하며 이 과정에서 상대 QP 번호·rkey 같은 정보를 별도 채널(보통 TCP 소켓)로 교환해야 합니다 — 이 상태 전이 자체는 CPU가 처리하는 제어 경로입니다.
 
 ### One-sided 연산과 Two-sided 연산
 
-verbs API가 노출하는 작업은 크게 두 갈래로 나뉩니다. **Two-sided 연산**(`IBV_WR_SEND`/수신 측의 `ibv_post_recv`)은 소켓의 `send`/`recv`와 비슷하게 양쪽이 모두 작업을 게시해야 하며, 수신 측 애플리케이션이 완료를 인지합니다. **One-sided 연산**(`IBV_WR_RDMA_WRITE`, `IBV_WR_RDMA_READ`)은 원격 애플리케이션의 CPU 개입 없이 상대 메모리를 직접 읽거나 씁니다 — 원격 측은 자신의 메모리가 갱신되었는지 알기 위해 별도의 완료 신호(마지막에 작은 SEND를 덧붙이거나, 폴링으로 특정 플래그 바이트 변화를 감지)를 스스로 마련해야 합니다. 아래는 RDMA WRITE 한 번을 게시하는 최소 골격입니다. 실제 QP 상태 전이와 원격 정보 교환(OOB 채널)은 지면상 생략했으므로, 이 코드는 헤더가 설치된 리눅스에서 컴파일은 되지만 실행을 위해서는 나머지 연결 수립 로직과 RDMA 지원 NIC가 필요합니다.
+verbs API가 노출하는 작업은 크게 두 갈래로 나뉩니다. **Two-sided 연산**(`IBV_WR_SEND`/수신 측의 `ibv_post_recv`)은 소켓의 `send`/`recv`와 비슷하게 양쪽이 모두 작업을 게시해야 하며, 수신 측 애플리케이션이 완료를 인지합니다. **One-sided 연산**(`IBV_WR_RDMA_WRITE`, `IBV_WR_RDMA_READ`)은 원격 애플리케이션의 CPU 개입 없이 상대 메모리를 직접 읽거나 씁니다 — 원격 측은 자신의 메모리가 갱신되었는지 알기 위해 별도의 완료 신호(마지막에 작은 SEND를 덧붙이거나, 폴링으로 특정 플래그 바이트 변화를 감지)를 스스로 마련해야 합니다. one-sided 계열에는 원격 메모리의 8바이트 값에 원자적으로 비교·교환(`IBV_WR_ATOMIC_CMP_AND_SWP`)하거나 더하는(`IBV_WR_ATOMIC_FETCH_AND_ADD`) **RDMA Atomic**도 있는데, 대상 MR에 `IBV_ACCESS_REMOTE_ATOMIC` 권한이 있어야 하며 분산 락·카운터 구현에 쓰입니다. 아래는 QP를 RTS까지 전이시킨 뒤 RDMA WRITE 한 번을 게시하고 완료를 확인하는 최소 예제입니다. 상대 QP 번호·PSN·GID·버퍼 주소·rkey를 교환하는 OOB 채널(보통 TCP 소켓이나 `librdmacm`)은 지면상 생략했으므로, 이 코드는 헤더가 설치된 리눅스에서 컴파일은 되지만 실행하려면 그 교환 로직과 RDMA 지원 NIC가 함께 필요합니다.
 
 ```c
 #include <infiniband/verbs.h>
 #include <stdint.h>
 #include <stddef.h>
+#include <string.h>
 
-// 컴파일: gcc -c rdma_write.c -libverbs (rdma-core 개발 패키지 필요)
-// 실행에는 RDMA 지원 HCA와, 상대 QP 번호·rkey를 교환할 별도 OOB 채널(생략)이 필요하다.
-int rdma_write_once(struct ibv_context *ctx, void *local_buf, size_t len,
-                     uint64_t remote_addr, uint32_t remote_rkey) {
-  struct ibv_pd *pd = ibv_alloc_pd(ctx);
-  struct ibv_mr *mr = ibv_reg_mr(pd, local_buf, len,
-                                  IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE);
-  struct ibv_cq *cq = ibv_create_cq(ctx, 16, NULL, NULL, 0);
+// 컴파일: gcc -c rdma_write.c (링크 시 -libverbs, rdma-core 개발 패키지 필요)
+// 실행에는 RDMA 지원 HCA와, 상대 QP 번호·PSN·GID·버퍼 주소·rkey를 교환할 OOB 채널(생략)이 필요하다.
+
+// RESET → INIT → RTR → RTS 전이. remote_* 값은 OOB 채널로 받은 상대 정보다.
+static int connect_qp(struct ibv_qp *qp, uint8_t port, int gid_index, uint32_t local_psn,
+                      uint32_t remote_qpn, uint32_t remote_psn, union ibv_gid remote_gid) {
+  struct ibv_qp_attr a;
+
+  memset(&a, 0, sizeof(a));
+  a.qp_state = IBV_QPS_INIT;
+  a.port_num = port;
+  a.pkey_index = 0;
+  a.qp_access_flags = 0;                    // 이 QP는 원격 쓰기를 받지 않는 송신 측
+  if (ibv_modify_qp(qp, &a, IBV_QP_STATE | IBV_QP_PKEY_INDEX | IBV_QP_PORT |
+                            IBV_QP_ACCESS_FLAGS))
+    return -1;
+
+  memset(&a, 0, sizeof(a));
+  a.qp_state = IBV_QPS_RTR;
+  a.path_mtu = IBV_MTU_4096;                // 실제로는 포트의 active_mtu에 맞춘다
+  a.dest_qp_num = remote_qpn;
+  a.rq_psn = remote_psn;
+  a.max_dest_rd_atomic = 1;
+  a.min_rnr_timer = 12;
+  a.ah_attr.is_global = 1;                  // RoCEv2: GRH와 GID(IP 주소에 대응)가 필요
+  a.ah_attr.grh.dgid = remote_gid;
+  a.ah_attr.grh.sgid_index = gid_index;
+  a.ah_attr.grh.hop_limit = 64;
+  a.ah_attr.port_num = port;
+  if (ibv_modify_qp(qp, &a, IBV_QP_STATE | IBV_QP_AV | IBV_QP_PATH_MTU | IBV_QP_DEST_QPN |
+                            IBV_QP_RQ_PSN | IBV_QP_MAX_DEST_RD_ATOMIC | IBV_QP_MIN_RNR_TIMER))
+    return -1;
+
+  memset(&a, 0, sizeof(a));
+  a.qp_state = IBV_QPS_RTS;
+  a.timeout = 14;
+  a.retry_cnt = 7;
+  a.rnr_retry = 7;
+  a.sq_psn = local_psn;
+  a.max_rd_atomic = 1;
+  return ibv_modify_qp(qp, &a, IBV_QP_STATE | IBV_QP_TIMEOUT | IBV_QP_RETRY_CNT |
+                               IBV_QP_RNR_RETRY | IBV_QP_SQ_PSN | IBV_QP_MAX_QP_RD_ATOMIC);
+}
+
+int rdma_write_once(struct ibv_context *ctx, uint8_t port, int gid_index,
+                    void *local_buf, size_t len,
+                    uint32_t remote_qpn, uint32_t remote_psn, union ibv_gid remote_gid,
+                    uint64_t remote_addr, uint32_t remote_rkey) {
+  int ret = -1;
+  struct ibv_pd *pd = NULL;
+  struct ibv_mr *mr = NULL;
+  struct ibv_cq *cq = NULL;
+  struct ibv_qp *qp = NULL;
+
+  if (!(pd = ibv_alloc_pd(ctx))) goto out;
+  // 쓰기를 "시작하는" 쪽 버퍼는 NIC가 읽기만 하므로 LOCAL_WRITE면 충분하다.
+  // 원격 쓰기를 "받는" 상대 측 MR에는 IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE가 필요하다.
+  if (!(mr = ibv_reg_mr(pd, local_buf, len, IBV_ACCESS_LOCAL_WRITE))) goto out;
+  if (!(cq = ibv_create_cq(ctx, 16, NULL, NULL, 0))) goto out;
 
   struct ibv_qp_init_attr qp_attr = {0};
   qp_attr.send_cq = cq;
@@ -122,23 +188,34 @@ int rdma_write_once(struct ibv_context *ctx, void *local_buf, size_t len,
   qp_attr.cap.max_recv_wr = 16;
   qp_attr.cap.max_send_sge = 1;
   qp_attr.cap.max_recv_sge = 1;
-  struct ibv_qp *qp = ibv_create_qp(pd, &qp_attr);
-  // qp를 INIT -> RTR -> RTS로 전이시키는 ibv_modify_qp() 호출 3회는 생략.
+  if (!(qp = ibv_create_qp(pd, &qp_attr))) goto out;
+  if (connect_qp(qp, port, gid_index, /*local_psn=*/0, remote_qpn, remote_psn, remote_gid)) goto out;
 
   struct ibv_sge sge = { .addr = (uintptr_t)local_buf, .length = (uint32_t)len, .lkey = mr->lkey };
   struct ibv_send_wr wr = {0}, *bad_wr;
-  wr.opcode = IBV_WR_RDMA_WRITE;              // one-sided: 원격 CPU 미개입
+  wr.opcode = IBV_WR_RDMA_WRITE;             // one-sided: 원격 CPU 미개입
   wr.sg_list = &sge;
   wr.num_sge = 1;
   wr.wr.rdma.remote_addr = remote_addr;
   wr.wr.rdma.rkey = remote_rkey;
   wr.send_flags = IBV_SEND_SIGNALED;
+  if (ibv_post_send(qp, &wr, &bad_wr)) goto out;
 
-  return ibv_post_send(qp, &wr, &bad_wr);      // 완료는 ibv_poll_cq(cq, ...)로 확인
+  struct ibv_wc wc;
+  int n;
+  while ((n = ibv_poll_cq(cq, 1, &wc)) == 0) { }  // 완료를 폴링으로 기다린다
+  ret = (n == 1 && wc.status == IBV_WC_SUCCESS) ? 0 : -1;
+
+out:
+  if (qp) ibv_destroy_qp(qp);
+  if (cq) ibv_destroy_cq(cq);
+  if (mr) ibv_dereg_mr(mr);
+  if (pd) ibv_dealloc_pd(pd);
+  return ret;
 }
 ```
 
-이 골격에서 주목할 점은 데이터 전송 자체(`ibv_post_send` 호출과 하드웨어의 실제 전송)에는 시스템 콜이 없다는 것입니다. 반면 QP 생성·상태 전이·메모리 등록은 모두 커널을 거치는 제어 경로이므로, RDMA를 "CPU를 전혀 안 쓰는 통신"으로 오해하면 연결 수립·자원 관리 비용을 과소평가하게 됩니다.
+이 골격에서 주목할 점은 데이터 전송 자체(`ibv_post_send` 호출과 하드웨어의 실제 전송)에는 시스템 콜이 없다는 것입니다. 반면 QP 생성·상태 전이·메모리 등록은 모두 커널을 거치는 제어 경로이며, 이 비용의 의미는 아래 "흔한 오개념 교정"에서 다룹니다.
 
 ## InfiniBand, RoCEv2, iWARP 비교
 
@@ -152,11 +229,10 @@ int rdma_write_once(struct ibv_context *ctx, void *local_buf, size_t len,
 | 배포 난이도 | 전용 스위치·케이블 도입 필요 | 기존 이더넷 재사용 가능하나 PFC/DCQCN 튜닝 필요 | 상대적으로 낮음, 별도 무손실 설정 불필요 |
 | 전형적 지연 특성 | 가장 낮은 편(전용 하드웨어) | InfiniBand보다 다소 높은 편, 튜닝 의존적 | 가장 높은 편(TCP 스택 경유) |
 
-수치화된 지연·대역폭 우열은 NIC 세대, 스위치, MTU, 혼잡 상태에 따라 달라지므로 "구현·환경 정의"로 취급하고, 도입 전 실제 환경에서 `perftest` 계열 도구로 직접 측정하는 것을 권장합니다.
 
 ## 벤치마크: RDMA 지연·대역폭 측정
 
-RDMA 지원 NIC를 갖춘 두 노드가 있다면, rdma-core가 배포하는 `perftest` 패키지의 `ib_write_bw`(대역폭)·`ib_write_lat`(지연)로 verbs 경로의 실측치를 얻을 수 있습니다. 아래는 실행 형태와 출력 형식의 예시이며, 실제 수치는 NIC 세대·MTU·스위치·혼잡 여부에 따라 달라지므로 절대값이 아니라 두 설정(예: RoCEv2 vs InfiniBand, MTU 1500 vs 4096)을 같은 조건에서 비교하는 용도로 사용합니다.
+RDMA 지원 NIC를 갖춘 두 노드가 있다면, linux-rdma 프로젝트가 별도 저장소로 배포하는 `perftest` 패키지의 `ib_write_bw`(대역폭)·`ib_write_lat`(지연)로 verbs 경로의 실측치를 얻을 수 있습니다. 아래는 실행 형태와 출력 형식의 예시이며, 실제 수치는 NIC 세대·MTU·스위치·혼잡 여부에 따라 달라지므로 절대값이 아니라 두 설정(예: RoCEv2 vs InfiniBand, MTU 1500 vs 4096)을 같은 조건에서 비교하는 용도로 사용합니다.
 
 ```text
 # 수신 측(서버)
@@ -169,11 +245,12 @@ $ ib_write_bw -d mlx5_0 -x 3 --report_gbits <server_ip>
 #bytes  #iterations  BW peak[Gb/sec]  BW average[Gb/sec]  MsgRate[Mpps]
 65536   1000         97.20            97.15                0.185
 
-# 지연 측정은 ib_write_lat으로 동일한 방식 실행
-$ ib_write_lat -d mlx5_0 <server_ip>
+# 지연 측정도 같은 방식: 서버 먼저, 그다음 클라이언트
+$ ib_write_lat -d mlx5_0 -x 3
+$ ib_write_lat -d mlx5_0 -x 3 <server_ip>
 ```
 
-`-x 3`은 RoCEv2 GID 인덱스를 지정하는 옵션으로, 라우팅 가능한 RoCEv2 GID(IP 기반)를 골라야 정상 동작합니다. InfiniBand 패브릭에서는 GID 지정 없이 동작합니다.
+`-x 3`은 RoCEv2 GID 인덱스를 지정하는 옵션으로, 라우팅 가능한 RoCEv2 GID(IP 기반)를 골라야 정상 동작합니다. 3은 흔한 예일 뿐이므로 `show_gids`나 `ibv_devinfo -v`로 실제 RoCEv2 GID의 인덱스를 확인해 넣습니다. InfiniBand 패브릭에서는 GID 지정 없이 동작합니다.
 
 ## 흔한 오개념 교정
 
@@ -198,6 +275,8 @@ $ ib_write_lat -d mlx5_0 <server_ip>
 RoCEv2가 의존하는 PFC는 링크 단위로 백프레셔를 거는 방식이라, 특정 우선순위 큐가 정체되면 그 큐를 공유하는 다른 흐름까지 멈추는 **head-of-line blocking**과 "PFC storm"(백프레셔가 상류로 전파되며 넓은 범위가 정지하는 현상)이 알려진 문제로 지적되어 왔습니다. 이 때문에 대규모 이더넷 데이터센터에서 RoCEv2를 안정적으로 운영하려면 전용 인력이 붙어 PFC/ECN 임계값과 버퍼 배분을 지속적으로 튜닝해야 하며, 이는 상당한 운영 부담입니다. 배포 복잡성도 만만치 않습니다 — InfiniBand는 전용 스위치·서브넷 매니저가 필요하고, RoCEv2는 기존 이더넷을 재사용할 수 있다는 것이 장점이지만 "재사용 가능"과 "튜닝 없이 잘 동작"은 다른 이야기입니다. 클라우드 환경에서는 하이퍼스케일러마다 RDMA 지원 인스턴스 유형과 대역폭이 크게 달라, 온프레미스 대비 이식성이 낮습니다. 커널 우회 구조 때문에 일반적인 `tcpdump` 같은 도구로는 RDMA 트래픽을 직접 들여다보기 어렵고, 문제 진단에는 NIC 벤더가 제공하는 전용 카운터·트레이싱 도구가 필요해 디버깅 난이도도 상대적으로 높습니다. 업계가 PFC 의존을 줄이려는 방향으로 움직이고 있다는 점은 다음 장에서 다룰 Ultra Ethernet Consortium의 등장 배경과도 맞닿아 있습니다.
 
 ## 마무리
+
+RDMA는 메모리 등록으로 NIC가 애플리케이션 버퍼에 직접 DMA하게 하고, 전송 프로토콜을 NIC에 맡기며, 데이터 경로를 사용자공간에서 처리해 복사와 커널 진입을 줄입니다. 그 대가로 PD·MR·QP·CQ라는 리소스 모델과 QP 상태 전이 같은 제어 경로 비용을 감수해야 하고, InfiniBand·RoCEv2·iWARP 중 무엇을 고르느냐에 따라 손실 허용도와 운영 부담이 크게 달라집니다. 아래 항목으로 이해를 점검해 보세요.
 
 - [ ] RDMA가 소켓 경로 대비 줄이는 두 가지(복사 횟수, 커널 진입 횟수)를 설명할 수 있다.
 - [ ] Protection Domain, Memory Region, Queue Pair, Completion Queue의 역할을 구분할 수 있다.
