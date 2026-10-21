@@ -258,7 +258,7 @@
 | content/collection/optimization-02-cpp-language/10-coroutine-performance/index.md | 91.3 | 2026-09-29 | 1 | 통과 | 1.3 | 751cb61 | 없음(경미: 파일 선두 UTF-8 BOM, L102 blockquote 인용문이 cppreference 원문과 불일치·출처 미병기, L156-160 "코루틴 프레임 할당" 절이 L86에서 예고한 HALO(힙 할당 제거 최적화)를 사용자 제공 allocator와 구분해 다루지 않음) |
 | content/collection/optimization-02-cpp-language/11-exception-deep-dive/index.md | 96.55 | 2026-10-02 | 3 | 통과 | 1.3 | 44cff30 | 없음(경미: 항목3=85 "예외 vs expected" 전용 비교 표 누락(collection-writing-standards §2.2), 항목7=85 tags Linux/Windows가 승인 결합형 Linux(리눅스)/Windows(윈도우) 미표기). 1차 채점(77.65점) 치명결함이던 L104 Itanium ABI 환각 인용 삭제·패러프레이즈 교체, 2차 지적 태그 영/한 분리 20쌍 승인 결합형 병합·00 챕터 Tr.07 경계 중첩 해소로 3회차에 통과 |
 | content/collection/optimization-02-cpp-language/12-inlining-techniques/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-02-cpp-language/13-variant-optional-expected/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/13-variant-optional-expected/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | 9383f0f | 없음(경미: 항목1=85 L97 optional 접근 시 '항상 한 번 분기' 서술 — operator*/->는 검사 없이 접근(빈 경우 UB)하고 value()/value_or()만 분기하므로 구분해 적어야 함). 1차 채점(73.0) 지적인 description if-let 오기, 학습 목표 절 누락, 비판적 시각 얕음(valueless_by_exception·다중 visit 코드 크기 추가), trivially-copyable 전파 서술, 리스트 의존 선택 가이드, FAQ·체크리스트 중복, expected 예제 stoi 예외 경로(from_chars로 교체), 보일러플레이트 태그 21개·BOM을 1회 Revise로 해소 |
 | content/collection/optimization-02-cpp-language/14-span-and-views/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-02-cpp-language/15-lambda-performance/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-02-cpp-language/16-small-buffer-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
