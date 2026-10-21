@@ -393,7 +393,7 @@
 | content/collection/optimization-09-io-network/11-io-multiplexing-patterns/index.md | 92.4 | 2026-10-21 | 0 | 통과 | 1.3 | d62dcbf | 경미: 1(L192·206 디멀티플렉싱 직렬화를 일반화 — 단일 리액터로 한정하고 multi-reactor/Leader-Followers 언급 필요, L202 Netty와 모순) / 4(직렬화 병목 3회 반복) / 5(L88 주석 '2장' → 03장) / 7(Benchmark·Profiling 태그 본문 근거 없음) |
 | content/collection/optimization-09-io-network/12-vectored-io/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | a373ea4 | 없음 |
 | content/collection/optimization-09-io-network/13-posix-aio-vs-io-uring/index.md | 93.9 | 2026-10-21 | 2 | 통과 | 1.3 | c798d3d | 경미: 1(L134 Axboe 수치에 원문 없는 'NVMe 디바이스' 조건 귀속) / 4('어느 AIO인지 확인' 조언 3회 반복) / 7(liburing 태그 본문 근거 없음) |
-| content/collection/optimization-09-io-network/14-database-io-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/14-database-io-patterns/index.md | 92.7 | 2026-10-21 | 0 | 통과 | 1.3 | b3ad01f | 경미: 1(L190·217 'XFS FORCEALIGN 기반 atomic writes' — 미머지, 6.13 단일 블록 RWF_ATOMIC로 정정; L192 SQLite는 단일 WAL 파일 끝에 추가; L190 doublewrite 링크를 innodb-doublewrite-buffer.html로; L101·215 innodb_flush_log_at_trx_commit=2는 그룹커밋 지연 손잡이 아님 → binlog_group_commit_sync_delay; L91 단계 번호; L95 fdatasync는 디스크 I/O 감소; L192 synchronous_commit=off 설명) / 4(L215 재진술) |
 | content/collection/optimization-09-io-network/15-file-locking-performance/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/16-storage-stack-customization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/17-logging-performance-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
