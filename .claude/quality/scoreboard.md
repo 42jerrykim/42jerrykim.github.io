@@ -394,7 +394,7 @@
 | content/collection/optimization-09-io-network/12-vectored-io/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | a373ea4 | 없음 |
 | content/collection/optimization-09-io-network/13-posix-aio-vs-io-uring/index.md | 93.9 | 2026-10-21 | 2 | 통과 | 1.3 | c798d3d | 경미: 1(L134 Axboe 수치에 원문 없는 'NVMe 디바이스' 조건 귀속) / 4('어느 AIO인지 확인' 조언 3회 반복) / 7(liburing 태그 본문 근거 없음) |
 | content/collection/optimization-09-io-network/14-database-io-patterns/index.md | 92.7 | 2026-10-21 | 0 | 통과 | 1.3 | b3ad01f | 경미: 1(L190·217 'XFS FORCEALIGN 기반 atomic writes' — 미머지, 6.13 단일 블록 RWF_ATOMIC로 정정; L192 SQLite는 단일 WAL 파일 끝에 추가; L190 doublewrite 링크를 innodb-doublewrite-buffer.html로; L101·215 innodb_flush_log_at_trx_commit=2는 그룹커밋 지연 손잡이 아님 → binlog_group_commit_sync_delay; L91 단계 번호; L95 fdatasync는 디스크 I/O 감소; L192 synchronous_commit=off 설명) / 4(L215 재진술) |
-| content/collection/optimization-09-io-network/15-file-locking-performance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/15-file-locking-performance/index.md | 93.1 | 2026-10-21 | 1 | 통과 | 1.3 | 5b9c4b5 | 경미: 1(L180 벤치 해석 — 스레드당 반복 고정이라 병렬이면 총 시간 일정·직렬화면 n배 증가로 정정 필요; L117 grace period는 서버 재시작 후 reclaim 기간, 클라이언트 사망 잠금은 NSM 정리) / 5(L117 '처리량' vs 출력 ms; L245 lslocks -p는 OFD 락(PID -1) 행을 못 거를 수 있음) |
 | content/collection/optimization-09-io-network/16-storage-stack-customization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/17-logging-performance-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/00-introduction/index.md | 92.2 | 2026-07-25 | 1 | 통과 | 1.0 | 08ba5df | 없음(경미: description 118자로 하한 근접, 범위/경계 리스트 문단 비중 29%, WebTransport Baseline 기준 명시 여지) |
