@@ -392,7 +392,7 @@
 | content/collection/optimization-09-io-network/10-block-device-optimization/index.md | 91.2 | 2026-10-21 | 1 | 통과 | 1.3 | 1c08f5f | 경미: 1(L156 논문 저자는 Samsung 소속 — 'Meta·Samsung' 귀속 정정; L158 F_SET_RW_HINT는 메인라인 NVMe FDP 배치에 쓰이지 않음(LWN 'no-op'), placement는 io_uring write_stream→bi_write_stream; bi_write_stream은 bio 필드; 6.16 반영 출처 없음) / 4(L228·L203 재진술) / 5(L191 nvme-cli 앞 설명 1문장, C 주석 RUH 반영 서술) |
 | content/collection/optimization-09-io-network/11-io-multiplexing-patterns/index.md | 92.4 | 2026-10-21 | 0 | 통과 | 1.3 | d62dcbf | 경미: 1(L192·206 디멀티플렉싱 직렬화를 일반화 — 단일 리액터로 한정하고 multi-reactor/Leader-Followers 언급 필요, L202 Netty와 모순) / 4(직렬화 병목 3회 반복) / 5(L88 주석 '2장' → 03장) / 7(Benchmark·Profiling 태그 본문 근거 없음) |
 | content/collection/optimization-09-io-network/12-vectored-io/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | a373ea4 | 없음 |
-| content/collection/optimization-09-io-network/13-posix-aio-vs-io-uring/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/13-posix-aio-vs-io-uring/index.md | 93.9 | 2026-10-21 | 2 | 통과 | 1.3 | c798d3d | 경미: 1(L134 Axboe 수치에 원문 없는 'NVMe 디바이스' 조건 귀속) / 4('어느 AIO인지 확인' 조언 3회 반복) / 7(liburing 태그 본문 근거 없음) |
 | content/collection/optimization-09-io-network/14-database-io-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/15-file-locking-performance/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/16-storage-stack-customization/index.md | - | - | 0 | 미채점 | - | - | - |
