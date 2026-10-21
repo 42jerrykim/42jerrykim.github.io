@@ -412,7 +412,7 @@
 | content/collection/optimization-10-network/12-xdp-ebpf-network-advanced/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | 7e458a5 | 없음(경미: L153 'io_uring ZC RX는 여기에 더해'가 XSK zero-copy 구현을 전제로 읽힘 → XSK와 별개로 큐 관리·page pool memory provider 지원 필요로 정정) |
 | content/collection/optimization-10-network/13-rdma-fundamentals/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | c0c391f | 없음(경미: L246 ib_write_bw 출력 예시 #iterations 1000이 기본값 5000(DEF_ITERS_WB)과 불일치 → 5000으로 고치거나 명령에 -n 1000 추가) |
 | content/collection/optimization-10-network/14-ultra-ethernet-consortium/index.md | 100 | 2026-10-21 | 2 | 통과 | 1.3 | 54c143a | 없음 |
-| content/collection/optimization-10-network/15-grpc-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/15-grpc-optimization/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | ae00959 | 없음(경미: L225 '기본값이라는 이유로 gzip 활성화'가 gzip 기본값으로 읽힘(실제 기본 무압축), L231 스트림의 백엔드 고정을 TCP HoL·QUIC과 인과 연결 → 두 문제 분리) |
 | content/collection/optimization-10-network/16-quic-protocol/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/17-tls-ssl-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/18-connection-pooling/index.md | - | - | 0 | 미채점 | - | - | - |
