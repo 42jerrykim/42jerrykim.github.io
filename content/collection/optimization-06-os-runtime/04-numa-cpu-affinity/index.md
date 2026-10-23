@@ -1,7 +1,7 @@
 ---
 collection_order: 4
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-23
 draft: false
 image: wordcloud.png
 title: "[OS 06] NUMA CPU Affinity·스레드 배치"
@@ -27,11 +27,9 @@ tags:
   - Best-Practices
   - System-Design
   - Production
-  - Reliability
   - Scalability(확장성)
   - Deep-Dive
   - Advanced
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - Hardware(하드웨어)
   - NUMA
@@ -66,9 +64,9 @@ tags:
 
 ## NUMA의 등장과 발전 (역사·배경)
 
-**NUMA**는 코어 수가 늘어나면서 모든 CPU가 하나의 메모리 버스를 공유하는 SMP(대칭형 멀티프로세싱) 구조가 대역폭 병목에 부딪히자 등장한 설계입니다. 각 CPU(또는 CPU 그룹)에 로컬 메모리 컨트롤러를 붙이고, 다른 CPU의 메모리에 접근할 때는 상호 연결망(interconnect)을 거치도록 해 로컬 접근은 빠르고 원격 접근은 느린 비대칭 구조를 감수하는 대신 전체 대역폭을 확장하는 방식입니다. 캐시 일관성을 유지하는 ccNUMA(cache-coherent NUMA)는 1996년 SGI Origin 2000 같은 대형 서버에서 먼저 상용화되었고, x86 서버 시장에는 2003년 AMD Opteron이 다이 내부에 메모리 컨트롤러를 통합하고 HyperTransport로 소켓 간을 연결하면서 본격적으로 들어왔습니다. 인텔은 2008–2010년 Nehalem 세대부터 QPI(QuickPath Interconnect)로, 이후 UPI(Ultra Path Interconnect)로 대응했습니다. 커널이 노드 간 상대적 접근 비용을 아는 것은 ACPI 2.0(2000년)에서 정의된 **SLIT(System Locality Information Table)** 덕분으로, 펌웨어가 이 테이블에 노드 간 거리를 채워 넣으면 커널과 `numactl`이 이를 그대로 읽어 표시합니다.
+**NUMA**는 코어 수가 늘어나면서 모든 CPU가 하나의 메모리 버스를 공유하는 SMP(대칭형 멀티프로세싱) 구조가 대역폭 병목에 부딪히자 등장한 설계입니다. 각 CPU(또는 CPU 그룹)에 로컬 메모리 컨트롤러를 붙이고, 다른 CPU의 메모리에 접근할 때는 상호 연결망(interconnect)을 거치도록 해 로컬 접근은 빠르고 원격 접근은 느린 비대칭 구조를 감수하는 대신 전체 대역폭을 확장하는 방식입니다. 캐시 일관성을 유지하는 ccNUMA(cache-coherent NUMA)는 SGI Origin 계열 같은 대형 서버에서 먼저 상용화되었고, x86 서버 시장에는 AMD Opteron이 다이 내부에 메모리 컨트롤러를 통합하고 HyperTransport로 소켓 간을 연결하면서 본격적으로 들어왔습니다. 인텔은 Nehalem 세대부터 QPI(QuickPath Interconnect)로, 이후 UPI(Ultra Path Interconnect)로 대응했습니다. 커널이 노드 간 상대적 접근 비용을 아는 것은 ACPI 사양이 정의하는 **SLIT(System Locality Information Table)** 덕분으로, 펌웨어가 이 테이블에 노드 간 거리를 채워 넣으면 커널과 `numactl`이 이를 그대로 읽어 표시합니다.
 
-최근 흐름은 "멀티소켓이라야 NUMA"라는 통념을 깨고 있습니다. 칩렛(chiplet) 설계가 보편화되면서 **단일 소켓 내부에서도 여러 NUMA 도메인**이 나타납니다. AMD EPYC는 NPS(Nodes Per Socket) 설정으로 하나의 소켓을 NPS1(단일 노드)부터 NPS4(4분할)까지 나눌 수 있고, 세대별로 지원하는 NPS 값이 다릅니다. 인텔은 Sub-NUMA Clustering(SNC)이라는 이름으로 같은 일을 하며, Xeon 6 세대에서는 SNC2·SNC3 옵션을 제공합니다. 이런 분할은 같은 다이의 코어·L3·메모리 컨트롤러 사이의 지역성을 높여 로컬 접근 지연을 줄이는 대신, 애플리케이션이 신경 써야 할 NUMA 노드 수를 늘립니다. 정확한 지연 배율은 세대·BIOS 설정·워크로드에 따라 달라지므로, 도입 전 대상 하드웨어에서 직접 측정하는 것을 권장합니다.
+최근 흐름은 "멀티소켓이라야 NUMA"라는 통념을 깨고 있습니다. 칩렛(chiplet) 설계가 보편화되면서 **단일 소켓 내부에서도 여러 NUMA 도메인**이 나타납니다. AMD EPYC는 NPS(Nodes Per Socket) 설정으로 하나의 소켓을 NPS1(단일 노드)부터 NPS4(4분할)까지 나눌 수 있고, 세대별로 지원하는 NPS 값이 다릅니다. 인텔은 Sub-NUMA Clustering(SNC)이라는 이름으로 같은 일을 하며, 세대마다 지원하는 분할 단위가 다릅니다. 이런 분할은 같은 다이의 코어·L3·메모리 컨트롤러 사이의 지역성을 높여 로컬 접근 지연을 줄이는 대신, 애플리케이션이 신경 써야 할 NUMA 노드 수를 늘립니다. 정확한 지연 배율은 세대·BIOS 설정·워크로드에 따라 달라지므로, 도입 전 대상 하드웨어에서 직접 측정하는 것을 권장합니다.
 
 ## NUMA 토폴로지 파악: 노드, 코어, 거리
 
@@ -134,7 +132,9 @@ static void *worker_broken(void *arg) {
 }
 
 int main(void) {
+  if (numa_available() < 0 || numa_max_node() < 1) return 1;  // NUMA 노드 2개 이상 필요
   struct worker_ctx ctx = {.buf = malloc(64 * 1024 * 1024), .n = 8 * 1024 * 1024, .cpu = 8};
+  if (!ctx.buf) return 1;
   for (size_t i = 0; i < ctx.n; i++) ctx.buf[i] = 1.0;  // main 스레드(노드 0)가 first-touch
   pthread_t t;
   pthread_create(&t, NULL, worker_broken, &ctx);
@@ -151,6 +151,7 @@ static void *worker_fixed(void *arg) {
   int node = numa_node_of_cpu(ctx->cpu);
   numa_run_on_node(node);                       // 1. 먼저 실행 노드를 고정
   ctx->buf = numa_alloc_onnode(ctx->n * sizeof(double), node);  // 2. 그 노드에서 직접 할당
+  if (!ctx->buf) return NULL;
   for (size_t i = 0; i < ctx->n; i++) ctx->buf[i] = 1.0;        // 3. 같은 스레드가 first-touch
   double sum = 0;
   for (size_t i = 0; i < ctx->n; i++) sum += ctx->buf[i];
@@ -162,23 +163,32 @@ static void *worker_fixed(void *arg) {
 
 고친 버전은 "실행 노드 고정 → 그 노드에서 할당 → 같은 스레드가 초기화"의 순서를 지켜, 실행 위치와 데이터 위치를 일치시킵니다. 이렇게 노드별로 독립된 버퍼를 두는 패턴은 뒤에서 다룰 "노드별 샤딩" 아키텍처의 기본 단위이기도 합니다.
 
-**검증**: 코드를 고쳤다고 믿는 것과 실제로 원격 접근이 사라졌는지 확인하는 것은 다릅니다. `numastat -p <pid>`는 프로세스별 `numa_hit`(로컬 정책대로 할당된 횟수)과 `numa_miss`/`other_node`(의도한 노드가 아닌 곳에서 할당된 횟수)를 보여주므로 배치가 실제로 의도대로 됐는지 사후 확인할 수 있고, `/proc/<pid>/numa_maps`는 가상 메모리 영역별로 어느 노드에 몇 페이지가 실제로 올라갔는지까지 보여줍니다.
+**검증**: 코드를 고쳤다고 믿는 것과 실제로 원격 접근이 사라졌는지 확인하는 것은 다릅니다. 확인 수단은 두 가지이고 서로 다른 것을 보여줍니다. 인자 없는 `numastat`은 커널 메모리 할당기가 집계한 **시스템 전체**의 노드별 `numa_hit`·`numa_miss`·`numa_foreign`·`other_node` 카운터를 보여줍니다([numastat(8)](https://man7.org/linux/man-pages/man8/numastat.8.html)). 이 카운터는 프로세스별이 아니므로, 배치를 바꾸기 전후로 `numa_miss`가 늘었는지 비교하는 용도로 씁니다. 여기서 `other_node`는 "다른 노드에서 실행 중인 프로세스를 위해 **이 노드**에서 할당된 메모리"를 뜻합니다. 반면 `numastat -p <pid>`는 지정한 프로세스의 노드별 메모리 사용량을 MB 단위로 보여주므로, 워커의 버퍼가 의도한 노드에 올라갔는지를 직접 확인할 수 있습니다.
 
 ```text
+# 출력 형식 예시 — 값은 실제 측정값이 아니며 프로세스·시스템마다 다릅니다
 $ numastat -p 12345
-Per-node process memory usage (in MBs)
-                  Node 0  Node 1  Total
-Numa_Hit            2.31   64.05  66.36
-Numa_Miss            0.00    0.00   0.00
-Numa_Foreign         0.00    0.00   0.00
+Per-node process memory usage (in MBs) for PID 12345 (worker)
+                           Node 0          Node 1           Total
+                  --------------- --------------- ---------------
+Huge                         0.00            0.00            0.00
+Heap                         0.02            0.00            0.02
+Stack                        0.01            0.00            0.01
+Private                      2.05           64.30           66.35
+----------------  --------------- --------------- ---------------
+Total                        2.08           64.30           66.38
 ```
+
+수정 전 코드라면 `Private`의 대부분이 실행 노드와 다른 Node 0 쪽에 잡히고, 수정 후에는 워커가 고정된 노드(위 예시의 Node 1)에 몰립니다. `/proc/<pid>/numa_maps`는 가상 메모리 영역별로 어느 노드에 몇 페이지가 올라갔는지까지 보여줍니다.
 
 ## 로컬 대 원격 접근 지연을 직접 재보기
 
-행렬에 적힌 거리 값이나 백서의 배율을 그대로 믿기보다, 대상 하드웨어에서 직접 재보는 것이 안전합니다. 아래는 포인터 체이싱으로 캐시 효과를 배제하고 순수 메모리 접근 지연을 비교하는 벤치마크 뼈대입니다. `numa_alloc_onnode`로 같은 크기의 버퍼를 로컬 노드와 원격 노드에 각각 만들고, 같은 스레드가 두 버퍼를 순서대로 순회하며 걸린 시간을 비교합니다(x86-64, GCC 13, `gcc -O2 numa_bench.c -lnuma -o numa_bench` 기준 예시 골격이며, 실제 배율은 하드웨어·NPS/SNC 설정에 따라 달라집니다).
+행렬에 적힌 거리 값이나 백서의 배율을 그대로 믿기보다, 대상 하드웨어에서 직접 재보는 것이 안전합니다. 아래는 포인터 체이싱으로 로컬·원격 접근 지연을 비교하는 벤치마크 뼈대입니다. 순차 링크(`buf[i] = i + 1`)를 따라가면 하드웨어 프리페처가 다음 주소를 미리 가져와 지연이 가려지고 처리량에 가까운 값을 재게 되므로, 사이클이 하나인 **무작위 순열**(Sattolo 알고리즘)로 링크를 만들어 프리페처를 무력화합니다. 버퍼는 대상 시스템의 L3보다 충분히 크게(여기서는 256MB) 잡아 캐시에 걸리지 않게 합니다. `numa_alloc_onnode`로 같은 크기의 버퍼를 로컬 노드와 원격 노드에 각각 만들고, 같은 스레드가 두 버퍼를 같은 횟수만큼 따라가며 걸린 시간을 비교합니다(x86-64 Linux, `gcc -O2 numa_bench.c -lnuma -o numa_bench` 기준 골격이며, 실제 배율은 하드웨어·NPS/SNC 설정에 따라 달라집니다).
 
 ```c
+#define _GNU_SOURCE
 #include <numa.h>
+#include <sched.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <time.h>
@@ -189,25 +199,52 @@ static double now_ns(void) {
   return (double)ts.tv_sec * 1e9 + ts.tv_nsec;
 }
 
-static double chase(uint64_t *buf, size_t n, size_t iters) {
-  for (size_t i = 0; i + 1 < n; i++) buf[i] = i + 1;  // 무작위 접근을 흉내 내는 순환 링크
-  buf[n - 1] = 0;
-  double t0 = now_ns();
+static uint64_t rng_state = 88172645463325252ULL;
+static uint64_t xorshift64(void) {
+  rng_state ^= rng_state << 13;
+  rng_state ^= rng_state >> 7;
+  rng_state ^= rng_state << 17;
+  return rng_state;
+}
+
+// Sattolo 알고리즘: 모든 원소가 하나의 순환에 속하는 무작위 순열을 만든다
+static void build_cycle(uint64_t *buf, size_t n) {
+  for (size_t i = 0; i < n; i++) buf[i] = i;
+  for (size_t i = n - 1; i > 0; i--) {
+    size_t j = xorshift64() % i;
+    uint64_t tmp = buf[i];
+    buf[i] = buf[j];
+    buf[j] = tmp;
+  }
+}
+
+static double chase(uint64_t *buf, size_t iters) {
   uint64_t idx = 0;
+  double t0 = now_ns();
   for (size_t k = 0; k < iters; k++) idx = buf[idx];
   double t1 = now_ns();
-  (void)idx;
+  if (idx == (uint64_t)-1) puts("");  // idx를 사용해 루프가 제거되지 않게 함
   return (t1 - t0) / (double)iters;
 }
 
 int main(void) {
-  size_t n = 4 * 1024 * 1024;  // TLB/캐시보다 훨씬 큰 영역
+  if (numa_available() < 0 || numa_max_node() < 1) {
+    fputs("NUMA 노드가 2개 이상인 시스템이 필요합니다\n", stderr);
+    return 1;
+  }
+  size_t n = 32 * 1024 * 1024;  // 32M x 8B = 256MB
   int local = numa_node_of_cpu(sched_getcpu());
   int remote = (local == 0) ? 1 : 0;
   uint64_t *local_buf = numa_alloc_onnode(n * sizeof(uint64_t), local);
   uint64_t *remote_buf = numa_alloc_onnode(n * sizeof(uint64_t), remote);
-  printf("local:  %.2f ns/access\n", chase(local_buf, n, 10 * 1000 * 1000));
-  printf("remote: %.2f ns/access\n", chase(remote_buf, n, 10 * 1000 * 1000));
+  if (!local_buf || !remote_buf) {
+    fputs("numa_alloc_onnode 실패\n", stderr);
+    return 1;
+  }
+  build_cycle(local_buf, n);
+  build_cycle(remote_buf, n);
+  printf("local:  %.2f ns/access\n", chase(local_buf, 10 * 1000 * 1000));
+  printf("remote: %.2f ns/access\n", chase(remote_buf, 10 * 1000 * 1000));
   numa_free(local_buf, n * sizeof(uint64_t));
   numa_free(remote_buf, n * sizeof(uint64_t));
   return 0;
@@ -254,7 +291,7 @@ flowchart TB
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
 | 지연 최우선, 스레드 전용 데이터 | `cpunodebind`+`membind`(또는 `numa_alloc_onnode`)로 완전 고정, 자동 밸런싱 끄기 | interleave, 자동 밸런싱 방치 |
-| 대용량 읽기 전용 공유 데이터를 여러 스레드가 다른 노드에서 접근 | `interleave`/`weighted-interleave`로 대역폭 분산 | 단일 노드 `membind`로 강제해 그 노드만 과부하 |
+| 대용량 읽기 전용 공유 데이터를 여러 스레드가 다른 노드에서 접근 | `interleave`로 대역폭 분산(최신 `numactl`의 `--weighted-interleave` 옵션은 노드별 가중치를 반영) | 단일 노드 `membind`로 강제해 그 노드만 과부하 |
 | 배치 전략이 아직 불확실한 탐색·프로토타입 단계 | 기본 정책 유지 + 자동 NUMA 밸런싱 켜둔 채 `numastat`로 관찰 | 근거 없이 성급하게 수동 고정 |
 | 컨테이너·Kubernetes 환경 | `cpuset.mems`(cgroups v2)와 오케스트레이터의 토폴로지 정책 병행 | 컨테이너 밖에서만 `numactl` 적용하고 격리 무시 |
 | 단일 소켓 클라우드 VM | `numactl --hardware`로 실제 vNUMA 노드 수 먼저 확인 | "소켓이 하나니 NUMA 무관" 가정 |
@@ -262,6 +299,13 @@ flowchart TB
 ## 비판적 시각: 한계와 트레이드오프
 
 sub-NUMA clustering·NPS로 노드 수 자체가 늘어나면서, 애플리케이션이 고려해야 할 "스레드-데이터-노드" 조합이 조합적으로 늘어납니다. 모든 자료구조를 노드별로 완벽하게 샤딩하는 것은 설계·유지보수 비용이 크고, 실제로는 핫패스 자료구조 몇 개만 선별해 적용하는 것이 현실적입니다. 가상화 환경에서는 하이퍼바이저가 노출하는 vNUMA 토폴로지가 실제 물리 토폴로지와 다를 수 있고, 라이브 마이그레이션이나 오버커밋이 일어나면 `numactl --hardware`가 보여주는 값이 시점에 따라 신뢰도가 달라질 수 있습니다. 자동 NUMA 밸런싱을 끄는 것도 만능은 아닙니다 — 스레드 풀이 동적으로 재배치되거나 부하가 시간에 따라 노드 간에 옮겨 다니는 워크로드에서는 수동 고정이 오히려 유연성을 잃게 만들 수 있으므로, 정적 배치가 맞는 워크로드인지 먼저 판단해야 합니다. 또한 `numactl`/`libnuma`는 리눅스 전용 인터페이스이며, Windows에서는 `GetNumaNodeProcessorMaskEx` 등 별도 API 계열을 써야 하므로 크로스 플랫폼 코드에서는 추상화 계층이 필요합니다.
+
+## 참고 자료
+
+- [numactl(8)](https://man7.org/linux/man-pages/man8/numactl.8.html): `--cpunodebind`, `--membind`, `--interleave`, `--weighted-interleave` 등 정책 옵션
+- [numa(3)](https://man7.org/linux/man-pages/man3/numa.3.html): libnuma API. `numa_available()`는 다른 모든 호출보다 먼저 불러야 합니다
+- [numastat(8)](https://man7.org/linux/man-pages/man8/numastat.8.html): 시스템 전체 카운터와 프로세스별 노드 메모리 사용량
+- [커널 sysctl 문서: numa_balancing](https://docs.kernel.org/admin-guide/sysctl/kernel.html): 자동 NUMA 밸런싱 설정
 
 ## 마무리
 
