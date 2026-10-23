@@ -482,7 +482,7 @@
 | content/collection/Algorithm/2024/2024-10-10-BOJ-15824/index.md | 98.5 | 2026-10-18 | 1 | 통과 | 1.3 | 5c7eb26 | 없음(경미: 승인 태그 중 Go·.NET·Logging·Error-Handling·Documentation·Testing이 본문에 근거 없음, 문제 URL은 봇 차단으로 검증 불가)
 | content/collection/Algorithm/2024/2024-10-10-BOJ-16565/index.md | 100 | 2026-10-19 | 2 | 통과 | 1.3 | c0e9b46 | 없음(BOJ 서비스 종료로 문제 링크는 텍스트 표기). 57→87.1→100 |
 | content/collection/Algorithm/2024/2024-10-10-BOJ-2357/index.md | 94 | 2026-10-20 | 2 | 통과 | 1.3 | 9d62182 | 없음(경미: 비멱등 연산 오개념이 독립 절 아님, acmicpc 링크는 봇 차단으로 검증 불가) |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-1214/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-1214/index.md | 91.3 | 2026-10-24 | 1 | 통과 | 1.3 | bc797a8 | 없음(경미: y·Q 최대치 서술 "10^18"은 창 안에서 약 10^15 — L153·L159·L313 정정 여지, categories frontmatter 부재) |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-13416/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-1384/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-14752/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1990,3 +1990,4 @@
 | content/post/2026/2026-10-18-windows-batch-inline-powershell-watcher-pitfalls/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-19-hf-open-tts-leaderboard-objective-metrics/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-20-diffusiongemma-discrete-diffusion-llm-block-refinement/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/post/2026/2026-10-24-coding-is-not-solved-comprehension-gap/index.md | - | - | - | 미채점 | - | - | - |
