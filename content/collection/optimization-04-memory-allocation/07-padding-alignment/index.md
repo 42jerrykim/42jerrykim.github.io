@@ -1,7 +1,7 @@
 ---
 collection_order: 7
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-23
 draft: false
 image: wordcloud.png
 title: "[Memory 04] 구조체 패딩과 정렬"
@@ -16,13 +16,8 @@ tags:
   - C++
   - Data-Structures(자료구조)
   - Compiler(컴파일러)
-  - Concurrency(동시성)
   - Benchmark
-  - Latency
-  - Throughput
-  - Profiling(프로파일링)
   - Best-Practices
-  - Code-Quality(코드품질)
   - Advanced
   - Comparison(비교)
   - Pitfalls(함정)
@@ -30,7 +25,6 @@ tags:
   - Space-Complexity(공간복잡도)
   - Implementation(구현)
   - Reference(참고)
-  - Testing(테스트)
   - Hardware(하드웨어)
   - Struct-Padding
   - Alignment
@@ -101,32 +95,22 @@ int main() {
 }
 ```
 
-`Bad`와 `Good`은 필드 하나하나의 의미는 완전히 같지만, `Bad`는 `a`(1바이트) 뒤에 `double`을 8바이트 경계에 놓기 위한 7바이트 패딩이, `c`(1바이트) 뒤에 `int32_t`를 4바이트 경계에 놓기 위한 3바이트 패딩이 끼어든다. `g++ -O2 -std=c++17`로 빌드해 x86-64 Linux(LP64, GCC 13)에서 실행하면 전형적으로 `sizeof(Bad)=24`, `sizeof(Good)=16`이 출력된다 — 같은 4개 필드(합계 14바이트)를 담는 데 필요한 실제 크기가 배치 순서만으로 1.5배 차이 난다. 다만 `alignof(double)`·`alignof(int)`의 정확한 값과 구조체 패킹 세부 규칙은 ABI(Application Binary Interface)에 따른 구현 정의 사항이므로, 다른 플랫폼(32비트, ARM, Windows x64 등)에서는 수치가 달라질 수 있다. 위 코드를 그대로 컴파일해 실제 환경에서 직접 확인하는 것이 가장 정확하다.
-
-패딩이 어디에 얼마나 들어갔는지를 사람이 손으로 계산하는 대신 도구로 확인할 수도 있다. Linux의 `pahole`(dwarves 패키지)은 DWARF 디버그 정보를 읽어 구조체 레이아웃을 홀(hole) 단위로 출력한다.
+`Bad`와 `Good`은 필드 하나하나의 의미는 완전히 같지만, `Bad`는 `a`(1바이트) 뒤에 `double`을 8바이트 경계에 놓기 위한 7바이트 패딩이, `c`(1바이트) 뒤에 `int32_t`를 4바이트 경계에 놓기 위한 3바이트 패딩이 끼어든다. `g++ -O2 -std=c++17`로 빌드해 Compiler Explorer의 x86-64 GCC 13.2(LP64)에서 실행하면 다음과 같이 출력된다. 같은 4개 필드(합계 14바이트)를 담는 데 필요한 실제 크기가 배치 순서만으로 1.5배 차이 난다.
 
 ```text
-$ g++ -g -O0 -std=c++17 padding_demo.cpp -o padding_demo
-$ pahole -C Bad ./padding_demo
-struct Bad {
-        char                       a;                    /*     0     1 */
-
-        /* XXX 7 bytes hole, try to pack */
-
-        double                     b;                    /*     8     8 */
-        char                       c;                    /*    16     1 */
-
-        /* XXX 3 bytes hole, try to pack */
-
-        int                        d;                    /*    20     4 */
-
-        /* size: 24, cachelines: 1, members: 4 */
-        /* sum members: 14, holes: 2, sum holes: 10 */
-        /* last cacheline: 24 bytes */
-};
+sizeof(Bad)=24, sizeof(Good)=16
+offsetof(Bad,b)=8, offsetof(Bad,c)=16, offsetof(Bad,d)=20
 ```
 
-`pahole`의 정확한 출력 형식은 버전·플랫폼마다 조금씩 다르지만, "어느 멤버 뒤에 몇 바이트 홀이 있는지"와 "전체 크기·캐시라인 수"를 보여준다는 점은 공통적이다. `clang`은 `-Wpadded` 플래그로 컴파일 시점에 패딩이 삽입되는 지점을 경고로 알려주므로, 핫패스 구조체에 습관적으로 켜 두면 재배치 여지를 놓치지 않는 데 도움이 된다.
+`alignof(double)`·`alignof(int)`의 정확한 값과 구조체 패킹 세부 규칙은 ABI(Application Binary Interface)에 따른 구현 정의 사항이므로, 다른 플랫폼(32비트, ARM, Windows x64 등)에서는 수치가 달라질 수 있다. 패딩이 어디에 얼마나 들어갔는지는 손으로 계산하는 대신 도구로 확인할 수 있다. Linux의 `pahole`(dwarves 패키지)은 DWARF 디버그 정보를 읽어 구조체 레이아웃을 "홀(hole)" 단위로 보여 주고, GCC와 Clang은 `-Wpadded` 플래그로 컴파일 시점에 패딩이 삽입되는 지점을 경고한다. 같은 코드를 `g++ -std=c++17 -O2 -Wpadded -c`로 컴파일하면 GCC 13.2는 다음 세 곳을 알려 준다.
+
+```text
+warning: padding struct to align 'Bad::b' [-Wpadded]
+warning: padding struct to align 'Bad::d' [-Wpadded]
+warning: padding struct size to alignment boundary with 2 bytes [-Wpadded]   (struct Good)
+```
+
+앞의 두 경고가 `Bad`의 7바이트·3바이트 패딩이고, 세 번째가 `Good`의 꼬리 패딩 2바이트다. 핫패스 구조체에 이 플래그를 켜 두면 재배치 여지를 놓치지 않는 데 도움이 된다.
 
 ## 필드 재배치로 크기 줄이기
 
@@ -144,12 +128,14 @@ flowchart TB
   end
 ```
 
-이 재배치가 성능에 미치는 영향은 구조체 자체의 크기 감소뿐 아니라, 그 구조체를 배열로 순회할 때 캐시 라인 하나에 몇 개의 원소가 들어가는지로 이어진다. 64바이트 캐시 라인 기준으로 24바이트 구조체는 라인 하나에 2개(48바이트)만 들어가고 16바이트는 남지만, 16바이트 구조체는 정확히 4개가 들어가 라인 활용률이 올라간다. 아래는 이 차이를 실제로 측정하는 Google Benchmark 스켈레톤이다.
+이 재배치가 성능에 미치는 영향은 구조체 자체의 크기 감소뿐 아니라, 그 구조체를 배열로 순회할 때 캐시 라인 하나에 몇 개의 원소가 들어가는지로 이어진다. 64바이트 캐시 라인 기준으로 16바이트 구조체는 라인마다 정확히 4개가 들어가지만, 24바이트 구조체는 원소가 연속 배치되어 일부가 라인 경계를 걸치므로 평균 64/24 ≈ 2.67개만 들어간다. 같은 원소 수를 훑으려면 `Bad`가 `Good`보다 1.5배 많은 라인을 가져와야 한다는 뜻이다. 아래는 이 차이를 직접 측정하는 프로그램이다.
 
 ```cpp
-#include <benchmark/benchmark.h>
-#include <vector>
+#include <chrono>
+#include <cstddef>
 #include <cstdint>
+#include <cstdio>
+#include <vector>
 
 struct Bad {
   char flag;
@@ -166,27 +152,31 @@ struct Good {
 };
 
 template <typename T>
-static void BM_SumValue(benchmark::State& state) {
-  const std::size_t n = 1 << 20;
+double sum_ns_per_element(std::size_t n, int reps) {
   std::vector<T> data(n);
   for (std::size_t i = 0; i < n; ++i) data[i].value = static_cast<double>(i);
-  for (auto _ : state) {
-    double total = 0.0;
+  using clock = std::chrono::steady_clock;
+  double total = 0.0;
+  auto t0 = clock::now();
+  for (int r = 0; r < reps; ++r)
     for (const auto& item : data) total += item.value;
-    benchmark::DoNotOptimize(total);
-  }
+  auto t1 = clock::now();
+  if (total < 0) std::puts("");  // total을 소비해 루프가 지워지지 않게 한다
+  return std::chrono::duration<double, std::nano>(t1 - t0).count() / reps / static_cast<double>(n);
 }
-BENCHMARK_TEMPLATE(BM_SumValue, Bad);
-BENCHMARK_TEMPLATE(BM_SumValue, Good);
 
-BENCHMARK_MAIN();
+int main() {
+  const std::size_t n = std::size_t{1} << 22;  // Bad 96MiB, Good 64MiB: 캐시보다 크다
+  std::printf("Bad (%zu B) : %.3f ns/element\n", sizeof(Bad), sum_ns_per_element<Bad>(n, 20));
+  std::printf("Good(%zu B) : %.3f ns/element\n", sizeof(Good), sum_ns_per_element<Good>(n, 20));
+}
 ```
 
-`g++ -O2 -std=c++17 layout_bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면(x86-64, GCC 13, `-O2` 기준 예시), `Good`이 `Bad`보다 원소당 접근 시간이 짧게 나오는 경향이 흔하다 — 같은 100만 개 원소를 순회하는데 `Good`은 필요한 캐시 라인 수가 더 적기 때문이다. 다만 이 차이는 배열 전체가 캐시보다 커서 실제로 캐시 미스가 나야 드러나므로, 정확한 배율은 데이터 크기·캐시 계층·컴파일러 최적화에 따라 달라진다. 06장에서 다룬 stride·캐시 라인 활용률 논의를 구조체 크기 관점에서 재확인하는 셈이므로, 결과를 해석할 때는 06장의 벤치마크 원칙을 함께 참고한다.
+`g++ -O2 -std=c++17`로 빌드해 Compiler Explorer의 x86-64 GCC 13.2에서 네 번 실행한 결과, 원소당 시간은 `Bad`가 1.03–2.76 ns, `Good`이 0.92–4.14 ns였다. `Bad` 시간을 `Good` 시간으로 나눈 비율은 1.25배, 1.13배, 0.67배, 1.43배로, 네 번 중 세 번은 `Good`이 빨랐지만 한 번은 오히려 느렸다. 공유 서버라 실행마다 값이 크게 흔들리므로 이 측정으로 말할 수 있는 것은 "작은 구조체 쪽이 대체로 유리하다"는 경향뿐이다. 이 차이는 배열 전체가 캐시보다 커서 실제로 캐시 미스가 나야 드러나고, 정확한 배율은 데이터 크기·캐시 계층·컴파일러 최적화에 따라 달라진다. 06장에서 다룬 stride·캐시 라인 활용률 논의를 구조체 크기 관점에서 재확인하는 셈이므로, 결과를 해석할 때는 06장의 측정 원칙을 함께 참고한다.
 
 ## alignas와 alignof
 
-`alignof(T)`는 타입 `T`가 요구하는 정렬 값을 컴파일 타임 상수로 돌려주는 연산자이고, `alignas(N)`은 변수나 클래스 선언에 붙여 그 정렬 요구사항을 명시적으로 강화하는 지정자다. `alignas`는 타입의 자연스러운 정렬보다 **약한** 값을 지정해도 무시되고 더 큰 값만 실질적으로 반영되므로, 실수로 정렬을 낮춰 미정의 동작을 일으킬 위험은 표준 차원에서 막혀 있다.
+`alignof(T)`는 타입 `T`가 요구하는 정렬 값을 컴파일 타임 상수로 돌려주는 연산자이고, `alignas(N)`은 변수나 클래스 선언에 붙여 그 정렬 요구사항을 명시적으로 강화하는 지정자다. `alignas`로 타입의 자연스러운 정렬보다 **약한** 값을 지정하면 프로그램이 ill-formed(컴파일 오류)가 되고, 같은 선언에 붙은 더 강한 `alignas`보다 약한 값만 무시된다([cppreference: alignas](https://en.cppreference.com/w/cpp/language/alignas)). 따라서 실수로 정렬을 낮추는 일은 컴파일 단계에서 걸러진다.
 
 ```cpp
 #include <cstddef>
@@ -219,13 +209,13 @@ struct WireHeader {  // 네트워크로 그대로 내보낼 고정 바이트 레
 static_assert(sizeof(WireHeader) == 7, "패딩 없이 1+2+4바이트 그대로");
 ```
 
-`packed`는 핫패스 연산에서 반복적으로 읽고 쓰는 구조체에는 권장하지 않는다. 메모리 절약보다 정렬되지 않은 접근 비용이 더 크게 작용하는 경우가 흔하기 때문이다. 직렬화·역직렬화 경계에서만 `packed` 레이아웃을 쓰고, 이를 파싱한 뒤에는 정렬이 정상인 일반 구조체로 복사해 연산하는 패턴이 일반적이다.
+`packed`는 핫패스 연산에서 반복적으로 읽고 쓰는 구조체에는 권장하지 않는다. 직렬화·역직렬화 경계에서만 `packed` 레이아웃을 쓰고, 이를 파싱한 뒤에는 정렬이 정상인 일반 구조체로 복사해 연산하는 패턴이 일반적이다.
 
 ## 흔한 오개념
 
 - **"`sizeof(구조체)`는 멤버 크기의 합과 같다"**: 정렬 규칙 때문에 멤버 사이·구조체 끝에 패딩이 들어가므로, 대부분의 경우 `sizeof`는 멤버 크기 합보다 크다. 정확한 값은 `sizeof`로 직접 확인해야 하며 손으로 계산한 값을 가정해서는 안 된다.
 - **"필드 순서를 바꾸면 프로그램 동작이 달라진다"**: 멤버에 대한 코드 접근(`obj.field`)은 이름으로 이뤄지므로, 다른 멤버의 주소나 메모리 오프셋에 직접 의존하지 않는 한 필드 선언 순서를 바꿔도 프로그램의 논리적 동작은 바뀌지 않는다. 바뀌는 것은 메모리 레이아웃(크기·오프셋)뿐이다. 다만 직렬화 포맷이나 다른 프로세스와 공유하는 ABI가 필드 순서에 의존하고 있었다면 그 계약이 깨질 수 있으므로 별개로 확인해야 한다.
-- **"packed 구조체가 항상 더 빠르다"**: `packed`는 메모리 사용량과 캐시 라인 점유량을 줄이지만, 정렬되지 않은 멤버 접근 비용이나 일부 플랫폼의 예외 처리 비용이 더해질 수 있다. 메모리 대역폭이 압도적인 병목일 때만 이득이 우세하고, 반복 연산이 많은 핫패스에서는 오히려 손해일 수 있다.
+- **"packed 구조체가 항상 더 빠르다"**: `packed`는 크기를 줄이는 대신 정렬되지 않은 접근 비용을 들여오므로, 메모리 대역폭이 압도적인 병목일 때만 이득이 우세하다.
 
 ## 판단 기준
 
@@ -239,7 +229,7 @@ static_assert(sizeof(WireHeader) == 7, "패딩 없이 1+2+4바이트 그대로")
 
 ## 비판적 시각: 한계와 트레이드오프
 
-필드 재배치는 대체로 "공짜 최적화"에 가깝지만 무조건적인 이득은 아니다. 구조체가 이미 다른 프로세스나 파일 포맷과 바이트 단위로 계약을 맺고 있다면(공유 메모리 IPC, 직렬화된 저장 포맷, C ABI를 넘나드는 인터페이스) 필드 순서 변경이 그 계약을 조용히 깨뜨릴 수 있고, 이는 컴파일 에러 없이 런타임에만 드러나는 경우가 많아 위험하다. 재배치 전에는 그 구조체가 `memcpy`·직렬화·다른 언어와의 FFI 경계에 노출되어 있는지부터 확인해야 한다. 정렬 요구사항 자체도 ABI에 속하는 구현 정의 사항이라, 32비트와 64비트, x86과 ARM, 서로 다른 컴파일러 사이에서 `alignof`·`sizeof` 값이 달라질 수 있다는 점도 감안해야 한다. `packed`의 트레이드오프는 더 극단적이다. 정렬 위반 접근을 트랩으로 처리하는 아키텍처에서는 `packed` 구조체의 멤버를 부주의하게 참조로 넘기는 것만으로 크래시로 이어질 수 있으므로, `packed`는 "이 구조체는 바이트 스트림 경계에서만 산다"는 규율을 함께 지킬 때만 안전하다. 마지막으로, 재배치로 얻는 성능 이득은 구조체가 실제로 캐시 미스를 유발할 만큼 크고 핫패스에서 대량으로 순회될 때만 의미가 있으며, 작은 구조체 몇 개를 다루는 코드에서는 가독성을 해치면서까지 재배치를 강요할 이유가 없다.
+필드 재배치는 대체로 "공짜 최적화"에 가깝지만 무조건적인 이득은 아니다. 구조체가 이미 다른 프로세스나 파일 포맷과 바이트 단위로 계약을 맺고 있다면(공유 메모리 IPC, 직렬화된 저장 포맷, C ABI를 넘나드는 인터페이스) 필드 순서 변경이 그 계약을 조용히 깨뜨릴 수 있고, 이는 컴파일 에러 없이 런타임에만 드러나는 경우가 많아 위험하다. 재배치 전에는 그 구조체가 `memcpy`·직렬화·다른 언어와의 FFI 경계에 노출되어 있는지부터 확인해야 한다. 정렬 요구사항 자체도 ABI에 속하는 구현 정의 사항이라, 32비트와 64비트, x86과 ARM, 서로 다른 컴파일러 사이에서 `alignof`·`sizeof` 값이 달라질 수 있다는 점도 감안해야 한다. 마지막으로, 재배치로 얻는 성능 이득은 구조체가 실제로 캐시 미스를 유발할 만큼 크고 핫패스에서 대량으로 순회될 때만 의미가 있으며, 작은 구조체 몇 개를 다루는 코드에서는 가독성을 해치면서까지 재배치를 강요할 이유가 없다.
 
 ## 마무리
 
