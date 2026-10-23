@@ -283,7 +283,7 @@
 | content/collection/optimization-03-compiler/15-autofdo/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 1.0 | c8f0024 | 없음(경미: Networking·IO·Testing 등 본문 결속 약한 범용 태그 다수, 16번 챕터 mimalloc 미병기) |
 | content/collection/optimization-04-memory-allocation/01-container-cost-model/index.md | 95.8 | 2026-10-23 | 1 | 통과 | 1.3 | 37c380b | 없음(경미: 성장 인자 2배/1.5배 1차 출처 미병기, Advanced 태그가 기초 난이도와 불일치) |
-| content/collection/optimization-04-memory-allocation/02-allocation-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/02-allocation-strategy/index.md | 95.4 | 2026-10-23 | 1 | 통과 | 1.3 | 7cb59f2 | 없음(경미: "malloc은 매 호출마다 락" 서술이 tcache 등 스레드별 캐시를 무시해 과장, 마무리·체크리스트·소멸자 설명 중복) |
 | content/collection/optimization-04-memory-allocation/03-custom-allocator/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/04-pmr-allocator/index.md | 93.1 | 2026-10-23 | 0 | 통과 | 1.3 | d40516e | 없음(경미: P0339 귀속·L91 주석↔본문 모순·출처 없는 ns 수치·무관 태그 7개는 통과 후 미수정, 다음 재점검 때 처리) |
 | content/collection/optimization-04-memory-allocation/05-aos-vs-soa/index.md | - | - | 0 | 미채점 | - | - | - |
