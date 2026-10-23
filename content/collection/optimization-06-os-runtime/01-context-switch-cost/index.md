@@ -161,8 +161,7 @@ void pin_to(int cpu) {
   CPU_ZERO(&set);
   CPU_SET(cpu, &set);
   if (pthread_setaffinity_np(pthread_self(), sizeof(set), &set) != 0) {
-    std::fprintf(stderr, "CPU %d에 고정 실패
-", cpu);
+    std::fprintf(stderr, "CPU %d에 고정 실패\n", cpu);
     std::exit(1);
   }
 }

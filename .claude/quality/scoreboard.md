@@ -318,7 +318,7 @@
 | content/collection/optimization-05-cpu-microarchitecture/17-frontend-vs-backend-bound/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-05-cpu-microarchitecture/18-dependency-chains-port-pressure/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-06-os-runtime/00-introduction/index.md | 96.1 | 2026-07-25 | 3 | 통과 | 1.0 | fad6466 | 없음(경미: "달성할 목표"·"평가 기준" 절 일부 중복, 네비게이션 절 2개 중복 여지) |
-| content/collection/optimization-06-os-runtime/01-context-switch-cost/index.md | 94.3 | 2026-10-23 | 1 | 통과 | 1.3 | fe7ee17 | 없음(경미: 판단 기준 표 1–3행이 설계 절 일부 재진술). 1차 85.2점(Tsuna·Rochester 수치 오귀속, 벤치마크 주석↔코드 모순, 본문과 무관한 태그) → 원문 대조로 수치 정정, 같은 코어/다른 코어 비교 가능하게 벤치마크 수정, 태그 교체 후 통과. g++ 부재로 벤치마크 코드는 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/01-context-switch-cost/index.md | 94.3 | 2026-10-23 | 1 | 통과 | 1.3 | 6a86798 | 없음(경미: 판단 기준 표 1–3행이 설계 절 일부 재진술). 1차 85.2점(Tsuna·Rochester 수치 오귀속, 벤치마크 주석↔코드 모순, 본문과 무관한 태그) → 원문 대조로 수치 정정, 같은 코어/다른 코어 비교 가능하게 벤치마크 수정, 태그 교체 후 통과. g++ 부재로 벤치마크 코드는 컴파일 미검증 |
 | content/collection/optimization-06-os-runtime/02-syscall-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-06-os-runtime/03-cpu-pinning-affinity/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-06-os-runtime/04-numa-cpu-affinity/index.md | - | - | 0 | 미채점 | - | - | - |
