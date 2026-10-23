@@ -414,7 +414,7 @@
 | content/collection/optimization-10-network/14-ultra-ethernet-consortium/index.md | 100 | 2026-10-21 | 2 | 통과 | 1.3 | 54c143a | 없음 |
 | content/collection/optimization-10-network/15-grpc-optimization/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | ae00959 | 없음(경미: L225 '기본값이라는 이유로 gzip 활성화'가 gzip 기본값으로 읽힘(실제 기본 무압축), L231 스트림의 백엔드 고정을 TCP HoL·QUIC과 인과 연결 → 두 문제 분리) |
 | content/collection/optimization-10-network/16-quic-protocol/index.md | 95.8 | 2026-10-21 | 1 | 통과 | 1.3 | 713fb41 | 없음(경미: L117 C 주석이 SSL_write_early_data 실패를 서버 0-RTT 거부로 해석 → SSL_get_error 판별·핸드셰이크 후 SSL_get_early_data_status 확인으로 정정, L146 GRO를 NIC 하드웨어 오프로드로 서술(커널 소프트웨어 경로)) |
-| content/collection/optimization-10-network/17-tls-ssl-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/17-tls-ssl-optimization/index.md | 94.3 | 2026-10-23 | 1 | 통과 | 1.3 | 2c60d79 | 없음(경미: s_time -reuse에 -www 없으면 TLS 1.3 티켓 미수신으로 재개 안 될 수 있음, L164 '코드 포인트 조정 가능'이 RFC 10024 확정 서술과 모순, lastmod 미갱신) |
 | content/collection/optimization-10-network/18-connection-pooling/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/19-websocket-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/20-http2-http3/index.md | - | - | 0 | 미채점 | - | - | - |
