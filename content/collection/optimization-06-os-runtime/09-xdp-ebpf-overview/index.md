@@ -1,12 +1,12 @@
 ---
 collection_order: 9
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-23
 draft: false
 image: wordcloud.png
 title: "[OS 06] XDP/eBPF 개요"
 slug: xdp-ebpf-overview-fundamentals
-description: "XDP와 eBPF가 네트워크 드라이버 계층에서 패킷을 조기 처리하는 원리, verifier의 안전성 보장 메커니즘, BPF Token 기반 권한 위임과 동적 스택 alloca 논의 등 2025–2026 최신 동향을 개관합니다."
+description: "XDP와 eBPF가 네트워크 드라이버 계층에서 패킷을 조기 처리하는 원리, verifier의 안전성 보장 메커니즘, Linux 6.9에 병합된 BPF Token 기반 권한 위임과 동적 스택 alloca 논의 등 최신 동향을 개관합니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
@@ -18,21 +18,13 @@ tags:
   - Networking
   - IO(Input/Output)
   - Security(보안)
-  - Benchmark
   - Latency
   - Throughput
-  - Profiling(프로파일링)
-  - Debugging(디버깅)
   - System-Design
   - Production
   - Advanced
   - Deep-Dive
-  - Guide(가이드)
-  - Reference(참고)
-  - Best-Practices
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Hardware(하드웨어)
   - XDP
   - eBPF
   - AF_XDP
@@ -47,7 +39,7 @@ tags:
   - NIC-Driver
 ---
 
-<strong>XDP(eXpress Data Path)</strong>와 <strong>eBPF(extended Berkeley Packet Filter)</strong>는 커널 소스를 고치지 않고도 네트워크 드라이버 계층에서 패킷을 조기에 검사·처리할 수 있게 해 주는 프로그래밍 인터페이스입니다. 소켓까지 패킷이 올라오기 전, 즉 `sk_buff`가 할당되기도 전에 커널이 검증한 소규모 프로그램이 실행되어 DROP·PASS·REDIRECT 같은 결정을 내리므로, DDoS 완화·로드밸런싱·패킷 필터링처럼 초당 수백만 패킷을 다뤄야 하는 워크로드에서 커널 스택 전체를 거치는 비용을 줄일 수 있습니다. 이 장은 커널 바이패스 계열 기법 중 "커널 안에 머무르면서" 패킷 경로를 단축하는 접근을 다루며, verifier가 어떻게 안전성을 보장하는지와 2025–2026년 사이 논의되는 verifier 확장(BPF Token, 동적 스택 alloca)까지 개관합니다.
+<strong>XDP(eXpress Data Path)</strong>와 <strong>eBPF(extended Berkeley Packet Filter)</strong>는 커널 소스를 고치지 않고도 네트워크 드라이버 계층에서 패킷을 조기에 검사·처리할 수 있게 해 주는 프로그래밍 인터페이스입니다. 소켓까지 패킷이 올라오기 전, 즉 `sk_buff`가 할당되기도 전에 커널이 검증한 소규모 프로그램이 실행되어 DROP·PASS·REDIRECT 같은 결정을 내리므로, DDoS 완화·로드밸런싱·패킷 필터링처럼 고속 패킷 처리가 필요한 워크로드에서 커널 스택 전체를 거치는 비용을 줄일 수 있습니다. 이 장은 커널 바이패스 계열 기법 중 "커널 안에 머무르면서" 패킷 경로를 단축하는 접근을 다루며, verifier가 어떻게 안전성을 보장하는지와 최근 논의되는 verifier 확장(Linux 6.9에 병합된 BPF Token, 아직 제안 단계인 동적 스택 alloca)까지 개관합니다.
 
 ## 이 장을 읽기 전에
 
@@ -67,7 +59,7 @@ tags:
 
 ## 역사와 배경
 
-<strong>BPF(Berkeley Packet Filter)</strong>는 1992년 Steven McCanne와 Van Jacobson이 발표한 패킷 필터링 기법에서 출발했습니다. 커널 안에 작은 가상 머신을 두고 사용자 공간에서 내려준 필터 바이트코드를 실행해, 관심 없는 패킷을 커널이 조기에 버리게 하는 것이 원래 아이디어였습니다. 이 구조는 2014년 Alexei Starovoitov가 <strong>eBPF(extended BPF)</strong>로 확장하면서 Linux 3.18에 병합되었고, 레지스터 수·명령어 집합·맵(map)이라는 커널-사용자 공간 공유 자료구조가 추가되어 네트워킹을 넘어 트레이싱·보안·관측성 전반의 범용 실행 환경으로 발전했습니다. **XDP**는 2016년 Jesper Dangaard Brouer, Starovoitov, David Miller 등이 제안해 Linux 4.8(2016년 10월)에 병합되었으며, eBPF 프로그램을 네트워크 드라이버의 수신 경로 가장 이른 지점에 붙이는 훅을 제공합니다. 즉 eBPF는 "커널 안에서 안전하게 실행 가능한 프로그램 모델"이고, XDP는 그 모델을 네트워크 수신 경로의 특정 지점에 적용한 것입니다.
+<strong>BPF(Berkeley Packet Filter)</strong>는 1992년 Steven McCanne와 Van Jacobson이 발표한 패킷 필터링 기법에서 출발했습니다. 커널 안에 작은 가상 머신을 두고 사용자 공간에서 내려준 필터 바이트코드를 실행해, 관심 없는 패킷을 커널이 조기에 버리게 하는 것이 원래 아이디어였습니다. 이 구조는 2014년 Alexei Starovoitov가 <strong>eBPF(extended BPF)</strong>로 확장하면서 Linux 3.18에 병합되었고, 레지스터 수·명령어 집합·맵(map)이라는 커널-사용자 공간 공유 자료구조가 추가되어 네트워킹을 넘어 트레이싱·보안·관측성 전반의 범용 실행 환경으로 발전했습니다. **XDP**는 Linux 4.8에 병합되었으며, eBPF 프로그램을 네트워크 드라이버의 수신 경로 가장 이른 지점에 붙이는 훅을 제공합니다. 즉 eBPF는 "커널 안에서 안전하게 실행 가능한 프로그램 모델"이고, XDP는 그 모델을 네트워크 수신 경로의 특정 지점에 적용한 것입니다.
 
 ## 핵심 개념과 동작 원리
 
@@ -93,7 +85,7 @@ eBPF 프로그램은 커널에 로드되기 전 **verifier**라는 정적 분석
 
 **BPF Token**은 Andrii Nakryiko가 제안해 Linux 6.9(2024)에 병합된 위임(delegation) 메커니즘입니다([eBPF Docs: Token](https://docs.ebpf.io/linux/concepts/token/)). 기존에는 eBPF 프로그램을 로드하려면 `CAP_BPF`를 포함한 강력한 권한이 필요했고, 이 권한은 네임스페이스로 안전하게 격리할 수 없었습니다(eBPF 헬퍼가 임의 커널 메모리를 읽을 수 있기 때문). LWN에 공개된 패치 설명은 이를 "특권을 가진 시스템 데몬의 BPF 서브시스템 기능 일부를, userns에 묶인 BPF 파일시스템의 특수 마운트 옵션을 통해 신뢰된 비특권 애플리케이션에게" 위임하는 구조로 설명합니다([LWN: BPF token](https://lwn.net/Articles/959350/)). `BPF_TOKEN_CREATE`로 생성한 토큰을 bpffs 마운트에서 파생시켜 컨테이너 안의 비특권 프로세스에 넘기면, 커널은 `CAP_BPF`·`CAP_PERFMON`·`CAP_NET_ADMIN` 등에 대해 전역(`capable()`) 검사 대신 네임스페이스 범위(`ns_capable()`) 검사를 적용해, 컨테이너 런타임이나 systemd 같은 신뢰된 데몬이 "이 종류의 프로그램만" 로드하도록 정밀하게 위임할 수 있습니다.
 
-**동적 스택 alloca**는 아직 병합되지 않은 커널 메일링 리스트 논의 단계의 주제입니다. 현재 eBPF 프로그램의 스택은 컴파일 시점에 고정된 크기(기본 512바이트)로 제한되어 있어, C의 `alloca`나 가변 길이 배열(VLA)처럼 실행 중에 크기가 정해지는 지역 버퍼를 표현할 수 없습니다. 논의되는 접근은 전용 레지스터 하나를 스택 포인터 확장 용도로 예약해 런타임에 스택 프레임을 늘리는 방식이며, 이 경우 해당 레지스터는 일반 레지스터 할당에서 제외되는 트레이드오프가 따릅니다. 이 기능은 **구현정의**이자 **논의 중인 제안**이므로, verifier 문서와 커널 메일링 리스트에서 실제 병합 여부와 커널 버전을 확인한 뒤 의존해야 합니다.
+**동적 스택 alloca**는 아직 병합되지 않은 커널 메일링 리스트 논의 단계의 주제입니다. 현재 eBPF 프로그램의 스택은 컴파일 시점에 고정된 크기(기본 512바이트)로 제한되어 있어, C의 `alloca`나 가변 길이 배열(VLA)처럼 실행 중에 크기가 정해지는 지역 버퍼를 표현할 수 없습니다. 구체적인 설계는 제안마다 다르고 아직 확정되지 않았습니다. 이 기능은 **구현정의**이자 **논의 중인 제안**이므로, verifier 문서와 커널 메일링 리스트에서 실제 병합 여부와 커널 버전을 확인한 뒤 의존해야 합니다.
 
 ## 흔한 오개념 교정
 
@@ -107,7 +99,7 @@ eBPF 프로그램은 커널에 로드되기 전 **verifier**라는 정적 분석
 
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
-| 초당 수백만 패킷의 단순 DROP/필터(DDoS 1차 완화) | native 모드 XDP | 일반 소켓 필터·iptables만으로 처리 |
+| 고속 트래픽에서의 단순 DROP/필터(DDoS 1차 완화) | native 모드 XDP | 일반 소켓 필터·iptables만으로 처리 |
 | 사용자 공간에서 직접 패킷을 다뤄야 하는 로드밸런서 | AF_XDP(zero-copy) + Tr.10 심화 | 커널 소켓 경유 후 재전송 |
 | 복잡한 상태 기반 방화벽 정책 | netfilter/nftables 유지, XDP는 조기 필터링 보조 | XDP 단독으로 전체 정책 이식 |
 | 컨테이너에서 비특권 프로세스에 제한된 eBPF 권한 위임 | BPF Token(커널 6.9+) | 컨테이너에 `CAP_BPF` 전체 부여 |
@@ -115,7 +107,7 @@ eBPF 프로그램은 커널에 로드되기 전 **verifier**라는 정적 분석
 
 ## 비판적 시각: 한계와 트레이드오프
 
-verifier는 커널에서 가장 복잡한 정적 분석기 중 하나이며, 과거 발견된 다수의 eBPF 관련 CVE가 verifier의 경로 폭발·타입 혼동 취약점에서 나왔습니다. 검증 규칙이 프로그램을 지나치게 보수적으로 거부하면 실무자들이 "왜 이 안전한 코드가 거부되는가"를 파악하기 어려운 디버깅 비용이 생기고, 반대로 규칙을 완화하면 공격 표면이 늘어나는 근본적인 긴장이 있습니다. XDP_REDIRECT와 멀티 큐·RSS(수신 큐 분배)를 함께 쓰면 코어 배치([03장](/post/os-optimization/cpu-pinning-affinity-strategy/), [04장](/post/os-optimization/numa-cpu-affinity-thread-placement/))가 어긋날 때 오히려 캐시 미스가 늘 수 있으므로 도입만으로 성능이 보장되지 않습니다. 드라이버별 native 모드 지원 범위가 벤더·펌웨어 버전마다 달라 이식성이 낮고, BPF Token처럼 새로 추가되는 위임 메커니즘은 아직 배포판·컨테이너 런타임의 채택이 진행 중이라 운영 환경마다 지원 시점이 다릅니다. 동적 스택 alloca 같은 논의 중인 확장은 verifier 복잡도를 더 늘리는 방향이므로, 병합되더라도 초기에는 보수적으로 검증하며 도입하는 편이 안전합니다.
+verifier는 커널에서 가장 복잡한 정적 분석기 중 하나이며, verifier의 결함은 커널 보안 문제로 이어질 수 있어 검증 로직 자체가 공격 표면이 됩니다. 검증 규칙이 프로그램을 지나치게 보수적으로 거부하면 실무자들이 "왜 이 안전한 코드가 거부되는가"를 파악하기 어려운 디버깅 비용이 생기고, 반대로 규칙을 완화하면 공격 표면이 늘어나는 근본적인 긴장이 있습니다. XDP_REDIRECT와 멀티 큐·RSS(수신 큐 분배)를 함께 쓰면 코어 배치([03장](/post/os-optimization/cpu-pinning-affinity-strategy/), [04장](/post/os-optimization/numa-cpu-affinity-thread-placement/))가 어긋날 때 오히려 캐시 미스가 늘 수 있으므로 도입만으로 성능이 보장되지 않습니다. 드라이버별 native 모드 지원 범위가 벤더·펌웨어 버전마다 달라 이식성이 낮고, BPF Token처럼 새로 추가되는 위임 메커니즘은 아직 배포판·컨테이너 런타임의 채택이 진행 중이라 운영 환경마다 지원 시점이 다릅니다. 동적 스택 alloca 같은 논의 중인 확장은 verifier 복잡도를 더 늘리는 방향이므로, 병합되더라도 초기에는 보수적으로 검증하며 도입하는 편이 안전합니다.
 
 빌드·부착 골격은 다음과 같습니다. 실제 패킷 처리 로직과 맵 설계는 이 개요의 범위를 넘으므로 최소한의 PASS 골격만 보이고, 컴파일·부착 명령으로 verifier가 실제로 관여하는 지점을 확인합니다.
 
@@ -135,20 +127,13 @@ char _license[] SEC("license") = "GPL";
 위 코드는 clang을 BPF 타겟으로 빌드해야 하며, 커널 버전과 libbpf 버전에 따라 헬퍼 시그니처가 달라질 수 있으므로 실제 배포 전에는 대상 커널의 vmlinux BTF와 대조해야 합니다.
 
 ```bash
-# clang 18, libbpf-dev 설치 환경 기준 (배포판·커널 버전에 따라 옵션이 달라질 수 있음)
+# clang, libbpf-dev 설치 환경 기준 (배포판·커널 버전에 따라 옵션이 달라질 수 있음)
 clang -O2 -target bpf -c xdp_pass.c -o xdp_pass.o
 sudo ip link set dev eth0 xdp obj xdp_pass.o sec xdp   # native 모드 시도, 실패 시 xdpgeneric로 폴백
 sudo bpftool prog show   # 로드된 프로그램과 JIT 여부 확인
 ```
 
-verifier가 프로그램을 거부하면 로드 시 아래와 유사한 로그가 남으며, 이 로그를 읽는 능력이 실무에서 verifier 제약을 체감하는 가장 빠른 방법입니다.
-
-```text
-libbpf: prog 'xdp_pass_prog': BPF program load failed: Permission denied
-libbpf: prog 'xdp_pass_prog': -- BEGIN PROG LOAD LOG --
-R1 type=ctx expected=fp
-invalid access to packet, off=14 size=4, R2(id=0,off=0,r=0)
-```
+verifier가 프로그램을 거부하면 로드 시 로그가 출력되며, 이 로그를 읽는 능력이 verifier 제약을 이해하는 가장 빠른 방법입니다. 위 예제는 `XDP_PASS`만 반환하므로 거부되지 않으며, 거부 로그는 패킷 경계 검사를 빼먹은 프로그램을 직접 로드해 확인해 보시기 바랍니다.
 
 ## 마무리
 
@@ -161,6 +146,6 @@ invalid access to packet, off=14 size=4, R2(id=0,off=0,r=0)
 - [ ] 동적 스택 alloca가 아직 논의 단계이며 커널 버전을 확인해야 하는 이유를 말할 수 있는가?
 - [ ] XDP/AF_XDP 심화 구현과 방화벽 정책 이식의 한계를 판단 기준 표로 구분할 수 있는가?
 
-이 트랙에서는 다음으로 메모리 접근 경로의 TLB 미스 비용을 줄이는 **Huge TLB Pages 활용**을 다룹니다. XDP/AF_XDP처럼 초당 수백만 패킷을 다루는 경로에서는 패킷 버퍼 자체의 TLB 미스도 지연에 기여하므로, 두 장을 이어서 읽으면 "패킷 경로 단축"과 "메모리 접근 단축"이 어떻게 함께 작동하는지 파악할 수 있습니다.
+이 트랙에서는 다음으로 메모리 접근 경로의 TLB 미스 비용을 줄이는 **Huge TLB Pages 활용**을 다룹니다. 두 장을 이어서 읽으면 "패킷 경로 단축"과 "메모리 접근 단축"이 어떻게 함께 작동하는지 파악할 수 있습니다.
 
 → [Huge TLB Pages 활용](/post/os-optimization/huge-tlb-pages-utilization/) (챕터 10)
