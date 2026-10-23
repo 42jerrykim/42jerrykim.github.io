@@ -285,7 +285,7 @@
 | content/collection/optimization-04-memory-allocation/01-container-cost-model/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/02-allocation-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/03-custom-allocator/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/04-pmr-allocator/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/04-pmr-allocator/index.md | 93.1 | 2026-10-23 | 0 | 통과 | 1.3 | d40516e | 없음(경미: P0339 귀속·L91 주석↔본문 모순·출처 없는 ns 수치·무관 태그 7개는 통과 후 미수정, 다음 재점검 때 처리) |
 | content/collection/optimization-04-memory-allocation/05-aos-vs-soa/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/06-cache-friendly-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/07-padding-alignment/index.md | - | - | 0 | 미채점 | - | - | - |
