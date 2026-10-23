@@ -289,7 +289,7 @@
 | content/collection/optimization-04-memory-allocation/05-aos-vs-soa/index.md | 97.3 | 2026-10-23 | 1 | 통과 | 1.3 | 2bf96db | 없음(경미: 11회 측정 범위의 원본 출력·링크 미첨부, Acton 문장이 따옴표 안 의역) |
 | content/collection/optimization-04-memory-allocation/06-cache-friendly-patterns/index.md | 100.0 | 2026-10-23 | 2 | 통과 | 1.3 | e00c314 | 없음(개선여지만: 프리페처 도입 시기 출처, Intel 매뉴얼 절 번호, 호출 단위 배칭 예제) |
 | content/collection/optimization-04-memory-allocation/07-padding-alignment/index.md | 97.3 | 2026-10-23 | 1 | 통과 | 1.3 | 197ad67 | 없음(경미: Compiler Explorer 측정 수치의 CPU·OS 등 실행 환경 미특정) |
-| content/collection/optimization-04-memory-allocation/08-large-pages/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/08-large-pages/index.md | 95.4 | 2026-10-23 | 2 | 통과 | 1.3 | 85f9baa | 없음(경미: "채택이 넓어지고 있다·표준 라이브러리" 무출처 서술, "전역 오버커밋 위험" 용어 부정확, 벤치 환경 의존 경고·HugeTLB/THP 구분 중복) |
 | content/collection/optimization-04-memory-allocation/09-numa-allocation/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/10-memory-fragmentation/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/11-memory-bandwidth/index.md | - | - | 0 | 미채점 | - | - | - |
