@@ -1,7 +1,7 @@
 ---
 collection_order: 6
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-23
 draft: false
 image: wordcloud.png
 title: "[OS 06] 정밀 시간 측정"
@@ -18,9 +18,7 @@ tags:
   - C
   - Benchmark
   - Latency
-  - Throughput
   - Profiling(프로파일링)
-  - Debugging(디버깅)
   - Best-Practices
   - Reference(참고)
   - Deep-Dive
@@ -28,11 +26,8 @@ tags:
   - Hardware(하드웨어)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Case-Study
   - Implementation(구현)
   - Guide(가이드)
-  - System-Design
-  - Testing(테스트)
   - RDTSC
   - RDTSCP
   - TSC
@@ -41,6 +36,8 @@ tags:
   - Invariant-TSC
   - Timestamp-Counter
   - Cycle-Counting
+  - Windows(윈도우)
+  - Clock-Synchronization(시계동기화)
 ---
 
 <strong>정밀 시간 측정(precise time measurement)</strong>이란 코드 구간의 실행 시간을 나노초, 필요하다면 CPU 사이클 단위까지 재현 가능하게 재는 기법을 말합니다. µs 단위 최적화를 다루는 작업에서는 이 측정 자체가 흔들리면 그 위에서 내리는 모든 판단이 흔들립니다. 측정 도구의 오버헤드가 측정 대상보다 크거나, 시계 소스가 코어 이동이나 주파수 변화에 영향을 받는다는 사실을 모르고 결과를 해석하면, 실제로는 존재하지 않는 회귀나 개선을 "발견"하게 됩니다. 이 장은 **RDTSC/RDTSCP**로 사이클을 직접 읽는 방법과 **clock_gettime**으로 대표되는 OS 표준 시계 API를 나란히 놓고, 어떤 상황에 어떤 도구를 쓰고 무엇을 주의해야 하는지를 정리합니다.
@@ -63,11 +60,11 @@ tags:
 
 ## RDTSC의 등장과 clock_gettime의 표준화 (역사·배경)
 
-**RDTSC**(Read Time-Stamp Counter)는 Intel Pentium 세대부터 모든 x86 프로세서에 존재해 온 명령어로, 프로세서가 리셋된 이후 누적된 클럭 사이클 수를 64비트 값으로 반환합니다. 초기 TSC는 실제 코어 클럭에 그대로 연동되어 있었기 때문에, SpeedStep 같은 전력 관리 기능으로 클럭이 바뀌면 "사이클 수 = 경과 시간"이라는 전제가 깨졌습니다. Intel은 Nehalem(2008년)부터, AMD는 Family 10h(Barcelona/Phenom, 2008년경)부터 P-state·C-state와 무관하게 일정한 속도로 증가하는 **invariant TSC**를 도입해 이 문제를 해결했습니다. 같은 2008년, 측정 도중 스레드가 다른 코어로 이주했는지 원자적으로 감지할 수 있도록 **RDTSCP**가 Intel Nehalem과 AMD Barcelona에 함께 추가되었습니다. 반면 **clock_gettime**은 CPU 세대와 무관하게 OS가 제공하는 표준 API입니다. IEEE POSIX 실시간 확장에서 유래해 리눅스에서는 커널 2.6대에 정착했고, 이후 vDSO(virtual dynamic shared object) 경로가 추가되면서 대부분의 clock id에서 실제 시스템 콜 없이 값을 반환할 수 있게 되었습니다. 즉 RDTSC 계열은 "하드웨어 카운터를 직접 읽는" 접근이고, clock_gettime은 "OS가 여러 시계 소스를 추상화해 표준 단위(초·나노초)로 돌려주는" 접근이라는 점에서 출발선이 다릅니다.
+**RDTSC**(Read Time-Stamp Counter)는 Intel Pentium 세대부터 모든 x86 프로세서에 존재해 온 명령어로, 프로세서가 리셋된 이후 누적된 클럭 사이클 수를 64비트 값으로 반환합니다. 초기 TSC는 실제 코어 클럭에 그대로 연동되어 있었기 때문에, SpeedStep 같은 전력 관리 기능으로 클럭이 바뀌면 "사이클 수 = 경과 시간"이라는 전제가 깨졌습니다. Intel은 Nehalem(2008년)부터 P-state·C-state와 무관하게 일정한 속도로 증가하는 **invariant TSC**를 도입해 이 문제를 해결했습니다. 측정 도중 스레드가 다른 코어로 이주했는지 감지할 수 있도록 **RDTSCP**가 도입되었습니다. 반면 **clock_gettime**은 CPU 세대와 무관하게 OS가 제공하는 표준 API입니다. IEEE POSIX 실시간 확장에서 유래해 리눅스에서는 커널 2.6대에 정착했고, 이후 vDSO(virtual dynamic shared object) 경로가 추가되면서 대부분의 clock id에서 실제 시스템 콜 없이 값을 반환할 수 있게 되었습니다. 즉 RDTSC 계열은 "하드웨어 카운터를 직접 읽는" 접근이고, clock_gettime은 "OS가 여러 시계 소스를 추상화해 표준 단위(초·나노초)로 돌려주는" 접근이라는 점에서 출발선이 다릅니다.
 
 ## RDTSC와 RDTSCP: 사이클 단위로 시간을 읽는다는 것
 
-RDTSC는 [**비직렬화(non-serializing) 명령어**](https://www.felixcloutier.com/x86/rdtsc)입니다. CPU는 이전 명령어들이 모두 실행 완료되기를 기다리지 않고, RDTSC 자체도 이후 명령어보다 먼저 실행된다는 보장이 없습니다. out-of-order 실행 엔진 입장에서는 RDTSC도 그저 재배치 가능한 명령어 중 하나이기 때문에, 측정 구간 앞뒤에 아무 조치도 하지 않으면 실제로 측정하려던 코드보다 먼저 혹은 나중에 카운터를 읽어버릴 수 있습니다. 이를 막으려면 RDTSC 앞에 `LFENCE`를 두어 이전 명령어의 로드가 끝난 뒤에만 읽게 하거나, [`RDTSCP`](https://www.felixcloutier.com/x86/rdtscp)를 쓰면 됩니다. RDTSCP는 완전한 직렬화 명령어는 아니지만 "이전의 모든 명령어가 실행되고 이전의 모든 로드가 전역적으로 보이게 될 때까지" 대기한 뒤에 카운터를 읽으므로, 측정 시작·종료 지점에서 순서를 지키는 용도로는 충분합니다. RDTSCP는 여기에 더해 `IA32_TSC_AUX` 레지스터 값을 함께 반환하는데, OS가 이 레지스터에 코어 또는 소켓 식별자를 넣어 두면 측정 시작과 종료 시점의 aux 값을 비교해 그 사이 스레드가 다른 코어로 이주했는지 알 수 있습니다. 코어가 바뀌었다면 그 측정값은 버리는 것이 안전한데, 코어마다 TSC 오프셋이 미세하게 다를 수 있기 때문입니다.
+RDTSC는 [**비직렬화(non-serializing) 명령어**](https://www.felixcloutier.com/x86/rdtsc)입니다. CPU는 이전 명령어들이 모두 실행 완료되기를 기다리지 않고, RDTSC 자체도 이후 명령어보다 먼저 실행된다는 보장이 없습니다. out-of-order 실행 엔진 입장에서는 RDTSC도 그저 재배치 가능한 명령어 중 하나이기 때문에, 측정 구간 앞뒤에 아무 조치도 하지 않으면 실제로 측정하려던 코드보다 먼저 혹은 나중에 카운터를 읽어버릴 수 있습니다. 이를 막으려면 RDTSC 앞에 `LFENCE`를 두어 이전 명령어의 로드가 끝난 뒤에만 읽게 하거나, [`RDTSCP`](https://www.felixcloutier.com/x86/rdtscp)를 쓰면 됩니다. RDTSCP는 직렬화 명령어가 아니지만 이전의 모든 명령어가 실행되고 이전의 모든 로드가 전역적으로 보일 때까지 기다린 뒤 카운터를 읽습니다. 그러나 Intel SDM은 뒤따르는 명령어가 카운터 읽기가 끝나기 전에 실행을 시작할 수 있다고도 명시합니다. 즉 RDTSCP는 앞쪽 경계만 지킬 뿐이므로, 측정 구간 시작에서는 RDTSCP 직후에 `LFENCE`를 두어 `work()`가 먼저 실행되지 않게 하고, 종료 지점에서도 RDTSCP 직후에 `LFENCE`를 두어 이후 코드가 읽기보다 앞서지 않게 합니다. RDTSCP는 여기에 더해 `IA32_TSC_AUX` 레지스터 값을 함께 반환하는데, OS가 이 레지스터에 코어 또는 소켓 식별자를 넣어 두면 측정 시작과 종료 시점의 aux 값을 비교해 그 사이 스레드가 다른 코어로 이주했는지 알 수 있습니다. 코어가 바뀌었다면 그 측정값은 버리는 것이 안전한데, 코어마다 TSC 오프셋이 미세하게 다를 수 있기 때문입니다.
 
 ```cpp
 #include <x86intrin.h>  // GCC/Clang: __rdtsc, __rdtscp (MSVC는 <intrin.h>)
@@ -75,16 +72,18 @@ RDTSC는 [**비직렬화(non-serializing) 명령어**](https://www.felixcloutier
 
 // RDTSCP로 사이클을 읽고, aux에 코어/소켓 식별자(IA32_TSC_AUX 하위 32비트)를 받는다.
 // 두 시점의 aux가 다르면 측정 도중 코어 이주가 있었다는 뜻이므로 값을 버린다.
-inline uint64_t read_tsc_serialized(uint32_t& aux) {
-  return __rdtscp(&aux);
+inline uint64_t read_tsc_ordered(uint32_t& aux) {
+  uint64_t t = __rdtscp(&aux);  // 이전 명령어가 끝난 뒤 읽음
+  _mm_lfence();                 // 뒤따르는 명령어가 읽기보다 먼저 실행되지 않게 막음
+  return t;
 }
 
 template <typename Fn>
 uint64_t measure_cycles(Fn&& work) {
   uint32_t aux_start = 0, aux_end = 0;
-  uint64_t start = read_tsc_serialized(aux_start);
+  uint64_t start = read_tsc_ordered(aux_start);
   work();
-  uint64_t end = read_tsc_serialized(aux_end);
+  uint64_t end = read_tsc_ordered(aux_end);
   if (aux_start != aux_end) return 0;  // 코어 이주: 무효 측정 (고정은 3장 참고)
   return end - start;
 }
@@ -145,7 +144,7 @@ BENCHMARK(BM_ClockGettimeMonotonic);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 x86-64 Linux, GCC 13 환경에서 돌리면(TSC clocksource가 활성화된 경우) `BM_Rdtscp`가 `BM_ClockGettimeMonotonic`보다 대체로 몇 배 빠르게 나오는 경우가 흔하지만, VVAR 읽기·시퀀스 락 검증 비용이 더해지는 `clock_gettime` 쪽도 진짜 시스템 콜과는 자릿수가 다르게 작습니다. 정확한 배율은 CPU 세대·커널 버전·가상화 여부에 따라 달라지므로 반드시 대상 환경에서 재현합니다.
+`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 x86-64 Linux, GCC 13 환경에서 돌리면(TSC clocksource가 활성화된 경우) `clock_gettime`은 VVAR 읽기·시퀀스 락 검증 비용이 더해지므로 RDTSCP 단독 호출보다 비싸지만 진짜 시스템 콜과는 성격이 다릅니다. 정확한 배율은 CPU 세대·커널 버전·가상화 여부에 따라 달라지므로 반드시 대상 환경에서 재현합니다.
 
 ## clock_gettime과 CLOCK_MONOTONIC 계열
 
@@ -192,6 +191,7 @@ flowchart TD
 **invariant TSC**는 CPUID.80000007H:EDX 비트 8로 광고되며, 리눅스는 이를 확인해 `X86_FEATURE_CONSTANT_TSC`·`X86_FEATURE_NONSTOP_TSC` 기능 플래그를 켜고 `/proc/cpuinfo`에 `constant_tsc`, `nonstop_tsc` 문자열로 노출합니다. 이 플래그가 있다는 것은 "이 코어의 TSC가 P-state·C-state와 무관하게 일정한 속도로 증가한다"는 뜻일 뿐, **다른 코어·다른 소켓의 TSC와 값이 맞춰져 있다는 뜻은 아닙니다**. 여러 CPU의 TSC가 동기화되어 있으리라는 구조적 보장은 원래 없으며, 부팅 시점에 BIOS/펌웨어가 각 코어의 카운터를 리셋해 맞추고 리눅스 커널이 `check_tsc_sync_source`류 검사로 코어 간 오프셋을 확인하는 절차를 거칩니다. 이 검사에서 허용 범위를 넘는 skew가 발견되면 커널은 TSC를 신뢰할 수 없는 clocksource로 표시하고 HPET 등으로 대체합니다. 현재 시스템이 어떤 clocksource를 쓰고 있는지는 다음처럼 직접 확인할 수 있습니다.
 
 ```text
+# 출력 형식 예시 — 값은 시스템마다 다릅니다
 $ grep -o 'constant_tsc\|nonstop_tsc' /proc/cpuinfo | sort -u
 constant_tsc
 nonstop_tsc
@@ -209,7 +209,7 @@ tsc hpet acpi_pm
 
 <strong>"invariant TSC가 있으면 모든 코어의 TSC 값을 그냥 빼서 비교해도 된다"</strong>는 틀린 전제입니다. invariant는 "이 코어에서 속도가 일정하다"는 보장이지 "모든 코어가 같은 원점에서 같은 속도로 간다"는 보장이 아닙니다. 단일 소켓 최신 서버에서는 실무적으로 잘 맞는 경우가 많지만, 멀티소켓 구성이나 오래된 하드웨어, 일부 가상화 환경에서는 코어 간 오프셋이 벌어질 수 있으므로 RDTSCP의 aux 값으로 코어 이주를 감지하거나 애초에 스레드를 한 코어에 고정하는 편이 안전합니다.
 
-<strong>"clock_gettime은 시스템 콜이니 RDTSC보다 훨씬 느리다"</strong>도 절반만 맞습니다. TSC 기반 clocksource가 활성화된 현대 리눅스에서 `CLOCK_MONOTONIC`은 vDSO 경로를 타므로 실제 커널 진입 없이 사용자 공간에서 끝납니다. VVAR 페이지 읽기와 시퀀스 락 검증 때문에 RDTSCP 단독 호출보다는 비용이 더 들지만, 컨텍스트 스위치를 동반하는 진짜 시스템 콜과는 성격이 다릅니다. 다만 `CLOCK_MONOTONIC_RAW`는 리눅스 5.3 이전 커널에서, 혹은 TSC를 신뢰할 수 없는 환경에서는 실제로 시스템 콜로 떨어질 수 있다는 점은 구분해야 합니다.
+<strong>"clock_gettime은 시스템 콜이니 RDTSC보다 훨씬 느리다"</strong>도 절반만 맞습니다. TSC 기반 clocksource가 활성화된 현대 리눅스에서 `CLOCK_MONOTONIC`은 vDSO 경로를 타므로 실제 커널 진입 없이 사용자 공간에서 끝납니다. VVAR 페이지 읽기와 시퀀스 락 검증 때문에 RDTSCP 단독 호출보다는 비용이 더 들지만, 커널 모드 전환을 동반하는 진짜 시스템 콜과는 성격이 다릅니다. 다만 `CLOCK_MONOTONIC_RAW`는 리눅스 5.3 이전 커널에서, 혹은 TSC를 신뢰할 수 없는 환경에서는 실제로 시스템 콜로 떨어질 수 있다는 점은 구분해야 합니다.
 
 <strong>"std::chrono::high_resolution_clock을 쓰면 가장 정밀하고 항상 단조롭다"</strong>는 표준이 보장하지 않는 내용입니다. C++ 표준은 이 시계를 "구현체가 제공하는 가장 짧은 틱 주기의 시계"로만 정의할 뿐, `system_clock`의 별칭이어도 되고 `steady_clock`의 별칭이어도 됩니다. 실제로 libstdc++ 계열은 `high_resolution_clock`을 `system_clock`에 별칭 지정하는 경우가 흔해 `is_steady`가 `false`가 될 수 있고, 이 경우 시스템 시각 조정에 따라 측정값이 거꾸로 갈 수도 있습니다. 구간 측정 목적이라면 이름의 인상과 무관하게 [`std::chrono::steady_clock`](https://en.cppreference.com/w/cpp/chrono/steady_clock)을 기본으로 선택하는 편이 안전합니다.
 
@@ -226,10 +226,12 @@ tsc hpet acpi_pm
 
 ### 자주 하는 실수
 
-- **RDTSC 앞뒤에 직렬화 장치 없이 값을 읽는 것**: out-of-order 실행이 측정 구간 경계를 흐트러뜨립니다. `RDTSCP`를 쓰거나 `LFENCE`를 명시적으로 넣습니다.
 - **워밍업 없이 첫 호출을 측정에 포함하는 것**: vDSO 매핑이나 캐시가 아직 데워지지 않은 첫 호출은 이상치가 되기 쉬우므로 버립니다.
-- **보정 계수를 한 번 구해 영구 상수로 박아 두는 것**: invariant TSC가 없는 CPU나 가상화 환경에서는 이 값이 바뀔 수 있으므로 장시간 실행되는 프로세스라면 주기적으로 재보정합니다.
 - **디버그 빌드나 최적화가 꺼진 바이너리로 오버헤드를 측정하는 것**: 컴파일러 플래그가 다르면 인라인 여부와 함께 오버헤드 수치 자체가 달라집니다.
+
+## Windows에서는: QueryPerformanceCounter
+
+Windows 네이티브 코드에서 정밀한 시각을 얻는 기본 API는 `QueryPerformanceCounter`(QPC)이며, Microsoft 문서는 QPC가 프로세서의 TSC를 직접 읽을 때 생기는 어려움을 피하게 해 준다고 설명합니다([Acquiring high-resolution time stamps](https://learn.microsoft.com/en-us/windows/win32/sysinfo/acquiring-high-resolution-time-stamps)). 같은 문서에 따르면 일부 구형 시스템은 BIOS가 TSC 특성을 잘못 알려 주거나 코어 간 TSC를 동기화하지 못해 TSC 기반 QPC 값이 코어마다 달랐습니다. 이 장에서 다룬 invariant TSC와 코어 간 동기화 문제가 Windows에서도 같은 뿌리를 가진다는 뜻이므로, Windows 쪽 이식에서는 `RDTSC`를 직접 쓰기보다 `QueryPerformanceCounter`와 `QueryPerformanceFrequency`로 틱 수를 초 단위로 환산하는 쪽이 기본 선택입니다.
 
 ## 비판적 시각: 한계와 트레이드오프
 
