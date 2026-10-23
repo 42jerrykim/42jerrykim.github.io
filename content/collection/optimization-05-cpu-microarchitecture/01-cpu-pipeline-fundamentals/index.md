@@ -1,7 +1,7 @@
 ---
 collection_order: 1
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-20
 draft: false
 image: wordcloud.png
 title: "[CPU 05] CPU 파이프라인 기초"
@@ -21,18 +21,13 @@ tags:
   - Latency
   - Throughput
   - Profiling(프로파일링)
-  - Concurrency(동시성)
-  - Implementation(구현)
   - Deep-Dive
   - Advanced
   - Tutorial(튜토리얼)
   - Guide(가이드)
   - Reference(참고)
-  - Technology(기술)
   - Comparison(비교)
   - Pitfalls(함정)
-  - Documentation(문서화)
-  - System-Design
   - Pipelining
   - Superscalar
   - Instruction-Pipeline
@@ -64,7 +59,7 @@ tags:
 
 ## 파이프라이닝의 역사와 동기
 
-명령어 처리를 여러 단계로 나눠 겹쳐 실행하는 아이디어는 범용 컴퓨터로는 1961년 출시된 <strong>IBM 7030(Stretch)</strong>에서 처음 본격적으로 구현되었습니다. Stretch는 명령어를 미리 가져와 두는 lookahead 버퍼와 명령어 디코드·실행을 겹치는 구조를 도입해, 당시 기준으로 이례적인 처리 속도를 냈습니다. 이후 1980년대 RISC 진영(MIPS, DLX 등 학술 모델)이 "각 단계가 정확히 한 클럭을 차지하는" 정형화된 5단계 파이프라인 — fetch, decode, execute, memory access, writeback — 을 교육·설계 표준으로 정착시켰고, 이 모델은 오늘날에도 파이프라인을 설명하는 기본 어휘로 쓰입니다. 실제 현대 CPU의 파이프라인은 이보다 훨씬 깊고(단계가 많고) 순서를 바꿔 실행하지만(Out-of-Order), 그 복잡한 구조도 결국 이 5단계 모델에 단계를 더 세분화하고 스케줄링 로직을 얹은 확장이라고 이해하면 접근하기 쉽습니다.
+명령어 처리를 여러 단계로 나눠 겹쳐 실행하는 아이디어는 1939년 Z1 같은 초기 기계에 단순한 형태로 나타났고, 파이프라이닝의 선구적 사례로는 ILLIAC II 프로젝트와 1961년 출시된 <strong>IBM 7030(Stretch)</strong>이 함께 꼽힙니다([Wikipedia: Instruction pipelining](https://en.wikipedia.org/wiki/Instruction_pipelining)). 이후 1980년대 RISC 진영(MIPS, DLX 등 학술 모델)이 "각 단계가 정확히 한 클럭을 차지하는" 정형화된 5단계 파이프라인 — fetch, decode, execute, memory access, writeback — 을 교육·설계 표준으로 정착시켰고, 이 모델은 오늘날에도 파이프라인을 설명하는 기본 어휘로 쓰입니다. 실제 현대 CPU의 파이프라인은 이보다 훨씬 깊고(단계가 많고) 순서를 바꿔 실행하지만(Out-of-Order), 그 복잡한 구조도 결국 이 5단계 모델에 단계를 더 세분화하고 스케줄링 로직을 얹은 확장이라고 이해하면 접근하기 쉽습니다.
 
 ## 파이프라인 단계: Fetch → Decode → Execute → Writeback
 
@@ -86,36 +81,51 @@ tags:
 
 <strong>슈퍼스칼라(superscalar)</strong>란 한 클럭 사이클에 하나가 아니라 여러 명령어를 동시에 인출·디코드·실행할 수 있도록 파이프라인 각 단계를 폭(width)으로 복제한 설계를 말합니다. 예를 들어 디코더가 4-wide이면 한 사이클에 최대 4개 명령어를 해석할 수 있고, 실행 유닛이 여러 개의 포트(port)로 나뉘어 있으면 서로 의존성이 없는 여러 연산을 같은 사이클에 처리할 수 있습니다. 이때 실제로 사이클당 몇 개의 명령어가 완료되는지를 나타내는 지표가 <strong>IPC(Instructions Per Cycle)</strong>이며, 이론적 최대 IPC는 파이프라인의 디코드·발행(issue) 폭으로 정해지지만, 실제 IPC는 코드의 명령어 간 의존성과 자원 경합에 따라 이보다 훨씬 낮게 나오는 경우가 흔합니다.
 
-IPC는 `perf stat`으로 직접 측정할 수 있는 값입니다. 아래는 누산기 하나에 의존적인 연산을 반복하는 프로그램으로, 이런 구조가 실제로 IPC를 얼마나 제한하는지 확인하기 위한 최소 예시입니다.
+IPC가 무엇에 의해 제한되는지는 같은 양의 일을 "의존성 체인 하나"와 "독립된 체인 넷"으로 나눠 돌려 보면 드러납니다. 아래 프로그램은 곱셈-덧셈 `a = a * K + i`를 총 N번 수행하되, `one_chain`은 매 반복이 직전 반복의 `a`를 기다리는 단일 체인으로, `four_chains`는 서로 무관한 누산기 4개로 나눠 수행합니다.
 
 ```cpp
-// ipc_demo.cpp — 빌드: g++ -O2 -march=native -o ipc_demo ipc_demo.cpp
+// ipc_demo.cpp — 빌드: g++ -O2 -fno-tree-vectorize -o ipc_demo ipc_demo.cpp
+// 실행: ./ipc_demo 1  (단일 체인)   ./ipc_demo 4  (독립 체인 4개)
+#include <chrono>
 #include <cstdint>
 #include <cstdio>
+#include <cstdlib>
 
-int main() {
-  uint64_t acc = 0;
-  for (uint64_t i = 0; i < 500'000'000ULL; ++i) {
-    acc += i ^ (i >> 3);  // 매 반복이 이전 반복의 acc 값에 의존
+constexpr uint64_t N = 400'000'000ULL;           // 4의 배수
+constexpr uint64_t K = 0x9E3779B97F4A7C15ULL;
+
+__attribute__((noinline)) uint64_t one_chain(uint64_t n) {
+  uint64_t a = 1;
+  for (uint64_t i = 0; i < n; ++i) a = a * K + i;  // imul → add, 다음 반복이 이 a를 기다림
+  return a;
+}
+
+__attribute__((noinline)) uint64_t four_chains(uint64_t n) {
+  uint64_t a = 1, b = 2, c = 3, d = 4;
+  for (uint64_t i = 0; i < n; i += 4) {             // 네 체인은 서로의 결과를 기다리지 않음
+    a = a * K + i;
+    b = b * K + i + 1;
+    c = c * K + i + 2;
+    d = d * K + i + 3;
   }
-  std::printf("%llu\n", static_cast<unsigned long long>(acc));
+  return a ^ b ^ c ^ d;
+}
+
+int main(int argc, char** argv) {
+  const int mode = argc > 1 ? std::atoi(argv[1]) : 1;
+  const auto t0 = std::chrono::steady_clock::now();
+  const uint64_t r = (mode == 4) ? four_chains(N) : one_chain(N);
+  const auto t1 = std::chrono::steady_clock::now();
+  const double ns = std::chrono::duration<double, std::nano>(t1 - t0).count();
+  std::printf("mode=%d  result=%llu  %.3f ns per multiply-add\n", mode,
+              static_cast<unsigned long long>(r), ns / N);
   return 0;
 }
 ```
 
-이 코드를 위 플래그로 빌드한 뒤 Linux `perf stat`으로 실행하면 명령어 수·사이클 수·IPC를 함께 얻을 수 있습니다.
+`-fno-tree-vectorize`는 GCC가 루프를 SIMD로 바꿔 비교 대상 자체를 바꾸지 않도록 막는 옵션입니다. Linux에서는 `perf stat -e instructions,cycles ./ipc_demo 1`과 `./ipc_demo 4`를 각각 실행하면 명령어 수·사이클 수·IPC를 함께 얻을 수 있습니다. 측정값은 CPU·컴파일러마다 다르므로 여기서는 숫자를 싣지 않고, 명령어 지연표로부터 예상할 수 있는 경향만 적습니다. [Agner Fog의 명령어 표](https://www.agner.org/optimize/instruction_tables.pdf)에 따르면 최근 x86 코어에서 64비트 `imul`은 지연이 3사이클, 처리량이 사이클당 1개 수준입니다. `one_chain`에서는 반복마다 `imul`(3사이클)과 덧셈(1사이클)이 직렬로 이어지므로 곱셈-덧셈 1회당 약 4사이클이 하한이 되고, 반복당 명령어가 5개 안팎이니 IPC는 1을 조금 넘는 수준에 머무릅니다. `four_chains`는 네 체인의 `imul`이 겹쳐 실행되므로 곱셈-덧셈 1회당 시간이 곱셈 처리량 한계(약 1사이클) 쪽으로 내려가고, 같은 시간에 더 많은 명령어가 완료되어 IPC도 함께 올라갑니다.
 
-```text
-$ perf stat -e instructions,cycles ./ipc_demo
-# Linux, GCC 13, x86-64(Zen4 계열), -O2 -march=native 기준 예시 값. 마이크로아키텍처·컴파일러에 따라 달라짐.
-
-     3,004,821,112      instructions              #    1.02  insn per cycle
-     2,945,006,733      cycles
-
-       1.203456789 seconds time elapsed
-```
-
-IPC가 슈퍼스칼라 폭(보통 4–6)에 한참 못 미치는 약 1.0에 머무는 이유는, `acc`를 매 반복 갱신하는 단일 의존성 체인이 존재해 다음 덧셈이 이전 덧셈의 결과를 기다려야 하기 때문입니다. 즉 실행 포트가 여러 개 있어도 서로 독립적인 일감이 없으면 슈퍼스칼라 폭을 채울 수 없습니다. 이 의존성 체인을 끊어 IPC를 끌어올리는 구체적인 기법(다중 누산기, 체인 길이 계산)은 [18장: 의존성 체인·포트 압력 분석](/post/cpu-optimization/dependency-chain-port-pressure-analysis/)에서, IPC를 포함한 하드웨어 카운터 전반을 해석하는 절차는 [09장: CPU 하드웨어 카운터 활용](/post/cpu-optimization/cpu-hardware-performance-counters/)과 [Tr.01: 하드웨어 성능 카운터](/post/profiling-analysis/hardware-performance-counters/)에서 다룹니다.
+핵심은 IPC를 낮추는 원인이 "체인이 있다는 사실" 자체가 아니라 **체인의 지연**이라는 점입니다. 의존성 체인은 반복당 사이클 수의 하한을 정하고, 그 하한 안에 들어가는 명령어 수가 적을수록 IPC가 낮아집니다. 실행 포트가 여러 개 있어도 서로 독립적인 일감이 없으면 슈퍼스칼라 폭을 채울 수 없는 이유가 이것입니다. 이 의존성 체인을 끊어 IPC를 끌어올리는 구체적인 기법(다중 누산기, 체인 길이 계산)은 [18장: 의존성 체인·포트 압력 분석](/post/cpu-optimization/dependency-chain-port-pressure-analysis/)에서, IPC를 포함한 하드웨어 카운터 전반을 해석하는 절차는 [09장: CPU 하드웨어 카운터 활용](/post/cpu-optimization/cpu-hardware-performance-counters/)과 [Tr.01: 하드웨어 성능 카운터](/post/profiling-analysis/hardware-performance-counters/)에서 다룹니다.
 
 ## 파이프라인 해저드: 구조적·데이터·제어
 
@@ -143,7 +153,8 @@ flowchart LR
     dataHazard["데이터 해저드</br>RAW / WAR / WAW"]
     controlHazard["제어 해저드</br>분기 오예측 버블"]
   end
-  idStage -.자원 경합.-> structuralHazard
+  ifStage -.메모리 포트 경합.-> structuralHazard
+  memStage -.메모리 포트 경합.-> structuralHazard
   exStage -.값 의존.-> dataHazard
   ifStage -.분기 방향.-> controlHazard
 ```
@@ -152,9 +163,9 @@ flowchart LR
 
 ## 흔한 오개념
 
-<strong>"파이프라인은 깊을수록(단계가 많을수록) 항상 빠르다"</strong>는 자주 보이는 오해입니다. 2000년대 초 Intel NetBurst(Pentium 4) 세대는 파이프라인을 대폭 늘려 높은 클럭을 노렸지만, 세대가 지날수록 분기 오예측 하나의 비용이 커져 실제 체감 성능은 기대만큼 오르지 않았고, 이후 Core 마이크로아키텍처는 파이프라인을 다시 얕게 설계해 클럭당 처리량(IPC)을 회복하는 방향으로 선회했습니다. 파이프라인 깊이는 클럭 상한과 버블 비용 사이의 트레이드오프이지 일방적으로 좋아지는 값이 아니며, 세대별 정확한 단계 수는 마이크로아키텍처마다 달라 [08장: 현대 CPU 아키텍처 비교](/post/cpu-optimization/modern-cpu-architecture-comparison/)에서 다룹니다.
+<strong>"파이프라인은 깊을수록(단계가 많을수록) 항상 빠르다"</strong>는 자주 보이는 오해입니다. 2000년대 초 Intel NetBurst(Pentium 4) 세대는 파이프라인을 대폭 늘려(후기 Prescott 코어는 31단, [Wikipedia: Instruction pipelining](https://en.wikipedia.org/wiki/Instruction_pipelining)) 높은 클럭을 노렸지만, 세대가 지날수록 분기 오예측 하나의 비용이 커져 실제 체감 성능은 기대만큼 오르지 않았고, 이후 Core 마이크로아키텍처는 파이프라인을 다시 얕게 설계해 클럭당 처리량(IPC)을 회복하는 방향으로 선회했습니다. 파이프라인 깊이는 클럭 상한과 버블 비용 사이의 트레이드오프이지 일방적으로 좋아지는 값이 아니며, 세대별 정확한 단계 수는 마이크로아키텍처마다 달라 [08장: 현대 CPU 아키텍처 비교](/post/cpu-optimization/modern-cpu-architecture-comparison/)에서 다룹니다.
 
-<strong>"IPC는 1을 넘을 수 없다"</strong>도 흔한 오해입니다. 고전 5단계 모델을 스칼라(단일 발행) 파이프라인으로만 배우면 이런 인상을 받기 쉽지만, 슈퍼스칼라 설계에서는 서로 독립적인 명령어가 충분하면 사이클당 여러 명령어가 완료되어 IPC가 2, 3 이상으로 측정되는 경우가 흔합니다. 앞서 본 `perf stat` 예시에서 IPC가 1.0 근처에 머문 것은 하드웨어의 한계가 아니라 코드의 의존성 체인이 만든 한계였습니다.
+<strong>"IPC는 1을 넘을 수 없다"</strong>도 흔한 오해입니다. 고전 5단계 모델을 스칼라(단일 발행) 파이프라인으로만 배우면 이런 인상을 받기 쉽지만, 슈퍼스칼라 설계에서는 서로 독립적인 명령어가 충분하면 사이클당 여러 명령어가 완료되어 IPC가 2, 3 이상으로 측정되는 경우가 흔합니다. 앞서 본 예제에서도 `one_chain`의 IPC가 낮게 나오는 것은 하드웨어 폭의 한계가 아니라 `imul` 지연이 만든 체인의 한계이며, 같은 일을 독립 체인 4개로 나눈 `four_chains`에서는 IPC가 1을 넘는 쪽으로 올라갑니다.
 
 <strong>"파이프라인 해저드는 하드웨어만의 문제이고 코드와 무관하다"</strong>는 인식도 정확하지 않습니다. 컴파일러의 명령어 스케줄링(instruction scheduling)과 프로그래머가 작성한 데이터 의존성 구조 모두 해저드 발생 빈도에 직접 영향을 주며, 같은 알고리즘도 의존성 체인을 짧게 재배치하면 실행 포트를 더 잘 채울 수 있습니다. 이 관계는 [05장](/post/cpu-optimization/instruction-level-parallelism-fundamentals/)에서 본격적으로 다룹니다.
 
@@ -175,7 +186,7 @@ flowchart LR
 ## 더 읽을 거리
 
 - [Intel® 64 and IA-32 Architectures Optimization Reference Manual, Volume 1](https://cdrdv2-public.intel.com/814198/248966-Optimization-Reference-Manual-V1-049.pdf) — 마이크로아키텍처별 파이프라인·프런트엔드·백엔드 구조를 다루는 Intel 공식 최적화 참조 문서
-- [Wikipedia: IBM 7030 Stretch](https://en.wikipedia.org/wiki/IBM_7030_Stretch) — 범용 컴퓨터 최초의 본격적인 파이프라이닝·명령어 lookahead 구현 사례
+- [Wikipedia: IBM 7030 Stretch](https://en.wikipedia.org/wiki/IBM_7030_Stretch) — 1961년 출시된 초기 대형 컴퓨터로, 파이프라이닝의 선구적 사례로 자주 거론됨
 - [Wikipedia: Instruction pipelining](https://en.wikipedia.org/wiki/Instruction_pipelining) — 고전 5단계 파이프라인과 구조적·데이터·제어 해저드의 표준적인 정의
 
 ## 마무리
