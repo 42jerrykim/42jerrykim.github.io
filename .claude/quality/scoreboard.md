@@ -417,7 +417,7 @@
 | content/collection/optimization-10-network/17-tls-ssl-optimization/index.md | 94.3 | 2026-10-23 | 1 | 통과 | 1.3 | 2c60d79 | 없음(경미: s_time -reuse에 -www 없으면 TLS 1.3 티켓 미수신으로 재개 안 될 수 있음, L164 '코드 포인트 조정 가능'이 RFC 10024 확정 서술과 모순, lastmod 미갱신) |
 | content/collection/optimization-10-network/18-connection-pooling/index.md | 93.4 | 2026-10-23 | 0 | 통과 | 1.3 | bb5a064 | 없음(경미: HikariCP 2012→2013, slow-start-after-idle은 RTO마다 cwnd 반감, RFC·nginx 인라인 인용 blockquote화, MSG_PEEK 0바이트→1바이트, connect 실패 시 fd 누수, Mermaid 새 연결이 'handshake 생략' 노드 통과·폐기 후 후보 재확인 누락, 표 범위 물결표, C·Documentation 태그) |
 | content/collection/optimization-10-network/19-websocket-optimization/index.md | 93.9 | 2026-10-23 | 1 | 통과 | 1.3 | 7d50fe4 | 없음(경미: L97 오버헤드 75%의 분모 모호(페이로드 대비 75%, 총 14B 중 43%), '루프백 소켓 쌍'은 socketpair(AF_UNIX), 벤치 write 반환값 미검사·flush_fn_ 재진입 데드락 제약 미명시, 마무리 재진술) |
-| content/collection/optimization-10-network/20-http2-http3/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/20-http2-http3/index.md | 93.9 | 2026-10-23 | 1 | 통과 | 1.3 | def938b | 없음(경미: Priority 헤더 예시가 RFC 9218 예시와 반대(CSS u=0, 점진 이미지 u=5,i)이고 'urgency=3 기본값에 가까운'이 기본값 3과 모순, 반복 서술(L134–136·WebTransport 경고), curl 스크립트 -s가 h3 미지원 호스트 실패를 숨김) |
 | content/collection/optimization-10-network/21-network-compression-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/00-introduction/index.md | 91.3 | 2026-07-25 | 2 | 통과 | 1.0 | d7d5a55 | 없음(경미: "범위와 경계" Mermaid 단독 의존, Phase별 궤적과 커리큘럼 표 일부 중복) |
 | content/collection/optimization-11-design-decisions/01-performance-terminology-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
