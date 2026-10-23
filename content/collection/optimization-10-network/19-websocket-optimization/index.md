@@ -19,11 +19,8 @@ tags:
   - Benchmark
   - Latency
   - Throughput
-  - Profiling(프로파일링)
-  - Testing(테스트)
   - Implementation(구현)
   - Best-Practices
-  - Debugging(디버깅)
   - System-Design
   - Backend(백엔드)
   - Production
@@ -57,9 +54,9 @@ tags:
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
-| **입문** | "WebSocket 프로토콜과 압축 확장의 역사" ~ "프레임 오버헤드" | 프레임 구조와 헤더 비용의 기본 그림을 이해 |
-| **중급** | "permessage-deflate" ~ "애플리케이션 계층 배치 전략" | 압축 파라미터와 배치 큐를 실무에 적용 |
-| **전문가** | "판단 기준" ~ "비판적 시각" | 압축·배치의 보안·트레이드오프를 판단하고 팀 정책을 정함 |
+| **입문** | "WebSocket 프로토콜과 압축 확장의 역사" – "프레임 오버헤드" | 프레임 구조와 헤더 비용의 기본 그림을 이해 |
+| **중급** | "permessage-deflate" – "애플리케이션 계층 배치 전략" | 압축 파라미터와 배치 큐를 실무에 적용 |
+| **전문가** | "판단 기준" – "비판적 시각" | 압축·배치의 보안·트레이드오프를 판단하고 팀 정책을 정함 |
 
 ---
 
@@ -73,7 +70,7 @@ permessage-deflate는 이름 그대로 **메시지 단위**로 DEFLATE 압축을
 
 ## 프레임 오버헤드와 배치가 필요한 이유
 
-**RFC 6455** 프레임 헤더는 최소 2바이트(FIN·opcode·mask 비트·7비트 길이)이고, 페이로드가 126바이트 이상이면 16비트 확장 길이(+2바이트), 65536바이트 이상이면 64비트 확장 길이(+8바이트)가 추가됩니다. 클라이언트→서버 방향은 RFC 6455가 마스킹을 강제하므로 4바이트 마스킹 키가 항상 붙습니다. 문제는 이 오버헤드가 **고정 비용**이라는 점입니다. 8바이트짜리 시세 업데이트 메시지 하나를 보낼 때마다 최소 6바이트(서버→클라이언트, 마스크 없음) 또는 10바이트(클라이언트→서버)의 헤더가 붙는다면, 초당 수만 건의 소형 메시지를 보내는 워크로드에서는 헤더 비율이 페이로드의 50–100%를 넘길 수 있습니다.
+**RFC 6455** 프레임 헤더는 최소 2바이트(FIN·opcode·mask 비트·7비트 길이)이고, 페이로드가 126바이트 이상이면 16비트 확장 길이(+2바이트), 65536바이트 이상이면 64비트 확장 길이(+8바이트)가 추가됩니다. 클라이언트→서버 방향은 RFC 6455가 마스킹을 강제하므로 4바이트 마스킹 키가 항상 붙습니다. 문제는 이 오버헤드가 **고정 비용**이라는 점입니다. 8바이트짜리 시세 업데이트 메시지 하나를 보낼 때마다 서버→클라이언트 방향은 2바이트(마스크 없음), 클라이언트→서버 방향은 6바이트(4바이트 마스킹 키 포함)의 헤더가 붙습니다. 초당 수만 건의 소형 메시지를 보내는 워크로드에서는 헤더가 페이로드 대비 25–75%에 달해 무시할 수 없는 고정 비용이 됩니다.
 
 ```c
 #include <stddef.h>
@@ -101,7 +98,7 @@ size_t ws_frame_header_size(uint64_t payload_len, bool masked) {
 
 ## permessage-deflate: sliding window와 context takeover
 
-permessage-deflate는 핸드셰이크 시 `Sec-WebSocket-Extensions` 헤더로 파라미터를 협상합니다. 서버가 응답에서 최종 파라미터를 확정하면, 이후 프레임은 RSV1 비트가 설정된 채 DEFLATE로 압축된 페이로드를 담습니다. 핵심 파라미터는 **client_max_window_bits/server_max_window_bits**(LZ77 슬라이딩 윈도우 크기를 8–15비트, 즉 256바이트–32KB로 제한)와 **client_no_context_takeover/server_no_context_takeover**(매 메시지마다 압축 컨텍스트를 초기화할지 여부)입니다. 컨텍스트를 유지(context takeover 허용)하면 이전 메시지의 반복 패턴을 다음 메시지 압축에 재사용해 압축률이 올라가지만, 연결마다 최대 32KB의 압축 상태를 메모리에 유지해야 합니다. `no_context_takeover`를 켜면 메시지마다 빈 윈도우로 시작해 메모리는 줄지만 압축률이 떨어집니다.
+permessage-deflate는 핸드셰이크 시 `Sec-WebSocket-Extensions` 헤더로 파라미터를 협상합니다. 서버가 응답에서 최종 파라미터를 확정하면, 이후 프레임은 RSV1 비트가 설정된 채 DEFLATE로 압축된 페이로드를 담습니다. 핵심 파라미터는 **client_max_window_bits/server_max_window_bits**(LZ77 슬라이딩 윈도우 크기를 8–15비트, 즉 256바이트–32KB로 제한)와 **client_no_context_takeover/server_no_context_takeover**(매 메시지마다 압축 컨텍스트를 초기화할지 여부)입니다. 컨텍스트를 유지(context takeover 허용)하면 이전 메시지의 반복 패턴을 다음 메시지 압축에 재사용해 압축률이 올라가지만, 연결마다 압축 상태를 메모리에 유지해야 합니다. LZ77 윈도우 자체는 최대 32KB이지만, zlib 기준 deflate 스트림 하나는 기본 설정(windowBits=15, memLevel=8)에서 약 256KB를 쓰고(zlib의 `zconf.h` 설명), 연결 수가 수만이면 이 상태가 곧 메모리 수 GB가 됩니다. `no_context_takeover`를 켜면 메시지마다 빈 윈도우로 시작해 메모리는 줄지만 압축률이 떨어집니다.
 
 ```text
 $ curl -i -N \
@@ -118,7 +115,7 @@ Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=
 Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits=15; server_no_context_takeover
 ```
 
-이 핸드셰이크 예시에서 서버는 `client_max_window_bits=15`(32KB 윈도우)는 그대로 승인하되 `server_no_context_takeover`를 추가해 자신이 보내는 방향은 메시지마다 컨텍스트를 초기화하겠다고 선언합니다. 이런 비대칭 협상은 서버가 다수 연결의 압축 상태를 메모리에 쌓아 두는 부담을 줄이는 흔한 운영 전략이며, 클라이언트 수가 수만 개인 서버에서는 `server_no_context_takeover`를 기본값으로 두는 경우가 많습니다.
+이 핸드셰이크 예시에서 서버는 `client_max_window_bits=15`(32KB 윈도우)는 그대로 승인하되 `server_no_context_takeover`를 추가해 자신이 보내는 방향은 메시지마다 컨텍스트를 초기화하겠다고 선언합니다. 이런 비대칭 협상은 서버가 다수 연결의 압축 상태를 메모리에 쌓아 두는 부담을 줄이는 흔한 운영 전략이며, 클라이언트 수가 수만 개인 서버에서는 `server_no_context_takeover` 같은 설정으로 연결당 메모리를 줄이는 방안을 검토할 만합니다.
 
 ## 애플리케이션 계층 배치 전략 실전 구현
 
@@ -132,27 +129,46 @@ Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits=15; server_
 #include <thread>
 #include <chrono>
 #include <functional>
+#include <utility>
 
 class BatchingSender {
  public:
   BatchingSender(size_t max_bytes, std::chrono::milliseconds max_delay,
                  std::function<void(const std::vector<uint8_t>&)> flush_fn)
-      : max_bytes_(max_bytes), max_delay_(max_delay), flush_fn_(std::move(flush_fn)) {}
+      : max_bytes_(max_bytes), max_delay_(max_delay), flush_fn_(std::move(flush_fn)),
+        timer_([this] { timer_loop(); }) {}
 
-  // 애플리케이션 메시지를 큐에 넣는다. 임계치를 넘으면 즉시 flush한다.
+  ~BatchingSender() {
+    {
+      std::lock_guard<std::mutex> lock(mu_);
+      stop_ = true;
+    }
+    cv_.notify_all();
+    timer_.join();
+    std::lock_guard<std::mutex> lock(mu_);
+    if (!buffer_.empty()) flush_locked();   // 종료 시 남은 데이터 배출
+  }
+
+  // 애플리케이션 메시지를 큐에 넣는다. 크기 임계치를 넘으면 즉시 flush한다.
   void enqueue(const uint8_t* data, size_t len) {
     std::lock_guard<std::mutex> lock(mu_);
     buffer_.insert(buffer_.end(), data, data + len);
-    if (buffer_.size() >= max_bytes_) flush_locked();
-  }
-
-  // 타이머 스레드에서 주기적으로 호출: 대기 중인 데이터가 있으면 지연 상한을 넘기지 않게 내보낸다.
-  void flush_on_timeout() {
-    std::lock_guard<std::mutex> lock(mu_);
-    if (!buffer_.empty()) flush_locked();
+    if (buffer_.size() >= max_bytes_) {
+      flush_locked();
+      cv_.notify_all();   // 타이머 스레드가 새 대기 구간을 시작하게 한다
+    }
   }
 
  private:
+  // 시간 조건: 데이터가 max_delay_ 이상 머물지 않도록 타이머 스레드가 내보낸다.
+  void timer_loop() {
+    std::unique_lock<std::mutex> lock(mu_);
+    while (!stop_) {
+      cv_.wait_for(lock, max_delay_);
+      if (!stop_ && !buffer_.empty()) flush_locked();
+    }
+  }
+
   void flush_locked() {
     flush_fn_(buffer_);   // 하나의 WS 프레임(또는 하나의 send 호출)로 실제 전송
     buffer_.clear();
@@ -163,10 +179,13 @@ class BatchingSender {
   std::function<void(const std::vector<uint8_t>&)> flush_fn_;
   std::vector<uint8_t> buffer_;
   std::mutex mu_;
+  std::condition_variable cv_;
+  bool stop_ = false;
+  std::thread timer_;   // 마지막에 선언: 다른 멤버가 모두 초기화된 뒤 시작된다
 };
 ```
 
-`max_bytes_`와 `max_delay_`는 서로 독립적으로 트리거되는 두 flush 조건입니다. 지연 예산이 1ms인 시스템에서는 `max_delay`를 1ms 이하로, 처리량이 중요한 배치 파이프라인에서는 `max_bytes`를 MTU에 가깝게 잡는 식으로 워크로드에 맞춰 두 값을 함께 조정해야 하며, 하나만 극단적으로 크게 잡으면 지연 폭주나 배치 효과 상실로 이어집니다.
+`max_bytes_`는 `enqueue()` 안에서, `max_delay_`는 내부 타이머 스레드에서 각각 독립적으로 트리거되는 두 flush 조건입니다. 지연 예산이 1ms인 시스템에서는 `max_delay`를 1ms 이하로, 처리량이 중요한 배치 파이프라인에서는 `max_bytes`를 MTU에 가깝게 잡는 식으로 워크로드에 맞춰 두 값을 함께 조정해야 하며, 하나만 극단적으로 크게 잡으면 지연 폭주나 배치 효과 상실로 이어집니다.
 
 **배치와 개별 전송의 실제 비용 차이**는 시스템 콜 횟수와 프레임 헤더 반복 비용에서 옵니다. 아래는 루프백 소켓 쌍에 소형 메시지를 하나씩 보내는 경우와 같은 총량을 배치해 보내는 경우를 비교하는 Google Benchmark 코드입니다. Linux, GCC 13, `-O2` 기준이며 `g++ -O2 bench.cpp -lbenchmark -lpthread -o bench && ./bench`로 빌드·실행합니다.
 
@@ -234,7 +253,7 @@ flowchart LR
 
 <strong>"TCP_NODELAY를 켰으니 배치는 필요 없다"</strong>는 오개념입니다. TCP_NODELAY는 커널의 Nagle 알고리즘이 애플리케이션이 만든 프레임을 임의로 묶는 것을 막을 뿐, 애플리케이션이 처음부터 여러 메시지를 하나의 프레임으로 만드는 것과는 다른 계층의 문제입니다. 오히려 TCP_NODELAY를 켠 상태에서 프레임 단위 배치까지 없으면 매 메시지가 개별 세그먼트로 즉시 나가면서 헤더 오버헤드와 패킷 수가 함께 늘어날 수 있습니다.
 
-<strong>"압축을 켜면 항상 이득"</strong>이라는 오개념도 흔합니다. 짧은 메시지(수십 바이트)는 DEFLATE 헤더·체크섬 비용 때문에 압축 후 오히려 커지거나 이득이 미미할 수 있고, CPU가 병목인 서버에서는 압축 자체가 지연을 늘리는 원인이 됩니다. 텍스트 기반 대형 페이로드(JSON 스냅샷 등)에서는 이득이 크지만, 소형 바이너리 메시지가 대부분인 워크로드에서는 압축을 끄고 배치만으로 오버헤드를 줄이는 편이 나을 때가 많습니다.
+<strong>"압축을 켜면 항상 이득"</strong>이라는 오개념도 흔합니다. 짧은 메시지(수십 바이트)는 DEFLATE 블록 헤더와 Huffman 테이블 비용 때문에 압축 후 오히려 커지거나 이득이 미미할 수 있고(permessage-deflate는 RFC 7692 §7.3에 따라 zlib 헤더와 Adler-32 체크섬을 떼어 낸 순수 DEFLATE 데이터를 씁니다), CPU가 병목인 서버에서는 압축 자체가 지연을 늘리는 원인이 됩니다. 텍스트 기반 대형 페이로드(JSON 스냅샷 등)에서는 이득이 크지만, 소형 바이너리 메시지가 대부분인 워크로드에서는 압축을 끄고 배치만으로 오버헤드를 줄이는 편이 나을 때가 많습니다.
 
 <strong>"배치는 지연시간에 해롭기만 하다"</strong>는 절반만 맞는 생각입니다. flush 타이머를 지연 예산보다 훨씬 짧게(예: p99 지연 목표의 1/10) 잡으면 개별 메시지 지연 증가는 무시할 수준으로 유지하면서 시스템 콜·헤더 오버헤드 절감 효과만 얻을 수 있습니다. 문제는 배치 자체가 아니라 임계치·타이머를 워크로드에 맞게 조정하지 않는 것입니다.
 
@@ -253,7 +272,11 @@ flowchart LR
 
 permessage-deflate는 이득만 있는 기능이 아닙니다. <strong>압축폭탄(decompression bomb)</strong>은 이론적 우려가 아니라 실제로 반복되는 취약점 범주입니다. 2026년에도 Node.js의 Undici WebSocket 클라이언트에서 <strong>[CVE-2026-1526](https://github.com/advisories/GHSA-vrm6-8vpv-qv8q)</strong>이 보고되었는데, 악의적인 서버가 약 6MB의 압축 프레임을 보내 압축 해제 후 1GB 이상으로 부풀리는 방식으로 클라이언트 프로세스의 메모리를 고갈시킬 수 있었습니다. 같은 시기 NATS 서버(**CVE-2026-27571**), Erlang 생태계의 bandit 서버(**[CVE-2026-39804](https://cna.erlef.org/cves/CVE-2026-39804.html)**)에서도 permessage-deflate 압축 해제에 출력 크기 상한이 없어 발생하는 동일한 유형의 DoS가 보고되었습니다. 세 사례 모두 원인은 같습니다. **압축 해제 결과 크기에 상한을 두지 않고 메모리에 누적한 것**입니다. 신뢰할 수 없는 피어와 통신하는 서버·클라이언트라면 압축 해제 버퍼 크기 상한을 반드시 강제해야 하며, 이는 애플리케이션 코드가 아니라 라이브러리 계층에서 처리되는 경우가 많으므로 사용 중인 WebSocket 라이브러리가 이 상한을 지원하는지 먼저 확인해야 합니다.
 
-압축은 또한 **CRIME/BREACH류 정보 유출**과 같은 계열의 위험을 안고 있습니다. 압축된 페이로드에 비밀 값(세션 토큰 등)과 공격자가 일부 제어 가능한 데이터가 섞여 있으면, 압축 후 크기 변화를 관찰해 비밀 값을 추론하는 사이드채널 공격이 이론적으로 가능합니다. [OWASP WebSocket Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/WebSocket_Security_Cheat_Sheet.html)는 이런 이유로 "특별히 필요하지 않다면 permessage-deflate 압축을 비활성화하라"고 권고합니다. 압축이 꼭 필요하다면 비밀 값과 공격자 제어 데이터를 같은 압축 컨텍스트에 섞지 않는 설계로 위험을 줄여야 합니다.
+압축은 또한 **CRIME/BREACH류 정보 유출**과 같은 계열의 위험을 안고 있습니다. 압축된 페이로드에 비밀 값(세션 토큰 등)과 공격자가 일부 제어 가능한 데이터가 섞여 있으면, 압축 후 크기 변화를 관찰해 비밀 값을 추론하는 사이드채널 공격이 이론적으로 가능합니다. OWASP도 이런 이유로 압축을 기본으로 켜지 말라고 권고합니다.
+
+> "Disable permessage-deflate compression unless specifically needed." — [OWASP WebSocket Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/WebSocket_Security_Cheat_Sheet.html)
+
+압축이 꼭 필요하다면 비밀 값과 공격자 제어 데이터를 같은 압축 컨텍스트에 섞지 않는 설계로 위험을 줄여야 합니다.
 
 배치 역시 무조건적인 정답은 아닙니다. flush 타이머와 임계치는 워크로드가 바뀌면 재튜닝이 필요한 값이고, 트래픽 패턴이 버스트성인지 정상성(steady-state)인지에 따라 최적값이 크게 달라집니다. 배치 큐에 백프레셔(backpressure) 없이 무한정 쌓이도록 두면, 피어가 느려질 때 메모리 사용량이 통제 불능으로 늘어날 수 있어 큐 크기 상한과 오버플로 정책(드롭 또는 연결 종료)을 함께 설계해야 합니다.
 
