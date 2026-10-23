@@ -1,7 +1,7 @@
 ---
 collection_order: 2
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-20
 draft: false
 image: wordcloud.png
 title: "[OS 06] Syscall 비용과 최소화 기법"
@@ -25,7 +25,7 @@ tags:
   - Profiling(프로파일링)
   - Implementation(구현)
   - Best-Practices
-  - Debugging(디버깅)
+  - TLB
   - Advanced
   - Deep-Dive
   - Reference(참고)
@@ -49,7 +49,7 @@ tags:
 
 ## 이 장을 읽기 전에
 
-**선행 챕터**: [Context Switch 비용 분석과 회피](/post/os-optimization/context-switch-cost-avoidance/) (챕터 01)에서 스레드/프로세스 간 전환 비용을 다뤘습니다. 이 장은 그것과 다른 층위입니다 — syscall 진입·탈출은 같은 스레드가 커널 모드로 들어갔다 나오는 것이고, 컨텍스트 스위치는 실행 중인 스레드 자체가 바뀌는 것입니다. 하나의 syscall이 반드시 컨텍스트 스위치를 유발하지는 않습니다(예: 블로킹 없이 즉시 반환하는 `getpid`).
+**선행 챕터**: [Context Switch 비용 분석과 회피](/post/os-optimization/context-switch-cost-avoidance/) (챕터 01)에서 스레드/프로세스 간 전환 비용을 다뤘습니다. 이 장은 그와 다른 층위의 비용을 다루며, 두 비용의 구분은 아래 "흔한 오개념"에서 정리합니다.
 
 **전제 지식**: user mode/kernel mode 구분, 가상 메모리와 페이지 테이블의 기본 개념(주소를 물리 메모리로 매핑하는 표라는 정도), C에서 syscall을 감싸는 라이브러리 함수(`read`, `write` 등)를 사용해 본 경험이면 충분합니다.
 
@@ -69,17 +69,17 @@ tags:
 
 ## Syscall과 Meltdown/KPTI (역사·배경)
 
-x86 초기에는 `int 0x80` 소프트웨어 인터럽트로 syscall을 구현했고, 2000년대 들어 인텔·AMD가 각각 `SYSENTER`/`SYSCALL` 전용 명령을 추가해 진입 비용을 낮췄습니다. 이 명령들은 여전히 링(ring) 전환과 레지스터 저장·복원을 수반하지만, 소프트웨어 인터럽트보다 훨씬 적은 사이클로 커널에 진입합니다. 2018년 1월 공개된 **Meltdown**(CVE-2017-5754)은 사용자 프로세스가 특정 조건에서 커널 메모리를 추측 실행(speculative execution)을 통해 읽어낼 수 있음을 보였고, 이에 대한 완화책으로 <strong>KPTI(Kernel Page Table Isolation, 이전 명칭 KAISER)</strong>가 리눅스 4.15(2018-01)에 긴급 병합되었습니다. KPTI는 사용자 모드와 커널 모드의 페이지 테이블을 분리해, 사용자 프로세스가 커널 주소 공간을 매핑조차 하지 못하게 만듭니다. 이 분리가 이 장에서 다루는 "syscall 비용"의 핵심 변수 하나입니다 — syscall 진입·탈출마다 페이지 테이블을 교체하는 비용이 추가되었기 때문입니다.
+x86 초기에는 `int 0x80` 소프트웨어 인터럽트로 syscall을 구현했고, 1990년대 후반 인텔(Pentium II의 `SYSENTER`)과 AMD(`SYSCALL`)가 각각 전용 명령을 추가해 진입 비용을 낮췄습니다. 이 명령들은 여전히 링(ring) 전환과 레지스터 저장·복원을 수반하지만, 소프트웨어 인터럽트보다 훨씬 적은 사이클로 커널에 진입합니다. 2018년 1월 공개된 **Meltdown**(CVE-2017-5754)은 사용자 프로세스가 특정 조건에서 커널 메모리를 추측 실행(speculative execution)을 통해 읽어낼 수 있음을 보였고, 이에 대한 완화책으로 <strong>KPTI(Kernel Page Table Isolation, 이전 명칭 KAISER)</strong>가 리눅스 4.15(2018-01)에 긴급 병합되었습니다. KPTI는 사용자 모드와 커널 모드의 페이지 테이블을 분리해, 사용자 프로세스가 커널 주소 공간을 매핑조차 하지 못하게 만듭니다. 이 분리가 이 장에서 다루는 "syscall 비용"의 핵심 변수 하나입니다 — syscall 진입·탈출마다 페이지 테이블을 교체하는 비용이 추가되었기 때문입니다.
 
 ## Syscall 진입·탈출 비용 (모드 전환)
 
-**syscall 진입**은 사용자 프로그램이 `syscall` 명령(x86-64)을 실행하는 순간 시작됩니다. CPU는 현재 레지스터 일부를 저장하고, 권한 링을 3(사용자)에서 0(커널)으로 올리고, 미리 등록된 커널 진입점으로 점프합니다. 커널은 인자를 검증하고 실제 작업을 수행한 뒤, `sysret` 유사 명령으로 사용자 모드로 복귀합니다. 이 과정 자체는 (KPTI 없이도) 함수 호출보다 훨씬 비싼데, 링 전환과 레지스터 저장·복원, 커널 진입점의 인자 검증 코드 실행이 모두 최소 수십–수백 ns의 고정 비용을 만들기 때문입니다. 중요한 점은 이것이 **컨텍스트 스위치와는 다른 비용**이라는 것입니다 — 실행 중인 스레드는 그대로이고 같은 주소 공간에 머무르므로, TLB를 통째로 무효화할 필요는 원래 없습니다(그 무효화를 강제로 유발한 것이 바로 다음 절의 KPTI입니다). 스레드 자체가 교체되는 비용과의 구분·회피 전략은 [챕터 01](/post/os-optimization/context-switch-cost-avoidance/)에서 다뤘으므로 이 장에서는 반복하지 않습니다.
+**syscall 진입**은 사용자 프로그램이 `syscall` 명령(x86-64)을 실행하는 순간 시작됩니다. CPU는 현재 레지스터 일부를 저장하고, 권한 링을 3(사용자)에서 0(커널)으로 올리고, 미리 등록된 커널 진입점으로 점프합니다. 커널은 인자를 검증하고 실제 작업을 수행한 뒤, `sysret` 유사 명령으로 사용자 모드로 복귀합니다. 이 과정 자체는 (KPTI 없이도) 함수 호출보다 훨씬 비싼데, 링 전환과 레지스터 저장·복원, 커널 진입점의 인자 검증 코드 실행이 모두 최소 수십–수백 ns의 고정 비용을 만들기 때문입니다. 같은 주소 공간에 머무르므로 TLB를 통째로 무효화할 필요는 원래 없습니다(그 무효화를 강제로 유발한 것이 바로 다음 절의 KPTI입니다).
 
 ## KPTI 오버헤드
 
-KPTI는 커널에 진입할 때마다 사용자용 페이지 테이블에서 커널용 페이지 테이블로 `CR3` 레지스터를 교체하고, 복귀할 때 다시 사용자용으로 되돌립니다. [리눅스 커널 문서](https://www.kernel.org/doc/html/next/x86/pti.html)는 이 교체 비용을 커널 진입·탈출마다 수백 CPU 사이클 수준으로 설명하며, `PCID`(Process Context IDentifier)가 없는 CPU에서는 페이지 테이블 교체 시 TLB 전체를 비워야 해 비용이 더 커진다고 밝히고 있습니다. PCID가 있는 CPU는 페이지 테이블을 바꿀 때도 TLB 전체를 무효화하지 않고 선택적으로만 비울 수 있어, 커널 진입·탈출(그리고 컨텍스트 스위치)의 실질 비용을 낮춰 줍니다.
+KPTI는 커널에 진입할 때마다 사용자용 페이지 테이블에서 커널용 페이지 테이블로 `CR3` 레지스터를 교체하고, 복귀할 때 다시 사용자용으로 되돌립니다. [리눅스 커널 문서](https://www.kernel.org/doc/html/next/x86/pti.html)는 CR3 교체가 약 100 사이클 수준("on the order of a hundred cycles")이고 커널 진입·탈출마다 필요하다고 설명하며, `PCID`(Process Context IDentifier)가 없는 CPU에서는 페이지 테이블 교체 시 TLB 전체를 비워야 해 비용이 더 커진다고 밝히고 있습니다. PCID가 있는 CPU는 페이지 테이블을 바꿀 때도 TLB 전체를 무효화하지 않고 선택적으로만 비울 수 있어, 커널 진입·탈출(그리고 컨텍스트 스위치)의 실질 비용을 낮춰 줍니다.
 
-실측치는 **syscall 발생 빈도에 크게 좌우**됩니다. Netflix의 Brendan Gregg는 KPTI 도입 직후 CPU당 초당 syscall 수를 기준으로, 5만 회/초 부근에서는 약 2%, 1만 회/초 미만에서는 0.5% 미만의 손실을 관측했다고 보고했습니다. syscall이 극단적으로 잦은 스트레스 테스트(초당 21만 회 + 컨텍스트 스위치 초당 2.7만 회)에서는 TLB 민감도 때문에 예상(12% 미만)보다 큰 25% 손실이 측정되기도 했습니다. PostgreSQL 읽기 전용 벤치마크에서는 PCID 활성 시 7–17%, 비활성 시 16–23%의 손실이 보고된 사례도 있습니다. 이 수치들은 커널 버전·CPU 세대·워크로드에 따라 달라지므로 절대값으로 받아들이지 말고, 자신의 환경에서 syscall 비율을 먼저 측정한 뒤 참고치로만 사용해야 합니다.
+실측치는 **syscall 발생 빈도에 크게 좌우**됩니다. Netflix의 Brendan Gregg는 KPTI 도입 직후 CPU당 초당 syscall 수를 기준으로, 5만 회/초 부근에서는 약 2%, Netflix의 많은 서비스처럼 1만 회/초 미만이면 손실이 0.5% 미만으로 무시할 만할 것이라고 예상했습니다. syscall이 극단적으로 잦은 스트레스 테스트(초당 21만 회 + 컨텍스트 스위치 초당 2.7만 회)에서는 TLB 민감도 때문에 예상(12% 미만)보다 큰 25% 손실이 측정되기도 했습니다. 이 수치들은 커널 버전·CPU 세대·워크로드에 따라 달라지므로 절대값으로 받아들이지 말고, 자신의 환경에서 syscall 비율을 먼저 측정한 뒤 참고치로만 사용해야 합니다.
 
 ```bash
 # 현재 커널이 Meltdown에 취약한지, KPTI로 완화됐는지 확인
@@ -153,14 +153,22 @@ ssize_t n = writev(fd, iov, iovcnt);
 ```cpp
 #include <sys/uio.h>
 #include <unistd.h>
+#include <cerrno>
 #include <cstddef>
 
 // 부분 쓰기 발생 시 남은 iovec을 재구성해 재시도한다.
-// EINTR 등 세부 에러 처리는 실제 코드에서 추가로 필요하다.
+// 주의: 호출자의 iov 배열(iov_base/iov_len)을 직접 수정한다.
+// EINTR은 재시도, 그 밖의 오류(EAGAIN 포함)는 false로 호출자에게 넘긴다.
 bool writev_all(int fd, iovec* iov, int iovcnt) {
   while (iovcnt > 0) {
+    // 길이 0인 iovec은 건너뛴다(남은 것이 모두 0이면 writev가 0을 반환해 무한 루프가 된다)
+    while (iovcnt > 0 && iov[0].iov_len == 0) { ++iov; --iovcnt; }
+    if (iovcnt == 0) break;
     ssize_t n = writev(fd, iov, iovcnt);
-    if (n < 0) return false;
+    if (n < 0) {
+      if (errno == EINTR) continue;
+      return false;
+    }
     while (n > 0 && iovcnt > 0) {
       if (static_cast<size_t>(n) < iov[0].iov_len) {
         iov[0].iov_base = static_cast<char*>(iov[0].iov_base) + n;
