@@ -302,7 +302,7 @@
 | content/collection/optimization-05-cpu-microarchitecture/01-cpu-pipeline-fundamentals/index.md | 97.3 | 2026-10-23 | 1 | 통과 | 1.3 | b5b5509 | - |
 | content/collection/optimization-05-cpu-microarchitecture/02-branch-prediction/index.md | 97 | 2026-10-23 | 1 | 통과 | 1.3 | f772241 | - |
 | content/collection/optimization-05-cpu-microarchitecture/03-cache-hierarchy/index.md | 100 | 2026-10-23 | 1 | 통과 | 1.3 | ff4f7f6 | - |
-| content/collection/optimization-05-cpu-microarchitecture/04-cache-miss-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/04-cache-miss-analysis/index.md | 91.6 | 2026-10-23 | 1 | 통과 | 1.3 | 2ee9a48 | - |
 | content/collection/optimization-05-cpu-microarchitecture/05-ilp-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-05-cpu-microarchitecture/06-out-of-order-execution/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-05-cpu-microarchitecture/07-tlb-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
