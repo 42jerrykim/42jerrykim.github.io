@@ -1,7 +1,7 @@
 ---
 collection_order: 1
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-20
 draft: false
 image: wordcloud.png
 title: "[OS 06] Context Switch 비용 분석과 회피"
@@ -28,10 +28,10 @@ tags:
   - System-Design
   - Advanced
   - Deep-Dive
-  - Case-Study
-  - Hardware(하드웨어)
-  - Guide(가이드)
-  - Reference(참고)
+  - Mutex(뮤텍스)
+  - Scheduling(스케줄링)
+  - Cache(캐시)
+  - Thread-Pool(스레드풀)
   - Context-Switch
   - TLB
   - Cache-Pollution
@@ -39,7 +39,6 @@ tags:
   - vmstat
   - perf-sched
   - PCID
-  - Futex
 ---
 
 <strong>Context Switch(컨텍스트 스위치)</strong>란 CPU 코어가 하나의 실행 흐름(프로세스 또는 스레드)을 멈추고 다른 실행 흐름을 재개하기 위해 레지스터·프로그램 카운터·주소 공간 매핑 등 실행 상태를 저장하고 복원하는 커널 동작을 말합니다. 애플리케이션 코드와 알고리즘을 아무리 다듬어도, 스레드 수가 코어 수보다 많거나 락 경합이 잦으면 스케줄러가 개입하는 횟수 자체가 지연 시간의 바닥을 결정합니다. 이 장에서는 컨텍스트 스위치의 직접 비용과 간접 비용을 구조적으로 나누어 살펴보고, 자발적(voluntary) 스위치와 비자발적(involuntary) 스위치를 구분해 측정하는 도구를 익힌 뒤, 스위치 횟수 자체를 줄이는 설계 전략을 정리합니다.
@@ -84,9 +83,9 @@ flowchart LR
 
 ## 직접 비용과 간접 비용
 
-<strong>직접 비용(direct cost)</strong>은 스위치 자체가 CPU 사이클을 소비하는 부분입니다. 레지스터 저장/복원, 커널 스택 전환, 스케줄러가 다음 태스크를 고르는 데 걸리는 시간, 프로세스 전환이라면 페이지 테이블 베이스 교체까지 포함합니다. 개인 벤치마크와 공개 측정 사례를 보면 현대 x86-64 서버 CPU 기준으로 직접 비용은 대략 **1–4마이크로초** 범위에서 관측되는 경우가 흔하지만, 이는 CPU 세대·커널 버전·측정 방법론에 따라 달라지므로 절대값으로 암기하지 말고 자신의 환경에서 재현해야 합니다.
+<strong>직접 비용(direct cost)</strong>은 스위치 자체가 CPU 사이클을 소비하는 부분입니다. 레지스터 저장/복원, 커널 스택 전환, 스케줄러가 다음 태스크를 고르는 데 걸리는 시간, 프로세스 전환이라면 페이지 테이블 베이스 교체까지 포함합니다. 공개 측정 사례로 자주 인용되는 [Tsuna의 2010년 벤치마크](https://blog.tsunanet.net/2010/11/how-long-does-it-take-to-make-context.html)(futex로 두 태스크를 번갈아 깨우는 방식)는 Intel Core 2·Nehalem·Sandy Bridge 세대 Xeon에서 스위치당 약 3.0–4.5µs를, 두 태스크를 같은 코어에 고정했을 때는 약 1.1–1.9µs를 보고했습니다. 즉 직접 비용은 대략 **1–4.5마이크로초** 범위에 놓이지만, 이는 2010년 전후 CPU·커널 기준이고 CPU 세대·커널 버전·측정 방법론에 따라 달라지므로 절대값으로 암기하지 말고 자신의 환경에서 재현해야 합니다.
 
-<strong>간접 비용(indirect cost)</strong>은 스위치가 끝난 뒤 새로 실행되는 태스크가 예전 태스크가 채워 놓았던 L1/L2/L3 캐시와 TLB를 다시 채우면서 발생하는 지연입니다. 이 비용은 작업 세트(working set) 크기에 크게 좌우됩니다. Tsuna의 잘 알려진 벤치마크 분석에 따르면, 작업 세트가 L1 캐시(수십 KB)를 넘어서는 순간 스위치당 비용이 두 배 이상으로 뛰고, L2 캐시 절반을 넘어서면 수 배에서 수십 배까지 늘어날 수 있습니다. 같은 코어에 스레드를 고정(pinning)해 마이그레이션을 없앤 경우와 코어를 옮겨 다니게 방치한 경우를 비교하면, 저자는 고정 시 스위치당 비용이 절반 이하로 줄어드는 사례를 보고합니다. 즉 "컨텍스트 스위치는 Xµs"라는 단일 숫자는 존재하지 않고, 직접 비용은 상대적으로 작고 예측 가능한 반면 간접 비용은 워크로드의 메모리 접근 패턴에 좌우되는 변동 폭이 훨씬 큰 항목입니다.
+<strong>간접 비용(indirect cost)</strong>은 스위치가 끝난 뒤 새로 실행되는 태스크가 예전 태스크가 채워 놓았던 L1/L2/L3 캐시와 TLB를 다시 채우면서 발생하는 지연입니다. 이 비용은 작업 세트(working set) 크기에 크게 좌우됩니다. 같은 Tsuna 글에서 각 태스크가 스위치 사이에 작업 세트를 덮어쓰게 한 실험을 보면, 작업 세트가 L1d(32KB)를 넘어서는 순간 4KB 페이지 하나를 쓰는 시간이 두 배 이상으로 뛰고, 작업 세트가 커질수록 스위치당 시간이 계속 늘어납니다. 저자가 인용한 Rochester 대학 연구(Li·Ding·Shen, 2007)는 작업 세트가 L2 캐시의 절반쯤을 넘으면 스위치 비용이 두 자릿수 배(약 100배)까지 급증한다고 보고했습니다. 또 두 프로세스를 같은 코어에 고정하자 작업 세트가 공유 L2에 머물러 코어 간 캐시 라인 이동이 사라졌기 때문으로 추정되며, 고정하지 않았을 때보다 약 10배(order of magnitude) 빨라졌다고 보고합니다. 즉 "컨텍스트 스위치는 Xµs"라는 단일 숫자는 존재하지 않고, 직접 비용은 상대적으로 작고 예측 가능한 반면 간접 비용은 워크로드의 메모리 접근 패턴에 좌우되는 변동 폭이 훨씬 큰 항목입니다.
 
 x86-64 프로세서의 PCID(Process-Context Identifier)와 이를 활용하는 커널의 TLB 태깅은 컨텍스트 스위치마다 TLB 전체를 비우는 대신 주소 공간별로 태그를 구분해 일부 엔트리를 재사용하도록 완화할 수 있습니다. 다만 이 완화의 실제 효과는 CPU 세대(INVPCID 지원 여부), 커널 버전, KPTI(Meltdown 완화) 활성화 여부에 따라 달라지는 **구현 정의** 영역이므로, "PCID가 있으니 TLB 플러시 비용은 무시해도 된다"고 단정하지 않는 것이 안전합니다.
 
@@ -120,6 +119,7 @@ int main(void) {
 ```bash
 # 실행 중인 프로세스의 누적 자발적/비자발적 스위치 횟수
 grep ctxt_switches /proc/$(pgrep -n myapp)/status
+# (출력 형식 예시 — 값은 프로세스마다 다름)
 # voluntary_ctxt_switches:    1204
 # nonvoluntary_ctxt_switches: 37
 
@@ -137,13 +137,15 @@ perf sched timehist                # 개별 스위치 이벤트의 대기 시간
 
 `perf sched`는 "Tool to trace/measure scheduler properties (latencies)"로 문서화되어 있으며, `latency`·`timehist`·`map` 서브커맨드로 태스크별 지연과 개별 스위치 이벤트를 시간순으로 분해해 보여줍니다 ([man7.org: perf-sched(1)](https://man7.org/linux/man-pages/man1/perf-sched.1.html)).
 
-**스위치 자체의 순수 비용**을 격리해 측정하려면, lmbench의 `lat_ctx`가 오래 써온 것과 같은 방식인 "핑퐁(ping-pong)" 벤치마크가 유용합니다. 두 실행 흐름이 서로를 블로킹 I/O로 깨우게 만들면 왕복마다 최소 두 번의 강제 컨텍스트 스위치가 발생합니다. 아래는 파이프 기반의 최소 재현 코드입니다.
+**스위치 자체의 순수 비용**을 격리해 측정하려면, lmbench의 `lat_ctx`가 오래 써온 것과 같은 방식인 "핑퐁(ping-pong)" 벤치마크가 유용합니다. 두 실행 흐름을 **같은 코어**에 고정하고 서로를 블로킹 `read`로 깨우게 만들면, 한쪽이 블로킹될 때마다 다른 쪽으로 전환되므로 왕복마다 최소 두 번의 자발적 컨텍스트 스위치가 발생합니다. 아래는 파이프 기반의 최소 재현 코드이며, 코어 번호를 인자로 받아 같은 코어(기본값)와 다른 코어 배치를 비교할 수 있습니다.
 
 ```cpp
 // ctxsw_bench.cpp
 // 빌드: g++ -O2 -std=c++17 -pthread ctxsw_bench.cpp -o ctxsw_bench
-// 실행: taskset -c 2,3 ./ctxsw_bench   (두 논리 코어에 한정해 마이그레이션 배제)
+// 실행: ./ctxsw_bench          (두 스레드 모두 CPU 0 — 같은 코어 전환)
+//       ./ctxsw_bench 0 1      (main은 CPU 0, peer는 CPU 1 — 크로스코어 wakeup 포함)
 #include <cstdio>
+#include <cstdlib>
 #include <pthread.h>
 #include <sched.h>
 #include <time.h>
@@ -152,36 +154,41 @@ perf sched timehist                # 개별 스위치 이벤트의 대기 시간
 int pipe_a[2], pipe_b[2];  // a: main->peer, b: peer->main
 constexpr int kRounds = 100000;
 
+int peer_cpu = 0;
+
 void pin_to(int cpu) {
   cpu_set_t set;
   CPU_ZERO(&set);
   CPU_SET(cpu, &set);
-  pthread_setaffinity_np(pthread_self(), sizeof(set), &set);
+  if (pthread_setaffinity_np(pthread_self(), sizeof(set), &set) != 0) {
+    std::fprintf(stderr, "CPU %d에 고정 실패
+", cpu);
+    std::exit(1);
+  }
 }
 
 void* peer_thread(void*) {
-  pin_to(1);
+  pin_to(peer_cpu);
   char buf;
   for (int i = 0; i < kRounds; ++i) {
-    read(pipe_a[0], &buf, 1);
-    write(pipe_b[1], &buf, 1);
+    if (read(pipe_a[0], &buf, 1) != 1 || write(pipe_b[1], &buf, 1) != 1) std::exit(1);
   }
   return nullptr;
 }
 
-int main() {
-  pipe(pipe_a);
-  pipe(pipe_b);
-  pin_to(0);
+int main(int argc, char** argv) {
+  int main_cpu = argc > 1 ? std::atoi(argv[1]) : 0;
+  peer_cpu = argc > 2 ? std::atoi(argv[2]) : main_cpu;
+  if (pipe(pipe_a) != 0 || pipe(pipe_b) != 0) { std::perror("pipe"); return 1; }
+  pin_to(main_cpu);
   pthread_t t;
-  pthread_create(&t, nullptr, peer_thread, nullptr);
+  if (pthread_create(&t, nullptr, peer_thread, nullptr) != 0) return 1;
 
   char buf = 'x';
   timespec t0, t1;
   clock_gettime(CLOCK_MONOTONIC, &t0);
   for (int i = 0; i < kRounds; ++i) {
-    write(pipe_a[1], &buf, 1);
-    read(pipe_b[0], &buf, 1);
+    if (write(pipe_a[1], &buf, 1) != 1 || read(pipe_b[0], &buf, 1) != 1) return 1;
   }
   clock_gettime(CLOCK_MONOTONIC, &t1);
   pthread_join(t, nullptr);
@@ -193,11 +200,11 @@ int main() {
 }
 ```
 
-이 코드는 파이프 두 개를 오가는 1바이트 핑퐁만 측정하므로 **직접 비용에 가까운 하한선**을 보여줍니다. 실제 서비스의 스위치 비용은 여기에 작업 세트 크기에 비례하는 간접 비용이 더해지므로, 이 벤치마크 결과를 그대로 서비스 전체 오버헤드로 환산하지 말고 `perf sched timehist`로 실제 워크로드의 스위치 빈도와 대기 시간을 함께 확인해야 합니다.
+기본값(같은 코어)으로 실행하면 파이프 두 개를 오가는 1바이트 핑퐁만 측정하므로 **직접 비용에 가까운 하한선**을 보여줍니다(파이프 `read`/`write` 시스템 콜 비용도 함께 포함됩니다). 두 스레드를 다른 코어에 두면 상대 코어를 깨우는 IPI와 유휴 상태 탈출 지연이 더해지므로, 두 결과의 차이로 코어 배치가 전환 비용에 주는 영향을 확인할 수 있습니다. 실제 서비스의 스위치 비용은 여기에 작업 세트 크기에 비례하는 간접 비용이 더해지므로, 이 벤치마크 결과를 그대로 서비스 전체 오버헤드로 환산하지 말고 `perf sched timehist`로 실제 워크로드의 스위치 빈도와 대기 시간을 함께 확인해야 합니다.
 
 ## 흔한 오개념
 
-<strong>"컨텍스트 스위치 비용은 항상 일정하다"</strong>는 오개념입니다. 직접 비용은 CPU 세대·커널 버전에서 비교적 안정적이지만, 간접 비용은 작업 세트 크기와 캐시 상태에 따라 같은 시스템에서도 수 배에서 수십 배까지 달라집니다. 벤치마크로 얻은 숫자 하나를 다른 워크로드에 그대로 적용하면 안 됩니다.
+<strong>"컨텍스트 스위치 비용은 항상 일정하다"</strong>는 오개념입니다. 직접 비용은 CPU 세대·커널 버전에서 비교적 안정적이지만, 간접 비용은 작업 세트 크기와 캐시 상태에 따라 같은 시스템에서도 수 배에서 최대 약 100배까지 달라질 수 있습니다. 벤치마크로 얻은 숫자 하나를 다른 워크로드에 그대로 적용하면 안 됩니다.
 
 <strong>"스레드 전환과 프로세스 전환은 비용이 같다"</strong>도 흔한 오해입니다. 같은 프로세스의 스레드끼리는 `mm_struct`(주소 공간)를 공유하므로 페이지 테이블 베이스 교체와 그에 따른 TLB 무효화가 필요 없습니다. 프로세스 사이의 전환만 이 비용을 추가로 지불합니다. 아키텍처를 스레드 기반으로 설계하면 이 차이만으로도 스위치 비용을 줄일 수 있습니다(선택 기준은 [Process vs Thread 아키텍처 선택](/post/os-optimization/process-vs-thread-architecture-choice/), 16장 참고).
 
@@ -229,7 +236,7 @@ int main() {
 
 컨텍스트 스위치를 줄이는 가장 손쉬운 방법 중 하나는 블로킹 대신 바쁜 대기(busy-polling)로 전환하는 것이지만, 이는 스위치 비용을 CPU 사이클 소비와 전력 비용으로 바꾸는 트레이드오프일 뿐입니다. 코어를 100% 점유하는 폴링 루프는 다른 워크로드와 공존하기 어렵고 클라우드·컨테이너 환경에서는 비용으로 직결되므로, 지연 목표가 그 대가를 정당화하는지 먼저 따져야 합니다(폴링 기반 I/O의 구체적 트레이드오프는 8장에서 다시 다룹니다).
 
-CPU pinning으로 비자발적 스위치를 줄이는 전략도 공짜가 아닙니다. 특정 코어를 특정 스레드에 고정하면 스케줄러가 부하를 다른 유휴 코어로 재분배할 여지가 줄어들어, 워크로드 패턴이 바뀌면 오히려 코어별 불균형이 고착될 수 있습니다. PCID 기반 TLB 태깅처럼 하드웨어·커널이 제공하는 완화책도 CPU 세대와 커널 버전에 따라 실제 효과가 달라지므로, "최신 하드웨어니까 TLB 플러시 비용은 무시할 만하다"는 가정은 반드시 자신의 환경에서 재검증해야 합니다. 마지막으로, 스위치 횟수라는 단일 지표만으로 성능 문제를 진단하는 것도 위험합니다. 같은 횟수라도 어떤 스위치는 워밍업된 캐시로 돌아오고 어떤 스위치는 완전히 식은 캐시로 돌아오므로, `perf sched timehist`처럼 개별 이벤트의 대기·실행 시간을 함께 보지 않으면 지표가 실제 지연 분포를 오도할 수 있습니다.
+CPU pinning으로 비자발적 스위치를 줄이는 전략도 공짜가 아닙니다. 특정 코어를 특정 스레드에 고정하면 스케줄러가 부하를 다른 유휴 코어로 재분배할 여지가 줄어들어, 워크로드 패턴이 바뀌면 오히려 코어별 불균형이 고착될 수 있습니다. 마지막으로, 스위치 횟수라는 단일 지표만으로 성능 문제를 진단하는 것도 위험합니다. 같은 횟수라도 어떤 스위치는 워밍업된 캐시로 돌아오고 어떤 스위치는 완전히 식은 캐시로 돌아오므로, `perf sched timehist`처럼 개별 이벤트의 대기·실행 시간을 함께 보지 않으면 지표가 실제 지연 분포를 오도할 수 있습니다.
 
 ## 마무리
 
