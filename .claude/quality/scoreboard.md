@@ -287,7 +287,7 @@
 | content/collection/optimization-04-memory-allocation/03-custom-allocator/index.md | 93.9 | 2026-10-23 | 1 | 통과 | 1.3 | e1b8a0f | 없음(경미: ArenaAllocator·StackAllocator에 과정렬 T static_assert 없음, "초기 구현체가 할당자를 무시" 출처 없는 일반화, construct/destroy 연혁 중복) |
 | content/collection/optimization-04-memory-allocation/04-pmr-allocator/index.md | 93.1 | 2026-10-23 | 0 | 통과 | 1.3 | d40516e | 없음(경미: P0339 귀속·L91 주석↔본문 모순·출처 없는 ns 수치·무관 태그 7개는 통과 후 미수정, 다음 재점검 때 처리) |
 | content/collection/optimization-04-memory-allocation/05-aos-vs-soa/index.md | 97.3 | 2026-10-23 | 1 | 통과 | 1.3 | 2bf96db | 없음(경미: 11회 측정 범위의 원본 출력·링크 미첨부, Acton 문장이 따옴표 안 의역) |
-| content/collection/optimization-04-memory-allocation/06-cache-friendly-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/06-cache-friendly-patterns/index.md | 100.0 | 2026-10-23 | 2 | 통과 | 1.3 | e00c314 | 없음(개선여지만: 프리페처 도입 시기 출처, Intel 매뉴얼 절 번호, 호출 단위 배칭 예제) |
 | content/collection/optimization-04-memory-allocation/07-padding-alignment/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/08-large-pages/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/09-numa-allocation/index.md | - | - | 0 | 미채점 | - | - | - |
