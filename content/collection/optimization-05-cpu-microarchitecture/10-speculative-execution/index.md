@@ -1,7 +1,7 @@
 ---
 collection_order: 10
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-24
 draft: false
 image: wordcloud.png
 title: "[CPU 05] 추측 실행과 보안 영향"
@@ -13,7 +13,6 @@ tags:
   - CPU(Central Processing Unit)
   - Cache
   - Memory(메모리)
-  - Assembly
   - Compiler(컴파일러)
   - Hardware(하드웨어)
   - Benchmark
@@ -23,16 +22,9 @@ tags:
   - Security(보안)
   - OS(운영체제)
   - Linux(리눅스)
-  - Windows(윈도우)
   - Advanced
   - Deep-Dive
-  - Case-Study
-  - Technology(기술)
-  - Reference(참고)
-  - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Documentation(문서화)
   - Spectre
   - Meltdown
   - Speculative-Execution
@@ -41,6 +33,9 @@ tags:
   - KPTI
   - IBRS
   - Side-Channel
+  - Hypervisor
+  - Virtualization
+  - Mitigation
   - Branch-Target-Injection
   - VMScape
 ---
@@ -80,7 +75,7 @@ Meltdown은 유저 프로세스와 커널 사이의 경계를, Spectre는 서로
 | 2018 | Spectre v1/v2, Meltdown | bounds check 우회, 분기 목표 주입, 커널 메모리 유출 |
 | 2018 | L1TF(Foreshadow) | 무효 PTE라도 L1 캐시에 남은 데이터를 추측적으로 로드 |
 | 2019 | MDS(RIDL/Fallout/ZombieLoad) | 로드/스토어 버퍼 등 내부 버퍼의 잔여 데이터 샘플링 |
-| 2022 | Retbleed | 얕은 콜스택에서 retpoline 자체를 우회하는 리턴 예측 |
+| 2022 | Retbleed | 깊은 콜스택에서 RSB가 비면 ret이 간접 분기 예측기로 폴백하는 점을 이용해 retpoline을 우회 |
 | 2023 | Zenbleed, Downfall(GDS) | AMD Zen2 레지스터 파일 오염, Intel AVX 계열 gather 샘플링 |
 | 2023 | Inception/SRSO | AMD 리턴 예측기에 추측 페이즈 자체를 주입 |
 | 2024 | GhostRace | 잠금(lock) 경합 코드 경로에 숨은 Spectre v1 gadget |
@@ -99,7 +94,7 @@ Meltdown은 유저 프로세스와 커널 사이의 경계를, Spectre는 서로
 #include <cstdint>
 #include <cstddef>
 
-// 실제 공격 코드가 아니라 Spectre v1 gadget의 "패턴"을 보여주는 예시다.
+// 실제 공격 코드가 아니라 Spectre v1 gadget의 "패턴"을 보여주는 단편 예시이며, 호출하는 main은 포함하지 않는다.
 // array1_size 검사가 있어도, 분기 예측기가 반복 학습을 통해 "범위 안"이라고
 // 확신하고 있으면 검사 결과가 확정되기 전에 array1[x]를 추측적으로 읽어
 // array2 인덱싱에 써버릴 수 있다.
@@ -134,7 +129,7 @@ flowchart LR
 
 <strong>"패치를 다 적용하면 완전히 안전해진다"</strong>는 틀린 생각입니다. Spectre/Meltdown류 취약점의 근본 원인은 추측 실행이라는 하드웨어 최적화 자체에 있고, 패치는 알려진 특정 gadget 패턴을 막을 뿐입니다. GhostRace(2024)가 잠금 경합 코드라는 전혀 새로운 위치에서 Spectre v1 gadget을 찾아냈고, Branch Privilege Injection(2025)이 유저→커널 전환의 나노초 단위 틈에서 새 경로를 찾아낸 것처럼, 예측기와 특권 전환이 존재하는 한 새로운 변종이 계속 나올 수 있습니다.
 
-<strong>"이건 소프트웨어 버그라 컴파일러·커널만 고치면 근본적으로 해결된다"</strong>도 오해입니다. retpoline·LFENCE 삽입 같은 소프트웨어 완화는 하드웨어의 근본 동작(추측 실행)은 그대로 둔 채 특정 gadget이 악용되는 경로만 차단하는 우회책에 가깝습니다. eIBRS·CET 같은 하드웨어 강화도 특정 클래스의 공격만 저비용으로 막을 뿐, Retbleed가 retpoline을, Inception이 AMD의 하드웨어 완화를 각각 우회했듯 소프트웨어와 하드웨어 어느 쪽도 단독으로 "완전한 해결"을 제공하지 않습니다.
+<strong>"이건 소프트웨어 버그라 컴파일러·커널만 고치면 근본적으로 해결된다"</strong>도 오해입니다. retpoline·LFENCE 삽입 같은 소프트웨어 완화는 하드웨어의 근본 동작(추측 실행)은 그대로 둔 채 특정 gadget이 악용되는 경로만 차단하는 우회책에 가깝습니다. eIBRS·CET 같은 하드웨어 강화도 특정 클래스의 공격만 저비용으로 막을 뿐, Retbleed가 retpoline을 우회했듯 소프트웨어와 하드웨어 어느 쪽도 단독으로 "완전한 해결"을 제공하지 않습니다.
 
 <strong>"Spectre v1은 2018년 취약점이라 이제 레거시고 신경 쓸 필요 없다"</strong>는 생각도 위험합니다. v1(bounds check bypass)은 하드웨어 수정이 사실상 불가능해 지금도 컴파일러 수준의 정적 분석과 수동 코드 검토에 의존하는데, GhostRace가 2024년에 리눅스 커널의 락 프리미티브에서 새 v1 gadget을 발견했다는 사실 자체가 "오래된 취약점 계열"이라는 인식과 "실제로 남아 있는 위험" 사이의 간극을 보여줍니다.
 
@@ -168,11 +163,11 @@ Mitigation: PTI
 
 (정확한 문자열은 커널 버전·마이크로코드·CPU 세대에 따라 달라지므로 대상 시스템에서 직접 확인해야 합니다.)
 
-이 완화 기법들은 공짜가 아닙니다. Meltdown 대응으로 도입된 <strong>KPTI(Kernel Page Table Isolation)</strong>는 유저/커널 페이지 테이블을 분리해 커널 진입·복귀마다 추가 TLB 처리를 요구하며, 2018년 초 syscall이 잦은 워크로드(PostgreSQL, Redis 등)에서는 최대 30%에 가까운 성능 저하가 보고된 바 있습니다 — 이후 PCID(Process-Context Identifier) 지원으로 전체 TLB 플러시를 피할 수 있게 되면서 전형적인 비용은 크게 줄었지만, syscall 빈도가 극단적으로 높은 코드에서는 여전히 체감할 수 있는 수준입니다. Linux 커널 공식 문서는 L1TF 대응으로 VM 진입마다 L1D 캐시를 플러시하는 완화의 비용을 다음과 같이 명시합니다.
+이 완화 기법들은 공짜가 아닙니다. Meltdown 대응으로 도입된 <strong>KPTI(Kernel Page Table Isolation)</strong>는 유저/커널 페이지 테이블을 분리해 커널 진입·복귀마다 추가 TLB 처리를 요구하므로 syscall이 잦은 워크로드에서 비용이 두드러집니다. PCID(Process-Context Identifier) 지원으로 전체 TLB 플러시를 피할 수 있게 되면서 비용은 줄었지만, syscall 빈도가 극단적으로 높은 코드에서는 여전히 체감할 수 있는 수준입니다. Linux 커널 공식 문서는 L1TF 대응으로 VM 진입마다 L1D 캐시를 플러시하는 완화의 비용을 다음과 같이 명시합니다.
 
-> "관련 성능 저하는 VM exit 빈도에 따라 1%에서 50% 사이로 나타난다." — [kernel.org, L1TF 문서](https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/l1tf.html) 요지 (조건부 플러시 기준, virtio 등 최적화된 구성에서는 영향이 최소화됨)
+> "Depending on the frequency of VMEXIT/VMENTER and the type of computations in the guest performance degradation in the range of 1% to 50% has been observed." — [kernel.org, L1TF 문서](https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/l1tf.html)
 
-2025년 VMScape 대응으로 추가된 "VMEXIT 시 IBPB 발행" 완화도 비슷한 패턴을 보였다고 보도되었습니다 — 대부분의 워크로드에서는 1% 안팎으로 미미하지만, I/O가 잦은 가상화 워크로드에서는 51%까지 치솟을 수 있다는 것입니다([comsec.ethz.ch, VMScape 연구](https://comsec.ethz.ch/research/microarch/vmscape-exposing-and-exploiting-incomplete-branch-predictor-isolation-in-cloud-environments/)). 같은 해 공개된 Branch Privilege Injection의 마이크로코드 완화는 이보다 훨씬 가벼워, Alder Lake 기준 2.7% 수준의 오버헤드가 보고되었습니다([ethz.ch 뉴스](https://ethz.ch/en/news-and-events/eth-news/news/2025/05/eth-zurich-researchers-discover-new-security-vulnerability-in-intel-processors.html)). 이 세 수치의 편차 자체가 중요한 교훈입니다 — 완화 비용은 "몇 퍼센트"라는 단일 숫자가 아니라 **VMEXIT·syscall·TLB 미스 빈도 같은 워크로드 특성에 따라 1%와 50%를 오갈 수 있는 분포**이므로, 실제 배포 전에는 대상 워크로드로 직접 측정해야 합니다.
+위 문서는 게스트의 VMEXIT/VMENTER가 드문 시나리오에서는 영향이 미미하다고도 덧붙입니다. 같은 맥락에서 2025년 VMScape 대응처럼 VMEXIT 경로에 분기 예측기 배리어를 넣는 완화도 가상화 워크로드의 VMEXIT 빈도에 따라 비용이 달라질 것으로 예상할 수 있으므로, 구체적인 수치는 [VMScape 연구 페이지](https://comsec.ethz.ch/research/microarch/vmscape-exposing-and-exploiting-incomplete-branch-predictor-isolation-in-cloud-environments/)와 [Branch Privilege Injection 관련 ETH 보도](https://ethz.ch/en/news-and-events/eth-news/news/2025/05/eth-zurich-researchers-discover-new-security-vulnerability-in-intel-processors.html)가 안내하는 논문과 벤더 권고문에서 직접 확인해야 합니다. 여기서 얻을 교훈은, 완화 비용이 "몇 퍼센트"라는 단일 숫자가 아니라 **VMEXIT·syscall·TLB 미스 빈도 같은 워크로드 특성에 따라 크게 달라지는 분포**라는 점입니다. 따라서 실제 배포 전에는 대상 워크로드로 직접 측정해야 합니다.
 
 이 격리를 실제 시스템에서 재현해 측정하려면, syscall 하나의 순수 지연시간을 반복 측정하는 벤치마크를 부팅 옵션을 바꿔가며 비교하는 방법이 가장 직접적입니다.
 
@@ -180,9 +175,10 @@ Mitigation: PTI
 #include <benchmark/benchmark.h>
 #include <unistd.h>
 
-// spectre_v2=on(기본)과 spectre_v2=off, mitigations=off 커널 부팅 옵션으로
-// 각각 재부팅한 뒤 이 벤치마크를 실행해 ns/iter를 비교하면, 완화 기법이
-// syscall 경로에 추가하는 순수 오버헤드를 격리해 측정할 수 있다.
+// 커널 부팅 옵션(기본, nopti, spectre_v2=off, mitigations=off)을 바꿔 가며
+// 재부팅한 뒤 이 벤치마크의 ns/iter를 비교한다. 옵션마다 끄는 완화가 다르므로
+// (nopti는 KPTI, spectre_v2=off는 Spectre v2 완화, mitigations=off는 전체)
+// 어떤 옵션이 어떤 비용을 분리하는지 구분해서 해석해야 한다.
 static void BM_GetpidSyscall(benchmark::State& state) {
   for (auto _ : state) {
     benchmark::DoNotOptimize(getpid());
@@ -207,7 +203,7 @@ BENCHMARK_MAIN();
 
 ## 비판적 시각: 한계와 트레이드오프
 
-추측 실행 취약점 대응은 "패치 한 번으로 끝나는 버그 수정"이 아니라 <strong>끝나지 않는 두더지 잡기(whack-a-mole)</strong>에 가깝습니다. Retpoline은 Retbleed에, AMD의 하드웨어 완화는 Inception에 각각 우회당했고, Indirector처럼 벤더가 "기존 완화로 충분하다"며 심각도를 낮춰 발표한 사례도 있어 완화가 실제로 얼마나 포괄적인지 외부에서 검증하기 어렵습니다. 근본 원인이 수십 년간 성능 향상의 핵심 동력이었던 추측 실행 자체에 있다 보니, 하드웨어 벤더 입장에서는 "완전히 끄면 안전하지만 성능이 크게 떨어지는" 기능을 쉽게 포기할 수 없다는 구조적 긴장이 계속됩니다.
+추측 실행 취약점 대응은 "패치 한 번으로 끝나는 버그 수정"이 아니라 <strong>끝나지 않는 두더지 잡기(whack-a-mole)</strong>에 가깝습니다. Indirector처럼 벤더가 "기존 완화로 충분하다"며 심각도를 낮춰 발표한 사례도 있어 완화가 실제로 얼마나 포괄적인지 외부에서 검증하기 어렵습니다. 근본 원인이 수십 년간 성능 향상의 핵심 동력이었던 추측 실행 자체에 있다 보니, 하드웨어 벤더 입장에서는 "완전히 끄면 안전하지만 성능이 크게 떨어지는" 기능을 쉽게 포기할 수 없다는 구조적 긴장이 계속됩니다.
 
 이 긴장은 저지연 시스템 엔지니어에게 실제 선택의 문제로 다가옵니다. 앞서 본 것처럼 KPTI·IBPB·L1D 플러시 같은 완화는 워크로드에 따라 수십 퍼센트에 달하는 지연시간 비용을 청구할 수 있는데, 신뢰 안 되는 코드가 절대 실행되지 않는 단일 테넌트 전용 서버(예: 폐쇄망의 HFT 매칭 엔진)라면 일부 완화를 의도적으로 비활성화하는 것이 합리적인 선택일 수 있습니다. 다만 이 판단은 개인이 임의로 내릴 일이 아니라, 위협 모델·컴플라이언스 요건·향후 신뢰 경계 변화 가능성을 팀·보안 담당자와 함께 문서화한 뒤 내려야 합니다 — "성능 때문에 껐다"는 결정이 감사·사고 대응 시점에 근거 없는 선택으로 남으면 안 되기 때문입니다.
 
