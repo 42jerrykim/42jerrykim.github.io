@@ -1,7 +1,7 @@
 ---
 collection_order: 14
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-24
 draft: false
 image: wordcloud.png
 title: "[OS 06] Memory Locking"
@@ -19,9 +19,7 @@ tags:
   - Memory(메모리)
   - Concurrency(동시성)
   - C
-  - Benchmark
   - Latency
-  - Throughput
   - Profiling(프로파일링)
   - Implementation(구현)
   - Best-Practices
@@ -29,7 +27,6 @@ tags:
   - Production
   - Reliability
   - Debugging(디버깅)
-  - Hardware(하드웨어)
   - mlock
   - mlockall
   - RLIMIT-MEMLOCK
@@ -38,6 +35,8 @@ tags:
   - MCL-ONFAULT
   - CAP-IPC-LOCK
   - Unevictable
+  - Real-Time(실시간)
+  - Scheduling(스케줄링)
 ---
 
 **Memory Locking**이란 `mlock`/`mlockall` 계열 시스템 콜로 프로세스 가상 주소 공간의 특정 페이지를 물리 메모리(RAM)에 고정해, 커널의 페이지 회수(reclaim) 대상에서 제외시키는 기법을 말합니다. 지연시간을 µs 단위로 관리하는 프로세스에서는 실행 중 어느 순간이든 예상치 못한 **major page fault**(디스크·스왑 I/O를 동반하는 폴트)가 끼어드는 것이 치명적입니다. 평소에는 수십–수백 ns로 끝나던 메모리 접근이, 한 번의 스왑 인(swap-in)만으로 수백 µs에서 수 ms까지 늘어질 수 있기 때문입니다. 이 장은 이런 폴트를 원천 차단하기 위해 메모리를 RAM에 못박는 전략과, 그 대가로 지는 책임(과다 커밋 위험, OOM 노출, 운영 복잡도)을 함께 다룹니다.
@@ -46,7 +45,7 @@ tags:
 
 **전제 지식**: [cgroups v2 리소스 제어](/post/os-optimization/cgroups-v2-resource-control-performance/)에서 다룬 메모리 컨트롤러의 회수·제한 개념과, 가상 메모리에서 페이지가 필요할 때만 물리 프레임에 매핑된다는 demand paging의 기본 그림을 이미 안다고 가정합니다. 스왑(swap)이 "물리 메모리가 부족할 때 페이지를 디스크로 내보내는 메커니즘"이라는 것 정도만 알면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **심화** 난이도로, `mlock`/`mlockall`/`mlock2`의 정확한 의미론, `RLIMIT_MEMLOCK`이 막는 것과 막지 않는 것, 실시간 프로세스가 크리티컬 섹션 진입 전에 스택·힙을 미리 건드려 두는 프리폴트(pre-fault) 패턴, 그리고 메모리 고정이 시스템 전체 메모리 압박에 미치는 부작용을 다룹니다.
+**이 장의 깊이**: 이 장은 **심화** 난이도로, `mlock`/`mlockall`/`mlock2`의 의미론과 `MCL_ONFAULT`, `RLIMIT_MEMLOCK`의 한도와 특권 예외, 실시간 프로세스가 크리티컬 섹션 진입 전에 스택·힙을 미리 건드려 두는 프리폴트(pre-fault) 패턴, 그리고 메모리 고정이 시스템 전체 메모리 압박에 미치는 부작용을 다룹니다.
 
 **다루지 않는 것**: NUMA 노드별로 어디에 메모리를 배치할지는 [NUMA CPU Affinity·스레드 배치](/post/os-optimization/numa-cpu-affinity-thread-placement/)와 [Tr.04: NUMA 메모리 할당·지역성](/post/memory-optimization/numa-memory-allocation-locality/)으로, huge page 자체의 TLB 이점과 설정법은 [Huge TLB Pages 활용](/post/os-optimization/huge-tlb-pages-utilization/)과 [Tr.04: Huge Pages·Large Pages](/post/memory-optimization/huge-pages-large-pages-mthp/)로, SCHED_FIFO 등 실시간 스케줄링 정책 자체는 [Realtime 스케줄링](/post/os-optimization/realtime-scheduling-sched-ext-eevdf/)으로 위임합니다. 이 장은 "메모리를 어떻게 고정해 폴트를 없애는가"에 집중합니다.
 
@@ -62,9 +61,9 @@ tags:
 
 ## 메모리 고정의 배경 (역사·배경)
 
-메모리를 스왑에서 보호하는 요구는 실시간(real-time) 시스템에서 먼저 불거졌습니다. POSIX.1b(IEEE Std 1003.1b-1993)는 실시간 확장의 일부로 `mlock`/`munlock`/`mlockall`/`munlockall`을 표준화했고, 목적은 "실시간 프로세스가 페이지 폴트로 인한 예측 불가능한 지연을 겪지 않도록" 하는 것이었습니다. Linux는 이 API를 오래전부터 구현해 왔고, 이후 사용 편의를 넓히는 확장이 이어졌습니다. Linux 2.6.9(2004)는 `RLIMIT_MEMLOCK` 제한을 도입해 비특권 프로세스가 잠글 수 있는 메모리량에 상한을 두었고, 특권 프로세스(`CAP_IPC_LOCK`)는 이 제한에서 예외로 두었습니다. Linux 4.4(2016)는 `mlock2`와 `MCL_ONFAULT` 플래그를 추가해, 매핑 전체를 즉시 물리 메모리에 채우지 않고 실제로 접근하는 시점에만 잠그는 지연 잠금(lazy locking)을 가능하게 했습니다. 이 기능은 대형 매핑 중 일부만 실제로 쓰는 애플리케이션에서 mlockall의 초기 비용을 크게 줄여 줍니다 — [man7.org: mlock(2)](https://man7.org/linux/man-pages/man2/mlock.2.html) 문서에 정리되어 있듯, `MCL_ONFAULT`는 mlockall(MCL_CURRENT)의 즉시 populate 동작과 달리 폴트 시점까지 잠금을 미룹니다.
+메모리를 스왑에서 보호하는 요구는 실시간(real-time) 시스템에서 먼저 불거졌습니다. POSIX.1b(IEEE Std 1003.1b-1993)는 실시간 확장의 일부로 `mlock`/`munlock`/`mlockall`/`munlockall`을 표준화했고, 목적은 실시간 프로세스가 페이지 폴트로 인한 예측 불가능한 지연을 겪지 않도록 하는 것이었습니다. Linux는 이 API를 오래전부터 구현해 왔고, 이후 사용 편의를 넓히는 확장이 이어졌습니다. Linux 2.6.9(2004)는 `RLIMIT_MEMLOCK` 제한을 도입해 비특권 프로세스가 잠글 수 있는 메모리량에 상한을 두었고, 특권 프로세스(`CAP_IPC_LOCK`)는 이 제한에서 예외로 두었습니다. Linux 4.4(2016)는 `mlock2`와 `MCL_ONFAULT` 플래그를 추가해, 매핑 전체를 즉시 물리 메모리에 채우지 않고 실제로 접근하는 시점에만 잠그는 지연 잠금(lazy locking)을 가능하게 했습니다. 이 기능은 대형 매핑 중 일부만 실제로 쓰는 애플리케이션에서 mlockall의 초기 비용을 크게 줄여 줍니다 — [man7.org: mlock(2)](https://man7.org/linux/man-pages/man2/mlock.2.html) 문서에 정리되어 있듯, `MCL_ONFAULT`는 mlockall(MCL_CURRENT)의 즉시 populate 동작과 달리 폴트 시점까지 잠금을 미룹니다.
 
-이 기능은 실시간 커널(RT 커널) 계열의 레퍼런스 문서에서 오래 권장되어 온 관용구이기도 합니다. NTP 동기화 데몬 chrony는 `chronyd -m` 옵션으로 자기 자신을 mlockall로 고정하는데, 공식 문서는 이 옵션을 "chronyd를 RAM에 고정해 절대 페이징되지 않도록 한다"고 설명하며, `-P`(SCHED_FIFO 실시간 스케줄러 우선순위) 옵션과 함께 쓰는 것을 전제로 합니다 — [man.archlinux.org: chronyd(8)](https://man.archlinux.org/man/chronyd.8.en). 시각 동기화처럼 지터(jitter)가 정확도에 직결되는 데몬조차 메모리 고정과 실시간 스케줄링을 묶어서 쓴다는 점은, 이 두 기법이 원래 한 세트로 설계되었다는 것을 보여줍니다.
+이 기능은 실시간 커널(RT 커널) 계열의 레퍼런스 문서에서 오래 권장되어 온 관용구이기도 합니다. NTP 동기화 데몬 chrony는 `chronyd -m` 옵션으로 자기 자신을 mlockall로 고정하는데, 공식 문서는 이 옵션을 chronyd를 RAM에 고정해 페이징되지 않게 하는 옵션으로 설명하고, 별도의 `-P` 옵션으로 SCHED_FIFO 실시간 스케줄러 우선순위를 지정할 수 있게 합니다 — [man.archlinux.org: chronyd(8)](https://man.archlinux.org/man/chronyd.8.en). 시각 동기화처럼 지터(jitter)가 정확도에 직결되는 데몬이 메모리 고정 옵션을 제공한다는 점은, 실시간 성격의 프로세스에 메모리 고정이 관례적으로 쓰인다는 것을 보여줍니다.
 
 ## Page Fault: Minor와 Major
 
@@ -99,28 +98,29 @@ void unlock_process_memory(void) {
 
 잠긴 메모리량은 `/proc/[pid]/status`의 **VmLck** 필드로 확인할 수 있고, 시스템 전체 잠금량은 `/proc/meminfo`의 **Mlocked**/**Unevictable** 항목으로 볼 수 있습니다. 잠금 자체는 프로세스가 종료되거나 `execve`를 호출하면 자동으로 풀리며, `fork()`로 만들어진 자식 프로세스는 부모의 잠금 상태를 물려받지 않습니다 — 자식에서도 고정이 필요하면 자식 프로세스에서 다시 `mlockall`을 호출해야 합니다.
 
-`RLIMIT_MEMLOCK`은 비특권 프로세스가 잠글 수 있는 최대 바이트 수를 제한하며, 이 상한을 넘는 `mlock`/`mlockall` 호출은 실패합니다. `CAP_IPC_LOCK` capability를 가진 프로세스는 이 제한에서 예외입니다 — [man7.org: mlock(2)](https://man7.org/linux/man-pages/man2/mlock.2.html). 배포판 기본값은 흔히 64KB 수준으로 작게 잡혀 있어(정확한 기본값은 배포판·PAM 설정에 따라 다르므로 "구현 정의"로 취급합니다), 실전에서 mlockall을 쓰려면 `/etc/security/limits.conf`나 systemd 유닛의 `LimitMEMLOCK=`으로 상한을 올리거나, 컨테이너라면 `--ulimit memlock=`으로 지정하거나, 아예 `CAP_IPC_LOCK`을 부여해야 합니다. 컨테이너 런타임에서 이 제한을 올리는 절차는 오케스트레이터·이미지마다 달라, [컨테이너/가상화 성능 고려사항](/post/os-optimization/container-virtualization-performance-considerations/)에서 다루는 CPU 자원 제어 정책과 마찬가지로 배포 전 스테이징에서 직접 검증해야 하는 항목입니다.
+`RLIMIT_MEMLOCK`은 비특권 프로세스가 잠글 수 있는 최대 바이트 수를 제한하며, 이 상한을 넘는 `mlock`/`mlockall` 호출은 실패합니다. `CAP_IPC_LOCK` capability를 가진 특권 프로세스는 이 제한을 받지 않습니다. 또한 `MCL_FUTURE`를 쓴 상태에서는 이후의 `mmap`·`brk` 같은 호출도 이 한도에 걸려 실패할 수 있습니다 — [man7.org: mlock(2)](https://man7.org/linux/man-pages/man2/mlock.2.html). 기본값은 배포판·PAM·systemd 설정에 따라 다르므로 `ulimit -l`이나 `prlimit --memlock`으로 현재 값을 직접 확인해야 하고, 실전에서 mlockall을 쓰려면 `/etc/security/limits.conf`나 systemd 유닛의 `LimitMEMLOCK=`으로 상한을 올리거나, 컨테이너라면 `--ulimit memlock=`으로 지정하거나, 아예 `CAP_IPC_LOCK`을 부여해야 합니다. 컨테이너 런타임에서 이 제한을 올리는 절차는 오케스트레이터·이미지마다 달라, [컨테이너/가상화 성능 고려사항](/post/os-optimization/container-virtualization-performance-considerations/)에서 다루는 CPU 자원 제어 정책과 마찬가지로 배포 전 스테이징에서 직접 검증해야 하는 항목입니다.
 
 ## 스택·힙 프리폴트 패턴
 
 `mlockall(MCL_CURRENT|MCL_FUTURE)`를 호출해도, 아직 한 번도 접근하지 않은 스택 영역(현재 스택 포인터보다 아래쪽, 아직 커밋되지 않은 가드 영역 너머)은 잠금과 무관하게 **최초 접근 시 폴트**가 발생합니다. 크리티컬 섹션 안에서 깊은 함수 호출이나 큰 지역 배열이 스택을 확장시키면, "메모리를 다 잠갔는데도" 그 순간 폴트가 발생하는 이유가 바로 이것입니다. 실시간 애플리케이션 커뮤니티에서 오래 정리되어 온 해법은 크리티컬 섹션에 들어가기 **전에** 충분히 큰 지역 배열을 스택에 만들고 그 전체를 한 번 써서(dummy write) 스택 페이지를 미리 매핑해 두는 것입니다. 이렇게 하면 이후 크리티컬 섹션에서 발생할 수 있는 스택 확장 폴트와, copy-on-write로 인한 폴트까지 사전에 없앨 수 있습니다.
 
 ```c
-#include <string.h>
+#include <stddef.h>
 #include <sys/mman.h>
 
 #define STACK_RESERVE_BYTES (256 * 1024)  // 크리티컬 섹션에서 예상되는 최대 스택 사용량 여유분
 
 static void touch_stack_pages(void) {
-  // 재귀·최적화로 사라지지 않도록 volatile로 표시하고 실제로 씀
+  // volatile 접근이라 컴파일러가 쓰기를 제거하지 못한다. 페이지마다 한 바이트씩 써서 물리화한다.
   volatile char buf[STACK_RESERVE_BYTES];
-  memset((void*)buf, 0, STACK_RESERVE_BYTES);
+  for (size_t i = 0; i < STACK_RESERVE_BYTES; i += 4096) buf[i] = 0;
 }
 
-void prepare_realtime_thread(void) {
-  mlockall(MCL_CURRENT | MCL_FUTURE);
+int prepare_realtime_thread(void) {
+  if (mlockall(MCL_CURRENT | MCL_FUTURE) != 0) return -1;  // 실패하면 프리폴트를 진행하지 않는다
   touch_stack_pages();   // 크리티컬 섹션 진입 전에 스택 페이지를 미리 물리화
   // 이 지점부터 크리티컬 섹션: 추가 힙 할당·깊은 재귀를 피한다
+  return 0;
 }
 ```
 
