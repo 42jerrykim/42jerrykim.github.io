@@ -309,7 +309,7 @@
 | content/collection/optimization-05-cpu-microarchitecture/08-modern-cpu-architecture/index.md | 92.8 | 2026-10-24 | 3 | 통과 | 1.3 | bf7969b | - |
 | content/collection/optimization-05-cpu-microarchitecture/09-hardware-performance-counters/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | ba8e02e | - |
 | content/collection/optimization-05-cpu-microarchitecture/10-speculative-execution/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | 9fd4323 | - |
-| content/collection/optimization-05-cpu-microarchitecture/11-frequency-scaling/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/11-frequency-scaling/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | 47e075b | - |
 | content/collection/optimization-05-cpu-microarchitecture/12-power-management/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-05-cpu-microarchitecture/13-apple-silicon-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-05-cpu-microarchitecture/14-smt-hyperthreading/index.md | - | - | 0 | 미채점 | - | - | - |
