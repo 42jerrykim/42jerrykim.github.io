@@ -293,7 +293,7 @@
 | content/collection/optimization-04-memory-allocation/09-numa-allocation/index.md | 95.8 | 2026-10-24 | 1 | 통과 | 1.3 | fee9a89 | 없음(경미: 판단 흐름도 q1/q3 분기가 표와 불일치, 벤치를 '지연' 측정이라 부르나 stride-8 순차 스캔은 처리량 측정) |
 | content/collection/optimization-04-memory-allocation/10-memory-fragmentation/index.md | 91.9 | 2026-10-24 | 3 | 통과 | 1.3 | ed904bf | 없음(경미: '버디 시스템은 외부 단편화 반대' 문장 근거 없음, mimalloc 태그가 본문에 없음, 판단 표 4·5행 비권장 문구 중복) |
 | content/collection/optimization-04-memory-allocation/11-memory-bandwidth/index.md | 91.9 | 2026-10-24 | 2 | 통과 | 1.3 | 4f1cfea | 없음(경미: roofline memory-bound를 컨트롤러 포화와 동일시한 서술, Meta 사례는 Panmesia 데모라는 단서 누락, 스펙-배포 시차의 실제 상용화 사례 미제시, '스펙≠배포' 요지 반복) |
-| content/collection/optimization-04-memory-allocation/12-stack-vs-heap/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/12-stack-vs-heap/index.md | 95.4 | 2026-10-24 | 3 | 통과 | 1.3 | 3141396 | 없음(경미: 본문 L89가 make_unique라 쓰나 코드는 new Payload, '20배 안팎'이 측정 범위 17–53배와 불일치, 오개념 2번째 항목이 앞 절 재진술) |
 | content/collection/optimization-04-memory-allocation/13-virtual-memory-management/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/14-memory-leak-detection/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/15-memory-lifetime-cacheline-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
