@@ -306,7 +306,7 @@
 | content/collection/optimization-05-cpu-microarchitecture/05-ilp-fundamentals/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | beaa57e | - |
 | content/collection/optimization-05-cpu-microarchitecture/06-out-of-order-execution/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | 53a1ec3 | - |
 | content/collection/optimization-05-cpu-microarchitecture/07-tlb-optimization/index.md | 94.6 | 2026-10-24 | 1 | 통과 | 1.3 | 0e12875 | - |
-| content/collection/optimization-05-cpu-microarchitecture/08-modern-cpu-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/08-modern-cpu-architecture/index.md | 92.8 | 2026-10-24 | 3 | 통과 | 1.3 | bf7969b | - |
 | content/collection/optimization-05-cpu-microarchitecture/09-hardware-performance-counters/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-05-cpu-microarchitecture/10-speculative-execution/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-05-cpu-microarchitecture/11-frequency-scaling/index.md | - | - | 0 | 미채점 | - | - | - |
