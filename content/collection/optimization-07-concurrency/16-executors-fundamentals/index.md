@@ -14,28 +14,16 @@ tags:
   - Thread
   - Async(비동기)
   - C++
-  - Memory(메모리)
-  - CPU(Central Processing Unit)
-  - Compiler(컴파일러)
   - Benchmark
   - Latency
   - Throughput
   - Implementation(구현)
-  - Best-Practices
-  - Code-Quality(코드품질)
   - Advanced
   - Deep-Dive
   - System-Design
-  - Backend(백엔드)
-  - Production
-  - Reliability
   - Scalability(확장성)
   - Comparison(비교)
   - Pitfalls(함정)
-  - Edge-Cases(엣지케이스)
-  - Documentation(문서화)
-  - Reference(참고)
-  - Guide(가이드)
   - Executors
   - Scheduler
   - Sender-Receiver
@@ -44,6 +32,10 @@ tags:
   - Execution-Context
   - stdexec
   - Type-Erasure
+  - Thread-Pool
+  - Callback
+  - Lazy-Evaluation
+  - Concurrency-Model
 ---
 
 **Executors**란 "작업을 어디서, 언제, 어떤 정책으로 실행할지"를 실행 자원(스레드 풀, 인라인 호출, GPU 등)로부터 분리해 표준화하려는 C++의 추상화 노력을 말합니다. 동기는 단순합니다 — 알고리즘이나 라이브러리 코드를 작성할 때마다 "이 작업을 스레드 풀에 넣을지, 호출 스레드에서 즉시 돌릴지, GPU에 던질지"를 하드코딩하면 재사용성이 떨어지고, 실행 정책을 바꾸려면 호출부를 전부 고쳐야 합니다. 이 장은 그 추상화가 왜 필요했고, 10여 년의 표준화 과정에서 어떤 모양으로 정착했는지, 그리고 그 최소 구조가 무엇인지를 다룹니다. C++26에 확정된 `std::execution`(P2300)의 스케줄러·센더·리시버 조합을 실제로 쓰는 법은 [17장](/post/concurrency-optimization/cpp26-std-execution-senders-receivers/)에서 다루므로, 이 장은 그 이전 단계 — "왜 executor가 아니라 scheduler인가"라는 개념적 토대에 집중합니다.
@@ -66,17 +58,15 @@ tags:
 
 ## Executors 표준화의 역사: P0443에서 P2300까지
 
-실행 자원을 추상화하려는 논의는 2012년 무렵 시작되어, 2016년 Google·Nvidia·Facebook·Microsoft·Sandia National Labs 등 여러 조직이 참여한 절충안으로 <strong>P0443 "A Unified Executors Proposal for C++"</strong>이 나왔습니다. P0443의 핵심은 `executor`라는 개념으로, "실행 자원의 가벼운 핸들"이 작업을 즉시(eager) 제출받아 실행하는 `execute(exec, f)` 형태의 인터페이스였습니다. 이 모델은 "지금 당장 실행해 달라"는 요청은 잘 표현했지만, 2018년 6월 Rapperswil 회의에서 Eric Niebler와 Kirk Shoop이 **지연 실행(lazy execution)을 표현할 수단이 부족하다**는 한계를 지적했습니다. 작업 완료 후 다음 작업으로 이어지는 체이닝, 취소, 에러 전파를 executor 하나만으로 조합하기 어려웠기 때문입니다. 두 사람은 P1055에서 **sender**(아직 실행되지 않은 작업의 서술)와 **receiver**(그 작업의 완료를 통지받는 콜백)라는 대안을 제시했고, 이 아이디어는 이후 여러 논문을 거쳐 <strong>P2300 "std::execution"</strong>으로 통합되었습니다.
+실행 자원을 추상화하려는 논의는 오래 이어졌고, 여러 조직의 요구를 모은 절충안으로 <strong>[P0443 "A Unified Executors Proposal for C++"](https://wg21.link/p0443)</strong>이 나왔습니다. P0443의 핵심은 `executor`라는 개념으로, "실행 자원의 가벼운 핸들"이 작업을 즉시(eager) 제출받아 실행하는 `execute(exec, f)` 형태의 인터페이스였습니다. 이 모델은 "지금 당장 실행해 달라"는 요청은 잘 표현했지만, **지연 실행(lazy execution)을 표현할 수단이 부족하다**는 한계가 지적되었습니다. 작업 완료 후 다음 작업으로 이어지는 체이닝, 취소, 에러 전파를 executor 하나만으로 조합하기 어려웠기 때문입니다. 그 대안으로 **sender**(아직 실행되지 않은 작업의 서술)와 **receiver**(그 작업의 완료를 통지받는 콜백)라는 개념이 제시되었고, 이 아이디어는 이후 여러 논문을 거쳐 <strong>P2300 "std::execution"</strong>으로 통합되었습니다.
 
-P1897 "Towards C++23 executors"이 보여주듯 P0443 계열은 한때 C++23 표준화를 목표로 진행되었지만, 결국 C++23에는 반영되지 못했습니다. P2300은 P0443의 executor 개념을 그대로 확장한 것이 아니라 방향을 바꾼 결과물입니다. 논문은 이 전환을 다음과 같이 명시합니다.
+[P1897 "Towards C++23 executors"](https://wg21.link/p1897)가 보여주듯 P0443 계열은 한때 C++23 표준화를 목표로 진행되었지만, 결국 C++23에는 반영되지 못했습니다. P2300은 P0443의 executor 개념을 그대로 확장한 것이 아니라 방향을 바꾼 결과물입니다. 논문은 이 전환을 다음과 같이 명시합니다.
 
 > "The `executor` concept has been removed and all of its proposed functionality is now based on schedulers and senders, as per SG1 direction." — [P2300R10: std::execution](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2024/p2300r10.html)
 
 P2300은 2024년 6월 St. Louis 회의에서 **C++26 작업 초안에 채택**되었습니다. Herb Sutter의 회의 보고서는 이 채택이 여러 차례 재검토를 거친 뒤 성사되었다고 기록합니다.
 
 > "The major feature approved to merge into the C++26 draft standard was P2300 'std::execution'... It had already been design-approved for C++26 at prior meetings, but it's a huge paper so the specification wording review by Library Wording subgroup (LWG) took extra time." — [Herb Sutter, Trip Report: Summer ISO C++ Meeting in St. Louis, 2024](https://herbsutter.com/2024/07/02/trip-report-summer-iso-c-standards-meeting-st-louis-mo-usa/)
-
-정리하면, "executor"라는 이름의 표준 기능은 C++23에도 C++26에도 존재하지 않습니다. C++26에 들어간 것은 **scheduler·sender·receiver**로 재구성된 `std::execution`(P2300)이며, 이 장에서 "Executors"라는 제목으로 다루는 것은 그 역사적 출발점과, scheduler/sender가 무엇을 해결하려 했는지에 대한 개념적 기초입니다.
 
 ## 실행 컨텍스트와 스케줄링의 분리
 
@@ -92,17 +82,19 @@ flowchart LR
 
 ### 초기 executor 모델의 구조와 한계
 
-P0443식 executor는 "작업(콜백)을 받아 즉시 제출한다"는 단일 동작(`execute`)만 정의했습니다. 아래는 그 형태를 재현한 스레드 풀 기반 executor입니다. `execute(f)`는 `f`를 타입 소거(`std::function<void()>`)해 큐에 넣고 곧바로 반환하며, 작업이 언제 끝났는지·결과가 무엇인지·에러가 났는지를 호출자에게 되돌릴 통로가 없습니다.
+초기 P0443 리비전의 executor는 "작업(콜백)을 받아 즉시 제출한다"는 `execute` 중심 모델이었습니다. 아래는 그 형태를 재현한 스레드 풀 기반 executor입니다. `execute(f)`는 `f`를 타입 소거(`std::function<void()>`)해 큐에 넣고 곧바로 반환하며, 작업이 언제 끝났는지·결과가 무엇인지·에러가 났는지를 호출자에게 되돌릴 통로가 없습니다.
 
 ```cpp
 #include <condition_variable>
+#include <cstdio>
 #include <functional>
 #include <mutex>
 #include <queue>
 #include <thread>
+#include <utility>
 #include <vector>
 
-// P0443 스타일 executor를 단순화한 재현: execute(f)만 제공하는 이르(eager) 제출 인터페이스.
+// P0443 스타일 executor를 단순화한 재현: execute(f)만 제공하는 즉시(eager) 제출 인터페이스.
 class ThreadPoolExecutor {
  public:
   explicit ThreadPoolExecutor(unsigned n) {
@@ -141,6 +133,12 @@ class ThreadPoolExecutor {
   std::condition_variable cv_;
   bool stop_ = false;
 };
+
+int main() {
+  ThreadPoolExecutor ex(2);
+  ex.execute([] { std::puts("task A"); });
+  ex.execute([] { std::puts("task B"); });
+}  // 소멸자가 큐를 비운 뒤 join한다. 호출자가 완료를 알 방법은 이 인터페이스에 없다.
 ```
 
 이 인터페이스로는 "작업 A가 끝나면 작업 B를 실행하라"는 체이닝을 표현할 수 없습니다. 호출자가 직접 A 안에서 B를 `execute`하는 콜백 중첩을 쓰거나, 별도의 동기화(조건 변수·future)를 얹어야 합니다. 게다가 `std::function`은 콜러블을 힙에 할당하고 가상 호출로 디스패치하는 경우가 많아, 마이크로초 단위 지연을 다루는 핫패스에서는 무시하기 어려운 간접 비용이 됩니다. 아래는 이 타입 소거 비용을 격리해 보는 Google Benchmark 스켈레톤입니다.
@@ -221,7 +219,7 @@ static_assert(ToySender<InlineSender, void (*)()>);
 
 <strong>"Executors(또는 scheduler)는 스레드 풀 구현체다"</strong>도 흔한 오해입니다. scheduler는 스레드 풀 자체가 아니라 **스레드 풀 같은 실행 자원을 가리키는 핸들**입니다. 스레드 풀의 큐·워커 구현은 [10장](/post/concurrency-optimization/thread-pool-work-stealing-optimization/)의 주제이고, 이 장의 scheduler는 그 위에 얹히는 얇은 인터페이스 계층입니다. scheduler 하나를 두고 뒤에서 스레드 풀을 GPU 큐로 바꿔도 scheduler를 사용하는 코드는 바뀌지 않아야 한다는 것이 이 분리의 목적입니다.
 
-<strong>"C++17의 `std::execution::par`와 C++26의 `std::execution`은 같은 것이다"</strong>도 짚어야 할 오해입니다. C++17은 병렬 알고리즘의 실행 정책 태그(`std::execution::seq`, `par`, `par_unseq`, `unseq`)를 `std::execution` 네임스페이스에 정의했고, P2300도 같은 네임스페이스를 씁니다. 하지만 둘은 서로 다른 추상화입니다 — 실행 정책은 알고리즘이 "어떻게"(순차/병렬/벡터화) 실행되어야 하는지를 표현하고, scheduler는 "어디서" 실행되는지를 표현합니다. P2500R0은 이 둘을 `execute_on` 같은 CPO로 엮는 방안을 논의했을 만큼 서로 보완적이지만 동일하지는 않습니다. 실행 정책 자체의 성능 특성은 [18장](/post/concurrency-optimization/parallel-algorithm-execution-policies/)에서 다룹니다.
+<strong>"C++17의 `std::execution::par`와 C++26의 `std::execution`은 같은 것이다"</strong>도 짚어야 할 오해입니다. C++17은 병렬 알고리즘의 실행 정책 태그(`std::execution::seq`, `par`, `par_unseq`, 그리고 C++20에서 추가된 `unseq`)를 `std::execution` 네임스페이스에 정의했고, P2300도 같은 네임스페이스를 씁니다. 하지만 둘은 서로 다른 추상화입니다 — 실행 정책은 알고리즘이 "어떻게"(순차/병렬/벡터화) 실행되어야 하는지를 표현하고, scheduler는 "어디서" 실행되는지를 표현합니다. 둘은 서로 보완적이지만 동일하지는 않습니다. 실행 정책 자체의 성능 특성은 [18장](/post/concurrency-optimization/parallel-algorithm-execution-policies/)에서 다룹니다.
 
 ## 판단 기준: 언제 이 추상화가 필요한가
 
@@ -235,7 +233,7 @@ static_assert(ToySender<InlineSender, void (*)()>);
 
 ## 비판적 시각: 논쟁과 남은 리스크
 
-executor/scheduler 논의는 100편이 넘는 논문과 10년 넘는 시간을 거쳤고, 그 과정 자체가 "경쟁하는 조직의 요구사항을 하나의 인터페이스로 묶는 일"이 얼마나 어려운지 보여줍니다. P2300이 2024년 C++26 초안에 채택된 표결도 만장일치가 아니라 반대표가 상당수 있었던 것으로 알려져 있어, 설계 방향에 대한 이견이 완전히 해소된 채택은 아니었습니다. 실무 관점에서는 두 가지 리스크가 남습니다. 첫째, GCC·Clang·MSVC의 네이티브 `std::execution` 지원은 2026년 시점에도 실험적 플래그 뒤에 있거나 부분적이므로, 표준 문서상의 기능과 실제로 컴파일되는 기능 사이에 구현체별 격차가 있습니다(구현 정의 영역이 넓습니다). 둘째, sender/receiver 모델은 executor의 단순한 `execute(f)`보다 개념적으로 무겁고, 타입이 센더 알고리즘 체인을 그대로 반영해 컴파일 에러 메시지가 길어지는 경향이 있다고 보고됩니다. 이런 이유로 이 장의 판단 기준은 "지금 당장 도입"보다 "무엇이 문제인지 이해하고, 표준 라이브러리 지원이 무르익을 때를 대비"하는 쪽에 무게를 둡니다.
+executor/scheduler 논의는 10년 넘는 시간을 거쳤고, 그 과정 자체가 "경쟁하는 조직의 요구사항을 하나의 인터페이스로 묶는 일"이 얼마나 어려운지 보여줍니다. 실무 관점에서는 두 가지 리스크가 남습니다. 첫째, 표준 라이브러리별 `std::execution` 지원 상태는 구현체마다 다를 수 있으므로, 도입 전에 사용하는 컴파일러·표준 라이브러리에서 직접 확인해야 합니다. 둘째, sender/receiver 모델은 executor의 단순한 `execute(f)`보다 개념적으로 무겁고, 타입이 센더 알고리즘 체인을 그대로 반영해 컴파일 에러 메시지가 길어지는 경향이 있다고 보고됩니다. 이런 이유로 이 장의 판단 기준은 "지금 당장 도입"보다 "무엇이 문제인지 이해하고, 표준 라이브러리 지원이 무르익을 때를 대비"하는 쪽에 무게를 둡니다.
 
 ## 마무리
 
