@@ -424,7 +424,7 @@
 | content/collection/optimization-11-design-decisions/02-when-to-optimize/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | bd412a7 | 없음(경미 개선여지: L85 "위 표는"→"위 예시는") |
 | content/collection/optimization-11-design-decisions/03-when-to-stop-optimizing/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | fef3701 | 없음(경미: 암달 1967 논문이 "수식으로 보였다"는 서술 부정확 가능, 학습목표 문단과 체크리스트 중복) |
 | content/collection/optimization-11-design-decisions/04-readability-vs-performance/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | d55d1fa | 없음(경미 개선여지: Per.2 원문 본문 각주, #include <cstddef>) |
-| content/collection/optimization-11-design-decisions/05-performance-budgeting/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/05-performance-budgeting/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 16bdd9d | 없음 |
 | content/collection/optimization-11-design-decisions/06-slo-sla-definition/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/07-latency-vs-throughput/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/08-low-latency-architecture-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
