@@ -337,7 +337,7 @@
 | content/collection/optimization-06-os-runtime/17-ebpf-kernel-performance-safety/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-06-os-runtime/18-cloud-tail-latency/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/00-introduction/index.md | 95.2 | 2026-07-25 | 2 | 통과 | 1.0 | 58f8873 | 없음(경미: "책임지는 범위"·"다루지 않는 것" 리스트 앞 연결 문단 여지, Intel 링크 WebFetch 403이나 실제 접근 가능) |
-| content/collection/optimization-07-concurrency/01-synchronization-cost-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/01-synchronization-cost-analysis/index.md | 91.45 | 2026-10-25 | 0 | 통과 | 1.3 | 7feadc6 | 없음(경미: L79·L225 SRW 문서에 없는 '커널 오브젝트 최소화' 서술 귀속, 보일러플레이트 태그 4개, 본문 '1/2/4/8' vs 코드 Threads(1/4/8) 불일치) |
 | content/post/2026/2026-09-16-ai-counterfeit-utility-verification-cost/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-15-openai-agent-dsewiki-containment-breakout/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/02-lock-selection-criteria/index.md | - | - | 0 | 미채점 | - | - | - |
