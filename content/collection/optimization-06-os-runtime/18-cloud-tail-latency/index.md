@@ -1,7 +1,7 @@
 ---
 collection_order: 18
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-24
 draft: false
 image: wordcloud.png
 title: "[OS 06] 클라우드 환경 꼬리 지연"
@@ -13,13 +13,9 @@ tags:
   - OS(운영체제)
   - Linux(리눅스)
   - CPU(Central Processing Unit)
-  - Memory(메모리)
   - Cloud(클라우드)
   - Kubernetes
-  - Benchmark
   - Latency
-  - Throughput
-  - Profiling(프로파일링)
   - Monitoring(모니터링)
   - Observability
   - Best-Practices
@@ -32,7 +28,6 @@ tags:
   - Advanced
   - Comparison(비교)
   - Pitfalls(함정)
-  - Case-Study
   - Edge-Cases(엣지케이스)
   - Guide(가이드)
   - Reference(참고)
@@ -65,7 +60,7 @@ tags:
 
 **Noisy Neighbor**라는 용어 자체는 특정 발명가나 발표 논문이 있는 개념이라기보다, 멀티테넌트 인프라가 상용화되면서 운영자들 사이에서 자연스럽게 굳어진 표현입니다. 하드웨어 하나를 여러 고객에게 나눠 파는 모델은 메인프레임의 타임셰어링 시절부터 있었지만, 이것이 지연시간 문제로 본격적으로 불거진 것은 2006년 전후 Amazon EC2 같은 퍼블릭 클라우드가 등장하면서부터입니다. 서로 신뢰 관계가 없는 여러 회사의 VM이 같은 물리 서버 위에서 동시에 실행되기 시작하자, 한 테넌트의 부하 급증이 물리적으로 인접한 다른 테넌트의 성능을 갉아먹는 현상이 운영 이슈로 떠올랐습니다.
 
-이 현상을 게스트 OS 관점에서 정량화한 지표가 **CPU Steal Time**입니다. Xen 같은 반가상화(paravirtualization) 하이퍼바이저는 게스트 커널이 "내 vCPU가 실행 가능한 상태인데도 하이퍼바이저가 다른 손님을 서비스하느라 나를 스케줄링하지 않은 시간"을 스스로 알 수 있도록 커널에 훅을 심었습니다. 리눅스는 이런 반가상화 시대(2000년대 중반, Xen DomU 지원이 메인라인에 들어온 시점 전후)에 `/proc/stat`의 CPU 통계 줄에 **steal** 필드를 추가했고, 이후 KVM을 포함한 대부분의 주류 하이퍼바이저가 같은 관례를 따라 이 필드를 채우게 되었습니다. `mpstat`·`top`·`vmstat` 같은 표준 도구의 `%st`(steal) 컬럼은 모두 이 필드를 읽어 표시하는 것이며, [Linux man-pages 프로젝트의 mpstat(1) 문서](https://man7.org/linux/man-pages/man1/mpstat.1.html)는 이를 "가상 CPU가 하이퍼바이저가 다른 가상 프로세서를 서비스하는 동안 비자발적으로 대기한 시간의 비율"로 정의합니다.
+이 현상을 게스트 OS 관점에서 정량화한 지표가 **CPU Steal Time**입니다. Xen 같은 반가상화(paravirtualization) 하이퍼바이저는 게스트 커널이 "내 vCPU가 실행 가능한 상태인데도 하이퍼바이저가 다른 손님을 서비스하느라 나를 스케줄링하지 않은 시간"을 스스로 알 수 있도록 커널에 훅을 심었습니다. 리눅스는 `/proc/stat`의 CPU 통계 줄에 **steal** 필드를 두어 이 시간을 노출하며, 하이퍼바이저가 이 값을 채웁니다. `mpstat`·`top`·`vmstat` 같은 표준 도구의 `%st`(steal) 컬럼은 모두 이 필드를 읽어 표시하는 것이며, [Linux man-pages 프로젝트의 mpstat(1) 문서](https://man7.org/linux/man-pages/man1/mpstat.1.html)는 이를 "가상 CPU가 하이퍼바이저가 다른 가상 프로세서를 서비스하는 동안 비자발적으로 대기한 시간의 비율"로 정의합니다.
 
 ## CPU Steal Time이 보여주는 것: 하이퍼바이저 스케줄링의 그림자
 
@@ -118,7 +113,7 @@ int main(void) {
 
 CPU steal time이 관측되는 근본 원인은 클라우드 사업자가 물리 코어 수보다 많은 vCPU를 판매하는 **오버커밋**에 있습니다. 오버커밋 자체는 나쁜 설계가 아닙니다 — 대부분의 워크로드가 항상 CPU를 100% 쓰지 않는다는 통계적 사실 위에서 비용 효율을 높이는 정상적인 자원 관리 기법입니다. 문제는 오버커밋 비율이 클수록, 그리고 같은 물리 호스트에 배치된 이웃 테넌트의 부하 패턴이 예측 불가능할수록, 내 vCPU가 대기열에서 기다리는 시간의 분산이 커진다는 데 있습니다.
 
-이 구조가 가장 두드러지는 것이 **버스터블(burstable) 인스턴스 계열**(AWS T 시리즈, Azure B 시리즈 등)입니다. 이 계열은 평상시 낮은 기준 성능만 보장하고, CPU 크레딧을 적립해 두었다가 순간적인 버스트에 그 크레딧을 소모하는 방식으로 가격을 낮춥니다. 크레딧이 소진되면 성능이 기준선으로 강제로 떨어지는데, 이 강제 저하와 이웃 테넌트로 인한 steal time 증가가 동시에 나타나면 어느 쪽이 원인인지 게스트 지표만으로는 구분하기 어렵습니다. 반대로 컴퓨팅 최적화·범용 계열의 "고정 성능(fixed performance)" 인스턴스는 오버커밋 비율을 낮게 유지하거나 아예 1:1에 가깝게 운영해 이 변동성을 줄입니다. 물리 코어 하나를 SMT(Simultaneous Multi-Threading)로 둘로 쪼갠 논리 코어를 서로 다른 테넌트에게 배정하는 구성에서는, steal time에 잡히지 않는 또 다른 경합도 남습니다 — 같은 물리 코어를 공유하는 형제(sibling) 논리 코어가 L1/L2 캐시와 실행 유닛을 두고 경쟁하기 때문입니다. 이 경합은 스케줄링 대기가 아니라 명령어 처리량 저하로 나타나므로 `%steal`에는 반영되지 않습니다.
+이 구조가 가장 두드러지는 것이 **버스터블(burstable) 인스턴스 계열**(AWS T 시리즈, Azure B 시리즈 등)입니다. 이 계열은 평상시 낮은 기준 성능만 보장하고, CPU 크레딧을 적립해 두었다가 순간적인 버스트에 그 크레딧을 소모하는 방식으로 가격을 낮춥니다. 크레딧이 소진되면 성능이 기준선으로 강제로 떨어지는데, 이 강제 저하와 이웃 테넌트로 인한 steal time 증가가 동시에 나타나면 어느 쪽이 원인인지 게스트 지표만으로는 구분하기 어렵습니다. 반대로 "고정 성능(fixed performance)" 인스턴스는 일반적으로 이런 변동성이 작다고 알려져 있지만, 오버커밋 정책은 사업자가 공개하지 않는 부분이 많아 직접 측정해야 합니다. 물리 코어 하나를 SMT(Simultaneous Multi-Threading)로 둘로 쪼갠 논리 코어를 서로 다른 워크로드가 나눠 쓰는 구성에서는, steal time에 잡히지 않는 또 다른 경합도 남습니다 — 같은 물리 코어를 공유하는 형제(sibling) 논리 코어가 L1/L2 캐시와 실행 유닛을 두고 경쟁하기 때문입니다. 이 경합은 스케줄링 대기가 아니라 명령어 처리량 저하로 나타나므로 `%steal`에는 반영되지 않습니다.
 
 이 관계를 하나의 그림으로 정리하면 다음과 같습니다. 호스트 하이퍼바이저 스케줄러가 물리 코어 하나를 여러 테넌트의 vCPU에 시분할로 배정하는 동안, 대기 중인 테넌트의 게스트 커널에는 그 대기 시간이 steal time으로 누적됩니다.
 
@@ -137,42 +132,61 @@ flowchart TD
 
 ## 재현과 관찰: 로컬에서 경합 만들어보기
 
-실제 하이퍼바이저 수준의 steal time은 다른 고객의 워크로드에 의존하므로 온전히 재현할 수 없지만, 같은 물리 호스트 안에서 코어를 공유할 때 벌어지는 경합의 **효과**는 단일 VM 안에서도 근사적으로 관찰할 수 있습니다. 아래 스크립트는 논리 코어 하나를 측정 대상으로 비워 두고 나머지 코어에 인위적인 부하를 걸어, "이웃"이 있을 때와 없을 때 반복 작업의 완료 시간이 어떻게 달라지는지 비교합니다.
+실제 하이퍼바이저 수준의 steal time은 다른 고객의 워크로드에 의존하므로 재현할 수 없습니다. 다만 같은 게스트 안에서 이웃 부하가 반복 작업의 완료 시간 분포에 미치는 영향은 관찰할 수 있습니다. 아래 스크립트는 논리 코어 하나를 측정 대상으로 삼아, 이웃 부하가 없을 때와 다른 코어에 있을 때와 같은 코어에 있을 때를 나란히 비교합니다.
 
 ```bash
 #!/usr/bin/env bash
-# 환경: Linux x86-64, kernel 5.15+, stress-ng 0.17+ (apt install stress-ng), coreutils
-# 목적: 논리 코어 하나(TARGET_CPU)를 비워 측정하고 나머지 코어에 부하를 걸어
-#       "이웃 부하"가 측정 대상 스레드의 완료 시간에 주는 영향을 근사 재현
+# 환경: Linux x86-64, stress-ng (apt install stress-ng), coreutils, 코어 2개 이상
+# 목적: 측정 코어(TARGET_CPU)의 고정 작업 완료 시간을 RUNS번 재서 이웃 부하의 영향을 비교한다.
+# 한계: 하이퍼바이저의 vCPU 오버커밋은 만들 수 없다. 같은 게스트 안에서
+#       (a) 다른 코어의 부하, (b) 같은 코어를 공유하는 부하만 비교한다.
 set -euo pipefail
+NCPU=$(nproc)
+if [ "$NCPU" -lt 2 ]; then echo "코어 2개 이상 필요" >&2; exit 1; fi
 TARGET_CPU=0
-NEIGHBOR_CPUS="1-$(( $(nproc) - 1 ))"
+RUNS=100
+
+measure() {  # 측정 코어에서 고정 작업을 RUNS번 수행하고 걸린 ns를 한 줄씩 출력
+  for _ in $(seq 1 "$RUNS"); do
+    start=$(date +%s%N)
+    taskset -c "$TARGET_CPU" bash -c 'for i in $(seq 1 200000); do :; done'
+    echo $(( $(date +%s%N) - start ))
+  done
+}
+
+summarize() {  # 입력(ns)의 p50, p99, max를 출력
+  sort -n | awk '{a[NR]=$1} END {i=int((NR-1)*0.99)+1; if (i>NR) i=NR; print "p50=" a[int(NR*0.5)+1] " p99=" a[i] " max=" a[NR] " (ns, n=" NR ")"}'
+}
 
 echo "=== 이웃 부하 없음 ==="
-taskset -c "$TARGET_CPU" bash -c \
-  'start=$(date +%s%N); for i in $(seq 1 2000000); do :; done; \
-   echo "elapsed_ns=$(( $(date +%s%N) - start ))"'
+measure | summarize
 
-stress-ng --taskset "$NEIGHBOR_CPUS" --cpu $(( $(nproc) - 1 )) --cpu-load 100 --timeout 15s &
-NEIGHBOR_PID=$!
-sleep 1  # 이웃 부하 안정화 대기
+echo "=== 다른 코어에 부하 ==="
+stress-ng --taskset "1-$((NCPU-1))" --cpu $((NCPU-1)) --timeout 600s &
+STRESS_PID=$!
+sleep 1
+measure | summarize
+kill "$STRESS_PID" 2>/dev/null || true
+wait || true
 
-echo "=== 이웃 부하 있음 ==="
-taskset -c "$TARGET_CPU" bash -c \
-  'start=$(date +%s%N); for i in $(seq 1 2000000); do :; done; \
-   echo "elapsed_ns=$(( $(date +%s%N) - start ))"'
-wait "$NEIGHBOR_PID" 2>/dev/null || true
+echo "=== 같은 코어에 부하(코어 공유) ==="
+stress-ng --taskset "$TARGET_CPU" --cpu 1 --timeout 600s &
+STRESS_PID=$!
+sleep 1
+measure | summarize
+kill "$STRESS_PID" 2>/dev/null || true
+wait || true
 ```
 
-이 스크립트는 **동일 게스트 안에서의 코어 오버커밋**을 흉내 낼 뿐, 실제 클라우드의 크로스 테넌트 steal time과 완전히 같지는 않다는 점을 분명히 해 두어야 합니다. 그럼에도 "옆 코어의 부하가 내 완료 시간의 분산을 키운다"는 핵심 메커니즘은 동일하게 관찰되므로, 프로덕션에 적용하기 전 팀 내에서 이 효과를 체감하는 용도로는 충분합니다. 나노초 단위로 더 정밀하게 측정하려면 `date +%s%N` 대신 [06장에서 다룬 `clock_gettime(CLOCK_MONOTONIC)`](/post/os-optimization/precise-time-measurement-rdtsc-clock-gettime/) 기반 계측으로 바꾸는 것이 좋습니다.
+이 스크립트는 하이퍼바이저의 vCPU 오버커밋과 steal time을 만들지 못합니다. 대신 같은 게스트 안에서 이웃 부하의 두 가지 영향을 분리해 보여 줍니다. 두 번째 측정은 다른 코어의 부하가 SMT 형제 코어, 공유 캐시, 주파수 같은 간접 경로로 주는 영향을, 세 번째 측정은 하나의 코어를 두 작업이 시분할하면서 생기는 대기 효과를 보여 줍니다. 세 번째 상황이 오버커밋된 vCPU가 겪는 대기와 구조적으로 닮았지만 같은 현상은 아닙니다. 결과값은 하드웨어와 부하에 따라 달라지므로 이 글에는 싣지 않으며, 100회 측정에서 p50 대비 p99가 얼마나 벌어지는지를 세 경우에서 비교해 보시기 바랍니다. 나노초 단위로 더 정밀하게 측정하려면 `date +%s%N` 대신 [06장에서 다룬 `clock_gettime(CLOCK_MONOTONIC)`](/post/os-optimization/precise-time-measurement-rdtsc-clock-gettime/) 기반 계측으로 바꾸는 것이 좋습니다.
 
 ## 흔한 오개념
 
 <strong>"steal time이 0%면 내 성능 문제는 100% 내 코드 탓이다"</strong>는 절반만 맞습니다. steal time은 하이퍼바이저 스케줄러가 vCPU를 대기시킨 시간만 잡을 뿐, SMT 형제 코어의 캐시·실행 유닛 경합이나 같은 소켓의 다른 테넌트가 유발하는 L3 캐시·메모리 대역폭 경합은 반영하지 않습니다. steal이 0이어도 명령어당 사이클 수(IPC)가 이유 없이 튄다면 이런 "steal에 안 잡히는" 경합을 의심해야 합니다.
 
-<strong>"전용 호스트(Dedicated Host)나 격리 인스턴스를 쓰면 steal time이 완전히 사라진다"</strong>도 과장입니다. 다른 고객과의 경합은 제거되지만, 같은 호스트 위에 내 조직의 다른 VM 여러 개를 올려 두면 그들끼리 경합할 수 있고, [GCP의 sole-tenant 노드는 CPU 오버커밋 기능을 정식 지원](https://docs.cloud.google.com/compute/docs/nodes/sole-tenant-nodes)하므로 설정에 따라 "내 워크로드끼리의" 오버커밋이 여전히 발생할 수 있습니다. 전용 호스트는 **테넌트 간** 경합을 없애는 것이지, 오버커밋이라는 메커니즘 자체를 없애는 것이 아닙니다.
+<strong>"전용 호스트(Dedicated Host)나 격리 인스턴스를 쓰면 steal time이 완전히 사라진다"</strong>도 과장입니다. 다른 고객과의 경합은 제거되지만, 같은 호스트 위에 내 조직의 다른 VM 여러 개를 올려 두면 그들끼리 경합할 수 있고, [GCP의 sole-tenant 노드는 CPU 오버커밋 설정을 제공](https://docs.cloud.google.com/compute/docs/nodes/sole-tenant-nodes)하므로 설정에 따라 "내 워크로드끼리의" 오버커밋이 여전히 발생할 수 있습니다. 전용 호스트는 **테넌트 간** 경합을 없애는 것이지, 오버커밋이라는 메커니즘 자체를 없애는 것이 아닙니다.
 
-<strong>"steal time 수치는 어느 클라우드에서나 똑같이 신뢰할 수 있다"</strong>는 것도 조심해야 합니다. steal time 계정 방식은 하이퍼바이저 구현에 종속적입니다. [AWS Nitro System](https://aws.amazon.com/ec2/nitro/)처럼 네트워크·스토리지 컨트롤러를 전용 하드웨어 카드로 오프로드하고 하이퍼바이저가 오직 CPU·메모리 배정만 담당하는 구조에서는, I/O 관련 경합이 애초에 steal time으로 나타날 여지가 줄어듭니다. 즉 "이 클라우드는 항상 steal이 낮다/높다"를 다른 클라우드와 절대값으로 직접 비교하는 것은 하이퍼바이저 아키텍처 차이를 무시하는 것입니다.
+<strong>"steal time 수치는 어느 클라우드에서나 똑같이 신뢰할 수 있다"</strong>는 것도 조심해야 합니다. steal time 계정 방식은 하이퍼바이저 구현에 종속적입니다. [AWS Nitro System](https://aws.amazon.com/ec2/nitro/)처럼 네트워크·스토리지 컨트롤러를 전용 하드웨어 카드로 오프로드하는 구조와 그렇지 않은 구조는 하이퍼바이저가 맡는 일의 범위가 다릅니다. 즉 "이 클라우드는 항상 steal이 낮다/높다"를 다른 클라우드와 절대값으로 직접 비교하는 것은 하이퍼바이저 아키텍처 차이를 무시하는 것입니다.
 
 ## 방어 전략: 인스턴스 선택과 전용 호스트
 
@@ -180,13 +194,13 @@ Noisy Neighbor를 완전히 제거할 수는 없지만, 테넌트 간 경합의 
 
 | 옵션 | 격리 수준 | 대표 제공사 | 비용·운영 특성 |
 |------|---------|-----------|--------------|
-| 범용 온디맨드 인스턴스 | 낮음(멀티테넌트 공유) | 전 클라우드 공통 | 가장 저렴, steal time 변동 가능성 가장 큼 |
-| 고정 성능·컴퓨팅 최적화 계열 | 중간 | 전 클라우드 공통 | 버스터블 계열보다 변동성 낮음, 비용은 다소 높음 |
+| 범용 온디맨드 인스턴스 | 낮음(멀티테넌트 공유) | 각 사업자의 기본 계열 | 비용이 낮은 편이며 사업자가 공개하는 오버커밋 정책은 제한적 |
+| 고정 성능·컴퓨팅 최적화 계열 | 중간 | 각 사업자의 고성능 계열 | 일반적으로 변동성이 작다고 알려져 있으나 직접 측정이 필요 |
 | [AWS Dedicated Instance/Host](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html) | 높음(물리 서버 단위 전용) | AWS | Host는 소켓·코어 가시성 제공, per-host 과금 |
 | [Azure 격리(Isolated) VM 크기](https://learn.microsoft.com/en-us/azure/virtual-machines/isolation) | 높음(물리 서버 단위 전용) | Azure | 비격리 대비 약 10% 프리미엄, 하드웨어 세대에 수명 종속 |
 | [GCP Sole-Tenant 노드](https://docs.cloud.google.com/compute/docs/nodes/sole-tenant-nodes) | 높음(물리 서버 단위 전용) | GCP | 자체 CPU 오버커밋 설정 가능, 노드 단위 과금 |
 
-전용 호스트·격리 인스턴스를 도입하기 전에 실제로 steal time과 지연 분포가 상관관계를 보이는지부터 확인하는 것이 순서입니다. 앞서의 `steal_monitor`를 배포 환경에 상시 배치해 애플리케이션의 p99 지연 시계열과 나란히 두면, steal time 스파이크와 지연 스파이크가 같은 시각에 겹치는지 눈으로 확인할 수 있습니다. 상관관계가 뚜렷하다면 우선 컴퓨팅 최적화 계열로 인스턴스 타입을 바꿔 저비용으로 재현되는지 보고, 그래도 남는 변동성이 SLA를 위협하는 수준이면 전용 호스트로 격상하는 단계적 접근이 비용 대비 효과적입니다. 컨테이너·Kubernetes 위에서 이 경합을 완화하는 노드 내부 수단(Static CPU Manager Policy, isolcpus, Intel RDT)은 [11장](/post/os-optimization/container-virtualization-performance-considerations/)에서 다뤘으므로, 그 위에 노드 풀 자체를 전용 호스트로 올릴지 말지가 이 장에서 추가되는 결정입니다.
+전용 호스트·격리 인스턴스를 도입하기 전에는 앞서의 `steal_monitor`를 배포 환경에 상시 배치해 애플리케이션의 p99 지연 시계열과 나란히 두고, steal time 스파이크와 지연 스파이크가 같은 시각에 겹치는지 확인해야 합니다. 이후의 단계는 아래 판단 기준 표의 첫 행을 따릅니다. 컨테이너·Kubernetes 위에서 이 경합을 완화하는 노드 내부 수단(Static CPU Manager Policy, isolcpus, Intel RDT)은 [11장](/post/os-optimization/container-virtualization-performance-considerations/)에서 다뤘으므로, 그 위에 노드 풀 자체를 전용 호스트로 올릴지 말지가 이 장에서 추가되는 결정입니다.
 
 ## 판단 기준
 
@@ -200,9 +214,9 @@ Noisy Neighbor를 완전히 제거할 수는 없지만, 테넌트 간 경합의 
 
 ## 비판적 시각: 한계와 트레이드오프
 
-전용 호스트·격리 인스턴스가 만능 해법은 아닙니다. 비용 프리미엄이 뒤따르고(Azure 격리 VM 크기는 비격리 대비 약 10% 높은 가격), Dedicated Host는 소켓·코어 단위로 통째로 구매해야 하므로 활용률이 낮은 워크로드에는 오히려 비효율적입니다. 더 근본적인 한계는, steal time이라는 지표 자체가 CPU 스케줄링 대기라는 **한 가지 차원**만 보여준다는 점입니다. 네트워크 대역폭·스토리지 IOPS·L3 캐시처럼 물리적으로 공유되는 다른 자원의 경합은 클라우드 사업자가 게스트에 노출하는 지표에 따로 잡히지 않는 경우가 많아, "steal time이 정상이니 이웃 문제는 없다"는 결론은 성급할 수 있습니다. AWS Nitro System처럼 I/O 컨트롤러를 하드웨어로 분리하는 아키텍처는 이 사각지대를 줄이는 방향이지만, 이는 벤더별 아키텍처 선택이지 이용자가 직접 통제할 수 있는 변수가 아닙니다.
+전용 호스트·격리 인스턴스가 만능 해법은 아닙니다. 비용 프리미엄이 뒤따르고(표의 Azure 격리 VM 예시처럼), Dedicated Host는 소켓·코어 단위로 통째로 구매해야 하므로 활용률이 낮은 워크로드에는 오히려 비효율적입니다. 더 근본적인 한계는 앞의 오개념에서 본 대로 steal time이 CPU 스케줄링 대기라는 한 가지 차원만 보여준다는 점이므로, steal time이 정상이라는 이유만으로 이웃 문제가 없다고 결론짓지 않아야 합니다.
 
-또한 대부분의 클라우드 사업자 SLA는 가용성(uptime)을 다룰 뿐, 특정 백분위수 지연을 보장하지 않습니다. 즉 Noisy Neighbor로 인한 꼬리 지연 저하는 계약상 보상 대상이 아닌 경우가 대부분이며, 방어는 전적으로 이용자의 운영 책임입니다. 마지막으로, 로컬에서 재현하는 경합 실험은 실제 이웃 테넌트의 부하 패턴을 통제할 수 없다는 근본적 한계가 있습니다 — 이 장에서 다룬 재현 스크립트는 메커니즘을 이해하고 모니터링 코드를 검증하는 용도로는 유효하지만, 특정 클라우드·특정 시점의 실제 steal time 수준을 예측하는 도구는 아닙니다.
+또한 Noisy Neighbor로 인한 꼬리 지연 저하가 계약상 보상 대상인지는 사업자별 SLA 문서를 직접 확인해야 하며, 방어는 기본적으로 이용자의 운영 책임으로 두고 설계하는 것이 안전합니다. 마지막으로, 로컬에서 재현하는 경합 실험은 실제 이웃 테넌트의 부하 패턴을 통제할 수 없다는 근본적 한계가 있습니다 — 이 장에서 다룬 재현 스크립트는 메커니즘을 이해하고 모니터링 코드를 검증하는 용도로는 유효하지만, 특정 클라우드·특정 시점의 실제 steal time 수준을 예측하는 도구는 아닙니다.
 
 ## 마무리
 
