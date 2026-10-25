@@ -363,7 +363,7 @@
 | content/collection/optimization-08-optimization-techniques/00-introduction/index.md | 95.2 | 2026-07-25 | 3 | 통과 | 1.0 | ebfac67 | 없음(경미: 측정 항목 리스트 근거 문단 여지) |
 | content/collection/optimization-08-optimization-techniques/01-simd-fundamentals/index.md | 93.9 | 2026-10-25 | 1 | 통과 | 1.3 | 49480b3 | 없음(경미: 오개념↔비판적 시각 중복, 벤치 스켈레톤 본문-코드 불일치·L1/L2 주석, 일부 마이크로아키텍처 단정 출처) |
 | content/collection/optimization-08-optimization-techniques/02-simd-intrinsics-practical/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | c841961 | 없음(경미: dot_avx2 tail 루프 생략, load/loadu 동등성 주장 출처 없음) |
-| content/collection/optimization-08-optimization-techniques/03-avx512-avx10-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/03-avx512-avx10-optimization/index.md | 93.9 | 2026-10-25 | 1 | 통과 | 1.3 | 751fdce | 없음(경미: Nova Lake 출시 전 단서 반복, Zen4/Zen5·보고 사례 일부 출처 미병기) |
 | content/collection/optimization-08-optimization-techniques/04-auto-vectorization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-08-optimization-techniques/05-prefetch-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-08-optimization-techniques/06-branchless-programming/index.md | - | - | 0 | 미채점 | - | - | - |
