@@ -19,8 +19,6 @@ tags:
   - CPU(Central Processing Unit)
   - Cache
   - Compiler(컴파일러)
-  - Benchmark
-  - Latency
   - Testing(테스트)
   - Debugging(디버깅)
   - Implementation(구현)
@@ -29,7 +27,6 @@ tags:
   - Deep-Dive
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Case-Study
   - Reference(참고)
   - Acquire-Release
   - Sequential-Consistency
@@ -38,6 +35,9 @@ tags:
   - Memory-Barrier
   - ThreadSanitizer
   - x86-TSO
+  - Atomic-Operations
+  - Lock-free
+  - CDSChecker
 ---
 
 **C++ 메모리 모델**이란 여러 스레드가 원자적 연산을 통해 서로의 메모리 변경을 언제, 어떤 순서로 관찰할 수 있는지를 규정하는 표준의 규칙 집합입니다. `std::atomic`은 "값이 찢어지지 않는다(원자성)"만 보장하는 타입이 아니라, `memory_order` 인자를 통해 "이 연산 주변의 다른 메모리 접근이 다른 스레드에 어떤 순서로 보이는가"까지 함께 규정하는 도구입니다. 이 구분을 흐리게 알고 있으면 `memory_order_relaxed`를 "원자적이니까 안전하겠지"라는 직관으로 쓰다가, 특정 컴파일러 버전이나 ARM 계열 하드웨어에서만 재현되는 데이터 레이스를 만들게 됩니다. 이 장은 relaxed/acquire/release/acq_rel/seq_cst 다섯 가지 순서를 이론적으로 정리하고, 실무에서 반복적으로 나오는 버그 패턴을 깨진 코드로 재현한 뒤 ThreadSanitizer로 검증하는 절차까지 다룹니다.
@@ -60,7 +60,7 @@ tags:
 
 ## 메모리 모델의 역사와 배경
 
-C++ 이전의 멀티스레드 C/C++ 코드는 사실상 컴파일러·하드웨어 벤더의 관행에 기대어 동작했습니다. 표준에는 스레드 개념 자체가 없었기 때문에, `volatile`을 동기화에 쓰거나 특정 컴파일러의 재배치 관행을 신뢰하는 코드가 흔했습니다. 이 공백을 형식화한 것이 **Hans-J. Boehm**과 **Sarita Adve**가 2007–2008년에 발표한 작업으로, 이들은 2007년 WG21 제안서 N2429("A Less Formal Explanation of the Proposed C++ Concurrency Memory Model")와 2008년 PLDI 논문 "Foundations of the C++ Concurrency Memory Model"을 통해 지금 표준에 있는 `memory_order` 체계의 기틀을 놓았습니다. 이 모델은 스레드 개념과 순서 보장을 이미 정의해 둔 <strong>Java Memory Model(JSR-133, 2004)</strong>의 설계 경험을 참고했지만, C++는 최적화 여지가 더 큰 언어이므로 relaxed부터 seq_cst까지 세분화된 순서 옵션을 별도로 두는 방향을 택했습니다. 이 체계는 2011년 C++11 표준(ISO/IEC 14882:2011)에 `<atomic>`으로 채택되었고, 이후 C++20에서 `std::atomic_ref`와 `wait`/`notify`가, C++26에서 `fetch_max`/`fetch_min`이 추가되는 식으로 확장되어 왔습니다. 순서 옵션 중 `memory_order_consume`만은 예외적인 길을 걸었는데, 표준이 정의한 "데이터 의존성 추적" 의미론을 어떤 컴파일러도 실용적 성능으로 구현하지 못해 WG21은 2016년 제안서 P0371로 이를 "당분간 비권장(discourage)"으로 명시했고, 현재 GCC·Clang 등 주요 컴파일러는 `consume`을 그대로 `acquire`로 승격해 처리합니다([WG21 P0371R1](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0371r1.html) 참고).
+C++ 이전의 멀티스레드 C/C++ 코드는 사실상 컴파일러·하드웨어 벤더의 관행에 기대어 동작했습니다. 표준에는 스레드 개념 자체가 없었기 때문에, `volatile`을 동기화에 쓰거나 특정 컴파일러의 재배치 관행을 신뢰하는 코드가 흔했습니다. 이 공백을 형식화한 것이 **Hans-J. Boehm**과 **Sarita Adve**가 2007–2008년에 발표한 작업으로, 이들은 2007년 12월 WG21 제안서 N2480("A Less Formal Explanation of the Proposed C++ Concurrency Memory Model")와 2008년 PLDI 논문 "Foundations of the C++ Concurrency Memory Model"을 통해 지금 표준에 있는 `memory_order` 체계의 기틀을 놓았습니다. 이 모델은 스레드 개념과 순서 보장을 이미 정의해 둔 <strong>Java Memory Model(JSR-133, 2004)</strong>의 설계 경험을 참고했지만, C++는 최적화 여지가 더 큰 언어이므로 relaxed부터 seq_cst까지 세분화된 순서 옵션을 별도로 두는 방향을 택했습니다. 이 체계는 2011년 C++11 표준(ISO/IEC 14882:2011)에 `<atomic>`으로 채택되었고, 이후 C++20에서 `std::atomic_ref`와 `wait`/`notify`가, C++26에서 `fetch_max`/`fetch_min`이 추가되는 식으로 확장되어 왔습니다. 순서 옵션 중 `memory_order_consume`만은 예외적인 길을 걸었는데, 표준이 정의한 "데이터 의존성 추적" 의미론을 어떤 컴파일러도 실용적 성능으로 구현하지 못해 WG21은 2016년 제안서 P0371로 이를 "당분간 비권장(discourage)"으로 명시했고, 현재 GCC·Clang 등 주요 컴파일러는 `consume`을 그대로 `acquire`로 승격해 처리합니다([WG21 P0371R1](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0371r1.html) 참고).
 
 ## 네 가지 순서와 happens-before
 
@@ -79,7 +79,7 @@ flowchart LR
   a2 -.->|"synchronizes-with"| b1
 ```
 
-seq_cst의 "전역 순서" 보장은 acquire/release만으로는 잡히지 않는 미묘한 사례를 막기 위한 장치입니다. 대표적으로 **IRIW(Independent Reads of Independent Writes)** 패턴에서는, 서로 다른 변수에 대한 두 스레드의 쓰기를 관찰하는 다른 두 스레드가 acquire/release만 쓰면 서로 다른 순서로 그 쓰기들을 관찰할 수 있습니다. seq_cst는 이런 경우까지 "모든 스레드가 같은 순서에 동의"하도록 만들지만, 그 대가로 하드웨어에 추가 펜스를 요구합니다. x86-64에서는 TSO(Total Store Order) 덕분에 relaxed/acquire/release load·store가 모두 평범한 `MOV`로 컴파일되고 컴파일러 배리어만 있으면 되는 반면, seq_cst 저장에는 `LOCK XCHG` 또는 `MOV` 뒤에 `MFENCE`가 추가로 필요합니다. ARMv8 AArch64에서는 acquire load가 `LDAR`, release store가 `STLR`로 매핑되어 relaxed보다 이미 한 단계 무겁고, seq_cst는 여기에 `DMB ISH` 펜스가 더 붙습니다. 이 매핑은 컴파일러·ISA 버전에 따라 달라지는 구현 정의 영역이므로, 정확한 명령어는 케임브리지대 연구팀이 정리한 [C/C++11 매핑 표](https://www.cl.cam.ac.uk/~pes20/cpp/cpp0xmappings.html)를 참고하는 것이 좋습니다.
+seq_cst의 "전역 순서" 보장은 acquire/release만으로는 잡히지 않는 미묘한 사례를 막기 위한 장치입니다. 대표적으로 **IRIW(Independent Reads of Independent Writes)** 패턴에서는, 서로 다른 변수에 대한 두 스레드의 쓰기를 관찰하는 다른 두 스레드가 acquire/release만 쓰면 서로 다른 순서로 그 쓰기들을 관찰할 수 있습니다. seq_cst는 이런 경우까지 "모든 스레드가 같은 순서에 동의"하도록 만들지만, 그 대가로 하드웨어에 추가 펜스를 요구합니다. x86-64에서는 TSO(Total Store Order) 덕분에 relaxed/acquire/release load·store가 모두 평범한 `MOV`로 컴파일되고 컴파일러 배리어만 있으면 되는 반면, seq_cst 저장에는 `LOCK XCHG` 또는 `MOV` 뒤에 `MFENCE`가 추가로 필요합니다. ARMv8 AArch64에서는 acquire load가 `LDAR`, release store가 `STLR`로 매핑되어 relaxed 대비 순서 제약이 추가되어 더 무겁고, seq_cst load·store도 같은 `LDAR`/`STLR`로 매핑되고, 이 명령어들이 seq_cst가 요구하는 순서를 하드웨어에서 구현합니다. 별도의 `DMB` 펜스가 필요해지는 것은 ARMv7 같은 구세대 ISA입니다. 이 매핑은 컴파일러·ISA 버전에 따라 달라지는 구현 정의 영역이므로, 정확한 명령어는 케임브리지대 연구팀이 정리한 [C/C++11 매핑 표](https://www.cl.cam.ac.uk/~pes20/cpp/cpp0xmappings.html)를 참고하는 것이 좋습니다.
 
 ## 깨진 코드에서 배우는 relaxed의 함정
 
@@ -151,9 +151,10 @@ int main() {
 g++ -std=c++20 -fsanitize=thread -g -O1 relaxed_bug.cpp -o relaxed_bug
 ./relaxed_bug
 # ==================
+# (형태를 보이기 위한 요약 예시이며 실제 실행 출력이 아닙니다)
 # WARNING: ThreadSanitizer: data race
-#   Write of size 4 at ... by thread T1 (g_data = 42)
-#   Previous read of size 4 at ... by main thread (assert(g_data == 42))
+#   Read of size 4 at ... by thread T2 (assert(g_data == 42))
+#   Previous write of size 4 at ... by thread T1 (g_data = 42)
 # ==================
 ```
 
@@ -165,7 +166,7 @@ release-acquire로 고친 버전은 같은 명령으로 빌드해도 경고가 �
 
 <strong>"acquire/release가 항상 mutex보다 빠르다"</strong>도 과도한 일반화입니다. 짧은 임계 구역에서 mutex는 futex 시스템 콜 없이 사용자 공간에서 CAS 한두 번으로 끝나는 경우가 많고, acquire/release로 직접 짠 코드는 잘못 짜면 정확성 버그를 추가하면서도 실측 성능은 큰 차이가 없는 경우가 흔합니다. 순서 완화는 프로파일링으로 병목이 확인된 후에만 검토합니다.
 
-<strong>"seq_cst면 무조건 안전하고 relaxed면 무조건 위험하다"</strong>는 이분법도 정확하지 않습니다. seq_cst는 IRIW류의 전역 순서 문제를 막아 주지만 out-of-thin-air 값(어떤 스레드도 실제로 쓴 적 없는 값이 순환적 추론으로 나타나는 현상) 문제까지 규범적으로 배제하지는 못합니다. 표준은 구현이 이런 결과를 피해야 한다는 비규범적 요구만 명시할 뿐, 이를 형식적으로 금지하는 정의는 아직 없습니다. 반대로 relaxed도 "다른 데이터와 무관하게 오직 그 값 자체의 누적만 필요한" 카운터·통계 용도에서는 정확하고 효율적인 선택입니다.
+<strong>"seq_cst면 무조건 안전하고 relaxed면 무조건 위험하다"</strong>는 이분법도 정확하지 않습니다. seq_cst는 IRIW류의 전역 순서 문제를 막아 줍니다. 한편 out-of-thin-air 값(어떤 스레드도 실제로 쓴 적 없는 값이 순환적 추론으로 나타나는 현상)은 relaxed 연산의 순환 의존에서 생기는 이론적 문제이며, 표준은 구현이 이런 결과를 피해야 한다는 비규범적 요구만 명시할 뿐 relaxed에 대한 형식적 금지 정의는 아직 없습니다. 반대로 relaxed도 "다른 데이터와 무관하게 오직 그 값 자체의 누적만 필요한" 카운터·통계 용도에서는 정확하고 효율적인 선택입니다.
 
 ## 판단 기준
 
@@ -179,7 +180,7 @@ release-acquire로 고친 버전은 같은 명령으로 빌드해도 경고가 �
 
 ## 비판적 시각: 한계와 논쟁
 
-C++ 메모리 모델은 세밀한 만큼 대다수의 실무 엔지니어가 정확히 추론하기 어려운 영역으로 남아 있습니다. Boehm과 Adve가 형식화한 지 15년이 넘었지만 out-of-thin-air 문제처럼 학계에서도 완전히 합의된 규범적 해법이 없는 코너 케이스가 존재하고, `memory_order_consume`은 구현 가능한 형태로 표준화하지 못해 사실상 폐기 수순을 밟았습니다. 실무 도구의 한계도 분명합니다. ThreadSanitizer는 동적 분석이라 실행된 스케줄만 검사하며, CDSChecker·GenMC 같은 형식적 모델 체커는 존재하지만 일반적인 CI 파이프라인에 상시 통합되어 있지는 않습니다. 또한 x86 데이터센터가 압도적이던 시절에는 relaxed 오용이 하드웨어 TSO 덕분에 가려지는 경우가 많았지만, ARM 기반 서버(AWS Graviton, Azure Cobalt 등)가 확대되는 흐름에서는 이런 은폐 효과가 줄어들어, 예전에는 "몇 년간 문제없던" 코드가 새 아키텍처로 이전하면서 갑자기 실패하는 사례가 늘어날 수 있습니다. 결론적으로 seq_cst를 기본값으로 유지하고 relaxed·acquire/release로의 완화는 측정된 병목에 대해서만, 검증 도구와 함께 적용하는 보수적 태도가 여전히 합리적입니다.
+C++ 메모리 모델은 세밀한 만큼 대다수의 실무 엔지니어가 정확히 추론하기 어려운 영역으로 남아 있습니다. Boehm과 Adve가 형식화한 지 15년이 넘었지만 out-of-thin-air 문제처럼 학계에서도 완전히 합의된 규범적 해법이 없는 코너 케이스가 존재하고, `memory_order_consume`은 구현 가능한 형태로 표준화하지 못해 사실상 폐기 수순을 밟았습니다. 실무 도구의 한계도 분명합니다. ThreadSanitizer는 동적 분석이라 실행된 스케줄만 검사하며, CDSChecker·GenMC 같은 형식적 모델 체커는 존재하지만 일반적인 CI 파이프라인에 상시 통합되어 있지는 않습니다. 결론적으로 seq_cst를 기본값으로 유지하고 relaxed·acquire/release로의 완화는 측정된 병목에 대해서만, 검증 도구와 함께 적용하는 보수적 태도가 여전히 합리적입니다.
 
 ## 마무리
 
