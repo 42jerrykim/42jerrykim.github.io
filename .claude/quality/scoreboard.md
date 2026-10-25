@@ -421,7 +421,7 @@
 | content/collection/optimization-10-network/21-network-compression-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/00-introduction/index.md | 91.3 | 2026-07-25 | 2 | 통과 | 1.0 | d7d5a55 | 없음(경미: "범위와 경계" Mermaid 단독 의존, Phase별 궤적과 커리큘럼 표 일부 중복) |
 | content/collection/optimization-11-design-decisions/01-performance-terminology-fundamentals/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | 4e1b372 | 없음(경미: 95th percentile billing·Tene의 coordinated omission 명명에 1차 출처 없음, 오개념 1이 평균 은폐 논리를 일부 재진술) |
-| content/collection/optimization-11-design-decisions/02-when-to-optimize/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/02-when-to-optimize/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | bd412a7 | 없음(경미 개선여지: L85 "위 표는"→"위 예시는") |
 | content/collection/optimization-11-design-decisions/03-when-to-stop-optimizing/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/04-readability-vs-performance/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/05-performance-budgeting/index.md | - | - | 0 | 미채점 | - | - | - |
