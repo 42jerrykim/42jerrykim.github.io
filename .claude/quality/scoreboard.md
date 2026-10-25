@@ -361,7 +361,7 @@
 | content/collection/optimization-07-concurrency/20-barrier-latch/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/21-thread-per-core-io-uring/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-08-optimization-techniques/00-introduction/index.md | 95.2 | 2026-07-25 | 3 | 통과 | 1.0 | ebfac67 | 없음(경미: 측정 항목 리스트 근거 문단 여지) |
-| content/collection/optimization-08-optimization-techniques/01-simd-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/01-simd-fundamentals/index.md | 93.9 | 2026-10-25 | 1 | 통과 | 1.3 | 49480b3 | 없음(경미: 오개념↔비판적 시각 중복, 벤치 스켈레톤 본문-코드 불일치·L1/L2 주석, 일부 마이크로아키텍처 단정 출처) |
 | content/collection/optimization-08-optimization-techniques/02-simd-intrinsics-practical/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-08-optimization-techniques/03-avx512-avx10-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-08-optimization-techniques/04-auto-vectorization/index.md | - | - | 0 | 미채점 | - | - | - |
