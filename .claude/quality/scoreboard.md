@@ -343,7 +343,7 @@
 | content/collection/optimization-07-concurrency/02-lock-selection-criteria/index.md | 90.1 | 2026-10-25 | 0 | 통과 | 1.3 | 04dcb21 | 없음(경미·수정 권고: L87 macOS libc++가 os_unfair_lock 위라는 서술 오류·Windows std::mutex 서술 부정확, L78 futex 스케치 lost-wakeup(exchange 필요), L139 SRWLOCK 번역 인용 원문 blockquote/링크 없음, 보일러플레이트 태그 6개(Condition-Variable·Memory-Order·Compiler·Profiling·Edge-Cases·Reference), Broken→Fixed→TSan 검증 부재, L124 무조건 yield) |
 | content/collection/optimization-07-concurrency/03-false-sharing-avoidance/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | da4e741 | 없음(경미: L70 'libc++ ABI 노출 때문에 비활성' 인과 서술 1차 출처 없음 — libc++ 상태표 'LLVM 19에서 매크로 구현'으로 교체 여지) |
 | content/collection/optimization-07-concurrency/04-memory-model-practical/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | d66fddb | 없음(경미: L63 N2480 저자는 Boehm 단독인데 'Boehm과 Adve' 귀속, Intel TSX 2021 비활성화 출처 미부기, consume '사실상 폐기 수순' 표현이 P0371R1보다 강함) |
-| content/collection/optimization-07-concurrency/05-lock-free-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/05-lock-free-fundamentals/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 04f59e3 | 없음(경미: Intel TSX 직접 인용에 intel.com 000059422 링크 미부기, Herlihy 논문 링크 없음, g++ 부재로 TaggedStack 예제 미컴파일) |
 | content/collection/optimization-07-concurrency/06-lock-free-data-structures/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/07-hazard-pointers-rcu/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/08-spsc-mpmc-queues/index.md | - | - | 0 | 미채점 | - | - | - |
