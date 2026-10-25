@@ -6,7 +6,7 @@ draft: false
 image: wordcloud.png
 title: "[Concurrency 07] Condition Variable 성능 패턴"
 slug: condition-variable-performance-patterns
-description: "condition_variable의 spurious wakeup과 thundering herd 비용을 Mesa semantics 기원부터 다루고, predicate 루프·notify 선택으로 대기 비용을 줄이는 법, 구현마다 다른 wait morphing 현황과 atomic::wait/notify 대안을 비교합니다."
+description: "condition_variable의 spurious wakeup과 thundering herd 비용을 다루고, predicate 루프·notify 선택으로 대기 비용을 줄이는 법, 구현 의존적인 wait morphing 현황과 atomic::wait/notify 대안을 비교합니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
