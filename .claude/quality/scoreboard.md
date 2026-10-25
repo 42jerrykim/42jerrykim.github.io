@@ -315,7 +315,7 @@
 | content/collection/optimization-05-cpu-microarchitecture/14-smt-hyperthreading/index.md | 93.9 | 2026-10-25 | 1 | 통과 | 1.3 | cc1665f | - |
 | content/collection/optimization-05-cpu-microarchitecture/15-uop-cache-dsb/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | 5cf7bc2 | - |
 | content/collection/optimization-05-cpu-microarchitecture/16-risc-v-architecture/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | 526d588 | - |
-| content/collection/optimization-05-cpu-microarchitecture/17-frontend-vs-backend-bound/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/17-frontend-vs-backend-bound/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | a3f7462 | - |
 | content/collection/optimization-05-cpu-microarchitecture/18-dependency-chains-port-pressure/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-06-os-runtime/00-introduction/index.md | 96.1 | 2026-07-25 | 3 | 통과 | 1.0 | fad6466 | 없음(경미: "달성할 목표"·"평가 기준" 절 일부 중복, 네비게이션 절 2개 중복 여지) |
 | content/collection/optimization-06-os-runtime/01-context-switch-cost/index.md | - | - | 0 | 미채점 | - | - | - |
