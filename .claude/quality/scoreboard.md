@@ -296,7 +296,7 @@
 | content/collection/optimization-04-memory-allocation/12-stack-vs-heap/index.md | 95.4 | 2026-10-24 | 3 | 통과 | 1.3 | 3141396 | 없음(경미: 본문 L89가 make_unique라 쓰나 코드는 new Payload, '20배 안팎'이 측정 범위 17–53배와 불일치, 오개념 2번째 항목이 앞 절 재진술) |
 | content/collection/optimization-04-memory-allocation/13-virtual-memory-management/index.md | 92.5 | 2026-10-25 | 3 | 통과 | 1.3 | eeb66e8 | 없음(경미: Mermaid가 '곧 재사용 → 압박 시 PAGEOUT'으로 이어져 본문·표와 불일치, 7.6%가 SYNC 모드 측정임을 미명시, MADV_FREE/RSS·msync·MTE 단서 재진술 다수, -fsanitize=memtag 플래그 Android 문서 대조 미완) |
 | content/collection/optimization-04-memory-allocation/14-memory-leak-detection/index.md | 95.0 | 2026-10-25 | 2 | 통과 | 1.3 | 4a858d4 | 없음(경미: Valgrind '1990년대 후반 개발 시작'·'3.27.1(2026-05)' 무출처·구버전 표기, 계측/배포 빌드 차이와 논리적 누수 설명 중복) |
-| content/collection/optimization-04-memory-allocation/15-memory-lifetime-cacheline-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/15-memory-lifetime-cacheline-intuition/index.md | 98.1 | 2026-10-25 | 1 | 통과 | 1.3 | b4bd8b9 | 없음(경미: 할당 비용 절 앞 3문장이 스택/힙 절 힙 설명과 중복, `alignas` 언급이 도입 없이 등장) |
 | content/collection/optimization-04-memory-allocation/16-global-allocator-tuning/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-05-cpu-microarchitecture/00-introduction/index.md | 88.9 | 2026-07-25 | 3 | 에스컬레이션 | 1.0 | b9a7dc2 | 치명결함 0건이나 3회 반복 후 90점 근소 미달. 잔여: "다루지 않는 것" 절에 캐시 일관성/메모리 모델·SIMD 범위 밖 명시 부재, 1차 출처 1개 추가 여지 |
 | content/collection/optimization-05-cpu-microarchitecture/01-cpu-pipeline-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
