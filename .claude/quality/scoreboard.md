@@ -426,7 +426,7 @@
 | content/collection/optimization-11-design-decisions/04-readability-vs-performance/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | d55d1fa | 없음(경미 개선여지: Per.2 원문 본문 각주, #include <cstddef>) |
 | content/collection/optimization-11-design-decisions/05-performance-budgeting/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 16bdd9d | 없음 |
 | content/collection/optimization-11-design-decisions/06-slo-sla-definition/index.md | 100 | 2026-10-25 | 2 | 통과 | 1.3 | 882faea | 없음(경미 개선여지: 측정 윈도우도 Appendix B에 4주로 나옴, Mermaid <br/>·</br> 혼용) |
-| content/collection/optimization-11-design-decisions/07-latency-vs-throughput/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/07-latency-vs-throughput/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | dc993fa | 없음(경미 개선여지: Little 법칙 인용구 "거의 모든 것"→"사실상 모든 것") |
 | content/collection/optimization-11-design-decisions/08-low-latency-architecture-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/09-caching-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/10-database-access-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
