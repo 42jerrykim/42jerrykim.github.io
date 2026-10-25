@@ -1,7 +1,7 @@
 ---
 collection_order: 12
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] ARM NEON 최적화"
@@ -12,14 +12,9 @@ tags:
   - Optimization(최적화)
   - C++
   - CPU(Central Processing Unit)
-  - Cache
-  - Memory(메모리)
   - Compiler(컴파일러)
   - Hardware(하드웨어)
-  - Embedded(임베디드)
   - Benchmark
-  - Latency
-  - Throughput
   - Profiling(프로파일링)
   - Testing(테스트)
   - Implementation(구현)
@@ -30,8 +25,6 @@ tags:
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Case-Study
-  - Technology(기술)
   - NEON
   - ARM
   - AArch64
@@ -41,7 +34,7 @@ tags:
   - arm_neon.h
   - Vectorization
   - Intrinsics
-  - SIMD
+  - SIMD(단일명령다중데이터)
   - Cross-Compilation
 ---
 
@@ -65,7 +58,7 @@ tags:
 
 ## NEON의 역사와 배경
 
-**NEON**은 ARMv7-A 아키텍처의 일부로 도입된 Advanced SIMD 확장이며, 2005년 발표된 **Cortex-A8**이 이를 처음 구현한 코어입니다([Wikipedia: ARM architecture family](https://en.wikipedia.org/wiki/ARM_architecture_family) 연혁 참고). 당시 ARM은 이미 VFP(Vector Floating Point)라는 별도의 부동소수점 유닛을 갖고 있었는데, NEON은 이와 구분되는 확장으로 추가되어 정수·부동소수점 SIMD 연산을 함께 다룰 수 있는 128비트 레지스터 세트를 제공했습니다. 32비트 ARMv7(AArch32) 시절 NEON은 64비트 D 레지스터(D0–D31) 16쌍을 128비트 Q 레지스터(Q0–Q15)로 겹쳐 보는 구조였고, 다른 최적화 확장과 마찬가지로 일부 저가형 코어에서는 구현이 생략되는 **선택 사항**이었습니다.
+**NEON**은 ARMv7-A 아키텍처의 일부로 도입된 Advanced SIMD 확장이며, **Cortex-A8**이 이를 구현한 초기 ARMv7-A 코어로 알려져 있습니다([Wikipedia: ARM Cortex-A8](https://en.wikipedia.org/wiki/ARM_Cortex-A8)는 이 코어를 ARMv7-A 구현으로 소개합니다). 당시 ARM은 이미 VFP(Vector Floating Point)라는 별도의 부동소수점 유닛을 갖고 있었는데, NEON은 이와 구분되는 확장으로 추가되어 정수·부동소수점 SIMD 연산을 함께 다룰 수 있는 128비트 레지스터 세트를 제공했습니다. 32비트 ARMv7(AArch32) 시절 NEON은 64비트 D 레지스터(D0–D31) 16쌍을 128비트 Q 레지스터(Q0–Q15)로 겹쳐 보는 구조였고, 다른 최적화 확장과 마찬가지로 일부 저가형 코어에서는 구현이 생략되는 **선택 사항**이었습니다.
 
 2011년 발표된 **ARMv8-A**는 64비트 실행 상태인 AArch64를 도입하면서 NEON의 위상을 근본적으로 바꿨습니다. 레지스터가 V0–V31 32개의 128비트 레지스터로 재편되었고, 무엇보다 Advanced SIMD(NEON)가 AArch64 베이스라인의 **필수 구성 요소**로 격상되어 AArch64를 구현하는 프로세서라면 예외 없이 NEON을 지원하게 되었습니다. 이는 x86 세계에서 SSE2까지는 사실상 표준이지만 AVX·AVX2·AVX-512는 여전히 CPU마다 지원 여부를 확인해야 하는 것과 대비됩니다 — AArch64에서는 "NEON을 지원하는지" 자체를 걱정할 필요가 없고, 그 위에 얹히는 fp16 연산·dot product·SVE/SVE2 같은 추가 확장만 세대별로 갈립니다. 이 안정된 베이스라인 위에서 2020년 이후 Apple Silicon이 데스크톱·노트북 시장을, AWS Graviton을 필두로 한 커스텀 서버 코어가 클라우드 시장을 빠르게 잠식하면서 NEON은 "임베디드의 특수 기술"에서 "주류 배포 대상의 기본 SIMD"로 위상이 바뀌었습니다.
 
@@ -129,25 +122,41 @@ NEON intrinsics 이름은 SSE와 다른 규칙(`v` 접두사, 타입이 이름�
 
 흥미로운 점은 수평 합산 방향이 x86과 반대라는 것입니다. x86에서는 셔플 명령을 조합해 레인을 모아야 하는 반면, AArch64 NEON은 `vaddvq_f32`라는 전용 명령으로 레지스터 안의 4레인을 한 번에 더할 수 있습니다(단, 이 명령은 AArch64 전용이며 구형 AArch32 NEON에는 없습니다). 반대로 x86의 `_mm_shuffle_ps`처럼 4레인을 임의 순서로 재배치하는 범용 명령은 NEON에 직접 대응하는 단일 명령이 없어서, 레인 몇 개를 어떻게 옮기느냐에 따라 `vextq_f32`(회전)나 레인별 삽입/추출 명령을 조합해야 합니다. 이 비대칭성 때문에 "SSE 코드를 NEON으로 그대로 옮기면 된다"는 기대는 셔플이 많은 코드에서 특히 자주 깨집니다.
 
-이 이식 작업을 자동화하는 도구로 [sse2neon](https://github.com/DLTcollab/sse2neon)이 있습니다. 헤더 하나로 `<xmmintrin.h>` 등 SSE 계열 intrinsics 호출을 NEON intrinsics 조합으로 치환해, x86 SIMD 코드베이스를 재작성 없이 ARM에서 우선 동작하게 만드는 용도로 널리 쓰입니다. 다만 일부 SSE intrinsic 하나가 여러 NEON 명령어로 번역되어(`_mm_maddubs_epi16`처럼 10개 이상의 명령으로 확장되는 사례도 있습니다) 원본보다 느려질 수 있고, `_mm_rsqrt_ps`처럼 입력이 0일 때 SSE는 `INF`를 반환하지만 NEON 기반 번역은 `NaN`을 반환하는 등 부동소수점 예외 케이스의 결과가 달라지는 지점도 있습니다. sse2neon은 `SSE2NEON_PRECISE_SQRT` 같은 컴파일 타임 플래그로 더 엄격한(대신 느린) 구현을 선택할 수 있게 해 두었지만, 기본값 그대로 쓸지는 대상 코드가 그 정밀도 차이를 감당할 수 있는지에 달려 있습니다. 공식 intrinsics 이름·시그니처는 ARM이 관리하는 [ACLE(Arm C Language Extensions) 명세](https://github.com/ARM-software/acle/releases)의 "Arm Neon Intrinsics Reference" 문서가 기준입니다.
+수평 합을 NEON으로 직접 확인하는 최소 예시는 다음과 같습니다. 같은 일을 SSE에서 하려면 셔플과 덧셈을 조합해야 합니다.
+
+```cpp
+#include <arm_neon.h>
+#include <cstdio>
+
+// AArch64 전용: 4개 레인을 명령 하나(addv)로 더한다.
+float hsum_neon(float32x4_t v) { return vaddvq_f32(v); }
+
+int main() {
+  const float d[4] = {1.0f, 2.0f, 3.0f, 4.0f};
+  std::printf("%.1f\n", hsum_neon(vld1q_f32(d)));  // 10.0이 출력되어야 한다
+  return 0;
+}
+```
+
+이 이식 작업을 자동화하는 도구로 [sse2neon](https://github.com/DLTcollab/sse2neon)이 있습니다. 헤더 하나로 `<xmmintrin.h>` 등 SSE 계열 intrinsics 호출을 NEON intrinsics 조합으로 치환해, x86 SIMD 코드베이스를 재작성 없이 ARM에서 우선 동작하게 만드는 용도로 널리 쓰입니다. 다만 일부 SSE intrinsic 하나가 여러 NEON 명령어로 번역되어(`_mm_maddubs_epi16`처럼 10개 이상의 명령으로 확장되는 사례도 있습니다) 원본보다 느려질 수 있고, `_mm_rsqrt_ps`처럼 입력이 0일 때 SSE는 `INF`를 반환하지만 NEON 기반 번역은 `NaN`을 반환하는 등 부동소수점 예외 케이스의 결과가 달라지는 지점도 있습니다. 이 때문에 번역된 코드는 기본값 그대로 쓰기 전에 재측정·재검증해야 합니다. sse2neon은 `SSE2NEON_PRECISE_SQRT` 같은 컴파일 타임 플래그로 더 엄격한(대신 느린) 구현을 선택할 수 있게 해 두었지만, 기본값 그대로 쓸지는 대상 코드가 그 정밀도 차이를 감당할 수 있는지에 달려 있습니다. 공식 intrinsics 이름·시그니처는 ARM이 관리하는 [ACLE(Arm C Language Extensions) 명세](https://github.com/ARM-software/acle/releases)의 "Arm Neon Intrinsics Reference" 문서가 기준입니다.
 
 ## Apple Silicon 배포 대응
 
-Apple Silicon(M1–M5 계열)은 전부 AArch64를 구현하므로, NEON 베이스라인은 예외 없이 사용할 수 있고 런타임에 "이 기기가 NEON을 지원하는가"를 확인할 필요가 없습니다. Xcode의 Clang은 `-arch arm64`만으로 AArch64 baseline NEON 코드를 생성하며, 특정 세대에 맞춘 스케줄링 튜닝이 필요하면 `-mcpu=apple-m1`처럼 세대별 CPU 이름을 지정할 수 있습니다. 2026년 3월 발표된 [M5 Pro·M5 Max](https://www.apple.com/newsroom/2026/03/apple-debuts-m5-pro-and-m5-max-to-supercharge-the-most-demanding-pro-workflows/)는 성능 코어와 효율 코어를 재구성한 18코어 CPU 구성을 발표 자료에서 밝혔지만, 그 발표 자료 자체는 NEON이나 SIMD 성능을 구체적으로 언급하지 않습니다 — Apple은 저수준 SIMD 벤치마크보다 GPU·Neural Engine 중심의 AI 처리량을 마케팅 초점으로 삼는 경향이 있습니다.
+Apple Silicon(M1–M5 계열)은 전부 AArch64를 구현하므로, NEON 베이스라인은 예외 없이 사용할 수 있고 런타임에 "이 기기가 NEON을 지원하는가"를 확인할 필요가 없습니다. Xcode의 Clang은 `-arch arm64`만으로 AArch64 baseline NEON 코드를 생성하며, 특정 세대에 맞춘 스케줄링 튜닝이 필요하면 `-mcpu=apple-m1`처럼 세대별 CPU 이름을 지정할 수 있습니다. 2026년 3월 발표된 [M5 Pro·M5 Max](https://www.apple.com/newsroom/2026/03/apple-debuts-m5-pro-and-m5-max-to-supercharge-the-most-demanding-pro-workflows/)는 6개 super 코어와 12개 performance 코어로 구성된 18코어 CPU을 발표 자료에서 밝혔지만, 그 발표 자료 자체는 NEON이나 SIMD 성능을 구체적으로 언급하지 않습니다 — Apple은 저수준 SIMD 벤치마크보다 GPU·Neural Engine 중심의 AI 처리량을 마케팅 초점으로 삼는 경향이 있습니다.
 
 행렬 곱셈처럼 조밀한 연산에서는 Apple의 비공개 행렬 코프로세서(AMX)가 NEON보다 유리한 경우가 보고되어 있습니다. 다만 AMX는 Apple이 공식 문서화한 명령어 집합이 아니라 [corsix/amx](https://github.com/corsix/amx) 같은 커뮤니티 리버스엔지니어링으로 상당 부분 규명된 비공개 확장이며, `arm_neon.h` intrinsics만으로는 접근할 수 없고 Accelerate·BNNS 같은 Apple 공식 프레임워크를 통해 간접적으로만 활용됩니다. 즉 "Apple Silicon이니까 NEON 코드가 자동으로 AMX 가속을 받는다"는 기대는 성립하지 않으며, 행렬 연산이 핫패스라면 NEON 직접 작성보다 Accelerate 프레임워크 도입을 먼저 검토하는 편이 합리적입니다. fp16 산술(`float16x4_t` 등)이나 dot product 명령(`vdotq_*`, ARMv8.2/8.4 확장)처럼 베이스라인 이후 도입된 기능은 `sysctlbyname("hw.optional.arm.FEAT_DotProd", ...)` 같은 macOS 런타임 질의로 지원 여부를 개별 확인해야 합니다.
 
 ## ARM 서버 배포 대응
 
-ARM 서버는 벤더별로 파편화되어 있어 "ARM 서버는 다 똑같다"고 가정하면 안 됩니다. 가장 널리 쓰이는 예로 AWS Graviton 계열을 보면, [AWS Graviton 기술 가이드](https://aws.github.io/graviton/)는 세대별 SIMD 실행 유닛 구성을 Graviton2(Neoverse N1, 2019)는 "2x NEON 128bit", Graviton3/3E(Neoverse V1, 2022)는 "4x NEON 128bit / 2x SVE 256bit", Graviton4(Neoverse V2, 2023–2024 GA)와 [Graviton5(Neoverse V3, Armv9.2, 2026-06 GA)](https://www.phoronix.com/review/aws-graviton5)는 "4x NEON/SVE 128bit + SVE2"로 정리합니다. 즉 NEON은 Graviton2부터 5까지 일관되게 지원되는 안정된 기반이지만, SVE·SVE2 지원 여부와 실행 유닛 폭은 세대마다 다릅니다.
+ARM 서버는 벤더별로 파편화되어 있어 "ARM 서버는 다 똑같다"고 가정하면 안 됩니다. 가장 널리 쓰이는 예로 AWS Graviton 계열을 보면, [AWS Graviton 기술 가이드](https://aws.github.io/graviton/)는 세대별 SIMD 실행 유닛 구성을 Graviton2(Neoverse N1)는 "2x NEON 128bit", Graviton3/3E(Neoverse V1)는 "4x NEON 128bit / 2x SVE 256bit", Graviton4(Neoverse V2)는 "4x Neon/SVE 128bit vectors"로 정리합니다(출시 연도는 이 가이드가 정리한 내용이 아니므로 싣지 않습니다). 즉 NEON은 Graviton2부터 4까지 일관되게 지원되는 안정된 기반이지만, SVE·SVE2 지원 여부와 실행 유닛 폭은 세대마다 다릅니다.
 
 같은 가이드는 컴파일 타깃도 세대별로 다르게 권장합니다 — Graviton2는 `-mcpu=neoverse-n1`, Graviton3 이후로는 `-mcpu=neoverse-512tvb`를 권장하는데, 여기서 `512tvb`는 실제 SVE 벡터 길이가 512비트라는 뜻이 아니라 "총 벡터 처리 대역폭(total vector bandwidth)"이 512비트에 해당하도록 컴파일러가 명령어를 스케줄링하게 하는 튜닝 목표치입니다. NEON 128비트 실행 유닛 4개가 동시에 돌면 산술적으로 512비트어치 처리량을 낼 수 있다는 사실에 기반한 값으로, 실제 SVE 레지스터 폭(256비트)과 혼동하면 안 됩니다. Ampere(Ampere One)나 Azure Cobalt처럼 다른 벤더의 Neoverse 기반 커스텀 코어도 존재하며, 코어 마이크로아키텍처와 캐시 구성이 서로 달라 같은 NEON 명령어라도 실제 처리량은 벤더·세대별로 재측정해야 합니다.
 
 ```mermaid
 flowchart LR
-  armv7A["ARMv7-A 2005</br>Cortex-A8, NEON 최초 도입(선택)"] --> armv8A["ARMv8-A 2011</br>AArch64, NEON 베이스라인 필수화"]
+  armv7A["ARMv7-A</br>Cortex-A8, NEON 최초 도입(선택)"] --> armv8A["ARMv8-A 2011</br>AArch64, NEON 베이스라인 필수화"]
   armv8A --> appleSilicon["Apple Silicon 2020~</br>M1~M5, NEON+비공개 AMX"]
-  armv8A --> armServer["ARM 서버 2019~</br>Graviton2~5, Ampere, Azure Cobalt"]
+  armv8A --> armServer["ARM 서버 2019~</br>Graviton2~4, Ampere, Azure Cobalt"]
   armv8A --> armv9A["ARMv9-A 2021~</br>SVE2 도입(선택 확장)"]
 ```
 
@@ -186,15 +195,15 @@ BENCHMARK(BM_AddNeon)->Arg(1 << 10)->Arg(1 << 20);
 BENCHMARK_MAIN();
 ```
 
-`clang++ -O2 -mcpu=native bench.cpp -lbenchmark -lpthread`(AArch64, macOS Apple Silicon 또는 Linux arm64 기준 예시)로 빌드해 실행하면, 배열이 L2 캐시에 들어가는 `1 << 10` 크기에서 NEON이 스칼라 대비 이득을 보이는 경향이 흔하지만, 정확한 배율은 Apple Silicon 세대, Graviton 세대, 컴파일러 버전에 따라 달라지므로 대상 배포 환경에서 직접 재현해야 합니다.
+`clang++ -O2 -mcpu=native bench.cpp -lbenchmark -lpthread`(AArch64, macOS Apple Silicon 또는 Linux arm64 기준 예시)로 빌드해 실행하면, `1 << 10` 크기(float 1024개 × 3배열 ≈ 12KB로 L1 캐시 안)와 `1 << 20` 크기(≈ 12MB로 캐시를 넘길 수 있음)를 비교하도록 구성했습니다. 이 글은 실행 결과를 싣지 않았으며, clang은 `-O2`에서 스칼라 루프도 자동 벡터화할 수 있으므로 NEON과 스칼라의 차이가 작거나 없을 수 있습니다. 정확한 배율은 Apple Silicon 세대, Graviton 세대, 컴파일러 버전에 따라 달라지므로 대상 배포 환경에서 직접 재현해야 합니다.
 
 ## 흔한 오개념
 
-<strong>"SSE intrinsics를 NEON으로 그대로 옮기면 끝난다"</strong>는 로드·스토어·기본 산술에는 대체로 맞지만, 셔플·수평 합·블렌드처럼 레인을 가로지르는 연산에서는 자주 깨집니다. sse2neon 같은 번역 계층이 이 간극을 메워 주지만, 명령어 개수가 늘어나는 만큼 성능이 달라질 수 있고 `rsqrt` 같은 근사 연산의 예외 케이스 결과(0 입력 시 `INF` vs `NaN`)가 달라질 수 있으므로, 번역된 코드를 그대로 프로덕션에 넣기 전에 반드시 재측정·재검증해야 합니다.
+<strong>"SSE intrinsics를 NEON으로 그대로 옮기면 끝난다"</strong>는 로드·스토어·기본 산술에는 대체로 맞지만, 셔플·수평 합·블렌드처럼 레인을 가로지르는 연산에서는 자주 깨집니다. sse2neon 같은 번역 계층이 이 간극을 메워 주지만 그 대가는 앞 절에서 본 대로입니다.
 
 <strong>"Apple Silicon과 AWS Graviton의 NEON은 사실상 같은 하드웨어다"</strong>도 정확하지 않습니다. 둘 다 AArch64 Advanced SIMD라는 같은 ISA 베이스라인을 구현하지만, 마이크로아키텍처(실행 포트 개수·너비, 비순차 실행 윈도우 크기)와 fp16·dot product·SVE2 같은 세대별 확장 지원 여부가 서로 다릅니다. 같은 NEON 코드라도 실제 처리량은 플랫폼마다 다르게 나오므로, 한쪽에서 측정한 배율을 다른 쪽에 그대로 대입하면 안 됩니다.
 
-<strong>"NEON을 쓰니까 런타임 기능 감지가 필요 없다"</strong>는 AArch64 베이스라인 NEON에 한해서만 맞습니다. dot product·fp16 산술·SVE/SVE2처럼 베이스라인 이후에 추가된 확장은 세대·벤더마다 지원 여부가 갈리므로, Linux의 `getauxval(AT_HWCAP2)`나 macOS의 `sysctlbyname`으로 개별 확인해야 합니다. "NEON"이라는 한 단어가 실제로는 세대별로 다른 확장 집합을 가리킬 수 있다는 점을 놓치기 쉽습니다.
+<strong>"NEON을 쓰니까 런타임 기능 감지가 필요 없다"</strong>는 AArch64 베이스라인 NEON에 한해서만 맞습니다. dot product·fp16 산술·SVE/SVE2처럼 베이스라인 이후에 추가된 확장은 세대·벤더마다 지원 여부가 갈리므로, Linux의 `getauxval(AT_HWCAP)`(dot product·fp16 등)와 `getauxval(AT_HWCAP2)`(SVE2 등), macOS의 `sysctlbyname`으로 개별 확인해야 합니다. "NEON"이라는 한 단어가 실제로는 세대별로 다른 확장 집합을 가리킬 수 있다는 점을 놓치기 쉽습니다.
 
 ## 판단 기준
 
@@ -209,7 +218,7 @@ BENCHMARK_MAIN();
 
 ## 비판적 시각: 한계와 트레이드오프
 
-NEON의 128비트 고정 폭은 AVX-512 같은 넓은 레지스터가 주는 이론적 상한 자체를 원천적으로 제공하지 않습니다. ARM의 답은 SVE/SVE2지만, 이는 프로그래밍 모델이 다른 별도 확장이고 벤더·세대별 채택 속도와 툴체인 성숙도 차이가 커서 NEON만큼 "당연히 쓸 수 있는" 기반이 되려면 시간이 더 필요합니다. NEON의 부동소수점 연산은 AArch32·AArch64 모두 Flush-to-zero와 Default NaN 동작을 강제하는 경우가 있어, IEEE-754 엄밀성을 요구하는 코드에서는 x86 스칼라·SSE 결과와 미묘하게 달라질 수 있으므로 값 도메인이 특수한 코드(0 근처 극소값, NaN 전파 로직)는 별도로 검증해야 합니다. sse2neon처럼 이식 속도를 얻는 번역 계층은 그 대가로 명령어 수 증가와 예외 케이스 결과 차이를 감수해야 하며, 어느 쪽이 이득인지는 대상 코드의 셔플·근사 연산 비중에 달려 있습니다. Apple의 AMX는 공식 API가 아닌 비공개 확장에 의존하는 최적화 경로이므로, 이를 직접 겨냥한 코드는 향후 OS·하드웨어 업데이트에 따라 동작이 바뀔 위험을 안고 갑니다. 마지막으로 ARM 서버 생태계 자체가 AWS Graviton, Ampere, Azure Cobalt 등으로 파편화되어 있어, 한 벤더에서 얻은 NEON 성능 수치를 다른 벤더의 "ARM 서버"에 일반화하는 것은 위험하며, 배포 전 대상 인스턴스 타입에서 실측하는 습관이 필요합니다.
+NEON의 128비트 고정 폭은 AVX-512 같은 넓은 레지스터가 주는 이론적 상한 자체를 원천적으로 제공하지 않습니다. ARM의 답은 SVE/SVE2지만, 이는 프로그래밍 모델이 다른 별도 확장이고 벤더·세대별 채택 속도와 툴체인 성숙도 차이가 커서 NEON만큼 "당연히 쓸 수 있는" 기반이 되려면 시간이 더 필요합니다. AArch32 NEON의 부동소수점 연산은 Flush-to-zero와 Default NaN 동작이 고정되어 있고, AArch64는 FPCR 설정에 따라 달라지므로, IEEE-754 엄밀성을 요구하는 코드에서는 x86 스칼라·SSE 결과와 미묘하게 달라질 수 있습니다. 값 도메인이 특수한 코드(0 근처 극소값, NaN 전파 로직)는 대상 환경에서 별도로 검증해야 합니다. Apple의 AMX는 공식 API가 아닌 비공개 확장에 의존하는 최적화 경로이므로, 이를 직접 겨냥한 코드는 향후 OS·하드웨어 업데이트에 따라 동작이 바뀔 위험을 안고 갑니다. 
 
 ## 마무리
 
