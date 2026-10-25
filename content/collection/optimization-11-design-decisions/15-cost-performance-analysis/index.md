@@ -21,7 +21,6 @@ tags:
   - Production
   - Reliability
   - Backend(백엔드)
-  - Case-Study
   - Advanced
   - Deep-Dive
   - Guide(가이드)
@@ -39,10 +38,8 @@ tags:
   - ARM
   - Graviton
   - x86
-  - Right-Sizing
   - Instance-Selection
   - Commitment-Discount
-  - Interruption-Rate
 ---
 
 **Cost-Performance 분석**이란 클라우드 인스턴스 타입·커밋먼트 방식·CPU 아키텍처 같은 선택지를 "얼마나 빠른가"가 아니라 "낸 돈 대비 얼마나 일을 하는가"라는 단위 경제로 평가해, 어떤 조합이 조직의 성능 목표를 가장 낮은 총소유비용(TCO)으로 충족하는지 결정하는 일을 말합니다. [13장](/post/design-decisions/capacity-planning-methodology-performance-goals/)에서 필요한 인스턴스 수를 정하고 [14장](/post/design-decisions/load-testing-design-performance-goal-verification/)에서 그 용량이 실제로 목표를 지키는지 검증했다면, 남은 질문은 그 용량을 어떤 인스턴스 타입·아키텍처·구매 방식으로 채울 때 가장 적은 비용으로 같은 성능을 살 수 있는가입니다. 이 질문에 답하지 않으면 두 가지 실패 모드가 동시에 열립니다. 시간당 요금이 싸다는 이유로 처리량이 낮은 인스턴스를 골라 결국 더 많은 인스턴스를 사서 총비용이 오르는 경우, 그리고 반대로 벤더가 발표한 price-performance 수치를 그대로 믿고 커밋먼트에 들어갔다가 실제 워크로드에서는 그 이득이 재현되지 않는 경우입니다. 이 장은 이 두 실패를 피하기 위해 비교 단위를 무엇으로 삼을지, 커밋먼트 스펙트럼을 어떻게 활용할지, 그리고 아키텍처 전환처럼 되돌리기 어려운 결정을 언제·어떻게 검증할지에 대한 판단 기준을 정리합니다.
@@ -65,9 +62,9 @@ tags:
 
 **총소유비용(TCO, Total Cost of Ownership)** 개념 자체는 20세기 초까지 뿌리를 두고 있지만, IT 구매 의사결정 용어로 널리 퍼진 것은 1987년 Gartner Group이 이를 대중화하면서부터입니다([Wikipedia: Total cost of ownership](https://en.wikipedia.org/wiki/Total_cost_of_ownership)). 이 시기는 기업 컴퓨팅이 중앙 데이터센터에서 개인용 데스크톱으로 옮겨가면서, 장비의 실제 비용이 하나의 IT 예산 항목에 더 이상 온전히 담기지 않게 된 시점과 맞물립니다. 클라우드 이전 시대의 TCO는 하드웨어 구매가, 전력·냉각, 운영 인력, 감가상각을 모두 더하는 정적인 계산이었고, 한 번 사면 몇 년을 그대로 써야 했기 때문에 결정을 자주 되돌릴 수 없었습니다.
 
-2006년 Amazon EC2가 시간 단위 종량제(pay-as-you-go)를 상용화하면서 TCO 계산의 성격이 바뀌었습니다. 자산을 사는 결정에서 사용량에 따라 매 순간 다시 내릴 수 있는 결정으로 바뀐 것입니다. 그 뒤로 이 유연성과 절감을 맞바꾸는 여러 구매 방식이 등장했습니다. 2009년 무렵 도입된 예약 인스턴스(Reserved Instances)는 1년·3년 단위로 사용량을 미리 약정하는 대신 할인을 받는 방식이었고, 비슷한 시기의 스팟(Spot) 시장은 유휴 용량을 경매 방식으로 훨씬 싸게 파는 대신 언제든 회수될 수 있다는 조건을 달았습니다. 이후 특정 인스턴스 타입에 묶이지 않고 시간당 지출 약정만으로 할인을 받는 Savings Plans가 더해지면서 커밋먼트의 유연성은 한층 넓어졌습니다.
+2006년 Amazon EC2가 시간 단위 종량제(pay-as-you-go)를 상용화하면서 TCO 계산의 성격이 바뀌었습니다. 자산을 사는 결정에서 사용량에 따라 매 순간 다시 내릴 수 있는 결정으로 바뀐 것입니다. 그 뒤로 이 유연성과 절감을 맞바꾸는 여러 구매 방식이 등장했습니다. 예약 인스턴스(Reserved Instances)는 1년·3년 단위로 사용량을 미리 약정하는 대신 할인을 받는 방식이었고, 스팟(Spot) 인스턴스는 유휴 용량을 입찰 없는 할인 가격 모델로 훨씬 싸게 제공하는 대신 언제든 회수될 수 있다는 조건을 달았습니다. 이후 특정 인스턴스 타입에 묶이지 않고 시간당 지출 약정만으로 할인을 받는 Savings Plans가 더해지면서 커밋먼트의 유연성은 한층 넓어졌습니다.
 
-같은 시기 클라우드 비용을 다루는 조직적 실천도 하나의 분야로 자리 잡았습니다. 2019년 무렵 결성된 FinOps Foundation은 클라우드 지출을 엔지니어링·재무·비즈니스 팀이 함께 다루는 운영 프레임워크를 표준화하려 했고, 이 조직이 제시하는 정의는 FinOps를 "an operational framework and cultural practice which maximizes the business value of technology"로 규정합니다([FinOps Foundation: What is FinOps?](https://www.finops.org/introduction/what-is-finops/)). 이 정의에서 중요한 것은 FinOps가 단순한 비용 절감 활동이 아니라, 성능·안정성 목표와 지출을 같은 테이블에서 논의하도록 만드는 협업 구조라는 점입니다. 인스턴스 아키텍처 자체의 경쟁도 이 시기에 본격화되었습니다. AWS는 2018년 Graviton(ARM 기반) 1세대를 시작으로 2019년 Graviton2, 2021년 Graviton3를 거쳐 세대마다 코어 수·캐시·메모리 대역폭을 늘려왔고, 2025년 말 프리뷰를 거쳐 2026년 상반기 정식 출시된 Graviton5는 192코어와 이전 세대 대비 큰 폭으로 늘어난 L3 캐시를 앞세워 x86 계열과의 price-performance 경쟁을 다시 한 단계 끌어올렸습니다.
+같은 시기 클라우드 비용을 다루는 조직적 실천도 하나의 분야로 자리 잡았습니다. FinOps Foundation은 클라우드 지출을 엔지니어링·재무·비즈니스 팀이 함께 다루는 운영 프레임워크를 표준화하려 했고, 이 조직이 제시하는 정의는 FinOps를 "an operational framework and cultural practice which maximizes the business value of technology"로 규정합니다([FinOps Foundation: What is FinOps?](https://www.finops.org/introduction/what-is-finops/)). 이 정의에서 중요한 것은 FinOps가 단순한 비용 절감 활동이 아니라, 성능·안정성 목표와 지출을 같은 테이블에서 논의하도록 만드는 협업 구조라는 점입니다. 인스턴스 아키텍처 자체의 경쟁도 이 시기에 본격화되었습니다. AWS는 Graviton(ARM 기반) 계열을 세대마다 개선해 왔고, AWS Graviton 페이지는 Graviton5가 192코어, 5배 큰 캐시, 코어 간 지연 최대 33% 감소를 갖췄다고 소개하며([AWS: AWS Graviton](https://aws.amazon.com/ec2/graviton/)) x86 계열과의 price-performance 경쟁을 이어 가고 있습니다.
 
 ## Price-Performance 비율: 비교 단위를 무엇으로 삼을 것인가
 
@@ -92,19 +89,19 @@ def cost_per_million_requests(opt: InstanceOption) -> float:
 
 options = [
     InstanceOption("c7g.xlarge (ARM, on-demand)", hourly_price_usd=0.1445, measured_qps=9800),
-    InstanceOption("c7i.xlarge (x86, on-demand)", hourly_price_usd=0.1785, measured_qps=10200),
+    InstanceOption("c7i.xlarge (x86, on-demand)", hourly_price_usd=0.1785, measured_qps=15000),
     InstanceOption("c7g.xlarge (ARM, 1yr reserved)", hourly_price_usd=0.0930, measured_qps=9800),
 ]
 
 for opt in sorted(options, key=cost_per_million_requests):
-    print(f"{opt.name}: ${cost_per_million_requests(opt):.3f} / 100만 요청")
+    print(f"{opt.name}: ${cost_per_million_requests(opt):.4f} / 100만 요청")
 ```
 
-이 예시의 가격은 리전·시점에 따라 실제와 다를 수 있는 예시 값이며, 실제 의사결정에는 반드시 현재 가격표와 자신의 워크로드로 측정한 `measured_qps`를 대입해야 합니다. 이 계산이 보여주는 핵심은 순위가 시간당 요금 순서와 다르게 나올 수 있다는 것이고, 처리량 차이가 요금 차이보다 크면 더 비싼 인스턴스가 실제로는 더 저렴한 선택이 됩니다.
+이 예시의 가격은 리전·시점에 따라 실제와 다를 수 있는 예시 값이며, 실제 의사결정에는 반드시 현재 가격표와 자신의 워크로드로 측정한 `measured_qps`를 대입해야 합니다. 이 계산이 보여주는 핵심은 순위가 시간당 요금 순서와 다르게 나올 수 있다는 것입니다. 이 예시에서는 시간당 요금이 가장 비싼 x86 인스턴스가 처리량이 훨씬 크다고 가정했기 때문에 ARM 온디맨드보다 요청당 비용이 낮게 나옵니다. 처리량 차이가 요금 차이보다 크면 더 비싼 인스턴스가 실제로는 더 저렴한 선택이 됩니다.
 
 ## 커밋먼트 스펙트럼: On-Demand·Reserved·Savings Plans·Spot
 
-같은 인스턴스 타입이라도 구매 방식에 따라 실제 지불 가격은 크게 달라지며, 이 구매 방식들은 "얼마나 확실하게 미리 약속하는가"를 축으로 하는 하나의 스펙트럼을 이룹니다. **On-Demand**는 약정 없이 쓴 만큼만 내는 방식으로 유연하지만 단가가 가장 높습니다. **Reserved Instances**와 **Savings Plans**는 1년 또는 3년 단위로 사용량(또는 지출액)을 미리 약속하는 대신 상당한 할인을 받는 방식으로, [13장](/post/design-decisions/capacity-planning-methodology-performance-goals/)에서 정한 N+1/N+2 헤드룸 중에서도 트래픽이 줄어들 일이 거의 없는 **안정적인 기준선(steady-state baseline)** 용량에 적용할 때 안전합니다. 예측이 틀려도 이미 약정한 용량을 놀리게 되는 것이 이 방식의 근본적인 리스크이므로, 약정 기간은 [13장](/post/design-decisions/capacity-planning-methodology-performance-goals/)의 성장 예측이 얼마나 신뢰할 수 있는지에 맞춰 골라야 합니다. **Spot Instances**는 클라우드 사업자의 유휴 용량을 경매 방식으로 최대 90%까지 할인된 가격에 제공하지만([AWS: Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/)), 용량이 필요해지면 짧은 통지 후 회수될 수 있어 리전·인스턴스 타입별 평균 회수 빈도가 공개되어 있는 만큼 그 변동성 자체를 설계에 반영해야 합니다.
+같은 인스턴스 타입이라도 구매 방식에 따라 실제 지불 가격은 크게 달라지며, 이 구매 방식들은 "얼마나 확실하게 미리 약속하는가"를 축으로 하는 하나의 스펙트럼을 이룹니다. **On-Demand**는 약정 없이 쓴 만큼만 내는 방식으로 유연하지만 단가가 가장 높습니다. **Reserved Instances**와 **Savings Plans**는 1년 또는 3년 단위로 사용량(또는 지출액)을 미리 약속하는 대신 상당한 할인을 받는 방식으로, [13장](/post/design-decisions/capacity-planning-methodology-performance-goals/)에서 정한 N+1/N+2 헤드룸 중에서도 트래픽이 줄어들 일이 거의 없는 **안정적인 기준선(steady-state baseline)** 용량에 적용할 때 안전합니다. 예측이 틀려도 이미 약정한 용량을 놀리게 되는 것이 이 방식의 근본적인 리스크이므로, 약정 기간은 [13장](/post/design-decisions/capacity-planning-methodology-performance-goals/)의 성장 예측이 얼마나 신뢰할 수 있는지에 맞춰 골라야 합니다. **Spot Instances**는 클라우드 사업자의 유휴 용량을 입찰 없는 가격 모델로 최대 90%까지 할인된 가격에 제공하지만([AWS: Amazon EC2 Spot Instances](https://aws.amazon.com/ec2/spot/)), 용량이 필요해지면 회수될 수 있어 그 변동성 자체를 설계에 반영해야 합니다.
 
 이 스펙트럼을 헤드룸 구조에 그대로 대응시키면 결정이 단순해집니다. 절대 줄지 않을 기준선은 Reserved·Savings Plans로 약정해 최저 단가를 확보하고, 트래픽이 늘었다 줄었다 하는 탄력적 구간은 On-Demand로 채우며, 재시작 가능하고 상태를 갖지 않는(stateless) 배치·비동기 작업이나 여유 헤드룸은 Spot으로 채워 회수 위험을 감수할 가치가 있는 곳에만 그 위험을 배치합니다. 지연시간 SLO가 타이트한 프론트엔드 요청 경로에 Spot을 단독으로 쓰면, 회수 통지 이후 새 인스턴스가 뜨고 예열되는 동안 그 경로 전체가 SLO를 위반할 수 있으므로 페일오버 대상 없이 사용하는 것은 위험합니다. 실제 가격·회수 빈도 데이터를 확인하려면 아래처럼 클라우드 사업자의 CLI로 최근 가격 이력을 조회해 볼 수 있습니다.
 
@@ -121,7 +118,7 @@ aws ec2 describe-spot-price-history \
 
 인스턴스 타입 선택은 때로 요금표 안에서의 선택을 넘어 <strong>CPU 명령어 집합 아키텍처(ISA)</strong>를 바꾸는 결정이 됩니다. AWS의 Graviton 계열이 대표적인 예로, 공식 제품 페이지는 Graviton 기반 인스턴스가 비교 가능한 x86 기반 인스턴스보다 최대 20% 저렴하고 에너지는 최대 60% 적게 쓴다고 밝히고 있습니다([AWS: AWS Graviton](https://aws.amazon.com/ec2/graviton/)). 이 수치만 보면 ARM으로 옮기지 않을 이유가 없어 보이지만, 이 결정은 [13장](/post/design-decisions/capacity-planning-methodology-performance-goals/)에서 다룬 수평·수직 확장 결정과 달리 되돌리는 비용이 훨씬 큽니다. 컴파일 툴체인, 서드파티 바이너리 의존성, 그리고 C++ 코드가 x86 전용 SIMD 명령어(AVX2·AVX-512 등)에 직접 의존하는 핫패스를 갖고 있다면 ARM의 SVE/NEON으로 옮기는 데 별도의 포팅과 재검증이 필요합니다. 이 포팅 비용을 무시하고 벤더가 발표한 일반 수치만으로 전환을 결정하면, 실제 워크로드에서는 그 이득이 재현되지 않거나 포팅 자체의 공수가 절감액을 넘어서는 경우가 생깁니다.
 
-세대 간 격차도 이 결정을 계속 움직이는 변수입니다. Graviton 계열은 세대마다 코어 수·캐시 용량·코어 간 지연을 크게 바꿔왔고, 2025년 말 프리뷰를 거쳐 공개된 최신 세대는 192개 코어와 이전 세대 대비 대폭 확장된 L3 캐시, 그리고 더 낮아진 코어 간 지연을 내세우고 있습니다. 이는 아키텍처 전환 결정이 한 번 내리고 끝나는 것이 아니라, 다음 세대가 나올 때마다 다시 검토해야 하는 살아있는 결정이라는 뜻입니다. 따라서 x86-ARM 전환은 벤더의 발표 자료를 출발점으로 삼되, 최종 판단은 반드시 [14장](/post/design-decisions/load-testing-design-performance-goal-verification/)의 부하 테스트 절차를 두 아키텍처에 동일하게 적용한 자체 벤치마크로 내려야 합니다.
+세대 간 격차도 이 결정을 계속 움직이는 변수입니다. Graviton 계열은 세대마다 코어 수·캐시 용량·코어 간 지연이 달라지며, 공식 페이지는 Graviton5가 192코어, 5배 큰 캐시, 코어 간 지연 최대 33% 감소를 갖췄다고 소개합니다. 이는 아키텍처 전환 결정이 한 번 내리고 끝나는 것이 아니라, 다음 세대가 나올 때마다 다시 검토해야 하는 살아있는 결정이라는 뜻입니다. 따라서 x86-ARM 전환은 벤더의 발표 자료를 출발점으로 삼되, 최종 판단은 반드시 [14장](/post/design-decisions/load-testing-design-performance-goal-verification/)의 부하 테스트 절차를 두 아키텍처에 동일하게 적용한 자체 벤치마크로 내려야 합니다.
 
 ```mermaid
 flowchart TD
@@ -151,7 +148,6 @@ flowchart TD
 
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
-| 인스턴스 비교 단위 | 처리 단위당 비용(`$/request` 등) | 시간당 요금만 비교 |
 | 안정적인 기준선 용량(13장 N+1) | Reserved/Savings Plans 커밋 | 전량 On-Demand로 방치 |
 | 변동 폭이 큰 탄력적 구간 | On-Demand로 유연하게 대응 | 불확실한 예측에 장기 약정 |
 | 재시작 가능한 stateless 배치·헤드룸 | Spot으로 비용 절감 | 지연 SLO가 타이트한 경로에 Spot 단독 사용 |
@@ -179,4 +175,4 @@ price-performance 수치는 발표 시점의 스냅샷일 뿐, 세대 교체 속
 
 여기서 다룬 판단 기준들이 실제로 유지되는지는 결국 [Tr.12: 성능 회귀 방지](/post/regression-prevention/getting-started-performance-regression-prevention-strategies/)의 자동화된 게이트로 이어져야 하며, 트랙 간 전체 그림과 다른 11개 트랙의 권장 순서는 [Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)에서 확인할 수 있습니다.
 
-**다음 장**: [메모리 안전성 트레이드오프](/post/design-decisions/memory-safety-performance-tradeoffs-rust-ffi/) (챕터 17)
+**다음 장**: [규제·보안 제약 하 성능](/post/design-decisions/regulated-secure-performance-tradeoffs-expert/) (챕터 16)
