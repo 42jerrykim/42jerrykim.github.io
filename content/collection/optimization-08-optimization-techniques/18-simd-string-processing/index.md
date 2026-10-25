@@ -1,7 +1,7 @@
 ---
 collection_order: 18
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] SIMD 문자열·JSON 처리"
@@ -12,27 +12,18 @@ tags:
   - Optimization(최적화)
   - C++
   - CPU(Central Processing Unit)
-  - Cache
-  - Memory(메모리)
   - Benchmark
-  - Latency
   - Throughput
   - Profiling(프로파일링)
-  - Data-Structures(자료구조)
   - Best-Practices
   - Advanced
   - Deep-Dive
-  - Case-Study
   - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - Testing(테스트)
   - Implementation(구현)
   - Reference(참고)
   - Guide(가이드)
-  - Technology(기술)
-  - System-Design
-  - Backend(백엔드)
   - simdjson
   - JSON
   - Structural-Indexing
@@ -40,16 +31,17 @@ tags:
   - UTF-8
   - PCLMULQDQ
   - NDJSON
-  - SIMD
-  - Zero-Copy
-  - Vectorization
+  - SIMD(단일명령다중데이터)
+  - String(문자열)
+  - Low-Level(로우레벨)
+  - Vectorization(벡터화)
 ---
 
 **SIMD 문자열·JSON 처리**란 CPU의 벡터 명령어로 한 번에 16–64바이트씩 문자를 분류해, 한 바이트씩 순차로 훑는 전통적인 파서가 만드는 분기 예측 실패와 캐시 미스를 줄이는 기법을 말합니다. 로그 수집 파이프라인, 시세 피드, RPC 페이로드처럼 초당 수십만–수백만 건의 JSON을 파싱해야 하는 백엔드에서는 파서 자체가 CPU 시간의 상당 부분을 차지하는 경우가 드물지 않고, [simdjson](https://github.com/simdjson/simdjson)은 이 문제를 "구조 인덱싱(structural indexing)"이라는 2단계 접근으로 풀어 Node.js 런타임, ClickHouse, Milvus, Apache Doris, StarRocks 등 여러 프로덕션 시스템에 채택되었습니다. 이 장은 simdjson을 대표 사례로 삼아 구조 인덱싱이 실제로 무엇을 계산하는지, On-Demand API가 왜 DOM 전체를 만들지 않고도 빠른지, 그리고 이 접근을 도입할 가치가 있는 워크로드와 그렇지 않은 워크로드를 어떻게 구분하는지를 다룹니다.
 
 ## 이 장을 읽기 전에
 
-바로 앞 장인 [17장: AI 추론 최적화](/post/extreme-optimization/ai-inference-latency-optimization-npu-quantization/)는 NPU·Tensor Core의 양자화로 모델 연산 자체의 지연시간을 줄이는 방법을 다뤘습니다. 이 장은 그 연산 이전, 즉 요청·로그·설정을 텍스트에서 값으로 바꾸는 파싱 단계의 지연시간을 다룬다는 점에서 주제는 다르지만, 같은 트랙 안에서 "CPU 벡터 명령어로 핫패스를 압축한다"는 목표를 공유하며 필수 선행 지식은 아닙니다. 대신 이 장은 [01장: SIMD 기초](/post/extreme-optimization/simd-fundamentals-sse-avx/)에서 다룬 벡터 비교 연산(compare)과 마스크 추출, [02장: SIMD Intrinsics 실전 활용](/post/extreme-optimization/simd-intrinsics-practical-usage/)에서 다룬 마스크를 실제 인덱스로 바꾸는 패턴을 전제로 합니다. 이 둘을 모르는 상태로 읽으면 "왜 64바이트씩 한 번에 분류하는 것이 이득인지"는 이해할 수 있어도 "구체적으로 어떤 명령어가 그 일을 하는지"는 막연하게 느껴질 수 있습니다. **이 장의 깊이**: simdjson의 두 단계(구조 인덱싱 → 인덱스 기반 파싱) 아키텍처와 On-Demand API의 지연 파싱 원리, 그리고 이 접근을 언제 도입해야 하는지의 판단 기준을 다룹니다. **다루지 않는 것**: SIMD 인트린식 자체의 문법과 기초 사용법(→ [01장](/post/extreme-optimization/simd-fundamentals-sse-avx/), [02장](/post/extreme-optimization/simd-intrinsics-practical-usage/)), AVX-512 레지스터 폭 선택 기준(→ [03장](/post/extreme-optimization/avx512-avx10-optimization/)), 캐리 없는 곱셈·popcount 같은 비트 트릭의 일반론(→ [09장](/post/extreme-optimization/bit-manipulation-optimization-techniques/)), ARM NEON 이식 세부사항(→ [12장](/post/extreme-optimization/arm-neon-simd-optimization/)), Highway·xsimd 같은 포터블 SIMD 라이브러리의 API(→ [13장](/post/extreme-optimization/portable-simd-libraries-highway-xsimd/))입니다.
+바로 앞 장인 [17장: AI 추론 최적화](/post/extreme-optimization/ai-inference-latency-optimization-npu-quantization/)는 NPU·Tensor Core의 양자화로 모델 연산 자체의 지연시간을 줄이는 방법을 다뤘습니다. 이 장은 그 연산 이전, 즉 요청·로그·설정을 텍스트에서 값으로 바꾸는 파싱 단계의 지연시간을 다룬다는 점에서 주제는 다르지만, 같은 트랙 안에서 "CPU 벡터 명령어로 핫패스를 압축한다"는 목표를 공유하며 필수 선행 지식은 아닙니다. 대신 이 장은 [01장: SIMD 기초](/post/extreme-optimization/simd-fundamentals-sse-avx/)에서 다룬 벡터 비교 연산(compare)과 마스크 추출, [02장: SIMD Intrinsics 실전 활용](/post/extreme-optimization/simd-intrinsics-practical-usage/)에서 다룬 마스크를 실제 인덱스로 바꾸는 패턴을 전제로 합니다. 이 둘을 모르는 상태로 읽으면 "왜 64바이트씩 한 번에 분류하는 것이 이득인지"는 이해할 수 있어도 "구체적으로 어떤 명령어가 그 일을 하는지"는 막연하게 느껴질 수 있습니다. **이 장의 깊이**: simdjson의 두 단계(구조 인덱싱 → 인덱스 기반 파싱) 아키텍처와 On-Demand API의 지연 파싱 원리, 그리고 이 접근을 언제 도입해야 하는지의 판단 기준을 다룹니다. **다루지 않는 것**: SIMD 인트린식 자체의 문법과 기초 사용법(→ [01장](/post/extreme-optimization/simd-fundamentals-sse-avx/), [02장](/post/extreme-optimization/simd-intrinsics-practical-usage/)), AVX-512 레지스터 폭 선택 기준(→ [03장](/post/extreme-optimization/avx512-avx10-optimization/)), popcount 같은 비트 조작 최적화의 일반론(→ [09장](/post/extreme-optimization/bit-manipulation-optimization-techniques/)이며, carry-less multiplication은 이 장에서 PCLMULQDQ로만 소개합니다), ARM NEON 이식 세부사항(→ [12장](/post/extreme-optimization/arm-neon-simd-optimization/)), Highway·xsimd 같은 포터블 SIMD 라이브러리의 API(→ [13장](/post/extreme-optimization/portable-simd-libraries-highway-xsimd/))입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -63,7 +55,7 @@ tags:
 
 ## simdjson과 구조 인덱싱의 등장 (역사·배경)
 
-**구조 인덱싱(structural indexing)** 기반 JSON 파싱은 Geoff Langdale과 Daniel Lemire가 2019년 The VLDB Journal에 발표한 ["Parsing Gigabytes of JSON per Second"](https://arxiv.org/abs/1902.08318) 논문에서 처음 제시되었습니다. 이 논문은 JSON 파싱을 바이트 단위 상태 기계로 다루는 대신, 입력을 64바이트 단위로 SIMD 비교 연산에 태워 구조 문자(`{`, `}`, `[`, `]`, `:`, `,`, `"`)의 위치만 먼저 뽑아내는 2단계 아키텍처를 제안했고, 이 코드는 simdjson 프로젝트로 공개되었습니다. 이후 2024년 John Keiser와 Daniel Lemire는 Software: Practice and Experience에 발표한 ["On-Demand JSON: A Better Way to Parse Documents?"](https://arxiv.org/abs/2312.17149)에서 구조 인덱스를 만든 다음에도 전체 트리를 즉시 구축하지 않고, 호출자가 실제로 접근하는 필드만 그 자리에서 지연 파싱하는 On-Demand API를 추가했습니다. simdjson은 x86-64(SSE4.2/AVX2/AVX-512)와 ARM64(NEON) 외에 RISC-V·LoongArch64까지 런타임에 CPU를 감지해 최적 커널을 자동 선택하는 구조를 유지하고 있으며, 최신 릴리스 버전은 [프로젝트 저장소](https://github.com/simdjson/simdjson)에서 확인할 수 있습니다. 정확한 버전별 지원 범위와 빌드 옵션은 계속 갱신되므로, 실제 배포 전에는 [프로젝트 저장소](https://github.com/simdjson/simdjson)에서 대상 아키텍처의 지원 여부를 다시 확인해야 합니다.
+**구조 인덱싱(structural indexing)** 기반 JSON 파싱은 Geoff Langdale과 Daniel Lemire가 2019년 The VLDB Journal에 발표한 ["Parsing Gigabytes of JSON per Second"](https://arxiv.org/abs/1902.08318) 논문에서 처음 제시되었습니다. 이 논문은 JSON 파싱을 바이트 단위 상태 기계로 다루는 대신, 입력을 64바이트 단위로 SIMD 비교 연산에 태워 구조 문자(`{`, `}`, `[`, `]`, `:`, `,`, `"`)의 위치만 먼저 뽑아내는 2단계 아키텍처를 제안했고, 이 코드는 simdjson 프로젝트로 공개되었습니다. 이후 2024년 John Keiser와 Daniel Lemire는 Software: Practice and Experience에 발표한 ["On-Demand JSON: A Better Way to Parse Documents?"](https://arxiv.org/abs/2312.17149)에서 구조 인덱스를 만든 다음에도 전체 트리를 즉시 구축하지 않고, 호출자가 실제로 접근하는 필드만 그 자리에서 지연 파싱하는 On-Demand API를 추가했습니다. simdjson은 x86-64(SSE4.2/AVX2/AVX-512)와 ARM64(NEON) 외에도 런타임에 CPU를 감지해 최적 커널을 자동 선택하는 구조를 유지하고 있으며(지원 아키텍처 목록은 저장소에서 확인하세요), 최신 릴리스 버전은 [프로젝트 저장소](https://github.com/simdjson/simdjson)에서 확인할 수 있습니다. 정확한 버전별 지원 범위와 빌드 옵션은 계속 갱신되므로, 실제 배포 전에는 [프로젝트 저장소](https://github.com/simdjson/simdjson)에서 대상 아키텍처의 지원 여부를 다시 확인해야 합니다.
 
 ## 핵심 메커니즘: 구조 인덱싱과 2단계 파이프라인
 
@@ -88,15 +80,15 @@ Stage 1은 입력을 64바이트씩 끊어 각 청크에 대해 "이 바이트�
 ```text
 1. cmp_eq(chunk, '"')  → quoteBits       (해당 위치가 " 인지 나타내는 64비트마스크)
 2. cmp_eq(chunk, '\\') → backslashBits   (해당 위치가 \ 인지 나타내는 64비트마스크)
-3. backslash가 연속되는 "이스케이프 런"의 길이 홀짝을
-   PCLMULQDQ(캐리 없는 곱셈, carry-less multiplication)로 청크 전체에 대해 한 번에 계산
-   → escapedBits (실제로는 이스케이프된 문자라 문자열 경계가 아닌 위치)
-4. realQuoteBits = quoteBits & ~escapedBits   // 문자열을 실제로 여닫는 " 만 남김
-5. realQuoteBits로 만든 구간을 "문자열 내부"로 표시하고,
-   그 구간 안에서 발견된 구조-문자-형 바이트는 Stage 1의 구조 인덱스에서 제외한다
+3. 홀수 개의 백슬래시 바로 뒤에 오는 문자를 "이스케이프됨"으로 표시
+   → escapedBits  (논문은 이를 순차 루프 없이 분기 없는 비트 연산으로 계산한다)
+4. unescapedQuotes = quoteBits & ~escapedBits   // 문자열을 실제로 여닫는 " 만 남김
+5. unescapedQuotes에 대해 prefix-XOR(누적 XOR)을 계산해
+   "문자열 내부" 구간 마스크를 만든다 (carry-less multiplication으로 한 번에 계산)
+6. 문자열 내부 구간에서 발견된 구조-문자-형 바이트는 구조 인덱스에서 제외한다
 ```
 
-PCLMULQDQ를 이용한 이스케이프 런 판별은 백슬래시가 몇 개 연달아 오든 순차 루프 없이 청크 전체의 패리티를 한 번에 계산하는 비트 트릭이며, 이런 종류의 캐리 전파 문제를 SIMD로 다루는 일반적인 방법은 [09장: 비트 조작 최적화 기법](/post/extreme-optimization/bit-manipulation-optimization-techniques/)에서 다룹니다. 이 장에서는 simdjson이 이 트릭을 구조 인덱싱의 고정된 빌딩 블록으로 사용한다는 사실과 그 결과(정확한 문자열 경계 마스크)에 집중합니다. UTF-8 검증도 같은 64바이트 청크 위에서 병행됩니다. 각 바이트를 선행 바이트 개수에 따라 분류하고 연속 바이트(continuation byte) 범위가 유효한지 벡터 비교로 확인하는 방식이며, 구조 분류와 별도의 순회를 돌 필요 없이 한 패스에 끝난다는 점이 성능의 핵심입니다.
+문자열 내부 구간 마스크(5단계)는 Langdale과 Lemire의 논문이 carry-less multiplication으로 구현하는 prefix-XOR 연산입니다. 열린 따옴표부터 닫는 따옴표 직전까지의 비트를 모두 1로 만드는 이 누적 XOR을 순차 루프 없이 한 번의 곱셈 명령(x86의 PCLMULQDQ)으로 계산하며, 비트 조작 일반론은 [09장: 비트 조작 최적화 기법](/post/extreme-optimization/bit-manipulation-optimization-techniques/)을 참고하세요. 앞의 이스케이프 판별(3단계)은 이와 별개의 단계이며, 이 장에서는 simdjson이 두 단계를 구조 인덱싱의 고정된 빌딩 블록으로 사용한다는 사실과 그 결과(정확한 문자열 경계 마스크)에 집중합니다. UTF-8 검증도 같은 64바이트 청크 위에서 병행됩니다. 각 바이트를 선행 바이트 개수에 따라 분류하고 연속 바이트(continuation byte) 범위가 유효한지 벡터 비교로 확인하는 방식이며, 구조 분류와 별도의 순회를 돌 필요 없이 한 패스에 끝난다는 점이 성능의 핵심입니다.
 
 ### Stage 2: 인덱스 기반 파싱과 On-Demand API
 
@@ -121,7 +113,7 @@ double sum_prices(const std::string& ndjson_path) {
 }
 ```
 
-`simdjson::padded_string`은 Stage 1이 청크 경계에서 범위를 벗어나 읽지 않도록 버퍼 끝에 여분의 패딩 바이트(`SIMDJSON_PADDING`)를 자동으로 붙여 주며, 원시 버퍼를 직접 넘기려면 이 패딩을 스스로 확보해야 합니다. On-Demand 커서는 전진만 가능하므로 필드를 문서에 나온 순서와 다르게 접근하거나 이미 지나간 값을 다시 읽으려 하면 오류가 나며, 무작위 접근이 필요한 경우에는 DOM API를 선택해야 합니다.
+`simdjson::padded_string`은 Stage 1이 청크 경계에서 범위를 벗어나 읽지 않도록 버퍼 끝에 여분의 패딩 바이트(`SIMDJSON_PADDING`)를 자동으로 붙여 주며, 원시 버퍼를 직접 넘기려면 이 패딩을 스스로 확보해야 합니다. On-Demand 커서는 전진만 가능하므로 이미 지나간 값을 다시 읽으려 하면 오류가 납니다. [simdjson의 On-Demand 설계 문서](https://github.com/simdjson/simdjson/blob/master/doc/ondemand_design.md)에 따르면 필드 조회는 문서 순서와 어긋나도 동작하지만 성능 비용을 치르므로, 반복적인 무작위 접근이 필요한 경우에는 DOM API를 선택해야 합니다.
 
 ## 검증: 스칼라 참조 구현과의 출력 대조
 
@@ -151,6 +143,11 @@ void verify_one_line(const std::string& line) {
   double scalar_value = scalar_reference_price(line);
   assert(simd_value == scalar_value);  // 두 구현이 같은 값을 내는지 라인 단위로 대조
 }
+
+int main() {
+  verify_one_line(R"({"id": 7, "price": 12.5, "note": "a\"b"})");
+  return 0;
+}
 ```
 
 이 라인 단위 차등 테스트(differential test)는 이 트랙이 모든 SIMD 기반 처리에 요구하는 검증 패턴이며, 실제로 신뢰하려면 이스케이프·유니코드·중첩 구조가 섞인 실제 프로덕션 JSON 코퍼스로 규모를 키워야 합니다. 참조 구현이 지나치게 단순하면 두 구현이 같은 실수를 공유해 버그를 놓칠 수 있으므로, 참조 구현은 반드시 별도 라이브러리(예: nlohmann/json)나 문서화된 사양 기반 파서로 작성합니다.
@@ -179,11 +176,11 @@ BENCHMARK(BM_SimdjsonOnDemandParse);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O3 -march=native bench.cpp -lsimdjson -lbenchmark -lpthread`(x86-64, GCC 13 이상, simdjson v4.x 기준)로 빌드하고 `--benchmark_counters_tabular=true`를 붙이면 `SetBytesProcessed`가 계산한 바이트/초를 확인할 수 있습니다. 같은 파일을 nlohmann::json 같은 DOM 기반 파서로도 측정해 나란히 비교하면, 이득이 파서 자체에서 오는지 아니면 애플리케이션이 애초에 필드 일부만 쓰는 구조에서 오는지 분리해서 볼 수 있습니다. 측정 방법론 자체는 [Tr.01 프로파일링 인트로](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)의 노이즈 통제 원칙을 그대로 따릅니다.
+`g++ -O3 -march=native bench.cpp -lsimdjson -lbenchmark -lpthread`(x86-64 기준; 컴파일러와 simdjson 버전은 [프로젝트 저장소](https://github.com/simdjson/simdjson)의 요구 사항을 확인하세요)로 빌드하고 `--benchmark_counters_tabular=true`를 붙이면 `SetBytesProcessed`가 계산한 바이트/초를 확인할 수 있습니다. 같은 파일을 nlohmann::json 같은 DOM 기반 파서로도 측정해 나란히 비교하면, 이득이 파서 자체에서 오는지 아니면 애플리케이션이 애초에 필드 일부만 쓰는 구조에서 오는지 분리해서 볼 수 있습니다. 측정 방법론 자체는 [Tr.01 프로파일링 인트로](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)의 노이즈 통제 원칙을 그대로 따릅니다.
 
 ## 자주 하는 오해
 
-<strong>"구조 문자 위치만 찾으면 이스케이프는 신경 쓸 필요가 없다"</strong>는 틀렸습니다. `"a\"b"`처럼 이스케이프된 따옴표가 하나라도 섞이면, 따옴표 개수를 단순히 세는 접근은 문자열이 실제보다 일찍 끝난 것으로 오판해 그 뒤의 모든 구조 인덱스가 어긋납니다. 앞서 본 PCLMULQDQ 기반 런 패리티 계산이 필요한 이유가 바로 이 때문이며, 자체 구현을 시도한다면 반드시 연속된 백슬래시 개수가 짝수/홀수인 경우를 모두 포함한 테스트 케이스로 검증해야 합니다.
+<strong>"구조 문자 위치만 찾으면 이스케이프는 신경 쓸 필요가 없다"</strong>는 틀렸습니다. `"a\"b"`처럼 이스케이프된 따옴표가 하나라도 섞이면, 따옴표 개수를 단순히 세는 접근은 문자열이 실제보다 일찍 끝난 것으로 오판해 그 뒤의 모든 구조 인덱스가 어긋납니다. 앞서 본 홀수 길이 백슬래시 판별(3단계)이 필요한 이유가 바로 이 때문이며, 자체 구현을 시도한다면 반드시 연속된 백슬래시 개수가 짝수/홀수인 경우를 모두 포함한 테스트 케이스로 검증해야 합니다.
 
 <strong>"On-Demand API는 DOM API와 똑같이 문서 전체를 검증한다"</strong>도 오해입니다. On-Demand는 호출자가 실제로 접근한 경로만 그 자리에서 해석하므로, 문서 뒷부분에 구조적으로 잘못된 값이 있어도 그 필드를 읽지 않으면 오류가 드러나지 않을 수 있습니다. 신뢰할 수 없는 외부 입력을 다룰 때 이 특성을 모르고 On-Demand를 그대로 쓰면, 파싱이 "성공"했다는 사실만으로 문서 전체가 유효하다고 잘못 결론 내릴 위험이 있습니다.
 
@@ -194,7 +191,7 @@ BENCHMARK_MAIN();
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
 | 대량 NDJSON 스트림에서 일부 필드만 필요 | On-Demand API로 필요한 필드만 지연 순회 | 매 레코드 풀 DOM 구축 후 일부만 사용 |
-| 스키마가 고정된 반복 파싱(시세 피드 등) | 접근 순서를 문서 순서와 맞춘 On-Demand 순회 | 순서를 예측할 수 없는 무작위 필드 접근 |
+| 스키마가 고정된 반복 파싱(시세 피드 등) | 접근 순서를 문서 순서와 맞춘 On-Demand 순회 | 순서를 예측할 수 없는 반복적 필드 접근(동작은 하나 느려짐) |
 | 신뢰할 수 없는 외부 입력의 구조 검증 | DOM API로 전체 구조를 강제 검증 | On-Demand의 지연 검증에 안전성을 위임 |
 | 문서 크기가 작고 호출 빈도가 낮음(설정 파일 등) | 표준 DOM 파서(nlohmann/json 등)로 충분 | SIMD 파서 도입에 따르는 빌드 복잡도 부담 |
 | 대상이 SIMD 미지원·구형 임베디드 | 폴백 스칼라 경로 존재 여부를 먼저 확인 | 특정 ISA 명령어가 항상 있다고 가정 |
@@ -209,7 +206,7 @@ BENCHMARK_MAIN();
 이 장을 읽은 후 다음을 스스로 점검해 보세요.
 
 - [ ] 구조 인덱싱이 "분류"와 "해석"을 분리해 순차 파싱의 캐리 체인·분기를 줄이는 원리를 설명할 수 있다.
-- [ ] PCLMULQDQ 기반 이스케이프 런 판별이 왜 필요한지, 이를 생략하면 어떤 오류가 나는지 말할 수 있다.
+- [ ] 이스케이프된 따옴표 판별과 prefix-XOR(PCLMULQDQ)로 만드는 문자열 내부 마스크의 역할을 구분하고, 이를 생략하면 어떤 오류가 나는지 말할 수 있다.
 - [ ] DOM API와 On-Demand API의 차이(즉시 전량 검증 vs 지연 순회)와 각각의 위험을 구분할 수 있다.
 - [ ] SIMD 파싱 결과를 스칼라 참조 구현과 대조하는 검증 루프를 직접 작성할 수 있다.
 - [ ] 어떤 워크로드에서 SIMD JSON 파싱 도입이 실익이 있고 어떤 워크로드에서 과잉인지 판단 기준으로 설명할 수 있다.
