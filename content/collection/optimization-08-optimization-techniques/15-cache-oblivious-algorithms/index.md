@@ -1,7 +1,7 @@
 ---
 collection_order: 15
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] Cache-oblivious 알고리즘 설계"
@@ -15,18 +15,16 @@ tags:
   - Cache
   - Memory(메모리)
   - Data-Structures(자료구조)
-  - Time-Complexity(시간복잡도)
-  - Complexity-Analysis(복잡도분석)
   - Benchmark
-  - Latency
-  - Throughput
-  - Profiling(프로파일링)
   - Hardware(하드웨어)
   - Best-Practices
   - Advanced
   - Deep-Dive
   - Comparison(비교)
   - Pitfalls(함정)
+  - Cache-Locality(캐시지역성)
+  - Cache-Miss(캐시미스)
+  - Locality(지역성)
   - Divide-and-Conquer
   - Cache-Oblivious
   - Van-Emde-Boas-Layout
@@ -58,7 +56,7 @@ tags:
 
 **cache-oblivious**라는 용어와 이를 뒷받침하는 **ideal-cache 모델**은 1999년 Matteo Frigo, Charles E. Leiserson, Harald Prokop, Sridhar Ramachandran가 FOCS(Foundations of Computer Science) 학회에 발표한 "[Cache-Oblivious Algorithms](https://resources.mpi-inf.mpg.de/departments/d1/teaching/ws10/models_of_computation/CacheObliviousSeminalPaper.pdf)" 논문에서 처음 제시되었습니다. 이 논문 이전에도 캐시를 고려한 알고리즘은 있었지만, 대부분 **cache-aware** 방식이었습니다. 즉 캐시 크기 M과 라인 크기 B를 코드나 컴파일 시점 상수로 직접 받아들여 블록 크기를 계산하는 방식입니다. 이 방식은 목표 하드웨어의 M, B를 정확히 알 때는 잘 작동하지만, 멀티레벨 캐시(L1/L2/L3)가 일반화되면서 "어느 레벨을 기준으로 튜닝해야 하는가"라는 질문이 생겼고, 세대가 바뀔 때마다 재튜닝이 필요하다는 유지보수 부담도 함께 따라왔습니다.
 
-FLPR99(이하 원 논문 저자 약칭)의 답은 "아예 M과 B를 코드에서 없애버리는" 것이었습니다. 논문은 행렬 전치, 행렬 곱셈, FFT, 정렬(funnelsort와 분배 정렬) 네 가지 문제에 대해, M과 B를 전혀 참조하지 않는 재귀 알고리즘이 임의의 M, B에 대해서도 점근적으로 최적의 캐시 미스 횟수를 낸다는 것을 증명했습니다. 예를 들어 m×n 행렬 전치는 M = Ω(B²) 조건 아래 Θ(1 + mn/B)번의 캐시 미스로 가능하며, 이는 M과 B를 알고 튜닝한 최선의 cache-aware 알고리즘과 동일한 점근 복잡도입니다. 이후 [Harald Prokop의 MIT 석사논문](https://ocw.mit.edu/courses/6-895-theory-of-parallel-systems-sma-5509-fall-2003/6dc7de52dcf13b53cebf2fe10ae6752a_cach_oblvs_thsis.pdf)(1999)이 세부 증명을 정리했고, Michael Bender, Erik Demaine, Martín Farach-Colton의 "Cache-Oblivious B-Trees" 논문(2000년대 초)이 이 개념을 정적 알고리즘에서 동적 자료구조로 확장했습니다.
+FLPR99(이하 원 논문 저자 약칭)의 답은 "아예 M과 B를 코드에서 없애버리는" 것이었습니다. 논문은 행렬 전치, 행렬 곱셈, FFT, 정렬(funnelsort와 분배 정렬) 네 가지 문제에 대해, M과 B를 전혀 참조하지 않는 재귀 알고리즘이 임의의 M, B에 대해서도 점근적으로 최적의 캐시 미스 횟수를 낸다는 것을 증명했습니다. 예를 들어 m×n 행렬 전치는 M = Ω(B²) 조건 아래 Θ(1 + mn/B)번의 캐시 미스로 가능하며, 이는 M과 B를 알고 튜닝한 최선의 cache-aware 알고리즘과 동일한 점근 복잡도입니다. 이후 [Harald Prokop의 MIT 석사논문](https://ocw.mit.edu/courses/6-895-theory-of-parallel-systems-sma-5509-fall-2003/6dc7de52dcf13b53cebf2fe10ae6752a_cach_oblvs_thsis.pdf)(1999)이 세부 증명을 정리했고, Michael Bender, Erik Demaine, Martín Farach-Colton의 "Cache-Oblivious B-Trees" 논문(FOCS 2000, 저널판은 SICOMP 2005)이 이 개념을 정적 알고리즘에서 동적 자료구조로 확장했습니다.
 
 ## Ideal-cache 모델과 tall cache assumption
 
@@ -103,20 +101,45 @@ void transpose_recursive(const double* src, double* dst,
 
 이 함수에는 M도 B도 등장하지 않지만, 재귀가 진행되면서 부분 행렬이 L1, 그다음 L2, 그다음 L3 크기 이하로 차례로 줄어드는 지점을 자연히 통과합니다. 주의할 점은 threshold를 너무 작게 잡으면 함수 호출 오버헤드가 커지고, 너무 크게 잡으면 base case 자체가 캐시에 맞지 않아 이점이 줄어든다는 것입니다. 실무에서는 threshold를 몇 가지 값으로 바꿔가며 실측하는 것이 안전하며, 이 값 하나를 튜닝한다고 해서 알고리즘이 cache-aware가 되는 것은 아닙니다(여전히 M, B 자체는 코드에 없습니다).
 
-정확성 검증은 별도 SIMD 명령어 비교가 필요 없는 순수 스칼라 로직이므로, `transpose_recursive`의 출력을 단순 이중 루프로 작성한 `transpose_naive`의 출력과 `std::equal`로 원소별 비교하는 것으로 충분합니다. 두 함수가 서로 다른 순서로 메모리에 접근하더라도 최종 결과는 항상 같은 전치 행렬이어야 하므로, 어떤 threshold·행렬 크기 조합에서도 이 비교가 실패하면 인덱스 계산에 버그가 있다는 뜻입니다.
+정확성 검증은 `transpose_recursive`의 출력을 단순 이중 루프로 작성한 `transpose_naive`의 출력과 `std::equal`로 원소별 비교하는 것으로 충분합니다. 두 함수가 서로 다른 순서로 메모리에 접근하더라도 최종 결과는 항상 같은 전치 행렬이어야 하므로, 어떤 threshold·행렬 크기 조합에서도 이 비교가 실패하면 인덱스 계산에 버그가 있다는 뜻입니다.
 
-성능 차이를 확인하려면 `transpose_naive`(단순 이중 루프)와 `transpose_recursive`를 같은 크기의 정방행렬에 반복 적용해 비교합니다. 아래는 Google Benchmark 기반 스켈레톤입니다.
+정확성 검증 코드는 아래와 같습니다. 위 `transpose_recursive` 정의와 같은 파일에 두고 컴파일하면 됩니다. 정방이 아닌 크기를 섞어 재귀의 두 분할 방향을 모두 지나게 합니다.
 
 ```cpp
-#include <benchmark/benchmark.h>
-#include <vector>
+#include <algorithm>
 #include <cstddef>
+#include <cstdio>
+#include <utility>
+#include <vector>
 
 void transpose_naive(const double* src, double* dst, std::size_t n, std::size_t m) {
   for (std::size_t i = 0; i < n; ++i)
     for (std::size_t j = 0; j < m; ++j)
       dst[j * n + i] = src[i * m + j];
 }
+
+int main() {
+  bool ok = true;
+  for (auto [n, m] : {std::pair<std::size_t, std::size_t>{1, 1}, {5, 40}, {100, 37}, {257, 257}}) {
+    std::vector<double> src(n * m), want(n * m), got(n * m);
+    for (std::size_t k = 0; k < src.size(); ++k) src[k] = static_cast<double>(k);
+    transpose_naive(src.data(), want.data(), n, m);
+    transpose_recursive(src.data(), got.data(), 0, n, 0, m, m, n);
+    ok = ok && std::equal(want.begin(), want.end(), got.begin());
+  }
+  std::puts(ok ? "PASS" : "FAIL");
+  return ok ? 0 : 1;
+}
+```
+
+성능 차이를 확인하려면 `transpose_naive`(단순 이중 루프)와 `transpose_recursive`를 같은 크기의 정방행렬에 반복 적용해 비교합니다. 아래는 Google Benchmark 기반 스켈레톤이며, 위 두 블록의 `transpose_recursive`·`transpose_naive` 정의를 같은 파일 위쪽에 둔다고 가정합니다(`BENCHMARK_MAIN`을 쓰므로 검증용 `main`은 별도 파일에서 사용합니다).
+
+```cpp
+#include <benchmark/benchmark.h>
+#include <cstddef>
+#include <vector>
+
+// transpose_recursive, transpose_naive: 위 블록의 정의를 같은 파일에 둔다.
 
 static void BM_TransposeNaive(benchmark::State& state) {
   const std::size_t n = static_cast<std::size_t>(state.range(0));
@@ -141,7 +164,7 @@ BENCHMARK(BM_TransposeCacheOblivious)->Arg(64)->Arg(1024)->Arg(4096);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 -std=c++17 bench.cpp -lbenchmark -lpthread`(x86-64, GCC 13 기준)로 빌드해 행렬 크기를 늘려가며 실행하면, 작은 크기(64)에서는 두 방식의 차이가 거의 없다가 행렬이 캐시보다 커지는 크기(4096 등)에서 격차가 벌어지는 경향을 보입니다. 정확한 배율은 캐시 크기·연관도·컴파일러·최적화 플래그에 따라 달라지므로, 절대적인 수치를 단정하지 말고 `perf stat -e cache-misses,cache-references`로 실제 캐시 미스 횟수까지 함께 확인하는 것이 좋습니다.
+`g++ -O2 -std=c++17 bench.cpp -lbenchmark -lpthread`(x86-64, GCC 13 기준)로 빌드해 행렬 크기를 늘려가며 실행하면, 작은 크기(64)에서는 두 방식의 차이가 작을 것으로, 행렬이 캐시보다 커지는 크기에서는 격차가 생길 것으로 예상하지만 이 글은 실행 결과를 싣지 않았습니다. 4096×4096 `double` 행렬은 행 간격이 32KiB(2의 거듭제곱)이므로 아래 "흔한 오개념"에서 설명하는 set-associativity 충돌이 결과를 흔들 수 있어, 4096 대신 4097 같은 크기도 함께 재 보는 것이 좋습니다. 정확한 배율은 캐시 크기·연관도·컴파일러·최적화 플래그에 따라 달라지므로, 절대적인 수치를 단정하지 말고 `perf stat -e cache-misses,cache-references`로 실제 캐시 미스 횟수까지 함께 확인하는 것이 좋습니다.
 
 ## Cache-oblivious와 cache-aware의 차이
 
@@ -159,7 +182,7 @@ BENCHMARK_MAIN();
 
 분할 정복은 배열 기반 알고리즘뿐 아니라 정적 탐색 트리에도 같은 원리로 적용됩니다. 이진 탐색 트리를 배열에 저장할 때 흔히 쓰는 방식은 레벨 순서(BFS 순서)이지만, 이 배치는 루트에서 리프까지의 경로가 메모리상 멀리 흩어지게 만들어 캐시 효율이 나쁩니다. **van Emde Boas 레이아웃**은 트리를 중간 높이에서 잘라 위쪽 절반과 아래쪽 절반들을 각각 재귀적으로 같은 방식으로 배치합니다. 이렇게 만들면 트리의 어떤 부분 영역이든 배열상 연속된 구간에 저장되고, 재귀적 배치 자체가 배열 기반 알고리즘의 분할 정복과 같은 방식으로 모든 캐시 레벨에 자동으로 적응합니다. 결과적으로 정적 탐색 트리에서 루트-리프 경로 탐색이 O(log_B N) 수준의 캐시 미스로 가능해집니다.
 
-이 레이아웃을 동적 자료구조로 확장한 것이 **cache-oblivious B-tree**입니다. Michael Bender, Erik Demaine, Martín Farach-Colton의 "[Cache-Oblivious B-Trees](https://erikdemaine.org/papers/CacheObliviousBTrees_SICOMP/paper.pdf)" 논문은 van Emde Boas 레이아웃을 packed memory array(성긴 배열에 정렬된 순서를 유지하며 삽입·삭제를 O(log² N) 분할상환으로 지원하는 자료구조) 위에 올려, 삽입·삭제가 있는 동적 탐색 자료구조도 M, B를 몰라도 점근적으로 최적인 캐시 성능을 내도록 만들었습니다. 이 계열의 아이디어는 이후 funnelsort(캐시-오블리비어스 정렬 알고리즘)에도 이어져, 정렬 역시 외부 메모리 정렬의 점근적 하한과 같은 캐시 복잡도를 M, B 없이 달성합니다.
+이 레이아웃을 동적 자료구조로 확장한 것이 **cache-oblivious B-tree**입니다. Michael Bender, Erik Demaine, Martín Farach-Colton의 "[Cache-Oblivious B-Trees](https://erikdemaine.org/papers/CacheObliviousBTrees_SICOMP/paper.pdf)" 논문은 van Emde Boas 레이아웃을 packed memory array(성긴 배열에 정렬된 순서를 유지하며 삽입·삭제를 O(log² N) 분할상환으로 지원하는 자료구조) 위에 올려, 삽입·삭제가 있는 동적 탐색 자료구조도 M, B를 몰라도 점근적으로 최적인 캐시 성능을 내도록 만들었습니다. 같은 원리는 정렬에도 적용됩니다. 앞서 본 1999년 원 논문이 제시한 funnelsort(캐시-오블리비어스 정렬 알고리즘)는 외부 메모리 정렬의 점근적 하한과 같은 캐시 복잡도를 M, B 없이 달성합니다.
 
 ```mermaid
 flowchart TB
@@ -177,7 +200,7 @@ flowchart TB
 
 <strong>"cache-oblivious는 캐시를 신경 쓰지 않는다는 뜻이다"</strong>라는 오해가 이름 때문에 자주 생깁니다. 실제로는 정반대입니다. 캐시 지역성을 매우 적극적으로 활용하되, 그 활용 방식이 특정 M, B 값에 의존하지 않도록("oblivious to M, B") 설계한다는 뜻입니다. "무관심"이 아니라 "파라미터를 몰라도 최적"이 정확한 의미입니다.
 
-<strong>"재귀적으로 분할하는 알고리즘은 다 cache-oblivious다"</strong>도 흔한 오해입니다. 재귀 분할 그 자체는 필요조건이지만 충분조건이 아닙니다. 진짜 cache-oblivious 최적성이 성립하려면 매 재귀 단계가 문제를 여러 차원 모두에서 균형 있게 줄여야 하고, 부분 문제의 데이터가 메모리상 연속된 구간에 놓이도록 레이아웃까지 함께 설계해야 합니다. 예를 들어 행렬을 재귀적으로 나누더라도 부분 행렬이 원본 배열 안에서 여전히 넓은 stride로 흩어져 있다면, 재귀 깊이가 깊어져도 캐시 미스가 줄어들지 않을 수 있습니다.
+<strong>"재귀적으로 분할하는 알고리즘은 다 cache-oblivious다"</strong>도 흔한 오해입니다. 재귀 분할 그 자체는 필요조건이지만 충분조건이 아닙니다. 진짜 cache-oblivious 최적성이 성립하려면 매 재귀 단계가 문제를 여러 차원 모두에서 균형 있게 줄여야 하고, 앞서 본 tall cache 조건이 성립해야 합니다. 예를 들어 위 전치 코드는 row-major 원본에 stride 인덱싱을 그대로 쓰지만 tall cache 아래에서는 최적입니다. 반면 행 길이가 2의 거듭제곱이라 부분 행렬의 행들이 같은 캐시 set에 몰리는 연관도 충돌은 ideal-cache 모델의 fully associative 가정을 깨뜨리고, 캐시가 너무 작아 tall cache 조건(M = Ω(B²))이 깨지는 경우와 함께, 재귀 깊이가 깊어져도 캐시 미스가 줄어들지 않게 만들 수 있습니다. 한 방향으로만 줄이는 재귀(예: 행만 계속 절반으로 나누기)도 부분 문제가 가늘고 길어져 같은 이유로 이득이 사라집니다.
 
 <strong>"이상적 캐시 모델의 이론적 보장이 실제 하드웨어 성능 우위로 항상 이어진다"</strong>는 것도 검증 없이 믿기는 위험합니다. ideal-cache 모델은 fully associative 캐시와 optimal(또는 이를 상수 배로 근사하는 LRU) 교체 정책을 가정하지만, 실제 캐시는 set-associative이고 TLB나 하드웨어 프리페처의 동작은 모델에 전혀 포함되지 않습니다. 이론적 점근 최적성과 실측 성능 우위 사이에는 항상 실측이라는 검증 단계가 필요합니다.
 
