@@ -433,7 +433,7 @@
 | content/collection/optimization-11-design-decisions/11-team-performance-culture/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 27371cc | 없음 |
 | content/collection/optimization-11-design-decisions/12-performance-code-review/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | f9e4382 | 없음 |
 | content/collection/optimization-11-design-decisions/13-capacity-planning/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 55f2d16 | 없음 |
-| content/collection/optimization-11-design-decisions/14-load-testing-design/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/14-load-testing-design/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | b1b49bb | 없음 |
 | content/collection/optimization-11-design-decisions/15-cost-performance-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/16-regulated-secure-performance-tradeoffs/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/17-memory-safety-tradeoffs/index.md | - | - | 0 | 미채점 | - | - | - |
