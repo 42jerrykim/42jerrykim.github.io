@@ -1,7 +1,7 @@
 ---
 collection_order: 13
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Memory 04] Virtual Memory 관리 힌트"
@@ -16,24 +16,16 @@ tags:
   - C++
   - OS(운영체제)
   - Linux(리눅스)
-  - Windows(윈도우)
-  - Embedded(임베디드)
   - Benchmark
   - Latency
-  - Throughput
-  - Profiling(프로파일링)
   - Best-Practices
   - Advanced
   - Deep-Dive
   - Pitfalls(함정)
   - Hardware(하드웨어)
-  - System-Design
   - Debugging(디버깅)
   - Reliability
-  - Case-Study
   - Comparison(비교)
-  - Edge-Cases(엣지케이스)
-  - Documentation(문서화)
   - madvise
   - msync
   - MTE
@@ -68,9 +60,9 @@ tags:
 
 ## 가상 메모리 힌트의 역사와 배경
 
-`madvise`는 BSD 계열 유닉스에서 오래전부터 존재해 온 시스템 콜로, POSIX는 이를 `posix_madvise(3)`로 표준화하면서 `POSIX_MADV_NORMAL`·`POSIX_MADV_SEQUENTIAL`·`POSIX_MADV_RANDOM`·`POSIX_MADV_WILLNEED`·`POSIX_MADV_DONTNEED` 다섯 가지 힌트를 정의했습니다. Linux는 이 표준 힌트 위에 자체 확장을 계속 추가해 왔는데, 회수 성향을 지연시키는 `MADV_FREE`는 Linux 4.5(2016)에서 병합되었고, 압박이 없을 때는 페이지를 회수 후보로만 표시하는 `MADV_COLD`와 즉시 강제로 스왑·write-back을 유발하는 `MADV_PAGEOUT`은 Linux 5.4(2019)에서 추가되었습니다. `msync`는 mmap된 파일과 페이지 캐시 간의 동기화를 다루는 훨씬 오래된 POSIX 표준 API로, `MS_SYNC`·`MS_ASYNC`·`MS_INVALIDATE` 세 플래그의 의미는 수십 년간 크게 바뀌지 않았습니다.
+`madvise`는 BSD 계열 유닉스에서 오래전부터 존재해 온 시스템 콜로, POSIX는 이를 `posix_madvise(3)`로 표준화하면서 `POSIX_MADV_NORMAL`·`POSIX_MADV_SEQUENTIAL`·`POSIX_MADV_RANDOM`·`POSIX_MADV_WILLNEED`·`POSIX_MADV_DONTNEED` 다섯 가지 힌트를 정의했습니다. Linux는 이 표준 힌트 위에 자체 확장을 계속 추가해 왔는데, [madvise(2) 매뉴얼](https://man7.org/linux/man-pages/man2/madvise.2.html)에 따르면 회수 성향을 지연시키는 `MADV_FREE`는 Linux 4.5부터, 압박이 없을 때는 페이지를 회수 후보로만 표시하는 `MADV_COLD`와 즉시 강제로 스왑·write-back을 유발하는 `MADV_PAGEOUT`은 Linux 5.4부터 쓸 수 있습니다. [`msync`](https://man7.org/linux/man-pages/man2/msync.2.html)는 mmap된 파일과 페이지 캐시 간의 동기화를 다루는 훨씬 오래된 POSIX 표준 API로, `MS_SYNC`·`MS_ASYNC`·`MS_INVALIDATE` 세 플래그의 의미는 수십 년간 크게 바뀌지 않았습니다.
 
-ARM MTE는 이 흐름과는 결이 다른, 하드웨어 자체가 메모리 접근을 검사하는 기능입니다. ARM은 2019년 Armv8.5-A 아키텍처 확장으로 MTE를 처음 명세했고, 포인터의 상위 비트에 4비트 태그를 심고 16바이트 단위 메모리 조각(granule)마다 같은 태그를 붙여, 포인터가 가리키는 태그와 메모리에 저장된 태그가 어긋나면 하드웨어가 폴트를 일으키는 방식으로 use-after-free와 buffer-overflow 계열 버그를 잡아냅니다. 실제 소비자 하드웨어에는 2023년 10월 출시된 Google Pixel 8 계열에서 처음 탑재되었고, Android NDK는 `-fsanitize=memtag` 컴파일러 플래그와 `AndroidManifest.xml`의 `android:memtagMode` 속성으로 이를 노출합니다. 초기 소프트웨어 스택과 구형 코어에서는 SPEC 계열 벤치마크 기준 동기 모드(SYNC)가 6배 이상 느려지는 사례가 보고되며 "MTE는 오버헤드 때문에 실무에 못 쓴다"는 인식이 굳어졌지만, 2025–2026년 사이 발표된 서버급 하드웨어 최적화 연구는 이 그림을 상당히 바꿔 놓았습니다. 자세한 수치는 뒤의 "ARM MTE" 절에서 다룹니다.
+ARM MTE는 이 흐름과는 결이 다른, 하드웨어 자체가 메모리 접근을 검사하는 기능입니다. ARM은 Armv8.5-A 아키텍처 확장에서 MTE를 명세했고, 포인터의 상위 비트에 4비트 태그를 심고 16바이트 단위 메모리 조각(granule)마다 같은 태그를 붙여, 포인터가 가리키는 태그와 메모리에 저장된 태그가 어긋나면 하드웨어가 폴트를 일으키는 방식으로 use-after-free와 buffer-overflow 계열 버그를 잡아냅니다. 실제 소비자 하드웨어에는 2023년 10월 출시된 Google Pixel 8 계열에서 처음 탑재되었고, Android NDK는 `-fsanitize=memtag` 컴파일러 플래그와 `AndroidManifest.xml`의 `android:memtagMode` 속성으로 이를 노출합니다. Pixel 8·9의 여러 코어와 AmpereOne을 대상으로 한 한 연구([Noh 외, arXiv:2601.11786](https://arxiv.org/abs/2601.11786))는 MTE가 대체로 완만한 오버헤드를 보이지만 일부 벤치마크에서는 최대 6.64배까지 느려진다고 보고했고, 이런 사례가 "MTE는 오버헤드 때문에 실무에 못 쓴다"는 인식을 만든 배경입니다. 반면 서버급 하드웨어 최적화 연구는 이 그림을 상당히 바꿔 놓았습니다. 자세한 수치는 뒤의 "ARM MTE" 절에서 다룹니다.
 
 ## madvise: 커널에 회수 우선순위를 알려주는 힌트
 
@@ -82,21 +74,19 @@ ARM MTE는 이 흐름과는 결이 다른, 하드웨어 자체가 메모리 접�
 
 ```cpp
 #include <sys/mman.h>
+#include <cstddef>
 #include <cstdio>
-#include <cstring>
 
-void release_scratch_buffer(void* addr, size_t len, bool will_reuse_soon) {
-  if (will_reuse_soon) {
-    // 곧 다시 쓸 예정: 압박 전까지는 재폴트 없이 그대로 재사용될 수 있다
-    madvise(addr, len, MADV_FREE);
-  } else {
-    // 다시 안 쓸 버퍼: 즉시 매핑을 반납해 RSS를 바로 줄인다
-    madvise(addr, len, MADV_DONTNEED);
-  }
+void release_scratch_buffer(void* addr, std::size_t len, bool will_reuse_soon) {
+  // 곧 다시 쓸 예정이면 MADV_FREE: 압박 전까지는 재폴트 없이 그대로 재사용될 수 있다.
+  // 다시 안 쓸 버퍼면 MADV_DONTNEED: 즉시 매핑을 반납해 RSS를 바로 줄인다.
+  const int advice = will_reuse_soon ? MADV_FREE : MADV_DONTNEED;
+  if (madvise(addr, len, advice) != 0) std::perror("madvise");  // 힌트 실패는 기록만 하고 계속한다
 }
 
-void warm_up_before_access(void* addr, size_t len) {
-  madvise(addr, len, MADV_WILLNEED);  // 곧 접근할 대용량 영역을 미리 커널에 알림
+void warm_up_before_access(void* addr, std::size_t len) {
+  // 곧 접근할 대용량 영역을 미리 커널에 알림
+  if (madvise(addr, len, MADV_WILLNEED) != 0) std::perror("madvise");
 }
 ```
 
@@ -106,7 +96,7 @@ void warm_up_before_access(void* addr, size_t len) {
 
 `mmap`으로 연 파일에 쓰기를 하면 그 변경은 먼저 페이지 캐시에만 반영되고, 커널은 dirty 페이지를 자체 스케줄에 따라 나중에 저장소로 write-back합니다. `msync`는 이 write-back 시점을 애플리케이션이 직접 통제할 수 있게 해 주는 호출로, `MS_SYNC`는 write-back이 끝날 때까지 블로킹하고, `MS_ASYNC`는 write-back을 예약만 해 두고 즉시 반환합니다. Linux 2.6.19 이후로는 커널이 dirty 페이지를 알아서 추적해 필요할 때 flush하므로 `MS_ASYNC`는 사실상 아무 일도 하지 않는 no-op에 가깝지만, 이는 Linux 고유의 동작이므로 이식성이 필요한 코드에서는 `MS_ASYNC`가 "즉시 완료를 보장한다"고 가정하면 안 됩니다. `MS_INVALIDATE`는 같은 파일의 다른 매핑들도 방금 쓴 값으로 갱신되도록 무효화하는 플래그로, 여러 프로세스가 같은 파일을 공유 매핑(`MAP_SHARED`)할 때만 의미가 있습니다.
 
-`msync` 없이도 `munmap`이나 프로세스 종료 시점에는 커널이 dirty 페이지를 저장소에 반영하므로, "매핑 해제 전에 반드시 `msync`를 호출해야 한다"는 것은 사실이 아닙니다. `msync(MS_SYNC)`가 실제로 필요한 시점은 **정전이나 크래시에도 특정 시점까지의 쓰기가 디스크에 반영되었음을 보장해야 하는 체크포인트**처럼, 프로세스가 정상 종료되지 않을 가능성까지 고려해야 하는 상황입니다.
+`msync`를 쓰지 않으면 `munmap` 전에 변경이 저장소에 써진다는 보장이 없다는 것이 [msync(2) 매뉴얼](https://man7.org/linux/man-pages/man2/msync.2.html)의 설명입니다. 다만 쓴 내용은 페이지 캐시에 남아 있으므로 프로세스가 종료되거나 매핑이 해제되었다고 해서 데이터가 사라지지는 않고, 커널이 나중에 저장소로 내려 씁니다. 그래서 "매핑 해제 전에 반드시 `msync`를 호출해야 한다"는 것은 과장입니다. `msync(MS_SYNC)`가 실제로 필요한 시점은 **정전이나 크래시에도 특정 시점까지의 쓰기가 디스크에 반영되었음을 보장해야 하는 체크포인트**처럼, 프로세스가 정상 종료되지 않을 가능성까지 고려해야 하는 상황입니다.
 
 ```cpp
 #include <sys/mman.h>
@@ -134,74 +124,71 @@ int checkpoint_write(const char* path, const char* payload, size_t len) {
 }
 ```
 
-크래시 안전성이 필요 없는 일반적인 파일 갱신에서 매 쓰기마다 `MS_SYNC`를 호출하면 블로킹 비용이 그대로 지연 예산에 반영되므로, 체크포인트 주기를 배치로 묶거나 `MS_ASYNC` + 주기적 `MS_SYNC` 조합으로 빈도를 조절하는 것이 일반적입니다.
+크래시 안전성이 필요 없는 일반적인 파일 갱신에서 매 쓰기마다 `MS_SYNC`를 호출하면 블로킹 비용이 그대로 지연 예산에 반영되므로, 체크포인트 주기를 배치로 묶어 `MS_SYNC` 호출 간격을 늘리는 것이 일반적입니다. Linux에서 `MS_ASYNC`는 no-op이므로 이 조합의 대안이 되지 못합니다.
 
 ## 측정: MADV_DONTNEED vs MADV_FREE 재접근 비용
 
-두 힌트의 차이는 주장이 아니라 재접근 시의 페이지 폴트 횟수로 직접 확인할 수 있습니다. 아래는 256MiB 버퍼를 한 번 전부 커밋한 뒤, 인자로 받은 힌트를 적용하고 다시 페이지 단위로 훑는 최소 벤치마크입니다. Linux(x86-64), `-std=c++17` 기준으로 작성했습니다.
+두 힌트의 차이는 주장이 아니라 재접근 시의 페이지 폴트 횟수로 직접 확인할 수 있습니다. 아래는 64MiB 버퍼를 한 번 전부 커밋한 뒤, 인자로 받은 힌트를 적용하고 다시 페이지 단위로 훑으면서 `getrusage`로 마이너 폴트 수를 세는 최소 프로그램입니다. 시작 시 워밍업 `memset`이 만드는 폴트는 측정 구간 앞에서 제외합니다. Linux(x86-64), `-std=c++17` 기준으로 작성했습니다.
 
 ```cpp
 #include <sys/mman.h>
+#include <sys/resource.h>
+
 #include <chrono>
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
 #include <string>
 
+static long minor_faults() {
+  rusage ru{};
+  getrusage(RUSAGE_SELF, &ru);
+  return ru.ru_minflt;  // 이 프로세스가 지금까지 일으킨 마이너 페이지 폴트 수
+}
+
 int main(int argc, char** argv) {
-  constexpr size_t kSize = 1ull << 28;  // 256MiB
+  constexpr std::size_t kSize = std::size_t{1} << 26;  // 64MiB = 4KiB 페이지 16,384개
   void* buf = mmap(nullptr, kSize, PROT_READ | PROT_WRITE,
                    MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-  if (buf == MAP_FAILED) { perror("mmap"); return 1; }
+  if (buf == MAP_FAILED) { std::perror("mmap"); return 1; }
+  madvise(buf, kSize, MADV_NOHUGEPAGE);  // THP가 폴트를 2MiB 단위로 묶지 않도록 4KiB 페이지로 고정
 
   std::memset(buf, 1, kSize);  // 전체 페이지를 한 번 커밋(첫 워밍업)
 
   const std::string mode = argc > 1 ? argv[1] : "none";
   if (mode == "dontneed") {
-    madvise(buf, kSize, MADV_DONTNEED);  // 즉시 매핑 해제: 재접근 시 무조건 폴트
+    if (madvise(buf, kSize, MADV_DONTNEED) != 0) std::perror("madvise(DONTNEED)");
   } else if (mode == "free") {
-    madvise(buf, kSize, MADV_FREE);      // 지연 회수: 압박 전이면 폴트 없을 수도
+    if (madvise(buf, kSize, MADV_FREE) != 0) std::perror("madvise(FREE)");
   }
   // mode == "none": 힌트 없이 그대로 재접근(대조군)
 
+  const long faults_before = minor_faults();  // memset의 폴트는 여기서 제외한다
   const auto t0 = std::chrono::steady_clock::now();
-  volatile uint8_t sink = 0;
-  auto* base = static_cast<uint8_t*>(buf);
-  for (size_t i = 0; i < kSize; i += 4096) {
-    sink += base[i];  // 페이지당 1바이트만 건드려 폴트 발생 여부만 관찰
+  volatile std::uint8_t sink = 0;
+  auto* base = static_cast<std::uint8_t*>(buf);
+  for (std::size_t i = 0; i < kSize; i += 4096) {
+    sink = sink + base[i];  // 페이지당 1바이트만 건드려 폴트 발생 여부만 관찰
   }
   const auto t1 = std::chrono::steady_clock::now();
 
-  std::printf("mode=%s elapsed_us=%ld sink=%u\n", mode.c_str(),
-              std::chrono::duration_cast<std::chrono::microseconds>(t1 - t0).count(),
-              sink);
+  std::printf("mode=%-8s refault=%6ld  elapsed_us=%ld\n", mode.c_str(),
+              minor_faults() - faults_before,
+              static_cast<long>(std::chrono::duration_cast<std::chrono::microseconds>(t1 - t0).count()));
   munmap(buf, kSize);
   return 0;
 }
 ```
 
-`g++ -O2 -std=c++17 madvise_bench.cpp -o madvise_bench`로 빌드한 뒤, `perf stat`으로 폴트 횟수를 함께 측정합니다.
+`g++ -O2 -std=c++17 madvise_bench.cpp -o madvise_bench`로 빌드해 세 모드를 차례로 실행합니다.
 
 ```bash
-perf stat -e page-faults ./madvise_bench none
-perf stat -e page-faults ./madvise_bench dontneed
-perf stat -e page-faults ./madvise_bench free
+./madvise_bench none
+./madvise_bench dontneed
+./madvise_bench free
 ```
 
-세 모드를 순서대로 실행하면 `page-faults` 카운터가 힌트별로 뚜렷하게 갈리는 것을 볼 수 있습니다.
-
-```text
-# none (대조군, 이미 커밋된 페이지 재접근 — 예시 형태, 실제 수치는 환경마다 다름)
-                   4      page-faults
-
-# dontneed (모든 페이지가 새로 폴트)
-              65,536      page-faults
-
-# free (메모리 압박이 없는 상태라면 재폴트가 거의 발생하지 않을 수 있음)
-                  12      page-faults
-```
-
-`free` 모드의 결과는 벤치마크 실행 시점의 시스템 메모리 압박 상태에 크게 좌우됩니다. 압박이 있는 환경에서 재현하면 `MADV_FREE`도 `MADV_DONTNEED`에 가까운 폴트 수를 보일 수 있으므로, "MADV_FREE가 항상 공짜"라고 일반화하지 말고 대상 서버의 실제 메모리 여유 상태에서 재현하는 것이 중요합니다. 힙 전체의 할당·회수 흐름을 더 넓게 보고 싶다면 [Tr.01 ch20: 메모리 프로파일링: 힙 분석](/post/profiling-analysis/memory-profiling-heap-analysis/)에서 다루는 heaptrack 계열 도구와 병행하는 것을 권장합니다.
+이 장을 쓴 환경에서는 이 프로그램을 실행하지 못해 출력은 싣지 않습니다. 구조상 기대할 수 있는 값만 적으면, `dontneed`는 매핑이 해제되므로 64MiB ÷ 4KiB = 16,384페이지를 다시 만질 때마다 폴트가 나서 `refault`가 16,384 근처여야 하고, `none`은 이미 커밋된 페이지를 읽기만 하므로 0에 가까워야 합니다. `free`는 시스템 메모리 압박이 없다면 회수 표시된 페이지가 아직 남아 있어 폴트가 거의 없을 수 있지만, 압박이 있는 환경에서는 `dontneed`에 가까운 값이 나올 수 있습니다. 따라서 "MADV_FREE가 항상 공짜"라고 일반화하지 말고 대상 서버의 실제 메모리 여유 상태에서 직접 재현해야 합니다. 힙 전체의 할당·회수 흐름을 더 넓게 보고 싶다면 [Tr.01 ch20: 메모리 프로파일링: 힙 분석](/post/profiling-analysis/memory-profiling-heap-analysis/)에서 다루는 heaptrack 계열 도구와 병행하는 것을 권장합니다.
 
 ```mermaid
 flowchart TD
@@ -216,25 +203,25 @@ flowchart TD
 
 ## ARM MTE: 하드웨어 태그로 메모리 안전성을 검사하다
 
-<strong>MTE(Memory Tagging Extension)</strong>는 소프트웨어 힌트가 아니라 CPU가 직접 메모리 접근을 검사하는 하드웨어 기능입니다. 64비트 포인터의 최상위 바이트 일부에 4비트 태그를 저장하고, 그 포인터가 가리키는 16바이트 단위 메모리 조각(granule)마다 같은 태그를 별도로 기록해 둡니다. `IRG` 명령이 무작위 태그를 생성해 포인터에 심고, `STG`류 명령이 그 태그를 실제 메모리 조각에 씁니다. 이후 그 포인터로 메모리에 접근할 때마다 CPU가 포인터의 태그와 메모리 조각에 기록된 태그를 비교해, 둘이 어긋나면 태그 불일치 폴트를 일으킵니다. 이 메커니즘은 free된 메모리를 재할당할 때 새 태그를 부여하는 것만으로 use-after-free를, 배열 경계를 벗어난 접근이 다음 조각의 다른 태그와 부딪히는 것으로 buffer-overflow를 감지합니다.
+<strong>MTE(Memory Tagging Extension)</strong>는 소프트웨어 힌트가 아니라 CPU가 직접 메모리 접근을 검사하는 하드웨어 기능입니다. 64비트 포인터의 최상위 바이트 일부에 4비트 태그를 저장하고, 그 포인터가 가리키는 16바이트 단위 메모리 조각(granule)마다 같은 태그를 별도로 기록해 둡니다. `IRG` 명령이 무작위 태그를 생성해 포인터에 심고, `STG`류 명령이 그 태그를 실제 메모리 조각에 씁니다. 이후 그 포인터로 메모리에 접근할 때마다 CPU가 포인터의 태그와 메모리 조각에 기록된 태그를 비교해, 둘이 어긋나면 태그 불일치 폴트를 일으킵니다. 이 메커니즘은 free된 메모리를 재할당할 때 새 태그를 부여하는 것만으로 use-after-free를, 배열 경계를 벗어난 접근이 다음 조각의 다른 태그와 부딪히는 것으로 buffer-overflow를 감지합니다. 태그가 4비트뿐이라 use-after-free 감지는 태그가 우연히 같아질 수 있는 확률적 방식입니다.
 
-MTE는 검사 시점에 따라 세 모드로 동작합니다. **동기(SYNC)** 모드는 태그 불일치가 발생한 바로 그 로드/스토어 명령에서 즉시 `SIGSEGV`(코드 `SEGV_MTESERR`)를 일으켜 정확한 폴트 주소와 접근 정보를 남기므로 디버깅에 유리하지만 그만큼 매 접근마다 검사 비용이 붙습니다. **비동기(ASYNC)** 모드는 불일치를 즉시 알리지 않고 다음 커널 진입(시스템 콜이나 타이머 인터럽트) 시점까지 미뤄 두어, 정확한 폴트 위치 정보는 잃는 대신 성능 오버헤드를 크게 줄입니다. 이 둘을 절충한 **비대칭(ASYMM)** 모드는 읽기는 비동기로, 쓰기는 동기로 검사해 두 목표 사이의 균형을 잡습니다. Android는 `AndroidManifest.xml`의 `android:memtagMode` 속성이나 NDK의 `-fsanitize=memtag -fsanitize-memtag-mode=sync|async` 컴파일러 플래그로 이를 노출하며, Pixel 8 계열(2023년 10월 출시)부터 지원 기기가 늘어나고 있습니다.
+MTE는 검사 시점에 따라 세 모드로 동작합니다. **동기(SYNC)** 모드는 태그 불일치가 발생한 바로 그 로드/스토어 명령에서 즉시 `SIGSEGV`(코드 `SEGV_MTESERR`)를 일으켜 정확한 폴트 주소와 접근 정보를 남기므로 디버깅에 유리하지만 그만큼 매 접근마다 검사 비용이 붙습니다. **비동기(ASYNC)** 모드는 불일치를 즉시 알리지 않고 다음 커널 진입(시스템 콜이나 타이머 인터럽트) 시점까지 미뤄 두어, 정확한 폴트 위치 정보는 잃는 대신 성능 오버헤드를 크게 줄입니다. 이 둘을 절충한 **비대칭(ASYMM)** 모드는 [커널 문서](https://docs.kernel.org/arch/arm64/memory-tagging-extension.html)에 따르면 읽기는 동기 모드처럼, 쓰기는 비동기 모드처럼 처리해 두 목표 사이의 균형을 잡습니다. Android는 `AndroidManifest.xml`의 `android:memtagMode` 속성이나 NDK의 `-fsanitize=memtag -fsanitize-memtag-mode=sync|async` 컴파일러 플래그로 이를 노출하며, Pixel 8 계열(2023년 10월 출시)이 첫 소비자 기기입니다.
 
-```bash
+```makefile
 # Android NDK 빌드에서 MTE 계측을 켜는 컴파일러/링커 플래그(ARMv8.5+ 대상)
 APP_CFLAGS := -fsanitize=memtag -fno-omit-frame-pointer -march=armv8-a+memtag
 APP_LDFLAGS := -fsanitize=memtag -fsanitize-memtag-mode=sync -march=armv8-a+memtag
 ```
 
-초기 MTE 성능 평가는 주로 SPEC 계열 벤치마크에서 동기 모드가 6배 이상, 비동기 모드도 2배 가까이 느려지는 사례를 보고했고, 이 수치가 "MTE는 실무에 못 쓴다"는 인식을 굳혔습니다. 그러나 2025년 11월 공개된 AmpereOne 프로세서 대상 연구(Kaushik 외, Ampere Computing, arXiv:2511.17773, ISCA 2026 발표 확정)는 태그 저장에 별도 메모리 용량 오버헤드가 들지 않는 하드웨어 설계를 적용해, SPEC CPU 2017 기준 SPECrate geomean 오버헤드를 한 자릿수%대인 약 **7.6%**(약 1.08배) 수준까지 낮췄다고 보고합니다. 한편 memcached가 한때 최대 **1.40배**까지 느려졌다가 리눅스 커널의 MTE 처리 경로에 있던 성능 결함이 패치된 뒤 약 1.05배 수준으로 좁혀졌다는 결과는 같은 연구가 아니라 별도 연구(Noh 외, "ARM MTE Performance in Practice", arXiv:2601.11786, UT Austin·UC Berkeley)에서 보고된 것입니다. 즉 "MTE 오버헤드가 한 자릿수%대까지, memcached 같은 실제 워크로드는 1.40배에서 1.05배까지 낮아졌다"는 흐름은 서로 다른 두 연구가 각각 보고한 결과이며, 하드웨어 세대가 올라가고 커널 지원이 성숙해지면서 나타난 개선이지 모든 ARM 코어에 즉시 적용되는 보편적 수치는 아닙니다.
+2025년 11월 공개된 AmpereOne 프로세서 대상 연구([Kaushik 외, Ampere Computing, arXiv:2511.17773](https://arxiv.org/abs/2511.17773))는 태그 저장에 별도 메모리 용량 오버헤드가 들지 않는 하드웨어 설계를 적용해, SPEC CPU 2017 기준 SPECrate geomean 성능 저하를 **7.6%**(논문 Figure 7) 수준으로 보고합니다. 한편 memcached가 한때 최대 **1.40배**까지 느려졌다가 리눅스 커널의 MTE 처리 경로에 있던 성능 결함이 패치된 뒤 약 1.05배 수준으로 좁혀졌다는 결과는 같은 연구가 아니라 별도 연구(앞의 Noh 외 "ARM MTE Performance in Practice")에서 AmpereOne으로 측정해 보고한 것입니다(§4.3, Figure 3·4). 두 수치는 서로 다른 연구가 각각 보고한 결과이며, 모든 ARM 코어에 적용되는 보편적 수치가 아니라는 점을 전제로 읽어야 합니다.
 
 ## 자주 하는 오해 정정
 
-<strong>"madvise를 호출하면 그 순간 메모리가 반환된다"</strong>는 정확하지 않습니다. `MADV_DONTNEED`는 즉시 매핑을 해제하지만, `MADV_FREE`는 회수 후보로만 표시해 둘 뿐 실제 회수는 시스템 압박이 올 때까지 미뤄지고, 그동안 RSS 통계에는 여전히 잡힙니다. "반납했는데 RSS가 안 줄어든다"는 관찰은 버그가 아니라 `MADV_FREE`의 설계된 동작입니다.
+<strong>"madvise를 호출하면 그 순간 메모리가 반환된다"</strong>는 정확하지 않습니다. `MADV_DONTNEED`는 즉시 매핑을 해제하지만, `MADV_FREE`는 회수 후보로만 표시해 둘 뿐 실제 회수는 시스템 압박이 올 때까지 미뤄지고, 그동안 RSS 통계에는 여전히 잡힙니다. 
 
-<strong>"mmap 파일에 쓴 뒤 msync를 안 하면 데이터가 위험하다"</strong>도 과장된 통념입니다. 커널은 dirty 페이지를 스스로 추적해 `munmap`이나 프로세스 종료 시점에 알아서 write-back하므로, 정상 종료 경로에서는 `msync`가 필수가 아닙니다. `msync(MS_SYNC)`가 정말 필요한 순간은 프로세스가 비정상 종료되거나 시스템이 정전될 가능성까지 고려해 "이 시점까지의 쓰기는 반드시 디스크에 있어야 한다"고 보장해야 하는 체크포인트뿐입니다. 또한 Linux에서 `MS_ASYNC`는 2.6.19 이후로 사실상 no-op이므로 "MS_ASYNC가 즉시 flush를 예약해 준다"고 기대해서도 안 됩니다.
+<strong>"mmap 파일에 쓴 뒤 msync를 안 하면 데이터가 위험하다"</strong>도 과장된 통념입니다. dirty 페이지는 페이지 캐시에 남아 커널이 스스로 추적해 내려 쓰므로 프로세스가 종료되어도 데이터가 사라지지는 않습니다. 저장소 반영 시점이 보장되지 않을 뿐이며, 그 보장이 필요한 경우는 앞의 msync 절에 정리했습니다. 
 
-<strong>"ARM MTE는 오버헤드 때문에 프로덕션에 쓸 수 없다"</strong>는 통념도 최신 하드웨어 기준으로는 재검토가 필요합니다. 초기 소프트웨어 에뮬레이션이나 구형 코어 기준의 6배 이상 수치와, 태그 저장 오버헤드를 없앤 최신 서버급 하드웨어에서 SPEC CPU 2017 기준 geomean 한 자릿수%대(memcached는 커널 패치 후 1.05배)로 보고되는 수치는 전혀 다른 이야기입니다. 다만 이 개선은 특정 세대 하드웨어와 커널 버전에 국한되므로, 대상 배포 환경의 CPU 세대와 커널 버전을 먼저 확인하지 않은 채 "MTE는 이제 싸다"고 일반화하는 것도 같은 종류의 오해입니다.
+<strong>"ARM MTE는 오버헤드 때문에 프로덕션에 쓸 수 없다"</strong>는 통념도 최신 하드웨어 기준으로는 재검토가 필요합니다. 일부 벤치마크의 최대 6.64배 같은 수치와, 태그 저장 오버헤드를 없앤 서버급 하드웨어에서 보고된 한 자릿수%대 수치는 측정 대상이 다릅니다. 
 
 ## 판단 기준
 
@@ -253,7 +240,7 @@ APP_LDFLAGS := -fsanitize=memtag -fsanitize-memtag-mode=sync -march=armv8-a+memt
 
 `MADV_FREE`의 지연 회수는 성능상 이득이지만 관찰성을 희생합니다. RSS·`smaps` 기반 모니터링이 "회수 후보로 표시되었으나 아직 회수되지 않은" 페이지를 상주 메모리로 계속 보고하기 때문에, 용량 계획이나 OOM 임박 판단을 RSS 하나에만 의존하는 운영 체계에서는 오도된 결론에 이르기 쉽습니다. `msync`는 반대로 크래시 안전성을 위한 확실한 도구이지만, `MS_SYNC` 호출을 촘촘히 박아 넣으면 그 블로킹 비용이 그대로 지연 예산을 잠식하므로 체크포인트 주기 설계와 함께 다뤄야 합니다.
 
-ARM MTE는 x86-64에는 대응하는 하드웨어 기능이 없어 이식성이 제한적이고, ARM 계열이라도 Armv8.5-A 이상을 구현한 실리콘에서만 동작하므로 배포 대상 하드웨어 세대를 먼저 확인해야 합니다. Android에서도 MTE는 여전히 기본 비활성 상태이고 개발자가 명시적으로 옵트인해야 하며, 동기 모드의 정밀한 폴트 정보는 여전히 검사 비용과 맞바꾸는 트레이드오프입니다. 또한 이 장에서 인용한 SPEC CPU 2017 기준 한 자릿수%대 오버헤드와 memcached 1.05배 수치는 각각 AmpereOne이라는 특정 서버급 하드웨어(Kaushik 외)와 별도 연구(Noh 외)가 관측한 특정 커널 버전을 기준으로 한 결과이므로, 다른 세대의 ARM 코어나 다른 커널 버전에서는 오버헤드가 이보다 훨씬 클 수 있다는 점을 전제하고, 실제 도입 전에는 대상 하드웨어에서 직접 재현해 검증해야 합니다.
+ARM MTE는 x86-64에는 대응하는 하드웨어 기능이 없어 이식성이 제한적이고, ARM 계열이라도 Armv8.5-A 이상을 구현한 실리콘에서만 동작하므로 배포 대상 하드웨어 세대를 먼저 확인해야 합니다. Android 앱은 `android:memtagMode`를 명시해 켜는 방식이며, 동기 모드의 정밀한 폴트 정보는 검사 비용과 맞바꾸는 트레이드오프입니다. 앞서 인용한 한 자릿수%대와 memcached 수치는 특정 하드웨어·커널 버전에서의 결과이므로 실제 도입 전에는 대상 하드웨어에서 직접 재현해 검증해야 합니다.
 
 ## 마무리
 
