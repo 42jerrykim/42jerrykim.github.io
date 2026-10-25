@@ -345,7 +345,7 @@
 | content/collection/optimization-07-concurrency/04-memory-model-practical/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | d66fddb | 없음(경미: L63 N2480 저자는 Boehm 단독인데 'Boehm과 Adve' 귀속, Intel TSX 2021 비활성화 출처 미부기, consume '사실상 폐기 수순' 표현이 P0371R1보다 강함) |
 | content/collection/optimization-07-concurrency/05-lock-free-fundamentals/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 04f59e3 | 없음(경미: Intel TSX 직접 인용에 intel.com 000059422 링크 미부기, Herlihy 논문 링크 없음, g++ 부재로 TaggedStack 예제 미컴파일) |
 | content/collection/optimization-07-concurrency/06-lock-free-data-structures/index.md | 92.5 | 2026-10-25 | 2 | 통과 | 1.3 | a9478f4 | 없음(경미: description이 dequeue 추가 미반영, 해시맵은 개념 스케치뿐, 큐 단독 main 예제 없음, rochester PDF ~경로 WebFetch 404이나 /u/scott 경로는 정상, Edge-Cases·Comparison 태그 근거 약함) |
-| content/collection/optimization-07-concurrency/07-hazard-pointers-rcu/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/07-hazard-pointers-rcu/index.md | 98.5 | 2026-10-25 | 3 | 통과 | 1.3 | c8d8635 | 없음(경미: 벤치마크 골격이 앞 절 Node·protect 정의에 의존하는 비독립 코드, Michael 2004 논문 링크 미부기, L153 합쇼체 어체 혼재, RCU grace period 도식 없음) |
 | content/collection/optimization-07-concurrency/08-spsc-mpmc-queues/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/09-cpp20-atomics/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/10-thread-pool-optimization/index.md | - | - | 0 | 미채점 | - | - | - |

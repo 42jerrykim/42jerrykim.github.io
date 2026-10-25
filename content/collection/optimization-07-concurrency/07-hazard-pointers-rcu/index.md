@@ -6,7 +6,7 @@ draft: false
 image: wordcloud.png
 title: "[Concurrency 07] Hazard Pointers·RCU"
 slug: hazard-pointer-rcu-cpp26
-description: "C++26에 채택된 hazard_pointer(P2530)·rcu(P2545)의 안전한 메모리 회수 메커니즘과 grace period 개념을 다루고, 2026년 7월 기준 GCC libstdc++·Clang libc++·MSVC STL의 구현 현황과 도입 판단 기준을 정리합니다."
+description: "C++26에 채택된 hazard_pointer(P2530)·rcu(P2545)의 안전한 메모리 회수 메커니즘과 grace period 개념을 다루고, GCC libstdc++ 버그 트래커 논의와 libc++ 상태 문서를 근거로 한 구현 현황 확인 방법, 도입 판단 기준을 정리합니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
@@ -23,21 +23,13 @@ tags:
   - Linux(리눅스)
   - Benchmark
   - Latency
-  - Profiling(프로파일링)
-  - Debugging(디버깅)
   - Implementation(구현)
-  - Best-Practices
   - System-Design
-  - Production
-  - Reliability
   - Advanced
   - Deep-Dive
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Documentation(문서화)
-  - Reference(참고)
-  - Guide(가이드)
   - Folly
   - liburcu
   - Grace-Period
@@ -45,9 +37,12 @@ tags:
   - WG21
   - P2530
   - P2545
+  - Lock-free
+  - ABA-Problem
+  - Epoch-Based-Reclamation
 ---
 
-**Hazard Pointers**와 <strong>RCU(Read-Copy-Update)</strong>는 lock-free 자료구조에서 "unlink한 노드를 언제 안전하게 `delete`해도 되는가"라는 **안전한 메모리 회수(safe memory reclamation)** 문제를 푸는 두 가지 대표 기법이다. CAS로 노드를 리스트·큐에서 떼어내는 것 자체는 어렵지 않지만, 그 순간 다른 리더 스레드가 이미 그 노드를 역참조하고 있을 수 있다는 사실이 문제를 만든다. 가비지 컬렉터가 없는 C++에서 이 문제를 해결하지 못하면 lock-free 자료구조는 use-after-free로 귀결되고, 이는 디버깅이 극도로 어려운 간헐적 크래시로 나타난다. 이 장은 이 회수 문제의 두 해법을 원리 수준에서 다루고, C++26에 `hazard_pointer`(P2530)와 `rcu`(P2545)가 표준 헤더로 확정된 사실과 2026년 7월 현재 실제 컴파일러 구현 현황을 함께 짚는다.
+**Hazard Pointers**와 <strong>RCU(Read-Copy-Update)</strong>는 lock-free 자료구조에서 "unlink한 노드를 언제 안전하게 `delete`해도 되는가"라는 **안전한 메모리 회수(safe memory reclamation)** 문제를 푸는 두 가지 대표 기법이다. CAS로 노드를 리스트·큐에서 떼어내는 것 자체는 어렵지 않지만, 그 순간 다른 리더 스레드가 이미 그 노드를 역참조하고 있을 수 있다는 사실이 문제를 만든다. 가비지 컬렉터가 없는 C++에서 이 문제를 해결하지 못하면 lock-free 자료구조는 use-after-free로 귀결되고, 이는 디버깅이 극도로 어려운 간헐적 크래시로 나타난다. 이 장은 이 회수 문제의 두 해법을 원리 수준에서 다루고, C++26에 `hazard_pointer`(P2530)와 `rcu`(P2545)가 표준 헤더로 확정된 사실과 표준 라이브러리 구현 현황을 함께 짚는다.
 
 ## 이 장을 읽기 전에
 
@@ -63,7 +58,7 @@ tags:
 
 ## 역사와 배경
 
-**Hazard pointer**는 Maged M. Michael이 2004년 IEEE Transactions on Parallel and Distributed Systems에 발표한 "Hazard Pointers: Safe Memory Reclamation for Lock-Free Objects" 논문에서 제안한 기법으로, 스레드마다 "지금 역참조 중이라 안전하지 않은(hazardous) 포인터" 슬롯을 두고 회수 전에 검사하는 방식이다. Facebook의 Folly 라이브러리는 이 기법을 `hazptr`로 구현해 2017년부터 프로덕션에서 사용해 왔고, 이 구현이 P2530 제안서의 실증 근거로 쓰였다. **RCU**는 Paul McKenney가 발전시킨 기법으로 Linux 커널에 2002년부터 채택되어 라우팅 테이블·프로세스 목록처럼 읽기가 압도적으로 많은 자료구조에 광범위하게 쓰였고, 이후 liburcu 같은 유저스페이스 포팅이 나왔다. C++ 표준화 작업은 P2530(hazard pointer), P2545(RCU) 두 논문이 SG1(동시성 스터디 그룹)을 거치며 여러 리비전을 거쳤고, 2026년 3월 28일 Croydon 회의에서 C++26 표준 자체가 최종 확정(shipped)되면서 두 기법 모두 `<hazard_pointer>`·`<rcu>` 헤더로 표준 라이브러리에 포함됐다.
+**Hazard pointer**는 Maged M. Michael이 2004년 IEEE Transactions on Parallel and Distributed Systems에 발표한 "Hazard Pointers: Safe Memory Reclamation for Lock-Free Objects" 논문에서 제안한 기법으로, 스레드마다 "지금 역참조 중이라 안전하지 않은(hazardous) 포인터" 슬롯을 두고 회수 전에 검사하는 방식이다. Facebook의 Folly 라이브러리는 이 기법을 `hazptr`로 구현해 두었다. **RCU**는 Paul McKenney가 발전시킨 기법으로 Linux 커널에 2002년부터 채택되어 라우팅 테이블·프로세스 목록처럼 읽기가 압도적으로 많은 자료구조에 광범위하게 쓰였고, 이후 liburcu 같은 유저스페이스 포팅이 나왔다. C++ 표준화 작업은 [P2530](https://wg21.link/p2530)(hazard pointer)과 [P2545](https://wg21.link/p2545)(RCU) 두 제안서로 진행되었고, 두 기법 모두 C++26의 `<hazard_pointer>`·`<rcu>` 헤더로 표준 라이브러리에 포함되었다.
 
 ## 안전한 메모리 회수 문제
 
@@ -75,8 +70,7 @@ Hazard pointer는 **개별 포인터 단위**로 안전을 추적한다. 리더 
 
 ```text
 // C++26 표준 초안(P2530R3) 기준 API 형태 요약 — 개념 스케치
-// 2026년 7월 현재 GCC/Clang/MSVC 어느 표준 라이브러리도 이 헤더를
-// 완전히 구현해 배포하지 않았으므로 아래는 실제로 #include 가능한
+// 표준 라이브러리별 구현 여부는 환경마다 다르므로 아래는 실제로 #include 가능한
 // 코드가 아니라 인터페이스 형태를 보여주는 요약이다.
 namespace std {
   template<class T, class D = default_delete<T>>
@@ -92,12 +86,13 @@ namespace std {
 }
 ```
 
-표준 헤더가 아직 없는 환경에서도 메커니즘 자체는 재현할 수 있다. 아래는 스레드당 hazard 슬롯 하나만 두는 **교육용 최소 구현**으로, `g++ -std=c++20`으로 그대로 컴파일된다. Folly의 `hazptr`이나 향후 libstdc++ 구현은 스레드별 retire 목록·배치 스캔·슬롯 재사용 같은 최적화를 추가로 갖추지만, protect-재확인-retire-scan이라는 뼈대는 동일하다.
+표준 헤더가 아직 없는 환경에서도 메커니즘 자체는 재현할 수 있다. 아래는 스레드당 hazard 슬롯 하나만 두는 **교육용 최소 구현**으로, `g++ -std=c++20`으로 컴파일하는 단일 파일 예제다. Folly의 `hazptr`이나 향후 libstdc++ 구현은 스레드별 retire 목록·배치 스캔·슬롯 재사용 같은 최적화를 추가로 갖추지만, protect-재확인-retire-scan이라는 뼈대는 동일하다.
 
 ```cpp
 #include <atomic>
 #include <vector>
 #include <algorithm>
+#include <cstdio>
 
 struct Node { int value; Node* next; };
 
@@ -117,9 +112,10 @@ Node* protect(std::atomic<Node*>& source) {
   Node* p;
   do {
     p = source.load(std::memory_order_acquire);
-    hazard_slots[my_slot()].store(p, std::memory_order_release);
+    // 슬롯 게시(store)와 재확인(load) 사이에는 StoreLoad 순서가 필요하므로 seq_cst를 쓴다.
+    hazard_slots[my_slot()].store(p, std::memory_order_seq_cst);
     // p를 슬롯에 기록한 뒤에도 그 사이 source가 바뀌었을 수 있으므로 재확인
-  } while (p != source.load(std::memory_order_acquire));
+  } while (p != source.load(std::memory_order_seq_cst));
   return p;
 }
 
@@ -131,16 +127,29 @@ void unprotect() {
 // 여기서는 뼈대만 남긴 단순화 버전(스레드 안전성 보장 없음, 교육용).
 std::vector<Node*> retired;
 
-void retire(Node* node) {
+void retire(Node* node) {  // 호출 전에 node는 이미 자료구조에서 unlink되어 있어야 한다
   retired.push_back(node);
+  std::atomic_thread_fence(std::memory_order_seq_cst);  // unlink가 슬롯 검사보다 먼저 보이게 함
   retired.erase(std::remove_if(retired.begin(), retired.end(), [](Node* n) {
     for (auto& slot : hazard_slots)
-      if (slot.load(std::memory_order_acquire) == n) return false;
+      if (slot.load(std::memory_order_seq_cst) == n) return false;
     delete n;
     return true;
   }), retired.end());
 }
+
+int main() {
+  std::atomic<Node*> head{new Node{42, nullptr}};
+  Node* p = protect(head);
+  std::printf("protected value: %d\n", p->value);
+  Node* old = head.exchange(nullptr);  // unlink
+  retire(old);                         // 슬롯이 p를 가리키므로 아직 delete되지 않는다
+  unprotect();
+  retire(new Node{0, nullptr});        // 다음 retire 때 보호가 풀린 노드가 회수된다
+}
 ```
+
+슬롯 게시와 재확인 사이에 StoreLoad 순서가 없으면, 리더의 게시가 라이터의 스캔에 보이기 전에 라이터가 노드를 unlink하고 스캔을 마칠 수 있습니다. 이 경우 리더는 이미 회수되는 노드를 보호했다고 믿게 되므로 release/acquire만으로는 부족하고 seq_cst(또는 fence)가 필요합니다.
 
 이 구현은 원리를 보여주기 위한 것이며 그대로 프로덕션에 쓰면 안 된다. `retired` 벡터를 여러 스레드가 동시에 `push_back`·`erase`하면 데이터 경쟁이 나므로, 실전에서는 스레드별 retire 목록과 락 없는 배치 스캔이 필요하다. 이 protect/retire 상호작용의 정확성은 `g++ -std=c++20 -fsanitize=thread -g`로 빌드한 뒤 여러 리더·라이터 스레드를 동시에 돌려 race를 재현·검증하는 것이 실무에서 최소한의 확인 절차다.
 
@@ -153,13 +162,21 @@ RCU는 **구간(critical section) 단위**로 안전을 추적한다는 점에�
 #include <thread>
 #include <cstdint>
 #include <limits>
+#include <chrono>
+#include <cstdio>
 
 // 교육용 epoch 기반 RCU 스타일 데모: grace period를 "모든 활성 epoch가
 // 현재 전역 epoch로 갱신됨"으로 근사한 단순화 버전(표준 rcu_domain이 아님).
 // 위 hazard pointer 예제와 독립적인, 별도의 최소 재현이다.
 constexpr int kMaxReaders = 8;
 inline std::atomic<uint64_t> global_epoch{0};
-inline std::atomic<uint64_t> reader_epoch[kMaxReaders]{};
+struct EpochSlots {
+  std::atomic<uint64_t> v[kMaxReaders];
+  EpochSlots() {
+    for (auto& e : v) e.store(std::numeric_limits<uint64_t>::max());  // 미사용 슬롯은 비활성
+  }
+};
+inline EpochSlots reader_epochs;
 inline std::atomic<int> next_reader_slot{0};
 inline thread_local int reader_slot = -1;
 
@@ -170,23 +187,36 @@ int my_reader_slot() {
 }
 
 void rcu_read_lock() {
-  reader_epoch[my_reader_slot()].store(
+  // 주의: epoch를 읽은 뒤 슬롯에 쓰기 전의 틈은 이 데모가 막지 않는다(실제 구현은 이를 원자적으로 처리).
+  reader_epochs.v[my_reader_slot()].store(
       global_epoch.load(std::memory_order_acquire), std::memory_order_release);
 }
 
 void rcu_read_unlock() {
-  reader_epoch[my_reader_slot()].store(
+  reader_epochs.v[my_reader_slot()].store(
       std::numeric_limits<uint64_t>::max(), std::memory_order_release);  // 비활성 표시
 }
 
 // writer: 갱신 후 이 함수가 반환하면 grace period가 지난 것으로 간주
 void rcu_synchronize_demo() {
   uint64_t target = global_epoch.fetch_add(1, std::memory_order_acq_rel) + 1;
-  for (auto& e : reader_epoch) {
+  for (auto& e : reader_epochs.v) {
     while (e.load(std::memory_order_acquire) < target) {
       std::this_thread::yield();  // 실제 구현은 조건변수·타임아웃 등을 씀
     }
   }
+}
+
+int main() {
+  std::thread reader([] {
+    rcu_read_lock();
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));  // 긴 read-side 구간
+    rcu_read_unlock();
+  });
+  std::this_thread::sleep_for(std::chrono::milliseconds(10));  // 리더가 구간에 들어갈 시간
+  rcu_synchronize_demo();  // 리더가 unlock할 때까지 대기
+  std::puts("grace period 경과");
+  reader.join();
 }
 ```
 
@@ -194,7 +224,7 @@ void rcu_synchronize_demo() {
 
 ## C++26 표준화와 구현 현황
 
-C++26 표준 자체는 확정됐지만, 표준 확정과 컴파일러의 실제 구현 사이에는 늘 시차가 있다. 2025년 10월 GCC 버그 트래커([libstdc++/121979](https://www.mail-archive.com/gcc-bugs@gcc.gnu.org/msg880961.html))에서 담당 개발자 Jonathan Wakely는 "hazard pointer 부분에 대한 의견이 아직 없는 이유는 아마 아무도 구현을 시도하지 않았기 때문일 것"이라고 언급했고, 이후 스레드에서 기여자 한 명이 구현 착수 의사를 밝힌 정도가 2026년 7월 현재 확인 가능한 진행 상황이다. 2026년 4월 출시된 GCC 16.1은 P2996(Reflection), P2900(Contracts) 등 다른 C++26 기능을 추가했지만 `<hazard_pointer>`·`<rcu>` 구현은 포함하지 않았다. libc++(LLVM/Clang) 쪽도 공개된 상태 문서에서 두 제안에 대한 완료 표시를 확인할 수 없었고, MSVC STL 팀은 C++23 기능 작업을 먼저 마무리한 뒤에야 C++26 라이브러리 기능 PR을 받는다는 방침을 밝혀 왔다. 이 트랙 커리큘럼에서 종종 언급되는 "Bloomberg의 실험적 Clang 구현"은 실제로는 P2996(Reflection)을 위한 `bloomberg/clang-p2996` 실험 포크를 가리키는 것으로 보이며, hazard_pointer·rcu에 대한 별도의 Bloomberg Clang 구현체는 이번 조사에서 확인되지 않았다 — 즉 세 주요 컴파일러 모두 두 헤더를 아직 배포하지 않은 상태로 이해하는 것이 안전하다.
+C++26 표준 자체는 확정됐지만, 표준 확정과 컴파일러의 실제 구현 사이에는 늘 시차가 있다. 2025년 10월 GCC 버그 트래커([libstdc++/121979](https://www.mail-archive.com/gcc-bugs@gcc.gnu.org/msg880961.html))에서 담당 개발자 Jonathan Wakely는 "hazard pointer 부분에 대한 의견이 아직 없는 이유는 아마 아무도 구현을 시도하지 않았기 때문일 것"이라고 언급했고, 이후 스레드에서 기여자 한 명이 구현 착수 의사를 밝힌 정도가 2026년 7월 현재 확인 가능한 진행 상황이다. libc++(LLVM/Clang) 쪽도 공개된 상태 문서에서 두 제안에 대한 완료 표시를 확인할 수 없었다. 따라서 배포 환경의 표준 라이브러리가 두 헤더를 제공하는지는 도입 전에 직접 확인해야 한다.
 
 ```mermaid
 flowchart LR
@@ -210,7 +240,7 @@ flowchart LR
 
 ## 자주 하는 오해
 
-<strong>"C++26에 들어갔으니 지금 바로 프로덕션에 쓸 수 있다"</strong>는 표준 확정과 라이브러리 구현을 혼동한 것이다. 2026년 7월 현재 GCC·Clang·MSVC 어느 표준 라이브러리도 `<hazard_pointer>`·`<rcu>`를 완성해 배포하지 않았으므로, 지금 필요하다면 Folly의 `hazptr`이나 liburcu 같은 검증된 서드파티 구현을 쓰는 것이 현실적인 선택이다. <strong>"hazard pointer/RCU는 항상 mutex보다 빠르다"</strong>도 과도한 일반화다. hazard pointer는 매 protect마다 재확인 로드가 필요하고 retire 스캔 비용은 스레드 수·retire 목록 크기에 비례해 커지며, RCU는 read-side가 저렴한 대신 grace period 동안 회수가 지연되어 메모리 사용량이 순간적으로 늘 수 있다 — 실제로 어느 쪽이 더 유리한지는 읽기/쓰기 비율과 지연 허용치에 달려 있고 직접 측정해야 한다. <strong>"RCU는 Linux 커널 전용 기법"</strong>이라는 오해도 흔하지만, liburcu 같은 유저스페이스 포팅이 이미 널리 쓰이고 있고 C++26이 이를 언어 표준 수준으로 끌어올렸을 뿐 개념 자체는 커널에 국한되지 않는다.
+<strong>"C++26에 들어갔으니 지금 바로 프로덕션에 쓸 수 있다"</strong>는 표준 확정과 라이브러리 구현을 혼동한 것이다. 표준 라이브러리의 두 헤더 지원은 앞 절에서 본 것처럼 아직 불확실하므로, 지금 필요하다면 Folly의 `hazptr`이나 liburcu 같은 검증된 서드파티 구현을 쓰는 것이 현실적인 선택이다. <strong>"hazard pointer/RCU는 항상 mutex보다 빠르다"</strong>도 과도한 일반화다. hazard pointer는 매 protect마다 재확인 로드가 필요하고 retire 스캔 비용은 스레드 수·retire 목록 크기에 비례해 커지며, RCU는 read-side가 저렴한 대신 grace period 동안 회수가 지연되어 메모리 사용량이 순간적으로 늘 수 있다 — 실제로 어느 쪽이 더 유리한지는 읽기/쓰기 비율과 지연 허용치에 달려 있고 직접 측정해야 한다. <strong>"RCU는 Linux 커널 전용 기법"</strong>이라는 오해도 흔하지만, liburcu 같은 유저스페이스 포팅이 이미 널리 쓰이고 있고 C++26이 이를 언어 표준 수준으로 끌어올렸을 뿐 개념 자체는 커널에 국한되지 않는다.
 
 ## 판단 기준
 
@@ -222,15 +252,15 @@ flowchart LR
 | 메모리 오버헤드 | 스레드 수 × 슬롯 수에 비례, 예측 가능 | writer가 몰리면 retire 목록이 순간적으로 급증 가능 |
 | 적합 워크로드 | 개별 노드 단위 lock-free 자료구조(큐·스택·해시맵) | read-mostly 대규모 구조(라우팅 테이블, 설정 스냅샷) |
 | 오늘 당장 도입 | Folly `hazptr` 등 검증된 라이브러리 | liburcu, 또는 자체 epoch 기반 구현 |
-| 표준 API 도입 시점 | 세 주요 컴파일러 모두 미구현(2026-07 기준) | 세 주요 컴파일러 모두 미구현(2026-07 기준) |
 
-읽기·쓰기 비율이 극단적으로 읽기 쪽에 치우치고 갱신이 드물다면 RCU의 read-side 저비용이 유리하고, 개별 노드가 자주 삽입·삭제되는 lock-free 큐·스택이라면 hazard pointer의 노드 단위 추적이 더 자연스럽다. 두 경우 모두 지금 시점에는 표준 헤더가 아니라 검증된 서드파티 구현(Folly, liburcu)이나 [이전 장](/post/concurrency-optimization/lock-free-queue-stack-hashmap/)에서 다룬 자체 구현을 실제 선택지로 두어야 한다.
+읽기·쓰기 비율이 극단적으로 읽기 쪽에 치우치고 갱신이 드물다면 RCU의 read-side 저비용이 유리하고, 개별 노드가 자주 삽입·삭제되는 lock-free 큐·스택이라면 hazard pointer의 노드 단위 추적이 더 자연스럽다. 두 경우 모두 표준 헤더 지원이 확인되지 않았다면 검증된 서드파티 구현(Folly, liburcu)이나 [이전 장](/post/concurrency-optimization/lock-free-queue-stack-hashmap/)에서 다룬 자체 구현을 실제 선택지로 두어야 한다.
 
 ## 벤치마크 스켈레톤
 
 hazard pointer 기반 읽기와 mutex 기반 읽기의 지연시간 차이는 하드웨어·스레드 수·경합 정도에 따라 크게 갈리므로 단정적인 배율을 제시하기보다 직접 측정하는 것이 안전하다. 아래는 앞서 "Hazard Pointer 메커니즘" 절의 `protect`/`unprotect`/`hazard_slots` 정의(같은 번역 단위에 그대로 포함)에 이어붙여 컴파일하는 것을 전제로, hazard pointer 읽기와 단순 `std::mutex` 보호 읽기를 비교하는 Google Benchmark 골격이다(x86-64, GCC 13 이상, `-O2` 가정).
 
 ```cpp
+#include <atomic>
 #include <benchmark/benchmark.h>
 #include <mutex>
 // 이 파일 상단에는 "Hazard Pointer 메커니즘" 절의 Node, hazard_slots,
@@ -260,7 +290,7 @@ BENCHMARK(BM_MutexRead)->Threads(4);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 bench.cpp -lbenchmark -lpthread -o bench`로 빌드하고 스레드 수를 늘려 가며 실행하면, mutex 쪽은 스레드 수가 늘수록 대기 시간이 급격히 늘어나는 반면 hazard pointer 쪽은 재확인 로드 비용만큼만 증가하는 경향이 흔히 관찰된다. 다만 정확한 배율은 캐시 구조·컴파일러·경합 패턴에 따라 달라지므로, 자신의 타깃 하드웨어에서 재현하지 않은 수치를 그대로 인용하지 않는다.
+`g++ -O2 bench.cpp -lbenchmark -lpthread -o bench`로 빌드하고 스레드 수를 늘려 가며 실행하면, mutex 쪽은 스레드 수가 늘수록 대기 시간이 급격히 늘어나는 반면 hazard pointer 쪽은 어떻게 달라지는지 비교해 볼 수 있다. 이 글은 실측 수치를 싣지 않으며, 배율은 캐시 구조·컴파일러·경합 패턴에 따라 달라지므로, 자신의 타깃 하드웨어에서 직접 측정해야 한다.
 
 ## 비판적 시각: 한계와 논란
 
@@ -268,10 +298,9 @@ BENCHMARK_MAIN();
 
 ## 마무리
 
-- [ ] unlink와 delete 사이의 안전한 회수 문제를 스스로의 말로 설명할 수 있다.
 - [ ] hazard pointer의 protect-재확인-retire-scan 흐름을 그림 없이도 설명할 수 있다.
 - [ ] RCU의 read-side critical section과 grace period 개념, 그리고 grace period가 지연되는 실패 모드를 설명할 수 있다.
-- [ ] 2026년 7월 기준 GCC·Clang·MSVC 어디에도 `<hazard_pointer>`·`<rcu>`가 완성 배포되지 않았다는 사실과, 그 상황에서 실무적으로 무엇을 대신 쓸지 판단할 수 있다.
+- [ ] 표준 헤더 지원이 불확실한 상황에서 실무적으로 무엇을 대신 쓸지 판단할 수 있다.
 - [ ] 읽기/쓰기 비율과 지연 허용치를 기준으로 hazard pointer와 RCU 중 어느 쪽이 더 맞는 워크로드인지 고를 수 있다.
 
 **이전 장**: [Lock-free 자료구조 구현](/post/concurrency-optimization/lock-free-queue-stack-hashmap/) (챕터 06)
