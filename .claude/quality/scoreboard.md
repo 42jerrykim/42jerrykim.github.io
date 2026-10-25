@@ -340,7 +340,7 @@
 | content/collection/optimization-07-concurrency/01-synchronization-cost-analysis/index.md | 91.45 | 2026-10-25 | 0 | 통과 | 1.3 | 7feadc6 | 없음(경미: L79·L225 SRW 문서에 없는 '커널 오브젝트 최소화' 서술 귀속, 보일러플레이트 태그 4개, 본문 '1/2/4/8' vs 코드 Threads(1/4/8) 불일치) |
 | content/post/2026/2026-09-16-ai-counterfeit-utility-verification-cost/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-15-openai-agent-dsewiki-containment-breakout/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/02-lock-selection-criteria/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/02-lock-selection-criteria/index.md | 90.1 | 2026-10-25 | 0 | 통과 | 1.3 | 04dcb21 | 없음(경미·수정 권고: L87 macOS libc++가 os_unfair_lock 위라는 서술 오류·Windows std::mutex 서술 부정확, L78 futex 스케치 lost-wakeup(exchange 필요), L139 SRWLOCK 번역 인용 원문 blockquote/링크 없음, 보일러플레이트 태그 6개(Condition-Variable·Memory-Order·Compiler·Profiling·Edge-Cases·Reference), Broken→Fixed→TSan 검증 부재, L124 무조건 yield) |
 | content/collection/optimization-07-concurrency/03-false-sharing-avoidance/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/04-memory-model-practical/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/05-lock-free-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
