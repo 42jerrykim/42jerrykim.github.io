@@ -429,7 +429,7 @@
 | content/collection/optimization-11-design-decisions/07-latency-vs-throughput/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | dc993fa | 없음(경미 개선여지: Little 법칙 인용구 "거의 모든 것"→"사실상 모든 것") |
 | content/collection/optimization-11-design-decisions/08-low-latency-architecture-patterns/index.md | 100 | 2026-10-25 | 2 | 통과 | 1.3 | 4ef91cb | 없음 |
 | content/collection/optimization-11-design-decisions/09-caching-strategy/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | f5c3aac | 없음(경미: L62 "대중화" 평가성 단정, 확률적 조기 갱신 스케치에 cache-aside 조회·main 없음) |
-| content/collection/optimization-11-design-decisions/10-database-access-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/10-database-access-optimization/index.md | 100 | 2026-10-25 | 2 | 통과 | 1.3 | 3e034c8 | 없음 |
 | content/collection/optimization-11-design-decisions/11-team-performance-culture/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/12-performance-code-review/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/13-capacity-planning/index.md | - | - | 0 | 미채점 | - | - | - |
