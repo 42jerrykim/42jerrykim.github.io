@@ -374,7 +374,7 @@
 | content/collection/optimization-08-optimization-techniques/11-maintainability-tradeoff/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 3bfd9ac | 없음(개선여지: 리뷰 시간 서술 출처, Tr.01 약칭) |
 | content/collection/optimization-08-optimization-techniques/12-arm-neon-optimization/index.md | 92.7 | 2026-10-25 | 1 | 통과 | 1.3 | 3862f8d | 없음(경미: SVE·AMX 서술 중복, FMA3 표기) |
 | content/collection/optimization-08-optimization-techniques/13-portable-simd-libraries/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | 1d2ecd5 | 없음(경미: xsimd 기원·채택 프로젝트·API 변경 사례 출처 미병기, sum_array_xsimd 중복 정의) |
-| content/collection/optimization-08-optimization-techniques/14-cpp26-std-simd/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/14-cpp26-std-simd/index.md | 93.9 | 2026-10-25 | 2 | 통과 | 1.3 | d4da30f | 없음(경미: 런타임 디스패치 부재 서술 반복, P3275·basic_simd 표기 PDF 대조 미완) |
 | content/collection/optimization-08-optimization-techniques/15-cache-oblivious-algorithms/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-08-optimization-techniques/16-gpu-offloading-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-08-optimization-techniques/17-ai-inference-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
