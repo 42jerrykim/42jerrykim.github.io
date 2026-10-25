@@ -351,7 +351,7 @@
 | content/collection/optimization-07-concurrency/10-thread-pool-optimization/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | ffb3aff | 없음(경미: L63 Cilk++·TBB·TPL·ForkJoinPool·rayon 설계 근거 귀속 출처 없음, L172 '수십 개 이하 이론적 bound와 잘 맞음' 근거 없음, ThreadPool·벤치마크 블록이 앞 블록 의존·main 없음, Blumofe-Leiserson 논문 본문 미확인) |
 | content/collection/optimization-07-concurrency/11-coroutine-concurrency/index.md | 98.5 | 2026-10-25 | 1 | 통과 | 1.3 | d6dfdec | 없음(경미: ThreadPool이 선언뿐이고 main이 없으며 caller_bad가 Task를 co_await하지 않아 UAF 예제를 그대로 재현할 수 없음, 본문이 미실행·완성 프로그램 필요라고 명시) |
 | content/collection/optimization-07-concurrency/12-wait-free-programming/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | 2904d52 | 없음(경미·수정 권고: L113 도입문이 p50/p99 비교를 약속해 L144 '평균만 보고'와 모순, L44 '소비자 이론' 표현 어색, helping 의사코드 없음, Herlihy·Kogan-Petrank·Alistarh PDF 본문 대조 불가) |
-| content/collection/optimization-07-concurrency/13-jthread-stop-token/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/13-jthread-stop-token/index.md | 91.9 | 2026-10-25 | 0 | 통과 | 1.3 | 9a0d15d | 없음(경미·수정 권고: libc++ 지원 이력이 L67·L228에서 중복, '행(hang)' 위험 재진술 5회 반복, L214 '수십 µs' 출처 없음, P1287→P0660 병합 서술·MSVC 시기 출처 없음, Linux·Windows·OS·Latency 무관 태그) |
 | content/collection/optimization-07-concurrency/14-seqlock-pattern/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/15-thread-local-storage/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/16-executors-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
