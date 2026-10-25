@@ -1,7 +1,7 @@
 ---
 collection_order: 13
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[CPU 05] Apple Silicon 아키텍처"
@@ -18,20 +18,16 @@ tags:
   - Throughput
   - Benchmark
   - Profiling(프로파일링)
-  - Concurrency(동시성)
-  - Thread
-  - Process
   - OS(운영체제)
   - Advanced
   - Deep-Dive
-  - Comparison(비교)
-  - Case-Study
-  - Reference(참고)
-  - System-Design
   - Best-Practices
-  - Scalability(확장성)
-  - Embedded(임베디드)
   - Apple-Silicon
+  - QoS
+  - Fusion-Architecture
+  - STREAM
+  - Memory-Bandwidth
+  - Hybrid-Core
   - M-Series
   - Unified-Memory-Architecture
   - Heterogeneous-Computing
@@ -67,7 +63,7 @@ M1부터 M4까지는 4개의 고성능(P, Performance) 코어와 가변 개수�
 
 ### 코어 설계가 다르다는 것의 의미
 
-Apple Silicon의 P코어와 E코어는 같은 ARM64 명령어 집합을 지원하지만 내부 마이크로아키텍처는 완전히 다른 설계입니다. P코어는 더 깊은 파이프라인, 더 넓은 프론트엔드(디코드/디스패치 폭), 더 큰 Out-of-Order 실행 윈도우와 더 높은 클럭(M5 Max 기준 Super Core 최대 4.6GHz)을 갖도록 최적화되어 있고, E코어는 좁은 파이프라인과 낮은 클럭(유휴 시 약 1GHz 안팎)으로 동작하되 전력당 처리량이 우수하도록 설계됩니다. 이는 [01장](/post/cpu-optimization/cpu-pipeline-fundamentals/)에서 다룬 파이프라인 폭·깊이가 코어마다 다르게 튜닝된 결과이며, 같은 코드를 P코어에서 실행할 때와 E코어에서 실행할 때 사이클당 명령 처리량(IPC)과 절대 지연시간이 모두 달라집니다. 따라서 "코어 개수"만으로 처리량을 추정하면 실제 성능을 과대·과소평가하기 쉽습니다.
+Apple Silicon의 P코어와 E코어는 같은 ARM64 명령어 집합을 지원하지만 내부 마이크로아키텍처는 완전히 다른 설계입니다. 일반적인 고성능/저전력 코어 설계 경향에 따르면 P코어는 더 넓은 프론트엔드와 더 큰 Out-of-Order 실행 윈도우를 갖도록(Apple은 세부 구조를 공개하지 않습니다) 더 높은 클럭을 갖도록 최적화되어 있고, E코어는 좁은 파이프라인과 낮은 클럭(유휴 시 약 1GHz 안팎)으로 동작하되 전력당 처리량이 우수하도록 설계됩니다. 이는 [01장](/post/cpu-optimization/cpu-pipeline-fundamentals/)에서 다룬 파이프라인 폭·깊이가 코어마다 다르게 튜닝된 결과이며, 같은 코드를 P코어에서 실행할 때와 E코어에서 실행할 때 사이클당 명령 처리량(IPC)과 절대 지연시간이 모두 달라집니다. 따라서 "코어 개수"만으로 처리량을 추정하면 실제 성능을 과대·과소평가하기 쉽습니다.
 
 ### macOS QoS 스케줄러가 배치를 결정한다
 
@@ -87,10 +83,17 @@ Apple Silicon의 P코어와 E코어는 같은 ARM64 명령어 집합을 지원�
 void* latency_sensitive_work(void* arg) {
   int ret = pthread_set_qos_class_self_np(QOS_CLASS_USER_INTERACTIVE, 0);
   if (ret != 0) {
-    perror("pthread_set_qos_class_self_np");
+    fprintf(stderr, "pthread_set_qos_class_self_np failed: %d\n", ret);
   }
   // 실제 지연시간 민감 작업 수행
   return NULL;
+}
+
+int main(void) {
+  pthread_t th;
+  pthread_create(&th, NULL, latency_sensitive_work, NULL);
+  pthread_join(th, NULL);
+  return 0;
 }
 ```
 
@@ -104,7 +107,7 @@ void* latency_sensitive_work(void* arg) {
 
 > "This memory is not just a traditional RAM but is tightly coupled with the CPU, GPU, Neural Engine, and other components within the chip, forming a shared, high-bandwidth memory pool." — Hübner, Hu, Peng, Markidis, [Apple vs. Oranges: Evaluating the Apple Silicon M-Series SoCs for HPC Performance and Efficiency](https://arxiv.org/html/2502.05317v1), arXiv:2502.05317 (2025)
 
-이 논문이 STREAM 벤치마크로 실측한 유효 대역폭은 이론치의 약 85% 수준이었고(M1 CPU 약 59GB/s, M4 CPU 약 103GB/s), Apple이 공개한 이론 최대치는 M4 120GB/s, M5 153.6GB/s(LPDDR5X 9600MT/s, M4 대비 약 30% 증가), M5 Pro 307GB/s, M5 Max 614GB/s입니다. 중요한 것은 이 대역폭이 CPU·GPU·Neural Engine이 **나눠 쓰는** 하나의 자원이라는 점입니다. CPU가 대역폭 집약 작업을 돌리는 동시에 GPU가 AI 추론을 수행하면 각 엔진이 실제로 확보하는 대역폭은 이론치보다 낮아지고, 지연시간 분포의 꼬리(p99)가 늘어질 수 있습니다. 이는 [04장: 캐시 미스 분석](/post/cpu-optimization/cache-miss-analysis-hint-instructions/)에서 다룬 미스 비용 모델에 "공유 자원 경합"이라는 변수를 추가로 얹어야 한다는 뜻입니다.
+이 논문이 STREAM 벤치마크로 실측한 유효 대역폭은 이론치의 약 85% 수준이었고(M1 CPU 약 59GB/s, M4 CPU 약 103GB/s), Apple이 공개한 이론 최대치는 M4 120GB/s, M5 153.6GB/s(M4 대비 약 30% 증가), M5 Pro 307GB/s, M5 Max 614GB/s입니다. 중요한 것은 이 대역폭이 CPU·GPU·Neural Engine이 **나눠 쓰는** 하나의 자원이라는 점입니다. CPU가 대역폭 집약 작업을 돌리는 동시에 GPU가 AI 추론을 수행하면 각 엔진이 실제로 확보하는 대역폭은 이론치보다 낮아지고, 지연시간 분포의 꼬리(p99)가 늘어질 수 있습니다. 이는 [04장: 캐시 미스 분석](/post/cpu-optimization/cache-miss-analysis-hint-instructions/)에서 다룬 미스 비용 모델에 "공유 자원 경합"이라는 변수를 추가로 얹어야 한다는 뜻입니다.
 
 ```mermaid
 flowchart LR
@@ -122,9 +125,9 @@ flowchart LR
 
 ### Fusion Architecture와 다이 간 통신
 
-M5 Pro/M5 Max의 **Fusion Architecture**는 3nm 다이 두 개를 고대역·저지연 패키징으로 연결해 하나의 SoC처럼 보이게 만드는 설계입니다. 이는 단일 다이 설계보다 수율·수익성 면에서 유리하지만, 다이 경계를 넘는 접근은 같은 다이 내부 접근보다 물리적으로 더 먼 거리를 거치므로 SoC 내부에서도 완전히 균일하지 않은 지연시간 특성이 생길 수 있습니다. Apple은 정확한 다이 간 지연 수치를 공개하지 않으므로, 이 부분은 **구현 정의**로 보고 필요하다면 실제 하드웨어에서 스레드·메모리 배치를 바꿔가며 직접 측정해야 합니다. 아울러 M5 세대는 SRAM 공정 미세화가 트랜지스터 밀도만큼 따라가지 못하는 상황에서 CPU 클러스터별 L2와 SoC 전체의 SLC(System Level Cache) 용량을 늘리는 방향을 택했는데, 이는 [03장: 캐시 계층 구조](/post/cpu-optimization/cache-hierarchy-l1-l2-l3/)에서 다룬 "더 큰 캐시가 대역폭 압박을 줄인다"는 일반 원칙이 UMA 환경에서 더 강하게 작동한다는 뜻이기도 합니다.
+M5 Pro/M5 Max의 **Fusion Architecture**는 3nm 다이 두 개를 고대역·저지연 패키징으로 연결해 하나의 SoC처럼 보이게 만드는 설계입니다. 이는 단일 다이 설계와는 다른 트레이드오프를 가지며, 다이 경계를 넘는 접근은 같은 다이 내부 접근보다 물리적으로 더 먼 거리를 거치므로 SoC 내부에서도 완전히 균일하지 않은 지연시간 특성이 생길 수 있습니다. Apple은 정확한 다이 간 지연 수치를 공개하지 않으므로, 이 부분은 **구현 정의**로 보고 필요하다면 실제 하드웨어에서 스레드·메모리 배치를 바꿔가며 직접 측정해야 합니다.
 
-측정을 실제로 재현하려면 아래와 같은 최소한의 순차 접근 대역폭 스켈레톤을 각 플랫폼에서 직접 돌려 비교하는 것이 좋습니다. 절대 수치는 위에서 인용한 값과 다를 수 있으므로(펌웨어·열 상태·동시 부하에 따라 변함), 이 코드는 상대 비교용 뼈대로만 사용합니다.
+측정을 실제로 재현하려면 아래와 같은 최소한의 순차 접근 대역폭 스켈레톤을(CPU 단독 측정이므로 CPU·GPU 동시 경합은 재현하지 못합니다) 각 플랫폼에서 직접 돌려 비교하는 것이 좋습니다. 절대 수치는 위에서 인용한 값과 다를 수 있으므로(펌웨어·열 상태·동시 부하에 따라 변함), 이 코드는 상대 비교용 뼈대로만 사용합니다.
 
 ```cpp
 // clang -O2 -arch arm64 bandwidth_probe.cpp -o bandwidth_probe (Apple clang, macOS)
@@ -141,7 +144,7 @@ int main() {
   auto t0 = std::chrono::steady_clock::now();
   for (int rep = 0; rep < 20; ++rep) {
     uint64_t acc = 0;
-    for (size_t i = 0; i < kBytes; i += 64) acc += buf[i];  // 캐시라인 단위 순차 접근
+    for (size_t i = 0; i < kBytes; i += 64) acc += buf[i] + rep;  // 캐시라인 단위 순차 접근(rep을 더해 반복 간 결과 재사용을 막음)
     sink = acc;
   }
   auto t1 = std::chrono::steady_clock::now();
@@ -157,7 +160,7 @@ int main() {
 
 <strong>"E코어는 성능이 낮으니 항상 손해다"</strong>는 정확하지 않습니다. E코어의 목적은 절대 성능이 아니라 백그라운드 작업을 P코어에서 격리해 사용자 워크로드가 요청하는 순간 P코어를 비워두는 것입니다. 유휴 Mac에서 수백 개 프로세스가 E코어에 머무르는 구조 자체가 P코어의 체감 반응성을 끌어올리는 장치이므로, E코어 존재를 "저성능 코어의 타협"이 아니라 "지연시간 격리 장치"로 이해해야 판단 기준이 맞습니다.
 
-<strong>"Unified Memory는 대역폭이 사실상 무한하고 지연도 0에 가깝다"</strong>는 마케팅 문구에서 비롯된 과장입니다. UMA는 CPU-GPU 간 명시적 복사를 없애 <strong>왕복 비용(round-trip)</strong>을 줄이는 것이지, 대역폭 자체를 늘리거나 경합을 없애는 것이 아닙니다. CPU와 GPU가 동시에 대역폭을 많이 쓰면 각자가 받는 실효 대역폭은 줄어들고, 이는 STREAM 실측치가 이론 최대치의 약 85%에 그친 이유 중 하나이기도 합니다.
+<strong>"Unified Memory는 대역폭이 사실상 무한하고 지연도 0에 가깝다"</strong>는 마케팅 문구에서 비롯된 과장입니다. UMA는 CPU-GPU 간 명시적 복사를 없애 <strong>왕복 비용(round-trip)</strong>을 줄이는 것이지, 대역폭 자체를 늘리거나 경합을 없애는 것이 아닙니다. CPU와 GPU가 동시에 대역폭을 많이 쓰면 각자가 받는 실효 대역폭은 줄어들 수 있습니다.
 
 <strong>"Apple Silicon은 표준 ARM big.LITTLE을 그대로 쓴다"</strong>도 오해입니다. big.LITTLE이라는 이름 자체는 ARM이 제공하는 표준 IP 코어(Cortex-A 시리즈)를 전제로 하지만, Apple의 P/E 코어는 Apple이 자체 설계한 마이크로아키텍처이고 macOS의 QoS 기반 스케줄링 정책도 Linux의 EAS(Energy Aware Scheduling)나 sched_ext 기반 정책과 스케줄링 결정 기준이 다릅니다. "ARM = big.LITTLE = Apple 방식"이라는 등식은 세 가지를 뭉뚱그린 것입니다.
 
@@ -175,7 +178,7 @@ int main() {
 
 Apple Silicon의 마이크로아키텍처는 대부분 비공개이며, 위에서 인용한 KTH 연구처럼 외부 연구자는 STREAM 같은 표준 벤치마크로 유효 대역폭을 **역산**하는 방식에 의존합니다. Linux의 `perf`에 준하는 표준화된 하드웨어 카운터 접근이 macOS에는 없고, `powermetrics`나 Instruments 같은 Apple 자체 도구를 써야 하므로 이 트랙의 다른 챕터에서 다루는 `perf`/VTune 기반 분석([09장](/post/cpu-optimization/cpu-hardware-performance-counters/))과 방법론이 어긋납니다. 이는 재현 가능한 정량 분석을 어렵게 만드는 실질적 제약입니다.
 
-"E코어가 있어서 더 빠르다"는 설명도 절반만 맞습니다. 이는 P코어의 **체감 반응성**을 지키는 데는 효과적이지만, CPU 바운드 배치(batch) 작업이나 순수 처리량 지표에서는 여전히 P코어 개수와 클럭이 지배적입니다. M5 Pro/Max가 E코어라는 이름을 버리고 "Performance Core"로 재명명한 것도, 저전력 격리라는 원래 역할에서 멀티스레드 처리량 기여로 무게중심이 이동했다는 신호로 읽을 수 있습니다. 또한 Fusion Architecture 같은 칩렛(chiplet) 설계는 수율 이점이 있지만 다이 경계를 넘는 접근의 정확한 지연 패널티를 Apple이 공개하지 않아 검증이 제한적이고, UMA의 "복사 제거" 이점도 CPU·GPU·NPU가 동시에 대역폭을 다투는 워크로드에서는 상쇄될 수 있어 워크로드 특성에 따라 체감 효과가 크게 갈립니다.
+"E코어가 있어서 더 빠르다"는 설명도 절반만 맞습니다. 이는 P코어의 **체감 반응성**을 지키는 데는 효과적이지만, CPU 바운드 배치(batch) 작업이나 순수 처리량 지표에서는 여전히 P코어 개수와 클럭이 지배적입니다. M5 Pro/Max가 E코어라는 이름을 버리고 "Performance Core"로 재명명한 것도, 저전력 격리라는 원래 역할에서 멀티스레드 처리량 기여로 무게중심이 이동했다는 신호로 읽을 수 있습니다. 또한 Fusion Architecture 같은 칩렛(chiplet) 설계는 다이 경계를 넘는 접근의 정확한 지연 패널티를 Apple이 공개하지 않아 검증이 제한적이고, UMA의 "복사 제거" 이점도 CPU·GPU·NPU가 동시에 대역폭을 다투는 워크로드에서는 상쇄될 수 있어 워크로드 특성에 따라 체감 효과가 크게 갈립니다.
 
 ## 마무리
 

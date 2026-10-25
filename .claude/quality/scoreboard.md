@@ -311,7 +311,7 @@
 | content/collection/optimization-05-cpu-microarchitecture/10-speculative-execution/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | 9fd4323 | - |
 | content/collection/optimization-05-cpu-microarchitecture/11-frequency-scaling/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | 47e075b | - |
 | content/collection/optimization-05-cpu-microarchitecture/12-power-management/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 0607325 | - |
-| content/collection/optimization-05-cpu-microarchitecture/13-apple-silicon-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/13-apple-silicon-architecture/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | c73e434 | - |
 | content/collection/optimization-05-cpu-microarchitecture/14-smt-hyperthreading/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-05-cpu-microarchitecture/15-uop-cache-dsb/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-05-cpu-microarchitecture/16-risc-v-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
