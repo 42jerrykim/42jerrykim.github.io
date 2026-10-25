@@ -353,7 +353,7 @@
 | content/collection/optimization-07-concurrency/12-wait-free-programming/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | 2904d52 | 없음(경미·수정 권고: L113 도입문이 p50/p99 비교를 약속해 L144 '평균만 보고'와 모순, L44 '소비자 이론' 표현 어색, helping 의사코드 없음, Herlihy·Kogan-Petrank·Alistarh PDF 본문 대조 불가) |
 | content/collection/optimization-07-concurrency/13-jthread-stop-token/index.md | 91.9 | 2026-10-25 | 0 | 통과 | 1.3 | 9a0d15d | 없음(경미·수정 권고: libc++ 지원 이력이 L67·L228에서 중복, '행(hang)' 위험 재진술 5회 반복, L214 '수십 µs' 출처 없음, P1287→P0660 병합 서술·MSVC 시기 출처 없음, Linux·Windows·OS·Latency 무관 태그) |
 | content/collection/optimization-07-concurrency/14-seqlock-pattern/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | 56439b3 | 없음(경미: L286 '아키텍처별 주의사항'이 rigtorp README(x86 한정)보다 과장, L67 '(jiffies·타임스탬프 갱신)' 출처 없음, 벤치 블록이 Seqlock 정의에 의존하고 라이터 경로의 Snapshot s 미초기화) |
-| content/collection/optimization-07-concurrency/15-thread-local-storage/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/15-thread-local-storage/index.md | 91.3 | 2026-10-25 | 1 | 통과 | 1.3 | 1e98a27 | 없음(경미: Windows TEB ThreadLocalStoragePointer·_tls_index 서술과 glibc static TLS surplus 개선 서술 출처 없음, Drepper·Itanium ABI 링크 없음, Broken/Fixed 블록에 main 없음) |
 | content/collection/optimization-07-concurrency/16-executors-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/17-senders-receivers-cpp26/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/18-parallel-execution-policies/index.md | - | - | 0 | 미채점 | - | - | - |
