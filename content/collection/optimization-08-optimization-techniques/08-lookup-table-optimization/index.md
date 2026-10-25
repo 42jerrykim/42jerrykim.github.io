@@ -1,7 +1,7 @@
 ---
 collection_order: 8
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] Lookup Table 최적화"
@@ -19,19 +19,15 @@ tags:
   - Benchmark
   - Profiling(프로파일링)
   - Data-Structures(자료구조)
-  - Time-Complexity(시간복잡도)
-  - Complexity-Analysis(복잡도분석)
   - Best-Practices
   - Code-Quality(코드품질)
   - Implementation(구현)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - Advanced
   - Deep-Dive
   - Case-Study
   - Comparison(비교)
   - Hardware(하드웨어)
-  - Embedded(임베디드)
   - Lookup-Table
   - LUT
   - Precomputation
@@ -49,7 +45,7 @@ tags:
 
 이 장은 캐시 계층과 접근 지연에 대한 기초 감각을 전제로 합니다. L1/L2/LLC의 크기·지연 차이를 아직 정리하지 못했다면 [Tr.04 캐시 친화적 접근 패턴](/post/memory-optimization/cache-friendly-access-patterns/)을 먼저 읽는 것이 좋습니다. 분기 예측 실패 비용을 수치로 이해하고 싶다면 [Tr.05 분기 예측 메커니즘과 비용](/post/cpu-optimization/branch-prediction-mechanisms-cost/)을 참고하세요.
 
-**이 장의 깊이**: 스칼라 코드에서 LUT를 설계하는 원리, 테이블 크기와 캐시 적중률의 트레이드오프, 분기를 LUT로 대체할지 판단하는 기준을 다룹니다. **다루지 않는 것**: SIMD 레지스터 내부에서 병렬로 룩업하는 `pshufb`/`vpshufb` 같은 셔플 기반 기법은 [Tr.08 02장](/post/extreme-optimization/simd-intrinsics-practical-usage/)과 [Tr.08 18장](/post/extreme-optimization/simd-string-json-parsing-simdjson/)에서 다루므로 여기서는 스칼라 LUT에 집중합니다. 분기 자체를 없애는 일반적인 branchless 기법은 [Tr.08 06장](/post/extreme-optimization/branchless-programming-techniques/)에 위임하고, 테이블 대신 비트 연산으로 같은 문제를 푸는 방법은 [Tr.08 09장](/post/extreme-optimization/bit-manipulation-optimization-techniques/)에서, 캐시 크기에 독립적인 알고리즘 설계는 [Tr.08 15장](/post/extreme-optimization/cache-oblivious-algorithm-design/)에서 각각 이어집니다.
+**이 장의 깊이**: 스칼라 코드에서 LUT를 설계하는 원리, 테이블 크기와 캐시 적중률의 트레이드오프, 분기를 LUT로 대체할지 판단하는 기준을 다룹니다. **다루지 않는 것**: `gather` 기반의 대규모 테이블 조회와 SIMD 전체 구현은 [Tr.08 02장](/post/extreme-optimization/simd-intrinsics-practical-usage/)의 셔플·퍼뮤트 규칙을 전제로 하므로, 이 장은 그 입구에 해당하는 '벡터 레지스터에 들어갈 만큼 작은 테이블'까지만 사례 3에서 다룹니다. 분기 자체를 없애는 일반적인 branchless 기법은 [Tr.08 06장](/post/extreme-optimization/branchless-programming-techniques/)에 위임하고, 테이블 대신 비트 연산으로 같은 문제를 푸는 방법은 [Tr.08 09장](/post/extreme-optimization/bit-manipulation-optimization-techniques/)에서, 캐시 크기에 독립적인 알고리즘 설계는 [Tr.08 15장](/post/extreme-optimization/cache-oblivious-algorithm-design/)에서 각각 이어집니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -63,7 +59,7 @@ tags:
 
 ## 역사와 배경: 계산을 메모리로 미룬다는 발상
 
-룩업 테이블은 컴퓨터보다 오래된 아이디어입니다. 삼각함수표·로그표는 계산기가 없던 시절 사람이 손으로 계산할 나눗셈·곱셈을 미리 표로 만들어 둔 것이었고, 초기 컴퓨터의 부동소수점 연산이 느렸던 시절에도 `sin`/`cos`/`sqrt` 근사값을 표로 미리 만들어 두는 방식이 널리 쓰였습니다. 소프트웨어 공학에서 이 발상이 가장 정교하게 다듬어진 사례 중 하나가 CRC(순환 중복 검사) 계산입니다. Dilip V. Sarwate는 1988년 *Communications of the ACM*에 발표한 논문에서, 다항식 나눗셈을 매 비트마다 반복하는 대신 바이트 하나에 대한 8비트 연산 결과를 256개 항목의 테이블에 미리 계산해 두고 조회하는 방법을 제시했습니다. 이 "바이트 단위 테이블 조회" 방식은 이후 zlib을 비롯한 대부분의 CRC 구현에서 표준 기법이 되었고, 여러 바이트를 한 번에 처리하는 slice-by-4/8/16 같은 확장판으로 발전했습니다.
+룩업 테이블은 컴퓨터보다 오래된 아이디어입니다. 삼각함수표·로그표는 계산기가 없던 시절 사람이 손으로 계산할 나눗셈·곱셈을 미리 표로 만들어 둔 것이었고, 초기 컴퓨터의 부동소수점 연산이 느렸던 시절에도 `sin`/`cos`/`sqrt` 근사값을 표로 미리 만들어 두는 방식이 널리 쓰였습니다. 소프트웨어 공학에서 이 발상이 가장 정교하게 다듬어진 사례 중 하나가 CRC(순환 중복 검사) 계산입니다. Dilip V. Sarwate는 1988년 *Communications of the ACM* 31권 8호에 실린 「Computation of cyclic redundancy checks via table look-up」에서, 다항식 나눗셈을 매 비트마다 반복하는 대신 바이트 하나에 대한 8비트 연산 결과를 256개 항목의 테이블에 미리 계산해 두고 조회하는 방법을 제시했습니다. 이 "바이트 단위 테이블 조회" 방식은 소프트웨어 CRC 구현의 대표적인 기법이 되었고, 여러 바이트를 한 번에 처리하는 slice-by-N 계열의 확장판으로 이어졌습니다.
 
 CPU 명령어 집합도 같은 트레이드오프를 반영해 왔습니다. 예를 들어 1비트 개수를 세는 popcount 연산은 오랫동안 8비트 또는 16비트 단위의 룩업 테이블로 구현되다가, 인텔이 2008년 Nehalem 마이크로아키텍처의 SSE4.2에 `POPCNT` 명령어를 추가하면서 하드웨어가 직접 이 연산을 지원하기 시작했습니다. 이 사례는 "룩업 테이블은 임시방편이 아니라, 하드웨어가 그 연산을 직접 지원하기 전까지 쓰는 합리적 대안"이라는 점을 보여줍니다. 하드웨어 명령어와 비트 연산 트릭으로 같은 문제를 푸는 방법은 [09장: 비트 조작 최적화 기법](/post/extreme-optimization/bit-manipulation-optimization-techniques/)에서 다룹니다.
 
@@ -145,7 +141,7 @@ uint32_t crc32_table(uint32_t crc, const uint8_t* data, size_t len) {
 #include <vector>
 #include <cstdint>
 
-// crc32_bitwise, crc32_table, kCrc32Table은 위 코드와 동일하다고 가정
+// crc32_bitwise, crc32_table, kCrc32Table의 정의는 위 코드를 이 파일(bench.cpp) 앞부분에 그대로 붙여 넣는다
 
 static void BM_Crc32Bitwise(benchmark::State& state) {
   std::vector<uint8_t> data(4096, 0xAB);
@@ -175,6 +171,8 @@ BENCHMARK_MAIN();
 LUT는 산술 연산뿐 아니라 다중 조건 분기를 대체하는 데도 쓰입니다. 문자 하나를 숫자·알파벳·공백·기타로 분류하는 코드를 조건문으로 짜면 문자마다 최대 세 번의 비교·분기가 필요합니다.
 
 ```cpp
+#include <cstdint>
+
 enum class CharClass : uint8_t { kOther, kDigit, kAlpha, kSpace };
 
 // 비권장: 문자 하나마다 최대 3회의 범위 비교와 분기
@@ -190,6 +188,7 @@ CharClass classify_branch(unsigned char c) {
 
 ```cpp
 #include <array>
+#include <cstdint>
 
 constexpr std::array<CharClass, 256> make_class_table() {
   std::array<CharClass, 256> table{};
@@ -211,13 +210,30 @@ CharClass classify_table(unsigned char c) {
 
 다만 이 대체가 항상 이기는 것은 아닙니다. 입력이 거의 항상 숫자인 파서처럼 분기 예측기가 이미 거의 완벽하게 예측하는 패턴이라면, `classify_branch`의 분기 비용은 이미 거의 0에 가깝고 `classify_table`이 얻는 이득은 미미하거나 오히려 캐시 라인 하나를 추가로 점유하는 손해로 바뀔 수 있습니다. 실제 입력 분포에서 두 버전을 벤치마크로 비교하기 전에는 어느 쪽이 이기는지 단정할 수 없습니다. 조건 분기 자체를 없애는 더 일반적인 기법(마스크·산술 연산 기반)은 [06장: Branchless 프로그래밍 기법](/post/extreme-optimization/branchless-programming-techniques/)을 참고하세요.
 
+### 사례 3: 벡터 레지스터 안에 들어가는 테이블
+
+테이블이 아주 작으면 메모리를 거치지 않고 레지스터 안에서 조회할 수도 있습니다. 16개 항목짜리 바이트 테이블은 128비트 레지스터 하나에 통째로 들어가고, SSSE3의 `pshufb`(`_mm_shuffle_epi8`)는 인덱스 레지스터의 각 바이트를 하위 4비트만큼의 위치로 해석해 테이블 레지스터에서 값을 골라 줍니다. 즉 16바이트를 한 명령으로 동시에 조회하는 병렬 룩업이며, 이때 테이블은 캐시 계층이 아니라 레지스터에 있으므로 앞에서 다룬 캐시 적중률 문제가 사라집니다. Agner Fog의 *Optimizing software in C++*도 테이블이 벡터 레지스터 한두 개에 들어갈 만큼 작으면 gather보다 퍼뮤트 명령으로 조회하는 편이 효율적이라고 설명합니다.
+
+```cpp
+#include <immintrin.h>  // _mm_setr_epi8, _mm_shuffle_epi8 (SSSE3: -mssse3 필요)
+
+// 각 바이트가 0~15인 nibble 16개를 16진 ASCII 문자('0'-'9', 'a'-'f')로 한 번에 바꾼다.
+__m128i nibbles_to_hex_ascii(__m128i nibbles) {
+  const __m128i table = _mm_setr_epi8('0', '1', '2', '3', '4', '5', '6', '7',
+                                      '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+  return _mm_shuffle_epi8(table, nibbles);  // 바이트마다 table[nibbles[i] & 0x0F]
+}
+```
+
+`pshufb`는 인덱스 바이트의 최상위 비트가 켜져 있으면 해당 결과 바이트를 0으로 만들고, 그렇지 않으면 하위 4비트만 인덱스로 씁니다. 따라서 입력은 상위 비트가 0인 nibble이어야 하며, 바이트를 nibble로 쪼개는 마스크·시프트 단계는 호출하는 쪽에서 준비합니다. 이 장은 이 코드를 직접 컴파일해 측정하지 않았으므로 설명용 예시로 읽고, 실제 도입 전에는 대상 CPU에서 스칼라 LUT와 비교 측정해야 합니다. 더 큰 테이블이나 AVX2 이상의 셔플은 [02장](/post/extreme-optimization/simd-intrinsics-practical-usage/)에서 이어집니다.
+
 ## 흔한 오개념 교정
 
 <strong>"룩업 테이블은 항상 계산보다 빠르다"</strong>는 사실이 아닙니다. 테이블이 캐시에 상주하지 못하면 메모리 접근 지연이 재계산 비용보다 커질 수 있고, 특히 여러 스레드가 같은 대형 테이블에 무작위로 접근하며 공유 캐시를 두고 경합할 때는 단일 스레드 벤치마크에서 보이지 않던 손해가 드러납니다.
 
 <strong>"테이블은 클수록 정밀하고 좋다"</strong>는 정밀도와 속도를 혼동한 생각입니다. 테이블 크기를 늘리면 정밀도가 올라갈 수는 있지만 동시에 캐시 풋프린트가 커져, 같은 핫패스에서 함께 쓰이는 다른 데이터 구조를 캐시에서 밀어내는 캐시 오염(cache pollution)을 일으킬 수 있습니다. 목표는 "필요한 정밀도 안에서 가장 작은 테이블"입니다.
 
-<strong>"룩업 테이블은 분기를 항상 대체할 수 있고 대체하는 것이 항상 이득이다"</strong>도 과장입니다. 사례 2에서 보았듯, 분기 예측이 이미 잘 되는 패턴에서는 분기가 사실상 무료에 가까워 LUT 도입이 캐시 미스 위험만 추가할 수 있습니다. 분기 예측 실패 비용을 먼저 측정한 뒤 판단해야 합니다.
+<strong>"룩업 테이블은 분기를 항상 대체할 수 있고 대체하는 것이 항상 이득이다"</strong>도 과장입니다. 이 판단은 추측이 아니라 측정으로 합니다. Linux에서는 `perf stat -e branches,branch-misses ./app`으로 분기 예측 실패율을 먼저 읽고, 실패율이 낮으면 LUT를 도입해도 줄어드는 비용이 거의 없습니다. 실패율이 높은 구간에서만 LUT가 이득을 낼 후보가 됩니다.
 
 ## 판단 기준
 
