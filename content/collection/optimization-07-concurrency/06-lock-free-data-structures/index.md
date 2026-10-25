@@ -6,7 +6,7 @@ draft: false
 image: wordcloud.png
 title: "[Concurrency 07] Lock-free 자료구조 구현"
 slug: lock-free-queue-stack-hashmap
-description: "Michael-Scott 큐, Treiber 스택, split-ordered list 해시맵의 CAS 재시도·헬핑 메커니즘과 메모리 회수 문제를 컴파일 가능한 C++20 코드와 ThreadSanitizer 검증 절차로 다룹니다."
+description: "Michael-Scott 큐, Treiber 스택, split-ordered list 해시맵의 CAS 재시도·헬핑 메커니즘과 메모리 회수 문제를 Treiber 스택·MS 큐 enqueue의 C++20 코드와 sanitizer 검증 절차로 다룹니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
@@ -27,11 +27,8 @@ tags:
   - Implementation(구현)
   - Best-Practices
   - Code-Quality(코드품질)
-  - Time-Complexity(시간복잡도)
-  - Complexity-Analysis(복잡도분석)
   - Advanced
   - Deep-Dive
-  - Case-Study
   - 실습
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
@@ -47,6 +44,9 @@ tags:
   - Split-Ordered-List
   - Memory-Reclamation
   - Concurrent-Queue
+  - Shared-Ptr
+  - Helping
+  - Atomic-Shared-Ptr
 ---
 
 **Lock-free 자료구조 구현**이란 뮤텍스 없이 compare-and-swap(CAS) 등 원자적 연산만으로 큐·스택·해시맵 같은 컨테이너의 삽입·삭제·탐색을 여러 스레드가 동시에 안전하게 수행하도록 만드는 구체적인 알고리즘 패턴을 말합니다. 이전 장에서 "언제 lock-free를 도입할지"를 위험·이득 관점에서 판단했다면, 이 장은 그 판단이 내려진 뒤 실제로 손에 쥐게 되는 문제, 즉 CAS 재시도 루프를 어떻게 설계하고, 뒤처진 포인터를 다른 스레드가 어떻게 대신 밀어주며("헬핑"), 삭제된 노드의 메모리를 언제 돌려줘도 안전한지를 다룹니다. 세 자료구조 각각은 서로 다른 방식으로 이 문제를 풀며, 그 차이를 아는 것이 "왜 lock-free 코드가 겉보기보다 훨씬 어려운가"에 대한 실질적인 답이 됩니다.
@@ -55,7 +55,7 @@ tags:
 
 이 장은 [Lock-free 설계 기초와 적용 판단](/post/concurrency-optimization/lock-free-design-fundamentals/)에서 다룬 CAS 루프의 기본 형태, ABA 문제의 존재, 그리고 "언제 lock-free를 검토할 가치가 있는가"라는 판단 기준을 이미 알고 있다고 전제합니다. 또한 [C++ 메모리 모델 실무 해석](/post/concurrency-optimization/cpp-memory-model-acquire-release-seqcst/)에서 다룬 `memory_order`의 의미(acquire/release가 어떤 재정렬을 막는지)를 안다는 전제하에, 여기서는 그 어휘를 이미 아는 독자를 대상으로 코드를 작성합니다.
 
-**이 장의 깊이**: 전문가 수준입니다. Michael-Scott 큐, Treiber 스택, split-ordered list 기반 해시맵의 구현 패턴을 실제로 컴파일되는 코드로 보이고, 각 구조가 공통으로 마주치는 메모리 회수 문제를 정의합니다. **다루지 않는 것**: ABA 문제의 일반론과 CAS 자체의 문법(선행 장인 [05장](/post/concurrency-optimization/lock-free-design-fundamentals/)에서 다룸), 안전한 메모리 회수의 정식 해법인 hazard pointer·RCU의 구체적인 구현(다음 장인 [07장](/post/concurrency-optimization/hazard-pointer-rcu-cpp26/)에서 다룸), 고정 크기 SPSC/MPMC 링버퍼(별도 자료구조로 [08장](/post/concurrency-optimization/spsc-mpmc-ring-buffer-queues/)에서 다룸), wait-free 보장의 이론적 정의([12장](/post/concurrency-optimization/wait-free-programming-fundamentals/))입니다.
+**이 장의 깊이**: 전문가 수준입니다. Michael-Scott 큐, Treiber 스택, split-ordered list 기반 해시맵의 구현 패턴을 다룹니다. Treiber 스택과 MS 큐는 코드로, 해시맵은 개념 스케치로 보이며, 각 구조가 공통으로 마주치는 메모리 회수 문제를 정의합니다. **다루지 않는 것**: ABA 문제의 일반론과 CAS 자체의 문법(선행 장인 [05장](/post/concurrency-optimization/lock-free-design-fundamentals/)에서 다룸), 안전한 메모리 회수의 정식 해법인 hazard pointer·RCU의 구체적인 구현(다음 장인 [07장](/post/concurrency-optimization/hazard-pointer-rcu-cpp26/)에서 다룸), 고정 크기 SPSC/MPMC 링버퍼(별도 자료구조로 [08장](/post/concurrency-optimization/spsc-mpmc-ring-buffer-queues/)에서 다룸), wait-free 보장의 이론적 정의([12장](/post/concurrency-optimization/wait-free-programming-fundamentals/))입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -69,7 +69,7 @@ tags:
 
 ## 역사와 설계 배경
 
-lock-free 큐와 스택의 원형은 놀랍도록 오래되었습니다. **R. Kent Treiber**는 1986년 IBM Almaden 연구소 기술 보고서 "Systems Programming: Coping with Parallelism"에서 CAS 하나로 push/pop을 구현하는 스택 알고리즘을 처음 발표했습니다. 락을 전혀 쓰지 않는 최초의 동시성 스택 구현으로 알려져 있으며, 오늘날 "Treiber stack"이라는 이름 자체가 그의 것입니다. 10년 뒤인 1996년, **Maged Michael과 Michael Scott**은 PODC(Principles of Distributed Computing) 학회에 "Simple, Fast, and Practical Non-Blocking and Blocking Concurrent Queue Algorithms" 논문을 발표하며 단일 CAS로 동작하는 실용적인 non-blocking 큐 알고리즘을 제시했습니다. 이 논문의 큐는 성능이 기존 대안들을 꾸준히 앞서는 것으로 보고되었고, 이후 자바의 `ConcurrentLinkedQueue` 구현의 기반이 되었을 만큼 실무에 안착했습니다. 해시맵 쪽은 조금 늦게, 2006년 **Ori Shalev와 Nir Shavit**이 Journal of the ACM에 발표한 "Split-Ordered Lists: Lock-Free Extensible Hash Tables"에서 처음으로 삽입·삭제·탐색이 모두 O(1) 기대 비용을 가지면서 점진적으로 리사이즈되는 lock-free 해시맵 구조를 제시했습니다. 세 논문 모두 CAS라는 단일 원자적 연산만으로 복잡한 자료구조의 정확성을 증명했다는 공통점이 있습니다.
+lock-free 큐와 스택의 원형은 놀랍도록 오래되었습니다. **R. Kent Treiber**는 1986년 IBM Almaden 연구소 기술 보고서 "Systems Programming: Coping with Parallelism"에서 CAS 하나로 push/pop을 구현하는 스택 알고리즘을 처음 발표했습니다. 락을 전혀 쓰지 않는 최초의 동시성 스택 구현으로 알려져 있으며, 오늘날 "Treiber stack"이라는 이름 자체가 그의 것입니다. 10년 뒤인 1996년, **Maged Michael과 Michael Scott**은 PODC(Principles of Distributed Computing) 학회에 "Simple, Fast, and Practical Non-Blocking and Blocking Concurrent Queue Algorithms" 논문을 발표하며 CAS 기반의 실용적인 non-blocking 큐 알고리즘을 제시했습니다. 이 논문의 큐는 성능이 기존 대안들을 꾸준히 앞서는 것으로 보고되었고, 이후 자바의 `ConcurrentLinkedQueue` 구현의 기반이 되었을 만큼 실무에 안착했습니다. 해시맵 쪽은 조금 늦게, 2006년 **Ori Shalev와 Nir Shavit**이 Journal of the ACM에 발표한 "Split-Ordered Lists: Lock-Free Extensible Hash Tables"에서 처음으로 삽입·삭제·탐색이 모두 O(1) 기대 비용을 가지면서 점진적으로 리사이즈되는 lock-free 해시맵 구조를 제시했습니다. 세 논문 모두 CAS라는 단일 원자적 연산만으로 복잡한 자료구조의 정확성을 증명했다는 공통점이 있습니다.
 
 ## 핵심 메커니즘: CAS 재시도, 헬핑, 메모리 회수
 
@@ -159,14 +159,48 @@ class SharedPtrStack {
 
 이 버전은 use-after-free를 원천적으로 없애지만 공짜가 아닙니다. GCC libstdc++ 구현은 `atomic<shared_ptr<T>>`를 제어 블록 포인터의 최하위 비트를 스핀락으로 쓰는 방식으로 구현하고 있어, `is_lock_free()`가 `false`를 반환하는 경우가 흔합니다. 즉 use-after-free는 해결했지만 "완전한 lock-free"라는 원래 목표는 부분적으로 후퇴한 셈이며, 이 절충을 받아들일 수 없다면 다음 장의 hazard pointer가 대안이 됩니다. 아래 명령으로 두 버전 모두 ThreadSanitizer로 검증할 수 있습니다.
 
+다음은 위 명령이 가정하는 `stack_test.cpp`의 `main`입니다. 앞에서 정의한 `BrokenStack`과 `SharedPtrStack` 정의 뒤에 이어 붙이고, 실행 인자로 어느 스택을 돌릴지 고릅니다.
+
+```cpp
+#include <atomic>
+#include <cstdio>
+#include <cstring>
+#include <thread>
+#include <vector>
+
+template <class Stack>
+long hammer(int threads, int iters) {
+  Stack s;
+  std::atomic<long> popped{0};
+  std::vector<std::thread> ts;
+  for (int t = 0; t < threads; ++t) {
+    ts.emplace_back([&] {
+      for (int i = 0; i < iters; ++i) {
+        s.push(i);
+        int out;
+        if (s.pop(out)) popped.fetch_add(1, std::memory_order_relaxed);
+      }
+    });
+  }
+  for (auto& th : ts) th.join();
+  return popped.load();
+}
+
+int main(int argc, char** argv) {
+  const bool broken = argc > 1 && std::strcmp(argv[1], "broken") == 0;
+  const long n = broken ? hammer<BrokenStack>(8, 200000) : hammer<SharedPtrStack>(8, 200000);
+  std::printf("%s: popped %ld\n", broken ? "broken" : "shared_ptr", n);
+}
+```
+
 ```bash
 # BrokenStack: 데이터 레이스는 안 보여도, 여러 스레드가 push/pop을 반복하면
 # heap-use-after-free는 AddressSanitizer 쪽에서 더 잘 드러남 (둘은 한 바이너리에 섞을 수 없음)
 g++ -std=c++20 -fsanitize=address -g -O1 stack_test.cpp -o stack_asan
-./stack_asan   # BrokenStack 경로에서 heap-use-after-free 보고를 기대
+./stack_asan broken   # BrokenStack 경로에서 heap-use-after-free 보고를 기대
 
 g++ -std=c++20 -fsanitize=thread -g -O1 stack_test.cpp -o stack_tsan
-./stack_tsan   # SharedPtrStack 경로에서 data race 보고가 없어야 함
+./stack_tsan shared   # SharedPtrStack 경로에서 data race 보고가 없어야 함
 ```
 
 TSAN과 ASan은 대부분의 컴파일러에서 같은 바이너리에 함께 켤 수 없으므로 따로 빌드해야 하며, 두 검증 모두 타이밍에 의존하는 레이스를 다루는 만큼 스레드 수와 반복 횟수를 충분히 늘려 여러 번 실행해야 신뢰도가 올라갑니다.
@@ -187,7 +221,7 @@ flowchart TD
   swingTail --> finish["enqueue 완료"]
 ```
 
-`enqueue`는 다이어그램 그대로 구현됩니다. 메모리 회수는 스택과 동일한 문제이므로 여기서도 `std::atomic<std::shared_ptr<QNode>>`를 재사용해 use-after-free를 막습니다.
+`enqueue`는 다이어그램 그대로 구현됩니다. `dequeue`는 head와 tail을 함께 확인하며, tail이 뒤처져 있으면 enqueue와 마찬가지로 tail을 밀어주는 헬핑을 거칩니다. 메모리 회수는 스택과 동일한 문제이므로 여기서도 `std::atomic<std::shared_ptr<QNode>>`를 재사용해 use-after-free를 막습니다.
 
 ```cpp
 #include <atomic>
@@ -228,6 +262,28 @@ class MSQueue {
     }
   }
 
+  bool dequeue(int& out) {
+    while (true) {
+      auto head = head_.load(std::memory_order_acquire);
+      auto tail = tail_.load(std::memory_order_acquire);
+      auto next = head->next.load(std::memory_order_acquire);
+      if (head != head_.load(std::memory_order_acquire)) continue;  // 스냅샷이 낡음
+      if (head == tail) {
+        if (!next) return false;  // 비어 있음
+        // tail이 뒤처짐: 대신 밀어주고 다시 시도
+        tail_.compare_exchange_strong(tail, next, std::memory_order_release,
+                                       std::memory_order_relaxed);
+      } else {
+        int v = next->value;  // next는 shared_ptr이 쥐고 있어 CAS 전에 읽어도 안전
+        if (head_.compare_exchange_strong(head, next, std::memory_order_acq_rel,
+                                           std::memory_order_acquire)) {
+          out = v;
+          return true;
+        }
+      }
+    }
+  }
+
  private:
   std::atomic<std::shared_ptr<QNode>> head_;
   std::atomic<std::shared_ptr<QNode>> tail_;
@@ -259,7 +315,27 @@ buckets: [0]->sentinel(0)   [1]->sentinel(1)   [2]->sentinel(2)   ...
 #include <benchmark/benchmark.h>
 #include <mutex>
 #include <thread>
-// SharedPtrStack, MutexStack(직접 정의한 std::mutex + std::vector 래퍼)이 있다고 가정
+#include <vector>
+// SharedPtrStack은 위에서 정의한 것을 사용한다고 가정한다.
+
+class MutexStack {
+ public:
+  void push(int v) {
+    std::lock_guard<std::mutex> lk(m_);
+    v_.push_back(v);
+  }
+  bool pop(int& out) {
+    std::lock_guard<std::mutex> lk(m_);
+    if (v_.empty()) return false;
+    out = v_.back();
+    v_.pop_back();
+    return true;
+  }
+
+ private:
+  std::mutex m_;
+  std::vector<int> v_;
+};
 
 static void BM_LockFreeStackContention(benchmark::State& state) {
   static SharedPtrStack s;
@@ -298,15 +374,15 @@ BENCHMARK_MAIN();
 | 크기 상한이 있고 SPSC/MPMC로 충분 | 08장의 링버퍼 큐 | 범용 연결 리스트 기반 큐 |
 | 해시맵에 반드시 lock-free가 필요 | 검증된 라이브러리 또는 샤딩된 mutex 해시맵 | 직접 split-ordered list 구현 |
 
-이 표의 공통된 결론은 "직접 구현은 학습과 극단적 성능 요구를 위한 것이고, 대부분의 실무는 이미 검증된 구현으로 해결된다"는 것입니다. 직접 구현이 불가피하다면 최소한 회수 전략과 검증 절차(TSAN/ASan, 가능하면 모델 검사)를 설계 단계에 포함해야 합니다.
+직접 구현이 불가피하다면 최소한 회수 전략과 검증 절차(TSAN/ASan, 가능하면 모델 검사)를 설계 단계에 포함해야 합니다.
 
 ## 비판적 시각: 한계와 트레이드오프
 
-Michael-Scott 큐와 Treiber 스택의 원 논문은 순차 일관성(sequential consistency)에 가까운 가정 위에서 정확성을 증명하지만, 실제 C++ 구현은 그 증명을 acquire/release라는 더 약한 모델로 옮겨야 합니다. x86처럼 상대적으로 강한 메모리 모델에서는 잘못된 `memory_order`도 우연히 동작하는 경우가 많아 버그가 숨어 있다가, ARM처럼 더 약한 아키텍처에서야 드러나는 일이 드물지 않습니다. 04장에서 다룬 acquire/release의 정확한 의미를 대충 넘기고 이 장의 코드를 그대로 복사하면 바로 이 함정에 빠집니다.
+알고리즘의 정확성 증명과 실제 C++ 구현 사이에는 간극이 있어, 구현은 acquire/release처럼 더 약한 메모리 순서로 그 증명을 다시 옮겨야 합니다. x86처럼 상대적으로 강한 메모리 모델에서는 잘못된 `memory_order`도 우연히 동작하는 경우가 많아 버그가 숨어 있다가, ARM처럼 더 약한 아키텍처에서야 드러나는 일이 드물지 않습니다. 04장에서 다룬 acquire/release의 정확한 의미를 대충 넘기고 이 장의 코드를 그대로 복사하면 바로 이 함정에 빠집니다.
 
-`atomic<shared_ptr>`로 메모리 회수를 해결하는 접근도 무비용이 아닙니다. 앞서 보였듯 GCC libstdc++는 내부적으로 스핀락 비트를 사용해 `is_lock_free()`가 `false`인 경우가 흔하고, 컴파일러·표준 라이브러리 구현에 따라 지원 여부와 성능 특성이 달라지므로 이는 "구현 정의"로 취급하고 대상 플랫폼에서 반드시 직접 확인해야 합니다. 완전한 lock-free 회수가 꼭 필요하다면 다음 장의 hazard pointer가 유일한 정답에 가깝습니다.
+`atomic<shared_ptr>`로 메모리 회수를 해결하는 접근도 무비용이 아닙니다. 앞서 보였듯 GCC libstdc++는 내부적으로 스핀락 비트를 사용해 `is_lock_free()`가 `false`인 경우가 흔하고, 컴파일러·표준 라이브러리 구현에 따라 지원 여부와 성능 특성이 달라지므로 이는 "구현 정의"로 취급하고 대상 플랫폼에서 반드시 직접 확인해야 합니다. 완전한 lock-free 회수가 꼭 필요하다면 다음 장의 hazard pointer나 RCU 같은 명시적 회수 기법이 필요합니다.
 
-마지막으로, lock-free 코드의 정확성은 타이밍에 의존하는 레이스를 다루기 때문에 사람의 코드 리뷰나 몇 차례의 TSAN 실행만으로는 완전히 보증되지 않습니다. Michael-Scott 큐 같은 잘 알려진 알고리즘조차 학술적으로 트레이스 축소(trace reduction)나 분리 논리(separation logic) 기반 모델 검사로 재검증하는 연구가 나오는 이유가 여기에 있습니다. 팀에 이런 검증 인프라가 없다면, 직접 구현의 "이론적으로 맞다"는 확신과 실제 운영 환경에서의 안전성 사이에는 여전히 간극이 남습니다.
+마지막으로, lock-free 코드의 정확성은 타이밍에 의존하는 레이스를 다루기 때문에 사람의 코드 리뷰나 몇 차례의 TSAN 실행만으로는 완전히 보증되지 않습니다. 팀에 이런 검증 인프라가 없다면, 직접 구현의 "이론적으로 맞다"는 확신과 실제 운영 환경에서의 안전성 사이에는 여전히 간극이 남습니다.
 
 ## 마무리
 
@@ -317,7 +393,7 @@ Michael-Scott 큐와 Treiber 스택의 원 논문은 순차 일관성(sequential
 - [ ] 직접 구현 대신 검증된 라이브러리를 선택해야 하는 기준을 판단 기준 표로 적용할 수 있다.
 - [ ] ThreadSanitizer/AddressSanitizer로 lock-free 구현의 정확성을 검증하는 절차를 실행할 수 있다.
 
-이 장에서 세 자료구조 모두가 결국 "메모리를 언제 돌려줘도 안전한가"라는 같은 질문에 부딪힌다는 것을 확인했습니다. 다음 장에서는 이 질문에 대한 정식 해법인 **Hazard Pointer**와 <strong>RCU(Read-Copy-Update)</strong>를 다루며, C++26에 표준화된 `std::hazard_pointer`(P2530)와 `std::rcu`(P2545)가 정작 GCC·Clang·MSVC 세 주요 컴파일러 어디에도 아직 구현되지 않은 현실과, 이 트랙에서 종종 언급되는 "Bloomberg Clang 구현"이라는 통념의 실체까지 확인합니다.
+다음 장에서는 이 메모리 회수 문제의 정식 해법인 **Hazard Pointer**와 <strong>RCU(Read-Copy-Update)</strong>를 다루며, C++26에 표준화된 `std::hazard_pointer`(P2530)와 `std::rcu`(P2545)의 컴파일러·표준 라이브러리별 구현 현황까지 출처와 함께 확인합니다.
 
 → [Hazard Pointers·RCU](/post/concurrency-optimization/hazard-pointer-rcu-cpp26/)
 
@@ -325,6 +401,6 @@ Michael-Scott 큐와 Treiber 스택의 원 논문은 순차 일관성(sequential
 
 - [Michael & Scott, "Simple, Fast, and Practical Non-Blocking and Blocking Concurrent Queue Algorithms" (PODC 1996)](https://www.cs.rochester.edu/~scott/papers/1996_PODC_queues.pdf) — 원 논문 PDF
 - [Wikipedia: Treiber stack](https://en.wikipedia.org/wiki/Treiber_stack) — Treiber 스택의 배경과 동작 원리
-- [Shalev & Shavit, "Split-Ordered Lists: Lock-Free Extensible Hash Tables"](https://ldhulipala.github.io/readings/split_ordered_lists.pdf) — split-ordered list 원 논문 PDF
+- [Shalev & Shavit, "Split-Ordered Lists: Lock-Free Extensible Hash Tables"](https://people.csail.mit.edu/shanir/publications/Split-Ordered_Lists.pdf) — split-ordered list 원 논문 PDF
 - [Clang: ThreadSanitizer](https://clang.llvm.org/docs/ThreadSanitizer.html) — `-fsanitize=thread` 사용법과 탐지 범위
 - [Raymond Chen, "Inside STL: The atomic shared_ptr"](https://devblogs.microsoft.com/oldnewthing/20241219-00/?p=110663) — `atomic<shared_ptr>`의 내부 구현과 lock-free 여부에 대한 분석
