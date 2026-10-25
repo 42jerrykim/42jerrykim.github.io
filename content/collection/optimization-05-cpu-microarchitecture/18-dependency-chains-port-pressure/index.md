@@ -1,7 +1,7 @@
 ---
 collection_order: 18
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[CPU 05] 의존성 체인·포트 압력 분석"
@@ -11,8 +11,6 @@ tags:
   - Performance(성능)
   - Optimization(최적화)
   - CPU(Central Processing Unit)
-  - Cache
-  - Memory(메모리)
   - Assembly
   - C++
   - Compiler(컴파일러)
@@ -21,18 +19,14 @@ tags:
   - Latency
   - Throughput
   - Profiling(프로파일링)
-  - Concurrency(동시성)
-  - Implementation(구현)
   - Advanced
   - Deep-Dive
-  - Case-Study
-  - Technology(기술)
-  - Reference(참고)
-  - Guide(가이드)
-  - Comparison(비교)
-  - System-Design
-  - 실습
   - Dependency-Chain
+  - Out-of-Order
+  - ILP
+  - Micro-Benchmark
+  - Loop-Carried-Dependency
+  - Execution-Port
   - Port-Pressure
   - Critical-Path
   - Reciprocal-Throughput
@@ -64,11 +58,11 @@ tags:
 
 ## 임계 경로 개념의 등장 (역사·배경)
 
-"임계 경로(critical path)"라는 용어 자체는 CPU 설계보다 훨씬 오래전인 1950년대 프로젝트 일정 관리 기법(PERT/CPM)에서 왔습니다 — 여러 작업이 서로 선후 관계로 얽혀 있을 때, 전체 완료 시간을 결정하는 것은 "가장 긴 의존 사슬"이지 작업 개수의 합이 아니라는 통찰입니다. 명령어 수준에서 이 개념을 정량적으로 쓰려면 명령 하나하나의 <strong>지연시간(latency)</strong>과 <strong>처리량의 역수(reciprocal throughput)</strong>를 알아야 하는데, 이 두 숫자를 인텔이 공식 매뉴얼에 촘촘히 공개하지 않던 시절에는 개별 연구자가 직접 측정해야 했습니다. 덴마크의 Agner Fog는 1990년대 후반부터 여러 세대의 x86 CPU를 손수 마이크로벤치마킹해 명령별 latency·throughput·포트 사용 정보를 표로 정리해 왔고, 이 [명령어 지연시간·처리량 표](https://www.agner.org/optimize/)는 지금도 매년 갱신되며 업계 표준 참고 자료로 쓰입니다. 2019년에는 자를란트 대학의 Andreas Abel과 Jan Reineke가 이 측정을 자동화한 [uops.info](https://uops.info/table.html) 데이터베이스를 공개해, 명령어의 포트 매핑을 수작업 없이 대규모로 검증할 수 있게 되었습니다. 이 두 자료 위에 LLVM 프로젝트가 만든 정적 분석 도구 **llvm-mca**가 명령어 시퀀스의 예상 처리량과 포트 압력을 시뮬레이션해 보여주는데, 이는 한때 Intel이 배포하다가 2019년경 중단한 IACA(Intel Architecture Code Analyzer)의 역할을 사실상 이어받은 도구입니다.
+"임계 경로(critical path)"라는 용어 자체는 CPU 설계보다 훨씬 오래전인 1950년대 프로젝트 일정 관리 기법(PERT/CPM)에서 왔습니다 — 여러 작업이 서로 선후 관계로 얽혀 있을 때, 전체 완료 시간을 결정하는 것은 "가장 긴 의존 사슬"이지 작업 개수의 합이 아니라는 통찰입니다. 명령어 수준에서 이 개념을 정량적으로 쓰려면 명령 하나하나의 <strong>지연시간(latency)</strong>과 <strong>처리량의 역수(reciprocal throughput)</strong>를 알아야 하는데, 이 두 숫자를 인텔이 공식 매뉴얼에 촘촘히 공개하지 않던 시절에는 개별 연구자가 직접 측정해야 했습니다. 덴마크의 Agner Fog는 1990년대 후반부터 여러 세대의 x86 CPU를 손수 마이크로벤치마킹해 명령별 latency·throughput·포트 사용 정보를 표로 정리해 왔고, 이 [명령어 지연시간·처리량 표](https://www.agner.org/optimize/)는 업계 표준 참고 자료로 쓰입니다. 2019년에는 자를란트 대학의 Andreas Abel과 Jan Reineke가 이 측정을 자동화한 [uops.info](https://uops.info/table.html) 데이터베이스를 공개해, 명령어의 포트 매핑을 수작업 없이 대규모로 검증할 수 있게 되었습니다. 이 두 자료 위에 LLVM 프로젝트가 만든 정적 분석 도구 **llvm-mca**가 명령어 시퀀스의 예상 처리량과 포트 압력을 시뮬레이션해 보여주는데, 이는 한때 Intel이 배포하던 IACA(Intel Architecture Code Analyzer)의 역할을 사실상 이어받은 도구입니다.
 
 ## 의존 체인 길이와 임계 경로 지연시간
 
-명령어 하나는 두 개의 서로 다른 숫자를 가집니다. **latency**는 그 명령어가 입력을 받아 결과를 내놓기까지 걸리는 사이클 수이고, **reciprocal throughput**은 같은 명령어를 연속으로 몇 개 발행할 수 있는지의 역수, 즉 완전히 독립적인 같은 명령어를 파이프라인에 채워 넣을 때 한 개당 평균 몇 사이클이 걸리는지를 나타냅니다. 이 둘이 다른 이유는 실행 유닛 대부분이 <strong>파이프라인화(pipelined)</strong>되어 있기 때문입니다 — 곱셈기가 결과를 내는 데 3사이클이 걸려도, 그 3단계 각각에 매 사이클 새 입력을 밀어 넣을 수 있다면 처리량은 1사이클에 하나입니다. 문제는 **의존 체인으로 묶인 명령들은 파이프라인화의 이득을 받지 못한다**는 점입니다. 다음 곱셈이 이전 곱셈의 결과를 그대로 입력으로 써야 한다면, 파이프라인이 아무리 깊어도 두 번째 곱셈은 첫 번째 곱셈의 latency가 다 지나야 시작할 수 있습니다. 따라서 한 루프 반복의 **임계 경로 지연시간**은 그 반복 안에서 가장 긴 RAW 체인을 따라간 명령들의 latency 합이며, 서로 독립된 여러 체인이 동시에 진행된다면 반복당 실제 시간은 그 체인들의 latency 합이 아니라 **가장 긴 체인 하나의 latency**로 수렴합니다.
+명령어 하나는 두 개의 서로 다른 숫자를 가집니다. **latency**는 그 명령어가 입력을 받아 결과를 내놓기까지 걸리는 사이클 수이고, **reciprocal throughput**은 같은 명령어를 연속으로 몇 개 발행할 수 있는지의 역수, 즉 완전히 독립적인 같은 명령어를 파이프라인에 채워 넣을 때 한 개당 평균 몇 사이클이 걸리는지를 나타냅니다. 이 둘이 다른 이유는 실행 유닛 대부분이 <strong>파이프라인화(pipelined)</strong>되어 있기 때문입니다 — 곱셈기가 결과를 내는 데 3사이클이 걸려도, 그 3단계 각각에 매 사이클 새 입력을 밀어 넣을 수 있다면 처리량은 1사이클에 하나입니다. 문제는 **의존 체인으로 묶인 명령들은 파이프라인화의 이득을 받지 못한다**는 점입니다. 다음 곱셈이 이전 곱셈의 결과를 그대로 입력으로 써야 한다면, 파이프라인이 아무리 깊어도 두 번째 곱셈은 첫 번째 곱셈의 latency가 다 지나야 시작할 수 있습니다. 따라서 루프의 처리 시간을 정하는 **임계 경로 지연시간**은 반복과 반복을 잇는 **loop-carried 의존 사이클**의 latency 합입니다. 반복 안에서만 이어지는 체인은 OoO가 다음 반복과 겹쳐 실행할 수 있기 때문입니다. 서로 독립된 여러 loop-carried 체인이 동시에 진행된다면 반복당 실제 시간은 그 체인들의 latency 합이 아니라 **가장 긴 체인 하나의 latency**로 수렴합니다.
 
 아래는 이 차이를 극단적으로 드러내는 예입니다. `lcg_chain`은 각 반복이 이전 반복의 상태에 그대로 의존하는 선형 합동 생성기(LCG)이고, `lcg_streams`는 서로 다른 시드로 시작하는 4개의 독립된 스트림을 한 루프 안에서 나란히 갱신합니다.
 
@@ -98,7 +92,7 @@ void lcg_streams(std::uint64_t* state, std::size_t n) {
 }
 ```
 
-`lcg_chain`의 반복당 비용은 곱셈 latency와 덧셈 latency의 합으로 고정되고(예: 곱셈 3사이클, 덧셈 1사이클이라면 반복당 약 4사이클 — 정확한 값은 마이크로아키텍처마다 다르므로 uops.info로 확인해야 합니다), 아무리 넓은 ROB를 가진 코어에서 실행해도 이 합을 밑돌 수 없습니다. `lcg_streams`는 네 체인이 서로를 기다리지 않으므로, 곱셈기가 파이프라인화되어 있다면 반복당 비용이 4사이클보다 곱셈의 reciprocal throughput 쪽에 훨씬 가깝게 붙습니다. 아래는 두 함수를 같은 반복 횟수로 격리 측정하는 Google Benchmark 스켈레톤입니다(x86-64, GCC 13, `-O2` 기준).
+`lcg_chain`의 반복당 비용은 곱셈 latency와 덧셈 latency의 합으로 고정되고(예: 곱셈 3사이클, 덧셈 1사이클이라면 반복당 약 4사이클 — 정확한 값은 마이크로아키텍처마다 다르므로 uops.info로 확인해야 합니다), 아무리 넓은 ROB를 가진 코어에서 실행해도 이 합을 밑돌 수 없습니다. `lcg_streams`는 네 체인이 서로를 기다리지 않으므로, 곱셈기가 파이프라인화되어 있다면 원소 하나당 비용이 곱셈의 reciprocal throughput 쪽에 가깝게 붙습니다(스트림 4개를 한 번 도는 반복은 곱셈 4개이므로, 곱셈 포트가 하나뿐인 코어에서는 반복당 4사이클이 하한이 되는 경계 사례이기도 합니다). 아래는 두 함수를 같은 반복 횟수로 격리 측정하는 Google Benchmark 스켈레톤입니다(x86-64, GCC 13, `-O2` 기준).
 
 ```cpp
 #include <benchmark/benchmark.h>
@@ -127,6 +121,7 @@ static void BM_LcgChain(benchmark::State& state) {
     seed = lcg_chain(seed, 1 << 16);
     benchmark::DoNotOptimize(seed);
   }
+  state.SetItemsProcessed(state.iterations() * (1 << 16));  // 처리한 원소 수
 }
 BENCHMARK(BM_LcgChain);
 
@@ -136,6 +131,7 @@ static void BM_LcgStreams(benchmark::State& state) {
     lcg_streams(streams.data(), 1 << 16);
     benchmark::DoNotOptimize(streams.data());
   }
+  state.SetItemsProcessed(state.iterations() * (1 << 16) * 4);  // 스트림 4개 x 반복 수
 }
 BENCHMARK(BM_LcgStreams);
 
@@ -144,13 +140,8 @@ BENCHMARK_MAIN();
 
 `g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 `perf stat`과 함께 실행하면(수치는 코어의 곱셈 latency·throughput과 컴파일러 최적화에 따라 크게 달라지므로 직접 재현해 확인합니다), `BM_LcgChain`은 처리한 원소 하나당 사이클 수가 곱셈+덧셈 latency 합에 가깝게 붙고, `BM_LcgStreams`는 스트림 4개로 나눈 만큼 원소당 사이클 수가 그보다 여러 배 낮게 나오는 경향이 흔합니다.
 
-```text
-# perf stat -e cycles,instructions -- ./bench (예시 형태, 실제 수치는 환경마다 다름)
-BM_LcgChain     원소당 ~4 cycles   # 곱셈 latency + 덧셈 latency에 근접(체인 지배)
-BM_LcgStreams   원소당 ~1.2 cycles # 곱셈 reciprocal throughput에 근접(4-way로 체인 은닉)
-```
 
-두 수치의 절대값은 대상 코어의 곱셈 latency·reciprocal throughput에 좌우되므로 이 예시 배율을 다른 플랫폼에 그대로 가정하면 안 되고, 항상 대상 환경에서 `perf stat`으로 재현해 확인해야 합니다.
+Google Benchmark가 보고하는 items/s의 역수로 원소당 시간을 구하고 클럭을 곱해 원소당 사이클로 환산할 수 있습니다. 절대값은 대상 코어의 곱셈 latency·reciprocal throughput에 좌우되므로 다른 플랫폼에 그대로 가정하면 안 되고, 항상 대상 환경에서 재현해 확인해야 합니다.
 
 ## 실행 포트와 포트 압력(port pressure)
 
@@ -173,17 +164,8 @@ llvm-mca -mtriple=x86_64-unknown-unknown -mcpu=skylake -iterations=200 -timeline
 
 `-mcpu`로 지정한 대상 코어를 기준으로, llvm-mca는 위 네 `imul`이 각 실행 포트를 평균 몇 사이클씩 점유하는지를 "Resource pressure by instruction" 표로 출력합니다.
 
-```text
-# llvm-mca 출력 형태 예시(요약, 실제 포트 배정·수치는 -mcpu 대상과 LLVM 버전마다 다름)
-Resource pressure by instruction:
-[0]    [1]    [5]    [6]    Instructions
-0.98   0.01   0.00   0.01   imul   eax, ebx
-0.01   0.97   0.00   0.02   imul   ecx, edx
-0.97   0.02   0.00   0.01   imul   r8d, r9d
-0.02   0.96   0.00   0.02   imul   r10d, r11d
-```
 
-이 표는 각 명령이 각 포트를 평균 몇 사이클씩 점유하는지를 보여주며, 위 예시처럼 네 곱셈이 포트 0과 1에만 몰려 있다면(포트 5·6은 거의 놀고 있음) 실제 병목은 "포트 0·1 두 개가 초당 감당할 수 있는 곱셈 개수"이지 ROB 크기나 발행 폭이 아닙니다. `perf`로 실측할 때는 `UOPS_DISPATCHED_PORT.PORT_x` 계열 카운터(Intel 한정, AMD는 이름이 다르며 구현마다 지원 여부가 갈립니다)로 포트별 실제 발행 횟수를 확인할 수 있습니다.
+이 표에서 네 곱셈이 같은 포트 열에 몰려 있다면 실제 병목은 "그 포트가 사이클당 감당할 수 있는 곱셈 개수"이지 ROB 크기나 발행 폭이 아닙니다. 실제 배정은 `-mcpu`와 LLVM 버전에 따라 다르므로 직접 실행해 확인합니다. `perf`로 실측할 때는 `UOPS_DISPATCHED_PORT.PORT_x` 계열 카운터(Intel 한정, AMD는 이름이 다르며 구현마다 지원 여부가 갈립니다)로 포트별 실제 발행 횟수를 확인할 수 있습니다.
 
 ```bash
 # 포트별 실제 발행 횟수 확인 (Intel, 이벤트 이름은 세대별로 다를 수 있음)
@@ -194,7 +176,7 @@ perf stat -e uops_dispatched_port.port_0,uops_dispatched_port.port_1,uops_dispat
 
 ## 체인과 포트가 함께 만드는 실제 병목
 
-두 계산을 합치면 한 루프 반복의 실제 사이클 수를 근사하는 단순한 모델을 얻습니다 — **반복당 사이클 ≈ max(임계 경로 latency 합, 가장 압력이 높은 포트의 압력 합)**. 체인이 짧고 명령이 여러 포트에 고르게 퍼져 있다면 이 값은 낮게 유지되지만, 체인을 아무리 짧게 잘라도 특정 포트에 명령이 몰려 있다면 포트 압력이 하한을 결정하고, 반대로 포트에 여유가 있어도 체인이 길면 체인 latency가 하한을 결정합니다. 이 둘 중 무엇이 지배적인지 구분하지 못하면 엉뚱한 최적화에 시간을 씁니다 — 포트가 병목인 코드에 체인 분할을 적용하면 컴파일 결과만 복잡해질 뿐 사이클 수는 그대로일 수 있습니다.
+두 계산을 합치면 한 루프 반복의 실제 사이클 수를 근사하는 단순한 모델을 얻습니다 — **반복당 사이클 ≈ max(임계 경로 latency 합, 가장 압력이 높은 포트의 압력 합)**. 체인이 짧고 명령이 여러 포트에 고르게 퍼져 있다면 이 값은 낮게 유지되지만, 체인을 아무리 짧게 잘라도 특정 포트에 명령이 몰려 있다면 포트 압력이 하한을 결정하고, 반대로 포트에 여유가 있어도 체인이 길면 체인 latency가 하한을 결정합니다. 이 둘 중 무엇이 지배적인지 구분하지 못하면 엉뚱한 최적화에 시간을 씁니다.
 
 ```mermaid
 flowchart TB
@@ -205,7 +187,7 @@ flowchart TB
   boundModel --> tmaCore["TMA Core Bound</br>(Divider / Ports_Utilization)"]
 ```
 
-이 구분은 [09장](/post/cpu-optimization/cpu-hardware-performance-counters/)에서 소개한 TMA의 Core Bound 범주가 왜 다시 **Divider**(나눗셈·제곱근 유닛 대기)와 **Ports_Utilization**(포트 포화)으로 나뉘는지를 설명해 줍니다 — 두 하위 범주는 정확히 이 장에서 다룬 "체인이 병목인가, 포트가 병목인가"라는 질문을 카운터 트리로 자동화한 것입니다. Ports_Utilization은 세부적으로 한 사이클에 동시에 활성화된 포트 개수의 분포로 계산되므로, 이 값이 높다면 앞서 llvm-mca 표에서 본 것과 같은 포트 쏠림을 실측으로 확인한 셈이 됩니다.
+이 구분은 [09장](/post/cpu-optimization/cpu-hardware-performance-counters/)에서 소개한 TMA의 Core Bound 범주가 왜 다시 **Divider**(나눗셈·제곱근 유닛 대기)와 **Ports_Utilization**(포트 포화)으로 나뉘는지를 설명해 줍니다 — 두 하위 범주는 이 장의 "체인이냐 포트냐"라는 질문과 이어지지만 일대일로 대응하지는 않습니다. Divider는 나눗셈 유닛 점유를, Ports_Utilization은 한 사이클에 동시에 활성화된 포트 개수의 분포를 나타냅니다. Ports_Utilization이 높다고 해서 곧바로 포트 포화라고 단정할 수는 없고, 체인 지연 때문에 활용이 낮은 경우도 같은 범주에 섞이므로 llvm-mca나 포트별 카운터로 따로 확인해야 합니다.
 
 ## 흔한 오개념
 
@@ -213,7 +195,7 @@ flowchart TB
 
 **"실행 포트 수가 많으면 특정 포트에 병목이 몰릴 리 없다."** 포트 총 개수와 무관하게, 특정 명령어 종류(정수 곱셈, 나눗셈, 셔플·퍼뮤트 계열 벡터 연산 등)는 흔히 소수의 포트에만 배정됩니다. 코드가 우연히 그 소수 포트에만 몰리는 명령어 종류로 채워져 있다면, 전체 포트가 8개든 10개든 그 코드의 처리량은 그 소수 포트의 용량으로 결정됩니다.
 
-**"llvm-mca나 uiCA의 사이클 예측은 실제 실행과 같다."** 이런 도구는 명령어 시퀀스만 보고 캐시 상태·분기 결과·메모리 주소 충돌 없이 정적으로 시뮬레이션하는 모델입니다. 여러 정적 처리량 예측 도구(IACA, llvm-mca, OSACA 등)를 실제 하드웨어 측정과 비교한 연구는 도구별로 평균 오차가 9%에서 36% 사이로 벌어진다고 보고했습니다([uiCA 논문](https://arxiv.org/abs/2107.14210) 참고). 모델은 "어느 쪽이 병목인지"를 가늠하는 출발점으로 쓰고, 최종 판단은 항상 `perf`로 실측해 검증해야 합니다.
+**"llvm-mca나 uiCA의 사이클 예측은 실제 실행과 같다."** 이런 도구는 명령어 시퀀스만 보고 캐시 상태·분기 결과·메모리 주소 충돌 없이 정적으로 시뮬레이션하는 모델입니다. uiCA 논문은 기존 정적 처리량 예측 모델의 평균 오차가 9%에서 36% 사이라고 보고합니다([uiCA 논문 초록](https://arxiv.org/abs/2107.14210)). 모델은 "어느 쪽이 병목인지"를 가늠하는 출발점으로 쓰고, 최종 판단은 항상 `perf`로 실측해 검증해야 합니다.
 
 ## 판단 기준
 
@@ -232,7 +214,7 @@ flowchart TB
 ## 마무리
 
 - [ ] 명령어의 latency와 reciprocal throughput이 서로 다른 숫자이며, 의존 체인은 latency를, 독립 연산은 throughput을 따른다는 것을 설명할 수 있다.
-- [ ] 한 루프 반복의 임계 경로 지연시간을 그 반복 안 가장 긴 RAW 체인의 latency 합으로 계산할 수 있다.
+- [ ] 루프의 임계 경로 지연시간을 반복 간에 이어지는 loop-carried 의존 사이클의 latency 합으로 계산할 수 있다.
 - [ ] 포트 압력을 "포트별 uop 수 / 처리량"으로 계산하고, 의존성이 없는 코드도 포트 압력으로 병목이 될 수 있음을 설명할 수 있다.
 - [ ] 반복당 사이클을 `max(체인 latency, 최대 포트 압력)`으로 근사하고, 이 값을 TMA의 Core Bound(Divider/Ports_Utilization) 분류와 연결할 수 있다.
 - [ ] llvm-mca·perf 포트 카운터로 체인 병목과 포트 병목을 구분해 실측하고, 정적 모델의 오차 한계를 인지한 채 판단할 수 있다.
