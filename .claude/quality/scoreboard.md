@@ -367,7 +367,7 @@
 | content/collection/optimization-08-optimization-techniques/04-auto-vectorization/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 15c94ed | 없음(개선여지: 2004년경 출처, LLVM 1차 문서 링크) |
 | content/collection/optimization-08-optimization-techniques/05-prefetch-strategy/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | 59c712c | 없음(경미: 간접 접근 반복 서술, 연결 리스트 문단 조건부 표현 보정 완료) |
 | content/collection/optimization-08-optimization-techniques/06-branchless-programming/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | d10a113 | 없음(경미: Pentium Pro 1995·Spectre 2018 출처 미병기, 컴파일러 백엔드 의존 서술 중복) |
-| content/collection/optimization-08-optimization-techniques/07-hand-written-assembly/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/07-hand-written-assembly/index.md | 93.6 | 2026-10-25 | 1 | 통과 | 1.3 | d92c329 | 없음(경미: 판단 기준 표·Mermaid에 프로파일링 증거 관문 부재; L158이 L64를 재진술) |
 | content/collection/optimization-08-optimization-techniques/08-lookup-table-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-08-optimization-techniques/09-bit-manipulation-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-08-optimization-techniques/10-hotpath-extreme-tuning/index.md | - | - | 0 | 미채점 | - | - | - |
