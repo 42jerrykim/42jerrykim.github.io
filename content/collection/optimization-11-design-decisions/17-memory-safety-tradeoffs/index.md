@@ -18,7 +18,6 @@ tags:
   - Governance
   - Compliance
   - Reliability
-  - Concurrency(동시성)
   - Best-Practices
   - Code-Quality(코드품질)
   - Code-Review(코드리뷰)
@@ -26,16 +25,11 @@ tags:
   - Latency
   - Profiling(프로파일링)
   - Testing(테스트)
-  - Documentation(문서화)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Advanced
   - Deep-Dive
-  - Case-Study
   - Reference(참고)
   - Guide(가이드)
   - Comparison(비교)
-  - 실습
   - FFI
   - Unsafe-Rust
   - Memory-Safety
@@ -71,9 +65,9 @@ tags:
 
 이 논쟁이 조직의 의사결정 안건이 된 것은 추상적인 이념 때문이 아니라 축적된 취약점 통계 때문입니다. 구글과 마이크로소프트가 각각 공개한 분석에서 Chromium과 Windows의 고심각도 취약점 중 오랫동안 70% 안팎이 메모리 안전 결함(버퍼 오버런, use-after-free 등)에서 비롯됐다고 보고되어 왔고([Chromium 프로젝트: Memory safety](https://www.chromium.org/Home/chromium-security/memory-safety/), [Microsoft MSRC: We need a safer systems programming language](https://www.microsoft.com/en-us/msrc/blog/2019/07/we-need-a-safer-systems-programming-language) 참고), Android는 신규 코드에서 메모리 안전 언어 비중을 늘린 뒤 2024년 기준 메모리 안전 취약점 비중을 24% 수준까지 낮췄다고 보도되었습니다([Google Security Blog: Eliminating Memory Safety Vulnerabilities at the Source](https://security.googleblog.com/2024/09/eliminating-memory-safety-vulnerabilities-Android.html) 참고). 이 수치는 "메모리 안전 오류가 침해 사고의 다수를 차지한다"는 근거로 반복 인용되며, 각국 사이버 보안 기관이 정책 문서를 낼 때의 출발점이 됩니다.
 
-Rust는 2015년 1.0 버전을 내놓으며 컴파일 타임에 소유권(ownership)과 대여(borrow) 규칙을 강제해 런타임 오버헤드 없이 use-after-free·데이터 레이스 다수를 원천 차단하는 접근을 대중화했고, 이후 리눅스 커널이 2022년 말 6.1 버전부터 커널 모듈 작성 언어로 Rust를 받아들이면서 "기존 C 자산 옆에 Rust를 놓는" 점진적 도입 모델이 하나의 표준 패턴으로 자리잡았습니다. 이 흐름은 2025년 6월 미국 CISA(사이버보안·인프라보안국)와 NSA가 공동으로 낸 메모리 안전 언어 권고 문서로 이어졌는데, 이 문서는 메모리 안전 언어로의 전환을 촉구하면서 위와 같은 CVE 비중 통계를 근거로 들고, DARPA의 TRACTOR 프로그램처럼 C 코드를 자동으로 Rust로 변환하는 연구에 대한 투자도 함께 언급합니다([The Register: CISA/NSA call for memory safe languages](https://www.theregister.com/2025/06/27/cisa_nsa_call_formemory_safe_languages/) 참고. CISA 원문 사이트는 접근이 제한되어 이 보도를 대체 출처로 인용합니다).
+Rust는 2015년 1.0 버전을 내놓으며 컴파일 타임에 소유권(ownership)과 대여(borrow) 규칙을 강제해 런타임 오버헤드 없이 use-after-free·데이터 레이스 다수를 원천 차단하는 접근을 대중화했고, 이후 리눅스 커널이 2022년 말 6.1 버전부터 커널 모듈 작성 언어로 Rust를 받아들이면서 "기존 C 자산 옆에 Rust를 놓는" 점진적 도입 모델이 하나의 표준 패턴으로 자리잡았습니다. 이 흐름은 2025년 6월 미국 CISA(사이버보안·인프라보안국)와 NSA가 공동으로 낸 메모리 안전 언어 권고 문서로 이어졌는데, 이 보도에 따르면 이 문서는 메모리 안전 언어로의 전환을 촉구하면서 Android의 24% 같은 통계를 근거로 들고, DARPA의 TRACTOR 프로그램처럼 C 코드를 자동으로 Rust로 변환하는 연구에 대한 투자도 함께 언급합니다([The Register: CISA/NSA call for memory safe languages](https://www.theregister.com/2025/06/27/cisa_nsa_call_formemory_safe_languages/) 참고. CISA 원문 사이트는 접근이 제한되어 이 보도를 대체 출처로 인용합니다).
 
-C++ 표준위원회(WG21)도 같은 압력에 대응했지만 접근은 갈렸습니다. Sean Baxter가 제안한 "Safe C++"는 Rust에 가까운 소유권·수명 규칙을 C++ 언어 자체에 새로 들여오는 방식이었던 반면, Bjarne Stroustrup과 Herb Sutter가 주도한 ["Profiles"(P3081)](https://isocpp.org/files/papers/P3081R2.pdf)는 기존 C++ 문법 안에서 포인터 산술·C 스타일 캐스트 등 위험한 패턴을 프로젝트·모듈 단위로 선택적으로 금지하는 방식을 취합니다. C++ Safety and Security 연구 그룹 표결에서 Profiles 19표, Safe C++ 9표, 양쪽 모두 11표, 중립 6표로 갈렸고, 위원회는 Safe C++가 사실상 언어 재설계에 가까워 명세·구현 리스크와 생태계 마이그레이션 부담이 크다고 판단해 C++26 일정에 맞는 점진적 경로인 Profiles 쪽을 택했습니다([InfoWorld: Safe C++ proposal for memory safety flames out](https://www.infoworld.com/article/4065702/safe-c-proposal-for-memory-safety-flames-out.html) 참고). 이 결정은 아직 진행형입니다. Profiles의 표준 문구와 구현체는 C++26을 목표로 작업 중이라, 지금 당장 프로덕션에서 기댈 수 있는 완성된 안전망은 아닙니다.
+C++ 표준위원회(WG21)도 같은 압력에 대응했지만 접근은 갈렸습니다. Sean Baxter가 제안한 "Safe C++"는 Rust에 가까운 소유권·수명 규칙을 C++ 언어 자체에 새로 들여오는 방식이었던 반면, Bjarne Stroustrup과 Herb Sutter가 주도한 ["Profiles"(P3081)](https://isocpp.org/files/papers/P3081R2.pdf)는 기존 C++ 문법 안에서 포인터 산술·C 스타일 캐스트 등 위험한 패턴을 프로젝트·모듈 단위로 선택적으로 금지하는 방식을 취합니다. C++ Safety and Security 연구 그룹 표결에서 Profiles 19표, Safe C++ 9표, 양쪽 모두 11표, 중립 6표로 갈렸고, 보도에 따르면 위원회는 Safe C++가 사실상 언어 재설계에 가까워 명세·구현 리스크와 생태계 마이그레이션 부담이 크다고 판단해 점진적 경로인 Profiles 쪽을 택했습니다([InfoWorld: Safe C++ proposal for memory safety flames out](https://www.infoworld.com/article/4065702/safe-c-proposal-for-memory-safety-flames-out.html) 참고). 이 결정은 진행형입니다. 이 글은 Profiles가 어느 표준 판에 어떤 형태로 포함되었는지 확인하지 못했으므로, 위원회 문서에서 현재 상태를 직접 확인하기 전에는 완성된 안전망으로 가정하지 않는 것이 안전합니다.
 
 이 역사에서 이 트랙이 가져가야 할 결론은 "어느 언어가 이겼는가"가 아니라, 극한 성능 코드베이스를 가진 조직이라면 이미 이 논쟁의 결과와 무관하게 "안전성 경계를 어디에 둘 것인가"라는 질문에 답해야 하는 시점이 왔다는 것입니다.
 
@@ -99,7 +93,7 @@ void run(const char* cfg, std::size_t len) {
 }
 ```
 
-Rust 쪽은 이 원시 포인터를 받아 `Box`로 감싸 소유권을 명시적인 값으로 되돌리고, 파괴 함수 안에서만 다시 `Box`로 복원해 드롭시킵니다. 이 지점이 바로 borrow checker의 보호가 일시적으로 꺼지는 자리입니다.
+Rust 쪽은 생성 함수에서 `Box`로 만든 값을 `Box::into_raw`로 원시 포인터로 내보내고, 파괴 함수에서만 `Box::from_raw`로 다시 `Box`로 복원해 드롭시킵니다. 이 지점이 바로 borrow checker의 보호가 일시적으로 꺼지는 자리입니다.
 
 ```rust
 // Rust: Box::into_raw로 소유권을 C++ 쪽 포인터에 실어 보내고,
@@ -125,7 +119,8 @@ pub extern "C" fn market_data_handle_create(
 #[no_mangle]
 pub unsafe extern "C" fn market_data_handle_destroy(handle: *mut MarketDataHandle) {
     if !handle.is_null() {
-        drop(Box::from_raw(handle));
+        // 2021 edition 기준. 2024 edition에서는 unsafe 블록과 #[unsafe(no_mangle)]가 필요하다.
+        unsafe { drop(Box::from_raw(handle)); }
     }
 }
 ```
@@ -134,7 +129,7 @@ pub unsafe extern "C" fn market_data_handle_destroy(handle: *mut MarketDataHandl
 
 ### 안전성 검증 도구가 커버하는 범위
 
-경계 양쪽을 도구로 검증할 때 흔히 놓치는 것은 "어느 도구도 경계 자체를 온전히 커버하지 못한다"는 사실입니다. Miri는 Rust MIR을 인터프리트해 정의되지 않은 동작을 잡아내지만 안전한 Rust와 일부 unsafe 블록에 한정되고 C++ 쪽 코드는 볼 수 없습니다. AddressSanitizer·UndefinedBehaviorSanitizer·ThreadSanitizer는 C++ 쪽의 메모리·타입·데이터 레이스 오류를 잡지만 계측 오버헤드 때문에 프로덕션 핫패스에서 상시로 켜 둘 수 없고, Rust 쪽 안전성 불변식은 이해하지 못합니다. 결국 정확히 FFI 경계 함수들, 즉 `market_data_handle_create`/`destroy` 같은 지점은 두 도구 체계 사이의 공백에 놓이며, 이 부분만 별도로 표적화한 퍼징(`cargo-fuzz` 등)이나 계약 테스트를 조직이 직접 마련해야 합니다.
+경계 양쪽을 도구로 검증할 때 흔히 놓치는 것은 "어느 도구도 경계 자체를 온전히 커버하지 못한다"는 사실입니다. Miri는 Rust MIR을 인터프리트해 unsafe 코드의 정의되지 않은 동작을 잡아내지만, C++ 같은 외부 함수는 실행하지 못해 FFI 경계 너머는 볼 수 없습니다. AddressSanitizer·UndefinedBehaviorSanitizer·ThreadSanitizer는 C++ 쪽의 메모리·타입·데이터 레이스 오류를 잡지만 계측 오버헤드 때문에 프로덕션 핫패스에서 상시로 켜 둘 수 없고, Rust 쪽 안전성 불변식은 이해하지 못합니다. 결국 정확히 FFI 경계 함수들, 즉 `market_data_handle_create`/`destroy` 같은 지점은 두 도구 체계 사이의 공백에 놓이며, 이 부분만 별도로 표적화한 퍼징(`cargo-fuzz` 등)이나 계약 테스트를 조직이 직접 마련해야 합니다.
 
 ### FFI 호출 자체는 거의 공짜다 — 진짜 비용은 다른 곳에 있다
 
@@ -162,7 +157,16 @@ BENCHMARK(BM_FfiCall);
 BENCHMARK_MAIN();
 ```
 
-Rust 쪽은 `cargo build --release`로 만든 `#[no_mangle] pub extern "C" fn ffi_add`를 정적/동적 라이브러리로 내보내고, `g++ -O2 bench.cpp libffi_add.a -lbenchmark -lpthread`(x86-64 Linux, GCC 13 또는 Clang 17 기준 예시)로 링크해 실행합니다. 크로스 언어 LTO를 켜지 않은 기본 설정에서는 `BM_FfiCall`이 `BM_NativeCall`보다 약간 더 느리게 나오는 경우가 흔하지만, 이 차이가 실제 워크로드에서 유의미한지는 호출 빈도와 원소 크기에 달려 있으므로 프로파일러로 실제 핫패스에서 재현하기 전에는 결론을 내리지 않는 것이 좋습니다(측정 방법론은 [Tr.01 통계적 벤치마킹](/post/profiling-analysis/statistical-benchmarking/) 참고).
+Rust 쪽은 아래 함수를 `cargo build --release`로 정적 라이브러리(crate-type = ["staticlib"])로 빌드하고(2021 edition 기준),
+
+```rust
+#[no_mangle]
+pub extern "C" fn ffi_add(a: i64, b: i64) -> i64 {
+    a.wrapping_add(b)
+}
+```
+
+C++ 쪽은 `g++ -O2 bench.cpp libffi_add.a -lbenchmark -lpthread`(크레이트 이름이 `ffi_add`일 때의 x86-64 Linux 예시)로 링크해 실행합니다. 크로스 언어 LTO를 켜지 않은 기본 설정에서는 `BM_FfiCall`이 `BM_NativeCall`보다 약간 더 느리게 나오는 경우가 흔하지만, 이 차이가 실제 워크로드에서 유의미한지는 호출 빈도와 원소 크기에 달려 있으므로 프로파일러로 실제 핫패스에서 재현하기 전에는 결론을 내리지 않는 것이 좋습니다(측정 방법론은 [Tr.01 통계적 벤치마킹](/post/profiling-analysis/statistical-benchmarking/) 참고).
 
 ## 흔한 오개념 세 가지
 
@@ -179,7 +183,7 @@ Rust 쪽은 `cargo build --release`로 만든 `#[no_mangle] pub extern "C" fn ff
 | 상황 | 권장 방향 | 비권장 |
 |------|---------|--------|
 | 신규 네트워크 파싱 경로(공격 표면 큼) | 신규 코드는 안전 언어로, 경계는 파싱 입구에 배치 | 레거시 파서에 패치만 반복 누적 |
-| 이미 검증된 초저지연 핫루프(수십 ns 단위) | 현상 유지 + 정적분석·Profiles·Sanitizer 상시화 | 검증 없이 전면 재작성 착수 |
+| 이미 검증된 초저지연 핫루프(수십 ns 단위) | 현상 유지 + 정적분석·Sanitizer·하드닝 플래그 상시화 | 검증 없이 전면 재작성 착수 |
 | 팀에 Rust 실무 경험이 없고 납기가 임박 | Sanitizer/Fuzzing 우선 강화 후 재평가 | 무리하게 부분 재작성부터 시작 |
 | 규제 대상 컴포넌트(16장 참고) | 규제팀과 함께 경계·감사 로그를 같이 설계 | 성능팀 단독으로 경계 결정 |
 | 크로스 언어 빌드·릴리스 파이프라인 미비 | 도구체인(CI, 링크, 버전 고정)부터 정비 | 도구 정비 없이 경계부터 확장 |
@@ -189,7 +193,7 @@ flowchart TD
   hotPath["핫패스 코드인가?"] -->|"예"| riskLevel["공격 표면·규제 리스크가 큰가?"]
   hotPath -->|"아니오"| coldPathSafe["콜드 패스: 신규 코드부터 안전 언어로 전환"]
   riskLevel -->|"예"| teamSkill["팀에 Rust 실무 역량이 있는가?"]
-  riskLevel -->|"아니오"| profileAdopt["Profiles/정적분석·Sanitizer 강화로 완화"]
+  riskLevel -->|"아니오"| profileAdopt["정적분석·Sanitizer 강화로 완화"]
   teamSkill -->|"예"| partialRewrite["안전 critical 모듈만 경계 뒤에서 재작성"]
   teamSkill -->|"아니오"| toolingFirst["Sanitizer/Fuzzing 우선 도입 후 재평가"]
 ```
@@ -200,7 +204,7 @@ flowchart TD
 
 FFI 경계 자체가 새로운 버그 클래스를 만든다는 점은 과소평가되기 쉽습니다. 이중 해제나 소유권 프로토콜 누락은 두 언어 컴파일러 중 어느 쪽도 강제하지 못하는 "문서로만 존재하는 계약"에 의존하므로, 안전 언어를 도입했다고 해서 조직의 리뷰 부담이 사라지는 것이 아니라 그 부담이 경계 지점으로 응축됩니다.
 
-C++ Profiles는 아직 초기 표준화 단계입니다. P3081은 C++26을 목표로 하고 있고 이 글 시점에도 표준 문구와 구현체가 함께 다듬어지는 중이라, 지금 당장 프로덕션이 기댈 수 있는 완성된 안전망으로 취급하면 안 됩니다. Safe C++가 부결된 이유(사실상 언어 재설계, 생태계 마이그레이션 부담)를 이해하지 않고 Profiles를 "이미 해결된 문제"로 낙관하는 것은 위험한 가정입니다.
+C++ Profiles의 현재 상태는 이 글이 확인한 범위 밖입니다. 앞서 본 대로 완성된 안전망으로 가정하지 말고, 도입 전에 컴파일러 구현 여부를 확인해야 합니다. 위원회가 Safe C++ 대신 Profiles 쪽을 택한 이유(사실상 언어 재설계, 생태계 마이그레이션 부담)를 이해하지 않고 Profiles를 "이미 해결된 문제"로 낙관하는 것은 위험한 가정입니다.
 
 부분 도입의 조직적 비용도 실질적입니다. 두 언어의 빌드 시스템과 CI 파이프라인을 나란히 유지하고, 두 언어를 모두 다룰 수 있는 인력을 채용·교육하는 비용은 종종 FFI 경계 자체의 성능 이득보다 커서, 이 논쟁이 성능 논쟁이 아니라 조직 역량 논쟁으로 흘러가는 경우가 많습니다.
 

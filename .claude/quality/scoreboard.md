@@ -436,7 +436,7 @@
 | content/collection/optimization-11-design-decisions/14-load-testing-design/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | b1b49bb | 없음 |
 | content/collection/optimization-11-design-decisions/15-cost-performance-analysis/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 25d5d64 | 없음 |
 | content/collection/optimization-11-design-decisions/16-regulated-secure-performance-tradeoffs/index.md | 94.5 | 2026-10-25 | 1 | 통과 | 1.3 | 000b558 | 없음(경미: seccomp 호출 경로 설명 보강 여지, RFC 8446 후속 RFC 병기 확인 필요) |
-| content/collection/optimization-11-design-decisions/17-memory-safety-tradeoffs/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/17-memory-safety-tradeoffs/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 3d1ffc7 | 없음 |
 | content/collection/optimization-11-design-decisions/18-event-driven-architecture-performance/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-12-regression-prevention/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 1.0 | 14e23c8 | 없음(경미: Code-Review·Debugging·Logging·Git·GitHub·Cloud 태그 본문 결속 약함) |
 | content/collection/optimization-12-regression-prevention/01-performance-regression-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
