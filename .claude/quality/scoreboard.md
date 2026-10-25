@@ -298,7 +298,7 @@
 | content/collection/optimization-04-memory-allocation/14-memory-leak-detection/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/15-memory-lifetime-cacheline-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/16-global-allocator-tuning/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/00-introduction/index.md | 88.9 | 2026-07-25 | 3 | 에스컬레이션 | 1.0 | b9a7dc2 | 치명결함 0건이나 3회 반복 후 90점 근소 미달. 잔여: "다루지 않는 것" 절에 캐시 일관성/메모리 모델·SIMD 범위 밖 명시 부재, 1차 출처 1개 추가 여지 |
+| content/collection/optimization-05-cpu-microarchitecture/00-introduction/index.md | 90.6 | 2026-10-25 | 4 | 통과 | 1.3 | a9ec040 | - |
 | content/collection/optimization-05-cpu-microarchitecture/01-cpu-pipeline-fundamentals/index.md | 97.3 | 2026-10-23 | 1 | 통과 | 1.3 | b5b5509 | - |
 | content/collection/optimization-05-cpu-microarchitecture/02-branch-prediction/index.md | 97 | 2026-10-23 | 1 | 통과 | 1.3 | f772241 | - |
 | content/collection/optimization-05-cpu-microarchitecture/03-cache-hierarchy/index.md | 100 | 2026-10-23 | 1 | 통과 | 1.3 | ff4f7f6 | - |

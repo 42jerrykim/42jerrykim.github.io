@@ -1,7 +1,7 @@
 ---
 collection_order: 0
 date: 2026-03-24
-lastmod: 2026-03-25
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Performance 05] Introduction: CPU 마이크로아키텍처 Low-latency"
@@ -15,25 +15,25 @@ tags:
   - Compiler(컴파일러)
   - CPU(Central Processing Unit)
   - Cache
-  - Backend(백엔드)
   - Memory(메모리)
   - Assembly
-  - Concurrency(동시성)
   - Linux(리눅스)
-  - Windows(윈도우)
   - OS(운영체제)
   - Benchmark
   - Latency
   - Throughput
-  - Embedded(임베디드)
-  - Implementation(구현)
-  - Debugging(디버깅)
   - Pipeline
   - Pipelining(파이프라이닝)
   - Cache-Miss(캐시미스)
   - Hardware(하드웨어)
   - RISC
   - Register(레지스터)
+  - Branch-Prediction
+  - Out-of-Order
+  - TLB
+  - TMA
+  - Microarchitecture
+  - Hardware-Counters
 ---
 
 이 트랙은 "왜 이 코드가 캐시 미스를 내는가", "왜 분기 예측이 깨지는가" 같은 질문에 답합니다. µs 최적화에서는 CPU 이벤트가 지연시간 분포를 흔들기 때문에, 하드웨어 관점의 비용 모델이 필요합니다.
@@ -52,14 +52,32 @@ tags:
 같은 하드웨어 이벤트라도 원인이 코드 자체(언어·컴파일러)인지 운영체제 스케줄링인지에 따라 손볼 트랙이 달라지므로, 이 트랙은 하드웨어가 명령을 실행하는 방식만 다루고 그 명령을 만들어내는 상위 계층은 다른 트랙에 넘깁니다.
 
 - 언어 레벨 비용(추상화/할당/수명) (→ C++ 트랙)
+- 캐시 일관성·메모리 모델·false sharing (→ 동시성 트랙. 이 트랙은 단일 코어의 캐시 계층과 SMT 간섭까지만 다룹니다)
+- SIMD/벡터화 코드 작성 (→ 컴파일러·극한 최적화 트랙. 이 트랙은 벡터 유닛의 포트 압력 관점만 다룹니다)
 - 빌드/옵션/LTO/PGO 같은 컴파일러 설계 (→ 컴파일러 트랙)
 - OS 스케줄링/CPU pinning/syscall 비용 (→ OS/런타임 트랙)
+
+
+```mermaid
+flowchart LR
+  subgraph inScope [이 트랙]
+    A["파이프라인·분기"]
+    B["캐시·TLB·ILP"]
+    C["하드웨어 카운터"]
+  end
+  subgraph outScope [경계 밖]
+    D["할당·레이아웃 Tr.04"]
+    E["LTO·PGO Tr.03"]
+    F["스케줄링 Tr.06"]
+  end
+  inScope --> outScope
+```
 
 ## 커리큘럼
 
 **난이도 범례**: **기초**(입문) · **중급**(실무 핵심) · **심화**(깊은 분석·전문 주제) · **전문**(극한·니치). **Tr.NN**은 `optimization-NN-*` 트랙을 가리킵니다.
 
-입문자라면 표 순서만 따라가기보다 **17 → 01 → 02 → 03 → 05** 순서로 읽는 편이 좋습니다. 17은 TopDown에서 말하는 Frontend/Backend bound의 최소 직관을 만들고, 01–05는 그 직관을 파이프라인·분기·캐시·ILP로 연결합니다. 이후 Tr.03의 코드 생성 분석, Tr.04의 레이아웃 변경과 함께 읽으면 카운터 해석이 훨씬 빨라집니다.
+입문자라면 표 순서만 따라가기보다 **01과 17을 함께 읽은 뒤 02 → 03 → 05** 순서로 읽는 편이 좋습니다. 17은 TopDown에서 말하는 Frontend/Backend bound의 최소 직관을 만들고, 01–05는 그 직관을 파이프라인·분기·캐시·ILP로 연결합니다. 이후 Tr.03의 코드 생성 분석, Tr.04의 레이아웃 변경과 함께 읽으면 카운터 해석이 훨씬 빨라집니다.
 
 여기서도 표 순서는 **참조와 재방문을 위한 지도**로 유지합니다. CPU 트랙은 캐시, TLB, SMT, μOp cache 같은 주제를 장 번호로 다시 찾아보는 일이 많기 때문에, 표는 구조를 고정하고 위 추천 순서는 입문자의 이해 의존성을 맞추는 용도로 분리합니다.
 
@@ -84,11 +102,9 @@ tags:
 | 17 | Frontend vs Backend Bound 개념 | 기초 | TopDown 분석의 기초 직관과 병목 범주 구분 (선행: 챕터 01과 함께 읽기 권장) |
 | 18 | 의존성 체인·포트 압력 분석 | 중급 | 명령 의존성 체인 길이와 실행 포트 경합이 ILP에 미치는 영향 |
 
-(확인 시점 기준) ARM Neoverse V4는 아직 공식 세부 사양이 공개되지 않아 이 표에서 의도적으로 다루지 않습니다. 사양이 확정되면 13장(Apple Silicon 아키텍처) 인근에 서버 ARM 코어 비교로 추가하는 것을 검토합니다.
-
 ## 측정과 검증 (이 트랙 기준)
 
-마이크로아키텍처별 실행 유닛·파이프라인 단수·분기 예측기 구조의 1차 출처는 [Agner Fog, "The microarchitecture of Intel, AMD and ARM CPUs"](https://www.agner.org/optimize/microarchitecture.pdf)입니다. 이 문서가 반복해서 지적하는 흔한 오개념 하나를 짚으면: "캐시 미스 횟수를 줄이면 항상 성능이 좋아진다"는 보장이 없습니다. 캐시 미스를 줄이는 대신 명령 수가 늘거나 분기가 많아지면, 총 실행 시간은 오히려 늘어날 수 있습니다. 하드웨어 카운터 하나만 보고 최적화 방향을 정하지 말고, 항상 벤치마크의 실제 지연시간·처리량으로 최종 확인하는 것이 이 트랙의 원칙입니다.
+마이크로아키텍처별 실행 유닛·파이프라인 단수·분기 예측기 구조는 [Agner Fog, "The microarchitecture of Intel, AMD, and VIA CPUs"](https://www.agner.org/optimize/microarchitecture.pdf)와 [Intel 64 and IA-32 Architectures Optimization Reference Manual](https://cdrdv2-public.intel.com/814198/248966-Optimization-Reference-Manual-V1-049.pdf) 같은 1차 자료로 확인합니다. 이 트랙이 강조하는 원칙 하나를 짚으면: "캐시 미스 횟수를 줄이면 항상 성능이 좋아진다"는 보장이 없습니다. 캐시 미스를 줄이는 대신 명령 수가 늘거나 분기가 많아지면, 총 실행 시간은 오히려 늘어날 수 있습니다. 하드웨어 카운터 하나만 보고 최적화 방향을 정하지 말고, 항상 벤치마크의 실제 지연시간·처리량으로 최종 확인하는 것이 이 트랙의 원칙입니다.
 
 - 프로파일러/하드웨어 이벤트 기반으로 병목을 "원인"까지 연결
 - 코드 변경 전후에 캐시/분기 관련 지표와 레이턴시를 함께 비교
@@ -113,43 +129,19 @@ tags:
 
 ## Phase별 학습 궤적
 
-**Phase A — 모델 (챕터 17, 01–03, 05)** Frontend/Backend bound 직관 없이 카운터만 보면 숫자가 뜬금없이 느껴집니다. 17을 01과 함께 읽으면 이후 챕터에서 "어느 종류의 병목인지"를 먼저 분류할 수 있습니다.
+**Phase A — 모델 (챕터 17, 01–03, 05, 18)** Frontend/Backend bound 직관 없이 카운터만 보면 숫자가 뜬금없이 느껴집니다. 17을 01과 함께 읽으면 이후 챕터에서 "어느 종류의 병목인지"를 먼저 분류할 수 있습니다.
 
-**Phase B — 병목 해석 (챕터 04, 06–10)** 캐시 미스·OoO·TLB·추측 실행은 **심화**입니다. Tr.01의 perf/VTune과 같이 읽을 때 해석이 빨라집니다.
+**Phase B — 병목 해석 (챕터 04, 06, 07, 09, 10)** 캐시 미스·OoO·TLB·추측 실행은 **심화**입니다. Tr.01의 perf/VTune과 같이 읽을 때 해석이 빨라집니다.
 
 **Phase C — 벤더·전문 (챕터 08, 11–16)** Apple Silicon, SMT, μOp 캐시, RISC-V 등은 **플랫폼별·전문**에 가깝습니다. 배포 타깃이 정해졌을 때 집중하면 효율이 좋습니다.
 
-## 이 트랙을 마친 후 달성할 목표
+## 이 트랙의 목표와 읽은 후 확인
 
-- **설명**: 캐시 미스·분기 오답·ILP 한계가 지연에 어떻게 기여하는지 말로 설명할 수 있다.
-- **연결**: Tr.04 레이아웃 변경과 하드웨어 이벤트 변화를 대응시킬 수 있다.
-- **검증**: “지표는 좋아졌는데 p99는 그대로”인 경우를 의심하고 Tr.01로 재확인할 수 있다.
-- **경계**: 언어·컴파일러·OS 트랙과 질문을 나눌 수 있다.
+이 트랙의 목표는 캐시 미스·분기 오답·ILP 한계가 지연에 기여하는 방식을 설명하고, 하드웨어 이벤트와 코드 형태를 연결해 근거로 쓰며, 지표가 좋아져도 p99가 그대로인 경우를 의심하고, 언어·컴파일러·OS 트랙과 질문을 나누는 것입니다. 아래 세 질문에 스스로 답할 수 있으면 이 목표를 달성한 것으로 볼 수 있습니다.
 
-## 평가 기준과 이 장을 읽은 후 확인
-
-아래 세 질문에 스스로 답할 수 있으면, 이 트랙의 목표(하드웨어 이벤트를 코드 형태와 연결해 근거로 쓰는 것)를 달성한 것으로 볼 수 있습니다.
-
-- [ ] 이 트랙이 답하는 질문(하드 이벤트)과 Tr.02·Tr.03가 답하는 질문을 구분할 수 있는가?
+- [ ] 이 트랙이 답하는 질문(하드웨어 이벤트)과 Tr.02·Tr.03가 답하는 질문을 구분할 수 있는가?
 - [ ] **심화** 챕터를 읽기 전에 Tr.01로 어떤 이벤트를 봐야 할지 정할 수 있는가?
 - [ ] 과최적화 시 “p99까지 확인” 습관을 말로 설명할 수 있는가?
-
-## 범위와 경계
-
-```mermaid
-flowchart LR
-  subgraph inScope [이 트랙]
-    A["파이프라인·분기"]
-    B["캐시·TLB·ILP"]
-    C["하드웨어 카운터"]
-  end
-  subgraph outScope [경계 밖]
-    D["할당·레이아웃 Tr.04"]
-    E["LTO·PGO Tr.03"]
-    F["스케줄링 Tr.06"]
-  end
-  inScope --> outScope
-```
 
 ## 시리즈 전체 로드맵
 
@@ -157,7 +149,7 @@ flowchart LR
 
 ## 지금 바로 이어 읽을 곳
 
-**01 → 17 → 02 → 03** 순으로 읽으면 파이프라인 기초에서 TopDown 직관, 분기 예측, 캐시 계층까지 자연스럽게 이어집니다.
+**01과 17을 먼저, 이어서 02 → 03** 순으로 읽으면 파이프라인 기초에서 TopDown 직관, 분기 예측, 캐시 계층까지 자연스럽게 이어집니다.
 
 - [CPU 파이프라인 기초](/post/cpu-optimization/cpu-pipeline-fundamentals/) (챕터 01)
 - [Frontend vs Backend Bound 개념](/post/cpu-optimization/frontend-backend-bound-topdown-basics/) (챕터 17)
