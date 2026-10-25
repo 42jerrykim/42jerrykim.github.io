@@ -371,7 +371,7 @@
 | content/collection/optimization-08-optimization-techniques/08-lookup-table-optimization/index.md | 91.3 | 2026-10-25 | 1 | 통과 | 1.3 | 73710d7 | 없음(경미: L259 "컴파일러가 constexpr로 테이블을 스스로 만든다"는 부정확 — switch→점프/룩업 테이블 변환·상수 접기로 정정 필요; 사례 3 호출 예제·nibble 분리 부재, 컴파일 미확인; 초회 83.35) |
 | content/collection/optimization-08-optimization-techniques/09-bit-manipulation-optimization/index.md | 95.5 | 2026-10-25 | 2 | 통과 | 1.3 | 2c915cc | 없음(경미: 00 챕터가 배정한 정렬·배치 사례 중 배치 측면은 rank 사례로만 다룸; 초회 83.65) |
 | content/collection/optimization-08-optimization-techniques/10-hotpath-extreme-tuning/index.md | 90.9 | 2026-10-25 | 1 | 통과 | 1.3 | 397cb9e | 없음(경미: ablation 어원 출처 없음, 조합 폭발·세대 종속성 서술 중복) |
-| content/collection/optimization-08-optimization-techniques/11-maintainability-tradeoff/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/11-maintainability-tradeoff/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 3bfd9ac | 없음(개선여지: 리뷰 시간 서술 출처, Tr.01 약칭) |
 | content/collection/optimization-08-optimization-techniques/12-arm-neon-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-08-optimization-techniques/13-portable-simd-libraries/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-08-optimization-techniques/14-cpp26-std-simd/index.md | - | - | 0 | 미채점 | - | - | - |
