@@ -377,7 +377,7 @@
 | content/collection/optimization-08-optimization-techniques/14-cpp26-std-simd/index.md | 93.9 | 2026-10-25 | 2 | 통과 | 1.3 | d4da30f | 없음(경미: 런타임 디스패치 부재 서술 반복, P3275·basic_simd 표기 PDF 대조 미완) |
 | content/collection/optimization-08-optimization-techniques/15-cache-oblivious-algorithms/index.md | 93.9 | 2026-10-25 | 1 | 통과 | 1.3 | 72e9a6e | 없음(경미: 검증 코드 도입 문단 중복; FLPR99 PDF 링크 403 검증 불가) |
 | content/collection/optimization-08-optimization-techniques/16-gpu-offloading-fundamentals/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 62f2432 | 없음(개선여지: PCIe 64GB/s 1차 출처 병기) |
-| content/collection/optimization-08-optimization-techniques/17-ai-inference-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/17-ai-inference-optimization/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 45b8cd3 | 없음(경미: GPTQ·PTQ 서술 출처, NVFP4 비교 근거 — 채점 후 완화 반영) |
 | content/collection/optimization-08-optimization-techniques/18-simd-string-processing/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/00-introduction/index.md | 100 | 2026-07-25 | 2 | 통과 | 1.0 | 6161d63 | 없음 |
 | content/collection/optimization-09-io-network/01-io-cost-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
