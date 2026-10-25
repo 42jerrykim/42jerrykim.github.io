@@ -359,7 +359,7 @@
 | content/collection/optimization-07-concurrency/18-parallel-execution-policies/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | b6839f7 | 없음(경미: L79 P0333·P0394 exception_list 기각 경위 출처 없음, L182·L197이 L69·L79와 일부 재진술, 제목 접두 [Concurrency 07]/[Performance 07] 불일치) |
 | content/collection/optimization-07-concurrency/19-condition-variable-patterns/index.md | 96.55 | 2026-10-25 | 1 | 통과 | 1.3 | 9227fdb | 없음(경미: critic은 해시 e1895e5 본문을 96.55로 채점, 이후 description 길이만 177→157자로 줄임(린트 desc-len 지적 반영), L145·L159 이식성 서술 일부 중복, 과거 glibc requeue 사용·전환 시점에 직접 출처 없음) |
 | content/collection/optimization-07-concurrency/20-barrier-latch/index.md | 90.85 | 2026-10-25 | 1 | 통과 | 1.3 | bd56106 | 없음(경미: L159 'libstdc++는 futex 기반 atomic wait/notify 사용'은 붙은 GCC 패치 링크로 확인되지 않음, 마무리 체크리스트가 앞 절 일부 재진술, 비용 절이 정성 서술과 스켈레톤 벤치뿐, 통과선 근접) |
-| content/collection/optimization-07-concurrency/21-thread-per-core-io-uring/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/21-thread-per-core-io-uring/index.md | 93.85 | 2026-10-25 | 1 | 통과 | 1.3 | e301423 | 없음(경미: 오개념 절의 'Seastar·ScyllaDB는 2014년부터 epoll 기반으로도 구현' 연도·구현 방식 출처 없음, L73 '직접 확인' 문장 연속 중복, 벤치 예제에 io_uring_get_sqe null 검사와 submit·wait 반환값 검사 생략) |
 | content/collection/optimization-08-optimization-techniques/00-introduction/index.md | 95.2 | 2026-07-25 | 3 | 통과 | 1.0 | ebfac67 | 없음(경미: 측정 항목 리스트 근거 문단 여지) |
 | content/collection/optimization-08-optimization-techniques/01-simd-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-08-optimization-techniques/02-simd-intrinsics-practical/index.md | - | - | 0 | 미채점 | - | - | - |
