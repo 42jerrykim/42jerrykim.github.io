@@ -346,7 +346,7 @@
 | content/collection/optimization-07-concurrency/05-lock-free-fundamentals/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 04f59e3 | 없음(경미: Intel TSX 직접 인용에 intel.com 000059422 링크 미부기, Herlihy 논문 링크 없음, g++ 부재로 TaggedStack 예제 미컴파일) |
 | content/collection/optimization-07-concurrency/06-lock-free-data-structures/index.md | 92.5 | 2026-10-25 | 2 | 통과 | 1.3 | a9478f4 | 없음(경미: description이 dequeue 추가 미반영, 해시맵은 개념 스케치뿐, 큐 단독 main 예제 없음, rochester PDF ~경로 WebFetch 404이나 /u/scott 경로는 정상, Edge-Cases·Comparison 태그 근거 약함) |
 | content/collection/optimization-07-concurrency/07-hazard-pointers-rcu/index.md | 98.5 | 2026-10-25 | 3 | 통과 | 1.3 | c8d8635 | 없음(경미: 벤치마크 골격이 앞 절 Node·protect 정의에 의존하는 비독립 코드, Michael 2004 논문 링크 미부기, L153 합쇼체 어체 혼재, RCU grace period 도식 없음) |
-| content/collection/optimization-07-concurrency/08-spsc-mpmc-queues/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/08-spsc-mpmc-queues/index.md | 92.05 | 2026-10-25 | 2 | 통과 | 1.3 | d2fba87 | 없음(경미: BlockingSpscQueue에 main·테스트 없음, L365 '실패 반환 정책만 보였다'가 백프레셔 절과 어긋남, 세마포어 지연 비용 정량 근거 없음) |
 | content/collection/optimization-07-concurrency/09-cpp20-atomics/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/10-thread-pool-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/11-coroutine-concurrency/index.md | - | - | 0 | 미채점 | - | - | - |
