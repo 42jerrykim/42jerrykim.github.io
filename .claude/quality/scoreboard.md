@@ -357,7 +357,7 @@
 | content/collection/optimization-07-concurrency/16-executors-fundamentals/index.md | 92.8 | 2026-10-25 | 1 | 통과 | 1.3 | 7c12bd1 | 없음(경미: L236 '컴파일 에러 메시지가 길어진다고 보고됩니다' 출처 없음, '10여 년·10년 넘는 시간' 수치 근거 없음, scheduler/sender 절이 개념 수준이고 InlineSender::connect가 즉시 실행) |
 | content/collection/optimization-07-concurrency/17-senders-receivers-cpp26/index.md | 91.3 | 2026-10-25 | 2 | 통과 | 1.3 | a4f74bd | 없음(경미: Citadel Securities 링크 WebFetch 403으로 L119 요약을 원문 대조 못 함(검증 불가), spawn/spawn_future가 멤버인지 free function인지 P3149R11로 미확인, let_value 예제 없음) |
 | content/collection/optimization-07-concurrency/18-parallel-execution-policies/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | b6839f7 | 없음(경미: L79 P0333·P0394 exception_list 기각 경위 출처 없음, L182·L197이 L69·L79와 일부 재진술, 제목 접두 [Concurrency 07]/[Performance 07] 불일치) |
-| content/collection/optimization-07-concurrency/19-condition-variable-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/19-condition-variable-patterns/index.md | 90.85 | 2026-10-25 | 1 | 통과 | 1.3 | e1895e5 | 없음(경미: critic은 해시 6fa5b03 본문을 채점했고 지적된 description·마무리 체크리스트의 glibc requeue 단정은 이후 수정 반영함, L145·L159 이식성 서술 일부 중복, 과거 glibc requeue 사용에 직접 출처 없음(현행 소스 링크만), 통과선 근접) |
 | content/collection/optimization-07-concurrency/20-barrier-latch/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/21-thread-per-core-io-uring/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-08-optimization-techniques/00-introduction/index.md | 95.2 | 2026-07-25 | 3 | 통과 | 1.0 | ebfac67 | 없음(경미: 측정 항목 리스트 근거 문단 여지) |
