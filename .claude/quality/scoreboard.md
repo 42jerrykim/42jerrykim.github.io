@@ -349,7 +349,7 @@
 | content/collection/optimization-07-concurrency/08-spsc-mpmc-queues/index.md | 92.05 | 2026-10-25 | 2 | 통과 | 1.3 | d2fba87 | 없음(경미: BlockingSpscQueue에 main·테스트 없음, L365 '실패 반환 정책만 보였다'가 백프레셔 절과 어긋남, 세마포어 지연 비용 정량 근거 없음) |
 | content/collection/optimization-07-concurrency/09-cpp20-atomics/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | 7d0c87a | 없음(경미: L94 스핀 12/4회 단계 매핑은 Red Hat 글 상수 기반 추정, L109 Darwin ulock_wait 구현 서술 출처 없음, broken/fixed 조각이 main 없는 단독 비컴파일 조각) |
 | content/collection/optimization-07-concurrency/10-thread-pool-optimization/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | ffb3aff | 없음(경미: L63 Cilk++·TBB·TPL·ForkJoinPool·rayon 설계 근거 귀속 출처 없음, L172 '수십 개 이하 이론적 bound와 잘 맞음' 근거 없음, ThreadPool·벤치마크 블록이 앞 블록 의존·main 없음, Blumofe-Leiserson 논문 본문 미확인) |
-| content/collection/optimization-07-concurrency/11-coroutine-concurrency/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/11-coroutine-concurrency/index.md | 98.5 | 2026-10-25 | 1 | 통과 | 1.3 | d6dfdec | 없음(경미: ThreadPool이 선언뿐이고 main이 없으며 caller_bad가 Task를 co_await하지 않아 UAF 예제를 그대로 재현할 수 없음, 본문이 미실행·완성 프로그램 필요라고 명시) |
 | content/collection/optimization-07-concurrency/12-wait-free-programming/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/13-jthread-stop-token/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-07-concurrency/14-seqlock-pattern/index.md | - | - | 0 | 미채점 | - | - | - |
