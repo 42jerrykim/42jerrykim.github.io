@@ -431,7 +431,7 @@
 | content/collection/optimization-11-design-decisions/09-caching-strategy/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | f5c3aac | 없음(경미: L62 "대중화" 평가성 단정, 확률적 조기 갱신 스케치에 cache-aside 조회·main 없음) |
 | content/collection/optimization-11-design-decisions/10-database-access-optimization/index.md | 100 | 2026-10-25 | 2 | 통과 | 1.3 | 3e034c8 | 없음 |
 | content/collection/optimization-11-design-decisions/11-team-performance-culture/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 27371cc | 없음 |
-| content/collection/optimization-11-design-decisions/12-performance-code-review/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/12-performance-code-review/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | f9e4382 | 없음 |
 | content/collection/optimization-11-design-decisions/13-capacity-planning/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/14-load-testing-design/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/15-cost-performance-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
