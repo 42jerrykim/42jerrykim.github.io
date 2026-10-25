@@ -1,51 +1,43 @@
 ---
 collection_order: 10
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] 핫패스 극한 튜닝 사례"
 slug: hotpath-extreme-tuning-case-studies
-description: "여러 극한 기법(프리페치·branchless·SIMD)을 하나의 핫패스에 결합 적용한 사례를 통해, 각 기법의 기여도를 ablation 사다리와 leave-one-out으로 분리 측정하고 상호작용·재현성 위험을 판단하는 방법론을 다룹니다."
+description: "프리페치와 branchless 두 극한 기법을 하나의 핫패스에 결합한 사례를 통해, 각 기법의 기여도를 ablation 사다리와 leave-one-out으로 분리 측정하고 상호작용·재현성 위험을 판단하는 방법론을 다룹니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
   - C++
-  - Assembly
   - CPU(Central Processing Unit)
-  - Cache
-  - Memory(메모리)
   - Compiler(컴파일러)
   - Hardware(하드웨어)
   - Benchmark
   - Latency
-  - Throughput
   - Profiling(프로파일링)
-  - Testing(테스트)
   - Implementation(구현)
   - Best-Practices
   - Code-Quality(코드품질)
-  - Debugging(디버깅)
-  - Data-Structures(자료구조)
   - Advanced
   - Deep-Dive
   - Case-Study
   - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Reliability
   - Production
-  - SIMD
   - Branchless
   - Prefetch
-  - Lookup-Table
-  - Bit-Manipulation
+  - Locality(지역성)
+  - Cache-Miss(캐시미스)
+  - Cache-Locality(캐시지역성)
+  - Low-Level(로우레벨)
   - Ablation-Study
   - Microbenchmark
   - perf
 ---
 
-**핫패스 극한 튜닝 사례**란 SIMD 벡터화, 소프트웨어 프리페치, branchless 분기 제거, 룩업 테이블, 비트 조작, 필요하다면 hand-written 어셈블리까지 — 이 트랙에서 각 장이 개별적으로 다룬 극한 기법들을 하나의 실제 핫패스에 함께 적용하고, 전체 개선폭을 각 기법이 얼마나 기여했는지로 분리해 설명하는 작업을 말합니다. 실무에서는 어느 한 기법만 단독으로 적용하는 경우가 오히려 드뭅니다. 여러 기법을 순서대로 쌓아 올릴 때 흔히 두 가지 문제가 생깁니다. 하나는 전체 개선폭은 측정했지만 그중 어떤 기법이 실제로 효과를 냈는지 모르는 채로 코드에 복잡성만 쌓이는 경우이고, 다른 하나는 두 기법이 서로 간섭해 개별로 적용했을 때의 효과를 단순히 더한 값과 실제 결합 결과가 다르게 나오는 경우(가산성 붕괴)입니다. 이 장은 이 두 문제를 다루는 방법론 — 기여도를 분리해 측정하는 ablation 절차와, 그 결과를 신뢰할 수 있게 만드는 통계·환경 통제 기준 — 을 하나의 구체적인 사례를 통해 보입니다.
+**핫패스 극한 튜닝 사례**란 이 트랙에서 각 장이 개별적으로 다룬 극한 기법들을 하나의 실제 핫패스에 함께 적용하고, 전체 개선폭을 각 기법이 얼마나 기여했는지로 분리해 설명하는 작업을 말합니다. 이 장의 사례는 그중 소프트웨어 프리페치와 branchless 분기 제거 두 기법을 결합하며, SIMD·룩업 테이블·비트 조작·hand-written 어셈블리는 해당 장에 맡기고 이 방법론이 같은 방식으로 확장된다는 점만 짚습니다. 실무에서는 어느 한 기법만 단독으로 적용하는 경우가 오히려 드뭅니다. 여러 기법을 순서대로 쌓아 올릴 때 흔히 두 가지 문제가 생깁니다. 하나는 전체 개선폭은 측정했지만 그중 어떤 기법이 실제로 효과를 냈는지 모르는 채로 코드에 복잡성만 쌓이는 경우이고, 다른 하나는 두 기법이 서로 간섭해 개별로 적용했을 때의 효과를 단순히 더한 값과 실제 결합 결과가 다르게 나오는 경우(가산성 붕괴)입니다. 이 장은 이 두 문제를 다루는 방법론 — 기여도를 분리해 측정하는 ablation 절차와, 그 결과를 신뢰할 수 있게 만드는 통계·환경 통제 기준 — 을 하나의 구체적인 사례를 통해 보입니다.
 
 ## 이 장을 읽기 전에
 
@@ -63,17 +55,17 @@ tags:
 
 ## 기여도를 나눠 보는 발상의 뿌리
 
-"ablation(절제)"이라는 말은 원래 실험신경심리학에서 동물의 뇌 일부를 제거하고 그로 인한 행동 변화를 관찰하던 절차를 가리켰고, 이후 인공지능 분야로 넘어와 "시스템에서 구성요소 하나를 제거했을 때 성능이 얼마나 변하는지 보고 그 구성요소의 기여도를 추정한다"는 뜻으로 쓰이게 되었다고 알려져 있습니다. 저성능 컴퓨팅·저지연 시스템 엔지니어링 쪽에서는 이 발상이 다른 경로로도 이미 자리 잡고 있었습니다. 2011년 LMAX 거래소 팀(Martin Thompson, Dave Farley, Michael Barker, Patricia Gee, Andrew Stewart)은 Disruptor 자료구조를 설계하면서 하드웨어 동작 원리를 이해하고 그에 맞춰 코드를 짜는 태도를 **mechanical sympathy**라고 불렀습니다.
+"ablation(절제)"이라는 말은 원래 실험신경심리학에서 동물의 뇌 일부를 제거하고 그로 인한 행동 변화를 관찰하던 절차를 가리켰고, 이후 인공지능 분야로 넘어와 "시스템에서 구성요소 하나를 제거했을 때 성능이 얼마나 변하는지 보고 그 구성요소의 기여도를 추정한다"는 뜻으로 쓰이게 되었다고 알려져 있습니다. 저지연 시스템 엔지니어링 쪽에서는 이 발상이 다른 경로로도 이미 자리 잡고 있었습니다. 2011년 LMAX 거래소 팀(Martin Thompson, Dave Farley, Michael Barker, Patricia Gee, Andrew Stewart)은 Disruptor 자료구조를 설계하면서 하드웨어 동작 원리를 이해하고 그에 맞춰 코드를 짜는 태도를 **mechanical sympathy**라고 불렀습니다.
 
 > "something we like to call 'mechanical sympathy'" — [LMAX Disruptor Technical Paper](https://lmax-exchange.github.io/disruptor/disruptor.html) (Thompson et al., 2011)
 
-이 팀이 강조한 것은 "왜 빨라졌는지 하드웨어 수준에서 설명할 수 있어야 한다"는 태도였고, 이는 곧 "무엇이 개선을 만들었는지 성분별로 분리해서 말할 수 있어야 한다"는 요구로 이어집니다. 여기에 더해 2018–2019년경 Denis Bakhvalov 등 퍼포먼스 엔지니어링 커뮤니티가 정리한 벤치마크 노이즈 통제 관행(주파수 고정, 코어 고정, 반복·통계 처리)이 결합되면서, 이 장에서 쓰는 "기법을 하나씩 넣고 빼며 측정한다"는 절차가 실무에서 재현 가능한 형태로 굳어졌습니다.
+하드웨어 동작 원리에 맞춰 설계한다는 이 태도는 왜 빨라졌는지를 하드웨어 수준에서 설명할 수 있어야 한다는 요구로, 다시 무엇이 개선을 만들었는지 성분별로 분리해 말할 수 있어야 한다는 요구로 이어진다고 볼 수 있습니다(이 연결은 이 글의 해석입니다). 여기에 퍼포먼스 엔지니어링 커뮤니티가 정리해 온 벤치마크 노이즈 통제 관행(주파수 고정, 코어 고정, 반복·통계 처리, 구체적 절차는 아래 측정 절에서 인용하는 easyperf 가이드 참고)이 결합되어, 이 장에서 쓰는 기법을 하나씩 넣고 빼며 측정하는 절차를 재현 가능하게 만듭니다.
 
 ## 기여도 분리: ablation 사다리와 leave-one-out
 
 **ablation 사다리**는 스칼라 baseline에서 시작해 기법을 한 번에 하나씩 얹으며 매 단계마다 벤치마크를 다시 돌리는 절차입니다. baseline은 반드시 정확성 오라클(참조 구현) 역할도 겸해야 하므로, 이후 단계의 출력은 매번 baseline과 값이 같은지 비교해 회귀를 조기에 잡습니다. 문제는 사다리를 쌓는 **순서**가 결과를 왜곡할 수 있다는 점입니다. 기법 A를 먼저 넣고 B를 나중에 넣으면, B가 측정하는 "개선폭"은 이미 A가 없애 버린 병목 위에서 남은 몫일 뿐이고, 반대 순서로 쌓으면 A와 B의 몫이 뒤바뀌어 보일 수 있습니다. 두 기법이 같은 자원(예: 로드 포트, L1 대역폭)을 두고 경쟁한다면 이 순서 의존성은 결코 무시할 크기가 아닙니다.
 
-이 왜곡을 잡아내는 방법이 **leave-one-out** 비교입니다. 기법이 A, B 둘뿐이라면 { }, {A}, {B}, {A,B} 네 가지 조합을 모두 측정하는 완전 요인 설계(full factorial)가 그대로 leave-one-out이 됩니다. {A,B}의 측정값이 {A}와 {B} 각각의 개선폭을 baseline 대비로 단순히 곱하거나 더한 값과 비슷하면 "가산적"이라고 판단해 각 기법의 기여도를 독립적으로 보고할 수 있고, 크게 어긋나면 두 기법이 상호작용하고 있다는 신호이므로 perf 카운터로 원인을 더 파야 합니다. 기법이 서너 개를 넘어가면 조합 수가 2의 거듭제곱으로 불어나므로, 실무에서는 전수 조사 대신 "상호작용이 의심되는 한두 쌍"만 leave-one-out으로 확인하는 절충안을 씁니다.
+이 왜곡을 잡아내는 방법이 **leave-one-out** 비교입니다. 모든 기법을 적용한 결합 버전에서 기법을 하나씩만 빼고 다시 측정해, 뺐을 때 얼마나 느려지는지를 그 기법의 기여도로 봅니다. 기법이 A, B 둘뿐이라면 {A,B}에서 A를 뺀 {B}, B를 뺀 {A}가 곧 leave-one-out 측정입니다. 여기에 아무것도 적용하지 않은 { }까지 더해 { }, {A}, {B}, {A,B} 네 조합을 모두 재는 것이 완전 요인 설계(full factorial)로, 순서에 의존하지 않고 상호작용을 직접 확인할 수 있습니다. {A,B}의 개선폭이 {A}와 {B} 각각의 개선폭으로부터 예상한 값(비율로 보면 곱, 시간 절감으로 보면 합)과 비슷하면 "가산적"이라고 판단해 각 기법의 기여도를 독립적으로 보고할 수 있고, 크게 어긋나면 두 기법이 상호작용하고 있다는 신호이므로 perf 카운터로 원인을 더 파야 합니다. 기법이 서너 개를 넘어가면 완전 요인 설계의 조합 수는 2의 거듭제곱으로 불어나지만 leave-one-out은 기법 수만큼만 늘어나므로, 실무에서는 전수 조사 대신 결합 버전에서 하나씩 빼는 측정에 "상호작용이 의심되는 한두 쌍"의 조합 측정을 더하는 절충안을 씁니다.
 
 ```mermaid
 flowchart TD
@@ -161,53 +153,99 @@ std::int64_t sum_qty_branchless(const std::vector<Order>& records,
 }
 ```
 
-두 기법을 합친 `sum_qty_combined`는 프리페치 루프 본문의 조건 분기를 위 마스크 연산으로 바꾸기만 하면 됩니다. SIMD로 가격 비교를 레인 단위로 처리하거나 hand-written 어셈블리로 루프 오버헤드를 더 줄이는 것도 이 사다리의 다음 칸이 될 수 있지만, 각각 [SIMD 트랙](/post/extreme-optimization/simd-fundamentals-sse-avx/)과 [Hand-written 어셈블리](/post/extreme-optimization/hand-written-assembly-risk-management/)의 몫이므로 이 장에서는 사다리 개념을 보여 주는 선에서 두 기법으로 범위를 제한합니다.
+두 기법을 합친 `sum_qty_combined`는 프리페치 루프 본문의 조건 분기를 위 마스크 연산으로 바꾼 것이며, 다음 절의 독립 실행 프로그램에 함께 들어 있습니다. SIMD로 가격 비교를 레인 단위로 처리하거나 hand-written 어셈블리로 루프 오버헤드를 더 줄이는 것도 이 사다리의 다음 칸이 될 수 있지만, 각각 [SIMD 트랙](/post/extreme-optimization/simd-fundamentals-sse-avx/)과 [Hand-written 어셈블리](/post/extreme-optimization/hand-written-assembly-risk-management/)의 몫이므로 이 장에서는 사다리 개념을 보여 주는 선에서 두 기법으로 범위를 제한합니다.
 
 ## 측정: 노이즈 통제와 믿을 수 있는 숫자
 
-**결합 튜닝의 기여도 분리는 측정 자체의 노이즈보다 작은 차이를 다루는 경우가 많으므로, 환경 통제와 반복 없이는 숫자를 신뢰할 수 없습니다.** 아래는 baseline·prefetched·branchless·combined 네 버전을 같은 데이터로 비교하는 Google Benchmark 스켈레톤입니다. `Repetitions`로 여러 번 반복해 중앙값과 변동계수(CV%)를 함께 보고하도록 합니다.
+**결합 튜닝의 기여도 분리는 측정 자체의 노이즈보다 작은 차이를 다루는 경우가 많으므로, 환경 통제와 반복 없이는 숫자를 신뢰할 수 없습니다.** 아래는 네 버전(baseline·prefetched·branchless·combined)에 더해 각 버전의 결과가 baseline과 같은지 확인하고, 15회 반복한 중앙값과 변동계수(CV%)를 출력하는 독립 실행 프로그램입니다. 위 절의 구현을 한 파일에 모았습니다.
 
 ```cpp
-#include <benchmark/benchmark.h>
+#include <xmmintrin.h>
 #include <algorithm>
+#include <chrono>
+#include <cmath>
 #include <cstdint>
+#include <cstdio>
 #include <random>
 #include <vector>
 
 struct Order { double price; std::uint64_t qty; };
+constexpr std::size_t kPrefetchDistance = 8;  // 설명용 값: 대상 하드웨어에서 스윕해 정할 것
 
-static std::vector<Order> make_records(std::size_t n) {
+using Fn = std::int64_t (*)(const std::vector<Order>&, const std::vector<std::uint32_t>&, double);
+
+std::int64_t sum_qty_baseline(const std::vector<Order>& r, const std::vector<std::uint32_t>& ix, double th) {
+  std::int64_t total = 0;
+  for (auto i : ix) if (r[i].price >= th) total += static_cast<std::int64_t>(r[i].qty);
+  return total;
+}
+
+std::int64_t sum_qty_prefetched(const std::vector<Order>& r, const std::vector<std::uint32_t>& ix, double th) {
+  std::int64_t total = 0;
+  const std::size_t n = ix.size();
+  for (std::size_t k = 0; k < n; ++k) {
+    if (k + kPrefetchDistance < n)
+      _mm_prefetch(reinterpret_cast<const char*>(&r[ix[k + kPrefetchDistance]]), _MM_HINT_T0);
+    if (r[ix[k]].price >= th) total += static_cast<std::int64_t>(r[ix[k]].qty);
+  }
+  return total;
+}
+
+std::int64_t sum_qty_branchless(const std::vector<Order>& r, const std::vector<std::uint32_t>& ix, double th) {
+  std::uint64_t total = 0;
+  for (auto i : ix) total += r[i].qty & (0u - static_cast<std::uint64_t>(r[i].price >= th));
+  return static_cast<std::int64_t>(total);
+}
+
+std::int64_t sum_qty_combined(const std::vector<Order>& r, const std::vector<std::uint32_t>& ix, double th) {
+  std::uint64_t total = 0;
+  const std::size_t n = ix.size();
+  for (std::size_t k = 0; k < n; ++k) {
+    if (k + kPrefetchDistance < n)
+      _mm_prefetch(reinterpret_cast<const char*>(&r[ix[k + kPrefetchDistance]]), _MM_HINT_T0);
+    total += r[ix[k]].qty & (0u - static_cast<std::uint64_t>(r[ix[k]].price >= th));
+  }
+  return static_cast<std::int64_t>(total);
+}
+
+static void bench(const char* name, Fn fn, const std::vector<Order>& r,
+                  const std::vector<std::uint32_t>& ix, std::int64_t oracle) {
+  if (fn(r, ix, 500.0) != oracle) { std::printf("%-12s MISMATCH\n", name); return; }
+  std::vector<double> ms;
+  for (int rep = 0; rep < 15; ++rep) {
+    auto t0 = std::chrono::steady_clock::now();
+    volatile std::int64_t sink = fn(r, ix, 500.0);
+    (void)sink;
+    ms.push_back(std::chrono::duration<double, std::milli>(std::chrono::steady_clock::now() - t0).count());
+  }
+  double mean = 0; for (double x : ms) mean += x; mean /= ms.size();
+  double var = 0; for (double x : ms) var += (x - mean) * (x - mean);
+  double cv = 100.0 * std::sqrt(var / ms.size()) / mean;
+  std::sort(ms.begin(), ms.end());
+  std::printf("%-12s median %8.3f ms  CV %5.1f%%\n", name, ms[ms.size() / 2], cv);
+}
+
+int main() {
+  const std::size_t n = 1'000'000;
   std::mt19937_64 rng(42);
-  std::uniform_real_distribution<double> price_dist(0.0, 1000.0);
-  std::uniform_int_distribution<std::uint64_t> qty_dist(1, 500);
-  std::vector<Order> v(n);
-  for (auto& o : v) { o.price = price_dist(rng); o.qty = qty_dist(rng); }
-  return v;
+  std::uniform_real_distribution<double> price(0.0, 1000.0);
+  std::uniform_int_distribution<std::uint64_t> qty(1, 500);
+  std::vector<Order> records(n);
+  for (auto& o : records) { o.price = price(rng); o.qty = qty(rng); }
+  std::vector<std::uint32_t> indices(n);
+  for (std::size_t i = 0; i < n; ++i) indices[i] = static_cast<std::uint32_t>(i);
+  std::shuffle(indices.begin(), indices.end(), rng);  // HW 스트라이드 프리페처 학습 무력화
+
+  const std::int64_t oracle = sum_qty_baseline(records, indices, 500.0);
+  bench("baseline", sum_qty_baseline, records, indices, oracle);
+  bench("prefetched", sum_qty_prefetched, records, indices, oracle);
+  bench("branchless", sum_qty_branchless, records, indices, oracle);
+  bench("combined", sum_qty_combined, records, indices, oracle);
+  return 0;
 }
-
-static std::vector<std::uint32_t> make_shuffled_indices(std::size_t n) {
-  std::vector<std::uint32_t> idx(n);
-  for (std::size_t i = 0; i < n; ++i) idx[i] = static_cast<std::uint32_t>(i);
-  std::mt19937_64 rng(7);
-  std::shuffle(idx.begin(), idx.end(), rng);  // HW 스트라이드 프리페처의 학습을 무력화
-  return idx;
-}
-
-// sum_qty_baseline / sum_qty_prefetched / sum_qty_branchless / sum_qty_combined는
-// 위에서 정의한 구현을 그대로 링크해 사용
-static void BM_Baseline(benchmark::State& state) {
-  auto records = make_records(1'000'000);
-  auto indices = make_shuffled_indices(1'000'000);
-  for (auto _ : state) benchmark::DoNotOptimize(sum_qty_baseline(records, indices, 500.0));
-}
-BENCHMARK(BM_Baseline)->Repetitions(15)->ReportAggregatesOnly(true);
-
-// BM_Prefetched, BM_Branchless, BM_Combined도 동일한 데이터 생성 로직으로 등록
-
-BENCHMARK_MAIN();
 ```
 
-`g++ -O2 -std=c++20 bench.cpp -lbenchmark -lpthread`(x86-64, GCC 13 기준 예시)로 빌드한 뒤, 각 조합을 `perf stat -r 15 -e cycles,instructions,branch-misses,cache-misses ./bench --benchmark_filter=BM_Combined`처럼 실행하면 실행 시간뿐 아니라 branch-miss·cache-miss 카운트 변화로 "왜" 빨라졌는지까지 근거를 남길 수 있습니다. 실제 배율은 CPU 세대·컴파일러·데이터 분포에 따라 달라지므로, 이 장의 수치를 그대로 인용하지 말고 대상 환경에서 직접 재현해야 합니다. 벤치마크를 돌리기 전에는 Turbo Boost·하이퍼스레딩을 끄고 CPU governor를 `performance`로 고정하며 프로세스를 특정 코어에 pin하는 것이 좋고, 구체적인 절차는 easyperf의 [Linux 벤치마킹 환경 가이드](https://easyperf.net/blog/2019/08/02/Perf-measurement-environment-on-Linux)에 정리되어 있습니다. 반복 실행과 집계 통계는 [Google Benchmark 사용자 가이드](https://github.com/google/benchmark/blob/main/docs/user_guide.md)의 `Repetitions`/`ReportAggregatesOnly` 기능으로 처리하고, 측정값이 이론적으로 말이 되는지는 [Agner Fog의 명령어 표·최적화 매뉴얼](https://www.agner.org/optimize/)로 대조하며, 카운터 이벤트 자체의 의미는 [perf stat 튜토리얼](https://perfwiki.github.io/main/tutorial/#counting-with-perf-stat)을 참고합니다.
+`g++ -O2 -std=c++20 hotpath_bench.cpp -o hotpath_bench`로 빌드해 실행합니다. 이 글은 실행 결과를 싣지 않았습니다. 버전별로 분리하려면 프로그램을 수정해 한 번에 한 버전만 돌리게 한 뒤 `perf stat -e cycles,instructions,branch-misses,cache-misses ./hotpath_bench`처럼 실행하면 실행 시간뿐 아니라 branch-miss·cache-miss 카운트 변화로 "왜" 빨라졌는지까지 근거를 남길 수 있습니다. 실제 배율은 CPU 세대·컴파일러·데이터 분포에 따라 달라지므로 대상 환경에서 직접 재현해야 합니다. 벤치마크를 돌리기 전에는 Turbo Boost·하이퍼스레딩을 끄고 CPU governor를 `performance`로 고정하며 프로세스를 특정 코어에 pin하는 것이 좋고, 구체적인 절차는 easyperf의 [Linux 벤치마킹 환경 가이드](https://easyperf.net/blog/2019/08/02/Perf-measurement-environment-on-Linux)에 정리되어 있습니다. 반복 실행과 집계 통계는 [Google Benchmark 사용자 가이드](https://github.com/google/benchmark/blob/main/docs/user_guide.md)의 `Repetitions`/`ReportAggregatesOnly` 기능으로 처리하고, 측정값이 이론적으로 말이 되는지는 [Agner Fog의 명령어 표·최적화 매뉴얼](https://www.agner.org/optimize/)로 대조하며, 카운터 이벤트 자체의 의미는 [perf stat 튜토리얼](https://perfwiki.github.io/main/tutorial/#counting-with-perf-stat)을 참고합니다.
 
 ## 흔한 오개념
 
@@ -227,13 +265,6 @@ BENCHMARK_MAIN();
 | 마이크로벤치마크 개선폭이 운영 p99에 반영되는지 불확실 | Tr.01 방법으로 배포 환경에서 재검증 | 벤치마크 숫자만으로 배포 승인 |
 | 기법을 더할수록 복잡성·리뷰 비용이 급격히 증가 | [11장 유지보수성 균형](/post/extreme-optimization/extreme-optimization-maintainability-balance/) 기준으로 예산 판단 | 성능 숫자만으로 무조건 채택 |
 
-### 자주 하는 실수
-
-- **개별 벤치마크 숫자를 그대로 합산**: 가산성을 확인하지 않고 "A가 20%, B가 15% 개선이니 결합하면 35%"라고 단정한다.
-- **사다리 순서를 한 방향으로만 측정**: A→B 순서만 측정하고 B→A 순서는 확인하지 않아 순서 의존적 착시를 놓친다.
-- **정확성 오라클 없이 최적화**: 각 단계의 출력을 baseline과 비교하지 않아, 성능은 좋아졌지만 결과가 틀린 버전을 채택한다.
-- **마이크로벤치마크 결과를 운영 승인 근거로 그대로 사용**: 배포 환경에서의 p99 재검증을 건너뛴다.
-
 ## 비판적 시각: 한계와 트레이드오프
 
 **조합의 폭발**이 가장 근본적인 한계입니다. 기법이 늘어날수록 완전 요인 설계에 필요한 조합 수는 2의 거듭제곱으로 늘어나므로, 서너 개를 넘는 순간 전수 조사는 현실적으로 불가능해지고 "의심되는 쌍만 확인한다"는 절충 자체가 이미 일부 상호작용을 놓칠 위험을 내포합니다. **하드웨어·컴파일러 세대 종속성**도 반복해 둘 만합니다. 이 장에서 보인 프리페치 거리, branchless 채택 여부, 두 기법의 상호작용 방향은 모두 특정 CPU 세대·컴파일러 버전에서 관측된 결과이며, 다음 세대 CPU나 컴파일러 업그레이드에서 같은 결론이 유지된다는 보장은 없습니다. **복잡성 대비 이득의 체감**도 무시할 수 없습니다. 기법을 하나씩 더할 때마다 코드 리뷰·유지보수 비용은 거의 선형으로 늘어나는데, 성능 이득은 병목이 이미 다른 기법으로 상당 부분 제거된 뒤라 갈수록 줄어드는 경우가 흔하므로, 어느 시점부터는 다음 기법을 더하는 대신 [유지보수성과의 균형](/post/extreme-optimization/extreme-optimization-maintainability-balance/)을 먼저 따져야 합니다.
@@ -241,7 +272,7 @@ BENCHMARK_MAIN();
 ## 마무리
 
 - [ ] ablation 사다리에서 순서가 기여도 측정을 왜곡할 수 있는 이유를 설명할 수 있다.
-- [ ] leave-one-out(완전 요인 설계)으로 두 기법의 가산성·상호작용을 구분해 측정할 수 있다.
+- [ ] leave-one-out과 완전 요인 설계의 차이를 설명하고, 이를 이용해 두 기법의 가산성·상호작용을 구분해 측정할 수 있다.
 - [ ] 정확성 오라클(baseline)과 매 단계의 출력을 비교해 회귀를 조기에 잡을 수 있다.
 - [ ] 벤치마크 노이즈 통제(주파수 고정, 코어 pin, 반복·통계)의 필요성을 설명할 수 있다.
 - [ ] perf 카운터로 "무엇이 개선을 만들었는지" 근거를 남기는 절차를 설명할 수 있다.
