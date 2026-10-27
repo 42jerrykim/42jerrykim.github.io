@@ -111,7 +111,7 @@
 | content/collection/design-patterns/23-pattern-code-review-design-review-practice/index.md | 100 | 2026-07-19 | 5 | 통과 | 1.0 | 835f0f5 | 없음 |
 | content/collection/design-patterns/24-discovering-defining-new-patterns/index.md | 93 | 2026-07-19 | 5 | 통과 | 1.0 | e99ea78 | 없음 |
 | content/collection/design-patterns/24-discovering-defining-new-patterns-practice/index.md | 97 | 2026-07-19 | 5 | 통과 | 1.0 | d80cdab | 없음 |
-| content/collection/computerterms/00-getting-started-computer-terms/index.md | 95.2 | 2026-07-22 | 3 | 통과 | 1.0 | 57e913a | 없음(경미: 표 의존도가 높아 항목3에서 표를 빼면 갈래 목록 자체는 문단만으로 전달 안 됨) |
+| content/collection/computerterms/00-getting-started-computer-terms/index.md | 98.05 | 2026-10-28 | 4 | 통과 | 1.3 | e7a4353 | 없음(경미: 항목4 선행 챕터 안내 L68·L72·L74 중복 재진술, 산문 비율 40.2%로 문턱 근접) |
 | content/collection/computerterms/aba-problem/index.md | 92.8 | 2026-07-22 | 1 | 통과 | 1.0 | 2129b5e | 없음(경미: IEEE 링크 WAF 챌린지로 자동검증 불가) |
 | content/collection/computerterms/aicd/index.md | 96.1 | 2026-07-22 | 2 | 통과 | 1.0 | 31c355f | 없음 |
 | content/collection/computerterms/algorithm/index.md | 94.6 | 2026-07-22 | 3 | 통과 | 1.0 | 4decbcc | 없음 |
@@ -1993,3 +1993,4 @@
 | content/post/2026/2026-10-24-coding-is-not-solved-comprehension-gap/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-25-postgres-isnt-slow-storage-is/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-26-frontier-model-price-war-sol-opus-55/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-10-28-claude-code-mods-multiplayer-artifacts/index.md | - | - | - | 미채점 | - | - | - |
