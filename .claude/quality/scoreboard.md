@@ -485,7 +485,7 @@
 | content/collection/Algorithm/2024/2024-10-16-BOJ-1214/index.md | 91.3 | 2026-10-24 | 1 | 통과 | 1.3 | bc797a8 | 없음(경미: y·Q 최대치 서술 "10^18"은 창 안에서 약 10^15 — L153·L159·L313 정정 여지, categories frontmatter 부재) |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-13416/index.md | 94 | 2026-10-25 | 1 | 통과 | 1.3 | 2ad9124 | 없음(BOJ 링크 봇 차단 404 — 검증 불가, 개선여지: 입력 제약 명시·DP 변형 점화식) |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-1384/index.md | 91.3 | 2026-10-26 | 1 | 통과 | 1.3 | 9e1d324 | 없음(경미: 항목7=85 본문에 없는 일반 태그 Refactoring/Clean-Code/Debugging/Testing 등 잔존, BOJ 링크 봇 차단으로 검증 불가) |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-14752/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-14752/index.md | 91.6 | 2026-10-31 | 2 | 통과 | 1.3 | ea28fad | 입출력 예제·참고 문헌 절, Mermaid 흐름도, 코드 출처 주석 없음(경미); acmicpc 링크 봇 차단으로 검증 불가 |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-15025/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-16349/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-18406/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1994,3 +1994,4 @@
 | content/post/2026/2026-10-25-postgres-isnt-slow-storage-is/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-26-frontier-model-price-war-sol-opus-55/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-28-claude-code-mods-multiplayer-artifacts/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-10-31-glyph-serious-ai-product-checklist/index.md | - | - | - | 미채점 | - | - | - |
