@@ -1995,3 +1995,4 @@
 | content/post/2026/2026-10-26-frontier-model-price-war-sol-opus-55/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-28-claude-code-mods-multiplayer-artifacts/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-31-glyph-serious-ai-product-checklist/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-10-27-packnfold-sleevemat-laptop-case-lineup/index.md | - | - | - | 미채점 | - | - | - |
