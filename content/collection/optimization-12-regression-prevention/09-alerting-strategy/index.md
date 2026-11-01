@@ -23,8 +23,6 @@ tags:
   - Reference(참고)
   - Deep-Dive
   - Advanced
-  - Case-Study
-  - 실습
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
@@ -121,7 +119,7 @@ def is_anomalous(history: list[float], current: float, k: float = 3.0) -> bool:
 
 ## 알림 피로 방지: 우선순위와 라우팅 설계
 
-알림 피로를 관리하는 실무 도구는 크게 세 가지로 나뉩니다. 첫째는 <strong>심각도 분류(severity classification)</strong>로, 알림을 발생시키기 전에 "이 알림이 지금 당장 사람을 깨워야 하는가"를 미리 정의해두는 것입니다. 흔히 P1(사용자 영향 확정, 즉시 페이지)부터 P4(추세 관찰용, 알림 없이 대시보드만)까지 단계를 두고, 알림 규칙 작성 시점에 각 알림이 어느 단계에 속하는지 명시적으로 라벨링합니다. 둘째는 <strong>그룹화·억제(grouping·inhibition)</strong>로, Prometheus Alertmanager 같은 라우팅 계층이 같은 원인에서 나온 여러 알림을 하나로 묶거나(grouping), 상위 심각도 알림이 이미 발화했을 때 하위 심각도의 파생 알림을 억제(inhibit)해 중복 페이지를 막습니다. 셋째는 <strong>억제 창(suppression window)</strong>으로, 배포·카나리 진행 중처럼 지표 변화가 예상된 구간에는 알림을 일시적으로 음소거해 [카나리 배포와 성능 검증](/post/regression-prevention/canary-deployment-performance-verification/) 단계의 정상적인 변동을 회귀 알림과 구분합니다.
+알림 피로를 관리하는 실무 도구는 크게 세 가지로 나뉩니다. 첫째는 <strong>심각도 분류(severity classification)</strong>로, 알림을 발생시키기 전에 "이 알림이 지금 당장 사람을 깨워야 하는가"를 미리 정의해두는 것입니다. 흔히 P1(사용자 영향 확정, 즉시 페이지)부터 P3(일일 다이제스트로 확인하는 관찰 대상)와 P4(추세 관찰용, 알림 없이 대시보드만)까지 단계를 두고, 알림 규칙 작성 시점에 각 알림이 어느 단계에 속하는지 명시적으로 라벨링합니다. 둘째는 <strong>그룹화·억제(grouping·inhibition)</strong>로, Prometheus Alertmanager 같은 라우팅 계층이 같은 원인에서 나온 여러 알림을 하나로 묶거나(grouping), 상위 심각도 알림이 이미 발화했을 때 하위 심각도의 파생 알림을 억제(inhibit)해 중복 페이지를 막습니다. 셋째는 <strong>억제 창(suppression window)</strong>으로, 배포·카나리 진행 중처럼 지표 변화가 예상된 구간에는 알림을 일시적으로 음소거해 [카나리 배포와 성능 검증](/post/regression-prevention/canary-deployment-performance-verification/) 단계의 정상적인 변동을 회귀 알림과 구분합니다.
 
 ```mermaid
 flowchart LR
@@ -130,6 +128,7 @@ flowchart LR
   severity -->|"P1 긴급"| page["온콜 페이지"]
   severity -->|"P2 경보"| ticket["팀 채널 알림"]
   severity -->|"P3 관찰"| digest["일일 다이제스트"]
+  severity -->|"P4 추세"| board["대시보드만 (알림 없음)"]
   page --> dedup["그룹화/억제 (Alertmanager)"]
   ticket --> dedup
   dedup --> escalate["미응답 시 에스컬레이션"]
