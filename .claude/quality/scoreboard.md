@@ -451,7 +451,7 @@
 | content/collection/optimization-12-regression-prevention/10-canary-deployment/index.md | 95.8 | 2026-11-01 | 0 | 통과 | 1.3 | 57dceaa | 없음(채점 후 출처 없는 연대·Kayenta 귀속 삭제, PromQL sum by (le) 보정, baseline 별도 배포·미실행 명시, 재채점 생략) |
 | content/collection/optimization-12-regression-prevention/11-performance-incident-response/index.md | 94.3 | 2026-11-01 | 0 | 통과 | 1.3 | 5217e68 | 없음(채점 후 챕터 번호 Ch09·Ch16 정정, bisect 스크립트 단위를 ns로 정정, 무관 태그 2개 삭제, 재채점 생략) |
 | content/collection/optimization-12-regression-prevention/12-long-term-trend-analysis/index.md | 92.3 | 2026-11-01 | 1 | 통과 | 1.3 | 0ff6168 | 없음(초회 83.0 치명결함 1(Prophet 링크 404)→Revise 1회 92.3; 재채점 후 체크리스트 문구 1곳 정정, 재채점 생략) |
-| content/collection/optimization-12-regression-prevention/13-performance-debt-management/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/13-performance-debt-management/index.md | 95.8 | 2026-11-01 | 0 | 통과 | 1.3 | f7bb58c | 없음(채점 후 SRE 정책 귀속을 원문 규정 범위로 정정, 코드 가정·미컴파일 명시, 재채점 생략) |
 | content/collection/optimization-12-regression-prevention/14-benchmark-as-code/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-12-regression-prevention/15-monitoring-dashboard/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-12-regression-prevention/16-postmortem-analysis/index.md | - | - | 0 | 미채점 | - | - | - |

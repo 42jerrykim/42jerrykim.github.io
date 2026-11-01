@@ -72,7 +72,7 @@ tags:
 
 이 은유는 이후 코드 구조 전반의 리팩터링 필요성을 가리키는 말로 자리잡았습니다. Martin Fowler는 2009년 [기술 부채 사분면(Technical Debt Quadrant)](https://martinfowler.com/bliki/TechnicalDebtQuadrant.html)에서 이 개념을 "신중한(prudent) vs 무분별한(reckless)"과 "의도적(deliberate) vs 비의도적(inadvertent)" 두 축으로 나눴는데, 이 장이 다루는 성능 부채는 이 사분면 중 정확히 **신중하고 의도적인 부채**만을 가리킵니다. 존재조차 몰랐던 병목이 방치된 경우(무분별하거나 비의도적인 경우)는 부채가 아니라 [성능 회귀](/post/regression-prevention/performance-regression-definition-detection-fundamentals/) 그 자체로 취급해야 합니다.
 
-성능 영역에서 이 은유를 신뢰성 있게 실천한 대표적 사례는 Google SRE의 error budget 정책입니다. 이 정책은 한 분기 동안 특정 장애 유형이 예산의 20%를 초과해 소비하면 다음 분기 계획에 P0 항목으로 강제 등재하도록 규정해([Error Budget Policy](https://sre.google/workbook/error-budget-policy/)), "미루는 결정은 반드시 문서와 기한을 동반해야 한다"는 원칙을 프로세스로 못박았습니다. 성능 부채 관리도 같은 원칙 위에 서 있습니다 — 미루는 것 자체는 허용하되, 미룬다는 결정과 그 조건은 반드시 기록되어야 합니다.
+성능 영역에서 이 은유를 신뢰성 있게 실천한 대표적 사례는 Google SRE의 error budget 정책입니다. 이 정책은 한 분기 동안 특정 장애 유형이 예산의 20%를 초과해 소비하면 다음 분기 계획에 P0 항목으로 강제 등재하도록 규정해([Error Budget Policy](https://sre.google/workbook/error-budget-policy/)), 알려진 문제가 우선순위 협상에서 사라지지 않도록 프로세스로 묶었습니다. 이 장의 주장은 여기서 한 걸음 더 나아갑니다 — 미루는 것 자체는 허용하되, 미룬다는 결정과 그 조건은 반드시 기록되어야 합니다.
 
 ## 성능 부채란 무엇인가
 
@@ -92,6 +92,7 @@ tags:
 부채를 코드에 남길 때는 아래처럼 위치·근거·상환 조건을 마커로 표시해 두는 것이 출발점입니다. 이 마커 자체는 빌드에 영향을 주지 않는 주석이지만, 뒤에서 다룰 레지스트리와 짝을 이뤄야 의미가 있습니다.
 
 ```cpp
+// 가정: Order, UserId, db_는 별도로 정의되어 있고, 이 조각은 컴파일하지 않았다
 // order_service.cpp
 // PERF-DEBT: PERF-1042 — N+1 쿼리 패턴. docs/perf-debt.yaml 참조.
 // 상환 조건: 동시 사용자 5,000명 초과 또는 p99 > 130ms
