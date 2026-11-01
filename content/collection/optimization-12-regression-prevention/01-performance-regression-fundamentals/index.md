@@ -67,7 +67,7 @@ tags:
 
 > "A software performance regression is a situation where the software still functions correctly, but performs more slowly or uses more memory or resources than before." — [Wikipedia: Software regression](https://en.wikipedia.org/wiki/Software_regression)
 
-이 정의가 실무에 자리 잡은 배경에는 대규모 브라우저·런타임 프로젝트의 지속적 벤치마킹 문화가 있습니다. Chromium 프로젝트는 커밋마다 성능 대시보드에 결과를 쌓고, 회귀 전담 담당자가 로테이션으로 알림을 확인해 이분 탐색(bisect)으로 원인 커밋을 찾는 **Perf Regression Sheriffing** 체계를 오래 운영해 왔습니다. 이런 체계가 필요했던 이유는 단순합니다. 개별 PR 작성자는 자신의 변경이 다른 함수의 캐시 지역성이나 락 경합에 미치는 영향을 예측하기 어렵고, 회귀는 대개 한 커밋의 문제가 아니라 여러 작은 변경이 누적된 결과로 드러나기 때문입니다.
+이 정의가 실무에 자리 잡은 배경에는 대규모 브라우저·런타임 프로젝트의 지속적 벤치마킹 문화가 있습니다. Chromium 프로젝트는 성능 회귀를 전담해 살피는 담당자를 로테이션으로 두는 **Perf Regression Sheriffing** 체계를 운영합니다(해당 문서에는 이 로테이션과 Perfbot Health Sheriffing 로테이션이 소개되어 있습니다). 이런 체계가 필요했던 이유는 단순합니다. 개별 PR 작성자는 자신의 변경이 다른 함수의 캐시 지역성이나 락 경합에 미치는 영향을 예측하기 어렵고, 회귀는 대개 한 커밋의 문제가 아니라 여러 작은 변경이 누적된 결과로 드러나기 때문입니다.
 
 같은 시기에 학계에서도 벤치마크 결과 자체가 신뢰할 수 없을 수 있다는 문제가 제기되었습니다. Georges, Buytaert, Eeckhout의 2007년 논문은 JVM 워밍업·GC·스레드 스케줄링이 만드는 실행 시간 변동이 통계적으로 엄밀하게 통제되지 않으면 "회귀처럼 보이는 노이즈"와 "진짜 회귀"를 구분할 수 없다는 점을 정량적으로 보였습니다. 이 통찰은 C++ 마이크로벤치마크에도 그대로 적용되며, 이 트랙이 자동화·기준선·변동성 관리를 별도 챕터로 나눠 다루는 이유이기도 합니다.
 
@@ -199,7 +199,7 @@ A: 대부분 막기 어렵습니다. 리뷰 시점에는 데이터가 아직 그
 ## 더 읽을 거리
 
 - [Wikipedia: Software regression](https://en.wikipedia.org/wiki/Software_regression) — 기능 회귀와 성능 회귀의 정의를 함께 다루는 개괄 문서
-- [Chromium: Perf Sheriffing](https://www.chromium.org/developers/tree-sheriffs/perf-sheriffs/) — 대규모 프로젝트가 회귀 알림과 이분 탐색을 로테이션으로 운영하는 실무 사례
+- [Chromium: Perf Sheriffing](https://www.chromium.org/developers/tree-sheriffs/perf-sheriffs/) — 대규모 프로젝트가 성능 회귀 담당자를 로테이션으로 운영하는 실무 사례
 - [Georges, Buytaert, Eeckhout (2007): Statistically Rigorous Java Performance Evaluation](https://www2.ccs.neu.edu/racket/Performance/andy-georges-paper.pdf) — 반복 측정과 통계적 엄밀성 없이는 회귀와 노이즈를 구분할 수 없다는 것을 보인 고전 논문
 
 ## 다음 장에서는
