@@ -15,9 +15,7 @@ tags:
   - Monitoring(모니터링)
   - Automation(자동화)
   - Benchmark
-  - Latency
-  - Throughput
-  - Profiling(프로파일링)
+  - Statistics
   - DevOps
   - Production
   - Reliability
@@ -25,7 +23,7 @@ tags:
   - Code-Review(코드리뷰)
   - Git
   - GitHub
-  - C++
+  - Python
   - Best-Practices
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
@@ -63,15 +61,15 @@ tags:
 
 ## 게이트의 역사·배경
 
-PR 단위 성능 게이트는 새로운 발상이 아닙니다. Mozilla의 Firefox 프로젝트는 Perfherder라는 시스템으로 커밋마다 성능 시계열을 수집하고, Student's t-test 기반 변화점 탐지로 회귀 후보를 자동 표시해 왔습니다. 그러나 성능 데이터가 정규분포를 따른다는 t-test의 가정이 실제 벤치마크 데이터에는 잘 맞지 않아 오탐·미탐이 만만치 않게 발생한다는 사실이 후속 연구에서 지적되었습니다. Rust 생태계의 `criterion.rs`는 개별 함수 단위 벤치마크에서 부트스트랩 샘플링과 T-검정을 결합해 "직전 실행 대비 변화"를 판정하고, 결과가 노이즈 범위 안에 들면 무시하도록 설계되었습니다.
+PR 단위 성능 게이트는 새로운 발상이 아닙니다. Mozilla의 Firefox 프로젝트는 Perfherder라는 시스템으로 커밋마다 성능 시계열을 수집하고, Student's t-test 기반 변화점 탐지로 회귀 후보를 자동 표시해 왔습니다. 그러나 [Besbes 외, Mozilla 변화점 탐지 연구(arXiv 2606.18377)](https://arxiv.org/abs/2606.18377)는 1년치 알림을 분석해 생성된 알림 그룹의 12.5%가 오탐이었다고 보고했습니다. Rust 생태계의 `criterion.rs`는 개별 함수 단위 벤치마크에서 [부트스트랩 샘플과 T-검정](https://bheisler.github.io/criterion.rs/book/analysis.html)을 결합해 "직전 실행 대비 변화"를 판정하고, 결과가 노이즈 범위 안에 들면 무시하도록 설계되었습니다.
 
 > "The noise threshold is configurable, and defaults to `+-2%`." — [Criterion.rs 사용자 가이드: Command-Line Output](https://bheisler.github.io/criterion.rs/book/user_guide/command_line_output.html) 문서. 즉 직전 실행과 ±2% 이내 차이는 기본적으로 노이즈로 간주되어 회귀로 보고되지 않습니다.
 
-이 두 사례는 PR 게이트 설계의 핵심 긴장을 보여줍니다. 통계적으로 엄밀한 검정(t-test)은 변동성을 고려하지만 분포 가정이 깨지면 오탐을 만들고, 단순 퍼센트 임계값은 이해하기 쉽지만 변동성 규모를 반영하지 못합니다. 2023년 이후 등장한 CodSpeed·Bencher 같은 SaaS형 지속적 벤치마킹 도구(03장 참고)는 이 둘을 절충해 퍼센트 기준과 통계적 기준을 함께 제공하는 방향으로 수렴하고 있습니다.
+이 두 사례는 PR 게이트 설계의 핵심 긴장을 보여줍니다. 통계적으로 엄밀한 검정(t-test)은 변동성을 고려하지만 분포 가정이 깨지면 오탐을 만들고, 단순 퍼센트 임계값은 이해하기 쉽지만 변동성 규모를 반영하지 못합니다. CodSpeed·Bencher 같은 SaaS형 지속적 벤치마킹 도구(03장 참고)는 이 둘을 절충해 퍼센트 기준과 통계적 기준을 함께 제공하는 방향으로 수렴하고 있습니다.
 
 ## 게이트의 구성 요소
 
-PR 성능 게이트는 네 단계로 이루어집니다. 첫째, PR이 열리거나 갱신될 때 트리거되어 정해진 벤치마크 집합을 실행합니다. 둘째, 실행 결과(보통 여러 번 반복한 표본)를 기준선(baseline)과 비교합니다. 셋째, 정해진 임계값 규칙으로 "허용 범위 내/경계/초과"를 판정합니다. 넷째, 판정 결과를 PR의 상태 체크(status check)에 반영해 병합 가능 여부에 영향을 줍니다. 이 네 단계 중 앞의 두 단계(트리거·실행)는 03장이 다루는 CI 통합의 영역이고, 이 장은 셋째·넷째 단계 — 판정 로직과 실패 처리 — 에 집중합니다.
+PR 성능 게이트는 다섯 단계로 이루어집니다. 첫째, PR이 열리거나 갱신될 때 트리거됩니다. 둘째, 정해진 벤치마크 집합을 실행합니다. 셋째, 실행 결과(보통 여러 번 반복한 표본)를 기준선(baseline)과 비교합니다. 넷째, 정해진 임계값 규칙으로 "허용 범위 내/경계/초과"를 판정합니다. 다섯째, 판정 결과를 PR의 상태 체크(status check)에 반영해 병합 가능 여부에 영향을 줍니다. 이 다섯 단계 중 앞의 두 단계(트리거·실행)는 03장이 다루는 CI 통합의 영역이고, 이 장은 셋째–다섯째 단계 — 비교, 판정 로직, 실패 처리 — 에 집중합니다.
 
 ```mermaid
 flowchart TD
@@ -88,9 +86,9 @@ flowchart TD
 
 <strong>절대 임계값(absolute)</strong>은 "500µs를 넘으면 실패"처럼 고정된 값을 기준으로 삼습니다. 이해하기 쉽고 [05장의 Performance Budget](/post/regression-prevention/performance-budget-operational-enforcement/)과 자연스럽게 연결되지만, 하드웨어나 컴파일러가 바뀌면 기준값 자체가 무의미해질 수 있습니다.
 
-<strong>상대 임계값(percentage)</strong>은 "기준선 평균 대비 +5% 이상 느려지면 실패"처럼 비율로 판정합니다. Bencher의 Percentage Test가 대표적인 예로, 기준선 평균에 허용 비율을 곱해 상한·하한을 계산하고 새 측정값이 그 범위를 벗어나면 경고를 발생시킵니다. 절대 임계값보다 이식성이 좋지만, 벤치마크마다 변동성 크기가 다르다는 사실을 반영하지 못해 변동성이 큰 벤치마크에서는 오탐이, 변동성이 작은 벤치마크에서는 미탐이 나기 쉽습니다.
+<strong>상대 임계값(percentage)</strong>은 "기준선 평균 대비 +5% 이상 느려지면 실패"처럼 비율로 판정합니다. [Bencher의 Percentage 임계값](https://bencher.dev/docs/explanation/thresholds/)이 대표적인 예로, 기준선 평균에 허용 비율을 곱해 상한·하한을 계산하고 새 측정값이 그 범위를 벗어나면 경고를 발생시킵니다. 절대 임계값보다 이식성이 좋지만, 벤치마크마다 변동성 크기가 다르다는 사실을 반영하지 못해 변동성이 큰 벤치마크에서는 오탐이, 변동성이 작은 벤치마크에서는 미탐이 나기 쉽습니다.
 
-<strong>통계적 임계값(statistical)</strong>은 과거 측정값의 분포를 사용해 "이번 값이 우연히 나올 확률이 낮다"를 판정합니다. Bencher는 z-score 검정과 Student's t-test 검정을 함께 제공하는데, z-score 검정은 충분한 과거 표본(대략 30개 이상)이 쌓였을 때 신뢰할 만하고, t-test 기반 예측 구간(prediction interval)은 표본이 적을 때 더 유연하게 동작합니다. 두 검정 모두 상한·하한 경계를 "평균에서 어느 정도 벗어나면 경고"라는 누적 비율(0.5–1.0)로 표현합니다. 통계적 임계값은 변동성 규모를 자동으로 반영한다는 장점이 있지만, 과거 표본이 오염되어 있으면(이미 회귀가 섞여 있으면) 기준 자체가 흔들립니다.
+<strong>통계적 임계값(statistical)</strong>은 과거 측정값의 분포를 사용해 "이번 값이 우연히 나올 확률이 낮다"를 판정합니다. [Bencher](https://bencher.dev/docs/explanation/thresholds/)는 z-score 검정과 Student's t-test 검정을 함께 제공하는데, z-score 검정은 충분한 과거 표본(대략 30개 이상)이 쌓였을 때 신뢰할 만하고, t-test 기반 예측 구간(prediction interval)은 표본이 적을 때 더 유연하게 동작합니다. 두 검정 모두 상한·하한 경계를 "평균에서 어느 정도 벗어나면 경고"라는 누적 비율(0.5–1.0)로 표현합니다. 통계적 임계값은 변동성 규모를 자동으로 반영한다는 장점이 있지만, 과거 표본이 오염되어 있으면(이미 회귀가 섞여 있으면) 기준 자체가 흔들립니다.
 
 ## 게이트 판정 로직
 
@@ -109,14 +107,14 @@ def gate_decision(baseline_samples: list, pr_samples: list,
     pct_delta = (pr_mean - base_mean) / base_mean
     z_score = (pr_mean - base_mean) / base_sd if base_sd > 0 else 0.0
 
-    if pct_delta <= pct_bound and abs(z_score) <= z_bound:
+    if pct_delta <= pct_bound and z_score <= z_bound:
         return "PASS"
-    if pct_delta > pct_bound * 2 or abs(z_score) > z_bound * 1.5:
+    if pct_delta > pct_bound * 2 or z_score > z_bound * 1.5:
         return "FAIL"
     return "WARN"  # 경계 구간: 재실행하거나 사람이 검토
 ```
 
-이 함수는 두 규칙 중 하나라도 크게 벗어나면 실패로, 둘 다 여유 있게 통과하면 성공으로, 그 사이는 "경계"로 분류해 즉시 차단하지 않고 재실행·사람 검토로 넘깁니다. `pct_bound`, `z_bound`와 그 배수는 벤치마크마다, 팀마다 달라야 하는 값이며 한 번 정하고 끝나는 것이 아니라 [06장](/post/regression-prevention/performance-baseline-management-strategy/)에서 기준선을 갱신할 때 함께 재검토해야 합니다.
+이 함수는 느려지는 방향만 검사하므로 기준선보다 빨라진 경우(음의 z-score)는 항상 통과합니다. 두 규칙 중 하나라도 크게 벗어나면 실패로, 둘 다 여유 있게 통과하면 성공으로, 그 사이는 "경계"로 분류해 즉시 차단하지 않고 재실행·사람 검토로 넘깁니다. `pct_bound`, `z_bound`와 그 배수는 벤치마크마다, 팀마다 달라야 하는 값이며 한 번 정하고 끝나는 것이 아니라 [06장](/post/regression-prevention/performance-baseline-management-strategy/)에서 기준선을 갱신할 때 함께 재검토해야 합니다.
 
 ## 실패 시 처리 정책
 
@@ -144,7 +142,7 @@ def gate_decision(baseline_samples: list, pr_samples: list,
 
 ## 비판적 시각: 한계와 트레이드오프
 
-통계적으로 엄밀해 보이는 검정도 오탐을 없애 주지 않습니다. Mozilla Perfherder의 사례를 분석한 연구는 t-test가 정규성·등분산을 가정하지만 실제 성능 측정값은 이 가정을 자주 위반해, 변화점 탐지(change point detection) 결과에 상당한 오탐·미탐이 남는다고 지적합니다. 해당 연구는 대안으로 PELT, E-divisive, BOCPD 같은 변화점 탐지 기법을 비교 평가하는데, 어떤 단일 기법도 모든 상황에서 우월하지 않다는 것이 핵심 결론입니다. 게이트를 아무리 정교하게 설계해도 노이즈의 근본 원인(공유 CI 러너, 캐시 상태, 스케줄링 변동)을 줄이지 않으면 판정 로직만으로는 한계가 있으며, 이 근본 원인 통제는 [07장](/post/regression-prevention/performance-variance-noise-management/)의 영역입니다.
+통계적으로 엄밀해 보이는 검정도 오탐을 없애 주지 않습니다. Mozilla Perfherder의 사례를 분석한 [Besbes 외, Mozilla 변화점 탐지 연구(arXiv 2606.18377)](https://arxiv.org/abs/2606.18377)는 Student's t-test 기반 알림 그룹의 12.5%가 오탐이었다고 보고합니다. 같은 연구는 25가지 변화점 탐지(change point detection) 기법과 15가지 앙상블 방식을 11명의 Mozilla 성능 엔지니어가 주석한 174개 시계열에 대해 평가했고, 오프라인·하이브리드 기법은 재현율(recall)을 높이는 대신 정밀도(precision)를 낮추며 앙상블 투표가 이 상충을 완화해 F1 점수를 11% 개선했다고 밝힙니다. 게이트를 아무리 정교하게 설계해도 노이즈의 근본 원인(공유 CI 러너, 캐시 상태, 스케줄링 변동)을 줄이지 않으면 판정 로직만으로는 한계가 있으며, 이 근본 원인 통제는 [07장](/post/regression-prevention/performance-variance-noise-management/)의 영역입니다.
 
 게이트가 지나치게 엄격하면 "게이트 피로(gate fatigue)"가 생깁니다. 오탐이 반복되면 개발자는 실패를 진지하게 보지 않고 기계적으로 재실행 버튼을 누르거나 에스컬레이션 라벨을 습관적으로 붙이게 되고, 이는 결국 진짜 회귀도 같은 방식으로 넘어가게 만듭니다. 반대로 에스컬레이션·우회 메커니즘 자체도 거버넌스 없이 두면 성능 오너의 승인이 형식적 절차로 전락해 회귀를 숨기는 통로가 될 수 있습니다. 우회 이력을 감사 가능하게 남기고 주기적으로 검토하는 절차가 병행되어야 게이트가 신뢰를 유지합니다. 마지막으로, 공유 클라우드 CI 러너에서 실행되는 벤치마크는 근본적으로 이웃 워크로드의 영향을 받으므로, 게이트 로직을 아무리 다듬어도 전용/베어메탈 러너로의 전환(03장에서 다룬 Bencher의 접근)이 더 근본적인 해법일 수 있습니다.
 
@@ -152,7 +150,7 @@ def gate_decision(baseline_samples: list, pr_samples: list,
 
 이 장을 읽은 후 다음을 확인할 수 있어야 합니다.
 
-- [ ] PR 게이트가 트리거·실행·비교·판정·상태 반영의 네 단계로 이루어진다는 것을 설명할 수 있다.
+- [ ] PR 게이트가 트리거·실행·비교·판정·상태 반영의 다섯 단계로 이루어진다는 것을 설명할 수 있다.
 - [ ] 절대·상대·통계적 임계값의 차이와 각각의 한계를 구분할 수 있다.
 - [ ] 하드 블록·소프트 경고·에스컬레이션 정책을 상황에 맞게 선택할 수 있다.
 - [ ] 단일 실행 비교, 고정 임계값, "실패=회귀" 같은 오개념을 피할 수 있다.

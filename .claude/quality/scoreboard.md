@@ -442,7 +442,7 @@
 | content/collection/optimization-12-regression-prevention/01-performance-regression-fundamentals/index.md | 97.3 | 2026-11-01 | 0 | 통과 | 1.3 | 471b282 | 없음(채점 후 Chromium 귀속 문장 2곳을 출처 범위로 좁히는 수정, 재채점 생략) |
 | content/collection/optimization-12-regression-prevention/02-performance-test-automation/index.md | 91.2 | 2026-11-01 | 0 | 통과 | 1.3 | cef4360 | 없음(채점 후 LNT 연도·post-commit 귀속 삭제, 중복 실수 3항목 삭제, 재채점 생략; 개선여지: bench_harness 실행 불가 개념 스크립트) |
 | content/collection/optimization-12-regression-prevention/03-benchmark-ci-integration/index.md | 94.3 | 2026-11-01 | 0 | 통과 | 1.3 | 5c63097 | 없음(채점 후 AI Wizard 날짜를 changelog 기준으로 정정, 출처 없는 5–10%·Cachegrind 서술 삭제, description 135자로 보강, 재채점 생략; 개선여지: C++ 계측 연동 예제는 실행 미확인) |
-| content/collection/optimization-12-regression-prevention/04-pr-performance-gate/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/04-pr-performance-gate/index.md | 97.3 | 2026-11-01 | 1 | 통과 | 1.3 | 52a6b40 | 없음(초회 87.1→Revise 1회 97.3; 재채점 후 L64 정규성 귀속 문장 삭제·Criterion 링크 추가 소수정, 재채점 생략) |
 | content/collection/optimization-12-regression-prevention/05-performance-budgeting/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-12-regression-prevention/06-baseline-management/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-12-regression-prevention/07-variance-management/index.md | - | - | 0 | 미채점 | - | - | - |
