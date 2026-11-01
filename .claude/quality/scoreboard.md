@@ -454,7 +454,7 @@
 | content/collection/optimization-12-regression-prevention/13-performance-debt-management/index.md | 95.8 | 2026-11-01 | 0 | 통과 | 1.3 | f7bb58c | 없음(채점 후 SRE 정책 귀속을 원문 규정 범위로 정정, 코드 가정·미컴파일 명시, 재채점 생략) |
 | content/collection/optimization-12-regression-prevention/14-benchmark-as-code/index.md | 95.8 | 2026-11-01 | 1 | 통과 | 1.3 | 194600c | 없음(초회 81.1→Revise 1회 95.8; 재채점 후 JSON 출력 귀속 링크를 C++ 예제 README로 정정, 재채점 생략; 개선여지: convert_to_openmetrics.py 코드 미수록) |
 | content/collection/optimization-12-regression-prevention/15-monitoring-dashboard/index.md | 97.3 | 2026-11-01 | 0 | 통과 | 1.3 | 4a65fcf | 없음(채점 후 allowUiUpdates 설명을 코드 값·Grafana 설정 주석과 일치하게 정정, 재채점 생략) |
-| content/collection/optimization-12-regression-prevention/16-postmortem-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/16-postmortem-analysis/index.md | 94.3 | 2026-11-01 | 1 | 통과 | 1.3 | 812544d | 없음(초회 88.6→Revise 1회 94.3; 재채점 후 PagerDuty·Allspaw 귀속 완화, gh --limit 추가, 재채점 생략; 검증 불가: Etsy 원문 403이라 인용 삭제·미대조 명시) |
 | content/collection/optimization-12-regression-prevention/17-distributed-cluster-performance-regression/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2022/2022-01-01-BOJ-1008/index.md | 100 | 2026-07-28 | 3 | 통과 | 1.0 | 76ebd4f | 없음 |
 | content/collection/Algorithm/2022/2022-07-07-BOJ-8983/index.md | 98.5 | 2026-08-13 | 2 | 통과 | 1.2 | 0eeb29d | 없음(경미: acmicpc.net/problem/8983 링크 봇차단으로 검증 불가, Refactoring/Clean-Code/Debugging 등 일부 태그 본문 결속 느슨) |
