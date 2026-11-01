@@ -20,14 +20,11 @@ tags:
   - Production
   - Best-Practices
   - Code-Quality(코드품질)
-  - Git
-  - GitHub
   - Automation(자동화)
   - DevOps
   - Workflow(워크플로우)
   - System-Design
   - Observability
-  - C++
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
@@ -64,11 +61,9 @@ tags:
 
 ## 기준선의 계보 (배경)
 
-성능 기준선이라는 개념 자체는 성능 공학보다 오래된 통계적 공정 관리(SPC, Statistical Process Control)에서 빌려온 사고방식입니다. 공정의 "정상 범위"를 먼저 정의하고 그 범위를 벗어나는 신호만 이상으로 취급한다는 원리가, 소프트웨어 성능 회귀 탐지에도 그대로 적용됩니다. 브라우저 엔진처럼 초 단위로 수백 개 벤치마크를 지속적으로 실행하는 프로젝트에서는 이 문제가 일찍부터 실무 문제였습니다. Chromium 프로젝트는 성능 대시보드에서 그래프상의 변화 지점을 기준으로 삼아 그 지점 앞뒤 커밋 구간을 이분 탐색(bisect)하는 Pinpoint 도구를 운영해 왔는데, 이는 "기준선은 고정된 숫자가 아니라 그래프 위의 한 지점이며 회귀가 의심되면 그 지점 자체를 재검증한다"는 태도를 보여줍니다. 이 방식은 뒤에서 다룰 rolling baseline과 bisect 기반 원인 추적의 원형입니다.
+성능 기준선이라는 개념 자체는 성능 공학보다 오래된 통계적 공정 관리(SPC, Statistical Process Control)에서 빌려온 사고방식입니다. 공정의 "정상 범위"를 먼저 정의하고 그 범위를 벗어나는 신호만 이상으로 취급한다는 원리가, 소프트웨어 성능 회귀 탐지에도 그대로 적용됩니다. Chromium 프로젝트의 [성능 회귀 bisect 문서](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/speed/bisects.md)는 이 문제의 한 단면을 보여줍니다. 문서에 따르면 Chromium의 성능 테스트는 실행 시간이 길어 모든 리비전에서 돌릴 수 없고, v8·skia 같은 별도 저장소가 성능에 민감한 변경을 한꺼번에 반영하기도 하므로, Pinpoint라는 서비스가 CL 범위에서 회귀의 근본 원인을 bisect합니다. 사용자는 성능 대시보드의 그래프에서 데이터 포인트를 눌러 bisect를 시작합니다. 즉 측정값의 변화가 보이면 그 지점 주변의 변경 범위를 좁혀 가는 방식이며, 이 장에서 다룰 기준선 비교로 회귀를 알아챈 뒤 원인 커밋을 찾는 단계가 따로 필요한 이유를 설명해 줍니다.
 
-> 커밋 범위를 좁혀 가는 이 방식은 "성능 그래프의 변화 지점 앞의 알려진 좋은 상태"를 비교 기준으로 삼아, 그 구간 내 커밋을 순차 테스트해 회귀를 유발한 특정 변경을 찾아낸다 — [Chromium: Bisecting Performance Regressions](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/speed/bisects.md) 문서 요지.
-
-이후 GitHub Actions·GitLab CI 기반 지속적 벤치마킹 SaaS(CodSpeed, Bencher 등)가 등장하면서 "PR의 base 브랜치 최신 커밋을 기준선으로 자동 선택"하는 rolling 방식이 표준 패턴으로 자리잡았습니다. CodSpeed는 PR 실행 시 "base 브랜치의 가장 최근 CodSpeed 실행 리포트"를 기준선으로 선택하고, 그 기준선 대비 속도 변화율(impact)을 계산합니다. Bencher는 여기서 한 걸음 더 나아가 (branch, testbed, measure) 조합마다 독립된 threshold와 boundary limit을 두어, 기준선 자체를 정적 값이 아니라 통계적 모델(z-score, t-test, IQR 등)로 취급합니다. 두 도구 모두 "기준선은 매번 재계산되는 움직이는 목표"라는 관점을 공유하며, 이는 고정된 숫자를 오래 유지하던 이전 관행과 대비됩니다.
+이후 GitHub Actions·GitLab CI 기반 지속적 벤치마킹 SaaS(CodSpeed, Bencher 등)가 등장하면서 "PR의 base 브랜치 최신 커밋을 기준선으로 자동 선택"하는 rolling 방식이 표준 패턴으로 자리잡았습니다. [Bencher](https://bencher.dev/docs/explanation/thresholds/)는 (branch, testbed, measure) 조합마다 독립된 threshold와 boundary limit을 두어, static·percentage 같은 고정 임계값 외에 z-score·t-test·IQR 같은 통계 모델도 제공하므로, 통계 모델을 고르면 기준선이 하나의 숫자가 아니라 분포로 표현됩니다.
 
 ## 기준선이란 무엇인가
 
@@ -101,7 +96,7 @@ flowchart TD
 
 ## 다중 환경 기준선 동기화
 
-같은 프로젝트라도 로컬 개발 머신, CI 러너, 스테이징 환경은 CPU 세대·코어 수·컴파일러 버전·커널 스케줄러가 서로 다릅니다. 이때 흔히 저지르는 실수는 한 환경(보통 CI)에서 측정한 절대 수치를 다른 환경에도 그대로 기준선으로 적용하는 것입니다. 이렇게 하면 러너가 노트북보다 느린 환경에서는 항상 "회귀"로 잘못 판정되고, 반대로 더 빠른 환경에서는 실제 회귀도 통과됩니다. Bencher가 threshold를 (branch, testbed, measure) 조합 단위로 독립 관리하는 것은 이 문제에 대한 직접적인 해법으로, 환경마다 별도의 기준선을 유지하고 환경 간에는 절대값이 아니라 "각 환경 내부에서의 상대 변화율"만 비교합니다.
+같은 프로젝트라도 로컬 개발 머신, CI 러너, 스테이징 환경은 CPU 세대·코어 수·컴파일러 버전·커널 스케줄러가 서로 다릅니다. 이때 흔히 저지르는 실수는 한 환경(보통 CI)에서 측정한 절대 수치를 다른 환경에도 그대로 기준선으로 적용하는 것입니다. 이렇게 하면 러너가 노트북보다 느린 환경에서는 항상 "회귀"로 잘못 판정되고, 반대로 더 빠른 환경에서는 실제 회귀도 통과됩니다. Bencher가 threshold를 (branch, testbed, measure) 조합 단위로 독립 관리하는 것과 같은 방식으로, 환경마다 별도의 기준선을 유지하고 환경 간에는 절대값이 아니라 "각 환경 내부에서의 상대 변화율"만 비교하는 것을 권장합니다.
 
 동기화 원칙은 세 가지로 요약됩니다. 첫째, 기준선은 환경(테스트베드) 단위로 독립적으로 저장하고 공유하지 않습니다. 둘째, 환경 간 비교가 꼭 필요하면 절대 수치 대신 "각 환경에서 baseline 대비 몇 % 변화했는가"라는 상대 지표로 맞춥니다. 셋째, 여러 환경 중 하나라도 하드웨어·소프트웨어 스택이 바뀌면 그 환경의 기준선만 재기준하고 나머지 환경은 그대로 둡니다. 분산·클러스터 환경에서 리전별로 하드웨어 스큐(skew)까지 고려해 기준선을 고정하는 더 심화된 절차는 [분산·클러스터 성능 회귀](/post/regression-prevention/distributed-cluster-performance-regression-expert/)(챕터 17)에서 다룹니다. 이 장에서 다루는 것은 그 이전 단계인 "환경이 두세 개만 있어도 기준선을 뒤섞지 않는" 기본 원칙입니다.
 
