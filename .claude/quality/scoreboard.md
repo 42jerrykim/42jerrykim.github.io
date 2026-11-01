@@ -448,7 +448,7 @@
 | content/collection/optimization-12-regression-prevention/07-variance-management/index.md | 93.1 | 2026-11-01 | 0 | 통과 | 1.3 | 6c73acb | 없음(채점 후 Google Benchmark repetitions 서술을 같은 프로세스 반복으로 정정·표본크기식 두 표본 기준 2배 반영(63회), 재채점 생략; repetitions 동작은 소스 미확인으로 본문에 명시) |
 | content/collection/optimization-12-regression-prevention/08-observability-platform/index.md | 100 | 2026-11-01 | 1 | 통과 | 1.3 | cd5ef5b | 없음(초회 87.9→Revise 1회 100) |
 | content/collection/optimization-12-regression-prevention/09-alerting-strategy/index.md | 94.9 | 2026-11-01 | 0 | 통과 | 1.3 | 3dc127e | 없음(채점 후 본문 P1–P4 정의와 다이어그램 일치 수정·무관 태그 2개 삭제, 재채점 생략) |
-| content/collection/optimization-12-regression-prevention/10-canary-deployment/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/10-canary-deployment/index.md | 95.8 | 2026-11-01 | 0 | 통과 | 1.3 | 57dceaa | 없음(채점 후 출처 없는 연대·Kayenta 귀속 삭제, PromQL sum by (le) 보정, baseline 별도 배포·미실행 명시, 재채점 생략) |
 | content/collection/optimization-12-regression-prevention/11-performance-incident-response/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-12-regression-prevention/12-long-term-trend-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-12-regression-prevention/13-performance-debt-management/index.md | - | - | 0 | 미채점 | - | - | - |
