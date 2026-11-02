@@ -13,7 +13,6 @@ tags:
   - System-Design
   - Software-Architecture(소프트웨어아키텍처)
   - Best-Practices
-  - Benchmark
   - Latency
   - Throughput
   - Concurrency(동시성)
@@ -24,20 +23,20 @@ tags:
   - C++
   - Advanced
   - Deep-Dive
-  - Case-Study
   - Comparison(비교)
   - Pitfalls(함정)
-  - Edge-Cases(엣지케이스)
   - Guide(가이드)
   - Reference(참고)
   - Async(비동기)
   - Networking(네트워킹)
   - Kernel
   - Thread
-  - Message-Queue
   - Synchronization
-  - Process
   - IO(Input/Output)
+  - Event-Loop
+  - Kernel-Bypass
+  - Thread-Per-Core
+  - io_uring
 ---
 
 **Low-latency 아키텍처 패턴**이란 마이크로초 단위 응답을 목표로 하는 시스템에서 요청 처리 경로 자체를 어떤 골격 위에 얹을지 정하는 구조적 선택지로, 단일 스레드 이벤트 루프(single-threaded event loop), thread-per-core(shard-per-core), 커널 바이패스(kernel bypass)라는 세 축과 그 조합을 말합니다. [07장](/post/design-decisions/latency-vs-throughput-architecture-decisions/)에서 지연시간을 우선하기로 판단한 경로가 있다면, 이 장은 그 경로를 실제로 어떤 실행 모델 위에 구현할지를 다룹니다. 세 패턴은 공통적으로 하나의 목표를 겨냥합니다 — 락 경합, 컨텍스트 스위치, 시스템 콜, 캐시 라인 바운싱(cache-line bouncing)처럼 예측하기 어려운 지연 원인을 코드 튜닝이 아니라 아키텍처 수준에서 제거하는 것입니다. 이 결정을 내리지 않으면 스레드풀과 뮤텍스로 짜인 코드에 아무리 프로파일러를 들이대도 tail latency가 줄어들지 않는 상황에 갇히거나, 반대로 근거 없이 전용 코어와 폴링 루프를 도입해 조직 전체의 운영 복잡도만 끌어올리는 결과를 얻습니다.
@@ -76,23 +75,32 @@ thread-per-core는 2010년대 중반 분산 데이터베이스 진영에서 본�
 #include <sys/epoll.h>
 #include <vector>
 
-// 단일 스레드 이벤트 루프의 최소 골격: 콜백은 반드시 non-blocking이어야 한다.
+// 연결마다 fd와 준비 콜백을 함께 들고 있는 핸들. epoll_event.data는 union이라
+// data.ptr와 data.fd를 섞어 쓸 수 없으므로 fd는 이 구조체 안에 둔다.
+struct Conn {
+  int fd;
+  void (*on_ready)(int fd);
+};
+
+// 단일 스레드 이벤트 루프의 최소 골격(소켓 생성·epoll_ctl 등록은 생략):
+// epoll_ctl(EPOLL_CTL_ADD) 시 ev.data.ptr = &conn으로 Conn을 등록해 두었다고 가정한다.
+// 콜백은 반드시 non-blocking이어야 한다.
 void run_event_loop(int epoll_fd, std::vector<epoll_event>& events) {
   while (true) {
     int n = epoll_wait(epoll_fd, events.data(), static_cast<int>(events.size()), /*timeout_ms=*/-1);
     for (int i = 0; i < n; ++i) {
-      auto* handler = static_cast<void (*)(int)>(events[i].data.ptr);
-      handler(events[i].data.fd);  // 이 호출이 블로킹되면 나머지 이벤트도 함께 지연된다
+      auto* c = static_cast<Conn*>(events[i].data.ptr);
+      c->on_ready(c->fd);  // 이 호출이 블로킹되면 나머지 이벤트도 함께 지연된다
     }
   }
 }
 ```
 
-이 골격에서 `handler` 하나가 블로킹 시스템 콜을 실행하면 큐에 쌓인 나머지 이벤트가 모두 지연되므로, 디스크 I/O나 외부 호출은 별도 스레드·비동기 API로 위임하고 루프에는 결과만 콜백으로 되돌리는 구조가 필요합니다.
+이 골격에서 `on_ready` 콜백 하나가 블로킹 시스템 콜을 실행하면 큐에 쌓인 나머지 이벤트가 모두 지연되므로, 디스크 I/O나 외부 호출은 별도 스레드·비동기 API로 위임하고 루프에는 결과만 콜백으로 되돌리는 구조가 필요합니다.
 
 ## Thread-per-core: 공유 없는 병렬화
 
-thread-per-core(또는 shard-per-core)는 코어마다 정확히 하나의 실행 스레드를 배정하고, 데이터를 코어 수만큼 분할해 각 스레드가 자신에게 배정된 조각만 다루게 하는 구조입니다. ScyllaDB는 이 설계를 shared-nothing이라 부르며, 코어 사이의 통신이 필요할 때도 공유 메모리 대신 락 없는 큐를 통한 명시적 메시지 패싱만 허용한다고 설명합니다([ScyllaDB: Shard-per-Core Architecture](https://www.scylladb.com/product/technology/shard-per-core-architecture/)). 두 요청이 같은 세션 상태를 참조해야 한다면, 한쪽 코어가 다른 코어에 명시적으로 메시지를 보내 처리를 위임하는 식입니다.
+thread-per-core(또는 shard-per-core)는 코어마다 정확히 하나의 실행 스레드를 배정하고, 데이터를 코어 수만큼 분할해 각 스레드가 자신에게 배정된 조각만 다루게 하는 구조입니다. ScyllaDB는 이 설계를 shared-nothing이라 부르며, 코어 사이의 통신이 필요할 때도 스레드 사이의 공유 메모리 대신 명시적 메시지 패싱에 의존한다고 설명합니다([ScyllaDB: Shard-per-Core Architecture](https://www.scylladb.com/product/technology/shard-per-core-architecture/)). 두 요청이 같은 세션 상태를 참조해야 한다면, 한쪽 코어가 다른 코어에 명시적으로 메시지를 보내 처리를 위임하는 식입니다.
 
 이 구조가 스레드풀+뮤텍스 모델보다 유리한 지점은 코어 수가 늘어날수록 분명해집니다. 전통적인 공유 상태 모델에서는 코어가 늘수록 같은 캐시 라인을 두고 코어들이 서로의 쓰기를 무효화시키는 캐시 라인 바운싱이 심해지고, 락 경합도 함께 늘어납니다. thread-per-core는 애초에 공유 상태 자체를 없애 이 경합을 구조적으로 제거합니다. 대신 대가는 설계 단계로 옮겨갑니다 — 데이터를 코어 수만큼 고르게 분할할 수 있어야 하고, 분할 경계를 넘는 접근(hot partition, 조인)은 코어 간 메시지 왕복 비용을 추가로 발생시킵니다.
 
@@ -115,7 +123,7 @@ void pin_thread_to_core(pthread_t thread, int core_id) {
 
 커널 바이패스는 네트워크·스토리지 I/O 경로에서 커널을 아예 거치지 않거나, 커널을 거치는 비용 자체를 압도적으로 줄이는 두 접근을 모두 포함하는 넓은 용어입니다. DPDK류의 완전한 바이패스는 사용자 공간 드라이버가 NIC를 직접 제어하게 하고, 인터럽트 대신 폴링으로 패킷 도착을 감지합니다 — DPDK는 이를 "커널의 네트워크 스택을 우회해 지연을 줄이고 처리량을 늘리는 최적화된 드라이버"라고 설명합니다([DPDK: About](https://www.dpdk.org/about/)). io_uring은 커널을 우회하지 않지만, 사용자·커널이 공유하는 제출/완료 큐로 여러 I/O 요청을 한 번에 묶어 제출하거나, SQ 폴링을 켜면 `io_uring_enter` 호출 자체를 없앨 수 있습니다 — man 페이지는 이 배칭(batching)이 요청마다 발생하는 시스템 콜 비용을 줄이는 핵심 메커니즘이라고 밝힙니다([man7.org: io_uring(7)](https://man7.org/linux/man-pages/man7/io_uring.7.html)).
 
-두 접근이 공통으로 겨냥하는 비용은 사용자·커널 경계를 넘나드는 전환 그 자체입니다. 하나의 시스템 콜은 인자 검증, 권한 전환, TLB 플러시, Spectre/Meltdown 완화용 장벽 같은 고정 비용을 동반하며, 이 비용은 수백 나노초 단위로 누적됩니다. 초당 수백만 건의 패킷·I/O 요청을 처리해야 하는 경로에서는 이 고정 비용이 실제 작업량보다 커지는 역전이 일어나고, 이 지점이 바로 커널 바이패스가 정당화되는 경계입니다.
+두 접근이 공통으로 겨냥하는 비용은 사용자·커널 경계를 넘나드는 전환 그 자체입니다. 하나의 시스템 콜은 인자 검증, 권한 전환, 경우에 따라 TLB 플러시나 Spectre/Meltdown 완화용 장벽 같은 고정 비용을 동반하며, 이 비용의 크기는 CPU와 커널 설정에 따라 달라 직접 측정해야 합니다. 초당 수백만 건의 패킷·I/O 요청을 처리해야 하는 경로에서는 이 고정 비용이 실제 작업량보다 커지는 역전이 일어나고, 이 지점이 바로 커널 바이패스가 정당화되는 경계입니다.
 
 ```cpp
 #include <chrono>
@@ -140,7 +148,7 @@ int main() {
 
 ## 세 패턴의 조합
 
-실전에서는 세 패턴을 배타적으로 고르기보다 조합해서 씁니다. ScyllaDB는 Seastar의 thread-per-core 실행 모델 위에 DPDK 기반 네트워킹을 얹어, 코어마다 독립된 NIC 큐를 배정하고 그 코어를 담당하는 스레드가 폴링으로 직접 패킷을 소비하게 합니다 — 코어 분할과 커널 바이패스를 겹쳐 코어 간 락 경합과 시스템 콜 오버헤드를 동시에 없애는 조합입니다. 반대로 단일 스레드 이벤트 루프는 코어가 하나뿐이라는 전제가 있어 thread-per-core와는 조합 대상이 아니지만, io_uring 같은 비동기 인터페이스와는 자연스럽게 맞습니다 — 이벤트 루프가 콜백 실행 중 블로킹되는 것을 막으려면 애초에 모든 I/O를 비동기로 제출해야 하는데, io_uring이 정확히 그 인터페이스를 제공하기 때문입니다.
+실전에서는 세 패턴을 배타적으로 고르기보다 조합해서 씁니다. ScyllaDB가 기반으로 삼는 Seastar는 요청을 코어별로 샤딩하는 shared-nothing 설계를 제공하면서, 네트워크 스택도 일반 Linux 네트워킹과 사용자 공간의 DPDK 중에서 고를 수 있게 한다고 소개합니다([Seastar](https://seastar.io/)). 코어 분할 위에 커널 바이패스를 겹치면 코어 간 락 경합과 시스템 콜 오버헤드를 동시에 줄일 수 있는 조합이 되며, Seastar가 이 조합을 선택지로 두는 것이 그 예입니다. 단일 스레드 이벤트 루프와 thread-per-core도 배타적이지 않습니다. 코어마다 스레드를 하나씩 두고 각 스레드가 자기 코어 안에서 이벤트 루프를 돌리면 두 패턴이 결합되기 때문입니다. 이 루프는 io_uring 같은 비동기 인터페이스와 자연스럽게 맞습니다 — 이벤트 루프가 콜백 실행 중 블로킹되는 것을 막으려면 애초에 모든 I/O를 비동기로 제출해야 하는데, io_uring이 정확히 그 인터페이스를 제공하기 때문입니다.
 
 ```mermaid
 flowchart TD
@@ -157,7 +165,7 @@ flowchart TD
 
 ## 흔한 오개념
 
-<strong>"이벤트 루프를 쓰면 저절로 빨라진다"</strong>는 흔한 오해입니다. 이벤트 루프의 이점은 콜백이 절대 블로킹되지 않는다는 전제 위에서만 성립합니다. 파일 읽기, DNS 조회, 동기 락 대기처럼 블로킹 가능한 호출이 콜백 안에 하나라도 섞이면, 그 순간 루프에 걸린 다른 모든 연결이 함께 멈춥니다. Redis가 대용량 컬렉션에 대한 `KEYS`나 `SORT` 같은 명령을 주의하라고 안내하는 이유도 여기에 있습니다 — 명령 하나의 처리 시간이 곧 다른 모든 클라이언트가 기다리는 시간이 됩니다.
+<strong>"이벤트 루프를 쓰면 저절로 빨라진다"</strong>는 흔한 오해입니다. 이벤트 루프의 이점은 콜백이 절대 블로킹되지 않는다는 전제 위에서만 성립합니다. 파일 읽기, DNS 조회, 동기 락 대기처럼 블로킹 가능한 호출이 콜백 안에 하나라도 섞이면, 그 순간 루프에 걸린 다른 모든 연결이 함께 멈춥니다. 명령 하나의 처리 시간이 곧 다른 모든 클라이언트가 기다리는 시간이 되는 것이 단일 스레드 루프의 구조적 특성입니다.
 
 <strong>"thread-per-core는 스레드풀보다 항상 우월하다"</strong>도 정확하지 않습니다. shared-nothing 설계는 작업 부하가 코어 수만큼 고르게 나뉠 때만 이점이 온전합니다. 특정 파티션에만 트래픽이 몰리는 핫 파티션(hot partition) 상황에서는 한 코어만 과부하되고 나머지 코어는 유휴 상태로 남으며, 이런 워크로드에서는 work-stealing 큐를 쓰는 전통적인 스레드풀이 오히려 부하를 더 잘 분산시킬 수 있습니다.
 

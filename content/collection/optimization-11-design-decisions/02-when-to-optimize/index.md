@@ -24,7 +24,6 @@ tags:
   - Production
   - Maintainability
   - Readability
-  - Documentation(문서화)
   - Guide(가이드)
   - Reference(참고)
   - Deep-Dive
@@ -32,13 +31,11 @@ tags:
   - Case-Study
   - Comparison(비교)
   - Pitfalls(함정)
-  - Edge-Cases(엣지케이스)
   - Troubleshooting(트러블슈팅)
   - 의사결정
   - CPU(Central Processing Unit)
   - Productivity(생산성)
   - Culture(문화)
-  - Debugging(디버깅)
 ---
 
 **최적화 시작 시점**이란 "이 코드/시스템을 지금 최적화해야 하는가"를 결정하는 근거와 절차를 말합니다. µs 단위 지연을 다루는 팀일수록 "일단 빠르게 만들고 보자"는 유혹이 크지만, 근거 없이 시작한 최적화는 엉뚱한 곳의 코드를 복잡하게 만들고 정작 실제 병목은 그대로 남겨두는 경우가 흔합니다. 이 장은 조기 최적화가 왜 함정인지, 프로파일링 근거가 없는 상태에서 시작하는 최적화를 어떻게 걸러낼지, 그리고 병목을 고쳤을 때 실제로 사용자·매출·SLO에 영향을 주는지를 확인하는 절차를 정리합니다.
@@ -49,7 +46,7 @@ tags:
 
 **전제 지식**: 프로파일러가 "코드의 어느 부분이 시간을 쓰는지" 측정하는 도구라는 정도의 개념만 있으면 충분합니다. 특정 프로파일러 사용법이나 통계적 벤치마킹 절차는 이 장의 범위가 아닙니다.
 
-**이 장의 깊이**: **기초** 난이도로, 이 트랙 전체의 출발점 역할을 합니다. 조기 최적화의 함정, 근거 기반 착수 기준, 비즈니스 임팩트 연결이라는 세 가지 판단 축을 세우는 데 집중합니다. **다루지 않는 것**: 언제 최적화를 멈춰야 하는가(비용·효과·리스크 계산은 [2장](/post/design-decisions/when-to-stop-optimizing-cost-effect-risk/)), 가독성과 성능을 저울질하는 기준([3장](/post/design-decisions/readability-vs-performance-tradeoff/)), 성능 예산을 수치로 설계하는 방법론([4장](/post/design-decisions/performance-budgeting-methodology/)), 프로파일러 자체의 사용법과 통계적 벤치마킹 절차(Tr.01 [Introduction](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/), [통계적 벤치마킹](/post/profiling-analysis/statistical-benchmarking/))는 모두 다른 장·트랙에 위임합니다.
+**이 장의 깊이**: **기초** 난이도로, 01장에서 맞춘 용어 위에서 "최적화를 할지 말지"를 판단하는 프레임의 출발점 역할을 합니다. 조기 최적화의 함정, 근거 기반 착수 기준, 비즈니스 임팩트 연결이라는 세 가지 판단 축을 세우는 데 집중합니다. **다루지 않는 것**: 언제 최적화를 멈춰야 하는가(비용·효과·리스크 계산은 [3장](/post/design-decisions/when-to-stop-optimizing-cost-effect-risk/)), 가독성과 성능을 저울질하는 기준([4장](/post/design-decisions/readability-vs-performance-tradeoff/)), 성능 예산을 수치로 설계하는 방법론([5장](/post/design-decisions/performance-budgeting-methodology/)), 프로파일러 자체의 사용법과 통계적 벤치마킹 절차(Tr.01 [Introduction](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/), [통계적 벤치마킹](/post/profiling-analysis/statistical-benchmarking/))는 모두 다른 장·트랙에 위임합니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -63,17 +60,17 @@ tags:
 
 ## 조기 최적화 담론의 기원
 
-"조기 최적화는 모든 악의 근원이다"라는 문장은 Donald Knuth가 1974년 *ACM Computing Surveys*에 발표한 논문 "Structured Programming with go to Statements"에서 나왔습니다. 원문은 "작은 효율성은 대략 97%의 경우 잊어야 한다: 조기 최적화는 모든 악(혹은 적어도 대부분의 악)의 근원이다"라는 문장이었고, 뒤이어 "그러나 그 결정적인 3%의 기회를 놓쳐서는 안 된다"라는 단서가 함께 붙어 있었습니다. Knuth 자신은 이 표현을 C.A.R. Hoare에게서 빌려왔다고 언급한 적이 있지만, Hoare는 자신이 만든 말이 아니라고 밝혀 정확한 기원은 논쟁으로 남아 있습니다.
+"조기 최적화는 모든 악의 근원이다"라는 문장은 Donald Knuth가 1974년 *ACM Computing Surveys*에 발표한 논문 "Structured Programming with go to Statements"에서 나왔습니다. 원문은 "작은 효율성은 대략 97%의 경우 잊어야 한다: 조기 최적화는 모든 악의 근원이다"라는 문장이었고, 뒤이어 "그러나 그 결정적인 3%의 기회를 놓쳐서는 안 된다"라는 단서가 함께 붙어 있었습니다. Knuth 자신은 이 표현을 C.A.R. Hoare에게서 빌려왔다고 언급한 적이 있지만, Hoare는 자신이 만든 말이 아니라고 밝혀 정확한 기원은 논쟁으로 남아 있습니다.
 
 > "We should forget about small efficiencies, say about 97% of the time: premature optimization is the root of all evil." — Donald Knuth, *Structured Programming with go to Statements* (ACM Computing Surveys, Vol. 6, No. 4, 1974) — [Wikipedia: Program optimization](https://en.wikipedia.org/wiki/Program_optimization) 문서에서 인용문과 서지 정보 확인
 
-이 문장이 50년 넘게 인용되는 이유는, 프로그래머의 직관이 실제 실행 프로파일과 자주 어긋난다는 관찰이 지금도 유효하기 때문입니다. 2000년대 중반 이후로는 여기에 비즈니스 데이터가 하나 더 붙었습니다. Amazon에서 추천 시스템을 담당했던 엔지니어 Greg Linden은 자신의 블로그에서 "페이지 로딩을 100ms 단위로 늦추는 A/B 테스트를 했더니, 아주 작은 지연도 상당하고 값비싼 매출 감소로 이어졌다"고 기록했습니다. 이 일화는 "최적화는 추상적인 미덕이 아니라 측정 가능한 사업 지표"라는 관점을 널리 퍼뜨렸지만, 단일 회사의 2006년 A/B 테스트 결과이지 모든 서비스에 적용되는 보편 법칙은 아니라는 점은 유의해야 합니다.
+이 문장이 50년 넘게 인용되는 이유는, 프로그래머의 직관이 실제 실행 프로파일과 자주 어긋난다는 관찰이 지금도 유효하기 때문입니다. 2000년대 중반 이후로는 여기에 비즈니스 데이터가 하나 더 붙었습니다. Amazon에서 추천 시스템을 담당했던 엔지니어 Greg Linden은 자신의 블로그에서 "페이지 로딩을 100ms 단위로 늦추는 A/B 테스트를 했더니, 아주 작은 지연도 상당하고 값비싼 매출 감소로 이어졌다"고 기록했습니다. 이 일화는 "최적화는 추상적인 미덕이 아니라 측정 가능한 사업 지표"라는 관점을 널리 퍼뜨렸지만, Linden이 2006년 블로그에서 회고한 Amazon 재직 시절의 단일 회사 A/B 테스트 결과이지 모든 서비스에 적용되는 보편 법칙은 아니라는 점은 유의해야 합니다.
 
 > "In A/B tests, we tried delaying the page in increments of 100 milliseconds and found that even very small delays would result in substantial and costly drops in revenue." — Greg Linden, "Marissa Mayer at Web 2.0" (Geeking with Greg, 2006) — [glinden.blogspot.com](http://glinden.blogspot.com/2006/11/marissa-mayer-at-web-20.html)
 
 ## 조기 최적화의 함정
 
-**조기 최적화**는 실제 실행 데이터 없이 "느릴 것 같다"는 직관만으로 코드를 바꾸는 행위를 말합니다. 함정은 세 겹으로 겹칩니다. 첫째, 직관이 틀리는 경우가 흔합니다. 개발자가 "이 반복문이 느릴 것"이라고 짐작한 지점과, 실제로 CPU 사이클·캐시 미스·락 대기 시간이 몰리는 지점은 자주 어긋납니다. 둘째, 최적화는 공짜가 아닙니다. 캐시 친화적으로 자료구조를 바꾸거나 분기를 제거하면 대체로 코드가 더 길어지고 읽기 어려워지며, 이는 [3장: 가독성 vs 성능](/post/design-decisions/readability-vs-performance-tradeoff/)에서 다루는 트레이드오프를 아무 이득 없이 지불하는 셈이 됩니다. 셋째, 기회비용이 있습니다. 근거 없는 최적화에 쓴 스프린트는 실제 병목을 찾거나 기능을 만드는 데 쓸 수 있었던 시간입니다.
+**조기 최적화**는 실제 실행 데이터 없이 "느릴 것 같다"는 직관만으로 코드를 바꾸는 행위를 말합니다. 함정은 세 겹으로 겹칩니다. 첫째, 직관이 틀리는 경우가 흔합니다. 개발자가 "이 반복문이 느릴 것"이라고 짐작한 지점과, 실제로 CPU 사이클·캐시 미스·락 대기 시간이 몰리는 지점은 자주 어긋납니다. 둘째, 최적화는 공짜가 아닙니다. 캐시 친화적으로 자료구조를 바꾸거나 분기를 제거하면 대체로 코드가 더 길어지고 읽기 어려워지며, 이는 [4장: 가독성 vs 성능](/post/design-decisions/readability-vs-performance-tradeoff/)에서 다루는 트레이드오프를 아무 이득 없이 지불하는 셈이 됩니다. 셋째, 기회비용이 있습니다. 근거 없는 최적화에 쓴 스프린트는 실제 병목을 찾거나 기능을 만드는 데 쓸 수 있었던 시간입니다.
 
 여기서 핵심은 "최적화를 하지 말라"가 아니라 "근거 없이 먼저 하지 말라"는 순서의 문제라는 점입니다. Knuth의 문장도 "결정적인 3%의 기회는 놓치지 말라"고 못박아 두었습니다. 문제는 그 3%를 짐작이 아니라 측정으로 찾아야 한다는 것입니다.
 
@@ -102,9 +99,9 @@ perf report --sort=overhead,symbol | head -20
 
 ## 비즈니스 임팩트와의 연결
 
-측정된 병목이라도 사용자·매출·SLO에 닿지 않으면 우선순위가 낮습니다. 예를 들어 하루 한 번 실행되는 배치 리포트가 3초에서 1초로 줄어드는 것과, p99 지연이 SLO(자세한 정의는 [5장](/post/design-decisions/slo-sla-definition-team-alignment/))를 위협하는 요청 경로가 100ms 개선되는 것은 조직에 주는 가치가 다릅니다. 이 연결을 만드는 실무적 방법은 "이 병목을 고치면 어떤 사용자 지표(전환율, 이탈률, SLO 위반 빈도)가 움직이는가"를 최적화 착수 전에 한 문장으로 적어보는 것입니다. 문장을 채우지 못한다면, 그 최적화는 근거가 아니라 취향에서 나온 것일 가능성이 큽니다.
+측정된 병목이라도 사용자·매출·SLO에 닿지 않으면 우선순위가 낮습니다. 예를 들어 하루 한 번 실행되는 배치 리포트가 3초에서 1초로 줄어드는 것과, p99 지연이 SLO(자세한 정의는 [6장](/post/design-decisions/slo-sla-definition-team-alignment/))를 위협하는 요청 경로가 100ms 개선되는 것은 조직에 주는 가치가 다릅니다. 이 연결을 만드는 실무적 방법은 "이 병목을 고치면 어떤 사용자 지표(전환율, 이탈률, SLO 위반 빈도)가 움직이는가"를 최적화 착수 전에 한 문장으로 적어보는 것입니다. 문장을 채우지 못한다면, 그 최적화는 근거가 아니라 취향에서 나온 것일 가능성이 큽니다.
 
-Greg Linden의 Amazon 일화나 이후 여러 웹 서비스에서 반복 보고된 "지연이 늘면 이탈이 는다"는 관찰은 이런 연결의 좋은 출발점이지만, 인과관계를 증명하는 통제된 실험이 아니라 개별 기업의 A/B 테스트 결과라는 한계가 있습니다. 자신의 서비스에서 지연과 사용자 행동의 관계를 확인하려면 별도의 A/B 테스트나 상관 분석이 필요하며, 그 결과를 팀의 성능 예산으로 굳히는 절차는 [4장: 성능 예산 수립](/post/design-decisions/performance-budgeting-methodology/)에서 다룹니다.
+Greg Linden의 Amazon 일화나 이후 여러 웹 서비스에서 반복 보고된 "지연이 늘면 이탈이 는다"는 관찰은 이런 연결의 좋은 출발점이지만, 인과관계를 증명하는 통제된 실험이 아니라 개별 기업의 A/B 테스트 결과라는 한계가 있습니다. 자신의 서비스에서 지연과 사용자 행동의 관계를 확인하려면 별도의 A/B 테스트나 상관 분석이 필요하며, 그 결과를 팀의 성능 예산으로 굳히는 절차는 [5장: 성능 예산 수립](/post/design-decisions/performance-budgeting-methodology/)에서 다룹니다.
 
 ```mermaid
 flowchart TD
@@ -115,7 +112,7 @@ flowchart TD
   hotPath -- "No" --> backlog["백로그 기록, 착수 보류"]
   hotPath -- "Yes" --> hasImpact{"사용자/매출/SLO에 닿는가?"}
   hasImpact -- "No" --> backlog
-  hasImpact -- "Yes" --> start["최적화 착수, 2장 기준으로 중단점 설계"]
+  hasImpact -- "Yes" --> start["최적화 착수, 3장 기준으로 중단점 설계"]
 ```
 
 이 흐름에서 "착수 보류"는 "영원히 안 한다"는 뜻이 아닙니다. 요청 경로가 바뀌거나 트래픽이 늘어 조건이 달라지면 같은 항목이 다시 평가 대상에 오를 수 있으므로, 백로그에 근거(측정값·날짜·판단 사유)를 남겨 두는 것이 재평가 비용을 줄입니다.
@@ -126,7 +123,7 @@ flowchart TD
 
 <strong>"코드 리뷰에서 O(n²)를 발견했으니 무조건 고쳐야 한다"</strong>는 두 번째 오해입니다. 빅오 표기는 점근적 근사이며, n이 작거나 호출 빈도가 낮으면 상수항과 캐시 지역성이 실제 실행 시간을 더 크게 좌우합니다. 알고리즘 복잡도는 최적화 후보를 찾는 단서이지, 그 자체로 착수를 확정하는 근거는 아닙니다. 실제 호출 빈도와 데이터 크기를 프로파일로 확인한 뒤 결정합니다.
 
-<strong>"여유가 있을 때 미리 최적화해 두면 나중에 이득"</strong>은 세 번째 오해입니다. 최적화는 가독성·유지보수 비용을 함께 지불하는 트레이드오프([3장](/post/design-decisions/readability-vs-performance-tradeoff/))이며, 아직 측정되지 않은 미래의 병목을 가정하고 미리 코드를 복잡하게 만드는 것은 조기 최적화의 정의 그 자체입니다. "여유가 있을 때" 투자할 곳은 최적화 코드 자체가 아니라 프로파일링·계측 인프라(Tr.01)인 경우가 많습니다.
+<strong>"여유가 있을 때 미리 최적화해 두면 나중에 이득"</strong>은 세 번째 오해입니다. 최적화는 가독성·유지보수 비용을 함께 지불하는 트레이드오프([4장](/post/design-decisions/readability-vs-performance-tradeoff/))이며, 아직 측정되지 않은 미래의 병목을 가정하고 미리 코드를 복잡하게 만드는 것은 조기 최적화의 정의 그 자체입니다. "여유가 있을 때" 투자할 곳은 최적화 코드 자체가 아니라 프로파일링·계측 인프라(Tr.01)인 경우가 많습니다.
 
 ## 판단 기준
 
@@ -140,7 +137,7 @@ flowchart TD
 
 ## 비판적 시각: 한계와 트레이드오프
 
-Knuth의 문장은 종종 "성능은 나중에 생각해도 된다"는 뜻으로 오독되지만, 원문의 맥락은 반복문 언롤링이나 지역 변수 배치 같은 **미시 수준(micro-level)** 최적화를 겨냥한 것이었습니다. 자료구조 선택, 동시성 모델, 통신 프로토콜처럼 나중에 바꾸는 비용이 큰 **아키텍처 수준** 결정에 같은 격언을 그대로 적용하면 오히려 위험합니다. 이런 결정은 되돌리는 비용이 매우 커서, 초기 설계 단계에서 성능 요구사항을 미리 반영해 두는 편이 합리적인 경우가 많고, 이는 [7장: Low-latency 아키텍처 패턴](/post/design-decisions/low-latency-architecture-design-patterns/)에서 다루는 영역과 맞닿아 있습니다. 즉 "조기 최적화 금지"는 미시 최적화에는 강하게 적용되지만, 아키텍처 결정에는 "근거 기반으로 미리 판단하라"는 다른 규범이 필요합니다.
+Knuth의 문장은 종종 "성능은 나중에 생각해도 된다"는 뜻으로 오독되지만, 원문의 맥락은 반복문 언롤링이나 지역 변수 배치 같은 **미시 수준(micro-level)** 최적화를 겨냥한 것이었습니다. 자료구조 선택, 동시성 모델, 통신 프로토콜처럼 나중에 바꾸는 비용이 큰 **아키텍처 수준** 결정에 같은 격언을 그대로 적용하면 오히려 위험합니다. 이런 결정은 되돌리는 비용이 매우 커서, 초기 설계 단계에서 성능 요구사항을 미리 반영해 두는 편이 합리적인 경우가 많고, 이는 [8장: Low-latency 아키텍처 패턴](/post/design-decisions/low-latency-architecture-design-patterns/)에서 다루는 영역과 맞닿아 있습니다. 즉 "조기 최적화 금지"는 미시 최적화에는 강하게 적용되지만, 아키텍처 결정에는 "근거 기반으로 미리 판단하라"는 다른 규범이 필요합니다.
 
 프로파일링 근거 기준 자체에도 한계가 있습니다. 프로파일러는 대표성 있는 트래픽·데이터 분포로 측정했을 때만 신뢰할 수 있고, 스테이징 환경의 작은 데이터셋으로 얻은 결과를 프로덕션 규모에 그대로 일반화하면 잘못된 우선순위를 세울 수 있습니다. 비즈니스 임팩트 연결도 상관관계를 인과관계로 착각하기 쉬운 지점이라, Greg Linden류의 일화를 자사 서비스에 그대로 대입하기보다는 자체 A/B 테스트로 검증하는 것이 안전합니다.
 

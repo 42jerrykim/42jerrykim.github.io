@@ -420,24 +420,24 @@
 | content/collection/optimization-10-network/20-http2-http3/index.md | 93.9 | 2026-10-23 | 1 | 통과 | 1.3 | def938b | 없음(경미: Priority 헤더 예시가 RFC 9218 예시와 반대(CSS u=0, 점진 이미지 u=5,i)이고 'urgency=3 기본값에 가까운'이 기본값 3과 모순, 반복 서술(L134–136·WebTransport 경고), curl 스크립트 -s가 h3 미지원 호스트 실패를 숨김) |
 | content/collection/optimization-10-network/21-network-compression-strategy/index.md | 92.4 | 2026-10-23 | 1 | 통과 | 1.3 | 06c77ca | 없음(경미: 압축 속도 배율 '약 5–6배'는 계산상 LZ4 6.4배·Snappy 5.4배, 마무리 문단이 앞 절 재진술, Memory 태그 근거 없음, 딕셔너리 예제에 createCDict/freeCDict 미포함) |
 | content/collection/optimization-11-design-decisions/00-introduction/index.md | 91.3 | 2026-07-25 | 2 | 통과 | 1.0 | d7d5a55 | 없음(경미: "범위와 경계" Mermaid 단독 의존, Phase별 궤적과 커리큘럼 표 일부 중복) |
-| content/collection/optimization-11-design-decisions/01-performance-terminology-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/02-when-to-optimize/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/03-when-to-stop-optimizing/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/04-readability-vs-performance/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/05-performance-budgeting/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/06-slo-sla-definition/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/07-latency-vs-throughput/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/08-low-latency-architecture-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/09-caching-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/10-database-access-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/11-team-performance-culture/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/12-performance-code-review/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/13-capacity-planning/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/14-load-testing-design/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/15-cost-performance-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/16-regulated-secure-performance-tradeoffs/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/17-memory-safety-tradeoffs/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/18-event-driven-architecture-performance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/01-performance-terminology-fundamentals/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | 4e1b372 | 없음(경미: 95th percentile billing·Tene의 coordinated omission 명명에 1차 출처 없음, 오개념 1이 평균 은폐 논리를 일부 재진술) |
+| content/collection/optimization-11-design-decisions/02-when-to-optimize/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | bd412a7 | 없음(경미 개선여지: L85 "위 표는"→"위 예시는") |
+| content/collection/optimization-11-design-decisions/03-when-to-stop-optimizing/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | fef3701 | 없음(경미: 암달 1967 논문이 "수식으로 보였다"는 서술 부정확 가능, 학습목표 문단과 체크리스트 중복) |
+| content/collection/optimization-11-design-decisions/04-readability-vs-performance/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | d55d1fa | 없음(경미 개선여지: Per.2 원문 본문 각주, #include <cstddef>) |
+| content/collection/optimization-11-design-decisions/05-performance-budgeting/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 16bdd9d | 없음 |
+| content/collection/optimization-11-design-decisions/06-slo-sla-definition/index.md | 100 | 2026-10-25 | 2 | 통과 | 1.3 | 882faea | 없음(경미 개선여지: 측정 윈도우도 Appendix B에 4주로 나옴, Mermaid <br/>·</br> 혼용) |
+| content/collection/optimization-11-design-decisions/07-latency-vs-throughput/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | dc993fa | 없음(경미 개선여지: Little 법칙 인용구 "거의 모든 것"→"사실상 모든 것") |
+| content/collection/optimization-11-design-decisions/08-low-latency-architecture-patterns/index.md | 100 | 2026-10-25 | 2 | 통과 | 1.3 | 4ef91cb | 없음 |
+| content/collection/optimization-11-design-decisions/09-caching-strategy/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | f5c3aac | 없음(경미: L62 "대중화" 평가성 단정, 확률적 조기 갱신 스케치에 cache-aside 조회·main 없음) |
+| content/collection/optimization-11-design-decisions/10-database-access-optimization/index.md | 100 | 2026-10-25 | 2 | 통과 | 1.3 | 3e034c8 | 없음 |
+| content/collection/optimization-11-design-decisions/11-team-performance-culture/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 27371cc | 없음 |
+| content/collection/optimization-11-design-decisions/12-performance-code-review/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | f9e4382 | 없음 |
+| content/collection/optimization-11-design-decisions/13-capacity-planning/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 55f2d16 | 없음 |
+| content/collection/optimization-11-design-decisions/14-load-testing-design/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | b1b49bb | 없음 |
+| content/collection/optimization-11-design-decisions/15-cost-performance-analysis/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 25d5d64 | 없음 |
+| content/collection/optimization-11-design-decisions/16-regulated-secure-performance-tradeoffs/index.md | 94.5 | 2026-10-25 | 1 | 통과 | 1.3 | 000b558 | 없음(경미: seccomp 호출 경로 설명 보강 여지, RFC 8446 후속 RFC 병기 확인 필요) |
+| content/collection/optimization-11-design-decisions/17-memory-safety-tradeoffs/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 3d1ffc7 | 없음 |
+| content/collection/optimization-11-design-decisions/18-event-driven-architecture-performance/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 0ed231a | 없음 |
 | content/collection/optimization-12-regression-prevention/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 1.0 | 14e23c8 | 없음(경미: Code-Review·Debugging·Logging·Git·GitHub·Cloud 태그 본문 결속 약함) |
 | content/collection/optimization-12-regression-prevention/01-performance-regression-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-12-regression-prevention/02-performance-test-automation/index.md | - | - | 0 | 미채점 | - | - | - |

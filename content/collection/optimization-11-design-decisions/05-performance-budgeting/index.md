@@ -26,16 +26,16 @@ tags:
   - Governance
   - Reference(참고)
   - Advanced
-  - Case-Study
   - Guide(가이드)
   - Code-Review(코드리뷰)
   - Deep-Dive
-  - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - Automation(자동화)
   - Workflow(워크플로우)
-  - Compliance
+  - Decision-Making
+  - SLO
+  - Performance-Budget
+  - Latency-Budget
 ---
 
 <strong>성능 예산(performance budget)</strong>이란 하나의 엔드투엔드 지연 목표를 여러 구성 요소·팀에 나눠 배분하고, 각자가 자기 몫을 지키는지 추적하는 엔지니어링 계약입니다. 목표 숫자 하나만 정해두면 p99가 흔들릴 때 "누구 책임인지"가 불명확해지고, 팀마다 자기가 보는 부분만 최적화하다가 정작 병목은 방치되는 일이 반복됩니다. 성능 예산은 이 문제를 "전체 목표를 조각내고, 조각마다 주인을 두고, 초과 시 정해진 절차로 대응한다"는 세 가지 장치로 풀어냅니다. 이 장에서는 예산을 어떻게 분해·배분하고, 초과했을 때 어떤 절차를 밟으며, 팀 간에 예산을 어떻게 재협상하는지를 다룹니다.
@@ -58,7 +58,7 @@ tags:
 
 ## 성능 예산 개념의 기원과 확장 (역사·배경)
 
-성능 예산이라는 개념은 원래 웹 프런트엔드 성능 분야에서 자리 잡았습니다. 2012년 전후로 Steve Souders 등이 주도한 웹 성능 커뮤니티에서 "페이지 용량·요청 수·로딩 시간에 상한선을 두고 이를 넘으면 배포를 막는다"는 관행이 퍼졌고, 이후 Addy Osmani의 "Start Performance Budgeting" 같은 글을 거치며 업계 표준 관행으로 정착했습니다. MDN은 이 개념을 다음과 같이 정의합니다.
+성능 예산이라는 개념은 원래 웹 프런트엔드 성능 분야에서 자리 잡았습니다. 웹 성능 커뮤니티에서 "페이지 용량·요청 수·로딩 시간에 상한선을 두고 이를 넘으면 배포를 막는다"는 관행으로 퍼졌고, 지금은 MDN 같은 표준 문서가 별도 가이드로 다룰 만큼 정착했습니다. MDN은 이 개념을 다음과 같이 정의합니다.
 
 > "A performance budget is a limit to prevent regressions. It can apply to a file, a file type, all files loaded on a page, a specific metric (e.g., Time to Interactive), a custom metric (e.g., Time to Hero Element), or a threshold over a period of time." — [MDN Web Docs: Performance budgets](https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Performance_budgets)
 
@@ -70,7 +70,7 @@ tags:
 
 ## 성능 예산이란 무엇인가
 
-성능 예산은 단순한 "목표 시간"이 아닙니다. 목표 시간(예: "주문 처리는 500us 이내")은 성능 예산의 출발점일 뿐이고, 예산이 되려면 그 시간이 **구간별로 쪼개져 각 구간에 소유자가 지정**되고, **소비량이 지속적으로 추적**되어야 합니다. "500us 이내"라는 목표만 있으면 500us를 넘겼을 때 어느 팀의 어느 변경이 원인인지 알 방법이 없습니다. 반면 "수신 처리 80us, 비즈니스 로직 150us, 직렬화 70us, 전송 100us, 여유분 100us"로 쪼개 놓으면 소비 추이를 구간별로 그래프에 올릴 수 있고, 특정 구간이 배분을 넘는 순간 그 구간 소유 팀에 곧바로 신호가 갑니다.
+성능 예산은 단순한 "목표 시간"이 아닙니다. 목표 시간(예: "주문 처리는 500us 이내")은 성능 예산의 출발점일 뿐이고, 예산이 되려면 그 시간이 **구간별로 쪼개져 각 구간에 소유자가 지정**되고, **소비량이 지속적으로 추적**되어야 합니다. "500us 이내"라는 목표만 있으면 500us를 넘겼을 때 어느 팀의 어느 변경이 원인인지 알 방법이 없습니다. 반면 "수신 처리 80us, 비즈니스 로직 150us, 직렬화·전송 100us, 영속화·로깅 70us, 여유분 100us"로 쪼개 놓으면 소비 추이를 구간별로 그래프에 올릴 수 있고, 특정 구간이 배분을 넘는 순간 그 구간 소유 팀에 곧바로 신호가 갑니다.
 
 성능 예산은 [SLO/SLA](/post/design-decisions/slo-sla-definition-team-alignment/)(챕터 06)와도 다른 층위에 있습니다. SLO는 "이해관계자에게 무엇을 약속하는가"를 정의하는 대외적·조직적 합의이고, 성능 예산은 "그 약속을 지키기 위해 내부적으로 자원을 어떻게 나누는가"를 정의하는 엔지니어링 도구입니다. 하나의 SLO(예: p99 500us)를 지키기 위해 여러 팀의 예산 슬라이스가 뒷받침하는 구조이며, SLO 자체의 정의 방식과 에러버짓의 조직적 거버넌스는 다음 장에서 이어집니다.
 
@@ -78,7 +78,7 @@ tags:
 
 예산 수립은 <strong>하향식 분해(top-down decomposition)</strong>에서 시작합니다. 엔드투엔드 목표(예: p99 500us)를 정한 뒤, 실제 요청이 지나가는 경로를 프로파일링으로 파악해 각 구간이 현재 얼마를 쓰고 있는지 측정합니다. 이 측정 없이 감으로 구간을 나누면 실제 병목이 아닌 구간에 예산을 낭비하게 되므로, 분해는 반드시 계측된 critical path(임계 경로) 위에서 이뤄져야 합니다. critical path 식별과 계측 기법 자체는 프로파일링 트랙(Tr.01)의 영역이고, 이 장에서는 그 결과를 "어떻게 배분에 반영하는가"만 다룹니다.
 
-배분 방식에는 크게 두 가지가 있습니다. **비례 배분**은 현재 각 구간이 실측으로 소비하는 비율을 그대로 예산 비율로 삼는 방식이고, 구현이 단순하지만 이미 비효율적인 구간에 여유를 그대로 물려주는 단점이 있습니다. **가중 배분**은 각 구간의 개선 여지·팀 역량·비즈니스 중요도를 반영해 의도적으로 재분배하는 방식이며, 병목 구간에 더 타이트한 목표를, 이미 최적화가 끝난 구간에는 느슨한 목표를 주는 식으로 설계합니다. 두 방식 모두에 공통으로 필요한 것은 <strong>여유분(margin)</strong>입니다. 측정 오차와 환경 변동(스케줄러 지연, 캐시 워밍업 상태 등)을 흡수하기 위해 전체 예산의 10–20% 정도를 어느 구간에도 배정하지 않은 여유로 남겨두는 관행이 흔합니다. 아래 표는 예시로, 실제 배분 비율은 아키텍처와 플랫폼(NIC 종류, 커널 바이패스 여부, 코로케이션 등)에 따라 달라집니다.
+배분 방식에는 크게 두 가지가 있습니다. **비례 배분**은 현재 각 구간이 실측으로 소비하는 비율을 그대로 예산 비율로 삼는 방식이고, 구현이 단순하지만 이미 비효율적인 구간에 여유를 그대로 물려주는 단점이 있습니다. **가중 배분**은 각 구간의 개선 여지·팀 역량·비즈니스 중요도를 반영해 의도적으로 재분배하는 방식이며, 병목 구간에 더 타이트한 목표를, 이미 최적화가 끝난 구간에는 느슨한 목표를 주는 식으로 설계합니다. 두 방식 모두에 공통으로 필요한 것은 <strong>여유분(margin)</strong>입니다. 측정 오차와 환경 변동(스케줄러 지연, 캐시 워밍업 상태 등)을 흡수하기 위해 어느 구간에도 배정하지 않은 여유를 남겨두는 것이 일반적입니다(아래 표는 500us 중 100us, 20%를 남긴 예시이며 이 비율은 출처 있는 표준이 아니라 설명용 값입니다). 실제 배분 비율은 아키텍처와 플랫폼(NIC 종류, 커널 바이패스 여부, 코로케이션 등)에 따라 달라집니다.
 
 | 구간 | 예시 배분 (엔드투엔드 500us 기준) | 소유 팀(예시) |
 |------|------|------|
@@ -105,12 +105,42 @@ flowchart TD
 
 배분이 끝나면 각 구간의 실제 소비량을 지속적으로 추적해야 예산이 살아있는 도구가 됩니다. 계측 인프라와 프로파일러 사용법 자체는 프로파일링 트랙(Tr.01)의 영역이지만, 예산 관점에서 중요한 것은 "구간별 수치를 하나의 기준 문서와 비교해 자동으로 신호를 낸다"는 워크플로우입니다. 아래는 그 최소 형태를 보여주는 예시로, 실제 조직에서는 이 로직이 CI 파이프라인이나 대시보드 알림에 통합됩니다.
 
-```bash
-# budget.yaml에 정의된 구간별 예산과 최근 벤치마크 결과(p99, us)를 비교하는 게이트 스켈레톤
-# budget.yaml 예: { ingest: 80, logic: 150, serialize: 100, persist: 70 }
-# measured.json 예: { "ingest": 95, "logic": 140, "serialize": 98, "persist": 65 }
-python3 check_budget.py --budget budget.yaml --measured measured.json --soft-margin 0.1
-# soft-margin 초과 시 경고, 하드 상한 초과 시 파이프라인 실패(exit 1)
+```python
+# check_budget.py
+# 사용법: python check_budget.py
+# 목적: 구간별 예산(us)과 실측 p99(us)를 비교해 소프트(90%) 경고와 하드(초과) 실패를 판정한다.
+import sys
+
+BUDGET = {"ingest": 80, "logic": 150, "serialize_send": 100, "persist": 70}  # 여유분 100us는 배정하지 않음
+MEASURED = {"ingest": 95, "logic": 140, "serialize_send": 98, "persist": 65}
+SOFT_RATIO = 0.9
+
+
+def check(budget, measured, soft_ratio):
+    status = 0
+    for name, limit in budget.items():
+        used = measured[name]
+        if used > limit:
+            print(f"FAIL {name}: {used}us > {limit}us")
+            status = 1
+        elif used > limit * soft_ratio:
+            print(f"WARN {name}: {used}us > {soft_ratio:.0%} of {limit}us")
+        else:
+            print(f"OK   {name}: {used}us <= {limit}us")
+    return status
+
+
+if __name__ == "__main__":
+    sys.exit(check(BUDGET, MEASURED, SOFT_RATIO))
+```
+
+위 스크립트를 그대로 실행하면(Python 3, 표준 라이브러리만 사용) 다음과 같이 출력되고 종료 코드는 1입니다. 수신 구간이 배정 80us를 넘겨 하드 상한에 걸렸고, 나머지 세 구간은 배정의 90%를 넘어 경고만 남은 경우입니다.
+
+```text
+FAIL ingest: 95us > 80us
+WARN logic: 140us > 90% of 150us
+WARN serialize_send: 98us > 90% of 100us
+WARN persist: 65us > 90% of 70us
 ```
 
 이 게이트는 두 단계 임계값을 두는 것이 실무에서 흔합니다. **소프트 임계값**(예: 배정치의 90%)을 넘으면 경고만 남겨 팀이 미리 인지하게 하고, **하드 임계값**(배정치 초과)을 넘으면 파이프라인을 실패시키거나 배포를 막습니다. 이 하드 게이트를 코드 리뷰·PR 프로세스에 통합하는 구체적 방법은 [성능 코드 리뷰](/post/design-decisions/performance-focused-code-review-guide/)(챕터 12)에서 다룹니다. 여기서 주의할 점은, 이 소프트/하드 임계값 구조가 SRE 에러버짓의 소비율 경보와 형태는 비슷하지만 의미는 다르다는 것입니다. 에러버짓은 "신뢰성 약속을 얼마나 남겨뒀는가"를 추적하고 그 조직적 운영 방식은 챕터 06에서 다루며, 성능 예산의 임계값은 "지연 슬라이스를 얼마나 썼는가"를 추적합니다.

@@ -25,9 +25,7 @@ tags:
   - Production
   - Advanced
   - Deep-Dive
-  - Case-Study
   - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - Guide(가이드)
   - CI-CD(Continuous Integration/Continuous Deployment)
@@ -67,9 +65,9 @@ tags:
 
 ## 역사·배경: 부하 테스트 도구와 사고방식의 변천
 
-부하 테스트 도구의 역사는 "동시 사용자 수를 흉내 내는 것"에서 "도착률을 정확히 재현하는 것"으로 무게중심이 옮겨온 과정이기도 합니다. Apache JMeter는 1998년 Stefano Mazzocchi가 Apache JServ의 성능을 검증하기 위해 작성한 것이 시작이었고, 스레드 수만큼 가상 사용자를 만들어 순차적으로 요청·응답을 반복하는 방식을 오랫동안 업계 표준처럼 써 왔습니다. 이 방식은 큐 워커처럼 "이전 작업이 끝나야 다음 작업을 당겨오는" 시스템에는 잘 맞지만, 사용자가 서버 상태와 무관하게 요청을 계속 보내는 웹·API 트래픽에는 근본적으로 다른 모델이 필요하다는 문제의식이 뒤따랐습니다.
+부하 테스트 도구의 역사는 "동시 사용자 수를 흉내 내는 것"에서 "도착률을 정확히 재현하는 것"으로 무게중심이 옮겨온 과정이기도 합니다. Apache JMeter처럼 스레드 수만큼 가상 사용자를 만들어 순차적으로 요청·응답을 반복하는 방식의 도구가 오랫동안 널리 쓰여 왔습니다. 이 방식은 큐 워커처럼 "이전 작업이 끝나야 다음 작업을 당겨오는" 시스템에는 잘 맞지만, 사용자가 서버 상태와 무관하게 요청을 계속 보내는 웹·API 트래픽에는 근본적으로 다른 모델이 필요하다는 문제의식이 뒤따랐습니다.
 
-이 문제의식을 정식으로 언어화한 것이 Schroeder, Wierman, Harchol-Balter가 2006년 NSDI에서 발표한 "Open Versus Closed: A Cautionary Tale"입니다. 이 논문은 "이전 작업이 끝나야 다음이 시작되는" 폐쇄형(closed) 워크로드와 "서버 상태와 무관하게 도착하는" 개방형(open) 워크로드를 구분하고, 같은 시스템이라도 어느 모델로 부하를 걸었는지에 따라 관찰되는 성능 특성이 크게 달라질 수 있음을 보였습니다. 이후 Azul Systems의 Gil Tene가 이 구분을 측정 도구의 문제로 확장해, 2013년 무렵 **coordinated omission**이라는 이름으로 "폐쇄형 부하 생성기가 서버가 느려지는 구간을 스스로 덜 측정하게 되는 현상"을 정리했습니다. Tene는 이를 바로잡기 위해 기존 wrk를 포크해 고정 처리량 옵션(`-R`)과 HdrHistogram 기반의 정밀한 지연시간 기록을 더한 wrk2를 만들었습니다. wrk2 저장소는 스스로를 "a constant throughput, correct latency recording variant of wrk"로 소개하며, 응답이 도착한 시점이 아니라 원래 전송되었어야 할 시점을 기준으로 지연시간을 계산한다고 설명합니다([GitHub: giltene/wrk2](https://github.com/giltene/wrk2)). 같은 문제의식은 이후 스크립트 기반 도구에도 이어져, 2016년 스웨덴 스타트업 Load Impact가 시작한 k6는 2021년 Grafana Labs에 인수된 뒤 `constant-arrival-rate`라는 이름으로 개방형 모델을 1급 기능으로 제공하고 있습니다.
+이 문제의식을 정식으로 언어화한 것이 Schroeder, Wierman, Harchol-Balter가 2006년 NSDI에서 발표한 "Open Versus Closed: A Cautionary Tale"입니다. 이 논문은 "이전 작업이 끝나야 다음이 시작되는" 폐쇄형(closed) 워크로드와 "서버 상태와 무관하게 도착하는" 개방형(open) 워크로드를 구분하고, 같은 시스템이라도 어느 모델로 부하를 걸었는지에 따라 관찰되는 성능 특성이 크게 달라질 수 있음을 보였습니다. 이후 Azul Systems의 Gil Tene가 이 구분을 측정 도구의 문제로 확장해, **coordinated omission**이라는 이름으로 "폐쇄형 부하 생성기가 서버가 느려지는 구간을 스스로 덜 측정하게 되는 현상"을 정리했습니다. Tene는 이를 바로잡기 위해 기존 wrk를 포크해 고정 처리량 옵션(`-R`)과 HdrHistogram 기반의 정밀한 지연시간 기록을 더한 wrk2를 만들었습니다. wrk2 저장소의 설명은 스스로를 "a constant throughput, correct latency recording variant of wrk"로 소개하며, 응답이 도착한 시점이 아니라 원래 전송되었어야 할 시점을 기준으로 지연시간을 계산한다고 설명합니다([GitHub: giltene/wrk2](https://github.com/giltene/wrk2)). 같은 문제의식은 스크립트 기반 도구에도 반영되어, k6는 `constant-arrival-rate`라는 이름의 executor로 개방형 모델을 제공합니다.
 
 ## 부하 테스트가 검증하는 것
 
@@ -101,12 +99,12 @@ flowchart TD
   synth --> arrival{"서버 응답과 무관하게</br>다음 요청이 도착하는가?"}
   arrival -->|"Yes(웹·API 트래픽)"| openModel["개방형 모델</br>고정 도착률로 생성"]
   arrival -->|"No(큐 워커·배치)"| closedModel["폐쇄형 모델</br>고정 동시성으로 생성"]
-  openModel --> goalCheck["04/06장 목표(budget·SLO)와</br>대조해 통과 기준 설정"]
+  openModel --> goalCheck["05/06장 목표(budget·SLO)와</br>대조해 통과 기준 설정"]
   closedModel --> goalCheck
   goalCheck --> typeSelect["목표에 맞는 테스트 유형 선택</br>(load/stress/spike/soak)"]
 ```
 
-개방형 모델을 실제 스크립트로 표현하면 아래와 같습니다. k6의 `constant-arrival-rate` executor는 요청이 응답 완료 여부와 무관하게 정해진 시간당 반복 수를 유지하도록 VU(가상 사용자) 수를 자동으로 늘리거나 줄입니다.
+개방형 모델을 실제 스크립트로 표현하면 아래와 같습니다. k6의 `constant-arrival-rate` executor는 요청이 응답 완료 여부와 무관하게 정해진 시간당 반복 수를 유지하도록 미리 할당한 VU(가상 사용자)를 쓰고, 부족하면 `maxVUs`까지 VU를 더 할당합니다.
 
 ```javascript
 import http from 'k6/http';
@@ -116,7 +114,7 @@ export const options = {
   scenarios: {
     steadyArrival: {
       executor: 'constant-arrival-rate', // 개방형 모델: 응답 대기와 무관하게 도착률을 고정
-      rate: 500,             // 초당 500 요청: 13장에서 정한 예상 피크 트래픽 기준
+      rate: 500,             // 초당 500 요청: 설명을 위해 가정한 예시 값
       timeUnit: '1s',
       duration: '10m',
       preAllocatedVUs: 200,  // 시작 시 미리 확보하는 VU 수
@@ -124,7 +122,7 @@ export const options = {
     },
   },
   thresholds: {
-    // 06장에서 합의한 SLO(p99 < 50ms)를 테스트 통과 기준으로 그대로 사용
+    // 가정한 SLO(p99 < 50ms)를 테스트 통과 기준으로 그대로 사용(실제 값은 06장의 절차로 합의한 것을 쓴다)
     http_req_duration: ['p(99)<50', 'p(95)<20'],
     http_req_failed: ['rate<0.001'],
   },
@@ -136,7 +134,7 @@ export default function () {
 }
 ```
 
-`maxVUs`를 목표 도착률 대비 넉넉하게 잡지 않으면 서버가 느려질 때 k6 자체가 VU 부족으로 도착률을 유지하지 못해 다시 폐쇄형처럼 동작하게 되므로, VU 소진 경고(`dropped_iterations`)를 함께 모니터링해야 합니다. 스크립트 없이 커맨드라인만으로 같은 원리를 확인하려면 wrk2로 고정 처리량을 강제할 수 있습니다.
+`maxVUs`를 목표 도착률 대비 넉넉하게 잡지 않으면 서버가 느려질 때 k6 자체가 VU 부족으로 도착률을 유지하지 못해 다시 폐쇄형처럼 동작하게 되므로, VU가 모자라 시작하지 못한 반복을 세는 `dropped_iterations` 메트릭([k6 내장 메트릭](https://grafana.com/docs/k6/latest/using-k6/metrics/reference/))을 함께 모니터링해야 합니다. 스크립트 없이 커맨드라인만으로 같은 원리를 확인하려면 wrk2로 고정 처리량을 강제할 수 있습니다.
 
 ```bash
 # wrk2: 초당 500 요청으로 고정(폐쇄형의 coordinated omission 회피), --latency로 HdrHistogram 분포 출력

@@ -13,7 +13,6 @@ tags:
   - System-Design
   - Software-Architecture(소프트웨어아키텍처)
   - Best-Practices
-  - Benchmark
   - Latency
   - Throughput
   - Concurrency(동시성)
@@ -22,13 +21,8 @@ tags:
   - Reliability
   - Scalability(확장성)
   - Message-Queue
-  - Case-Study
-  - Deep-Dive
-  - Advanced
   - Comparison(비교)
   - Pitfalls(함정)
-  - Edge-Cases(엣지케이스)
-  - Guide(가이드)
   - C++
   - Queue(큐)
   - Math(수학)
@@ -36,8 +30,12 @@ tags:
   - Networking(네트워킹)
   - SLI
   - SLO
-  - Profiling(프로파일링)
   - Kafka
+  - Queueing-Theory
+  - Batching
+  - Utilization
+  - Nagle-Algorithm
+  - Little-Law
 ---
 
 **지연시간 vs 처리량 아키텍처 결정**이란 시스템이 요청 하나를 얼마나 빨리 끝내는가(지연시간, latency)와 단위 시간에 얼마나 많은 요청을 처리하는가(처리량, throughput) 중 무엇을 우선할지, 그리고 두 목표가 구조적으로 충돌하는 지점(배칭, 큐잉, 동시성 제어)에서 어느 쪽으로 얼마나 타협할지를 정하는 것을 말합니다. 두 지표는 낭비 요소(불필요한 락, 중복 I/O)를 제거하는 구간에서는 함께 좋아지지만, 특정 임계점을 넘으면 같은 자원(서버, 스레드, 커넥션)을 두고 경쟁하며 근본적으로 상충합니다. 이 장은 그 상충이 왜 생기는지를 큐잉 이론과 실제 사례로 짚고, 워크로드 성격에 따라 어느 지표를 우선할지 판단하는 기준을 제공합니다. 이 결정을 명시적으로 하지 않으면 처리량을 올리려는 배치 크기 튜닝이 지연시간 SLO를 조용히 깨거나, 반대로 지연시간을 줄이려는 조치가 자원을 과잉 소비해 처리량 목표를 갉아먹는 일이 반복됩니다.
@@ -58,7 +56,7 @@ tags:
 
 ## 역사·배경: 큐잉 이론에서 온 상충
 
-지연시간과 처리량의 상충은 새로운 문제가 아니라 통신·교환 시스템 공학이 한 세기 넘게 다뤄온 주제입니다. 덴마크의 엔지니어 Agner Krarup Erlang은 1909년 코펜하겐 전화 교환국의 트래픽을 분석하면서 회선(자원) 수와 통화 대기 시간 사이의 관계를 정식화했고, 이 작업이 이후 큐잉 이론(queueing theory)의 토대가 되었습니다. 1961년 John Little은 대기 행렬 안의 평균 항목 수(L), 도착률(λ), 평균 체류 시간(W) 사이에 **L = λW**라는 관계가 성립함을 증명했습니다. 위키백과는 이 법칙이 "도착 과정의 분포, 서비스 분포, 서비스 순서, 그 밖의 거의 모든 것과 무관하게" 성립하는 일반 결과라고 설명합니다([Wikipedia: Little's law](https://en.wikipedia.org/wiki/Little%27s_law)). 이 관계가 지연시간과 처리량이 왜 같은 자원을 두고 경쟁하는지 설명하는 수학적 뼈대입니다.
+지연시간과 처리량의 상충은 새로운 문제가 아니라 통신·교환 시스템 공학이 한 세기 넘게 다뤄온 주제입니다. 덴마크의 엔지니어 Agner Krarup Erlang은 전화 교환 트래픽을 분석하면서 회선(자원) 수와 통화 대기 시간 사이의 관계를 정식화했고, 이 작업이 이후 큐잉 이론(queueing theory)의 토대가 되었습니다. 1961년 John Little은 대기 행렬 안의 평균 항목 수(L), 도착률(λ), 평균 체류 시간(W) 사이에 **L = λW**라는 관계가 성립함을 증명했습니다. 위키백과는 이 법칙이 "도착 과정의 분포, 서비스 분포, 서비스 순서, 그 밖의 거의 모든 것과 무관하게" 성립하는 일반 결과라고 설명합니다([Wikipedia: Little's law](https://en.wikipedia.org/wiki/Little%27s_law)). 이 관계가 지연시간과 처리량이 왜 같은 자원을 두고 경쟁하는지 설명하는 수학적 뼈대입니다.
 
 같은 긴장은 네트워크 스택에서도 구체적인 엔지니어링 결정으로 나타났습니다. 1984년 John Nagle이 RFC 896에서 제안한 Nagle's algorithm은 작은 TCP 패킷을 모아 한 번에 보내 네트워크 오버헤드를 줄이는 대신, 각 패킷이 확인응답(ACK)을 기다리는 동안 지연을 감수하도록 만들었습니다([Wikipedia: Nagle's algorithm](https://en.wikipedia.org/wiki/Nagle%27s_algorithm)). 이는 "처리량을 올리기 위해 지연을 희생한다"는 트레이드오프를 프로토콜 레벨의 기본값으로 굳힌 초기 사례이며, 이후 실시간 애플리케이션은 `TCP_NODELAY`로 이 기본값을 뒤집는 것이 관례가 되었습니다.
 
@@ -78,7 +76,7 @@ Little's Law(L = λW)는 큐 안의 평균 요청 수(L)가 도착률(λ)과 평
 #include <random>
 
 // M/M/1 큐 시뮬레이션: 유틸리제이션(rho)이 커질수록 평균 대기시간이 어떻게 변하는지 확인
-// 컴파일: g++ -O2 -std=c++17 mm1_sim.cpp -o mm1_sim (GCC 13, x86-64 기준)
+// 컴파일: g++ -O2 -std=c++17 mm1_sim.cpp -o mm1_sim (C++17을 지원하는 컴파일러)
 double simulate_mm1(double arrival_rate, double service_rate, int n_customers) {
   std::mt19937 rng(42);
   std::exponential_distribution<double> inter_arrival(arrival_rate);
@@ -108,9 +106,9 @@ int main() {
 
 이 시뮬레이션을 실행하면 ρ=0.5에서 ρ=0.9로 갈 때보다 ρ=0.9에서 ρ=0.99로 갈 때 평균 대기시간이 훨씬 큰 폭으로 뛰는 것을 볼 수 있습니다. 다만 이는 도착이 서로 독립적인 포아송 과정이라는 단순화된 가정 위에서 나온 결과이며, 실제 트래픽은 버스트(burst)와 상관관계를 가지므로 같은 유틸리제이션에서도 실제 tail latency는 이 모델보다 나쁠 수 있습니다 — 방향성을 확인하는 도구로 쓰고, 절대 수치는 실제 트래픽으로 재현·검증해야 합니다.
 
-Google의 Jeff Dean과 Luiz André Barroso는 이 유틸리제이션-지연 관계를 대규모 분산 시스템 운영 관점에서 다루면서, 지연 시간의 tail을 다루지 않으면 서버 유틸리제이션을 높여도 응답 시간 목표를 지키기 어렵고 결국 과잉 프로비저닝으로 이어진다고 지적합니다.
+Google의 Jeff Dean과 Luiz André Barroso는 이 문제를 팬아웃 구조에서의 tail 증폭 관점으로 다룹니다. 요청 하나가 여러 서버로 갈라질수록 가장 느린 응답이 전체 응답 시간을 좌우하므로, 개별 서버의 지연 변동을 줄이는 것이 응답성의 핵심이라는 것이 논문의 문제의식입니다. 논문은 반응성의 기준으로 다음 문장을 제시합니다.
 
-> "Systems that respond to user actions very quickly (within 100 milliseconds) feel more fluid and natural to users than those that take longer." — Jeff Dean & Luiz André Barroso, [*The Tail at Scale*](https://research.google/pubs/the-tail-at-scale/), Communications of the ACM 56 (2013)
+> "Systems that respond to user actions very quickly (within 100 milliseconds) feel more fluid and natural to users than those that take longer." — Jeff Dean & Luiz André Barroso, [*The Tail at Scale*](https://research.google/pubs/the-tail-at-scale/), Communications of the ACM 56 (2013) (원문은 이 문장의 근거로 Card et al. 1991을 인용합니다)
 
 ## 배칭이 만드는 트레이드오프
 
@@ -163,6 +161,8 @@ flowchart TD
 
 ## 판단 기준
 
+아래 표는 위에서 본 상충을 워크로드 성격별 선택으로 옮긴 것입니다. 핵심은 요청을 보낸 쪽이 응답을 실시간으로 기다리는지이고, 기다린다면 지연시간(p99)을, 기다리지 않는다면 처리량을 우선 지표로 삼습니다. 두 성격이 한 시스템에 공존하면 지표 하나로 합치지 않고 경로별로 SLO를 나눕니다. 표 아래 질문은 새 최적화나 설정 변경을 제안받았을 때 그 판단을 점검하는 용도입니다.
+
 | 워크로드 | 우선 지표 | 전형적 조치 |
 |------|---------|---------|
 | 동기 사용자 요청(거래 체결, 검색 자동완성, 실시간 게임) | 지연시간(p99) | `TCP_NODELAY`, 배치 회피, 낮은 유틸리제이션 목표 유지 |
@@ -188,8 +188,6 @@ M/M/1 같은 단순 큐잉 모델은 포아송 도착과 지수 분포 서비스
 - [ ] Little's Law(L = λW)로 큐 길이·도착률·체류 시간이 왜 함께 묶이는지 설명할 수 있다.
 - [ ] 배칭과 큐잉이 각각 어떻게 처리량을 올리고 지연을 늘리는지 구체 사례(Kafka linger.ms, Nagle/TCP_NODELAY)로 설명할 수 있다.
 - [ ] 유틸리제이션이 높아질수록 지연 tail이 비선형적으로 증가하는 이유를 말할 수 있다.
-- [ ] 워크로드 성격(동기 사용자 요청 vs 배치 작업)에 따라 지연시간과 처리량 중 우선순위를 판단할 수 있다.
-- [ ] 평균 지연시간이 아니라 p99/tail 지표로 의사결정해야 하는 이유를 설명할 수 있다.
 
 **이전 장**: [SLO/SLA 정의](/post/design-decisions/slo-sla-definition-team-alignment/) (챕터 06)
 
