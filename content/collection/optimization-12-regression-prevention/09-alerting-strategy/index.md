@@ -64,7 +64,7 @@ tags:
 
 > "When pages occur too frequently, employees second-guess, skim, or even ignore incoming alerts, sometimes even ignoring a "real" page that's masked by the noise." — Rob Ewaschuk, [*Site Reliability Engineering*, "Monitoring Distributed Systems"](https://sre.google/sre-book/monitoring-distributed-systems/) (Google, 2016)
 
-같은 장은 알림 설계의 기준을 두 가지로 요약합니다. 모니터링 시스템은 "무엇이 고장났는가(symptom)"와 "왜 고장났는가(cause)"라는 서로 다른 질문에 답해야 하며, 사람을 호출하는 모든 알림(page)은 실행 가능해야(actionable) 합니다. 이 원칙은 성능 회귀 알림에도 그대로 적용됩니다 — "p99 지연이 5ms를 넘었다"는 증상 알림과 "특정 커밋이 락 경합을 늘렸다"는 원인 정보는 다른 채널·다른 긴급도로 다뤄야 하고, 받는 사람이 즉시 무언가를 할 수 없는 알림은 애초에 페이지로 보내지 않아야 합니다. 이 철학은 이후 Prometheus의 [알림 모범 사례 문서](https://prometheus.io/docs/practices/alerting/)에도 이어져, "증상(사용자 영향)에 알림을 걸고 원인은 대시보드로 진단하라"는 권고로 재확인됩니다.
+같은 장은 알림 설계의 기준을 두 가지로 요약합니다. 모니터링 시스템은 "무엇이 고장났는가(symptom)"와 "왜 고장났는가(cause)"라는 서로 다른 질문에 답해야 하며, 사람을 호출하는 모든 알림(page)은 실행 가능해야(actionable) 합니다. 이 원칙은 성능 회귀 알림에도 그대로 적용됩니다 — "p99 지연이 5ms를 넘었다"는 증상 알림과 "특정 커밋이 락 경합을 늘렸다"는 원인 정보는 다른 채널·다른 긴급도로 다뤄야 하고, 받는 사람이 즉시 무언가를 할 수 없는 알림은 애초에 페이지로 보내지 않아야 합니다. Prometheus의 [알림 모범 사례 문서](https://prometheus.io/docs/practices/alerting/)도 같은 방향으로, 증상에 알림을 걸고 원인은 콘솔로 짚을 수 있게 하라고 권고합니다.
 
 ## 임계값 기반 알림
 
@@ -77,7 +77,7 @@ groups:
   - name: hotpath-latency-regression
     rules:
       - alert: HotPathP99LatencyHigh
-        expr: histogram_quantile(0.99, rate(hotpath_latency_seconds_bucket[5m])) > 0.005
+        expr: histogram_quantile(0.99, sum by (le) (rate(hotpath_latency_seconds_bucket[5m]))) > 0.005
         for: 10m
         labels:
           severity: page
@@ -90,7 +90,7 @@ groups:
 
 ## 이상 탐지 기반 알림
 
-<strong>이상 탐지 기반 알림(anomaly detection alerting)</strong>은 정적인 값 대신 과거 데이터로 만든 "정상 범위 모델"을 기준으로 삼습니다. 가장 단순한 형태는 최근 관측값들의 중앙값(또는 이동평균)과 표준편차로 대역(band)을 만들고, 현재 값이 그 대역을 벗어나면 이상으로 표시하는 방식입니다. AWS CloudWatch의 이상 탐지 기능은 여기에 더해 시간·요일별 계절성과 추세까지 학습한 모델을 최대 2주치 데이터로 훈련하고, 지속적으로 재학습해 지표가 서서히 변해도 모델이 따라가도록 설계되어 있습니다.
+<strong>이상 탐지 기반 알림(anomaly detection alerting)</strong>은 정적인 값 대신 과거 데이터로 만든 "정상 범위 모델"을 기준으로 삼습니다. 가장 단순한 형태는 최근 관측값들의 중앙값(또는 이동평균)과 표준편차로 대역(band)을 만들고, 현재 값이 그 대역을 벗어나면 이상으로 표시하는 방식입니다. [AWS CloudWatch의 이상 탐지 기능](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Anomaly_Detection.html)은 여기에 더해 시간·요일별 계절성과 추세까지 학습한 모델을 최대 2주치 데이터로 훈련하고, 지속적으로 재학습해 지표가 서서히 변해도 모델이 따라가도록 설계되어 있습니다.
 
 ```python
 # 개념 스케치: 이동 중앙값 + 표준편차 대역으로 이상 여부를 판정하는 최소 구현.
@@ -123,7 +123,7 @@ def is_anomalous(history: list[float], current: float, k: float = 3.0) -> bool:
 
 ```mermaid
 flowchart LR
-  signal["회귀 신호 (Tr.04/06 게이트)"] --> classify["임계값/이상탐지 판정"]
+  signal["회귀 신호 (PR 게이트·관측 지표)"] --> classify["임계값/이상탐지 판정"]
   classify --> severity{"심각도 분류"}
   severity -->|"P1 긴급"| page["온콜 페이지"]
   severity -->|"P2 경보"| ticket["팀 채널 알림"]
