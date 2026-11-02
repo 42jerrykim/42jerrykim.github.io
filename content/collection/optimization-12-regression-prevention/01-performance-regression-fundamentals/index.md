@@ -67,9 +67,9 @@ tags:
 
 > "A software performance regression is a situation where the software still functions correctly, but performs more slowly or uses more memory or resources than before." — [Wikipedia: Software regression](https://en.wikipedia.org/wiki/Software_regression)
 
-이 정의가 실무에 자리 잡은 배경에는 대규모 브라우저·런타임 프로젝트의 지속적 벤치마킹 문화가 있습니다. Chromium 프로젝트는 성능 회귀를 전담해 살피는 담당자를 로테이션으로 두는 **Perf Regression Sheriffing** 체계를 운영합니다(해당 문서에는 이 로테이션과 Perfbot Health Sheriffing 로테이션이 소개되어 있습니다). 이런 체계가 필요했던 이유는 단순합니다. 개별 PR 작성자는 자신의 변경이 다른 함수의 캐시 지역성이나 락 경합에 미치는 영향을 예측하기 어렵고, 회귀는 대개 한 커밋의 문제가 아니라 여러 작은 변경이 누적된 결과로 드러나기 때문입니다.
+이 정의가 실무에 자리 잡은 배경에는 대규모 브라우저·런타임 프로젝트의 지속적 벤치마킹 문화가 있습니다. Chromium 프로젝트는 성능 회귀를 전담해 살피는 담당자를 로테이션으로 두는 **Perf Regression Sheriffing** 체계를 운영합니다(해당 문서에는 이 로테이션과 Perfbot Health Sheriffing 로테이션이 소개되어 있습니다). 이런 체계가 필요한 이유를 작성자는 이렇게 해석합니다(해당 문서의 설명이 아니라 작성자의 추론입니다). 개별 PR 작성자는 자신의 변경이 다른 함수의 캐시 지역성이나 락 경합에 미치는 영향을 예측하기 어렵고, 회귀는 대개 한 커밋의 문제가 아니라 여러 작은 변경이 누적된 결과로 드러나기 때문입니다.
 
-같은 시기에 학계에서도 벤치마크 결과 자체가 신뢰할 수 없을 수 있다는 문제가 제기되었습니다. Georges, Buytaert, Eeckhout의 2007년 논문은 JVM 워밍업·GC·스레드 스케줄링이 만드는 실행 시간 변동이 통계적으로 엄밀하게 통제되지 않으면 "회귀처럼 보이는 노이즈"와 "진짜 회귀"를 구분할 수 없다는 점을 정량적으로 보였습니다. 이 통찰은 C++ 마이크로벤치마크에도 그대로 적용되며, 이 트랙이 자동화·기준선·변동성 관리를 별도 챕터로 나눠 다루는 이유이기도 합니다.
+별개로 학계에서도 벤치마크 결과 자체가 신뢰할 수 없을 수 있다는 문제가 제기되었습니다. Georges, Buytaert, Eeckhout의 2007년 논문은 자바 성능이 애플리케이션·입력·가상 머신·가비지 컬렉터 등 여러 요인에 좌우되어 통계적 엄밀함 없이 벤치마크를 비교하면 오해를 부를 수 있다는 문제를 다뤘습니다. 이를 회귀 탐지에 옮겨 "노이즈와 진짜 변화를 구분해야 한다"고 읽는 것은 작성자의 해석이며, 이 해석은 C++ 마이크로벤치마크에도 적용되며, 이 트랙이 자동화·기준선·변동성 관리를 별도 챕터로 나눠 다루는 이유이기도 합니다.
 
 ## 성능 회귀란 무엇인가: 정의와 판별
 
@@ -112,7 +112,7 @@ long long checksum_after(const std::vector<Record>& records) {
 }
 ```
 
-두 함수는 코드 리뷰에서 "타입 추론을 `auto`로 정리했다"는 정도로만 보이고, 반환값도 완전히 같습니다. 그런데 `checksum_after`는 레코드 수만큼 `std::string` 복사 생성자를 호출하므로, 레코드가 많고 `payload`가 SSO 임계값을 넘는 크기라면 반복마다 힙 할당·해제가 새로 발생합니다. 이런 변화는 컴파일 경고도, 정적 분석 경고도 트리거하지 않는 경우가 많고, 단위 테스트는 여전히 통과합니다. 오직 레이턴시 측정만이 이 회귀를 드러냅니다.
+두 함수는 코드 리뷰에서 "타입 추론을 `auto`로 정리했다"는 정도로만 보이고, 반환값도 완전히 같습니다. 그런데 `checksum_after`는 레코드 수만큼 `std::string` 복사 생성자를 호출하므로, 레코드가 많고 `payload`가 SSO 임계값을 넘는 크기라면 반복마다 힙 할당·해제가 새로 발생합니다. 이런 변화는 컴파일 경고를 트리거하지 않는 경우가 많고(clang-tidy의 `performance-for-range-copy` 같은 검사가 이런 복사를 잡아 줄 수 있지만 기본 설정으로 켜져 있다고 가정할 수는 없습니다), 단위 테스트는 여전히 통과합니다. 오직 레이턴시 측정만이 이 회귀를 드러냅니다.
 
 **의존성 변경**은 라이브러리·컴파일러·런타임 버전을 올릴 때 발생합니다. 표준 라이브러리 구현이 바뀌면 컨테이너의 성장 배율이나 해시 함수가 바뀔 수 있고, 컴파일러 버전이 바뀌면 동일한 소스에서도 인라이닝·벡터화 판단이 달라져 코드를 한 줄도 건드리지 않았는데 생성된 기계어가 달라집니다. 전이 의존성(transitive dependency)이 조용히 올라가는 경우가 특히 위험한데, 직접 수정한 파일이 없으니 원인 후보에서 아예 배제되기 쉽습니다.
 
@@ -200,7 +200,7 @@ A: 대부분 막기 어렵습니다. 리뷰 시점에는 데이터가 아직 그
 
 - [Wikipedia: Software regression](https://en.wikipedia.org/wiki/Software_regression) — 기능 회귀와 성능 회귀의 정의를 함께 다루는 개괄 문서
 - [Chromium: Perf Sheriffing](https://www.chromium.org/developers/tree-sheriffs/perf-sheriffs/) — 대규모 프로젝트가 성능 회귀 담당자를 로테이션으로 운영하는 실무 사례
-- [Georges, Buytaert, Eeckhout (2007): Statistically Rigorous Java Performance Evaluation](https://www2.ccs.neu.edu/racket/Performance/andy-georges-paper.pdf) — 반복 측정과 통계적 엄밀성 없이는 회귀와 노이즈를 구분할 수 없다는 것을 보인 고전 논문
+- [Georges, Buytaert, Eeckhout (2007): Statistically Rigorous Java Performance Evaluation](https://www2.ccs.neu.edu/racket/Performance/andy-georges-paper.pdf) — 자바 벤치마크 비교에서 통계적 엄밀성이 필요함을 보인 고전 논문(회귀와 노이즈의 구분에 대한 적용은 이 글의 해석)
 
 ## 다음 장에서는
 
