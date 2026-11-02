@@ -337,29 +337,29 @@
 | content/collection/optimization-06-os-runtime/17-ebpf-kernel-performance-safety/index.md | 91.3 | 2026-10-23 | 1 | 통과 | 1.3 | 95ba28a | 없음(경미: 00 챕터가 약속한 Tr.10·Tr.11 연계 링크 부재, 일부 부차 서술에 출처 없음). 1차 52.0점(1차 출처 0개, 메커니즘 서술 부재, 답 없는 14문항·중복 부록, 코드·명령 예제 없음, 무관 태그 다수, 산문 31.2%) → 커널 문서·man 페이지 기반으로 전면 재작성(verifier·권한·ABI·CO-RE 서술, 최소 XDP 예제와 bpftool 절차, 학습 목표·오개념·판단 표), 태그 재구성 후 통과. BPF 코드 컴파일 미검증(소스 정독) |
 | content/collection/optimization-06-os-runtime/18-cloud-tail-latency/index.md | 98.5 | 2026-10-23 | 2 | 통과 | 1.3 | fb172a6 | 없음(경미: 재현 스크립트는 실제 실행·컴파일 미검증, 커널 steal/KVM 문서 링크 미병기). 1차 82.0점(재현 스크립트가 본문의 코어 오버커밋 주장과 모순, 출처 없는 벤더 동작 단정(Nitro '오직'·GCP '정식 지원'·SLA '대부분'), 반복 서술, 무관 태그) → 스크립트를 3구간 비교·100회 반복·p50/p99 출력으로 재작성하고 한계 명시, 단정 삭제·약화 후 2회차에 통과. 셸·C 코드 실행 미검증(소스 정독) |
 | content/collection/optimization-07-concurrency/00-introduction/index.md | 95.2 | 2026-07-25 | 2 | 통과 | 1.0 | 58f8873 | 없음(경미: "책임지는 범위"·"다루지 않는 것" 리스트 앞 연결 문단 여지, Intel 링크 WebFetch 403이나 실제 접근 가능) |
-| content/collection/optimization-07-concurrency/01-synchronization-cost-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/01-synchronization-cost-analysis/index.md | 91.45 | 2026-10-25 | 0 | 통과 | 1.3 | 7feadc6 | 없음(경미: L79·L225 SRW 문서에 없는 '커널 오브젝트 최소화' 서술 귀속, 보일러플레이트 태그 4개, 본문 '1/2/4/8' vs 코드 Threads(1/4/8) 불일치) |
 | content/post/2026/2026-09-16-ai-counterfeit-utility-verification-cost/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-15-openai-agent-dsewiki-containment-breakout/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/02-lock-selection-criteria/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/03-false-sharing-avoidance/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/04-memory-model-practical/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/05-lock-free-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/06-lock-free-data-structures/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/07-hazard-pointers-rcu/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/08-spsc-mpmc-queues/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/09-cpp20-atomics/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/10-thread-pool-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/11-coroutine-concurrency/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/12-wait-free-programming/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/13-jthread-stop-token/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/14-seqlock-pattern/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/15-thread-local-storage/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/16-executors-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/17-senders-receivers-cpp26/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/18-parallel-execution-policies/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/19-condition-variable-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/20-barrier-latch/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/21-thread-per-core-io-uring/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/02-lock-selection-criteria/index.md | 95.8 | 2026-11-02 | 1 | 통과 | 1.3 | fd95d48 | 없음(경미: L124 ATOMIC_FLAG_INIT은 C++20에서 deprecated(atomic_flag flag_;로 대체 가능), OSSpinLock·NPTL 2003 등 역사 서술에 링크 출처 없음, libc++ '감싸는 구조'는 정확히 typedef 위임) |
+| content/collection/optimization-07-concurrency/03-false-sharing-avoidance/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | da4e741 | 없음(경미: L70 'libc++ ABI 노출 때문에 비활성' 인과 서술 1차 출처 없음 — libc++ 상태표 'LLVM 19에서 매크로 구현'으로 교체 여지) |
+| content/collection/optimization-07-concurrency/04-memory-model-practical/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | d66fddb | 없음(경미: L63 N2480 저자는 Boehm 단독인데 'Boehm과 Adve' 귀속, Intel TSX 2021 비활성화 출처 미부기, consume '사실상 폐기 수순' 표현이 P0371R1보다 강함) |
+| content/collection/optimization-07-concurrency/05-lock-free-fundamentals/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 04f59e3 | 없음(경미: Intel TSX 직접 인용에 intel.com 000059422 링크 미부기, Herlihy 논문 링크 없음, g++ 부재로 TaggedStack 예제 미컴파일) |
+| content/collection/optimization-07-concurrency/06-lock-free-data-structures/index.md | 92.5 | 2026-10-25 | 2 | 통과 | 1.3 | a9478f4 | 없음(경미: description이 dequeue 추가 미반영, 해시맵은 개념 스케치뿐, 큐 단독 main 예제 없음, rochester PDF ~경로 WebFetch 404이나 /u/scott 경로는 정상, Edge-Cases·Comparison 태그 근거 약함) |
+| content/collection/optimization-07-concurrency/07-hazard-pointers-rcu/index.md | 98.5 | 2026-10-25 | 3 | 통과 | 1.3 | c8d8635 | 없음(경미: 벤치마크 골격이 앞 절 Node·protect 정의에 의존하는 비독립 코드, Michael 2004 논문 링크 미부기, L153 합쇼체 어체 혼재, RCU grace period 도식 없음) |
+| content/collection/optimization-07-concurrency/08-spsc-mpmc-queues/index.md | 92.05 | 2026-10-25 | 2 | 통과 | 1.3 | d2fba87 | 없음(경미: BlockingSpscQueue에 main·테스트 없음, L365 '실패 반환 정책만 보였다'가 백프레셔 절과 어긋남, 세마포어 지연 비용 정량 근거 없음) |
+| content/collection/optimization-07-concurrency/09-cpp20-atomics/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | 7d0c87a | 없음(경미: L94 스핀 12/4회 단계 매핑은 Red Hat 글 상수 기반 추정, L109 Darwin ulock_wait 구현 서술 출처 없음, broken/fixed 조각이 main 없는 단독 비컴파일 조각) |
+| content/collection/optimization-07-concurrency/10-thread-pool-optimization/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | ffb3aff | 없음(경미: L63 Cilk++·TBB·TPL·ForkJoinPool·rayon 설계 근거 귀속 출처 없음, L172 '수십 개 이하 이론적 bound와 잘 맞음' 근거 없음, ThreadPool·벤치마크 블록이 앞 블록 의존·main 없음, Blumofe-Leiserson 논문 본문 미확인) |
+| content/collection/optimization-07-concurrency/11-coroutine-concurrency/index.md | 98.5 | 2026-10-25 | 1 | 통과 | 1.3 | d6dfdec | 없음(경미: ThreadPool이 선언뿐이고 main이 없으며 caller_bad가 Task를 co_await하지 않아 UAF 예제를 그대로 재현할 수 없음, 본문이 미실행·완성 프로그램 필요라고 명시) |
+| content/collection/optimization-07-concurrency/12-wait-free-programming/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | 2904d52 | 없음(경미·수정 권고: L113 도입문이 p50/p99 비교를 약속해 L144 '평균만 보고'와 모순, L44 '소비자 이론' 표현 어색, helping 의사코드 없음, Herlihy·Kogan-Petrank·Alistarh PDF 본문 대조 불가) |
+| content/collection/optimization-07-concurrency/13-jthread-stop-token/index.md | 91.9 | 2026-10-25 | 0 | 통과 | 1.3 | 9a0d15d | 없음(경미·수정 권고: libc++ 지원 이력이 L67·L228에서 중복, '행(hang)' 위험 재진술 5회 반복, L214 '수십 µs' 출처 없음, P1287→P0660 병합 서술·MSVC 시기 출처 없음, Linux·Windows·OS·Latency 무관 태그) |
+| content/collection/optimization-07-concurrency/14-seqlock-pattern/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | 56439b3 | 없음(경미: L286 '아키텍처별 주의사항'이 rigtorp README(x86 한정)보다 과장, L67 '(jiffies·타임스탬프 갱신)' 출처 없음, 벤치 블록이 Seqlock 정의에 의존하고 라이터 경로의 Snapshot s 미초기화) |
+| content/collection/optimization-07-concurrency/15-thread-local-storage/index.md | 91.3 | 2026-10-25 | 1 | 통과 | 1.3 | 1e98a27 | 없음(경미: Windows TEB ThreadLocalStoragePointer·_tls_index 서술과 glibc static TLS surplus 개선 서술 출처 없음, Drepper·Itanium ABI 링크 없음, Broken/Fixed 블록에 main 없음) |
+| content/collection/optimization-07-concurrency/16-executors-fundamentals/index.md | 92.8 | 2026-10-25 | 1 | 통과 | 1.3 | 7c12bd1 | 없음(경미: L236 '컴파일 에러 메시지가 길어진다고 보고됩니다' 출처 없음, '10여 년·10년 넘는 시간' 수치 근거 없음, scheduler/sender 절이 개념 수준이고 InlineSender::connect가 즉시 실행) |
+| content/collection/optimization-07-concurrency/17-senders-receivers-cpp26/index.md | 91.3 | 2026-10-25 | 2 | 통과 | 1.3 | a4f74bd | 없음(경미: Citadel Securities 링크 WebFetch 403으로 L119 요약을 원문 대조 못 함(검증 불가), spawn/spawn_future가 멤버인지 free function인지 P3149R11로 미확인, let_value 예제 없음) |
+| content/collection/optimization-07-concurrency/18-parallel-execution-policies/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | b6839f7 | 없음(경미: L79 P0333·P0394 exception_list 기각 경위 출처 없음, L182·L197이 L69·L79와 일부 재진술, 제목 접두 [Concurrency 07]/[Performance 07] 불일치) |
+| content/collection/optimization-07-concurrency/19-condition-variable-patterns/index.md | 96.55 | 2026-10-25 | 1 | 통과 | 1.3 | 9227fdb | 없음(경미: critic은 해시 e1895e5 본문을 96.55로 채점, 이후 description 길이만 177→157자로 줄임(린트 desc-len 지적 반영), L145·L159 이식성 서술 일부 중복, 과거 glibc requeue 사용·전환 시점에 직접 출처 없음) |
+| content/collection/optimization-07-concurrency/20-barrier-latch/index.md | 90.85 | 2026-10-25 | 1 | 통과 | 1.3 | bd56106 | 없음(경미: L159 'libstdc++는 futex 기반 atomic wait/notify 사용'은 붙은 GCC 패치 링크로 확인되지 않음, 마무리 체크리스트가 앞 절 일부 재진술, 비용 절이 정성 서술과 스켈레톤 벤치뿐, 통과선 근접) |
+| content/collection/optimization-07-concurrency/21-thread-per-core-io-uring/index.md | 93.85 | 2026-10-25 | 1 | 통과 | 1.3 | e301423 | 없음(경미: 오개념 절의 'Seastar·ScyllaDB는 2014년부터 epoll 기반으로도 구현' 연도·구현 방식 출처 없음, L73 '직접 확인' 문장 연속 중복, 벤치 예제에 io_uring_get_sqe null 검사와 submit·wait 반환값 검사 생략) |
 | content/collection/optimization-08-optimization-techniques/00-introduction/index.md | 95.2 | 2026-07-25 | 3 | 통과 | 1.0 | ebfac67 | 없음(경미: 측정 항목 리스트 근거 문단 여지) |
 | content/collection/optimization-08-optimization-techniques/01-simd-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-08-optimization-techniques/02-simd-intrinsics-practical/index.md | - | - | 0 | 미채점 | - | - | - |

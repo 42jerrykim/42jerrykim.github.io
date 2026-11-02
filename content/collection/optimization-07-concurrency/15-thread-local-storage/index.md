@@ -21,22 +21,14 @@ tags:
   - Linux(리눅스)
   - Windows(윈도우)
   - Benchmark
-  - Latency
-  - Throughput
-  - Profiling(프로파일링)
   - Testing(테스트)
   - Debugging(디버깅)
   - Implementation(구현)
-  - Best-Practices
-  - Code-Quality(코드품질)
   - Advanced
   - Deep-Dive
   - Pitfalls(함정)
   - Edge-Cases(엣지케이스)
   - Comparison(비교)
-  - Production
-  - Reliability
-  - Data-Structures(자료구조)
   - 실습
   - Synchronization
   - ELF(Executable and Linkable Format)
@@ -47,6 +39,8 @@ tags:
   - dlopen
   - glibc
   - constinit
+  - Atomic-Operations
+  - TLS-Model
 ---
 
 <strong>Thread-local Storage(TLS)</strong>란 같은 변수 이름과 타입을 스레드마다 독립된 메모리 복사본으로 갖게 해 주는 저장소 클래스를 말한다. C++11부터 `thread_local` 키워드로 언어 차원에서 지원되며, 전역 변수를 락 없이 스레드별로 "복제"해 경합을 원천적으로 없애는 손쉬운 방법처럼 보인다. 하지만 이 손쉬움은 공짜가 아니다. 어떤 `thread_local` 접근은 일반 전역 변수와 사실상 같은 비용이지만, 어떤 접근은 함수 호출 하나를 거쳐야 하고, 스레드 수가 늘어나면 그 변수의 메모리도 스레드 수만큼 곱해져 쌓인다. 이 장은 이 비용 차이가 어디서 오는지(정적 TLS 모델과 동적 TLS 모델), 그 비용을 감안하고도 TLS가 유리한 실전 패턴이 무엇인지(스레드별 캐시, 스레드별 카운터), 그리고 "스레드마다 독립"이라는 성질이 스레드 풀·동적 로딩 환경에서 어떻게 뒤통수를 치는지를 다룬다.
@@ -71,26 +65,26 @@ GNU 툴체인은 이 번거로움을 없애기 위해 컴파일러 확장 `__thr
 
 ## TLS 접근 비용: 정적 모델과 동적 모델
 
-`thread_local` 변수 하나에 접근하는 기계어 코드는 그 변수가 "어디서 정의되고 어떻게 로드되는가"에 따라 전혀 다르게 생성된다. 컴파일러와 링커는 심벌이 실행 파일에 있는지, 즉시 로드되는 공유 라이브러리에 있는지, 나중에 `dlopen`으로 로드될 수도 있는 라이브러리에 있는지를 근거로 네 가지 모델 중 하나를 고른다. <strong>Local Exec(LE)</strong>는 심벌이 최종 실행 파일에 있고 다른 모듈이 가로챌(preempt) 수 없을 때 쓰이는 가장 저렴한 모델로, 스레드 포인터(x86-64에서는 `%fs` 세그먼트 레지스터가 가리키는 TCB)로부터의 오프셋이 링크 시점에 상수로 확정되어, 접근 코드가 세그먼트 레지스터 상대 로드 한 줄로 끝난다. <strong>Initial Exec(IE)</strong>는 프로그램 시작 시점에 즉시 로드되는 공유 라이브러리의 TLS 심벌에 쓰이는데, 오프셋이 링크 시점 상수는 아니지만 프로그램 시작 시점에는 고정되므로 GOT를 통한 재배치 하나만 거치면 되고 `__tls_get_addr` 호출은 필요 없다. 반면 <strong>General Dynamic(GD)</strong>은 모듈 ID도 오프셋도 링크 시점에 알 수 없다고 가정하는 가장 범용적인 모델로, 접근할 때마다 `__tls_get_addr(module_id, offset)` 함수를 호출해 실제 주소를 계산해야 하며, 이 모델이 `dlopen`으로 나중에 로드되는 라이브러리의 TLS 변수를 안전하게 지원하는 유일한 방법이다. <strong>Local Dynamic(LD)</strong>은 같은 모듈 안에서 가로챌 수 없는 여러 TLS 심벌에 접근할 때 `__tls_get_addr` 호출 하나로 모듈의 TLS 블록 기준 주소만 구하고, 그 이후 개별 변수는 그 기준 주소에서 상수 오프셋만 더하는 절충안이다.
+`thread_local` 변수 하나에 접근하는 기계어 코드는 그 변수가 "어디서 정의되고 어떻게 로드되는가"에 따라 전혀 다르게 생성된다. 컴파일러와 링커는 컴파일 옵션(`-fPIC`, `-ftls-model`), 심벌 가시성, 링커 완화(relaxation)를 근거로 네 가지 모델 중 하나를 고른다. `-fPIC`로 만든 공유 라이브러리의 기본은 General Dynamic 또는 Local Dynamic이다. <strong>Local Exec(LE)</strong>는 심벌이 최종 실행 파일에 있고 다른 모듈이 가로챌(preempt) 수 없을 때 쓰이는 가장 저렴한 모델로, 스레드 포인터(x86-64에서는 `%fs` 세그먼트 레지스터가 가리키는 TCB)로부터의 오프셋이 링크 시점에 상수로 확정되어, 접근 코드가 세그먼트 레지스터 상대 로드 한 줄로 끝난다. <strong>Initial Exec(IE)</strong>는 `-ftls-model=initial-exec`나 `tls_model` 속성으로 명시하거나 링커 완화가 적용될 때 쓰이는 모델로, 오프셋이 링크 시점 상수는 아니지만 프로그램 시작 시점에는 고정되므로 GOT를 통한 로드 하나만 거치면 되고 `__tls_get_addr` 호출은 필요 없다. 대신 이 모델을 쓰는 공유 라이브러리는 프로그램 시작 시점에 로드되는 경우로 한정되며 `dlopen` 대상으로는 부적합할 수 있다. 반면 <strong>General Dynamic(GD)</strong>은 모듈 ID도 오프셋도 링크 시점에 알 수 없다고 가정하는 가장 범용적인 모델로, 접근할 때마다 `__tls_get_addr(module_id, offset)` 함수를 호출해 실제 주소를 계산해야 하며, 이 모델이 `dlopen`으로 나중에 로드되는 라이브러리의 TLS 변수를 안전하게 지원하는 기본 모델이다. <strong>Local Dynamic(LD)</strong>은 같은 모듈 안에서 가로챌 수 없는 여러 TLS 심벌에 접근할 때 `__tls_get_addr` 호출 하나로 모듈의 TLS 블록 기준 주소만 구하고, 그 이후 개별 변수는 그 기준 주소에서 상수 오프셋만 더하는 절충안이다.
 
 ```mermaid
 flowchart TD
   start["thread_local 심벌 정의 위치"] --> inExe{"최종 실행 파일에</br>정적으로 링크됨?"}
   inExe -- "예" --> le["Local Exec</br>(FS/GS 상대 오프셋,</br>링크 시점 상수)"]
-  inExe -- "아니오" --> loadedAtStart{"프로그램 시작 시</br>즉시 로드되는가?"}
-  loadedAtStart -- "예" --> ie["Initial Exec</br>(GOT 재배치 1회,</br>__tls_get_addr 불필요)"]
-  loadedAtStart -- "아니오, dlopen 가능" --> multiSym{"같은 모듈 내</br>다수 TLS 심벌 접근?"}
+  inExe -- "아니오" --> loadedAtStart{"IE를 명시했거나</br>링커 완화가 적용되는가?"}
+  loadedAtStart -- "예" --> ie["Initial Exec</br>(GOT 로드 1회,</br>__tls_get_addr 불필요)"]
+  loadedAtStart -- "아니오(-fPIC 기본)" --> multiSym{"같은 모듈 내</br>다수 TLS 심벌 접근?"}
   multiSym -- "예" --> ld["Local Dynamic</br>(__tls_get_addr 1회 공유)"]
   multiSym -- "아니오" --> gd["General Dynamic</br>(접근마다 __tls_get_addr 호출)"]
 ```
 
-비용 차이는 결코 사소하지 않다. 일반 전역 변수 접근이 x86-64에서 1–2 사이클이라면, Local Exec TLS 접근은 세그먼트 레지스터 상대 로드 한 번이 추가되어 3–4 사이클 정도이고, 공유 라이브러리에서 General Dynamic 모델로 `__tls_get_addr`를 호출해야 하는 경우는 함수 호출 오버헤드까지 겹쳐 20–50 사이클 수준으로 뛴다(플랫폼·컴파일러·최적화 수준에 따라 다르며, 직접 재현해 확인해야 하는 근사치다). [MaskRay의 TLS 해설](https://maskray.me/blog/2021-02-14-all-about-thread-local-storage)이 정리한 것처럼, 컴파일러는 `-ftls-model` 플래그나 심벌 가시성(visibility)·링키지 규칙에 따라 이 네 모델 중 하나를 자동으로 고르며, `__attribute__((tls_model("initial-exec")))`처럼 변수 단위로 강제할 수도 있다. 실측 측면에서 [David Grosman의 TLS 벤치마크](http://david-grs.github.io/tls_performance_overhead_cost_linux/)는 정적으로 링크된 실행 파일에서는 `thread_local` 접근과 일반 static 변수 접근 사이에 "차이가 거의 없었다"고 보고했지만, 같은 코드를 공유 라이브러리로 빌드했을 때는 TLS 접근이 static 접근보다 대략 두 배 느려졌다고 보고했다 — 원인은 정확히 위에서 설명한 General Dynamic 모델로의 전환이다.
+비용 차이는 결코 사소하지 않다. Local Exec TLS 접근은 일반 전역 변수 접근에 세그먼트 레지스터 상대 로드가 더해지는 정도이고, 공유 라이브러리에서 General Dynamic 모델로 `__tls_get_addr`를 호출해야 하는 경우는 함수 호출 오버헤드까지 겹쳐 더 비싸다(구체적인 사이클 수는 플랫폼·컴파일러에 따라 다르므로 이 글은 수치를 싣지 않는다). [MaskRay의 TLS 해설](https://maskray.me/blog/2021-02-14-all-about-thread-local-storage)이 정리한 것처럼, 컴파일러는 `-ftls-model` 플래그나 심벌 가시성(visibility)·링키지 규칙에 따라 이 네 모델 중 하나를 자동으로 고르며, `__attribute__((tls_model("initial-exec")))`처럼 변수 단위로 강제할 수도 있다. 실측 측면에서 [David Grosman의 TLS 벤치마크](http://david-grs.github.io/tls_performance_overhead_cost_linux/)는 정적으로 링크된 실행 파일에서는 `thread_local` 접근과 일반 static 변수 접근 사이에 "no overhead at all"(오버헤드가 전혀 없음)고 보고했지만, 같은 코드를 공유 라이브러리로 빌드했을 때는 TLS 접근이 static 접근보다 대략 두 배 느려졌다고 보고했다 — 원인은 정확히 위에서 설명한 General Dynamic 모델로의 전환이다.
 
-Windows는 다른 메커니즘을 쓰지만 구조는 비슷하다. 각 스레드의 TEB(Thread Environment Block)는 `ThreadLocalStoragePointer` 필드를 가지고 있고, 이 포인터가 가리키는 배열을 모듈별 `_tls_index`로 인덱싱해 해당 모듈의 TLS 블록을 찾는다. 실행 파일에 정적으로 링크된 `thread_local`/`__declspec(thread)` 변수는 이 인덱스가 로드 시점에 고정되어 저렴하지만, [Microsoft의 공식 문서](https://learn.microsoft.com/en-us/windows/win32/dlls/using-thread-local-storage-in-a-dynamic-link-library)가 명시하듯 `LoadLibrary`로 나중에 로드되는 DLL에서 `__declspec(thread)` 변수를 참조하면 프로세스 초기화 이전에 존재하던 스레드에는 그 변수를 위한 공간이 확장되지 않아 접근 시 보호 오류(protection fault)로 이어질 수 있다. 이런 DLL은 언어 키워드 대신 `TlsAlloc`/`TlsGetValue`/`TlsSetValue` API를 직접 써야 하며, 이는 Linux의 General Dynamic 모델이 `dlopen` 안전성을 위해 치르는 것과 본질적으로 같은 종류의 대가다.
+Windows는 다른 메커니즘을 쓰지만 구조는 비슷하다. 각 스레드의 TEB(Thread Environment Block)는 `ThreadLocalStoragePointer` 필드를 가지고 있고, 이 포인터가 가리키는 배열을 모듈별 `_tls_index`로 인덱싱해 해당 모듈의 TLS 블록을 찾는다. 실행 파일에 정적으로 링크된 `thread_local`/`__declspec(thread)` 변수는 이 인덱스가 로드 시점에 고정되어 저렴하지만, [Microsoft의 `TlsAlloc` 기반 DLL 예제 문서](https://learn.microsoft.com/en-us/windows/win32/dlls/using-thread-local-storage-in-a-dynamic-link-library)는 `LoadLibrary`로 로드되는 DLL이 TLS 슬롯을 `TlsAlloc`/`TlsGetValue`/`TlsSetValue` API로 직접 관리하는 방법을 보여 주며, DLL이 로드되기 전에 이미 존재하던 스레드에는 TLS 메모리가 자동으로 할당되지 않는다는 점을 다룬다. 동적으로 로드되는 DLL에서는 이 API를 쓰는 것이 이 문서가 보여 주는 방식이며, 이는 Linux의 General Dynamic 모델이 `dlopen` 안전성을 위해 치르는 것과 본질적으로 같은 종류의 대가다.
 
 ## 지연 초기화와 가드 변수 비용
 
-`thread_local`이 `__thread`보다 강력한 이유는 생성자가 있는 타입(`thread_local std::string`, `thread_local std::vector<int>` 등)을 허용하기 때문인데, 이 유연성에는 비용이 따른다. 각 스레드는 그 변수에 처음 접근하는 시점에 생성자를 호출해야 하므로, 컴파일러는 함수 지역 정적 변수의 지연 초기화와 똑같은 원리로 "가드 변수"를 하나 더 만든다. 이 변수가 이미 초기화됐는지를 매 접근마다 확인하고, 아직이라면 생성자를 실행한 뒤 Itanium C++ ABI가 정의하는 `__cxa_thread_atexit(f, p, d)`로 스레드 종료 시 호출될 소멸자를 등록한다. 이 함수는 등록된 순서의 역순으로, 등록한 바로 그 스레드가 종료할 때(`return`이나 `std::exit` 호출 시) 소멸자를 호출하도록 보장한다. 이미 초기화가 끝난 뒤에도 이 가드 검사는 접근마다 남아 있다. 함수 지역 정적 변수를 대상으로 한 벤치마크에서는 이 가드 검사 하나가 인라이닝 여부에 따라 호출당 대략 0.5–3ns 수준의 차이를 만든다고 [C++ Stories의 실측 결과](https://www.cppstories.com/2025/thread_safety_function_statics/)가 보고한 바 있다. `thread_local`의 가드도 원리가 동일하므로 같은 자릿수의 비용이 매 접근에 붙는다고 볼 수 있다. 이 오버헤드를 없애고 싶다면, 타입이 상수 초기화(constant initialization)를 지원하는 경우 C++20의 `constinit thread_local` 지정으로 가드 검사 자체를 컴파일 타임에 제거할 수 있다 — 다만 이는 초기값이 컴파일 타임에 계산 가능한 단순한 타입에만 적용 가능하다는 제약이 있다.
+`thread_local`이 `__thread`보다 강력한 이유는 생성자가 있는 타입(`thread_local std::string`, `thread_local std::vector<int>` 등)을 허용하기 때문인데, 이 유연성에는 비용이 따른다. 각 스레드는 그 변수에 처음 접근하는 시점에 생성자를 호출해야 하므로, 컴파일러는 함수 지역 정적 변수의 지연 초기화와 똑같은 원리로 "가드 변수"를 하나 더 만든다. 이 변수가 이미 초기화됐는지를 매 접근마다 확인하고, 아직이라면 생성자를 실행한 뒤 Itanium C++ ABI가 정의하는 `__cxa_thread_atexit(f, p, d)`로 스레드 종료 시 호출될 소멸자를 등록한다. 이 함수는 등록된 순서의 역순으로, 등록한 바로 그 스레드가 종료할 때(`return`이나 `std::exit` 호출 시) 소멸자를 호출하도록 보장한다. 이미 초기화가 끝난 뒤에도 이 가드 검사는 접근마다 남아 있다. 함수 지역 정적 변수의 가드 검사 비용을 다룬 [C++ Stories의 글](https://www.cppstories.com/2025/thread_safety_function_statics/)은 2014년 StackOverflow 답변을 요약해 호출당 대략 1–3ns라고 전한다. `thread_local`의 가드도 원리가 비슷하므로 같은 자릿수일 것으로 추측하지만, 이 글은 `thread_local` 가드를 직접 측정하지 않았다. 이 오버헤드를 없애고 싶다면, 타입이 상수 초기화(constant initialization)를 지원하는 경우 C++20의 `constinit thread_local` 지정으로 가드 검사 자체를 컴파일 타임에 제거할 수 있다 — 다만 이는 초기값이 컴파일 타임에 계산 가능한 단순한 타입에만 적용 가능하다는 제약이 있다.
 
 ```cpp
 // 일반 thread_local: 매 접근마다 초기화 가드 검사가 붙는다
@@ -137,9 +131,9 @@ class PerThreadCounter {
   }
   ~PerThreadCounter() {
     // 스레드 종료 전 누적값을 전역 합계로 이관한 뒤 레지스트리에서 제거
+    std::lock_guard<std::mutex> lock(registry_mutex());  // 이관과 제거를 같은 잠금 안에서 수행
     retired_sum().fetch_add(value_.load(std::memory_order_relaxed),
                              std::memory_order_relaxed);
-    std::lock_guard<std::mutex> lock(registry_mutex());
     auto& reg = registry();
     reg.erase(std::remove(reg.begin(), reg.end(), this), reg.end());
   }
@@ -150,8 +144,8 @@ class PerThreadCounter {
   }
 
   static long long aggregate() {
-    long long total = retired_sum().load(std::memory_order_relaxed);
     std::lock_guard<std::mutex> lock(registry_mutex());
+    long long total = retired_sum().load(std::memory_order_relaxed);  // 잠금 안에서 읽어 이중 집계·누락 방지
     for (auto* c : registry()) total += c->value_.load(std::memory_order_relaxed);
     return total;
   }
@@ -169,20 +163,33 @@ class PerThreadCounter {
 
 thread_local PerThreadCounter request_counter;
 void on_request() { request_counter.add(1); }  // 핫패스: relaxed atomic RMW 하나, 스레드 간 경합 없음
+
+// 동작 확인용 main: 스레드 8개가 각자 10만 번 증가시킨 뒤 합계를 확인한다.
+#include <cstdio>
+#include <thread>
+
+int main() {
+  std::vector<std::thread> ts;
+  for (int i = 0; i < 8; ++i)
+    ts.emplace_back([] { for (int j = 0; j < 100000; ++j) on_request(); });
+  for (auto& t : ts) t.join();  // 종료한 스레드의 값은 소멸자가 retired_sum으로 옮긴다
+  std::printf("total: %lld (expected 800000)\n", PerThreadCounter::aggregate());
+}
 ```
 
-이 구조에서 `add`는 자신의 스레드 안에서만 실행되므로 다른 스레드와 캐시 라인을 다투지 않아, 모든 스레드가 하나의 전역 `std::atomic` 카운터를 공유해 증가시키는 방식(챕터 03에서 다룬 것과 같은 성격의 캐시 라인 경합을 일으킨다)보다 핫패스가 훨씬 저렴하다. 레지스트리에 대한 `std::mutex` 잠금은 스레드 생성·종료·집계처럼 드문 이벤트에서만 발생하므로 전체 비용에서 무시할 만하다. 이 설계의 정확성 — 특히 스레드 종료 도중 레지스트리 접근과 집계 스레드의 순회가 실제로 데이터 레이스 없이 안전한지 — 는 컴파일러 주장만으로 믿지 말고, 여러 스레드가 `add`를 반복하며 무작위로 생성·종료되는 동안 다른 스레드가 계속 `aggregate()`를 호출하는 스트레스 테스트를 `-fsanitize=thread`(`g++ -std=c++20 -fsanitize=thread -g counter_test.cpp -pthread`)로 실행해 검증해야 한다.
+이 구조에서 `add`는 자신의 스레드 안에서만 실행되므로 다른 스레드와 캐시 라인을 다투지 않아, 모든 스레드가 하나의 전역 `std::atomic` 카운터를 공유해 증가시키는 방식(챕터 03에서 다룬 것과 같은 성격의 캐시 라인 경합을 일으킨다)보다 핫패스가 훨씬 저렴하다. 레지스트리에 대한 `std::mutex` 잠금은 스레드 생성·종료·집계처럼 드문 이벤트에서만 발생하므로 전체 비용에서 무시할 만하다. 이 설계의 정확성 — 특히 스레드 종료 도중 레지스트리 접근과 집계 스레드의 순회가 실제로 데이터 레이스 없이 안전한지 — 는 컴파일러 주장만으로 믿지 말고, 여러 스레드가 `add`를 반복하며 무작위로 생성·종료되는 동안 다른 스레드가 계속 `aggregate()`를 호출하는 스트레스 테스트를 `-fsanitize=thread`(`g++ -std=c++20 -fsanitize=thread -g counter_test.cpp -pthread`, 위 `main`을 확장한 파일)로 실행해 검증해야 한다.
 
 ## 흔한 오개념 교정
 
 <strong>"thread_local이면 동기화가 필요 없다"</strong>는 가장 흔한 오해다. 이는 "그 변수를 소유한 스레드가 그 변수만 다룰 때"에 한해서만 참이다. 위 `PerThreadCounter` 예제에서 보듯, 집계 스레드가 다른 스레드의 `thread_local` 인스턴스를 읽는 순간 그것은 명백한 스레드 간 공유 접근이며, `value_`를 `long long` 같은 비원자 타입으로 뒀다면 데이터 레이스가 된다. `thread_local`이 없애 주는 것은 "동시 쓰기 경합"이지 "스레드 경계를 넘는 접근에 대한 동기화 필요성" 자체가 아니다.
 
-<strong>"모든 thread_local 접근 비용은 동일하다"</strong>도 흔한 오해다. 앞서 본 것처럼 정적으로 링크된 실행 파일 안의 Local Exec 접근과, 공유 라이브러리 안에서 `dlopen`을 고려해야 하는 General Dynamic 접근은 수 배에서 십수 배까지 비용 차이가 날 수 있다. 헤더 전용 라이브러리나 플러그인 형태로 배포되는 코드에서 `thread_local`을 남용하면, 정적 링크 환경에서 측정한 벤치마크 결과가 실제 배포 환경(공유 라이브러리 형태)에서는 재현되지 않을 수 있다.
+<strong>"모든 thread_local 접근 비용은 동일하다"</strong>도 흔한 오해다. 앞서 본 것처럼 정적으로 링크된 실행 파일 안의 Local Exec 접근과, 공유 라이브러리 안에서 `dlopen`을 고려해야 하는 General Dynamic 접근은 두 배 안팎 이상의 비용 차이가 날 수 있다. 헤더 전용 라이브러리나 플러그인 형태로 배포되는 코드에서 `thread_local`을 남용하면, 정적 링크 환경에서 측정한 벤치마크 결과가 실제 배포 환경(공유 라이브러리 형태)에서는 재현되지 않을 수 있다.
 
 <strong>"스레드 풀에서도 thread_local은 항상 안전하다"</strong>는 세 번째 오해이자 가장 실무에서 자주 만나는 함정이다. 스레드 풀은 OS 스레드를 재사용하며 서로 무관한 태스크를 같은 스레드에서 순차 실행한다. 그런데 "현재 처리 중인 요청의 컨텍스트"를 담는 `thread_local` 변수를 태스크 경계에서 리셋하지 않으면, 이전 태스크가 남긴 상태가 다음 태스크로 그대로 새어 들어간다.
 
 ```cpp
 // 깨진 버전: 태스크 경계에서 리셋이 없어 이전 요청의 상태가 다음 요청으로 누출됨
+void process_with_context(int request_id);  // 요청을 처리하는 가상의 함수(정의 생략)
 thread_local int current_request_id = 0;
 
 void handle_task_broken(int request_id) {

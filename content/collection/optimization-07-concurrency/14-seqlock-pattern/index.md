@@ -125,7 +125,7 @@ struct BrokenSeqlock {
 
 이 코드는 두 층위에서 무너집니다. 첫째, `seq`와 `data`에 대한 동시 읽기/쓰기는 C++ 표준상 동기화되지 않은 데이터 레이스이므로 그 자체로 미정의 동작입니다. 둘째, 표준 위반을 눈감아 주더라도 컴파일러는 `data`를 읽는 코드를 `s1`을 확인하는 코드보다 앞이나 뒤로 옮길 근거(의존성)가 없다고 보고 최적화 단계에서 재배치할 수 있고, ARM처럼 로드-로드 재배치를 허용하는 하드웨어에서는 CPU가 한 번 더 순서를 흐트러뜨릴 수 있습니다. 결과는 간헐적이고 플랫폼에 따라 재현 여부가 달라지는 찢어진 읽기입니다.
 
-올바른 구현은 카운터를 `std::atomic`으로 두고, 시퀀스 로드/스토어에는 acquire/release를, 그리고 `data_`처럼 평범한 비원자적 접근이 그 경계를 넘어 재배치되지 않도록 컴파일러 배리어를 추가로 둡니다. 아래 코드는 [rigtorp/Seqlock](https://github.com/rigtorp/Seqlock)(MIT 라이선스, C++11 참조 구현)의 관용구를 그대로 따른 것입니다.
+올바른 구현은 카운터를 `std::atomic`으로 두고, 시퀀스 로드/스토어에는 acquire/release를, 그리고 `data_`처럼 평범한 비원자적 접근이 그 경계를 넘어 재배치되지 않도록 컴파일러 배리어를 추가로 둡니다. 아래 코드는 [rigtorp/Seqlock](https://github.com/rigtorp/Seqlock)(MIT 라이선스, C++11 참조 구현)의 관용구(홀짝 카운터와 읽기 전후의 두 번 확인)를 따르되, `alignas(64)` 배치와 `atomic_signal_fence` 위치는 설명을 위해 이 글에서 구성한 것입니다.
 
 ```cpp
 #include <atomic>
@@ -164,24 +164,54 @@ class Seqlock {
 };
 ```
 
-여기서 중요한 것은 `read()`가 `s1`이 홀수여도 `memcpy`를 건너뛰지 않고 일단 실행한다는 점입니다. 홀수인 동안 읽었으므로 찢어졌을 수 있는 값이지만, 그 값은 어차피 `while` 조건(`s1 != s2 || (s1 & 1)`)에서 버려지고 재시도되므로 결과에 영향을 주지 않습니다. 반대로 홀수일 때 `memcpy`를 생략하고 곧장 조건 검사로 건너뛰면 아직 값이 채워지지 않은 `out`과 초기화되지 않은 `s2`를 비교하는 코드가 되어 버려, "검증 없이 통과되는 예외 경로"라는 새로운 버그를 만듭니다 — 흔히 저지르는 실수이므로 직접 구현할 때 이 지점을 특히 주의해야 합니다. `std::atomic_signal_fence`는 **컴파일러에게만 재배치 금지를 지시하는 순수 컴파일 타임 배리어**이고 어떤 CPU 명령어도 생성하지 않습니다 — 즉 하드웨어가 스스로 로드/스토어를 재배치하지 않는 x86 TSO 모델에서만 이 코드가 완전합니다. rigtorp의 원 구현 문서도 이 점을 명시하며, ARM·POWER처럼 약한 메모리 모델의 하드웨어로 이식하려면 `atomic_signal_fence` 대신 실제 하드웨어 배리어를 내는 `std::atomic_thread_fence`나 `data_` 자체를 `memory_order_relaxed` 원자적 접근으로 바꿔야 한다고 밝히고 있습니다. `seq_`에 대한 `fetch_add`의 acquire/release는 아키텍처와 무관하게 컴파일러가 올바른 하드웨어 명령을 내도록 표준이 보장하지만, `data_`는 원자적 타입이 아니므로 이 보장 밖에 있다는 차이를 구분해야 합니다.
+여기서 중요한 것은 `read()`가 `s1`이 홀수여도 `memcpy`를 건너뛰지 않고 일단 실행한다는 점입니다. 홀수인 동안 읽었으므로 찢어졌을 수 있는 값이지만, 그 값은 어차피 `while` 조건(`s1 != s2 || (s1 & 1)`)에서 버려지고 재시도되므로 결과에 영향을 주지 않습니다. 홀수일 때 `memcpy`를 건너뛰는 구조로 바꿔도 조건식이 홀수를 재시도로 처리하므로 결과는 같지만 분기가 하나 늘어날 뿐이며, 어느 구조에서든 홀수 구간에서 읽은 값은 반드시 폐기해야 한다는 점은 달라지지 않습니다. `std::atomic_signal_fence`는 **컴파일러에게만 재배치 금지를 지시하는 순수 컴파일 타임 배리어**이고 어떤 CPU 명령어도 생성하지 않습니다 — 즉 하드웨어가 스스로 로드/스토어를 재배치하지 않는 x86 TSO 모델에서만 이 코드가 완전합니다. rigtorp의 README는 이 구현이 x86 메모리 모델에서만 동작한다고 밝히고 있습니다. ARM·POWER처럼 약한 메모리 모델의 하드웨어로 이식하려면 `atomic_signal_fence` 대신 실제 하드웨어 배리어를 내는 `std::atomic_thread_fence`를 쓰거나 `data_` 자체를 `memory_order_relaxed` 원자적 접근으로 바꿔야 한다는 것이 이 글의 해설이며, README의 서술은 아닙니다. `seq_`에 대한 `fetch_add`의 acquire/release는 아키텍처와 무관하게 컴파일러가 올바른 하드웨어 명령을 내도록 표준이 보장하지만, `data_`는 원자적 타입이 아니므로 이 보장 밖에 있다는 차이를 구분해야 합니다.
 
-이 관용구를 검증할 때 ThreadSanitizer는 특유의 함정이 있습니다.
+이 관용구를 검증할 때 ThreadSanitizer는 특유의 함정이 있습니다. 먼저 검증 대상인 `seqlock_test.cpp`의 `main`을 보입니다. 위 `Seqlock` 정의 뒤에 이어 붙이며, 라이터 한 개가 불변식 `b == 2 * a`를 유지한 채 값을 갱신하고 리더 네 개가 찢어진 읽기가 있는지 셉니다.
+
+```cpp
+#include <cstdio>
+#include <thread>
+#include <vector>
+
+struct Pair { std::uint64_t a; std::uint64_t b; };  // 불변식: b == 2 * a
+
+int main() {
+  Seqlock<Pair> sl;
+  std::atomic<bool> done{false};
+  std::atomic<long> torn{0};
+
+  std::thread writer([&] {
+    for (std::uint64_t i = 1; i <= 2'000'000; ++i) sl.write(Pair{i, 2 * i});
+    done.store(true, std::memory_order_relaxed);
+  });
+  std::vector<std::thread> readers;
+  for (int r = 0; r < 4; ++r)
+    readers.emplace_back([&] {
+      while (!done.load(std::memory_order_relaxed)) {
+        Pair p = sl.read();
+        if (p.b != 2 * p.a) torn.fetch_add(1, std::memory_order_relaxed);
+      }
+    });
+  writer.join();
+  for (auto& t : readers) t.join();
+  std::printf("torn reads: %ld\n", torn.load());
+}
+```
 
 ```bash
 g++ -std=c++20 -O1 -g -fsanitize=thread seqlock_test.cpp -o seqlock_test
 ./seqlock_test
 ```
 
-이렇게 실행하면 TSan은 `write`의 `memcpy(&data_, ...)`와 `read`의 `memcpy(&out, &data_, ...)` 사이를 거의 확실히 "data race"로 보고합니다. TSan의 happens-before 모델에는 "카운터가 불일치하면 결과를 버린다"는 규약을 이해할 방법이 없어서, 알고리즘이 올바르게 동작 중이어도 설계상 남겨둔 이 벤딩 레이스를 실제 버그와 똑같이 취급합니다. 실제로 리눅스 커널의 동적 레이스 탐지기인 KCSAN도 같은 문제를 겪었고, 그 해결책은 일반적인 억제가 아니라 `seqcount` 읽기 임계 구역 안의 접근을 별도로 인식해 의도된 벤딩 레이스로 처리하도록 탐지기 자체에 `data_race()` 주석 규약을 추가하는 것이었습니다 — 즉 "패턴을 아는 도구"가 아니면 이 오탐을 근본적으로 없앨 수 없다는 뜻입니다. 반대 방향의 위험도 있습니다: TSan을 비롯한 동적 레이스 탐지기는 자신이 관찰한 특정 스레드 인터리빙에서만 레이스를 잡아낼 수 있으므로, 카운터의 acquire/release를 잘못 `relaxed`로 완화한 실제 버그가 있어도 테스트 실행에서 우연히 그 타이밍이 겹치지 않으면 탐지되지 않고 통과할 수 있습니다. 이는 이 패턴만의 문제가 아니라 커버리지 기반 동적 분석 전반의 근본적 한계이지만, Seqlock처럼 정상 동작 자체가 레이스를 전제로 하는 코드에서는 그 한계가 더 크게 체감됩니다. 즉 TSan이 깨끗하다는 것은 "명백한 회귀가 없다"는 필요조건이지 "이 구현이 옳다"는 충분조건이 아닙니다. 실무에서는 `memcpy` 호출부만 좁게 지정한 억제 목록으로 알려진 벤딩 레이스를 숨기고, 대신 acquire/release 페어링과 카운터 짝/홀 로직은 코드 리뷰로 별도 검증합니다.
+이렇게 실행하면 TSan은 `write`의 `memcpy(&data_, ...)`와 `read`의 `memcpy(&out, &data_, ...)` 사이를 거의 확실히 "data race"로 보고합니다. TSan의 happens-before 모델에는 "카운터가 불일치하면 결과를 버린다"는 규약을 이해할 방법이 없어서, 알고리즘이 올바르게 동작 중이어도 설계상 남겨둔 이 의도된(benign) 레이스를 실제 버그와 똑같이 취급합니다. 리눅스 커널의 동적 레이스 탐지기 KCSAN은 의도된 레이스를 `data_race()`로 표시해 탐지 대상에서 빼는 방법을 제공합니다([KCSAN 문서](https://docs.kernel.org/dev-tools/kcsan.html)). 즉 의도된 레이스는 도구에 따로 알려야 오탐이 사라집니다. 반대 방향의 위험도 있습니다: TSan을 비롯한 동적 레이스 탐지기는 자신이 관찰한 특정 스레드 인터리빙에서만 레이스를 잡아낼 수 있으므로, 카운터의 acquire/release를 잘못 `relaxed`로 완화한 실제 버그가 있어도 테스트 실행에서 우연히 그 타이밍이 겹치지 않으면 탐지되지 않고 통과할 수 있습니다. 이는 이 패턴만의 문제가 아니라 커버리지 기반 동적 분석 전반의 근본적 한계이지만, Seqlock처럼 정상 동작 자체가 레이스를 전제로 하는 코드에서는 그 한계가 더 크게 체감됩니다. 즉 TSan이 깨끗하다는 것은 "명백한 회귀가 없다"는 필요조건이지 "이 구현이 옳다"는 충분조건이 아닙니다. 실무에서는 `memcpy` 호출부만 좁게 지정한 억제 목록으로 알려진 의도된(benign) 레이스를 숨기고, 대신 acquire/release 페어링과 카운터 짝/홀 로직은 코드 리뷰로 별도 검증합니다.
 
 ```text
-# tsan_suppressions.txt — write/read의 memcpy 벤딩 레이스만 좁게 억제
+# tsan_suppressions.txt — write/read의 memcpy 의도된(benign) 레이스만 좁게 억제
 race:Seqlock<*>::write
 race:Seqlock<*>::read
 ```
 
-이 억제 목록을 지정한 뒤 `TSAN_OPTIONS` 환경 변수로 넘겨 실행하면, 알려진 벤딩 레이스만 숨기고 그 밖의 새 레이스 경고는 그대로 살아 있습니다.
+이 억제 목록을 지정한 뒤 `TSAN_OPTIONS` 환경 변수로 넘겨 실행하면, 알려진 의도된(benign) 레이스만 숨기고 그 밖의 새 레이스 경고는 그대로 살아 있습니다.
 
 ```bash
 TSAN_OPTIONS="suppressions=tsan_suppressions.txt" ./seqlock_test
@@ -189,7 +219,7 @@ TSAN_OPTIONS="suppressions=tsan_suppressions.txt" ./seqlock_test
 
 억제 목록은 스택 프레임을 넓게 잡을수록 실제 버그까지 함께 가려버릴 위험이 커지므로, 클래스·함수 단위로 최대한 좁게 지정하고 새 레이스 경고가 뜨면 먼저 그것이 이 목록으로 가려지는 범위인지부터 확인합니다.
 
-읽기 성능을 정량 비교하려면 mutex 기반 읽기와 나란히 측정합니다. 아래는 Google Benchmark 스켈레톤이며, `g++ -std=c++20 -O2 bench.cpp -lbenchmark -lpthread`(x86-64 기준)로 빌드합니다. 실제로는 별도 라이터 스레드가 백그라운드에서 계속 값을 갱신하도록 구성해야 경합 상황을 재현할 수 있습니다.
+읽기 성능을 정량 비교하려면 mutex 기반 읽기와 나란히 측정합니다. 아래는 Google Benchmark 스켈레톤이며, `g++ -std=c++20 -O2 bench.cpp -lbenchmark -lpthread`(x86-64 기준)로 빌드합니다. 스레드 0이 라이터 역할을 맡아 계속 값을 갱신하고 나머지 스레드가 읽는 구조라, 갱신과 읽기가 겹치는 경합 상황을 재현합니다.
 
 ```cpp
 #include <benchmark/benchmark.h>
@@ -203,11 +233,13 @@ std::mutex g_mtx;
 Snapshot g_guarded{};
 
 static void BM_MutexRead(benchmark::State& state) {
+  const bool writer = state.thread_index() == 0;  // 스레드 0만 갱신하고 나머지는 읽는다
   for (auto _ : state) {
     Snapshot s;
     {
       std::lock_guard<std::mutex> lk(g_mtx);
-      s = g_guarded;
+      if (writer) g_guarded = Snapshot{1.0, 2.0, 3};
+      else s = g_guarded;
     }
     benchmark::DoNotOptimize(s);
   }
@@ -215,9 +247,14 @@ static void BM_MutexRead(benchmark::State& state) {
 BENCHMARK(BM_MutexRead)->Threads(8);
 
 static void BM_SeqlockRead(benchmark::State& state) {
+  const bool writer = state.thread_index() == 0;
   for (auto _ : state) {
-    auto s = g_seq.read();
-    benchmark::DoNotOptimize(s);
+    if (writer) {
+      g_seq.write(Snapshot{1.0, 2.0, 3});
+    } else {
+      auto s = g_seq.read();
+      benchmark::DoNotOptimize(s);
+    }
   }
 }
 BENCHMARK(BM_SeqlockRead)->Threads(8);
@@ -245,7 +282,7 @@ Seqlock은 "라이터가 리더를 굶기지 않는다"는 장점을 광고하�
 ### 더 읽을 거리
 
 - [Linux Kernel Documentation: Sequence counters and sequential locks](https://docs.kernel.org/locking/seqlock.html) — `seqcount_t`/`seqlock_t`의 공식 규약과 실시간 스케줄링 하의 livelock 경고
-- [Linux Kernel Documentation: Kernel Concurrency Sanitizer (KCSAN)](https://docs.kernel.org/dev-tools/kcsan.html) — `data_race()` 주석으로 의도된 벤딩 레이스를 탐지기에 알리는 방식
+- [Linux Kernel Documentation: Kernel Concurrency Sanitizer (KCSAN)](https://docs.kernel.org/dev-tools/kcsan.html) — `data_race()` 주석으로 의도된(benign) 레이스를 탐지기에 알리는 방식
 - [rigtorp/Seqlock (GitHub)](https://github.com/rigtorp/Seqlock) — 이 장의 C++ 구현이 따른 MIT 라이선스 참조 구현과 아키텍처별 주의사항
 - [Wikipedia: Seqlock](https://en.wikipedia.org/wiki/Seqlock) — Stephen Hemminger·Andrea Arcangeli의 초기 개발 배경과 커널 버전 이력
 

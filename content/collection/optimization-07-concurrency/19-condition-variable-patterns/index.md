@@ -6,7 +6,7 @@ draft: false
 image: wordcloud.png
 title: "[Concurrency 07] Condition Variable 성능 패턴"
 slug: condition-variable-performance-patterns
-description: "condition_variable의 spurious wakeup과 thundering herd 비용을 Mesa semantics 기원부터 다루고, predicate 루프·notify 선택·wait morphing으로 대기 비용을 줄이는 법과 atomic::wait/notify 대안을 비교합니다."
+description: "condition_variable의 spurious wakeup과 thundering herd 비용을 다루고, predicate 루프·notify 선택으로 대기 비용을 줄이는 법, 구현 의존적인 wait morphing 현황과 atomic::wait/notify 대안을 비교합니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
@@ -17,28 +17,23 @@ tags:
   - Condition-Variable
   - Memory-Order
   - C++
-  - CPU(Central Processing Unit)
-  - Cache
   - OS(운영체제)
   - Linux(리눅스)
   - Windows(윈도우)
   - Benchmark
   - Latency
   - Throughput
-  - Profiling(프로파일링)
-  - Debugging(디버깅)
   - Implementation(구현)
-  - Best-Practices
   - Pitfalls(함정)
   - Comparison(비교)
   - Deep-Dive
   - Advanced
-  - Testing(테스트)
   - Spurious-Wakeup
   - Thundering-Herd
   - Futex
   - Wait-Morphing
   - Predicate-Loop
+  - Lost-Wakeup
 ---
 
 **Condition Variable 성능 패턴**이란 `std::condition_variable`이 대기·통지 지점에서 발생시키는 spurious wakeup(가짜 각성)과 thundering herd(다수 동시 기상) 비용의 근원을 이해하고, predicate 설계와 `notify_one`/`notify_all` 선택으로 불필요한 깨어남을 줄이며, 필요하면 C++20 `std::atomic::wait`/`notify` 같은 대안으로 전환할지 판단하는 것을 말합니다. 생산자-소비자 큐나 작업 대기열에서 CV는 가장 익숙한 동기화 지점이지만, 대기자가 많아질수록 notify 한 번의 비용이 커지고 p99 꼬리 지연을 흔드는 지배 요인이 되기 쉽습니다. 이 장은 그 비용이 "왜" 발생하는지를 커널·libc 구현 수준까지 짚어, 표면적인 "notify_one이 항상 낫다" 같은 규칙이 아니라 상황별 판단 근거를 세웁니다.
@@ -47,7 +42,7 @@ tags:
 
 **전제 지식**: [01장: 동기화 비용 분석](/post/concurrency-optimization/synchronization-primitive-cost-analysis/)에서 다룬 mutex/atomic의 기본 비용 모델과, `std::unique_lock`·`std::mutex`의 사용법을 알고 있다고 가정합니다. C++20 `std::atomic`의 `wait`/`notify_one`/`notify_all`은 이 장에서 비교 대상으로만 다루며, 메모리 순서·ABA 문제를 포함한 전체 사용법은 [09장: C++20 Atomics 실전](/post/concurrency-optimization/cpp20-atomic-wait-notify/)에서 깊게 다룹니다.
 
-**이 장의 깊이**: **중급**입니다. `condition_variable::wait`의 predicate 루프가 왜 필수인지부터, notify 선택이 만드는 실제 커널 동작(futex requeue) 차이, atomic wait/notify로 전환할 때의 트레이드오프까지 다룹니다. **다루지 않는 것**: `std::barrier`/`std::latch`의 고정 인원 동기화 지점 설계(→ [20장](/post/concurrency-optimization/cpp20-barrier-latch-synchronization-patterns/)), SPSC/MPMC 큐 자체의 lock-free 구현(→ [08장](/post/concurrency-optimization/spsc-mpmc-ring-buffer-queues/)), 스레드 풀의 작업 분배 정책(→ [10장](/post/concurrency-optimization/thread-pool-work-stealing-optimization/))입니다.
+**이 장의 깊이**: **중급**입니다. `condition_variable::wait`의 predicate 루프가 왜 필수인지부터, notify 선택이 만드는 깨어남 수 차이, atomic wait/notify로 전환할 때의 트레이드오프까지 다룹니다. **다루지 않는 것**: `std::barrier`/`std::latch`의 고정 인원 동기화 지점 설계(→ [20장](/post/concurrency-optimization/cpp20-barrier-latch-synchronization-patterns/)), SPSC/MPMC 큐 자체의 lock-free 구현(→ [08장](/post/concurrency-optimization/spsc-mpmc-ring-buffer-queues/)), 스레드 풀의 작업 분배 정책(→ [10장](/post/concurrency-optimization/thread-pool-work-stealing-optimization/))입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -98,7 +93,7 @@ void consumer_bad() {
 }
 ```
 
-원인은 두 가지입니다. (1) `ready = true`가 락 없이 실행되면 컴파일러·CPU의 메모리 재정렬 관점에서 `consumer_bad`가 관찰하는 시점이 보장되지 않아 lost wakeup(알림이 대기 시작 전에 도착해 유실되는 상황)이 발생할 수 있습니다. (2) `if`는 한 번만 확인하므로, spurious wakeup이나 여러 소비자가 경쟁하는 상황에서 조건이 거짓인 채 실행이 이어집니다. 올바른 구현은 상태 변경을 항상 락 아래에 두고, `wait`에 predicate를 넘겨 루프로 재확인합니다.
+원인은 두 가지입니다. (1) `ready = true`가 락 없이 실행되면 소비자가 `ready`를 검사한 뒤 `wait`로 블록하기까지의 틈(check-then-block 경쟁)에서 알림이 먼저 도착해 유실되는 lost wakeup이 발생할 수 있습니다. 상태 변경을 락 안에서 하면 이 틈이 mutex로 막힙니다. 동시에 `ready`가 비원자 변수이므로 이 접근은 데이터 경쟁이기도 합니다. (2) `if`는 한 번만 확인하므로, spurious wakeup이나 여러 소비자가 경쟁하는 상황에서 조건이 거짓인 채 실행이 이어집니다. 올바른 구현은 상태 변경을 항상 락 아래에 두고, `wait`에 predicate를 넘겨 루프로 재확인합니다.
 
 ```cpp
 #include <condition_variable>
@@ -123,6 +118,19 @@ void consumer_good() {
 }
 ```
 
+아래는 위 깨진 코드(`m`, `cv`, `ready`, `producer_bad`, `consumer_bad`)만 담은 파일에 이어 붙이는 `cv_race.cpp`의 `main`입니다. 올바른 코드 블록은 같은 전역 이름을 쓰므로 다른 파일에 둡니다.
+
+```cpp
+#include <thread>
+
+int main() {
+  std::thread c(consumer_bad);
+  std::thread p(producer_bad);
+  p.join();
+  c.join();  // lost wakeup이 나면 여기서 영원히 멈출 수 있다
+}
+```
+
 `producer_bad`/`consumer_bad`의 데이터 경쟁은 ThreadSanitizer로 잡아낼 수 있고, lost wakeup으로 인한 행(hang)은 짧은 타임아웃을 건 반복 스트레스 테스트로 재현할 수 있습니다.
 
 ```bash
@@ -134,12 +142,12 @@ TSan은 `ready`에 대한 잠금 없는 읽기/쓰기를 `WARNING: ThreadSanitiz
 
 ### Thundering Herd와 wait morphing
 
-`notify_all`은 대기 중인 모든 스레드를 깨우지만, 다음에 진행할 수 있는 것은 mutex를 획득한 단 하나뿐입니다. 나머지는 깨어나 스케줄되고, mutex 획득에 실패해 다시 잠드는 낭비된 컨텍스트 스위치를 겪습니다 — 이것이 흔히 말하는 thundering herd입니다. 다만 이 비용은 "표준이 보장하는 동작"이 아니라 커널·libc 구현에 따라 달라지는 부분이 큽니다. 리눅스 glibc(NPTL)의 `pthread_cond_broadcast` 구현은 `FUTEX_CMP_REQUEUE`를 사용해 실제로는 단 하나의 스레드만 깨우고, 나머지 대기자는 잠든 채로 condition variable의 futex 큐에서 mutex의 futex 큐로 옮겨(requeue) 넣습니다. [futex(2) man page](https://man7.org/linux/man-pages/man2/futex.2.html)가 설명하듯, futex 자체는 경쟁이 없는 한 사용자 공간에서 원자적 명령만으로 처리되고 커널은 스레드가 실제로 블록해야 할 때만 개입합니다. 이렇게 requeue가 이뤄지면 나머지 스레드는 실제로 깨어나지 않고도 mutex 대기열에 줄을 서게 되어, 앞서 깨어난 스레드가 락을 놓을 때 커널이 다음 하나를 순서대로 깨웁니다. 이 기법을 흔히 "wait morphing"이라 부릅니다.
+`notify_all`은 대기 중인 모든 스레드를 깨우지만, 다음에 진행할 수 있는 것은 mutex를 획득한 단 하나뿐입니다. 나머지는 깨어나 스케줄되고, mutex 획득에 실패해 다시 잠드는 낭비된 컨텍스트 스위치를 겪습니다 — 이것이 흔히 말하는 thundering herd입니다. 다만 이 비용은 "표준이 보장하는 동작"이 아니라 커널·libc 구현에 따라 달라지는 부분이 큽니다. 과거 리눅스 glibc 구현의 `pthread_cond_broadcast`는 `FUTEX_CMP_REQUEUE`로 대기자 하나만 깨우고 나머지는 잠든 채로 condition variable의 futex 큐에서 mutex의 futex 큐로 옮겨(requeue) 이 비용을 줄였고, 이 기법을 흔히 "wait morphing"이라 부릅니다. 그러나 현행 glibc의 [pthread_cond_broadcast.c](https://github.com/bminor/glibc/blob/master/nptl/pthread_cond_broadcast.c) 소스는 requeue 대신 `futex_wake`로 대기자를 깨웁니다. 즉 wait morphing에 기대는 것은 구현 현황을 확인하기 전에는 안전하지 않습니다.
 
 ```mermaid
 flowchart TD
-  notifyAll["notify_all() 호출"] --> classicHerd["요청형 없이 구현: 전체에 futex_wake"]
-  notifyAll --> requeuePath["glibc NPTL: FUTEX_CMP_REQUEUE"]
+  notifyAll["notify_all() 호출"] --> classicHerd["requeue 없는 구현:</br>대기자 전체에 futex_wake"]
+  notifyAll --> requeuePath["requeue를 쓰는 구현:</br>FUTEX_CMP_REQUEUE(과거 glibc 등)"]
   classicHerd --> allWake["N개 스레드 동시 기상"]
   allWake --> raceLock["mutex 획득 경쟁"]
   raceLock --> oneWins["1개만 진행, N-1은 재대기"]
@@ -148,7 +156,7 @@ flowchart TD
   requeuePath --> restQueued["나머지는 mutex futex 큐로</br>이동(기상 없이 대기)"]
 ```
 
-이 완화는 어디까지나 glibc·리눅스 커널의 구현 최적화이며, C++ 표준이나 POSIX가 요구하는 계약이 아닙니다. 다른 libc(musl 등)나 오래된 커널, Windows·macOS의 조건 변수 구현은 같은 최적화를 제공한다는 보장이 없으므로, "notify_all은 항상 이렇게 값싸다"고 이식성 있게 단정할 수 없습니다. 애플리케이션 설계 관점에서는 여전히 "정말 모든 대기자가 동시에 진행해야 하는가"를 먼저 묻고, 한 번에 하나만 처리하면 되는 생산자-소비자 큐라면 애초에 `notify_one`으로 깨울 스레드 수 자체를 줄이는 것이 커널 구현에 기대는 것보다 안전한 최적화입니다.
+requeue 같은 완화는 어디까지나 구현 최적화이며, C++ 표준이나 POSIX가 요구하는 계약이 아닙니다. 현행 glibc도 쓰지 않고 다른 libc나 Windows·macOS의 구현도 보장이 없으므로, "notify_all은 값싸다"고 단정할 수 없고 대기자 수에 비례하는 깨어남 비용이 있을 수 있다고 보고 설계하는 편이 안전합니다. 애플리케이션 설계 관점에서는 여전히 "정말 모든 대기자가 동시에 진행해야 하는가"를 먼저 묻고, 한 번에 하나만 처리하면 되는 생산자-소비자 큐라면 애초에 `notify_one`으로 깨울 스레드 수 자체를 줄이는 것이 커널 구현에 기대는 것보다 안전한 최적화입니다.
 
 ### 측정: notify 왕복 지연 벤치마킹
 
@@ -197,11 +205,11 @@ BENCHMARK(BM_CondVarNotifyOneRoundTrip)->UseRealTime();
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 -std=c++20 bench_cv.cpp -lbenchmark -lpthread -o bench_cv`(x86-64, GCC 13+, 리눅스 기준)로 빌드해 실행하면 한 왕복의 평균 지연을 얻을 수 있습니다. 대기자 수를 1개에서 여러 개로 늘려 `notify_all`로 바꿔 가며 같은 벤치마크를 반복하면, herd 비용이 대기자 수에 따라 어떻게 늘어나는지(또는 앞서 설명한 requeue 최적화 덕에 예상보다 완만한지)를 자신의 커널·libc 조합에서 직접 확인할 수 있습니다. 수치는 커널 버전, glibc 버전, 스레드 수, CPU 코어 배치에 따라 크게 달라지므로 "몇 배 빠르다" 같은 단정보다 이 스켈레톤으로 자신의 환경에서 재현하는 것이 중요합니다.
+`g++ -O2 -std=c++20 bench_cv.cpp -lbenchmark -lpthread -o bench_cv`(x86-64, GCC 13+, 리눅스 기준)로 빌드해 실행하면 한 왕복의 평균 지연을 얻을 수 있습니다. 대기자 수를 1개에서 여러 개로 늘려 `notify_all`로 바꿔 가며 같은 벤치마크를 반복하면, herd 비용이 대기자 수에 따라 어떻게 늘어나는지를 자신의 커널·libc 조합에서 직접 확인할 수 있습니다. 수치는 커널 버전, glibc 버전, 스레드 수, CPU 코어 배치에 따라 크게 달라지므로 "몇 배 빠르다" 같은 단정보다 이 스켈레톤으로 자신의 환경에서 재현하는 것이 중요합니다.
 
 ### atomic::wait/notify로의 이탈: 언제, 왜
 
-C++20은 `std::atomic<T>`에 `wait`/`notify_one`/`notify_all`을 추가해, 별도의 mutex 없이 원자적 값 자체를 대기 조건으로 쓸 수 있게 했습니다. 리눅스에서는 이 연산들이 futex 위에 직접 구현되며, 32비트가 아닌 타입은 별도의 프록시 32비트 카운터를 통해 대기·통지를 중계합니다. [cppreference: std::atomic<T>::wait](https://en.cppreference.com/w/cpp/atomic/atomic/wait)는 이 형태의 변경 감지가 단순 폴링이나 순수 스핀락보다 대체로 더 효율적이라고 설명하며, `wait`는 대기 중인 값과 비교해 값이 바뀌었을 때만 리턴을 보장하도록 설계되어 있어(내부적으로 spurious 언블록이 있어도 재확인 후 리턴), 사용자 입장에서는 "거짓 반환은 없다"는 계약을 얻습니다. 다만 ABA 문제로 인해 `old`에서 다른 값으로 갔다가 다시 `old`로 돌아온 변화는 통지가 누락될 수 있다는 한계는 여전합니다.
+C++20은 `std::atomic<T>`에 `wait`/`notify_one`/`notify_all`을 추가해, 별도의 mutex 없이 원자적 값 자체를 대기 조건으로 쓸 수 있게 했습니다. libstdc++ 구현 기준으로 리눅스에서는 이 연산들이 futex 위에 구현되며 32비트가 아닌 타입은 별도의 프록시 32비트 카운터를 통해 대기·통지를 중계합니다(구현 세부이며 표준이 요구하는 것은 아닙니다). [cppreference: std::atomic<T>::wait](https://en.cppreference.com/w/cpp/atomic/atomic/wait)는 이 형태의 변경 감지가 단순 폴링이나 순수 스핀락보다 대체로 더 효율적이라고 설명하며, `wait`는 대기 중인 값과 비교해 값이 바뀌었을 때만 리턴을 보장하도록 설계되어 있어(내부적으로 spurious 언블록이 있어도 재확인 후 리턴), 사용자 입장에서는 "거짓 반환은 없다"는 계약을 얻습니다. 다만 ABA 문제로 인해 `old`에서 다른 값으로 갔다가 다시 `old`로 돌아온 변화는 통지가 누락될 수 있다는 한계는 여전합니다.
 
 ```cpp
 #include <atomic>
@@ -229,9 +237,9 @@ mutex와 lock을 아예 두지 않기 때문에 lock 경합·락 순서 문제 �
 
 **"spurious wakeup은 드문 버그 상황이다"**: 표준과 POSIX 계약이 명시적으로 허용하는 정상 동작입니다. 발생 빈도가 낮다고 해서 predicate 루프를 생략해도 되는 것이 아니라, 발생하지 않는 환경에서 우연히 동작하던 코드가 다른 커널·libc 조합에서 깨질 수 있다는 뜻으로 받아들여야 합니다.
 
-**"notify_all은 항상 notify_one보다 느리다"**: 앞서 본 것처럼 glibc의 futex requeue 최적화 덕에 실제 기상 스레드 수는 1개로 유지되는 경우가 많습니다. 반대로 "여러 대기자가 모두 진행해야 하는" 브로드캐스트 상황에서 `notify_one`을 쓰면 나머지 대기자가 영원히 깨어나지 않는 lost wakeup류의 정확성 버그가 생깁니다. notify 선택은 성능이 아니라 "몇 명이 진행해야 하는가"라는 의미론으로 먼저 결정하고, 그 다음에 비용을 측정해야 합니다.
+**"notify_all은 항상 notify_one보다 느리다"**: 앞서 본 것처럼 requeue 같은 완화는 구현에 따라 있을 수도 없을 수도 있어, `notify_all`은 대기자 수만큼 깨어나는 스레드가 생길 수 있다고 보는 것이 안전합니다. 반대로 "여러 대기자가 모두 진행해야 하는" 브로드캐스트 상황에서 `notify_one`을 쓰면 나머지 대기자가 영원히 깨어나지 않는 lost wakeup류의 정확성 버그가 생깁니다. notify 선택은 성능이 아니라 "몇 명이 진행해야 하는가"라는 의미론으로 먼저 결정하고, 그 다음에 비용을 측정해야 합니다.
 
-**"notify는 반드시 락을 잡은 채로 호출해야 안전하다"**: 상태 변경 자체는 반드시 락 아래에서 해야 하지만, `notify_one`/`notify_all` 호출 자체는 락을 놓은 뒤에 해도 무방하며 오히려 권장되는 경우가 많습니다. 락을 쥔 채로 notify하면 깨어난 스레드가 즉시 같은 mutex 경합에 부딪히는 "hurry up and wait" 비용이 생길 수 있는 반면, 락을 놓은 뒤 notify하면 깨어난 스레드가 곧바로 락을 잡을 수 있습니다(단, glibc의 wait morphing처럼 요청형 재대기를 쓰는 구현에서는 이 차이가 상쇄될 수 있어 실측이 필요합니다).
+**"notify는 반드시 락을 잡은 채로 호출해야 안전하다"**: 상태 변경 자체는 반드시 락 아래에서 해야 하지만, `notify_one`/`notify_all` 호출 자체는 락을 놓은 뒤에 해도 무방하며 오히려 권장되는 경우가 많습니다. 락을 쥔 채로 notify하면 깨어난 스레드가 즉시 같은 mutex 경합에 부딪히는 "hurry up and wait" 비용이 생길 수 있는 반면, 락을 놓은 뒤 notify하면 깨어난 스레드가 곧바로 락을 잡을 수 있습니다(단, requeue를 쓰는 구현에서는 이 차이가 상쇄될 수 있어 실측이 필요합니다).
 
 ## 판단 기준
 
@@ -246,13 +254,13 @@ mutex와 lock을 아예 두지 않기 때문에 lock 경합·락 순서 문제 �
 
 ## 비판적 시각: 한계와 트레이드오프
 
-wait morphing 같은 herd 완화는 C++ 표준이나 POSIX가 보장하는 계약이 아니라 glibc·리눅스 커널의 구현 선택입니다. 다른 플랫폼·libc 조합에서 같은 최적화를 기대할 수 없으므로, "notify_all이 사실은 값싸다"는 결론을 이식성 있게 일반화하면 안 됩니다. Windows의 `SleepConditionVariableCS`/`SleepConditionVariableSRW`는 가능한 한 커널 모드 전환을 피하려 시도하지만 내부 스케줄링·우선순위 부스팅 방식이 리눅스와 다르므로, 크로스 플랫폼 서버라면 반드시 각 타깃에서 재측정해야 합니다. `std::condition_variable_any`는 임의의 Lockable을 지원하기 위해 GCC libstdc++ 구현 기준으로 내부에 `shared_ptr<mutex>`를 추가로 들고 있어, `std::unique_lock<std::mutex>` 전용인 `condition_variable`보다 오버헤드가 더 있습니다 — 커스텀 락 타입이 꼭 필요한 게 아니라면 `condition_variable`을 우선 고려할 이유입니다. 마지막으로, atomic wait/notify가 mutex+cv보다 항상 우월한 것도 아닙니다. lock 경합은 사라지지만 여러 조건의 조합, 디버거의 조건 변수 검사, 배포 중인 데드락 탐지 도구 같은 생태계 지원은 여전히 `condition_variable` 쪽이 두텁습니다. 두 프리미티브 모두 "표준적이고 검증된 것" 대 "락 없이 빠르지만 직접 검증해야 하는 것"이라는 트레이드오프 축 위에 있다고 보는 것이 정확합니다.
+Windows의 `SleepConditionVariableCS`/`SleepConditionVariableSRW`는 가능한 한 커널 모드 전환을 피하려 시도하지만 내부 스케줄링·우선순위 부스팅 방식이 리눅스와 다르므로, 크로스 플랫폼 서버라면 반드시 각 타깃에서 재측정해야 합니다. `std::condition_variable_any`는 임의의 Lockable을 지원하기 위해 GCC libstdc++ 구현 기준으로 내부에 `shared_ptr<mutex>`를 추가로 들고 있어, `std::unique_lock<std::mutex>` 전용인 `condition_variable`보다 오버헤드가 더 있습니다 — 커스텀 락 타입이 꼭 필요한 게 아니라면 `condition_variable`을 우선 고려할 이유입니다. 마지막으로, atomic wait/notify가 mutex+cv보다 항상 우월한 것도 아닙니다. lock 경합은 사라지지만 여러 조건의 조합, 디버거의 조건 변수 검사, 배포 중인 데드락 탐지 도구 같은 생태계 지원은 여전히 `condition_variable` 쪽이 두텁습니다. 두 프리미티브 모두 "표준적이고 검증된 것" 대 "락 없이 빠르지만 직접 검증해야 하는 것"이라는 트레이드오프 축 위에 있다고 보는 것이 정확합니다.
 
 ## 마무리
 
 - spurious wakeup이 표준이 허용하는 정상 동작이며 predicate 루프가 왜 필수인지 설명할 수 있다.
 - 상태 변경은 락 아래, notify 호출은 락 밖이라는 안전한 wait 패턴을 구현하고 ThreadSanitizer로 검증할 수 있다.
-- thundering herd가 glibc의 futex requeue(wait morphing)로 부분 완화된다는 점과 그 이식성 한계를 설명할 수 있다.
+- thundering herd 완화(requeue, wait morphing)가 구현 선택이며 현행 glibc broadcast는 쓰지 않는다는 점을 설명할 수 있다.
 - notify_one/notify_all 선택을 "몇 명이 진행해야 하는가"라는 의미론으로 먼저 결정하고, 비용은 직접 벤치마크로 재현해 확인할 수 있다.
 - `condition_variable`과 `atomic::wait`/`notify` 중 무엇을 쓸지 표현력·비용·플랫폼 이식성 기준으로 판단할 수 있다.
 

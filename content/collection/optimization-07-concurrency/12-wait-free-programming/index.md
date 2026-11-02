@@ -13,8 +13,6 @@ tags:
   - Concurrency(동시성)
   - Thread
   - Synchronization
-  - Memory-Order
-  - Hazard-Pointer
   - RCU(Read-Copy-Update)
   - C++
   - CPU(Central Processing Unit)
@@ -22,15 +20,9 @@ tags:
   - Latency
   - Throughput
   - Data-Structures(자료구조)
-  - Complexity-Analysis(복잡도분석)
-  - Best-Practices
   - Advanced
   - Deep-Dive
-  - Case-Study
   - Pitfalls(함정)
-  - Testing(테스트)
-  - Debugging(디버깅)
-  - Reliability
   - System-Design
   - Wait-Free
   - Lock-Free
@@ -38,13 +30,18 @@ tags:
   - Consensus-Number
   - Helping-Mechanism
   - Starvation-Freedom
+  - Compare-And-Swap
+  - Atomic-Operations
+  - Real-Time
+  - Fetch-And-Add
+  - Universal-Construction
 ---
 
 **Wait-free 프로그래밍**이란 공유 자료구조에 접근하는 **모든 스레드**가 다른 스레드의 스케줄링이나 실패와 무관하게 **유한한 단계 수 안에** 자신의 연산을 끝마치도록 보장하는 동시성 설계 기법을 말합니다. 이전 장들에서 다룬 lock-free 설계([05장](/post/concurrency-optimization/lock-free-design-fundamentals/), [06장](/post/concurrency-optimization/lock-free-queue-stack-hashmap/))는 "시스템 전체로는 누군가 진행한다"만 보장할 뿐, 특정 스레드 하나가 계속 손해를 보다 굶는 상황을 막지는 못합니다. 인터럽트 핸들러, 하드 리얼타임 오디오 콜백, 항공전자 소프트웨어처럼 "이 스레드가 유한 시간 안에 끝난다"는 보장 자체가 정확성 요구사항인 영역에서는 lock-free만으로 부족하고, 진행 보장의 다음 단계인 wait-free가 필요해집니다. 이 장은 그 경계가 왜 존재하는지, 왜 wait-free 알고리즘을 설계하기가 유독 어려운지, 그리고 실무에서 이 보장을 언제 실제로 추구해야 하는지를 다룹니다.
 
 ## 이 장을 읽기 전에
 
-이 장은 [01장: 동기화 비용 정량 분석](/post/concurrency-optimization/synchronization-primitive-cost-analysis/)에서 다룬 경합 비용 개념과, [05장: Lock-free 설계 기초](/post/concurrency-optimization/lock-free-design-fundamentals/)·[06장: Lock-free 자료구조 구현](/post/concurrency-optimization/lock-free-queue-stack-hashmap/)에서 다룬 CAS 기반 lock-free 패턴을 전제로 합니다. "lock을 쓰지 않는다"와 "진행이 보장된다"가 서로 다른 축의 문제라는 것을 이미 알고 있다면 바로 진입할 수 있습니다. 이 장의 깊이는 **전문가** 구간에 집중되어 있습니다 — 진행 보장의 이론적 계층(obstruction-free/lock-free/wait-free), 이 계층이 왜 존재하는지에 대한 소비자 이론(consensus number), wait-free 알고리즘을 실제로 만드는 helping 메커니즘의 원리, 그리고 언제 이 복잡도를 감수할 가치가 있는지를 다룹니다. **다루지 않는 것**: 구체적인 wait-free 큐·스택 구현 코드 전체(→ [06장](/post/concurrency-optimization/lock-free-queue-stack-hashmap/)), hazard pointer·RCU의 메모리 회수 메커니즘 세부(→ [07장](/post/concurrency-optimization/hazard-pointer-rcu-cpp26/)), SPSC/MPMC 링버퍼의 구현 디테일(→ [08장](/post/concurrency-optimization/spsc-mpmc-ring-buffer-queues/)), C++20/26 atomic API 사용법(→ [09장](/post/concurrency-optimization/cpp20-atomic-wait-notify/))입니다.
+이 장은 [01장: 동기화 비용 정량 분석](/post/concurrency-optimization/synchronization-primitive-cost-analysis/)에서 다룬 경합 비용 개념과, [05장: Lock-free 설계 기초](/post/concurrency-optimization/lock-free-design-fundamentals/)·[06장: Lock-free 자료구조 구현](/post/concurrency-optimization/lock-free-queue-stack-hashmap/)에서 다룬 CAS 기반 lock-free 패턴을 전제로 합니다. "lock을 쓰지 않는다"와 "진행이 보장된다"가 서로 다른 축의 문제라는 것을 이미 알고 있다면 바로 진입할 수 있습니다. 이 장의 깊이는 **전문가** 구간에 집중되어 있습니다 — 진행 보장의 이론적 계층(obstruction-free/lock-free/wait-free), 이 계층이 왜 존재하는지에 대한 소비자 이론(consensus number), wait-free 알고리즘을 실제로 만드는 helping 메커니즘의 원리, 그리고 언제 이 복잡도를 감수할 가치가 있는지를 다룹니다. **다루지 않는 것**: 구체적인 wait-free 큐·스택 구현 코드 전체(Kogan-Petrank 논문을 참고하세요. 이 시리즈는 구현하지 않습니다), hazard pointer·RCU의 메모리 회수 메커니즘 세부(→ [07장](/post/concurrency-optimization/hazard-pointer-rcu-cpp26/)), SPSC/MPMC 링버퍼의 구현 디테일(→ [08장](/post/concurrency-optimization/spsc-mpmc-ring-buffer-queues/)), C++20/26 atomic API 사용법(→ [09장](/post/concurrency-optimization/cpp20-atomic-wait-notify/))입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -118,7 +115,6 @@ long wait_free_increment(std::atomic<long>& counter) {
 ```cpp
 #include <benchmark/benchmark.h>
 #include <atomic>
-#include <thread>
 
 static std::atomic<long> g_counter{0};
 static std::atomic<long> g_max{0};
@@ -131,9 +127,9 @@ static void BM_WaitFreeFetchAdd(benchmark::State& state) {
 BENCHMARK(BM_WaitFreeFetchAdd)->Threads(8)->Threads(32);
 
 static void BM_LockFreeCasMaxLoop(benchmark::State& state) {
-  long v = 0;
+  long v = state.thread_index();
   for (auto _ : state) {
-    v = (v + 1) % 1000;
+    v += state.threads();  // 스레드마다 서로 다른 값 계열을 단조 증가시켜 g_max 갱신 경쟁이 계속 일어나게 함
     long old_value = g_max.load(std::memory_order_relaxed);
     while (old_value < v &&
            !g_max.compare_exchange_weak(old_value, v, std::memory_order_relaxed)) {
@@ -145,7 +141,7 @@ BENCHMARK(BM_LockFreeCasMaxLoop)->Threads(8)->Threads(32);
 BENCHMARK_MAIN();
 ```
 
-`g++ -std=c++20 -O2 bench.cpp -lbenchmark -lpthread` (x86-64, GCC 13 기준 예시)로 빌드해 스레드 수를 늘려가며 실행하면, 스레드 수가 적을 때는 두 방식의 평균 지연시간 차이가 크지 않지만, 스레드 수가 늘어 CAS 경쟁이 심해질수록 `BM_LockFreeCasMaxLoop`의 **p99 꼬리 지연**이 `BM_WaitFreeFetchAdd`보다 상대적으로 크게 벌어지는 경향이 흔합니다 — 정확한 배율은 코어 수·캐시 토폴로지·컴파일러에 따라 달라지므로 대상 플랫폼에서 직접 재현해 확인해야 합니다. `-fsanitize=thread`(TSan) 빌드는 이 두 함수의 **데이터 레이스 유무**를 검증하는 데는 유용하지만, "유한 단계로 끝나는가"라는 **진행 보장 자체**는 검증하지 못한다는 점에 주의해야 합니다 — TSan은 실행된 한 번의 스케줄을 관찰할 뿐, 적대적 스케줄러가 만들 수 있는 최악의 경우를 증명하지 않습니다.
+`g++ -std=c++20 -O2 bench.cpp -lbenchmark -lpthread` (x86-64, GCC 13 기준 예시)로 빌드해 스레드 수를 늘려가며 실행하면, 스레드 수가 늘 때 두 함수의 평균 시간이 어떻게 달라지는지 비교할 수 있습니다. Google Benchmark는 기본으로 평균 시간을 보고하므로 이 골격은 p99 같은 꼬리 지연을 재지 못하며, 꼬리 지연을 보려면 반복마다 시간을 직접 기록해야 합니다. 이 글은 실측 결과를 싣지 않으며, 배율은 코어 수·캐시 토폴로지·컴파일러에 따라 달라지므로 대상 플랫폼에서 직접 측정해야 합니다. `-fsanitize=thread`(TSan) 빌드는 이 두 함수의 **데이터 레이스 유무**를 검증하는 데는 유용하지만, "유한 단계로 끝나는가"라는 **진행 보장 자체**는 검증하지 못한다는 점에 주의해야 합니다 — TSan은 실행된 한 번의 스케줄을 관찰할 뿐, 적대적 스케줄러가 만들 수 있는 최악의 경우를 증명하지 않습니다.
 
 ## 흔한 오개념
 
@@ -153,7 +149,7 @@ BENCHMARK_MAIN();
 
 <strong>"재시도 루프에 무한 루프 방지 코드가 없으니 사실상 wait-free다"</strong>도 틀렸습니다. 코드에 `while(true)` 같은 명시적 무한 루프가 없어도, 재시도 **횟수에 상한이 없다**면 진행 보장 관점에서는 여전히 lock-free일 뿐입니다. 실제로 재시도가 수백만 번씩 이어지는 경우는 드물지만, "드물다"는 확률적 관찰이지 wait-free가 요구하는 결정론적 상한이 아닙니다.
 
-<strong>"wait-free 알고리즘이 항상 더 빠르다"</strong>도 흔한 착각입니다. wait-free는 최악의 경우(worst case)에 대한 상한을 보장하는 것이지, 평균적인 경우(average case)의 성능을 개선하는 것이 아닙니다. helping 메커니즘의 오버헤드 때문에 무경합 상황에서는 오히려 순수 lock-free보다 느릴 수 있습니다. Dan Alistarh 등의 연구([Alistarh et al., *Are Lock-Free Concurrent Algorithms Practically Wait-Free?*](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/paper-18.pdf))는 저·중 정도의 경합과 충분한 코어 수를 가진 현실적인 조건에서는, 이론적으로 lock-free일 뿐인 알고리즘도 실질적인 응답 시간 분포가 wait-free 알고리즘과 크게 다르지 않을 수 있음을 보였습니다. 즉 "이론적 분류"와 "실무에서 체감하는 지연 분포"는 항상 일치하지 않습니다.
+<strong>"wait-free 알고리즘이 항상 더 빠르다"</strong>도 흔한 착각입니다. wait-free는 최악의 경우(worst case)에 대한 상한을 보장하는 것이지, 평균적인 경우(average case)의 성능을 개선하는 것이 아닙니다. helping 메커니즘의 오버헤드 때문에 무경합 상황에서는 오히려 순수 lock-free보다 느릴 수 있습니다. Dan Alistarh 등의 연구([Alistarh et al., *Are Lock-Free Concurrent Algorithms Practically Wait-Free?*](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/paper-18.pdf))는 확률적 스케줄러 모델을 가정한 분석에서, 이론적으로 lock-free일 뿐인 알고리즘도 사실상 wait-free에 가깝게 동작할 수 있음을 보였습니다. 즉 "이론적 분류"와 "실무에서 체감하는 지연 분포"는 항상 일치하지 않습니다.
 
 ## 판단 기준: 언제 wait-free를 추구하는가
 
@@ -170,7 +166,7 @@ BENCHMARK_MAIN();
 
 ## 비판적 시각: 한계와 논란
 
-Wait-free 알고리즘의 가장 큰 실무적 문제는 **복잡도 대비 이득의 불확실성**입니다. Kogan-Petrank류의 fast-path-slow-path 구현은 순수 lock-free 버전보다 코드량과 상태 공간이 늘어나고, 검증·디버깅 난이도가 함께 올라갑니다. 게다가 이론적으로 증명된 "유한 단계 상한"이 실무적으로 의미 있는 크기라는 보장은 없습니다 — 상한이 스레드 수에 비례해 커지는 알고리즘이라면, 스레드가 많은 시스템에서는 이론상 wait-free이지만 실제 지연시간은 순수 lock-free보다 나쁠 수 있습니다. 앞서 언급한 Alistarh 등의 연구가 지적하듯, 현실적인 경합·스케줄링 조건에서는 이 둘의 체감 성능 차이가 이론적 분류만큼 크지 않은 경우가 많아, "이론적으로 더 강한 보장"을 위해 복잡도를 감수할 가치가 있는지는 워크로드별로 따져야 합니다.
+Wait-free 알고리즘의 가장 큰 실무적 문제는 **복잡도 대비 이득의 불확실성**입니다. Kogan-Petrank류의 fast-path-slow-path 구현은 순수 lock-free 버전보다 코드량과 상태 공간이 늘어나고, 검증·디버깅 난이도가 함께 올라갑니다. 게다가 이론적으로 증명된 "유한 단계 상한"이 실무적으로 의미 있는 크기라는 보장은 없습니다 — 상한이 스레드 수에 비례해 커지는 알고리즘이라면, 스레드가 많은 시스템에서는 이론상 wait-free이지만 실제 지연시간은 순수 lock-free보다 나쁠 수 있습니다. 따라서 "이론적으로 더 강한 보장"을 위해 복잡도를 감수할 가치가 있는지는 워크로드별로 따져야 합니다.
 
 검증 측면에서도 wait-free는 lock-free보다 다루기 어렵습니다. TSan 같은 동적 분석 도구는 데이터 레이스를 잡아내지만, "모든 가능한 스케줄에서 유한 단계 안에 끝나는가"라는 진행 보장 자체는 증명하지 못합니다. 학계에서는 모델 체킹이나 수동 증명으로 wait-free 성질을 검증하지만, 이는 일반적인 팀의 코드 리뷰 프로세스에 편입되기 어려운 수준의 형식적 검증입니다. 결과적으로 실무에서 진짜 wait-free 알고리즘을 직접 설계·구현하는 사례는 드물고, 대신 이 장의 판단 기준 표처럼 "설계로 경합 자체를 제거"하거나 "하드웨어가 이미 wait-free하게 제공하는 원자 연산"을 그대로 활용하는 방식이 훨씬 흔합니다.
 

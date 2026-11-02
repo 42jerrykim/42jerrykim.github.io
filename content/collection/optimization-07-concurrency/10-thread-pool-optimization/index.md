@@ -29,9 +29,6 @@ tags:
   - Deep-Dive
   - Comparison(비교)
   - Pitfalls(함정)
-  - Reliability
-  - Production
-  - Complexity-Analysis(복잡도분석)
   - Thread-Pool
   - Work-Stealing
   - Chase-Lev-Deque
@@ -65,7 +62,7 @@ tags:
 
 **Work-stealing**의 이론적 기초는 1999년 Robert Blumofe와 Charles Leiserson이 Cilk 런타임을 분석하며 정립했습니다. 이들은 완전 엄격(fully strict)한 다중스레드 계산을 무작위 work-stealing으로 스케줄링하면 기대 실행시간이 $T_p \le T_1/p + O(T_\infty)$ 를 만족함을 [증명했는데](https://www.csd.uwo.ca/~mmorenom/CS433-CS9624/Resources/Scheduling_multithreaded_computations_by_work_stealing.pdf), 여기서 $T_1$은 전체 순차 작업량, $T_\infty$는 의존성 사슬의 임계 경로(critical path) 길이, $p$는 프로세서 수입니다. 이 bound는 "프로세서를 늘릴수록 거의 선형으로 빨라지되, 오버헤드는 병렬성 자체가 아니라 작업의 의존 구조에 의해서만 제한된다"는 것을 뜻하며, 이후 Cilk++·Intel TBB·.NET TPL·Java `ForkJoinPool`·Rust `rayon` 같은 실전 스케줄러 설계의 근거가 되었습니다.
 
-구체적인 자료구조는 2005년 Danny Hendler·Yossi Lev·Doug Lea 등의 계보를 거쳐 David Chase와 Yossi Lev가 제안한 **원형 배열 기반 growable deque**로 정착했습니다. 이 deque는 소유 스레드가 한쪽 끝에서 push/pop하고 다른 스레드들은 반대쪽 끝에서만 steal하도록 설계해, 소유 스레드의 일반적인 push/pop이 대부분 동기화 없이 끝나도록 만듭니다. 다만 이 최적화는 x86의 강한 메모리 모델을 암묵적으로 가정한 원래 논문 그대로는 ARM·POWER 같은 약한 메모리 모델에서 깨질 수 있었고, 2013년 Lê·Pop·Cohen·Zappa Nardelli의 [PPoPP 논문](https://fzn.fr/readings/ppopp13.pdf)이 POWER·ARM 위에서 Chase-Lev deque의 최적화된 구현이 실제로 올바름을 처음 증명하며 C++11 `memory_order`만으로 이식 가능한 버전을 함께 제시했습니다.
+구체적인 자료구조는 2005년 David Chase와 Yossi Lev가 제안한 **원형 배열 기반 growable deque**로 정착했습니다. 이 deque는 소유 스레드가 한쪽 끝에서 push/pop하고 다른 스레드들은 반대쪽 끝에서만 steal하도록 설계해, 소유 스레드의 일반적인 push/pop이 대부분 동기화 없이 끝나도록 만듭니다. 다만 이 최적화는 x86의 강한 메모리 모델을 암묵적으로 가정한 원래 논문 그대로는 ARM·POWER 같은 약한 메모리 모델에서 깨질 수 있었고, 2013년 Lê·Pop·Cohen·Zappa Nardelli의 [PPoPP 논문](https://fzn.fr/readings/ppopp13.pdf)이 POWER·ARM 위에서 Chase-Lev deque의 최적화된 구현이 실제로 올바름을 처음 증명하며 C++11 `memory_order`만으로 이식 가능한 버전을 함께 제시했습니다.
 
 이 논문이 강조하는 요점은 이 장 전체에 걸쳐 반복됩니다. work-stealing deque는 "그럴듯해 보이는 CAS 코드"가 특정 아키텍처에서만 우연히 동작하기 쉬운 대표적인 자료구조이며, 메모리 순서를 잘못 완화하면 재현이 어려운 데이터 레이스가 생깁니다. 완전한 lock-free 버전의 CAS·acquire/release 조합은 [Lock-free 자료구조 구현](/post/concurrency-optimization/lock-free-queue-stack-hashmap/)에서 ThreadSanitizer 검증 절차와 함께 다루므로, 이 장에서는 뮤텍스로 단순화한 버전으로 아키텍처와 정책에 집중합니다.
 
@@ -88,7 +85,7 @@ class WorkerQueue {
   std::deque<std::function<void()>> tasks_;
 
  public:
-  // 소유 스레드 전용: 뒤쪽에 넣는다.
+  // 뒤쪽에 넣는다. 뮤텍스로 보호되므로 submit을 호출한 외부 스레드의 push도 안전하다.
   void push(std::function<void()> f) {
     std::lock_guard<std::mutex> lk(mtx_);
     tasks_.push_back(std::move(f));
@@ -172,11 +169,11 @@ flowchart TB
 
 ## 로드 밸런싱: victim 선택과 태스크 세분화
 
-**victim 선택 정책**은 work-stealing의 실제 확장성을 좌우합니다. 무작위 선택은 모든 도둑이 우연히 같은 바쁜 워커에 몰리는 상황을 확률적으로 피하게 해 주며, 워커 수가 적당할 때(수십 개 이하) 구현이 단순하고 이론적 bound와도 잘 맞습니다. 라운드로빈처럼 결정적인 순서로 victim을 고르면 여러 도둑이 같은 주기로 같은 워커를 노리는 위상 동조(phase correlation)가 생겨, 특정 순간에만 몰리는 편향된 경합 패턴이 나타날 수 있습니다. 워커 수가 수백 개로 늘어나거나 멀티소켓 NUMA 환경이 되면 무작위 선택도 한계가 있는데, 소켓을 건너뛴 steal은 로컬 소켓 내 steal보다 캐시 코히런시·인터커넥트 비용이 훨씬 크기 때문입니다. [oneTBB](https://oneapi-spec.uxlfoundation.org/specifications/oneapi/v1.3-rev-1/elements/onetbb/source/task_scheduler)와 [Taskflow](https://taskflow.github.io/taskflow/icpads20.pdf) 같은 성숙한 스케줄러는 이 문제를 계층적·토폴로지 인지 victim 선택으로 완화하며, 소켓 간 배치까지 고려한 설계는 [thread-per-core 아키텍처](/post/concurrency-optimization/thread-per-core-io-uring-single-issuer/)에서 더 다룹니다.
+**victim 선택 정책**은 work-stealing의 실제 확장성을 좌우합니다. 무작위 선택은 모든 도둑이 우연히 같은 바쁜 워커에 몰리는 상황을 확률적으로 피하게 해 주며, 워커 수가 적당할 때(수십 개 이하) 구현이 단순하고 이론적 bound와도 잘 맞습니다. 라운드로빈처럼 결정적인 순서로 victim을 고르면 여러 도둑이 같은 주기로 같은 워커를 노리는 위상 동조(phase correlation)가 생겨, 특정 순간에만 몰리는 편향된 경합 패턴이 나타날 수 있습니다. 워커 수가 수백 개로 늘어나거나 멀티소켓 NUMA 환경이 되면 무작위 선택도 한계가 있는데, 소켓을 건너뛴 steal은 로컬 소켓 내 steal보다 캐시 코히런시·인터커넥트 비용이 훨씬 크기 때문입니다. [Taskflow 논문](https://taskflow.github.io/taskflow/icpads20.pdf)의 스케줄러 의사코드도 victim을 무작위로 고릅니다. 토폴로지를 고려한 victim 선택(같은 소켓 안의 워커를 우선 훔치는 방식 등)은 이 글에서 라이브러리 사례로 확인하지 않았으므로 필요하면 직접 설계하고 측정해야 하며, 소켓 간 배치까지 고려한 설계는 [thread-per-core 아키텍처](/post/concurrency-optimization/thread-per-core-io-uring-single-issuer/)에서 더 다룹니다.
 
 oneTBB의 task_arena 문서에 따르면 스레드는 태스크를 완료할 때까지 그 태스크에 바인딩되며, 대기 중에는 자신이나 다른 스레드가 만든 무관한 태스크를 대신 실행할 수 있습니다.
 
-> "Once a thread starts running a task, the task is bound to that thread until completion." — oneAPI Specification, *Task Scheduler* (oneTBB) 문서 (WebFetch로 원문 대조).
+> "Once a thread starts running a task, the task is bound to that thread until completion." — oneAPI Specification, [*Task Scheduler* (oneTBB)](https://oneapi-spec.uxlfoundation.org/specifications/oneapi/v1.3-rev-1/elements/onetbb/source/task_scheduler) 문서.
 
 <strong>태스크 세분화(granularity)</strong>는 Blumofe-Leiserson bound의 $O(T_\infty)$ 항을 실제로 얼마나 작게 만들 수 있는지를 결정합니다. 태스크를 지나치게 잘게 쪼개면 push/pop/steal 자체의 원자적 연산·캐시 라인 접근 오버헤드가 태스크의 실제 작업량을 압도해 버리고, 반대로 너무 굵게 나누면 워커 간 부하 차이가 커져 일부 워커가 놀게 됩니다. 실무에서는 재귀 분할에 컷오프(예: 원소 수가 임계값 이하이면 더 이상 쪼개지 않고 순차 실행)를 두어 이 균형을 맞추고, steal 실패가 반복될 때는 즉시 재시도하는 대신 지수 백오프를 두어 실패한 CAS/락 시도가 캐시 라인 핑퐁을 계속 일으키지 않도록 합니다.
 
@@ -191,9 +188,38 @@ oneTBB의 task_arena 문서에 따르면 스레드는 태스크를 완료할 때
 #include <thread>
 #include <atomic>
 
-// GlobalQueuePool, StealingPool은 submit(f)와 wait_idle()을 제공한다고 가정.
-// (GlobalQueuePool: mutex 하나로 보호되는 단일 std::deque<std::function<void()>>)
-// (StealingPool: 본문의 ThreadPool + WorkerQueue)
+// mutex 하나로 보호되는 단일 큐를 모든 워커가 공유하는 비교용 풀
+class GlobalQueuePool {
+  std::mutex mtx_;
+  std::deque<std::function<void()>> tasks_;
+  std::vector<std::jthread> workers_;  // 마지막 멤버: 가장 먼저 join된다
+
+ public:
+  explicit GlobalQueuePool(std::size_t n) {
+    for (std::size_t i = 0; i < n; ++i)
+      workers_.emplace_back([this](std::stop_token st) {
+        while (!st.stop_requested()) {
+          std::function<void()> f;
+          {
+            std::lock_guard<std::mutex> lk(mtx_);
+            if (!tasks_.empty()) {
+              f = std::move(tasks_.front());
+              tasks_.pop_front();
+            }
+          }
+          if (f) f(); else std::this_thread::yield();
+        }
+      });
+  }
+
+  void submit(std::function<void()> f) {
+    std::lock_guard<std::mutex> lk(mtx_);
+    tasks_.push_back(std::move(f));
+  }
+};
+
+// StealingPool은 본문의 ThreadPool(WorkerQueue 포함)을 그대로 쓴다고 가정한다.
+using StealingPool = ThreadPool;
 
 static void BM_GlobalQueuePool(benchmark::State& state) {
   GlobalQueuePool pool(state.range(0));
@@ -237,12 +263,12 @@ BENCHMARK_MAIN();
 | 태스크 수 적고 실행 시간 김(coarse-grained) | 단순 글로벌 큐 + 뮤텍스 | 불필요하게 복잡한 work-stealing 구현 |
 | fine-grained 재귀 분할정복(fork-join) | 로컬 큐 + work-stealing | 단일 글로벌 큐 |
 | 프로덕션에 바로 검증된 스케줄러가 필요 | oneTBB task_arena, Taskflow Executor | 자체 CAS deque를 처음부터 구현 |
-| 다중 소켓 NUMA, 코어 수 매우 많음 | 계층적·토폴로지 인지 victim 선택([21장](/post/concurrency-optimization/thread-per-core-io-uring-single-issuer/)) | 전역 균일 무작위 스틸링만 사용 |
+| 다중 소켓 NUMA, 코어 수 매우 많음 | 같은 소켓 우선 steal 등 토폴로지를 고려한 정책([21장](/post/concurrency-optimization/thread-per-core-io-uring-single-issuer/)) | 전역 균일 무작위 스틸링만 사용 |
 | steal 실패가 잦고 idle 대기가 필요 | [09장](/post/concurrency-optimization/cpp20-atomic-wait-notify/) atomic wait/notify 또는 [19장](/post/concurrency-optimization/condition-variable-performance-patterns/) 조건변수 기반 백오프 | 무한 busy-yield 스핀 |
 
 ## 비판적 시각: 한계와 트레이드오프
 
-직접 구현한 lock-free work-stealing deque는 미묘한 메모리 순서 버그를 낳기 쉬운 대표적인 자료구조입니다. Lê 등의 PPoPP'13 논문 자체가 기존 구현들의 약한 메모리 모델 취약점을 지적하며 나온 결과이므로, 프로덕션에서는 검증된 라이브러리를 우선 검토하고 직접 구현이 불가피하다면 [06장](/post/concurrency-optimization/lock-free-queue-stack-hashmap/)의 ThreadSanitizer 절차를 반드시 거칩니다. owner의 LIFO 로컬 팝은 캐시 지역성에는 유리하지만, 오래 대기하는 태스크의 실행 순서 공정성을 일부 포기하는 트레이드오프이기도 합니다 — 도둑이 전혀 없거나(워커 1개) 극단적으로 불균형한 워크로드에서는 이 트레이드오프가 실제 기아(starvation)로 이어질 수 있습니다. 또한 무작위 victim 선택은 워커 수가 매우 많아지거나 NUMA 토폴로지가 개입하면 성능이 흔들리므로, oneTBB·Taskflow 수준의 계층적 정책 없이 직접 구현한 무작위 스틸링을 대규모로 확장하는 것은 신중해야 합니다. 마지막으로 work-stealing은 만능이 아니어서, 태스크 실행 시간 분산이 극단적으로 크거나 특정 순서 보장이 필요한 워크로드에서는 우선순위 큐나 배치 스케줄링 같은 다른 구조가 더 적합할 수 있습니다.
+직접 구현한 lock-free work-stealing deque는 미묘한 메모리 순서 버그를 낳기 쉬운 대표적인 자료구조입니다. 앞서 본 PPoPP'13 논문이 보여주듯, 프로덕션에서는 검증된 라이브러리를 우선 검토하고 직접 구현이 불가피하다면 [06장](/post/concurrency-optimization/lock-free-queue-stack-hashmap/)의 ThreadSanitizer 절차를 반드시 거칩니다. owner의 LIFO 로컬 팝은 캐시 지역성에는 유리하지만, 오래 대기하는 태스크의 실행 순서 공정성을 일부 포기하는 트레이드오프이기도 합니다 — 도둑이 전혀 없거나(워커 1개) 극단적으로 불균형한 워크로드에서는 이 트레이드오프가 실제 기아(starvation)로 이어질 수 있습니다. 또한 무작위 victim 선택은 워커 수가 매우 많아지거나 NUMA 토폴로지가 개입하면 성능이 흔들리므로, 토폴로지를 고려하지 않은 무작위 스틸링을 대규모로 확장하는 것은 신중해야 합니다. 마지막으로 work-stealing은 만능이 아니어서, 태스크 실행 시간 분산이 극단적으로 크거나 특정 순서 보장이 필요한 워크로드에서는 우선순위 큐나 배치 스케줄링 같은 다른 구조가 더 적합할 수 있습니다.
 
 ## 마무리
 

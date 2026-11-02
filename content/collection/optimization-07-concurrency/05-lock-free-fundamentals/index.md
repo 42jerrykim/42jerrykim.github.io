@@ -68,7 +68,7 @@ tags:
 
 ## CAS 루프: lock-free의 기본 동작
 
-**lock-free 알고리즘의 전형적인 형태는 "현재 상태를 읽고, 원하는 다음 상태를 계산한 뒤, CAS로 갱신을 시도하고, 실패하면 처음부터 다시 읽어 반복한다"는 재시도 루프입니다.** 이 루프가 lock-free인 이유는, 한 스레드의 CAS가 실패했다는 것은 반드시 다른 어떤 스레드의 CAS가 그 사이 성공했다는 뜻이기 때문입니다. 즉 개별 스레드는 계속 실패할 수 있어도(그 스레드 입장에서는 wait-free가 아님), 시스템 전체로 보면 매 실패마다 누군가는 진행하고 있으므로 전체가 멈추는 일은 없습니다.
+**lock-free 알고리즘의 전형적인 형태는 "현재 상태를 읽고, 원하는 다음 상태를 계산한 뒤, CAS로 갱신을 시도하고, 실패하면 처음부터 다시 읽어 반복한다"는 재시도 루프입니다.** 이 루프가 lock-free인 이유는, (허위 실패를 허용하는 `compare_exchange_weak`의 경우는 제외하고) 한 스레드의 CAS가 실패했다는 것은 다른 어떤 스레드의 CAS가 그 사이 성공했다는 뜻이기 때문입니다. 즉 개별 스레드는 계속 실패할 수 있어도(그 스레드 입장에서는 wait-free가 아님), 시스템 전체로 보면 매 실패마다 누군가는 진행하고 있으므로 전체가 멈추는 일은 없습니다.
 
 ```cpp
 #include <atomic>
@@ -96,7 +96,7 @@ class RelaxedCounter {
 
 이 카운터는 단순 증가만 하므로 `memory_order_relaxed`로 충분합니다(어떤 스레드가 먼저 갱신되는지 순서만 원자적으로 보장되면 되고, 이 값을 근거로 다른 메모리 접근을 동기화하지 않기 때문입니다). 실제 lock-free 자료구조에서는 포인터를 교체하므로 성공 시 `acquire`/`release`가 필요한 경우가 대부분이며, 그 근거는 04장에서 다룬 happens-before 규칙 그대로입니다.
 
-`compare_exchange_weak`와 `compare_exchange_strong`의 차이는 **spurious failure(허위 실패)** 허용 여부입니다. cppreference는 `compare_exchange_weak`에 대해 "현재 값이 기대값과 같아도 실패한 것처럼 동작할 수 있다"고 명시하는데, 이는 일부 아키텍처의 load-link/store-conditional 명령이 캐시 라인 단위로 "그 사이 아무도 안 건드렸는가"를 근사 검사하기 때문입니다. 루프 안에서 반복 호출할 때는 `_weak`가 그런 플랫폼에서 더 빠르므로 권장되고, 루프 밖에서 단 한 번만 시도하고 결과를 신뢰해야 한다면 `_strong`을 씁니다.
+`compare_exchange_weak`와 `compare_exchange_strong`의 차이는 **spurious failure(허위 실패)** 허용 여부입니다. [cppreference의 `std::atomic::compare_exchange_weak`](https://en.cppreference.com/cpp/atomic/atomic/compare_exchange) 문서는 이 함수가 현재 값이 기대값과 같아도 실패한 것처럼 동작할 수 있다고 설명하는데, 이는 일부 아키텍처의 load-link/store-conditional 명령이 캐시 라인 단위로 "그 사이 아무도 안 건드렸는가"를 근사 검사하기 때문입니다. 루프 안에서 반복 호출할 때는 `_weak`가 그런 플랫폼에서 더 빠르므로 권장되고, 루프 밖에서 단 한 번만 시도하고 결과를 신뢰해야 한다면 `_strong`을 씁니다.
 
 CAS 루프와 mutex 카운터의 실제 비용 차이는 스레드 수·경합 정도에 따라 달라지므로, 다음과 같은 벤치마크로 직접 재현해 판단하는 것이 안전합니다.
 
@@ -131,14 +131,14 @@ BENCHMARK(BM_MutexIncrement)->Threads(1)->Threads(4)->Threads(8);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 -std=c++20 bench.cpp -lbenchmark -lpthread -o bench`로 빌드해 스레드 수를 늘려가며 실행하면(x86-64, GCC 13 기준 예시), 스레드 수가 1일 때는 두 방식이 비슷하거나 mutex 쪽이 근소하게 앞서는 경우가 흔하고, 스레드 수가 늘어 경합이 커질수록 CAS 쪽이 상대적으로 유리해지는 경향이 있습니다. 다만 두 방식 모두 같은 캐시 라인 하나를 두고 경쟁하는 구조이므로 극단적으로 스레드 수가 많아지면 CAS 쪽도 재시도가 급증해 성능이 나빠집니다. 정확한 배율은 플랫폼·컴파일러·경합 패턴에 따라 크게 달라지므로 이 수치를 그대로 믿지 말고 자신의 환경에서 재현하고, 세부 비용 모델은 [챕터 01](/post/concurrency-optimization/synchronization-primitive-cost-analysis/)을 참고하세요.
+`g++ -O2 -std=c++20 bench.cpp -lbenchmark -lpthread -o bench`로 빌드해 스레드 수를 늘려가며 실행하면(x86-64, GCC 13 기준 예시), 두 방식의 차이를 스레드 수별로 비교할 수 있습니다. 두 방식 모두 같은 캐시 라인 하나를 두고 경쟁하는 구조이므로 스레드 수가 많아지면 CAS 쪽도 재시도가 급증해 성능이 나빠질 수 있습니다. 이 글은 실측 결과를 싣지 않으며, 배율은 플랫폼·컴파일러·경합 패턴에 따라 크게 달라지므로 이 수치를 그대로 믿지 말고 자신의 환경에서 재현하고, 세부 비용 모델은 [챕터 01](/post/concurrency-optimization/synchronization-primitive-cost-analysis/)을 참고하세요.
 
 ```mermaid
 flowchart TD
   readValue["현재 값 읽기"] --> computeNew["새 값 계산"]
   computeNew --> casAttempt{"compare_exchange 시도"}
   casAttempt -- "성공" --> finish["완료"]
-  casAttempt -- "실패: 다른 스레드가 먼저 갱신함" --> readValue
+  casAttempt -- "실패: 다른 스레드가 먼저 갱신함(weak는 허위 실패도 가능)" --> readValue
 ```
 
 ## ABA 문제
@@ -192,7 +192,7 @@ struct Node {
 
 struct TaggedPtr {
   Node* ptr = nullptr;
-  std::uint64_t tag = 0;  // pop 성공마다 1씩 증가
+  std::uint64_t tag = 0;  // push/pop 성공마다 1씩 증가
 };
 
 class TaggedStack {
@@ -219,6 +219,33 @@ class TaggedStack {
  private:
   std::atomic<TaggedPtr> head_;  // is_lock_free() 확인 필요: 플랫폼별 상이
 };
+
+// 동작 확인용 최소 main: 미리 할당한 노드를 두 스레드가 push한 뒤 pop 개수를 센다.
+// 노드는 해제하지 않으므로 이 예제는 ABA 방어만 다루고 메모리 회수는 다루지 않는다.
+#include <cstdio>
+#include <thread>
+#include <vector>
+
+int main() {
+  constexpr int kPerThread = 1000;
+  std::vector<Node> pool(2 * kPerThread);
+  TaggedStack stack;
+  std::printf("is_lock_free: %d\n", static_cast<int>(std::atomic<TaggedPtr>{}.is_lock_free()));
+
+  auto pusher = [&](int begin) {
+    for (int i = 0; i < kPerThread; ++i) {
+      pool[begin + i].value = begin + i;
+      stack.push(&pool[begin + i]);
+    }
+  };
+  std::thread t1(pusher, 0), t2(pusher, kPerThread);
+  t1.join();
+  t2.join();
+
+  int popped = 0;
+  while (stack.pop() != nullptr) ++popped;
+  std::printf("popped: %d (expected %d)\n", popped, 2 * kPerThread);
+}
 ```
 
 `std::atomic<TaggedPtr>`는 포인터(8바이트)+태그(8바이트)로 16바이트가 되어, x86-64에서 lock-free로 동작하려면 `CMPXCHG16B` 명령이 필요합니다. GCC/Clang에서는 `-mcx16` 플래그가 없으면 이 원자적 타입이 내부적으로 락으로 폴백될 수 있으므로, 반드시 `head_.is_lock_free()`로 확인해야 합니다. 그리고 태그 기법은 "같은 주소가 재사용됐는지"를 태그로 감지할 뿐, 스레드 A가 이미 해제된 메모리의 `old_head.ptr->next`를 역참조하는 것 자체가 안전한지는 보장하지 않습니다. 즉 이 기법은 ABA의 **증상**(오판된 CAS 성공)은 막지만, 노드를 안전하게 언제 실제로 해제해도 되는지 결정하는 **메모리 회수** 문제는 풀지 못합니다. 회수를 안전하게 미루는 정식 해법(hazard pointer, RCU)은 [챕터 07](/post/concurrency-optimization/hazard-pointer-rcu-cpp26/)에서 다룹니다.
@@ -235,10 +262,10 @@ sequenceDiagram
   threadA->>addrX: "5. CAS(head, X, 낡은 next) 성공: 오판"
 ```
 
-**검증**: 이 CAS 루프 자체의 데이터 레이스나 memory order 누락은 ThreadSanitizer로 잡을 수 있습니다.
+**검증**: 위 `TaggedStack`과 `main`을 합친 `stack.cpp`로, 이 CAS 루프 자체의 데이터 레이스나 memory order 누락을 ThreadSanitizer로 잡을 수 있습니다.
 
 ```bash
-g++ -std=c++20 -fsanitize=thread -g -O1 stack.cpp -o stack_tsan
+g++ -std=c++20 -mcx16 -fsanitize=thread -g -O1 stack.cpp -o stack_tsan -latomic
 ./stack_tsan
 ```
 
@@ -248,9 +275,9 @@ g++ -std=c++20 -fsanitize=thread -g -O1 stack.cpp -o stack_tsan
 
 <strong>HTM(Hardware Transactional Memory)</strong>은 CAS 루프를 직접 짜는 대신, "이 코드 블록을 트랜잭션으로 실행해 달라"고 하드웨어에 위임하는 접근입니다. 하드웨어가 트랜잭션 안의 메모리 접근을 캐시 일관성 프로토콜 수준에서 추적하다가, 다른 코어와 충돌이 감지되면 트랜잭션을 되돌리고(abort) 소프트웨어가 재시도하거나 폴백 경로(보통 락)로 넘어가게 합니다. 성공하면 개발자가 직접 CAS 재시도 루프나 ABA 방어 코드를 짜지 않고도 임계구역을 lock-free에 가깝게 실행할 수 있다는 것이 약속이었습니다. Intel은 2013년 Haswell 세대에서 <strong>TSX(Transactional Synchronization Extensions)</strong>를 도입했는데, 레거시 락 코드에 프리픽스만 붙이면 되는 <strong>HLE(Hardware Lock Elision)</strong>와, `XBEGIN`/`XEND`/`XABORT` 같은 새 명령어로 트랜잭션을 명시적으로 구성하는 **RTM(Restricted Transactional Memory)** 두 갈래로 구성되어 있었습니다.
 
-이 약속은 실제로는 지켜지지 못했습니다. TSX는 이후 여러 사이드채널 취약점의 통로가 되었는데, 그중 <strong>TAA(TSX Asynchronous Abort, CVE-2019-11135)</strong>는 MDS(Microarchitectural Data Sampling) 계열 취약점으로, 트랜잭션이 비동기적으로 abort되는 과정에서 다른 실행 흐름의 데이터가 마이크로아키텍처 버퍼를 통해 유출될 수 있었습니다. Intel의 공식 지원 문서는 이에 대한 완화책으로 "Intel® TSX will be disabled by default"라고 명시하며, 2021년 6월 마이크로코드 업데이트(IPU 2021.1)부터 영향받는 프로세서에서 TSX를 기본 비활성화하고 `CPUID`의 `RTM_ALWAYS_ABORT` 비트를 설정해 소프트웨어가 이를 인식하도록 했다고 밝히고 있습니다. Linux 커널 문서 역시 "커널의 기본 동작은 취약한 프로세서에서 `tsx_async_abort=full tsx=off` 완화책을 적용하는 것"이라고 명시해, 애플리케이션이 명시적으로 다시 켜지 않는 한 TSX가 꺼진 채로 부팅되는 것이 사실상의 기본값임을 확인해 줍니다. 이 흐름과 별개로 하드웨어 자체에서도 후퇴가 있었는데, HLE는 2019년 이후 출시된 제품에서 이미 제거되기 시작했고 10세대 Comet Lake·Ice Lake(2020년) 클라이언트 프로세서부터는 TSX/TSX-NI 자체가 하드웨어에서 지원되지 않으며, 12세대 Alder Lake의 공식 데이터시트도 HLE를 "Deprecated Technologies" 항목으로 명시합니다.
+이 약속은 실제로는 지켜지지 못했습니다. TSX는 이후 여러 사이드채널 취약점의 통로가 되었는데, 그중 <strong>TAA(TSX Asynchronous Abort, CVE-2019-11135)</strong>는 MDS(Microarchitectural Data Sampling) 계열 취약점으로, 트랜잭션이 비동기적으로 abort되는 과정에서 다른 실행 흐름의 데이터가 마이크로아키텍처 버퍼를 통해 유출될 수 있었습니다. Intel의 공식 지원 문서는 이에 대한 완화책으로 "Intel® TSX will be disabled by default"라고 명시하며, 2021년 6월 마이크로코드 업데이트(IPU 2021.1)부터 영향받는 프로세서에서 TSX를 기본 비활성화하고 `CPUID`의 `RTM_ALWAYS_ABORT` 비트를 설정해 소프트웨어가 이를 인식하도록 했다고 밝히고 있습니다. [Linux 커널의 TAA 문서](https://docs.kernel.org/arch/x86/tsx_async_abort.html)도 TSX 제어를 지원하는 프로세서에서 TSX가 부팅 시 기본적으로 비활성화된다고 설명합니다.
 
-정리하면, TSX는 마이크로코드 수준의 기본 비활성화(2021년)와 하드웨어 수준의 단계적 제거(2019–2020년 이후 세대)가 겹치면서 **사실상 폐기**된 상태입니다. 일부 서버용 Xeon 라인은 여전히 하드웨어를 갖고 있지만 커널의 기본 완화 정책이 꺼두는 쪽이므로, 신규 C++ 프로덕션 코드를 TSX 가용성에 의존해 설계하는 것은 2026년 기준으로 비현실적입니다. 이 장에서 다루는 CAS 기반 lock-free가, 하드웨어의 도움 없이 소프트웨어가 직접 정합성을 보장해야 하는 사실상 유일한 표준 경로인 이유가 여기에 있습니다.
+일부 서버용 Xeon 라인은 여전히 하드웨어를 갖고 있지만 기본 비활성화 정책 때문에, 신규 C++ 프로덕션 코드를 TSX 가용성에 의존해 설계하는 것은 2026년 기준으로 비현실적입니다. 이 장에서 다루는 CAS 기반 lock-free가, 하드웨어의 도움 없이 소프트웨어가 직접 정합성을 보장해야 하는 사실상 유일한 표준 경로인 이유가 여기에 있습니다.
 
 ## 흔한 오개념
 
@@ -258,7 +285,7 @@ g++ -std=c++20 -fsanitize=thread -g -O1 stack.cpp -o stack_tsan
 
 <strong>"CAS가 실패하면 버그다"</strong>도 오개념입니다. CAS 실패는 "그 사이 다른 스레드가 먼저 갱신했다"는 정상적인 신호이며, 재시도 루프는 이를 전제로 설계됩니다. `compare_exchange_weak`는 심지어 값이 같아도 허위로 실패할 수 있다고 표준이 명시적으로 허용하므로, 루프 안에서 실패는 예외가 아니라 기본 동작입니다.
 
-<strong>"lock-free는 wait-free와 같다"</strong>도 흔한 혼동입니다. lock-free는 시스템 전체의 진행만 보장할 뿐, 특정 스레드가 계속 CAS에서 밀려 무한정 재시도하는 상황(이론적 livelock)을 배제하지 않습니다. 모든 스레드의 유한 시간 내 진행까지 보장하려면 wait-free 알고리즘이 필요하며, 이는 설계·구현 비용이 훨씬 크고 [챕터 12](/post/concurrency-optimization/wait-free-programming-fundamentals/)에서 별도로 다룹니다.
+<strong>"lock-free는 wait-free와 같다"</strong>도 흔한 혼동입니다. lock-free는 시스템 전체의 진행만 보장할 뿐, 특정 스레드가 계속 CAS에서 밀려 무한정 재시도하는 상황(이론적 starvation)을 배제하지 않습니다. 모든 스레드의 유한 시간 내 진행까지 보장하려면 wait-free 알고리즘이 필요하며, 이는 설계·구현 비용이 훨씬 크고 [챕터 12](/post/concurrency-optimization/wait-free-programming-fundamentals/)에서 별도로 다룹니다.
 
 ## 판단 기준
 
@@ -273,7 +300,7 @@ g++ -std=c++20 -fsanitize=thread -g -O1 stack.cpp -o stack_tsan
 
 ## 비판적 시각: 한계와 트레이드오프
 
-lock-free 코드의 가장 큰 비용은 실행 성능이 아니라 **검증·유지보수**입니다. 실패가 타이밍에 의존하므로 디버거로 한 단계씩 실행하면 버그가 재현되지 않는 경우가 흔하고, 코드 리뷰만으로 ABA나 메모리 회수 오류를 걸러내기 어렵습니다. 태그 기법으로 ABA의 증상을 막아도 안전한 메모리 회수라는 더 근본적인 문제는 그대로 남으며, 이를 제대로 풀려면 결국 hazard pointer나 RCU 같은 별도의 인프라가 필요합니다(챕터 07). Intel TSX의 흥망은 "하드웨어가 동시성 문제를 대신 풀어줄 것"이라는 기대가 보안 취약점 앞에서 어떻게 꺾였는지 보여주는 사례이기도 합니다. 결과적으로 lock-free는 측정으로 병목이 확인되고, 회수 전략까지 포함한 총 유지보수 비용을 감당할 수 있을 때만 도입할 가치가 있는 도구이지, 기본 선택지가 되어서는 안 됩니다.
+lock-free 코드의 가장 큰 비용은 실행 성능이 아니라 **검증·유지보수**입니다. 실패가 타이밍에 의존하므로 디버거로 한 단계씩 실행하면 버그가 재현되지 않는 경우가 흔하고, 코드 리뷰만으로 ABA나 메모리 회수 오류를 걸러내기 어렵습니다. 태그 기법으로 ABA의 증상을 막아도 안전한 메모리 회수라는 더 근본적인 문제는 그대로 남으며, 이를 제대로 풀려면 결국 hazard pointer나 RCU 같은 별도의 인프라가 필요합니다(챕터 07). 결과적으로 lock-free는 측정으로 병목이 확인되고, 회수 전략까지 포함한 총 유지보수 비용을 감당할 수 있을 때만 도입할 가치가 있는 도구이지, 기본 선택지가 되어서는 안 됩니다.
 
 ## 마무리
 
@@ -283,7 +310,6 @@ lock-free 코드의 가장 큰 비용은 실행 성능이 아니라 **검증·�
 - [ ] ABA 문제가 발생하는 조건과, 태그·버전 카운터로 완화하는 방법 및 그 한계를 설명할 수 있다.
 - [ ] Intel TSX/HTM이 왜 2026년 기준 신규 설계의 대안이 될 수 없는지 근거를 들어 말할 수 있다.
 - [ ] 주어진 상황에서 lock-free 도입 여부를 비용·위험 기준으로 판단할 수 있다.
-- [ ] lock-free 자료구조의 완전한 구현과 안전한 메모리 회수는 별도 챕터(06, 07)의 몫임을 안다.
 
 **다음 장에서는** 이 장에서 다진 CAS 재시도 루프와 ABA 대응을 바탕으로, 실제로 프로덕션에 투입 가능한 lock-free 큐·스택·해시맵을 구현합니다. 여기서는 문제와 원리를 다뤘다면, 다음 장은 그 원리를 완전한 자료구조로 조립하는 과정과 메모리 재사용 전략을 다룹니다.
 

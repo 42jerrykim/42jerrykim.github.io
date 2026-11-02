@@ -13,24 +13,17 @@ tags:
   - Concurrency(동시성)
   - Thread
   - C++
-  - CPU(Central Processing Unit)
-  - Cache
   - OS(운영체제)
   - Linux(리눅스)
   - Benchmark
   - Latency
   - Throughput
   - Implementation(구현)
-  - Best-Practices
   - System-Design
-  - Backend(백엔드)
-  - Production
-  - Reliability
   - Scalability(확장성)
   - Async(비동기)
   - Deep-Dive
   - Advanced
-  - Case-Study
   - Pitfalls(함정)
   - io_uring
   - IORING_SETUP_SINGLE_ISSUER
@@ -39,6 +32,8 @@ tags:
   - Apache-Iggy
   - Seastar
   - Syscall-Batching
+  - Lock-Elision
+  - Message-Passing
 ---
 
 **Thread-per-core 아키텍처**란 CPU 코어 하나에 스레드 하나를 고정 배치하고, 그 스레드가 자신의 코어에 속한 데이터·연결·I/O 링을 독점적으로 소유하게 만들어 락 없이 동작시키는 서버 설계 방식을 말합니다. 이 장은 이 아키텍처와 Linux의 **io_uring**이 만나는 지점, 특히 **IORING_SETUP_SINGLE_ISSUER** 플래그가 커널 내부 락을 생략시켜 제출 경로 비용을 줄이는 원리를 다룹니다. 스레드 풀에 작업을 던지고 뮤텍스로 큐를 보호하는 전통적 설계는 코어 수가 늘어날수록 락 경합과 캐시 라인 이동이 처리량을 갉아먹는데, thread-per-core는 애초에 "공유"를 설계에서 빼버려 이 문제 자체를 회피합니다. 이 장이 이 트랙의 마지막 챕터인 이유도 여기 있습니다 — 동기화 비용 분석(01장)부터 시작해 lock-free(05–07장), 큐(08장), 스레드 풀(10장)까지 쌓아온 판단 기준을 "락을 아예 두지 않는 설계"라는 하나의 아키텍처로 수렴시켜 보는 자리이기 때문입니다.
@@ -63,7 +58,7 @@ tags:
 
 **io_uring**은 2019년 Jens Axboe가 설계해 Linux 커널 5.1에 병합된 비동기 I/O 인터페이스입니다. 이전의 Linux AIO(`libaio`)가 버퍼링되지 않은 파일 I/O 일부에만 동작하고 사용법이 까다로웠던 것과 달리, io_uring은 커널과 사용자 공간이 공유하는 두 개의 링 버퍼(제출 큐 SQ, 완료 큐 CQ)를 통해 시스템 콜 자체를 건너뛸 수 있게 설계됐습니다. 이후 io_uring은 파일 I/O뿐 아니라 소켓·네트워크 I/O까지 포괄하는 범용 비동기 계층으로 확장됐고, `IORING_SETUP_SQPOLL`(커널 폴링 스레드가 제출을 대신 처리해 `io_uring_enter` 호출 자체를 생략), `IORING_SETUP_SINGLE_ISSUER`(커널 6.0, 2022년), `IORING_SETUP_DEFER_TASKRUN`(커널 6.1)처럼 특정 사용 패턴을 가정하고 내부 동기화를 줄이는 플래그가 누적되어 왔습니다.
 
-**Thread-per-core / shared-nothing** 설계는 io_uring보다 먼저 자리 잡은 개념입니다. ScyllaDB의 기반 프레임워크인 **Seastar**(Avi Kivity·Nadav Har'El 등이 2014년 말 개발해 2015년 2월 공개)가 이 모델을 C++로 구현해 "코어마다 애플리케이션 스레드 하나, 스레드 간에는 메모리를 공유하지 않고 메시지만 주고받는다"는 원칙을 정립했고, 이후 Redpanda·Ceph Crimson 등이 같은 원칙을 채택했습니다. io_uring의 `SINGLE_ISSUER` 계열 최적화는 이 아키텍처와 특히 잘 맞습니다 — thread-per-core 설계는 애초에 코어마다 io_uring 인스턴스 하나, 제출자 하나를 두는 구조이므로 커널이 요구하는 "단일 제출 스레드" 전제를 자연스럽게 만족시키기 때문입니다.
+**Thread-per-core / shared-nothing** 설계는 io_uring보다 먼저 자리 잡은 개념입니다. ScyllaDB의 기반 프레임워크인 **Seastar**가 이 모델을 C++로 구현해 "코어마다 애플리케이션 스레드 하나, 스레드 간에는 메모리를 공유하지 않고 메시지만 주고받는다"는 원칙을 정립했습니다. io_uring의 `SINGLE_ISSUER` 계열 최적화는 이 아키텍처와 특히 잘 맞습니다 — thread-per-core 설계는 애초에 코어마다 io_uring 인스턴스 하나, 제출자 하나를 두는 구조이므로 커널이 요구하는 "단일 제출 스레드" 전제를 자연스럽게 만족시키기 때문입니다.
 
 ## thread-per-core의 핵심 원리
 
@@ -75,7 +70,7 @@ tags:
 
 io_uring 인스턴스는 기본적으로 `uring_lock`이라는 뮤텍스로 제출 큐 조작과 태스크 워크(task work) 처리 경로를 보호합니다. 여러 스레드가 하나의 링에 동시에 SQE(Submission Queue Entry)를 밀어 넣을 수 있다고 가정하기 때문에, 커널은 매 제출마다 이 락을 잡았다 풀어야 합니다. `IORING_SETUP_SINGLE_ISSUER` 플래그는 "이 링에는 오직 하나의 태스크만 제출한다"는 것을 커널에 알리는 힌트이며, [man7 io_uring_setup(2)](https://man7.org/linux/man-pages/man2/io_uring_setup.2.html) 문서는 이를 "커널 내부 최적화에 사용되는 힌트"로 설명하고 커널이 이 규칙을 강제해 위반 시 `-EEXIST`로 요청을 실패시킨다고 명시합니다. 커널 6.0에서 이 플래그가 추가된 뒤에도 초기에는 `IORING_SETUP_DEFER_TASKRUN`(커널 6.1, 태스크 워크 처리를 시스템 콜 반환 시점이 아니라 `IORING_ENTER_GETEVENTS`를 지정한 `io_uring_enter` 호출 시점까지 미루는 플래그)의 전제 조건 역할이 중심이었고, `uring_lock` 자체를 생략하는 별도의 성능 이득은 없었습니다.
 
-2025년 말–2026년 초 커널 메일링 리스트에는 Caleb Sander Mateos가 제출한 "io_uring: avoid uring_lock for IORING_SETUP_SINGLE_ISSUER" 패치 시리즈가 논의되었습니다. [LWN.net의 요약](https://lwn.net/Articles/1050662/)에 따르면 이 패치는 제출 태스크가 이미 확정된 단일 제출자 링에서 `uring_lock` 뮤텍스 획득·해제 자체를 생략해 제출 경로의 오버헤드를 줄이는 것을 목표로 하며, `IORING_SETUP_SQPOLL`(커널 폴링 스레드가 제출을 대신하는 모드)과 `IORING_SETUP_R_DISABLED`(링 생성 후 활성화 이전 구간에서 제출 태스크가 아직 확정되지 않은 상태)가 겹치는 경계 조건을 별도로 처리합니다. 이 요약이 다룬 시점은 2025년 12월 v5였으며, 이후에도 패치는 계속 갱신되어(2025-12-17 v6, 2026-01-05 v7, 2026-01-18에는 syzbot CI 회귀 보고에 대응하는 후속 논의) 버전이 계속 바뀌었습니다. 따라서 특정 배포판의 안정 커널에 이미 포함되어 있는지는 사용 중인 커널의 변경 로그로 직접 확인해야 합니다. 이 세부사항은 커널 버전에 따라 달라지는 **구현 정의** 영역이라는 점을 유념하십시오. 다만 원리 자체는 명확합니다 — "제출자가 하나뿐"이라는 사실이 이미 참이라면, 그 사실을 커널에 알려주는 것만으로 불필요한 상호 배제 비용을 없앨 수 있다는 것이 이 최적화 계열의 공통 논리입니다.
+2025년 말–2026년 초 커널 메일링 리스트에는 Caleb Sander Mateos가 제출한 "io_uring: avoid uring_lock for IORING_SETUP_SINGLE_ISSUER" 패치 시리즈가 논의되었습니다. [LWN.net의 요약](https://lwn.net/Articles/1050662/)에 따르면 이 패치는 제출 태스크가 이미 확정된 단일 제출자 링에서 `uring_lock` 뮤텍스 획득·해제 자체를 생략해 제출 경로의 오버헤드를 줄이는 것을 목표로 하며, `IORING_SETUP_SQPOLL`(커널 폴링 스레드가 제출을 대신하는 모드)과 `IORING_SETUP_R_DISABLED`(링 생성 후 활성화 이전 구간에서 제출 태스크가 아직 확정되지 않은 상태)가 겹치는 경계 조건을 별도로 처리합니다. 이 요약이 다룬 시점은 2025년 12월 v5였으며, 이후 패치가 갱신되었을 수 있으므로 최신 상태는 직접 확인해야 합니다. 따라서 특정 배포판의 안정 커널에 이미 포함되어 있는지는 사용 중인 커널의 변경 로그로 직접 확인해야 합니다. 이 세부사항은 커널 버전에 따라 달라지는 **구현 정의** 영역이라는 점을 유념하십시오. 다만 원리 자체는 명확합니다 — "제출자가 하나뿐"이라는 사실이 이미 참이라면, 그 사실을 커널에 알려주는 것만으로 불필요한 상호 배제 비용을 없앨 수 있다는 것이 이 최적화 계열의 공통 논리입니다.
 
 이 원리는 thread-per-core와 직접 맞물립니다. 코어마다 io_uring 링을 하나씩 두고 그 코어의 스레드만 제출하게 만들면, `SINGLE_ISSUER` 힌트가 요구하는 조건을 아키텍처 자체가 이미 만족시킵니다. 반대로 여러 스레드가 자유롭게 같은 링에 제출하는 전통적 스레드 풀 설계에서는 이 최적화를 쓸 수 없고, 애플리케이션 계층에서 별도의 뮤텍스나 링 풀로 직접 직렬화해야 합니다.
 
@@ -111,15 +106,24 @@ struct PerCoreRing {
 
 `IORING_SETUP_COOP_TASKRUN`은 태스크 워크 처리 시 불필요한 IPI(inter-processor interrupt)를 줄이는 보조 플래그로, `SINGLE_ISSUER`와 함께 쓰이는 경우가 흔합니다. 위 골격에서 중요한 점은 코드 자체가 짧다는 것이 아니라 **"이 링은 이 스레드만 건드린다"는 불변식을 프로세스 구조로 강제**해야 한다는 것입니다 — 이 불변식이 깨지면(예: 다른 스레드가 실수로 같은 `ring` 참조로 제출하면) 커널은 `-EEXIST`로 요청을 거부하거나, 애플리케이션 설계에 따라 조용히 잘못된 동작으로 이어질 수 있습니다.
 
-**두 구조의 제출 경로 비용을 직접 격리해 비교**하려면, 코어마다 독립된 `SINGLE_ISSUER` 링을 쓰는 경우와 여러 스레드가 뮤텍스로 보호되는 링 하나를 공유하는 경우를 같은 제출 횟수로 벤치마크합니다. 아래는 그 비교의 골격입니다(Linux, `g++ -std=c++20 -O2 bench_ring_contention.cpp -luring -lpthread`로 빌드).
+**두 구조의 제출 경로 비용을 직접 격리해 비교**하려면, 코어마다 독립된 `SINGLE_ISSUER` 링을 쓰는 경우와 여러 스레드가 뮤텍스로 보호되는 링 하나를 공유하는 경우를 같은 제출 횟수로 벤치마크합니다. 아래는 그 비교 프로그램입니다(Linux, `g++ -std=c++20 -O2 bench_ring_contention.cpp -luring -lpthread`로 빌드).
 
 ```cpp
-// bench_ring_contention.cpp — per-core SINGLE_ISSUER vs 공유 링(mutex 보호) 제출 비용 비교 골격
+// bench_ring_contention.cpp — per-core SINGLE_ISSUER vs 공유 링(mutex 보호) 제출 비용 비교
 #include <liburing.h>
 #include <chrono>
+#include <cstdio>
+#include <cstdlib>
 #include <mutex>
 #include <thread>
 #include <vector>
+
+static void die_if(int rc, const char* what) {
+  if (rc < 0) {
+    std::fprintf(stderr, "%s failed: %d\n", what, rc);
+    std::exit(1);
+  }
+}
 
 // 방식 A: 스레드마다 자신만의 SINGLE_ISSUER 링을 소유 (락 없음)
 void bench_per_thread_ring(int thread_count, int submits_per_thread) {
@@ -129,7 +133,7 @@ void bench_per_thread_ring(int thread_count, int submits_per_thread) {
       io_uring ring{};
       io_uring_params p{};
       p.flags = IORING_SETUP_SINGLE_ISSUER;
-      io_uring_queue_init_params(256, &ring, &p);
+      die_if(io_uring_queue_init_params(256, &ring, &p), "io_uring_queue_init_params");
       for (int j = 0; j < submits_per_thread; ++j) {
         io_uring_sqe* sqe = io_uring_get_sqe(&ring);
         io_uring_prep_nop(sqe);
@@ -162,9 +166,30 @@ void bench_shared_ring(io_uring& ring, std::mutex& m, int thread_count, int subm
   }
   for (auto& t : workers) t.join();
 }
+
+int main() {
+  constexpr int kThreads = 4;
+  constexpr int kSubmits = 100000;
+  auto time_ms = [](auto&& f) {
+    auto t0 = std::chrono::steady_clock::now();
+    f();
+    return std::chrono::duration_cast<std::chrono::milliseconds>(
+               std::chrono::steady_clock::now() - t0).count();
+  };
+
+  long long a = time_ms([&] { bench_per_thread_ring(kThreads, kSubmits); });
+
+  io_uring shared{};
+  die_if(io_uring_queue_init(256, &shared, 0), "io_uring_queue_init");
+  std::mutex m;
+  long long b = time_ms([&] { bench_shared_ring(shared, m, kThreads, kSubmits); });
+  io_uring_queue_exit(&shared);
+
+  std::printf("per-thread ring: %lld ms, shared ring: %lld ms\n", a, b);
+}
 ```
 
-`io_uring_prep_nop`으로 커널 왕복 자체의 오버헤드만 측정하도록 페이로드를 최소화했습니다. 실행 시간은 `std::chrono::steady_clock`으로 두 함수 호출을 감싸 측정하고, 스레드 수·제출 횟수를 늘려가며 방식 A와 B의 격차가 어떻게 벌어지는지 관찰합니다. 결과는 커널 버전(특히 앞서 설명한 `uring_lock` 생략 패치의 포함 여부), CPU 코어 수, `io_uring_prep_nop`의 왕복 지연에 따라 크게 달라지므로 절대 수치를 여기 제시하지 않습니다 — 반드시 대상 커널·하드웨어에서 직접 재현해야 합니다.
+`io_uring_prep_nop`으로 커널 왕복 자체의 오버헤드만 측정하도록 페이로드를 최소화했습니다. `main`이 `std::chrono::steady_clock`으로 두 함수 호출을 감싸 시간을 출력하며, 스레드 수·제출 횟수를 늘려가며 방식 A와 B의 격차가 어떻게 벌어지는지 관찰합니다. 결과는 커널 버전(특히 앞서 설명한 `uring_lock` 생략 패치의 포함 여부), CPU 코어 수, `io_uring_prep_nop`의 왕복 지연에 따라 크게 달라지므로 절대 수치를 여기 제시하지 않습니다 — 반드시 대상 커널·하드웨어에서 직접 재현해야 합니다.
 
 ## Apache Iggy 사례: Tokio에서 thread-per-core로
 
@@ -213,7 +238,6 @@ flowchart LR
 
 ### 자주 하는 실수
 
-- **SINGLE_ISSUER를 걸어 놓고 다른 스레드에서도 제출**: 커널이 `-EEXIST`로 거부하거나, 조건에 따라 감지되지 않는 경계 상황이 생길 수 있습니다. 링 소유권을 코드 구조로 강제해야 합니다.
 - **thread-per-core로 전환하면서 샤드 간 통신 비용을 과소평가**: 메시지 패싱도 공짜가 아닙니다. 샤드 경계를 넘는 요청이 잦은 워크로드라면 오히려 공유 자료구조 하나를 락으로 보호하는 편이 더 빠를 수 있습니다.
 - **커널 패치 유무를 확인하지 않고 SINGLE_ISSUER의 락 생략 효과를 성능 목표에 반영**: 이 최적화는 커널 버전에 따라 존재 여부가 다릅니다. 배포 환경의 커널에서 직접 측정해야 합니다.
 
@@ -225,8 +249,7 @@ Thread-per-core 아키텍처는 만능이 아닙니다. 첫째, **부하 불균�
 
 - **thread-per-core/shared-nothing** 설계가 락 경합을 "해결"이 아니라 "회피"로 다루는 이유를 설명할 수 있다.
 - `IORING_SETUP_SINGLE_ISSUER`가 커널에 무엇을 약속하는 힌트이고, 이 약속이 깨지면 어떤 일이 벌어지는지 말할 수 있다.
-- `uring_lock` 생략 최적화가 io_uring 자체의 항상 켜진 기능이 아니라 커널 버전에 종속된 진행 중인 최적화라는 점을 구분할 수 있다.
 - Apache Iggy 사례에서 "완전한 shared-nothing"이 아니라 "shared-something"으로 타협한 지점(shard0)과 그 이유를 설명할 수 있다.
 - 자신의 워크로드가 thread-per-core로 전환할 가치가 있는지, 판단 기준 표를 근거로 결정할 수 있다.
 
-이 장으로 Track 04(동시성·멀티스레드 최적화)의 커리큘럼이 끝납니다. 01장의 동기화 비용 정량 분석에서 출발해 lock 선택, false sharing, 메모리 모델, lock-free/wait-free 자료구조, 표준 동시성 프리미티브를 거쳐, 이 장에서는 그 판단들을 "공유 자체를 없애는" 아키텍처 수준의 선택으로 묶어 보았습니다. 트랙 전체의 커리큘럼 지도와 권장 진입 순서는 <strong>[Tr.07 Introduction](/post/concurrency-optimization/getting-started-concurrency-multithreading-performance-tuning/)</strong>을 다시 참고하십시오. CPU affinity·NUMA 핀닝을 더 깊이 다루려면 <strong>[Tr.06: CPU Pinning/Affinity 전략](/post/os-optimization/cpu-pinning-affinity-strategy/)</strong>으로, 캐시 계층과 코어 간 통신 비용의 하드웨어 근거를 보려면 <strong>[Tr.05: 캐시 계층 구조](/post/cpu-optimization/cache-hierarchy-l1-l2-l3/)</strong>로 이어가는 것을 권장하며, 시리즈 전체 12트랙의 로드맵은 <strong>[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)</strong>에 정리되어 있습니다.
+이 장으로 Tr.07(동시성·멀티스레드 최적화)의 커리큘럼이 끝납니다. 01장의 동기화 비용 정량 분석에서 출발해 lock 선택, false sharing, 메모리 모델, lock-free/wait-free 자료구조, 표준 동시성 프리미티브를 거쳐, 이 장에서는 그 판단들을 "공유 자체를 없애는" 아키텍처 수준의 선택으로 묶어 보았습니다. 트랙 전체의 커리큘럼 지도와 권장 진입 순서는 <strong>[Tr.07 Introduction](/post/concurrency-optimization/getting-started-concurrency-multithreading-performance-tuning/)</strong>을 다시 참고하십시오. CPU affinity·NUMA 핀닝을 더 깊이 다루려면 <strong>[Tr.06: CPU Pinning/Affinity 전략](/post/os-optimization/cpu-pinning-affinity-strategy/)</strong>으로, 캐시 계층과 코어 간 통신 비용의 하드웨어 근거를 보려면 <strong>[Tr.05: 캐시 계층 구조](/post/cpu-optimization/cache-hierarchy-l1-l2-l3/)</strong>로 이어가는 것을 권장하며, 시리즈 전체 12트랙의 로드맵은 <strong>[Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)</strong>에 정리되어 있습니다.
