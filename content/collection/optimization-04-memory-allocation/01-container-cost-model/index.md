@@ -1,7 +1,7 @@
 ---
 collection_order: 1
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-23
 draft: false
 image: wordcloud.png
 title: "[Memory 04] 컨테이너 비용 모델"
@@ -12,25 +12,18 @@ tags:
   - Optimization
   - Memory
   - Cache
-  - CPU(Central Processing Unit)
   - C++
   - Data-Structures(자료구조)
   - Compiler(컴파일러)
   - Benchmark
   - Latency
-  - Throughput
-  - Profiling(프로파일링)
-  - Testing(테스트)
   - Implementation(구현)
   - Best-Practices
-  - Code-Quality(코드품질)
   - Time-Complexity(시간복잡도)
   - Space-Complexity(공간복잡도)
   - Complexity-Analysis(복잡도분석)
   - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Documentation(문서화)
   - Advanced
   - Guide(가이드)
   - Reference(참고)
@@ -41,7 +34,6 @@ tags:
   - Amortized-Analysis
   - Growth-Factor
   - Node-Container
-  - Iterator-Invalidation
   - Container-Selection
 ---
 
@@ -65,7 +57,7 @@ tags:
 
 ## 비용 모델이라는 관점 (배경)
 
-C++ 표준(ISO/IEC 14882, [container.requirements] 절)은 `vector::push_back`이 <strong>상환 상수 시간(amortized constant time)</strong>이어야 한다고만 규정하고, 그 상수 시간을 만들어내는 <strong>성장 인자(growth factor)</strong>나 메모리 배치는 구현체에 맡깁니다. [cppreference: std::vector](https://en.cppreference.com/w/cpp/container/vector)도 capacity·재할당 조건을 "구현 정의"로 남겨 둔다는 점을 그대로 확인해 줍니다. 이 여백 때문에 GCC libstdc++와 Clang libc++는 2배 성장을, MSVC STL은 1.5배 성장을 채택했고, 이 차이는 지금도 유지되고 있습니다. "상환 O(1)"이라는 복잡도 보장 하나만 보면 세 구현체가 동등해 보이지만, 실제로 힙을 두드리는 **횟수**와 그때마다 옮기는 **바이트 수**는 성장 인자에 따라 갈립니다.
+C++ 표준(ISO/IEC 14882, [container.requirements] 절)은 `vector::push_back`이 <strong>상환 상수 시간(amortized constant time)</strong>이어야 한다고만 규정하고, 그 상수 시간을 만들어내는 <strong>성장 인자(growth factor)</strong>나 메모리 배치는 구현체에 맡깁니다. [cppreference: std::vector](https://en.cppreference.com/w/cpp/container/vector)도 끝 삽입이 상환 상수 시간이라고만 적고, 성장 인자는 언급하지 않습니다. 이 여백 때문에 GCC libstdc++와 Clang libc++는 2배 성장을, MSVC STL은 1.5배 성장을 채택했고, 이 차이는 지금도 유지되고 있습니다. "상환 O(1)"이라는 복잡도 보장 하나만 보면 세 구현체가 동등해 보이지만, 실제로 힙을 두드리는 **횟수**와 그때마다 옮기는 **바이트 수**는 성장 인자에 따라 갈립니다.
 
 이 장에서 쓰는 "비용 모델"은 새로운 이론이 아니라, Tarjan·Cormen 등이 정리한 <strong>상환 분석(amortized analysis)</strong>의 결과를 "할당기 호출 횟수"라는 관찰 가능한 지표로 옮겨 쓰는 실용적 틀입니다. 목표는 증명이 아니라, 컨테이너를 고르기 전에 "이 선택이 힙을 몇 번, 얼마나 두드릴 것인가"를 어림잡는 것입니다.
 
@@ -81,15 +73,15 @@ C++ 표준(ISO/IEC 14882, [container.requirements] 절)은 `vector::push_back`�
 
 ## vector: 성장 인자와 할당 횟수
 
-`std::vector`는 용량이 부족해질 때만 재할당하므로, N번의 `push_back` 동안 실제 할당 횟수는 N이 아니라 **성장 인자 k에 대한 log_k(N)** 수준으로 줄어듭니다. 성장 인자가 2인 구현(libstdc++, libc++)에서 백만 개를 채우면 재할당은 대략 20회(⌈log₂ 1,000,000⌉)에 그치고, 성장 인자가 1.5인 MSVC STL에서는 대략 34회(⌈log₁.₅ 1,000,000⌉)로 더 잦습니다. 대신 재할당 한 번마다 옮기는 총 바이트는 등비수열을 이루어, 요소 하나가 일생 동안 옮겨지는 횟수의 기댓값은 <strong>k/(k-1)</strong>로 수렴합니다 — 성장 인자 2에서는 평균 2회 미만, 1.5에서는 평균 3회 미만입니다. 재할당 횟수는 성장 인자가 클수록 줄고, 이동 총량은 성장 인자가 작을수록 줄어드는 셈이라, 어느 쪽이 유리한지는 "이동 비용이 큰 타입인가"에 달려 있습니다.
+`std::vector`는 용량이 부족해질 때만 재할당하므로, N번의 `push_back` 동안 실제 할당 횟수는 N이 아니라 **성장 인자 k에 대한 log_k(N)** 수준으로 줄어듭니다. 성장 인자가 2인 구현(libstdc++, libc++)에서 백만 개를 채우면 최초 할당을 포함한 할당은 21회(용량 1, 2, 4, …, 2²⁰)에 그치고, 성장 인자가 1.5인 MSVC STL에서는 35회(⌈log₁.₅ 1,000,000⌉ = 35)로 더 잦습니다. 대신 재할당 한 번마다 옮기는 양은 등비수열을 이루므로 총 이동 횟수는 N에 비례하고, 재할당 직후 시점의 요소당 이동 횟수는 <strong>k/(k-1)</strong>(성장 인자 2에서 2회, 1.5에서 3회)을 넘지 않습니다. 같은 N=1,000,000을 단순 시뮬레이션하면 총 이동은 성장 인자 2에서 약 105만 회(요소당 약 1.05회), 1.5에서 약 210만 회(요소당 약 2.1회)였습니다. 재할당 횟수는 성장 인자가 클수록 줄고, 이동 총량은 성장 인자가 작을수록 줄어드는 셈이라, 어느 쪽이 유리한지는 "이동 비용이 큰 타입인가"에 달려 있습니다.
 
 ```text
-N = 1,000,000개를 push_back으로 채울 때 (개념 스케치, 구현 정의)
+N = 1,000,000개를 push_back으로 채울 때 (성장 규칙을 단순화한 시뮬레이션, 실제 구현과 세부가 다를 수 있음)
 
-k = 2.0 (libstdc++/libc++): 재할당 ≈ 20회, 요소당 평균 이동 ≈ 2회 미만
-k = 1.5 (MSVC STL):        재할당 ≈ 34회, 요소당 평균 이동 ≈ 3회 미만
+k = 2.0: 할당 21회, 총 이동 1,048,575회 (요소당 약 1.05회)
+k = 1.5: 할당 35회, 총 이동 2,099,753회 (요소당 약 2.1회)
 
-→ reserve(N)을 미리 부르면 두 구현 모두 재할당 0회, 이동 0회로 수렴
+→ reserve(N)을 미리 부르면 두 경우 모두 할당 1회, 이동 0회
 ```
 
 이 계산이 알려주는 실무 결론은 하나입니다. **삽입할 개수의 상한을 안다면 `reserve`를 부르는 순간 이 축 전체가 사라진다**는 것입니다. 반대로 상한을 모른 채 반복 삽입을 오래 지속하면, 이동 비용이 큰 타입(문자열·큰 구조체)일수록 성장 인자 차이가 실측 지연 차이로 드러날 수 있으므로 대상 컴파일러·표준 라이브러리에서 직접 확인해야 합니다.
@@ -106,7 +98,7 @@ k = 1.5 (MSVC STL):        재할당 ≈ 34회, 요소당 평균 이동 ≈ 3회
 
 - **list**: 노드마다 `prev`/`next` 포인터 2개(64비트에서 16바이트)를 추가로 가집니다. `int` 하나(4바이트, 정렬 후 8바이트)를 담는 노드라면 관리용 바이트가 실제 데이터보다 커, 오버헤드 비율이 100%를 넘는 경우가 흔합니다.
 - **map/set**: 보통 레드-블랙 트리 노드로 구현되어 색상 비트(패딩 포함 8바이트)와 부모·좌·우 포인터 3개(24바이트)를 더 가집니다. `map<int, int>`처럼 payload가 작을수록 오버헤드 비율이 커집니다.
-- **unordered_map/unordered_set**: 체이닝 구현(libstdc++)에서는 노드마다 캐시된 해시값과 다음 노드 포인터가 붙고, 별도로 버킷 배열(포인터 배열)이 `max_load_factor`를 넘을 때 vector와 비슷하게 재할당(리해시)됩니다. 이 조건은 [cppreference: std::unordered_map](https://en.cppreference.com/w/cpp/container/unordered_map)의 `max_load_factor`·`rehash` 항목에 정리되어 있습니다. 즉 이 컨테이너는 "노드 오버헤드"와 "vector식 배열 재할당"을 동시에 갖습니다.
+- **unordered_map/unordered_set**: 체이닝 구현(libstdc++)에서는 노드마다 다음 노드 포인터가 붙고, `std::string`처럼 해시가 느린 키는 해시값도 노드에 캐시합니다(`std::hash<int>` 같은 빠른 해시는 캐시하지 않으며 이는 구현 정의입니다). 별도로 버킷 배열(포인터 배열)이 `max_load_factor`를 넘을 때 vector와 비슷하게 재할당(리해시)됩니다. 이 조건은 [cppreference: max_load_factor](https://en.cppreference.com/w/cpp/container/unordered_map/max_load_factor)에 정리되어 있습니다. 즉 이 컨테이너는 "노드 오버헤드"와 "vector식 배열 재할당"을 동시에 갖습니다.
 
 핵심은 payload(`sizeof(T)`)가 작을수록 이 오버헤드가 상대적으로 커진다는 점입니다. 요소가 이미 큰 구조체(수십–수백 바이트)라면 노드 오버헤드의 비중은 무시할 만하지만, `int`나 작은 `enum`을 담는 컨테이너에서는 오버헤드가 데이터 자체보다 클 수 있습니다.
 
@@ -202,7 +194,17 @@ int main() {
 }
 ```
 
-`g++ -O2 -std=c++17 counting_alloc.cpp -o counting_alloc`로 빌드해 실행하면(x86-64, GCC 13 기준), `vector (reserve 없음)`은 성장 인자에 따른 log 수준의 호출 횟수를, `vector (reserve 있음)`은 정확히 1회를, `list`·`map`·`unordered_map`은 N에 근접하거나(map, 각 삽입마다 노드 1개) N보다 조금 많은(unordered_map, 노드 할당 + 리해시) 호출 횟수를 출력하는 것을 직접 확인할 수 있습니다. 이 카운팅 할당자는 실제 `operator new`/`operator delete`를 그대로 호출하므로 성능 오버헤드는 원자적 카운터 증가뿐이며, 측정 결과는 표준 라이브러리 구현·컴파일러 버전에 따라 달라질 수 있으므로 배포 환경에서 재현하는 것이 안전합니다.
+`g++ -O2 -std=c++17 counting_alloc.cpp -o counting_alloc`로 빌드해 실행한 결과입니다(Compiler Explorer의 x86-64 GCC 13.2, libstdc++, 64비트에서 직접 실행한 출력).
+
+```text
+vector (reserve 없음): allocate() 18회, 총 1048572 바이트
+vector (reserve 있음): allocate() 1회, 총 400000 바이트
+list: allocate() 100000회, 총 2400000 바이트
+map: allocate() 100000회, 총 4000000 바이트
+unordered_map (reserve 없음): allocate() 100014회, 총 4326480 바이트
+```
+
+이 출력에서 `vector (reserve 없음)`은 N=100,000개에 18회(용량 1부터 2¹⁷까지)로 log 수준이고, `reserve`를 부르면 1회로 줄며, `list`·`map`은 삽입마다 노드 1개씩 N회, `unordered_map`은 노드 N회에 버킷 배열 재할당 14회가 더해진 100,014회입니다. 이 카운팅 할당자는 실제 `operator new`/`operator delete`를 그대로 호출하므로 성능 오버헤드는 원자적 카운터 증가뿐이며, 측정 결과는 표준 라이브러리 구현·컴파일러 버전에 따라 달라질 수 있으므로 배포 환경에서 재현하는 것이 안전합니다.
 
 ## 흔한 오개념
 

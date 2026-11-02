@@ -282,22 +282,22 @@
 | content/collection/optimization-03-compiler/14-bolt-post-link-optimization/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | a0707a0 | 없음 |
 | content/collection/optimization-03-compiler/15-autofdo/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | 2c5d41e | 없음 |
 | content/collection/optimization-04-memory-allocation/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 1.0 | c8f0024 | 없음(경미: Networking·IO·Testing 등 본문 결속 약한 범용 태그 다수, 16번 챕터 mimalloc 미병기) |
-| content/collection/optimization-04-memory-allocation/01-container-cost-model/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/02-allocation-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/03-custom-allocator/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/04-pmr-allocator/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/05-aos-vs-soa/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/06-cache-friendly-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/07-padding-alignment/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/08-large-pages/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/09-numa-allocation/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/10-memory-fragmentation/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/11-memory-bandwidth/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/12-stack-vs-heap/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/13-virtual-memory-management/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/14-memory-leak-detection/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/15-memory-lifetime-cacheline-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/16-global-allocator-tuning/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/01-container-cost-model/index.md | 95.8 | 2026-10-23 | 1 | 통과 | 1.3 | 37c380b | 없음(경미: 성장 인자 2배/1.5배 1차 출처 미병기, Advanced 태그가 기초 난이도와 불일치) |
+| content/collection/optimization-04-memory-allocation/02-allocation-strategy/index.md | 95.4 | 2026-10-23 | 1 | 통과 | 1.3 | 7cb59f2 | 없음(경미: "malloc은 매 호출마다 락" 서술이 tcache 등 스레드별 캐시를 무시해 과장, 마무리·체크리스트·소멸자 설명 중복) |
+| content/collection/optimization-04-memory-allocation/03-custom-allocator/index.md | 93.9 | 2026-10-23 | 1 | 통과 | 1.3 | e1b8a0f | 없음(경미: ArenaAllocator·StackAllocator에 과정렬 T static_assert 없음, "초기 구현체가 할당자를 무시" 출처 없는 일반화, construct/destroy 연혁 중복) |
+| content/collection/optimization-04-memory-allocation/04-pmr-allocator/index.md | 93.1 | 2026-10-23 | 0 | 통과 | 1.3 | d40516e | 없음(경미: P0339 귀속·L91 주석↔본문 모순·출처 없는 ns 수치·무관 태그 7개는 통과 후 미수정, 다음 재점검 때 처리) |
+| content/collection/optimization-04-memory-allocation/05-aos-vs-soa/index.md | 97.3 | 2026-10-23 | 1 | 통과 | 1.3 | 2bf96db | 없음(경미: 11회 측정 범위의 원본 출력·링크 미첨부, Acton 문장이 따옴표 안 의역) |
+| content/collection/optimization-04-memory-allocation/06-cache-friendly-patterns/index.md | 100.0 | 2026-10-23 | 2 | 통과 | 1.3 | e00c314 | 없음(개선여지만: 프리페처 도입 시기 출처, Intel 매뉴얼 절 번호, 호출 단위 배칭 예제) |
+| content/collection/optimization-04-memory-allocation/07-padding-alignment/index.md | 97.3 | 2026-10-23 | 1 | 통과 | 1.3 | 197ad67 | 없음(경미: Compiler Explorer 측정 수치의 CPU·OS 등 실행 환경 미특정) |
+| content/collection/optimization-04-memory-allocation/08-large-pages/index.md | 95.4 | 2026-10-23 | 2 | 통과 | 1.3 | 85f9baa | 없음(경미: "채택이 넓어지고 있다·표준 라이브러리" 무출처 서술, "전역 오버커밋 위험" 용어 부정확, 벤치 환경 의존 경고·HugeTLB/THP 구분 중복) |
+| content/collection/optimization-04-memory-allocation/09-numa-allocation/index.md | 95.8 | 2026-10-24 | 1 | 통과 | 1.3 | fee9a89 | 없음(경미: 판단 흐름도 q1/q3 분기가 표와 불일치, 벤치를 '지연' 측정이라 부르나 stride-8 순차 스캔은 처리량 측정) |
+| content/collection/optimization-04-memory-allocation/10-memory-fragmentation/index.md | 91.9 | 2026-10-24 | 3 | 통과 | 1.3 | ed904bf | 없음(경미: '버디 시스템은 외부 단편화 반대' 문장 근거 없음, mimalloc 태그가 본문에 없음, 판단 표 4·5행 비권장 문구 중복) |
+| content/collection/optimization-04-memory-allocation/11-memory-bandwidth/index.md | 91.9 | 2026-10-24 | 2 | 통과 | 1.3 | 4f1cfea | 없음(경미: roofline memory-bound를 컨트롤러 포화와 동일시한 서술, Meta 사례는 Panmesia 데모라는 단서 누락, 스펙-배포 시차의 실제 상용화 사례 미제시, '스펙≠배포' 요지 반복) |
+| content/collection/optimization-04-memory-allocation/12-stack-vs-heap/index.md | 95.4 | 2026-10-24 | 3 | 통과 | 1.3 | 3141396 | 없음(경미: 본문 L89가 make_unique라 쓰나 코드는 new Payload, '20배 안팎'이 측정 범위 17–53배와 불일치, 오개념 2번째 항목이 앞 절 재진술) |
+| content/collection/optimization-04-memory-allocation/13-virtual-memory-management/index.md | 92.5 | 2026-10-25 | 3 | 통과 | 1.3 | eeb66e8 | 없음(경미: Mermaid가 '곧 재사용 → 압박 시 PAGEOUT'으로 이어져 본문·표와 불일치, 7.6%가 SYNC 모드 측정임을 미명시, MADV_FREE/RSS·msync·MTE 단서 재진술 다수, -fsanitize=memtag 플래그 Android 문서 대조 미완) |
+| content/collection/optimization-04-memory-allocation/14-memory-leak-detection/index.md | 95.0 | 2026-10-25 | 2 | 통과 | 1.3 | 4a858d4 | 없음(경미: Valgrind '1990년대 후반 개발 시작'·'3.27.1(2026-05)' 무출처·구버전 표기, 계측/배포 빌드 차이와 논리적 누수 설명 중복) |
+| content/collection/optimization-04-memory-allocation/15-memory-lifetime-cacheline-intuition/index.md | 98.1 | 2026-10-25 | 1 | 통과 | 1.3 | b4bd8b9 | 없음(경미: 할당 비용 절 앞 3문장이 스택/힙 절 힙 설명과 중복, `alignas` 언급이 도입 없이 등장) |
+| content/collection/optimization-04-memory-allocation/16-global-allocator-tuning/index.md | 95.5 | 2026-10-25 | 2 | 통과 | 1.3 | 863b1af | 없음(경미: description이 snmalloc 구조 비교를 약속하나 표에 snmalloc 행 없음, 'Tr.02' 약어 미정의, jemalloc 종료 논지 일부 재진술) |
 | content/collection/optimization-05-cpu-microarchitecture/00-introduction/index.md | 88.9 | 2026-07-25 | 3 | 에스컬레이션 | 1.0 | b9a7dc2 | 치명결함 0건이나 3회 반복 후 90점 근소 미달. 잔여: "다루지 않는 것" 절에 캐시 일관성/메모리 모델·SIMD 범위 밖 명시 부재, 1차 출처 1개 추가 여지 |
 | content/collection/optimization-05-cpu-microarchitecture/01-cpu-pipeline-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-05-cpu-microarchitecture/02-branch-prediction/index.md | - | - | 0 | 미채점 | - | - | - |

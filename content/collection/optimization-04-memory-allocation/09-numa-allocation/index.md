@@ -1,12 +1,12 @@
 ---
 collection_order: 9
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-24
 draft: false
 image: wordcloud.png
 title: "[Memory 04] NUMA 메모리 할당·지역성"
 slug: numa-memory-allocation-locality
-description: "멀티소켓 서버에서 메모리가 어느 노드에 물리적으로 배치되는지가 지연을 좌우하는 이유를 first-touch 정책부터 numactl·libnuma·AutoNUMA까지 실측 코드와 함께 정리하고, CPU affinity와의 경계를 짚습니다."
+description: "멀티소켓 서버에서 메모리가 어느 노드에 물리적으로 배치되는지가 지연을 좌우하는 이유를 first-touch 정책부터 numactl·libnuma·AutoNUMA까지 측정용 벤치 스켈레톤과 함께 정리하고, CPU affinity와의 경계를 짚습니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
@@ -24,15 +24,10 @@ tags:
   - Best-Practices
   - Advanced
   - Deep-Dive
-  - Case-Study
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Documentation(문서화)
   - Hardware(하드웨어)
-  - Data-Structures(자료구조)
-  - Debugging(디버깅)
-  - Testing(테스트)
   - Reference(참고)
   - Guide(가이드)
   - NUMA
@@ -68,7 +63,7 @@ tags:
 
 **NUMA**는 코어 수가 늘어나면서 모든 코어가 하나의 메모리 버스를 공유하는 **UMA(Uniform Memory Access)** 구조가 대역폭 병목에 부딪히자 나온 해법입니다. 1990년대 Sequent Computer Systems의 NUMA-Q, SGI의 Origin 2000처럼 각 소켓(또는 보드)이 자신의 로컬 메모리 컨트롤러를 갖고, 다른 소켓의 메모리는 전용 인터커넥트를 거쳐 접근하는 **ccNUMA(cache-coherent NUMA)** 설계가 상용화되었습니다. 학계 쪽에서는 Stanford의 DASH 프로젝트(Lenoski·Hennessy 등, 1990년대 초)가 캐시 일관성을 유지하는 분산 공유 메모리의 초기 모델을 제시했고, 이 계보가 오늘날 멀티소켓 x86 서버의 ccNUMA 구조로 이어집니다.
 
-Linux 커널은 2000년대 초반부터 NUMA 인식 페이지 할당자를 갖추기 시작했지만, 초기에는 정적인 정책(어느 노드에 바인딩할지 관리자가 지정)에 의존했습니다. 실행 중 접근 패턴을 관찰해 페이지를 자동으로 옮기는 **자동 밸런싱**은 Andrea Arcangeli(Red Hat)가 2012년 제안한 AutoNUMA 설계를 기반으로, Mel Gorman이 주도한 구현이 Linux 3.8(2013년 초 릴리스) 전후로 커널에 병합되면서 표준 기능이 되었습니다. 이후로도 정책은 계속 진화해, Linux 6.9(2024년)에는 노드별 비중을 지정하는 <strong>가중 인터리브(MPOL_WEIGHTED_INTERLEAVE)</strong>가 추가되었고, `numactl` 2.0.19 이상에서 이를 `--weighted-interleave` 옵션으로 노출합니다. 이는 로컬 DRAM과 CXL 확장 메모리처럼 대역폭이 서로 다른 노드를 섞어 쓰는 2025-2026년의 배포 환경([11장](/post/memory-optimization/memory-bandwidth-optimization-cxl/)에서 다루는 CXL 계층형 메모리)을 겨냥한 변화입니다.
+Linux 커널은 2000년대 초반부터 NUMA 인식 페이지 할당자를 갖추기 시작했지만, 초기에는 정적인 정책(어느 노드에 바인딩할지 관리자가 지정)에 의존했습니다. 실행 중 접근 패턴을 관찰해 페이지를 자동으로 옮기는 **자동 밸런싱**은 Linux 3.8(2013년 2월 릴리스) 릴리스 노트가 "Automatic NUMA balancing" 항목으로 올렸고([KernelNewbies: Linux 3.8](https://kernelnewbies.org/Linux_3.8)), 이후 커널에서 정책이 확장되며 표준 기능이 되었습니다. 이후로도 정책은 계속 진화해, Linux 6.9(2024년 5월 릴리스)에는 노드별 비중을 지정하는 <strong>가중 인터리브(MPOL_WEIGHTED_INTERLEAVE)</strong>가 추가되었고([KernelNewbies: Linux 6.9](https://kernelnewbies.org/Linux_6.9)), `numactl`은 이를 `--weighted-interleave` 옵션으로 노출합니다. 이는 로컬 DRAM과 CXL 확장 메모리처럼 대역폭이 서로 다른 노드를 섞어 쓰는 2025-2026년의 배포 환경([11장](/post/memory-optimization/memory-bandwidth-optimization-cxl/)에서 다루는 CXL 계층형 메모리)을 겨냥한 변화입니다.
 
 ## NUMA 토폴로지와 지역성
 
@@ -90,7 +85,9 @@ flowchart LR
   cpu1 -.->|"원격 접근</br>(인터커넥트 경유)"| mem0
 ```
 
-원격 접근의 추가 지연은 세대·인터커넥트·NUMA 파티셔닝 모드(예: AMD EPYC의 NPS1/NPS4)에 따라 크게 갈립니다. [chipsandcheese의 최근 측정](https://chipsandcheese.com/p/evaluating-uniform-memory-access)에서는 세대·구성에 따라 노드 간 접근이 노드 내 접근보다 대략 수십–90ns 남짓 더 걸리는 사례를 보고하지만, 이는 특정 칩·구성에서의 관찰치이며 플랫폼·BIOS 설정·펌웨어 버전에 따라 배율이 달라지므로 배포 대상 하드웨어에서 직접 재확인해야 합니다. 이 토폴로지는 `numactl -H`로 직접 확인할 수 있고, 마지막 줄의 "node distances" 행렬이 상대적인 접근 비용을 10 단위 상대값으로 보여줍니다(자기 자신은 10, 원격은 그보다 큰 값).
+원격 접근의 추가 지연은 세대·인터커넥트·NUMA 파티셔닝 모드(AMD EPYC의 NPS, Nodes Per Socket)에 따라 크게 갈리고 방향조차 일정하지 않습니다. [chipsandcheese의 측정](https://chipsandcheese.com/p/evaluating-uniform-memory-access)에서 소켓 전체를 균일 메모리 노드처럼 묶는 NPS0 구성의 EPYC 9575F는 DRAM 지연이 220ns를 넘어 NPS1로 돌린 EPYC 9355P보다 약 90ns 길었습니다. 같은 글의 듀얼소켓 Broadwell 사례는 반대로 소켓마다 NUMA 노드로 둔 쪽이 75.8ns, 균일 접근(UMA)으로 둔 쪽이 104.6ns였습니다. 두 사례 모두 특정 칩·구성의 관찰치이므로 배포 대상 하드웨어에서 직접 재확인해야 합니다. 이 토폴로지는 `numactl -H`로 직접 확인할 수 있고, 마지막 줄의 "node distances" 행렬이 상대적인 접근 비용을 10 단위 상대값으로 보여줍니다(자기 자신은 10, 원격은 그보다 큰 값).
+
+아래는 2노드 서버에서 `numactl -H`가 출력하는 형식을 보여 주는 예시이며, 수치는 형식을 설명하기 위해 가정한 값입니다.
 
 ```text
 $ numactl -H
@@ -162,7 +159,7 @@ cat /proc/$(pgrep -f my_app)/numa_maps
 
 libnuma·커널이 노출하는 메모리 정책은 로컬 배치 외에도 여러 가지가 있으며, 워크로드 성격에 따라 골라 씁니다. [커널 문서(NUMA Memory Policy)](https://docs.kernel.org/admin-guide/mm/numa_memory_policy.html)가 정의하는 주요 모드는 다음과 같습니다.
 
-- **MPOL_BIND**: 지정한 노드 집합에서만 할당하고, 그 노드들에 여유가 없으면 실패합니다. 지역성을 절대 포기하지 않는 대신, 용량 부족 시 우아하게 물러나지 않습니다.
+- **MPOL_BIND**: 지정한 노드 집합에서만 할당합니다([커널 문서](https://docs.kernel.org/admin-guide/mm/numa_memory_policy.html)). `MPOL_PREFERRED`와 달리 다른 노드로 넘어가지 않으므로, 그 집합에 여유가 없으면 할당 실패나 회수 압박으로 이어질 수 있습니다.
 - **MPOL_PREFERRED**: 지정 노드를 우선 시도하고, 부족하면 다른 노드로 넘어갑니다. 실패 대신 성능 저하를 감수하는 절충안입니다.
 - **MPOL_INTERLEAVE**: 페이지를 여러 노드에 라운드로빈으로 분산합니다. 여러 스레드가 고르게 접근하는 큰 읽기 전용 데이터셋에서 특정 노드의 대역폭에 몰리는 것을 막습니다.
 - **MPOL_WEIGHTED_INTERLEAVE**: 인터리브를 노드별 가중치대로 분산합니다(Linux 6.9+). 로컬 DRAM과 대역폭이 다른 CXL 메모리를 섞어 쓸 때, 가중치를 대역폭 비율에 맞추면 단순 라운드로빈보다 총 대역폭을 더 뽑아낼 수 있습니다.
@@ -170,7 +167,7 @@ libnuma·커널이 노출하는 메모리 정책은 로컬 배치 외에도 여�
 프로세스 단위로는 코드를 건드리지 않고 [`numactl`](https://man7.org/linux/man-pages/man8/numactl.8.html)로 이 정책들을 적용할 수 있습니다.
 
 ```bash
-# CPU 실행과 메모리 할당을 모두 노드 0에 고정 (지역성 최우선, 용량 부족 시 실패)
+# CPU 실행과 메모리 할당을 모두 노드 0에 고정 (지역성 최우선, 노드 0 용량이 부족해도 다른 노드로 물러나지 않음)
 numactl --cpunodebind=0 --membind=0 ./app
 
 # 큰 읽기 전용 데이터셋을 여러 노드에 고르게 분산 (총 대역폭 우선)
@@ -215,11 +212,12 @@ int main(int argc, char** argv) {
   constexpr std::size_t kElems = 64ull * 1024 * 1024;  // 512MiB: LLC보다 크게 잡아 캐시 효과를 배제
 
   double* buf = static_cast<double*>(numa_alloc_onnode(kElems * sizeof(double), alloc_node));
+  if (!buf) { std::fprintf(stderr, "alloc failed\n"); return 1; }
   for (std::size_t i = 0; i < kElems; ++i) buf[i] = 0.0;  // first-touch를 alloc_node로 강제
 
   volatile double sum = 0.0;
   auto t0 = std::chrono::steady_clock::now();
-  for (std::size_t i = 0; i < kElems; i += 16) sum += buf[i];  // 캐시 라인 간격 stride
+  for (std::size_t i = 0; i < kElems; i += 8) sum += buf[i];  // 8 doubles = 64바이트: 캐시 라인마다 한 번 접근
   auto t1 = std::chrono::steady_clock::now();
 
   std::printf("alloc_node=%d elapsed=%.3f ms sum=%f\n", alloc_node,
@@ -229,13 +227,13 @@ int main(int argc, char** argv) {
 }
 ```
 
-실행 코어는 `--cpunodebind=0`으로 고정한 채 인자만 0/1로 바꿔 비교하면, 같은 코드·같은 코어에서 **버퍼가 어느 노드에 있었는가**만 다른 두 결과를 얻습니다. 두 실행의 차이(밀리초 단위 총 시간, 필요하면 `perf stat -e node-loads,node-load-misses`로 원격 접근 횟수까지)를 직접 재고, 위에서 인용한 chipsandcheese 수치 같은 일반론에 기대지 말고 대상 하드웨어에서 확인하는 것이 중요합니다. 결과는 소켓 수·인터커넥트 세대·BIOS의 NUMA 파티셔닝 설정에 따라 달라집니다.
+실행 코어는 `--cpunodebind=0`으로 고정한 채 인자만 0/1로 바꿔 비교하면, 같은 코드·같은 코어에서 **버퍼가 어느 노드에 있었는가**만 다른 두 결과를 얻습니다. 두 실행의 차이(밀리초 단위 총 시간, 필요하면 `perf stat -e node-loads,node-load-misses`로 원격 접근 횟수까지)를 직접 재야 합니다. 이 글을 쓴 환경에는 다중 노드 NUMA 하드웨어가 없어 실행 결과는 싣지 않았습니다.
 
 ## 흔한 오개념
 
 <strong>"malloc이 반환되는 순간 물리 페이지가 그 노드에 배치된다"</strong>는 틀렸습니다. 가상 매핑과 물리 페이지 배정은 분리되어 있고, 배정은 first-touch 시점에 일어납니다. 할당 시점의 코드만 보고 배치를 추론하면 위 "깨진 패턴"과 같은 함정에 빠집니다.
 
-<strong>"--membind로 노드에 묶으면 항상 더 빠르다"</strong>도 절반만 맞습니다. 작업 집합이 로컬 캐시에 대부분 들어가는 워크로드라면 NUMA 배치가 지연에 미치는 영향 자체가 작고, 오히려 `--membind`는 그 노드의 용량이 부족할 때 **할당 실패**로 이어져 가용성 문제를 만들 수 있습니다. 용량 여유가 확실치 않다면 `--preferred`처럼 물러날 수 있는 정책이 더 안전한 경우가 많습니다.
+<strong>"--membind로 노드에 묶으면 항상 더 빠르다"</strong>도 절반만 맞습니다. 작업 집합이 로컬 캐시에 대부분 들어가는 워크로드라면 NUMA 배치가 지연에 미치는 영향 자체가 작고, 오히려 `--membind`는 그 노드의 용량이 부족할 때 다른 노드로 물러나지 못해 할당 실패나 회수 압박으로 가용성 문제를 만들 수 있습니다. 용량 여유가 확실치 않다면 `--preferred`처럼 물러날 수 있는 정책이 더 안전한 경우가 많습니다.
 
 <strong>"AutoNUMA가 켜져 있으니 수동 튜닝은 불필요하다"</strong>도 워크로드에 따라 깨집니다. 스레드-데이터 결합이 자주 바뀌는 워크로드에서는 자동 밸런싱의 마이그레이션 비용 자체가 병목이 될 수 있고, 이런 경우 명시적 정책이 자동 밸런싱보다 예측 가능한 성능을 냅니다.
 
@@ -264,7 +262,7 @@ flowchart TD
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
 | 스레드-데이터가 1:1로 고정, 용량 확실 | local-alloc + touch-where-you-compute | 메인 스레드에서 미리 초기화 후 전달 |
-| 스레드-데이터 고정, 용량이 빠듯할 수 있음 | `--preferred` 또는 `numa_alloc_onnode` 후 폴백 처리 | `--membind` (할당 실패 위험) |
+| 스레드-데이터 고정, 용량이 빠듯할 수 있음 | `--preferred` 또는 `numa_alloc_onnode` 후 폴백 처리 | `--membind` (용량 부족 시 물러나지 못함) |
 | 여러 노드가 같은 대용량 읽기 전용 데이터를 순회 | `--interleave=all` | 노드 0에만 몰아서 배치 |
 | 로컬 DRAM + CXL처럼 노드별 대역폭이 다름 | 가중 인터리브(`--weighted-interleave`) | 단순 라운드로빈 인터리브 |
 | 접근 패턴이 실행 중 계속 바뀜 | AutoNUMA(자동 밸런싱) 활성 유지 | 정적 바인딩 고정 후 방치 |
@@ -272,9 +270,8 @@ flowchart TD
 
 ## 비판적 시각: 한계와 트레이드오프
 
-NUMA 튜닝의 효과는 하드웨어·가상화 계층에 강하게 의존합니다. 클라우드 VM 환경에서는 하이퍼바이저가 보여주는 vNUMA 토폴로지가 실제 물리 배치와 어긋나는 **vNUMA 오정렬**이 흔한 함정이며, 이 경우 게스트 안에서 아무리 `numactl`을 정교하게 적용해도 하이퍼바이저 단의 실제 배치를 통제할 수 없습니다. 컨테이너·Kubernetes 환경도 마찬가지로, `cpuset.mems`나 topology manager 설정이 없으면 컨테이너가 여러 노드에 걸쳐 스케줄링되어 애플리케이션 코드의 바인딩 노력이 무력화될 수 있습니다.
-
-`--membind`처럼 강한 정책은 지역성을 보장하는 대신 **용량 부족 시 우아하게 물러나지 않는다**는 트레이드오프를 가지므로, 트래픽이 늘어 메모리 사용량이 예측을 넘는 상황에서는 서비스 중단으로 이어질 수 있습니다. 또한 이 장에서 인용한 원격 접근 지연 수치는 특정 세대·구성에서의 관찰치일 뿐이며, 최신 세대일수록 NUMA 파티셔닝 모드(NPS1 vs NPS4 등)에 따라 격차가 좁혀지거나 넓어지는 방향이 뒤바뀔 수 있으므로, "NUMA가 항상 큰 문제"라는 가정보다 대상 하드웨어에서 앞서 본 벤치마크 스켈레톤 같은 것으로 직접 재현하는 습관이 더 중요합니다.
+NUMA 튜닝의 효과는 하드웨어·가상화 계층에 강하게 의존합니다. 클라우드 VM 환경에서는 하이퍼바이저가 보여주는 vNUMA 토폴로지가 실제 물리 배치와 어긋나는 **vNUMA 오정렬**이 흔한 함정이며, 이 경우 게스트 안에서 아무리 `numactl`을 정교하게 적용해도 하이퍼바이저 단의 실제 배치를 통제할 수 없습니다. 
+"NUMA가 항상 큰 문제"라는 가정도 위험합니다. 앞에서 본 것처럼 파티셔닝 모드에 따라 격차의 크기와 방향이 달라지므로, 대상 하드웨어에서 벤치마크 스켈레톤 같은 것으로 직접 재현하는 습관이 더 중요합니다.
 
 ## 마무리
 

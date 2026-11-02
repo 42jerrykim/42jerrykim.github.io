@@ -1,7 +1,7 @@
 ---
 collection_order: 5
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-23
 draft: false
 image: wordcloud.png
 title: "[Memory 04] AoS vs SoA 데이터 레이아웃"
@@ -17,19 +17,15 @@ tags:
   - Data-Structures(자료구조)
   - Compiler(컴파일러)
   - Benchmark
-  - Latency
-  - Throughput
   - Profiling(프로파일링)
   - Implementation(구현)
   - Best-Practices
-  - Code-Quality(코드품질)
   - Advanced
   - Deep-Dive
   - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - Hardware(하드웨어)
-  - Case-Study
+  - Array(배열)
   - AoS
   - SoA
   - AoSoA
@@ -60,7 +56,7 @@ tags:
 
 ## 역사와 배경
 
-**Structure of Arrays**라는 용어와 실천은 1970–80년대 벡터 프로세서(Cray 등) 시절 과학computing에서부터 이어져 왔습니다. 벡터 유닛이 연속된 메모리를 한 번에 읽어 여러 연산을 동시에 수행하려면 데이터가 필드별로 연속해 있어야 했기 때문입니다. 이 관행은 2000년대 이후 게임 업계에서 <strong>데이터 지향 설계(Data-Oriented Design)</strong>라는 이름으로 재조명되었는데, 특히 Insomniac Games의 엔지니어 Mike Acton이 CppCon 2014 발표 "Data-Oriented Design and C++"에서 "하드웨어가 실제로 어떻게 동작하는지에 맞춰 데이터를 배치하라"는 원칙을 강하게 주장하면서 널리 알려졌습니다. 같은 시기 게임 엔진의 **엔티티 컴포넌트 시스템(ECS)** 설계도 컴포넌트별로 배열을 분리해 저장하는 방식을 채택하면서 SoA적 사고방식이 게임/시뮬레이션 코드베이스의 표준 패턴 중 하나로 자리 잡았습니다. 최근에는 C++26에 `<simd>` 헤더가 표준화되면서(P1928, WG21 문서 기준) 명시적 SIMD 프로그래밍이 언어 차원에서 지원되기 시작했고, 이 라이브러리는 연속된 메모리에서 로드/스토어하는 것을 전제로 설계되어 있어 SoA류 레이아웃의 중요성이 다시 부각되고 있습니다. 다만 2026년 중반 기준으로 GCC의 `<simd>` 구현은 일부 기능(`simd.loadstore`, `simd.permute.dynamic` 등)이 아직 미완성 상태이므로, 컴파일러별 지원 범위는 구현 정의로 보고 실제 사용 전 확인이 필요합니다.
+**Structure of Arrays** 배치는 벡터 프로세서 시절부터 알려진 관행입니다. 벡터 유닛이 연속된 메모리를 한 번에 읽어 여러 연산을 동시에 수행하려면 데이터가 필드별로 연속해 있어야 했기 때문입니다. 이 관행은 2000년대 이후 게임 업계에서 <strong>데이터 지향 설계(Data-Oriented Design)</strong>라는 이름으로 재조명되었는데, 특히 Insomniac Games의 엔지니어 Mike Acton이 [CppCon 2014 발표 "Data-Oriented Design and C++"](https://www.youtube.com/watch?v=rX0ItVEVjHc)에서 "하드웨어가 실제로 어떻게 동작하는지에 맞춰 데이터를 배치하라"는 원칙을 강하게 주장하면서 널리 알려졌습니다. 같은 시기 게임 엔진의 **엔티티 컴포넌트 시스템(ECS)** 설계도 컴포넌트별로 배열을 분리해 저장하는 방식을 채택하면서 SoA적 사고방식이 게임/시뮬레이션 코드베이스의 표준 패턴 중 하나로 자리 잡았습니다. 최근에는 C++26에 `<simd>` 헤더가 표준화되면서([P1928](https://wg21.link/p1928), WG21 문서 기준) 명시적 SIMD 프로그래밍이 언어 차원에서 지원되기 시작했고, 이 라이브러리는 연속된 메모리에서 로드/스토어하는 것을 전제로 설계되어 있어 SoA류 레이아웃의 중요성이 다시 부각되고 있습니다. 다만 `<simd>`의 구현 완성도는 컴파일러·표준 라이브러리 버전마다 다르므로, 실제 사용 전에 대상 툴체인의 지원 범위를 확인해야 합니다.
 
 ## AoS와 SoA의 메모리 배치
 
@@ -140,70 +136,40 @@ void integrate_soa(ParticlesSoA& p, float dt) {
 
 `integrate_soa`의 루프는 각 배열이 유닛 스트라이드(unit-stride, 연속 접근)로 읽히므로 컴파일러 자동 벡터화(auto-vectorization)가 붙기 쉽습니다. `integrate_aos`는 `vx`, `vy`, `vz`가 struct 안에서는 연속이지만 다음 파티클의 `vx`까지는 `sizeof(ParticleAoS)`만큼 건너뛰어야 하므로, SIMD 레지스터를 채우려면 gather 계열 명령이나 셔플이 필요해 자동 벡터화가 되더라도 이득이 작거나 아예 스칼라 코드로 남는 경우가 흔합니다. 다만 AVX2 이후 세대는 gather 명령을 하드웨어로 지원하므로, "AoS는 절대 벡터화되지 않는다"는 말은 과장이며 실제 이득은 컴파일러·타깃 아키텍처에 따라 다릅니다.
 
-**측정 없이는 확신할 수 없는 영역**이므로, 아래는 두 레이아웃의 적분 루프를 비교하는 Google Benchmark 스켈레톤입니다. 벤치마크 설계 자체의 함정(워밍업, `DoNotOptimize`, 반복 횟수)은 [Tr.01: Microbenchmark 설계 원칙](/post/profiling-analysis/microbenchmark-design-principles/)과 [Google Benchmark 실전](/post/profiling-analysis/google-benchmark-practical/)을 참고합니다.
+**측정 없이는 확신할 수 없는 영역**이므로, 위의 두 블록(타입 정의와 `integrate_*` 함수)을 같은 파일에 두고 아래 `main`을 붙이면 단독으로 빌드·실행되는 측정 프로그램이 됩니다. 벤치마크 설계 자체의 함정(워밍업, 반복 횟수, 최적화로 인한 루프 제거)은 [Tr.01: Microbenchmark 설계 원칙](/post/profiling-analysis/microbenchmark-design-principles/)과 [Google Benchmark 실전](/post/profiling-analysis/google-benchmark-practical/)을 참고합니다.
 
 ```cpp
-#include <benchmark/benchmark.h>
-#include <vector>
-#include <cstdint>
-#include <cstddef>
+#include <chrono>
+#include <cstdio>
 
-struct ParticleAoS {
-  float x, y, z, vx, vy, vz, mass;
-  std::uint32_t flags;
-};
-using ParticlesAoS = std::vector<ParticleAoS>;
-
-struct ParticlesSoA {
-  std::vector<float> x, y, z, vx, vy, vz, mass;
-  std::vector<std::uint32_t> flags;
-  void resize(std::size_t n) {
-    x.resize(n); y.resize(n); z.resize(n);
-    vx.resize(n); vy.resize(n); vz.resize(n);
-    mass.resize(n); flags.resize(n);
-  }
-};
-
-static void integrate_aos(ParticlesAoS& p, float dt) {
-  for (auto& particle : p) {
-    particle.x += particle.vx * dt;
-    particle.y += particle.vy * dt;
-    particle.z += particle.vz * dt;
-  }
+template <typename Fn>
+double ns_per_particle(Fn fn, std::size_t n, int iters) {
+  using clock = std::chrono::steady_clock;
+  fn();  // 워밍업
+  auto t0 = clock::now();
+  for (int i = 0; i < iters; ++i) fn();
+  auto t1 = clock::now();
+  return std::chrono::duration<double, std::nano>(t1 - t0).count() / iters / static_cast<double>(n);
 }
 
-static void integrate_soa(ParticlesSoA& p, float dt) {
-  const std::size_t n = p.x.size();
-  for (std::size_t i = 0; i < n; ++i) {
-    p.x[i] += p.vx[i] * dt;
-    p.y[i] += p.vy[i] * dt;
-    p.z[i] += p.vz[i] * dt;
-  }
-}
+int main() {
+  constexpr std::size_t kN = 1 << 20;  // float 6개 배열이 L2를 넘는 크기
+  constexpr int kIters = 200;
 
-static void BM_IntegrateAoS(benchmark::State& state) {
-  ParticlesAoS p(static_cast<std::size_t>(state.range(0)));
-  for (auto _ : state) {
-    integrate_aos(p, 0.016f);
-    benchmark::DoNotOptimize(p.data());
-  }
-}
-BENCHMARK(BM_IntegrateAoS)->Arg(1 << 16)->Arg(1 << 20);
+  ParticlesAoS aos(kN);
+  ParticlesSoA soa;
+  soa.resize(kN);
 
-static void BM_IntegrateSoA(benchmark::State& state) {
-  ParticlesSoA p;
-  p.resize(static_cast<std::size_t>(state.range(0)));
-  for (auto _ : state) {
-    integrate_soa(p, 0.016f);
-    benchmark::DoNotOptimize(p.x.data());
-  }
-}
-BENCHMARK(BM_IntegrateSoA)->Arg(1 << 16)->Arg(1 << 20);
+  double t_aos = ns_per_particle([&] { integrate_aos(aos, 0.016f); }, kN, kIters);
+  double t_soa = ns_per_particle([&] { integrate_soa(soa, 0.016f); }, kN, kIters);
 
-BENCHMARK_MAIN();
+  // 결과를 읽어 두어 컴파일러가 루프 전체를 지우지 못하게 한다.
+  std::printf("check: %g %g\n", aos[kN / 2].x, soa.x[kN / 2]);
+  std::printf("AoS: %.2f ns/particle\nSoA: %.2f ns/particle\nratio: %.2fx\n", t_aos, t_soa, t_aos / t_soa);
+}
 ```
 
-`g++ -O2 -march=native bench.cpp -lbenchmark -lpthread -o bench`로 빌드하고 파티클 수가 캐시 크기를 넘어서는 구간(`1<<20`)에서 실행하면(x86-64, GCC 13 기준 예시), `BM_IntegrateSoA`가 `BM_IntegrateAoS`보다 빠르게 나오는 경우가 흔합니다. 다만 배율은 필드 수·CPU 세대·컴파일러 자동 벡터화 여부에 따라 크게 달라지므로 "몇 배 빠르다"는 값 자체를 외우지 말고, `-fopt-info-vec-optimized`(GCC) 또는 `-Rpass=loop-vectorize`(Clang)로 실제 벡터화 여부를 확인하고 `perf stat -e cache-misses,L1-dcache-load-misses`로 캐시 미스 차이를 직접 재현해 결론을 내립니다.
+이 프로그램을 Compiler Explorer의 x86-64 GCC 13.2에서 `-std=c++17 -O2`와 `-O3`로 반복 실행해 보았습니다(공유 서버라 실행마다 값이 흔들립니다). 파티클당 시간은 AoS가 약 1.05–4.7 ns, SoA가 약 1.1–5.6 ns였고, AoS 시간을 SoA 시간으로 나눈 비율은 0.28배에서 1.64배까지 나왔습니다. 즉 이 환경에서는 "SoA가 항상 빠르다"는 기대가 재현되지 않았고, 열한 번의 실행 중 SoA가 앞선 경우는 두 번뿐이었습니다. 이 측정만으로 원인을 확정할 수는 없지만, 이 루프는 파티클당 읽기 3·쓰기 3으로 6개 스트림을 동시에 다루는 반면 AoS는 32바이트 구조체 하나를 순차로 훑으므로, 대역폭이 병목인 구간에서는 필드를 줄인 이득이 쉽게 가려질 수 있습니다. 결론은 값을 외우는 것이 아니라 대상 환경에서 직접 재현하는 것입니다. `-fopt-info-vec-optimized`(GCC) 또는 `-Rpass=loop-vectorize`(Clang)로 실제 벡터화 여부를 확인하고, `perf stat -e cache-misses,L1-dcache-load-misses`로 캐시 미스 차이를 확인한 뒤 판단합니다.
 
 ## AoSoA: 실무 타협안
 
@@ -240,16 +206,9 @@ using ParticlesAoSoA = std::vector<ParticleBlock8>;  // size() * 8개 파티클
 | 필드 추가/삭제가 잦고 팀 규모가 작아 유지보수 비용이 큼 | AoS | 리팩토링 범위가 좁고 구조가 단순 |
 | 파티클/엔티티 수가 적어(수백–수천 개 이하) 캐시에 다 들어감 | 차이가 작음 | 우선 측정 후 결정, 레이아웃보다 다른 병목 확인 |
 
-### 자주 하는 실수
-
-- **측정 없이 SoA로 먼저 리팩토링**: 필드 사용 패턴을 확인하지 않고 "SoA가 빠르다더라"만 믿고 바꾸면, 오브젝트 단위 접근이 많은 코드에서는 오히려 느려지고 복잡도만 늘어납니다.
-- **SoA 배열 길이 불일치**: 필드 배열 중 하나만 `resize`/`push_back`하고 나머지를 놓치면 인덱스가 어긋나 조용히 잘못된 값을 읽습니다. 필드 배열을 감싸는 헬퍼(위 `ParticlesSoA::resize`처럼)로 길이를 강제합니다.
-- **벡터화 여부를 가정만 함**: SoA로 바꿨다고 자동으로 SIMD가 붙는다고 가정하지 말고, 컴파일러 리포트로 실제 벡터화 여부를 확인합니다.
-- **AoSoA 블록 크기를 임의로 선택**: SIMD 레지스터 폭·캐시 라인 크기와 무관한 블록 크기를 고르면 AoSoA의 이점이 사라집니다.
-
 ## 비판적 시각: 한계와 트레이드오프
 
-AoS/SoA 논의는 종종 "SoA가 정답"이라는 단순화로 소비되지만, 실제로는 접근 패턴에 강하게 의존하는 트레이드오프입니다. Algorithmica의 실측처럼 오브젝트 단위 접근이 지배적인 워크로드에서는 AoS가 우세할 수 있고, 배열 크기가 2의 거듭제곱 근처일 때 SoA가 캐시 연관성 충돌로 예상보다 느려지는 사례도 보고되어 있습니다. 또한 SoA로의 마이그레이션은 캡슐화를 깨고 인덱스 기반 접근을 강제하므로, 코드 가독성·유지보수 비용이라는 눈에 보이지 않는 대가를 치릅니다. C++26의 `<simd>` 표준화는 명시적 SIMD 프로그래밍의 문턱을 낮추지만, 2026년 중반 기준 컴파일러 구현이 완전하지 않은 상태이므로 이를 근거로 지금 당장 레이아웃을 재설계하는 것은 시기상조일 수 있습니다. 결국 AoS/SoA 선택은 프로파일러가 가리키는 실제 핫패스와, 그 핫패스가 "몇 개의 필드를 얼마나 자주 함께 쓰는가"라는 구체적 질문에 답한 뒤에 내려야 하는 결정입니다.
+AoS/SoA 논의는 종종 "SoA가 정답"이라는 단순화로 소비되지만, 실제로는 접근 패턴에 강하게 의존하는 트레이드오프입니다. 또한 SoA로의 마이그레이션은 캡슐화를 깨고 인덱스 기반 접근을 강제하므로, 코드 가독성·유지보수 비용이라는 눈에 보이지 않는 대가를 치릅니다. C++26의 `<simd>` 표준화는 명시적 SIMD 프로그래밍의 문턱을 낮추지만, 툴체인별 구현 완성도가 다르므로 이를 근거로 지금 당장 레이아웃을 재설계하는 것은 시기상조일 수 있습니다. 결국 AoS/SoA 선택은 프로파일러가 가리키는 실제 핫패스와, 그 핫패스가 "몇 개의 필드를 얼마나 자주 함께 쓰는가"라는 구체적 질문에 답한 뒤에 내려야 하는 결정입니다.
 
 ```mermaid
 flowchart TB
@@ -260,6 +219,12 @@ flowchart TB
   soaChoice --> verify["벡터화 리포트·perf로</br>실제 이득 검증"]
   aosoaChoice --> verify
 ```
+
+## 참고 자료
+
+- Mike Acton, [CppCon 2014: Data-Oriented Design and C++](https://www.youtube.com/watch?v=rX0ItVEVjHc)
+- Sergey Slotin, [Algorithmica: AoS and SoA](https://en.algorithmica.org/hpc/cpu-cache/aos-soa/) — AoS가 최대 16배 적은 캐시 라인을 가져오는 사례와 2의 거듭제곱 연관성 충돌 실측
+- [P1928: std::simd — merge data-parallel types from the Parallelism TS 2](https://wg21.link/p1928)
 
 ## 마무리
 
