@@ -33,11 +33,9 @@ tags:
   - Reference(참고)
   - Deep-Dive
   - Advanced
-  - Case-Study
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - 실습
   - OpenTelemetry
   - Distributed-Tracing
   - Exemplars
@@ -66,7 +64,7 @@ tags:
 
 ## 세 기둥에서 상관 분석으로 (배경)
 
-관측 가능성을 메트릭·로그·트레이스라는 <strong>세 기둥(three pillars)</strong>으로 나누는 관점은 오랫동안 업계 표준 설명 틀이었습니다. 이 틀이 실무에 뿌리내리는 데 결정적 역할을 한 것이 **OpenTelemetry**입니다. 분산 추적 계측을 표준화하려던 **OpenTracing**과 메트릭·트레이스를 함께 다루던 구글 주도의 **OpenCensus**는 2019년까지 별도 프로젝트로 경쟁하며 계측 생태계를 갈라놓았고, 두 프로젝트의 리더십은 이 분열이 "누구나 쓸 수 있는 고품질 텔레메트리"라는 공동 목표를 방해한다고 판단해 하나의 이니셔티브로 합치기로 결정했습니다. 그 결과물이 2019년 5월 CNCF 산하로 출범한 OpenTelemetry이며, 이후 벤더 중립적인 계측 표준(OTLP 프로토콜, 시맨틱 컨벤션)으로 자리 잡아 2026년 5월 CNCF Graduated 등급까지 승격되었습니다. 이 등급 승격 발표에서 CNCF는 12,000명 이상의 기여자와 2,800개 이상 기업의 참여, Amazon·Bloomberg·eBay 등 프로덕션 채택 사례를 근거로 들었습니다.
+관측 가능성을 메트릭·로그·트레이스라는 <strong>세 기둥(three pillars)</strong>으로 나누는 관점은 오랫동안 업계 표준 설명 틀이었습니다. 이 틀이 실무에 뿌리내리는 데 결정적 역할을 한 것이 **OpenTelemetry**입니다. 분산 추적 계측을 표준화하려던 **OpenTracing**과 메트릭·트레이스를 함께 다루던 구글 주도의 **OpenCensus**는 2019년까지 별도 프로젝트로 경쟁하며 계측 생태계를 갈라놓았고, 두 프로젝트의 리더십은 이 분열이 "누구나 쓸 수 있는 고품질 텔레메트리"라는 공동 목표를 방해한다고 판단해 하나의 이니셔티브로 합치기로 결정했습니다. 그 결과물이 2019년 5월 CNCF 산하로 출범한 OpenTelemetry이며, 이후 벤더 중립적인 계측 표준(OTLP 프로토콜, 시맨틱 컨벤션)으로 자리 잡아 2026년 5월 CNCF Graduated 등급까지 승격되었습니다. 이 [등급 승격 발표](https://www.cncf.io/announcements/2026/05/21/cloud-native-computing-foundation-announces-opentelemetrys-graduation-solidifying-status-as-the-de-facto-observability-standard/)에서 CNCF는 12,000명 이상의 기여자와 2,800개 이상 기업의 참여, Bloomberg·eBay 등 채택 기관을 근거로 들었습니다.
 
 세 기둥 모델에 대한 비판도 존재합니다. Honeycomb의 Charity Majors가 주창하는 **"observability 2.0"** 관점은 메트릭·로그·트레이스를 애초에 분리 저장하지 말고, 컨텍스트가 풍부한 **넓은 구조화 이벤트(wide structured event, 사실상 span)** 하나를 단일 진실 공급원으로 삼아 나머지를 그로부터 <strong>파생(derive)</strong>시키자고 주장합니다. 이 장은 어느 한쪽이 정답이라고 단정하지 않습니다. 세 기둥이든 단일 wide-event 모델이든, 회귀 진단에서 실제로 필요한 것은 "이 신호와 저 신호가 같은 사건을 가리킨다"는 것을 기계적으로 증명할 수 있는 연결 고리이기 때문입니다. 아래 절부터는 그 연결을 실제로 설계하는 방법을 다룹니다.
 
@@ -92,7 +90,7 @@ tags:
 
 세 신호를 실제로 연결하려면 저장 시점부터 **공통 식별자**를 모든 신호에 함께 태깅해야 합니다. 분산 추적에서는 이를 트레이스 컨텍스트(trace ID, span ID)라 부르고, 벤치마크·CI 맥락에서는 여기에 커밋 SHA, 벤치마크 실행 ID, 빌드 플래그 해시 같은 값을 추가로 태깅합니다. 핵심은 "메트릭의 한 점, 트레이스의 한 스팬, 로그의 한 줄이 같은 사건을 가리킨다"는 것을 문자열 하나의 일치로 증명할 수 있게 만드는 것입니다.
 
-이 연결을 메트릭 쪽에서 구체적으로 구현하는 메커니즘이 **exemplar**입니다. exemplar는 히스토그램 버킷 같은 집계 메트릭에 "이 버킷에 실제로 기여한 대표 트레이스 ID"를 함께 붙여 저장하는 것으로, Grafana 공식 문서는 이를 "주어진 시간 구간에서 측정된 특정 트레이스를 대표하는 값"이라고 설명합니다. 지연 히스토그램이 튀는 구간을 그래프에서 발견하면, 그 지점의 exemplar를 클릭해 바로 그 트레이스로 이동할 수 있어 "메트릭에서 트레이스로" 건너뛰는 수동 검색을 없앨 수 있습니다. Prometheus는 2.26 버전부터 OpenMetrics 노출 형식으로 exemplar를 네이티브 지원하며, 표준 계측 계층인 OpenTelemetry SDK도 exemplar 부착을 지원합니다.
+이 연결을 메트릭 쪽에서 구체적으로 구현하는 메커니즘이 **exemplar**입니다. exemplar는 히스토그램 버킷 같은 집계 메트릭에 "이 버킷에 실제로 기여한 대표 트레이스 ID"를 함께 붙여 저장하는 것으로, [Grafana 공식 문서](https://grafana.com/docs/grafana/latest/fundamentals/exemplars/)는 이를 "주어진 시간 구간에서 측정된 특정 트레이스를 대표하는 값"이라고 설명합니다. 지연 히스토그램이 튀는 구간을 그래프에서 발견하면, 그 지점의 exemplar를 클릭해 바로 그 트레이스로 이동할 수 있어 "메트릭에서 트레이스로" 건너뛰는 수동 검색을 없앨 수 있습니다. Prometheus에서는 exemplar 저장이 [기능 플래그](https://prometheus.io/docs/prometheus/latest/feature_flags/)(`--enable-feature=exemplar-storage`) 뒤에 있어 기본으로 켜져 있지 않으며, 표준 계측 계층인 OpenTelemetry SDK도 exemplar 부착을 지원합니다.
 
 ```yaml
 # OpenTelemetry Collector 파이프라인 설계 스케치(개념 예시, 실제 배포 시 exporter별 옵션은 버전에 따라 다름)
@@ -130,11 +128,10 @@ service:
 계측 자체의 오버헤드를 핫패스에서 줄이는 가장 단순한 방법은 스팬을 만들지 여부를 실행 초반에 확률적으로 결정해, 샘플링 대상이 아닌 실행에서는 스팬 생성·속성 채우기·직렬화 비용을 아예 건너뛰는 것입니다. 아래는 그 판단 지점만 격리한 예시입니다(실제 트레이서 SDK 연동 없이, 샘플링 결정 로직만 컴파일·실행 가능하게 축약).
 
 ```cpp
-#include <atomic>
 #include <cstdint>
 #include <random>
 
-// 스레드마다 하나씩 두는 것을 권장: rd()/gen()을 요청마다 새로 만들면 그 자체가 오버헤드가 됨
+// 스레드마다 하나씩 두는 것을 권장: 난수 생성기(rng)를 요청마다 새로 만들면 그 자체가 오버헤드가 됨
 thread_local std::mt19937 rng(std::random_device{}());
 
 // sample_rate: 0.0~1.0. 예를 들어 0.01은 요청의 약 1%만 전체 계측을 수행.
@@ -145,7 +142,7 @@ bool should_trace(double sample_rate) {
 
 void handle_request(bool force_trace_on_slow_path) {
   // force_trace_on_slow_path: 이미 알려진 느린 경로(에러 재시도 등)로 진입했다면
-  // 확률 샘플링을 건너뛰고 항상 기록 — tail-based sampling의 앞단 근사
+  // 알려진 느린 경로는 확률 샘플링을 건너뛰고 항상 기록 (결과를 보고 고르는 진짜 tail sampling은 Collector에서)
   const bool trace_this = force_trace_on_slow_path || should_trace(0.01);
   if (!trace_this) {
     // 스팬 생성·속성 채우기·직렬화를 모두 건너뛰어 핫패스 비용을 0에 가깝게 유지
@@ -192,7 +189,7 @@ flowchart TB
 
 ## 비판적 시각: 한계와 트레이드오프
 
-관측 가능성 플랫폼 투자는 공짜가 아닙니다. 고카디널리티 트레이스·로그를 오래 보존할수록 저장·질의 비용이 비선형으로 늘어나며, 업계에서는 이를 두고 "관측 가능성 도구의 비용 위기"라는 표현까지 나올 정도로 비용 통제가 실무의 상수가 되었습니다. observability 2.0류의 단일 wide-event 모델은 이 비용 문제를 근본적으로 다르게 풀겠다는 제안이지만, 아직 세 기둥 모델만큼 도구·인력 생태계가 성숙하지 않았고 조직 전체의 계측 규율에 더 많이 의존한다는 점에서 논쟁적입니다. 벤더 종속성도 무시할 수 없는 문제입니다 — OpenTelemetry가 계측 API·프로토콜을 표준화했지만, 실제 저장·질의·상관 UI는 여전히 벤더별 제품에 묶이는 경우가 많아 "표준 계측, 종속적 백엔드"라는 이중 구조가 흔합니다. 마지막으로, 계측이 촘촘해질수록 계측 코드 자체가 핫패스 지연 예산을 갉아먹을 위험이 커지므로, 관측 가능성 확보와 지연 예산 보호는 항상 서로를 견제하는 관계로 다뤄야 합니다.
+관측 가능성 플랫폼 투자는 공짜가 아닙니다. 고카디널리티 트레이스·로그를 오래 보존할수록 저장·질의 비용이 커지기 쉬워서, 비용 통제는 플랫폼 운영에서 계속 따라다니는 과제입니다. observability 2.0류의 단일 wide-event 모델은 이 비용 문제를 근본적으로 다르게 풀겠다는 제안이지만, 아직 세 기둥 모델만큼 도구·인력 생태계가 성숙하지 않았고 조직 전체의 계측 규율에 더 많이 의존한다는 점에서 논쟁적입니다. 벤더 종속성도 무시할 수 없는 문제입니다 — OpenTelemetry가 계측 API·프로토콜을 표준화했지만, 실제 저장·질의·상관 UI는 여전히 벤더별 제품에 묶이는 경우가 많아 "표준 계측, 종속적 백엔드"라는 이중 구조가 흔합니다. 마지막으로, 계측이 촘촘해질수록 계측 코드 자체가 핫패스 지연 예산을 갉아먹을 위험이 커지므로, 관측 가능성 확보와 지연 예산 보호는 항상 서로를 견제하는 관계로 다뤄야 합니다.
 
 ## 마무리
 
@@ -202,4 +199,4 @@ flowchart TB
 - [ ] tail-based sampling과 head-based sampling의 차이와 각각이 놓치기 쉬운 사례를 말할 수 있는가?
 - [ ] 계측 자체가 핫패스에 더하는 관찰자 효과를 어떻게 통제할지 설계할 수 있는가?
 
-**이전 장**: [변동성 관리](/post/regression-prevention/performance-variance-noise-management/) (챕터 07)에서는 노이즈를 걸러 신뢰할 수 있는 신호를 만드는 법을 다뤘다면, 이 장은 그 신호를 메트릭·트레이스·로그로 나누어 저장하면서도 서로 조인 가능하게 만드는 플랫폼 설계를 다뤘습니다. 다음 장에서는 이렇게 연결된 신호 위에서 **언제·누구에게·어떤 채널로** 회귀를 알릴지 결정하는 [알림 전략](/post/regression-prevention/performance-alerting-strategy-design/)을 다룹니다. 상관 분석이 되어 있어야 알림 하나가 "그래프 링크"가 아니라 "원인 후보"를 담을 수 있습니다.
+**이전 장**: [변동성 관리](/post/regression-prevention/performance-variance-noise-management/) (챕터 07)에서는 노이즈를 걸러 신뢰할 수 있는 신호를 만드는 법을 다뤘습니다. 다음 장에서는 이렇게 연결된 신호 위에서 **언제·누구에게·어떤 채널로** 회귀를 알릴지 결정하는 [알림 전략](/post/regression-prevention/performance-alerting-strategy-design/)을 다룹니다. 상관 분석이 되어 있어야 알림 하나가 "그래프 링크"가 아니라 "원인 후보"를 담을 수 있습니다.

@@ -439,23 +439,23 @@
 | content/collection/optimization-11-design-decisions/17-memory-safety-tradeoffs/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 3d1ffc7 | 없음 |
 | content/collection/optimization-11-design-decisions/18-event-driven-architecture-performance/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 0ed231a | 없음 |
 | content/collection/optimization-12-regression-prevention/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 1.0 | 14e23c8 | 없음(경미: Code-Review·Debugging·Logging·Git·GitHub·Cloud 태그 본문 결속 약함) |
-| content/collection/optimization-12-regression-prevention/01-performance-regression-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/02-performance-test-automation/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/03-benchmark-ci-integration/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/04-pr-performance-gate/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/05-performance-budgeting/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/06-baseline-management/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/07-variance-management/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/08-observability-platform/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/09-alerting-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/10-canary-deployment/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/11-performance-incident-response/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/12-long-term-trend-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/13-performance-debt-management/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/14-benchmark-as-code/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/15-monitoring-dashboard/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/16-postmortem-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/17-distributed-cluster-performance-regression/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/01-performance-regression-fundamentals/index.md | 97.3 | 2026-11-02 | 1 | 통과 | 1.3 | b467142 | 없음(2026-11-02 현재 본문 재채점 97.3 통과; 재채점에서 지적된 Georges 귀속·추론 표기·정적분석 서술 3곳을 수정해 재채점했고, 이후 참고목록·'별개로' 문구 2곳은 지시 문구 그대로 좁히는 수정만 적용) |
+| content/collection/optimization-12-regression-prevention/02-performance-test-automation/index.md | 94.0 | 2026-11-02 | 1 | 통과 | 1.3 | dbb1f37 | 없음(2026-11-02 현재 본문 재채점 통과; 직전 채점 지적 LNT 귀속·커밋 트리거 일반화·단계 수·거버너 서술·중복 절을 수정 후 재채점; 개선여지: 판단 기준 표 근거 문단, bench_harness 주석·거버너 원복) |
+| content/collection/optimization-12-regression-prevention/03-benchmark-ci-integration/index.md | 93.9 | 2026-11-02 | 1 | 통과 | 1.3 | ebaab16 | 없음(2026-11-02 재채점 초회 83.2→수정 후 93.9 통과; 이후 changelog 범위로 메모리 계측·표 2곳과 셀프호스팅 권장 표현을 좁히는 소수정만 적용; 개선여지: YAML permissions 생략 명시, 재진술 1곳, C++ 계측 연결은 실행 미확인) |
+| content/collection/optimization-12-regression-prevention/04-pr-performance-gate/index.md | 91.3 | 2026-11-02 | 2 | 통과 | 1.3 | d491b5d | 없음(2026-11-02 재채점 91.3 통과; 이후 PR 게이트 사례 범위 정정·필자 해석 표기·수렴 단정 삭제 소수정만 적용; 개선여지: 임계값별 오탐/미탐 정량 사례, base_mean==0 처리) |
+| content/collection/optimization-12-regression-prevention/05-performance-budgeting/index.md | 93.1 | 2026-11-02 | 1 | 통과 | 1.3 | 9de6133 | 없음(2026-11-02 재채점 93.1 통과; 이후 SRE Workbook 예시 정책 귀속·예외 명시 정정, CodSpeed 조직 리포지터리 한정, 인과 단정 완화, Case-Study 태그 삭제 소수정만 적용; 개선여지: 다이어그램에 waiver 재확인 표현) |
+| content/collection/optimization-12-regression-prevention/06-baseline-management/index.md | 95.8 | 2026-11-02 | 2 | 통과 | 1.3 | ffe468d | 없음(2026-11-02 재채점 초회 87.1→수정 후 95.8 통과; 이후 description의 CodSpeed 구절·CodSpeed 태그 삭제 소수정만 적용; 개선여지: 3중 조합 저장은 필자 권장 표기, 기준선 전략 1차 출처) |
+| content/collection/optimization-12-regression-prevention/07-variance-management/index.md | 93.1 | 2026-11-01 | 0 | 통과 | 1.3 | 6c73acb | 없음(채점 후 Google Benchmark repetitions 서술을 같은 프로세스 반복으로 정정·표본크기식 두 표본 기준 2배 반영(63회), 재채점 생략; repetitions 동작은 소스 미확인으로 본문에 명시) |
+| content/collection/optimization-12-regression-prevention/08-observability-platform/index.md | 100 | 2026-11-01 | 1 | 통과 | 1.3 | cd5ef5b | 없음(초회 87.9→Revise 1회 100) |
+| content/collection/optimization-12-regression-prevention/09-alerting-strategy/index.md | 94.5 | 2026-11-02 | 1 | 통과 | 1.3 | dd74285 | 없음(2026-11-02 재채점 94.5 통과; 이후 Prometheus 계승 단정 삭제, 다이어그램 시작 노드 라벨 정정, CloudWatch 링크 추가, PromQL sum by (le) 보강 소수정만 적용; 개선여지: 비판적 시각 절 일부 재진술) |
+| content/collection/optimization-12-regression-prevention/10-canary-deployment/index.md | 95.8 | 2026-11-01 | 0 | 통과 | 1.3 | 57dceaa | 없음(채점 후 출처 없는 연대·Kayenta 귀속 삭제, PromQL sum by (le) 보정, baseline 별도 배포·미실행 명시, 재채점 생략) |
+| content/collection/optimization-12-regression-prevention/11-performance-incident-response/index.md | 94.3 | 2026-11-01 | 0 | 통과 | 1.3 | 5217e68 | 없음(채점 후 챕터 번호 Ch09·Ch16 정정, bisect 스크립트 단위를 ns로 정정, 무관 태그 2개 삭제, 재채점 생략) |
+| content/collection/optimization-12-regression-prevention/12-long-term-trend-analysis/index.md | 92.3 | 2026-11-01 | 1 | 통과 | 1.3 | 0ff6168 | 없음(초회 83.0 치명결함 1(Prophet 링크 404)→Revise 1회 92.3; 재채점 후 체크리스트 문구 1곳 정정, 재채점 생략) |
+| content/collection/optimization-12-regression-prevention/13-performance-debt-management/index.md | 95.8 | 2026-11-01 | 0 | 통과 | 1.3 | f7bb58c | 없음(채점 후 SRE 정책 귀속을 원문 규정 범위로 정정, 코드 가정·미컴파일 명시, 재채점 생략) |
+| content/collection/optimization-12-regression-prevention/14-benchmark-as-code/index.md | 95.8 | 2026-11-01 | 1 | 통과 | 1.3 | 194600c | 없음(초회 81.1→Revise 1회 95.8; 재채점 후 JSON 출력 귀속 링크를 C++ 예제 README로 정정, 재채점 생략; 개선여지: convert_to_openmetrics.py 코드 미수록) |
+| content/collection/optimization-12-regression-prevention/15-monitoring-dashboard/index.md | 97.3 | 2026-11-01 | 0 | 통과 | 1.3 | 4a65fcf | 없음(채점 후 allowUiUpdates 설명을 코드 값·Grafana 설정 주석과 일치하게 정정, 재채점 생략) |
+| content/collection/optimization-12-regression-prevention/16-postmortem-analysis/index.md | 94.3 | 2026-11-01 | 1 | 통과 | 1.3 | 812544d | 없음(초회 88.6→Revise 1회 94.3; 재채점 후 PagerDuty·Allspaw 귀속 완화, gh --limit 추가, 재채점 생략; 검증 불가: Etsy 원문 403이라 인용 삭제·미대조 명시) |
+| content/collection/optimization-12-regression-prevention/17-distributed-cluster-performance-regression/index.md | 100 | 2026-11-02 | 2 | 통과 | 1.3 | d376cb8 | 없음(2026-11-02 현재 본문 재채점 100 통과, 수정 없음; 코드는 파이썬만 실행, 클러스터 적용 없음) |
 | content/collection/Algorithm/2022/2022-01-01-BOJ-1008/index.md | 100 | 2026-07-28 | 3 | 통과 | 1.0 | 76ebd4f | 없음 |
 | content/collection/Algorithm/2022/2022-07-07-BOJ-8983/index.md | 98.5 | 2026-08-13 | 2 | 통과 | 1.2 | 0eeb29d | 없음(경미: acmicpc.net/problem/8983 링크 봇차단으로 검증 불가, Refactoring/Clean-Code/Debugging 등 일부 태그 본문 결속 느슨) |
 | content/collection/Algorithm/2024/2024-05-15-BOJ-1067/index.md | 90 | 2026-08-16 | 3 | 에스컬레이션 | 1.2 | 9ef0498 | 항목7(메타·링크·frontmatter) — 문제 링크 https://www.acmicpc.net/problem/1067 이 HTTP 404 반환(curl/WebFetch/insane-search 3중 확인). 도메인 루트(`/`)만 200이고 `/problem/1000` 등 다른 문제도 전부 동일 404("BOJ 채점 서비스 준비 중" 안내)라 acmicpc.net 도메인 전역의 일시 서비스 상태로 판단되나, rubric 1.2가 치명결함 면제를 403(WAF)에만 좁게 scoped해 404인 이상 문언상 치명결함 유지. 완화책으로 Wayback Machine 아카이브 대체 링크(2026-04-17 스냅샷, 접근·내용 일치 검증됨)를 이미 병기함. 나머지 6개 항목은 전부 100(경미결함 0). 사람 판단 필요: (i) BOJ 서비스 정상화 후 재확인, 또는 (ii) rubric 치명결함 예외 범위를 도메인 전역 확인 가능한 일시 장애까지 넓힐지 정책 결정 |

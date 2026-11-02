@@ -65,9 +65,7 @@ tags:
 
 ## Blameless Post-mortem의 기원 (역사·배경)
 
-"실수를 저지른 사람을 처벌하면 실수가 줄어든다"는 직관은 오래전부터 항공·의료·원자력 같은 고위험 산업에서 틀린 것으로 확인됐습니다. 안전 연구자 **Sidney Dekker**는 이를 "Bad Apple Theory"라고 부르며, 개인을 솎아내는 방식은 사고를 일으킨 시스템적 조건(절차의 모호함, 도구의 결함, 압박이 큰 의사결정 상황)을 그대로 남겨둔 채 다음 사람이 같은 함정에 빠지게 만든다고 지적했습니다. 이 관점을 소프트웨어 엔지니어링에 옮겨온 것은 2012년 5월, 당시 Etsy의 CTO였던 **John Allspaw**가 회사 엔지니어링 블로그에 쓴 글이었습니다. 그는 "실수한 엔지니어가 책임을 면하는 것"이 아니라, 안전과 책임(accountability)의 균형을 맞추는 **Just Culture**를 만드는 것이 목적이라고 밝혔습니다.
-
-> "Having a Just Culture means that you're making effort to balance safety and accountability. It means that by investigating mistakes in a way that focuses on the situational aspects of a failure's mechanism [...] an organization can come out safer than it would normally be if it had simply punished the actors involved as a remediation." — John Allspaw, ["Blameless PostMortems and a Just Culture"](https://www.etsy.com/codeascraft/blameless-postmortems), Etsy Code as Craft (2012)
+"실수를 저지른 사람을 처벌하면 실수가 줄어든다"는 직관은 오래전부터 항공·의료·원자력 같은 고위험 산업에서 틀린 것으로 확인됐습니다. 안전 연구자 **Sidney Dekker**는 이를 "Bad Apple Theory"라고 부르며, 개인을 솎아내는 방식은 사고를 일으킨 시스템적 조건(절차의 모호함, 도구의 결함, 압박이 큰 의사결정 상황)을 그대로 남겨둔 채 다음 사람이 같은 함정에 빠지게 만든다고 지적했습니다. 이 관점을 소프트웨어 엔지니어링에 옮겨온 것은 Etsy 엔지니어링 블로그에 실린 **John Allspaw**의 글 ["Blameless PostMortems and a Just Culture"](https://www.etsy.com/codeascraft/blameless-postmortems)이 널리 알려진 출발점입니다(이 글을 작성하는 환경에서는 원문 페이지를 열지 못해 글자 단위 대조는 하지 못했습니다). 이 글의 제목이 가리키듯 목적은 실수한 엔지니어가 책임을 면하게 하는 것이 아니라, 안전과 책임(accountability)의 균형을 맞추는 **Just Culture**를 만드는 것입니다.
 
 이 아이디어는 2016년 구글이 출간한 *Site Reliability Engineering*의 "Postmortem Culture" 장에서 업계 표준에 가까운 형태로 정리됩니다. 구글은 post-mortem을 "사건의 영향, 완화·해결을 위한 조치, 근본원인(들), 재발 방지를 위한 후속 조치를 기록한 문서"로 정의하고, 비난 없는 문서란 관련자 전원이 그 순간 가진 정보로 선의를 갖고 행동했다고 가정하는 문서라고 규정합니다.
 
@@ -113,23 +111,23 @@ post-mortem: <인시던트 제목>
 
 ```mermaid
 flowchart LR
-  rcaHandoff["Ch10 RCA</br>핸드오프"] --> draft["Draft 작성"]
+  rcaHandoff["Ch11 RCA</br>핸드오프"] --> draft["Draft 작성"]
   draft --> review["In Review</br>(관련자 검토)"]
   review --> reviewed["Reviewed</br>(액션 아이템 확정)"]
   reviewed --> tracking["액션 아이템 추적"]
   tracking --> closed["Closed"]
-  tracking -->|"기한 초과·미해결"| debt["Ch12 성능 부채</br>백로그"]
-  closed -->|"동일 기여 요인 반복"| trend["Ch11 장기 추세</br>패턴 분석"]
+  tracking -->|"기한 초과·미해결"| debt["Ch13 성능 부채</br>백로그"]
+  closed -->|"동일 기여 요인 반복"| trend["Ch12 장기 추세</br>패턴 분석"]
 ```
 
 ## 비난 없는(Blameless) 분석 문화
 
-blameless라는 단어는 "아무도 책임지지 않는다"는 뜻이 아니라, **개인의 실수를 벌하는 대신 그 실수가 가능했던 시스템 조건을 고치는 데 책임을 진다**는 뜻입니다. Allspaw는 이를 두고 엔지니어가 실수의 세부 사항을 안전하게 공유할 수 있을 때, 오히려 재발 방지 조치에 가장 적극적으로 나서게 된다고 설명합니다. 실무에서 이를 지키는 구체적인 장치는 다음과 같습니다.
+blameless라는 단어는 "아무도 책임지지 않는다"는 뜻이 아니라, **개인의 실수를 벌하는 대신 그 실수가 가능했던 시스템 조건을 고치는 데 책임을 진다**는 뜻입니다. 실수의 세부 사항을 안전하게 공유할 수 있는 환경일수록 재발 방지 조치에 더 적극적으로 나서기 쉽다는 것이 blameless 문화를 옹호하는 쪽의 기본 논리입니다. 실무에서 이를 지키는 구체적인 장치는 다음과 같습니다.
 
 - **문서 언어에서 이름을 지운다**: "김OO가 잘못된 설정을 배포했다" 대신 "설정 변경이 검증 없이 배포됐다"처럼 행위자가 아니라 행위와 그 행위를 가능하게 한 조건을 주어로 쓴다.
 - **사후 확신 편향(hindsight bias)을 경계한다**: 원인이 밝혀진 지금 시점에서 보면 "그때 그걸 놓친 게 이상하다"고 느끼기 쉽지만, 당사자는 그 순간 지금과 다른 정보만 가지고 있었다. Dekker는 이를 "local rationality"라고 부르는데, 당사자의 결정은 그 순간 그가 가진 정보 안에서는 합리적이었다는 뜻입니다. 이 관점 없이 쓰인 post-mortem은 "왜 더 조심하지 않았는가"라는 질문으로 흘러 결국 비난으로 돌아갑니다.
 - **작성자와 액션 아이템 담당자를 분리한다**: 문서를 쓰는 사람과 실제로 고치는 사람이 다르면, 문서가 한 사람의 자기 방어가 아니라 팀의 공동 산출물이 됩니다.
-- **검토 후 확정한다**: PagerDuty의 post-mortem 가이드는 초안을 관련자와 검토한 뒤에야 액션 아이템을 확정하라고 권합니다. 검토 없이 혼자 쓴 문서는 다른 관점의 기여 요인을 놓치기 쉽습니다.
+- **검토 후 확정한다**: PagerDuty의 post-mortem 가이드는 회의 전에 관련자와 내용을 검토하고, 논의가 필요한 후속 조치는 회의 안건에 올리라고 안내합니다. 검토 없이 혼자 쓴 문서는 다른 관점의 기여 요인을 놓치기 쉽습니다.
 
 ## 재발 방지: 액션 아이템 추적
 
@@ -147,7 +145,7 @@ set -euo pipefail
 
 TODAY=$(date +%Y-%m-%d)
 
-gh issue list --label postmortem-action --state open --json number,title,labels \
+gh issue list --label postmortem-action --state open --limit 200 --json number,title,labels \
   | python3 -c "
 import json, sys, datetime
 today = datetime.date.fromisoformat('$TODAY')
@@ -168,7 +166,7 @@ for num, title, due in overdue:
 
 ## 흔한 오개념
 
-<strong>"blameless하면 아무도 책임지지 않는다"</strong>는 오개념입니다. 개인이 처벌을 면하는 대신, 팀 전체가 그 실수를 가능하게 한 시스템을 고칠 책임을 집니다. Allspaw의 표현대로 엔지니어는 "실수에서 완전히 자유로운" 것이 아니라, 재발 방지에 가장 적극적으로 참여할 책임을 갖게 됩니다.
+<strong>"blameless하면 아무도 책임지지 않는다"</strong>는 오개념입니다. 개인이 처벌을 면하는 대신, 팀 전체가 그 실수를 가능하게 한 시스템을 고칠 책임을 집니다. 엔지니어는 실수의 결과에서 완전히 자유로워지는 것이 아니라, 재발 방지에 가장 적극적으로 참여할 책임을 갖게 됩니다.
 
 <strong>"post-mortem은 문서를 발행하면 끝난다"</strong>도 흔한 오개념입니다. 상태가 Draft에서 Reviewed로 바뀐 시점이 아니라, 그 안의 액션 아이템이 Closed가 된 시점이 실제로 끝나는 지점입니다. 발행된 채 방치된 문서는 팀에 "이 절차는 형식일 뿐"이라는 신호만 남깁니다.
 
@@ -197,4 +195,4 @@ blameless 문화는 선언만으로 만들어지지 않습니다. 관리자가 �
 - [ ] 액션 아이템에 담당자·티켓·기한을 채우고, 완료까지 추적하는 절차를 세울 수 있는가?
 - [ ] 기한을 넘긴 액션 아이템을 성능 부채 백로그로 이관하는 기준을 판단할 수 있는가?
 
-이 장으로 이 트랙의 커리큘럼을 마칩니다. **이전 장**: [모니터링 대시보드](/post/regression-prevention/performance-monitoring-dashboard-grafana-prometheus/)에서 지표를 눈으로 확인하는 체계를 다뤘다면, 이 장은 그 체계가 알림을 울리고 인시던트가 종료된 뒤 무엇을 남겨야 하는지를 다뤘습니다. 트랙 전체의 범위와 각 챕터가 맞물리는 방식은 [트랙 인트로](/post/regression-prevention/getting-started-performance-regression-prevention-strategies/)에서 다시 확인할 수 있고, 12개 트랙 전체의 로드맵은 [Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)를 참고하세요.
+이 장은 이 트랙의 마지막 일반 챕터이며, 17장은 분산·클러스터 환경을 다루는 전문 심화 챕터입니다. **이전 장**: [모니터링 대시보드](/post/regression-prevention/performance-monitoring-dashboard-grafana-prometheus/)에서 지표를 눈으로 확인하는 체계를 다뤘다면, 이 장은 그 체계가 알림을 울리고 인시던트가 종료된 뒤 무엇을 남겨야 하는지를 다뤘습니다. 트랙 전체의 범위와 각 챕터가 맞물리는 방식은 [트랙 인트로](/post/regression-prevention/getting-started-performance-regression-prevention-strategies/)에서 다시 확인할 수 있고, 12개 트랙 전체의 로드맵은 [Low-latency 최적화 시리즈 개요](/post/low-latency-optimization-series/getting-started-low-latency-optimization-series-overview/)를 참고하세요.

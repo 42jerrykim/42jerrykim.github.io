@@ -6,7 +6,7 @@ draft: false
 image: wordcloud.png
 title: "[Regression 12] 기준선 관리"
 slug: performance-baseline-management-strategy
-description: "성능 기준선(baseline)을 fixed·rolling·hybrid 전략으로 나눠 관리하고, 갱신 시점·드리프트 방지·다중 환경 동기화 원칙을 정리합니다. CodSpeed·Bencher의 실제 baseline 갱신 방식과 Chromium 사례를 근거로 판단 기준을 제시합니다."
+description: "성능 기준선(baseline)을 fixed·rolling·hybrid 전략으로 나눠 관리하고, 갱신 시점·드리프트 방지·다중 환경 동기화 원칙을 정리합니다. Bencher의 threshold 모델과 Chromium bisect 사례를 근거로 판단 기준을 제시합니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
@@ -20,14 +20,11 @@ tags:
   - Production
   - Best-Practices
   - Code-Quality(코드품질)
-  - Git
-  - GitHub
   - Automation(자동화)
   - DevOps
   - Workflow(워크플로우)
   - System-Design
   - Observability
-  - C++
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
@@ -39,7 +36,6 @@ tags:
   - Drift-Detection
   - Rolling-Baseline
   - Rebaseline
-  - CodSpeed
   - Bencher
   - Multi-Environment
 ---
@@ -64,11 +60,9 @@ tags:
 
 ## 기준선의 계보 (배경)
 
-성능 기준선이라는 개념 자체는 성능 공학보다 오래된 통계적 공정 관리(SPC, Statistical Process Control)에서 빌려온 사고방식입니다. 공정의 "정상 범위"를 먼저 정의하고 그 범위를 벗어나는 신호만 이상으로 취급한다는 원리가, 소프트웨어 성능 회귀 탐지에도 그대로 적용됩니다. 브라우저 엔진처럼 초 단위로 수백 개 벤치마크를 지속적으로 실행하는 프로젝트에서는 이 문제가 일찍부터 실무 문제였습니다. Chromium 프로젝트는 성능 대시보드에서 그래프상의 변화 지점을 기준으로 삼아 그 지점 앞뒤 커밋 구간을 이분 탐색(bisect)하는 Pinpoint 도구를 운영해 왔는데, 이는 "기준선은 고정된 숫자가 아니라 그래프 위의 한 지점이며 회귀가 의심되면 그 지점 자체를 재검증한다"는 태도를 보여줍니다. 이 방식은 뒤에서 다룰 rolling baseline과 bisect 기반 원인 추적의 원형입니다.
+성능 기준선이라는 개념 자체는 성능 공학보다 오래된 통계적 공정 관리(SPC, Statistical Process Control)와 닮은 사고방식입니다(계보를 직접 다룬 출처는 확인하지 않았으며 필자의 비유입니다). 공정의 "정상 범위"를 먼저 정의하고 그 범위를 벗어나는 신호만 이상으로 취급한다는 원리가, 소프트웨어 성능 회귀 탐지에도 그대로 적용됩니다. Chromium 프로젝트의 [성능 회귀 bisect 문서](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/speed/bisects.md)는 이 문제의 한 단면을 보여줍니다. 문서에 따르면 Chromium의 성능 테스트는 실행 시간이 길어 모든 리비전에서 돌릴 수 없고, v8·skia 같은 별도 저장소가 성능에 민감한 변경을 한꺼번에 반영하기도 하므로, Pinpoint라는 서비스가 CL 범위에서 회귀의 근본 원인을 bisect합니다. 사용자는 성능 대시보드의 그래프에서 데이터 포인트를 눌러 bisect를 시작합니다. 즉 측정값의 변화가 보이면 그 지점 주변의 변경 범위를 좁혀 가는 방식이며, 이 장에서 다룰 기준선 비교로 회귀를 알아챈 뒤 원인 커밋을 찾는 단계가 따로 필요한 이유를 설명해 줍니다.
 
-> 커밋 범위를 좁혀 가는 이 방식은 "성능 그래프의 변화 지점 앞의 알려진 좋은 상태"를 비교 기준으로 삼아, 그 구간 내 커밋을 순차 테스트해 회귀를 유발한 특정 변경을 찾아낸다 — [Chromium: Bisecting Performance Regressions](https://chromium.googlesource.com/chromium/src/+/HEAD/docs/speed/bisects.md) 문서 요지.
-
-이후 GitHub Actions·GitLab CI 기반 지속적 벤치마킹 SaaS(CodSpeed, Bencher 등)가 등장하면서 "PR의 base 브랜치 최신 커밋을 기준선으로 자동 선택"하는 rolling 방식이 표준 패턴으로 자리잡았습니다. CodSpeed는 PR 실행 시 "base 브랜치의 가장 최근 CodSpeed 실행 리포트"를 기준선으로 선택하고, 그 기준선 대비 속도 변화율(impact)을 계산합니다. Bencher는 여기서 한 걸음 더 나아가 (branch, testbed, measure) 조합마다 독립된 threshold와 boundary limit을 두어, 기준선 자체를 정적 값이 아니라 통계적 모델(z-score, t-test, IQR 등)로 취급합니다. 두 도구 모두 "기준선은 매번 재계산되는 움직이는 목표"라는 관점을 공유하며, 이는 고정된 숫자를 오래 유지하던 이전 관행과 대비됩니다.
+지속적 벤치마킹 도구 중에는 base 브랜치의 최신 결과와 비교하는 rolling 방식을 쓰는 것이 많습니다(이 글은 개별 도구의 기본 동작을 확인하지 않았습니다). [Bencher](https://bencher.dev/docs/explanation/thresholds/)는 문서에서 (branch, testbed, measure) 조합마다 독립된 threshold를 두고, static·percentage 같은 고정 임계값 외에 z-score·t-test·IQR 같은 통계 모델을 제공하며, 과거 측정값으로 boundary limit을 계산한다고 설명합니다. 통계 모델을 고르면 기준선이 하나의 숫자라기보다 과거 측정값의 분포로 계산된다고 읽을 수 있습니다.
 
 ## 기준선이란 무엇인가
 
@@ -78,7 +72,7 @@ tags:
 
 <strong>Fixed baseline(고정 기준선)</strong>은 특정 릴리즈나 특정 커밋 시점의 성능을 오랫동안 비교 기준으로 유지하는 방식입니다. 장기간 같은 기준으로 비교하므로 추세를 읽기 쉽고, 팀이 "출시 이후 지금까지 몇 % 느려졌는가"를 한눈에 답할 수 있습니다. 단점은 시간이 지날수록 기준선과 현재 코드의 차이(기능 추가, 의도된 트레이드오프)가 누적되어, 비교 결과가 "회귀"인지 "정상적인 발전"인지 해석하기 어려워진다는 것입니다.
 
-<strong>Rolling baseline(이동 기준선)</strong>은 PR마다 base 브랜치의 최신 상태를 기준선으로 다시 잡는 방식입니다. CodSpeed가 "base 브랜치의 가장 최근 리포트"를 자동으로 기준선으로 선택하는 것이 대표적인 예이며, 항상 "직전 상태 대비"라는 좁고 명확한 비교를 하므로 PR 게이트에 적합합니다. 단점은 뒤에서 다룰 **점진적 회귀 누적** 문제입니다. 매 PR이 0.5%씩만 느려지면 개별 PR은 threshold를 넘지 않아 계속 통과되지만, 100개 PR이 지나면 전체는 눈에 띄게 느려져 있습니다.
+<strong>Rolling baseline(이동 기준선)</strong>은 PR마다 base 브랜치의 최신 상태를 기준선으로 다시 잡는 방식입니다. base 브랜치 최신 결과와 비교하는 CI 벤치마킹 도구가 대표적인 예이며, 항상 "직전 상태 대비"라는 좁고 명확한 비교를 하므로 PR 게이트에 적합합니다. 단점은 뒤에서 다룰 **점진적 회귀 누적** 문제입니다. 매 PR이 0.5%씩만 느려지면 개별 PR은 threshold를 넘지 않아 계속 통과되지만, 100개 PR이 지나면 전체는 눈에 띄게 느려져 있습니다.
 
 **Hybrid(혼합) 전략**은 두 방식을 계층으로 분리해 함께 씁니다. PR 게이트에는 rolling baseline을 써서 "이번 변경이 직전 대비 나빠졌는가"를 빠르게 판정하고, 별도로 분기·릴리즈 단위의 <strong>anchor baseline(고정 앵커)</strong>을 유지해 "출시 이후 전체 추세"를 장기 관찰합니다. anchor baseline의 드리프트 감시는 누적 통계가 필요한 작업이므로 [장기 추세 분석](/post/regression-prevention/long-term-performance-trend-analysis/)(챕터 12)에서 다루는 절차와 맞물립니다. 이 장에서 강조할 것은 두 계층을 반드시 분리해서 관리해야 하며, 하나로 뭉뚱그리면 어느 쪽 목적도 제대로 달성하지 못한다는 점입니다.
 
@@ -101,7 +95,7 @@ flowchart TD
 
 ## 다중 환경 기준선 동기화
 
-같은 프로젝트라도 로컬 개발 머신, CI 러너, 스테이징 환경은 CPU 세대·코어 수·컴파일러 버전·커널 스케줄러가 서로 다릅니다. 이때 흔히 저지르는 실수는 한 환경(보통 CI)에서 측정한 절대 수치를 다른 환경에도 그대로 기준선으로 적용하는 것입니다. 이렇게 하면 러너가 노트북보다 느린 환경에서는 항상 "회귀"로 잘못 판정되고, 반대로 더 빠른 환경에서는 실제 회귀도 통과됩니다. Bencher가 threshold를 (branch, testbed, measure) 조합 단위로 독립 관리하는 것은 이 문제에 대한 직접적인 해법으로, 환경마다 별도의 기준선을 유지하고 환경 간에는 절대값이 아니라 "각 환경 내부에서의 상대 변화율"만 비교합니다.
+같은 프로젝트라도 로컬 개발 머신, CI 러너, 스테이징 환경은 CPU 세대·코어 수·컴파일러 버전·커널 스케줄러가 서로 다릅니다. 이때 흔히 저지르는 실수는 한 환경(보통 CI)에서 측정한 절대 수치를 다른 환경에도 그대로 기준선으로 적용하는 것입니다. 이렇게 하면 러너가 노트북보다 느린 환경에서는 항상 "회귀"로 잘못 판정되고, 반대로 더 빠른 환경에서는 실제 회귀도 통과됩니다. Bencher가 threshold를 (branch, testbed, measure) 조합 단위로 독립 관리하는 것과 같은 방식으로, 환경마다 별도의 기준선을 유지하고 환경 간에는 절대값이 아니라 "각 환경 내부에서의 상대 변화율"만 비교하는 것을 권장합니다.
 
 동기화 원칙은 세 가지로 요약됩니다. 첫째, 기준선은 환경(테스트베드) 단위로 독립적으로 저장하고 공유하지 않습니다. 둘째, 환경 간 비교가 꼭 필요하면 절대 수치 대신 "각 환경에서 baseline 대비 몇 % 변화했는가"라는 상대 지표로 맞춥니다. 셋째, 여러 환경 중 하나라도 하드웨어·소프트웨어 스택이 바뀌면 그 환경의 기준선만 재기준하고 나머지 환경은 그대로 둡니다. 분산·클러스터 환경에서 리전별로 하드웨어 스큐(skew)까지 고려해 기준선을 고정하는 더 심화된 절차는 [분산·클러스터 성능 회귀](/post/regression-prevention/distributed-cluster-performance-regression-expert/)(챕터 17)에서 다룹니다. 이 장에서 다루는 것은 그 이전 단계인 "환경이 두세 개만 있어도 기준선을 뒤섞지 않는" 기본 원칙입니다.
 
@@ -126,7 +120,7 @@ flowchart TD
 
 ## 비판적 시각: 한계와 트레이드오프
 
-Rolling baseline은 구현이 간단하고 CodSpeed·Bencher 같은 도구가 기본 제공하지만, 그 자체로는 "느려짐이 항상 작은 조각으로 나뉘어 들어오는" 공격에 취약합니다. 이는 실제 악의적 공격이라기보다, 여러 팀이 각자 "이번 PR은 미세하니 괜찮다"고 판단하는 조직적 행태에서 자연히 발생합니다. 이를 막으려면 anchor baseline과의 정기 대조가 구조적으로 강제되어야 하는데, 이 절차 자체는 도구가 자동으로 해주지 않는 경우가 많아 팀의 운영 규율에 의존합니다.
+Rolling baseline은 구현이 간단해 널리 쓰이지만, 그 자체로는 "느려짐이 항상 작은 조각으로 나뉘어 들어오는" 공격에 취약합니다. 이는 실제 악의적 공격이라기보다, 여러 팀이 각자 "이번 PR은 미세하니 괜찮다"고 판단하는 조직적 행태에서 자연히 발생합니다. 이를 막으려면 anchor baseline과의 정기 대조가 구조적으로 강제되어야 하는데, 이 절차 자체는 도구가 자동으로 해주지 않는 경우가 많아 팀의 운영 규율에 의존합니다.
 
 Fixed/anchor baseline은 반대로 갱신 판단에 사람이 개입해야 하므로 병목이 됩니다. 승인 프로세스가 무겁고 느리면 팀은 결국 "그냥 baseline을 매번 올려서 우회"하는 유혹에 빠지고, 이는 rolling baseline의 문제를 그대로 anchor baseline에도 옮겨오는 결과를 낳습니다. 다중 환경 동기화 원칙(환경별 독립 기준선)도 이상적으로는 옳지만, 환경 수가 늘어날수록 관리해야 할 기준선의 개수가 선형으로 늘어나 운영 부담이 커집니다. 클라우드 인스턴스처럼 같은 이름이라도 세대·리전에 따라 실제 성능이 달라지는 환경에서는 "환경"을 얼마나 세분해서 기준선을 나눌지 자체가 트레이드오프이며, 너무 세분하면 각 기준선의 표본 수가 부족해 통계적 신뢰도가 떨어집니다.
 
