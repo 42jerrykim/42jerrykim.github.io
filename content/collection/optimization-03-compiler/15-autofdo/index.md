@@ -1,293 +1,180 @@
 ---
 collection_order: 15
 date: 2026-06-01
-lastmod: 2026-07-12
+lastmod: 2026-10-21
 draft: false
 image: wordcloud.png
 title: "[Compiler 03] AutoFDO 워크플로우: 샘플링 기반 프로파일 최적화"
 slug: autofdo-workflow-sampling-based
-description: "별도 instrumented 빌드 없이 perf/LBR 샘플링으로 프로파일을 수집해 컴파일러에 반영하는 AutoFDO 워크플로우, GCC/Clang 적용 방법, PGO(instrumented)와의 운영 비용·품질 비교, 언제 AutoFDO를 선택할지 판단 기준을 다룹니다."
+description: "AutoFDO가 프로덕션 샘플을 줄 번호 정보로 소스에 되돌려 컴파일러 프로파일로 쓰는 원리, GCC -fauto-profile·Clang -fprofile-sample-use 절차, 계측 PGO와의 트레이드오프, 프로파일 노후화와 자동화 파이프라인을 1차 문서 기준으로 다룹니다."
 tags:
   - C++
   - Performance(성능)
   - Optimization(최적화)
   - Compiler(컴파일러)
   - CPU(Central Processing Unit)
-  - Cache
-  - Memory(메모리)
-  - Benchmark
+  - Hardware(하드웨어)
   - Profiling(프로파일링)
-  - CI-CD(Continuous Integration/Continuous Deployment)
-  - Testing(테스트)
-  - Implementation(구현)
-  - Code-Quality(코드품질)
+  - Benchmark
   - Linux(리눅스)
-  - Windows(윈도우)
-  - OS(운영체제)
-  - Concurrency(동시성)
-  - Latency
-  - Throughput
-  - Backend(백엔드)
-  - Embedded(임베디드)
-  - Debugging(디버깅)
-  - Documentation(문서화)
-  - Refactoring(리팩토링)
-  - Clean-Code(클린코드)
-  - Best-Practices
-  - Git
+  - CI-CD(Continuous Integration/Continuous Deployment)
   - Automation(자동화)
-  - Software-Architecture(소프트웨어아키텍처)
-  - Design-Pattern(디자인패턴)
-  - Data-Structures(자료구조)
-  - Time-Complexity(시간복잡도)
-  - Complexity-Analysis(복잡도분석)
-  - Edge-Cases(엣지케이스)
+  - Debugging(디버깅)
   - Pitfalls(함정)
-  - Error-Handling(에러처리)
+  - Best-Practices
   - Guide(가이드)
   - Reference(참고)
-  - Technology(기술)
   - Tutorial(튜토리얼)
   - Advanced
   - Deep-Dive
   - 실습
-  - Case-Study
-  - Assembly
+  - Comparison(비교)
+  - Open-Source(오픈소스)
+  - AutoFDO
+  - PGO
+  - GCC
+  - Clang
+  - LLVM
+  - perf
+  - LBR
 ---
 
-<strong>AutoFDO(Automatic Feedback-Directed Optimization)</strong>는 별도의 **instrumented(계측) 빌드** 없이, 일반 릴리즈 바이너리를 프로덕션에서 실행하면서 **샘플링 프로파일러**(`perf`, VTune 등)로 수집한 데이터를 그대로 컴파일러에 반영하는 방식입니다. 챕터 03에서 다룬 PGO가 "계측 바이너리 → 수집 → 재컴파일"의 3단계를 요구하는 반면, AutoFDO는 **기존 릴리즈 바이너리의 실행 데이터**를 변환해 재사용합니다. Google이 대규모 서버 플릿에서 instrumented 빌드의 비용 없이 PGO에 가까운 이득을 얻기 위해 개발했습니다.
+<strong>AutoFDO(Automatic Feedback-Directed Optimization)</strong>는 계측(instrumented) 빌드 없이, 일반 릴리스 바이너리를 실행하면서 하드웨어 성능 카운터 샘플을 모아 컴파일러의 프로파일로 쓰는 방식입니다. [챕터 03](/post/compiler-optimization/pgo-workflow-advanced/)의 계측 기반 PGO가 "계측 빌드 → 대표 실행 → 재컴파일"을 요구하는 반면, AutoFDO는 프로덕션에서 이미 돌고 있는 바이너리의 실행 데이터를 그대로 재사용합니다. 이 챕터에서는 AutoFDO가 해결하려는 운영 문제, 샘플을 소스 위치로 되돌리는 원리, GCC와 Clang의 실제 절차, 계측 PGO와의 트레이드오프, 그리고 프로파일이 "낡는" 문제를 다룹니다.
 
-## 왜 AutoFDO인가 (동기)
+## 왜 AutoFDO인가
 
-전통적인 PGO(챕터 03)는 강력하지만 운영 비용이 있습니다. Instrumented 빌드는 실행이 2–3배 느리고, 빌드 파이프라인에 "수집 → 재빌드" 단계가 추가되며, 프로파일이 무효화될 때마다 전체 사이클을 다시 돌아야 합니다.
+계측 기반 PGO는 정확한 실행 횟수를 주지만, 운영 비용이 큽니다. 계측 바이너리는 모든 분기와 호출에 카운터 갱신이 붙어 일반 바이너리보다 느리므로 프로덕션에 그대로 배포하기 어렵고, 그래서 대표 워크로드를 CI에서 따로 재현해야 합니다. 그 재현이 실제 트래픽을 얼마나 닮았는지가 곧 프로파일의 품질이 되고, 코드가 바뀔 때마다 계측 빌드부터 다시 해야 합니다.
 
-AutoFDO는 이 문제를 다음과 같이 해결합니다.
+AutoFDO는 이 비용 구조를 바꾸려고 만들어졌습니다. [Google의 AutoFDO 논문(CGO 2016)](https://research.google/pubs/autofdo-automatic-feedback-directed-optimization-for-warehouse-scale-applications/) 초록은 이를 다음과 같이 설명합니다.
 
-- **프로덕션 바이너리 그대로 사용**: 별도 계측 없이 일반 `-O2` 빌드를 배포합니다.
-- **낮은 오버헤드 샘플링**: `perf record`는 샘플링 기반이라 CPU 오버헤드가 보통 1–3%에 불과합니다.
-- **지속적 프로파일 갱신**: 코드·트래픽 패턴이 바뀔 때 샘플링만 다시 하면 되고, 별도 instrumented 빌드가 필요하지 않습니다.
+> "AutoFDO is a system to simplify real-world deployment of feedback-directed optimization (FDO). The system works by sampling hardware performance monitors on production machines and using those profiles to guide optimization." — Chen, Li, Moseley, CGO 2016
 
-그 결과 배포 환경에서 지속적으로 프로파일을 수집하고 릴리즈 빌드에 반영하는 **순환 개선 파이프라인**이 가능합니다.
+같은 초록에 따르면 이 방식은 Google 벤치마크에서 기하 평균 10.5% 향상을 냈고, 샘플링의 부정확성과 컴파일 파이프라인에서 잃는 정보에도 불구하고 전통적인 FDO 이득의 85%를 얻었습니다. 논문은 또 프로파일이 "설계상 낡은(stale by design)" 상태라는 점을 전제하고, 릴리스가 바뀌어도 안정적인 향상을 내도록 컴파일러 기능을 구현했다고 밝힙니다. 즉 AutoFDO의 본질은 계측 PGO보다 조금 덜 정확한 프로파일을 받아들이는 대신, 프로덕션 트래픽을 지속적으로 반영하는 운영 모델을 얻는 것입니다.
 
-## 역사·배경
+## 동작 원리: 샘플을 소스 위치로 되돌리기
 
-AutoFDO는 2014년 Google의 Dehao Chen 등이 발표한 논문 "AutoFDO: Automatic Feedback-Directed Optimization for Warehouse-Scale Applications"에서 제안되었습니다.
+샘플링 프로파일러는 일정 간격으로 "지금 실행 중인 명령 주소"를 기록합니다. 그런데 컴파일러가 다음 빌드에서 쓸 수 있는 것은 주소가 아니라 소스 위치(함수와 줄 번호, 인라인 문맥)입니다. 바이너리는 다시 빌드하면 주소가 모두 바뀌기 때문입니다. 그래서 AutoFDO의 핵심 단계는 수집한 주소를 디버그 정보의 줄 번호 테이블로 소스 위치에 되돌려, 소스 기준의 프로파일로 바꾸는 변환입니다. 이 때문에 프로파일을 수집하는 바이너리에는 줄 번호 정보가 필요합니다. [챕터 10](/post/compiler-optimization/debug-info-and-release-performance/)에서 본 것처럼 같은 최적화 옵션에서 디버그 정보는 생성 코드를 바꾸지 않으므로, 릴리스 빌드에 줄 번호 정보를 넣는 것이 성능 비용 없이 이 요구를 채우는 방법입니다.
 
-> "AutoFDO is a novel infrastructure for profile collection and feedback-directed optimization that avoids the need for specialized binary instrumentation." — Chen et al., 2016
-
-Google은 자신들의 서버 플릿에서 수천 개의 바이너리에 PGO를 적용할 때, instrumented 빌드 비용이 너무 커서 대규모 자동화가 어렵다는 문제를 해결하기 위해 AutoFDO를 개발했습니다. GCC는 4.x 대에서 `-fauto-profile` 지원을 추가했고, Clang/LLVM도 `-fprofile-sample-use` 형태로 같은 개념을 지원합니다. 오늘날에는 Facebook(Autofdo in HHVM), YouTube, 기타 대규모 서비스에서 유사한 샘플링 기반 PGO를 운영합니다.
-
-## AutoFDO 동작 원리
-
-AutoFDO의 핵심은 **샘플링 프로파일러의 PC(Program Counter) 샘플을 소스 라인 정보로 변환**한 뒤, 컴파일러가 읽을 수 있는 프로파일 포맷으로 바꾸는 것입니다.
+단순 주소 샘플만으로는 "어느 분기를 얼마나 탔는지"를 정확히 알기 어렵습니다. 그래서 x86에서는 LBR(Last Branch Record)을 함께 씁니다. LBR은 CPU가 최근에 수행한 분기의 출발·도착 주소를 하드웨어로 기록하는 기능으로, `perf record -b`가 이를 샘플마다 저장합니다. [Clang User's Manual](https://clang.llvm.org/docs/UsersManual.html)의 샘플링 프로파일러 절은 `-b` 플래그가 LBR로 호출 연쇄를 기록하게 하며, 꼭 필요하지는 않지만 더 나은 호출 정보를 제공해 프로파일 정확도를 높인다고 설명합니다.
 
 ```mermaid
 flowchart LR
-  A["일반 릴리즈 바이너리</br>(-O2 -g)"] --> B["프로덕션 실행</br>+ perf record"]
-  B --> C["perf.data</br>(샘플 PC·콜스택)"]
-  C --> D["create_gcov 또는</br>autofdo 변환 도구"]
-  D --> E["프로파일 파일</br>(.gcov 또는 .afdo)"]
-  E --> F["재컴파일</br>(-fauto-profile=프로파일)"]
-  F --> G["최적화된 바이너리"]
+  A["릴리스 바이너리<br/>(줄 번호 정보 포함)"] --> B["프로덕션 실행<br/>+ perf record -b"]
+  B --> C["perf.data<br/>(샘플 주소·분기 기록)"]
+  C --> D["변환 도구<br/>(create_gcov / create_llvm_prof / llvm-profgen)"]
+  D --> E["소스 기준 프로파일"]
+  E --> F["재컴파일<br/>(-fauto-profile / -fprofile-sample-use)"]
+  F --> G["다음 릴리스 바이너리"]
+  G --> B
 ```
 
-**PGO(instrumented)와의 주요 차이**는 계측 단계가 없다는 것입니다. `perf record`는 하드웨어 PMU(Performance Monitoring Unit)를 이용해 실행 중 PC를 주기적으로 샘플링하므로, 프로그램 실행에 거의 영향을 주지 않습니다.
+마지막 화살표가 다시 수집으로 돌아가는 점이 계측 PGO와 다릅니다. 최적화된 바이너리도 줄 번호 정보만 유지하면 그대로 다음 프로파일의 수집 대상이 되므로, 배포와 수집이 하나의 순환을 이룹니다.
 
-## GCC AutoFDO 워크플로우
+## GCC 워크플로
 
-GCC에서 AutoFDO를 적용하는 구체적인 절차입니다.
-
-### 1단계: 디버그 심볼이 있는 릴리즈 빌드
-
-AutoFDO는 샘플 PC를 소스 라인에 매핑하기 위해 **디버그 정보**가 필요합니다. 성능에는 영향을 주지 않습니다(챕터 10 참고).
+[GCC Optimize Options](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html)의 `-fauto-profile` 설명은 GCC에서의 절차를 직접 예로 듭니다. 지원되는 GNU/Linux 시스템에서 `perf`로 프로그램을 실행해 원시 프로파일을 만들고, [google/autofdo](https://github.com/google/autofdo)의 `create_gcov` 도구로 GCC가 읽을 수 있는 형식으로 변환하며, 이때 strip하지 않은 바이너리를 함께 넘겨야 합니다.
 
 ```bash
-# -g 포함 릴리즈 빌드 (-g는 성능에 영향 없음)
-g++ -O2 -g -o app main.cc utils.cc
+# 1. 줄 번호 정보가 있는 릴리스 빌드
+g++ -O2 -g main.cc utils.cc -o app
+
+# 2. 분기 기록과 함께 샘플 수집 (GCC 문서의 예시 이벤트)
+perf record -e br_inst_retired:near_taken -b -o perf.data -- ./app --workload-args
+
+# 3. GCC용 AutoFDO 프로파일로 변환 (strip하지 않은 바이너리 필요)
+create_gcov --binary=./app --profile=perf.data --gcov=profile.afdo
+
+# 4. 프로파일을 반영해 재컴파일
+g++ -O2 -fauto-profile=profile.afdo main.cc utils.cc -o app_afdo
 ```
 
-### 2단계: perf로 실행 프로파일 수집
+`-fauto-profile`은 프로파일을 읽는 것만 하지 않습니다. GCC 문서에 따르면 이 옵션은 샘플링 기반 FDO와 함께 `-fbranch-probabilities`, `-funroll-loops`, `-fpeel-loops`, `-finline-functions`, `-ftree-loop-vectorize`, `-fvect-cost-model=dynamic` 등 프로파일이 있을 때 이득이 큰 최적화들을 함께 켭니다. 이 목록에는 `-O3`가 켜는 루프 변환 일부가 포함되어 있으므로, `-O2`와 함께 써도 프로파일이 가리키는 핫 루프에는 더 공격적인 변환이 적용될 수 있습니다. 경로를 생략하면 현재 디렉터리의 `fbdata.afdo`를 읽습니다. 전후 비교는 [챕터 04](/post/compiler-optimization/compiler-comparison-gcc-clang-msvc/)의 벤치마크 절차처럼 같은 입력·같은 머신에서 여러 번 반복해 중앙값과 분산으로 판단합니다.
+
+## Clang 워크플로
+
+Clang은 같은 개념을 "샘플 프로파일"이라는 이름으로 지원하며, Clang User's Manual이 절차를 단계별로 설명합니다. 첫 빌드에서 필요한 것은 줄 번호 정보뿐이므로 `-gline-tables-only`로 충분하고, 매뉴얼은 매핑 품질을 높이기 위해 `-fdebug-info-for-profiling`과 `-funique-internal-linkage-names`를 함께 쓰라고 권합니다.
 
 ```bash
-# 2ms 간격 샘플링 (약 500Hz; 부하가 낮음)
-perf record -b -e cycles:u -j any,u ./app --workload-args
+# 1. 줄 번호 정보와 프로파일용 디버그 정보로 빌드
+clang++ -O2 -gline-tables-only \
+        -fdebug-info-for-profiling -funique-internal-linkage-names \
+        code.cc -o code
 
-# 또는 특정 시간 동안 수집 (프로덕션 서버에서 단기간 실행)
-perf record -b -e cycles:u --duration 30 -p $(pidof app)
-# perf.data 파일 생성됨
+# 2. LBR과 함께 샘플 수집 (매뉴얼의 예시 이벤트, 없으면 branches:u)
+perf record -b -e BR_INST_RETIRED.NEAR_TAKEN:uppp ./code
+
+# 3. LLVM 샘플 프로파일로 변환 (둘 중 하나)
+create_llvm_prof --binary=./code --out=code.prof
+llvm-profgen --binary=./code --output=code.prof --perfdata=perf.data
+
+# 4. 같은 디버그 정보 옵션 + -fprofile-sample-use로 재컴파일
+clang++ -O2 \
+        -fdebug-info-for-profiling -funique-internal-linkage-names \
+        -fprofile-sample-use=code.prof code.cc -o code
 ```
 
-`-b` 옵션은 LBR(Last Branch Record)을 사용해 브랜치 정보도 수집합니다. LBR이 지원되지 않으면 `perf record -e cycles:u`만 사용합니다.
+매뉴얼이 강조하는 세부 사항이 몇 가지 있습니다. `perf`를 `-b` 없이 실행했다면 `create_llvm_prof`에 `--use_lbr=false`를 줘야 하고, `llvm-profgen`은 `-b`로 수집한 데이터가 필요합니다. 재컴파일은 첫 빌드와 같은 인자일 필요는 없지만, 같은 디버그 정보 관련 옵션과 `-fprofile-sample-use`는 있어야 합니다. 또 `-funique-internal-linkage-names`는 소스 경로를 바탕으로 이름을 만들기 때문에, 빌드 시스템이 절대 경로를 쓰고 그 경로가 수집과 재빌드 사이에 바뀌면 프로파일이 쓰이지 않을 수 있습니다. 선택 사항으로 샘플링의 누락을 보정하는 프로파일 추론(`-fsample-profile-use-profi`)과, 디버그 줄 정보 대신 의사 계측점을 기준으로 매핑하는 `-fpseudo-probe-for-profiling`도 있습니다. [Clang 명령줄 레퍼런스](https://clang.llvm.org/docs/ClangCommandLineReference.html)의 `-fprofile-sample-accurate`는 프로파일이 정확하다고 선언하는 옵션으로, 샘플이 없는 호출 지점을 콜드로 표시합니다. 커버리지가 충분한 프로파일에서만 써야 하며, 그렇지 않으면 실제로 쓰이는 코드를 콜드로 취급하게 됩니다.
 
-### 3단계: perf.data를 GCC 프로파일로 변환
+## 계측 PGO와의 비교
 
-```bash
-# autofdo 도구 설치 (GitHub: google/autofdo)
-# create_gcov: perf.data → GCC -fauto-profile 포맷(.gcov)으로 변환
-create_gcov --binary=./app --profile=perf.data --gcov=app.gcov -gcov_version=2
-```
+| 항목 | 계측 기반 PGO | AutoFDO(샘플링 기반) |
+|------|--------------|---------------------|
+| 프로파일 출처 | 계측 바이너리를 대표 워크로드로 실행 | 일반 릴리스 바이너리를 프로덕션에서 샘플링 |
+| 정확도 | 실행 횟수가 정확 | 샘플링 오차, 인라인·최적화로 인한 매핑 손실 |
+| 수집 비용 | 계측으로 느려진 별도 실행 | 샘플링 비용만 추가, 프로덕션 수집 가능 |
+| 파이프라인 | 계측 빌드 → 수집 → 재빌드 | 릴리스 빌드 → 수집 → 다음 릴리스 빌드(순환) |
+| 필요 조건 | 대표 워크로드의 재현 | 줄 번호 정보, `perf`(LBR 권장), 변환 도구 |
+| 보고된 효과 | – | Google 논문 기준 기하 평균 10.5%, 전통 FDO 이득의 85% |
 
-`autofdo` 도구는 별도로 빌드해야 합니다([github.com/google/autofdo](https://github.com/google/autofdo)).
+계측 PGO는 CI에서 대표 워크로드를 재현할 수 있고 최대 성능이 필요한 소수의 핵심 바이너리에 맞고, AutoFDO는 많은 바이너리를 지속적으로 최적화해야 하거나 실제 트래픽이 벤치마크로 재현되지 않는 서비스에 맞습니다. 논문이 보고한 "85%"는 정확도 손실의 크기를 가늠하는 근거이지만, 그 비율은 Google의 워크로드와 컴파일러 기준이므로 자신의 코드에서는 두 방식을 같은 벤치마크로 직접 비교해야 합니다.
 
-### 4단계: 프로파일을 사용해 재컴파일
+## 자동화 파이프라인과 프로파일 노후화
 
-```bash
-# -fauto-profile로 프로파일 반영 재컴파일
-g++ -O3 -fauto-profile=app.gcov -o app_optimized main.cc utils.cc
-```
-
-이 빌드는 GCC가 `app.gcov`의 핫 경로 정보를 읽어 인라이닝·분기 배치·루프 최적화를 맞춥니다.
-
-### 5단계: 성능 검증
-
-```bash
-# 원본(-O2) vs AutoFDO 적용(-O3 + profile) 벤치마크 비교
-./app           --benchmark_repetitions=10 > before.txt
-./app_optimized --benchmark_repetitions=10 > after.txt
-diff before.txt after.txt
-```
-
-## Clang AutoFDO(AFDO) 워크플로우
-
-Clang/LLVM은 비슷한 기능을 `-fprofile-sample-use`로 지원합니다.
-
-```bash
-# 1단계: 릴리즈 빌드 (디버그 심볼 포함)
-clang++ -O2 -g -o app main.cc utils.cc
-
-# 2단계: perf 샘플링 (동일)
-perf record -b -e cycles:u ./app --workload-args
-
-# 3단계: perf.data를 Clang 포맷으로 변환
-# create_llvm_prof: autofdo 패키지에 포함
-create_llvm_prof --binary=./app --profile=perf.data --out=app.profdata
-
-# 4단계: 프로파일 반영 재컴파일
-clang++ -O3 -fprofile-sample-use=app.profdata -o app_optimized main.cc utils.cc
-```
-
-Clang에서는 `-fprofile-sample-accurate`를 추가하면 샘플이 없는 함수를 cold로 간주하여 더 적극적인 최적화가 가능합니다.
-
-## PGO(instrumented) vs AutoFDO 비교
-
-두 방식의 트레이드오프를 이해하면 상황에 맞는 선택을 할 수 있습니다.
-
-| 항목 | PGO (instrumented) | AutoFDO (샘플링 기반) |
-|------|--------------------|-----------------------|
-| 프로파일 품질 | 높음 (정확한 실행 횟수) | 중간 (샘플링 기반, 약간 부정확) |
-| 계측 오버헤드 | 2–3배 느린 instrumented 빌드 필요 | 1–3% 오버헤드 (perf 샘플링) |
-| 빌드 파이프라인 | Instrumented → 수집 → 재빌드 (3단계) | 일반 빌드 → 샘플 수집 → 재빌드 (2단계) |
-| 프로파일 갱신 | 큰 변경 시 전체 재수집 필요 | perf record만 다시 실행 |
-| 프로덕션 활용 | 어려움 (instrumented 빌드가 느림) | 가능 (낮은 오버헤드) |
-| 컴파일러 지원 | GCC, Clang, MSVC 폭넓게 지원 | GCC -fauto-profile, Clang -fprofile-sample-use |
-| 기대 성능 이득 | 5–15% (고품질 프로파일) | 3–10% (샘플 기반) |
-| 권장 상황 | CI에서 재현 가능한 workload 보유 | 프로덕션 트래픽 기반, 운영 비용 제약 |
-
-### 언제 PGO를 쓸지 vs AutoFDO를 쓸지
-
-**PGO(instrumented) 선택 시**:
-- CI에서 대표 workload 실행이 가능하고 재현성이 높을 때
-- 3–5% 추가 성능 이득이 의미 있는 핵심 경로에 집중할 때
-- instrumented 빌드 비용(시간·인프라)을 감당할 수 있을 때
-
-**AutoFDO 선택 시**:
-- 대규모 서버 플릿에서 지속적으로 프로파일을 갱신해야 할 때
-- instrumented 빌드 배포가 운영상 불가하거나 비용이 클 때
-- 실제 프로덕션 트래픽 패턴을 프로파일에 반영하고 싶을 때
-- 코드·workload 변경이 잦아 프로파일 재수집 주기가 짧아야 할 때
-
-## CI/자동화에서 AutoFDO 파이프라인 설계
-
-AutoFDO를 지속적으로 운영하려면 **프로파일 수집 → 변환 → 재빌드**를 자동화해야 합니다.
+AutoFDO를 지속적으로 운영하려면 수집 → 변환 → 저장 → 다음 빌드에서 사용을 자동화합니다. 이때 가장 중요한 규칙은 변환 도구에 **수집에 사용한 바로 그 바이너리**를 넘기는 것입니다. 변환은 샘플 주소를 그 바이너리의 디버그 정보로 해석하므로, 다른 커밋의 바이너리를 넘기면 주소가 엉뚱한 소스 위치로 매핑됩니다. 그래서 배포한 바이너리를 (strip하기 전 상태로) 빌드 ID와 함께 보관하는 것이 파이프라인의 전제입니다.
 
 ```bash
 #!/bin/bash
-# autofdo_pipeline.sh: 예시 자동화 스크립트 (개념)
+# autofdo_collect.sh: 배포된 서비스에서 프로파일을 모아 저장소에 올리는 예시
+set -euo pipefail
+BIN=/opt/app/app.unstripped          # 배포본과 같은 빌드의 strip 전 바이너리
+STAMP=$(date +%Y%m%d)
 
-# 1. 현재 릴리즈 바이너리에서 30초간 샘플 수집
-perf record -b -e cycles:u --duration 30 -p $(pidof app) -o perf_$(date +%Y%m%d).data
-
-# 2. perf.data → 프로파일 변환
-create_gcov --binary=./app \
-            --profile=perf_$(date +%Y%m%d).data \
-            --gcov=profile_$(date +%Y%m%d).gcov \
-            -gcov_version=2
-
-# 3. 프로파일 저장소에 업로드 (S3, GCS 등)
-aws s3 cp profile_$(date +%Y%m%d).gcov s3://my-bucket/profiles/
-
-# 4. 다음 릴리즈 빌드 시 최신 프로파일 사용
-# g++ -O3 -fauto-profile=profile_latest.gcov ...
+perf record -e br_inst_retired:near_taken -b -o perf_${STAMP}.data \
+     -p "$(pidof app)" -- sleep 60
+create_gcov --binary="$BIN" --profile=perf_${STAMP}.data --gcov=profile_${STAMP}.afdo
+aws s3 cp profile_${STAMP}.afdo s3://my-bucket/profiles/
 ```
 
-**캐시 키**: 프로파일 파일과 소스 해시를 조합해 캐시 키를 만들면, 소스가 바뀌면 자동으로 재컴파일이 트리거됩니다.
+수집한 프로파일은 다음 릴리스의 소스에 적용되므로 언제나 조금 낡아 있습니다. 소스가 바뀌면 줄 번호가 밀려 일부 프로파일 정보가 맞지 않게 되고, 컴파일러는 대응되지 않는 정보를 쓰지 않습니다. 논문이 "stale by design"을 전제로 컴파일러 기능을 설계했다고 밝힌 이유가 이것입니다. 실무에서는 프로파일을 정기적으로 갱신하고, 대규모 리팩터링 직후처럼 소스가 크게 바뀐 경우에는 새 프로파일을 모을 때까지 이득이 줄어드는 것을 감안합니다. 프로파일 파일은 빌드 입력이므로, 같은 커밋을 재현하려면 어떤 프로파일로 빌드했는지도 함께 기록해야 합니다.
 
-## 주의사항: 프로파일과 소스의 불일치
-
-AutoFDO의 가장 큰 함정은 **프로파일을 수집한 바이너리와 재컴파일할 소스가 다를 때** 발생하는 불일치입니다.
-
-- 프로파일은 바이너리의 **소스 라인 오프셋**으로 매핑됩니다. 소스가 바뀌면 라인 번호가 달라져 프로파일이 잘못된 위치를 가리킵니다.
-- GCC와 Clang은 불일치가 감지되면 해당 프로파일 정보를 무시하거나 경고를 냅니다.
-- **권장**: 소스 변경이 클 때는 새 프로파일을 수집합니다. 작은 변경(버그 수정 등)이면 기존 프로파일도 대부분의 핫 경로가 유지되어 쓸 수 있습니다.
-
-```bash
-# 프로파일 불일치 경고 확인
-g++ -O3 -fauto-profile=old_profile.gcov -Wno-error main.cc 2>&1 | grep "profile"
-# warning: 42% of profile records are stale [missed hotness hints]
-# → 프로파일 재수집을 고려
-```
-
-## 판단 기준: 언제 AutoFDO를 쓸지 / 피할지
+## 판단 기준: 언제 AutoFDO를 쓸지
 
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
-| 대규모 서버·지속적 최적화 | AutoFDO + perf 자동화 파이프라인 | instrumented 빌드 매번 배포 |
-| 소규모 프로젝트·CI workload 있음 | PGO(instrumented) | AutoFDO(도구 설치·운영 부담) |
-| 프로덕션 트래픽이 대표 workload | AutoFDO 권장 | 벤치만 돌린 프로파일로 PGO |
-| 소스 변경 빈번·프로파일 신선도 중요 | AutoFDO(재수집 용이) | 오래된 PGO 프로파일 재사용 |
-
-**적용 체크리스트**: (1) `-g` 포함 릴리즈 빌드를 배포한다. (2) `perf record -b`로 낮은 오버헤드 샘플링이 가능한지 확인한다. (3) `autofdo`(create_gcov/create_llvm_prof) 도구가 빌드 환경에서 사용 가능한지 확인한다. (4) AutoFDO 적용 후 동일 벤치마크로 전/후 성능을 비교한다.
+| 많은 서비스·바이너리를 지속적으로 최적화 | AutoFDO 수집·빌드 자동화 | 바이너리마다 계측 빌드 운영 |
+| 대표 워크로드를 CI에서 재현할 수 있는 소수 핵심 바이너리 | 계측 PGO 우선 | 정확도가 필요한데 샘플링만 사용 |
+| 실제 트래픽이 벤치마크와 다른 서비스 | 프로덕션 샘플링 기반 AutoFDO | 벤치 한 번으로 만든 프로파일 재사용 |
+| LBR을 쓸 수 없는 VM 환경 | 일반 샘플(`--use_lbr=false`)로 시작하되 이득 축소 감안 | LBR 전제 명령을 그대로 사용 |
 
 ## 자주 하는 실수
 
-- **perf.data와 바이너리 불일치**: 프로파일 수집에 사용한 바이너리와 다른 바이너리(다른 커밋)로 변환 도구를 돌리면 매핑이 잘못됩니다. 수집 시의 정확한 바이너리를 보관해 두고, 변환 시 같은 바이너리를 사용합니다.
-- **-g 없이 빌드**: 디버그 심볼이 없으면 PC를 소스 라인으로 매핑할 수 없어 AutoFDO가 동작하지 않습니다. 릴리즈에 `-g`를 추가해도 성능에는 영향이 없습니다(챕터 10).
-- **LBR 미지원 CPU에서 -b 사용**: `-b` 옵션(LBR)은 Intel 특정 세대 이상에서만 지원됩니다. 지원되지 않으면 `perf record -e cycles:u`(LBR 없이)를 사용하고, 브랜치 정보가 부족해 일부 최적화 품질이 낮아질 수 있음을 감안합니다.
+- **변환 도구에 다른 바이너리를 넘기기**: 주소 해석이 어긋나 프로파일이 잘못된 위치를 가리킨다. 수집한 바이너리의 strip 전 사본을 빌드 ID로 보관해 변환에 쓴다.
+- **줄 번호 정보 없이 배포하기**: 샘플 주소를 소스 위치로 되돌릴 수 없어 프로파일을 만들 수 없다. 최소한 줄 번호 테이블(`-g1`, `-gline-tables-only`)은 유지한다.
+- **`-fprofile-sample-accurate`를 기본으로 켜기**: 샘플이 없는 호출 지점을 콜드로 취급하므로, 커버리지가 낮은 프로파일에서는 실제로 쓰이는 코드를 느리게 만들 수 있다.
 
 ## 학습 성과 목표
 
-- **AutoFDO**의 동작 원리(샘플링 기반, instrumented 빌드 불필요)를 설명할 수 있다.
-- GCC(`-fauto-profile`) 또는 Clang(`-fprofile-sample-use`) 워크플로우를 단계별로 적용할 수 있다.
-- <strong>PGO(instrumented)</strong>와의 트레이드오프(프로파일 품질 vs 운영 비용)를 설명하고, 상황에 맞는 선택 근거를 제시할 수 있다.
-- 프로파일과 소스의 불일치 위험을 설명하고, 자동화 파이프라인에서 이를 관리할 수 있다.
+이 챕터를 마치면 AutoFDO를 계측 PGO의 대체물이 아니라, 정확도를 조금 내주고 운영성을 얻는 다른 지점의 선택지로 평가할 수 있어야 합니다.
+
+- 샘플 주소를 줄 번호 정보로 소스 위치에 되돌리는 AutoFDO의 원리와, LBR이 프로파일 품질에 주는 영향을 설명할 수 있다.
+- GCC(`create_gcov` → `-fauto-profile`)와 Clang(`create_llvm_prof`/`llvm-profgen` → `-fprofile-sample-use`) 절차를 1차 문서대로 실행할 수 있다.
+- 계측 PGO와의 트레이드오프, 프로파일 노후화와 바이너리 보관 요구를 근거로 도입 방식을 정할 수 있다.
 
 ## 비판적 시각: 한계와 트레이드오프
 
-AutoFDO는 PGO보다 **운영 비용이 낮지만 프로파일 품질도 낮습니다**. 샘플링 기반이라 실행 횟수가 적은 코드는 프로파일에 잘 잡히지 않고, LBR이 없으면 브랜치 정보가 부족합니다. "AutoFDO를 켜면 무조건 빨라진다"가 아니라, 자신의 코드·워크로드·인프라 제약을 고려해 PGO와 비교한 뒤 선택하는 것이 중요합니다. 또한 `autofdo` 도구 자체가 별도 빌드가 필요하고, CI 환경에 통합하려면 초기 설치 비용이 있습니다.
+AutoFDO의 정확도는 수집 환경에 크게 좌우됩니다. 샘플링은 드물게 실행되는 코드를 잘 잡지 못하고, 최적화된 바이너리의 줄 번호 정보는 인라이닝과 코드 이동 때문에 원래 소스 위치를 정확히 대변하지 못합니다. LBR 같은 분기 기록 기능은 하드웨어와 가상화 환경에 따라 쓸 수 없는 경우가 있어, 클라우드 VM에서는 프로파일 품질이 떨어질 수 있습니다. 운영 측면에서도 변환 도구를 빌드·유지하고, 배포 바이너리를 보관하고, 프로파일 저장소를 관리하는 인프라가 필요합니다. 이 인프라는 서비스가 많을수록 바이너리당 비용이 낮아지므로, AutoFDO는 대규모 플릿에서 가장 큰 효과를 내고 소규모 프로젝트에서는 계측 PGO가 더 단순할 수 있습니다.
 
-## 용어 정리
-
-| 용어 | 설명 |
-|------|------|
-| **AutoFDO** | Automatic Feedback-Directed Optimization; 샘플링 프로파일러로 수집한 데이터로 컴파일러를 최적화하는 방식 |
-| **LBR** | Last Branch Record; Intel CPU의 하드웨어 브랜치 기록 기능; AutoFDO에서 호출 그래프 구성에 활용 |
-| **create_gcov** | perf.data를 GCC -fauto-profile용 .gcov 포맷으로 변환하는 autofdo 도구 |
-| **create_llvm_prof** | perf.data를 Clang -fprofile-sample-use용 포맷으로 변환하는 autofdo 도구 |
-| **PMU** | Performance Monitoring Unit; CPU 하드웨어 카운터; perf가 내부적으로 활용 |
-
-## 핵심 요약
-
-| 항목 | 요약 |
-|------|------|
-| AutoFDO | 샘플링 기반; instrumented 빌드 없이 프로파일 반영 가능 |
-| 운영 비용 | PGO보다 낮음; 1–3% perf 오버헤드로 지속 수집 |
-| 이득 | 3–10% 성능 향상; PGO(5–15%) 대비 다소 낮음 |
-| 적합 | 대규모 서버·지속 최적화·프로덕션 트래픽 기반 |
-| 주의 | 프로파일·소스 불일치; -g 필수; autofdo 도구 설치 |
-
-## 최신 동향: AutoFDO + Propeller
-
-Google은 AutoFDO에 **Propeller**(프로파일 기반 post-link 재링킹 최적화기)를 결합해, Linux 커널을 포함한 대규모 코드베이스에서 5–10% 성능 향상을 추가로 보고했습니다. Propeller는 챕터 14에서 다루는 BOLT와 유사하게 이미 빌드된 바이너리를 프로파일 기반으로 재배치하는 **post-link 최적화기**이지만, AutoFDO 파이프라인과 함께 쓰도록 설계됐다는 점이 다릅니다. Google 컴파일러 팀은 Propeller를 LLVM 메인 저장소로 업스트림하는 것을 공식 제안했고, 완전한 지원이 향후 LLVM 릴리스에 들어올 가능성이 있습니다. AutoFDO 파이프라인을 이미 운영 중이라면, Propeller는 같은 프로파일 데이터를 재사용해 추가 이득을 얻을 수 있는 자연스러운 다음 단계입니다.
+같은 샘플 프로파일 인프라는 링크 이후 레이아웃 최적화로 확장되기도 합니다. Google의 [Propeller](https://github.com/google/llvm-propeller)는 README에서 스스로를 대규모 애플리케이션을 위한 프로파일 기반 재링킹(relinking) 최적화기로 소개합니다. [챕터 14](/post/compiler-optimization/bolt-post-link-binary-layout-optimization/)의 BOLT가 완성된 바이너리를 다시 쓰는 것과 달리, Propeller는 LLVM 위에서 재링크 과정으로 레이아웃을 바꾸는 접근이라 빌드 파이프라인과의 통합 방식이 다릅니다. 어느 쪽이든 프로파일 수집 인프라를 이미 갖춘 팀에게 추가로 열리는 선택지라는 점에서, AutoFDO는 프로파일 기반 최적화 전반의 기반 시설로 보는 것이 맞습니다.
 
 ## 다음 단계
 

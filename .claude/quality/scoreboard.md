@@ -269,18 +269,18 @@
 | content/collection/optimization-03-compiler/01-optimization-flags/index.md | 100 | 2026-10-20 | 3 | 통과 | 1.3 | 05477cd | 없음(PGO 계측/사용 -O 레벨 서술을 GCC 매뉴얼 기준으로 정정 후 재채점) |
 | content/collection/optimization-03-compiler/02-lto-thinlto/index.md | 100 | 2026-10-20 | 2 | 통과 | 1.3 | 78ad97e | 없음(초회 59.2: GCC 매뉴얼 귀속 환각 인용·GCC 4.5 연도·-flto=auto 오기술·ThinLTO 메커니즘 부재·실행 예제 부재 수정) |
 | content/collection/optimization-03-compiler/03-pgo-workflow/index.md | 95.4 | 2026-10-20 | 3 | 통과 | 1.3 | 7868ea5 | 없음(경미: L99 Clang 예제가 -O2 계측/-O3 사용으로 L63 "1단계와 같은 -O" 서술과 불일치 — -O2로 통일 필요; L167 실수 항목이 L114 재진술. 초회 59.3: Clang 매뉴얼 귀속 환각 인용·연도 오류·GCC .gcda 이름 불일치로 PGO 미적용 예제 수정) |
-| content/collection/optimization-03-compiler/04-compiler-comparison/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/05-inlining-diagnostics/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/06-code-generation-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/07-function-multiversioning/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/08-compiler-intrinsics/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/09-sanitizer-overhead/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/10-debug-info-and-performance/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/11-cpp20-modules/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/12-build-parallelization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/13-static-analyzer/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/14-bolt-post-link-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/15-autofdo/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/04-compiler-comparison/index.md | 97.3 | 2026-10-20 | 1 | 통과 | 1.3 | ed2acbe | 없음(경미: L182 1M=4MiB를 DRAM 대역폭 구간으로 단정 — 플랫폼 의존 명시 필요) |
+| content/collection/optimization-03-compiler/05-inlining-diagnostics/index.md | 97.3 | 2026-10-20 | 1 | 통과 | 1.3 | d6173da | 없음(경미: L118 -fopt-info-inline-missed 발췌 범위 서술 — 21:22 big_func 2줄 생략을 명시 필요) |
+| content/collection/optimization-03-compiler/06-code-generation-analysis/index.md | 97.3 | 2026-10-20 | 1 | 통과 | 1.3 | 0d57396 | 없음(경미: L51 objdump를 LTO 결과 확인의 "유일한 방법"으로 과장 — -flto -save-temps 대안 존재) |
+| content/collection/optimization-03-compiler/07-function-multiversioning/index.md | 97.3 | 2026-10-20 | 1 | 통과 | 1.3 | c19d801 | 없음(경미: L117 ACLE 언급을 Clang Attribute Reference에 귀속 — 원문에 없음, ACLE 출처 분리 필요) |
+| content/collection/optimization-03-compiler/08-compiler-intrinsics/index.md | 100 | 2026-10-20 | 1 | 통과 | 1.3 | 6211182 | 없음 |
+| content/collection/optimization-03-compiler/09-sanitizer-overhead/index.md | 95.35 | 2026-10-21 | 1 | 통과 | 1.3 | 854c5d3 | 없음(경미: L202 UBSan 보안 경고를 최소 런타임에 귀속 / L152 MSan 메모리 2×(origin 3×) 누락 / L119·L182 코드 블록 연속 배치) |
+| content/collection/optimization-03-compiler/10-debug-info-and-performance/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | edd6b8f | 없음 |
+| content/collection/optimization-03-compiler/11-cpp20-modules/index.md | 98.5 | 2026-10-21 | 1 | 통과 | 1.3 | e672a2c | 없음(경미: L114 GCC 14는 .cppm을 C++ 소스로 인식하지 않을 수 있음 — -x c++ 추가 권장, 최신 GCC 매뉴얼은 .cppm 지원 명시) |
+| content/collection/optimization-03-compiler/12-build-parallelization/index.md | 95.8 | 2026-10-21 | 1 | 통과 | 1.3 | 5cd69c0 | 없음(경미: L68 -s 출력 형식은 ccache 4.7 이후 기준 / L125 캐시 키 gcc14와 실제 빌드 컴파일러 불일치 — CXX=g++-14 지정 필요) |
+| content/collection/optimization-03-compiler/13-static-analyzer/index.md | 91.3 | 2026-10-21 | 1 | 통과 | 1.3 | 8579e11 | 깊이 — L137 기준선(새 경고만 실패) 정책과 YAML(--warnings-as-errors 전체) 불일치 — clang-tidy-diff.py 등 diff 한정 job 추가 / 코드 — L105 scan-build는 -enable-checker(단일 대시), L97-99·L128-129 출력 줄 번호가 파일명 주석 1줄만큼 밀림 / 정확성 — L49 심볼릭 실행 설명 출처는 clang.llvm.org/docs/ClangStaticAnalyzer.html |
+| content/collection/optimization-03-compiler/14-bolt-post-link-optimization/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | a0707a0 | 없음 |
+| content/collection/optimization-03-compiler/15-autofdo/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | 2c5d41e | 없음 |
 | content/collection/optimization-04-memory-allocation/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 1.0 | c8f0024 | 없음(경미: Networking·IO·Testing 등 본문 결속 약한 범용 태그 다수, 16번 챕터 mimalloc 미병기) |
 | content/collection/optimization-04-memory-allocation/01-container-cost-model/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-04-memory-allocation/02-allocation-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
