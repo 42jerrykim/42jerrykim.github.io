@@ -1,7 +1,7 @@
 ---
 collection_order: 8
 date: 2026-07-14
-lastmod: 2026-10-25
+lastmod: 2026-11-02
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] Lookup Table 최적화"
@@ -164,7 +164,7 @@ BENCHMARK(BM_Crc32Table);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 -std=c++17 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면(x86-64, GCC 13, `-O2` 기준 예시), `BM_Crc32Table`이 `BM_Crc32Bitwise`보다 여러 배 빠르게 나오는 경우가 흔합니다. 차이는 바이트당 8회의 분기·시프트가 1KB 테이블에 대한 L1 히트 한 번으로 줄어든 데서 옵니다. 정확한 배율은 컴파일러·플래그·데이터 크기에 따라 달라지므로 실제 환경에서 직접 재현해 확인해야 하며, 프로덕션 zlib류 구현은 여기서 한 걸음 더 나아가 슬라이스 단위를 늘린 더 큰 테이블로 처리량을 추가로 끌어올립니다.
+`g++ -O2 -std=c++17 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면(x86-64, GCC 13, `-O2` 기준 예시), `BM_Crc32Table`이 `BM_Crc32Bitwise`보다 빠를 것으로 예상하지만, 이 글은 실행 결과를 싣지 않았으므로 직접 측정해 확인해야 합니다. 차이는 바이트당 8회의 분기·시프트가 1KB 테이블에 대한 L1 히트 한 번으로 줄어든 데서 옵니다. 정확한 배율은 컴파일러·플래그·데이터 크기에 따라 달라지므로 실제 환경에서 직접 재현해 확인해야 하며, 프로덕션 zlib류 구현은 여기서 한 걸음 더 나아가 슬라이스 단위를 늘린 더 큰 테이블로 처리량을 추가로 끌어올립니다.
 
 ### 사례 2: 분기를 인덱싱으로 대체하기
 
@@ -212,20 +212,39 @@ CharClass classify_table(unsigned char c) {
 
 ### 사례 3: 벡터 레지스터 안에 들어가는 테이블
 
-테이블이 아주 작으면 메모리를 거치지 않고 레지스터 안에서 조회할 수도 있습니다. 16개 항목짜리 바이트 테이블은 128비트 레지스터 하나에 통째로 들어가고, SSSE3의 `pshufb`(`_mm_shuffle_epi8`)는 인덱스 레지스터의 각 바이트를 하위 4비트만큼의 위치로 해석해 테이블 레지스터에서 값을 골라 줍니다. 즉 16바이트를 한 명령으로 동시에 조회하는 병렬 룩업이며, 이때 테이블은 캐시 계층이 아니라 레지스터에 있으므로 앞에서 다룬 캐시 적중률 문제가 사라집니다. Agner Fog의 *Optimizing software in C++*도 테이블이 벡터 레지스터 한두 개에 들어갈 만큼 작으면 gather보다 퍼뮤트 명령으로 조회하는 편이 효율적이라고 설명합니다.
+테이블이 아주 작으면 메모리를 거치지 않고 레지스터 안에서 조회할 수도 있습니다. 16개 항목짜리 바이트 테이블은 128비트 레지스터 하나에 통째로 들어가고, SSSE3의 `pshufb`(`_mm_shuffle_epi8`)는 인덱스 레지스터의 각 바이트를 하위 4비트만큼의 위치로 해석해 테이블 레지스터에서 값을 골라 줍니다. 즉 16바이트를 한 명령으로 동시에 조회하는 병렬 룩업이며, 이때 테이블은 캐시 계층이 아니라 레지스터에 있으므로 앞에서 다룬 캐시 적중률 문제가 사라집니다. Agner Fog의 *Optimizing software in C++*도 룩업 테이블과 벡터 퍼뮤트 명령을 다루는 참고 자료로 함께 읽을 만합니다(해당 절의 정확한 서술은 원문에서 확인하세요).
 
 ```cpp
-#include <immintrin.h>  // _mm_setr_epi8, _mm_shuffle_epi8 (SSSE3: -mssse3 필요)
+#include <immintrin.h>  // SSSE3 필요: g++ -O2 -mssse3 hex16.cpp
+#include <cstdint>
+#include <cstdio>
 
-// 각 바이트가 0~15인 nibble 16개를 16진 ASCII 문자('0'-'9', 'a'-'f')로 한 번에 바꾼다.
-__m128i nibbles_to_hex_ascii(__m128i nibbles) {
+// 16바이트 입력을 32개의 16진 ASCII 문자로 바꾼다.
+void bytes_to_hex16(const uint8_t* in, char* out) {
   const __m128i table = _mm_setr_epi8('0', '1', '2', '3', '4', '5', '6', '7',
                                       '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
-  return _mm_shuffle_epi8(table, nibbles);  // 바이트마다 table[nibbles[i] & 0x0F]
+  const __m128i low_mask = _mm_set1_epi8(0x0F);
+  __m128i v = _mm_loadu_si128(reinterpret_cast<const __m128i*>(in));
+  __m128i hi = _mm_and_si128(_mm_srli_epi16(v, 4), low_mask);  // 상위 nibble
+  __m128i lo = _mm_and_si128(v, low_mask);                     // 하위 nibble
+  __m128i hi_chars = _mm_shuffle_epi8(table, hi);  // 바이트마다 table[nibble]
+  __m128i lo_chars = _mm_shuffle_epi8(table, lo);
+  // 상·하위 문자를 교대로 배치: hi0 lo0 hi1 lo1 ...
+  _mm_storeu_si128(reinterpret_cast<__m128i*>(out), _mm_unpacklo_epi8(hi_chars, lo_chars));
+  _mm_storeu_si128(reinterpret_cast<__m128i*>(out + 16), _mm_unpackhi_epi8(hi_chars, lo_chars));
+}
+
+int main() {
+  uint8_t in[16];
+  for (int i = 0; i < 16; ++i) in[i] = static_cast<uint8_t>(i * 17);  // 0x00, 0x11, ..., 0xFF
+  char out[33] = {};
+  bytes_to_hex16(in, out);
+  std::printf("%s\n", out);  // 00112233445566778899aabbccddeeff 가 출력되어야 한다
+  return 0;
 }
 ```
 
-`pshufb`는 인덱스 바이트의 최상위 비트가 켜져 있으면 해당 결과 바이트를 0으로 만들고, 그렇지 않으면 하위 4비트만 인덱스로 씁니다. 따라서 입력은 상위 비트가 0인 nibble이어야 하며, 바이트를 nibble로 쪼개는 마스크·시프트 단계는 호출하는 쪽에서 준비합니다. 이 장은 이 코드를 직접 컴파일해 측정하지 않았으므로 설명용 예시로 읽고, 실제 도입 전에는 대상 CPU에서 스칼라 LUT와 비교 측정해야 합니다. 더 큰 테이블이나 AVX2 이상의 셔플은 [02장](/post/extreme-optimization/simd-intrinsics-practical-usage/)에서 이어집니다.
+`pshufb`는 인덱스 바이트의 최상위 비트가 켜져 있으면 해당 결과 바이트를 0으로 만들고, 그렇지 않으면 하위 4비트만 인덱스로 씁니다. 그래서 위 코드는 `_mm_srli_epi16`으로 밀어낸 뒤 `0x0F` 마스크를 씌워 바이트마다 순수한 nibble을 만든 다음에 조회합니다(16비트 단위 시프트는 인접 바이트의 비트를 끌어오므로 마스크가 필요합니다). 이 장은 이 코드를 직접 컴파일해 실행하지 않았으므로 기대 출력은 코드를 읽고 계산한 값이며, 실제 도입 전에는 대상 CPU에서 스칼라 LUT와 비교 측정해야 합니다. 더 큰 테이블이나 AVX2 이상의 셔플은 [02장](/post/extreme-optimization/simd-intrinsics-practical-usage/)에서 이어집니다.
 
 ## 흔한 오개념 교정
 
@@ -256,7 +275,7 @@ __m128i nibbles_to_hex_ascii(__m128i nibbles) {
 
 세 번째는 유지보수성입니다. 매직 넘버로 채워진 테이블은 그 자체로는 왜 그 값인지 설명하지 못하고, 원본 알고리즘이 바뀌면 테이블 생성 로직도 함께 바뀌어야 합니다. `constexpr` 함수로 테이블을 생성하도록 코드에 남겨 두면(사례 1처럼) 테이블과 원본 알고리즘이 항상 일치한다는 것을 컴파일러가 보장해 주므로, 손으로 계산해 하드코딩한 배열보다 안전합니다. 극한 최적화와 유지보수성의 일반적인 균형 기준은 [11장: 극한 최적화와 유지보수성 균형](/post/extreme-optimization/extreme-optimization-maintainability-balance/)에서 다룹니다.
 
-마지막으로, 많은 컴파일러가 이미 `constexpr`/`consteval` 평가나 자동 상수 폴딩으로 작은 테이블을 스스로 만들어 내므로, 수동으로 테이블을 도입하기 전에 컴파일러가 이미 그 일을 하고 있지 않은지 어셈블리를 확인하는 것이 먼저입니다. 벤치마크 없이 도입한 LUT는 코드 복잡도만 늘리는 헛수고가 될 수 있습니다.
+마지막으로, `constexpr`를 컴파일러가 알아서 테이블로 바꿔 준다는 뜻으로 오해하면 안 됩니다. [cppreference](https://en.cppreference.com/w/cpp/language/constexpr)에 따르면 `constexpr`는 값을 컴파일 타임에 평가하는 것이 가능하다고 선언할 뿐이어서, 상수가 아닌 인자로 부른 `constexpr` 함수는 런타임에 계산됩니다(같은 문서의 예제도 변수 인자의 `factorial(k)`를 런타임 계산이라고 주석합니다). 테이블이 컴파일 타임에 확정되려면 이 장의 `constexpr auto kCrc32Table = make_crc32_table();`처럼 상수 평가가 요구되는 자리에서 호출해야 합니다. 다만 컴파일러 최적화가 비슷한 일을 하는 경우는 따로 있습니다. 예를 들어 GCC의 [`-ftree-switch-conversion`](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html)은 `switch` 안의 단순한 초기화를 스칼라 배열 초기화로 바꾸며 `-O2` 이상에서 기본으로 켜집니다. 그래서 값-대-값 매핑을 `switch`로 쓴 코드는 컴파일러가 이미 테이블로 만들었을 수 있으므로, 수동으로 테이블을 도입하기 전에 생성된 어셈블리를 확인하는 것이 먼저입니다. 벤치마크 없이 도입한 LUT는 코드 복잡도만 늘리는 헛수고가 될 수 있습니다.
 
 ## 마무리
 
