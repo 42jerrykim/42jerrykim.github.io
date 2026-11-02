@@ -16,10 +16,8 @@ tags:
   - Benchmark
   - Latency
   - Throughput
-  - Profiling(프로파일링)
   - Implementation(구현)
   - Best-Practices
-  - Code-Quality(코드품질)
   - System-Design
   - Backend(백엔드)
   - Production
@@ -31,7 +29,6 @@ tags:
   - Guide(가이드)
   - Deep-Dive
   - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - C++
   - gRPC
@@ -42,6 +39,7 @@ tags:
   - Keepalive
   - Multiplexing
   - ghz
+  - Microservices(마이크로서비스)
 ---
 
 **gRPC 최적화**란 채널·연결을 재사용해 핸드셰이크 비용을 없애고, RPC 패턴에 맞는 스트리밍 모드를 골라 불필요한 왕복을 줄이며, 직렬화·압축이 CPU와 대역폭 사이에서 만드는 트레이드오프를 메시지 특성에 맞게 조정하는 작업을 말합니다. gRPC는 HTTP/2 위에 Protocol Buffers를 얹은 RPC 프레임워크이므로, 최적화 여지도 이 두 층 — 전송 계층의 연결 관리와 애플리케이션 계층의 메시지 설계 — 에 걸쳐 있습니다. 이 장은 gRPC "위에서" 흔히 벌어지는 성능 실수(채널 재생성, 스트리밍 오남용, 압축 맹신)를 바로잡는 데 초점을 맞추고, 하부 프로토콜의 세부 동작은 이미 이 트랙에서 다룬 장으로 위임합니다.
@@ -56,9 +54,9 @@ tags:
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
-| **입문** | "gRPC의 등장과 설계 배경" ~ "채널과 서브채널" | 채널 재사용이 왜 필요한지 이해 |
-| **중급** | "스트리밍 모드 선택" ~ "직렬화·압축 오버헤드 관리" | RPC 패턴별 스트리밍 모드와 압축 여부를 판단 |
-| **실무 적용** | "판단 기준" ~ "비판적 시각" | 채널 풀 크기·스트리밍 도입 여부를 프로덕션 기준으로 결정 |
+| **입문** | "gRPC의 등장과 설계 배경" – "채널과 서브채널" | 채널 재사용이 왜 필요한지 이해 |
+| **중급** | "스트리밍 모드 선택" – "직렬화·압축 오버헤드 관리" | RPC 패턴별 스트리밍 모드와 압축 여부를 판단 |
+| **실무 적용** | "판단 기준" – "비판적 시각" | 채널 풀 크기·스트리밍 도입 여부를 프로덕션 기준으로 결정 |
 
 ---
 
@@ -68,7 +66,26 @@ tags:
 
 ## 채널과 서브채널: 연결 재사용의 메커니즘
 
-gRPC 클라이언트는 **Channel**이라는 추상화를 통해 원격 서버와 통신합니다. Channel은 대상 주소를 하나 이상의 **Subchannel**로 해석하고, 각 서브채널은 실제 HTTP/2 연결(TCP+TLS 위의 스트림 묶음)을 하나 이상 유지하며, 로드밸런서 정책(`pick_first`, `round_robin` 등)이 서브채널 사이에 RPC를 분배합니다. 새 채널을 만드는 과정은 이름 해석(DNS), TCP 3-way handshake, TLS 핸드셰이크, HTTP/2 SETTINGS 프레임 교환까지 포함하므로 비용이 크며, gRPC 공식 문서도 "채널과 스텁은 가능하면 항상 재사용하라"([grpc.io: Performance Best Practices](https://grpc.io/docs/guides/performance/))고 명시합니다. 실무에서 흔히 나타나는 안티패턴은 RPC 호출마다 새 채널·스텁을 만드는 코드입니다.
+gRPC 클라이언트는 **Channel**이라는 추상화를 통해 원격 서버와 통신합니다. Channel은 대상 주소를 하나 이상의 **Subchannel**로 해석하고, 각 서브채널은 실제 HTTP/2 연결(TCP+TLS 위의 스트림 묶음)을 하나 이상 유지하며, 로드밸런서 정책(`pick_first`, `round_robin` 등)이 서브채널 사이에 RPC를 분배합니다. 새 채널을 만드는 과정은 이름 해석(DNS), TCP 3-way handshake, TLS 핸드셰이크, HTTP/2 SETTINGS 프레임 교환까지 포함하므로 비용이 크며, gRPC 공식 성능 가이드는 첫 번째 일반 원칙으로 이를 못박습니다.
+
+> "Always re-use stubs and channels when possible." — [gRPC, Performance Best Practices](https://grpc.io/docs/guides/performance/)
+
+실무에서 흔히 나타나는 안티패턴은 RPC 호출마다 새 채널·스텁을 만드는 코드입니다. 아래 예제들은 다음과 같은 최소 서비스 정의(`example.proto`)를 `protoc`로 컴파일해 얻은 `example.grpc.pb.h`를 사용합니다.
+
+```protobuf
+syntax = "proto3";
+package example;
+
+service Example {
+  rpc Call(Request) returns (Response);
+  rpc StreamCall(stream Request) returns (stream Response);
+}
+
+message Request { int32 id = 1; }
+message Response { string body = 1; }
+```
+
+이 정의를 기준으로, 먼저 호출마다 채널을 새로 만드는 잘못된 예입니다.
 
 ```cpp
 #include <grpcpp/grpcpp.h>
@@ -116,7 +133,7 @@ class ExampleClient {
 // 재사용한다. 여러 스레드가 동시에 호출해도 gRPC 채널은 스레드-안전하다.
 ```
 
-한 채널이 감당할 수 있는 동시 RPC 수에는 한계가 있습니다. 대부분의 HTTP/2 구현은 연결당 동시 스트림 수(`SETTINGS_MAX_CONCURRENT_STREAMS`)를 서버 쪽에서 통상 100 정도로 제한하며, 이 한계에 도달하면 초과 RPC는 클라이언트 큐에서 대기합니다. 대응 방법은 서로 다른 채널 인자(채널 번호 등)를 줘서 별도 채널 여러 개로 부하를 분산하는 **채널 풀링**입니다. 좀 더 최근에는 gRPC 프로젝트가 서브채널 하나가 자동으로 여러 HTTP/2 연결을 열어 스트림 한도를 넘기지 못하게 하는 연결 스케일링을 제안했습니다(`max_connections_per_subchannel`, [A105 제안서](https://github.com/grpc/proposal/blob/master/A105-max_concurrent_streams-connection-scaling.md)). 다만 이 기능은 실험적 플래그(`GRPC_EXPERIMENTAL_MAX_CONCURRENT_STREAMS_CONNECTION_SCALING`) 뒤에 있고 언어별 지원 상태가 다르므로, 도입 여부는 사용 중인 gRPC 구현체 버전에서 직접 확인해야 합니다 — 이런 세부는 구현 정의로 취급합니다.
+한 채널이 감당할 수 있는 동시 RPC 수에는 한계가 있습니다. 연결당 동시 스트림 수는 서버(또는 프록시)가 `SETTINGS_MAX_CONCURRENT_STREAMS`로 광고한 값으로 제한되며, 이 한계에 도달하면 초과 RPC는 클라이언트 큐에서 대기합니다. [RFC 9113 §6.5.2](https://www.rfc-editor.org/rfc/rfc9113.html#section-6.5.2)는 이 값의 초기값을 무제한으로 두고 100 이상을 권장할 뿐이므로, 실제 한도는 사용하는 서버·프록시의 설정을 확인해야 합니다. 대응 방법은 서로 다른 채널 인자(채널 번호 등)를 줘서 별도 채널 여러 개로 부하를 분산하는 **채널 풀링**입니다. 좀 더 최근에는 gRPC 프로젝트가 서브채널 하나가 자동으로 여러 HTTP/2 연결을 열어 스트림 한도를 넘기지 못하게 하는 연결 스케일링을 제안했습니다(`max_connections_per_subchannel`, [A105 제안서](https://github.com/grpc/proposal/blob/master/A105-max_concurrent_streams-connection-scaling.md)). 다만 이 기능은 실험적 플래그(`GRPC_EXPERIMENTAL_MAX_CONCURRENT_STREAMS_CONNECTION_SCALING`) 뒤에 있고 언어별 지원 상태가 다르므로, 도입 여부는 사용 중인 gRPC 구현체 버전에서 직접 확인해야 합니다 — 이런 세부는 구현 정의로 취급합니다.
 
 ```mermaid
 flowchart TB
@@ -136,27 +153,34 @@ flowchart TB
 
 gRPC는 **unary**(단발 요청-응답), **server-streaming**(하나의 요청에 여러 응답), **client-streaming**(여러 요청에 하나의 응답), **bidirectional-streaming**(양쪽이 독립적으로 메시지를 주고받음) 네 가지 RPC 모드를 제공합니다. Unary RPC는 매번 새 HTTP/2 스트림을 열고 헤더 프레임을 주고받아야 하지만, 스트리밍 RPC는 스트림을 한 번 연 뒤에는 각 메시지마다 데이터 프레임만 추가로 보내면 되므로 반복적인 요청-응답이 많을 때 스트림 개설 비용을 아낄 수 있습니다. 그래서 "긴 시간에 걸친 논리적 데이터 흐름"(로그 스트리밍, 실시간 시세, 텔레메트리 배치 전송 등)에는 스트리밍이 유리합니다.
 
-다만 스트리밍이 항상 더 빠른 것은 아닙니다. 스트리밍 RPC는 클라이언트 쪽 로드밸런싱을 사실상 고정시킵니다 — 스트림이 열려 있는 동안에는 같은 서브채널로만 메시지가 흘러가므로, RPC 단위로 매번 로드밸런서가 개입하는 unary 대비 부하 분산이 거칠어집니다. 언어 구현에 따라서는 스트리밍이 unary보다 오히려 느릴 수도 있습니다. 예를 들어 gRPC Python은 스트리밍 RPC를 처리하려고 별도 스레드를 추가로 띄우는 구현 때문에 스트리밍이 unary보다 상당히 느려지는 경향이 있다고 공식 성능 가이드가 밝히고 있습니다([grpc.io: Performance Best Practices](https://grpc.io/docs/guides/performance/)). 즉 "성능이나 단순성에서 확실한 이득이 있을 때만" 스트리밍을 선택하라는 것이 gRPC 프로젝트의 권고입니다.
+다만 스트리밍이 항상 더 빠른 것은 아닙니다. 스트리밍 RPC는 클라이언트 쪽 로드밸런싱을 사실상 고정시킵니다 — 스트림이 열려 있는 동안에는 같은 서브채널로만 메시지가 흘러가므로, RPC 단위로 매번 로드밸런서가 개입하는 unary 대비 부하 분산이 거칠어집니다. 언어 구현에 따라서는 스트리밍이 unary보다 오히려 느릴 수도 있습니다. 예를 들어 gRPC Python은 스트리밍 RPC를 처리하려고 별도 스레드를 추가로 띄우는 구현 때문에 스트리밍이 unary보다 상당히 느려지는 경향이 있다고 공식 성능 가이드가 밝히고 있습니다([grpc.io: Performance Best Practices](https://grpc.io/docs/guides/performance/)). 같은 가이드는 스트리밍 사용 기준을 다음과 같이 정리합니다.
+
+> "they should only be used when they provide substantial performance or simplicity benefit to application logic." — [gRPC, Performance Best Practices](https://grpc.io/docs/guides/performance/)
+
+그래도 스트리밍이 맞는 경우라면, 양방향 스트림은 쓰기와 읽기의 수명주기를 명시적으로 관리해야 합니다. 아래는 `Write`로 요청을 보내고 `WritesDone`으로 송신 종료를 알린 뒤, `Read`로 응답을 모두 소비하고 `Finish`로 최종 상태를 받는 순서를 보여 주는 골격입니다.
 
 ```cpp
 #include <grpcpp/grpcpp.h>
 #include "example.grpc.pb.h"
 
-// 양방향 스트리밍 스켈레톤: 하나의 스트림 위에서 요청/응답을 독립적으로 주고받는다.
-grpc::Status ExampleClient::StreamCall(grpc::ClientContext* ctx) {
-  auto stream = stub_->StreamCall(ctx);
-  example::Request req;
+#include <vector>
+
+// 양방향 스트리밍 골격: 하나의 스트림 위에서 요청을 모두 보낸 뒤 응답을 순서대로 읽는다.
+// (실전에서는 쓰기와 읽기를 별도 스레드로 나눠 동시에 진행하는 경우가 많다)
+grpc::Status StreamAll(example::Example::Stub* stub,
+                       const std::vector<example::Request>& requests,
+                       std::vector<example::Response>* responses) {
+  grpc::ClientContext ctx;
+  auto stream = stub->StreamCall(&ctx);
+  for (const auto& req : requests) {
+    if (!stream->Write(req)) break;  // 스트림이 끊기면 쓰기 중단
+  }
+  stream->WritesDone();               // 더 보낼 요청이 없음을 서버에 알림
   example::Response resp;
-  // 쓰기 스레드/루프: 메시지가 생길 때마다 Write, 끝나면 WritesDone
-  while (HasMoreRequests(&req)) {
-    stream->Write(req);
+  while (stream->Read(&resp)) {       // 서버가 보내는 응답을 순서대로 소비
+    responses->push_back(resp);
   }
-  stream->WritesDone();
-  // 읽기 루프: 서버가 보내는 응답을 순서대로 소비
-  while (stream->Read(&resp)) {
-    HandleResponse(resp);
-  }
-  return stream->Finish();
+  return stream->Finish();            // 최종 상태(성공/오류 코드)
 }
 ```
 
@@ -166,7 +190,7 @@ grpc::Status ExampleClient::StreamCall(grpc::ClientContext* ctx) {
 
 gRPC의 기본 직렬화는 Protocol Buffers이며, 포맷 자체의 인코딩 비용과 다른 zero-copy 포맷과의 비교는 [06장](/post/network-optimization/serialization-performance-protobuf-flatbuffers-capnproto/)·[07장](/post/network-optimization/zero-copy-serialization-flatbuffers-capnproto/)에서 다뤘습니다. 이 장에서 짚을 부분은 gRPC 계층에서 직렬화 비용을 줄이는 두 가지 손잡이입니다. 첫째, 이미 직렬화된 바이트를 다시 파싱하지 않고 그대로 전달해야 하는 프록시·게이트웨이 같은 위치에서는 C++의 `grpc::GenericStub`처럼 메시지를 원시 바이트 버퍼로 다루는 API를 쓰면 Protocol Buffers 파싱·재직렬화를 아예 생략할 수 있습니다. 둘째, gRPC는 메시지 단위 압축(`identity`, `gzip` 등)을 지원하고 호출마다 켜고 끌 수 있는데, 압축은 CPU를 대역폭과 맞바꾸는 거래이므로 무조건 켜는 것이 이득은 아닙니다.
 
-메시지가 1KB 미만으로 작고 호출 빈도가 높으면, 압축 알고리즘을 돌리는 CPU 비용이 줄어드는 바이트 수보다 커서 오히려 손해를 볼 수 있습니다. 반대로 페이로드가 크고 네트워크 대역폭이 병목이라면 압축이 확실히 이득입니다. gRPC 공식 문서도 요청과 응답을 비대칭으로 압축할 수 있다고 설명하며([grpc.io: Compression](https://grpc.io/docs/guides/compression/)), 이 선택은 호출 단위로 조정 가능합니다. 압축 알고리즘 자체의 CPU-대역폭 트레이드오프를 자세히 계산하는 방법은 [21장](/post/network-optimization/network-compression-lz4-zstd-snappy-tradeoffs/)에서 다룹니다 — 이 장에서는 "gRPC 압축은 메시지 단위 스위치이며 작은 메시지에는 기본적으로 끄고 시작한다"는 원칙만 기억하면 됩니다.
+메시지가 작고 호출 빈도가 높으면, 압축 알고리즘을 돌리는 CPU 비용이 줄어드는 바이트 수보다 커서 오히려 손해를 볼 수 있습니다. 반대로 페이로드가 크고 네트워크 대역폭이 병목이라면 압축이 확실히 이득입니다. gRPC 공식 문서도 요청과 응답을 비대칭으로 압축할 수 있다고 설명하며([grpc.io: Compression](https://grpc.io/docs/guides/compression/)), 이 선택은 호출 단위로 조정 가능합니다. 압축 알고리즘 자체의 CPU-대역폭 트레이드오프를 자세히 계산하는 방법은 [21장](/post/network-optimization/network-compression-lz4-zstd-snappy-tradeoffs/)에서 다룹니다 — 이 장에서는 "gRPC 압축은 메시지 단위 스위치이며 작은 메시지에는 기본적으로 끄고 시작한다"는 원칙만 기억하면 됩니다.
 
 이런 변경의 효과는 실제로 부하를 걸어 측정해야 확인할 수 있습니다. gRPC 전용 부하 테스트 도구인 `ghz`를 쓰면 `.proto` 정의만으로 별도 클라이언트 코드 없이 지연시간 분포(p50/p95/p99)와 처리량을 측정할 수 있습니다.
 
@@ -184,11 +208,11 @@ ghz --insecure \
 
 ## 흔한 오개념
 
-<strong>"스트리밍이 항상 unary보다 빠르다"</strong>는 위에서 다뤘듯 언어 구현과 로드밸런싱 요구사항에 따라 반대일 수 있습니다. 반복 요청-응답이 몇 건 안 되거나 로드밸런싱이 중요하면 unary를 유지하는 편이 단순하고 안전합니다.
+<strong>"스트리밍이 항상 unary보다 빠르다"</strong>는 앞의 스트리밍 절에서 본 것처럼 언어 구현과 로드밸런싱 요구에 따라 반대일 수 있습니다.
 
-<strong>"채널 하나면 동시성이 무한히 늘어난다"</strong>도 틀렸습니다. 서브채널 하나가 감당하는 HTTP/2 연결의 동시 스트림 수는 서버가 광고하는 `SETTINGS_MAX_CONCURRENT_STREAMS`(통상 100 안팎)로 제한되며, 이를 넘는 동시 RPC는 채널 풀이나 다중 연결 없이는 대기열에 쌓입니다.
+<strong>"채널 풀만 만들면 부하도 고르게 분산된다"</strong>는 것은 별개의 문제입니다. 채널 풀은 연결 수를 늘려 스트림 한도를 우회할 뿐이고, 각 채널이 백엔드를 어떻게 고르는지는 로드밸런싱 정책이 정합니다. gRPC의 기본 정책인 `pick_first`는 이름 해석 결과 중 첫 번째로 연결되는 주소 하나에 모든 RPC를 보내므로, 풀의 채널들이 모두 같은 백엔드에 붙어 버릴 수 있습니다. 여러 백엔드로 고르게 나누려면 서비스 설정으로 `round_robin` 같은 정책을 지정하거나, 앞단의 L7 프록시가 RPC 단위로 분산하도록 해야 합니다.
 
-<strong>"압축을 켜면 항상 이득"</strong>이라는 가정도 메시지 크기를 무시합니다. 작은 메시지가 높은 빈도로 오가는 워크로드에서는 압축의 CPU 비용이 절감된 대역폭보다 클 수 있으므로, 메시지 크기 분포를 먼저 확인한 뒤 압축 여부를 정합니다.
+<strong>"keepalive 주기는 짧을수록 연결이 안전하다"</strong>도 오해입니다. [gRPC keepalive 가이드](https://grpc.io/docs/guides/keepalive/)에 따르면 서버는 받아들일 핑 간격을 스스로 정하며(C-core 기본 `GRPC_ARG_HTTP2_MIN_RECV_PING_INTERVAL_WITHOUT_DATA_MS` 5분), 클라이언트가 그보다 자주 핑을 보내면 서버가 `too_many_pings` 디버그 데이터를 담은 GOAWAY로 연결을 끊습니다. 클라이언트 keepalive 값은 서비스 소유자와 합의한 서버 설정 범위 안에서 정해야 하며, 짧게 잡은 keepalive가 오히려 연결 끊김의 원인이 될 수 있습니다.
 
 ## 판단 기준
 
@@ -197,16 +221,18 @@ ghz --insecure \
 | 같은 대상으로 반복 RPC 호출 | 채널·스텁을 프로세스 생애주기 동안 재사용 | 호출마다 새 채널 생성 |
 | 단발성 요청-응답, 로드밸런싱 중요 | Unary RPC | 불필요한 스트리밍 도입 |
 | 장기 연결에서 다량의 순차 메시지(로그·시세·텔레메트리) | Server/Client/Bidi-streaming | 매 메시지마다 unary 반복 호출 |
-| 동시 RPC 수가 스트림 한도(통상 100)에 근접 | 채널 풀 또는 연결 스케일링(A105, 구현 정의) | 단일 채널에 무제한 대기 허용 |
-| 메시지가 작고(≲1KB) 빈도가 높음 | 압축 비활성(identity) | 기본값이라는 이유로 gzip 무조건 활성화 |
+| 동시 RPC 수가 서버가 광고한 스트림 한도에 근접 | 채널 풀 또는 연결 스케일링(A105, 구현 정의) | 단일 채널에 무제한 대기 허용 |
+| 메시지가 작고 빈도가 높음(임계 크기는 자체 측정으로 결정) | 압축 비활성(identity) | 기본값이라는 이유로 gzip 무조건 활성화 |
 | 페이로드가 크고 대역폭이 병목 | gzip 등 메시지 압축 활성화 | 압축 없이 대역폭 낭비 |
 | 프록시·게이트웨이에서 페이로드 재해석 불필요 | GenericStub로 원시 바이트 전달 | 매번 파싱·재직렬화 |
 
 ## 비판적 시각: 한계와 트레이드오프
 
-스트리밍 RPC는 연결을 특정 서브채널에 고정시키므로, 그 서브채널이 가리키는 백엔드가 느려지거나 재시작되면 스트림 전체가 영향을 받고 재시도 로직도 unary보다 훨씬 복잡해집니다. 이는 gRPC만의 문제가 아니라 HTTP/2가 하나의 TCP 연결 위에서 여러 스트림을 다중화하는 구조 자체에서 오는 head-of-line blocking과 맞닿아 있으며, 이 문제를 전송 계층에서 해결하려는 시도가 [16장](/post/network-optimization/quic-protocol-0rtt-udp-transport/)의 QUIC입니다. 채널 풀링이나 연결 스케일링으로 스트림 한도를 우회하는 접근도 은총알은 아닙니다 — 채널을 여러 개로 쪼개면 그만큼 로드밸런서·서비스 디스커버리·헬스체크 로직이 복잡해지고, A105 같은 자동 연결 스케일링은 이 글 기준으로 아직 실험적 플래그 뒤에 있어 프로덕션 도입 전에 사용 중인 언어 구현체에서 지원 여부와 기본 활성화 시점을 직접 확인해야 합니다. 마지막으로, Protocol Buffers 기반 코드 생성은 스키마 진화 규율을 강제하지만 다국어 인터옵에서 필드 태그 충돌이나 예약어 처리처럼 생성 코드 특유의 함정을 만들기도 하므로, 이 부분은 프로토콜 설계를 다루는 [09장](/post/network-optimization/low-latency-binary-protocol-design-principles/)의 원칙과 함께 관리하는 편이 안전합니다.
+스트리밍 RPC는 연결을 특정 서브채널에 고정시키므로, 그 서브채널이 가리키는 백엔드가 느려지거나 재시작되면 스트림 전체가 영향을 받고 재시도 로직도 unary보다 훨씬 복잡해집니다. 이는 gRPC만의 문제가 아니라 HTTP/2가 하나의 TCP 연결 위에서 여러 스트림을 다중화하는 구조 자체에서 오는 head-of-line blocking과 맞닿아 있으며, 이 문제를 전송 계층에서 해결하려는 시도가 [16장](/post/network-optimization/quic-protocol-0rtt-udp-transport/)의 QUIC입니다. 채널 풀링이나 연결 스케일링으로 스트림 한도를 우회하는 접근도 은총알은 아닙니다 — 채널을 여러 개로 쪼개면 그만큼 로드밸런서·서비스 디스커버리·헬스체크 로직이 복잡해지고, A105 같은 자동 연결 스케일링도 앞서 본 대로 아직 실험 단계입니다. 마지막으로, Protocol Buffers 기반 코드 생성은 스키마 진화 규율을 강제하지만 다국어 인터옵에서 필드 태그 충돌이나 예약어 처리처럼 생성 코드 특유의 함정을 만들기도 하므로, 이 부분은 프로토콜 설계를 다루는 [09장](/post/network-optimization/low-latency-binary-protocol-design-principles/)의 원칙과 함께 관리하는 편이 안전합니다.
 
 ## 마무리
+
+gRPC 성능 튜닝은 세 층으로 나눠 보면 정리됩니다. 연결 층에서는 채널·스텁을 재사용하고 스트림 한도에 닿으면 채널 풀이나 연결 스케일링을 쓰며, 호출 층에서는 스트리밍이 로드밸런싱과 단순성을 해치지 않는 경우에만 unary 대신 고르고, 메시지 층에서는 크기 분포를 측정해 압축을 켤지 정합니다. 아래 항목으로 자신의 서비스를 점검해 보세요.
 
 - [ ] 채널·스텁을 요청마다 새로 만드는 대신 프로세스 생애주기 동안 재사용하도록 코드를 점검했다.
 - [ ] RPC 패턴(단발 vs 장기 흐름)에 맞춰 unary와 스트리밍 모드 중 하나를 근거를 갖고 선택했다.

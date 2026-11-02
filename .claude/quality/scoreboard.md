@@ -398,27 +398,27 @@
 | content/collection/optimization-09-io-network/16-storage-stack-customization/index.md | 91.9 | 2026-10-23 | 1 | 통과 | 1.3 | fb4e27c | 경미: 1(L103 매니지드 서비스는 2단계부터 불가 — '3단계 이하' 정정; L63 락 경합 감소는 CPU별 소프트웨어 스테이징 큐 효과) / 2(00 챕터가 배정한 특수 FS를 다루는 문단 없음 — FUSE vs 커널 FS·커스텀 FS 리스크 추가 필요) / 6(Mermaid SPDK 점선이 커널 드라이버 노드로 감) |
 | content/collection/optimization-09-io-network/17-logging-performance-strategy/index.md | 95.4 | 2026-10-23 | 1 | 통과 | 1.3 | e37881f | 경미: 1(L66 '1983'은 man7 syslog(3)에 없음, Log4j AsyncAppender·spdlog 연도 출처 없음) / 4(크래시 유실·레벨 필터링 재진술 반복) |
 | content/collection/optimization-10-network/00-introduction/index.md | 92.2 | 2026-07-25 | 1 | 통과 | 1.0 | 08ba5df | 없음(경미: description 118자로 하한 근접, 범위/경계 리스트 문단 비중 29%, WebTransport Baseline 기준 명시 여지) |
-| content/collection/optimization-10-network/01-network-latency-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/02-network-latency-structure/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/03-socket-options-tuning/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/04-tcp-performance-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/05-udp-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/06-serialization-performance-comparison/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/07-zero-copy-serialization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/08-next-gen-zero-copy-formats/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/09-protocol-design/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/10-message-framing/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/11-dpdk-advanced/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/12-xdp-ebpf-network-advanced/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/13-rdma-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/14-ultra-ethernet-consortium/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/15-grpc-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/16-quic-protocol/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/17-tls-ssl-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/18-connection-pooling/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/19-websocket-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/20-http2-http3/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/21-network-compression-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/01-network-latency-intuition/index.md | 98.5 | 2026-10-20 | 1 | 통과 | 1.3 | 2c7f279 | 없음(경미: 수준별 경로 표 L59–61 범위 물결표 → en dash 필요) |
+| content/collection/optimization-10-network/02-network-latency-structure/index.md | 97.3 | 2026-10-20 | 2 | 통과 | 1.3 | 124f51f | 없음(경미: L81 10–400Gbps 전송 지연 범위가 '수백 ns–수 µs'로 표기됨 → 1500B 기준 약 30ns–1.2µs로 정정 필요) |
+| content/collection/optimization-10-network/03-socket-options-tuning/index.md | 100 | 2026-10-20 | 1 | 통과 | 1.3 | e010e70 | 없음 |
+| content/collection/optimization-10-network/04-tcp-performance-optimization/index.md | 95.8 | 2026-10-20 | 1 | 통과 | 1.3 | 5890506 | 없음(경미: set_congestion.c에 netinet/in.h include 누락으로 IPPROTO_TCP 미선언 가능, L293 BBRv3 신기능 귀속(ECN·손실 대응은 v2 도입)을 v2 계보로 정정 필요) |
+| content/collection/optimization-10-network/05-udp-optimization/index.md | 100 | 2026-10-20 | 1 | 통과 | 1.3 | 2a7a37e | 없음 |
+| content/collection/optimization-10-network/06-serialization-performance-comparison/index.md | 96.6 | 2026-10-20 | 1 | 통과 | 1.3 | 104d427 | 없음(경미: 마무리 체크리스트 앞 요약 문단 부재(L324), 스키마·코드 블록 도입 문단 1문장(L143·L157·L178·L194) → 2문장 이상으로 보강) |
+| content/collection/optimization-10-network/07-zero-copy-serialization/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | d2091f6 | 없음(경미: L166 '이 트랙의 커널 바이패스·io_uring 챕터'가 실재하지 않음 → 11장 DPDK·12장 XDP 링크로 교체 필요) |
+| content/collection/optimization-10-network/08-next-gen-zero-copy-formats/index.md | 97.3 | 2026-10-21 | 2 | 통과 | 1.3 | 5bc430f | 없음(경미: L71 Flat 추가 비용 원인을 '앞선 필드 크기로 위치 계산'이 아니라 '2바이트 헤더 확인'으로 정정, 위치 계산은 삭제 필드 타입 보존 이유로 분리) |
+| content/collection/optimization-10-network/09-protocol-design/index.md | 97.6 | 2026-10-21 | 1 | 통과 | 1.3 | b9040a0 | 없음(경미: Mermaid 흐름이 type 분기 전에 blockLength 건너뛰기를 두고 TLV를 핸들러와 병렬로 그림 → magic·version·type·핸들러·blockLength 끝·TLV 순으로 재배치, OS(운영체제) 태그 본문 근거 없음) |
+| content/collection/optimization-10-network/10-message-framing/index.md | 95.8 | 2026-10-21 | 1 | 통과 | 1.3 | b395eb4 | 없음(경미: L104 SBE 원문 'may be desirable'을 '필요'로 과장·이유 왜곡 → 시작점 오류·손상 대비 권장으로 정정하고 타입별 고정 레이아웃과 균일 fixed-size 구분, consume_delimited 빈 버퍼 memchr(nullptr) UB → buf.empty() 가드, L245 미측정 '노이즈 범위 비슷' 단정 완화) |
+| content/collection/optimization-10-network/11-dpdk-advanced/index.md | 95.8 | 2026-10-21 | 2 | 통과 | 1.3 | 8ed981c | 없음(경미: L182 SmartNIC 정의가 DPU와 섞임(ConnectX는 Arm 코어·OS 없음) → ASIC/FPGA SmartNIC과 DPU 분리, L71·poll_worker가 mempool-RX 큐 연결(rte_eth_rx_queue_setup에 socket_id·pool 전달)을 보여주지 않음) |
+| content/collection/optimization-10-network/12-xdp-ebpf-network-advanced/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | 7e458a5 | 없음(경미: L153 'io_uring ZC RX는 여기에 더해'가 XSK zero-copy 구현을 전제로 읽힘 → XSK와 별개로 큐 관리·page pool memory provider 지원 필요로 정정) |
+| content/collection/optimization-10-network/13-rdma-fundamentals/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | c0c391f | 없음(경미: L246 ib_write_bw 출력 예시 #iterations 1000이 기본값 5000(DEF_ITERS_WB)과 불일치 → 5000으로 고치거나 명령에 -n 1000 추가) |
+| content/collection/optimization-10-network/14-ultra-ethernet-consortium/index.md | 100 | 2026-10-21 | 2 | 통과 | 1.3 | 54c143a | 없음 |
+| content/collection/optimization-10-network/15-grpc-optimization/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | ae00959 | 없음(경미: L225 '기본값이라는 이유로 gzip 활성화'가 gzip 기본값으로 읽힘(실제 기본 무압축), L231 스트림의 백엔드 고정을 TCP HoL·QUIC과 인과 연결 → 두 문제 분리) |
+| content/collection/optimization-10-network/16-quic-protocol/index.md | 95.8 | 2026-10-21 | 1 | 통과 | 1.3 | 713fb41 | 없음(경미: L117 C 주석이 SSL_write_early_data 실패를 서버 0-RTT 거부로 해석 → SSL_get_error 판별·핸드셰이크 후 SSL_get_early_data_status 확인으로 정정, L146 GRO를 NIC 하드웨어 오프로드로 서술(커널 소프트웨어 경로)) |
+| content/collection/optimization-10-network/17-tls-ssl-optimization/index.md | 94.3 | 2026-10-23 | 1 | 통과 | 1.3 | 2c60d79 | 없음(경미: s_time -reuse에 -www 없으면 TLS 1.3 티켓 미수신으로 재개 안 될 수 있음, L164 '코드 포인트 조정 가능'이 RFC 10024 확정 서술과 모순, lastmod 미갱신) |
+| content/collection/optimization-10-network/18-connection-pooling/index.md | 93.4 | 2026-10-23 | 0 | 통과 | 1.3 | bb5a064 | 없음(경미: HikariCP 2012→2013, slow-start-after-idle은 RTO마다 cwnd 반감, RFC·nginx 인라인 인용 blockquote화, MSG_PEEK 0바이트→1바이트, connect 실패 시 fd 누수, Mermaid 새 연결이 'handshake 생략' 노드 통과·폐기 후 후보 재확인 누락, 표 범위 물결표, C·Documentation 태그) |
+| content/collection/optimization-10-network/19-websocket-optimization/index.md | 93.9 | 2026-10-23 | 1 | 통과 | 1.3 | 7d50fe4 | 없음(경미: L97 오버헤드 75%의 분모 모호(페이로드 대비 75%, 총 14B 중 43%), '루프백 소켓 쌍'은 socketpair(AF_UNIX), 벤치 write 반환값 미검사·flush_fn_ 재진입 데드락 제약 미명시, 마무리 재진술) |
+| content/collection/optimization-10-network/20-http2-http3/index.md | 93.9 | 2026-10-23 | 1 | 통과 | 1.3 | def938b | 없음(경미: Priority 헤더 예시가 RFC 9218 예시와 반대(CSS u=0, 점진 이미지 u=5,i)이고 'urgency=3 기본값에 가까운'이 기본값 3과 모순, 반복 서술(L134–136·WebTransport 경고), curl 스크립트 -s가 h3 미지원 호스트 실패를 숨김) |
+| content/collection/optimization-10-network/21-network-compression-strategy/index.md | 92.4 | 2026-10-23 | 1 | 통과 | 1.3 | 06c77ca | 없음(경미: 압축 속도 배율 '약 5–6배'는 계산상 LZ4 6.4배·Snappy 5.4배, 마무리 문단이 앞 절 재진술, Memory 태그 근거 없음, 딕셔너리 예제에 createCDict/freeCDict 미포함) |
 | content/collection/optimization-11-design-decisions/00-introduction/index.md | 91.3 | 2026-07-25 | 2 | 통과 | 1.0 | d7d5a55 | 없음(경미: "범위와 경계" Mermaid 단독 의존, Phase별 궤적과 커리큘럼 표 일부 중복) |
 | content/collection/optimization-11-design-decisions/01-performance-terminology-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-11-design-decisions/02-when-to-optimize/index.md | - | - | 0 | 미채점 | - | - | - |

@@ -27,10 +27,8 @@ tags:
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Documentation(문서화)
   - Guide(가이드)
   - Reference(참고)
-  - Case-Study
   - Implementation(구현)
   - TLS
   - SSL
@@ -59,9 +57,9 @@ tags:
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
-| **중급자** | "TLS 핸드셰이크의 변천" ~ "TLS 1.3 핸드셰이크 메커니즘" | 2-RTT에서 1-RTT로 줄어든 구조와 이유 이해 |
+| **중급자** | "TLS 핸드셰이크의 변천" – "TLS 1.3 핸드셰이크 메커니즘" | 2-RTT에서 1-RTT로 줄어든 구조와 이유 이해 |
 | **중급–심화** | "세션 재개와 0-RTT" | PSK 재개·0-RTT가 지연을 줄이는 원리와 재전송 위험 이해 |
-| **전문가** | "PQC 하이브리드 키교환" ~ "비판적 시각" | PQC 도입이 지연·패킷 크기에 미치는 영향을 판단하고 도입 시점 결정 |
+| **전문가** | "PQC 하이브리드 키교환이 핸드셰이크 지연에 미치는 영향" – "비판적 시각: 한계와 트레이드오프" | PQC 도입이 지연·패킷 크기에 미치는 영향을 판단하고 도입 시점 결정 |
 
 ---
 
@@ -81,12 +79,12 @@ sequenceDiagram
   participant Server
   Note over Client,Server: 최초 연결 - 풀 핸드셰이크(1-RTT)
   Client->>Server: ClientHello + key_share
-  Server->>Client: ServerHello + key_share + EncryptedExtensions + Certificate + Finished
+  Server->>Client: ServerHello + key_share + EncryptedExtensions + Certificate + CertificateVerify + Finished
   Client->>Server: Finished + Application Data
   Note over Client,Server: 재접속 - PSK 재개 + 0-RTT
   Client->>Server: "ClientHello + PSK + early_data(Application Data)"
   Server->>Client: ServerHello + EncryptedExtensions + Finished
-  Client->>Server: Finished
+  Client->>Server: EndOfEarlyData + Finished
 ```
 
 핸드셰이크가 실제로 몇 개의 메시지와 바이트로 구성되는지는 mermaid 그림만으로는 알 수 없고, `openssl s_client`나 패킷 캡처로 직접 확인하는 것이 가장 정확합니다. 아래는 TLS 1.3 서버에 접속했을 때 나오는 협상 결과 출력 예시입니다(OpenSSL 3.x, 실제 필드 값은 서버·라이브러리 버전에 따라 달라집니다).
@@ -120,36 +118,36 @@ Negotiated TLS1.3 group: X25519
 # 신규 핸드셰이크만 반복 (매번 풀 핸드셰이크)
 openssl s_time -connect example.com:443 -tls1_3 -new -time 10
 
-# 세션 재개 반복 (동일 세션 티켓으로 handshake 생략)
+# 세션 재개 반복 (PSK로 재개해 인증서 전송·검증과 서명 연산을 생략)
 openssl s_time -connect example.com:443 -tls1_3 -reuse -time 10
 ```
 
-두 명령의 `connections/user sec` 값을 비교하면 재개가 줄여 주는 핸드셰이크 비용을 대략 가늠할 수 있습니다. 다만 이 수치는 서버의 CPU 성능·비대칭키 연산 가속(AES-NI, ECDSA 하드웨어 지원) 여부에 따라 크게 달라지므로 절대값이 아니라 상대 비교 용도로만 사용해야 합니다.
+두 명령의 `connections/user sec` 값을 비교하면 재개가 줄여 주는 핸드셰이크 비용을 대략 가늠할 수 있습니다. 다만 이 수치는 서버의 CPU 성능, 대칭키(AES-NI)·비대칭키(ECDSA 등) 연산 가속 여부에 따라 크게 달라지므로 절대값이 아니라 상대 비교 용도로만 사용해야 합니다.
 
 ## PQC 하이브리드 키교환이 핸드셰이크 지연에 미치는 영향
 
-2024년 8월 NIST가 [FIPS 203](https://csrc.nist.gov/pubs/fips/203/final)으로 표준화한 **ML-KEM(Module-Lattice-Based Key-Encapsulation Mechanism)** 은 양자 컴퓨터로도 깨기 어렵다고 여겨지는 격자 기반 키 캡슐화 알고리즘입니다. TLS는 이를 단독으로 쓰지 않고 기존 타원곡선 키 교환과 나란히 계산해 두 결과를 합치는 **하이브리드** 방식을 채택했는데, 이는 ML-KEM에서 예상치 못한 취약점이 발견되더라도 X25519 같은 검증된 고전 알고리즘이 여전히 보안을 지탱하도록 하기 위해서입니다. IETF의 [draft-ietf-tls-ecdhe-mlkem](https://datatracker.ietf.org/doc/draft-ietf-tls-ecdhe-mlkem/) 초안(RFC Editor 처리 중, IANA 코드 포인트 4588)이 정의하는 **X25519MLKEM768** 그룹이 사실상의 표준 하이브리드로 자리 잡았습니다.
+2024년 8월 NIST가 [FIPS 203](https://csrc.nist.gov/pubs/fips/203/final)으로 표준화한 **ML-KEM(Module-Lattice-Based Key-Encapsulation Mechanism)** 은 양자 컴퓨터로도 깨기 어렵다고 여겨지는 격자 기반 키 캡슐화 알고리즘입니다. TLS는 이를 단독으로 쓰지 않고 기존 타원곡선 키 교환과 나란히 계산해 두 결과를 합치는 **하이브리드** 방식을 채택했는데, 이는 ML-KEM에서 예상치 못한 취약점이 발견되더라도 X25519 같은 검증된 고전 알고리즘이 여전히 보안을 지탱하도록 하기 위해서입니다. 2026년 8월 [RFC 10024](https://www.rfc-editor.org/rfc/rfc10024.html)(구 draft-ietf-tls-ecdhe-mlkem, IANA 코드 포인트 4588)로 발행된 IETF 표준이 정의하는 **X25519MLKEM768** 그룹이 사실상의 표준 하이브리드로 자리 잡았습니다.
 
-문제는 이 하이브리드가 핸드셰이크 메시지 크기를 눈에 띄게 키운다는 점입니다. 위 초안에 따르면 X25519MLKEM768의 클라이언트 key_share는 1216바이트(ML-KEM 부분 1184바이트 + X25519 32바이트), 서버 key_share는 1120바이트(ML-KEM 부분 1088바이트 + X25519 32바이트)에 달합니다. X25519 단독 key_share가 32바이트에 불과했던 것과 비교하면 `ClientHello` 하나의 크기가 대략 300바이트대에서 1000바이트대로 늘어나는 셈입니다. 이 정도 크기는 TCP 초기 혼잡 윈도우(대부분의 스택에서 IW10, 약 14600바이트) 안에는 들어오지만, 여러 TLS 확장이 함께 실리는 실제 `ClientHello`에서는 MTU를 넘어 패킷이 분할되거나, 미들박스가 예상보다 큰 `ClientHello`를 비정상으로 판단해 차단하는 사례도 보고되어 있습니다. Cloudflare·Chrome·Firefox·Safari 등 주요 사업자는 2024–2026년 사이 X25519MLKEM768을 기본 또는 옵트인으로 지원하기 시작했지만([Cloudflare PQC 지원 현황](https://developers.cloudflare.com/ssl/post-quantum-cryptography/pqc-support/)), 지원 버전과 기본 활성화 여부는 클라이언트·서버 조합마다 다르므로 도입 전 실측이 필요합니다.
+문제는 이 하이브리드가 핸드셰이크 메시지 크기를 눈에 띄게 키운다는 점입니다. RFC 10024에 따르면 X25519MLKEM768의 클라이언트 key_share는 1216바이트(ML-KEM 부분 1184바이트 + X25519 32바이트), 서버 key_share는 1120바이트(ML-KEM 부분 1088바이트 + X25519 32바이트)에 달합니다. X25519 단독 key_share가 32바이트에 불과했던 것과 비교하면 `ClientHello` 하나의 크기가 대략 300바이트대에서 1500바이트 안팎으로 늘어나는 셈입니다. 이 정도 크기는 TCP 초기 혼잡 윈도우(대부분의 스택에서 IW10, 약 14600바이트) 안에는 들어오지만, 여러 TLS 확장이 함께 실리는 실제 `ClientHello`는 MTU를 넘어 여러 TCP 세그먼트로 나뉘기 쉽고, 이렇게 나뉜 `ClientHello`를 한 번의 읽기로 처리한다고 가정한 일부 서버·장비가 연결을 끊는 버그가 PQC 전환 과정에서 실제로 드러났습니다([tldr.fail](https://tldr.fail/)). Cloudflare·Chrome·Firefox·Safari 등 주요 사업자는 2024–2026년 사이 X25519MLKEM768을 기본 또는 옵트인으로 지원하기 시작했지만([Cloudflare PQC 지원 현황](https://developers.cloudflare.com/ssl/post-quantum-cryptography/pqc-support/)), 지원 버전과 기본 활성화 여부는 클라이언트·서버 조합마다 다르므로 도입 전 실측이 필요합니다.
 
 ```text
-# tcpdump로 관측한 ClientHello 크기 비교 예시(환경에 따라 실제 값은 다름)
-# 고전 X25519만 사용
-IP client.54321 > server.443: Flags [P.], length 296  (TLS ClientHello)
+# 개념 예시: ClientHello가 실린 TCP 페이로드 길이(값은 확장 구성에 따라 달라짐)
+# 고전 X25519 key_share만 사용
+IP client.54321 > server.443: Flags [P.], length 296   (TLS ClientHello)
 
-# X25519MLKEM768 하이브리드 포함
-IP client.54321 > server.443: Flags [P.], length 1288 (TLS ClientHello)
+# X25519MLKEM768 key_share 추가(1216바이트 + 그룹·길이 헤더 4바이트가 늘어남)
+IP client.54321 > server.443: Flags [P.], length 1516  (TLS ClientHello)
 ```
 
-정리하면 PQC 하이브리드가 핸드셰이크 지연에 미치는 영향은 크게 두 갈래입니다. 하나는 ML-KEM 캡슐화·복호화 연산 자체의 **CPU 비용**이고, 다른 하나는 커진 key_share가 만드는 **패킷 크기·프래그멘테이션 비용**입니다. 최신 서버 하드웨어에서는 ML-KEM 연산 자체는 마이크로초 단위로 끝나는 경우가 많아 CPU 비용의 절대적 영향은 제한적이라고 보고되지만, 초당 수만 건의 신규 연결을 처리하는 로드밸런서·CDN 엣지에서는 이 비용이 누적되어 무시할 수 없는 수준이 됩니다. 반면 패킷 크기 증가는 미들박스 호환성과 손실이 잦은 네트워크에서의 재전송 확률에 영향을 주므로, 순수 CPU 벤치마크만으로 PQC 도입 영향을 판단하면 놓치는 부분이 생깁니다.
+정리하면 PQC 하이브리드가 핸드셰이크 지연에 미치는 영향은 크게 두 갈래입니다. 하나는 ML-KEM 캡슐화·복호화 연산 자체의 **CPU 비용**이고, 다른 하나는 커진 key_share가 만드는 **패킷 크기·프래그멘테이션 비용**입니다. 연산 비용은 구현과 CPU에 따라 다르므로 대상 서버에서 키 교환 연산을 직접 측정해 봐야 하며, 연결당 비용이 작더라도 초당 수만 건의 신규 연결을 처리하는 로드밸런서·CDN 엣지에서는 누적 비용을 별도로 따져야 합니다. 반면 패킷 크기 증가는 미들박스 호환성과 손실이 잦은 네트워크에서의 재전송 확률에 영향을 주므로, 순수 CPU 벤치마크만으로 PQC 도입 영향을 판단하면 놓치는 부분이 생깁니다.
 
 ## 흔한 오개념
 
-<strong>"0-RTT는 TLS로 암호화되어 있으니 안전하다"</strong>는 틀린 생각입니다. 암호화는 기밀성과 무결성을 보장하지만, 공격자가 암호화된 첫 패킷 전체를 그대로 복사해 재전송하는 것을 막지는 못합니다. RFC 8446이 명시하듯 0-RTT 데이터는 연결 간 재전송에 대한 보장이 없으므로, 안전은 TLS 계층이 아니라 애플리케이션이 idempotent 설계와 재전송 탐지로 책임져야 합니다.
+<strong>"single-use ticket을 쓰면 0-RTT 재전송 문제가 끝난다"</strong>도 지나친 기대입니다. 티켓을 한 번만 받아들이는 서버 측 장치는 같은 티켓으로 들어온 두 번째 0-RTT를 거부하게 해 주지만, 그러려면 모든 서버 인스턴스가 사용된 티켓 목록을 공유해야 하고, 공유 저장소가 일시적으로 응답하지 못할 때 0-RTT를 거부할지 받아들일지도 정해야 합니다. 그래서 실무에서는 티켓 기반 차단을 쓰더라도 0-RTT 허용 범위를 idempotent 요청으로 좁히는 정책을 함께 유지합니다. QUIC에서 0-RTT가 다른 방식으로 실리는 점은 [16장](/post/network-optimization/quic-protocol-0rtt-udp-transport/)을 참고하세요.
 
 <strong>"PSK 기반 세션 재개를 쓰면 PQC 하이브리드 계산 비용을 완전히 피할 수 있다"</strong>도 흔한 오해입니다. forward secrecy를 유지하는 `psk_dhe_ke` 모드에서는 재개 시에도 매번 새로운 (하이브리드) 키 교환을 수행하므로 ML-KEM 캡슐화 비용이 그대로 재발생합니다. 이 비용을 정말로 건너뛰려면 forward secrecy를 포기하는 `psk_ke` 모드를 써야 하는데, 이는 과거 세션 하나가 노출되면 그 PSK로 이어진 이후 재개 세션들까지 위험해질 수 있다는 대가를 동반합니다.
 
-<strong>"PQC 하이브리드 오버헤드는 CPU 비용이 지배적이다"</strong>도 절반만 맞는 이야기입니다. 앞서 본 것처럼 X25519MLKEM768의 key_share 크기는 고전 방식의 30배 이상으로 커지며, 초저지연 환경에서는 이 패킷 크기 증가가 프래그멘테이션·미들박스 차단 형태로 CPU 비용보다 더 크게 지연에 기여하는 경우가 흔합니다. PQC 도입 영향을 판단할 때는 CPU 프로파일링과 함께 실제 패킷 캡처로 핸드셰이크 바이트 수를 확인해야 합니다.
+<strong>"PQC 하이브리드 오버헤드는 CPU 비용이 지배적이다"</strong>도 절반만 맞는 이야기입니다. 앞서 본 것처럼 X25519MLKEM768의 key_share 크기는 고전 방식의 30배 이상으로 커지며, 초저지연 환경에서는 이 패킷 크기 증가가 세그먼트 분할과 그로 인한 호환성 문제를 통해 CPU 비용 못지않게 지연과 실패율에 영향을 줄 수 있습니다. PQC 도입 영향을 판단할 때는 CPU 프로파일링과 함께 실제 패킷 캡처로 핸드셰이크 바이트 수를 확인해야 합니다.
 
 ## 판단 기준
 
@@ -159,15 +157,17 @@ IP client.54321 > server.443: Flags [P.], length 1288 (TLS ClientHello)
 | 재접속이 잦은 모바일·마이크로서비스 클라이언트 | 세션 티켓 재개(`psk_dhe_ke`) | 매번 풀 핸드셰이크만 고집 |
 | 장기 보관 데이터의 harvest-now-decrypt-later 위협이 있는 서비스 | X25519MLKEM768 하이브리드 우선 도입 | PQC 도입을 무기한 보류 |
 | 손실 많은 네트워크·미들박스 경유 구간 | 실측 후 하이브리드 그룹 선택적 적용 | 검증 없이 전면 강제 활성화 |
-| FIPS 인증이 필수인 규제 환경 | SecP256r1MLKEM768 등 FIPS 승인 조합 확인 | 브라우저 기본값(X25519MLKEM768)을 그대로 가정 |
+| FIPS 인증이 필수인 규제 환경 | 인증된 ML-KEM 구현이 있으면 X25519MLKEM768, 인증된 ECDHE 구현을 기준으로 삼아야 하면 SecP256r1MLKEM768 | 그룹별 FIPS 요건(어느 구성요소의 인증이 필요한지)을 확인하지 않고 선택 |
 
 ## 비판적 시각: 한계와 트레이드오프
 
-PQC 하이브리드 표준은 아직 확정과 변화가 반복되는 단계입니다. Cloudflare가 초기에 배포했던 `X25519Kyber768Draft00`은 최종 표준화 과정에서 `X25519MLKEM768`로 대체되었고, 이후에도 IANA 코드 포인트와 세부 인코딩이 조정될 수 있습니다. 알고리즘 애자일리티(algorithm agility)를 갖추지 않은 채 특정 그룹 하나만 하드코딩하면, 표준이 바뀔 때마다 재배포가 필요해집니다. 또한 FIPS 인증을 요구하는 규제 환경에서는 ML-KEM은 승인되지만 X25519는 미승인이라는 비대칭 때문에 `SecP256r1MLKEM768` 같은 대안을 써야 하는데, 이는 주요 브라우저가 기본으로 협상하는 그룹이 아니어서 별도 설정이 필요합니다.
+PQC 하이브리드 표준은 아직 확정과 변화가 반복되는 단계입니다. Cloudflare가 초기에 배포했던 `X25519Kyber768Draft00`은 최종 표준화 과정에서 `X25519MLKEM768`로 대체되었고, 이후에도 IANA 코드 포인트와 세부 인코딩이 조정될 수 있습니다. 알고리즘 애자일리티(algorithm agility)를 갖추지 않은 채 특정 그룹 하나만 하드코딩하면, 표준이 바뀔 때마다 재배포가 필요해집니다. 또한 FIPS 인증을 요구하는 규제 환경에서는 그룹마다 어느 구성요소의 인증이 필요한지가 다릅니다. [RFC 10024 §5](https://www.rfc-editor.org/rfc/rfc10024.html)에 따르면 SP 800-56Cr2는 HKDF에 넣는 두 공유 비밀 중 첫 번째가 FIPS 승인 방식으로 계산되기를 요구하는데, X25519MLKEM768은 ML-KEM 공유 비밀을 앞에 두므로 인증된 ML-KEM 구현이 필요하고, `SecP256r1MLKEM768`은 ECDHE 공유 비밀을 앞에 두므로 인증된 P-256 구현이 필요합니다. 인증된 ML-KEM 모듈이 아직 없는 환경에서는 브라우저 기본값과 다른 `SecP256r1MLKEM768`을 별도로 설정해야 할 수 있습니다.
 
 0-RTT의 재전송 방지 책임을 애플리케이션에 넘기는 설계도 논쟁의 대상입니다. 분산된 여러 서버 인스턴스가 하나의 재전송 캐시를 공유하지 못하면 로드밸런서 뒤에서 같은 0-RTT 요청이 서로 다른 인스턴스에 각각 도달해 중복 처리될 수 있고, 이를 막으려면 별도의 분산 캐시나 티켓을 특정 인스턴스에 고정하는 라우팅이 필요해 시스템 복잡도가 늘어납니다. 세션 티켓 자체도 탈취되면 유효 기간 동안 재개 공격에 노출되므로, 지연 단축과 티켓 수명·로테이션 주기 사이의 균형은 트래픽 패턴에 맞춰 계속 조정해야 하는 값입니다.
 
 ## 마무리
+
+TLS 1.3은 키 교환을 첫 왕복에 합쳐 풀 핸드셰이크를 1-RTT로 줄였고, PSK 재개와 0-RTT는 재접속 비용을 더 줄이지만 0-RTT는 재전송 위험을 애플리케이션에 넘깁니다. PQC 하이브리드 키 교환은 연산보다 커진 key_share 크기가 먼저 문제가 되기 쉬우므로, 도입 여부와 그룹 선택은 위협 모델·규제 요건·실측 패킷 크기를 함께 보고 정해야 합니다. 아래 항목으로 이해를 점검해 보세요.
 
 - [ ] TLS 1.3 풀 핸드셰이크가 1-RTT로 줄어든 구조와 그 이유를 설명할 수 있다.
 - [ ] PSK 기반 세션 재개에서 `psk_ke`와 `psk_dhe_ke`의 forward secrecy 차이를 구분할 수 있다.

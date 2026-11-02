@@ -16,8 +16,6 @@ tags:
   - Kernel
   - C
   - C++
-  - Memory(메모리)
-  - Concurrency(동시성)
   - IO(Input/Output)
   - Benchmark
   - Latency
@@ -27,7 +25,6 @@ tags:
   - Backend(백엔드)
   - Production
   - Scalability(확장성)
-  - Case-Study
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
@@ -38,9 +35,6 @@ tags:
   - Tutorial(튜토리얼)
   - Implementation(구현)
   - Testing(테스트)
-  - Debugging(디버깅)
-  - Documentation(문서화)
-  - Monitoring(모니터링)
   - 실습
   - UDP
   - Sequence-Number
@@ -68,9 +62,9 @@ tags:
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
-| **초보자** | "UDP의 역사와 설계 철학" ~ "UDP가 빠른 이유" | UDP가 TCP와 구조적으로 다른 지점과 그 대가를 이해 |
+| **초보자** | "UDP의 역사와 설계 철학" – "UDP가 빠른 이유" | UDP가 TCP와 구조적으로 다른 지점과 그 대가를 이해 |
 | **중급자** | "애플리케이션 레벨 신뢰성 레이어 설계" 전체 | 시퀀스 번호·ACK·재전송·순서·FEC로 최소 신뢰성 레이어를 직접 설계 |
-| **전문가** | "커널 배치 API" ~ "비판적 시각" | recvmmsg/GSO 활용과 UDP·TCP·QUIC 중 무엇을 쓸지 판단 |
+| **전문가** | "커널 배치 API" – "비판적 시각" | recvmmsg/GSO 활용과 UDP·TCP·QUIC 중 무엇을 쓸지 판단 |
 
 ---
 
@@ -94,7 +88,7 @@ TCP가 강제로 제공하던 것들 — 순서 보장, 손실 감지, 재전송
 
 ### 시퀀스 번호와 ACK 비트필드
 
-가장 널리 쓰이는 패턴은 각 패킷에 증가하는 **시퀀스 번호**를 붙이고, 응답 패킷에 "최근 수신한 시퀀스 번호"(ack)와 그 이전 패킷들의 수신 여부를 담은 **비트필드**(ack_bits)를 함께 실어 보내는 것이다. 이 패턴은 Glenn Fiedler가 게임 네트워킹을 위해 정리한 [Reliability and Congestion Avoidance over UDP](https://gafferongames.com/post/reliability_ordering_and_congestion_avoidance_over_udp/)에서 널리 알려졌다. ack_bits의 비트 n이 켜져 있으면 `ack - n` 시퀀스 번호의 패킷이 수신됐다는 뜻이며, 32비트 필드 하나로 최근 33개 패킷의 수신 여부를 한 번에 실어 보낼 수 있다. 이 정보를 이후 여러 패킷에 중복으로 실으면(예: 매 패킷에 최근 32개 ack를 반복 포함) ack 패킷 자체가 유실돼도 다음 패킷의 ack로 복구되므로, 연속된 심각한 손실이 아니면 ack 정보가 끊기지 않는다.
+가장 널리 쓰이는 패턴은 각 패킷에 증가하는 **시퀀스 번호**를 붙이고, 응답 패킷에 "최근 수신한 시퀀스 번호"(ack)와 그 이전 패킷들의 수신 여부를 담은 **비트필드**(ack_bits)를 함께 실어 보내는 것이다. 이 패턴은 Glenn Fiedler가 게임 네트워킹을 위해 정리한 [Reliability and Congestion Avoidance over UDP](https://gafferongames.com/post/reliability_ordering_and_congestion_avoidance_over_udp/)에서 널리 알려졌다. ack_bits의 비트 i(0부터 셈)가 켜져 있으면 `ack - 1 - i` 시퀀스 번호의 패킷이 수신됐다는 뜻이다. ack 자체가 한 개를 확인하고 32비트 필드가 그 앞의 32개를 확인하므로, 패킷 하나에 최근 33개 패킷의 수신 여부를 실어 보낼 수 있다. 이 정보를 이후 여러 패킷에 중복으로 실으면(예: 매 패킷에 최근 32개 ack를 반복 포함) ack 패킷 자체가 유실돼도 다음 패킷의 ack로 복구되므로, 연속된 심각한 손실이 아니면 ack 정보가 끊기지 않는다.
 
 ```cpp
 #include <cstdint>
@@ -106,16 +100,16 @@ struct PacketHeader {
   uint32_t ack_bits;    // ack 이전 32개 시퀀스 번호의 수신 비트필드
 };
 
-// bit n이 켜져 있으면 (header.ack - n)이 수신됨을 의미한다.
-// n == 0 이면 header.ack 자신이 수신됐다는 뜻이 되도록 설계했다.
+// ack 자신은 항상 수신된 것이고, bit i가 켜져 있으면 (header.ack - 1 - i)가 수신됨을 의미한다.
 inline bool is_acked(const PacketHeader& header, uint32_t sequence) {
-  uint32_t diff = header.ack - sequence;
-  if (diff >= 32) return false;               // 비트필드 범위 밖: 알 수 없음(재전송 후보)
-  return (header.ack_bits & (1u << diff)) != 0;
+  uint32_t diff = header.ack - sequence;      // 모듈러 뺄셈: wraparound를 넘어도 거리가 맞게 나온다
+  if (diff == 0) return true;                 // ack 자신
+  if (diff - 1 >= 32) return false;           // 비트필드 범위 밖(또는 ack보다 새 번호): 알 수 없음
+  return (header.ack_bits & (1u << (diff - 1))) != 0;
 }
 ```
 
-이 코드에서 `sequence`가 unsigned 정수로 감싸돌기(wraparound) 때문에 뺄셈 비교는 반드시 부호 있는 차이로 처리해야 한다(`int32_t` 캐스팅 후 비교하거나, 감싸돌기 주기 안에서만 유효하다고 가정). 실제 배포 전에는 시퀀스 번호가 `UINT32_MAX`를 넘어 0으로 돌아가는 경계 케이스를 유닛 테스트로 반드시 검증한다.
+시퀀스 번호는 unsigned 정수라 언젠가 `UINT32_MAX`에서 0으로 감싸돈다(wraparound). `is_acked`처럼 "ack에서 몇 칸 떨어졌는가"만 묻는 함수는 unsigned 모듈러 뺄셈으로 충분하지만, "어느 쪽이 더 최신인가"를 판정하는 함수(새로 받은 패킷의 번호가 지금까지의 ack보다 큰지 비교하는 `sequence_greater_than` 같은 함수)는 `int32_t`로 캐스팅한 부호 있는 차이로 비교해야 감싸돌기 직후의 작은 번호를 오래된 패킷으로 오판하지 않는다. 실제 배포 전에는 시퀀스 번호가 `UINT32_MAX`를 넘어 0으로 돌아가는 경계 케이스를 유닛 테스트로 반드시 검증한다.
 
 ### 재전송 전략: 타임아웃과 선택적 재전송
 
@@ -143,13 +137,14 @@ sequenceDiagram
 
 ### 전송 오류 정정(FEC): 재전송을 피하는 대안
 
-재전송은 최소 1 RTT를 추가로 소모하므로, RTT가 크거나(위성·장거리 회선) 재전송 자체가 늦어서 의미가 없는 실시간 스트림에는 맞지 않을 수 있다. <strong>전방 오류 정정(Forward Error Correction, FEC)</strong>은 원본 데이터에 중복 정보(패리티 패킷)를 미리 섞어 보내, 수신 측이 일부 패킷을 잃어도 재전송 없이 복구하게 하는 방식이다. 예를 들어 10개의 데이터 패킷마다 2개의 패리티 패킷을 추가로 보내면, 그 구간에서 최대 2개까지의 손실을 왕복 없이 즉시 복구할 수 있다. 대가는 항상 추가 대역폭(위 예시에서 20%)을 소모한다는 점이며, 실제 손실률이 FEC가 감당할 수 있는 범위를 넘으면 결국 재전송이나 데이터 폐기로 돌아가야 한다. WebRTC의 오디오 트랙 등 실시간 미디어 스택에서 FEC와 재전송을 함께 쓰는 것이 이런 이유다.
+재전송은 최소 1 RTT를 추가로 소모하므로, RTT가 크거나(위성·장거리 회선) 재전송 자체가 늦어서 의미가 없는 실시간 스트림에는 맞지 않을 수 있다. <strong>전방 오류 정정(Forward Error Correction, FEC)</strong>은 원본 데이터에 중복 정보(패리티 패킷)를 미리 섞어 보내, 수신 측이 일부 패킷을 잃어도 재전송 없이 복구하게 하는 방식이다. 예를 들어 10개의 데이터 패킷마다 2개의 패리티 패킷을 추가로 보낼 때, Reed-Solomon 같은 MDS(maximum distance separable) 부호를 쓰면 그 12개 중 어떤 2개를 잃어도 왕복 없이 즉시 복구할 수 있다(단순 XOR 패리티라면 복구 가능한 손실 패턴이 더 제한된다). 대가는 항상 추가 대역폭(위 예시에서 20%)을 소모한다는 점이며, 실제 손실률이 FEC가 감당할 수 있는 범위를 넘으면 결국 재전송이나 데이터 폐기로 돌아가야 한다. [RFC 8854(WebRTC FEC 요구사항)](https://www.rfc-editor.org/rfc/rfc8854)도 같은 트레이드오프를 근거로, 연결 RTT가 지연 예산 안이면 재전송(RTX)을 우선하고 그렇지 않을 때는 관측된 손실을 막을 만큼만 FEC를 보내도록 권고한다.
 
 ## 커널 배치 API: recvmmsg/sendmmsg와 GSO/GRO
 
 시퀀스 번호·ACK·재전송 로직을 다 설계했더라도, 초당 수만–수백만 개의 작은 UDP 데이터그램을 다뤄야 하는 시세 피드나 게임 서버라면 시스템 콜 자체의 오버헤드가 병목이 될 수 있다. Linux는 `sendto()`/`recvfrom()`을 패킷마다 한 번씩 호출하는 대신, 여러 데이터그램을 한 번의 시스템 콜로 보내고 받는 **`sendmmsg(2)`/`recvmmsg(2)`**를 제공한다. [man7.org의 sendmmsg(2) 문서](https://man7.org/linux/man-pages/man2/sendmmsg.2.html)는 이를 "sendmsg(2)의 확장으로, 호출자가 단일 시스템 콜로 여러 메시지를 전송할 수 있게 한다"고 설명한다.
 
 ```c
+#define _GNU_SOURCE  /* glibc에서 sendmmsg와 struct mmsghdr 선언에 필요 */
 #include <sys/socket.h>
 #include <sys/uio.h>
 #include <netinet/in.h>
@@ -170,15 +165,15 @@ int send_batch(int sockfd, char (*bufs)[1400], size_t *lens, unsigned n) {
     msgs[i].msg_hdr.msg_iovlen = 1;
   }
 
-  // 한 번의 시스템 콜로 최대 n개의 데이터그램을 전송한다.
-  // 반환값은 실제로 전송된 메시지 수이며, n보다 작을 수 있다.
-  return sendmmsg(sockfd, msgs, n, 0);
+  // 한 번의 시스템 콜로 최대 BATCH개의 데이터그램을 전송한다(배열 밖을 읽지 않도록 n을 제한).
+  // 반환값은 실제로 전송된 메시지 수이며, 요청한 개수보다 작을 수 있다.
+  return sendmmsg(sockfd, msgs, n < BATCH ? n : BATCH, 0);
 }
 ```
 
 반환값이 요청한 `n`보다 작을 수 있으므로 호출자는 반드시 실제 전송 개수를 확인하고 나머지를 재시도하거나 버려야 하며, 배치 크기(`BATCH`)를 키울수록 시스템 콜은 줄지만 첫 패킷이 큐에 쌓인 채 기다리는 제출 지연(submission latency)이 늘어나는 트레이드오프가 있다.
 
-`sendmmsg`/`recvmmsg`는 패킷 개수에 비례해 절감되는 시스템 콜 오버헤드에 효과가 있는 반면, <strong>UDP GSO(Generic Segmentation Offload)</strong>는 커널 4.18부터 `NETIF_F_GSO_UDP_L4`로 추가되어 애플리케이션이 큰 버퍼 하나를 넘기면 커널(또는 NIC)이 이를 여러 UDP 세그먼트로 쪼개 전송 비용을 줄인다. 수신 측의 UDP GRO(Generic Receive Offload)는 반대로 같은 헤더를 가진 여러 데이터그램을 하나로 묶어 상위 계층에 전달하는데, 정확히 어떤 조합·조건에서 소켓 레벨로 노출되는지는 커널 버전과 드라이버에 따라 달라지는 구현 정의 영역이라 배포 환경에서 직접 확인해야 한다. 이 두 배치 경로(시스템 콜 배치와 세그멘테이션 오프로드)는 함께 쓸 때 상호작용이 있으므로, 실제 이득은 반드시 대상 환경에서 측정해야 한다.
+`sendmmsg`/`recvmmsg`는 패킷 개수에 비례해 절감되는 시스템 콜 오버헤드에 효과가 있는 반면, <strong>UDP GSO(Generic Segmentation Offload)</strong>는 [udp(7)](https://man7.org/linux/man-pages/man7/udp.7.html)에 따르면 Linux 4.18부터 `UDP_SEGMENT` 소켓 옵션으로 켤 수 있으며, 애플리케이션이 여러 데이터그램 분량을 큰 버퍼 하나로 넘기면 커널 송신 경로를 한 덩어리로 통과한 뒤 가능한 한 늦게(지원하면 NIC에서) 세그먼트 크기대로 쪼갠다. 수신 측의 UDP GRO는 Linux 5.0부터 `UDP_GRO` 소켓 옵션으로 켜며, 여러 데이터그램을 큰 버퍼 하나와 세그먼트 크기를 담은 cmsg로 묶어 전달한다. 실제로 하드웨어 오프로드까지 쓰이는지는 NIC 드라이버에 달려 있으므로 배포 환경에서 직접 확인해야 한다. 이 두 배치 경로(시스템 콜 배치와 세그멘테이션 오프로드)는 함께 쓸 때 상호작용이 있으므로, 실제 이득은 반드시 대상 환경에서 측정해야 한다.
 
 ```cpp
 #include <benchmark/benchmark.h>
@@ -186,47 +181,59 @@ int send_batch(int sockfd, char (*bufs)[1400], size_t *lens, unsigned n) {
 #include <sys/uio.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-#include <cstring>
 
-// Linux, GCC 13, -O2 기준(x86-64). sendto 루프 대비 sendmmsg 배치의 시스템 콜
-// 오버헤드 차이를 격리 측정한다. 실제 배율은 커널 버전·NIC 드라이버·배치
-// 크기에 따라 달라지므로 배포 환경에서 재현 후 사용한다.
+// Linux, g++ -O2 기준. 두 케이스 모두 같은 조건(connect된 송신 소켓, 127.0.0.1:9999에
+// bind된 수신 소켓)에서 32개 데이터그램을 보내는 비용을 비교한다. 수신 소켓은 읽지 않으므로
+// 버퍼가 차면 커널이 초과분을 버리지만, 송신 측 시스템 콜 비용 비교에는 영향이 없다.
 constexpr int kBatch = 32;
 
-static void BM_SendtoLoop(benchmark::State& state) {
-  int fd = socket(AF_INET, SOCK_DGRAM, 0);
-  char buf[64] = {0};
-  sockaddr_in dst{}; dst.sin_family = AF_INET; dst.sin_port = htons(9999);
-  inet_pton(AF_INET, "127.0.0.1", &dst.sin_addr);
-  for (auto _ : state) {
-    for (int i = 0; i < kBatch; ++i)
-      sendto(fd, buf, sizeof(buf), 0, (sockaddr*)&dst, sizeof(dst));
+struct UdpPair {
+  int rx = -1, tx = -1;
+  bool open() {
+    sockaddr_in addr{};
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(9999);
+    inet_pton(AF_INET, "127.0.0.1", &addr.sin_addr);
+    rx = socket(AF_INET, SOCK_DGRAM, 0);
+    tx = socket(AF_INET, SOCK_DGRAM, 0);
+    return rx >= 0 && tx >= 0 &&
+           bind(rx, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)) == 0 &&
+           connect(tx, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)) == 0;
   }
-  close(fd);
+  ~UdpPair() { if (rx >= 0) close(rx); if (tx >= 0) close(tx); }
+};
+
+static void BM_SendLoop(benchmark::State& state) {
+  UdpPair p;
+  if (!p.open()) { state.SkipWithError("socket setup failed"); return; }
+  char buf[64] = {0};
+  for (auto _ : state) {
+    for (int i = 0; i < kBatch; ++i) {
+      if (send(p.tx, buf, sizeof(buf), 0) < 0) { state.SkipWithError("send failed"); return; }
+    }
+  }
 }
-BENCHMARK(BM_SendtoLoop);
+BENCHMARK(BM_SendLoop);
 
 static void BM_SendmmsgBatch(benchmark::State& state) {
-  int fd = socket(AF_INET, SOCK_DGRAM, 0);
-  sockaddr_in dst{}; dst.sin_family = AF_INET; dst.sin_port = htons(9999);
-  inet_pton(AF_INET, "127.0.0.1", &dst.sin_addr);
-  connect(fd, (sockaddr*)&dst, sizeof(dst));
+  UdpPair p;
+  if (!p.open()) { state.SkipWithError("socket setup failed"); return; }
   char buf[64] = {0};
   mmsghdr msgs[kBatch]; iovec iov[kBatch];
   for (int i = 0; i < kBatch; ++i) {
     iov[i] = {buf, sizeof(buf)};
     msgs[i] = {}; msgs[i].msg_hdr.msg_iov = &iov[i]; msgs[i].msg_hdr.msg_iovlen = 1;
   }
-  for (auto _ : state)
-    sendmmsg(fd, msgs, kBatch, 0);
-  close(fd);
+  for (auto _ : state) {
+    if (sendmmsg(p.tx, msgs, kBatch, 0) < 0) { state.SkipWithError("sendmmsg failed"); return; }
+  }
 }
 BENCHMARK(BM_SendmmsgBatch);
 
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면(커널·NIC 드라이버에 따라 배율은 다르지만) `BM_SendmmsgBatch`가 `BM_SendtoLoop`보다 빠르게 나오는 경우가 흔하다 — 차이는 패킷 32개당 시스템 콜을 32번이 아니라 1번만 호출한다는 데서 온다. 다만 이 벤치마크는 루프백(127.0.0.1)에서 시스템 콜 오버헤드만 격리한 것이므로, 실제 네트워크 경로에서는 NIC 드라이버·GSO/GRO 상호작용까지 포함해 다시 측정해야 한다.
+`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면(커널·CPU에 따라 배율은 다르지만) `BM_SendmmsgBatch`가 `BM_SendLoop`보다 빠르게 나오는 경우가 흔하다. 두 케이스가 같은 소켓 구성과 같은 데이터그램 수를 쓰므로, 남는 차이는 32개를 보내는 데 시스템 콜 진입을 32번 하느냐 1번 하느냐에서 온다. 다만 이 벤치마크는 루프백에서 송신 측 시스템 콜 비용만 격리한 것이므로, 실제 네트워크 경로에서는 NIC 드라이버·GSO/GRO 상호작용까지 포함해 다시 측정해야 한다.
 
 ## 흔한 오개념
 

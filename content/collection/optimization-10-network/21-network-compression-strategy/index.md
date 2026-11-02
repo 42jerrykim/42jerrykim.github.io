@@ -26,7 +26,6 @@ tags:
   - System-Design
   - Production
   - Scalability(확장성)
-  - Case-Study
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
@@ -34,7 +33,6 @@ tags:
   - Deep-Dive
   - Reference(참고)
   - Guide(가이드)
-  - Message-Queue
   - Hardware(하드웨어)
   - LZ4
   - Zstd
@@ -60,15 +58,15 @@ tags:
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
-| **초보자** | "압축 알고리즘의 계보" ~ "매치 탐색과 엔트로피 코딩" | 압축기가 내부에서 무엇을 하는지 원리 이해 |
-| **중급자** | "세 갈래 트레이드오프" ~ "소형 메시지 문제와 딕셔너리 압축" | 워크로드별 손익분기점을 실제로 계산·측정 |
-| **전문가** | "판단 기준" ~ "비판적 시각" | 알고리즘·레벨·딕셔너리 선택과 하드웨어 오프로드 판단 |
+| **초보자** | "압축 알고리즘의 계보" – "매치 탐색과 엔트로피 코딩" | 압축기가 내부에서 무엇을 하는지 원리 이해 |
+| **중급자** | "세 갈래 트레이드오프" – "소형 메시지 문제와 딕셔너리 압축" | 워크로드별 손익분기점을 실제로 계산·측정 |
+| **전문가** | "판단 기준" – "비판적 시각" | 알고리즘·레벨·딕셔너리 선택과 하드웨어 오프로드 판단 |
 
 ---
 
 ## 압축 알고리즘의 계보 (역사·배경)
 
-범용 무손실 압축의 기본 아이디어는 1977년 Abraham Lempel과 Jacob Ziv가 발표한 **LZ77** 알고리즘으로 거슬러 올라갑니다. "지금까지 본 데이터 중 지금 위치와 똑같은 부분이 있으면, 그 데이터를 다시 쓰는 대신 (거리, 길이) 쌍으로 가리킨다"는 아이디어가 핵심이며, 이후 등장한 대부분의 범용 압축기(zlib/deflate, LZ4, Zstd, Snappy)가 이 아이디어를 계승합니다. 저지연 네트워크에서 실제로 쓰이는 세 압축기는 등장 시점이 서로 다릅니다. Google은 2005년경부터 내부적으로 "Zippy"라는 이름으로 쓰던 압축기를 2011년 [**Snappy**](https://github.com/google/snappy)라는 이름으로 오픈소스화했고, BigTable·MapReduce·내부 RPC 시스템에서 압축 속도가 압축률보다 중요한 경로에 적용해 왔습니다. 같은 2011년, Yann Collet이 압축·해제 속도를 극한으로 끌어올린 **LZ4**를 공개했습니다. Collet은 이후 Facebook에서 압축률과 속도의 균형을 다시 설계한 <strong>Zstd(Zstandard)</strong>를 2015년에 공개했고, 이 포맷은 2021년 IETF [**RFC 8878**](https://datatracker.ietf.org/doc/html/rfc8878)로 표준화되어 미디어 타입과 콘텐츠 인코딩이 정의되었습니다. RFC 8878은 Zstd가 파일 압축뿐 아니라 파이프·스트리밍 압축, 즉 "미리 정해진 만큼의 중간 저장 공간만으로 임의 길이의 순차 입력 스트림을 처리"하도록 설계되어 데이터 통신에 쓸 수 있음을 명시합니다.
+범용 무손실 압축의 기본 아이디어는 1977년 Abraham Lempel과 Jacob Ziv가 발표한 **LZ77** 알고리즘으로 거슬러 올라갑니다. "지금까지 본 데이터 중 지금 위치와 똑같은 부분이 있으면, 그 데이터를 다시 쓰는 대신 (거리, 길이) 쌍으로 가리킨다"는 아이디어가 핵심이며, 이후 등장한 대부분의 범용 압축기(zlib/deflate, LZ4, Zstd, Snappy)가 이 아이디어를 계승합니다. 저지연 네트워크에서 실제로 쓰이는 세 압축기는 등장 시점이 서로 다릅니다. Google은 내부에서 "Zippy"라는 이름으로 쓰던 압축기를 [**Snappy**](https://github.com/google/snappy)라는 이름으로 공개했으며, 최대 압축률이나 다른 압축 라이브러리와의 호환이 아니라 매우 빠른 속도와 적당한 압축률을 목표로 한다고 저장소 README가 밝힙니다. 같은 2011년, Yann Collet이 압축·해제 속도를 극한으로 끌어올린 **LZ4**를 공개했습니다. Collet은 이후 Facebook에서 압축률과 속도의 균형을 다시 설계한 <strong>Zstd(Zstandard)</strong>를 2015년에 공개했고, 이 포맷은 2021년 IETF [**RFC 8878**](https://datatracker.ietf.org/doc/html/rfc8878)로 표준화되어 미디어 타입과 콘텐츠 인코딩이 정의되었습니다. RFC 8878은 Zstd가 파일 압축뿐 아니라 파이프·스트리밍 압축, 즉 "미리 정해진 만큼의 중간 저장 공간만으로 임의 길이의 순차 입력 스트림을 처리"하도록 설계되어 데이터 통신에 쓸 수 있음을 명시합니다.
 
 ## 매치 탐색과 엔트로피 코딩: 압축이 실제로 하는 일
 
@@ -87,7 +85,7 @@ LZ77 계열 압축기는 두 단계로 동작합니다. 첫 단계는 <strong>�
 | Zstd (`--fast=1`) | 2.44 | ~545 MB/s | ~1850 MB/s | [facebook/zstd README](https://github.com/facebook/zstd) |
 | zlib/deflate 1.3.1 (레벨 1) | 2.74 | ~105 MB/s | ~390 MB/s | [facebook/zstd README](https://github.com/facebook/zstd) |
 
-이 표에서 읽어야 할 것은 절대 수치가 아니라 구조입니다. LZ4와 Snappy는 압축률에서 손해를 보는 대신 압축·해제 속도가 zlib류보다 한 자릿수 이상 빠르고, Zstd는 낮은 레벨에서도 LZ4보다 압축률이 30–40% 높으면서 압축 속도는 크게 뒤지지 않습니다. Zstd는 레벨을 1에서 22까지 올릴 수 있는데, 레벨을 올릴수록 압축 속도는 20배 이상 느려질 수 있는 반면 해제 속도는 레벨과 거의 무관하게 일정합니다. 즉 "압축은 보내는 쪽이 한 번 비용을 치르고, 해제는 받는 쪽이 거의 고정 비용으로 처리한다"는 비대칭이 있으므로, 송신자와 수신자의 CPU 예산이 다르면 레벨 선택도 달라져야 합니다.
+이 표에서 읽어야 할 것은 절대 수치가 아니라 구조입니다. LZ4와 Snappy는 압축률에서 손해를 보는 대신 표의 수치로 계산하면 zlib 레벨 1보다 압축은 약 5–6배(LZ4 675 ÷ 105, Snappy 565 ÷ 105), 해제는 약 5–10배(Snappy 1950 ÷ 390, LZ4 3850 ÷ 390) 빠르고, Zstd는 낮은 레벨에서도 LZ4보다 압축률이 30–40% 높으면서 압축 속도는 크게 뒤지지 않습니다. Zstd는 레벨을 1에서 22까지 올릴 수 있는데, 레벨을 올릴수록 압축 속도는 크게 느려지는 반면 해제 속도는 레벨과 거의 무관하게 비슷하게 유지됩니다(`zstd -b1 -e19`처럼 내장 벤치마크로 레벨별 속도를 직접 측정할 수 있습니다). 즉 "압축은 보내는 쪽이 한 번 비용을 치르고, 해제는 받는 쪽이 거의 고정 비용으로 처리한다"는 비대칭이 있으므로, 송신자와 수신자의 CPU 예산이 다르면 레벨 선택도 달라져야 합니다.
 
 ## 네트워크 관점에서의 손익분기점
 
@@ -100,11 +98,15 @@ LZ77 계열 압축기는 두 단계로 동작합니다. 첫 단계는 <strong>�
 #include <string>
 #include <vector>
 
-// 스키마 반복이 있는 RPC 메시지를 흉내낸 대표 버퍼(실제 페이로드로 교체해 재측정할 것)
+// 같은 필드명이 반복되는 JSON 유사 레코드로 n바이트를 채운 버퍼(실제 페이로드로 교체해 재측정할 것)
 static std::string make_payload(size_t n) {
   std::string s;
-  s.reserve(n);
-  for (size_t i = 0; i < n; ++i) s.push_back(char('a' + (i % 17)));
+  s.reserve(n + 64);
+  for (size_t i = 0; s.size() < n; ++i) {
+    s += "{\"id\":" + std::to_string(1000 + i) + ",\"sym\":\"ABCD\",\"px\":" +
+         std::to_string(100 + i % 7) + ".25,\"qty\":" + std::to_string(10 * (i % 5 + 1)) + "},";
+  }
+  s.resize(n);
   return s;
 }
 
@@ -145,18 +147,19 @@ BENCHMARK_MAIN();
 zstd --train samples/*.bin -o rpc.dict --maxdict=16384
 ```
 
-학습된 딕셔너리는 압축·해제 양쪽에서 미리 로드해 재사용합니다. 아래는 이미 로드한 딕셔너리 버퍼로 개별 메시지를 압축하는 최소 스케치입니다(딕셔너리 로딩·컨텍스트 수명 관리는 생략).
+학습된 딕셔너리는 압축·해제 양쪽에서 미리 로드해 재사용합니다. 아래는 딕셔너리를 `ZSTD_CDict`로 한 번 가공해 두고 개별 메시지를 압축하는 최소 스케치입니다(딕셔너리 파일 로딩·`ZSTD_createCDict` 호출·컨텍스트 수명 관리는 생략).
 
 ```cpp
 #include <zstd.h>
 #include <cstddef>
 
-// cctx와 dict는 연결 수립 시 한 번만 만들어 재사용한다(메시지마다 새로 만들지 않는다)
-size_t compress_with_dict(ZSTD_CCtx* cctx, const void* dict, size_t dict_size,
+// cctx와 cdict는 연결(또는 스레드)마다 한 번만 만들어 재사용한다.
+// ZSTD_compress_usingDict는 호출마다 딕셔너리를 다시 처리하므로, 소형 메시지를 반복 압축할 때는
+// 미리 처리해 둔 ZSTD_CDict(ZSTD_createCDict로 생성)와 ZSTD_compress_usingCDict를 쓴다.
+size_t compress_with_cdict(ZSTD_CCtx* cctx, const ZSTD_CDict* cdict,
                            const void* src, size_t src_size,
-                           void* dst, size_t dst_cap, int level) {
-  return ZSTD_compress_usingDict(cctx, dst, dst_cap, src, src_size,
-                                  dict, dict_size, level);
+                           void* dst, size_t dst_cap) {
+  return ZSTD_compress_usingCDict(cctx, dst, dst_cap, src, src_size, cdict);
 }
 ```
 
@@ -166,7 +169,7 @@ size_t compress_with_dict(ZSTD_CCtx* cctx, const void* dict, size_t dict_size,
 
 <strong>"압축은 켜두면 항상 이득이다"</strong>는 사실이 아닙니다. 앞서 본 손익분기 부등식대로, 대역폭이 넉넉한 로컬 구간이나 이미 조밀한 바이너리(FlatBuffers·Cap'n Proto zero-copy 결과, 이미지·오디오처럼 이미 압축된 데이터)에서는 압축 시도 자체가 CPU만 쓰고 크기는 거의 줄지 않거나 프레임 헤더 때문에 커지기도 합니다.
 
-<strong>"압축률이 높을수록 무조건 좋다"</strong>도 틀린 직관입니다. Zstd 레벨을 19 이상으로 올리면 압축률은 조금 더 오르지만 압축 속도가 수십 배 느려질 수 있어, 그 CPU 시간을 절약한 전송 시간이 상쇄하지 못하는 경우가 흔합니다. 저지연 백엔드 경로에서는 대개 낮은–중간 레벨(1–6 부근)이 실무적으로 쓰이고, 상위 레벨은 배치·아카이브처럼 지연이 아니라 저장 비용이 목표인 경로에 맞습니다.
+<strong>"압축률이 높을수록 무조건 좋다"</strong>도 틀린 직관입니다. Zstd 레벨을 19 이상으로 올리면 압축률은 조금 더 오르지만 압축 속도가 크게 떨어져, 그 CPU 시간을 절약한 전송 시간이 상쇄하지 못하는 경우가 흔합니다. 저지연 백엔드 경로에서는 대개 낮은–중간 레벨(1–6 부근)이 실무적으로 쓰이고, 상위 레벨은 배치·아카이브처럼 지연이 아니라 저장 비용이 목표인 경로에 맞습니다.
 
 <strong>"TLS/HTTPS를 쓰면 애플리케이션 레벨 압축은 필요 없다"</strong>도 오해입니다. TLS 자체의 압축 기능은 CRIME 공격 이후 사실상 폐기되었고([챕터 17: TLS/SSL 최적화](/post/network-optimization/tls-ssl-handshake-optimization-pqc/) 참고), TLS는 페이로드를 압축해 주지 않습니다. 반대로 애플리케이션이 비밀 값과 공격자가 일부 제어 가능한 값을 한 메시지에 섞어 압축한 뒤 암호화하면 압축된 크기 변화로 비밀 값을 추측하는 BREACH류 부채널 공격의 표면이 생길 수 있으므로, "압축 후 암호화" 조합에서 압축 대상에 비밀 값과 공격자 제어 값이 섞이지 않는지는 별도로 점검해야 합니다.
 
@@ -176,21 +179,21 @@ size_t compress_with_dict(ZSTD_CCtx* cctx, const void* dict, size_t dict_size,
 
 ```mermaid
 flowchart TD
-  msgReady["직렬화된 메시지 준비 완료"] --> sizeCheck{"메시지가 충분히 큰가?</br>(수백 바이트 이상)"}
+  msgReady["직렬화된 메시지 준비 완료"] --> sizeCheck{"메시지가 충분히 큰가?</br>(대략 수 KB 이상, 측정으로 결정)"}
   sizeCheck -- "아니오(소형·반복 스키마)" --> dictCheck{"딕셔너리 학습 비용을</br>감수할 수 있는가?"}
   dictCheck -- "예" --> zstdDict["Zstd + 학습된 딕셔너리"]
   dictCheck -- "아니오" --> skipSmall["압축 생략"]
   sizeCheck -- "예" --> bwCheck{"이 구간이 대역폭 바운드인가?"}
   bwCheck -- "아니오(CPU 바운드/로컬 저지연)" --> skipLarge["압축 생략 또는 LZ4 저비용 경로"]
   bwCheck -- "예(WAN·혼잡 구간)" --> cpuCheck{"송신측 CPU 예산이 넉넉한가?"}
-  cpuCheck -- "아니오" --> lz4Snappy["LZ4/Snappy(낮은 레벨)"]
+  cpuCheck -- "아니오" --> lz4Snappy["LZ4 또는 Snappy"]
   cpuCheck -- "예" --> zstdHigh["Zstd 중~상위 레벨"]
 ```
 
 | 워크로드 특성 | 권장 | 비권장 |
 |--------------|------|--------|
 | µs 단위 HFT, 데이터센터 내 전용 저지연 링크 | 압축 생략(대역폭 바운드가 아님) | 매 메시지 압축 시도 |
-| 소형 반복 스키마 RPC(수백 바이트–수 KB) | Zstd + 학습된 딕셔너리 | 딕셔너리 없는 기본 압축 |
+| 소형 반복 스키마 RPC(수백 바이트–수 KB 미만) | Zstd + 학습된 딕셔너리 | 딕셔너리 없는 기본 압축 |
 | WAN 구간·대역폭 제약, 배치·복제 트래픽 | Zstd 중–상위 레벨 | LZ4만 사용(대역폭 절감 부족) |
 | CPU 예산이 빠듯한 고처리량 서버 | LZ4/Snappy(낮은 CPU 비용) | Zstd 상위 레벨(CPU 병목 악화) |
 | 이미 압축·암호화된 페이로드(이미지, TLS 세션 등) | 압축 생략 | 재압축 시도(이득 거의 없음) |
@@ -202,6 +205,8 @@ flowchart TD
 공식 벤치마크 표의 숫자는 **Silesia 코퍼스**(텍스트·바이너리 파일 모음)를 기준으로 하며, 여러분의 실제 페이로드(반복적인 protobuf 메시지, 무작위성이 큰 센서 값, 이미 조밀한 zero-copy 바이너리)는 이 코퍼스와 통계적 성질이 다를 수 있습니다. 벤치마크 수치를 참고 감각으로만 쓰고, 실제 도입 전에는 반드시 실제 트래픽 샘플로 재측정해야 합니다. 네트워크 하드웨어 트렌드도 이 계산을 계속 바꿉니다. 25/100GbE, [챕터 13: RDMA 기초](/post/network-optimization/rdma-infiniband-fundamentals/)처럼 유효 대역폭이 넓어질수록 손익분기점은 "압축하지 않는 쪽"으로 이동하는 경향이 있고, 반대로 Intel QAT 같은 하드웨어 압축 오프로드나 [챕터 11: DPDK 심화](/post/network-optimization/dpdk-advanced-deep-dive-smartnic-dpu/)에서 다루는 SmartNIC/DPU 오프로드를 쓸 수 있으면 CPU 비용 항을 거의 0에 가깝게 낮출 수 있어 계산이 다시 뒤집힙니다. 이런 오프로드 하드웨어가 없는 일반적인 서버 환경을 기준으로 이 장의 판단 기준을 세웠다는 점은 분명히 해 둘 필요가 있습니다. 마지막으로, 압축률·속도 숫자는 라이브러리 버전마다 바뀝니다. Zstd 1.5.7은 소형 데이터 압축 속도가 이전 버전 대비 개선되었다고 [프로젝트 릴리스 노트](https://github.com/facebook/zstd/releases/tag/v1.5.7)에 명시되어 있는데, 이는 "한 번 측정한 숫자를 코드 주석에 고정값으로 박아 두면 다음 라이브러리 업그레이드 때 틀린 근거가 된다"는 뜻이기도 합니다. 벤치마크 스켈레톤을 CI에 남겨 두고 라이브러리를 올릴 때마다 재실행하는 편이 안전합니다.
 
 ## 마무리
+
+압축은 CPU를 쓰는 대가로 전송 바이트를 줄이는 거래이므로, 이 장의 결론은 압축 시간 + 전송 시간 + 해제 시간이 원본 전송 시간보다 짧을 때만 이득이라는 손익분기 판단 하나로 모입니다. 대역폭이 병목인 구간에서는 Zstd 중간 레벨이, CPU가 빠듯한 경로에서는 LZ4나 Snappy가 맞고, 수백 바이트 규모의 반복 스키마 메시지는 딕셔너리를 학습해 쓰며, 이미 압축·암호화된 데이터는 건너뜁니다. 어떤 수치든 코퍼스와 하드웨어에 의존하므로 최종 결정은 자신의 페이로드로 측정한 값에 근거해야 합니다.
 
 이 장을 읽고 나면 다음을 할 수 있어야 합니다.
 
