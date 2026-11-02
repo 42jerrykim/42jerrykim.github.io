@@ -1,7 +1,7 @@
 ---
 collection_order: 9
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] 비트 조작 최적화 기법"
@@ -14,12 +14,11 @@ tags:
   - C
   - Assembly
   - CPU(Central Processing Unit)
-  - Cache
   - Compiler(컴파일러)
   - Hardware(하드웨어)
   - Benchmark
   - Latency
-  - Throughput
+  - Intrinsics
   - Profiling(프로파일링)
   - Testing(테스트)
   - Implementation(구현)
@@ -45,7 +44,7 @@ tags:
 
 **완전한 초보자?** 정수의 2의 보수 표현과 비트 연산자(`&`, `|`, `^`, `~`, `<<`, `>>`)의 기본 의미, 그리고 CPUID로 CPU 기능을 조회하는 개념 정도를 알고 있으면 충분합니다. 비트마스크로 조건 분기를 대체하는 **selection 패턴**은 이 트랙의 [Branchless 프로그래밍 기법](/post/extreme-optimization/branchless-programming-techniques/)에서 이미 다루었으므로, 이 장에서는 그 지식을 전제로 "분기 대체"가 아니라 "전용 명령어로 연산 자체를 압축하는" 쪽에 집중합니다.
 
-**이 장의 깊이**: 이 장은 **중급** 수준입니다. POPCNT·TZCNT/LZCNT·PDEP/PEXT라는 세 축의 비트 조작 명령어가 각각 무엇을 계산하는지, 레거시 명령어(BSF/BSR)와의 차이, 그리고 GCC/Clang 내장 함수와 C++20 `std::popcount`/`std::countr_zero` 같은 표준 라이브러리 함수로 이식성 있게 접근하는 방법까지 다룹니다. **다루지 않는 것**: 조건 분기를 비트마스크로 대체하는 branchless selection 패턴은 [Branchless 프로그래밍 기법](/post/extreme-optimization/branchless-programming-techniques/)의 몫이고, 여러 값을 한 번에 처리하는 SIMD 레인 단위 비트 연산은 SIMD 트랙([01](/post/extreme-optimization/simd-fundamentals-sse-avx/)~[04](/post/extreme-optimization/auto-vectorization-guidance-verification/), [12](/post/extreme-optimization/arm-neon-simd-optimization/))에서, 비트 연산 결과를 저장해 두고 계산 자체를 생략하는 접근은 [Lookup Table 최적화](/post/extreme-optimization/lookup-table-optimization-techniques/)에서 다룹니다. 이 장은 스칼라 정수 하나에 대한 비트 조작 명령어에 한정합니다.
+**이 장의 깊이**: 이 장은 **중급** 수준입니다. POPCNT·TZCNT/LZCNT·PDEP/PEXT라는 세 축의 비트 조작 명령어가 각각 무엇을 계산하는지, 레거시 명령어(BSF/BSR)와의 차이, 그리고 GCC/Clang 내장 함수와 C++20 `std::popcount`/`std::countr_zero` 같은 표준 라이브러리 함수로 이식성 있게 접근하는 방법까지 다룹니다. **다루지 않는 것**: 조건 분기를 비트마스크로 대체하는 branchless selection 패턴은 [Branchless 프로그래밍 기법](/post/extreme-optimization/branchless-programming-techniques/)의 몫이고, 여러 값을 한 번에 처리하는 SIMD 레인 단위 비트 연산은 SIMD 트랙([01](/post/extreme-optimization/simd-fundamentals-sse-avx/)~[04](/post/extreme-optimization/auto-vectorization-guidance-verification/), [12](/post/extreme-optimization/arm-neon-simd-optimization/))에서, 비트 연산 결과를 저장해 두고 계산 자체를 생략하는 접근은 [Lookup Table 최적화](/post/extreme-optimization/lookup-table-optimization-techniques/)에서 다룹니다. 이 장은 스칼라 정수 하나에 대한 비트 조작 명령어에 한정합니다. 00 챕터가 이 장에 배정한 'SIMD 벡터화 친화적 정렬·배치'는 SIMD 트랙의 몫이며, 이 장은 이진탐색을 대체하는 사례로 비트 벡터 rank(뒤의 응용 절)만 다룹니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -100,7 +99,7 @@ int first_set_bit_safe(uint32_t x) {
 }
 ```
 
-**검증**: `first_set_bit_unsafe(0)`이 실제로 문제를 일으키는지는 Clang의 `-fsanitize=builtin` 옵션으로 확인할 수 있습니다. [Clang UndefinedBehaviorSanitizer 문서](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html)는 이 옵션을 "Passing invalid values to compiler builtins."를 검사하는 항목으로 설명하며, `clang++ -std=c++20 -fsanitize=builtin,undefined test.cpp -o test`로 빌드해 `first_set_bit_unsafe(0)`을 호출하면 런타임에 진단을 출력해야 정상이고, `first_set_bit_safe(0)`은 같은 빌드에서 조용히 `32`를 반환해야 합니다.
+**검증 방법**: `first_set_bit_unsafe(0)`이 실제로 문제를 일으키는지는 Clang의 `-fsanitize=builtin` 옵션으로 확인할 수 있습니다. [Clang UndefinedBehaviorSanitizer 문서](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html)는 이 옵션을 "Passing invalid values to compiler builtins."를 검사하는 항목으로 설명하며, `clang++ -std=c++20 -fsanitize=builtin,undefined test.cpp -o test`로 빌드해 `first_set_bit_unsafe(0)`을 호출해 보는 것으로 확인합니다. 이 문서는 `-fsanitize=builtin`이 `__builtin_ctz(0)`까지 검사한다고 명시하지 않으므로, 진단이 실제로 출력되는지는 사용하는 Clang 버전에서 직접 실행해 확인해야 합니다. 반면 `first_set_bit_safe(0)`은 어떤 빌드에서도 `32`를 반환합니다.
 
 ## 비트 필드 재배치: PDEP와 PEXT
 
@@ -118,7 +117,32 @@ uint32_t morton_encode_pdep(uint16_t x, uint16_t y) {
 }
 ```
 
-`PEXT`는 그 반대 방향으로, 마스크가 1인 위치의 비트만 뽑아내 오른쪽으로 압축해 모읍니다. Morton 코드를 다시 `x`, `y` 좌표로 분해할 때 `_pext_u32(code, 0x55555555u)` 형태로 쓸 수 있습니다. 다만 **PDEP/PEXT의 실제 성능은 벤더·세대에 따라 극단적으로 갈립니다.** AMD Zen1–Zen3 세대는 이 두 명령어를 마이크로코드로 에뮬레이션해 처리량이 매우 낮은 것으로 널리 보고되어 있고, 체스 엔진처럼 이 명령어에 의존하던 프로젝트들 사이에서도 해당 세대에서는 매직 비트보드 같은 대체 기법을 쓰라는 권고가 반복적으로 공유되어 왔습니다. Zen4부터는 네이티브 ALU 지원으로 지연시간이 크게 줄었고 Zen5는 처리량이 한층 개선된 것으로 알려져 있지만, 정확한 사이클 수는 세대·워크로드에 따라 달라지므로 대상 플랫폼에서 직접 측정해야 합니다. 인텔 프로세서는 하스웰 도입 시점부터 이 두 명령어를 네이티브 회로로 처리해 왔습니다.
+`PEXT`는 그 반대 방향으로, 마스크가 1인 위치의 비트만 뽑아내 오른쪽으로 압축해 모읍니다. Morton 코드를 다시 `x`, `y` 좌표로 분해할 때 `_pext_u32(code, 0x55555555u)` 형태로 쓸 수 있습니다. 다만 **PDEP/PEXT의 실제 성능은 벤더·세대에 따라 극단적으로 갈립니다.** [Wikipedia: x86 Bit manipulation instruction set](https://en.wikipedia.org/wiki/X86_Bit_manipulation_instruction_set)는 AMD의 Zen 3 이전 프로세서가 PDEP와 PEXT를 마이크로코드로 구현하며 지연시간이 18사이클로, Zen 3의 3사이클과 크게 다르다고 설명하고, Excavator부터 Zen 2까지가 마이크로코드 구현에 해당한다고 정리합니다. [Chess Programming Wiki: BMI2](https://www.chessprogramming.org/BMI2)도 AMD가 2017년 Zen에서 BMI2를 도입했지만 2020년 11월 Zen 3 이전까지는 PDEP·PEXT 같은 핵심 명령어의 구현이 느렸다고 기록하며, 대안으로 PEXT 비트보드와 매직 비트보드를 소개합니다. 그래서 Zen 2 이하를 지원해야 한다면 매직 비트보드 같은 소프트웨어 대체 기법이 더 빠를 수 있습니다. 다만 정확한 사이클 수는 세대·워크로드에 따라 달라지므로 대상 플랫폼에서 직접 측정해야 합니다. 인텔 프로세서는 하스웰 도입 시점부터 이 두 명령어를 네이티브 회로로 처리해 왔습니다.
+
+### 응용: 비트 벡터의 rank로 이진탐색 분기 줄이기
+
+정렬된 배열에서 값이 있는지, 몇 번째인지를 묻는 질의가 정수 키의 좁은 범위에 대해 반복된다면, 존재 여부를 비트 벡터로 만들어 두고 popcount로 위치를 구할 수 있습니다. 키 k가 가진 위치(rank)는 k 앞에 켜진 비트의 개수와 같으므로, 이진탐색의 분기 대신 워드 단위 popcount 몇 번으로 압축된 배열의 인덱스가 나옵니다.
+
+```cpp
+#include <bit>
+#include <cstddef>
+#include <cstdint>
+#include <vector>
+
+// words[k]는 비트 64*k ~ 64*k+63을 담는다(하위 비트가 낮은 위치).
+// 위치 i(0 <= i <= 64 * words.size()) 앞에 켜진 비트의 수를 센다.
+std::size_t rank1(const std::vector<std::uint64_t>& words, std::size_t i) {
+  const std::size_t full = i / 64;
+  std::size_t count = 0;
+  for (std::size_t k = 0; k < full; ++k) count += std::popcount(words[k]);
+  if (const std::size_t rem = i % 64; rem != 0) {
+    count += std::popcount(words[full] & ((std::uint64_t{1} << rem) - 1));
+  }
+  return count;
+}
+```
+
+이 방식은 단순한 정수 키처럼 범위가 비트 벡터로 담을 만큼 좁을 때만 의미가 있고, 워드마다 누적 개수를 미리 저장해 두면 앞의 반복문도 없앨 수 있습니다. 이 코드는 직접 컴파일해 측정하지 않은 설명용 예시이므로, 실제 적용 전에는 이진탐색과 비교 측정이 필요합니다.
 
 ## 컴파일러 내장 함수로 이식성 확보하기
 
@@ -152,7 +176,7 @@ inline uint32_t deposit_bits(uint32_t src, uint32_t mask) {
 
 <strong>"`__builtin_ctz(0)`과 `std::countr_zero(0)`은 결과만 다를 뿐 둘 다 안전하다"</strong>는 틀린 생각입니다. 앞서 보았듯 전자는 정의되지 않은 동작이고 후자만 표준이 보장하는 값(비트 폭)을 반환합니다. 코드 리뷰에서 이 둘을 같은 것으로 취급하고 넘어가면, 입력이 0이 될 수 있는 경로에서 조용히 UB가 남을 수 있습니다.
 
-<strong>"PDEP/PEXT는 전용 명령어이므로 항상 빠르다"</strong>도 사실이 아닙니다. 명령어 집합에 존재한다는 것과 특정 세대의 실리콘에서 빠르게 실행된다는 것은 별개입니다. AMD Zen1–Zen3처럼 마이크로코드로 에뮬레이션되는 세대에서는 오히려 나이브한 루프나 룩업 테이블이 더 빠를 수 있으므로, 대상 CPU 세대에서 실측 없이 채택해서는 안 됩니다.
+<strong>"PDEP/PEXT는 전용 명령어이므로 항상 빠르다"</strong>도 사실이 아닙니다. 명령어 집합에 존재한다는 것과 특정 세대의 실리콘에서 빠르게 실행된다는 것은 별개입니다. AMD Zen 2 이하처럼 마이크로코드로 처리되는 세대에서는 오히려 나이브한 루프나 룩업 테이블이 더 빠를 수 있으므로, 대상 CPU 세대에서 실측 없이 채택해서는 안 됩니다.
 
 <strong>"비트 카운팅 루프를 짜 두면 컴파일러가 알아서 POPCNT로 바꿔 준다"</strong>는 것도 조건부로만 맞습니다. 최신 GCC/Clang은 특정 형태의 popcount 루프(idiom)를 인식해 POPCNT로 치환하는 최적화 패스를 갖추고 있지만, 이는 어디까지나 대상 아키텍처가 POPCNT를 지원한다고 컴파일 타깃에 명시되어 있을 때의 이야기입니다. `-mpopcnt`나 이를 포함하는 `-march` 플래그 없이 baseline x86-64로 빌드하면, 아무리 루프 형태가 이상적이어도 소프트웨어 경로가 나옵니다.
 
@@ -162,11 +186,11 @@ inline uint32_t deposit_bits(uint32_t src, uint32_t mask) {
 |------|------|--------|
 | popcount·비트 스캔을 여러 아키텍처에서 이식성 있게 써야 함 | `std::popcount`/`std::countr_zero` 등 `<bit>` 함수 | 특정 벤더 인트린식 직접 호출 |
 | 입력이 0일 수 있는 비트 스캔 | `std::countr_zero`/`std::countl_zero` 또는 `TZCNT`/`LZCNT` 계열 | `__builtin_ctz`/`__builtin_clz`를 0 검사 없이 사용 |
-| PDEP/PEXT로 비트 재배치를 도입하려 함 | 대상 CPU 세대에서 실측 후 채택 | AMD Zen1–3 등 확인 없이 도입 |
+| PDEP/PEXT로 비트 재배치를 도입하려 함 | 대상 CPU 세대에서 실측 후 채택 | AMD Zen 2 이하 등 확인 없이 도입 |
 | 특정 CPU만 지원해도 되는 빌드 | `-march=native`/`-mbmi2` 등으로 하드웨어 경로 강제 | 매크로 정의 여부를 확인하지 않고 인트린식 호출 |
 | 여러 세대를 한 바이너리로 지원해야 함 | 함수 다중 버전화 또는 런타임 CPUID 분기 | 컴파일 타임 플래그 하나로 전체 배포 |
 
-## 측정: builtin과 소프트웨어 폴백 비교
+## 측정 방법: builtin과 소프트웨어 폴백 비교
 
 **같은 `__builtin_popcount` 호출이라도 컴파일 플래그에 따라 결과 코드가 완전히 달라지므로, 실제 어떤 경로가 나왔는지는 벤치마크와 어셈블리로 함께 확인해야 합니다.** 아래는 대량의 정수 배열에 대해 SWAR 소프트웨어 popcount와 `__builtin_popcount`를 비교하는 Google Benchmark 스켈레톤입니다.
 
@@ -214,11 +238,11 @@ BENCHMARK(BM_PopcountBuiltin);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 -mpopcnt bench.cpp -lbenchmark -lpthread`(x86-64, GCC 13 기준 예시)로 빌드하면 `BM_PopcountBuiltin`이 `BM_PopcountSwar`보다 뚜렷하게 빠르게 나오는 경우가 흔하고, `-mpopcnt`를 뺀 채 baseline x86-64로만 빌드하면 두 함수의 차이가 거의 사라지거나 오히려 `BM_PopcountBuiltin`이 SWAR와 비슷한 수준으로 떨어질 수 있습니다. 실제로 어떤 명령어가 나왔는지는 `objdump -d`나 컴파일러 탐색기로 `popcnt` 명령어 존재 여부를 직접 확인해 교차 검증합니다.
+`g++ -O2 -mpopcnt bench.cpp -lbenchmark -lpthread`로 빌드한 결과와, `-mpopcnt` 없이 baseline x86-64로만 빌드한 결과를 같은 머신에서 비교합니다. 이 장은 직접 실행한 수치를 싣지 않았으며, 두 빌드의 차이가 얼마나 나는지는 CPU와 컴파일러에 따라 달라 직접 측정해야 합니다. 이때 어떤 명령어가 실제로 나왔는지 `objdump -d`나 컴파일러 탐색기로 `popcnt` 명령어 존재 여부를 함께 확인해 교차 검증합니다.
 
 ## 비판적 시각: 한계와 트레이드오프
 
-**이식성**은 이 기법군 전체의 근본적인 제약입니다. BMI/BMI2 명령어는 x86-64 baseline에 포함되어 있지 않으므로, 특정 배포 대상이 이를 지원한다고 확신할 수 없다면 컴파일 플래그 하나로 하드웨어 경로를 강제하는 것이 오히려 위험할 수 있습니다. **세대 간 성능 편차**도 반복해 둘 만합니다. PDEP/PEXT처럼 명령어 집합에는 존재하지만 특정 세대에서 마이크로코드로 느리게 처리되는 경우, "명령어가 있으니 쓴다"는 판단만으로는 부족하고 대상 하드웨어에서 실측이 필요합니다. **UB 경계의 미묘함**도 이 장 전체를 관통하는 주제입니다. 레거시 명령어와 그 위의 builtin은 입력 0을 특별 취급해야 하는데, 이 경계를 놓치면 디버그 빌드에서는 우연히 통과하다가 최적화 빌드나 다른 컴파일러에서 다른 결과가 나오는 재현하기 어려운 버그로 이어질 수 있습니다. 마지막으로, 최신 컴파일러의 idiom 인식 최적화가 발전하면서 일부 사례에서는 손으로 builtin을 호출하는 것과 평범한 루프를 그대로 두는 것의 차이가 줄어들고 있으므로, 도입 전 "이미 컴파일러가 알아서 처리하고 있지 않은가"를 어셈블리로 먼저 확인하는 습관이 점점 더 중요해지고 있습니다.
+이 기법군의 비용은 성능 숫자 밖에서도 발생합니다. 첫째는 <strong>테스트 매트릭스</strong>입니다. 하드웨어 경로와 소프트웨어 폴백이 공존하면 두 경로가 같은 결과를 내는지를 모두 검증해야 하고, 한쪽 경로가 CI에서 한 번도 실행되지 않는 상태가 쉽게 만들어집니다. 둘째는 <strong>가독성</strong>입니다. `_pdep_u32(x, 0x55555555u)` 같은 코드는 마스크의 의미를 모르는 독자에게 거의 암호처럼 읽히므로, 이름 있는 래퍼 함수와 입출력 예를 주석으로 남겨 두는 비용이 따라붙습니다. 셋째는 컴파일러가 평범한 루프를 인식해 같은 명령어로 바꿔 주는 idiom 인식 최적화가 발전하면서 손으로 builtin을 호출하는 이득이 줄어든다는 점이며, 그래서 도입 전에 "이미 컴파일러가 알아서 처리하고 있지 않은가"를 어셈블리로 먼저 확인하는 습관이 필요합니다.
 
 ```mermaid
 flowchart TD

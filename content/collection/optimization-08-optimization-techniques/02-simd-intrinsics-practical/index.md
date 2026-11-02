@@ -1,7 +1,7 @@
 ---
 collection_order: 2
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] SIMD Intrinsics 실전 활용"
@@ -13,11 +13,9 @@ tags:
   - C++
   - Assembly
   - CPU(Central Processing Unit)
-  - Cache
   - Compiler(컴파일러)
   - Hardware(하드웨어)
   - Benchmark
-  - Latency
   - Throughput
   - Best-Practices
   - Advanced
@@ -27,12 +25,14 @@ tags:
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - Testing(테스트)
-  - SIMD
+  - SIMD(단일명령다중데이터)
+  - Floating-Point(부동소수점)
+  - Low-Level(로우레벨)
   - Intrinsics
   - SSE
   - AVX
   - AVX2
-  - Vectorization
+  - Vectorization(벡터화)
   - Shuffle
   - Alignment
   - Masking
@@ -66,18 +66,18 @@ CPU 벤더가 새 SIMD 명령어를 추가할 때마다 개발자가 인라인 �
 
 intrinsics 이름은 `_mm[너비]_연산_타입` 형태를 따릅니다. 접두사가 없으면 128비트(SSE), `_mm256_`이면 256비트(AVX/AVX2), `_mm512_`이면 512비트(AVX-512, [03장](/post/extreme-optimization/avx512-avx10-optimization/) 대상)를 뜻합니다. 접미사는 원소 타입을 나타내는데 `ps`는 packed single-precision float, `pd`는 packed double-precision, `epi32`/`epi16`/`epi8`은 부호 있는 정수 폭, `epu32`는 부호 없는 정수를 가리킵니다. 예를 들어 `_mm256_add_ps`는 "256비트 레지스터에 담긴 float들을 병렬로 더하라"는 뜻이고, `_mm_add_epi32`는 "128비트 레지스터의 32비트 정수 4개를 각각 더하라"는 뜻입니다. 이 규칙만 익혀 두면 처음 보는 intrinsics 이름도 대략적인 동작을 추측할 수 있습니다.
 
-실전에서는 이름 규칙보다 **어떤 헤더가 필요하고 어떤 컴파일 플래그가 있어야 하는지**가 더 자주 막히는 지점입니다. `immintrin.h` 하나만 포함하면 SSE부터 AVX2·FMA까지 대부분을 커버하지만, 실제로 그 명령어를 생성하려면 `-mavx2 -mfma`(GCC/Clang) 또는 `/arch:AVX2`(MSVC) 같은 타깃 플래그가 필요합니다. 플래그 없이 상위 명령어 intrinsics를 호출하면 컴파일 자체가 실패하거나(엄격한 모드), 함수별 타깃 속성(`__attribute__((target("avx2")))`)이 없는 한 컴파일러가 오류를 냅니다.
+실전에서는 이름 규칙보다 **어떤 헤더가 필요하고 어떤 컴파일 플래그가 있어야 하는지**가 더 자주 막히는 지점입니다. `immintrin.h` 하나만 포함하면 SSE부터 AVX2·FMA까지 대부분을 커버하지만, 컴파일러마다 규칙이 다릅니다. GCC/Clang은 `-mavx2 -mfma` 같은 타깃 플래그나 함수별 타깃 속성(`__attribute__((target("avx2")))`) 없이 상위 명령어 intrinsics를 호출하면 컴파일 오류를 냅니다. 반면 MSVC는 `/arch` 설정과 무관하게 AVX/AVX2 intrinsics 호출을 허용하고, `/arch:AVX2`는 컴파일러가 스스로 생성하는 코드에만 영향을 줍니다 — 그래서 MSVC에서는 컴파일이 통과해도 해당 명령을 지원하지 않는 CPU에서 실행하면 잘못된 명령(#UD)으로 죽을 수 있고, 런타임 CPU 확인은 작성자의 책임입니다.
 
 ```cpp
 #include <immintrin.h>  // SSE~AVX2/FMA 대부분을 포괄하는 통합 헤더
 
-// 컴파일: g++ -O2 -mavx2 -mfma naming_demo.cpp
+// 컴파일(오브젝트만 생성, main 없음): g++ -O2 -mavx2 -mfma -c naming_demo.cpp
 __m256 add8_floats(__m256 a, __m256 b) {
   return _mm256_add_ps(a, b);   // 256비트 레지스터, float 8개를 병렬 가산
 }
 ```
 
-이 코드는 `-mavx2` 없이 컴파일하면 실패하므로, 실전에서는 파일·함수 단위로 타깃을 명시하고 CPU 감지(`__builtin_cpu_supports`, `_mm_cpuid` 등)로 런타임 분기하는 패턴을 함께 씁니다. 이 CPU 디스패치 자체는 [04장](/post/extreme-optimization/auto-vectorization-guidance-verification/)에서 다루는 자동 벡터화 검증과 맞물리므로 여기서는 언급만 합니다.
+이 코드는 GCC/Clang에서 `-mavx2` 없이 컴파일하면 실패하므로, 실전에서는 파일·함수 단위로 타깃을 명시하고 CPU 감지(`__builtin_cpu_supports`, `__cpuid` 등)로 런타임 분기하는 패턴을 함께 씁니다. 이 런타임 디스패치를 라이브러리 차원에서 자동화하는 방법은 [13장: 포터블 SIMD 라이브러리](/post/extreme-optimization/portable-simd-libraries-highway-xsimd/)에서 다루므로 여기서는 언급만 합니다.
 
 ## 로드/스토어와 정렬
 
@@ -96,7 +96,7 @@ flowchart LR
 ```cpp
 #include <immintrin.h>
 
-// 컴파일: g++ -O2 -mavx2 align_demo.cpp
+// 컴파일(오브젝트만 생성): g++ -O2 -mavx2 -c align_demo.cpp
 alignas(32) float aligned_buf[8] = {0, 1, 2, 3, 4, 5, 6, 7};
 
 void load_store_demo(const float* unaligned_src, float* unaligned_dst) {
@@ -116,7 +116,7 @@ void load_store_demo(const float* unaligned_src, float* unaligned_dst) {
 ```cpp
 #include <immintrin.h>
 
-// 컴파일: g++ -O2 -msse2 shuffle_demo.cpp
+// 컴파일(오브젝트만 생성): g++ -O2 -msse2 -c shuffle_demo.cpp
 // _MM_SHUFFLE(3,2,0,1) → 결과 레인 순서: [v[1], v[0], v[2], v[3]]
 __m128 swap_low_pair(__m128 v) {
   return _mm_shuffle_ps(v, v, _MM_SHUFFLE(3, 2, 0, 1));
@@ -132,7 +132,7 @@ __m128 swap_low_pair(__m128 v) {
 ```cpp
 #include <immintrin.h>
 
-// 컴파일: g++ -O2 -mavx2 blend_demo.cpp
+// 컴파일(오브젝트만 생성): g++ -O2 -mavx2 -c blend_demo.cpp
 // v의 각 float를 상한(upper) 이하로 클램프. v[i] > upper[i]인 레인만 upper로 교체
 __m256 clamp_upper(__m256 v, __m256 upper) {
   __m256 mask = _mm256_cmp_ps(v, upper, _CMP_GT_OQ);  // 비교 결과: 참 레인은 전체 1비트
@@ -169,7 +169,7 @@ float dot_avx2(const float* a, const float* b, size_t n) {
 }
 ```
 
-수평 합 부분은 이 장에서 다룬 셔플 규칙이 실제로 성능에 영향을 주는 지점입니다 — `_mm256_hadd_ps`로 더 짧게 쓸 수도 있지만, `hadd` 계열은 내부적으로 셔플+가산 두 마이크로 연산으로 분해되는 경우가 많아 위 코드처럼 `add`+`shuffle`을 직접 조합하는 편이 명령어 수가 더 적게 나오는 경우가 흔합니다(플랫폼·컴파일러에 따라 다름).
+수평 합 부분은 이 장에서 다룬 셔플 규칙이 실제로 성능에 영향을 주는 지점입니다. `hadd` 계열을 쓰면 소스 코드와 명령어 수는 더 짧아지지만, [Agner Fog의 명령어 표](https://www.agner.org/optimize/instruction_tables.pdf)에서 `haddps`는 Haswell·Skylake 계열에서 셔플 2개와 가산 1개, 즉 3개의 마이크로 연산(uop)으로 분해됩니다. 위 코드처럼 `movehdup`/`movehl`과 `add`를 직접 조합하면 명령어 수는 늘어도 uop 수와 지연이 더 적어, 핫루프 끝의 수평 합에서는 이 조합이 관용구로 쓰입니다(정확한 비용은 마이크로아키텍처마다 다르므로 대상 CPU의 표를 확인합니다).
 
 ### 검증: 스칼라 참조 구현과 비교
 
@@ -177,6 +177,7 @@ SIMD 코드가 올바른지 확인하는 가장 확실한 방법은 **동일한 
 
 ```cpp
 #include <cmath>
+#include <cstddef>
 #include <cstdio>
 
 float dot_scalar(const float* a, const float* b, size_t n) {
@@ -197,7 +198,7 @@ bool verify_dot(const float* a, const float* b, size_t n) {
 
 ### 벤치마크 스켈레톤
 
-성능 차이는 주장으로 끝내지 않고 직접 측정해야 합니다. 아래는 Google Benchmark로 `dot_scalar`와 `dot_avx2`를 같은 입력 크기에서 비교하는 최소 골격입니다(x86-64, GCC 13, `-O2 -mavx2 -mfma` 기준 예시).
+성능 차이는 주장으로 끝내지 않고 직접 측정해야 합니다. 아래는 Google Benchmark로 `dot_scalar`와 `dot_avx2`를 같은 입력 크기에서 비교하는 최소 골격입니다. 이 블록은 앞의 `dot_avx2` 블록과 검증 블록(`dot_scalar`)을 같은 파일 위쪽에 붙여 넣은 하나의 `bench.cpp`를 전제로 합니다.
 
 ```cpp
 #include <benchmark/benchmark.h>
@@ -229,7 +230,7 @@ BENCHMARK(BM_DotAVX2)->Arg(1024)->Arg(1 << 16);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 -mavx2 -mfma bench.cpp -lbenchmark -lpthread -o bench`로 빌드해 실행하면, 데이터가 캐시에 들어가는 크기(예: 1024개)에서는 `BM_DotAVX2`가 `BM_DotScalar`보다 대략 3–6배 범위로 빠르게 나오는 경우가 흔합니다 — 다만 이 배율은 컴파일러가 스칼라 루프를 자동 벡터화했는지 여부, 메모리 대역폭, CPU 세대에 따라 크게 달라지므로 실제 배포 환경에서 재현해 확인해야 합니다.
+세 블록을 합친 파일을 `g++ -O2 -mavx2 -mfma bench.cpp -lbenchmark -lpthread -o bench`로 빌드해 실행합니다. 배율은 여기 적지 않습니다 — 스칼라 루프의 `sum`은 이전 반복 결과에 의존하는 직렬 체인이라 GCC는 `-ffast-math` 없이 이를 벡터화하지 않지만, 실제 차이는 CPU 세대·데이터 크기(캐시 적중 여부)·컴파일러 버전에 따라 크게 달라지므로 대상 환경에서 직접 측정한 값만 근거로 삼아야 합니다.
 
 ## 흔한 오개념 세 가지
 
@@ -237,7 +238,7 @@ BENCHMARK_MAIN();
 
 **"intrinsics를 쓰면 그 이름 그대로의 명령어 하나가 정확히 나온다"**: intrinsics는 컴파일러 내장 함수이므로, 최적화 단계에서 상수 폴딩·명령어 재조합·죽은 코드 제거의 대상이 됩니다. 벤치마크 루프에서 `benchmark::DoNotOptimize` 없이 결과를 버리면 컴파일러가 SIMD 연산 전체를 제거해 버릴 수 있고, 반대로 여러 intrinsics 호출이 더 적은 명령어로 합쳐질 수도 있습니다. 실제로 어떤 명령어가 나왔는지는 어셈블리 출력(`-S`, godbolt 등)으로 확인해야 확실합니다.
 
-**"셔플·퍼뮤트의 제어값(imm8)은 런타임에 자유롭게 바꿀 수 있다"**: `_mm_shuffle_ps`나 `_mm256_permute4x64_epi64`류의 `imm8` 인자는 명령어에 인코딩되는 **컴파일 타임 상수**여야 합니다. 런타임에 달라지는 순서가 필요하면 `_mm256_permutevar8x32_ps`처럼 제어값을 레지스터로 받는 `var` 계열을 써야 하며, 두 계열은 지원 명령어 집합과 성능 특성이 다릅니다.
+**"`blendv`의 마스크는 반드시 비교 결과(레인 전체가 1 또는 0)여야 한다"**: `blendvps`가 실제로 보는 것은 마스크 레인의 최상위 비트 하나뿐입니다([BLENDVPS 명령 설명](https://www.felixcloutier.com/x86/blendvps): "The mask bits are the most significant bit in each dword element of the mask register."). 따라서 비교 명령 없이 `float` 값 자체를 마스크로 넘기면 부호 비트(음수 여부)에 따라 선택하는 코드가 되고, 반대로 정수 연산으로 만든 마스크의 최상위 비트가 의도와 다르면 비교 결과를 썼다고 생각해도 엉뚱한 레인이 선택됩니다.
 
 ## 판단 기준: 언제 intrinsics를 직접 쓸까
 

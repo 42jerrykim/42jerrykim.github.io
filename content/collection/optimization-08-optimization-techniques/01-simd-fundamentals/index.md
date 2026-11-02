@@ -1,7 +1,7 @@
 ---
 collection_order: 1
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] SIMD 기초: SSE·AVX"
@@ -34,14 +34,14 @@ tags:
   - Pitfalls(함정)
   - Edge-Cases(엣지케이스)
   - 실습
-  - Case-Study
-  - Documentation(문서화)
-  - Technology(기술)
-  - SIMD
+  - Floating-Point(부동소수점)
+  - Parallel-Computing(병렬컴퓨팅)
+  - Low-Level(로우레벨)
+  - SIMD(단일명령다중데이터)
   - SSE
   - AVX
   - AVX2
-  - Vectorization
+  - Vectorization(벡터화)
   - Intrinsics
   - Data-Parallelism
   - x86-64
@@ -73,7 +73,7 @@ tags:
 
 > "eight new 128-bit registers known as `XMM0` through `XMM7`" — Wikipedia, ["Streaming SIMD Extensions"](https://en.wikipedia.org/wiki/Streaming_SIMD_Extensions) 문서. SSE는 이 XMM 레지스터로 단정도(single-precision) 부동소수점 SIMD 연산과 스칼라 부동소수점 연산을 함께 쓸 수 있게 했습니다.
 
-SSE2(2001, Pentium 4)는 같은 XMM 레지스터에 배정도(double) 부동소수점과 정수 SIMD 연산을 추가해, 이후 x86-64 컴파일러가 기본으로 가정하는 최소 SIMD 명령셋이 되었습니다. 다음 도약은 2008년 발표되고 2011년 Sandy Bridge에서 처음 지원된 <strong>AVX(Advanced Vector Extensions)</strong>로, 레지스터 폭을 128비트에서 256비트로 넓히고 이름을 YMM으로 바꾸면서 하위 128비트는 그대로 XMM으로도 접근할 수 있게 했습니다. 2013년 Haswell에서 지원된 **AVX2**는 YMM 레지스터 폭은 유지한 채 정수 연산 대부분을 256비트로 확장하고, FMA(Fused Multiply-Add) 3-피연산자 명령을 추가해 곱셈-덧셈 연쇄 연산의 반올림 오차와 지연시간을 함께 줄였습니다. 그 다음 세대인 **AVX-512**(2016년 Knights Landing, 2017년 Skylake-X부터 주류 서버/HEDT에 도입, ZMM 512비트)는 레지스터 폭과 마스크 레지스터 같은 새 기능이 얽혀 있어 이 장의 범위를 넘습니다 — 세부 내용과 최신 AVX10.2 통합은 [03장](/post/extreme-optimization/avx512-avx10-optimization/)에서 다룹니다.
+SSE2(2001, Pentium 4)는 같은 XMM 레지스터에 배정도(double) 부동소수점과 정수 SIMD 연산을 추가해, 이후 x86-64 컴파일러가 기본으로 가정하는 최소 SIMD 명령셋이 되었습니다. 다음 도약은 2008년 발표되고 2011년 Sandy Bridge에서 처음 지원된 <strong>AVX(Advanced Vector Extensions)</strong>로, 레지스터 폭을 128비트에서 256비트로 넓히고 이름을 YMM으로 바꾸면서 하위 128비트는 그대로 XMM으로도 접근할 수 있게 했습니다. 2013년 Haswell에서 지원된 **AVX2**는 YMM 레지스터 폭은 유지한 채 정수 연산 대부분을 256비트로 확장했습니다. 같은 Haswell 세대에는 곱셈과 덧셈을 반올림 한 번으로 묶는 FMA3(Fused Multiply-Add) 3-피연산자 명령도 함께 들어왔지만, 이는 AVX2와 별개의 확장으로 자체 CPUID 플래그를 가집니다. 그래서 GCC에서도 [x86 옵션 문서](https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html)가 `-mavx2`와 `-mfma`를 별도 옵션으로 두며, `-mavx2`만 주면 FMA 명령은 생성되지 않습니다(`-march=haswell`은 두 확장을 모두 켭니다). 그 다음 세대인 **AVX-512**(2016년 Knights Landing, 2017년 Skylake-X부터 주류 서버/HEDT에 도입, ZMM 512비트)는 레지스터 폭과 마스크 레지스터 같은 새 기능이 얽혀 있어 이 장의 범위를 넘습니다 — 세부 내용과 최신 AVX10.2 통합은 [03장](/post/extreme-optimization/avx512-avx10-optimization/)에서 다룹니다.
 
 ## 핵심 개념: 데이터 병렬성과 레지스터 폭
 
@@ -149,7 +149,7 @@ void add_avx(const float* a, const float* b, float* out, int n) {
 }
 ```
 
-이 함수는 `-mavx` 플래그 없이는 컴파일되지 않거나 AVX 명령이 생성되지 않으므로, `g++ -O2 -mavx avx_add.cpp`처럼 명시적으로 타깃을 지정해야 합니다. `add_sse`와 마찬가지로 `add_scalar` 출력과 `memcmp`로 비교하면 검증 방법은 동일합니다.
+이 함수는 `-mavx` 플래그 없이는 컴파일되지 않으므로, `g++ -O2 -mavx -c avx_add.cpp`처럼 명시적으로 타깃을 지정해 오브젝트 파일로 컴파일합니다(이 블록에는 `main`이 없습니다). 실행해 검증하려면 SSE 예제의 `main`에서 `add_sse` 호출을 `add_avx`로 바꾸고 `-mavx`로 빌드하면 되며, `add_scalar` 출력과 `memcmp`로 비교하는 방법은 동일합니다.
 
 ## 흔한 오개념
 
@@ -226,3 +226,9 @@ SIMD 코드의 이득은 하드웨어 세대에 강하게 묶여 있습니다. `
 **다음 장에서는** intrinsics를 실전 코드에 적용하는 구체적인 패턴 — 마스크 처리, 나머지(remainder) 루프 관용구, 런타임 CPU 기능 디스패치, 컴파일러 내장 함수와 어셈블리 출력 대조 — 을 다룹니다. 이 장에서 확인한 "레인 수는 상한일 뿐"이라는 원칙을 실제 코드 설계에 어떻게 반영하는지 이어서 살펴봅니다.
 
 → [SIMD Intrinsics 실전 활용](/post/extreme-optimization/simd-intrinsics-practical-usage/)
+
+## 참고 자료
+
+- [GCC: x86 Options](https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html) — `-msse2`·`-mavx`·`-mavx2`·`-mfma` 같은 타깃 플래그와 `-march=haswell` 등 CPU 이름별로 켜지는 명령셋 목록(1차 문서)
+- [Wikipedia: Streaming SIMD Extensions](https://en.wikipedia.org/wiki/Streaming_SIMD_Extensions) — SSE의 XMM 레지스터 도입 배경
+- [Wikipedia: Advanced Vector Extensions](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions) — AVX·AVX2의 세대별 지원과 FMA3가 별도 확장이라는 설명

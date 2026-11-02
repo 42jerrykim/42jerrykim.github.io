@@ -1,7 +1,7 @@
 ---
 collection_order: 7
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] Hand-written 어셈블리 적용과 위험 관리"
@@ -14,26 +14,22 @@ tags:
   - C
   - Assembly
   - CPU(Central Processing Unit)
-  - Cache
-  - Memory(메모리)
   - Compiler(컴파일러)
   - Hardware(하드웨어)
-  - Embedded(임베디드)
-  - Benchmark
-  - Latency
-  - Profiling(프로파일링)
   - OS(운영체제)
   - Linux(리눅스)
   - Windows(윈도우)
-  - Testing(테스트)
   - Implementation(구현)
   - Best-Practices
   - Code-Quality(코드품질)
   - Debugging(디버깅)
   - Advanced
   - Deep-Dive
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
+  - Low-Level(로우레벨)
+  - Assembly(어셈블리)
+  - Maintainability
+  - Memory-Order
   - Inline-Assembly
   - GNU-Extended-Asm
   - Calling-Convention
@@ -65,7 +61,7 @@ C 컴파일러에 `asm`/`__asm` 키워드로 어셈블리를 끼워 넣는 관�
 
 > "Inline assembly is not supported on the ARM and x64 processors." — [Microsoft Learn: Inline Assembler](https://learn.microsoft.com/en-us/cpp/assembler/inline/inline-assembler?view=msvc-170)
 
-x64/ARM64 타겟에서 MSVC는 intrinsic이나 별도의 MASM(`.asm`) 파일만 지원하며, 이는 "컴파일러 인라인 asm 문법 자체가 플랫폼·벤더에 따라 완전히 다르고 언제든 없어질 수 있는 방언"이라는 것을 보여주는 실례입니다. 실무에서 손으로 짠 asm이 실제로 살아남은 자리는 대개 좁습니다. OpenSSL·BoringSSL 같은 암호 라이브러리는 곱셈·타원곡선 연산 커널을 Perl 스크립트로 생성한 asm으로 유지하고, glibc의 `memcpy`·`strlen` 계열은 마이크로아키텍처별 asm 구현을 오랫동안 손으로 튜닝해 왔으며, 코루틴·그린스레드 런타임(예: Boost.Context)은 스택 전환 시 레지스터를 직접 저장·복원하는 asm 없이는 구현 자체가 불가능합니다. 검증 문화 쪽에서는 2012년 Matt Godbolt가 "GCC Explorer"라는 이름으로 시작해 2014년 4월 "Compiler Explorer"로 이름을 바꾼 웹 도구가, "asm을 짰으면 즉시 생성된 명령어를 눈으로 확인한다"는 습관을 업계 전반에 퍼뜨린 전환점으로 흔히 언급됩니다.
+x64/ARM 타겟에서 MSVC는 intrinsic이나 별도의 MASM(`.asm`) 파일만 지원하며, 이는 "컴파일러 인라인 asm 문법 자체가 플랫폼·벤더에 따라 완전히 다르고 언제든 없어질 수 있는 방언"이라는 것을 보여주는 실례입니다. 실무에서 손으로 짠 asm이 살아남은 자리는 대개 좁습니다. 암호 라이브러리의 곱셈 커널, 표준 라이브러리의 마이크로아키텍처별 문자열·메모리 함수, 스택을 전환하며 레지스터를 직접 저장·복원하는 코루틴 런타임처럼, 컴파일러가 표현하지 못하는 정확한 명령어 시퀀스가 필요한 지점이 대표적입니다(구체적인 프로젝트별 현황은 이 글에서 검증하지 않았으므로 해당 코드베이스에서 확인해야 합니다). 어느 경우든 asm을 짰다면 생성된 명령어를 `objdump -d`나 컴파일러 탐색기 같은 도구로 직접 눈으로 확인하는 습관이 필수입니다.
 
 ## 인라인 asm과 독립 asm
 
@@ -84,41 +80,54 @@ GNU 확장 asm에서 컴파일러는 asm 블록이 선언된 출력·입력·clo
 아래는 CPU의 타임스탬프 카운터를 읽는 `RDTSC` 명령어를 예로, 이 clobber를 빠뜨렸을 때 실제로 무엇이 깨지는지 보입니다.
 
 ```cpp
+// x86-64 + GCC/Clang 전제 (rdtsc는 x86 명령어이고 asm 문법은 GNU 확장이다)
 #include <cstdint>
+#include <cstdio>
 
-static uint64_t g_value = 0;
+static volatile uint64_t g_value = 0;  // volatile: 이 저장 자체가 최적화로 사라지지 않게 함
 
-// 깨진 버전: memory clobber가 없어 컴파일러가 이 asm 블록을
-// 순수 계산(출력만 있고 부작용은 없는 연산)으로 오인할 수 있음
+// 깨진 버전: asm이 volatile이 아니고 memory clobber도 없다.
+// 컴파일러는 출력(lo, hi)만 있는 순수 계산으로 보고 중복 제거하거나 주변 접근과
+// 순서를 바꿀 수 있다.
 inline uint64_t read_tsc_broken() {
   uint32_t lo, hi;
   asm("rdtsc" : "=a"(lo), "=d"(hi));
   return (static_cast<uint64_t>(hi) << 32) | lo;
 }
 
-uint64_t timed_broken() {
-  uint64_t t0 = read_tsc_broken();
-  g_value = 42;              // 이 저장이 두 rdtsc 사이가 아니라 앞뒤로 재배치될 수 있음
-  uint64_t t1 = read_tsc_broken();
-  return t1 - t0;
-}
-```
-
-`read_tsc_broken`은 출력 피연산자(`lo`, `hi`)만 선언했을 뿐 "이 명령어가 실행되는 시점 자체가 중요하다"는 사실을 컴파일러에 알리지 않습니다. 최적화기 입장에서 이 asm 문은 그저 두 정수를 만들어내는 연산일 뿐이므로, `g_value = 42` 같은 주변 메모리 접근을 두 `rdtsc` 호출 사이에 그대로 둘 의무가 없습니다. 실제로 재배치가 일어나는지는 컴파일러·최적화 레벨·주변 코드에 따라 달라지는 **구현 정의** 영역이지만, 재배치가 허용된다는 사실 자체가 이미 버그입니다. 아래가 올바른 버전입니다.
-
-```cpp
-#include <cstdint>
-
-// 올바른 버전: volatile로 asm이 사라지거나 옮겨지지 않게 하고,
-// "memory" clobber로 앞뒤 메모리 접근이 이 지점을 넘어 재배치되지 않게 함
+// 올바른 버전: asm volatile로 삭제·중복 제거를 막고,
+// "memory" clobber로 컴파일러가 앞뒤 메모리 접근을 이 지점 너머로 옮기지 못하게 한다.
 inline uint64_t read_tsc_fixed() {
   uint32_t lo, hi;
   asm volatile("rdtsc" : "=a"(lo), "=d"(hi) :: "memory");
   return (static_cast<uint64_t>(hi) << 32) | lo;
 }
+
+uint64_t timed_broken() {
+  uint64_t t0 = read_tsc_broken();
+  g_value = 42;              // 컴파일러 관점에서 두 rdtsc 사이에 묶여 있다는 보장이 없다
+  uint64_t t1 = read_tsc_broken();
+  return t1 - t0;
+}
+
+uint64_t timed_fixed() {
+  uint64_t t0 = read_tsc_fixed();
+  g_value = 42;              // 두 rdtsc 사이에 있음이 컴파일러 수준에서 보장된다
+  uint64_t t1 = read_tsc_fixed();
+  return t1 - t0;
+}
+
+int main() {
+  std::printf("broken: %llu cycles\nfixed:  %llu cycles\n",
+              static_cast<unsigned long long>(timed_broken()),
+              static_cast<unsigned long long>(timed_fixed()));
+  return 0;
+}
 ```
 
-**검증**: `g++ -O2 -std=c++17 -S -masm=intel timed.cpp -o timed.s`로 두 버전을 각각 컴파일해 생성된 어셈블리를 비교합니다. `broken` 버전에서는 최적화 레벨에 따라 `mov qword ptr [g_value], 42`가 두 `rdtsc` 사이에 있다는 보장이 없고, `fixed` 버전에서는 `"memory"` clobber 때문에 순서가 유지됩니다. 다만 이 clobber는 **컴파일러 수준의 재배치만** 막을 뿐, `RDTSC` 자체가 이전 명령어의 완료를 기다리지 않는 비직렬화(non-serializing) 명령어라는 **CPU 수준의 별개 문제**는 해결하지 못합니다. Intel 매뉴얼은 이를 다음과 같이 명시합니다.
+`read_tsc_broken`은 출력 피연산자(`lo`, `hi`)만 선언했을 뿐 "이 명령어가 실행되는 시점 자체가 중요하다"는 사실을 컴파일러에 알리지 않습니다. 최적화기 입장에서 이 asm 문은 그저 두 정수를 만들어내는 연산일 뿐이므로, `g_value = 42` 같은 주변 메모리 접근을 두 `rdtsc` 호출 사이에 그대로 둘 의무가 없습니다. 실제로 재배치가 일어나는지는 컴파일러·최적화 레벨·주변 코드에 따라 달라지는 **구현 정의** 영역이지만, 재배치가 허용된다는 사실 자체가 이미 버그입니다. 위 코드의 `read_tsc_fixed`가 올바른 버전이며, 두 버전의 차이는 `volatile`과 `"memory"` clobber 두 가지뿐입니다.
+
+**검증**: `g++ -O2 -std=c++17 -S -masm=intel timed.cpp -o timed.s`로 컴파일해 `timed_broken`과 `timed_fixed`의 어셈블리를 비교합니다. `timed_broken`에서는 `g_value`에 42를 저장하는 `mov`가 두 `rdtsc` 사이에 있다는 보장이 없고, `timed_fixed`에서는 `"memory"` clobber 때문에 `rdtsc`–저장–`rdtsc` 순서가 유지됩니다. 이 글은 실제 컴파일 출력을 싣지 않았으며, 재배치가 실제로 일어나는지는 컴파일러 버전과 최적화 수준에 따라 달라지므로 직접 생성해 확인해야 합니다. 실행한 `main`의 사이클 수는 CPU와 실행 시점마다 달라 비교 근거로 쓸 수 없습니다. 다만 이 clobber는 **컴파일러 수준의 재배치만** 막을 뿐, `RDTSC` 자체가 이전 명령어의 완료를 기다리지 않는 비직렬화(non-serializing) 명령어라는 **CPU 수준의 별개 문제**는 해결하지 못합니다. Intel 매뉴얼은 이를 다음과 같이 명시합니다.
 
 > "The RDTSC instruction is not a serializing instruction. It does not necessarily wait until all previous instructions have been executed before reading the counter." — [Felix Cloutier: x86 RDTSC 참조](https://www.felixcloutier.com/x86/rdtsc) (Intel SDM 기반)
 
@@ -132,7 +141,7 @@ inline uint64_t read_tsc_fixed() {
 
 <strong>"clobber 목록만 정확히 쓰면 완전히 안전하다"</strong>도 과신입니다. clobber는 컴파일러의 최적화 모델을 asm의 실제 동작과 맞추는 장치일 뿐, RDTSC의 비직렬화 특성처럼 CPU 마이크로아키텍처 수준에서 벌어지는 재정렬은 다루지 못합니다. 또한 독립 asm 함수의 ABI 위반, 레드존(red zone) 가정 오류, Intel CET가 활성화된 환경에서 간접 호출 대상에 `ENDBR64` 착지 패드가 빠져 있는 경우처럼, clobber 선언 범위 바깥에 있는 위험은 여전히 남습니다. 이런 조건은 플랫폼·컴파일러·보안 완화 기능 설정에 따라 달라지므로 대상 환경에서 직접 확인해야 합니다.
 
-<strong>"C++에는 표준 인라인 asm 문법이 있다"</strong>는 것도 흔한 오해입니다. ISO C++ 표준 문법에는 `asm-declaration`이 등장하지만, 그 의미(피연산자를 어떻게 선언하는지, clobber를 어떻게 쓰는지)는 표준이 규정하지 않고 전적으로 구현체에 위임합니다. GCC/Clang의 GNU 확장 asm과, x86 32비트 한정으로 남아 있던 MSVC의 `__asm` 블록은 서로 호환되지 않는 별개의 방언이며, 위 역사·배경 절에서 본 것처럼 MSVC는 x64/ARM64에서 이 방언 자체를 없앴습니다. "asm 코드는 컴파일러를 바꿔도 그대로 쓸 수 있다"는 가정은 성립하지 않습니다.
+<strong>"C++에는 표준 인라인 asm 문법이 있다"</strong>는 것도 흔한 오해입니다. ISO C++ 표준 문법에는 `asm-declaration`이 등장하지만, 그 의미(피연산자를 어떻게 선언하는지, clobber를 어떻게 쓰는지)는 표준이 규정하지 않고 전적으로 구현체에 위임합니다. GCC/Clang의 GNU 확장 asm과, x86 32비트 한정으로 남아 있던 MSVC의 `__asm` 블록은 서로 호환되지 않는 별개의 방언이며, 위 역사·배경 절에서 본 것처럼 MSVC는 x64/ARM에서 이 방언 자체를 없앴습니다. "asm 코드는 컴파일러를 바꿔도 그대로 쓸 수 있다"는 가정은 성립하지 않습니다.
 
 ## 판단 기준
 
@@ -144,16 +153,9 @@ inline uint64_t read_tsc_fixed() {
 | 이미 검증된 서드파티 asm 커널(OpenSSL, 최적화된 codec 라이브러리 등)을 그대로 링크 | 업스트림 유지보수 위에서 재사용 | 같은 목적의 asm을 처음부터 새로 작성 |
 | asm을 리뷰할 인원이나 회귀 테스트 인프라가 팀에 없음 | 도입 보류, C++/intrinsic 대안 재탐색 | "일단 넣고 나중에 정리" |
 
-### 자주 하는 실수
-
-- **clobber를 최소한만 선언**: `"memory"`를 빠뜨리면 주변 메모리 접근이 asm 블록을 넘어 재배치될 수 있다.
-- **`volatile` 없이 출력 없는 asm 작성**: 출력 피연산자가 없는 asm 문은 컴파일러가 불필요하다고 판단해 통째로 제거할 수 있다(출력이 있는 asm은 암묵적으로 이 문제에서 비교적 자유롭지만, 부작용이 출력에 다 드러나지 않으면 여전히 위험하다).
-- **ABI를 한 플랫폼 기준으로만 가정한 독립 asm**: System V와 Microsoft x64는 인자 레지스터·shadow space 규약이 다르므로, 다른 ABI에 그대로 링크하면 조용히 깨진다.
-- **컴파일러 clobber와 CPU 재정렬을 혼동**: `"memory"` clobber는 컴파일러 수준 재배치만 막는다. `RDTSC` 같은 비직렬화 명령어의 하드웨어 순서 보장은 `LFENCE`/`RDTSCP` 같은 별도 수단이 필요하다.
-
 ## 비판적 시각: 한계와 트레이드오프
 
-**유지보수 비용**이 가장 크고 지속적인 대가입니다. GNU 확장 asm과 MSVC 방언이 서로 다르고, 같은 GNU 방언 안에서도 AT&T 문법(GAS 기본값)과 Intel 문법(NASM·MASM 기본값, GCC/Clang은 `-masm=intel`로 출력만 바꿀 수 있음)이 갈리기 때문에, asm 블록 하나가 "이 컴파일러, 이 어셈블러, 이 플랫폼"이라는 좁은 조합에 묶입니다. 새 컴파일러 버전이 레지스터 할당 휴리스틱을 바꾸거나, Intel CET 같은 보안 완화 기능이 기본 활성화되거나, 팀에서 asm을 실제로 읽을 수 있는 사람이 이직하는 순간, 그 asm 블록은 "아무도 못 건드리는 코드"로 남습니다. **검증 도구의 사각지대**도 무시할 수 없습니다. AddressSanitizer·UndefinedBehaviorSanitizer 계열 도구는 asm 블록 내부의 메모리 접근을 계측하지 못하므로, C++ 코드에서라면 즉시 잡혔을 오버플로·미초기화 읽기가 asm 안에서는 조용히 통과할 수 있습니다. **성능 이득의 불확실성**도 짚어야 합니다. 최신 컴파일러의 레지스터 할당·명령어 스케줄링은 대부분의 핫패스에서 이미 사람이 손으로 짠 것과 비슷하거나 더 나은 코드를 만들어내며, intrinsic이 존재하는 영역에서는 asm이 성능을 더 끌어올리기보다 유지보수 비용만 추가하는 경우가 흔합니다. 실제로 asm이 여전히 살아남는 자리(암호 라이브러리의 곱셈 커널, 코루틴 스택 전환 등)는 대개 "컴파일러가 표현할 수 없는 정확한 명령어 시퀀스"가 필요한 좁은 지점이지, "컴파일러보다 내가 더 빠르게 짤 수 있다"는 일반적 낙관이 근거가 되는 자리가 아닙니다.
+**유지보수 비용**이 가장 크고 지속적인 대가입니다. GNU 확장 asm과 MSVC 방언이 서로 다르고, 같은 GNU 방언 안에서도 AT&T 문법(GAS 기본값)과 Intel 문법(NASM·MASM 기본값, GCC/Clang은 `-masm=intel`로 출력만 바꿀 수 있음)이 갈리기 때문에, asm 블록 하나가 "이 컴파일러, 이 어셈블러, 이 플랫폼"이라는 좁은 조합에 묶입니다. 새 컴파일러 버전이 레지스터 할당 휴리스틱을 바꾸거나, Intel CET 같은 보안 완화 기능이 기본 활성화되거나, 팀에서 asm을 실제로 읽을 수 있는 사람이 이직하는 순간, 그 asm 블록은 "아무도 못 건드리는 코드"로 남습니다. **검증 도구의 사각지대**도 무시할 수 없습니다. AddressSanitizer·UndefinedBehaviorSanitizer 계열 도구는 컴파일러가 생성한 접근을 계측하는 방식이라 asm 블록 내부의 메모리 접근은 대개 계측 대상이 아니므로, C++ 코드에서라면 즉시 잡혔을 오버플로·미초기화 읽기가 asm 안에서는 조용히 통과할 수 있습니다. **성능 이득의 불확실성**도 짚어야 합니다. 최신 컴파일러의 레지스터 할당·명령어 스케줄링은 대부분의 핫패스에서 이미 사람이 손으로 짠 것과 비슷하거나 더 나은 코드를 만들어내며, intrinsic이 존재하는 영역에서는 asm이 성능을 더 끌어올리기보다 유지보수 비용만 추가하는 경우가 흔합니다. 실제로 asm이 여전히 살아남는 자리(암호 라이브러리의 곱셈 커널, 코루틴 스택 전환 등)는 대개 "컴파일러가 표현할 수 없는 정확한 명령어 시퀀스"가 필요한 좁은 지점이지, "컴파일러보다 내가 더 빠르게 짤 수 있다"는 일반적 낙관이 근거가 되는 자리가 아닙니다.
 
 ```mermaid
 flowchart TD

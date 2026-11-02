@@ -361,24 +361,24 @@
 | content/collection/optimization-07-concurrency/20-barrier-latch/index.md | 90.85 | 2026-10-25 | 1 | 통과 | 1.3 | bd56106 | 없음(경미: L159 'libstdc++는 futex 기반 atomic wait/notify 사용'은 붙은 GCC 패치 링크로 확인되지 않음, 마무리 체크리스트가 앞 절 일부 재진술, 비용 절이 정성 서술과 스켈레톤 벤치뿐, 통과선 근접) |
 | content/collection/optimization-07-concurrency/21-thread-per-core-io-uring/index.md | 93.85 | 2026-10-25 | 1 | 통과 | 1.3 | e301423 | 없음(경미: 오개념 절의 'Seastar·ScyllaDB는 2014년부터 epoll 기반으로도 구현' 연도·구현 방식 출처 없음, L73 '직접 확인' 문장 연속 중복, 벤치 예제에 io_uring_get_sqe null 검사와 submit·wait 반환값 검사 생략) |
 | content/collection/optimization-08-optimization-techniques/00-introduction/index.md | 95.2 | 2026-07-25 | 3 | 통과 | 1.0 | ebfac67 | 없음(경미: 측정 항목 리스트 근거 문단 여지) |
-| content/collection/optimization-08-optimization-techniques/01-simd-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/02-simd-intrinsics-practical/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/03-avx512-avx10-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/04-auto-vectorization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/05-prefetch-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/06-branchless-programming/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/07-hand-written-assembly/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/08-lookup-table-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/09-bit-manipulation-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/10-hotpath-extreme-tuning/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/11-maintainability-tradeoff/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/12-arm-neon-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/13-portable-simd-libraries/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/14-cpp26-std-simd/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/15-cache-oblivious-algorithms/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/16-gpu-offloading-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/17-ai-inference-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/18-simd-string-processing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/01-simd-fundamentals/index.md | 93.9 | 2026-10-25 | 1 | 통과 | 1.3 | 49480b3 | 없음(경미: 오개념↔비판적 시각 중복, 벤치 스켈레톤 본문-코드 불일치·L1/L2 주석, 일부 마이크로아키텍처 단정 출처) |
+| content/collection/optimization-08-optimization-techniques/02-simd-intrinsics-practical/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | c841961 | 없음(경미: dot_avx2 tail 루프 생략, load/loadu 동등성 주장 출처 없음) |
+| content/collection/optimization-08-optimization-techniques/03-avx512-avx10-optimization/index.md | 93.9 | 2026-10-25 | 1 | 통과 | 1.3 | 751fdce | 없음(경미: Nova Lake 출시 전 단서 반복, Zen4/Zen5·보고 사례 일부 출처 미병기) |
+| content/collection/optimization-08-optimization-techniques/04-auto-vectorization/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 15c94ed | 없음(개선여지: 2004년경 출처, LLVM 1차 문서 링크) |
+| content/collection/optimization-08-optimization-techniques/05-prefetch-strategy/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | 59c712c | 없음(경미: 간접 접근 반복 서술, 연결 리스트 문단 조건부 표현 보정 완료) |
+| content/collection/optimization-08-optimization-techniques/06-branchless-programming/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | d10a113 | 없음(경미: Pentium Pro 1995·Spectre 2018 출처 미병기, 컴파일러 백엔드 의존 서술 중복) |
+| content/collection/optimization-08-optimization-techniques/07-hand-written-assembly/index.md | 93.6 | 2026-10-25 | 1 | 통과 | 1.3 | d92c329 | 없음(경미: 판단 기준 표·Mermaid에 프로파일링 증거 관문 부재; L158이 L64를 재진술) |
+| content/collection/optimization-08-optimization-techniques/08-lookup-table-optimization/index.md | 97.3 | 2026-11-02 | 2 | 통과 | 1.3 | 7511932 | 없음(경미: 벤치 배율 미실측(헤지 반영), 코드 미실행) |
+| content/collection/optimization-08-optimization-techniques/09-bit-manipulation-optimization/index.md | 95.5 | 2026-10-25 | 2 | 통과 | 1.3 | 2c915cc | 없음(경미: 00 챕터가 배정한 정렬·배치 사례 중 배치 측면은 rank 사례로만 다룸; 초회 83.65) |
+| content/collection/optimization-08-optimization-techniques/10-hotpath-extreme-tuning/index.md | 90.9 | 2026-10-25 | 1 | 통과 | 1.3 | 397cb9e | 없음(경미: ablation 어원 출처 없음, 조합 폭발·세대 종속성 서술 중복) |
+| content/collection/optimization-08-optimization-techniques/11-maintainability-tradeoff/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 3bfd9ac | 없음(개선여지: 리뷰 시간 서술 출처, Tr.01 약칭) |
+| content/collection/optimization-08-optimization-techniques/12-arm-neon-optimization/index.md | 92.7 | 2026-10-25 | 1 | 통과 | 1.3 | 3862f8d | 없음(경미: SVE·AMX 서술 중복, FMA3 표기) |
+| content/collection/optimization-08-optimization-techniques/13-portable-simd-libraries/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | 1d2ecd5 | 없음(경미: xsimd 기원·채택 프로젝트·API 변경 사례 출처 미병기, sum_array_xsimd 중복 정의) |
+| content/collection/optimization-08-optimization-techniques/14-cpp26-std-simd/index.md | 93.9 | 2026-10-25 | 2 | 통과 | 1.3 | d4da30f | 없음(경미: 런타임 디스패치 부재 서술 반복, P3275·basic_simd 표기 PDF 대조 미완) |
+| content/collection/optimization-08-optimization-techniques/15-cache-oblivious-algorithms/index.md | 93.9 | 2026-10-25 | 1 | 통과 | 1.3 | 72e9a6e | 없음(경미: 검증 코드 도입 문단 중복; FLPR99 PDF 링크 403 검증 불가) |
+| content/collection/optimization-08-optimization-techniques/16-gpu-offloading-fundamentals/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 62f2432 | 없음(개선여지: PCIe 64GB/s 1차 출처 병기) |
+| content/collection/optimization-08-optimization-techniques/17-ai-inference-optimization/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 45b8cd3 | 없음(경미: GPTQ·PTQ 서술 출처, NVFP4 비교 근거 — 채점 후 완화 반영) |
+| content/collection/optimization-08-optimization-techniques/18-simd-string-processing/index.md | 92.8 | 2026-10-25 | 1 | 통과 | 1.3 | da7f00f | 없음(경미: 09장 교차 참조 보정 완료; 논문 PDF 원문 대조 미완) |
 | content/collection/optimization-09-io-network/00-introduction/index.md | 100 | 2026-07-25 | 2 | 통과 | 1.0 | 6161d63 | 없음 |
 | content/collection/optimization-09-io-network/01-io-cost-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-09-io-network/02-io-patterns-cost/index.md | - | - | 0 | 미채점 | - | - | - |

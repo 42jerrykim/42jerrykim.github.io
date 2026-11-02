@@ -1,7 +1,7 @@
 ---
 collection_order: 16
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] GPU Offloading 기초"
@@ -12,7 +12,6 @@ tags:
   - Optimization(최적화)
   - C++
   - CPU(Central Processing Unit)
-  - Cache
   - Memory(메모리)
   - Hardware(하드웨어)
   - Benchmark
@@ -22,15 +21,10 @@ tags:
   - Implementation(구현)
   - Best-Practices
   - Scalability(확장성)
-  - Machine-Learning(머신러닝)
-  - Deep-Learning(딥러닝)
   - Advanced
   - Deep-Dive
-  - Case-Study
   - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Technology(기술)
   - Reference(참고)
   - Guide(가이드)
   - System-Design
@@ -46,7 +40,7 @@ tags:
   - Kernel-Offloading
 ---
 
-<strong>GPU Offloading(GPU 오프로딩)</strong>이란 CPU가 순차적으로 처리하던 연산의 일부를 GPU 같은 이종 가속기(heterogeneous accelerator)로 넘겨, 수천 개의 스레드가 동시에 동작하는 SIMT(Single Instruction, Multiple Threads) 실행 자원으로 처리하는 전략을 말합니다. 행렬 곱셈이나 이미지 변환처럼 동일한 연산을 대량의 독립적 데이터에 반복 적용하는 워크로드는 GPU에서 수십–수백 배의 처리량 이득을 볼 수 있지만, 그 이득은 "커널 실행 자체"가 아니라 "데이터를 옮기고 결과를 회수하는 비용"과의 상쇄 관계 위에서만 성립합니다. 이 장은 CUDA·OpenCL·SYCL이라는 세 프로그래밍 모델의 개념적 차이와, CPU-GPU 데이터 전송이 왜 별도로 예산을 잡아야 하는 비용인지를 다루어, 이 트랙의 다음 장인 AI 추론 최적화로 넘어가기 전에 오프로딩 여부 자체를 판단하는 능력을 세웁니다.
+<strong>GPU Offloading(GPU 오프로딩)</strong>이란 CPU가 순차적으로 처리하던 연산의 일부를 GPU 같은 이종 가속기(heterogeneous accelerator)로 넘겨, 수천 개의 스레드가 동시에 동작하는 SIMT(Single Instruction, Multiple Threads) 실행 자원으로 처리하는 전략을 말합니다. 행렬 곱셈이나 이미지 변환처럼 동일한 연산을 대량의 독립적 데이터에 반복 적용하는 워크로드는 GPU에서 워크로드에 따라 큰 처리량 이득을 볼 수 있지만, 그 이득은 "커널 실행 자체"가 아니라 "데이터를 옮기고 결과를 회수하는 비용"과의 상쇄 관계 위에서만 성립합니다. 이 장은 CUDA·OpenCL·SYCL이라는 세 프로그래밍 모델의 개념적 차이와, CPU-GPU 데이터 전송이 왜 별도로 예산을 잡아야 하는 비용인지를 다루어, 이 트랙의 다음 장인 AI 추론 최적화로 넘어가기 전에 오프로딩 여부 자체를 판단하는 능력을 세웁니다.
 
 ## 이 장을 읽기 전에
 
@@ -66,7 +60,7 @@ tags:
 
 ## 역사와 계보: 왜 세 가지 모델이 공존하는가
 
-**CUDA**는 NVIDIA가 2007년 공개한 독자 플랫폼으로, NVIDIA GPU에 한정되는 대신 컴파일러(`nvcc`)·라이브러리(cuBLAS, cuDNN 등)·프로파일러(Nsight)가 하나의 생태계로 통합되어 있어 학습 곡선이 완만하고 성능 튜닝 여지가 큽니다. **OpenCL**은 Khronos Group이 2008년(애플의 제안을 계기로) 표준화한 개방형 플랫폼으로, CPU·GPU·FPGA·DSP를 포함한 다양한 벤더의 디바이스를 동일한 C 기반 API로 다룰 수 있게 설계되었지만, 커널을 문자열로 관리하고 컴파일·디스패치를 런타임에 명시적으로 호출해야 하는 번거로움이 있습니다. **SYCL**은 Khronos가 2014년 처음 공개한 단일 소스(single-source) C++ 추상화로, 초기에는 OpenCL 위에서 구현되었지만 **SYCL 2020**에서 OpenCL 의존을 분리해 CUDA·HIP·Vulkan·네이티브 드라이버를 백엔드로 선택할 수 있게 되었습니다.
+**CUDA**는 NVIDIA가 2007년 공개한 독자 플랫폼으로, NVIDIA GPU에 한정되는 대신 컴파일러(`nvcc`)·라이브러리(cuBLAS, cuDNN 등)·프로파일러(Nsight)가 하나의 생태계로 통합되어 있어 학습 곡선이 완만하고 성능 튜닝 여지가 큽니다. **OpenCL**은 Khronos Group이 표준화한 개방형 플랫폼으로, CPU·GPU·FPGA·DSP를 포함한 다양한 벤더의 디바이스를 동일한 C 기반 API로 다룰 수 있게 설계되었지만, 커널을 문자열로 관리하고 컴파일·디스패치를 런타임에 명시적으로 호출해야 하는 번거로움이 있습니다. **SYCL**은 Khronos가 정의한 단일 소스(single-source) C++ 추상화로, 초기에는 OpenCL 위에서 구현되었지만 **SYCL 2020**에서 OpenCL 의존이 느슨해져 구현체에 따라 CUDA·HIP 등 여러 백엔드를 선택할 수 있습니다(세부 연혁과 백엔드 목록은 이 글에서 검증하지 않았으므로 사용할 구현체의 문서를 확인하세요).
 
 > "SYCL is an open, royalty-free, cross-platform abstraction layer that enables code for heterogeneous and offload processors to be written using modern ISO C++." — [Khronos Group: SYCL](https://www.khronos.org/sycl/) 공식 소개 문서
 
@@ -78,8 +72,19 @@ GPU는 **SIMT** 방식으로 동작합니다. 동일한 커널 코드를 수천 
 
 ```cpp
 #include <cuda_runtime.h>
-#include <vector>
 #include <cstdio>
+#include <cstdlib>
+#include <vector>
+
+#define CUDA_CHECK(call)                                                  \
+  do {                                                                    \
+    cudaError_t err_ = (call);                                            \
+    if (err_ != cudaSuccess) {                                            \
+      std::fprintf(stderr, "%s:%d: %s\n", __FILE__, __LINE__,             \
+                   cudaGetErrorString(err_));                             \
+      std::exit(1);                                                       \
+    }                                                                     \
+  } while (0)
 
 __global__ void vecAddKernel(const float* a, const float* b, float* c, int n) {
   int i = blockIdx.x * blockDim.x + threadIdx.x;  // 스레드 인덱스 = 그리드 내 전역 위치
@@ -92,31 +97,32 @@ int main() {
   std::vector<float> h_a(n, 1.0f), h_b(n, 2.0f), h_c(n);
 
   float *d_a, *d_b, *d_c;
-  cudaMalloc(&d_a, bytes);
-  cudaMalloc(&d_b, bytes);
-  cudaMalloc(&d_c, bytes);
+  CUDA_CHECK(cudaMalloc(&d_a, bytes));
+  CUDA_CHECK(cudaMalloc(&d_b, bytes));
+  CUDA_CHECK(cudaMalloc(&d_c, bytes));
 
   cudaEvent_t t0, t1;
-  cudaEventCreate(&t0);
-  cudaEventCreate(&t1);
+  CUDA_CHECK(cudaEventCreate(&t0));
+  CUDA_CHECK(cudaEventCreate(&t1));
 
-  cudaEventRecord(t0);
-  cudaMemcpy(d_a, h_a.data(), bytes, cudaMemcpyHostToDevice);
-  cudaMemcpy(d_b, h_b.data(), bytes, cudaMemcpyHostToDevice);
+  CUDA_CHECK(cudaEventRecord(t0));
+  CUDA_CHECK(cudaMemcpy(d_a, h_a.data(), bytes, cudaMemcpyHostToDevice));
+  CUDA_CHECK(cudaMemcpy(d_b, h_b.data(), bytes, cudaMemcpyHostToDevice));
   vecAddKernel<<<(n + 255) / 256, 256>>>(d_a, d_b, d_c, n);
-  cudaMemcpy(h_c.data(), d_c, bytes, cudaMemcpyDeviceToHost);
-  cudaEventRecord(t1);
-  cudaEventSynchronize(t1);
+  CUDA_CHECK(cudaGetLastError());         // 커널 launch 오류 확인
+  CUDA_CHECK(cudaMemcpy(h_c.data(), d_c, bytes, cudaMemcpyDeviceToHost));
+  CUDA_CHECK(cudaEventRecord(t1));
+  CUDA_CHECK(cudaEventSynchronize(t1));
 
   float ms = 0.0f;
-  cudaEventElapsedTime(&ms, t0, t1);      // 전송 2회 + 커널 실행을 포함한 왕복 시간
-  std::printf("round-trip: %.3f ms\n", ms);
+  CUDA_CHECK(cudaEventElapsedTime(&ms, t0, t1));      // 전송 2회 + 커널 실행을 포함한 왕복 시간
+  std::printf("round-trip: %.3f ms, c[0] = %.1f (expected 3.0)\n", ms, h_c[0]);
 
   cudaFree(d_a); cudaFree(d_b); cudaFree(d_c);
 }
 ```
 
-이 코드에서 실제 계산(`c[i] = a[i] + b[i]`)은 GPU 코어 하나가 몇 사이클 안에 끝낼 정도로 가볍고, 측정되는 시간의 대부분은 `cudaMemcpy` 두 번(호스트→디바이스)과 한 번(디바이스→호스트)이 차지합니다. `cudaEventElapsedTime`으로 얻는 값은 플랫폼(GPU 세대, PCIe 슬레인 수, 드라이버 버전)에 따라 달라지므로 절대 수치보다는 "전송이 계산 시간을 압도한다"는 상대적 사실을 관찰하는 용도로 씁니다.
+이 코드에서 실제 계산(`c[i] = a[i] + b[i]`)은 GPU 코어 하나가 몇 사이클 안에 끝낼 정도로 가볍고, 측정되는 시간의 대부분은 `cudaMemcpy` 두 번(호스트→디바이스)과 한 번(디바이스→호스트)이 차지할 것으로 예상됩니다(이 글은 실행하지 않았습니다). `cudaEventElapsedTime`으로 얻는 값은 플랫폼(GPU 세대, PCIe 레인 수, 드라이버 버전)에 따라 달라지므로 절대 수치보다는 "전송이 계산 시간을 압도한다"는 상대적 사실을 관찰하는 용도로 씁니다.
 
 세 모델을 나란히 두면 표준화 정도·메모리 관리 철학의 차이가 뚜렷합니다. CUDA는 `cudaMalloc`/`cudaMemcpy`로 디바이스 메모리를 명시적으로 다루고, OpenCL은 커맨드 큐에 `clEnqueueWriteBuffer`/`clEnqueueReadBuffer`를 밀어 넣는 형태이며, SYCL은 `buffer`/`accessor`가 스코프를 벗어날 때 자동으로 동기화를 삽입합니다.
 
@@ -132,6 +138,7 @@ SYCL의 단일 소스 모델은 호스트 코드와 커널 코드를 같은 번�
 
 ```cpp
 #include <sycl/sycl.hpp>
+#include <cstdio>
 #include <vector>
 
 int main() {
@@ -150,6 +157,8 @@ int main() {
       });
     });
   }  // buffer 소멸 시점에 디바이스→호스트 결과 동기화가 자동 삽입됨
+  q.wait_and_throw();  // 비동기 오류가 있으면 여기서 예외로 드러난다
+  std::printf("c[0] = %.1f (expected 3.0)\n", c[0]);
 }
 ```
 
@@ -157,13 +166,15 @@ int main() {
 
 ## CPU-GPU 데이터 전송 비용
 
-GPU 오프로딩의 실질적 병목은 대개 연산이 아니라 **PCIe 버스를 통한 데이터 이동**입니다. 이산 GPU(discrete GPU)를 PCIe 5.0 x16 슬롯에 연결한 시스템에서는 한 방향 약 64GB/s(사양상 이론치이며 실제 처리량은 프로토콜 오버헤드·드라이버 구현에 따라 더 낮음)가 상한이고, 이 대역폭은 호스트→디바이스, 디바이스→호스트 전송 모두에 공유됩니다. NVIDIA의 Grace Hopper Superchip처럼 NVLink-C2C로 CPU-GPU를 결합한 아키텍처는 이 병목을 구조적으로 줄이는 사례입니다.
+GPU 오프로딩의 실질적 병목은 대개 연산이 아니라 **PCIe 버스를 통한 데이터 이동**입니다. 이산 GPU(discrete GPU)를 PCIe 5.0 x16 슬롯에 연결한 시스템에서는 한 방향 약 64GB/s(사양상 이론치이며 실제 처리량은 프로토콜 오버헤드·드라이버 구현에 따라 더 낮음)가 상한이고, PCIe는 전이중(full duplex)이라 방향별 대역폭이 독립이므로 양방향 전송을 동시에 할 때의 합산은 이 값의 약 두 배입니다. NVIDIA의 Grace Hopper Superchip처럼 NVLink-C2C로 CPU-GPU를 결합한 아키텍처는 이 병목을 구조적으로 줄이는 사례입니다.
 
-> "It delivers up to 900 GB/s total bandwidth. This is 7x higher bandwidth than x16 PCIe Gen5 lanes commonly used in accelerated systems." — [NVIDIA Technical Blog: NVIDIA Grace Hopper Superchip Architecture In-Depth](https://developer.nvidia.com/blog/nvidia-grace-hopper-superchip-architecture-in-depth/)
+> "It is the heart of the Grace Hopper Superchip and delivers up to 900 GB/s total bandwidth. This is 7x higher bandwidth than x16 PCIe Gen5 lanes commonly used in accelerated systems." — [NVIDIA Technical Blog: NVIDIA Grace Hopper Superchip Architecture In-Depth](https://developer.nvidia.com/blog/nvidia-grace-hopper-superchip-architecture-in-depth/)
 
-다만 이 900GB/s는 이론적 상한이며, 실측 연구에서는 왕복 방향 합산 실효 대역폭이 이론치의 상당 부분(호스트→디바이스, 디바이스→호스트 방향별로 편차 존재)에 그친다는 보고도 있으므로, 특정 하드웨어에서의 실제 수치는 벤치마크로 직접 확인해야 합니다. 대부분의 워크스테이션·서버는 여전히 PCIe로 연결된 이산 GPU를 쓰므로, 전송 비용을 낮추는 실전 기법은 세 가지로 요약됩니다. 첫째, **pinned(page-locked) 메모리**를 사용하면 DMA가 페이지 폴트 없이 직접 전송할 수 있어 pageable 메모리 대비 전송 처리량이 개선됩니다. 둘째, <strong>비동기 스트림(stream)</strong>으로 전송과 커널 실행을 겹치면(overlap) 유휴 시간을 줄일 수 있습니다. 셋째, <strong>CUDA Unified Memory(UVM)</strong>나 SYCL의 USM(Unified Shared Memory)은 명시적 `memcpy` 호출을 없애 코드를 단순화하지만, 내부적으로는 페이지 폴트 기반 자동 마이그레이션이 일어나므로 접근 패턴이 나쁘면 오히려 명시적 전송보다 느릴 수 있습니다.
+같은 글은 이 900GB/s가 방향당 450GB/s의 합산 값이라고 밝히므로, 위 PCIe 64GB/s(한 방향)와 직접 비교하려면 방향을 맞춰야 합니다. 양방향 합산으로 맞추면 PCIe 5.0 x16은 약 128GB/s이고, 인용의 "7x"는 이 양방향 합산 기준의 비율입니다.
 
-지연시간 관점에서는 대역폭 외에 **커널 launch overhead**(CUDA 기준 보통 수 µs 내외, 구현·드라이버·GPU 세대에 따라 다름)와 PCIe 왕복 latency도 예산에 넣어야 합니다. 한 번의 오프로딩이 "전송 → 커널 → 회수"로 구성된 왕복 하나를 의미한다면, 이 왕복 전체가 µs 단위의 순수 CPU 연산보다 오래 걸리는 경우가 흔하므로 저지연 핫패스에 GPU를 끼워 넣는 결정은 신중해야 합니다.
+다만 이 수치들은 이론적 상한이므로, 특정 하드웨어에서의 실제 수치는 벤치마크로 직접 확인해야 합니다. 대부분의 워크스테이션·서버는 여전히 PCIe로 연결된 이산 GPU를 쓰므로, 전송 비용을 낮추는 실전 기법은 세 가지로 요약됩니다. 첫째, **pinned(page-locked) 메모리**를 사용하면 DMA가 페이지 폴트 없이 직접 전송할 수 있어 pageable 메모리 대비 전송 처리량이 개선됩니다. 둘째, <strong>비동기 스트림(stream)</strong>으로 전송과 커널 실행을 겹치면(overlap) 유휴 시간을 줄일 수 있습니다. 셋째, <strong>CUDA Unified Memory(UVM)</strong>나 SYCL의 USM(Unified Shared Memory)은 명시적 `memcpy` 호출을 없애 코드를 단순화하지만, 내부적으로는 페이지 폴트 기반 자동 마이그레이션이 일어나므로 접근 패턴이 나쁘면 오히려 명시적 전송보다 느릴 수 있습니다.
+
+지연시간 관점에서는 대역폭 외에 **커널 launch overhead**(구현·드라이버·GPU 세대에 따라 다르며 이 글은 수치를 제시하지 않습니다)와 PCIe 왕복 latency도 예산에 넣어야 합니다. 한 번의 오프로딩이 "전송 → 커널 → 회수"로 구성된 왕복 하나를 의미한다면, 이 왕복 전체가 µs 단위의 순수 CPU 연산보다 오래 걸리는 경우가 흔하므로 저지연 핫패스에 GPU를 끼워 넣는 결정은 신중해야 합니다.
 
 ## 오프로딩이 유리한 워크로드 판단 기준
 
@@ -205,7 +216,7 @@ flowchart TD
 
 ## 비판적 시각: 한계와 트레이드오프
 
-GPU 오프로딩은 산술 강도가 높은 워크로드에서만 이득이 확실하며, 그 경계는 하드웨어 세대·인터커넥트(PCIe 세대, NVLink 유무)에 따라 계속 이동합니다. Grace Hopper류의 coherent 인터커넥트는 전송 비용 문제를 구조적으로 완화하지만, 2026년 기준 대부분의 배포 환경은 여전히 PCIe로 연결된 이산 GPU이므로 이 장의 전송 비용 논의가 기본 가정으로 유효합니다. CUDA는 성능·생태계 성숙도에서 앞서지만 벤더 종속성이 뚜렷하고, OpenCL·SYCL은 이식성을 얻는 대신 벤더별 구현 성숙도 편차라는 대가를 치릅니다. 무엇보다 이 장은 "기초" 수준이라 occupancy·warp divergence·메모리 coalescing 같은 커널 내부 튜닝을 다루지 않으므로, 여기서 다룬 판단 기준을 통과한 뒤에도 실제 배포 전에는 별도의 GPU 프로파일링 단계가 필요합니다.
+GPU 오프로딩은 산술 강도가 높은 워크로드에서만 이득이 확실하며, 그 경계는 하드웨어 세대·인터커넥트(PCIe 세대, NVLink 유무)에 따라 계속 이동합니다. Grace Hopper류의 coherent 인터커넥트는 전송 비용 문제를 구조적으로 완화하지만, 일반적으로 많은 배포 환경이 여전히 PCIe로 연결된 이산 GPU를 쓰므로 이 장의 전송 비용 논의가 기본 가정으로 유효합니다. CUDA는 성능·생태계 성숙도에서 앞서지만 벤더 종속성이 뚜렷하고, OpenCL·SYCL은 이식성을 얻는 대신 벤더별 구현 성숙도 편차라는 대가를 치릅니다. 무엇보다 이 장은 "기초" 수준이라 occupancy·warp divergence·메모리 coalescing 같은 커널 내부 튜닝을 다루지 않으므로, 여기서 다룬 판단 기준을 통과한 뒤에도 실제 배포 전에는 별도의 GPU 프로파일링 단계가 필요합니다.
 
 ## 마무리
 
@@ -217,6 +228,6 @@ GPU 오프로딩은 산술 강도가 높은 워크로드에서만 이득이 확�
 
 **이전 장**: [Cache-oblivious 알고리즘 설계](/post/extreme-optimization/cache-oblivious-algorithm-design/) (챕터 15)
 
-**AI 추론 최적화**를 다룹니다. 이 장에서 세운 오프로딩 판단 기준을 바탕으로, NPU/Tensor Core 활용과 혼합 정밀도·양자화로 AI 추론 지연시간을 줄이는 방법을 정리합니다. GPU 오프로딩의 전송 비용 감각을 그대로 가져가면 양자화가 왜 "연산량"뿐 아니라 "전송량"도 줄이는 최적화인지 이해하기 쉬워집니다.
+**다음 장에서는 AI 추론 최적화**를 다룹니다. 이 장에서 세운 오프로딩 판단 기준을 바탕으로, NPU/Tensor Core 활용과 혼합 정밀도·양자화로 AI 추론 지연시간을 줄이는 방법을 정리합니다. GPU 오프로딩의 전송 비용 감각을 그대로 가져가면 양자화가 왜 "연산량"뿐 아니라 "전송량"도 줄이는 최적화인지 이해하기 쉬워집니다.
 
 → [AI 추론 최적화](/post/extreme-optimization/ai-inference-latency-optimization-npu-quantization/) (챕터 17)

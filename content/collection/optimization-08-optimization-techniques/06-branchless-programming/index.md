@@ -1,7 +1,7 @@
 ---
 collection_order: 6
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] Branchless 프로그래밍 기법"
@@ -13,21 +13,20 @@ tags:
   - C++
   - Assembly
   - CPU(Central Processing Unit)
-  - Cache
   - Compiler(컴파일러)
   - Hardware(하드웨어)
   - Benchmark
   - Latency
-  - Throughput
+  - Pipeline
+  - Security(보안)
+  - Cryptography(암호학)
+  - Low-Level(로우레벨)
   - Profiling(프로파일링)
-  - Testing(테스트)
   - Implementation(구현)
   - Best-Practices
   - Code-Quality(코드품질)
-  - Debugging(디버깅)
   - Advanced
   - Deep-Dive
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - Branchless
   - Branch-Prediction
@@ -44,7 +43,7 @@ tags:
 
 **완전한 초보자?** 분기 예측이 무엇이고 예측 실패가 왜 비용을 발생시키는지는 [CPU 마이크로아키텍처 트랙의 분기 예측 메커니즘과 비용](/post/cpu-optimization/branch-prediction-mechanisms-cost/)에서 다룹니다. 이 장은 그 지식을 전제로, "예측이 어려운 분기를 어떻게 없애는가"에 집중합니다. 정수의 2의 보수 표현과 비트 연산(`&`, `|`, `^`, `~`, 시프트)의 기본 의미를 알고 있으면 충분합니다.
 
-**이 장의 깊이**: 이 장은 **심화** 수준입니다. CMOV 조건부 이동의 동작 원리, 비트마스크 기반 selection 패턴, 컴파일러가 분기 대신 CMOV를 선택하는 기준과 그 반대가 유리한 경우까지 다룹니다. **다루지 않는 것**: SIMD 레인 단위의 마스크 연산(블렌드·마스크 로드/스토어)은 SIMD 트랙([01](/post/extreme-optimization/simd-fundamentals-sse-avx/)~[04](/post/extreme-optimization/auto-vectorization-guidance-verification/))의 몫이고, 비트 조작 일반 기법은 [비트 조작 최적화 기법](/post/extreme-optimization/bit-manipulation-optimization-techniques/)에서, 손으로 짠 어셈블리로 컴파일러의 CMOV 선택 자체를 뒤집는 방법은 [Hand-written 어셈블리 적용과 위험 관리](/post/extreme-optimization/hand-written-assembly-risk-management/)에서 다룹니다. 이 장에서는 순수 C++ 코드 수준에서 branchless 패턴을 작성하고 검증하는 것까지만 다룹니다.
+**이 장의 깊이**: 이 장은 **심화** 수준입니다. CMOV 조건부 이동의 동작 원리, 비트마스크 기반 selection 패턴(상수 시간 선택 포함), 그리고 분기를 유지하는 편이 나은 경우를 다룹니다. **다루지 않는 것**: SIMD 레인 단위의 마스크 연산(블렌드·마스크 로드/스토어)은 SIMD 트랙([01](/post/extreme-optimization/simd-fundamentals-sse-avx/)~[04](/post/extreme-optimization/auto-vectorization-guidance-verification/))의 몫이고, 비트 조작 일반 기법은 [비트 조작 최적화 기법](/post/extreme-optimization/bit-manipulation-optimization-techniques/)에서, 손으로 짠 어셈블리로 컴파일러의 CMOV 선택 자체를 뒤집는 방법은 [Hand-written 어셈블리 적용과 위험 관리](/post/extreme-optimization/hand-written-assembly-risk-management/)에서 다룹니다. 이 장에서는 순수 C++ 코드 수준에서 branchless 패턴을 작성하고 검증하는 것까지만 다룹니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -62,11 +61,9 @@ tags:
 
 ## CMOV와 조건부 이동
 
-`CMOVcc` 계열 명령어는 [x86 CMOVcc 참조 문서](https://www.felixcloutier.com/x86/cmovcc)에 따르면 조건 코드와 무관하게 소스 피연산자를 항상 읽어 임시 위치에 올려 두고, EFLAGS의 조건이 만족될 때만 그 값을 목적지 레지스터에 실제로 쓰는 방식으로 동작합니다. 조건이 만족되지 않으면 목적지는 그대로 남습니다. 이 명령어에는 분기가 없으므로 예측기가 개입할 여지가 없고, 파이프라인 플러시도 발생하지 않습니다. C++ 코드에서는 대개 삼항 연산자로 이 패턴을 표현합니다.
+`CMOVcc` 계열 명령어는 [x86 CMOVcc 참조 문서](https://www.felixcloutier.com/x86/cmovcc)에 따르면 조건 코드와 무관하게 소스 피연산자를 항상 읽어 임시 위치에 올려 두고, EFLAGS의 조건이 만족될 때만 그 값을 목적지 레지스터에 실제로 쓰는 방식으로 동작합니다. 조건이 만족되지 않으면 목적지는 그대로 남습니다(단, 64비트 모드에서 32비트 피연산자를 쓰면 조건이 불만족이어도 목적지의 상위 32비트는 0이 됩니다). 이 명령어에는 분기가 없으므로 예측기가 개입할 여지가 없고, 파이프라인 플러시도 발생하지 않습니다. C++ 코드에서는 대개 삼항 연산자로 이 패턴을 표현합니다.
 
 ```cpp
-#include <algorithm>
-
 // 컴파일러가 CMOV로 내릴 수도, 분기로 내릴 수도 있는 후보 코드
 int select_larger(int a, int b) {
   return (a > b) ? a : b;  // 논리는 std::max(a, b)와 동일
@@ -91,8 +88,6 @@ int branchless_min_broken(int a, int b) {
 `branchless_min_broken`은 인터넷에서 흔히 볼 수 있는 형태지만 두 가지 문제를 안고 있습니다. `a - b`는 `a`, `b`의 부호와 크기에 따라 부호 있는 정수 오버플로를 일으킬 수 있고, 이는 C++ 표준상 정의되지 않은 동작(UB)입니다. 또한 음수를 산술 오른쪽 시프트로 부호 확장하는 동작은 C++20 이전 표준에서 구현 정의였습니다(대부분의 컴파일러가 산술 시프트로 구현하긴 하지만, 표준이 보장하는 바는 아니었습니다). 두 문제 모두 `INT_MIN`, `INT_MAX` 근처 값을 넣으면 실제로 드러납니다.
 
 ```cpp
-#include <cstdint>
-
 // 올바른 버전: 비교 결과에서 직접 마스크를 만들어 뺄셈 오버플로를 피한다.
 int branchless_min_fixed(int a, int b) {
   int mask = -static_cast<int>(a < b);   // a<b → 0xFFFFFFFF, 그 외 → 0x00000000
@@ -102,6 +97,20 @@ int branchless_min_fixed(int a, int b) {
 
 `branchless_min_fixed`는 뺄셈을 아예 쓰지 않고 비교 결과(`a < b`)를 곧바로 마스크로 바꾸므로 오버플로 경로가 없고, 시프트의 구현 정의 동작에도 의존하지 않습니다. 두 버전 모두 겉보기에는 "분기 없는 코드"처럼 보이지만, 실제로 신뢰할 수 있는 쪽은 후자뿐입니다.
 
+같은 마스크 발상은 비밀 값에 따라 실행 시간이 달라지면 안 되는 코드에서 상수 시간 선택으로 쓰입니다. 조건을 `0` 또는 `1`로 정규화한 뒤 마스크로 바꿔 두 값 중 하나를 고릅니다.
+
+```cpp
+#include <cstdint>
+
+// secret_bit은 반드시 0 또는 1이어야 한다. 분기 없이 a 또는 b를 선택한다.
+std::uint32_t ct_select(std::uint32_t secret_bit, std::uint32_t a, std::uint32_t b) {
+  std::uint32_t mask = 0u - secret_bit;  // 1 → 0xFFFFFFFF, 0 → 0x00000000 (부호 없는 연산이라 UB 없음)
+  return (a & mask) | (b & ~mask);
+}
+```
+
+다만 소스에 분기가 없다고 해서 컴파일러가 분기를 만들지 않는다는 보장은 없으므로, 보안 목적이라면 생성된 어셈블리와 전용 검증 도구로 확인해야 합니다.
+
 **검증**: 두 구현을 스칼라 참조 구현(`std::min`)과 무작위·경계값(`INT_MIN`, `INT_MAX`, `0`, `-1`) 입력으로 비교하고, UBSan을 켜서 `broken` 버전이 실제로 UB를 유발하는지 확인합니다.
 
 ```bash
@@ -109,13 +118,47 @@ g++ -std=c++20 -O1 -fsanitize=undefined -fno-sanitize-recover=undefined test_bra
 ./test_min   # branchless_min_broken(INT_MIN, 1) 같은 입력에서 UBSan이 오버플로를 보고해야 정상
 ```
 
-`test_branchless_min.cpp`에는 `branchless_min_broken`, `branchless_min_fixed`, `std::min`을 같은 입력 배열에 대해 호출하고 결과를 `assert`로 맞대어 보는 루프를 넣으면 됩니다. UBSan은 `broken` 버전에서 오버플로가 실제로 일어나는 입력을 만나면 런타임에 진단을 출력하며, `fixed` 버전은 같은 입력에서 조용히 통과해야 합니다.
+`test_branchless_min.cpp`는 세 구현을 같은 입력에 대해 호출하고 결과를 `assert`로 맞대어 봅니다. 오버플로를 일으키는 입력은 마지막에 따로 두어, 앞의 검증이 모두 끝난 뒤에 UBSan이 진단을 내도록 합니다.
+
+```cpp
+#include <cassert>
+#include <climits>
+#include <cstdio>
+#include <algorithm>
+
+int branchless_min_broken(int a, int b) {
+  int diff = a - b;
+  int mask = diff >> 31;
+  return b + (diff & mask);
+}
+
+int branchless_min_fixed(int a, int b) {
+  int mask = -static_cast<int>(a < b);
+  return (a & mask) | (b & ~mask);
+}
+
+int main() {
+  const int vals[] = {0, 1, -1, 7, -7, INT_MAX, INT_MIN, INT_MAX - 1, INT_MIN + 1};
+  // fixed 버전은 모든 경계값 쌍에서 std::min과 일치해야 한다.
+  for (int a : vals)
+    for (int b : vals) assert(branchless_min_fixed(a, b) == std::min(a, b));
+  // broken 버전은 뺄셈이 오버플로하지 않는 입력에서만 안전하다.
+  for (int a : {0, 1, -1, 7, -7})
+    for (int b : {0, 1, -1, 7, -7}) assert(branchless_min_broken(a, b) == std::min(a, b));
+  std::puts("fixed and in-range broken checks passed");
+  // 아래 호출은 INT_MIN - 1 오버플로(UB)를 일으킨다: UBSan이 여기서 보고해야 한다.
+  std::printf("%d\n", branchless_min_broken(INT_MIN, 1));
+  return 0;
+}
+```
+
+이 프로그램을 위 명령으로 빌드해 실행하면 앞의 두 검증 루프는 통과하고, 마지막 호출에서 UBSan이 부호 있는 정수 오버플로를 보고하는 것이 기대 동작입니다(이 글은 실행 출력을 싣지 않았으므로 직접 확인해 보세요).
 
 ## 흔한 오개념
 
 <strong>"if를 삼항 연산자나 비트마스크로 바꾸면 무조건 branchless 코드가 된다"</strong>는 틀린 생각입니다. 앞서 보았듯 삼항 연산자의 코드 생성 결과는 컴파일러 백엔드의 판단에 달려 있고, 실제로 CMOV가 나왔는지는 어셈블리(objdump, 컴파일러 탐색기)로 확인해야 합니다. 소스 수준의 형태와 생성된 명령어는 다른 것입니다.
 
-<strong>"branchless가 항상 더 빠르다"</strong>도 사실이 아닙니다. CMOV는 조건과 무관하게 두 값을 모두 준비해야 하므로 데이터 의존 사슬(dependency chain)이 길어지는 대가를 치릅니다. 분기가 실제로 예측하기 쉬운 데이터(정렬된 배열, 편향된 분포)를 다룬다면, 예측이 거의 항상 맞는 조건 분기가 매 순간 두 값을 다 계산하는 CMOV보다 오히려 빠를 수 있습니다. 실무 경험칙으로는 분기 예측 성공률이 충분히 높으면 조건 분기가, 예측이 자주 틀리면 CMOV/비트마스크 쪽이 유리한 경향이 있다고 보고되지만, 정확한 임계값은 마이크로아키텍처와 코드 문맥에 따라 달라지므로 실측이 필요합니다.
+<strong>"branchless가 항상 더 빠르다"</strong>도 사실이 아닙니다. CMOV는 조건과 무관하게 두 값을 모두 준비해야 하므로 데이터 의존 사슬(dependency chain)이 길어지는 대가를 치릅니다. 분기가 실제로 예측하기 쉬운 데이터(정렬된 배열, 편향된 분포)를 다룬다면, 예측이 거의 항상 맞는 조건 분기가 매 순간 두 값을 다 계산하는 CMOV보다 오히려 빠를 수 있습니다. 예측 성공률이 충분히 높으면 조건 분기가, 예측이 자주 틀리면 CMOV/비트마스크 쪽이 유리할 수 있다는 것이 일반적인 방향이지만, 그 경계는 마이크로아키텍처와 코드 문맥에 따라 달라지므로 이 글은 임계값 수치를 제시하지 않고 실측하도록 안내합니다.
 
 <strong>"`__builtin_expect`나 `[[likely]]`를 쓰면 branchless가 된다"</strong>는 것도 흔한 혼동입니다. GCC 문서는 `__builtin_expect`를 다음과 같이 설명합니다.
 
@@ -132,13 +175,6 @@ g++ -std=c++20 -O1 -fsanitize=undefined -fno-sanitize-recover=undefined test_bra
 | 비밀 값에 따라 실행 시간이 달라지면 안 되는 보안 코드 | 비트마스크 기반 constant-time 패턴 | 값 의존 분기 |
 | 두 분기 각각의 계산 비용이 크게 다름(한쪽이 훨씬 무거움) | 조건 분기 유지 | CMOV(양쪽 다 계산하는 낭비) |
 | 코드 리뷰·유지보수 우선순위가 높고 이득이 불확실 | 가독성 있는 `if`/`std::min`·`std::max` | 근거 없는 비트마스크 트릭 |
-
-### 자주 하는 실수
-
-- **뺄셈-시프트 기반 마스크 트릭을 그대로 복사**: `a - b` 오버플로로 UB. 비교 연산 결과에서 마스크를 만드는 패턴을 우선한다.
-- **삼항 연산자를 쓰고 branchless라고 단정**: 실제 생성된 명령어를 어셈블리로 확인하지 않으면 착각일 수 있다.
-- **모든 조건 분기를 무차별적으로 branchless화**: 예측하기 쉬운 분기까지 바꾸면 CMOV의 데이터 의존 사슬 비용 때문에 오히려 느려질 수 있다.
-- **한쪽 분기의 계산 비용을 무시**: CMOV/비트마스크는 두 값을 모두 계산하므로, 무거운 쪽 계산 비용이 상시 지불된다.
 
 ## 측정: branch-miss와 실행 시간
 
@@ -204,11 +240,11 @@ BENCHMARK(BM_SumBranchless_Random);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 bench.cpp -lbenchmark -lpthread`(x86-64, GCC 13 기준 예시)로 빌드해 실행하면, 정렬된 데이터에서는 `BM_SumBranchy_Sorted`가 `BM_SumBranchless_Sorted`와 비슷하거나 더 빠르게 나오는 경우가 흔하고(분기가 거의 항상 같은 방향으로 예측되므로), 무작위 데이터에서는 반대로 `BM_SumBranchless_Random`이 `BM_SumBranchy_Random`보다 뚜렷하게 빠르게 나오는 경우가 흔합니다. 정확한 배율은 CPU 세대·컴파일러·최적화 플래그에 따라 달라지므로 대상 환경에서 직접 재현해야 하며, `perf stat -e branch-misses,cycles ./bench_binary`(Linux, `perf` 설치 필요)로 실제 branch-miss 횟수를 함께 확인하면 어느 쪽이 병목의 원인이었는지 더 분명해집니다.
+`g++ -O2 bench.cpp -lbenchmark -lpthread`로 빌드해 실행합니다. 이 글은 실행 결과를 싣지 않았습니다. 정렬된 데이터에서는 분기가 거의 항상 같은 방향으로 예측되고, 무작위 데이터에서는 예측이 자주 빗나가므로 두 분포에서 차이가 갈릴 것이라는 가설을 세울 수 있지만, 컴파일러가 `if`를 이미 CMOV나 벡터 명령으로 바꿨다면 그 가설은 성립하지 않을 수 있습니다. 어느 쪽인지는 CPU 세대·컴파일러·최적화 플래그에 따라 달라지므로 대상 환경에서 직접 재현해야 하며, `perf stat -e branch-misses,cycles ./bench_binary`(Linux, `perf` 설치 필요)로 실제 branch-miss 횟수를 함께 확인하면 어느 쪽이 병목의 원인이었는지 더 분명해집니다.
 
 ## 비판적 시각: 한계와 트레이드오프
 
-**가독성**은 비트마스크 트릭의 가장 큰 대가입니다. `(a & mask) | (b & ~mask)`는 `a < b ? a : b`보다 의도를 즉시 읽어내기 어렵고, 주석 없이 남겨두면 다음 리뷰어가 버그로 오인하고 "정리"하다가 성능을 되돌릴 위험이 있습니다. **컴파일러 백엔드 의존성**도 문제입니다. 어떤 조건에서 CMOV를 내고 어떤 조건에서 분기를 내는지는 컴파일러 버전·타겟·주변 코드에 따라 달라지므로, 한 번 확인한 어셈블리가 다음 컴파일러 업그레이드에서도 유지된다는 보장은 없습니다. **예측 가능한 분기에는 역효과**라는 점도 반복해 둘 만합니다. CMOV/비트마스크는 조건과 무관하게 양쪽 값을 항상 계산하므로, 분기가 이미 높은 확률로 예측되는 상황에서는 그 계산 비용만 추가로 지불하는 셈이 됩니다. 마지막으로, 비트마스크 트릭은 정수 표현(2의 보수)과 오버플로 규칙에 깊이 의존하므로, 이식성 있는 코드를 목표로 한다면 각 타입의 폭과 부호를 명시적으로 다루고 UBSan·정적 분석으로 상시 검증하는 비용을 감수해야 합니다.
+**가독성**은 비트마스크 트릭의 가장 큰 대가입니다. `(a & mask) | (b & ~mask)`는 `a < b ? a : b`보다 의도를 즉시 읽어내기 어렵고, 주석 없이 남겨두면 다음 리뷰어가 버그로 오인하고 "정리"하다가 성능을 되돌릴 위험이 있습니다. **컴파일러 백엔드 의존성**도 문제입니다. 어떤 조건에서 CMOV를 내고 어떤 조건에서 분기를 내는지는 컴파일러 버전·타겟·주변 코드에 따라 달라지므로, 한 번 확인한 어셈블리가 다음 컴파일러 업그레이드에서도 유지된다는 보장은 없습니다. 마지막으로, 비트마스크 트릭은 정수 표현(2의 보수)과 오버플로 규칙에 깊이 의존하므로, 이식성 있는 코드를 목표로 한다면 각 타입의 폭과 부호를 명시적으로 다루고 UBSan·정적 분석으로 상시 검증하는 비용을 감수해야 합니다.
 
 ```mermaid
 flowchart TD
