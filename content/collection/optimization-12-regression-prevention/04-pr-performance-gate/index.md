@@ -61,11 +61,11 @@ tags:
 
 ## 게이트의 역사·배경
 
-PR 단위 성능 게이트는 새로운 발상이 아닙니다. Mozilla의 Firefox 프로젝트는 Perfherder라는 시스템으로 커밋마다 성능 시계열을 수집하고, Student's t-test 기반 변화점 탐지로 회귀 후보를 자동 표시해 왔습니다. 그러나 [Besbes 외, Mozilla 변화점 탐지 연구(arXiv 2606.18377)](https://arxiv.org/abs/2606.18377)는 1년치 알림을 분석해 생성된 알림 그룹의 12.5%가 오탐이었다고 보고했습니다. Rust 생태계의 `criterion.rs`는 개별 함수 단위 벤치마크에서 [부트스트랩 샘플과 T-검정](https://bheisler.github.io/criterion.rs/book/analysis.html)을 결합해 "직전 실행 대비 변화"를 판정하고, 결과가 노이즈 범위 안에 들면 무시하도록 설계되었습니다.
+PR 단위 성능 게이트의 전신으로 볼 만한 사례는 이미 있습니다. 다만 아래 Mozilla 사례는 PR 병합을 막는 게이트가 아니라 푸시 이후 시계열에서 변화를 찾아 알리는 사후 탐지이며, 게이트는 이를 PR 시점으로 당긴 형태라는 것이 필자의 해석입니다. Mozilla의 Firefox 프로젝트는 Perfherder라는 시스템으로 커밋마다 성능 시계열을 수집하고, Student's t-test 기반 변화점 탐지로 회귀 후보를 자동 표시해 왔습니다. 그러나 [Besbes 외, Mozilla 변화점 탐지 연구(arXiv 2606.18377)](https://arxiv.org/abs/2606.18377)는 1년치 알림을 분석해 생성된 알림 그룹의 12.5%가 오탐이었다고 보고했습니다. Rust 생태계의 `criterion.rs`는 개별 함수 단위 벤치마크에서 [부트스트랩 샘플과 T-검정](https://bheisler.github.io/criterion.rs/book/analysis.html)을 결합해 "직전 실행 대비 변화"를 판정하고, 결과가 노이즈 범위 안에 들면 무시하도록 설계되었습니다.
 
 > "The noise threshold is configurable, and defaults to `+-2%`." — [Criterion.rs 사용자 가이드: Command-Line Output](https://bheisler.github.io/criterion.rs/book/user_guide/command_line_output.html) 문서. 즉 직전 실행과 ±2% 이내 차이는 기본적으로 노이즈로 간주되어 회귀로 보고되지 않습니다.
 
-이 두 사례는 PR 게이트 설계의 핵심 긴장을 보여줍니다. 통계적으로 엄밀한 검정(t-test)은 변동성을 고려하지만 분포 가정이 깨지면 오탐을 만들고, 단순 퍼센트 임계값은 이해하기 쉽지만 변동성 규모를 반영하지 못합니다. CodSpeed·Bencher 같은 SaaS형 지속적 벤치마킹 도구(03장 참고)는 이 둘을 절충해 퍼센트 기준과 통계적 기준을 함께 제공하는 방향으로 수렴하고 있습니다.
+필자는 이 두 사례를 PR 게이트 설계의 핵심 긴장으로 읽습니다(두 출처가 직접 말하는 결론은 아닙니다). 통계 검정은 변동성을 고려하지만 해석이 어렵고, 단순 퍼센트 임계값은 이해하기 쉽지만 변동성 규모를 반영하지 못합니다. 03장에서 다룬 Bencher는 문서에서 퍼센트·z-점수·t-검정 같은 임계값 방식을 함께 제공합니다.
 
 ## 게이트의 구성 요소
 
