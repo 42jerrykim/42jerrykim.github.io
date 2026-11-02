@@ -1,7 +1,7 @@
 ---
 collection_order: 17
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-23
 draft: false
 image: wordcloud.png
 title: "[IO 09] 로깅 성능 전략"
@@ -32,7 +32,7 @@ tags:
   - Advanced
   - Comparison(비교)
   - Pitfalls(함정)
-  - Documentation(문서화)
+  - Syscall
   - Async-Logger
   - Ring-Buffer
   - Lock-Free-Queue
@@ -49,7 +49,7 @@ tags:
 
 ## 이 장을 읽기 전에
 
-**선행 지식**: 이 장은 [01장: I/O 비용 직관](/post/io-optimization/io-cost-intuition-sync-async-copy-fundamentals/)에서 다룬 "동기/비동기와 복사 횟수가 지연에 미치는 그림"과 [1장: I/O 패턴과 비용](/post/io-optimization/io-patterns-blocking-nonblocking-cost-model/)에서 다룬 시스템 콜 진입 비용·대기 방식 모델을 전제로 합니다. 스레드 간 동기화(뮤텍스, 원자적 연산)의 기본 개념도 필요합니다. **이 장의 깊이**: **중급**입니다. 동기 로깅이 핫패스에서 지불하는 비용의 종류, 로그 레벨 분리가 I/O에 미치는 영향, 비동기 로거의 링 버퍼·배치 설계를 다룹니다. **다루지 않는 것**: 특정 로깅 라이브러리(spdlog, glog, quill 등)의 전체 API 튜토리얼, 로그 수집·색인·검색 인프라(ELK 스택 등 중앙화 로깅 파이프라인), 여러 스레드가 같은 로그 파일에 `flock`으로 잠그는 상황의 세부 비용([15장: File Locking 성능](/post/io-optimization/file-locking-performance-impact-alternatives/)에서 다룹니다), WAL·fsync 기반 내구성 보장 전략([14장: Database I/O 패턴](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)에서 다룹니다)입니다.
+**선행 지식**: 이 장은 [01장: I/O 비용 직관](/post/io-optimization/io-cost-intuition-sync-async-copy-fundamentals/)에서 다룬 "동기/비동기와 복사 횟수가 지연에 미치는 그림"과 [02장: I/O 패턴과 비용](/post/io-optimization/io-patterns-blocking-nonblocking-cost-model/)에서 다룬 시스템 콜 진입 비용·대기 방식 모델을 전제로 합니다. 스레드 간 동기화(뮤텍스, 원자적 연산)의 기본 개념도 필요합니다. **이 장의 깊이**: **중급**입니다. 동기 로깅이 핫패스에서 지불하는 비용의 종류, 로그 레벨 분리가 I/O에 미치는 영향, 비동기 로거의 링 버퍼·배치 설계를 다룹니다. **다루지 않는 것**: 특정 로깅 라이브러리(spdlog, glog, quill 등)의 전체 API 튜토리얼, 로그 수집·색인·검색 인프라(ELK 스택 등 중앙화 로깅 파이프라인), 여러 스레드가 같은 로그 파일에 `flock`으로 잠그는 상황의 세부 비용([15장: File Locking 성능](/post/io-optimization/file-locking-performance-impact-alternatives/)에서 다룹니다), WAL·fsync 기반 내구성 보장 전략([14장: Database I/O 패턴](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)에서 다룹니다)입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -67,13 +67,13 @@ tags:
 
 ## 동기 로깅의 핫패스 비용 분해
 
-동기 로깅 호출 하나가 핫패스 스레드에서 실제로 지불하는 비용은 최소 네 가지로 나눌 수 있습니다. 첫째, **락 경합**입니다. 여러 스레드가 같은 로그 파일 핸들이나 로거 객체를 공유하면 뮤텍스로 직렬화되고, 스레드 수가 늘수록 대기 시간이 커집니다. 둘째, **문자열 포맷팅과 힙 할당**입니다. `operator+`나 `std::ostringstream`으로 로그 라인을 조립하면 매 호출마다 임시 문자열과 할당이 발생하며, 이는 C++ 언어 트랙에서 다루는 문자열 반복 연결 비용과 정확히 같은 구조의 문제입니다. 셋째, **시스템 콜 진입 비용**입니다. `write`는 [1장](/post/io-optimization/io-patterns-blocking-nonblocking-cost-model/)에서 다룬 것과 동일한 사용자-커널 전환 비용을 매 호출마다 지불합니다. 넷째, **flush 정책**입니다. 매 줄마다 `fflush`나 `fsync`를 호출하면 커널이 버퍼를 실제로 디스크(또는 파이프)에 밀어내는 비용까지 매번 지불하게 되어, 사실상 로그 한 줄이 동기 I/O 한 번과 같아집니다.
+동기 로깅 호출 하나가 핫패스 스레드에서 실제로 지불하는 비용은 최소 네 가지로 나눌 수 있습니다. 첫째, **락 경합**입니다. 여러 스레드가 같은 로그 파일 핸들이나 로거 객체를 공유하면 뮤텍스로 직렬화되고, 스레드 수가 늘수록 대기 시간이 커집니다. 둘째, **문자열 포맷팅과 힙 할당**입니다. `operator+`나 `std::ostringstream`으로 로그 라인을 조립하면 매 호출마다 임시 문자열과 할당이 발생하며, 이는 C++ 언어 트랙에서 다루는 문자열 반복 연결 비용과 정확히 같은 구조의 문제입니다. 셋째, **시스템 콜 진입 비용**입니다. `write`는 [02장](/post/io-optimization/io-patterns-blocking-nonblocking-cost-model/)에서 다룬 것과 동일한 사용자-커널 전환 비용을 매 호출마다 지불합니다. 넷째, **flush 정책**입니다. 매 줄마다 `fflush`를 호출하면 사용자 공간 버퍼가 매번 `write` 시스템 콜로 커널에 넘어가 로그 한 줄이 시스템 콜 한 번과 같아지고, 여기에 `fsync`까지 호출하면 디스크 반영을 기다리는 동기 I/O 한 번과 같아집니다.
 
 이 네 가지가 겹친 전형적인 안티패턴과, 그 원인을 코드로 확인해 보겠습니다.
 
 ```cpp
 // bad_sync_logger.cpp — 안티패턴: 매 호출마다 락 + 문자열 조립 + 강제 flush
-// g++ -O2 -std=c++17 -pthread bad_sync_logger.cpp -o bad_sync_logger
+// g++ -O2 -std=c++17 -pthread -c bad_sync_logger.cpp   (함수 정의만 있는 단위이므로 오브젝트로 컴파일)
 #include <cstdio>
 #include <mutex>
 #include <string>
@@ -86,8 +86,8 @@ void log_trade(int order_id, double price, int qty) {
   std::string line = "order=" + std::to_string(order_id) +
                       " price=" + std::to_string(price) +
                       " qty=" + std::to_string(qty) + "\n";  // (2) 매 호출마다 임시 문자열·힙 할당
-  std::fwrite(line.data(), 1, line.size(), log_file);        // (3) write 진입 비용
-  std::fflush(log_file);  // (4) 매 줄마다 커널로 강제 flush — 사실상 동기 I/O 한 번
+  std::fwrite(line.data(), 1, line.size(), log_file);        // (3) 사용자 공간 버퍼로 복사(이 시점엔 syscall 없음)
+  std::fflush(log_file);  // (4) 매 줄마다 write 시스템 콜을 강제 — 매 호출 커널 진입
 }
 ```
 
@@ -99,13 +99,16 @@ void log_trade(int order_id, double price, int qty) {
 
 ## 비동기 로거의 구조
 
-**비동기 로거**의 핵심 아이디어는 핫패스 스레드(생산자)가 로그 레코드를 **락 없는 큐**에 밀어넣기만 하고, 실제 포맷팅·시스템 콜·flush는 별도의 백그라운드 스레드(소비자)가 배치로 처리하도록 분리하는 것입니다. 이렇게 하면 핫패스가 지불하는 비용은 큐에 값을 복사하는 몇 나노초 수준으로 줄고, 나머지 세 비용은 지연 예산에서 자유로운 백그라운드 스레드로 옮겨갑니다. 다음은 단일 생산자-단일 소비자(SPSC) 링 버퍼를 이용한 개념 골격입니다.
+**비동기 로거**의 핵심 아이디어는 핫패스 스레드(생산자)가 로그 레코드를 **락 없는 큐**에 밀어넣기만 하고, 실제 포맷팅·시스템 콜·flush는 별도의 백그라운드 스레드(소비자)가 배치로 처리하도록 분리하는 것입니다. 이렇게 하면 핫패스가 지불하는 비용은 큐에 값을 복사하는 짧은 구간(측정 전에는 크기를 단정할 수 없지만 NanoLog의 보고 중앙값이 7ns대)으로 줄고, 나머지 세 비용은 지연 예산에서 자유로운 백그라운드 스레드로 옮겨갑니다. 다음은 단일 생산자-단일 소비자(SPSC) 링 버퍼를 이용한 개념 골격입니다.
 
 ```cpp
 // async_logger.h — 개념 스켈레톤: 핫패스는 push만, 백그라운드 스레드가 실제 I/O 수행
+#pragma once
 #include <array>
+#include <cstddef>
 #include <atomic>
 #include <chrono>
+#include <cstdint>
 #include <cstdio>
 #include <thread>
 
@@ -138,13 +141,13 @@ inline SpscRingBuffer<1 << 16> g_queue;
 inline std::atomic<bool> g_running{true};
 inline std::atomic<uint64_t> g_dropped{0};
 
-void log_trade_hot_path(int order_id, double price, int qty) {
+inline void log_trade_hot_path(int order_id, double price, int qty) {
   if (!g_queue.push({order_id, price, qty})) {
     g_dropped.fetch_add(1, std::memory_order_relaxed);  // 정책: drop + 카운터 (아래 판단 기준 참고)
   }
 }
 
-void logger_thread_main(FILE* out) {
+inline void logger_thread_main(FILE* out) {
   LogRecord r;
   char line[128];
   while (g_running.load(std::memory_order_relaxed)) {
@@ -178,32 +181,55 @@ flowchart LR
 **두 방식의 호출당 비용 차이**를 격리해서 측정하면 다음과 같습니다. 아래는 앞서의 `log_trade`(동기, 락+fflush)와 `log_trade_hot_path`(비동기, 링 버퍼 push)를 같은 조건으로 반복 호출해 비교하는 Google Benchmark 코드입니다.
 
 ```cpp
-// bench_logging.cpp — g++ -O2 -pthread bench_logging.cpp -lbenchmark -lpthread
+// bench_logging.cpp — g++ -O2 -std=c++17 -pthread bench_logging.cpp -lbenchmark -o bench_logging
+// 두 로거가 같은 /dev/null을 대상으로 하므로 디스크 속도가 아니라 호출 경로 비용만 비교한다.
 #include <benchmark/benchmark.h>
-#include "async_logger.h"  // log_trade_hot_path 선언 포함, log_trade는 별도 헤더로 분리했다고 가정
+#include <mutex>
+#include <string>
+#include "async_logger.h"  // 위 스켈레톤(SpscRingBuffer, log_trade_hot_path, logger_thread_main)
+
+static std::mutex sync_mutex;
+static FILE* sync_file = std::fopen("/dev/null", "w");
+
+static void log_trade_sync(int order_id, double price, int qty) {  // 앞의 안티패턴과 같은 구조
+  std::lock_guard<std::mutex> lock(sync_mutex);
+  std::string line = "order=" + std::to_string(order_id) + " price=" + std::to_string(price) +
+                      " qty=" + std::to_string(qty) + "\n";
+  std::fwrite(line.data(), 1, line.size(), sync_file);
+  std::fflush(sync_file);
+}
 
 static void BM_SyncLockFlushLog(benchmark::State& state) {
   for (auto _ : state) {
-    log_trade(1, 101.25, 100);
+    log_trade_sync(1, 101.25, 100);
   }
 }
 BENCHMARK(BM_SyncLockFlushLog);
 
 static void BM_AsyncRingBufferPush(benchmark::State& state) {
+  g_running = true;
+  FILE* devnull = std::fopen("/dev/null", "w");
+  std::thread consumer(logger_thread_main, devnull);  // 소비자가 큐를 비워야 push 경로를 잴 수 있다
   for (auto _ : state) {
     log_trade_hot_path(1, 101.25, 100);
   }
+  g_running = false;
+  consumer.join();
+  std::fclose(devnull);
+  state.counters["dropped"] = static_cast<double>(g_dropped.load());
 }
 BENCHMARK(BM_AsyncRingBufferPush);
 
 BENCHMARK_MAIN();
 ```
 
-절대 수치는 CPU 세대·커널 버전·디스크(또는 tmpfs) 조합에 따라 달라지므로 반드시 대상 환경에서 재현해야 하지만, 방향성은 분명합니다. NanoLog의 자체 비교 표는 정적으로 문자열을 컴파일 타임에 분해하는 방식이 spdlog·glog·Log4j2 대비 호출당 수십 배에서 수백 배 낮은 지연을 낸다고 보고합니다.
+절대 수치는 CPU 세대·커널 버전·디스크(또는 tmpfs) 조합에 따라 달라지므로 반드시 대상 환경에서 재현해야 하지만, 방향성은 분명합니다. NanoLog의 자체 비교 표는 정적으로 문자열을 컴파일 타임에 분해하는 방식이 spdlog·glog·Log4j2 대비 호출당 지연이 훨씬 낮다고 보고합니다. 위 `dropped` 카운터가 0이 아니면 소비자가 생산 속도를 따라가지 못해 일부 호출이 drop 경로를 탄 것이므로, 해석 전에 이 값을 먼저 확인해야 합니다.
 
 > "Nanolog is an extremely performant nanosecond scale logging system for C++ that exposes a simple printf-like API and achieves over 80 million logs/second at a median latency of just over 7 nanoseconds." — [GitHub: PlatformLab/NanoLog README](https://github.com/PlatformLab/NanoLog) (Yang, Park, Ousterhout, USENIX ATC 2018 연구의 구현체 저장소).
 
-이 장의 SPSC 링 버퍼 방식은 NanoLog만큼 극단적이지는 않지만(문자열을 컴파일 타임에 분해하지 않고 구조체를 그대로 복사하므로), 매 호출마다 락과 flush를 지불하는 동기 방식보다는 한 자릿수–두 자릿수 배 낮은 호출당 비용을 기대할 수 있습니다. `perf stat -e futex-wait`나 `strace -c -e write,fsync`로 락 대기·시스템 콜 횟수를 실측해 교차 검증하는 것이 좋습니다.
+이 장의 SPSC 링 버퍼 방식은 NanoLog만큼 극단적이지는 않지만(문자열을 컴파일 타임에 분해하지 않고 구조체를 그대로 복사하므로), 매 호출마다 락과 flush를 지불하는 동기 방식보다 호출당 비용이 낮을 것으로 예상하지만, 배수는 대상 환경에서 측정하기 전에는 단정할 수 없습니다. `strace -c -e trace=write,futex`로 `write`·락 대기(`futex`) 호출 횟수를, `perf trace -s`로 시스템 콜 시간 요약을 실측해 교차 검증하는 것이 좋습니다.
+
+동시성 코드인 링 버퍼는 벤치와 별도로 안전성도 확인해야 합니다. 생산자 1개·소비자 1개로 구성한 테스트를 `g++ -O1 -g -std=c++17 -pthread -fsanitize=thread`로 빌드해 ThreadSanitizer 경고가 없는지 확인합니다. 단, 경고가 없다는 것은 실행한 인터리빙에서 데이터 레이스가 관찰되지 않았다는 뜻일 뿐 안전하다는 증명이 아니며, 이 큐는 생산자와 소비자가 각각 정확히 한 스레드라는 전제에서만 올바릅니다.
 
 ## 흔한 오개념
 

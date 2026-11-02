@@ -1,7 +1,7 @@
 ---
 collection_order: 2
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-20
 draft: false
 image: wordcloud.png
 title: "[IO 09] I/O 패턴과 비용"
@@ -50,9 +50,9 @@ tags:
 
 ## 이 장을 읽기 전에
 
-**선행 지식**: 프로세스/스레드의 차이, 커널 모드와 사용자 모드의 구분, 컨텍스트 스위치가 무엇인지 정도만 알면 충분합니다. 별도의 선행 챕터는 없으며, 트랙 인트로([Introduction: Low-latency I/O 최적화](/post/io-optimization/getting-started-io-performance-tuning/))에서 이 트랙의 범위를 먼저 확인하는 것을 권장합니다. 그림으로 먼저 감을 잡고 싶다면 [01장: I/O 비용 직관](/post/io-optimization/io-cost-intuition-sync-async-copy-fundamentals/)을 병행해도 좋습니다. 01장이 직관적 그림을 그린다면, 이 장은 그 아래에 있는 시스템 콜 단위 비용 모델을 세웁니다.
+**선행 지식**: 프로세스/스레드의 차이, 커널 모드와 사용자 모드의 구분, 컨텍스트 스위치가 무엇인지 정도만 알면 충분합니다. **선행 챕터**: [01장: I/O 비용 직관](/post/io-optimization/io-cost-intuition-sync-async-copy-fundamentals/). 트랙 인트로([Introduction: Low-latency I/O 최적화](/post/io-optimization/getting-started-io-performance-tuning/))가 권하는 순서대로 01장을 먼저 읽는 것을 전제로 합니다. 01장이 직관적 그림을 그린다면, 이 장은 그 아래에 있는 시스템 콜 단위 비용 모델을 세웁니다.
 
-**이 장의 깊이**: **기초**입니다. 동기/비동기와 블로킹/논블로킹을 구분하는 개념 정의, 시스템 콜 진입 비용의 구성 요소, busy-wait·blocking·이벤트 기반이라는 세 가지 대기 방식의 비용 차이를 다룹니다. **다루지 않는 것**: `select`/`poll`/`epoll`/`kqueue`의 구체적인 API와 사용법([2장](/post/io-optimization/async-io-select-poll-epoll-kqueue/)), `io_uring`의 SQ/CQ 구조와 심화 기능([3장](/post/io-optimization/io-uring-advanced-deep-dive/)), Windows IOCP의 완료 포트 구조([4장](/post/io-optimization/windows-iocp-io-model-optimization/)), zero-copy 기법([5장](/post/io-optimization/zero-copy-sendfile-splice-copy-file-range/))입니다.
+**이 장의 깊이**: **기초**입니다. 동기/비동기와 블로킹/논블로킹을 구분하는 개념 정의, 시스템 콜 진입 비용의 구성 요소, busy-wait·blocking·이벤트 기반이라는 세 가지 대기 방식의 비용 차이를 다룹니다. **다루지 않는 것**: `select`/`poll`/`epoll`/`kqueue`의 구체적인 API와 사용법([03장](/post/io-optimization/async-io-select-poll-epoll-kqueue/)), `io_uring`의 SQ/CQ 구조와 심화 기능([04장](/post/io-optimization/io-uring-advanced-deep-dive/)), Windows IOCP의 완료 포트 구조([05장](/post/io-optimization/windows-iocp-io-model-optimization/)), zero-copy 기법([06장](/post/io-optimization/zero-copy-sendfile-splice-copy-file-range/))입니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -66,22 +66,29 @@ tags:
 
 ## 블로킹에서 논블로킹까지 (역사·배경)
 
-초기 Unix(1970년대 Bell Labs)의 `read`/`write`는 기본적으로 **블로킹**이었습니다. 호출한 스레드는 데이터가 준비될 때까지 커널 내부에서 대기하고, 그동안 CPU는 스케줄러가 다른 작업에 넘겨줄 수 있었습니다. 여러 파일 디스크립터를 동시에 다뤄야 하는 서버가 늘면서 4.2BSD(1983)는 `select()`를 도입해 "여러 fd 중 준비된 것"을 한 번에 확인하는 멀티플렉싱 축을 열었고, 이후 `fcntl(O_NONBLOCK)`으로 표준화된 논블로킹 플래그는 "호출이 당장 완료되지 않아도 즉시 반환"하는 축을 별도로 제공했습니다. POSIX.1b(1993)의 `aio_*` 계열은 "호출 자체가 완료를 기다리지 않고 별도로 통지받는" 진짜 비동기 모델을 표준에 추가했지만, 커널 구현이 성숙하기까지는 오래 걸렸습니다. 이 세 갈래—멀티플렉싱, 논블로킹, 완료 기반 비동기—가 이후 Linux `epoll`(2002, 커널 2.5.44), Windows `IOCP`(1994, Windows NT 3.5), `io_uring`(2019, 커널 5.1)으로 이어지는 구체적 구현들의 뿌리입니다. 각 구현의 세부 동작은 [2장](/post/io-optimization/async-io-select-poll-epoll-kqueue/), [3장](/post/io-optimization/io-uring-advanced-deep-dive/), [4장](/post/io-optimization/windows-iocp-io-model-optimization/)에서 다루며, 이 장은 그 앞에 있는 "왜 세 갈래로 나뉘었는가"라는 비용 모델에 집중합니다.
+초기 Unix(1970년대 Bell Labs)의 `read`/`write`는 기본적으로 **블로킹**이었습니다. 호출한 스레드는 데이터가 준비될 때까지 커널 내부에서 대기하고, 그동안 CPU는 스케줄러가 다른 작업에 넘겨줄 수 있었습니다. 여러 파일 디스크립터를 동시에 다뤄야 하는 서버가 늘면서 4.2BSD(1983)는 `select()`를 도입해 "여러 fd 중 준비된 것"을 한 번에 확인하는 멀티플렉싱 축을 열었고, 이후 `fcntl(O_NONBLOCK)`으로 표준화된 논블로킹 플래그는 "호출이 당장 완료되지 않아도 즉시 반환"하는 축을 별도로 제공했습니다. POSIX.1b(1993)의 `aio_*` 계열은 "호출 자체가 완료를 기다리지 않고 별도로 통지받는" 진짜 비동기 모델을 표준에 추가했지만, 커널 구현이 성숙하기까지는 오래 걸렸습니다. 이 세 갈래—멀티플렉싱, 논블로킹, 완료 기반 비동기—가 이후 Linux `epoll`(2002, 커널 2.5.44), Windows `IOCP`(1994, Windows NT 3.5), `io_uring`(2019, 커널 5.1)으로 이어지는 구체적 구현들의 뿌리입니다. 각 구현의 세부 동작은 [03장](/post/io-optimization/async-io-select-poll-epoll-kqueue/), [04장](/post/io-optimization/io-uring-advanced-deep-dive/), [05장](/post/io-optimization/windows-iocp-io-model-optimization/)에서 다루며, 이 장은 그 앞에 있는 "왜 세 갈래로 나뉘었는가"라는 비용 모델에 집중합니다.
 
 ## 동기/비동기와 블로킹/논블로킹: 네 가지 조합
 
-동기(synchronous)와 비동기(asynchronous)는 "호출자가 완료를 어떻게 알게 되는가"를 가르는 축이고, 블로킹과 논블로킹은 "호출이 당장 완료되지 않을 때 즉시 반환하는가"를 가르는 축입니다. 두 축은 독립적이라서, 실제로는 다음 네 조합이 모두 존재합니다.
+동기(synchronous)와 비동기(asynchronous)는 "호출자가 완료를 어떻게 알게 되는가"를 가르는 축이고, 블로킹과 논블로킹은 "호출이 당장 완료되지 않을 때 즉시 반환하는가"를 가르는 축입니다. 엄밀한 POSIX 정의(W. Richard Stevens, 『UNIX Network Programming』 6.2절)에서는 데이터 복사를 호출자가 직접 수행하면 동기 I/O이므로, `select`/`epoll` 같은 준비 통지 방식도 <strong>동기 I/O(멀티플렉싱)</strong>로 분류되고 비동기 I/O는 커널이 복사까지 끝낸 뒤 알려 주는 완료 통지 방식뿐입니다. 실무 문헌은 준비 통지를 "비동기"로 부르기도 해서 용어가 갈리므로, 아래에서는 대기 방식(블로킹·논블로킹·준비 통지)과 완료 방식을 함께 적은 네 가지 모델로 정리합니다.
 
 - **동기 + 블로킹**: 가장 전통적인 `read(fd, buf, len)`. 데이터가 준비될 때까지 호출이 반환하지 않습니다.
 - **동기 + 논블로킹**: `O_NONBLOCK`을 켠 `read`. 데이터가 없으면 즉시 `EAGAIN`으로 반환하고, 호출자가 직접 재시도(폴링) 여부를 결정합니다. 호출 자체는 여전히 "그 순간의 결과"를 동기적으로 돌려줍니다.
-- **비동기 + 준비 통지(readiness)**: `select`/`poll`/`epoll`처럼 "이 fd가 읽기 가능해졌다"는 통지만 받고, 실제 `read`는 통지 이후 호출자가 별도로 수행합니다. 통지와 데이터 전달이 분리되어 있지만, 데이터 자체는 여전히 통지를 받은 스레드가 동기적으로 읽어옵니다.
+- **동기 + 준비 통지(readiness, I/O 멀티플렉싱)**: `select`/`poll`/`epoll`처럼 "이 fd가 읽기 가능해졌다"는 통지만 받고, 실제 `read`는 통지 이후 호출자가 별도로 수행합니다. 통지와 데이터 전달이 분리되어 있지만, 데이터 자체는 여전히 통지를 받은 스레드가 동기적으로 읽어옵니다.
 - **비동기 + 완료 통지(completion)**: `io_uring`이나 Windows `IOCP`처럼 "read 자체를 커널에 제출"하고, 데이터 전달까지 끝난 뒤 완료 이벤트로 결과(읽은 바이트 수, 버퍼)를 통째로 돌려받습니다. 호출자는 제출과 수거를 분리할 뿐 데이터를 직접 끌어오지 않습니다.
 
-이 구분이 중요한 이유는, 흔히 "논블로킹 = 비동기"로 뭉뚱그리기 쉽지만 `epoll` 기반 이벤트 루프는 통지 방식만 비동기이고 데이터 읽기는 여전히 호출자가 동기적으로 수행하는 준비-통지(readiness) 모델이기 때문입니다. `io_uring`/`IOCP`의 완료 기반(completion) 모델과는 시스템 콜 횟수와 데이터 복사 경로가 다르며, 그 차이는 [3장](/post/io-optimization/io-uring-advanced-deep-dive/)과 [13장: POSIX AIO vs io_uring](/post/io-optimization/posix-aio-vs-io-uring-performance-comparison/)에서 성능 수치로 다룹니다.
+| 모델 | 대표 API | 완료를 아는 방식 | 데이터 복사 주체 | 바이트를 받기까지의 시스템 콜 |
+|---|---|---|---|---|
+| 동기 + 블로킹 | `read` | 호출 반환 = 완료 | 호출자의 `read` | `read` 1회(데이터가 올 때까지 블록) |
+| 동기 + 논블로킹 | `O_NONBLOCK` + `read` | `EAGAIN`이 아닌 반환값 | 호출자의 `read` | 준비될 때까지 `read` 반복 |
+| 동기 + 준비 통지 | `select`/`poll`/`epoll` | "읽기 가능" 통지 후 직접 `read` | 호출자의 `read` | 대기 호출 1회 + `read` 1회 이상 |
+| 비동기 + 완료 통지 | `io_uring`, IOCP | 완료 큐 항목 수거 | 커널 | 제출·수거(`io_uring`은 여러 요청을 한 번에 묶을 수 있음) |
+
+`epoll` 기반 이벤트 루프와 `io_uring`/`IOCP`의 완료 기반(completion) 모델은 시스템 콜 횟수와 데이터 복사 경로가 다르며, 그 차이는 [04장](/post/io-optimization/io-uring-advanced-deep-dive/)과 [13장: POSIX AIO vs io_uring](/post/io-optimization/posix-aio-vs-io-uring-performance-comparison/)에서 성능 수치로 다룹니다.
 
 ## 시스템 콜 진입 비용
 
-I/O를 시작하려면 대부분 사용자 모드에서 커널 모드로 전환하는 시스템 콜을 거칩니다. 이 전환은 단순한 함수 호출이 아니라 CPU 권한 레벨(ring)을 바꾸고 레지스터를 저장하는 트랩(trap) 경로를 타므로, 순수한 진입/반환만으로도 고정 비용이 붙습니다. Brendan Gregg의 측정에 따르면 아무 일도 하지 않는 시스템 콜은 현대 CPU에서 대략 수십–100 사이클 수준이었지만, Meltdown 취약점을 막기 위한 KPTI(Kernel Page Table Isolation) 패치가 적용된 이후에는 시스템 콜마다 페이지 테이블을 전환하는 비용이 추가됩니다. 초당 7만 5천 회 수준의 고빈도 시스템 콜 워크로드에서는 추정 4%·실측 5% 손실이 보고되었고, 클라우드 환경 전반에서는 0.1–6% 정도의 성능 저하를 예상할 수 있다고 밝혔습니다. 다만 TLB 페이지 워크에 유난히 민감한 한 스트레스 테스트에서는 25% 이상의 저하가 이상치(outlier)로 관측되었습니다([Gregg, "KPTI/KAISER Meltdown Initial Performance Regressions", 2018](https://www.brendangregg.com/blog/2018-02-09/kpti-kaiser-meltdown-performance.html)). PCID(Process-Context Identifiers) 지원과 huge page를 함께 쓰면 이 오버헤드를 상당 부분 되돌릴 수 있다고도 언급합니다. 정확한 사이클 수는 CPU 세대·커널 버전·완화 패치 조합마다 달라지므로, 절대 수치보다 "시스템 콜은 공짜가 아니고, 완화 패치 이후 특히 그렇다"는 방향성을 기억하는 것이 실무에 더 유용합니다.
+I/O를 시작하려면 대부분 사용자 모드에서 커널 모드로 전환하는 시스템 콜을 거칩니다. 이 전환은 단순한 함수 호출이 아니라 CPU 권한 레벨(ring)을 바꾸고 레지스터를 저장하는 트랩(trap) 경로를 타므로, 순수한 진입/반환만으로도 고정 비용이 붙습니다. 여기에 Meltdown 취약점을 막기 위한 KPTI(Kernel Page Table Isolation) 패치가 적용되면 시스템 콜마다 페이지 테이블을 전환하는 비용이 추가됩니다. Brendan Gregg는 KPTI 오버헤드가 워크로드에 따라 1%에서 800% 이상까지 벌어질 수 있다고 정리했고, CPU당 초당 7만 5천 회(8 CPU 합계 60만 회)의 시스템 콜을 내는 MySQL OLTP 벤치마크에서는 추정 4%·실측 5% 손실을 보고했습니다. 자신이 일하던 Netflix 클라우드 시스템은 시스템 콜 빈도를 고려해 0.1–6% 정도의 오버헤드를 예상한다고 밝혔습니다. 반면 TLB 플러시에 민감한 한 스트레스 테스트(CPU당 초당 21만 회 시스템 콜)에서는 추정 12% 미만이던 손실이 실측 25%로 나타났습니다([Gregg, "KPTI/KAISER Meltdown Initial Performance Regressions", 2018](https://www.brendangregg.com/blog/2018-02-09/kpti-kaiser-meltdown-performance.html)). PCID(Process-Context Identifiers) 지원과 huge page를 함께 쓰면 이 오버헤드를 상당 부분 되돌릴 수 있다고도 언급합니다. 정확한 사이클 수는 CPU 세대·커널 버전·완화 패치 조합마다 달라지므로, 절대 수치보다 "시스템 콜은 공짜가 아니고, 완화 패치 이후 특히 그렇다"는 방향성을 기억하는 것이 실무에 더 유용합니다.
 
 이 비용을 직접 확인하려면 순수 시스템 콜 하나를 반복 호출하며 걸린 시간을 나눠보는 것이 가장 간단합니다. 아래 코드는 인자 처리가 거의 없는 `getpid()`를 반복 호출해 평균 진입 비용을 근사합니다. `glibc` 2.25 이후로는 `getpid()`가 항상 실제 시스템 콜을 발생시키므로(과거 버전은 프로세스 시작 시 값을 캐시했습니다) 최신 배포판에서는 이 측정이 유효합니다.
 
@@ -113,9 +120,9 @@ int main() {
 
 시스템 콜 진입 비용이 "한 번 부르는 값"이라면, 대기 방식은 "데이터가 아직 없을 때 무엇을 하는가"를 결정하는 반복적 비용입니다. 크게 세 가지로 나눌 수 있습니다.
 
-- **busy-wait(spin-poll)**: 호출자가 CPU를 계속 점유한 채 조건을 반복 확인합니다. 컨텍스트 스위치가 전혀 없어 데이터가 준비되는 즉시 반응할 수 있지만, 대기하는 동안 코어 하나를 온전히 소모합니다. 대기 시간이 매우 짧고(수백 ns–수 µs) 전용 코어를 할당할 여유가 있는 트레이딩 시스템의 핫패스에서 주로 씁니다.
-- **blocking wait**: 호출자가 커널의 wait queue에 들어가고 스케줄러가 다른 작업에 코어를 넘깁니다. 데이터가 준비되면 깨우기(wake-up)와 컨텍스트 스위치가 발생하는데, 이 왕복 비용은 스케줄러 지연을 포함해 보통 수백 ns에서 수 µs대까지 걸립니다. 코어를 낭비하지 않는 대신 반응 지연이 스케줄러 상태에 좌우됩니다.
-- **event-driven(멀티플렉싱/완료 통지)**: 여러 fd를 한 번에 등록해 두고, 준비되거나 완료된 것만 통지받습니다. 스레드 수를 fd 수에 비례시키지 않아도 되지만, 통지를 등록·수거하는 자체도 시스템 콜이므로 fd 수·이벤트 빈도에 따라 별도의 비용 곡선을 가집니다. 구체적인 API(`select`/`poll`/`epoll`/`kqueue`)는 [2장](/post/io-optimization/async-io-select-poll-epoll-kqueue/)에서, Reactor/Proactor 패턴으로 묶는 방법은 [11장](/post/io-optimization/io-multiplexing-reactor-proactor-patterns/)에서 다룹니다.
+- **busy-wait(spin-poll)**: 호출자가 CPU를 계속 점유한 채 조건을 반복 확인합니다. 컨텍스트 스위치가 전혀 없어 데이터가 준비되는 즉시 반응할 수 있지만, 대기하는 동안 코어 하나를 온전히 소모합니다. 기대 대기 시간이 컨텍스트 스위치 왕복보다 짧고 전용 코어를 할당할 여유가 있는 트레이딩 시스템의 핫패스에서 주로 씁니다.
+- **blocking wait**: 호출자가 커널의 wait queue에 들어가고 스케줄러가 다른 작업에 코어를 넘깁니다. 데이터가 준비되면 깨우기(wake-up)와 컨텍스트 스위치가 발생하는데, 이 왕복 비용은 스케줄러 지연을 포함하므로 CPU·커널·부하 상태에 따라 크게 달라지며, 대상 환경에서 `perf sched` 등으로 직접 재야 합니다. 코어를 낭비하지 않는 대신 반응 지연이 스케줄러 상태에 좌우됩니다.
+- **event-driven(멀티플렉싱/완료 통지)**: 여러 fd를 한 번에 등록해 두고, 준비되거나 완료된 것만 통지받습니다. 스레드 수를 fd 수에 비례시키지 않아도 되지만, 통지를 등록·수거하는 자체도 시스템 콜이므로 fd 수·이벤트 빈도에 따라 별도의 비용 곡선을 가집니다. 구체적인 API(`select`/`poll`/`epoll`/`kqueue`)는 [03장](/post/io-optimization/async-io-select-poll-epoll-kqueue/)에서, Reactor/Proactor 패턴으로 묶는 방법은 [11장](/post/io-optimization/io-multiplexing-reactor-proactor-patterns/)에서 다룹니다.
 
 세 방식의 갈림길을 그림으로 보면 다음과 같습니다.
 
@@ -127,7 +134,7 @@ flowchart TD
   checkReady -->|"아니오"| waitChoice{"대기 전략 선택"}
   waitChoice -->|"busy-wait"| spin["CPU 점유하며 spin</br>코어 소모 큼, 반응 지연 최소"]
   waitChoice -->|"blocking"| block["wait queue 진입</br>컨텍스트 스위치, 코어 반환"]
-  waitChoice -->|"event-driven"| notify["notifier 등록</br>다수 fd 동시 관리(2장)"]
+  waitChoice -->|"event-driven"| notify["notifier 등록</br>다수 fd 동시 관리(03장)"]
 ```
 
 블로킹 호출과 논블로킹 호출의 반환 시점 차이를 코드로 대비하면 다음과 같습니다. 아래는 파이프의 읽기 쪽을 논블로킹으로 설정해, 데이터가 없을 때 `EAGAIN`으로 즉시 반환받는 예시입니다(Linux, `-std=c++17` 이상에서 컴파일 가능).
@@ -162,7 +169,7 @@ int main() {
 
 <strong>"논블로킹 I/O는 항상 더 빠르다"</strong>는 정확하지 않습니다. 논블로킹은 대기를 없앨 뿐이며, 데이터가 준비되지 않았을 때 호출자가 무엇을 하느냐(즉시 포기, 짧은 간격 재시도, busy-poll)에 따라 총 비용이 오히려 늘어날 수 있습니다. 재시도 간격이 너무 짧으면 반복되는 시스템 콜 진입 비용만 누적되고, 너무 길면 반응 지연이 커집니다.
 
-<strong>"비동기 I/O는 논블로킹과 같은 것"</strong>이라는 생각도 흔한 오해입니다. 앞서 본 것처럼 두 축은 독립적이며, `epoll` 기반 이벤트 루프는 통지만 비동기이고 데이터 읽기는 여전히 동기적으로 수행하는 준비-통지 모델입니다. 완료 통지 기반 비동기(`io_uring`/`IOCP`)와 시스템 콜 횟수·데이터 복사 경로가 다르므로 같은 카테고리로 묶으면 성능 특성을 잘못 예측하게 됩니다.
+<strong>"비동기 I/O는 논블로킹과 같은 것"</strong>이라는 생각도 흔한 오해입니다. 논블로킹은 "지금 안 되면 즉시 돌아온다"는 대기 방식일 뿐 데이터 복사는 여전히 호출자가 하며, 엣지 트리거 `epoll`처럼 논블로킹 fd를 전제하는 API에서는 오히려 `EAGAIN`이 나올 때까지 호출자가 직접 반복해서 읽어 내야 하는 책임이 생깁니다. 커널이 복사까지 대신 끝내 주는 것은 완료 통지 기반 비동기(`io_uring`/`IOCP`)뿐이므로, 둘을 같은 카테고리로 묶으면 시스템 콜 횟수와 CPU 사용량을 잘못 예측하게 됩니다.
 
 <strong>"시스템 콜은 무시할 만큼 저렴하다"</strong>는 최신 CPU에서 더 이상 항상 참이 아닙니다. KPTI 같은 보안 완화 패치가 적용된 환경에서는 시스템 콜 진입 비용이 유의미하게 늘었고, 핫패스에서 호출 횟수가 많을수록 이 고정 비용이 누적됩니다. 반대로 vDSO로 우회되는 일부 호출은 이 비용을 아예 지불하지 않으므로, "모든 시스템 콜이 똑같이 비싸다"는 일반화도 과합니다.
 
@@ -172,13 +179,13 @@ int main() {
 |------|------|------|
 | 초단시간 대기(수백 ns–수 µs), 전용 코어 여유 있음, 반응 지연 최소화가 최우선 | busy-wait/spin-poll | 컨텍스트 스위치를 회피하는 대신 코어 소모를 감수 |
 | 대기시간이 길거나 예측 불가능, 코어를 다른 작업에 돌려줘야 함 | blocking 대기 | 스케줄러가 코어를 재분배해 CPU 낭비를 줄임 |
-| 다수의 fd를 동시에 감시해야 함 | 이벤트 기반 멀티플렉싱(→[2장](/post/io-optimization/async-io-select-poll-epoll-kqueue/)) 또는 io_uring(→[3장](/post/io-optimization/io-uring-advanced-deep-dive/)) | 스레드 수를 fd 수에 비례시키지 않음 |
-| 처리량이 지연보다 중요한 대량 배치 I/O | 완료 기반 비동기(io_uring/IOCP, →[3장](/post/io-optimization/io-uring-advanced-deep-dive/)·[4장](/post/io-optimization/windows-iocp-io-model-optimization/)) | 제출·수거를 분리해 시스템 콜 자체를 배치화 |
+| 다수의 fd를 동시에 감시해야 함 | 이벤트 기반 멀티플렉싱(→[03장](/post/io-optimization/async-io-select-poll-epoll-kqueue/)) 또는 io_uring(→[04장](/post/io-optimization/io-uring-advanced-deep-dive/)) | 스레드 수를 fd 수에 비례시키지 않음 |
+| 처리량이 지연보다 중요한 대량 배치 I/O | 완료 기반 비동기(io_uring/IOCP, →[04장](/post/io-optimization/io-uring-advanced-deep-dive/)·[05장](/post/io-optimization/windows-iocp-io-model-optimization/)) | 제출·수거를 분리해 시스템 콜 자체를 배치화 |
 | 시간 측정처럼 vDSO가 지원하는 호출을 자주 씀 | 표준 라이브러리 함수 그대로 사용 | 커널 진입 없이 사용자 공간에서 처리됨 |
 
 ## 비판적 시각: 한계와 트레이드오프
 
-이 장에서 다룬 비용 모델은 CPU 마이크로아키텍처, 커널 버전, 적용된 보안 완화 패치 조합에 따라 절대 수치가 크게 달라진다는 한계가 있습니다. "시스템 콜이 몇 사이클"이라는 숫자를 코드에 그대로 근거로 삼기보다, 대상 환경에서 직접 재현해 상대적 트레이드오프를 확인하는 습관이 더 안전합니다. busy-wait 전략은 멀티테넌시 환경(공유 서버, 클라우드 vCPU)에서 다른 프로세스의 스케줄링 기회를 빼앗을 수 있고, 클라우드 환경에서는 steal time까지 겹쳐 실제 이득이 기대보다 작을 수 있습니다. 또한 "시스템 콜은 비싸다"는 명제 자체도 io_uring의 `SQPOLL` 모드처럼 커널 스레드가 제출 큐를 미리 폴링해 사용자 스레드의 시스템 콜 자체를 없애는 기법이 존재하므로 절대적이지 않습니다. 이런 회피 기법의 조건과 대가는 [3장](/post/io-optimization/io-uring-advanced-deep-dive/)에서 심화로 다룹니다. 마지막으로, 이 장의 네 가지 조합 분류는 개념을 정리하기 위한 모델일 뿐 커널 구현이 반드시 이 경계를 깔끔하게 따르는 것은 아니며, 실제 구현은 준비-통지와 완료-통지가 섞인 하이브리드인 경우도 있습니다.
+이 장에서 다룬 비용 모델은 CPU 마이크로아키텍처, 커널 버전, 적용된 보안 완화 패치 조합에 따라 절대 수치가 크게 달라진다는 한계가 있습니다. "시스템 콜이 몇 사이클"이라는 숫자를 코드에 그대로 근거로 삼기보다, 대상 환경에서 직접 재현해 상대적 트레이드오프를 확인하는 습관이 더 안전합니다. busy-wait 전략은 멀티테넌시 환경(공유 서버, 클라우드 vCPU)에서 다른 프로세스의 스케줄링 기회를 빼앗을 수 있고, 클라우드 환경에서는 steal time까지 겹쳐 실제 이득이 기대보다 작을 수 있습니다. 또한 "시스템 콜은 비싸다"는 명제 자체도 io_uring의 `SQPOLL` 모드처럼 커널 스레드가 제출 큐를 미리 폴링해 사용자 스레드의 시스템 콜 자체를 없애는 기법이 존재하므로 절대적이지 않습니다. 이런 회피 기법의 조건과 대가는 [04장](/post/io-optimization/io-uring-advanced-deep-dive/)에서 심화로 다룹니다. 마지막으로, 이 장의 네 가지 조합 분류는 개념을 정리하기 위한 모델일 뿐 커널 구현이 반드시 이 경계를 깔끔하게 따르는 것은 아니며, 실제 구현은 준비-통지와 완료-통지가 섞인 하이브리드인 경우도 있습니다.
 
 ## 마무리
 

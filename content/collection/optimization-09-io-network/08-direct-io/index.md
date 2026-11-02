@@ -1,7 +1,7 @@
 ---
 collection_order: 8
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-21
 draft: false
 image: wordcloud.png
 title: "[IO 09] Direct I/O"
@@ -64,9 +64,14 @@ tags:
 
 ## O_DIRECT의 역사와 설계 배경
 
-O_DIRECT는 리눅스가 발명한 개념이 아닙니다. SGI IRIX에서 먼저 도입되었고, 리눅스에는 2.4.10(2001년)에 추가되었습니다. 도입 배경은 명확히 데이터베이스 벤더, 특히 Oracle의 요구였습니다. Oracle 같은 RDBMS는 이미 자체 버퍼 캐시(SGA)로 페이지를 관리하고 있었기 때문에, 커널 페이지 캐시가 같은 데이터를 한 번 더 들고 있는 것은 메모리 낭비이자 예측하기 어려운 스와핑·회수(reclaim) 압박의 원인이었습니다. 커널 입장에서는 파일마다 "이 파일은 캐시하지 마라"는 요청을 들어주는 플래그 하나를 추가하는 것이 가장 손쉬운 해법이었습니다.
+O_DIRECT는 리눅스가 발명한 개념이 아닙니다. SGI IRIX에서 먼저 도입되었고, 리눅스에는 2.4.10(2001년)에 추가되었습니다. 도입 배경은 데이터베이스 벤더, 특히 Oracle의 요구였습니다(뒤에 인용하는 Torvalds 메일도 O_DIRECT를 "an Oracleism"이라 부릅니다). Oracle 같은 RDBMS는 이미 자체 버퍼 캐시(SGA)로 페이지를 관리하고 있었기 때문에, 커널 페이지 캐시가 같은 데이터를 한 번 더 들고 있는 것은 메모리 낭비이자 예측하기 어려운 스와핑·회수(reclaim) 압박의 원인이었습니다. 커널 입장에서는 파일마다 "이 파일은 캐시하지 마라"는 요청을 들어주는 플래그 하나를 추가하는 것이 가장 손쉬운 해법이었습니다.
 
-이 설계 방식은 커널 커뮤니티 내부에서도 논쟁거리였습니다. Linus Torvalds는 2002년 커널 개발자 Gerrit Huizenga에게 보낸 메일에서 O_DIRECT의 인터페이스 설계 방식 자체를 두고 "the whole interface is just stupid"([Torvalds, 2002, lkml 메일](https://static.lwn.net/2002/0516/a/lt-deranged-monkey.php3))라고 직설적으로 비판하며, `MAP_UNCACHED` 플래그를 쓴 `mmap` 기반 읽기와 `mmwrite()` 류의 쓰기 API가 더 깔끔한 대안이 될 수 있었다고 주장했습니다. 이 논쟁은 결론이 나지 않은 채로 O_DIRECT가 그대로 표준적인 인터페이스로 굳어졌고, 그 결과 지금도 파일시스템·디바이스·커널 버전에 따라 동작이 미묘하게 갈리는 인터페이스로 남아 있습니다.
+이 설계 방식은 커널 커뮤니티 내부에서도 논쟁거리였습니다. Linus Torvalds는 2002년 커널 개발자 Gerrit Huizenga에게 보낸 메일에서 O_DIRECT의 인터페이스 설계 방식 자체를 직설적으로 비판했습니다.
+
+> "the whole interface is just stupid"
+> — Linus Torvalds, Gerrit Huizenga에게 보낸 메일, 2002-05-11 ([lkml 메일, LWN 보관본](https://static.lwn.net/2002/0516/a/lt-deranged-monkey.php3))
+
+같은 메일에서 그는 `MAP_UNCACHED` 플래그를 쓴 `mmap` 기반 읽기와 `mmwrite()` 류의 쓰기 API가 더 깔끔한 대안이 될 수 있었다고 주장했습니다. 이 논쟁은 결론이 나지 않은 채로 O_DIRECT가 그대로 표준적인 인터페이스로 굳어졌고, 그 결과 지금도 파일시스템·디바이스·커널 버전에 따라 동작이 미묘하게 갈리는 인터페이스로 남아 있습니다.
 
 ## 페이지 캐시를 우회하는 메커니즘
 
@@ -93,9 +98,10 @@ flowchart TB
 
 ## 정렬 요구사항과 실패 모드
 
-O_DIRECT는 DMA로 사용자 버퍼와 디바이스를 직접 연결하기 때문에, 버퍼 주소·전송 길이·파일 오프셋이 특정 배수로 정렬되어 있어야 합니다. 전통적으로 리눅스는 이 정렬 단위를 파일시스템의 논리 블록 크기(흔히 512바이트 또는 4096바이트)로 요구해 왔고, 이를 무시하면 `read()`/`write()`가 `EINVAL`로 실패합니다. 아래는 흔히 저지르는 실수인, `malloc`으로 받은 버퍼를 그대로 O_DIRECT 쓰기에 넘기는 코드입니다.
+O_DIRECT는 DMA로 사용자 버퍼와 디바이스를 직접 연결하기 때문에, 버퍼 주소·전송 길이·파일 오프셋이 특정 배수로 정렬되어 있어야 합니다. [open(2) NOTES](https://man7.org/linux/man-pages/man2/open.2.html)에 따르면 Linux 2.4에서는 이 단위가 파일시스템 블록 크기(보통 4096바이트)였고, 2.6.0부터 블록 디바이스의 논리 블록 크기(보통 512바이트, `blockdev --getss`로 확인)로 완화되었습니다. 같은 문서는 정렬 제약이 파일시스템과 커널 버전에 따라 다르고, 정렬이 맞지 않는 O_DIRECT I/O는 `EINVAL`로 실패하거나 buffered I/O로 조용히 폴백할 수 있다고 적습니다. 아래는 흔히 저지르는 실수인, `malloc`으로 받은 버퍼를 그대로 O_DIRECT 쓰기에 넘기는 코드입니다.
 
 ```c
+#define _GNU_SOURCE  // O_DIRECT·statx() 선언에 필요
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -109,6 +115,7 @@ int main(void) {
 
   size_t len = 4096;
   char *buf = malloc(len);           // alignof(max_align_t) 정도만 보장 (보통 16바이트)
+  if (!buf) { perror("malloc"); return 1; }
   memset(buf, 'A', len);
 
   ssize_t n = write(fd, buf, len);   // 길이·오프셋은 4096 배수처럼 보이지만 버퍼 주소가 문제
@@ -123,6 +130,7 @@ int main(void) {
 `malloc`은 반환 포인터가 `alignof(max_align_t)`(보통 16바이트) 배수임만 보장하며, 512바이트나 4096바이트 섹터 정렬은 보장하지 않습니다. 그래서 길이와 오프셋을 정확히 맞춰도 버퍼 주소 하나 때문에 `write()`가 `EINVAL`로 실패하는 경우가 흔합니다. 올바른 구현은 `posix_memalign`(또는 `aligned_alloc`)으로 정렬된 버퍼를 할당하고, 오프셋·길이도 같은 정렬 단위의 배수로 맞추는 것입니다.
 
 ```c
+#define _GNU_SOURCE  // O_DIRECT·statx() 선언에 필요
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -162,11 +170,14 @@ pwrite64(3, "AAAAAAAAAAAAAAAA"..., 4096, 0) = 4096
 
 주의할 점은 "정렬 단위가 항상 512바이트"라는 가정이 더 이상 안전하지 않다는 것입니다. Advanced Format(4Kn) 디바이스, 일부 압축·암호화·저널링 기능이 켜진 파일시스템, NFS처럼 O_DIRECT 지원 자체가 제한적인 원격 파일시스템에서는 정렬 단위가 다르거나 O_DIRECT 자체가 무시되거나 `EINVAL`로 거부될 수 있습니다. 커널 6.0부터는 일부 경로에서 사용자 버퍼 정렬 요구가 논리 블록 크기 대신 더 완화된 DMA 정렬로도 충분해졌지만, 이는 파일시스템·커널 버전에 따른 구현 정의 동작이므로 하드코딩된 상수에 의존하지 말고 실행 시점에 조회하는 편이 안전합니다.
 
+정렬과 별개로 캐시 일관성 문제도 있습니다. 같은 파일을 한쪽은 O_DIRECT로, 다른 쪽은 buffered I/O나 `mmap`으로 다루면 페이지 캐시에 남은 오래된 사본과 디바이스의 최신 데이터가 어긋날 수 있고, 커널이 이를 맞추려고 해당 범위의 페이지 캐시를 writeback·무효화하는 비용이 생깁니다. open(2)은 같은 파일, 특히 겹치는 바이트 범위에 O_DIRECT와 일반 I/O를 섞지 말라고 권하며, 파일시스템이 일관성을 올바르게 처리하더라도 어느 한 방식만 쓸 때보다 전체 처리량이 느려지기 쉽고 `mmap`과 섞는 것도 피해야 한다고 적습니다.
+
 ## 정렬 정보를 동적으로 조회하기
 
-Linux 6.1부터는 `statx()`에 `STATX_DIOALIGN` 마스크를 넘기면 파일이 O_DIRECT를 지원하는지, 지원한다면 어떤 정렬 단위가 필요한지를 커널에 직접 물어볼 수 있습니다. 이 기능은 블록 디바이스에서는 6.1부터, ext4·f2fs·XFS 같은 일반 파일시스템의 파일에서도 6.1부터 지원됩니다([Phoronix, "Linux 6.1 Adding Support To statx() For Reporting Direct I/O Alignment Details"](https://www.phoronix.com/news/Linux-6.1-statx-DIO-Alignment)). 정렬 단위를 코드에 상수로 박아 두는 대신 이 API로 조회하면, 파일시스템·디바이스가 바뀌어도 코드를 고치지 않아도 됩니다.
+Linux 6.1부터는 `statx()`에 `STATX_DIOALIGN` 마스크를 넘기면 파일이 O_DIRECT를 지원하는지, 지원한다면 어떤 정렬 단위가 필요한지를 커널에 직접 물어볼 수 있습니다. [statx(2)](https://man7.org/linux/man-pages/man2/statx.2.html)에 따르면 6.1부터 블록 디바이스와 ext4·f2fs·XFS의 일반 파일이 이 정보를 보고합니다(도입 배경은 [Phoronix, "Linux 6.1 Adding Support To statx() For Reporting Direct I/O Alignment Details"](https://www.phoronix.com/news/Linux-6.1-statx-DIO-Alignment) 참고). 정렬 단위를 코드에 상수로 박아 두는 대신 이 API로 조회하면, 파일시스템·디바이스가 바뀌어도 코드를 고치지 않아도 됩니다.
 
 ```c
+#define _GNU_SOURCE  // O_DIRECT·statx() 선언에 필요
 #include <sys/stat.h>
 #include <linux/stat.h>   // struct statx, STATX_DIOALIGN (커널 헤더 6.1+ 필요)
 #include <fcntl.h>
@@ -178,7 +189,9 @@ int main(void) {
     perror("statx");
     return 1;
   }
-  if (stx.stx_dio_mem_align == 0) {
+  if (!(stx.stx_mask & STATX_DIOALIGN)) {
+    printf("DIO 정렬 정보 조회 미지원(커널 6.1 미만 또는 파일시스템 미구현)\n");
+  } else if (stx.stx_dio_mem_align == 0) {
     printf("이 파일에는 O_DIRECT가 지원되지 않습니다\n");
   } else {
     printf("버퍼 정렬 단위=%u바이트, 오프셋/길이 정렬 단위=%u바이트\n",
@@ -188,7 +201,7 @@ int main(void) {
 }
 ```
 
-`stx_dio_mem_align`이 0이면 해당 파일(또는 파일시스템)이 O_DIRECT를 지원하지 않는다는 뜻이므로, 이 값을 확인해 Buffered I/O로 폴백하는 경로를 마련해 두는 것이 이식성 있는 설계입니다. 오래된 커널을 함께 지원해야 한다면 `STATX_DIOALIGN`이 없는 환경을 대비해 컴파일 타임에 기능 존재 여부를 확인하는 코드도 함께 두어야 합니다.
+statx(2)는 파일시스템이 이 정보를 지원하지 않으면 `stx_mask`에서 `STATX_DIOALIGN` 비트를 지우므로 먼저 이 비트를 확인해야 합니다. 비트가 설정된 상태에서 `stx_dio_mem_align`이 0이면 해당 파일이 O_DIRECT를 지원하지 않는다는 뜻이므로, 이 값을 확인해 Buffered I/O로 폴백하는 경로를 마련해 두는 것이 이식성 있는 설계입니다. 오래된 커널을 함께 지원해야 한다면 `STATX_DIOALIGN`이 없는 환경을 대비해 컴파일 타임에 기능 존재 여부를 확인하는 코드도 함께 두어야 합니다.
 
 ## Windows의 대응 개념: FILE_FLAG_NO_BUFFERING
 
@@ -200,9 +213,10 @@ O_DIRECT와 Buffered I/O의 성능 차이는 워크로드의 접근 패턴(순�
 
 ```ini
 ; fio 실행: fio dio_vs_buffered.fio (Linux 5.x/6.x, ext4 또는 XFS, NVMe SSD 기준)
-; direct=0으로 바꿔 같은 조건에서 Buffered I/O와 비교
+; direct=0으로 바꿔 Buffered I/O와 비교한다. libaio는 buffered I/O에서 비동기로 큐잉되지 않아
+; iodepth가 사실상 무력화되므로, 양쪽을 같은 조건으로 재려면 io_uring 엔진을 쓴다
 [global]
-ioengine=libaio
+ioengine=io_uring
 direct=1
 bs=4k
 rw=randread
@@ -224,7 +238,7 @@ iodepth=32
 
 <strong>"O_DIRECT만 켜면 내구성(durability)이 보장된다"</strong>도 흔한 착각입니다. O_DIRECT는 페이지 캐시를 우회할 뿐이며, 디바이스 컨트롤러의 휘발성 쓰기 캐시까지 우회한다는 보장은 없습니다. `write()`가 반환됐다고 해서 데이터가 물리 매체에 안전하게 기록됐다는 뜻은 아니므로, 내구성이 필요하면 `O_DSYNC`나 명시적 `fsync`/`fdatasync`, 혹은 FUA(Force Unit Access) 계열의 메커니즘을 함께 써야 합니다. 이 조합은 트랜잭션 로그의 fsync 전략을 다루는 [Database I/O 패턴](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)에서 더 깊이 다룹니다.
 
-<strong>"정렬 단위는 512바이트로 고정"</strong>이라는 가정도 위험합니다. Advanced Format 4Kn 디바이스, 저널링·압축·암호화가 켜진 파일시스템, 커널 버전(6.0 전후의 완화)에 따라 요구되는 정렬 단위가 달라집니다. 상수를 하드코딩하지 말고 `STATX_DIOALIGN`(Linux) 또는 `IOCTL_STORAGE_QUERY_PROPERTY`(Windows)로 실행 시점에 조회하는 편이 안전합니다.
+<strong>"정렬 단위는 512바이트로 고정"</strong>이라는 가정이 틀린 이유는 앞 절에서 보았습니다. 실무에서 기억할 것은 Windows도 같은 문제를 가진다는 점으로, 이식 코드라면 Linux의 `STATX_DIOALIGN`과 짝을 이루는 Windows 쪽 조회(`IOCTL_STORAGE_QUERY_PROPERTY`로 물리 섹터 크기 확인)를 함께 둡니다.
 
 ## 판단 기준
 
@@ -234,11 +248,12 @@ iodepth=32
 | 1회성 대용량 순차 스트리밍(백업, ETL, 벌크 로드) | O_DIRECT로 다른 프로세스의 캐시 오염 방지 | 매번 페이지 캐시 전체를 밀어내도록 방치 |
 | 소규모 랜덤 I/O·재사용 많은 워크로드 | Buffered I/O + readahead에 의존 | O_DIRECT로 캐시 적중 이득을 스스로 포기 |
 | 강한 내구성 보장 필요 | O_DIRECT + O_DSYNC/fsync/FUA 조합 | O_DIRECT만으로 내구성이 보장된다고 가정 |
+| 같은 파일을 다른 프로세스가 buffered I/O나 mmap으로도 접근 | 접근 방식을 하나로 통일, 불가피하면 겹치지 않는 범위로 분리 | O_DIRECT와 buffered/mmap을 같은 범위에 혼용 |
 | NFS·다양한 파일시스템 이식성 필요 | statx/에러 코드로 지원 여부 확인 후 폴백 | 정렬 단위·지원 여부를 하드코딩 |
 
 ## 비판적 시각: 한계와 트레이드오프
 
-O_DIRECT는 20여 년 전 특정 벤더의 요구에서 출발한 인터페이스이고, 커널 메인테이너 스스로가 그 설계를 앞서 인용한 것처럼 강하게 비판했을 만큼 처음부터 우아함보다 실용성을 택한 기능입니다. 그 결과 파일시스템·디바이스·커널 버전마다 정렬 요구사항과 실패 모드가 미묘하게 다르고, 어떤 파일시스템은 아예 O_DIRECT를 무시하거나 `EINVAL`로 거부합니다. 이식성이 중요한 코드라면 O_DIRECT를 "있으면 쓰고 없으면 폴백"하는 경로로 설계해야지, 항상 성공한다고 가정해서는 안 됩니다.
+O_DIRECT는 20여 년 전 특정 벤더의 요구에서 출발한 인터페이스이고, 커널 메인테이너 스스로가 그 설계를 앞서 인용한 것처럼 강하게 비판했을 만큼 처음부터 우아함보다 실용성을 택한 기능입니다. 앞서 본 정렬·폴백 동작의 파편화는 그 대가입니다. 이식성이 중요한 코드라면 O_DIRECT를 "있으면 쓰고 없으면 폴백"하는 경로로 설계해야지, 항상 성공한다고 가정해서는 안 됩니다.
 
 또한 O_DIRECT를 도입한다고 캐싱 문제가 사라지는 것이 아니라, 캐싱의 책임이 커널에서 애플리케이션으로 옮겨질 뿐이라는 점도 냉정하게 봐야 합니다. 애플리케이션이 readahead·회수 정책·쓰기 합치기를 커널만큼(혹은 더 잘) 구현하지 못한다면 O_DIRECT 도입은 순손실입니다. 실제로 PostgreSQL은 오랫동안 O_DIRECT 전면 도입을 미뤄 왔고, 현재도 프로덕션 권장 기능이 아닌 디버그 전용 옵션(`debug_io_direct`)으로만 노출되어 있습니다. 성숙한 데이터베이스 엔진조차 O_DIRECT를 프로덕션 기본값으로 전환하는 데 신중을 기한다는 사실은, 이 기능이 "캐시를 끄는 스위치" 이상의 설계·검증 부담을 요구한다는 것을 보여줍니다. io_uring·POSIX AIO 같은 비동기 인터페이스와 O_DIRECT를 함께 쓸 때의 상호작용은 [io_uring 심화](/post/io-optimization/io-uring-advanced-deep-dive/)와 [POSIX AIO vs io_uring](/post/io-optimization/posix-aio-vs-io-uring-performance-comparison/)에서 별도로 다룹니다.
 

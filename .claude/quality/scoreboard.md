@@ -380,23 +380,23 @@
 | content/collection/optimization-08-optimization-techniques/17-ai-inference-optimization/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 45b8cd3 | 없음(경미: GPTQ·PTQ 서술 출처, NVFP4 비교 근거 — 채점 후 완화 반영) |
 | content/collection/optimization-08-optimization-techniques/18-simd-string-processing/index.md | 92.8 | 2026-10-25 | 1 | 통과 | 1.3 | da7f00f | 없음(경미: 09장 교차 참조 보정 완료; 논문 PDF 원문 대조 미완) |
 | content/collection/optimization-09-io-network/00-introduction/index.md | 100 | 2026-07-25 | 2 | 통과 | 1.0 | 6161d63 | 없음 |
-| content/collection/optimization-09-io-network/01-io-cost-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/02-io-patterns-cost/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/03-async-io-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/04-io-uring-advanced/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/05-iocp-windows-io/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/06-zero-copy-techniques/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/07-memory-mapped-io/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/08-direct-io/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/09-filesystem-characteristics/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/10-block-device-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/11-io-multiplexing-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/12-vectored-io/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/13-posix-aio-vs-io-uring/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/14-database-io-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/15-file-locking-performance/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/16-storage-stack-customization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/17-logging-performance-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/01-io-cost-intuition/index.md | 97.3 | 2026-10-20 | 2 | 통과 | 1.3 | 9501dec | 경미: 1(L213 'CPU 카피 두 번' 문장 — SG-DMA/checksum offload가 read/write 경로 카피를 줄이는 것처럼 읽힘, sendfile 결합 시에만 해당함을 분리 서술 권장) |
+| content/collection/optimization-09-io-network/02-io-patterns-cost/index.md | 91.2 | 2026-10-20 | 1 | 통과 | 1.3 | 42606a5 | 경미: 1(L117 컨테이너·하이퍼바이저 syscall 서술 오류, L91 TLB 민감도는 Gregg의 추측, L180 수백 ns–수 µs 근거 없음, '네 가지 조합' 제목) / 4(L174 오개념 재진술) / 7(Advanced·Edge-Cases 태그, description '정량 분석' 과장) |
+| content/collection/optimization-09-io-network/03-async-io-fundamentals/index.md | 91.6 | 2026-10-20 | 0 | 통과 | 1.3 | 2183481 | 경미: 1(L312 epoll 정규 파일 서술 — epoll_ctl은 EPERM 거부로 정정 권장; L66·68 연도 출처 없음) / 5(벤치마크가 FD_SETSIZE 초과 입력에서 UB — poll 대체·반환값 확인 권장) |
+| content/collection/optimization-09-io-network/04-io-uring-advanced/index.md | 94.6 | 2026-10-20 | 2 | 통과 | 1.3 | ee9750c | 경미: 1(L180 2.05배를 YCSB 처리량으로 귀속 — 원문은 버퍼 관리자 end-to-end 개선; L174 '상한선' 표현; L134 SO_PREFER_BUSY_POLL 대응은 prefer_busy_poll 필드만; L195 IOPOLL은 완료 폴링; L67 2025년 2월 패치셋 출처 없음) |
+| content/collection/optimization-09-io-network/05-iocp-windows-io/index.md | 90.7 | 2026-10-21 | 0 | 통과 | 1.3 | 4f63221 | 경미: 1(L206·212 IoRing을 Server 2022부터로 서술 — 실제 Build 22000+; L142 CreateThreadpoolIo/StartThreadpoolIo Remarks 귀속 혼동; L80 OVERLAPPED 첫 멤버 주석 오류; L162 본문↔벤치 코드 불일치; L62 연도 출처 없음) / 5(L164 벤치에 <vector>·main 없음, I/O 미생성) / 6(Mermaid GQCS 라벨 간선 위치) |
+| content/collection/optimization-09-io-network/06-zero-copy-techniques/index.md | 94.3 | 2026-10-21 | 1 | 통과 | 1.3 | 8097536 | 경미: 1(L177·297 copy_file_range EINTR은 man ERRORS에 없음; L67 HP-UX 선행 서술 출처 없음) / 5(sendfile_all·copy_file_range_all이 n==0 조기 종료에도 0 반환 — 주석과 불일치) / 7(C++ 태그, 본문은 C 전용) |
+| content/collection/optimization-09-io-network/07-memory-mapped-io/index.md | 93.9 | 2026-10-21 | 1 | 통과 | 1.3 | 6292c2c | 경미: 1(L139 SIGBUS 조건은 오프셋이 아니라 EOF 너머 페이지; L190 msync만이 → fsync/fdatasync도 해당; L74 역사 문단 출처·TOPS-20 연도; L95 직접 인용 blockquote 아님) / 4(시그널 통지 요지 5회 반복) / 5(L252 MAP_POPULATE 변형이 벤치 코드에 없음, 벤치 open/mmap 실패 미검사) |
+| content/collection/optimization-09-io-network/08-direct-io/index.md | 96.6 | 2026-10-21 | 1 | 통과 | 1.3 | 8ffa47b | 경미: 4(L241 '정렬 512 고정' 오개념이 앞 절 재진술) / 5(L149 posix_memalign 실패에 perror 사용 — errno 미설정; Broken 버전 검증 절차·재현 환경 미기재, /tmp가 tmpfs일 수 있음) |
+| content/collection/optimization-09-io-network/09-filesystem-characteristics/index.md | 93.1 | 2026-10-21 | 1 | 통과 | 1.3 | fd2acae | 경미: 1(L9 description 'XFS FORCEALIGN 기반'이 본문과 모순 — CoW 혼합으로 정정 필요; L71 ZFS 발표는 2004; L87 data=ordered가 막는 것은 stale 노출이지 잘림 아님; L221·233 ext4 bigalloc 다중 블록(6.16) 누락) / 5(L134 측정 구간에 pwrite 포함; atomic 예제가 2의 거듭제곱·자연 정렬 검사 누락) |
+| content/collection/optimization-09-io-network/10-block-device-optimization/index.md | 91.2 | 2026-10-21 | 1 | 통과 | 1.3 | 1c08f5f | 경미: 1(L156 논문 저자는 Samsung 소속 — 'Meta·Samsung' 귀속 정정; L158 F_SET_RW_HINT는 메인라인 NVMe FDP 배치에 쓰이지 않음(LWN 'no-op'), placement는 io_uring write_stream→bi_write_stream; bi_write_stream은 bio 필드; 6.16 반영 출처 없음) / 4(L228·L203 재진술) / 5(L191 nvme-cli 앞 설명 1문장, C 주석 RUH 반영 서술) |
+| content/collection/optimization-09-io-network/11-io-multiplexing-patterns/index.md | 92.4 | 2026-10-21 | 0 | 통과 | 1.3 | d62dcbf | 경미: 1(L192·206 디멀티플렉싱 직렬화를 일반화 — 단일 리액터로 한정하고 multi-reactor/Leader-Followers 언급 필요, L202 Netty와 모순) / 4(직렬화 병목 3회 반복) / 5(L88 주석 '2장' → 03장) / 7(Benchmark·Profiling 태그 본문 근거 없음) |
+| content/collection/optimization-09-io-network/12-vectored-io/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | a373ea4 | 없음 |
+| content/collection/optimization-09-io-network/13-posix-aio-vs-io-uring/index.md | 93.9 | 2026-10-21 | 2 | 통과 | 1.3 | c798d3d | 경미: 1(L134 Axboe 수치에 원문 없는 'NVMe 디바이스' 조건 귀속) / 4('어느 AIO인지 확인' 조언 3회 반복) / 7(liburing 태그 본문 근거 없음) |
+| content/collection/optimization-09-io-network/14-database-io-patterns/index.md | 92.7 | 2026-10-21 | 0 | 통과 | 1.3 | b3ad01f | 경미: 1(L190·217 'XFS FORCEALIGN 기반 atomic writes' — 미머지, 6.13 단일 블록 RWF_ATOMIC로 정정; L192 SQLite는 단일 WAL 파일 끝에 추가; L190 doublewrite 링크를 innodb-doublewrite-buffer.html로; L101·215 innodb_flush_log_at_trx_commit=2는 그룹커밋 지연 손잡이 아님 → binlog_group_commit_sync_delay; L91 단계 번호; L95 fdatasync는 디스크 I/O 감소; L192 synchronous_commit=off 설명) / 4(L215 재진술) |
+| content/collection/optimization-09-io-network/15-file-locking-performance/index.md | 93.1 | 2026-10-21 | 1 | 통과 | 1.3 | 5b9c4b5 | 경미: 1(L180 벤치 해석 — 스레드당 반복 고정이라 병렬이면 총 시간 일정·직렬화면 n배 증가로 정정 필요; L117 grace period는 서버 재시작 후 reclaim 기간, 클라이언트 사망 잠금은 NSM 정리) / 5(L117 '처리량' vs 출력 ms; L245 lslocks -p는 OFD 락(PID -1) 행을 못 거를 수 있음) |
+| content/collection/optimization-09-io-network/16-storage-stack-customization/index.md | 91.9 | 2026-10-23 | 1 | 통과 | 1.3 | fb4e27c | 경미: 1(L103 매니지드 서비스는 2단계부터 불가 — '3단계 이하' 정정; L63 락 경합 감소는 CPU별 소프트웨어 스테이징 큐 효과) / 2(00 챕터가 배정한 특수 FS를 다루는 문단 없음 — FUSE vs 커널 FS·커스텀 FS 리스크 추가 필요) / 6(Mermaid SPDK 점선이 커널 드라이버 노드로 감) |
+| content/collection/optimization-09-io-network/17-logging-performance-strategy/index.md | 95.4 | 2026-10-23 | 1 | 통과 | 1.3 | e37881f | 경미: 1(L66 '1983'은 man7 syslog(3)에 없음, Log4j AsyncAppender·spdlog 연도 출처 없음) / 4(크래시 유실·레벨 필터링 재진술 반복) |
 | content/collection/optimization-10-network/00-introduction/index.md | 92.2 | 2026-07-25 | 1 | 통과 | 1.0 | 08ba5df | 없음(경미: description 118자로 하한 근접, 범위/경계 리스트 문단 비중 29%, WebTransport Baseline 기준 명시 여지) |
 | content/collection/optimization-10-network/01-network-latency-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-10-network/02-network-latency-structure/index.md | - | - | 0 | 미채점 | - | - | - |
