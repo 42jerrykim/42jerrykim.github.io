@@ -1,12 +1,12 @@
 ---
 collection_order: 5
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-23
 draft: false
 image: wordcloud.png
 title: "[OS 06] Realtime 스케줄링"
 slug: realtime-scheduling-sched-ext-eevdf
-description: "SCHED_FIFO/SCHED_RR 실시간 정책의 선점·우선순위 모델부터 sched_ext BPF 스케줄러, EEVDF 전환, Cache-Aware Scheduling 병합까지 다루며 정책 선택 기준과 격리 없는 실시간 적용의 위험을 정리합니다."
+description: "SCHED_FIFO/SCHED_RR 실시간 정책의 선점·우선순위 모델부터 sched_ext BPF 스케줄러, EEVDF 전환, Cache-Aware Scheduling 진행 상황까지 다루며 정책 선택 기준과 격리 없는 실시간 적용의 위험을 정리합니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
@@ -20,20 +20,15 @@ tags:
   - C
   - Latency
   - Throughput
-  - Benchmark
-  - Profiling(프로파일링)
   - Implementation(구현)
   - Best-Practices
   - Production
-  - Reliability
   - Advanced
   - Deep-Dive
-  - Edge-Cases(엣지케이스)
+  - Real-Time(실시간)
+  - Scheduling(스케줄링)
+  - Mutex(뮤텍스)
   - Pitfalls(함정)
-  - Documentation(문서화)
-  - Reference(참고)
-  - Guide(가이드)
-  - Case-Study
   - System-Design
   - Sched-Ext
   - EEVDF
@@ -67,7 +62,7 @@ tags:
 
 ## 리눅스 스케줄러 클래스의 역사와 계층 구조
 
-리눅스 스케줄러는 하나의 알고리즘이 아니라 **우선순위가 매겨진 여러 스케줄러 클래스(sched_class)의 체인**입니다. `SCHED_FIFO`/`SCHED_RR` 같은 실시간 정책은 POSIX.1b(1993년 표준화된 POSIX 실시간 확장)에서 정의되었고, 리눅스는 이를 초기 커널부터 지원해 왔습니다. 일반 태스크를 다루는 스케줄러는 여러 세대를 거쳤습니다. Ingo Molnar가 만든 <strong>CFS(Completely Fair Scheduler)</strong>가 2007년 리눅스 2.6.23에 병합되어 약 16년간 기본 스케줄러 자리를 지켰고, Peter Zijlstra가 구현한 <strong>EEVDF(Earliest Eligible Virtual Deadline First)</strong>가 2023년 리눅스 6.6에서 CFS를 대체하기 시작해 6.12(2024년 11월)에서 전환이 완료되고 6.13(2025년 초)에서 막판 lag 계산 버그가 수정되었습니다. 같은 6.12에는 Meta 주도로 수년간 아웃오브트리로 개발되어 온 **sched_ext**(BPF 확장 스케줄러 클래스)가 병합되었고, Intel 엔지니어들이 주도한 <strong>Cache-Aware Scheduling(CAS)</strong>은 2025–2026년 패치를 거쳐 커널 tip 트리에서 논의·개정을 거듭하고 있으며, 집필 시점 기준으로는 정식 병합 버전·시점이 확정되지 않았으므로 구체적인 커널 버전 번호는 단정하지 않습니다(`CONFIG_SCHED_CACHE`로 노출되고 기본 비활성화될 것으로 알려져 있습니다).
+리눅스 스케줄러는 하나의 알고리즘이 아니라 **우선순위가 매겨진 여러 스케줄러 클래스(sched_class)의 체인**입니다. `SCHED_FIFO`/`SCHED_RR` 같은 실시간 정책은 POSIX.1b(1993년 표준화된 POSIX 실시간 확장)에서 정의되었고, 리눅스는 이를 초기 커널부터 지원해 왔습니다. 일반 태스크를 다루는 스케줄러는 여러 세대를 거쳤습니다. Ingo Molnar가 만든 <strong>CFS(Completely Fair Scheduler)</strong>가 2007년 리눅스 2.6.23에 병합되어 약 16년간 기본 스케줄러 자리를 지켰고, Peter Zijlstra가 구현한 <strong>EEVDF(Earliest Eligible Virtual Deadline First)</strong>가 2023년 리눅스 6.6에서 CFS를 대체하기 시작해 6.12(2024년 11월)에서 전환이 완료되었습니다. 같은 6.12에는 Meta 주도로 수년간 아웃오브트리로 개발되어 온 **sched_ext**(BPF 확장 스케줄러 클래스)가 병합되었고, <strong>Cache-Aware Scheduling(CAS)</strong>은 2025년 말 LWN에 소개된 패치 시리즈로 논의되고 있으며, 집필 시점 기준으로는 패치 시리즈 단계이며 병합 여부와 시점이 확정되지 않았으므로 구체적인 커널 버전 번호는 단정하지 않습니다.
 
 이 클래스들은 우선순위 순서로 태스크 선택을 위임합니다. 커널은 가장 앞의 클래스부터 "실행할 태스크가 있는지" 물어보고, 있으면 그 클래스가 고른 태스크를 실행합니다.
 
@@ -84,7 +79,7 @@ flowchart TD
 
 ## SCHED_FIFO와 SCHED_RR: 실시간 정책의 동작 원리
 
-`SCHED_FIFO`와 `SCHED_RR`은 **1–99 범위의 정적 우선순위**를 가지며, 숫자가 높을수록 먼저 실행됩니다. 두 정책 모두 **일반 정책(SCHED_NORMAL/EEVDF) 태스크보다 항상 먼저 선택**되고, 더 높은 우선순위의 실시간 태스크가 러너블 상태가 되면 실행 중이던 낮은 우선순위 실시간 태스크를 즉시 선점합니다. 차이는 **같은 우선순위** 태스크가 여럿일 때 나타납니다. `SCHED_FIFO`는 시간 할당량이 없어 태스크가 스스로 양보하거나 블록될 때까지 계속 실행되는 반면, `SCHED_RR`은 같은 우선순위 태스크끼리 정해진 타임 퀀텀 단위로 라운드로빈 방식으로 교대합니다. 두 정책 모두 프로세스에 `CAP_SYS_NICE` 권한(또는 root)이 필요하며, 일반 사용자 권한으로는 `sched_setscheduler()`가 `EPERM`으로 실패합니다(정책·우선순위 필드의 정확한 정의는 [man7: sched(7)](https://man7.org/linux/man-pages/man7/sched.7.html) 참고).
+`SCHED_FIFO`와 `SCHED_RR`은 **1–99 범위의 정적 우선순위**를 가지며, 숫자가 높을수록 먼저 실행됩니다. 두 정책 모두 **일반 정책(SCHED_NORMAL/EEVDF) 태스크보다 항상 먼저 선택**되고, 더 높은 우선순위의 실시간 태스크가 러너블 상태가 되면 실행 중이던 낮은 우선순위 실시간 태스크를 즉시 선점합니다. 차이는 **같은 우선순위** 태스크가 여럿일 때 나타납니다. `SCHED_FIFO`는 시간 할당량이 없어 태스크가 스스로 양보하거나 블록될 때까지 계속 실행되는 반면, `SCHED_RR`은 같은 우선순위 태스크끼리 정해진 타임 퀀텀 단위로 라운드로빈 방식으로 교대합니다. 기본적으로 `CAP_SYS_NICE` 권한(또는 root)이 필요하며, 권한이 없으면 `sched_setscheduler()`가 `EPERM`으로 실패합니다. 다만 Linux 2.6.12부터는 비특권 스레드도 `RLIMIT_RTPRIO` 소프트 한도가 0이 아니면 그 한도까지 정책과 우선순위를 바꿀 수 있습니다(정확한 규칙은 [man7: sched(7)](https://man7.org/linux/man-pages/man7/sched.7.html) 참고).
 
 ```cpp
 #include <sched.h>
@@ -94,7 +89,7 @@ flowchart TD
 
 int main() {
   sched_param param{};
-  param.sched_priority = 50;  // 1(낮음)~99(높음); CAP_SYS_NICE 필요
+  param.sched_priority = 50;  // 1(낮음)~99(높음); 보통 CAP_SYS_NICE 또는 RLIMIT_RTPRIO 필요
 
   if (sched_setscheduler(0, SCHED_FIFO, &param) != 0) {
     std::fprintf(stderr, "sched_setscheduler 실패: %s\n", std::strerror(errno));
@@ -107,26 +102,29 @@ int main() {
 }
 ```
 
-위 코드는 현재 프로세스를 `SCHED_FIFO` 우선순위 50으로 바꿉니다. **`sched_setscheduler`만으로는 안전하지 않습니다.** 실시간 태스크가 코어를 독점하면 같은 코어의 커널 워커·소프트IRQ가 굶어 워치독(soft lockup detector)이 개입하거나 시스템이 응답하지 않을 수 있으므로, 실무에서는 반드시 [03장](/post/os-optimization/cpu-pinning-affinity-strategy/)의 CPU affinity(전용 코어 격리, `isolcpus`)와 함께 적용하고, 페이지 폴트로 인한 지연을 없애려면 [14장: Memory Locking](/post/os-optimization/memory-locking-mlock-mlockall/)도 함께 검토합니다.
+위 코드는 현재 프로세스를 `SCHED_FIFO` 우선순위 50으로 바꿉니다. **`sched_setscheduler`만으로는 안전하지 않습니다.** 실시간 태스크가 코어를 독점하면 같은 코어의 커널 워커·소프트IRQ가 굶어 시스템이 응답하지 않을 수 있습니다. 커널은 이를 완화하려고 RT throttling을 두어, `/proc/sys/kernel/sched_rt_period_us` 주기 중 `sched_rt_runtime_us`만큼만 실시간·데드라인 태스크가 CPU를 쓰게 제한합니다(man sched(7)의 해당 절). 하지만 이 제한을 끄거나 느슨하게 둔 환경에서는 보호막이 사라지므로, 실무에서는 반드시 [03장](/post/os-optimization/cpu-pinning-affinity-strategy/)의 CPU affinity(전용 코어 격리, `isolcpus`)와 함께 적용하고, 페이지 폴트로 인한 지연을 없애려면 [14장: Memory Locking](/post/os-optimization/memory-locking-mlock-mlockall/)도 함께 검토합니다.
 
 코드를 수정하지 않고 기존 바이너리에 실시간 정책을 적용·확인하려면 `chrt` 명령을 씁니다. 아래는 프로세스 실행·정책 확인, 그리고 `rt-tests` 패키지의 `cyclictest`로 스케줄링 지연을 정량 측정하는 명령입니다.
 
 ```bash
-# 우선순위 50, SCHED_FIFO로 실행 (root 또는 CAP_SYS_NICE 필요)
+# 우선순위 50, SCHED_FIFO로 실행 (보통 root 또는 CAP_SYS_NICE 필요)
 sudo chrt -f 50 ./rt_demo
 
 # 실행 중인 프로세스의 정책·우선순위 확인
 chrt -p "$(pgrep -f rt_demo)"
 
-# SCHED_RR의 타임 퀀텀(초 단위) 확인: sched_rr_get_interval 시스템 콜과 대응
-chrt -p "$(pgrep -f rt_demo)" | grep -i "rr"
+# 격리된 코어 2에서 스케줄링 지연 측정 (rt-tests 패키지)
+# -m: 메모리 잠금, -p 80: 우선순위, -t: 코어당 스레드, -a 2: CPU 2에 고정, -D 60: 60초
+sudo cyclictest -m -p 80 -t -a 2 -D 60
 ```
 
-**타임 퀀텀 확인**이 필요하면 `sched_rr_get_interval(2)` 시스템 콜을 코드에서 직접 호출해 `SCHED_RR`의 라운드로빈 주기를 읽을 수 있습니다. 이 값은 커널·배포판에 따라 기본값이 다르므로 단정하지 말고 실제 환경에서 확인합니다.
+`cyclictest`는 주기적으로 깨어나도록 예약한 시각과 실제로 깨어난 시각의 차이를 재서 스레드별 최소·평균·최대 지연으로 보고합니다. 평균보다 **최대값**이 실시간 적합성을 판단하는 핵심 지표이며, 정책을 바꾸기 전과 후를 같은 하드웨어·부하에서 반복 측정해 비교해야 합니다. `SCHED_RR`의 라운드로빈 주기는 `chrt -p`가 출력하지 않으므로 `sched_rr_get_interval(2)` 시스템 콜로 읽습니다. 이 값은 커널·배포판에 따라 기본값이 다르니 단정하지 않고 실제 환경에서 확인합니다.
+
+실시간 스레드가 뮤텍스를 공유할 때는 **우선순위 역전**에 주의해야 합니다. 낮은 우선순위 스레드가 락을 쥔 채 선점당하면, 그 락을 기다리는 높은 우선순위 스레드가 중간 우선순위 스레드 때문에 무한정 밀릴 수 있습니다. POSIX 뮤텍스를 `PTHREAD_PRIO_INHERIT` 프로토콜로 초기화하면 락 보유자가 대기자의 우선순위를 일시적으로 물려받아 이 문제를 완화합니다.
 
 ## EEVDF: CFS를 대체한 가상 마감시간 스케줄링
 
-**EEVDF**는 Ion Stoica와 Hussein Abdel-Wahab이 1995년 제안한 비례 공유(proportional share) 자원 할당 알고리즘을 기반으로 하며, 리눅스 6.6–6.12에 걸쳐 CFS를 대체했습니다. 핵심 아이디어는 CFS의 "최소 vruntime을 가진 태스크를 고른다"는 단순 규칙을, "적격(eligible)하면서 가상 마감시간(virtual deadline)이 가장 이른 태스크를 고른다"는 규칙으로 바꾼 것입니다. 각 태스크는 **lag**(공정하게 받아야 할 CPU 시간과 실제로 받은 시간의 차이)를 가지며, lag가 0 이상이면 "적격"으로 간주되어 실행 후보가 됩니다. 적격한 태스크들 중에서는 가상 마감시간이 가장 이른 태스크가 선택됩니다. 이 방식은 CFS 대비 **지연 민감 태스크에 유리한 스케줄링**을 목표로 하며, `PLACE_LAG`·`RUN_TO_PARITY`·`NEXT_BUDDY` 같은 내부 휴리스틱 토글로 세부 동작을 조정합니다(자세한 정의는 [커널 문서: EEVDF 스케줄러](https://docs.kernel.org/scheduler/sched-eevdf.html) 참고).
+**EEVDF**는 Ion Stoica와 Hussein Abdel-Wahab이 1995년 제안한 비례 공유(proportional share) 자원 할당 알고리즘을 기반으로 하며, 리눅스 6.6–6.12에 걸쳐 CFS를 대체했습니다. 핵심 아이디어는 CFS의 "최소 vruntime을 가진 태스크를 고른다"는 단순 규칙을, "적격(eligible)하면서 가상 마감시간(virtual deadline)이 가장 이른 태스크를 고른다"는 규칙으로 바꾼 것입니다. 각 태스크는 **lag**(공정하게 받아야 할 CPU 시간과 실제로 받은 시간의 차이)를 가지며, lag가 0 이상이면 "적격"으로 간주되어 실행 후보가 됩니다. 적격한 태스크들 중에서는 가상 마감시간이 가장 이른 태스크가 선택됩니다. 이 방식은 CFS 대비 **지연 민감 태스크에 유리한 스케줄링**을 목표로 합니다(자세한 정의는 [커널 문서: EEVDF 스케줄러](https://docs.kernel.org/scheduler/sched-eevdf.html) 참고).
 
 실무에서 중요한 점은, EEVDF가 CFS의 `sched_min_granularity_ns`·`sched_wakeup_granularity_ns` 같은 일부 튜닝 노브를 없애거나 의미를 바꿨다는 것입니다. CFS 시절 성능을 맞추기 위해 조정했던 `/proc/sys/kernel/sched_*` 값들을 그대로 EEVDF 커널에 적용하면 효과가 다르거나 존재하지 않는 파라미터를 건드리는 셈이 될 수 있으므로, 커널 버전을 올릴 때는 스케줄러 관련 튜닝 스크립트를 반드시 재검증해야 합니다.
 
@@ -143,26 +141,26 @@ struct sched_ext_ops simple_ops = {
   .enqueue    = (void *)simple_enqueue,     // 러너블 상태 진입 시 큐잉 정책
   .dispatch   = (void *)simple_dispatch,    // CPU가 놀 때 다음 태스크 선택
   .init       = (void *)simple_init,
-  .exit       = (void *)simple_exit,        // 오류 발생 시 커널이 기본 스케줄러로 자동 폴백
+  .exit       = (void *)simple_exit,        // 스케줄러가 해제될 때 호출되는 정리 콜백
   .name       = "simple",
 };
 ```
 
-**안전 장치**가 이 프레임워크의 실무 채택을 가능하게 만든 요소입니다. BPF 프로그램은 로드 시 verifier가 정적 검증하고(일반적인 BPF 검증기 제약·보안 모델은 [17장: eBPF·커널 경계와 성능·안전](/post/os-optimization/ebpf-xdp-kernel-boundary-performance-safety-expert/) 참고, 프레임워크 개요는 [커널 문서: Extensible Scheduler Class](https://docs.kernel.org/scheduler/sched-ext.html) 참고), 실행 중에는 워치독이 스케줄러 정체(stall)를 감지해 오류가 발생한 BPF 스케줄러를 자동으로 언로드하고 기본 스케줄러(EEVDF/`fair_sched_class`)로 되돌립니다. 이 덕분에 커스텀 정책 실험이 커널 패닉으로 이어질 위험이 out-of-tree 패치 방식보다 크게 낮아졌습니다.
+**안전 장치**가 이 프레임워크의 실무 채택을 가능하게 만든 요소입니다. BPF 프로그램은 로드 시 verifier가 정적 검증하고(일반적인 BPF 검증기 제약·보안 모델은 [17장: eBPF·커널 경계와 성능·안전](/post/os-optimization/ebpf-xdp-kernel-boundary-performance-safety-expert/) 참고, 프레임워크 개요는 [커널 문서: Extensible Scheduler Class](https://docs.kernel.org/scheduler/sched-ext.html) 참고), 실행 중에는 내부 오류나 실행 가능한 태스크의 정체(stall)가 감지되면 BPF 스케줄러를 중단하고 모든 태스크를 fair 클래스 스케줄러로 되돌립니다(커널 문서). SysRq-S로 수동 복귀도 가능합니다. 이 덕분에 커스텀 정책 실험이 커널 패닉으로 이어질 위험이 out-of-tree 패치 방식보다 크게 낮아졌습니다.
 
 ## Cache-Aware Scheduling: LLC 지역성을 스케줄러가 챙기다
 
-<strong>Cache-Aware Scheduling(CAS)</strong>은 멀티 LLC(Last Level Cache) 도메인을 가진 최신 서버 CPU에서, 데이터를 공유할 가능성이 높은 태스크(같은 프로세스의 스레드들)를 같은 LLC 도메인에 묶어 배치하려는 스케줄러 확장입니다([LWN: Cache aware scheduling](https://lwn.net/Articles/1049261/) 참고). Intel 엔지니어들이 약 1년 넘게 개발해 왔고, 커널 tip 트리의 `sched/core` 브랜치에서 패치가 개정되고 있습니다. 정식 병합 버전·시점은 집필 시점 기준 확정되지 않았으므로 구체적인 커널 버전 번호는 단정하지 않으며, 병합되면 `CONFIG_SCHED_CACHE`로 노출되고 **기본적으로 비활성화**될 것으로 알려져 있고, 커널 부팅 후 debugfs 인터페이스로 켜고 끌 수 있어 같은 환경에서 CAS 유무를 직접 비교할 수 있습니다. 초기 벤치마크에서는 워크로드에 따라 편차가 컸는데, hackbench류 지연 민감 벤치마크에서 두 자릿수 퍼센트 개선이, ChaCha20 같은 암호화 처리량 벤치마크에서는 더 큰 폭의 개선이 보고되었습니다(정확한 수치는 CPU 세대·커널 버전·워크로드에 따라 달라지므로, 이 트랙의 다른 장과 마찬가지로 자신의 환경에서 재현하는 것을 전제로 참고 수치로만 받아들여야 합니다).
+<strong>Cache-Aware Scheduling(CAS)</strong>은 멀티 LLC(Last Level Cache) 도메인을 가진 최신 서버 CPU에서, 데이터를 공유할 가능성이 높은 태스크(같은 프로세스의 스레드들)를 같은 LLC 도메인에 묶어 배치하려는 스케줄러 확장입니다([LWN: Cache aware scheduling](https://lwn.net/Articles/1049261/) 참고). 이 기능은 아직 패치 시리즈 단계입니다. 위 LWN 글이 다루는 v2 시리즈는 v6.18-rc7 위에서 시험한 결과를 싣고 있으며, 병합 버전과 설정 방식은 확정되지 않았습니다. 같은 글의 시험 결과를 요약하면, Sapphire Rapids에서는 활성 스레드 수가 LLC 용량 안에 들어올 때 hackbench가 크게 개선되었고(그룹 1개 구성에서 31.85%) ChaCha20도 처리량이 개선되었으며, Genoa에서는 ChaCha20만 큰 처리량 개선을 보이고 hackbench·schbench·netperf·stream·stress-ng에서는 뚜렷한 차이가 없었습니다. 즉 효과는 워크로드와 CPU 구조에 따라 크게 갈리므로, 병합 이후에도 자신의 환경에서 재현해 보고 도입 여부를 판단해야 합니다.
 
 CAS는 NUMA affinity와 다른 문제를 겨냥합니다. NUMA 배치([04장](/post/os-optimization/numa-cpu-affinity-thread-placement/))가 "메모리 컨트롤러에 가까운 코어"를 고르는 문제라면, CAS는 같은 NUMA 노드 안에서도 여러 LLC 도메인으로 쪼개진 최신 서버 CPU(칩렛 설계 등)에서 "같은 캐시를 공유하는 코어"를 고르는 문제입니다. 두 메커니즘은 상호 배타적이지 않고, NUMA 배치를 먼저 맞춘 뒤 그 안에서 CAS가 LLC 수준의 미세 조정을 담당하는 관계로 이해하는 것이 정확합니다.
 
 ## 흔한 오개념 바로잡기
 
-**오개념 1: "SCHED_FIFO 우선순위 99면 무조건 가장 빠르고 안전하다."** 우선순위 99는 "가장 먼저 실행된다"는 뜻일 뿐, 안전을 보장하지 않습니다. 격리된 코어 없이 우선순위 99 태스크가 무한 루프에 빠지면 해당 코어의 커널 워커·타이머·소프트IRQ가 굶어 워치독이 시스템을 재부팅시키거나 응답 불능 상태로 만들 수 있습니다. 실시간 우선순위는 반드시 CPU 격리·워치독 설정과 함께 검토합니다.
+**오개념 1: "SCHED_FIFO 우선순위 99면 무조건 가장 빠르고 안전하다."** 우선순위 99는 "가장 먼저 실행된다"는 뜻일 뿐, 안전을 보장하지 않습니다. 높은 우선순위가 오히려 해당 코어의 다른 작업을 모두 밀어내므로, 우선순위 숫자를 올리기 전에 어떤 작업이 그 코어에서 함께 돌아야 하는지부터 정리해야 합니다.
 
-**오개념 2: "sched_ext는 실험적이라 프로덕션에 쓰면 위험하다."** sched_ext는 워치독 기반 자동 폴백 덕분에 잘못된 BPF 스케줄러가 커널 크래시로 이어지는 것을 막고, Meta 등에서 실제 워크로드에 적용한 사례가 보고되어 있습니다. 다만 "위험하지 않다"는 것과 "성숙했다"는 것은 다른 이야기입니다. `sched_ext_ops` 인터페이스는 커널 버전에 따라 확장되고 있고, 커스텀 BPF 스케줄러의 성능·공정성은 여전히 개발자의 구현 품질에 크게 좌우됩니다.
+**오개념 2: "sched_ext는 실험적이라 프로덕션에 쓰면 위험하다."** sched_ext는 오류·정체 감지 시 fair 클래스로 자동 복귀하므로 잘못된 BPF 스케줄러가 곧바로 시스템 중단으로 이어지지는 않습니다. 다만 "위험하지 않다"는 것과 "성숙했다"는 것은 다른 이야기입니다. `sched_ext_ops` 인터페이스는 커널 버전에 따라 확장되고 있고, 커스텀 BPF 스케줄러의 성능·공정성은 여전히 개발자의 구현 품질에 크게 좌우됩니다.
 
-**오개념 3: "EEVDF로 바뀌었어도 SCHED_NORMAL 튜닝 감각은 CFS 때와 같다."** CFS 시절 사용하던 일부 `sched_*_ns` 노브는 EEVDF에서 제거되거나 의미가 바뀌었습니다. 커널을 6.6 이전에서 6.12 이후로 올리면서 기존 스케줄러 튜닝 스크립트를 그대로 재사용하면, 노브가 무시되거나 다른 방식으로 작동해 기대와 다른 지연 분포가 나올 수 있습니다.
+**오개념 3: "EEVDF로 바뀌었어도 SCHED_NORMAL 튜닝 감각은 CFS 때와 같다."** 위에서 설명한 노브 변화 때문에 CFS 시절의 감각을 그대로 옮기면 안 됩니다. 일반 정책의 지연 특성은 이제 lag와 가상 마감시간이 결정하며, 튜닝 전에 대상 커널에 해당 노브가 존재하는지부터 확인해야 합니다.
 
 ## 판단 기준: 언제 무엇을 쓸까
 
@@ -171,23 +169,23 @@ CAS는 NUMA affinity와 다른 문제를 겨냥합니다. NUMA 배치([04장](/p
 | 일반 서버 워크로드, 처리량과 공정성이 우선 | `SCHED_NORMAL`(EEVDF, 기본값) | 별도 권한·격리 없이 안전하게 동작 |
 | 하드 실시간에 가까운 마감(오디오·제어 루프) | `SCHED_FIFO` + 전용 코어 격리 | 우선순위 역전·시스템 행 방지 위해 [03장](/post/os-optimization/cpu-pinning-affinity-strategy/)의 isolcpus·affinity 병행 필수 |
 | 같은 우선순위의 실시간 작업을 여러 스레드가 나눠 처리 | `SCHED_RR` | 라운드로빈으로 동일 우선순위 내 기아 방지 |
-| 조직 특화 스케줄링 정책을 실험·점진 적용 | `sched_ext` | BPF verifier·워치독 폴백으로 실험 위험이 out-of-tree 패치보다 낮음 |
-| 멀티 LLC 서버에서 캐시 바운싱이 병목으로 확인됨 | Cache-Aware Scheduling(`CONFIG_SCHED_CACHE`, 7.2+) | 기본 비활성화·초기 기능이므로 워크로드별 벤치마크 후 도입 |
+| 조직 특화 스케줄링 정책을 실험·점진 적용 | `sched_ext` | BPF verifier·fair 클래스 자동 복귀로 실험 위험이 out-of-tree 패치보다 낮음 |
+| 멀티 LLC 서버에서 캐시 바운싱이 병목으로 확인됨 | 병합 소식을 추적하되 현재는 04장의 NUMA·affinity 배치로 대응 | Cache-Aware Scheduling은 패치 시리즈 단계라 도입 대상이 아님 |
 | 컨테이너·Kubernetes 환경의 CPU 자원 제어 | 실시간 정책 대신 cgroup 기반 제어 우선 검토 | 세부 사항은 [11장: 컨테이너/가상화 성능 고려사항](/post/os-optimization/container-virtualization-performance-considerations/)·[13장: cgroups v2](/post/os-optimization/cgroups-v2-resource-control-performance/) 참고 |
 
 ## 비판적 시각: 한계와 트레이드오프
 
-**SCHED_FIFO/SCHED_RR**은 POSIX.1b 표준화 이후 30년 넘게 검증된 안정적 메커니즘이지만, 우선순위 역전(priority inversion)과 격리 실패로 인한 시스템 행이라는 오래된 위험을 그대로 가지고 있습니다. "실시간"이라는 이름이 주는 안도감과 달리, 잘못 쓰면 오히려 전체 시스템의 신뢰성을 해칠 수 있습니다. **sched_ext**는 안전 장치가 있다는 점에서 진일보했지만, 커스텀 BPF 스케줄러의 품질 검증·회귀 테스트 체계는 각 조직이 스스로 구축해야 하고, 인터페이스 자체도 아직 커널 버전에 따라 진화하고 있어 장기 유지보수 부담이 있습니다. **EEVDF**는 이론적으로 더 정교하지만 knob이 줄어든 것이 항상 "더 좋아졌다"를 뜻하지는 않습니다. 세밀한 튜닝이 필요했던 특수 워크로드에서는 오히려 제어권을 잃었다는 불만도 있습니다. **Cache-Aware Scheduling**은 이 장을 쓰는 시점 기준으로 막 병합된 신규 기능이라 프로덕션 검증 사례가 아직 두텁지 않고, 기본 비활성화라는 사실 자체가 "아직 모든 워크로드에 안전하다고 확신하지 못한다"는 커널 개발자들의 신호로 읽어야 합니다.
+**SCHED_FIFO/SCHED_RR**은 POSIX.1b 표준화 이후 30년 넘게 검증된 안정적 메커니즘이지만, 우선순위 역전(priority inversion)과 격리 실패로 인한 시스템 행이라는 오래된 위험을 그대로 가지고 있습니다. "실시간"이라는 이름이 주는 안도감과 달리, 잘못 쓰면 오히려 전체 시스템의 신뢰성을 해칠 수 있습니다. **sched_ext**는 안전 장치가 있다는 점에서 진일보했지만, 커스텀 BPF 스케줄러의 품질 검증·회귀 테스트 체계는 각 조직이 스스로 구축해야 하며, 인터페이스가 커널 버전에 따라 진화하므로 장기 유지보수 부담이 있습니다. **EEVDF**는 이론적으로 더 정교하지만 knob이 줄어든 것이 항상 "더 좋아졌다"를 뜻하지는 않습니다. 세밀한 튜닝이 필요했던 특수 워크로드에서는 오히려 제어권을 잃었다는 불만도 있습니다. **Cache-Aware Scheduling**은 아직 병합 전 패치 시리즈라 프로덕션 검증 사례가 없고, 앞서 본 시험 결과처럼 CPU 구조에 따라 효과가 없을 수도 있습니다.
 
 ## 마무리
 
 이 장을 읽은 뒤 다음을 스스로 확인할 수 있어야 합니다.
 
 - [ ] `SCHED_FIFO`/`SCHED_RR`과 `SCHED_NORMAL`(EEVDF)의 선점 모델 차이를 설명할 수 있다.
-- [ ] 실시간 우선순위를 격리 없이 적용했을 때의 위험(워치독, 시스템 행)을 설명할 수 있다.
-- [ ] `sched_ext`가 BPF verifier와 워치독 폴백으로 안전성을 확보하는 방식을 설명할 수 있다.
+- [ ] 실시간 우선순위를 격리 없이 적용했을 때의 위험(코어 독점, 시스템 행)을 설명할 수 있다.
+- [ ] `sched_ext`가 BPF verifier와 fair 클래스 자동 복귀로 안전성을 확보하는 방식을 설명할 수 있다.
 - [ ] EEVDF의 eligibility·virtual deadline·lag 개념으로 태스크 선택 순서를 추론할 수 있다.
-- [ ] Cache-Aware Scheduling이 겨냥하는 멀티 LLC 문제와 현재 상태(7.2, 기본 비활성화)를 안다.
+- [ ] Cache-Aware Scheduling이 겨냥하는 멀티 LLC 문제와, 아직 패치 시리즈 단계라는 현재 상태를 안다.
 - [ ] 워크로드 특성에 따라 판단 기준 표를 이용해 적절한 스케줄링 정책을 고를 수 있다.
 
 **이전 장**: [NUMA CPU Affinity·스레드 배치](/post/os-optimization/numa-cpu-affinity-thread-placement/) (챕터 04)

@@ -1,7 +1,7 @@
 ---
 collection_order: 11
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-24
 draft: false
 image: wordcloud.png
 title: "[OS 06] 컨테이너/가상화 성능 고려사항"
@@ -97,9 +97,9 @@ grep -E 'nr_periods|nr_throttled|throttled_usec' "$CG/cpu.stat"
 
 ## 실무 전환: CPU Limit 지양 + isolcpus·Intel RDT 병행
 
-이런 배경에서 최근 실무 논의는 "지연 민감 워크로드에는 분수(fractional) CPU limit을 아예 걸지 않는다"는 방향으로 수렴하는 경우가 많습니다. 대신 Kubernetes의 [Static CPU Manager Policy](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/)를 사용해 Guaranteed QoS 클래스(요청=제한, 정수 CPU)로 선언된 컨테이너에는 코어를 **배타적으로** 할당합니다. 배타적으로 할당된 코어의 quota는 주기 최대치와 같게 설정되므로 애초에 CFS 스로틀링 대상이 되지 않고, 다른 컨테이너도 그 코어로 마이그레이션되지 않아 캐시 지역성이 유지됩니다.
+이런 배경에서 최근 실무 논의는 "지연 민감 워크로드에는 분수(fractional) CPU limit을 아예 걸지 않는다"는 방향으로 수렴하는 경우가 많습니다. 대신 Kubernetes의 [Static CPU Manager Policy](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/)를 사용해 Guaranteed QoS 클래스(요청=제한, 정수 CPU)로 선언된 컨테이너에는 코어를 **배타적으로** 할당합니다. 배타적으로 할당된 코어에서는 다른 컨테이너가 그 코어로 마이그레이션되지 않아 캐시 지역성이 유지됩니다.
 
-Static Policy만으로는 부족한 부분이 두 가지 남습니다. 첫째, Kubernetes CPU Manager는 리눅스 부팅 파라미터인 `isolcpus`(또는 최근 커널의 cgroup v2 `cpuset.cpus.partition=isolated` 방식)를 스스로 인식하지 않으므로, 격리 코어 목록을 `--reserved-cpus`나 `kube-reserved` 설정과 운영자가 직접 맞춰야 합니다. 둘째, 코어를 배타적으로 줘도 같은 소켓의 다른 코어가 L3 캐시와 메모리 대역폭을 두고 여전히 경쟁합니다. 이 두 번째 문제를 해결하는 것이 <strong>Intel RDT(Resource Director Technology)</strong>의 <strong>CAT(Cache Allocation Technology)</strong>와 <strong>MBA(Memory Bandwidth Allocation)</strong>입니다. CAT는 L3 캐시를 비트마스크(CBM) 단위로 나눠 특정 클래스에 전용 구간을 배정하고, MBA는 클래스별 메모리 대역폭 상한을 걸어 "시끄러운 이웃"이 대역폭을 독점하지 못하게 합니다. resctrl 파일시스템을 통해 설정하며, [Red Hat의 엣지 실측 사례](https://www.redhat.com/en/blog/performance-tuning-at-the-edge)에서는 CAT 적용 전 평균 지터가 약 9,000–9,500사이클 수준이었고, 적용 후에는 그래프상 대략 2,000사이클 이하로 크게 줄어든 것으로 관측됩니다.
+Static Policy만으로는 부족한 부분이 두 가지 남습니다. 첫째, Kubernetes CPU Manager는 리눅스 부팅 파라미터인 `isolcpus`(또는 최근 커널의 cgroup v2 `cpuset.cpus.partition=isolated` 방식)를 스스로 인식하지 않으므로, 격리 코어 목록을 `--reserved-cpus`나 `kube-reserved` 설정과 운영자가 직접 맞춰야 합니다. 둘째, 코어를 배타적으로 줘도 같은 소켓의 다른 코어가 L3 캐시와 메모리 대역폭을 두고 여전히 경쟁합니다. 이 두 번째 문제를 해결하는 것이 <strong>Intel RDT(Resource Director Technology)</strong>의 <strong>CAT(Cache Allocation Technology)</strong>와 <strong>MBA(Memory Bandwidth Allocation)</strong>입니다. CAT는 L3 캐시를 비트마스크(CBM) 단위로 나눠 특정 클래스에 전용 구간을 배정하고, MBA는 클래스별 메모리 대역폭 상한을 걸어 "시끄러운 이웃"이 대역폭을 독점하지 못하게 합니다. resctrl 파일시스템을 통해 설정하며, [Red Hat의 엣지 실측 사례](https://www.redhat.com/en/blog/performance-tuning-at-the-edge)에서는 CAT 적용 전 평균 지터가 약 9,000–9,500사이클 수준이었다고 보고하며, 적용 후의 개선 정도는 원문의 그림에서 확인할 수 있습니다.
 
 ```bash
 # resctrl 인터페이스 마운트 (RDT 설정 창구; 루트 권한 필요, CPU가 CAT/MBA를 지원해야 함)
@@ -145,7 +145,7 @@ flowchart TD
 
 | 상황 | 권장 | 비권장 |
 |------|------|--------|
-| 지연 민감·실시간에 가까운 워크로드 | Guaranteed + Static Policy(정수 코어), limit 미설정 | 분수 CPU limit(CFS quota)만 설정 |
+| 지연 민감·실시간에 가까운 워크로드 | request=limit(정수 CPU)로 Guaranteed 선언 + Static Policy, 분수 limit 지양 | 분수 CPU limit(CFS quota)만 설정 |
 | 배치·베스트에포트 워크로드 | request만 설정하거나 느슨한 limit | 필요 이상으로 낮은 limit로 스로틀 유발 |
 | 멀티테넌트 노드에서 캐시·대역폭 경합 우려 | isolcpus/static policy + Intel RDT(CAT·MBA) 병행 | 코어만 격리하고 캐시·대역폭은 방치 |
 | 미신뢰 코드를 실행하는 멀티테넌트 환경 | gVisor·Kata 등 강한 격리 런타임 검토 | 기본 runc만으로 충분하다고 가정 |
@@ -153,13 +153,13 @@ flowchart TD
 
 ## 비판적 시각: 한계와 트레이드오프
 
-"CPU limit을 지양하라"는 조언이 모든 환경에 맞는 정답은 아닙니다. 신뢰할 수 없는 다중 테넌트 클러스터에서 limit을 완전히 없애면 한 워크로드가 노드 CPU를 독점해 다른 테넌트에 피해를 줄 수 있으므로, 이 조언은 "지연 민감 워크로드 + 어느 정도 신뢰 가능한 환경"이라는 전제 위에서 성립합니다. Static CPU Manager Policy도 만능은 아닙니다. 정수 코어 단위로만 배타적 할당이 가능해 요청이 애매한 크기일 때 코어가 파편화되고 전체 활용률이 떨어질 수 있으며, 정책을 static에서 none으로 되돌리려면 노드를 드레인하고 상태 파일을 지운 뒤 kubelet을 재시작해야 하는 등 운영 부담이 있습니다. Intel RDT는 하드웨어 의존도가 높아 Intel Xeon Scalable 계열 등 지원 프로세서가 제한적이고, AMD도 유사한 QoS 확장을 제공하지만 세부 동작이 다르므로 이식성이 낮습니다. `isolcpus` 부팅 파라미터는 정적이라 재부팅 없이 격리 코어 집합을 바꿀 수 없다는 한계도 있어, 최근 커널은 cgroup v2의 `cpuset.cpus.partition` 같은 동적 격리 기능으로 점차 옮겨가는 중입니다. 이런 전환 자체가 성능을 해친다는 반론도 있는데, [2025년 발표된 한 학술 논문](https://arxiv.org/abs/2510.10747)은 CPU limit이 백그라운드 작업을 제외하면 오히려 자원 관리·과금 모델 전체를 재검토해야 할 만큼 해롭다는 주장을 펴며, 이 장에서 다룬 방향 전환이 업계에서 아직 논쟁 중임을 보여줍니다.
+"CPU limit을 지양하라"는 조언이 모든 환경에 맞는 정답은 아닙니다. 신뢰할 수 없는 다중 테넌트 클러스터에서 limit을 완전히 없애면 한 워크로드가 노드 CPU를 독점해 다른 테넌트에 피해를 줄 수 있으므로, 이 조언은 "지연 민감 워크로드 + 어느 정도 신뢰 가능한 환경"이라는 전제 위에서 성립합니다. Static CPU Manager Policy도 만능은 아닙니다. 정수 코어 단위로만 배타적 할당이 가능해 요청이 애매한 크기일 때 코어가 파편화되고 전체 활용률이 떨어질 수 있으며, 정책을 static에서 none으로 되돌리려면 노드를 드레인하고 상태 파일을 지운 뒤 kubelet을 재시작해야 하는 등 운영 부담이 있습니다. Intel RDT는 하드웨어 의존도가 높아 Intel Xeon Scalable 계열 등 지원 프로세서가 제한적이고, AMD도 유사한 QoS 확장을 제공하지만 세부 동작이 다르므로 이식성이 낮습니다. `isolcpus` 부팅 파라미터는 정적이라 재부팅 없이 격리 코어 집합을 바꿀 수 없다는 한계도 있어, 최근 커널은 cgroup v2의 `cpuset.cpus.partition` 같은 동적 격리 기능으로 점차 옮겨가는 중입니다. 이 장의 방향을 지지하는 연구도 있습니다. [2025년 발표된 한 학술 논문(arXiv)](https://arxiv.org/abs/2510.10747)은 지연 민감 애플리케이션에서 CPU limit 제거를 권고하면서도, 백그라운드 작업처럼 잘 숙고해 쓰면 limit이 유익할 수 있는 경우가 있다고 짚습니다. 즉 이 조언의 적용 범위는 워크로드 성격에 따라 달라집니다.
 
 ## 마무리
 
 - CFS quota 기반 CPU limit이 평균 사용률과 무관하게 버스트 구간에서 스로틀링을 유발하는 원리를 설명할 수 있다.
 - 컨테이너·microVM·전가상화 VM·샌드박스 런타임의 오버헤드 원인과 격리 강도 차이를 구분할 수 있다.
-- Kubernetes Static CPU Manager Policy가 배타적 코어 할당으로 스로틀링을 회피하는 원리를 설명할 수 있다.
+- Kubernetes Static CPU Manager Policy가 배타적 코어 할당이 코어 이동을 막아 캐시 지역성을 유지하는 원리를 설명할 수 있다.
 - isolcpus만으로는 캐시·메모리 대역폭 경합을 막지 못한다는 점과, Intel RDT(CAT·MBA)가 이를 보완하는 방식을 설명할 수 있다.
 - CPU limit 지양 전략이 성립하는 전제(신뢰 가능한 환경, 지연 민감 워크로드)와 한계를 판단할 수 있다.
 

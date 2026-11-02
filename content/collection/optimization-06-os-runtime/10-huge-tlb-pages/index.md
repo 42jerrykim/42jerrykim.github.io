@@ -1,7 +1,7 @@
 ---
 collection_order: 10
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-23
 draft: false
 image: wordcloud.png
 title: "[OS 06] Huge TLB Pages 활용"
@@ -15,7 +15,6 @@ tags:
   - Kernel
   - Memory(메모리)
   - CPU(Central Processing Unit)
-  - Concurrency(동시성)
   - C
   - C++
   - Benchmark
@@ -33,7 +32,6 @@ tags:
   - Edge-Cases(엣지케이스)
   - Guide(가이드)
   - Reference(참고)
-  - Case-Study
   - HugeTLB
   - hugetlbfs
   - TLB
@@ -69,7 +67,7 @@ tags:
 
 ## 정적 풀 모델의 발전 (역사·배경)
 
-HugeTLB 자체의 기원과 THP·mTHP와의 관계는 [Tr.04: Large Pages·Huge Pages](/post/memory-optimization/huge-pages-large-pages-mthp/)에서 다뤘으므로, 이 장에서는 **운영 관점에서 중요한 후속 변화**만 짚습니다. x86-64에서 2MB 페이지는 오래전부터 지원되었지만, 1GB **gigantic page**는 물리적으로 완전히 연속된 1GB 블록을 요구하기 때문에 부팅 직후가 아니면 메모리 단편화로 확보가 거의 불가능했습니다. 이 문제를 겨냥해 CMA(Contiguous Memory Allocator) 기반으로 gigantic page를 런타임에도 조달할 수 있게 하는 `hugetlb_cma` 기능이 2020년경 커널에 추가되었고, 이후 노드별 CMA 영역 지정 등 세부 개선이 이어졌습니다. 2025년에는 Frank van der Linden(Google)이 주도한 "hugetlb/CMA improvements for large systems" 패치 시리즈가 Linux 6.15에 병합되며, 수 테라바이트급 메모리를 가진 서버에서 대량의 `hugepages=`를 부팅 커맨드라인으로 요청할 때 vmemmap 페이지 할당 때문에 부팅 자체가 실패하던 문제와, CMA 영역이 물리 주소 공간의 빈틈(low BIOS DMA 영역 등) 때문에 실패하는 문제를 다뤘습니다. 같은 배경에서 도입된 `hugepage_alloc_threads` 부팅 파라미터는 대형 페이지 할당을 여러 스레드로 병렬화해, 대용량 메모리 서버의 부팅 시간을 단축합니다. 이 변화들은 "대형 메모리 서버에서 HugeTLB를 대량으로 예약하는 일" 자체가 여전히 커널 개발이 진행 중인 영역이라는 점을 보여줍니다.
+HugeTLB 자체의 기원과 THP·mTHP와의 관계는 [Tr.04: Large Pages·Huge Pages](/post/memory-optimization/huge-pages-large-pages-mthp/)에서 다뤘으므로, 이 장에서는 **운영 관점에서 중요한 후속 변화**만 짚습니다. x86-64에서 2MB 페이지는 오래전부터 지원되었지만, 1GB **gigantic page**는 물리적으로 완전히 연속된 1GB 블록을 요구하기 때문에 부팅 직후가 아니면 메모리 단편화로 확보가 거의 불가능했습니다. 이 문제를 겨냥해 CMA(Contiguous Memory Allocator) 기반으로 gigantic page를 런타임에도 조달할 수 있게 하는 `hugetlb_cma` 기능이 커널에 추가되었고, 이후 노드별 CMA 영역 지정 등 세부 개선이 이어졌습니다. Linux 6.15에는 대형 시스템용 hugetlb/CMA 개선이 들어갔고([KernelNewbies: Linux 6.15](https://kernelnewbies.org/Linux_6.15)), 대형 메모리 서버에서 HugeTLB를 부팅 시 대량으로 예약하고 CMA 영역을 배치하는 과정을 개선했습니다. 같은 배경에서 도입된 `hugepage_alloc_threads` 부팅 파라미터는 대형 페이지 할당을 여러 스레드로 병렬화해, 대용량 메모리 서버의 부팅 시간을 단축합니다. 이 변화들은 "대형 메모리 서버에서 HugeTLB를 대량으로 예약하는 일" 자체가 여전히 커널 개발이 진행 중인 영역이라는 점을 보여줍니다.
 
 ## 예약 모델: nr_hugepages와 부팅 파라미터
 
@@ -90,6 +88,7 @@ echo 10 > /proc/sys/vm/nr_overcommit_hugepages
 런타임 `echo`는 시스템이 오래 켜져 있어 메모리가 단편화된 상태라면 요청한 개수보다 적게 확보되거나 아예 실패할 수 있습니다. 예약 결과는 반드시 확인해야 하며, `/proc/meminfo`가 그 창구입니다.
 
 ```text
+# 설명용 예시 출력 — 실제 값은 시스템마다 다릅니다
 HugePages_Total:     512
 HugePages_Free:      488
 HugePages_Rsvd:        4
@@ -98,7 +97,7 @@ Hugepagesize:       2048 kB
 Hugetlb:         1048576 kB
 ```
 
-`HugePages_Total`은 pool에 실제로 편입된 페이지 수이고, `HugePages_Free`는 아직 어떤 매핑에도 쓰이지 않은 페이지 수입니다. `HugePages_Rsvd`는 `mmap`은 됐지만 아직 첫 접근(page fault)이 일어나지 않아 물리 페이지 배정이 유예된 상태를 가리키며, 이 값이 있다는 것은 "이미 약속된 페이지라 다른 프로세스가 가로챌 수 없다"는 뜻입니다. `HugePages_Surp`는 `nr_overcommit_hugepages`를 통해 기본 pool 크기를 넘어 임시로 확보된 surplus 페이지 수로, 메모리 압박이 오면 반환될 수 있는 페이지입니다. `HugePages_Total`이 요청한 값보다 작다면 단편화나 오버커밋 설정 부족이 원인이므로, 부팅 파라미터로 전환하거나 뒤에서 다룰 CMA를 검토해야 합니다.
+`HugePages_Total`은 pool에 실제로 편입된 페이지 수이고, `HugePages_Free`는 아직 어떤 매핑에도 쓰이지 않은 페이지 수입니다. `HugePages_Rsvd`는 `mmap`은 됐지만 아직 첫 접근(page fault)이 일어나지 않아 물리 페이지 배정이 유예된 상태를 가리키며, 이 값이 있다는 것은 "이미 약속된 페이지라 다른 프로세스가 가로챌 수 없다"는 뜻입니다. `HugePages_Surp`는 `nr_overcommit_hugepages`를 통해 기본 pool 크기를 넘어 임시로 확보된 surplus 페이지 수로, 커널 문서([HugeTLB Pages](https://docs.kernel.org/admin-guide/mm/hugetlbpage.html))는 이를 pool이 `nr_hugepages` 값을 초과해 보유한 페이지 수로 정의하며 그 상한을 `nr_overcommit_hugepages`가 정합니다. `HugePages_Total`이 요청한 값보다 작다면 단편화나 오버커밋 설정 부족이 원인이므로, 부팅 파라미터로 전환하거나 뒤에서 다룰 CMA를 검토해야 합니다.
 
 ## NUMA 노드별 HugeTLB 풀 배치
 
@@ -164,6 +163,7 @@ flowchart TD
   sizeDecision -->|"1GB gigantic 필요"| giganticPath["부팅 파라미터 또는</br>hugetlb_cma 예약 필수"]
   timingCheck -->|"부팅 시점"| bootParam["hugepagesz/hugepages</br>커널 커맨드라인"]
   timingCheck -->|"런타임 중 필요"| sysctlPath["/proc/sys/vm/nr_hugepages"]
+  giganticPath --> bootParam
   giganticPath --> cmaArea["CMA 예약 영역에서 조달"]
   bootParam --> numaPool["노드별 nr_hugepages로</br>워크로드 배치와 정렬"]
   sysctlPath --> numaPool
@@ -179,8 +179,10 @@ TLB 미스·페이지 폴트를 `perf stat`으로 측정하는 벤치마크 방�
 # 노드별 실제 사용량이 예약과 일치하는지 확인 (예약만 하고 실제로 안 쓰이면 낭비)
 numastat -m | grep -A3 'HugePages'
 
-# 프로세스가 hugetlb VMA를 실제로 사용 중인지, 어느 노드 페이지인지 확인
+# 프로세스가 hugetlb VMA를 실제로 사용 중인지 확인
 grep -B1 -A2 'KernelPageSize:    2048 kB' /proc/<pid>/smaps
+# 어느 노드의 페이지인지는 numa_maps의 N0=, N1= 필드로 확인
+grep huge /proc/<pid>/numa_maps
 ```
 
 `HugePages_Total`은 충분한데 애플리케이션의 `smaps`에 `hugetlbfs` VMA가 보이지 않는다면 `mmap` 자체가 일반 페이지로 폴백했을 가능성이 크고, 이 경우 앞서 다룬 벤치마크가 보여주는 TLB 미스 감소 효과는 애초에 적용되지 않은 상태입니다. 예약 확인과 실제 매핑 확인을 분리해서 점검하는 습관이 "설정은 했는데 효과가 없다"는 흔한 운영 사고를 막습니다.
@@ -206,7 +208,13 @@ grep -B1 -A2 'KernelPageSize:    2048 kB' /proc/<pid>/smaps
 
 ## 비판적 시각: 한계와 트레이드오프
 
-HugeTLB의 정적 예약 모델은 예측 가능성을 얻는 대신 유연성을 크게 희생합니다. 한 번 pool에 편입된 페이지는 다른 어떤 목적으로도 회수되지 않으므로, 예약량을 넉넉하게 잡으면 실제로 쓰이지 않는 페이지가 다른 프로세스가 쓸 수 있었던 메모리를 그대로 잠가 버립니다. gigantic page는 이 문제가 더 심해서, 부팅 시점 예약이 아니면 성공을 장담하기 어렵고 CMA로 우회해도 회수 지연이라는 대가가 남습니다. 자동 NUMA 밸런싱이 HugeTLB 페이지를 재배치 대상으로 삼는지는 커널 버전과 페이지 크기에 따라 달라지는 구현 정의 영역이므로, "한 번 노드별로 예약해 두면 커널이 알아서 최적으로 옮겨 준다"는 기대는 대상 커널에서 직접 확인하지 않고는 성립하지 않는다고 보는 편이 안전합니다. 가상화·컨테이너 환경에서는 하이퍼바이저나 오케스트레이터가 HugeTLB 예약을 게스트에 그대로 노출하지 않거나 별도 설정을 요구하는 경우가 있어, 베어메탈에서 검증한 예약 절차가 클라우드 인스턴스에서 그대로 재현된다고 가정하면 안 됩니다. 이런 환경별 제약은 [컨테이너/가상화 성능 고려사항](/post/os-optimization/container-virtualization-performance-considerations/)에서 이어서 다룹니다.
+HugeTLB의 정적 예약 모델은 예측 가능성을 얻는 대신 유연성을 크게 희생합니다. pool에 편입된 페이지는 커널이 자동으로 회수하지 않으며 관리자가 `nr_hugepages`를 줄이거나 demote해야 하므로, 예약량을 넉넉하게 잡으면 실제로 쓰이지 않는 페이지가 다른 프로세스가 쓸 수 있었던 메모리를 그대로 잠가 버립니다. gigantic page는 이 문제가 더 심해서, 부팅 시점 예약이 아니면 성공을 장담하기 어렵고 CMA로 우회해도 회수 지연이라는 대가가 남습니다. 자동 NUMA 밸런싱이 HugeTLB 페이지를 재배치 대상으로 삼는지는 커널 버전과 페이지 크기에 따라 달라지는 구현 정의 영역이므로, "한 번 노드별로 예약해 두면 커널이 알아서 최적으로 옮겨 준다"는 기대는 대상 커널에서 직접 확인하지 않고는 성립하지 않는다고 보는 편이 안전합니다. 가상화·컨테이너 환경에서는 하이퍼바이저나 오케스트레이터가 HugeTLB 예약을 게스트에 그대로 노출하지 않거나 별도 설정을 요구하는 경우가 있어, 베어메탈에서 검증한 예약 절차가 클라우드 인스턴스에서 그대로 재현된다고 가정하면 안 됩니다. 이런 환경별 제약은 [컨테이너/가상화 성능 고려사항](/post/os-optimization/container-virtualization-performance-considerations/)에서 이어서 다룹니다.
+
+## 참고 자료
+
+- [Linux kernel docs: HugeTLB Pages](https://docs.kernel.org/admin-guide/mm/hugetlbpage.html): 예약, 풀 크기 sysctl, `/proc/meminfo` 필드의 정의
+- [mmap(2)](https://man7.org/linux/man-pages/man2/mmap.2.html): `MAP_HUGETLB`와 `MAP_HUGE_*` 플래그
+- [KernelNewbies: Linux 6.15](https://kernelnewbies.org/Linux_6.15): 6.15의 hugetlb/CMA 개선과 병렬 할당 옵션
 
 ## 마무리
 
