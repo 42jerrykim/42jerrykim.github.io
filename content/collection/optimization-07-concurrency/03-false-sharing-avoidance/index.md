@@ -18,7 +18,6 @@ tags:
   - C++
   - Compiler(컴파일러)
   - Linux(리눅스)
-  - Windows(윈도우)
   - Benchmark
   - Latency
   - Throughput
@@ -30,8 +29,6 @@ tags:
   - 실습
   - Pitfalls(함정)
   - Edge-Cases(엣지케이스)
-  - Case-Study
-  - Testing(테스트)
   - Debugging(디버깅)
   - False-Sharing
   - perf-c2c
@@ -42,6 +39,10 @@ tags:
   - Alignas
   - Padding
   - P0154
+  - ThreadSanitizer
+  - NUMA
+  - Microbenchmark
+  - Aligned-New
 ---
 
 <strong>False sharing(거짓 공유)</strong>란 서로 다른 스레드가 논리적으로는 완전히 무관한 변수를 각자 수정할 뿐인데도, 그 변수들이 우연히 같은 캐시 라인(cache line)에 배치되어 있어서 하드웨어의 캐시 일관성 프로토콜이 실제로는 필요 없는 무효화(invalidation)와 캐시 라인 이동을 반복하며 지연시간과 처리량을 갉아먹는 현상이다. 락도 걸지 않고 스레드마다 독립된 `atomic` 카운터를 하나씩 쓰게 나눴는데도 스레드를 늘릴수록 오히려 초당 처리량이 줄어드는 경험을 했다면, 원인은 대개 알고리즘이 아니라 구조체 멤버가 메모리에 놓인 순서다. 이 장은 그 원인을 하드웨어 수준에서 설명하고, `perf c2c`로 실제 코드에서 문제가 되는 캐시 라인을 짚어낸 뒤, `alignas(std::hardware_destructive_interference_size)`로 회피하는 순서를 다룬다.
@@ -64,9 +65,9 @@ tags:
 
 ## 역사와 배경: 캐시 일관성 프로토콜과 표준화
 
-캐시 일관성(cache coherence) 문제는 멀티프로세서가 각자 로컬 캐시를 갖게 된 순간부터 존재했다. 여러 코어가 같은 물리 메모리 주소를 각자의 캐시에 복사해 두면, 한 코어가 값을 바꿨을 때 다른 코어의 사본을 무효화하거나 갱신해야 한다는 문제가 생기고, 이를 해결하기 위해 1980년대에 MESI(Modified-Exclusive-Shared-Invalid) 계열 프로토콜이 정립되었다. false sharing은 이 프로토콜이 "바이트 단위"가 아니라 "캐시 라인 단위"로 동작하기 때문에 생기는 부작용으로, 멀티프로세서 성능 연구 초기부터 알려진 문제였다(대표적으로 Torrellas 등의 1994년 IEEE Transactions on Computers 논문 "False Sharing and Spatial Locality in Multiprocessor Caches"가 이 현상을 정식으로 명명하고 정량화했다).
+캐시 일관성(cache coherence) 문제는 멀티프로세서가 각자 로컬 캐시를 갖게 된 순간부터 존재했다. 여러 코어가 같은 물리 메모리 주소를 각자의 캐시에 복사해 두면, 한 코어가 값을 바꿨을 때 다른 코어의 사본을 무효화하거나 갱신해야 한다는 문제가 생기고, 이를 해결하기 위해 1980년대에 MESI(Modified-Exclusive-Shared-Invalid) 계열 프로토콜이 정립되었다. false sharing은 이 프로토콜이 "바이트 단위"가 아니라 "캐시 라인 단위"로 동작하기 때문에 생기는 부작용으로, 멀티프로세서 성능 연구 초기부터 알려진 문제였다(대표적으로 Torrellas 등의 1994년 IEEE Transactions on Computers 논문 "False Sharing and Spatial Locality in Multiprocessor Caches"가 이 현상을 정량적으로 분석했다).
 
-C++ 표준은 오랫동안 캐시 라인 크기를 포터블하게 알아낼 방법을 제공하지 않았고, 개발자들은 각 플랫폼에서 `64`라는 매직 넘버를 하드코딩하는 관행에 의존해 왔다. 이 공백은 C++17의 P0154R1(JF Bastien, Olivier Giroux, "Hardware Interference Size")로 메워졌다. 이 제안은 `<new>` 헤더에 `std::hardware_destructive_interference_size`와 `std::hardware_constructive_interference_size`라는 두 개의 `constexpr` 값을 추가했다. 전자는 "false sharing을 피하려면 이 값 이상 떨어뜨려라", 후자는 "함께 접근하는 데이터를 한 캐시 라인에 묶으려면 이 값 이하로 배치해라"는 의미로, 서로 반대 목적을 가진 상수다. 다만 이 값들의 실제 도입은 순탄치 않았는데, libc++는 이 상수가 ABI(Application Binary Interface)에 노출되는 문제 때문에 컴파일러가 타깃별 캐시 라인 크기를 컴파일 타임에 알려주는 내장 함수(`__builtin_hardware_destructive_interference_size` 계열)를 갖추기 전까지 오랫동안 이 기능을 비활성 상태로 두었다. 즉 이 상수는 표준에는 C++17부터 있었지만, 실제로 어떤 컴파일러·표준 라이브러리 조합에서 활성화되어 있는지는 여전히 확인이 필요한 사안이다. 컴파일 전에 `__cpp_lib_hardware_interference_size` feature-test 매크로를 확인하는 습관을 들이는 편이 안전하다.
+C++ 표준은 오랫동안 캐시 라인 크기를 포터블하게 알아낼 방법을 제공하지 않았고, 개발자들은 각 플랫폼에서 `64`라는 매직 넘버를 하드코딩하는 관행에 의존해 왔다. 이 공백은 C++17의 P0154R1(JF Bastien, Olivier Giroux, "Hardware Interference Size")로 메워졌다. 이 제안은 `<new>` 헤더에 `std::hardware_destructive_interference_size`와 `std::hardware_constructive_interference_size`라는 두 개의 `constexpr` 값을 추가했다. 전자는 "false sharing을 피하려면 이 값 이상 떨어뜨려라", 후자는 "함께 접근하는 데이터를 한 캐시 라인에 묶으려면 이 값 이하로 배치해라"는 의미로, 서로 반대 목적을 가진 상수다. 다만 이 값들의 실제 도입은 순탄치 않았는데, libc++는 이 상수가 ABI(Application Binary Interface)에 노출되는 문제 때문에 컴파일러가 타깃별 캐시 라인 크기를 컴파일 타임에 알려주는 사전 정의 매크로(`__GCC_DESTRUCTIVE_SIZE`·`__GCC_CONSTRUCTIVE_SIZE`, GCC 12에서 도입되었고 Clang은 19부터 노출)를 갖추기 전까지 오랫동안 이 기능을 비활성 상태로 두었다. 즉 이 상수는 표준에는 C++17부터 있었지만, 실제로 어떤 컴파일러·표준 라이브러리 조합에서 활성화되어 있는지는 여전히 확인이 필요한 사안이다. 컴파일 전에 `__cpp_lib_hardware_interference_size` feature-test 매크로를 확인하는 습관을 들이는 편이 안전하다.
 
 ## 캐시 일관성과 false sharing의 메커니즘
 
@@ -94,6 +95,7 @@ flowchart LR
 #include <chrono>
 #include <cstdio>
 #include <cstdint>
+#include <functional>
 #include <new>
 #include <thread>
 
@@ -134,11 +136,11 @@ int main() {
 }
 ```
 
-x86-64 Linux, GCC 13, `-O2`, 같은 소켓의 서로 다른 물리 코어 두 개에 스레드를 배치한 조건에서는 `UnpaddedCounters`가 `PaddedCounters`보다 대략 3–10배 느리게 나오는 경우가 흔하다. 다만 이 배율은 코어 토폴로지(같은 소켓 vs 다른 소켓 vs 다른 NUMA 노드), 캐시 라인 크기, 컴파일러·최적화 옵션에 따라 크게 달라지므로 절대 수치로 인용하지 말고 자신의 하드웨어에서 직접 재현해야 한다. 또한 이 문제는 데이터 레이스가 아니므로 `-fsanitize=thread`(ThreadSanitizer)로는 잡히지 않는다 — TSan은 "동기화되지 않은 동시 접근"을 탐지하는 도구이지, "정확하지만 느린 메모리 배치"를 탐지하는 도구가 아니다. false sharing 여부를 확인하는 올바른 도구는 실행 시간 측정과 다음 절의 `perf c2c`다.
+이 벤치마크의 실행 결과는 이 글에서 직접 측정해 싣지 않았다. 일반적으로 서로 다른 물리 코어에 두 스레드를 배치하면 `UnpaddedCounters`가 `PaddedCounters`보다 느리게 나오지만, 그 배율은 코어 토폴로지(같은 소켓 vs 다른 소켓 vs 다른 NUMA 노드), 캐시 라인 크기, 컴파일러·최적화 옵션에 따라 크게 달라지므로 자신의 하드웨어에서 직접 재현해야 한다. 또한 이 문제는 데이터 레이스가 아니므로 `-fsanitize=thread`(ThreadSanitizer)로는 잡히지 않는다 — TSan은 "동기화되지 않은 동시 접근"을 탐지하는 도구이지, "정확하지만 느린 메모리 배치"를 탐지하는 도구가 아니다. false sharing 여부를 확인하는 올바른 도구는 실행 시간 측정과 다음 절의 `perf c2c`다.
 
 ## perf c2c로 탐지하기
 
-`perf c2c`("cache-2-cache")는 Linux `perf` 도구에 포함된 서브커맨드로, CPU의 하드웨어 이벤트 샘플링을 이용해 어떤 캐시 라인에서 코어 간 캐시 전송(HITM, Hit In Modified)이 자주 일어나는지, 그 라인의 어느 오프셋을 어떤 스레드·명령어·소스 라인이 건드렸는지까지 보여준다. 이 도구는 원래 리눅스 커널과 대형 서버 애플리케이션에서 실제 false sharing 버그를 찾아내며 만들어졌고, 코드를 눈으로 훑어서는 찾기 어려운 "우연히 인접 배치된" 케이스를 통계적으로 짚어낸다는 점에서 유용하다.
+`perf c2c`("cache-2-cache")는 Linux `perf` 도구에 포함된 서브커맨드로, CPU의 하드웨어 이벤트 샘플링을 이용해 어떤 캐시 라인에서 코어 간 캐시 전송(HITM, Hit In Modified)이 자주 일어나는지, 그 라인의 어느 오프셋을 어떤 스레드·명령어·소스 라인이 건드렸는지까지 보여준다. 이 도구는 코드를 눈으로 훑어서는 찾기 어려운 "우연히 인접 배치된" 케이스를 통계적으로 짚어낸다는 점에서 유용하다.
 
 ```bash
 # 위에서 컴파일한 bench 바이너리를 대상으로 기록
@@ -148,17 +150,18 @@ perf c2c record -F 60000 -a --all-user -- ./bench
 perf c2c report --stdio
 ```
 
-리포트 상단의 "Trace Event" 요약에서 `LLC Load Hitm` 비율을 먼저 본다. 이 값이 0에 가깝지 않다면 코어 간 캐시 라인 전송이 실제로 병목이라는 뜻이다. 그 아래 "Shared Data Cache Line Table"에는 문제가 되는 캐시 라인이 HITM 횟수 순으로 정렬되어 나열되고, 대개 상위 한두 줄이 핵심 원인이다. 해당 줄을 선택해 상세 보기로 들어가면 그 라인의 어느 오프셋을 어떤 함수·스레드가 읽고 쓰는지가 나오는데, `UnpaddedCounters` 예제라면 오프셋 `0x0`과 `0x8`을 서로 다른 스레드가 반복해서 쓰고 있다는 것이 그대로 드러난다. `perf_event_paranoid` 커널 설정이 제한적이면 `perf c2c record`가 권한 오류를 낼 수 있으므로, 컨테이너·CI 환경에서는 `sysctl kernel.perf_event_paranoid` 값과 `CAP_PERFMON`(또는 `CAP_SYS_ADMIN`) 권한을 먼저 확인한다. 리눅스 환경이 아니라면(Windows, macOS) 동일한 목적의 하드웨어 카운터 기반 분석은 이 트랙 밖의 주제이므로 [Tr.01 프로파일링·성능 분석](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)에서 플랫폼별 대안을 참고한다.
+리포트 상단의 "Trace Event Information"에서 Load Local HITM·Load Remote HITM 같은 집계를 먼저 본다. 이 값이 0에 가깝지 않다면 코어 간 캐시 라인 전송이 실제로 병목이라는 뜻이다. 그 아래 "Shared Data Cache Line Table"에는 문제가 되는 캐시 라인이 HITM 횟수 순으로 정렬되어 나열되고, 대개 상위 한두 줄이 핵심 원인이다. `--stdio` 출력에서는 "Shared Cache Line Distribution Pareto" 절에 각 라인의 어느 오프셋을 어떤 함수·스레드가 읽고 쓰는지가 나오는데, `UnpaddedCounters` 예제라면 오프셋 `0x0`과 `0x8`을 서로 다른 스레드가 반복해서 쓰고 있다는 것이 그대로 드러난다. `perf_event_paranoid` 커널 설정이 제한적이면 `perf c2c record`가 권한 오류를 낼 수 있으므로, 컨테이너·CI 환경에서는 `sysctl kernel.perf_event_paranoid` 값과 `CAP_PERFMON`(또는 `CAP_SYS_ADMIN`) 권한을 먼저 확인한다. 리눅스 환경이 아니라면(Windows, macOS) 동일한 목적의 하드웨어 카운터 기반 분석은 이 트랙 밖의 주제이므로 [Tr.01 프로파일링·성능 분석](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)에서 플랫폼별 대안을 참고한다.
 
 ## alignas(std::hardware_destructive_interference_size)로 회피하기
 
-탐지된 캐시 라인을 고치는 표준적인 방법은 문제가 되는 필드를 `alignas(std::hardware_destructive_interference_size)`로 정렬해, 컴파일러가 그 필드를 캐시 라인 경계에 맞춰 배치하고 그 앞뒤에 패딩을 자동으로 넣도록 강제하는 것이다. 위 벤치마크의 `PaddedCounters`가 이 패턴이다. 이 값은 `<new>` 헤더에 정의된 `inline constexpr std::size_t`로, "이 값 이상 떨어뜨리면 서로 다른 캐시 라인에 놓인다고 구현체가 보장한다"는 의미의 하한값이며 구현체마다 다를 수 있다(대부분의 x86-64 구현에서는 64를 반환하지만, 이는 구현 정의(implementation-defined)이지 표준이 못박은 값이 아니다).
+탐지된 캐시 라인을 고치는 표준적인 방법은 문제가 되는 필드를 `alignas(std::hardware_destructive_interference_size)`로 정렬해, 컴파일러가 그 필드를 캐시 라인 경계에 맞춰 배치하고 그 앞뒤에 패딩을 자동으로 넣도록 강제하는 것이다. 위 벤치마크의 `PaddedCounters`가 이 패턴이다. 이 값은 `<new>` 헤더에 정의된 `inline constexpr std::size_t`로, P0154R1이 성능 힌트(quality of implementation)로 정의한, 구현이 권장하는 최소 오프셋이며 구현체마다 다를 수 있다(대부분의 x86-64 구현에서는 64를 반환하지만, 이는 구현 정의(implementation-defined)이지 표준이 못박은 값이 아니다).
 
 패딩을 적용할 때는 반대 방향의 상수인 `std::hardware_constructive_interference_size`도 함께 기억해 둘 필요가 있다. false sharing 회피가 "서로 다른 스레드가 쓰는 데이터를 떨어뜨리는" 것이라면, constructive interference는 "같은 스레드(또는 같은 읽기 그룹)가 함께 접근하는 필드를 오히려 한 캐시 라인 안에 뭉치는" 것을 가리킨다. 예를 들어 통계 카운터의 여러 필드를 한 스레드만 순차적으로 읽고 쓴다면, 그 필드들을 굳이 떨어뜨릴 이유가 없고 오히려 한 라인에 모아 두는 편이 캐시 적중률에 유리하다. 정렬은 "무조건 떨어뜨리는 것"이 아니라 "접근 패턴에 맞게 뭉치거나 떨어뜨리는 것"이라는 관점으로 접근해야 한다.
 
 ```cpp
-#include <new>
 #include <atomic>
+#include <cstdint>
+#include <new>
 
 // per-thread 카운터 배열: 각 원소를 독립된 캐시 라인에 정렬해
 // 서로 다른 스레드가 자신의 원소만 갱신할 때 false sharing을 없앤다.
@@ -180,7 +183,7 @@ PerThreadCounter counters[kMaxThreads];
 
 **"패딩을 넣을수록 무조건 빨라진다"**: 과도한 패딩은 구조체 크기를 불필요하게 키워 캐시에 올라가는 유효 데이터 밀도를 낮추고, 배열을 순회하는 코드에서는 오히려 캐시 미스를 늘릴 수 있다. false sharing 회피는 "쓰기 경합이 실제로 있는 필드"에만 적용해야 하며, 읽기 전용이거나 한 스레드만 접근하는 필드까지 습관적으로 정렬하면 메모리 대역폭과 캐시 공간을 낭비한다.
 
-**"hardware_destructive_interference_size는 항상 64다"**: 이 값은 구현 정의이며, ARM 서버 코어 일부처럼 캐시 라인이 64바이트가 아닌 플랫폼에서는 다른 값을 반환할 수 있다. 또한 이 상수 자체가 모든 컴파일러·표준 라이브러리 조합에서 오랫동안 활성화되어 있지 않았던 이력이 있다(위 "역사와 배경" 참고). 크로스 플랫폼 코드에서는 `__cpp_lib_hardware_interference_size` 매크로로 지원 여부를 확인하고, 지원되지 않는 환경을 위한 폴백(예: 고정값 64 또는 `std::max_align_t` 기반 추정)을 함께 준비한다.
+**"hardware_destructive_interference_size는 항상 64다"**: 이 값은 구현 정의이며, ARM 서버 코어 일부처럼 캐시 라인이 64바이트가 아닌 플랫폼에서는 다른 값을 반환할 수 있다. 또한 이 상수 자체가 모든 컴파일러·표준 라이브러리 조합에서 오랫동안 활성화되어 있지 않았던 이력이 있다(위 "역사와 배경" 참고). 크로스 플랫폼 코드에서는 `__cpp_lib_hardware_interference_size` 매크로로 지원 여부를 확인하고, 지원되지 않는 환경을 위한 폴백(예: 고정값 64, 일부 ARM 서버 코어는 128, 또는 빌드 시스템이 주입한 상수. `alignof(std::max_align_t)`는 보통 16이라 폴백으로 쓸 수 없다)을 함께 준비한다.
 
 ## 판단 기준
 
@@ -190,13 +193,13 @@ PerThreadCounter counters[kMaxThreads];
 | 한 스레드(또는 읽기 전용)가 여러 필드를 함께 접근 | 오히려 한 캐시 라인에 뭉치기(constructive interference) | 무분별하게 모든 필드에 패딩 적용 |
 | MPMC 큐의 head/tail 인덱스처럼 다른 스레드가 다른 인덱스를 갱신 | 인덱스별로 캐시 라인 분리 | 인덱스를 나란히 선언 |
 | 의심되지만 확실하지 않은 성능 저하 | 먼저 `perf c2c`나 실행 시간 측정으로 확인 | 추측만으로 정렬 추가 |
-| 정적 배열이 아니라 힙에 할당하는 구조체 | 정렬을 만족하는 할당자(`std::aligned_alloc`, `operator new(size, align)`) 사용 | 기본 `new`로 할당 후 정렬 가정 |
+| 정적 배열이 아니라 힙에 할당하는 구조체 | C++17 이후의 `new`와 `std::allocator`(aligned new는 `alignas`를 지킴), 또는 `std::aligned_alloc` | `malloc`이나 C++17 이전 컴파일러에서 정렬을 가정 |
 
 ## 비판적 시각: 한계와 트레이드오프
 
 `perf c2c`는 Linux 전용이며 하드웨어 성능 카운터(PMU)와 커널 `perf_event` 서브시스템에 의존하므로, 가상화 환경이나 컨테이너에서는 권한·가시성 제약으로 샘플링이 아예 동작하지 않거나 신뢰도가 낮아질 수 있다. Windows나 macOS에서 동등한 원인 분석을 하려면 다른 프로파일러의 메모리 접근 분석 기능에 의존해야 하는데, 이는 이 트랙이 아니라 [Tr.01 프로파일링 트랙](/post/profiling-analysis/getting-started-profiling-performance-analysis-fundamentals/)의 범위다. 샘플링 기반 도구라는 한계도 있다 — 짧게 실행되고 끝나는 코드나 샘플링 주기보다 드물게 발생하는 경합은 놓칠 수 있으므로, `perf c2c`의 "깨끗한" 리포트가 "false sharing이 없다"를 보장하지는 않는다.
 
-패딩 기반 회피 자체도 공짜가 아니다. 캐시 라인 경계로 정렬된 필드마다 최대 `hardware_destructive_interference_size - 1`바이트의 패딩이 추가되므로, 스레드 수나 카운터 종류가 많아지면 메모리 사용량이 눈에 띄게 늘고, 이 늘어난 메모리 자체가 L2/L3 캐시 점유율을 높여 다른 코드 경로의 성능에 간접적으로 영향을 줄 수 있다. 또한 이 상수의 값과 지원 여부가 구현체마다 달라 온 이력 때문에, 정말 이식성이 중요한 코드베이스에서는 표준 상수에만 의존하기보다 대상 플랫폼에서 `perf c2c`(또는 동등 도구)로 실측하는 검증 단계를 항상 거치는 편이 안전하다. 마지막으로, false sharing 회피는 국소적인 레이아웃 최적화이지 알고리즘 차원의 해법이 아니다 — 근본적으로 여러 스레드가 하나의 자원을 놓고 경쟁하는 설계라면, 정렬보다 먼저 [Lock 선택 기준](/post/concurrency-optimization/lock-selection-criteria-guide/)에서 다룬 것처럼 자원 분할이나 알고리즘 자체의 재설계를 검토해야 한다.
+패딩 기반 회피 자체도 공짜가 아니다. 패딩의 메모리·캐시 비용은 앞의 오개념 교정에서 다룬 대로다. 정말 이식성이 중요한 코드베이스에서는 표준 상수에만 의존하기보다 대상 플랫폼에서 `perf c2c`(또는 동등 도구)로 실측하는 검증 단계를 항상 거치는 편이 안전하다. 마지막으로, false sharing 회피는 국소적인 레이아웃 최적화이지 알고리즘 차원의 해법이 아니다 — 근본적으로 여러 스레드가 하나의 자원을 놓고 경쟁하는 설계라면, 정렬보다 먼저 [Lock 선택 기준](/post/concurrency-optimization/lock-selection-criteria-guide/)에서 다룬 것처럼 자원 분할이나 알고리즘 자체의 재설계를 검토해야 한다.
 
 ## 마무리
 

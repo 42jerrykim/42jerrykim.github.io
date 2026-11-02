@@ -20,26 +20,22 @@ tags:
   - Latency
   - Throughput
   - Implementation(구현)
-  - Best-Practices
-  - Code-Quality(코드품질)
-  - Data-Structures(자료구조)
   - System-Design
   - Advanced
   - Deep-Dive
   - Testing(테스트)
   - Debugging(디버깅)
   - Synchronization
-  - Recursion(재귀)
-  - Reliability
-  - Load-Balancing
   - Pipeline
   - Scalability(확장성)
-  - Message-Queue
-  - RAII(Resource Acquisition Is Initialization)
   - Open-Source(오픈소스)
   - Event-Driven
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
+  - Symmetric-Transfer
+  - Backpressure
+  - Scheduler
+  - Awaitable
 ---
 
 **코루틴 기반 동시성 패턴**이란 C++20 코루틴(`co_await`/`co_yield`/`co_return`)을 여러 실행 흐름을 조합하는 도구로 써서, 태스크를 체이닝하고 스레드 풀에 재개 지점을 명시적으로 옮기며, 여러 단계로 나뉜 비동기 파이프라인을 구성하는 설계 방식을 말합니다. 단일 코루틴 하나의 호출 비용이 아니라, **여러 코루틴이 서로를 호출·재개하며 어느 스레드에서 실행되는지를 통제하는 문제**가 이 장의 주제입니다. 코루틴은 그 자체로는 병렬성을 만들지 않으며, 스케줄러·스레드 풀과 어떻게 연결되는지가 실제 지연시간과 처리량을 결정합니다.
@@ -64,7 +60,7 @@ tags:
 
 C++20 표준화 과정에서 코루틴 TS의 초기 설계는 한 코루틴이 다른 코루틴을 호출하고 완료 시 되돌아가는 구조를 **상호 재귀 호출**로 구현했습니다. 이 방식은 루프 안에서 동기적으로 즉시 완료되는 태스크를 반복해서 `co_await`하면 호출 스택이 반복 횟수에 비례해 계속 쌓이는 문제가 있었고, 실전에서는 스택 오버플로로 이어질 수 있었습니다. Gor Nishanov가 제안한 P0913(symmetric transfer)이 C++20에 채택되면서, `await_suspend`가 `void`나 `bool` 대신 `std::coroutine_handle<>`를 반환하면 컴파일러가 이를 <strong>테일 콜(tail-call)</strong>로 처리해 추가 스택 프레임 없이 다음 코루틴으로 점프하도록 정의됩니다. Lewis Baker는 이 메커니즘을 두고 "allows you to suspend one coroutine and resume another coroutine without consuming any additional stack-space"라고 설명합니다 — [Lewis Baker, "Understanding symmetric transfer", 2020](https://lewissbaker.github.io/2020/05/11/understanding_symmetric_transfer). 이 장의 `Task<T>` 구현은 이 성질에 의존합니다.
 
-표준 라이브러리는 C++20–C++23에서 `co_await`/`co_yield`/`co_return`과 promise_type·awaitable 인터페이스를 언어 차원에 두었을 뿐([cppreference: Coroutines](https://en.cppreference.com/cpp/language/coroutines)), 스케줄러와 결합해 스레드 풀에서 재개되는 범용 `Task<T>`나 sender/receiver 모델은 표준화하지 않고 라이브러리 영역으로 남겨 두었습니다. Lewis Baker 본인이 만든 **cppcoro**는 실험적 라이브러리로 오래 활발히 유지보수되지 않았고, 그는 이후 작업을 **libunifex**([facebookexperimental/libunifex](https://github.com/facebookexperimental/libunifex))와 **folly::coro**로 옮겼다고 밝혔습니다(cppcoro GitHub 이슈 트래커의 저자 코멘트 기준). libunifex가 도입한 sender/receiver 개념은 C++26에 `std::execution`(P2300)으로 표준화되었으며, 이 장에서 직접 구현하는 `Task`/스케줄러 패턴은 그 표준화된 일반 모델의 축소판이라고 볼 수 있습니다. 두 세계의 관계와 P2300 자체의 세부는 [16–17장](/post/concurrency-optimization/cpp-executors-fundamentals/)에서 다룹니다.
+표준 라이브러리는 C++20–C++23에서 `co_await`/`co_yield`/`co_return`과 promise_type·awaitable 인터페이스를 언어 차원에 두었을 뿐([cppreference: Coroutines](https://en.cppreference.com/cpp/language/coroutines)), 스케줄러와 결합해 스레드 풀에서 재개되는 범용 `Task<T>`나 sender/receiver 모델은 표준화하지 않고 라이브러리 영역으로 남겨 두었습니다. Lewis Baker가 만든 **cppcoro**는 코루틴 라이브러리의 대표적인 실험 사례였고, **libunifex**([facebookexperimental/libunifex](https://github.com/facebookexperimental/libunifex))와 **folly::coro** 같은 후속 구현이 이어졌습니다. libunifex가 도입한 sender/receiver 개념은 C++26에 `std::execution`(P2300)으로 표준화되었으며, 이 장에서 직접 구현하는 `Task`/스케줄러 패턴은 그 표준화된 일반 모델의 축소판이라고 볼 수 있습니다. 두 세계의 관계와 P2300 자체의 세부는 [16–17장](/post/concurrency-optimization/cpp-executors-fundamentals/)에서 다룹니다.
 
 ## 태스크 타입: symmetric transfer로 체이닝하기
 
@@ -120,7 +116,7 @@ class Task {
 };
 ```
 
-이 구조에서 주의할 점은 두 가지입니다. `continuation`이 설정되기 전에 태스크가 먼저 완료되면(즉 아무도 `co_await`하지 않은 채로 즉시 끝나면) `noop_coroutine()`으로 안전하게 빠지도록 처리해야 하고, `Task`는 이동 전용으로 두어 handle 소유권이 한 곳에만 있도록 강제해야 합니다. GCC로 컴파일할 때는 `-std=c++20`만으로는 부족하고 `g++ -fcoroutines -std=c++20 task.cpp`처럼 `-fcoroutines`를 함께 지정해야 코루틴 지원이 활성화됩니다(GCC 14/15 기준).
+이 구조에서 주의할 점은 두 가지입니다. `continuation`이 설정되지 않은 채 코루틴이 끝나는 경우(예: 누군가 `co_await` 없이 직접 `resume()`한 경우)에는 `final_suspend`에서 `noop_coroutine()`으로 안전하게 빠지도록 처리해야 하고, `Task`는 이동 전용으로 두어 handle 소유권이 한 곳에만 있도록 강제해야 합니다. GCC 10에서는 코루틴 지원에 `-fcoroutines` 플래그가 필요했고, GCC 11부터는 `-std=c++20`만으로 활성화됩니다([GCC C++ 표준 지원 현황](https://gcc.gnu.org/projects/cxx-status.html)).
 
 ## 태스크 스케줄링: 코루틴을 실행 컨텍스트로 옮기기
 
@@ -162,6 +158,8 @@ flowchart LR
 
 큐가 가득 찼을 때 생산자가 suspend되고, 소비자가 항목을 꺼내면 그 소비자 스레드가(또는 알림을 받은 별도 워커가) 생산자를 재개시키는 흐름이 이 다이어그램의 핵심입니다. 이 재개가 **어느 스레드에서 일어나는지**가 바로 앞 절의 스케줄링 문제이므로, 파이프라인 설계는 태스크 타입과 스케줄러 어댑터 위에 쌓이는 조합 문제로 볼 수 있습니다.
 
+역압이 실제로 구현되는 방식은 `ScheduleOn`과 같은 awaitable 패턴입니다. 큐의 `push`가 돌려주는 awaitable은 `await_ready`에서 빈 슬롯이 있으면 `true`를 반환해 코루틴을 멈추지 않고 곧바로 넣습니다. 슬롯이 없으면 `false`를 반환하고, `await_suspend`가 받은 `coroutine_handle`을 큐 안의 대기 생산자 목록에 등록한 채 반환해 코루틴을 중단시킵니다. 소비자 쪽 `pop`은 항목을 꺼낸 뒤 대기 생산자가 있으면 그 핸들을 꺼내 `resume()`하거나 `schedule_on`처럼 풀에 넘겨 재개합니다. 대기 목록과 슬롯 상태를 확인하는 두 단계 사이에 경쟁이 생기지 않도록 이 등록·확인은 큐 내부 동기화(뮤텍스 또는 08장의 원자적 인덱스) 아래에서 이루어져야 합니다.
+
 ## 흔한 오개념 세 가지
 
 <strong>"코루틴을 쓰면 자동으로 병렬 처리된다"</strong>는 가장 흔한 오해입니다. 코루틴은 하나의 실행 흐름을 여러 조각으로 나눠 중단·재개할 수 있게 할 뿐이고, 그 조각들이 서로 다른 스레드에서 동시에 실행되려면 앞서 본 `schedule_on` 같은 명시적 스케줄러 연동이 있어야 합니다. 스케줄러 없이 체이닝만 하면 전체가 한 스레드에서 순차적으로 실행되는 것과 다르지 않습니다.
@@ -200,11 +198,11 @@ Task<int> process_good(ThreadPool& pool, std::vector<int> data) {  // 값으로 
 }
 ```
 
-**검증**: 이런 use-after-free는 AddressSanitizer로 잡을 수 있습니다. `g++ -fcoroutines -std=c++20 -fsanitize=address -g pipeline.cpp -o pipeline && ./pipeline`으로 실행하면 `process_bad` 경로에서 heap-use-after-free 리포트가 스택 트레이스와 함께 나옵니다. 파이프라인의 큐 자체가 여러 스레드에서 동시에 push/pop되는 경로라면, 그 동시성 정확성(예: 생산자의 쓰기가 소비자의 읽기보다 happens-before 관계에 있는지)은 별도로 `-fsanitize=thread`로 검증해야 하며, 이는 큐 구현 자체의 메모리 순서 문제이므로 [08장](/post/concurrency-optimization/spsc-mpmc-ring-buffer-queues/)과 [04장](/post/concurrency-optimization/cpp-memory-model-acquire-release-seqcst/)의 검증 절차를 그대로 적용합니다.
+**검증**: 이런 use-after-free는 AddressSanitizer로 잡을 수 있습니다. 위 `ThreadPool`을 워커 스레드가 있는 실제 구현으로 채우고 `caller_bad`가 반환된 `Task`를 `co_await`하는 완성된 프로그램(`pipeline.cpp`)을 `g++ -std=c++20 -fsanitize=address -g pipeline.cpp -o pipeline && ./pipeline`으로 돌리면 `process_bad` 경로에서 heap-use-after-free 보고를 기대할 수 있습니다. 이 글은 그 완성 프로그램을 실행하지 않았으므로 보고 내용은 예상이며, 직접 확인이 필요합니다. 파이프라인의 큐 자체가 여러 스레드에서 동시에 push/pop되는 경로라면, 그 동시성 정확성(예: 생산자의 쓰기가 소비자의 읽기보다 happens-before 관계에 있는지)은 별도로 `-fsanitize=thread`로 검증해야 하며, 이는 큐 구현 자체의 메모리 순서 문제이므로 [08장](/post/concurrency-optimization/spsc-mpmc-ring-buffer-queues/)과 [04장](/post/concurrency-optimization/cpp-memory-model-acquire-release-seqcst/)의 검증 절차를 그대로 적용합니다.
 
-## 오버헤드 측정: 콜백 제출 vs 코루틴 스케줄링
+## 오버헤드 측정: 콜백 생성 vs 코루틴 어댑터 생성
 
-코루틴 기반 스케줄링이 콜백을 스레드 풀 큐에 직접 넣는 방식보다 얼마나 더 비싼지(또는 비슷한지)는 플랫폼·컴파일러·최적화 수준에 따라 달라지므로 단정하지 않고 직접 격리 측정해야 합니다. 아래는 "빈 콜백을 풀에 제출"과 "빈 코루틴을 `schedule_on`으로 제출"을 같은 풀 구현 위에서 비교하는 Google Benchmark 골격이며, 실제 수치는 반드시 대상 환경에서 재현해야 합니다.
+코루틴 기반 스케줄링이 콜백을 스레드 풀 큐에 직접 넣는 방식보다 얼마나 더 비싼지(또는 비슷한지)는 플랫폼·컴파일러·최적화 수준에 따라 달라지므로 단정하지 않고 직접 격리 측정해야 합니다. 아래는 `std::function` 콜백 객체를 만드는 비용과 `schedule_on` 어댑터를 만드는 비용만 따로 떼어 비교하는 Google Benchmark 골격이며(실제 제출은 하지 않습니다), 실제 수치는 반드시 대상 환경에서 측정해야 합니다.
 
 ```cpp
 #include <benchmark/benchmark.h>
@@ -216,7 +214,7 @@ Task<int> process_good(ThreadPool& pool, std::vector<int> data) {  // 값으로 
 static void BM_SubmitCallback(benchmark::State& state) {
   ThreadPool pool;
   for (auto _ : state) {
-    // 콜백 큐 제출 경로: std::function 할당 비용 포함 여부를 함께 측정
+    // std::function 생성 비용만 측정(제출은 하지 않음)
     std::function<void()> job = [] {};
     benchmark::DoNotOptimize(job);
   }
@@ -235,7 +233,7 @@ BENCHMARK(BM_SubmitCoroutine);
 BENCHMARK_MAIN();
 ```
 
-`g++ -fcoroutines -std=c++20 -O2 bench.cpp -lbenchmark -lpthread`(x86-64, GCC 14, `-O2` 기준)로 빌드해 실행합니다. 이 골격은 어댑터 생성 비용만 격리한 것이므로, 실제 제출→재개까지의 종단 지연을 재려면 풀 구현을 채워 넣고 p50/p99까지 함께 측정해야 의미가 있습니다. `std::function`을 콜백에 쓰면 타입 소거 비용이 코루틴 경로와의 비교를 왜곡할 수 있으므로, 콜백 경로도 함수 포인터나 소형 콜러블로 맞춰 비교하는 것이 공정합니다.
+`g++ -std=c++20 -O2 bench.cpp -lbenchmark -lpthread`(x86-64, GCC 14, `-O2` 기준)로 빌드해 실행합니다. 이 골격은 어댑터 생성 비용만 격리한 것이므로, 실제 제출→재개까지의 종단 지연을 재려면 풀 구현을 채워 넣고 p50/p99까지 함께 측정해야 의미가 있습니다. `std::function`을 콜백에 쓰면 타입 소거 비용이 코루틴 경로와의 비교를 왜곡할 수 있으므로, 콜백 경로도 함수 포인터나 소형 콜러블로 맞춰 비교하는 것이 공정합니다.
 
 ## 판단 기준
 
@@ -249,7 +247,7 @@ BENCHMARK_MAIN();
 
 ## 비판적 시각: 한계와 트레이드오프
 
-코루틴 기반 파이프라인은 콜백 중첩을 줄여 코드를 선형적으로 읽히게 하지만, 그 대가로 **디버깅 난이도**가 올라갑니다. 스택 트레이스가 코루틴 프레임 경계에서 끊기거나 재구성되어 보이므로, 어느 스레드에서 어떤 순서로 재개되었는지를 로그나 트레이서 없이 파악하기 어렵습니다. 생태계도 아직 정착 단계입니다 — cppcoro는 사실상 유지보수가 정체되어 있고, libunifex·folly::coro·stdexec 같은 후속 구현들은 프로덕션에서 검증되고 있지만 API가 라이브러리마다 다르며, 이 장에서 만든 `Task<T>`/`ScheduleOn` 같은 손수 구현은 프로덕션에 그대로 쓰기보다 개념을 보여주는 축소판으로 보는 것이 안전합니다. 마지막으로, symmetric transfer가 스택 오버플로 문제를 해결했다고 해서 코루틴이 "공짜"가 된 것은 아닙니다 — 프레임 힙 할당과 suspend/resume 비용은 여전히 존재하며([Tr.02 10장](/post/cpp-optimization/coroutine-performance/) 참고), 이 장에서 다룬 스케줄링·파이프라인 패턴은 그 비용을 감수할 가치가 있는 워크로드(비동기 IO, 여러 단계 파이프라인)에 한해 유효한 선택입니다.
+코루틴 기반 파이프라인은 콜백 중첩을 줄여 코드를 선형적으로 읽히게 하지만, 그 대가로 **디버깅 난이도**가 올라갑니다. 스택 트레이스가 코루틴 프레임 경계에서 끊기거나 재구성되어 보이므로, 어느 스레드에서 어떤 순서로 재개되었는지를 로그나 트레이서 없이 파악하기 어렵습니다. 생태계도 아직 정착 단계입니다 — libunifex·folly::coro·stdexec 같은 구현들은 API가 라이브러리마다 다르며, 이 장에서 만든 `Task<T>`/`ScheduleOn` 같은 손수 구현은 프로덕션에 그대로 쓰기보다 개념을 보여주는 축소판으로 보는 것이 안전합니다. 마지막으로, symmetric transfer가 스택 오버플로 문제를 해결했다고 해서 코루틴이 "공짜"가 된 것은 아닙니다 — 프레임 힙 할당과 suspend/resume 비용은 여전히 존재하며([Tr.02 10장](/post/cpp-optimization/coroutine-performance/) 참고), 이 장에서 다룬 스케줄링·파이프라인 패턴은 그 비용을 감수할 가치가 있는 워크로드(비동기 IO, 여러 단계 파이프라인)에 한해 유효한 선택입니다.
 
 ## 마무리
 

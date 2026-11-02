@@ -116,7 +116,7 @@ providers:
       foldersFromFilesStructure: true
 ```
 
-`allowUiUpdates: false`가 이 설정의 핵심입니다. 이 값을 켜두면 누군가 UI에서 패널을 임시로 고쳐도 다음 provisioning 주기에 Git에 있는 버전으로 되돌아가므로, Git이 "지금 이 대시보드가 실제로 어떤 모습이어야 하는가"에 대한 단일 진실 공급원(source of truth)으로 유지됩니다. 다만 이렇게 하면 온콜 상황에서 급하게 패널 하나를 임시로 바꿔보는 것도 막히므로, 팀에 따라서는 조사용 임시 대시보드는 UI 편집을 허용하고 표준 회귀 대시보드만 provisioning으로 잠그는 절충을 택하기도 합니다.
+`allowUiUpdates: false`가 이 설정의 핵심입니다. 이 값은 Grafana 설정 주석대로 provisioning된 대시보드를 UI에서 업데이트하는 것을 허용할지를 정하며, false로 두면 UI에서 고치는 길이 막히므로 Git이 "지금 이 대시보드가 실제로 어떤 모습이어야 하는가"에 대한 단일 진실 공급원(source of truth)으로 유지됩니다. 다만 이렇게 하면 온콜 상황에서 급하게 패널 하나를 임시로 바꿔보는 것도 막히므로, 팀에 따라서는 조사용 임시 대시보드는 UI 편집을 허용하고 표준 회귀 대시보드만 provisioning으로 잠그는 절충을 택하기도 합니다.
 
 ## 레이아웃 원칙: RED·USE와 드릴다운 계층
 

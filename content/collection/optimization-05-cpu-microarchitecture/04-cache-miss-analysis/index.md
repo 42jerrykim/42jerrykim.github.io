@@ -1,7 +1,7 @@
 ---
 collection_order: 4
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-23
 draft: false
 image: wordcloud.png
 title: "[CPU 05] 캐시 미스 분석과 대응"
@@ -27,13 +27,12 @@ tags:
   - Debugging(디버깅)
   - Deep-Dive
   - Advanced
-  - Comparison(비교)
-  - Edge-Cases(엣지케이스)
+  - Cache-Line
   - Pitfalls(함정)
-  - Documentation(문서화)
-  - Technology(기술)
-  - Reference(참고)
-  - Guide(가이드)
+  - Working-Set
+  - Prefetch
+  - False-Sharing
+  - Capacity-Miss
   - CLDEMOTE
   - PREFETCHRST2
   - MOVRS
@@ -41,7 +40,6 @@ tags:
   - 3C-Model
   - Software-Prefetch
   - Diamond-Rapids
-  - Panther-Lake
   - Loop-Tiling
   - Cache-Coherence
 ---
@@ -63,7 +61,7 @@ tags:
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
 | **중급자** | "미스 분류의 역사" ~ "네 가지 미스 유형" | compulsory/capacity/conflict/coherence를 구분해 말할 수 있다 |
-| **심화** | "미스 유형별 대응 전략" ~ "캐시 힌트 명령" | 원인별 대응 코드를 작성하고, CLDEMOTE와 MOVRS/PREFETCHRST2의 용도 차이를 설명할 수 있다 |
+| **심화** | "미스 유형별 대응 전략" ~ "캐시 힌트 명령" | 용량 미스에 대한 타일링 코드를 작성하고, CLDEMOTE와 MOVRS/PREFETCHRST2의 용도 차이를 설명할 수 있다 |
 | **전문가** | "판단 기준" ~ "비판적 시각" | 언제 힌트 명령을 도입하고 언제 데이터 레이아웃 재설계로 충분한지 판단할 수 있다 |
 
 ---
@@ -72,7 +70,7 @@ tags:
 
 캐시 미스를 원인별로 나누는 **3C 모델**(compulsory, capacity, conflict)은 Mark D. Hill이 1987년 UC Berkeley 박사논문에서 정리하고, Mark D. Hill과 Alan Jay Smith가 1989년 발표한 논문 "Evaluating Associativity in CPU Caches"(*IEEE Transactions on Computers*)에서 널리 알려진 형태로 발표한 분류법입니다. 이 논문은 캐시 시뮬레이션에서 관찰되는 미스를 세 원인으로 나눠, 각 원인이 캐시 크기·연관도·블록 크기 중 어떤 파라미터에 반응하는지 분리해서 볼 수 있게 했습니다. 이후 공유 메모리 멀티프로세서가 보편화되면서 다른 코어의 쓰기로 인해 라인이 무효화되는 미스를 <strong>네 번째 C(coherence miss)</strong>로 추가하는 확장이 자리 잡았습니다.
 
-소프트웨어 프리페치 힌트 명령의 역사는 이보다 늦게 시작됩니다. `PREFETCHNTA`/`PREFETCHT0`/`PREFETCHT1`/`PREFETCHT2`는 1999년 SSE와 함께 도입되어, 컴파일러나 개발자가 "이 주소를 곧 쓸 것"이라는 힌트를 미리 줄 수 있게 했습니다. `CLDEMOTE`는 방향이 반대인 힌트로, Intel Tremont 마이크로아키텍처(2019년, Atom 계열)부터 문서화되었고 이후 Alder Lake·Sapphire Rapids까지 확장되었습니다([TechPowerUp, 2019](https://www.techpowerup.com/268096/intel-sapphire-rapids-alder-lake-and-tremont-feature-cldemote-instruction)). 가장 최근에는 "읽기-공유(read-shared)" 힌트를 실어 나르는 `MOVRS`와 `PREFETCHRST2`가 Intel Architecture Instruction Set Extensions 문서에 추가되어 Panther Lake와 Diamond Rapids 세대를 향하고 있습니다. 다만 Diamond Rapids 자체는 2027년으로 출시가 미뤄졌다는 보도가 여러 매체에서 나온 상태라([ServeTheHome](https://www.servethehome.com/intel-xeon-7-diamond-rapids-now-slated-for-2027/) 등), 이 명령들은 아직 실제 하드웨어 벤치마크보다 사양 문서와 컴파일러 지원이 앞서 있는 단계로 취급하는 것이 안전합니다.
+소프트웨어 프리페치 힌트 명령의 역사는 이보다 늦게 시작됩니다. `PREFETCHNTA`/`PREFETCHT0`/`PREFETCHT1`/`PREFETCHT2`는 1999년 SSE와 함께 도입되어, 컴파일러나 개발자가 "이 주소를 곧 쓸 것"이라는 힌트를 미리 줄 수 있게 했습니다. `CLDEMOTE`는 방향이 반대인 힌트로, Intel Tremont 마이크로아키텍처(2019년, Atom 계열)부터 문서화되었고 이후 Alder Lake·Sapphire Rapids까지 확장되었습니다([TechPowerUp, 2020](https://www.techpowerup.com/268096/intel-sapphire-rapids-alder-lake-and-tremont-feature-cldemote-instruction)). 가장 최근에는 "읽기-공유(read-shared)" 힌트를 실어 나르는 `MOVRS`와 `PREFETCHRST2`가 [Intel Architecture Instruction Set Extensions 프로그래밍 레퍼런스](https://cdrdv2-public.intel.com/922690/319433-062-architecture-instruction-set-extensions-programming-reference.pdf)에 문서화되었고, [Linux KVM 패치 설명](https://lkml.iu.edu/hypermail/linux/kernel/2511.2/08078.html)은 MOVRS를 Diamond Rapids 플랫폼에서 도입되는 명령으로 소개합니다. 다만 Diamond Rapids 자체는 2027년으로 출시가 미뤄졌다는 보도가 여러 매체에서 나온 상태라([ServeTheHome](https://www.servethehome.com/intel-xeon-7-diamond-rapids-now-slated-for-2027/) 등), 이 명령들은 아직 실제 하드웨어 벤치마크보다 사양 문서와 컴파일러 지원이 앞서 있는 단계로 취급하는 것이 안전합니다.
 
 ## 네 가지 미스 유형
 
@@ -109,7 +107,7 @@ $ perf stat -e cache-references,cache-misses,L1-dcache-load-misses,LLC-load-miss
        1.842301340 seconds time elapsed
 ```
 
-이 출력에서 L1 미스는 많지만 LLC 미스 비중이 상대적으로 낮다면, 데이터가 L2/L3에는 남아 있다는 뜻이므로 capacity miss보다는 L1 크기에 비해 작업 집합이 큰 경우(블로킹으로 L1에 맞추면 개선)로 의심할 수 있습니다. 반대로 LLC 미스 비중까지 높다면 작업 집합이 LLC보다도 크거나, 멀티코어 공유 패턴으로 라인이 계속 밀려나는 상황을 의심해야 하며, 이때는 [09장](/post/cpu-optimization/cpu-hardware-performance-counters/)에서 다루는 세분화된 이벤트로 더 파고들어야 합니다.
+이 출력에서 L1 미스는 많지만 LLC 미스 비중이 상대적으로 낮다면, 데이터가 L2/L3에는 남아 있다는 뜻이므로 작업 집합이 L1보다는 크지만 L2/L3 안에는 들어가는 L1 capacity miss를 의심할 수 있습니다(블로킹으로 작업 집합을 L1에 맞추면 개선). 반대로 LLC 미스 비중까지 높다면 작업 집합이 LLC보다도 크거나, 멀티코어 공유 패턴으로 라인이 계속 밀려나는 상황을 의심해야 하며, 이때는 [09장](/post/cpu-optimization/cpu-hardware-performance-counters/)에서 다루는 세분화된 이벤트로 더 파고들어야 합니다.
 
 ## 미스 유형별 대응: 루프 타일링으로 capacity miss 줄이기
 
@@ -186,7 +184,7 @@ BENCHMARK_MAIN();
 
 **`CLDEMOTE`**는 "생산자(producer)" 쪽 힌트입니다. 한 코어가 데이터를 다 쓴 뒤 다른 코어가 곧 읽을 것을 안다면, 그 라인을 L1/L2 같은 코어 전용 캐시에 남겨 두는 대신 공유 캐시(주로 LLC)로 미리 밀어내라고 하드웨어에 알려줍니다. Felix Cloutier의 x86 참조 문서는 이를 "캐시 라인을 코어에 가까운 캐시에서 더 먼 레벨로 이동시키라는 힌트"라고 설명합니다([Felix Cloutier, x86 Reference: CLDEMOTE](https://www.felixcloutier.com/x86/cldemote)). 락프리 큐나 SPSC 링 버퍼처럼 한 코어가 쓰고 다른 코어가 읽는 구조에서, 쓰기가 끝난 직후 `CLDEMOTE`를 걸면 소비자 코어가 그 라인을 요청할 때 자신의 L1/L2까지 거슬러 오는 스누프(snoop) 왕복 대신 이미 공유 레벨에 있는 사본을 더 빨리 받을 수 있습니다.
 
-**`MOVRS`와 `PREFETCHRST2`**는 반대로 "소비자(reader)" 쪽 힌트입니다. 이 데이터가 자신뿐 아니라 다른 프로세서에서도 곧 읽힐 것("read-shared")이라는 정보를 실어, 하드웨어가 그 라인을 불필요하게 배타적(Exclusive/Modified) 상태로 가져오지 않고 여러 코어가 동시에 읽기 좋은 상태로 유지하도록 유도합니다. `MOVRS`는 일반 로드와 동일하게 동작하되 이 힌트만 추가하고, `PREFETCHRST2`는 같은 힌트를 실은 소프트웨어 프리페치입니다. 이 두 명령은 Diamond Rapids 서버 마이크로아키텍처와 Panther Lake 하이브리드 아키텍처를 대상으로 문서화되었으며, RCU 스타일로 갱신되는 공유 조회 테이블처럼 "여러 코어가 반복해서 읽지만 쓰기는 드문" 데이터 구조를 겨냥합니다.
+**`MOVRS`와 `PREFETCHRST2`**는 반대로 "소비자(reader)" 쪽 힌트입니다. 이 데이터가 자신뿐 아니라 다른 프로세서에서도 곧 읽힐 것("read-shared")이라는 정보를 실어, 하드웨어가 그 라인을 불필요하게 배타적(Exclusive/Modified) 상태로 가져오지 않고 여러 코어가 동시에 읽기 좋은 상태로 유지하도록 유도합니다. `MOVRS`는 일반 로드와 동일하게 동작하되 이 힌트만 추가하고, `PREFETCHRST2`는 같은 힌트를 실은 소프트웨어 프리페치입니다. 이 두 명령은 Diamond Rapids 서버 마이크로아키텍처에서 도입되는 것으로 문서화되었으며, RCU 스타일로 갱신되는 공유 조회 테이블처럼 "여러 코어가 반복해서 읽지만 쓰기는 드문" 데이터 구조를 겨냥합니다.
 
 ```cpp
 #include <immintrin.h>
@@ -214,6 +212,7 @@ void producer_publish(RingSlot& slot, uint64_t value) {
 
 ```cpp
 #include <cstdint>
+#include <immintrin.h>
 
 // 소비자 코어: 여러 스레드가 반복해서 읽는 설정 테이블을
 // "read-shared" 힌트로 프리페치한다. MOVRS 계열 내장 함수는
@@ -232,7 +231,7 @@ uint64_t read_shared_flags(const SharedConfig& cfg) {
 }
 ```
 
-두 예시 모두 매크로 가드 뒤에 일반 로드/스토어로 폴백하는데, 이는 이 명령들이 지원하지 않는 CPU에서 **NOP으로 처리되도록 설계**되어 있어 폴백이 없어도 크래시는 나지 않지만, 컴파일 자체가 대상 플래그 없이는 실패하기 때문입니다. 실제 배포 코드에서는 빌드 타임에 `-mcldemote`/`-mmovrs`를 무조건 켜기보다, 대상 플릿의 CPU 세대를 확인한 뒤 함수 멀티버저닝(`__attribute__((target_clones(...)))`)이나 별도 바이너리로 나누는 편이 안전합니다.
+두 예시 모두 매크로 가드 뒤에 일반 로드/스토어로 폴백하는데, 대상 플래그 없이는 내장 함수 자체가 컴파일되지 않기 때문입니다. 또한 `MOVRS`는 실제 로드를 수행하는 명령이므로 지원하지 않는 CPU에서 안전하게 무시된다고 가정해서는 안 되며, 실행 전에 CPUID로 지원 여부를 확인해야 합니다. 실제 배포 코드에서는 빌드 타임에 `-mcldemote`/`-mmovrs`를 무조건 켜기보다, 대상 플릿의 CPU 세대를 확인한 뒤 함수 멀티버저닝(`__attribute__((target_clones(...)))`)이나 별도 바이너리로 나누는 편이 안전합니다.
 
 ## 흔한 오개념
 
@@ -263,7 +262,7 @@ uint64_t read_shared_flags(const SharedConfig& cfg) {
 
 ## 비판적 시각: 한계와 트레이드오프
 
-캐시 힌트 명령은 실행에 실패해도 오류를 내지 않는다는 점이 양날의 검입니다. 지원하지 않는 CPU에서는 조용히 NOP으로 처리되므로, "넣었는데 효과가 없다"와 "넣었는데 애초에 실행조차 안 됐다"를 구분하려면 반드시 대상 하드웨어에서 CPUID로 지원 여부를 확인하고 벤치마크로 검증해야 합니다. 이런 특성 때문에 도입 후 회귀 테스트에서 "성능이 그대로"라는 결과만으로는 힌트가 무해한지 무의미한지 판단할 수 없습니다.
+`CLDEMOTE` 같은 순수 힌트 명령은 지원하지 않는 CPU에서 조용히 무시될 수 있다는 점이 양날의 검입니다(MOVRS는 로드 명령이므로 이 가정이 적용되지 않습니다). 그래서 "넣었는데 효과가 없다"와 "넣었는데 애초에 실행조차 안 됐다"를 구분하려면 반드시 대상 하드웨어에서 CPUID로 지원 여부를 확인하고 벤치마크로 검증해야 합니다. 이런 특성 때문에 도입 후 회귀 테스트에서 "성능이 그대로"라는 결과만으로는 힌트가 무해한지 무의미한지 판단할 수 없습니다.
 
 3C(+coherence) 모델 자체도 완벽한 도구는 아닙니다. 이 모델은 원래 단일 레벨의 완전 연관/직접 매핑 캐시를 가정한 시뮬레이션 분석에서 나온 것이라, non-inclusive 다단계 캐시와 P-코어/E-코어가 다른 캐시 정책을 쓰는 하이브리드 아키텍처([08장: 현대 CPU 아키텍처 비교](/post/cpu-optimization/modern-cpu-architecture-comparison/)에서 다룸)에서는 미스 하나를 네 유형 중 하나로 깔끔하게 분류하기 어려운 경우가 늘어납니다. 실무에서는 정확한 유형 분류보다 "이 접근 패턴을 바꾸면 미스가 준다"는 실험적 확인이 더 실용적일 때가 많습니다.
 
@@ -275,7 +274,6 @@ uint64_t read_shared_flags(const SharedConfig& cfg) {
 - [ ] `perf stat`의 캐시 이벤트만으로는 미스 유형이 직접 드러나지 않는다는 점을 이해하고, 레벨별 미스 비중으로 원인을 추론할 수 있다.
 - [ ] 루프 타일링으로 capacity miss를 줄이는 코드를 작성하고 벤치마크로 검증할 수 있다.
 - [ ] CLDEMOTE(생산자 측 힌트)와 MOVRS/PREFETCHRST2(소비자 측 read-shared 힌트)의 방향성 차이를 설명할 수 있다.
-- [ ] 힌트 명령 도입 전 CPU 지원 여부·폴백 경로·p99 검증을 체크리스트로 확인할 수 있다.
 
 **이전 장**: [캐시 계층 구조](/post/cpu-optimization/cache-hierarchy-l1-l2-l3/) (챕터 03)
 

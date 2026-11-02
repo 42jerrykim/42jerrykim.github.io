@@ -1,7 +1,7 @@
 ---
 collection_order: 11
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] 극한 최적화와 유지보수성 균형"
@@ -13,7 +13,6 @@ tags:
   - C++
   - Assembly
   - CPU(Central Processing Unit)
-  - Cache
   - Compiler(컴파일러)
   - Benchmark
   - Latency
@@ -21,16 +20,13 @@ tags:
   - Testing(테스트)
   - Best-Practices
   - Code-Quality(코드품질)
-  - Debugging(디버깅)
   - Documentation(문서화)
   - Production
   - Reliability
   - System-Design
   - Advanced
   - Deep-Dive
-  - Case-Study
   - Pitfalls(함정)
-  - Edge-Cases(엣지케이스)
   - SIMD
   - Hand-Written-Assembly
   - Code-Review
@@ -40,7 +36,6 @@ tags:
   - Abstraction-Layer
   - Maintainability
   - Readability
-  - Feature-Flag
 ---
 
 **극한 최적화와 유지보수성 균형**이란 SIMD·수기 어셈블리·branchless·prefetch 같은 극한 기법을 코드베이스에 들일지 말지를, 측정된 성능 이득과 그 기법이 앞으로 유발할 복잡도·리뷰 비용·팀 역량 부담을 함께 저울질해 결정하는 판단의 문제를 말합니다. 이 트랙의 앞선 챕터들은 "어떻게 빠르게 만드는가"를 다뤘지만, 실제 프로덕션에서 더 자주 실패하는 지점은 기법 자체가 아니라 그 기법을 6개월 뒤 다른 엔지니어가 이해하고 고칠 수 있느냐입니다. 성능이 20% 좋아진 코드가 이해 불가능해져서 아무도 건드리지 못하는 상태가 되면, 그 최적화는 장기적으로 손실입니다. 이 장은 "언제 극한 기법을 남기고, 언제 되돌릴지"를 구조화된 기준으로 정리합니다.
@@ -65,7 +60,7 @@ tags:
 
 ## 왜 유지보수성이 문제가 되는가 (배경)
 
-조기 최적화를 경계해야 한다는 인식은 최적화 기법 자체만큼이나 오래되었습니다. 1974년 Donald Knuth가 구조적 프로그래밍을 다룬 논문에서 남긴 견해로 널리 알려진 "섣부른 최적화가 문제의 근원"이라는 취지의 주장은, 근거(측정) 없이 복잡도를 먼저 들이는 습관을 경고한 것으로 자주 인용됩니다. 이 인식은 이후 스타일 가이드에도 그대로 반영되었는데, C++ Core Guidelines는 성능(Per) 챕터의 첫 항목을 "Don't optimize without reason"으로 시작합니다.
+조기 최적화를 경계해야 한다는 인식은 최적화 기법 자체만큼이나 오래되었습니다. 1974년 Donald Knuth가 논문 "Structured Programming with go to Statements"에서 남긴 견해로 널리 알려진 "섣부른 최적화가 문제의 근원"이라는 취지의 주장은, 근거(측정) 없이 복잡도를 먼저 들이는 습관을 경고한 것으로 자주 인용됩니다. 이 인식은 이후 스타일 가이드에도 그대로 반영되었는데, C++ Core Guidelines는 성능(Per) 챕터의 첫 항목을 "Don't optimize without reason"으로 시작합니다.
 
 > "Time and space that you spend well to achieve a goal (e.g., speed of development, resource safety, or simplification of testing) is not wasted." — [C++ Core Guidelines, P.9: Don't waste time or space](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#rp-waste)
 
@@ -88,8 +83,10 @@ tags:
 극한 최적화 코드를 도입하기로 했다면, 목표는 "일반 코드를 오염시키지 않는 경계"를 만드는 것입니다. 가장 흔한 패턴은 **추상화 경계 뒤에 최적화 경로를 숨기고, 항상 컴파일되는 스칼라 폴백을 나란히 유지하는 것**입니다. 호출부는 평범한 함수 인터페이스만 보고, 내부에서 컴파일 타임 또는 런타임 디스패치로 최적화 경로와 폴백 경로 중 하나를 고릅니다.
 
 ```cpp
-#include <immintrin.h>
 #include <cstddef>
+#if defined(__AVX2__)
+#include <immintrin.h>
+#endif
 
 // 스칼라 참조 구현: 항상 컴파일되고, 모든 플랫폼에서 "정답" 역할을 한다.
 // 이 함수만 보고도 add_arrays의 의미를 알 수 있어야 한다.
@@ -98,6 +95,8 @@ inline void add_arrays_scalar(const float* a, const float* b, float* out, std::s
 }
 
 // AVX2 최적화 경로: 별도 함수로 물리적으로 분리해 일반 코드와 섞이지 않게 한다.
+// __AVX2__가 정의된 빌드(-mavx2)에서만 존재하므로, 다른 타깃에서도 파일이 컴파일된다.
+#if defined(__AVX2__)
 // 배경(주석으로 남길 최소 정보): 주문 매칭 루프에서 초당 수천만 회 호출되는
 // 핫패스였고, 프로파일링(Tr.01 방식)으로 병목이 확인된 뒤 도입했다.
 inline void add_arrays_avx2(const float* a, const float* b, float* out, std::size_t n) {
@@ -109,6 +108,7 @@ inline void add_arrays_avx2(const float* a, const float* b, float* out, std::siz
   }
   for (; i < n; ++i) out[i] = a[i] + b[i];  // 꼬리 처리는 스칼라로 회귀
 }
+#endif  // __AVX2__
 
 // 호출부가 보는 유일한 진입점: 여기서만 디스패치 조건을 결정한다.
 void add_arrays(const float* a, const float* b, float* out, std::size_t n) {
@@ -120,16 +120,18 @@ void add_arrays(const float* a, const float* b, float* out, std::size_t n) {
 }
 ```
 
-이 구조의 핵심은 `add_arrays_avx2`가 없어져도(컴파일러·타깃이 AVX2를 지원하지 않아도) `add_arrays_scalar`만으로 프로그램이 정상 동작한다는 점입니다. 최적화 경로를 삭제하는 것이 "기능 제거"가 아니라 "성능 회귀"로만 남도록 설계하면, 되돌리기 비용이 코드 한 줄(`#if` 분기 제거) 수준으로 줄어듭니다. 반대로 인트린식 호출이 비즈니스 로직 함수 중간중간에 흩어져 있으면, 되돌리려 할 때 그 로직 전체를 다시 읽어야 합니다.
+이 구조의 핵심은 `add_arrays_avx2`가 없어져도(컴파일러·타깃이 AVX2를 지원하지 않아도, 즉 `-mavx2` 없이 빌드해도) `add_arrays_scalar`만으로 프로그램이 정상 동작한다는 점입니다. 최적화 경로를 삭제하는 것이 "기능 제거"가 아니라 "성능 회귀"로만 남도록 설계하면, 되돌리기 비용이 코드 한 줄(`#if` 분기 제거) 수준으로 줄어듭니다. 반대로 인트린식 호출이 비즈니스 로직 함수 중간중간에 흩어져 있으면, 되돌리려 할 때 그 로직 전체를 다시 읽어야 합니다.
 
-격리된 최적화 경로는 스칼라 참조 구현과의 출력 비교로 정확성을 검증합니다. 아래는 두 경로가 임의의 입력에서 동일한 결과를 내는지 확인하는 최소 테스트입니다.
+격리된 최적화 경로는 스칼라 참조 구현과의 출력 비교로 정확성을 검증합니다. 아래는 두 경로가 임의의 입력에서 동일한 결과를 내는지 확인하는 최소 테스트입니다. 위 블록과 같은 파일 아래쪽에 이어 붙여 `g++ -O2 -mavx2 test_dispatch.cpp`로 빌드하며, `-mavx2` 없이 빌드하면 AVX2 비교 대신 건너뛰었다는 메시지만 출력합니다.
 
 ```cpp
 #include <cassert>
 #include <cmath>
+#include <cstdio>
 #include <random>
 #include <vector>
 
+#if defined(__AVX2__)
 bool avx2_matches_scalar(std::size_t n) {
   std::mt19937 rng(42);
   std::uniform_real_distribution<float> dist(-1000.0f, 1000.0f);
@@ -144,16 +146,22 @@ bool avx2_matches_scalar(std::size_t n) {
   }
   return true;
 }
+#endif  // __AVX2__
 
 int main() {
+#if defined(__AVX2__)
   // n을 8의 배수가 아닌 값으로도 돌려 꼬리 처리 경로를 함께 검증한다.
   assert(avx2_matches_scalar(1000));
   assert(avx2_matches_scalar(1003));
+  std::puts("AVX2 path matches scalar");
+#else
+  std::puts("built without -mavx2: AVX2 comparison skipped");
+#endif
   return 0;
 }
 ```
 
-이 테스트는 회귀 게이트의 일부로 CI에 반드시 포함해야 합니다. 부동소수점 연산은 순서에 따라 결과가 미세하게 달라질 수 있으므로, 완전 일치 대신 허용 오차(위 예시의 `1e-6f`)를 두는 것이 일반적입니다.
+이 테스트는 회귀 게이트의 일부로 CI에 반드시 포함해야 합니다. 이 예제의 원소별 `float` 덧셈은 IEEE 754에서 정확히 반올림되므로 두 경로의 결과가 비트 단위로 같아야 하고, 위 허용 오차(`1e-6f`)는 방어적인 값입니다. 합산(reduction)이나 FMA를 도입하는 최적화에서는 연산 순서와 반올림 지점이 바뀌어 결과가 미세하게 달라질 수 있으므로, 그런 경우에는 완전 일치 대신 허용 오차 비교가 필요합니다.
 
 ## 문서화 전략: 근거를 코드 밖에도 남긴다
 
@@ -177,7 +185,7 @@ ADR은 길 필요가 없습니다. 아래는 이 트랙 맥락에 맞춘 최소 
 
 ## 맥락
 Tr.01 방식 프로파일링에서 add_arrays가 p99 지연의 18%를 차지함을 확인.
-스칼라 대비 AVX2 경로가 벤치마크에서 약 3.2배 빠름(x86-64, GCC 13, -O2 -mavx2).
+스칼라 대비 AVX2 경로가 벤치마크에서 약 3.2배 빠름(문서 구조를 보이기 위한 가상의 예시 수치).
 
 ## 결정
 add_arrays_avx2를 도입하되, add_arrays_scalar 폴백을 항상 유지하고
@@ -194,7 +202,7 @@ AVX2 미지원 타깃에서는 자동으로 스칼라 경로로 회귀.
 
 아무리 잘 격리하고 문서화해도, 그 코드를 실제로 검증·수정할 수 있는 사람이 한 명뿐이라면 위험은 남습니다. 이 위험을 **bus factor**(핵심 인력 한두 명이 빠지면 프로젝트가 멈추는 정도)라고 부릅니다. 극한 최적화 코드는 일반 코드보다 bus factor가 낮아지기 쉬운데, 인트린식·어셈블리 문법 자체가 팀 전체의 공통 언어가 아닌 경우가 많기 때문입니다.
 
-완화책은 크게 세 가지입니다. 첫째, 도입 전 리뷰를 반드시 두 명 이상이 하도록 강제해 최소 두 명이 그 코드를 이해하게 만듭니다. 둘째, 위에서 다룬 문서화(주석 + ADR)를 "작성자가 떠나도 재구성 가능한 수준"으로 요구합니다. 셋째, 정기적으로(예: 분기마다) 극한 최적화 코드 목록을 훑어 "아직 유효한가, 여전히 필요한 사람이 있는가"를 재확인하는 리뷰를 코드 리뷰 프로세스에 넣습니다. 이 트랙의 **전문** 난이도 챕터(03, 07, 10, 14, 15, 17)에서 다루는 기법일수록 이 완화책의 비중이 커집니다.
+완화책은 크게 세 가지입니다. 첫째, 도입 전 리뷰를 반드시 두 명 이상이 하도록 강제해 최소 두 명이 그 코드를 이해하게 만듭니다. 이때 리뷰어는 최소한 스칼라 폴백이 존재하는지, 폴백과의 출력 비교 테스트가 CI에 등록돼 있는지, 정렬·입력 크기 같은 불변조건이 주석에 적혀 있는지, 근거를 담은 ADR이 링크돼 있는지를 확인합니다. 둘째, 위에서 다룬 문서화(주석 + ADR)를 "작성자가 떠나도 재구성 가능한 수준"으로 요구합니다. 셋째, 정기적으로(예: 분기마다) 극한 최적화 코드 목록을 훑어 "아직 유효한가, 여전히 필요한 사람이 있는가"를 재확인하는 리뷰를 코드 리뷰 프로세스에 넣습니다. 이 트랙의 **전문** 난이도 챕터(03, 07, 10, 14, 15, 17)에서 다루는 기법일수록 이 완화책의 비중이 커집니다.
 
 ```mermaid
 flowchart TD

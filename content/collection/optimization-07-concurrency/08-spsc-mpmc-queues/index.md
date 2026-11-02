@@ -18,23 +18,13 @@ tags:
   - C++
   - CPU(Central Processing Unit)
   - Cache
-  - Benchmark
-  - Latency
-  - Throughput
   - Testing(테스트)
-  - Debugging(디버깅)
   - Implementation(구현)
   - Best-Practices
-  - Code-Quality(코드품질)
   - Advanced
-  - Deep-Dive
-  - Case-Study
   - 실습
   - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Reliability
-  - Production
   - Ring-Buffer
   - SPSC
   - MPMC
@@ -44,6 +34,11 @@ tags:
   - Cache-Line-Padding
   - Power-Of-Two
   - Bounded-Queue
+  - Counting-Semaphore
+  - Backpressure
+  - Lock-free
+  - Atomic-Operations
+  - False-Sharing
 ---
 
 **SPSC/MPMC 큐와 링버퍼**란 고정 크기 배열을 원형으로 재사용하며 생산자·소비자 사이에 값을 전달하는 큐를 말하며, 참여 가능한 생산자·소비자 수(단일 대 다수)에 따라 내부 동기화 방식이 근본적으로 달라지는 자료구조다. 이전 장에서 다룬 Michael-Scott 큐나 Treiber 스택은 크기 제한이 없는 연결 리스트 기반이라 노드마다 동적 할당과 메모리 회수 문제를 떠안는 반면, 이 장이 다루는 링버퍼 큐는 크기를 미리 고정하는 대신 할당을 완전히 없애고 인덱스 두 개만 원자적으로 관리하면 되므로 지연시간이 훨씬 예측 가능하다. 그래서 실시간 로깅 파이프라인, 오디오/네트워크 패킷 처리, 스레드 간 작업 전달처럼 처리량과 꼬리 지연이 동시에 중요한 코드에서는 범용 lock-free 큐보다 이 장의 링버퍼가 실제로 더 많이 쓰인다. 하지만 "생산자가 하나뿐인가, 여럿인가"라는 질문 하나가 구현 난이도를 완전히 다른 수준으로 바꿔 놓는다는 점이 이 장의 핵심 주제다.
@@ -68,9 +63,9 @@ tags:
 
 스레드 간에 값을 안전하게 전달하는 문제의 이론적 뿌리는 락 없는 동시 읽기/쓰기 자체를 다룬 <strong>레슬리 램포트(Leslie Lamport)</strong>의 1977년 논문 "Concurrent Reading and Writing"(Communications of the ACM)으로 거슬러 올라간다. 이 논문은 뮤텍스 없이도 읽기와 쓰기가 순서대로 관찰되도록 만드는 조건을 처음으로 정식화했고, 오늘날 SPSC 링버퍼가 CAS 없이 인덱스 두 개만으로 정확성을 보장할 수 있는 이유의 이론적 배경이 되었다. 다만 이 논문 자체가 "배열 기반 링버퍼"라는 구체적 자료구조를 제시한 것은 아니며, 인덱스 두 개로 배열을 원형으로 순환시키는 SPSC 큐 패턴은 이후 수십 년에 걸쳐 실무 구현체들이 정착시킨 관용구에 가깝다.
 
-MPMC로 확장하는 문제는 훨씬 늦게, 그리고 다른 경로로 실무에 자리 잡았다. <strong>드미트리 뷰코프(Dmitry Vyukov)</strong>는 2010년 3월 lock-free 알고리즘 메일링 리스트에 셀마다 독립된 시퀀스 번호를 두는 bounded MPMC 큐 알고리즘을 공개했고, 이후 자신의 사이트 1024cores에도 같은 설계를 정리해 두었다. 이 알고리즘은 셀 하나마다 원자적 카운터 하나만 두면 되므로 구현이 비교적 짧으면서도 셀 단위 CAS 재시도만으로 다중 생산자·다중 소비자를 모두 지원한다는 점에서 이후 여러 언어의 표준 라이브러리·오픈소스 큐 구현(예: `rigtorp::MPMCQueue`)에 사실상의 참조 설계로 자리 잡았다. 비슷한 시기 금융 거래소 **LMAX**는 2011년 백서 "Disruptor: High performance alternative to bounded queues for exchanging data between concurrent threads"에서, 인덱스 기반 링버퍼에 시퀀스 배리어(sequence barrier)라는 개념을 얹어 여러 소비자가 서로 다른 처리 단계를 동시에 밟는 파이프라인 구조까지 표준 큐 인터페이스 없이 구현할 수 있음을 보였다. 이 둘은 "인덱스로 링버퍼를 순환시킨다"는 같은 뼈대 위에서, 하나는 범용 MPMC 큐를, 다른 하나는 파이프라인형 이벤트 처리에 특화된 구조를 만들었다는 차이가 있다.
+MPMC로 확장하는 문제는 훨씬 늦게, 그리고 다른 경로로 실무에 자리 잡았다. <strong>드미트리 뷰코프(Dmitry Vyukov)</strong>는 셀마다 독립된 시퀀스 번호를 두는 bounded MPMC 큐 알고리즘을 설계했고, 자신의 사이트 [1024cores](https://sites.google.com/site/1024cores/home/lock-free-algorithms/queues/bounded-mpmc-queue)에 그 설계를 정리해 두었다. 이 알고리즘은 셀 하나마다 원자적 카운터 하나만 두면 되므로 구현이 비교적 짧으면서도 셀 단위 CAS 재시도만으로 다중 생산자·다중 소비자를 모두 지원한다. 비슷한 시기 금융 거래소 **LMAX**는 2011년 백서 "Disruptor: High performance alternative to bounded queues for exchanging data between concurrent threads"에서, 인덱스 기반 링버퍼에 시퀀스 배리어(sequence barrier)라는 개념을 얹어 여러 소비자가 서로 다른 처리 단계를 동시에 밟는 파이프라인 구조까지 표준 큐 인터페이스 없이 구현할 수 있음을 보였다. 이 둘은 "인덱스로 링버퍼를 순환시킨다"는 같은 뼈대 위에서, 하나는 범용 MPMC 큐를, 다른 하나는 파이프라인형 이벤트 처리에 특화된 구조를 만들었다는 차이가 있다.
 
-SPSC 쪽에서는 이론이 정착된 뒤에도 실전 성능은 별개의 문제였다. Facebook의 `folly::ProducerConsumerQueue`는 읽기/쓰기 인덱스를 캐시 라인 단위로 패딩해 false sharing을 없앴고, 이후 Erik Rigtorp는 자신의 `rigtorp::SPSCQueue` 벤치마크에서 "패딩만으로는 부족하고, 각 스레드가 상대방의 인덱스를 매번 다시 읽지 않고 로컬에 캐싱해야" 초당 처리량이 한 자릿수 배 이상 뛴다는 것을 실측으로 보였다. 이 장의 SPSC 구현은 이 계보, 즉 패딩과 로컬 인덱스 캐싱이라는 두 개선을 그대로 따른다.
+SPSC 쪽에서는 이론이 정착된 뒤에도 실전 성능은 별개의 문제였다. Facebook의 `folly::ProducerConsumerQueue`는 읽기/쓰기 인덱스를 캐시 라인 단위로 패딩해 false sharing을 없앴고, 이후 Erik Rigtorp는 [자신의 글](https://rigtorp.se/ringbuffer/)에서, 패딩을 이미 적용한 기준선에 각 스레드가 상대방 인덱스를 로컬에 캐싱하는 최적화를 더하자 초당 처리량이 약 550만 건에서 약 1억 1,200만 건으로 늘었다고 보고했다(해당 글의 측정 환경 기준). 이 장의 SPSC 구현은 이 계보, 즉 패딩과 로컬 인덱스 캐싱이라는 두 개선을 그대로 따른다.
 
 ## SPSC와 MPMC의 근본적 차이
 
@@ -154,18 +149,44 @@ class SpscQueue {
 
  private:
   static constexpr size_t kMask = Capacity - 1;
-  alignas(std::hardware_destructive_interference_size) std::atomic<size_t> head_{0};
-  alignas(std::hardware_destructive_interference_size) std::atomic<size_t> tail_{0};
-  T buffer_[Capacity]{};
-  // 아래 두 쌍은 각각 생산자·소비자 스레드만 접근하는 로컬 캐시(원자적일 필요 없음)
+  static constexpr size_t kLine = std::hardware_destructive_interference_size;
+  // 생산자가 쓰는 필드끼리 한 캐시 라인에 모은다.
+  alignas(kLine) std::atomic<size_t> tail_{0};
   size_t producer_tail_{0};         // 생산자 자신의 현재 tail(유일한 작성자이므로 non-atomic으로 충분)
   size_t producer_cached_head_{0};  // 생산자가 마지막으로 관찰한 head_ 사본
+  // 소비자가 쓰는 필드끼리 다른 캐시 라인에 모은다.
+  alignas(kLine) std::atomic<size_t> head_{0};
   size_t consumer_head_{0};         // 소비자 자신의 현재 head(유일한 작성자이므로 non-atomic으로 충분)
   size_t consumer_cached_tail_{0};  // 소비자가 마지막으로 관찰한 tail_ 사본
+  alignas(kLine) T buffer_[Capacity]{};
 };
 ```
 
-바뀐 부분은 세 가지다. 첫째, `head_`와 `tail_`을 `alignas(std::hardware_destructive_interference_size)`로 각각 별도 캐시 라인에 고정해 03장에서 다룬 false sharing을 없앴다. 둘째, `tail_.store`/`head_.store`를 `release`로, 상대방 인덱스를 읽는 `load`를 `acquire`로 바꿔 버퍼 쓰기와 인덱스 갱신 사이의 happens-before 관계를 명시했다. 셋째, `producer_cached_head_`·`consumer_cached_tail_` 같은 순수 로컬 변수를 두어, 큐가 가득 차거나 비어 있지 않은 한 상대방의 원자적 인덱스를 매번 다시 읽지 않도록 했다 — 이것이 rigtorp의 실측에서 처리량을 크게 끌어올린 최적화다. 용량을 2의 거듭제곱으로 강제한 것도 우연이 아니다. 나머지(`%`) 연산 대신 비트 마스크(`& kMask`)로 인덱스를 순환시키면 나눗셈 명령 없이 순환 위치를 계산할 수 있다.
+바뀐 부분은 세 가지다. 첫째, 생산자가 쓰는 필드(`tail_`과 로컬 사본)와 소비자가 쓰는 필드(`head_`와 로컬 사본)를 각각 `alignas(std::hardware_destructive_interference_size)`로 별도 캐시 라인에 모아 03장에서 다룬 false sharing을 없앴다. `alignas`는 멤버의 시작 주소만 정렬하므로, 같은 쪽 필드를 그 뒤에 이어 선언해 한 라인에 묶는 것이 요점이다. 둘째, `tail_.store`/`head_.store`를 `release`로, 상대방 인덱스를 읽는 `load`를 `acquire`로 바꿔 버퍼 쓰기와 인덱스 갱신 사이의 happens-before 관계를 명시했다. 셋째, `producer_cached_head_`·`consumer_cached_tail_` 같은 순수 로컬 변수를 두어, 큐가 가득 차거나 비어 있지 않은 한 상대방의 원자적 인덱스를 매번 다시 읽지 않도록 했다 — 이것이 rigtorp의 실측에서 처리량을 크게 끌어올린 최적화다. 용량을 2의 거듭제곱으로 강제한 것도 우연이 아니다. 나머지(`%`) 연산 대신 비트 마스크(`& kMask`)로 인덱스를 순환시키면 나눗셈 명령 없이 순환 위치를 계산할 수 있다.
+
+다음은 위 명령이 가정하는 `spsc_test.cpp`의 `main`으로, `SpscQueue` 정의 뒤에 이어 붙인다. 생산자 스레드가 0부터 순서대로 넣은 값을 소비자(메인 스레드)가 받아 합계를 검증한다.
+
+```cpp
+#include <cstdio>
+#include <thread>
+
+int main() {
+  SpscQueue<int, 1024> q;
+  constexpr int kCount = 1'000'000;
+  std::thread producer([&] {
+    for (int i = 0; i < kCount; ++i) {
+      while (!q.push(i)) {}  // 가득 차면 스핀 대기
+    }
+  });
+  long long sum = 0;
+  for (int received = 0; received < kCount;) {
+    int v;
+    if (q.pop(v)) { sum += v; ++received; }
+  }
+  producer.join();
+  std::printf("sum=%lld expected=%lld\n", sum, static_cast<long long>(kCount) * (kCount - 1) / 2);
+}
+```
 
 ```bash
 # g++ 13 이상, x86-64 기준. 데이터 레이스나 memory_order 관련 동기화 누락을 검증한다.
@@ -181,9 +202,10 @@ MPMC 큐는 인덱스 하나로 슬롯 소유권을 확정할 수 없으므로, 
 
 ```mermaid
 flowchart TD
-  prodRead["생산자: enqueue_pos 읽기"] --> cellCheck{"cell.seq == pos ?"}
-  cellCheck -- "같음(쓰기 가능)" --> casPos["CAS(enqueue_pos: pos → pos+1)"]
-  cellCheck -- "다름(경쟁 중이거나 가득 참)" --> prodRead
+  prodRead["생산자: enqueue_pos 읽기"] --> cellCheck{"cell.seq 와 pos 비교"}
+  cellCheck -- "seq == pos (쓰기 가능)" --> casPos["CAS(enqueue_pos: pos → pos+1)"]
+  cellCheck -- "seq < pos (가득 참)" --> fullReturn["return false"]
+  cellCheck -- "seq > pos (다른 생산자가 앞서감)" --> prodRead
   casPos -- "성공" --> writeData["cell.data 쓰기"]
   writeData --> bumpSeq["cell.seq를 pos+1로 release 저장"]
   bumpSeq --> doneEnqueue["enqueue 완료"]
@@ -193,7 +215,10 @@ flowchart TD
 #include <atomic>
 #include <cstddef>
 #include <cstdint>
+#include <cstdio>
 #include <new>
+#include <thread>
+#include <vector>
 
 template <typename T, size_t Capacity>
 class VyukovMpmcQueue {
@@ -255,9 +280,65 @@ class VyukovMpmcQueue {
   alignas(std::hardware_destructive_interference_size) std::atomic<size_t> enqueue_pos_{0};
   alignas(std::hardware_destructive_interference_size) std::atomic<size_t> dequeue_pos_{0};
 };
+
+int main() {
+  VyukovMpmcQueue<int, 1024> q;
+  constexpr int kProducers = 2, kConsumers = 2, kPerProducer = 250'000;
+  std::atomic<long long> sum{0};
+  std::atomic<int> received{0};
+  std::vector<std::thread> ts;
+  for (int p = 0; p < kProducers; ++p)
+    ts.emplace_back([&] {
+      for (int i = 1; i <= kPerProducer; ++i)
+        while (!q.push(i)) {}
+    });
+  for (int c = 0; c < kConsumers; ++c)
+    ts.emplace_back([&] {
+      int v;
+      while (received.load(std::memory_order_relaxed) < kProducers * kPerProducer)
+        if (q.pop(v)) { sum.fetch_add(v, std::memory_order_relaxed); received.fetch_add(1, std::memory_order_relaxed); }
+    });
+  for (auto& t : ts) t.join();
+  long long expected = static_cast<long long>(kProducers) * kPerProducer * (kPerProducer + 1) / 2;
+  std::printf("sum=%lld expected=%lld\n", sum.load(), expected);
+}
 ```
 
-`diff`가 0이면 그 슬롯이 정확히 지금 필요한 상태(생산자에게는 "비어 있음", 소비자에게는 "값이 있음")라는 뜻이고, CAS로 `enqueue_pos_`/`dequeue_pos_`만 원자적으로 전진시키면 슬롯 소유권이 확정된다. `diff`가 음수면 아직 그 랩(lap)의 데이터가 준비되지 않았거나 소비되지 않은 것이므로 큐가 가득 찼거나 비었다는 뜻이고, 양수면 다른 스레드가 이미 그 위치를 지나갔다는 뜻이라 최신 위치를 다시 읽고 재시도한다. 슬롯당 CAS는 `enqueue_pos_`/`dequeue_pos_` 자체에 대해서만 걸리고 `cell.data` 쓰기는 소유권을 확정한 스레드만 수행하므로, 여러 생산자가 동시에 호출해도 같은 슬롯에 두 번 쓰는 일은 일어나지 않는다. 이 구현도 여러 생산자·소비자 스레드로 `-fsanitize=thread` 빌드를 반복 실행해 데이터 레이스가 없는지 확인해야 하며, 특히 `compare_exchange_weak`에 `relaxed`를 쓴 부분은 실패 시 재시도만 하므로 안전하지만 성공 이후의 `cell.data` 접근과 `cell.seq` release 저장 사이의 순서가 어긋나지 않는지는 반드시 TSAN으로 재확인한다.
+`diff`가 0이면 그 슬롯이 정확히 지금 필요한 상태(생산자에게는 "비어 있음", 소비자에게는 "값이 있음")라는 뜻이고, CAS로 `enqueue_pos_`/`dequeue_pos_`만 원자적으로 전진시키면 슬롯 소유권이 확정된다. `diff`가 음수면 아직 그 랩(lap)의 데이터가 준비되지 않았거나 소비되지 않은 것이므로 큐가 가득 찼거나 비었다는 뜻이고, 양수면 다른 스레드가 이미 그 위치를 지나갔다는 뜻이라 최신 위치를 다시 읽고 재시도한다. 슬롯당 CAS는 `enqueue_pos_`/`dequeue_pos_` 자체에 대해서만 걸리고 `cell.data` 쓰기는 소유권을 확정한 스레드만 수행하므로, 여러 생산자가 동시에 호출해도 같은 슬롯에 두 번 쓰는 일은 일어나지 않는다. 이 구현도 위 `main`을 `g++ -std=c++20 -fsanitize=thread -g -O1 mpmc_test.cpp -o mpmc_tsan`으로 빌드해 반복 실행하며 데이터 레이스가 없는지 확인해야 하며, 특히 `compare_exchange_weak`에 `relaxed`를 쓴 부분은 실패 시 재시도만 하므로 안전하지만 성공 이후의 `cell.data` 접근과 `cell.seq` release 저장 사이의 순서가 어긋나지 않는지는 반드시 TSAN으로 재확인한다.
+
+## 가득 찬 큐와 백프레셔: 세마포어로 감싸기
+
+지금까지의 `push`는 큐가 가득 차면 `false`를 돌려주고, 호출자가 스핀하거나 버릴지를 정해야 했다. 생산자가 소비자 속도를 넘어서지 못하게 막는 <strong>백프레셔(backpressure)</strong>가 필요하다면, C++20의 `std::counting_semaphore` 두 개로 "빈 슬롯 수"와 "채워진 슬롯 수"를 세어 링버퍼를 블로킹 큐로 감쌀 수 있다. 생산자는 빈 슬롯 세마포어를 획득해야만 넣을 수 있고, 소비자는 채워진 슬롯 세마포어를 획득해야만 꺼낼 수 있으므로, 큐가 가득 차면 생산자가 세마포어에서 잠들고 비어 있으면 소비자가 잠든다. 이 방식은 스핀으로 CPU를 태우는 대신 OS 대기를 쓰므로 지연시간이 늘어나는 대가를 치르며, 원자 변수 자체에 대한 대기인 `atomic::wait`/`notify`는 09장에서 다룬다.
+
+```cpp
+#include <cstddef>
+#include <semaphore>
+
+// SpscQueue(앞에서 정의)를 세마포어로 감싼 블로킹 SPSC 큐.
+// SpscQueue는 용량 Capacity에서 최대 Capacity-1개까지 담을 수 있다.
+template <typename T, size_t Capacity>
+class BlockingSpscQueue {
+ public:
+  void push(const T& v) {
+    empty_slots_.acquire();      // 빈 슬롯이 생길 때까지 대기
+    while (!q_.push(v)) {}       // 세마포어가 슬롯을 보장하므로 사실상 한 번에 성공
+    filled_slots_.release();
+  }
+
+  void pop(T& out) {
+    filled_slots_.acquire();     // 값이 들어올 때까지 대기
+    while (!q_.pop(out)) {}
+    empty_slots_.release();
+  }
+
+ private:
+  SpscQueue<T, Capacity> q_;
+  std::counting_semaphore<Capacity> empty_slots_{Capacity - 1};
+  std::counting_semaphore<Capacity> filled_slots_{0};
+};
+```
+
+세마포어의 `release`는 직전의 큐 갱신을 뒤따르는 `acquire`에 가시화하는 동기화 관계를 만들므로, 소비자가 `filled_slots_.acquire()`에 성공한 뒤의 `pop`은 생산자가 쓴 값을 안전하게 본다. MPMC 큐에도 같은 방식으로 감쌀 수 있지만, 이때는 여러 스레드가 같은 세마포어를 획득·반환하게 되어 세마포어 자체가 경합 지점이 된다는 점을 고려해야 한다.
 
 ## 흔한 오개념 교정
 
@@ -265,7 +346,7 @@ class VyukovMpmcQueue {
 
 <strong>"용량은 아무 정수나 되고, 나머지 연산으로 인덱스를 순환시키면 그만이다"</strong>도 흔한 생략이다. 용량이 2의 거듭제곱이 아니면 `%`를 비트 마스크(`&`)로 대체할 수 없어 매 push/pop마다 나눗셈 명령이 들어가고, 컴파일러가 상수 폴딩으로 최적화해 주지 못하는 런타임 크기라면 그 비용이 그대로 남는다. 위 두 구현이 `static_assert`로 2의 거듭제곱을 강제하는 이유가 여기에 있다.
 
-<strong>"패딩만 해두면 SPSC 큐 성능은 다 나온다"</strong>는 절반만 맞는다. `head_`·`tail_`을 캐시 라인으로 분리하는 것은 false sharing을 없애는 필요조건이지만, 이 장의 `cached_tail_`/`cached_head_`처럼 상대방의 원자적 인덱스를 매 연산마다 다시 읽지 않고 로컬에 캐싱하는 것까지 더해야 rigtorp가 실측한 수준의 처리량 향상이 나온다. 패딩과 로컬 인덱스 캐싱은 서로 다른 문제(라인 경합 대 원자적 로드 빈도)를 해결하므로 하나만 적용하고 멈추면 개선 폭이 제한적이다.
+<strong>"패딩만 해두면 SPSC 큐 성능은 다 나온다"</strong>는 절반만 맞는다. `head_`·`tail_`을 캐시 라인으로 분리하는 것은 false sharing을 없애는 필요조건이지만, 이 장의 `consumer_cached_tail_`/`producer_cached_head_`처럼 상대방의 원자적 인덱스를 매 연산마다 다시 읽지 않고 로컬에 캐싱하는 것까지 더해야 rigtorp가 실측한 수준의 처리량 향상이 나온다. 패딩과 로컬 인덱스 캐싱은 서로 다른 문제(라인 경합 대 원자적 로드 빈도)를 해결하므로 하나만 적용하고 멈추면 개선 폭이 제한적이다.
 
 ## 판단 기준: 언제 SPSC, 언제 MPMC를 쓸지
 
@@ -294,7 +375,7 @@ Vyukov MPMC 큐도 무비용은 아니다. 셀마다 시퀀스 번호를 위한 
 - [ ] SPSC를 MPMC로 함부로 확장하면 안 되는 이유와, 용량을 2의 거듭제곱으로 강제하는 이유를 말할 수 있다.
 - [ ] 상황별로 SPSC·MPMC·Disruptor류 구조 중 무엇을 선택할지 판단 기준 표로 적용할 수 있다.
 
-이 장에서 링버퍼 큐가 인덱스(SPSC) 또는 인덱스와 셀별 시퀀스 번호(MPMC)만으로 할당 없이 스레드 간 값을 전달하는 원리를 확인했다. 다음 장에서는 이 장의 예제 전반에서 반복해 등장한 `load`/`store`/`compare_exchange` 패턴을 표준이 어떻게 더 다듬었는지, 즉 **C++20의 `atomic::wait`/`notify`**로 스핀 대신 효율적으로 대기하는 방법을 다룬다.
+다음 장에서는 이 장의 예제 전반에서 반복해 등장한 `load`/`store`/`compare_exchange` 패턴을 표준이 어떻게 더 다듬었는지, 즉 **C++20의 `atomic::wait`/`notify`**로 스핀 대신 효율적으로 대기하는 방법을 다룬다.
 
 → [C++20 Atomics 실전](/post/concurrency-optimization/cpp20-atomic-wait-notify/) (09장)
 

@@ -1,7 +1,7 @@
 ---
 collection_order: 13
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] 포터블 SIMD 라이브러리"
@@ -12,31 +12,26 @@ tags:
   - Optimization(최적화)
   - C++
   - CPU(Central Processing Unit)
-  - Cache
-  - Memory(메모리)
   - Compiler(컴파일러)
   - Hardware(하드웨어)
   - Benchmark
-  - Latency
-  - Throughput
   - Profiling(프로파일링)
-  - Testing(테스트)
   - Implementation(구현)
   - Best-Practices
   - Code-Quality(코드품질)
   - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Documentation(문서화)
-  - Technology(기술)
   - Guide(가이드)
   - Reference(참고)
   - 실습
-  - SIMD
+  - SIMD(단일명령다중데이터)
+  - Abstraction(추상화)
+  - Low-Level(로우레벨)
+  - Matrix(행렬)
   - Highway
   - xsimd
   - Eigen
-  - Vectorization
+  - Vectorization(벡터화)
   - Runtime-Dispatch
   - Intrinsics
   - Header-Only
@@ -48,25 +43,25 @@ tags:
 
 **전제 지식**: [01장: SIMD 기초](/post/extreme-optimization/simd-fundamentals-sse-avx/)에서 다룬 SIMD 레지스터·레인(lane) 개념과, [02장: SIMD Intrinsics 실전 활용](/post/extreme-optimization/simd-intrinsics-practical-usage/)에서 다룬 intrinsics 직접 호출 경험이 있으면 이 장의 비교가 훨씬 잘 와닿습니다. intrinsics를 한 번도 손으로 써 본 적이 없다면 02장을 먼저 읽는 것을 권합니다.
 
-**이 장의 깊이**: 이 장은 **중급**입니다. Highway·xsimd·Eigen 세 라이브러리의 설계 철학과 API 스타일을 비교하고, 수동 intrinsics 대비 트레이드오프를 판단하는 데 집중합니다. **다루지 않는 것**: AVX-512/AVX10.2의 세부 명령어 최적화([03장](/post/extreme-optimization/avx512-avx10-optimization/)), ARM NEON intrinsics의 세부 활용([12장](/post/extreme-optimization/arm-neon-simd-optimization/)), C++26 표준 `std::simd`의 문법과 성숙도([14장](/post/extreme-optimization/cpp26-std-simd-p1928-standard-abstraction/))는 각 장으로 위임합니다. 이 장은 "라이브러리를 고르는 안목"을 만드는 장이지 특정 라이브러리의 API 레퍼런스가 아닙니다.
+**이 장의 깊이**: 이 장은 **중급**입니다. 기준 버전은 Highway 1.4.0과 xsimd 14.2.0입니다(이 글은 두 버전 사이의 변경 내역을 다루지 않고, 아래 API가 그 버전에서 확인되는 형태라는 뜻입니다). Highway·xsimd·Eigen 세 라이브러리의 설계 철학과 API 스타일을 비교하고, 수동 intrinsics 대비 트레이드오프를 판단하는 데 집중합니다. **다루지 않는 것**: AVX-512/AVX10.2의 세부 명령어 최적화([03장](/post/extreme-optimization/avx512-avx10-optimization/)), ARM NEON intrinsics의 세부 활용([12장](/post/extreme-optimization/arm-neon-simd-optimization/)), C++26 표준 `std::simd`의 문법과 성숙도([14장](/post/extreme-optimization/cpp26-std-simd-p1928-standard-abstraction/))는 각 장으로 위임합니다. 이 장은 "라이브러리를 고르는 안목"을 만드는 장이지 특정 라이브러리의 API 레퍼런스가 아닙니다.
 
 ## 당신의 수준에 맞는 경로
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
 | **중급 진입** | "역사와 설계 배경" ~ "Eigen: 선형대수 특화 벡터화" | 세 라이브러리의 설계 철학 차이 이해 |
-| **적용 단계** | "실측: 스칼라 대비 포터블 SIMD" ~ "흔한 오개념" | 벤치마크로 직접 확인하고 오해 교정 |
+| **적용 단계** | "측정 스켈레톤: 스칼라 대비 포터블 SIMD" ~ "흔한 오개념" | 벤치마크로 직접 확인하고 오해 교정 |
 | **의사결정 단계** | "판단 기준" ~ "비판적 시각" | 프로젝트 상황에 맞는 라이브러리 선택 |
 
 ---
 
 ## 역사와 설계 배경
 
-**Eigen**은 2006년 KDE·KOffice 애플리케이션의 필요로 시작된 작은 선형대수 라이브러리(Eigen 1)였습니다. 2008년 초 Gaël Guennebaud가 합류하면서 표현 템플릿(expression templates) 기반으로 전면 재작성한 Eigen 2가 개발되었고, 2009년 2월 정식 릴리스되었습니다. Eigen의 벡터화는 처음부터 "행렬·벡터 연산을 빠르게" 하기 위한 내부 구현 수단이었지, 범용 SIMD API로 설계된 것이 아니었습니다.
+**Eigen**은 [Wikipedia](https://en.wikipedia.org/wiki/Eigen_(C%2B%2B_library))에 따르면 1.0 버전이 2006년 12월에 공개되었고, 표현 템플릿(expression templates) 기법으로 구현되어 컴파일 타임에 수식 트리를 만들어 맞춤 코드를 생성합니다. Eigen의 벡터화는 처음부터 "행렬·벡터 연산을 빠르게" 하기 위한 내부 구현 수단이었지, 범용 SIMD API로 설계된 것이 아니었습니다.
 
 **xsimd**는 Johan Mabille이 SIMD intrinsics 래퍼 구현 과정을 다룬 블로그 연재에서 출발해, 이후 xtensor 생태계(현재 xtensor-stack 조직)의 독립 프로젝트로 자리 잡았습니다. `xsimd::batch<T, Arch>`라는 얇은 템플릿 타입으로 산술 연산자를 그대로 오버로딩하는 방식을 택해, "int·float에 쓰던 연산자를 그대로 벡터에도 쓴다"는 사용자 경험을 목표로 삼았습니다.
 
-**Highway**는 Google 내부에서 HighwayHash·Randen·Pik·JPEG XL 같은 프로젝트가 공유하던 SIMD 추상화 코드가 별도 라이브러리로 분리되며 시작되었고, Jan Wassenberg가 설계를 주도했습니다. Highway가 다른 두 라이브러리와 결정적으로 다른 지점은 **런타임 디스패치**를 1급 기능으로 설계했다는 것입니다 — 같은 소스 파일을 컴파일 타임에 여러 타깃(SSE4, AVX2, AVX-512 등)으로 반복 컴파일한 뒤, 실행 시점에 CPU가 지원하는 가장 넓은 타깃을 선택하도록 만들어졌습니다. 이는 "빌드 하나로 여러 세대의 배포 서버에 뿌려야 하는" 대규모 서비스 환경의 요구에서 비롯된 설계입니다.
+**Highway**는 [공식 README](https://github.com/google/highway)가 "portable SIMD/vector intrinsics"를 제공하는 C++ 라이브러리로 소개하며, 같은 애플리케이션 코드가 여러 명령어 집합을 겨냥하고 실행 시점에 사용 가능한 최선의 명령어 집합을 고를 수 있다는 점을 내세웁니다. Highway가 다른 두 라이브러리와 결정적으로 다른 지점은 이 **런타임 디스패치**를 1급 기능으로 설계했다는 것입니다 — 같은 소스 파일을 컴파일 타임에 여러 타깃(SSE4, AVX2, AVX-512 등)으로 반복 컴파일한 뒤, 실행 시점에 CPU가 지원하는 가장 넓은 타깃을 선택하도록 만들어졌습니다. 이는 빌드 하나로 여러 세대의 배포 서버에 뿌려야 하는 환경에 맞는 설계입니다.
 
 ## Highway의 런타임 디스패치
 
@@ -136,13 +131,18 @@ float sum_array_eigen(const float* data, Eigen::Index n) {
 
 이 코드는 SIMD를 전혀 언급하지 않지만 내부적으로는 벡터화된 리덕션이 수행됩니다. 행렬·벡터 연산이 코드의 중심이라면 Eigen이 SIMD를 "잊고" 짜도 될 만큼 편하지만, 임의의 루프·비선형대수 알고리즘을 벡터화하고 싶다면 Eigen은 애초에 그런 용도로 설계되지 않았습니다.
 
-## 실측: 스칼라 대비 포터블 SIMD
+## 측정 스켈레톤: 스칼라 대비 포터블 SIMD
 
 포터블 SIMD 라이브러리의 이득은 데이터 크기, 메모리 대역폭 포화 여부, 컴파일러·플래그, 타깃 아키텍처에 따라 크게 달라지므로 일반화된 배율을 단정하지 않고, 아래 스켈레톤으로 각자 환경에서 직접 측정하는 것을 권합니다.
 
 ```cpp
 #include <benchmark/benchmark.h>
+#include <xsimd/xsimd.hpp>
+#include <cmath>
+#include <cstddef>
 #include <vector>
+
+namespace xs = xsimd;
 
 float sum_array_scalar(const float* data, std::size_t n) {
   float sum = 0.0f;
@@ -150,7 +150,17 @@ float sum_array_scalar(const float* data, std::size_t n) {
   return sum;
 }
 
-// sum_array_xsimd, SumArray(Highway 버전) 선언은 위 코드 블록 참고
+float sum_array_xsimd(const float* data, std::size_t n) {
+  using batch_type = xs::batch<float>;
+  const std::size_t inc = batch_type::size;
+  const std::size_t vec_size = n - n % inc;
+  batch_type sum_vec = batch_type::broadcast(0.0f);
+  for (std::size_t i = 0; i < vec_size; i += inc)
+    sum_vec += batch_type::load_unaligned(data + i);
+  float sum = xs::reduce_add(sum_vec);
+  for (std::size_t i = vec_size; i < n; ++i) sum += data[i];
+  return sum;
+}
 
 static void BM_SumScalar(benchmark::State& state) {
   std::vector<float> data(state.range(0), 1.0f);
@@ -160,6 +170,12 @@ BENCHMARK(BM_SumScalar)->Arg(1 << 20);
 
 static void BM_SumXsimd(benchmark::State& state) {
   std::vector<float> data(state.range(0), 1.0f);
+  // 입력이 전부 1.0f이므로 두 합은 n으로 같아야 한다(2^20 이하의 정수는 float로 정확히 표현됨).
+  if (std::fabs(sum_array_xsimd(data.data(), data.size()) -
+                sum_array_scalar(data.data(), data.size())) > 1e-3f) {
+    state.SkipWithError("xsimd sum differs from scalar reference");
+    return;
+  }
   for (auto _ : state) benchmark::DoNotOptimize(sum_array_xsimd(data.data(), data.size()));
 }
 BENCHMARK(BM_SumXsimd)->Arg(1 << 20);
@@ -167,7 +183,7 @@ BENCHMARK(BM_SumXsimd)->Arg(1 << 20);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 -march=native bench.cpp -I<xsimd_include_dir> -lbenchmark -lpthread`(x86-64, GCC 13 예시)로 빌드해 실행하면 됩니다. AVX2를 지원하는 환경에서는 `BM_SumScalar` 대비 `BM_SumXsimd`가 유의미하게 빨라지는 경우가 흔하지만, 배열이 캐시보다 훨씬 커서 메모리 대역폭이 병목이 되는 구간에서는 그 차이가 좁혀집니다 — 이는 플랫폼·컴파일러·데이터 크기에 따라 달라지므로 배율을 단정하지 말고 직접 재현해 확인합니다.
+`g++ -O2 -march=native bench.cpp -I<xsimd_include_dir> -lbenchmark -lpthread`로 빌드해 실행합니다(Highway 버전은 같은 구조로 추가할 수 있으나 이 글에는 싣지 않았습니다). 이 글은 실행 결과를 싣지 않았습니다. 스칼라 합산은 이전 합에 의존하는 직렬 체인이고 xsimd 합산은 여러 레인으로 나눠 더하므로 두 결과의 부동소수점 반올림이 일반 입력에서는 다를 수 있다는 점, 배열이 캐시보다 크면 메모리 대역폭이 병목이 될 수 있다는 점, 컴파일러 플래그에 따라 결과가 달라진다는 점을 감안해 대상 환경에서 직접 재현해 확인합니다.
 
 ## 흔한 오개념
 
@@ -179,7 +195,7 @@ BENCHMARK_MAIN();
 
 ## 선택 흐름
 
-세 라이브러리와 수동 intrinsics 사이의 선택은 "선형대수 중심인가", "여러 CPU 세대에 하나의 빌드로 배포해야 하는가"라는 두 질문으로 대부분 좁혀집니다. 아래 흐름은 판단 기준 표를 도식으로 정리한 것입니다.
+세 라이브러리와 수동 intrinsics 사이의 선택은 "선형대수 중심인가", "여러 CPU 세대에 하나의 빌드로 배포해야 하는가"라는 두 질문으로 대부분 좁혀집니다. 아래 흐름은 질문을 던지는 순서를 보이고, 뒤의 판단 기준 표는 각 선택의 비권장 사유를 보입니다.
 
 ```mermaid
 flowchart TD
@@ -191,8 +207,6 @@ flowchart TD
   headerOnly -->|"예"| xsimdPath["xsimd 선택</br>(batch 템플릿, 타깃 고정)"]
   headerOnly -->|"아니오"| manualPath["수동 intrinsics</br>(02장 참고)"]
 ```
-
-이 흐름은 출발점일 뿐이며, 최종 판단은 항상 실측(위 벤치마크 스켈레톤)으로 검증해야 합니다.
 
 ## 판단 기준
 
@@ -218,13 +232,13 @@ flowchart TD
 
 **이전 장**: [ARM NEON 최적화](/post/extreme-optimization/arm-neon-simd-optimization/)
 
-**다음 장에서는** 2026년 3월 확정된 <strong>C++26 표준 `std::simd`(P1928)</strong>를 다룹니다. Highway나 xsimd 같은 서드파티 라이브러리와 달리 표준 라이브러리에 포함된 SIMD 추상화가 어떤 문법을 제공하고, 이 장에서 비교한 서드파티 라이브러리 대비 이식성·성숙도(GCC의 부분 구현 현황 포함)가 어떻게 다른지 이어서 살펴봅니다.
+**다음 장에서는** <strong>C++26 표준 `std::simd`(P1928)</strong>를 다룹니다. Highway나 xsimd 같은 서드파티 라이브러리와 달리 표준 라이브러리에 포함된 SIMD 추상화가 어떤 문법을 제공하고, 이 장에서 비교한 서드파티 라이브러리 대비 이식성·성숙도(GCC의 부분 구현 현황 포함)가 어떻게 다른지 이어서 살펴봅니다.
 
 → [C++26 std::simd(P1928): 표준 SIMD 추상화](/post/extreme-optimization/cpp26-std-simd-p1928-standard-abstraction/)
 
 ### 참고 자료
 
 - [Google Highway (GitHub)](https://github.com/google/highway) — Highway의 설계 개요·지원 타깃 목록·API 문서
-- [Highway 1.4.0 릴리스 노트](https://github.com/google/highway/releases) — 이 장에서 다룬 1.4.0 버전의 변경 사항
+- [Highway 1.4.0 릴리스 노트](https://github.com/google/highway/releases) — 1.4.0을 포함한 버전별 변경 사항
 - [xsimd 공식 문서](https://xsimd.readthedocs.io/) — `batch<T>` API와 지원 아키텍처 레퍼런스
 - [Eigen 공식 문서](https://libeigen.gitlab.io/eigen/docs-nightly/) — 선형대수 API와 벡터화 관련 문서

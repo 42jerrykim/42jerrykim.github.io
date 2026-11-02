@@ -1,7 +1,7 @@
 ---
 collection_order: 16
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[CPU 05] RISC-V 아키텍처 기초"
@@ -11,8 +11,6 @@ tags:
   - Performance(성능)
   - Optimization(최적화)
   - CPU(Central Processing Unit)
-  - Cache
-  - Memory(메모리)
   - Assembly
   - C++
   - C
@@ -20,15 +18,14 @@ tags:
   - Hardware(하드웨어)
   - Embedded(임베디드)
   - Benchmark
-  - Latency
-  - Throughput
   - Profiling(프로파일링)
-  - System-Design
-  - Comparison(비교)
   - Advanced
   - Deep-Dive
-  - Technology(기술)
   - RISC-V
+  - Instruction-Set
+  - Open-Source-Hardware
+  - Strip-Mining
+  - Vector-Length-Agnostic
   - RVV
   - RVA23
   - ISA
@@ -64,13 +61,13 @@ RISC-V는 2010년 UC Berkeley에서 Krste Asanović 교수와 대학원생 Yunsu
 
 RISC-V의 베이스는 RV32I(32비트), RV64I(64비트), RV128I(128비트, 실험적) 정수 ISA와 레지스터 수를 절반(16개)으로 줄인 임베디드 변형 RV32E로 구성됩니다. 이 위에 표준 확장이 필요에 따라 조합됩니다 — **M**(정수 곱셈·나눗셈), **A**(원자적 메모리 연산, 락프리 자료구조에 필요), **F/D**(단정도·배정도 부동소수점), **C**(16비트 압축 인코딩), **V**(벡터 연산)가 대표적입니다. IMAFD 조합에 Zicsr(제어·상태 레지스터 접근)·Zifencei(명령어 페치 순서 보장)를 더한 조합을 관례적으로 "G"(General)로 줄여 부르며, 흔히 보는 "RV64GC"라는 표기는 "RV64I + G + C", 즉 범용 정수·부동소수점 연산에 압축 인코딩을 더한 조합을 뜻합니다.
 
-이 구조가 x86과 근본적으로 다른 지점은 명령어 인코딩 자체에 있습니다. x86은 1바이트–15바이트까지 가변 길이 명령어를 쓰며, 이 가변성이 병렬 디코드를 어렵게 만들어 [15장](/post/cpu-optimization/uop-cache-decoded-stream-buffer/)에서 다룬 μOp 캐시·Decoded Stream Buffer 같은 보완 구조가 필요해졌습니다. RISC-V는 표준 명령어를 고정 32비트로 유지하고, C 확장을 켜면 자주 쓰이는 패턴만 16비트로 압축하는 방식을 택해, 명령어 경계를 찾는 문제 자체를 단순하게 만듭니다. 그 대가로 압축 여부를 판단하는 추가 디코드 단계가 필요하지만, 이는 x86의 완전 가변 길이 디코딩보다는 훨씬 예측 가능한 부담입니다. 이 차이는 고성능 RISC-V 코어가 상대적으로 적은 복잡도로 넓은 프런트엔드를 구현할 수 있는 배경이기도 합니다 — 벤더 발표 기준으로, SiFive P870은 6-wide 비순차 디코드·디스패치를 갖추면서도 압축 인코딩 덕분에 사이클당 최대 9개 명령 분량의 바이트를 페치한다고 알려져 있습니다([Chips and Cheese: Hot Chips 2023 - SiFive's P870 Takes RISC-V Further](https://chipsandcheese.com/2023/09/03/hot-chips-2023-sifives-p870-takes-risc-v-further/)).
+이 구조가 x86과 근본적으로 다른 지점은 명령어 인코딩 자체에 있습니다. x86은 1바이트–15바이트까지 가변 길이 명령어를 쓰며, 이 가변성이 병렬 디코드를 어렵게 만들어 [15장](/post/cpu-optimization/uop-cache-decoded-stream-buffer/)에서 다룬 μOp 캐시·Decoded Stream Buffer 같은 보완 구조가 필요해졌습니다. RISC-V는 표준 명령어를 고정 32비트로 유지하고, C 확장을 켜면 자주 쓰이는 패턴만 16비트로 압축하는 방식을 택해, 명령어 경계를 찾는 문제 자체를 단순하게 만듭니다. 그 대가로 압축 여부를 판단하는 추가 디코드 단계가 필요하지만, 이는 x86의 완전 가변 길이 디코딩보다는 훨씬 예측 가능한 부담입니다. 이 차이는 고성능 RISC-V 코어가 상대적으로 적은 복잡도로 넓은 프런트엔드를 구현할 수 있는 배경이기도 합니다 — 벤더 발표 기준으로, SiFive P870은 6-wide 디코드의 비순차 실행를 갖추면서도 사이클당 4바이트 명령 9개 분량(36바이트)을 페치할 수 있다고 소개됩니다([Chips and Cheese: Hot Chips 2023 - SiFive's P870 Takes RISC-V Further](https://chipsandcheese.com/2023/09/03/hot-chips-2023-sifives-p870-takes-risc-v-further/)).
 
 ## RVA 프로파일: 파편화를 통제하는 장치
 
 확장을 자유롭게 조합할 수 있다는 것은 동시에 "어떤 조합이 실제 존재하는가"를 소프트웨어가 예측하기 어렵게 만드는 위험이기도 합니다. RISC-V International은 이 문제를 <strong>프로파일(Profile)</strong>로 대응합니다 — 특정 용도(예: 리치 OS를 구동하는 애플리케이션 프로세서)에 필요한 확장 조합을 표준으로 고정해, 소프트웨어 개발자가 "이 프로파일을 지원하는 칩이라면 이 명령들은 항상 있다"고 가정할 수 있게 하는 것입니다. RVA20에서 시작해 RVA22를 거쳐, 2024년 10월 21일 RVA23 프로파일이 비준되었습니다. RVA23의 핵심은 이전까지 선택 사항이던 벡터 확장(V)과 하이퍼바이저 확장(H)이 처음으로 필수(mandatory)가 되었다는 점입니다.
 
-> "Vector and Hypervisor extensions are key mandatory components of the RVA23 Profile." — [RISC-V International, 2024](https://riscv.org/blog/risc-v-announces-ratification-of-the-rva23-profile-standard/)
+[RISC-V International의 RVA23 비준 발표](https://riscv.org/blog/risc-v-announces-ratification-of-the-rva23-profile-standard/)는 벡터(Vector)와 하이퍼바이저(Hypervisor) 확장을 RVA23 프로파일의 핵심 필수 구성 요소로 꼽습니다.
 
 이는 RVA23을 준수하는 모든 애플리케이션 코어가 벡터 연산과 가상화를 표준 기능으로 갖춘다는 뜻이며, 벡터·가상화에 의존하는 소프트웨어가 "이 명령이 있을 수도 없을 수도 있다"는 조건부 코드를 짤 필요를 줄여줍니다.
 
@@ -85,15 +82,15 @@ flowchart TB
     extV["V</br>(RVV 벡터, VLEN은 구현정의)"]
   end
   stdExt --> profile["RVA23 프로파일</br>(V·H 확장 필수, 2024-10 비준)"]
-  profile --> mcuImpl["임베디드 MCU</br>(예: ESP32-C6, RVA 프로파일 미적용)"]
-  profile --> serverImpl["서버/AI 가속 코어</br>(Ventana Veyron V2, SiFive Intelligence 계열)"]
+  profile -.->|"적용 안 됨"| mcuImpl["임베디드 MCU</br>(예: ESP32-C6)"]
+  profile --> serverImpl["서버/AI 가속 코어</br>(Ventana Veyron V2 등)"]
 ```
 
-RVA23 이후 첫 실리콘이 시장에 나오는 시점은 2025–2026년입니다. 벤더 발표 기준으로, SpacemiT K3 SoC의 X100(범용 코어)/A100(AI 코어) 조합이 RVA23·RVV 1.0을 지원하는 초기 상용 칩으로 꼽히고([LinuxGizmos: SpacemiT K3 integrates 8-core RISC-V CPU cluster and 60 TOPS AI engine](https://linuxgizmos.com/spacemit-k3-integrates-8-core-risc-v-cpu-cluster-and-60-tops-ai-engine/)), 서버·AI 영역에서는 Ventana Micro의 Veyron V2가 RVA23을 준수하며 512비트 벡터 유닛과 AI 행렬 확장을 갖춘 코어로 2025년부터 하이퍼스케일러·HPC 고객에게 공급을 시작한다고 발표되었습니다([The Next Platform: Ventana Launches Veyron V2 RISC-V Into The Datacenter](https://www.nextplatform.com/2023/11/07/ventana-launches-veyron-v2-risc-v-into-the-datacenter/); [Ventana: 2025 Shipments of Veyron V2 Platform](https://www.prnewswire.com/news-releases/ventana-announces-2025-shipments-of-veyron-v2-platform-with-broad-market-adoption-302282035.html)). 다만 이 수치들은 대부분 벤더 발표 자료에 근거하므로, 뒤의 "비판적 시각"에서 다시 짚습니다. 반대편 극단인 저전력 임베디드에서는 RVA 프로파일 자체가 적용되지 않는 32비트 마이크로컨트롤러 코어가 이미 수억 대 단위로 출하되고 있으며, [Espressif ESP32-C6](https://www.espressif.com/en/products/socs/esp32-c6)처럼 160MHz 고성능 코어와 20MHz 저전력 코어를 함께 얹은 듀얼 RISC-V MCU가 대표적입니다.
+RVA23 이후 첫 실리콘이 시장에 나오는 시점은 2025–2026년입니다. 벤더 발표 기준으로, SpacemiT K3 SoC의 X100 범용 코어가 RVA23·RVV 1.0을 준수하는 초기 상용 칩으로 소개되고(AI 코어 A100은 벡터·AI 명령을 포함한다고 설명됩니다)([LinuxGizmos: SpacemiT K3 integrates 8-core RISC-V CPU cluster and 60 TOPS AI engine](https://linuxgizmos.com/spacemit-k3-integrates-8-core-risc-v-cpu-cluster-and-60-tops-ai-engine/)), 서버·AI 영역에서는 Ventana Micro의 Veyron V2가 RVA23을 준수하며 512비트 벡터 유닛과 AI 행렬 확장을 갖춘 코어로 2025년부터 하이퍼스케일러·HPC 고객에게 공급을 시작한다고 발표되었습니다([The Next Platform: Ventana Launches Veyron V2 RISC-V Into The Datacenter](https://www.nextplatform.com/2023/11/07/ventana-launches-veyron-v2-risc-v-into-the-datacenter/); [Ventana: 2025 Shipments of Veyron V2 Platform](https://www.prnewswire.com/news-releases/ventana-announces-2025-shipments-of-veyron-v2-platform-with-broad-market-adoption-302282035.html)). 다만 이 수치들은 대부분 벤더 발표 자료에 근거하므로, 뒤의 "비판적 시각"에서 다시 짚습니다. 반대편 극단인 저전력 임베디드에서는 RVA 프로파일 자체가 적용되지 않는 32비트 마이크로컨트롤러 코어가 널리 쓰이고 있으며, [Espressif ESP32-C6](https://www.espressif.com/en/products/socs/esp32-c6)처럼 160MHz 고성능 코어와 20MHz 저전력 코어를 함께 얹은 듀얼 RISC-V MCU가 대표적입니다.
 
 ## RVV 벡터 확장의 메커니즘
 
-RVV(RISC-V Vector Extension)를 x86의 AVX2/AVX-512나 ARM NEON/SVE와 같은 종류의 SIMD로 이해하면 핵심을 놓칩니다. AVX2는 256비트, AVX-512는 512비트로 벡터 폭이 명령어 인코딩에 고정되어 있어, 더 넓은 벡터 폭을 쓰려면 다른 명령어 세트로 재컴파일해야 합니다. RVV는 대신 **vector-length-agnostic(VLA)** 모델을 택합니다 — 벡터 레지스터의 실제 폭(VLEN)은 구현마다 다르게 정의되며(예: 128비트짜리 저전력 코어부터 수 킬로비트짜리 서버 벡터 유닛까지), 소프트웨어는 `vsetvl` 계열 명령으로 "이번 반복에서 몇 개의 원소를 처리할 수 있는지"를 하드웨어에 물어본 뒤 그 값만큼만 처리하는 **스트립마이닝(strip-mining)** 루프를 씁니다. 이 방식의 실무적 의미는, 같은 바이너리가 VLEN 128비트 임베디드 코어와 VLEN 1024비트 서버 코어 양쪽에서 재컴파일 없이 동작하도록 설계되었다는 점입니다 — AVX2용 바이너리를 AVX-512 코어에서 그대로 최대 성능으로 돌릴 수 없는 x86의 제약과 대조적입니다. RVV는 여기에 더해 `LMUL`(레지스터 그룹핑 배수)과 `SEW`(선택된 원소 폭) 설정으로 레지스터 압박과 처리량 사이의 트레이드오프를 소프트웨어가 조정할 수 있게 합니다. 정확한 명령 인코딩과 `vsetvl` 계열의 의미론은 공식 명세 저장소([riscv/riscv-v-spec](https://github.com/riscv/riscv-v-spec))에 정의되어 있으며, 이 장에서는 그 전체를 다시 옮기지 않고 실무에 필요한 모델만 다룹니다.
+RVV(RISC-V Vector Extension)를 x86의 AVX2/AVX-512나 ARM NEON/SVE와 같은 종류의 SIMD로 이해하면 핵심을 놓칩니다. AVX2는 256비트, AVX-512는 512비트로 벡터 폭이 명령어 인코딩에 고정되어 있어, 더 넓은 벡터 폭을 쓰려면 다른 명령어 세트로 재컴파일해야 합니다. RVV는 대신 **vector-length-agnostic(VLA)** 모델을 택합니다 — 벡터 레지스터의 실제 폭(VLEN)은 구현마다 다르게 정의되며(예: 128비트짜리 저전력 코어부터 수 킬로비트짜리 서버 벡터 유닛까지), 소프트웨어는 `vsetvl` 계열 명령으로 "이번 반복에서 몇 개의 원소를 처리할 수 있는지"를 하드웨어에 물어본 뒤 그 값만큼만 처리하는 **스트립마이닝(strip-mining)** 루프를 씁니다. 이 방식의 실무적 의미는, 같은 바이너리가 VLEN 128비트 임베디드 코어와 VLEN 1024비트 서버 코어 양쪽에서 재컴파일 없이 동작하도록 설계되었다는 점입니다 — AVX2용 바이너리를 AVX-512 코어에서 그대로 최대 성능으로 돌릴 수 없는 x86의 제약과 대조적입니다. RVV는 여기에 더해 `LMUL`(레지스터 그룹핑 배수)과 `SEW`(선택된 원소 폭) 설정으로 레지스터 압박과 처리량 사이의 트레이드오프를 소프트웨어가 조정할 수 있게 합니다. 정확한 명령 인코딩과 `vsetvl` 계열의 의미론은 공식 명세 저장소([riscv/riscv-isa-manual](https://github.com/riscv/riscv-isa-manual))에 정의되어 있으며, 이 장에서는 그 전체를 다시 옮기지 않고 실무에 필요한 모델만 다룹니다.
 
 아래는 이 모델을 잘못 적용한 코드와, 스트립마이닝으로 고친 버전입니다. C 표준 벡터 인트린식(GCC 14+/LLVM 17+가 따르는 RVV 인트린식 v1.0 명명 규칙 기준이며, 이전 버전 툴체인은 함수 이름이 다를 수 있는 구현 정의 영역입니다)을 사용합니다.
 
@@ -137,20 +134,56 @@ void axpy_good(size_t n, float a, const float* x, float* y) {
 검증은 컴파일 가능 여부와 실제 실리콘·시뮬레이터에서의 사이클 비교 두 단계로 나눕니다. 아래는 그 골격입니다(플랫폼·컴파일러·플래그를 명시하며, 실제 배율은 대상 실리콘의 VLEN·메모리 대역폭에 따라 달라지므로 반드시 직접 재현해야 합니다).
 
 ```bash
-# 컴파일 확인: Clang 18 / GCC 14 기준, RVA23 대응(rv64gcv) 타깃
+# 컴파일 확인: Clang 18 기준, RVA23 대응(rv64gcv) 타깃
 clang --target=riscv64-linux-gnu -march=rv64gcv -O2 -c axpy_good.c -o axpy_good.o
 
-# 실행/측정: QEMU riscv64 사용자 모드 또는 실제 RVA23 실리콘
-# (SiFive P870 계열, Ventana Veyron V2 등)에서 perf stat로 사이클·명령 수 비교
-perf stat -e cycles,instructions ./axpy_bench --mode=scalar
-perf stat -e cycles,instructions ./axpy_bench --mode=rvv
+# 실행/측정: 아래 axpy_bench.c를 위 axpy_good와 함께 빌드해 QEMU riscv64 사용자 모드 또는 실제 RVA23 실리콘에서 실행
+clang --target=riscv64-linux-gnu -march=rv64gcv -O2 axpy_good.c axpy_bench.c -o axpy_bench
+./axpy_bench
+```
+
+```c
+// axpy_bench.c — 스칼라 기준 구현과 axpy_good(RVV)을 같은 입력으로 비교하는 최소 하네스
+#include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void axpy_good(size_t n, float a, const float* x, float* y);  // 위 RVV 구현
+
+static void axpy_scalar(size_t n, float a, const float* x, float* y) {
+  for (size_t i = 0; i < n; ++i) y[i] += a * x[i];
+}
+
+static double now_sec(void) {
+  struct timespec ts;
+  clock_gettime(CLOCK_MONOTONIC, &ts);
+  return ts.tv_sec + ts.tv_nsec * 1e-9;
+}
+
+int main(void) {
+  const size_t n = 1u << 22;
+  float* x = malloc(n * sizeof(float));
+  float* y = malloc(n * sizeof(float));
+  for (size_t i = 0; i < n; ++i) { x[i] = 1.0f; y[i] = 2.0f; }
+
+  double t0 = now_sec();
+  axpy_scalar(n, 0.5f, x, y);
+  double t1 = now_sec();
+  axpy_good(n, 0.5f, x, y);
+  double t2 = now_sec();
+  printf("scalar=%.4fs rvv=%.4fs y[0]=%f\n", t1 - t0, t2 - t1, y[0]);
+  free(x);
+  free(y);
+  return 0;
+}
 ```
 
 ## 흔한 오개념
 
-<strong>"RISC-V는 하나의 CPU다"</strong>는 가장 흔한 오해입니다. RISC-V는 명령어 집합 표준일 뿐 구현이 아니므로, 저전력 in-order 마이크로컨트롤러 코어부터 슈퍼스칼라 비순차 실행 서버 코어(SiFive P870, Ventana Veyron V2, Tenstorrent Ascalon 등)까지 성능 스펙트럼이 완전히 다릅니다. "RISC-V가 x86보다 빠르다/느리다"라는 문장은 비교 대상 구현을 명시하지 않으면 의미가 없습니다.
+<strong>"RISC-V는 하나의 CPU다"</strong>는 가장 흔한 오해입니다. RISC-V는 명령어 집합 표준일 뿐 구현이 아니므로, 저전력 in-order 마이크로컨트롤러 코어부터 슈퍼스칼라 비순차 실행 서버 코어(SiFive P870, Ventana Veyron V2 등)까지 성능 스펙트럼이 완전히 다릅니다. "RISC-V가 x86보다 빠르다/느리다"라는 문장은 비교 대상 구현을 명시하지 않으면 의미가 없습니다.
 
-<strong>"RISC-V는 임베디드·니치 전용이다"</strong>도 더 이상 정확하지 않습니다. Ventana Veyron V2가 RVA23을 준수하며 하이퍼스케일러·HPC 고객에게 실리콘을 공급하기 시작했고, SiFive의 Intelligence 라인은 AI 추론 가속기 시장을 정면으로 겨냥하고 있습니다. 다만 이 확장은 여전히 AI 가속기·커스텀 실리콘 영역에 집중되어 있고, 범용 서버 시장에서 x86/ARM을 대체하는 수준의 소프트웨어 생태계 성숙도에는 아직 도달하지 못했다는 점은 구분해야 합니다.
+<strong>"RISC-V는 임베디드·니치 전용이다"</strong>도 더 이상 정확하지 않습니다. Ventana Veyron V2가 RVA23을 준수하며 하이퍼스케일러·HPC 고객에게 2025년부터 공급을 시작한다고 발표했습니다. 다만 이 확장은 여전히 AI 가속기·커스텀 실리콘 영역에 집중되어 있고, 범용 서버 시장에서 x86/ARM을 대체하는 수준의 소프트웨어 생태계 성숙도에는 아직 도달하지 못했다는 점은 구분해야 합니다.
 
 <strong>"RVV 벡터 확장은 AVX/NEON과 같은 개념이다"</strong>는 앞서 다룬 대로 부정확합니다. AVX/NEON은 고정 폭 SIMD로 폭이 바뀌면 재컴파일이 필요하지만, RVV는 vector-length-agnostic 모델로 같은 바이너리가 다른 VLEN의 구현에서도 동작하도록 설계되었습니다. 이 차이를 모르고 SSE/AVX식으로 벡터 폭을 코드에 하드코딩하면 위의 `axpy_broken` 예시처럼 RVV를 쓰는 의미 자체가 사라집니다.
 
@@ -166,7 +199,7 @@ perf stat -e cycles,instructions ./axpy_bench --mode=rvv
 
 ## 비판적 시각: 개방성의 대가
 
-모듈형 확장 구조는 파편화 위험을 항상 안고 있습니다. RVA 프로파일이 "이 조합은 항상 있다"는 보장을 제공하지만, 벤더별 커스텀 확장(예: 특정 벡터 가속 명령)은 프로파일 밖에 남아 있어 "RISC-V 호환"이라는 말이 곧 "이 벤더의 모든 코어에서 같은 바이너리가 최고 성능으로 동작한다"는 뜻은 아닙니다. 소프트웨어 생태계도 여전히 격차가 있습니다 — GCC/LLVM의 RVA 타깃 지원과 Linux 커널의 RISC-V 포트는 빠르게 성숙했지만, 특정 수학 라이브러리·프로파일러·상용 디버거의 RISC-V 지원은 x86/ARM 대비 좁은 편이라, 실제 프로젝트에서는 툴체인 버전별로 직접 확인해야 합니다. 벤더가 공개하는 TeraFLOPS/코어, IPC 향상률 같은 수치는 대개 초기 실리콘이나 시뮬레이션 기준이므로, Ventana나 SiFive의 발표 자료를 그대로 채택 근거로 쓰기보다 독립 벤치마크나 자체 재현으로 재확인하는 것이 안전합니다. 마지막으로 2026년 현재 RVA23 실리콘은 아직 초기 단계입니다 — 서버·데이터센터 채택은 하이퍼스케일러의 파일럿·AI 가속기 통합 수준에 머물러 있고, 범용 워크로드에서 x86/ARM을 대체할 만큼 배포 사례가 누적되지는 않았습니다.
+모듈형 확장 구조는 파편화 위험을 항상 안고 있습니다. RVA 프로파일이 "이 조합은 항상 있다"는 보장을 제공하지만, 벤더별 커스텀 확장(예: 특정 벡터 가속 명령)은 프로파일 밖에 남아 있어 "RISC-V 호환"이라는 말이 곧 "이 벤더의 모든 코어에서 같은 바이너리가 최고 성능으로 동작한다"는 뜻은 아닙니다. 소프트웨어 생태계도 여전히 격차가 있습니다 — GCC/LLVM의 RVA 타깃 지원과 Linux 커널의 RISC-V 포트는 빠르게 성숙했지만, 특정 수학 라이브러리·프로파일러·상용 디버거의 RISC-V 지원은 x86/ARM 대비 좁은 편이라, 실제 프로젝트에서는 툴체인 버전별로 직접 확인해야 합니다. 벤더가 공개하는 TeraFLOPS/코어, IPC 향상률 같은 수치는 대개 초기 실리콘이나 시뮬레이션 기준이므로, Ventana나 SiFive의 발표 자료를 그대로 채택 근거로 쓰기보다 독립 벤치마크나 자체 재현으로 재확인하는 것이 안전합니다.
 
 ## 마무리
 

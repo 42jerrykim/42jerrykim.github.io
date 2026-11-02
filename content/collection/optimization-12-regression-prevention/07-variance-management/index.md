@@ -93,14 +93,14 @@ static void BM_HotPath(benchmark::State& state) {
   }
 }
 
-// Repetitions(20): 벤치마크 전체를 20회 반복 실행해 실행 간(run-to-run) 분산을 드러냄
+// Repetitions(20): 벤치마크 함수를 20회 반복해 반복 간 분산을 드러냄(같은 프로세스 안의 반복)
 // DisplayAggregatesOnly(true): 개별 반복이 아니라 mean/median/stddev/cv 집계만 출력
 BENCHMARK(BM_HotPath)->Repetitions(20)->DisplayAggregatesOnly(true);
 
 BENCHMARK_MAIN();
 ```
 
-Google Benchmark는 [`--benchmark_repetitions` 옵션](https://github.com/google/benchmark/blob/main/docs/user_guide.md)으로 벤치마크 프로그램 전체를 여러 번 다시 실행하도록 지시하면 각 반복의 평균·중앙값·표준편차·변동계수(CV)를 자동으로 계산해 보고합니다. 다만 이 반복은 한 프로세스 안에서 루프를 도는 것과 달리 매번 새로 실행되므로, 위에서 설명한 적재 층 노이즈(ASLR 등)까지 포함해 측정하게 됩니다. 이는 오히려 장점이 될 수도 있습니다 — CI에서 실제로 겪을 노이즈를 더 현실적으로 반영하기 때문입니다.
+Google Benchmark는 [`--benchmark_repetitions` 옵션](https://github.com/google/benchmark/blob/main/docs/user_guide.md)(코드의 `Repetitions(20)`와 같은 효과)으로 벤치마크 함수를 여러 번 반복하게 하고, 반복들의 평균·중앙값·표준편차·변동계수(CV)를 계산해 보고합니다. 이 반복은 같은 프로세스 안에서 이루어진다고 이해하는 것이 안전합니다(이 글에서 소스를 확인하지는 않았습니다). 그렇다면 ASLR로 정해진 주소 배치나 링크 순서처럼 프로세스 시작 시점에 고정되는 적재 층 요인은 반복 사이에 바뀌지 않으므로, 그 층까지 분산에 포함하려면 셸 루프 등으로 프로세스를 여러 번 새로 띄우는 외부 반복이 필요합니다.
 
 ## 반복 횟수를 어떻게 설계할 것인가
 
@@ -115,9 +115,9 @@ from scipy import stats
 
 def required_repetitions(cv: float, min_detectable_pct: float, power: float = 0.8) -> int:
     """CV(변동계수)와 검출하려는 최소 변화율(min_detectable_pct, 예: 0.03=3%)로부터
-    근사 표본 크기를 역산한다. z_alpha/z_beta는 양측 검정, 유의수준 0.05 기준."""
+    두 표본(기준선·PR)을 비교할 때 그룹당 근사 표본 크기를 역산한다. z_alpha/z_beta는 양측 검정, 유의수준 0.05 기준."""
     z_alpha, z_beta = 1.96, stats.norm.ppf(power)
-    n = ((z_alpha + z_beta) * cv / min_detectable_pct) ** 2
+    n = 2 * ((z_alpha + z_beta) * cv / min_detectable_pct) ** 2  # 두 표본이므로 단일 표본식의 2배
     return math.ceil(n)
 
 def is_regression(baseline: list[float], candidate: list[float], alpha: float = 0.05) -> bool:
@@ -127,7 +127,7 @@ def is_regression(baseline: list[float], candidate: list[float], alpha: float = 
     return p_value < alpha and (sum(candidate) / len(candidate)) > (sum(baseline) / len(baseline))
 
 if __name__ == "__main__":
-    print(required_repetitions(cv=0.06, min_detectable_pct=0.03))  # 예: CV 6%에서 3% 변화 검출
+    print(required_repetitions(cv=0.06, min_detectable_pct=0.03))  # 예: CV 6%에서 3% 변화 검출 → 그룹당 약 63회
 ```
 
 이 스크립트는 두 가지를 분리해서 보여줍니다. `required_repetitions`는 사전에 "이 정도 노이즈에서 이 정도 변화를 잡고 싶다"를 반복 횟수로 환산하는 계획 단계이고, `is_regression`은 실제 게이트 실행 시점에 두 표본을 비교하는 판정 단계입니다. 두 함수 모두 근사치이므로, CV 자체가 실행 환경마다 다르다는 점(다음 절)을 감안해 여유를 두고 설계해야 합니다. 워밍업 반복(캐시·분기 예측기를 안정 상태로 만들기 위한 예열 실행)은 이 계산에 포함하지 않고 별도로 버리는 것이 일반적입니다.

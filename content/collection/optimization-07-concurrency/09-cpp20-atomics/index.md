@@ -75,7 +75,7 @@ tags:
 
 ## 배경: 폴링에서 표준 대기·통지로
 
-원자적 값 하나가 바뀌기를 기다리는 코드는 오랫동안 두 극단 중 하나를 골라야 했습니다. `while (flag.load() == old) { }` 같은 순수 스핀은 지연시간은 가장 짧지만 대기가 길어지면 CPU 코어 하나를 통째로 태우고, 반대로 `std::mutex` + `std::condition_variable`은 대기 비용은 줄지만 원자값 하나 감시에 락과 조건변수 객체까지 끌어와야 했습니다. Linux 커널은 이미 2002년에 이 문제의 커널 측 해법을 냈습니다. Hubertus Franke, Matthew Kirkwood, Ingo Molnár, Rusty Russell이 Ottawa Linux Symposium 2002에서 발표한 [futex(fast userspace mutex)](https://man7.org/linux/man-pages/man2/futex.2.html)는 "경합이 없으면 유저스페이스에서 원자 연산만으로 끝내고, 경합이 있을 때만 커널 대기열을 쓰는" 설계를 제시했습니다. C++ 표준은 이 아이디어를 라이브러리 차원에서 표준화하는 데 한참 걸렸는데, Bryce Adelstein Lelbach·Olivier Giroux·JF Bastien 등이 주도한 [P1135(The C++20 Synchronization Library)](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1135r6.html)가 여러 하위 제안(효율적인 atomic 대기를 다룬 P0514 포함)을 통합해 C++20에 `atomic<T>::wait`/`notify_one`/`notify_all`과 `atomic_flag`의 대응 함수들을 추가했습니다. 요점은 "플랫폼이 futex 같은 효율적인 커널 대기 메커니즘을 제공하면 그것을 쓰고, 없으면 표준 라이브러리가 내부적으로 대체 구현을 제공한다"는 이식 가능한 계약을 표준이 직접 규정했다는 것입니다.
+원자적 값 하나가 바뀌기를 기다리는 코드는 오랫동안 두 극단 중 하나를 골라야 했습니다. `while (flag.load() == old) { }` 같은 순수 스핀은 지연시간은 가장 짧지만 대기가 길어지면 CPU 코어 하나를 통째로 태우고, 반대로 `std::mutex` + `std::condition_variable`은 대기 비용은 줄지만 원자값 하나 감시에 락과 조건변수 객체까지 끌어와야 했습니다. Linux 커널은 이미 2002년에 이 문제의 커널 측 해법을 냈습니다. Hubertus Franke, Rusty Russell, Matthew Kirkwood가 Ottawa Linux Symposium 2002에서 발표한 논문 [Fuss, Futexes and Furwocks](https://www.kernel.org/doc/ols/2002/ols2002-pages-479-495.pdf)가 제안한 futex(fast userspace mutex)는 "경합이 없으면 유저스페이스에서 원자 연산만으로 끝내고, 경합이 있을 때만 커널 대기열을 쓰는" 설계입니다. C++ 표준은 이 아이디어를 라이브러리 차원에서 표준화하는 데 한참 걸렸는데, Bryce Adelstein Lelbach·Olivier Giroux·JF Bastien 등이 주도한 [P1135(The C++20 Synchronization Library)](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1135r6.html)가 여러 하위 제안(효율적인 atomic 대기를 다룬 P0514 포함)을 통합해 C++20에 `atomic<T>::wait`/`notify_one`/`notify_all`과 `atomic_flag`의 대응 함수들을 추가했습니다. 요점은 "플랫폼이 futex 같은 효율적인 커널 대기 메커니즘을 제공하면 그것을 쓰고, 없으면 표준 라이브러리가 내부적으로 대체 구현을 제공한다"는 이식 가능한 계약을 표준이 직접 규정했다는 것입니다.
 
 ## wait·notify의 동작 원리
 
@@ -91,7 +91,7 @@ void notify_all() noexcept;
 
 ### libstdc++ 내부 구현: 스핀 다음 futex
 
-표준은 "효율적으로 대기한다"는 요구만 하고 구현 방식은 정하지 않으므로, 실제 동작은 표준 라이브러리 구현체(libstdc++/libc++/MSVC STL)마다 다른 구현 정의 사항입니다. libstdc++의 구현은 대기를 진입 즉시 커널로 넘기지 않고 여러 단계를 거칩니다. 먼저 `pause` 명령어를 곁들인 순수 스핀을 약 12회 반복하며 조건을 재확인하고, 실패하면 `sched_yield`를 곁들인 스핀을 4회 더 시도하고, 그래도 조건이 안 맞으면 정책 기반 스핀을 거친 뒤에야 비로소 `futex(FUTEX_WAIT, ...)` 시스템 콜로 진입해 커널 대기열에 들어갑니다. 값이 `int`나 `uint64_t`처럼 플랫폼의 `__platform_wait_t`와 크기·정렬이 맞지 않는 타입(예: 큰 구조체를 감싼 `atomic`)은 futex가 직접 감시할 수 없으므로, libstdc++는 원자 객체의 주소를 해시해 프록시 대기 테이블(waiter pool)에서 대리 `__platform_wait_t` 값을 찾아 그것으로 futex를 대신 걸어 줍니다. futex 자체가 없는 플랫폼에서는 표준이 요구하는 `mutex`+`condition_variable` 조합으로 완전히 폴백합니다. `notify_one`/`notify_all` 쪽도 최적화가 들어가 있어서, 실제로 시스템 콜을 걸기 전에 "대기자가 있을 가능성이 있는지"를 가벼운 원자 로드로 먼저 확인하는데, 이 최적화 덕분에 대기자가 없는 흔한 경우 통지 비용이 futex 시스템 콜 수십 나노초에서 로드 한 번 수준(수 나노초)으로 줄어든다는 사실이 [Red Hat의 libstdc++ 구현 해설](https://developers.redhat.com/articles/2022/12/06/implementing-c20-atomic-waiting-libstdc)에서 보고된 바 있습니다.
+표준은 "효율적으로 대기한다"는 요구만 하고 구현 방식은 정하지 않으므로, 실제 동작은 표준 라이브러리 구현체(libstdc++/libc++/MSVC STL)마다 다른 구현 정의 사항입니다. libstdc++의 구현은 대기를 진입 즉시 커널로 넘기지 않고 여러 단계를 거칩니다. 먼저 `pause` 명령어를 곁들인 순수 스핀을 약 12회 반복하며 조건을 재확인하고, 실패하면 `sched_yield`를 곁들인 스핀을 4회 더 시도하고, 그래도 조건이 안 맞으면 정책 기반 스핀을 거친 뒤에야 비로소 `futex(FUTEX_WAIT, ...)` 시스템 콜로 진입해 커널 대기열에 들어갑니다. 값이 `int`나 `uint64_t`처럼 플랫폼의 `__platform_wait_t`와 크기·정렬이 맞지 않는 타입(예: 큰 구조체를 감싼 `atomic`)은 futex가 직접 감시할 수 없으므로, libstdc++는 원자 객체의 주소를 해시해 프록시 대기 테이블(waiter pool)에서 대리 `__platform_wait_t` 값을 찾아 그것으로 futex를 대신 걸어 줍니다. futex 자체가 없는 플랫폼에서는 표준이 요구하는 `mutex`+`condition_variable` 조합으로 완전히 폴백합니다. `notify_one`/`notify_all` 쪽도 최적화가 들어가 있어서, 실제로 시스템 콜을 걸기 전에 "대기자가 있을 가능성이 있는지"를 가벼운 원자 로드로 먼저 확인하는데, 이 최적화 덕분에 대기자가 없는 흔한 경우 통지 비용이 futex 시스템 콜 약 97ns에서 약 3.8ns로 줄어든다는 측정 결과가 [Red Hat의 libstdc++ 구현 해설](https://developers.redhat.com/articles/2022/12/06/implementing-c20-atomic-waiting-libstdc)에서 보고된 바 있습니다.
 
 ```mermaid
 flowchart TD
@@ -131,7 +131,7 @@ void spin_then_wait(const std::atomic<T>& a, T old,
 
 이 래퍼는 라이브러리 내부 스핀과 이중으로 겹치므로, 스핀 한도를 과도하게 크게 잡으면 오히려 `wait` 자체의 스핀 단계와 낭비가 중복됩니다. 실제 적용 전에는 대기 시간 분포를 프로파일링해 스핀 한도가 실제 워크로드의 "대부분 짧은 대기" 가정과 맞는지 확인해야 합니다.
 
-**측정**: 스핀 폴링과 `wait`/`notify` 중 어느 쪽이 특정 워크로드에서 더 빠른지는 단언할 수 없고 직접 재는 수밖에 없습니다. 아래는 생산자가 값을 갱신하고 통지한 뒤 소비자가 깨어나기까지의 왕복 지연을 재는 최소 골격입니다(x86-64, GCC 13 기준, `g++ -O2 -std=c++20 -pthread bench.cpp`로 빌드).
+**측정**: 스핀 폴링과 `wait`/`notify` 중 어느 쪽이 특정 워크로드에서 더 빠른지는 단언할 수 없고 직접 재는 수밖에 없습니다. 아래는 생산자가 값을 갱신하고 통지하는 100,000번의 주고받기가 끝날 때까지의 총 실행 시간을 재는 최소 골격입니다(x86-64, GCC 13 기준, `g++ -O2 -std=c++20 -pthread bench.cpp`로 빌드).
 
 ```cpp
 #include <atomic>
@@ -144,9 +144,10 @@ int main() {
   constexpr int kIters = 100000;
 
   std::thread consumer([&] {
-    for (int i = 0; i < kIters; ++i) {
-      int seen = gen.load(std::memory_order_acquire);
-      gen.wait(seen, std::memory_order_acquire);  // 다음 세대로 바뀔 때까지 대기
+    int seen = 0;
+    while (seen < kIters) {
+      gen.wait(seen, std::memory_order_acquire);  // 값이 seen과 달라질 때까지 대기
+      seen = gen.load(std::memory_order_acquire);
     }
   });
 
@@ -171,6 +172,9 @@ int main() {
 
 ```cpp
 // 깨진 버전: notify 호출 누락
+#include <atomic>
+#include <cstdio>
+
 std::atomic<bool> ready{false};
 int shared_result = 0;
 
@@ -213,7 +217,7 @@ void producer_fixed() {
 
 ## C++26 확장: fetch_max/fetch_min
 
-C++26에는 `std::atomic<T>::fetch_max`/`fetch_min`이 새로 추가됩니다. WG21의 P0493(*Atomic minimum/maximum*, 최신 리비전 P0493R5)이 정식으로 채택한 이 인터페이스는 정수(integral)와 포인터 타입에 대해 `T fetch_max(T val, std::memory_order order = std::memory_order_seq_cst) noexcept;` 형태로 동작하며, 반환값은 갱신 전의 이전 값입니다. `std::atomic`뿐 아니라 임의 메모리 위치를 감싸는 `std::atomic_ref`에도 동일한 멤버가 추가됩니다. 부동소수점 타입은 2023년 Varna 총회에서 NaN 비교·안전성 문제로 별도 논의가 필요하다는 이유로 P0493 본문에서 빠졌고, 이후 별도 제안(P3008, *Atomic floating-point min/max*)에서 다른 의미론으로 다뤄지고 있습니다.
+C++26에는 `std::atomic<T>::fetch_max`/`fetch_min`이 새로 추가됩니다. WG21의 P0493(*Atomic minimum/maximum*)에서 제안된 이 인터페이스는 정수(integral)와 포인터 타입에 대해 `T fetch_max(T val, std::memory_order order = std::memory_order_seq_cst) noexcept;` 형태로 동작하며, 반환값은 갱신 전의 이전 값입니다. `std::atomic`뿐 아니라 임의 메모리 위치를 감싸는 `std::atomic_ref`에도 동일한 멤버가 추가됩니다. 부동소수점 타입의 min/max는 별도 제안(P3008, *Atomic floating-point min/max*)에서 다뤄지며, 포함 여부와 의미론은 현재 표준 초안에서 직접 확인해야 합니다.
 
 C++26 이전에는 원자값의 최댓값을 락 없이 갱신하려면 아래처럼 CAS 재시도 루프를 직접 작성해야 했습니다.
 
@@ -245,7 +249,7 @@ void record(int value) {
 }
 ```
 
-**주의할 점은 성능 기대치를 과장하지 않는 것**입니다. x86-64에는 원자적 최댓값을 한 번에 계산하는 하드웨어 명령어가 없으므로, 대부분의 구현에서 `fetch_max`는 내부적으로 위와 동일한 CAS 재시도 루프로 컴파일됩니다. 즉 이 기능이 주는 이득은 대체로 정확성과 가독성(직접 짠 CAS 루프에서 흔한 memory_order 실수를 없앰)이지, 극적인 속도 향상이 아닙니다. 아키텍처가 네이티브 원자 max/min 명령을 제공하는 경우(예: 일부 GPU 원자 연산)에는 컴파일러가 그 명령으로 직접 내릴 여지가 생긴다는 점에서 장기적 이득이 있습니다. [Meeting C++의 C++26 atomics 정리](https://meetingcpp.com/blog/items/Atomics-in-Cpp26-.html)에 따르면 이 글을 쓰는 시점(2026년 7월) 기준으로 정식 릴리스에 `fetch_max`/`fetch_min`을 포함해 배포한 컴파일러는 아직 없으며, GCC가 정수 원자 fetch min/max를 위한 컴파일러 내장 함수와 libstdc++ 통합 패치를 개발 중인 단계입니다. 프로덕션에 이 API를 바로 쓰기 전에 자신이 쓰는 컴파일러·표준 라이브러리 버전에서 실제 지원 여부를 확인해야 합니다.
+**주의할 점은 성능 기대치를 과장하지 않는 것**입니다. x86-64에는 원자적 최댓값을 한 번에 계산하는 하드웨어 명령어가 없으므로, 대부분의 구현에서 `fetch_max`는 내부적으로 위와 동일한 CAS 재시도 루프로 컴파일됩니다. 즉 이 기능이 주는 이득은 대체로 정확성과 가독성(직접 짠 CAS 루프에서 흔한 memory_order 실수를 없앰)이지, 극적인 속도 향상이 아닙니다. 아키텍처가 네이티브 원자 max/min 명령을 제공하는 경우(예: 일부 GPU 원자 연산)에는 컴파일러가 그 명령으로 직접 내릴 여지가 생긴다는 점에서 장기적 이득이 있습니다. [Meeting C++의 C++26 atomics 정리](https://meetingcpp.com/blog/items/Atomics-in-Cpp26-.html)은 `fetch_max`/`fetch_min`이 아직 어떤 컴파일러에도 구현되지 않은 듯하다고 전합니다. 프로덕션에 이 API를 바로 쓰기 전에 자신이 쓰는 컴파일러·표준 라이브러리 버전에서 실제 지원 여부를 확인해야 합니다.
 
 ## 비판적 시각: 한계와 트레이드오프
 

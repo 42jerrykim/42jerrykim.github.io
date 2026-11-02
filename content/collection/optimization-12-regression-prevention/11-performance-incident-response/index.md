@@ -27,12 +27,10 @@ tags:
   - Debugging(디버깅)
   - Documentation(문서화)
   - Troubleshooting(트러블슈팅)
-  - C++
   - Guide(가이드)
   - Reference(참고)
   - Deep-Dive
   - Advanced
-  - Case-Study
   - 실습
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
@@ -81,11 +79,11 @@ tags:
 
 ## 탐지 인계에서 완화까지
 
-성능 장애 대응은 크게 네 단계로 진행됩니다. 알림 시스템이 이상 신호를 올리면([알림 전략](/post/regression-prevention/performance-alerting-strategy-design/)의 산출물), 온콜 담당자가 그 신호의 심각도를 판정하는 **triage**, 심각도에 따라 지표를 정상 범위로 되돌리는 **완화(mitigation)**, 완화 이후 여유를 두고 진행하는 **근본원인분석(RCA)**, 그리고 확정된 원인을 다음 챕터의 포스트모템 프로세스로 넘기는 **핸드오프**입니다. 이 네 단계를 분리하는 이유는 단순합니다 — 완화와 원인 규명을 같은 사람이 같은 순간에 하려고 하면, 지표가 계속 나쁜 상태로 방치되는 시간이 길어집니다. 아래 다이어그램은 이 흐름과 각 단계에서 갈라지는 경로를 보여줍니다.
+성능 장애 대응은 크게 네 단계로 진행됩니다. 알림 시스템이 이상 신호를 올리면([알림 전략](/post/regression-prevention/performance-alerting-strategy-design/)의 산출물), 온콜 담당자가 그 신호의 심각도를 판정하는 **triage**, 심각도에 따라 지표를 정상 범위로 되돌리는 **완화(mitigation)**, 완화 이후 여유를 두고 진행하는 **근본원인분석(RCA)**, 그리고 확정된 원인을 이후 챕터(Ch16)의 포스트모템 프로세스로 넘기는 **핸드오프**입니다. 이 네 단계를 분리하는 이유는 단순합니다 — 완화와 원인 규명을 같은 사람이 같은 순간에 하려고 하면, 지표가 계속 나쁜 상태로 방치되는 시간이 길어집니다. 아래 다이어그램은 이 흐름과 각 단계에서 갈라지는 경로를 보여줍니다.
 
 ```mermaid
 flowchart TB
-  alertFired["알림 발생 (Ch08 산출물)"] --> triage["Triage: 심각도 분류"]
+  alertFired["알림 발생 (Ch09 산출물)"] --> triage["Triage: 심각도 분류"]
   triage --> sevHigh["SEV-1/2: IC 호출"]
   triage --> sevLow["SEV-3/4: 온콜 단독 대응"]
   sevHigh --> mitigate["완화: 롤백/기능 플래그/카나리 중단"]
@@ -94,7 +92,7 @@ flowchart TB
   verify -->|"아니오"| escalate["에스컬레이션"]
   escalate --> mitigate
   verify -->|"예"| rca["근본원인분석 (여유 있게)"]
-  rca --> handoff["Ch15 포스트모템 핸드오프"]
+  rca --> handoff["Ch16 포스트모템 핸드오프"]
 ```
 
 ### Triage: 심각도를 어떻게 나눌 것인가
@@ -122,21 +120,21 @@ triage로 심각도가 정해지면 다음은 지표를 정상 범위로 되돌�
 
 ```bash
 #!/usr/bin/env bash
-# 요구 사항: git, 빌드 도구 체인, 아래 THRESHOLD_US에 맞는 벤치마크 바이너리
+# 요구 사항: git, 빌드 도구 체인, 아래 THRESHOLD_NS에 맞는 벤치마크 바이너리
 # 실행: git bisect start <bad_commit> <good_commit> && git bisect run ./bisect_check.sh
 set -euo pipefail
 
-THRESHOLD_US=150   # RCA 대상 회귀의 최소 감지선(예: p50 150us 초과 시 "느림"으로 판정)
+THRESHOLD_NS=150000   # 최소 감지선(예: 150us = 150000ns 초과 시 "느림"으로 판정). real_time 단위는 JSON의 time_unit(기본 ns)을 확인할 것
 
 cmake --build build --target hot_path_bench -j"$(nproc)" || exit 125  # 빌드 실패는 125로 skip
-result_us=$(./build/hot_path_bench --benchmark_format=json \
+result_ns=$(./build/hot_path_bench --benchmark_format=json \
   | python3 -c 'import json,sys; d=json.load(sys.stdin); print(int(d["benchmarks"][0]["real_time"]))')
 
-echo "commit=$(git rev-parse --short HEAD) result_us=${result_us}"
-[ "${result_us}" -le "${THRESHOLD_US}" ]   # 0(정상) 또는 1(회귀)을 git bisect에 반환
+echo "commit=$(git rev-parse --short HEAD) result_ns=${result_ns}"
+[ "${result_ns}" -le "${THRESHOLD_NS}" ]   # 0(정상) 또는 1(회귀)을 git bisect에 반환
 ```
 
-이 스크립트는 빌드 실패(환경 문제로 컴파일이 안 되는 커밋)를 회귀와 구분하기 위해 종료 코드 125로 건너뛰게 하는데, 이걸 빠뜨리면 `git bisect`가 빌드 실패를 회귀로 오판해 엉뚱한 커밋을 지목할 수 있습니다. 또한 RCA 단계의 벤치마크는 [변동성 관리](/post/regression-prevention/performance-variance-noise-management/)에서 다룬 노이즈 문제에 그대로 노출되므로, 임계값 하나만으로 이분 탐색하기보다는 반복 실행과 통계적 판정을 곁들이는 것이 안전합니다. RCA의 산출물은 "회귀를 일으킨 변경과 그 메커니즘"이며, 이 결과가 다음 장인 [Post-mortem 분석](/post/regression-prevention/performance-incident-postmortem-template-process/)의 입력이 됩니다. 원인이 명확하지 않거나 근본적인 구조 문제로 판명되면, 즉시 고치는 대신 [성능 부채 관리](/post/regression-prevention/performance-debt-management-strategy/)의 백로그로 넘기는 것도 정당한 결론입니다.
+이 스크립트는 빌드 실패(환경 문제로 컴파일이 안 되는 커밋)를 회귀와 구분하기 위해 종료 코드 125로 건너뛰게 하는데, 이걸 빠뜨리면 `git bisect`가 빌드 실패를 회귀로 오판해 엉뚱한 커밋을 지목할 수 있습니다. 또한 RCA 단계의 벤치마크는 [변동성 관리](/post/regression-prevention/performance-variance-noise-management/)에서 다룬 노이즈 문제에 그대로 노출되므로, 임계값 하나만으로 이분 탐색하기보다는 반복 실행과 통계적 판정을 곁들이는 것이 안전합니다. RCA의 산출물은 "회귀를 일으킨 변경과 그 메커니즘"이며, 이 결과가 이후 챕터(Ch16)인 [Post-mortem 분석](/post/regression-prevention/performance-incident-postmortem-template-process/)의 입력이 됩니다. 원인이 명확하지 않거나 근본적인 구조 문제로 판명되면, 즉시 고치는 대신 [성능 부채 관리](/post/regression-prevention/performance-debt-management-strategy/)의 백로그로 넘기는 것도 정당한 결론입니다.
 
 ## 온콜 런북: 무엇을 미리 적어둘 것인가
 

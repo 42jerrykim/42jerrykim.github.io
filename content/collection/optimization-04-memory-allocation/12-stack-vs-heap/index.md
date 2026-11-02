@@ -1,7 +1,7 @@
 ---
 collection_order: 12
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-24
 draft: false
 image: wordcloud.png
 title: "[Memory 04] Stack vs Heap 할당 비용"
@@ -11,10 +11,8 @@ tags:
   - Performance(성능)
   - Optimization(최적화)
   - Memory(메모리)
-  - Cache
   - CPU(Central Processing Unit)
   - C++
-  - Data-Structures(자료구조)
   - Compiler(컴파일러)
   - OS(운영체제)
   - Concurrency(동시성)
@@ -22,16 +20,11 @@ tags:
   - Windows(윈도우)
   - Benchmark
   - Latency
-  - Throughput
   - Profiling(프로파일링)
   - Implementation(구현)
   - Best-Practices
-  - Code-Quality(코드품질)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - Comparison(비교)
-  - System-Design
-  - Reliability
   - Advanced
   - Stack-Allocation
   - Heap-Allocation
@@ -40,6 +33,7 @@ tags:
   - Thread-Stack-Size
   - HALO
   - Calling-Convention
+  - Coroutine(코루틴)
 ---
 
 **Stack vs Heap 할당 비용**이란 같은 객체를 함수 스코프의 지역 변수로 둘지, `new`/`malloc`으로 힙에 올릴지에 따라 달라지는 실행 시간과 메모리 안전성의 차이를 정량적으로 이해하고, 상황에 맞게 저장 위치를 고르는 문제를 말합니다. 주문 매칭 엔진처럼 초당 수백만 건의 요청을 처리하는 코드에서는 임시 객체 하나를 스택에 둘지 힙에 올릴지의 선택이 함수 호출 하나마다 반복되므로, 그 작은 차이가 누적되어 지연 예산 전체를 잠식할 수 있습니다. 이 장은 "스택은 빠르고 힙은 느리다"는 통념을 구체적인 내부 동작으로 뜯어보고, 그 통념이 어디까지 맞고 어디서 무너지는지—코루틴 프레임, 탈출 분석의 부재, 스택 크기 제한—를 정량적으로 짚습니다.
@@ -92,65 +86,59 @@ flowchart LR
 
 ## 정량 비교: 벤치마크
 
-두 경로의 차이를 직접 재현하면 다음과 같습니다. 아래는 같은 크기의 POD 페이로드를 매 반복마다 스택 지역 변수로 만드는 경우와, `std::make_unique`로 힙에 올리는 경우를 비교하는 Google Benchmark 골격입니다. 스택 쪽은 매 반복 같은 프레임 공간을 재사용하므로 사실상 "할당 자체가 없는" 경로를, 힙 쪽은 매 반복 실제 `new`/`delete` 쌍을 호출하는 경로를 대표합니다.
+두 경로의 차이를 직접 재현하면 다음과 같습니다. 아래는 2KiB 크기의 POD 페이로드를 매 반복마다 스택 지역 변수로 만드는 경우와 `std::make_unique`로 힙에 올리는 경우를 같은 반복 횟수로 비교하는 프로그램입니다. 스택 쪽은 매 반복 같은 프레임 공간을 재사용하므로 사실상 "할당 자체가 없는" 경로를, 힙 쪽은 매 반복 실제 `new`/`delete` 쌍을 호출하는 경로를 대표합니다. 컴파일러가 최적화로 이 비교를 무의미하게 만들지 못하도록 `asm volatile`로 두 쪽 모두 주소를 탈출시킵니다. 이 장치가 없으면 뒤에서 보듯 GCC와 Clang은 단순한 `new`/`delete` 쌍을 통째로 지워 버립니다.
 
 ```cpp
-#include <benchmark/benchmark.h>
+#include <chrono>
+#include <cstddef>
 #include <cstdint>
+#include <cstdio>
 #include <memory>
 
-constexpr std::size_t kSize = 256;  // SSO/캐시 임계를 넘는 크기
+constexpr std::size_t kSize = 256;  // 256 * 8바이트 = 2KiB 페이로드
 
 struct Payload {
   std::uint64_t data[kSize];
 };
 
-static void BM_StackAllocate(benchmark::State& state) {
-  for (auto _ : state) {
-    Payload p;  // 매 반복 같은 스택 프레임 공간을 재사용
+// 컴파일러가 값을 지우거나 new/delete 쌍을 통째로 제거하지 못하게 주소를 "탈출"시킨다.
+inline void escape(void* p) { asm volatile("" : : "g"(p) : "memory"); }
+
+template <typename Fn>
+double ns_per_iter(Fn fn, int iters) {
+  using clock = std::chrono::steady_clock;
+  for (int i = 0; i < iters / 10; ++i) fn();  // 워밍업
+  const auto t0 = clock::now();
+  for (int i = 0; i < iters; ++i) fn();
+  const auto t1 = clock::now();
+  return std::chrono::duration<double, std::nano>(t1 - t0).count() / iters;
+}
+
+int main() {
+  const int iters = 20'000'000;
+  const double stack_ns = ns_per_iter([] {
+    Payload p;  // 스택: 프레임 안의 고정 오프셋
     p.data[0] = 1;
-    benchmark::DoNotOptimize(p.data[0]);
-  }
-}
-BENCHMARK(BM_StackAllocate);
-
-static void BM_HeapAllocate(benchmark::State& state) {
-  for (auto _ : state) {
-    auto p = std::make_unique<Payload>();  // 매 반복 new/delete 왕복
+    escape(&p);
+  }, iters);
+  const double heap_ns = ns_per_iter([] {
+    std::unique_ptr<Payload> p(new Payload);  // 힙: 매 반복 new/delete 왕복 (make_unique는 0으로 채우므로 쓰지 않는다)
     p->data[0] = 1;
-    benchmark::DoNotOptimize(p->data[0]);
-  }
+    escape(p.get());
+  }, iters);
+  std::printf("stack: %.2f ns/op\nheap : %.2f ns/op\n", stack_ns, heap_ns);
 }
-BENCHMARK(BM_HeapAllocate);
-
-BENCHMARK_MAIN();
 ```
 
-`g++ -O2 bench.cpp -lbenchmark -lpthread`(x86-64, GCC 13, `-O2` 기준 예시)로 빌드해 실행하면, `BM_HeapAllocate`가 `BM_StackAllocate`보다 한 자릿수–두 자릿수 배 느리게 나오는 경우가 흔합니다. 차이의 원인은 힙 경로가 매 반복 free list 탐색·메타데이터 기록·(멀티스레드라면) 락 획득을 실제로 수행하는 반면, 스택 경로는 컴파일 타임에 이미 확보된 프레임 공간의 주소만 재사용하기 때문입니다. 다만 이 배율은 할당기 구현(ptmalloc, jemalloc, tcmalloc, mimalloc)과 객체 크기·스레드 수에 따라 크게 흔들리므로 단정적인 숫자로 인용하지 말고 대상 환경에서 재현해야 합니다. 시스템 콜 수준의 차이를 직접 확인하려면 두 경로를 각각 별도 실행 파일로 만들어 `strace`로 세어 보는 방법이 있습니다.
-
-```text
-# 힙 경로: mmap_threshold를 넘는 큰 할당을 반복하면 mmap 호출이 관찰됨
-$ strace -c -e trace=mmap,munmap,brk ./heap_heavy
-% time     seconds  usecs/call     calls    errors syscall
------- ----------- ----------- --------- --------- ----------------
- 41.2%    0.000812          27        30           mmap
- 18.5%    0.000365          12        30           munmap
-...
-
-# 스택만 쓰는 경로: 힙 관련 시스템 콜이 거의 나타나지 않음
-$ strace -c -e trace=mmap,munmap,brk ./stack_only
-% time     seconds  usecs/call     calls    errors syscall
------- ----------- ----------- --------- --------- ----------------
-  0.0%    0.000000           0         1           brk
-```
+`g++ -O2 -std=c++17 bench.cpp -o bench`로 빌드해 Compiler Explorer의 x86-64 GCC 13.2에서 반복 횟수를 달리해 세 번 실행한 결과, 스택 경로는 0.90–1.27 ns/op, 힙 경로는 21.54–48.31 ns/op였습니다. 힙 쪽이 20배 안팎 느렸고 실행마다 흔들렸는데, 공유 서버라는 점이 한 원인일 수 있지만 원인을 이 측정만으로 확정할 수는 없습니다. `std::make_unique<Payload>()`는 값 초기화로 2KiB를 0으로 채우므로, 스택 쪽 `Payload p;`와 같은 조건이 되도록 힙 쪽은 `new Payload`를 직접 썼습니다. 힙 경로가 매 반복 free list 탐색·메타데이터 기록을 수행하는 반면 스택 경로는 컴파일 타임에 확보된 프레임 공간의 주소만 재사용한다는 구조적 차이가 이 격차의 방향을 설명하지만, 배율 자체는 할당기 구현(ptmalloc, jemalloc, tcmalloc, mimalloc)과 객체 크기·스레드 수에 따라 달라지므로 대상 환경에서 재현해야 합니다. 시스템 콜 수준의 차이를 확인하려면 두 경로를 각각 별도 실행 파일로 만들어 `strace -c -e trace=mmap,munmap,brk ./실행파일`로 호출 횟수를 세어 볼 수 있습니다.
 
 ## 탈출 분석의 부재와 코루틴 프레임
 
-Java·Go 같은 언어의 런타임은 <strong>탈출 분석(escape analysis)</strong>을 통해 "이 객체가 함수 밖으로 나가지 않는다"는 것을 증명할 수 있으면 힙 할당을 자동으로 스택 할당으로 승격시킵니다. C++ 컴파일러는 일반적으로 이런 보장을 제공하지 않습니다. `new`로 만든 객체는 컴파일러가 스코프를 증명할 수 있어도 원칙적으로 힙에 남으며, 이는 표준이 요구하는 것이 아니라 구현이 선택하지 않은 최적화입니다.
+Java·Go 같은 언어는 <strong>탈출 분석(escape analysis)</strong>을(Go는 컴파일 타임, HotSpot은 JIT 단계에서) 통해 "이 객체가 함수 밖으로 나가지 않는다"는 것을 증명할 수 있으면 힙 할당을 자동으로 스택 할당으로 승격시킵니다. C++ 컴파일러는 일반적으로 이런 보장을 제공하지 않습니다. C++14부터 표준([expr.new])이 할당 생략을 허용하고, 실제로 GCC 13.2와 Clang 18.1은 `int* p = new int(x); int v = *p + 1; delete p; return v;`를 `-O2`에서 `lea eax, [rdi+1]` 한 명령으로 줄였습니다(Compiler Explorer에서 확인). 그러나 이는 `new`/`delete` 쌍이 통째로 사라지는 단순한 경우일 뿐이고, 객체가 함수 밖으로 나가는지 증명해 힙 객체를 스택으로 옮겨 주는 일반적 탈출 분석은 표준이 요구하지 않아 보장되지 않습니다.
 
-유일한 예외에 가까운 것이 C++20 코루틴의 <strong>HALO(Heap Allocation eLision Optimization)</strong>입니다. 코루틴 프레임은 기본적으로 힙에 할당되지만, 컴파일러가 코루틴의 램프 함수(ramp function)와 관련 글루 코드를 인라인할 수 있고 그 결과 호출자의 스택 프레임 안에 코루틴 프레임을 안전하게 넣을 수 있다고 증명하면, 힙 할당을 완전히 생략할 수 있습니다. 이 최적화의 조건은 [Gor Nishanov와 Richard Smith의 P0981R0](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0981r0.html)에서 처음 제안되었고, 핵심은 "코루틴 프레임이 호출자보다 오래 살지 않는다"는 것을 컴파일러가 같은 번역 단위 안에서 증명할 수 있어야 한다는 점입니다. Clang/LLVM은 이를 `CoroElide`라는 이름으로, MSVC도 유사한 elision을 구현하고 있습니다.
+이런 최적화가 언어 차원에서 명시적으로 다뤄지는 대표적인 사례가 C++20 코루틴의 <strong>HALO(Heap Allocation eLision Optimization)</strong>입니다. 코루틴 프레임은 기본적으로 힙에 할당되지만, 컴파일러가 코루틴의 램프 함수(ramp function)와 관련 글루 코드를 인라인할 수 있고 그 결과 호출자의 스택 프레임 안에 코루틴 프레임을 안전하게 넣을 수 있다고 증명하면, 힙 할당을 완전히 생략할 수 있습니다. 이 최적화의 조건은 [Richard Smith와 Gor Nishanov의 공동 응답 문서 P0981R0](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0981r0.html)에 정리되어 있고, 핵심은 "코루틴 프레임이 호출자보다 오래 살지 않는다"는 것을 컴파일러가 같은 번역 단위 안에서 증명할 수 있어야 한다는 점입니다. Clang/LLVM은 이를 `CoroElide`라는 이름으로, MSVC도 유사한 elision을 구현하고 있습니다.
 
-문제는 이 최적화가 "보장된 계약"이 아니라 "적용되면 좋은 최적화"라는 점입니다. 2026년 시점에도 단순한 코루틴에서는 잘 작동하지만 복잡한 비동기 체인이나 가상 함수 호출을 거치는 경로에서는 적용되지 않는 경우가 흔히 보고됩니다. Microsoft의 개발자 블로그는 반대 방향의 함정도 지적합니다. HALO가 적용되어 코루틴 프레임이 스택으로 옮겨지더라도, 최적화 단계에서 이미 죽은 변수로 판명된 임시 버퍼(`__coro_elision_buffer`)의 공간을 컴파일러가 회수하지 못해 실제로는 쓰지 않는 스택 공간을 여전히 예약해 두는 경우가 있었고, 이는 큰 지역 변수를 가진 코루틴에서 예상치 못한 스택 오버플로우로 이어질 수 있었습니다.
+문제는 이 최적화가 "보장된 계약"이 아니라 "적용되면 좋은 최적화"라는 점입니다. P0981R0이 정리한 elision 조건(같은 번역 단위 안에서 프레임이 호출자보다 오래 살지 않음을 증명해야 함)을 컴파일러가 증명하지 못하는 경로, 예를 들어 호출 대상이 컴파일 시점에 정해지지 않는 가상 함수 경로에서는 적용되지 않을 수 있습니다. Raymond Chen의 블로그 글은 elision이 일어나지 않는 경우에도 생기는 함정을 보여 줍니다. MSVC가 `-O2`에서 "elision 불가" 상수를 전파해 코루틴 프레임을 힙에 할당하면서도, 이미 쓰이지 않는 변수가 된 `__coro_elision_buffer`를 위한 스택 공간을 계속 예약했고, 그래서 프레임이 힙에 있는데도 호출마다 많은 스택을 쓰는 현상이 나타났습니다(이후 수정됨).
 
 > "it fails to realize that the `__coro_elision_buffer` is now a dead variable, so the function allocates stack space for a buffer it never uses." — Raymond Chen, [The Old New Thing: "Why does calling a coroutine allocate a lot of stack space even though the coroutine frame is on the heap?"](https://devblogs.microsoft.com/oldnewthing/20231115-00/?p=109020) (2023, 이후 MSVC에서 수정됨)
 
@@ -166,7 +154,7 @@ Java·Go 같은 언어의 런타임은 <strong>탈출 분석(escape analysis)</s
 
 <strong>"스택 할당은 항상 공짜다"</strong>는 절반만 맞습니다. 이미 확보된 프레임 공간을 재사용하는 한 맞지만, 함수가 처음 그 스택 페이지 영역에 닿을 때는 아직 매핑되지 않은 페이지에 대한 소프트 페이지 폴트가 발생할 수 있고, 큰 지역 배열을 여러 개 겹쳐 선언하면 위에서 본 스택 한도에 그만큼 빨리 다가갑니다. "공짜"는 할당 알고리즘이 없다는 뜻이지, 물리적으로 아무 비용이 없다는 뜻은 아닙니다.
 
-<strong>"컴파일러가 escape analysis로 힙 할당을 스택으로 자동 승격해 준다"</strong>는 C++에서는 대체로 틀립니다. 이는 Java/Go 계열 런타임의 특성이며, C++ 컴파일러는 코루틴 프레임이라는 좁은 예외(HALO)에서만 유사한 최적화를 시도하고, 그마저도 앞서 본 것처럼 안정적으로 보장되지 않습니다. `new`로 만든 객체가 함수 밖으로 나가지 않는다고 해서 컴파일러가 알아서 스택으로 옮겨 줄 것이라고 기대하면 안 됩니다.
+<strong>"컴파일러가 escape analysis로 힙 할당을 스택으로 자동 승격해 준다"</strong>는 C++에서는 대체로 틀립니다. 이는 Java/Go 계열 런타임의 특성이며, C++ 컴파일러는 일부 단순한 경우와 코루틴 프레임(HALO)에서 유사한 최적화를 하지만 앞서 본 것처럼 보장되지 않습니다. `new`로 만든 객체가 함수 밖으로 나가지 않는다고 해서 컴파일러가 알아서 스택으로 옮겨 줄 것이라고 기대하면 안 됩니다.
 
 <strong>"재귀나 VLA는 스택에 있으니 크기 걱정이 없다"</strong>도 흔한 착각입니다. 스택은 유한한 자원이고, 입력에 의존하는 재귀 깊이나 실행 시점 크기의 VLA는 정상적인 입력 범위 안에서도 스택 한도를 넘을 수 있습니다. 크기가 예측 불가능하다면 처음부터 힙 기반 자료구조(명시적 스택을 흉내 낸 `std::vector` 등)로 반복문을 구성하는 편이 안전합니다.
 
@@ -183,16 +171,14 @@ Java·Go 같은 언어의 런타임은 <strong>탈출 분석(escape analysis)</s
 
 ### 적용 체크리스트
 
-- [ ] 객체 크기가 컴파일 타임에 확정되고 스코프가 함수 안에 갇혀 있는가? 그렇다면 우선 지역 변수로 둔다.
-- [ ] 반환 후에도 값이 필요하다면 스택 객체의 주소가 아니라 값·소유권을 반환하는 경로로 설계했는가?
-- [ ] 재귀 깊이나 VLA 크기가 외부 입력에 의존한다면, 힙 기반 반복 구조로 바꾸는 것을 검토했는가?
-- [ ] 스레드를 다수 생성하는 코드에서 스레드 스택 크기를 필요한 만큼으로 줄였는가?
+판단 기준 표의 각 행은 설계 단계의 선택이고, 아래는 표가 다루지 않는 검증 단계 확인 항목이다.
+
 - [ ] 핫패스 코루틴에서 HALO 적용 여부를 가정하지 않고 실제 어셈블리·프로파일로 확인했는가?
-- [ ] 스택/힙 전환 전후를 벤치마크로 비교하고 대상 환경에서 재현했는가?
+- [ ] 스택/힙 전환 전후를 벤치마크로 비교하고 대상 환경에서 재현했는가? 비교하는 두 경로의 초기화 조건이 같은지도 확인한다.
 
 ## 비판적 시각: 한계와 트레이드오프
 
-스택이 빠른 이유는 마법이 아니라 **범용성을 포기한 대가**입니다. 크기가 컴파일 타임에 확정되고 수명이 스코프에 묶인다는 제약을 지키는 한에서만 무비용에 가깝고, 이 제약을 우회하려는 시도(스택 객체 주소 반환, 입력 의존 VLA)는 곧바로 정확성 문제로 이어집니다. 힙은 그 반대급부로 유연성을 얻는 대신 락 경합([챕터 16](/post/memory-optimization/global-allocator-jemalloc-tcmalloc-tuning-expert/))과 단편화([챕터 10](/post/memory-optimization/memory-fragmentation-analysis/))라는 다른 종류의 비용을 함께 들여옵니다. HALO는 "코루틴은 항상 힙"이라는 통념을 깨뜨리는 흥미로운 사례이지만, 컴파일러·최적화 수준·번역 단위 경계에 따라 적용 여부가 갈리는 비보장 최적화라는 점에서 신뢰할 수 있는 설계 도구라기보다는 "적용되면 보너스"에 가깝습니다. 실무에서 지연 예산이 타이트한 코드는 이런 비보장 최적화에 기대기보다, 저장 위치를 명시적으로 설계하고 [Google Benchmark 실전](/post/profiling-analysis/google-benchmark-practical/)과 [메모리 프로파일링: 힙 분석](/post/profiling-analysis/memory-profiling-heap-analysis/)으로 검증하는 편이 안전합니다.
+스택이 빠른 이유는 마법이 아니라 **범용성을 포기한 대가**입니다. 크기가 컴파일 타임에 확정되고 수명이 스코프에 묶인다는 제약을 지키는 한에서만 무비용에 가깝고, 이 제약을 우회하려는 시도(스택 객체 주소 반환, 입력 의존 VLA)는 곧바로 정확성 문제로 이어집니다. 힙은 그 반대급부로 유연성을 얻는 대신 락 경합([챕터 16](/post/memory-optimization/global-allocator-jemalloc-tcmalloc-tuning-expert/))과 단편화([챕터 10](/post/memory-optimization/memory-fragmentation-analysis/))라는 다른 종류의 비용을 함께 들여옵니다. 실무에서 지연 예산이 타이트한 코드는 이런 비보장 최적화에 기대기보다, 저장 위치를 명시적으로 설계하고 [Google Benchmark 실전](/post/profiling-analysis/google-benchmark-practical/)과 [메모리 프로파일링: 힙 분석](/post/profiling-analysis/memory-profiling-heap-analysis/)으로 검증하는 편이 안전합니다.
 
 ## 마무리
 

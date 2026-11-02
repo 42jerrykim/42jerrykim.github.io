@@ -1,7 +1,7 @@
 ---
 collection_order: 7
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-24
 draft: false
 image: wordcloud.png
 title: "[CPU 05] TLB 미스 최적화"
@@ -25,14 +25,7 @@ tags:
   - Best-Practices
   - Advanced
   - Deep-Dive
-  - Case-Study
-  - Reference(참고)
-  - Guide(가이드)
-  - Technology(기술)
-  - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Documentation(문서화)
   - TLB
   - Huge-Page
   - Page-Walk
@@ -43,9 +36,13 @@ tags:
   - Virtual-Memory
   - Page-Table
   - STLB
+  - Memory-Management
+  - Page-Fault
+  - Working-Set
+  - Pointer-Chasing
 ---
 
-**TLB(Translation Lookaside Buffer) 미스 최적화**란 가상 주소를 물리 주소로 바꾸는 하드웨어 캐시인 TLB가 필요한 매핑을 갖고 있지 않아 발생하는 페이지 테이블 워크(page walk) 비용을 줄이는 작업을 말합니다. CPU가 메모리에 접근할 때마다 프로그램이 다루는 가상 주소는 실제 물리 주소로 변환되어야 하는데, 이 변환표(페이지 테이블)를 매번 메모리에서 읽는다면 접근 하나당 수 회의 추가 메모리 왕복이 필요해집니다. TLB는 이 변환 결과를 캐싱해 대부분의 접근을 한 사이클 수준으로 끝내지만, 작업집합이 TLB가 덮는 범위보다 커지거나 접근 패턴이 무작위에 가까우면 TLB 미스가 누적되고, 그때마다 하드웨어가 다단계 페이지 테이블을 순차적으로 걸어 내려가는 비용이 그대로 지연시간에 얹힙니다. 이 장에서는 TLB가 정확히 무엇을 캐싱하는지, huge page가 왜 이 문제를 구조적으로 완화하는지, 그리고 이 비용을 프로파일링으로 실제 확인하는 방법을 다룹니다.
+**TLB(Translation Lookaside Buffer) 미스 최적화**란 가상 주소를 물리 주소로 바꾸는 하드웨어 캐시인 TLB가 필요한 매핑을 갖고 있지 않아 발생하는 페이지 테이블 워크(page walk) 비용을 줄이는 작업을 말합니다. CPU가 메모리에 접근할 때마다 프로그램이 다루는 가상 주소는 실제 물리 주소로 변환되어야 하는데, 이 변환표(페이지 테이블)를 매번 메모리에서 읽는다면 접근 하나당 수 회의 추가 메모리 왕복이 필요해집니다. TLB는 이 변환 결과를 캐싱해 대부분의 접근을 추가 메모리 왕복 없이 끝내지만, 작업집합이 TLB가 덮는 범위보다 커지거나 접근 패턴이 무작위에 가까우면 TLB 미스가 누적되고, 그때마다 하드웨어가 다단계 페이지 테이블을 순차적으로 걸어 내려가는 비용이 그대로 지연시간에 얹힙니다. 이 장에서는 TLB가 정확히 무엇을 캐싱하는지, huge page가 왜 이 문제를 구조적으로 완화하는지, 그리고 이 비용을 프로파일링으로 실제 확인하는 방법을 다룹니다.
 
 ## 이 장을 읽기 전에
 
@@ -65,7 +62,7 @@ tags:
 
 ## TLB의 등장 배경과 필요성 (역사·배경)
 
-가상 메모리는 1960년대 후반부터 여러 시스템(맨체스터 Atlas, IBM System/370 등)에 도입되기 시작했지만, 프로그램이 참조하는 모든 가상 주소를 페이지 테이블을 통해 매번 메모리에서 변환한다면 가상 메모리의 유연성이 성능을 심각하게 갉아먹었습니다. 이 문제를 풀기 위해 "최근 사용한 주소 변환 결과를 작은 연관 메모리(associative memory)에 캐싱해 두자"는 아이디어가 나왔고, 이 캐시는 당시 맨체스터 Atlas 팀이 캐시를 부르던 표현인 "lookaside buffer"에서 이름을 따 **translation lookaside buffer**로 불리게 되었습니다. 1977년 출시된 DEC VAX-11/780은 이 개념을 상용 미니컴퓨터급에서 대중화한 초기 사례로 꼽히며, 당시 문헌에는 수십–백여 엔트리 규모의 연관(associative) translation buffer를 탑재했다고 기록되어 있습니다(정확한 엔트리 수·연관도는 문헌마다 차이가 있어 단정하지 않습니다).
+가상 메모리는 오래전부터 여러 시스템에 도입되었지만, 프로그램이 참조하는 모든 가상 주소를 페이지 테이블을 통해 매번 메모리에서 변환한다면 가상 메모리의 유연성이 성능을 심각하게 갉아먹었습니다. 이 문제를 풀기 위해 "최근 사용한 주소 변환 결과를 작은 연관 메모리(associative memory)에 캐싱해 두자"는 아이디어가 나왔고, 이 캐시는 "lookaside buffer"라는 표현에서 이름을 따 **translation lookaside buffer**로 불리게 되었고, 오늘날에는 거의 모든 범용 CPU가 계층화된 TLB를 갖습니다.
 
 TLB의 기본 발상은 이후 거의 바뀌지 않았지만, 구현 방식은 두 갈래로 갈렸습니다. x86과 대부분의 ARM 코어는 **하드웨어 관리 TLB(hardware-managed TLB)** 방식을 택해, TLB 미스가 나면 CPU 내부의 전용 회로(page miss handler, PMH)가 자동으로 페이지 테이블을 걸어 내려가 결과를 채웁니다. 반면 초기 MIPS·SPARC 같은 아키텍처는 **소프트웨어 관리 TLB(software-managed TLB)** 방식을 택해, TLB 미스가 발생하면 트랩을 걸어 OS의 예외 처리 루틴이 페이지 테이블을 직접 읽고 TLB를 채우도록 위임했습니다. 소프트웨어 관리 방식은 페이지 테이블 형식을 OS가 자유롭게 정의할 수 있다는 유연성이 있지만, 미스 하나마다 예외 진입·복귀 오버헤드가 그대로 얹히므로 미스가 잦은 워크로드에서는 하드웨어 관리 방식보다 불리한 경우가 많습니다. 오늘날 서버·클라이언트 주류인 x86-64와 대부분의 ARMv8 이후 코어는 하드웨어 관리 TLB를 쓰므로, 이 장의 논의도 그 전제를 따릅니다.
 
@@ -78,7 +75,7 @@ x86-64는 표준적으로 **4단계 페이지 테이블**을 사용합니다 —
 ```mermaid
 flowchart LR
   va["가상 주소"] --> tlbLookup{"TLB 히트?"}
-  tlbLookup -->|"히트"| physAddr["물리 주소</br>1사이클 수준"]
+  tlbLookup -->|"히트"| physAddr["물리 주소</br>추가 메모리 접근 없음"]
   tlbLookup -->|"미스"| pwcCheck{"페이징 구조 캐시</br>(PWC) 히트?"}
   pwcCheck -->|"상위 단계 히트"| ptRead["최하위 PT만 읽음"]
   pwcCheck -->|"전부 미스"| fullWalk["PML4→PDPT→PD→PT</br>순차 메모리 접근"]
@@ -137,17 +134,18 @@ int main(int argc, char** argv) {
   int flags = MAP_PRIVATE | MAP_ANONYMOUS | (use_huge ? MAP_HUGETLB : 0);
   char* buf = static_cast<char*>(mmap(nullptr, kBufBytes, PROT_READ | PROT_WRITE, flags, -1, 0));
   if (buf == MAP_FAILED) { perror("mmap"); return 1; }
+  if (!use_huge) madvise(buf, kBufBytes, MADV_NOHUGEPAGE);  // THP가 always여도 4KB 경로를 유지
   uint64_t ns = walk_chain(buf, kBufBytes);
   printf("%s: %llu ns/access\n", use_huge ? "huge(2MB)" : "regular(4KB)", (unsigned long long)ns);
   munmap(buf, kBufBytes);
 }
 ```
 
-빌드는 `g++ -O2 -std=c++17 tlb_walk.cpp -o tlb_walk` (Linux x86-64 기준)이고, huge page 실행 전에는 반드시 풀을 예약해야 합니다(1GiB를 2MB 페이지로 덮으려면 `sudo sysctl -w vm.nr_hugepages=512`). `./tlb_walk`(일반)와 `./tlb_walk 1`(huge)을 각각 여러 번 실행해 `ns/access`를 비교하면 됩니다. 정확한 배율은 CPU 세대·메모리 대역폭·동시 실행 중인 다른 프로세스의 TLB 압력에 따라 달라지므로, 이 코드가 주는 것은 "측정 방법"이지 특정 배율에 대한 보장이 아닙니다 — 반드시 대상 플랫폼에서 직접 재현해 확인해야 합니다.
+빌드는 `g++ -O2 -std=c++17 tlb_walk.cpp -o tlb_walk` (Linux x86-64 기준)이고, huge page 실행 전에는 반드시 풀을 예약해야 합니다(1GiB를 2MB 페이지로 덮으려면 `sudo sysctl -w vm.nr_hugepages=512`). `./tlb_walk`(일반)와 `./tlb_walk 1`(huge)을 각각 여러 번 실행해 `ns/access`를 비교하면 됩니다. 정확한 배율은 CPU 세대·메모리 대역폭·동시 실행 중인 다른 프로세스의 TLB 압력에 따라 달라지므로, 이 코드가 주는 것은 "측정 방법"이지 특정 배율에 대한 보장이 아닙니다 — 반드시 대상 플랫폼에서 직접 재현해 확인해야 합니다. 페이지당 캐시라인 하나만 접근하므로 방문 라인은 262,144개(약 16MB)이고, 이 크기가 대상 CPU의 L3보다 작으면 데이터 캐시 적중이 섞여 TLB 효과가 상대적으로 작게 보일 수 있습니다. 일반 경로가 실제로 4KB 페이지만 쓰는지는 실행 중 `/proc/<pid>/smaps`의 `AnonHugePages` 값이 0인지로 확인합니다.
 
 ## 흔한 오개념 바로잡기
 
-<strong>"huge page는 켜 두면 항상 이득이다"</strong>는 위험한 단순화입니다. THP를 `always` 모드로 설정하면 커널 공식 문서가 명시하듯 huge page 할당에 실패했을 때 애플리케이션이 직접 회수(reclaim)와 메모리 압축(compaction)을 거쳐서라도 huge page를 즉시 확보하려고 멈춰 서게 되며, 이 압축 과정 자체가 수 ms 단위의 지연 스파이크를 만들 수 있습니다. 실제로 Redis·MongoDB 등 지연시간에 민감한 소프트웨어들이 배포 가이드에서 THP를 `madvise` 또는 `never`로 낮추도록 권고해 온 이력은, "자동으로 켜지는 최적화"가 p99 관점에서는 오히려 위험 요소가 될 수 있음을 보여 줍니다.
+<strong>"huge page는 켜 두면 항상 이득이다"</strong>는 위험한 단순화입니다. THP에는 서로 다른 두 설정이 있다는 점을 구분해야 합니다. `enabled`는 THP를 어느 영역에 시도할지를 정하고, `defrag`는 huge page 할당에 실패했을 때 얼마나 적극적으로 단편화를 해소할지를 정합니다. [커널 공식 문서](https://docs.kernel.org/admin-guide/mm/transhuge.html)에 따르면 `defrag`를 `always`로 두면 THP를 요청한 애플리케이션이 할당 실패 시 멈춰 서서 직접 페이지를 회수하고 메모리를 압축해 huge page를 즉시 확보하려 하며, 기본값은 `madvise`입니다. 이 직접 회수·압축은 지연 스파이크의 원인이 될 수 있으므로, 지연시간에 민감한 서비스에서는 `enabled`를 `always`로 전역 적용하기 전에 `defrag` 설정과 함께 검토해야 합니다.
 
 <strong>"TLB 미스는 캐시 미스 하나와 비슷한 비용이다"</strong>도 틀린 직관입니다. TLB 미스는 그 자체로 페이지 테이블을 걸어 내려가는 여러 번의 순차적 메모리 접근을 유발하며, 이 각각의 접근이 다시 캐시 미스일 수 있습니다. 즉 TLB 미스 하나의 실제 비용은 페이징 구조 캐시(PWC) 히트 여부에 따라 크게 달라지는 **조건부 비용**이며, 최악의 경우 데이터 캐시 미스 하나보다 몇 배 더 비쌀 수 있습니다.
 
@@ -155,20 +153,10 @@ int main(int argc, char** argv) {
 
 ## TLB 미스 진단: 프로파일링으로 확인하기
 
-TLB 미스를 코드 수정 전에 먼저 확인해야 하는 이유는 단순합니다 — 캐시 미스·분기 예측 실패·포트 경합이 뒤섞인 상황에서 TLB가 실제 병목인지 모른 채 huge page부터 도입하면, 별 효과 없이 배포 복잡도(정적 예약 관리, THP 파라미터 튜닝)만 늘어날 수 있습니다. Linux에서는 `perf stat`으로 dTLB/iTLB 관련 하드웨어 이벤트를 직접 셀 수 있습니다. 아래는 출력 **형식**을 보여주기 위한 예시이며, 실제 절대 수치·비율은 CPU 세대와 워크로드에 따라 크게 달라지므로 대상 시스템에서 직접 실행해 확인해야 합니다.
+TLB 미스를 코드 수정 전에 먼저 확인해야 하는 이유는 단순합니다 — 캐시 미스·분기 예측 실패·포트 경합이 뒤섞인 상황에서 TLB가 실제 병목인지 모른 채 huge page부터 도입하면, 별 효과 없이 배포 복잡도(정적 예약 관리, THP 파라미터 튜닝)만 늘어날 수 있습니다. Linux에서는 `perf stat`으로 dTLB/iTLB 관련 하드웨어 이벤트를 직접 셀 수 있습니다. 아래 명령으로 대상 시스템에서 직접 측정합니다. 이 글은 특정 장비의 출력 값을 싣지 않으며, 절대 수치와 비율은 CPU 세대와 워크로드에 따라 크게 달라집니다.
 
-```text
-$ perf stat -e dTLB-loads,dTLB-load-misses,iTLB-loads,iTLB-load-misses,page-faults -- ./tlb_walk
-
- Performance counter stats for './tlb_walk':
-
-       842,193,441      dTLB-loads
-        41,208,732      dTLB-load-misses          #    4.89% of all dTLB cache accesses
-        12,847,205      iTLB-loads
-           184,332      iTLB-load-misses          #    1.44% of all iTLB cache accesses
-               612      page-faults
-
-       3.812394512 seconds time elapsed
+```bash
+perf stat -e dTLB-loads,dTLB-load-misses,iTLB-loads,iTLB-load-misses,page-faults -- ./tlb_walk
 ```
 
 `dTLB-load-misses`의 절대 횟수보다 **`dTLB-loads` 대비 비율**을 보는 것이 중요합니다. 같은 미스 횟수라도 전체 로드가 적은 워크로드에서는 비율이 훨씬 크게 나타나 병목일 가능성이 높다는 신호가 되기 때문입니다. Intel CPU에서는 여기서 한 단계 더 들어가 `DTLB_LOAD_MISSES.WALK_DURATION`이나 `DTLB_LOAD_MISSES.WALK_COMPLETED_4K/2M/1G` 같은 uarch 전용 이벤트로 실제 몇 사이클이 페이지 워크에 쓰였는지, 그리고 어떤 페이지 크기의 워크가 완료됐는지까지 구분할 수 있습니다(정확한 이벤트 이름은 세대마다 다르므로 `perf list | grep -i tlb`로 대상 CPU에서 지원하는 이벤트를 먼저 확인해야 합니다).
@@ -187,7 +175,7 @@ THP가 실제로 huge page를 만들어 내고 있는지는 `/proc/vmstat`으로
 
 ## 비판적 시각: 한계와 트레이드오프
 
-huge page는 공짜 점심이 아닙니다. hugetlbfs 정적 예약은 시스템 전체 메모리 계획에 huge page 풀을 미리 박아 넣어야 해서 유연성이 떨어지고, 예약한 만큼 다른 용도로 쓸 일반 메모리가 줄어듭니다. THP는 그 유연성 문제를 풀지만 대가로 khugepaged의 백그라운드 스캔·병합 비용과, `always` 모드에서 직접 회수·압축까지 거치는 할당 경로의 지연 스파이크 위험을 떠안습니다. 두 방식 모두 "메모리를 2MB/1GB 단위로만 다룬다"는 제약 때문에 실제 필요한 양보다 더 많은 메모리를 커밋하게 되는 내부 단편화(internal fragmentation)도 피할 수 없는 대가입니다. 또한 이 장에서 다룬 페이지 워크·TLB 크기 수치는 특정 세대(Zen4, Lion Cove)의 공개된 예시일 뿐이며, 벤더·세대마다 계속 바뀌므로 이 장의 숫자를 근거로 삼기보다는 대상 플랫폼에서 직접 측정한 값을 기준으로 판단해야 합니다. 가상화 환경에서는 게스트의 페이지 워크가 EPT/NPT로 인해 중첩되어 최악의 경우 페이지 워크 단계 수가 곱절로 늘어날 수 있다는 점도, 클라우드 배포를 고려한다면 별도로 확인해야 할 변수입니다. huge page로 TLB 미스율을 낮췄는데도 p99 지연이 그대로라면, 병목이 애초에 TLB가 아니었거나 huge page 확보 실패(THP fallback)가 조용히 일어나고 있을 가능성을 먼저 의심해야 합니다.
+huge page는 공짜 점심이 아닙니다. hugetlbfs 정적 예약은 시스템 전체 메모리 계획에 huge page 풀을 미리 박아 넣어야 해서 유연성이 떨어지고, 예약한 만큼 다른 용도로 쓸 일반 메모리가 줄어듭니다. THP는 그 유연성 문제를 풀지만 대가로 khugepaged의 백그라운드 스캔·병합 비용과, `defrag=always` 설정에서 직접 회수·압축까지 거치는 할당 경로의 지연 스파이크 위험을 떠안습니다. 두 방식 모두 "메모리를 2MB/1GB 단위로만 다룬다"는 제약 때문에 실제 필요한 양보다 더 많은 메모리를 커밋하게 되는 내부 단편화(internal fragmentation)도 피할 수 없는 대가입니다. 또한 이 장에서 다룬 페이지 워크·TLB 크기 수치는 특정 세대(Zen4, Lion Cove)의 공개된 예시일 뿐이며, 벤더·세대마다 계속 바뀌므로 이 장의 숫자를 근거로 삼기보다는 대상 플랫폼에서 직접 측정한 값을 기준으로 판단해야 합니다. 가상화 환경에서는 게스트의 페이지 워크가 EPT/NPT로 인해 중첩되어 최악의 경우 페이지 워크에 필요한 메모리 참조 수가 크게 늘어날 수 있다는 점도, 클라우드 배포를 고려한다면 별도로 확인해야 할 변수입니다. huge page로 TLB 미스율을 낮췄는데도 p99 지연이 그대로라면, 병목이 애초에 TLB가 아니었거나 huge page 확보 실패(THP fallback)가 조용히 일어나고 있을 가능성을 먼저 의심해야 합니다.
 
 ## 마무리
 

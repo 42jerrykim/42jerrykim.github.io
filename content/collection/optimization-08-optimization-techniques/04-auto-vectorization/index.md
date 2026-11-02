@@ -1,7 +1,7 @@
 ---
 collection_order: 4
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[Extreme 08] 자동 벡터화 유도와 검증"
@@ -12,24 +12,17 @@ tags:
   - Optimization(최적화)
   - C++
   - CPU(Central Processing Unit)
-  - Cache
-  - Memory(메모리)
   - Compiler(컴파일러)
   - Hardware(하드웨어)
   - Benchmark
-  - Latency
-  - Throughput
   - Profiling(프로파일링)
   - Best-Practices
   - Code-Quality(코드품질)
   - Debugging(디버깅)
-  - Testing(테스트)
   - Advanced
   - Deep-Dive
   - Guide(가이드)
   - Reference(참고)
-  - Case-Study
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - Comparison(비교)
   - Implementation(구현)
@@ -42,7 +35,8 @@ tags:
   - Rpass
   - Loop-Vectorizer
   - Restrict
-  - SIMD
+  - SIMD(단일명령다중데이터)
+  - Vectorization(벡터화)
 ---
 
 **자동 벡터화 유도와 검증**이란 SIMD 명령어를 손으로 작성하지 않고, 컴파일러의 루프 벡터화 패스(GCC tree-vectorizer, LLVM Loop Vectorizer)가 스칼라 루프를 스스로 벡터 명령으로 바꾸도록 코드 형태를 정돈하고, 그 결과를 벡터화 리포트로 확인해 실패 원인을 되돌려 고치는 작업입니다. 수기 intrinsics나 인라인 어셈블리는 이식성·유지보수 비용이 크므로, 같은 성능을 컴파일러가 자동으로 내줄 수 있는지 먼저 확인하는 것이 순서입니다. 이 장은 "코드를 어떻게 써야 벡터화되기 쉬운가"와 "벡터화되지 않았을 때 무엇을 근거로 판단하는가"라는 두 가지 실무 질문에 집중합니다.
@@ -87,14 +81,14 @@ tags:
 #include <cstddef>
 
 // 별칭 가능성 때문에 컴파일러가 벡터화를 주저하거나 런타임 별칭 검사를 추가할 수 있음
-void add_plain(float* a, const float* b, const float* c, std::size_t n) {
+__attribute__((noinline)) void add_plain(float* a, const float* b, const float* c, std::size_t n) {
   for (std::size_t i = 0; i < n; ++i) {
     a[i] = b[i] + c[i];
   }
 }
 
 // __restrict로 a, b, c가 서로 겹치지 않음을 컴파일러에 명시
-void add_restrict(float* __restrict a, const float* __restrict b,
+__attribute__((noinline)) void add_restrict(float* __restrict a, const float* __restrict b,
                    const float* __restrict c, std::size_t n) {
   for (std::size_t i = 0; i < n; ++i) {
     a[i] = b[i] + c[i];
@@ -155,7 +149,7 @@ float sum_reduction(const float* __restrict a, std::size_t n) {
 
 **벡터화 리포트**는 컴파일러가 어떤 루프를 벡터화했는지, 벡터화하지 못했다면 왜 못했는지를 컴파일 시점에 출력하는 진단 메시지입니다. 코드를 고친 뒤 "빨라졌겠지"라고 추측하는 대신, 리포트로 실제 벡터화 여부를 확인하고 실패했다면 그 이유를 코드로 되돌려 고치는 것이 이 절차의 핵심입니다.
 
-GCC는 `-fopt-info-vec`(성공·실패 모두), `-fopt-info-vec-optimized`(성공만), `-fopt-info-vec-missed`(실패만) 옵션으로 벡터화 진단을 표준 오류 출력이나 파일로 냅니다.
+GCC는 `-fopt-info-vec-optimized`(성공만, kind를 생략한 `-fopt-info-vec`도 [같은 기본값](https://gcc.gnu.org/onlinedocs/gcc/Developer-Options.html)), `-fopt-info-vec-missed`(실패만), `-fopt-info-vec-all`(둘 다) 옵션으로 벡터화 진단을 표준 오류 출력이나 파일로 냅니다.
 
 ```bash
 g++ -O2 -fopt-info-vec-missed -c loop.cpp -o /dev/null
@@ -170,19 +164,19 @@ clang++ -O2 -Rpass=loop-vectorize -Rpass-missed=loop-vectorize \
         -Rpass-analysis=loop-vectorize -c loop.cpp -o /dev/null
 ```
 
-`add_plain`처럼 별칭 가능성이 남은 함수를 이 옵션으로 컴파일하면 "vectorized loop"가 아니라 "loop not vectorized: cannot prove pointers refer to disjoint arrays" 계열의 메시지가 나오는 것이 전형적입니다. 이 메시지가 나오면 앞 절의 `__restrict` 패턴을 적용하고 다시 컴파일해, 메시지가 "vectorized loop"로 바뀌는지 확인합니다. Tr.03의 [컴파일러 intrinsics 카탈로그](/post/compiler-optimization/compiler-intrinsics-catalog/)에는 컴파일러가 최종적으로 어떤 intrinsics로 벡터 연산을 내보내는지까지 연결되어 있어, 리포트만으로 부족할 때 생성된 어셈블리를 함께 대조하면 도움이 됩니다.
+`add_plain`처럼 별칭 가능성이 남은 함수는 컴파일러 버전·옵션에 따라 결과가 갈립니다. 런타임 별칭 검사를 붙여 벡터화하고 그 사실을 리포트하는 경우도 있고, 별칭이나 의존성을 증명하지 못했다는 취지의 missed 메시지가 나오는 경우도 있으므로 메시지 문구를 외우기보다 대상 컴파일러에서 실제 출력을 확인해야 합니다. missed 메시지가 나오면 앞 절의 `__restrict` 패턴을 적용하고 다시 컴파일해, 해당 루프가 벡터화됨으로 보고되는지 확인합니다. Tr.03의 [컴파일러 intrinsics 카탈로그](/post/compiler-optimization/compiler-intrinsics-catalog/)에서는 수기로 쓸 수 있는 intrinsics의 종류를 확인할 수 있고, 리포트만으로 부족할 때는 `-S`로 생성된 어셈블리를 함께 대조하면 도움이 됩니다.
 
-리포트가 "vectorized"라고 확인해 주는 것은 **컴파일이 벡터 명령을 냈다는 사실**이지 **실제로 더 빨라졌다는 보장**은 아닙니다. 아래는 `add_plain`과 `add_restrict`를 같은 입력으로 반복 호출해 실측하는 Google Benchmark 스켈레톤입니다(x86-64, GCC 13 이상 또는 Clang 17 이상, `-O2 -march=native` 기준 예시이며 실제 배율은 배열 크기·정렬·타겟 아키텍처에 따라 달라집니다).
+리포트가 "vectorized"라고 확인해 주는 것은 **컴파일이 벡터 명령을 냈다는 사실**이지 **실제로 더 빨라졌다는 보장**은 아닙니다. 아래는 `add_plain`과 `add_restrict`를 같은 입력으로 반복 호출해 실측하는 Google Benchmark 스켈레톤입니다(두 함수가 같은 번역 단위에서 인라인되면 호출 지점에서 별칭 없음이 증명되어 같은 코드가 될 수 있으므로 `noinline`을 붙였습니다. 실제 배율은 컴파일러 버전·배열 크기·정렬·타겟 아키텍처에 따라 달라집니다).
 
 ```cpp
 #include <benchmark/benchmark.h>
 #include <vector>
 
-void add_plain(float* a, const float* b, const float* c, std::size_t n) {
+__attribute__((noinline)) void add_plain(float* a, const float* b, const float* c, std::size_t n) {
   for (std::size_t i = 0; i < n; ++i) a[i] = b[i] + c[i];
 }
 
-void add_restrict(float* __restrict a, const float* __restrict b,
+__attribute__((noinline)) void add_restrict(float* __restrict a, const float* __restrict b,
                    const float* __restrict c, std::size_t n) {
   for (std::size_t i = 0; i < n; ++i) a[i] = b[i] + c[i];
 }
@@ -210,7 +204,7 @@ BENCHMARK(BM_AddRestrict)->Arg(1 << 16);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 -march=native bench.cpp -lbenchmark -lpthread`로 빌드해 실행하면, `add_restrict`가 `add_plain`보다 확연히 빠르게 나오는 경우가 흔하지만(런타임 별칭 검사와 스칼라 폴백 경로가 사라지므로), 배열 크기가 SIMD 폭 대비 너무 작으면 차이가 거의 없거나 오히려 벡터화 프롤로그·에필로그 오버헤드로 역전될 수 있습니다. 리포트와 벤치마크를 함께 보는 것이 이 절차의 마지막 단계입니다.
+`g++ -O2 -march=native bench.cpp -lbenchmark -lpthread`로 빌드해 실행합니다. `add_restrict`는 런타임 별칭 검사와 스칼라 폴백 경로를 생략할 수 있어 이론상 유리하지만, 실제 차이는 거의 없을 수도 있고 배열이 작으면 프롤로그·에필로그 오버헤드로 역전될 수도 있으므로 수치를 단정하지 않고 대상 환경에서 측정해 판단합니다. 리포트와 벤치마크를 함께 보는 것이 이 절차의 마지막 단계입니다.
 
 ```mermaid
 flowchart TD
@@ -229,9 +223,9 @@ flowchart TD
 
 <strong>"`-O3`만 켜면 벡터화 가능한 루프는 전부 벡터화된다"</strong>는 사실이 아닙니다. `-O3`는 더 많은 시도를 하도록 비용 모델을 완화할 뿐, 포인터 별칭·복잡한 분기·비인라인 함수 호출 같은 구조적 장애물은 여전히 벡터화를 막습니다. 리포트로 실제 결과를 확인하지 않고 최적화 레벨만 올리는 것은 근거 없는 낙관입니다.
 
-<strong>"부동소수점 합산 루프는 항상 벡터화된다"</strong>도 오해입니다. 앞서 다룬 대로 IEEE 754 덧셈은 결합 법칙이 없어, 컴파일러는 기본 설정에서 리덕션 순서를 바꾸는 벡터화를 스스로 허용하지 않습니다. `-ffast-math` 계열 플래그나 `#pragma omp simd reduction`으로 명시적으로 허가해야 하며, 이는 정밀도 트레이드오프를 코드 작성자가 떠안는 결정입니다.
+<strong>"부동소수점 합산 루프는 항상 벡터화된다"</strong>도 오해입니다. 앞서 다룬 결합 법칙 문제로 기본 설정에서는 리덕션 벡터화가 막히며, 허가 수단과 정밀도 트레이드오프는 해당 절을 따릅니다.
 
-<strong>"벡터화 리포트가 성공을 알리면 무조건 더 빠르다"</strong>도 틀린 가정입니다. 짧은 배열, 정렬되지 않은 메모리, gather/scatter가 필요한 불규칙 접근 패턴에서는 벡터화된 코드가 프롤로그·에필로그·런타임 검사 오버헤드 때문에 스칼라보다 느릴 수 있습니다. 리포트는 "시도했다"를 말해 줄 뿐이므로, 실측 벤치마크로 마무리해야 합니다.
+<strong>"벡터화 리포트가 성공을 알리면 무조건 더 빠르다"</strong>도 틀린 가정입니다. 위 벤치마크 절에서 보았듯 리포트는 벡터 명령을 냈다는 사실만 보장하므로, gather/scatter가 필요한 불규칙 접근처럼 오버헤드가 큰 패턴에서는 특히 실측으로 마무리해야 합니다.
 
 ## 판단 기준
 

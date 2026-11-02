@@ -1,7 +1,7 @@
 ---
 collection_order: 7
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-23
 draft: false
 image: wordcloud.png
 title: "[OS 06] 커널 바이패스 개요"
@@ -15,21 +15,14 @@ tags:
   - Kernel
   - CPU(Central Processing Unit)
   - Memory(메모리)
-  - Concurrency(동시성)
   - Networking
   - IO(Input/Output)
-  - Security(보안)
-  - Benchmark
   - Latency
   - Throughput
-  - Profiling(프로파일링)
   - Implementation(구현)
   - Best-Practices
   - Advanced
   - Deep-Dive
-  - Guide(가이드)
-  - Reference(참고)
-  - Hardware(하드웨어)
   - System-Design
   - Comparison(비교)
   - DPDK
@@ -42,6 +35,9 @@ tags:
   - ibverbs
   - UMEM
   - Huge-Pages
+  - Interrupt(인터럽트)
+  - Networking(네트워킹)
+  - Polling
 ---
 
 <strong>커널 바이패스(kernel bypass)</strong>란 네트워크·스토리지 I/O 경로에서 커널의 개입(시스템 콜 진입, 데이터 복사, 인터럽트 처리)을 줄이거나 제거해 애플리케이션이 하드웨어에 더 가까운 곳에서 데이터를 주고받도록 만드는 일련의 기법을 말합니다. 10GbE를 넘어 40/100GbE, 그리고 AI 클러스터의 수백 Gbps급 인터커넥트가 일반화되면서, 패킷 한 개를 처리하는 데 걸리는 시간 예산은 마이크로초 이하로 좁아졌고, 그 예산 안에서 커널 네트워크 스택의 고정 비용(소켓 버퍼 복사, 인터럽트 처리, 스케줄링)이 상대적으로 점점 커졌습니다. 이 장에서는 왜 이런 우회가 필요해졌는지, DPDK와 RDMA 같은 완전 바이패스와 io_uring·AF_XDP 같은 부분 바이패스가 커널 개입을 얼마나·어떻게 줄이는지, 그리고 그 대가로 무엇을 잃는지를 개요 수준에서 정리합니다.
@@ -66,7 +62,7 @@ tags:
 
 ## 커널 바이패스의 등장 배경
 
-커널 네트워크 스택은 원래 범용성을 목표로 설계되었습니다 — 임의의 프로토콜, 임의의 애플리케이션, 다중 사용자 환경을 안전하게 중재해야 했고, 그 대가로 소켓 버퍼 복사·인터럽트 기반 이벤트 처리·스케줄러 개입 같은 고정 비용을 감수했습니다. 1999년 InfiniBand Trade Association(IBTA)이 결성되고 2000년 InfiniBand Architecture Specification 1.0이 공개되면서([IBTA 공식 연혁](https://www.infinibandta.org/about-us/)), HPC 클러스터는 이미 "커널을 거치지 않고 하드웨어가 직접 메모리를 주고받는" RDMA(Remote Direct Memory Access) 모델을 채택하기 시작했습니다. 이더넷 진영은 한참 뒤인 2010년경 RoCE(RDMA over Converged Ethernet)로 같은 아이디어를 이더넷 위에 얹었습니다. 네트워킹 쪽에서는 인텔이 2010년경 DPDK(Data Plane Development Kit)를 공개해, NIC 드라이버 자체를 유저 공간으로 끌어올리고 인터럽트 대신 폴링으로 패킷을 처리하는 방식을 telecom·NFV 업계에 보급했습니다. 커널 자체도 이 흐름에 대응해 왔습니다 — XDP(eXpress Data Path)는 리눅스 4.8(2016)에서 도입되어 드라이버 근처에서 패킷을 조기 처리할 수 있는 훅을 제공했고, io_uring은 Jens Axboe가 설계해 리눅스 5.1(2019)에 병합되면서 커널을 완전히 우회하지는 않되 syscall 횟수 자체를 극적으로 줄이는 제3의 길을 열었습니다. 이 배경을 알면 이후 절에서 다루는 네 기술이 "하나의 기법"이 아니라 서로 다른 시기·다른 동기에서 나온, 커널 개입을 줄이는 서로 다른 지점의 해법이라는 점이 명확해집니다.
+커널 네트워크 스택은 원래 범용성을 목표로 설계되었습니다 — 임의의 프로토콜, 임의의 애플리케이션, 다중 사용자 환경을 안전하게 중재해야 했고, 그 대가로 소켓 버퍼 복사·인터럽트 기반 이벤트 처리·스케줄러 개입 같은 고정 비용을 감수했습니다. HPC 클러스터는 일찍부터 "커널을 거치지 않고 하드웨어가 직접 메모리를 주고받는" RDMA(Remote Direct Memory Access) 모델을 InfiniBand 위에서 채택했고, 이더넷 진영은 이를 RoCE(RDMA over Converged Ethernet)로 이더넷 위에 옮겼습니다. 네트워킹 쪽에서는 DPDK(Data Plane Development Kit)가 NIC 드라이버 자체를 유저 공간으로 끌어올리고 인터럽트 대신 폴링으로 패킷을 처리하는 방식을 telecom·NFV 업계에 보급했습니다. 커널 자체도 이 흐름에 대응해 왔습니다 — XDP(eXpress Data Path)는 드라이버 근처에서 패킷을 조기 처리하는 훅을 제공하고, io_uring은 커널을 완전히 우회하지는 않되 syscall 횟수 자체를 크게 줄이는 제3의 길을 열었습니다. 각 기술의 도입 시기는 공식 릴리스 노트와 커널 문서를 확인하시기 바랍니다. 이 배경을 알면 이후 절에서 다루는 네 기술이 "하나의 기법"이 아니라 서로 다른 시기·다른 동기에서 나온, 커널 개입을 줄이는 서로 다른 지점의 해법이라는 점이 명확해집니다.
 
 ## 왜 커널을 우회하는가: 패킷 하나의 비용 구조
 
@@ -86,7 +82,7 @@ tags:
     처리 결과를 NIC_송신링에_쓰기()
 ```
 
-DPDK는 또한 **huge page**(2MB/1GB 페이지)를 필수로 사용해 TLB 미스를 줄이고 DMA 버퍼가 물리적으로 연속된 영역에 놓이도록 보장합니다 — huge page 설정과 장단점은 [챕터 10: Huge TLB Pages 활용](/post/os-optimization/huge-tlb-pages-utilization/)에서 다루므로 여기서는 반복하지 않습니다. [DPDK 공식 문서](https://doc.dpdk.org/guides/prog_guide/overview.html)는 PMD를 "인터럽트 기반 신호 메커니즘 없이" 동작하도록 설계된 드라이버로 설명합니다. 폴링 코어를 전용으로 격리하려면 챕터 03의 CPU pinning과 챕터 11(예정)의 컨테이너 CPU 격리가 함께 필요하므로, DPDK 도입은 이 트랙의 다른 여러 챕터와 동시에 고려해야 하는 결정입니다.
+DPDK는 또한 **huge page**(2MB/1GB 페이지)를 필수로 사용해 TLB 미스를 줄이고 DMA 버퍼가 물리적으로 연속된 영역에 놓이도록 보장합니다 — huge page 설정과 장단점은 [챕터 10: Huge TLB Pages 활용](/post/os-optimization/huge-tlb-pages-utilization/)에서 다루므로 여기서는 반복하지 않습니다. [DPDK 공식 문서](https://doc.dpdk.org/guides/prog_guide/overview.html)는 PMD를 "인터럽트 기반 신호 메커니즘 없이" 동작하도록 설계된 드라이버로 설명합니다. 폴링 코어를 전용으로 격리하려면 챕터 03의 CPU pinning과 [챕터 11](/post/os-optimization/container-virtualization-performance-considerations/)의 컨테이너 CPU 격리가 함께 필요하므로, DPDK 도입은 이 트랙의 다른 여러 챕터와 동시에 고려해야 하는 결정입니다.
 
 ## 완전 바이패스: RDMA와 Verbs
 
@@ -94,13 +90,13 @@ DPDK는 또한 **huge page**(2MB/1GB 페이지)를 필수로 사용해 TLB 미�
 
 ```c
 #include <infiniband/verbs.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 // 실제 전송 로직은 생략하고, "메모리 등록 -> 큐 페어 생성" 두 단계만 보여주는 골격.
+// 성공하면 mr/qp를 호출자에게 넘기므로, 사용 후 ibv_destroy_qp / ibv_dereg_mr로 해제해야 한다.
 // ibv_post_send/ibv_post_recv로 작업을 올린 뒤에는 하드웨어가 큐 페어를 통해
 // CPU 개입 없이 데이터를 이동시킨다(빠른 경로).
-int setup_rdma_resources(struct ibv_pd* pd, struct ibv_cq* cq, void* buf, size_t len) {
+int setup_rdma_resources(struct ibv_pd* pd, struct ibv_cq* cq, void* buf, size_t len,
+                         struct ibv_mr** out_mr, struct ibv_qp** out_qp) {
   // 1) 데이터가 오갈 메모리를 하드웨어가 직접 접근할 수 있도록 등록
   struct ibv_mr* mr = ibv_reg_mr(pd, buf, len,
                                   IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE);
@@ -120,11 +116,13 @@ int setup_rdma_resources(struct ibv_pd* pd, struct ibv_cq* cq, void* buf, size_t
   if (!qp) { ibv_dereg_mr(mr); return -1; }
 
   // qp가 RTR/RTS 상태로 전이된 뒤에야 ibv_post_send/recv로 실제 전송이 가능하다(생략).
+  *out_mr = mr;
+  *out_qp = qp;
   return 0;
 }
 ```
 
-이 골격 코드가 보여주지 않는 부분(큐 페어의 상태 전이, 완료 큐 폴링, 원격 주소·rkey 교환)이 RDMA 프로그래밍의 실제 복잡도 대부분을 차지합니다. RDMA는 손실 없는 네트워크(PFC, ECN/DCQCN 같은 혼잡 제어)를 전제로 설계된 경우가 많아, 일반 이더넷 환경에 RoCEv2를 올리려면 스위치·NIC 설정까지 함께 손봐야 하며, 2025–2026년 GPU 클러스터에서 GPUDirect RDMA를 통한 NIC-HBM 직접 DMA가 확산되면서 이 설정 부담은 AI 인프라 쪽에서도 중요한 화두가 되었습니다.
+이 골격 코드가 보여주지 않는 부분(큐 페어의 상태 전이, 완료 큐 폴링, 원격 주소·rkey 교환)이 RDMA 프로그래밍의 실제 복잡도 대부분을 차지합니다. RDMA는 손실 없는 네트워크(PFC, ECN/DCQCN 같은 혼잡 제어)를 전제로 설계된 경우가 많아, 일반 이더넷 환경에 RoCEv2를 올리려면 스위치·NIC 설정까지 함께 손봐야 하며, GPU 클러스터에서 GPUDirect RDMA를 통한 NIC-HBM 직접 DMA가 확산되면서 이 설정 부담은 AI 인프라 쪽에서도 중요한 화두가 되었습니다.
 
 ## 부분 바이패스: io_uring과 AF_XDP (개요)
 
@@ -173,11 +171,7 @@ flowchart LR
 
 ## 비판적 시각: 한계와 트레이드오프
 
-커널 바이패스가 지연·처리량 지표를 개선하는 것은 사실이지만, 그 대가는 숫자 밖에 있습니다. DPDK·RDMA는 커널의 관측·보안·자원 관리 인프라(`iptables`, cgroups 기반 네트워크 대역폭 제한, 표준 패킷 캡처)를 우회하므로, 이 기능들을 애플리케이션 계층에서 다시 구현하거나 포기해야 합니다 — 팀의 온콜 도구가 `tcpdump`와 커널 네트워크 통계에 의존한다면, 바이패스 도입은 장애 대응 절차 전체를 다시 설계하는 일이 됩니다. 폴링 기반 접근(DPDK)은 코어를 상시 점유하므로 클라우드 과금·전력·코어 배치 계획에 반영되어야 하고, 트래픽이 뜸한 시간대에도 동일한 비용을 치릅니다. RDMA는 손실 없는 네트워크 구성(PFC, ECN)에 의존하는 경우가 많아, 이 설정이 어긋나면 헤드 오브 라인 블로킹이나 데드락에 가까운 정체가 발생할 수 있다는 보고가 있어 왔습니다. 그리고 이 모든 기술은 커널 표준 경로보다 이식성이 낮습니다 — NIC 드라이버·펌웨어·커널 버전 조합에 따라 zero-copy 지원 여부나 오프로드 기능이 달라지므로, 한 환경에서 검증한 설정이 다른 환경에서 그대로 재현된다고 가정해서는 안 됩니다. 결국 커널 바이패스는 "측정된 병목이 커널 개입 비용 자체"라는 확실한 증거가 있을 때 도입할 카드이지, 기본값으로 깔고 시작할 선택은 아닙니다.
-
-## 이 트랙에서의 범위와 다음 단계
-
-이 장은 네 기술의 존재와 위치를 지도로 그리는 개요이며, 실전 구현은 이어지는 장과 다른 트랙에 의도적으로 넘깁니다. io_uring의 SQE/CQE 구조·SQPOLL·링크드 오퍼레이션은 챕터 08에서, AF_XDP·XDP 프로그램 작성과 eBPF 검증기는 챕터 09에서 각각 이 트랙 안의 "개요" 수준으로 이어집니다. DPDK·RDMA를 실제 파일 I/O·스토리지 경로에 적용하는 심화 아키텍처는 Tr.09(I/O)에서, 네트워크 프로토콜·소켓 계층과 결합한 심화 적용은 Tr.10(네트워크)에서 다룰 예정이므로, 이 장에서 다룬 개념을 실전 코드로 옮기고 싶다면 해당 트랙의 심화 챕터를 기다리거나 각 기술의 공식 문서(DPDK Programmer's Guide, `rdma-core`)를 함께 참고하는 것이 좋습니다.
+커널 바이패스가 지연·처리량 지표를 개선하는 것은 사실이지만, 그 대가는 숫자 밖에 있습니다. DPDK·RDMA는 커널의 관측·보안·자원 관리 인프라(`iptables`, cgroups 기반 네트워크 대역폭 제한, 표준 패킷 캡처)를 우회하므로, 이 기능들을 애플리케이션 계층에서 다시 구현하거나 포기해야 합니다 — 팀의 온콜 도구가 `tcpdump`와 커널 네트워크 통계에 의존한다면, 바이패스 도입은 장애 대응 절차 전체를 다시 설계하는 일이 됩니다. 폴링 기반 접근(DPDK)은 코어를 상시 점유하므로 클라우드 과금·전력·코어 배치 계획에 반영되어야 하고, 트래픽이 뜸한 시간대에도 동일한 비용을 치릅니다. RDMA는 손실 없는 네트워크 구성(PFC, ECN)에 의존하는 경우가 많아, 이 설정을 잘못 두면 성능이 크게 떨어질 수 있어 운영 난이도가 표준 이더넷보다 높습니다. 그리고 이 모든 기술은 커널 표준 경로보다 이식성이 낮습니다 — NIC 드라이버·펌웨어·커널 버전 조합에 따라 zero-copy 지원 여부나 오프로드 기능이 달라지므로, 한 환경에서 검증한 설정이 다른 환경에서 그대로 재현된다고 가정해서는 안 됩니다. 결국 커널 바이패스는 "측정된 병목이 커널 개입 비용 자체"라는 확실한 증거가 있을 때 도입할 카드이지, 기본값으로 깔고 시작할 선택은 아닙니다.
 
 ## 마무리
 
@@ -185,7 +179,6 @@ flowchart LR
 - [ ] DPDK(PMD·폴링)와 RDMA(verbs·큐 페어)가 커널을 우회하는 지점과 방식의 차이를 설명할 수 있다.
 - [ ] io_uring·AF_XDP가 "완전 바이패스"가 아니라 "커널 개입 방식의 절충"이라는 점을 구분할 수 있다.
 - [ ] 폴링 기반 접근의 코어 점유 비용과 이식성·관측성 손실을 판단 기준에 포함할 수 있다.
-- [ ] 이 장의 개요와 챕터 08(io_uring)·챕터 09(XDP/eBPF)·Tr.09·Tr.10 심화의 역할 분담을 구분할 수 있다.
 
 **참고 문서**: [DPDK Programmer's Guide: Overview](https://doc.dpdk.org/guides/prog_guide/overview.html), [리눅스 커널 문서: AF_XDP](https://www.kernel.org/doc/html/latest/networking/af_xdp.html), [man7.org: io_uring(7)](https://man7.org/linux/man-pages/man7/io_uring.7.html), [리눅스 커널 문서: Userspace verbs access](https://docs.kernel.org/infiniband/user_verbs.html).
 

@@ -1,7 +1,7 @@
 ---
 collection_order: 6
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-23
 draft: false
 image: wordcloud.png
 title: "[Memory 04] 캐시 친화적 접근 패턴"
@@ -17,11 +17,9 @@ tags:
   - Data-Structures(자료구조)
   - Benchmark
   - Latency
-  - Throughput
   - Profiling(프로파일링)
   - Best-Practices
-  - Code-Quality(코드품질)
-  - Advanced
+  - Hardware(하드웨어)
   - Comparison(비교)
   - Pitfalls(함정)
   - Cache-Line
@@ -56,18 +54,21 @@ tags:
 
 ## 배경: 지역성 원리에서 캐시 블로킹까지
 
-<strong>지역성(locality of reference)</strong>은 프로그램이 짧은 시간 동안 좁은 주소 범위에 반복해서 접근하는 경향을 가리키며, Peter Denning이 1960년대 후반 워킹 셋 모델을 정식화하며 함께 다듬은 개념으로 알려져 있다. 이 원리가 있었기에 "자주 쓰는 것을 가까이, 가까운 것을 함께 가져온다"는 캐시 설계가 성립했다. 하드웨어 쪽에서는 1990년대 후반부터 스트림 프리페처(stream prefetcher)가 프로세서에 들어오기 시작해, 순차·정규 stride 접근 패턴을 실행 중에 감지하고 다음에 필요할 캐시 라인을 미리 당겨오는 방식이 일반화되었다. 소프트웨어 쪽에서는 Lam, Rothberg, Wolf가 1991년 ASPLOS에서 발표한 블록 알고리즘의 캐시 성능 연구가 행렬 곱셈 같은 반복적 수치 연산을 캐시 크기에 맞춰 나눠 처리하는 **루프 타일링(loop tiling/blocking)** 기법의 이론적 근거를 제시했다. 이 장에서 다루는 순차 접근·stride·batching은 결국 이 두 축, 즉 "하드웨어 프리페처가 예측할 수 있는 패턴으로 접근하기"와 "캐시 용량을 넘는 데이터는 나눠서 재사용하기"로 수렴한다.
+<strong>지역성(locality of reference)</strong>은 프로그램이 짧은 시간 동안 좁은 주소 범위에 반복해서 접근하는 경향을 가리키며, Peter Denning이 1960년대 후반 워킹 셋 모델("The Working Set Model for Program Behavior", CACM 1968)을 정식화하며 함께 다듬은 개념으로 알려져 있다. 이 원리가 있었기에 "자주 쓰는 것을 가까이, 가까운 것을 함께 가져온다"는 캐시 설계가 성립했다. 하드웨어 쪽에서는 이후 스트림 프리페처(stream prefetcher)가 프로세서에 들어와, 순차·정규 stride 접근 패턴을 실행 중에 감지하고 다음에 필요할 캐시 라인을 미리 당겨오는 방식이 일반화되었다. 소프트웨어 쪽에서는 Lam, Rothberg, Wolf가 1991년 ASPLOS에서 발표한 블록 알고리즘의 캐시 성능 연구가 행렬 곱셈 같은 반복적 수치 연산을 캐시 크기에 맞춰 나눠 처리하는 **루프 타일링(loop tiling/blocking)** 기법(논문 "The Cache Performance and Optimizations of Blocked Algorithms")의 이론적 근거를 제시했다. 이 장에서 다루는 순차 접근·stride·batching은 결국 이 두 축, 즉 "하드웨어 프리페처가 예측할 수 있는 패턴으로 접근하기"와 "캐시 용량을 넘는 데이터는 나눠서 재사용하기"로 수렴한다.
 
 ## 순차 접근과 하드웨어 프리페처
 
 CPU의 스트림 프리페처는 최근 몇 번의 메모리 접근 주소를 관찰해 일정한 간격(stride)이 반복되면 그 패턴을 추정하고, 실제 로드 명령이 도착하기 전에 다음 캐시 라인들을 미리 적재한다. 배열을 인덱스 0부터 끝까지 순서대로 읽는 순차 접근은 이 감지가 가장 쉬운 경우이고, 프리페처가 몇 번의 접근만으로 패턴을 확정하면 이후 접근은 대부분 캐시에 이미 올라온 상태에서 이뤄진다. 반대로 포인터를 따라가며 다음 노드의 주소를 그때그때 계산해야 하는 연결 리스트 순회는 프리페처가 다음 주소를 예측할 근거가 없어 매 접근이 메모리 지연을 그대로 드러낸다.
 
 ```cpp
-#include <vector>
+#include <algorithm>
+#include <chrono>
+#include <cstddef>
+#include <cstdio>
 #include <numeric>
 #include <random>
+#include <vector>
 
-// 개념 스케치: 같은 원소 집합을 두 가지 순서로 방문
 long sum_sequential(const std::vector<int>& data) {
   long total = 0;
   for (std::size_t i = 0; i < data.size(); ++i) total += data[i];  // 프리페처가 예측하기 쉬운 패턴
@@ -79,37 +80,63 @@ long sum_shuffled(const std::vector<int>& data, const std::vector<std::size_t>& 
   for (std::size_t idx : order) total += data[idx];  // idx가 무작위 순서라 프리페처가 다음 라인을 예측 못 함
   return total;
 }
+
+template <typename Fn>
+double ns_per_elem(Fn fn, std::size_t n, int reps) {
+  using clock = std::chrono::steady_clock;
+  auto t0 = clock::now();
+  long sink = 0;
+  for (int r = 0; r < reps; ++r) sink += fn();
+  auto t1 = clock::now();
+  if (sink == 42) std::puts("");  // 결과를 소비해 호출이 지워지지 않게 한다
+  return std::chrono::duration<double, std::nano>(t1 - t0).count() / reps / static_cast<double>(n);
+}
+
+int main() {
+  const std::size_t n = std::size_t{1} << 24;  // int 64MiB: 대부분의 L3보다 크다
+  std::vector<int> data(n, 1);
+  std::vector<std::size_t> order(n);
+  std::iota(order.begin(), order.end(), std::size_t{0});
+  std::shuffle(order.begin(), order.end(), std::mt19937_64{42});
+
+  std::printf("sequential: %.2f ns/element\n", ns_per_elem([&] { return sum_sequential(data); }, n, 5));
+  std::printf("shuffled  : %.2f ns/element\n", ns_per_elem([&] { return sum_shuffled(data, order); }, n, 5));
+}
 ```
 
-두 함수는 같은 데이터를 같은 횟수만큼 더하지만, `order`를 무작위로 섞어 두면 `sum_shuffled`는 프리페처의 도움을 받지 못해 `sum_sequential`보다 눈에 띄게 느려지는 경우가 흔하다. 다만 이 차이는 데이터 크기가 캐시보다 커서 접근마다 실제로 캐시 미스가 나야 드러나므로, 작은 배열에서는 전부 캐시에 상주해 차이가 거의 없을 수 있다는 점에 주의한다.
+두 함수는 같은 데이터를 같은 횟수만큼 더하지만 방문 순서만 다릅니다. Compiler Explorer의 x86-64 GCC 13.2에서 `g++ -std=c++17 -O2`로 빌드해 두 번 실행한 결과, 원소당 시간은 `sum_sequential`이 0.42–0.53 ns, `sum_shuffled`가 14.9–22.0 ns로 30배 안팎 벌어졌습니다(공유 서버라 실행마다 값이 흔들립니다). 이 차이는 데이터(여기서는 64MiB)가 캐시보다 커서 접근마다 실제로 캐시 미스가 나야 드러나므로, 작은 배열에서는 전부 캐시에 상주해 차이가 거의 없을 수 있다는 점에 주의합니다.
 
 ## stride 패턴과 캐시 라인 활용률
 
 **stride**는 연속된 두 접근 사이의 주소 간격을 말한다. 캐시 라인이 64바이트이고 4바이트 정수를 stride 1(다음 원소)로 읽으면 한 캐시 라인에 담긴 16개의 정수를 모두 활용하지만, stride가 16 이상(64바이트 이상)이 되면 접근할 때마다 새 캐시 라인을 열어야 해서 라인당 활용률이 1/16로 떨어진다. 구조체 배열(AoS)에서 특정 필드 하나만 순회하는 코드가 캐시 효율이 나쁜 이유도 결국 stride 문제로 환원되는데, 구조체 크기가 캐시 라인보다 크면 필드 하나를 읽기 위해 전체 라인을 적재하고 나머지는 버리게 되기 때문이다. 이 문제를 레이아웃 자체로 해결하는 방법은 05장의 SoA 전환이고, 여기서는 "레이아웃을 바꾸지 않고 순회 순서만 조정할 때 stride가 어떻게 성능에 반영되는지"를 벤치마크로 확인한다.
 
 ```cpp
-#include <benchmark/benchmark.h>
-#include <vector>
+#include <chrono>
+#include <cstddef>
 #include <cstdint>
+#include <cstdio>
+#include <vector>
 
-// 접근 횟수(touches)를 고정하고 stride만 바꿔가며 접근당 비용을 비교한다.
-static void BM_StrideAccess(benchmark::State& state) {
-  const std::size_t stride = static_cast<std::size_t>(state.range(0));
-  const std::size_t touches = 1 << 20;              // 항상 100만 번 접근
-  const std::size_t n = touches * stride + 1024;    // stride에 맞춰 배열을 넉넉히 확보
-  std::vector<int32_t> data(n, 1);
-  for (auto _ : state) {
-    int64_t sum = 0;
-    for (std::size_t i = 0; i < touches; ++i) sum += data[i * stride];
-    benchmark::DoNotOptimize(sum);
+int main() {
+  const std::size_t touches = std::size_t{1} << 16;  // 항상 65,536번 접근
+  const int strides[] = {1, 4, 16, 64, 256};         // 4바이트 정수 기준 4B, 16B, 64B, 256B, 1KiB 간격
+  const std::size_t n = touches * 256 + 1024;        // 가장 큰 stride에 맞춰 한 번만 확보 (약 64MiB)
+  std::vector<std::int32_t> data(n, 1);
+
+  for (int stride : strides) {
+    using clock = std::chrono::steady_clock;
+    std::int64_t sum = 0;
+    auto t0 = clock::now();
+    for (int rep = 0; rep < 200; ++rep)
+      for (std::size_t i = 0; i < touches; ++i) sum += data[i * stride];
+    auto t1 = clock::now();
+    double ns = std::chrono::duration<double, std::nano>(t1 - t0).count() / 200 / touches;
+    std::printf("stride %4d: %.2f ns/access (sum=%lld)\n", stride, ns, static_cast<long long>(sum));
   }
 }
-BENCHMARK(BM_StrideAccess)->Arg(1)->Arg(4)->Arg(16)->Arg(64)->Arg(256)->Arg(1024);
-
-BENCHMARK_MAIN();
 ```
 
-`g++ -O2 -std=c++17 stride_bench.cpp -lbenchmark -lpthread`로 빌드해 x86-64 리눅스에서 실행하면(캐시 라인 64바이트, GCC 13 `-O2` 기준 예시), stride 1과 4(각각 4·16바이트 간격)는 한 라인 안에서 여러 원소를 재사용해 접근당 비용이 낮고, stride 16(정확히 64바이트) 근처부터는 접근마다 새 라인을 여는 비용이 고정적으로 붙어 접근당 시간이 계단식으로 늘어난다. stride 1024(4KB, 전형적 페이지 크기와 근접)에서는 캐시 미스에 더해 TLB 미스까지 겹쳐 추가로 느려지는 경우가 있는데, 페이지 단위 접근 비용은 [13장: Virtual Memory 관리 힌트](/post/memory-optimization/virtual-memory-hints-madvise-mte/)에서 더 다룬다. 정확한 배율은 캐시 크기·프리페처 세대·컴파일러 최적화에 따라 달라지므로, 위 스켈레톤을 대상 플랫폼에서 직접 돌려 확인하는 것이 안전하다. 마이크로벤치마크 설계 원칙 자체는 [Tr.01: Microbenchmark 설계 원칙](/post/profiling-analysis/microbenchmark-design-principles/)과 [Google Benchmark 실전](/post/profiling-analysis/google-benchmark-practical/)을 참고한다.
+같은 환경에서 실행하면 stride 1과 4(각각 4·16바이트 간격)는 한 라인 안에서 여러 원소를 재사용해 접근당 0.29–0.33 ns로 낮고, stride 16(정확히 64바이트)에서 0.89 ns, 64에서 1.90 ns, 256(1KiB 간격)에서 4.62 ns로 stride가 커질수록 접근당 시간이 늘었습니다. 접근 횟수를 고정했으므로 이 증가는 접근마다 새 라인을 여는 비용이 더해진 결과입니다. 이 배열은 약 64MiB를 확보하지만 실제로 건드리는 라인은 6만여 개라 4MiB 안팎이어서 DRAM이 아니라 L2·L3의 영향이 큰 측정이며, 정확한 배율은 캐시 크기·프리페처 세대·컴파일러 최적화에 따라 달라지므로 대상 플랫폼에서 직접 돌려 확인합니다. stride가 페이지 크기(4KiB)에 가까워지면 캐시 미스에 TLB 미스까지 겹칠 수 있는데, 페이지 단위 접근 비용은 [13장: Virtual Memory 관리 힌트](/post/memory-optimization/virtual-memory-hints-madvise-mte/)에서 더 다룹니다. 마이크로벤치마크 설계 원칙 자체는 [Tr.01: Microbenchmark 설계 원칙](/post/profiling-analysis/microbenchmark-design-principles/)과 [Google Benchmark 실전](/post/profiling-analysis/google-benchmark-practical/)을 참고합니다.
 
 ```mermaid
 flowchart LR
@@ -120,7 +147,7 @@ flowchart LR
   end
   subgraph outcomes ["캐시 결과"]
     highHit["라인 재사용 多</br>미스율 낮음"]
-    lowReuse["라인당 재사용 無</br>미스율 stride에 비례"]
+    lowReuse["라인당 재사용 無</br>stride 16 이상이면 접근마다 새 라인"]
     freqMiss["예측 불가</br>미스율 최대"]
   end
   seqNode --> highHit
@@ -130,7 +157,7 @@ flowchart LR
 
 ## batching과 루프 타일링
 
-처리할 데이터가 L1·L2 캐시 용량보다 크면, 한 번에 전체를 순회하는 코드는 같은 데이터를 여러 번 다시 읽어야 할 때마다 캐시에서 밀려난 라인을 다시 적재하는 비용을 반복해서 낸다. <strong>배칭(batching)</strong>은 이런 반복 재사용 구간을 캐시 용량 안에 들어오는 작은 블록으로 잘라, 블록 하나를 캐시에 올린 김에 그 안에서 가능한 모든 재사용을 끝내고 다음 블록으로 넘어가는 전략이다. 행렬 곱셈이 이 전략을 설명하는 데 가장 흔히 쓰이는데, 이유는 `k` 루프마다 두 번째 행렬의 열 전체를 stride `n`으로 훑어야 해서 순진한 삼중 루프가 stride 문제를 그대로 가지고 있기 때문이다.
+처리할 데이터가 L1·L2 캐시 용량보다 크면, 한 번에 전체를 순회하는 코드는 같은 데이터를 여러 번 다시 읽어야 할 때마다 캐시에서 밀려난 라인을 다시 적재하는 비용을 반복해서 낸다. <strong>배칭(batching)</strong>은 크게 두 가지 뜻으로 쓰인다. 하나는 호출 단위 배칭으로, 원소마다 함수를 한 번씩 부르는 대신 여러 원소를 한 번의 호출로 묶어 처리해 호출 오버헤드와 반복 초기화를 줄인다. 다른 하나는 이 절이 다루는 캐시 용량 단위 배칭으로, 이런 반복 재사용 구간을 캐시 용량 안에 들어오는 작은 블록으로 잘라, 블록 하나를 캐시에 올린 김에 그 안에서 가능한 모든 재사용을 끝내고 다음 블록으로 넘어가는 전략이다. 행렬 곱셈이 이 전략을 설명하는 데 가장 흔히 쓰이는데, 이유는 `k` 루프마다 두 번째 행렬의 열 전체를 stride `n`으로 훑어야 해서 순진한 삼중 루프가 stride 문제를 그대로 가지고 있기 때문이다.
 
 ```cpp
 #include <vector>
@@ -149,7 +176,7 @@ void multiply_naive(const Matrix& a, const Matrix& b, Matrix& c, std::size_t n) 
 }
 ```
 
-`multiply_naive`는 안쪽 `k` 루프에서 `a`는 stride 1로 읽지만 `b`는 stride `n`으로 읽으므로, `n`이 커져 한 행이 캐시 라인 여러 개를 차지하는 순간부터 `b` 접근이 사실상 매번 새 라인을 여는 패턴이 된다. 아래는 같은 계산을 `block` 크기 단위로 잘라, 각 블록이 캐시에 머무는 동안 관련된 부분합을 모두 누적하도록 재구성한 버전이다.
+아래는 같은 계산을 `block` 크기 단위로 잘라, 각 블록이 캐시에 머무는 동안 관련된 부분합을 모두 누적하도록 재구성한 버전이다.
 
 ```cpp
 #include <vector>
@@ -158,7 +185,8 @@ void multiply_naive(const Matrix& a, const Matrix& b, Matrix& c, std::size_t n) 
 
 using Matrix = std::vector<double>;
 
-// i0/k0/j0로 순회를 block 크기 타일로 나눠 각 타일이 캐시에 머무는 동안 재사용을 극대화
+// i0/k0/j0로 순회를 block 크기 타일로 나눠 각 타일이 캐시에 머무는 동안 재사용을 극대화.
+// c에 누적(+=)하므로 호출 전에 0으로 초기화해야 한다.
 void multiply_blocked(const Matrix& a, const Matrix& b, Matrix& c, std::size_t n, std::size_t block) {
   for (std::size_t i0 = 0; i0 < n; i0 += block)
     for (std::size_t k0 = 0; k0 < n; k0 += block)
@@ -171,7 +199,47 @@ void multiply_blocked(const Matrix& a, const Matrix& b, Matrix& c, std::size_t n
 }
 ```
 
-블록 크기 `block`은 `a`·`b`·`c` 세 타일이 동시에 L1(대개 32–48KB)이나 L2 캐시에 들어오도록 정하는데, `double` 기준 `block=32`면 타일 하나가 8KB이므로 세 타일 합이 24KB 안팎이 되어 대부분의 L1에 들어간다. 다만 정확한 최적 크기는 캐시 크기·연관도(way)·다른 스레드와의 캐시 공유에 따라 달라지므로 "이 값이 정답"이라고 단정하지 말고, `perf stat -e cache-misses,cache-references`나 heaptrack 같은 도구로 실제 미스율을 확인하며 블록 크기를 조정하는 편이 안전하다. 타일링은 코드 가독성과 유지보수 비용을 늘리므로, 데이터가 캐시보다 명백히 크고 반복 재사용이 실제로 일어나는 핫패스에서만 적용을 검토한다.
+두 함수를 같은 파일에 두고 아래 `main`을 붙이면 단독으로 실행됩니다. `c1`은 순진한 버전이 모든 원소를 덮어쓰므로 초기화가 필요 없고, `c2`는 0으로 초기화해 두 결과가 같은지 확인합니다.
+
+```cpp
+#include <chrono>
+#include <cmath>
+#include <cstdio>
+
+int main() {
+  const std::size_t n = 1024;
+  Matrix a(n * n), b(n * n), c1(n * n), c2(n * n, 0.0);
+  for (std::size_t i = 0; i < n * n; ++i) {
+    a[i] = static_cast<double>(i % 7);
+    b[i] = static_cast<double>(i % 5);
+  }
+
+  using clock = std::chrono::steady_clock;
+  auto t0 = clock::now();
+  multiply_naive(a, b, c1, n);
+  auto t1 = clock::now();
+  multiply_blocked(a, b, c2, n, 32);
+  auto t2 = clock::now();
+
+  double max_diff = 0.0;  // 덧셈 순서가 달라 부동소수점 오차가 생길 수 있어 최대 차이를 본다
+  for (std::size_t i = 0; i < n * n; ++i) max_diff = std::max(max_diff, std::abs(c1[i] - c2[i]));
+
+  std::printf("naive  : %.1f ms\n", std::chrono::duration<double, std::milli>(t1 - t0).count());
+  std::printf("blocked: %.1f ms (block=32)\n", std::chrono::duration<double, std::milli>(t2 - t1).count());
+  std::printf("max |naive - blocked| = %g\n", max_diff);
+}
+```
+
+Compiler Explorer의 x86-64 GCC 13.2에서 `-std=c++17 -O2`로 두 번 실행한 출력은 다음과 같습니다(공유 서버라 실행마다 값이 크게 달라집니다).
+
+```text
+1회차  naive  : 9106.6 ms   blocked: 2147.8 ms (block=32)   max |naive - blocked| = 0
+2회차  naive  : 6090.2 ms   blocked: 2798.1 ms (block=32)   max |naive - blocked| = 0
+```
+
+두 실행 모두 타일링 버전이 빨랐고(약 4.2배, 약 2.2배) 결과는 정확히 같았습니다. 배율이 두 배가량 흔들렸다는 사실 자체가 중요한데, 이 측정으로 말할 수 있는 것은 "방향"이지 "몇 배"가 아닙니다. 타일링이 빠른 이유는 계산량이 아니라 메모리 접근 횟수에 있습니다. 순진한 버전은 `b`의 한 열을 읽을 때마다 stride `n`(여기서는 8KiB)으로 건너뛰므로 열 하나가 지나가는 동안 라인 1024개(64KiB)를 건드려 L1(대개 32–48KiB)에 다 들어가지 않으므로, 다음 `j`에서 같은 라인을 L2나 더 먼 곳에서 다시 가져옵니다. 타일링은 32×32 타일 하나를 올려 둔 동안 그 타일의 원소를 32번씩 재사용한 뒤 넘어가므로, 같은 라인을 먼 계층에서 다시 가져오는 횟수가 대략 타일 한 변의 길이만큼 줄어듭니다. 이 재사용 횟수가 실제로 확보되는지는 타일이 캐시에 남아 있느냐에 달려 있어, 타일 세 개가 L1에 들어가지 않을 만큼 `block`을 키우면 이득이 사라집니다.
+
+블록 크기 `block`은 `a`·`b`·`c` 세 타일이 동시에 L1(대개 32–48KB)이나 L2 캐시에 들어오도록 정하는데, `double` 기준 `block=32`면 타일 하나가 8KB이므로 세 타일 합이 24KB 안팎이 되어 대부분의 L1에 들어간다. 다만 정확한 최적 크기는 캐시 크기·연관도(way)·다른 스레드와의 캐시 공유에 따라 달라지므로 "이 값이 정답"이라고 단정하지 말고, `perf stat -e cache-misses,cache-references` 같은 하드웨어 카운터로 실제 미스율을 확인하며 블록 크기를 조정하는 편이 안전하다. 타일링은 코드 가독성과 유지보수 비용을 늘리므로, 데이터가 캐시보다 명백히 크고 반복 재사용이 실제로 일어나는 핫패스에서만 적용을 검토한다.
 
 ## 흔한 오개념
 
@@ -191,7 +259,7 @@ void multiply_blocked(const Matrix& a, const Matrix& b, Matrix& c, std::size_t n
 
 ## 비판적 시각: 한계와 트레이드오프
 
-캐시 친화적 패턴의 효과는 마이크로벤치마크에서 가장 극적으로 보이지만, 실제 애플리케이션에는 분기 예측 실패·다른 스레드와의 캐시 공유·시스템 콜 같은 다른 비용이 섞여 있어 벤치마크에서 관측한 배율이 그대로 재현되지 않는 경우가 많다. 루프 타일링처럼 명시적으로 블록을 나누는 최적화는 코드의 조건 분기와 인덱스 계산을 늘려 가독성과 유지보수 비용을 높이므로, 컴파일러가 이미 자동으로 벡터화·재배치를 잘 해내는 단순한 루프에 무리하게 적용하면 오히려 손해가 될 수 있다. 하드웨어 프리페처의 정확한 스트림 개수·인식 알고리즘은 벤더가 상세히 공개하지 않는 구현 세부 사항이라 "이 CPU는 스트림을 N개까지 추적한다"는 식의 단정은 세대가 바뀌면 틀리기 쉽고, 결론은 항상 대상 플랫폼에서의 재측정으로 검증해야 한다.
+캐시 친화적 패턴의 효과는 마이크로벤치마크에서 가장 극적으로 보이지만, 실제 애플리케이션에는 분기 예측 실패·다른 스레드와의 캐시 공유·시스템 콜 같은 다른 비용이 섞여 있어 벤치마크에서 관측한 배율이 그대로 재현되지 않는 경우가 많다. 하드웨어 프리페처의 정확한 스트림 개수·인식 알고리즘은 세대마다 달라지고 공개 범위도 제한적인 구현 세부 사항이라 "이 CPU는 스트림을 N개까지 추적한다"는 식의 단정은 세대가 바뀌면 틀리기 쉽고, 결론은 항상 대상 플랫폼에서의 재측정으로 검증해야 한다.
 
 ## 마무리
 
@@ -207,6 +275,6 @@ void multiply_blocked(const Matrix& a, const Matrix& b, Matrix& c, std::size_t n
 
 ### 더 읽을 거리
 
-- [LWN.net: What every programmer should know about memory, Part 1](https://lwn.net/Articles/250967/) — Ulrich Drepper(Red Hat, 2007)의 원문을 게재한 문서로, 프리페칭과 지연시간 은폐를 다룬 2.2.5절을 포함한다.
-- [Intel 64 and IA-32 Architectures Optimization Reference Manual](https://cdrdv2-public.intel.com/814199/356477-Optimization-Reference-Manual-V2-002.pdf) — 1차 수준 데이터 캐시·2차 캐시 하드웨어 프리페처 동작을 설명하는 공식 매뉴얼.
+- [LWN.net: What every programmer should know about memory, Part 1](https://lwn.net/Articles/250967/) — Ulrich Drepper(Red Hat, 2007)의 원문을 게재한 문서의 1부로, RAM·DRAM 접근의 하드웨어 배경을 다룬다. CPU 캐시 구조는 [2부](https://lwn.net/Articles/252125/)에서 다룬다.
+- [Intel 64 and IA-32 Architectures Optimization Reference Manual](https://cdrdv2-public.intel.com/814199/356477-Optimization-Reference-Manual-V2-002.pdf) — 인텔 프로세서 최적화 공식 매뉴얼(프리페처 관련 절은 PDF에서 prefetch로 검색).
 - [Wikipedia: Locality of reference](https://en.wikipedia.org/wiki/Locality_of_reference) — 공간·시간 지역성의 정의와 캐싱·프리페칭과의 연결을 정리한 참고 자료.

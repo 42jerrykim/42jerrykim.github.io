@@ -24,32 +24,28 @@ tags:
   - Caching(캐싱)
   - Concurrency(동시성)
   - Backend(백엔드)
-  - Case-Study
   - Deep-Dive
-  - Advanced
   - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - Guide(가이드)
   - C++
   - Redis
   - Memcached
   - Cache
-  - CDN(Content Delivery Network)
   - Design-Pattern(디자인패턴)
   - Async(비동기)
-  - Load-Balancing
-  - SRE
-  - Networking(네트워킹)
   - Memory(메모리)
-  - CQRS(Command Query Responsibility Segregation)
+  - Cache-Aside
+  - Write-Through
+  - TTL
+  - Cache-Stampede
 ---
 
 **캐싱 전략**이란 자주 조회되거나 계산 비용이 큰 데이터를 원본(데이터베이스, 외부 API, 연산 결과)보다 빠른 저장소에 미리 또는 필요한 시점에 저장해 두고, 그 데이터를 어디에(프로세스 내부 메모리인 로컬 캐시 vs Redis·Memcached 같은 분산 캐시), 얼마나 오래(TTL), 원본이 바뀌었을 때 어떻게 갱신할지(invalidation)를 결정하는 것을 말합니다. 캐시는 지연시간을 가장 값싸게 줄이는 수단처럼 보이지만, 캐시를 하나 추가하는 순간 시스템에는 "원본과 다른 사본이 여러 곳에 동시에 존재할 수 있다"는 새로운 종류의 버그 표면이 생기고, 그 사본을 언제 버릴지 잘못 정하면 지연시간을 줄이려던 장치가 오히려 백엔드를 폭주시키는 원인이 됩니다. 이 장은 그 선택지들 사이의 트레이드오프를 정리하고, 언제 어떤 조합을 고를지 판단하는 기준을 제공합니다.
 
 ## 이 장을 읽기 전에
 
-이 장은 [07장: 지연시간 vs 처리량](/post/design-decisions/latency-vs-throughput-architecture-decisions/)에서 다룬 큐잉·유틸리제이션 개념과, [05장: 성능 예산 수립](/post/design-decisions/performance-budgeting-methodology/)·[06장: SLO/SLA 정의](/post/design-decisions/slo-sla-definition-team-alignment/)에서 다룬 latency budget·staleness 허용치 개념을 전제로 합니다. 캐시가 "읽기 경로를 빠르게 하는 대신 데이터의 신선도를 희생할 수 있는 장치"라는 감각만 있으면 충분합니다.
+이 장은 [07장: 지연시간 vs 처리량](/post/design-decisions/latency-vs-throughput-architecture-decisions/)에서 다룬 큐잉·유틸리제이션 개념과, [05장: 성능 예산 수립](/post/design-decisions/performance-budgeting-methodology/)·[06장: SLO/SLA 정의](/post/design-decisions/slo-sla-definition-team-alignment/)에서 다룬 latency budget·SLO 개념을 전제로 합니다. 데이터가 얼마나 낡아도 되는지를 뜻하는 staleness 허용치는 이 장에서 처음 다룹니다. 캐시가 "읽기 경로를 빠르게 하는 대신 데이터의 신선도를 희생할 수 있는 장치"라는 감각만 있으면 충분합니다.
 
 **이 장의 깊이**: **중급** 난이도로, 로컬 캐시와 분산 캐시의 구조적 차이, TTL·invalidation 전략의 종류, 그리고 캐시 일관성과 지연시간이 왜 같은 트레이드오프의 두 축인지를 다룹니다. **다루지 않는 것**: CPU 캐시·메모리 계층 구조(하드웨어 캐시 라인·TLB) 같은 저수준 캐시는 별개 주제이며, 데이터베이스 자체의 쿼리 캐시·커넥션 풀링·인덱스 전략은 [10장: 데이터베이스 접근 최적화](/post/design-decisions/database-access-optimization-strategy/)에서, CDN·HTTP 캐싱 헤더 같은 네트워크 경로의 캐싱 세부사항은 각 팀의 네트워크·인프라 트랙에서 다루는 것이 적합합니다. 이 장은 "어떤 종류의 캐시를, 어떤 만료·갱신 규칙으로 쓸지"라는 설계 판단에 집중합니다.
 
@@ -63,7 +59,7 @@ tags:
 
 ## 역사·배경: look-aside 캐시의 기원
 
-분산 캐시라는 개념을 실무에서 대중화한 것은 **Memcached**입니다. 2003년 5월 Brad Fitzpatrick이 자신이 운영하던 LiveJournal의 데이터베이스 부하를 줄이기 위해 처음 만들었고, 이후 LiveJournal의 Anatoly Vorobey가 C로 다시 구현하면서 지금 형태에 가까워졌습니다([Wikipedia: Memcached](https://en.wikipedia.org/wiki/Memcached)). 이때 확립된 패턴이 바로 "애플리케이션이 먼저 캐시를 확인하고, 없으면 원본을 조회한 뒤 캐시를 채우는" **look-aside(또는 cache-aside)** 구조이며, 이후 대부분의 분산 캐시 도입 사례가 이 구조를 기본값으로 삼았습니다. 2009년에는 Salvatore Sanfilippo(닉네임 antirez)가 **Redis**를 발표하면서 단순 key-value를 넘어 리스트·해시·정렬 집합 같은 자료구조와 스냅숏·AOF 기반의 선택적 영속성을 더했고, 이는 Memcached가 순수 인메모리·비영속 캐시에 머물던 것과 대비되는 지점입니다([Wikipedia: Redis](https://en.wikipedia.org/wiki/Redis)). Facebook은 2013년 논문 "Scaling Memcache at Facebook"(Nishtala 외, NSDI 2013)에서 수천 대 규모로 memcache를 운영하며 겪은 문제, 특히 캐시 일관성과 성능이 근본적으로 충돌하는 지점을 상세히 기록했고, 이 문서는 이후 대규모 분산 캐시 설계 논의의 공통 참조점이 되었습니다. 캐싱 패턴의 이름(cache-aside, write-through 등) 자체는 이후 클라우드 벤더의 아키텍처 문서를 통해 업계 표준 용어로 굳어졌습니다.
+분산 캐시라는 개념을 실무에서 대중화한 것은 **Memcached**입니다. 2003년 5월 Brad Fitzpatrick이 자신이 운영하던 LiveJournal의 데이터베이스 부하를 줄이기 위해 처음 만들었고, 이후 LiveJournal의 Anatoly Vorobey가 C로 다시 구현하면서 지금 형태에 가까워졌습니다([Wikipedia: Memcached](https://en.wikipedia.org/wiki/Memcached)). 2009년에는 Salvatore Sanfilippo(닉네임 antirez)가 **Redis**를 발표하면서 단순 key-value를 넘어 리스트·해시·정렬 집합 같은 자료구조와 스냅숏·AOF 기반의 선택적 영속성을 더했고, 이는 Memcached가 순수 인메모리·비영속 캐시에 머물던 것과 대비되는 지점입니다([Wikipedia: Redis](https://en.wikipedia.org/wiki/Redis)). Facebook은 대규모 memcache 운영 경험을 ["Scaling Memcache at Facebook"](https://www.usenix.org/conference/nsdi13/technical-sessions/presentation/nishtala)(Nishtala 외, NSDI 2013)으로 공개했습니다. 이 장의 cache-aside, write-through 같은 패턴 이름은 아래 AWS 캐싱 문서의 용어를 따릅니다.
 
 ## 로컬 캐시와 분산 캐시
 
@@ -100,11 +96,11 @@ BENCHMARK(BM_LocalCacheGet);
 BENCHMARK_MAIN();
 ```
 
-이 벤치마크를 실행하면 로컬 캐시 조회는 대체로 수십–수백 나노초 수준(해시 계산과 메모리 접근 비용)에서 끝납니다. 같은 키를 분산 캐시에 GET으로 요청하는 왕복 시간은 네트워크 스택·직렬화·서버 스케줄링을 거치므로 같은 데이터센터 안에서도 통상 수십 마이크로초에서 1밀리초 수준으로 알려져 있고, 리전을 넘는 호출이면 수 밀리초 이상으로 커질 수 있습니다 — 정확한 수치는 네트워크·하드웨어·캐시 서버 배포 방식(같은 호스트, 같은 랙, 같은 AZ 등)에 따라 크게 달라지므로 반드시 대상 환경에서 재현해야 합니다. 실무에서는 이 둘을 배타적으로 고르기보다, 분산 캐시를 공유 진실 공급원으로 두고 그 앞에 짧은 TTL의 로컬 캐시를 얹는 **다단 캐시(L1 로컬 + L2 분산)** 구성도 흔히 씁니다. 다만 다단 구성은 무효화 전파 경로가 하나 더 늘어난다는 대가를 동반합니다.
+이 벤치마크가 재는 것은 해시 계산과 메모리 접근으로 이루어진 로컬 조회 한 번의 비용이고, 결과 수치는 CPU와 컴파일러에 따라 달라 직접 실행해 확인해야 합니다. 같은 키를 분산 캐시에 GET으로 요청하면 여기에 네트워크 스택·직렬화·서버 스케줄링이 더해지므로 로컬 조회보다 훨씬 느린 것이 일반적이며, 같은 호스트·같은 랙·같은 AZ·다른 리전 같은 배포 방식에 따라 크게 달라지므로 정확한 수치는 반드시 대상 환경에서 재현해야 합니다. 실무에서는 이 둘을 배타적으로 고르기보다, 분산 캐시를 공유 진실 공급원으로 두고 그 앞에 짧은 TTL의 로컬 캐시를 얹는 **다단 캐시(L1 로컬 + L2 분산)** 구성도 흔히 씁니다. 다만 다단 구성은 무효화 전파 경로가 하나 더 늘어난다는 대가를 동반합니다.
 
 ## TTL과 invalidation 전략
 
-캐시에 넣은 값을 언제 버리거나 갱신할지 정하는 방법은 크게 네 가지로 나뉩니다. **TTL 기반 만료**는 값에 유효 시간을 붙여 그 시간이 지나면 자동으로 무효화되게 하는 가장 단순한 방식이고, <strong>cache-aside(lazy loading)</strong>는 애플리케이션이 조회 시점에 캐시를 먼저 확인하고 미스가 나면 원본을 읽어 캐시를 채우는 반응형 패턴입니다. AWS의 캐싱 아키텍처 문서는 cache-aside를 "가장 흔한 캐싱 전략"으로 부르며, 실제로 요청된 데이터만 캐시에 들어가 캐시 크기를 비용 효율적으로 유지할 수 있지만 최초 미스 시점에는 캐시와 원본을 모두 거치는 추가 왕복이 응답 시간에 더해진다고 설명합니다([AWS: Database Caching Strategies — Caching Patterns](https://docs.aws.amazon.com/whitepapers/latest/database-caching-strategies-using-redis/caching-patterns.html)). 이와 대비되는 **write-through**는 원본 데이터베이스를 갱신한 직후 캐시도 함께 갱신하는 능동형 패턴으로, 캐시가 항상 최신 상태에 가까워 히트율은 높아지지만 자주 조회되지 않는 데이터까지 캐시에 계속 쓰기 때문에 캐시 용량과 쓰기 비용이 늘어납니다. <strong>write-behind(write-back)</strong>는 캐시에 먼저 쓰고 원본 데이터베이스 반영은 비동기로 미루는 방식으로 쓰기 경로의 지연은 가장 낮지만, 캐시가 죽으면 아직 반영되지 않은 쓰기를 잃을 위험이 있어 내구성 요구가 있는 데이터에는 신중해야 합니다. 마지막으로 **이벤트 기반 invalidation**은 원본 갱신 이벤트(메시지 큐, DB 변경 로그)를 구독해 관련 캐시 키를 명시적으로 지우는 방식으로, TTL이 지날 때까지 기다리지 않고 갱신을 즉시 반영할 수 있지만 이벤트 전달이 신뢰성 있게 이루어진다는 전제가 깨지면 캐시가 영영 낡은 채로 남을 수 있습니다.
+캐시에 넣은 값을 언제 버리거나 갱신할지 정하는 방법은 크게 다섯 가지로 나뉩니다. **TTL 기반 만료**는 값에 유효 시간을 붙여 그 시간이 지나면 자동으로 무효화되게 하는 가장 단순한 방식이고, <strong>cache-aside(lazy loading)</strong>는 애플리케이션이 조회 시점에 캐시를 먼저 확인하고 미스가 나면 원본을 읽어 캐시를 채우는 반응형 패턴입니다. AWS의 캐싱 아키텍처 문서는 cache-aside를 "가장 흔한 캐싱 전략"으로 부르며, 실제로 요청된 데이터만 캐시에 들어가 캐시 크기를 비용 효율적으로 유지할 수 있지만 최초 미스 시점에는 캐시와 원본을 모두 거치는 추가 왕복이 응답 시간에 더해진다고 설명합니다([AWS: Database Caching Strategies — Caching Patterns](https://docs.aws.amazon.com/whitepapers/latest/database-caching-strategies-using-redis/caching-patterns.html)). 이와 대비되는 **write-through**는 원본 데이터베이스를 갱신한 직후 캐시도 함께 갱신하는 능동형 패턴으로, 캐시가 항상 최신 상태에 가까워 히트율은 높아지지만 자주 조회되지 않는 데이터까지 캐시에 계속 쓰기 때문에 캐시 용량과 쓰기 비용이 늘어납니다. <strong>write-behind(write-back)</strong>는 캐시에 먼저 쓰고 원본 데이터베이스 반영은 비동기로 미루는 방식으로 쓰기 경로의 지연은 가장 낮지만, 캐시가 죽으면 아직 반영되지 않은 쓰기를 잃을 위험이 있어 내구성 요구가 있는 데이터에는 신중해야 합니다. 마지막으로 **이벤트 기반 invalidation**은 원본 갱신 이벤트(메시지 큐, DB 변경 로그)를 구독해 관련 캐시 키를 명시적으로 지우는 방식으로, TTL이 지날 때까지 기다리지 않고 갱신을 즉시 반영할 수 있지만 이벤트 전달이 신뢰성 있게 이루어진다는 전제가 깨지면 캐시가 영영 낡은 채로 남을 수 있습니다.
 
 ```mermaid
 flowchart TD
@@ -119,7 +115,7 @@ flowchart TD
   stampedeCheck -->|"No"| plainTTL["고정 TTL"]
 ```
 
-TTL을 설계할 때 자주 놓치는 부분은 **동시 만료**입니다. 같은 시각에 캐시에 채워진 항목들이 같은 TTL을 갖고 있으면 정확히 같은 시각에 함께 만료되고, 그 순간 몰려드는 요청이 모두 캐시 미스가 되어 원본에 동시에 몰리는 **cache stampede(또는 dog-piling)** 현상이 생깁니다. 위키백과는 이를 "매우 높은 부하 아래 캐싱 메커니즘을 쓰는 대규모 병렬 시스템에서 발생할 수 있는 일종의 연쇄 장애"로 설명하며, 완화 기법으로 (1) 첫 요청만 재계산 락을 잡고 나머지는 대기시키는 **락 기반 재계산**, (2) 만료를 앞두고 별도 프로세스가 미리 캐시를 갱신하는 **외부 재계산**, (3) 각 요청이 독립적으로 만료가 가까워질수록 조기 재계산 확률을 높이는 <strong>확률적 조기 만료(probabilistic early expiration, XFetch 계열)</strong>를 꼽습니다([Wikipedia: Cache stampede](https://en.wikipedia.org/wiki/Cache_stampede)). 아래는 세 번째 방식의 핵심 아이디어만 남긴 근사 스케치입니다.
+TTL을 설계할 때 자주 놓치는 부분은 **동시 만료**입니다. (이를 흩뜨리는 가장 단순한 방법이 항목마다 TTL에 무작위 오차를 더하는 jittered TTL입니다.) 같은 시각에 캐시에 채워진 항목들이 같은 TTL을 갖고 있으면 정확히 같은 시각에 함께 만료되고, 그 순간 몰려드는 요청이 모두 캐시 미스가 되어 원본에 동시에 몰리는 **cache stampede(또는 dog-piling)** 현상이 생깁니다. 위키백과는 이를 "매우 높은 부하 아래 캐싱 메커니즘을 쓰는 대규모 병렬 시스템에서 발생할 수 있는 일종의 연쇄 장애"로 설명하며, 완화 기법으로 (1) 첫 요청만 재계산 락을 잡고 나머지는 대기시키는 **락 기반 재계산**, (2) 만료를 앞두고 별도 프로세스가 미리 캐시를 갱신하는 **외부 재계산**, (3) 각 요청이 독립적으로 만료가 가까워질수록 조기 재계산 확률을 높이는 <strong>확률적 조기 만료(probabilistic early expiration, XFetch 계열)</strong>를 꼽습니다([Wikipedia: Cache stampede](https://en.wikipedia.org/wiki/Cache_stampede)). 아래는 세 번째 방식의 핵심 아이디어만 남긴 근사 스케치입니다.
 
 ```cpp
 #include <chrono>
@@ -154,7 +150,7 @@ bool ShouldRecomputeEarly(const CacheEntry& entry, double beta = 1.0) {
 
 ## 흔한 오개념
 
-<strong>"캐시를 추가하면 무조건 빨라진다"</strong>는 흔한 오해입니다. 존재하지 않는 키를 반복 조회하는 요청(예: 잘못된 사용자 ID, 크롤러의 무작위 요청)은 캐시를 거치지 않고 매번 원본을 때리는 **cache penetration**을 일으키고, 배포 직후처럼 캐시가 통째로 비어 있는 **콜드 스타트** 구간에서는 캐시가 있는데도 원본이 순간적으로 캐시 없을 때보다 더 심한 부하를 받을 수 있습니다. 존재하지 않는 키에는 짧은 TTL의 **negative caching**(값이 없다는 사실 자체를 캐시)을 적용하는 것이 이 문제의 일반적인 완화책입니다.
+<strong>"캐시를 추가하면 무조건 빨라진다"</strong>는 흔한 오해입니다. 존재하지 않는 키를 반복 조회하는 요청(예: 잘못된 사용자 ID, 크롤러의 무작위 요청)은 캐시를 거치지 않고 매번 원본을 때리는 **cache penetration**을 일으키고, 배포 직후처럼 캐시가 통째로 비어 있는 **콜드 스타트** 구간에서는 캐시가 채워지기 전까지 요청이 한꺼번에 원본으로 몰려 원본에 순간적인 부하가 집중될 수 있습니다. 존재하지 않는 키에는 짧은 TTL의 **negative caching**(값이 없다는 사실 자체를 캐시)을 적용하는 것이 이 문제의 일반적인 완화책입니다.
 
 <strong>"TTL을 짧게 잡으면 더 안전하다"</strong>도 자주 보이는 오해입니다. TTL을 짧게 잡을수록 얻는 것은 staleness 감소뿐이고, 대가로 캐시 미스 빈도와 원본 부하가 늘며 stampede 위험도 함께 커집니다. TTL은 "안전 대 위험"이 아니라 "신선도 대 부하"의 다이얼이며, 짧게 잡을수록 반드시 재계산 비용을 감당할 여력과 stampede 완화책이 함께 있어야 합니다.
 
@@ -170,11 +166,6 @@ bool ShouldRecomputeEarly(const CacheEntry& entry, double beta = 1.0) {
 | 가격·재고처럼 갱신 즉시 반영이 계약상 요구됨 | write-through 또는 이벤트 기반 invalidation | 긴 TTL만으로 방치 |
 | 동시 만료로 backend 폭주가 우려됨 | jittered TTL + 확률적 조기 갱신 또는 락 | 모든 항목에 동일한 고정 TTL |
 | 존재하지 않는 키 반복 조회(cache penetration) | negative caching(짧은 TTL) | 매번 원본까지 조회 허용 |
-
-- [ ] 이 데이터는 인스턴스 간 공유가 필요한가, 아니면 프로세스 로컬로 충분한가?
-- [ ] staleness 허용 범위(TTL)가 SLO·계약 요구와 충돌하지 않는가?
-- [ ] 캐시 미스가 몰릴 때(콜드 스타트, 배포 직후, 동시 만료) 백엔드가 그 부하를 버틸 수 있는가?
-- [ ] 무효화 경로(쓰기 이벤트)가 신뢰성 있게 전파되는가, 유실되면 어떤 staleness가 남는가?
 
 ## 비판적 시각: 한계와 트레이드오프
 

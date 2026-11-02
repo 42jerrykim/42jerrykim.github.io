@@ -29,10 +29,7 @@ tags:
   - Guide(가이드)
   - Reference(참고)
   - Pitfalls(함정)
-  - Edge-Cases(엣지케이스)
-  - Comparison(비교)
   - 실습
-  - Case-Study
   - GitHub-Actions
   - GitLab-CI
   - Benchmark-as-Code
@@ -104,7 +101,7 @@ BENCHMARK_MAIN();
 
 ## GitHub Actions 파이프라인 구성
 
-GitHub Actions에서 가장 널리 쓰이는 접근은 `benchmark-action/github-action-benchmark`처럼 벤치마크 출력 파일을 읽어 이전 결과와 비교하는 액션을 워크플로 마지막 단계에 배치하는 것입니다. 이 액션은 `tool` 입력값으로 `googlecpp`(Google Benchmark), `cargo`(Rust), `go`, `pytest` 등 여러 벤치마크 프레임워크의 출력 형식을 인식하고, `alert-threshold`(기본 `200%`)를 넘는 성능 저하가 감지되면 `fail-on-alert` 설정에 따라 워크플로를 실패시키거나 `comment-on-alert` 설정에 따라 커밋에 코멘트를 남깁니다. 아래 워크플로는 PR이 열릴 때마다 앞서 만든 `BM_SortRandomInts` 하네스를 빌드·실행하고, 그 콘솔 출력을 파일로 저장한 뒤 액션에 넘기는 최소 구성입니다.
+GitHub Actions에서 가장 널리 쓰이는 접근은 `benchmark-action/github-action-benchmark`처럼 벤치마크 출력 파일을 읽어 이전 결과와 비교하는 액션을 워크플로 마지막 단계에 배치하는 것입니다. 이 액션은 `tool` 입력값으로 `googlecpp`(Google Benchmark), `cargo`(Rust), `go`, `pytest` 등 여러 벤치마크 프레임워크의 출력 형식을 인식하고, `alert-threshold`(기본 `200%`)를 넘는 성능 저하가 감지되면 `fail-on-alert` 설정에 따라 워크플로를 실패시키거나 `comment-on-alert` 설정에 따라 커밋에 코멘트를 남깁니다. 아래 워크플로는 PR이 열릴 때마다 앞서 만든 `BM_SortRandomInts` 하네스를 빌드·실행하고, 그 JSON 출력을 파일로 저장한 뒤 액션에 넘기는 최소 구성입니다([액션 저장소의 C++ 예제 README](https://github.com/benchmark-action/github-action-benchmark/blob/master/examples/cpp/README.md)도 `--benchmark_format=json` 출력을 저장해 넘깁니다). 다만 같은 README는 이 워크플로를 풀 리퀘스트에서 돌리지 말라고 경고하므로(PR이 GitHub Pages 브랜치를 변경할 수 있게 되기 때문입니다), 아래 `pull_request` 트리거는 구조를 보이기 위한 것이며 실제로는 자신의 브랜치 push에서만 실행하는 구성을 검토해야 합니다.
 
 ```yaml
 name: benchmark
@@ -125,20 +122,20 @@ jobs:
         run: g++ -O2 -std=c++17 bench/sort_bench.cpp -lbenchmark -lpthread -o sort_bench
 
       - name: Run benchmark
-        run: ./sort_bench --benchmark_repetitions=5 | tee output.txt
+        run: ./sort_bench --benchmark_format=json --benchmark_repetitions=5 | tee output.json
 
       - name: Compare against baseline
         uses: benchmark-action/github-action-benchmark@v1
         with:
           tool: 'googlecpp'
-          output-file-path: output.txt
+          output-file-path: output.json
           alert-threshold: '130%'
           fail-on-alert: true
           comment-on-alert: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-이 워크플로에서 눈여겨볼 부분은 `alert-threshold`를 기본값 `200%`보다 훨씬 보수적인 `130%`로 낮춘 것입니다. 기본값은 "두 배 이상 느려져야 경고"라는 뜻이라 대부분의 µs 단위 핫패스에는 지나치게 느슨하며, 실제 임계값을 어디에 둘지는 팀의 변동성 데이터를 본 뒤 [07장: 변동성 관리](/post/regression-prevention/performance-variance-noise-management/)와 [09장: 알림 전략](/post/regression-prevention/performance-alerting-strategy-design/)의 기준을 참고해 정합니다. 이 액션은 기본적으로 `gh-pages` 브랜치에 결과 이력을 누적해 시계열 차트를 제공하는데, 이 저장소 자체를 장기 기준선으로 쓸지 별도 저장소를 둘지는 [06장: 기준선 관리](/post/regression-prevention/performance-baseline-management-strategy/)에서 다루는 결정입니다. CodSpeed나 Bencher처럼 전용 SaaS를 쓰는 경우 이 단계 전체가 해당 플랫폼의 액션으로 대체되며, 그 차이와 선택 기준은 [03장](/post/regression-prevention/benchmark-ci-integration-codspeed-bencher/)에 있습니다.
+이 워크플로에서 눈여겨볼 부분은 `alert-threshold`를 기본값 `200%`보다 훨씬 보수적인 `130%`로 낮춘 것입니다. 기본값은 "두 배 이상 느려져야 경고"라는 뜻이라 대부분의 µs 단위 핫패스에는 지나치게 느슨하며, 실제 임계값을 어디에 둘지는 팀의 변동성 데이터를 본 뒤 [07장: 변동성 관리](/post/regression-prevention/performance-variance-noise-management/)와 [09장: 알림 전략](/post/regression-prevention/performance-alerting-strategy-design/)의 기준을 참고해 정합니다. 이 액션은 `gh-pages` 브랜치에 결과 이력을 누적해 시계열 차트를 제공할 수 있는데(`auto-push: true`를 주지 않으면 생성된 커밋을 직접 push해야 합니다), 이 저장소 자체를 장기 기준선으로 쓸지 별도 저장소를 둘지는 [06장: 기준선 관리](/post/regression-prevention/performance-baseline-management-strategy/)에서 다루는 결정입니다. CodSpeed나 Bencher처럼 전용 SaaS를 쓰는 경우 이 단계 전체가 해당 플랫폼의 액션으로 대체되며, 그 차이와 선택 기준은 [03장](/post/regression-prevention/benchmark-ci-integration-codspeed-bencher/)에 있습니다.
 
 ## GitLab CI 파이프라인 구성
 
@@ -185,7 +182,7 @@ flowchart LR
 
 <strong>"벤치마크를 CI에 붙이면 그 자체로 회귀를 막는다"</strong>는 오해가 흔합니다. 파이프라인은 결과를 비교할 뿐이며, 무엇을 임계값으로 삼을지·노이즈를 어떻게 걸러낼지는 별도의 정책 설계가 필요합니다. 임계값을 대충 기본값으로 두면 경고가 너무 늦게 뜨거나(둔감) 반대로 매 PR마다 오탐이 쏟아져(민감) 팀이 알림을 무시하게 되는데, 이 부분은 [07장](/post/regression-prevention/performance-variance-noise-management/)과 [09장](/post/regression-prevention/performance-alerting-strategy-design/)이 다룹니다.
 
-<strong>"공유 러너에서 실행하면 결과를 그대로 믿을 수 있다"</strong>도 자주 나오는 오해입니다. GitHub Actions의 공용 `ubuntu-22.04` 러너나 GitLab의 공유 러너는 다른 워크플로와 물리 자원을 공유하는 가상 환경이라, 절대 시간값 자체는 실행마다 수 퍼센트에서 수십 퍼센트까지 흔들릴 수 있습니다. 이 문제의 근본 대응(전용 러너, 베어메탈 격리, 상대 비교 위주 설계)은 [03장의 Bencher 베어메탈 동일성 벤치마킹](/post/regression-prevention/benchmark-ci-integration-codspeed-bencher/)에서 다룹니다. 이 장의 파이프라인은 "무엇을 비교할지"의 골격이지, 그 비교의 통계적 신뢰도까지 보장하지 않습니다.
+<strong>"공유 러너에서 실행하면 결과를 그대로 믿을 수 있다"</strong>도 자주 나오는 오해입니다. GitHub Actions의 공용 `ubuntu-22.04` 러너나 GitLab의 공유 러너는 다른 워크플로와 물리 자원을 공유하는 가상 환경이라, 절대 시간값 자체는 실행마다 크게 흔들릴 수 있습니다. 이 문제의 근본 대응(전용 러너, 베어메탈 격리, 상대 비교 위주 설계)은 [03장의 Bencher 베어메탈 동일성 벤치마킹](/post/regression-prevention/benchmark-ci-integration-codspeed-bencher/)에서 다룹니다. 이 장의 파이프라인은 "무엇을 비교할지"의 골격이지, 그 비교의 통계적 신뢰도까지 보장하지 않습니다.
 
 <strong>"YAML 워크플로만 저장소에 있으면 Benchmark as Code가 완성된다"</strong>도 흔한 축소 해석입니다. 파이프라인 정의만 코드화되고 벤치마크 하네스나 변환 스크립트가 별도 도구·수작업으로 남아 있으면, 여전히 "이 수치가 왜 이렇게 계산됐는지" 저장소만 보고는 재구성할 수 없습니다. 세 산출물(하네스·비교 설정·파이프라인 정의) 모두가 버전관리 대상이어야 이 장에서 말하는 패턴이 성립합니다.
 
@@ -211,6 +208,8 @@ CI에서 벤치마크를 실행하는 순간, 그 결과는 "지금 이 러너�
 - [ ] GitLab CI에서 `artifacts:reports:metrics`가 무엇을 제공하고 Free 티어에서 무엇을 직접 구성해야 하는지 안다.
 - [ ] 공유 러너의 노이즈·죽은 벤치마크 같은 이 패턴의 한계를 인지하고 있다.
 - [ ] 임계값·알림·기준선 정책은 이 장이 아니라 05·06·07·09장에서 설계한다는 경계를 안다.
+
+**참고 자료**: [github-action-benchmark README](https://github.com/benchmark-action/github-action-benchmark), [GitLab: Metrics reports](https://docs.gitlab.com/ci/testing/metrics_reports/)
 
 **이전 장**: [성능 부채 관리](/post/regression-prevention/performance-debt-management-strategy/) (13장)에서는 갚지 않고 쌓이는 성능 저하를 부채로 다루는 법을 살펴봤습니다.
 

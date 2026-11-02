@@ -1,7 +1,7 @@
 ---
 collection_order: 2
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-20
 draft: false
 image: wordcloud.png
 title: "[Memory 04] 할당 전략: 풀·아레나"
@@ -16,13 +16,13 @@ tags:
   - Data-Structures(자료구조)
   - Benchmark
   - Latency
-  - Throughput
   - Profiling(프로파일링)
   - Implementation(구현)
   - Best-Practices
-  - Code-Quality(코드품질)
-  - System-Design
-  - Backend(백엔드)
+  - Heap(힙)
+  - Linked-List
+  - Concurrency(동시성)
+  - Debugging(디버깅)
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - Pool-Allocator
@@ -30,7 +30,7 @@ tags:
   - Bump-Allocator
   - Free-List
   - Object-Pool
-  - Slab-Allocator
+  - Compiler(컴파일러)
   - Memory-Reuse
   - Placement-New
   - Fixed-Size-Block
@@ -57,7 +57,7 @@ tags:
 
 ## 역사와 배경
 
-풀·아레나 패턴은 새로운 아이디어가 아닙니다. GNU C 라이브러리의 [obstack](https://sourceware.org/glibc/manual/latest/html_node/Obstacks.html)(object stack)은 1980년대부터 "마지막에 할당한 객체를 가장 먼저 해제해야 한다"는 LIFO 규율을 대가로 빠른 일괄 할당을 제공해 온 메모리 풀입니다. 서로 다른 obstack 인스턴스는 독립적으로 동작하며, 컴파일러의 파스 트리 노드나 인터프리터의 임시 노드처럼 짧게 살고 한꺼번에 사라지는 객체가 많은 프로그램이 이 패턴의 오래된 사용처였습니다.
+풀·아레나 패턴은 새로운 아이디어가 아닙니다. GNU C 라이브러리의 [obstack](https://sourceware.org/glibc/manual/latest/html_node/Obstacks.html)(object stack)은 오래전부터 "마지막에 할당한 객체를 가장 먼저 해제해야 한다"는 LIFO 규율을 대가로 빠른 일괄 할당을 제공해 온 메모리 풀입니다. 서로 다른 obstack 인스턴스는 독립적으로 동작하며, 컴파일러의 파스 트리 노드나 인터프리터의 임시 노드처럼 짧게 살고 한꺼번에 사라지는 객체가 많은 프로그램이 이 패턴의 오래된 사용처였습니다.
 
 같은 아이디어는 오늘날의 컴파일러 인프라에서도 반복됩니다. LLVM의 [`BumpPtrAllocatorImpl`](https://llvm.org/doxygen/classllvm_1_1BumpPtrAllocatorImpl.html)은 계속 자라나는 메모리 풀에서 범프 포인터 방식으로 공간을 내주는 할당자로, 내부적으로는 하나의 무한한 힙 대신 여러 슬래브(slab) 블록을 이어 붙여 관리하지만 사용자 입장에서는 "현재 슬래브의 다음 N바이트를 가리키기만 하면 되는" 범프 포인터 의미론을 그대로 제공합니다. AST 노드, 심볼 테이블 항목처럼 컴파일 단위 하나가 끝나면 통째로 버려도 되는 객체에 이 방식이 널리 쓰입니다.
 
@@ -81,9 +81,12 @@ C++ 표준은 이 두 패턴을 C++17에서 `std::pmr` 네임스페이스로 공
 template <typename T, std::size_t ChunkSize = 256>
 class FixedPool {
  public:
+  FixedPool() = default;
+  FixedPool(const FixedPool&) = delete;
+  FixedPool& operator=(const FixedPool&) = delete;
   ~FixedPool() {
     for (auto* chunk : chunks_)
-      ::operator delete(chunk, std::align_val_t{alignof(T)});
+      ::operator delete(chunk, std::align_val_t{kAlign});
   }
 
   void* allocate() {
@@ -99,12 +102,17 @@ class FixedPool {
   }
 
  private:
-  static constexpr std::size_t kSlotSize =
+  // 빈 슬롯에 void*를 겹쳐 쓰므로 정렬은 T와 void* 중 큰 쪽을 따르고,
+  // 슬롯 간격도 그 정렬의 배수로 올림해야 모든 슬롯이 정렬된다.
+  static constexpr std::size_t kAlign =
+      alignof(T) < alignof(void*) ? alignof(void*) : alignof(T);
+  static constexpr std::size_t kRaw =
       sizeof(T) < sizeof(void*) ? sizeof(void*) : sizeof(T);
+  static constexpr std::size_t kSlotSize = (kRaw + kAlign - 1) / kAlign * kAlign;
 
   void grow() {
     auto* chunk = static_cast<std::byte*>(
-        ::operator new(kSlotSize * ChunkSize, std::align_val_t{alignof(T)}));
+        ::operator new(kSlotSize * ChunkSize, std::align_val_t{kAlign}));
     chunks_.push_back(chunk);
     // 청크 안의 슬롯들을 free list로 순서대로 연결한다.
     for (std::size_t i = 0; i < ChunkSize; ++i) {
@@ -126,10 +134,10 @@ class FixedPool {
 **아레나(arena)** 또는 **범프 포인터(bump pointer) 할당자**는 풀보다 더 단순한 전제를 씁니다. 개별 블록을 해제하지 않고, 요청이 들어올 때마다 커서를 한 방향으로만 밀어서 다음 공간을 내주다가, 한 번에 전부(또는 커서만 되돌려서) 반납하는 방식입니다. 이 패턴이 유리한 경우는 "요청 하나를 처리하는 동안 만든 객체들을 요청이 끝나는 순간 한꺼번에 버려도 되는" 상황입니다. 웹 요청 하나, 파싱 작업 하나, 프레임 하나가 전형적인 단위입니다. 개별 해제가 없으므로 free list 관리 비용 자체가 사라지고, 할당은 정수 덧셈과 정렬 계산 수준으로 줄어듭니다.
 
 ```cpp
+#include <cassert>
 #include <cstddef>
 #include <cstdint>
 #include <new>
-#include <vector>
 
 // 요청 1건(또는 프레임 1개) 단위로 리셋하는 범프 포인터 아레나.
 // 개별 deallocate는 없고, reset()으로만 커서를 되돌린다.
@@ -141,9 +149,15 @@ class Arena {
 
   ~Arena() { ::operator delete(buffer_); }
 
+  // align은 2의 거듭제곱이어야 한다. 버퍼 시작 주소가 아니라 절대 주소를
+  // 기준으로 올림하므로 alignof(std::max_align_t)보다 큰 정렬도 지켜진다.
   void* allocate(std::size_t size, std::size_t align) {
-    std::size_t aligned = (offset_ + align - 1) & ~(align - 1);
-    if (aligned + size > capacity_) return nullptr;  // 상위 자원으로 폴백 필요
+    assert(align != 0 && (align & (align - 1)) == 0);
+    auto base = reinterpret_cast<std::uintptr_t>(buffer_);
+    std::size_t aligned =
+        ((base + offset_ + align - 1) & ~(std::uintptr_t{align} - 1)) - base;
+    if (aligned > capacity_ || size > capacity_ - aligned)
+      return nullptr;  // 상위 자원으로 폴백 필요
     offset_ = aligned + size;
     return buffer_ + aligned;
   }
@@ -174,15 +188,18 @@ flowchart LR
   end
 ```
 
-풀은 "개별 반납"을 지원하지만 블록 크기가 고정되어야 하고, 아레나는 크기 제약이 없는 대신 "개별 반납" 자체가 없습니다. 둘 다 공통적으로 "메모리를 커널이 아니라 이미 확보한 구역에서 조달한다"는 전략을 공유하며, 이 덕분에 시스템 콜(`mmap`/`brk`) 경계를 매 할당마다 넘나드는 비용과 범용 할당기의 락·메타데이터 탐색 비용을 함께 피합니다.
+풀은 "개별 반납"을 지원하지만 블록 크기가 고정되어야 하고, 아레나는 크기 제약이 없는 대신 "개별 반납" 자체가 없습니다. 둘 다 공통적으로 "메모리를 커널이 아니라 이미 확보한 구역에서 조달한다"는 전략을 공유하며, 이 덕분에 범용 할당기가 매 호출마다 치르는 크기 클래스 탐색·락·메타데이터 갱신 비용을 피합니다. 범용 할당기도 대부분의 요청은 이미 확보한 힙 안에서 처리하고 `brk`/`mmap` 시스템 콜은 힙을 늘리거나 큰 블록을 따로 매핑할 때만 부르므로, 풀·아레나가 아끼는 것은 주로 이 사용자 공간 쪽 비용입니다.
 
 ## 벤치마크: 할당 횟수 감소가 지연에 미치는 영향
 
-주장을 코드로 검증하는 것이 이 트랙의 원칙입니다. 아래는 "매번 `new`/`delete`"와 "`FixedPool` 재사용"을 같은 반복 횟수로 비교하는 Google Benchmark 골격입니다. 실제 배율은 객체 크기, 힙 상태(단편화 여부), 컴파일러·플래그, 스레드 수에 따라 달라지므로 여러분의 환경에서 재현하는 것을 전제로 읽어야 합니다.
+주장을 코드로 검증하는 것이 이 트랙의 원칙입니다. 아래는 "매번 `new`/`delete`"와 "`FixedPool` 재사용"을 같은 반복 횟수로 비교하는 Google Benchmark 골격입니다. 앞 절의 `FixedPool` 코드를 `fixed_pool.hpp`로 저장해 두면 이 파일이 그대로 빌드됩니다. 실제 배율은 객체 크기, 힙 상태(단편화 여부), 컴파일러·플래그, 스레드 수에 따라 달라지므로 여러분의 환경에서 재현하는 것을 전제로 읽어야 합니다.
 
 ```cpp
 #include <benchmark/benchmark.h>
 #include <cstdint>
+#include <new>
+
+#include "fixed_pool.hpp"  // 앞 절의 FixedPool 정의를 그대로 담은 헤더
 
 struct Order {  // 예시 페이로드: 주문 매칭 엔진에서 흔한 POD 크기
   std::uint64_t id;
@@ -238,15 +255,15 @@ BENCHMARK_MAIN();
 
 ### 적용 체크리스트
 
-- [ ] 프로파일러(heaptrack, `perf stat` 등)로 이 경로가 실제 할당 병목인지 먼저 확인했는가?
-- [ ] 객체 크기가 고정적인가(풀), 요청 단위로 일괄 폐기되는가(아레나)?
-- [ ] 소멸자가 필요한 타입이라면 반납/리셋 전 소멸자 호출 경로를 넣었는가?
-- [ ] 멀티스레드 접근이 있다면 동기화 전략(thread-local 또는 명시적 락)을 정했는가?
-- [ ] 도입 전후를 벤치마크로 비교했는가, 그리고 그 결과를 대상 환경에서 재현했는가?
+위 표에서 고른 전략을 실제 코드에 들이기 전에, 표가 다루지 않는 검증 단계 세 가지를 확인합니다.
+
+- [ ] heaptrack·`perf stat` 같은 프로파일러로 이 경로가 실제 할당 병목인지 먼저 확인했는가? — 병목이 아니면 풀 도입은 소멸자 책임·스레드 안전성이라는 복잡도만 늘린다.
+- [ ] 도입 전후를 대상 환경에서 벤치마크로 비교했는가? — 배율이 힙 구현체·객체 크기에 따라 크게 달라진다(벤치마크 절).
+- [ ] 반납·리셋 이후의 접근을 ASan 등으로 검증했는가? — 자체 풀은 해제된 슬롯을 잡아내는 계측이 기본 내장되어 있지 않다(비판적 시각 절).
 
 ## 비판적 시각: 한계와 트레이드오프
 
-풀·아레나는 할당 횟수를 줄이는 대가로 **다른 종류의 복잡도**를 코드에 들여옵니다. 청크 크기·풀 용량을 잘못 추정하면 단편화 문제가 사라지는 게 아니라 형태만 바뀌어 남습니다([챕터 10: 메모리 단편화 분석·대응](/post/memory-optimization/memory-fragmentation-analysis/)과 연결됩니다). 아레나의 "리셋 시점"을 잘못 잡으면 이미 해제된 메모리를 가리키는 use-after-free 부류의 버그가 생기는데, 이는 일반 힙 사용보다 오히려 재현·디버깅이 어려울 수 있습니다 — 힙 할당자는 보통 해제된 블록에 접근하면 ASan 같은 도구가 잡아내지만, 자체 구현한 풀·아레나는 그런 계측이 기본 내장되어 있지 않기 때문입니다. `std::pmr` 리소스를 쓰면 이 계측 공백이 줄어들지만 완전히 사라지지는 않으므로, 커스텀 할당자 도입 시에는 [챕터 14: 메모리 누수 탐지](/post/memory-optimization/memory-leak-detection-valgrind-asan/)에서 다루는 도구로 반드시 검증해야 합니다. 또한 이 장의 최소 구현은 스레드 안전성·정렬 보장·예외 안전성을 의도적으로 단순화했으므로, 프로덕션에 실제로 들여놓을 구현은 챕터 03의 커스텀 할당자 패턴이나 챕터 04의 `std::pmr`을 기반으로 하는 것이 더 안전한 선택입니다.
+풀·아레나는 할당 횟수를 줄이는 대가로 **다른 종류의 복잡도**를 코드에 들여옵니다. 청크 크기·풀 용량을 잘못 추정하면 단편화 문제가 사라지는 게 아니라 형태만 바뀌어 남습니다([챕터 10: 메모리 단편화 분석·대응](/post/memory-optimization/memory-fragmentation-analysis/)과 연결됩니다). 아레나의 "리셋 시점"을 잘못 잡으면 이미 해제된 메모리를 가리키는 use-after-free 부류의 버그가 생기는데, 이는 일반 힙 사용보다 오히려 재현·디버깅이 어려울 수 있습니다 — 힙 할당자는 보통 해제된 블록에 접근하면 ASan 같은 도구가 잡아내지만, 자체 구현한 풀·아레나는 그런 계측이 기본 내장되어 있지 않기 때문입니다. 자체 풀에서 같은 수준의 검출을 얻으려면 반납·리셋한 영역을 [ASan 수동 독(poisoning) API](https://github.com/google/sanitizers/wiki/AddressSanitizerManualPoisoning)인 `ASAN_POISON_MEMORY_REGION`으로 직접 표시하고 다시 내줄 때 `ASAN_UNPOISON_MEMORY_REGION`으로 풀어야 하므로, 커스텀 할당자 도입 시에는 [챕터 14: 메모리 누수 탐지](/post/memory-optimization/memory-leak-detection-valgrind-asan/)에서 다루는 도구로 반드시 검증해야 합니다. 또한 이 장의 최소 구현은 스레드 안전성·정렬 보장·예외 안전성을 의도적으로 단순화했으므로, 프로덕션에 실제로 들여놓을 구현은 챕터 03의 커스텀 할당자 패턴이나 챕터 04의 `std::pmr`을 기반으로 하는 것이 더 안전한 선택입니다.
 
 ## 마무리
 

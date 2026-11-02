@@ -1,7 +1,7 @@
 ---
 collection_order: 12
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-21
 draft: false
 image: wordcloud.png
 title: "[IO 09] Vectored I/O"
@@ -17,18 +17,15 @@ tags:
   - Windows(윈도우)
   - Kernel
   - C
-  - C++
   - Concurrency(동시성)
   - Networking(네트워킹)
   - Benchmark
   - Latency
   - Throughput
   - Profiling(프로파일링)
-  - Testing(테스트)
   - Implementation(구현)
   - Best-Practices
   - System-Design
-  - Debugging(디버깅)
   - Advanced
   - Comparison(비교)
   - Edge-Cases(엣지케이스)
@@ -144,11 +141,11 @@ ssize_t writev_full(int fd, struct iovec *iov, int iovcnt) {
 
 ## preadv2/pwritev2: 플래그 기반 세밀한 제어
 
-`preadv`/`pwritev`가 `readv`/`writev`에 파일 오프셋 인자를 더해 `lseek` 없이 특정 위치를 읽고 쓸 수 있게 했다면, `preadv2`/`pwritev2`는 여기에 다섯 번째 인자로 `int flags`를 더해 호출마다 동작을 바꿀 수 있게 했습니다. 이전에는 `O_DSYNC`나 `O_NONBLOCK` 같은 동작을 바꾸려면 `fcntl(F_SETFL)`로 파일 디스크립터 전체의 상태를 바꿔야 했지만, 같은 파일 디스크립터를 여러 목적으로 공유하는 코드에서는 이 방식이 스레드 세이프하지 않습니다. `RWF_` 플래그는 이 문제를 호출 단위로 해결합니다.
+`preadv`/`pwritev`가 `readv`/`writev`에 파일 오프셋 인자를 더해 `lseek` 없이 특정 위치를 읽고 쓸 수 있게 했다면, `preadv2`/`pwritev2`는 여기에 다섯 번째 인자로 `int flags`를 더해 호출마다 동작을 바꿀 수 있게 했습니다. 이전에는 `O_NONBLOCK`·`O_APPEND` 같은 동작을 바꾸려면 `fcntl(F_SETFL)`로 파일 디스크립터 전체의 상태를 바꿔야 했고, `O_DSYNC`/`O_SYNC`는 Linux에서 `F_SETFL`로 아예 바꿀 수 없어 `open` 단계에서 정해야 했습니다. 게다가 같은 파일 디스크립터를 여러 목적으로 공유하는 코드에서는 이 방식이 스레드 세이프하지 않습니다. `RWF_` 플래그는 이 문제를 호출 단위로 해결합니다.
 
 | 플래그 | 도입 커널 | 의미 |
 |--------|-----------|------|
-| `RWF_HIPRI` | 4.6 | 블록 계층 폴링으로 지연시간을 낮추되 CPU를 더 씀(`O_DIRECT`와 함께 쓰는 것이 일반적) |
+| `RWF_HIPRI` | 4.6 | 블록 계층 폴링으로 지연시간을 낮추되 CPU를 더 씀(현재 `O_DIRECT`로 연 fd에서만 동작) |
 | `RWF_DSYNC` | 4.7 | 해당 쓰기만 `O_DSYNC`처럼 동작(호출 단위 durable write) |
 | `RWF_SYNC` | 4.7 | 해당 쓰기만 `O_SYNC`처럼 동작 |
 | `RWF_NOWAIT` | 4.14 | 페이지 캐시 미스·잠금 대기가 필요하면 블로킹 대신 즉시 반환 |
@@ -168,22 +165,23 @@ ssize_t writev_full(int fd, struct iovec *iov, int iovcnt) {
 ssize_t try_read_nowait(int fd, struct iovec *iov, int iovcnt, off_t offset) {
   ssize_t n = preadv2(fd, iov, iovcnt, offset, RWF_NOWAIT);
   if (n < 0 && errno == EAGAIN) {
-    // 페이지 캐시 미스로 블로킹이 필요한 상태.
-    // 이벤트 루프 스레드를 막지 않고 블로킹 워커 큐로 위임한다.
+    // 페이지 캐시 미스 등으로 블로킹이 필요한 상태. 이 함수는 -1/EAGAIN을 그대로 돌려주고,
+    // 호출자가 이를 보고 같은 요청을 블로킹 워커 큐로 넘긴다(이벤트 루프 스레드는 막지 않음).
+    return -1;
   }
   return n;
 }
 ```
 
-`RWF_NOWAIT`는 "반드시 즉시 반환한다"를 보장하지 않는다는 점에 주의합니다. 커널 문서는 이를 최선 노력(best-effort) 힌트로 설명하며, 파일시스템에 따라 여전히 짧게 블로킹할 수 있습니다. `RWF_DSYNC`/`RWF_SYNC`는 매 쓰기마다 별도로 `fdatasync`/`fsync`를 호출하는 것보다 오버헤드가 적을 수 있지만, WAL 저널링에서 durable write를 언제 강제할지에 대한 전략은 [14장](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)에서 더 다룹니다.
+[readv(2)](https://man7.org/linux/man-pages/man2/readv.2.html)에 따르면 `RWF_NOWAIT` 읽기는 backing storage에서 데이터를 읽어야 하거나 락을 기다려야 하면 즉시 반환하며, 일부라도 읽었다면 그 바이트 수를, 하나도 못 읽었다면 `EAGAIN`을 돌려줍니다. 따라서 짧은 읽기(short read)도 정상 결과로 처리해야 합니다. `RWF_DSYNC`/`RWF_SYNC`는 매 쓰기마다 별도로 `fdatasync`/`fsync`를 호출하는 것보다 오버헤드가 적을 수 있지만, WAL 저널링에서 durable write를 언제 강제할지에 대한 전략은 [14장](/post/io-optimization/database-io-wal-fsync-journaling-strategy/)에서 더 다룹니다.
 
 ## 흔한 오개념
 
 <strong>"Vectored I/O는 항상 더 빠르다"</strong>는 절반만 맞습니다. 이득은 시스템 콜 진입/복귀 오버헤드가 전체 비용에서 차지하는 비중이 클 때, 즉 버퍼가 작고 호출 횟수가 많을 때 두드러집니다. 디스크 탐색 시간이나 네트워크 대역폭이 병목인 워크로드에서는 syscall 횟수를 줄여도 체감 차이가 크지 않을 수 있습니다.
 
-<strong>"readv/writev가 항상 요청한 바이트를 전부 처리하고 원자적으로 끝난다"</strong>도 잘못된 가정입니다. 파일 오프셋 갱신 자체는 원자적이어서 여러 스레드가 같은 파일 디스크립터로 `pwritev`를 동시에 불러도 서로의 오프셋을 덮어쓰지 않지만, 반환 바이트 수는 요청보다 작을 수 있습니다. 파이프·소켓·시그널 인터럽트가 겹치면 특히 그렇습니다. 위의 `writev_full`처럼 부분 전송을 처리하는 루프 없이 단발 호출 결과만 믿으면 데이터 누락으로 이어집니다.
+<strong>"readv/writev가 항상 요청한 바이트를 전부 처리하고 원자적으로 끝난다"</strong>도 잘못된 가정입니다. readv(2)가 말하는 원자성은 "`writev()`가 쓴 데이터가 다른 프로세스의 쓰기와 섞이지 않는 하나의 블록으로 기록된다"는 뜻이지, 요청한 바이트를 전부 전송한다는 뜻이 아닙니다. 섞이지 않고 기록된 블록이 요청보다 짧을 수 있으므로, 앞에서 본 `writev_full`처럼 부분 전송을 이어 보내는 루프가 여전히 필요합니다.
 
-<strong>"IOV_MAX까지 벡터 개수를 늘릴수록 이득도 커진다"</strong>도 과도한 일반화입니다. 벡터 개수가 늘면 커널이 순회할 `iovec` 배열도 커지고, 사용자 공간에서 그 배열을 채우는 비용도 무시할 수 없습니다. 실무에서는 로그 레코드의 헤더+바디, 프로토콜 메시지의 몇 개 필드처럼 **수 개–수십 개** 버퍼를 묶는 데서 이득이 가장 크고, 그 이상으로 늘린다고 비례해서 좋아지지는 않습니다.
+<strong>"IOV_MAX까지 벡터 개수를 늘릴수록 이득도 커진다"</strong>도 과도한 일반화입니다. 벡터 개수가 늘면 커널이 순회할 `iovec` 배열도 커지고, 사용자 공간에서 그 배열을 채우는 비용도 무시할 수 없습니다. 로그 레코드의 헤더+바디, 프로토콜 메시지의 몇 개 필드처럼 자연스럽게 나뉜 버퍼를 묶는 것이 전형적인 용도이며, 벡터 개수를 늘릴 때 이득이 어디서 꺾이는지는 아래 벤치마크의 `N_BUFS`를 바꿔 가며 대상 환경에서 직접 확인해야 합니다.
 
 ## 판단 기준
 
@@ -244,18 +242,15 @@ int main(void) {
 }
 ```
 
-`gcc -O2 bench_vectored.c -o bench_vectored`(Linux x86-64, GCC 13 예시)로 빌드하고 `strace -c -e trace=write,writev`로 감싸서 실행하면, `write` 루프 버전은 40만 회, `writev` 버전은 10만 회의 syscall이 잡혀야 합니다.
+`gcc -O2 bench_vectored.c -o bench_vectored`(Linux x86-64, GCC 13 예시)로 빌드하고 `strace -c -e trace=write,writev ./bench_vectored`로 감싸서 실행하면, `write` 루프 구간에서 40만 회, `writev` 구간에서 10만 회의 syscall이 잡혀야 합니다. 결과를 출력하는 `printf` 두 번이 표준 출력으로 `write`를 1–2회 더 내므로 `write` 횟수는 400,000보다 약간 많게 나옵니다. 아래는 출력 형태 예시이며, 시간 열은 환경마다 다르므로 비워 두었습니다.
 
 ```text
-$ strace -c -e trace=write ./bench_vectored_loop
+# 출력 형태 예시(측정값 아님): calls 열만 코드에서 결정된다
+$ strace -c -e trace=write,writev ./bench_vectored
 % time     seconds  usecs/call     calls    errors syscall
 ------ ----------- ----------- --------- --------- ----------------
-100.00    0.041523           0    400000           write
-
-$ strace -c -e trace=writev ./bench_vectored_writev
-% time     seconds  usecs/call     calls    errors syscall
------- ----------- ----------- --------- --------- ----------------
-100.00    0.011842           0    100000           writev
+   ...         ...         ...    400002           write
+   ...         ...         ...    100000           writev
 ```
 
 syscall 횟수는 정확히 `N_BUFS`배(4배) 차이가 나지만, 벽시계 시간 차이는 이보다 작게 나오는 경우가 흔합니다. `/dev/null`처럼 커널 내부 작업이 거의 없는 대상에서는 시스템 콜 진입/복귀 자체의 고정 비용이 두드러지지만, 실제 디스크나 소켓 대상에서는 그 비용이 전체 지연시간에서 차지하는 비중이 작아질 수 있습니다. 플랫폼·커널 버전·대상 파일 디스크립터 종류에 따라 배율은 달라지므로, 실제 워크로드에서 직접 재현해 확인하는 것을 권장합니다.

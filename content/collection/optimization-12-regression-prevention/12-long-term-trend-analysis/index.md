@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
 ## 점진적 저하 탐지: 변화점 탐지와 CUSUM
 
-추세 성분을 뽑았다면 다음 질문은 "언제부터 나빠지기 시작했는가"입니다. 단순히 최근 값과 과거 평균을 비교하는 대신, <strong>변화점 탐지(change point detection)</strong>는 시계열 전체에서 통계적 성질(평균·분산)이 바뀌는 지점을 자동으로 찾아냅니다. Python의 `ruptures` 라이브러리는 이런 오프라인 변화점 탐지 방법들을 제공하며, 공식 문서는 이 패키지를 "a Python library for off-line change point detection"이라고 소개하고 PELT·이진 분할(Binseg) 등 여러 탐지 알고리즘을 함께 제공한다고 설명합니다 — [ruptures 공식 문서](https://centre-borelli.github.io/ruptures-docs/). 시계열 예측 라이브러리 Prophet도 유사한 문제를 다루는데, 공식 문서에 따르면 Prophet은 먼저 다수의 <strong>잠재 변화점(potential changepoints)</strong>을 지정한 뒤, 그 지점에서의 변화 폭에 희소성을 유도하는 사전분포(L1 정규화와 동등)를 적용해 실제로 유의미한 변화점만 남기는 방식으로 동작합니다 — [Prophet: Trend Changepoints](https://facebook.github.io/prophet/docs/trend_changepoints.html) 문서. 세 방법(CUSUM, ruptures, Prophet) 모두 "언제 성질이 바뀌었는가"를 데이터로부터 역산한다는 공통점이 있고, 어느 것을 쓰든 나온 시점을 그대로 [기준선 관리](/post/regression-prevention/performance-baseline-management-strategy/)에서 다룬 커밋 이분 탐색(bisect)의 시작 구간으로 넘기면 원인 커밋 후보를 좁힐 수 있습니다.
+추세 성분을 뽑았다면 다음 질문은 "언제부터 나빠지기 시작했는가"입니다. 단순히 최근 값과 과거 평균을 비교하는 대신, <strong>변화점 탐지(change point detection)</strong>는 시계열 전체에서 통계적 성질(평균·분산)이 바뀌는 지점을 자동으로 찾아냅니다. Python의 `ruptures` 라이브러리는 이런 오프라인 변화점 탐지 방법들을 제공하며, 공식 문서는 이 패키지를 "a Python library for off-line change point detection"이라고 소개하고 PELT·이진 분할(Binseg) 등 여러 탐지 알고리즘을 함께 제공한다고 설명합니다 — [ruptures 공식 문서](https://centre-borelli.github.io/ruptures-docs/). 시계열 예측 라이브러리 Prophet도 유사한 문제를 다루는데, Prophet 저장소의 문서에 따르면 Prophet은 먼저 다수의 <strong>잠재 변화점(potential changepoints)</strong>을 지정한 뒤, 그 지점에서의 변화 폭에 희소성을 유도하는 사전분포(L1 정규화와 동등)를 적용해 실제로 유의미한 변화점만 남기는 방식으로 동작합니다 — [Prophet 저장소: Trend Changepoints 문서](https://github.com/facebook/prophet/blob/main/docs/_docs/trend_changepoints.md). 세 방법(CUSUM, ruptures, Prophet) 모두 "언제 성질이 바뀌었는가"를 데이터로부터 역산한다는 공통점이 있고, 어느 것을 쓰든 나온 시점을 그대로 [기준선 관리](/post/regression-prevention/performance-baseline-management-strategy/)에서 다룬 커밋 이분 탐색(bisect)의 시작 구간으로 넘기면 원인 커밋 후보를 좁힐 수 있습니다.
 
 CUSUM은 별도 라이브러리 없이 몇 줄로 직접 구현할 수 있다는 실무적 장점이 있습니다. 잔차의 누적 상방 편차가 임계값을 넘는 시점을 찾는 방식이며, 아래 구현은 표준적인 tabular CUSUM 공식을 따릅니다.
 
@@ -184,9 +184,9 @@ flowchart TB
 ## 마무리
 
 - [ ] 개별 PR 게이트가 왜 점진적 저하를 통과시키는지, CUSUM이 이 문제를 어떻게 다루는지 설명할 수 있는가?
-- [ ] STL 분해로 추세·계절성·잔차를 분리하는 이유와, 계절 성분을 왜 제거가 아니라 무시하면 안 되는지 설명할 수 있는가?
+- [ ] STL 분해로 추세·계절성·잔차를 분리하는 이유와, 계절 성분을 왜 무시가 아니라 제거해야 하는지 설명할 수 있는가?
 - [ ] CUSUM 또는 변화점 탐지로 저하 시작 시점을 추정하고, 그 결과를 bisect에 넘기는 흐름을 그릴 수 있는가?
 - [ ] 용량 신호로 지표를 정규화해 회귀와 정상적인 용량 증가를 구분할 수 있는가?
 - [ ] anchor baseline 재대조와 이 장의 시계열 분석이 서로 대체가 아니라 보완 관계임을 설명할 수 있는가?
 
-**이전 장**: [성능 장애 대응](/post/regression-prevention/performance-incident-response-process/)(챕터 11)이 이미 터진 급격한 저하에 대응하는 절차를 다뤘다면, 이 장은 그 정도로 급하지 않아 알림도 울리지 않는 저하를 시계열로 미리 찾아내는 방법을 다뤘습니다. **다음 장에서는** 이렇게 누적된 저하 중 당장 고칠 여력이 없어 의도적으로 남겨두는 것들을 어떻게 목록화하고 상환 우선순위를 매길지, [성능 부채 관리](/post/regression-prevention/performance-debt-management-strategy/)(챕터 13)에서 다룹니다.
+**이전 장**: [성능 장애 대응](/post/regression-prevention/performance-incident-response-process/)(챕터 11). **다음 장에서는** 이렇게 누적된 저하 중 당장 고칠 여력이 없어 의도적으로 남겨두는 것들을 어떻게 목록화하고 상환 우선순위를 매길지, [성능 부채 관리](/post/regression-prevention/performance-debt-management-strategy/)(챕터 13)에서 다룹니다.

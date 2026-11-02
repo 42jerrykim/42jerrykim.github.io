@@ -1,81 +1,54 @@
-﻿---
+---
 collection_order: 18
 date: 2026-03-24
-lastmod: 2026-07-10
+lastmod: 2026-10-21
 draft: false
 image: wordcloud.png
 title: "[Optimization(C++) 18] ABI·링크 경계와 극한 성능 (전문)"
 slug: abi-link-boundaries-extreme-cpp-performance
-description: "전문 난이도 장으로 ODR·ABI·가시성·심볼 경계가 인라이닝·LTO·동적 링크에 주는 제약을 정리합니다. Tr.03·챕터 12·19와 연계한 링크 타임 판단 기준·PR 체크리스트·이전·다음 장 링크를 제공합니다."
+description: "전문 난이도 장으로 ODR·ABI·가시성·심볼 경계가 인라이닝·LTO·동적 링크에 주는 제약을 정리합니다. semantic interposition이 공유 라이브러리 최적화를 막는 원리, 2-TU LTO 재현, Tr.03·챕터 12·19와 연계한 판단 기준과 실무 체크리스트를 제공합니다."
 tags:
   - C++
-  - Performance
-  - Optimization
+  - Performance(성능)
+  - Optimization(최적화)
   - ABI
   - ODR
   - Linker
   - LTO
-  - Compiler
+  - Compiler(컴파일러)
   - Inline
   - Symbol
   - Visibility
-  - Linux
-  - Windows
-  - Embedded
-  - Backend
-  - Code-Quality
-  - Software-Architecture
+  - Linux(리눅스)
+  - Windows(윈도우)
+  - Code-Quality(코드품질)
+  - Software-Architecture(소프트웨어아키텍처)
   - Best-Practices
-  - Implementation
-  - Profiling
+  - Implementation(구현)
+  - Profiling(프로파일링)
   - Benchmark
-  - Memory
+  - Memory(메모리)
   - CPU
-  - Latency
-  - Throughput
-  - Concurrency
-  - Testing
-  - Debugging
-  - Documentation
-  - Git
-  - CI-CD
-  - 성능
-  - 최적화
   - 링커
-  - 컴파일러
   - 심볼
   - 가시성
-  - 백엔드
-  - 코드품질
-  - 구현
-  - 프로파일링
-  - 지연시간
+  - Latency(지연시간)
   - Advanced
   - Deep-Dive
   - Expert
   - 전문
-  - Guide
-  - 가이드
-  - Reference
-  - 참고
-  - Case-Study
-  - Technology
-  - 기술
-  - Tutorial
-  - 튜토리얼
-  - Assembly
-  - 어셈블리
+  - Guide(가이드)
+  - Reference(참고)
   - Modularity
-  - Encapsulation
-  - 캡슐화
-  - Refactoring
-  - 리팩토링
-  - Pitfalls
-  - 함정
-  - Edge-Cases
-  - 엣지케이스
+  - Encapsulation(캡슐화)
+  - Pitfalls(함정)
+  - Edge-Cases(엣지케이스)
   - Portability
   - 이식성
+  - ELF(Executable and Linkable Format)
+  - Shared-Library
+  - Semantic-Interposition
+  - Name-Mangling
 ---
 
 본 장은 **전문** 난이도입니다. <strong>ABI(Application Binary Interface)</strong>와 **링크 경계**는 “코드를 조금 바꿨는데 왜 최적화가 사라졌는가”를 설명할 때 자주 등장합니다. 인라이닝·LTO·PGO·멀티버저닝은 Tr.03에서 다루고, 여기서는 **언어·링크 모델이 만들어내는 벽**이 성능에 어떤 의미를 갖는지 정리합니다.
@@ -84,7 +57,7 @@ tags:
 
 **완전한 초보자?** 이 장은 **전문** 난이도로, [03장: 추상화 비용 분석](/post/cpp-optimization/abstraction-cost/)·[12장: 인라이닝 유도 기법](/post/cpp-optimization/inlining-techniques/)·[08장: 템플릿/constexpr](/post/cpp-optimization/templates-constexpr/)을 먼저 읽었다고 가정합니다. 번역 단위(TU)·링크·동적 라이브러리가 무엇인지 알고 있어야 따라가기 쉽습니다.
 
-**이 장의 깊이**: 이 장은 **전문**에 집중합니다. ODR·ABI·가시성 같은 경계가 왜 최적화를 막는지부터 시작해, LTO가 고치는 것/못 고치는 것, 인라이닝과 코드 크기, 버전 업그레이드·ABI 안정성까지 다룹니다. **다루지 않는 것**: 인라이닝·LTO·PGO·멀티버저닝의 도구 사용법은 Tr.03 컴파일러 트랙에서, 코루틴·소거의 세부는 Tr.08·[19장](/post/cpp-optimization/type-erasure-cost-patterns/)에서 다룹니다.
+**이 장의 깊이**: 이 장은 **전문**에 집중합니다. ODR·ABI·가시성 같은 경계가 왜 최적화를 막는지부터 시작해, LTO가 고치는 것/못 고치는 것, 인라이닝과 코드 크기, 버전 업그레이드·ABI 안정성까지 다룹니다. **다루지 않는 것**: 인라이닝·LTO·PGO·멀티버저닝의 도구 사용법은 [Tr.03 컴파일러 트랙](/post/compiler-optimization/getting-started-compiler-build-performance-tuning/)에서, SIMD·asm 같은 명령 선택은 [Tr.08 극한 최적화 트랙](/post/extreme-optimization/getting-started-extreme-performance-optimization-techniques/)에서, 코루틴은 [10장](/post/cpp-optimization/coroutine-performance/), 타입 소거의 세부는 [19장](/post/cpp-optimization/type-erasure-cost-patterns/)에서 다룹니다.
 
 ## 당신의 수준에 맞는 경로
 
@@ -110,51 +83,9 @@ ODR 위반은 항상 즉시 크래시로 드러나지 않습니다. 서로 다�
 
 GCC/Clang 계열의 **기본 가시성**과 MSVC의 **dllexport/import** 등은 **심볼이 동적 링커에 얼마나 노출되는지**를 바꿉니다. 과도한 노출은 **동적 링크 비용**과 **전역 링커 작업**을 키울 수 있고, 반대로 과도한 숨김은 **테스트 더블 삽입**과 충돌할 수 있습니다. “전부 숨긴다”가 항상 최선은 아니며, **핫 심볼만** 전략적으로 다루는 편이 실무에 맞습니다.
 
-## LTO가 고치는 것·못 고치는 것
+가시성이 최적화에 닿는 핵심 메커니즘은 ELF의 <strong>심볼 인터포지션(symbol interposition)</strong>입니다. ELF 동적 링커는 공유 라이브러리가 내보낸 심볼을 실행 파일이나 먼저 로드된 다른 라이브러리의 같은 이름 심볼로 바꿔치기할 수 있게 허용합니다(`LD_PRELOAD`로 `malloc`을 교체하는 것이 대표적인 활용입니다). 그러면 `-fPIC`로 공유 라이브러리를 컴파일하는 GCC는, 같은 라이브러리 안의 다른 함수가 기본 가시성으로 내보낸 함수를 호출할 때도 "런타임에 다른 구현으로 바뀔 수 있다"고 가정해야 합니다. GCC 매뉴얼은 이 경우 컴파일러가 프로시저 간 전파, 인라이닝 같은 최적화를 수행할 수 없다고 명시합니다. 같은 라이브러리 안의 호출조차 PLT를 거치는 간접 호출로 남을 수 있는 이유입니다.
 
-LTO는 TU 경계를 넘는 **죽은 코드 제거**, **인라이닝**, **상수 전파** 등을 강화할 수 있습니다. 그러나 **동적 로딩**, **dlsym**, **플러그인 ABI**, **외부에서만 알 수 있는 입력**은 여전히 **정보 부족**으로 최적화를 막습니다. 또한 LTO는 **링크 시간·메모리**를 크게 쓰므로, CI와 개발자 루프 비용을 Tr.03와 함께 봐야 합니다. 동일 소스라도 **스태틱 링크 vs 동적 링크**는 코드 배치와 GOT/PLT 비용이 달라지고, **모듈 인터페이스**는 빌드 그래프를 바꿔 재빌드 범위를 줄이는 대신 링크 단계로 작업량을 옮길 수 있어 “빌드 시간”과 “런타임”을 분리 기록해야 합니다.
-
-### 2-TU 최소 재현: LTO 없이 vs `-flto`
-
-두 번역 단위로 나누면 TU 경계가 인라이닝을 어떻게 막는지 눈으로 볼 수 있습니다. `cold.cpp`에 정의된 `scale`을 `hot.cpp`의 루프에서 호출할 때, LTO가 없으면 링커는 `scale` 본문을 보지 못해 **out-of-line call**이 남고, `-flto`를 켜면 링크 시점에 본문을 보고 **인라인**할 수 있습니다.
-
-```cpp
-// cold.cpp — 다른 번역 단위에 정의
-int scale(int x) { return x * 3 + 1; }
-```
-
-`hot.cpp`는 `scale`의 **선언**만 보고 컴파일됩니다 — 본문이 다른 TU(`cold.cpp`)에 있으므로, LTO 없이는 컴파일러가 이 시점에 `scale`을 인라인할 근거(본문)를 갖지 못합니다.
-
-```cpp
-// hot.cpp — 핫 루프에서 다른 TU의 함수를 호출
-int scale(int x);             // 선언만 보임(본문은 cold.cpp)
-
-int hot_sum(int n) {
-    int acc = 0;
-    for (int i = 0; i < n; ++i) acc += scale(i);  // TU 경계 호출
-    return acc;
-}
-
-int main() {
-    return hot_sum(1000);
-}
-```
-
-아래 두 빌드는 같은 소스를 LTO 없이/있이 각각 빌드해, 인라인 여부가 실제로 갈리는지 비교합니다.
-
-```bash
-# LTO 없음: scale 호출이 out-of-line으로 남는다
-g++ -O2 -c cold.cpp -o cold.o
-g++ -O2 -c hot.cpp  -o hot.o
-g++ -O2 cold.o hot.o -o app_nolto
-
-# LTO 켬: 링크 시점에 scale 본문을 보고 인라인 가능
-g++ -O2 -flto -c cold.cpp -o cold_lto.o
-g++ -O2 -flto -c hot.cpp  -o hot_lto.o
-g++ -O2 -flto cold_lto.o hot_lto.o -o app_lto
-```
-
-확인은 간단합니다. `objdump -d app_nolto | grep -A12 hot_sum`에는 루프 안에 `call scale` 같은 **간접 없는 직접 call**이지만 **함수 호출**이 남고, `app_lto`에서는 같은 루프가 `lea`/`imul`류 산술로 펼쳐져 **call 자체가 사라지는** 경우가 많습니다. `nm app_lto`에서 `scale`이 더 이상 별도 심볼로 남지 않는 것도 인라인의 방증입니다.
+이 제약을 푸는 방법은 두 가지입니다. 첫째, 심볼을 `-fvisibility=hidden`이나 `visibility("hidden")`으로 숨기면 외부에서 인터포즈할 수 없으므로 컴파일러가 마음 놓고 인라인합니다. 둘째, GCC 5부터 제공되는 `-fno-semantic-interposition`을 주면 "인터포즈가 일어나더라도 대체 함수는 의미가 같다"고 가정하고 최적화합니다(`-Ofast`는 이 옵션을 자동으로 켭니다). 명시적으로 `inline`으로 선언된 함수는 처음부터 인터포즈로 의미가 바뀌는 것이 허용되지 않으므로 이 제약을 받지 않습니다. 실제 노출 심볼을 줄이는 예는 아래와 같습니다.
 
 ### 가시성: `visibility("default")` vs `-fvisibility=hidden`
 
@@ -175,6 +106,52 @@ nm -D --defined-only liblib.so | c++filt
 ```
 
 `nm -D`(동적 심볼만)에는 `public_api`만 보이고 `internal_helper`는 빠집니다 — 즉 숨긴 심볼은 동적 링커가 이름으로 찾을 수 없으므로, 플러그인 로더나 테스트가 `dlsym`으로 그 이름을 찾는다면 깨질 수 있습니다. “숨기기”는 성능 도구이자 **API 계약 변경**임을 기억합니다.
+
+## LTO가 고치는 것·못 고치는 것
+
+LTO는 TU 경계를 넘는 **죽은 코드 제거**, **인라이닝**, **상수 전파** 등을 강화할 수 있습니다. 그러나 **동적 로딩**, **dlsym**, **플러그인 ABI**, **외부에서만 알 수 있는 입력**은 여전히 **정보 부족**으로 최적화를 막습니다. 또한 LTO는 **링크 시간·메모리**를 크게 쓰므로, CI와 개발자 루프 비용을 Tr.03와 함께 봐야 합니다. 동일 소스라도 **스태틱 링크 vs 동적 링크**는 코드 배치와 GOT/PLT 비용이 달라지고, C++20 **모듈**은 인터페이스를 미리 컴파일한 BMI(Binary Module Interface)를 가져다 쓰므로 헤더 재파싱 비용을 줄이는 대신, BMI를 먼저 만들어야 하는 직렬 의존이 빌드 그래프에 생겨 병렬성이 줄 수 있습니다. 이런 빌드 구조 변화는 런타임 성능과 별개이므로 “빌드 시간”과 “런타임”을 분리 기록해야 합니다.
+
+### 2-TU 최소 재현: LTO 없이 vs `-flto`
+
+두 번역 단위로 나누면 TU 경계가 인라이닝을 어떻게 막는지 눈으로 볼 수 있습니다. `cold.cpp`에 정의된 `scale`을 `hot.cpp`의 루프에서 호출할 때, LTO가 없으면 `hot.cpp`를 컴파일하는 컴파일러가 `scale` 본문을 보지 못해 **out-of-line call**이 남고, `-flto`를 켜면 링크 시점에 다시 실행되는 최적화기가 두 TU의 본문을 함께 보고 **인라인**할 수 있습니다.
+
+```cpp
+// cold.cpp — 다른 번역 단위에 정의
+int scale(int x) { return x * 3 + 1; }
+```
+
+`hot.cpp`는 `scale`의 **선언**만 보고 컴파일됩니다 — 본문이 다른 TU(`cold.cpp`)에 있으므로, LTO 없이는 컴파일러가 이 시점에 `scale`을 인라인할 근거(본문)를 갖지 못합니다.
+
+```cpp
+// hot.cpp — 핫 루프에서 다른 TU의 함수를 호출
+int scale(int x);             // 선언만 보임(본문은 cold.cpp)
+
+__attribute__((noinline)) int hot_sum(int n) {   // main에 흡수되지 않도록 고정
+    int acc = 0;
+    for (int i = 0; i < n; ++i) acc += scale(i);  // TU 경계 호출
+    return acc;
+}
+
+int main(int argc, char**) {
+    return hot_sum(argc * 1000) & 0xff;   // 실행 시점 값이라 루프가 상수로 접히지 않는다
+}
+```
+
+아래 두 빌드는 같은 소스를 LTO 없이/있이 각각 빌드해, 인라인 여부가 실제로 갈리는지 비교합니다.
+
+```bash
+# LTO 없음: scale 호출이 out-of-line으로 남는다
+g++ -O2 -c cold.cpp -o cold.o
+g++ -O2 -c hot.cpp  -o hot.o
+g++ -O2 cold.o hot.o -o app_nolto
+
+# LTO 켬: 링크 시점에 scale 본문을 보고 인라인 가능
+g++ -O2 -flto -c cold.cpp -o cold_lto.o
+g++ -O2 -flto -c hot.cpp  -o hot_lto.o
+g++ -O2 -flto cold_lto.o hot_lto.o -o app_lto
+```
+
+확인은 간단합니다. `hot_sum`에 `noinline`을 붙인 이유는, 한 번만 호출되는 함수가 `main`에 흡수되어 `objdump`로 찾을 심볼이 사라지는 것을 막기 위해서입니다. `objdump -d app_nolto | grep -A12 hot_sum`에는 루프 안에 `scale`을 부르는 직접 `call` 명령이 남고, `app_lto`에서는 같은 루프가 `lea`/`imul`류 산술로 펼쳐져 **call 자체가 사라지는** 경우가 많습니다. `nm app_lto`에서 `scale`이 더 이상 별도 심볼로 남지 않는 것도 인라인의 방증입니다.
 
 ## 인라이닝과 코드 크기 (다시)
 
@@ -209,7 +186,7 @@ Tr.03는 **플래그·리포트·PGO 워크플로**를 다룹니다. 본 장은 
 
 **사례 1 — 작은 헬퍼가 TU 밖에만 정의됨**: 헤더에 `inline` 정의를 두거나, LTO로 링커가 본문을 볼 수 있게 구성하는지 검토합니다. 팀 정책상 헤더 노출이 싫다면 **내부 네임스페이스·내부 헤더**로 옮기는 타협이 흔합니다.
 
-**사례 2 — C API 경계**: `extern "C"`는 이름 맹글링을 고정하지만, **호출 규약**과 **객체 레이아웃** 제약이 남습니다. C++ 쪽에서 RAII 객체를 건네면 ABI가 깨지기 쉽습니다.
+**사례 2 — C API 경계**: `extern "C"`는 C 링키지로 이름 맹글링을 하지 않게 하지만, **호출 규약**과 **객체 레이아웃** 제약이 남습니다. C++ 쪽에서 RAII 객체를 건네면 ABI가 깨지기 쉽습니다.
 
 **사례 3 — 예외·RTTI 넘나드는 경계**: 동적 라이브러리 간 예외 전파는 플랫폼·빌드 플래그에 민감합니다. “성능” 이전에 **정확성** 이슈가 될 수 있어, 전문 튜닝 전에 빌드 매트릭스를 고정합니다.
 
@@ -246,13 +223,13 @@ Tr.03는 **플래그·리포트·PGO 워크플로**를 다룹니다. 본 장은 
 
 ## 흔한 오해
 
-<strong>"LTO를 켜면 TU 경계 문제가 전부 사라진다"</strong>는 오해입니다. LTO는 정적으로 함께 링크되는 오브젝트 사이의 경계는 되살릴 수 있지만, **동적 로딩**·**dlsym**·**플러그인 ABI**처럼 링크 시점에도 구현이 보이지 않는 경계는 여전히 정보 부족 상태로 남습니다. "LTO를 켰는데도 인라인이 안 된다"는 증상은 대부분 이 경우입니다.
+<strong>"LTO를 켜면 공유 라이브러리 안의 호출도 모두 인라인된다"</strong>는 오해입니다. LTO는 함께 링크되는 오브젝트의 본문을 보여 줄 뿐, 앞에서 본 심볼 인터포지션 제약은 그대로 남습니다. `-fPIC` 공유 라이브러리에서 기본 가시성으로 내보낸 함수는 LTO 아래에서도 "런타임에 바뀔 수 있는 함수"이므로, 가시성을 숨기거나 `-fno-semantic-interposition`을 주지 않으면 같은 라이브러리 안의 호출도 펼쳐지지 않을 수 있습니다.
 
-<strong>"심볼을 다 숨기면 항상 이득이다"</strong>도 위험한 통념입니다. `-fvisibility=hidden`으로 노출을 줄이면 동적 링크 비용은 줄어들지만, 동적 로더가 이름으로 심볼을 찾는 플러그인 구조나 테스트 더블 삽입과 충돌할 수 있습니다. 가시성 축소는 성능 튜닝이자 동시에 **API 계약 변경**이므로, 무엇이 외부에 필요한지 먼저 확인한 뒤 적용해야 합니다.
+<strong>"`extern "C"`로 감싸면 ABI 문제가 끝난다"</strong>도 오해입니다. `extern "C"`는 C 언어 링키지를 지정해 이름 맹글링을 하지 않게 할 뿐, 넘기는 타입의 레이아웃이나 예외 전파 규칙까지 고정하지 않습니다. `extern "C"` 함수의 인자로 `std::string`이나 `std::vector`를 넘기면 양쪽 모듈이 서로 다른 표준 라이브러리·빌드 플래그로 컴파일됐을 때 레이아웃이 어긋날 수 있으므로, 경계에는 POD 구조체와 포인터+길이처럼 레이아웃이 고정된 타입만 둡니다.
 
 ## 비판적 시각
 
-ABI를 핑계로 **모듈화를 깨는** 선택을 정당화하기 쉽습니다. 전문 튜닝은 **회귀 비용**이 크므로 Tr.12 성능 게이트·코드 리뷰(Tr.11)와 묶지 않으면 팀 전체 속도가 떨어질 수 있습니다. 또한 플랫폼마다 ABI 세부가 다르므로, **이식성**을 명시적으로 포기할 때만 “전문 장치”를 켜는 것이 안전합니다. 한 줄로 정리하면, ABI·링크 경계는 “성능의 천장”이자 “유지보수의 안전벨트”이며, 이 장은 천장을 부수는 법이 아니라 **어디까지가 합리적인 전문 영역인지**를 짚는 데 쓰입니다.
+ABI를 핑계로 **모듈화를 깨는** 선택을 정당화하기 쉽습니다. 전문 튜닝은 **회귀 비용**이 크므로 Tr.12 성능 게이트·코드 리뷰(Tr.11)와 묶지 않으면 팀 전체 속도가 떨어질 수 있습니다. 또한 플랫폼마다 ABI 세부가 다르므로, **이식성**을 명시적으로 포기할 때만 “전문 장치”를 켜는 것이 안전합니다.
 
 ## 판단 기준: 언제 이 장을 깊게 읽을까
 
@@ -266,24 +243,27 @@ ABI를 핑계로 **모듈화를 깨는** 선택을 정당화하기 쉽습니다.
 
 ## 평가 기준 (이 장을 읽은 후)
 
+이 장을 마치면 TU 경계, LTO, 가시성, 인터포지션을 각각 구분해 "왜 이 호출만 인라인되지 않는가"를 설명할 수 있어야 합니다. 다음 질문에 답할 수 있는지 확인합니다.
+
 - [ ] TU 경계가 인라이닝에 미치는 영향을 예로 설명할 수 있는가?
 - [ ] LTO가 해결하지 못하는 경계를 두 가지 이상 말할 수 있는가?
 - [ ] 가시성 변경이 **링크·로딩**에 미칠 수 있는 부작용을 말할 수 있는가?
+- [ ] 심볼 인터포지션이 `-fPIC` 공유 라이브러리 내부 인라이닝을 막는 이유와 해제 방법을 설명할 수 있는가?
 
 ## 실무 체크리스트
 
-- [ ] 핫 심볼 목록과 **노출 정책**이 문서화되어 있는가?
-- [ ] LTO on/off·PGO on/off에서 **동일 벤치**로 비교했는가?
-- [ ] 동적 플러그인 경계에서 **성능 계약**(호출 빈도·인자 크기)이 있는가?
-- [ ] 예외·RTTI·`std::function` 같은 소거 객체가 모듈 경계를 넘는가?
-- [ ] `new`/`delete`가 크로스 모듈에서 짝이 맞고, 할당자가 모듈마다 다르게 링크되지 않는가?
-- [ ] `-fvisibility=hidden` 전역 적용이나 Windows `dllexport` 누락으로 테스트·플러그인 로더가 깨지지 않는가?
-- [ ] 여러 컴파일러·표준 라이브러리 버전을 동시에 지원하며, ABI 변경 시 **롤백 플랜**이 있는가?
+- [ ] 핫 심볼 목록과 **노출 정책**이 문서화되어 있는가? — 무엇을 숨겨도 되는지 모르면 가시성 최적화가 API 계약을 깬다.
+- [ ] LTO on/off·PGO on/off에서 **동일 벤치**로 비교했는가? — 링크 단계 최적화의 이득은 코드가 아니라 빌드 설정에서 나온다.
+- [ ] 공유 라이브러리 내부 핫 호출이 인터포지션 때문에 PLT를 거치지 않는가? — 숨김 가시성이나 `-fno-semantic-interposition`으로 해제할 수 있다.
+- [ ] 예외·RTTI·`std::function` 같은 소거 객체가 모듈 경계를 넘는가? — 레이아웃·할당자·소멸 책임이 모듈 사이에 걸린다.
+- [ ] `new`/`delete`가 크로스 모듈에서 짝이 맞는가? — 모듈마다 다른 할당자가 링크되면 다른 힙에 해제하게 된다.
+- [ ] 여러 컴파일러·표준 라이브러리 버전 지원 시 ABI 변경 **롤백 플랜**이 있는가? — 같은 소스도 도구 체인이 바뀌면 바이너리 계약이 바뀐다.
 
 ### 더 읽을 거리
 
 - [Itanium C++ ABI](https://itanium-cxx-abi.github.io/cxx-abi/abi.html) — 이 장에서 다룬 이름 맹글링·객체 레이아웃·가상 테이블 등 ABI 규칙의 1차 사양 문서입니다.
 - [GCC Wiki: Visibility](https://gcc.gnu.org/wiki/Visibility) — `-fvisibility=hidden`·`visibility("default")` 속성이 동적 심볼 노출과 링크·로딩 비용에 미치는 영향을 정리한 GCC 공식 가이드입니다.
+- [GCC 매뉴얼: Optimize Options](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html) — `-fsemantic-interposition`이 인터포즈 가능한 심볼의 프로시저 간 최적화·인라이닝을 막는다는 설명과 해제 옵션의 1차 문서입니다.
 - [cppreference: Definitions and ODR](https://en.cppreference.com/w/cpp/language/definition) — One Definition Rule의 정확한 범위(함수·클래스·템플릿에 대한 예외 포함)를 정리한 레퍼런스로, "ODR과 템플릿·인라인" 절과 함께 보면 좋습니다.
 
 ## 다음 장에서는

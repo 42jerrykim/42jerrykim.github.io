@@ -1,7 +1,7 @@
 ---
 collection_order: 7
 date: 2026-07-14
-lastmod: 2026-07-14
+lastmod: 2026-10-21
 draft: false
 image: wordcloud.png
 title: "[IO 09] Memory-mapped I/O"
@@ -27,7 +27,6 @@ tags:
   - Profiling(프로파일링)
   - Debugging(디버깅)
   - Best-Practices
-  - Code-Quality(코드품질)
   - System-Design
   - Backend(백엔드)
   - Implementation(구현)
@@ -39,8 +38,6 @@ tags:
   - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - Comparison(비교)
-  - Documentation(문서화)
-  - Testing(테스트)
   - Database(데이터베이스)
   - mmap
   - madvise
@@ -62,7 +59,7 @@ tags:
 
 **전제 지식**: 가상 메모리·페이지 테이블·TLB의 기본 개념, 파일 디스크립터와 페이지 캐시가 무엇인지 알고 있으면 충분합니다. 깊은 TLB 미스 비용 분석이나 NUMA별 페이지 배치는 다루지 않습니다.
 
-**이 장의 깊이**: **중급**입니다. mmap의 동작 원리, 흔한 함정, 파일 I/O 대비 유불리 판단까지 다루되, 커널 내부의 page cache 회수(reclaim) 알고리즘이나 huge page THP 튜닝의 세부사항은 16장: 스토리지 스택 커스터마이징(추후 공개)과 [Tr.04 메모리 트랙](/post/memory-optimization/getting-started-memory-allocation-data-layout-tuning/)에 위임합니다. **다루지 않는 것**: `MAP_ANONYMOUS` 기반 힙 할당자 구현, `io_uring`이 내부적으로 mmap을 쓰는 링 버퍼 세부 구조(→ [Tr.06 io_uring 개요](/post/os-optimization/io-uring-overview-fundamentals/), [3장: io_uring 심화](/post/io-optimization/io-uring-advanced-deep-dive/)), `O_DIRECT`와의 정면 비교(→ [다음 장](/post/io-optimization/direct-io-o-direct-page-cache-bypass/)).
+**이 장의 깊이**: **중급**입니다. mmap의 동작 원리, 흔한 함정, 파일 I/O 대비 유불리 판단까지 다루되, 커널 내부의 page cache 회수(reclaim) 알고리즘이나 huge page THP 튜닝의 세부사항은 [Tr.04 메모리 트랙](/post/memory-optimization/getting-started-memory-allocation-data-layout-tuning/)에 위임합니다. **다루지 않는 것**: `MAP_ANONYMOUS` 기반 힙 할당자 구현, `io_uring`이 내부적으로 mmap을 쓰는 링 버퍼 세부 구조(→ [Tr.06 io_uring 개요](/post/os-optimization/io-uring-overview-fundamentals/), [04장: io_uring 심화](/post/io-optimization/io-uring-advanced-deep-dive/)), `O_DIRECT`와의 정면 비교(→ [다음 장](/post/io-optimization/direct-io-o-direct-page-cache-bypass/)).
 
 ## 당신의 수준에 맞는 경로
 
@@ -74,7 +71,7 @@ tags:
 
 ## mmap의 등장과 역사적 배경
 
-메모리 매핑 파일이라는 아이디어 자체는 1960–70년대 TOPS-20 운영체제의 설계로 거슬러 올라갑니다. 이 API는 BSD 계열 유닉스에서 다시 등장했는데, 4.2BSD(1983) 시스템 매뉴얼이 이미 `mmap`의 인터페이스를 기술했지만 정작 4.2BSD나 4.3BSD에는 구현되지 않았습니다. 실제로 동작하는 `mmap()`이 처음 출하된 것은 Sun Microsystems의 SunOS 4.0(1988)이었고, 이후 BSD 진영은 Sun의 구현을 이어받는 대신 Mach 가상 메모리 시스템을 기반으로 한 자체 구현을 4.3BSD-Reno/Net-2에 넣었습니다. 이 흐름이 이후 POSIX.1-2001로 표준화되어 오늘날 Linux·BSD·macOS가 공유하는 `mmap(2)` 인터페이스의 뼈대가 되었습니다. Windows에는 동일한 개념이 `CreateFileMapping`/`MapViewOfFile` API로 존재하지만, 이름·플래그 체계가 다르고 이 트랙에서는 Windows I/O 모델을 [4장: IOCP와 Windows I/O](/post/io-optimization/windows-iocp-io-model-optimization/)에서 별도로 다루므로 여기서는 POSIX `mmap`을 기준으로 설명합니다.
+메모리 매핑 파일이라는 아이디어 자체는 1960–70년대 TOPS-20 운영체제의 설계로 거슬러 올라갑니다. 이 API는 BSD 계열 유닉스에서 다시 등장했는데, 4.2BSD(1983) 시스템 매뉴얼이 이미 `mmap`의 인터페이스를 기술했지만 정작 4.2BSD나 4.3BSD에는 구현되지 않았습니다. 실제로 동작하는 `mmap()`이 처음 출하된 것은 Sun Microsystems의 SunOS 4.0(1988)이었고, 이후 BSD 진영은 Sun의 구현을 이어받는 대신 Mach 가상 메모리 시스템을 기반으로 한 자체 구현을 4.3BSD-Reno/Net-2에 넣었습니다. 이 흐름이 이후 SVr4·4.4BSD를 거쳐 POSIX.1-1996에 반영되어([mmap(2) HISTORY](https://man7.org/linux/man-pages/man2/mmap.2.html)) 오늘날 Linux·BSD·macOS가 공유하는 `mmap(2)` 인터페이스의 뼈대가 되었습니다. Windows에는 동일한 개념이 `CreateFileMapping`/`MapViewOfFile` API로 존재하지만, 이름·플래그 체계가 다르고 이 트랙에서는 Windows I/O 모델을 [05장: IOCP와 Windows I/O](/post/io-optimization/windows-iocp-io-model-optimization/)에서 별도로 다루므로 여기서는 POSIX `mmap`을 기준으로 설명합니다.
 
 ## mmap의 핵심 메커니즘: 가상 주소에서 페이지 폴트까지
 
@@ -127,6 +124,12 @@ long long sum_bytes_mmap(const char* path) {
   munmap(addr, len);
   return sum;
 }
+
+int main(int argc, char** argv) {
+  if (argc < 2) { std::fprintf(stderr, "usage: %s <file>\n", argv[0]); return 1; }
+  std::printf("%lld\n", sum_bytes_mmap(argv[1]));
+  return 0;
+}
 ```
 
 이 코드에서 `close(fd)`를 매핑 직후에 호출해도 안전한 이유는 커널이 매핑 자체에 파일에 대한 참조를 별도로 들고 있기 때문이지만, 반대로 `munmap`을 잊으면 프로세스가 끝날 때까지 가상 주소 공간과 페이지 캐시 참조가 남아 있으므로 장수명(long-lived) 프로세스에서는 명시적으로 해제해야 합니다.
@@ -178,15 +181,15 @@ bool write_log_fixed(const char* path, size_t record_size) {
 }
 ```
 
-**검증 도구**: `strace -f -e trace=memory,signal ./프로그램`으로 `mmap`/`munmap` 호출과 전달되는 시그널을 함께 추적하면 SIGBUS가 어느 호출 직후 발생했는지 파악할 수 있습니다. 시그널이 어느 주소에서 발생했는지까지 알고 싶다면 `sigaction`으로 `SA_SIGINFO` 핸들러를 등록해 `siginfo_t::si_addr`를 확인하는 방법도 있습니다. LMDB·RocksDB의 memtable·각종 인덱스 파일처럼 mmap으로 파일을 키우는 실무 코드는 거의 예외 없이 이 "먼저 ftruncate, 그다음 매핑" 패턴을 따릅니다.
+**검증 도구**: `strace -f -e trace=memory,signal ./프로그램`으로 `mmap`/`munmap` 호출과 전달되는 시그널을 함께 추적하면 SIGBUS가 어느 호출 직후 발생했는지 파악할 수 있습니다. 시그널이 어느 주소에서 발생했는지까지 알고 싶다면 `sigaction`으로 `SA_SIGINFO` 핸들러를 등록해 `siginfo_t::si_addr`를 확인하는 방법도 있습니다. mmap으로 파일에 직접 쓰는 실무 코드도 같은 패턴을 씁니다. 예를 들어 LMDB는 `MDB_WRITEMAP` 모드에서 매핑 크기만큼 먼저 `ftruncate`로 파일을 늘린 뒤 쓰기 가능한 매핑을 만듭니다.
 
 ## 자주 하는 오해 세 가지
 
-**"mmap은 항상 read/write보다 빠르다"는 절반만 맞습니다.** 대용량 파일을 순차로 여러 번 훑거나 여러 프로세스가 같은 페이지 캐시를 공유할 때는 유저 공간 복사(`copy_to_user`)가 없어 유리하지만, 작은 파일을 한 번만 읽는 경우에는 `mmap`/`munmap` 자체의 시스템 콜 비용과 페이지 테이블 설정 비용이 상대적으로 커서 오히려 `read()` 한 번이 더 빠를 수 있습니다. 실제 UCLA 석사 논문 등 관련 연구에서도 mmap이 유리한 배율은 접근 패턴과 파일 크기에 따라 갈리는 것으로 보고됩니다.
+**"mmap은 항상 read/write보다 빠르다"는 절반만 맞습니다.** 대용량 파일을 순차로 여러 번 훑거나 여러 프로세스가 같은 페이지 캐시를 공유할 때는 유저 공간 복사(`copy_to_user`)가 없어 유리하지만, 작은 파일을 한 번만 읽는 경우에는 `mmap`/`munmap` 자체의 시스템 콜 비용과 페이지 테이블 설정 비용이 상대적으로 커서 오히려 `read()` 한 번이 더 빠를 수 있습니다. 어느 쪽이 유리한지는 접근 패턴과 파일 크기에 따라 갈리므로, 아래 벤치마크처럼 대상 파일 크기로 직접 비교해야 합니다.
 
-**"MAP_SHARED로 쓰면 곧바로 디스크에 반영된다"도 오해입니다.** `MAP_SHARED` dirty 페이지는 일반 버퍼드 쓰기와 마찬가지로 커널의 writeback 스케줄에 맡겨지며, 즉시 반영을 보장하려면 `msync(MS_SYNC)`를 명시적으로 호출해야 합니다. `MAP_PRIVATE`라면 애초에 쓰기가 copy-on-write로만 처리되어 원본 파일에는 영영 반영되지 않습니다.
+**"MAP_SHARED로 쓰면 곧바로 디스크에 반영된다"도 오해입니다.** 앞 절에서 본 것처럼 반영 시점은 writeback이 정하고 `msync(MS_SYNC)`만이 이를 앞당깁니다. 더 흔히 놓치는 쪽은 `MAP_PRIVATE`로, 이 경우에는 애초에 쓰기가 copy-on-write로만 처리되어 원본 파일에는 영영 반영되지 않습니다.
 
-**"파일 I/O 에러는 mmap에서도 errno로 잡을 수 있다"는 mmap의 근본적인 함정을 놓친 생각입니다.** 디스크 오류·파일 절단·매핑 범위 초과 같은 문제는 접근 시점에 SIGBUS(때로 SIGSEGV)로 나타나므로, 일반적인 반환값 검사 패턴을 그대로 mmap 코드에 적용하면 예외 상황을 놓치게 됩니다. 안전한 코드는 앞 절처럼 사전에 크기를 보장하거나, 시그널 핸들러로 방어선을 둡니다.
+**"파일 I/O 에러는 mmap에서도 errno로 잡을 수 있다"는 mmap의 근본적인 함정을 놓친 생각입니다.** 앞 절의 SIGBUS 외에, 쓰기 금지(`PROT_READ`) 매핑에 쓰거나 매핑 범위 밖 주소를 건드리면 SIGSEGV가 나므로 두 시그널을 모두 염두에 둬야 합니다. 어느 쪽이든 `read()`처럼 호출 지점에서 반환값으로 돌아오지 않고 임의의 메모리 접근 지점에서 터지므로, 반환값 검사 습관만으로는 막을 수 없습니다.
 
 ## mmap vs 파일 I/O: 언제 유리하고 언제 불리한가
 
@@ -246,15 +249,17 @@ BENCHMARK(BM_MmapSequential);
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 bench_mmap.cpp -lbenchmark -lpthread -o bench_mmap`로 빌드해 실행합니다. USENIX HotStorage 논문에서 보고된 사례에서는 4GiB 파일 순차 읽기에서 `read`·기본 mmap·`MAP_POPULATE` mmap이 각각 1.06초, 1.42초, 1.02초로 나타나 기본 mmap이 오히려 느리고, 매핑 시 페이지를 미리 채우는 `MAP_POPULATE`를 쓴 쪽이 `read`와 비슷한 수준까지 따라붙었습니다 — 페이지 폴트를 접근 시점에 겪을지, 매핑 시점에 한꺼번에 겪을지의 차이입니다. 이 수치는 커널 버전·파일시스템·저장장치에 따라 달라지므로 자신의 환경에서 직접 재현하는 것을 권장합니다.
+`g++ -O2 bench_mmap.cpp -lbenchmark -lpthread -o bench_mmap`로 빌드해 실행합니다. 기본 mmap은 페이지마다 첫 접근에서 폴트를 겪는 반면, `mmap`에 `MAP_POPULATE`를 주면 매핑 시점에 페이지 테이블을 미리 채워 폴트를 한꺼번에 앞당깁니다. 두 변형과 `read`를 같은 파일로 비교해 보면 폴트를 접근 시점에 겪을지 매핑 시점에 겪을지가 전체 시간에 어떻게 드러나는지 확인할 수 있으며, 결과는 커널 버전·파일시스템·저장장치에 따라 달라지므로 자신의 환경에서 측정한 값만 근거로 삼습니다.
 
 ## 비판적 시각: 한계와 트레이드오프
 
-mmap이 만드는 지연 로딩은 지연시간을 없애는 것이 아니라 **예측 불가능한 시점으로 미루는 것**에 가깝습니다. 엔지니어 Erik Rigtorp가 정리한 실측에 따르면 `munmap` 한 번에 10만 건이 넘는 TLB flush 이벤트가 발생할 수 있고, 페이지 캐시 writeback으로 인한 지연이 수백 마이크로초 수준의 지터로 나타났습니다. 저지연 hot path 중간에 페이지 폴트가 끼어들면, 그 요청 하나의 tail latency가 다른 요청보다 훨씬 길어지는 결과로 이어집니다. 그래서 실시간 오디오·HFT 같은 극저지연 시스템에서는 `mlock`/`MAP_LOCKED`로 페이지를 미리 고정하고 스왑을 비활성화하며, 프로그램 시작 이후에는 페이지 테이블을 더 건드리지 않는 방식으로 mmap을 쓰는 경우가 많습니다.
+mmap이 만드는 지연 로딩은 지연시간을 없애는 것이 아니라 **예측 불가능한 시점으로 미루는 것**에 가깝습니다. 엔지니어 Erik Rigtorp의 [실측](https://rigtorp.se/virtual-memory/)에서는 `munmap`을 10만 번 반복하자 `tlb:tlb_flush` 이벤트가 약 10만 건(호출당 1건) 기록되었고, 멀티스레드 프로그램이었다면 그만큼의 TLB shootdown이 일어났을 것이라고 설명합니다. 같은 글은 Ryzen 3900X·Samsung 970 EVO·Linux 5.7 환경에서 페이지 캐시 writeback 때문에 수백 마이크로초의 지연 스파이크가 나타났다고 보고합니다. 저지연 hot path 중간에 페이지 폴트가 끼어들면, 그 요청 하나의 tail latency가 다른 요청보다 훨씬 길어지는 결과로 이어집니다. 그래서 실시간 오디오·HFT 같은 극저지연 시스템에서는 `mlock`/`MAP_LOCKED`로 페이지를 미리 고정하고 스왑을 비활성화하며, 프로그램 시작 이후에는 페이지 테이블을 더 건드리지 않는 방식으로 mmap을 쓰는 경우가 많습니다.
 
 SIGBUS/SIGSEGV 기반의 에러 통지는 일반적인 애플리케이션 예외 처리 모델과 잘 맞지 않는다는 점도 한계입니다. 시그널 핸들러를 등록해 두지 않으면 프로세스가 그대로 종료되고, 등록해 두더라도 시그널 핸들러 안에서 안전하게 할 수 있는 일이 제한적이라(async-signal-safe 함수만 가능) 정교한 복구 로직을 짜기 어렵습니다. 또한 NFS 같은 네트워크 파일시스템 위에서의 mmap 일관성 보장은 로컬 파일시스템만큼 강하지 않은 경우가 많아 구현에 따라 동작이 달라지므로("구현 정의"), 분산 환경에서 여러 노드가 같은 파일을 mmap으로 동시에 쓰는 설계는 신중해야 합니다. Transparent Huge Pages(THP)나 NUMA 자동 밸런싱 같은 커널 기능이 mmap된 영역과 상호작용하며 예상 밖의 지연 스파이크를 만들 수 있다는 점 역시, mmap을 "그냥 파일을 배열처럼 쓰는 편한 방법" 정도로만 이해해서는 안 되는 이유입니다.
 
 ## 마무리
+
+mmap은 파일을 가상 메모리에 붙여 유저 공간 복사를 없애는 대신, I/O 비용을 페이지 폴트라는 예측하기 어려운 시점으로 옮깁니다. 쓰기를 파일에 반영하려면 `MAP_SHARED`와 `ftruncate` 선행이, 내구성을 보장하려면 `msync`가 필요하고, 오류는 반환값이 아니라 시그널로 돌아옵니다. 따라서 대용량 순차·공유 읽기에는 유리하지만 hot path 지연 예측성이 중요한 곳에서는 사전 고정(`mlock`, `MAP_POPULATE`) 없이 쓰기 어렵습니다. 아래 항목으로 이해를 점검합니다.
 
 - mmap이 페이지 폴트를 통해 데이터를 지연 로딩한다는 점과, Minor/Major Fault의 차이를 설명할 수 있다.
 - `MAP_SHARED`와 `MAP_PRIVATE`가 쓰기 동작(파일 반영 여부, copy-on-write)을 어떻게 다르게 만드는지 설명할 수 있다.
@@ -262,8 +267,8 @@ SIGBUS/SIGSEGV 기반의 에러 통지는 일반적인 애플리케이션 예외
 - 대용량 순차 접근·다중 프로세스 공유처럼 mmap이 유리한 상황과, 작은 파일·hot path 지연 예측성·잦은 크기 변경처럼 불리한 상황을 구분해 선택할 수 있다.
 - mmap의 지연시간 예측 불가능성과 SIGBUS 기반 에러 처리의 한계를 인지하고, 저지연 요구 시 `mlock`·사전 매핑 같은 완화책을 고려할 수 있다.
 
-**이전 장**: [Zero-copy 기법](/post/io-optimization/zero-copy-sendfile-splice-copy-file-range/) (5장)
+**이전 장**: [Zero-copy 기법](/post/io-optimization/zero-copy-sendfile-splice-copy-file-range/) (06장)
 
 다음 장에서는 mmap과 정반대 방향인 **Direct I/O**를 다룹니다. mmap이 페이지 캐시를 최대한 활용해 커널에 판단을 맡기는 쪽이라면, `O_DIRECT`는 페이지 캐시를 아예 건너뛰고 애플리케이션이 캐싱·정렬·버퍼 관리를 직접 책임지는 쪽입니다. 이 장에서 본 "지연 로딩이 예측 불가능한 지연을 만든다"는 문제의식이, 다음 장에서 "그렇다면 캐시를 아예 우회하면 어떻게 되는가"라는 질문으로 이어집니다.
 
-→ [Direct I/O](/post/io-optimization/direct-io-o-direct-page-cache-bypass/) (7장)
+→ [Direct I/O](/post/io-optimization/direct-io-o-direct-page-cache-bypass/) (08장)

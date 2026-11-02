@@ -1,12 +1,12 @@
 ---
 collection_order: 8
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-23
 draft: false
 image: wordcloud.png
 title: "[Memory 04] Large Pages·Huge Pages"
 slug: huge-pages-large-pages-mthp
-description: "HugeTLB와 THP(Transparent Huge Pages)의 동작 원리, madvise 모드별 선택 기준, 2025-2026년 실무 표준으로 자리잡아 가는 mTHP(multi-size THP)까지 TLB 미스·페이지 폴트 관점에서 판단 기준과 벤치마크로 정리합니다."
+description: "HugeTLB와 THP(Transparent Huge Pages)의 동작 원리, madvise 모드별 선택 기준, 채택이 넓어지고 있는 mTHP(multi-size THP)까지 TLB 미스·페이지 폴트 관점에서 판단 기준과 벤치마크로 정리합니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
@@ -19,16 +19,13 @@ tags:
   - Windows(윈도우)
   - Benchmark
   - Latency
-  - Throughput
   - Profiling(프로파일링)
   - Best-Practices
   - Advanced
   - Deep-Dive
   - Pitfalls(함정)
   - Hardware(하드웨어)
-  - System-Design
-  - Debugging(디버깅)
-  - Reliability
+  - Kernel
   - Huge-Pages
   - THP
   - mTHP
@@ -39,7 +36,7 @@ tags:
   - Virtual-Memory
 ---
 
-<strong>Large Pages(대형 페이지, Huge Pages)</strong>란 가상 주소를 물리 주소로 변환할 때 TLB(Translation Lookaside Buffer) 엔트리 하나가 담당하는 메모리 범위를 표준 4KB 대신 x86-64 기준 2MB·1GB, 또는 아키텍처별로 정의된 더 큰 단위로 확장해 페이지 테이블 계층을 순회하는 비용과 TLB 미스 빈도를 줄이는 메모리 관리 기법을 말합니다. 핫패스가 수백 메가바이트에서 수 기가바이트 크기의 버퍼를 랜덤에 가깝게 순회할 때, 4KB 페이지 하나로는 TLB가 커버하는 주소 범위(TLB reach)가 금방 바닥나 페이지 워크(page walk)가 접근마다 반복되고, 이 비용은 µs 단위 예산을 조용히 갉아먹는 지연으로 쌓입니다. 이 장에서는 관리자가 정적으로 예약하는 HugeTLB, 커널이 자동으로 관리하는 THP(Transparent Huge Pages), 그리고 2025–2026년 사이 실무 표준으로 자리잡아 가는 mTHP(multi-size THP)를 각각 언제 선택하고 언제 피할지 다룹니다.
+<strong>Large Pages(대형 페이지, Huge Pages)</strong>란 가상 주소를 물리 주소로 변환할 때 TLB(Translation Lookaside Buffer) 엔트리 하나가 담당하는 메모리 범위를 표준 4KB 대신 x86-64 기준 2MB·1GB, 또는 아키텍처별로 정의된 더 큰 단위로 확장해 페이지 테이블 계층을 순회하는 비용과 TLB 미스 빈도를 줄이는 메모리 관리 기법을 말합니다. 핫패스가 수백 메가바이트에서 수 기가바이트 크기의 버퍼를 랜덤에 가깝게 순회할 때, 4KB 페이지 하나로는 TLB가 커버하는 주소 범위(TLB reach)가 금방 바닥나 페이지 워크(page walk)가 접근마다 반복되고, 이 비용은 µs 단위 예산을 조용히 갉아먹는 지연으로 쌓입니다. 이 장에서는 관리자가 정적으로 예약하는 HugeTLB, 커널이 자동으로 관리하는 THP(Transparent Huge Pages), 그리고 채택이 넓어지고 있는 mTHP(multi-size THP)를 각각 언제 선택하고 언제 피할지 다룹니다.
 
 ## 이 장을 읽기 전에
 
@@ -59,9 +56,9 @@ tags:
 
 ## Huge Pages 도입 배경
 
-HugeTLB는 Linux에서 오래전부터 존재해 온 기능으로, 관리자가 부팅 파라미터나 `/proc/sys/vm/nr_hugepages` sysctl로 대형 페이지 풀을 미리 예약해 두면 `hugetlbfs`를 마운트하거나 `MAP_HUGETLB` 플래그로 그 풀에서 페이지를 떼어 쓰는 방식입니다. 이 모델은 데이터베이스 버퍼 풀이나 대형 공유 메모리 세그먼트처럼 크기가 예측 가능하고 스왑되면 안 되는 워크로드를 겨냥해 설계되었습니다. THP(Transparent Huge Pages)는 이후 Linux 2.6.38(2011)에 메인라인으로 병합되면서 등장했고, 관리자 개입 없이 `khugepaged` 데몬이 백그라운드에서 인접한 4KB 페이지들을 찾아 2MB PMD(Page Middle Directory) 크기로 자동 병합(collapse)하는 방식을 취합니다. 같은 커널 릴리스에서 `madvise(2)`에 `MADV_HUGEPAGE`·`MADV_NOHUGEPAGE` 플래그가 함께 도입되어, 애플리케이션이 특정 영역에 대해서만 THP 후보 여부를 힌트로 줄 수 있게 되었습니다.
+HugeTLB는 Linux에서 오래전부터 존재해 온 기능으로, 관리자가 부팅 파라미터나 `/proc/sys/vm/nr_hugepages` sysctl로 대형 페이지 풀을 미리 예약해 두면 `hugetlbfs`를 마운트하거나 `MAP_HUGETLB` 플래그로 그 풀에서 페이지를 떼어 쓰는 방식입니다. THP(Transparent Huge Pages)는 이후 Linux 2.6.38에서 등장했고(`madvise(2)` 매뉴얼이 `MADV_HUGEPAGE`를 2.6.38부터로 표기), 관리자 개입 없이 `khugepaged` 데몬이 백그라운드에서 인접한 4KB 페이지들을 찾아 2MB PMD(Page Middle Directory) 크기로 자동 병합(collapse)하는 방식을 취합니다. 같은 릴리스에서 `MADV_HUGEPAGE`·`MADV_NOHUGEPAGE` 플래그가 함께 도입되어, 애플리케이션이 특정 영역에 대해서만 THP 후보 여부를 힌트로 줄 수 있게 되었습니다.
 
-전통적 THP는 2MB(x86-64 PMD 크기) 한 가지만 다뤘기 때문에, 4KB보다는 훨씬 크지만 2MB에는 못 미치는 할당(64KB–512KB급 버퍼 등)은 콜랩스 대상이 되지 못하고 그대로 4KB로 남는 경우가 많았습니다. ARM의 Ryan Roberts가 주도한 익명 메모리용 multi-size THP(mTHP) 패치셋이 이 틈을 겨냥해 논의되었고, 2023–2024년 사이 6.x 계열 커널에 단계적으로 병합되며 크기별 sysfs 인터페이스가 추가되었습니다. `khugepaged`가 mTHP 크기도 자동으로 스캔·콜랩스하도록 확장하는 논의가 커널 커뮤니티에서 진행 중입니다. Windows에서도 `VirtualAlloc`에 `MEM_LARGE_PAGES`를 지정하고 `SeLockMemoryPrivilege` 권한을 확보하면 대형 페이지를 예약할 수 있지만, 이는 HugeTLB에 가까운 정적 모델이며 THP처럼 커널이 자동으로 콜랩스해 주는 투명한 메커니즘은 아닙니다.
+전통적 THP는 2MB(x86-64 PMD 크기) 한 가지만 다뤘기 때문에, 4KB보다는 훨씬 크지만 2MB에는 못 미치는 할당(64KB–512KB급 버퍼 등)은 콜랩스 대상이 되지 못하고 그대로 4KB로 남는 경우가 많았습니다. multi-size THP(mTHP)가 이 틈을 겨냥해 6.x 계열 커널에서 도입되었고, 크기별 sysfs 인터페이스가 추가되었습니다. 현행 [커널 문서](https://docs.kernel.org/admin-guide/mm/transhuge.html)에 따르면 `khugepaged`는 기본 페이지를 PMD 크기뿐 아니라 mTHP 크기로도 콜랩스할 수 있지만, 설정 조건(후술)이 붙고 커널 버전에 따라 지원 범위가 다릅니다. Windows에서도 `VirtualAlloc`에 `MEM_LARGE_PAGES`를 지정하고 `SeLockMemoryPrivilege` 권한을 확보하면 대형 페이지를 예약할 수 있지만, 이는 HugeTLB에 가까운 정적 모델이며 THP처럼 커널이 자동으로 콜랩스해 주는 투명한 메커니즘은 아닙니다.
 
 ## HugeTLB: 정적 대형 페이지
 
@@ -98,9 +95,12 @@ int main() {
 ```cpp
 #include <sys/mman.h>
 
-void mark_hot_arena_for_thp(void* addr, size_t len) {
+#include <cstddef>
+
+// 성공하면 0, 실패하면 -1(errno 설정). 힌트라서 실패해도 프로그램은 4KB 페이지로 계속 동작한다.
+int mark_hot_arena_for_thp(void* addr, std::size_t len) {
   // 전역 정책이 madvise일 때만 유효한 힌트: 이 영역만 THP 후보로 표시한다
-  madvise(addr, len, MADV_HUGEPAGE);
+  return madvise(addr, len, MADV_HUGEPAGE);
 }
 ```
 
@@ -110,19 +110,20 @@ void mark_hot_arena_for_thp(void* addr, size_t len) {
 flowchart TD
   request["대용량 버퍼 접근 시작"] --> policy{"THP enabled 정책"}
   policy -->|"never"| basePage["4KB 기본 페이지</br>TLB reach 작음"]
-  policy -->|"madvise + MADV_HUGEPAGE"| scan["khugepaged가 후보 영역 스캔"]
-  policy -->|"always"| scan
-  scan --> sizeCheck{"연속 물리 페이지 확보 가능?"}
-  sizeCheck -->|"2MB 전체 확보"| pmdHuge["PMD 크기 THP</br>2MB 매핑"]
-  sizeCheck -->|"일부만 확보(mTHP 대상)"| mthp["mTHP</br>16K~1MB 단위 매핑"]
+  policy -->|"madvise + MADV_HUGEPAGE"| fault["페이지 폴트 시점에</br>활성화된 크기로 할당 시도"]
+  policy -->|"always"| fault
+  fault --> sizeCheck{"연속 물리 페이지 확보 가능?"}
+  sizeCheck -->|"2MB 확보"| pmdHuge["PMD 크기 THP</br>2MB 매핑"]
+  sizeCheck -->|"작은 mTHP 크기 확보"| mthp["mTHP</br>크기별 sysfs로 설정"]
   sizeCheck -->|"확보 실패"| basePage
+  basePage -.->|"이후 조건이 맞으면"| collapse["khugepaged가 스캔해</br>PMD 또는 mTHP 크기로 콜랩스"]
 ```
 
-현재 THP로 실제 매핑되어 있는지는 `/proc/<pid>/smaps`의 `AnonHugePages` 필드로 확인할 수 있으며, 이 값은 전통적인 PMD 크기 THP만을 집계합니다.
+현재 THP로 실제 매핑되어 있는지는 `/proc/<pid>/smaps`의 `AnonHugePages` 필드로 확인할 수 있습니다. 커널 문서는 이 필드가 역사적 이유로 전통적인 PMD 크기 THP만 집계하며 `AnonHugePmdMapped`라고 불렸어야 했다고 설명합니다.
 
 ```bash
 cat /sys/kernel/mm/transparent_hugepage/enabled
-grep -E 'AnonHugePages|AnonHugePmdMapped' /proc/self/smaps_rollup
+grep AnonHugePages /proc/self/smaps_rollup
 ```
 
 ## mTHP: 여러 크기를 지원하는 THP
@@ -135,74 +136,90 @@ for f in /sys/kernel/mm/transparent_hugepage/hugepages-*kB/enabled; do
 done
 ```
 
-위 스크립트로 나열되는 각 크기별 파일에 원하는 정책을 써 넣으면 되지만, 주의할 점이 있습니다. `MADV_COLLAPSE`는 여전히 PMD 크기 콜랩스만 지원하고 mTHP 콜랩스에는 관여하지 않으며, `khugepaged`가 공유되거나 스왑된 페이지를 만나면 해당 영역의 mTHP 콜랩스를 건너뜁니다. mTHP를 활용해 할당 정책 자체를 크기별로 나누고 싶다면 [16장: 전역 할당자·jemalloc·tcmalloc](/post/memory-optimization/global-allocator-jemalloc-tcmalloc-tuning-expert/)에서 다루는 아레나 단위 튜닝과 함께 검토하는 것이 자연스럽습니다.
+위 스크립트로 나열되는 각 크기별 파일에 원하는 정책을 써 넣으면 되지만, 주의할 점이 있습니다. 커널 문서에 따르면 `MADV_COLLAPSE`(`madvise_collapse`)는 PMD 크기 THP로만 콜랩스하고 mTHP 콜랩스는 시도하지 않으며, `khugepaged`의 mTHP 콜랩스는 `max_ptes_none`이 0 또는 `HPAGE_PMD_NR - 1`일 때만 지원되고 공유되었거나 스왑된 페이지가 들어 있는 영역은 건너뜁니다. mTHP를 활용해 할당 정책 자체를 크기별로 나누고 싶다면 [16장: 전역 할당자·jemalloc·tcmalloc](/post/memory-optimization/global-allocator-jemalloc-tcmalloc-tuning-expert/)에서 다루는 아레나 단위 튜닝과 함께 검토하는 것이 자연스럽습니다.
 
 ## 측정: TLB 미스와 페이지 폴트로 확인하기
 
-Huge page 적용 효과는 주장이 아니라 카운터로 확인해야 합니다. 아래는 큰 익명 매핑을 만들어 랜덤 접근을 반복하면서, 인자로 THP 힌트 사용 여부를 바꿀 수 있게 만든 최소 벤치마크입니다. `-std=c++17` 이상, Linux(x86-64) 기준으로 작성했습니다.
+Huge page 적용 효과는 주장이 아니라 측정으로 확인해야 합니다. 아래는 큰 익명 매핑을 만들어 캐시 라인 단위 랜덤 접근을 반복하면서, 인자로 THP 힌트 사용 여부를 바꾸는 최소 벤치마크입니다. 끝에서 `/proc/self/smaps_rollup`의 `AnonHugePages`를 읽어 THP가 실제로 적용됐는지도 함께 출력하므로, 시간이 줄었다는 결과와 THP가 켜졌다는 사실을 한 번에 대조할 수 있습니다. Linux(x86-64)에서 `-std=c++17` 이상으로 빌드합니다.
 
 ```cpp
 #include <sys/mman.h>
+
 #include <chrono>
+#include <cstdint>
 #include <cstdio>
 #include <cstring>
 #include <random>
 #include <string>
 
+// /proc/self/smaps_rollup에서 PMD 크기 THP로 매핑된 양(kB)을 읽는다.
+static long anon_huge_kb() {
+  std::FILE* f = std::fopen("/proc/self/smaps_rollup", "r");
+  if (!f) return -1;
+  char line[256];
+  long kb = -1;
+  while (std::fgets(line, sizeof line, f))
+    if (std::sscanf(line, "AnonHugePages: %ld kB", &kb) == 1) break;
+  std::fclose(f);
+  return kb;
+}
+
 int main(int argc, char** argv) {
-  constexpr size_t kSize = 1ull << 31;  // 2GiB
+  constexpr std::size_t kSize = std::size_t{1} << 27;  // 128MiB
   void* buf = mmap(nullptr, kSize, PROT_READ | PROT_WRITE,
                    MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-  if (buf == MAP_FAILED) { perror("mmap"); return 1; }
+  if (buf == MAP_FAILED) { std::perror("mmap"); return 1; }
 
   const bool use_thp = argc > 1 && std::string(argv[1]) == "thp";
   madvise(buf, kSize, use_thp ? MADV_HUGEPAGE : MADV_NOHUGEPAGE);
-  std::memset(buf, 0, kSize);  // 페이지 폴트를 미리 유발해 워밍업
+  std::memset(buf, 1, kSize);  // 페이지 폴트를 미리 유발해 워밍업 (THP는 이때 할당된다)
 
   std::mt19937_64 rng(42);
-  std::uniform_int_distribution<size_t> dist(0, kSize / 64 - 1);
-  volatile uint64_t sink = 0;
-  auto* base = static_cast<char*>(buf);
+  std::uniform_int_distribution<std::size_t> dist(0, kSize / 64 - 1);
+  std::uint64_t sink = 0;
+  const auto* base = static_cast<const unsigned char*>(buf);
 
+  constexpr std::size_t kIters = 10'000'000;
   const auto t0 = std::chrono::steady_clock::now();
-  constexpr size_t kIters = 50'000'000;
-  for (size_t i = 0; i < kIters; ++i) {
-    sink += base[dist(rng) * 64];  // 캐시라인 단위 stride로 TLB reach를 실제로 시험
-  }
+  for (std::size_t i = 0; i < kIters; ++i) sink += base[dist(rng) * 64];  // 캐시 라인 단위 랜덤 접근
   const auto t1 = std::chrono::steady_clock::now();
 
-  std::printf("mode=%s elapsed_ms=%ld sink=%lu\n", use_thp ? "thp" : "nothp",
-              std::chrono::duration_cast<std::chrono::milliseconds>(t1 - t0).count(),
-              static_cast<unsigned long>(sink));
+  std::printf("mode=%s elapsed_ms=%lld AnonHugePages=%ld kB sink=%llu\n",
+              use_thp ? "thp" : "nothp",
+              static_cast<long long>(std::chrono::duration_cast<std::chrono::milliseconds>(t1 - t0).count()),
+              anon_huge_kb(), static_cast<unsigned long long>(sink));
   munmap(buf, kSize);
   return 0;
 }
 ```
 
-`g++ -O2 -std=c++17 thp_bench.cpp -o thp_bench`로 빌드한 뒤, `perf stat`으로 두 모드를 각각 측정해 TLB 미스와 페이지 폴트 수의 차이를 직접 비교합니다.
+`g++ -O2 -std=c++17 thp_bench.cpp -o thp_bench`로 빌드해 Compiler Explorer의 샌드박스(x86-64 GCC 13.2)에서 `nothp`와 `thp`를 번갈아 세 번씩 실행한 결과는 다음과 같습니다(공유 서버 한 대의 값이므로 절댓값이 아니라 경향으로만 읽습니다).
+
+```text
+mode=nothp elapsed_ms=316 AnonHugePages=0 kB sink=10000000
+mode=thp elapsed_ms=223 AnonHugePages=131072 kB sink=10000000
+
+mode=nothp elapsed_ms=273 AnonHugePages=0 kB sink=10000001
+mode=thp elapsed_ms=225 AnonHugePages=131072 kB sink=10000001
+
+mode=nothp elapsed_ms=270 AnonHugePages=0 kB sink=10000002
+mode=thp elapsed_ms=213 AnonHugePages=131072 kB sink=10000002
+```
+
+두 번째와 세 번째 실행은 서버가 이전 결과를 재사용하지 않도록 반복 횟수를 1, 2회 늘려서 `sink`가 달라졌습니다(`sink`는 반복 횟수와 같습니다).
+
+`thp` 모드에서만 `AnonHugePages`가 버퍼 크기인 128MiB(131072kB) 전체로 잡혔으므로 THP가 실제로 적용되었고, 랜덤 접근 시간이 세 번 모두 줄었습니다(213–225 ms 대 270–316 ms, 약 18–29%). 반대로 `kSize`를 64MiB, 반복을 5,000,000회로 줄여 한 번 돌렸을 때는 `mode=nothp elapsed_ms=85`, `mode=thp elapsed_ms=110`으로 오히려 `thp`가 느렸는데, 작은 워킹셋에서는 TLB reach 문제가 크지 않고 측정 변동이 이득보다 컸기 때문으로 보입니다. 이 샌드박스에는 `perf`가 없어 TLB 미스 카운터는 재지 못했습니다. 로컬에서는 다음처럼 `dTLB-load-misses`와 `page-faults`를 함께 비교할 수 있고, 수치는 CPU 세대·커널 버전·`enabled`/`defrag` 설정·워킹셋 크기에 따라 크게 달라지므로 직접 재현해야 합니다.
 
 ```bash
 perf stat -e dTLB-load-misses,page-faults ./thp_bench nothp
 perf stat -e dTLB-load-misses,page-faults ./thp_bench thp
 ```
 
-아래는 예시 형태의 출력입니다(실제 수치는 CPU 세대·커널 버전·`enabled`/`defrag` 설정·워킹셋 크기에 따라 크게 달라지므로, 반드시 대상 환경에서 재현해야 합니다).
-
-```text
-# nothp (예시, 플랫폼·설정에 따라 다름)
-       1,842,391,204      dTLB-load-misses
-             524,301      page-faults
-
-# thp (예시, 플랫폼·설정에 따라 다름)
-         213,558,760      dTLB-load-misses
-                 268      page-faults
-```
-
-이 벤치마크는 순수 랜덤 stride 접근이라 huge page의 이득이 과장되게 보일 수 있습니다. 실제 서비스의 접근 패턴이 순차에 가깝다면 TLB 미스 자체가 애초에 적어 개선 폭이 훨씬 작을 수 있으니, 프로파일러로 확인한 실제 워킹셋과 접근 패턴을 재현해서 측정하는 것이 중요합니다. 힙 전체의 페이지·할당 프로파일을 함께 보고 싶다면 [Tr.01 ch20: 메모리 프로파일링: 힙 분석](/post/profiling-analysis/memory-profiling-heap-analysis/)에서 다루는 heaptrack 계열 도구와 병행하는 것을 권장합니다.
+이 벤치마크는 순수 랜덤 접근이라 huge page의 이득이 과장되게 보일 수 있습니다. 실제 서비스의 접근 패턴이 순차에 가깝다면 TLB 미스 자체가 애초에 적어 개선 폭이 훨씬 작을 수 있으니, 프로파일러로 확인한 실제 워킹셋과 접근 패턴을 재현해서 측정하는 것이 중요합니다. 힙 전체의 페이지·할당 프로파일을 함께 보고 싶다면 [Tr.01 ch20: 메모리 프로파일링: 힙 분석](/post/profiling-analysis/memory-profiling-heap-analysis/)에서 다루는 heaptrack 계열 도구와 병행하는 것을 권장합니다.
 
 ## 흔한 오개념
 
-<strong>"THP를 켜면 무조건 빨라진다"</strong>는 흔한 오해입니다. `khugepaged`의 스캔·콜랩스 작업 자체가 CPU 사이클을 쓰고, `defrag=always` 조합에서는 THP 확보를 위해 직접 메모리 압축(compaction)이 할당 경로에 끼어들어 지연 스파이크를 유발할 수 있습니다. 이 때문에 저지연을 요구하는 인메모리 데이터베이스·캐시 서버 커뮤니티에서는 THP를 `never`로 끄고, 필요한 버퍼에만 HugeTLB나 `madvise` 기반 힌트를 선택적으로 적용하는 관행이 널리 퍼져 있습니다.
+<strong>"THP를 켜면 무조건 빨라진다"</strong>는 흔한 오해입니다. `khugepaged`의 스캔·콜랩스 작업 자체가 CPU 사이클을 쓰고, `defrag=always` 조합에서는 THP 확보를 위해 직접 메모리 압축(compaction)이 할당 경로에 끼어들어 지연 스파이크를 유발할 수 있습니다. 이 때문에 저지연을 요구하는 일부 운영 환경에서는 `enabled=madvise`로 두고 지연에 민감한 버퍼에만 `MADV_HUGEPAGE`를 걸거나, THP는 `never`로 끄고 HugeTLB만 쓰는 구성을 택하기도 합니다. `never`에서는 `MADV_HUGEPAGE`가 무시된다는 점에 주의합니다.
 
 <strong>"Huge Pages는 메모리를 아낀다"</strong>도 정확하지 않습니다. 2MB 페이지 하나에 실제로는 몇 바이트만 쓰이더라도 나머지 공간은 그대로 점유되는 내부 단편화(internal fragmentation)가 발생합니다. 작은 크기의 산발적 할당이 많은 워크로드에 THP나 HugeTLB를 무분별하게 적용하면 오히려 상주 메모리(RSS)가 늘어날 수 있습니다.
 
@@ -215,20 +232,26 @@ perf stat -e dTLB-load-misses,page-faults ./thp_bench thp
 | 크기가 고정된 대형 버퍼(DB 버퍼 풀, 공유 메모리, RDMA 등록 영역) | HugeTLB(`hugetlbfs`, `MAP_HUGETLB`) | THP `always`에만 의존 |
 | 범용 워크로드, 운영 부담 최소화가 우선 | THP `madvise` + 필요한 버퍼에만 `MADV_HUGEPAGE` | THP `always`(전역 오버커밋 위험) |
 | 4KB–2MB 사이 크기의 산발적 버퍼(예: 64KB–512KB) | 대상 크기의 mTHP sysfs 항목을 `madvise`로 활성화 | 전통 THP만 두고 방치(콜랩스 대상이 아님) |
-| latency tail이 critical한 서비스(저지연 거래, 실시간 서버) | THP `never` + 명시적 HugeTLB, 필요 시 `madvise`로 특정 아레나만 opt-in | THP `always` + `defrag=always` |
+| latency tail이 critical한 서비스(저지연 거래, 실시간 서버) | `enabled=madvise` + 특정 아레나에만 `MADV_HUGEPAGE`, 또는 THP `never` + 명시적 HugeTLB | THP `always` + `defrag=always` |
 | 메모리 압박이 심한 컨테이너·공유 호스트 | 신중한 opt-in과 cgroup 단위 모니터링 | 무분별한 전역 `always` 적용 |
 
 ## 비판적 시각: 한계와 트레이드오프
 
-THP의 `always` 모드가 지연 스파이크를 유발한다는 문제는 오래전부터 알려져 있었고, 그 경험 때문에 여러 저지연 서비스 운영 환경에서는 여전히 THP를 끄고 필요한 곳만 선택적으로 켜는 보수적인 접근을 기본값으로 삼습니다. mTHP는 이 절충안을 세분화한 발전이지만, 2026년 7월 시점에도 커널·배포판 버전에 따라 sysfs 인터페이스의 세부 동작과 `khugepaged`의 자동화 수준이 다르고, 자동 mTHP 콜랩스 확장은 아직 다음 개발 사이클로 진행 중인 단계입니다. 따라서 "mTHP가 실무 표준이 되었다"는 말은 커뮤니티의 관심과 채택이 넓어졌다는 뜻이지, 특정 커널의 기본 설정이 바뀌었다는 뜻은 아니라는 점을 구분해서 받아들여야 합니다.
+mTHP는 THP를 켜느냐 끄느냐의 이분법을 크기별 설정으로 세분화한 발전이지만, 커널·배포판 버전에 따라 sysfs 인터페이스의 세부 동작과 `khugepaged`의 mTHP 콜랩스 지원 조건이 다릅니다. 따라서 "mTHP가 실무 표준이 되었다"는 말은 커뮤니티의 관심과 채택이 넓어졌다는 뜻이지, 특정 커널의 기본 설정이 바뀌었다는 뜻은 아니라는 점을 구분해서 받아들여야 합니다.
 
-HugeTLB는 예측 가능하지만 유연성이 떨어집니다. 사전에 크기를 정해 예약해야 하고, 한번 예약된 페이지는 다른 프로세스와 쉽게 공유되지 않으며, 예약량을 잘못 잡으면 유휴 메모리로 낭비되거나 반대로 필요할 때 `mmap`이 실패합니다. 또한 이 장에서 제시한 벤치마크 수치는 접근 패턴(순차 vs 랜덤), 워킹셋 크기, CPU 세대별 TLB 계층 구조에 크게 좌우되므로, 일반화된 "N% 개선" 주장을 그대로 받아들이기보다 항상 대상 환경에서 재현해 검증하는 것이 안전합니다.
+HugeTLB는 예측 가능하지만 유연성이 떨어집니다. 사전에 크기를 정해 예약해야 하고, 예약량을 잘못 잡으면 유휴 메모리로 낭비되거나 반대로 필요할 때 `mmap`이 실패합니다. 또한 이 장에서 제시한 벤치마크 수치는 접근 패턴(순차 vs 랜덤), 워킹셋 크기, CPU 세대별 TLB 계층 구조에 크게 좌우되므로, 일반화된 "N% 개선" 주장을 그대로 받아들이기보다 항상 대상 환경에서 재현해 검증하는 것이 안전합니다.
+
+## 참고 자료
+
+- Linux 커널 문서, [Transparent Hugepage Support](https://docs.kernel.org/admin-guide/mm/transhuge.html) — THP·mTHP 설정, `khugepaged` 제어, 모니터링 필드
+- Linux 커널 문서, [HugeTLB Pages](https://docs.kernel.org/admin-guide/mm/hugetlbpage.html) — `nr_hugepages`, `hugetlbfs`, `MAP_HUGETLB`
+- Linux man-pages, [madvise(2)](https://man7.org/linux/man-pages/man2/madvise.2.html) — `MADV_HUGEPAGE`(2.6.38부터)와 `MADV_COLLAPSE`(6.1부터)
 
 ## 마무리
 
 - [ ] HugeTLB(정적 예약)와 THP(동적 콜랩스)의 관리 방식 차이를 설명할 수 있는가?
 - [ ] THP의 `always`/`madvise`/`never` 정책과 `MADV_HUGEPAGE`/`MADV_COLLAPSE`의 역할을 구분할 수 있는가?
-- [ ] mTHP가 해결하는 문제(4KB와 2MB 사이의 틈)와 2025–2026년 기준 옵트인 상태임을 설명할 수 있는가?
+- [ ] mTHP가 해결하는 문제(4KB와 2MB 사이의 틈)와 PMD 크기 외에는 기본적으로 옵트인이라는 점을 설명할 수 있는가?
 - [ ] `perf stat` 등으로 TLB 미스·페이지 폴트 변화를 실측해 huge page 적용 효과를 검증할 수 있는가?
 - [ ] latency-critical 워크로드에서 THP를 언제 끄고 언제 선택적으로 켤지 판단할 수 있는가?
 

@@ -85,10 +85,10 @@ tags:
 | 구현체 | 백엔드 | 추가 요구사항 | 비고 |
 |--------|--------|--------------|------|
 | GCC libstdc++ (9.1~) | Intel TBB (oneTBB) | `<execution>` 포함 시 `-ltbb` 링크 필수 | TBB 없이 `par` 사용 코드는 링크 실패 |
-| Clang libc++ | 빌드 시 선택(`std_thread`/`openmp`/미설정) | `LIBCXX_ENABLE_PARALLEL_ALGORITHMS` CMake 옵션 필요 | 옵션 미설정 배포판에서는 `par`가 컴파일은 되지만 조용히 `seq`처럼 순차 실행될 수 있음 |
+| Clang libc++ | 빌드 설정과 버전에 따라 다름 | libc++ 공식 문서 참고 | 빌드 설정과 버전에 따라 병렬 알고리즘 지원 여부가 다르므로 사용 중인 배포판에서 직접 확인해야 함 |
 | MSVC STL (VS2017~) | Windows Thread Pool | 없음(표준 헤더만 포함) | 기본적으로 최대 500개 스레드 풀 공유, Windows 11/Server 2022부터는 프로세서 그룹 제한 완화 |
 
-GCC의 [공식 문서](https://gcc.gnu.org/onlinedocs/libstdc++/manual/status.html)는 "The Parallel Algorithms have an external dependency on Intel TBB 2018 or later"라고 명시하며, `<execution>` 헤더를 포함하면 `-ltbb`로 링크해야 한다고 못 박습니다. 2021년경 OpenMP 백엔드로 이 의존성을 없애자는 논의가 있었지만, 2024년 말 기준으로 GCC·Intel 양쪽 모두 구체적인 추진 계획은 확인되지 않습니다 — TBB 링크는 당분간 그대로 필요하다고 보는 것이 안전합니다. Clang libc++는 빌드 설정에 따라 병렬 알고리즘 지원 자체가 꺼져 있을 수 있고, 이 경우 `std::execution::par`를 지정한 코드가 컴파일 에러 없이 그냥 `seq`와 동일하게 동작합니다 — "정책을 지정했으니 병렬로 돈다"는 가정이 배포 환경에 따라 조용히 깨질 수 있다는 뜻입니다. [MSVC STL 공식 문서](https://learn.microsoft.com/en-us/cpp/standard-library/execution?view=msvc-170)에 따르면 MSVC STL은 별도 링크 없이 Windows Thread Pool을 자동으로 씁니다.
+GCC의 [공식 문서](https://gcc.gnu.org/onlinedocs/libstdc++/manual/status.html)는 "The Parallel Algorithms have an external dependency on Intel TBB 2018 or later"라고 명시하며, `<execution>` 헤더를 포함하면 `-ltbb`로 링크해야 한다고 못 박습니다. 따라서 TBB 링크가 필요하다고 보고 빌드 설정을 준비하는 것이 안전합니다. Clang libc++는 빌드 설정과 버전에 따라 병렬 알고리즘 지원 여부와 백엔드가 다르므로, 사용 중인 libc++에서 `<execution>`이 어떻게 제공되는지 직접 확인해야 합니다 — "정책을 지정했으니 병렬로 돈다"는 가정은 배포 환경에 따라 깨질 수 있습니다. [MSVC STL 공식 문서](https://learn.microsoft.com/en-us/cpp/standard-library/execution?view=msvc-170)에 따르면 MSVC STL은 별도 링크 없이 Windows Thread Pool을 자동으로 씁니다.
 
 ```mermaid
 flowchart TD
@@ -141,7 +141,7 @@ int main() {
 }
 ```
 
-이 벤치마크를 실제로 돌려 보면 N이 작을 때(수천 이하) `par`가 `seq`보다 느리거나 비슷하게 나오는 경우가 흔합니다 — 작업 분할과 스레드 풀 제출 자체의 오버헤드가 정렬 작업량보다 커지기 때문입니다. [MSVC 팀이 공개한 벤치마크](https://devblogs.microsoft.com/cppblog/using-c17-parallel-algorithms-for-better-performance/)에서도 100만 개 `double` 정렬(18코어)에서 `par`가 릴리스 빌드 기준 약 3.9배 빨랐지만, 원소 수가 1,000 근처로 줄면 두 방식의 차이가 사실상 사라졌고, `copy`/`fill`/`reverse`처럼 원소당 작업이 극히 적은 알고리즘은 이 구현에서 순차로만 동작하도록 남겨져 있어 병렬화 이득이 없거나 오히려 손해(예: `reverse`가 순차 버전보다 약 1.6배 느림)였다고 보고되었습니다. 수치는 컴파일러·플래그·하드웨어에 따라 달라지므로(이 벤치마크는 특정 MSVC 버전·18코어 환경 기준) 이 스켈레톤을 자신의 환경에서 그대로 재현해 확인하는 것이 중요합니다.
+이 벤치마크를 실제로 돌려 보면 N이 작을 때(수천 이하) `par`가 `seq`보다 느리거나 비슷하게 나오는 경우가 흔합니다 — 작업 분할과 스레드 풀 제출 자체의 오버헤드가 정렬 작업량보다 커지기 때문입니다. [MSVC 팀이 공개한 벤치마크](https://devblogs.microsoft.com/cppblog/using-c17-parallel-algorithms-for-better-performance/)에서도 100만 개 `double` 정렬(18코어)에서 `par_unseq`(MSVC는 `par`와 같은 구현)가 릴리스 빌드 기준 약 4배 빨랐지만, 원소 수가 1,000 근처로 줄면 두 방식의 차이가 사실상 사라졌고, `copy`/`fill`/`reverse`처럼 원소당 작업이 극히 적은 알고리즘은 이 구현에서 순차로만 동작하도록 남겨져 있어 병렬화 이득이 없거나 오히려 손해(예: `reverse`가 순차 버전보다 약 1.6배 느림)였다고 보고되었습니다. 수치는 컴파일러·플래그·하드웨어에 따라 달라지므로(이 벤치마크는 특정 MSVC 버전·18코어 환경 기준) 이 스켈레톤을 자신의 환경에서 그대로 재현해 확인하는 것이 중요합니다.
 
 "정책을 지정하면 무조건 병렬로 실행된다"는 가정은 앞서 본 것처럼 구현체에 따라 조용히 깨질 수 있습니다. 이를 코드로 직접 검증하려면, 원소 접근 함수 안에서 호출된 스레드 ID를 모아 실제로 여러 스레드가 관여했는지 확인하는 방법이 간단하고 실용적입니다.
 
@@ -177,7 +177,7 @@ int main() {
 
 <strong>"`execution::par`라고 쓰면 항상 더 빨라진다"</strong>는 사실이 아닙니다. 스레드 분배·병합 자체에 비용이 들기 때문에, 원소 수가 적거나 원소당 작업이 가벼운 알고리즘(`copy`, `fill`, `reverse` 등)에서는 오히려 순차 버전보다 느려질 수 있습니다. 반드시 자신의 데이터 크기·환경에서 벤치마크로 확인해야 합니다.
 
-<strong>"정책을 지정하면 모든 컴파일러에서 동일하게 병렬 실행된다"</strong>는 것도 틀렸습니다. 앞서 본 것처럼 GCC는 TBB 링크가 없으면 빌드 자체가 실패하고, Clang libc++는 빌드 옵션에 따라 조용히 순차 실행으로 폴백할 수 있으며, MSVC는 Windows Thread Pool을 자동으로 씁니다. "구현 정의"라는 표현이 이 장에서 반복되는 이유입니다.
+<strong>"정책을 지정하면 모든 컴파일러에서 동일하게 병렬 실행된다"</strong>는 것도 틀렸습니다. 앞서 본 것처럼 GCC는 TBB 링크가 없으면 빌드 자체가 실패하고, Clang libc++는 빌드 옵션과 버전에 따라 지원이 다르며, MSVC는 Windows Thread Pool을 자동으로 씁니다. "구현 정의"라는 표현이 이 장에서 반복되는 이유입니다.
 
 <strong>"이 장의 실행 정책과 17장의 `std::execution`(senders/receivers)은 같은 기능이다"</strong>도 흔한 혼동입니다. 전자는 2017년에 확정되어 알고리즘 호출 하나에 적용하는 좁은 범위의 태그이고, 후자는 2024년(C++26)에 확정된, 여러 비동기 작업을 그래프로 조립하는 훨씬 넓은 범위의 프레임워크입니다. 이름이 같은 네임스페이스(`std::execution`)를 공유한다는 점이 혼동을 키우지만 별개의 기능으로 다뤄야 합니다.
 
@@ -201,7 +201,7 @@ int main() {
 이 장에서 다음을 확인할 수 있으면 이 장의 목표를 달성한 것입니다.
 
 - [ ] `seq`/`par`/`par_unseq`/`unseq` 네 정책이 각각 스레드 이동과 인터리빙에 대해 무엇을 허용·금지하는지 설명할 수 있다.
-- [ ] GCC(TBB 링크 필요)·Clang libc++(빌드 옵션에 따른 조용한 폴백 가능성)·MSVC STL(Windows Thread Pool 자동 사용)의 구현 차이를 구분할 수 있다.
+- [ ] GCC(TBB 링크 필요)·Clang libc++(빌드 옵션·버전에 따라 다른 지원)·MSVC STL(Windows Thread Pool 자동 사용)의 구현 차이를 구분할 수 있다.
 - [ ] 원소 수·원소당 작업량에 따라 `par`가 손해로 뒤집히는 손익분기점이 있음을 벤치마크로 확인할 수 있다.
 - [ ] 원소 접근 함수에서 예외가 나가면 `terminate`가 호출된다는 점과, `par_unseq`/`unseq`에서 잠금 사용이 위험한 이유를 설명할 수 있다.
 - [ ] 이 장의 실행 정책과 17장의 `std::execution`(senders/receivers)이 이름만 겹치는 별개 기능임을 구분할 수 있다.

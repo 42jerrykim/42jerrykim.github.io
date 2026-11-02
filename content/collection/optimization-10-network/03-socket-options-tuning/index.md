@@ -22,12 +22,9 @@ tags:
   - Latency
   - Throughput
   - Profiling(프로파일링)
-  - Debugging(디버깅)
   - Best-Practices
   - System-Design
   - Backend(백엔드)
-  - Production
-  - Reliability
   - TCP_NODELAY
   - SO_SNDBUF
   - SO_RCVBUF
@@ -35,6 +32,8 @@ tags:
   - BDP
   - setsockopt
   - Buffer-Tuning
+  - TCP-IP
+  - Socket(소켓)
 ---
 
 **소켓 옵션 튜닝**이란 `setsockopt()`으로 커널 소켓의 동작 방식과 버퍼 크기를 애플리케이션 요구에 맞게 조정하는 작업을 말합니다. 기본값은 범용 워크로드를 가정해 설정되어 있어서, µs 단위 지연에 민감한 서버나 대역폭-지연 곱이 큰 회선에서는 기본값 그대로 두면 지연이나 처리량 중 하나(또는 둘 다)를 손해 보기 쉽습니다. 이 장에서는 **TCP_NODELAY**로 Nagle 알고리즘을 끄는 판단, **SO_SNDBUF/SO_RCVBUF**로 버퍼 크기를 정하는 기준, 그리고 커널의 자동 버퍼 튜닝과 수동 설정이 충돌하는 지점을 다룹니다.
@@ -49,9 +48,9 @@ tags:
 
 | 수준 | 읽을 부분 | 핵심 목표 |
 |------|---------|---------|
-| **입문** | "소켓 버퍼의 역할" ~ "TCP_NODELAY: Nagle 끄기" | 버퍼가 지연·처리량에 관여하는 지점과 TCP_NODELAY의 효과 이해 |
-| **중급** | "SO_SNDBUF/SO_RCVBUF와 자동 튜닝" ~ "버퍼 크기와 BDP" | 자동 튜닝과 수동 설정의 충돌을 피하고 BDP 기준으로 버퍼를 정하기 |
-| **실무 적용** | "판단 기준" ~ "비판적 시각" | 상황별 옵션 조합을 선택하고 과도한 수동 튜닝의 위험을 판단 |
+| **입문** | "소켓 버퍼의 역할" – "TCP_NODELAY: Nagle 끄기" | 버퍼가 지연·처리량에 관여하는 지점과 TCP_NODELAY의 효과 이해 |
+| **중급** | "SO_SNDBUF/SO_RCVBUF와 자동 튜닝" – "버퍼 크기와 BDP" | 자동 튜닝과 수동 설정의 충돌을 피하고 BDP 기준으로 버퍼를 정하기 |
+| **실무 적용** | "판단 기준" – "비판적 시각" | 상황별 옵션 조합을 선택하고 과도한 수동 튜닝의 위험을 판단 |
 
 ---
 
@@ -90,44 +89,66 @@ bool enable_tcp_nodelay(int fd) {
 }
 ```
 
-listen 소켓이 아니라 **개별 연결 소켓**에 설정해야 하며, `accept()`로 만들어진 자식 소켓은 부모의 설정을 물려받지 않으므로 연결마다 다시 설정해야 한다는 점이 실무에서 자주 놓치는 부분이다.
+Linux에서는 리스닝 소켓에 설정한 TCP_NODELAY가 `accept()`로 만들어진 자식 소켓에 상속된다(커널이 리스너를 복제해 자식 소켓을 만들기 때문이다). 하지만 POSIX는 이 상속을 보장하지 않고 BSD 계열·Windows의 동작도 다를 수 있으므로, 이식성이 필요하면 `accept()` 직후 연결 소켓마다 다시 설정하는 편이 안전하다.
 
 ## SO_SNDBUF/SO_RCVBUF와 자동 튜닝
 
 리눅스는 기본적으로 TCP 수신 버퍼를 **자동으로 조정**한다. [`tcp_moderate_rcvbuf`](https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt)(기본 활성화)가 켜져 있으면 커널은 경로가 요구하는 처리량에 맞춰 수신 버퍼를 `/proc/sys/net/ipv4/tcp_rmem`의 min–max 범위 안에서 스스로 늘린다. 문제는 애플리케이션이 `setsockopt(SO_RCVBUF, ...)`로 값을 명시적으로 지정하는 순간, 해당 소켓에 대해 자동 튜닝이 그 값으로 고정된다는 점이다(리눅스 커널 구현 기준; `SOCK_RCVBUF_LOCK` 플래그로 알려져 있다). 즉 "안전하게 크게 잡아두자"고 임의의 큰 값을 넣으면, 실제로는 커널이 상황에 맞춰 더 적절한 값을 찾을 기회를 없애는 셈이 된다. 수동 설정이 자동 튜닝보다 나은 경우는 트래픽 패턴을 이미 알고 있고(예: 고정 크기 메시지, 알려진 RTT) 커널의 점진적 확장이 워밍업 구간에서 손해를 줄 때로 좁혀야 한다.
 
+수동 설정에는 자동 튜닝과 별개의 상한이 하나 더 있다. [socket(7)](https://man7.org/linux/man-pages/man7/socket.7.html)에 따르면 SO_RCVBUF로 지정할 수 있는 최댓값은 `/proc/sys/net/core/rmem_max`(송신은 `wmem_max`)가 정하고, 커널은 이 범위 안에서 요청값을 부기 오버헤드용으로 두 배로 늘려 저장하며 `getsockopt()`도 그 두 배 값을 돌려준다. 많은 배포판의 기본 `rmem_max`는 212992바이트이므로, sysctl을 올리지 않은 채 4MB를 요청하면 조용히 잘려 약 416KB(212992의 두 배)로 고정된다. 자동 튜닝의 상한(`tcp_rmem` 세 번째 값)은 이 제한을 받지 않으므로, 결과적으로 "크게 잡겠다"는 수동 설정이 자동 튜닝보다 작은 버퍼를 만드는 역전이 생길 수 있다. 상한을 무시하려면 `CAP_NET_ADMIN` 권한으로 `SO_RCVBUFFORCE`/`SO_SNDBUFFORCE`를 쓰거나 sysctl을 올려야 한다.
+
+설정 시점도 중요하다. 수신 윈도우 스케일(window scale) 계수는 SYN 교환 때 한 번 협상되므로, [tcp(7)](https://man7.org/linux/man-pages/man7/tcp.7.html)은 개별 연결의 버퍼 크기를 `listen()`이나 `connect()` 호출 **전에** 설정해야 효과가 있다고 명시한다. 아래 프로그램은 연결 전 소켓에 작은 값(64KB)과 큰 값(4MB)을 차례로 요청하고 실제 저장값을 출력해, 두 배 저장과 `rmem_max` 잘림을 한 번에 보여 준다.
+
 ```cpp
+// sockbuf_probe.cpp — 빌드: g++ -O2 -std=c++17 sockbuf_probe.cpp -o sockbuf_probe
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <unistd.h>
+#include <cstdio>
 
-// 요청한 값과 getsockopt로 읽히는 값이 다를 수 있다: 커널이 부기 오버헤드를 위해
-// 대략 2배로 저장하기 때문(man 7 socket(7) 참고).
-bool set_socket_buffers(int fd, int sndbuf_bytes, int rcvbuf_bytes) {
-  if (setsockopt(fd, SOL_SOCKET, SO_SNDBUF, &sndbuf_bytes, sizeof(sndbuf_bytes)) != 0)
-    return false;
-  if (setsockopt(fd, SOL_SOCKET, SO_RCVBUF, &rcvbuf_bytes, sizeof(rcvbuf_bytes)) != 0)
-    return false;
+// 요청값을 SO_RCVBUF로 설정하고, 커널이 실제로 저장한 값을 돌려준다(실패 시 -1).
+static int set_and_read_rcvbuf(int fd, int requested) {
+  if (setsockopt(fd, SOL_SOCKET, SO_RCVBUF, &requested, sizeof(requested)) != 0) {
+    perror("setsockopt(SO_RCVBUF)");
+    return -1;
+  }
+  int actual = 0;
+  socklen_t len = sizeof(actual);
+  if (getsockopt(fd, SOL_SOCKET, SO_RCVBUF, &actual, &len) != 0) {
+    perror("getsockopt(SO_RCVBUF)");
+    return -1;
+  }
+  return actual;
+}
 
-  int actual_sndbuf = 0, actual_rcvbuf = 0;
-  socklen_t len = sizeof(int);
-  getsockopt(fd, SOL_SOCKET, SO_SNDBUF, &actual_sndbuf, &len);
-  getsockopt(fd, SOL_SOCKET, SO_RCVBUF, &actual_rcvbuf, &len);
-  // actual_sndbuf, actual_rcvbuf는 요청값보다 크게(대략 2배) 나오는 것이 정상 동작이다.
-  return true;
+int main() {
+  const int requests[] = {64 * 1024, 4 * 1024 * 1024};
+  for (int requested : requests) {
+    int fd = socket(AF_INET, SOCK_STREAM, 0);  // connect()/listen() 전에 설정해야 window scale에 반영된다
+    if (fd < 0) { perror("socket"); return 1; }
+    int actual = set_and_read_rcvbuf(fd, requested);
+    if (actual < 0) { close(fd); return 1; }
+    // 64KB 요청은 두 배(131072)로, 4MB 요청은 rmem_max의 두 배에서 잘린 값으로 나온다.
+    std::printf("requested=%d actual=%d (x%.2f)\n", requested, actual,
+                static_cast<double>(actual) / requested);
+    close(fd);
+  }
+  return 0;
 }
 ```
 
-리스닝 소켓에 설정한 SO_SNDBUF/SO_RCVBUF는 `accept()`로 생성되는 자식 소켓에 상속되므로, 연결마다 반복 설정하지 않으려면 리스닝 소켓 단계에서 미리 잡아두는 편이 편리하다([man 7 socket(7)](https://man7.org/linux/man-pages/man7/socket.7.html)에 옵션별 상속·기본값 범위가 정리되어 있다). 현재 커널이 실제로 어떤 값을 쓰고 있는지는 애플리케이션 안이 아니라 바깥에서도 확인할 수 있다.
+기본 sysctl에서 이 프로그램을 돌리면 4MB 요청의 배율이 2보다 훨씬 작게 나오는데, 그것이 곧 `rmem_max`에 잘렸다는 신호다. 리스닝 소켓에 설정한 SO_SNDBUF/SO_RCVBUF는 `accept()`로 생성되는 자식 소켓에 복제되므로, 서버 쪽은 `listen()` 전에 리스닝 소켓에서 미리 잡아두면 연결마다 반복 설정할 필요가 없다. 운영 중인 연결이 실제로 어떤 버퍼를 쓰고 있는지는 `ss`에 `-m` 옵션을 더해 바깥에서 확인한다.
 
 ```text
-$ ss -tin dst 10.0.0.5
+$ ss -tmi dst 10.0.0.5
 State  Recv-Q  Send-Q  Local Address:Port  Peer Address:Port
 ESTAB  0       0       10.0.0.2:53214      10.0.0.5:443
+         skmem:(r0,rb131072,t0,tb87040,f0,w0,o0,bl0,d0)
          cubic wscale:7,7 rto:204 rtt:3.2/1.1 mss:1448
          cwnd:10 bytes_sent:184320 bytes_received:921600
 ```
 
-`rtt`는 왕복 시간, `cwnd`는 혼잡 윈도우(세그먼트 단위)를 보여주며, 버퍼 크기 변경 전후로 `bytes_sent`/`bytes_received` 증가 속도를 비교하면 처리량 변화를 관찰할 수 있다.
+위 출력은 형식을 보여 주기 위한 예시다. `skmem`의 `rb`·`tb`는 수신·송신 버퍼 크기(바이트), `rtt`는 왕복 시간, `cwnd`는 혼잡 윈도우(세그먼트 단위)이며, 버퍼 크기 변경 전후로 `rb`/`tb` 값과 `bytes_sent`/`bytes_received` 증가 속도를 비교하면 설정이 실제로 반영됐는지와 처리량 변화를 함께 관찰할 수 있다.
 
 ## 버퍼 크기와 BDP
 
@@ -149,14 +170,15 @@ uint64_t recommended_buffer_bytes(double bandwidth_bps, double rtt_seconds) {
 # 서버(수신 측)
 iperf3 -s
 
-# 클라이언트(송신 측): 인위적으로 20ms RTT를 추가한 뒤 버퍼 크기별 처리량 비교
-sudo tc qdisc add dev eth0 root netem delay 10ms   # 편도 10ms, 왕복 약 20ms
+# 클라이언트(송신 측): 버퍼 상한을 올리고, RTT를 20ms 늘린 뒤 버퍼 크기별 처리량 비교
+sudo sysctl -w net.core.rmem_max=4194304 net.core.wmem_max=4194304  # 서버 측에도 동일하게 적용
+sudo tc qdisc add dev eth0 root netem delay 20ms   # 송신(egress) 방향에만 걸리므로 RTT가 20ms 늘어난다
 iperf3 -c <서버IP> -w 64K   # SO_SNDBUF/SO_RCVBUF 64KB로 처리량 측정
 iperf3 -c <서버IP> -w 2M    # BDP에 근접한 2MB로 처리량 재측정
 sudo tc qdisc del dev eth0 root netem
 ```
 
-`-w` 옵션으로 지정한 버퍼가 BDP(위 예시 기준 약 2.5MB)에 못 미치면 처리량이 대역폭보다 뚜렷이 낮게 측정되고, BDP 근처로 올리면 처리량이 대역폭에 가까워지는 경향을 확인할 수 있다.
+netem은 해당 인터페이스의 송신 방향에만 지연을 넣으므로 편도 10ms를 걸면 RTT는 10ms만 늘어난다는 점에 주의한다. 또 `rmem_max`/`wmem_max`를 올리지 않으면 `-w 2M` 요청이 앞서 본 상한에 잘려 실험 자체가 성립하지 않는다. 이 두 조건을 맞춘 상태에서 `-w` 옵션으로 지정한 버퍼가 BDP(위 예시 기준 약 2.5MB)에 못 미치면 처리량이 대역폭보다 뚜렷이 낮게 측정되고, BDP 근처로 올리면 처리량이 대역폭에 가까워지는 경향을 확인할 수 있다.
 
 ## 흔한 오개념
 
@@ -164,7 +186,7 @@ sudo tc qdisc del dev eth0 root netem
 
 <strong>"TCP_NODELAY만 켜면 지연 문제가 끝난다"</strong>도 오개념이다. TCP_NODELAY는 송신 측의 Nagle 지연만 없앨 뿐, 수신 측의 Delayed ACK나 혼잡 제어 창 크기 조절에서 오는 지연에는 영향을 주지 않는다. 두 메커니즘이 겹치면 TCP_NODELAY를 켜도 여전히 지연이 남을 수 있으며, 그 상호작용은 [04장](/post/network-optimization/tcp-performance-nagle-congestion-control-bbr/)에서 다룬다.
 
-<strong>"setsockopt로 설정한 SO_SNDBUF/SO_RCVBUF 값이 실제 커널 버퍼 크기다"</strong>도 틀렸다. 앞서 본 것처럼 커널은 부기 오버헤드를 위해 요청값의 대략 2배를 실제로 할당하고, `getsockopt()`로 읽히는 값이 요청값과 다를 수 있다. 수동 설정은 자동 튜닝을 그 값으로 고정시키는 부작용도 함께 가져온다는 점을 기억해야 한다.
+<strong>"setsockopt로 설정한 SO_SNDBUF/SO_RCVBUF 값이 실제 커널 버퍼 크기다"</strong>도 틀렸다. 앞서 본 것처럼 커널은 요청값을 `rmem_max`/`wmem_max` 범위로 자른 뒤 부기 오버헤드용으로 두 배로 늘린 값을 버퍼 상한으로 저장하므로, `getsockopt()`로 읽히는 값은 요청값과 다르다. 수동 설정은 자동 튜닝을 그 값으로 고정시키는 부작용도 함께 가져온다는 점을 기억해야 한다.
 
 ## 판단 기준
 
@@ -173,7 +195,7 @@ sudo tc qdisc del dev eth0 root netem
 | 요청-응답형 저지연 프로토콜(RPC, 게임, 시세 피드) | TCP_NODELAY 활성화 | 기본값(Nagle 활성) 유지 |
 | 대용량 스트리밍·벌크 전송 | 기본값 또는 애플리케이션 레벨 버퍼링 후 큰 write | 매 바이트마다 TCP_NODELAY로 잦은 소량 write |
 | 트래픽 패턴을 모르는 일반 서비스 | 자동 튜닝(기본값) 유지 | 임의로 큰 SO_SNDBUF/SO_RCVBUF 고정 |
-| 고지연·고대역폭 경로(WAN, 위성) | BDP 기준으로 SO_SNDBUF/SO_RCVBUF 수동 설정 | 기본값 방치 후 처리량 저하 방치 |
+| 고지연·고대역폭 경로(WAN, 위성) | 자동 튜닝 상한(`tcp_rmem`/`tcp_wmem`)을 BDP 이상으로 확인, 수동 설정 시 `rmem_max`/`wmem_max` 상향 동반 | sysctl 상한을 그대로 둔 채 큰 SO_RCVBUF 고정 |
 | 데이터센터 내부 저RTT 경로 | 기본값(자동 튜닝)으로 충분한 경우가 많음 | 불필요한 대형 버퍼 고정 |
 | 즉각적인 ACK가 필요한 특수 케이스 | TCP_QUICKACK 검토(단, 04장의 Delayed ACK 논의와 함께) | 근거 없이 상시 활성화 |
 
@@ -185,11 +207,11 @@ sudo tc qdisc del dev eth0 root netem
 
 이 장을 읽은 뒤 다음을 스스로 점검할 수 있어야 한다.
 
-- [ ] TCP_NODELAY가 무엇을 끄고, 어떤 워크로드에서 켜는 것이 유리한지 설명할 수 있다.
-- [ ] SO_SNDBUF/SO_RCVBUF를 setsockopt로 설정했을 때 커널이 실제로 저장하는 값과 자동 튜닝에 미치는 영향을 설명할 수 있다.
-- [ ] BDP(대역폭 × RTT)를 계산해 버퍼 크기의 기준선을 잡을 수 있다.
-- [ ] ss -tin 같은 도구로 실제 커널 버퍼·RTT·혼잡 윈도우 상태를 확인할 수 있다.
-- [ ] 버퍼블로트와 "버퍼는 클수록 좋다"는 오개념의 차이를 설명할 수 있다.
+- [ ] TCP_NODELAY가 무엇을 끄고, 어떤 워크로드에서 켜는 것이 유리한지 설명할 수 있다 — 작은 요청-응답 메시지가 Nagle에 묶이는 지점을 알아야 켤지 말지 판단할 수 있다.
+- [ ] SO_SNDBUF/SO_RCVBUF를 setsockopt로 설정했을 때 커널이 실제로 저장하는 값과 자동 튜닝에 미치는 영향을 설명할 수 있다 — 두 배 저장, `rmem_max` 잘림, 자동 튜닝 고정을 모르면 수동 설정이 오히려 버퍼를 줄인다.
+- [ ] BDP(대역폭 × RTT)를 계산해 버퍼 크기의 기준선을 잡을 수 있다 — 버퍼가 BDP보다 작으면 처리량이, 훨씬 크면 지연이 손해를 본다.
+- [ ] `ss -tmi`로 실제 커널 버퍼(`skmem`)·RTT·혼잡 윈도우 상태를 확인할 수 있다 — 설정값이 아니라 실효값을 봐야 튜닝이 반영됐는지 알 수 있다.
+- [ ] 버퍼블로트와 "버퍼는 클수록 좋다"는 오개념의 차이를 설명할 수 있다 — BDP를 넘는 버퍼는 처리량 없이 큐잉 지연만 늘린다.
 
 **다음 장에서는** Nagle 알고리즘과 Delayed ACK의 상호작용, 그리고 BBRv3를 포함한 혼잡 제어 알고리즘이 지연·처리량에 미치는 영향을 다룬다. 이 장에서 다룬 TCP_NODELAY는 Nagle을 끄는 스위치일 뿐이므로, 그 알고리즘 자체의 동작 원리는 다음 장에서 이어서 살펴본다.
 

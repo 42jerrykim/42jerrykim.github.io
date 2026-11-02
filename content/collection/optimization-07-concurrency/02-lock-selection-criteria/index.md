@@ -6,7 +6,7 @@ draft: false
 image: wordcloud.png
 title: "[Concurrency 07] Lock 선택 기준"
 slug: lock-selection-criteria-guide
-description: "mutex·spinlock·shared_mutex·futex 기반 프리미티브 중 워크로드에 맞는 락을 고르는 기준을 다룹니다. 임계 구역 길이·경합도·읽기쓰기 비율별 판단표와 adaptive mutex, SRWLOCK, os_unfair_lock의 구현 차이, 흔한 선택 오류를 정리합니다."
+description: "mutex·spinlock·shared_mutex·futex 기반 프리미티브 중 워크로드에 맞는 락을 고르는 기준을 다룹니다. 임계 구역 길이·경합도·읽기쓰기 비율별 판단표와 adaptive mutex와 SRWLOCK 등 플랫폼별 구현 차이, 흔한 선택 오류를 정리합니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
@@ -14,29 +14,23 @@ tags:
   - Thread
   - Mutex
   - Synchronization
-  - Condition-Variable
-  - Memory-Order
   - C++
   - Memory(메모리)
   - CPU(Central Processing Unit)
   - Cache
-  - Compiler(컴파일러)
   - OS(운영체제)
   - Linux(리눅스)
   - Windows(윈도우)
   - Benchmark
   - Latency
   - Throughput
-  - Profiling(프로파일링)
   - Implementation(구현)
   - Best-Practices
   - Scalability(확장성)
   - Guide(가이드)
   - Comparison(비교)
   - Pitfalls(함정)
-  - Edge-Cases(엣지케이스)
   - 실습
-  - Reference(참고)
   - futex
   - Spinlock
   - SRWLOCK
@@ -69,14 +63,13 @@ POSIX 스레드 표준(IEEE Std 1003.1c, 1995)은 `pthread_mutex_t`를 정의했
 
 ## mutex의 내부 동작: futex 기반 fast/slow path
 
-리눅스에서 `std::mutex`는 결국 `pthread_mutex_t`로, 이는 다시 [futex(2)](https://man7.org/linux/man-pages/man2/futex.2.html) 시스템 콜 위에서 동작합니다. futex의 핵심 아이디어는 "무경합 구간은 전부 사용자 공간에서 원자적 연산만으로 끝내고, 실제로 대기가 필요한 경우에만 커널에 진입한다"는 것입니다. 락 상태를 나타내는 정수 하나를 원자적으로 조작해 성공하면 시스템 콜이 전혀 없고, 이미 잠겨 있어 실패한 스레드만 `FUTEX_WAIT`로 커널에 재워달라고 요청합니다. 아래는 이 로직을 단순화한 개념 스케치이며, 실제 glibc 구현은 재시도 횟수·스핀 등 추가 상태를 가진 3-상태 머신에 가깝습니다.
+리눅스에서 `std::mutex`는 결국 `pthread_mutex_t`로, 이는 다시 [futex(2)](https://man7.org/linux/man-pages/man2/futex.2.html) 시스템 콜 위에서 동작합니다. futex의 핵심 아이디어는 "무경합 구간은 전부 사용자 공간에서 원자적 연산만으로 끝내고, 실제로 대기가 필요한 경우에만 커널에 진입한다"는 것입니다. 락 상태를 나타내는 정수 하나를 원자적으로 조작해 성공하면 시스템 콜이 전혀 없고, 이미 잠겨 있어 실패한 스레드만 `FUTEX_WAIT`로 커널에 재워달라고 요청합니다. 아래는 이 로직을 단순화한 개념 스케치이며, 실제 glibc 구현은 재시도 횟수·스핀 등 이보다 많은 경우를 처리합니다.
 
 ```text
 lock():
   if compare_exchange(state, UNLOCKED, LOCKED):
     return                        // fast path: 원자적 CAS 성공, 시스템 콜 없음
-  state = LOCKED_CONTENDED         // 경합 발생을 표시
-  while not compare_exchange(state, UNLOCKED, LOCKED_CONTENDED):
+  while exchange(state, LOCKED_CONTENDED) != UNLOCKED:   // 경합 표시와 획득 시도를 한 번에
     futex_wait(&state, LOCKED_CONTENDED)   // 값이 바뀔 때까지 커널이 재움(slow path)
 
 unlock():
@@ -84,7 +77,7 @@ unlock():
     futex_wake(&state, 1)          // 대기자가 있었을 때만 한 명을 깨움(시스템 콜)
 ```
 
-이 설계 덕분에 무경합 mutex의 lock/unlock은 원자적 CAS 한두 번에 그치고, 시스템 콜은 실제로 대기자가 있을 때만 발생합니다. 표준 `std::mutex` 자체는 어떤 재시도·스핀 전략을 쓸지 강제하지 않는 **구현 정의(implementation-defined)** 동작이며, Windows에서는 futex가 아니라 `WaitOnAddress`/`SRWLOCK` 계열 커널 프리미티브 위에서, macOS(libc++)에서는 `os_unfair_lock` 위에서 유사한 원칙으로 구현됩니다.
+이 설계 덕분에 무경합 mutex의 lock/unlock은 원자적 CAS 한두 번에 그치고, 시스템 콜은 실제로 대기자가 있을 때만 발생합니다. 표준 `std::mutex` 자체는 어떤 재시도·스핀 전략을 쓸지 강제하지 않는 **구현 정의(implementation-defined)** 동작이며, 플랫폼마다 기반이 다릅니다. MSVC STL의 [mutex 소스](https://github.com/microsoft/STL/blob/main/stl/src/mutex.cpp)는 `SRWLOCK`(사용자 모드 락)을 호출하고, libc++는 [`pthread_mutex_t`를 감싸는 구조](https://github.com/llvm/llvm-project/blob/main/libcxx/include/__thread/support/pthread.h)입니다.
 
 ```cpp
 #include <mutex>
@@ -121,7 +114,7 @@ class SpinLock {
   void lock() noexcept {
     while (flag_.test_and_set(std::memory_order_acquire)) {
       while (flag_.test(std::memory_order_relaxed)) {  // C++20: test로 캐시 라인만 폴링
-        std::this_thread::yield();  // 과도한 스핀 시 스케줄러에 양보
+        std::this_thread::yield();  // 폴링마다 스케줄러에 양보(시스템 콜이 발생할 수 있음)
       }
     }
   }
@@ -136,7 +129,9 @@ class SpinLock {
 
 ## shared_mutex와 읽기 중심 워크로드
 
-**`std::shared_mutex`**(C++17)는 읽기(shared) 잠금과 쓰기(exclusive) 잠금을 구분합니다. 여러 리더가 동시에 shared 잠금을 보유할 수 있고, 라이터가 exclusive 잠금을 요청하면 모든 리더가 빠질 때까지 기다립니다. 읽기가 압도적으로 많고 쓰기가 드문 캐시·설정 테이블 같은 자료구조에서, 순수 mutex는 리더끼리도 서로 직렬화시켜 처리량을 깎아 먹지만 shared_mutex는 리더들을 병렬로 흘려보낼 수 있습니다. Windows의 대응물인 `SRWLOCK`도 같은 shared/exclusive 모드를 제공하며 공식 문서는 "읽기가 쓰기보다 많으면 이 동시성이 critical section 대비 성능·처리량을 높인다"고 설명합니다.
+**`std::shared_mutex`**(C++17)는 읽기(shared) 잠금과 쓰기(exclusive) 잠금을 구분합니다. 여러 리더가 동시에 shared 잠금을 보유할 수 있고, 라이터가 exclusive 잠금을 요청하면 모든 리더가 빠질 때까지 기다립니다. 읽기가 압도적으로 많고 쓰기가 드문 캐시·설정 테이블 같은 자료구조에서, 순수 mutex는 리더끼리도 서로 직렬화시켜 처리량을 깎아 먹지만 shared_mutex는 리더들을 병렬로 흘려보낼 수 있습니다. Windows의 대응물인 `SRWLOCK`도 같은 shared/exclusive 모드를 제공하며, 공식 문서는 다음과 같이 설명합니다.
+
+> "If read operations exceed write operations, this concurrency increases performance and throughput compared to critical sections." — [Microsoft Learn: Slim Reader/Writer (SRW) Locks](https://learn.microsoft.com/en-us/windows/win32/sync/slim-reader-writer--srw--locks)
 
 ```cpp
 #include <shared_mutex>

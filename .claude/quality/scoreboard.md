@@ -257,205 +257,205 @@
 | content/collection/optimization-02-cpp-language/09-modern-cpp-features/index.md | 91.2 | 2026-09-23 | 1 | 통과 | 1.3 | d8afa40 | 없음(경미: L104 cppreference 인용문이 원문과 불일치, L272 C++26 확정일 하루 오차, 파일 선두 BOM, "기타 C++17/20/23 기능" 절 리스트 앞 요약 문단 부재) |
 | content/collection/optimization-02-cpp-language/10-coroutine-performance/index.md | 91.3 | 2026-09-29 | 1 | 통과 | 1.3 | 751cb61 | 없음(경미: 파일 선두 UTF-8 BOM, L102 blockquote 인용문이 cppreference 원문과 불일치·출처 미병기, L156-160 "코루틴 프레임 할당" 절이 L86에서 예고한 HALO(힙 할당 제거 최적화)를 사용자 제공 allocator와 구분해 다루지 않음) |
 | content/collection/optimization-02-cpp-language/11-exception-deep-dive/index.md | 96.55 | 2026-10-02 | 3 | 통과 | 1.3 | 44cff30 | 없음(경미: 항목3=85 "예외 vs expected" 전용 비교 표 누락(collection-writing-standards §2.2), 항목7=85 tags Linux/Windows가 승인 결합형 Linux(리눅스)/Windows(윈도우) 미표기). 1차 채점(77.65점) 치명결함이던 L104 Itanium ABI 환각 인용 삭제·패러프레이즈 교체, 2차 지적 태그 영/한 분리 20쌍 승인 결합형 병합·00 챕터 Tr.07 경계 중첩 해소로 3회차에 통과 |
-| content/collection/optimization-02-cpp-language/12-inlining-techniques/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-02-cpp-language/13-variant-optional-expected/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-02-cpp-language/14-span-and-views/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-02-cpp-language/15-lambda-performance/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-02-cpp-language/16-small-buffer-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-02-cpp-language/17-parameter-passing/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-02-cpp-language/18-abi-link-performance-boundaries/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-02-cpp-language/19-type-erasure-cost-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-02-cpp-language/12-inlining-techniques/index.md | 95.8 | 2026-10-21 | 1 | 통과 | 1.3 | ea07c4a | 없음(경미: 항목1=85 L165 -Rpass 계열(텍스트 remark)에 '구조화 출력' 귀속 — -fsave-optimization-record만 YAML/bitstream, L99 LTO 'IR을 오브젝트에 함께' 표현은 fat LTO에만 해당, 항목7=85 description의 '디버깅 트레이드오프'가 본문에 없음). 1차 채점(52.3, 치명 1) 지적인 [dcl.inline] 인용 동사 불일치(환각 인용), inline 역사 역전, devirtualization 예외 누락, GCC 15 SARIF 과장, 앞뒤 안 맞는 어셈블리·재현 불가 진단 출력(GCC 14.2 실측 출력으로 교체), main 없는 예제, 리스트 의존 절, FAQ·자주 하는 실수 중복, 보일러플레이트 태그·BOM을 1회 Revise로 해소 |
+| content/collection/optimization-02-cpp-language/13-variant-optional-expected/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | 9383f0f | 없음(경미: 항목1=85 L97 optional 접근 시 '항상 한 번 분기' 서술 — operator*/->는 검사 없이 접근(빈 경우 UB)하고 value()/value_or()만 분기하므로 구분해 적어야 함). 1차 채점(73.0) 지적인 description if-let 오기, 학습 목표 절 누락, 비판적 시각 얕음(valueless_by_exception·다중 visit 코드 크기 추가), trivially-copyable 전파 서술, 리스트 의존 선택 가이드, FAQ·체크리스트 중복, expected 예제 stoi 예외 경로(from_chars로 교체), 보일러플레이트 태그 21개·BOM을 1회 Revise로 해소 |
+| content/collection/optimization-02-cpp-language/14-span-and-views/index.md | 96.55 | 2026-10-21 | 1 | 통과 | 1.3 | 17364f0 | 없음(경미: 항목4=85 L102 레거시 C API의 data()/size() 연동 문장이 L154와 중복, 항목7=85 대규모 개정 후 lastmod 미갱신). 1차 채점(74.95) 지적인 span::at C++26 누락·libc++ 하드닝 매크로 값 누락, 학습 목표·흔한 오해 절 부재, 리스트 의존 절, 수명 메시지 반복·FAQ 중복, BAD/GOOD 예제의 main·Fixed·검증 절차 부재, 보일러플레이트 태그·BOM을 1회 Revise로 해소 |
+| content/collection/optimization-02-cpp-language/15-lambda-performance/index.md | 98.5 | 2026-10-21 | 1 | 통과 | 1.3 | 2550dcd | 없음(경미: 항목7=85 Clean-Code(클린코드)·Type-Safety·Modularity 태그가 본문 대응 없이 잔존). 1차 채점(73.75) 지적인 std::function 힙 할당 시점(호출→생성·복사), libc++ 가상 함수 디스패치 누락, '항상 간접' 단정, 출처 없는 ns 수치(GCC 14.2 실측 어셈블리로 교체), cppreference 링크 설명 불일치, 학습 목표·흔한 오해 절 부재, 리스트 의존 절, FAQ·체크리스트 중복, 보일러플레이트 태그·BOM을 1회 Revise로 해소 |
+| content/collection/optimization-02-cpp-language/16-small-buffer-optimization/index.md | 95.8 | 2026-10-21 | 1 | 통과 | 1.3 | 5f83c18 | 없음(경미: 항목1=85 L242·L275 'std::function 32–48바이트'를 구현 한정 없이 일반화(MSVC STL x64는 64바이트), 항목7=85 Readability·Maintainability·Modularity·Clean-Code(클린코드) 태그가 본문 대응 없이 잔존). 1차 채점(78.25) 지적인 cppreference SBO 노트 오귀속, '표준은 SBO를 규정하지 않는다' 오류, 출처 없는 16–32B 반복(libstdc++·libc++ 실측 표로 교체), any_cast 오버로드 설명 오류, 학습 목표 절·function 내부 구조·최소 SBO 구현 부재, SmallVector vs inplace_vector 비교 표 누락, FAQ 중복, 보일러플레이트 태그·BOM을 1회 Revise로 해소 |
+| content/collection/optimization-02-cpp-language/17-parameter-passing/index.md | 97.3 | 2026-10-23 | 1 | 통과 | 1.3 | 4aecd0b | 없음(경미: 항목1=85 L188 반복 대입 setter의 추가 할당을 Item 41의 'always copied' 조건 탓으로 귀속 — 실제로는 Item 41의 별도 요점(대입 복사가 생성보다 비쌀 수 있음), L216 '같은 비용'은 할당 횟수만 같고 sink 쪽 이동 1회가 추가됨). 1차 채점(58.15, 치명 2) 지적인 Effective Modern C++ Item 41 귀속 환각 인용(C++ Core Guidelines F.16 원문으로 교체), 코드와 모순되는 벤치마크·실측 없는 5–15배 수치(할당 횟수 실측으로 교체), 함수 인자 임시 '수명 연장' 오류, C++11 RVO/NRVO 서술, Item 41 예외 미서술, main 없는 예제, 학습 목표 절 부재, 리스트 의존 비판적 시각, FAQ·체크리스트 중복, 보일러플레이트 태그·BOM을 1회 Revise로 해소 |
+| content/collection/optimization-02-cpp-language/18-abi-link-performance-boundaries/index.md | 100 | 2026-10-23 | 2 | 통과 | 1.3 | bd5be82 | 없음. 1차 채점(84)의 모듈→링크 단계 서술 오류, '링커는 본문을 보지 못해' 주어 오류, semantic interposition 메커니즘 부재(GCC 매뉴얼 -fsemantic-interposition으로 서술), dlsym/가시성 숨김 메시지 4회 반복·흔한 오해 재진술, 체크리스트 근거 부재, description 길이, BOM, 보일러플레이트 태그를 1차 Revise로 해소(2차 90.4점). 2차 지적 사실 오류(코루틴을 Tr.08에 오귀속, Tr.03·Tr.08 링크 누락)·hot_sum 재현 절차(noinline)·평가 기준 도입문 중복을 2차 Revise로 해소해 3회차 채점 100점 |
+| content/collection/optimization-02-cpp-language/19-type-erasure-cost-patterns/index.md | 98.05 | 2026-10-23 | 1 | 통과 | 1.3 | c83742c | 없음(경미: 항목4=85 '핵심 메시지 요약' 표의 닫힌 집합/열린 집합 행이 앞의 대안 패턴 표·판단 기준 표를 재진술). 1차 채점(78.25) 지적인 cppreference std::function 링크의 SBO 오귀속, 본문·코드·표 불일치('add가 사라짐'), '멤버 함수 포인터' 용어 오류, 정렬 조건 누락(UB), 재현 불가 벤치와 출처 없는 수치 표·지어낸 'call rax' 어셈블리(GCC 14.2 실측 어셈블리·실행 가능한 벤치로 교체), 마무리 절 뒤에 이론 절이 반복되는 구조, 체크리스트 2개·중복 절, 보일러플레이트 태그·BOM을 1회 Revise로 해소 |
 | content/collection/optimization-03-compiler/00-introduction/index.md | 96.1 | 2026-07-25 | 3 | 통과 | 1.0 | c1c7577 | 없음(경미: L99/L139 추천 읽기 순서 표현 불일치) |
 | content/collection/optimization-03-compiler/01-optimization-flags/index.md | 100 | 2026-10-20 | 3 | 통과 | 1.3 | 05477cd | 없음(PGO 계측/사용 -O 레벨 서술을 GCC 매뉴얼 기준으로 정정 후 재채점) |
 | content/collection/optimization-03-compiler/02-lto-thinlto/index.md | 100 | 2026-10-20 | 2 | 통과 | 1.3 | 78ad97e | 없음(초회 59.2: GCC 매뉴얼 귀속 환각 인용·GCC 4.5 연도·-flto=auto 오기술·ThinLTO 메커니즘 부재·실행 예제 부재 수정) |
 | content/collection/optimization-03-compiler/03-pgo-workflow/index.md | 95.4 | 2026-10-20 | 3 | 통과 | 1.3 | 7868ea5 | 없음(경미: L99 Clang 예제가 -O2 계측/-O3 사용으로 L63 "1단계와 같은 -O" 서술과 불일치 — -O2로 통일 필요; L167 실수 항목이 L114 재진술. 초회 59.3: Clang 매뉴얼 귀속 환각 인용·연도 오류·GCC .gcda 이름 불일치로 PGO 미적용 예제 수정) |
-| content/collection/optimization-03-compiler/04-compiler-comparison/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/05-inlining-diagnostics/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/06-code-generation-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/07-function-multiversioning/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/08-compiler-intrinsics/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/09-sanitizer-overhead/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/10-debug-info-and-performance/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/11-cpp20-modules/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/12-build-parallelization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/13-static-analyzer/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/14-bolt-post-link-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-03-compiler/15-autofdo/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-03-compiler/04-compiler-comparison/index.md | 97.3 | 2026-10-20 | 1 | 통과 | 1.3 | ed2acbe | 없음(경미: L182 1M=4MiB를 DRAM 대역폭 구간으로 단정 — 플랫폼 의존 명시 필요) |
+| content/collection/optimization-03-compiler/05-inlining-diagnostics/index.md | 97.3 | 2026-10-20 | 1 | 통과 | 1.3 | d6173da | 없음(경미: L118 -fopt-info-inline-missed 발췌 범위 서술 — 21:22 big_func 2줄 생략을 명시 필요) |
+| content/collection/optimization-03-compiler/06-code-generation-analysis/index.md | 97.3 | 2026-10-20 | 1 | 통과 | 1.3 | 0d57396 | 없음(경미: L51 objdump를 LTO 결과 확인의 "유일한 방법"으로 과장 — -flto -save-temps 대안 존재) |
+| content/collection/optimization-03-compiler/07-function-multiversioning/index.md | 97.3 | 2026-10-20 | 1 | 통과 | 1.3 | c19d801 | 없음(경미: L117 ACLE 언급을 Clang Attribute Reference에 귀속 — 원문에 없음, ACLE 출처 분리 필요) |
+| content/collection/optimization-03-compiler/08-compiler-intrinsics/index.md | 100 | 2026-10-20 | 1 | 통과 | 1.3 | 6211182 | 없음 |
+| content/collection/optimization-03-compiler/09-sanitizer-overhead/index.md | 95.35 | 2026-10-21 | 1 | 통과 | 1.3 | 854c5d3 | 없음(경미: L202 UBSan 보안 경고를 최소 런타임에 귀속 / L152 MSan 메모리 2×(origin 3×) 누락 / L119·L182 코드 블록 연속 배치) |
+| content/collection/optimization-03-compiler/10-debug-info-and-performance/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | edd6b8f | 없음 |
+| content/collection/optimization-03-compiler/11-cpp20-modules/index.md | 98.5 | 2026-10-21 | 1 | 통과 | 1.3 | e672a2c | 없음(경미: L114 GCC 14는 .cppm을 C++ 소스로 인식하지 않을 수 있음 — -x c++ 추가 권장, 최신 GCC 매뉴얼은 .cppm 지원 명시) |
+| content/collection/optimization-03-compiler/12-build-parallelization/index.md | 95.8 | 2026-10-21 | 1 | 통과 | 1.3 | 5cd69c0 | 없음(경미: L68 -s 출력 형식은 ccache 4.7 이후 기준 / L125 캐시 키 gcc14와 실제 빌드 컴파일러 불일치 — CXX=g++-14 지정 필요) |
+| content/collection/optimization-03-compiler/13-static-analyzer/index.md | 91.3 | 2026-10-21 | 1 | 통과 | 1.3 | 8579e11 | 깊이 — L137 기준선(새 경고만 실패) 정책과 YAML(--warnings-as-errors 전체) 불일치 — clang-tidy-diff.py 등 diff 한정 job 추가 / 코드 — L105 scan-build는 -enable-checker(단일 대시), L97-99·L128-129 출력 줄 번호가 파일명 주석 1줄만큼 밀림 / 정확성 — L49 심볼릭 실행 설명 출처는 clang.llvm.org/docs/ClangStaticAnalyzer.html |
+| content/collection/optimization-03-compiler/14-bolt-post-link-optimization/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | a0707a0 | 없음 |
+| content/collection/optimization-03-compiler/15-autofdo/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | 2c5d41e | 없음 |
 | content/collection/optimization-04-memory-allocation/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 1.0 | c8f0024 | 없음(경미: Networking·IO·Testing 등 본문 결속 약한 범용 태그 다수, 16번 챕터 mimalloc 미병기) |
-| content/collection/optimization-04-memory-allocation/01-container-cost-model/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/02-allocation-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/03-custom-allocator/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/04-pmr-allocator/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/05-aos-vs-soa/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/06-cache-friendly-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/07-padding-alignment/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/08-large-pages/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/09-numa-allocation/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/10-memory-fragmentation/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/11-memory-bandwidth/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/12-stack-vs-heap/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/13-virtual-memory-management/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/14-memory-leak-detection/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/15-memory-lifetime-cacheline-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-04-memory-allocation/16-global-allocator-tuning/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/00-introduction/index.md | 88.9 | 2026-07-25 | 3 | 에스컬레이션 | 1.0 | b9a7dc2 | 치명결함 0건이나 3회 반복 후 90점 근소 미달. 잔여: "다루지 않는 것" 절에 캐시 일관성/메모리 모델·SIMD 범위 밖 명시 부재, 1차 출처 1개 추가 여지 |
-| content/collection/optimization-05-cpu-microarchitecture/01-cpu-pipeline-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/02-branch-prediction/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/03-cache-hierarchy/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/04-cache-miss-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/05-ilp-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/06-out-of-order-execution/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/07-tlb-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/08-modern-cpu-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/09-hardware-performance-counters/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/10-speculative-execution/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/11-frequency-scaling/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/12-power-management/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/13-apple-silicon-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/14-smt-hyperthreading/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/15-uop-cache-dsb/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/16-risc-v-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/17-frontend-vs-backend-bound/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/18-dependency-chains-port-pressure/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-04-memory-allocation/01-container-cost-model/index.md | 95.8 | 2026-10-23 | 1 | 통과 | 1.3 | 37c380b | 없음(경미: 성장 인자 2배/1.5배 1차 출처 미병기, Advanced 태그가 기초 난이도와 불일치) |
+| content/collection/optimization-04-memory-allocation/02-allocation-strategy/index.md | 95.4 | 2026-10-23 | 1 | 통과 | 1.3 | 7cb59f2 | 없음(경미: "malloc은 매 호출마다 락" 서술이 tcache 등 스레드별 캐시를 무시해 과장, 마무리·체크리스트·소멸자 설명 중복) |
+| content/collection/optimization-04-memory-allocation/03-custom-allocator/index.md | 93.9 | 2026-10-23 | 1 | 통과 | 1.3 | e1b8a0f | 없음(경미: ArenaAllocator·StackAllocator에 과정렬 T static_assert 없음, "초기 구현체가 할당자를 무시" 출처 없는 일반화, construct/destroy 연혁 중복) |
+| content/collection/optimization-04-memory-allocation/04-pmr-allocator/index.md | 93.1 | 2026-10-23 | 0 | 통과 | 1.3 | d40516e | 없음(경미: P0339 귀속·L91 주석↔본문 모순·출처 없는 ns 수치·무관 태그 7개는 통과 후 미수정, 다음 재점검 때 처리) |
+| content/collection/optimization-04-memory-allocation/05-aos-vs-soa/index.md | 97.3 | 2026-10-23 | 1 | 통과 | 1.3 | 2bf96db | 없음(경미: 11회 측정 범위의 원본 출력·링크 미첨부, Acton 문장이 따옴표 안 의역) |
+| content/collection/optimization-04-memory-allocation/06-cache-friendly-patterns/index.md | 100.0 | 2026-10-23 | 2 | 통과 | 1.3 | e00c314 | 없음(개선여지만: 프리페처 도입 시기 출처, Intel 매뉴얼 절 번호, 호출 단위 배칭 예제) |
+| content/collection/optimization-04-memory-allocation/07-padding-alignment/index.md | 97.3 | 2026-10-23 | 1 | 통과 | 1.3 | 197ad67 | 없음(경미: Compiler Explorer 측정 수치의 CPU·OS 등 실행 환경 미특정) |
+| content/collection/optimization-04-memory-allocation/08-large-pages/index.md | 95.4 | 2026-10-23 | 2 | 통과 | 1.3 | 85f9baa | 없음(경미: "채택이 넓어지고 있다·표준 라이브러리" 무출처 서술, "전역 오버커밋 위험" 용어 부정확, 벤치 환경 의존 경고·HugeTLB/THP 구분 중복) |
+| content/collection/optimization-04-memory-allocation/09-numa-allocation/index.md | 95.8 | 2026-10-24 | 1 | 통과 | 1.3 | fee9a89 | 없음(경미: 판단 흐름도 q1/q3 분기가 표와 불일치, 벤치를 '지연' 측정이라 부르나 stride-8 순차 스캔은 처리량 측정) |
+| content/collection/optimization-04-memory-allocation/10-memory-fragmentation/index.md | 91.9 | 2026-10-24 | 3 | 통과 | 1.3 | ed904bf | 없음(경미: '버디 시스템은 외부 단편화 반대' 문장 근거 없음, mimalloc 태그가 본문에 없음, 판단 표 4·5행 비권장 문구 중복) |
+| content/collection/optimization-04-memory-allocation/11-memory-bandwidth/index.md | 91.9 | 2026-10-24 | 2 | 통과 | 1.3 | 4f1cfea | 없음(경미: roofline memory-bound를 컨트롤러 포화와 동일시한 서술, Meta 사례는 Panmesia 데모라는 단서 누락, 스펙-배포 시차의 실제 상용화 사례 미제시, '스펙≠배포' 요지 반복) |
+| content/collection/optimization-04-memory-allocation/12-stack-vs-heap/index.md | 95.4 | 2026-10-24 | 3 | 통과 | 1.3 | 3141396 | 없음(경미: 본문 L89가 make_unique라 쓰나 코드는 new Payload, '20배 안팎'이 측정 범위 17–53배와 불일치, 오개념 2번째 항목이 앞 절 재진술) |
+| content/collection/optimization-04-memory-allocation/13-virtual-memory-management/index.md | 92.5 | 2026-10-25 | 3 | 통과 | 1.3 | eeb66e8 | 없음(경미: Mermaid가 '곧 재사용 → 압박 시 PAGEOUT'으로 이어져 본문·표와 불일치, 7.6%가 SYNC 모드 측정임을 미명시, MADV_FREE/RSS·msync·MTE 단서 재진술 다수, -fsanitize=memtag 플래그 Android 문서 대조 미완) |
+| content/collection/optimization-04-memory-allocation/14-memory-leak-detection/index.md | 95.0 | 2026-10-25 | 2 | 통과 | 1.3 | 4a858d4 | 없음(경미: Valgrind '1990년대 후반 개발 시작'·'3.27.1(2026-05)' 무출처·구버전 표기, 계측/배포 빌드 차이와 논리적 누수 설명 중복) |
+| content/collection/optimization-04-memory-allocation/15-memory-lifetime-cacheline-intuition/index.md | 98.1 | 2026-10-25 | 1 | 통과 | 1.3 | b4bd8b9 | 없음(경미: 할당 비용 절 앞 3문장이 스택/힙 절 힙 설명과 중복, `alignas` 언급이 도입 없이 등장) |
+| content/collection/optimization-04-memory-allocation/16-global-allocator-tuning/index.md | 95.5 | 2026-10-25 | 2 | 통과 | 1.3 | 863b1af | 없음(경미: description이 snmalloc 구조 비교를 약속하나 표에 snmalloc 행 없음, 'Tr.02' 약어 미정의, jemalloc 종료 논지 일부 재진술) |
+| content/collection/optimization-05-cpu-microarchitecture/00-introduction/index.md | 90.6 | 2026-10-25 | 4 | 통과 | 1.3 | a9ec040 | - |
+| content/collection/optimization-05-cpu-microarchitecture/01-cpu-pipeline-fundamentals/index.md | 97.3 | 2026-10-23 | 1 | 통과 | 1.3 | b5b5509 | - |
+| content/collection/optimization-05-cpu-microarchitecture/02-branch-prediction/index.md | 97 | 2026-10-23 | 1 | 통과 | 1.3 | f772241 | - |
+| content/collection/optimization-05-cpu-microarchitecture/03-cache-hierarchy/index.md | 100 | 2026-10-23 | 1 | 통과 | 1.3 | ff4f7f6 | - |
+| content/collection/optimization-05-cpu-microarchitecture/04-cache-miss-analysis/index.md | 91.6 | 2026-10-23 | 1 | 통과 | 1.3 | 2ee9a48 | - |
+| content/collection/optimization-05-cpu-microarchitecture/05-ilp-fundamentals/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | beaa57e | - |
+| content/collection/optimization-05-cpu-microarchitecture/06-out-of-order-execution/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | 53a1ec3 | - |
+| content/collection/optimization-05-cpu-microarchitecture/07-tlb-optimization/index.md | 94.6 | 2026-10-24 | 1 | 통과 | 1.3 | 0e12875 | - |
+| content/collection/optimization-05-cpu-microarchitecture/08-modern-cpu-architecture/index.md | 92.8 | 2026-10-24 | 3 | 통과 | 1.3 | bf7969b | - |
+| content/collection/optimization-05-cpu-microarchitecture/09-hardware-performance-counters/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | ba8e02e | - |
+| content/collection/optimization-05-cpu-microarchitecture/10-speculative-execution/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | 9fd4323 | - |
+| content/collection/optimization-05-cpu-microarchitecture/11-frequency-scaling/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | 47e075b | - |
+| content/collection/optimization-05-cpu-microarchitecture/12-power-management/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 0607325 | - |
+| content/collection/optimization-05-cpu-microarchitecture/13-apple-silicon-architecture/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | c73e434 | - |
+| content/collection/optimization-05-cpu-microarchitecture/14-smt-hyperthreading/index.md | 93.9 | 2026-10-25 | 1 | 통과 | 1.3 | cc1665f | - |
+| content/collection/optimization-05-cpu-microarchitecture/15-uop-cache-dsb/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | 5cf7bc2 | - |
+| content/collection/optimization-05-cpu-microarchitecture/16-risc-v-architecture/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | 526d588 | - |
+| content/collection/optimization-05-cpu-microarchitecture/17-frontend-vs-backend-bound/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | a3f7462 | - |
+| content/collection/optimization-05-cpu-microarchitecture/18-dependency-chains-port-pressure/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 4a7a6b8 | - |
 | content/collection/optimization-06-os-runtime/00-introduction/index.md | 96.1 | 2026-07-25 | 3 | 통과 | 1.0 | fad6466 | 없음(경미: "달성할 목표"·"평가 기준" 절 일부 중복, 네비게이션 절 2개 중복 여지) |
-| content/collection/optimization-06-os-runtime/01-context-switch-cost/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/02-syscall-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/03-cpu-pinning-affinity/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/04-numa-cpu-affinity/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/05-realtime-scheduling/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/06-precise-time-measurement/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/07-kernel-bypass-overview/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/08-io-uring-overview/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/09-xdp-ebpf-overview/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/10-huge-tlb-pages/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/11-container-performance/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/12-irq-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/13-cgroups-v2/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/14-memory-locking/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/15-signal-handling/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/16-process-vs-thread/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/17-ebpf-kernel-performance-safety/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-06-os-runtime/18-cloud-tail-latency/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-06-os-runtime/01-context-switch-cost/index.md | 94.3 | 2026-10-23 | 1 | 통과 | 1.3 | 6a86798 | 없음(경미: 판단 기준 표 1–3행이 설계 절 일부 재진술). 1차 85.2점(Tsuna·Rochester 수치 오귀속, 벤치마크 주석↔코드 모순, 본문과 무관한 태그) → 원문 대조로 수치 정정, 같은 코어/다른 코어 비교 가능하게 벤치마크 수정, 태그 교체 후 통과. g++ 부재로 벤치마크 코드는 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/02-syscall-optimization/index.md | 97.3 | 2026-10-23 | 1 | 통과 | 1.3 | 13f0cdf | 없음(경미: L76·L48 'ns' 단위 수치에 측정 환경 미명시). 1차 89.7점(SYSENTER/SYSCALL 연도 오류, kernel.org PTI 'about 100 cycles' 오인용, Gregg <0.5% 예상치를 관측치로 서술, 출처 없는 PostgreSQL 수치, writev_all EINTR·길이0 iovec 결함) → 원문 대조 정정·코드 수정 후 통과. g++ 부재로 코드 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/03-cpu-pinning-affinity/index.md | 95.4 | 2026-10-23 | 1 | 통과 | 1.3 | be9df56 | 없음(경미: 학습 목표 앞 요약 문단 부재, rcu_nocbs 병기 이유 설명 부족). 1차 80.7점(커널 문서 틱·isolcpus 서술 오인용, pthread_setaffinity_np 경쟁 조건, 측정 검증 절 부재) → 원문 대조 정정·pthread_attr_setaffinity_np 예제·효과 검증 절 추가 후 통과. g++ 부재로 코드 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/04-numa-cpu-affinity/index.md | 98.5 | 2026-10-23 | 1 | 통과 | 1.3 | 1dda577 | 없음(경미: 역사 서술에 출처 링크 없음, weighted-interleave 사용 조건 설명이 괄호 한 줄). 1차 68.5점(numastat -p 출력·의미 날조 치명결함, 포인터 체이싱 순차 링크로 지연이 아닌 처리량 측정, 1차 출처 0개) → man7 원문 대조 정정·무작위 순열 벤치마크·참고 자료 절 추가 후 통과. g++/libnuma 부재로 코드 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/05-realtime-scheduling/index.md | 92.4 | 2026-10-23 | 1 | 통과 | 1.3 | 99093d6 | 없음(경미: 오개념 2·3이 앞 절 일부 재진술). 1차 71.8점(치명: Cache-Aware Scheduling 병합 상태 자기모순; RLIMIT_RTPRIO 무시, chrt 퀀텀 오기, LWN 수치 순서 오류, 존재하지 않는 CONFIG·debugfs 서술) → 원문 대조 정정, RT throttling·PI mutex·cyclictest 추가, 태그 교체 후 통과. g++ 부재로 코드 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/06-precise-time-measurement/index.md | 96 | 2026-10-23 | 1 | 통과 | 1.3 | ad2a153 | 없음(경미: invariant TSC 도입 시점·세대 서술에 1차 출처 링크 없음). 1차 79.0점(RDTSCP가 시작 지점 순서를 보장한다는 SDM 불일치 서술, 출처 없는 AMD 연도, Windows 경로 부재) → SDM 원문 반영·LFENCE 추가, QueryPerformanceCounter 절 신설, 태그 교체 후 통과. g++ 부재로 코드 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/07-kernel-bypass-overview/index.md | 90.9 | 2026-10-23 | 1 | 통과 | 1.3 | 2d99062 | 없음(경미: 마무리 체크리스트가 수준별 경로 표와 일부 재진술, 판단 표 두 행이 오개념과 일부 겹침). 1차 74.7점(치명: IBTA 링크 404, 출처 없는 연도 다수, 챕터 11 링크 누락, RDMA 골격 코드 자원 누수) → 링크·연도 삭제, 중복 절 삭제, 코드 출력 인자화, 무관 태그 교체 후 통과. g++/libibverbs 부재로 코드 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/08-io-uring-overview/index.md | 95.8 | 2026-10-23 | 1 | 통과 | 1.3 | a2c54f1 | 없음(경미: libaio 한계 서술에 출처 없음, get_sqe NULL·wait_cqe 반환값 검사 생략). 1차 83.7점(출처 없는 역사·연도, CQ 슬롯 주석 오류, '2025–2026 안정화' 표현이 5.19 서술과 모순, 무관 태그 8개) → 출처 없는 서술 삭제, man 페이지 기준 정정, 태그 정리 후 통과. g++/liburing 부재로 코드 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/09-xdp-ebpf-overview/index.md | 92.8 | 2026-10-23 | 2 | 통과 | 1.3 | 9f49473 | 없음(경미: Linux 3.18/4.8/5.3 버전 수치와 '실측 처리량' 서술에 출처 링크 없음, alloca 절 얕음). 1차 87.1점(실제 출력이 아닌 verifier 로그, 출처 없는 CVE·alloca 설계·제안자 연도, '2025–2026' 표현이 6.9 병합과 모순, 무관 태그 8개) → 날조 로그·무출처 서술 삭제, 태그 정리, 실수로 삭제된 학습 목표 절 복원 후 통과. clang 부재로 BPF 코드 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/10-huge-tlb-pages/index.md | 95.4 | 2026-10-23 | 1 | 통과 | 1.3 | 32bf12b | 없음(경미: 단편화 실패 서술이 여러 절에 반복, 마무리 체크리스트가 절 제목 재진술). 1차 81.3점(/proc/<pid>/smaps에 노드 정보가 있다는 사실 오류, 합성 meminfo 출력 미표기, Surp 정의 오류, 출처 없는 연도·인명 귀속, 1차 출처 링크 0개, 다이어그램↔본문 불일치) → 커널 문서 기준 정정, 참고 자료 절 추가, 태그 정리 후 통과. g++ 부재로 코드 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/11-container-performance/index.md | 90.9 | 2026-10-23 | 1 | 통과 | 1.3 | ccb899a | 없음(경미: 판단 기준 표 일부 행이 오개념 절과 중복, 학습 목표 근거 정합성 정정 반영). 1차 88.0점(치명: 판단 기준 표 'limit 미설정'이 본문·다이어그램의 request=limit과 모순, arXiv 논문 입장 귀속 오류, 출처 없는 Red Hat 그래프 수치·quota 서술) → 모순 정정, 출처 없는 서술 삭제, 논문 귀속 정정 후 통과. 9,000–9,500사이클 수치는 Red Hat 본문과 일치 |
+| content/collection/optimization-06-os-runtime/12-irq-optimization/index.md | 95.8 | 2026-10-23 | 2 | 통과 | 1.3 | 4c80aa3 | 없음(경미: SCHED_FIFO 50·threadirqs·irqbalance 옵션·softirq 10종에 1차 출처 링크 없음, 커널 예제 보조 함수가 선언만 있는 골격). 1차 82.8점(default_smp_affinity에 CPU 목록 사용·isolcpus 서브플래그에 nohz_full 혼용 등 실행 불가 명령, IRQF_ONESHOT 예외 오기, 출처 없는 연도·버전, 다이어그램↔본문 모순, 무관 태그 9개) → 명령·서술 정정, 2회차에 managed IRQ 서술을 kernel docs 문장과 통일해 통과. 커널 모듈 코드는 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/13-cgroups-v2/index.md | 93.4 | 2026-10-23 | 1 | 통과 | 1.3 | 70b582b | 없음(경미: 판단 기준 표 일부 행이 오개념 절과 겹침, v1 release_agent 서술에 cgroup-v2 문서 링크 미병기). 1차 89.7점(치명: Dan Luu 글에 없는 '이중 지연 분포·100ms' 귀속, 출처 없는 연도·버전, 셸 예제 경로·io 컨트롤러 위임 누락, 무관 태그) → 원문 사실로 교체, 출처 없는 서술 삭제, 셸 예제에 경로 변수 추가 후 통과. 컴파일 미검증(C++ 예제는 정독) |
+| content/collection/optimization-06-os-runtime/14-memory-locking/index.md | 97.3 | 2026-10-23 | 1 | 통과 | 1.3 | 6c6b5d7 | 없음(경미: 일부 서술('실시간 커뮤니티에서 오래 권장')에 1차 출처 없음, mlock2 예제 없음). 1차 85.6점(volatile 캐스트로 최적화에 취약한 프리폴트 예제·mlockall 반환값 무시, chronyd 원문에 없는 '-P 전제·한 세트 설계' 귀속, 출처 없는 64KB 기본값, 무관 태그 3개) → 예제 수정, 귀속 원문 수준으로 한정, 수치 삭제 후 통과. 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/15-signal-handling/index.md | 93.9 | 2026-10-23 | 1 | 통과 | 1.3 | 5af3522 | 없음(경미: 일부 서술('일반 함수 호출보다 훨씬 무겁고')에 근거 없음, 오개념 절 첫 항목이 본문 재진술). 1차 89.7점(fork 마스크 상속을 스레드 풀에 적용한 근거-결론 불일치, 출처 없는 lat_sig 수치·4.2BSD 연도, sigqueue 실패 서술 모순, epoll 예제 에러 처리 생략, 무관 태그 3개) → 상속 서술 분리·원문 대조 보강, 수치 삭제, 에러 처리 보강 후 통과. 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/16-process-vs-thread/index.md | 98.1 | 2026-10-23 | 1 | 통과 | 1.3 | f82a217 | 없음(경미: 비판적 시각 일부 문장이 앞 절의 격리 서술을 재진술, 다이어그램에서 sigHandlers 노드가 스레드와 연결되지 않음). 1차 83.7점(스레드 생성 시 capability 복사 등 부정확한 서술, 출처 없는 연도·'작은 바이너리에서는 비슷' 단정, man 문구 의역을 따옴표 인용, 무관 태그 5개, 벤치마크 에러 처리 생략) → 삭제·원문 정정·태그 교체·에러 처리 추가 후 통과. 컴파일 미검증 |
+| content/collection/optimization-06-os-runtime/17-ebpf-kernel-performance-safety/index.md | 91.3 | 2026-10-23 | 1 | 통과 | 1.3 | 95ba28a | 없음(경미: 00 챕터가 약속한 Tr.10·Tr.11 연계 링크 부재, 일부 부차 서술에 출처 없음). 1차 52.0점(1차 출처 0개, 메커니즘 서술 부재, 답 없는 14문항·중복 부록, 코드·명령 예제 없음, 무관 태그 다수, 산문 31.2%) → 커널 문서·man 페이지 기반으로 전면 재작성(verifier·권한·ABI·CO-RE 서술, 최소 XDP 예제와 bpftool 절차, 학습 목표·오개념·판단 표), 태그 재구성 후 통과. BPF 코드 컴파일 미검증(소스 정독) |
+| content/collection/optimization-06-os-runtime/18-cloud-tail-latency/index.md | 98.5 | 2026-10-23 | 2 | 통과 | 1.3 | fb172a6 | 없음(경미: 재현 스크립트는 실제 실행·컴파일 미검증, 커널 steal/KVM 문서 링크 미병기). 1차 82.0점(재현 스크립트가 본문의 코어 오버커밋 주장과 모순, 출처 없는 벤더 동작 단정(Nitro '오직'·GCP '정식 지원'·SLA '대부분'), 반복 서술, 무관 태그) → 스크립트를 3구간 비교·100회 반복·p50/p99 출력으로 재작성하고 한계 명시, 단정 삭제·약화 후 2회차에 통과. 셸·C 코드 실행 미검증(소스 정독) |
 | content/collection/optimization-07-concurrency/00-introduction/index.md | 95.2 | 2026-07-25 | 2 | 통과 | 1.0 | 58f8873 | 없음(경미: "책임지는 범위"·"다루지 않는 것" 리스트 앞 연결 문단 여지, Intel 링크 WebFetch 403이나 실제 접근 가능) |
-| content/collection/optimization-07-concurrency/01-synchronization-cost-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/01-synchronization-cost-analysis/index.md | 91.45 | 2026-10-25 | 0 | 통과 | 1.3 | 7feadc6 | 없음(경미: L79·L225 SRW 문서에 없는 '커널 오브젝트 최소화' 서술 귀속, 보일러플레이트 태그 4개, 본문 '1/2/4/8' vs 코드 Threads(1/4/8) 불일치) |
 | content/post/2026/2026-09-16-ai-counterfeit-utility-verification-cost/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/post/2026/2026-09-15-openai-agent-dsewiki-containment-breakout/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/02-lock-selection-criteria/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/03-false-sharing-avoidance/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/04-memory-model-practical/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/05-lock-free-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/06-lock-free-data-structures/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/07-hazard-pointers-rcu/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/08-spsc-mpmc-queues/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/09-cpp20-atomics/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/10-thread-pool-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/11-coroutine-concurrency/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/12-wait-free-programming/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/13-jthread-stop-token/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/14-seqlock-pattern/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/15-thread-local-storage/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/16-executors-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/17-senders-receivers-cpp26/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/18-parallel-execution-policies/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/19-condition-variable-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/20-barrier-latch/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-07-concurrency/21-thread-per-core-io-uring/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-07-concurrency/02-lock-selection-criteria/index.md | 95.8 | 2026-11-02 | 1 | 통과 | 1.3 | fd95d48 | 없음(경미: L124 ATOMIC_FLAG_INIT은 C++20에서 deprecated(atomic_flag flag_;로 대체 가능), OSSpinLock·NPTL 2003 등 역사 서술에 링크 출처 없음, libc++ '감싸는 구조'는 정확히 typedef 위임) |
+| content/collection/optimization-07-concurrency/03-false-sharing-avoidance/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | da4e741 | 없음(경미: L70 'libc++ ABI 노출 때문에 비활성' 인과 서술 1차 출처 없음 — libc++ 상태표 'LLVM 19에서 매크로 구현'으로 교체 여지) |
+| content/collection/optimization-07-concurrency/04-memory-model-practical/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | d66fddb | 없음(경미: L63 N2480 저자는 Boehm 단독인데 'Boehm과 Adve' 귀속, Intel TSX 2021 비활성화 출처 미부기, consume '사실상 폐기 수순' 표현이 P0371R1보다 강함) |
+| content/collection/optimization-07-concurrency/05-lock-free-fundamentals/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 04f59e3 | 없음(경미: Intel TSX 직접 인용에 intel.com 000059422 링크 미부기, Herlihy 논문 링크 없음, g++ 부재로 TaggedStack 예제 미컴파일) |
+| content/collection/optimization-07-concurrency/06-lock-free-data-structures/index.md | 92.5 | 2026-10-25 | 2 | 통과 | 1.3 | a9478f4 | 없음(경미: description이 dequeue 추가 미반영, 해시맵은 개념 스케치뿐, 큐 단독 main 예제 없음, rochester PDF ~경로 WebFetch 404이나 /u/scott 경로는 정상, Edge-Cases·Comparison 태그 근거 약함) |
+| content/collection/optimization-07-concurrency/07-hazard-pointers-rcu/index.md | 98.5 | 2026-10-25 | 3 | 통과 | 1.3 | c8d8635 | 없음(경미: 벤치마크 골격이 앞 절 Node·protect 정의에 의존하는 비독립 코드, Michael 2004 논문 링크 미부기, L153 합쇼체 어체 혼재, RCU grace period 도식 없음) |
+| content/collection/optimization-07-concurrency/08-spsc-mpmc-queues/index.md | 92.05 | 2026-10-25 | 2 | 통과 | 1.3 | d2fba87 | 없음(경미: BlockingSpscQueue에 main·테스트 없음, L365 '실패 반환 정책만 보였다'가 백프레셔 절과 어긋남, 세마포어 지연 비용 정량 근거 없음) |
+| content/collection/optimization-07-concurrency/09-cpp20-atomics/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | 7d0c87a | 없음(경미: L94 스핀 12/4회 단계 매핑은 Red Hat 글 상수 기반 추정, L109 Darwin ulock_wait 구현 서술 출처 없음, broken/fixed 조각이 main 없는 단독 비컴파일 조각) |
+| content/collection/optimization-07-concurrency/10-thread-pool-optimization/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | ffb3aff | 없음(경미: L63 Cilk++·TBB·TPL·ForkJoinPool·rayon 설계 근거 귀속 출처 없음, L172 '수십 개 이하 이론적 bound와 잘 맞음' 근거 없음, ThreadPool·벤치마크 블록이 앞 블록 의존·main 없음, Blumofe-Leiserson 논문 본문 미확인) |
+| content/collection/optimization-07-concurrency/11-coroutine-concurrency/index.md | 98.5 | 2026-10-25 | 1 | 통과 | 1.3 | d6dfdec | 없음(경미: ThreadPool이 선언뿐이고 main이 없으며 caller_bad가 Task를 co_await하지 않아 UAF 예제를 그대로 재현할 수 없음, 본문이 미실행·완성 프로그램 필요라고 명시) |
+| content/collection/optimization-07-concurrency/12-wait-free-programming/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | 2904d52 | 없음(경미·수정 권고: L113 도입문이 p50/p99 비교를 약속해 L144 '평균만 보고'와 모순, L44 '소비자 이론' 표현 어색, helping 의사코드 없음, Herlihy·Kogan-Petrank·Alistarh PDF 본문 대조 불가) |
+| content/collection/optimization-07-concurrency/13-jthread-stop-token/index.md | 91.9 | 2026-10-25 | 0 | 통과 | 1.3 | 9a0d15d | 없음(경미·수정 권고: libc++ 지원 이력이 L67·L228에서 중복, '행(hang)' 위험 재진술 5회 반복, L214 '수십 µs' 출처 없음, P1287→P0660 병합 서술·MSVC 시기 출처 없음, Linux·Windows·OS·Latency 무관 태그) |
+| content/collection/optimization-07-concurrency/14-seqlock-pattern/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | 56439b3 | 없음(경미: L286 '아키텍처별 주의사항'이 rigtorp README(x86 한정)보다 과장, L67 '(jiffies·타임스탬프 갱신)' 출처 없음, 벤치 블록이 Seqlock 정의에 의존하고 라이터 경로의 Snapshot s 미초기화) |
+| content/collection/optimization-07-concurrency/15-thread-local-storage/index.md | 91.3 | 2026-10-25 | 1 | 통과 | 1.3 | 1e98a27 | 없음(경미: Windows TEB ThreadLocalStoragePointer·_tls_index 서술과 glibc static TLS surplus 개선 서술 출처 없음, Drepper·Itanium ABI 링크 없음, Broken/Fixed 블록에 main 없음) |
+| content/collection/optimization-07-concurrency/16-executors-fundamentals/index.md | 92.8 | 2026-10-25 | 1 | 통과 | 1.3 | 7c12bd1 | 없음(경미: L236 '컴파일 에러 메시지가 길어진다고 보고됩니다' 출처 없음, '10여 년·10년 넘는 시간' 수치 근거 없음, scheduler/sender 절이 개념 수준이고 InlineSender::connect가 즉시 실행) |
+| content/collection/optimization-07-concurrency/17-senders-receivers-cpp26/index.md | 91.3 | 2026-10-25 | 2 | 통과 | 1.3 | a4f74bd | 없음(경미: Citadel Securities 링크 WebFetch 403으로 L119 요약을 원문 대조 못 함(검증 불가), spawn/spawn_future가 멤버인지 free function인지 P3149R11로 미확인, let_value 예제 없음) |
+| content/collection/optimization-07-concurrency/18-parallel-execution-policies/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | b6839f7 | 없음(경미: L79 P0333·P0394 exception_list 기각 경위 출처 없음, L182·L197이 L69·L79와 일부 재진술, 제목 접두 [Concurrency 07]/[Performance 07] 불일치) |
+| content/collection/optimization-07-concurrency/19-condition-variable-patterns/index.md | 96.55 | 2026-10-25 | 1 | 통과 | 1.3 | 9227fdb | 없음(경미: critic은 해시 e1895e5 본문을 96.55로 채점, 이후 description 길이만 177→157자로 줄임(린트 desc-len 지적 반영), L145·L159 이식성 서술 일부 중복, 과거 glibc requeue 사용·전환 시점에 직접 출처 없음) |
+| content/collection/optimization-07-concurrency/20-barrier-latch/index.md | 90.85 | 2026-10-25 | 1 | 통과 | 1.3 | bd56106 | 없음(경미: L159 'libstdc++는 futex 기반 atomic wait/notify 사용'은 붙은 GCC 패치 링크로 확인되지 않음, 마무리 체크리스트가 앞 절 일부 재진술, 비용 절이 정성 서술과 스켈레톤 벤치뿐, 통과선 근접) |
+| content/collection/optimization-07-concurrency/21-thread-per-core-io-uring/index.md | 93.85 | 2026-10-25 | 1 | 통과 | 1.3 | e301423 | 없음(경미: 오개념 절의 'Seastar·ScyllaDB는 2014년부터 epoll 기반으로도 구현' 연도·구현 방식 출처 없음, L73 '직접 확인' 문장 연속 중복, 벤치 예제에 io_uring_get_sqe null 검사와 submit·wait 반환값 검사 생략) |
 | content/collection/optimization-08-optimization-techniques/00-introduction/index.md | 95.2 | 2026-07-25 | 3 | 통과 | 1.0 | ebfac67 | 없음(경미: 측정 항목 리스트 근거 문단 여지) |
-| content/collection/optimization-08-optimization-techniques/01-simd-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/02-simd-intrinsics-practical/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/03-avx512-avx10-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/04-auto-vectorization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/05-prefetch-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/06-branchless-programming/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/07-hand-written-assembly/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/08-lookup-table-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/09-bit-manipulation-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/10-hotpath-extreme-tuning/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/11-maintainability-tradeoff/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/12-arm-neon-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/13-portable-simd-libraries/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/14-cpp26-std-simd/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/15-cache-oblivious-algorithms/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/16-gpu-offloading-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/17-ai-inference-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-08-optimization-techniques/18-simd-string-processing/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-08-optimization-techniques/01-simd-fundamentals/index.md | 93.9 | 2026-10-25 | 1 | 통과 | 1.3 | 49480b3 | 없음(경미: 오개념↔비판적 시각 중복, 벤치 스켈레톤 본문-코드 불일치·L1/L2 주석, 일부 마이크로아키텍처 단정 출처) |
+| content/collection/optimization-08-optimization-techniques/02-simd-intrinsics-practical/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | c841961 | 없음(경미: dot_avx2 tail 루프 생략, load/loadu 동등성 주장 출처 없음) |
+| content/collection/optimization-08-optimization-techniques/03-avx512-avx10-optimization/index.md | 93.9 | 2026-10-25 | 1 | 통과 | 1.3 | 751fdce | 없음(경미: Nova Lake 출시 전 단서 반복, Zen4/Zen5·보고 사례 일부 출처 미병기) |
+| content/collection/optimization-08-optimization-techniques/04-auto-vectorization/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 15c94ed | 없음(개선여지: 2004년경 출처, LLVM 1차 문서 링크) |
+| content/collection/optimization-08-optimization-techniques/05-prefetch-strategy/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | 59c712c | 없음(경미: 간접 접근 반복 서술, 연결 리스트 문단 조건부 표현 보정 완료) |
+| content/collection/optimization-08-optimization-techniques/06-branchless-programming/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | d10a113 | 없음(경미: Pentium Pro 1995·Spectre 2018 출처 미병기, 컴파일러 백엔드 의존 서술 중복) |
+| content/collection/optimization-08-optimization-techniques/07-hand-written-assembly/index.md | 93.6 | 2026-10-25 | 1 | 통과 | 1.3 | d92c329 | 없음(경미: 판단 기준 표·Mermaid에 프로파일링 증거 관문 부재; L158이 L64를 재진술) |
+| content/collection/optimization-08-optimization-techniques/08-lookup-table-optimization/index.md | 97.3 | 2026-11-02 | 2 | 통과 | 1.3 | 7511932 | 없음(경미: 벤치 배율 미실측(헤지 반영), 코드 미실행) |
+| content/collection/optimization-08-optimization-techniques/09-bit-manipulation-optimization/index.md | 95.5 | 2026-10-25 | 2 | 통과 | 1.3 | 2c915cc | 없음(경미: 00 챕터가 배정한 정렬·배치 사례 중 배치 측면은 rank 사례로만 다룸; 초회 83.65) |
+| content/collection/optimization-08-optimization-techniques/10-hotpath-extreme-tuning/index.md | 90.9 | 2026-10-25 | 1 | 통과 | 1.3 | 397cb9e | 없음(경미: ablation 어원 출처 없음, 조합 폭발·세대 종속성 서술 중복) |
+| content/collection/optimization-08-optimization-techniques/11-maintainability-tradeoff/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 3bfd9ac | 없음(개선여지: 리뷰 시간 서술 출처, Tr.01 약칭) |
+| content/collection/optimization-08-optimization-techniques/12-arm-neon-optimization/index.md | 92.7 | 2026-10-25 | 1 | 통과 | 1.3 | 3862f8d | 없음(경미: SVE·AMX 서술 중복, FMA3 표기) |
+| content/collection/optimization-08-optimization-techniques/13-portable-simd-libraries/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | 1d2ecd5 | 없음(경미: xsimd 기원·채택 프로젝트·API 변경 사례 출처 미병기, sum_array_xsimd 중복 정의) |
+| content/collection/optimization-08-optimization-techniques/14-cpp26-std-simd/index.md | 93.9 | 2026-10-25 | 2 | 통과 | 1.3 | d4da30f | 없음(경미: 런타임 디스패치 부재 서술 반복, P3275·basic_simd 표기 PDF 대조 미완) |
+| content/collection/optimization-08-optimization-techniques/15-cache-oblivious-algorithms/index.md | 93.9 | 2026-10-25 | 1 | 통과 | 1.3 | 72e9a6e | 없음(경미: 검증 코드 도입 문단 중복; FLPR99 PDF 링크 403 검증 불가) |
+| content/collection/optimization-08-optimization-techniques/16-gpu-offloading-fundamentals/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 62f2432 | 없음(개선여지: PCIe 64GB/s 1차 출처 병기) |
+| content/collection/optimization-08-optimization-techniques/17-ai-inference-optimization/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | 45b8cd3 | 없음(경미: GPTQ·PTQ 서술 출처, NVFP4 비교 근거 — 채점 후 완화 반영) |
+| content/collection/optimization-08-optimization-techniques/18-simd-string-processing/index.md | 92.8 | 2026-10-25 | 1 | 통과 | 1.3 | da7f00f | 없음(경미: 09장 교차 참조 보정 완료; 논문 PDF 원문 대조 미완) |
 | content/collection/optimization-09-io-network/00-introduction/index.md | 100 | 2026-07-25 | 2 | 통과 | 1.0 | 6161d63 | 없음 |
-| content/collection/optimization-09-io-network/01-io-cost-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/02-io-patterns-cost/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/03-async-io-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/04-io-uring-advanced/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/05-iocp-windows-io/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/06-zero-copy-techniques/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/07-memory-mapped-io/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/08-direct-io/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/09-filesystem-characteristics/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/10-block-device-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/11-io-multiplexing-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/12-vectored-io/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/13-posix-aio-vs-io-uring/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/14-database-io-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/15-file-locking-performance/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/16-storage-stack-customization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-09-io-network/17-logging-performance-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-09-io-network/01-io-cost-intuition/index.md | 97.3 | 2026-10-20 | 2 | 통과 | 1.3 | 9501dec | 경미: 1(L213 'CPU 카피 두 번' 문장 — SG-DMA/checksum offload가 read/write 경로 카피를 줄이는 것처럼 읽힘, sendfile 결합 시에만 해당함을 분리 서술 권장) |
+| content/collection/optimization-09-io-network/02-io-patterns-cost/index.md | 91.2 | 2026-10-20 | 1 | 통과 | 1.3 | 42606a5 | 경미: 1(L117 컨테이너·하이퍼바이저 syscall 서술 오류, L91 TLB 민감도는 Gregg의 추측, L180 수백 ns–수 µs 근거 없음, '네 가지 조합' 제목) / 4(L174 오개념 재진술) / 7(Advanced·Edge-Cases 태그, description '정량 분석' 과장) |
+| content/collection/optimization-09-io-network/03-async-io-fundamentals/index.md | 91.6 | 2026-10-20 | 0 | 통과 | 1.3 | 2183481 | 경미: 1(L312 epoll 정규 파일 서술 — epoll_ctl은 EPERM 거부로 정정 권장; L66·68 연도 출처 없음) / 5(벤치마크가 FD_SETSIZE 초과 입력에서 UB — poll 대체·반환값 확인 권장) |
+| content/collection/optimization-09-io-network/04-io-uring-advanced/index.md | 94.6 | 2026-10-20 | 2 | 통과 | 1.3 | ee9750c | 경미: 1(L180 2.05배를 YCSB 처리량으로 귀속 — 원문은 버퍼 관리자 end-to-end 개선; L174 '상한선' 표현; L134 SO_PREFER_BUSY_POLL 대응은 prefer_busy_poll 필드만; L195 IOPOLL은 완료 폴링; L67 2025년 2월 패치셋 출처 없음) |
+| content/collection/optimization-09-io-network/05-iocp-windows-io/index.md | 90.7 | 2026-10-21 | 0 | 통과 | 1.3 | 4f63221 | 경미: 1(L206·212 IoRing을 Server 2022부터로 서술 — 실제 Build 22000+; L142 CreateThreadpoolIo/StartThreadpoolIo Remarks 귀속 혼동; L80 OVERLAPPED 첫 멤버 주석 오류; L162 본문↔벤치 코드 불일치; L62 연도 출처 없음) / 5(L164 벤치에 <vector>·main 없음, I/O 미생성) / 6(Mermaid GQCS 라벨 간선 위치) |
+| content/collection/optimization-09-io-network/06-zero-copy-techniques/index.md | 94.3 | 2026-10-21 | 1 | 통과 | 1.3 | 8097536 | 경미: 1(L177·297 copy_file_range EINTR은 man ERRORS에 없음; L67 HP-UX 선행 서술 출처 없음) / 5(sendfile_all·copy_file_range_all이 n==0 조기 종료에도 0 반환 — 주석과 불일치) / 7(C++ 태그, 본문은 C 전용) |
+| content/collection/optimization-09-io-network/07-memory-mapped-io/index.md | 93.9 | 2026-10-21 | 1 | 통과 | 1.3 | 6292c2c | 경미: 1(L139 SIGBUS 조건은 오프셋이 아니라 EOF 너머 페이지; L190 msync만이 → fsync/fdatasync도 해당; L74 역사 문단 출처·TOPS-20 연도; L95 직접 인용 blockquote 아님) / 4(시그널 통지 요지 5회 반복) / 5(L252 MAP_POPULATE 변형이 벤치 코드에 없음, 벤치 open/mmap 실패 미검사) |
+| content/collection/optimization-09-io-network/08-direct-io/index.md | 96.6 | 2026-10-21 | 1 | 통과 | 1.3 | 8ffa47b | 경미: 4(L241 '정렬 512 고정' 오개념이 앞 절 재진술) / 5(L149 posix_memalign 실패에 perror 사용 — errno 미설정; Broken 버전 검증 절차·재현 환경 미기재, /tmp가 tmpfs일 수 있음) |
+| content/collection/optimization-09-io-network/09-filesystem-characteristics/index.md | 93.1 | 2026-10-21 | 1 | 통과 | 1.3 | fd2acae | 경미: 1(L9 description 'XFS FORCEALIGN 기반'이 본문과 모순 — CoW 혼합으로 정정 필요; L71 ZFS 발표는 2004; L87 data=ordered가 막는 것은 stale 노출이지 잘림 아님; L221·233 ext4 bigalloc 다중 블록(6.16) 누락) / 5(L134 측정 구간에 pwrite 포함; atomic 예제가 2의 거듭제곱·자연 정렬 검사 누락) |
+| content/collection/optimization-09-io-network/10-block-device-optimization/index.md | 91.2 | 2026-10-21 | 1 | 통과 | 1.3 | 1c08f5f | 경미: 1(L156 논문 저자는 Samsung 소속 — 'Meta·Samsung' 귀속 정정; L158 F_SET_RW_HINT는 메인라인 NVMe FDP 배치에 쓰이지 않음(LWN 'no-op'), placement는 io_uring write_stream→bi_write_stream; bi_write_stream은 bio 필드; 6.16 반영 출처 없음) / 4(L228·L203 재진술) / 5(L191 nvme-cli 앞 설명 1문장, C 주석 RUH 반영 서술) |
+| content/collection/optimization-09-io-network/11-io-multiplexing-patterns/index.md | 92.4 | 2026-10-21 | 0 | 통과 | 1.3 | d62dcbf | 경미: 1(L192·206 디멀티플렉싱 직렬화를 일반화 — 단일 리액터로 한정하고 multi-reactor/Leader-Followers 언급 필요, L202 Netty와 모순) / 4(직렬화 병목 3회 반복) / 5(L88 주석 '2장' → 03장) / 7(Benchmark·Profiling 태그 본문 근거 없음) |
+| content/collection/optimization-09-io-network/12-vectored-io/index.md | 100 | 2026-10-21 | 1 | 통과 | 1.3 | a373ea4 | 없음 |
+| content/collection/optimization-09-io-network/13-posix-aio-vs-io-uring/index.md | 93.9 | 2026-10-21 | 2 | 통과 | 1.3 | c798d3d | 경미: 1(L134 Axboe 수치에 원문 없는 'NVMe 디바이스' 조건 귀속) / 4('어느 AIO인지 확인' 조언 3회 반복) / 7(liburing 태그 본문 근거 없음) |
+| content/collection/optimization-09-io-network/14-database-io-patterns/index.md | 92.7 | 2026-10-21 | 0 | 통과 | 1.3 | b3ad01f | 경미: 1(L190·217 'XFS FORCEALIGN 기반 atomic writes' — 미머지, 6.13 단일 블록 RWF_ATOMIC로 정정; L192 SQLite는 단일 WAL 파일 끝에 추가; L190 doublewrite 링크를 innodb-doublewrite-buffer.html로; L101·215 innodb_flush_log_at_trx_commit=2는 그룹커밋 지연 손잡이 아님 → binlog_group_commit_sync_delay; L91 단계 번호; L95 fdatasync는 디스크 I/O 감소; L192 synchronous_commit=off 설명) / 4(L215 재진술) |
+| content/collection/optimization-09-io-network/15-file-locking-performance/index.md | 93.1 | 2026-10-21 | 1 | 통과 | 1.3 | 5b9c4b5 | 경미: 1(L180 벤치 해석 — 스레드당 반복 고정이라 병렬이면 총 시간 일정·직렬화면 n배 증가로 정정 필요; L117 grace period는 서버 재시작 후 reclaim 기간, 클라이언트 사망 잠금은 NSM 정리) / 5(L117 '처리량' vs 출력 ms; L245 lslocks -p는 OFD 락(PID -1) 행을 못 거를 수 있음) |
+| content/collection/optimization-09-io-network/16-storage-stack-customization/index.md | 91.9 | 2026-10-23 | 1 | 통과 | 1.3 | fb4e27c | 경미: 1(L103 매니지드 서비스는 2단계부터 불가 — '3단계 이하' 정정; L63 락 경합 감소는 CPU별 소프트웨어 스테이징 큐 효과) / 2(00 챕터가 배정한 특수 FS를 다루는 문단 없음 — FUSE vs 커널 FS·커스텀 FS 리스크 추가 필요) / 6(Mermaid SPDK 점선이 커널 드라이버 노드로 감) |
+| content/collection/optimization-09-io-network/17-logging-performance-strategy/index.md | 95.4 | 2026-10-23 | 1 | 통과 | 1.3 | e37881f | 경미: 1(L66 '1983'은 man7 syslog(3)에 없음, Log4j AsyncAppender·spdlog 연도 출처 없음) / 4(크래시 유실·레벨 필터링 재진술 반복) |
 | content/collection/optimization-10-network/00-introduction/index.md | 92.2 | 2026-07-25 | 1 | 통과 | 1.0 | 08ba5df | 없음(경미: description 118자로 하한 근접, 범위/경계 리스트 문단 비중 29%, WebTransport Baseline 기준 명시 여지) |
-| content/collection/optimization-10-network/01-network-latency-intuition/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/02-network-latency-structure/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/03-socket-options-tuning/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/04-tcp-performance-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/05-udp-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/06-serialization-performance-comparison/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/07-zero-copy-serialization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/08-next-gen-zero-copy-formats/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/09-protocol-design/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/10-message-framing/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/11-dpdk-advanced/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/12-xdp-ebpf-network-advanced/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/13-rdma-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/14-ultra-ethernet-consortium/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/15-grpc-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/16-quic-protocol/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/17-tls-ssl-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/18-connection-pooling/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/19-websocket-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/20-http2-http3/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-10-network/21-network-compression-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-10-network/01-network-latency-intuition/index.md | 98.5 | 2026-10-20 | 1 | 통과 | 1.3 | 2c7f279 | 없음(경미: 수준별 경로 표 L59–61 범위 물결표 → en dash 필요) |
+| content/collection/optimization-10-network/02-network-latency-structure/index.md | 97.3 | 2026-10-20 | 2 | 통과 | 1.3 | 124f51f | 없음(경미: L81 10–400Gbps 전송 지연 범위가 '수백 ns–수 µs'로 표기됨 → 1500B 기준 약 30ns–1.2µs로 정정 필요) |
+| content/collection/optimization-10-network/03-socket-options-tuning/index.md | 100 | 2026-10-20 | 1 | 통과 | 1.3 | e010e70 | 없음 |
+| content/collection/optimization-10-network/04-tcp-performance-optimization/index.md | 95.8 | 2026-10-20 | 1 | 통과 | 1.3 | 5890506 | 없음(경미: set_congestion.c에 netinet/in.h include 누락으로 IPPROTO_TCP 미선언 가능, L293 BBRv3 신기능 귀속(ECN·손실 대응은 v2 도입)을 v2 계보로 정정 필요) |
+| content/collection/optimization-10-network/05-udp-optimization/index.md | 100 | 2026-10-20 | 1 | 통과 | 1.3 | 2a7a37e | 없음 |
+| content/collection/optimization-10-network/06-serialization-performance-comparison/index.md | 96.6 | 2026-10-20 | 1 | 통과 | 1.3 | 104d427 | 없음(경미: 마무리 체크리스트 앞 요약 문단 부재(L324), 스키마·코드 블록 도입 문단 1문장(L143·L157·L178·L194) → 2문장 이상으로 보강) |
+| content/collection/optimization-10-network/07-zero-copy-serialization/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | d2091f6 | 없음(경미: L166 '이 트랙의 커널 바이패스·io_uring 챕터'가 실재하지 않음 → 11장 DPDK·12장 XDP 링크로 교체 필요) |
+| content/collection/optimization-10-network/08-next-gen-zero-copy-formats/index.md | 97.3 | 2026-10-21 | 2 | 통과 | 1.3 | 5bc430f | 없음(경미: L71 Flat 추가 비용 원인을 '앞선 필드 크기로 위치 계산'이 아니라 '2바이트 헤더 확인'으로 정정, 위치 계산은 삭제 필드 타입 보존 이유로 분리) |
+| content/collection/optimization-10-network/09-protocol-design/index.md | 97.6 | 2026-10-21 | 1 | 통과 | 1.3 | b9040a0 | 없음(경미: Mermaid 흐름이 type 분기 전에 blockLength 건너뛰기를 두고 TLV를 핸들러와 병렬로 그림 → magic·version·type·핸들러·blockLength 끝·TLV 순으로 재배치, OS(운영체제) 태그 본문 근거 없음) |
+| content/collection/optimization-10-network/10-message-framing/index.md | 95.8 | 2026-10-21 | 1 | 통과 | 1.3 | b395eb4 | 없음(경미: L104 SBE 원문 'may be desirable'을 '필요'로 과장·이유 왜곡 → 시작점 오류·손상 대비 권장으로 정정하고 타입별 고정 레이아웃과 균일 fixed-size 구분, consume_delimited 빈 버퍼 memchr(nullptr) UB → buf.empty() 가드, L245 미측정 '노이즈 범위 비슷' 단정 완화) |
+| content/collection/optimization-10-network/11-dpdk-advanced/index.md | 95.8 | 2026-10-21 | 2 | 통과 | 1.3 | 8ed981c | 없음(경미: L182 SmartNIC 정의가 DPU와 섞임(ConnectX는 Arm 코어·OS 없음) → ASIC/FPGA SmartNIC과 DPU 분리, L71·poll_worker가 mempool-RX 큐 연결(rte_eth_rx_queue_setup에 socket_id·pool 전달)을 보여주지 않음) |
+| content/collection/optimization-10-network/12-xdp-ebpf-network-advanced/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | 7e458a5 | 없음(경미: L153 'io_uring ZC RX는 여기에 더해'가 XSK zero-copy 구현을 전제로 읽힘 → XSK와 별개로 큐 관리·page pool memory provider 지원 필요로 정정) |
+| content/collection/optimization-10-network/13-rdma-fundamentals/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | c0c391f | 없음(경미: L246 ib_write_bw 출력 예시 #iterations 1000이 기본값 5000(DEF_ITERS_WB)과 불일치 → 5000으로 고치거나 명령에 -n 1000 추가) |
+| content/collection/optimization-10-network/14-ultra-ethernet-consortium/index.md | 100 | 2026-10-21 | 2 | 통과 | 1.3 | 54c143a | 없음 |
+| content/collection/optimization-10-network/15-grpc-optimization/index.md | 97.3 | 2026-10-21 | 1 | 통과 | 1.3 | ae00959 | 없음(경미: L225 '기본값이라는 이유로 gzip 활성화'가 gzip 기본값으로 읽힘(실제 기본 무압축), L231 스트림의 백엔드 고정을 TCP HoL·QUIC과 인과 연결 → 두 문제 분리) |
+| content/collection/optimization-10-network/16-quic-protocol/index.md | 95.8 | 2026-10-21 | 1 | 통과 | 1.3 | 713fb41 | 없음(경미: L117 C 주석이 SSL_write_early_data 실패를 서버 0-RTT 거부로 해석 → SSL_get_error 판별·핸드셰이크 후 SSL_get_early_data_status 확인으로 정정, L146 GRO를 NIC 하드웨어 오프로드로 서술(커널 소프트웨어 경로)) |
+| content/collection/optimization-10-network/17-tls-ssl-optimization/index.md | 94.3 | 2026-10-23 | 1 | 통과 | 1.3 | 2c60d79 | 없음(경미: s_time -reuse에 -www 없으면 TLS 1.3 티켓 미수신으로 재개 안 될 수 있음, L164 '코드 포인트 조정 가능'이 RFC 10024 확정 서술과 모순, lastmod 미갱신) |
+| content/collection/optimization-10-network/18-connection-pooling/index.md | 93.4 | 2026-10-23 | 0 | 통과 | 1.3 | bb5a064 | 없음(경미: HikariCP 2012→2013, slow-start-after-idle은 RTO마다 cwnd 반감, RFC·nginx 인라인 인용 blockquote화, MSG_PEEK 0바이트→1바이트, connect 실패 시 fd 누수, Mermaid 새 연결이 'handshake 생략' 노드 통과·폐기 후 후보 재확인 누락, 표 범위 물결표, C·Documentation 태그) |
+| content/collection/optimization-10-network/19-websocket-optimization/index.md | 93.9 | 2026-10-23 | 1 | 통과 | 1.3 | 7d50fe4 | 없음(경미: L97 오버헤드 75%의 분모 모호(페이로드 대비 75%, 총 14B 중 43%), '루프백 소켓 쌍'은 socketpair(AF_UNIX), 벤치 write 반환값 미검사·flush_fn_ 재진입 데드락 제약 미명시, 마무리 재진술) |
+| content/collection/optimization-10-network/20-http2-http3/index.md | 93.9 | 2026-10-23 | 1 | 통과 | 1.3 | def938b | 없음(경미: Priority 헤더 예시가 RFC 9218 예시와 반대(CSS u=0, 점진 이미지 u=5,i)이고 'urgency=3 기본값에 가까운'이 기본값 3과 모순, 반복 서술(L134–136·WebTransport 경고), curl 스크립트 -s가 h3 미지원 호스트 실패를 숨김) |
+| content/collection/optimization-10-network/21-network-compression-strategy/index.md | 92.4 | 2026-10-23 | 1 | 통과 | 1.3 | 06c77ca | 없음(경미: 압축 속도 배율 '약 5–6배'는 계산상 LZ4 6.4배·Snappy 5.4배, 마무리 문단이 앞 절 재진술, Memory 태그 근거 없음, 딕셔너리 예제에 createCDict/freeCDict 미포함) |
 | content/collection/optimization-11-design-decisions/00-introduction/index.md | 91.3 | 2026-07-25 | 2 | 통과 | 1.0 | d7d5a55 | 없음(경미: "범위와 경계" Mermaid 단독 의존, Phase별 궤적과 커리큘럼 표 일부 중복) |
-| content/collection/optimization-11-design-decisions/01-performance-terminology-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/02-when-to-optimize/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/03-when-to-stop-optimizing/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/04-readability-vs-performance/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/05-performance-budgeting/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/06-slo-sla-definition/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/07-latency-vs-throughput/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/08-low-latency-architecture-patterns/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/09-caching-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/10-database-access-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/11-team-performance-culture/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/12-performance-code-review/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/13-capacity-planning/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/14-load-testing-design/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/15-cost-performance-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/16-regulated-secure-performance-tradeoffs/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/17-memory-safety-tradeoffs/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-11-design-decisions/18-event-driven-architecture-performance/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-11-design-decisions/01-performance-terminology-fundamentals/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | 4e1b372 | 없음(경미: 95th percentile billing·Tene의 coordinated omission 명명에 1차 출처 없음, 오개념 1이 평균 은폐 논리를 일부 재진술) |
+| content/collection/optimization-11-design-decisions/02-when-to-optimize/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | bd412a7 | 없음(경미 개선여지: L85 "위 표는"→"위 예시는") |
+| content/collection/optimization-11-design-decisions/03-when-to-stop-optimizing/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | fef3701 | 없음(경미: 암달 1967 논문이 "수식으로 보였다"는 서술 부정확 가능, 학습목표 문단과 체크리스트 중복) |
+| content/collection/optimization-11-design-decisions/04-readability-vs-performance/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | d55d1fa | 없음(경미 개선여지: Per.2 원문 본문 각주, #include <cstddef>) |
+| content/collection/optimization-11-design-decisions/05-performance-budgeting/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 16bdd9d | 없음 |
+| content/collection/optimization-11-design-decisions/06-slo-sla-definition/index.md | 100 | 2026-10-25 | 2 | 통과 | 1.3 | 882faea | 없음(경미 개선여지: 측정 윈도우도 Appendix B에 4주로 나옴, Mermaid <br/>·</br> 혼용) |
+| content/collection/optimization-11-design-decisions/07-latency-vs-throughput/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | dc993fa | 없음(경미 개선여지: Little 법칙 인용구 "거의 모든 것"→"사실상 모든 것") |
+| content/collection/optimization-11-design-decisions/08-low-latency-architecture-patterns/index.md | 100 | 2026-10-25 | 2 | 통과 | 1.3 | 4ef91cb | 없음 |
+| content/collection/optimization-11-design-decisions/09-caching-strategy/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | f5c3aac | 없음(경미: L62 "대중화" 평가성 단정, 확률적 조기 갱신 스케치에 cache-aside 조회·main 없음) |
+| content/collection/optimization-11-design-decisions/10-database-access-optimization/index.md | 100 | 2026-10-25 | 2 | 통과 | 1.3 | 3e034c8 | 없음 |
+| content/collection/optimization-11-design-decisions/11-team-performance-culture/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 27371cc | 없음 |
+| content/collection/optimization-11-design-decisions/12-performance-code-review/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | f9e4382 | 없음 |
+| content/collection/optimization-11-design-decisions/13-capacity-planning/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 55f2d16 | 없음 |
+| content/collection/optimization-11-design-decisions/14-load-testing-design/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | b1b49bb | 없음 |
+| content/collection/optimization-11-design-decisions/15-cost-performance-analysis/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 25d5d64 | 없음 |
+| content/collection/optimization-11-design-decisions/16-regulated-secure-performance-tradeoffs/index.md | 94.5 | 2026-10-25 | 1 | 통과 | 1.3 | 000b558 | 없음(경미: seccomp 호출 경로 설명 보강 여지, RFC 8446 후속 RFC 병기 확인 필요) |
+| content/collection/optimization-11-design-decisions/17-memory-safety-tradeoffs/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 3d1ffc7 | 없음 |
+| content/collection/optimization-11-design-decisions/18-event-driven-architecture-performance/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 0ed231a | 없음 |
 | content/collection/optimization-12-regression-prevention/00-introduction/index.md | 97.0 | 2026-07-25 | 2 | 통과 | 1.0 | 14e23c8 | 없음(경미: Code-Review·Debugging·Logging·Git·GitHub·Cloud 태그 본문 결속 약함) |
-| content/collection/optimization-12-regression-prevention/01-performance-regression-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/02-performance-test-automation/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/03-benchmark-ci-integration/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/04-pr-performance-gate/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/05-performance-budgeting/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/06-baseline-management/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/07-variance-management/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/08-observability-platform/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/09-alerting-strategy/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/10-canary-deployment/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/11-performance-incident-response/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/12-long-term-trend-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/13-performance-debt-management/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/14-benchmark-as-code/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/15-monitoring-dashboard/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/16-postmortem-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-12-regression-prevention/17-distributed-cluster-performance-regression/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-12-regression-prevention/01-performance-regression-fundamentals/index.md | 97.3 | 2026-11-02 | 1 | 통과 | 1.3 | b467142 | 없음(2026-11-02 현재 본문 재채점 97.3 통과; 재채점에서 지적된 Georges 귀속·추론 표기·정적분석 서술 3곳을 수정해 재채점했고, 이후 참고목록·'별개로' 문구 2곳은 지시 문구 그대로 좁히는 수정만 적용) |
+| content/collection/optimization-12-regression-prevention/02-performance-test-automation/index.md | 94.0 | 2026-11-02 | 1 | 통과 | 1.3 | dbb1f37 | 없음(2026-11-02 현재 본문 재채점 통과; 직전 채점 지적 LNT 귀속·커밋 트리거 일반화·단계 수·거버너 서술·중복 절을 수정 후 재채점; 개선여지: 판단 기준 표 근거 문단, bench_harness 주석·거버너 원복) |
+| content/collection/optimization-12-regression-prevention/03-benchmark-ci-integration/index.md | 93.9 | 2026-11-02 | 1 | 통과 | 1.3 | ebaab16 | 없음(2026-11-02 재채점 초회 83.2→수정 후 93.9 통과; 이후 changelog 범위로 메모리 계측·표 2곳과 셀프호스팅 권장 표현을 좁히는 소수정만 적용; 개선여지: YAML permissions 생략 명시, 재진술 1곳, C++ 계측 연결은 실행 미확인) |
+| content/collection/optimization-12-regression-prevention/04-pr-performance-gate/index.md | 91.3 | 2026-11-02 | 2 | 통과 | 1.3 | d491b5d | 없음(2026-11-02 재채점 91.3 통과; 이후 PR 게이트 사례 범위 정정·필자 해석 표기·수렴 단정 삭제 소수정만 적용; 개선여지: 임계값별 오탐/미탐 정량 사례, base_mean==0 처리) |
+| content/collection/optimization-12-regression-prevention/05-performance-budgeting/index.md | 93.1 | 2026-11-02 | 1 | 통과 | 1.3 | 9de6133 | 없음(2026-11-02 재채점 93.1 통과; 이후 SRE Workbook 예시 정책 귀속·예외 명시 정정, CodSpeed 조직 리포지터리 한정, 인과 단정 완화, Case-Study 태그 삭제 소수정만 적용; 개선여지: 다이어그램에 waiver 재확인 표현) |
+| content/collection/optimization-12-regression-prevention/06-baseline-management/index.md | 95.8 | 2026-11-02 | 2 | 통과 | 1.3 | ffe468d | 없음(2026-11-02 재채점 초회 87.1→수정 후 95.8 통과; 이후 description의 CodSpeed 구절·CodSpeed 태그 삭제 소수정만 적용; 개선여지: 3중 조합 저장은 필자 권장 표기, 기준선 전략 1차 출처) |
+| content/collection/optimization-12-regression-prevention/07-variance-management/index.md | 93.1 | 2026-11-01 | 0 | 통과 | 1.3 | 6c73acb | 없음(채점 후 Google Benchmark repetitions 서술을 같은 프로세스 반복으로 정정·표본크기식 두 표본 기준 2배 반영(63회), 재채점 생략; repetitions 동작은 소스 미확인으로 본문에 명시) |
+| content/collection/optimization-12-regression-prevention/08-observability-platform/index.md | 100 | 2026-11-01 | 1 | 통과 | 1.3 | cd5ef5b | 없음(초회 87.9→Revise 1회 100) |
+| content/collection/optimization-12-regression-prevention/09-alerting-strategy/index.md | 94.5 | 2026-11-02 | 1 | 통과 | 1.3 | dd74285 | 없음(2026-11-02 재채점 94.5 통과; 이후 Prometheus 계승 단정 삭제, 다이어그램 시작 노드 라벨 정정, CloudWatch 링크 추가, PromQL sum by (le) 보강 소수정만 적용; 개선여지: 비판적 시각 절 일부 재진술) |
+| content/collection/optimization-12-regression-prevention/10-canary-deployment/index.md | 95.8 | 2026-11-01 | 0 | 통과 | 1.3 | 57dceaa | 없음(채점 후 출처 없는 연대·Kayenta 귀속 삭제, PromQL sum by (le) 보정, baseline 별도 배포·미실행 명시, 재채점 생략) |
+| content/collection/optimization-12-regression-prevention/11-performance-incident-response/index.md | 94.3 | 2026-11-01 | 0 | 통과 | 1.3 | 5217e68 | 없음(채점 후 챕터 번호 Ch09·Ch16 정정, bisect 스크립트 단위를 ns로 정정, 무관 태그 2개 삭제, 재채점 생략) |
+| content/collection/optimization-12-regression-prevention/12-long-term-trend-analysis/index.md | 92.3 | 2026-11-01 | 1 | 통과 | 1.3 | 0ff6168 | 없음(초회 83.0 치명결함 1(Prophet 링크 404)→Revise 1회 92.3; 재채점 후 체크리스트 문구 1곳 정정, 재채점 생략) |
+| content/collection/optimization-12-regression-prevention/13-performance-debt-management/index.md | 95.8 | 2026-11-01 | 0 | 통과 | 1.3 | f7bb58c | 없음(채점 후 SRE 정책 귀속을 원문 규정 범위로 정정, 코드 가정·미컴파일 명시, 재채점 생략) |
+| content/collection/optimization-12-regression-prevention/14-benchmark-as-code/index.md | 95.8 | 2026-11-01 | 1 | 통과 | 1.3 | 194600c | 없음(초회 81.1→Revise 1회 95.8; 재채점 후 JSON 출력 귀속 링크를 C++ 예제 README로 정정, 재채점 생략; 개선여지: convert_to_openmetrics.py 코드 미수록) |
+| content/collection/optimization-12-regression-prevention/15-monitoring-dashboard/index.md | 97.3 | 2026-11-01 | 0 | 통과 | 1.3 | 4a65fcf | 없음(채점 후 allowUiUpdates 설명을 코드 값·Grafana 설정 주석과 일치하게 정정, 재채점 생략) |
+| content/collection/optimization-12-regression-prevention/16-postmortem-analysis/index.md | 94.3 | 2026-11-01 | 1 | 통과 | 1.3 | 812544d | 없음(초회 88.6→Revise 1회 94.3; 재채점 후 PagerDuty·Allspaw 귀속 완화, gh --limit 추가, 재채점 생략; 검증 불가: Etsy 원문 403이라 인용 삭제·미대조 명시) |
+| content/collection/optimization-12-regression-prevention/17-distributed-cluster-performance-regression/index.md | 100 | 2026-11-02 | 2 | 통과 | 1.3 | d376cb8 | 없음(2026-11-02 현재 본문 재채점 100 통과, 수정 없음; 코드는 파이썬만 실행, 클러스터 적용 없음) |
 | content/collection/Algorithm/2022/2022-01-01-BOJ-1008/index.md | 100 | 2026-07-28 | 3 | 통과 | 1.0 | 76ebd4f | 없음 |
 | content/collection/Algorithm/2022/2022-07-07-BOJ-8983/index.md | 98.5 | 2026-08-13 | 2 | 통과 | 1.2 | 0eeb29d | 없음(경미: acmicpc.net/problem/8983 링크 봇차단으로 검증 불가, Refactoring/Clean-Code/Debugging 등 일부 태그 본문 결속 느슨) |
 | content/collection/Algorithm/2024/2024-05-15-BOJ-1067/index.md | 90 | 2026-08-16 | 3 | 에스컬레이션 | 1.2 | 9ef0498 | 항목7(메타·링크·frontmatter) — 문제 링크 https://www.acmicpc.net/problem/1067 이 HTTP 404 반환(curl/WebFetch/insane-search 3중 확인). 도메인 루트(`/`)만 200이고 `/problem/1000` 등 다른 문제도 전부 동일 404("BOJ 채점 서비스 준비 중" 안내)라 acmicpc.net 도메인 전역의 일시 서비스 상태로 판단되나, rubric 1.2가 치명결함 면제를 403(WAF)에만 좁게 scoped해 404인 이상 문언상 치명결함 유지. 완화책으로 Wayback Machine 아카이브 대체 링크(2026-04-17 스냅샷, 접근·내용 일치 검증됨)를 이미 병기함. 나머지 6개 항목은 전부 100(경미결함 0). 사람 판단 필요: (i) BOJ 서비스 정상화 후 재확인, 또는 (ii) rubric 치명결함 예외 범위를 도메인 전역 확인 가능한 일시 장애까지 넓힐지 정책 결정 |

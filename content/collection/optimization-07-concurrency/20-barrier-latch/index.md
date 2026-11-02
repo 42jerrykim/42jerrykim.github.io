@@ -16,32 +16,22 @@ tags:
   - Condition-Variable
   - Memory-Order
   - C++
-  - Compiler(컴파일러)
   - OS(운영체제)
   - Linux(리눅스)
-  - Windows(윈도우)
   - Benchmark
   - Latency
   - Throughput
   - Testing(테스트)
   - Debugging(디버깅)
   - Implementation(구현)
-  - Best-Practices
-  - Code-Quality(코드품질)
-  - Tutorial(튜토리얼)
-  - Guide(가이드)
-  - Reference(참고)
   - Deep-Dive
   - Advanced
   - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
   - 실습
   - barrier
   - latch
   - Phase-Synchronization
-  - Rendezvous
-  - Fork-Join
   - Completion-Function
   - Futex
   - ThreadSanitizer
@@ -65,13 +55,13 @@ tags:
 
 ## barrier·latch의 등장 배경
 
-C++11은 `mutex`·`condition_variable`이라는 저수준 도구만 제공했고, "N개의 스레드가 모두 도착할 때까지 기다림" 같은 흔한 패턴은 매번 개발자가 카운터와 조건 변수를 직접 조합해 구현해야 했습니다. 이 반복 작업을 표준화하려는 시도는 David Olsen, Olivier Giroux, JF Bastien, Detlef Vollmann, Bryce Lelbach가 공동 제안한 [P1135: The C++20 Synchronization Library](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1135r6.html)로 결실을 맺었고, 2019년 7월 R6 개정판이 채택되어 `atomic::wait`/`notify`, `counting_semaphore`, `latch`, `barrier`가 한 묶음으로 C++20에 들어왔습니다. 제안서의 배경에는 HPC(고성능 컴퓨팅)·GPU 프로그래밍에서 흔히 쓰이던 fork-join 패턴이 있으며, 실제로 barrier의 완료 함수(completion function) 설계는 이후 NVIDIA의 하드웨어 barrier 가속 기능과 맞물려 다시 다뤄집니다.
+C++11은 `mutex`·`condition_variable`이라는 저수준 도구만 제공했고, "N개의 스레드가 모두 도착할 때까지 기다림" 같은 흔한 패턴은 매번 개발자가 카운터와 조건 변수를 직접 조합해 구현해야 했습니다. 이 반복 작업을 표준화하려는 시도는 David Olsen, Olivier Giroux, JF Bastien, Detlef Vollmann, Bryce Lelbach가 공동 제안한 [P1135: The C++20 Synchronization Library](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1135r6.html)로 결실을 맺었고, 2019년 7월 R6 개정판이 채택되어 `atomic::wait`/`notify`, `counting_semaphore`, `latch`, `barrier`가 한 묶음으로 C++20에 들어왔습니다.
 
-barrier의 최초 명세는 "완료 함수는 반드시 barrier에 마지막으로 도착한 스레드에서 실행된다"고 강제했는데, 이는 GPU처럼 barrier 카운터를 메모리 컨트롤러 근처에서 하드웨어적으로 처리하는 구현에는 불필요한 제약이었습니다. 이를 완화한 [P2588R3: barrier's Phase Completion Guarantees](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2023/p2588r3.html)는 "NVIDIA GPU는 오랫동안 barrier 가속기를 제공해 왔다"는 점을 근거로 들며, 완료 함수가 반드시 마지막 도착 스레드가 아니라 "그 phase 동안 도착했거나 대기한 스레드 중 하나"에서 실행되도록 규약을 넓혔습니다. 이 변경은 결함 보고(DR)로 C++20에 소급 적용되었지만, 실제 컴파일러·표준 라이브러리가 이를 반영한 시점은 이후이므로(예: MSVC STL은 `__cpp_lib_barrier` 값을 `202302L`로 올리는 별도 구현을 완료한 뒤에야 지원), 크로스 플랫폼 코드에서 "완료 함수가 어느 스레드에서 실행되는가"를 가정하지 않는 것이 안전합니다.
+barrier의 최초 명세는 "완료 함수는 반드시 barrier에 마지막으로 도착한 스레드에서 실행된다"고 강제했는데, 이는 GPU처럼 barrier 카운터를 메모리 컨트롤러 근처에서 하드웨어적으로 처리하는 구현에는 불필요한 제약이었습니다. 이를 완화한 [P2588R3: barrier's Phase Completion Guarantees](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2023/p2588r3.html)는 NVIDIA GPU가 오래전부터 barrier 가속기를 제공해 왔다는 점을 근거로 들며, 완료 함수가 반드시 마지막 도착 스레드가 아니라 "그 phase 동안 도착했거나 대기한 스레드 중 하나"에서 실행되도록 규약을 넓혔습니다. 이 변경은 C++20까지 소급 적용하도록 권고되었지만 실제 컴파일러·표준 라이브러리가 이를 반영한 시점은 구현마다 다르므로, 크로스 플랫폼 코드에서 "완료 함수가 어느 스레드에서 실행되는가"를 가정하지 않는 것이 안전합니다.
 
 ## std::latch: 1회성 카운트다운
 
-**`std::latch`**는 `std::ptrdiff_t` 타입의 하향 카운터로, 생성 시 지정한 값에서 시작해 `count_down()` 호출마다 감소하고 0에 도달하면 대기 중인 모든 스레드를 깨웁니다. 카운터를 늘리거나 리셋하는 방법이 없어서 "한 번 0에 도달하면 그것으로 끝"이라는 의미에서 **단일 사용(single-use) barrier**로 취급되며, 이 점이 재사용 가능한 `std::barrier`와의 가장 근본적인 차이입니다. 멤버 함수는 네 개뿐입니다: `count_down(n = 1)`은 블로킹 없이 카운터를 n만큼 줄이고, `try_wait()`은 카운터가 0인지 논블로킹으로 검사하고, `wait()`은 카운터가 0이 될 때까지 블로킹하며, `arrive_and_wait()`은 `count_down(1)`과 `wait()`을 한 번에 수행하는 편의 함수입니다.
+**`std::latch`**는 `std::ptrdiff_t` 타입의 하향 카운터로, 생성 시 지정한 값에서 시작해 `count_down()` 호출마다 감소하고 0에 도달하면 대기 중인 모든 스레드를 깨웁니다. 카운터를 늘리거나 리셋하는 방법이 없어서 "한 번 0에 도달하면 그것으로 끝"이라는 의미에서 **단일 사용(single-use) barrier**로 취급되며, 이 점이 재사용 가능한 `std::barrier`와의 가장 근본적인 차이입니다. 주요 멤버 함수는 다음과 같습니다: `count_down(n = 1)`은 블로킹 없이 카운터를 n만큼 줄이고, `try_wait()`은 카운터가 0인지 논블로킹으로 검사하고, `wait()`은 카운터가 0이 될 때까지 블로킹하며, `arrive_and_wait()`은 `count_down(1)`과 `wait()`을 한 번에 수행하는 편의 함수입니다.
 
 이 인터페이스가 유용한 이유는 "카운트를 내리는 주체"와 "0이 되기를 기다리는 주체"가 반드시 같은 스레드일 필요가 없다는 데 있습니다. 예를 들어 N개의 워커 스레드가 각자 초기화를 마치고 `count_down()`만 호출한 뒤 자기 일을 계속하고, 메인 스레드 하나만 `wait()`으로 "모든 초기화 완료"를 기다리는 구조를 자연스럽게 표현할 수 있습니다. 아래 예제는 워커들이 초기화를 마쳤음을 `latch`로 알리고, 메인 스레드는 그 신호를 기다렸다가 다음 단계로 진행하는 전형적인 "시작 관문(start gate)" 패턴입니다.
 
@@ -126,33 +116,39 @@ flowchart LR
 아래는 barrier의 전형적인 활용인 "반복 시뮬레이션의 매 스텝마다 결과 버퍼를 스왑"하는 패턴입니다. 완료 함수가 버퍼 포인터를 교체하므로, 각 워커는 다음 phase에서 자연스럽게 갱신된 버퍼를 읽게 됩니다.
 
 ```cpp
-#include <barrier>
-#include <thread>
-#include <stop_token>
-#include <vector>
 #include <atomic>
+#include <barrier>
+#include <cstdio>
+#include <thread>
+#include <vector>
 
-void run_simulation_steps(int worker_count, int step_count) {
+int main() {
+  constexpr int worker_count = 4;
+  constexpr int step_count = 3;
   std::atomic<int> current_buffer{0};  // 완료 함수가 phase마다 뒤집음
+  int phase_done = 0;                  // 완료 함수만 접근
 
-  auto on_phase_complete = [&current_buffer]() noexcept {
+  auto on_phase_complete = [&]() noexcept {
     // 이 시점에는 이번 phase의 모든 워커가 쓰기를 끝낸 상태이므로
     // 락 없이 버퍼 인덱스를 스왑해도 안전함
     current_buffer.store(1 - current_buffer.load(std::memory_order_relaxed),
-                          std::memory_order_relaxed);
+                         std::memory_order_relaxed);
+    ++phase_done;
   };
 
   std::barrier sync_point(worker_count, on_phase_complete);
 
-  std::vector<std::jthread> workers;
+  std::vector<std::thread> workers;
   for (int id = 0; id < worker_count; ++id) {
-    workers.emplace_back([&sync_point, step_count](std::stop_token st) {
-      for (int step = 0; step < step_count && !st.stop_requested(); ++step) {
+    workers.emplace_back([&sync_point] {
+      for (int step = 0; step < step_count; ++step) {
         // 이번 phase의 계산 작업 (워커 몫의 데이터 처리)...
         sync_point.arrive_and_wait();  // 모두 모일 때까지 대기 후 다음 phase로
       }
     });
   }
+  for (auto& t : workers) t.join();
+  std::printf("phases completed: %d, buffer: %d\n", phase_done, current_buffer.load());
 }
 ```
 
@@ -160,7 +156,7 @@ void run_simulation_steps(int worker_count, int step_count) {
 
 ## 흔한 오개념
 
-<strong>"barrier/latch는 mutex+condition_variable보다 항상 빠르다"</strong>는 사실이 아닙니다. 두 프리미티브 모두 결국 내부적으로 대기(wait)가 필요하며, libstdc++는 Linux에서 futex 기반 `atomic::wait`/`notify`([2020년 11월 GCC 패치](https://gcc.gnu.org/pipermail/gcc-patches/2020-November/560499.html)로 barrier 지원이 추가되었고 GCC 11부터 배포)를 사용해 스핀 없이 커널 대기로 전환하는 구조이지만, 이는 "잘 튜닝된 condition_variable 구현"과 근본적으로 다른 비용 구조가 아니라 **코드 작성 실수를 줄여 주는 표준화된 인터페이스**라는 데 더 큰 가치가 있습니다. 실제 이득은 참여 스레드 수·경합 패턴·플랫폼에 따라 달라지므로 아래 벤치마크 절의 방법으로 직접 재현해 확인해야 합니다.
+<strong>"barrier/latch는 mutex+condition_variable보다 항상 빠르다"</strong>는 사실이 아닙니다. 두 프리미티브 모두 결국 내부적으로 대기(wait)가 필요하며, libstdc++는 Linux에서 futex 기반 `atomic::wait`/`notify`([2020년 11월 GCC 패치](https://gcc.gnu.org/pipermail/gcc-patches/2020-November/560499.html)로 barrier 지원이 추가됨)를 사용하지만, 이는 "잘 튜닝된 condition_variable 구현"과 근본적으로 다른 비용 구조가 아니라 **코드 작성 실수를 줄여 주는 표준화된 인터페이스**라는 데 더 큰 가치가 있습니다. 실제 이득은 참여 스레드 수·경합 패턴·플랫폼에 따라 달라지므로 아래 벤치마크 절의 방법으로 직접 재현해 확인해야 합니다.
 
 <strong>"barrier의 completion function은 각 스레드에서 한 번씩, 즉 N번 실행된다"</strong>도 흔한 오해입니다. completion function은 phase당 **정확히 한 번**, 참여한 스레드 중 하나에서 실행됩니다. 나머지 스레드들은 그 실행이 끝나기를 블로킹 대기할 뿐 completion function 코드를 직접 실행하지 않습니다. 이를 "각 스레드가 자기 몫의 후처리를 completion function 안에서 수행한다"고 잘못 설계하면 그 로직은 한 스레드분만 실행되고 나머지 스레드의 몫은 누락됩니다.
 
@@ -168,9 +164,9 @@ void run_simulation_steps(int worker_count, int step_count) {
 
 ## 비용 모델과 측정
 
-barrier/latch의 실제 비용은 "대기 중인 스레드를 어떻게 재우고 깨우는가"에 좌우됩니다. Linux의 libstdc++ 구현은 `atomic::wait`/`notify`를 통해 futex 시스템 콜로 스레드를 재우므로, 경합이 없을 때(마지막 도착 스레드가 곧바로 완료 함수를 실행하고 나머지가 이미 대기 중일 때)는 스핀 없이 필요한 만큼만 커널을 호출합니다. 반면 스레드 수가 많고 phase가 매우 짧게 반복되는 워크로드에서는 매 phase마다 반복되는 futex wake/wait 왕복 비용이 누적되어 지배적인 비용이 될 수 있으므로, "phase당 작업량이 동기화 비용보다 충분히 큰가"를 먼저 확인하는 것이 barrier 도입의 전제 조건입니다.
+barrier/latch의 실제 비용은 "대기 중인 스레드를 어떻게 재우고 깨우는가"에 좌우됩니다. Linux의 libstdc++ 구현은 `atomic::wait`/`notify`를 통해 futex 시스템 콜로 스레드를 재우며, 커널 대기에 들어가기 전에 짧게 스핀할 수 있습니다([09장](/post/concurrency-optimization/cpp20-atomic-wait-notify/) 참고). 반면 스레드 수가 많고 phase가 매우 짧게 반복되는 워크로드에서는 매 phase마다 반복되는 futex wake/wait 왕복 비용이 누적되어 지배적인 비용이 될 수 있으므로, "phase당 작업량이 동기화 비용보다 충분히 큰가"를 먼저 확인하는 것이 barrier 도입의 전제 조건입니다.
 
-**"측정/정량"을 표방하려면 실행 가능한 벤치마크가 있어야 합니다.** 아래는 Google Benchmark로 `std::barrier` 기반 반복 동기화와, 동일한 역할을 하는 손수 짠 `mutex`+`condition_variable` 기반 배리어를 같은 조건(스레드 수, phase 수, phase당 no-op 작업량)에서 비교하는 스켈레톤입니다. `g++ -O2 -std=c++20 bench.cpp -lbenchmark -lpthread -lgtest`(또는 `-lbenchmark_main`)로 빌드하며, 실제 배율은 x86-64/ARM64, 커널 버전, 스레드 수에 따라 달라지므로 반드시 대상 플랫폼에서 직접 실행해 확인해야 합니다.
+**"측정/정량"을 표방하려면 실행 가능한 벤치마크가 있어야 합니다.** 아래는 Google Benchmark로 `std::barrier` 기반 반복 동기화와, 동일한 역할을 하는 손수 짠 `mutex`+`condition_variable` 기반 배리어를 같은 조건(스레드 수, phase 수, phase당 no-op 작업량)에서 비교하는 스켈레톤입니다. `g++ -O2 -std=c++20 bench.cpp -lbenchmark -lpthread`로 빌드하며, 실제 배율은 x86-64/ARM64, 커널 버전, 스레드 수에 따라 달라지므로 반드시 대상 플랫폼에서 직접 실행해 확인해야 합니다.
 
 ```cpp
 #include <benchmark/benchmark.h>
@@ -239,8 +235,6 @@ BENCHMARK_MAIN();
 
 ### 자주 하는 실수
 
-- **이미 0에 도달한 `latch`에 `count_down()`을 다시 호출**: UB. 라운드 재사용이 필요하면 `barrier`를 쓰거나 라운드마다 `latch`를 새로 만든다.
-- **completion function 안에서 각 스레드별 후처리를 기대**: 완료 함수는 phase당 한 번만 실행된다. 스레드별 처리는 `arrive_and_wait()` 앞뒤의 워커 코드에 둔다.
 - **완료 함수 안에서 예외를 던짐**: `CompletionFunction`은 `is_nothrow_invocable`이어야 하므로 예외를 던지면 프로그램이 종료된다. 실패는 상태 플래그로 남기고 barrier 바깥에서 처리한다.
 - **동적으로 늘어나는 스레드 수를 barrier 하나로 처리하려 함**: barrier는 카운트를 늘리는 API가 없다. 참여자가 늘어나는 설계는 별도 세대 카운터나 재구성 가능한 동기화 구조로 다시 설계한다.
 
