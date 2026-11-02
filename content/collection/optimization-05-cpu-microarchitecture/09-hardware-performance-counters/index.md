@@ -1,7 +1,7 @@
 ---
 collection_order: 9
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-24
 draft: false
 image: wordcloud.png
 title: "[CPU 05] CPU 하드웨어 카운터 활용"
@@ -20,26 +20,16 @@ tags:
   - Profiling(프로파일링)
   - Linux(리눅스)
   - C++
-  - Assembly
-  - Compiler(컴파일러)
-  - Concurrency(동시성)
-  - System-Design
   - Monitoring(모니터링)
   - Implementation(구현)
   - Advanced
   - Deep-Dive
-  - Case-Study
-  - Comparison(비교)
-  - Reference(참고)
-  - Guide(가이드)
   - Best-Practices
-  - Testing(테스트)
-  - Debugging(디버깅)
   - Pitfalls(함정)
-  - Documentation(문서화)
-  - Technology(기술)
-  - 실습
   - PMU
+  - NUMA
+  - Xeon-Max
+  - Intel
   - TMA
   - TopDown
   - perf
@@ -73,9 +63,9 @@ tags:
 
 ## 하이브리드와 HBM이 카운터 해석에 요구한 변화
 
-TMA 트리는 2014년 Ahmad Yasin의 논문 이후로도 계속 개정되어 왔지만, 두 차례의 하드웨어 변화가 트리 자체보다 "트리를 어떻게 측정할 것인가"라는 앞단 문제를 만들었습니다. 첫 번째는 2021년 Alder Lake입니다. Golden Cove(P-core)와 Gracemont(E-core)를 한 다이에 올린 이 칩은 두 코어가 카운터 개수·지원 이벤트·TMA 지원 레벨이 서로 달랐고, 커널 `perf` 서브시스템은 이를 다루기 위해 코어 타입마다 독립된 PMU(`cpu_core`, `cpu_atom`)를 등록하는 구조로 확장되었습니다([Alder Lake 하이브리드 지원 패치셋](https://lwn.net/Articles/848991/)). 이 구조는 이후 Meteor Lake·Lunar Lake·Arrow Lake로 이어지는 클라이언트 라인의 기본값이 되었고, `perf stat`은 코어 타입을 지정하지 않으면 `cpu_core`·`cpu_atom` 양쪽에 같은 이벤트를 중복으로 걸어 두 배의 행을 출력하도록 바뀌었습니다.
+TMA 트리는 2014년 Ahmad Yasin의 논문([A Top-Down method for performance analysis and counters architecture, ISPASS 2014, DOI 10.1109/ISPASS.2014.6844459](https://doi.org/10.1109/ISPASS.2014.6844459)) 이후로도 계속 개정되어 왔지만, 두 차례의 하드웨어 변화가 트리 자체보다 "트리를 어떻게 측정할 것인가"라는 앞단 문제를 만들었습니다. 첫 번째는 2021년 Alder Lake입니다. Golden Cove(P-core)와 Gracemont(E-core)를 한 다이에 올린 이 칩은 두 코어가 카운터 개수·지원 이벤트·TMA 지원 레벨이 서로 달랐고, 커널 `perf` 서브시스템은 이를 다루기 위해 코어 타입마다 독립된 PMU를 등록하는 구조로 확장되었습니다([Alder Lake 하이브리드 지원 패치셋](https://lwn.net/Articles/848991/)). 리눅스에서 이 PMU는 `cpu_core`, `cpu_atom`이라는 이름으로 보이며 `ls /sys/devices | grep cpu_`로 확인할 수 있습니다. 이 구조는 이후 Meteor Lake·Lunar Lake·Arrow Lake로 이어지는 클라이언트 라인의 기본값이 되었고, `perf stat`은 코어 타입을 지정하지 않으면 `cpu_core`·`cpu_atom` 양쪽에 같은 이벤트를 중복으로 걸어 두 배의 행을 출력하도록 바뀌었습니다.
 
-두 번째는 2023년 Sapphire Rapids HBM(제품명 Xeon CPU Max Series)입니다. 소켓당 4개의 HBM 스택을 DDR5와 함께 얹은 이 칩은 Flat 모드(HBM과 DDR을 서로 다른 주소 공간으로 노출)와 Cache 모드(HBM을 DDR 앞의 투명한 캐시로 사용)를 지원하는데, 기존 TMA의 `DRAM_Bound`만으로는 정체가 HBM 접근인지 DDR 접근인지 구분할 수 없었습니다([Aurora 슈퍼컴퓨터의 Xeon Max HBM 성능 분석](https://arxiv.org/html/2504.03632v1) 논문이 두 모드의 대역폭·지연 차이를 정량적으로 다룹니다). TMA 4.x대에서 Memory Bound 하위에 `HBM_Bound`가 추가된 것은 이 간극을 메우기 위해서이며, [pmu-tools](https://github.com/andikleen/pmu-tools) 릴리스 노트는 이를 "로드에 의한 HBM 접근으로 인한 스톨"로 정의합니다. 두 변화 모두 "카운터가 무엇을 세는가"는 그대로 두고 "어느 PMU/어느 계층에서 세는가"를 새로 물어야 한다는 공통점이 있습니다.
+두 번째는 2023년 Sapphire Rapids HBM(제품명 Xeon CPU Max Series)입니다. 소켓당 4개의 HBM 스택을 DDR5와 함께 얹은 이 칩은 Flat 모드(HBM과 DDR을 서로 다른 주소 공간으로 노출)와 Cache 모드(HBM을 DDR 앞의 투명한 캐시로 사용)를 지원하는데, 기존 TMA의 `DRAM_Bound`만으로는 정체가 HBM 접근인지 DDR 접근인지 구분할 수 없었습니다([Aurora 슈퍼컴퓨터의 Xeon Max HBM 성능 분석](https://arxiv.org/html/2504.03632v1) 논문이 두 모드의 대역폭·지연 차이를 정량적으로 다룹니다). TMA 4.x대에서 Memory Bound 하위에 `HBM_Bound`가 추가된 것은 이 간극을 메우기 위해서이며, [pmu-tools](https://github.com/andikleen/pmu-tools) 릴리스 노트(TMA 4.6·4.7)는 이를 로드가 HBM에 접근하면서 생기는 스톨을 가리키는 메트릭으로 소개합니다. 두 변화 모두 "카운터가 무엇을 세는가"는 그대로 두고 "어느 PMU/어느 계층에서 세는가"를 새로 물어야 한다는 공통점이 있습니다.
 
 ## TMA 트리를 하드웨어 원인에 연결하기
 
@@ -116,6 +106,37 @@ Alder Lake 이후 클라이언트 CPU에서 `perf stat`을 코어 타입 지정 
 
 `--cputype` 옵션은 이 문제를 측정 시점에 통제합니다. 코어 타입을 하나로 고정해 이벤트를 등록하므로, 비교하려는 코드가 항상 같은 종류의 코어에서 실행된다는 전제를 측정 자체가 강제합니다.
 
+측정 대상은 아래의 작은 프로그램 `pmu_bench`입니다. 256MB 배열 위에서 포인터를 따라가며, 인자가 `r`이면 무작위 순서로, `s`이면 순차 순서로 순회합니다. 캐시를 벗어나는 메모리 접근을 만들어 `DRAM_Bound`류 지표를 키우기 위한 용도입니다.
+
+```cpp
+// pmu_bench.cpp — 빌드: g++ -O2 -o pmu_bench pmu_bench.cpp
+// 실행: ./pmu_bench r (무작위 순회)   ./pmu_bench s (순차 순회)
+#include <algorithm>
+#include <cstdint>
+#include <cstdio>
+#include <numeric>
+#include <random>
+#include <vector>
+
+int main(int argc, char** argv) {
+  const bool random_walk = argc > 1 && argv[1][0] == 'r';
+  const size_t n = size_t(1) << 26;  // 6천7백만 개 x 4바이트 = 256MB
+  std::vector<uint32_t> next(n);
+  if (random_walk) {
+    std::vector<uint32_t> order(n);
+    std::iota(order.begin(), order.end(), 0u);
+    std::shuffle(order.begin(), order.end(), std::mt19937(42));
+    for (size_t i = 0; i < n; ++i) next[order[i]] = order[(i + 1) % n];
+  } else {
+    for (size_t i = 0; i < n; ++i) next[i] = static_cast<uint32_t>((i + 1) % n);
+  }
+  uint32_t cur = 0;
+  for (size_t i = 0; i < n; ++i) cur = next[cur];  // 각 로드가 직전 결과에 의존
+  std::printf("%u\n", cur);
+  return 0;
+}
+```
+
 ```bash
 # 하이브리드 시스템에서 코어 종류를 지정하지 않으면 core/atom 이벤트가 각각 만들어짐
 perf stat ./pmu_bench r
@@ -130,17 +151,9 @@ perf stat --cputype=atom -e cycles,instructions,cache-misses ./pmu_bench r
 perf stat -e cpu_core/cycles/,cpu_atom/cycles/ ./pmu_bench r
 ```
 
-첫 번째 명령(코어 타입 미지정)을 실행하면 다음과 같이 `cpu_core`·`cpu_atom` 이벤트 쌍이 각각의 관측 비율과 함께 출력됩니다.
+첫 번째 명령(코어 타입 미지정)을 실행하면 `cpu_core/cycles/`와 `cpu_atom/cycles/`처럼 코어 타입별 이벤트 행이 따로 출력되며, 각 행 끝의 백분율은 해당 이벤트가 카운터에 올라가 있던 시간 비율입니다.
 
-```text
-# --cputype 없이 실행한 하이브리드 perf stat 출력 예시 (Alder Lake 계열, Linux 6.x)
-       233,066,666      cpu_core/cycles/                 (0.43%)
-       604,097,080      cpu_atom/cycles/                 (99.57%)
-       118,240,552      cpu_core/instructions/            #  0.51  insn per cycle  (0.43%)
-       301,884,207      cpu_atom/instructions/            #  0.50  insn per cycle  (99.57%)
-```
-
-이 출력에서 괄호 안 백분율은 각 이벤트가 관측된 시간 비율이 아니라, 스레드가 그 코어 타입에서 실행된 시간의 비중에 가깝게 읽힙니다. 위 예시처럼 대부분의 실행 시간이 `cpu_atom`에 몰려 있다면 스케줄러가 이 워크로드를 E-core에 배치했다는 뜻이고, `--cputype=core`로 강제 고정하지 않는 한 두 코어 타입의 IPC를 단순 비교하는 것은 의미가 없습니다. toplev도 동일한 문제를 겪으므로 `pmu-tools`는 `cputop core cpuset`이라는 헬퍼로 특정 코어 타입의 CPU 마스크를 생성해 `taskset`과 함께 쓰도록 안내합니다. Apple Silicon의 P코어/E코어(Firestorm/Icestorm 계열, [Apple Silicon 아키텍처](/post/cpu-optimization/apple-silicon-m-series-architecture/) 참고)에서도 개념은 동일하지만, Linux `perf`가 아닌 `powermetrics`·Instruments의 코어 클러스터별 카운터로 같은 문제를 다룬다는 점은 플랫폼 차이로 유의해야 합니다.
+한쪽 코어 타입의 행에서만 카운트가 크게 쌓인다면 스케줄러가 이 워크로드를 그 코어 타입에 배치했다는 뜻이고, `--cputype=core`로 강제 고정하지 않는 한 두 코어 타입의 IPC를 단순 비교하는 것은 의미가 없습니다. toplev도 동일한 문제를 겪으므로 `pmu-tools`는 `cputop core cpuset`이라는 헬퍼로 특정 코어 타입의 CPU 마스크를 생성해 `taskset`과 함께 쓰도록 안내합니다. Apple Silicon의 P코어/E코어(Firestorm/Icestorm 계열, [Apple Silicon 아키텍처](/post/cpu-optimization/apple-silicon-m-series-architecture/) 참고)에서도 개념은 동일하지만, Linux `perf`가 아닌 `powermetrics`·Instruments의 코어 클러스터별 카운터로 같은 문제를 다룬다는 점은 플랫폼 차이로 유의해야 합니다.
 
 ## TMA의 신규 메트릭: HBM_Bound
 
@@ -154,15 +167,9 @@ perf stat -e cpu_core/cycles/,cpu_atom/cycles/ ./pmu_bench r
 numactl --membind=1 ./pmu_bench r   # 노드 번호는 lscpu/numactl -H로 HBM 노드를 먼저 확인
 ```
 
-첫 번째 명령을 실행하면 다음과 같이 `DRAM_Bound`와 `HBM_Bound`가 각각 별도의 % Slots 값으로 분리되어 출력됩니다.
+첫 번째 명령은 `DRAM_Bound`와 `HBM_Bound`를 각각 별도의 % Slots 값으로 출력합니다.
 
-```text
-# toplev -l3 출력 예시 (요약, Xeon Max, Flat 모드, SNC4 클러스터링 — 수치는 배치·워크로드에 따라 다름)
-BE/Mem/DRAM        Backend_Bound.Memory_Bound.DRAM_Bound       % Slots    9.8
-BE/Mem/HBM         Backend_Bound.Memory_Bound.HBM_Bound        % Slots   58.2  <==
-```
-
-이 결과가 나온다면 원인은 "메모리가 느리다"가 아니라 "HBM 대역폭 자체가 병목"이라는 뜻이며, 대응은 접근 패턴을 더 넓혀 대역폭을 실제로 채우고 있는지, 아니면 작업 집합이 HBM 용량(Xeon Max 기준 소켓당 64GB)을 넘어 DDR로 스필되고 있는지를 가르는 방향으로 이어집니다. 캐시 미스로 인한 계층 이동 자체의 원리는 이 장에서 다시 설명하지 않고 [캐시 미스 분석과 대응](/post/cpu-optimization/cache-miss-analysis-hint-instructions/)에 위임하며, 이 절은 그 분석 대상이 DDR인지 HBM인지를 먼저 가르는 역할만 합니다. `HBM_Bound`는 TMA 트리 버전(4.6–4.7대) 사이에서도 정의·노드 위치가 조정되어 왔으므로, 사용하는 `toplev`·VTune 버전의 릴리스 노트를 확인하는 습관이 필요합니다.
+`HBM_Bound`가 지배적으로 높게 나오면 로드가 HBM 접근 때문에 멈춰 있다는 뜻입니다. 이것이 HBM 대역폭 포화인지 지연시간 노출인지는 이 메트릭만으로 구분되지 않으므로 STREAM류 대역폭 벤치마크 같은 별도 측정으로 가르고, 작업 집합이 HBM 용량(Xeon Max 기준 소켓당 64GB)을 넘어 DDR로 스필되고 있는지도 함께 확인합니다. 캐시 미스로 인한 계층 이동 자체의 원리는 이 장에서 다시 설명하지 않고 [캐시 미스 분석과 대응](/post/cpu-optimization/cache-miss-analysis-hint-instructions/)에 위임하며, 이 절은 그 분석 대상이 DDR인지 HBM인지를 먼저 가르는 역할만 합니다. `HBM_Bound`는 TMA 트리 버전(4.6–4.7대) 사이에서도 정의·노드 위치가 조정되어 왔으므로, 사용하는 `toplev`·VTune 버전의 릴리스 노트를 확인하는 습관이 필요합니다.
 
 ## 흔한 오개념 교정
 
@@ -185,7 +192,7 @@ BE/Mem/HBM         Backend_Bound.Memory_Bound.HBM_Bound        % Slots   58.2  <
 
 ## 비판적 시각: 하이브리드·HBM이 늘리는 해석 비용
 
-하이브리드 PMU는 코어 타입 간 이벤트 그룹화를 지원하지 않으므로, `cpu_core`와 `cpu_atom` 이벤트를 하나의 그룹(`{}`)으로 묶어 시간 정합성을 보장하는 Tr.01의 멀티플렉싱 대처법이 코어 타입을 넘어서는 적용되지 않습니다. 결과적으로 하이브리드 환경에서는 "코어 타입 고정 + 그룹화"라는 두 겹의 통제가 필요해지고, 측정 설계의 복잡도가 배가됩니다. `HBM_Bound`는 아직 소수 SKU(Sapphire Rapids HBM, 일부 Granite Rapids AP 계열)에서만 의미가 있고 트리 버전마다 정의가 조정되어 왔으므로, 이 메트릭 하나에 과도한 확신을 갖기보다는 STREAM류의 대역폭 벤치마크나 Memory Latency Checker 같은 직접 측정과 교차 검증하는 편이 안전합니다. 두 확장 모두 Intel 벤더 종속적이라는 한계도 있습니다 — AMD·ARM 플랫폼에는 대응하는 하이브리드 PMU 분리나 HBM_Bound 동급 메트릭이 다른 이름·다른 구조로 존재하거나 아예 없을 수 있으므로, 플랫폼을 옮길 때는 이 장의 구체적인 옵션명이 아니라 "코어 종류를 먼저 고정하고, 메모리 계층을 먼저 가른다"는 원칙만 이식해야 합니다.
+하이브리드 PMU는 코어 타입 간 이벤트 그룹화를 지원하지 않으므로, `cpu_core`와 `cpu_atom` 이벤트를 하나의 그룹(`{}`)으로 묶어 시간 정합성을 보장하는 Tr.01의 멀티플렉싱 대처법이 코어 타입을 넘어서는 적용되지 않습니다. 결과적으로 하이브리드 환경에서는 "코어 타입 고정 + 그룹화"라는 두 겹의 통제가 필요해지고, 측정 설계의 복잡도가 배가됩니다. `HBM_Bound`는 아직 소수 SKU(Sapphire Rapids 기반 HBM 탑재 Xeon Max 등)에서만 의미가 있고 트리 버전마다 정의가 조정되어 왔으므로, 이 메트릭 하나에 과도한 확신을 갖기보다는 STREAM류의 대역폭 벤치마크나 Memory Latency Checker 같은 직접 측정과 교차 검증하는 편이 안전합니다. 두 확장 모두 Intel 벤더 종속적이라는 한계도 있습니다 — AMD·ARM 플랫폼에는 대응하는 하이브리드 PMU 분리나 HBM_Bound 동급 메트릭이 다른 이름·다른 구조로 존재하거나 아예 없을 수 있으므로, 플랫폼을 옮길 때는 이 장의 구체적인 옵션명이 아니라 "코어 종류를 먼저 고정하고, 메모리 계층을 먼저 가른다"는 원칙만 이식해야 합니다.
 
 ## 마무리
 

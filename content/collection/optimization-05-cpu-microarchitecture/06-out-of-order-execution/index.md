@@ -1,19 +1,18 @@
 ---
 collection_order: 6
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-24
 draft: false
 image: wordcloud.png
 title: "[CPU 05] Out-of-Order 실행과 성능"
 slug: out-of-order-execution-performance
-description: "Out-of-Order 엔진의 핵심 구조인 reorder buffer·reservation station과 레지스터 리네이밍의 내부 동작을 다루고, ROB 크기가 메모리 수준 병렬성과 실제 지연시간에 미치는 영향을 벤치마크로 확인합니다."
+description: "Out-of-Order 엔진의 핵심 구조인 reorder buffer·reservation station과 레지스터 리네이밍의 내부 동작을 다루고, 의존 체인과 독립 체인을 같은 로드 수로 비교하는 벤치마크로 OoO가 지연시간을 겹치는 효과를 확인합니다."
 tags:
   - Performance(성능)
   - Optimization(최적화)
   - CPU(Central Processing Unit)
   - Cache
   - Memory(메모리)
-  - Assembly
   - C++
   - Compiler(컴파일러)
   - Hardware(하드웨어)
@@ -21,20 +20,15 @@ tags:
   - Latency
   - Throughput
   - Profiling(프로파일링)
-  - Concurrency(동시성)
   - System-Design
   - Advanced
   - Deep-Dive
-  - Case-Study
-  - Technology(기술)
-  - Reference(참고)
-  - Guide(가이드)
-  - Tutorial(튜토리얼)
-  - Comparison(비교)
-  - Edge-Cases(엣지케이스)
   - Pitfalls(함정)
-  - Documentation(문서화)
   - Reorder-Buffer
+  - Microarchitecture
+  - Memory-Level-Parallelism
+  - Pointer-Chasing
+  - IPC
   - Reservation-Station
   - Register-Renaming
   - Tomasulo-Algorithm
@@ -66,9 +60,9 @@ tags:
 
 ## OoO 엔진의 등장 배경 (역사·배경)
 
-명령어를 프로그램 순서와 다르게 실행하는 아이디어 자체는 1967년 Robert Tomasulo가 IBM System/360 Model 91의 부동소수점 유닛을 위해 고안한 **Tomasulo 알고리즘**까지 거슬러 올라갑니다. 이 알고리즘은 오늘날 OoO 엔진의 세 가지 핵심 요소 — 하드웨어 레지스터 리네이밍, 각 실행 유닛에 붙은 reservation station, 계산 결과를 대기 중인 모든 유닛에 동시에 방송하는 공용 데이터 버스(common data bus) — 를 이미 갖추고 있었습니다. 다만 이 설계는 소수의 대형 메인프레임 부동소수점 유닛에 한정된 기법이었고, 범용 x86 코어에 OoO 실행이 들어온 것은 그로부터 거의 30년 뒤인 1995년 Intel Pentium Pro(P6 마이크로아키텍처)에서였습니다. Pentium Pro는 40-entry ROB와 20-µop 용량의 통합 reservation station으로 x86 명령어를 내부 µop으로 변환해 순서와 무관하게 디스패치했고, 이후 모든 주류 고성능 x86·ARM 코어가 이 구조를 계승했습니다.
+명령어를 프로그램 순서와 다르게 실행하는 아이디어 자체는 1967년 Robert Tomasulo가 IBM System/360 Model 91의 부동소수점 유닛을 위해 고안한 **Tomasulo 알고리즘**까지 거슬러 올라갑니다. 이 알고리즘은 오늘날 OoO 엔진의 세 가지 핵심 요소 — 하드웨어 레지스터 리네이밍, 각 실행 유닛에 붙은 reservation station, 계산 결과를 대기 중인 모든 유닛에 동시에 방송하는 공용 데이터 버스(common data bus) — 를 이미 갖추고 있었습니다. 다만 이 설계는 소수의 대형 메인프레임 부동소수점 유닛에 한정된 기법이었고, 범용 x86 코어에 OoO 실행이 들어온 것은 그로부터 거의 30년 뒤인 1995년 Intel Pentium Pro(P6 마이크로아키텍처)에서였습니다. Pentium Pro는 x86 명령어를 내부 µop으로 변환해 순서와 무관하게 디스패치했고, 이후 모든 주류 고성능 x86·ARM 코어가 이 구조를 계승했습니다.
 
-ROB 크기는 이후 30년 동안 꾸준히 커져 왔습니다. Anton Ertl이 유지하는 [ROB 크기 측정 자료](http://www.complang.tuwien.ac.at/anton/robsize/)에 따르면 Intel 계열은 Pentium Pro의 40-entry에서 Skylake(2015) 224-entry, Golden Cove(2021) 512-entry, Lion Cove(2024) 576-entry로 커졌고, AMD Zen 계열도 Zen(2017) 192-entry에서 Zen4(2022) 320-entry, Zen5(2024) 448-entry로 확장되었습니다. 이 성장은 임의로 커진 것이 아니라 코어 클럭과 메모리 지연시간 사이의 격차가 벌어진 결과에 가깝습니다 — 캐시 미스 하나가 수백 사이클을 잡아먹는 동안 파이프라인을 계속 채우려면, 그만큼 더 많은 "아직 폐기되지 않은" 명령어를 창(window) 안에 들고 있어야 하기 때문입니다.
+ROB 크기는 이후 30년 동안 꾸준히 커져 왔습니다. Anton Ertl이 유지하는 [ROB 크기 측정 자료](http://www.complang.tuwien.ac.at/anton/robsize/)에 따르면 Intel 계열은 Skylake(2015) 224-entry에서 Golden Cove(2021) 512-entry, Lion Cove(2024) 576-entry로 커졌고, AMD Zen 계열도 Zen(2017) 192-entry에서 Zen4(2022) 320-entry, Zen5(2024) 448-entry로 확장되었습니다. 이 성장은 임의로 커진 것이 아니라 코어 클럭과 메모리 지연시간 사이의 격차가 벌어진 결과에 가깝습니다 — 캐시 미스 하나가 수백 사이클을 잡아먹는 동안 파이프라인을 계속 채우려면, 그만큼 더 많은 "아직 폐기되지 않은" 명령어를 창(window) 안에 들고 있어야 하기 때문입니다.
 
 ## OoO 엔진 내부 동작
 
@@ -95,7 +89,7 @@ ROB가 큐 형태로 프로그램 순서를 유지하는 동안, 그 안에 아�
 
 ## OoO가 실제 성능에 미치는 영향
 
-OoO 엔진이 있어도 만능은 아닙니다. 명령어 사이에 <strong>진짜 데이터 의존성(RAW)</strong>이 연속으로 이어지는 체인이 있으면, 그 체인의 각 단계는 이전 단계의 결과가 나올 때까지 물리적으로 기다려야 하므로 아무리 큰 reservation station과 ROB가 있어도 실행 순서를 앞당길 수 없습니다. 반대로 서로 완전히 독립적인 여러 연산이 코드에 섞여 있으면, OoO 스케줄러는 이들을 여러 실행 포트에 동시에 밀어 넣어 개별 연산의 지연시간을 서로 겹치게 만듭니다. 아래 벤치마크는 이 차이를 같은 반복 횟수·같은 데이터 크기로 격리해 비교합니다.
+OoO 엔진이 있어도 만능은 아닙니다. 명령어 사이에 <strong>진짜 데이터 의존성(RAW)</strong>이 연속으로 이어지는 체인이 있으면, 그 체인의 각 단계는 이전 단계의 결과가 나올 때까지 물리적으로 기다려야 하므로 아무리 큰 reservation station과 ROB가 있어도 실행 순서를 앞당길 수 없습니다. 반대로 서로 완전히 독립적인 여러 연산이 코드에 섞여 있으면, OoO 스케줄러는 이들을 여러 실행 포트에 동시에 밀어 넣어 개별 연산의 지연시간을 서로 겹치게 만듭니다. 아래 벤치마크는 이 차이를 같은 `next` 배열에서 같은 수의 로드를 수행하되, 한 개의 의존 체인으로 따라가느냐 네 개의 독립 체인으로 따라가느냐만 바꿔 비교합니다.
 
 ```cpp
 #include <benchmark/benchmark.h>
@@ -106,8 +100,7 @@ OoO 엔진이 있어도 만능은 아닙니다. 명령어 사이에 <strong>진�
 
 // 의존 체인: next[cur]가 다음 cur를 결정하므로 각 반복이 이전 결과에 의존한다.
 // OoO 스케줄러가 아무리 크더라도 이 체인 자체를 앞당겨 실행할 수는 없다.
-static void BM_DependentChain(benchmark::State& state) {
-  const size_t n = 1 << 16;
+static std::vector<int> make_cycle(size_t n) {
   std::vector<int> next(n);
   std::vector<size_t> idx(n);
   std::iota(idx.begin(), idx.end(), 0);
@@ -115,6 +108,12 @@ static void BM_DependentChain(benchmark::State& state) {
   std::shuffle(idx.begin(), idx.end(), rng);
   for (size_t i = 0; i + 1 < n; ++i) next[idx[i]] = static_cast<int>(idx[i + 1]);
   next[idx[n - 1]] = static_cast<int>(idx[0]);
+  return next;  // 모든 원소를 한 번씩 지나는 무작위 단일 순환
+}
+
+static void BM_DependentChain(benchmark::State& state) {
+  const size_t n = 1 << 16;
+  const std::vector<int> next = make_cycle(n);
 
   for (auto _ : state) {
     int cur = 0;
@@ -124,39 +123,36 @@ static void BM_DependentChain(benchmark::State& state) {
 }
 BENCHMARK(BM_DependentChain);
 
-// 독립 스트림: 네 누산기는 서로 어떤 데이터도 공유하지 않는다.
-// OoO 스케줄러가 네 스트림을 여러 실행 포트에 겹쳐 실행할 수 있다.
-static void BM_IndependentStreams(benchmark::State& state) {
+// 독립 체인: 같은 next 배열에서 시작점이 다른 네 체인을 동시에 따라간다.
+// 총 로드 수는 위와 같지만 네 체인이 서로의 결과를 기다리지 않으므로
+// OoO 스케줄러가 네 로드의 지연시간을 겹쳐 실행할 수 있다.
+static void BM_IndependentChains(benchmark::State& state) {
   const size_t n = 1 << 16;
-  std::vector<int> a(n), b(n), c(n), d(n);
-  std::iota(a.begin(), a.end(), 1);
-  std::iota(b.begin(), b.end(), 2);
-  std::iota(c.begin(), c.end(), 3);
-  std::iota(d.begin(), d.end(), 4);
+  const std::vector<int> next = make_cycle(n);
 
   for (auto _ : state) {
-    int sa = 0, sb = 0, sc = 0, sd = 0;
-    for (size_t i = 0; i < n; ++i) {
-      sa += a[i]; sb += b[i]; sc += c[i]; sd += d[i];  // 네 누적은 서로 독립
+    int c0 = 0, c1 = n / 4, c2 = n / 2, c3 = 3 * (n / 4);
+    for (size_t i = 0; i < n / 4; ++i) {
+      c0 = next[c0]; c1 = next[c1]; c2 = next[c2]; c3 = next[c3];
     }
-    benchmark::DoNotOptimize(sa + sb + sc + sd);
+    benchmark::DoNotOptimize(c0 + c1 + c2 + c3);
   }
 }
-BENCHMARK(BM_IndependentStreams);
+BENCHMARK(BM_IndependentChains);
 
 BENCHMARK_MAIN();
 ```
 
-`g++ -O2 -std=c++17 bench.cpp -lbenchmark -lpthread`(x86-64, GCC 13 기준 예시)로 빌드해 실행하면, `BM_DependentChain`이 `BM_IndependentStreams`보다 반복당 사이클 수가 여러 배 더 크게 나오는 경우가 흔합니다. 두 벤치마크는 메모리 접근 총량이 비슷하므로 그 차이는 대부분 "OoO가 앞당겨 실행할 독립적인 다음 작업이 있는가"에서 옵니다 — 정확한 배율은 캐시 적중률·메모리 지연시간·컴파일러 벡터화 여부에 따라 크게 달라지므로 대상 플랫폼에서 직접 재현해 확인해야 합니다.
+`g++ -O2 -std=c++17 bench.cpp -lbenchmark -lpthread`(x86-64, GCC 13 기준 예시)로 빌드해 실행하면, `BM_DependentChain`이 `BM_IndependentChains`보다 반복당 시간이 더 길게 나오는 것이 예상됩니다. 두 벤치마크는 같은 배열에서 같은 수의 로드를 수행하므로 그 차이는 "OoO가 앞당겨 실행할 독립적인 다음 로드가 있는가"에서 옵니다 — 정확한 배율은 캐시 적중률·메모리 지연시간에 따라 크게 달라지므로 대상 플랫폼에서 직접 재현해 확인해야 합니다.
 
-벤치마크 결과만으로는 "왜" 느린지 원인이 캐시 미스인지 의존성 자체인지 구분하기 어려우므로, 실제로는 하드웨어 카운터로 한 번 더 확인하는 과정이 필요합니다. `perf stat`으로 두 실행을 비교하면 이 차이가 IPC(Instructions Per Cycle)와 자원 정체 카운터에 그대로 드러납니다.
+벤치마크 결과만으로는 "왜" 느린지 원인이 캐시 미스인지 의존성 자체인지 구분하기 어려우므로, 실제로는 하드웨어 카운터로 한 번 더 확인하는 과정이 필요합니다. `perf stat`으로 두 실행을 비교하면 이 차이가 IPC(Instructions Per Cycle)에 드러납니다.
 
 ```text
-$ perf stat -e cycles,instructions,resource_stalls.any -- ./bench_dependent
-$ perf stat -e cycles,instructions,resource_stalls.any -- ./bench_independent
+$ perf stat -e cycles,instructions -- ./bench --benchmark_filter=BM_DependentChain
+$ perf stat -e cycles,instructions -- ./bench --benchmark_filter=BM_IndependentChains
 ```
 
-의존 체인 쪽은 IPC가 1에 크게 못 미치고 `resource_stalls`가 높게 나오는 경향이 있는데, 이는 ROB/reservation station이 비어 있지 않아서가 아니라 헤드 근처에서 다음에 실행 가능한 명령어 자체가 없어 파이프라인이 비는 상황을 반영합니다. 독립 스트림 쪽은 상대적으로 IPC가 높게 나와 여러 실행 포트가 동시에 가동되고 있음을 보여줍니다. 카운터 이름과 하이브리드 코어별 분리(`perf --cpu-type`) 등 세부 해석은 [09장: CPU 하드웨어 카운터 활용](/post/cpu-optimization/cpu-hardware-performance-counters/)에서 다루며, 의존성 체인 길이와 포트 압력을 정량적으로 쪼개는 방법은 [18장](/post/cpu-optimization/dependency-chain-port-pressure-analysis/)에서 이어집니다.
+의존 체인 쪽은 IPC가 낮게 나오는 경향이 있는데, 이는 직전 로드가 끝나야 다음 로드 주소를 알 수 있어 후속 로드가 발행되지 못하는 상황을 반영합니다. 독립 스트림 쪽은 상대적으로 IPC가 높게 나와 여러 실행 포트가 동시에 가동되고 있음을 보여줍니다. 카운터 이름과 하이브리드 코어별 분리(`perf --cpu-type`) 등 세부 해석은 [09장: CPU 하드웨어 카운터 활용](/post/cpu-optimization/cpu-hardware-performance-counters/)에서 다루며, 의존성 체인 길이와 포트 압력을 정량적으로 쪼개는 방법은 [18장](/post/cpu-optimization/dependency-chain-port-pressure-analysis/)에서 이어집니다.
 
 ## 흔한 오개념
 

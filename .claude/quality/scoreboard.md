@@ -298,25 +298,25 @@
 | content/collection/optimization-04-memory-allocation/14-memory-leak-detection/index.md | 95.0 | 2026-10-25 | 2 | 통과 | 1.3 | 4a858d4 | 없음(경미: Valgrind '1990년대 후반 개발 시작'·'3.27.1(2026-05)' 무출처·구버전 표기, 계측/배포 빌드 차이와 논리적 누수 설명 중복) |
 | content/collection/optimization-04-memory-allocation/15-memory-lifetime-cacheline-intuition/index.md | 98.1 | 2026-10-25 | 1 | 통과 | 1.3 | b4bd8b9 | 없음(경미: 할당 비용 절 앞 3문장이 스택/힙 절 힙 설명과 중복, `alignas` 언급이 도입 없이 등장) |
 | content/collection/optimization-04-memory-allocation/16-global-allocator-tuning/index.md | 95.5 | 2026-10-25 | 2 | 통과 | 1.3 | 863b1af | 없음(경미: description이 snmalloc 구조 비교를 약속하나 표에 snmalloc 행 없음, 'Tr.02' 약어 미정의, jemalloc 종료 논지 일부 재진술) |
-| content/collection/optimization-05-cpu-microarchitecture/00-introduction/index.md | 88.9 | 2026-07-25 | 3 | 에스컬레이션 | 1.0 | b9a7dc2 | 치명결함 0건이나 3회 반복 후 90점 근소 미달. 잔여: "다루지 않는 것" 절에 캐시 일관성/메모리 모델·SIMD 범위 밖 명시 부재, 1차 출처 1개 추가 여지 |
-| content/collection/optimization-05-cpu-microarchitecture/01-cpu-pipeline-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/02-branch-prediction/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/03-cache-hierarchy/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/04-cache-miss-analysis/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/05-ilp-fundamentals/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/06-out-of-order-execution/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/07-tlb-optimization/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/08-modern-cpu-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/09-hardware-performance-counters/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/10-speculative-execution/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/11-frequency-scaling/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/12-power-management/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/13-apple-silicon-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/14-smt-hyperthreading/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/15-uop-cache-dsb/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/16-risc-v-architecture/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/17-frontend-vs-backend-bound/index.md | - | - | 0 | 미채점 | - | - | - |
-| content/collection/optimization-05-cpu-microarchitecture/18-dependency-chains-port-pressure/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/optimization-05-cpu-microarchitecture/00-introduction/index.md | 90.6 | 2026-10-25 | 4 | 통과 | 1.3 | a9ec040 | - |
+| content/collection/optimization-05-cpu-microarchitecture/01-cpu-pipeline-fundamentals/index.md | 97.3 | 2026-10-23 | 1 | 통과 | 1.3 | b5b5509 | - |
+| content/collection/optimization-05-cpu-microarchitecture/02-branch-prediction/index.md | 97 | 2026-10-23 | 1 | 통과 | 1.3 | f772241 | - |
+| content/collection/optimization-05-cpu-microarchitecture/03-cache-hierarchy/index.md | 100 | 2026-10-23 | 1 | 통과 | 1.3 | ff4f7f6 | - |
+| content/collection/optimization-05-cpu-microarchitecture/04-cache-miss-analysis/index.md | 91.6 | 2026-10-23 | 1 | 통과 | 1.3 | 2ee9a48 | - |
+| content/collection/optimization-05-cpu-microarchitecture/05-ilp-fundamentals/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | beaa57e | - |
+| content/collection/optimization-05-cpu-microarchitecture/06-out-of-order-execution/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | 53a1ec3 | - |
+| content/collection/optimization-05-cpu-microarchitecture/07-tlb-optimization/index.md | 94.6 | 2026-10-24 | 1 | 통과 | 1.3 | 0e12875 | - |
+| content/collection/optimization-05-cpu-microarchitecture/08-modern-cpu-architecture/index.md | 92.8 | 2026-10-24 | 3 | 통과 | 1.3 | bf7969b | - |
+| content/collection/optimization-05-cpu-microarchitecture/09-hardware-performance-counters/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | ba8e02e | - |
+| content/collection/optimization-05-cpu-microarchitecture/10-speculative-execution/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | 9fd4323 | - |
+| content/collection/optimization-05-cpu-microarchitecture/11-frequency-scaling/index.md | 97.3 | 2026-10-24 | 1 | 통과 | 1.3 | 47e075b | - |
+| content/collection/optimization-05-cpu-microarchitecture/12-power-management/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 0607325 | - |
+| content/collection/optimization-05-cpu-microarchitecture/13-apple-silicon-architecture/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | c73e434 | - |
+| content/collection/optimization-05-cpu-microarchitecture/14-smt-hyperthreading/index.md | 93.9 | 2026-10-25 | 1 | 통과 | 1.3 | cc1665f | - |
+| content/collection/optimization-05-cpu-microarchitecture/15-uop-cache-dsb/index.md | 95.8 | 2026-10-25 | 1 | 통과 | 1.3 | 5cf7bc2 | - |
+| content/collection/optimization-05-cpu-microarchitecture/16-risc-v-architecture/index.md | 95.4 | 2026-10-25 | 1 | 통과 | 1.3 | 526d588 | - |
+| content/collection/optimization-05-cpu-microarchitecture/17-frontend-vs-backend-bound/index.md | 97.3 | 2026-10-25 | 1 | 통과 | 1.3 | a3f7462 | - |
+| content/collection/optimization-05-cpu-microarchitecture/18-dependency-chains-port-pressure/index.md | 100 | 2026-10-25 | 1 | 통과 | 1.3 | 4a7a6b8 | - |
 | content/collection/optimization-06-os-runtime/00-introduction/index.md | 96.1 | 2026-07-25 | 3 | 통과 | 1.0 | fad6466 | 없음(경미: "달성할 목표"·"평가 기준" 절 일부 중복, 네비게이션 절 2개 중복 여지) |
 | content/collection/optimization-06-os-runtime/01-context-switch-cost/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/optimization-06-os-runtime/02-syscall-optimization/index.md | - | - | 0 | 미채점 | - | - | - |

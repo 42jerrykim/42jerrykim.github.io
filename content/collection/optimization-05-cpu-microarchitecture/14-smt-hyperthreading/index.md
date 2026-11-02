@@ -1,7 +1,7 @@
 ---
 collection_order: 14
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[CPU 05] SMT/Hyper-Threading 성능 영향"
@@ -16,7 +16,6 @@ tags:
   - Hardware(하드웨어)
   - Concurrency(동시성)
   - Thread
-  - Process
   - OS(운영체제)
   - Linux(리눅스)
   - Benchmark
@@ -25,14 +24,9 @@ tags:
   - Profiling(프로파일링)
   - Implementation(구현)
   - Best-Practices
-  - System-Design
   - Advanced
   - Deep-Dive
-  - Case-Study
-  - Comparison(비교)
   - Pitfalls(함정)
-  - Documentation(문서화)
-  - Technology(기술)
   - SMT
   - Hyper-Threading
   - Simultaneous-Multithreading
@@ -75,13 +69,13 @@ tags:
 
 ## SMT의 역사와 설계 철학
 
-동시 멀티스레딩이라는 아이디어는 상용 제품보다 학계 연구가 먼저였습니다. 1995년 워싱턴 대학의 Dean Tullsen, Susan Eggers, Henry Levy는 슈퍼스칼라 프로세서가 한 사이클 안에서 여러 독립된 스레드의 명령어를 동시에 발행(issue)할 수 있다는 구조를 ISCA(International Symposium on Computer Architecture)에서 발표했고, 시뮬레이션으로 이 구조가 단일 스레드 슈퍼스칼라 대비 최대 4배에 가까운 처리량을 낼 수 있음을 보였습니다.
+동시 멀티스레딩이라는 아이디어는 상용 제품보다 학계 연구가 먼저였습니다. 1995년 워싱턴 대학의 Dean Tullsen, Susan Eggers, Henry Levy는 슈퍼스칼라 프로세서가 한 사이클 안에서 여러 독립된 스레드의 명령어를 동시에 발행(issue)할 수 있다는 구조를 ISCA(International Symposium on Computer Architecture)에서 발표했고, 시뮬레이션에서 8스레드 SMT 구성이 5 IPC를 넘는 처리량을 보인 반면 단일 스레드 슈퍼스칼라는 1.5 IPC에 못 미쳤다고 보고했습니다.
 
 > "Simultaneous multithreading ... permitting several independent threads to issue instructions to a superscalar's multiple functional units in a single cycle." — Tullsen, Eggers, Levy, "Simultaneous Multithreading: Maximizing On-Chip Parallelism"(ISCA, 1995), [워싱턴 대학 SMT 프로젝트 논문 초록](https://dada.cs.washington.edu/smt/papers/isca95abstract.html)
 
 상용화는 2002년 인텔이 Pentium 4·Xeon에 얹은 **Hyper-Threading Technology**로 처음 이뤄졌습니다. 물리 코어 하나를 운영체제에 두 개의 논리 프로세서로 보이게 만든 이 구현 이후 "SMT"(일반 명칭)와 "Hyper-Threading"(인텔의 상표명)은 사실상 같은 개념을 가리키는 말로 함께 쓰입니다. 비슷한 시기 IBM도 독자적으로 SMT를 채택했지만 방향은 더 공격적이었습니다 — POWER5(2004)가 코어당 2스레드(SMT2)로 시작해 POWER7의 SMT4를 거쳐 POWER8·POWER9·POWER10에서는 코어당 최대 8스레드(SMT8)까지 확장했고, Sun(이후 Oracle)의 SPARC T-시리즈("Niagara")는 "스루풋 컴퓨팅"을 설계 철학으로 내세워 코어당 최대 8스레드로 개별 스레드의 지연시간보다 코어 전체의 처리량을 우선했습니다.
 
-이 흐름은 최근 다시 갈립니다. 2021년 인텔 Alder Lake는 P-core(Golden Cove)에만 Hyper-Threading을 남기고 E-core에는 애초에 SMT를 넣지 않았으며([현대 CPU 아키텍처 비교](/post/cpu-optimization/modern-cpu-architecture-comparison/) 참고), Lion Cove 기반 Lunar Lake·Arrow Lake(2024)에서는 P-core에서도 Hyper-Threading을 완전히 제거했습니다. 2025년 출시된 Panther Lake 역시 SMT 없이 나왔고, 인텔은 향후 경쟁력 확보를 위해 SMT를 다시 도입할 가능성을 공개적으로 시사했지만 구체적 시점은 아직 확정되지 않았습니다. 이 방향 전환 자체가 "SMT는 항상 이득"이라는 명제가 아니라 다이 면적·설계 검증 복잡도·단일 스레드 성능 사이의 트레이드오프임을 보여줍니다. 반대로 AMD Zen 계열은 2017년 첫 세대부터 지금까지 코어당 2스레드(SMT2) 구성을 유지하고 있습니다(세대별 세부 차이는 [현대 CPU 아키텍처 비교](/post/cpu-optimization/modern-cpu-architecture-comparison/)에 위임). 앞 장에서 다룬 [Apple Silicon M시리즈](/post/cpu-optimization/apple-silicon-m-series-architecture/)가 SMT 없이 넓은 디코더와 큰 ROB로 단일 스레드 성능을 끌어올리는 길을 택한 것도 같은 트레이드오프에 대한 또 다른 답입니다.
+이 흐름은 최근 다시 갈립니다. 2021년 인텔 Alder Lake는 P-core(Golden Cove)에만 Hyper-Threading을 남기고 E-core에는 애초에 SMT를 넣지 않았으며([현대 CPU 아키텍처 비교](/post/cpu-optimization/modern-cpu-architecture-comparison/) 참고), Lion Cove 기반 Lunar Lake·Arrow Lake(2024)에서는 P-core에서도 Hyper-Threading을 완전히 제거했습니다. 2025년 출시된 Panther Lake 역시 SMT 없이 나왔고, 이 방향 전환 자체가 "SMT는 항상 이득"이라는 명제가 아니라 다이 면적·설계 검증 복잡도·단일 스레드 성능 사이의 트레이드오프임을 보여줍니다. 반대로 AMD Zen 계열은 2017년 첫 세대부터 지금까지 코어당 2스레드(SMT2) 구성을 유지하고 있습니다(세대별 세부 차이는 [현대 CPU 아키텍처 비교](/post/cpu-optimization/modern-cpu-architecture-comparison/)에 위임). 앞 장에서 다룬 [Apple Silicon M시리즈](/post/cpu-optimization/apple-silicon-m-series-architecture/)가 SMT 없이 넓은 디코더와 큰 ROB로 단일 스레드 성능을 끌어올리는 길을 택한 것도 같은 트레이드오프에 대한 또 다른 답입니다.
 
 ## 물리 코어를 둘로 보이게 하는 메커니즘
 
@@ -116,16 +110,7 @@ flowchart TB
 
 이 간섭은 [CPU 하드웨어 카운터 활용](/post/cpu-optimization/cpu-hardware-performance-counters/)에서 예고한 것처럼 카운터 해석 자체도 복잡하게 만듭니다. `perf stat`이 논리 CPU 단위로 찍는 사이클·IPC·캐시 미스 카운터는 실제로는 물리 코어 하나를 관통하는 활동의 일부만 그 논리 CPU에 귀속시킨 값입니다. 형제 스레드가 활발히 실행 중이면 측정 대상 스레드의 "IPC"에는 형제 스레드와의 자원 경합으로 인한 손실이 섞여 들어가고, 형제 스레드가 유휴 상태면 같은 코드가 사실상 전체 코어 자원을 독점해 더 높은 IPC를 보입니다. 즉 SMT가 켜진 상태에서 논리 CPU 하나의 카운터만 보고 "이 코드는 IPC가 낮다"고 단정하면, 코드 자체의 문제인지 형제 스레드와의 경합인지를 구분하지 못한 채 잘못된 결론에 도달할 수 있습니다.
 
-```text
-# 같은 물리 코어(형제 스레드)에서 측정한 논리 CPU별 perf stat 예시 — 수치는 워크로드·세대에 따라 다름
-# 형제(CPU1)가 유휴 상태일 때 CPU0
-     1,000,000,000      cycles
-       850,000,000      instructions              #    0.85  insn per cycle
-
-# 형제(CPU1)에서 캐시·포트 부하가 큰 스레드가 동시 실행될 때 CPU0 (같은 코드, 같은 반복 횟수)
-     1,000,000,000      cycles
-       520,000,000      instructions              #    0.52  insn per cycle
-```
+이 차이는 형제 스레드가 유휴일 때와 캐시·포트 부하가 큰 스레드를 함께 돌릴 때 같은 코드의 `perf stat -e cycles,instructions` IPC를 비교하면 직접 확인할 수 있습니다. 아래 벤치마크가 그 비교를 지연시간 백분위수로 재현합니다.
 
 **두 상황의 지연시간 분산을 직접 재현해 측정**하면 노이즈 네이버 효과를 정량적으로 볼 수 있습니다. 아래는 측정 대상 스레드를 특정 논리 CPU에 고정하고, "이웃" 스레드를 SMT 형제(같은 물리 코어) 또는 별도의 물리 코어 중 하나에 고정해 지연시간 백분위수를 비교하는 벤치마크 뼈대입니다.
 
@@ -157,14 +142,17 @@ void pin_thread(std::thread& t, int cpu) {
 }
 
 int main(int argc, char** argv) {
-  if (argc < 3) { std::fprintf(stderr, "usage: %s measure_cpu neighbor_cpu\n", argv[0]); return 1; }
+  if (argc < 3) { std::fprintf(stderr, "usage: %s measure_cpu neighbor_cpu(-1: no neighbor)\n", argv[0]); return 1; }
   int measureCpu = std::atoi(argv[1]);   // 측정 스레드가 실행될 논리 CPU (고정)
   int neighborCpu = std::atoi(argv[2]);  // 비교 대상: SMT 형제 CPU 또는 다른 물리 코어의 CPU
 
   constexpr std::size_t kBufN = 1 << 16;
   std::vector<double> buf(kBufN, 1.0);
-  std::thread neighbor(noisy_neighbor, buf.data(), kBufN);
-  pin_thread(neighbor, neighborCpu);
+  std::thread neighbor;
+  if (neighborCpu >= 0) {  // -1이면 이웃 없는 기준선 측정
+    neighbor = std::thread(noisy_neighbor, buf.data(), kBufN);
+    pin_thread(neighbor, neighborCpu);
+  }
 
   cpu_set_t self_set;
   CPU_ZERO(&self_set);
@@ -173,15 +161,20 @@ int main(int argc, char** argv) {
 
   std::vector<long> samples;
   samples.reserve(200000);
-  volatile double x = 1.0;
+  std::vector<double> work(1 << 12, 1.0);  // 32KB 버퍼, 아래 루프는 그중 200개 캐시라인(약 12.8KB)만 갱신
+  volatile double sink = 0.0;
   for (int i = 0; i < 200000; ++i) {
     auto t0 = std::chrono::steady_clock::now();
-    for (int j = 0; j < 200; ++j) x = x * 1.0000001 + 1.0;  // 측정 대상 "작업" 대리
+    for (int j = 0; j < 200; ++j) {  // 측정 대상 "작업" 대리: L1에 올라가는 캐시라인을 갱신
+      std::size_t k = (static_cast<std::size_t>(j) * 8) % work.size();
+      work[k] = work[k] * 1.0000001 + 1.0;
+    }
+    sink = work[0];
     auto t1 = std::chrono::steady_clock::now();
     samples.push_back(std::chrono::duration_cast<std::chrono::nanoseconds>(t1 - t0).count());
   }
   stop = true;
-  neighbor.join();
+  if (neighbor.joinable()) neighbor.join();
 
   std::sort(samples.begin(), samples.end());
   auto pct = [&](double p) { return samples[static_cast<std::size_t>(samples.size() * p)]; };
@@ -190,7 +183,7 @@ int main(int argc, char** argv) {
 }
 ```
 
-`g++ -O2 -pthread -std=c++17 bench_smt.cpp -o bench_smt`(Linux, GCC 13 기준)로 빌드합니다. `lscpu -e`로 어떤 논리 CPU끼리 같은 `CORE`에 속하는지 먼저 확인한 뒤, `./bench_smt 0 1`(0·1이 SMT 형제인 경우)과 `./bench_smt 0 4`(4가 다른 물리 코어인 경우)를 각각 실행해 p99·p999를 비교합니다. `pthread_setaffinity_np`는 POSIX 전용이라 이 코드는 Linux/macOS 계열에서만 그대로 컴파일되며, Windows에서는 `SetThreadAffinityMask` 계열 API로 바꿔야 합니다. 이 벤치마크는 절대적인 나노초 수치를 얻으려는 것이 아니라 "형제 스레드 유무·부하"에 따라 p99·p999가 벌어지는 정도를 같은 하드웨어에서 상대 비교하는 데 목적이 있으므로, 실제 배포 전 판단 근거로 쓰려면 대상 워크로드의 실제 코드로 반드시 재현해야 합니다.
+`g++ -O2 -pthread -std=c++17 bench_smt.cpp -o bench_smt`(Linux, GCC 13 기준)로 빌드합니다. `lscpu -e`로 어떤 논리 CPU끼리 같은 `CORE`에 속하는지 먼저 확인한 뒤, `./bench_smt 0 -1`(이웃 없음 기준선), `./bench_smt 0 1`(0·1이 SMT 형제인 경우), `./bench_smt 0 4`(4가 다른 물리 코어인 경우)를 각각 실행해 p99·p999를 비교합니다. `pthread_setaffinity_np`는 POSIX 전용이라 이 코드는 Linux 전용이며, macOS와 Windows에서는 `SetThreadAffinityMask` 계열 API로 바꿔야 합니다. 이 벤치마크는 절대적인 나노초 수치를 얻으려는 것이 아니라 "형제 스레드 유무·부하"에 따라 p99·p999가 벌어지는 정도를 같은 하드웨어에서 상대 비교하는 데 목적이 있으므로, 실제 배포 전 판단 근거로 쓰려면 대상 워크로드의 실제 코드로 반드시 재현해야 합니다.
 
 ## 흔한 오개념
 
@@ -217,18 +210,7 @@ lscpu -e   # CORE 열이 같은 행끼리 SMT 형제
 cat /sys/devices/system/cpu/cpu0/topology/thread_siblings_list   # 예: "0,1"
 ```
 
-실행하면 다음과 같이 CORE 열이 같은 논리 CPU끼리 SMT 형제임을 확인할 수 있습니다.
-
-```text
-$ lscpu -e
-CPU NODE SOCKET CORE L1d:L1i:L2:L3 ONLINE MAXMHZ MINMHZ
-  0    0      0    0 0:0:0:0          yes 5600.0000  800.0000
-  1    0      0    0 0:0:0:0          yes 5600.0000  800.0000
-  2    0      0    1 1:1:1:0          yes 5600.0000  800.0000
-  3    0      0    1 1:1:1:0          yes 5600.0000  800.0000
-```
-
-CPU0과 CPU1이 같은 `CORE 0`이므로 SMT 형제이고, 저지연 스레드를 CPU0에 고정했다면 CPU1에는 다른 워크로드를 두지 않아야 노이즈 네이버를 피할 수 있습니다. 시스템 전체에서 SMT 자체를 끄려면 Linux 6.6부터는 스레드 수까지 지정할 수 있는 `/sys/devices/system/cpu/smt/control` 인터페이스를 씁니다.
+`lscpu -e` 출력에서 `CORE` 열이 같은 논리 CPU끼리가 SMT 형제입니다. 예를 들어 CPU0과 CPU1이 같은 `CORE 0`이라면 저지연 스레드를 CPU0에 고정했다면 CPU1에는 다른 워크로드를 두지 않아야 노이즈 네이버를 피할 수 있습니다. 시스템 전체에서 SMT 자체를 끄려면 `/sys/devices/system/cpu/smt/control` 인터페이스를 씁니다(`<N>` 값으로 코어당 스레드 수를 지정할 수 있다고 ABI 문서에 적혀 있습니다).
 
 ```bash
 cat /sys/devices/system/cpu/smt/control     # on | off | forceoff | notsupported | <N>
@@ -244,7 +226,7 @@ SMT를 끄는 방법 자체(BIOS vs `smt/control` vs CPU 오프라인)와 그 �
 
 ## 비판적 시각: 한계와 트레이드오프
 
-SMT를 둘러싼 논쟁에서 가장 눈에 띄는 사실은 업계의 방향이 하나로 수렴하지 않는다는 점입니다. 인텔은 클라이언트 P-core에서 Hyper-Threading을 걷어냈다가 경쟁력을 위해 재도입을 검토하고, AMD는 Zen 첫 세대부터 지금까지 SMT2를 유지하며, IBM은 서버 워크로드에서 SMT8까지 밀어붙이고, Apple Silicon은 SMT 없이 넓은 파이프라인으로 답합니다. 이는 SMT의 이득이 다이 면적·검증 복잡도·목표 워크로드(단일 스레드 지연 vs 집계 처리량)에 따라 완전히 다른 트레이드오프 곡선을 그린다는 뜻이며, 어느 한쪽이 "정답"이라고 단정할 근거는 없습니다.
+업계의 방향이 하나로 수렴하지 않는다는 점(위 역사 절 참고)은 SMT의 이득이 다이 면적·검증 복잡도·목표 워크로드(단일 스레드 지연 대 집계 처리량)에 따라 다른 트레이드오프 곡선을 그린다는 뜻이며, 어느 한쪽이 "정답"이라고 단정할 근거는 없습니다.
 
 저지연 시스템 엔지니어 입장에서 더 실질적인 한계는 정적 분할과 경쟁 공유 중 어느 쪽이 적용되는지가 마이크로아키텍처마다 다르고 공개 문서에 상세히 나오지 않는 경우가 많다는 점입니다(구현 정의). 그 결과 "SMT를 끄면 정확히 얼마나 개선되는가"라는 질문에는 문헌적으로 확정된 단일 수치가 없고, 워크로드의 캐시 풋프린트·포트 압력·측정 대상 백분위수(평균 vs p99 vs p999)에 따라 결과가 크게 달라집니다. 게다가 SMT를 끄는 결정은 그 자체로 끝나지 않습니다 — 형제 CPU가 완전히 비어 있어도 운영체제 스케줄러가 그 자리에 다른 작업을 배치하지 않는다는 보장은 별도의 CPU 격리·인터럽트 친화도 설정으로 뒷받침해야 하며, 이 부분은 이 트랙이 아니라 OS/런타임 트랙의 책임입니다. 따라서 이 장에서 다루는 판단 기준은 "SMT를 켤지 끌지"에 대한 하드웨어 관점의 근거이지, 그것만으로 저지연 시스템의 격리가 완성된다는 뜻은 아닙니다.
 

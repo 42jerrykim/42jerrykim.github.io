@@ -1,7 +1,7 @@
 ---
 collection_order: 17
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-25
 draft: false
 image: wordcloud.png
 title: "[CPU 05] Frontend vs Backend Bound 개념"
@@ -18,18 +18,13 @@ tags:
   - Latency
   - Throughput
   - Profiling(프로파일링)
-  - Concurrency(동시성)
-  - Implementation(구현)
-  - Deep-Dive
-  - Advanced
-  - Tutorial(튜토리얼)
-  - Guide(가이드)
-  - Reference(참고)
-  - Technology(기술)
-  - Comparison(비교)
-  - System-Design
-  - Debugging(디버깅)
   - TopDown
+  - Branch-Prediction
+  - Out-of-Order
+  - Slot-Accounting
+  - Memory-Bound
+  - Core-Bound
+  - Cycle-Accounting
   - TMA
   - Pipeline-Slots
   - Frontend-Bound
@@ -85,7 +80,9 @@ flowchart TD
 Level 1 분류가 추상적으로 느껴지지 않도록, 분기 예측이 구조적으로 불가능한 코드를 하나 만들어 실제로 Bad Speculation이 지배적으로 나오는지 확인해 보겠습니다. 아래 코드는 난수로 채운 배열을 순회하며 그 값에 따라 분기하는데, 데이터가 무작위이므로 어떤 분기 예측기도 절반 이상을 맞히기 어렵습니다.
 
 ```cpp
-// topdown_demo.cpp — 빌드: g++ -O2 -march=native -o topdown_demo topdown_demo.cpp
+// topdown_demo.cpp — 빌드: g++ -O1 -o topdown_demo topdown_demo.cpp
+// -O1로 두는 이유: -O2 이상에서는 컴파일러가 아래 분기를 cmov 같은 무분기 코드로 바꿀 수 있어
+// 분기 오예측을 일으키려는 이 예제의 의도가 사라진다. 빌드 후 objdump -d로 조건 분기가 남았는지 확인한다.
 #include <cstdint>
 #include <cstdio>
 #include <random>
@@ -99,9 +96,11 @@ int main() {
   for (auto& v : data) v = static_cast<uint8_t>(coin(rng));  // 무작위 0/1로 예측 불가능한 분기 유도
 
   int64_t sum = 0;
-  for (size_t i = 0; i < N; ++i) {
-    if (data[i]) sum += static_cast<int64_t>(i);   // 데이터가 무작위라 분기 예측기가 맞히지 못함
-    else         sum -= static_cast<int64_t>(i);
+  for (int pass = 0; pass < 20; ++pass) {  // 데이터 생성 시간이 측정에서 차지하는 비중을 줄이려 순회를 반복
+    for (size_t i = 0; i < N; ++i) {
+      if (data[i]) sum += static_cast<int64_t>(i);   // 데이터가 무작위라 분기 예측기가 맞히지 못함
+      else         sum -= static_cast<int64_t>(i);
+    }
   }
   std::printf("%lld\n", static_cast<long long>(sum));
   return 0;
@@ -110,22 +109,12 @@ int main() {
 
 이 프로그램을 `perf stat -M TopdownL1`로 실행하면 네 범주의 비율을 백분율로 얻을 수 있습니다.
 
-```text
-$ perf stat -M TopdownL1 ./topdown_demo
-# Linux 6.x, GCC 13, x86-64(Ice Lake 이후 세대, 고정 카운터 SLOTS 지원) 기준 예시 값.
-# 마이크로아키텍처 세대·컴파일러·난수 시드에 따라 절대 수치는 달라짐.
-
- Performance counter stats for './topdown_demo':
-
-            58.4 %  tma_bad_speculation
-            11.7 %  tma_frontend_bound
-            21.6 %  tma_backend_bound
-             8.3 %  tma_retiring
-
-       0.841923651 seconds time elapsed
+```bash
+perf stat -M TopdownL1 ./topdown_demo
 ```
 
-`tma_bad_speculation`이 절반을 훌쩍 넘는다는 것은, 발행된 슬롯의 상당수가 실행까지 갔다가 분기 오예측으로 버려졌다는 뜻입니다. 이는 코드를 처음 보고 세운 가설 — "무작위 분기니까 예측 실패가 병목일 것" — 과 정확히 들어맞으며, 다음으로 볼 곳은 [02장](/post/cpu-optimization/branch-prediction-mechanisms-cost/)의 분기 예측기 내부 동작과 오답 비용 실측입니다. 하이브리드 코어(P-core/E-core)가 섞인 CPU에서는 코어 종류마다 프론트엔드·백엔드 폭이 달라 Level 1 비율이 코어별로 다르게 나올 수 있으며, 이 경우 코어를 구분해 측정하는 `perf --cpu-type` 옵션은 [09장: CPU 하드웨어 카운터 활용](/post/cpu-optimization/cpu-hardware-performance-counters/)에서 다룹니다.
+출력의 `tma_bad_speculation`, `tma_frontend_bound`, `tma_backend_bound`, `tma_retiring` 네 줄이 슬롯 비율입니다. 이 예제는 무작위 분기가 핵심이므로 `tma_bad_speculation`이 두드러지게 높아지는지 확인하는 것이 가설 검증이며, 절대 수치는 마이크로아키텍처 세대·컴파일러·난수 시드에 따라 달라지므로 자신의 장비에서 직접 측정해야 합니다.
+`tma_bad_speculation`이 높게 나온다면 발행된 슬롯의 상당수가 실행까지 갔다가 분기 오예측으로 버려졌다는 뜻입니다. 이는 코드를 처음 보고 세운 가설("무작위 분기니까 예측 실패가 병목일 것")과 맞아떨어지는 경우이며, 다음으로 볼 곳은 [02장](/post/cpu-optimization/branch-prediction-mechanisms-cost/)의 분기 예측기 내부 동작과 오답 비용 실측입니다. 하이브리드 코어(P-core/E-core)가 섞인 CPU에서는 코어 종류마다 프론트엔드·백엔드 폭이 달라 Level 1 비율이 코어별로 다르게 나올 수 있으며, 이 경우 코어를 구분해 측정하는 `perf stat --cputype` 옵션은 [09장: CPU 하드웨어 카운터 활용](/post/cpu-optimization/cpu-hardware-performance-counters/)에서 다룹니다.
 
 ## 흔한 오개념
 
@@ -133,7 +122,7 @@ $ perf stat -M TopdownL1 ./topdown_demo
 
 <strong>"Level 1 백분율만 보면 원인을 알 수 있다"</strong>도 흔한 오해입니다. Level 1은 "어느 범주가 문제인지"를 알려줄 뿐, "왜 그런지"는 알려주지 않습니다. Frontend Bound 30%라는 숫자만으로는 명령어 캐시 미스 때문인지 디코더 폭 한계 때문인지 구분이 안 되며, 실제 원인은 Level 2·3의 하위 메트릭(`tma_fetch_latency`, `tma_fetch_bandwidth` 등)까지 내려가야 드러납니다. 이 장은 그 드릴다운의 출발점을 제공할 뿐, 드릴다운 자체는 뒤 챕터들의 몫입니다.
 
-<strong>"IPC가 낮으면 무조건 Backend Bound다"</strong>라는 인식도 정확하지 않습니다. IPC가 낮은 이유는 네 범주 중 어느 것이든 될 수 있습니다 — Bad Speculation이 지배적이어도 폐기되는 μop이 많아 정상 완료되는 μop 수(그리고 IPC)는 낮게 나오며, 위 실측 예시가 바로 그 사례입니다. IPC 하나만으로는 Bad Speculation과 Backend Bound를 구분할 수 없다는 점이 TopDown이 IPC 단일 지표보다 유용한 이유입니다.
+<strong>"IPC가 낮으면 무조건 Backend Bound다"</strong>라는 인식도 정확하지 않습니다. IPC가 낮은 이유는 네 범주 중 어느 것이든 될 수 있습니다 — Bad Speculation이 지배적이어도 폐기되는 μop이 많아 정상 완료되는 μop 수(그리고 IPC)는 낮게 나오며, 위 무작위 분기 예제가 그런 사례가 될 수 있습니다(직접 측정해 확인해야 합니다). IPC 하나만으로는 Bad Speculation과 Backend Bound를 구분할 수 없다는 점이 TopDown이 IPC 단일 지표보다 유용한 이유입니다.
 
 ## 판단 기준: Level 1 결과에서 다음에 볼 곳
 
@@ -148,7 +137,7 @@ $ perf stat -M TopdownL1 ./topdown_demo
 
 ## 비판적 시각: TMA의 한계와 논란
 
-TMA의 슬롯 귀속은 인과관계의 완전한 증명이 아니라 **정교한 발견적(heuristic) 분류**임을 염두에 둬야 합니다. 분기 오예측 직후처럼 파이프라인 플러시와 프론트엔드 재충전이 겹치는 경계 구간(원 논문이 "skid"라 부르는 현상)에서는 슬롯이 실제 원인과 다른 범주로 잘못 귀속될 수 있고, 이런 근사 오차는 특히 Level 1 비율이 서로 비슷비슷하게 나뉜 애매한 케이스에서 결론을 흐릴 수 있습니다. 측정 인프라 자체도 세대에 따라 신뢰도가 다릅니다 — Ice Lake 이전 세대는 여러 범용 카운터를 번갈아 측정(멀티플렉싱)해야 해서 짧게 실행되는 코드에는 노이즈가 크고, Ice Lake부터의 전용 고정 카운터·`PERF_METRICS` MSR을 쓸 수 있을 때 신뢰도가 크게 올라갑니다. 하이브리드 코어에서는 P-core와 E-core의 발행 폭·파이프라인 구조가 달라 코어를 구분하지 않고 집계하면 왜곡된 평균이 나오므로 코어별 측정이 필요합니다. AMD는 `uProf`에서 유사한 개념을 제공하지만 세부 메트릭 이름과 분류 경계는 Intel TMA와 동일하지 않으며, Arm은 Neoverse 코어에서 같은 4범주 1단계 분류를 채택하면서도 2단계부터는 Cycle Accounting 등 별도 체계로 갈라집니다. 즉 TMA는 Intel이 만들었지만 Intel 전용은 아니고, 그렇다고 벤더 간에 완전히 호환되는 표준도 아닙니다. 실무에서는 Level 1을 "어디를 더 팔지" 정하는 나침반으로만 쓰고, 실제 결론은 Level 2·3 드릴다운과 코드 수준 실험으로 재확인하는 습관이 필요합니다.
+TMA의 슬롯 귀속은 인과관계의 완전한 증명이 아니라 **정교한 발견적(heuristic) 분류**임을 염두에 둬야 합니다. 분기 오예측 직후처럼 파이프라인 플러시와 프론트엔드 재충전이 겹치는 경계 구간에서는 슬롯이 실제 원인과 다른 범주로 잘못 귀속될 수 있고, 이런 근사 오차는 특히 Level 1 비율이 서로 비슷비슷하게 나뉜 애매한 케이스에서 결론을 흐릴 수 있습니다. 측정 인프라 자체도 세대에 따라 신뢰도가 다릅니다 — Ice Lake 이전 세대는 여러 범용 카운터를 번갈아 측정(멀티플렉싱)해야 해서 짧게 실행되는 코드에는 노이즈가 크고, Ice Lake부터의 전용 고정 카운터·`PERF_METRICS` MSR을 쓸 수 있을 때 신뢰도가 크게 올라갑니다. 하이브리드 코어에서는 P-core와 E-core의 발행 폭·파이프라인 구조가 달라 코어를 구분하지 않고 집계하면 왜곡된 평균이 나오므로 코어별 측정이 필요합니다. AMD는 `uProf`에서 유사한 개념을 제공하지만 세부 메트릭 이름과 분류 경계는 Intel TMA와 동일하지 않으며, Arm은 Neoverse 코어에서 같은 4범주 1단계 분류를 채택하면서도 2단계부터는 Cycle Accounting 등 별도 체계로 갈라집니다. 벤더 간에 완전히 호환되는 표준은 아닙니다. 실무에서는 Level 1을 "어디를 더 팔지" 정하는 나침반으로만 쓰고, 실제 결론은 Level 2·3 드릴다운과 코드 수준 실험으로 재확인하는 습관이 필요합니다.
 
 ## 더 읽을 거리
 

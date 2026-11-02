@@ -1,7 +1,7 @@
 ---
 collection_order: 11
 date: 2026-07-13
-lastmod: 2026-07-13
+lastmod: 2026-10-24
 draft: false
 image: wordcloud.png
 title: "[CPU 05] CPU 주파수 스케일링과 성능"
@@ -18,24 +18,17 @@ tags:
   - Profiling(프로파일링)
   - OS(운영체제)
   - Linux(리눅스)
-  - Windows(윈도우)
-  - Embedded(임베디드)
   - Production
   - Reliability
   - Monitoring(모니터링)
   - Best-Practices
   - Advanced
   - Deep-Dive
-  - Guide(가이드)
-  - Reference(참고)
-  - Tutorial(튜토리얼)
-  - Case-Study
-  - Comparison(비교)
   - Pitfalls(함정)
-  - Edge-Cases(엣지케이스)
-  - Technology(기술)
-  - System-Design
   - DVFS
+  - intel_pstate
+  - EPP
+  - turbostat
   - Turbo-Boost
   - Precision-Boost
   - P-State
@@ -71,7 +64,7 @@ tags:
 
 ## DVFS의 기원 (역사·배경)
 
-주파수·전압을 동적으로 조절하는 아이디어는 원래 배터리 수명이 목적이었습니다. Intel은 1999년 모바일 Pentium III에 **SpeedStep**을 도입해 배터리 구동 시 전압과 클럭을 함께 낮췄고, AMD는 2000년대 초 노트북용 <strong>PowerNow!</strong>와 데스크톱용 **Cool'n'Quiet**로 대응했습니다. 이후 ACPI(Advanced Configuration and Power Interface) 표준이 **P-state**(성능 상태)와 **C-state**(유휴 상태)라는 용어를 정의하면서, 운영체제가 벤더 중립적인 인터페이스로 주파수·유휴 상태를 제어할 길이 열렸습니다.
+주파수·전압을 동적으로 조절하는 아이디어는 원래 배터리 수명이 목적이었습니다. Intel은 모바일 프로세서에 **SpeedStep**을 도입해 배터리 구동 시 전압과 클럭을 함께 낮췄고, AMD는 노트북용 <strong>PowerNow!</strong>와 데스크톱용 **Cool'n'Quiet**로 대응했습니다. 이후 ACPI(Advanced Configuration and Power Interface) 표준이 **P-state**(성능 상태)와 **C-state**(유휴 상태)라는 용어를 정의하면서, 운영체제가 벤더 중립적인 인터페이스로 주파수·유휴 상태를 제어할 길이 열렸습니다.
 
 성능 방향의 전환점은 2008년 Nehalem 세대에 도입된 **Turbo Boost**였습니다. 이전까지 DVFS는 "전력을 아끼기 위해 클럭을 낮추는" 기술이었지만, Turbo Boost는 반대로 "여유 전력·열 예산이 있으면 정격 클럭 이상으로 올리는" 기술이었습니다. 2016년 Broadwell-E에서는 코어별로 부스트 한도를 다르게 주는 **Turbo Boost Max 3.0**이 추가되어 "가장 좋은 코어"라는 개념이 하드웨어 차원에서 명시됩니다. AMD 진영에서는 2017년 Ryzen(Zen)이 **Precision Boost**를, 2018년 Zen+ 세대가 **Precision Boost 2**를 도입해 이산적인 부스트 구간 대신 연속적인 곡선으로 주파수를 조절하는 방식으로 전환했습니다.
 
@@ -79,7 +72,7 @@ tags:
 
 CMOS 회로의 동적 전력 소비는 대략 "전력 ∝ 정전용량 × 전압² × 주파수"로 근사됩니다. 전압을 낮추면 전력이 제곱으로 줄고, 여기에 전압을 낮춰야 클럭도 낮출 수 있다는 물리적 제약(전압이 낮으면 트랜지스터 스위칭이 느려짐)이 겹쳐, 주파수를 낮추는 것만으로도 전력 절감 효과가 크게 나타납니다. 반대 방향으로 보면, 코어를 정격 이상으로 밀어붙이려면 전압도 함께 올려야 하고, 그러면 전력·발열이 세제곱에 가깝게 늘어납니다. 이 비선형 관계가 "왜 모든 코어를 동시에 최고 클럭으로 못 돌리는가"의 물리적 근거입니다.
 
-**P-state**는 코어가 실행 중일 때의 성능 등급을 가리키며, P0가 가장 높은 성능(가장 높은 클럭·전압)이고 번호가 커질수록 낮은 클럭입니다. **C-state**는 코어가 유휴 상태로 들어갈 때의 절전 등급으로, C0는 실행 중, C1은 얕은 유휴(클럭 게이팅 정도), C6 이상은 코어 전압을 거의 0까지 내리는 깊은 유휴 상태입니다. 두 상태는 서로 다른 축입니다—P-state는 "일할 때 얼마나 빠르게", C-state는 "쉴 때 얼마나 깊이 절전할지"를 결정합니다. 지연시간 관점에서 중요한 것은, 상태 전이 자체에 시간이 걸린다는 점입니다. P-state 전환은 하드웨어·펌웨어에 따라 수 마이크로초에서 수십 마이크로초가 걸리며, 3세대 Intel Xeon Scalable 이후로는 BIOS에서 0/50/500µs 중 선택할 수 있게 되었습니다. C-state는 더 심각한데, 깊은 C-state(C6 등)에서 깨어나는 데는 수십–수백 마이크로초가 걸릴 수 있어, 그 자체가 µs 단위 요청 예산을 잠식하는 지연 원인이 됩니다. 정확한 수치는 세대·벤더·BIOS 설정에 따라 다르므로 대상 플랫폼에서 `cpupower idle-info`, `turbostat` 등으로 직접 확인해야 합니다.
+**P-state**는 코어가 실행 중일 때의 성능 등급을 가리키며, P0가 가장 높은 성능(가장 높은 클럭·전압)이고 번호가 커질수록 낮은 클럭입니다. **C-state**는 코어가 유휴 상태로 들어갈 때의 절전 등급으로, C0는 실행 중, C1은 얕은 유휴(클럭 게이팅 정도), C6 이상은 코어 전압을 거의 0까지 내리는 깊은 유휴 상태입니다. 두 상태는 서로 다른 축입니다—P-state는 "일할 때 얼마나 빠르게", C-state는 "쉴 때 얼마나 깊이 절전할지"를 결정합니다. 지연시간 관점에서 중요한 것은, 상태 전이 자체에 시간이 걸린다는 점입니다. P-state 전환은 하드웨어·펌웨어에 따라 시간이 걸리며 그 동안 클럭이 목표에 도달하지 못합니다. C-state는 더 심각한데, 깊은 C-state(C6 등)에서 깨어나는 데는 수십–수백 마이크로초가 걸릴 수 있어, 그 자체가 µs 단위 요청 예산을 잠식하는 지연 원인이 됩니다. 정확한 수치는 세대·벤더·BIOS 설정에 따라 다르므로 대상 플랫폼에서 `cpupower idle-info`, `turbostat` 등으로 직접 확인해야 합니다.
 
 ## Turbo Boost와 Precision Boost 2
 
@@ -92,16 +85,16 @@ flowchart LR
   loadSpike["부하 급증</br>(요청 도착)"] --> schedUtil["스케줄러 유틸리제이션</br>PELT 갱신"]
   schedUtil --> governorDecision{"governor 정책"}
   governorDecision -->|"performance"| maxFreq["최대 P-state 요청"]
-  governorDecision -->|"schedutil/ondemand"| calcFreq["util 비례 P-state 계산"]
+  governorDecision -->|"schedutil"| calcFreq["PELT util 비례 P-state 계산"]
   maxFreq --> hwBoost["HWP/CPPC 자율 부스트</br>PL1/PL2·Tau 확인"]
   calcFreq --> hwBoost
-  hwBoost --> freqChange["실제 클럭 변경</br>(수십µs 지연)"]
+  hwBoost --> freqChange["실제 클럭 변경</br>(지연은 플랫폼 의존)"]
   freqChange --> latencyImpact["요청 처리 지연에 반영"]
 ```
 
 ## Linux governor 정책
 
-Linux는 `cpufreq` 서브시스템을 통해 governor라는 정책 모듈로 주파수 요청을 추상화합니다. **performance**는 항상 `scaling_max_freq` 한도의 최고 P-state를 요청하고, **powersave**는 반대로 최저 P-state를 유지합니다. **ondemand**는 유휴 시간 비율로 부하를 추정해 임계값을 넘으면 즉시 최고 클럭으로 뛰고, **conservative**는 같은 방식이되 단계적으로만 클럭을 올려 급격한 전력 변화를 피합니다. **schedutil**은 커널 4.7 이후 도입되었고 스케줄러의 PELT(Per-Entity Load Tracking) 유틸리제이션 값을 직접 읽어 `f = 1.25 * f_0 * util / max` 형태의 공식으로 목표 주파수를 계산하며, 여러 배포판에서 기본 governor로 채택되었습니다. `intel_pstate`나 `amd_pstate`가 **active(HWP/CPPC autonomous) 모드**로 동작할 때는 이 governor 계층을 우회하고 하드웨어가 직접 P-state를 고르며, OS는 EPP·성능 힌트만 전달하는 **passive/guided 모드**로 전환할 수도 있습니다.
+Linux는 `cpufreq` 서브시스템을 통해 governor라는 정책 모듈로 주파수 요청을 추상화합니다. **performance**는 항상 `scaling_max_freq` 한도의 최고 P-state를 요청하고, **powersave**는 반대로 최저 P-state를 유지합니다. **ondemand**는 유휴 시간 비율로 부하를 추정해 임계값을 넘으면 즉시 최고 클럭으로 뛰고, **conservative**는 같은 방식이되 단계적으로만 클럭을 올려 급격한 전력 변화를 피합니다. **schedutil**은 커널 4.7 이후 도입되었고 스케줄러의 PELT(Per-Entity Load Tracking) 유틸리제이션 값을 직접 읽어 `f = 1.25 * f_0 * util / max` 형태의 공식으로 목표 주파수를 계산하며, 여러 배포판에서 기본 governor로 채택되었습니다. `intel_pstate`는 [커널 문서](https://www.kernel.org/doc/html/latest/admin-guide/pm/intel_pstate.html)에 따라 **active 모드**에서는 자체 내부 governor 알고리즘을 쓰거나 하드웨어가 성능 스케일링을 스스로 하게 두고(이때 OS의 performance·powersave 설정은 EPP 같은 힌트로 반영됩니다), **passive 모드**에서는 schedutil 같은 일반 CPUFreq governor의 요청에 응답합니다. `amd_pstate`도 CPPC를 이용한 비슷한 구분을 가집니다.
 
 ```bash
 # 현재 governor와 유휴 상태 설정 확인
@@ -116,11 +109,11 @@ sudo cpupower -c 0-3 frequency-set -g performance
 sudo cpupower idle-set -d 3   # 예: 상태 인덱스 3을 비활성화(플랫폼마다 인덱스 의미가 다름)
 ```
 
-`cpupower` 명령은 Linux `tuned`/`linux-tools` 패키지에 포함된 표준 도구로, governor 전환과 idle state 제어를 한 번에 다룰 수 있습니다. 다만 idle state 인덱스와 이름은 CPU 세대·벤더마다 다르므로, 적용 전에 반드시 `cpupower idle-info`로 대상 시스템의 상태 목록을 확인해야 합니다.
+`cpupower` 명령은 Linux 배포판의 `linux-tools`(또는 `kernel-tools`) 패키지에 포함된 도구로, governor 전환과 idle state 제어를 한 번에 다룰 수 있습니다. 다만 idle state 인덱스와 이름은 CPU 세대·벤더마다 다르므로, 적용 전에 반드시 `cpupower idle-info`로 대상 시스템의 상태 목록을 확인해야 합니다.
 
 ## 주파수 변동을 직접 관찰하기
 
-주파수 스케일링이 지연시간 지터를 만든다는 주장은 말로 설명하기보다 직접 측정해 확인하는 편이 신뢰도가 높습니다. 아래는 동일한 바쁜 루프를 반복 실행하며 반복별 소요 시간의 분산을 기록하는 최소 벤치마크 스켈레톤입니다. governor를 `performance`와 `powersave`(또는 `schedutil`)로 바꿔가며 같은 바이너리를 실행하면 최솟값은 비슷해도 꼬리 분포(p99, p99.9)가 크게 달라지는 것을 관찰할 수 있습니다.
+주파수 스케일링이 지연시간 지터를 만든다는 주장은 말로 설명하기보다 직접 측정해 확인하는 편이 신뢰도가 높습니다. 아래는 동일한 바쁜 루프를 반복 실행하며 반복별 소요 시간의 분산을 기록하는 최소 벤치마크 스켈레톤입니다. governor를 `performance`와 `powersave`(또는 `schedutil`)로 바꿔가며 같은 바이너리를 실행해 꼬리 분포(p99, p99.9)가 달라지는지 비교할 수 있습니다. 다만 반복 한 번이 수십 µs 안팎으로 짧아 주파수 상승 과정이나 C-state 진입은 이 코드로 분리해 볼 수 없으므로, 그것을 보려면 반복 사이에 sleep을 넣는 변형이 필요합니다.
 
 ```cpp
 // jitter_bench.cpp — g++ -O2 -o jitter_bench jitter_bench.cpp
@@ -159,21 +152,13 @@ int main() {
 }
 ```
 
-이 코드를 `taskset -c 3 ./jitter_bench`처럼 특정 코어에 고정해 실행하고, 그 사이에 `sudo cpupower -c 3 frequency-set -g performance`와 `sudo cpupower -c 3 frequency-set -g powersave`를 번갈아 적용하며 반복하면 p50 대비 p99/p999가 벌어지는 정도의 차이를 직접 볼 수 있습니다(x86-64, Linux, GCC 기준 예시이며 실제 배율은 CPU 세대·BIOS 전력 설정에 따라 다릅니다). 함께 `perf stat`으로 사이클과 실행시간을 보면 실제 도달한 평균 클럭도 추정할 수 있습니다.
+이 코드를 `taskset -c 3 ./jitter_bench`처럼 특정 코어에 고정해 실행하고, 그 사이에 `sudo cpupower -c 3 frequency-set -g performance`와 `sudo cpupower -c 3 frequency-set -g powersave`를 번갈아 적용하며 반복하면 p50 대비 p99/p999가 벌어지는 정도를 비교할 수 있습니다(x86-64, Linux, GCC 기준이며 결과는 CPU 세대·BIOS 전력 설정에 따라 다릅니다). 함께 `perf stat`으로 사이클과 실행시간을 보면 실제 도달한 평균 클럭도 추정할 수 있습니다.
 
-```text
-$ perf stat -e cycles,instructions,task-clock -- taskset -c 3 ./jitter_bench
-
- Performance counter stats for 'taskset -c 3 ./jitter_bench':
-
-     8,241,552,110      cycles
-    16,483,004,221      instructions              #    2.00  insn per cycle
-       2,801.34 msec    task-clock
-
-       2.802345318 seconds time elapsed
+```bash
+perf stat -e cycles,instructions,task-clock -- taskset -c 3 ./jitter_bench
 ```
 
-`cycles / task-clock(ns)`로 나누면 실행 구간의 평균 클럭(GHz)을 근사할 수 있습니다(위 예시에서는 약 2.94GHz). 이 값이 `cpupower frequency-info`가 보여주는 최대 P-state보다 뚜렷이 낮게 나온다면, 실행 도중 주파수가 자주 떨어졌거나 애초에 목표 P-state에 도달하지 못했다는 신호이며, 이는 [CPU 하드웨어 카운터 활용](/post/cpu-optimization/cpu-hardware-performance-counters/) (챕터 09)에서 다루는 카운터 기반 분석으로 더 정밀하게 좁힐 수 있습니다.
+`cycles`를 `task-clock`(ns)으로 나누면 실행 구간의 평균 클럭(GHz)을 근사할 수 있습니다. 이 값이 `cpupower frequency-info`가 보여주는 최대 P-state보다 뚜렷이 낮게 나온다면, 실행 도중 주파수가 자주 떨어졌거나 애초에 목표 P-state에 도달하지 못했다는 신호이며, 이는 [CPU 하드웨어 카운터 활용](/post/cpu-optimization/cpu-hardware-performance-counters/) (챕터 09)에서 다루는 카운터 기반 분석으로 더 정밀하게 좁힐 수 있습니다.
 
 ## 흔한 오개념 교정
 
@@ -195,7 +180,7 @@ $ perf stat -e cycles,instructions,task-clock -- taskset -c 3 ./jitter_bench
 
 ## 비판적 시각: 한계와 트레이드오프
 
-`performance` governor를 모든 코어에 상시 고정하는 것이 만능 해법은 아닙니다. 유휴 코어까지 높은 P-state를 유지하면 전력·발열이 늘고, 밀도 높은 서버 환경에서는 오히려 열 스로틀링(thermal throttling)을 유발해 지속 성능이 더 나빠질 수 있습니다. Turbo Boost의 PL2·Tau 메커니즘 자체도 "짧게는 빠르지만 길게는 정격으로 수렴"하는 설계이므로, 지속적으로 부하가 많은 워크로드에서는 애초에 부스트 클럭을 유지 가능한 성능으로 기대해서는 안 됩니다. HWP·CPPC 같은 하드웨어 자율 제어는 반응 속도는 빠르지만, OS와 운영자가 "지금 정확히 몇 GHz인지"를 예측·통제하기 어렵게 만들어 디버깅과 성능 재현성을 떨어뜨리는 트레이드오프가 있습니다. 클라우드 가상화 환경에서는 이 문제가 더 심해지는데, 하이퍼바이저가 governor 설정 자체를 게스트에게 노출하지 않거나 무시하는 경우가 있고, vCPU steal time과 주파수 변동이 뒤섞여 어느 쪽이 지연시간 저하의 원인인지 구분하기 어려울 수 있습니다. 결국 주파수 스케일링 튜닝은 "항상 최고로 고정"이 아니라, 워크로드의 지연시간 요구사항과 전력·열 예산 사이에서 명시적으로 트레이드오프를 선택하는 문제입니다.
+`performance` governor를 모든 코어에 상시 고정하는 것이 만능 해법은 아닙니다. 유휴 코어까지 높은 P-state를 유지하면 전력·발열이 늘고, 밀도 높은 서버 환경에서는 오히려 열 스로틀링(thermal throttling)을 유발해 지속 성능이 더 나빠질 수 있습니다. HWP·CPPC 같은 하드웨어 자율 제어는 반응 속도는 빠르지만, OS와 운영자가 "지금 정확히 몇 GHz인지"를 예측·통제하기 어렵게 만들어 디버깅과 성능 재현성을 떨어뜨리는 트레이드오프가 있습니다. 클라우드 가상화 환경에서는 이 문제가 더 심해지는데, 하이퍼바이저가 governor 설정 자체를 게스트에게 노출하지 않거나 무시하는 경우가 있고, vCPU steal time과 주파수 변동이 뒤섞여 어느 쪽이 지연시간 저하의 원인인지 구분하기 어려울 수 있습니다. 결국 주파수 스케일링 튜닝은 "항상 최고로 고정"이 아니라, 워크로드의 지연시간 요구사항과 전력·열 예산 사이에서 명시적으로 트레이드오프를 선택하는 문제입니다.
 
 ## 마무리
 
