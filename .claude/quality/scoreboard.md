@@ -488,7 +488,7 @@
 | content/collection/Algorithm/2024/2024-10-16-BOJ-14752/index.md | 91.6 | 2026-10-31 | 2 | 통과 | 1.3 | ea28fad | 입출력 예제·참고 문헌 절, Mermaid 흐름도, 코드 출처 주석 없음(경미); acmicpc 링크 봇 차단으로 검증 불가 |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-15025/index.md | 91.3 | 2026-11-01 | 1 | 통과 | 1.3 | d187efb | 없음(경미: BOJ 원문 대조 불가로 항목1·7 상한, 비판적 시각 보강 여지) |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-16349/index.md | 94 | 2026-11-02 | 2 | 통과 | 1.3 | 2752903 | 없음(경미: 학습목표의 입출력 방식 선택 기준 본문 보강 여지, 범용 태그 일부, acmicpc 링크 검증 불가) |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-18406/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-18406/index.md | 90.25 | 2026-11-03 | 3 | 통과 | 1.3 | a5ff179 | 없음(경미: 항목6=70 Mermaid·복잡도 표 부재, 항목2=85 문제 정보 표·입출력 예제·참고문헌 절 부재) |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-20492/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-23808/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-24736/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -1997,3 +1997,4 @@
 | content/post/2026/2026-10-31-glyph-serious-ai-product-checklist/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-10-27-packnfold-sleevemat-laptop-case-lineup/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-02-yodas-v3-million-hour-open-speech-dataset/index.md | - | - | - | 미채점 | - | - | - |
+| content/collection/Vocabulary/2026/2026-11-03-bellwether-noun-meaning-usage-examples/index.md | - | - | - | 미채점 | - | - | - |
