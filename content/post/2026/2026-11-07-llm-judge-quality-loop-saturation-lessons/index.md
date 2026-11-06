@@ -47,7 +47,7 @@ LLM이 쓴 글을 다른 LLM이 채점하고, 점수가 낮으면 고쳐서 다�
 
 ## 루프의 구조
 
-구조는 Anthropic이 에이전트 패턴으로 정리한 <strong>evaluator-optimizer(평가자-최적화기)</strong>와 같다. 생성(또는 수정)하는 쪽과 평가하는 쪽을 분리하고, 평가 결과를 입력으로 다시 수정하는 반복이다([Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)). 이 루프에서 critic은 읽기 전용으로 점수와 결함 목록만 반환하고, reviser만 파일을 고친다. 통과 조건은 총점 90 이상, 치명결함 0, 모든 항목 앵커 70 이상이다.
+구조는 Anthropic이 에이전트 패턴으로 정리한 <strong>evaluator-optimizer(평가자-최적화기)</strong>와 같다. 생성(또는 수정)하는 쪽과 평가하는 쪽을 분리하고, 평가 결과를 입력으로 다시 수정하는 반복이다([Building effective agents](https://www.anthropic.com/research/building-effective-agents)). 이 루프에서 critic은 읽기 전용으로 점수와 결함 목록만 반환하고, reviser만 파일을 고친다. 통과 조건은 총점 90 이상, 치명결함 0, 모든 항목 앵커 70 이상이다.
 
 ```mermaid
 flowchart TD
@@ -120,5 +120,5 @@ C++ 최적화 컬렉션에서 가장 집요했던 결함은 cppreference 같은 
 
 ## 참고 및 출처
 
-- [Anthropic, Building effective agents](https://www.anthropic.com/engineering/building-effective-agents) — evaluator-optimizer 패턴 설명
+- [Anthropic, Building effective agents](https://www.anthropic.com/research/building-effective-agents) — evaluator-optimizer 패턴 설명
 - 이 블로그 저장소의 `post-quality-loop` 스킬, `quality-critic` 서브에이전트, 스코어보드 운영 기록(2026-07 ~ 2026-09)
