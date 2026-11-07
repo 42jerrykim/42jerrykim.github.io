@@ -493,7 +493,7 @@
 | content/collection/Algorithm/2024/2024-10-16-BOJ-23808/index.md | 94.0 | 2026-11-05 | 3 | 통과 | 1.3 | e007930 | 없음(경미: 참고 문헌 절 부재, 백준 링크는 봇 차단으로 검증 불가) |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-24736/index.md | 94 | 2026-11-06 | 1 | 통과 | 1.3 | 332bc33 | 없음(경미: 본문에 없는 태그 Documentation/Testing/Debugging/Performance/Optimization, 학습 목표 문장 부재, BOJ 링크 자동 검증 불가) |
 | content/collection/Algorithm/2024/2024-10-16-BOJ-28444/index.md | 91.3 | 2026-11-07 | 2 | 통과 | 1.3 | a481fa6 | 없음(경미: lastmod 미갱신은 정책상 사람 승인 시 갱신, BOJ 링크 봇 차단으로 검증 불가·시간/메모리 제한 미확인) |
-| content/collection/Algorithm/2024/2024-10-16-BOJ-28702/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-16-BOJ-28702/index.md | 98.5 | 2026-11-08 | 2 | 통과 | 1.3 | 84b7029 | 없음(BOJ 링크는 사이트 중단으로 검증 불가, 복구 후 재확인) |
 | content/collection/Algorithm/2024/2024-10-17-BOJ-15995/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-17-BOJ-24051/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-17-BOJ-2711/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -2002,3 +2002,4 @@
 | content/post/2026/2026-11-05-cpp-default-vs-braces-constructor-gcc-regression/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-06-kimi-k3-1-pro-open-weights-2-8t-moe/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-07-llm-judge-quality-loop-saturation-lessons/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-11-08-cpp-store-forwarding-failure-performance-trap/index.md | - | - | - | 미채점 | - | - | - |

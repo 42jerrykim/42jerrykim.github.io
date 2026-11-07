@@ -1,6 +1,6 @@
 ---
 title: "[Algorithm] C++/Python 백준 28702번 : FizzBuzz 스페셜 저지"
-description: "백준 28702번 FizzBuzz 스페셜 저지는 연속된 세 개의 FizzBuzz 출력 결과를 입력받아 이후에 출력될 값을 예측하는 알고리즘 문제입니다. 문자열 처리, 브루트포스, 수학적 규칙 등 다양한 접근이 요구됩니다. 실제 FizzBuzz 패턴을 분석하여 다음 값을 도출하는 과정이 중요합니다."
+description: "백준 28702번 FizzBuzz 스페셜 저지: 연속한 세 출력 중 숫자 하나로 시작 위치를 역산해 다음 출력을 O(1)에 구하는 풀이와, 숫자가 반드시 존재한다는 증명, 15 주기 탐색이 불필요한 이유를 C++·Python 코드로 정리합니다."
 categories: Algorithm
 tags:
 - Math(수학)
@@ -15,688 +15,124 @@ tags:
 - Implementation(구현)
 - Time-Complexity(시간복잡도)
 - Coding-Test(코딩테스트)
-- Data-Structures(자료구조)
 - Optimization(최적화)
 - Code-Quality(코드품질)
 - Python
-- Go
-- .NET
 - String(문자열)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)
-- Testing(테스트)
-- Documentation(문서화)
 - Best-Practices
 - Complexity-Analysis(복잡도분석)
-- Debugging(디버깅)
-- Refactoring(리팩토링)
-- Clean-Code(클린코드)
 - Performance(성능)
 - Pitfalls(함정)
-- Error-Handling(에러처리)
+- FizzBuzz
+- String-Parsing
+- Periodicity
+- Case-Analysis
+- Constant-Time
 image: "wordcloud.png"
 date: 2024-10-16
 lastmod: 2024-10-16
 ---
 
-이번 포스팅에서는 백준 온라인 저지의 28702번 문제인 <strong>"FizzBuzz 스페셜 저지"</strong>를 다뤄보겠습니다. 이 문제는 고전적인 FizzBuzz 문제를 변형한 것으로, 주어진 연속된 세 개의 출력값을 기반으로 다음에 올 출력을 예측하는 문제입니다. 수학적 사고와 문자열 처리가 요구되는 재미있는 문제입니다.
+이번 글에서는 백준 28702번 <strong>"FizzBuzz 스페셜 저지"</strong>를 다룹니다. 고전 FizzBuzz의 연속된 세 출력이 주어졌을 때 바로 다음 출력을 맞히는 문제로, 핵심은 "세 칸 안에는 반드시 숫자가 하나 이상 있다"는 사실을 알아채는 데 있습니다.
 
 문제 : [https://www.acmicpc.net/problem/28702](https://www.acmicpc.net/problem/28702)
 
 ## 문제 설명
 
-**FizzBuzz 문제**는 다음과 같은 규칙을 따르는 고전적인 프로그래밍 문제입니다. 양의 정수 `i`가 1부터 시작하여 1씩 증가할 때, 각 `i`에 대해 다음의 규칙에 따라 문자열을 출력합니다.
+양의 정수 `i`를 1부터 하나씩 늘려 가며 `i`가 3과 5의 공배수이면 `FizzBuzz`, 3의 배수이면 `Fizz`, 5의 배수이면 `Buzz`, 어느 쪽도 아니면 `i` 자체를 출력하는 것이 FizzBuzz입니다. `i`가 1부터 15까지일 때의 출력은 `1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, FizzBuzz`입니다.
 
-1. `i`가 **3의 배수이면서 5의 배수**이면 `"FizzBuzz"`를 출력합니다.
-2. `i`가 **3의 배수이지만 5의 배수가 아니면** `"Fizz"`를 출력합니다.
-3. `i`가 **3의 배수가 아니지만 5의 배수이면** `"Buzz"`를 출력합니다.
-4. `i`가 **3의 배수도 아니고 5의 배수도 아니면** `i`를 그대로 출력합니다.
+입력으로는 이 수열에서 연속으로 출력된 세 문자열이 한 줄에 하나씩 주어지고, 각 문자열의 길이는 8 이하입니다. 입력은 항상 실제 FizzBuzz 수열의 연속 구간이라고 보장되므로, 구간의 시작 위치는 정확히 하나로 정해지고 그 다음 출력도 유일합니다.
 
-예를 들어, `i`가 1부터 15까지일 때의 출력은 다음과 같습니다.
-
-```
-1
-2
-Fizz
-4
-Buzz
-Fizz
-7
-8
-Fizz
-Buzz
-11
-Fizz
-13
-14
-FizzBuzz
-```
-
-**문제**에서는 FizzBuzz 문제에서 **연속으로 출력된 세 개의 문자열**이 주어집니다. 이때, 이 세 문자열 **다음에 올 문자열**을 구하는 것이 목표입니다. 입력으로 주어지는 세 개의 문자열은 각 줄에 하나씩 주어지며, 길이는 8 이하입니다. 주어진 입력은 항상 FizzBuzz 문제에서 연속으로 출력된 세 개의 문자열에 대응함이 보장됩니다.
-
-예를 들어, 입력이 다음과 같을 때:
-
-```
-Fizz
-Buzz
-11
-```
-
-이 경우 다음에 올 출력은 `"Fizz"`가 됩니다.
-
-또 다른 예로, 입력이 다음과 같을 때:
-
-```
-980803
-980804
-FizzBuzz
-```
-
-다음에 올 출력은 `"980806"`이 됩니다.
-
-문제의 목표는 주어진 세 개의 연속된 FizzBuzz 출력값을 기반으로, 그 다음에 올 출력을 정확히 예측하여 출력하는 것입니다. 만약 가능한 출력이 여러 개라면, 그 중 아무거나 하나를 출력하면 됩니다.
+예를 들어 `Fizz`, `Buzz`, `11`이 입력이면 이 구간은 9, 10, 11번째 출력이므로 답은 12번째 출력인 `Fizz`입니다. `980803`, `980804`, `FizzBuzz`가 입력이면 `FizzBuzz`는 3과 5의 공배수인 980805에 해당하므로 답은 980806, 즉 숫자 `980806`입니다.
 
 ## 접근 방식
 
-이 문제를 해결하기 위해서는 주어진 세 개의 문자열을 기반으로, **FizzBuzz 규칙**에 따라 다음에 올 출력을 예측해야 합니다. 주요한 접근 방식은 다음과 같습니다.
+입력에 숫자가 하나라도 있으면 시작 위치를 곧바로 역산할 수 있습니다. k번째(0부터 센다) 문자열이 숫자 `n`이라면 그 칸의 `i`는 `n`이고 구간의 시작은 `n - k`이므로, 구하는 값은 `n - k + 3`번째 출력, 곧 `n + (3 - k)`번째 출력입니다. 이후에는 `i`에 FizzBuzz 규칙을 그대로 적용하면 됩니다.
 
-1. **입력된 문자열 분석**: 세 개의 입력된 문자열을 하나씩 확인하여, 각 문자열이 `"Fizz"`, `"Buzz"`, `"FizzBuzz"` 중 하나인지, 아니면 숫자인지를 판별합니다.
+남는 질문은 "세 칸이 모두 문자열이면 어떻게 하는가"인데, 그런 입력은 존재하지 않습니다. 연속한 세 정수 중 3의 배수는 정확히 하나이고 5의 배수는 많아야 하나이므로, `Fizz`·`Buzz`·`FizzBuzz` 중 하나로 출력되는 칸은 최대 2개입니다. 예컨대 9, 10 또는 14, 15처럼 문자열이 연속으로 두 번 나오는 구간은 있어도 세 번 나오는 구간은 없습니다. 따라서 세 칸 중 적어도 한 칸은 숫자이고, "15 주기로 시작점을 전부 시험해 보는" 탐색은 이 문제에서 실행될 일이 없습니다. 이 증명을 알고 나면 일관성 검증도 필요 없습니다. 입력이 유효하다는 보장이 있으므로 숫자 하나만 믿고 역산해도 나머지 두 칸은 자동으로 맞아떨어집니다.
 
-2. **가능한 `i` 값 계산**: 입력된 문자열이 숫자라면, 그 숫자가 FizzBuzz 순서상의 몇 번째 숫자인지 역으로 추정할 수 있습니다. 예를 들어, 입력된 숫자가 `n`이고, 그것이 `k`번째 입력이라면, 실제 FizzBuzz 순서상의 위치 `i`는 `i = n - k`가 됩니다.
+```mermaid
+flowchart LR
+    A["문자열 3개 입력"] --> B["첫 글자가 숫자인 칸 k 탐색"]
+    B --> C["시작 위치 n-k 역산"]
+    C --> D["fizzBuzz(n-k+3) 출력"]
+```
 
-3. **일관성 검증**: 세 개의 입력에 대해 계산된 `i` 값이 모두 일관성 있는지 확인합니다. 만약 일관성이 없다면, 입력된 세 개의 문자열이 연속된 FizzBuzz 출력값이 아니라는 의미이므로 문제의 조건에 위배됩니다.
+값의 범위도 확인해 둡니다. 숫자 문자열의 길이가 8 이하이므로 `n`은 10^8 미만이고 답은 그보다 3 더 클 뿐이라 32비트 정수로도 충분합니다. 아래 코드는 습관적으로 `long long`을 쓰지만 `int`로 바꿔도 결과는 같습니다.
 
-4. **다음 출력 계산**: 일관성 있는 시작점 `i`를 찾았다면, `i + 3`번째 값에 대해 FizzBuzz 규칙을 적용하여 다음 출력을 계산합니다.
-
-5. **숫자가 없는 경우 처리**: 만약 세 개의 입력된 문자열 모두가 `"Fizz"`, `"Buzz"`, `"FizzBuzz"`로만 이루어져 있다면, FizzBuzz 패턴의 주기가 15임을 이용하여 가능한 모든 시작점을 탐색합니다 (1부터 15까지). 각 가능한 시작점에 대해 주어진 세 개의 문자열이 해당 위치에서의 FizzBuzz 출력과 일치하는지 확인하고, 일치하는 경우 다음 출력을 계산합니다.
-
-## C++ 코드와 설명
+## C++ 풀이
 
 ```cpp
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
+#include <cctype>
 #include <iostream>
 #include <string>
-#include <vector>
-#include <cstdlib>
 
 using namespace std;
 
-// 주어진 시작점 i와 입력된 문자열 s가 일치하는지 확인하는 함수
-bool isValid(long long i, const vector<string>& s) {
-    for (int k = 0; k < 3; ++k) {
-        long long ik = i + k;  // 현재 위치의 i 값
-        string sk = s[k];      // 입력된 문자열
-        if (sk == "FizzBuzz") {
-            if (ik % 15 != 0) return false;
-        } else if (sk == "Fizz") {
-            if (ik % 3 != 0 || ik % 5 == 0) return false;
-        } else if (sk == "Buzz") {
-            if (ik % 5 != 0 || ik % 3 == 0) return false;
-        } else {
-            // 숫자인 경우
-            long long nk = atoll(sk.c_str());
-            if (ik != nk) return false;
-            if (ik % 3 == 0 || ik % 5 == 0) return false;
-        }
-    }
-    return true;
-}
-
-// 주어진 i 값에 대해 FizzBuzz 출력을 계산하는 함수
-string FizzBuzz(long long i) {
+string fizzBuzz(long long i) {
     if (i % 15 == 0) return "FizzBuzz";
-    else if (i % 3 == 0) return "Fizz";
-    else if (i % 5 == 0) return "Buzz";
-    else return to_string(i);
+    if (i % 3 == 0) return "Fizz";
+    if (i % 5 == 0) return "Buzz";
+    return to_string(i);
 }
 
 int main() {
-    vector<string> s(3);
-    for (int i = 0; i < 3; ++i) {
-        cin >> s[i];  // 입력된 세 개의 문자열
-    }
+    string s[3];
+    for (int k = 0; k < 3; ++k) cin >> s[k];
 
-    bool hasNumber = false;
-    long long i_value = -1;
-
-    // 숫자가 있는지 확인하고 가능한 i 값 계산
     for (int k = 0; k < 3; ++k) {
-        if (s[k] != "Fizz" && s[k] != "Buzz" && s[k] != "FizzBuzz") {
-            hasNumber = true;
-            long long nk = atoll(s[k].c_str());  // 문자열을 숫자로 변환
-            long long i_candidate = nk - k;      // 가능한 시작점 계산
-            if (i_value == -1) {
-                i_value = i_candidate;
-            } else if (i_value != i_candidate) {
-                // 일관성 없는 경우 종료
-                cout << "No solution" << endl;
-                return 0;
-            }
-        }
-    }
-
-    if (hasNumber) {
-        // 숫자가 있는 경우
-        if (i_value < 1) {
-            cout << "No solution" << endl;
+        if (isdigit(static_cast<unsigned char>(s[k][0]))) {
+            long long n = stoll(s[k]);
+            cout << fizzBuzz(n - k + 3) << '\n';
             return 0;
         }
-        if (isValid(i_value, s)) {
-            cout << FizzBuzz(i_value + 3) << endl;  // 다음 출력 계산
-            return 0;
-        } else {
-            cout << "No solution" << endl;
-            return 0;
-        }
-    } else {
-        // 숫자가 없는 경우 가능한 시작점 탐색
-        for (int i_mod15 = 1; i_mod15 <= 15; ++i_mod15) {
-            long long i_candidate = i_mod15;
-            bool valid = isValid(i_candidate, s);
-            if (valid) {
-                cout << FizzBuzz(i_candidate + 3) << endl;  // 다음 출력 계산
-                return 0;
-            }
-        }
-        cout << "No solution" << endl;
-        return 0;
     }
 }
 ```
 
-위의 코드는 입력된 세 개의 문자열을 기반으로 다음에 올 FizzBuzz 출력을 계산하는 프로그램입니다.
+`fizzBuzz`는 문제 정의를 그대로 옮긴 함수이고, 15의 배수를 가장 먼저 검사해야 3의 배수 분기에서 `FizzBuzz`가 `Fizz`로 새지 않습니다. `main`은 세 문자열을 읽은 뒤 첫 글자가 숫자인 칸을 찾아 `n - k + 3`번째 출력을 내고 곧바로 종료합니다. 증명에 따라 `for` 루프 안에서 반드시 반환하므로 루프 뒤에 별도의 실패 처리를 두지 않았습니다. 숫자 판별은 `"Fizz"`, `"Buzz"`, `"FizzBuzz"`가 모두 알파벳으로 시작한다는 점을 이용해 첫 글자만 봅니다.
 
-- **입력 처리**:
-  ```cpp
-  vector<string> s(3);
-  for (int i = 0; i < 3; ++i) {
-      cin >> s[i];  // 세 개의 문자열 입력
-  }
-  ```
-  세 개의 문자열을 입력받아 벡터 `s`에 저장합니다.
-
-- **숫자 확인 및 가능한 시작점 계산**:
-  ```cpp
-  bool hasNumber = false;
-  long long i_value = -1;
-
-  for (int k = 0; k < 3; ++k) {
-      if (s[k] != "Fizz" && s[k] != "Buzz" && s[k] != "FizzBuzz") {
-          hasNumber = true;
-          long long nk = atoll(s[k].c_str());  // 문자열을 숫자로 변환
-          long long i_candidate = nk - k;      // 가능한 시작점 계산
-          if (i_value == -1) {
-              i_value = i_candidate;
-          } else if (i_value != i_candidate) {
-              // 시작점이 일관성 없으면 종료
-              cout << "No solution" << endl;
-              return 0;
-          }
-      }
-  }
-  ```
-  입력된 문자열 중 숫자가 있는지 확인하고, 숫자가 있다면 가능한 시작점 `i_value`를 계산합니다. 만약 여러 숫자가 있고 계산된 시작점이 서로 다르면 일관성이 없으므로 종료합니다.
-
-- **시작점 검증 및 다음 출력 계산**:
-  ```cpp
-  if (hasNumber) {
-      // 숫자가 있는 경우
-      if (i_value < 1) {
-          cout << "No solution" << endl;
-          return 0;
-      }
-      if (isValid(i_value, s)) {
-          cout << FizzBuzz(i_value + 3) << endl;  // 다음 출력 계산
-          return 0;
-      } else {
-          cout << "No solution" << endl;
-          return 0;
-      }
-  }
-  ```
-  계산된 시작점이 유효한지 `isValid` 함수를 통해 확인하고, 유효하다면 `i + 3`번째 FizzBuzz 출력을 계산하여 출력합니다.
-
-- **숫자가 없는 경우 가능한 시작점 탐색**:
-  ```cpp
-  else {
-      // 숫자가 없는 경우
-      for (int i_mod15 = 1; i_mod15 <= 15; ++i_mod15) {
-          long long i_candidate = i_mod15;
-          bool valid = isValid(i_candidate, s);
-          if (valid) {
-              cout << FizzBuzz(i_candidate + 3) << endl;  // 다음 출력 계산
-              return 0;
-          }
-      }
-      cout << "No solution" << endl;
-      return 0;
-  }
-  ```
-  숫자가 없다면 FizzBuzz 패턴의 주기인 15를 이용하여 가능한 시작점을 모두 탐색합니다. 유효한 시작점을 찾으면 다음 출력을 계산하여 출력합니다.
-
-- **`isValid` 함수**:
-  ```cpp
-  bool isValid(long long i, const vector<string>& s) {
-      for (int k = 0; k < 3; ++k) {
-          long long ik = i + k;
-          string sk = s[k];
-          if (sk == "FizzBuzz") {
-              if (ik % 15 != 0) return false;
-          } else if (sk == "Fizz") {
-              if (ik % 3 != 0 || ik % 5 == 0) return false;
-          } else if (sk == "Buzz") {
-              if (ik % 5 != 0 || ik % 3 == 0) return false;
-          } else {
-              long long nk = atoll(sk.c_str());
-              if (ik != nk) return false;
-              if (ik % 3 == 0 || ik % 5 == 0) return false;
-          }
-      }
-      return true;
-  }
-  ```
-  주어진 시작점 `i`에서 입력된 세 개의 문자열이 FizzBuzz 규칙과 일치하는지 확인합니다.
-
-- **`FizzBuzz` 함수**:
-  ```cpp
-  string FizzBuzz(long long i) {
-      if (i % 15 == 0) return "FizzBuzz";
-      else if (i % 3 == 0) return "Fizz";
-      else if (i % 5 == 0) return "Buzz";
-      else return to_string(i);
-  }
-  ```
-  주어진 `i`에 대해 FizzBuzz 출력을 반환합니다.
-
-## C++ without library 코드와 설명
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-// 문자열이 숫자인지 확인하는 함수
-int isNumber(char *s) {
-    return !(strcmp(s, "Fizz") == 0 || strcmp(s, "Buzz") == 0 || strcmp(s, "FizzBuzz") == 0);
-}
-
-// 주어진 시작점 i와 입력된 문자열 s가 일치하는지 확인하는 함수
-int isValid(long long i, char s[3][9]) {
-    int k;
-    for (k = 0; k < 3; ++k) {
-        long long ik = i + k;
-        char *sk = s[k];
-        if (strcmp(sk, "FizzBuzz") == 0) {
-            if (ik % 15 != 0) return 0;
-        } else if (strcmp(sk, "Fizz") == 0) {
-            if (ik % 3 != 0 || ik % 5 == 0) return 0;
-        } else if (strcmp(sk, "Buzz") == 0) {
-            if (ik % 5 != 0 || ik % 3 == 0) return 0;
-        } else {
-            long long nk = atoll(sk);
-            if (ik != nk) return 0;
-            if (ik % 3 == 0 || ik % 5 == 0) return 0;
-        }
-    }
-    return 1;
-}
-
-// 주어진 i 값에 대해 FizzBuzz 출력을 계산하는 함수
-void FizzBuzz(long long i, char *result) {
-    if (i % 15 == 0) strcpy(result, "FizzBuzz");
-    else if (i % 3 == 0) strcpy(result, "Fizz");
-    else if (i % 5 == 0) strcpy(result, "Buzz");
-    else sprintf(result, "%lld", i);
-}
-
-int main() {
-    char s[3][9];
-    int i;
-    for (i = 0; i < 3; ++i) {
-        scanf("%8s", s[i]);  // 최대 길이가 8인 문자열 입력
-    }
-
-    int hasNumber = 0;
-    long long i_value = -1;
-
-    for (i = 0; i < 3; ++i) {
-        if (isNumber(s[i])) {
-            hasNumber = 1;
-            long long nk = atoll(s[i]);
-            long long i_candidate = nk - i;
-            if (i_value == -1) {
-                i_value = i_candidate;
-            } else if (i_value != i_candidate) {
-                // 일관성 없는 경우
-                printf("No solution\n");
-                return 0;
-            }
-        }
-    }
-
-    if (hasNumber) {
-        if (i_value < 1) {
-            printf("No solution\n");
-            return 0;
-        }
-        if (isValid(i_value, s)) {
-            char result[9];
-            FizzBuzz(i_value + 3, result);
-            printf("%s\n", result);
-            return 0;
-        } else {
-            printf("No solution\n");
-            return 0;
-        }
-    } else {
-        int i_mod15;
-        for (i_mod15 = 1; i_mod15 <= 15; ++i_mod15) {
-            long long i_candidate = i_mod15;
-            if (isValid(i_candidate, s)) {
-                char result[9];
-                FizzBuzz(i_candidate + 3, result);
-                printf("%s\n", result);
-                return 0;
-            }
-        }
-        printf("No solution\n");
-        return 0;
-    }
-}
-```
-
-위 코드는 표준 라이브러리의 사용을 최소화하여 작성된 C 언어 기반의 프로그램입니다.
-
-- **입력 처리**:
-  ```c
-  char s[3][9];
-  int i;
-  for (i = 0; i < 3; ++i) {
-      scanf("%8s", s[i]);  // 최대 길이가 8인 문자열 입력
-  }
-  ```
-  세 개의 문자열을 최대 길이 8로 입력받아 2차원 배열 `s`에 저장합니다.
-
-- **숫자인지 확인하는 함수**:
-  ```c
-  int isNumber(char *s) {
-      return !(strcmp(s, "Fizz") == 0 || strcmp(s, "Buzz") == 0 || strcmp(s, "FizzBuzz") == 0);
-  }
-  ```
-  문자열이 `"Fizz"`, `"Buzz"`, `"FizzBuzz"` 중 하나인지 확인하여 숫자인지를 판단합니다.
-
-- **가능한 시작점 계산 및 일관성 확인**:
-  ```c
-  int hasNumber = 0;
-  long long i_value = -1;
-
-  for (i = 0; i < 3; ++i) {
-      if (isNumber(s[i])) {
-          hasNumber = 1;
-          long long nk = atoll(s[i]);
-          long long i_candidate = nk - i;
-          if (i_value == -1) {
-              i_value = i_candidate;
-          } else if (i_value != i_candidate) {
-              printf("No solution\n");
-              return 0;
-          }
-      }
-  }
-  ```
-  입력된 문자열 중 숫자가 있는 경우 가능한 시작점 `i_value`를 계산하고, 일관성을 확인합니다.
-
-- **시작점 검증 및 다음 출력 계산**:
-  ```c
-  if (hasNumber) {
-      if (i_value < 1) {
-          printf("No solution\n");
-          return 0;
-      }
-      if (isValid(i_value, s)) {
-          char result[9];
-          FizzBuzz(i_value + 3, result);
-          printf("%s\n", result);
-          return 0;
-      } else {
-          printf("No solution\n");
-          return 0;
-      }
-  }
-  ```
-  계산된 시작점이 유효한지 확인하고, 유효하다면 다음 FizzBuzz 출력을 계산하여 출력합니다.
-
-- **숫자가 없는 경우 가능한 시작점 탐색**:
-  ```c
-  else {
-      int i_mod15;
-      for (i_mod15 = 1; i_mod15 <= 15; ++i_mod15) {
-          long long i_candidate = i_mod15;
-          if (isValid(i_candidate, s)) {
-              char result[9];
-              FizzBuzz(i_candidate + 3, result);
-              printf("%s\n", result);
-              return 0;
-          }
-      }
-      printf("No solution\n");
-      return 0;
-  }
-  ```
-  숫자가 없는 경우 1부터 15까지의 가능한 시작점을 모두 탐색하여 유효한 시작점을 찾습니다.
-
-- **`isValid` 함수**:
-  ```c
-  int isValid(long long i, char s[3][9]) {
-      int k;
-      for (k = 0; k < 3; ++k) {
-          long long ik = i + k;
-          char *sk = s[k];
-          if (strcmp(sk, "FizzBuzz") == 0) {
-              if (ik % 15 != 0) return 0;
-          } else if (strcmp(sk, "Fizz") == 0) {
-              if (ik % 3 != 0 || ik % 5 == 0) return 0;
-          } else if (strcmp(sk, "Buzz") == 0) {
-              if (ik % 5 != 0 || ik % 3 == 0) return 0;
-          } else {
-              long long nk = atoll(sk);
-              if (ik != nk) return 0;
-              if (ik % 3 == 0 || ik % 5 == 0) return 0;
-          }
-      }
-      return 1;
-  }
-  ```
-  시작점 `i`에서 입력된 세 개의 문자열이 FizzBuzz 규칙과 일치하는지 확인합니다.
-
-- **`FizzBuzz` 함수**:
-  ```c
-  void FizzBuzz(long long i, char *result) {
-      if (i % 15 == 0) strcpy(result, "FizzBuzz");
-      else if (i % 3 == 0) strcpy(result, "Fizz");
-      else if (i % 5 == 0) strcpy(result, "Buzz");
-      else sprintf(result, "%lld", i);
-  }
-  ```
-  주어진 `i`에 대해 FizzBuzz 출력을 `result`에 저장합니다.
-
-## Python 코드와 설명
+## Python 풀이
 
 ```python
-s = [input() for _ in range(3)]  # 세 개의 문자열 입력
-
-def is_number(s):
-    return s not in ("Fizz", "Buzz", "FizzBuzz")
-
-def is_valid(i, s):
-    for k in range(3):
-        ik = i + k
-        sk = s[k]
-        if sk == "FizzBuzz":
-            if ik % 15 != 0:
-                return False
-        elif sk == "Fizz":
-            if ik % 3 != 0 or ik % 5 == 0:
-                return False
-        elif sk == "Buzz":
-            if ik % 5 != 0 or ik % 3 == 0:
-                return False
-        else:
-            try:
-                nk = int(sk)
-                if ik != nk:
-                    return False
-                if ik % 3 == 0 or ik % 5 == 0:
-                    return False
-            except ValueError:
-                return False
-    return True
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
+s = [input() for _ in range(3)]
 
 def fizzbuzz(i):
     if i % 15 == 0:
         return "FizzBuzz"
-    elif i % 3 == 0:
+    if i % 3 == 0:
         return "Fizz"
-    elif i % 5 == 0:
+    if i % 5 == 0:
         return "Buzz"
-    else:
-        return str(i)
-
-has_number = False
-i_value = None
+    return str(i)
 
 for k in range(3):
-    if is_number(s[k]):
-        has_number = True
-        nk = int(s[k])
-        i_candidate = nk - k
-        if i_value is None:
-            i_value = i_candidate
-        elif i_value != i_candidate:
-            print("No solution")
-            exit()
-
-if has_number:
-    if i_value < 1:
-        print("No solution")
-    elif is_valid(i_value, s):
-        print(fizzbuzz(i_value + 3))
-    else:
-        print("No solution")
-else:
-    for i_candidate in range(1, 16):
-        if is_valid(i_candidate, s):
-            print(fizzbuzz(i_candidate + 3))
-            break
-    else:
-        print("No solution")
+    if s[k].isdigit():
+        print(fizzbuzz(int(s[k]) - k + 3))
+        break
 ```
 
-위의 Python 코드는 입력된 세 개의 문자열을 기반으로 다음 FizzBuzz 출력을 계산하는 프로그램입니다.
+구조는 C++ 풀이와 같습니다. `str.isdigit()`이 숫자 칸을 걸러 주므로 `try/except`로 변환 실패를 잡을 필요가 없고, 파이썬 정수는 크기 제한이 없어 오버플로를 따로 고민하지 않아도 됩니다.
 
-- **입력 처리**:
-  ```python
-  s = [input() for _ in range(3)]  # 세 개의 문자열 입력
-  ```
-  세 개의 문자열을 리스트 `s`에 저장합니다.
+## 복잡도와 대안
 
-- **문자열이 숫자인지 확인하는 함수**:
-  ```python
-  def is_number(s):
-      return s not in ("Fizz", "Buzz", "FizzBuzz")
-  ```
-  문자열이 `"Fizz"`, `"Buzz"`, `"FizzBuzz"` 중 하나가 아니면 숫자로 판단합니다.
-
-- **시작점이 유효한지 확인하는 함수**:
-  ```python
-  def is_valid(i, s):
-      for k in range(3):
-          ik = i + k
-          sk = s[k]
-          if sk == "FizzBuzz":
-              if ik % 15 != 0:
-                  return False
-          elif sk == "Fizz":
-              if ik % 3 != 0 or ik % 5 == 0:
-                  return False
-          elif sk == "Buzz":
-              if ik % 5 != 0 or ik % 3 == 0:
-                  return False
-          else:
-              try:
-                  nk = int(sk)
-                  if ik != nk:
-                      return False
-                  if ik % 3 == 0 or ik % 5 == 0:
-                      return False
-              except ValueError:
-                  return False
-      return True
-  ```
-  시작점 `i`에서 입력된 세 개의 문자열이 FizzBuzz 규칙과 일치하는지 확인합니다.
-
-- **FizzBuzz 출력 계산 함수**:
-  ```python
-  def fizzbuzz(i):
-      if i % 15 == 0:
-          return "FizzBuzz"
-      elif i % 3 == 0:
-          return "Fizz"
-      elif i % 5 == 0:
-          return "Buzz"
-      else:
-          return str(i)
-  ```
-  주어진 `i`에 대해 FizzBuzz 출력을 반환합니다.
-
-- **가능한 시작점 계산 및 일관성 확인**:
-  ```python
-  has_number = False
-  i_value = None
-
-  for k in range(3):
-      if is_number(s[k]):
-          has_number = True
-          nk = int(s[k])
-          i_candidate = nk - k
-          if i_value is None:
-              i_value = i_candidate
-          elif i_value != i_candidate:
-              print("No solution")
-              exit()
-  ```
-  입력된 문자열 중 숫자가 있는 경우 가능한 시작점 `i_value`를 계산하고, 일관성을 확인합니다.
-
-- **시작점 검증 및 다음 출력 계산**:
-  ```python
-  if has_number:
-      if i_value < 1:
-          print("No solution")
-      elif is_valid(i_value, s):
-          print(fizzbuzz(i_value + 3))
-      else:
-          print("No solution")
-  ```
-  계산된 시작점이 유효한지 확인하고, 유효하다면 다음 FizzBuzz 출력을 계산하여 출력합니다.
-
-- **숫자가 없는 경우 가능한 시작점 탐색**:
-  ```python
-  else:
-      for i_candidate in range(1, 16):
-          if is_valid(i_candidate, s):
-              print(fizzbuzz(i_candidate + 3))
-              break
-      else:
-          print("No solution")
-  ```
-  숫자가 없는 경우 1부터 15까지의 가능한 시작점을 모두 탐색하여 유효한 시작점을 찾습니다.
-
-## 결론
-
-이번 문제는 고전적인 FizzBuzz 문제를 응용하여, 주어진 출력값으로부터 원래의 수열을 역추적하고 다음 출력을 예측하는 흥미로운 문제였습니다. 문자열 처리와 수학적인 규칙을 결합하여 문제를 해결할 수 있었으며, 특히 입력된 값이 모두 문자열인 경우 FizzBuzz 패턴의 주기를 활용하는 것이 핵심이었습니다. 이와 같은 문제를 통해 다양한 접근 방식을 연습하고, 문제 해결 능력을 향상시킬 수 있었습니다.
-
-## 코너 케이스 및 실수 포인트
-
-| 케이스 | 설명 | 처리 방법 |
+| 항목 | 값 | 이유 |
 |---|---|---|
-| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
-| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |
+| 시간 | O(1) | 고정된 3칸을 훑고 나머지 연산 몇 번 |
+| 공간 | O(1) | 길이 8 이하 문자열 3개 |
+
+대안으로는 시작 위치 `i`를 1부터 15까지 전부 대입해 세 칸이 입력과 일치하는지 검사하는 방법이 있습니다. 15 주기로 문자열 패턴이 반복되므로 숫자가 없는 입력이라면 이 방법이 필요하지만, 숫자가 있는 입력에서는 `n`이 크면 시작 위치가 1–15 범위를 벗어나므로 범위를 `n - k` 근처로 바꿔야 하고, 결국 숫자로 역산하는 것과 같아집니다. 이 문제에서는 숫자 역산이 더 단순하고 항상 정확하므로, 주기 탐색은 필요한 경우가 없는 방어 코드일 뿐입니다.
+
+## 코너 케이스와 흔한 실수
+
+시작 위치가 1에 가까운 경우(`1`, `2`, `Fizz`처럼 구간이 수열의 맨 앞에서 시작)에도 `n - k`가 1 이상으로 유지되므로 별도 처리가 필요하지 않습니다. 반대로 `Fizz`, `Buzz`처럼 문자열이 연속으로 나오는 입력(예: `Buzz`, `Fizz`, `7`)은 숫자가 맨 뒤에만 있으므로 `k = 2`를 `n - k`에 반영하지 않으면 답이 두 칸 어긋납니다. 또 `FizzBuzz`가 입력 끝에 있는 경우 다음 출력은 항상 숫자(15의 배수 다음은 15m+1)이므로, 출력에 따옴표나 공백을 섞지 않도록 주의합니다.
+
+## 이 글을 읽은 후 달성해야 할 목표
+
+- 연속한 세 정수 중 3 또는 5의 배수가 최대 두 개임을 근거로, 입력에 숫자가 반드시 존재함을 증명할 수 있다.
+- 숫자 칸의 위치 `k`로 구간의 시작을 `n - k`로 역산하고 다음 출력을 `n - k + 3`번째로 계산할 수 있다.
+- 15 주기 탐색이 이 문제에서 불필요한 이유와, 그것이 필요해지는 변형(숫자 없는 입력을 허용하는 경우)을 구분해 설명할 수 있다.
