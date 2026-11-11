@@ -496,7 +496,7 @@
 | content/collection/Algorithm/2024/2024-10-16-BOJ-28702/index.md | 98.5 | 2026-11-08 | 2 | 통과 | 1.3 | 84b7029 | 없음(BOJ 링크는 사이트 중단으로 검증 불가, 복구 후 재확인) |
 | content/collection/Algorithm/2024/2024-10-17-BOJ-15995/index.md | 93.9 | 2026-11-09 | 3 | 통과 | 1.3 | 79ed559 | 없음(경미: C++ 코드 설명이 리스트 위주, 백준 링크 봇 차단으로 검증 불가) |
 | content/collection/Algorithm/2024/2024-10-17-BOJ-24051/index.md | 92 | 2026-11-10 | 2 | 통과 | 1.3 | 2fa430e | 없음(경미: 코너 케이스 표가 앞 절 일부 재진술, 범용 태그 일부가 본문과 무관, BOJ URL 검증 불가로 항목7=85, 판단 기준·1차 출처 보강 여지) |
-| content/collection/Algorithm/2024/2024-10-17-BOJ-2711/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-17-BOJ-2711/index.md | 98.5 | 2026-11-11 | 2 | 통과 | 1.3 | 6e43929 | 없음(경미: BOJ 링크 봇 차단으로 검증 불가, C 코드 펜스 언어 태그 cpp) |
 | content/collection/Algorithm/2024/2024-10-17-BOJ-27161/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-17-BOJ-4655/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-17-BOJ-5342/index.md | - | - | 0 | 미채점 | - | - | - |
