@@ -499,7 +499,7 @@
 | content/collection/Algorithm/2024/2024-10-17-BOJ-2711/index.md | 98.5 | 2026-11-11 | 2 | 통과 | 1.3 | 6e43929 | 없음(경미: BOJ 링크 봇 차단으로 검증 불가, C 코드 펜스 언어 태그 cpp) |
 | content/collection/Algorithm/2024/2024-10-17-BOJ-27161/index.md | 91.3 | 2026-11-12 | 2 | 통과 | 1.3 | 128a81e | 없음(경미: 제한 조건 원문 수치 미기재, BOJ 링크 봇 차단으로 검증 불가) |
 | content/collection/Algorithm/2024/2024-10-17-BOJ-4655/index.md | 91.3 | 2026-11-13 | 2 | 통과 | 1.3 | 11c4b1d | 없음(경미: 외부 링크 acmicpc.net 봇 차단으로 검증 불가, 학습 목표 1의 무게중심 유도 서술 여지) |
-| content/collection/Algorithm/2024/2024-10-17-BOJ-5342/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-17-BOJ-5342/index.md | 94.0 | 2026-11-14 | 3 | 통과 | 1.3 | 3873c8b | 없음(경미: 제한 조건 절 부재, Type-Safety 태그 본문 근거 약함, acmicpc 링크 WAF로 검증 불가) |
 | content/collection/Algorithm/2024/2024-10-21-BOJ-11281/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-21-BOJ-19585/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-23-BOJ-11689/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -2008,3 +2008,4 @@
 | content/post/2026/2026-11-11-sqlite-parse-number-c-vs-rust-clinger-fast-path/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-12-google-agent-distraction-stale-todo-cost/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-13-python-3-15-pep-810-lazy-import/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-11-14-ssh-hardware-backed-keys-yubikey-tpm-secure-enclave/index.md | - | - | - | 미채점 | - | - | - |
