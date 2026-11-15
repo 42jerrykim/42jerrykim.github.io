@@ -2010,3 +2010,4 @@
 | content/post/2026/2026-11-13-python-3-15-pep-810-lazy-import/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-14-ssh-hardware-backed-keys-yubikey-tpm-secure-enclave/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-15-fast-float-performance-hints-branch-misprediction/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-11-16-lemire-python-simd-fastsimdjson-fastpybase64/index.md | - | - | - | 미채점 | - | - | - |
