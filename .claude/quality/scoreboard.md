@@ -502,7 +502,7 @@
 | content/collection/Algorithm/2024/2024-10-17-BOJ-5342/index.md | 94.0 | 2026-11-14 | 3 | 통과 | 1.3 | 3873c8b | 없음(경미: 제한 조건 절 부재, Type-Safety 태그 본문 근거 약함, acmicpc 링크 WAF로 검증 불가) |
 | content/collection/Algorithm/2024/2024-10-21-BOJ-11281/index.md | 92.5 | 2026-11-15 | 2 | 통과 | 1.3 | b1616af | 없음(경미: 무관 태그 Testing/Debugging 등 5개, Python 코드가 setrecursionlimit만 사용, 문제 정보 표에 시간·메모리 제한 없음, BOJ 링크 검증 불가) |
 | content/collection/Algorithm/2024/2024-10-21-BOJ-19585/index.md | 92.1 | 2026-11-16 | 2 | 통과 | 1.3 | 2b1204d | 없음(경미: Trie 1차 출처 Fredkin 1960 부재, 결론 일부 재진술, BOJ 링크 검증 불가) |
-| content/collection/Algorithm/2024/2024-10-23-BOJ-11689/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-23-BOJ-11689/index.md | 92.05 | 2026-11-17 | 3 | 통과 | 1.3 | e08e4e2 | 없음(경미: 결론이 앞 절 재진술, 1차 원논문 출처 미병기, BOJ 링크는 서비스 중단으로 검증 불가)
 | content/collection/Algorithm/2024/2024-10-23-BOJ-3648/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-23-BOJ-3830/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-23-BOJ-4225/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -2011,3 +2011,4 @@
 | content/post/2026/2026-11-14-ssh-hardware-backed-keys-yubikey-tpm-secure-enclave/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-15-fast-float-performance-hints-branch-misprediction/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-16-lemire-python-simd-fastsimdjson-fastpybase64/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-11-17-no-ai-slop-manifesto-aie-code-summit/index.md | - | - | - | 미채점 | - | - | - |
