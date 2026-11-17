@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] C++/Python 백준 3648번 : 아이돌"
+title: "[Algorithm] C++ / Python 백준 3648번: 아이돌"
 description: "백준 3648번 아이돌 문제는 2-SAT, 강한 연결 요소(SCC) 알고리즘을 활용해 논리식 만족 여부와 참가자 다음 라운드 진출 조건을 판별하는 문제다. 심사위원 투표 조건을 논리식으로 변환하고, 카를이 진출하면서 모든 심사위원 제약을 동시에 만족시킬 수 있는지 효율적으로 판정한다."
 categories: 
 - Algorithm
@@ -19,25 +19,26 @@ tags:
 - Coding-Test(코딩테스트)
 - Data-Structures(자료구조)
 - Optimization(최적화)
-- Code-Quality(코드품질)
-- Go
-- .NET
+- Tarjan-Algorithm
+- 2-SAT
+- SCC
 - DFS(Depth-First Search)
 - Stack(스택)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)
-- Testing(테스트)
-- Documentation(문서화)
-- Best-Practices
+- Linear-Time
+- Topological-Sort
+- Kosaraju
+- Implication-Graph
 - Complexity-Analysis(복잡도분석)
-- Debugging(디버깅)
-- Refactoring(리팩토링)
-- Clean-Code(클린코드)
+- Kosaraju-Algorithm
+- Graph-Theory
+- Boolean-Satisfiability
 - Performance(성능)
 - Pitfalls(함정)
-- Error-Handling(에러처리)
+- Directed-Graph
 image: "wordcloud.png"
-date: 2024-01-01
+date: 2024-10-23T00:00:00+09:00
 lastmod: 2024-01-01
 ---
 
@@ -76,17 +77,38 @@ lastmod: 2024-01-01
 
 또한, **카를(참가자 1번)은 반드시 진출해야 하므로 \( X_1 \)은 참이어야 한다**.
 
-이를 기반으로 논리식을 구성하고, 이 논리식의 만족 가능성을 판단하기 위해 **2-SAT 알고리즘**을 적용한다. 2-SAT 문제는 임플리케이션 그래프를 생성하고, <strong>강한 연결 요소(SCC)</strong>를 찾아 해결할 수 있다.
+
+이 문제에서 제약은 "투표 두 개 중 적어도 하나가 결과와 일치한다"는 형태, 즉 리터럴 두 개의 논리합 하나뿐이다. 이런 절(clause)만으로 이루어진 논리식이 2-CNF이고, 변수 수 $V$와 절 수 $C$에 대해 $O(V + C)$ 시간에 만족 가능 여부를 판정할 수 있다. 절의 리터럴이 세 개로 늘어난 3-SAT는 NP-완전이므로, 이 문제가 다항 시간에 풀리는 이유는 절의 크기가 2로 제한된다는 구조에 있다.
+
+## 2-SAT 모델링과 정당성
+
+절 $(A \lor B)$는 $\lnot A \to B$와 $\lnot B \to A$ 두 개의 함의(implication)와 논리적으로 동치다. $A$가 거짓이면 $B$가 참이어야 하고, $B$가 거짓이면 $A$가 참이어야 하기 때문이다. 변수마다 $X_i$와 $\lnot X_i$ 두 노드를 만들고 절마다 이 두 간선을 추가한 그래프가 임플리케이션 그래프다. 절 하나가 대칭인 간선 두 개를 만들므로 그래프는 항상 "간선 $u \to v$가 있으면 $\lnot v \to \lnot u$도 있다"는 대칭성을 가진다.
+
+만족 가능성은 이 그래프의 SCC 구조로 결정된다. $X_i$와 $\lnot X_i$가 같은 SCC에 있으면 $X_i \to \lnot X_i$이면서 $\lnot X_i \to X_i$이므로 $X_i$가 참이어도 거짓이어도 모순이 생겨 만족 불가능하다. 반대로 어떤 변수도 이런 모순을 갖지 않으면, SCC를 압축한 DAG를 위상 정렬해 역순으로 참을 배정하는 방식으로 실제 해를 만들 수 있다. 대칭성 덕분에 한 SCC를 참으로 정하면 그 부정을 담은 SCC는 자동으로 거짓이 되어 배정이 일관된다. 이 판정법은 Aspvall, Plass, Tarjan이 1979년에 선형 시간 알고리즘으로 제시했다. 이 문제는 해 자체가 아니라 존재 여부만 묻기 때문에 위상 순서 배정은 구현하지 않고 같은 SCC 검사만 한다.
+
+카를이 반드시 진출해야 한다는 조건 $X_1$은 단항 절 $(X_1 \lor X_1)$로 볼 수 있고, 이는 간선 $\lnot X_1 \to X_1$ 하나로 표현된다. $X_1$을 거짓으로 가정하면 곧바로 $X_1$이 참이어야 하는 상황이 되므로 $X_1$을 거짓으로 둘 수 없게 강제된다. 예를 들어 $n=2$이고 투표가 `-1 2`, `-1 -2`라면 절은 $(\lnot X_1 \lor X_2)$와 $(\lnot X_1 \lor \lnot X_2)$이고, $X_1$이 참이면 $X_2$가 참이면서 동시에 거짓이어야 하므로 답은 `no`다. 이 구조는 아래 그래프에서 $X_1$에서 $X_2$와 $\lnot X_2$로 모두 갈 수 있고, 두 노드에서 다시 $\lnot X_1$으로 돌아오는 순환이 생기는 것으로 나타난다.
+
+```mermaid
+flowchart LR
+    nX1["¬X1"] -->|"강제 간선"| X1["X1"]
+    X1 -->|"절 (¬X1 ∨ X2)"| X2["X2"]
+    X1 -->|"절 (¬X1 ∨ ¬X2)"| nX2["¬X2"]
+    X2 -->|"대우"| nX1
+    nX2 -->|"대우"| nX1
+```
+
+위 그래프에서 $X_1$, $X_2$, $\lnot X_2$, $\lnot X_1$은 모두 하나의 순환에 속하므로 $X_1$과 $\lnot X_1$이 같은 SCC에 놓이고, 판정은 `no`가 된다.
 
 ## C++ 코드와 설명
 
-임플리케이션 그래프를 생성하고 Kosaraju 알고리즘을 활용하여 SCC를 찾는 C++ 코드를 작성한다.
+Kosaraju 알고리즘은 정방향 그래프에서 DFS를 돌려 종료 순서를 기록한 뒤, 그 역순으로 역방향 그래프를 DFS하며 SCC를 묶는다. 역방향 DFS에서 한 번에 도달하는 노드 집합이 하나의 SCC가 된다. 노드 번호는 `var` 함수로 정한다. 변수 $x$가 양수이면 $(x-1) \cdot 2$번, 음수이면 거기에 1을 더한 번호를 쓰므로, 한 변수의 참 노드와 거짓 노드는 항상 짝수·홀수로 인접한다. 입력의 심사위원 투표 $(a, b)$마다 `var(-a) → var(b)`와 `var(-b) → var(a)` 두 간선을 정방향·역방향 그래프에 함께 넣고, 마지막에 `var(-1) → var(1)` 강제 간선을 넣는다. 테스트 케이스가 여러 개이므로 매번 사용한 노드 범위를 초기화하는 것이 중요하다.
 
 ```cpp
 #include <iostream>
 #include <vector>
 #include <stack>
 #include <algorithm>
+#include <cstdlib>
 
 using namespace std;
 
@@ -182,167 +204,82 @@ int main() {
 }
 ```
 
-### 코드 설명
-
-1. **var 함수**
-
-   ```cpp
-   int var(int x) {
-       return (abs(x) - 1) * 2 + (x < 0);
-   }
-   ```
-
-   - 변수 \( x \)에 대한 그래프 노드의 인덱스를 계산한다.
-   - 각 변수는 두 개의 노드로 표현되며, 참과 거짓에 해당한다.
-   - \( x < 0 \)이면 거짓을 나타내는 노드 인덱스를 반환한다.
-
-2. **dfs 함수**
-
-   ```cpp
-   void dfs(int u) {
-       visited[u] = true;
-       for (int v : adj[u]) {
-           if (!visited[v])
-               dfs(v);
-       }
-       order.push_back(u);
-   }
-   ```
-
-   - 임플리케이션 그래프에서의 DFS를 수행하여 완료 순서대로 노드를 저장한다.
-
-3. **reverseDfs 함수**
-
-   ```cpp
-   void reverseDfs(int u, int label) {
-       sccId[u] = label;
-       for (int v : radj[u]) {
-           if (sccId[v] == -1)
-               reverseDfs(v, label);
-       }
-   }
-   ```
-
-   - 역방향 그래프에서의 DFS를 수행하여 SCC를 찾는다.
-
-4. **메인 함수**
-
-   - 입력을 받아 임플리케이션 그래프와 역방향 그래프를 구성한다.
-   - 카를은 반드시 진출해야 하므로 \( X_1 \)이 참이 되도록 간선을 추가한다.
-   - 두 번의 DFS를 통해 SCC를 찾는다.
-   - 각 변수와 그 부정이 같은 SCC에 있다면 모순이 발생하므로 불가능한 경우이다.
+최종 판정은 모든 변수 $i$에 대해 `sccId[i*2] == sccId[i*2+1]`인 경우가 하나라도 있는지 검사하는 한 단계로 끝난다. 재귀 DFS의 깊이는 최대 노드 수인 $2n < 2000$이므로 C++에서 스택 오버플로 걱정은 없다.
 
 ## C++ without library 코드와 설명
 
-C 라이브러리만을 사용하여 동일한 기능을 구현한다.
+위 코드는 `vector`로 인접 리스트를 만든다. C 라이브러리만으로 같은 일을 하려면 `int adj[N][N]` 같은 2차원 배열을 떠올리기 쉽지만, 노드가 최대 2000개이면 정방향과 역방향 합쳐 약 32MB(4바이트 × 2000 × 2000 × 2)가 되어 낭비다. 간선은 많아야 $2m+1 < 4000$개뿐이므로, 노드별 첫 간선을 가리키는 `head` 배열과 간선별 다음 간선을 가리키는 `nxt` 배열로 구성하는 연결 리스트형 인접 리스트(forward star)가 훨씬 적합하다. 메모리가 간선 수에 비례해 수십 KB 수준으로 줄어든다.
 
 ```cpp
 #include <stdio.h>
 #include <stdlib.h>
-#define MAXN 2000
+#define MAXV 2000      /* 노드 수: 2n < 2000 */
+#define MAXE 4100      /* 정방향 간선 수: 2m + 1 < 4000 */
 
 int n, m;
-int adj[MAXN * 2][MAXN * 2];
-int adjSize[MAXN * 2];
-int radj[MAXN * 2][MAXN * 2];
-int radjSize[MAXN * 2];
-int sccId[MAXN * 2];
-int visited[MAXN * 2];
-int stack[MAXN * 2];
-int top;
+int head[MAXV], nxt[MAXE], to[MAXE], ecnt;
+int rhead[MAXV], rnxt[MAXE], rto[MAXE], recnt;
+int sccId[MAXV], visited[MAXV];
+int order[MAXV], top;
 
 int var(int x) {
     return (abs(x) - 1) * 2 + (x < 0);
 }
 
+void addEdge(int u, int v) {
+    to[ecnt] = v; nxt[ecnt] = head[u]; head[u] = ecnt++;
+    rto[recnt] = u; rnxt[recnt] = rhead[v]; rhead[v] = recnt++;
+}
+
 void dfs(int u) {
     visited[u] = 1;
-    for (int i = 0; i < adjSize[u]; ++i) {
-        int v = adj[u][i];
-        if (!visited[v])
-            dfs(v);
-    }
-    stack[top++] = u;
+    for (int e = head[u]; e != -1; e = nxt[e])
+        if (!visited[to[e]]) dfs(to[e]);
+    order[top++] = u;
 }
 
 void reverseDfs(int u, int label) {
     sccId[u] = label;
-    for (int i = 0; i < radjSize[u]; ++i) {
-        int v = radj[u][i];
-        if (sccId[v] == -1)
-            reverseDfs(v, label);
-    }
+    for (int e = rhead[u]; e != -1; e = rnxt[e])
+        if (sccId[rto[e]] == -1) reverseDfs(rto[e], label);
 }
 
 int main() {
-    while (scanf("%d %d", &n, &m) != EOF) {
+    while (scanf("%d %d", &n, &m) == 2) {
         for (int i = 0; i < n * 2; ++i) {
-            adjSize[i] = 0;
-            radjSize[i] = 0;
+            head[i] = rhead[i] = -1;
             sccId[i] = -1;
             visited[i] = 0;
         }
-        top = 0;
+        ecnt = recnt = top = 0;
         for (int i = 0; i < m; ++i) {
             int a, b;
             scanf("%d %d", &a, &b);
-            adj[var(-a)][adjSize[var(-a)]++] = var(b);
-            radj[var(b)][radjSize[var(b)]++] = var(-a);
-            adj[var(-b)][adjSize[var(-b)]++] = var(a);
-            radj[var(a)][radjSize[var(a)]++] = var(-b);
+            addEdge(var(-a), var(b));
+            addEdge(var(-b), var(a));
         }
-        adj[var(-1)][adjSize[var(-1)]++] = var(1);
-        radj[var(1)][radjSize[var(1)]++] = var(-1);
-        for (int i = 0; i < n * 2; ++i) {
-            if (!visited[i])
-                dfs(i);
-        }
+        addEdge(var(-1), var(1));
+        for (int i = 0; i < n * 2; ++i)
+            if (!visited[i]) dfs(i);
         int label = 0;
         while (top > 0) {
-            int u = stack[--top];
-            if (sccId[u] == -1)
-                reverseDfs(u, label++);
+            int u = order[--top];
+            if (sccId[u] == -1) reverseDfs(u, label++);
         }
-        int isPossible = 1;
-        for (int i = 0; i < n; ++i) {
-            if (sccId[i * 2] == sccId[i * 2 + 1]) {
-                isPossible = 0;
-                break;
-            }
-        }
-        if (isPossible)
-            printf("yes\n");
-        else
-            printf("no\n");
+        int ok = 1;
+        for (int i = 0; i < n; ++i)
+            if (sccId[i * 2] == sccId[i * 2 + 1]) { ok = 0; break; }
+        puts(ok ? "yes" : "no");
     }
     return 0;
 }
 ```
 
-### 코드 설명
-
-- **배열 초기화**
-
-  - 동적 배열 대신 고정 크기의 배열을 사용하여 그래프를 구현한다.
-  - `adj`와 `radj` 배열은 인접 리스트를 2차원 배열로 표현한다.
-  - `adjSize`와 `radjSize` 배열은 각 노드의 인접 노드 수를 저장한다.
-
-- **dfs 함수**
-
-  - 임플리케이션 그래프에서 DFS를 수행하여 완료 순서대로 스택에 노드를 저장한다.
-
-- **reverseDfs 함수**
-
-  - 역방향 그래프에서 DFS를 수행하여 SCC를 찾는다.
-
-- **메인 함수**
-
-  - C 스타일의 입출력을 사용하며, 메모리 할당도 `malloc` 없이 구현한다.
-  - 로직은 이전의 C++ 코드와 동일하다.
+`addEdge` 한 번이 정방향과 역방향 간선을 동시에 추가하므로 두 그래프의 간선 번호가 항상 짝을 이룬다. 로직은 C++ 버전과 동일하고, `scanf`가 두 값을 읽는 동안만 반복하도록 `== 2` 조건을 사용했다.
 
 ## Python 코드와 설명
 
-Python으로 동일한 알고리즘을 구현한다.
+Python 구현도 구조는 같다. 다만 Python의 기본 재귀 한도(1000)는 노드 수 2n이 최대 2000 가까이 되는 깊은 체인에서 부족하므로 `sys.setrecursionlimit`을 올린다. 입력이 여러 테스트 케이스이므로 `readline`이 빈 문자열을 돌려주면(EOF) 종료한다.
 
 ```python
 import sys
@@ -405,56 +342,65 @@ while True:
         break
 ```
 
-### 코드 설명
+Python은 재귀 호출 비용이 커서 입력이 클수록 느려지지만, 이 문제의 노드·간선 규모는 작아 한도를 올린 재귀 DFS로 충분하다. 더 큰 그래프에서는 스택을 직접 관리하는 반복형 DFS로 바꾸는 편이 안전하다.
 
-1. **var 함수**
+## 복잡도 분석
 
-   ```python
-   def var(x):
-       return (abs(x) - 1) * 2 + (x < 0)
-   ```
+노드는 $2n$개, 간선은 $2m+1$개다. Kosaraju의 두 번의 DFS와 SCC 검사는 각각 $O(n + m)$이므로 한 테스트 케이스의 시간 복잡도는 $O(n + m)$이다. 공간 복잡도도 정방향·역방향 그래프를 합쳐 $O(n + m)$이다. 여러 테스트 케이스를 처리해도 케이스마다 초기화 비용이 $O(n)$이라 총 비용은 입력 크기에 선형이다.
 
-   - 변수 \( x \)에 대한 노드 인덱스를 계산한다.
+| 구성 요소 | 시간 | 공간 |
+|---|---|---|
+| 그래프 구성 | $O(m)$ | $O(n + m)$ |
+| 1차·2차 DFS | $O(n + m)$ | 재귀 깊이 $O(n)$ |
+| 모순 검사 | $O(n)$ | $O(1)$ |
 
-2. **dfs 함수**
+## 입출력 예제
 
-   ```python
-   def dfs(u):
-       visited[u] = True
-       for v in adj[u]:
-           if not visited[v]:
-               dfs(v)
-       order.append(u)
-   ```
+다음 입력은 세 개의 테스트 케이스이며, 위의 정당성 논의와 같은 규칙으로 직접 판정한 결과와 일치한다.
 
-   - 임플리케이션 그래프에서 DFS를 수행하여 완료 순서를 기록한다.
+```text
+3 3
+-1 2
+-2 -3
+3 1
+2 2
+-1 2
+-1 -2
+2 2
+1 2
+1 -2
+```
 
-3. **reverse_dfs 함수**
+```text
+yes
+no
+yes
+```
 
-   ```python
-   def reverse_dfs(u, label):
-       scc_id[u] = label
-       for v in radj[u]:
-           if scc_id[v] == -1:
-               reverse_dfs(v, label)
-   ```
-
-   - 역방향 그래프에서 DFS를 수행하여 SCC를 찾는다.
-
-4. **메인 루프**
-
-   - 입력을 받아 그래프를 구성한다.
-   - 카를이 반드시 진출하도록 간선을 추가한다.
-   - 두 번의 DFS를 통해 SCC를 찾는다.
-   - 모순 여부를 확인하여 결과를 출력한다.
-
-## 결론
-
-이번 문제는 2-SAT 알고리즘과 강한 연결 요소(SCC)를 활용하여 논리식의 만족 가능성을 판단하는 전형적인 문제였다. 임플리케이션 그래프를 구성하고, Kosaraju 알고리즘을 통해 효율적으로 해결할 수 있었다. 앞서 제공한 코드에서 역방향 그래프를 올바르게 처리하지 못한 부분이 있었는데, 이를 수정하여 문제를 해결할 수 있었다. 이러한 유형의 문제를 통해 그래프 이론과 논리식 처리에 대한 이해를 더욱 깊게 할 수 있었다. 추가적인 최적화 방안으로는 Tarjan 알고리즘을 활용하여 한 번의 DFS로 SCC를 찾는 방법도 고려할 수 있다.
+첫 번째 케이스는 $X_1$이 참이고 $X_2$가 참, $X_3$이 거짓이면 세 절이 모두 만족된다. 두 번째 케이스는 앞서 그래프로 본 모순이고, 세 번째는 $X_1$이 참이면 $X_2$ 값과 무관하게 두 절이 모두 만족되므로 `yes`다.
 
 ## 코너 케이스 및 실수 포인트
 
 | 케이스 | 설명 | 처리 방법 |
 |---|---|---|
-| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
-| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |
+| **여러 테스트 케이스** | 이전 케이스의 간선·방문 기록이 남아 다음 판정을 오염시킴 | 매 케이스 시작 시 `2n` 범위의 인접 정보·방문·SCC 번호를 초기화 |
+| **카를 강제 간선 누락** | $X_1$ 강제를 빼먹으면 카를이 탈락하는 해도 `yes`로 판정됨 | `var(-1) → var(1)` 간선을 반드시 추가 |
+| **역방향 그래프 불일치** | 정방향에만 간선을 넣고 역방향을 빼먹으면 SCC가 쪼개져 오답 | 간선 추가 시 정·역방향을 한 함수에서 함께 처리 |
+| **EOF 처리** | 테스트 케이스 수가 주어지지 않아 입력 끝까지 읽어야 함 | `scanf`/`cin`의 반환값 또는 `readline`의 빈 문자열로 종료 |
+
+## 결론
+
+Kosaraju 대신 Tarjan 알고리즘을 쓰면 역방향 그래프를 만들지 않고 DFS 한 번으로 SCC를 구하므로 메모리와 코드가 줄어든다. 또 Tarjan은 SCC 번호가 위상 정렬의 역순으로 매겨지기 때문에, 존재 여부뿐 아니라 실제 진출 명단(해)을 구해야 하는 변형 문제에서는 `sccId[x] < sccId[¬x]`이면 $x$를 참으로 배정하는 식으로 바로 이어 쓸 수 있다.
+
+## 이 글을 읽은 후 달성해야 할 목표
+
+- 절 $(A \lor B)$를 두 개의 함의 간선으로 바꾸고 그래프의 대칭성을 설명할 수 있다.
+- 같은 SCC에 $X$와 $\lnot X$가 있으면 왜 불가능한지, 없으면 왜 충분한지 논증할 수 있다.
+- 단항 조건(특정 변수의 값 강제)을 간선 하나로 표현할 수 있다.
+- Kosaraju 알고리즘을 구현하고 $O(n + m)$ 복잡도를 설명할 수 있다.
+
+## 참고 문헌 및 출처
+
+- B. Aspvall, M. F. Plass, R. E. Tarjan, "A linear-time algorithm for testing the truth of certain quantified boolean formulas", Information Processing Letters 8(3), 1979.
+- [CP-Algorithms, 2-SAT](https://cp-algorithms.com/graph/2SAT.html)
+- [백준 3648번 문제](https://www.acmicpc.net/problem/3648)
