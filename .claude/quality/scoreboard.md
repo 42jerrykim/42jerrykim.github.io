@@ -504,7 +504,7 @@
 | content/collection/Algorithm/2024/2024-10-21-BOJ-19585/index.md | 92.1 | 2026-11-16 | 2 | 통과 | 1.3 | 2b1204d | 없음(경미: Trie 1차 출처 Fredkin 1960 부재, 결론 일부 재진술, BOJ 링크 검증 불가) |
 | content/collection/Algorithm/2024/2024-10-23-BOJ-11689/index.md | 92.05 | 2026-11-17 | 3 | 통과 | 1.3 | e08e4e2 | 없음(경미: 결론이 앞 절 재진술, 1차 원논문 출처 미병기, BOJ 링크는 서비스 중단으로 검증 불가)
 | content/collection/Algorithm/2024/2024-10-23-BOJ-3648/index.md | 90.55 | 2026-11-18 | 3 | 통과 | 1.3 | 5c98ff7 | 없음(경미: 코드 블록 출처 주석 부재, 입출력 예제 절 위치, lastmod 미갱신[규칙상 사람이 갱신], 폴더명 슬러그 없음) |
-| content/collection/Algorithm/2024/2024-10-23-BOJ-3830/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-23-BOJ-3830/index.md | 91.3 | 2026-11-19 | 2 | 통과 | 1.3 | c069a55 | 없음(경미: 10^11 중간값 근거 약함, 판단 기준 독립 절 여지, BOJ 링크 봇 차단으로 검증 불가) |
 | content/collection/Algorithm/2024/2024-10-23-BOJ-4225/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-24-BOJ-11266/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-24-BOJ-1533/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -2013,3 +2013,4 @@
 | content/post/2026/2026-11-16-lemire-python-simd-fastsimdjson-fastpybase64/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-17-no-ai-slop-manifesto-aie-code-summit/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-18-x-com-web-rebuild-ssr-three-servers-ai-agents/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-11-19-fable-5-2-thousand-agents-lean-fermat-shared-sql/index.md | - | - | - | 미채점 | - | - | - |

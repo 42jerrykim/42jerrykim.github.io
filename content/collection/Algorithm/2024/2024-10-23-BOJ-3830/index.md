@@ -13,28 +13,26 @@ tags:
 - Problem-Solving(문제해결)
 - C++
 - Python
-- Go
 - Implementation(구현)
 - Time-Complexity(시간복잡도)
 - Coding-Test(코딩테스트)
 - Optimization(최적화)
 - Code-Quality(코드품질)
-- .NET
 - String(문자열)
 - Recursion(재귀)
 - Space-Complexity(공간복잡도)
 - Edge-Cases(엣지케이스)
-- Testing(테스트)
-- Documentation(문서화)
 - Best-Practices
 - Complexity-Analysis(복잡도분석)
 - Debugging(디버깅)
-- Refactoring(리팩토링)
 - Clean-Code(클린코드)
 - Performance(성능)
 - Pitfalls(함정)
-- Error-Handling(에러처리)
-- Logging(로깅)
+- BOJ-3830
+- Weighted-Union-Find
+- Union-Find(유니온파인드)
+- Disjoint-Set(분리집합)
+- Path-Compression(경로압축)
 image: "wordcloud.png"
 date: 2024-10-23
 lastmod: 2024-10-23
@@ -98,26 +96,53 @@ UNKNOWN
 -50
 ```
 
+## 학습 목표
+
+이 글을 읽고 나면 다음을 할 수 있습니다.
+
+- 일반 Union-Find에 "부모와의 무게 차이"를 얹어 상대 관계를 관리하는 가중치 DSU의 불변식을 설명한다.
+- `unite`의 갱신 식 `weightDiff[rootA] = weightDiff[b] - weightDiff[a] - w`를 직접 유도한다.
+- 경로 압축만 쓸 때의 복잡도와 재귀 `find`의 깊이 위험을 구분해 말한다.
+
 ## 접근 방식
 
-이 문제는 **가중치가 있는 Union-Find(Disjoint Set Union with Weights)** 자료구조를 사용하여 해결할 수 있습니다. 일반적인 Union-Find는 각 원소가 어떤 집합에 속하는지를 관리하지만, 이 문제에서는 추가로 두 원소 사이의 무게 차이(가중치)를 관리해야 합니다.
+일반적인 Union-Find는 "두 원소가 같은 집합인가"만 답합니다. 이 문제는 같은 집합 안에서 두 원소의 무게 차이까지 물으므로, 각 원소에 값을 하나 더 저장해야 합니다. 절대 무게는 알 수 없지만 같은 집합 안의 상대 차이는 알 수 있다는 점이 핵심입니다. 집합마다 루트를 기준점으로 삼으면 모든 원소의 무게를 "루트보다 얼마나 무거운가"로 표현할 수 있습니다.
 
-**핵심 아이디어**
+### 불변식
 
-- **부모 노드와의 무게 차이**를 저장합니다.
-- <strong>경로 압축(Path Compression)</strong>을 활용하여 Union-Find의 효율성을 높입니다.
-- 무게 차이를 누적하여 루트까지의 총 무게를 계산합니다.
+`find`가 끝난 시점에서 `weightDiff[x]`는 `x`의 무게에서 루트의 무게를 뺀 값, 즉 `w(x) - w(root)`입니다. 경로 압축 전에는 `x`의 직속 부모를 기준으로 한 차이이고, 압축하면서 부모가 루트로 바뀌므로 부모 쪽 값을 더해 주면 기준이 루트로 올라갑니다. 그래서 `find`의 `weightDiff[x] += weightDiff[orig_parent]`가 성립합니다. 질의 `? a b`의 답은 같은 루트를 기준으로 한 두 값의 차 `weightDiff[b] - weightDiff[a]`가 되어, 루트의 절대 무게는 상쇄됩니다.
 
-**알고리즘 단계**
+### Union 식 유도
 
-1. **초기화**: 각 샘플은 자기 자신을 부모로 갖고, 무게 차이는 0으로 설정합니다.
-2. **Find 연산**: 재귀적으로 부모를 찾아가며, 경로 압축을 수행하고, 무게 차이를 누적합니다.
-3. **Union 연산**: 두 샘플의 루트를 찾고, 무게 차이를 계산하여 부모를 갱신합니다.
-4. **질의 처리**: 두 샘플이 같은 집합에 속한다면, 무게 차이를 계산하여 출력하고, 그렇지 않다면 `"UNKNOWN"`을 출력합니다.
+`! a b w`는 `w(b) - w(a) = w`를 뜻합니다. 두 `find` 뒤에 `w(a) = weightDiff[a] + w(rootA)`, `w(b) = weightDiff[b] + w(rootB)`가 성립하므로 이를 대입하면 `w(rootA) - w(rootB) = weightDiff[b] - weightDiff[a] - w`가 됩니다. `rootA`를 `rootB` 밑에 붙이면 `weightDiff[rootA]`가 바로 이 값이므로 코드의 한 줄이 나옵니다. 부호를 헷갈리기 쉬운 지점이라 `a`와 `b`의 위치를 바꿔 쓰지 않도록 주의해야 합니다.
+
+```mermaid
+flowchart LR
+    S1["! 1 2 100 이후<br/>1의 부모는 2<br/>d[1] = -100"] --> S2["! 2 3 100 이후<br/>2의 부모는 3<br/>d[2] = -100"]
+    S2 --> S3["? 1 3 에서 find(1)<br/>d[1] = -100 + -100 = -200<br/>1의 부모는 3"]
+    S3 --> S4["답 = d[3] - d[1]<br/>= 0 - (-200) = 200"]
+```
+
+위 그림은 예제의 세 번째 테스트 케이스를 따라간 것입니다. 경로 압축이 일어나는 순간을 풀어 보면, `? 1 3`에서 `find(1)`은 먼저 `find(2)`를 호출해 2의 부모가 이미 루트 3임을 확인하고 돌아옵니다. 그 뒤 1의 값에 `orig_parent`였던 2의 값(-100)을 더하므로 `d[1]`은 "2 기준 -100"에서 "3 기준 -200"으로 바뀌고, 1의 부모도 2에서 3으로 바뀝니다. 즉 압축은 부모 포인터와 기준점을 동시에 루트로 옮기는 연산이며, 이 때문에 이후 질의는 한 단계만에 답을 냅니다. 이어지는 `! 4 3 150`에서는 `d[4] = d[3] - d[4] - 150 = -150`이 되고, `? 4 1`은 `d[1] - d[4] = -200 - (-150) = -50`으로 예제 출력과 일치합니다.
+
+### 복잡도
+
+| 항목 | 값 | 근거 |
+|---|---|---|
+| 시간 | 질의·병합당 상각 O(log N), 전체 O((N+M) log N) | 경로 압축만 사용, union by rank 없음 |
+| 시간(rank 추가 시) | 상각 O(α(N)) | 경로 압축 + union by rank |
+| 공간 | O(N) | `parent`, `weightDiff` 두 배열 |
+
+이 풀이는 union by rank를 쓰지 않으므로 상각 O(log N) 경계를 따르고, rank까지 쓰면 역아커만 함수 α(N)이 됩니다. 이 두 경계의 증명은 [Wikipedia의 Disjoint-set data structure 항목](https://en.wikipedia.org/wiki/Disjoint-set_data_structure)과 그 참고문헌(Tarjan, Cormen 등의 알고리즘 교재)에 정리되어 있습니다. 입출력 최적화(`sync_with_stdio`, `scanf`)는 상수 시간을 줄일 뿐 점근 복잡도와는 무관합니다.
+
+### 흔한 오해
+
+가장 흔한 실수는 `weightDiff`를 "항상 직속 부모와의 차이"로만 읽는 것입니다. 이 값은 `find` 직후에만 루트 기준이 되며, `find`를 거치지 않고 `weightDiff[a]`를 바로 읽으면 압축 전의 값이라 틀린 답이 나옵니다. 그래서 질의와 `unite` 모두 `find`를 먼저 호출합니다. 두 번째 실수는 `unite`에서 `a`와 `b`의 부호를 뒤집는 것으로, 유도한 식에서 `w`는 `w(b) - w(a)`라는 점을 기준으로 확인하면 됩니다.
 
 ## C++ 코드와 설명
 
 ```cpp
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <iostream>
 #include <string>
 using namespace std;
@@ -190,29 +215,13 @@ int main() {
 }
 ```
 
-**코드 설명**
-
-- **parent 배열**: 각 노드의 부모를 저장합니다.
-- **weightDiff 배열**: 각 노드와 부모 노드 사이의 무게 차이를 저장합니다.
-- **init 함수**: 각 노드를 초기화합니다.
-- **find 함수**:
-  - 재귀적으로 부모를 찾아갑니다.
-  - 경로 압축을 수행하여 부모를 루트로 설정합니다.
-  - 무게 차이를 누적하여 루트까지의 총 무게를 계산합니다.
-- **unite 함수**:
-  - 두 노드의 루트를 찾습니다.
-  - 무게 차이를 계산하여 부모 노드의 무게 차이를 갱신합니다.
-  - 부모를 갱신하여 두 집합을 합칩니다.
-- **메인 함수**:
-  - 입력을 받아 초기화합니다.
-  - 각 명령에 따라 unite 또는 질의를 수행합니다.
-  - 질의 시 두 노드가 같은 집합에 속하는지 확인하고, 무게 차이를 출력합니다.
+`parent`는 각 노드의 부모를, `weightDiff`는 부모와의 무게 차이를 담습니다. `find`는 재귀로 루트까지 올라가며 경로를 압축하고 위 불변식대로 차이를 누적하며, `unite`는 두 루트를 찾아 앞서 유도한 식으로 `rootA`를 `rootB` 밑에 붙입니다. 질의에서는 두 노드의 루트가 같을 때만 차이를 출력하고, 다르면 `UNKNOWN`입니다. 누적 값은 최대 약 10^5 × 10^6 = 10^11까지 커질 수 있어 `weightDiff`는 `long long`이어야 합니다.
 
 ## C++ without library 코드와 설명
 
 ```cpp
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <stdio.h>
-#include <string.h>
 
 #define MAX_N 100005
 
@@ -277,15 +286,12 @@ int main() {
 }
 ```
 
-**코드 설명**
-
-- **입출력**: `stdio.h`의 `scanf`와 `printf`를 사용하여 입력과 출력을 처리합니다.
-- **문자열 처리**: `string.h`의 `strcmp`를 사용하지 않고, 단순히 `cmd[0]`을 비교합니다.
-- **나머지 로직**: 앞서 설명한 코드와 동일하게 동작하며, 표준 라이브러리의 사용을 최소화했습니다.
+앞의 코드와 로직은 같고 입출력만 `scanf`/`printf`로 바꾼 버전입니다. 명령 문자는 `cmd[0]`만 비교하므로 문자열 비교 함수가 필요 없고, 그래서 `string.h`도 사실상 쓰이지 않습니다.
 
 ## Python 코드와 설명
 
 ```python
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 import sys
 sys.setrecursionlimit(1000000)
 
@@ -336,32 +342,26 @@ while True:
                 print(weightDiff[b] - weightDiff[a])
 ```
 
-**코드 설명**
-
-- **재귀 한도 증가**: `sys.setrecursionlimit`을 통해 재귀 한도를 늘려줍니다.
-- **전역 변수 사용**: `parent`와 `weightDiff`를 전역 딕셔너리로 선언합니다.
-- **init 함수**: 각 노드를 초기화합니다.
-- **find 함수**:
-  - 부모를 재귀적으로 찾고, 경로 압축을 수행합니다.
-  - 무게 차이를 누적합니다.
-- **unite 함수**:
-  - 두 노드의 루트를 찾고, 무게 차이를 갱신합니다.
-  - 부모를 갱신하여 집합을 합칩니다.
-- **메인 루프**:
-  - 입력을 받아 명령에 따라 함수를 호출합니다.
-  - 질의에 대한 응답을 출력합니다.
+Python 버전은 같은 로직을 딕셔너리로 옮겼습니다. 재귀 `find`의 깊이가 최대 10^5까지 갈 수 있어 `sys.setrecursionlimit`을 올렸지만, 이것만으로는 인터프리터 스택이 부족해 비정상 종료할 수 있으므로 제출 환경에서 깊은 체인 입력으로 확인이 필요합니다(안전하게 가려면 `find`를 반복문으로 바꾸거나 `threading.stack_size`를 늘립니다).
 
 ## 결론
 
-이 문제는 가중치가 있는 Union-Find 자료구조의 활용을 요구하는 흥미로운 문제였습니다. 일반적인 Union-Find에 비해 약간의 변형이 필요하지만, 핵심 아이디어를 이해하면 효율적으로 해결할 수 있습니다. 특히 경로 압축과 무게 차이의 누적 관리가 중요했습니다.
+가중치 Union-Find는 "집합 소속"에 "루트 대비 상대값"을 얹은 것이며, 불변식 `weightDiff[x] = w(x) - w(root)`만 지키면 `find`와 `unite`의 부호가 모두 따라옵니다.
 
-추가적으로, 입력 데이터의 크기가 크기 때문에 입출력 속도를 높이기 위한 최적화도 고려해야 합니다. 이를 통해 시간 복잡도를 <strong>O(M log N)</strong>으로 유지하며 효율적인 프로그램을 작성할 수 있었습니다.
-
-이번 문제를 통해 가중치가 있는 Union-Find의 활용과 알고리즘 최적화의 중요성을 다시 한 번 깨달을 수 있었습니다.
+한계와 대안은 앞의 복잡도 표와 아래 코너 케이스 표에 정리했습니다(union by size/rank 추가, 반복형 `find`). 모순되는 측정이 들어올 수 있는 변형 문제라면 같은 집합 내 `unite`에서 기존 차이와 새 `w`를 비교하는 검사를 추가해야 하지만, 이 문제는 입력의 일관성을 보장합니다.
 
 ## 코너 케이스 및 실수 포인트
 
 | 케이스 | 설명 | 처리 방법 |
 |---|---|---|
-| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
-| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |
+| **최소 입력** | N=2, M=1 (제약상 최소) | 반복문 범위·초기화 확인 |
+| **오버플로우** | 최종 답은 10^6 이하이나 누적 `weightDiff` 중간값은 최대 약 10^11 | `long long` (C++) 사용 |
+| **재귀 깊이** | 한 줄로 이어진 체인에서 `find` 깊이 10^5 | 반복형 `find` 또는 스택 확장 |
+| **여러 테스트 케이스** | 케이스마다 배열 재초기화 필요 | `init(N)` 호출 확인 |
+
+## 참고 문헌 및 출처
+
+- 문제: [BOJ 3830 교수님은 기다리지 않는다](https://www.acmicpc.net/problem/3830)
+- [Disjoint-set data structure, Wikipedia](https://en.wikipedia.org/wiki/Disjoint-set_data_structure)
+- R. E. Tarjan, J. van Leeuwen, "Worst-case analysis of set union algorithms", Journal of the ACM 31(2), 1984, pp. 245–281.
+- T. H. Cormen et al., Introduction to Algorithms, "Data Structures for Disjoint Sets" 장.
