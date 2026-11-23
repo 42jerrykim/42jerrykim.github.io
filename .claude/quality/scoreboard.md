@@ -509,7 +509,7 @@
 | content/collection/Algorithm/2024/2024-10-24-BOJ-11266/index.md | 95.5 | 2026-11-21 | 1 | 통과 | 1.3 | 884cdfe | 없음(경미: 문제 정보에 시간·메모리 제한 미병기, 출처 주석 문구 통일 여지) |
 | content/collection/Algorithm/2024/2024-10-24-BOJ-1533/index.md | 92.05 | 2026-11-22 | 1 | 통과 | 1.3 | 52b028e | 없음(경미: 항목4=85 결론이 접근 방식 재진술, 항목7=85 본문 근거 약한 보일러플레이트 태그, 항목2=85 입출력 예제·참고문헌 절 부재) |
 | content/collection/Algorithm/2024/2024-10-25-BOJ-10828/index.md | 98.5 | 2026-11-23 | 1 | 통과 | 1.3 | d530425 | 없음(경미: lastmod 미갱신 — 지침상 사람 승인 시 갱신) |
-| content/collection/Algorithm/2024/2024-10-25-BOJ-1225/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-25-BOJ-1225/index.md | 92.7 | 2026-11-24 | 1 | 통과 | 1.3 | 0cc6646 | 없음(경미: 항목2 학습목표·적용조건 서술 형식적, 항목4 0 분기 3중 언급, 항목6 Mermaid 흐름도 부재) |
 | content/collection/Algorithm/2024/2024-10-25-BOJ-14924/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-25-BOJ-16189/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-25-BOJ-25501/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -2019,3 +2019,4 @@
 | content/post/2026/2026-11-22-github-rubicon-git-storage-ref-cas-agent-scale/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-22-jis-x-0208-ghost-characters-yurei-moji/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-23-openai-frontier-training-containment-offline-world/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-11-24-cursor-marketplace-claude-code-extension-ssh-backdoor/index.md | - | - | - | 미채점 | - | - | - |
