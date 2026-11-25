@@ -511,7 +511,7 @@
 | content/collection/Algorithm/2024/2024-10-25-BOJ-10828/index.md | 98.5 | 2026-11-23 | 1 | 통과 | 1.3 | d530425 | 없음(경미: lastmod 미갱신 — 지침상 사람 승인 시 갱신) |
 | content/collection/Algorithm/2024/2024-10-25-BOJ-1225/index.md | 92.7 | 2026-11-24 | 1 | 통과 | 1.3 | 0cc6646 | 없음(경미: 항목2 학습목표·적용조건 서술 형식적, 항목4 0 분기 3중 언급, 항목6 Mermaid 흐름도 부재) |
 | content/collection/Algorithm/2024/2024-10-25-BOJ-14924/index.md | 95.5 | 2026-11-25 | 2 | 통과 | 1.3 | 66f0ab5 | 없음(경미: 항목2 판단 기준·비판적 시각 얕음) |
-| content/collection/Algorithm/2024/2024-10-25-BOJ-16189/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-25-BOJ-16189/index.md | 95.35 | 2026-11-26 | 1 | 통과 | 1.3 | de5398f | 없음(경미: 항목1=85 투 포인터·조기 종료·비교 횟수 서술이 C++에만 맞고 Python 역순 복사 동작 설명 필요, 항목3=85 학습 목표 절 요약 문단 부재·도입부 난이도 미언급) |
 | content/collection/Algorithm/2024/2024-10-25-BOJ-25501/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-25-BOJ-2975/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-25-BOJ-5544/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -2020,3 +2020,5 @@
 | content/post/2026/2026-11-22-jis-x-0208-ghost-characters-yurei-moji/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-23-openai-frontier-training-containment-offline-world/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-24-cursor-marketplace-claude-code-extension-ssh-backdoor/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-11-25-openai-perplexity-and-intelligence-common-limits/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-11-26-instructive-java-jit-machine-code-sampling/index.md | - | - | - | 미채점 | - | - | - |
