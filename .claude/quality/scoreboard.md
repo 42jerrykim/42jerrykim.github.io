@@ -513,7 +513,7 @@
 | content/collection/Algorithm/2024/2024-10-25-BOJ-14924/index.md | 95.5 | 2026-11-25 | 2 | 통과 | 1.3 | 66f0ab5 | 없음(경미: 항목2 판단 기준·비판적 시각 얕음) |
 | content/collection/Algorithm/2024/2024-10-25-BOJ-16189/index.md | 95.35 | 2026-11-26 | 1 | 통과 | 1.3 | de5398f | 없음(경미: 항목1=85 투 포인터·조기 종료·비교 횟수 서술이 C++에만 맞고 Python 역순 복사 동작 설명 필요, 항목3=85 학습 목표 절 요약 문단 부재·도입부 난이도 미언급) |
 | content/collection/Algorithm/2024/2024-10-25-BOJ-25501/index.md | 95.35 | 2026-11-27 | 2 | 통과 | 1.3 | 83e0085 | 없음(경미: 항목1=85 L98 "전체 비용은 호출 횟수에 비례"가 C의 strlen O(n)을 빠뜨림, 항목4=85 L247 목표 요약 문단이 목록과 중복) |
-| content/collection/Algorithm/2024/2024-10-25-BOJ-2975/index.md | - | - | 0 | 미채점 | - | - | - |
+| content/collection/Algorithm/2024/2024-10-25-BOJ-2975/index.md | 93.4 | 2026-11-28 | 1 | 통과 | 1.3 | f3d0a7d | 없음(경미: 도입부의 출처 없는 빈도 표현·난이도 언급 없음, -200 경계 예시가 본문과 코너 케이스 표에 중복) |
 | content/collection/Algorithm/2024/2024-10-25-BOJ-5544/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-10-25-BOJ-7523/index.md | - | - | 0 | 미채점 | - | - | - |
 | content/collection/Algorithm/2024/2024-11-26-BOJ-31654/index.md | - | - | 0 | 미채점 | - | - | - |
@@ -2022,3 +2022,5 @@
 | content/post/2026/2026-11-24-cursor-marketplace-claude-code-extension-ssh-backdoor/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-25-openai-perplexity-and-intelligence-common-limits/index.md | - | - | - | 미채점 | - | - | - |
 | content/post/2026/2026-11-26-instructive-java-jit-machine-code-sampling/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-11-27-anthropic-messages-api-rust-shadow-verification/index.md | - | - | - | 미채점 | - | - | - |
+| content/post/2026/2026-11-28-rustc-next-trait-solver-cache-key-erasure/index.md | - | - | - | 미채점 | - | - | - |

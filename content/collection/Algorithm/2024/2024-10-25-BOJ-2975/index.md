@@ -1,10 +1,10 @@
 ---
-description: "이 문제는 은행의 ATM을 통한 예금과 출금 거래를 시뮬레이션하면서, 과도한 출금으로 인해 잔액이 –200 이하로 떨어지지 않도록 규칙을 적용해 거래 결과를 출력하는 시뮬레이션 문제입니다. 각 입력 거래를 차례대로 처리해서 잔액 변화 및 제한 조건에 따라 올바른 결과를 출력해야 하며 입력의 종료 조건과 형식에 유의해야 합니다."
-title: "[Algorithm] C++/Python 백준 2975번 : Transactions 다국어"
+title: "[Algorithm] C++/Python 백준 2975번: Transactions"
+description: "백준 2975번 Transactions 풀이입니다. 줄마다 독립된 입출금 거래를 처리하고, 출금 후 잔액이 -200 미만일 때만 거절하는 경계 조건과 0 W 0 종료 판정을 C++·C·Python 코드와 복잡도 분석으로 정리합니다."
 categories: 
 - Algorithm
-- Arithmetic
-- Math
+- Implementation
+- Simulation
 tags:
 - Implementation(구현)
 - Simulation(시뮬레이션)
@@ -14,240 +14,208 @@ tags:
 - Competitive-Programming(경쟁프로그래밍)
 - Problem-Solving(문제해결)
 - C++
-- Time-Complexity(시간복잡도)
-- Coding-Test(코딩테스트)
-- Data-Structures(자료구조)
-- Optimization(최적화)
-- Code-Quality(코드품질)
+- C
 - Python
-- Go
-- .NET
-- Action(액션)
+- Coding-Test(코딩테스트)
+- Time-Complexity(시간복잡도)
 - Space-Complexity(공간복잡도)
-- Edge-Cases(엣지케이스)
-- Testing(테스트)
-- Documentation(문서화)
-- Best-Practices
 - Complexity-Analysis(복잡도분석)
-- Debugging(디버깅)
-- Refactoring(리팩토링)
-- Clean-Code(클린코드)
-- Performance(성능)
+- Edge-Cases(엣지케이스)
 - Pitfalls(함정)
-- Error-Handling(에러처리)
+- String(문자열)
+- Arithmetic
+- IO(Input/Output)
+- Testing(테스트)
+- Debugging(디버깅)
+- ICPC
+- Boundary-Condition(경계조건)
+- Sentinel(종료조건)
+- Problem-2975
+- 백준2975
+- Transactions
 image: "wordcloud.png"
 date: 2024-10-25
 lastmod: 2024-10-25
 ---
 
-은행의 ATM을 이용할 때마다 고객의 계좌 잔액을 정확히 유지하기 위한 계산이 필요하다. 이 문제에서는 예금과 출금 거래를 처리하여 최종 잔액을 계산하는 프로그램을 작성해야 한다. 특히, 은행 규칙에 따라 고객의 잔액이 -200을 초과하여 마이너스가 되지 않도록 해야 한다. 이는 과도한 출금으로 인해 발생할 수 있는 문제를 방지하기 위한 조치이다.
+백준 2975번 'Transactions'는 ATM의 입금과 출금을 한 건씩 계산하는 시뮬레이션 문제다. 계산 자체는 덧셈과 뺄셈이 전부이므로, 실수는 대부분 "정확히 -200은 허용되는가"와 "각 줄이 서로 이어지는가"라는 문제 해석에서 나온다. 이 글에서는 이 두 가지를 먼저 확정한 뒤 C++·C·Python 구현을 정리한다.
 
-문제 : [https://www.acmicpc.net/problem/2975](https://www.acmicpc.net/problem/2975)
+## 문제 정보
 
-## 문제 설명
+**문제 링크**: [https://www.acmicpc.net/problem/2975](https://www.acmicpc.net/problem/2975)
 
-은행의 ATM에서는 고객이 출금이나 예금을 할 때마다 계좌의 잔액을 정확하게 유지하기 위해 계산이 필요하다. 이 문제에서는 여러 개의 거래가 주어질 때, 각 거래를 순서대로 처리하여 최종 잔액을 계산하는 프로그램을 작성해야 한다. 거래는 다음과 같이 이루어진다:
+**문제 요약**: 한 줄에 시작 잔액, 거래 종류(`W` 출금, `D` 입금), 금액이 주어진다. 거래 후의 새 잔액을 출력하되, 출금 때문에 잔액이 -200 아래로 내려가게 되면 `Not allowed`를 출력한다. 입력은 `0 W 0` 줄에서 끝난다.
 
-- **입력 형식**: 각 거래는 세 부분으로 구성된다. 첫 번째는 시작 잔액을 나타내는 정수 (–200 이상 +10,000 이하), 두 번째는 'W' 또는 'D'로 출금(Withdrawal) 또는 예금(Deposit)을 나타내는 문자, 세 번째는 출금 또는 예금할 금액을 나타내는 정수 (5 이상 400 이하)이다. 입력은 `0 W 0`으로 끝난다.
+**제한 조건**:
 
-- **출력 형식**: 각 유효한 거래에 대해 새로운 잔액을 한 줄에 출력한다. 단, 출금으로 인해 잔액이 –200을 넘어서 마이너스가 될 경우, "Not allowed"를 출력한다.
+- 시간 제한 1초, 메모리 제한 128MB
+- 시작 잔액: -200 이상 10,000 이하의 정수
+- 금액: 5 이상 400 이하의 정수
 
-- **예시**:
-    ```
-    입력:
-    10000 W 10
-    -200 D 300
-    50 W 300
-    0 W 0
+## 입출력 예제
 
-    출력:
-    9990
-    100
-    Not allowed
-    ```
+**입력**:
 
-위 예시에서 첫 번째 거래는 10,000원에서 10원을 출금하여 9,990원이 된다. 두 번째 거래는 -200원에서 300원을 예금하여 100원이 된다. 세 번째 거래는 50원에서 300원을 출금하려고 하지만, 이는 -250원이 되어 규칙을 위반하므로 "Not allowed"를 출력한다.
+```text
+10000 W 10
+-200 D 300
+50 W 300
+0 W 0
+```
 
-## 접근 방식
+**출력**:
 
-이 문제는 간단한 시뮬레이션 문제로, 주어진 거래들을 순서대로 처리하면서 잔액을 업데이트하는 방식으로 해결할 수 있다. 각 거래는 예금 또는 출금으로 구분되며, 출금 시 잔액이 –200 이하로 떨어지는지를 확인해야 한다. 이를 위해 다음과 같은 단계를 따른다:
+```text
+9990
+100
+Not allowed
+```
 
-1. **입력 처리**: 거래가 `0 W 0`이 될 때까지 입력을 계속 받는다.
-2. **예금 처리**: 'D'가 입력되면 현재 잔액에 금액을 더한다.
-3. **출금 처리**: 'W'가 입력되면 현재 잔액에서 금액을 뺀 후, 잔액이 –200 이하로 떨어지는지 확인한다. 만약 그렇다면 "Not allowed"를 출력하고, 그렇지 않다면 잔액을 업데이트한다.
-4. **출력**: 각 유효한 거래 후의 잔액을 출력하거나, 규칙을 위반한 경우 "Not allowed"를 출력한다.
+첫 줄은 10,000에서 10을 빼고, 둘째 줄은 -200에 300을 더한다. 셋째 줄은 50에서 300을 빼면 -250이 되어 한도를 넘으므로 거절된다. 둘째 줄의 시작 잔액이 첫 줄의 결과(9990)가 아니라 -200이라는 점에 주목한다.
 
-이러한 단계를 통해 모든 거래를 효율적으로 처리할 수 있으며, 특별한 자료 구조나 복잡한 알고리즘이 필요하지 않다. 입력의 범위가 제한적이므로 기본적인 구현으로도 문제를 해결할 수 있다.
+## 접근 방식 및 로직 설계
 
-## C++ 코드와 설명
+각 줄은 **자기 시작 잔액을 직접 들고 있는 독립된 거래**다. 앞 거래의 결과를 변수에 누적해 다음 줄에 이어 쓰면 안 되며, 거절된 거래가 다음 줄에 영향을 주지도 않는다. 따라서 상태를 저장할 필요 없이 한 줄을 읽고, 계산하고, 출력하는 일을 반복하면 된다.
 
-아래는 문제를 해결하기 위한 최적화된 C++ 코드이다. 이 코드는 빠른 입력 처리를 위해 `ios::sync_with_stdio(false)`와 `cin.tie(0)`을 사용하였다. 각 거래를 읽고, 예금 또는 출금에 따라 잔액을 업데이트하며, 출금 시 잔액이 –200 이하로 떨어지는지를 확인하여 적절한 출력을 한다.
+경계 조건은 "-200 **아래로** 내려가면 거절"이다. 출금 후 잔액 `balance - amount`가 -200보다 작을 때(`< -200`)만 거절하고, 정확히 -200이면 허용해 `-200`을 출력한다. 비교 연산자를 `<=`로 쓰면 예제는 모두 통과하지만 경계값 입력에서 틀린다. 예를 들어 `0 W 200`의 답은 `-200`이고, `0 W 201`의 답은 `Not allowed`다. 입금은 잔액을 늘리기만 하므로 한도 검사가 필요 없다.
+
+종료 줄 `0 W 0`은 거래로 처리하지 않는다. 실제 거래의 금액은 5 이상이므로 금액이 0인 줄은 종료 줄뿐이지만, 조건을 문제 그대로 옮겨 세 값을 모두 비교하는 편이 읽기 쉽다.
+
+```mermaid
+flowchart TD
+    readLine["한 줄 읽기: balance, op, amount"] --> isStop{"0 W 0 인가"}
+    isStop -->|"예"| finish["종료"]
+    isStop -->|"아니오"| isDeposit{"op == D 인가"}
+    isDeposit -->|"예"| addMoney["balance + amount 출력"]
+    isDeposit -->|"아니오"| overLimit{"balance - amount &lt; -200 인가"}
+    overLimit -->|"예"| reject["Not allowed 출력"]
+    overLimit -->|"아니오"| subMoney["balance - amount 출력"]
+    addMoney --> readLine
+    reject --> readLine
+    subMoney --> readLine
+```
+
+## 복잡도 분석
+
+종료 줄을 제외한 거래 수를 T라고 하면 한 줄당 비교와 산술 연산이 상수 번 일어난다. 이전 거래를 보관하지 않으므로 T가 커져도 추가 메모리는 늘지 않는다.
+
+| 항목 | 복잡도 | 비고 |
+|---|---|---|
+| 시간 | $O(T)$ | 줄마다 상수 시간 |
+| 추가 공간 | $O(1)$ | 현재 줄의 값 세 개만 보관 |
+
+값의 범위도 작다. 결과는 가장 클 때 10,000 + 400 = 10,400이고, 가장 작을 때의 중간값은 -200 - 400 = -600이므로 32비트 `int`로 충분하다.
+
+## 구현 코드
+
+세 구현의 판정 순서는 위 흐름도와 같다. 문제의 거래 종류는 `W`와 `D` 두 가지뿐이므로, `D`가 아니면 출금으로 처리한다.
+
+### C++
+
+`cin`의 `>>` 연산자는 공백과 줄바꿈을 건너뛰므로 정수, 문자, 정수를 차례로 읽으면 한 줄이 그대로 분해된다.
 
 ```cpp
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <iostream>
 using namespace std;
 
-int main(){
-    ios::sync_with_stdio(false); // 빠른 입출력을 위해 동기화 해제
-    cin.tie(0); // 입력과 출력을 분리하여 속도 향상
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-    long long balance, amount;
+    int balance, amount;
     char op;
-    
-    while(cin >> balance >> op >> amount){
-        if(balance == 0 && op == 'W' && amount == 0){
-            break; // 종료 조건
+    while (cin >> balance >> op >> amount) {
+        if (balance == 0 && op == 'W' && amount == 0) break;
+
+        if (op == 'D') {
+            cout << balance + amount << '\n';
+        } else if (balance - amount < -200) {
+            cout << "Not allowed\n";
+        } else {
+            cout << balance - amount << '\n';
         }
-        if(op == 'D'){
-            balance += amount; // 예금 처리
-            cout << balance << "\n";
-        }
-        else if(op == 'W'){
-            if(balance - amount < -200){
-                cout << "Not allowed\n"; // 출금 불가
-            }
-            else{
-                balance -= amount; // 출금 처리
-                cout << balance << "\n";
-            }
-        }
-        // 유효하지 않은 연산 문자는 무시
     }
-    
     return 0;
 }
 ```
 
-### 코드 설명
+### C
 
-1. **입출력 최적화**:
-    - `ios::sync_with_stdio(false)`와 `cin.tie(0)`을 사용하여 C++의 표준 입출력 스트림을 최적화한다. 이는 입력 속도를 크게 향상시킨다.
+C의 `scanf`에서 `%c`는 앞의 공백을 건너뛰지 않으므로 형식 문자열의 `%c` 앞에 공백을 둔다. 반환값은 `EOF`가 아닌지가 아니라 3개를 모두 읽었는지(`== 3`)로 검사해야, 형식이 어긋난 입력에서 반복이 멈추지 않는 일을 막을 수 있다.
 
-2. **변수 선언**:
-    - `balance`: 현재 잔액을 저장하는 변수.
-    - `op`: 거래 유형을 나타내는 문자 ('D' 또는 'W').
-    - `amount`: 거래 금액을 저장하는 변수.
-
-3. **반복문을 통한 거래 처리**:
-    - `while(cin >> balance >> op >> amount)` 루프를 사용하여 거래를 하나씩 읽어들인다.
-    - 입력이 `0 W 0`일 경우 루프를 종료한다.
-
-4. **예금 처리**:
-    - 거래 유형이 'D'인 경우, `balance`에 `amount`를 더하고 새로운 잔액을 출력한다.
-
-5. **출금 처리**:
-    - 거래 유형이 'W'인 경우, 출금 후 잔액이 –200보다 작은지 확인한다.
-    - 만약 잔액이 –200보다 작아지면 "Not allowed"를 출력하고, 그렇지 않으면 `balance`에서 `amount`를 뺀 후 새로운 잔액을 출력한다.
-
-6. **출력**:
-    - 각 거래 후의 잔액 또는 "Not allowed"를 출력하여 결과를 보여준다.
-
-## C++ without library 코드와 설명
-
-아래는 C++에서 `stdio.h`와 `malloc.h`만을 사용하여 작성한 최적화된 코드이다. 이 코드는 C 스타일의 입출력을 사용하여 효율성을 높였다.
-
-```cpp
+```c
+// 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 #include <stdio.h>
 
-int main(){
-    long long balance, amount;
+int main(void) {
+    int balance, amount;
     char op;
-    
-    while(scanf("%lld %c %lld", &balance, &op, &amount) != EOF){
-        if(balance == 0 && op == 'W' && amount == 0){
-            break; // 종료 조건
-        }
-        if(op == 'D'){
-            balance += amount; // 예금 처리
-            printf("%lld\n", balance);
-        }
-        else if(op == 'W'){
-            if(balance - amount < -200){
-                printf("Not allowed\n"); // 출금 불가
-            }
-            else{
-                balance -= amount; // 출금 처리
-                printf("%lld\n", balance);
-            }
+    while (scanf("%d %c %d", &balance, &op, &amount) == 3) {
+        if (balance == 0 && op == 'W' && amount == 0) break;
+
+        if (op == 'D') {
+            printf("%d\n", balance + amount);
+        } else if (balance - amount < -200) {
+            printf("Not allowed\n");
+        } else {
+            printf("%d\n", balance - amount);
         }
     }
-    
     return 0;
 }
 ```
 
-### 코드 설명
+### Python
 
-1. **입출력 처리**:
-    - `scanf`와 `printf`를 사용하여 C 스타일의 입출력을 처리한다. 이는 C++의 `cin`과 `cout`보다 빠르며, 시간 제한이 엄격한 문제에서 유리하다.
-
-2. **변수 선언**:
-    - `balance`: 현재 잔액을 저장하는 변수.
-    - `op`: 거래 유형을 나타내는 문자 ('D' 또는 'W').
-    - `amount`: 거래 금액을 저장하는 변수.
-
-3. **반복문을 통한 거래 처리**:
-    - `while(scanf("%lld %c %lld", &balance, &op, &amount) != EOF)` 루프를 사용하여 거래를 하나씩 읽어들인다.
-    - 입력이 `0 W 0`일 경우 루프를 종료한다.
-
-4. **예금 및 출금 처리**:
-    - 거래 유형에 따라 예금 또는 출금을 처리하며, 출금 시 잔액이 –200 이하로 떨어지는지를 확인한다.
-    - 적절한 결과를 `printf`로 출력한다.
-
-## Python 코드와 설명
-
-아래는 문제를 해결하기 위한 최적화된 Python 코드이다. Python의 간결한 문법을 사용하여 구현하였다.
+입력 줄 수가 미리 주어지지 않으므로 `sys.stdin`을 줄 단위로 순회하다가 종료 줄에서 빠져나온다. 거래 종류는 문자열 그대로 두고 두 숫자만 정수로 바꾼다.
 
 ```python
+# 42jerrykim.github.io에서 더 많은 정보를 확인할 수 있다
 import sys
+
 
 def main():
     for line in sys.stdin:
-        balance, op, amount = line.strip().split()
-        balance = int(balance)
-        amount = int(amount)
-        if balance == 0 and op == 'W' and amount == 0:
+        balance, op, amount = line.split()
+        balance, amount = int(balance), int(amount)
+        if balance == 0 and op == "W" and amount == 0:
             break
-        if op == 'D':
-            balance += amount
-            print(balance)
-        elif op == 'W':
-            if balance - amount < -200:
-                print("Not allowed")
-            else:
-                balance -= amount
-                print(balance)
+
+        if op == "D":
+            print(balance + amount)
+        elif balance - amount < -200:
+            print("Not allowed")
+        else:
+            print(balance - amount)
+
 
 if __name__ == "__main__":
     main()
 ```
 
-### 코드 설명
-
-1. **입출력 처리**:
-    - `sys.stdin`을 사용하여 표준 입력을 빠르게 처리한다. 이는 큰 입력을 처리할 때 유리하다.
-
-2. **입력 읽기 및 처리**:
-    - `for line in sys.stdin` 루프를 사용하여 각 거래를 한 줄씩 읽어들인다.
-    - `line.strip().split()`을 통해 각 줄을 공백으로 분리하여 `balance`, `op`, `amount`를 추출한다.
-    - `balance`와 `amount`를 정수형으로 변환한다.
-
-3. **종료 조건 확인**:
-    - 입력이 `0 W 0`일 경우 루프를 종료한다.
-
-4. **예금 및 출금 처리**:
-    - 거래 유형이 'D'인 경우, `balance`에 `amount`를 더하고 새로운 잔액을 출력한다.
-    - 거래 유형이 'W'인 경우, 출금 후 잔액이 –200보다 작은지 확인한다. 조건을 만족하지 않으면 "Not allowed"를 출력하고, 그렇지 않으면 `balance`에서 `amount`를 빼고 새로운 잔액을 출력한다.
-
-## 결론
-
-이번 문제는 간단한 시뮬레이션과 구현 능력을 평가하는 문제였다. 주어진 거래들을 순서대로 처리하면서 조건을 충족하는지를 확인하는 방식으로 접근하였다. C++과 Python 모두에서 효율적인 입출력 처리를 통해 시간 제한을 만족시킬 수 있었으며, 특별한 자료 구조나 복잡한 알고리즘이 필요 없었다. 다만, 출금 시 잔액이 –200 이하로 떨어지는 조건을 정확히 처리하는 것이 중요하였다. 앞으로 유사한 구현 문제에서는 이러한 조건 검사를 정확히 구현하는 것이 핵심임을 다시 한번 확인할 수 있었다.
-
-또한, C++에서는 `ios::sync_with_stdio(false)`와 `cin.tie(0)`을 사용하여 입출력을 최적화함으로써 더 빠르게 처리할 수 있었으며, Python에서는 `sys.stdin`을 사용하여 입력 속도를 향상시킬 수 있었다. 이러한 입출력 최적화 기법은 문제 해결 속도를 크게 향상시킬 수 있음을 다시 한번 느꼈다.
-
 ## 코너 케이스 및 실수 포인트
 
-| 케이스 | 설명 | 처리 방법 |
+예제에는 결과가 정확히 -200이 되는 출금이 없으므로 아래 입력은 직접 넣어 확인한다.
+
+| 입력 | 기대 출력 | 확인하는 것 |
 |---|---|---|
-| **최소 입력** | N=1 또는 빈 입력 | 반복문 범위·예외 처리 확인 |
-| **오버플로우** | 답이 $2^{31}$ 초과 가능 | `long long` (C++) 등 사용 |
+| `0 W 200` | `-200` | 한도와 같은 값은 허용 |
+| `0 W 201` | `Not allowed` | 한도를 1이라도 넘으면 거절 |
+| `-200 W 5` | `Not allowed` | 이미 한도에 있는 계좌의 출금 |
+| `-200 D 5` | `-195` | 입금에는 한도 검사가 없음 |
+| `0 D 5` | `5` | 시작 잔액이 0이어도 종료 줄이 아님 |
+
+## 판단 기준과 한계
+
+이 풀이처럼 상태 없이 줄 단위로 처리하는 방식은 거래가 서로 독립일 때만 맞다. 한 계좌에 거래가 연속으로 쌓이는 형태로 문제가 바뀌면 잔액 변수를 반복문 밖에 두고, 거절된 거래에서는 값을 갱신하지 않아야 한다. 또 이 코드는 입력 형식이 문제의 약속을 지킨다고 가정한다. 실제 금융 시스템이라면 알 수 없는 거래 종류나 음수 금액을 검증하고, 동시 출금이 한도를 함께 통과하지 않도록 갱신을 원자적으로 처리해야 한다.
+
+## 이 글을 읽은 후 달성해야 할 목표
+
+- 각 입력 줄이 독립된 거래인지 누적 거래인지 문제 문장과 예제로 구분할 수 있다.
+- "-200 아래로 내려갈 수 없다"를 `< -200` 조건으로 옮기고, `<=`와의 차이를 경계값 입력으로 설명할 수 있다.
+- 종료 줄이 있는 입력을 C++·C·Python에서 각각 읽을 수 있다.
+
+## 참고 문헌 및 출처
+
+- [백준 2975번 Transactions](https://www.acmicpc.net/problem/2975)
